@@ -2091,6 +2091,7 @@ $UNWATCHURL
 'rollback_short' => 'گەڕاندنەوە',
 'rollbacklink' => 'گەڕاندنەوە',
 'rollbacklinkcount' => 'گەڕاندنەوەی $1 {{PLURAL:$1|دەستکاری}}',
+'rollbacklinkcount-morethan' => 'گەڕاندنەوەی زۆرتر لە $1 {{PLURAL:$1|دەستکاری}}',
 'rollbackfailed' => 'گەڕاندنەوە سەرکەوتوو نەبوو',
 'cantrollback' => 'دەستکاریەکان ناگەڕێندرێتەوە؛
 دوایین هاوبەش تەنها ڕێکخەری ئەم لاپەڕەیە.',

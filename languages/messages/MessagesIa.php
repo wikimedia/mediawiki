@@ -856,7 +856,7 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'note' => "'''Nota:'''",
 'previewnote' => "'''Isto es solmente un previsualisation.'''
 Le modificationes non ha ancora essite publicate!",
-'continue-editing' => 'Continuar a modificar',
+'continue-editing' => 'Saltar al quadro de modification',
 'previewconflict' => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview' => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.
@@ -2165,9 +2165,9 @@ pro inviar e-mail a altere usatores.',
 'emailuser-title-target' => 'Inviar e-mail a iste {{GENDER:$1|usator|usatrice}}',
 'emailuser-title-notarget' => 'Inviar e-mail al usator',
 'emailpage' => 'Inviar e-mail al usator',
-'emailpagetext' => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
-Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
-como le adresse del expeditor del e-mail, de modo que le destinatario pote responder directemente a te.',
+'emailpagetext' => 'Le formulario sequente es pro inviar un message de e-mail a iste {{GENDER:$1|usator}}.
+Le adresse de e-mail que tu specificava in [[Special:Preferences|tu preferentias de usator]] apparera
+como le adresse del expeditor, de sorta que le destinatario potera responder te directemente.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
 'defemailsubject' => 'E-mail del usator "$1" de {{SITENAME}}',
 'usermaildisabled' => 'E-mail a usatores disactivate',
@@ -3016,6 +3016,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-default-sort' => 'Clave de ordination predefinite',
 'pageinfo-length' => 'Dimension del pagina (in bytes)',
 'pageinfo-article-id' => 'ID del pagina',
+'pageinfo-language' => 'Lingua del contento del pagina',
 'pageinfo-robot-policy' => 'Stato del motor de recerca',
 'pageinfo-robot-index' => 'Indexabile',
 'pageinfo-robot-noindex' => 'Non indexabile',
@@ -3739,6 +3740,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'version-license' => 'Licentia',
 'version-poweredby-credits' => "Iste wiki es actionate per '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'alteres',
+'version-credits-summary' => 'Nos vole recognoscer le sequente personas pro lor contribution a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki es software libere; vos pote redistribuer lo e/o modificar lo sub le conditiones del Licentia Public General de GNU publicate per le Free Software Foundation; version 2 del Licentia, o (a vostre option) qualcunque version posterior.
 
 Iste programma es distribuite in le sperantia que illo sia utile, ma SIN GARANTIA; sin mesmo le implicite garantia de COMMERCIALISATION o APTITUDE PRO UN PROPOSITO PARTICULAR. Vide le Licentia Public General de GNU pro plus detalios.

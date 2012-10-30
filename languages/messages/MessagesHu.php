@@ -2915,6 +2915,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'import-error-invalid' => '„$1” lap nem került importálásra, mert a neve nem érvényes.',
 'import-options-wrong' => 'Rossz {{PLURAL:$2|opció|opciók}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A megadott gyökér oldal címe érvénytelen.',
+'import-rootpage-nosubpage' => 'A(z) "$1" névtér nem engedi meg aloldalak használatát.',
 
 # Import log
 'importlogpage' => 'Importnapló',

@@ -1261,9 +1261,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'editundo' => 'kumoa',
 'diff-multi' => '(Näytettyjen versioiden välissä on {{PLURAL:$1|yksi muokkaus|$1 versiota, jotka ovat {{PLURAL:$2|yhden käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
 'diff-multi-manyusers' => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|yli $2 eri käyttäjää}}}}.)',
-'difference-missing-revision' => '{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä diffistä ($1) {{PLURAL:$2|ei|ei}} löytynyt.
+'difference-missing-revision' => '{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä vertailusta ($1) {{PLURAL:$2|ei}} löytynyt.
 
-Tämä johtuu yleensä seuraavasta vanhentuneeesta diffilinkistä sivulle, joka on poistettu.
+Useimmiten tämä johtuu vanhentuneesta vertailulinkistä poistettuun sivuun.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].',
 
 # Search results
@@ -3045,7 +3045,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-firstuser' => 'Sivun luonut',
 'pageinfo-firsttime' => 'Sivun luontipäivämäärä',
 'pageinfo-lastuser' => 'Viimeisin muokkaaja',
-'pageinfo-lasttime' => 'Viimeisimmän muokkausksen päivämäärä',
+'pageinfo-lasttime' => 'Viimeisin muokkauspäivämäärä',
 'pageinfo-edits' => 'Muokkausten kokonaismäärä',
 'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
 'pageinfo-recent-edits' => 'Tuoreita muutoksia ($1)',

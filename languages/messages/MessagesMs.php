@@ -2155,7 +2155,7 @@ terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 'emailuser-title-target' => 'E-mel {{GENDER:$1|pengguna}} ini',
 'emailuser-title-notarget' => 'E-mel pengguna',
 'emailpage' => 'E-mel pengguna',
-'emailpagetext' => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
+'emailpagetext' => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada {{GENDER:$1|pengguna}} ini.
 
 Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan digunakan sebagai alamat "Daripada" dalam e-mel tersebut supaya si penerima boleh membalasnya.',
 'usermailererror' => 'Objek Mail memulangkan ralat:',
@@ -2970,6 +2970,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-default-sort' => 'Kunci isih azali',
 'pageinfo-length' => 'Kepanjangan halaman (bait)',
 'pageinfo-article-id' => 'ID halaman',
+'pageinfo-language' => 'Bahasa isi kandungan halaman',
 'pageinfo-robot-policy' => 'Status enjin pencarian',
 'pageinfo-robot-index' => 'Boleh diindekskan',
 'pageinfo-robot-noindex' => 'Tidak boleh diindekskan',
@@ -3699,6 +3700,7 @@ Anda juga boleh [[Special:EditWatchlist|menggunakan penyunting piawai]].',
 'version-license' => 'Lesen',
 'version-poweredby-credits' => "Wiki ini dikuasakan oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others' => 'penyumbang-penyumbang lain',
+'version-credits-summary' => 'Kami ingin mengucapkan sekalung budi kepada mereka yang berikut atas sumbangan mereka keada [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki adalah perisian bebas; anda boleh mengedarkannya semula dan/atau mengubah suainya di bawah terma-terma Lesen Awam GNU sebagai mana yang telah diterbitkan oleh Yayasan Perisian Bebas, sama ada versi 2 bagi Lesen tersebut, atau (berdasarkan pilihan anda) mana-mana versi selepasnya.
 
 MediaWiki diedarkan dengan harapan bahawa ia berguna, tetapi TANPA SEBARANG WARANTI; hatta waranti yang tersirat bagi KEBOLEHDAGANGAN mahupun KESESUAIAN UNTUK TUJUAN TERTENTU. Sila lihat Lesen Awam GNU untuk butiran lanjut.

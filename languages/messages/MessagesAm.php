@@ -1835,6 +1835,16 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'spambot_username' => 'MediaWiki የስፓም ማፅዳት',
 'spam_reverting' => 'ወደ $1 የሚወስድ መያያዣ ወደሌለበት መጨረሻ ዕትም መለሰው',
 
+# Info page
+'pageinfo-firstuser' => 'የገጹ ፈጣሪ',
+'pageinfo-firsttime' => 'የተፈጠረበት ቀን',
+'pageinfo-lastuser' => 'የመጨረሻው አራሚ',
+'pageinfo-lasttime' => 'የመጨረሻው ዕትም ቀን',
+'pageinfo-edits' => 'ጠቅላላ የእርማት ቁጥር',
+'pageinfo-toolboxlink' => 'የዚህ ገጽ መረጃ',
+'pageinfo-contentpage-yes' => 'አዎ',
+'pageinfo-protect-cascading-yes' => 'አዎ',
+
 # Patrolling
 'markaspatrolleddiff' => 'የተሳለፈ ሆኖ ማመልከት',
 'markaspatrolledtext' => 'ይህን ገጽ የተመለከተ ሆኖ ለማሳለፍ',

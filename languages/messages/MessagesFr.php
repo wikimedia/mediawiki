@@ -1057,7 +1057,7 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'note' => "'''Note :'''",
 'previewnote' => "'''Rappelez-vous que ce n’est qu’une prévisualisation.'''
 Vos modifications n’ont pas encore été enregistrées !",
-'continue-editing' => 'Aller à modification de la zone',
+'continue-editing' => 'Aller à la zone de modification',
 'previewconflict' => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
 'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 Veuillez réessayer.
@@ -2338,7 +2338,7 @@ Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuve
 'emailuser-title-target' => 'Envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice}}',
 'emailuser-title-notarget' => "Envoyer un courriel à l'utilisateur",
 'emailpage' => "Envoyer un courriel à l'utilisateur",
-'emailpagetext' => 'Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à cet utilisateur.
+'emailpagetext' => 'Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice}}.
 L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message ; ainsi, le destinataire pourra vous répondre directement.',
 'usermailererror' => 'Erreur dans l’objet du courriel :',
 'defemailsubject' => "{{SITENAME}} Courriel de l'utilisateur « $1 »",

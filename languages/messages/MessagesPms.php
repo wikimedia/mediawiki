@@ -3244,7 +3244,7 @@ J'àutri a saran stërmà coma stàndard.
 
 'exif-exposuremode-0' => 'Esposission automàtica',
 'exif-exposuremode-1' => 'Esposission manual',
-'exif-exposuremode-2' => 'Esposission automàtica (auto bracket)',
+'exif-exposuremode-2' => 'Forciolin-a automàtica',
 
 'exif-whitebalance-0' => "Balansa dël bianch n'automàtich",
 'exif-whitebalance-1' => 'Balansa dël bianch an manual',
@@ -3257,7 +3257,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-gaincontrol-0' => 'Gnun',
 'exif-gaincontrol-1' => 'Sparé ij contrast bass',
 'exif-gaincontrol-2' => 'Sparé ij contrast fòrt',
-'exif-gaincontrol-3' => 'Bassé ij contrast bass',
+'exif-gaincontrol-3' => 'Sbassé ij contrast bass',
 'exif-gaincontrol-4' => 'Bassé ij contrast fòrt',
 
 'exif-contrast-0' => 'Normal',

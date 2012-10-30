@@ -1470,7 +1470,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-help-email-others' => 'Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).',
 'prefs-help-email-required' => 'Wymagany jest adres e‐mail.',
 'prefs-info' => 'Podstawowe informacje',
-'prefs-i18n' => 'Ustawienia międzynarodowe',
+'prefs-i18n' => 'Ustawienia językowe',
 'prefs-signature' => 'Podpis',
 'prefs-dateformat' => 'Format daty',
 'prefs-timeoffset' => 'Różnica czasu',
@@ -2283,7 +2283,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'emailuser-title-target' => 'Wyślij e-mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki|tego użytkownika}}',
 'emailuser-title-notarget' => 'Wyślij wiadomość e‐mail',
 'emailpage' => 'Wyślij e‐mail do użytkownika',
-'emailpagetext' => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do tego użytkownika.
+'emailpagetext' => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}.
 Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror' => 'Moduł obsługi poczty zwrócił błąd:',
 'defemailsubject' => '{{SITENAME}} – e‐mail od użytkownika „$1“',
@@ -3114,6 +3114,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-default-sort' => 'Domyślny klucz sortowania',
 'pageinfo-length' => 'Długość strony (w bajtach)',
 'pageinfo-article-id' => 'Identyfikator strony',
+'pageinfo-language' => 'Język zawartości strony',
 'pageinfo-robot-policy' => 'Status w wyszukiwarce',
 'pageinfo-robot-index' => 'Indeksowalne',
 'pageinfo-robot-noindex' => 'Nieindeksowalne',
@@ -3894,6 +3895,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'version-license' => 'Licencja',
 'version-poweredby-credits' => "To wiki korzysta z oprogramowania '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
 'version-poweredby-others' => 'inni',
+'version-credits-summary' => 'Następujące osoby wniosły istotny wkład w rozwój oprogramowania [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki jest wolnym oprogramowaniem – możesz je dystrybuować i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (jeśli wolisz) dowolnej późniejszej.
 
 MediaWiki jest dystrybuowane w nadziei, że okaże się użyteczne ale BEZ JAKIEJKOLWIEK GWARANCJI – nawet bez domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ lub PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. Więcej szczegółów znajdziesz w treści licencji GNU General Public License.

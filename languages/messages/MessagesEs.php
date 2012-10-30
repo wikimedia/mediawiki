@@ -2341,8 +2341,8 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'emailuser-title-target' => 'Enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}',
 'emailuser-title-notarget' => 'Enviar un correo electrónico al usuario',
 'emailpage' => 'Correo electrónico a usuario',
-'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
-La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
+'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}.
+La dirección de correo electrónico que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el campo "Remitente" o "De" para que el destinatario pueda responderte.',
 'usermailererror' => 'El sistema de correo devolvió un error:',
 'defemailsubject' => 'Correo electrónico enviado por el usuario «$1» desde {{SITENAME}}',
 'usermaildisabled' => 'Correo electrónico del usuario deshabilitado',
@@ -3171,6 +3171,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-default-sort' => 'Criterio de ordenación predeterminado',
 'pageinfo-length' => 'Longitud de la página (en bytes)',
 'pageinfo-article-id' => 'Identificador ID de la página',
+'pageinfo-language' => 'Idioma de la página',
 'pageinfo-robot-policy' => 'Estado del motor de búsqueda',
 'pageinfo-robot-index' => 'Indexable',
 'pageinfo-robot-noindex' => 'No indexable',
@@ -3893,6 +3894,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-license' => 'Licencia',
 'version-poweredby-credits' => "Este wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
+'version-credits-summary' => 'Queremos reconocer a las siguientes personas por su contribución a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki es software libre; puedes redistribuírlo y/o modificarlo bajo los términos de la Licencia General Pública GNU publicada por la Fundación del Software Libre; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
 
 MediaWiki es distribuído con la esperanza de que será útil, pero SIN NINGUNA GARANTÍA; ni siquiera con la garantía implícita de COMERCIALIZACIÓN ó ADAPTACIÓN A UN PROPÓSITO PARTICULAR. Véase la Licencia Pública General GNU para mayores detalles.

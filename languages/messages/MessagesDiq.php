@@ -441,7 +441,7 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '(teqa da newiye de beno a)',
+'newwindow' => '(Window da newi de abena)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
 'mypage' => 'Pela mı',
@@ -509,7 +509,7 @@ $messages = array(
 'talkpage' => 'Ena pele sero werêne',
 'talkpagelinktext' => 'Mesac',
 'specialpage' => 'Pela xısusiye',
-'personaltools' => 'Haletê şexsi',
+'personaltools' => 'Haletê bexsi',
 'postcomment' => 'Qısımo newe',
 'articlepage' => 'Pela zerreki bıvêne',
 'talk' => 'Werênayış',
@@ -556,8 +556,8 @@ $1',
 'mainpage' => 'Pera Seri',
 'mainpage-description' => 'Pela Seri',
 'policy-url' => 'Project:Terzê hereketi',
-'portal' => 'Portalê şêlıgi',
-'portal-url' => 'Project:Portalê şêlıgi',
+'portal' => 'Portalê cemaeti',
+'portal-url' => 'Project:Portalê cemaeti',
 'privacy' => 'Madeyê dızdiye',
 'privacypage' => 'Project:Xısusiyetê nımtışi',
 
@@ -1407,7 +1407,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'searchresultshead' => 'Cı geyre',
 'resultsperpage' => 'Serê pele  amarê cıkewtoğan:',
 'stub-threshold' => 'Baraj ke <a href="#" class="stub">stub link</a> ho şekil dano (bîtî):',
-'stub-threshold-disabled' => 'Dezge ra vıcyaya',
+'stub-threshold-disabled' => 'Deaktivya',
 'recentchangesdays' => 'Rocê ke vurnayışanê peyênan de bıasê:',
 'recentchangesdays-max' => 'Tewr zaf $1 {{PLURAL:$1|roc|roci}}',
 'recentchangescount' => 'Amarê vurnayışê ke hesıbyaye deye bımocneyê:',
@@ -1465,8 +1465,8 @@ Etiketê HTMLî kontrol bike.',
 $1 gani bınê no {{PLURAL:$1|karakter|karakter}} de bıbo.',
 'yourgender' => 'Cınsiyet:',
 'gender-unknown' => 'Cınsiyet nêvato',
-'gender-male' => 'cıwamêrd',
-'gender-female' => 'Cenıke',
+'gender-male' => 'Camêrd',
+'gender-female' => 'Cıni',
 'prefs-help-gender' => 'keyfiyo: sofware qey adersê cinsiyet şuxulneno, no malumat umumiyo.',
 'email' => 'E-posta',
 'prefs-help-realname' => 'Nameyo raşt waştena şıma rê mendo.
@@ -2280,8 +2280,8 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'emailuser-title-target' => 'Na E-postaya {{GENDER:$1|karberi}}ya',
 'emailuser-title-notarget' => 'E-postaya karberi',
 'emailpage' => 'karberi re e-posta bırışê',
-'emailpagetext' => 'no/na karberi re e-posta erşawıtışi de şıma pê forma cêrıni eşkeni kar bıkerî.
-[[Special:Preferences|tercihanê şıma ye karberi]] de adresa e-posta ya ke şıma dayo, na adres qısmê adresa e-postayi de "From (kam ra)" asena, no sebebi ra gırewtox/e eşkeno/a direk cewab bıdo şıma.',
+'emailpagetext' => 'No/na {{GENDER:$1|karber}}i re e-posta rıştış de şıma pê forma cêrıni şeni kar bıkerî.
+[[Special:Preferences|tercihanê şıma ye karberi]] de adresa e-posta ya ke şıma dayo, na adres qısmê adresa e-postayi de "kami ra" asena, no sebebi ra gırewtox/e eşkeno/a direk cewab bıdo şıma.',
 'usermailererror' => 'xizmetê e-postayi xeta da:',
 'defemailsubject' => '"$1" ra e-postay {{SITENAME}} amê',
 'usermaildisabled' => 'E-mailê karberani kafiliyeya',
@@ -2410,7 +2410,7 @@ Qe qeydê wedarnayışi, $2 bevinin.',
 ** talebê nuştekari
 ** ihlalê heqê telifi
 ** Vandalizm',
-'delete-edit-reasonlist' => 'sebebê hewn a kerdışani bıvurn',
+'delete-edit-reasonlist' => 'Sebebê vurnayışan bıvurne',
 'delete-toobig' => 'no pel, pê $1 {{PLURAL:$1|tene vuriyayiş|tene vuriyayiş}}i wayirê yew tarixo kehen o.
 qey hewna nêşiyayişi wina pelani u {{SITENAME}}nêxerebnayişê keyepeli yew hed niyaya ro.',
 'delete-warning-toobig' => 'no pel wayirê tarixê vurnayiş ê derg o, $1 {{PLURAL:$1|revizyonê|revizyonê}} seri de.
@@ -3599,6 +3599,7 @@ mw.loader.using( 'jquery.cookie', function() {
 'pageinfo-default-sort' => 'Hesıbyaye mırfeyo kılm',
 'pageinfo-length' => 'Derdeya pela (bayti heta)',
 'pageinfo-article-id' => 'Nımrey pela',
+'pageinfo-language' => 'Zerrey pera zıwani',
 'pageinfo-robot-policy' => 'Weziyetê motor de cıgeyrayışi',
 'pageinfo-robot-index' => 'İIndeksbiyayen',
 'pageinfo-robot-noindex' => 'İndeksnêbiyayen',
@@ -4519,7 +4520,7 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'version-license' => 'Lisans',
 'version-poweredby-credits' => "Ena wiki, dezginda '''[//www.mediawiki.org/ MediaWiki]''' ya piya vıraziyaya, heqê telifi © 2001-$1 $2.",
 'version-poweredby-others' => 'Zewmi',
-'version-credits-summary' => 'Ma qayıle ke  [[Special:Version|MediaWiki]] re qkami desteg dayo se maye vam ina bışınasne.',
+'version-credits-summary' => 'Ma qayılime ke [[Special:Version|MediaWiki]] rê ke kami desteg dayo wa mayê vanime inan bışınasne.',
 'version-license-info' => "MediaWiki xoseri jew nuştereno; MediaWiki'yer, weqfê xoseri nuşteren GNU lisansiya merdumi şene ke vıla kerê, bıvurnê u timar kerê.
 
 Nuşterenê MediaWiki merdumi cı ra nahfat bivinê deye êyê mısade danê; feqet ke nêşeno BIROŞO yana XOSERİ VILA KERO qerantiya ney çına. bewni rê lisansta GNU'y.
