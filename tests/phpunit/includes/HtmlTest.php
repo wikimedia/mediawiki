@@ -73,7 +73,7 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {
-		
+
 		### EMPTY ########
 		$this->assertEmpty(
 			Html::expandAttributes( array( 'foo' => null ) ),
@@ -467,9 +467,6 @@ class HtmlTest extends MediaWikiTestCase {
 		$cases[] = array( '<button></button>',
 			'button', array( 'formenctype' => 'application/x-www-form-urlencoded' )
 		);
-		$cases[] = array( '<button></button>',
-			'button', array( 'type' => 'submit' )
-		);
 
 		$cases[] = array( '<canvas></canvas>',
 			'canvas', array( 'height' => '150' )
@@ -558,6 +555,13 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 		$cases[] = array( '<input type=range>',
 			'input', array( 'type' => 'range', 'value' => '' ),
+		);
+
+		# <button> specifc handling
+		# see remarks on http://msdn.microsoft.com/en-us/library/ie/ms535211%28v=vs.85%29.aspx
+		$cases[] = array( '<button type=submit></button>',
+			'button', array( 'type' => 'submit' ),
+			'According to standard the default type is "submit". Depending on compatibility mode IE might use "button", instead.',
 		);
 
 		# <select> specifc handling
