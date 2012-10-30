@@ -65,17 +65,51 @@ abstract class FileOp {
 		list( $required, $optional ) = $this->allowedParams();
 		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
-				$this->params[$name] = $params[$name];
+				$this->params[$name] = self::normalizeAnyStoragePaths( $params[$name] );
 			} else {
 				throw new MWException( "File operation missing parameter '$name'." );
 			}
 		}
 		foreach ( $optional as $name ) {
 			if ( isset( $params[$name] ) ) {
-				$this->params[$name] = $params[$name];
+				$this->params[$name] = self::normalizeAnyStoragePaths( $params[$name] );
 			}
 		}
 		$this->params = $params;
+	}
+
+	/**
+	 * Normalize $item or anything in $item that is a valid storage path
+	 *
+	 * @param $item string|array
+	 * @return string|Array
+	 */
+	protected function normalizeAnyStoragePaths( $item ) {
+		if ( is_array( $item ) ) {
+			$res = array();
+			foreach ( $item as $k => $v ) {
+				$k = self::normalizeIfValidStoragePath( $k );
+				$v = self::normalizeIfValidStoragePath( $v );
+				$res[$k] = $v;
+			}
+			return $res;
+		} else {
+			return self::normalizeIfValidStoragePath( $item );
+		}
+	}
+
+	/**
+	 * Normalize a string if it is a valid storage path
+	 *
+	 * @param $path string
+	 * @return string
+	 */
+	protected static function normalizeIfValidStoragePath( $path ) {
+		if ( FileBackend::isStoragePath( $path ) ) {
+			$res = FileBackend::normalizeStoragePath( $path );
+			return ( $res !== null ) ? $res : $path;
+		}
+		return $path;
 	}
 
 	/**
@@ -292,15 +326,7 @@ abstract class FileOp {
 	 *
 	 * @return Array
 	 */
-	final public function storagePathsRead() {
-		return array_map( 'FileBackend::normalizeStoragePath', $this->doStoragePathsRead() );
-	}
-
-	/**
-	 * @see FileOp::storagePathsRead()
-	 * @return Array
-	 */
-	protected function doStoragePathsRead() {
+	public function storagePathsRead() {
 		return array();
 	}
 
@@ -309,15 +335,7 @@ abstract class FileOp {
 	 *
 	 * @return Array
 	 */
-	final public function storagePathsChanged() {
-		return array_map( 'FileBackend::normalizeStoragePath', $this->doStoragePathsChanged() );
-	}
-
-	/**
-	 * @see FileOp::storagePathsChanged()
-	 * @return Array
-	 */
-	protected function doStoragePathsChanged() {
+	public function storagePathsChanged() {
 		return array();
 	}
 
@@ -498,7 +516,7 @@ class StoreFileOp extends FileOp {
 		return $hash;
 	}
 
-	protected function doStoragePathsChanged() {
+	public function storagePathsChanged() {
 		return array( $this->params['dst'] );
 	}
 }
@@ -558,7 +576,7 @@ class CreateFileOp extends FileOp {
 	/**
 	 * @return array
 	 */
-	protected function doStoragePathsChanged() {
+	public function storagePathsChanged() {
 		return array( $this->params['dst'] );
 	}
 }
@@ -619,14 +637,14 @@ class CopyFileOp extends FileOp {
 	/**
 	 * @return array
 	 */
-	protected function doStoragePathsRead() {
+	public function storagePathsRead() {
 		return array( $this->params['src'] );
 	}
 
 	/**
 	 * @return array
 	 */
-	protected function doStoragePathsChanged() {
+	public function storagePathsChanged() {
 		return array( $this->params['dst'] );
 	}
 }
@@ -693,14 +711,14 @@ class MoveFileOp extends FileOp {
 	/**
 	 * @return array
 	 */
-	protected function doStoragePathsRead() {
+	public function storagePathsRead() {
 		return array( $this->params['src'] );
 	}
 
 	/**
 	 * @return array
 	 */
-	protected function doStoragePathsChanged() {
+	public function storagePathsChanged() {
 		return array( $this->params['src'], $this->params['dst'] );
 	}
 }
@@ -753,7 +771,7 @@ class DeleteFileOp extends FileOp {
 	/**
 	 * @return array
 	 */
-	protected function doStoragePathsChanged() {
+	public function storagePathsChanged() {
 		return array( $this->params['src'] );
 	}
 }
