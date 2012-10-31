@@ -25,6 +25,7 @@
  * @ingroup Test
  *
  * @group Site
+ * @group Database
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -57,9 +58,9 @@ class SiteObjectTest extends ORMRowTest {
 	public function constructorTestProvider() {
 		$argLists = array();
 
-		$argLists[] = array( 'global_key' => '42' );
+		$argLists[] = array( 'global_key' => 'foo' );
 
-		$argLists[] = array( 'global_key' => '42', 'type' => Site::TYPE_MEDIAWIKI );
+		$argLists[] = array( 'global_key' => 'bar', 'type' => Site::TYPE_MEDIAWIKI );
 
 		$constructorArgs = array();
 
@@ -227,6 +228,17 @@ class SiteObjectTest extends ORMRowTest {
 		$site->setPath( 'foo', $path );
 
 		$this->assertEquals( $path, $site->getPath( 'foo' ) );
+	}
+
+	public function testProtocolRelativePath() {
+		/* @var SiteObject $site */
+		$site = $this->getRowInstance( $this->getMockFields(), false );
+
+		$type = $site->getLinkPathType();
+		$path = '//acme.com/'; // protocol-relative URL
+		$site->setPath( $type, $path );
+
+		$this->assertEquals( '', $site->getProtocol() );
 	}
 
 	public function provideGetPageUrl() {

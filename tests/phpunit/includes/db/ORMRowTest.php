@@ -155,11 +155,10 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 
 	/**
 	 * @dataProvider constructorTestProvider
+	 * @depends testSave()
 	 */
 	public function testRemove( array $data, $loadDefaults ) {
 		$item = $this->getRowInstance( $data, $loadDefaults );
-
-		$this->assertTrue( $item->save() );
 
 		$this->assertTrue( $item->remove() );
 
