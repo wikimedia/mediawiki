@@ -12,6 +12,24 @@
 
 $rtl = true;
 
+$namespaceNames = array(
+	NS_MEDIA            => 'میڈیا',
+	NS_SPECIAL          => 'خاص',
+	NS_MAIN             => '',
+	NS_TALK             => 'بَحَژ',
+	NS_USER             => 'رُکُن',
+	NS_USER_TALK        => 'رُکُن_بَحَژ',
+	NS_PROJECT_TALK     => '$1_بَحَژ',
+	NS_FILE             => 'فَیِل',
+	NS_FILE_TALK        => 'فَیِل_بَحَژ',
+	NS_MEDIAWIKI        => 'میڈیاوکی',
+	NS_MEDIAWIKI_TALK   => 'میڈیاوکی_بَحَژ',
+	NS_HELP             => 'پَلزُن',
+	NS_HELP_TALK        => 'پَلزُن_بَحَژ',
+	NS_CATEGORY         => 'زٲژ',
+	NS_CATEGORY_TALK    => 'زٲژ_بَحَژ',
+);
+
 $digitTransformTable = array(
 	'0' => '٠', # &#x0660;
 	'1' => '١', # &#x0661;
