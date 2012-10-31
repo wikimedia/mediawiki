@@ -134,7 +134,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( '최근바뀜' ),
 	'Recentchangeslinked'       => array( '링크최근바뀜' ),
 	'Revisiondelete'            => array( '특정판삭제' ),
-	'RevisionMove'              => array( '특정판이동' ),
 	'Search'                    => array( '찾기', '검색' ),
 	'Shortpages'                => array( '짧은문서' ),
 	'Specialpages'              => array( '특수문서', '특수기능' ),

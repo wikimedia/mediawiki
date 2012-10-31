@@ -163,7 +163,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'СкорешниПромени' ),
 	'Recentchangeslinked'       => array( 'ПоврзаниПромени' ),
 	'Revisiondelete'            => array( 'БришењеРевизија' ),
-	'RevisionMove'              => array( 'ПреместиРевизија' ),
 	'Search'                    => array( 'Барај' ),
 	'Shortpages'                => array( 'КраткиСтраници' ),
 	'Specialpages'              => array( 'СпецијалниСтраници' ),

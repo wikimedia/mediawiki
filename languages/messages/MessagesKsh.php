@@ -165,7 +165,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Neuste_Änderunge', 'Änderunge' ),
 	'Recentchangeslinked'       => array( 'Änderungen_an_verlinkte_Sigge' ),
 	'Revisiondelete'            => array( 'Version_fottschmieße' ),
-	'RevisionMove'              => array( 'VersioneÖmnänne', 'Versione_Ömnänne', 'VersioneÖmnenne', 'Versione_Ömnenne' ),
 	'Search'                    => array( 'Sök', 'Söök', 'Söke', 'Sööke' ),
 	'Shortpages'                => array( 'Koote_Atikelle' ),
 	'Specialpages'              => array( 'Sondersigge', 'Söndersigge' ),

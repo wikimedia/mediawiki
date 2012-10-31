@@ -107,7 +107,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'ChanjmanResan' ),
 	'Recentchangeslinked'       => array( 'LyenChanjmanResan', 'ChanjmanAk' ),
 	'Revisiondelete'            => array( 'RevizyonSiprime' ),
-	'RevisionMove'              => array( 'DeplaseRevizyon' ),
 	'Search'                    => array( 'Chache', 'Fouye' ),
 	'Shortpages'                => array( 'PajKout' ),
 	'Specialpages'              => array( 'PajEspesyal' ),

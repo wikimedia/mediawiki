@@ -143,7 +143,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Lastaj_ŝanĝoj' ),
 	'Recentchangeslinked'       => array( 'Rilataj_ŝanĝoj' ),
 	'Revisiondelete'            => array( 'Forigi_revizion' ),
-	'RevisionMove'              => array( 'Movi_revizion' ),
 	'Search'                    => array( 'Serĉi' ),
 	'Shortpages'                => array( 'Mallongaj_paĝoj' ),
 	'Specialpages'              => array( 'Specialaj_paĝoj' ),

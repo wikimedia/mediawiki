@@ -292,7 +292,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'שינויים_אחרונים' ),
 	'Recentchangeslinked'       => array( 'שינויים_בדפים_המקושרים' ),
 	'Revisiondelete'            => array( 'מחיקת_ושחזור_גרסאות' ),
-	'RevisionMove'              => array( 'העברת_גרסאות' ),
 	'Search'                    => array( 'חיפוש' ),
 	'Shortpages'                => array( 'דפים_קצרים' ),
 	'Specialpages'              => array( 'דפים_מיוחדים' ),

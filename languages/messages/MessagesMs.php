@@ -160,7 +160,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Perubahan_terkini' ),
 	'Recentchangeslinked'       => array( 'Perubahan_berkaitan' ),
 	'Revisiondelete'            => array( 'Hapus_semakan' ),
-	'RevisionMove'              => array( 'Pindah_semakan' ),
 	'Search'                    => array( 'Gelintar' ),
 	'Shortpages'                => array( 'Laman_pendek' ),
 	'Specialpages'              => array( 'Laman_khas' ),

@@ -115,7 +115,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'NedavneIzmjene' ),
 	'Recentchangeslinked'       => array( 'PovezaneNedavneIzmjene' ),
 	'Revisiondelete'            => array( 'VratiBrisanje' ),
-	'RevisionMove'              => array( 'PremjestanjeRevizije' ),
 	'Search'                    => array( 'Pretraga' ),
 	'Shortpages'                => array( 'KratkeStranice' ),
 	'Specialpages'              => array( 'SpecijalneStranice' ),

@@ -96,7 +96,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Letschti_Änderige' ),
 	'Recentchangeslinked'       => array( 'Änderige_an_verlinkte_Syte' ),
 	'Revisiondelete'            => array( 'Versionsleschig' ),
-	'RevisionMove'              => array( 'Version_verschiebe' ),
 	'Search'                    => array( 'Suech' ),
 	'Shortpages'                => array( 'Churzi_Syte' ),
 	'Specialpages'              => array( 'Spezialsyte' ),

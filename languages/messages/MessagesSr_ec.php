@@ -141,7 +141,6 @@ $specialPageAliases = array(
 	'Protectedtitles'           => array( 'Заштићени_наслови' ),
 	'Randompage'                => array( 'СлучајнаСтрана', 'Насумична_страница' ),
 	'Recentchanges'             => array( 'СкорашњеИзмене', 'Скорашње_измене' ),
-	'RevisionMove'              => array( 'Премести_измену' ),
 	'Search'                    => array( 'Претражи' ),
 	'Shortpages'                => array( 'КраткиЧланци' ),
 	'Specialpages'              => array( 'СпецијалнеСтране', 'Посебне_странице' ),

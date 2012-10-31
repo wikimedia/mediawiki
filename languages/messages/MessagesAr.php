@@ -421,7 +421,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'أحدث_التغييرات' ),
 	'Recentchangeslinked'       => array( 'أحدث_التغييرات_الموصولة', 'تغييرات_مرتبطة' ),
 	'Revisiondelete'            => array( 'حذف_مراجعة' ),
-	'RevisionMove'              => array( 'نقل_مراجعة' ),
 	'Search'                    => array( 'بحث' ),
 	'Shortpages'                => array( 'صفحات_قصيرة' ),
 	'Specialpages'              => array( 'صفحات_خاصة' ),

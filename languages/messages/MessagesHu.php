@@ -136,7 +136,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Friss_változtatások' ),
 	'Recentchangeslinked'       => array( 'Kapcsolódó_változtatások' ),
 	'Revisiondelete'            => array( 'Változat_törlése' ),
-	'RevisionMove'              => array( 'Változat_áthelyezése' ),
 	'Search'                    => array( 'Keresés' ),
 	'Shortpages'                => array( 'Rövid_lapok' ),
 	'Specialpages'              => array( 'Speciális_lapok' ),

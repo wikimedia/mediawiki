@@ -185,7 +185,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Fanovàna_farany' ),
 	'Recentchangeslinked'       => array( 'Fanarahana_ny_rohy' ),
 	'Revisiondelete'            => array( 'Santiôna_voafafa' ),
-	'RevisionMove'              => array( 'Fanalana_santiôna' ),
 	'Search'                    => array( 'Fikarohana' ),
 	'Shortpages'                => array( 'Pejy_fohy' ),
 	'Specialpages'              => array( 'Pejy_manokana' ),

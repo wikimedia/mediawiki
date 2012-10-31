@@ -110,7 +110,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Modificationes_recente' ),
 	'Recentchangeslinked'       => array( 'Modificationes_recente_ligate', 'Modificationes_connexe' ),
 	'Revisiondelete'            => array( 'Deletion_de_versiones' ),
-	'RevisionMove'              => array( 'Displaciar_versiones' ),
 	'Search'                    => array( 'Recerca' ),
 	'Shortpages'                => array( 'Paginas_curte' ),
 	'Specialpages'              => array( 'Paginas_special' ),
