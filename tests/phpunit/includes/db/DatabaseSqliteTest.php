@@ -54,6 +54,52 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertEquals( count( $expected ), $i, 'Unexpected number of rows' );
 	}
 
+	public static function provideAddQuotes() {
+		return array(
+			array( // #0: empty
+				'', "''"
+			),
+			array( // #1: simple
+				'foo bar', "'foo bar'"
+			),
+			array( // #2: including quote
+				'foo\'bar', "'foo''bar'"
+			),
+			array( // #3: including \0 (must be represented as hex)
+				"x\0y",
+				"x'780079'",
+			),
+			array( // #4: blob object (must be represented as hex)
+				new Blob( "hello" ),
+				"x'68656c6c6f'",
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideAddQuotes()
+	 */
+	public function testAddQuotes( $value, $expected ) {
+		// check quoting
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$this->assertEquals( $expected, $db->addQuotes( $value ), 'string not quoted as expected' );
+
+		// ok, quoting works as expected, now try a round trip.
+		$re = $db->query( 'select ' . $db->addQuotes( $value ) );
+
+		$this->assertTrue( $re !== false, 'query failed' );
+
+		if ( $row = $re->fetchRow() ) {
+			if ( $value instanceof Blob ) {
+				$value = $value->fetch();
+			}
+
+			$this->assertEquals( $value, $row[0], 'string mangled' );
+		} else {
+			$this->fail( 'query returned no result' );
+		}
+	}
+
 	public function testReplaceVars() {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
 
