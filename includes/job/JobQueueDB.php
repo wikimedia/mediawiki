@@ -279,10 +279,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function doAck( Job $job ) {
 		$dbw = $this->getMasterDB();
-		if ( $dbw->trxLevel() ) {
-			wfWarn( "Attempted to ack a job in a transaction; committing first." );
-			$dbw->commit(); // push existing transaction
-		}
+		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
 		$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
 		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
