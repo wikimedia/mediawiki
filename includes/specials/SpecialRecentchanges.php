@@ -52,6 +52,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts->add( 'hideliu',       false );
 		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself',    false );
+		$opts->add( 'hideexternal',  true );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -232,6 +233,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				$opts['hidemyself'] = true;
 			}
 
+			if( 'hideexternal' === $bit ) {
+				$opts['hideexternal'] = true;
+			}
+
 			if( is_numeric( $bit ) ) {
 				$opts['limit'] =  $bit;
 			}
@@ -335,6 +340,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			} else {
 				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $this->getUser()->getName() );
 			}
+		}
+
+		if( $opts['hideexternal'] ) {
+			$conds[] = 'rc_type != ' . RC_EXTERNAL;
 		}
 
 		# Namespace filtering
@@ -798,7 +807,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults ) {
-		global $wgRCLinkLimits, $wgRCLinkDays;
+		global $wgRCShowExternal, $wgRCLinkLimits, $wgRCLinkDays;
 
 		$options = $nondefaults + $defaults;
 
@@ -850,6 +859,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			'hidepatrolled' => 'rcshowhidepatr',
 			'hidemyself'    => 'rcshowhidemine'
 		);
+
+		if ( $wgRCShowExternal === true ) {
+			$filters['hideexternal'] = 'rcshowhideexternal';
+		}
+
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
