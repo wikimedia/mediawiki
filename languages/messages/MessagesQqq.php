@@ -4969,6 +4969,16 @@ $4 is the name of the target user.',
 
 $4 is the gender of the target user.',
 
+# Messages for testing the new logging system, do not translate!
+'log-name-phpunit'        => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+'log-description-phpunit' => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+'logentry-phpunit-test'   => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+'logentry-phpunit-param'  => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+
 # Feedback
 'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback. We expect that people in a hurry will not read this.',
 'feedback-subject' => 'Label for a text input

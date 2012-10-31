@@ -430,7 +430,7 @@ class LogFormatter {
 	 *  - 3: target page with premade link
 	 * @return array
 	 */
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		if ( isset( $this->parsedParameters ) ) {
 			return $this->parsedParameters;
 		}
@@ -856,7 +856,7 @@ class MoveLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$oldname = $this->makePageLink( $this->entry->getTarget(), array( 'redirect' => 'no' ) );
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
@@ -909,7 +909,7 @@ class DeleteLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		if ( isset( $this->parsedParametersDeleteLog ) ) {
 			return $this->parsedParametersDeleteLog;
 		}
@@ -1078,7 +1078,7 @@ class PatrolLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
 		$target = $this->entry->getTarget();
@@ -1107,7 +1107,7 @@ class PatrolLogFormatter extends LogFormatter {
  * @since 1.19
  */
 class NewUsersLogFormatter extends LogFormatter {
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		if ( $this->entry->getSubtype() === 'create2' ) {
 			if ( isset( $params[3] ) ) {
@@ -1174,7 +1174,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
 		// Really old entries
