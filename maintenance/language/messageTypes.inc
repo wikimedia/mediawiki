@@ -246,6 +246,10 @@ $wgIgnoredMessages = array(
 	'ipb-default-expiry',
 	'pageinfo-header',
 	'pageinfo-footer',
+	'log-name-phpunit',
+	'log-description-phpunit',
+	'logentry-phpunit-test',
+	'logentry-phpunit-param',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */

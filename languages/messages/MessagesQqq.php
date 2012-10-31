@@ -3636,7 +3636,7 @@ Parameters:
 Start with a lowercase letter, unless the first word is “SVG”.',
 'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
 * $1 is the width in pixels
-* $2 is the height in pixels, and 
+* $2 is the height in pixels, and
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
@@ -4896,6 +4896,16 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-newusers-create2' => '{{Logentry}}
 
 $4 is the gender of the target user.',
+
+# Messages for testing the new logging system, do not translate!
+'log-name-phpunit'        => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+'log-description-phpunit' => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+'logentry-phpunit-test'   => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
+'logentry-phpunit-param'  => '{{Notranslate}}
+Message is for testing MediaWiki and is only used in English.',
 
 # Feedback
 'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback. We expect that people in a hurry will not read this.',
