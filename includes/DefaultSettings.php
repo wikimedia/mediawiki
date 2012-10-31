@@ -5124,6 +5124,11 @@ $wgPageShowWatchingUsers = false;
 $wgRCShowChangedSize = true;
 
 /**
+ * Include external changes in recent changes
+ */
+$wgRCShowExternal = false;
+
+/**
  * If the difference between the character counts of the text
  * before and after the edit is below that value, the value will be
  * highlighted on the RC page.
