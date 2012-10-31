@@ -80,7 +80,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__PAKSADAFTARISI__', '__PAKSADASI__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__DAFTARISI__', '__DASI__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__TANPASUNTINGANBAGIAN__', '__NIRSUBA__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__TANPAKEPALA__', '__NIRLA__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'BULANKINI', 'BULANKINI2', 'BUKIN', 'BUKIN2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'BULANKINI1', 'BUKIN1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'NAMABULANKINI', 'NAMBUKIN', 'CURRENTMONTHNAME' ),

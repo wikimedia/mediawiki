@@ -212,7 +212,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__ZESPISEM__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__SPIS__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__BEZEDYCJISEKCJI__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__BEZNAGŁÓWKA__', '__NOHEADER__' ),
 	'currentday'                => array( '1', 'AKTUALNYDZIEŃ', 'CURRENTDAY' ),
 	'currentdayname'            => array( '1', 'NAZWADNIA', 'CURRENTDAYNAME' ),
 	'currentyear'               => array( '1', 'AKTUALNYROK', 'CURRENTYEAR' ),

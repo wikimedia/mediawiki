@@ -54,7 +54,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__DWINGIO__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__IO__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__GEENNUWEAFDELING__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__GEENOPSKRIF__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'HUIDIGEMAAND', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'HUIDIGEMAAND1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'HUIDIGEMAANDNAAM', 'CURRENTMONTHNAME' ),

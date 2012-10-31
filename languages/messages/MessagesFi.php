@@ -109,7 +109,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__SISLUETTPAKOTUS__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__SISÄLLYSLUETTELO__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__EIOSIOMUOKKAUSTA__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__EIOTSIKKOA__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'KULUVAKUU', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'          => array( '1', 'KULUVAKUUNIMI', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'       => array( '1', 'KULUVAKUUNIMIGEN', 'CURRENTMONTHNAMEGEN' ),

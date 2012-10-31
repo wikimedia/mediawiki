@@ -80,7 +80,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__بافهرست__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__فهرست__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__بی‌بخش__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', 'بی‌عنوان__', '__بی‌عنوان__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'ماه', 'ماه‌کنونی', 'ماه_کنونی', 'ماه‌کنونی۲', 'ماه_اسایی۲', 'ماه_کنونی۲', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'ماه۱', 'ماه‌کنونی۱', 'ماه_کنونی۱', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'نام‌ماه', 'نام_ماه', 'نام‌ماه‌کنونی', 'نام_ماه_کنونی', 'CURRENTMONTHNAME' ),

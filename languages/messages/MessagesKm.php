@@ -195,7 +195,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__បង្ខំមាតិកា__', '__បង្ខំបញ្ជីអត្ថបទ__', '__បង្ខំអោយបង្ហាញមាតិកា__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__មាតិកា__', '__បញ្ជីអត្ថបទ__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__ផ្នែកមិនត្រូវកែប្រែ__', '__មិនមានផ្នែកកែប្រែ__', '__លាក់ផ្នែកកែប្រែ__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__លាក់បឋមកថា__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'ខែនេះ', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'          => array( '1', 'ឈ្មោះខែនេះ', 'CURRENTMONTHNAME' ),
 	'currentday'                => array( '1', 'ថ្ងៃនេះ', 'CURRENTDAY' ),

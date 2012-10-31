@@ -169,7 +169,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__अनुक्रमणिकाहवीच__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__अनुक्रमणिका__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__असंपादनक्षम__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__शीर्षकनाही__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'सद्यमहिना', 'सद्यमहिना२', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'सद्यमहिना१', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'सद्यमहिनानाव', 'CURRENTMONTHNAME' ),
