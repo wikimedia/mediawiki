@@ -2196,7 +2196,7 @@ Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|prefer
 'emailccme'            => 'Trimite-mi pe e-mail o copie a mesajului meu.',
 'emailccsubject'       => 'O copie a mesajului la $1: $2',
 'emailsent'            => 'E-mail trimis',
-'emailsenttext'        => 'E-mailul tău a fost trimis.',
+'emailsenttext'        => 'E-mailul dumneavoastră a fost trimis.',
 'emailuserfooter'      => 'Acest mesaj a fost trimis de $1 către $2 prin intermediul funcției „Trimite e-mail” de la {{SITENAME}}.',
 
 # User Messenger
@@ -2207,7 +2207,7 @@ Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|prefer
 'watchlist'            => 'Pagini urmărite',
 'mywatchlist'          => 'Pagini urmărite',
 'watchlistfor2'        => 'Pentru $1 $2',
-'nowatchlist'          => 'Nu ați ales să urmăriți nici o pagină.',
+'nowatchlist'          => 'Lista dumneavoastră de pagini urmărite nu conține nici o pagină.',
 'watchlistanontext'    => 'Vă rugăm să vă $1 pentru a vizualiza sau edita elementele din lista dumneavoastră de pagini urmărite.',
 'watchnologin'         => 'Nu sunteți autentificat',
 'watchnologintext'     => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
@@ -2242,7 +2242,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'enotif_mailer'                => 'Sistemul de notificare {{SITENAME}}',
 'enotif_reset'                 => 'Marchează toate paginile vizitate',
 'enotif_newpagetext'           => 'Aceasta este o pagină nouă.',
-'enotif_impersonal_salutation' => '{{SITENAME}} utilizator',
+'enotif_impersonal_salutation' => 'Utilizator {{SITENAME}}',
 'changed'                      => 'modificată',
 'created'                      => 'creată',
 'enotif_subject'               => 'Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED de $PAGEEDITOR',
@@ -2424,7 +2424,8 @@ S-ar putea ca legătura să fie greșită, ori versiunea să fi fost restaurată
 'undeletedrevisions'           => '{{PLURAL:$1|o versiune restaurată|$1 versiuni restaurate|$1 de versiuni restaurate}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|O versiune|$1 versiuni|$1 de versiuni}} și {{PLURAL:$2|un fișier|$2 fișiere|$2 de fișiere}} recuperate',
 'undeletedfiles'               => '{{PLURAL:$1|O versiune recuperată|$1 versiuni recuperate|$1 de versiuni recuperate}}',
-'cannotundelete'               => 'Recuperarea a eșuat; este posibil ca altcineva să fi recuperat pagina deja.',
+'cannotundelete'               => 'Recuperarea a eșuat;
+este posibil ca altcineva să fi recuperat pagina deja.',
 'undeletedpage'                => "'''$1 a fost recuperat'''
 
 Consultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ștergerile și recuperările recente.",

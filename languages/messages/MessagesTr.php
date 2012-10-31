@@ -9,6 +9,7 @@
  *
  * @author 82-145
  * @author Bekiroflaz
+ * @author BetelgeuSeginus
  * @author Bombola
  * @author Dbl2010
  * @author Don Alessandro
@@ -18,6 +19,7 @@
  * @author Fryed-peach
  * @author Hanberke
  * @author Hcagri
+ * @author Hedda Gabler
  * @author Ijon
  * @author Incelemeelemani
  * @author Joseph
@@ -474,7 +476,7 @@ $messages = array(
 'vector-action-protect'          => 'Koru',
 'vector-action-undelete'         => 'Silinmeyi geri al',
 'vector-action-unprotect'        => 'Korumayı değiştir',
-'vector-simplesearch-preference' => 'Gelişmiş arama önerilerini getir (Sadece Vector görünümü için)',
+'vector-simplesearch-preference' => 'Gelişmiş arama önerilerini etkinleştir (Sadece Vector görünümü için)',
 'vector-view-create'             => 'Oluştur',
 'vector-view-edit'               => 'Düzenle',
 'vector-view-history'            => 'Geçmişi gör',
@@ -485,7 +487,7 @@ $messages = array(
 'variants'                       => 'Türevler',
 
 'errorpagetitle'    => 'Hata',
-'returnto'          => '$1 sayfasına dön.',
+'returnto'          => '$1 sayfasına geri dön.',
 'tagline'           => '{{SITENAME}} sitesinden',
 'help'              => 'Yardım',
 'search'            => 'Ara',
@@ -497,7 +499,7 @@ $messages = array(
 'updatedmarker'     => 'son ziyaretimden sonra güncellenmiş',
 'printableversion'  => 'Yazdırılabilir sürüm',
 'permalink'         => 'Kalıcı bağlantı',
-'print'             => 'Bastır',
+'print'             => 'Yazdır',
 'view'              => 'Görüntüle',
 'edit'              => 'Düzenle',
 'create'            => 'Oluştur',
@@ -632,7 +634,7 @@ Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 # General errors
 'error'                => 'Hata',
 'databaseerror'        => 'Veritabanı hatası',
-'dberrortext'          => 'Veritabanı sorgu sözdizimi hatası oluştu.
+'dberrortext'          => 'Bir veritabanı sorgusu sözdizimi hatası oluştu.
 Bu yazılımdaki bir hatadan kaynaklanabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
@@ -688,7 +690,7 @@ Lütfen birkaç dakika sonra yeniden deneyin.',
 'protectedpagetext'    => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'protectedinterface'   => "Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için korumaya alınmıştır. Eklemek ya da bütün vikilerdeki çevirileri değiştirmek için lütfen MediaWiki yerelleştirme projesi [//translatewiki.net/ translatewiki.net]'i kullanın.",
-'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
+'editinginterface'     => "'''UYARI:''' Wiki yazılımı için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'sqlhidden'            => '(SQL gizli sorgu)',
 'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
 $2',
@@ -953,7 +955,6 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 * '''Firefox / Safari:''' ''Shift'' tuşuna basılıyken \"Yeniden yükle\"'ye tıklayın ya da \"Ctrl-F5\" ya da ''Ctrl-R'' yapın (Mac için '⌘-R'').
 * '''Google Chrome:''' ''Ctrl-Shift-R'''ye basın. (Mac için ''⌘-Shift-R'')
 * '''Internet Explorer:''' ''Ctrl'' basılıyken ''Yenile'''ye tıklayın ya da ''Ctrl-F5'' yapın.
-* '''Konqueror:''' 'Yeniden yükle'''ye ya da ''F5'''e basın.
 * '''Opera:''' ''Araçlar → Tercihler'''den önbelliği temizleyin.",
 'usercssyoucanpreview'             => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni CSSinizi deneyin.",
 'userjsyoucanpreview'              => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",
@@ -1199,9 +1200,11 @@ Erişiminiz yok.',
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
 'revdelete-only-restricted'   => '$2 $1 tarihli öğe gizlenirken hata: Öğeleri, diğer gizleme seçeneklerinden birini seçmeden, hizmetli görünümden bastıramazsınız.',
-'revdelete-reason-dropdown'   => '*Genel silme sebepleri
-** Telif ihlali
-** Uygunsuz kişisel bilgi',
+'revdelete-reason-dropdown'   => '*Genel silme nedenleri
+** Telif hakkı ihlali
+** Sakıncalı yorum veya kişisel bilgi 
+** Sakıncalı kullanıcı adı
+** Muhtemel iftira niteliğinde bilgiler',
 'revdelete-otherreason'       => 'Diğer/ek sebep:',
 'revdelete-reasonotherlist'   => 'Diğer sebep',
 'revdelete-edit-reasonlist'   => 'Silme nedenlerini değiştir',
@@ -1390,7 +1393,7 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'timezoneregion-indian'         => 'Hint Okyanusu',
 'timezoneregion-pacific'        => 'Pasifik Okyanusu',
 'allowemail'                    => 'Diğer kullanıcılar bana e-posta atabilsin',
-'prefs-searchoptions'           => 'Arama seçenekleri',
+'prefs-searchoptions'           => 'Arama',
 'prefs-namespaces'              => 'İsim alanları',
 'defaultns'                     => 'Aksi halde bu ad alanlarında ara:',
 'default'                       => 'varsayılan',
@@ -2930,13 +2933,14 @@ Geçici dosya kayıp.',
 
 # Info page
 'pageinfo-title'            => 'Bilgi için "$1"',
-'pageinfo-header-edits'     => 'Değişiklikler',
+'pageinfo-header-edits'     => 'Düzenleme geçmişi',
 'pageinfo-header-watchlist' => 'İzleme listesi',
 'pageinfo-header-views'     => 'Görüntüle',
 'pageinfo-subjectpage'      => 'Sayfa',
 'pageinfo-talkpage'         => 'Tartışma sayfası',
-'pageinfo-watchers'         => 'İzleyen sayısı',
+'pageinfo-watchers'         => 'Sayfanın izleyici sayısı',
 'pageinfo-edits'            => 'Değişiklik sayısı',
+'pageinfo-authors'          => 'Farklı yazar sayısı',
 'pageinfo-views'            => 'Görüntülenme sayısı',
 'pageinfo-viewsperedit'     => 'Değişiklik başına görüntüleme',
 
@@ -3177,6 +3181,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-objectname'                  => 'Kısa başlık',
 'exif-specialinstructions'         => 'Özel talimatlar',
 'exif-headline'                    => 'Başlık',
+'exif-credit'                      => 'Sağlayıcı',
 'exif-source'                      => 'Kaynak',
 'exif-urgency'                     => 'Aciliyet',
 'exif-fixtureidentifier'           => 'Fikstür adı',
@@ -3191,6 +3196,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-serialnumber'                => 'Kameranın seri numarası',
 'exif-cameraownername'             => 'Kameranın sahibi',
 'exif-label'                       => 'Etiket',
+'exif-nickname'                    => 'Görüntünün resmî olmayan adı',
 'exif-rating'                      => 'Oylama (5 üzerinden)',
 'exif-copyrighted'                 => 'Telif hakkı durumu',
 'exif-copyrightowner'              => 'Telif hakkı sahibi',
@@ -3198,12 +3204,15 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-webstatement'                => 'Çevrimiçi telif hakkı bildirimi',
 'exif-licenseurl'                  => 'Telif hakkı lisansı için URL',
 'exif-morepermissionsurl'          => 'Alternatif lisans bilgileri',
+'exif-attributionurl'              => 'Bu çalışmayı yeniden kullanırken lütfen bağlantı verin',
 'exif-pngfilecomment'              => 'PNG dosyası yorumu',
 'exif-disclaimer'                  => 'Sorumluluk reddi',
 'exif-contentwarning'              => 'İçerik uyarısı',
 'exif-giffilecomment'              => 'GIF dosyası yorumu',
+'exif-intellectualgenre'           => 'Öğe türü',
 'exif-subjectnewscode'             => 'Konu kodu',
 'exif-event'                       => 'Adı geçen olay',
+'exif-organisationinimage'         => 'Organizasyon gösterilmiştir',
 'exif-personinimage'               => 'Adı geçen kişi',
 'exif-originalimageheight'         => 'Resmin kırpılmadan önceki yükseliği',
 'exif-originalimagewidth'          => 'Resmin kırpılmadan önceki genişliği',

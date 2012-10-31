@@ -1536,15 +1536,17 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'userrights-editusergroup'       => '{{Identical|Edit user groups}}. Parameter:
 * $1 is a username - optional, can be used for GENDER',
 'saveusergroups'                 => 'Button text when editing user groups',
-'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
+'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
 
 Parameters:
-* $1 - optional, for PLURAL use, the number of items in the list following the message. Avoid PLURAL, if your language can do without.',
+* $1 - the number of items in the list following the message, for PLURAL.
+* $2 - the user name, for GENDER.',
 'userrights-groupsmember-auto'   => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 "Implicit" is for groups that the user was automatically added to (such as "autoconfirmed"); cf. {{msg-mw|userrights-groupsmember}}
 
-Parameters:
-* $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.',
+Parameters
+* $1 - the number of items in the list following the message, for PLURAL.
+* $2 - the user name, for GENDER.',
 'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]]. Parameters:
 * $1 is a username - optional, can be used for GENDER',
 'userrights-reason'              => 'Text beside log field when editing user groups
@@ -2623,6 +2625,12 @@ This message was something like "unlock move protection" in the past.',
 'protect-text'                => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default'             => '{{Identical|Default}}',
 'protect-fallback'            => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
+'protect-level-autoconfirmed' => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
+'protect-level-sysop'         => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-summary-cascade'     => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
 
 Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
@@ -3370,9 +3378,26 @@ For example of message in use see [[:File:Mouse10.gif]].',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '{{optional}}',
-'seconds-abbrev' => '{{optional}}',
-'minutes-abbrev' => '{{optional}}',
-'hours-abbrev'   => 'Abbreviation for "hours"',
+'seconds-abbrev' => '{{optional}}
+*{{msg-mw|Mw-core-1.18-seconds-abbrev}}
+*{{msg-mw|Mw-core-1.18-minutes-abbrev}}
+*{{msg-mw|Mw-core-1.18-hours-abbrev}}
+*{{msg-mw|Mw-core-1.18-days-abbrev}}',
+'minutes-abbrev' => '{{optional}}
+*{{msg-mw|Mw-core-1.18-seconds-abbrev}}
+*{{msg-mw|Mw-core-1.18-minutes-abbrev}}
+*{{msg-mw|Mw-core-1.18-hours-abbrev}}
+*{{msg-mw|Mw-core-1.18-days-abbrev}}',
+'hours-abbrev'   => 'Abbreviation for "hours"
+*{{msg-mw|Mw-core-1.18-seconds-abbrev}}
+*{{msg-mw|Mw-core-1.18-minutes-abbrev}}
+*{{msg-mw|Mw-core-1.18-hours-abbrev}}
+*{{msg-mw|Mw-core-1.18-days-abbrev}}',
+'days-abbrev'    => '{{Optional}}
+*{{msg-mw|Mw-core-1.18-seconds-abbrev}}
+*{{msg-mw|Mw-core-1.18-minutes-abbrev}}
+*{{msg-mw|Mw-core-1.18-hours-abbrev}}
+*{{msg-mw|Mw-core-1.18-days-abbrev}}',
 
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',

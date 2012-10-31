@@ -1337,11 +1337,11 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'group-all'           => '(pep tra)',
 
 'group-user-member'          => 'implijer',
-'group-autoconfirmed-member' => '{{GENDER:$1|Implijer bet kadarnaet ent emgefre}}',
-'group-bot-member'           => '{{GENDER:$1|robot}}',
-'group-sysop-member'         => '{{GENDER:$1|merour}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|bureviad}}',
-'group-suppress-member'      => '{{GENDER:$1|evezhier}}',
+'group-autoconfirmed-member' => 'implijer enrollet',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'merour',
+'group-bureaucrat-member'    => 'bureviad',
+'group-suppress-member'      => 'evezhier',
 
 'grouppage-user'          => '{{ns:project}}:Implijerien',
 'grouppage-autoconfirmed' => '{{ns:project}}: Implijerien bet kadarnaet ent emgefre',

@@ -1341,12 +1341,12 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(totes)',
 
-'group-user-member'          => '{{GENDER:$1|usator|usatrice|usator}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|usator|usatrice|usator}} autoconfirmate',
-'group-bot-member'           => '{{GENDER:$1|robot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator|administratrice|administrator}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|bureaucrate}}',
-'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
+'group-user-member'          => 'usator',
+'group-autoconfirmed-member' => 'usator autoconfirmate',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'bureaucrate',
+'group-suppress-member'      => 'supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Usatores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usatores autoconfirmate',

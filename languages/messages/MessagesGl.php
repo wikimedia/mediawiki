@@ -2261,7 +2261,7 @@ proceda con coidado.',
 'rollback'          => 'Reverter as edicións',
 'rollback_short'    => 'Reverter',
 'rollbacklink'      => 'reverter',
-'rollbackfailed'    => 'Houbo un fallo ao reverter as edicións',
+'rollbackfailed'    => 'Houbo un erro ao reverter as edicións',
 'cantrollback'      => 'Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.',
 'alreadyrolled'     => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 

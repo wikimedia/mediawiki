@@ -302,6 +302,7 @@ $messages = array(
 'missingarticle-rev' => '(жуьре#: $1)',
 'internalerror'      => 'КЪенепатан гъалатI',
 'internalerror_info' => 'КЪенепатан гъалатI $1',
+'filecopyerror'      => 'Kopi aqudiz jezach fail "$1"  "$2" - diz.',
 'filerenameerror'    => '«$1» файл  «$2» -з тIвар эхцигиз жезвач..',
 'badarticleerror'    => 'И ччина и кар кьилиз акъудиз мумкин ттуш.',
 'badtitle'           => 'Ииже текъвер тIвар',
@@ -519,7 +520,7 @@ $messages = array(
 'revertmerge' => 'Ччара авун',
 
 # Diffs
-'history-title'           => '$1  -  масакIавилерин тарих',
+'history-title'           => 'Masak\'avilerin q\'isa "$1"',
 'difference'              => '(Жуьрейрин арада тафаватар)',
 'lineno'                  => 'ЦIар $1:',
 'compareselectedversions' => 'Хкягъай жуьреяр гекъигун',

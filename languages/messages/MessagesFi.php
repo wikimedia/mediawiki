@@ -2174,7 +2174,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchlistcontains'    => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
 'iteminvalidname'      => 'Sivun $1 kanssa oli ongelmia! Sivun nimessä on vikaa.',
 'wlnote'               => "Alla on '''$1''' {{PLURAL:$1|muutos|muutosta}} viimeisen {{PLURAL:$2||'''$2'''}} tunnin ajalta.",
-'wlshowlast'           => 'Näytä viimeiset $1 tuntia tai $2 päivää$3',
+'wlshowlast'           => 'Näytä viimeiset $1 tuntia tai $2 päivää, $3',
 'watchlist-options'    => 'Tarkkailulistan asetukset',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -3389,7 +3389,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'edit-externally-help' => '(Katso [//www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => ', koko historia',
+'watchlistall2' => 'koko historia',
 'namespacesall' => 'kaikki',
 'monthsall'     => 'kaikki',
 'limitall'      => 'kaikki',

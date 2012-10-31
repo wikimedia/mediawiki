@@ -176,7 +176,7 @@ $messages = array(
 'category_header'                => 'ܦܐܬܬ̈ܐ ܒܣܕܪܐ ܕ "$1"',
 'subcategories'                  => 'ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ',
 'category-media-header'          => 'ܡܝܕܝܐ ܒܣܕܪܐ ܕ "$1"',
-'category-empty'                 => "''ܗܢܐ ܣܕܪܐ ܗܫܐ ܠܝܬ ܒܗ ܦܐܬܬ̈ܐ ܐܘ ܡܝܕܝܐ.''",
+'category-empty'                 => "''ܗܢܐ ܣܕܪܐ ܗܫܐܝܬ ܠܝܬ ܒܗ ܦܐܬܬ̈ܐ ܐܘ ܡܝܕܝܐ.''",
 'hidden-categories'              => '{{PLURAL:$1|ܣܕܪܐ ܛܘܫܝܐ|ܣܕܪ̈ܐ ܛܘܫܝܐ}}',
 'hidden-category-category'       => 'ܣܕܪ̈ܐ ܛܘܫܝ̈ܐ',
 'category-subcat-count'          => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܗܢܐ ܣܕܪܐ ܦܪܥܝܐ ܕܐܬܐ ܒܠܚܘܕ.|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ {{PLURAL:$1|ܣܕܪܐ ܦܪܥܝܐ ܕܐܬܐ|$1 ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ ܕܐܬܝܢ}}، ܡܢ ܣܘܝܟܐ ܕ $2.}}',
@@ -408,6 +408,10 @@ $1',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
 'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ{{SITENAME}} ܒܫܡ \"\$1\".'''",
 'nouserspecified'         => 'ܘܠܐ ܠܟ ܕܬܚܡ ܫܡܐ ܕܡܦܠܚܢܐ',
+'wrongpassword'           => 'ܡܠܬܐ ܕܥܠܠܐ ܠܐ ܬܪܝܨܬܐ ܐܥܠܬ.
+ܒܒܥܘ ܡܢܟ ܕܬܢܣܐ ܙܒܢ ܐܚܪܝܢ.',
+'wrongpasswordempty'      => 'ܡܠܬܐ ܕܥܠܠܐ ܕܐܥܠܬ ܣܦܝܩܬܐ ܐܝܬܝܗ.
+ܒܒܥܘ ܡܢܟ ܕܬܢܣܐ ܙܒܢ ܐܚܪܝܢ.',
 'mailmypassword'          => 'ܫܕܪ ܠܝ ܡܠܬܐ ܚܕܬܐ ܕܥܠܠܐ',
 'passwordremindertitle'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ ܚܕܬܐ ܠ{{SITENAME}}',
 'noemail'                 => 'ܠܝܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ "$1".',
@@ -1451,6 +1455,13 @@ Do you want to change the settings?',
 'siteusers'   => '{{SITENAME}} {{PLURAL:$2|ܡܦܠܚܢܐ|ܡܦܠܚܢ̈ܐ}} $1',
 'anonusers'   => '{{SITENAME}} {{PLURAL:$2|ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ}} $1',
 'creditspage' => 'ܙܕ̈ܩܐ ܕܦܐܬܐ',
+
+# Info page
+'pageinfo-title'        => 'ܝܕ̈ܥܬܐ ܥܠ "$1"',
+'pageinfo-header-edits' => 'ܬܫܥܝܬܐ ܕܫܘܚܠܦ̈ܐ',
+'pageinfo-watchers'     => 'ܡܢܝܢܐ ܕܪ̈ܗܝܐ',
+'pageinfo-authors'      => 'ܡܢܝܢܐ ܕܡܫܚܠܦܢ̈ܐ ܡܫܚܠܦ̈ܐ',
+'pageinfo-views'        => 'ܡܢܝܢܐ ܕܚܙܝܬ̈ܐ',
 
 # Patrol log
 'patrol-log-auto' => '(ܝܬܐܝܬ)',

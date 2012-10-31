@@ -1774,14 +1774,15 @@ Tzemreḍ ad sageneḍ abeqqeḍ s tixtiṛit n tawsit n uɣmis, isem n useqdac 
 'sp-deletedcontributions-contribs' => 'Isekcam',
 
 # Special:LinkSearch
-'linksearch'      => 'Anadi n izdayen yeffɣen',
-'linksearch-pat'  => 'Anadi n tanfalit :',
-'linksearch-ns'   => 'Talluntin n isemawen :',
-'linksearch-ok'   => 'Nadi',
-'linksearch-text' => 'Tzemreḍ ad seqdeceḍ isekkilen imeẓliyen am « *.wikipedia.org ».
+'linksearch'       => 'Anadi n izdayen yeffɣen',
+'linksearch-pat'   => 'Anadi n tanfalit :',
+'linksearch-ns'    => 'Talluntin n isemawen :',
+'linksearch-ok'    => 'Nadi',
+'linksearch-text'  => 'Tzemreḍ ad seqdeceḍ isekkilen imeẓliyen am « *.wikipedia.org ».
 Ilaq-asen deg udday taɣult n uswir imineg, am amedya « *.org ».<br />
 Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
-'linksearch-line' => '$1 yeqqen seg $2',
+'linksearch-line'  => '$1 yeqqen seg $2',
+'linksearch-error' => 'Tzemreḍ ad seqdeceḍ isekkilen usligen ala deg tazzwara n taɣult uselkim.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Ssken imseqdacen seg:',
@@ -1804,6 +1805,10 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Izerfan n igrawen n iseqdacen',
+'listgrouprights-summary'              => 'Asebter agi yesɛa yiwen umuɣ n igrawen i sengelen deg wiki agi dɣa izerfan n wadduf i qqenen.
+Zemrent ad ilint [[{{MediaWiki:Listgrouprights-helppage}}|tilɣa nniḍen]] ɣef izerfan n yiwen.',
+'listgrouprights-key'                  => '*<span class="listgrouprights-granted">Izerfan sefkan</span>
+*<span class="listgrouprights-revoked">Izerfan ekkesen</span>',
 'listgrouprights-group'                => 'Agraw',
 'listgrouprights-rights'               => 'Izerfan',
 'listgrouprights-helppage'             => 'Help:Izerfan n igrawen',
@@ -1942,6 +1947,7 @@ Tuɣalin d tadhelt :
 'delete-confirm'         => 'Kkes "$1"',
 'delete-legend'          => 'Ekkes',
 'historywarning'         => 'Ɣur-wet : Asebter i ara temḥuḍ yesɛa amezruy s azal alemmas n $1 {{PLURAL:$1|lqem|ileqman}} :',
+'confirmdeletetext'      => 'Aqlak ad mḥuḍ asebter naɣ afaylu, dɣa akkw ileqman-is iqdimen. Ilaq ad segegeḍ tigawt agi dɣa tfehemeḍ [[{{MediaWiki:Policy-url}}|ilugan n wiki]].',
 'actioncomplete'         => 'Axdam yekfa',
 'actionfailed'           => 'Tigawt agi texser',
 'deletedtext'            => '"$1" yettumḥa.
@@ -1954,7 +1960,13 @@ Tuɣalin d tadhelt :
 'deletecomment'          => 'Ayɣer',
 'deleteotherreason'      => 'Taɣẓint nniḍen / taɣzint tamarnant :',
 'deletereasonotherlist'  => 'Taɣẓint nniḍen',
+'deletereason-dropdown'  => '* Tiɣẓinin n umḥu id t-uɣalen aṭas tikkwal
+** Asuter n useqdac
+** Akukel n izerfan umeskar
+** Asfata',
 'delete-edit-reasonlist' => 'Beddel tiɣẓinin n umḥu n usebter',
+'delete-toobig'          => 'Asebter agi yesɛa amezruy ameqqṛan aṭas n ibeddilen, yugar $1 {{PLURAL:$1|lqem|ileqman}}.
+Amḥu n isebtar am wagi yesɛa akref iwakken {{SITENAME}} ur yesɛu ara arway.',
 
 # Rollback
 'rollback'       => 'Semmet ibeddilen',
@@ -2815,8 +2827,16 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'duplicate-defaultsort' => 'Ɣur-wet : tasarut n ufran m-ulac « $2 » atsefεej tasarut n uqbel « $1 ».',
 
 # Special:Version
-'version'              => 'Lqem',
-'version-specialpages' => 'isebtar usligen',
+'version'                  => 'Lqem',
+'version-specialpages'     => 'isebtar usligen',
+'version-software'         => 'Iseɣẓanen i serkeben',
+'version-software-product' => 'Afaris',
+'version-software-version' => 'Lqem',
+
+# Special:FilePath
+'filepath'        => 'Abrid n wadduf ufaylu',
+'filepath-page'   => 'Afaylu :',
+'filepath-submit' => 'Ruḥ',
 
 # Special:SpecialPages
 'specialpages' => 'isebtar usligen',

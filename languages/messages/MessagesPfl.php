@@ -129,7 +129,7 @@ $messages = array(
 'otherlanguages'   => 'In annere Sproche',
 'redirectedfrom'   => '(Wairrerglaidet vun $1)',
 'redirectpagesub'  => 'Wairerlaidungssaid',
-'lastmodifiedat'   => 'Die Said isch zum ledschde Mol gänneret woore am $1, am $2.',
+'lastmodifiedat'   => 'Die Said isch zum ledschde Mol gänneret worre am $1, am $2.',
 'viewcount'        => 'Die Seid isch bis jetzerd {{PLURAL:$1|$1|$1}} mol uffgerufe worre.',
 'jumpto'           => 'Spring zu:',
 'jumptonavigation' => 'Navigation',
@@ -187,7 +187,7 @@ $messages = array(
 # General errors
 'missing-article'    => 'De Text fer „$1“ $2 isch in de Datebank nit gfunne worre.
 
-Normalerwais hääßt des, dass die Said glescht woore isch.
+Normalerwais hääßt des, dass die Said gleschd worre isch.
 
 Wenn s des nit isch, hoscht villaicht en Fehler in de Datebank gfunne.
 Bitte meld des an e [[Special:ListUsers/sysop|Adminischtrator]], un gebb d URL dezu aa.',
@@ -260,7 +260,7 @@ du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effe
 'template-semiprotected'           => '(halb-gschitzt)',
 'hiddencategories'                 => 'Die Said ghert zu {{PLURAL:$1|1 versteckelte Kategorie|$1 versteckelte Kategorie}}:',
 'permissionserrorstext-withaction' => 'Du därfscht nid $2, aus {{PLURAL:$1|dem Grund|denne Grind}}:',
-'moveddeleted-notice'              => 'Die Said isch glescht worre.
+'moveddeleted-notice'              => 'Die Said isch gleschd worre.
 De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 
 # History pages
@@ -360,7 +360,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|Ännerung|Ännerunge}}',
-'recentchanges'                  => 'Was zuletschd gemacht worre isch',
+'recentchanges'                  => 'Was zuletschd gemachd worre isch',
 'recentchanges-legend'           => 'Optione vun de Aazaich',
 'recentchanges-feed-description' => 'Di letschte Ännerunge vun {{SITENAME}} in des Feed aigewwe.',
 'rcnote'                         => "Aagezaicht {{PLURAL:$1|werd '''1''' Ännerung|werre die letschte '''$1''' Ännerunge}} {{PLURAL:$2|vum letschte Dach|in de letschte '''$2''' Dache}} (Stand: $4, $5)",
@@ -681,7 +681,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-n-randompage'            => 'E zufälliche Said lade',
 'tooltip-n-help'                  => 'De Ort zum rausfinne',
 'tooltip-t-whatlinkshere'         => 'Lischt vun alle Wikisaide, wu do her verlinkt sinn',
-'tooltip-t-recentchangeslinked'   => 'Letschte Ännerunge in Saide, wu vun do verlinkt sin',
+'tooltip-t-recentchangeslinked'   => 'Letschde Ännerunge in Saide, wu vun do verlinkt sin',
 'tooltip-feed-rss'                => 'RSS feed fer die Said',
 'tooltip-feed-atom'               => 'Atom feed fer die Said',
 'tooltip-t-contributions'         => 'Die letschte Baidräch vun däm Benutzer aagucke',
