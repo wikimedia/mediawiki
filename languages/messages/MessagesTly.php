@@ -71,7 +71,6 @@ $magicWords = array(
 	'notoc'                     => array( '0', '__БЕМЫНДӘРИҸОТ__', '__NOTOC__' ),
 	'forcetoc'                  => array( '0', '__МӘҸБУРИЈӘ_МЫНДӘРИҸОТ__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__МЫНДӘРИҸОТ__', '__TOC__' ),
-	'noheader'                  => array( '0', '__БЕСӘРЛОВҺӘ__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'ЕСӘТНӘ_МАНГ', 'ЕСӘТНӘ_МАНГ_2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'ЕСӘТНӘ_МАНГ_1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'ЕСӘТНӘ_МАНГИ_НОМ', 'CURRENTMONTHNAME' ),

@@ -146,7 +146,6 @@ $magicWords = array(
 	'nogallery'                 => array( '0', '__קיין_גאלעריע__', '__ללא_גלריה__', '__NOGALLERY__' ),
 	'toc'                       => array( '0', '__אינהאלט__', '__תוכן_עניינים__', '__תוכן__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__נישט_רעדאקטירן__', '__ללא_עריכה__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__קיינקעפל__', '__ללא_כותרת__', '__NOHEADER__' ),
 	'currentday'                => array( '1', 'לויפיקער_טאג', 'יום נוכחי', 'CURRENTDAY' ),
 	'numberofpages'             => array( '1', 'צאל_בלעטער', 'מספר דפים כולל', 'מספר דפים', 'NUMBEROFPAGES' ),
 	'numberofarticles'          => array( '1', 'צאל_ארטיקלען', 'מספר ערכים', 'NUMBEROFARTICLES' ),

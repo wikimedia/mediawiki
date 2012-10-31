@@ -218,7 +218,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__ΜΕΠΠ__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__ΠΠ__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__ΧΩΡΙΣΕΠΕΞΕΝΟΤ__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__ΧΩΡΙΣΚΕΦΑΛΙΔΑ__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'ΤΡΕΧΩΝΜΗΝΑΣ', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'ΤΡΕΧΩΝΜΗΝΑΣ1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'ΤΡΕΧΩΝΜΗΝΑΣΟΝΟΜΑ', 'CURRENTMONTHNAME' ),

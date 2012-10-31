@@ -194,7 +194,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__لصق_فهرس__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__فهرس__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__لاتحريرقسم__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__لاعنوان__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'شهر_حالي', 'شهر_حالي2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'شهر_حالي1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'اسم_الشهر_الحالي', 'CURRENTMONTHNAME' ),

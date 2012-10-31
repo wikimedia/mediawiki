@@ -154,7 +154,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__ESTENZARURET__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__ESTEN__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__TİMARKERDIŞÇINO__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__SERNAMEÇINO__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'AŞMİYANEWKİ', 'MEWCUDAŞMİ2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'AŞMİYANEWKİ1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'NAMEYAŞMDANEWKİ', 'CURRENTMONTHNAME' ),

@@ -180,7 +180,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__FI__', '__FORTUINDEKSON__', '__FT__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__I__', '__T__', '__INDEKSO__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__SRS__', '__NES__', '__SENREDAKTISEKCIOJN__', '__SENREDAKTISEKCION__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__SENTITOLO__', '__NH__', '__ST__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'NUNAMONATO', 'NUNAMONATO2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'NUNAMONATO1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'NUNAMONATNOMO', 'NUNAMONATONOMO', 'NUNAMONATANOMO', 'CURRENTMONTHNAME' ),

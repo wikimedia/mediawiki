@@ -217,7 +217,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__目次強制__', '＿＿目次強制＿＿', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__目次__', '＿＿目次＿＿', '__TOC__' ),
 	'noeditsection'             => array( '0', '__節編集非表示__', '__セクション編集非表示__', '＿＿セクション編集非表示＿＿', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__見出し非表示__', '＿＿見出し非表示＿＿', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', '現在の月', '協定月', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', '現在の月1', '協定月1', '協定月１', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', '現在の月名', '協定月名', 'CURRENTMONTHNAME' ),
@@ -291,7 +290,7 @@ $magicWords = array(
 	'img_text_bottom'           => array( '1', '文下端', 'text-bottom' ),
 	'img_link'                  => array( '1', 'リンク=$1', 'link=$1' ),
 	'img_alt'                   => array( '1', '代替文=$1', 'alt=$1' ),
-	'int'                       => array( '0', 'インターフェース:', 'インタ:', 'インターフェース：', 'インタ：', 'INT:' ),
+	'int'                       => array( '0', 'インターフェース:', 'インタ:', 'インターフェース：', 'インタ：', 'インターフェイス:', 'インターフェイス：', 'INT:' ),
 	'sitename'                  => array( '1', 'サイト名', 'サイトネーム', 'SITENAME' ),
 	'ns'                        => array( '0', '名前空間:', '名前空間：', '名空:', '名空：', 'NS:' ),
 	'nse'                       => array( '0', '名前空間E:', 'NSE:' ),
@@ -358,7 +357,7 @@ $magicWords = array(
 	'formatdate'                => array( '0', '日付整形', 'formatdate', 'dateformat' ),
 	'url_path'                  => array( '0', 'パス', 'PATH' ),
 	'url_wiki'                  => array( '0', 'ウィキ', 'WIKI' ),
-	'url_query'                 => array( '0', 'クエリー', 'QUERY' ),
+	'url_query'                 => array( '0', 'クエリ', 'クエリー', 'QUERY' ),
 );
 
 $messages = array(
