@@ -373,6 +373,39 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				'ns' => 'namespace',
 				'title' => 'string'
 			),
+			'revid' => array(
+				'revid' => 'integer'
+			),
+			'parentid' => array(
+				'parentid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'user' => array(
+				'user' => 'string',
+			),
+			'userid' => array(
+				'userid' => 'integer',
+			),
+			'comment' => array(
+				'comment' => 'string'
+			),
+			'parsedcomment' => array(
+				'comment' => 'string'
+			),
+			'minor' => array(
+				'minor' => 'boolean'
+			),
+			'len' => array(
+				'len' => 'integer'
+			),
+			'sha1' => array(
+				'sha1' => 'string'
+			),
+			'content' => array(
+				'*' => 'string'
+			),
 			'token' => array(
 				'token' => 'string'
 			)
