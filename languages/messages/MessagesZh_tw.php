@@ -25,6 +25,20 @@
 
 $fallback = 'zh-hant, zh-hans';
 
+$namespaceNames = array(
+	NS_USER             => '使用者',
+	NS_USER_TALK        => '使用者討論',
+	NS_HELP             => '使用說明',
+	NS_HELP_TALK        => '使用說明討論',
+);
+
+$namespaceAliases = array(
+	'Image' => NS_FILE,
+	'Image_talk' => NS_FILE_TALK,
+	"圖片" => NS_FILE,
+	"圖片討論" => NS_FILE_TALK,
+);
+
 $specialPageAliases = array(
 	'Ancientpages'              => array( '最舊頁面' ),
 	'Block'                     => array( '查封用戶' ),
@@ -44,20 +58,6 @@ $specialPageAliases = array(
 	'Unwatchedpages'            => array( '未被監視的頁面' ),
 	'Userrights'                => array( '用戶權限' ),
 	'Withoutinterwiki'          => array( '沒有跨語言鏈接的頁面' ),
-);
-
-$namespaceNames = array(
-	NS_USER             => '使用者',
-	NS_USER_TALK        => '使用者討論',
-	NS_HELP             => '使用說明',
-	NS_HELP_TALK        => '使用說明討論',
-);
-
-$namespaceAliases = array(
-	'Image' => NS_FILE,
-	'Image_talk' => NS_FILE_TALK,
-	"圖片" => NS_FILE,
-	"圖片討論" => NS_FILE_TALK,
 );
 
 $datePreferences = array(

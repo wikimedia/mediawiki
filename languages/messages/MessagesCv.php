@@ -16,8 +16,6 @@
 
 $fallback = 'ru';
 
-$linkPrefixExtension = true;
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Ятарлă',
@@ -40,6 +38,7 @@ $namespaceNames = array(
 // Remove Russian aliases
 $namespaceGenderAliases = array();
 
+$linkPrefixExtension = true;
 $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
 
 $messages = array(

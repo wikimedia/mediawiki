@@ -23,7 +23,6 @@
 
 $fallback = 'de';
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Medija',
 	NS_SPECIAL          => 'Specialne',
@@ -51,20 +50,6 @@ $namespaceAliases = array(
 $namespaceGenderAliases = array(
         NS_USER => array( 'male' => 'Wužywaŕ', 'female' => 'Wužywarka' ),
         NS_USER_TALK => array( 'male' => 'Diskusija_wužywarja', 'female' => 'Diskusija_wužywarki' ),
-);
-
-$datePreferences = array(
-	'default',
-	'dmy',
-	'ISO 8601',
-);
-
-$defaultDateFormat = 'dmy';
-
-$dateFormats = array(
-	'dmy time' => 'H:i',
-	'dmy date' => 'j. xg Y',
-	'dmy both' => 'j. xg Y, H:i',
 );
 
 $specialPageAliases = array(
@@ -156,6 +141,20 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Wobglědowańka' ),
 	'Whatlinkshere'             => array( 'Lisćina_wótkazow' ),
 	'Withoutinterwiki'          => array( 'Interwikije_feluju' ),
+);
+
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. xg Y',
+	'dmy both' => 'j. xg Y, H:i',
 );
 
 $messages = array(

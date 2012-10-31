@@ -14,13 +14,6 @@
  * @author ОйЛ
  */
 
-$separatorTransformTable = array(
-	',' => ".",
-	'.' => ','
-);
-
-$linkPrefixExtension = true;
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Срѣдьства',
 	NS_SPECIAL          => 'Нарочьна',
@@ -64,6 +57,13 @@ $magicWords = array(
 	'redirect'                  => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
 	'language'                  => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
 );
+
+$separatorTransformTable = array(
+	',' => ".",
+	'.' => ','
+);
+
+$linkPrefixExtension = true;
 
 $defaultDateFormat = 'mdy';
 

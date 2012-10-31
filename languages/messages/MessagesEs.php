@@ -118,7 +118,6 @@ $namespaceGenderAliases = array(
 	NS_USER_TALK => array( 'male' => 'Usuario_Discusión', 'female' => 'Usuaria_Discusión' ),
 );
 
-
 $specialPageAliases = array(
 	'Activeusers'               => array( 'UsuariosActivos' ),
 	'Allmessages'               => array( 'TodosLosMensajes' ),

@@ -14,8 +14,6 @@
 
 $fallback8bitEncoding = 'windows-1254';
 
-$separatorTransformTable = array( ','     => '.', '.'     => ',' );
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Mahsus',
@@ -35,8 +33,8 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategoriya_muzakeresi',
 );
 
-# Aliases to cyril namespaces
 $namespaceAliases = array(
+	# Aliases to Cyrillic (crh-cyrl) namespaces
 	"Медиа"                  => NS_MEDIA,
 	"Махсус"                 => NS_SPECIAL,
 	"Музакере"               => NS_TALK,
@@ -56,7 +54,6 @@ $namespaceAliases = array(
 	'Категория'              => NS_CATEGORY,
 	'Категория_музакереси'   => NS_CATEGORY_TALK
 );
-
 
 $datePreferences = array(
     'default',
@@ -98,6 +95,7 @@ $dateFormats = array(
     'ISO 8601 both' => 'xnY.xnm.xnd"T"xnH:xni:xns',
 );
 
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 
 $messages = array(

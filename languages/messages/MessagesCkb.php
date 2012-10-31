@@ -24,21 +24,6 @@ $fallback8bitEncoding = 'windows-1256';
 
 $rtl = true;
 
-$digitTransformTable = array(
-	'0' => '٠', # &#x0660;
-	'1' => '١', # &#x0661;
-	'2' => '٢', # &#x0662;
-	'3' => '٣', # &#x0663;
-	'4' => '٤', # &#x0664;
-	'5' => '٥', # &#x0665;
-	'6' => '٦', # &#x0666;
-	'7' => '٧', # &#x0667;
-	'8' => '٨', # &#x0668;
-	'9' => '٩', # &#x0669;
-	'.' => '٫', # &#x066b; wrong table ?
-	',' => '٬', # &#x066c;
-);
-
 $namespaceNames = array(
 	NS_MEDIA            => 'میدیا',
 	NS_SPECIAL          => 'تایبەت',
@@ -143,6 +128,21 @@ $magicWords = array(
 	'img_framed'                => array( '1', 'چوارچێوە', 'framed', 'enframed', 'frame' ),
 	'img_frameless'             => array( '1', 'بێچوارچێوە', 'frameless' ),
 	'img_border'                => array( '1', 'سنوور', 'border' ),
+);
+
+$digitTransformTable = array(
+	'0' => '٠', # &#x0660;
+	'1' => '١', # &#x0661;
+	'2' => '٢', # &#x0662;
+	'3' => '٣', # &#x0663;
+	'4' => '٤', # &#x0664;
+	'5' => '٥', # &#x0665;
+	'6' => '٦', # &#x0666;
+	'7' => '٧', # &#x0667;
+	'8' => '٨', # &#x0668;
+	'9' => '٩', # &#x0669;
+	'.' => '٫', # &#x066b; wrong table ?
+	',' => '٬', # &#x066c;
 );
 
 $messages = array(

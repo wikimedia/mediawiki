@@ -17,10 +17,6 @@ $fallback = 'ru';
 
 $fallback8bitEncoding = 'windows-1251';
 
-$separatorTransformTable = array( ','     => '.', '.'     => ',' );
-
-$linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Махсус',
@@ -40,8 +36,8 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категория_музакереси',
 );
 
-# Aliases to latin namespaces
 $namespaceAliases = array(
+	# Aliases of Latin (crh-latn) namespaces
 	"Media"                 => NS_MEDIA,
 	"Mahsus"                => NS_SPECIAL,
 	"Muzakere"              => NS_TALK,
@@ -104,6 +100,9 @@ $dateFormats = array(
     'ISO 8601 date' => 'xnY.xnm.xnd',
     'ISO 8601 both' => 'xnY.xnm.xnd"T"xnH:xni:xns',
 );
+
+$separatorTransformTable = array( ','  => '.', '.' => ',' );
+$linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
