@@ -141,7 +141,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'ନଗଦବଦଳ' ),
 	'Recentchangeslinked'       => array( 'ଜୋଡ଼ାଥିବାନଗଦବଦଳ', 'ପାଖାପାଖିବଦଳ' ),
 	'Revisiondelete'            => array( 'ସଙ୍କଳନଲିଭାଇଦିଅଦେବେ' ),
-	'RevisionMove'              => array( 'ସଙ୍କଳନ' ),
 	'Search'                    => array( 'ଖୋଜନ୍ତୁ' ),
 	'Shortpages'                => array( 'ଛୋଟପୃଷ୍ଠା' ),
 	'Specialpages'              => array( 'ବିଶେଷପୃଷ୍ଠା' ),

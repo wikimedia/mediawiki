@@ -119,7 +119,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'ÙltimiCanbiamenti' ),
 	'Recentchangeslinked'       => array( 'CanbiamentiLigà' ),
 	'Revisiondelete'            => array( 'ScancelaRevision' ),
-	'RevisionMove'              => array( 'SpostaRevision' ),
 	'Search'                    => array( 'Serca' ),
 	'Shortpages'                => array( 'PaginePiCurte' ),
 	'Specialpages'              => array( 'PagineSpeciali' ),

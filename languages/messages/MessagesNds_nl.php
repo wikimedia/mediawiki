@@ -274,7 +274,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Leste_wiezigingen' ),
 	'Recentchangeslinked'       => array( 'Volg_verwiezingen' ),
 	'Revisiondelete'            => array( 'Versie_vortdoon' ),
-	'RevisionMove'              => array( 'Versie_verplaotsen' ),
 	'Search'                    => array( 'Zeuken' ),
 	'Shortpages'                => array( 'Korte_artikels' ),
 	'Specialpages'              => array( 'Spesiale_pagina\'s' ),

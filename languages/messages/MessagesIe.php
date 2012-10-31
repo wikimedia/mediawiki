@@ -102,7 +102,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Nov_changes' ),
 	'Recentchangeslinked'       => array( 'Changes_referet', 'Changes_relatet' ),
 	'Revisiondelete'            => array( 'Deleter_revision' ),
-	'RevisionMove'              => array( 'Mover_revision' ),
 	'Search'                    => array( 'Serchar' ),
 	'Shortpages'                => array( 'Págines_curt' ),
 	'Specialpages'              => array( 'Págines_special' ),

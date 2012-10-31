@@ -183,7 +183,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Letzte_Änderungen' ),
 	'Recentchangeslinked'       => array( 'Änderungen_an_verlinkten_Seiten' ),
 	'Revisiondelete'            => array( 'Versionslöschung' ),
-	'RevisionMove'              => array( 'Version_verschieben' ),
 	'Search'                    => array( 'Suche' ),
 	'Shortpages'                => array( 'Kürzeste_Seiten' ),
 	'Specialpages'              => array( 'Spezialseiten' ),

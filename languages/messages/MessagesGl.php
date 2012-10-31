@@ -133,7 +133,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Cambios_recentes' ),
 	'Recentchangeslinked'       => array( 'Cambios_relacionados' ),
 	'Revisiondelete'            => array( 'Revisións_borradas' ),
-	'RevisionMove'              => array( 'Traslado_de_revisión' ),
 	'Search'                    => array( 'Procurar' ),
 	'Shortpages'                => array( 'Páxinas_curtas' ),
 	'Specialpages'              => array( 'Páxinas_especiais' ),

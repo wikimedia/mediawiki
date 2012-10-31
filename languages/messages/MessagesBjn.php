@@ -114,7 +114,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Paubahan_pahanyarnya' ),
 	'Recentchangeslinked'       => array( 'Paubahan_tarait' ),
 	'Revisiondelete'            => array( 'Hapus_ralatan' ),
-	'RevisionMove'              => array( 'Ralatan_pamindahan' ),
 	'Search'                    => array( 'Panggagaian' ),
 	'Shortpages'                => array( 'Tungkaran_handap' ),
 	'Specialpages'              => array( 'Tungkaran_istimiwa' ),

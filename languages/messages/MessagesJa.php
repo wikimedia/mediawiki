@@ -179,7 +179,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( '最近の更新', '最近更新したページ' ),
 	'Recentchangeslinked'       => array( '関連ページの更新状況', 'リンク先の更新状況' ),
 	'Revisiondelete'            => array( '版指定削除', '特定版削除' ),
-	'RevisionMove'              => array( '版移動' ),
 	'Search'                    => array( '検索' ),
 	'Shortpages'                => array( '短いページ' ),
 	'Specialpages'              => array( '特別ページ一覧' ),

@@ -178,7 +178,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( '最近更改' ),
 	'Recentchangeslinked'       => array( '链出更改' ),
 	'Revisiondelete'            => array( '删除或恢复修订' ),
-	'RevisionMove'              => array( '修订版本移动' ),
 	'Search'                    => array( '搜索' ),
 	'Shortpages'                => array( '短页面' ),
 	'Specialpages'              => array( '特殊页面' ),

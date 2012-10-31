@@ -161,7 +161,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Canvis_recents' ),
 	'Recentchangeslinked'       => array( 'Seguiment' ),
 	'Revisiondelete'            => array( 'Esborra_versió' ),
-	'RevisionMove'              => array( 'Mou_versió' ),
 	'Search'                    => array( 'Cerca' ),
 	'Shortpages'                => array( 'Pàgines_curtes' ),
 	'Specialpages'              => array( 'Pàgines_especials' ),

@@ -283,7 +283,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Perubahan_terbaru', 'PerubahanTerbaru', 'RC', 'PT' ),
 	'Recentchangeslinked'       => array( 'Perubahan_terkait', 'PerubahanTerkait' ),
 	'Revisiondelete'            => array( 'Hapus_revisi', 'HapusRevisi' ),
-	'RevisionMove'              => array( 'Revisi_pemindahan', 'RevisiPemindahan' ),
 	'Search'                    => array( 'Pencarian', 'Cari' ),
 	'Shortpages'                => array( 'Halaman_pendek', 'HalamanPendek' ),
 	'Specialpages'              => array( 'Halaman_istimewa', 'HalamanIstimewa' ),

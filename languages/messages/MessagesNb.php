@@ -162,7 +162,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Siste_endringer' ),
 	'Recentchangeslinked'       => array( 'Relaterte_endringer' ),
 	'Revisiondelete'            => array( 'Revisjonssletting' ),
-	'RevisionMove'              => array( 'Revisjonsflytting' ),
 	'Search'                    => array( 'Søk' ),
 	'Shortpages'                => array( 'Korte_sider' ),
 	'Specialpages'              => array( 'Spesialsider' ),

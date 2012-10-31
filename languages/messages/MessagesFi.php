@@ -279,7 +279,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Tuoreet_muutokset' ),
 	'Recentchangeslinked'       => array( 'Linkitetyt_muutokset' ),
 	'Revisiondelete'            => array( 'Poista_muokkaus' ),
-	'RevisionMove'              => array( 'Versioiden_siirto' ),
 	'Search'                    => array( 'Haku' ),
 	'Shortpages'                => array( 'Lyhyet_sivut' ),
 	'Specialpages'              => array( 'Toimintosivut' ),

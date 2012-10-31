@@ -140,7 +140,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'TrocamientosFreskos' ),
 	'Recentchangeslinked'       => array( 'TrocamientosÈnterassados' ),
 	'Revisiondelete'            => array( 'EfassarRēvizyón' ),
-	'RevisionMove'              => array( 'TaxireaRēvizyón' ),
 	'Search'                    => array( 'Buscar' ),
 	'Shortpages'                => array( 'HojasKurtas' ),
 	'Specialpages'              => array( 'HojasEspesyales' ),

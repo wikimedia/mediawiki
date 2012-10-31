@@ -188,7 +188,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'CambiosRecientes', 'Cambios_recientes' ),
 	'Recentchangeslinked'       => array( 'CambiosEnEnlazadas', 'Cambios_en_enlazadas' ),
 	'Revisiondelete'            => array( 'BorrarRevisión', 'Borrar_revisión' ),
-	'RevisionMove'              => array( 'MoverRevision' ),
 	'Search'                    => array( 'Buscar' ),
 	'Shortpages'                => array( 'PáginasCortas', 'Páginas_cortas' ),
 	'Specialpages'              => array( 'PáginasEspeciales', 'Páginas_especiales' ),
