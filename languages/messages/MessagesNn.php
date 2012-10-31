@@ -1755,6 +1755,8 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'php-uploaddisabledtext' => 'PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.',
 'uploadscripted' => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
 'uploadvirus' => 'Fila innheld virus! Detaljar: $1',
+'uploadjava' => 'Fila er ei ZIP-fil som inneheld ei Java .class-fil.
+Opplasting av Java-filer er ikkje tillate av di dei kan gå utanom tryggingsavgrensingane.',
 'upload-source' => 'Kjeldefil',
 'sourcefilename' => 'Filsti:',
 'sourceurl' => 'Kjelde-URL:',
@@ -1823,6 +1825,7 @@ $1',
 'backend-fail-internal' => 'Ein ukjend feil oppstod i lagringsbaksystemet «$1».',
 'backend-fail-contenttype' => 'Kunne ikkje avgjera innhaldstypen til fila som skulle lagrast på «$1».',
 'backend-fail-batchsize' => 'Baksystemet vart gjeve ei gruppe med $1 {{PLURAL:$1|filoperasjon|filoperasjonar}}; grensa er $2 {{PLURAL:$2|operasjon|operasjonar}}.',
+'backend-fail-usable' => 'Kunne ikkje lesa eller skriva fila «$1» grunna vantande rettar eller mapper/kjerald.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kunne ikkje kopla til journaldatabasen for lagringsbaksystemet «$1».',
@@ -1841,9 +1844,12 @@ $1',
 'lockmanager-fail-svr-release' => 'Kunne ikkje løysa låsane på tenaren $1.',
 
 # ZipDirectoryReader
+'zip-file-open-error' => 'Det oppstod ein feil under opninga av fila for ZIP-undersøking.',
 'zip-wrong-format' => 'Den oppgjevne fila var ikkje ei ZIP-fil',
 'zip-bad' => 'Fila er ei skadd eller på annan måte uleseleg ZIP-fil.
 Ho kan ikkje tryggingskontrollerast.',
+'zip-unsupported' => 'Fila er ei ZIP-fil son nyttar ZIP-funksjonar som ikkje er stødde av MediaWiki.
+Ho kan ikkje tryggingskontrollerast godt nok.',
 
 # Special:UploadStash
 'uploadstash' => 'Lasta opp løynd samling',
@@ -2232,7 +2238,7 @@ Støtta protokollar: <code>$1</code> (ikkje legg til nokon av desse i søket dit
 'emailuser-title-target' => 'Send epost åt {{GENDER:$1|brukaren}}',
 'emailuser-title-notarget' => 'Send e-post åt brukar',
 'emailpage' => 'Send e-post åt brukar',
-'emailpagetext' => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne brukaren.
+'emailpagetext' => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne {{GENDER:$1|brukaren}}.
 E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukke opp i «frå»-feltet på denne e-posten, så mottakaren er i stand til å svare.',
 'usermailererror' => 'E-post systemet gav feilmelding:',
 'defemailsubject' => '{{SITENAME}} epost frå brukar "$1"',
@@ -3025,6 +3031,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'pageinfo-default-sort' => 'Standard sorteringsnykel',
 'pageinfo-length' => 'Sidelengd (i byte)',
 'pageinfo-article-id' => 'Side-ID',
+'pageinfo-language' => 'Sideinnhaldsspråk',
 'pageinfo-robot-policy' => 'Søkjemotorstode',
 'pageinfo-robot-index' => 'Kan indekserast',
 'pageinfo-robot-noindex' => 'Kan ikkje indekserast',
@@ -3299,6 +3306,7 @@ Andre er gøymde som standard.
 'exif-source' => 'Kjelde',
 'exif-editstatus' => 'Den redaksjonelle stoda til biletet',
 'exif-urgency' => 'Prioritet',
+'exif-fixtureidentifier' => 'Namn på tidgjengt emne',
 'exif-locationdest' => 'Avbilda stad',
 'exif-locationdestcode' => 'Koden til staden som er avbilda',
 'exif-objectcycle' => 'Tid på dagen mediet er meint for',
@@ -3316,11 +3324,14 @@ Andre er gøymde som standard.
 'exif-serialnumber' => 'Serienummeret på kameraet',
 'exif-cameraownername' => 'Eigar av kameraet',
 'exif-label' => 'Merkelapp',
+'exif-datetimemetadata' => 'Datoen metadata sist vart endra',
 'exif-nickname' => 'Det uformelle namnet på biletet',
 'exif-rating' => 'Vurdering (av 5)',
+'exif-rightscertificate' => 'Retthandsamingssertifikat',
 'exif-copyrighted' => 'Opphavsrettsstode',
 'exif-copyrightowner' => 'Opphavsrettseigar',
 'exif-usageterms' => 'Bruksvilkår',
+'exif-webstatement' => 'Opphavsrettsfråsegn på nett',
 'exif-originaldocumentid' => 'Unik ID til originaldokumentet',
 'exif-licenseurl' => 'URL for opphavsrettsløyve',
 'exif-morepermissionsurl' => 'Alternativ løyveinformasjon',
@@ -3512,6 +3523,7 @@ Andre er gøymde som standard.
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
 'exif-ycbcrpositioning-1' => 'Sentrert',
+'exif-ycbcrpositioning-2' => 'Samanfallande',
 
 'exif-dc-contributor' => 'Bidragsytarar',
 'exif-dc-date' => 'Dato(ar)',
@@ -3733,6 +3745,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-license' => 'Lisens',
 'version-poweredby-credits' => "Denne wikien er dreven av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
+'version-credits-summary' => 'Me ynskjer godskriva desse personane for tilskotet deira til [[Special:Version|MediaWiki]].',
 'version-software' => 'Installert programvare',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versjon',

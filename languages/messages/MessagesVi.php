@@ -124,7 +124,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Thay_đổi_gần_đây' ),
 	'Recentchangeslinked'       => array( 'Thay_đổi_liên_quan' ),
 	'Revisiondelete'            => array( 'Xóa_phiên_bản' ),
-	'RevisionMove'              => array( 'Di_chuyển_phiên_bản' ),
 	'Search'                    => array( 'Tìm_kiếm' ),
 	'Shortpages'                => array( 'Trang_ngắn' ),
 	'Specialpages'              => array( 'Trang_đặc_biệt' ),
@@ -977,7 +976,7 @@ Nó chưa được lưu!'''",
 'note' => "'''Ghi chú:'''",
 'previewnote' => "'''Đây chỉ mới là xem thử.'''
 Các thay đổi của bạn vẫn chưa được lưu!",
-'continue-editing' => 'Sửa tiếp',
+'continue-editing' => 'Đi đến hộp sửa đổi',
 'previewconflict' => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
 'session_fail_preview' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
 Xin hãy thử lần nữa.
@@ -1977,7 +1976,7 @@ Có lẽ bạn muốn miêu tả nó trên [$2 trang miêu tả tập tin] tại
 'shared-repo-from' => 'tại $1',
 'shared-repo' => 'kho lưu trữ dùng chung',
 'filepage.css' => '/* Mã CSS tại đây sẽ ảnh hướng đến trang miêu tả tập tin, cũng như các wiki khách bên ngoài dựa trên wiki này */',
-'upload-disallowed-here' => 'Rất tiếc, bạn không có thể ghi đè lên hình ảnh này.',
+'upload-disallowed-here' => 'Bạn không có thể ghi đè lên tập tin này.',
 
 # File reversion
 'filerevert' => 'Lùi lại phiên bản của $1',
@@ -2260,7 +2259,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'emailuser-title-target' => '{{GENDER:$1}}Gửi thư cho người dùng này',
 'emailuser-title-notarget' => 'Gửi thư cho người dùng',
 'emailpage' => 'Gửi thư',
-'emailpagetext' => 'Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
+'emailpagetext' => '{{GENDER:$1}}Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
 Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
 'usermailererror' => 'Lỗi gửi thư:',
 'defemailsubject' => 'Thư của người dùng "$1" tại {{SITENAME}}',
@@ -3093,6 +3092,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'pageinfo-default-sort' => 'Từ khóa sắp xếp mặc định',
 'pageinfo-length' => 'Chiều dài của trang (byte)',
 'pageinfo-article-id' => 'Mã số trang',
+'pageinfo-language' => 'Ngôn ngữ nội dung trang',
 'pageinfo-robot-policy' => 'Trạng thái công cụ tìm kiếm',
 'pageinfo-robot-index' => 'Có thể ghi chỉ mục',
 'pageinfo-robot-noindex' => 'Không thể ghi chỉ mục',
@@ -3114,6 +3114,13 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'pageinfo-hidden-categories' => 'Thể loại ẩn ($1)',
 'pageinfo-templates' => 'Bản mẫu được nhúng ($1)',
 'pageinfo-toolboxlink' => 'Thông tin trang',
+'pageinfo-redirectsto' => 'Đổi hướng đến',
+'pageinfo-redirectsto-info' => 'thông tin',
+'pageinfo-contentpage' => 'Tính là một trang nội dung',
+'pageinfo-contentpage-yes' => 'Có',
+'pageinfo-protect-cascading' => 'Khóa theo tầng từ đây',
+'pageinfo-protect-cascading-yes' => 'Có',
+'pageinfo-protect-cascading-from' => 'Khóa theo tầng từ',
 
 # Skin names
 'skinname-standard' => 'Cổ điển',
@@ -3917,6 +3924,7 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'version-license' => 'Giấy phép bản quyền',
 'version-poweredby-credits' => "Wiki này chạy trên '''[//www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
 'version-poweredby-others' => 'những người khác',
+'version-credits-summary' => 'Chúng tôi muốn công nhận những người sau đã đóng góp vào [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
 
 MediaWiki được phân phối với hy vọng rằng nó sẽ hữu ích, nhưng '''không có bất kỳ một bảo đảm nào cả''', ngay cả những bảo đảm ngụ ý cho '''các mục đích thương mại''' hoặc cho '''một mục đích đặc biệt nào đó'''. Xem Giấy phép Công cộng GNU để biết thêm chi tiết.

@@ -157,7 +157,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( '最近修改' ),
 	'Recentchangeslinked'       => array( '外鏈修改' ),
 	'Revisiondelete'            => array( '修訂版本刪除' ),
-	'RevisionMove'              => array( '修訂版本移動' ),
 	'Search'                    => array( '搜索' ),
 	'Shortpages'                => array( '短版' ),
 	'Specialpages'              => array( '特別頁' ),

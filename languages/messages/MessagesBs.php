@@ -544,7 +544,9 @@ $1',
 'newmessageslink' => 'novih poruka',
 'newmessagesdifflink' => 'posljednja promjena',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika}} ($2).',
+'youhavenewmessagesmanyusers' => 'Imate $1 od mnogo korisnika ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|nove poruke}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|zadnja izmjena|zadnje izmjene}}',
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection' => 'uredi',
 'editsection-brackets' => '[$1]',
@@ -657,8 +659,8 @@ Pretraga: $2',
 'protectedinterface' => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom wikiju i zaštićena je radi sprečavanja zloupotrebe.
 Da biste dodali ili izmjenili prijevode svih wikija, posjetite [//translatewiki.net/  translatewiki.net], projekat za lokalizaciju Mediawikija.',
 'editinginterface' => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
-Promjene na ovoj stranici dovode i do promjena za druge korisnike.
-Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
+Promjene na ovoj stranici dovode i do promjena za druge korisnike ovog wikija.
+Za dodavanje ili promjene prijevoda svih wikija, molimo Vas koristite [//translatewiki.net/ translatewiki.net], projekt prijevoda za MediaWiki.",
 'sqlhidden' => '(SQL pretraga sakrivena)',
 'cascadeprotected' => 'Uređivanje ove stranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja iz razloga:
 $2',
@@ -2362,6 +2364,8 @@ nastavite s oprezom.',
 'rollback' => 'Vrati izmjene',
 'rollback_short' => 'Vrati',
 'rollbacklink' => 'vrati',
+'rollbacklinkcount' => 'vrati $1 {{PLURAL:$1|izmjenu|izmjene|izmjena}}',
+'rollbacklinkcount-morethan' => 'vrati više od $1 {{PLURAL:$1|izmjene|izmjene|izmjena}}',
 'rollbackfailed' => 'Vraćanje nije uspjelo',
 'cantrollback' => 'Ne može se vratiti izmjena; posljednji autor je ujedno i jedini.',
 'alreadyrolled' => 'Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.
@@ -3030,13 +3034,17 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 
 # Info page
 'pageinfo-title' => 'Informacije za "$1"',
+'pageinfo-header-basic' => 'Osnovne informacije',
 'pageinfo-header-edits' => 'Izmjene',
 'pageinfo-header-restrictions' => 'Zaštita stranice',
 'pageinfo-article-id' => 'ID stranice',
 'pageinfo-views' => 'Broj pogleda',
 'pageinfo-watchers' => 'Broj onih koji pregledaju',
-'pageinfo-edits' => 'Broj izmjena',
-'pageinfo-authors' => 'Broj različitih autora',
+'pageinfo-edits' => 'Ukupan broj izmjena',
+'pageinfo-authors' => 'Ukupan broj različitih autora',
+'pageinfo-redirectsto-info' => 'Informacije',
+'pageinfo-contentpage-yes' => 'Da',
+'pageinfo-protect-cascading-yes' => 'Da',
 
 # Skin names
 'skinname-standard' => 'Klasično',

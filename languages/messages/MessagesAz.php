@@ -2552,7 +2552,7 @@ Variants for Chinese language
 'exif-objectname' => 'Qısa başlıq',
 'exif-specialinstructions' => 'Xüsusi instruksiyalar',
 'exif-headline' => 'Başlıq',
-'exif-credit' => 'Credit/Provider',
+'exif-credit' => 'Təmin edici',
 'exif-source' => 'Mənbə',
 'exif-editstatus' => 'Şəklin redaktə statusu',
 'exif-urgency' => 'Zərurilik',

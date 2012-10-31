@@ -114,7 +114,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Mga_huling_binago', 'HulingBinago' ),
 	'Recentchangeslinked'       => array( 'Nakakawing_ng_kamakailang_pagbabago', 'Kaugnay_na_mga_pagbabago' ),
 	'Revisiondelete'            => array( 'Pagbura_ng_pagbabago' ),
-	'RevisionMove'              => array( 'Paglipat_ng_Rebisyon' ),
 	'Search'                    => array( 'Maghanap' ),
 	'Shortpages'                => array( 'Maikling_mga_pahina' ),
 	'Specialpages'              => array( 'Natatanging_mga_pahina' ),
