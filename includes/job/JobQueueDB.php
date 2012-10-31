@@ -111,11 +111,15 @@ class JobQueueDB extends JobQueue {
 	protected function doPop() {
 		global $wgMemc;
 
-		$uuid = wfRandomString( 32 ); // pop attempt
+		$key = $this->getEmptinessCacheKey();
+		if ( $wgMemc->get( $key ) === 'true' ) {
+			return false; // queue is empty
+		}
 
 		$dbw = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
+		$uuid = wfRandomString( 32 ); // pop attempt
 		$job = false; // job popped off
 		$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
 		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
