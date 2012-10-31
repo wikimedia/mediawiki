@@ -1177,11 +1177,6 @@ class SkinTemplate extends Skin {
 				);
 			}
 
-			$nav_urls['info'] = array(
-				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
-				'href' => $out->getTitle()->getLocalURL( "action=info" )
-			);
-
 			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
 				array( &$this, &$nav_urls, &$revid, &$revid ) );
@@ -1191,6 +1186,12 @@ class SkinTemplate extends Skin {
 			$nav_urls['whatlinkshere'] = array(
 				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalUrl()
 			);
+
+			$nav_urls['info'] = array(
+				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
+				'href' => $out->getTitle()->getLocalURL( "action=info" )
+			);
+
 			if ( $this->getTitle()->getArticleID() ) {
 				$nav_urls['recentchangeslinked'] = array(
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalUrl()
