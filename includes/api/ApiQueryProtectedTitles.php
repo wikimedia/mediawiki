@@ -98,7 +98,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					$vals['user'] = $row->user_name;
 				}
 
-				if ( isset( $prop['user'] ) ) {
+				if ( isset( $prop['userid'] ) || /*B/C*/isset( $prop['user'] ) ) {
 					$vals['userid'] = $row->pt_user;
 				}
 
@@ -229,6 +229,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				),
+				'userid' => 'integer'
+			),
+			'userid' = array(
 				'userid' => 'integer'
 			),
 			'comment' => array(
