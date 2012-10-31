@@ -130,6 +130,7 @@ class JobQueueDB extends JobQueue {
 				} else { // random first
 					$rand  = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
 					$gte   = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+					$gte = 0;
 					$found = $this->claim( $uuid, $rand, $gte )
 						|| $this->claim( $uuid, $rand, !$gte ); // try both directions
 				}
