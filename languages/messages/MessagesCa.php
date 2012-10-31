@@ -376,7 +376,7 @@ $messages = array(
 'updatedmarker' => 'actualitzat des de la darrera visita',
 'printableversion' => 'Versió per a impressora',
 'permalink' => 'Enllaç permanent',
-'print' => "Envia aquesta pàgina a la cua d'impressió",
+'print' => 'Imprimir',
 'view' => 'Mostra',
 'edit' => 'Modifica',
 'create' => 'Crea',
@@ -726,12 +726,12 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'passwordreset-capture-help' => "Si marqueu aquesta casella, el missatge de correu electrònic (amb la contrasenya temporal) es mostrarà al mateix moment que sigui enviat a l'usuari.",
 'passwordreset-email' => 'Adreça de correu electrònic:',
 'passwordreset-emailtitle' => 'Detalls del compte a {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} <$4>. {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+'passwordreset-emailtext-ip' => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
 
 $2
 
 {{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
-Hauríeu d'entrar {{PLURAL:$3|al compte per a fixar-hi una nova contrasenya|als comptes per a fixar-hi noves contrasenyes}} al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
+Hauríeu d'entrar al compte per a fixar-hi una nova contrasenya al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
 'passwordreset-emailtext-user' => "L'usuari $1 de {{SITENAME}} ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} <$4>. {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
 
 $2
@@ -854,11 +854,11 @@ Detalls es poden trobar en el [{{fullurl: {{# especial: registre}} / delete|page
 'userpage-userdoesnotexist-view' => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract' => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache' => "'''Nota:''' després de guardar possiblement necessites refrescar el teu cache per poder veure els canvis.
-* '''Firefox / Safari:''' pressiona ''Shift'' mentre cliques el botó ''Actualitzar'', o pressiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' a Mac)
-* '''Google Chrome:''' pressiona ''Ctrl+Shift+R'' (''⌘+Shift+R'' a Mac)
-* '''Internet Explorer:''' pressiona la tecla ''Ctrl'' mentre cliques a ''Actualitzar'' o pressiona ''Ctrl+F5''
-* '''Opera:''' buida la memòria cau (cache) ''Eines → Preferències''",
+'clearyourcache' => "'''Nota:''' Després de desar, possiblement necessiteu refrescar la memòria cau del vostre navegador per a veure'n els canvis.
+* '''Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu el botó ''Actualitzar'', o pressioneu ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' a Mac)
+* '''Google Chrome:''' Premeu ''Ctrl+Shift+R'' (''⌘+Shift+R'' a Mac)
+* '''Internet Explorer:''' Premeu la tecla ''Ctrl'' mentre cliqueu a ''Actualitzar'' o pressioneu ''Ctrl+F5''
+* '''Opera:''' Netegeu la memòria cau ''Eines → Preferències''",
 'usercssyoucanpreview' => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview' => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview' => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
@@ -873,7 +873,7 @@ Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'note' => "'''Nota:'''",
 'previewnote' => "'''Recorda que això és només una previsualització.'''
 Els vostres canvis encara no s'han desat!",
-'continue-editing' => "Continua l'edició",
+'continue-editing' => "Aneu a l'àrea d'edició",
 'previewconflict' => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview' => "'''No s'ha pogut processar la vostra modificació a causa d'una pèrdua de dades de la sessió.
@@ -1709,7 +1709,7 @@ $1',
 'backend-fail-internal' => "S'ha produït un error desconegut en el fitxer de rerefons d'emmagatzemament «$1».",
 'backend-fail-contenttype' => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
 'backend-fail-batchsize' => "El rerefons d'emmagatzemament ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
-'backend-fail-usable' => "No s'ha pogut escriure el fitxer $1 a causa de permisos insuficients o perquè hi manquen directoris/contenidors.",
+'backend-fail-usable' => 'No s\'ha pogut llegir ni escriure el fitxer "$1" a causa de permisos insuficients o perquè hi manquen directoris/contenidors.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'No es pot connectar amb la base de dades per emmagatzemar el backend "$1".',
@@ -1947,6 +1947,7 @@ Les entrades <del>ratllades</del> s\'han resolt.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|octet|octets}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categories}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|enllaç|enllaços}}',
 'nmembers' => '$1 {{PLURAL:$1|membre|membres}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisió|revisions}}',
@@ -2936,14 +2937,24 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-length' => 'Mida de la pàgina (en bytes)',
 'pageinfo-article-id' => 'ID de la pàgina',
 'pageinfo-robot-policy' => 'Estat del motor de cerca',
+'pageinfo-robot-index' => 'Indexable',
+'pageinfo-robot-noindex' => 'No indexable',
 'pageinfo-views' => 'Número de visites',
 'pageinfo-watchers' => "Número d'usuaris que vigilen la pàgina",
+'pageinfo-redirects-name' => 'Redireccions a aquesta pàgina',
+'pageinfo-subpages-name' => "Subpàgines d'aquesta pàgina",
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecció|redireccions}}; $3 {{PLURAL:$3|no redireció|no redireccions}})',
 'pageinfo-firstuser' => 'Creador de la pàgina',
 'pageinfo-firsttime' => 'Data de la creació de la pàgina',
 'pageinfo-lastuser' => 'Últim editor',
 'pageinfo-lasttime' => "Data de l'última edició",
 'pageinfo-edits' => "Número total d'edicions",
 'pageinfo-authors' => "Número total d'autors diferents",
+'pageinfo-recent-edits' => "Número d'edicions recents (en els darrers $1)",
+'pageinfo-recent-authors' => "Número recent d'autors diferents",
+'pageinfo-magic-words' => '{{PLURAL:$1|Paraula clau|Paraules clau}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categories ocultes}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|plantilla inclosa|plantilles incloses}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Clàssic',
@@ -2992,6 +3003,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'file-info-size-pages' => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4, $5 {{PLURAL:$5|pàgina|pàgines}}',
 'file-nohires' => 'No hi ha cap versió amb una resolució més gran.',
 'svg-long-desc' => 'fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3',
+'svg-long-desc-animated' => 'Fitxer SVG animat, nominalment $1 × $2 píxels, mida del fitxer: $3',
 'show-big-image' => 'Imatge en màxima resolució',
 'show-big-image-preview' => "Mida d'aquesta previsualització: $1.",
 'show-big-image-other' => '{{PLURAL:$2|Altra resolució|Altres resolucions}}: $1.',
@@ -3001,6 +3013,8 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'file-info-png-looped' => 'embuclat',
 'file-info-png-repeat' => "s'ha reproduït $1 {{PLURAL:$1|vegada|vegades}}",
 'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogrames}}',
+'file-no-thumb-animation' => "'''Nota: degut a limitacions tècniques no s'animaran les miniatures per aquest fitxer.'''",
+'file-no-thumb-animation-gif' => "''' Nota: degut a limitacions tècniques no s'animaran les miniatures d'alta resolució d'imatges GIF com aquesta.'''",
 
 # Special:NewFiles
 'newimages' => 'Galeria de nous fitxers',

@@ -874,7 +874,7 @@ Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'note' => "'''Catatan:'''",
 'previewnote' => "'''Ingatlah bahawa ini hanya pralihat.'''
 Perubahan anda belum disimpan!",
-'continue-editing' => 'Teruskan menyunting',
+'continue-editing' => 'Pergi ke tempat menyunting',
 'previewconflict' => 'Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.',
 'session_fail_preview' => "'''Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi. Sila cuba lagi. Jika masalah ini berlanjutan, [[Special:UserLogout|log keluar]] dahulu, kemudian log masuk sekali lagi.'''",
 'session_fail_preview_html' => "'''Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi.'''

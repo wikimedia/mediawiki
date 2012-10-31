@@ -712,8 +712,8 @@ Ce tu non ge si 'n'utende anonime e pinze ca le commende ca so revolte a te sond
 'noarticletext' => 'Non ge stè scritte ninde jndr\'à sta pàgene.
 Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre pàggene, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene]</span>.',
 'noarticletext-nopermission' => "Pe mò non ge stè teste jndr'à sta pàgene.
-Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titele]]  jndr'à otre pàggene,
-o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirche jndr'à l'archivije cullegate]</span>.",
+Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titole]] jndr'à otre pàggene,
+o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirche jndr'à l'archivije cullegate]</span>, ma non ge tìne le permesse pe ccrejà sta pàgene.",
 'missing-revision' => "'A revisione #\$1 d'a pàgene chiamate \"{{PAGENAME}}\" non g'esiste.
 
 Quiste succede normalmende purcé 'u cunde jè collegate a 'na pàgene ca ha state scangellate.
@@ -1763,7 +1763,7 @@ Pò essere ca tu vuè cangià 'a descrizione de jidde [$2 pàgene de descrizione
 'shared-repo' => "'nu condenitore de cose condivise",
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => "/* 'U CSS ca se iacchie aqquà jè ingluse sus 'a pàgene de descrizione d'u file, pure ingluse pe le client de le Uicchi furastire */",
-'upload-disallowed-here' => "Sfortunatamende non ge puè sovrascrivere st'immaggine.",
+'upload-disallowed-here' => 'Non ge puè sovrascrivere stu file.',
 
 # File reversion
 'filerevert' => "'Nvirte $1",

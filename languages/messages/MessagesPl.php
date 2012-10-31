@@ -991,7 +991,7 @@ Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą 
 'note' => "'''Uwaga:'''",
 'previewnote' => "'''To jest tylko podgląd'''
 Zmiany nie zostały jeszcze zapisane!",
-'continue-editing' => 'Kontynuuj edycję',
+'continue-editing' => 'Przejdź do pola edycji',
 'previewconflict' => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview' => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
@@ -1462,7 +1462,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-help-email-others' => 'Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).',
 'prefs-help-email-required' => 'Wymagany jest adres e‐mail.',
 'prefs-info' => 'Podstawowe informacje',
-'prefs-i18n' => 'Ustawienia międzynarodowe',
+'prefs-i18n' => 'Ustawienia językowe',
 'prefs-signature' => 'Podpis',
 'prefs-dateformat' => 'Format daty',
 'prefs-timeoffset' => 'Różnica czasu',
@@ -1988,7 +1988,7 @@ Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'współdzielone zasoby',
-'upload-disallowed-here' => 'Niestety, nie możesz nadpisać tego pliku.',
+'upload-disallowed-here' => 'Nie możesz nadpisać tego pliku.',
 
 # File reversion
 'filerevert' => 'Przywracanie $1',
@@ -3097,6 +3097,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',
+'pageinfo-not-current' => 'Informacje mogą być wyświetlane tylko dla najnowszej wersji strony.',
 'pageinfo-header-basic' => 'Podstawowe informacje',
 'pageinfo-header-edits' => 'Historia edycji',
 'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',

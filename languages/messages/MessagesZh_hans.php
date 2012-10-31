@@ -596,12 +596,12 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
-'dberrortext' => '发生资料库查询语法错误。
-可能是由于软体自身的错误所引起。
-最后一次资料库查询指令是:
+'dberrortext' => '发生数据库查询语法错误。
+可能是由于软件自身的错误所引起。
+最后一次数据库查询指令是：
 <blockquote><code>$1</code></blockquote>
-来自于函数 "<code>$2</code>"。
-数据库返回错误 "<samp>$3: $4</samp>"。',
+来自于函数“<code>$2</code>”。
+数据库返回错误“<samp>$3: $4</samp>”。',
 'dberrortextcl' => '发生了数据库查询语法错误。最后一次数据库查询指令是：
 “$1”
 来自函数“$2”内。数据库返回错误“$3: $4”。',
@@ -928,7 +928,7 @@ $2
 'updated' => '（已更新）',
 'note' => "'''注意：'''",
 'previewnote' => "'''请记住这仅为预览。'''您的更改还未保存！",
-'continue-editing' => '继续编辑',
+'continue-editing' => '往编辑框',
 'previewconflict' => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
 'session_fail_preview' => "'''抱歉！由于会话数据丢失，我们不能处理你的编辑。'''请重试。如果再次失败，请尝试[[Special:UserLogout|退出]]后重新登录。",
 'session_fail_preview_html' => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
@@ -2964,9 +2964,9 @@ $1被封禁的理由是：“$2”',
 'pageinfo-authors' => '不同编者总计',
 'pageinfo-recent-edits' => '最近的编辑数（$1内）',
 'pageinfo-recent-authors' => '最近的不同编者数',
-'pageinfo-magic-words' => '魔术字 ($1)',
-'pageinfo-hidden-categories' => '隐藏分类 ($1)',
-'pageinfo-templates' => '使用的模板 ($1)',
+'pageinfo-magic-words' => '魔术字（$1）',
+'pageinfo-hidden-categories' => '隐藏分类（$1）',
+'pageinfo-templates' => '使用的模板（$1）',
 
 # Skin names
 'skinname-standard' => '标准',

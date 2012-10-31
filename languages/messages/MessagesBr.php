@@ -1845,7 +1845,7 @@ Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn d
 'uploadnewversion-linktext' => 'Kargañ ur stumm nevez eus ar restr-mañ',
 'shared-repo-from' => 'eus $1',
 'shared-repo' => 'ur sanailh rannet',
-'upload-disallowed-here' => "Siwazh, ne c'hallit ket erlec'hiañ ar skeudenn-mañ",
+'upload-disallowed-here' => "Ne c'hallit ket erlec'hiañ ar restr-mañ",
 
 # File reversion
 'filerevert' => 'Disteuler $1',
@@ -2946,6 +2946,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 
 # Info page
 'pageinfo-title' => 'Titouroù evit "$1"',
+'pageinfo-not-current' => "Evit an adwel bremañ e c'hall bezañ diskwelet an titouroù hepken.",
 'pageinfo-header-basic' => 'Titouroù diazez',
 'pageinfo-header-edits' => 'Kemmoù',
 'pageinfo-header-restrictions' => 'Gwarez ar bajenn',

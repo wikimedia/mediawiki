@@ -1247,6 +1247,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'qbsettings-fixedright' => 'Ankavanana',
 'qbsettings-floatingleft' => 'Mitsingevaheva any ankavanana',
 'qbsettings-floatingright' => 'Mitsigevaheva any ankavanana',
+'qbsettings-directionality' => "Tsy mihetsika, arakaraky ny fizotran'ny soratra amin'ny teninao (avy any havanana miankavia, na avy any havia miankavanana)",
 
 # Preferences page
 'preferences' => 'Ny momba anao',
@@ -1314,7 +1315,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'timezoneregion-indian' => 'Ranomasimbe Indianina',
 'timezoneregion-pacific' => 'Ranomasimbe Pasifika',
 'allowemail' => "Ekeo ny handraisana imailaka avy amin'ny mpikambana hafa",
-'prefs-searchoptions' => 'Safidy mikasika ny fikarohana',
+'prefs-searchoptions' => 'Karoka',
 'prefs-namespaces' => "Toeran'anarana",
 'defaultns' => "Fikarohana tsipalotra anatin'ireo anaran-tsehatra ireo :",
 'default' => 'tsipalotra',
@@ -1683,6 +1684,7 @@ Misafidia anaran-drakitra mambangovango.",
 
 $1",
 'upload-warning-subj' => 'Fampitandremana rehefa mampiditra',
+'upload-warning-msg' => "Nisy olana nitranga tam-pampidirana avy amin'i [$2] afaka miverina any amin'ny [[Special:Upload/stash/$1|formiolera fampidirana]] ianao hamahana izany olana izany.",
 
 'upload-proto-error' => 'Protokolina diso',
 'upload-proto-error-text' => "Mila URL manomboka amin'ny <code>http://</code> na <code>ftp://</code> ny fampidiran-drakitra.",
@@ -1750,9 +1752,9 @@ Avereno fanindroany.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tsy afa-mankao',
-'img-auth-nopathinfo' => "Tsy misy ny PATH_INFO.
+'img-auth-nopathinfo' => "Tsy misy PATH_INFO.
 Tsy voaparametatra ny lohamilinao hampita io fampahalalàna io.
-Mety mifototra amin'ny CGI izy ka mety tsy mahazaka img_auth
+Mety mampiasa CGI angamba ilay lohamilina ka tsy mahazaka an'i img_auth
 Vangio ny https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir' => 'Ny lalana nangatahana dia tsy ny petra-drakitra nokaonfigiorena.',
 'img-auth-badtitle' => "Tsy afaka mamorona lohateny azo ampiasaina avy amin'ny « $1 ».",
@@ -2092,6 +2094,8 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'listgrouprights-removegroup' => "Manala ny mpikambana {{PLURAL:$2}}amin'ny gropy : $1",
 'listgrouprights-addgroup-all' => 'Manampy mpikambana anaty vondrona rehetra',
 'listgrouprights-removegroup-all' => 'Manala mpikambana anaty gropy rehetra',
+'listgrouprights-addgroup-self' => "Afaka manampy ny tenany amin'ny vondrona{{PLURAL:$2}}: $1",
+'listgrouprights-removegroup-self' => "Afaka manala ny tenany amin'ny vondrona{{PLURAL:$2}} : $1",
 'listgrouprights-addgroup-self-all' => "Manampy ny vondrom-pikambana rehetra amin'ny kaontiny",
 'listgrouprights-removegroup-self-all' => "Manala ny vondrom-pikambana rehetra amin'ny kaontiny",
 
@@ -2382,6 +2386,7 @@ $1',
 'namespace' => 'Anaran-tsehatra :',
 'invert' => 'Ampifamadiho ny safidy',
 'namespace_association' => 'Anaran-tsehatra nampiarahana',
+'tooltip-namespace_association' => 'Mariho ity boaty ity mba hampiditra ny pejin-dresaky ny anaran-tsehatra voafidy',
 'blanknamespace' => '(fotony)',
 
 # Contributions
@@ -2466,6 +2471,7 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'blockipsuccesstext' => 'Voasakana i [[Special:Contributions/$1|$1]].
 <br />Jereo ny [[Special:BlockList|lisitry ny IP voasakana]] raha hanala ny sakana efa misy.',
 'ipb-blockingself' => 'Hanakana ny kaontinao ianao ! Tena hanao izany ve ?',
+'ipb-confirmhideuser' => "Eo ampanakanana mpikambana miaraka amin'ny \"fanakonana mpikambana\" ampiasaina. Izany dia mamafa ny anaran'ilay mpikambana amin'ny listra ary amin'ny iditra laogy. Tena hanao izany ve ianao?",
 'ipb-edit-dropdown' => 'Hanova ny antony fanakanana tsipalotra',
 'ipb-unblock-addr' => "Hanala ny sakan' i $1",
 'ipb-unblock' => "Hanala ny sakan'ny mpikambana na adiresy IP",
@@ -2581,6 +2587,7 @@ Azafady mba antero fa izay tokoa no tena irinao.",
 'lockfilenotwritable' => "Tsy azo soratana ny rakitra fanidiana ny banky angona.
 Mba hahafahany manidy na mamoha ny banky angona, mila azo soratan'ny lohamilin-tranonkala izy.",
 'databasenotlocked' => 'Tsy voaidy ny banky angona.',
+'lockedbyandtime' => "(nataon'i $1 ny $2 tamin'ny $3)",
 
 # Move page
 'move-page' => "Hanova anarana an'i $1",
@@ -2977,8 +2984,8 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-exifversion' => 'Santiôna EXIF',
 'exif-flashpixversion' => 'Santiôna FlashPix',
 'exif-colorspace' => 'Valan-doko',
-'exif-pixelydimension' => 'Haavon-tsary ekena',
-'exif-pixelxdimension' => 'Halalan-tsary ekena',
+'exif-pixelydimension' => 'Haavon-tsary',
+'exif-pixelxdimension' => 'Halala-tsary',
 'exif-usercomment' => 'Diniky ny mpikambana',
 'exif-relatedsoundfile' => 'Rakitra audio miaraka',
 'exif-datetimeoriginal' => 'Daty fangalana niaviana',
@@ -2989,7 +2996,7 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-fnumber' => 'Isa F',
 'exif-exposureprogram' => 'Fomba famakiana',
 'exif-isospeedratings' => 'ISO',
-'exif-aperturevalue' => 'Sanasana',
+'exif-aperturevalue' => 'Fisanasana APEX',
 'exif-lightsource' => 'Loharanon-kazavana',
 'exif-flashenergy' => "Angôvon'akonkazavana",
 'exif-filesource' => 'Fangon-drakitra',
@@ -3010,8 +3017,16 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-gpsareainformation' => 'Anaram-paritra GPS',
 'exif-gpsdatestamp' => 'Daty GPS',
 'exif-countrycreated' => 'Firenena nangalana ilay sary',
+'exif-cameraownername' => "Tompon'ilay mpaka sary",
+'exif-licenseurl' => "URl an'ilay lisansa",
+'exif-pngfilecomment' => "Famoahan-kevitra momban'ilay rakitra PNG",
+
+'exif-copyrighted-true' => "Iharan'ny zom-pamorona",
+'exif-copyrighted-false' => 'Valam-bahoaka',
 
 'exif-unknowndate' => 'Daty tsy fantatra',
+
+'exif-orientation-1' => 'Tsotra',
 
 'exif-componentsconfiguration-0' => 'tsy nahitana',
 
@@ -3021,6 +3036,9 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 
 'exif-meteringmode-0' => 'Tsy fantatra',
 'exif-meteringmode-1' => 'Elanelana',
+'exif-meteringmode-3' => 'Spot',
+'exif-meteringmode-5' => 'Modely',
+'exif-meteringmode-255' => 'Hafa',
 
 # Flash modes
 'exif-flash-mode-3' => 'Toetra aotômatika',

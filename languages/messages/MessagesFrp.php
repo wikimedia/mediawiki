@@ -940,7 +940,7 @@ La rêson balyêye est ''$2''.
 * Èxpiracion du blocâjo : $6
 * Compto blocâ : $7
 
-Vos vos pouede veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar.
+Vos vos pouede veriér vers $1 ou ben un ôtr’[[{{MediaWiki:Grouppage-sysop}}|administrator]] por nen discutar.
 Vos pouede pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens qu’un’adrèce èlèctronica valida est spècifiâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 Voutron adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd encllure tôs los dètalys ce-dessus dedens quinta que seye demanda que vos faréd.",

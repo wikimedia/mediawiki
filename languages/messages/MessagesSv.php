@@ -1998,7 +1998,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'shared-repo-from' => 'från $1',
 'shared-repo' => 'en gemensam filförvaring',
 'filepage.css' => '/* CSS som skrivs här inkluderas på filbeskrivningssidan, även på utländska klientwikis */',
-'upload-disallowed-here' => 'Du kan inte skriva över denna bild.',
+'upload-disallowed-here' => 'Du kan inte skriva över denna fil.',
 
 # File reversion
 'filerevert' => 'Återställ $1',
@@ -3107,6 +3107,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
+'pageinfo-not-current' => 'Information kan endast visas för den aktuella versionen.',
 'pageinfo-header-basic' => 'Grundläggande information',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidskydd',

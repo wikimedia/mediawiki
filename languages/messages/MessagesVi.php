@@ -978,7 +978,7 @@ Nó chưa được lưu!'''",
 'note' => "'''Ghi chú:'''",
 'previewnote' => "'''Đây chỉ mới là xem thử.'''
 Các thay đổi của bạn vẫn chưa được lưu!",
-'continue-editing' => 'Sửa tiếp',
+'continue-editing' => 'Đi đến hộp sửa đổi',
 'previewconflict' => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
 'session_fail_preview' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
 Xin hãy thử lần nữa.
@@ -1969,7 +1969,7 @@ Có lẽ bạn muốn miêu tả nó trên [$2 trang miêu tả tập tin] tại
 'shared-repo-from' => 'tại $1',
 'shared-repo' => 'kho lưu trữ dùng chung',
 'filepage.css' => '/* Mã CSS tại đây sẽ ảnh hướng đến trang miêu tả tập tin, cũng như các wiki khách bên ngoài dựa trên wiki này */',
-'upload-disallowed-here' => 'Rất tiếc, bạn không có thể ghi đè lên hình ảnh này.',
+'upload-disallowed-here' => 'Bạn không có thể ghi đè lên tập tin này.',
 
 # File reversion
 'filerevert' => 'Lùi lại phiên bản của $1',

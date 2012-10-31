@@ -1952,6 +1952,7 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 'shared-repo-from' => 'a(z) $1 megosztott tárhelyről',
 'shared-repo' => 'megosztott tárhely',
 'filepage.css' => '/* Az itt elhelyezett CSS a fájl leíró lapra kerül beillesztésre, a külföldi nyelvű kliens wikikbe is*/',
+'upload-disallowed-here' => 'Ezt a fájlt nem lehet felülírni.',
 
 # File reversion
 'filerevert' => '$1 visszaállítása',
@@ -2234,6 +2235,8 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'mailnologin' => 'Nincs feladó',
 'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
 'emailuser' => 'E-mail küldése ezen szerkesztőnek',
+'emailuser-title-target' => 'E-mail küldése ennek a felhasználónak: $1',
+'emailuser-title-notarget' => 'E-mail küldése a felhasználónak',
 'emailpage' => 'E-mail küldése',
 'emailpagetext' => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
@@ -2913,6 +2916,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'import-error-invalid' => '„$1” lap nem került importálásra, mert a neve nem érvényes.',
 'import-options-wrong' => 'Rossz {{PLURAL:$2|opció|opciók}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A megadott gyökér oldal címe érvénytelen.',
+'import-rootpage-nosubpage' => 'A(z) "$1" névtér nem engedi meg aloldalak használatát.',
 
 # Import log
 'importlogpage' => 'Importnapló',

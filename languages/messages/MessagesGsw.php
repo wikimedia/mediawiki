@@ -1780,7 +1780,7 @@ Villicht witt d Bschryybig uf dr dertige [$2 Dateibschryybigssyte] bearbeite.',
 'uploadnewversion-linktext' => 'E nöui Version vo dere Datei ufelade',
 'shared-repo-from' => 'vu $1',
 'shared-repo' => 'eme gmeinsame Repositorium',
-'upload-disallowed-here' => 'Leider chasch des Bild nit iberschryybe.',
+'upload-disallowed-here' => 'Du chasch die Datei nit iberschryybe.',
 
 # File reversion
 'filerevert' => 'Zrucksetze vu „$1“',
@@ -2823,6 +2823,7 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 
 # Info page
 'pageinfo-title' => 'Informatione zue „$1“',
+'pageinfo-not-current' => 'Die Informatione chenne nume fir di nejscht Versions aazeigt wäre.',
 'pageinfo-header-basic' => 'Basisinformatione',
 'pageinfo-header-edits' => 'Bearbeitige',
 'pageinfo-header-restrictions' => 'Syteschutz',

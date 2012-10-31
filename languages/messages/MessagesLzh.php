@@ -164,7 +164,7 @@ $messages = array(
 'tog-watchcreations' => '哨己撰',
 'tog-watchdefault' => '哨己纂',
 'tog-watchmoves' => '派哨予吾遷之頁',
-'tog-watchdeletion' => '派哨予吾除之頁',
+'tog-watchdeletion' => '派哨至吾除之頁',
 'tog-minordefault' => '慣為校',
 'tog-previewontop' => '頂草覽',
 'tog-previewonfirst' => '覽首修',
@@ -952,6 +952,8 @@ $1",
 
 # Diffs
 'history-title' => '$1之誌',
+'difference-title' => '$1各本之异',
+'difference-title-multipage' => '$1、$2之异',
 'difference-multipage' => '（辨頁）',
 'lineno' => '列$1：',
 'compareselectedversions' => '辨二擇',

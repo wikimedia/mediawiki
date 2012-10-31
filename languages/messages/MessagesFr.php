@@ -378,7 +378,7 @@ $messages = array(
 'tog-hideminor' => 'Masquer les modifications mineures dans les modifications récentes',
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi les nouvelles pages',
-'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et non seulement les plus récentes',
+'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
 'tog-usenewrc' => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
@@ -636,7 +636,7 @@ $1',
 'youhavenewmessages' => 'Vous avez $1 ($2).',
 'newmessageslink' => 'de nouveaux messages',
 'newmessagesdifflink' => 'dernière modification',
-'youhavenewmessagesfromusers' => "Vous avez  $1  d'{{PLURAL:$3| un autre utilisateur|$3 autres utilisateurs}} ( $2 ).",
+'youhavenewmessagesfromusers' => "Vous avez $1 {{PLURAL:$3|d'un autre utilisateur|de $3 autres utilisateurs}} ($2).",
 'youhavenewmessagesmanyusers' => 'Vous avez $1 de nombreux utilisateurs ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un message|nouveaux messages}}',
 'newmessagesdifflinkplural' => 'dernières modification{{PLURAL:$1||s}}',
@@ -786,7 +786,7 @@ Notez que certaines pages peuvent être encore affichées comme si vous étiez t
 
 Votre compte a été créé.
 N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
-'yourname' => 'Nom d’utilisateur :',
+'yourname' => 'Nom d’utilisateur :',
 'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
@@ -1057,7 +1057,7 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'note' => "'''Note :'''",
 'previewnote' => "'''Rappelez-vous que ce n’est qu’une prévisualisation.'''
 Vos modifications n’ont pas encore été enregistrées !",
-'continue-editing' => 'Continuer la modification',
+'continue-editing' => 'Aller à la zone de modification',
 'previewconflict' => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
 'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 Veuillez réessayer.

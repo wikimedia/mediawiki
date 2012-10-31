@@ -532,10 +532,10 @@ $1',
 'databaseerror' => '資料庫錯誤',
 'dberrortext' => '發生資料庫查詢語法錯誤。
 可能是由於軟體自身的錯誤所引起。
-最後一次資料庫查詢指令是:
+最後一次資料庫查詢指令是：
 <blockquote><code>$1</code></blockquote>
-來自於函數 "<code>$2</code>"。
-數據庫返回錯誤 "<samp>$3: $4</samp>"。',
+來自於函數“<code>$2</code>”。
+資料庫返回錯誤“<samp>$3: $4</samp>”。',
 'dberrortextcl' => '發生資料庫查詢語法錯誤。
 最後一次的資料庫查詢是:
 「$1」
@@ -884,7 +884,7 @@ $2
 'updated' => '（已更新）',
 'note' => "'''注意:'''",
 'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''",
-'continue-editing' => '繼續編輯',
+'continue-editing' => '往編輯框',
 'previewconflict' => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview' => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
 請再試一次。
@@ -2967,11 +2967,11 @@ $1被封禁的理由是“$2”',
 'pageinfo-lasttime' => '最新編輯日期',
 'pageinfo-edits' => '編輯總次數',
 'pageinfo-authors' => '作者總數',
-'pageinfo-recent-edits' => '最近編輯次數 (過去 $1 內)',
+'pageinfo-recent-edits' => '最近編輯次數 (過去$1內)',
 'pageinfo-recent-authors' => '最近作者數目',
-'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}} ( $1 )',
-'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}} ( $1 )',
-'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}} ( $1 )',
+'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}}（$1）',
+'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}}（$1）',
+'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}}（$1）',
 
 # Skin names
 'skinname-standard' => '標準',

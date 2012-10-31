@@ -69,6 +69,7 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author MarkvA
+ * @author Matma Rex
  * @author MaxSem
  * @author McDutchie
  * @author Meno25
@@ -2812,6 +2813,12 @@ This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
+'protect-level-autoconfirmed' => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
+'protect-level-sysop' => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
 
 Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
@@ -3502,15 +3509,21 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
 'pageinfo-length' => 'પૃષ્ઠની લંબાઇ બાઇટમાં',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
-'pageinfo-robot-policy' => 'The search engine status of the page, e.g. "marked as index".',
+'pageinfo-robot-policy' => 'The search engine status of the page.
+*{{msg-mw|Pageinfo-robot-index}}
+*{{msg-mw|Pageinfo-robot-noindex}}',
 'pageinfo-robot-index' => 'An indication that the page is indexable.',
 'pageinfo-robot-noindex' => 'An indication that the page is not indexable.',
 'pageinfo-views' => 'The number of times the page has been viewed.',
 'pageinfo-watchers' => 'The number of users watching the page.',
-'pageinfo-redirects-name' => 'The number of redirects to the page.',
+'pageinfo-redirects-name' => "The number of redirects to the page.
+
+Used as link text, linked to '{{int:Whatlinkshere-title}}' page ([[Special:WhatLinksHere]]).",
 'pageinfo-redirects-value' => 'Parameters:
 * $1 is the number of redirects to the page.',
-'pageinfo-subpages-name' => 'The number of subpages of the page.',
+'pageinfo-subpages-name' => "The number of subpages of the page.
+
+Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]).",
 'pageinfo-subpages-value' => 'Parameters:
 * $1 is the number of subpages of the page.
 * $2 is the number of subpages of the page that are redirects.
@@ -3591,6 +3604,7 @@ Start with a lowercase letter, unless the first word is “SVG”.',
 
 Start with a lowercase letter, unless the first word is “SVG”.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
 'show-big-image-size' => '
 Parameters:
 * $1 is the width of the image(s) in pixels.
@@ -4842,6 +4856,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-patrol-patrol-auto' => '{{Logentry}}
 * $4 is a formatted revision number, maybe linked to the diff.
 "Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
+'logentry-newusers-create' => '{{Logentry}}
+
+$4 is the gender of the target user.',
 'logentry-newusers-create2' => '{{Logentry}}
 
 $4 is the gender of the target user.',

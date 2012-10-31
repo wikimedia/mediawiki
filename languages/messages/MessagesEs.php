@@ -1058,7 +1058,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 'note' => "'''Nota:'''",
 'previewnote' => "'''¡Recuerda que esto es solo una previsualización.'''
 ¡Tus cambios aún no se ha guardado!",
-'continue-editing' => 'Continuar editando',
+'continue-editing' => 'Ir al área de edición',
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
 'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
 Por favor, inténtalo de nuevo.
@@ -3097,7 +3097,7 @@ Permite añadir una razón al resumen de edición.',
 'standard.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
 'nostalgia.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
 'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
-'monobook.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Monobook */',
+'monobook.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MonoBook */',
 'myskin.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
 'chick.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
 'simple.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',

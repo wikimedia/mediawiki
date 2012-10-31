@@ -857,7 +857,7 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'note' => "'''Nota:'''",
 'previewnote' => "'''Isto es solmente un previsualisation.'''
 Le modificationes non ha ancora essite publicate!",
-'continue-editing' => 'Continuar a modificar',
+'continue-editing' => 'Saltar al quadro de modification',
 'previewconflict' => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview' => "'''Nos non poteva processar tu modification proque nos perdeva le datos del session.

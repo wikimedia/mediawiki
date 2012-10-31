@@ -993,7 +993,7 @@ Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă
 'note' => "'''Notă:'''",
 'previewnote' => "'''Țineți cont că aceasta este doar o previzualizare.'''
 Modificările dumneavoastră nu au fost încă salvate!",
-'continue-editing' => 'Continuare editare',
+'continue-editing' => 'Mergi la zona de editare',
 'previewconflict' => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeți să-l salvați acum.',
 'session_fail_preview' => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.

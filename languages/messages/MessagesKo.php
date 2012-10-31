@@ -1053,7 +1053,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'note' => "'''참고:'''",
 'previewnote' => "'''이 화면은 미리 보기입니다.'''
 편집한 내용은 아직 저장되지 않았습니다!",
-'continue-editing' => '계속 편집하기',
+'continue-editing' => '편집 영역으로 가기',
 'previewconflict' => '이 미리 보기는 저장할 때의 모습으로 위쪽 편집창의 문서를 반영합니다.',
 'session_fail_preview' => "'''세션 데이터가 없어져 편집을 저장하지 못했습니다.'''
 다시 시도하세요.
@@ -2247,6 +2247,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Book sources
 'booksources' => '책 찾기',
 'booksources-search-legend' => '책 찾기',
+'booksources-isbn' => 'ISBN:',
 'booksources-go' => '찾기',
 'booksources-text' => '아래의 목록은 새 책이나 중고 책을 판매하는 바깥 사이트로, 원하는 책의 정보를 얻을 수 있습니다:',
 'booksources-invalid-isbn' => '입력한 ISBN이 잘못된 것으로 보입니다. 원본과 대조해 보세요.',

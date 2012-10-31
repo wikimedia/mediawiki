@@ -726,7 +726,7 @@ Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na 
 'note' => "'''NÒTA:'''",
 'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
 Ij sò cambi a son anco' pa stàit salvà!",
-'continue-editing' => 'Continua a modifiché',
+'continue-editing' => 'Andé a la zòna ëd modìfica',
 'previewconflict' => "Costa preuva a-j mostra ël test dl'artìcol ambelessì dzora. Se a sërn dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
 'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
 Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",
@@ -3180,7 +3180,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-lightsource-3' => 'Lus al tungsten (a incandessensa)',
 'exif-lightsource-4' => 'Lòsna',
 'exif-lightsource-9' => 'Temp bel',
-'exif-lightsource-10' => 'Temp an-nivolà',
+'exif-lightsource-10' => 'Temp nìvol',
 'exif-lightsource-11' => 'Ombra',
 'exif-lightsource-12' => 'Fluoressensa tipo lus dël dì (D 5700 – 7100K)',
 'exif-lightsource-13' => 'Fluoressensa bianca për ël dì (N 4600 – 5400K)',
@@ -3193,22 +3193,22 @@ J'àutri a saran stërmà coma stàndard.
 'exif-lightsource-21' => 'Anluminant D65',
 'exif-lightsource-22' => 'Anluminant D75',
 'exif-lightsource-23' => 'Anluminant D50',
-'exif-lightsource-24' => 'Làmpada da studio ISO al tungsten',
-'exif-lightsource-255' => "Aùtra sorgiss d'anluminassion",
+'exif-lightsource-24' => 'Làmpada da studi ISO al tungsten',
+'exif-lightsource-255' => "Àutra sorgiss d'anluminassion",
 
 # Flash modes
-'exif-flash-fired-0' => "Ël flash a l'é pa scatà",
-'exif-flash-fired-1' => 'Flash scatà',
-'exif-flash-return-0' => "Gnun-e fonsion ëd rilevassion dl'artorn ëd lë stroboscòpi",
-'exif-flash-return-2' => "lus stoboscòpica d'artorn pa arlevà",
-'exif-flash-return-3' => "lus stroboscòpica d'artorn arlevà",
-'exif-flash-mode-1' => 'scat dël flash sforsà',
-'exif-flash-mode-2' => 'eliminassion dël flash sforsà',
+'exif-flash-fired-0' => "La lòsna a l'é nen ëscatà",
+'exif-flash-fired-1' => "La lòsna a l'ha scatà",
+'exif-flash-return-0' => "gnun ëstroboscòpi a dà andaré na fonsion d'artrovament",
+'exif-flash-return-2' => "lë stoboscòpi a arleva gnun-a lus d'artorn",
+'exif-flash-return-3' => "lë stroboscòpi a l'ha arlevà n'artorn ëd lus",
+'exif-flash-mode-1' => 'lus dla lòsna obligatòria',
+'exif-flash-mode-2' => 'eliminassion dla lòsna obligatòria',
 'exif-flash-mode-3' => 'manera automàtica',
-'exif-flash-function-1' => 'Gnente fonsion flash',
+'exif-flash-function-1' => 'Gnun-a fonsion ëd lòsna',
 'exif-flash-redeye-1' => "Manera ëd ridussion ëd j'euj ross",
 
-'exif-focalplaneresolutionunit-2' => 'pòles anglèis (inches)',
+'exif-focalplaneresolutionunit-2' => 'pòles anglèis',
 
 'exif-sensingmethod-1' => 'Nen definì',
 'exif-sensingmethod-2' => 'Sensor dlë spassi color a 1 processor',
@@ -3227,7 +3227,7 @@ J'àutri a saran stërmà coma stàndard.
 
 'exif-exposuremode-0' => 'Esposission automàtica',
 'exif-exposuremode-1' => 'Esposission manual',
-'exif-exposuremode-2' => 'Esposission automàtica (auto bracket)',
+'exif-exposuremode-2' => 'Forciolin-a automàtica',
 
 'exif-whitebalance-0' => "Balansa dël bianch n'automàtich",
 'exif-whitebalance-1' => 'Balansa dël bianch an manual',
@@ -3240,7 +3240,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-gaincontrol-0' => 'Gnun',
 'exif-gaincontrol-1' => 'Sparé ij contrast bass',
 'exif-gaincontrol-2' => 'Sparé ij contrast fòrt',
-'exif-gaincontrol-3' => 'Bassé ij contrast bass',
+'exif-gaincontrol-3' => 'Sbassé ij contrast bass',
 'exif-gaincontrol-4' => 'Bassé ij contrast fòrt',
 
 'exif-contrast-0' => 'Normal',

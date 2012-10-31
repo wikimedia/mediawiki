@@ -942,7 +942,7 @@ L'ultimo elemento del registro dei blocchi è riportato di seguito per informazi
 'note' => "'''Nota:'''",
 'previewnote' => "'''Ricorda che questa è solo un'anteprima.'''
 Le tue modifiche NON sono ancora state salvate!",
-'continue-editing' => 'Continua a modificare',
+'continue-editing' => "Vai all'area di modifica",
 'previewconflict' => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
 'session_fail_preview' => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.
 Riprovare.

@@ -892,7 +892,7 @@ Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr.
 'note' => "'''Opomba:'''",
 'previewnote' => "'''Pomnite, da stran le predogledujete.'''
 Vaših sprememb še nismo shranili!",
-'continue-editing' => 'Nadaljujte z urejanjem',
+'continue-editing' => 'Pojdi na urejevalno območje',
 'previewconflict' => 'V prikazanem predogledu je v zgornjem predelu urejanja navedeno besedilo, kakor se bo prikazalo, če ga boste shranili.',
 'session_fail_preview' => "'''Oprostite! Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati.'''
 Prosimo, poskusite znova.
@@ -2920,7 +2920,7 @@ Prosimo, poskusite znova.',
 'tooltip-ca-watch' => 'Dodajte stran na spisek nadzorov',
 'tooltip-ca-unwatch' => 'Odstranite stran s spiska nadzorov',
 'tooltip-search' => 'Preiščite wiki',
-'tooltip-search-go' => 'Pojdi na strani z natanko takim imenom, če obstaja',
+'tooltip-search-go' => 'Pojdi na stran z natanko takim imenom, če obstaja',
 'tooltip-search-fulltext' => 'Najde vneseno besedilo po straneh',
 'tooltip-p-logo' => 'Glavna stran',
 'tooltip-n-mainpage' => 'Obiščite Glavno stran',
@@ -2992,6 +2992,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
+'pageinfo-not-current' => 'Prikažemo lahko samo podatke trenutne redakcije.',
 'pageinfo-header-basic' => 'Osnovni podatki',
 'pageinfo-header-edits' => 'Zgodovina urejanja',
 'pageinfo-header-restrictions' => 'Zaščita strani',

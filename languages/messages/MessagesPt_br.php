@@ -1048,7 +1048,7 @@ A página não pode ser salva.",
 Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior envio.
 
 Quem bloqueou o banco de dados forneceu a seguinte justificativa: $1",
-'protectedpagewarning' => "'''Atenção: Esta página foi protegida para que apenas usuários com privilégios de administrado possam editá-la.'''
+'protectedpagewarning' => "'''Atenção: Esta página foi protegida para que apenas usuários com privilégios de administrador possam editá-la.'''
 A última entrada no histórico é fornecida abaixo como referência:",
 'semiprotectedpagewarning' => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.
 A última entrada no histórico é fornecida abaixo para referência:",
@@ -3113,6 +3113,9 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edições recentes (nos últimos $1)',
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
+'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|predefinição transcluída|predefinições transcluídas}}',
 
 # Skin names
 'skinname-standard' => 'Clássico',
@@ -3126,7 +3129,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar como patrulhada',
-'markaspatrolledtext' => 'Marcar esta página como verificada',
+'markaspatrolledtext' => 'Marcar esta página como patrulhada',
 'markedaspatrolled' => 'Marcado como verificado',
 'markedaspatrolledtext' => 'A revisão selecionada de [[:$1]] foi marcada como patrulhada.',
 'rcpatroldisabled' => 'Edições verificadas nas Mudanças Recentes desativadas',

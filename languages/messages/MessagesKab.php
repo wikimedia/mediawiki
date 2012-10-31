@@ -1935,6 +1935,8 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'listgrouprights' => 'Izerfan n igrawen n iseqdacen',
 'listgrouprights-summary' => 'Asebter agi yesɛa yiwen umuɣ n igrawen i sengelen deg wiki agi dɣa izerfan n wadduf i qqenen.
 Zemrent ad ilint [[{{MediaWiki:Listgrouprights-helppage}}|tilɣa nniḍen]] ɣef izerfan n yiwen.',
+'listgrouprights-key' => '*<span class="listgrouprights-granted">Izerfan sefkan</span>
+*<span class="listgrouprights-revoked">Izerfan ekkesen</span>',
 'listgrouprights-group' => 'Agraw',
 'listgrouprights-rights' => 'Izerfan',
 'listgrouprights-helppage' => 'Help:Izerfan n igrawen',
@@ -2075,6 +2077,7 @@ Tuɣalin d tadhelt :
 'delete-confirm' => 'Kkes "$1"',
 'delete-legend' => 'Ekkes',
 'historywarning' => 'Ɣur-wet : Asebter i ara temḥuḍ yesɛa amezruy s azal alemmas n $1 {{PLURAL:$1|lqem|ileqman}} :',
+'confirmdeletetext' => 'Aqlak ad mḥuḍ asebter naɣ afaylu, dɣa akkw ileqman-is iqdimen. Ilaq ad segegeḍ tigawt agi dɣa tfehemeḍ [[{{MediaWiki:Policy-url}}|ilugan n wiki]].',
 'actioncomplete' => 'Axdam yekfa',
 'actionfailed' => 'Tigawt agi texser',
 'deletedtext' => '"$1" yettumḥa.
@@ -2086,7 +2089,13 @@ Tuɣalin d tadhelt :
 'deletecomment' => 'Ayɣer',
 'deleteotherreason' => 'Taɣẓint nniḍen / taɣzint tamarnant :',
 'deletereasonotherlist' => 'Taɣẓint nniḍen',
+'deletereason-dropdown' => '* Tiɣẓinin n umḥu id t-uɣalen aṭas tikkwal
+** Asuter n useqdac
+** Akukel n izerfan umeskar
+** Asfata',
 'delete-edit-reasonlist' => 'Beddel tiɣẓinin n umḥu n usebter',
+'delete-toobig' => 'Asebter agi yesɛa amezruy ameqqṛan aṭas n ibeddilen, yugar $1 {{PLURAL:$1|lqem|ileqman}}.
+Amḥu n isebtar am wagi yesɛa akref iwakken {{SITENAME}} ur yesɛu ara arway.',
 
 # Rollback
 'rollback' => 'Semmet ibeddilen',
@@ -2965,6 +2974,17 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 # Special:Version
 'version' => 'Lqem',
 'version-specialpages' => 'isebtar usligen',
+'version-software' => 'Iseɣẓanen i serkeben',
+'version-software-product' => 'Afaris',
+'version-software-version' => 'Lqem',
+'version-entrypoints' => 'Tansa URL n irden n wekcam',
+'version-entrypoints-header-entrypoint' => 'Ired n wekcam',
+'version-entrypoints-header-url' => 'Tansa URL',
+
+# Special:FilePath
+'filepath' => 'Abrid n wadduf ufaylu',
+'filepath-page' => 'Afaylu :',
+'filepath-submit' => 'Ruḥ',
 
 # Special:SpecialPages
 'specialpages' => 'isebtar usligen',

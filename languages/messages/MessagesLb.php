@@ -865,7 +865,7 @@ Denkt drun datt eegen .css an .js Säiten e kleng geschriwwenen Titel benotzen, 
 'note' => "'''Notiz:'''",
 'previewnote' => "'''Denkt drun datt dëst nëmmen eng net gespäichert Versioun ass.'''
 Är Ännerunge sinn nach net gespäichert!",
-'continue-editing' => 'Weider änneren',
+'continue-editing' => "Gitt weider an de Beräich fir z'änneren",
 'previewconflict' => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
 'session_fail_preview' => "'''Är Ännerung konnt net gespäichert gi well d'Date vun Ärer Sessioun verluergaange sinn.
 Versicht et w.e.g. nach eng Kéier.

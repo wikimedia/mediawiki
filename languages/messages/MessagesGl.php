@@ -930,7 +930,7 @@ Lembre que as páxinas .css e .js personalizadas utilizan un título en minúscu
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",
-'continue-editing' => 'Continuar editando',
+'continue-editing' => 'Ir ata a caixa de edición',
 'previewconflict' => 'Esta vista previa mostra o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview' => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, inténteo de novo.
@@ -2369,7 +2369,7 @@ proceda con coidado.',
 'rollbacklink' => 'reverter',
 'rollbacklinkcount' => 'reverter $1 {{PLURAL:$1|edición|edicións}}',
 'rollbacklinkcount-morethan' => 'reverter máis de $1 {{PLURAL:$1|edición|edicións}}',
-'rollbackfailed' => 'Houbo un fallo ao reverter as edicións',
+'rollbackfailed' => 'Houbo un erro ao reverter as edicións',
 'cantrollback' => 'Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.',
 'alreadyrolled' => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 

@@ -1042,7 +1042,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'note' => "'''Poznámka:'''&nbsp;",
 'previewnote' => "'''Pamatujte, že toto je pouze náhled.'''
 Změny zatím nebyly uloženy!",
-'continue-editing' => 'Pokračovat v editaci',
+'continue-editing' => 'Přejít k editačnímu poli',
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview' => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.
@@ -3897,6 +3897,8 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'version-entrypoints' => 'URL vstupních bodů',
 'version-entrypoints-header-entrypoint' => 'Vstupní bod',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cesta k článkům]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cesta ke skriptům]',
 
 # Special:FilePath
 'filepath' => 'Cesta k souboru',

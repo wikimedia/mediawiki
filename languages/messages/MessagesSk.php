@@ -1963,7 +1963,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zdieľané úložisko',
-'upload-disallowed-here' => 'Ľutujeme, tento súbor nie je možné prepísať.',
+'upload-disallowed-here' => 'Tento súbor nie je možné prepísať.',
 
 # File reversion
 'filerevert' => 'Obnoviť $1',

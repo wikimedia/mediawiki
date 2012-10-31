@@ -958,9 +958,9 @@ Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta,
 tai [{{fullurl:{{FULLPAGENAME}}|action=edit}} muokata tätä sivua]</span>.',
 'noarticletext-nopermission' => 'Tällä hetkellä tällä sivulla ei ole tekstiä.
 Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]</span>, mutta sinulla ei ole oikeutta luoda tätä sivua.',
-'missing-revision' => 'Muutosta #$1 sivulla "{{PAGENAME}}" ei ole olemassa.
+'missing-revision' => 'Sivusta {{PAGENAME}} ei ole olemassa versiota $1.
 
-Tämä yleensä johtuu vanhentuneesta historialinkistä sivulle, joka on poistettu.
+Useimmiten tämä johtuu vanhentuneesta historialinkistä poistettuun sivuun.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].',
 'userpage-userdoesnotexist' => 'Käyttäjätunnusta <nowiki>$1</nowiki> ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'userpage-userdoesnotexist-view' => 'Käyttäjätunnusta ”$1” ei ole rekisteröity.',
@@ -984,7 +984,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'note' => "'''Huomautus:'''",
 'previewnote' => "'''Tämä on vasta sivun esikatselu.'''
 Tekemiäsi muutoksia ei ole vielä tallennettu.",
-'continue-editing' => 'Jatka muokkaamista',
+'continue-editing' => 'Siirry muokkauskenttään',
 'previewconflict' => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
 'session_fail_preview' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.''' Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ulos]] ja takaisin sisään.",
 'session_fail_preview_html' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.'''
@@ -1254,9 +1254,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'editundo' => 'kumoa',
 'diff-multi' => '(Näytettyjen versioiden välissä on {{PLURAL:$1|yksi muokkaus|$1 versiota, jotka ovat {{PLURAL:$2|yhden käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
 'diff-multi-manyusers' => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|yli $2 eri käyttäjää}}}}.)',
-'difference-missing-revision' => '{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä diffistä ($1) {{PLURAL:$2|ei|ei}} löytynyt.
+'difference-missing-revision' => '{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä vertailusta ($1) {{PLURAL:$2|ei}} löytynyt.
 
-Tämä johtuu yleensä seuraavasta vanhentuneeesta diffilinkistä sivulle, joka on poistettu.
+Useimmiten tämä johtuu vanhentuneesta vertailulinkistä poistettuun sivuun.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].',
 
 # Search results
@@ -2832,6 +2832,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [//www.mediawiki.org/wi
 'import-interwiki-templates' => 'Liitä kaikki mallineet',
 'import-interwiki-submit' => 'Tuo',
 'import-interwiki-namespace' => 'Kohdenimiavaruus:',
+'import-interwiki-rootpage' => 'Tuo annetun sivun alasivuiksi (valinnainen):',
 'import-upload-filename' => 'Tiedostonimi:',
 'import-comment' => 'Syy',
 'importtext' => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vientityökalua]].
@@ -2865,6 +2866,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-error-special' => 'Sivua $1 ei tuoda, koska se kuuluu nimitilaan, joka ei salli sivuja.',
 'import-error-invalid' => 'Sivua $1 ei tuoda, koska sen nimi ei kelpaa.',
 'import-options-wrong' => '{{PLURAL:$2|Väärä asetus|Väärät asetukset}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Annettu sivun nimi ei kelpaa.',
+'import-rootpage-nosubpage' => 'Annetun sivun nimiavaruus $1 ei salli alasivuja.',
 
 # Import log
 'importlogpage' => 'Tuontiloki',
@@ -3014,6 +3017,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',
+'pageinfo-not-current' => 'Tiedot voidaan näyttää vain sivun viimeisimmälle versiolle.',
 'pageinfo-header-basic' => 'Perustiedot',
 'pageinfo-header-edits' => 'Muutoshistoria',
 'pageinfo-header-restrictions' => 'Sivun suojaus',
@@ -3022,18 +3026,22 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-default-sort' => 'Oletuslajitteluavain',
 'pageinfo-length' => 'Sivun pituus (tavuina)',
 'pageinfo-article-id' => 'Sivun tunniste',
+'pageinfo-robot-policy' => 'Hakukonemerkinnät',
 'pageinfo-robot-index' => 'Indeksoitava',
 'pageinfo-robot-noindex' => 'Ei indeksoitava',
 'pageinfo-views' => 'Katselukertojen määrä',
 'pageinfo-watchers' => 'Sivun tarkkailijoiden lukumäärä',
 'pageinfo-redirects-name' => 'Sivulle johtavat ohjaukset',
 'pageinfo-subpages-name' => 'Sivun alasivut',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ohjaus|ohjausta}}; $3 {{PLURAL:$3|ei-ohjausta}})',
 'pageinfo-firstuser' => 'Sivun luonut',
 'pageinfo-firsttime' => 'Sivun luontipäivämäärä',
 'pageinfo-lastuser' => 'Viimeisin muokkaaja',
-'pageinfo-lasttime' => 'Viimeisimmän muokkausksen päivämäärä',
+'pageinfo-lasttime' => 'Viimeisin muokkauspäivämäärä',
 'pageinfo-edits' => 'Muokkausten kokonaismäärä',
 'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
+'pageinfo-recent-edits' => 'Tuoreita muutoksia ($1)',
+'pageinfo-recent-authors' => 'Tuoreita muokkaajia',
 'pageinfo-magic-words' => '{{PLURAL:$1|Taikasana|Taikasanat}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Sisällytetty malline|Sisällytetyt mallineet}} ($1)',
@@ -3090,6 +3098,7 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'file-info-size-pages' => '$1 × $2 kuvapistettä, tiedoston koko $3, MIME-tyyppi $4, $5 {{PLURAL:$5|sivu|sivua}}',
 'file-nohires' => 'Tarkempaa kuvaa ei ole saatavilla.',
 'svg-long-desc' => 'SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3',
+'svg-long-desc-animated' => 'Animoitu SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3',
 'show-big-image' => 'Korkeatarkkuuksinen versio',
 'show-big-image-preview' => 'Tämän esikatselun koko: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Muu resoluutio|Muut resoluutiot}}: $1.',
