@@ -36,6 +36,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgContentHandlerUseDB;
+
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -56,6 +58,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_content = isset( $prop['content'] );
 		$fld_token = isset( $prop['token'] );
+		$fld_contentmodel = isset( $prop['contentmodel'] );
 
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
@@ -103,6 +106,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
 		$this->addFieldsIf( 'ar_len', $fld_len );
 		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
+		$this->addFieldsIf( 'ar_content_model', $fld_contentmodel && $wgContentHandlerUseDB );
 
 		if ( $fld_content ) {
 			$this->addTables( 'text' );
@@ -249,6 +253,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_content ) {
 				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
 			}
+			if ( $fld_contentmodel ) {
+				$contentmodel = null;
+				if ( $wgContentHandlerUseDB ) {
+					$contentmodel = $row->ar_content_model;
+				}
+				if ( is_null( $contentmodel ) ) {
+					$contentmodel = $title->getContentModel();
+				}
+				$rev['contentmodel'] = $contentmodel;
+			}
 
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
@@ -329,7 +343,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'len',
 					'sha1',
 					'content',
-					'token'
+					'token',
+					'contentmodel',
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
@@ -358,6 +373,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				' sha1           - Adds the SHA-1 (base 16) of the revision',
 				' content        - Adds the content of the revision',
 				' token          - Gives the edit token',
+				' contentmodel   - Content model id',
 			),
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
@@ -375,7 +391,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			),
 			'token' => array(
 				'token' => 'string'
-			)
+			),
+			'contentmodel' => array(
+				'contentmodel' => 'string'
+			),
 		);
 	}
 
