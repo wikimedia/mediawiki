@@ -922,7 +922,6 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 * '''Firefox og Safari:''' Haldt nede ''Shift'' medan du klikkar på ''Oppdater'', eller trykk anten ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på Mac)
 * '''Google Chrome:''' Trykk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på Mac)
 * '''Internet Explorer:''' Haldt nede ''Ctrl'' medan du klikkar ''Oppdater'', eller trykk ''Ctrl-F5.''
-* '''Konqueror:''' Klikk ''Oppdater'' eller trykk ''F5''. 
 * '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''.",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste den nye CSS- eller JavaScript-koden din før du lagrar.",
 'userjsyoucanpreview'              => "''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste den nye CSS- eller JavaScript-koden din før du lagrar.",
@@ -1153,9 +1152,10 @@ Du har ikkje tilgang til henne.',
 Sjekk gjerne loggføringa.',
 'revdelete-only-restricted'   => 'Feil under gøyming av objektet datert $2 $1: du kan ikkje gøyma objekt for administratorar utan å i tillegg velja eit av dei andre visingsvala.',
 'revdelete-reason-dropdown'   => '*Vanlege grunnar til sletting
-** Brot på opphavsrettar
-** Ikkje høveleg personleg informasjon
-** Mogleg falskt sladder',
+** Brot på opphavsrett
+** Kommentar eller personleg informasjon som ikkje høver seg
+** Brukarnamn som ikkje høver seg
+** Mogeleg falskt sladder',
 'revdelete-otherreason'       => 'Anna årsak, eller tilleggsårsak:',
 'revdelete-reasonotherlist'   => 'Annan grunn',
 'revdelete-edit-reasonlist'   => 'Endre grunnar til sletting',
@@ -1366,6 +1366,7 @@ Dette kan ikkje tilbakestillast.',
 'yourrealname'                  => 'Verkeleg namn:',
 'yourlanguage'                  => 'Språk:',
 'yourvariant'                   => 'Språkvariant for innhald:',
+'prefs-help-variant'            => 'Varianten eller ortografien som du føretrekkjer at innhaldet i wikien vert vist på.',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Kommentarar på diskusjonssider bør alltid signerast med «<nowiki>~~~~</nowiki>», som vil konverterast til signaturen din med tidspunkt.',
 'badsig'                        => 'Ugyldig råsignatur, sjekk HTML-kodinga.',
@@ -1690,6 +1691,8 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.',
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
 'uploadvirus'                 => 'Fila innheld virus! Detaljar: $1',
+'uploadjava'                  => 'Fila er ei ZIP-fil som inneheld ei Java .class-fil.
+Opplasting av Java-filer er ikkje tillate av di dei kan gå utanom tryggingsavgrensingane.',
 'upload-source'               => 'Kjeldefil',
 'sourcefilename'              => 'Filsti:',
 'sourceurl'                   => 'Kjelde-URL:',
@@ -1754,6 +1757,8 @@ $1',
 'backend-fail-synced'        => 'Fila «$1» er i ei inkonsistent stode i dei interne lagringsbaksystema',
 'backend-fail-connect'       => 'Kunne ikkje kopla til filbaksystemet «$1».',
 'backend-fail-internal'      => 'Ein ukjend feil oppstod i lagringsbaksystemet «$1».',
+'backend-fail-contenttype'   => 'Kunne ikkje avgjera innhaldstypen til fila som skulle lagrast på «$1».',
+'backend-fail-batchsize'     => 'Baksystemet vart gjeve ei gruppe med $1 {{PLURAL:$1|filoperasjon|filoperasjonar}}; grensa er $2 {{PLURAL:$2|operasjon|operasjonar}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunne ikkje låsa opp «$1» av di han ikkje er låst',
@@ -1767,31 +1772,41 @@ $1',
 'lockmanager-fail-svr-release' => 'Kunne ikkje løysa låsane på tenaren $1.',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'Den oppgjevne fila var ikkje ei ZIP-fil',
-'zip-bad'          => 'Fila er ei skadd eller på annan måte uleseleg ZIP-fil.
+'zip-file-open-error' => 'Det oppstod ein feil under opninga av fila for ZIP-undersøking.',
+'zip-wrong-format'    => 'Den oppgjevne fila var ikkje ei ZIP-fil',
+'zip-bad'             => 'Fila er ei skadd eller på annan måte uleseleg ZIP-fil.
 Ho kan ikkje tryggingskontrollerast.',
+'zip-unsupported'     => 'Fila er ei ZIP-fil son nyttar ZIP-funksjonar som ikkje er stødde av MediaWiki.
+Ho kan ikkje tryggingskontrollerast godt nok.',
 
 # Special:UploadStash
+'uploadstash'          => 'Lasta opp løynd samling',
+'uploadstash-summary'  => 'Denne sida gjev tilgang til filer som er opplasta (eller i ferd med å verta det), men som ikkje er publiserte til wikien. Desse filene er ikkje synlege for andre enn opplastaren.',
+'uploadstash-clear'    => 'Fjerna filer i den løynde samlinga',
+'uploadstash-nofiles'  => 'Du har ingen filer i den løynde samlinga.',
+'uploadstash-badtoken' => 'Utføringa av handlinga lukkast ikkje; kan henda av di endringsrettane dine har gått ut. Freista om att.',
 'uploadstash-errclear' => 'Fjerning av filene var mislykka.',
 'uploadstash-refresh'  => 'Oppdater fillista',
+'invalid-chunk-offset' => 'Ugild delforskuving',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Tilgjenge avslått',
-'img-auth-nopathinfo'   => 'PATH_INFO manglar.
-Filtenaren din er ikkje sett opp for å gje denne informasjonen.
-Han kan vera CGI-basert og stør ikkje img_auth.
+'img-auth-accessdenied'     => 'Tilgjenge avslått',
+'img-auth-nopathinfo'       => 'PATH_INFO saknar.
+Filtenaren din er ikkje sett opp for å gjeva denne informasjonen.
+Han kan vera CGI-basert og ikkje stø img_auth.
 Sjå https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
-'img-auth-badtitle'     => 'Kan ikkje laga ein gyldig ttitel ut frå "$1".',
-'img-auth-nologinnWL'   => 'Du er ikkje logga inn, og "$1" er ikkje på kvitlista.',
-'img-auth-nofile'       => 'Fila "$1" finst ikkje',
-'img-auth-isdir'        => 'Du prøver å få tilgjenge til katalogen "$1".
+'img-auth-notindir'         => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
+'img-auth-badtitle'         => 'Kan ikkje laga ein gyldig ttitel ut frå "$1".',
+'img-auth-nologinnWL'       => 'Du er ikkje logga inn, og "$1" er ikkje på kvitlista.',
+'img-auth-nofile'           => 'Fila "$1" finst ikkje',
+'img-auth-isdir'            => 'Du prøver å få tilgjenge til katalogen "$1".
 Berre tilgjenge til filer er tillete.',
-'img-auth-streaming'    => 'Sendar "$1".',
-'img-auth-public'       => 'Funksjonen til img_auth.php er å laga filer frå ein privat wiki.
+'img-auth-streaming'        => 'Sendar "$1".',
+'img-auth-public'           => 'Funksjonen til img_auth.php er å laga filer frå ein privat wiki.
 Denne wikien er sett opp som ein ålmennt tilgjengeleg wiki.
 For best tryggleik, er img_auth.php sett ut av funksjon.',
-'img-auth-noread'       => 'Brukaren har ikkje rettar til å lesa «$1».',
+'img-auth-noread'           => 'Brukaren har ikkje rettar til å lesa «$1».',
+'img-auth-bad-query-string' => 'URL-en har ein ugild spørjestreng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ugyldig URL: $1',
@@ -1936,6 +1951,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'statistics-edits'             => 'Endringar sidan {{SITENAME}} vart oppretta',
 'statistics-edits-average'     => 'Gjennomsnittleg tal på endringar per side',
 'statistics-views-total'       => 'Totalt visningstal',
+'statistics-views-total-desc'  => 'Visingar av sider som ikkje finst og spesialsider er ikkje tekne med',
 'statistics-views-peredit'     => 'Visingar per endring',
 'statistics-users'             => 'Registrerte [[Special:ListUsers|brukarar]]',
 'statistics-users-active'      => 'Aktive brukarar',
@@ -1989,6 +2005,8 @@ Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja
 'wantedpages'             => 'Etterspurde sider',
 'wantedpages-badtitle'    => 'Ugyldig tittel mellom resultata: $1',
 'wantedfiles'             => 'Etterspurde filer',
+'wantedfiletext-cat'      => 'Desse filene er nytta men finst ikkje. Filer frå utannettstadlege samlingar kan vera lista opp sjølv om dei finst. Slike falske positivar vert <del>strokne ut</del>. Sider som nyttar filer som ikkje finst vert lista opp i [[:$1]].',
+'wantedfiletext-nocat'    => 'Desse filene er nytta men finst ikkje. Filer frå utannettstadlege samlingar kan vera lista opp sjølv om dei finst. Slike falske positivar vert <del>strokne ut</del>.',
 'wantedtemplates'         => 'Etterspurde malar',
 'mostlinked'              => 'Sidene med flest lenkjer til seg',
 'mostlinkedcategories'    => 'Mest brukte kategoriar',
@@ -2084,7 +2102,9 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'linksearch-pat'   => 'Søkemønster:',
 'linksearch-ns'    => 'Namnerom:',
 'linksearch-ok'    => 'Søk',
-'linksearch-text'  => 'Jokerteikn som «*.wikipedia.org» kan nyttast.<br />Støtta protokollar: <code>$1</code>',
+'linksearch-text'  => 'Jokerteikn som «*.wikipedia.org» kan nyttast.
+Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
+Støtta protokollar: <code>$1</code> (ikkje legg til nokon av desse i søket ditt)',
 'linksearch-line'  => '$2 lenkjer til $1',
 'linksearch-error' => 'Jokerteikn kan berre nyttast føre tenarnamnet.',
 
@@ -2214,25 +2234,28 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 
 $NEWPAGE
 
-Bidragsytaren sitt endringssamandrag: $PAGESUMMARY $PAGEMINOREDIT
+Endringssamandraget var: $PAGESUMMARY $PAGEMINOREDIT
 
-Du kan kontakte bidragsytaren gjennom:
-e-post: $PAGEEDITOR_EMAIL , eller
+Kontakta brukaren:
+e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på nytt.
-Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvakingslista di.
+Du får ikkje fleire endringsvarsel minder du vitjar sida på nytt.
+Du kan dessutan nullstilla varselflagga for alle sidene på overvakingslista di.
 
-             Helsing det venlege {{SITENAME}}-meldingssystemet ditt
+Helsing det venlege meldingssystemet ditt for {{SITENAME}}
 
 --
-For å endre innstillingane for overvakingslista di, gå til
+For å endra innstillingane dine for e-postvarsling, vitja
+{{canonicalurl:{{#special:Preferences}}}}
+
+For å endra innstillingane for overvakingslista di, vitja
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-For hjelp og meir informasjon:
+For å fjerna sita frå overvakingslista di, vitja
 $UNWATCHURL
 
-Tilbakemeldingar og anna hjelp:
+Attendemelding og hjelp:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2783,6 +2806,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'javascripttest-pagetext-frameworks'       => 'Vel eitt av dei fylgjande utrøyningsrammeverka: $1',
 'javascripttest-pagetext-skins'            => 'Vel ei drakt som utrøyningane skal køyrast med:',
 'javascripttest-qunit-intro'               => 'Sjå [$1 utrøyningsdokumentasjon] på mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit testsuite',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Brukarsida di',
@@ -3156,23 +3180,32 @@ Andre er gøymde som standard.
 'exif-source'                      => 'Kjelde',
 'exif-editstatus'                  => 'Den redaksjonelle stoda til biletet',
 'exif-urgency'                     => 'Prioritet',
+'exif-fixtureidentifier'           => 'Namn på tidgjengt emne',
+'exif-locationdest'                => 'Avbilda stad',
+'exif-locationdestcode'            => 'Koden til staden som er avbilda',
 'exif-objectcycle'                 => 'Tid på dagen mediet er meint for',
 'exif-contact'                     => 'Kontaktinformasjon',
 'exif-writer'                      => 'Forfattar',
 'exif-languagecode'                => 'Språk',
 'exif-iimversion'                  => 'IIM-versjon',
 'exif-iimcategory'                 => 'Kategori',
+'exif-iimsupplementalcategory'     => 'Tilleggskategoriar',
 'exif-datetimeexpires'             => 'Skal ikkje nyttast etter',
 'exif-datetimereleased'            => 'Frigjeve',
+'exif-originaltransmissionref'     => 'Opphavleg stadkode for overføring',
+'exif-identifier'                  => 'Kjennemerke',
 'exif-lens'                        => 'Objektiv',
 'exif-serialnumber'                => 'Serienummeret på kameraet',
 'exif-cameraownername'             => 'Eigar av kameraet',
 'exif-label'                       => 'Merkelapp',
+'exif-datetimemetadata'            => 'Datoen metadata sist vart endra',
 'exif-nickname'                    => 'Det uformelle namnet på biletet',
 'exif-rating'                      => 'Vurdering (av 5)',
+'exif-rightscertificate'           => 'Retthandsamingssertifikat',
 'exif-copyrighted'                 => 'Opphavsrettsstode',
 'exif-copyrightowner'              => 'Opphavsrettseigar',
 'exif-usageterms'                  => 'Bruksvilkår',
+'exif-webstatement'                => 'Opphavsrettsfråsegn på nett',
 'exif-originaldocumentid'          => 'Unik ID til originaldokumentet',
 'exif-licenseurl'                  => 'URL for opphavsrettsløyve',
 'exif-morepermissionsurl'          => 'Alternativ løyveinformasjon',
@@ -3364,6 +3397,7 @@ Andre er gøymde som standard.
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
 'exif-ycbcrpositioning-1' => 'Sentrert',
+'exif-ycbcrpositioning-2' => 'Samanfallande',
 
 'exif-dc-contributor' => 'Bidragsytarar',
 'exif-dc-date'        => 'Dato(ar)',
@@ -3592,9 +3626,8 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Gå',
-'filepath-summary' => 'Denne spesialsida gjev den fullstendige stien for ei fil. Bilete vert vist i oppløysing; andre filtypar vert starta direkte i dei tilknytte programma sine.
-
-Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
+'filepath-summary' => 'Denne spesialsida svarar med den fullstendige stigen til ei fil.
+Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei tilknytte programma sine.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Søk etter duplikatfiler',
@@ -3693,10 +3726,14 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'logentry-delete-delete'              => '$1 sletta sida $3',
 'logentry-delete-restore'             => '$1 attoppretta sida $3',
 'logentry-delete-event'               => '$1 endra synlegdomen av {{PLURAL:$5|éi loggoppføring|$5 loggoppføringar}} på $3: $4',
-'logentry-delete-revision'            => '$1 endra synlegdomen av {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4',
-'logentry-delete-event-legacy'        => '$1 endra synlegdomen av loggoppføringar på $3',
-'logentry-delete-revision-legacy'     => '$1 endra synlegdomen av versjonar på sida $3',
+'logentry-delete-revision'            => '$1 endra synlegdomen til {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4',
+'logentry-delete-event-legacy'        => '$1 endra synlegdomen til loggoppføringar på $3',
+'logentry-delete-revision-legacy'     => '$1 endra synlegdomen til versjonar på sida $3',
 'logentry-suppress-delete'            => '$1 gøymde sida $3',
+'logentry-suppress-event'             => '$1 endra i løyndom synlegdomen til {{PLURAL:$5|éi logghending|$5 logghendingar}} på $3: $4',
+'logentry-suppress-revision'          => '$1 endra i løyndom synlegdomen til {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4',
+'logentry-suppress-event-legacy'      => '$1 endra i løyndom synlegdomen til logghendingar på $3',
+'logentry-suppress-revision-legacy'   => '$1 endra i løyndom synlegdomen til versjonar på sida $3',
 'revdelete-content-hid'               => 'innhald gøymt',
 'revdelete-summary-hid'               => 'endringsamandrag gøymt',
 'revdelete-uname-hid'                 => 'brukarnamn gøymt',

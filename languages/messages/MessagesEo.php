@@ -1218,8 +1218,9 @@ Bonvolu kontroli la protokolojn.',
 'revdelete-only-restricted'   => 'Eraro kaŝante la aĵon de $2, $1: Vi ne povas subpremi aĵojn de vido de administrantoj sen ankaŭ selektante unu el la aliaj subpremo-opcioj.',
 'revdelete-reason-dropdown'   => '*Oftaj kialoj por forigado
 ** Aŭtorrajta neglekto
-** Maltaŭga persona informo
-** Eventualaj malhonorigaj informoj',
+** Maltaŭga komento aŭ persona informo
+** Nekonvena uzantnomo
+** Eventuale kalumnaj informoj',
 'revdelete-otherreason'       => 'Alia/aldona kialo:',
 'revdelete-reasonotherlist'   => 'Alia kialo',
 'revdelete-edit-reasonlist'   => 'Redakti kialojn por forigo',
@@ -3037,7 +3038,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-talkpage'         => 'Diskuto-paĝo',
 'pageinfo-watchers'         => 'Nombro de paĝatentantoj',
 'pageinfo-edits'            => 'Nombro de redaktoj',
-'pageinfo-authors'          => 'Tuta nombro de malsamaj aŭtoroj',
+'pageinfo-authors'          => 'Suma nombro de malsamaj aŭtoroj',
 'pageinfo-views'            => 'Nombro de rigardoj',
 'pageinfo-viewsperedit'     => 'Po rigardoj por redakto',
 
@@ -3134,7 +3135,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aŭ skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand'   => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
-'metadata-fields'   => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita. 
+'metadata-fields'   => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivitaj en la paĝoj de bildoj kiam la metadatuma tabelo estas disfaldita. 
 Aliaj estos kaŝitaj defaŭlte.
 * make
 * model

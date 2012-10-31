@@ -813,8 +813,8 @@ $2
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} მოძებნოთ შესაბამისი ჟურნალები],
 ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დაიწყოთ ამ გვერდის რედაქტირება]</span>.',
 'noarticletext-nopermission'       => 'ამ დროისთვის ეს გვერდი ცარიელია.
-ქვენ შეგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ეს სიტყვა]] სხვა გვერდებზე,
-ან <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} შესაბამის ჟურნალებში]</span>',
+თქვენ შეგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ამ გვერდის სათაური]] სხვა გვერდებზე,
+ან <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} შესაბამის ჟურნალებში]</span>.',
 'userpage-userdoesnotexist'        => 'ანგარიში «<nowiki>$1</nowiki>» არ არსებობს. დარწმუნდით, რომ მართლაც გსურთ ამ ანგარიშის შექმნა ან შესწორება.Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view'   => 'მომხმარებელი „$1“ არ არის დარეგისტრირებული.',
 'blocked-notice-logextract'        => 'ეს მომხმარებელი უკვე დაიბლოკა.
@@ -2323,7 +2323,8 @@ $UNWATCHURL
 'undeletedrevisions'           => '$1 ვერსია აღდგენილია',
 'undeletedrevisions-files'     => '$1 ვერსია და $2 ფაილი აღდგენილია',
 'undeletedfiles'               => '$1 ფაილი აღდგენილია',
-'cannotundelete'               => 'წაშლის გაუქმება ვერ განხორციელდა; შესაძლოა თქვენამდე სხვამ უკვე გააუქმა წაშლა.',
+'cannotundelete'               => 'წაშლის გაუქმება ვერ განხორციელდა; 
+შესაძლოა თქვენამდე სხვამ უკვე გააუქმა წაშლა.',
 'undeletedpage'                => "'''$1 აღდგენილია'''
 
 უკანასკნელი წაშლილთა და აღდგენის სია შეგიძლიათ ნახოთ [[Special:Log/delete|წაშლილთა სიაში]].",
@@ -2865,7 +2866,7 @@ $1',
 'pageinfo-subjectpage'      => 'გვერდი',
 'pageinfo-talkpage'         => 'განხილვის გვერდი',
 'pageinfo-watchers'         => 'გვერდის დამკვირვებელთა რაოდენობა',
-'pageinfo-edits'            => 'რედაქციების რაოდენობა',
+'pageinfo-edits'            => 'რედაქტირებების რაოდენობა',
 'pageinfo-authors'          => 'განსხვავებულ ავტორთა ჯამური რაოდენობა',
 'pageinfo-views'            => 'ხილვების რაოდენობა',
 'pageinfo-viewsperedit'     => 'შესწორებათა ხილვა',

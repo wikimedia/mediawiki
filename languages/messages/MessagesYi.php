@@ -1787,6 +1787,7 @@ $1",
 'filedelete-success'           => "'''$1''' איז געווען אויסגעמעקט.",
 'filedelete-success-old'       => "די ווערסיע פֿון '''[[Media:$1|$1]]''' פֿון $3, $2 איז געווארן אויסגעמעקט.",
 'filedelete-nofile'            => "'''$1''' עקזיסטירט נישט.",
+'filedelete-nofile-old'        => "נישט פאראן קיין ארכיווירטע ווערסיע פון '''$1''' מיט די ספעציפירטע אייגנקייטן.",
 'filedelete-otherreason'       => 'אנדער/נאך א סיבה:',
 'filedelete-reason-otherlist'  => 'אַנדער אורזאַך',
 'filedelete-reason-dropdown'   => '*אַלגעמיינע אויסמעקן סיבות

@@ -696,8 +696,8 @@ Por apondre ou ben changiér des traduccions sur tôs los vouiquis, volyéd empl
 'cascadeprotected'     => 'Cela pâge-que est protègiêye perce qu’el est encllua dedens {{PLURAL:$1|ceta pâge, qu’est étâye protègiêye|cetes pâges, que sont étâyes protègiêyes}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de noms « '''$1''' ».",
-'customcssprotected'   => 'Vos avéd pas la pèrmission de changiér cela pâge CSS, perce que contint la configuracion a sè d’un ôtro utilisator.',
-'customjsprotected'    => 'Vos avéd pas la pèrmission de changiér cela pâge JavaScript, perce que contint la configuracion a sè d’un ôtro utilisator.',
+'customcssprotected'   => 'Vos avéd pas la pèrmission de changiér cela pâge CSS, perce que contint la configuracion a sè d’un ôtr’utilisator.',
+'customjsprotected'    => 'Vos avéd pas la pèrmission de changiér cela pâge JavaScript, perce que contint la configuracion a sè d’un ôtr’utilisator.',
 'ns-specialprotected'  => 'Les pâges spèciâles pôvont pas étre changiêyes.',
 'titleprotected'       => "Cél titro est étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyêye est « ''$2'' ».",
@@ -929,18 +929,18 @@ Se vos tornâd clicar sur lo boton « {{int:savearticle}} », voutron changement
 'blockedtext'                      => "'''Voutron nom d’utilisator ou ben voutron adrèce IP est étâ(ye) blocâ(ye).'''
 
 Lo blocâjo est étâ fêt per $1.
-La rêson balyêye est ceta : ''$2''.
+La rêson balyêye est ''$2''.
 
 * Comencement du blocâjo : $8
 * Èxpiracion du blocâjo : $6
 * Compto blocâ : $7
 
-Vos vos pouede veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar.
+Vos vos pouede veriér vers $1 ou ben un ôtr’[[{{MediaWiki:Grouppage-sysop}}|administrator]] por nen discutar.
 Vos pouede pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens qu’un’adrèce èlèctronica valida est spècifiâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 Voutron adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd encllure tôs los dètalys ce-dessus dedens quinta que seye demanda que vos faréd.",
-'autoblockedtext'                  => "Voutra adrèce IP at étâ blocâ ôtomaticament perce qu’el at étâ utilisâ per un ôtro usanciér, lui-mémo blocâ per $1.
-La rêson balyê est ceta :
+'autoblockedtext'                  => "Voutron adrèce IP est étâye blocâye ôtomaticament perce qu’el est étâye empleyêye per un ôtr’utilisator, lui-mémo blocâ per $1.
+La rêson balyêye est :
 
 :''$2''
 
@@ -950,12 +950,12 @@ La rêson balyê est ceta :
 
 Vos vos pouede veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar.
 
-Notâd que vos porréd pas utilisar la fonccionalitât « Lui mandar un mèssâjo » a muens que vos èyâd una adrèce èlèctronica valida encartâ dens voutres [[Special:Preferences|prèferences]] et que la fonccionalitât èye pas étâ dèsactivâ.
+Notâd que vos porréd pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens que vos avéd n’adrèce èlèctronica valida encartâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 
-Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
-Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
-'blockednoreason'                  => 'gins de rêson balyê',
-'whitelistedittext'                => 'Vos dête étre $1 por avêr la pèrmission de changiér lo contegnu.',
+Voutron adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
+Volyéd encllure tôs los dètalys ce-dessus dedens quinta que seye demanda que vos faréd.",
+'blockednoreason'                  => 'gins de rêson balyêye',
+'whitelistedittext'                => 'Vos vos dête $1 por povêr changiér les pâges.',
 'confirmedittext'                  => 'Vos dête confirmar voutra adrèce èlèctronica devant que changiér les pâges.
 Volyéd buchiér et pués validar voutra adrèce èlèctronica dens voutres [[Special:Preferences|prèferences]].',
 'nosuchsectiontitle'               => 'Empossiblo de trovar la sèccion',

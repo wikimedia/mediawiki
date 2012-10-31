@@ -375,7 +375,7 @@ $messages = array(
 'tog-editsection'             => '[編集]リンクから節を編集できるようにする',
 'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする（JavaScriptが必要）',
 'tog-showtoc'                 => '目次を表示（ページに見出しが4つ以上ある場合）',
-'tog-rememberpassword'        => 'このブラウザーにログイン情報を記憶（最大 $1 {{PLURAL:$1|日間}}）',
+'tog-rememberpassword'        => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'tog-watchcreations'          => '自分が作成したページやアップロードしたファイルをウォッチリストに追加',
 'tog-watchdefault'            => '自分が編集したページやファイルをウォッチリストに追加',
 'tog-watchmoves'              => '自分が移動したページやファイルをウォッチリストに追加',
@@ -391,10 +391,10 @@ $messages = array(
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示',
 'tog-oldsig'                  => '既存の署名:',
 'tog-fancysig'                => '署名をウィキ文として扱う (自動リンクなし)',
-'tog-externaleditor'          => '既定で編集に外部アプリケーションを使用（上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
-'tog-externaldiff'            => '差分表示に外部アプリケーションを使用（上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
+'tog-externaleditor'          => '既定で編集に外部アプリケーションを使用 (上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細])',
+'tog-externaldiff'            => '差分表示に外部アプリケーションを使用 (上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細])',
 'tog-showjumplinks'           => '利用しやすさ向上のための「{{int:jumpto}}」リンクを有効にする',
-'tog-uselivepreview'          => 'ライブプレビューを使用（JavaScriptが必要）（開発中）',
+'tog-uselivepreview'          => 'ライブプレビューを使用 (JavaScriptが必要) (開発中)',
 'tog-forceeditsummary'        => '要約欄が空欄の場合に確認を促す',
 'tog-watchlisthideown'        => 'ウォッチリストに自分の編集を表示しない',
 'tog-watchlisthidebots'       => 'ウォッチリストにボットによる編集を表示しない',
@@ -1044,9 +1044,9 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します：',
 'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。
-* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''&#x2318;-R'' )
-* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''&#x2318;-Shift-R'' )
-* '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
+* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックするか、''Ctrl-F5'' または ''Ctrl-R'' を押してください (Mac では ''&#x2318;-R'')
+* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Mac では ''&#x2318;-Shift-R'')
+* '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックするか、''Ctrl-F5'' を押してください
 * '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",
 'usercssyoucanpreview'             => "'''ヒント：'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいスタイルシートを試験できます。",
 'userjsyoucanpreview'              => "'''ヒント:''' 「{{int:showpreview}}」ボタンを使うと、保存前に新しいスクリプトを試験できます。",
@@ -1063,7 +1063,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'updated'                          => '（更新）',
 'note'                             => "'''お知らせ：'''",
 'previewnote'                      => "'''これはプレビューです。'''
-変更箇所はまだ保存されていません！",
+変更内容はまだ保存されていません!",
 'previewconflict'                  => 'これは、上の編集エリアの文章を保存した場合にどう表示されるかを示すプレビューです。',
 'session_fail_preview'             => "'''申し訳ありません！セッションデータが消失したため編集を処理できませんでした。'''
 もう一度やり直してください。
@@ -1294,11 +1294,11 @@ $1",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
 記録を確認してください。',
 'revdelete-only-restricted'   => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
-'revdelete-reason-dropdown'   => '
-*よくある削除理由
+'revdelete-reason-dropdown'   => '*よくある削除理由
 ** 著作権侵害
-** 名誉毀損のおそれ
-** 非公開個人情報',
+** 不適切なコメントや個人情報の開示
+** 不適切な利用者名
+** 名誉毀損のおそれ',
 'revdelete-otherreason'       => '他の、または追加の理由：',
 'revdelete-reasonotherlist'   => 'その他の理由',
 'revdelete-edit-reasonlist'   => '削除理由を編集',
@@ -1381,16 +1381,16 @@ $1",
 'searchprofile-articles-tooltip'   => '$1内を検索',
 'searchprofile-project-tooltip'    => '$1内を検索',
 'searchprofile-images-tooltip'     => 'ファイルを検索',
-'searchprofile-everything-tooltip' => '全本文ページ（トークページ含む）を検索',
+'searchprofile-everything-tooltip' => '全本文ページ (トークページを含む) 内を検索',
 'searchprofile-advanced-tooltip'   => '特定の名前空間内を検索',
-'search-result-size'               => '$1（{{PLURAL:$2|$2単語}}）',
-'search-result-category-size'      => '{{PLURAL:$1|$1件}}（{{PLURAL:$2|$2下位カテゴリ}}、{{PLURAL:$3|$3ファイル}}）',
-'search-result-score'              => '関連度：$1%',
+'search-result-size'               => '$1 ({{PLURAL:$2|$2 単語}})',
+'search-result-category-size'      => '{{PLURAL:$1|$1 件}} ({{PLURAL:$2|$2 下位カテゴリ}}、{{PLURAL:$3|$3 ファイル}})',
+'search-result-score'              => '関連度: $1%',
 'search-redirect'                  => '($1からのリダイレクト)',
 'search-section'                   => '($1の節)',
-'search-suggest'                   => 'もしかして：$1',
+'search-suggest'                   => 'もしかして: $1',
 'search-interwiki-caption'         => '姉妹プロジェクト',
-'search-interwiki-default'         => '$1の結果：',
+'search-interwiki-default'         => '$1の結果:',
 'search-interwiki-more'            => '(続き)',
 'search-mwsuggest-enabled'         => '検索候補を表示',
 'search-mwsuggest-disabled'        => '検索候補を表示しない',
@@ -1399,7 +1399,7 @@ $1",
 'searcheverything-enable'          => 'すべての名前空間を検索',
 'searchrelated'                    => '関連',
 'searchall'                        => 'すべて',
-'showingresults'                   => "'''$2''' 件目以降の {{PLURAL:$1|'''$1''' 件の結果}}を表示しています。",
+'showingresults'                   => "'''$2''' 件目以降の最大 {{PLURAL:$1|'''$1''' 件の結果}}を表示しています。",
 'showingresultsnum'                => "'''$2''' 件目以降の {{PLURAL:$3|'''$3''' 件の結果}}を表示しています。",
 'showingresultsheader'             => "「'''$4'''」の検索結果 {{PLURAL:$5|'''$3''' 件中の '''$1''' 件目|'''$3''' 件中の '''$1''' 件目から '''$2''' 件目}}",
 'nonefound'                        => "'''注意'''：既定では一部の名前空間のみを検索します。
@@ -1446,7 +1446,7 @@ $1",
 'prefs-watchlist-days'          => 'ウォッチリストの表示日数:',
 'prefs-watchlist-days-max'      => '最大 $1 {{PLURAL:$1|日間}}',
 'prefs-watchlist-edits'         => '拡張ウォッチリストの表示件数:',
-'prefs-watchlist-edits-max'     => '最大数：1000',
+'prefs-watchlist-edits-max'     => '最大数: 1000',
 'prefs-watchlist-token'         => 'ウォッチリストのトークン:',
 'prefs-misc'                    => 'その他',
 'prefs-resetpass'               => 'パスワードを変更',
@@ -1576,7 +1576,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
-'group'               => 'グループ：',
+'group'               => 'グループ:',
 'group-user'          => '登録利用者',
 'group-autoconfirmed' => '自動承認された利用者',
 'group-bot'           => 'ボット',
@@ -1715,7 +1715,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchanges-label-bot'           => 'この編集はボットによって行われました',
 'recentchanges-label-unpatrolled'   => 'この編集はまだ巡回されていません',
 'rcnote'                            => "$4 $5 までの{{PLURAL:$2|'''$2'''日間}}になされた{{PLURAL:$1|'''$1'''件の変更}}は以下の通りです。",
-'rcnotefrom'                        => "以下は、'''$2'''以降の更新です（最大'''$1'''件）。",
+'rcnotefrom'                        => "以下は'''$2'''以降の更新です (最大 '''$1''' 件)。",
 'rclistfrom'                        => '$1以降の更新を表示する',
 'rcshowhideminor'                   => '細部の編集を$1',
 'rcshowhidebots'                    => 'ボットを$1',
@@ -1766,13 +1766,13 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'upload-recreate-warning'     => "'''警告：その名前のファイルは、以前に削除または移動されています。'''
 
 参考のため、このページの削除と移動の記録を以下に示します：",
-'uploadtext'                  => "ファイルをアップロードするには、以下のフォームを利用してください。
-以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用し、（再）アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
+'uploadtext'                  => "ファイルをアップロードするには、以下のフォームを使用してください。
+以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用してください。(再) アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 
-ページにファイルを入れるには、以下の書式のリンクを使用してください：
-* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>'''とすると、ファイルが完全なままで使用されます
-* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
-* '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>'''とするとファイルを表示せずに直接ファイルへリンクします",
+ページにファイルを入れるには、以下の書式のリンクを使用してください:
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>''' とすると、ファイルが完全なままで使用されます
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code>''' とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
+* '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>''' とすると、ファイルを表示せずにそのファイルに直接リンクします",
 'upload-permitted'            => '許可されているファイル形式: $1。',
 'upload-preferred'            => '推奨されているファイル形式: $1。',
 'upload-prohibited'           => '禁止されているファイル形式: $1。',
@@ -1902,7 +1902,7 @@ $1',
 'upload-file-error'         => '内部エラー',
 'upload-file-error-text'    => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。
 [[Special:ListUsers/sysop|管理者]]に連絡してください。',
-'upload-misc-error'         => '不明なアップロードのエラー',
+'upload-misc-error'         => '不明なアップロードエラー',
 'upload-misc-error-text'    => 'アップロード中に不明なエラーが発生しました。
 指定した URL が正しいこととアクセスできることを確認して、もう一度試してください。
 それでもこのエラーが発生する場合は、[[Special:ListUsers/sysop|管理者]]に連絡してください。',
@@ -3233,13 +3233,13 @@ $1',
 # Media information
 'mediawarning'           => "'''警告：'''この種類のファイルは悪意のあるコードを含んでいる可能性があります。
 実行するとシステムが危険にさらされる可能性があります。",
-'imagemaxsize'           => "画像のサイズ制限：<br />''（ファイルページに対する）''",
-'thumbsize'              => 'サムネイルの大きさ：',
+'imagemaxsize'           => "画像のサイズ制限: <br />''(ファイルページに対する)''",
+'thumbsize'              => 'サムネイルの大きさ:',
 'widthheight'            => '$1 × $2',
 'widthheightpage'        => '$1 × $2、$3 {{PLURAL:$3|ページ}}',
-'file-info'              => 'ファイルサイズ：$1、MIMEタイプ：$2',
-'file-info-size'         => '$1 × $2 ピクセル、ファイルサイズ：$3、MIMEタイプ：$4',
-'file-info-size-pages'   => '$1 × $2 ピクセル、ファイルサイズ：$3、MIMEタイプ：$4、$5 {{PLURAL:$5|ページ}}',
+'file-info'              => 'ファイルサイズ: $1、MIMEタイプ: $2',
+'file-info-size'         => '$1 × $2 ピクセル、ファイルサイズ: $3、MIME タイプ: $4',
+'file-info-size-pages'   => '$1 × $2 ピクセル、ファイルサイズ: $3、MIMEタイプ: $4、$5 {{PLURAL:$5|ページ}}',
 'file-nohires'           => '高解像度版はありません。',
 'svg-long-desc'          => 'SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'show-big-image'         => '高解像度での画像',
@@ -3927,8 +3927,8 @@ $5
 'watchlistedit-raw-titles'     => 'ページ名：',
 'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
 'watchlistedit-raw-done'       => 'ウォッチリストを更新しました。',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|$1 件のページ}}を追加しました：',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|$1 件のページ}}を除去しました：',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|$1 ページ}}を追加しました：',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|$1 ページ}}を除去しました：',
 
 # Watchlist editing tools
 'watchlisttools-view' => '関連する変更を閲覧',
@@ -4016,7 +4016,7 @@ $5
 'version-parser-function-hooks' => 'パーサー関数フック',
 'version-hook-name'             => 'フック名',
 'version-hook-subscribedby'     => '使用個所',
-'version-version'               => '（バージョン$1）',
+'version-version'               => '(バージョン $1)',
 'version-license'               => 'ライセンス',
 'version-poweredby-credits'     => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
 'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS その他]',
@@ -4031,7 +4031,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Special:FilePath
 'filepath'         => 'ファイルパス',
-'filepath-page'    => 'ファイル：',
+'filepath-page'    => 'ファイル:',
 'filepath-submit'  => '取得',
 'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
 画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
@@ -4040,9 +4040,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'fileduplicatesearch'           => '重複ファイルの検索',
 'fileduplicatesearch-summary'   => '重複ファイルをハッシュ値に基づいて検索します。',
 'fileduplicatesearch-legend'    => '重複の検索',
-'fileduplicatesearch-filename'  => 'ファイル名：',
+'fileduplicatesearch-filename'  => 'ファイル名:',
 'fileduplicatesearch-submit'    => '検索',
-'fileduplicatesearch-info'      => '$1 × $2 ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
+'fileduplicatesearch-info'      => '$1 × $2 ピクセル<br />ファイルサイズ: $3<br />MIME タイプ: $4',
 'fileduplicatesearch-result-1'  => 'ファイル「$1」と重複するファイルはありません。',
 'fileduplicatesearch-result-n'  => 'ファイル「$1」には {{PLURAL:$2|$2 件の重複ファイル}}があります。',
 'fileduplicatesearch-noresults' => '「$1」という名前のファイルはありません。',

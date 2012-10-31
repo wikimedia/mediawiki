@@ -656,8 +656,8 @@ Pretraga: $2',
 'protectedinterface'   => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom wikiju i zaštićena je radi sprečavanja zloupotrebe.
 Da biste dodali ili izmjenili prijevode svih wikija, posjetite [//translatewiki.net/  translatewiki.net], projekat za lokalizaciju Mediawikija.',
 'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
-Promjene na ovoj stranici dovode i do promjena za druge korisnike.
-Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
+Promjene na ovoj stranici dovode i do promjena za druge korisnike ovog wikija.
+Za dodavanje ili promjene prijevoda svih wikija, molimo Vas koristite [//translatewiki.net/ translatewiki.net], projekt prijevoda za MediaWiki.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 'cascadeprotected'     => 'Uređivanje ove stranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja iz razloga:
 $2',
@@ -3014,7 +3014,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-talkpage'         => 'Stranica za razgovor',
 'pageinfo-watchers'         => 'Broj onih koji pregledaju',
 'pageinfo-edits'            => 'Broj izmjena',
-'pageinfo-authors'          => 'Broj različitih autora',
+'pageinfo-authors'          => 'Ukupan broj različitih autora',
 'pageinfo-views'            => 'Broj pogleda',
 'pageinfo-viewsperedit'     => 'Pogleda po izmjeni',
 
