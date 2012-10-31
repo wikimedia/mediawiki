@@ -318,7 +318,16 @@ class DatabaseOracle extends DatabaseBase {
 
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
-		if ( !mb_check_encoding( $sql ) ) {
+		$isutf8 = !preg_match( '/[\x80-\xff]/', $sql );
+		if ( !$isutf8 ) {
+			if ( function_exists( 'mb_check_encoding' ) ) {
+				$isutf8 = mb_check_encoding( $sql, 'UTF-8' );
+			} else {
+				$isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+					'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $sql );
+			}
+		}
+		if ( !$isutf8 ) {
 			throw new MWException( "SQL encoding is invalid\n$sql" );
 		}
 
@@ -1116,7 +1125,7 @@ class DatabaseOracle extends DatabaseBase {
 		if ( $col_type == 'CLOB' ) {
 			$col = 'TO_CHAR(' . $col . ')';
 			$val = $wgContLang->checkTitleEncoding( $val );
-		} elseif ( $col_type == 'VARCHAR2' && !mb_check_encoding( $val ) ) {
+		} elseif ( $col_type == 'VARCHAR2' ) {
 			$val = $wgContLang->checkTitleEncoding( $val );
 		}
 	}
