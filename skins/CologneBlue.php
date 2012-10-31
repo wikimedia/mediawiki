@@ -430,9 +430,10 @@ class CologneBlueTemplate extends BaseTemplate {
 			$qbmyoptions[$key] = null;
 		}
 
-		$bar['qbedit'] = $qbedit;
-		$bar['qbpageoptions'] = $qbpageoptions;
-		$bar['qbmyoptions'] = $qbmyoptions;
+		// Use the closest reasonable name
+		$bar['cactions'] = $qbedit;
+		$bar['pageoptions'] = $qbpageoptions; // this is a non-standard portlet name, but nothing fits
+		$bar['personal'] = $qbmyoptions;
 
 		return $bar;
 	}
@@ -479,12 +480,9 @@ class CologneBlueTemplate extends BaseTemplate {
 		$bar = array();
 		foreach ( $orig_bar as $heading => $data ) {
 			if ( $heading == 'SEARCH' ) {
-				$bar['qbfind'] = $this->searchForm( 'sidebar' );
+				$bar['search'] = $this->searchForm( 'sidebar' );
 			} elseif ( $heading == 'TOOLBOX' ) {
-				$bar['toolbox'] = $this->getToolbox();
-			} elseif ( $heading == 'navigation' ) {
-				// Use the navigation heading from standard sidebar as the "browse" section
-				$bar['qbbrowse'] = $data;
+				$bar['tb'] = $this->getToolbox();
 			} else {
 				$bar[$heading] = $data;
 			}
@@ -492,12 +490,22 @@ class CologneBlueTemplate extends BaseTemplate {
 
 
 		// Output the sidebar
+		// CologneBlue uses custom messages for some portlets, but we should keep the ids for consistency
+		$idToMessage = array(
+			'search' => 'qbfind',
+			'navigation' => 'qbbrowse',
+			'tb' => 'toolbox',
+			'cactions' => 'qbedit',
+			'personal' => 'qbmyoptions',
+			'pageoptions' => 'qbpageoptions',
+		);
+
 		$s = "<div id='quickbar'>\n";
 
 		foreach ( $bar as $heading => $data ) {
-			$headingMsg = wfMessage( $heading );
-			$headingHTML = "<h6>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h6>";
 			$portletId = Sanitizer::escapeId( "p-$heading" );
+			$headingMsg = wfMessage( $idToMessage[$heading] ? $idToMessage[$heading] : $heading );
+			$headingHTML = "<h6>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h6>";
 			$listHTML = "";
 
 			if ( is_array( $data ) ) {
@@ -517,7 +525,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			}
 
 			if ( $listHTML ) {
-				$role = ( $heading == 'qbfind' ) ? 'search' : 'navigation';
+				$role = ( $heading == 'search' ) ? 'search' : 'navigation';
 				$s .= "<div class=\"portlet\" id=\"$portletId\" role=\"$role\">\n$headingHTML\n$listHTML\n</div>\n";
 			}
 		}
