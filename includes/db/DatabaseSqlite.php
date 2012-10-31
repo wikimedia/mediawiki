@@ -705,6 +705,11 @@ class DatabaseSqlite extends DatabaseBase {
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
+		} else if ( strpos( $s, "\0" ) !== false ) {
+			// SQLite doesn't support \0 in strings, use hex representation.
+			// DBO apparently uses SQLite3, so I reported this as Bug 3582457 there:
+			// https://sourceforge.net/tracker/?func=detail&aid=3582457&group_id=150569&atid=778155
+			return "x'" . bin2hex( $s ) . "'";
 		} else {
 			return $this->mConn->quote( $s );
 		}
