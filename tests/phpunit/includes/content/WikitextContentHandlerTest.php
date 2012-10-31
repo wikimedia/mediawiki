@@ -3,7 +3,7 @@
 /**
  * @group ContentHandler
  */
-class WikitextContentHandlerTest extends MediaWikiTestCase {
+class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @var ContentHandler
