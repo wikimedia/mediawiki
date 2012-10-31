@@ -606,7 +606,6 @@ class Message {
 	 * @since 1.18
 	 * @param $param String|Array: Parameter as defined in this class.
 	 * @return Tuple(type, value)
-	 * @throws MWException
 	 */
 	protected function extractParam( $param ) {
 		if ( is_array( $param ) && isset( $param['raw'] ) ) {
@@ -618,7 +617,11 @@ class Message {
 		} elseif ( !is_array( $param ) ) {
 			return array( 'before', $param );
 		} else {
-			throw new MWException( "Invalid message parameter: " . serialize( $param ) );
+			trigger_error(
+				"Invalid message parameter: " . htmlspecialchars( serialize( $param ) ),
+				E_USER_WARNING
+			);
+			return array( 'before', '[INVALID]' );
 		}
 	}
 
