@@ -97,17 +97,23 @@ class nextJobDB extends Maintenance {
 	 * @return bool
 	 */
 	function checkJob( $type, $dbName ) {
-		$lb = wfGetLB( $dbName );
-		$db = $lb->getConnection( DB_MASTER, array(), $dbName );
+		global $wgJobTypesExcludedFromDefaultQueue;
+
 		if ( $type === false ) {
-			$conds = Job::defaultQueueConditions( );
+			$lb = wfGetLB( $dbName );
+			$db = $lb->getConnection( DB_MASTER, array(), $dbName );
+			$conds = array();
+			if ( count( $wgJobTypesExcludedFromDefaultQueue ) > 0 ) {
+				foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
+					$conds[] = "job_cmd != " . $db->addQuotes( $cmdType );
+				}
+			}
+			$exists = (bool)$db->selectField( 'job', '1', $conds, __METHOD__ );
+			$lb->reuseConnection( $db );
 		} else {
-			$conds = array( 'job_cmd' => $type );
+			$exists = !JobQueueGroup::singleton( $dbName )->get( $type )->isEmpty();
 		}
 
-
-		$exists = (bool) $db->selectField( 'job', '1', $conds, __METHOD__ );
-		$lb->reuseConnection( $db );
 		return $exists;
 	}
 
