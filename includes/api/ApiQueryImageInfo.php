@@ -580,6 +580,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					ApiBase::PROP_NULLABLE => true
 				)
 			),
+			'dimensions' => array(
+				'size' => 'integer',
+				'width' => 'integer',
+				'height' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
 			'comment' => array(
 				'commenthidden' => 'boolean',
 				'comment' => array(
@@ -631,6 +640,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'mime' => array(
 				'filehidden' => 'boolean',
 				'mime' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'thumbmime' => array(
+				'filehidden' => 'boolean',
+				'thumbmime' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				)
