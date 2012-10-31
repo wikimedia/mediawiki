@@ -430,7 +430,7 @@ class LogFormatter {
 	 *  - 3: target page with premade link
 	 * @return array
 	 */
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		if ( isset( $this->parsedParameters ) ) {
 			return $this->parsedParameters;
 		}
@@ -462,6 +462,8 @@ class LogFormatter {
 	 *     * user: The value is a user name, e.g. for GENDER
 	 *     * user-link: The value is a user name, returns a
 	 *                  link for the user
+	 *     * user-link-tools: The value is a user name, returns
+	 *                        a link for the user with tools
 	 *     * title: The value is a page title,
 	 *              returns name of page
 	 *     * title: The value is a page title,
@@ -479,6 +481,8 @@ class LogFormatter {
 	 * @since 1.21
 	 */
 	protected function formatParameterValue( $type, $value ) {
+		$saveLinkFlood = $this->linkFlood;
+
 		switch( strtolower( trim( $type ) ) ) {
 			case 'raw':
 				$value = Message::rawParam( $value );
@@ -493,20 +497,39 @@ class LogFormatter {
 				$value = Message::numParam( $value );
 				break;
 			case 'user-link':
+				$this->setShowUserToolLinks( false );
+
 				$user = User::newFromName( $value );
 				$value = Message::rawParam( $this->makeUserLink( $user ) );
+
+				$this->setShowUserToolLinks( $saveLinkFlood );
+				break;
+			case 'user-link-tools':
+				$this->setShowUserToolLinks( true );
+
+				$user = User::newFromName( $value );
+				$value = Message::rawParam( $this->makeUserLink( $user ) );
+
+				$this->setShowUserToolLinks( $saveLinkFlood );
 				break;
 			case 'title-link':
 				$title = Title::newFromText( $value );
 				$value = Message::rawParam( $this->makePageLink( $title ) );
 				break;
 			case 'title-link-params':
-				$value = explode( '|', $value );
+				$args = explode( '|', $value );
 
-				$title = Title::newFromText( array_shift( $value ) );
+				if ( !count( $args ) ) break;
+
+				$title = Title::newFromText( array_shift( $args ) );
+
+				if ( !count( $args ) ) {
+					$value = Message::rawParam( $this->makePageLink( $title ) );
+					break;
+				}
 
 				$params = array();
-				foreach( $value as $param ) {
+				foreach( $args as $param ) {
 					$param = explode( '=', $param, 2 );
 					$key = trim( $param[0] );
 					$params[$key] = trim( $param[1] );
@@ -831,7 +854,7 @@ class MoveLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$oldname = $this->makePageLink( $this->entry->getTarget(), array( 'redirect' => 'no' ) );
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
@@ -884,7 +907,7 @@ class DeleteLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		if ( isset( $this->parsedParametersDeleteLog ) ) {
 			return $this->parsedParametersDeleteLog;
 		}
@@ -1053,7 +1076,7 @@ class PatrolLogFormatter extends LogFormatter {
 		return $key;
 	}
 
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
 		$target = $this->entry->getTarget();
@@ -1082,7 +1105,7 @@ class PatrolLogFormatter extends LogFormatter {
  * @since 1.19
  */
 class NewUsersLogFormatter extends LogFormatter {
-	protected function getMessageParameters() {
+	public function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		if ( $this->entry->getSubtype() === 'create2' ) {
 			if ( isset( $params[3] ) ) {
