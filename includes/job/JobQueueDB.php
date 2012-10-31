@@ -150,6 +150,7 @@ class JobQueueDB extends JobQueue {
 				$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
 				if ( !$title ) {
 					$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
+					wfIncrStats( 'job-pop' );
 					wfDebugLog( 'JobQueueDB', "Row has invalid title '{$row->job_title}'." );
 					continue; // try again
 				}
@@ -162,6 +163,7 @@ class JobQueueDB extends JobQueue {
 							"job_id != {$dbw->addQuotes( $row->job_id )}" ),
 						__METHOD__
 					);
+					wfIncrStats( 'job-pop', $dbw->affectedRows() );
 				}
 				break; // done
 			} while( true );
