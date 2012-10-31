@@ -162,12 +162,15 @@ class SiteObject extends ORMRow implements Site {
 
 		$protocol = parse_url( $path, PHP_URL_SCHEME );
 
-		if ( $protocol === false ) { // malformed URL
+		// Malformed URL
+		if ( $protocol === false ) {
 			throw new MWException( "failed to parse URL $path" );
 		}
 
-		if ( $protocol === null ) { // no schema
-			$protocol = ''; // used for protocol relative URLs
+		// No schema
+		if ( $protocol === null ) {
+			// Used for protocol relative URLs
+			$protocol = '';
 		}
 
 		return $protocol;
