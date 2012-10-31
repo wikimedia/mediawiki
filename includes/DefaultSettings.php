@@ -5414,14 +5414,15 @@ $wgHooks = array();
  * can add to this to provide custom jobs
  */
 $wgJobClasses = array(
-	'refreshLinks' => 'RefreshLinksJob',
-	'refreshLinks2' => 'RefreshLinksJob2',
-	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
+	'refreshLinks'      => 'RefreshLinksJob',
+	'refreshLinks2'     => 'RefreshLinksJob2',
+	'htmlCacheUpdate'   => 'HTMLCacheUpdateJob',
 	'html_cache_update' => 'HTMLCacheUpdateJob', // backwards-compatible
-	'sendMail' => 'EmaillingJob',
-	'enotifNotify' => 'EnotifNotifyJob',
+	'sendMail'          => 'EmaillingJob',
+	'enotifNotify'      => 'EnotifNotifyJob',
 	'fixDoubleRedirect' => 'DoubleRedirectJob',
-	'uploadFromUrl' => 'UploadFromUrlJob',
+	'uploadFromUrl'     => 'UploadFromUrlJob',
+	'null'              => 'NullJob'
 );
 
 /**
