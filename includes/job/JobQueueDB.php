@@ -31,6 +31,19 @@ class JobQueueDB extends JobQueue {
 	const CACHE_TTL      = 30; // integer; seconds
 	const MAX_JOB_RANDOM = 2147483647; // 2^31 - 1; used for job_random
 
+	protected $avoidDeadlocks = false; // bool; try to avoid lock contention
+
+	/**
+	 * $params includes:
+	 *     avoidDeadlocks : Take measures to avoid lock contention.
+	 *                        This is useful if there are many job runners.
+	 * @param $params array
+	 */
+	protected function __construct( array $params ) {
+		parent::__construct( $params );
+		$this->avoidDeadlocks = !empty( $params['avoidDeadlocks'] );
+	}
+
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool
@@ -126,21 +139,20 @@ class JobQueueDB extends JobQueue {
 			do { // retry when our row is invalid or deleted as a duplicate
 				// Try to reserve a row in the DB...
 				if ( $this->order === 'timestamp' ) { // oldest first
-					$found = $this->claim( $uuid, 0, true );
+					$row = $this->claim( $uuid, 0, true );
 				} else { // random first
-					$rand  = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
-					$gte   = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
-					$found = $this->claim( $uuid, $rand, $gte )
-						|| $this->claim( $uuid, $rand, !$gte ); // try both directions
+					$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
+					$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+					$row  = $this->claim( $uuid, $rand, $gte );
+					if ( !$row ) {
+						$row = $this->claim( $uuid, $rand, !$gte ); // try both directions
+					}
 				}
 				// Check if we found a row to reserve...
-				if ( !$found ) {
+				if ( !$row ) {
 					$wgMemc->set( $this->getEmptinessCacheKey(), 'true', self::CACHE_TTL );
 					break; // nothing to do
 				}
-				// Fetch any row that we just reserved...
-				$row = $dbw->selectRow( 'job', '*',
-					array( 'job_cmd' => $this->type, 'job_token' => $uuid ), __METHOD__ );
 				// Check if another process deleted it as a duplicate
 				if ( !$row ) {
 					wfDebugLog( 'JobQueueDB', "Row deleted as duplicate by another process." );
@@ -179,48 +191,82 @@ class JobQueueDB extends JobQueue {
 	 * @param $uuid string 32 char hex string
 	 * @param $rand integer Random unsigned integer (31 bits)
 	 * @param $gte bool Search for job_random >= $random (otherwise job_random <= $random)
-	 * @return integer Number of affected rows
+	 * @return Row|false
 	 */
 	protected function claim( $uuid, $rand, $gte ) {
+		$row = false; // job row acquired
+
 		$dbw  = $this->getMasterDB();
 		$dir  = $gte ? 'ASC' : 'DESC';
 		$ineq = $gte ? '>=' : '<=';
-		if ( $dbw->getType() === 'mysql' ) {
-			// Per http://bugs.mysql.com/bug.php?id=6980, we can't use subqueries on the
-			// same table being changed in an UPDATE query in MySQL (gives Error: 1093).
-			// Oracle and Postgre have no such limitation. However, MySQL offers an
-			// alternative here by supporting ORDER BY + LIMIT for UPDATE queries.
-			// The DB wrapper functions do not support this, so it's done manually.
-			$dbw->query( "UPDATE {$dbw->tableName( 'job' )}
-				SET
-					job_token = {$dbw->addQuotes( $uuid ) },
-					job_token_timestamp = {$dbw->addQuotes( $dbw->timestamp() )}
-				WHERE (
-					job_cmd = {$dbw->addQuotes( $this->type )}
-					AND job_token = {$dbw->addQuotes( '' )}
-					AND job_random {$ineq} {$dbw->addQuotes( $rand )}
-				) ORDER BY job_random {$dir} LIMIT 1",
-				__METHOD__
+		if ( $this->avoidDeadlocks && $this->order === 'random' ) {
+			// When "avoidDeadlocks" is disabled, the UPDATE + ORDER BY below can cause
+			// deadlocks, mostly when there are not that many jobs. Removing the ORDER BY
+			// solves this but is not replication safe. With "avoidDeadlocks", we do
+			// a non-locking SELECT and then UPDATE on the PRIMARY KEY. This can select a
+			// row and get raced out by another runner when claiming the job.
+			// However the use of job_random should make that unlikely.
+			$row = $dbw->selectRow( 'job', '*', // find a random job
+				array(
+					'job_cmd'   => $this->type,
+					'job_token' => '',
+					"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
+				__METHOD__,
+				array( 'ORDER BY' => "job_random {$dir}" )
 			);
+			if ( $row ) { // claim the job
+				$dbw->update( 'job', // update by PK
+					array( 'job_token' => $uuid, 'job_token_timestamp' => $dbw->timestamp() ),
+					array( 'job_cmd' => $this->type, 'job_id' => $row->job_id ),
+					__METHOD__
+				);
+				$row = $dbw->affectedRows() ? $row : false; // someone might have beat us
+			}
 		} else {
-			// Use a subquery to find the job, within an UPDATE to claim it.
-			// This uses as much of the DB wrapper functions as possible.
-			$dbw->update( 'job',
-				array( 'job_token' => $uuid, 'job_token_timestamp' => $dbw->timestamp() ),
-				array( 'job_id = (' .
-					$dbw->selectSQLText( 'job', 'job_id',
-						array(
-							'job_cmd'   => $this->type,
-							'job_token' => '',
-							"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
-						__METHOD__,
-						array( 'ORDER BY' => "job_random {$dir}", 'LIMIT' => 1 ) ) .
-					')'
-				),
-				__METHOD__
-			);
+			if ( $dbw->getType() === 'mysql' ) {
+				// Per http://bugs.mysql.com/bug.php?id=6980, we can't use subqueries on the
+				// same table being changed in an UPDATE query in MySQL (gives Error: 1093).
+				// Oracle and Postgre have no such limitation. However, MySQL offers an
+				// alternative here by supporting ORDER BY + LIMIT for UPDATE queries.
+				// The DB wrapper functions do not support this, so it's done manually.
+				$dbw->query( "UPDATE {$dbw->tableName( 'job' )}
+					SET
+						job_token = {$dbw->addQuotes( $uuid ) },
+						job_token_timestamp = {$dbw->addQuotes( $dbw->timestamp() )}
+					WHERE (
+						job_cmd = {$dbw->addQuotes( $this->type )}
+						AND job_token = {$dbw->addQuotes( '' )}
+						AND job_random {$ineq} {$dbw->addQuotes( $rand )}
+					) ORDER BY job_random {$dir} LIMIT 1",
+					__METHOD__
+				);
+			} else {
+				// Use a subquery to find the job, within an UPDATE to claim it.
+				// This uses as much of the DB wrapper functions as possible.
+				$dbw->update( 'job',
+					array( 'job_token' => $uuid, 'job_token_timestamp' => $dbw->timestamp() ),
+					array( 'job_id = (' .
+						$dbw->selectSQLText( 'job', 'job_id',
+							array(
+								'job_cmd'   => $this->type,
+								'job_token' => '',
+								"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
+							__METHOD__,
+							array( 'ORDER BY' => "job_random {$dir}", 'LIMIT' => 1 ) ) .
+						')'
+					),
+					__METHOD__
+				);
+			}
+			// Fetch any row that we just reserved...
+			if ( $dbw->affectedRows() ) {
+				$row = $dbw->selectRow( 'job', '*',
+					array( 'job_cmd' => $this->type, 'job_token' => $uuid ), __METHOD__
+				);
+			}
 		}
-		return $dbw->affectedRows();
+
+		return $row;
 	}
 
 	/**
