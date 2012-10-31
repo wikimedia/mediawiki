@@ -705,6 +705,14 @@ class DatabaseSqlite extends DatabaseBase {
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
+		} else if ( strpos( $s, "\0" ) !== false ) {
+			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
+			// This is a known limitation of SQLite's mprintf function which PDO should work around,
+			// but doesn't. I have reported this to php.net as bug #63419:
+			// https://bugs.php.net/bug.php?id=63419
+			// There was already a similar report for SQLite3::escapeString, bug #62361:
+			// https://bugs.php.net/bug.php?id=62361
+			return "x'" . bin2hex( $s ) . "'";
 		} else {
 			return $this->mConn->quote( $s );
 		}
