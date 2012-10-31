@@ -2018,8 +2018,8 @@ e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Pre
 'emailuser-title-target' => 'Mandé un mëssagi ëd pòsta eletrònica a cost {{GENDER:$1|utent}}',
 'emailuser-title-notarget' => "Mandeje un mëssagi ëd pòsta eletrònica a st'utent-sì",
 'emailpage' => "Mandeje un mëssagi ëd pòsta eletrònica a st'utent-sì",
-'emailpagetext' => "A peule dovré ël formolari sì-sota për mandé un mëssagi ëd pòsta eletrònica a st'utent-sì.
-L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|Ij sò gust]] a sarà butà ant l'adrëssa «Da» ëd sò mëssagi, parèj chi ch'a l'arsèiv a podrà rësponde diretament a chiel.",
+'emailpagetext' => "A peul dovré ël formolari sì-sota për mandé un mëssagi ëd pòsta eletrònica a st'{{GENDER:$1|utent}}-sì.
+L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|sò gust]] a sarà butà ant l'adrëssa «Da» ëd sò mëssagi, parèj chi ch'a l'arsèiv a podrà rësponde diretament a chiel.",
 'usermailererror' => "L'oget che a goèrna la pòsta eletrònica a l'ha dàit eror:",
 'defemailsubject' => 'Mëssagi da l\'utent "$1"',
 'usermaildisabled' => "Pòsta eletrònica dl'utent disabilità",
@@ -2833,6 +2833,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-default-sort' => "ciav d'ordinament për sòlit",
 'pageinfo-length' => 'Longheur ëd la pàgina (an byte)',
 'pageinfo-article-id' => 'Identificativ ëd la pàgina',
+'pageinfo-language' => 'Lenga dël contnù dla pàgina',
 'pageinfo-robot-policy' => "Stat dël motor d'arserca",
 'pageinfo-robot-index' => 'Indesàbil',
 'pageinfo-robot-noindex' => 'Nen indesàbil',
@@ -3258,10 +3259,10 @@ J'àutri a saran stërmà coma stàndard.
 'exif-gaincontrol-1' => 'Sparé ij contrast bass',
 'exif-gaincontrol-2' => 'Sparé ij contrast fòrt',
 'exif-gaincontrol-3' => 'Sbassé ij contrast bass',
-'exif-gaincontrol-4' => 'Bassé ij contrast fòrt',
+'exif-gaincontrol-4' => 'Sbassé ij contrast fòrt',
 
 'exif-contrast-0' => 'Normal',
-'exif-contrast-1' => 'dosman',
+'exif-contrast-1' => 'Doss',
 'exif-contrast-2' => 'contrastà fòrt',
 
 'exif-saturation-0' => 'Normal',
@@ -3272,8 +3273,8 @@ J'àutri a saran stërmà coma stàndard.
 'exif-sharpness-1' => 'dossa',
 'exif-sharpness-2' => 'contrastà',
 
-'exif-subjectdistancerange-0' => 'Pa conossù',
-'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-0' => 'Dësconossùa',
+'exif-subjectdistancerange-1' => 'Motobin davzin',
 'exif-subjectdistancerange-2' => 'Prim pian',
 'exif-subjectdistancerange-3' => 'Anquadratura a soget lontan',
 

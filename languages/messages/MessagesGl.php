@@ -2229,8 +2229,8 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'emailuser-title-target' => 'Enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}',
 'emailuser-title-notarget' => 'Enviar un correo electrónico a un usuario',
 'emailpage' => 'Enviar un correo electrónico a un usuario',
-'emailpagetext' => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
-O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
+'emailpagetext' => 'Pode usar o seguinte formulario para enviar unha mensaxe de correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}.
+O enderezo de correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que {{GENDER:$1|o receptor|a receptora}} da mensaxe poderá responderlle directamente.',
 'usermailererror' => 'O obxecto enviado deu unha mensaxe de erro:',
 'defemailsubject' => 'Correo electrónico do usuario $1 de {{SITENAME}}',
 'usermaildisabled' => 'O correo electrónico do usuario está desactivado',
@@ -3069,6 +3069,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-default-sort' => 'Clave de ordenación por defecto',
 'pageinfo-length' => 'Lonxitude da páxina (en bytes)',
 'pageinfo-article-id' => 'ID da páxina',
+'pageinfo-language' => 'Lingua do contido da páxina',
 'pageinfo-robot-policy' => 'Estado do motor de procuras',
 'pageinfo-robot-index' => 'Indexable',
 'pageinfo-robot-noindex' => 'Non indexable',

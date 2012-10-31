@@ -2283,7 +2283,7 @@ Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informații suplimentare]] d
 'emailuser-title-target' => 'E-mail către {{GENDER:$1|acest utilizator|această utilizatoare}}',
 'emailuser-title-notarget' => 'E-mail către utilizator',
 'emailpage' => 'E-mail către utilizator',
-'emailpagetext' => 'Puteți folosi formularul de mai jos pentru a trimite un e-mail acestui utilizator.
+'emailpagetext' => 'Puteți folosi formularul de mai jos pentru a trimite un e-mail {{GENDER:$1|acestui utilizator|acestei utilizatoare}}.
 Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|preferințele de utilizator]] va apărea ca adresa expeditorului e-mailului; astfel, destinatarul va putea să vă răspundă direct.',
 'usermailererror' => 'Obiectul de mail a dat eroare:',
 'defemailsubject' => 'E-mail {{SITENAME}} de la utilizatorul „$1”',
@@ -2306,7 +2306,7 @@ Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|prefer
 'emailccme' => 'Trimite-mi pe e-mail o copie a mesajului meu.',
 'emailccsubject' => 'O copie a mesajului la $1: $2',
 'emailsent' => 'E-mail trimis',
-'emailsenttext' => 'E-mailul tău a fost trimis.',
+'emailsenttext' => 'E-mailul dumneavoastră a fost trimis.',
 'emailuserfooter' => 'Acest mesaj a fost trimis de $1 către $2 prin intermediul funcției „Trimite e-mail” de la {{SITENAME}}.',
 
 # User Messenger
@@ -2317,7 +2317,7 @@ Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|prefer
 'watchlist' => 'Pagini urmărite',
 'mywatchlist' => 'Pagini urmărite',
 'watchlistfor2' => 'Pentru $1 $2',
-'nowatchlist' => 'Nu ați ales să urmăriți nici o pagină.',
+'nowatchlist' => 'Lista dumneavoastră de pagini urmărite nu conține nici o pagină.',
 'watchlistanontext' => 'Vă rugăm să vă $1 pentru a vizualiza sau edita elementele din lista dumneavoastră de pagini urmărite.',
 'watchnologin' => 'Nu sunteți autentificat',
 'watchnologintext' => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
@@ -2352,7 +2352,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'enotif_mailer' => 'Sistemul de notificare {{SITENAME}}',
 'enotif_reset' => 'Marchează toate paginile vizitate',
 'enotif_newpagetext' => 'Aceasta este o pagină nouă.',
-'enotif_impersonal_salutation' => '{{SITENAME}} utilizator',
+'enotif_impersonal_salutation' => 'Utilizator {{SITENAME}}',
 'changed' => 'modificată',
 'created' => 'creată',
 'enotif_subject' => 'Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED de $PAGEEDITOR',
@@ -3103,6 +3103,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-default-sort' => 'Cheie de sortare implicită',
 'pageinfo-length' => 'Lungimea paginii (în octeți)',
 'pageinfo-article-id' => 'ID pagină',
+'pageinfo-language' => 'Limba conținutului paginii',
 'pageinfo-robot-policy' => 'Statut pentru motorul de căutare',
 'pageinfo-robot-index' => 'Indexabilă',
 'pageinfo-robot-noindex' => 'Neindexabilă',

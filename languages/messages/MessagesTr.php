@@ -3280,6 +3280,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-objectname' => 'Kısa başlık',
 'exif-specialinstructions' => 'Özel talimatlar',
 'exif-headline' => 'Başlık',
+'exif-credit' => 'Sağlayıcı',
 'exif-source' => 'Kaynak',
 'exif-urgency' => 'Aciliyet',
 'exif-fixtureidentifier' => 'Fikstür adı',
