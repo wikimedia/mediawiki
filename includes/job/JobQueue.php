@@ -47,7 +47,7 @@ abstract class JobQueue {
 	/**
 	 * Get a job queue object of the specified type.
 	 * $params includes:
-	 *     class : what job class to use (determines job type)
+	 *     class : What job class to use (determines job type)
 	 *     wiki  : wiki ID of the wiki the jobs are for (defaults to current wiki)
 	 *     type  : The name of the job types this queue handles
 	 *     order : Order that pop() selects jobs, either "timestamp" or "random".
