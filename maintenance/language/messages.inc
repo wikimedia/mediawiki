@@ -3744,6 +3744,12 @@ $wgMessageStructure = array(
 		// 'uploadedimage',
 		// 'overwroteimage',
 	),
+	'logging-phpunit' => array(
+		'log-name-phpunit',
+		'log-description-phpunit',
+		'logentry-phpunit-test',
+		'logentry-phpunit-param',
+	),
 	'feedback' => array(
 		'feedback-bugornote',
 		'feedback-subject',
@@ -4057,4 +4063,5 @@ Variants for Chinese language",
 	'apierrors'             => 'API errors',
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',
+	'logging-phpunit'       => 'Messages for testing the new logging system, do not translate!',
 );

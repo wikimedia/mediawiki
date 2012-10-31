@@ -4872,6 +4872,12 @@ This site is experiencing technical difficulties.',
 'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
+# Messages for testing the new logging system, do not translate!
+'log-name-phpunit'        => 'PHPUnit-log',
+'log-description-phpunit' => 'Log for PHPUnit-tests',
+'logentry-phpunit-test'   => '$1 {{GENDER:$2|tests}} with page $3',
+'logentry-phpunit-param'  => '$4',
+
 # For IRC, see bug 34508. Do not change
 'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
 'logdelete-logentry'          => 'changed event visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
