@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( document ).ready( function ( $ ) {
-		var map, searchboxesSelectors,
+		var map, resultRenderCache, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -40,6 +40,41 @@
 		if ( !$.client.test( map ) ) {
 			return;
 		}
+
+		// The function used to render the suggestions.
+		function renderFunction( text, context ) {
+			var $form, formAction, baseHref, linkParams;
+
+			if ( !resultRenderCache ) {
+				// Compute common parameters for links' hrefs
+				$form = context.config.$region.closest( 'form' );
+
+				formAction = $form.attr( 'action' );
+				baseHref = formAction + ( formAction.match(/\?/) ? '&' : '?' );
+
+				linkParams = {};
+				$.each( $form.serializeArray(), function ( idx, obj ) {
+					linkParams[ obj.name ] = obj.value;
+				} );
+
+				resultRenderCache = {
+					textParam: context.data.$textbox.attr( 'name' ),
+					linkParams: linkParams,
+					baseHref: baseHref
+				};
+			}
+
+			// linkParams object is modified and reused
+			resultRenderCache.linkParams[ resultRenderCache.textParam ] = text;
+
+			// this is the container <div>, jQueryfied
+			this.append(
+				$( '<a>' )
+					.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
+					.addClass( 'mw-searchSuggest-link' )
+					.text( text )
+			);
+		};
 
 		// General suggestions functionality for all search boxes
 		searchboxesSelectors = [
@@ -89,6 +124,7 @@
 					}
 				},
 				result: {
+					render: renderFunction,
 					select: function ( $input ) {
 						$input.closest( 'form' ).submit();
 					}
@@ -118,6 +154,7 @@
 		// Special suggestions functionality for skin-provided search box
 		$searchInput.suggestions( {
 			result: {
+				render: renderFunction,
 				select: function ( $input ) {
 					$input.closest( 'form' ).submit();
 				}
