@@ -11,6 +11,7 @@ cscope.out
 ## NetBeans
 nbproject*
 project.index
+sublime-*
 
 # MediaWiki install & usage
 cache
