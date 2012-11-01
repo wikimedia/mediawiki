@@ -1,0 +1,31 @@
+/* Make sure the links are not underlined or colored, ever. */
+/* There is already a :focus / :hover indication on the parent. */
+.suggestions-result a,
+.suggestions-special a,
+.suggestions-result a:hover,
+.suggestions-special a:hover,
+.suggestions-result a:active,
+.suggestions-special a:active,
+.suggestions-result a:focus,
+.suggestions-special a:focus {
+	text-decoration: none;
+	color: black;
+}
+
+.suggestions-result-current a,
+.suggestions-result-current a:hover,
+.suggestions-result-current a:active,
+.suggestions-result-current a:focus {
+	color: white;
+}
+
+/* This is necessary for the automatic width adjusting to work, */
+/* because it relies on .outerWidth() method. */
+/* Unfortunately, this makes the links not span the entire parent element. */
+.suggestions-result a,
+.suggestions-special a {
+	display: inline;
+	width: 100%;
+	height: 100%;
+	white-space: nowrap;
+}
