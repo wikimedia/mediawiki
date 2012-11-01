@@ -850,7 +850,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					&& $page->quickUserCan( 'edit', $user ) )
 				{
 					$this->preventClickjacking();
-					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
+					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext(), true );
 				}
 			}
 			# Is there a visible previous revision?
