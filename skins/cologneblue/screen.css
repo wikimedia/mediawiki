@@ -70,6 +70,10 @@ textarea {
 	display: inline;
 }
 
+#cb-ca-edit {
+	font-weight: bold;
+}
+
 #pagestats {
 	font-family: Verdana, Arial, sans-serif;
 	color: black;
@@ -164,7 +168,7 @@ a.stub, #quickbar a.stub {
 	text-decoration: none;
 }
 
-a.new, #quickbar a.new {
+a.new, #quickbar span.new a, #footer span.new a {
 	color: #CC2200;
 }
 
