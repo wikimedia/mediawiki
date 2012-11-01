@@ -236,7 +236,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string wgVersion + a link to subversion revision of svn BASE
 	 */
 	private static function getVersionLinkedSvn() {
-		global $wgVersion, $IP;
+		global $IP;
 
 		$info = self::getSvnInfo( $IP );
 		if( !isset( $info['checkout-rev'] ) ) {
@@ -250,19 +250,29 @@ class SpecialVersion extends SpecialPage {
 		)->text();
 
 		if ( isset( $info['viewvc-url'] ) ) {
-			$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
+			$version = "[{$info['viewvc-url']} $linkText]";
 		} else {
-			$version = "$wgVersion $linkText";
+			$version = $linkText;
 		}
 
-		return $version;
+		return self::getwgVersionLinked() . " $version";
+	}
+
+	/**
+	 * @return string
+	 */
+	private static function getwgVersionLinked() {
+		global $wgVersion;
+		$versionParts = array();
+		preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
+		return "[https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]} $wgVersion]";
 	}
 
 	/**
 	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars. False on failure
 	 */
 	private static function getVersionLinkedGit() {
-		global $wgVersion, $IP;
+		global $IP;
 
 		$gitInfo = new GitInfo( $IP );
 		$headSHA1 = $gitInfo->getHeadSHA1();
@@ -275,7 +285,7 @@ class SpecialVersion extends SpecialPage {
 		if ( $viewerUrl !== false ) {
 			$shortSHA1 = "[$viewerUrl $shortSHA1]";
 		}
-		return "$wgVersion $shortSHA1";
+		return self::getwgVersionLinked() . " $shortSHA1";
 	}
 
 	/**
