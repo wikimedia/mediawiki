@@ -75,6 +75,7 @@ production.
   dropExtensionIndex and renameExtensionIndex.
 * New preference type - 'api'. Preferences of this type are not shown on
   Special:Preferences, but are still available via the action=options API.
+* (bug 39397) Hide rollback link if a user is the only contributor of the page.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
