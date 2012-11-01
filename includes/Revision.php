@@ -702,7 +702,8 @@ class Revision implements IDBAccessObject {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
+
+		if ( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
 				array( 'page', 'revision' ),
@@ -1254,7 +1255,7 @@ class Revision implements IDBAccessObject {
 			if( !$data ) {
 				throw new MWException( "Unable to store text to external storage" );
 			}
-			if( $flags ) {
+			if ( $flags ) {
 				$flags .= ',';
 			}
 			$flags .= 'external';
@@ -1302,8 +1303,23 @@ class Revision implements IDBAccessObject {
 			//NOTE: Store null for the default model and format, to save space.
 			//XXX: Makes the DB sensitive to changed defaults. Make this behaviour optional? Only in miser mode?
 
-			$row['rev_content_model'] = null;
-			$row['rev_content_format'] = null;
+			$page = WikiPage::newFromID( $this->mPage );
+
+			if ( $page === null ) {
+				throw new MWException( "Cannot load the page from {$this->mPage} id" );
+			}
+
+			$revTitle = $page->getTitle();
+
+			if ( $revTitle === null ) {
+				throw new MWException( "Insufficient information to determine the title of the revision's page!" );
+			}
+
+			$defaultModel = ContentHandler::getDefaultModelFor( $revTitle );
+			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
+
+			$row[ 'rev_content_model' ] = ( $model === $defaultModel ) ? null : $model;
+			$row[ 'rev_content_format' ] = ( $format === $defaultFormat ) ? null : $format;
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
