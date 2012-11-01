@@ -186,7 +186,7 @@ class JobQueueDB extends JobQueue {
 		// instead, but that either uses ORDER BY (in which case it deadlocks in MySQL) or is
 		// not replication safe. Due to http://bugs.mysql.com/bug.php?id=6980, subqueries cannot
 		// be used here with MySQL.
-		while ( true ) {
+		do {
 			$row = $dbw->selectRow( 'job', '*', // find a random job
 				array(
 					'job_cmd'   => $this->type,
@@ -203,15 +203,13 @@ class JobQueueDB extends JobQueue {
 				);
 				// This might get raced out by another runner when claiming the previously
 				// selected row. The use of job_random should minimize this problem, however.
-				if ( $dbw->affectedRows() ) {
-					break; // acquired
-				} else {
+				if ( !$dbw->affectedRows() ) {
 					$row = false; // raced out
 				}
 			} else {
 				break; // nothing to do
 			}
-		}
+		} while ( !$row );
 
 		return $row;
 	}
@@ -226,7 +224,7 @@ class JobQueueDB extends JobQueue {
 		$dbw  = $this->getMasterDB();
 
 		$row = false; // the row acquired
-		while ( true ) {
+		do {
 			if ( $dbw->getType() === 'mysql' ) {
 				// Per http://bugs.mysql.com/bug.php?id=6980, we can't use subqueries on the
 				// same table being changed in an UPDATE query in MySQL (gives Error: 1093).
@@ -268,7 +266,7 @@ class JobQueueDB extends JobQueue {
 			} else {
 				break; // nothing to do
 			}
-		}
+		} while ( !$row );
 
 		return $row;
 	}
