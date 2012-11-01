@@ -683,7 +683,7 @@ XHTML id names.
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
-'underline-default' => 'Browser default',
+'underline-default' => 'Skin or browser default',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Edit area font style:',
