@@ -650,6 +650,7 @@ return array(
 	),
 	'mediawiki.searchSuggest' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.searchSuggest.js',
+		'styles' => 'resources/mediawiki/mediawiki.searchSuggest.css',
 		'messages' => array(
 			'searchsuggest-search',
 			'searchsuggest-containing',
