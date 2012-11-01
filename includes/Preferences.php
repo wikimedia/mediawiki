@@ -90,10 +90,14 @@ class Preferences {
 			}
 		}
 
+		## Make sure that form fields have their parent set. See bug 41337.
+		$dummyForm = new HTMLForm( array(), $context );
+
 		## Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
 			$field = HTMLForm::loadInputFromParameters( $name, $info ); // For validation
+			$field->mParent = $dummyForm;
 			$defaultOptions = User::getDefaultOptions();
 			$globalDefault = isset( $defaultOptions[$name] )
 				? $defaultOptions[$name]
