@@ -25,7 +25,7 @@ html > body .suggestions {
 	padding: 0;
 	margin: 0;
 	margin-top: -2px;
-	display: none;
+	display: block;
 	padding: 0.25em 0.25em;
 	line-height: 1.25em;
 }
@@ -39,6 +39,7 @@ html > body .suggestions {
 }
 
 .suggestions-result {
+	display: block;
 	color: black;
 	margin: 0;
 	line-height: 1.5em;
