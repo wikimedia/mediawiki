@@ -74,6 +74,8 @@ div.emptyPortlet {
 	position: absolute;
 	top: 0.33em;
 	right: 0.75em;
+	/* Display on top of page tabs - bug 37158 */
+	z-index: 1;
 }
 #p-personal h5 {
 	display: none;
