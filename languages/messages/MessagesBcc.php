@@ -16,7 +16,6 @@
 
 $fallback = 'fa';
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'حاص',

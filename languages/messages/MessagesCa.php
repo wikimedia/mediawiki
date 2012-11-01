@@ -37,12 +37,6 @@
  * @author לערי ריינהארט
  */
 
-$bookstoreList = array(
-	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.es/cgi-bin/vtls.web.gateway?searchtype=control+numcard&searcharg=$1',
-	'Totselsllibres.com' => 'http://www.totselsllibres.com/tel/publi/busquedaAvanzadaLibros.do?ISBN=$1',
-	'inherit' => true,
-);
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Especial',
@@ -65,39 +59,6 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Imatge' => NS_FILE,
 	'Imatge_Discussió' => NS_FILE_TALK,
-);
-
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
-
-$dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'M j, Y',
-	'mdy both' => 'H:i, M j, Y',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'j M Y',
-	'dmy both' => 'H:i, j M Y',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y M j',
-	'ymd both' => 'H:i, Y M j',
-);
-
-$magicWords = array(
-	'numberofarticles'          => array( '1', 'NOMBRED\'ARTICLES', 'NUMBEROFARTICLES' ),
-	'numberoffiles'             => array( '1', 'NOMBRED\'ARXIUS', 'NUMBEROFFILES' ),
-	'numberofusers'             => array( '1', 'NOMBRED\'USUARIS', 'NUMBEROFUSERS' ),
-	'numberofedits'             => array( '1', 'NOMBRED\'EDICIONS', 'NUMBEROFEDITS' ),
-	'pagename'                  => array( '1', 'NOMDELAPLANA', 'PAGENAME' ),
-	'img_right'                 => array( '1', 'dreta', 'right' ),
-	'img_left'                  => array( '1', 'esquerra', 'left' ),
-	'img_border'                => array( '1', 'vora', 'border' ),
-	'img_link'                  => array( '1', 'enllaç=$1', 'link=$1' ),
-	'displaytitle'              => array( '1', 'TÍTOL', 'DISPLAYTITLE' ),
-	'language'                  => array( '0', '#IDIOMA:', '#LANGUAGE:' ),
-	'special'                   => array( '0', 'especial', 'special' ),
-	'defaultsort'               => array( '1', 'ORDENA:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
-	'pagesize'                  => array( '1', 'MIDADELAPLANA', 'PAGESIZE' ),
 );
 
 $specialPageAliases = array(
@@ -188,6 +149,45 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Llista_de_seguiment' ),
 	'Whatlinkshere'             => array( 'Enllaços' ),
 	'Withoutinterwiki'          => array( 'Sense_interwiki' ),
+);
+
+$magicWords = array(
+	'numberofarticles'          => array( '1', 'NOMBRED\'ARTICLES', 'NUMBEROFARTICLES' ),
+	'numberoffiles'             => array( '1', 'NOMBRED\'ARXIUS', 'NUMBEROFFILES' ),
+	'numberofusers'             => array( '1', 'NOMBRED\'USUARIS', 'NUMBEROFUSERS' ),
+	'numberofedits'             => array( '1', 'NOMBRED\'EDICIONS', 'NUMBEROFEDITS' ),
+	'pagename'                  => array( '1', 'NOMDELAPLANA', 'PAGENAME' ),
+	'img_right'                 => array( '1', 'dreta', 'right' ),
+	'img_left'                  => array( '1', 'esquerra', 'left' ),
+	'img_border'                => array( '1', 'vora', 'border' ),
+	'img_link'                  => array( '1', 'enllaç=$1', 'link=$1' ),
+	'displaytitle'              => array( '1', 'TÍTOL', 'DISPLAYTITLE' ),
+	'language'                  => array( '0', '#IDIOMA:', '#LANGUAGE:' ),
+	'special'                   => array( '0', 'especial', 'special' ),
+	'defaultsort'               => array( '1', 'ORDENA:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+	'pagesize'                  => array( '1', 'MIDADELAPLANA', 'PAGESIZE' ),
+);
+
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'H:i, M j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'H:i, j M Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+);
+
+$bookstoreList = array(
+	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.es/cgi-bin/vtls.web.gateway?searchtype=control+numcard&searcharg=$1',
+	'Totselsllibres.com' => 'http://www.totselsllibres.com/tel/publi/busquedaAvanzadaLibros.do?ISBN=$1',
+	'inherit' => true,
 );
 
 $linkTrail = "/^((?:[a-zàèéíòóúç·ïü]|'(?!'))+)(.*)$/sDu";

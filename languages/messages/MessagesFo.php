@@ -17,11 +17,6 @@
  * @author לערי ריינהארט
  */
 
-$bookstoreList = array(
-	'Bokasolan.fo' => 'http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1',
-	'inherit' => true,
-);
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Miðil',
 	NS_SPECIAL          => 'Serstakt',
@@ -51,15 +46,6 @@ $namespaceAliases = array(
 	'Fyrimynd_kjak' => NS_TEMPLATE_TALK,
 	'Hjálp_kjak' => NS_HELP_TALK,
 	'Bólkur_kjak' => NS_CATEGORY_TALK,
-);
-
-
-$datePreferences = false;
-$defaultDateFormat = 'dmy';
-$dateFormats = array(
-	'dmy time' => 'H:i',
-	'dmy date' => 'j. M Y',
-	'dmy both' => 'j. M Y "kl." H:i',
 );
 
 $specialPageAliases = array(
@@ -107,6 +93,19 @@ $specialPageAliases = array(
 	'Version'                   => array( 'Útgáva' ),
 	'Wantedpages'               => array( 'Ynsktar síður' ),
 	'Watchlist'                 => array( 'Mítt eftirlit' ),
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. M Y',
+	'dmy both' => 'j. M Y "kl." H:i',
+);
+
+$bookstoreList = array(
+	'Bokasolan.fo' => 'http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1',
+	'inherit' => true,
 );
 
 $linkTrail = '/^([áðíóúýæøa-z]+)(.*)$/sDu';

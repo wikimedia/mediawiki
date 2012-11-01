@@ -12,7 +12,7 @@
  * @author Zaidpjd (on bug.wikipedia.org)
  */
 
-$fallback = "id";
+$fallback = 'id';
 
 $messages = array(
 # Dates

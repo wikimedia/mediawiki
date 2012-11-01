@@ -13,19 +13,6 @@
 
 $fallback = 'bn';
 
-$digitTransformTable = array(
-	'0' => '০',
-	'1' => '১',
-	'2' => '২',
-	'3' => '৩',
-	'4' => '৪',
-	'5' => '৫',
-	'6' => '৬',
-	'7' => '৭',
-	'8' => '৮',
-	'9' => '৯'
-);
-
 $namespaceNames = array(
 	NS_MEDIA            => 'মিডিয়া',
 	NS_SPECIAL          => 'বিশেষ',
@@ -43,6 +30,19 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'পাংলাকর_য়্যারী',
 	NS_CATEGORY         => 'থাক',
 	NS_CATEGORY_TALK    => 'থাকর_য়্যারী',
+);
+
+$digitTransformTable = array(
+	'0' => '০',
+	'1' => '১',
+	'2' => '২',
+	'3' => '৩',
+	'4' => '৪',
+	'5' => '৫',
+	'6' => '৬',
+	'7' => '৭',
+	'8' => '৮',
+	'9' => '৯'
 );
 
 $messages = array(

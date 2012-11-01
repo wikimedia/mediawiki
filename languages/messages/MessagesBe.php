@@ -25,25 +25,6 @@
  * @author לערי ריינהארט
  */
 
-$bookstoreList = array(
-	'OZ.by' => 'http://oz.by/search.phtml?what=books&isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
-);
-
-$datePreferences = array(
-	'default',
-	'dmy',
-	'ISO 8601',
-);
-
-$defaultDateFormat = 'dmy';
-
-$dateFormats = array(
-	'dmy time' => 'H:i',
-	'dmy date' => 'j xg Y',
-	'dmy both' => 'H:i, j xg Y',
-);
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Мультымедыя',
 	NS_SPECIAL          => 'Адмысловае',
@@ -76,6 +57,25 @@ $magicWords = array(
 	'img_width'                 => array( '1', '$1пкс', '$1px' ),
 	'img_center'                => array( '1', 'цэнтр', 'center', 'centre' ),
 	'img_framed'                => array( '1', 'безрамкі', 'framed', 'enframed', 'frame' ),
+);
+
+$bookstoreList = array(
+	'OZ.by' => 'http://oz.by/search.phtml?what=books&isbn=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
 );
 
 # Per discussion on http://translatewiki.net/wiki/Thread:Support/Customization_of number format

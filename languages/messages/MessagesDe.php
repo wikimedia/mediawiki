@@ -71,8 +71,6 @@
  * @author ✓
  */
 
-$capitalizeAllNouns = true;
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Medium',
 	NS_SPECIAL          => 'Spezial',
@@ -96,21 +94,11 @@ $namespaceAliases = array(
 	'Bild' => NS_FILE,
 	'Bild_Diskussion' => NS_FILE_TALK,
 );
+
 $namespaceGenderAliases = array(
 	NS_USER => array( 'male' => 'Benutzer', 'female' => 'Benutzerin' ),
 	NS_USER_TALK => array( 'male' => 'Benutzer_Diskussion', 'female' => 'Benutzerin_Diskussion' ),
 );
-
-$bookstoreList = array(
-	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
-	'amazon.de' => 'http://www.amazon.de/gp/search/field-isbn=$1',
-	'buch.de' => 'http://www.buch.de/shop/home/suche/?sswg=BUCH&sq=$1',
-	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
-	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
-);
-
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
-$linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktive_Benutzer' ),
@@ -211,39 +199,6 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Beobachtungsliste' ),
 	'Whatlinkshere'             => array( 'Linkliste', 'Verweisliste' ),
 	'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
-);
-
-$datePreferences = array(
-	'default',
-	'dmyt',
-	'dmyts',
-	'dmy',
-	'ymd',
-	'ISO 8601'
-);
-
-$defaultDateFormat = 'dmy';
-
-$dateFormats = array(
-	'dmyt time' => 'H:i',
-	'dmyt date' => 'j. F Y',
-	'dmyt both' => 'j. M Y, H:i',
-
-	'dmyts time' => 'H:i:s',
-	'dmyts date' => 'j. F Y',
-	'dmyts both' => 'j. M Y, H:i:s',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'j. F Y',
-	'dmy both' => 'H:i, j. M Y',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y M j',
-	'ymd both' => 'H:i, Y M j',
-
-	'ISO 8601 time' => 'xnH:xni:xns',
-	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns'
 );
 
 $magicWords = array(
@@ -399,6 +354,51 @@ $magicWords = array(
 	'pagesincategory_subcats'   => array( '0', 'unterkategorien', 'unterkats', 'subcats' ),
 	'pagesincategory_files'     => array( '0', 'dateien', 'files' ),
 );
+
+$datePreferences = array(
+	'default',
+	'dmyt',
+	'dmyts',
+	'dmy',
+	'ymd',
+	'ISO 8601'
+);
+
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'dmyt time' => 'H:i',
+	'dmyt date' => 'j. F Y',
+	'dmyt both' => 'j. M Y, H:i',
+
+	'dmyts time' => 'H:i:s',
+	'dmyts date' => 'j. F Y',
+	'dmyts both' => 'j. M Y, H:i:s',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. F Y',
+	'dmy both' => 'H:i, j. M Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns'
+);
+
+$capitalizeAllNouns = true;
+$bookstoreList = array(
+	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
+	'amazon.de' => 'http://www.amazon.de/gp/search/field-isbn=$1',
+	'buch.de' => 'http://www.buch.de/shop/home/suche/?sswg=BUCH&sq=$1',
+	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
+	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
+);
+
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
+$linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
 $imageFiles = array(
 	'button-bold'     => 'de/button_bold.png',

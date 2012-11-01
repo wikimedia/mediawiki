@@ -73,15 +73,6 @@ $namespaceAliases = array(
 	'Hjælp-diskussion'     => NS_HELP_TALK,
 );
 
-$bookstoreList = array(
-	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
-	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
-	'inherit' => true,
-);
-
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
-$linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
-
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktive_Brugere' ),
 	'Allmessages'               => array( 'MediaWiki-systemmeddelelser' ),
@@ -185,6 +176,15 @@ $dateFormats = array(
 	'ymd date' => 'Y M j',
 	'ymd both' => 'Y M j, H:i'
 );
+
+$bookstoreList = array(
+	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
+	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
+	'inherit' => true,
+);
+
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
+$linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles

@@ -34,6 +34,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Olay_sa_kategorya',
 );
 
+$specialPageAliases = array(
+	'Search'                    => array( 'Hanapon' ),
+	'Upload'                    => array( 'Ikarga' ),
+);
+
 $magicWords = array(
 	'currentmonth'              => array( '1', 'BULANNGONYAN', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'          => array( '1', 'NGARANBULANNGONYAN', 'CURRENTMONTHNAME' ),
@@ -88,11 +93,6 @@ $magicWords = array(
 	'hiddencat'                 => array( '1', '__NAKATAGONGKAT__', '__HIDDENCAT__' ),
 	'pagesincategory'           => array( '1', 'PAHINASAKATEGORYA', 'PAHINASAKAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'                  => array( '1', 'PAHINASOKOL', 'PAGESIZE' ),
-);
-
-$specialPageAliases = array(
-	'Search'                    => array( 'Hanapon' ),
-	'Upload'                    => array( 'Ikarga' ),
 );
 
 $messages = array(

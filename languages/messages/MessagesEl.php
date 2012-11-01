@@ -41,7 +41,7 @@
  */
 
 /**
-  * Translation by Pasok Internet Volunteers
+  * Initial translation by Pasok Internet Volunteers
   * http://forum.pasok.gr
   * version 1.0 (initial release)
   *
@@ -180,37 +180,6 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'ΧωρίςInterwiki' ),
 );
 
-$fallback8bitEncoding = 'iso-8859-7';
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
-$linkTrail = '/^([a-zαβγδεζηθικλμνξοπρστυφχψωςΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩάέήίόύώϊϋΐΰΆΈΉΊΌΎΏΪΫ]+)(.*)$/sDu';
-
-
-$datePreferences = array(
-	'default',
-	'dmy',
-	'ISO 8601',
-);
-
-$defaultDateFormat = 'dmy';
-
-$datePreferenceMigrationMap = array(
-	'default',
-	'dmy',
-	'dmy',
-	'dmy'
-);
-
-$dateFormats = array(
-	'dmy time' => 'H:i',
-	'dmy date' => 'j xg Y',
-	'dmy both' => 'H:i, j xg Y',
-
-	'ISO 8601 time' => 'xnH:xni:xns',
-	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
-);
-
-
 $magicWords = array(
 	'redirect'                  => array( '0', '#ΑΝΑΚΑΤΕΥΘΥΝΣΗ', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__ΧΩΡΙΣΠΠ__', '__NOTOC__' ),
@@ -348,6 +317,35 @@ $magicWords = array(
 	'numberingroup'             => array( '1', 'ΟΜΑΔΑΑΡΙΘΜΗΣΗΣ', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'            => array( '1', '__ΣΤΑΤΙΚΗΑΝΑΚΑΤΕΥΘΥΝΣΗ__', '__STATICREDIRECT__' ),
 	'protectionlevel'           => array( '1', 'ΕΠΙΠΕΔΟΠΡΟΣΤΑΣΙΑΣ', 'PROTECTIONLEVEL' ),
+);
+
+$fallback8bitEncoding = 'iso-8859-7';
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
+$linkTrail = '/^([a-zαβγδεζηθικλμνξοπρστυφχψωςΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩάέήίόύώϊϋΐΰΆΈΉΊΌΎΏΪΫ]+)(.*)$/sDu';
+
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'dmy',
+	'dmy',
+	'dmy'
+);
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
 $messages = array(
