@@ -600,17 +600,16 @@ class Revision implements IDBAccessObject {
 				$this->mContent = $handler->unserializeContent( $this->mText );
 			}
 
-			// If we have a Title object, make sure it is consistent with mPage.
-			if ( $this->mTitle && $this->mTitle->exists() ) {
-				if ( $this->mPage === null ) {
-					// if the page ID wasn't known, set it now
-					$this->mPage = $this->mTitle->getArticleID();
-				} elseif ( $this->mTitle->getArticleID() !== $this->mPage ) {
-					// got different page IDs, something is wrong.
-					throw new MWException( "Page ID " . $this->mPage . " mismatches the ID "
-							. $this->mTitle->getArticleID() . " provided by the Title object." );
-				}
+			// if we have a Title object, override mPage. Useful for testing and convenience.
+			if ( isset( $row['title'] ) ) {
+				$this->mTitle     = $row['title'];
+				$this->mPage      = $this->mTitle->getArticleID();
+			} else {
+				$this->mTitle     = null; // Load on demand if needed
 			}
+
+			// @todo: XXX: really? we are about to create a revision. it will usually th
+en be the current one.
 
 			$this->mCurrent   = false;
 
@@ -1304,20 +1303,8 @@ class Revision implements IDBAccessObject {
 			//NOTE: Store null for the default model and format, to save space.
 			//XXX: Makes the DB sensitive to changed defaults. Make this behaviour optional? Only in miser mode?
 
-			$model = $this->getContentModel();
-			$format = $this->getContentFormat();
-
-			$title = $this->getTitle();
-
-			if ( $title === null ) {
-				throw new MWException( "Insufficient information to determine the title of the revision's page!" );
-			}
-
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
-			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
-
-			$row[ 'rev_content_model' ] = ( $model === $defaultModel ) ? null : $model;
-			$row[ 'rev_content_format' ] = ( $format === $defaultFormat ) ? null : $format;
+			$row['rev_content_model'] = null;
+			$row['rev_content_format'] = null;
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
