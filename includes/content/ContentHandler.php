@@ -607,15 +607,17 @@ abstract class ContentHandler {
 	 * @return Language the page's language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang;
+		global $wgContLang, $wgLang;
+		$pageLang = $wgContLang;
 
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			return wfGetLangObj( $lang );
+			$pageLang = wfGetLangObj( $lang );
 		}
 
-		return $wgContLang;
+		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
+		return wfGetLangObj( $pageLang );
 	}
 
 	/**
