@@ -3744,7 +3744,7 @@ This is probably caused by a link to a blacklisted external site.',
 # Info page
 'pageinfo-header'              => '-', # do not translate or duplicate this message to other languages
 'pageinfo-title'               => 'Information for "$1"',
-'pageinfo-not-current'         => 'Information may only be displayed for the current revision.',
+'pageinfo-not-current'         => 'Sorry, it's impossible to provide this information for old revisions.',
 'pageinfo-header-basic'        => 'Basic information',
 'pageinfo-header-edits'        => 'Edit history',
 'pageinfo-header-restrictions' => 'Page protection',
