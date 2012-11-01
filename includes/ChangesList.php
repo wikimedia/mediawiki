@@ -520,7 +520,7 @@ class ChangesList extends ContextSource {
 					'user_text' => $rc->mAttribs['rc_user_text'],
 					'deleted'   => $rc->mAttribs['rc_deleted']
 				) );
-				$s .= ' '.Linker::generateRollback( $rev, $this->getContext() );
+				$s .= ' '.Linker::generateRollback( $rev, $this->getContext(), true );
 			}
 		}
 	}
