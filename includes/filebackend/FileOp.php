@@ -488,7 +488,7 @@ class StoreFileOp extends FileOp {
 				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
-		// Check if a file can be placed at the destination
+		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
@@ -551,7 +551,7 @@ class CreateFileOp extends FileOp {
 				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
-		// Check if a file can be placed at the destination
+		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
@@ -624,7 +624,7 @@ class CopyFileOp extends FileOp {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 				return $status;
 			}
-		// Check if a file can be placed at the destination
+		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
@@ -700,7 +700,7 @@ class MoveFileOp extends FileOp {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 				return $status;
 			}
-		// Check if a file can be placed at the destination
+		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-move', $this->params['src'], $this->params['dst'] );
@@ -781,6 +781,11 @@ class DeleteFileOp extends FileOp {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 				return $status;
 			}
+		// Check if a file can be placed/changed at the source
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['src'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['src'] );
+			$status->fatal( 'backend-fail-delete', $this->params['src'] );
+			return $status;
 		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['src']] = false;

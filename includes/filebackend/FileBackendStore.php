@@ -72,8 +72,9 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Check if a file can be created at a given storage path.
-	 * FS backends should check if the parent directory exists and the file is writable.
+	 * Check if a file can be created or changed at a given storage path.
+	 * FS backends should check if the parent directory exists, files can be
+	 * written under it, and that any file already there is writable.
 	 * Backends using key/value stores should check if the container exists.
 	 *
 	 * @param $storagePath string
