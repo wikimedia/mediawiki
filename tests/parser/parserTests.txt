@@ -11517,6 +11517,740 @@ disabled
 </p>
 !!end
 
+#### The following section of tests are primarily to test
+#### wikitext escaping capabilities of Parsoid.
+#### A lot of the tests are disabled for the PHP parser either
+#### because of minor newline diffs or other reasons.
+#### As Parsoid serializer can handle newlines and other HTML
+#### more robustly, some of these tests might get reenabled
+#### for the PHP parser.
+
+#### --------------- Headings ---------------
+#### 0. Unnested
+#### 1. Nested inside html <h1>=foo=</h1>
+#### 2. Outside heading nest on a single line <h1>foo</h1>*bar
+#### 3. Nested inside html with wikitext split by html tags
+#### 4. No escape needed
+#### 5. Empty headings <h1></h1>
+#### 6. Heading chars in SOL context
+#### ----------------------------------------
+!! test
+Headings: 0. Unnested
+!! input
+<nowiki>=foo=</nowiki>
+
+<nowiki>=foo</nowiki>''a''=
+!! result
+<p>=foo=
+</p><p>=foo<i>a</i>=
+</p>
+!!end
+
+!! test
+Headings: 1. Nested inside html 
+!! options
+disabled
+!! input
+=<nowiki>=foo=</nowiki>=
+==<nowiki>=foo=</nowiki>==
+===<nowiki>=foo=</nowiki>===
+====<nowiki>=foo=</nowiki>====
+=====<nowiki>=foo=</nowiki>=====
+======<nowiki>=foo=</nowiki>======
+!! result
+<h1>=foo=</h1>
+<h2>=foo=</h2>
+<h3>=foo=</h3>
+<h4>=foo=</h4>
+<h5>=foo=</h5>
+<h6>=foo=</h6>
+!!end
+
+!! test
+Headings: 2. Outside heading nest on a single line <h1>foo</h1>*bar
+!! options
+disabled
+!! input
+=foo=
+<nowiki>*bar</nowiki>
+=foo=
+=bar
+=foo=
+<nowiki>=bar=</nowiki>
+!! result
+<h1>foo</h1>*bar
+<h1>foo</h1>=bar
+<h1>foo</h1>=bar=
+!!end
+
+!! test
+Headings: 3. Nested inside html with wikitext split by html tags 
+!! options
+disabled
+!! input
+=<nowiki>=</nowiki>'''bold'''foo==
+!! result
+<h1>=<b>bold</b>foo=</h1>
+!!end
+
+!! test
+Headings: 4. No escaping needed (testing just h1 and h2)
+!! options
+disabled
+!! input
+==foo=
+=foo==
+===foo==
+==foo===
+=''=''foo==
+===
+!! result
+<h1>=foo</h1>
+<h1>foo=</h1>
+<h2>=foo</h2>
+<h2>foo=</h2>
+<h1><i>=</i>foo=</h1>
+<h1>=</h1>
+!!end
+
+!! test
+Headings: 5. Empty headings
+!! options
+disabled
+!! input
+=<nowiki></nowiki>=
+==<nowiki></nowiki>==
+===<nowiki></nowiki>===
+====<nowiki></nowiki>====
+=====<nowiki></nowiki>=====
+======<nowiki></nowiki>======
+!! result
+<h1></h1>
+<h2></h2>
+<h3></h3>
+<h4></h4>
+<h5></h5>
+<h6></h6>
+!!end
+
+!! test
+Headings: 6. Heading chars in SOL context
+!! options
+disabled
+!! input
+<!--cmt--><nowiki>=h1=</nowiki>
+!! result
+<p><!--cmt-->=h1=
+</p>
+!!end
+
+#### --------------- Lists ---------------
+#### 0. Outside nests (*foo, etc.)
+#### 1. Nested inside html <ul><li>*foo</li></ul>
+#### 2. Inside definition lists
+#### 3. Only bullets at start should be escaped
+#### 4. No escapes needed
+#### 5. No unnecessary escapes
+#### 6. Escape bullets in SOL position
+#### 7. Escape bullets in a multi-line context
+#### ----------------------------------------
+
+!! test
+Lists: 0. Outside nests 
+!! input
+<nowiki>*foo</nowiki>
+
+<nowiki>#foo</nowiki>
+!! result
+<p>*foo
+</p><p>#foo
+</p>
+!!end
+
+!! test
+Lists: 1. Nested inside html
+!! input
+*<nowiki>*foo</nowiki>
+
+*<nowiki>#foo</nowiki>
+
+*<nowiki>:foo</nowiki>
+
+*<nowiki>;foo</nowiki>
+
+#<nowiki>*foo</nowiki>
+
+#<nowiki>#foo</nowiki>
+
+#<nowiki>:foo</nowiki>
+
+#<nowiki>;foo</nowiki>
+!! result
+<ul><li>*foo
+</li></ul>
+<ul><li>#foo
+</li></ul>
+<ul><li>:foo
+</li></ul>
+<ul><li>;foo
+</li></ul>
+<ol><li>*foo
+</li></ol>
+<ol><li>#foo
+</li></ol>
+<ol><li>:foo
+</li></ol>
+<ol><li>;foo
+</li></ol>
+
+!!end
+
+!! test
+Lists: 2. Inside definition lists
+!! input
+;<nowiki>;foo</nowiki>
+
+;<nowiki>:foo</nowiki>
+
+;<nowiki>:foo</nowiki>
+:bar
+
+:<nowiki>:foo</nowiki>
+!! result
+<dl><dt>;foo
+</dt></dl>
+<dl><dt>:foo
+</dt></dl>
+<dl><dt>:foo
+</dt><dd>bar
+</dd></dl>
+<dl><dd>:foo
+</dd></dl>
+
+!!end
+
+!! test
+Lists: 3. Only bullets at start of text should be escaped
+!! input
+*<nowiki>*foo*bar</nowiki>
+
+*<nowiki>*foo</nowiki>''it''*bar
+!! result
+<ul><li>*foo*bar
+</li></ul>
+<ul><li>*foo<i>it</i>*bar
+</li></ul>
+
+!!end
+
+!! test
+Lists: 4. No escapes needed
+!! options
+disabled
+!! input
+*foo*bar
+
+*''foo''*bar
+
+*[[Foo]]: bar
+!! result
+<ul><li>foo*bar
+</li></ul>
+<ul><li><i>foo</i>*bar
+</li></ul>
+<ul><li><a href="Foo" rel="mw:WikiLink">Foo</a>: bar
+</li></ul>
+!!end
+
+!! test
+Lists: 5. No unnecessary escapes
+!! input
+* bar <span><nowiki>[[foo]]</nowiki></span>
+
+*=bar <span><nowiki>[[foo]]</nowiki></span>
+
+*[[bar <span><nowiki>[[foo]]</nowiki></span>
+
+*<nowiki>]]bar </nowiki><span><nowiki>[[foo]]</nowiki></span>
+
+*=bar <span>foo]]</span>=
+!! result
+<ul><li> bar <span>[[foo]]</span>
+</li></ul>
+<ul><li>=bar <span>[[foo]]</span>
+</li></ul>
+<ul><li>[[bar <span>[[foo]]</span>
+</li></ul>
+<ul><li>]]bar <span>[[foo]]</span>
+</li></ul>
+<ul><li>=bar <span>foo]]</span>=
+</li></ul>
+
+!!end
+
+!! test
+Lists: 6. Escape bullets in SOL position
+!! options
+disabled
+!! input
+<!--cmt--><nowiki>*foo</nowiki>
+!! result
+<p><!--cmt-->*foo
+</p>
+!!end
+
+!! test
+Lists: 7. Escape bullets in a multi-line context 
+!! input
+<nowiki>a
+*b</nowiki>
+!! result
+<p>a
+*b
+</p>
+!!end
+
+#### --------------- HRs ---------------
+#### 1. Single line
+#### -----------------------------------
+
+!! test
+HRs: 1. Single line 
+!! options
+disabled
+!! input
+----
+<nowiki>----</nowiki>
+----
+<nowiki>=foo=</nowiki>
+----
+<nowiki>*foo</nowiki>
+!! result
+<hr/>----
+<hr/>=foo=
+<hr/>*foo
+!! end
+
+#### --------------- Tables ---------------
+#### 1a. Simple example
+#### 1b. No escaping needed (!foo)
+#### 1c. No escaping needed (|foo)
+#### 1d. No escaping needed (|}foo)
+####
+#### 2a. Nested in td (<td>foo|bar</td>)
+#### 2b. Nested in td (<td>foo||bar</td>)
+#### 2c. Nested in td -- no escaping needed(<td>foo!!bar</td>)
+####
+#### 3a. Nested in th (<th>foo!bar</th>)
+#### 3b. Nested in th (<th>foo!!bar</th>)
+#### 3c. Nested in th -- no escaping needed(<th>foo||bar</th>)
+####
+#### 4a. Escape -
+#### 4b. Escape +
+#### 4c. No escaping needed
+#### --------------------------------------
+
+!! test
+Tables: 1a. Simple example
+!! input
+<nowiki>{|
+|}</nowiki>
+!! result
+<p>{|
+|}
+</p>
+!! end
+
+!! test
+Tables: 1b. No escaping needed
+!! input
+!foo
+!! result
+<p>!foo
+</p>
+!! end
+
+!! test
+Tables: 1c. No escaping needed
+!! input
+|foo
+!! result
+<p>|foo
+</p>
+!! end
+
+!! test
+Tables: 1d. No escaping needed
+!! input
+|}foo
+!! result
+<p>|}foo
+</p>
+!! end
+
+!! test
+Tables: 2a. Nested in td
+!! options
+disabled
+!! input
+{|
+|<nowiki>foo|bar</nowiki>
+|}
+!! result
+<table>
+<tr><td>foo|bar
+</td></tr></table>
+
+!! end
+
+!! test
+Tables: 2b. Nested in td
+!! options
+disabled
+!! input
+{|
+|<nowiki>foo||bar</nowiki>
+|''it''<nowiki>foo||bar</nowiki>
+|}
+!! result
+<table>
+<tr><td>foo||bar
+</td><td><i>it</i>foo||bar
+</td></tr></table>
+
+!! end
+
+!! test
+Tables: 2c. Nested in td -- no escaping needed
+!! options
+disabled
+!! input
+{|
+|foo!!bar
+|}
+!! result
+<table>
+<tr><td>foo!!bar
+</td></tr></table>
+
+!! end
+
+!! test
+Tables: 3a. Nested in th
+!! options
+disabled
+!! input
+{|
+!foo!bar
+|}
+!! result
+<table>
+<tr><th>foo!bar
+</th></tr></table>
+
+!! end
+
+!! test
+Tables: 3b. Nested in th
+!! options
+disabled
+!! input
+{|
+!<nowiki>foo!!bar</nowiki>
+|}
+!! result
+<table>
+<tr><th>foo!!bar
+</th></tr></table>
+
+!! end
+
+!! test
+Tables: 3c. Nested in th -- no escaping needed
+!! options
+disabled
+!! input
+{|
+!foo||bar
+|}
+!! result
+<table>
+<tr><th>foo||bar
+</th></tr></table>
+
+!! end
+
+!! test
+Tables: 4a. Escape -
+!! options
+disabled
+!! input
+{|
+|-
+!-bar
+|-
+|<nowiki>-bar</nowiki>
+|}
+!! result
+<table><tbody>
+<tr><th>-bar</th></tr>
+<tr><td>-bar</td></tr>
+</tbody></table>
+!! end
+
+!! test
+Tables: 4b. Escape +
+!! options
+disabled
+!! input
+{|
+|-
+!+bar
+|-
+|<nowiki>+bar</nowiki>
+|}
+!! result
+<table><tbody>
+<tr><th>+bar</th></tr>
+<tr><td>+bar</td></tr>
+</tbody></table>
+!! end
+
+!! test
+Tables: 4c. No escaping needed
+!! options
+disabled
+!! input
+{|
+|-
+|foo-bar
+|foo+bar
+|-
+|''foo''-bar
+|''foo''+bar
+|}
+!! result
+<table><tbody>
+<tr><td>foo-bar</td><td>foo+bar</td></tr>
+<tr><td><i>foo</i>-bar</td><td><i>foo</i>+bar</td></tr>
+</tbody></table>
+!! end
+
+#### --------------- Links ---------------
+#### 1. Quote marks in link text
+#### 2. Wikilinks: Escapes needed
+#### 3. Wikilinks: No escapes needed
+#### 4. Extlinks: Escapes needed
+#### 5. Extlinks: No escapes needed
+#### --------------------------------------
+!! test
+Links 1. Quote marks in link text
+!! options
+disabled
+!! input
+[[Foo|<nowiki>Foo''boo''</nowiki>]]
+!! result
+<a rel="mw:WikiLink" href="Foo" data-parsoid="{&quot;tsr&quot;:[0,7],&quot;contentPos&quot;:[5,5],&quot;src&quot;:&quot;[[Foo]]&quot;,&quot;bsp&quot;:[0,7],&quot;stx&quot;:&quot;simple&quot;}">Foo''boo''</a>
+!! end
+
+!! test
+Links 2. WikiLinks: Escapes needed
+!! options
+disabled
+!! input
+[[Foo|<nowiki>[Foobar]</nowiki>]]
+[[Foo|<nowiki>Foobar]</nowiki>]]
+[[Foo|<nowiki>x [Foobar] x</nowiki>]]
+[[Foo|<nowiki>x [http://google.com g] x</nowiki>]]
+[[Foo|<nowiki>[[Bar]]</nowiki>]]
+[[Foo|<nowiki>x [[Bar]] x</nowiki>]]
+[[Foo|<nowiki>|Bar</nowiki>]]
+!! result
+<a href="Foo" rel="mw:WikiLink">[Foobar]</a>
+<a href="Foo" rel="mw:WikiLink">Foobar]</a>
+<a href="Foo" rel="mw:WikiLink">x [Foobar] x</a>
+<a href="Foo" rel="mw:WikiLink">x [http://google.com g] x</a>
+<a href="Foo" rel="mw:WikiLink">[[Bar]]</a>
+<a href="Foo" rel="mw:WikiLink">x [[Bar]] x</a>
+<a href="Foo" rel="mw:WikiLink">|Bar</a>
+!! end
+
+!! test
+Links 3. WikiLinks: No escapes needed
+!! options
+disabled
+!! input
+[[Foo|[Foobar]]
+[[Foo|foo|bar]]
+!! result
+<a href="Foo" rel="mw:WikiLink">[Foobar</a>
+<a href="Foo" rel="mw:WikiLink">foo|bar</a>
+!! end
+
+!! test
+Links 4. ExtLinks: Escapes needed
+!! options
+disabled
+!! input
+[http://google.com <nowiki>[google]</nowiki>]
+[http://google.com <nowiki>google]</nowiki>]
+!! result
+<a href="http://google.com" rel="mw:ExtLink">[google]</a>
+<a href="http://google.com" rel="mw:ExtLink">google]</a>
+!! end
+
+!! test
+Links 5. ExtLinks: No escapes needed
+!! options
+disabled
+!! input
+[http://google.com [google]
+!! result
+<a href="http://google.com" rel="mw:ExtLink">[google</a>
+!! end
+
+#### --------------- Quotes ---------------
+#### 1. Quotes inside <b> and <i>
+#### 2. Link fragments separated by <i> and <b> tags
+#### 3. Link fragments inside <i> and <b>
+#### --------------------------------------
+!! test
+1. Quotes inside <b> and <i>
+!! input
+''<nowiki>'foo'</nowiki>''
+''<nowiki>''foo''</nowiki>''
+''<nowiki>'''foo'''</nowiki>''
+'''<nowiki>'foo'</nowiki>'''
+'''<nowiki>''foo''</nowiki>'''
+'''<nowiki>'''foo'''</nowiki>'''
+'''<nowiki>foo'</nowiki>''<nowiki>bar'</nowiki>''baz'''
+!! result
+<p><i>'foo'</i>
+<i>''foo''</i>
+<i>'''foo'''</i>
+<b>'foo'</b>
+<b>''foo''</b>
+<b>'''foo'''</b>
+<b>foo'<i>bar'</i>baz</b>
+</p>
+!! end
+
+!! test
+2. Link fragments separated by <i> and <b> tags
+!! input
+[[''foo''<nowiki>hello]]</nowiki>
+
+[['''foo'''<nowiki>hello]]</nowiki>
+!! result
+<p>[[<i>foo</i>hello]]
+</p><p>[[<b>foo</b>hello]]
+</p>
+!! end
+
+!! test
+2. Link fragments inside <i> and <b>
+(FIXME: Escaping one or both of [[ and ]] is also acceptable -- 
+ this is one of the shortcomings of this format)
+!! input
+''[[foo''<nowiki>]]</nowiki>
+
+'''[[foo'''<nowiki>]]</nowiki>
+!! result
+<p><i>[[foo</i>]]
+</p><p><b>[[foo</b>]]
+</p>
+!! end
+
+#### --------------- Paragraphs ---------------
+#### 1. No unnecessary escapes
+#### --------------------------------------
+
+!! test
+1. No unnecessary escapes
+!! input
+bar <span><nowiki>[[foo]]</nowiki></span>
+
+=bar <span><nowiki>[[foo]]</nowiki></span>
+
+[[bar <span><nowiki>[[foo]]</nowiki></span>
+
+<nowiki>]]bar </nowiki><span><nowiki>[[foo]]</nowiki></span>
+
+<nowiki>=bar </nowiki><span>foo]]</span>=
+!! result
+<p>bar <span>[[foo]]</span>
+</p><p>=bar <span>[[foo]]</span>
+</p><p>[[bar <span>[[foo]]</span>
+</p><p>]]bar <span>[[foo]]</span>
+</p><p>=bar <span>foo]]</span>=
+</p>
+!!end
+
+#### --------------- PRE ------------------
+#### 1. Leading space in SOL context should be escaped
+#### --------------------------------------
+!! test
+1. Leading space in SOL context should be escaped
+!! options
+disabled
+!! input
+<nowiki> foo</nowiki>
+<!--cmt--><nowiki> foo</nowiki>
+!! result
+<p> foo
+<!--cmt--> foo
+</p>
+!! end
+
+#### --------------- HTML tags ---------------
+#### 1. a tags
+#### 2. other tags
+#### 3. multi-line html tag
+#### --------------------------------------
+!! test
+1. a tags
+!! options
+disabled
+!! input
+<a href="http://google.com">google</a>
+!! result
+&lt;a href=&quot;http://google.com&quot;&gt;google&lt;/a&gt;
+!! end
+
+!! test
+2. other tags
+!! input
+<nowiki><div>foo</div>
+<div style="color:red">foo</div></nowiki>
+!! result
+<p>&lt;div&gt;foo&lt;/div&gt;
+&lt;div style=&quot;color:red&quot;&gt;foo&lt;/div&gt;
+</p>
+!! end
+
+!! test
+3. multi-line html tag
+!! input
+<nowiki><div
+>foo</div
+></nowiki>
+!! result
+<p>&lt;div
+&gt;foo&lt;/div
+&gt;
+</p>
+!! end
+
+#### --------------- Others ---------------
+!! test
+Escaping nowikis
+!! input
+&lt;nowiki&gt;foo&lt;/nowiki&gt;
+!! result
+<p>&lt;nowiki&gt;foo&lt;/nowiki&gt;
+</p>
+!! end
+
 TODO:
 more images
 more tables
