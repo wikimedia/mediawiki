@@ -1214,9 +1214,18 @@ function wfLogProfilingData() {
 	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
 		$forward .= ' anon';
 	}
+
+	# Command line script uses a FauxRequest object which does not have
+	# any knowledge about an URL and throw an exception instead.
+	try {
+		$requestedUrl = $wgRequest->getRequestURL();
+	} catch (Exception $e) {
+		$requestedUrl = 'cant find requested URL';
+	}
+
 	$log = sprintf( "%s\t%04.3f\t%s\n",
 		gmdate( 'YmdHis' ), $elapsed,
-		urldecode( $wgRequest->getRequestURL() . $forward ) );
+		urldecode( $requestedUrl . $forward ) );
 
 	wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
 }
