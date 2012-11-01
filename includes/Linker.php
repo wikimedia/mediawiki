@@ -1740,19 +1740,83 @@ class Linker {
 	 * changes, so this allows sysops to combat a busy vandal without bothering
 	 * other users.
 	 *
+	 * If $verify is set this function will return the link only in case the
+	 * revision can be reverted. Please note that due to performance limitations
+	 * it might be assumed that a user isn't the only contributor of a page while
+	 * (s)he is, which will lead to useless rollback links. Furthermore this wont
+	 * work, if $wgShowRollbackEditCount is disabled, so this can only function
+	 * as an additional check.
+	 *
 	 * @param $rev Revision object
 	 * @param $context IContextSource context to use or null for the main context.
+	 * @param $verify Bool Try to verfiy that this revision can really be rolled back
 	 * @return string
 	 */
-	public static function generateRollback( $rev, IContextSource $context = null ) {
+	public static function generateRollback( $rev, IContextSource $context = null, $verify = false ) {
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
+		}
+		$editCount = false;
+		if ( $verify ) {
+			$editCount = self::rollbackData( $rev, true );
+			if ( $editCount === false ) {
+				return '';
+			}
 		}
 
 		return '<span class="mw-rollback-link">'
 			. $context->msg( 'brackets' )->rawParams(
-				self::buildRollbackLink( $rev, $context ) )->plain()
+				self::buildRollbackLink( $rev, $context, $editCount ) )->plain()
 			. '</span>';
+	}
+
+	/**
+	 * This function will return the number of revisions which a rollback
+	 * would revert and, if $verify is set it will verify that a revision
+	 * can be reverted (that the user isn't the only contributor)
+	 * Returns null if $wgShowRollbackEditCount is disabled!
+	 *
+	 * @param $rev Revision object
+	 * @param $verify Bool Try to verfiy that this revision can really be rolled back
+	 * @return integer|bool|null
+	 */
+	public static function rollbackData( $rev, $verify ) {
+		global $wgShowRollbackEditCount;
+		if( !is_int( $wgShowRollbackEditCount ) || !$wgShowRollbackEditCount > 0 ) {
+			// Nothing has happened, indicate this by returning 'null'
+			return null;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// Up to the value of $wgShowRollbackEditCount revisions are counted
+		$res = $dbr->select( 'revision',
+			array( 'rev_id', 'rev_user_text' ),
+			// $rev->getPage() returns null sometimes
+			array( 'rev_page' => $rev->getTitle()->getArticleID() ),
+			__METHOD__,
+			array(  'USE INDEX' => array( 'revision' => 'page_timestamp' ),
+				'ORDER BY' => 'rev_timestamp DESC',
+				'LIMIT' => $wgShowRollbackEditCount + 1 )
+		);
+
+		$editCount = 0;
+		$moreRevs = false;
+		while( $row = $dbr->fetchObject( $res ) ) {
+			if( $rev->getUserText() != $row->rev_user_text ) {
+				$moreRevs = true;
+				break;
+			}
+			$editCount++;
+		}
+
+		if( $verify && $editCount <= $wgShowRollbackEditCount && !$moreRevs ) {
+			// We didn't find at least $wgShowRollbackEditCount revisions made by the current user
+			// and there weren't any other revisions. That means that the current user is the only
+			// editor, so we can't rollback
+			return false;
+		}
+		return $editCount;
 	}
 
 	/**
@@ -1760,9 +1824,10 @@ class Linker {
 	 *
 	 * @param $rev Revision object
 	 * @param $context IContextSource context to use or null for the main context.
+	 * @param $editCount Integer Number of edits that would be reverted or the function is looking that up itself.
 	 * @return String: HTML fragment
 	 */
-	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
+	public static function buildRollbackLink( $rev, IContextSource $context = null, $editCount = false ) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
 
 		// To config which pages are effected by miser mode
@@ -1794,25 +1859,8 @@ class Linker {
 		}
 
 		if( !$disableRollbackEditCount && is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
-			$dbr = wfGetDB( DB_SLAVE );
-
-			// Up to the value of $wgShowRollbackEditCount revisions are counted
-			$res = $dbr->select( 'revision',
-				array( 'rev_id', 'rev_user_text' ),
-				// $rev->getPage() returns null sometimes
-				array( 'rev_page' => $rev->getTitle()->getArticleID() ),
-				__METHOD__,
-				array(  'USE INDEX' => 'page_timestamp',
-					'ORDER BY' => 'rev_timestamp DESC',
-					'LIMIT' => $wgShowRollbackEditCount + 1 )
-			);
-
-			$editCount = 0;
-			while( $row = $dbr->fetchObject( $res ) ) {
-				if( $rev->getUserText() != $row->rev_user_text ) {
-					break;
-				}
-				$editCount++;
+			if ( !is_numeric( $editCount ) ) {
+				$editCount = self::rollbackData( $rev, false );
 			}
 
 			if( $editCount > $wgShowRollbackEditCount ) {

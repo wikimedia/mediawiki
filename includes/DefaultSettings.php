@@ -2832,7 +2832,8 @@ $wgSend404Code = true;
 /**
  * The $wgShowRollbackEditCount variable is used to show how many edits will be
  * rollback. The numeric value of the varible are the limit up to are counted.
- * If the value is false or 0, the edits are not counted.
+ * If the value is false or 0, the edits are not counted. Disabling this will
+ * furthermore prevent MediaWiki from hiding some useless rollback links.
  *
  * @since 1.20
  */
