@@ -19,8 +19,11 @@ class CdbTest extends MediaWikiTestCase {
 			$this->markTestSkipped( "Temp dir isn't writable" );
 		}
 
-		$w1 = new CdbWriter_PHP( "$dir/php.cdb" );
-		$w2 = new CdbWriter_DBA( "$dir/dba.cdb" );
+		$phpcdbfile = $this->getNewTempFile();
+		$dbacdbfile = $this->getNewTempFile();
+
+		$w1 = new CdbWriter_PHP( $phpcdbfile );
+		$w2 = new CdbWriter_DBA( $dbacdbfile );
 
 		$data = array();
 		for ( $i = 0; $i < 1000; $i++ ) {
@@ -38,13 +41,13 @@ class CdbTest extends MediaWikiTestCase {
 		$w2->close();
 
 		$this->assertEquals(
-			md5_file( "$dir/dba.cdb" ),
-			md5_file( "$dir/php.cdb" ),
+			md5_file( $phpcdbfile ),
+			md5_file( $dbacdbfile ),
 			'same hash'
 		);
 
-		$r1 = new CdbReader_PHP( "$dir/php.cdb" );
-		$r2 = new CdbReader_DBA( "$dir/dba.cdb" );
+		$r1 = new CdbReader_PHP( $phpcdbfile );
+		$r2 = new CdbReader_DBA( $dbacdbfile );
 
 		foreach ( $data as $key => $value ) {
 			if ( $key === '' ) {
@@ -62,8 +65,6 @@ class CdbTest extends MediaWikiTestCase {
 			$this->cdbAssert( "DBA error", $key, $v2, $value );
 		}
 
-		unlink( "$dir/dba.cdb" );
-		unlink( "$dir/php.cdb" );
 	}
 
 	private function randomString() {
