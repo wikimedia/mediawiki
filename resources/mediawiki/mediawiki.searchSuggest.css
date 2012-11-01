@@ -1,0 +1,20 @@
+/* Make sure the links are not underlined or colored, ever. */
+/* There is already a :focus / :hover indication on the parent. */
+.suggestions-result a,
+.suggestions-special a,
+.suggestions-result a:hover,
+.suggestions-special a:hover,
+.suggestions-result a:active,
+.suggestions-special a:active,
+.suggestions-result a:focus,
+.suggestions-special a:focus {
+	text-decoration: none;
+	color: black;
+}
+
+/* Make the links span the entire parent element */
+.suggestions-result a,
+.suggestions-special a {
+	display: block;
+	white-space: nowrap;
+}

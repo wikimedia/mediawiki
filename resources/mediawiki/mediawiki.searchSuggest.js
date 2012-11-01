@@ -41,6 +41,39 @@
 			return;
 		}
 
+		// The function used to render the suggestions.
+		var resultRenderCache = null;
+		function renderFunction( text, context ) {
+			var $container = this;
+
+			if ( !resultRenderCache ) {
+				// Compute common parameters for links' hrefs
+				var $form = context.config.$region.closest( 'form' );
+
+				var formAction = $form.attr( 'action' );
+				var baseHref = formAction + ( formAction.match(/\?/) ? '&' : '?' );
+
+				var linkParams = {};
+				$.each( $form.serializeArray(), function ( idx, obj ) {
+					linkParams[ obj.name ] = obj.value;
+				} );
+
+				resultRenderCache = {
+					textParam: context.data.$textbox.attr( 'name' ),
+					linkParams: linkParams,
+					baseHref: baseHref
+				};
+			}
+
+			// linkParams object is modified and reused
+			resultRenderCache.linkParams[ resultRenderCache.textParam ] = text;
+			var href = resultRenderCache.baseHref + $.param( resultRenderCache.linkParams );
+
+			$container.append(
+				$('<a>', { href: href, text: text })
+			);
+		};
+
 		// General suggestions functionality for all search boxes
 		searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
@@ -89,6 +122,7 @@
 					}
 				},
 				result: {
+					render: renderFunction,
 					select: function ( $input ) {
 						$input.closest( 'form' ).submit();
 					}
@@ -118,6 +152,7 @@
 		// Special suggestions functionality for skin-provided search box
 		$searchInput.suggestions( {
 			result: {
+				render: renderFunction,
 				select: function ( $input ) {
 					$input.closest( 'form' ).submit();
 				}
