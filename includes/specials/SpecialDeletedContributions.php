@@ -135,7 +135,10 @@ class DeletedContribsPager extends IndexPager {
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
 
+		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+
 		$rev = new Revision( array(
+				'title'      => $page,
 				'id'         => $row->ar_rev_id,
 				'comment'    => $row->ar_comment,
 				'user'       => $row->ar_user,
@@ -144,8 +147,6 @@ class DeletedContribsPager extends IndexPager {
 				'minor_edit' => $row->ar_minor_edit,
 				'deleted'    => $row->ar_deleted,
 				) );
-
-		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 

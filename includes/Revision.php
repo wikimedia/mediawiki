@@ -178,6 +178,13 @@ class Revision implements IDBAccessObject {
 			unset( $attribs['content_format'] );
 		}
 
+		if ( !isset( $attribs['title'] )
+			&& isset( $row->ar_namespace )
+			&& isset( $row->ar_title ) ) {
+
+			$attribs['title'] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+		}
+
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
