@@ -24,7 +24,7 @@ $fallback = 'ru';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
-	NS_SPECIAL          => 'Ярҙамсы',
+	NS_SPECIAL          => 'Махсус',
 	NS_TALK             => 'Фекерләшеү',
 	NS_USER             => 'Ҡатнашыусы',
 	NS_USER_TALK        => 'Ҡатнашыусы_менән_һөйләшеү',
@@ -42,6 +42,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'Ярҙамсы'                     => NS_SPECIAL,
 	'Фекер_алышыу'                => NS_TALK,
 	'Ҡатнашыусы_м-н_фекер_алышыу' => NS_USER_TALK,
 	'$1_б-са_фекер_алышыу'        => NS_PROJECT_TALK,

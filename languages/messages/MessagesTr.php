@@ -56,7 +56,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Medya',
+	NS_MEDIA            => 'Ortam',
 	NS_SPECIAL          => 'Özel',
 	NS_TALK             => 'Tartışma',
 	NS_USER             => 'Kullanıcı',
@@ -75,9 +75,10 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Resim' => NS_FILE,
-	'Resim_tartışma' => NS_FILE_TALK,
-	'MedyaViki' => NS_MEDIAWIKI,
+	'Medya'              => NS_MEDIA,
+	'Resim'              => NS_FILE,
+	'Resim_tartışma'     => NS_FILE_TALK,
+	'MedyaViki'          => NS_MEDIAWIKI,
 	'MedyaViki_tartışma' => NS_MEDIAWIKI_TALK,
 );
 
