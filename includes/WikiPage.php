@@ -2163,6 +2163,7 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$revision = new Revision( array(
+			'title'      => $this->getTitle(), // for determining the default content model
 			'page'       => $this->getId(),
 			'text'       => $serialized,
 			'length'     => $content->getSize(),

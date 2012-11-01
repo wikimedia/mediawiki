@@ -380,6 +380,7 @@ class SpecialMergeHistory extends SpecialPage {
 			if ( $redirectContent ) {
 				$redirectPage = WikiPage::factory( $targetTitle );
 				$redirectRevision = new Revision( array(
+					'title'   => $targetTitle,
 					'page'    => $this->mTargetID,
 					'comment' => $comment,
 					'content' => $redirectContent ) );

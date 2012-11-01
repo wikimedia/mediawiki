@@ -3816,6 +3816,7 @@ class Title {
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$redirectRevision = new Revision( array(
+					'title'   => $this, // for determining the default content model
 					'page'    => $newid,
 					'comment' => $comment,
 					'content'    => $redirectContent ) );
