@@ -606,8 +606,9 @@ class Revision implements IDBAccessObject {
 					// if the page ID wasn't known, set it now
 					$this->mPage = $this->mTitle->getArticleID();
 				} elseif ( $this->mTitle->getArticleID() !== $this->mPage ) {
-					// got different page IDs, something is wrong.
-					throw new MWException( "Page ID " . $this->mPage . " mismatches the ID "
+					// Got different page IDs. This may be legit (e.g. during undeletion),
+					// but it seems worth mentioning it in the log.
+					wfDebug( "Page ID " . $this->mPage . " mismatches the ID "
 							. $this->mTitle->getArticleID() . " provided by the Title object." );
 				}
 			}

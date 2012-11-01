@@ -575,6 +575,9 @@ class PageArchive {
 					return Status::newFatal( "undeleterevdel" );
 				}
 			}
+
+			$newid  = false;
+			$pageId = $article->getId();
 		}
 
 		$revision = null;
@@ -593,6 +596,7 @@ class PageArchive {
 			// unless we are specifically removing all restrictions...
 			$revision = Revision::newFromArchiveRow( $row,
 				array(
+					'page' => $pageId,
 					'title' => $this->title,
 					'deleted' => $unsuppress ? 0 : $row->ar_deleted
 				) );
