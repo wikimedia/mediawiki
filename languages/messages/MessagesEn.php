@@ -11,7 +11,7 @@
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  */
-
+ 
 /**
  * Fallback language, used for all unspecified messages and behaviour. This
  * is English by default, for all files other than this one.
@@ -683,7 +683,7 @@ XHTML id names.
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
-'underline-default' => 'Browser default',
+'underline-default' => 'Skin or browser default',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Edit area font style:',
