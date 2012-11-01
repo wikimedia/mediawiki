@@ -1397,6 +1397,7 @@ class WikiRevision {
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
 		$revision = new Revision( array(
+			'title'      => $this->title,
 			'page'       => $pageId,
 			'content_model'  => $this->getModel(),
 			'content_format' => $this->getFormat(),
