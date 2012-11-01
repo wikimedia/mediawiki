@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( document ).ready( function ( $ ) {
-		var map, searchboxesSelectors,
+		var map, resultRenderCache, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -39,6 +39,86 @@
 
 		if ( !$.client.test( map ) ) {
 			return;
+		}
+
+		// Compute form data for search suggestions functionality.
+		function computeResultRenderCache( context ) {
+			var $form, formAction, baseHref, linkParams;
+
+			// Compute common parameters for links' hrefs
+			$form = context.config.$region.closest( 'form' );
+
+			formAction = $form.attr( 'action' );
+			baseHref = formAction + ( formAction.match(/\?/) ? '&' : '?' );
+
+			linkParams = {};
+			$.each( $form.serializeArray(), function ( idx, obj ) {
+				linkParams[ obj.name ] = obj.value;
+			} );
+
+			return {
+				textParam: context.data.$textbox.attr( 'name' ),
+				linkParams: linkParams,
+				baseHref: baseHref
+			};
+		}
+
+		// The function used to render the suggestions.
+		function renderFunction( text, context ) {
+			if ( !resultRenderCache ) {
+				resultRenderCache = computeResultRenderCache( context );
+			}
+
+			// linkParams object is modified and reused
+			resultRenderCache.linkParams[ resultRenderCache.textParam ] = text;
+
+			// this is the container <div>, jQueryfied
+			this
+				.text( text )
+				.wrap(
+					$( '<a>' )
+						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
+						.addClass( 'mw-searchSuggest-link' )
+				);
+		}
+
+		function specialRenderFunction( query, context ) {
+			var $el = this;
+
+			if ( !resultRenderCache ) {
+				resultRenderCache = computeResultRenderCache( context );
+			}
+
+			// linkParams object is modified and reused
+			resultRenderCache.linkParams[ resultRenderCache.textParam ] = query;
+
+			if ( $el.children().length === 0 ) {
+				$el
+					.append(
+						$( '<div>' )
+							.addClass( 'special-label' )
+							.text( mw.msg( 'searchsuggest-containing' ) ),
+						$( '<div>' )
+							.addClass( 'special-query' )
+							.text( query )
+							.autoEllipsis()
+					)
+					.show();
+			} else {
+				$el.find( '.special-query' )
+					.text( query )
+					.autoEllipsis();
+			}
+			
+			if ( $el.parent().hasClass( 'mw-searchSuggest-link' ) ) {
+				$el.parent().attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) + '&fulltext=1' );
+			} else {
+				$el.wrap(
+					$( '<a>' )
+						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) + '&fulltext=1' )
+						.addClass( 'mw-searchSuggest-link' )
+				);
+			}
 		}
 
 		// General suggestions functionality for all search boxes
@@ -89,6 +169,7 @@
 					}
 				},
 				result: {
+					render: renderFunction,
 					select: function ( $input ) {
 						$input.closest( 'form' ).submit();
 					}
@@ -118,31 +199,13 @@
 		// Special suggestions functionality for skin-provided search box
 		$searchInput.suggestions( {
 			result: {
+				render: renderFunction,
 				select: function ( $input ) {
 					$input.closest( 'form' ).submit();
 				}
 			},
 			special: {
-				render: function ( query ) {
-					var $el = this;
-					if ( $el.children().length === 0 ) {
-						$el
-							.append(
-								$( '<div>' )
-									.addClass( 'special-label' )
-									.text( mw.msg( 'searchsuggest-containing' ) ),
-								$( '<div>' )
-									.addClass( 'special-query' )
-									.text( query )
-									.autoEllipsis()
-							)
-							.show();
-					} else {
-						$el.find( '.special-query' )
-							.text( query )
-							.autoEllipsis();
-					}
-				},
+				render: specialRenderFunction,
 				select: function ( $input ) {
 					$input.closest( 'form' ).append(
 						$( '<input type="hidden" name="fulltext" value="1"/>' )
