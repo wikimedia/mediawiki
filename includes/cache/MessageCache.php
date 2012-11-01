@@ -820,7 +820,7 @@ class MessageCache {
 	 * @param $linestart bool
 	 * @param $interface bool
 	 * @param $language
-	 * @return ParserOutput
+	 * @return ParserOutput|string
 	 */
 	public function parse( $text, $title = null, $linestart = true, $interface = false, $language = null  ) {
 		if ( $this->mInParser ) {
