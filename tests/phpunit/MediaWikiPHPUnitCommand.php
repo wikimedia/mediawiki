@@ -42,7 +42,18 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 			. get_include_path()
 		);
 
-		$command->run($_SERVER['argv'], $exit);
+
+		# We now run PHPUnit, grabs its exit code, and log profiling data.
+
+		$exitcode = $command->run($_SERVER['argv'], false /** do not exit */);
+
+		wfLogProfilingData();
+
+		if( $exit ) {
+			exit( $exitcode );
+		} else {
+			return $exitcode;
+		}
 	}
 
 	public function __call( $func, $args ) {
