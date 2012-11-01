@@ -1193,12 +1193,22 @@ class Preferences {
 	static function validateSignature( $signature, $alldata, $form ) {
 		global $wgParser, $wgMaxSigChars;
 		if ( mb_strlen( $signature ) > $wgMaxSigChars ) {
-			return Xml::element( 'span', array( 'class' => 'error' ),
-				$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
+			// Do not attempt to call $form->msg() is $form is null, see bug 41337
+			if ( $form ) {
+				return Xml::element( 'span', array( 'class' => 'error' ),
+					$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
+			} else {
+				return 'badsiglength';
+			}
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
 				false === $wgParser->validateSig( $signature ) ) {
-			return Xml::element( 'span', array( 'class' => 'error' ), $form->msg( 'badsig' )->text() );
+			// Do not attempt to call $form->msg() is $form is null, see bug 41337
+			if ( $form ) {
+				return Xml::element( 'span', array( 'class' => 'error' ), $form->msg( 'badsig' )->text() );
+			} else {
+				return 'badsig';
+			}
 		} else {
 			return true;
 		}
