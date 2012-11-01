@@ -1,0 +1,24 @@
+/* Make sure the links are not underlined or colored, ever. */
+/* There is already a.mw-searchSuggest-link :focus / :hover indication on the parent. */
+.suggestions a.mw-searchSuggest-link,
+.suggestions a.mw-searchSuggest-link:hover,
+.suggestions a.mw-searchSuggest-link:active,
+.suggestions a.mw-searchSuggest-link:focus {
+	text-decoration: none;
+	color: black;
+}
+
+.suggestions-result-current a.mw-searchSuggest-link,
+.suggestions-result-current a.mw-searchSuggest-link:hover,
+.suggestions-result-current a.mw-searchSuggest-link:active,
+.suggestions-result-current a.mw-searchSuggest-link:focus {
+	color: white;
+}
+
+/* This is necessary for the automatic width adjusting to work, */
+/* because it relies on .outerWidth() method. */
+/* Unfortunately, this makes the links not span the entire parent element. */
+.suggestions a.mw-searchSuggest-link {
+	display: inline;
+	white-space: nowrap;
+}
