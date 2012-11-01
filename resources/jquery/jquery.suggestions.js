@@ -108,7 +108,7 @@ $.suggestions = {
 			setTimeout( function () {
 				// Render special
 				var $special = context.data.$container.find( '.suggestions-special' );
-				context.config.special.render.call( $special, context.data.$textbox.val() );
+				context.config.special.render.call( $special, context.data.$textbox.val(), context );
 			}, 1 );
 		}
 	},
@@ -227,13 +227,13 @@ $.suggestions = {
 								.mousemove( function ( e ) {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
-										context, $(this).closest( '.suggestions-results div' ), false
+										context, $(this).closest( '.suggestions-results .suggestions-result' ), false
 									);
 								} )
 								.appendTo( $results );
 							// Allow custom rendering
 							if ( typeof context.config.result.render === 'function' ) {
-								context.config.result.render.call( $result, context.config.suggestions[i] );
+								context.config.result.render.call( $result, context.config.suggestions[i], context );
 							} else {
 								// Add <span> with text
 								if( context.config.highlightInput ) {
@@ -298,14 +298,14 @@ $.suggestions = {
 						if ( context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 							result = context.data.$container.find( '.suggestions-special' );
 						} else {
-							result = context.data.$container.find( '.suggestions-results div:last' );
+							result = context.data.$container.find( '.suggestions-results .suggestions-result:last' );
 						}
 					}
 				}
 			} else if ( result === 'next' ) {
 				if ( selected.length === 0 ) {
 					// No item selected, go to the first one
-					result = context.data.$container.find( '.suggestions-results div:first' );
+					result = context.data.$container.find( '.suggestions-results .suggestions-result:first' );
 					if ( result.length === 0 && context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 						// No suggestion exists, go to the special one directly
 						result = context.data.$container.find( '.suggestions-special' );
@@ -483,13 +483,17 @@ $.fn.suggestions = function () {
 						// Can't use click() because the container div is hidden when the textbox loses focus. Instead,
 						// listen for a mousedown followed by a mouseup on the same div
 						.mousedown( function ( e ) {
-							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results div' );
+							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results .suggestions-result' );
 						} )
 						.mouseup( function ( e ) {
-							var $result = $( e.target ).closest( '.suggestions-results div' );
+							var $result = $( e.target ).closest( '.suggestions-results .suggestions-result' );
 							var $other = context.data.mouseDownOn;
 							context.data.mouseDownOn = $( [] );
 							if ( $result.get( 0 ) !== $other.get( 0 ) ) {
+								return;
+							}
+							// do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click)
+							if ( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) {
 								return;
 							}
 							$.suggestions.highlight( context, $result, true );
