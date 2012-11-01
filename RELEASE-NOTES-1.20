@@ -230,8 +230,6 @@ milestone in Bugzilla.
 * (bug 36812) Special:ActiveUsers "Hide bots" should hide users from any group
   having the "bot" user right, instead of just the default "bot" user group.
 * (bug 35082) mw.util.addPortletLink incorrectly adds link to mutiple <ul> tags.
-* (bug 36495) Sanitizer::fixDeprecatedAttributes should convert "align"
-  attribute to margin or float instead of text-align (for non-table-cells).
 * (bug 36991) jquery.tablesorter should extract date sort format from date
   string instead of global config. Dates like "April 1 2012" and "1 April 2012"
   now sort correctly regardless of the content language's DefaultDateFormat.
@@ -284,6 +282,7 @@ milestone in Bugzilla.
 * (bug 40500) ResourceLoader should not ignore media-type for urls in debug mode.
 * (bug 40660) ResourceLoaderWikiModule should not convert "&nbsp;" to a space
   for pages from the MediaWiki-namespace.
+* (bug 40329) (bug 40632) Removed CleanupPresentationalAttributes feature.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

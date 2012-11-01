@@ -5,8 +5,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgCleanupPresentationalAttributes', true );
-
 		AutoLoader::loadClass( 'Sanitizer' );
 	}
 
@@ -157,51 +155,24 @@ class SanitizerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideDeprecatedAttributes
 	 */
-	function testDeprecatedAttributes( $input, $tag, $expected, $message = null ) {
-		$this->assertEquals( $expected, Sanitizer::fixTagAttributes( $input, $tag ), $message );
-	}
+	function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl ) {
 
-	function testDeprecatedAttributesDisabled() {
-		global $wgCleanupPresentationalAttributes;
-
-		$wgCleanupPresentationalAttributes = false;
-
-		$this->assertEquals( ' clear="left"', Sanitizer::fixTagAttributes( 'clear="left"', 'br' ), 'Deprecated attributes are not converted to styles when enabled.' );
+		$this->assertEquals( " $inputAttr", Sanitizer::fixTagAttributes( $inputAttr, $inputEl ) );
 	}
 
 	public static function provideDeprecatedAttributes() {
 		return array(
-			array( 'clear="left"', 'br', ' style="clear: left;"', 'Deprecated attributes are converted to styles when enabled.' ),
-			array( 'clear="all"', 'br', ' style="clear: both;"', 'clear=all is converted to clear: both; not clear: all;' ),
-			array( 'CLEAR="ALL"', 'br', ' style="clear: both;"', 'clear=ALL is not treated differently from clear=all' ),
-			array( 'width="100"', 'td', ' style="width: 100px;"', 'Numeric sizes use pixels instead of numbers.' ),
-			array( 'width="100%"', 'td', ' style="width: 100%;"', 'Units are allowed in sizes.' ),
-			array( 'WIDTH="100%"', 'td', ' style="width: 100%;"', 'Uppercase WIDTH is treated as lowercase width.' ),
-			array( 'WiDTh="100%"', 'td', ' style="width: 100%;"', 'Mixed case does not break WiDTh.' ),
-			array( 'nowrap="true"', 'td', ' style="white-space: nowrap;"', 'nowrap attribute is output as white-space: nowrap; not something else.' ),
-			array( 'nowrap=""', 'td', ' style="white-space: nowrap;"', 'nowrap="" is considered true, not false' ),
-			array( 'NOWRAP="true"', 'td', ' style="white-space: nowrap;"', 'nowrap attribute works when uppercase.' ),
-			array( 'NoWrAp="true"', 'td', ' style="white-space: nowrap;"', 'nowrap attribute works when mixed-case.' ),
-			array( 'align="right"', 'td', ' style="text-align: right;"'   , 'align on table cells gets converted to text-align' ),
-			array( 'align="center"', 'td', ' style="text-align: center;"' , 'align on table cells gets converted to text-align' ),
-			array( 'align="left"'  , 'div', ' style="text-align: left;"'  , 'align=(left|right) on div elements gets converted to text-align' ),
-			array( 'align="center"', 'div', ' style="text-align: center;"', 'align="center" on div elements gets converted to text-align' ),
-			array( 'align="left"'  , 'p',   ' style="text-align: left;"'  , 'align on p elements gets converted to text-align' ),
-			array( 'align="left"'  , 'h1',  ' style="text-align: left;"'  , 'align on h1 elements gets converted to text-align' ),
-			array( 'align="left"'  , 'h1',  ' style="text-align: left;"'  , 'align on h1 elements gets converted to text-align' ),
-			array( 'align="left"'  , 'caption',' style="text-align: left;"','align on caption elements gets converted to text-align' ),
-			array( 'align="left"'  , 'tfoot',' style="text-align: left;"' , 'align on tfoot elements gets converted to text-align' ),
-			array( 'align="left"'  , 'tbody',' style="text-align: left;"' , 'align on tbody elements gets converted to text-align' ),
-
-			# <tr>
-			array( 'align="right"' , 'tr', ' style="text-align: right;"' , 'align on table row get converted to text-align' ),
-			array( 'align="center"', 'tr', ' style="text-align: center;"', 'align on table row get converted to text-align' ),
-			array( 'align="left"'  , 'tr', ' style="text-align: left;"'  , 'align on table row get converted to text-align' ),
-
-			#table
-			array( 'align="left"'  , 'table', ' style="float: left;"'    , 'align on table converted to float' ),
-			array( 'align="center"', 'table', ' style="margin-left: auto; margin-right: auto;"', 'align center on table converted to margins' ),
-			array( 'align="right"' , 'table', ' style="float: right;"'   , 'align on table converted to float' ),
+			array( 'clear="left"', 'br' ),
+			array( 'clear="all"', 'br' ),
+			array( 'width="100"', 'td' ),
+			array( 'nowrap="true"', 'td' ),
+			array( 'nowrap=""', 'td' ),
+			array( 'align="right"', 'td' ),
+			array( 'align="center"', 'table' ),
+			array( 'align="left"', 'tr' ),
+			array( 'align="center"', 'div' ),
+			array( 'align="left"', 'h1' ),
+			array( 'align="left"', 'span' ),
 		);
 	}
 
