@@ -316,12 +316,13 @@ $messages = array(
 'databaseerror' => 'Медээ шыгжамыры алдаг',
 'laggedslavemode' => "'''Оваарымчалыг:''' Бо арында чаартыышкыннар чок болуп болур.",
 'readonly' => 'шоочалаарынга медээ шыгжамыры',
-'missing-article' => 'Медээ чыындызы did not find the арынның сөзүглели that it should have found, named "$1" $2.
+'missing-article' => 'Данныйлар базазында тывар ужурлуг «$1» $2 деп арынның негеттинип турар сөзүглели тывылбаан.
 
-This is usually caused by following an outdated diff or history link to a page that has been deleted.
+Нургулайында ындыг байдал эрги шөлүлге-биле казыттынган арынның өскерилге төөгүзүнче дамчып оралдажырга тыптыр.
 
-If this is not the case, you may have found a bug in the software.
-Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
+А шынында ындыг эвес болза, Силер программа хандырылгазының алдаанга душканыңар хөңнү.
+
+Ооң дугайында кайы-бир [[Special:ListUsers/sysop|удуртукчуларга]], мүн URL-ин айытпышаан, дамчыдыңарам.',
 'missingarticle-rev' => '(үндүрериниң саны: $1)',
 'missingarticle-diff' => '(Ылгал: $1, $2)',
 'internalerror' => 'Иштики алдаг',
@@ -602,6 +603,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'gender-male' => 'Эр',
 'gender-female' => 'Кыс',
 'email' => 'Э-чагаа',
+'prefs-help-email' => 'Э-шуудаң адрезин айтыры албан эвес, ынчалза-даа, уруңуңар (парольуңар) чиде бээрге, ол херек апаар.',
 'prefs-info' => 'Кол медээлер',
 'prefs-signature' => 'Хол үжүү',
 'prefs-diffs' => 'Ылгалдар',
@@ -695,6 +697,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'recentchangeslinked-toolbox' => 'Хамааржыр өскерлиишкиннер',
 'recentchangeslinked-title' => '«$1» деп арынга хамаарыштырган өскерлиишкиннер',
 'recentchangeslinked-page' => 'Арынның ады:',
+'recentchangeslinked-to' => 'Айыткан арынче шөлүп турар арыннарга өскерилгелерни көргүзер',
 
 # Upload
 'upload' => 'Файлды салыры',
@@ -745,6 +748,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'filehist-filesize' => 'Файл хемчээли',
 'filehist-comment' => 'Тайылбыр',
 'imagelinks' => 'Файлдың ажыглаашкыны',
+'nolinkstoimage' => 'Бердинген файлче шөлүп турар арыннар чок.',
 
 # File reversion
 'filerevert' => '$1 эгидип тургузары',
@@ -963,12 +967,14 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'sp-contributions-talk' => 'чугаалажыры',
 'sp-contributions-search' => 'Салыышкыннарын дилээри',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
+'sp-contributions-toponly' => 'Чазалгаларның чүгле сөөлгү хевирлерин көргүзер',
 'sp-contributions-submit' => 'Дилээри',
 
 # What links here
 'whatlinkshere' => 'Шөлүлгелерни бээр',
 'whatlinkshere-title' => '«$1» деп арынга шөлүтген арыннар',
 'whatlinkshere-page' => 'Арын:',
+'linkshere' => "Адаандагы арыннар бээр «'''[[:$1]]'''» шөлүдүп турарлар:",
 'nolinkshere' => "'''[[:$1]]''' деп арынче шөлүтткен арыннар чок.",
 'isredirect' => 'шиглидер арын',
 'istemplate' => 'киирткен арыннар',
@@ -1150,8 +1156,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # Metadata
 'metadata' => 'Чурумал дугайында медээлер',
-'metadata-fields' => 'Чурумал дугайында медээлер listed in this message will be included on image page display when the metadata table is collapsed.
-Others will be hidden by default.
+'metadata-fields' => 'Бо даңзыда айыткан чурумалдар метаданныйларның кезектери чурумалдың арынынга көстүп кээр, метаданныйлар таблицазын дүрүп каан болур. 
+Арткан кезектер аайлаан ёзугаар чажыт көстүр.
 * make
 * model
 * datetimeoriginal
@@ -1233,6 +1239,9 @@ Others will be hidden by default.
 'watchlisttools-view' => 'Даңзы арыннарының өскерлиишкиннери',
 'watchlisttools-edit' => 'Хайгаарал даңзыны көөрү/эдери',
 'watchlisttools-raw' => 'Чиг хайгаарал даңзыны өскертири',
+
+# Core parser functions
+'duplicate-defaultsort' => 'Кичээнгейлиг! Үндезин сорттаашкын дүлгүүрү «$2» биеэги үндезин сорттаашкын дүлгүүрүн «$1» ажыр тодарадып турар.',
 
 # Special:Version
 'version' => 'Үндүрери',

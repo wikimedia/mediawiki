@@ -1636,6 +1636,9 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'rightslogtext' => 'Ovo je dnevnik izmena korisničkih prava.',
 'rightslogentry' => '{{GENDER:|je promenio|je promenila|je promenio}} prava za člana $1 iz $2 u $3',
 'rightslogentry-autopromote' => 'je unapređen iz $2 u $3',
+'logentry-rights-rights' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3 iz $4 u $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3',
+'logentry-rights-autopromote' => '$1 je automatski {{GENDER:$1|unapređen|unapređena|unapređen}} iz $4 u $5',
 'rightsnone' => '(ništa)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2334,8 +2337,8 @@ Pogledajte [[{{MediaWiki:Listgrouprights-helppage}}|više detalja]] o pojedinač
 'emailuser-title-target' => 'Slanje e-poruke {{GENDER:$1|korisniku|korisnici|korisniku}}',
 'emailuser-title-notarget' => 'Slanje e-poruke korisniku',
 'emailpage' => 'Slanje e-poruka',
-'emailpagetext' => 'Koristite ovaj obrazac da pošaljete e-poruku ovom korisniku.
-E-adresa koju ste uneli u [[Special:Preferences|podešavanjima]] će biti prikazana kao adresa pošiljaoca, tako da će primalac poruke moći da vam odgovori.',
+'emailpagetext' => 'Možete da koristite donji obrazac da pošaljete e-poruku {{GENDER:$1|ovom korisniku|ovoj korisnici|ovom korisniku|}}.
+E-adresa koju ste uneli u vašim [[Special:Preferences|podešavanjima]] će se prikazati u polju „Od“, tako da će primalac moći da vam odgovori direktno.',
 'usermailererror' => 'Došlo je do greške pri slanju poruke:',
 'defemailsubject' => '{{SITENAME}} e-adresa {{GENDER:$1|korisnika|korisnice|korisnika}} $1',
 'usermaildisabled' => 'Korisnička e-pošta je onemogućena',
@@ -3181,7 +3184,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 
 # Info page
 'pageinfo-title' => 'Podaci o „$1“',
-'pageinfo-not-current' => 'Podaci mogu biti prikazani samo za tekuću izmenu.',
+'pageinfo-not-current' => 'Nažalost, nemoguće je pribaviti ove podatke za starije izmene.',
 'pageinfo-header-basic' => 'Osnovni podaci',
 'pageinfo-header-edits' => 'Istorija izmena',
 'pageinfo-header-restrictions' => 'Zaštita stranice',
@@ -3190,6 +3193,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-default-sort' => 'Podrazumevani ključ sortiranja',
 'pageinfo-length' => 'Dužina stranice (u bajtovima)',
 'pageinfo-article-id' => 'ID stranice',
+'pageinfo-language' => 'Jezik sadržaja stranice',
 'pageinfo-robot-policy' => 'Status pretraživača',
 'pageinfo-robot-index' => 'Može da se popiše',
 'pageinfo-robot-noindex' => 'Ne može da se popiše',
@@ -4090,6 +4094,7 @@ Možete da [[Special:EditWatchlist|koristite i običan uređivač]].',
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Ovaj viki pokreće '''[//www.mediawiki.org/ Medijaviki]''', autorska prava © 2001-$1 $2.",
 'version-poweredby-others' => 'ostali',
+'version-credits-summary' => 'Želeli bismo da zahvalimo sledećim ljudima na njihovom doprinosu [[Special:Version|Medijavikiji]].',
 'version-license-info' => 'Medijaviki je slobodan softver; možete ga raspodeljivati i menjati pod uslovima GNU-ove opšte javne licence (OJL) koju je objavila Zadužbina za slobodan softver, bilo da je u pitanju drugo ili novije izdanje licence.
 
 Medijaviki se nudi u nadi da će biti od koristi, ali BEZ IKAKVE GARANCIJE; čak i bez podrazumevane garancije o PRODAJNOJ VREDNOSTI ili POGODNOSTI ZA ODREĐENE NAMENE. Pogledajte GNU-ovu opštu javnu licencu za više informacija.
