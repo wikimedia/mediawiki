@@ -629,7 +629,8 @@ class Message {
 	 * @return string Wikitext parsed into HTML
 	 */
 	protected function parseText( $string ) {
-		return MessageCache::singleton()->parse( $string, $this->title, /*linestart*/true, $this->interface, $this->language )->getText();
+		$out = MessageCache::singleton()->parse( $string, $this->title, /*linestart*/true, $this->interface, $this->language );
+		return is_object( $out ) ? $out->getText() : $out;
 	}
 
 	/**
