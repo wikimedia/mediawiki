@@ -448,6 +448,11 @@ th.mw-revdel-checkbox {
 	text-align: center;
 }
 
+/* red links; see bug 36276 */
+a.new {
+	color: #BA0000;
+}
+
 /* feed links */
 a.feedlink {
 	/* @embed */
