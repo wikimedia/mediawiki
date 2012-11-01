@@ -698,6 +698,7 @@ $wgAutoloadLocalClasses = array(
 	'PatrolLog' => 'includes/logging/PatrolLog.php',
 	'PatrolLogFormatter' => 'includes/logging/LogFormatter.php',
 	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
+	'RightsLogFormatter' => 'includes/logging/LogFormatter.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
