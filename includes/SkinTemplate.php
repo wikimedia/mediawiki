@@ -1189,7 +1189,7 @@ class SkinTemplate extends Skin {
 
 			$nav_urls['info'] = array(
 				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
-				'href' => $out->getTitle()->getLocalURL( "action=info" )
+				'href' => $this->getTitle()->getLocalURL( "action=info" )
 			);
 
 			if ( $this->getTitle()->getArticleID() ) {
