@@ -1304,20 +1304,8 @@ class Revision implements IDBAccessObject {
 			//NOTE: Store null for the default model and format, to save space.
 			//XXX: Makes the DB sensitive to changed defaults. Make this behaviour optional? Only in miser mode?
 
-			$model = $this->getContentModel();
-			$format = $this->getContentFormat();
-
-			$title = $this->getTitle();
-
-			if ( $title === null ) {
-				throw new MWException( "Insufficient information to determine the title of the revision's page!" );
-			}
-
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
-			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
-
-			$row[ 'rev_content_model' ] = ( $model === $defaultModel ) ? null : $model;
-			$row[ 'rev_content_format' ] = ( $format === $defaultFormat ) ? null : $format;
+			$row['rev_content_model'] = null;
+			$row['rev_content_format'] = null;
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
