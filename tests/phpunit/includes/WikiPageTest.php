@@ -3,6 +3,7 @@
 * @group ContentHandler
 * @group Database
 * ^--- important, causes temporary tables to be used instead of the real database
+* @group medium
 **/
 
 class WikiPageTest extends MediaWikiLangTestCase {
