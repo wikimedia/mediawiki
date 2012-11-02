@@ -197,15 +197,17 @@ class SearchEngine {
 				return $title;
 			}
 
+			if( !wfRunHooks( 'SearchAfterNoDirectMatch', array( $term, &$title ) ) ) {
+				return $title;
+			}
+
 			# Now try all lower case (i.e. first letter capitalized)
-			#
 			$title = Title::newFromText( $wgContLang->lc( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try capitalized string
-			#
 			$title = Title::newFromText( $wgContLang->ucwords( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;

@@ -1791,6 +1791,10 @@ $text : Current text being indexed
 $allSearchTerms : Array of the search terms in all content languages
 &$titleResult : Outparam; the value to return. A Title object or null.
 
+'SearchAfterNoDirectMatch': If there was no match for the exact result
+$term : Search term string
+&$title : Outparam; set to $title object and return false for a match
+
 'SearchGetNearMatch': An extra chance for exact-title-matches in "go" searches if nothing was found
 $term : Search term string
 &$title : Outparam; set to $title object and return false for a match
