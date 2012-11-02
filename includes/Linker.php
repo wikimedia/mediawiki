@@ -1844,11 +1844,12 @@ class Linker {
 	 *
 	 * @param $templates Array of templates from Article::getUsedTemplate
 	 * or similar
-	 * @param $preview Boolean: whether this is for a preview
-	 * @param $section Boolean: whether this is for a section edit
+	 * @param bool $preview Whether this is for a preview
+	 * @param bool $section Whether this is for a section edit
+	 * @param Title|null $more A link for "More..." of the templates
 	 * @return String: HTML output
 	 */
-	public static function formatTemplates( $templates, $preview = false, $section = false ) {
+	public static function formatTemplates( $templates, $preview = false, $section = false, $more = null ) {
 		wfProfileIn( __METHOD__ );
 
 		$outText = '';
@@ -1905,6 +1906,13 @@ class Linker {
 					. wfMessage( 'word-separator' )->escaped()
 					. $protected . '</li>';
 			}
+
+			if ( $more instanceof Title ) {
+				$outText .= '<li>' . self::link( $more, wfMessage( 'moredotdotdot' ) ) . '</li>';
+			} elseif ( $more ) {
+				$outText .= "<li>$more</li>";
+			}
+
 			$outText .= '</ul>';
 		}
 		wfProfileOut( __METHOD__  );

@@ -430,13 +430,21 @@ class InfoAction extends FormlessAction {
 			}
 		}
 
+		global $wgPageInfoTransclusionLimit;
 		$localizedList = Html::rawElement( 'ul', array(), implode( '', $listItems ) );
 		$hiddenCategories = $this->page->getHiddenCategories();
-		$transcludedTemplates = $title->getTemplateLinksFrom();
 
-		if ( count( $listItems ) > 0
-			|| count( $hiddenCategories ) > 0
-			|| count( $transcludedTemplates ) > 0 ) {
+		if (
+			count( $listItems ) > 0 ||
+			count( $hiddenCategories ) > 0 ||
+			$pageCounts['transclusion']['from'] > 0 ||
+			$pageCounts['transclusion']['to'] > 0
+		) {
+			global $wgPageInfoTransclusionLimit;
+			$options = array( 'LIMIT' => $wgPageInfoTransclusionLimit );
+			$transcludedTemplates = $title->getTemplateLinksFrom( $options );
+			$transcludedTargets = $title->getTemplateLinksTo( $options );
+
 			// Page properties
 			$pageInfo['header-properties'] = array();
 
@@ -458,11 +466,44 @@ class InfoAction extends FormlessAction {
 			}
 
 			// Transcluded templates
-			if ( count( $transcludedTemplates ) > 0 ) {
+			if ( $pageCounts['transclusion']['from'] > 0 ) {
+				if ( $pageCounts['transclusion']['from'] > count( $transcludedTemplates ) ) {
+					$more = wfMessage( 'morenotlisted' )->escaped();
+				} else {
+					$more = null;
+				}
+
 				$pageInfo['header-properties'][] = array(
 					$this->msg( 'pageinfo-templates' )
-						->numParams( count( $transcludedTemplates ) ),
-					Linker::formatTemplates( $transcludedTemplates )
+						->numParams( $pageCounts['transclusion']['from'] ),
+					Linker::formatTemplates(
+						$transcludedTemplates,
+						false,
+						false,
+						$more )
+				);
+			}
+
+			if ( $pageCounts['transclusion']['to'] > 0 ) {
+				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
+					$more = Linker::link(
+						$whatLinksHere,
+						$this->msg( 'moredotdotdot' )->escaped(),
+						array(),
+						array( 'hidelinks' => 1, 'hideredirs' => 1 )
+					);
+				} else {
+					$more = null;
+				}
+
+				$pageInfo['header-properties'][] = array(
+					$this->msg( 'pageinfo-transclusions' )
+						->numParams( $pageCounts['transclusion']['to'] ),
+					Linker::formatTemplates(
+						$transcludedTargets,
+						false,
+						false,
+						$more )
 				);
 			}
 		}
@@ -582,6 +623,24 @@ class InfoAction extends FormlessAction {
 			$result['subpages']['total'] = $result['subpages']['redirects']
 				+ $result['subpages']['nonredirects'];
 		}
+
+		// Counts for the number of transclusion links (to/from)
+		$result['transclusion']['to'] = (int) $dbr->selectField(
+			'templatelinks',
+			'COUNT(tl_from)',
+			array(
+				'tl_namespace' => $title->getNamespace(),
+				'tl_title' => $title->getDBkey()
+			),
+			__METHOD__
+		);
+
+		$result['transclusion']['from'] = (int) $dbr->selectField(
+			'templatelinks',
+			'COUNT(*)',
+			array( 'tl_from' => $title->getArticleID() ),
+			__METHOD__
+		);
 
 		wfProfileOut( __METHOD__ );
 		return $result;
