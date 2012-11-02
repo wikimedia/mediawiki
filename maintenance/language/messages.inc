@@ -2725,6 +2725,10 @@ $wgMessageStructure = array(
 		'pageinfo-protect-cascading',
 		'pageinfo-protect-cascading-yes',
 		'pageinfo-protect-cascading-from',
+		'pageinfo-category-info',
+		'pageinfo-category-pages',
+		'pageinfo-category-subcats',
+		'pageinfo-category-files'
 	),
 	'skin' => array(
 		'skinname-standard',
