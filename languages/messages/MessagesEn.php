@@ -3786,6 +3786,10 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-protect-cascading'      => 'Protections are cascading from here',
 'pageinfo-protect-cascading-yes'  => 'Yes',
 'pageinfo-protect-cascading-from' => 'Protections are cascading from',
+'pageinfo-category-info'       => 'Category information',
+'pageinfo-category-pages'      => 'Number of pages',
+'pageinfo-category-subcats'    => 'Number of subcategories',
+'pageinfo-category-files'      => 'Number of files',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it
