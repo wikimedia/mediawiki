@@ -365,6 +365,7 @@ $wgOptionalMessages = array(
 	'exif-maxaperturevalue-value',
 	'exif-subjectnewscode-value',
 	'booksources-isbn',
+	'protect-summary-desc',
 	'sp-contributions-explain',
 	'sorbs',
 	'video-dims',

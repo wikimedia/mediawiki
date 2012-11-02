@@ -2268,23 +2268,38 @@ class WikiPage extends Page implements IDBAccessObject {
 		foreach ( $limit as $action => $restrictions ) {
 			$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
 			if ( $restrictions != '' ) {
-				$protectDescription .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
+				# $action is one of $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' ).
+				# All possible message keys are listed here for easier grepping:
+				# * restriction-create
+				# * restriction-edit
+				# * restriction-move
+				# * restriction-upload
+				$actionText = wfMessage( 'restriction-' . $action )->inContentLanguage()->text();
+				# $restrictions is one of $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' ),
+				# with '' filtered out. All possible message keys are listed below:
+				# * protect-level-autoconfirmed
+				# * protect-level-sysop
+				$restrictionsText = wfMessage( 'protect-level-' . $restrictions )->inContentLanguage()->text();
 				if ( $encodedExpiry[$action] != 'infinity' ) {
-					$protectDescription .= wfMessage(
+					$expiryText = wfMessage(
 						'protect-expiring',
 						$wgContLang->timeanddate( $expiry[$action], false, false ) ,
 						$wgContLang->date( $expiry[$action], false, false ) ,
 						$wgContLang->time( $expiry[$action], false, false )
 					)->inContentLanguage()->text();
 				} else {
-					$protectDescription .= wfMessage( 'protect-expiry-indefinite' )
+					$expiryText = wfMessage( 'protect-expiry-indefinite' )
 						->inContentLanguage()->text();
 				}
 
-				$protectDescription .= ') ';
+				if ( $protectDescription !== '' ) {
+					$protectDescription .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+				}
+				$protectDescription .= wfMessage( 'protect-summary-desc' )
+					->params( $actionText, $restrictionsText, $expiryText )
+					->inContentLanguage()->text();
 			}
 		}
-		$protectDescription = trim( $protectDescription );
 
 		if ( $id ) { # Protection of existing page
 			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
@@ -2329,12 +2344,14 @@ class WikiPage extends Page implements IDBAccessObject {
 				$editComment .= ": $reason";
 			}
 			if ( $protectDescription ) {
-				$editComment .= " ($protectDescription)";
+				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+				$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )->inContentLanguage()->text();
 			}
 			if ( $cascade ) {
-				// FIXME: Should use 'brackets' message.
-				$editComment .= ' [' . wfMessage( 'protect-summary-cascade' )
-					->inContentLanguage()->text() . ']';
+				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+				$editComment .= wfMessage( 'brackets' )->params(
+					wfMessage( 'protect-summary-cascade' )->inContentLanguage()->text()
+				)->inContentLanguage()->text();
 			}
 
 			# Insert a null revision

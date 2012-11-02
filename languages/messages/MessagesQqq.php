@@ -2860,6 +2860,10 @@ Also used in [[Special:ProtectedPages]] when a page is cascade protected. See ex
 See also:
 *{{msg-mw|Restriction-level-sysop}}
 *{{msg-mw|Restriction-level-autoconfirmed}}',
+'protect-summary-desc' => 'Used in edit summary for description of a protecting restriction.
+* $1 is action, taken from restriction-*
+* $2 is restriction, taken from protect-level-*
+* $3 is {{msg-mw|protect-expiring}} or {{msg-mw|protect-expiry-indefinite}}',
 'protect-expiring' => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
 * $1 is a date and time
 * $2 is a date (optional)

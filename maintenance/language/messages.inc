@@ -2027,6 +2027,7 @@ $wgMessageStructure = array(
 		'protect-fallback',
 		'protect-level-autoconfirmed',
 		'protect-level-sysop',
+		'protect-summary-desc',
 		'protect-summary-cascade',
 		'protect-expiring',
 		'protect-expiring-local',

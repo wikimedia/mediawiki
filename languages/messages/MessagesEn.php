@@ -3011,6 +3011,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-fallback'            => 'Require "$1" permission',
 'protect-level-autoconfirmed' => 'Block new and unregistered users',
 'protect-level-sysop'         => 'Administrators only',
+'protect-summary-desc'        => '[$1=$2] ($3)', # only translate this message to other languages if you have to change it
 'protect-summary-cascade'     => 'cascading',
 'protect-expiring'            => 'expires $1 (UTC)',
 'protect-expiring-local'      => 'expires $1',
