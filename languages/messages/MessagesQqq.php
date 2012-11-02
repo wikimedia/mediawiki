@@ -3597,6 +3597,10 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 *{{msg-mw|Pageinfo-protect-cascading}}
 *{{msg-mw|Pageinfo-protect-cascading-yes}}',
 'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
+'pageinfo-category-info' => 'Header for the category information section in InfoAction',
+'pageinfo-category-pages' => 'Label for the number of files in a category',
+'pageinfo-category-subcats' => 'Label for the number of subcategories in a category',
+'pageinfo-category-files' => 'Label for the number of files in a category',
 
 # Skin names
 'skinname-standard' => '{{optional}}
