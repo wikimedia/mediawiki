@@ -4638,6 +4638,13 @@ $wgAggregateStatsID = false;
 $wgDisableCounters = false;
 
 /**
+ * InfoAction retrieves a list of transclusion links (both to and from).
+ * This number puts a limit on that query in the case of highly transcluded
+ * templates.
+ */
+$wgPageInfoTransclusionLimit = 50;
+
+/**
  * Set this to an integer to only do synchronous site_stats updates
  * one every *this many* updates. The other requests go into pending
  * delta values in $wgMemc. Make sure that $wgMemc is a global cache.
