@@ -343,17 +343,18 @@ function wfExtractThumbParams( $uriPath ) {
 		$params['temp'] = 1;
 	}
 
+	// Check hooks if parameters can be extracted
+	// Hooks return false if they manage to *resolve* the parameters
+	if ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+		return $params; // valid thumbnail URL (via extension or config)
 	// Check if the parameters can be extracted from the thumbnail name...
-	if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
+	} elseif ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
 		list( /* all */, $pagefull, $pagenum, $size ) = $matches;
 		$params['width'] = $size;
 		if ( $pagenum ) {
 			$params['page'] = $pagenum;
 		}
 		return $params; // valid thumbnail URL
-	// Hooks return false if they manage to *resolve* the parameters
-	} elseif ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
-		return $params; // valid thumbnail URL (via extension or config)
 	}
 
 	return null; // not a valid thumbnail URL
