@@ -1483,6 +1483,9 @@ Tindakan ini tidak boleh dibatalkan.',
 'rightslogtext' => 'Ini ialah log perubahan terhadap hak pengguna.',
 'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
 'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
+'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
+'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
+'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',
 'rightsnone' => '(tiada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2960,7 +2963,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',
-'pageinfo-not-current' => 'Maklumat mungkin hanya dipaparkan untuk versi semasa.',
+'pageinfo-not-current' => 'Maaf, maklumat ini tidak dapat disediakan untuk semakan lama.',
 'pageinfo-header-basic' => 'Maklumat asas',
 'pageinfo-header-edits' => 'Sunting sejarah',
 'pageinfo-header-restrictions' => 'Perlindungan halaman',

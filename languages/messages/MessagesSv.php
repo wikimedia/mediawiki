@@ -9,6 +9,7 @@
  *
  * @author Ainali
  * @author Boivie
+ * @author Cybjit
  * @author Dafer45
  * @author Diupwijk
  * @author EPO
@@ -2291,7 +2292,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'emailuser-title-target' => 'Skicka e-post till denna {{GENDER:$1|användare}}',
 'emailuser-title-notarget' => 'E-postanvändare',
 'emailpage' => 'Skicka e-post till användare',
-'emailpagetext' => 'Du kan använda det här formuläret för att skicka e-post till den här användaren.
+'emailpagetext' => 'Du kan använda formuläret nedan för att skicka e-post till den här {{GENDER:$1|användaren}}.
 Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post från användare "$1"',
@@ -3116,7 +3117,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
-'pageinfo-not-current' => 'Information kan endast visas för den aktuella versionen.',
+'pageinfo-not-current' => 'Informationen kan endast visas för den aktuella versionen.',
 'pageinfo-header-basic' => 'Grundläggande information',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidskydd',

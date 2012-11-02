@@ -10528,7 +10528,7 @@ PHP를 직접 컴파일할 경우 데이터베이스 클라이언트를 사용�
 이 옵션은 미디어위키에 끔찍한 버그를 일으킵니다.
 설치할 수 없습니다. 또는 미디어위키가 사용하지 않는 이 옵션을 비활성화하십시오.",
 	'config-safe-mode' => "'''경고:''' [http://www.php.net/features.safe-mode 안전 모드]이 활성합니다!
-이는 특히 파일을 올리거나 <code>math</code>를 지원하는 데 문제가 발생할 수 있습니다.",
+특히 파일을 올리거나 <code>math</code>를 지원하는 데 문제가 발생할 수 있습니다.",
 	'config-xml-bad' => 'PHP의 XML 모듈이 없습니다.
 미디어위키는 이 모듈의 기능이 필요하며 이 설정에서는 작동하지 않습니다.
 Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
@@ -10538,7 +10538,7 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 미디어위키가 제대로 작동하려면 UTF-8 지원이 필요합니다.",
 	'config-memory-raised' => 'PHP의 <code>memory_limit</code>는 $1이며 $2(으)로 늘리세요.',
 	'config-memory-bad' => "'''경고:''' PHP의 <code>memory_limit</code>는 $1입니다.
-이는 아마도 너무 낮은 것 같습니다.
+아마도 너무 낮은 것 같습니다.
 설치가 실패할 수 있습니다!",
 	'config-ctype' => "'''치명''': PHP는 [http://www.php.net/manual/en/ctype.installation.php Ctype 확장 기능]에 대해 지원하여 컴파일해야 합니다.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache]가 설치되었습니다',
@@ -10561,7 +10561,7 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 	'config-using-server' => '"<nowiki>$1</nowiki>"(을)를 서버 이름으로 사용합니다.',
 	'config-using-uri' => '"<nowiki>$1$2</nowiki>"(을)를 서버 URL로 사용합니다.',
 	'config-uploads-not-safe' => "'''경고:''' 올리기에 대한 기본 디렉토리(<code>$1</code>)는 임의의 스크립트 실행에 취약합니다.
-미디어위키는 보안 위협에 대한 모든 올린 파일을 검사하지만, 이는 올리기를 활성화하기 전에 [//www.mediawiki.org/wiki/Manual:Security#Upload_security 이 보안 취약점을 해결할 것]을 매우 권장합니다.",
+미디어위키는 보안 위협에 대한 모든 올린 파일을 검사하지만, 올리기를 활성화하기 전에 [//www.mediawiki.org/wiki/Manual:Security#Upload_security 이 보안 취약점을 해결할 것]을 매우 권장합니다.",
 	'config-no-cli-uploads-check' => "'''경고:''' 올리기에 대한 기본 디렉토리(<code>$1</code>)는 CLI를 설치하는 동안 임의의 스크립트 실행에 대한 취약점에 대해 검사되지 않습니다.",
 	'config-brokenlibxml' => '시스템에 버그가 있는 PHP와 libxml2의 조합이 있으며 미디어위키나 다른 웹 어플리케이션에 숨겨진 데이터 손상을 일으킬 수 있습니다.
 PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요 ([//bugs.php.net/bug.php?id=45996 PHP에 제기한 버그]).
@@ -10584,7 +10584,7 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 	'config-db-wiki-settings' => '이 위키 식별',
 	'config-db-name' => '데이터베이스 이름:',
 	'config-db-name-help' => '위키를 식별하기 위한 이름을 선택하세요.
-이는 공백이 없어야 합니다.
+공백이 없어야 합니다.
 
 웹 호스팅을 공유해 사용하는 경우 호스팅 제공 업체도 당신에게 제어판을 통해 데이터베이스를 사용하거나 만들 수 있도록 특정 데이터베이스 이름을 제공합니다.',
 	'config-db-name-oracle' => '데이터베이스 스키마:',
@@ -10597,10 +10597,11 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 	'config-db-username' => '데이터베이스 사용자 이름:',
 	'config-db-password' => '데이터베이스 비밀번호:',
 	'config-db-password-empty' => '새 데이터베이스 사용자의 비밀번호를 입력하세요: $1.
-비밀번호 없이 사용자를 만들 수도 있지만 이는 안전하지 않습니다.',
+비밀번호 없이 사용자를 만들 수도 있지만 안전하지 않습니다.',
 	'config-db-install-username' => '설치 과정 중에 데이터베이스에 연결할 때 사용할 사용자 이름을 입력하세요.
-이는 미디어위키 계정의 사용자 이름이 아닌 데이터베이스에 대한 사용자 이름입니다.',
-	'config-db-install-password' => '설치 과정 중에 데이터베이스에 연결할 때 사용할 비밀번호을 입력하세요. 이는 미디어위키 계정의 비밀번호가 아닌 데이터베이스에 대한 비밀번호입니다.',
+미디어위키 계정의 사용자 이름이 아닌 데이터베이스에 대한 사용자 이름입니다.',
+	'config-db-install-password' => '설치 과정 중에 데이터베이스에 연결할 때 사용할 비밀번호을 입력하세요.
+미디어위키 계정의 비밀번호가 아닌 데이터베이스에 대한 비밀번호입니다.',
 	'config-db-install-help' => '설치 과정 중에 데이터베이스에 연결할 때 사용할 사용자 이름과 비밀번호를 입력하세요.',
 	'config-db-account-lock' => '정상적으로 작동하는 동안 같은 사용자 이름과 비밀번호를 사용함',
 	'config-db-wiki-account' => '정상적인 작동을 위한 사용자 계정',
@@ -10615,10 +10616,10 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 바이너리',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 UTF-8 하위 호환성',
-	'config-charset-help' => "'''경고:''' MySQL 4.1에서 '''UTF-8 하위 호환성'''을 사용하고 나서 <code>mysqldump</code>로 데이터베이스에 백업한다면 이는 모든 ASCII가 아닌 문자를 파괴하고 손상한 백업을 되돌릴 수 없습니다!
+	'config-charset-help' => "'''경고:''' MySQL 4.1에서 '''UTF-8 하위 호환성'''을 사용하고 나서 <code>mysqldump</code>로 데이터베이스에 백업한다면 모든 ASCII가 아닌 문자를 파괴하고 손상한 백업을 되돌릴 수 없습니다!
 
 '''바이너리 모드'''에서는 미디어위키는 바이너리 필드의 데이터베이스에 UTF-8 텍스트를 저장합니다.
-이는 MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
+MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
 '''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 어떤 문자열인지를 알 것이며, 표현하고 적절하게 그것을 변환할 수 있지만
 [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 기본 다국어 범위] 상의 문자를 저장하지 못하게 될 수 있습니다.",
 	'config-mysql-old' => 'MySQL $1 이상이 필요하나 $2(이)가 있습니다.',
@@ -10635,7 +10636,7 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 PHP 파일이 있는 곳을 우리가 이를 맡길 수 없는 이유는 웹을 통해 접근할 수 없다는 것입니다.
 
 설치 마법사가 이과 함께 .htaccess 파일을 만들지만 거기서 실패하면 누군가는 원본 데이터베이스에 접근하는 데 실패합니다.
-이는 원시 사용자 데이터(이메일 주소, 암호 해시) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
+원시 사용자 데이터(이메일 주소, 암호 해시) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
 
 <code>/var/lib/mediawiki/yourwiki</code>와 같이 모두 다른 곳에서 데이터베이스를 넣어보도록 하세요.',
 	'config-oracle-def-ts' => '기본 테이블공간:',
@@ -10677,7 +10678,7 @@ ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하�
 	'config-postgres-old' => 'PostgreSQL $1 이상이 필요하나 $2(이)가 있습니다.',
 	'config-sqlite-name-help' => '위키를 식별하기 위한 이름을 선택하세요.
 공백이나 하이픈을 사용하지 마십시오.
-이는 SQLite 데이터 파일 이름에 사용됩니다.',
+SQLite 데이터 파일 이름에 사용됩니다.',
 	'config-sqlite-parent-unwritable-group' => '<code><nowiki>$1</nowiki></code> 데이터 디렉토리를 만들 수 없으며 <code><nowiki>$2</nowiki></code> 상위 디렉토리에 웹 서버에 의해 쓸 수 없기 때문입니다.
 
 설치 마법사는 웹 서버로 실행중인 사용자를 결정할 수 없습니다.
@@ -10731,8 +10732,8 @@ chmod a+w $3</pre>',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-myisam-dep' => "'''경고''': 미디어위키와 함께 사용하도록 권장하지 않는 MySQL에 대한 스토리지 엔진으로 MyISAM을 선택하였습니다. 이유는:
-* 이는 테이블이 잠겨있어 동시성을 거의 지원하지 않습니다
-* 이는 다른 엔진보다 손상이 더 자주 발생합니다
+* 테이블이 잠겨있어 동시성을 거의 지원하지 않습니다
+* 다른 엔진보다 손상이 더 자주 발생합니다
 * 미디어위키 바탕 코드가 항상 정상적으로 MyISAM을 처리하지 않습니다
 
 MySQL 설치가 InnoDB를 지원한다면 그 선택 대신에 InnoDB를 선택할 것을 매우 권장합니다.
@@ -10745,12 +10746,12 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 	'config-mysql-binary' => '바이너리',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-mysql-charset-help' => "'''바이너리 모드'''에서는 미디어위키는 바이너리 필드의 데이터베이스에 UTF-8 텍스트를 저장합니다.
-이는 MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
+MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
 '''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 어떤 문자열인지를 알 것이며, 표현하고 적절하게 그것을 변환할 수 있지만
 [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 기본 다국어 범위] 상의 문자를 저장하지 못하게 될 수 있습니다.",
 	'config-ibm_db2-low-db-pagesize' => "당신의 DB2 데이터베이스에 부족한 페이지 크기가 기본 테이블 공간에 있습니다. 페이지 크기는 '''32K''' 이상이어야 합니다.",
 	'config-site-name' => '위키 이름:',
-	'config-site-name-help' => '이는 브라우저 제목 표시줄과 다른 여러 곳에 나타날 것입니다.',
+	'config-site-name-help' => '브라우저 제목 표시줄과 다른 여러 곳에 나타납니다.',
 	'config-site-name-blank' => '사이트 이름을 입력하세요.',
 	'config-project-namespace' => '프로젝트 이름공간:',
 	'config-ns-generic' => '프로젝트',
@@ -10759,7 +10760,7 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 	'config-ns-other-default' => '내위키',
 	'config-project-namespace-help' => '위키백과의 예를 따라서, 많은 위키는 "\'\'\'프로젝트 이름공간\'\'\'"에 그들의 콘텐츠 페이지에서 그들의 정책 페이지는 별도로 보관합니다.
 이 이름공간에 있는 모든 페이지의 제목은 여기서 지정할 수 있는 특정 접두어로 시작합니다.
-보통 이 접두어는 위키의 이름에서 파생되지만, 이는 "#" 또는 ":"와 같은 특수 문자를 포함할 수 없습니다.',
+보통 이 접두어는 위키의 이름에서 파생되지만, "#" 또는 ":"와 같은 특수 문자를 포함할 수 없습니다.',
 	'config-ns-invalid' => '특정 "<nowiki>$1</nowiki>" 이름공간이 잘못되었습니다.
 다른 프로젝트 이름공간을 지정하세요.',
 	'config-ns-conflict' => '특정 "<nowiki>$1</nowiki>" 이름공간이 기본 미디어위키 이름공간과 충돌합니다.
@@ -10769,7 +10770,7 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 	'config-admin-password' => '비밀번호:',
 	'config-admin-password-confirm' => '비밀번호 확인:',
 	'config-admin-help' => '"홍길동"과 같이 여기에 원하는 사용자 이름을 입력하세요.
-이는 위키에 로그인하는 데 사용되는 이름입니다.',
+위키에 로그인하는 데 사용되는 이름입니다.',
 	'config-admin-name-blank' => '관리자의 사용자 이름을 입력하세요.',
 	'config-admin-name-invalid' => '특정 "<nowiki>$1</nowiki>" 사용자 이름이 잘못되었습니다.
 다른 사용자 이름을 지정하세요.',
@@ -10782,7 +10783,7 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 	'config-admin-error-password' => '"<nowiki>$1</nowiki>" 관리자의 비밀번호를 설정하는 중 내부 오류가 발생했습니다: <pre>$2</pre>',
 	'config-admin-error-bademail' => '이메일 주소를 잘못 입력하였습니다.',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 배포 발표 메일링 리스트]에 가입합니다.',
-	'config-subscribe-help' => '이는 중요한 보안 알림을 포함한 배포 알림에 대해 사용되는 로우 볼륨 메일링 리스트입니다.
+	'config-subscribe-help' => '중요한 보안 알림을 포함한 배포 알림에 대해 사용되는 로우 볼륨 메일링 리스트입니다.
 당신이 이를 구독하고 나서 새 버전이 나올 때 미디어위키 설치를 업데이트해야합니다.',
 	'config-subscribe-noemail' => '이메일 주소를 제공하지 않고 배포 발표 메일링 리스트에 가입하려 합니다.
 메일링 리스트에 가입하고자 할 경우 이메일 주소를 제공하세요.',
@@ -10818,13 +10819,13 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 	'config-license-cc-choose' => '다른 크리에이티브 커먼즈 라이선스 선택',
 	'config-license-help' => '많은 공개 위키는 모든 기여를 [http://freedomdefined.org/Definition 자유 라이선스] 하에 넣습니다.
 이럴 경우 커뮤니티 소유권의 이해를 할 수 있도록 하고 장기적인 기여를 장려합니다.
-이는 일반적으로 개인 또는 회사 위키에 대해서는 필요하지 않습니다.
+일반적으로 개인 또는 회사 위키에 대해서는 필요하지 않습니다.
 
 위키백과의 텍스트를 사용할 수 있도록 하고 위키백과가 위키에서 복사한 텍스트를 사용할 수 있도록 원한다면 크리에이티브 커먼즈 저작자표시-동일조건변경허락으로 선택해야 합니다.
 
 위키백과는 이전에 GNU 자유 문서 사용 허가서를 사용했습니다.
-GFDL은 유효한 라이선스이지만 이는 이해하기 어렵습니다.
-이는 GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
+GFDL은 유효한 라이선스이지만 이해하기 어렵습니다.
+GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-email-settings' => '이메일 설정',
 	'config-enable-email' => '발신 이메일 활성화',
 	'config-enable-email-help' => '이메일을 작동하려면 [http://www.php.net/manual/en/mail.configuration.php PHP의 메일 설정]을 올바르게 설정해야 합니다.
@@ -10841,7 +10842,7 @@ GFDL은 유효한 라이선스이지만 이는 이해하기 어렵습니다.
 이메일 기능의 남용 가능성이 있기 때문에 이 옵션을 설정하는 것은 공개 위키에서 '''권장'''합니다.",
 	'config-email-sender' => '반송 이메일 주소',
 	'config-email-sender-help' => '발신한 이메일에 대한 반송 주소로 사용할 이메일 주소를 입력하세요.
-이는 반송할 때 보내는 주소입니다.
+반송할 때 보내는 주소입니다.
 대부분의 메일 서버는 적어도 도메인 이름 부분은 유효합니다.',
 	'config-upload-settings' => '그림과 파일 올리기',
 	'config-upload-enable' => '파일 올리기 활성화',
@@ -10887,7 +10888,7 @@ GFDL은 유효한 라이선스이지만 이는 이해하기 어렵습니다.
 	'config-extensions' => '확장 기능',
 	'config-extensions-help' => '위에 나열된 확장 기능이 <code>./extensions</code>에서 발견되었습니다.
 
-이는 추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.',
+추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.',
 	'config-install-alreadydone' => "'''경고:''' 당신은 이미 미디어위키를 설치하였고 다시 설치하려고 합니다.
 다음 페이지에서 진행하세요.",
 	'config-install-begin' => '"{{int:config-continue}}"을 누르면 미디어위키의 설치를 시작합니다.
@@ -10936,9 +10937,9 @@ GFDL은 유효한 라이선스이지만 이는 이해하기 어렵습니다.
 미디어위키가 성공적으로 설치되었습니다.
 
 설치 마법사가 <code>LocalSettings.php</code> 파일을 만들었습니다.
-이는 모든 설정이 포함되어 있습니다.
+모든 설정이 포함되어 있습니다.
 
-이를 다운로드하여 위키 설치의 거점에 넣어야 합니다 (index.php와 같은 디렉토리). 다운로드가 자동으로 시작됩니다.
+파일을 다운로드하여 위키 설치의 거점에 넣어야 합니다. (index.php와 같은 디렉토리) 다운로드가 자동으로 시작됩니다.
 
 다운로드가 제공되지 않을 경우나 그것을 취소한 경우에는 아래의 링크를 클릭하여 다운로드를 다시 시작할 수 있습니다:
 
@@ -18328,6 +18329,7 @@ $messages['zea'] = array(
  * @author Liangent
  * @author PhiLiP
  * @author Xiaomingyan
+ * @author Yfdyh000
  * @author 阿pp
  */
 $messages['zh-hans'] = array(
@@ -18755,6 +18757,7 @@ $3
 当本步骤完成后，您可以 '''[$2 进入您的wiki]'''。",
 	'config-download-localsettings' => '下载LocalSettings.php',
 	'config-help' => '帮助',
+	'config-nofile' => '找不到文件“$1”。它是否已被删除？',
 	'mainpagetext' => "'''已成功安装MediaWiki。'''",
 	'mainpagedocfooter' => '请查阅[//meta.wikimedia.org/wiki/Help:Contents 用户指南]以获取使用本wiki软件的信息！
 

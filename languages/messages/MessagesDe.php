@@ -455,7 +455,7 @@ $messages = array(
 
 'underline-always' => 'immer',
 'underline-never' => 'nie',
-'underline-default' => 'abhängig von der Browsereinstellung',
+'underline-default' => 'abhängig von der Benutzeroberfläche oder Browsereinstellung',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Schriftart für den Text im Bearbeitungsfenster:',
@@ -1696,6 +1696,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'rightslogentry-autopromote' => 'wurde automatisch von „$2“ zu „$3“ zugeordnet',
 'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
 'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
+'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 zugeordnet',
 'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"

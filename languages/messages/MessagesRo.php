@@ -347,7 +347,7 @@ pe titlul secțiunii (JavaScript)',
 
 'underline-always' => 'Întotdeauna',
 'underline-never' => 'Niciodată',
-'underline-default' => 'Standardul navigatorului',
+'underline-default' => 'Standardul temei sau al navigatorului',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stilul fontului din zona de modificare:',
@@ -1604,6 +1604,9 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'rightslogtext' => 'Acest jurnal cuprinde modificările permisiunilor utilizatorilor.',
 'rightslogentry' => 'a schimbat permisiunile pentru $1 de la $2 la $3',
 'rightslogentry-autopromote' => 'a fost promovat în mod automat de la $2 la $3',
+'logentry-rights-rights' => '$1 a schimbat apartenența la grup pentru $3 de la $4 la $5',
+'logentry-rights-rights-legacy' => '$1 a schimbat apartenența la grup pentru $3',
+'logentry-rights-autopromote' => '$1 a fost promovat în mod automat de la $4 la $5',
 'rightsnone' => '(niciunul)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3093,7 +3096,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 
 # Info page
 'pageinfo-title' => 'Informații pentru „$1”',
-'pageinfo-not-current' => 'Informațiile se pot afișa doar pentru versiunea curentă.',
+'pageinfo-not-current' => 'Ne cerem scuze, dar este imposibilă furnizarea acestor informații pentru versiunile mai vechi ale paginii.',
 'pageinfo-header-basic' => 'Informații de bază',
 'pageinfo-header-edits' => 'Istoric modificări',
 'pageinfo-header-restrictions' => 'Protecție pagină',

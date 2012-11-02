@@ -392,7 +392,7 @@ $messages = array(
 
 'underline-always' => '항상',
 'underline-never' => '치지 않음',
-'underline-default' => '브라우저 설정을 따르기',
+'underline-default' => '스킨 또는 브라우저 설정을 따르기',
 
 # Font style option in Special:Preferences
 'editfont-style' => '편집창의 글꼴:',
@@ -653,7 +653,7 @@ $1',
 'nosuchaction' => '해당하는 동작이 없습니다.',
 'nosuchactiontext' => 'URL로 요청한 동작이 잘못되었습니다.
 URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니다.
-이것은 {{SITENAME}}의 버그일 수도 있습니다.',
+{{SITENAME}}의 버그일 수도 있습니다.',
 'nosuchspecialpage' => '해당하는 특수 문서가 없습니다.',
 'nospecialpagetext' => '<strong>요청한 특수 문서가 존재하지 않습니다.</strong>
 
@@ -1037,20 +1037,20 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 * '''오페라''': ''도구→설정''에서 캐시를 비움",
 'usercssyoucanpreview' => "'''안내''': CSS 문서를 저장하기 전에 \"{{int:showpreview}}\" 기능을 통해 작동을 확인해주세요.",
 'userjsyoucanpreview' => "'''안내''': 자바스크립트 문서를 저장하기 전에 \"{{int:showpreview}}\" 기능을 통해 작동을 확인해주세요.",
-'usercsspreview' => "'''이것은 사용자 CSS의 미리 보기입니다.'''
-'''아직 저장하지 않았다는 것을 기억해두세요!'''",
-'userjspreview' => "'''이것은 자바스크립트 미리 보기입니다'''
-'''아직 저장하지 않았다는 것을 기억해두세요!'''",
-'sitecsspreview' => "'''이것은 이 CSS의 미리 보기일 뿐입니다.'''
-'''아직 저장하지 않았다는 것을 기억해두세요!'''",
-'sitejspreview' => "'''이것은 이 자바스크립트 코드의 미리 보기일 뿐입니다.'''
-'''아직 저장하지 않았다는 것을 기억해두세요!'''",
+'usercsspreview' => "'''사용자 CSS의 미리 보기입니다.'''
+'''아직 저장하지 않았습니다!'''",
+'userjspreview' => "'''사용자 자바스크립트 미리 보기입니다.'''
+'''아직 저장하지 않았습니다!'''",
+'sitecsspreview' => "'''이 CSS의 미리 보기일 뿐입니다.'''
+'''아직 저장하지 않았습니다!'''",
+'sitejspreview' => "'''이 자바스크립트 코드의 미리 보기일 뿐입니다.'''
+'''아직 저장하지 않았습니다!'''",
 'userinvalidcssjstitle' => "'''경고''': \"\$1\" 스킨은 없습니다.
 .css와 .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 'updated' => '(바뀜)',
 'note' => "'''참고:'''",
 'previewnote' => "'''이 화면은 미리 보기입니다.'''
-편집한 내용은 아직 저장되지 않았습니다!",
+편집한 내용은 아직 저장하지 않았습니다!",
 'continue-editing' => '편집 영역으로 가기',
 'previewconflict' => '이 미리 보기는 저장할 때의 모습으로 위쪽 편집창의 문서를 반영합니다.',
 'session_fail_preview' => "'''세션 데이터가 없어져 편집을 저장하지 못했습니다.'''
@@ -1669,8 +1669,11 @@ HTML 태그를 확인하세요.',
 # User rights log
 'rightslog' => '사용자 권한 기록',
 'rightslogtext' => '사용자 권한 조정 기록입니다.',
-'rightslogentry' => '사용자가 $1의 권한을 $2에서 $3(으)로 바꿈',
+'rightslogentry' => '사용자가 $1의 권한을 $2에서 $3으로 바꾸었습니다',
 'rightslogentry-autopromote' => '사용자의 권한이 자동적으로 $2에서 $3으로 바뀌었습니다.',
+'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 바꾸었습니다.',
+'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 바꾸었습니다.',
+'logentry-rights-autopromote' => '$1 사용자의 권한이 자동적으로 $4에서 $5으로 바뀌었습니다.',
 'rightsnone' => '(없음)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2433,7 +2436,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'enotif_mailer' => '{{SITENAME}} 자동 알림 메일',
 'enotif_reset' => '모든 문서를 방문한 것으로 표시하기',
-'enotif_newpagetext' => '이것은 새 문서입니다.',
+'enotif_newpagetext' => '이 문서는 새 문서입니다.',
 'enotif_impersonal_salutation' => '{{SITENAME}} 사용자',
 'changed' => '바꾸',
 'created' => '만들',
@@ -2870,7 +2873,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
 만약 문서의 새 이름으로 된 문서가 존재할 때, 그 문서가 비었거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동합니다. 그렇지 않을 경우에는 이동하지 '''않습니다'''.
-이것은 실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
+실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
 
 '''경고!'''
 인기 있는 문서일 경우 심각하고 예상하지 못한 문제를 초래할 수 있습니다.
@@ -2881,7 +2884,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
 참고로 새 제목을 가진 문서가 이미 있다면 비어 있거나 넘겨주기 문서이며, 과거에 편집 내역이 없으면 이 문서는 옮겨지지 '''않을''' 것입니다.
-이는 당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
+당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
 인기 있는 문서일 경우 심각하고 예상하지 못한 문제를 초래할 수 있습니다.
@@ -3124,7 +3127,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'tooltip-ca-nstab-main' => '문서 내용을 봅니다.',
 'tooltip-ca-nstab-user' => '사용자 문서 내용을 봅니다.',
 'tooltip-ca-nstab-media' => '미디어 문서 내용을 봅니다.',
-'tooltip-ca-nstab-special' => '이것은 특수 문서로, 편집할 수 없습니다.',
+'tooltip-ca-nstab-special' => '이 문서는 특수 문서로, 편집할 수 없습니다.',
 'tooltip-ca-nstab-project' => '프로젝트 문서 내용을 봅니다.',
 'tooltip-ca-nstab-image' => '파일 문서 내용을 봅니다.',
 'tooltip-ca-nstab-mediawiki' => '시스템 메시지 내용을 봅니다.',
@@ -3208,7 +3211,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Info page
 'pageinfo-title' => '"$1" 문서에 대한 정보',
-'pageinfo-not-current' => '정보는 현재 판만을 보여줄 수 있습니다.',
+'pageinfo-not-current' => '죄송합니다, 이전 판에 대한 정보는 제공하지 않습니다.',
 'pageinfo-header-basic' => '기본 정보',
 'pageinfo-header-edits' => '편집 역사',
 'pageinfo-header-restrictions' => '문서 보호',
