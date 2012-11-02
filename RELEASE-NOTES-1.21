@@ -14,6 +14,8 @@ production.
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname'
   instead.
+* $wgPageInfoTransclusionLimit limits the list size of transcluded articles
+  on the info action. Default is 50.
 
 === New features in 1.21 ===
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
