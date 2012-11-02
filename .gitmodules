@@ -394,3 +394,33 @@
 [submodule "extensions/PostEdit"]
 	path = extensions/PostEdit
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PostEdit.git
+[submodule "extensions/GeoCrumbs"]
+	path = extensions/GeoCrumbs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GeoCrumbs.git
+[submodule "extensions/Calendar"]
+	path = extensions/Calendar
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Calendar.git
+[submodule "extensions/CustomData"]
+	path = extensions/CustomData
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CustomData.git
+[submodule "extensions/Insider"]
+	path = extensions/Insider
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Insider.git
+[submodule "extensions/Listings"]
+	path = extensions/Listings
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Listings.git
+[submodule "extensions/RelatedArticles"]
+	path = extensions/RelatedArticles
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RelatedArticles.git
+[submodule "extensions/RelatedSites"]
+	path = extensions/RelatedSites
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RelatedSites.git
+[submodule "extensions/TocTree"]
+	path = extensions/TocTree
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TocTree.git
+[submodule "extensions/CreditsSource"]
+	path = extensions/CreditsSource
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CreditsSource.git
+[submodule "extensions/MapSources"]
+	path = extensions/MapSources
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MapSources.git
