@@ -940,6 +940,12 @@ Diverket eo bet evit doare.',
 Krouet e oa bet c'hoazh.",
 'defaultmessagetext' => 'Testenn dre ziouer',
 
+# Content models
+'content-model-wikitext' => 'wikitestenn',
+'content-model-text' => 'testenn blaen',
+'content-model-javascript' => 'Javascript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Diwallit : Re a c'halvoù koustus e-keñver an arc'hwelioù parser zo gant ar bajenn-mañ.
 
@@ -2972,6 +2978,10 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-magic-words' => '{{PLURAL:$1|Ger hud |Gerioù hud}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Rumm kuzh|Rummoù kuzh}} ($1)',
 'pageinfo-templates' => "{{PLURAL:$1|Patrom endalc'het|Patromoù endalc'het}} ($1)",
+'pageinfo-toolboxlink' => 'Titouroù ar bajenn',
+'pageinfo-redirectsto' => 'Adkas a ra da',
+'pageinfo-contentpage-yes' => 'Ya',
+'pageinfo-protect-cascading-yes' => 'Ya',
 
 # Skin names
 'skinname-standard' => 'Standard',

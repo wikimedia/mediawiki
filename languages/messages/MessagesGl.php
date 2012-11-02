@@ -3059,7 +3059,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 
 # Info page
 'pageinfo-title' => 'Información sobre "$1"',
-'pageinfo-not-current' => 'Unicamente se pode mostrar a información sobre a revisión actual.',
+'pageinfo-not-current' => 'Sentímolo, non é posible achegar esa información sobre as revisións vellas.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de edicións',
 'pageinfo-header-restrictions' => 'Protección da páxina',
@@ -3175,7 +3175,7 @@ O seu sistema pode quedar comprometido se o executa.",
 'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando polo $1 ás $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'minutes-abbrev' => '$1min',
+'minutes-abbrev' => '$1 min',
 'seconds' => '{{PLURAL:$1|$1 segundo|$1 segundos}}',
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 horas}}',

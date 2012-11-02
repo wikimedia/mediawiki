@@ -510,7 +510,7 @@ $messages = array(
 'vector-action-protect' => 'Захистити',
 'vector-action-undelete' => 'Відновити',
 'vector-action-unprotect' => 'Зміна захисту',
-'vector-simplesearch-preference' => 'Увімкнути розширені пошукові підказки (лише для оформлення "Векторне")',
+'vector-simplesearch-preference' => 'Увімкнути спрощене поле пошуку (лише для оформлення "Векторне")',
 'vector-view-create' => 'Створити',
 'vector-view-edit' => 'Редагувати',
 'vector-view-history' => 'Переглянути історію',
@@ -679,9 +679,9 @@ $1',
 'dberrortext' => 'Знайдено синтаксичну помилку в запиті до бази даних.
 Це може вказувати на помилку в програмному забезпеченні.
 Останній запит до бази даних:
-<blockquote><tt>$1</tt></blockquote>
-відбувся з функції "<tt>$2</tt>".
-База даних виявила помилку "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+відбувся з функції "<code>$2</code>".
+База даних виявила помилку "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Знайдено синтаксичну помилку в запиті до бази даних.
 Останній запит до бази даних:
 «$1»
@@ -736,7 +736,7 @@ $1',
 'protectedpagetext' => 'Ця сторінка закрита для редагування.',
 'viewsourcetext' => 'Ви можете переглянути та скопіювати початковий текст цієї сторінки:',
 'viewyourtext' => "Ви можете переглянути та скопіювати текст '''ваших редагувань''' на цій сторінці:",
-'protectedinterface' => 'Ця сторінка є частиною інтерфейсу програмного забезпечення і її можуть редагувати лише адміністратори проекту.',
+'protectedinterface' => 'Ця сторінка є частиною інтерфейсу програмного забезпечення цієї вікі і її можуть редагувати лише адміністратори проекту. Щоб додати або змінити переклади для усіх вікі, відвідайте [//translatewiki.net/ translatewiki.net], проект локалізації MediaWiki.',
 'editinginterface' => "'''Увага:''' Ви редагуєте сторінку, що є частиною текстового інтерфейсу. Зміни цієї сторінки спричинять зміну інтерфейсу для інших користувачів. Для перекладу повідомлення використовуйте [//translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проект, що займається локалізацією MediaWiki.",
 'sqlhidden' => '(SQL запит приховано)',
 'cascadeprotected' => 'Сторінка захищена від змін, оскільки її включено до {{PLURAL:$1|сторінки, для якої|наступних сторінок, для яких}} установлено каскадний захист: $2',
@@ -1135,6 +1135,15 @@ $2
 'edit-already-exists' => 'Неможливо створити нову сторінку.
 Вона вже існує.',
 'defaultmessagetext' => 'Текст «за замовчування»',
+'content-failed-to-parse' => 'Не вдалось проаналізувати $2 як тип $1: $3',
+'invalid-content-data' => 'Неприпустимі дані',
+'content-not-allowed-here' => 'Вміст «$1» недопустимий на сторінці [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'вікітекст',
+'content-model-text' => 'звичайний текст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Увага: Ця сторінка містить дуже багато викликів ресурсомістких функцій.
@@ -1291,9 +1300,11 @@ $1",
 'revdelete-concurrent-change' => 'Помилка редагування запису від $2, $1: його стан змінений кимось іншим, поки ви робили свої зміни.
 Будь ласка, перевірте журнал.',
 'revdelete-only-restricted' => 'Помилка приховання запису від $2, $1: ви не можете приховати записи від перегляду адміністраторів без одночасного вибору однієї з інших опцій приховання.',
-'revdelete-reason-dropdown' => '* Типові причини вилучення
+'revdelete-reason-dropdown' => "* Типові причини вилучення
 ** Порушення авторських прав
-** Недоречна особиста інформація',
+** Недоречна особиста інформація
+** Невідповідне ім'я користувача
+** Потенційно наклепна інформація",
 'revdelete-otherreason' => 'Інша/додаткова причина:',
 'revdelete-reasonotherlist' => 'Інша причина',
 'revdelete-edit-reasonlist' => 'Редагувати причини вилучень',
@@ -2140,7 +2151,9 @@ $1',
 
 'disambiguations' => 'Сторінки, що посилаються на сторінки неоднозначності.',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Наступні сторінки посилаються на '''багатозначні сторінки'''. Однак вони, ймовірно, повинні вказувати на відповідну конкретну статтю.<br />Сторінка вважається багатозначною, якщо на ній розміщений шаблон, назва якого є на сторінці [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Наступні сторінки посилаються на '''багатозначні сторінки'''. 
+Ймовірно, вони повинні вказувати на відповідну конкретну статтю.<br />
+Сторінка вважається багатозначною, якщо на ній розміщений шаблон, назва якого є на сторінці [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Подвійні перенаправлення',
 'doubleredirectstext' => 'На цій сторінці наведено список перенаправлень на інші перенаправлення.
@@ -2902,6 +2915,7 @@ $1',
 'immobile-target-namespace-iw' => 'Інтервікі-посилання не підходить для перейменування сторінки.',
 'immobile-source-page' => 'Цю сторінку не можна перейменувати.',
 'immobile-target-page' => 'Не можна присвоїти сторінці цю назву.',
+'bad-target-model' => 'Неможливо перетворити $1 на $2: несумісні моделі даних.',
 'imagenocrossnamespace' => 'Неможливо дати файлові назву з іншого простору назв',
 'nonfile-cannot-move-to-file' => 'Не можна перейменовувати сторінки з інших просторів назв на файли',
 'imagetypemismatch' => 'Нове розширення файлу не співпадає з його типом',
@@ -3187,6 +3201,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-default-sort' => 'Ключ сортування за замовчуванням',
 'pageinfo-length' => 'Довжина сторінки (в байтах)',
 'pageinfo-article-id' => 'ID сторінки',
+'pageinfo-language' => 'Мова вмісту сторінки',
 'pageinfo-robot-policy' => 'Індексація пошуковими системами',
 'pageinfo-robot-index' => 'Індексується',
 'pageinfo-robot-noindex' => 'Не індексується',
@@ -3207,6 +3222,13 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Прихована категорія|Приховані категорії}} ($1)',
 'pageinfo-templates' => 'Включено {{PLURAL:$1|шаблон|шаблонів}} ($1)',
 'pageinfo-toolboxlink' => 'Інформація про сторінку',
+'pageinfo-redirectsto' => 'Перенаправляє на',
+'pageinfo-redirectsto-info' => 'інформація',
+'pageinfo-contentpage' => 'Рахується як стаття',
+'pageinfo-contentpage-yes' => 'Так',
+'pageinfo-protect-cascading' => 'Звідси розпочинається каскадний захист',
+'pageinfo-protect-cascading-yes' => 'Так',
+'pageinfo-protect-cascading-from' => 'Каскадний захист починається тут',
 
 # Skin names
 'skinname-standard' => 'Стандартне',
@@ -3883,6 +3905,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding» вимкнено]',
 'scarytranscludefailed' => '[Помилка звертання до шаблону $1]',
+'scarytranscludefailed-httpstatus' => '[Не вдалось завантажити шаблон для $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL дуже довгий]',
 
 # Delete conflict
@@ -4070,6 +4093,7 @@ $5
 'version-license' => 'Ліцензія',
 'version-poweredby-credits' => "Ця Вікі працює на системі управління вмістом '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'інші',
+'version-credits-summary' => 'Нам хотілося б відзначити наступних осіб, що зробили внесок у [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki є вільним програмним забезпеченням, ви можете розповсюджувати та/або модифікувати його відповідно до умов GNU General Public License, яка опублікованя фондом вільного програмного забезпечення; або версії 2 Ліцензії, або (на Ваш розсуд) будь-якої наступної версії. 
 
 MediaWiki поширюється в надії, що вона буде корисною, але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ, навіть без неявної гарантії КОМЕРЦІЙНОЇ ПРИДАТНОСТІ чи ПРИДАТНОСТІ ДЛЯ ПЕВНОЇ МЕТИ. Дивіться GNU General Public License для більш докладної інформації. 

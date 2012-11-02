@@ -1694,6 +1694,8 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ zu „$3“',
 'rightslogentry-autopromote' => 'wurde automatisch von „$2“ zu „$3“ zugeordnet',
+'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
+'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
 'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3179,7 +3181,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',
-'pageinfo-not-current' => 'Diese Informationen können nur für die aktuelle Version angezeigt werden.',
+'pageinfo-not-current' => 'Diese Information kann leider nicht für alte Versionen zur Verfügung gestellt werden.',
 'pageinfo-header-basic' => 'Basisinformationen',
 'pageinfo-header-edits' => 'Bearbeitungsgeschichte',
 'pageinfo-header-restrictions' => 'Seitenschutz',
