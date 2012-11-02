@@ -594,7 +594,7 @@ abstract class ContentHandler {
 	 *
 	 * This default implementation just returns $wgContLang (except for pages in the MediaWiki namespace)
 	 *
-	 * Note that the pages language is not cacheable, since it may in some cases depend on user settings.
+	 * Note that the page's language is not cacheable, since it may in some cases depend on user settings.
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
@@ -607,52 +607,15 @@ abstract class ContentHandler {
 	 * @return Language the page's language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang, $wgLang;
-		$pageLang = $wgContLang;
-
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			$pageLang = wfGetLangObj( $lang );
+			return wfGetLangObj( $lang );
 		}
-
+		global $wgContLang, $wgLang;
+		$pageLang = $wgContLang;
 		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
 		return wfGetLangObj( $pageLang );
-	}
-
-	/**
-	 * Get the language in which the content of this page is written when
-	 * viewed by user. Defaults to $this->getPageLanguage(), but if the user
-	 * specified a preferred variant, the variant will be used.
-	 *
-	 * This default implementation just returns $this->getPageLanguage( $title, $content ) unless
-	 * the user specified a preferred variant.
-	 *
-	 * Note that the pages view language is not cacheable, since it depends on user settings.
-	 *
-	 * Also note that the page language may or may not depend on the actual content of the page,
-	 * that is, this method may load the content in order to determine the language.
-	 *
-	 * @since 1.21
-	 *
-	 * @param Title        $title the page to determine the language for.
-	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
-	 *
-	 * @return Language the page's language for viewing
-	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		$pageLang = $this->getPageLanguage( $title, $content );
-
-		if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
-			// If the user chooses a variant, the content is actually
-			// in a language whose code is the variant code.
-			$variant = $pageLang->getPreferredVariant();
-			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = Language::factory( $variant );
-			}
-		}
-
-		return $pageLang;
 	}
 
 	/**

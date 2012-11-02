@@ -22,24 +22,13 @@ class JavaScriptContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Returns the english language, because JS is english, and should be handled as such.
+	 * Returns the English language, because JS is English, and should be handled as such.
 	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
-	}
-
-	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
-	 *
-	 * @return Language wfGetLangObj( 'en' )
-	 *
-	 * @see ContentHandler::getPageViewLanguage()
-	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
 }

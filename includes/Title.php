@@ -4691,46 +4691,34 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang;
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
+			// note that these are not wikitext pages so this isn't in ContentHandler
+			global $wgLang;
 			return $wgLang;
 		}
-
-		//TODO: use the LinkCache to cache this! Note that this may depend on user settings, so the cache should be only per-request.
-		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
+		// TODO: use the LinkCache to cache this!
+		// Note that this may depend on user settings, so the cache should be only per-request.
+		// NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageLanguage( $this );
-
-		return wfGetLangObj( $pageLang );
+		return $contentHandler->getPageLanguage( $this );
 	}
 
 	/**
 	 * Get the language in which the content of this page is written when
-	 * viewed by user. Defaults to $wgContLang, but in certain cases it can be
-	 * e.g. $wgLang (such as special pages, which are in the user language).
+	 * viewed by user. If the user chooses a variant, the content may be
+	 * converted by the LanguageConverter and is actually in a language
+	 * whose code is the variant code.
 	 *
 	 * @since 1.20
 	 * @return Language
 	 */
 	public function getPageViewLanguage() {
-		global $wgLang;
-
-		if ( $this->isSpecialPage() ) {
-			// If the user chooses a variant, the content is actually
-			// in a language whose code is the variant code.
-			$variant = $wgLang->getPreferredVariant();
-			if ( $wgLang->getCode() !== $variant ) {
-				return Language::factory( $variant );
-			}
-
-			return $wgLang;
+		$lang = $this->getPageLanguage();
+		$variant = $lang->getPreferredVariant();
+		if ( $lang->getCode() !== $variant ) {
+			return Language::factory( $variant );
 		}
-
-		//NOTE: can't be cached persistently, depends on user settings
-		//NOTE: ContentHandler::getPageViewLanguage() may need to load the content to determine the page language!
-		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageViewLanguage( $this );
-		return $pageLang;
+		return $lang;
 	}
 }
