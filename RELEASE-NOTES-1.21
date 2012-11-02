@@ -16,6 +16,8 @@ production.
 * (bug 39957) Added $wgUnwatchedPageThreshold, specifying minimum count
   of page watchers required for the number to be accessible to users
   without the unwatchedpages permission.
+* $wgPageInfoTransclusionLimit limits the list size of transcluded articles
+  on the info action. Default is 50.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and

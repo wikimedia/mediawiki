@@ -363,6 +363,7 @@ See also:
 * {{msg-mw|Anontalk}}
 * {{msg-mw|Accesskey-pt-anontalk}}
 * {{msg-mw|Tooltip-pt-anontalk}}',
+'morenotlisted' => 'An indication that more of a certain list is not shown.',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 
 {{Identical|Navigation}}',
@@ -6444,6 +6445,8 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
+'pageinfo-transclusions' => 'The list of pages on which this page is transcluded. Parameters:
+* $1 is the number of pages the current page is transcluded on.',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
 'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect. Verb. See [http://en.wikipedia.org/w/index.php?title=Main_page&action=info example].',
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.',
