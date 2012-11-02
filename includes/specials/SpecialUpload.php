@@ -312,12 +312,12 @@ class SpecialUpload extends SpecialPage {
 		$this->showUploadForm( $form );
 	}
 	/**
-	 * Stashes the upload, shows the main form, but adds an "continue anyway button".
+	 * Stashes the upload, shows the main form, but adds a "continue anyway button".
 	 * Also checks whether there are actually warnings to display.
 	 *
 	 * @param $warnings Array
 	 * @return boolean true if warnings were displayed, false if there are no
-	 * 	warnings and the should continue processing like there was no warning
+	 *         warnings and it should continue processing
 	 */
 	protected function showUploadWarning( $warnings ) {
 		# If there are no warnings, or warnings we can ignore, return early.
@@ -336,6 +336,9 @@ class SpecialUpload extends SpecialPage {
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
 			. '<ul class="warning">';
 		foreach( $warnings as $warning => $args ) {
+			if( $warning == 'badfilename' ) {
+				$this->mDesiredDestName = Title::makeTitle( NS_FILE, $args )->getText();
+			}
 			if( $warning == 'exists' ) {
 				$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
 			} elseif( $warning == 'duplicate' ) {
