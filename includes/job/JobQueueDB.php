@@ -340,7 +340,7 @@ class JobQueueDB extends JobQueue {
 			'job_id'        => $dbw->nextSequenceValue( 'job_job_id_seq' ),
 			'job_timestamp' => $dbw->timestamp(),
 			'job_sha1'      => wfBaseConvert( sha1( serialize( $descFields ) ), 16, 36, 32 ),
-			'job_random'    => mt_rand( 0, self::MAX_JOB_RANDOM )
+			'job_random'    => $random
 		);
 		return ( $descFields + $metaFields );
 	}
