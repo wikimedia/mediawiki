@@ -353,7 +353,7 @@ $messages = array(
 
 'underline-always' => 'Tım',
 'underline-never' => 'Qet',
-'underline-default' => 'Qerar cıgeyrayoği dest dero',
+'underline-default' => 'Hesıbyaye cild ya zi cıgeyrayoğ',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Cayê vurnayışi de terzê nuştışi:',
@@ -439,7 +439,7 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '(Window da newi de abena)',
+'newwindow' => '(pençereyê newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
 'mypage' => 'Pela mı',
@@ -1606,6 +1606,9 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rightslogtext' => 'Ena listeyê loganê ke heqqa karbaranî mucneno.',
 'rightslogentry' => 'eza biyayişê grupî $1 ra $2 rê $3î bivurne',
 'rightslogentry-autopromote' => '$2 otomatikmen gırdkerdışi ra kerd $3.',
+'logentry-rights-rights' => '$1 qande $3 ezayina grube $4 ra $5 vurne',
+'logentry-rights-rights-legacy' => '$1 qande $3 ezayina gruber vurne',
+'logentry-rights-autopromote' => '$1 otomatikmen $4 ra terfiya cı eşte $5',
 'rightsnone' => '(çino)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2151,7 +2154,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'newpages' => 'Pelê newey',
 'newpages-username' => 'Nameyê karberi:',
 'ancientpages' => 'Wesiqeyê ke vurnayışê ciyê peyeni tewr kehani',
-'move' => 'Bere',
+'move' => 'Berdış',
 'movethispage' => 'Ena pele bere',
 'unusedimagestext' => 'Enê dosyey estê, feqet zerrey yew pele de wedardey niyê.
 Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gırê bê, u wına şenê verba gurênayışo feal de tiya hewna lista bê.',
@@ -3588,7 +3591,7 @@ mw.loader.using( 'jquery.cookie', function() {
 
 # Info page
 'pageinfo-title' => 'Heq tê "$1"\'i',
-'pageinfo-not-current' => 'Melumat tenya qandê çımraviyarnayışê rocaney mocniyeno.',
+'pageinfo-not-current' => 'Kısur mewni re, rewizyonan de verênan re enê melumata dayış mıkum niyo.',
 'pageinfo-header-basic' => 'Seron zanayış',
 'pageinfo-header-edits' => 'Vurnayışê verêni',
 'pageinfo-header-restrictions' => 'Sıtarkerdışê pele',

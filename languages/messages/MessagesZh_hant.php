@@ -258,7 +258,7 @@ $messages = array(
 
 'underline-always' => '總是使用',
 'underline-never' => '從不使用',
-'underline-default' => '瀏覽器預設',
+'underline-default' => '外觀或瀏覽器預設',
 
 # Font style option in Special:Preferences
 'editfont-style' => '編輯區字型樣式：',
@@ -1473,6 +1473,9 @@ $1",
 'rightslogtext' => '以下記錄了用戶權限的更改記錄。',
 'rightslogentry' => '將 $1 的權限從 $2 改為 $3',
 'rightslogentry-autopromote' => '自動由$2晉升至$3',
+'logentry-rights-rights' => '$1將$3的權限從$4改為$5',
+'logentry-rights-rights-legacy' => '$1更改$3的權限',
+'logentry-rights-autopromote' => '$1的權限自動從$4改為$5',
 'rightsnone' => '無',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2951,7 +2954,7 @@ $1被封禁的理由是“$2”',
 
 # Info page
 'pageinfo-title' => '“$1”的信息',
-'pageinfo-not-current' => '資訊可能只顯示在當前的修訂版本。',
+'pageinfo-not-current' => '抱歉，無法提供之前修訂版本的資訊。',
 'pageinfo-header-basic' => '基本資料',
 'pageinfo-header-edits' => '編輯歷史',
 'pageinfo-header-restrictions' => '保護頁面',

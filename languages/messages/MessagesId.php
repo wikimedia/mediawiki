@@ -982,8 +982,8 @@ Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbed
 Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:UserLogin/signup|membuat akun]] atau [[Special:UserLogin|masuk log]] untuk menghindari kerancuan dengan pengguna anonim lainnya di lain waktu.''",
 'noarticletext' => 'Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
-'noarticletext-nopermission' => 'Saat ini tidak ada teks di halaman ini.
-Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
+'noarticletext-nopermission' => '!Saat ini tidak ada teks di halaman ini.
+Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait]</span>, tapi anda tidak memiliki izin untuk membuat halaman ini',
 'missing-revision' => 'Revisi #$1 halaman berjudul "{{PAGENAME}}" tidak eksks.
 
 Hal ini biasanya disebabkan oleh tautan versi terdahulu menuju halaman yang sudah dihapus.

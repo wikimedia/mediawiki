@@ -316,7 +316,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
-'underline-default' => 'Mantieni le impostazioni del browser',
+'underline-default' => 'Mantieni le impostazioni del browser o della skin',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stile del carattere nella casella di modifica:',
@@ -1538,6 +1538,9 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'rightslogtext' => 'Di seguito sono elencate le modifiche ai diritti assegnati agli utenti.',
 'rightslogentry' => "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
 'rightslogentry-autopromote' => 'è stato/a automaticamente promosso/a da $2 a $3',
+'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
+'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",
+'logentry-rights-autopromote' => '$1 è stato/a automaticamente promosso/a da $4 a $5',
 'rightsnone' => '(nessuno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3002,7 +3005,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Info page
 'pageinfo-title' => 'Informazioni per "$1"',
-'pageinfo-not-current' => 'Le informazioni possono essere visualizzate solo per la versione corrente.',
+'pageinfo-not-current' => "Spiacente, ma è impossibile fornire quest'informazione per vecchie versioni.",
 'pageinfo-header-basic' => 'Informazioni di base',
 'pageinfo-header-edits' => 'Cronologia delle modifiche',
 'pageinfo-header-restrictions' => 'Protezione della pagina',

@@ -937,6 +937,7 @@ Si gouf anscheinend geläscht.",
 'edit-no-change' => 'Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 'defaultmessagetext' => 'Standardtext',
+'invalid-content-data' => 'Donnéeë vum Inhalt sinn net valabel',
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 
 # Content models
@@ -2909,7 +2910,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
-'pageinfo-not-current' => 'Dës Informatioune kënnen nëmme fir dës Versioun gewise ginn.',
+'pageinfo-not-current' => 'Pardon, et ass onméiglech dës Informatioun fir al Versiounen ze weisen.',
 'pageinfo-header-basic' => 'Basisinformatiounen',
 'pageinfo-header-edits' => 'Historique vun den Ännerungen',
 'pageinfo-header-restrictions' => 'Spär vun der Säit',
@@ -2918,6 +2919,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-default-sort' => 'Standard-Zortéierschlëssel',
 'pageinfo-length' => 'Gréisst vun der Säit (a Bytes)',
 'pageinfo-article-id' => 'ID (Nummer) vun der Säit',
+'pageinfo-language' => 'Sprooch vum Inhalt vun der Säit',
 'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-watchers' => "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
 'pageinfo-redirects-name' => 'Viruleedungen op dës Säit',

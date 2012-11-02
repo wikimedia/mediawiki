@@ -406,7 +406,7 @@ $messages = array(
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Valor predeterminado del navegador',
+'underline-default' => 'Aspecto (skin) o navegador predeterminado',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Estilo de tipografía del área de edición:',
@@ -1663,6 +1663,9 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'rightslogtext' => 'Este es un registro de cambios en los permisos de usuarios.',
 'rightslogentry' => 'modificó los grupos a los que pertenece $1: de $2 a $3',
 'rightslogentry-autopromote' => 'fue promovido automáticamente desde $2 a $3',
+'logentry-rights-rights' => '$1 modificó la pertenencia a grupos para $3, de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
+'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
 'rightsnone' => '(ninguno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3159,7 +3162,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',
-'pageinfo-not-current' => 'Únicamente se puede mostrar la información para la revisión actual.',
+'pageinfo-not-current' => 'Lo sentimos, no es posible mostrar esta información para las revisiones antiguas.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de ediciones',
 'pageinfo-header-restrictions' => 'Protección de página',

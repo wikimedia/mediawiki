@@ -410,7 +410,7 @@ $messages = array(
 
 'underline-always' => '常に付ける',
 'underline-never' => '常に付けない',
-'underline-default' => 'ブラウザーの設定を使用',
+'underline-default' => '外装またはブラウザーの既定値を使用',
 
 # Font style option in Special:Preferences
 'editfont-style' => '編集エリアのフォント:',
@@ -1442,7 +1442,7 @@ $1",
 'showingresults' => "'''$2''' 件目以降の最大 {{PLURAL:$1|'''$1''' 件の結果}}を表示しています。",
 'showingresultsnum' => "'''$2''' 件目以降の {{PLURAL:$3|'''$3''' 件の結果}}を表示しています。",
 'showingresultsheader' => "「'''$4'''」の検索結果 {{PLURAL:$5|'''$3''' 件中の '''$1''' 件目|'''$3''' 件中の '''$1''' 件目から '''$2''' 件目}}",
-'nonefound' => "'''注意'''：既定では一部の名前空間のみを検索します。
+'nonefound' => "'''注意''': 既定では一部の名前空間のみを検索します。
 ''all:''を前に付けると、すべて（トークページやテンプレートなどを含む）を対象にできます。検索する名前空間を前に付けることもできます。",
 'search-nonefound' => '問い合わせに合致する検索結果はありませんでした。',
 'powersearch' => '高度な検索',
@@ -1503,7 +1503,7 @@ $1",
 'rows' => '行数:',
 'columns' => '列数:',
 'searchresultshead' => '検索',
-'resultsperpage' => '1ページあたりの表示件数：',
+'resultsperpage' => '1 ページあたりの表示件数:',
 'stub-threshold' => '<a href="#" class="stub">スタブリンク</a>として表示する閾値 (バイト):',
 'stub-threshold-disabled' => '無効',
 'recentchangesdays' => '最近の更新に表示する日数:',
@@ -1512,7 +1512,7 @@ $1",
 'prefs-help-recentchangescount' => 'この設定は最近の更新、ページの履歴、および記録に適用されます。',
 'prefs-help-watchlist-token' => 'この欄に秘密鍵を入力すると、あなたのウォッチリストのRSSフィードが生成されます。
 この欄に入力されている鍵を知っている人は誰でもこのウォッチリストを閲覧できるようになるため、他人に分からない値を選んでください。
-乱数によって生成された次の値を使うこともできます：$1',
+乱数によって生成された次の値を使うこともできます: $1',
 'savedprefs' => '個人設定を保存しました。',
 'timezonelegend' => 'タイムゾーン:',
 'localtime' => 'ローカルの時刻:',
@@ -1565,7 +1565,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'gender-unknown' => '未指定',
 'gender-male' => '男',
 'gender-female' => '女',
-'prefs-help-gender' => '省略可：ソフトウェアによる文法的性の解決に使用されます。
+'prefs-help-gender' => '省略可: ソフトウェアによる文法的性の解決に使用されます。
 この情報は公開されます。',
 'email' => 'メール',
 'prefs-help-realname' => '本名は省略できます。
@@ -1596,19 +1596,19 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 # User rights
 'userrights' => '利用者権限を管理',
 'userrights-lookup-user' => '利用者グループを管理',
-'userrights-user-editname' => '利用者名を入力：',
+'userrights-user-editname' => '利用者名を入力:',
 'editusergroup' => '利用者グループを編集',
 'editinguser' => "利用者''' [[User:$1|$1]]''' $2 の権限を変更",
 'userrights-editusergroup' => '利用者グループを編集',
 'saveusergroups' => '利用者グループを保存',
-'userrights-groupsmember' => '所属グループ：',
-'userrights-groupsmember-auto' => '自動的に付与される権限：',
+'userrights-groupsmember' => '所属グループ:',
+'userrights-groupsmember-auto' => '自動的に付与される権限:',
 'userrights-groupsmember-type' => '$1',
 'userrights-groups-help' => 'この利用者が属するグループを変更できます。
 * チェックが入っているボックスは、この利用者がそのグループに属していることを意味します。
 * チェックが入っていないボックスは、この利用者がそのグループに属していないことを意味します。
 * 「*」はグループに一旦追加した場合に除去（あるいはその逆）ができないことを示しています。',
-'userrights-reason' => '理由：',
+'userrights-reason' => '理由:',
 'userrights-no-interwiki' => '他ウィキ上における利用者権限の編集権限はありません。',
 'userrights-nodatabase' => 'データベース$1は存在しないか、ローカル上にありません。',
 'userrights-nologin' => '利用者権限を付与するには、管理者アカウントで[[Special:UserLogin|ログイン]]する必要があります。',
@@ -1708,6 +1708,9 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'rightslogtext' => '以下は利用者権限の変更記録です。',
 'rightslogentry' => '$1 の所属グループを $2 から $3 に変更しました',
 'rightslogentry-autopromote' => '$2 から $3 に自動的に昇格しました',
+'logentry-rights-rights' => '$1 が $3 の所属グループを $4 から $5 に変更しました',
+'logentry-rights-rights-legacy' => '$1 が $3 の所属グループを変更しました',
+'logentry-rights-autopromote' => '$1 が $4 から $5 に自動的に昇格しました',
 'rightsnone' => '(なし)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1793,7 +1796,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に変更はありませんでした。',
 'recentchangeslinked-summary' => "これは指定したページからリンクされている（または指定したカテゴリに含まれている）ページの最近の変更の一覧です。
 [[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''で表示されます。",
-'recentchangeslinked-page' => 'ページ名：',
+'recentchangeslinked-page' => 'ページ名:',
 'recentchangeslinked-to' => '指定したページの「リンク元」ページの変更を表示',
 
 # Upload
@@ -1806,9 +1809,9 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'upload_directory_missing' => 'アップロード先ディレクトリ ($1) が見つかりませんでした。ウェブ サーバーによる作成もできませんでした。',
 'upload_directory_read_only' => 'アップロード先ディレクトリ（$1）には、ウェブサーバーが書き込めません。',
 'uploaderror' => 'アップロードのエラー',
-'upload-recreate-warning' => "'''警告：その名前のファイルは、以前に削除または移動されています。'''
+'upload-recreate-warning' => "'''警告: その名前のファイルは、以前に削除または移動されています。'''
 
-参考のため、このページの削除と移動の記録を以下に示します：",
+参考のため、このページの削除と移動の記録を以下に示します:",
 'uploadtext' => "ファイルをアップロードするには、以下のフォームを使用してください。
 以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用してください。(再) アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 

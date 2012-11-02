@@ -1674,6 +1674,9 @@ $1",
 'rightslogtext' => 'Ова е дневник на промени на кориснички права.',
 'rightslogentry' => 'Променето членство во група за $1 од $2 во $3',
 'rightslogentry-autopromote' => 'е автоматски унапреден од $2 во $3',
+'logentry-rights-rights' => '$1 го смени групното членство за $3 од $4 во $5',
+'logentry-rights-rights-legacy' => '$1 го смени групното членство за $3',
+'logentry-rights-autopromote' => '$1 е автоматски унапреден од $4 во $5',
 'rightsnone' => '(нема)',
 
 # Associated actions - in the sentence "You do not have permission to X"

@@ -1584,8 +1584,11 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 # User rights log
 'rightslog' => 'Nhật trình cấp quyền thành viên',
 'rightslogtext' => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
-'rightslogentry' => 'đã đổi cấp của thành viên $1 từ $2 thành $3',
+'rightslogentry' => 'đã đổi các nhóm liên kết của thành viên $1 từ $2 thành $3',
 'rightslogentry-autopromote' => 'được tự động phong cấp từ $2 đến $3',
+'logentry-rights-rights' => '$1 đã đổi các nhóm liên kết của $3 từ $4 đến $5',
+'logentry-rights-rights-legacy' => '$1 đã đổi các nhóm liên kết của $3',
+'logentry-rights-autopromote' => '$1 đã được tự động phong cấp từ $4 đến $5',
 'rightsnone' => '(không có)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3083,7 +3086,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Info page
 'pageinfo-title' => 'Thông tin về “$1”',
-'pageinfo-not-current' => 'Thông tin được hiển thị có thể chỉ có liên quan đến phiên bản hiện hành.',
+'pageinfo-not-current' => 'Rất tiếc, không thể cung cấp các chi tiết này đối với các phiên bản cũ.',
 'pageinfo-header-basic' => 'Thông tin cơ bản',
 'pageinfo-header-edits' => 'Lịch sử sửa đổi',
 'pageinfo-header-restrictions' => 'Mức khóa trang',

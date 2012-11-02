@@ -399,7 +399,7 @@ $messages = array(
 
 'underline-always' => 'תמיד',
 'underline-never' => 'לעולם לא',
-'underline-default' => 'ברירת מחדל של הדפדפן',
+'underline-default' => 'ברירת מחדל של העיצוב או של הדפדפן',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'הגופן בתיבת העריכה:',
@@ -1664,6 +1664,9 @@ $1",
 'rightslogtext' => 'זהו יומן השינויים בתפקידי המשתמשים.',
 'rightslogentry' => 'שינה את ההרשאות של $1 מ$2 ל$3',
 'rightslogentry-autopromote' => 'קודם אוטומטית מ$2 ל$3',
+'logentry-rights-rights' => '$1 שינה את ההרשאות של $3 מ$4 ל$5',
+'logentry-rights-rights-legacy' => '$1 שינה את ההרשאות של $3',
+'logentry-rights-autopromote' => '$1 קודם אוטומטית מ$4 ל$5',
 'rightsnone' => '(כלום)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3173,7 +3176,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'מידע על "$1"',
-'pageinfo-not-current' => 'המידע יכול להיות מוצג רק עבור הגרסה הנוכחית.',
+'pageinfo-not-current' => 'מצטערים, לא ניתן להציג את המידע הזה לגרסאות ישנות.',
 'pageinfo-header-basic' => 'מידע בסיסי',
 'pageinfo-header-edits' => 'היסטוריית עריכות',
 'pageinfo-header-restrictions' => 'הגנה על הדף',

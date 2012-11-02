@@ -3021,7 +3021,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Інфармацыя пра «$1»',
-'pageinfo-not-current' => 'Інфармацыя паказываецца толькі для бягучай вэрсіі.',
+'pageinfo-not-current' => 'Даруйце, мы ня можам падаць гэтыя зьвесткі для старых вэрсіяў.',
 'pageinfo-header-basic' => 'Асноўныя зьвесткі',
 'pageinfo-header-edits' => 'Рэдагаваньні',
 'pageinfo-header-restrictions' => 'Абарона старонкі',

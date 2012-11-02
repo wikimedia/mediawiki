@@ -1065,6 +1065,12 @@ $2
 'edit-already-exists' => '不可以建立一个新页面。
 它已经存在。',
 'defaultmessagetext' => '默认消息文本',
+'invalid-content-data' => '无效的内容数据',
+
+# Content models
+'content-model-text' => '纯文本',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警告：这个页面有太多高昂的语法功能调用。
@@ -3001,6 +3007,7 @@ $1被封禁的理由是：“$2”',
 
 # Info page
 'pageinfo-title' => '“$1”的信息',
+'pageinfo-not-current' => '只能显示当前修订版本的信息。',
 'pageinfo-header-basic' => '基本信息',
 'pageinfo-header-edits' => '编辑历史',
 'pageinfo-header-restrictions' => '页面保护',
@@ -3009,6 +3016,7 @@ $1被封禁的理由是：“$2”',
 'pageinfo-default-sort' => '默认排序键',
 'pageinfo-length' => '页面长度（字节）',
 'pageinfo-article-id' => '页面ID',
+'pageinfo-language' => '页面内容语言',
 'pageinfo-robot-policy' => '搜索引擎状态',
 'pageinfo-robot-index' => '可索引',
 'pageinfo-robot-noindex' => '不可索引',
@@ -3029,6 +3037,12 @@ $1被封禁的理由是：“$2”',
 'pageinfo-hidden-categories' => '隐藏分类（$1）',
 'pageinfo-templates' => '使用的模板（$1）',
 'pageinfo-toolboxlink' => '页面信息',
+'pageinfo-redirectsto' => '重定向到',
+'pageinfo-redirectsto-info' => '信息',
+'pageinfo-contentpage' => '计算为内容页',
+'pageinfo-contentpage-yes' => '是',
+'pageinfo-protect-cascading' => '从这里开始连锁保护',
+'pageinfo-protect-cascading-yes' => '是',
 
 # Skin names
 'skinname-standard' => '标准',
@@ -3626,6 +3640,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',
 'scarytranscludefailed' => '[提取$1失败]',
+'scarytranscludefailed-httpstatus' => '[模板$1读取失败：HTTP $2]',
 'scarytranscludetoolong' => '[URL过长]',
 
 # Delete conflict
@@ -3741,6 +3756,7 @@ $5
 'version-license' => '授权协议',
 'version-poweredby-credits' => "本Wiki由'''[//www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
+'version-credits-summary' => '我们感谢下列人士为[[Special:Version|MediaWiki]]作出的贡献。',
 'version-license-info' => 'MediaWiki为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款规定，就本程序再为发布与／或修改；无论您依据的是本授权的第二版或（您自行选择的）任一日后发行的版本。
 
 MediaWiki是基于使用目的而加以发布，然而不负任何担保责任；亦无对适售性或特定目的适用性所为的默示性担保。详情请参照GNU通用公共授权。
