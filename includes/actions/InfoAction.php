@@ -300,6 +300,24 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
+		if ( $title->getNamespace() == NS_CATEGORY ) {
+			$category = Category::newFromTitle( $title );
+			$pageInfo['category-info'] = array(
+				array(
+					$this->msg( 'pageinfo-category-pages' )->escaped(),
+					$lang->formatNum( $category->getPageCount() )
+				),
+				array(
+					$this->msg( 'pageinfo-category-subcats' )->escaped(),
+					$lang->formatNum( $category->getSubcatCount() )
+				),
+				array(
+					$this->msg( 'pageinfo-category-files' )->escaped(),
+					$lang->formatNum( $category->getFileCount() )
+				)
+			);
+		}
+
 		// Page protection
 		$pageInfo['header-restrictions'] = array();
 
