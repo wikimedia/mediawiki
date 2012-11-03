@@ -277,21 +277,35 @@ class SpecialStatistics extends SpecialPage {
 		return $text;
 	}
 
+	/**
+	 * Conversion of external statstics into an internal representation
+	 *
+	 * Following a pattern like [<header-message>][<item-message>] = number
+	 *
+	 * @since 1.21
+	 *
+	 * @param array $stats
+	 * @return string
+	 */
 	private function getOtherStats( $stats ) {
-		if ( !count( $stats ) )
+		if ( $stats === array() ){
 			return '';
+		} else {
+			$return = '';
 
-		$return = Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-hooks' )->parse() ) .
-			Xml::closeElement( 'tr' );
+			foreach( $stats as $header => $items ) {
+					$return = Xml::openElement( 'tr' ) .
+							Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( $header )->parse() ) .
+							Xml::closeElement( 'tr' );
 
-		foreach( $stats as $name => $number ) {
-			$name = htmlspecialchars( $name );
-			$number = htmlspecialchars( $number );
+				foreach( $items as $key => $value ) {
+					$name = $this->msg( $key )->inContentLanguage()->parse();
+					$number = htmlspecialchars( $value );
 
-			$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+				}
+			}
+			return $return;
 		}
-
-		return $return;
 	}
 }
