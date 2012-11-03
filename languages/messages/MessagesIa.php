@@ -190,7 +190,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunquam',
-'underline-default' => 'Secundo le configuration del navigator',
+'underline-default' => 'Como definite per tu navigator o apparentia',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stilo de litteras del area de modification:',
@@ -1475,6 +1475,9 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'rightslogtext' => 'Isto es un registro de cambios in derectos de usator.',
 'rightslogentry' => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
 'rightslogentry-autopromote' => 'ha essite automaticamente promovite de $2 a $3',
+'logentry-rights-rights' => '$1 cambiava le appertinentia a gruppos pro $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 cambiava le appertinentia a gruppos pro $3',
+'logentry-rights-autopromote' => '$1 ha essite automaticamente promovite de $4 a $5',
 'rightsnone' => '(nulle)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3006,7 +3009,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 
 # Info page
 'pageinfo-title' => 'Informationes pro "$1"',
-'pageinfo-not-current' => 'Information pote esser monstrate solmente pro le version actual.',
+'pageinfo-not-current' => 'Regrettabilemente, il es impossibile fornir iste information pro versiones ancian.',
 'pageinfo-header-basic' => 'Information de base',
 'pageinfo-header-edits' => 'Historia de modificationes',
 'pageinfo-header-restrictions' => 'Protection del pagina',

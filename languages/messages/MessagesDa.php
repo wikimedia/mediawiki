@@ -2913,7 +2913,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
-'pageinfo-not-current' => 'Oplysninger vises kun for den aktuelle version.',
+'pageinfo-not-current' => 'Beklager, det er umuligt at give denne information for gamle udgaver.',
 'pageinfo-header-basic' => 'Grundlæggende oplysninger',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',

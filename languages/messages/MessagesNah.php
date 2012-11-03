@@ -1280,7 +1280,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-n-portal' => 'Tlachīhualiztechcopa, inōn tihuelīti titlachīhua, tlatēmoyān',
 'tooltip-n-recentchanges' => 'Yancuīc tlapatlaliztli huiquipan',
 'tooltip-n-randompage' => 'Tiquittāz cē zāzotlein zāzanilli',
-'tooltip-n-help' => 'Tlamachtiyān.',
+'tooltip-n-help' => 'In tēmachtīlōyān',
 'tooltip-t-whatlinkshere' => 'Mochīntīn zāzaniltin huiquipan quitzonhuiliah nicān',
 'tooltip-t-recentchangeslinked' => 'Yancuīc tlapatlaliztli inīn zāzanilhuīcpa moquintzonhuilia',
 'tooltip-feed-rss' => 'RSS tlachicāhualiztli inīn zāzaniltechcopa',

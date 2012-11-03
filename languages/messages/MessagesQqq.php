@@ -3566,7 +3566,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-header-properties' => 'Table section header in action=info.',
 'pageinfo-display-title' => 'The title that is displayed when the page is viewed.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
-'pageinfo-length' => 'પૃષ્ઠની લંબાઇ બાઇટમાં',
+'pageinfo-length' => 'The length of the page, in bytes.',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
 'pageinfo-language' => 'Language in which the page content is written.',
 'pageinfo-robot-policy' => 'The search engine status of the page.

@@ -359,7 +359,7 @@ $messages = array(
 
 'underline-always' => 'Aina',
 'underline-never' => 'Ei koskaan',
-'underline-default' => 'Selaimen oletustapa',
+'underline-default' => 'Ulkoasun tai selaimen oletustapa',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Muokkauskentän kirjasintyyppi',

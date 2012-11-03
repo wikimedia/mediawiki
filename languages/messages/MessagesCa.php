@@ -242,7 +242,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
-'underline-default' => 'Configuració per defecte del navegador',
+'underline-default' => 'Per defecte del navegador',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Editeu l'estil de la lletra:",
@@ -2935,7 +2935,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 
 # Info page
 'pageinfo-title' => 'Informació de «$1»',
-'pageinfo-not-current' => 'Només es pot visualitzar la informació per a la revisió actual.',
+'pageinfo-not-current' => 'Només es pot visualitzar la informació de la revisió actual.',
 'pageinfo-header-basic' => 'Informació bàsica',
 'pageinfo-header-edits' => "Historial d'edicions",
 'pageinfo-header-restrictions' => 'Protecció de pàgina',

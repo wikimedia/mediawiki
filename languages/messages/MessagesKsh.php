@@ -3212,7 +3212,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 
 # Info page
 'pageinfo-title' => 'Övver di Sigg: „$1“',
-'pageinfo-not-current' => 'Esu en Aanjaabe künne mer bloß övver de Neuste Version vun dä Sigg maache.',
+'pageinfo-not-current' => 'Esu en Aanjaabe künne mer övver ällder Versione vun Sigge nit maache.',
 'pageinfo-header-basic' => 'Jrundlääje Aanjabe',
 'pageinfo-header-edits' => 'De Änderonge',
 'pageinfo-header-restrictions' => 'Siggeschoz',

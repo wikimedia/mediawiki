@@ -116,7 +116,7 @@ $messages = array(
 
 'underline-always' => 'সব সময়',
 'underline-never' => 'কখনো নয়',
-'underline-default' => 'ব্রাউজারে যেমনভাবে নির্দিষ্ট করা আছে',
+'underline-default' => 'স্কিন অথবা ব্রাউজারে যেমনভাবে নির্দিষ্ট করা আছে',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'সম্পাদনা এলাকার ফন্ট স্টাইল:',

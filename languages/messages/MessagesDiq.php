@@ -353,11 +353,11 @@ $messages = array(
 
 'underline-always' => 'Tım',
 'underline-never' => 'Qet',
-'underline-default' => 'Hesıbyaye cild ya zi cıgeyrayoğ',
+'underline-default' => 'Cild ya zi cıgeyrayoğo hesebiyaye',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Cayê vurnayışi de terzê nuştışi:',
-'editfont-default' => 'Qerar cıgeyrayoği dest dero',
+'editfont-default' => 'Cıgeyrayoğo hesebiyaye',
 'editfont-monospace' => 'Terzê nusteyê sabıtcagırewtoği',
 'editfont-sansserif' => 'Babetê Sans-serifi',
 'editfont-serif' => 'Babetê serifi',
@@ -439,7 +439,7 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '(pençereyê newey de beno a)',
+'newwindow' => '(teqa da newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
 'mypage' => 'Pela mı',
@@ -1009,7 +1009,7 @@ Vurnayışê şıma hona qeyd nêbiyo!",
 Vurnayişê şıma qey nêxerepyayişê peli tepeya geyra a.
 Eke şıma servisê proksi yo anonim şuxulneni sebebê ey noyo.'''",
 'edit_form_incomplete' => "'''Qandê form dê vurnayışa tay wastera ma nêreşti; Vurnayışê ke şıma kerdê nêalızyayê, çım ra ravyarnê u fına bıcerbnê.'''",
-'editing' => 'Pela "$1"\'i bıvurnê',
+'editing' => '$1 Vurnayış',
 'creating' => "Pela $1'i vıraze",
 'editingsection' => 'Per da $1 de şımaye kenê ke leti bıvurnê',
 'editingcomment' => '$1 vuryeno (qısmo newe)',
@@ -1606,9 +1606,9 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rightslogtext' => 'Ena listeyê loganê ke heqqa karbaranî mucneno.',
 'rightslogentry' => 'eza biyayişê grupî $1 ra $2 rê $3î bivurne',
 'rightslogentry-autopromote' => '$2 otomatikmen gırdkerdışi ra kerd $3.',
-'logentry-rights-rights' => '$1 qande $3 ezayina grube $4 ra $5 vurne',
-'logentry-rights-rights-legacy' => '$1 qande $3 ezayina gruber vurne',
-'logentry-rights-autopromote' => '$1 otomatikmen $4 ra terfiya cı eşte $5',
+'logentry-rights-rights' => '$1 qandê $3 rê ezayina grube $4 ra $5 vuriye',
+'logentry-rights-rights-legacy' => '$1 qandê $3 rê ezayina grube vuriye',
+'logentry-rights-autopromote' => '$1 otomatikmen $4 ra terfi bi ra $5',
 'rightsnone' => '(çino)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2154,7 +2154,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'newpages' => 'Pelê newey',
 'newpages-username' => 'Nameyê karberi:',
 'ancientpages' => 'Wesiqeyê ke vurnayışê ciyê peyeni tewr kehani',
-'move' => 'Berdış',
+'move' => 'Bere',
 'movethispage' => 'Ena pele bere',
 'unusedimagestext' => 'Enê dosyey estê, feqet zerrey yew pele de wedardey niyê.
 Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gırê bê, u wına şenê verba gurênayışo feal de tiya hewna lista bê.',
@@ -3591,7 +3591,7 @@ mw.loader.using( 'jquery.cookie', function() {
 
 # Info page
 'pageinfo-title' => 'Heq tê "$1"\'i',
-'pageinfo-not-current' => 'Kısur mewni re, rewizyonan de verênan re enê melumata dayış mıkum niyo.',
+'pageinfo-not-current' => 'Qısur de mevêne, rewizyonanê verênan rê nê melumatan dayış mumkın niyo',
 'pageinfo-header-basic' => 'Seron zanayış',
 'pageinfo-header-edits' => 'Vurnayışê verêni',
 'pageinfo-header-restrictions' => 'Sıtarkerdışê pele',

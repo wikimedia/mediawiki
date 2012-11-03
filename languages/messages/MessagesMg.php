@@ -480,6 +480,10 @@ Mitaky version $1-n'i MediaWiki",
 'youhavenewmessages' => 'Manana $1 ($2).',
 'newmessageslink' => 'hafatra vaovao',
 'newmessagesdifflink' => 'fanovana farany',
+'youhavenewmessagesfromusers' => "Manana $1 avy amin'ny mpikambana {{PLURAL:$3|hafa|$3}} ($2).",
+'youhavenewmessagesmanyusers' => "Manana $1 avy amin'ny mpikambana maro ($2).",
+'newmessageslinkplural' => '{{PLURAL:$1|hafatra iray|hafatra maro}}',
+'newmessagesdifflinkplural' => 'fanovana farany{{PLURAL:$1}}',
 'youhavenewmessagesmulti' => "Manana hafatra vaovao ianao eo amin'ny $1.",
 'editsection' => 'hanova',
 'editold' => 'hanova',
@@ -622,6 +626,7 @@ Aza hadino ny manova ny [[Special:Preferences|safidinao]]',
 'remembermypassword' => '{{PLURAL:}}Tadidio ny tenimiafiko (mandritry ny $1 andro fara-fahabetsany)',
 'securelogin-stick-https' => "Mijanona tafiditra amin'i HTTPS rehefa tafiditra",
 'yourdomainname' => 'faritra (domaine) misy anao',
+'password-change-forbidden' => "Tsy afaka manova ny tenimiafina ianao eto amin'ity wiki ity.",
 'externaldberror' => "Nisy tsy fetezana angamba teo amin'ny fanamarinana anao tamin'ny sehatra ivelan'ity wiki ity, na tsy manana alalana hanova ny kaontinao ivelany ianao.",
 'login' => 'Midira',
 'nav-login-createaccount' => 'Ampidiro ny solonanarana',
@@ -887,7 +892,7 @@ Tadidio fa mampiasa soramadinika ny lohatenin'ny pejinao manan-tovana *.css sy *
 'note' => "'''Fanamarihana:'''",
 'previewnote' => "'''Fantaro fa topi-maso fotsiny ity.'''
 Mbola tsy voatahiry ny fanovanao !",
-'continue-editing' => 'Tohizana ny fanovana',
+'continue-editing' => 'Hanohy ny fanovàna',
 'previewconflict' => "
 Ity topi-maso ity no mifanaraka amin'ny lahatsoratra ao amin'ny faritra eo ambony,
 ary toy izao no ho fisehon'ny pejy raha misafidy ny hitahiry azy ianao.",
@@ -1481,6 +1486,9 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'rightslogtext' => "Ity ny laogy momban'ny fanovana ny zom-pikambana.",
 'rightslogentry' => "nanova ny fahefan'ny mpikambana « $1 », avy amin'ny $2 izy lasa $3",
 'rightslogentry-autopromote' => '$2 navadika $3 ho azy',
+'logentry-rights-rights' => "$1 dia nanova ny sokajim-pikambana isian'i $3 avy amin'ny $4 lasa $5",
+'logentry-rights-rights-legacy' => "$1 nanova ny vonodrom-pikambana isian'i $3",
+'logentry-rights-autopromote' => 'Lasa $5 ho azy i $1 izay $4 taloha',
 'rightsnone' => '(tsy misy)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3290,6 +3298,7 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'logentry-suppress-delete' => "nofafan'i $1 ny pejy $3",
 'revdelete-restricted' => "nametraka fanerena ho an'ny mpandrindra",
 'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
+'logentry-newusers-create' => 'nanokatra ny kaontiny i $1',
 'newuserlog-byemail' => 'tenimiafina nalefa imailaka',
 
 );

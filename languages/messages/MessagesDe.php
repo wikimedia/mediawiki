@@ -1590,7 +1590,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'saveusergroups' => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember' => 'Mitglied von:',
 'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
-'userrights-groupsmember-type' => '$1',
+'userrights-groupsmember-type' => '$2',
 'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} ändern:
 * Ein markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} Mitglied dieser Gruppe ist.
 * Ein nichtmarkiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} nicht Mitglied dieser Gruppe ist.

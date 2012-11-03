@@ -395,7 +395,7 @@ $messages = array(
 
 'underline-always' => 'Секогаш',
 'underline-never' => 'Никогаш',
-'underline-default' => 'Според нагодувањата на прелистувачот',
+'underline-default' => 'Според рувото или прелистувачот',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Фонт во полето за уредување:',

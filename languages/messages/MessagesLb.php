@@ -229,7 +229,7 @@ $messages = array(
 
 'underline-always' => 'Ëmmer',
 'underline-never' => 'Ni',
-'underline-default' => 'vun der Browserastellung ofhängeg',
+'underline-default' => 'Skin oder Standard vum Browser',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Schrëftfamill fir d'Ännerungsfënster:",
@@ -2925,6 +2925,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-redirects-name' => 'Viruleedungen op dës Säit',
 'pageinfo-subpages-name' => 'Ënnersäite vun dëser Säit',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|Viruleedung|Viruleedungen}}; $3 {{PLURAL:$3|Ënnersäit|Ënnersäiten}})',
+'pageinfo-firstuser' => '1. Auteur vun der Säit',
 'pageinfo-firsttime' => 'Datum vum Uleeë vun der Säit',
 'pageinfo-lastuser' => 'Leschte Benotzer deen eppes geännert huet',
 'pageinfo-lasttime' => 'Datum vun der leschter Ännerung',

@@ -90,7 +90,7 @@ $messages = array(
 
 'underline-always' => 'Sempe',
 'underline-never' => 'Mai',
-'underline-default' => 'Deuvra lë stàndard dël programma ëd navigassion (browser)',
+'underline-default' => 'Stàndard dël navigator',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Stil dël font ëd l'àrea ëd modìfica:",
@@ -1337,6 +1337,9 @@ Costa anformassion a sarà pùblica.",
 'rightslogtext' => "Costa a l'é na lista dij cambiament aj drit ëd j'utent.",
 'rightslogentry' => "a l'ha tramudà $1 da 'nt la partìa $2 a la partìa $3",
 'rightslogentry-autopromote' => "a l'é stàit automaticament promovù da $2 a $3",
+'logentry-rights-rights' => "$1 a l'ha tramudà l'apartenesa a la partìa për $3 da $4 a $5",
+'logentry-rights-rights-legacy' => "$1 a l'ha tramudà l'apartenensa a la partìa për $3",
+'logentry-rights-autopromote' => "$1 a l'é stàit automaticament promovù da $4 a $5",
 'rightsnone' => '(gnun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3299,7 +3302,7 @@ J'àutri a saran stërmà coma stàndard.
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Km/h',
 'exif-gpsspeed-m' => 'mija/h',
-'exif-gpsspeed-n' => 'Grop (marin)',
+'exif-gpsspeed-n' => 'Grop',
 
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Chilòmeter',
@@ -3317,7 +3320,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-objectcycle-b' => 'Sia matin che dòp-mesdì',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'Diression vèira',
+'exif-gpsdirection-t' => 'Diression vera',
 'exif-gpsdirection-m' => 'Diression magnética',
 
 'exif-ycbcrpositioning-1' => 'Sentrà',
@@ -3355,13 +3358,13 @@ J'àutri a saran stërmà coma stàndard.
 'exif-iimcategory-wea' => 'Temp',
 
 'exif-urgency-normal' => 'Normal ($1)',
-'exif-urgency-low' => 'Bass ($1)',
+'exif-urgency-low' => 'Bassa ($1)',
 'exif-urgency-high' => 'Àuta ($1)',
 'exif-urgency-other' => "Priorità definìa da l'utent ($1)",
 
 # External editor support
 'edit-externally' => "Modifiché st'archivi con un programa estern",
-'edit-externally-help' => "(Varda [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] për avej pì d'anformassion)",
+'edit-externally-help' => "(Lese [//www.mediawiki.org/wiki/Manual:External_editors setup j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',
@@ -3572,6 +3575,7 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'version-license' => 'Licensa',
 'version-poweredby-credits' => "Sta wiki-sì a l'é basà su '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'àutri',
+'version-credits-summary' => 'I tnoma a aringrassié le përson-e sì-dapress për soa contribussion a [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki a l'é un programa lìber; a peul passelo an gir e/o modifichelo sota le condission dla Licensa Pùblica General GNU coma publicà da la Free Software Foundation; o la version 2 dla licensa o (a soa decision) qualsëssìa version apress.
 
 MediaWiki a l'é distribuì ant la speransa che a sia ùtil, ma SENSA GNUN-A GARANSÌA; sensa gnanca la garansìa implìcita ëd COMERSIABILITA' o d'ADATAMENT A UN BUT PARTICOLAR. Ch'a lesa la Licensa General Pùblica GNU per pi 'd detaj.

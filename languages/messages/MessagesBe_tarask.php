@@ -305,7 +305,7 @@ $messages = array(
 
 'underline-always' => 'Заўсёды',
 'underline-never' => 'Ніколі',
-'underline-default' => 'Паводле браўзэра',
+'underline-default' => 'Паводле браўзэра або афармленьня',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Стыль шрыфту ў полі рэдагаваньня:',

@@ -999,9 +999,8 @@ Buraya yanlışlıkla geldiyseniz tarayıcınızın '''geri''' tuşuna tıklayı
 Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları arayabilir],
 ya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsiniz]</span>.',
-'noarticletext-nopermission' => 'Bu sayfa şu anda boştur.
-Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]]
-ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları tarayabilirsiniz].</span>',
+'noarticletext-nopermission' => 'Bu sayfa şu anda boştur. 
+Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]] ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları tarayabilirsiniz].</span>',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'userpage-userdoesnotexist-view' => '"$1" kullanıcı hesabı kayıtlı değil.',
 'blocked-notice-logextract' => 'Bu kullanıcı şuanda engellenmiş.

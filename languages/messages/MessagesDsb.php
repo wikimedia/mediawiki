@@ -206,7 +206,7 @@ $messages = array(
 
 'underline-always' => 'pśecej',
 'underline-never' => 'žednje',
-'underline-default' => 'pó standarźe browsera',
+'underline-default' => 'Standard drastwy abo wobglědowaka',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Pismowy stil wobźěłowańskego póla:',
@@ -1420,6 +1420,9 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'rightslogtext' => 'To jo protokol wužywarskich pšawow.',
 'rightslogentry' => 'Pśisłušnosć ku kupce jo se za „$1“ změniła wót „$2“ na „$3“.',
 'rightslogentry-autopromote' => 'jo se awtomatiski wót $2 do $3 změnił',
+'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 změnił',
+'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 změnił',
+'logentry-rights-autopromote' => '$1 jo se awtomatiski wót $4 do $5 pówušył',
 'rightsnone' => '(nic)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2859,7 +2862,7 @@ W zespominanju dajo se pśicyna pódaś.',
 
 # Info page
 'pageinfo-title' => 'Informacije za bok "$1"',
-'pageinfo-not-current' => 'Informacije daju se jano za aktualnu wersiju zwobrazniś.',
+'pageinfo-not-current' => 'Bóžko njedaju se toś te informacije za stare wersije pódaś.',
 'pageinfo-header-basic' => 'Zakładne informacije',
 'pageinfo-header-edits' => 'Historiju wobźěłaś',
 'pageinfo-header-restrictions' => 'Šćit boka',
@@ -3587,6 +3590,7 @@ Móžoš teke [[Special:EditWatchlist|standardny wobźěłowański bok wužywaś
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Toś ten wiki spěchujo se wót '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'druge',
+'version-credits-summary' => 'Źěkujomy se slědujucym wósobam za jich pśinoski k [[Special:Version|MediaWiki]]',
 'version-license-info' => 'MediaWiki jo licha softwara: móžoš ju pód wuměnjenjami licence GNU General Public License, wózjawjeneje wót załožby Free Software Foundation, rozdźěliś a/abo změniś: pak pód wersiju 2 licence pak pód někakeju pózdźejšeju wersiju.
 
 MediaWiki rozdźěla se w naźeji, až buźo wužitny, ale BŹEZ GARANTIJE: samo bźez wopśimjoneje garantije PŚEDAWAJOBNOSĆI abo PŚIGÓDNOSĆI ZA WĚSTY ZAMĚR. Glědaj GNU general Public License za dalšne drobnostki.

@@ -233,7 +233,7 @@ $messages = array(
 
 'underline-always' => 'Vedno',
 'underline-never' => 'Nikoli',
-'underline-default' => 'Privzeto (brskalnik)',
+'underline-default' => 'Koža ali privzeto v brskalniku',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Uredi področni slog pisave:',
@@ -1506,6 +1506,9 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'rightslogtext' => 'Prikazan je dnevnik sprememb uporabniških pravic.',
 'rightslogentry' => 'je spremenil(-a) pravice uporabnika $1 iz $2 v $3',
 'rightslogentry-autopromote' => 'je bil(-a) samodejno povišan(-a) z $2 na $3',
+'logentry-rights-rights' => '$1 je spremenil(-a) članstvo skupine $3 z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 je spremenil(-a) članstvo skupine $3',
+'logentry-rights-autopromote' => '$1 je bil(-a) samodejno povišan(-a) z $4 na $5',
 'rightsnone' => '(nobeno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2194,8 +2197,8 @@ Morda so na razpolago tudi [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 'emailuser-title-target' => 'Pošlji {{GENDER:$1|uporabniku|uporabnici}} e-pošto',
 'emailuser-title-notarget' => 'Pošlji uporabniku e-pismo',
 'emailpage' => 'Pošlji uporabniku e-pismo',
-'emailpagetext' => 'S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
-E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo prejemnik lahko odgovoril neposredno vam.',
+'emailpagetext' => 'S spodnjim obrazcem lahko {{GENDER:$1|uporabniku|uporabnici}} pošljete e-poštno sporočilo.
+E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo {{GENDER:$1|prejemnik lahko odgovoril|prejemnica lahko odgovorila}} neposredno vam.',
 'usermailererror' => 'Predmet e-pošte je vrnil napako:',
 'defemailsubject' => 'Elektronska pošta {{GRAMMAR:rodilnik|{{SITENAME}}}} od uporabnika »$1«',
 'usermaildisabled' => 'Uporabniška e-pošta je onemogočena',
@@ -3000,7 +3003,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
-'pageinfo-not-current' => 'Prikažemo lahko samo podatke trenutne redakcije.',
+'pageinfo-not-current' => 'Oprostite, vendar ne moremo nuditi podatkov starejših redakcij.',
 'pageinfo-header-basic' => 'Osnovni podatki',
 'pageinfo-header-edits' => 'Zgodovina urejanja',
 'pageinfo-header-restrictions' => 'Zaščita strani',
@@ -3009,6 +3012,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'pageinfo-default-sort' => 'Privzeti ključ za razvrščanje',
 'pageinfo-length' => 'Dolžina strani (v bajtih)',
 'pageinfo-article-id' => 'ID strani',
+'pageinfo-language' => 'Jezik vsebine strani',
 'pageinfo-robot-policy' => 'Status iskalnega pogona',
 'pageinfo-robot-index' => 'Na voljo za indeksiranje',
 'pageinfo-robot-noindex' => 'Ni na voljo za indeksiranje',
@@ -3729,6 +3733,7 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Ta wiki poganja '''[//www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
 'version-poweredby-others' => 'drugi',
+'version-credits-summary' => 'Radi bi priznali prispevek naslednjih oseb k [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki je prosto programje; lahko ga razširjate in / ali spreminjate pod pogoji GNU General Public License, kot ga je objavila Free Software Foundation; bodisi License različice 2 ali (po vaši izbiri) katere koli poznejše različice.
 
 MediaWiki je razširjan v upanju, da bo uporaben, vendar BREZ KAKRŠNEGA KOLI ZAGOTOVILA; tudi brez posrednega jamstva PRODAJNE VREDNOSTI ali PRIMERNOSTI ZA DOLOČEN NAMEN. Oglejte si GNU General Public License za več podrobnosti.

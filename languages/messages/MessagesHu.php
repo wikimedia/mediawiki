@@ -359,7 +359,7 @@ $messages = array(
 
 'underline-always' => 'mindig',
 'underline-never' => 'soha',
-'underline-default' => 'a böngésző alapértelmezése szerint',
+'underline-default' => 'Felület és böngésző alapértelmezése szerint',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'A szerkesztőterület betűtípusa:',

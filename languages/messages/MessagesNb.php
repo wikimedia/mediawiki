@@ -1008,7 +1008,7 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 'note' => "'''Merk:'''",
 'previewnote' => "'''Husk at dette bare er en forhåndsvisning.'''
 Endringene dine har ikke blitt lagret ennå!",
-'continue-editing' => 'Fortsett med redigeringen',
+'continue-editing' => 'Gå til redigeringsfeltet',
 'previewconflict' => 'Slik vil teksten i redigeringsvinduet se ut dersom du lagrer den.',
 'session_fail_preview' => "'''Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.'''
 Prøv igjen.
@@ -1615,6 +1615,9 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'rightslogtext' => 'Dette er en logg over endringer av brukerrettigheter.',
 'rightslogentry' => 'endret gruppe for $1 fra $2 til $3',
 'rightslogentry-autopromote' => 'ble automatisk forfremmet fra $2 til $3',
+'logentry-rights-rights' => '$1 endret gruppemedlemskap for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 endret gruppemedlemskap for $3',
+'logentry-rights-autopromote' => '$1 ble automatisk forfremmet fra $4 til $5',
 'rightsnone' => '(ingen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2286,8 +2289,8 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'emailuser-title-target' => 'Send epost til denne {{GENDER:$1|brukeren}}',
 'emailuser-title-notarget' => 'E-post til bruker',
 'emailpage' => 'E-post til bruker',
-'emailpagetext' => 'Du kan bruke skjemaet nedenfor for å sende en e-post til denne brukeren.
-Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
+'emailpagetext' => 'Du kan bruke skjemaet under for å sende en e-post til denne {{GENDER:$1|brukeren}}.
+E-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil vises i «Fra»-feltet i e-posten, slik at mottakeren kan svare deg direkte.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
 'defemailsubject' => 'E-post fra {{SITENAME}}-brukeren «$1»',
 'usermaildisabled' => 'Brukerepost deaktivert',
@@ -3089,7 +3092,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-not-current' => 'Informasjonen vises kanskje bare for den gjeldende revisjonen.',
+'pageinfo-not-current' => 'Beklager, det er ikke mulig å vise denne informasjonen for gamle revisjoner.',
 'pageinfo-header-basic' => 'Grunnleggende informasjon',
 'pageinfo-header-edits' => 'Redigeringshistorikk',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',
@@ -3098,6 +3101,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-default-sort' => 'Standardsorteringsnøkkel',
 'pageinfo-length' => 'Sidelengde (i bytes)',
 'pageinfo-article-id' => 'Side-ID',
+'pageinfo-language' => 'Språk for sideinnholdet',
 'pageinfo-robot-policy' => 'Søkemotorstatus',
 'pageinfo-robot-index' => 'Indekserbar',
 'pageinfo-robot-noindex' => 'Ikke indekserbar',
@@ -3838,6 +3842,7 @@ Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'version-license' => 'Lisens',
 'version-poweredby-credits' => "Denne wikien er drevet av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
+'version-credits-summary' => 'Vi ønsker å takke følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.
 
 MediaWiki er distribuert i håp om at det vil være nyttig, men UTEN NOEN GARANTI; ikke engang implisitt garanti av SALGBARHET eller EGNETHET FOR ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.

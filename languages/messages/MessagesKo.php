@@ -818,7 +818,7 @@ $2',
 'passwordremindertext' => '$1 IP 주소에서 누군가가 아마 자신이 {{SITENAME}} ($4)의 새 비밀번호를 요청했습니다.
 "$2" 사용자의 임시 비밀번호는 "$3"로 설정되었습니다. 이것이 자신이 의도한 바라면
 지금 로그인하여 새로운 비밀번호를 만드세요.
-당신의 임시 비밀번호는 $5일 후에 만료됩니다.
+임시 비밀번호는 $5일 후에 만료됩니다.
 
 이 요청을 다른 사람이 했거나 이전 비밀번호를 기억해 내서 바꿀 필요가 없으면
 이 메시지를 무시하고 이전 비밀번호를 계속 사용할 수 있습니다.',
@@ -878,7 +878,7 @@ $2',
 'resetpass-submit-loggedin' => '비밀번호 바꾸기',
 'resetpass-submit-cancel' => '취소',
 'resetpass-wrong-oldpass' => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
-당신은 이미 비밀번호를 성공적으로 바꾸었거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
+이미 비밀번호를 성공적으로 바꾸었거나 새 임시 비밀번호를 요청했을 수 있습니다.',
 'resetpass-temp-password' => '임시 비밀번호:',
 
 # Special:PasswordReset
@@ -956,7 +956,7 @@ $2
 'showdiff' => '차이 보기',
 'anoneditwarning' => "'''경고''': 로그인하고 있지 않습니다.
 당신의 IP 주소가 문서 역사에 남게 됩니다.",
-'anonpreviewwarning' => "'''당신은 지금 로그인하고 있지 않습니다. 문서를 저장하면 당신의 IP 주소가 문서 역사에 남게 됩니다.'''",
+'anonpreviewwarning' => "'''로그인하고 있지 않습니다. 문서를 저장하면 당신의 IP 주소가 문서 역사에 남게 됩니다.'''",
 'missingsummary' => "'''알림:''' 편집 요약을 적지 않았습니다.
 이대로 \"{{int:savearticle}}\"을 클릭하면 편집 요약 없이 저장됩니다.",
 'missingcommenttext' => '아래에 내용을 채워 넣어 주세요.',
@@ -1117,8 +1117,8 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'sectioneditnotsupported-title' => '부분 편집 지원 안됨',
 'sectioneditnotsupported-text' => '이 문서에서는 문단 편집을 지원하지 않습니다.',
 'permissionserrors' => '권한 오류',
-'permissionserrorstext' => '해당 명령을 수행할 권한이 없습니다. 다음의 {{PLURAL:$1|이유}}를 확인해보세요:',
-'permissionserrorstext-withaction' => '$2 권한이 없습니다. 다음의 {{PLURAL:$1|이유}}를 확인해주세요:',
+'permissionserrorstext' => '해당 명령을 수행할 권한이 없습니다. 다음 {{PLURAL:$1|이유}}를 확인해보세요:',
+'permissionserrorstext-withaction' => '$2 권한이 없습니다. 다음 {{PLURAL:$1|이유}}를 확인해주세요:',
 'recreate-moveddeleted-warn' => "'''경고: 삭제된 적이 있는 문서를 다시 만들고 있습니다.'''
 
 이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
@@ -1414,7 +1414,7 @@ $1",
 'search-nonefound' => '찾기 결과가 없습니다.',
 'powersearch' => '고급 찾기',
 'powersearch-legend' => '고급 찾기',
-'powersearch-ns' => '다음의 이름공간에서 찾기:',
+'powersearch-ns' => '다음 이름공간에서 찾기:',
 'powersearch-redir' => '넘겨주기 목록',
 'powersearch-field' => '찾기',
 'powersearch-togglelabel' => '확인:',
@@ -1536,7 +1536,7 @@ HTML 태그를 확인하세요.',
 'prefs-help-realname' => '실명 기입은 자유입니다.
 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'prefs-help-email' => '이메일 주소 입력은 선택 사항입니다. 다만 비밀번호를 잊었을 때 비밀번호 바꾸기를 위해 필요합니다.',
-'prefs-help-email-others' => '당신은 자신의 문서나 토론 문서에 있는 이메일 보내기 링크로 다른 사용자가 연락할 수 있게 할 수도 있습니다.
+'prefs-help-email-others' => '자신의 문서나 토론 문서에 있는 이메일 보내기 링크로 다른 사용자가 연락할 수 있게 할 수도 있습니다.
 이 경우에도 당신의 이메일 주소는 다른 사용자가 연락할 때 공개되지 않습니다.',
 'prefs-help-email-required' => '이메일 주소가 필요합니다.',
 'prefs-info' => '기본 정보',
@@ -1576,7 +1576,7 @@ HTML 태그를 확인하세요.',
 'userrights-no-interwiki' => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
 'userrights-nodatabase' => '데이터베이스 $1이 존재하지 않거나 로컬에 있지 않습니다.',
 'userrights-nologin' => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.',
-'userrights-notallowed' => '당신은 다른 사용자의 권한을 조정할 권한이 없습니다.',
+'userrights-notallowed' => '다른 사용자의 권한을 조정할 권한이 없습니다.',
 'userrights-changeable-col' => '바꿀 수 있는 권한',
 'userrights-unchangeable-col' => '바꿀 수 없는 권한',
 
@@ -1809,12 +1809,12 @@ HTML 태그를 확인하세요.',
 'filetype-banned-type' => '{{PLURAL:$3$4}}\'\'\'".$1"\'\'\' 형식의 파일은 올릴 수 없습니다.
 $2 형식만 사용할 수 있습니다.',
 'filetype-missing' => '파일에 확장자(".jpg" 등)가 없습니다.',
-'empty-file' => '당신이 올린 파일이 비어 있습니다.',
+'empty-file' => '올린 파일이 비어 있습니다.',
 'file-too-large' => '올리려는 파일이 너무 큽니다.',
 'filename-tooshort' => '파일 이름이 너무 짧습니다.',
 'filetype-banned' => '이러한 종류의 파일은 금지되어 있습니다.',
 'verification-error' => '이 파일은 파일 확인 절차를 통과하지 않았습니다.',
-'hookaborted' => '당신이 수정하려고 한 것이 확장 기능 훅에 의해 중지되었습니다.',
+'hookaborted' => '수정하려고 한 것이 확장 기능 훅에 의해 중지되었습니다.',
 'illegal-filename' => '이 파일 이름은 허용되지 않습니다.',
 'overwrite' => '기존 파일을 덮어쓰는 것은 허용되지 않습니다.',
 'unknown-error' => '알 수 없는 오류가 발생했습니다.',
@@ -1894,7 +1894,7 @@ MGP # 펜탁스
 PICT # 기타
  #</pre> <!-- 이 줄은 그대로 두십시오 -->',
 'upload-success-subj' => '올리기 성공',
-'upload-success-msg' => '파일을 [$2]에서 성공적으로 올렸습니다. 당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
+'upload-success-msg' => '파일을 [$2]에서 성공적으로 올렸습니다. 올린 파일은 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => '올리기 실패',
 'upload-failure-msg' => '[$2]에서 파일을 올리는 중 문제가 발생했습니다:
 
@@ -1984,7 +1984,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오.',
 'img-auth-notindir' => '요청한 경로가 설정한 올리기 디렉토리에 없습니다.',
 'img-auth-badtitle' => '"$1"에서 올바른 제목을 만들 수 없습니다.',
-'img-auth-nologinnWL' => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
+'img-auth-nologinnWL' => '로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
 'img-auth-nofile' => '"$1" 파일이 없습니다.',
 'img-auth-isdir' => '"$1" 디렉토리에 접근을 시도했습니다.
 파일에만 접근할 수 있습니다.',
@@ -2159,7 +2159,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'disambiguations' => '동음이의 문서를 가리키는 문서 목록',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "다음의 문서는 적어도 하나 이상 '''동음이의 문서'''를 가리키고 있습니다.
+'disambiguations-text' => "다음 문서는 적어도 하나 이상 '''동음이의 문서'''를 가리키고 있습니다.
 그 링크는 다른 적절한 문서로 연결할 필요가 있습니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
@@ -2227,7 +2227,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedpages' => '보호된 문서 목록',
 'protectedpages-indef' => '오른쪽 조건에 맞는 보호만 보기',
 'protectedpages-cascade' => '연쇄적 보호만 보기',
-'protectedpagestext' => '다음의 문서는 이동/편집이 불가능하도록 보호되어 있습니다.',
+'protectedpagestext' => '다음 문서는 이동이나 편집이 불가능하도록 보호되어 있습니다.',
 'protectedpagesempty' => '보호되어 있는 문서가 없습니다.',
 'protectedtitles' => '만들기 보호된 표제어 목록',
 'protectedtitlestext' => '다음 표제어는 만들기가 금지되어 있습니다.',
@@ -2248,7 +2248,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'notargettitle' => '해당하는 문서 없음',
 'notargettext' => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
 'nopagetitle' => '해당 문서 없음',
-'nopagetext' => '당신이 찾는 문서는 존재하지 않습니다.',
+'nopagetext' => '찾는 문서가 존재하지 않습니다.',
 'pager-newer-n' => '이전 $1개',
 'pager-older-n' => '다음 $1개',
 'suppress' => '오버사이트',
@@ -2368,11 +2368,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'emailuser-title-notarget' => '사용자 이메일',
 'emailpage' => '사용자에게 이메일 보내기',
 'emailpagetext' => '이 {{GENDER:$1|사용자}}가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다.
-이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해 당신이 [[Special:Preferences|사용자 환경 설정]]에 적은 이메일 주소가 "발신자" 정보에 들어갑니다. 따라서 수신자가 당신에게 직접 답장을 보낼 수 있습니다.',
-'usermailererror' => '메일 객체에서 오류 발생:',
+이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해 [[Special:Preferences|사용자 환경 설정]]에 적은 이메일 주소가 "발신자" 정보에 들어갑니다. 따라서 수신자가 당신에게 직접 답장을 보낼 수 있습니다.',
+'usermailererror' => '메일 개체에서 오류 발생:',
 'defemailsubject' => '"$1" 사용자가 보낸 {{SITENAME}} 이메일',
 'usermaildisabled' => '사용자 이메일 비활성화됨',
-'usermaildisabledtext' => '당신은 이 위키에서 다른 사용자에게 메일을 보낼 수 없습니다',
+'usermaildisabledtext' => '이 위키에서 다른 사용자에게 메일을 보낼 수 없습니다',
 'noemailtitle' => '이메일 주소 없음',
 'noemailtext' => '이 사용자는 올바른 이메일 주소를 입력하지 않았습니다.',
 'nowikiemailtitle' => '이메일이 허용되지 않음',
@@ -2695,7 +2695,7 @@ $1',
 'whatlinkshere' => '여기를 가리키는 문서',
 'whatlinkshere-title' => '"$1" 문서를 가리키는 문서 목록',
 'whatlinkshere-page' => '문서:',
-'linkshere' => "다음의 문서가 '''[[:$1]]''' 문서를 가리키고 있습니다:",
+'linkshere' => "다음 문서가 '''[[:$1]]''' 문서를 가리키고 있습니다:",
 'nolinkshere' => "'''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
 'nolinkshere-ns' => "선택한 이름공간에는 '''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
 'isredirect' => '넘겨주기 문서',
@@ -2751,7 +2751,7 @@ $1',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다.<br />
 차단된 사용자 목록은 [[Special:BlockList|여기]]에서 볼 수 있습니다.',
 'ipb-blockingself' => '자기 자신을 차단하려고 합니다! 정말로 실행할까요?',
-'ipb-confirmhideuser' => '당신은 사용자를 차단하면서 "사용자 숨기기" 설정을 선택했습니다. 이로써 모든 기록에서 이 사용자의 사용자 이름을 숨기게 됩니다. 정말로 계정을 숨기시겠습니까?',
+'ipb-confirmhideuser' => '사용자를 차단하면서 "사용자 숨기기" 설정을 선택했습니다. 모든 기록에서 이 사용자의 사용자 이름을 숨기게 됩니다. 정말로 계정을 숨기시겠습니까?',
 'ipb-edit-dropdown' => '차단 이유 목록 편집하기',
 'ipb-unblock-addr' => '$1 차단 해제하기',
 'ipb-unblock' => '사용자 또는 IP 주소 차단 해제하기',
@@ -2787,7 +2787,7 @@ $1',
 'emailblock' => '이메일 차단됨',
 'blocklist-nousertalk' => '자신의 토론 문서 편집 불가',
 'ipblocklist-empty' => '차단된 사용자가 없습니다.',
-'ipblocklist-no-results' => '당신이 입력한 IP 주소나 사용자는 차단되지 않았습니다.',
+'ipblocklist-no-results' => '요청한 IP 주소나 사용자는 차단되지 않았습니다.',
 'blocklink' => '차단',
 'unblocklink' => '차단 해제',
 'change-blocklink' => '차단 설정 바꾸기',
@@ -2835,11 +2835,11 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'sorbsreason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.',
 'sorbs_create_account_reason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.
 계정을 만들 수 없습니다.',
-'cant-block-while-blocked' => '당신이 차단되어 있는 동안에는 다른 사용자를 차단할 수 없습니다.',
-'cant-see-hidden-user' => '당신이 차단하려 하는 사용자는 이미 차단되었고 숨김 처리되었습니다.
-당신이 사용자 숨기기 권한을 갖고 있지 않기 때문에, 이 사용자의 차단 기록을 보거나 차단 설정을 바꿀 수 없습니다.',
-'ipbblocked' => '당신은 차단되어 있기 때문에 다른 사용자를 차단하거나 차단을 해제할 수 없습니다.',
-'ipbnounblockself' => '당신은 자기 스스로를 차단 해제할 수 없습니다.',
+'cant-block-while-blocked' => '자신이 차단되어 있는 동안에는 다른 사용자를 차단할 수 없습니다.',
+'cant-see-hidden-user' => '차단하려 하는 사용자는 이미 차단되었고 숨김 처리되었습니다.
+사용자 숨기기 권한을 갖고 있지 않기 때문에, 이 사용자의 차단 기록을 보거나 차단 설정을 바꿀 수 없습니다.',
+'ipbblocked' => '자신이 차단되어 있기 때문에 다른 사용자를 차단하거나 차단을 해제할 수 없습니다.',
+'ipbnounblockself' => '자기 스스로를 차단 해제할 수 없습니다.',
 
 # Developer tools
 'lockdb' => '데이터베이스 잠그기',
@@ -2870,10 +2870,10 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 이전의 제목은 새 제목으로 넘겨줄 것입니다.
 원래 이름을 가리키는 넘겨주기를 자동으로 새로 고칠 수 있습니다.
 만약 이 설정을 선택하지 않았다면 [[Special:DoubleRedirects|이중 넘겨주기]]와 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주세요.
-당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
+넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
-만약 문서의 새 이름으로 된 문서가 존재할 때, 그 문서가 비었거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동합니다. 그렇지 않을 경우에는 이동하지 '''않습니다'''.
-실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
+참고로 새 제목으로 된 문서가 이미 있을 때, 비어 있거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동하며 그렇지 않을 경우에는 이동하지 '''않습니다'''.
+실수로 문서를 옮겼을 때 되돌릴 수는 있지만 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
 인기 있는 문서일 경우 심각하고 예상하지 못한 문제를 초래할 수 있습니다.
@@ -2881,10 +2881,10 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'movepagetext-noredirectfixer' => "아래의 양식을 사용해 문서의 이름을 바꾸고 문서의 모든 역사를 새 이름으로 옮길 수 있습니다.
 이전의 제목은 새 제목으로 넘겨줄 것입니다.
 [[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주세요.
-당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
+넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
-참고로 새 제목을 가진 문서가 이미 있다면 비어 있거나 넘겨주기 문서이며, 과거에 편집 내역이 없으면 이 문서는 옮겨지지 '''않을''' 것입니다.
-당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
+참고로 새 제목으로 된 문서가 이미 있을 때, 비어 있거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동하며 그렇지 않을 경우에는 이동하지 '''않습니다'''.
+실수로 문서를 옮겼을 때 되돌릴 수는 있지만 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
 인기 있는 문서일 경우 심각하고 예상하지 못한 문제를 초래할 수 있습니다.
@@ -2895,7 +2895,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle' => '문서 이동하기',
-'moveuserpage-warning' => "'''경고:''' 당신은 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 사용자 이름이 바뀌지 '''않는다'''는 점을 명심해주시기 바랍니다.",
+'moveuserpage-warning' => "'''경고:''' 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 사용자 이름이 바뀌지 '''않는다'''는 점을 참고해주시기 바랍니다.",
 'movenologin' => '로그인하지 않음',
 'movenologintext' => '문서를 이동하려면 [[Special:UserLogin|로그인]]해야 합니다.',
 'movenotallowed' => '문서를 이동할 권한이 없습니다.',
@@ -2954,7 +2954,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 최근 기록 내용을 참고용로 제공합니다:",
 'move-over-sharedrepo' => '== 파일이 존재함 ==
 [[:$1]] 파일이 공용 저장소에 있습니다. 이 이름으로 파일을 옮기면 공용의 파일을 덮어쓰게 될 것입니다.',
-'file-exists-sharedrepo' => '당신이 선택한 파일 이름은 공용 저장소에서 사용 중입니다.
+'file-exists-sharedrepo' => '선택한 파일 이름은 공용 저장소에서 사용 중입니다.
 다른 이름을 선택해주세요.',
 
 # Export
@@ -3853,7 +3853,7 @@ $5
 'scarytranscludetoolong' => '[URL이 너무 깁니다]',
 
 # Delete conflict
-'deletedwhileediting' => "'''경고''': 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다!",
+'deletedwhileediting' => "'''경고''': 이 문서를 편집하던 중에 이 문서가 삭제되었습니다!",
 'confirmrecreate' => '[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신이 편집하는 도중에 문서를 삭제했습니다. 삭제 이유는 다음과 같습니다:
 : $2
 문서를 다시 만들어야 하는지 확인해주세요.',
@@ -4047,9 +4047,9 @@ $5
 'compare-rev1' => '첫 번째 판',
 'compare-rev2' => '두 번째 판',
 'compare-submit' => '비교하기',
-'compare-invalid-title' => '당신이 입력한 제목이 잘못되었습니다.',
-'compare-title-not-exists' => '당신이 입력한 문서가 존재하지 않습니다.',
-'compare-revision-not-exists' => '당신이 지정한 판이 없습니다.',
+'compare-invalid-title' => '입력한 제목이 잘못되었습니다.',
+'compare-title-not-exists' => '입력한 문서가 존재하지 않습니다.',
+'compare-revision-not-exists' => '지정한 판이 없습니다.',
 
 # Database error messages
 'dberr-header' => '이 위키에 문제가 있습니다.',
@@ -4062,11 +4062,11 @@ $5
 'dberr-cachederror' => '다음은 요청한 문서의 캐시된 복사본이며, 최신이 아닐 수도 있습니다.',
 
 # HTML forms
-'htmlform-invalid-input' => '당신이 입력한 값에 문제가 있습니다.',
-'htmlform-select-badoption' => '당신이 입력한 값은 올바른 설정이 아닙니다.',
-'htmlform-int-invalid' => '당신이 입력한 값은 정수가 아닙니다.',
-'htmlform-float-invalid' => '입력한 값이 수가 아닙니다.',
-'htmlform-int-toolow' => '당신이 입력한 값은 최소값 $1 미만입니다.',
+'htmlform-invalid-input' => '입력한 값에 문제가 있습니다.',
+'htmlform-select-badoption' => '지정한 값은 올바른 설정이 아닙니다.',
+'htmlform-int-invalid' => '지정한 값은 정수가 아닙니다.',
+'htmlform-float-invalid' => '지정한 값은 수가 아닙니다.',
+'htmlform-int-toolow' => '지정한 값은 최소값 $1 미만입니다.',
 'htmlform-int-toohigh' => '당신이 입력한 값은 최대값 $1 이상입니다.',
 'htmlform-required' => '이 값은 필수 항목입니다',
 'htmlform-submit' => '저장',
@@ -4127,10 +4127,10 @@ $5
 
 # Search suggestions
 'searchsuggest-search' => '찾기',
-'searchsuggest-containing' => '다음의 어구가 들어간 문서 찾기',
+'searchsuggest-containing' => '다음 어구가 들어간 문서 찾기',
 
 # API errors
-'api-error-badaccess-groups' => '당신은 이 위키에 파일을 올릴 권한이 없습니다.',
+'api-error-badaccess-groups' => '이 위키에 파일을 올릴 권한이 없습니다.',
 'api-error-badtoken' => '내부 오류: 토큰이 잘못되었습니다.',
 'api-error-copyuploaddisabled' => '이 서버에서 URL을 통해 파일 올리기가 비활성화되어 있습니다.',
 'api-error-duplicate' => '이 위키에 내용이 똑같은 {{PLURAL:$1|[$2 다른 파일]}}이 있습니다.',
@@ -4147,7 +4147,7 @@ $5
 'api-error-filetype-banned' => '이런 파일 형식은 올릴 수 없습니다.',
 'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|파일 형식은 올릴 수 없습니다}}. $2 {{PLURAL:$3|파일 형식만 사용할 수 있습니다}}.',
 'api-error-filetype-missing' => '파일 이름에 확장자가 없습니다.',
-'api-error-hookaborted' => '당신이 시도한 수정이 확장 기능 훅에 의해 중단되었습니다.',
+'api-error-hookaborted' => '수정하려고 한 것이 확장 기능에 의해 중지되었습니다.',
 'api-error-http' => '내부 오류: 서버에 연결할 수 없습니다.',
 'api-error-illegal-filename' => '이 파일 이름을 사용할 수 없습니다.',
 'api-error-internal-error' => '내부 오류: 당신이 올린 파일을 위키에서 처리하는 중 문제가 발생했습니다.',

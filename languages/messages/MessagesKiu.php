@@ -100,7 +100,7 @@ $messages = array(
 
 'underline-always' => 'Tım',
 'underline-never' => 'Qet',
-'underline-default' => 'Qerar cıfeteliyawoği dest dero',
+'underline-default' => 'Cild ya ki cıfeteliyayoğo hesebiyaye',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Warê vurnayena terzê nustey:',
@@ -590,7 +590,7 @@ Dosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{
 'note' => "'''Not:'''",
 'previewnote' => "Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",
-'editing' => 'Tıya $1 vurnena',
+'editing' => '$1 Vurnayis',
 'editingsection' => 'Vurnaena $1 (qısım)',
 'editingcomment' => '$1 vurnino (qısımo newe)',
 'editconflict' => 'Têverabiyaena vurnaişi: $1',

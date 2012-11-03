@@ -239,7 +239,7 @@ $messages = array(
 
 'underline-always' => 'Sentiasa',
 'underline-never' => 'Jangan',
-'underline-default' => 'Pelayar web utama',
+'underline-default' => 'Tetapan azali kulit/pelayar',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Gaya fon ruang sunting:',

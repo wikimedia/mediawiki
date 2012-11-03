@@ -275,7 +275,7 @@ $messages = array(
 'faqpage' => 'Project:Maiz egindako galderak',
 
 # Vector skin
-'vector-action-addsection' => 'Mintzagaia gehitu',
+'vector-action-addsection' => 'Gehitu atala',
 'vector-action-delete' => 'Ezabatu',
 'vector-action-move' => 'Mugitu',
 'vector-action-protect' => 'Babestu',

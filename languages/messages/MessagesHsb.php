@@ -201,7 +201,7 @@ $messages = array(
 
 'underline-always' => 'Přeco',
 'underline-never' => 'Ženje',
-'underline-default' => 'Standard wobhladowaka',
+'underline-default' => 'Standard drasty abo wobhladowaka',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Pismowy stil wobdźěłowanskeho pola:',
@@ -1420,6 +1420,9 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'rightslogtext' => 'To je protokol změnow wužiwarskich prawow.',
 'rightslogentry' => 'změni skupinske čłonstwo za $1 z $2 do $3',
 'rightslogentry-autopromote' => 'je so awtomatisce wot $2 do $3 změnił',
+'logentry-rights-rights' => '$1 změni skupinske čłonstwo za $3 z $4 do $5',
+'logentry-rights-rights-legacy' => '$1 změni skupinske čłonstwo za $3',
+'logentry-rights-autopromote' => '$1 powyši so awtomatisce wot $4 do $5',
 'rightsnone' => '(ničo)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2855,7 +2858,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # Info page
 'pageinfo-title' => 'Informacije za stronu "$1"',
-'pageinfo-not-current' => 'Informacije hodźa so jenož za aktualnu wersiju zwobraznić.',
+'pageinfo-not-current' => 'Bohužel njedadźa so tute informacije za stare wersije podać.',
 'pageinfo-header-basic' => 'Zakładne informacije',
 'pageinfo-header-edits' => 'Stawizny wobdźěłać',
 'pageinfo-header-restrictions' => 'Škit strony',
