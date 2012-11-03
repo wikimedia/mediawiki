@@ -80,7 +80,7 @@ class MonoBookTemplate extends BaseTemplate {
 
 		$this->html( 'headelement' );
 ?><div id="globalWrapper">
-<div id="column-content"><div id="content" class="mw-body-primary">
+<div id="column-content"><div id="content" class="mw-body-primary" role="main">
 	<a id="top"></a>
 	<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 
@@ -105,7 +105,7 @@ class MonoBookTemplate extends BaseTemplate {
 </div></div>
 <div id="column-one"<?php $this->html('userlangattributes')  ?>>
 <?php $this->cactions(); ?>
-	<div class="portlet" id="p-personal">
+	<div class="portlet" id="p-personal" role="navigation">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
 			<ul<?php $this->html('userlangattributes') ?>>
@@ -116,7 +116,7 @@ class MonoBookTemplate extends BaseTemplate {
 			</ul>
 		</div>
 	</div>
-	<div class="portlet" id="p-logo">
+	<div class="portlet" id="p-logo" role="banner">
 <?php
 			echo Html::element( 'a', array(
 				'href' => $this->data['nav_urls']['mainpage']['href'],
@@ -134,7 +134,7 @@ class MonoBookTemplate extends BaseTemplate {
 	$validFooterLinks = $this->getFooterLinks( "flat" ); // Additional footer links
 
 	if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) { ?>
-<div id="footer"<?php $this->html('userlangattributes') ?>>
+<div id="footer" role="contentinfo"<?php $this->html('userlangattributes') ?>>
 <?php
 		$footerEnd = '</div>';
 	} else {
@@ -200,7 +200,7 @@ echo $footerEnd;
 	function searchBox() {
 		global $wgUseTwoButtonsSearchForm;
 ?>
-	<div id="p-search" class="portlet">
+	<div id="p-search" class="portlet" role="search">
 		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('wgScript') ?>" id="searchform">
@@ -227,7 +227,7 @@ echo $footerEnd;
 	 */
 	function cactions() {
 ?>
-	<div id="p-cactions" class="portlet">
+	<div id="p-cactions" class="portlet" role="navigation">
 		<h5><?php $this->msg('views') ?></h5>
 		<div class="pBody">
 			<ul><?php
@@ -244,7 +244,7 @@ echo $footerEnd;
 	/*************************************************************************************************/
 	function toolbox() {
 ?>
-	<div class="portlet" id="p-tb">
+	<div class="portlet" id="p-tb" role="navigation">
 		<h5><?php $this->msg('toolbox') ?></h5>
 		<div class="pBody">
 			<ul>
@@ -267,7 +267,7 @@ echo $footerEnd;
 	function languageBox() {
 		if( $this->data['language_urls'] ) {
 ?>
-	<div id="p-lang" class="portlet">
+	<div id="p-lang" class="portlet" role="navigation">
 		<h5<?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h5>
 		<div class="pBody">
 			<ul>
@@ -288,7 +288,7 @@ echo $footerEnd;
 	 * @param $cont array|string
 	 */
 	function customBox( $bar, $cont ) {
-		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ) );
+		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ), 'role' => 'navigation' );
 		$tooltip = Linker::titleAttrib( "p-$bar" );
 		if ( $tooltip !== false ) {
 			$portletAttribs['title'] = $tooltip;
