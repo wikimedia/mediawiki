@@ -3161,7 +3161,7 @@ The latest block log entry is provided below for reference:',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 links',
-'whatlinkshere-hideimages' => '$1 image links',
+'whatlinkshere-hideimages' => '$1 file links',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
