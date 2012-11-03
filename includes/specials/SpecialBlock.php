@@ -507,53 +507,74 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return Message
 	 */
 	public static function validateTargetField( $value, $alldata, $form ) {
+		$status = self::validateTarget( $value, $form->getUser() );
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsArray();
+			return call_user_func_array( array( $form, 'msg' ), $errors[0] );
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Validate a block target.
+	 *
+	 * @since 1.21
+	 * @param String $value Block target to check
+	 * @param User $user Performer of the block
+	 * @return Status
+	 */
+	public static function validateTarget( $value, User $user ) {
 		global $wgBlockCIDRLimit;
 
 		list( $target, $type ) = self::getTargetAndType( $value );
+		$status = Status::newGood( $target );
 
 		if ( $type == Block::TYPE_USER ) {
-			# TODO: why do we not have a User->exists() method?
-			if ( !$target->getId() ) {
-				return $form->msg( 'nosuchusershort',
-					wfEscapeWikiText( $target->getName() ) );
+			if ( $target->isAnon() ) {
+				$status->fatal(
+					'nosuchusershort',
+					wfEscapeWikiText( $target->getName() )
+				);
 			}
 
-			$status = self::checkUnblockSelf( $target, $form->getUser() );
-			if ( $status !== true ) {
-				return $form->msg( 'badaccess', $status );
+			$unblockStatus = self::checkUnblockSelf( $target, $user );
+			if ( $unblockStatus !== true ) {
+				$status->fatal( 'badaccess', $unblockStatus );
 			}
-
 		} elseif ( $type == Block::TYPE_RANGE ) {
 			list( $ip, $range ) = explode( '/', $target, 2 );
 
-			if ( ( IP::isIPv4( $ip ) && $wgBlockCIDRLimit['IPv4'] == 32 )
-				|| ( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPv6'] == 128 ) )
-			{
-				# Range block effectively disabled
-				return $form->msg( 'range_block_disabled' );
+			if (
+				( IP::isIPv4( $ip ) && $wgBlockCIDRLimit['IPv4'] == 32 ) ||
+				( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPv6'] == 128 )
+			) {
+				// Range block effectively disabled
+				$status->fatal( 'range_block_disabled' );
 			}
 
-			if ( ( IP::isIPv4( $ip ) && $range > 32 )
-				|| ( IP::isIPv6( $ip ) && $range > 128 ) )
-			{
-				# Dodgy range
-				return $form->msg( 'ip_range_invalid' );
+			if (
+				( IP::isIPv4( $ip ) && $range > 32 ) ||
+				( IP::isIPv6( $ip ) && $range > 128 )
+			) {
+				// Dodgy range
+				$status->fatal( 'ip_range_invalid' );
 			}
 
 			if ( IP::isIPv4( $ip ) && $range < $wgBlockCIDRLimit['IPv4'] ) {
-				return $form->msg( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
+				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
 			}
 
 			if ( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
-				return $form->msg( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
+				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 			}
 		} elseif ( $type == Block::TYPE_IP ) {
 			# All is well
 		} else {
-			return $form->msg( 'badipaddress' );
+			$status->fatal( 'badipaddress' );
 		}
 
-		return true;
+		return $status;
 	}
 
 	/**
