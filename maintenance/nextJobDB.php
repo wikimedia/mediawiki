@@ -38,21 +38,31 @@ class nextJobDB extends Maintenance {
 
 	public function execute() {
 		global $wgMemc;
+
 		$type = $this->getOption( 'type', false );
 
-		$memcKey = 'jobqueue:dbs:v2';
-		$pendingDBs = $wgMemc->get( $memcKey );
+		$memcKey = 'jobqueue:dbs:v3';
+		$pendingDbInfo = $wgMemc->get( $memcKey );
 
 		// If the cache entry wasn't present, or in 1% of cases otherwise,
-		// regenerate the cache.
-		if ( !$pendingDBs || mt_rand( 0, 100 ) == 0 ) {
-			$pendingDBs = $this->getPendingDbs();
-			$wgMemc->set( $memcKey, $pendingDBs, 300 );
+		// regenerate the cache. Use any available stale cache if another
+		// process is currently regenerating the pending DB information.
+		if ( !$pendingDbInfo || mt_rand( 0, 100 ) == 0 ) {
+			$lock = $wgMemc->add( 'jobqueue:dbs:v3:lock', 1 ); // lock
+			if ( $lock ) {
+				$pendingDbInfo = array(
+					'pendingDBs' => $this->getPendingDbs(),
+					'timestamp'  => time()
+				);
+				$wgMemc->set( $memcKey, $pendingDbInfo );
+				$wgMemc->delete( 'jobqueue:dbs:v3:lock' ); // unlock
+			}
 		}
 
-		if ( !$pendingDBs ) {
-			return;
+		if ( !$pendingDbInfo || !$pendingDbInfo['pendingDBs'] ) {
+			return; // no DBs with jobs or cache is both empty and locked
 		}
+		$pendingDBs = $pendingDbInfo['pendingDBs'];
 
 		do {
 			$again = false;
@@ -97,24 +107,17 @@ class nextJobDB extends Maintenance {
 	 * @return bool
 	 */
 	function checkJob( $type, $dbName ) {
-		global $wgJobTypesExcludedFromDefaultQueue;
-
+		$group = JobQueueGroup::singleton( $dbName );
 		if ( $type === false ) {
-			$lb = wfGetLB( $dbName );
-			$db = $lb->getConnection( DB_MASTER, array(), $dbName );
-			$conds = array();
-			if ( count( $wgJobTypesExcludedFromDefaultQueue ) > 0 ) {
-				foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
-					$conds[] = "job_cmd != " . $db->addQuotes( $cmdType );
+			foreach ( $group->getDefaultQueueTypes() as $type ) {
+				if ( !$group->get( $type )->isEmpty() ) {
+					return true;
 				}
 			}
-			$exists = (bool)$db->selectField( 'job', '1', $conds, __METHOD__ );
-			$lb->reuseConnection( $db );
+			return false;
 		} else {
-			$exists = !JobQueueGroup::singleton( $dbName )->get( $type )->isEmpty();
+			return !$group->get( $type )->isEmpty();
 		}
-
-		return $exists;
 	}
 
 	/**
@@ -123,42 +126,15 @@ class nextJobDB extends Maintenance {
 	 */
 	private function getPendingDbs() {
 		global $wgLocalDatabases;
-		$pendingDBs = array();
-		# Cross-reference DBs by master DB server
-		$dbsByMaster = array();
+
+		$pendingDBs = array(); // (job type => (db list))
 		foreach ( $wgLocalDatabases as $db ) {
-			$lb = wfGetLB( $db );
-			$dbsByMaster[$lb->getServerName( 0 )][] = $db;
-		}
-
-		foreach ( $dbsByMaster as $dbs ) {
-			$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
-
-			# Padding row for MySQL bug
-			$pad = str_repeat( '-', 40 );
-			$sql = "(SELECT '$pad' as db, '$pad' as job_cmd)";
-			foreach ( $dbs as $wikiId ) {
-				if ( $sql != '' ) {
-					$sql .= ' UNION ';
-				}
-
-				list( $dbName, $tablePrefix ) = wfSplitWikiID( $wikiId );
-				$dbConn->tablePrefix( $tablePrefix );
-				$jobTable = $dbConn->tableName( 'job' );
-
-				$sql .= "(SELECT DISTINCT '$wikiId' as db, job_cmd FROM $dbName.$jobTable GROUP BY job_cmd)";
-			}
-			$res = $dbConn->query( $sql, __METHOD__ );
-			$first = true;
-			foreach ( $res as $row ) {
-				if ( $first ) {
-					// discard padding row
-					$first = false;
-					continue;
-				}
-				$pendingDBs[$row->job_cmd][] = $row->db;
+			$types = JobQueueGroup::singleton( $db )->getQueuesWithJobs();
+			foreach ( $types as $type ) {
+				$pendingDBs[$type][] = $db;
 			}
 		}
+
 		return $pendingDBs;
 	}
 }

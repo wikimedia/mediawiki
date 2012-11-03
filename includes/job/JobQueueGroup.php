@@ -153,4 +153,17 @@ class JobQueueGroup {
 
 		return array_diff( $this->getQueueTypes(), $wgJobTypesExcludedFromDefaultQueue );
 	}
+
+	/**
+	 * @return Array List of job types that have non-empty queues
+	 */
+	public function getQueuesWithJobs() {
+		$types = array();
+		foreach ( $this->getQueueTypes() as $type ) {
+			if ( !$this->get( $type )->isEmpty() ) {
+				$types[] = $type;
+			}
+		}
+		return $types;
+	}
 }

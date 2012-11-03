@@ -28,7 +28,7 @@
  * @since 1.21
  */
 class JobQueueDB extends JobQueue {
-	const CACHE_TTL      = 30; // integer; seconds
+	const CACHE_TTL      = 300; // integer; seconds
 	const MAX_JOB_RANDOM = 2147483647; // 2^31 - 1; used for job_random
 
 	/**
@@ -97,7 +97,7 @@ class JobQueueDB extends JobQueue {
 					$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 				}
 
-				$wgMemc->set( $key, 'false', $ttl );
+				$wgMemc->set( $key, 'false', $ttl ); // queue is not empty
 			} );
 		}
 

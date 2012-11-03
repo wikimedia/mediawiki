@@ -88,7 +88,10 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @return bool Quickly check if the queue is empty
+	 * Quickly check if the queue is empty.
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * @return bool
 	 */
 	final public function isEmpty() {
 		wfProfileIn( __METHOD__ );
