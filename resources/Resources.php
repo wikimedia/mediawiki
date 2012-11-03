@@ -546,6 +546,133 @@ return array(
 		'group' => 'jquery.ui',
 	),
 
+	/* jQuery jqPlot */
+	'jquery.jqplot' => array(
+		'scripts' => 'resources/jquery.jqplot/jquery.jqplot.min.js',
+		'styles' => 'resources/jquery.jqplot/jquery.jqplot.css',
+		'dependencies' => 'jquery'
+	),
+	'jquery.jqplot.barRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.barRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.BezierCurveRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.BezierCurveRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.blockRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.blockRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.bubbleRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.bubbleRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.canvasAxisLabelRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.canvasAxisLabelRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.canvasAxisTickRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.canvasAxisTickRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.canvasOverlay' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.canvasOverlay.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.canvasTextRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.canvasTextRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.categoryAxisRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.categoryAxisRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.ciParser' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.ciParser.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.cursor' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.cursor.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.dateAxisRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.dateAxisRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.donutRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.donutRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.dragable' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.dragable.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.enhancedLegendRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.enhancedLegendRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.funnelRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.funnelRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.highlighter' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.highlighter.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.json2' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.json2.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.logAxisRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.logAxisRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.mekkoAxisRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.mekkoAxisRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.mekkoRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.mekkoRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.meterGaugeRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.meterGaugeRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.mobile' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.mobile.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.ohlcRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.ohlcRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.pieRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.pieRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.pointLabels' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.pointLabels.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.pyramidAxisRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.pyramidAxisRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.pyramidGridRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.pyramidGridRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.pyramidRenderer' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.pyramidRenderer.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+	'jquery.jqplot.trendline' => array(
+		'scripts' => 'resources/jquery.jqplot/plugins/jqplot.trendline.js',
+		'dependencies' => 'jquery.jqplot'
+	),
+
 	/* MediaWiki */
 
 	'mediawiki' => array(
@@ -713,6 +840,12 @@ return array(
 	'mediawiki.action.history.diff' => array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
 		'group' => 'mediawiki.action.history',
+	),
+	'mediawiki.action.info' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.info.js',
+		'styles' => 'resources/mediawiki.action/mediawiki.action.info.css',
+		'messages' => array( 'pageinfo-analytics-edithistory' ),
+		'dependencies' => array( 'jquery.jqplot', 'jquery.jqplot.canvasTextRenderer', 'jquery.jqplot.canvasAxisTickRenderer' )
 	),
 	'mediawiki.action.view.dblClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
