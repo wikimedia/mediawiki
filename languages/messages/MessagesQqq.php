@@ -3614,6 +3614,8 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 *{{msg-mw|Pageinfo-protect-cascading}}
 *{{msg-mw|Pageinfo-protect-cascading-yes}}',
 'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
+'pageinfo-header-analytics'       => 'Header for the analytics section of the info action.',
+'pageinfo-analytics-edithistory'  => 'Label for the graph of edit history',
 
 # Skin names
 'skinname-standard' => '{{optional}}

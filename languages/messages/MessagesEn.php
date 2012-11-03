@@ -3786,6 +3786,8 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-protect-cascading'      => 'Protections are cascading from here',
 'pageinfo-protect-cascading-yes'  => 'Yes',
 'pageinfo-protect-cascading-from' => 'Protections are cascading from',
+'pageinfo-header-analytics'       => 'Analytics',
+'pageinfo-analytics-edithistory'  => 'Edit history',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it
