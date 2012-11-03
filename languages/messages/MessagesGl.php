@@ -61,7 +61,7 @@ $defaultDateFormat = 'dmy';
 $dateFormats = array(
 	'dmy time' => 'H:i',
 	'dmy date' => 'j \d\e F \d\e Y',
-	'dmy both' => 'H:i\,\ j \d\e F \d\e Y',
+	'dmy both' => '\ j \d\e F \d\e Y "ás" H:i',
 );
 
 $specialPageAliases = array(
