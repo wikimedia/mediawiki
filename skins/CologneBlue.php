@@ -279,17 +279,17 @@ class CologneBlueTemplate extends BaseTemplate {
 ?>
 <div id="content">
 	<div id="topbar">
-		<p id="sitetitle">
+		<p id="sitetitle" role="banner">
 			<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">
 				<?php echo wfMessage( 'sitetitle' )->escaped() ?>
 			</a>
 		</p>
 		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
-		<div id="toplinks">
+		<div id="toplinks" role="navigation">
 			<p id="syslinks"><?php echo $this->sysLinks() ?></p>
 			<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
 		</div>
-		<div id="linkcollection">
+		<div id="linkcollection" role="navigation">
 			<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
 			<?php echo $this->getSkin()->getCategories() ?>
 			<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
@@ -298,7 +298,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			<?php } ?>
 		</div>
 	</div>
-	<div id="article">
+	<div id="article" role="main">
 		<?php if ( $this->getSkin()->getSiteNotice() ) { ?>
 		<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
 		<?php } ?>
@@ -328,7 +328,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		ob_start();
 ?>
 	</div>
-	<div id='footer'>
+	<div id="footer" role="contentinfo">
 <?php
 		// Page-related links
 		echo $this->bottomLinks();
@@ -509,7 +509,7 @@ class CologneBlueTemplate extends BaseTemplate {
 					}
 				}
 				if ( $listHTML ) {
-					$listHTML = "<ul>$listHTML</ul>";
+					$listHTML = "<ul role\"navigation\">$listHTML</ul>";
 				}
 			} else {
 				// $data is a HTML <ul>-list string
@@ -536,7 +536,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
-		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
+		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\" role=\"search\">";
 		if( $which == 'footer' ) {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}

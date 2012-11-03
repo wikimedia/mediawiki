@@ -73,7 +73,7 @@ class ModernTemplate extends MonoBookTemplate {
 <?php $this->cactions(); ?>
 
 	<!-- content -->
-	<div id="mw_content">
+	<div id="mw_content" role="main">
 	<!-- contentholder does nothing by default, but it allows users to style the text inside
 	     the content area without affecting the meaning of 'em' in #mw_content, which is used
 	     for the margins -->
@@ -115,7 +115,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div class="mw_clear"></div>
 
 	<!-- personal portlet -->
-	<div class="portlet" id="p-personal">
+	<div class="portlet" id="p-personal" role="navigation">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
 			<ul>
@@ -129,7 +129,7 @@ class ModernTemplate extends MonoBookTemplate {
 
 
 	<!-- footer -->
-	<div id="footer"<?php $this->html('userlangattributes') ?>>
+	<div id="footer" role="contentinfo"<?php $this->html('userlangattributes') ?>>
 			<ul id="f-list">
 <?php
 		foreach( $this->getFooterLinks("flat") as $aLink ) {
