@@ -38,6 +38,7 @@ class nextJobDB extends Maintenance {
 
 	public function execute() {
 		global $wgMemc;
+
 		$type = $this->getOption( 'type', false );
 
 		$memcKey = 'jobqueue:dbs:v2';
@@ -97,24 +98,17 @@ class nextJobDB extends Maintenance {
 	 * @return bool
 	 */
 	function checkJob( $type, $dbName ) {
-		global $wgJobTypesExcludedFromDefaultQueue;
-
+		$group = JobQueueGroup::singleton( $dbName );
 		if ( $type === false ) {
-			$lb = wfGetLB( $dbName );
-			$db = $lb->getConnection( DB_MASTER, array(), $dbName );
-			$conds = array();
-			if ( count( $wgJobTypesExcludedFromDefaultQueue ) > 0 ) {
-				foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
-					$conds[] = "job_cmd != " . $db->addQuotes( $cmdType );
+			foreach ( $group->getDefaultQueueTypes() as $type ) {
+				if ( !$group->get( $type )->isEmpty() ) {
+					return true;
 				}
 			}
-			$exists = (bool)$db->selectField( 'job', '1', $conds, __METHOD__ );
-			$lb->reuseConnection( $db );
+			return false;
 		} else {
-			$exists = !JobQueueGroup::singleton( $dbName )->get( $type )->isEmpty();
+			return !$group->get( $type )->isEmpty();
 		}
-
-		return $exists;
 	}
 
 	/**
@@ -123,6 +117,7 @@ class nextJobDB extends Maintenance {
 	 */
 	private function getPendingDbs() {
 		global $wgLocalDatabases;
+
 		$pendingDBs = array();
 		# Cross-reference DBs by master DB server
 		$dbsByMaster = array();
