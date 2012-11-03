@@ -115,6 +115,8 @@ class InfoAction extends FormlessAction {
 			$content .= Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $this->getContributors() );
 		}*/
 
+		$this->getOutput()->addModules( 'mediawiki.action.info' );
+
 		return $content;
 	}
 
@@ -467,6 +469,38 @@ class InfoAction extends FormlessAction {
 			}
 		}
 
+		// Analytics and graphs
+		$pageInfo['header-analytics'] = array();
+
+		$pageInfo['header-analytics'][] = array(
+			$this->msg( 'pageinfo-analytics-edithistory' )->escaped(),
+			Html::element( 'div', array(
+				'id' => 'edithistory',
+				'style' => 'height: 400px; width:500px;'
+			) )
+		);
+
+		$editHistoryData = array();
+		$startYear = min( array_keys( $pageCounts['editcounts'] ) );
+		$xLabels = array();
+		$first = true;
+		foreach ( $pageCounts['editcounts'] as $year => $months ) {
+			foreach ( $months as $month => $count ) {
+				$index = 12 * ( $year - $startYear ) + $month;
+				$label = "$year-$month";
+
+				$xLabels[] = array( $index, $label );
+				$editHistoryData[] = array( $index, $count );
+			}
+		}
+
+		$editHistoryData = FormatJson::encode( array( $editHistoryData ) );
+		$xLabels = FormatJson::encode( $xLabels );
+		$this->getOutput()->addInlineScript(
+			"var editHistoryData = $editHistoryData;\n" .
+			"var editHistoryLabels = $xLabels;"
+		);
+
 		return $pageInfo;
 	}
 
@@ -581,6 +615,28 @@ class InfoAction extends FormlessAction {
 			// Subpages of this page (total)
 			$result['subpages']['total'] = $result['subpages']['redirects']
 				+ $result['subpages']['nonredirects'];
+		}
+
+		$editCounts = $dbr->select(
+			'revision',
+			array(
+				'year' => 'substr(rev_timestamp, 1, 4)',
+				'month' => 'substr(rev_timestamp, 5, 2)',
+				'count' => 'COUNT(rev_id)'
+			),
+			array( 'rev_page' => $title->getArticleID() ),
+			__METHOD__,
+			array(
+				'GROUP BY' => array( 'year', 'month' ),
+				'ORDER BY' => array( 'year', 'month' )
+			)
+		);
+
+		foreach ( $editCounts as $row ) {
+			if ( !isset( $result['editcounts'][$row->year] ) ) {
+				$result['editcounts'][$row->year] = array();
+			}
+			$result['editcounts'][$row->year][$row->month] = (int) $row->count;
 		}
 
 		wfProfileOut( __METHOD__ );

@@ -219,6 +219,11 @@ return array(
 		'styles' => 'resources/jquery/jquery.qunit.css',
 		'position' => 'top',
 	),
+	'jquery.jqplot' => array(
+		'scripts' => 'resources/jquery.jqplot/jquery.jqplot.min.js',
+		'styles' => 'resources/jquery.jqplot/jquery.jqplot.css',
+		'dependencies' => 'jquery'
+	),
 	'jquery.qunit.completenessTest' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
 		'dependencies' => 'jquery.qunit',
@@ -713,6 +718,11 @@ return array(
 	'mediawiki.action.history.diff' => array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
 		'group' => 'mediawiki.action.history',
+	),
+	'mediawiki.action.info' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.info.js',
+		'messages' => array( 'pageinfo-analytics-edithistory' ),
+		'dependencies' => 'jquery.jqplot'
 	),
 	'mediawiki.action.view.dblClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
