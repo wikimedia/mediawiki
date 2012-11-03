@@ -277,21 +277,50 @@ class SpecialStatistics extends SpecialPage {
 		return $text;
 	}
 
-	private function getOtherStats( $stats ) {
-		if ( !count( $stats ) )
+	/**
+	 * Conversion of external statistics into an internal representation
+	 * Following a ([<header-message>][<item-message>] = number) pattern
+	 *
+	 * @param array $stats
+	 * @param boolean $legacy
+	 * @return string
+	 */
+	private function getOtherStats( $stats, $legacy = true ) {
+		if ( $stats === array() ){
 			return '';
-
-		$return = Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-hooks' )->parse() ) .
-			Xml::closeElement( 'tr' );
-
-		foreach( $stats as $name => $number ) {
-			$name = htmlspecialchars( $name );
-			$number = htmlspecialchars( $number );
-
-			$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
 		}
 
+		$return = '';
+
+		// Keep the legacy header
+		if ( $legacy ){
+			$return = Xml::openElement( 'tr' ) .
+				Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-hooks' )->parse() ) .
+				Xml::closeElement( 'tr' );
+		}
+
+		foreach( $stats as $header => $items ) {
+
+			// Handle the array in a more flexible way
+			if ( is_array ( $items ) ){
+				if ( $header !== 'statistics-header-hooks' ){
+					$return .= Xml::openElement( 'tr' ) .
+							Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( $header )->parse() ) .
+							Xml::closeElement( 'tr' );
+				}
+
+				// Collect all items that belong to the same header
+				foreach( $items as $key => $value ) {
+					$name = $this->msg( $key )->inContentLanguage()->parse();
+					$number = htmlspecialchars( $value );
+
+					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+				}
+			} else {
+				// Convert a single to a multi array structure
+				$return .= self::getOtherStats( array( 'statistics-header-hooks' => array( $header => $items ) ), false );
+			}
+		}
 		return $return;
 	}
 }
