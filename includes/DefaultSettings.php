@@ -1165,6 +1165,12 @@ $wgDjvuPostProcessor = 'pnmtojpeg';
 $wgDjvuOutputExtension = 'jpg';
 /** @} */ # end of DJvu }
 
+$wgEditHistoryGraph = array(
+	'width' => 700,
+	'height' => '230',
+	'expiry' => 5
+);
+
 /** @} */ # end of file uploads }
 
 /************************************************************************//**

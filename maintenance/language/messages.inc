@@ -2725,6 +2725,8 @@ $wgMessageStructure = array(
 		'pageinfo-protect-cascading',
 		'pageinfo-protect-cascading-yes',
 		'pageinfo-protect-cascading-from',
+		'pageinfo-header-analytics',
+		'pageinfo-analytics-edithistory',
 	),
 	'skin' => array(
 		'skinname-standard',

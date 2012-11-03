@@ -467,6 +467,14 @@ class InfoAction extends FormlessAction {
 			}
 		}
 
+		// Analytics and graphs
+		$pageInfo['header-analytics'] = array();
+
+		$pageInfo['header-analytics'][] = array(
+			$this->msg( 'pageinfo-analytics-edithistory' )->escaped(),
+			Html::element( 'img', array( 'src' => $this->getEditHistoryGraph( $pageCounts['editcounts'] ) ) )
+		);
+
 		return $pageInfo;
 	}
 
@@ -583,8 +591,79 @@ class InfoAction extends FormlessAction {
 				+ $result['subpages']['nonredirects'];
 		}
 
+		$editCounts = $dbr->select(
+			'revision',
+			array(
+				'year' => 'substr(rev_timestamp, 1, 4)',
+				'month' => 'substr(rev_timestamp, 5, 2)',
+				'count' => 'COUNT(rev_id)'
+			),
+			array( 'rev_page' => $title->getArticleID() ),
+			__METHOD__,
+			array(
+				'GROUP BY' => array( 'year', 'month' ),
+				'ORDER BY' => array( 'year', 'month' )
+			)
+		);
+
+		foreach ( $editCounts as $row ) {
+			if ( !isset( $result['editcounts'][$row->year] ) ) {
+				$result['editcounts'][$row->year] = array();
+			}
+			$result['editcounts'][$row->year][$row->month] = (int) $row->count;
+		}
+
 		wfProfileOut( __METHOD__ );
 		return $result;
+	}
+
+	protected function getEditHistoryGraph( $editCounts ) {
+		global $wgLocalFileRepo, $IP, $wgEditHistoryGraph;
+
+		$backend = FileBackendGroup::singleton()->get( $wgLocalFileRepo['backend'] );
+		$fname = 'mwstore://' . $backend->getName() . '/edithistory/' . $this->getTitle()->getPrefixedDbKey() . '.png';
+
+		$exists = $backend->fileExists( array( 'src' => $fname ) );
+		$expired = $backend->getFileTimestamp( array( 'src' => $fname ) ) < time() - 60 * 60 * 24 * $wgEditHistoryGraph['expiry'];
+
+		if ( $exists && !$expired ) {
+			return $backend->getFileHttpUrl( array( 'src' => $fname ) );
+		} elseif ( $expired ) {
+			$backend->delete( array( 'src' => $fname ) );
+		}
+
+		// Proceed to generate the graph.
+		$dataSet = new pData;
+		$dataSet->SetXAxisName( $this->msg( 'pageinfo-analytics-xaxis-name' )->text() );
+		$dataSet->SetYAxisName( $this->msg( 'pageinfo-analytics-yaxis-name' )->text() );
+		$dataSet->SetXAxisFormat( 'date' );
+		$dataSet->SetXAxisUnit( $this->msg( 'pageinfo-analytics-xaxis-units' )->text() );
+		$dataSet->SetYAxisUnit( $this->msg( 'pageinfo-analytics-yaxis-units' )->text() );
+		foreach ( $editCounts as $year => $months ) {
+			foreach ( $months as $month => $count ) {
+				$timestamp = new MWTimestamp( "{$year}{$month}01000000" );
+				$dataSet->addPoint( $count, 'Serie1', $timestamp->getTimestamp( TS_UNIX ) );
+			}
+		}
+		$dataSet->AddSerie( 'Serie1' );
+
+		$chart = new pChart( $wgEditHistoryGraph['width'], $wgEditHistoryGraph['height'] );
+		$chart->setFontProperties( "$IP/includes/pChart/Fonts/tahoma.ttf", 10 );
+		$chart->setGraphArea( 40, 30, $wgEditHistoryGraph['width'] - 20, $wgEditHistoryGraph['height'] - 30 );
+		$chart->drawGraphArea( 252, 252, 252 );
+		$chart->drawScale( $dataSet->GetData(), $dataSet->GetDataDescription(), SCALE_NORMAL, 150, 150, 150, true, 0, 0 );
+		$chart->drawGrid( 4, true, 230, 230, 230 );
+
+		$chart->drawLineGraph( $dataSet->GetData(), $dataSet->GetDataDescription() );
+		$chart->drawPlotGraph( $dataSet->GetData(), $dataSet->GetDataDescription(), 3, 2, 255, 255, 255 );
+
+		// Store the graph.
+		$tmpFile = TempFSFile::factory( 'edithistory_' );
+		$chart->render( $tmpFile->getPath() );
+		$backend->prepare( array( 'dir' => dirname( $fname ) ) );
+		$backend->store( array( 'src' => $tmpFile->getPath(), 'dst' => $fname ) );
+
+		return $backend->getFileHttpUrl( array( 'src' => $fname ) );
 	}
 
 	/**
