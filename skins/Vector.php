@@ -361,7 +361,7 @@ class VectorTemplate extends BaseTemplate {
 	 * @param $elements array
 	 */
 	protected function renderNavigation( $elements ) {
-		global $wgVectorUseSimpleSearch;
+		global $wgVectorUseSimpleSearch, $wgVectorCombineUserTalk;
 
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
@@ -444,10 +444,26 @@ class VectorTemplate extends BaseTemplate {
 <div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg( 'personaltools' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
-<?php			foreach( $this->getPersonalTools() as $key => $item ) { ?>
-		<?php echo $this->makeListItem( $key, $item ); ?>
-
-<?php			} ?>
+<?php
+					$personalTools = $this->getPersonalTools();
+					if ( $wgVectorCombineUserTalk && isset( $personalTools['userpage'] ) ) {
+?>
+		<li>
+<?php
+						echo $this->makeListItem( 'userpage', $personalTools['userpage'], array( 'tag' => 'span' ) );
+?> <?php
+						$personalTools['mytalk']['links'][0]['text'] = $this->getMsg( 'mytalk-parenthetical' )->text();
+						$talkItem = $this->makeListItem( 'mytalk', $personalTools['mytalk'], array( 'tag' => 'span' ) );
+						echo $this->getMsg( 'parentheses' )->rawParams( $talkItem )->escaped();
+						unset( $personalTools['userpage'], $personalTools['mytalk'] );
+?>
+		</li>
+<?php
+					}
+					foreach ( $personalTools as $key => $item ) {
+						echo $this->makeListItem( $key, $item );
+					}
+?>
 	</ul>
 </div>
 <?php
