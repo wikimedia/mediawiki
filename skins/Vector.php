@@ -444,10 +444,24 @@ class VectorTemplate extends BaseTemplate {
 <div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg( 'personaltools' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
-<?php			foreach( $this->getPersonalTools() as $key => $item ) { ?>
-		<?php echo $this->makeListItem( $key, $item ); ?>
-
-<?php			} ?>
+<?php
+					$personalTools = $this->getPersonalTools();
+					if ( isset( $personalTools['userpage'] ) ) {
+?>
+		<li>
+<?php
+						echo $this->makeListItem( 'userpage', $personalTools['userpage'], array( 'tag' => 'span' ) );
+						$personalTools['mytalk']['links'][0]['text'] = strtolower( $personalTools['mytalk']['links'][0]['text'] );
+						echo ' (' . $this->makeListItem( 'mytalk', $personalTools['mytalk'], array( 'tag' => 'span' ) ) . ')';
+						unset( $personalTools['userpage'], $personalTools['mytalk'] );
+?>
+		</li>
+<?php
+					}
+					foreach( $personalTools as $key => $item ) {
+						echo $this->makeListItem( $key, $item );
+					}
+?>
 	</ul>
 </div>
 <?php
