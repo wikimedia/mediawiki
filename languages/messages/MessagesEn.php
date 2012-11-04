@@ -774,6 +774,7 @@ XHTML id names.
 'moredotdotdot'        => 'More...',
 'mypage'               => 'My page',
 'mytalk'               => 'Talk',
+'mytalk-parenthetical' => 'talk',
 'anontalk'             => 'Talk for this IP address',
 'navigation'           => 'Navigation',
 'and'                  => '&#32;and',
