@@ -347,6 +347,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
 'mytalk' => 'In the personal urls page section - right upper corner.',
+'mytalk-parenthetical' => 'In the personal urls page, when combined with user page into single label.',
 'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 

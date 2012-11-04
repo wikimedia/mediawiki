@@ -767,16 +767,17 @@ XHTML id names.
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
-'about'         => 'About',
-'article'       => 'Content page',
-'newwindow'     => '(opens in new window)',
-'cancel'        => 'Cancel',
-'moredotdotdot' => 'More...',
-'mypage'        => 'Page',
-'mytalk'        => 'Talk',
-'anontalk'      => 'Talk for this IP address',
-'navigation'    => 'Navigation',
-'and'           => '&#32;and',
+'about'                => 'About',
+'article'              => 'Content page',
+'newwindow'            => '(opens in new window)',
+'cancel'               => 'Cancel',
+'moredotdotdot'        => 'More...',
+'mypage'               => 'Page',
+'mytalk'               => 'Talk',
+'mytalk-parenthetical' => 'talk',
+'anontalk'             => 'Talk for this IP address',
+'navigation'           => 'Navigation',
+'and'                  => '&#32;and',
 
 # Cologne Blue skin
 'qbfind'         => 'Find',
