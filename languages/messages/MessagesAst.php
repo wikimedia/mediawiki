@@ -107,7 +107,7 @@ $messages = array(
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Restolador por defeutu',
+'underline-default' => 'Predeterminao del aspeutu o del restolador',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Estilu de fonte de l'área d'edición:",
@@ -778,7 +778,7 @@ Les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{n
 'note' => "'''Nota:'''",
 'previewnote' => "'''Alcuerdate de qu'esto ye sólo una vista previa.'''
 ¡Los cambios entá nun se guardaron!",
-'continue-editing' => 'Siguir editando',
+'continue-editing' => "Dir al área d'edición",
 'previewconflict' => "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 'session_fail_preview' => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",
@@ -1386,6 +1386,9 @@ Esta información sedrá pública.",
 'rightslogtext' => "Esti ye un rexistru de los cambeos de los perfiles d'usuariu.",
 'rightslogentry' => 'camudó la pertenencia de grupu del usuariu $1 dende $2 a $3',
 'rightslogentry-autopromote' => 'promocionó automáticamente de $2 a $3',
+'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
+'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
+'logentry-rights-autopromote' => '$1 promocionó automáticamente de $4 a $5',
 'rightsnone' => '(nengún)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2072,8 +2075,8 @@ pa poder unviar correos a otros usuarios.',
 'emailuser-title-target' => 'Unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}',
 'emailuser-title-notarget' => 'Unviar un corréu electrónicu a un usuariu',
 'emailpage' => 'Envigar un corréu electrónicu a un usuariu',
-'emailpagetext' => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
-La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
+'emailpagetext' => 'Pues usar el formulariu de más abaxo pa unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}.
+La direición de corréu electrónicu qu\'especificasti nes [[Special:Preferences|tos preferencies d\'usuariu]] va apaecer como la direición "Dende" del corréu, pa que\'l que lo recibe seya quien a respondete direutamente a ti.',
 'usermailererror' => "L'operador de corréu devolvió un error:",
 'defemailsubject' => 'Corréu electrónicu del usuariu «$1» de {{SITENAME}}',
 'usermaildisabled' => 'Corréu del usuariu desactiváu',
@@ -2901,7 +2904,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',
-'pageinfo-not-current' => 'Namái se pue amosar la información pa la revisión actual.',
+'pageinfo-not-current' => 'Sentimoslo, ye imposible dar esta información de les revisiones antigües.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => "Historial d'ediciones",
 'pageinfo-header-restrictions' => 'Proteición de páxina',
@@ -2910,6 +2913,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-default-sort' => "Clave d'ordenación predeterminada",
 'pageinfo-length' => 'Llonxitú de la páxina (en bytes)',
 'pageinfo-article-id' => 'ID de la páxina',
+'pageinfo-language' => 'Llingua del conteníu de la páxina',
 'pageinfo-robot-policy' => 'Estáu del motor de gueta',
 'pageinfo-robot-index' => 'Pue ser índiz',
 'pageinfo-robot-noindex' => 'Nun pue ser índiz',
@@ -3635,6 +3639,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-license' => 'Llicencia',
 'version-poweredby-credits' => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
+'version-credits-summary' => 'Nos prestaría dar reconocimientu a les siguientes persones pola so contribución a [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki ye software llibre; pues redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
 
 MediaWiki se distribúi col envís de que seya afayadiza, pero ENSIN GARANTÍA DALA; ensin siquiera garantía implícita de COMERCIALIDÁ o ADAUTACIÓN A UN DETERMINÁU PROPÓSITU. Llee la Llicencia Pública Xeneral GNU pa más detalles.

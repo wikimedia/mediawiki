@@ -2291,8 +2291,8 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ns' => 'Espacio de nombre:',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
-Es necesario, por lo menos, un dominio de nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (no añada ninguno de estos en su búsqueda).',
+Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
+Protocolos soportados: <code>$1</code> (si no se especidica ninguno, el protocolo por defecto es http://).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2667,7 +2667,7 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'whatlinkshere-hideredirs' => '$1 redirecciones',
 'whatlinkshere-hidetrans' => '$1 inclusiones',
 'whatlinkshere-hidelinks' => '$1 enlaces',
-'whatlinkshere-hideimages' => '$1 enlaces a imágenes',
+'whatlinkshere-hideimages' => '$1 enlaces a archivos',
 'whatlinkshere-filters' => 'Filtros',
 
 # Block/unblock

@@ -10467,7 +10467,7 @@ php.ini를 확인하고 <code>session.save_path</code>가 적절한 디렉토리
 	'config-page-copying' => '전문',
 	'config-page-upgradedoc' => '업그레이드하기',
 	'config-page-existingwiki' => '기존 위키',
-	'config-help-restart' => '당신이 입력한 모든 저장된 데이터를 지우고 설치 과정을 다시 시작하겠습니까?',
+	'config-help-restart' => '입력한 모든 저장된 데이터를 지우고 설치 과정을 다시 시작하겠습니까?',
 	'config-restart' => '예, 다시 시작합니다',
 	'config-welcome' => '=== 사용 환경 검사 ===
 이 환경이 미디어위키 설치에 적합한지 기본 검사를 실행합니다.
@@ -10574,7 +10574,7 @@ PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요 ([//bugs.ph
 	'config-db-host' => '데이터베이스 호스트:',
 	'config-db-host-help' => '데이터베이스 서버가 다른 서버에 있을 경우 여기에 호스트 이름이나 IP 주소를 입력하세요.
 
-웹 호스팅을 공유하여 사용하는 경우 호스팅 공급자는 당신에게 이들 설명서의 올바른 호스트 이름을 표기해야 합니다.
+공유된 웹 호스팅을 사용하는 경우 호스팅 공급자는 올바른 호스트 이름을 설명해야 합니다.
 
 윈도 서버에 설치하고 MySQL을 사용할 경우 "localhost"는 서버 이름으로 작동하지 않을 수 있습니다. 그렇지 않으면 로컬 IP 주소로 "127.0.0.1"를 시도하세요.
 
@@ -10586,7 +10586,7 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 	'config-db-name-help' => '위키를 식별하기 위한 이름을 선택하세요.
 공백이 없어야 합니다.
 
-웹 호스팅을 공유해 사용하는 경우 호스팅 제공 업체도 당신에게 제어판을 통해 데이터베이스를 사용하거나 만들 수 있도록 특정 데이터베이스 이름을 제공합니다.',
+공유된 웹 호스팅 사용하는 경우 호스팅 제공 업체가 특정 데이터베이스 이름을 제공하거나 제어판에서 데이터베이스를 만들 수 있도록 합니다.',
 	'config-db-name-oracle' => '데이터베이스 스키마:',
 	'config-db-account-oracle-warn' => '데이터베이스 백엔드로 오라클을 설치하기 위해 지원하는 세 가지 시나리오가 있습니다:
 
@@ -10647,7 +10647,7 @@ PHP 파일이 있는 곳을 우리가 이를 맡길 수 없는 이유는 웹을 
 
 $1
 
-데이터베이스 시스템이 표시되지 않을 때 아래에 나열된 다음 지원을 활성화하려면 당신은 위의 링크된 지시에 따라 사용해볼 수도 있습니다.',
+데이터베이스 시스템이 표시되지 않을 때 아래에 나열된 다음 지원을 활성화하려면 위의 링크된 지시에 따라 설치해볼 수 있습니다.',
 	'config-support-mysql' => '* $1은 미디어위키의 기본 대상으로 가장 잘 지원합니다. ([http://www.php.net/manual/en/mysql.installation.php MySQL을 지원하여 PHP를 컴파일하는 방법])',
 	'config-support-postgres' => '* $1은 MySQL의 대안으로 인기있는 오픈 소스 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQL을 지원하여 PHP를 컴파일하는 방법]) 몇가지 사소한 해결하지 못한 버그가 있을 수 있으며, 이를 제작 환경에서 사용하지 않는 것이 좋습니다.',
 	'config-support-sqlite' => '* $1는 매우 잘 지원하는 가벼운 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pdo.installation.php SQLite를 지원하여 PHP를 컴파일하는 방법], PDO 사용)',
@@ -10749,7 +10749,7 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
 '''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 어떤 문자열인지를 알 것이며, 표현하고 적절하게 그것을 변환할 수 있지만
 [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 기본 다국어 범위] 상의 문자를 저장하지 못하게 될 수 있습니다.",
-	'config-ibm_db2-low-db-pagesize' => "당신의 DB2 데이터베이스에 부족한 페이지 크기가 기본 테이블 공간에 있습니다. 페이지 크기는 '''32K''' 이상이어야 합니다.",
+	'config-ibm_db2-low-db-pagesize' => "DB2 데이터베이스에 부족한 페이지 크기가 기본 테이블 공간에 있습니다. 페이지 크기는 '''32K''' 이상이어야 합니다.",
 	'config-site-name' => '위키 이름:',
 	'config-site-name-help' => '브라우저 제목 표시줄과 다른 여러 곳에 나타납니다.',
 	'config-site-name-blank' => '사이트 이름을 입력하세요.',
@@ -10784,7 +10784,7 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-admin-error-bademail' => '이메일 주소를 잘못 입력하였습니다.',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 배포 발표 메일링 리스트]에 가입합니다.',
 	'config-subscribe-help' => '중요한 보안 알림을 포함한 배포 알림에 대해 사용되는 로우 볼륨 메일링 리스트입니다.
-당신이 이를 구독하고 나서 새 버전이 나올 때 미디어위키 설치를 업데이트해야합니다.',
+이 리스트를 구독하고 나서 새 버전이 나올 때 미디어위키 설치를 업데이트하십시오.',
 	'config-subscribe-noemail' => '이메일 주소를 제공하지 않고 배포 발표 메일링 리스트에 가입하려 합니다.
 메일링 리스트에 가입하고자 할 경우 이메일 주소를 제공하세요.',
 	'config-almost-done' => '거의 다 완료했습니다!
@@ -10796,16 +10796,17 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-profile-no-anon' => '계정 만들기 필요',
 	'config-profile-fishbowl' => '승인된 편집자만 이용 가능',
 	'config-profile-private' => '비공개 위키',
-	'config-profile-help' => "위키는 당신이 가능한 한 많은 사람들이 편집하도록 할 때 최고로 적합합니다.
-미디어위키에서는 최근 바뀜을 검토하고, 선하거나 악의적인 사용자에 의해 수행되는 모든 손실을 되돌리는 것이 쉽습니다.
+	'config-profile-help' => "위키는 많은 사람들이 가능한 한 해당 위키를 편집할 때 가장 뛰어난 역할을 합니다.
+미디어위키에서는 최근 바뀜을 검토하고, 선하거나 악의적인 사용자의 모든 손실을 되돌리는 것이 쉽습니다.
 
-그러나 많은 사람들이 미디어위키가 다양한 역할의 유용하지만, 때로는 그것이 위키 방식의 장점을 모두 설득하기 쉽지 않음을 발견했습니다.
+그러나 많은 사람들이 미디어위키가 다양한 역할로 유용하지만, 때로는 모든 사람에게 위키 방식의 장점을 모두 설득하기 쉽지 않을 지도 모릅니다.
 그래서 선택할 수 있습니다.
 
 '''{{int:config-profile-wiki}}'''는 로그인하지 않고도 누구나 편집할 수 있습니다.
-'''{{int:config-profile-no-anon}}'''는 추가적으로 필요한 책임을 제공하지만, 기존의 기여자를 망칠 수도 있습니다.
+'''{{int:config-profile-no-anon}}'''는 각 편집에 추가적으로 강한 책임성을 제공하지만, 부담 없는 기여를 저해할 수도 있습니다.
 
-'''{{int:config-profile-fishbowl}}''' 같은 경우는 승인된 사용자만 편집할 수 있지만, 대중은 역사를 포함하여 페이지를 볼 수 있습니다. '''{{int:config-profile-private}}'''는 승인된 사용자만 같은 그룹에서 편집할 수 있고 볼 수 있습니다.
+'''{{int:config-profile-fishbowl}}''' 같은 경우는 승인된 사용자만 편집할 수 있지만, 대중은 역사를 포함하여 페이지를 볼 수 있습니다.
+'''{{int:config-profile-private}}'''는 승인된 사용자만 같은 그룹에서 편집할 수 있고 볼 수 있습니다.
 
 더 복잡한 사용자 권한을 설정하여 설치한 후 사용할 수 있도록 하려면 [//www.mediawiki.org/wiki/Manual:User_rights 관련 매뉴얼 항목]을 참고하세요.",
 	'config-license' => '저작권 및 라이선스:',
@@ -10889,7 +10890,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-extensions-help' => '위에 나열된 확장 기능이 <code>./extensions</code>에서 발견되었습니다.
 
 추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.',
-	'config-install-alreadydone' => "'''경고:''' 당신은 이미 미디어위키를 설치하였고 다시 설치하려고 합니다.
+	'config-install-alreadydone' => "'''경고:''' 이미 미디어위키를 설치했고 다시 설치하려고 합니다.
 다음 페이지에서 진행하세요.",
 	'config-install-begin' => '"{{int:config-continue}}"을 누르면 미디어위키의 설치를 시작합니다.
 그래도 바꾸는 것을 원한다면 뒤로를 누릅니다.',

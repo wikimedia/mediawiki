@@ -421,7 +421,7 @@ $messages = array(
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
-'underline-default' => 'Valeur par défaut du navigateur',
+'underline-default' => 'Valeur par défaut du navigateur ou du thème',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Style de police de la zone de modification :',
@@ -532,7 +532,7 @@ $messages = array(
 'vector-simplesearch-preference' => "Activer la barre de recherche simplifiée (seulement pour l'habillage Vector)",
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Modifier',
-'vector-view-history' => 'Afficher l’historique',
+'vector-view-history' => "Afficher l'historique",
 'vector-view-view' => 'Lire',
 'vector-view-viewsource' => 'Voir la source',
 'actions' => 'Actions',
@@ -582,7 +582,7 @@ $messages = array(
 'imagepage' => 'Voir la page du fichier',
 'mediawikipage' => 'Voir la page du message',
 'templatepage' => 'Voir la page du modèle',
-'viewhelppage' => 'Voir la page d’aide',
+'viewhelppage' => "Voir la page d'aide",
 'categorypage' => 'Voir la page de catégorie',
 'viewtalkpage' => 'Page de discussion',
 'otherlanguages' => 'Autres langues',
@@ -594,12 +594,12 @@ $messages = array(
 'jumpto' => 'Aller à :',
 'jumptonavigation' => 'Navigation',
 'jumptosearch' => 'rechercher',
-'view-pool-error' => 'Désolé, les serveurs sont surchargés en ce moment.
-Trop d’utilisateurs cherchent à consulter cette page.
-Veuillez attendre un moment avant de retenter l’accès à cette page.
+'view-pool-error' => "Désolé, les serveurs sont surchargés en ce moment.
+Trop d'utilisateurs cherchent à consulter cette page.
+Veuillez attendre un moment avant de retenter l'accès à cette page.
 
-$1',
-'pool-timeout' => 'Délai dépassé durant l’attente du verrou',
+$1",
+'pool-timeout' => "Délai dépassé durant l'attente du verrou",
 'pool-queuefull' => 'La file de travail est pleine',
 'pool-errorunknown' => 'Erreur inconnue',
 
@@ -624,8 +624,8 @@ $1',
 'privacypage' => 'Project:Confidentialité',
 
 'badaccess' => 'Erreur de permission',
-'badaccess-group0' => 'Vous n’avez pas les droits suffisants pour réaliser l’action demandée.',
-'badaccess-groups' => 'L’action que vous essayez de réaliser n’est accessible qu’aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.',
+'badaccess-group0' => "Vous n'avez pas les droits suffisants pour réaliser l'action demandée.",
+'badaccess-groups' => "L'action que vous essayez de réaliser n'est accessible qu'aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.",
 
 'versionrequired' => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
@@ -679,63 +679,63 @@ $1',
 
 # Main script and global functions
 'nosuchaction' => 'Action inconnue',
-'nosuchactiontext' => 'L’action spécifiée dans l’URL est invalide.
-Vous avez peut-être mal entré l’URL ou suivi un lien erroné.
-Il peut également s’agir d’un bogue dans le logiciel utilisé par {{SITENAME}}.',
+'nosuchactiontext' => "L'action spécifiée dans l'URL est invalide.
+Vous avez peut-être mal entré l'URL ou suivi un lien erroné.
+Il peut également s'agir d'un bug dans le logiciel utilisé par {{SITENAME}}.",
 'nosuchspecialpage' => 'Page spéciale inexistante',
-'nospecialpagetext' => '<strong>Vous avez demandé une page spéciale qui n’existe pas.</strong>
+'nospecialpagetext' => "<strong>Vous avez demandé une page spéciale qui n'existe pas.</strong>
 
-Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].',
+Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error' => 'Erreur',
 'databaseerror' => 'Erreur de la base de données',
-'dberrortext' => 'Une erreur de syntaxe de la requête dans la base de données est survenue.
+'dberrortext' => "Une erreur de syntaxe de la requête dans la base de données est survenue.
 Ceci peut indiquer un bogue dans le logiciel.
 La dernière requête traitée par la base de données était :
 <blockquote><code>$1</code></blockquote>
 depuis la fonction « <code>$2</code> ».
-La base de données a renvoyé l’erreur « <samp>$3 : $4</samp> ».',
-'dberrortextcl' => 'Une requête dans la base de données comporte une erreur de syntaxe.
+La base de données a renvoyé l'erreur « <samp>$3 : $4</samp> ».",
+'dberrortextcl' => "Une requête dans la base de données comporte une erreur de syntaxe.
 La dernière requête émise était :
 « $1 »
 dans la fonction « $2 ».
-La base de données a renvoyé l’erreur « $3 : $4 ».',
+La base de données a renvoyé l'erreur « $3 : $4 ».",
 'laggedslavemode' => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly' => 'Base de données verrouillée',
-'enterlockreason' => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
-'readonlytext' => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
+'enterlockreason' => "Indiquez la raison du verrouillage ainsi qu'une estimation de sa durée",
+'readonlytext' => "Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre.
 
-L’administrateur ayant verrouillé la base de données a fourni l’explication suivante :<br />$1',
-'missing-article' => "La base de données n’a pas trouvé le texte d'une page qu’elle aurait dû trouver, intitulée « $1 » $2.
+L'administrateur ayant verrouillé la base de données a fourni l'explication suivante :<br />$1",
+'missing-article' => "La base de données n'a pas trouvé le texte d'une page qu'elle aurait dû trouver, intitulée « $1 » $2.
 
-Généralement, cela survient en suivant un lien vers un diff périmé ou vers l’historique d'une page supprimée.
+Généralement, cela survient en suivant un lien vers un diff périmé ou vers l'historique d'une page supprimée.
 
-Si ce n’est pas le cas, il peut s’agir d'un bogue dans le programme.
-Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l’URL du lien.",
+Si ce n'est pas le cas, il peut s'agir d'un bogue dans le programme.
+Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l'URL du lien.",
 'missingarticle-rev' => '(numéro de version : $1)',
 'missingarticle-diff' => '(diff : $1, $2)',
 'readonly_lag' => 'La base de données a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror' => 'Erreur interne',
 'internalerror_info' => 'Erreur interne : $1',
-'fileappenderrorread' => 'Impossible de lire « $1 » lors de l’insertion',
-'fileappenderror' => 'Impossible d’ajouter « $1 » à « $2 ».',
+'fileappenderrorread' => "Impossible de lire « $1 » lors de l'insertion",
+'fileappenderror' => "Impossible d'ajouter « $1 » à « $2 ».",
 'filecopyerror' => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror' => 'Impossible de renommer le fichier « $1 » en « $2 ».',
 'filedeleteerror' => 'Impossible de supprimer le fichier « $1 ».',
 'directorycreateerror' => 'Impossible de créer le dossier « $1 ».',
 'filenotfound' => 'Impossible de trouver le fichier « $1 ».',
-'fileexistserror' => 'Impossible d’écrire le fichier « $1 » : le fichier existe.',
+'fileexistserror' => "Impossible d'écrire le fichier « $1 » : le fichier existe.",
 'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror' => 'Erreur : Impossible de soumettre le formulaire.',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
-'cannotdelete' => 'Impossible de supprimer la page ou le fichier « $1 ».
-La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
+'cannotdelete' => "Impossible de supprimer la page ou le fichier « $1 ».
+La suppression a peut-être déjà été effectuée par quelqu'un d'autre.",
 'cannotdelete-title' => 'Impossible de supprimer la page « $1 »',
 'delete-hook-aborted' => "Suppression annulée par une extension.
 Aucune explication n'a été fournie.",
 'badtitle' => 'Mauvais titre',
-'badtitletext' => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
+'badtitletext' => "Le titre de la page demandée est invalide, vide, ou il s'agit d'un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.",
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
 'perfcachedts' => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois à $1. Un maximum de {{PLURAL:$4|un résultat|$4 résultats}} est disponible dans le cache.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
@@ -745,29 +745,29 @@ Requête : $2',
 'viewsource' => 'Voir le texte source',
 'viewsource-title' => 'Voir la source de $1',
 'actionthrottled' => 'Action limitée',
-'actionthrottledtext' => 'Pour lutter contre les pourriels, l’utilisation de cette action est limitée à un certain nombre de fois dans un laps de temps assez court. Il s’avère que vous avez dépassé cette limite.
-Essayez à nouveau dans quelques minutes.',
+'actionthrottledtext' => "Pour lutter contre le spam, l'utilisation de cette action est limitée à un certain nombre de fois dans un laps de temps assez court. Il s'avère que vous avez dépassé cette limite.
+Essayez à nouveau dans quelques minutes.",
 'protectedpagetext' => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext' => 'Vous pouvez voir et copier le contenu de la page :',
 'viewyourtext' => "Vous pouvez voir et copier le contenu de '''vos modifications''' à cette page :",
-'protectedinterface' => 'Cette page fournit du texte d’interface pour le logiciel sur ce wiki, et est protégée pour éviter les abus.
-Pour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.',
-'editinginterface' => "'''Attention''': Vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements sur cette page se répercuteront dur l'apparence de l'interface utilisateur pour les autres utilisateurs de ce wiki.
-Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet d’internationalisation de MediaWiki.",
+'protectedinterface' => "Cette page fournit du texte d'interface pour le logiciel sur ce wiki, et est protégée pour éviter les abus.
+Pour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.",
+'editinginterface' => "'''Attention''': Vous êtes en train de modifier une page utilisée pour créer le texte de l'interface du logiciel. Les changements sur cette page se répercuteront dur l'apparence de l'interface utilisateur pour les autres utilisateurs de ce wiki.
+Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet d'internationalisation de MediaWiki.",
 'sqlhidden' => '(Requête SQL cachée)',
-'cascadeprotected' => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
-$2',
-'namespaceprotected' => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
-'customcssprotected' => 'Vous n’avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d’un autre utilisateur.',
-'customjsprotected' => 'Vous n’avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d’un autre utilisateur.',
-'ns-specialprotected' => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
+'cascadeprotected' => "Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l'option « protection en cascade » activée :
+$2",
+'namespaceprotected' => "Vous n'avez pas la permission de modifier les pages de l'espace de noms « '''$1''' ».",
+'customcssprotected' => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
+'customjsprotected' => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
+'ns-specialprotected' => "Les pages dans l'espace de noms « {{ns:special}} » ne peuvent pas être modifiées.",
 'titleprotected' => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",
-'filereadonlyerror' => 'Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
+'filereadonlyerror' => "Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
 
-L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
-'invalidtitle-knownnamespace' => 'Titre invalide avec l’espace de noms « $2 » et l’intitulé « $3 »',
-'invalidtitle-unknownnamespace' => 'Titre invalide avec le numéro d’espace de noms $1 et l’intitulé « $2 » inconnus',
+L'administrateur qui l'a verrouillé a fourni ce motif: « $3 ».",
+'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
+'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
 'exception-nologin' => 'Non connecté',
 'exception-nologin-text' => "Cette page ou cette action nécessite d'être connecté sur ce wiki.",
 
@@ -780,7 +780,7 @@ L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
 'logouttext' => "'''Vous êtes à présent déconnecté(e).'''
 
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
-Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu’à ce que vous effaciez le cache de votre navigateur.",
+Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
 'welcomecreation' => '== Bienvenue, $1 ! ==
 
 Votre compte a été créé.
@@ -2289,9 +2289,9 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-pat' => 'Expression recherchée :',
 'linksearch-ns' => 'Espace de noms :',
 'linksearch-ok' => 'Rechercher',
-'linksearch-text' => 'Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.
+'linksearch-text' => "Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.
 Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />
-Protocoles reconnus : <code>$1</code> (n’ajoutez aucun de ceux-ci dans votre recherche).',
+Protocoles reconnus : <code>$1</code> (http:// par défaut si aucun protocole n'est indiqué).",
 'linksearch-line' => '$1 est lié depuis $2',
 'linksearch-error' => 'Les caractères jokers ne peuvent être utilisés qu’au début du nom de domaine de l’hôte.',
 

@@ -2236,7 +2236,7 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-ok' => 'Caută',
 'linksearch-text' => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
 Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
-Protocoale suportate: <code>$1</code> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
+Protocoale suportate: <code>$1</code> (se trece implicit la http:// dacă nu este specificat niciun protocol).',
 'linksearch-line' => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 
@@ -2615,7 +2615,7 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'whatlinkshere-hideredirs' => '$1 redirecționările',
 'whatlinkshere-hidetrans' => '$1 transcluderile',
 'whatlinkshere-hidelinks' => '$1 legăturile',
-'whatlinkshere-hideimages' => '$1 legăturile către imagine',
+'whatlinkshere-hideimages' => '$1 legăturile către fișier',
 'whatlinkshere-filters' => 'Filtre',
 
 # Block/unblock

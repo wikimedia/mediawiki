@@ -2442,7 +2442,7 @@ $1',
 'whatlinkshere-hideredirs' => 'Viruleedunge $1',
 'whatlinkshere-hidetrans' => 'Agebonne Schabloune $1',
 'whatlinkshere-hidelinks' => 'Linken $1',
-'whatlinkshere-hideimages' => '$1 Linken op de Fichier',
+'whatlinkshere-hideimages' => 'Linken op Fichiere $1',
 'whatlinkshere-filters' => 'Filteren',
 
 # Block/unblock

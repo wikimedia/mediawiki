@@ -834,7 +834,7 @@ $2',
 'mailerror' => '메일 보내기 오류: $1',
 'acct_creation_throttle_hit' => '당신의 IP 주소를 이용한 방문자가 이전에 이미 계정을 $1개 만들어, 계정 만들기 한도를 초과하였습니다.
 따라서 지금은 이 IP 주소로는 더 이상 계정을 만들 수 없습니다.',
-'emailauthenticated' => '당신의 이메일 주소는 $2 $3에 인증되었습니다.',
+'emailauthenticated' => '이메일 주소는 $2 $3에 인증되었습니다.',
 'emailnotauthenticated' => '이메일 주소를 인증하지 않았습니다.
 이메일 확인 절차를 거치지 않으면 다음 이메일 기능을 사용할 수 없습니다.',
 'noemailprefs' => '이 기능을 사용하기 위해서는 사용자 환경 설정에서 이메일 주소를 설정해야 합니다.',
@@ -918,7 +918,7 @@ $2
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',
 'changeemail-header' => '계정 메일 주소 바꾸기',
-'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 채우세요. 바뀜 내용을 확인하기 위해 당신의 비밀번호를 입력해야 합니다.',
+'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 채우세요. 바뀜 내용을 확인하기 위해 비밀번호를 입력해야 합니다.',
 'changeemail-no-info' => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'changeemail-oldemail' => '현재 이메일 주소 :',
 'changeemail-newemail' => '새 이메일 주소:',
@@ -965,7 +965,7 @@ $2
 'summary-preview' => '요약 미리 보기:',
 'subject-preview' => '주제/제목 미리 보기:',
 'blockedtitle' => '차단됨',
-'blockedtext' => "'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''
+'blockedtext' => "'''사용자 계정 또는 IP 주소가 차단되었습니다.'''
 
 차단한 사람은 $1입니다.
 차단한 이유는 다음과 같습니다: $2
@@ -1065,7 +1065,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'token_suffix_mismatch' => "'''저장하려는 내용의 문장 부호가 망가져 있습니다.'''
 문서 보호를 위해 해당 내용을 저장하지 않습니다.
 버그가 있는 익명 프록시 서비스 등을 사용할 때 이런 문제가 발생할 수 있습니다.",
-'edit_form_incomplete' => "'''편집의 일부 내용이 서버에 전달되지 않았습니다. 당신의 편집이 손상되지 않았는지 확인하고 다시 시도해 주십시오.'''",
+'edit_form_incomplete' => "'''편집의 일부 내용이 서버에 전달되지 않았습니다. 편집이 손상되지 않았는지 확인하고 다시 시도해 주십시오.'''",
 'editing' => '$1 편집하기',
 'creating' => '$1 만들기',
 'editingsection' => '$1 편집하기 (부분)',
@@ -1077,7 +1077,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 \"{{int:savearticle}}\"을 누르면 '''위쪽의 편집 내역만''' 저장됩니다.",
 'yourtext' => '당신의 편집',
 'storedversion' => '현재 문서',
-'nonunicodebrowser' => "'''경고: 당신의 웹 브라우저가 유니코드를 완벽하게 지원하지 않습니다.'''
+'nonunicodebrowser' => "'''경고: 웹 브라우저가 유니코드를 완벽하게 지원하지 않습니다.'''
 아스키가 아닌 문자가 16진수 코드로 나타날 수 있습니다.",
 'editingold' => "'''경고: 지금 이전 버전의 문서를 고치고 있습니다.'''
 이것을 저장하면 최근에 편집된 부분이 사라질 수 있습니다.",
@@ -1859,7 +1859,7 @@ $2 형식만 사용할 수 있습니다.',
 'overwroteimage' => '사용자가 "[[$1]]" 파일의 새 판을 올렸습니다.',
 'uploaddisabled' => '올리기 비활성화됨',
 'copyuploaddisabled' => 'URL로 파일 올리기가 비활성화되어 있습니다.',
-'uploadfromurl-queued' => '당신의 올리기 명령이 기록되었습니다.',
+'uploadfromurl-queued' => '올리기 명령이 기록되었습니다.',
 'uploaddisabledtext' => '파일 올리기 기능이 비활성화되어 있습니다.',
 'php-uploaddisabledtext' => 'PHP 파일 올리기가 비활성화되었습니다. 파일 올리기 설정을 확인하십시오.',
 'uploadscripted' => '이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.',
@@ -4067,7 +4067,7 @@ $5
 'htmlform-int-invalid' => '지정한 값은 정수가 아닙니다.',
 'htmlform-float-invalid' => '지정한 값은 수가 아닙니다.',
 'htmlform-int-toolow' => '지정한 값은 최소값 $1 미만입니다.',
-'htmlform-int-toohigh' => '당신이 입력한 값은 최대값 $1 이상입니다.',
+'htmlform-int-toohigh' => '지정한 값은 최대값 $1 이상입니다.',
 'htmlform-required' => '이 값은 필수 항목입니다',
 'htmlform-submit' => '저장',
 'htmlform-reset' => '바꾼 것을 되돌리기',
@@ -4137,12 +4137,12 @@ $5
 'api-error-duplicate-archive' => '같은 내용을 담고 있던 {{PLURAL:$1|[$2 다른 파일]}}이 있었지만 이 {{PLURAL:$1|파일}}은 삭제되었습니다.',
 'api-error-duplicate-archive-popup-title' => '중복된 {{PLURAL:$1|파일}}이 이미 삭제되었습니다.',
 'api-error-duplicate-popup-title' => '중복된 {{PLURAL:$1|파일}}입니다.',
-'api-error-empty-file' => '당신이 올리려는 파일이 비어 있습니다.',
+'api-error-empty-file' => '올리려는 파일이 비어 있습니다.',
 'api-error-emptypage' => '새 문서로 빈 문서를 만들 수 없습니다.',
 'api-error-fetchfileerror' => '내부 오류: 파일을 불러오는 중 문제가 발생했습니다.',
 'api-error-fileexists-forbidden' => '"$1" 이름으로 된 파일은 이미 존재하고 덮어쓸 수 없습니다.',
 'api-error-fileexists-shared-forbidden' => '"$1" 이름으로 된 파일이 이미 공용 저장소에 존재하며 덮어쓸 수 없습니다.',
-'api-error-file-too-large' => '당신이 올리려는 파일이 너무 큽니다.',
+'api-error-file-too-large' => '올리려는 파일이 너무 큽니다.',
 'api-error-filename-tooshort' => '파일 이름이 너무 짧습니다.',
 'api-error-filetype-banned' => '이런 파일 형식은 올릴 수 없습니다.',
 'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|파일 형식은 올릴 수 없습니다}}. $2 {{PLURAL:$3|파일 형식만 사용할 수 있습니다}}.',
@@ -4150,7 +4150,7 @@ $5
 'api-error-hookaborted' => '수정하려고 한 것이 확장 기능에 의해 중지되었습니다.',
 'api-error-http' => '내부 오류: 서버에 연결할 수 없습니다.',
 'api-error-illegal-filename' => '이 파일 이름을 사용할 수 없습니다.',
-'api-error-internal-error' => '내부 오류: 당신이 올린 파일을 위키에서 처리하는 중 문제가 발생했습니다.',
+'api-error-internal-error' => '내부 오류: 올린 파일을 위키에서 처리하는 중 어떤 문제가 발생했습니다.',
 'api-error-invalid-file-key' => '내부 오류: 임시 저장소에서 파일을 찾지 못했습니다.',
 'api-error-missingparam' => '내부 오류: 요청 중 매개변수가 누락되었습니다.',
 'api-error-missingresult' => '내부 오류: 파일의 복제가 성공했는지 판단할 수 없습니다.',

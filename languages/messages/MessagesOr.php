@@ -2556,7 +2556,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 କୁ ଲେଉଟାଣି',
 'whatlinkshere-hidetrans' => '$1 ଆଧାର ସହ ଭିତରେ ରଖିବା',
 'whatlinkshere-hidelinks' => '$1 ଟି ଲିଙ୍କ',
-'whatlinkshere-hideimages' => '$1 ଛବିର ଲିଙ୍କସବୁ',
+'whatlinkshere-hideimages' => '$1 ଫାଇଲର ଲିଙ୍କସବୁ',
 'whatlinkshere-filters' => 'ଛଣା',
 
 # Block/unblock

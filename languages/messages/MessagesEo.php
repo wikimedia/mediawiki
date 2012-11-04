@@ -358,7 +358,7 @@ $messages = array(
 
 'underline-always' => 'Ĉiam',
 'underline-never' => 'Neniam',
-'underline-default' => 'Defaŭlte laŭ foliumilo',
+'underline-default' => 'Pravaloro laŭ foliumilo',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Tipara stilo de redakta tekstujo',
@@ -466,7 +466,7 @@ $messages = array(
 'vector-action-protect' => 'Protekti',
 'vector-action-undelete' => 'Malforigi',
 'vector-action-unprotect' => 'Ŝanĝi protekadon',
-'vector-simplesearch-preference' => 'Ebligi plibonigitajn serĉajn sugestojn (nur Vektora etoso)',
+'vector-simplesearch-preference' => 'Ebligi simpligitan serĉan strion (nur Vektora etoso)',
 'vector-view-create' => 'Krei',
 'vector-view-edit' => 'Redakti',
 'vector-view-history' => 'Vidi historion',
@@ -692,8 +692,9 @@ Peto: $2',
 'protectedpagetext' => 'Tiu ĉi paĝo estas ŝlosita por malebligi redaktadon.',
 'viewsourcetext' => 'Vi povas rigardi kaj kopii la fonton de la paĝo:',
 'viewyourtext' => "Vi povas vidi kaj kopii la fonton de '''viaj redaktoj''' al ĉi tiu paĝo:",
-'protectedinterface' => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malabeligi misuzon.',
-'editinginterface' => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la rogramaro. Ŝanĝoj de ĉi tiu teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [//translatewiki.net/wiki/Main_Page?setlang=eo translatewiki.net], la MediaWiki-projekton por lingvigaj versioj.",
+'protectedinterface' => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malebligi misuzon.
+Por aldoni aŭ ŝanĝi tradukojn por ĉiuj vikioj, bonvolu uzi [//translatewiki.net/ translatewiki.net], la projekto por provizi tradukojn por MediaWiki.',
+'editinginterface' => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la programaro. Ŝanĝoj de ĉi tiu teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj sur ĉi tiu vikio. Por aldoni aŭ ŝanĝi tradukojn, bonvolu uzi [//translatewiki.net/ translatewiki.net], la MediaWiki-projekton por lingvigaj versioj.",
 'sqlhidden' => '(SQL serĉomendo kaŝita)',
 'cascadeprotected' => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
@@ -977,7 +978,7 @@ Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj pa
 aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'noarticletext-nopermission' => 'Estas neniom da teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
-aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>.',
+aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>, sed vi ne rajtas krei ĉi tiun paĝon.',
 'missing-revision' => 'La revizio n-ro $1 de la paĝo nomata "{{PAGENAME}}" ne ekzistas.
 
 La kutima kaŭzo estas sekvi malaktualan historio-ligilon al paĝo forviŝita.
@@ -992,7 +993,7 @@ La lasta protokolero estas jene montrata por via referenco:',
 * '''Interreta Esplorilo''': Premu ''Stir'' klakante ''Refreŝu'', aŭ premu ''Stir-F5'' 
 * '''Opera:''' Nuligi la kaŝmemoro en ''Iloj → Preferoj''",
 'usercssyoucanpreview' => "'''Konsileto:''' Uzu la butonon \"Antaŭrigardi\" por provi vian novan CSS-kodon antaŭ konservado.",
-'userjsyoucanpreview' => "'''Konsileto:''' Uzu la butonon \"Antaŭrigard\" por provi vian novan JS-kodon antaŭ konservado.",
+'userjsyoucanpreview' => "'''Konsileto:''' Uzu la butonon \"{{int:showpreview}}\" por provi vian novan JS-kodon antaŭ konservado.",
 'usercsspreview' => "'''Notu ke vi nur antaŭvidas vian uzanto-CSS.
 Ĝi ne jam estis konservita!'''",
 'userjspreview' => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
@@ -1005,7 +1006,7 @@ Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{
 'note' => "'''Noto:'''",
 'previewnote' => "'''Memoru, ke ĉi tio estas nur antaŭrigardo.''' 
 Viaj ŝanĝoj ne ankoraŭ estas konservitaj!",
-'continue-editing' => 'Redaktu plu',
+'continue-editing' => 'Iru al redakta spaco',
 'previewconflict' => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview' => "'''Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.
@@ -1439,7 +1440,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'timezoneregion-indian' => 'Hinda Oceano',
 'timezoneregion-pacific' => 'Pacifiko',
 'allowemail' => 'Rajtigi retmesaĝojn de aliaj uzantoj',
-'prefs-searchoptions' => 'Serĉaj opcioj',
+'prefs-searchoptions' => 'Serĉu',
 'prefs-namespaces' => 'Nomspacoj',
 'defaultns' => 'Alimaniere, traserĉi la jenajn nomspacojn:',
 'default' => 'defaŭlte',
@@ -1850,7 +1851,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-internal' => 'Nekonata eraro okazis en interna konservujo "$1".',
 'backend-fail-contenttype' => 'Ne eblis determini la enhavo-tipo de la dosiero por konservi ĉe "$1".',
 'backend-fail-batchsize' => 'Interna konservujo estis donita komandaron de $1 {{PLURAL:$1|dosiera operacio|dosieraj operacioj}}; la limo estas $2 {{PLURAL:$2|operacio|operacioj}}.',
-'backend-fail-usable' => 'Ne eblis skribi dosieron "$1" pro malsufiĉaj permesoj aŭ mankantaj dosierujoj.',
+'backend-fail-usable' => 'Ne eblis legi aŭ skribi dosieron "$1" pro malsufiĉaj permesoj aŭ mankantaj dosierujoj.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Ne eblis konekti la protokolan datumbazon por la ekstera konservujo "$1".',
@@ -3092,6 +3093,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',
+'pageinfo-not-current' => 'Informoj povas esti montritaj nur por la nuna versio',
 'pageinfo-header-basic' => 'Baza informo',
 'pageinfo-header-edits' => 'Historio de redaktoj',
 'pageinfo-header-restrictions' => 'Protektado de la paĝo',

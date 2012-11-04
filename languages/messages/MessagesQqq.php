@@ -1865,6 +1865,9 @@ Parameters:
 *$5 - list of user groups or {{msg-mw|Rightsnone}}',
 'logentry-rights-rights-legacy' => '*$1 - username
 *$3 - username',
+'logentry-rights-autopromote' => '* $1: username
+* $4: user group
+* $5: user group',
 'rightsnone' => 'Default rights for registered users.
 
 {{Identical|None}}',
@@ -3080,7 +3083,11 @@ Example line:
 'whatlinkshere-hidelinks' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
 * $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
 'whatlinkshere-hideimages' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
-* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}
+
+See also:
+*{{msg-mw|Isimage}}
+*{{msg-mw|Media_tip}}',
 'whatlinkshere-filters' => '{{Identical|Filter}}',
 
 # Block/unblock

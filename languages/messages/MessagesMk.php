@@ -2317,8 +2317,8 @@ $1',
 'linksearch-ns' => 'Именски простор:',
 'linksearch-ok' => 'Барај',
 'linksearch-text' => 'Може да се користат џокери, како на „*.wikipedia.org“.
-Бара највисок домен, како на пр. „*.org“.<br />
-Поддржани протоколи: <code>$1</code> (не ги ставајте во пребарувањето).',
+Бара барем највисок домен, како на пр. „*.org“.<br />
+Поддржани протоколи: <code>$1</code> (задава http:// ако не укажете протокол).',
 'linksearch-line' => '$1 врска во $2',
 'linksearch-error' => 'Џокер-знаците може да се користат само на почетокот во името на домаќинот.',
 
@@ -2705,7 +2705,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 пренасочувања',
 'whatlinkshere-hidetrans' => '$1 превметнувања',
 'whatlinkshere-hidelinks' => '$1 врски',
-'whatlinkshere-hideimages' => '$1 врски кон слика',
+'whatlinkshere-hideimages' => '$1 врски кон податотека',
 'whatlinkshere-filters' => 'Филтри',
 
 # Block/unblock

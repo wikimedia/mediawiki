@@ -1568,6 +1568,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'rightslogtext' => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
 'rightslogentry' => 'muutti käyttäjän $1 oikeudet ryhmistä $2 ryhmiin $3',
 'rightslogentry-autopromote' => 'muutettiin automaattisesti ryhmistä $2 ryhmiin $3',
+'logentry-rights-rights' => '$1 muutti käyttäjän $3 oikeudet ryhmistä $4 ryhmiin $5',
 'rightsnone' => '(ei oikeuksia)',
 
 # Associated actions - in the sentence "You do not have permission to X"

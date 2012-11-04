@@ -401,7 +401,7 @@ $messages = array(
 
 'underline-always' => 'Altijd',
 'underline-never' => 'Nooit',
-'underline-default' => 'Webbrowser-standaard',
+'underline-default' => 'Standaard in uw vormgeving of webbrowser',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Lettertypestijl bewerkingsvenster:',
@@ -1693,6 +1693,9 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'rightslogtext' => 'Hieronder staan de wijzigingen in gebruikersrechten.',
 'rightslogentry' => 'heeft de gebruikersrechten voor $1 gewijzigd van $2 naar $3',
 'rightslogentry-autopromote' => 'is automatisch gepromoveerd van de groepen "$2" naar de groepen "$3"',
+'logentry-rights-rights' => '$1 heeft groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
+'logentry-rights-rights-legacy' => '$1 heeft groepslidmaatschap voor $3 gewijzigd',
+'logentry-rights-autopromote' => '$1 is automatisch gepromoveerd van $4 naar $5',
 'rightsnone' => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"

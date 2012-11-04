@@ -2300,7 +2300,7 @@ $1',
 'linksearch-ok' => 'חיפוש',
 'linksearch-text' => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.
 נדרשת לפחות סיומת אינטרנט (TLD), למשל <span dir="ltr">"*.org"</span>.<br />
-פרוטוקולים נתמכים: <code dir="ltr">$1</code> (אין להוסיף אותם בחיפוש).',
+פרוטוקולים נתמכים: <code dir="ltr">$1</code> (ברירת המחדל היא <span dir="ltr">http://</span> אם לא צוין פרוטוקול).',
 'linksearch-line' => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 

@@ -2320,7 +2320,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'linksearch-pat' => 'Suchmuster:',
 'linksearch-ns' => 'Namensraum:',
 'linksearch-ok' => 'Suchen',
-'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Diese bitte nicht bei der Suchanfrage angeben.)',
+'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Standard ist http, falls kein Protokoll angegeben ist.)',
 'linksearch-line' => '$1 ist verlinkt von $2',
 'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
 

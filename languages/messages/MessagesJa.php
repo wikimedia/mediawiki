@@ -2354,26 +2354,26 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 
 # Special:LinkSearch
 'linksearch' => '外部リンクの検索',
-'linksearch-pat' => '検索パターン：',
+'linksearch-pat' => '検索パターン:',
 'linksearch-ns' => '名前空間:',
 'linksearch-ok' => '検索',
-'linksearch-text' => '"*.wikipedia.org" のようにワイルドカードを使用できます。
-少なくとも "*.org" のようなトップレベルドメインが必要です。<br />
-対応プロトコル: <code>$1</code> (これらを検索に含めないでください)。',
+'linksearch-text' => '「*.wikipedia.org」のようにワイルドカードを使用できます。
+少なくとも「*.org」のようなトップレベルドメインが必要です。<br />
+対応プロトコル: <code>$1</code> (プロトコルを省略した場合の既定値は http:// )。',
 'linksearch-line' => '$1 が $2 からリンクされています',
 'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
 
 # Special:ListUsers
-'listusersfrom' => '最初に表示する利用者：',
+'listusersfrom' => '最初に表示する利用者:',
 'listusers-submit' => '表示',
 'listusers-noresult' => '利用者が見つかりませんでした。',
-'listusers-blocked' => '（ブロック中）',
+'listusers-blocked' => '(ブロック中)',
 
 # Special:ActiveUsers
 'activeusers' => '活動中の利用者一覧',
 'activeusers-intro' => 'これは過去 $1 {{PLURAL:$1|日|日間}}に何らかの活動をした利用者の一覧です。',
 'activeusers-count' => '過去 {{PLURAL:$3|1 日|$3 日間}}に $1 {{PLURAL:$1|回の編集}}',
-'activeusers-from' => '最初に表示する利用者：',
+'activeusers-from' => '最初に表示する利用者:',
 'activeusers-hidebots' => 'ボットを隠す',
 'activeusers-hidesysops' => '管理者を隠す',
 'activeusers-noresult' => '利用者が見つかりませんでした。',
@@ -2749,7 +2749,7 @@ $1',
 'whatlinkshere-hideredirs' => '転送ページを$1',
 'whatlinkshere-hidetrans' => '参照読み込みを$1',
 'whatlinkshere-hidelinks' => 'リンクを$1',
-'whatlinkshere-hideimages' => '画像リンクを$1',
+'whatlinkshere-hideimages' => 'ファイルへのリンクを$1',
 'whatlinkshere-filters' => '絞り込み',
 
 # Block/unblock
@@ -3254,7 +3254,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 
 # Info page
 'pageinfo-title' => '「$1」の情報',
-'pageinfo-not-current' => '現在のバージョンの情報のみが表示される可能性があります。',
+'pageinfo-not-current' => '申し訳ありませんが、過去の版の情報は表示できません。',
 'pageinfo-header-basic' => '基本情報',
 'pageinfo-header-edits' => '編集履歴',
 'pageinfo-header-restrictions' => 'ページの保護',

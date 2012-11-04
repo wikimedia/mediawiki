@@ -1229,7 +1229,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'whatlinkshere-hideredirs' => "$1 qayta yo'naltirishlar",
 'whatlinkshere-hidetrans' => '$1 kiritmalar',
 'whatlinkshere-hidelinks' => '$1 havolalar',
-'whatlinkshere-hideimages' => '$1 rasmlar uchun havolalar',
+'whatlinkshere-hideimages' => '$1 fayllar uchun havolalar',
 'whatlinkshere-filters' => 'Filtrlar',
 
 # Block/unblock

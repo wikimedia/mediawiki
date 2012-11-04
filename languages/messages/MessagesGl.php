@@ -271,7 +271,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Opción do propio navegador',
+'underline-default' => 'Opción predeterminada da aparencia ou do navegador',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Tipo de letra da caixa de edición:',
@@ -1540,8 +1540,11 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 # User rights log
 'rightslog' => 'Rexistro de dereitos de usuario',
 'rightslogtext' => 'Este é un rexistro dos cambios nos permisos de usuario.',
-'rightslogentry' => 'cambiou o grupo ao que pertence "$1" de $2 a $3',
+'rightslogentry' => 'cambiou o grupo ao que pertence $1 de $2 a $3',
 'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
+'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
+'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
 'rightsnone' => '(ningún)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1593,7 +1596,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'recentchanges-label-unpatrolled' => 'Esta edición aínda non foi comprobada',
 'rcnote' => "A continuación {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata o $4 ás $5.",
 'rcnotefrom' => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
-'rclistfrom' => 'Mostrar os cambios novos desde as $1',
+'rclistfrom' => 'Mostrar os cambios novos desde o $1',
 'rcshowhideminor' => '$1 as edicións pequenas',
 'rcshowhidebots' => '$1 os bots',
 'rcshowhideliu' => '$1 os usuarios rexistrados',
@@ -2179,7 +2182,7 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ok' => 'Procurar',
 'linksearch-text' => 'Pódense usar caracteres comodín como "*.wikipedia.org".
 Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (non engada ningún destes na súa procura).',
+Protocolos soportados: <code>$1</code> (úsase http:// como predeterminado se non se especifica ningún protocolo).',
 'linksearch-line' => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 

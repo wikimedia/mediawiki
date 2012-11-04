@@ -344,7 +344,7 @@ $messages = array(
 
 'underline-always' => 'Luôn luôn',
 'underline-never' => 'Không bao giờ',
-'underline-default' => 'Mặc định của trình duyệt',
+'underline-default' => 'Mặc định của hình dạng hoặc trình duyệt',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Kiểu phông chữ trong khung sửa đổi:',
