@@ -362,7 +362,7 @@ $messages = array(
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldri',
-'underline-default' => 'Nettlesarstandard',
+'underline-default' => 'Drakt- eller nettlesarstandard',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Endre stilen for skrifttypen i området:',
@@ -1576,6 +1576,9 @@ Dette kan ikkje tilbakestillast.',
 'rightslogtext' => 'Dette er ein logg over endringar av brukartilgang.',
 'rightslogentry' => 'endra brukartilgangen til $1 frå $2 til $3',
 'rightslogentry-autopromote' => '↓vart automatisk forfremja frå $2 til $3',
+'logentry-rights-rights' => '$1 endra gruppemedlemskap for $3 frå $4 til $5',
+'logentry-rights-rights-legacy' => '$1 endra gruppemedlemskap for $3',
+'logentry-rights-autopromote' => '$1 vart automatisk forfremja frå $4 til $5',
 'rightsnone' => '(ingen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2190,7 +2193,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'linksearch-ok' => 'Søk',
 'linksearch-text' => 'Jokerteikn som «*.wikipedia.org» kan nyttast.
 Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
-Støtta protokollar: <code>$1</code> (ikkje legg til nokon av desse i søket ditt)',
+Støtta protokollar: <code>$1</code> (nyttar http:// som standard om ingen protokoll er oppgjeven)',
 'linksearch-line' => '$2 lenkjer til $1',
 'linksearch-error' => 'Jokerteikn kan berre nyttast føre tenarnamnet.',
 
@@ -3022,7 +3025,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-not-current' => 'Informasjon vert berre vist for den gjeldande versjonen.',
+'pageinfo-not-current' => 'Orsak, det er umogeleg å gjeva denne informasjonen for gamle versjonar.',
 'pageinfo-header-basic' => 'Grunnleggjande informasjon',
 'pageinfo-header-edits' => 'Endringshistorikk',
 'pageinfo-header-restrictions' => 'Sidevern',
@@ -3526,6 +3529,7 @@ Andre er gøymde som standard.
 'exif-ycbcrpositioning-2' => 'Samanfallande',
 
 'exif-dc-contributor' => 'Bidragsytarar',
+'exif-dc-coverage' => 'Rom- eller tidssutstrekning til medium',
 'exif-dc-date' => 'Dato(ar)',
 'exif-dc-publisher' => 'Utgjevar',
 'exif-dc-relation' => 'Skylde medium',

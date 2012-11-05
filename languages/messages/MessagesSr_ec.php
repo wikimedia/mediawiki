@@ -441,7 +441,7 @@ $messages = array(
 
 'underline-always' => 'увек подвлачи',
 'underline-never' => 'никад не подвлачи',
-'underline-default' => 'по поставкама прегледача',
+'underline-default' => 'према теми или прегледачу',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Изглед фонта у уређивачком оквиру:',
@@ -2376,7 +2376,7 @@ $1',
 'linksearch-ok' => 'Претражи',
 'linksearch-text' => 'Могу се користити џокери попут „*.wikipedia.org“.<br />
 Потребан је највиши домен, као „*.org“.<br />
-Подржани протоколи: <code>$1</code> (не стављајте у претрагу)',
+Подржани протоколи: <code>$1</code> (задаје http:// ако не наведете протокол).',
 'linksearch-line' => '$1 веза у $2',
 'linksearch-error' => 'Џокери се могу појавити само на почетку адресе.',
 
@@ -2760,14 +2760,14 @@ $1',
 'nolinkshere-ns' => "Ниједна страница не води до '''[[:$1]]''' у изабраном именском простору.",
 'isredirect' => 'преусмерење',
 'istemplate' => 'укључивање',
-'isimage' => 'веза ка датотеци',
+'isimage' => 'веза до датотеке',
 'whatlinkshere-prev' => '{{PLURAL:$1|претходни|претходних $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|следећи|следећих $1}}',
 'whatlinkshere-links' => '← везе',
 'whatlinkshere-hideredirs' => '$1 преусмерења',
 'whatlinkshere-hidetrans' => '$1 укључивања',
 'whatlinkshere-hidelinks' => '$1 везе',
-'whatlinkshere-hideimages' => '$1 везе до слика',
+'whatlinkshere-hideimages' => '$1 везе до датотеке',
 'whatlinkshere-filters' => 'Филтери',
 
 # Block/unblock

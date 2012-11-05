@@ -2156,7 +2156,7 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'linksearch-ok' => 'Cerca',
 'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".<br />
 È necessario almeno un dominio di primo livello, ad esempio "*.org".<br />
-Protocolli supportati: <code>$1</code> (non aggiungere nessuno di questi nella tua ricerca).',
+Protocolli supportati: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).',
 'linksearch-line' => '$1 presente nella pagina $2',
 'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 
@@ -2526,7 +2526,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 redirect',
 'whatlinkshere-hidetrans' => '$1 inclusioni',
 'whatlinkshere-hidelinks' => '$1 link',
-'whatlinkshere-hideimages' => '$1 link da immagini',
+'whatlinkshere-hideimages' => '$1 link da file',
 'whatlinkshere-filters' => 'Filtri',
 
 # Block/unblock

@@ -380,7 +380,7 @@ $messages = array(
 
 'underline-always' => 'എല്ലായ്പ്പോഴും',
 'underline-never' => 'ഒരിക്കലും അരുത്',
-'underline-default' => 'ബ്രൗസറിലേതു പോലെ',
+'underline-default' => 'ദൃശ്യരൂപത്തിൽ അഥവാ ബ്രൗസറിൽ സ്വതേയുള്ള സ്വഭാവം',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'തിരുത്തൽ മേഖലയിലെ ഫോണ്ടിന്റെ ശൈലി:',
@@ -1609,6 +1609,9 @@ $1",
 'rightslogtext' => 'ഈ പ്രവർത്തനരേഖ ഉപയോക്തൃ അവകാശങ്ങൾക്കുണ്ടായ മാറ്റങ്ങളുടേതാണ്.',
 'rightslogentry' => '$1 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $2 എന്നതിൽ നിന്നു $3 എന്നതിലേക്കു മാറ്റിയിരിക്കുന്നു',
 'rightslogentry-autopromote' => '$2 എന്നതിൽ നിന്ന് $3 എന്നതിലേയ്ക്ക് സ്വയം ഉയർത്തിയിരിക്കുന്നു',
+'logentry-rights-rights' => '$3 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $1, $4 എന്നതിൽ നിന്നു $5 എന്നതിലേക്കു മാറ്റിയിരിക്കുന്നു',
+'logentry-rights-rights-legacy' => '$3 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $1 മാറ്റിയിരിക്കുന്നു',
+'logentry-rights-autopromote' => '$1 എന്ന ഉപയോക്താവ് $4 എന്നതിൽ നിന്നും $5 എന്നതിലേയ്ക്ക് സ്വയം ഉയർത്തിയിരിക്കുന്നു',
 'rightsnone' => '(ഒന്നുമില്ല)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2225,8 +2228,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'linksearch-ns' => 'നാമമേഖല:',
 'linksearch-ok' => 'തിരയൂ',
 'linksearch-text' => '"*.wikipedia.org" പോലുള്ള വൈൽഡ് കാർഡുകൾ ഉപയോഗിക്കാവുന്നതാണ്‌.
-കുറഞ്ഞത് "*.org" പോലുള്ള ടോപ്-ലെവൽ ഡൊമൈൻ എങ്കിലും ഉണ്ടായിരിക്കണം.<br />
-പിന്താങ്ങുന്ന പ്രോട്ടോക്കോളുകൾ: <code>$1</code> (താങ്കളുടെ തിരച്ചിലിൽ ഇവ ചേർക്കരുത്).',
+കുറഞ്ഞത് "*.org" പോലുള്ള ഒരു ടോപ്-ലെവൽ ഡൊമൈൻ എങ്കിലും ഉണ്ടായിരിക്കണം.<br />
+പിന്തുണയുള്ള പ്രോട്ടോക്കോളുകൾ: <code>$1</code> (ഒന്നും നൽകിയില്ലെങ്കിൽ സ്വതേയുള്ള http:// ഉപയോഗിക്കുന്നതാണ്).',
 'linksearch-line' => '$1,  $2ൽ നിന്നു കണ്ണി ചേർക്കപ്പെട്ടിരിക്കുന്നു.',
 'linksearch-error' => 'ഹോസ്റ്റ്നെയിമിന്റെ തുടക്കത്തിൽ മാത്രമേ വൈൽഡ് കാർഡുകൾ വരാവൂ.',
 
@@ -2601,7 +2604,7 @@ $1',
 'whatlinkshere-hideredirs' => 'തിരിച്ചുവിടലുകൾ $1',
 'whatlinkshere-hidetrans' => 'ഉൾപ്പെടുത്തലുകൾ $1',
 'whatlinkshere-hidelinks' => 'കണ്ണികൾ $1',
-'whatlinkshere-hideimages' => 'ചിത്രങ്ങളിൽ നിന്ന് $1 കണ്ണികൾ',
+'whatlinkshere-hideimages' => 'പ്രമാണങ്ങളിൽ നിന്നുള്ള കണ്ണികൾ $1',
 'whatlinkshere-filters' => 'അരിപ്പകൾ',
 
 # Block/unblock

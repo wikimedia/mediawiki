@@ -418,7 +418,7 @@ Xiquitta moyēquihcuilōl.',
 Timitztlātlauhtia xicchīhua occeppa.',
 'wrongpasswordempty' => 'Ayāc motlahtōlichtacāyo.
 Timitztlātlauhtia xicchīhua occeppa.',
-'mailmypassword' => 'E-mailīz yancuīc motlahtōlichtacāyo',
+'mailmypassword' => 'Notech moēhualtia maltzinteyōtl netitlaniztica yancuīc ichtacātlahtōlli',
 'noemail' => '"$1" ahmo quipiya īe-mailcān.',
 'passwordsent' => 'Ōmoihuah yancuīc motlahtōlichtacāyo īhuīc mo e-mail ("$1").
 Occeppa xicalaqui niman ticmatīz.',
@@ -671,7 +671,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'defaultns' => 'Tlatēmōz inīn tōcātzimpan achtopa:',
 'default' => 'ic default',
 'prefs-files' => 'Tlahcuilōlli',
-'youremail' => 'E-mail:',
+'youremail' => 'Maltzinteyōtl netitlanizyeyāntli:',
 'username' => 'Tlatequitiltilīltōcāitl:',
 'uid' => 'Tlatequitiltilīlli ID:',
 'prefs-memberingroups' => 'Tlācatl {{PLURAL:$1|olōlco|olōlco}}:',
@@ -1004,7 +1004,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'listgrouprights-rights' => 'Huelītiliztli',
 
 # E-mail user
-'emailuser' => 'Tique-mailīz inīn tlatequitiltilīlli',
+'emailuser' => 'Tiquēhualtlīz maltzinteyōtl netitlaniztli inīn tlatequitiltilīlli',
 'defemailsubject' => '{{SITENAME}} correo tlatequitiltilīlhuīc $1',
 'emailfrom' => 'Īhuīcpa:',
 'emailto' => 'Īhuīc:',
@@ -1152,7 +1152,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'whatlinkshere-links' => '← tzòwilistìn',
 'whatlinkshere-hideredirs' => '$1 tlacuepaliztli',
 'whatlinkshere-hidelinks' => '$1 tzòwilistìn',
-'whatlinkshere-hideimages' => '$1 ìxiptzòwilistli',
+'whatlinkshere-hideimages' => '$1 tlahcuilōltzonhuīliztli',
 
 # Block/unblock
 'blockip' => 'Tiquitzacuilīz tlatequitiltilīlli',
