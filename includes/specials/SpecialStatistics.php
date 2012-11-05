@@ -277,21 +277,56 @@ class SpecialStatistics extends SpecialPage {
 		return $text;
 	}
 
-	private function getOtherStats( $stats ) {
-		if ( !count( $stats ) )
-			return '';
+	/**
+	 * Conversion of external statistics into an internal representation
+	 * Following a ([<header-message>][<item-message>] = number) pattern
+	 *
+	 * @param array $stats
+	 * @return string
+	 */
+	private function getOtherStats( array $stats ) {
+		$return = '';
 
-		$return = Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-hooks' )->parse() ) .
-			Xml::closeElement( 'tr' );
+		foreach( $stats as $header => $items ) {
 
-		foreach( $stats as $name => $number ) {
-			$name = htmlspecialchars( $name );
-			$number = htmlspecialchars( $number );
+			// Identify the structure used
+			if ( is_array( $items ) ) {
 
-			$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+				// Ignore headers that are recursively set as legacy header
+				if ( $header !== 'statistics-header-hooks' ) {
+					$return .= $this->formatRowHeader( $header );
+				}
+
+				// Collect all items that belong to the same header
+				foreach( $items as $key => $value ) {
+					$name = $this->msg( $key )->inContentLanguage()->parse();
+					$number = htmlspecialchars( $value );
+
+					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+				}
+			} else {
+				// Create the legacy header only once
+				if ( $return === '' ) {
+					$return .= $this->formatRowHeader( 'statistics-header-hooks' );
+				}
+
+				// Recursively remap the legacy structure
+				$return .= $this->getOtherStats( array( 'statistics-header-hooks' => array( $header => $items ) ) );
+			}
 		}
 
 		return $return;
+	}
+
+	/**
+	 * Format row header
+	 *
+	 * @param string $header
+	 * @return string
+	 */
+	private function formatRowHeader( $header ) {
+		return Xml::openElement( 'tr' ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( $header )->parse() ) .
+			Xml::closeElement( 'tr' );
 	}
 }
