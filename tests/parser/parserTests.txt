@@ -6239,7 +6239,11 @@ Foo
 Bar
 
 [[Category:Baz]]
+ [[Category:Baz]]
 [[Category:Baz]]
+
+[[Category:Baz]]
+ {{echo|[[Category:Baz]]}}
 [[Category:Baz]]
 !! result
 <p>Foo Bar
