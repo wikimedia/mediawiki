@@ -2344,8 +2344,8 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'linksearch-ns' => 'Naamruimte:',
 'linksearch-ok' => 'Zoeken',
 'linksearch-text' => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.
-Heeft tenminste een topleveldomein, zoals bijvoorbeeld "*.org".<br />
-Ondersteunde protocollen: <code>$1</code> (voeg deze niet toe in uw zoekopdracht).',
+Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
+Ondersteunde protocollen: <code>$1</code> (wordt "http://"als er geen protocol wordt opgegeven).',
 'linksearch-line' => '$1 heeft een verwijzing in $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
@@ -3236,7 +3236,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',
-'pageinfo-not-current' => 'Gegevens worden mogelijk alleen weergegeven voor de huidige versie.',
+'pageinfo-not-current' => 'Deze gegevens zijn alleen beschikbaar voor de huidige versie.',
 'pageinfo-header-basic' => 'Basisgegevens',
 'pageinfo-header-edits' => 'Bewerkingsgeschiedenis',
 'pageinfo-header-restrictions' => 'Paginabeveiliging',

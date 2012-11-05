@@ -1716,7 +1716,7 @@ $1',
 'unwatchedpages' => 'لاپەڕە چاودێری‌نەکراوەکان',
 
 # List redirects
-'listredirects' => 'لیستی ئاڕاستەکراوەکان',
+'listredirects' => 'پێرستی ڕەوانەکەرەکان',
 
 # Unused templates
 'unusedtemplates' => 'داڕێژە بەکارنەھێنراوەکان',

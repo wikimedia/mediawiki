@@ -556,6 +556,10 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'moveddeleted-notice' => 'ھیہ ای حذف شدہ صفحہ شیر.
 صفحو نوشتۂ حذف شدگی و منتقلی ذیلا بطورِ حوالہ دیونو بویان.',
 
+# Parser/template warnings
+'post-expand-template-inclusion-category' => 'ھش صفحات کہ ھتیرا ٹمپلیٹ یعنی سانچو ناپ لوٹ بیتی شیر۔',
+'post-expand-template-argument-category' => 'ھش صفحات کہ ھتیرا بوغینو بیرو سانچان یعنی(ٹمپلیٹان) لو شینی۔',
+
 # History pages
 'viewpagelogs' => 'ھیہ صفحہو بچے نوشتہ جاتن لوڑے',
 'currentrev-asof' => 'حالیہ نظرثانی بمطابق $1',
@@ -746,6 +750,8 @@ HTML tags لوڑے.',",
 
 # Statistics
 'statistics' => 'اعداد و شمار',
+
+'disambiguationspage' => 'سانچہ: ڈسایمبگ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایٹ|بایٹس}}',
@@ -1070,6 +1076,9 @@ HTML tags لوڑے.',",
 'watchlisttools-view' => 'موقعی تبدیلیان لوڑے',
 'watchlisttools-edit' => 'لوڑے یا واچ لسٹہ ترمیم کورے',
 'watchlisttools-raw' => 'نوغ واچ لسٹان ایڈیٹ کورے',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'خبردار:\'\'\' ڈیفالٹ تاڑٰ(نغڑی) "$2" پروشٹیو ڈیفالٹ تاڑا "$1" لیگی شیر۔',
 
 # Special:SpecialPages
 'specialpages' => 'اسپیشل صفحہ',

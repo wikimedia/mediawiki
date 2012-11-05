@@ -351,7 +351,7 @@ $messages = array(
 
 'underline-always' => 'uvek podvlači',
 'underline-never' => 'nikad ne podvlači',
-'underline-default' => 'po postavkama pregledača',
+'underline-default' => 'prema temi ili pregledaču',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Izgled fonta u uređivačkom okviru:',
@@ -2286,7 +2286,7 @@ Pogledajte i [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-ok' => 'Pretraži',
 'linksearch-text' => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.<br />
 Potreban je najviši domen, kao „*.org“.<br />
-Podržani protokoli: <code>$1</code> (ne stavljajte u pretragu)',
+Podržani protokoli: <code>$1</code> (zadaje http:// ako ne navedete protokol).',
 'linksearch-line' => '$1 veza u $2',
 'linksearch-error' => 'Džokeri se mogu pojaviti samo na početku adrese.',
 
@@ -2677,7 +2677,7 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 'whatlinkshere-hideredirs' => '$1 preusmerenja',
 'whatlinkshere-hidetrans' => '$1 uključivanja',
 'whatlinkshere-hidelinks' => '$1 veze',
-'whatlinkshere-hideimages' => '$1 veze do slika',
+'whatlinkshere-hideimages' => '$1 veze do datoteke',
 'whatlinkshere-filters' => 'Filteri',
 
 # Block/unblock

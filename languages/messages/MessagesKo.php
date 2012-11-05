@@ -2316,9 +2316,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'linksearch-pat' => '찾기 패턴:',
 'linksearch-ns' => '이름공간:',
 'linksearch-ok' => '찾기',
-'linksearch-text' => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.
+'linksearch-text' => '"*.wikipedia.org"와 같이 와일드 카드를 사용할 수 있습니다.
 적어도 "*.org"와 같이 최상위 도메인을 입력해야 합니다.<br />
-지원하는 프로토콜 목록: <code>$1</code> (찾을 때 이것을 추가하지 마세요)',
+지원하는 프로토콜: <code>$1</code> (프로토콜을 지정하지 않을 때 기본값은 http://)',
 'linksearch-line' => '$2에서 $1 을 링크하고 있습니다.',
 'linksearch-error' => '와일드카드는 주소의 처음 부분에만 사용될 수 있습니다.',
 
@@ -2707,7 +2707,7 @@ $1',
 'whatlinkshere-hideredirs' => '넘겨주기를 $1',
 'whatlinkshere-hidetrans' => '틀을 $1',
 'whatlinkshere-hidelinks' => '링크를 $1',
-'whatlinkshere-hideimages' => '그림 포함을 $1',
+'whatlinkshere-hideimages' => '파일 링크를 $1',
 'whatlinkshere-filters' => '필터',
 
 # Block/unblock

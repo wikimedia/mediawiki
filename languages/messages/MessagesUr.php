@@ -628,7 +628,7 @@ $1 نے پابندی لگائی تھی.
 'noarticletext' => 'اِس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
 آپ دیگں صفحات میں [[Special:Search/{{PAGENAME}}|اِس صفحہ کے عنوان کیلئے تلاش کرسکتے ہیں]]، <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} متعلقہ نوشتہ جات تلاش کرسکتے ہیں],
 یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اِس صفحہ میں ترمیم کرسکتے ہیں]</span>',
-'noarticletext-nopermission' => 'اِس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
+'noarticletext-nopermission' => 'اس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
 آپ دیگں صفحات میں [[Special:Search/{{PAGENAME}}|اِس صفحہ کے عنوان کیلئے]] یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} متعلقہ نوشتہ جات تلاش کرسکتے ہیں]</span>',
 'updated' => '(اپ ڈیٹڈ)',
 'note' => "'''نوٹ:'''",
@@ -1308,7 +1308,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'whatlinkshere-hideredirs' => 'رجوع مکررات $1',
 'whatlinkshere-hidetrans' => 'تضمینات',
 'whatlinkshere-hidelinks' => 'روابط $1',
-'whatlinkshere-hideimages' => 'روابطِ تصویر $1',
+'whatlinkshere-hideimages' => 'روابطِ تصاویر $1',
 'whatlinkshere-filters' => 'فلٹرذ',
 
 # Block/unblock

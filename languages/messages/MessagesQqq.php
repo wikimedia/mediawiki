@@ -1862,12 +1862,18 @@ Parameters:
 'logentry-rights-rights' => '*$1 - username
 *$3 - username
 *$4 - list of user groups or {{msg-mw|Rightsnone}}
-*$5 - list of user groups or {{msg-mw|Rightsnone}}',
+*$5 - list of user groups or {{msg-mw|Rightsnone}}
+
+{{Logentry}}',
 'logentry-rights-rights-legacy' => '*$1 - username
-*$3 - username',
-'logentry-rights-autopromote' => '* $1: username
-* $4: user group
-* $5: user group',
+*$3 - username
+
+{{Logentry}}',
+'logentry-rights-autopromote' => '*$1 - username
+*$4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}
+*$5 - comma separated list of new user groups
+
+{{Logentry}}',
 'rightsnone' => 'Default rights for registered users.
 
 {{Identical|None}}',

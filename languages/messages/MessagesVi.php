@@ -2213,7 +2213,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'linksearch-pat' => 'Mẫu liên kết:',
 'linksearch-ns' => 'Không gian tên:',
 'linksearch-ok' => 'Tìm kiếm',
-'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <code>$1</code>; vui lòng không đưa giao thức vào truy vấn.",
+'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <code>$1</code>; mặc định là <code>http://</code> nếu không định rõ giao thức trong truy vấn.",
 'linksearch-line' => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 
@@ -2592,7 +2592,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 trang đổi hướng',
 'whatlinkshere-hidetrans' => '$1 trang nhúng',
 'whatlinkshere-hidelinks' => '$1 liên kết',
-'whatlinkshere-hideimages' => '$1 liên kết hình',
+'whatlinkshere-hideimages' => '$1 liên kết tập tin',
 'whatlinkshere-filters' => 'Bộ lọc',
 
 # Block/unblock
@@ -3469,6 +3469,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-compression-3' => 'CCITT Nhóm 3: mã hóa fax',
 'exif-compression-4' => 'CCITT Nhóm 4: mã hóa fax',
 'exif-compression-6' => 'JPEG (cũ)',
+'exif-compression-34712' => 'JPEG 2000',
 
 'exif-copyrighted-true' => 'Dưới bản quyền',
 'exif-copyrighted-false' => 'Phạm vi công cộng',
