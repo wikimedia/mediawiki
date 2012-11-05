@@ -1,0 +1,8 @@
+Change-Id: Ib179294d4b6a4e0fa88a44655f4fdfbfa1cf66e9
+Code-Review+2: awjrichards <arichards@wikimedia.org>
+Verified+1: awjrichards <arichards@wikimedia.org>
+Submitted-by: awjrichards <arichards@wikimedia.org>
+Submitted-at: Mon, 05 Nov 2012 23:24:31 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/31970
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.20wmf3
