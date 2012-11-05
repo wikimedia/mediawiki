@@ -33,7 +33,10 @@ class MagicVariableTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$contLang = Language::factory( 'en' );
-		$this->setMwGlobals( 'wgContLang', $contLang );
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => $contLang,
+		) );
 
 		$this->testParser = new Parser();
 		$this->testParser->Options( ParserOptions::newFromUserAndLang( new User, $contLang ) );
@@ -78,7 +81,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	function testLocaldaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'localday2', $day );
 	}
-	
+
 	# month
 
 	/** @dataProvider MediaWikiProvide::Months */
@@ -109,7 +112,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	function testRevisiondaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'revisionday2', $day );
 	}
-	
+
 	# revision month
 
 	/** @dataProvider MediaWikiProvide::Months */
@@ -153,26 +156,26 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 	/**
 	 * Main assertion helper for magic variables padding
-	 * @param $magic string Magic variable name 
+	 * @param $magic string Magic variable name
 	 * @param $value mixed Month or day
-	 * @param $format string sprintf format for $value 
+	 * @param $format string sprintf format for $value
 	 */
 	private function assertMagicPadding( $magic, $value, $format ) {
 		# Initialize parser timestamp as year 2010 at 12h34 56s.
 		# month and day are given by the caller ($value). Month < 12!
 		if( $value > 12 ) { $month = $value % 12; }
 		else { $month = $value; }
-	
+
 		$this->setParserTS(
 			sprintf( '2010%02d%02d123456', $month, $value )
 		);
 
-		# please keep the following commented line of code. It helps debugging.	
+		# please keep the following commented line of code. It helps debugging.
 		//print "\nDEBUG (value $value):" . sprintf( '2010%02d%02d123456', $value, $value ) . "\n";
 
 		# format expectation and test it
 		$expected = sprintf( $format, $value );
-		$this->assertMagic( $expected, $magic ); 
+		$this->assertMagic( $expected, $magic );
 	}
 
 	/** helper to set the parser timestamp and revision timestamp */

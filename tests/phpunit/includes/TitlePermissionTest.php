@@ -30,6 +30,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( array(
 			'wgMemc' => new EmptyBagOStuff,
 			'wgContLang' => $langObj,
+			'wgLanguageCode' => 'en',
 			'wgLang' => $langObj,
 			'wgLocaltimezone' => $localZone,
 			'wgLocalTZoffset' => $localOffset,

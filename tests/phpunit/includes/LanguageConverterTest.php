@@ -9,6 +9,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( array(
 			'wgContLang' => Language::factory( 'tg' ),
+			'wgLanguageCode' => 'tg',
 			'wgDefaultLanguageVariant' => false,
 			'wgMemc' => new EmptyBagOStuff,
 			'wgRequest' => new FauxRequest( array() ),

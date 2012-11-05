@@ -32,8 +32,11 @@ class NewParserTest extends MediaWikiTestCase {
 	protected $file = false;
 
 	protected function setUp() {
-		global $wgContLang, $wgNamespaceProtection, $wgNamespaceAliases;
+		global $wgContLang, $wgLanguageCode;
+		global $wgNamespaceProtection, $wgNamespaceAliases;
 		global $wgHooks, $IP;
+
+		$wgLanguageCode = 'en';
 		$wgContLang = Language::factory( 'en' );
 
 		//Setup CLI arguments

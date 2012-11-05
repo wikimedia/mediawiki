@@ -7,6 +7,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( array(
 			'wgLocalTZoffset' => null,
 			'wgContLang' => Language::factory( 'en' ),
+			'wgLanguageCode' => 'en',
 		) );
 
 		$this->iniSet( 'precision', 15 );
