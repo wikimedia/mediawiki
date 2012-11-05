@@ -4695,8 +4695,9 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 # Core parser functions
 'unknown_extension_tag'        => 'Unknown extension tag "$1"',
 'duplicate-defaultsort'        => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
-'duplicate-defaultcollation'   => '\'\'\'Warning:\'\'\' Default collation "$2" overrides earlier default collation "$1".',
+'duplicate-defaultcollation'   => '\'\'\'Warning:\'\'\' Default collation "{{int:collation-$2}}" overrides earlier default collation "{{int:collation-$1}}".',
 'defaultcollation-notcategory' => '\'\'\'Warning:\'\'\' Default collation should be set in category pages.',
+'defaultcollation-invalid'     => '\'\'\'Warning:\'\'\' "$1" is not a valid collation.',
 
 # Special:Version
 'version'                               => 'Version',
