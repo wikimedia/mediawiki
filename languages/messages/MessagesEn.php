@@ -772,8 +772,8 @@ XHTML id names.
 'newwindow'     => '(opens in new window)',
 'cancel'        => 'Cancel',
 'moredotdotdot' => 'More...',
-'mypage'        => 'My page',
-'mytalk'        => 'My talk',
+'mypage'        => 'Page',
+'mytalk'        => 'Talk',
 'anontalk'      => 'Talk for this IP address',
 'navigation'    => 'Navigation',
 'and'           => '&#32;and',
@@ -1811,7 +1811,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 # Preferences page
 'preferences'                   => 'Preferences',
 'preferences-summary'           => '', # do not translate or duplicate this message to other languages
-'mypreferences'                 => 'My preferences',
+'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
 'prefsnologin'                  => 'Not logged in',
 'prefsnologintext'              => 'You must be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> to set user preferences.',
@@ -2845,7 +2845,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 # Watchlist
 'watchlist'            => 'My watchlist',
 'watchlist-summary'    => '', # do not translate or duplicate this message to other languages
-'mywatchlist'          => 'My watchlist',
+'mywatchlist'          => 'Watchlist',
 'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
@@ -3115,7 +3115,7 @@ $1',
 'contributions'         => 'User contributions',
 'contributions-summary' => '', # do not translate or duplicate this message to other languages
 'contributions-title'   => 'User contributions for $1',
-'mycontris'             => 'My contributions',
+'mycontris'             => 'Contributions',
 'contribsub2'           => 'For $1 ($2)',
 'nocontribs'            => 'No changes were found matching these criteria.',
 'uctop'                 => '(top)',
