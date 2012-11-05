@@ -347,7 +347,7 @@ abstract class ORMRow implements IORMRow {
 	 * @return boolean Success indicator
 	 */
 	protected function saveExisting( $functionName = null ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->table->getWriteDbConnection();
 
 		$success = $dbw->update(
 			$this->table->getName(),
@@ -383,7 +383,7 @@ abstract class ORMRow implements IORMRow {
 	 * @return boolean Success indicator
 	 */
 	protected function insert( $functionName = null, array $options = null ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->table->getWriteDbConnection();
 
 		$success = $dbw->insert(
 			$this->table->getName(),
@@ -558,7 +558,7 @@ abstract class ORMRow implements IORMRow {
 		$absoluteAmount = abs( $amount );
 		$isNegative = $amount < 0;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->table->getWriteDbConnection();
 
 		$fullField = $this->table->getPrefixedField( $field );
 
