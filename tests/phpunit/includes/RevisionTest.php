@@ -11,6 +11,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgContLang' => Language::factory( 'en' ),
+			'wgLanguageCode' => 'en',
 			'wgLegacyEncoding' => false,
 			'wgCompressRevisions' => false,
 
