@@ -836,26 +836,36 @@ class CoreParserFunctions {
 			if ( $arg ) {
 				return '';
 			} else {
-				return '<span class="error">' . wfMsgForContent( 'defaultcollation-notcategory' ) . '</span>';
+				return '<span class="error">'
+					. wfMessage( 'defaultcollation-notcategory' )->inContentLanguage()->text()
+					. '</span>';
 			}
 		}
 
 		$text = trim( $text );
-		if( strlen( $text ) == 0 )
+		if ( strlen( $text ) == 0 ) {
 			return '';
-		$old = $parser->getOutput()->getProperty( 'defaultcollation' );
-		if ( $old === false || $arg !== 'defaultcollation_noreplace' ) {
-			$parser->getOutput()->setProperty( 'defaultcollation', $text );
+		}
+		$name = Collation::getNameFromText( $text );
+		if ( $name === false ) {
+			return '<span class="error">'
+				. wfMessage( 'defaultcollation-invalid' )
+					->params( htmlspecialchars( $text ) )
+					->inContentLanguage()->text()
+				. '</span>';
 		}
 
-		if( $old === false || $old == $text || $arg ) {
+		$old = $parser->getOutput()->getProperty( 'defaultcollation' );
+		if ( $old === false || $arg !== 'defaultcollation_noreplace' ) {
+			$parser->getOutput()->setProperty( 'defaultcollation', $name );
+		}
+
+		if( $old === false || $old === $name || $arg ) {
 			return '';
 		} else {
-			return( '<span class="error">' .
-				wfMsgForContent( 'duplicate-defaultcollation',
-						 htmlspecialchars( $old ),
-						 htmlspecialchars( $text ) ) .
-				'</span>' );
+			return '<span class="error">'
+				. wfMessage( 'duplicate-defaultcollation' )->params( $old, $name )->text()
+				. '</span>';
 		}
 	}
 

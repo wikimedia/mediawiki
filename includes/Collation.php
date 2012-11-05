@@ -127,6 +127,43 @@ abstract class Collation {
 	}
 
 	/**
+	 * Get a valid collation name from user input (matched using magic words)
+	 *
+	 * @since 1.21
+	 * @param $text String: User input (localized collation name)
+	 * @return String|bool: A valid collation name, or false for invalid input
+	 */
+	static function getNameFromText( $text ) {
+		global $wgCategoryCollations;
+
+		static $mwArray = null;
+		static $collationMap = array();
+		if ( !$mwArray ) {
+			foreach ( $wgCategoryCollations as $collationName ) {
+				// Unluckily magic word names can't contain hyphens.
+				// Magic word names used in core, for easier grepping:
+				// * collation_uppercase
+				// * collation_identity
+				// * collation_uca_default
+				// * collation_zh_pinyin
+				// * collation_zh_stroke
+				// * collation_zh_stroke_hans
+				// * collation_zh_stroke_hant
+				$magicName = 'collation_' . str_replace( '-', '_', $collationName );
+				$collationMap[$magicName] = $collationName;
+			}
+			$mwArray = new MagicWordArray( array_keys( $collationMap ) );
+		}
+
+		$magicName = $mwArray->matchStartToEnd( $text );
+		if ( $magicName === false ) {
+			return false;
+		} else {
+			return $collationMap[$magicName];
+		}
+	}
+
+	/**
 	 * Given a string, convert it to a (hopefully short) key that can be used
 	 * for efficient sorting.  A binary sort according to the sortkeys
 	 * corresponds to a logical sort of the corresponding strings.  Current
