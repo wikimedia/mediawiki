@@ -411,4 +411,30 @@ abstract class AbstractContent implements Content {
 	public function matchMagicWord( MagicWord $word ) {
 		return false;
 	}
+
+	/**
+	 * @see Content::convert()
+	 *
+	 * This base implementation calls the hook ConvertContent to enable custom conversions.
+	 * Subclasses may override this to implement conversion for "their" content model.
+	 *
+	 * @param String  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param String  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * not allowed, full round-trip conversion is expected to work without losing information.
+	 *
+	 * @return Content|bool A content object with the content model $toModel, or false if
+	 * that conversion is not supported.
+	 */
+	public function convert( $toModel, $lossy = '' ) {
+		if ( $this->getModel() === $toModel ) {
+			//nothing to do, shorten out.
+			return $this;
+		}
+
+		$lossy = ( $lossy === 'lossy' ); // string flag, convert to boolean for convenience
+		$result = false;
+
+		wfRunHooks( 'ConvertContent', array( $this, $toModel, $lossy, &$result ) );
+		return $result;
+	}
 }

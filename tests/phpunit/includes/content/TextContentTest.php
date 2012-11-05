@@ -378,4 +378,49 @@ class TextContentTest extends MediaWikiTestCase {
 		}
 	}
 
+	public static function provideConvert() {
+		return array(
+			array( // #0
+				'Hallo Welt',
+				CONTENT_MODEL_WIKITEXT,
+				'lossless',
+				'Hallo Welt'
+			),
+			array( // #1
+				'Hallo Welt',
+				CONTENT_MODEL_WIKITEXT,
+				'lossless',
+				'Hallo Welt'
+			),
+			array( // #1
+				'Hallo Welt',
+				CONTENT_MODEL_CSS,
+				'lossless',
+				'Hallo Welt'
+			),
+			array( // #1
+				'Hallo Welt',
+				CONTENT_MODEL_JAVASCRIPT,
+				'lossless',
+				'Hallo Welt'
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideConvert
+	 */
+	public function testConvert( $text, $model, $lossy, $expectedNative ) {
+		$content = $this->newContent( $text );
+
+		$converted = $content->convert( $model, $lossy );
+
+		if ( $expectedNative === false ) {
+			$this->assertFalse( $converted, "conversion to $model was expected to fail!" );
+		} else {
+			$this->assertInstanceOf( 'Content', $converted );
+			$this->assertEquals( $expectedNative, $converted->getNativeData() );
+		}
+	}
+
 }

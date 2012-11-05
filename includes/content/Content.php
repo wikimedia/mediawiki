@@ -42,7 +42,7 @@ interface Content {
 	/**
 	 * @since 1.21
 	 *
-	 * @return string The wikitext to include when another page includes this
+	 * @return string|false The wikitext to include when another page includes this
 	 * content, or false if the content is not includable in a wikitext page.
 	 *
 	 * @todo allow native handling, bypassing wikitext representation, like
@@ -481,7 +481,20 @@ interface Content {
 	 */
 	public function matchMagicWord( MagicWord $word );
 
-	// TODO: ImagePage and CategoryPage interfere with per-content action handlers
+	/**
+	 * Converts this content object into another content object with the given content model,
+	 * if that is possible.
+	 *
+	 * @param String  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param String  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * not allowed, full round-trip conversion is expected to work without losing information.
+	 *
+	 * @return Content|bool A content object with the content model $toModel, or false if
+	 * that conversion is not supported.
+	 */
+	public function convert( $toModel, $lossy = '' );
+
+		// TODO: ImagePage and CategoryPage interfere with per-content action handlers
 	// TODO: nice&sane integration of GeSHi syntax highlighting
 	//   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a
 	//   config to set the class which handles syntax highlighting

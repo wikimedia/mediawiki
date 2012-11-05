@@ -115,12 +115,21 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns the text represented by this Content object, as a string.
+	 * Returns attempts to convert this content object to wikitext,
+	 * and then returns the text string. The conversion may be lossy.
 	 *
-	 * @return string: the raw text
+	 * @note: this allows any text-based content to be transcluded as if it was wikitext.
+	 *
+	 * @return string|false: the raw text, or null if the conversion failed
 	 */
 	public function getWikitextForTransclusion( ) {
-		return $this->getNativeData();
+		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );
+
+		if ( $wikitext ) {
+			return $wikitext->getNativeData();
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -236,5 +245,36 @@ class TextContent extends AbstractContent {
 	protected function getHighlightHtml( ) {
 		# TODO: make Highlighter interface, use highlighter here, if available
 		return htmlspecialchars( $this->getNativeData() );
+	}
+
+	/**
+	 * @see Content::convert()
+	 *
+	 * This implementation provides lossless conversion between content models based
+	 * on TextContent.
+	 *
+	 * @param String  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param String  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * not allowed, full round-trip conversion is expected to work without losing information.
+	 *
+	 * @return Content|bool A content object with the content model $toModel, or false if
+	 * that conversion is not supported.
+	 */
+	public function convert( $toModel, $lossy = '' ) {
+		$converted = parent::convert( $toModel, $lossy );
+
+		if ( $converted !== false ) {
+			return $converted;
+		}
+
+		$toHandler = ContentHandler::getForModelID( $toModel );
+
+		if ( $toHandler instanceof TextContentHandler ) {
+			//NOTE: ignore content serialization format - it's just text anyway.
+			$text = $this->getNativeData();
+			$converted = $toHandler->unserializeContent( $text );
+		}
+
+		return $converted;
 	}
 }

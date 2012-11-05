@@ -752,6 +752,16 @@ cointent model name, but no entry for that model exists in $wgContentHandlers.
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
+'ConvertContent': Called by AbstractContent::convert when a conversion to another
+content model is requested.
+$content: The Content object to be converted.
+$toModel: The ID of the content model to convert to.
+$lossy:   boolean indicating whether lossy conversion is allowed.
+&$result: Output parameter, in case the handler function wants to provide a
+converted Content object. Note that $result->getContentModel() must return $toModel.
+Handler functions that modify $result should generally return false to further
+attempts at conversion.
+
 'ContribsPager::getQueryInfo': Before the contributions query is about to run
 &$pager: Pager object for contributions
 &$queryInfo: The query for the contribs Pager
