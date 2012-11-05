@@ -4642,6 +4642,7 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 'duplicate-defaultsort' => 'Definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
 'duplicate-defaultcollation' => 'Error message to show when there is another default collation defined.',
 'defaultcollation-notcategory' => 'Error message when {{DEFAULTCOLLATION: }} is used on a non-category page.',
+'defaultcollation-invalid' => 'Error message when {{DEFAULTCOLLATION: }} is used with an invalid collation specified.',
 
 # Special:Version
 'version' => 'Name of special page displayed in [[Special:SpecialPages]]
