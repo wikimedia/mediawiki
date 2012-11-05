@@ -48,43 +48,29 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	public function execute( $par ) {
-		global $wgSpecialVersionShowHooks, $IP;
+		global $wgSpecialVersionShowHooks;
 
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 
-		if( $par !== 'Credits' ) {
-			$text =
-				$this->getMediaWikiCredits() .
-				$this->softwareInformation() .
-				$this->getEntryPointInfo() .
-				$this->getExtensionCredits();
-			if ( $wgSpecialVersionShowHooks ) {
-				$text .= $this->getWgHooks();
+		$text =
+			$this->getMediaWikiCredits() .
+			$this->softwareInformation() .
+			$this->getEntryPointInfo() .
+			$this->getExtensionCredits();
+		if ( $wgSpecialVersionShowHooks ) {
+			$text .= $this->getWgHooks();
+		}
+
+		$out->addWikiText( $text );
+		$out->addHTML( $this->IPInfo() );
+
+		if ( $this->getRequest()->getVal( 'easteregg' ) ) {
+			if ( $this->showEasterEgg() ) {
+				// TODO: put something interesting here
 			}
-
-			$out->addWikiText( $text );
-			$out->addHTML( $this->IPInfo() );
-
-			if ( $this->getRequest()->getVal( 'easteregg' ) ) {
-				if ( $this->showEasterEgg() ) {
-					// TODO: put something interesting here
-				}
-			}
-		} else {
-			// Credits sub page
-
-			// Header
-			$out->addHTML( wfMessage( 'version-credits-summary' )->parseAsBlock() );
-
-			$wikiText = file_get_contents( $IP . '/CREDITS' );
-
-			// Take everything from the first section onwards, to remove the (not localized) header
-			$wikiText = substr( $wikiText, strpos( $wikiText, '==' ) );
-
-			$out->addWikiText( $wikiText );
 		}
 	}
 
@@ -123,9 +109,9 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof',
-			'[[Special:Version/Credits|' .
+			'[{{SERVER}}{{SCRIPTPATH}}/CREDITS ' .
 			wfMessage( 'version-poweredby-others' )->text() .
-			']]'
+			']'
 		);
 
 		return wfMessage( 'version-poweredby-credits', date( 'Y' ),

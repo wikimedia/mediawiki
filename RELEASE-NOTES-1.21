@@ -34,7 +34,6 @@ production.
 * Added ApiQueryORM class to facilitate creation of query API modules based on
   tables that have a corresponding ORMTable class.
 * (bug 40876) Icon for PSD (Adobe Photoshop) file types.
-* (bug 40641) Implemented Special:Version/Credits with a list of contributors.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
