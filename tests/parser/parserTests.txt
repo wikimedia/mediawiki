@@ -6217,6 +6217,42 @@ pst
 [[Category:{{echo|Foo}}|{{echo|Bar}}]]
 !! end
 
+!! test
+Category / paragraph interactions
+!! input
+Foo [[Category:Baz]] Bar
+
+Foo [[Category:Baz]]
+Bar
+
+Foo
+[[Category:Baz]]
+Bar
+
+Foo
+[[Category:Baz]] Bar
+
+Foo
+[[Category:Baz]]
+ [[Category:Baz]]
+[[Category:Baz]]
+Bar
+
+[[Category:Baz]]
+[[Category:Baz]]
+[[Category:Baz]]
+!! result
+<p>Foo Bar
+</p><p>Foo
+Bar
+</p><p>Foo
+Bar
+</p><p>Foo Bar
+</p><p>Foo
+Bar
+</p>
+!! end
+
 ###
 ### Inter-language links
 ###
