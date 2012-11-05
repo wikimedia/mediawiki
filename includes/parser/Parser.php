@@ -3110,17 +3110,6 @@ class Parser {
 	static function parseCategorySortKey( $sortKeys ) {
 		global $wgCategoryCollations;
 
-		static $mwArray = null;
-		static $collationMap = array();
-		if ( !$mwArray ) {
-			foreach ( $wgCategoryCollations as $collationName ) {
-				// Unluckily magic word names can't contain hyphens.
-				$magicName = 'collation_' . str_replace( '-', '_', $collationName );
-				$collationMap[$magicName] = $collationName;
-			}
-			$mwArray = new MagicWordArray( array_keys( $collationMap ) );
-		}
-
 		if ( !is_array( $sortKeys ) ) {
 			$sortKeys = StringUtils::explode( '|', $sortKeys );
 		}
@@ -3137,12 +3126,12 @@ class Parser {
 				if ( $value === false ) {
 					$value = '';
 				}
-				$magicName = $mwArray->matchStartToEnd( $name );
-				if ( $magicName === false ) {
+				$collationName = Collation::getNameFromText( $name );
+				if ( $collationName === false ) {
 					// Keep existing sort keys with an equal sign working.
 					$defaultSortKey = $sortKey;
 				} else {
-					$assocSortKeys[$collationMap[$magicName]] = $value;
+					$assocSortKeys[$collationName] = $value;
 				}
 			}
 		}
