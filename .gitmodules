@@ -424,3 +424,6 @@
 [submodule "extensions/MapSources"]
 	path = extensions/MapSources
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MapSources.git
+[submodule "extensions/UserMerge"]
+	path = extensions/UserMerge
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UserMerge.git
