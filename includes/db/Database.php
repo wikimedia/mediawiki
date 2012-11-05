@@ -1983,46 +1983,38 @@ abstract class DatabaseBase implements DatabaseType {
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
-		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
-		if ( isset( $dbDetails[1] ) ) {
-			list( $table, $database ) = $dbDetails;
+		$dbDetails = explode( '.', $name, 2 );
+		if ( count( $dbDetails ) == 2 ) {
+			list( $database, $table ) = $dbDetails;
+			# We don't want any prefix added in this case
+			$prefix = '';
 		} else {
 			list( $table ) = $dbDetails;
-		}
-		$prefix = $this->mTablePrefix; # Default prefix
-
-		# A database name has been specified in input. We don't want any
-		# prefixes added.
-		if ( isset( $database ) ) {
-			$prefix = '';
-		}
-
-		# Note that we use the long format because php will complain in in_array if
-		# the input is not an array, and will complain in is_array if it is not set.
-		if ( !isset( $database ) # Don't use shared database if pre selected.
-		 && isset( $wgSharedDB ) # We have a shared database
-		 && !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
-		 && isset( $wgSharedTables )
-		 && is_array( $wgSharedTables )
-		 && in_array( $table, $wgSharedTables ) ) { # A shared table is selected
-			$database = $wgSharedDB;
-			$prefix   = isset( $wgSharedPrefix ) ? $wgSharedPrefix : $prefix;
-		}
-
-		# Quote the $database and $table and apply the prefix if not quoted.
-		if ( isset( $database ) ) {
-			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $database ) ) {
-				$database = $this->addIdentifierQuotes( $database );
+			if ( $wgSharedDB !== null # We have a shared database
+				&& !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
+				&& in_array( $table, $wgSharedTables ) # A shared table is selected
+			) {
+				$database = $wgSharedDB;
+				$prefix   = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
+			} else {
+				$database = null;
+				$prefix = $this->mTablePrefix; # Default prefix
 			}
 		}
 
-		$table = "{$prefix}{$table}";
-		if ( $format == 'quoted' && !$this->isQuotedIdentifier( $table ) ) {
-			$table = $this->addIdentifierQuotes( "{$table}" );
+		# Quote $table and apply the prefix if not quoted.
+		$tableName = "{$prefix}{$table}";
+		if ( $format == 'quoted' && !$this->isQuotedIdentifier( $tableName ) ) {
+			$tableName = $this->addIdentifierQuotes( $tableName );
 		}
 
-		# Merge our database and table into our final table name.
-		$tableName = ( isset( $database ) ? "{$database}.{$table}" : "{$table}" );
+		# Quote $database and merge it with the table name if needed
+		if ( $database !== null ) {
+			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $database ) ) {
+				$database = $this->addIdentifierQuotes( $database );
+			}
+			$tableName = $database . '.' . $tableName;
+		}
 
 		return $tableName;
 	}
