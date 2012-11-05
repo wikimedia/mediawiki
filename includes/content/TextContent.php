@@ -34,7 +34,7 @@ class TextContent extends AbstractContent {
 
 		if ( $text === null || $text === false ) {
 			wfWarn( "TextContent constructed with \$text = " . var_export( $text, true ) . "! "
-					. "This may indicate an error in the caller's scope." );
+					. "This may indicate an error in the caller's scope.", 2 );
 
 			$text = '';
 		}
