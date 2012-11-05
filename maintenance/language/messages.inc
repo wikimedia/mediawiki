@@ -3550,6 +3550,7 @@ $wgMessageStructure = array(
 		'duplicate-defaultsort',
 		'duplicate-defaultcollation',
 		'defaultcollation-notcategory',
+		'defaultcollation-invalid',
 	),
 	'version' => array(
 		'version',
