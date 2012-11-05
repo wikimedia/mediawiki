@@ -41,15 +41,31 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	}
 
+	/**
+	 * Does the API request and returns the result.
+	 *
+	 * The returned value is an array containing
+	 * - the result data (array)
+	 * - the request (WebRequest)
+	 * - the session data of the request (array)
+	 * - if $appendModule is true, the Api module $module
+	 *
+	 * @param array $params
+	 * @param array|null $session
+	 * @param bool $appendModule
+	 * @param User|null $user
+	 *
+	 * @return array
+	 */
 	protected function doApiRequest( array $params, array $session = null, $appendModule = false, User $user = null ) {
 		global $wgRequest, $wgUser;
 
 		if ( is_null( $session ) ) {
-			# re-use existing global session by default
+			// re-use existing global session by default
 			$session = $wgRequest->getSessionArray();
 		}
 
-		# set up global environment
+		// set up global environment
 		if ( $user ) {
 			$wgUser = $user;
 		}
@@ -57,21 +73,22 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgRequest = new FauxRequest( $params, true, $session );
 		RequestContext::getMain()->setRequest( $wgRequest );
 
-		# set up local environment
+		// set up local environment
 		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
 
 		$module = new ApiMain( $context, true );
 
-		# run it!
+		// run it!
 		$module->execute();
 
-		# construct result
+		// construct result
 		$results = array(
 			$module->getResultData(),
 			$context->getRequest(),
 			$context->getRequest()->getSessionArray()
 		);
-		if( $appendModule ) {
+
+		if ( $appendModule ) {
 			$results[] = $module;
 		}
 
