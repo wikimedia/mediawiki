@@ -1182,6 +1182,50 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testGetFileHttpUrl
+	 */
+	public function testGetFileHttpUrl( $source, $content ) {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestGetFileHttpUrl( $source, $content );
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestGetFileHttpUrl( $source, $content );
+		$this->tearDownFiles();
+	}
+
+	private function doTestGetFileHttpUrl( $source, $content ) {
+		$backendName = $this->backendClass();
+
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$status = $this->backend->doOperation(
+			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
+		$this->assertGoodStatus( $status,
+			"Creation of file at $source succeeded ($backendName)." );
+
+		$url = $this->backend->getFileHttpUrl( array( 'src' => $source ) );
+
+		if ( $url !== null ) { // supported
+			$data = Http::request( "GET", $url );
+			$this->assertEquals( $content, $data,
+				"HTTP GET of URL has right contents ($backendName)." );
+		}
+	}
+
+	function provider_testGetFileHttpUrl() {
+		$cases = array();
+
+		$base = self::baseStorePath();
+		$cases[] = array( "$base/unittest-cont1/e/a/z/some_file.txt", "some file contents" );
+		$cases[] = array( "$base/unittest-cont1/e/a/some-other_file.txt", "more file contents" );
+		$cases[] = array( "$base/unittest-cont1/e/a/\$odd&.txt", "test file contents" );
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testPrepareAndClean
 	 */
 	public function testPrepareAndClean( $path, $isOK ) {
