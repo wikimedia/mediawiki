@@ -263,8 +263,10 @@ abstract class ORMRow implements IORMRow {
 				switch ( $type ) {
 					case 'array':
 						$value = (array)$value;
+						// fall-through!
 					case 'blob':
 						$value = serialize( $value );
+						// fall-through!
 				}
 
 				$values[$this->table->getPrefixedField( $name )] = $value;
@@ -391,7 +393,7 @@ abstract class ORMRow implements IORMRow {
 			$this->table->getName(),
 			$this->getWriteValues(),
 			is_null( $functionName ) ? __METHOD__ : $functionName,
-			is_null( $options ) ? array( 'IGNORE' ) : $options
+			$options
 		);
 
 		// DatabaseBase::insert does not always return true for success as documented...

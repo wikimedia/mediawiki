@@ -87,6 +87,7 @@ class TestORMRowTest extends ORMRowTest {
 			array(
 				array(
 					'name' => 'Foobar',
+					'time' => '20120101020202',
 					'age' => 42,
 					'height' => 9000.1,
 					'awesome' => true,

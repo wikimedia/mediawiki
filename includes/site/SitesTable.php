@@ -95,6 +95,7 @@ class SitesTable extends ORMTable {
 
 			'forward' => false,
 			'config' => array(),
+			'language' => 'en', // XXX: can we default to '' instead?
 		);
 	}
 
