@@ -2110,7 +2110,7 @@ $result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page. Hook
 Allows overriding default behaviour for determining if a page exists.
 If $isKnown is kept as null, regular checks happen. If it's a boolean, this value is returned by the isKnown method.
 $title: Title object that is being checked
-$result: Boolean|null; whether MediaWiki currently thinks this page is known
+&$isKnown: Boolean|null; whether MediaWiki currently thinks this page is known
 
 'TitleIsMovable': Called when determining if it is possible to move a page.
 Note that this hook is not called for interwiki pages or pages in immovable namespaces: for these, isMovable() always returns false.
