@@ -48,7 +48,7 @@ Template:Blank
 !! endarticle
 
 !! article
-Template:!
+Template:pipe
 !! text
 |
 !! endarticle
@@ -63,6 +63,12 @@ MediaWiki:bad image list
 Template:inner list
 !! text
 * item 1
+!! endarticle
+
+!! article
+Template:!
+!! text
+|
 !! endarticle
 
 !! article
@@ -964,6 +970,8 @@ Templates: Pre: 1e. Wrapping should be based on expanded content
 !!input
 {{echo| foo}}
 
+{{echo| foo}}{{echo| bar}}
+
 {{echo| foo}}
 {{echo| bar}}
 
@@ -975,6 +983,8 @@ Templates: Pre: 1e. Wrapping should be based on expanded content
 !!result
 <pre>foo
 </pre>
+<pre>foo bar
+</pre>
 <pre>foo
 bar
 </pre>
@@ -983,6 +993,43 @@ bar
 <pre>foo
 </pre>
 <pre>bar
+</pre>
+!!end
+
+!! test
+Templates: Pre: 1f: Wrapping should be based on expanded content
+!! input
+{{echo| }}a
+
+{{echo|
+ }}a
+
+{{echo|
+ b}}
+
+{{echo|a
+ }}b
+
+{{echo|a
+}} b
+!!result
+<pre>a
+</pre>
+<p><br />
+</p>
+<pre>a
+</pre>
+<p><br />
+</p>
+<pre>b
+</pre>
+<p>a
+</p>
+<pre>b
+</pre>
+<p>a
+</p>
+<pre>b
 </pre>
 !!end
 
@@ -1067,7 +1114,7 @@ c
 !!end
 
 !!test
-3. Pre and block tags
+3a. Pre and block tags (single-line html)
 !!input
  <p> foo </p>
  <div> foo </div>
@@ -1077,6 +1124,58 @@ c
  <div> foo </div>
 <pre><span> foo </span>
 </pre>
+!!end
+
+!!test
+3b. Pre and block tags (pre-content on separate line)
+!!input
+<p>
+ foo
+</p>
+
+<div>
+ foo
+</div>
+
+<center>
+ foo
+</center>
+
+<blockquote>
+ foo
+</blockquote>
+
+<table><tr><td>
+ foo
+</td></tr></table>
+
+<ul><li>
+  foo
+</li></ul>
+
+!!result
+<p>
+ foo
+</p>
+<div>
+<pre>foo
+</pre>
+</div>
+<center>
+<pre>foo
+</pre>
+</center>
+<blockquote>
+ foo
+</blockquote>
+<table><tr><td>
+<pre>foo
+</pre>
+</td></tr></table>
+<ul><li>
+  foo
+</li></ul>
+
 !!end
 
 !!test
@@ -1235,13 +1334,13 @@ Bug 11748: Literal closing tags
 Definition and unordered list using wiki syntax nested in unordered list using html tags.
 !! input
 <ul><li>
-; term : description 
+; term : description
 * unordered
 </li>
 </ul>
 !! result
 <ul><li>
-<dl><dt> term&#160;</dt><dd> description 
+<dl><dt> term&#160;</dt><dd> description
 </dd></dl>
 <ul><li> unordered
 </li></ul>
@@ -2364,9 +2463,9 @@ A table with nothing but a caption
 !! test
 Simple table
 !! input
-{| 
+{|
 | 1 || 2
-|- 
+|-
 | 3 || 4
 |}
 !! result
@@ -2385,7 +2484,7 @@ Simple table
 !! test
 Simple table but with multiple dashes for row wikitext
 !! input
-{| 
+{|
 | foo
 |-----
 | bar
@@ -2498,12 +2597,12 @@ Allow +/- in 2nd and later cells in a row
 Table rowspan
 !! input
 {| border=1
-| Cell 1, row 1 
-|rowspan=2| Cell 2, row 1 (and 2) 
-| Cell 3, row 1 
-|- 
-| Cell 1, row 2 
-| Cell 3, row 2 
+| Cell 1, row 1
+|rowspan=2| Cell 2, row 1 (and 2)
+| Cell 3, row 1
+|-
+| Cell 1, row 2
+| Cell 3, row 2
 |}
 !! result
 <table border="1">
@@ -4199,7 +4298,7 @@ Template with complex arguments
 !! test
 BUG 553: link with two variables in a piped link
 !! input
-{| 
+{|
 |[[{{{1}}}|{{{2}}}]]
 |}
 !! result
@@ -4307,9 +4406,9 @@ Template from main namespace
 !! article
 Template:table
 !! text
-{| 
+{|
 | 1 || 2
-|- 
+|-
 | 3 || 4
 |}
 !! endarticle
@@ -4801,7 +4900,7 @@ Templates: HTML Tag: 6. Generation of end piece of HTML attr value
 !!end
 
 !!test
-Templates: Tables: 1. Generating start of a HTML table
+Templates: HTML Tables: 1. Generating start of a HTML table
 !!input
 {{echo|<table><tr><td>foo</td>}}</tr></table>
 !!result
@@ -4810,7 +4909,7 @@ Templates: Tables: 1. Generating start of a HTML table
 !!end
 
 !!test
-Templates: Tables: 2a. Generating middle of a HTML table
+Templates: HTML Tables: 2a. Generating middle of a HTML table
 !!input
 <table><tr>{{echo|<td>foo</td>}}</tr></table>
 !!result
@@ -4819,7 +4918,7 @@ Templates: Tables: 2a. Generating middle of a HTML table
 !!end
 
 !!test
-Templates: Tables: 2b. Generating middle of a HTML table
+Templates: HTML Tables: 2b. Generating middle of a HTML table
 !!input
 <table>{{echo|<tr><td>foo</td></tr>}}</table>
 !!result
@@ -4828,7 +4927,7 @@ Templates: Tables: 2b. Generating middle of a HTML table
 !!end
 
 !!test
-Templates: Tables: 3. Generating end of a HTML table
+Templates: HTML Tables: 3. Generating end of a HTML table
 !!input
 <table><tr>{{echo|<td>foo</td></tr></table>}}
 !!result
@@ -4837,7 +4936,7 @@ Templates: Tables: 3. Generating end of a HTML table
 !!end
 
 !!test
-Templates: Tables: 4a. Generating a single tag of a HTML table
+Templates: HTML Tables: 4a. Generating a single tag of a HTML table
 !!input
 {{echo|<table>}}<tr><td>foo</td></tr></table>
 !!result
@@ -4846,7 +4945,7 @@ Templates: Tables: 4a. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Tables: 4b. Generating a single tag of a HTML table
+Templates: HTML Tables: 4b. Generating a single tag of a HTML table
 !!input
 <table>{{echo|<tr>}}<td>foo</td></tr></table>
 !!result
@@ -4855,7 +4954,7 @@ Templates: Tables: 4b. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Tables: 4c. Generating a single tag of a HTML table
+Templates: HTML Tables: 4c. Generating a single tag of a HTML table
 !!input
 <table><tr>{{echo|<td>}}foo</td></tr></table>
 !!result
@@ -4864,7 +4963,7 @@ Templates: Tables: 4c. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Tables: 4d. Generating a single tag of a HTML table
+Templates: HTML Tables: 4d. Generating a single tag of a HTML table
 !!input
 <table><tr><td>foo{{echo|</td>}}</tr></table>
 !!result
@@ -4873,7 +4972,7 @@ Templates: Tables: 4d. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Tables: 4e. Generating a single tag of a HTML table
+Templates: HTML Tables: 4e. Generating a single tag of a HTML table
 !!input
 <table><tr><td>foo</td>{{echo|</tr>}}</table>
 !!result
@@ -4882,11 +4981,67 @@ Templates: Tables: 4e. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Tables: 4f. Generating a single tag of a HTML table
+Templates: HTML Tables: 4f. Generating a single tag of a HTML table
 !!input
 <table><tr><td>foo</td></tr>{{echo|</table>}}
 !!result
 <table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Wiki Tables: 1. Fostering of entire template content
+!!input
+{|
+{{echo|a}}
+|}
+!!result
+<table>
+a
+<tr><td></td></tr></table>
+
+!!end
+
+!!test
+Templates: Wiki Tables: 2. Fostering of partial template content
+!!input
+{|
+{{echo|a
+<div>b</div>}}
+|}
+!!result
+<table>
+a
+<div>b</div>
+<tr><td></td></tr></table>
+
+!!end
+
+!!test
+Templates: Wiki Tables: 3. td-content via multiple templates
+!!input
+{|
+{{echo|{{pipe}}a}}{{echo|b}}
+|}
+!!result
+<table>
+<tr>
+<td>ab
+</td></tr></table>
+
+!!end
+
+!!test
+Templates: Lists: Multi-line list-items via templates
+!!input
+*{{echo|a {{nonexistent|
+unused}}}}
+*{{echo|b {{nonexistent|
+unused}}}}
+!!result
+<ul><li>a <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
+</li><li>b <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
+</li></ul>
 
 !!end
 
@@ -11587,7 +11742,7 @@ Headings: 0. Unnested
 !!end
 
 !! test
-Headings: 1. Nested inside html 
+Headings: 1. Nested inside html
 !! options
 disabled
 !! input
@@ -11624,7 +11779,7 @@ disabled
 !!end
 
 !! test
-Headings: 3. Nested inside html with wikitext split by html tags 
+Headings: 3. Nested inside html with wikitext split by html tags
 !! options
 disabled
 !! input
@@ -11696,7 +11851,7 @@ disabled
 #### ----------------------------------------
 
 !! test
-Lists: 0. Outside nests 
+Lists: 0. Outside nests
 !! input
 <nowiki>*foo</nowiki>
 
@@ -11840,7 +11995,7 @@ disabled
 !!end
 
 !! test
-Lists: 7. Escape bullets in a multi-line context 
+Lists: 7. Escape bullets in a multi-line context
 !! input
 <nowiki>a
 *b</nowiki>
@@ -11855,7 +12010,7 @@ Lists: 7. Escape bullets in a multi-line context
 #### -----------------------------------
 
 !! test
-HRs: 1. Single line 
+HRs: 1. Single line
 !! options
 disabled
 !! input
@@ -12189,7 +12344,7 @@ disabled
 
 !! test
 2. Link fragments inside <i> and <b>
-(FIXME: Escaping one or both of [[ and ]] is also acceptable -- 
+(FIXME: Escaping one or both of [[ and ]] is also acceptable --
  this is one of the shortcomings of this format)
 !! input
 ''[[foo''<nowiki>]]</nowiki>
