@@ -63,6 +63,7 @@ production.
 * (bug 41899) A PHP notice no longer occurs when using the "rvcontinue" API parameter.
 * (bug 42036) Account creation emails now contain canonical (not
   protocol-relative) URLs.
+* (Bug 41706) preload to convert content as needed.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
