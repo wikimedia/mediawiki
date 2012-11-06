@@ -905,6 +905,22 @@ abstract class FileBackend {
 	abstract public function getLocalCopyMulti( array $params );
 
 	/**
+	 * Return a (possibly authenticated and temporary) HTTP URL to a given file.
+	 * This will return null if the backend cannot make an HTTP URL for the file.
+	 * This is useful for key/value stores when using scripts that seek around
+	 * large files and those scripts (and the backend) support HTTP Range headers.
+	 * Otherwise, one would need to use getLocalReference(), which involves loading
+	 * the entire file on to local disk.
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - src : source storage path
+	 * @return string|null
+	 * @since 1.21
+	 */
+	abstract public function getFileHttpUrl( array $params );
+
+	/**
 	 * Check if a directory exists at a given storage path.
 	 * Backends using key/value stores will check if the path is a
 	 * virtual directory, meaning there are files under the given directory.

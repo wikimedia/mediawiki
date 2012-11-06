@@ -40,6 +40,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/** @var CF_Authentication */
 	protected $auth; // Swift authentication handler
 	protected $authTTL; // integer seconds
+	protected $swiftTempUrlKey; // string; shared secret value for making temp urls
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
 	protected $swiftUseCDN; // boolean; whether CloudFiles CDN is enabled
 	protected $swiftCDNExpiry; // integer; how long to cache things in the CDN
@@ -66,6 +67,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *   - swiftUser          : Swift user used by MediaWiki (account:username)
 	 *   - swiftKey           : Swift authentication key for the above user
 	 *   - swiftAuthTTL       : Swift authentication TTL (seconds)
+	 *   - swiftTempUrlKey    : Swift X-Account-Meta-Temp-URL-Key value on the account.
 	 *   - swiftAnonUser      : Swift user used for end-user requests (account:username).
 	 *                          If set, then views of public containers are assumed to go
 	 *                          through this user. If not set, then public containers are
@@ -103,6 +105,9 @@ class SwiftFileBackend extends FileBackendStore {
 			: 5 * 60; // some sane number
 		$this->swiftAnonUser = isset( $config['swiftAnonUser'] )
 			? $config['swiftAnonUser']
+			: '';
+		$this->swiftTempUrlKey = isset( $config['swiftTempUrlKey'] )
+			? $config['swiftTempUrlKey']
 			: '';
 		$this->shardViaHashLevels = isset( $config['shardViaHashLevels'] )
 			? $config['shardViaHashLevels']
@@ -1117,6 +1122,28 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $tmpFiles;
+	}
+
+	/**
+	 * @see FileBackendStore::getFileHttpUrl()
+	 * @return string|null
+	 */
+	public function getFileHttpUrl( array $params ) {
+		if ( $this->swiftTempUrlKey != '' ) { // temp urls enabled
+			list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
+			if ( $srcRel === null ) {
+				return null; // invalid path
+			}
+			try {
+				$sContObj = $this->getContainer( $srcCont );
+				$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
+				return $obj->get_temp_url( $this->swiftTempUrlKey, 86400, "GET" );
+			} catch ( NoSuchContainerException $e ) {
+			} catch ( CloudFilesException $e ) { // some other exception?
+				$this->handleException( $e, null, __METHOD__, $params );
+			}
+		}
+		return null;
 	}
 
 	/**
