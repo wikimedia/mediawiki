@@ -1290,7 +1290,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'whatlinkshere-hideredirs' => 'peyser sono $1',
 'whatlinkshere-hidetrans' => 'İlawekerdê çaprazi $1',
 'whatlinkshere-hidelinks' => '$1 girey',
-'whatlinkshere-hideimages' => 'girê resmu $1',
+'whatlinkshere-hideimages' => 'Girê dosya $1',
 'whatlinkshere-filters' => 'Filtrey',
 
 # Block/unblock

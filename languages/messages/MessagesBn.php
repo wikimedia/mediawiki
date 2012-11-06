@@ -1166,7 +1166,7 @@ $1",
 'prefs-help-recentchangescount' => 'এতে সাম্প্রতিক পরিবর্তনসমূহ, পাতার ইতিহাস এবং লগ অন্তর্ভুক্ত।',
 'prefs-help-watchlist-token' => 'এই ঘরটি একটি গোপন শব্দ চাবি দ্বারা পূরণ করলে আপনার নজর তালিকার জন্য একটি আরএসএস ফিড তৈরী হবে। যারা এই ঘরের চাবি জানবে তারা আপনার নজর তালিকা দেখতে পারবে, তাই একটি গোপন মান ব্যবহার করুন। এখানে এলোমেলোভাবে তৈরী একটি মান দেখানো হয়েছে যা আপনি ব্যবহার করতে পারেন: $1',
 'savedprefs' => 'আপনার পছন্দগুলো সংরক্ষণ করা হয়েছে।',
-'timezonelegend' => 'সময় বলয়:',
+'timezonelegend' => 'সময়স্থান:',
 'localtime' => 'স্থানীয় সময়:',
 'timezoneuseserverdefault' => 'উইকির পূর্বনির্ধারিত সময় ব্যবহার করো ($1)',
 'timezoneuseoffset' => 'অন্য (অফসেট নির্দিষ্ট করুন)',
@@ -1970,7 +1970,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 
 # Special:ListUsers
 'listusersfrom' => 'সেই সব ব্যবহারকারী দেখাও যাদের নাম এই অক্ষর দিয়ে শুরু:',
-'listusers-submit' => 'দেখানো হোক',
+'listusers-submit' => 'দেখাও',
 'listusers-noresult' => 'কোন ব্যবহারকারী খুঁজে পাওয়া যায়নি।',
 'listusers-blocked' => '(ব্লককৃত)',
 

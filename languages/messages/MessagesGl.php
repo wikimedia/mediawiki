@@ -2567,7 +2567,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'whatlinkshere-hideredirs' => '$1 as redireccións',
 'whatlinkshere-hidetrans' => '$1 as inclusións',
 'whatlinkshere-hidelinks' => '$1 as ligazóns',
-'whatlinkshere-hideimages' => '$1 as ligazóns á imaxe',
+'whatlinkshere-hideimages' => '$1 as ligazóns ao ficheiro',
 'whatlinkshere-filters' => 'Filtros',
 
 # Block/unblock

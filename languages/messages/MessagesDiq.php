@@ -439,7 +439,7 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '<br />(teqa da newi de abena/pençereyê newey de beno a)',
+'newwindow' => '(pençereyê newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
 'mypage' => 'Pela mı',
@@ -461,7 +461,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Mesel Vırazê',
 'vector-action-delete' => 'Besterne',
-'vector-action-move' => 'Bere',
+'vector-action-move' => 'Berdış',
 'vector-action-protect' => 'Bıpawe',
 'vector-action-undelete' => 'Esterıtışi peyser bıgê',
 'vector-action-unprotect' => 'Starkerdışi bıvurne',
@@ -894,7 +894,7 @@ Parola vêrdiye: $2',
 'image_sample' => 'Misal resim.jpg',
 'image_tip' => 'Dosyaya gumın',
 'media_sample' => 'misal.jpg',
-'media_tip' => 'Gırey dosya',
+'media_tip' => 'Gıreyê dosya',
 'sig_tip' => 'İmza u wext',
 'hr_tip' => 'Çıxiza dimdayi (hend akar mefiye)',
 
@@ -2154,7 +2154,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'newpages' => 'Pelê newey',
 'newpages-username' => 'Nameyê karberi:',
 'ancientpages' => 'Wesiqeyê ke vurnayışê ciyê peyeni tewr kehani',
-'move' => 'Berden',
+'move' => 'Berdış',
 'movethispage' => 'Ena pele bere',
 'unusedimagestext' => 'Enê dosyey estê, feqet zerrey yew pele de wedardey niyê.
 Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gırê bê, u wına şenê verba gurênayışo feal de tiya hewna lista bê.',
@@ -2229,9 +2229,9 @@ hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 'linksearch-pat' => 'bıgêr motif:',
 'linksearch-ns' => 'Cayênameyî:',
 'linksearch-ok' => 'Cı geyre',
-'linksearch-text' => 'Joker ê zey "*.wikipedia.org"i karneno.<br />
-Tewr tayn en cêra "*.org" wazêno. <br />
-qaydeyê destek biyayeyi: <code>$1</code> (Cı geyrayış de xo miyan enina ra yeweri de mefiye).',
+'linksearch-text' => 'Jokeri ê zey "*.wikipedia.org"i benê ke bıgureniyê.
+Tewr senık yew sewiya serêna cayê tesiri lazıma, mesela "*.org".<br />
+Qeydeyê destegbiyayey: <code>$1</code> (qet yew qeydeyo hesabiyaye http:// ke name nêbiyo).',
 'linksearch-line' => '$1, $2 ra link biya',
 'linksearch-error' => 'jokeri têna nameyê makina ya serekini de aseni/eseni.',
 
@@ -2614,7 +2614,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'whatlinkshere-hideredirs' => 'Hetenayışê $1',
 'whatlinkshere-hidetrans' => 'Açarnayışê $1',
 'whatlinkshere-hidelinks' => 'Greyê $1',
-'whatlinkshere-hideimages' => 'Linkanê resımi $1',
+'whatlinkshere-hideimages' => 'Gıreyê dosya $1',
 'whatlinkshere-filters' => 'Avrêci',
 
 # Block/unblock

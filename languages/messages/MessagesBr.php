@@ -2470,7 +2470,7 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'whatlinkshere-hideredirs' => '$1 adkas',
 'whatlinkshere-hidetrans' => '$1 treuzkluzadur',
 'whatlinkshere-hidelinks' => '$1 liamm',
-'whatlinkshere-hideimages' => '$1 liamm skeudennoù',
+'whatlinkshere-hideimages' => '$1 ar restroù liammet',
 'whatlinkshere-filters' => 'Siloù',
 
 # Block/unblock

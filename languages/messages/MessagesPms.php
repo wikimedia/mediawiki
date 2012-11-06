@@ -2351,7 +2351,7 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'whatlinkshere-hideredirs' => '$1 le ridiression',
 'whatlinkshere-hidetrans' => '$1 anclusion',
 'whatlinkshere-hidelinks' => '$1 anliura',
-'whatlinkshere-hideimages' => '$1 anliure ëd figure',
+'whatlinkshere-hideimages' => "$1 j'archivi lijà",
 'whatlinkshere-filters' => 'Filtr',
 
 # Block/unblock
@@ -3364,7 +3364,7 @@ J'àutri a saran stërmà coma stàndard.
 
 # External editor support
 'edit-externally' => "Modifiché st'archivi con un programa estern",
-'edit-externally-help' => "(Lese [//www.mediawiki.org/wiki/Manual:External_editors setup j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
+'edit-externally-help' => "(Lese [//www.mediawiki.org/wiki/Manual:External_editors j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',
@@ -3375,15 +3375,15 @@ J'àutri a saran stërmà coma stàndard.
 # E-mail address confirmation
 'confirmemail' => "Confermé l'adrëssa postal",
 'confirmemail_noemail' => "A l'ha pa butà gnun-a adrëssa vàlida ëd pòsta eletrònica ant ij [[Special:Preferences|sò gust]].",
-'confirmemail_text' => "Costa wiki a ciama che chiel a convalida n'adrëssa postal anans che
-dovré lòn che toca la pòsta. Che a sgnaca ël boton ambelessì sota
-për fesse mandé un messa ëd conferma a soa adrëssa eletrònica.
-Andrinta al messagi a-i sara n'anliura (URL) con andrinta un còdes.
-Che a deurba st'anliura andrinta a sò programa ëd navigassion (browser)
+'confirmemail_text' => "Costa wiki a ciama che chiel a convàlida n'adrëssa ëd pòsta eletrònica anans che
+dovré lòn che a toca la pòsta. Che a sgnaca ël boton ambelessì-sota
+për fesse mandé un mëssage ëd conferma a soa adrëssa eletrònica.
+Andrinta al messagi a-i sara n'anliura con andrinta un còdes.
+Che a deurba st'anliura andrinta a sò programa ëd navigassion
 për confermé che soa adrëssa a l'é pròpe cola.",
 'confirmemail_pending' => "I l'oma già mandaje sò còdes ëd conferma;
-se a l'ha pen-a creasse sò cont, miraco a venta che a speta dontre minute che a-j riva ant la pòsta, nopà che ciamene un neuv.",
-'confirmemail_send' => 'Manda un còdes ëd conferma për pòsta eletrònica',
+se a l'ha pen-a creasse sò cont, miraco a venta che a speta dontré minute che a-j riva ant la pòsta, nopà che ciamene un neuv.",
+'confirmemail_send' => 'Mandé un còdes ëd conferma për pòsta eletrònica',
 'confirmemail_sent' => "Ël messagi ëd conferma a l'é stait mandà.",
 'confirmemail_oncreate' => "Un còdes ëd conferma a l'é stait mandà a soa adrëssa ëd pòsta eletrònica.
 D'ës còdes a fa pa dë manca për rintré ant ël sistema, ma a ventrà che a lo mostra al sistema për podej abilité cole funsion dla wiki che a son basà ant sla pòsta eletrònica.",
