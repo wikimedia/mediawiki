@@ -25,7 +25,7 @@
  * Class to handle job queues stored in the DB
  *
  * @ingroup JobQueue
- * @since 1.20
+ * @since 1.21
  */
 class JobQueueDB extends JobQueue {
 	const CACHE_TTL      = 30; // integer; seconds

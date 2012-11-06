@@ -26,7 +26,7 @@
  * Class to handle enqueueing and running of background jobs
  *
  * @ingroup JobQueue
- * @since 1.20
+ * @since 1.21
  */
 abstract class JobQueue {
 	protected $wiki; // string; wiki ID

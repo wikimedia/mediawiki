@@ -25,7 +25,7 @@
  * Class to handle enqueueing of background jobs
  *
  * @ingroup JobQueue
- * @since 1.20
+ * @since 1.21
  */
 class JobQueueGroup {
 	/** @var Array */
