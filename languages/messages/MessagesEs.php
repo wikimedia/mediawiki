@@ -2292,7 +2292,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
 Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (si no se especidica ninguno, el protocolo por defecto es http://).',
+Protocolos soportados: <code>$1</code> (si no se especifica ninguno, el protocolo por defecto es http://).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2627,7 +2627,7 @@ $1',
 # Contributions
 'contributions' => 'Contribuciones {{GENDER:{{BASEPAGENAME}}|del usuario|de la usuaria}}',
 'contributions-title' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1',
-'mycontris' => 'Mis contribuciones',
+'mycontris' => 'Contribuciones',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'No se encontraron cambios que cumplieran estos criterios.',
 'uctop' => '(última edición)',

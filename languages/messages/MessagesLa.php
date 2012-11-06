@@ -279,8 +279,8 @@ $messages = array(
 'newwindow' => '(in fenestra nova aperietur)',
 'cancel' => 'Abrogare',
 'moredotdotdot' => 'Plus...',
-'mypage' => 'Pagina mea',
-'mytalk' => 'Disputatio mea',
+'mypage' => 'Pagina',
+'mytalk' => 'Disputatio',
 'anontalk' => 'Disputatio huius IP',
 'navigation' => 'Navigatio',
 'and' => '&#32;et',
@@ -878,7 +878,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 
 # Preferences page
 'preferences' => 'Praeferentiae',
-'mypreferences' => 'Praeferentiae meae',
+'mypreferences' => 'Praeferentiae',
 'prefs-edits' => 'Numerus recensionum:',
 'prefsnologin' => 'Conventum non est apertum',
 'prefsnologintext' => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
@@ -1657,7 +1657,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 # Contributions
 'contributions' => 'Conlationes usoris',
 'contributions-title' => 'Conlationes usoris $1',
-'mycontris' => 'Conlationes meae',
+'mycontris' => 'Conlationes',
 'contribsub2' => 'Pro $1 ($2)',
 'nocontribs' => 'Nullae mutationes inventae sunt ex his indiciis.',
 'uctop' => ' (vertex)',

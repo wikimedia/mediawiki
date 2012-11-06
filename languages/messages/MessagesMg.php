@@ -2110,6 +2110,7 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'mailnologin' => 'Tsy misy adiresy handefasana ny tenimiafina',
 'mailnologintext' => "Mila [[Special:UserLogin|miditra]] ianao sady manana imailaka mandeha sy voamarina ao amin'ny [[Special:Preferences|mombamomba anao]] vao afaka mandefa imailaka amin'ny mpikambana hafa.",
 'emailuser' => 'Andefaso imailaka io mpikambana io',
+'emailuser-title-target' => "Handefa mailaka any amin'ity mpikambana ity{{GENDER:$1}}",
 'emailuser-title-notarget' => "Handefa imailaka an'ilay mpikambana",
 'emailpage' => 'Andefaso imailaka io mpikambana io',
 'emailpagetext' => "Raha nametraka adiresy tena miasa tao amin'ny [[Special:Preferences|mombamomba azy io mpikambana io]],
@@ -2258,6 +2259,7 @@ ataovy am-pitandremana ity tao ity.",
 'rollback' => 'Foano indray ilay fanovana',
 'rollback_short' => 'Aza ovaina indray',
 'rollbacklink' => 'foano',
+'rollbacklinkcount' => 'hamoana fanovana{{PLURAL:$1}} $1',
 'rollbackfailed' => "Tsy voaverina amin'ny teo aloha",
 'cantrollback' => "Tsy afaka iverenana ny fanovana; ny mpanova farany ihany no tompon'ny pejy.",
 'alreadyrolled' => "Tsy afaka foanana ny fanovana ny pejy « [[:$1]] » nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])
@@ -2440,7 +2442,7 @@ Aseho eo ambany ny iditra farany ao amin'ny laogim-panakanana  mba hampahalala :
 'whatlinkshere-hideredirs' => '$1 ny fihodinana',
 'whatlinkshere-hidetrans' => '$1 ny tsofo-pejy',
 'whatlinkshere-hidelinks' => '$1 ny rohy',
-'whatlinkshere-hideimages' => '$1 rakitra mirohy',
+'whatlinkshere-hideimages' => '$1 ny rakitra mirohy',
 'whatlinkshere-filters' => 'sivana',
 
 # Block/unblock
@@ -2936,6 +2938,13 @@ Raha alefanao ilay izy, mety ho simban'io renifango io ny solosainao.",
 'ilsubmit' => 'Karohy',
 'bydate' => 'araka ny daty',
 'sp-newimages-showfrom' => "Aseho ny rakitra vaovao manomboka amin'ny $1 tamin'ny $2",
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => 'segondra{{PLURAL:$1}}',
+'minutes' => 'minitra{{PLURAL:$1}}',
+'hours' => 'ora{{PLURAL:$1}}',
+'days' => 'andro{{PLURAL:$1}}',
+'ago' => '$1 lasa izay',
 
 # Bad image list
 'bad_image_list' => "Ity ny andrefiny :

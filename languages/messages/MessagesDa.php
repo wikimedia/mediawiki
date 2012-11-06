@@ -236,7 +236,7 @@ $messages = array(
 
 'underline-always' => 'Altid',
 'underline-never' => 'Aldrig',
-'underline-default' => 'Brug browserens indstilling',
+'underline-default' => 'Brug browserens indstilling eller standarden for det valgte udseende',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Skriftstil ved redigering:',
@@ -1475,6 +1475,9 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'rightslogtext' => 'Dette er en log over ændringer i brugeres rettigheder.',
 'rightslogentry' => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
 'rightslogentry-autopromote' => 'blev automatisk forfremmet fra $2 til $3',
+'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
+'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',
 'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2084,7 +2087,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-ok' => 'Søg',
 'linksearch-text' => 'Wildcards som "*.wikipedia.org" kan benyttes.
 Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
-Understøttede protokoller: <code>$1</code> (tilføj ikke protokollerne til din søgning).',
+Understøttede protokoller: <code>$1</code> (bruger automatisk http:// hvis der ikke er angivet nogen protokol).',
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 
@@ -2460,7 +2463,7 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'whatlinkshere-hideredirs' => '$1 omdirigeringer',
 'whatlinkshere-hidetrans' => '$1 inkluderinger',
 'whatlinkshere-hidelinks' => '$1 henvisninger',
-'whatlinkshere-hideimages' => '$1 fillinks',
+'whatlinkshere-hideimages' => '$1 filhenvisninger',
 'whatlinkshere-filters' => 'Filtre',
 
 # Block/unblock

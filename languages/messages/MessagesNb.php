@@ -40,6 +40,7 @@
  * @author Sjurhamre
  * @author Stigmj
  * @author Teak
+ * @author Wouterkoch
  * @author לערי ריינהארט
  */
 

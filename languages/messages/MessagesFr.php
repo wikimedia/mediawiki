@@ -506,8 +506,8 @@ $messages = array(
 'newwindow' => '(ouvre une nouvelle fenêtre)',
 'cancel' => 'Annuler',
 'moredotdotdot' => 'Plus...',
-'mypage' => 'Ma page',
-'mytalk' => 'Page de discussion',
+'mypage' => 'Page',
+'mytalk' => 'Discussion',
 'anontalk' => 'Discussion avec cette adresse IP',
 'navigation' => 'Navigation',
 'and' => '&#32;et',
@@ -691,7 +691,7 @@ Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{in
 'error' => 'Erreur',
 'databaseerror' => 'Erreur de la base de données',
 'dberrortext' => "Une erreur de syntaxe de la requête dans la base de données est survenue.
-Ceci peut indiquer un bogue dans le logiciel.
+Ceci peut indiquer un bug dans le logiciel.
 La dernière requête traitée par la base de données était :
 <blockquote><code>$1</code></blockquote>
 depuis la fonction « <code>$2</code> ».
@@ -711,7 +711,7 @@ L'administrateur ayant verrouillé la base de données a fourni l'explication su
 
 Généralement, cela survient en suivant un lien vers un diff périmé ou vers l'historique d'une page supprimée.
 
-Si ce n'est pas le cas, il peut s'agir d'un bogue dans le programme.
+Si ce n'est pas le cas, il peut s'agir d'un bug dans le programme.
 Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l'URL du lien.",
 'missingarticle-rev' => '(numéro de version : $1)',
 'missingarticle-diff' => '(diff : $1, $2)',
@@ -781,27 +781,27 @@ L'administrateur qui l'a verrouillé a fourni ce motif: « $3 ».",
 
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
-'welcomecreation' => '== Bienvenue, $1 ! ==
+'welcomecreation' => "== Bienvenue, $1 ! ==
 
 Votre compte a été créé.
-N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
-'yourname' => 'Nom d’utilisateur :',
+N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].",
+'yourname' => "Nom d'utilisateur :",
 'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
 'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
-'externaldberror' => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
+'externaldberror' => "Une erreur s'est produite avec la base de données d'authentification externe, ou bien vous n'êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.",
 'login' => 'Connexion',
 'nav-login-createaccount' => 'Créer un compte ou se connecter',
-'loginprompt' => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",
+'loginprompt' => 'Vous devez activer les cookies pour vous connecter à {{SITENAME}}.',
 'userlogin' => 'Créer un compte ou se connecter',
 'userloginnocreate' => 'Connexion',
 'logout' => 'Se déconnecter',
 'userlogout' => 'Déconnexion',
 'notloggedin' => 'Non connecté',
-'nologin' => 'Vous n’êtes pas encore inscrit ? $1.',
+'nologin' => "Vous n'êtes pas encore inscrit ? $1.",
 'nologinlink' => 'Créer un compte',
 'createaccount' => 'Créer un compte',
 'gotaccount' => "Vous avez déjà un compte ? '''$1'''.",
@@ -810,51 +810,51 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'createaccountmail' => 'par courriel',
 'createaccountreason' => 'Motif :',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
-'userexists' => 'Nom d’utilisateur entré déjà utilisé.
-Veuillez choisir un nom différent.',
+'userexists' => "Nom d'utilisateur entré déjà utilisé.
+Veuillez choisir un nom différent.",
 'loginerror' => 'Erreur de connexion',
 'createaccounterror' => 'Impossible de créer le compte : $1',
-'nocookiesnew' => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
-'nocookieslogin' => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
-'nocookiesfornew' => 'Le compte utilisateur n’a pas été créé, car nous n’avons pas pu identifier son origine.
-Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.',
-'noname' => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
+'nocookiesnew' => "Le compte utilisateur a été créé, mais vous n'êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des cookies pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
+'nocookieslogin' => '{{SITENAME}} utilise des cookies pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.',
+'nocookiesfornew' => "Le compte utilisateur n'a pas été créé, car nous n'avons pas pu identifier son origine.
+Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.",
+'noname' => "Vous n'avez pas saisi un nom d'utilisateur valide.",
 'loginsuccesstitle' => 'Connexion réussie',
 'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
-'nosuchuser' => 'L’utilisateur « $1 » n’existe pas.
-Les noms d’utilisateurs sont sensibles à la casse.
-Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
-'nosuchusershort' => 'Il n’y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l’orthographe.',
-'nouserspecified' => 'Vous devez saisir un nom d’utilisateur.',
+'nosuchuser' => "L'utilisateur « $1 » n'existe pas.
+Les noms d'utilisateurs sont sensibles à la casse.
+Vérifiez l'orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].",
+'nosuchusershort' => "Il n'y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l'orthographe.",
+'nouserspecified' => "Vous devez saisir un nom d'utilisateur.",
 'login-userblocked' => 'Cet utilisateur est bloqué. Connexion non autorisée.',
 'wrongpassword' => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
-'wrongpasswordempty' => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
+'wrongpasswordempty' => "Vous n'avez pas entré de mot de passe. Veuillez essayer à nouveau.",
 'passwordtooshort' => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
-'password-name-match' => 'Votre mot de passe doit être différent de votre nom d’utilisateur.',
-'password-login-forbidden' => "L’utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
+'password-name-match' => "Votre mot de passe doit être différent de votre nom d'utilisateur.",
+'password-login-forbidden' => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
 'mailmypassword' => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle' => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
-'passwordremindertext' => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
+'passwordremindertext' => "Quelqu'un (probablement vous, ayant l'adresse IP $1) a demandé un nouveau mot de
 passe pour {{SITENAME}} ($4 ). Un mot de passe temporaire a été créé pour
-l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
+l'utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
 vous connecter et choisir un nouveau mot de passe.
 Votre mot de passe temporaire expirera dans $5 jour{{PLURAL:$5||s}}.
 
-Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent
+Si vous n'êtes pas l'auteur de cette demande, ou si vous vous souvenez à présent
 de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
-pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'noemail' => "Aucune adresse de courriel n’a été enregistrée pour l'utilisateur « $1 ».",
+pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
+'noemail' => "Aucune adresse de courriel n'a été enregistrée pour l'utilisateur « $1 ».",
 'noemailcreate' => 'Vous devez fournir une adresse de courriel valide',
 'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse de courriel de l'utilisateur « $1 ». Veuillez vous reconnecter après l'avoir reçu.",
 'blocked-mailpassword' => 'Votre adresse IP est bloquée en écriture, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
-'eauthentsent' => 'Un courriel de confirmation a été envoyé à l’adresse indiquée.
-Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.',
-'throttled-mailpassword' => 'Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d’éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.',
-'mailerror' => 'Erreur lors de l’envoi du courriel : $1',
-'acct_creation_throttle_hit' => 'Quelqu’un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
-Par conséquent, la création de compte a été temporairement désactivée pour cette adresse IP.',
+'eauthentsent' => "Un courriel de confirmation a été envoyé à l'adresse indiquée.
+Avant qu'un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.",
+'throttled-mailpassword' => "Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d'éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
+'mailerror' => "Erreur lors de l'envoi du courriel : $1",
+'acct_creation_throttle_hit' => "Quelqu'un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
+Par conséquent, la création de compte a été temporairement désactivée pour cette adresse IP.",
 'emailauthenticated' => 'Votre adresse de courriel a été authentifiée le $2 à $3.',
-'emailnotauthenticated' => 'Votre adresse de courriel n’est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.',
+'emailnotauthenticated' => "Votre adresse de courriel n'est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.",
 'noemailprefs' => 'Indiquez une adresse de courriel dans vos préférences pour utiliser ces fonctions.',
 'emailconfirmlink' => 'Confirmez votre adresse de courriel',
 'invalidemailaddress' => 'Cette adresse courriel ne peut pas être acceptée car elle semble avoir un format incorrect.
@@ -863,25 +863,25 @@ Entrez une adresse bien formatée ou laissez ce champ vide.',
 'emaildisabled' => 'Ce site ne peut pas envoyer de courriels.',
 'accountcreated' => 'Compte créé',
 'accountcreatedtext' => 'Le compte utilisateur pour $1 a été créé.',
-'createaccount-title' => 'Création d’un compte pour {{SITENAME}}',
-'createaccount-text' => 'Quelqu’un a créé un compte pour votre adresse de courriel sur {{SITENAME}} ($4) intitulé « $2 », avec le mot de passe « $3 ».
+'createaccount-title' => "Création d'un compte pour {{SITENAME}}",
+'createaccount-text' => "Quelqu'un a créé un compte pour votre adresse de courriel sur {{SITENAME}} ($4) intitulé « $2 », avec le mot de passe « $3 ».
 Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 
-Ignorez ce message si ce compte a été créé par erreur.',
-'usernamehasherror' => 'Le nom d’utilisateur ne peut pas contenir des caractères de hachage',
-'login-throttled' => 'Vous avez tenté un trop grand nombre de connexions dernièrement.
-Veuillez attendre avant d’essayer à nouveau.',
+Ignorez ce message si ce compte a été créé par erreur.",
+'usernamehasherror' => "Le nom d'utilisateur ne peut pas contenir des caractères de hachage",
+'login-throttled' => "Vous avez tenté un trop grand nombre de connexions dernièrement.
+Veuillez attendre avant d'essayer à nouveau.",
 'login-abort-generic' => 'Votre tentative de connexion a échoué',
 'loginlanguagelabel' => 'Langue : $1',
-'suspicious-userlogout' => 'Votre demande de déconnexion a été refusée car il semble qu’elle a été envoyée par un navigateur cassé ou la mise en cache d’un proxy.',
+'suspicious-userlogout' => "Votre demande de déconnexion a été refusée car il semble qu'elle a été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
-'user-mail-no-addy' => 'Tenté d’envoyer un courriel sans adresse de courriel',
+'user-mail-no-addy' => "Tenté d'envoyer un courriel sans adresse de courriel",
 
 # Change password dialog
 'resetpass' => 'Changer de mot de passe',
-'resetpass_announce' => 'Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
+'resetpass_announce' => "Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l'enregistrement, vous devez entrer un nouveau mot de passe ici :",
 'resetpass_text' => '<!-- Ajoutez le texte ici -->',
 'resetpass_header' => 'Changer le mot de passe du compte',
 'oldpassword' => 'Ancien mot de passe :',
@@ -903,37 +903,37 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'passwordreset-legend' => 'Remise à zéro du mot de passe',
 'passwordreset-disabled' => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
-'passwordreset-username' => 'Nom d’utilisateur :',
+'passwordreset-username' => "Nom d'utilisateur :",
 'passwordreset-domain' => 'Domaine :',
 'passwordreset-capture' => 'Voir le courriel résultant?',
-'passwordreset-capture-help' => 'Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu’il sera envoyé à l’utilisateur.',
+'passwordreset-capture-help' => "Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu'il sera envoyé à l'utilisateur.",
 'passwordreset-email' => 'Adresse de courriel :',
 'passwordreset-emailtitle' => 'Détails du compte sur {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Quelqu’un (probablement vous, depuis l’adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+'passwordreset-emailtext-ip' => "Quelqu'un (probablement vous, depuis l'adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
 
 $2
 
-{{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'passwordreset-emailtext-user' => 'L’utilisateur $1 sur {{SITENAME}} a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+{{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
+'passwordreset-emailtext-user' => "L'utilisateur $1 sur {{SITENAME}} a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
 
 $2
 
-{{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'passwordreset-emailelement' => 'Nom d’utilisateur : $1
-Mot de passe temporaire : $2',
+{{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
+'passwordreset-emailelement' => "Nom d'utilisateur : $1
+Mot de passe temporaire : $2",
 'passwordreset-emailsent' => 'Un courriel de rappel a été envoyé.',
 'passwordreset-emailsent-capture' => 'Un courriel de rappel a été envoyé, qui est affiché ci-dessous.',
-'passwordreset-emailerror-capture' => 'Un courriel de rappel a été généré, qui est affiché ci-dessous, mais l’envoi à l’utilisateur a échoué : $1',
+'passwordreset-emailerror-capture' => "Un courriel de rappel a été généré, qui est affiché ci-dessous, mais l'envoi à l'utilisateur a échoué : $1",
 
 # Special:ChangeEmail
-'changeemail' => 'Changer l’adresse de courriel',
-'changeemail-header' => 'Changer l’adresse de courriel du compte',
+'changeemail' => "Changer l'adresse de courriel",
+'changeemail-header' => "Changer l'adresse de courriel du compte",
 'changeemail-text' => 'Remplissez ce formulaire pour changer votre adresse de courriel. Vous devrez entrer votre mot de passe pour confirmer ce changement.',
 'changeemail-no-info' => 'Vous devez être connecté pour pouvoir accéder directement à cette page.',
 'changeemail-oldemail' => 'Adresse de courriel actuelle :',
 'changeemail-newemail' => 'Nouvelle adresse de courriel :',
 'changeemail-none' => '(aucune)',
-'changeemail-submit' => 'Changer l’adresse de courriel',
+'changeemail-submit' => "Changer l'adresse de courriel",
 'changeemail-cancel' => 'Annuler',
 
 # Edit page toolbar
@@ -944,7 +944,7 @@ Mot de passe temporaire : $2',
 'link_sample' => 'Titre du lien',
 'link_tip' => 'Lien interne',
 'extlink_sample' => 'http://www.example.com titre du lien',
-'extlink_tip' => 'Lien externe (n’oubliez pas le préfixe http://)',
+'extlink_tip' => "Lien externe (n'oubliez pas le préfixe http://)",
 'headline_sample' => 'Texte du titre',
 'headline_tip' => 'Sous-titre niveau 2',
 'nowiki_sample' => 'Entrez le texte non formaté ici',
@@ -966,16 +966,16 @@ Mot de passe temporaire : $2',
 'showpreview' => 'Prévisualiser',
 'showlivepreview' => 'Aperçu rapide',
 'showdiff' => 'Modifications en cours',
-'anoneditwarning' => "'''Attention :''' vous n’êtes pas identifié(e). Votre adresse IP sera enregistrée dans l’historique de cette page.",
-'anonpreviewwarning' => "''Vous n’êtes pas identifié. Sauvegarder enregistrera votre adresse IP dans l’historique des modifications de la page.''",
-'missingsummary' => "'''Rappel :''' vous n’avez pas encore fourni le résumé de votre modification.
+'anoneditwarning' => "'''Attention :''' vous n'êtes pas identifié(e). Votre adresse IP sera enregistrée dans l'historique de cette page.",
+'anonpreviewwarning' => "''Vous n'êtes pas identifié. Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
+'missingsummary' => "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.
 Si vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext' => 'Veuillez entrer un commentaire ci-dessous.',
-'missingcommentheader' => "'''Rappel :''' vous n’avez pas fourni de sujet ou de titre à ce commentaire.
+'missingcommentheader' => "'''Rappel :''' vous n'avez pas fourni de sujet ou de titre à ce commentaire.
 Si vous cliquez de nouveau sur « {{int:Savearticle}} », votre modification sera enregistrée sans titre.",
 'summary-preview' => 'Aperçu du résumé :',
 'subject-preview' => 'Prévisualisation du sujet/titre :',
-'blockedtitle' => 'L’utilisateur est bloqué.',
+'blockedtitle' => "L'utilisateur est bloqué.",
 'blockedtext' => "'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''
 
 Le blocage a été effectué par $1.
@@ -986,7 +986,7 @@ La raison invoquée est la suivante : ''$2''.
 * Compte bloqué : $7.
 
 Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour en discuter.
-Vous ne pouvez utiliser la fonction « {{MediaWiki:emailpage}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que cette fonctionnalité n’a pas été bloquée.
+Vous ne pouvez utiliser la fonction « {{MediaWiki:emailpage}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que cette fonctionnalité n'a pas été bloquée.
 Votre adresse IP actuelle est $3 et votre identifiant de blocage est $5.
 Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'autoblockedtext' => "Votre adresse IP a été bloquée automatiquement car elle a été utilisée par un autre utilisateur, lui-même bloqué par $1.
@@ -998,9 +998,9 @@ La raison invoquée est :
 * Expiration du blocage : $6
 * Compte bloqué : $7
 
-Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
+Vous pouvez contacter $1 ou l'un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
 
-Notez que vous ne pourrez utiliser la fonctionnalité d’envoi de courriel que si vous avez une adresse de courriel validée dans vos [[Special:Preferences|préférences]] et que la fonctionnalité n’a pas été désactivée.
+Notez que vous ne pourrez utiliser la fonctionnalité d'envoi de courriel que si vous avez une adresse de courriel validée dans vos [[Special:Preferences|préférences]] et que la fonctionnalité n'a pas été désactivée.
 
 Votre adresse IP actuelle est $3, et le numéro de blocage est $5.
 Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
@@ -1009,100 +1009,100 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'confirmedittext' => 'Vous devez confirmer votre adresse de courriel avant de modifier les pages.
 Veuillez entrer et valider votre adresse de courriel dans vos [[Special:Preferences|préférences]].',
 'nosuchsectiontitle' => 'Impossible de trouver la section',
-'nosuchsectiontext' => 'Vous avez essayé de modifier une section qui n’existe pas.
-Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page.',
+'nosuchsectiontext' => "Vous avez essayé de modifier une section qui n'existe pas.
+Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page.",
 'loginreqtitle' => 'Connexion nécessaire',
 'loginreqlink' => 'connecter',
 'loginreqpagetext' => 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => "Un mot de passe généré aléatoirement pour [[User talk:$1|$1]] a été envoyé à $2.
-Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Special:ChangePassword|de changement de mot de passe]]'' après s’être connecté.",
+Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Special:ChangePassword|de changement de mot de passe]]'' après s'être connecté.",
 'newarticle' => '(Nouveau)',
-'newarticletext' => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
-Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
+'newarticletext' => "Vous avez suivi un lien vers une page qui n'existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
+Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d'aide]] pour plus d'informations).
 Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
-'anontalkpagetext' => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext' => 'Il n’y a pour l’instant aucun texte sur cette page.
+'anontalkpagetext' => "---- ''Vous êtes sur la page de discussion d'un utilisateur anonyme qui n'a pas encore créé de compte ou qui n'en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l'identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d'éviter toute confusion future avec d'autres contributeurs anonymes.''",
+'noarticletext' => 'Il n\'y a pour l\'instant aucun texte sur cette page.
 Vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur ce titre]] dans les autres pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les opérations liées]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
-'noarticletext-nopermission' => 'Il n’y a pour l’instant aucun texte sur cette page.
+'noarticletext-nopermission' => 'Il n\'y a pour l\'instant aucun texte sur cette page.
 Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur ce titre]] dans les autres pages,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>.',
 'missing-revision' => "La révision n° $1 de la page intitulée « {{PAGENAME}} » n'existe pas.
 
 Cela survient en général en suivant un lien historique obsolète vers une page qui a été supprimée.
 Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
-'userpage-userdoesnotexist' => 'Le compte utilisateur « <nowiki>$1</nowiki> » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
-'userpage-userdoesnotexist-view' => 'Le compte utilisateur « $1 » n’est pas enregistré.',
-'blocked-notice-logextract' => 'Cet utilisateur est actuellement bloqué.
-La dernière entrée du registre des blocages est indiquée ci-dessous à titre d’information :',
+'userpage-userdoesnotexist' => "Le compte utilisateur « <nowiki>$1</nowiki> » n'est pas enregistré. Veuillez vérifier que vous voulez créer cette page.",
+'userpage-userdoesnotexist-view' => "Le compte utilisateur « $1 » n'est pas enregistré.",
+'blocked-notice-logextract' => "Cet utilisateur est actuellement bloqué.
+La dernière entrée du registre des blocages est indiquée ci-dessous à titre d'information :",
 'clearyourcache' => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 * '''Firefox / Safari :''' Maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac) ;
 * '''Google Chrome :''' Appuyez sur ''Ctrl-Maj-R'' (''⌘-Shift-R'' sur un Mac) ;
 * '''Internet Explorer :''' Maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
 * '''Opera :''' Videz le cache dans ''Outils → Préférences''.",
-'usercssyoucanpreview' => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
-'userjsyoucanpreview' => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JavaScript avant de l’enregistrer.",
-'usercsspreview' => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
-'''Elle n’a pas encore été enregistrée !'''",
-'userjspreview' => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
+'usercssyoucanpreview' => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l'enregistrer.",
+'userjsyoucanpreview' => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JavaScript avant de l'enregistrer.",
+'usercsspreview' => "'''Rappelez-vous que vous n'êtes qu'en train de prévisualiser votre propre feuille CSS.'''
+'''Elle n'a pas encore été enregistrée !'''",
+'userjspreview' => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu'il n'a pas encore été enregistré !'''",
 'sitecsspreview' => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser cette feuille de style.'''
-'''Elle n’a pas encore été enregistrée !'''",
+'''Elle n'a pas encore été enregistrée !'''",
 'sitejspreview' => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser ce code JavaScript.'''
-'''Il n’a pas encore été enregistré !'''",
-'userinvalidcssjstitle' => "'''Attention :''' il n’existe pas d’habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
+'''Il n'a pas encore été enregistré !'''",
+'userinvalidcssjstitle' => "'''Attention :''' il n'existe pas d'habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Mis à jour)',
 'note' => "'''Note :'''",
-'previewnote' => "'''Rappelez-vous que ce n’est qu’une prévisualisation.'''
-Vos modifications n’ont pas encore été enregistrées !",
+'previewnote' => "'''Rappelez-vous que ce n'est qu'une prévisualisation.'''
+Vos modifications n'ont pas encore été enregistrées !",
 'continue-editing' => 'Aller à la zone de modification',
-'previewconflict' => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
-'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
+'previewconflict' => "Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu'il apparaîtra si vous choisissez de le publier.",
+'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d'une perte d'informations concernant votre session.'''
 Veuillez réessayer.
 Si cela échoue de nouveau, essayez en vous [[Special:UserLogout|déconnectant]], puis en vous reconnectant.",
-'session_fail_preview_html' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
+'session_fail_preview_html' => "'''Nous ne pouvons enregistrer votre modification à cause d'une perte d'informations concernant votre session.'''
 
 ''Parce que {{SITENAME}} a activé le HTML brut, la prévisualisation a été masquée afin de prévenir les attaques par JavaScript.''
 
 '''Si la tentative de modification était légitime, veuillez réessayer.'''
 Si cela échoue de nouveau, [[Special:UserLogout|déconnectez-vous]], puis reconnectez-vous.",
-'token_suffix_mismatch' => "'''Votre modification n’a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l’identifiant de modification.'''
+'token_suffix_mismatch' => "'''Votre modification n'a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l'identifiant de modification.'''
 Ce rejet est nécessaire pour empêcher la corruption du texte de la page.
 Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anonyme problématique basé sur le web.",
-'edit_form_incomplete' => "'''Certaines parties du formulaire de modification n’ont pas atteint le serveur, vérifiez que vos modifications sont intactes et essayez à nouveau.'''",
+'edit_form_incomplete' => "'''Certaines parties du formulaire de modification n'ont pas atteint le serveur, vérifiez que vos modifications sont intactes et essayez à nouveau.'''",
 'editing' => 'Modification de $1',
 'creating' => 'Création de $1',
 'editingsection' => 'Modification de $1 (section)',
 'editingcomment' => 'Modification de $1 (nouvelle section)',
 'editconflict' => 'Conflit de modification : $1',
 'explainconflict' => "Cette page a été changée après que vous ayez commencé à la modifier.
-La zone de modification supérieure contient le texte tel qu’il est actuellement enregistré dans la base de données.
+La zone de modification supérieure contient le texte tel qu'il est actuellement enregistré dans la base de données.
 Vos modifications apparaissent dans la zone de modification inférieure.
 Vous allez devoir fusionner vos modifications dans le texte existant.
 '''Seul''' le texte de la zone supérieure sera sauvegardé si vous cliquez sur « {{int:savearticle}} ».",
 'yourtext' => 'Votre texte',
 'storedversion' => 'La version enregistrée',
-'nonunicodebrowser' => "'''Attention : Votre navigateur ne supporte pas l’Unicode.'''
+'nonunicodebrowser' => "'''Attention : Votre navigateur ne supporte pas l'Unicode.'''
 Une solution de rechange a été trouvée pour vous permettre de modifier en toute sûreté une page : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.",
 'editingold' => "'''Attention : vous êtes en train de modifier une ancienne version de cette page.
 Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.'''",
 'yourdiff' => 'Différences',
 'copyrightwarning' => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
-'copyrightwarning2' => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
-'''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'avez copié d'une source provenant du domaine public, ou d'une ressource libre. '''N'UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !'''",
+'copyrightwarning2' => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d'autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'avez copié d'une source provenant du domaine public, ou d'une ressource libre. (voir $1 pour plus de détails).
+'''N'UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !'''",
 'longpageerror' => "'''Erreur: Le texte que vous avez soumis fait {{PLURAL:$1|un Kio|$1 Kio}}, ce qui dépasse la limite fixée à {{PLURAL:$2|un Kio|$2 Kio}}.'''
 Il ne peut pas être sauvegardé.",
-'readonlywarning' => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.'''
+'readonlywarning' => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l'instant.'''
 Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
 
-L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1",
-'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.'''<br />
+L'administrateur ayant verrouillé la base de données a donné l'explication suivante : $1",
+'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier.'''<br />
 La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning' => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
-'cascadeprotectedwarning' => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
+'cascadeprotectedwarning' => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l'éditer. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
 'titleprotectedwarning' => "'''ATTENTION : Cette page a été protégée de telle manière que des [[Special:ListGroupRights|droits spécifiques]] sont requis pour pouvoir la créer.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused' => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview' => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
@@ -1114,25 +1114,25 @@ La dernière entrée du journal est affichée ci-dessous pour référence :",
 'nocreatetitle' => 'Création de page limitée',
 'nocreatetext' => '{{SITENAME}} a restreint la possibilité de créer de nouvelles pages.
 Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Special:UserLogin|vous connecter ou créer un compte]].',
-'nocreate-loggedin' => 'Vous n’avez pas la permission de créer de nouvelles pages.',
+'nocreate-loggedin' => "Vous n'avez pas la permission de créer de nouvelles pages.",
 'sectioneditnotsupported-title' => 'Modification de section non prise en charge',
-'sectioneditnotsupported-text' => 'La modification d’une section n’est pas prise en charge pour cette page.',
+'sectioneditnotsupported-text' => "La modification d'une section n'est pas prise en charge pour cette page.",
 'permissionserrors' => 'Erreur de permissions',
-'permissionserrorstext' => 'Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
-'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
+'permissionserrorstext' => "Vous n'avez pas la permission d'effectuer l'opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :",
+'permissionserrorstext-withaction' => "Vous n'êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :",
 'recreate-moveddeleted-warn' => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
-Assurez-vous qu’il est pertinent de poursuivre les modifications sur cette page. Le journal des suppressions et des déplacements est affiché ci-dessous :",
+Assurez-vous qu'il est pertinent de poursuivre les modifications sur cette page. Le journal des suppressions et des déplacements est affiché ci-dessous :",
 'moveddeleted-notice' => 'Cette page a été supprimée. Le journal des suppressions et des déplacements est affiché ci-dessous pour référence.',
 'log-fulllog' => 'Voir le journal complet',
 'edit-hook-aborted' => 'Échec de la modification par une extension.
 Cause inconnue',
-'edit-gone-missing' => 'N’a pas pu mettre à jour la page.
-Il semble qu’elle ait été supprimée.',
+'edit-gone-missing' => "N'a pas pu mettre à jour la page.
+Il semble qu'elle ait été supprimée.",
 'edit-conflict' => 'Conflit de modification.',
-'edit-no-change' => 'Votre modification a été ignorée car aucun changement n’a été fait au texte.',
-'edit-already-exists' => 'La nouvelle page n’a pas pu être créée.
-Elle existe déjà.',
+'edit-no-change' => "Votre modification a été ignorée car aucun changement n'a été fait au texte.",
+'edit-already-exists' => "La nouvelle page n'a pas pu être créée.
+Elle existe déjà.",
 'defaultmessagetext' => 'Message par défaut',
 'content-failed-to-parse' => "Échec de l'analyse du contenu de $2 pour le modèle $1: $3",
 'invalid-content-data' => 'Données du contenu non valides',
@@ -1145,13 +1145,13 @@ Elle existe déjà.',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'expensive-parserfunction-warning' => 'Attention : cette page contient de trop nombreux appels à des fonctions coûteuses de l’analyseur syntaxique.
+'expensive-parserfunction-warning' => "Attention : cette page contient de trop nombreux appels à des fonctions coûteuses de l'analyseur syntaxique.
 
-Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maintenant $1.',
-'expensive-parserfunction-category' => 'Pages avec trop d’appels dispendieux de fonctions de l’analyseur syntaxique',
-'post-expand-template-inclusion-warning' => 'Attention : Cette page contient trop d’inclusions de modèles. Certaines inclusions ne seront pas effectuées.',
-'post-expand-template-inclusion-category' => 'Pages contenant trop d’inclusions de modèles',
-'post-expand-template-argument-warning' => 'Attention : Cette page contient au moins un paramètre de modèle dont l’inclusion est rendue impossible. Après extension, celui-ci aurait produit un résultat trop long, il n’a donc pas été inclus.',
+Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu'il y en a maintenant $1.",
+'expensive-parserfunction-category' => "Pages avec trop d'appels dispendieux de fonctions de l'analyseur syntaxique",
+'post-expand-template-inclusion-warning' => "Attention : Cette page contient trop d'inclusions de modèles. Certaines inclusions ne seront pas effectuées.",
+'post-expand-template-inclusion-category' => "Pages contenant trop d'inclusions de modèles",
+'post-expand-template-argument-warning' => "Attention : Cette page contient au moins un paramètre de modèle dont l'inclusion est rendue impossible. Après extension, celui-ci aurait produit un résultat trop long, il n'a donc pas été inclus.",
 'post-expand-template-argument-category' => 'Pages contenant des paramètres de modèle non évalués',
 'parser-template-loop-warning' => 'Modèle en boucle détecté : [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limite de profondeur des appels de modèles dépassée ($1)',
@@ -1165,9 +1165,9 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'converter-manual-rule-error' => 'Erreur détectée dans la règle manuelle de conversion de langue',
 
 # "Undo" feature
-'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',
+'undo-success' => "Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c'est bien ce que vous voulez faire.",
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
-'undo-norev' => 'La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.',
+'undo-norev' => "La modification n'a pas pu être défaite parce qu'elle est inexistante ou qu'elle a été supprimée.",
 'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])',
 
 # Account creation failure
@@ -1178,7 +1178,7 @@ La raison donnée était ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Voir les opérations sur cette page',
-'nohistory' => 'Il n’existe pas d’historique pour cette page.',
+'nohistory' => "Il n'existe pas d'historique pour cette page.",
 'currentrev' => 'Version actuelle',
 'currentrev-asof' => 'Version actuelle en date du $1',
 'revisionasof' => 'Version du $1',
@@ -1192,7 +1192,7 @@ La raison donnée était ''$2''.",
 'page_first' => 'première',
 'page_last' => 'dernière',
 'histlegend' => 'Légende : ({{int:cur}}) = différence avec la version actuelle, ({{int:last}}) = différence avec la version précédente, <b>{{int:minoreditletter}}</b> = modification mineure',
-'history-fieldset-title' => 'Naviguer dans l’historique',
+'history-fieldset-title' => "Naviguer dans l'historique",
 'history-show-deleted' => 'Masqués seulement',
 'histfirst' => 'première page',
 'histlast' => 'dernière page',
@@ -1203,15 +1203,15 @@ La raison donnée était ''$2''.",
 'history-feed-title' => 'Historique des versions',
 'history-feed-description' => 'Historique pour cette page sur le wiki',
 'history-feed-item-nocomment' => '$1 le $2',
-'history-feed-empty' => 'La page demandée n’existe pas.
+'history-feed-empty' => "La page demandée n'existe pas.
 Elle a peut-être été effacée ou renommée.
-Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en rapport.',
+Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en rapport.",
 
 # Revision deletion
-'rev-deleted-comment' => '(résumé d’édition enlevé)',
-'rev-deleted-user' => '(nom d’utilisateur supprimé)',
+'rev-deleted-comment' => "(résumé d'édition enlevé)",
+'rev-deleted-user' => "(nom d'utilisateur supprimé)",
 'rev-deleted-event' => '(entrée supprimée)',
-'rev-deleted-user-contribs' => '[nom d’utilisateur ou adresse IP supprimée - modification cachée sur les contributions]',
+'rev-deleted-user-contribs' => "[nom d'utilisateur ou adresse IP supprimée - modification cachée sur les contributions]",
 'rev-deleted-text-permission' => "Cette version de la page a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-deleted-text-unhide' => "Cette version de la page a été '''effacée'''.
@@ -1224,7 +1224,7 @@ Vous pouvez toujours [$1 voir cette version] si vous le voulez.",
 Vous pouvez la visualiser ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-suppressed-text-view' => "Cette version de la page a été '''supprimée'''.
 Vous pouvez la visualiser ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].",
-'rev-deleted-no-diff' => "Vous ne pouvez pas voir ce diff parce qu’une des versions a été '''effacée'''.
+'rev-deleted-no-diff' => "Vous ne pouvez pas voir ce diff parce qu'une des versions a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-suppressed-no-diff' => "Vous ne pouvez pas voir cette différence car une des révisions a été '''supprimée'''.",
 'rev-deleted-unhide-diff' => "Une des révisions de cette différence a été '''effacée'''.

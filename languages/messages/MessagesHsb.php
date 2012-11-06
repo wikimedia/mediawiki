@@ -2040,7 +2040,7 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'linksearch-ok' => 'Pytać',
 'linksearch-text' => 'Zastupniske znamješka kaž "*.wikipedia.org" móža so wužiwać.
 Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
-Podpěrowane protokole: <code>$1</code> (prošu njepodaj je w swojim pytanje).',
+Podpěrowane protokole: <code>$1</code> (standard je http://, jeli žadyn protokol njeje podaty).',
 'linksearch-line' => '$1 je z $2 wotkazany.',
 'linksearch-error' => 'Zastupniske znamjenja dadźa so jenož na spočatku URL wužiwać.',
 
@@ -2412,7 +2412,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'whatlinkshere-hideredirs' => 'Daleposrědkowanja $1',
 'whatlinkshere-hidetrans' => 'Zapřijeća $1',
 'whatlinkshere-hidelinks' => 'Wotkazy $1',
-'whatlinkshere-hideimages' => 'wobrazowe wotkazy $1',
+'whatlinkshere-hideimages' => 'Datajowe wotkazy $1',
 'whatlinkshere-filters' => 'Filtry',
 
 # Block/unblock
