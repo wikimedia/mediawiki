@@ -58,6 +58,7 @@ production.
   caught during API execution.
 * (bug 37963) Fixed loading process for user options
 * (bug 26995) Update filename field on Upload page after having sanitized it.
+* (Bug 41706) preload to convert content as needed.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt

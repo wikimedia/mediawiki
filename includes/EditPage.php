@@ -1063,6 +1063,7 @@ class EditPage {
 		$title = Title::newFromText( $preload );
 		# Check for existence to avoid getting MediaWiki:Noarticletext
 		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
+			//TODO: somehow show a warning to the user!
 			return $handler->makeEmptyContent();
 		}
 
@@ -1071,6 +1072,7 @@ class EditPage {
 			$title = $page->getRedirectTarget();
 			# Same as before
 			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
+				//TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
 			$page = WikiPage::factory( $title );
@@ -1080,7 +1082,23 @@ class EditPage {
 		$content = $page->getContent( Revision::RAW );
 
 		if ( !$content ) {
+			//TODO: somehow show a warning to the user!
 			return $handler->makeEmptyContent();
+		}
+
+		if ( $content->getModel() !== $handler->getModelID() ) {
+			$converted = $content->convert( $handler->getModelID() );
+
+			if ( !$converted ) {
+				//TODO: somehow show a warning to the user!
+				wfDebug( "Attempt to preload incompatible content: "
+						. "can't convert " . $content->getModel()
+						. " to " . $handler->getModelID() );
+
+				return $handler->makeEmptyContent();
+			}
+
+			$content = $converted;
 		}
 
 		return $content->preloadTransform( $title, $parserOptions );
