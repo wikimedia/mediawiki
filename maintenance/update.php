@@ -108,6 +108,9 @@ class UpdateMediaWiki extends Maintenance {
 		$db = wfGetDB( DB_MASTER );
 
 		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );
+		if( $db->getType() === 'sqlite' ) {
+			$this->output( "Using SQLite file: '{$db->mDatabaseFile}'\n" );
+		}
 		$this->output( "Depending on the size of your database this may take a while!\n" );
 
 		if ( !$this->hasOption( 'quick' ) ) {
