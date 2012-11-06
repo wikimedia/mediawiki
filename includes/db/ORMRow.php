@@ -356,6 +356,8 @@ abstract class ORMRow implements IORMRow {
 			is_null( $functionName ) ? __METHOD__ : $functionName
 		);
 
+		$this->table->releaseConnection( $dbw );
+
 		// DatabaseBase::update does not always return true for success as documented...
 		return $success !== false;
 	}
@@ -398,6 +400,8 @@ abstract class ORMRow implements IORMRow {
 		if ( $success ) {
 			$this->setField( 'id', $dbw->insertId() );
 		}
+
+		$this->table->releaseConnection( $dbw );
 
 		return $success;
 	}
@@ -572,6 +576,8 @@ abstract class ORMRow implements IORMRow {
 		if ( $success && $this->hasField( $field ) ) {
 			$this->setField( $field, $this->getField( $field ) + $amount );
 		}
+
+		$this->table->releaseConnection( $dbw );
 
 		return $success;
 	}
