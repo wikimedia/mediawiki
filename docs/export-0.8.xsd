@@ -134,13 +134,13 @@
 
 	<simpleType name="ContentModelType">
 		<restriction base="string">
-			<pattern value="[a-zA-Z][-+./a-zA-Z0-9]*"/>
+			<pattern value="[a-zA-Z][-+./a-zA-Z0-9]*" />
 		</restriction>
 	</simpleType>
 
 	<simpleType name="ContentFormatType">
 		<restriction base="string">
-			<pattern value='[a-zA-Z][-+.a-zA-Z0-9]*\/[a-zA-Z][-+.a-zA-Z0-9]*'/>
+			<pattern value="[a-zA-Z][-+.a-zA-Z0-9]*/[a-zA-Z][-+.a-zA-Z0-9]*" />
 		</restriction>
 	</simpleType>
 
