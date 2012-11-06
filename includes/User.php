@@ -2469,7 +2469,7 @@ class User {
 					$count = $this->initEditCount();
 				}
 				wfProfileOut( __METHOD__ );
-				$this->mEditCount = $count;
+				$this->mEditCount = intval( $count );
 			}
 			return $this->mEditCount;
 		} else {

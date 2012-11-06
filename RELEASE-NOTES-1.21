@@ -58,6 +58,8 @@ production.
   caught during API execution.
 * (bug 37963) Fixed loading process for user options
 * (bug 26995) Update filename field on Upload page after having sanitized it.
+* (bug 41793) Contribution links to users with 0 edits on Special:ListUsers didn't
+  show up red.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
