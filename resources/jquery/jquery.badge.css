@@ -9,12 +9,12 @@
 	background-color: #cc0000;
 	padding: 0 3px;
 	text-align: center;
+	font-size: 12px;
+	line-height: 12px;
 }
 
 .mw-badge-content {
-	font-size: 12px;
 	font-weight: bold;
-	line-height: 12px;
 	color: white;
 	vertical-align: baseline;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.4);
