@@ -652,6 +652,15 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::getFileHttpUrl()
+	 * @return string|null
+	 */
+	public function getFileHttpUrl( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->getFileHttpUrl( $realParams );
+	}
+
+	/**
 	 * @see FileBackend::directoryExists()
 	 * @param $params array
 	 * @return bool|null

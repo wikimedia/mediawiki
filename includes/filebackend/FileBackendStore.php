@@ -805,6 +805,14 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function doGetLocalCopyMulti( array $params );
 
 	/**
+	 * @see FileBackend::getFileHttpUrl()
+	 * @return string|null
+	 */
+	public function getFileHttpUrl( array $params ) {
+		return null; // not supported
+	}
+
+	/**
 	 * @see FileBackend::streamFile()
 	 * @return Status
 	 */
