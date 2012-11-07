@@ -125,12 +125,46 @@ class RecentChange {
 	 */
 	public static function newFromConds( $conds, $fname = __METHOD__ ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'recentchanges', '*', $conds, $fname );
+		$row = $dbr->selectRow( 'recentchanges', self::selectFields(), $conds, $fname );
 		if ( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Return the list of recentchanges fields that should be selected to create
+	 * a new recentchanges object.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'rc_id',
+			'rc_timestamp',
+			'rc_cur_time',
+			'rc_user',
+			'rc_user_text',
+			'rc_namespace',
+			'rc_title',
+			'rc_comment',
+			'rc_minor',
+			'rc_bot',
+			'rc_new',
+			'rc_cur_id',
+			'rc_this_oldid',
+			'rc_last_oldid',
+			'rc_type',
+			'rc_patrolled',
+			'rc_ip',
+			'rc_old_len',
+			'rc_new_len',
+			'rc_deleted',
+			'rc_logid',
+			'rc_log_type',
+			'rc_log_action',
+			'rc_params',
+		);
 	}
 
 	# Accessors
@@ -582,9 +616,40 @@ class RecentChange {
 	 * @param $row
 	 */
 	public function loadFromRow( $row ) {
-		$this->mAttribs = get_object_vars( $row );
-		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
-		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
+		$this->mAttribs = array(
+			'rc_id' => $row->rc_id,
+			'rc_timestamp' => wfTimestamp( TS_MW, $row->rc_timestamp ),
+			'rc_cur_time' => $row->rc_cur_time,
+			'rc_user' => $row->rc_user,
+			'rc_user_text' => $row->rc_user_text,
+			'rc_namespace' => $row->rc_namespace,
+			'rc_title' => $row->rc_title,
+			'rc_comment' => $row->rc_comment,
+			'rc_minor' => $row->rc_minor,
+			'rc_bot' => $row->rc_bot,
+			'rc_new' => $row->rc_new, # obsolete
+			'rc_cur_id' => $row->rc_cur_id,
+			'rc_this_oldid' => $row->rc_this_oldid,
+			'rc_last_oldid' => $row->rc_last_oldid,
+			'rc_type' => $row->rc_type,
+			'rc_patrolled' => $row->rc_patrolled,
+			'rc_ip' => $row->rc_ip,
+			'rc_old_len' => $row->rc_old_len,
+			'rc_new_len' => $row->rc_new_len,
+			'rc_deleted' => $row->rc_deleted, // MUST be set
+			'rc_logid' => $row->rc_logid,
+			'rc_log_type' => $row->rc_log_type,
+			'rc_log_action' => $row->rc_log_action,
+			'rc_params' => isset( $row->rc_params ) ? $row->rc_params : '',
+		);
+		//Some fields of other tables, sometimes part of the query and
+		//the value is used from this attributes array
+		if( isset( $row->ts_tags ) ) {
+			$this->mAttribs['ts_tags'] = $row->ts_tags;
+		}
+		if( isset( $row->page_latest ) ) {
+			$this->mAttribs['page_latest'] = $row->page_latest;
+		}
 	}
 
 	/**
