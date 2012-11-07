@@ -2107,6 +2107,11 @@ $request: WebRequest
 $title: Title of the currently found title obj
 $output: OutputPage object
 
+'ThumbnailBeforeProduceHTML': called before an image HTML is about to be rendered (by ThumbnailImage:toHtml method)
+$thumbnail: the ThumbnailImage object
+&$attribs: image attibute array
+&$linkAttribs: image link attribute array
+
 'TitleArrayFromResult': called when creating an TitleArray object from a
 database result
 &$titleArray: set this to an object to override the default object returned
