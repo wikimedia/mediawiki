@@ -474,7 +474,7 @@ $messages = array(
 
 'underline-always' => 'همیشه',
 'underline-never' => 'هرگز',
-'underline-default' => 'پیش‌فرض مرورگر',
+'underline-default' => 'پوسته یا مرورگر پیش‌فرض',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'سبک قلم جعبهٔ ویرایش:',
@@ -559,8 +559,8 @@ $messages = array(
 'newwindow' => '(در پنجرهٔ جدید باز می‌شود)',
 'cancel' => 'لغو',
 'moredotdotdot' => 'بیشتر...',
-'mypage' => 'صفحهٔ من',
-'mytalk' => 'بحث من',
+'mypage' => 'صفحه',
+'mytalk' => 'بحث',
 'anontalk' => 'بحث برای این آی‌پی',
 'navigation' => 'گشتن',
 'and' => '&#32;و',
@@ -1519,7 +1519,7 @@ $1",
 
 # Preferences page
 'preferences' => 'ترجیحات',
-'mypreferences' => 'ترجیحات من',
+'mypreferences' => 'ترجیحات',
 'prefs-edits' => 'تعداد ویرایش‌ها:',
 'prefsnologin' => 'به سامانه وارد نشده‌اید',
 'prefsnologintext' => 'برای تنظیم ترجیحات کاربر باید <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} به سامانه وارد شوید]</span>.',
@@ -1754,6 +1754,9 @@ $1",
 'rightslogtext' => 'این سیاههٔ تغییرات اختیارات کاربر است.',
 'rightslogentry' => 'عضویت $1 را از گروه $2 به $3 تغییر داد',
 'rightslogentry-autopromote' => 'به طور خودکار از $2 به $3 ارتقا یافت',
+'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
+'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
+'logentry-rights-autopromote' => '$1به طور خودکار از $4  به $5 ارتقا یافت',
 'rightsnone' => '(هیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2383,7 +2386,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'linksearch-ok' => 'جستجو',
 'linksearch-text' => 'نشانه‌هایی مانند «‎*.wikipedia.org» را می‌توان استفاده کرد.
 حداقل یک دامنه سطح بالا ، به عنوان مثال "*.org" نیاز دارد.<br />
-پروتکل‌های پشتیبانی‌شده: <code>$1</code> (هیچ یک از این موارد را در جستجوی خود نیافزایید)',
+پروتکل‌های پشتیبانی‌شده: <code>$1</code> (پیش‌فرض برای http:// در صورت مشخص نشدن پروتکل تنظیم شده‌است)',
 'linksearch-line' => '$1 از $2 پیوند دارد',
 'linksearch-error' => 'نشانه‌ها فقط در ابتدای نام میزبان اینترنتی می‌توانند استفاده شوند.',
 
@@ -2464,7 +2467,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 # Watchlist
 'watchlist' => 'فهرست پی‌گیری‌های من',
-'mywatchlist' => 'پی‌گیری‌های من',
+'mywatchlist' => 'فهرست پی‌گیری‌ها',
 'watchlistfor2' => 'برای $1 $2',
 'nowatchlist' => 'در فهرست پی‌گیری‌های شما هیچ موردی نیست.',
 'watchlistanontext' => 'برای مشاهده و ویرایش فهرست پی‌گیری‌های خود از $1 استفاده کنید.',
@@ -2728,7 +2731,7 @@ $1',
 # Contributions
 'contributions' => 'مشارکت‌های کاربری',
 'contributions-title' => 'مشارکت‌های کاربری $1',
-'mycontris' => 'مشارکت‌های من',
+'mycontris' => 'مشارکت‌ها',
 'contribsub2' => 'برای $1 ($2)',
 'nocontribs' => 'هیچ تغییری با این مشخصات یافت نشد.',
 'uctop' => ' (بالا)',
@@ -2769,7 +2772,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 تغییرمسیر',
 'whatlinkshere-hidetrans' => '$1 تراگنجانش‌ها',
 'whatlinkshere-hidelinks' => '$1 پیوند',
-'whatlinkshere-hideimages' => '$1 پیوند به تصویر',
+'whatlinkshere-hideimages' => '$1 پیوندهای پرونده',
 'whatlinkshere-filters' => 'پالایه‌ها',
 
 # Block/unblock
@@ -3242,7 +3245,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'اطلاعات در مورد «$1»',
-'pageinfo-not-current' => 'اطلاعات ممکن است تنها برای نسخهٔ فعلی نمایش داده شود.',
+'pageinfo-not-current' => 'متاسفانه تهیه اطلاعات ویرایش‌های قدیمی غیرممکن است.',
 'pageinfo-header-basic' => 'اطلاعات اولیه',
 'pageinfo-header-edits' => 'ویرایش تاریخچه',
 'pageinfo-header-restrictions' => 'حفاظت از صفحه',
@@ -4036,6 +4039,7 @@ $5
 'version-license' => 'اجازه‌نامه',
 'version-poweredby-credits' => "این ویکی توسط '''[//www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
 'version-poweredby-others' => 'دیگران',
+'version-credits-summary' => 'افراد زیر را به خاطر ویرایش‌هایش در [[Special:Version|مدیاویکی]] معرفی می‌نمائیم.',
 'version-license-info' => 'مدیاویکی نرم‌افزاری رایگان است؛ می‌توانید آن را تحت شرایط مجوز عمومی همگانی گنو که توسط بنیاد نرم‌افزار رایگان منتشر شده‌است، بازنشر کنید؛ یا نسخهٔ ۲ از این مجوز، یا (بنا به اختیار) نسخه‌های بعدی.
 
 مدیاویکی به این امید که مفید واقع شود منتشر شده‌است، ولی بدون هیچ‌گونه ضمانتی؛ بدون ضمانت ضمنی که تجاری یا برای کار خاصی مناسب باشد. برای اطلاعات بیشتر مجوز گنو جی‌پی‌ال را مشاهده کنید.

@@ -227,7 +227,7 @@ $messages = array(
 
 'underline-always' => 'Atav',
 'underline-never' => 'Morse',
-'underline-default' => 'Diouzh ar merdeer',
+'underline-default' => 'Merdeer dre ziouer',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stil font an takad skridaozañ :',
@@ -864,7 +864,7 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'note' => "'''Notenn :'''",
 'previewnote' => "'''Diwallit mat, n'eus ken ur rakweled eus an destenn-mañ.'''
 N'eo ket bet enrollet ho kemmoù evit c'hoazh !",
-'continue-editing' => "Kenderc'hel da gemmañ",
+'continue-editing' => "Mont d'an takad kemmañ",
 'previewconflict' => 'Gant ar rakweled e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview' => "'''Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h.'''
 Klaskit en-dro mar plij.
@@ -939,6 +939,9 @@ Diverket eo bet evit doare.',
 'edit-already-exists' => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
 'defaultmessagetext' => 'Testenn dre ziouer',
+'content-failed-to-parse' => "C'hwitet eo dielfennadur endalc'had $2 evit ar patrom $1: $3",
+'invalid-content-data' => "n'eo ket mat roadennoù an endalc'had",
+'content-not-allowed-here' => 'N\'eo ket aotreet an endalc\'had "$1" er bajenn [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'wikitestenn',
@@ -2088,7 +2091,7 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù goulennet a vank]].',
 'linksearch-ok' => 'Klask',
 'linksearch-text' => 'Gallout a reer implijout arouezennoù "joker" evel, da skouer, "*.wikipedia.org".
 Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
-Protokoloù skoret : <code>$1</code> (na lakait hini ebet eus ar re-se en ho klask)',
+Protokoloù skoret : <code>$1</code> (defaults to http:// na lakait hini ebet eus ar re-se en ho klask)',
 'linksearch-line' => '$1 gant ul liamm adal $2',
 'linksearch-error' => "N'hall an arouezennoù joker bezañ implijet nemet e deroù anv domani an ostiz.",
 
@@ -2950,7 +2953,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 
 # Info page
 'pageinfo-title' => 'Titouroù evit "$1"',
-'pageinfo-not-current' => "Evit an adwel bremañ e c'hall bezañ diskwelet an titouroù hepken.",
+'pageinfo-not-current' => "Hon digarezit, ne c'haller ket reiñ an titouroù-mañ evit an adweloù kozh.",
 'pageinfo-header-basic' => 'Titouroù diazez',
 'pageinfo-header-edits' => 'Kemmoù',
 'pageinfo-header-restrictions' => 'Gwarez ar bajenn',
@@ -2980,6 +2983,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-templates' => "{{PLURAL:$1|Patrom endalc'het|Patromoù endalc'het}} ($1)",
 'pageinfo-toolboxlink' => 'Titouroù ar bajenn',
 'pageinfo-redirectsto' => 'Adkas a ra da',
+'pageinfo-redirectsto-info' => 'Titouroù',
 'pageinfo-contentpage-yes' => 'Ya',
 'pageinfo-protect-cascading-yes' => 'Ya',
 

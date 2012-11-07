@@ -346,7 +346,10 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
-'mytalk' => 'In the personal urls page section - right upper corner.',
+'mypage' => "A text for the link to the user's user page in the links at the top of the page.",
+'mytalk' => 'In the personal urls page section - right upper corner.
+
+Used as link title in "Personal tools" toolbar.',
 'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 
@@ -1496,7 +1499,7 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'preferences' => 'Title of the Special:Preferences page.
 
 {{Identical|Preferences}}',
-'mypreferences' => 'Action link label that leads to Special:Preferences; appears in the top menu (e.g. "Username My talk My preferences My watchlist My contributions Log out").
+'mypreferences' => 'Action link label that leads to Special:Preferences; appears in the top menu (e.g. "Username Talk Preferences Watchlist Contributions Log out").
 
 {{Identical|My preferences}}',
 'prefs-edits' => 'In user preferences.',

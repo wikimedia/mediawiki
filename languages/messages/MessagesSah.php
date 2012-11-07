@@ -2273,7 +2273,7 @@ $1',
 # Contributions
 'contributions' => 'Кыттааччы суруйуута (вклад)',
 'contributions-title' => '$1 кыттааччы киллэрбит уларытыылара',
-'mycontris' => 'Суруйуум тиһигэ',
+'mycontris' => 'Суруйуу тиһигэ',
 'contribsub2' => 'Вклад $1 ($2)',
 'nocontribs' => 'Эппит критерийгэр эппиэттиир уларытыылар көстүбэтилэр.',
 'uctop' => '(бүтэһик)',
@@ -2313,7 +2313,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 утаарыы',
 'whatlinkshere-hidetrans' => '$1 киллэриилэр',
 'whatlinkshere-hidelinks' => '$1 сигэ (ыйынньык)',
-'whatlinkshere-hideimages' => '$1 ойуу сигэтэ',
+'whatlinkshere-hideimages' => '$1 билэ сигэтэ',
 'whatlinkshere-filters' => 'Фильтрдар',
 
 # Block/unblock
@@ -3480,6 +3480,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'version-software' => 'Туруоруллубут бырагырааммалар',
 'version-software-product' => 'Бородуукта',
 'version-software-version' => 'Барыл (торум)',
+'version-entrypoints' => 'Киирэр аадырыстар (URL)',
 'version-entrypoints-header-entrypoint' => 'Киирии сирэ',
 'version-entrypoints-header-url' => 'URL',
 
@@ -3652,7 +3653,8 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'api-error-file-too-large' => 'Ыыппыт билэҥ наһаа улахан эбит.',
 'api-error-filename-tooshort' => 'Билэҥ аата наһаа кылгас.',
 'api-error-filetype-banned' => 'Маннык көрүҥнээх билэлэр бобуулаахтар.',
-'api-error-filetype-banned-type' => '$1 — {{PLURAL:$4|билэ бобуллубут көрүҥэ|билэ бобуллубут көрүҥнэрэ}}.. Көҥүллэммит билэ {{PLURAL:$3|көрүҥэ маннык|көрүҥнэрэ манныктар}}: $2.',
+'api-error-filetype-banned-type' => '$1 — {{PLURAL:$4|билэ бобуллубут көрүҥэ|билэ бобуллубут көрүҥнэрэ}}. 
+Көҥүллэммит билэ {{PLURAL:$3|көрүҥэ маннык|көрүҥнэрэ манныктар}}: $2.',
 'api-error-filetype-missing' => 'Бу билэ тэнитиитэ (расширение) суох эбит.',
 'api-error-hookaborted' => 'Эн киллэрбит уларытыыгын кэҥэтии таҥастааччыта оннугар төннөрбүт.',
 'api-error-http' => 'Ис алҕас: Сиэрбэргэ холбонор табыллыбата.',

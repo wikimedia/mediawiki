@@ -575,8 +575,8 @@ Zur Informazion foigt da aktuöie Logbuachaitrog:",
 'nocreate-loggedin' => "Du host koah Berechtigung, neiche Seiten z' erstön.",
 'permissionserrors' => 'Berechtigungsfeeler',
 'permissionserrorstext' => 'Du bist néd berechtigt, dé Akzión auszfyrn.  {{PLURAL:$1|Grund|Grynd}}:',
-'permissionserrorstext-withaction' => "Du host de Berechtigung ned, dass d' $2.
-{{PLURAL:$1|Grund|Grynd}}:",
+'permissionserrorstext-withaction' => 'Du host koa Berechtigung ned, dass de $2.
+{{PLURAL:$1|Grund|Grind}}:',
 'recreate-moveddeleted-warn' => "'''Ówocht: Du dastöst a Seiten dé schoh friarer gléschd worn is.'''
 
 Bittscheh priaff genau, ób dé erneite Seitendastöung dé Richtlinien entsprichd.
@@ -761,7 +761,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'rightslog' => 'Rechte-Logbiache',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'an derer Seiten duast werkeln',
+'action-edit' => 'beorbadd de Seitn',
 'action-createpage' => "Seiten z' dastön",
 'action-autopatrol' => 'eigerne Beorweitungen ois kontroilird markirn',
 
