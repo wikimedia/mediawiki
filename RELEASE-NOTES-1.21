@@ -66,6 +66,7 @@ production.
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 * (bug 40111) Disable minor edit for page/section creation by API
 * (bug 41042) Revert change to action=parse&page=... behavior when the page does not exist.
+* Add missing resultproperties to list=deletedrevs.
 
 === Languages updated in 1.21 ===
 
