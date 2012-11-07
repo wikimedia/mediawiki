@@ -21,7 +21,8 @@ class TextContentTest extends MediaWikiTestCase {
 				CONTENT_MODEL_WIKITEXT,
 				CONTENT_MODEL_CSS,
 				CONTENT_MODEL_JAVASCRIPT,
-			)
+			),
+			'wgAlwaysUseTidy' => false,
 		) );
 
 		$this->context = new RequestContext( new FauxRequest() );
