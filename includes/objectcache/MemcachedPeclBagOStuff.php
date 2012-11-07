@@ -107,8 +107,11 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return Mixed
 	 */
 	public function get( $key ) {
+		wfProfileIn( __METHOD__ );
 		$this->debugLog( "get($key)" );
-		return $this->checkResult( $key, parent::get( $key ) );
+		$value = $this->checkResult( $key, parent::get( $key ) );
+		wfProfileOut( __METHOD__ );
+		return $value;
 	}
 
 	/**
@@ -224,9 +227,11 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return Array
 	 */
 	public function getMulti( array $keys ) {
+		wfProfileIn( __METHOD__ );
 		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );
+		wfProfileOut( __METHOD__ );
 		return $this->checkResult( false, $result );
 	}
 
