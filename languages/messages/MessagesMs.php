@@ -326,8 +326,8 @@ $messages = array(
 'newwindow' => '(dibuka di tetingkap baru)',
 'cancel' => 'Batalkan',
 'moredotdotdot' => 'Lagi...',
-'mypage' => 'Laman saya',
-'mytalk' => 'Perbualan saya',
+'mypage' => 'Halaman',
+'mytalk' => 'Perbualan',
 'anontalk' => 'Perbualan bagi IP ini',
 'navigation' => 'Pandu arah',
 'and' => '&#32;dan',
@@ -1250,7 +1250,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 
 # Preferences page
 'preferences' => 'Keutamaan',
-'mypreferences' => 'Keutamaan saya',
+'mypreferences' => 'Keutamaan',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Belum log masuk',
 'prefsnologintext' => 'Anda hendaklah <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} log masuk]</span> terlebih dahulu untuk menetapkan keutamaan.',
@@ -2106,7 +2106,7 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ok' => 'Cari',
 'linksearch-text' => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
 Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
-Protokol yang disokong: <code>$1</code> (jangan bubuh sebarang protokol ini dalam carian anda)',
+Protokol yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol dinyatakan).',
 'linksearch-line' => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 
@@ -2190,7 +2190,7 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 
 # Watchlist
 'watchlist' => 'Senarai pantau',
-'mywatchlist' => 'Senarai pantau saya',
+'mywatchlist' => 'Senarai pantau',
 'watchlistfor2' => 'Bagi $1 $2',
 'nowatchlist' => 'Tiada item dalam senarai pantau anda.',
 'watchlistanontext' => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
@@ -2451,7 +2451,7 @@ $1',
 # Contributions
 'contributions' => 'Sumbangan pengguna',
 'contributions-title' => 'Sumbangan oleh $1',
-'mycontris' => 'Sumbangan saya',
+'mycontris' => 'Sumbangan',
 'contribsub2' => 'Oleh $1 ($2)',
 'nocontribs' => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
 'uctop' => '(puncak)',
@@ -2490,7 +2490,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 pelencongan',
 'whatlinkshere-hidetrans' => '$1 penyertaan',
 'whatlinkshere-hidelinks' => '$1 pautan',
-'whatlinkshere-hideimages' => '$1 pautan imej',
+'whatlinkshere-hideimages' => '$1 pautan fail',
 'whatlinkshere-filters' => 'Penapis',
 
 # Block/unblock

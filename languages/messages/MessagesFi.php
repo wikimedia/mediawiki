@@ -879,7 +879,7 @@ Väliaikainen salasana: $2',
 'image_sample' => 'Esimerkki.jpg',
 'image_tip' => 'Tallennettu tiedosto',
 'media_sample' => 'Esimerkki.ogg',
-'media_tip' => 'Mediatiedostolinkki',
+'media_tip' => 'Tiedostolinkki',
 'sig_tip' => 'Allekirjoitus aikamerkinnällä',
 'hr_tip' => 'Vaakasuora viiva',
 
@@ -2181,7 +2181,7 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'linksearch-ok' => 'Etsi',
 'linksearch-text' => 'Tähteä (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
 Vähintään ylätason verkkotunnus, esimerkiksi "*.org", tarvitaan.<br />
-Tuetut protokollat: <code>$1</code> (älä lisää näitä hakuusi).',
+Tuetut protokollat: <code>$1</code> (oletuksena on <code>http://</code>, jos protokollaa ei määritetä).',
 'linksearch-line' => '$1 on linkitetty sivulta $2',
 'linksearch-error' => 'Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.',
 

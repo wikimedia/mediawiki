@@ -175,8 +175,8 @@ $messages = array(
 'newwindow' => '(as deurb ant na fnestra neuva)',
 'cancel' => 'Scancela',
 'moredotdotdot' => 'Dë pì...',
-'mypage' => 'Mia pàgina',
-'mytalk' => 'Mie ciaciarade',
+'mypage' => 'Pàgina',
+'mytalk' => 'Ciaciarade',
 'anontalk' => "Ciaciarade për st'adrëssa IP-sì",
 'navigation' => 'Navigassion',
 'and' => '&#32;e',
@@ -1102,7 +1102,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 
 # Preferences page
 'preferences' => 'Mè gust',
-'mypreferences' => 'mè gust',
+'mypreferences' => 'Gust',
 'prefs-edits' => 'Nùmer ëd modìfiche fàite:',
 'prefsnologin' => "A l'é ancó pa rintrà ant ël sistema",
 'prefsnologintext' => 'A deuv esse <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} intrà ant ël sistema]</span> për amposté ij sò gust.',
@@ -2053,7 +2053,7 @@ L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|s
 
 # Watchlist
 'watchlist' => 'Ròba che im ten-o sot-euj',
-'mywatchlist' => 'Ròba che im ten-o sot-euj',
+'mywatchlist' => 'Ròba che as ten sot euj',
 'watchlistfor2' => 'Për $1 $2',
 'nowatchlist' => "A l'ha ancó pa marcà dj'artìcoj coma ròba da tnì sot-euj.",
 'watchlistanontext' => "Për piasì, $1 për ës-ciairé ò pura modifiché j'element ëd soa lista dla ròba che as ten sot-euj.",
@@ -2311,7 +2311,7 @@ $1",
 # Contributions
 'contributions' => "Contribussion dë st'Utent-sì",
 'contributions-title' => 'Contribussion ëd $1',
-'mycontris' => 'Mie contribussion',
+'mycontris' => 'Contribussion',
 'contribsub2' => 'Për $1 ($2)',
 'nocontribs' => "A l'é pa trovasse gnun-a modìfica che a fussa conforma a costi criteri-sì",
 'uctop' => ' (ùltima dla pàgina)',
@@ -3384,16 +3384,16 @@ për confermé che soa adrëssa a l'é pròpe cola.",
 'confirmemail_pending' => "I l'oma già mandaje sò còdes ëd conferma;
 se a l'ha pen-a creasse sò cont, miraco a venta che a speta dontré minute che a-j riva ant la pòsta, nopà che ciamene un neuv.",
 'confirmemail_send' => 'Mandé un còdes ëd conferma për pòsta eletrònica',
-'confirmemail_sent' => "Ël messagi ëd conferma a l'é stait mandà.",
-'confirmemail_oncreate' => "Un còdes ëd conferma a l'é stait mandà a soa adrëssa ëd pòsta eletrònica.
-D'ës còdes a fa pa dë manca për rintré ant ël sistema, ma a ventrà che a lo mostra al sistema për podej abilité cole funsion dla wiki che a son basà ant sla pòsta eletrònica.",
-'confirmemail_sendfailed' => "{{SITENAME}} a l'ha pa podù mandete l'e-mail ëd conferma.
+'confirmemail_sent' => "Ël mëssagi ëd conferma a l'é stàit mandà.",
+'confirmemail_oncreate' => "Un còdes ëd conferma a l'é stàit mandà a soa adrëssa ëd pòsta eletrònica.
+D'ës còdes a fa pa dë manca për rintré ant ël sistema, ma a ventrà che a lo mostra al sistema për podèj abilité cole funsion dla wiki che a son basà ant sla pòsta eletrònica.",
+'confirmemail_sendfailed' => "{{SITENAME}} a l'ha pa podù mandeje ël mëssagi ëd conferma.
 Che a controla l'adrëssa che a l'ha dane, mai che a-i fusso dij caràter nen vàlid.
 
-Ël programa ëd pòsta a l'ha arspondù: $1",
+Ël programa ëd pòsta a l'ha rëspondù: $1",
 'confirmemail_invalid' => 'Còdes ëd conferma nen vàlid. A podrìa ëdcò mach esse scadù.',
-'confirmemail_needlogin' => 'A venta che a fasa $1 për confermé soa addrëssa postal eletrònica.',
-'confirmemail_success' => "Soa adrëssa postal a l'é staita confermà, adess a peul rintré ant ël sistema e i-j auguroma da fessla bin ant la wiki!",
+'confirmemail_needlogin' => 'A venta $1 për confermé soa adrëssa ëd pòsta eletrònica.',
+'confirmemail_success' => "Soa adrëssa a l'é stàita confermà, adess a peul [[Special:UserLogin|rintré ant ël sistema]] e i-j auguroma da fessla bin ant la wiki!",
 'confirmemail_loggedin' => "Motobin mersì. Soa adrëssa ëd pòsta eletrònica adess a l'é confermà.",
 'confirmemail_error' => "Cheich-còs a l'é andà mal ën salvand soa conferma.",
 'confirmemail_subject' => "Conferma dl'adrëssa postal da 'nt la {{SITENAME}}",

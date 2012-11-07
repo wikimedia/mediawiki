@@ -475,8 +475,8 @@ $messages = array(
 'newwindow' => '（将于新窗口中打开）',
 'cancel' => '取消',
 'moredotdotdot' => '更多',
-'mypage' => '我的页面',
-'mytalk' => '我的讨论',
+'mypage' => '页面',
+'mytalk' => '讨论页',
 'anontalk' => '该IP地址的讨论',
 'navigation' => '导航',
 'and' => '和',
@@ -1065,9 +1065,12 @@ $2
 'edit-already-exists' => '不可以建立一个新页面。
 它已经存在。',
 'defaultmessagetext' => '默认消息文本',
+'content-failed-to-parse' => '未能将 $2 内容转换为 $1：$3',
 'invalid-content-data' => '无效的内容数据',
+'content-not-allowed-here' => '[[$2]]页面上不允许“$1”内容',
 
 # Content models
+'content-model-wikitext' => 'wiki语法',
 'content-model-text' => '纯文本',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
@@ -1339,7 +1342,7 @@ $1",
 
 # Preferences page
 'preferences' => '系统设置',
-'mypreferences' => '我的设置',
+'mypreferences' => '参数设置',
 'prefs-edits' => '编辑数量：',
 'prefsnologin' => '尚未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
@@ -2484,7 +2487,7 @@ $1',
 # Contributions
 'contributions' => '用户贡献',
 'contributions-title' => '$1的用户贡献',
-'mycontris' => '我的贡献',
+'mycontris' => '贡献记录',
 'contribsub2' => '$1的贡献（$2）',
 'nocontribs' => '没有找到符合特征的更改。',
 'uctop' => '（最后更改）',
@@ -2525,7 +2528,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1重定向',
 'whatlinkshere-hidetrans' => '$1包含',
 'whatlinkshere-hidelinks' => '$1链接',
-'whatlinkshere-hideimages' => '$1文件链接',
+'whatlinkshere-hideimages' => '$1个文件链接',
 'whatlinkshere-filters' => '过滤器',
 
 # Block/unblock

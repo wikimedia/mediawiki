@@ -363,7 +363,7 @@ $messages = array(
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldri',
-'underline-default' => 'Bruk nettleserstandard',
+'underline-default' => 'Nettleserens standardinnstillinger',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Skrifttype i redigeringsboksen:',
@@ -448,8 +448,8 @@ $messages = array(
 'newwindow' => '(åpnes i et nytt vindu)',
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Mer …',
-'mypage' => 'Min side',
-'mytalk' => 'Min diskusjonsside',
+'mypage' => 'Egen brukerside',
+'mytalk' => 'Egen brukerdiskusjonsside',
 'anontalk' => 'Brukerdiskusjon for denne IP-adressen',
 'navigation' => 'Navigasjon',
 'and' => '&#32;og',
@@ -1384,7 +1384,7 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 
 # Preferences page
 'preferences' => 'Innstillinger',
-'mypreferences' => 'Innstillinger',
+'mypreferences' => 'Egne brukerinnstillinger',
 'prefs-edits' => 'Antall redigeringer:',
 'prefsnologin' => 'Ikke logget inn',
 'prefsnologintext' => 'Du må være <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
@@ -2239,7 +2239,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-pat' => 'Søkemønster:',
 'linksearch-ns' => 'Navnerom:',
 'linksearch-ok' => 'Søk',
-'linksearch-text' => 'Jokertegn som «*.wikipedia.org» kan brukes.
+'linksearch-text' => 'Jokertegn slik som i «*.wikipedia.org» kan brukes.
 Det kreves at det oppgis minst et toppnivådomene, for eksempel «*.org».<br />
 Støttede protokoller: <code>$1</code> (ikke legg til noen av disse i søket ditt).',
 'linksearch-line' => '$1 lenkes fra $2',
@@ -2322,7 +2322,7 @@ E-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil vis
 
 # Watchlist
 'watchlist' => 'Overvåkningsliste',
-'mywatchlist' => 'Overvåkningsliste',
+'mywatchlist' => 'Egen brukers overvåkningsliste',
 'watchlistfor2' => 'For $1 $2',
 'nowatchlist' => 'Du har ingenting i overvåkningslisten.',
 'watchlistanontext' => 'Vennligst $1 for å vise eller redigere sider på overvåkningslisten din.',
@@ -2573,7 +2573,7 @@ $1',
 # Contributions
 'contributions' => 'Brukerbidrag',
 'contributions-title' => 'Brukerbidrag av $1',
-'mycontris' => 'Mine bidrag',
+'mycontris' => 'Mine redigeringer',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ingen endringer er funnet som passer disse kriteriene.',
 'uctop' => '(siste)',

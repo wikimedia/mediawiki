@@ -450,7 +450,7 @@ $messages = array(
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Meir …',
 'mypage' => 'Sida mi',
-'mytalk' => 'Diskusjonssida mi',
+'mytalk' => 'Diskusjon',
 'anontalk' => 'Diskusjonside for denne IP-adressa',
 'navigation' => 'Navigering',
 'and' => '&#32;og',
@@ -937,11 +937,9 @@ Han kan ha vorten flytta eller sletta medan du såg på sida.',
 
 Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|endra passord]]''-sida etter innlogging.",
 'newarticle' => '(Ny)',
-'newarticletext' => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
-* For å opprette ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.
-* Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
-* Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
-* Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
+'newarticletext' => "Du har følgt ei lenkje til ei side som ikkje finst enno.
+For å opprette sida, kan du skrive i boksen under (sjå [[{{MediaWiki:Helppage}}|hjelpesida]] for meir informasjon).
+Dersom du ikkje ønskjer å opprette sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext' => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext' => 'Det er nett no ikkje noko tekst på denne sida.
@@ -974,8 +972,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userinvalidcssjstitle' => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
-'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
-Endringane dine er ikkje lagra enno!",
+'previewnote' => "'''Hugs at dette berre er ei førehandsvising.''' Endringane dine er ikkje lagra enno!",
 'continue-editing' => 'Gå til endringsområdet',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
@@ -1346,7 +1343,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 
 # Preferences page
 'preferences' => 'Innstillingar',
-'mypreferences' => 'Innstillingane mine',
+'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal på endringar:',
 'prefsnologin' => 'Ikkje innlogga',
 'prefsnologintext' => 'Du må vere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
@@ -2273,7 +2270,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 
 # Watchlist
 'watchlist' => 'Overvakingsliste',
-'mywatchlist' => 'Overvakingslista mi',
+'mywatchlist' => 'Overvakingsliste',
 'watchlistfor2' => 'For $1 $2',
 'nowatchlist' => 'Du har ikkje noko i overvakingslista di.',
 'watchlistanontext' => 'Du lyt $1 for å vise eller endre sider på overvakingslista di.',
@@ -2523,7 +2520,7 @@ $1',
 # Contributions
 'contributions' => 'Brukarbidrag',
 'contributions-title' => 'Bidrag av $1',
-'mycontris' => 'Eigne bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.',
 'uctop' => ' (øvst)',

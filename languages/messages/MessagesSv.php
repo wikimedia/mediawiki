@@ -455,7 +455,7 @@ $messages = array(
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Mer...',
 'mypage' => 'Min sida',
-'mytalk' => 'Min diskussion',
+'mytalk' => 'Diskussion',
 'anontalk' => 'Diskussionssida för denna IP-adress',
 'navigation' => 'Navigering',
 'and' => '&#32;och',
@@ -1385,7 +1385,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Preferences page
 'preferences' => 'Inställningar',
-'mypreferences' => 'Mina inställningar',
+'mypreferences' => 'Inställningar',
 'prefs-edits' => 'Antal redigeringar:',
 'prefsnologin' => 'Inte inloggad',
 'prefsnologintext' => 'Du måste vara <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
@@ -2324,7 +2324,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 
 # Watchlist
 'watchlist' => 'Bevakningslista',
-'mywatchlist' => 'Min bevakningslista',
+'mywatchlist' => 'Bevakningslista',
 'watchlistfor2' => 'För $1 $2',
 'nowatchlist' => 'Du har inga sidor i din bevakningslista.',
 'watchlistanontext' => 'Du måste $1 för att se eller redigera din bevakningslista.',
@@ -2579,7 +2579,7 @@ $1',
 # Contributions
 'contributions' => 'Användarbidrag',
 'contributions-title' => 'Bidrag av $1',
-'mycontris' => 'Mina bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'För $1 ($2)',
 'nocontribs' => 'Inga ändringar som motsvarar dessa kriterier hittades.',
 'uctop' => '(senaste)',

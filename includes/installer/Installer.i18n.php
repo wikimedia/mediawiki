@@ -9614,13 +9614,24 @@ Specificare un nome utente diverso.',
 Inserire un indirizzo email se si desidera effettuare l'iscrizione alla mailing list.",
 	'config-almost-done' => 'Hai quasi finito!
 Adesso puoi saltare la rimanente parte della configurazione e semplicemente installare la wiki.',
+	'config-profile-wiki' => 'Wiki tradizionale',
+	'config-profile-no-anon' => 'Creazione utenza obbligatoria',
+	'config-profile-fishbowl' => 'Solo editori autorizzati',
+	'config-profile-private' => 'Wiki privata',
 	'config-license' => 'Copyright e licenza:',
+	'config-license-none' => 'Nessun piè di pagina per la licenza',
 	'config-license-cc-by-sa' => 'Creative Commons Attribuzione-Condividi allo stesso modo',
 	'config-license-cc-by' => 'Creative Commons Attribuzione',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribuzione-Non commerciale-Condividi allo stesso modo',
 	'config-license-cc-0' => 'Creative Commons Zero (pubblico dominio)',
 	'config-license-gfdl' => 'GNU Free Documentation License 1.3 o versioni successive',
 	'config-license-pd' => 'Pubblico dominio',
+	'config-license-cc-choose' => 'Seleziona una delle licenze Creative Commons',
+	'config-license-help' => "Molti wiki pubblici rilasciano i loro contributi con una [http://freedomdefined.org/Definition licenza libera]. Questo aiuta a creare un senso di proprietà condivisa nella comunità e incoraggia a contribuire a lungo termine. Non è generalmente necessario per un wiki privato o aziendale.
+
+Se vuoi usare testi da Wikipedia, o desideri che Wikipedia possa essere in grado di accettare testi copiati dal tuo wiki, dovresti scegliere '''Creative Commons Attribution Share Alike'''.
+
+In precedenza Wikipedia ha utilizzato la GNU Free Documentation License. La GFDL è una licenza valida, ma è di difficile comprensione e complica il riutilizzo dei contenuti.",
 	'config-email-settings' => 'Impostazioni email',
 	'config-email-auth' => 'Abilita autenticazione via email',
 	'config-upload-deleted' => 'Directory per i file cancellati:',
@@ -9630,6 +9641,8 @@ Adesso puoi saltare la rimanente parte della configurazione e semplicemente inst
 	'config-advanced-settings' => 'Configurazione avanzata',
 	'config-memcache-badip' => 'È stato inserito un indirizzo IP non valido per Memcached: $1.',
 	'config-extensions' => 'Estensioni',
+	'config-install-step-done' => 'fatto',
+	'config-install-step-failed' => 'non riuscito',
 	'config-install-user-alreadyexists' => 'L\'utente "$1" è già presente',
 	'config-install-user-create-failed' => 'Creazione dell\'utente "$1" non riuscita: $2',
 	'config-install-user-missing' => 'L\'utente indicato "$1" non esiste.',

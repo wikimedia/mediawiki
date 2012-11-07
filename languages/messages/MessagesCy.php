@@ -164,7 +164,7 @@ $messages = array(
 
 'underline-always' => 'Bob amser',
 'underline-never' => 'Byth',
-'underline-default' => 'Rhagosodyn y porwr',
+'underline-default' => "Rhagosodyn y porwr neu'r wedd",
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Arddull y ffont yn y blwch golygu:',
@@ -249,8 +249,8 @@ $messages = array(
 'newwindow' => '(yn agor mewn ffenest newydd)',
 'cancel' => 'Diddymu',
 'moredotdotdot' => 'Rhagor...',
-'mypage' => 'Fy nhudalen',
-'mytalk' => 'Fy sgwrs',
+'mypage' => 'Tudalen defnyddiwr',
+'mytalk' => 'Sgwrs',
 'anontalk' => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
 'navigation' => 'Panel llywio',
 'and' => '&#32;a/ac',
@@ -868,6 +868,11 @@ Ymddengys iddi gael ei dileu.",
 Mae ar gael yn barod.',
 'defaultmessagetext' => 'Y testun rhagosodedig',
 
+# Content models
+'content-model-wikitext' => 'cystrawen wici',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Rhybudd:''' Mae gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau yn y dudalen hon.
 
@@ -1152,7 +1157,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 
 # Preferences page
 'preferences' => 'Dewisiadau',
-'mypreferences' => 'Fy newisiadau',
+'mypreferences' => 'Dewisiadau',
 'prefs-edits' => 'Nifer y golygiadau:',
 'prefsnologin' => 'Nid ydych wedi mewngofnodi',
 'prefsnologintext' => 'Rhaid i chi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} fewngofnodi]</span> er mwyn gosod eich dewisiadau defnyddiwr.',
@@ -2082,7 +2087,7 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 
 # Watchlist
 'watchlist' => 'Fy rhestr wylio',
-'mywatchlist' => 'Fy rhestr wylio',
+'mywatchlist' => 'Rhestr wylio',
 'watchlistfor2' => 'Yn ôl gofyn $1 $2',
 'nowatchlist' => "Mae eich rhestr wylio'n wag.",
 'watchlistanontext' => "Rhaid $1 er mwyn gweld neu ddiwygio'ch rhestr wylio.",
@@ -2341,7 +2346,7 @@ $1',
 # Contributions
 'contributions' => "Cyfraniadau'r defnyddiwr",
 'contributions-title' => "Cyfraniadau'r defnyddiwr am $1",
-'mycontris' => 'Fy nghyfraniadau',
+'mycontris' => 'Cyfraniadau',
 'contribsub2' => 'Dros $1 ($2)',
 'nocontribs' => "Heb ddod o hyd i newidiadau gyda'r meini prawf hyn.",
 'uctop' => '(cyfredol)',
@@ -2382,7 +2387,7 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'whatlinkshere-hideredirs' => '$1 ailgyfeiriadau',
 'whatlinkshere-hidetrans' => '$1 cynhwysion',
 'whatlinkshere-hidelinks' => '$1 cysylltau',
-'whatlinkshere-hideimages' => '$1 cysylltau delweddau',
+'whatlinkshere-hideimages' => '$1 cysylltau ffeiliau',
 'whatlinkshere-filters' => 'Hidlau',
 
 # Block/unblock
@@ -2851,6 +2856,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-default-sort' => 'Allwedd trefnu diofyn',
 'pageinfo-length' => 'Hyd y dudalen (beitiau)',
 'pageinfo-article-id' => 'ID y dudalen',
+'pageinfo-language' => 'Iaith cynnwys y dudalen',
 'pageinfo-robot-policy' => 'Statws i beiriannau chwilio',
 'pageinfo-views' => 'Nifer yr ymweliadau',
 'pageinfo-watchers' => 'Nifer gwylwyr y dudalen',
@@ -2864,6 +2870,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-authors' => 'Cyfanswm yr awduron gwahanol',
 'pageinfo-magic-words' => '{{PLURAL:$1|Gair|Gair|Geiriau}} hud ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categori|Categori|Categorïau}} cudd ($1)',
+'pageinfo-toolboxlink' => 'Gwybodaeth am y dudalen',
 
 # Skin names
 'skinname-standard' => 'Safonol',
