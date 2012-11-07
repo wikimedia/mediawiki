@@ -382,7 +382,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$invert = $opts['invert'];
 		$associated = $opts['associated'];
 
-		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' ); // all rc columns
+		$fields = RecentChange::selectFields();
 		// JOIN on watchlist for users
 		if ( $uid ) {
 			$tables[] = 'watchlist';

@@ -216,6 +216,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_type',
 			'rc_deleted'
 		) );
+		if ( !is_null( $this->token ) ) {
+			//Token validation calls RecentChange::newFromRow,
+			//which needs all fields from RecentChange::selectFields
+			$this->addFields( RecentChange::selectFields() );
+		}
 
 		$showRedirects = false;
 		/* Determine what properties we need to display. */
