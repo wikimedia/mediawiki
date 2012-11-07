@@ -1044,14 +1044,18 @@ $wgAutoloadLocalClasses = array(
 	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 
 	# maintenance
+	'BackupDumper' => 'maintenance/backup.inc',
+	'CheckAutoLoader' => 'maintenance/checkAutoLoader.php',
 	'ConvertLinks' => 'maintenance/convertLinks.php',
 	'DeleteArchivedFilesImplementation' => 'maintenance/deleteArchivedFiles.inc',
 	'DeleteArchivedRevisionsImplementation' => 'maintenance/deleteArchivedRevisions.inc',
 	'DeleteDefaultMessages' => 'maintenance/deleteDefaultMessages.php',
+	'DumpDBZip2Output' => 'maintenance/backup.inc',
+	'ExportProgressFilter' => 'maintenance/backup.inc',
 	'FakeMaintenance' => 'maintenance/Maintenance.php',
+	'FixExtLinksProtocolRelative' => 'maintenance/fixExtLinksProtocolRelative.php',
 	'LoggedUpdateMaintenance' => 'maintenance/Maintenance.php',
 	'Maintenance' => 'maintenance/Maintenance.php',
-	'FixExtLinksProtocolRelative' => 'maintenance/fixExtLinksProtocolRelative.php',
 	'PopulateCategory' => 'maintenance/populateCategory.php',
 	'PopulateImageSha1' => 'maintenance/populateImageSha1.php',
 	'PopulateFilearchiveSha1' => 'maintenance/populateFilearchiveSha1.php',
@@ -1083,47 +1087,6 @@ $wgAutoloadLocalClasses = array(
 	# mw-config
 	'InstallerOverrides' => 'mw-config/overrides.php',
 	'MyLocalSettingsGenerator' => 'mw-config/overrides.php',
-
-	# tests
-	'DbTestPreviewer' => 'tests/testHelpers.inc',
-	'DbTestRecorder' => 'tests/testHelpers.inc',
-	'DelayedParserTest' => 'tests/testHelpers.inc',
-	'TestFileIterator' => 'tests/testHelpers.inc',
-	'TestRecorder' => 'tests/testHelpers.inc',
-
-	# tests/phpunit
-	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
-	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
-
-	# tests/phpunit/content
-	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/content/ContentHandlerTest.php',
-	'DummyContentForTesting' => 'tests/phpunit/includes/content/ContentHandlerTest.php',
-	'JavascriptContentTest' => 'tests/phpunit/includes/content/JavascriptContentTest.php',
-	'TextContentTest' => 'tests/phpunit/includes/content/TextContentTest.php',
-
-	# tests/phpunit/includes
-	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
-
-	# tests/phpunit/includes/db
-	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
-
-	# tests/phpunit/includes/site
-	'SiteObjectTest' => 'tests/phpunit/includes/site/SiteObjectTest.php',
-	'TestSites' => 'tests/phpunit/includes/site/TestSites.php',
-
-	# tests/parser
-	'ParserTest' => 'tests/parser/parserTest.inc',
-	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
-
-	# tests/selenium
-	'Selenium' => 'tests/selenium/Selenium.php',
-	'SeleniumLoader' => 'tests/selenium/SeleniumLoader.php',
-	'SeleniumTestCase' => 'tests/selenium/SeleniumTestCase.php',
-	'SeleniumTestConsoleLogger' => 'tests/selenium/SeleniumTestConsoleLogger.php',
-	'SeleniumTestHTMLLogger' => 'tests/selenium/SeleniumTestHTMLLogger.php',
-	'SeleniumTestListener' => 'tests/selenium/SeleniumTestListener.php',
-	'SeleniumTestSuite' => 'tests/selenium/SeleniumTestSuite.php',
-	'SeleniumConfig' => 'tests/selenium/SeleniumConfig.php',
 
 	# skins
 	'CologneBlueTemplate' => 'skins/CologneBlue.php',
