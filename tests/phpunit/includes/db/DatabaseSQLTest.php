@@ -144,4 +144,40 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @dataProvider provideDuplicateFields
+	 */
+	function testDuplicateFields( $fields, $resultFields ) {
+		$this->db->unsetDuplicateFields( $fields );
+		$this->assertEquals( $fields, $resultFields );
+	}
+
+	public static function provideDuplicateFields() {
+		return array(
+			array(
+				array( 'fieldDupe', 'field2', 'fieldDupe' ),
+				array( 'fieldDupe', 'field2' )
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideDuplicateFieldsException
+	 * @expectedException MWException
+	 */
+	function testDuplicateFieldsException( $fields ) {
+		$this->db->unsetDuplicateFields( $fields );
+	}
+
+	public static function provideDuplicateFieldsException() {
+		return array(
+			array(
+				array( 'alias' => 'field', 'alias' )
+			),
+			array(
+				array( 'alias', 'alias' => 'field' )
+			)
+		);
+	}
 }

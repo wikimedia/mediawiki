@@ -1394,6 +1394,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$options = array(), $join_conds = array() )
 	{
 		if ( is_array( $vars ) ) {
+			$this->unsetDuplicateFields( $vars );
 			$vars = implode( ',', $this->fieldNamesWithAlias( $vars ) );
 		}
 
@@ -2135,6 +2136,34 @@ abstract class DatabaseBase implements DatabaseType {
 			$retval[] = $this->fieldNameWithAlias( $field, $alias );
 		}
 		return $retval;
+	}
+
+	/**
+	 * Removed duplicate field names
+	 * Throws exception on fields, which are used as normal field and alias
+	 *
+	 * @param $fields array( [alias] => field )
+	 */
+	public function unsetDuplicateFields( &$fields ) {
+		$setFields = array();
+		foreach ( $fields as $index => $field ) {
+			$hasAlias = !is_numeric( $index );
+			if( $hasAlias ) {
+				$fieldName = $index;
+			} else {
+				$fieldName = $field;
+			}
+			if( isset( $setFields[$fieldName] ) ) {
+				//When a field name is used as alias and as field, this is not a sql error
+				//but it is impossible to get both values from the returned object
+				if( $setFields[$fieldName] !== false || $hasAlias !== false ) {
+					throw new MWException( 'field name ' . $fieldName . ' used as field and as alias' );
+				}
+				//Duplicate fields in the output are useless, unset the second
+				unset( $fields[$index] );
+			}
+			$setFields[$fieldName] = $hasAlias;
+		}
 	}
 
 	/**
