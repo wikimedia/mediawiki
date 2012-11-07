@@ -1831,6 +1831,21 @@ $result: The search result
 $terms: The search terms entered
 $page: The SpecialSearch object.
 
+'ShowSearchHit': Customize display of search hit.
+$searchPage: The SpecialSearch instance.
+$result: The SearchResult to show
+$terms: Search terms, for highlighting
+&$link: HTML of link to the matching page. May be modified.
+&$redirect: HTML of redirect info. May be modified.
+&$section: HTML of matching section. May be modified.
+&$extract: HTML of content extract. May be modified.
+&$score: HTML of score. May be modified.
+&$size: HTML of page size. May be modified.
+&$date: HTML of of page modification date. May be modified.
+&$related: HTML of additional info for the matching page. May be modified.
+&$html: May be set to the full HTML that should be used to represent the search hit. Must include
+the <li> ... </li> tags. Will only be used if the hook function returned false.
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 $skin: Skin object

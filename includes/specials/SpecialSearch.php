@@ -684,11 +684,21 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
-		return "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section}</div> {$extract}\n" .
-			"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
-			"</li>\n";
+		$html = null;
 
+		if ( wfRunHooks( 'ShowSearchHit', array (
+			$this, $result, $terms,
+			&$link, &$redirect, &$section, &$extract,
+			&$score, &$size, &$date, &$related,
+			&$html
+		) ) ) {
+			$html = "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section}</div> {$extract}\n" .
+				"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
+				"</li>\n";
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $html;
 	}
 
 	/**
