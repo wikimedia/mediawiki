@@ -582,8 +582,6 @@ abstract class ContentHandler {
 		$rcid = 0, # FIXME: use everywhere!
 		$refreshCache = false, $unhide = false
 	) {
-		$this->checkModelID( $context->getTitle()->getContentModel() );
-
 		$diffEngineClass = $this->getDiffEngineClass();
 
 		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
