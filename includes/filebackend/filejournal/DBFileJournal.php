@@ -75,6 +75,9 @@ class DBFileJournal extends FileJournal {
 
 		try {
 			$dbw->insert( 'filejournal', $data, __METHOD__ );
+			if ( mt_rand( 0, 99 ) == 0 ) {
+				$this->purgeOldLogs(); // occasionally delete old logs
+			}
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
 			return $status;
