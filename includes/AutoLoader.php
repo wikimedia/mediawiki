@@ -152,6 +152,7 @@ $wgAutoloadLocalClasses = array(
 	'IndexPager' => 'includes/Pager.php',
 	'Interwiki' => 'includes/interwiki/Interwiki.php',
 	'IP' => 'includes/IP.php',
+	'LCStore' => 'includes/LocalisationCache.php',
 	'LCStore_Accel' => 'includes/LocalisationCache.php',
 	'LCStore_CDB' => 'includes/LocalisationCache.php',
 	'LCStore_DB' => 'includes/LocalisationCache.php',
@@ -204,6 +205,7 @@ $wgAutoloadLocalClasses = array(
 	'RdfMetaData' => 'includes/Metadata.php',
 	'ReadOnlyError' => 'includes/Exception.php',
 	'RecentChange' => 'includes/RecentChange.php',
+	'RedirectSpecialArticle' => 'includes/SpecialPage.php',
 	'RedirectSpecialPage' => 'includes/SpecialPage.php',
 	'RegexlikeReplacer' => 'includes/StringUtils.php',
 	'ReplacementArray' => 'includes/StringUtils.php',
@@ -577,7 +579,6 @@ $wgAutoloadLocalClasses = array(
 	'CopyFileOp' => 'includes/filebackend/FileOp.php',
 	'MoveFileOp' => 'includes/filebackend/FileOp.php',
 	'DeleteFileOp' => 'includes/filebackend/FileOp.php',
-	'ConcatenateFileOp' => 'includes/filebackend/FileOp.php',
 	'CreateFileOp' => 'includes/filebackend/FileOp.php',
 	'NullFileOp' => 'includes/filebackend/FileOp.php',
 
@@ -613,7 +614,6 @@ $wgAutoloadLocalClasses = array(
 	'Ibm_db2Updater' => 'includes/installer/Ibm_db2Updater.php',
 	'InstallDocFormatter' => 'includes/installer/InstallDocFormatter.php',
 	'Installer' => 'includes/installer/Installer.php',
-	'LBFactory_InstallerFake' => 'includes/installer/Installer.php',
 	'LocalSettingsGenerator' => 'includes/installer/LocalSettingsGenerator.php',
 	'MysqlInstaller' => 'includes/installer/MysqlInstaller.php',
 	'MysqlUpdater' => 'includes/installer/MysqlUpdater.php',
@@ -850,7 +850,6 @@ $wgAutoloadLocalClasses = array(
 	'RevDel_LogList' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_RevisionItem' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_RevisionList' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevisionDelete' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevisionDeleter' => 'includes/revisiondelete/RevisionDeleter.php',
 	'RevisionDeleteUser' => 'includes/revisiondelete/RevisionDeleteUser.php',
 
@@ -894,8 +893,6 @@ $wgAutoloadLocalClasses = array(
 	'BrokenRedirectsPage' => 'includes/specials/SpecialBrokenRedirects.php',
 	'CategoryPager' => 'includes/specials/SpecialCategories.php',
 	'ContribsPager' => 'includes/specials/SpecialContributions.php',
-	'DBLockForm' => 'includes/specials/SpecialLockdb.php',
-	'DBUnlockForm' => 'includes/specials/SpecialUnlockdb.php',
 	'DeadendPagesPage' => 'includes/specials/SpecialDeadendpages.php',
 	'DeletedContribsPager' => 'includes/specials/SpecialDeletedContributions.php',
 	'DeletedContributionsPage' => 'includes/specials/SpecialDeletedContributions.php',
@@ -960,7 +957,6 @@ $wgAutoloadLocalClasses = array(
 	'SpecialLockdb' => 'includes/specials/SpecialLockdb.php',
 	'SpecialLog' => 'includes/specials/SpecialLog.php',
 	'SpecialMergeHistory' => 'includes/specials/SpecialMergeHistory.php',
-	'SpecialMostlinkedtemplates' => 'includes/specials/SpecialMostlinkedtemplates.php',
 	'SpecialNewFiles' => 'includes/specials/SpecialNewimages.php',
 	'SpecialNewpages' => 'includes/specials/SpecialNewpages.php',
 	'SpecialPasswordReset' => 'includes/specials/SpecialPasswordReset.php',
@@ -1020,7 +1016,6 @@ $wgAutoloadLocalClasses = array(
 	'UploadFromUrl' => 'includes/upload/UploadFromUrl.php',
 	'UploadStash' => 'includes/upload/UploadStash.php',
 	'UploadStashBadPathException' => 'includes/upload/UploadStash.php',
-	'UploadStashBadVersionException' => 'includes/upload/UploadStash.php',
 	'UploadStashFile' => 'includes/upload/UploadStash.php',
 	'UploadStashFileException' => 'includes/upload/UploadStash.php',
 	'UploadStashFileNotFoundException' => 'includes/upload/UploadStash.php',
@@ -1044,14 +1039,17 @@ $wgAutoloadLocalClasses = array(
 	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 
 	# maintenance
+	'BackupDumper' => 'maintenance/backup.inc',
 	'ConvertLinks' => 'maintenance/convertLinks.php',
 	'DeleteArchivedFilesImplementation' => 'maintenance/deleteArchivedFiles.inc',
 	'DeleteArchivedRevisionsImplementation' => 'maintenance/deleteArchivedRevisions.inc',
 	'DeleteDefaultMessages' => 'maintenance/deleteDefaultMessages.php',
+	'DumpDBZip2Output' => 'maintenance/backup.inc',
+	'ExportProgressFilter' => 'maintenance/backup.inc',
 	'FakeMaintenance' => 'maintenance/Maintenance.php',
+	'FixExtLinksProtocolRelative' => 'maintenance/fixExtLinksProtocolRelative.php',
 	'LoggedUpdateMaintenance' => 'maintenance/Maintenance.php',
 	'Maintenance' => 'maintenance/Maintenance.php',
-	'FixExtLinksProtocolRelative' => 'maintenance/fixExtLinksProtocolRelative.php',
 	'PopulateCategory' => 'maintenance/populateCategory.php',
 	'PopulateImageSha1' => 'maintenance/populateImageSha1.php',
 	'PopulateFilearchiveSha1' => 'maintenance/populateFilearchiveSha1.php',
@@ -1083,47 +1081,6 @@ $wgAutoloadLocalClasses = array(
 	# mw-config
 	'InstallerOverrides' => 'mw-config/overrides.php',
 	'MyLocalSettingsGenerator' => 'mw-config/overrides.php',
-
-	# tests
-	'DbTestPreviewer' => 'tests/testHelpers.inc',
-	'DbTestRecorder' => 'tests/testHelpers.inc',
-	'DelayedParserTest' => 'tests/testHelpers.inc',
-	'TestFileIterator' => 'tests/testHelpers.inc',
-	'TestRecorder' => 'tests/testHelpers.inc',
-
-	# tests/phpunit
-	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
-	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
-
-	# tests/phpunit/content
-	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/content/ContentHandlerTest.php',
-	'DummyContentForTesting' => 'tests/phpunit/includes/content/ContentHandlerTest.php',
-	'JavascriptContentTest' => 'tests/phpunit/includes/content/JavascriptContentTest.php',
-	'TextContentTest' => 'tests/phpunit/includes/content/TextContentTest.php',
-
-	# tests/phpunit/includes
-	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
-
-	# tests/phpunit/includes/db
-	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
-
-	# tests/phpunit/includes/site
-	'SiteObjectTest' => 'tests/phpunit/includes/site/SiteObjectTest.php',
-	'TestSites' => 'tests/phpunit/includes/site/TestSites.php',
-
-	# tests/parser
-	'ParserTest' => 'tests/parser/parserTest.inc',
-	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
-
-	# tests/selenium
-	'Selenium' => 'tests/selenium/Selenium.php',
-	'SeleniumLoader' => 'tests/selenium/SeleniumLoader.php',
-	'SeleniumTestCase' => 'tests/selenium/SeleniumTestCase.php',
-	'SeleniumTestConsoleLogger' => 'tests/selenium/SeleniumTestConsoleLogger.php',
-	'SeleniumTestHTMLLogger' => 'tests/selenium/SeleniumTestHTMLLogger.php',
-	'SeleniumTestListener' => 'tests/selenium/SeleniumTestListener.php',
-	'SeleniumTestSuite' => 'tests/selenium/SeleniumTestSuite.php',
-	'SeleniumConfig' => 'tests/selenium/SeleniumConfig.php',
 
 	# skins
 	'CologneBlueTemplate' => 'skins/CologneBlue.php',
