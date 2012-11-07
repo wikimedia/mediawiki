@@ -4478,14 +4478,14 @@ class Parser {
 			'~~~' => $sigText
 		) );
 
-		# Context links: [[|name]] and [[name (context)|]]
+		# Context links ("pipe trick"): [[|name]] and [[name (context)|]]
 		$tc = '[' . Title::legalChars() . ']';
 		$nc = '[ _0-9A-Za-z\x80-\xff-]'; # Namespaces can use non-ascii!
 
-		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
-		$p4 = "/\[\[(:?$nc+:|:|)($tc+?)( ?（$tc+）)\\|]]/";		# [[ns:page（context）|]]
-		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\)|)((?:, |，)$tc+|)\\|]]/";	# [[ns:page (context), context|]]
-		$p2 = "/\[\[\\|($tc+)]]/";					# [[|page]]
+		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\))\\|]]/";                  # [[ns:page (context)|]]
+		$p4 = "/\[\[(:?$nc+:|:|)($tc+?)( ?（$tc+）)\\|]]/";                    # [[ns:page（context）|]] (double-width brackets, added in r40257)
+		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( ?\\($tc+\\)|)((?:, |，)$tc+|)\\|]]/"; # [[ns:page (context), context|]]
+		$p2 = "/\[\[\\|($tc+)]]/";                                             # [[|page]]
 
 		# try $p1 first, to turn "[[A, B (C)|]]" into "[[A, B (C)|A, B]]"
 		$text = preg_replace( $p1, '[[\\1\\2\\3|\\2]]', $text );
