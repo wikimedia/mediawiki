@@ -173,7 +173,7 @@ class UserTest extends MediaWikiTestCase {
 		$user->addToDatabase();
 
 		// let the user have a few (3) edits
-		$page = WikiPage::factory( Title::newFromText( 'UserTest_EditCount' ) );
+		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
 		for( $i = 0; $i < 3; $i++ ) {
 			$page->doEdit( (string) $i, 'test', 0, false, $user );
 		}
