@@ -29,7 +29,6 @@
 class RefreshLinksJob extends Job {
 	function __construct( $title, $params = '', $id = 0 ) {
 		parent::__construct( 'refreshLinks', $title, $params, $id );
-		$this->removeDuplicates = true; // job is expensive
 	}
 
 	/**
@@ -120,6 +119,13 @@ class RefreshLinksJob2 extends Job {
 
 		// Back compat for pre-r94435 jobs
 		$table = isset( $this->params['table'] ) ? $this->params['table'] : 'templatelinks';
+		// Back compat for pre-c31efff1d01c9bd29d04ad05b58fec3b68bcbdbf jobs
+		$rootJobSignature = isset( $this->params['rootJobSignature'] )
+			? $this->params['rootJobSignature']
+			: null;
+		$rootJobTimestamp = isset( $this->params['rootJobTimestamp'] )
+			? $this->params['rootJobTimestamp']
+			: null;
 
 		// Avoid slave lag when fetching templates
 		if ( isset( $this->params['masterPos'] ) ) {
@@ -150,10 +156,13 @@ class RefreshLinksJob2 extends Job {
 				$first = false;
 				if ( ++$bsize >= self::MAX_TITLES_RUN ) {
 					$jobs[] = new RefreshLinksJob2( $this->title, array(
-						'table'     => $table,
-						'start'     => $start,
-						'end'       => $end,
-						'masterPos' => $masterPos
+						'table'            => $table,
+						'start'            => $start,
+						'end'              => $end,
+						'masterPos'        => $masterPos,
+						// Carry over information for de-duplication
+						'rootJobSignature' => $rootJobSignature,
+						'rootJobTimestamp' => $rootJobTimestamp
 					) );
 					$first = true;
 					$start = $end = $bsize = 0;
@@ -161,10 +170,13 @@ class RefreshLinksJob2 extends Job {
 			}
 			if ( $bsize > 0 ) { // group remaining pages into a job
 				$jobs[] = new RefreshLinksJob2( $this->title, array(
-					'table'     => $table,
-					'start'     => $start,
-					'end'       => $end,
-					'masterPos' => $masterPos
+					'table'            => $table,
+					'start'            => $start,
+					'end'              => $end,
+					'masterPos'        => $masterPos,
+					// Carry over information for de-duplication
+					'rootJobSignature' => $rootJobSignature,
+					'rootJobTimestamp' => $rootJobTimestamp
 				) );
 			}
 			Job::batchInsert( $jobs );
@@ -173,7 +185,12 @@ class RefreshLinksJob2 extends Job {
 			# Gracefully switch to refreshLinks jobs if this happens.
 			$jobs = array();
 			foreach ( $titles as $title ) {
-				$jobs[] = new RefreshLinksJob( $title, array( 'masterPos' => $masterPos ) );
+				$jobs[] = new RefreshLinksJob( $title, array(
+					'masterPos'        => $masterPos,
+					// Carry over information for de-duplication
+					'rootJobSignature' => $rootJobSignature,
+					'rootJobTimestamp' => $rootJobTimestamp
+				) );
 			}
 			Job::batchInsert( $jobs );
 		} else {

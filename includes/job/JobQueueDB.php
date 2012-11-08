@@ -159,6 +159,14 @@ class JobQueueDB extends JobQueue {
 					);
 					wfIncrStats( 'job-pop', $dbw->affectedRows() );
 				}
+				// Flag this job as an old duplicate based on its "root" job...
+				if ( $this->isRootJobOldDuplicate( $job ) ) {
+					$params = $job->getParams();
+					$params['type'] = $job->getType();
+					unset( $params['usleep'] ); // sanity
+					unset( $params['lives'] ); // sanity
+					$job = Job::factory( 'null', $title, $params ); // convert to a no-op
+				}
 				break; // done
 			} while( true );
 		} catch ( DBError $e ) {
@@ -296,6 +304,62 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::doDeduplicateRootJob()
+	 * @return bool
+	 */
+	protected function doDeduplicateRootJob( Job $job ) {
+		$params = $job->getParams();
+		if ( !isset( $params['rootJobSignature'] ) ) {
+			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );
+		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
+			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
+		}
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
+		// Callers with call batchInsert() and then this function so that if the insert
+		// fails, the de-duplication registration will be aborted. Since the insert is
+		// deferred till "transaction idle", do that same here, so that the ordering is
+		// maintained. Having only the de-duplication registration succeed would cause
+		// jobs to become no-ops without any actual jobs that made them redundant.
+		$this->getMasterDB()->onTransactionIdle( function() use ( $params, $key ) {
+			global $wgMemc;
+
+			$timestamp = $wgMemc->get( $key ); // current last timestamp of this job
+			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
+				return true; // a newer version of this root job was enqueued
+			}
+
+			// Update the timestamp of the last root job started at the location...
+			return $wgMemc->set( $key, $params['rootJobTimestamp'], 14*86400 ); // 2 weeks
+		} );
+
+		return true;
+	}
+
+	/**
+	 * Check if the "root" job of a given job has been superseded by a newer one
+	 *
+	 * @param $job Job
+	 * @return bool
+	 */
+	protected function isRootJobOldDuplicate( Job $job ) {
+		global $wgMemc;
+
+		$params = $job->getParams();
+		if ( !isset( $params['rootJobSignature'] ) ) {
+			return false; // job has no de-deplication info
+		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
+			trigger_error( "Cannot check root job; missing 'rootJobTimestamp'." );
+			return false;
+		}
+
+		// Get the last time this root job was enqueued
+		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+
+		// Check if a new root job was started at the location after this one's...
+		return ( $timestamp && $timestamp > $params['rootJobTimestamp'] );
+	}
+
+	/**
 	 * @see JobQueue::doWaitForBackups()
 	 * @return void
 	 */
@@ -351,6 +415,15 @@ class JobQueueDB extends JobQueue {
 	private function getEmptinessCacheKey() {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
 		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'isempty' );
+	}
+
+	/**
+	 * @param string $signature Hash identifier of the root job
+	 * @return string
+	 */
+	private function getRootJobCacheKey( $signature ) {
+		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
 	}
 
 	/**

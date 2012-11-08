@@ -178,6 +178,53 @@ abstract class JobQueue {
 	abstract protected function doAck( Job $job );
 
 	/**
+	 * Register the "root" job of a given job into the queue for de-duplication.
+	 * This should only be called right *after* all the new jobs have been inserted.
+	 * This is used to turn older, duplicate, job entries into no-ops. The root job
+	 * information will remain in the registry until it simply falls out of cache.
+	 *
+	 * This requires that $job has two special fields in the "params" array:
+	 *   - rootJobSignature : hash (e.g. SHA1) that identifies the task
+	 *   - rootJobTimestamp : TS_MW timestamp of this instance of the task
+	 *
+	 * A "root job" is a conceptual job that consist of potentially many smaller jobs
+	 * that are actually inserted into the queue. For example, "refreshLinks" jobs are
+	 * spawned when a template is edited. One can think of the task as "update links
+	 * of pages that use template X" and an instance of that task as a "root job".
+	 * However, what actually goes into the queue are potentially many refreshLinks2 jobs.
+	 * Since these jobs include things like page ID ranges and DB master positions, and morph
+	 * into smaller refreshLinks2 jobs recursively, simple duplicate detection (like job_sha1)
+	 * for individual jobs being identical is not useful.
+	 *
+	 * In the case of "refreshLinks", if these jobs are still in the queue when the template
+	 * is edited again, we want all of these old refreshLinks jobs for that template to become
+	 * no-ops. This can greatly reduce server load, since refreshLinks jobs involves parsing.
+	 * Essentially, the new batch of jobs belong to a new "root job" and the older ones to a
+	 * previous "root job" for the same task of "update links of pages that use template X".
+	 *
+	 * @param $job Job
+	 * @return bool
+	 */
+	final public function deduplicateRootJob( Job $job ) {
+		if ( $job->getType() !== $this->type ) {
+			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
+		}
+		wfProfileIn( __METHOD__ );
+		$ok = $this->doDeduplicateRootJob( $job );
+		wfProfileOut( __METHOD__ );
+		return $ok;
+	}
+
+	/**
+	 * @see JobQueue::deduplicateRootJob()
+	 * @param $job Job
+	 * @return bool
+	 */
+	protected function doDeduplicateRootJob( Job $job ) {
+		return true;
+	}
+
+	/**
 	 * Wait for any slaves or backup servers to catch up
 	 *
 	 * @return void

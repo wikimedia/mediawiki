@@ -1,6 +1,6 @@
 <?php
 /**
- * Degenerate job that just replaces itself in the queue.
+ * Degenerate job that does nothing.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,9 @@
  */
 
 /**
- * Degenerate job that just replace itself in the queue.
- * Useful for lock contention and performance testing.
+ * Degenerate job that does nothing, but can optionally replace itself
+ * in the queue and/or sleep for a brief time period. These can be used
+ * to represent "no-op" jobs or test lock contention and performance.
  *
  * @ingroup JobQueue
  */
