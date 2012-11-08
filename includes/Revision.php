@@ -124,7 +124,7 @@ class Revision implements IDBAccessObject {
 	 * Returns null if no such revision can be found.
 	 *
 	 * $flags include:
-	 *      Revision::READ_LATEST  : Select the data from the master
+	 *      Revision::READ_LATEST  : Select the data from the master (since 1.20)
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
 	 * @param $revId Integer
