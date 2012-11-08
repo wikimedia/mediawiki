@@ -914,6 +914,15 @@ Bug 6200: Preformatted in <blockquote>
 </p>
 !! end
 
+!! test
+</pre> inside nowiki
+!! input
+<nowiki></pre></nowiki>
+!! result
+<p>&lt;/pre&gt;
+</p>
+!! end
+
 !!test
 Templates: Pre: 1a. Templates that break a line should suppress <pre>
 !!input
