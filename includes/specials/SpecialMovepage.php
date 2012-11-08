@@ -464,8 +464,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
 		}
 
-		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ) );
-
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'pagemovedsub' ) );
 
@@ -483,6 +481,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addHTML( $this->msg( 'movepage-moved' )->rawParams( $oldLink,
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );
 		$out->addWikiMsg( $msgName );
+
+		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ) );
 
 		# Now we move extra pages we've been asked to move: subpages and talk
 		# pages.  First, if the old page or the new page is a talk page, we
