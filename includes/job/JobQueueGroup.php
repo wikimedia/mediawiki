@@ -133,6 +133,17 @@ class JobQueueGroup {
 	}
 
 	/**
+	 * Register the "root job" of a given job into the queue for de-duplication.
+	 * This should only be called right *after* all the new jobs have been inserted.
+	 *
+	 * @param $job Job
+	 * @return bool
+	 */
+	public function deduplicateRootJob( Job $job ) {
+		return $this->get( $job->getType() )->deduplicateRootJob( $job );
+	}
+
+	/**
 	 * Get the list of queue types
 	 *
 	 * @return array List of strings

@@ -179,6 +179,49 @@ abstract class Job {
 	}
 
 	/**
+	 * Subclasses may need to override this to make duplication detection work
+	 *
+	 * @return Array
+	 */
+	public function getDeduplicationFields() {
+		return array_diff_key(
+			array(
+				'type'      => $this->getType(),
+				'namespace' => $this->getTitle()->getNamespace(),
+				'title'     => $this->getTitle()->getDBkey(),
+				'params'    => $this->getParams(),
+			),
+			// Identical jobs with different "root" jobs should count as duplicates
+			array( 'rootJobSignature', 'rootJobTimestamp' )
+		);
+	}
+
+	/**
+	 * @param $key string A key that identifies the task
+	 * @return Array
+	 */
+	public static function newRootJobParams( $key ) {
+		return array(
+			'rootJobSignature' => sha1( $key ),
+			'rootJobTimestamp' => wfTimestamp( TS_MW )
+		);
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getRootJobParams() {
+		return array(
+			'rootJobSignature' => isset( $this->params['rootJobSignature'] )
+				? $this->params['rootJobSignature']
+				: null,
+			'rootJobTimestamp' => isset( $this->params['rootJobTimestamp'] )
+				? $this->params['rootJobTimestamp']
+				: null
+		);
+	}
+
+	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
 	 * @deprecated 1.21
