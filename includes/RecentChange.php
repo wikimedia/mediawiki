@@ -125,12 +125,46 @@ class RecentChange {
 	 */
 	public static function newFromConds( $conds, $fname = __METHOD__ ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'recentchanges', '*', $conds, $fname );
+		$row = $dbr->selectRow( 'recentchanges', self::selectFields(), $conds, $fname );
 		if ( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Return the list of recentchanges fields that should be selected to create
+	 * a new recentchanges object.
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'rc_id',
+			'rc_timestamp',
+			'rc_cur_time',
+			'rc_user',
+			'rc_user_text',
+			'rc_namespace',
+			'rc_title',
+			'rc_comment',
+			'rc_minor',
+			'rc_bot',
+			'rc_new',
+			'rc_cur_id',
+			'rc_this_oldid',
+			'rc_last_oldid',
+			'rc_type',
+			'rc_patrolled',
+			'rc_ip',
+			'rc_old_len',
+			'rc_new_len',
+			'rc_deleted',
+			'rc_logid',
+			'rc_log_type',
+			'rc_log_action',
+			'rc_params',
+		);
 	}
 
 	# Accessors
