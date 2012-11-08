@@ -1,6 +1,6 @@
 <?php
 /**
- * Degenerate job that does nothing.
+ * No-op job that does nothing.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,38 +22,37 @@
  */
 
 /**
- * Degenerate job that does nothing, but can optionally replace itself
- * in the queue and/or sleep for a brief time period. These can be used
- * to represent "no-op" jobs or test lock contention and performance.
+ * No-op job that does nothing. Used to represent duplicates.
  *
  * @ingroup JobQueue
  */
-class NullJob extends Job {
+final class DuplicateJob extends Job {
 	/**
-	 * @param $title Title (can be anything)
-	 * @param $params Array: job parameters (lives, usleep)
+	 * Callers should use DuplicateJob::newFromJob() instead
+	 *
+	 * @param $title Title
+	 * @param $params Array: job parameters
 	 * @param $id Integer: job id
 	 */
 	function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'null', $title, $params, $id );
-		if ( !isset( $this->params['lives'] ) ) {
-			$this->params['lives'] = 1;
-		}
-		if ( !isset( $this->params['usleep'] ) ) {
-			$this->params['usleep'] = 0;
-		}
+		parent::__construct( 'duplicate', $title, $params, $id );
+	}
+
+	/**
+	 * Get a duplicate no-op version of a job
+	 *
+	 * @param Job $job
+	 * @return Job
+	 */
+	public static function newFromJob( Job $job ) {
+		$job = new self( $job->getTitle(), $job->getParams(), $job->getId() );
+		$job->command = $job->getType();
+		$job->params  = is_array( $job->params ) ? $job->params : array();
+		$job->params  = array( 'isDuplicate' => true ) + $job->params;
+		return $job;
 	}
 
 	public function run() {
-		if ( $this->params['usleep'] > 0 ) {
-			usleep( $this->params['usleep'] );
-		}
-		if ( $this->params['lives'] > 1 ) {
-			$params = $this->params;
-			$params['lives']--;
-			$job = new self( $this->title, $params );
-			$job->insert();
-		}
 		return true;
 	}
 }
