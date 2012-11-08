@@ -178,6 +178,59 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doCreateInternal()
+	 * @return Status
+	 */
+	protected function doCreateInternal( array $params ) {
+		$status = Status::newGood();
+
+		$dest = $this->resolveToFSPath( $params['dst'] );
+		if ( $dest === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+			return $status;
+		}
+
+		if ( !empty( $params['async'] ) ) { // deferred
+			$tempFile = TempFSFile::factory( 'create_', 'tmp' );
+			if ( !$tempFile ) {
+				$status->fatal( 'backend-fail-create', $params['dst'] );
+				return $status;
+			}
+			$bytes = file_put_contents( $tempFile->getPath(), $params['content'] );
+			if ( $bytes === false ) {
+				$status->fatal( 'backend-fail-create', $params['dst'] );
+				return $status;
+			}
+			$cmd = implode( ' ', array(
+				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
+				wfEscapeShellArg( $this->cleanPathSlashes( $tempFile->getPath() ) ),
+				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
+			) );
+			$status->value = new FSFileOpHandle( $this, $params, 'Create', $cmd, $dest );
+			$tempFile->bind( $status->value );
+		} else { // immediate write
+			$bytes = file_put_contents( $dest, $params['content'] );
+			if ( $bytes === false ) {
+				$status->fatal( 'backend-fail-create', $params['dst'] );
+				return $status;
+			}
+			$this->chmod( $dest );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @see FSFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseCreate( $errors, Status $status, array $params, $cmd ) {
+		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
+			$status->fatal( 'backend-fail-create', $params['dst'] );
+			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
+		}
+	}
+
+	/**
 	 * @see FileBackendStore::doStoreInternal()
 	 * @return Status
 	 */
@@ -382,59 +435,6 @@ class FSFileBackend extends FileBackendStore {
 	protected function _getResponseDelete( $errors, Status $status, array $params, $cmd ) {
 		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 			$status->fatal( 'backend-fail-delete', $params['src'] );
-			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
-		}
-	}
-
-	/**
-	 * @see FileBackendStore::doCreateInternal()
-	 * @return Status
-	 */
-	protected function doCreateInternal( array $params ) {
-		$status = Status::newGood();
-
-		$dest = $this->resolveToFSPath( $params['dst'] );
-		if ( $dest === null ) {
-			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
-			return $status;
-		}
-
-		if ( !empty( $params['async'] ) ) { // deferred
-			$tempFile = TempFSFile::factory( 'create_', 'tmp' );
-			if ( !$tempFile ) {
-				$status->fatal( 'backend-fail-create', $params['dst'] );
-				return $status;
-			}
-			$bytes = file_put_contents( $tempFile->getPath(), $params['content'] );
-			if ( $bytes === false ) {
-				$status->fatal( 'backend-fail-create', $params['dst'] );
-				return $status;
-			}
-			$cmd = implode( ' ', array(
-				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
-				wfEscapeShellArg( $this->cleanPathSlashes( $tempFile->getPath() ) ),
-				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
-			) );
-			$status->value = new FSFileOpHandle( $this, $params, 'Create', $cmd, $dest );
-			$tempFile->bind( $status->value );
-		} else { // immediate write
-			$bytes = file_put_contents( $dest, $params['content'] );
-			if ( $bytes === false ) {
-				$status->fatal( 'backend-fail-create', $params['dst'] );
-				return $status;
-			}
-			$this->chmod( $dest );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * @see FSFileBackend::doExecuteOpHandlesInternal()
-	 */
-	protected function _getResponseCreate( $errors, Status $status, array $params, $cmd ) {
-		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
-			$status->fatal( 'backend-fail-create', $params['dst'] );
 			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
 		}
 	}

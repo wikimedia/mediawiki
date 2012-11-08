@@ -460,6 +460,66 @@ abstract class FileOp {
 }
 
 /**
+ * Create a file in the backend with the given content.
+ * Parameters for this operation are outlined in FileBackend::doOperations().
+ */
+class CreateFileOp extends FileOp {
+	protected function allowedParams() {
+		return array( array( 'content', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'disposition' ) );
+	}
+
+	protected function doPrecheck( array &$predicates ) {
+		$status = Status::newGood();
+		// Check if the source data is too big
+		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-maxsize',
+				$this->params['dst'], $this->backend->maxFileSizeInternal() );
+			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+			return $status;
+		// Check if a file can be placed/changed at the destination
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
+			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+			return $status;
+		}
+		// Check if destination file exists
+		$status->merge( $this->precheckDestExistence( $predicates ) );
+		if ( $status->isOK() ) {
+			// Update file existence predicates
+			$predicates['exists'][$this->params['dst']] = true;
+			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+		}
+		return $status; // safe to call attempt()
+	}
+
+	/**
+	 * @return Status
+	 */
+	protected function doAttempt() {
+		if ( !$this->destSameAsSource ) {
+			// Create the file at the destination
+			return $this->backend->createInternal( $this->setFlags( $this->params ) );
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * @return bool|String
+	 */
+	protected function getSourceSha1Base36() {
+		return wfBaseConvert( sha1( $this->params['content'] ), 16, 36, 31 );
+	}
+
+	/**
+	 * @return array
+	 */
+	public function storagePathsChanged() {
+		return array( $this->params['dst'] );
+	}
+}
+
+/**
  * Store a file into the backend from a file on the file system.
  * Parameters for this operation are outlined in FileBackend::doOperations().
  */
@@ -528,66 +588,6 @@ class StoreFileOp extends FileOp {
 		return $hash;
 	}
 
-	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
-	}
-}
-
-/**
- * Create a file in the backend with the given content.
- * Parameters for this operation are outlined in FileBackend::doOperations().
- */
-class CreateFileOp extends FileOp {
-	protected function allowedParams() {
-		return array( array( 'content', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition' ) );
-	}
-
-	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
-		// Check if the source data is too big
-		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
-			$status->fatal( 'backend-fail-maxsize',
-				$this->params['dst'], $this->backend->maxFileSizeInternal() );
-			$status->fatal( 'backend-fail-create', $this->params['dst'] );
-			return $status;
-		// Check if a file can be placed/changed at the destination
-		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
-			$status->fatal( 'backend-fail-create', $this->params['dst'] );
-			return $status;
-		}
-		// Check if destination file exists
-		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( $status->isOK() ) {
-			// Update file existence predicates
-			$predicates['exists'][$this->params['dst']] = true;
-			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
-		}
-		return $status; // safe to call attempt()
-	}
-
-	/**
-	 * @return Status
-	 */
-	protected function doAttempt() {
-		if ( !$this->destSameAsSource ) {
-			// Create the file at the destination
-			return $this->backend->createInternal( $this->setFlags( $this->params ) );
-		}
-		return Status::newGood();
-	}
-
-	/**
-	 * @return bool|String
-	 */
-	protected function getSourceSha1Base36() {
-		return wfBaseConvert( sha1( $this->params['content'] ), 16, 36, 31 );
-	}
-
-	/**
-	 * @return array
-	 */
 	public function storagePathsChanged() {
 		return array( $this->params['dst'] );
 	}
