@@ -653,6 +653,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/job/jobs
 	'DoubleRedirectJob' => 'includes/job/jobs/DoubleRedirectJob.php',
+	'DuplicateJob' => 'includes/job/jobs/DuplicateJob.php',
 	'EmaillingJob' => 'includes/job/jobs/EmaillingJob.php',
 	'EnotifNotifyJob' => 'includes/job/jobs/EnotifNotifyJob.php',
 	'HTMLCacheUpdateJob' => 'includes/job/jobs/HTMLCacheUpdateJob.php',
