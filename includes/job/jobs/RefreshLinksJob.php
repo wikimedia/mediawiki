@@ -69,6 +69,24 @@ class RefreshLinksJob extends Job {
 		return true;
 	}
 
+	/**
+	 * @return Array
+	 */
+	public function getDeduplicationInfo() {
+		$info = parent::getDeduplicationInfo();
+		// Don't let highly unique "masterPos" values ruin duplicate detection
+		if ( is_array( $info['params'] ) ) {
+			unset( $info['params']['masterPos'] );
+		}
+		return $info;
+	}
+
+	/**
+	 * @param $title Title
+	 * @param $revision Revision
+	 * @param $fname string
+	 * @return void
+	 */
 	public static function runForTitleInternal( Title $title, Revision $revision, $fname ) {
 		wfProfileIn( $fname );
 		$content = $revision->getContent( Revision::RAW );
@@ -94,8 +112,6 @@ class RefreshLinksJob extends Job {
  * @ingroup JobQueue
  */
 class RefreshLinksJob2 extends Job {
-	const MAX_TITLES_RUN = 10;
-
 	function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'refreshLinks2', $title, $params, $id );
 	}
@@ -105,6 +121,8 @@ class RefreshLinksJob2 extends Job {
 	 * @return boolean success
 	 */
 	function run() {
+		global $wgUpdateRowsPerJob;
+
 		wfProfileIn( __METHOD__ );
 
 		$linkCache = LinkCache::singleton();
@@ -114,16 +132,16 @@ class RefreshLinksJob2 extends Job {
 			$this->error = "refreshLinks2: Invalid title";
 			wfProfileOut( __METHOD__ );
 			return false;
-		} elseif ( !isset( $this->params['start'] ) || !isset( $this->params['end'] ) ) {
-			$this->error = "refreshLinks2: Invalid params";
-			wfProfileOut( __METHOD__ );
-			return false;
 		}
 
 		// Back compat for pre-r94435 jobs
 		$table = isset( $this->params['table'] ) ? $this->params['table'] : 'templatelinks';
 
-		// Avoid slave lag when fetching templates
+		// Avoid slave lag when fetching templates.
+		// When the outermost job is run, we know that the caller that enqueued it must have
+		// committed the relevant changes to the DB by now. At that point, record the master
+		// position and pass it along as the job recursively breaks into smaller range jobs.
+		// Hopefully, when leaf jobs are popped, the slaves will have reached that position.
 		if ( isset( $this->params['masterPos'] ) ) {
 			$masterPos = $this->params['masterPos'];
 		} elseif ( wfGetLB()->getServerCount() > 1  ) {
@@ -132,73 +150,77 @@ class RefreshLinksJob2 extends Job {
 			$masterPos = false;
 		}
 
-		$titles = $this->title->getBacklinkCache()->getLinks(
-			$table, $this->params['start'], $this->params['end'] );
+		$tbc  = $this->title->getBacklinkCache();
 
-		if ( $titles->count() > self::MAX_TITLES_RUN ) {
-			# We don't want to parse too many pages per job as it can starve other jobs.
-			# If there are too many pages to parse, break this up into smaller jobs. By passing
-			# in the master position here we can cut down on the time spent waiting for slaves to
-			# catch up by the runners handling these jobs since time will have passed between now
-			# and when they pop these jobs off the queue.
-			$start = 0; // batch start
-			$end   = 0; // batch end
-			$bsize = 0; // batch size
-			$first = true; // first of batch
-			$jobs  = array();
-			foreach ( $titles as $title ) {
-				$start = $first ? $title->getArticleId() : $start;
-				$end   = $title->getArticleId();
-				$first = false;
-				if ( ++$bsize >= self::MAX_TITLES_RUN ) {
-					$jobs[] = new RefreshLinksJob2( $this->title, array(
-						'table'     => $table,
-						'start'     => $start,
-						'end'       => $end,
-						'masterPos' => $masterPos
-					) );
-					$first = true;
-					$start = $end = $bsize = 0;
-				}
-			}
-			if ( $bsize > 0 ) { // group remaining pages into a job
-				$jobs[] = new RefreshLinksJob2( $this->title, array(
-					'table'     => $table,
-					'start'     => $start,
-					'end'       => $end,
-					'masterPos' => $masterPos
-				) );
-			}
-			Job::batchInsert( $jobs );
-		} elseif ( php_sapi_name() != 'cli' ) {
-			# Not suitable for page load triggered job running!
-			# Gracefully switch to refreshLinks jobs if this happens.
-			$jobs = array();
-			foreach ( $titles as $title ) {
-				$jobs[] = new RefreshLinksJob( $title, array( 'masterPos' => $masterPos ) );
-			}
-			Job::batchInsert( $jobs );
+		$jobs = array(); // jobs to insert
+		if ( isset( $this->params['start'] ) && isset( $this->params['end'] ) ) {
+			# This is a partition job to trigger the insertion of leaf jobs...
+			$jobs = array_merge( $jobs, $this->getSingleTitleJobs( $table, $masterPos ) );
 		} else {
-			# Wait for the DB of the current/next slave DB handle to catch up to the master.
-			# This way, we get the correct page_latest for templates or files that just changed
-			# milliseconds ago, having triggered this job to begin with.
-			if ( $masterPos ) {
-				wfGetLB()->waitFor( $masterPos );
-			}
-			# Re-parse each page that transcludes this page and update their tracking links...
-			foreach ( $titles as $title ) {
-				$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-				if ( !$revision ) {
-					$this->error = 'refreshLinks: Article not found "' .
-						$title->getPrefixedDBkey() . '"';
-					continue; // skip this page
+			# This is a base job to trigger the insertion of partitioned jobs...
+			if ( $tbc->getNumLinks( $table ) <= $wgUpdateRowsPerJob ) {
+				# Just directly insert the single per-title jobs
+				$jobs = array_merge( $jobs, $this->getSingleTitleJobs( $table, $masterPos ) );
+			} else {
+				# Insert the partition jobs to make per-title jobs
+				foreach ( $tbc->partition( $table, $wgUpdateRowsPerJob ) as $batch ) {
+					list( $start, $end ) = $batch;
+					$jobs[] = new RefreshLinksJob2( $this->title,
+						array(
+							'table'            => $table,
+							'start'            => $start,
+							'end'              => $end,
+							'masterPos'        => $masterPos,
+						) + $this->getRootJobParams() // carry over information for de-duplication
+					);
 				}
-				RefreshLinksJob::runForTitleInternal( $title, $revision, __METHOD__ );
-				wfWaitForSlaves();
 			}
+		}
+
+		if ( count( $jobs ) ) {
+			JobQueueGroup::singleton()->push( $jobs );
 		}
 
 		wfProfileOut( __METHOD__ );
 		return true;
+	}
+
+	/**
+	 * @param $table string
+	 * @param $masterPos mixed
+	 * @return Array
+	 */
+	protected function getSingleTitleJobs( $table, $masterPos ) {
+		# The "start"/"end" fields are not set for the base jobs
+		$start  = isset( $this->params['start'] ) ? $this->params['start'] : false;
+		$end    = isset( $this->params['end'] ) ? $this->params['end'] : false;
+		$titles = $this->title->getBacklinkCache()->getLinks( $table, $start, $end );
+		# Convert into single page refresh links jobs.
+		# This handles well when in sapi mode and is useful in any case for job
+		# de-duplication. If many pages use template A, and that template itself
+		# uses template B, then an edit to both will create many duplicate jobs.
+		# Roughly speaking, for each page, one of the "RefreshLinksJob" jobs will
+		# get run first, and when it does, it will remove the duplicates. Of course,
+		# one page could have its job popped when the other page's job is still
+		# buried within the logic of a refreshLinks2 job.
+		$jobs = array();
+		foreach ( $titles as $title ) {
+			$jobs[] = new RefreshLinksJob( $title,
+				array( 'masterPos' => $masterPos ) + $this->getRootJobParams()
+			); // carry over information for de-duplication
+		}
+		return $jobs;
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getDeduplicationInfo() {
+		$info = parent::getDeduplicationInfo();
+		// Don't let highly unique "masterPos" values ruin duplicate detection
+		if ( is_array( $info['params'] ) ) {
+			unset( $info['params']['masterPos'] );
+		}
+		return $info;
 	}
 }
