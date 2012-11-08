@@ -3273,6 +3273,15 @@ language=ln
 !! end
 
 !! test
+Broken br tag sanitization
+!! input
+</br>
+!! result
+<p>&lt;/br&gt;
+</p>
+!! end
+
+!! test
 Incorrecly removing closing slashes from correctly formed XHTML
 !! input
 <br style="clear:both;" />
