@@ -69,6 +69,14 @@ class RefreshLinksJob extends Job {
 		return true;
 	}
 
+	/**
+	 * @return Array
+	 */
+	public function getDeduplicationFields() {
+		// Don't let highly unique "masterPos" values ruin duplicate detection
+		return array_diff( parent::getDeduplicationFields(), array( 'masterPos' ) );
+	}
+
 	public static function runForTitleInternal( Title $title, Revision $revision, $fname ) {
 		global $wgContLang;
 
@@ -96,6 +104,7 @@ class RefreshLinksJob2 extends Job {
 
 	function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'refreshLinks2', $title, $params, $id );
+		$this->removeDuplicates = true; // job is expensive
 	}
 
 	/**
@@ -120,6 +129,13 @@ class RefreshLinksJob2 extends Job {
 
 		// Back compat for pre-r94435 jobs
 		$table = isset( $this->params['table'] ) ? $this->params['table'] : 'templatelinks';
+		// Back compat for pre-c31efff1d01c9bd29d04ad05b58fec3b68bcbdbf jobs
+		$rootJobSignature = isset( $this->params['rootJobSignature'] )
+			? $this->params['rootJobSignature']
+			: null;
+		$rootJobTimestamp = isset( $this->params['rootJobTimestamp'] )
+			? $this->params['rootJobTimestamp']
+			: null;
 
 		// Avoid slave lag when fetching templates
 		if ( isset( $this->params['masterPos'] ) ) {
@@ -150,10 +166,14 @@ class RefreshLinksJob2 extends Job {
 				$first = false;
 				if ( ++$bsize >= self::MAX_TITLES_RUN ) {
 					$jobs[] = new RefreshLinksJob2( $this->title, array(
-						'table'     => $table,
-						'start'     => $start,
-						'end'       => $end,
-						'masterPos' => $masterPos
+						'table'            => $table,
+						// Align the page ID ranges so that duplication detection works
+						'start'            => $start,
+						'end'              => $end,
+						'masterPos'        => $masterPos,
+						// Carry over information for de-duplication
+						'rootJobSignature' => $rootJobSignature,
+						'rootJobTimestamp' => $rootJobTimestamp
 					) );
 					$first = true;
 					$start = $end = $bsize = 0;
@@ -161,42 +181,46 @@ class RefreshLinksJob2 extends Job {
 			}
 			if ( $bsize > 0 ) { // group remaining pages into a job
 				$jobs[] = new RefreshLinksJob2( $this->title, array(
-					'table'     => $table,
-					'start'     => $start,
-					'end'       => $end,
-					'masterPos' => $masterPos
+					'table'            => $table,
+					'start'            => $start,
+					'end'              => $end,
+					'masterPos'        => $masterPos,
+					// Carry over information for de-duplication
+					'rootJobSignature' => $rootJobSignature,
+					'rootJobTimestamp' => $rootJobTimestamp
 				) );
 			}
-			Job::batchInsert( $jobs );
-		} elseif ( php_sapi_name() != 'cli' ) {
-			# Not suitable for page load triggered job running!
-			# Gracefully switch to refreshLinks jobs if this happens.
+			JobQueueGroup::singleton()->push( $jobs );
+		} else {
+			# Convert into single page refresh links jobs.
+			# This handles well when in sapi mode and is useful in any case for job
+			# de-duplication. If many pages use template A, and that template itself
+			# uses template B, then an edit to both will create many duplicate jobs.
+			# Roughly speaking, for each page, one of the "RefreshLinksJob" jobs will
+			# get run first, and when it does, it will remove the duplicates. Of course,
+			# one page could have its job popped when the other page's job is still
+			# buried within the logic of a refreshLinks2 job.
 			$jobs = array();
 			foreach ( $titles as $title ) {
-				$jobs[] = new RefreshLinksJob( $title, array( 'masterPos' => $masterPos ) );
+				$jobs[] = new RefreshLinksJob( $title, array(
+					'masterPos'        => $masterPos,
+					// Carry over information for de-duplication
+					'rootJobSignature' => $rootJobSignature,
+					'rootJobTimestamp' => $rootJobTimestamp
+				) );
 			}
-			Job::batchInsert( $jobs );
-		} else {
-			# Wait for the DB of the current/next slave DB handle to catch up to the master.
-			# This way, we get the correct page_latest for templates or files that just changed
-			# milliseconds ago, having triggered this job to begin with.
-			if ( $masterPos ) {
-				wfGetLB()->waitFor( $masterPos );
-			}
-			# Re-parse each page that transcludes this page and update their tracking links...
-			foreach ( $titles as $title ) {
-				$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-				if ( !$revision ) {
-					$this->error = 'refreshLinks: Article not found "' .
-						$title->getPrefixedDBkey() . '"';
-					continue; // skip this page
-				}
-				RefreshLinksJob::runForTitleInternal( $title, $revision, __METHOD__ );
-				wfWaitForSlaves();
-			}
+			JobQueueGroup::singleton()->push( $jobs );
 		}
 
 		wfProfileOut( __METHOD__ );
 		return true;
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getDeduplicationFields() {
+		// Don't let highly unique "masterPos" values ruin duplicate detection
+		return array_diff( parent::getDeduplicationFields(), array( 'masterPos' ) );
 	}
 }

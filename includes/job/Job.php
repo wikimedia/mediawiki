@@ -179,6 +179,85 @@ abstract class Job {
 	}
 
 	/**
+	 * Subclasses may need to override this to make duplication detection work
+	 *
+	 * @return Array
+	 */
+	public function getDeduplicationFields() {
+		return array_diff_key(
+			array(
+				'type'      => $this->getType(),
+				'namespace' => $this->getTitle()->getNamespace(),
+				'title'     => $this->getTitle()->getDBkey(),
+				'params'    => $this->getParams(),
+			),
+			// Identical jobs with different "root" jobs should count as duplicates
+			array( 'rootJobSignature', 'rootJobTimestamp' )
+		);
+	}
+
+	/**
+	 * @param $key string A key that identifies the task
+	 * @return Array
+	 */
+	public static function newRootJobParams( $key ) {
+		return array(
+			'rootJobSignature' => sha1( $key ),
+			'rootJobTimestamp' => wfTimestamp( TS_MW )
+		);
+	}
+
+	/**
+	 * Re-align the start/end parameter of a list of jobs ordered by range partition.
+	 * This will make sure that none of the ranges overlap with each other. This is
+	 * useful for avoiding trivial range differences that can break job de-duplication.
+	 *
+	 * @param $jobs array
+	 * @param string $sfield
+	 * @param string $efield
+	 * @param integer $align
+	 * @return Array List of the new (start,end) tuples
+	 */
+	public function alignRangePartitions( array &$jobs, $sfield, $efield, $align ) {
+		$ranges = array();
+		$lastEnd = 0; // previous range ending
+		foreach ( $jobs as $job ) {
+			if ( !isset( $job->params[$sfield] ) || !isset( $job->params[$efield] ) ) {
+				throw new MWException( "Job parameters do not include start/end field." );
+			}
+			if ( $align > 1 ) {
+				if ( $lastEnd === false ) {
+					throw new MWException( "Expected end of partition ranges." );
+				}
+				if ( $job->params[$sfield] !== false ) {
+					// Align the start parameter to $align
+					$job->params[$sfield] -= ( $job->params[$sfield] % $align );
+					// Don't overlap with the last partition range end
+					$job->params[$sfield] = max( $lastEnd + 1, $job->params[$sfield] );
+				}
+				if ( $job->params[$efield] !== false ) {
+					// Partition range end must be greater then or equal to start
+					if ( $job->params[$sfield] !== false ) {
+						$job->params[$efield] = max( $job->params[$sfield], $job->params[$efield] );
+					}
+					// Align the end parameter to $align...
+					$remainder = ( $job->params[$efield] + 1 ) % $align;
+					if ( $remainder != 0 ) {
+						$job->params[$efield] += ( $align - $remainder );
+					}
+				}
+				$lastEnd = $job->params[$efield];
+			}
+			if ( $job->params[$efield] && $job->params[$efield] < $job->params[$sfield] ) {
+				throw new MWException( "Job start/end parameters are in the wrong order." );
+			}
+			$ranges[] = array( $job->params[$sfield], $job->params[$efield] );
+		}
+		#var_dump( $ranges ); moo();
+		return $ranges;
+	}
+
+	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
 	 * @deprecated 1.21

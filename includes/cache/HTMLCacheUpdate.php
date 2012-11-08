@@ -73,15 +73,26 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 
 	public function doUpdate() {
 		if ( $this->mStart || $this->mEnd ) {
+			# This is hit when a job is actually performed
 			$this->doPartialUpdate();
-			return;
+		} else {
+			# This is hit when the jobs have to be inserted
+			$this->doFullUpdate();
 		}
+	}
+
+	/**
+	 * Update all of the backlinks
+	 */
+	protected function doFullUpdate() {
+		$rootJobParams = Job::newRootJobParams( // "overall" html cache purge job info
+			"htmlCacheUpdate:{$this->mTable}:{$this->mTitle->getPrefixedText()}" );
 
 		# Get an estimate of the number of rows from the BacklinkCache
 		$numRows = $this->mCache->getNumLinks( $this->mTable );
 		if ( $numRows > $this->mRowsPerJob * 2 ) {
 			# Do fast cached partition
-			$this->insertJobs();
+			$this->insertJobs( $rootJobParams );
 		} else {
 			# Get the links from the DB
 			$titleArray = $this->mCache->getLinks( $this->mTable );
@@ -89,9 +100,9 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			if ( $titleArray->count() > $this->mRowsPerJob * 2 ) {
 				# Not correct, do accurate partition
 				wfDebug( __METHOD__.": row count estimate was incorrect, repartitioning\n" );
-				$this->insertJobsFromTitles( $titleArray );
+				$this->insertJobsFromTitles( $titleArray, $rootJobParams );
 			} else {
-				$this->invalidateTitles( $titleArray );
+				$this->invalidateTitles( $titleArray ); // just do the query
 			}
 		}
 	}
@@ -118,8 +129,10 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	 * Queue the resulting jobs.
 	 *
 	 * @param $titleArray array
+	 * @param $rootJobParams array
+	 * @rerturn void
 	 */
-	protected function insertJobsFromTitles( $titleArray ) {
+	protected function insertJobsFromTitles( $titleArray, $rootJobParams = array() ) {
 		# We make subpartitions in the sense that the start of the first job
 		# will be the start of the parent partition, and the end of the last
 		# job will be the end of the parent partition.
@@ -136,7 +149,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 					'table' => $this->mTable,
 					'start' => $start,
 					'end' => $id - 1
-				);
+				) + $rootJobParams;
 				$jobs[] = new HTMLCacheUpdateJob( $this->mTitle, $params );
 				$start = $id;
 				$numTitles = 0;
@@ -147,8 +160,8 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		$params = array(
 			'table' => $this->mTable,
 			'start' => $start,
-			'end' => $this->mEnd
-		);
+			'end'   => $this->mEnd
+		) + $rootJobParams;
 		$jobs[] = new HTMLCacheUpdateJob( $this->mTitle, $params );
 		wfDebug( __METHOD__.": repartitioning into " . count( $jobs ) . " jobs\n" );
 
@@ -161,27 +174,38 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		Job::batchInsert( $jobs );
+		Job::alignRangePartitions( $jobs, 'start', 'end', 100 );
+		JobQueueGroup::singleton()->push( $jobs );
+		if ( $rootJobParams ) {
+			JobQueueGroup::singleton()->deduplicateRootJob( reset( $jobs ) );
+		}
 	}
 
 	/**
-	 * @return mixed
+	 * @param $rootJobParams array
+	 * @return void
 	 */
-	protected function insertJobs() {
+	protected function insertJobs( $rootJobParams = array() ) {
 		$batches = $this->mCache->partition( $this->mTable, $this->mRowsPerJob );
-		if ( !$batches ) {
-			return;
+		if ( !count( $batches ) ) {
+			return; // no jobs to insert
 		}
+
 		$jobs = array();
 		foreach ( $batches as $batch ) {
 			$params = array(
 				'table' => $this->mTable,
 				'start' => $batch[0],
-				'end' => $batch[1],
-			);
+				'end'   => $batch[1],
+			) + $rootJobParams;
 			$jobs[] = new HTMLCacheUpdateJob( $this->mTitle, $params );
 		}
-		Job::batchInsert( $jobs );
+
+		Job::alignRangePartitions( $jobs, 'start', 'end', min( 100, $this->mRowsPerJob ) );
+		JobQueueGroup::singleton()->push( $jobs );
+		if ( $rootJobParams ) {
+			JobQueueGroup::singleton()->deduplicateRootJob( reset( $jobs ) );
+		}
 	}
 
 	/**
