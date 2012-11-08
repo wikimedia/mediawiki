@@ -10331,6 +10331,29 @@ Bug 529: Uncovered bullet
 
 !! end
 
+# Plain MediaWiki does not remove empty lists, but tidy actually does.
+# Templates in Wikipedia rely on this behavior, as tidy has always been
+# enabled there. These tests are normally run *without* tidy, so specify the
+# full output here. 
+# To test realistic parsing behavior, apply a tidy-like transformation to both
+# the expected output and your parser's output.
+!! test
+Bug 529: Uncovered bullet leaving empty list, normally removed by tidy
+!! input
+******* Foo {{bullet}}
+!! result
+<ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li> Foo 
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+</li><li> Bar
+</li></ul>
+
+!! end
+
 !! test
 Bug 529: Uncovered table already at line-start
 !! input
