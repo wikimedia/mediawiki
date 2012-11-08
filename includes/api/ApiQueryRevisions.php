@@ -261,7 +261,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// rvstart and rvstartid when that is supplied.
 			if ( !is_null( $params['continue'] ) ) {
 				$params['startid'] = $params['continue'];
-				unset( $params['start'] );
+				$params['start'] = null;
 			}
 
 			// This code makes an assumption that sorting by rev_id and rev_timestamp produces
