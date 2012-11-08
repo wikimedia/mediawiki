@@ -95,6 +95,13 @@ Template:attr_str
 {{{1}}}="{{{2}}}"
 !! endarticle
 
+!! article
+Template:table_attribs
+!! text
+<noinclude>
+|</noinclude>style="color: red"| Foo
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -2725,6 +2732,19 @@ Indented table markup mixed with indented pre content (proposed in bug 6200)
 
 !! end
 
+!! test
+Template-generated table cell attributes and cell content
+!! input
+{|
+|{{table_attribs}}
+|}
+!! result
+<table>
+<tr>
+<td style="color: red"> Foo
+</td></tr></table>
+
+!! end
 
 ###
 ### Internal links
