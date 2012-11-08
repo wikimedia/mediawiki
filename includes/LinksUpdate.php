@@ -238,26 +238,20 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	function queueRecursiveJobs() {
-		global $wgUpdateRowsPerJob;
 		wfProfileIn( __METHOD__ );
 
-		$cache = $this->mTitle->getBacklinkCache();
-		$batches = $cache->partition( 'templatelinks', $wgUpdateRowsPerJob );
-		if ( !$batches ) {
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-		$jobs = array();
-		foreach ( $batches as $batch ) {
-			list( $start, $end ) = $batch;
-			$params = array(
-				'table' => 'templatelinks',
-				'start' => $start,
-				'end' => $end,
+		if ( $this->mTitle->getBacklinkCache()->hasLinks( 'templatelinks' ) ) {
+			$job = new RefreshLinksJob2(
+				$this->mTitle,
+				array(
+					'table' => 'templatelinks',
+				) + Job::newRootJobParams( // "overall" refresh links job info
+					"refreshlinks:templatelinks:{$this->mTitle->getPrefixedText()}"
+				)
 			);
-			$jobs[] = new RefreshLinksJob2( $this->mTitle, $params );
+			JobQueueGroup::singleton()->push( $job );
+			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
-		Job::batchInsert( $jobs );
 
 		wfProfileOut( __METHOD__ );
 	}

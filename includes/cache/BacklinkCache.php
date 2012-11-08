@@ -298,22 +298,32 @@ class BacklinkCache {
 	}
 
 	/**
+	 * Check if there are any backlinks
+	 * @param $table String
+	 * @return bool
+	 */
+	public function hasLinks( $table ) {
+		return ( $this->getNumLinks( $table, 1 ) > 0 );
+	}
+
+	/**
 	 * Get the approximate number of backlinks
 	 * @param $table String
+	 * @param $max integer Only count up to this many backlinks
 	 * @return integer
 	 */
-	public function getNumLinks( $table ) {
+	public function getNumLinks( $table, $max = INF ) {
 		global $wgMemc;
 
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {
 			$entry = reset( $this->partitionCache[$table] );
-			return $entry['numRows'];
+			return min( $max, $entry['numRows'] );
 		}
 
 		// 2) ... then try full result cache ...
 		if ( isset( $this->fullResultCache[$table] ) ) {
-			return $this->fullResultCache[$table]->numRows();
+			return min( $max, $this->fullResultCache[$table]->numRows() );
 		}
 
 		$memcKey = wfMemcKey( 'numbacklinks', md5( $this->title->getPrefixedDBkey() ), $table );
@@ -321,12 +331,22 @@ class BacklinkCache {
 		// 3) ... fallback to memcached ...
 		$count = $wgMemc->get( $memcKey );
 		if ( $count ) {
-			return $count;
+			return min( $max, $count );
 		}
 
 		// 4) fetch from the database ...
-		$count = $this->getLinks( $table )->count();
-		$wgMemc->set( $memcKey, $count, self::CACHE_EXPIRY );
+		if ( is_infinite( $max ) ) { // full count
+			$count = $this->getLinks( $table )->count();
+			$wgMemc->set( $memcKey, $count, self::CACHE_EXPIRY );
+		} else { // with limit
+			$count = $this->getDB()->select(
+				array( $table, 'page' ),
+				'1',
+				$this->getConditions( $table ),
+				__METHOD__,
+				array( 'LIMIT' => $max )
+			)->numRows();
+		}
 
 		return $count;
 	}
