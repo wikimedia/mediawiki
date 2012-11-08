@@ -429,8 +429,8 @@ $messages = array(
 'newwindow' => '(mở cửa sổ mới)',
 'cancel' => 'Hủy bỏ',
 'moredotdotdot' => 'Thêm nữa…',
-'mypage' => 'Trang của tôi',
-'mytalk' => 'Thảo luận với tôi',
+'mypage' => 'Trang cá nhân',
+'mytalk' => 'Thảo luận',
 'anontalk' => 'Thảo luận với IP này',
 'navigation' => 'Xem nhanh',
 'and' => '&#32;và',
@@ -2294,7 +2294,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 
 # Watchlist
 'watchlist' => 'Trang tôi theo dõi',
-'mywatchlist' => 'Trang tôi theo dõi',
+'mywatchlist' => 'Trang theo dõi',
 'watchlistfor2' => 'Của $1 $2',
 'nowatchlist' => 'Danh sách theo dõi của bạn không có gì.',
 'watchlistanontext' => 'Xin hãy $1 để xem hay sửa đổi các trang được theo dõi.',
@@ -2553,7 +2553,7 @@ $1',
 # Contributions
 'contributions' => 'Đóng góp của thành viên',
 'contributions-title' => 'Đóng góp của thành viên $1',
-'mycontris' => 'Đóng góp của tôi',
+'mycontris' => 'Đóng góp',
 'contribsub2' => 'Của $1 ($2)',
 'nocontribs' => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
 'uctop' => '(mới nhất)',

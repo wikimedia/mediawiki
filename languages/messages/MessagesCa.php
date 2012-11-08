@@ -2509,8 +2509,8 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipb-confirm' => 'Confirma el blocatge',
 'badipaddress' => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub' => "S'ha blocat amb èxit",
-'blockipsuccesstext' => "[[Special:Contributions/$1|$1]] ha estat {{GENDER:$1|bloquejat|bloquejada|bloquejat/da}}.<br />
-Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloqueigs.",
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] ha estat {{GENDER:$1|blocat|blocada}}.<br />
+Vegeu la [[Special:BlockList|llista de bloqueigs]] per revisar-los.',
 'ipb-blockingself' => 'Esteu a punt de blocar-vos a vós mateix! Esteu segurs de voler-ho fer?',
 'ipb-confirmhideuser' => "Esteu a punt de bloquejar un usuari que està marcat amb l'opció «amaga l'usuari». Això suprimirà el seu nom a totes les llistes i registres. Esteu segurs de voler-ho fer?",
 'ipb-edit-dropdown' => 'Edita les raons per a blocar',

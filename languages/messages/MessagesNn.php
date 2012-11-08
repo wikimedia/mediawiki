@@ -972,7 +972,8 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userinvalidcssjstitle' => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
-'previewnote' => "'''Hugs at dette berre er ei førehandsvising.''' Endringane dine er ikkje lagra enno!",
+'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
+Endringane dine er ikkje lagra enno!",
 'continue-editing' => 'Gå til endringsområdet',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview' => "'''Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
@@ -2762,7 +2763,7 @@ I desse falla lyt du flytta eller fletta sida manuelt, om ynskeleg.",
 'delete_and_move' => 'Slett og flytt',
 'delete_and_move_text' => '== Sletting påkravd ==
 
-Målsida «[[:$1]]» finst alt. Vil du sletta henne for å gjeva rom for flytting?',
+Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
 'delete_and_move_reason' => 'Sletta for å gje rom for flytting frå «[[$1]]»',
 'selfmove' => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',

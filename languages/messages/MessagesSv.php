@@ -3848,6 +3848,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'version-license' => 'Licens',
 'version-poweredby-credits' => "Den här wikin drivs av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andra',
+'version-credits-summary' => 'Vi skulle vilja tacka följande personer för deras bidrag till [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki är fri programvara; du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation; antingen version 2 av licensen, eller (om du önskar) någon senare version. 
 
 MediaWiki distribueras i hopp om att det ska vara användbart, men UTAN NÅGON GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR ETT VISST SYFTE. Se GNU General Public License för fler detaljer. 

@@ -3395,22 +3395,22 @@ Che a controla l'adrëssa che a l'ha dane, mai che a-i fusso dij caràter nen v�
 'confirmemail_needlogin' => 'A venta $1 për confermé soa adrëssa ëd pòsta eletrònica.',
 'confirmemail_success' => "Soa adrëssa a l'é stàita confermà, adess a peul [[Special:UserLogin|rintré ant ël sistema]] e i-j auguroma da fessla bin ant la wiki!",
 'confirmemail_loggedin' => "Motobin mersì. Soa adrëssa ëd pòsta eletrònica adess a l'é confermà.",
-'confirmemail_error' => "Cheich-còs a l'é andà mal ën salvand soa conferma.",
+'confirmemail_error' => "Cheicòs a l'é andà mal ën salvand soa conferma.",
 'confirmemail_subject' => "Conferma dl'adrëssa postal da 'nt la {{SITENAME}}",
-'confirmemail_body' => "Cheidun, a l'é belfé che a sia stait pròpe chiel (ò chila), da 'nt l'adrëssa IP \$1,
-a l'ha doertà un cont utent \"\$2\" ansima a {{SITENAME}}, lassand-ne st'adrëssa ëd pòsta eletrònica-sì.
+'confirmemail_body' => "Cheidun, a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP $1,
+a l'ha duvertà un cont utent «$2» ansima a {{SITENAME}}, lassand-ne st'adrëssa ëd pòsta eletrònica-sì.
 
 Për confermé che ës cont a l'é da bon sò e për ativé
-le possibilità corelà a la pòsta eletrònica ansima a {{SITENAME}}, che a deurba st'adrëssa-sì andrinta a sò programa ëd navigassion (browser):
+le possibilità gropà a la pòsta eletrònica ansima a {{SITENAME}}, che a deurba st'adrëssa-sì andrinta a sò programa ëd navigassion:
 
-\$3
+$3
 
-Se a fussa *nen* stait chiel a deurbe ël cont, anlora che a vada daré a sto colegament-sì
-për scanselé la conferma ëd l'adrëssa e-mail:
+Se a fussa *nen* stàit chiel a deurbe ël cont, anlora che a vada dapress a la liura sì-sota
+për scancelé la conferma ëd l'adrëssa ëd pòsta eletrònica:
 
-\$5
+$5
 
-Cost còdes ëd conferma a l'é bon fin-a al \$4.",
+Cost còdes ëd conferma a l'é bon fin-a al $4.",
 'confirmemail_body_changed' => "Cheidun, a l'é belfé ch'a sia chiel, da l'adrëssa IP \$1,
 a l'ha cangià l'adrëssa ëd pòsta eletrònica dël cont \"\$2\" con st'adrëssa-sì dzora a {{SITENAME}}.
 

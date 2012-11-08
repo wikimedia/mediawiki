@@ -357,7 +357,7 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Cayê vurnayışi de terzê nuştışi:',
-'editfont-default' => 'Cıgeyrayoğo hesıbyaye',
+'editfont-default' => 'Cıgeyrayoğo hesabiyaye',
 'editfont-monospace' => 'Terzê nusteyê sabıtcagırewtoği',
 'editfont-sansserif' => 'Babetê Sans-serifi',
 'editfont-serif' => 'Babetê serifi',
@@ -442,8 +442,8 @@ $messages = array(
 'newwindow' => '(pençereyê newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
-'mypage' => 'Pela mı',
-'mytalk' => 'Werênayışê mı',
+'mypage' => 'Per',
+'mytalk' => 'Werênayış',
 'anontalk' => 'Pela werênayışê nê IPy',
 'navigation' => 'Geyrayış',
 'and' => '&#32;u',
@@ -461,7 +461,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Mesel Vırazê',
 'vector-action-delete' => 'Besterne',
-'vector-action-move' => 'Berdış',
+'vector-action-move' => 'Berê',
 'vector-action-protect' => 'Bıpawe',
 'vector-action-undelete' => 'Esterıtışi peyser bıgê',
 'vector-action-unprotect' => 'Starkerdışi bıvurne',
@@ -1369,7 +1369,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 
 # Preferences page
 'preferences' => 'Tercihi',
-'mypreferences' => 'Tercihê mı',
+'mypreferences' => 'Tercihi',
 'prefs-edits' => 'Amarê vurnayışan:',
 'prefsnologin' => 'Şıma cıkewtış nêvıraşto',
 'prefsnologintext' => 'Şıma gani be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cikewte]</span> ke tercihanê karberi xo eyar bıkerê.',
@@ -2315,7 +2315,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 
 # Watchlist
 'watchlist' => 'Lista mına seyrkerdışi',
-'mywatchlist' => 'Lista mına seyrkerdışi',
+'mywatchlist' => 'Lista seyr kerdışi',
 'watchlistfor2' => 'Qandê $1 ($2)',
 'nowatchlist' => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext' => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
@@ -2573,7 +2573,7 @@ $1',
 # Contributions
 'contributions' => 'İştiraqê karberi',
 'contributions-title' => 'Dekerdenê karber de $1',
-'mycontris' => 'Cıkerdışê mı',
+'mycontris' => 'Cıkerdışi',
 'contribsub2' => 'Qandê $1 ($2)',
 'nocontribs' => 'Ena kriteriya de vurnayîş çini yo.',
 'uctop' => '(top)',

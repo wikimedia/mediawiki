@@ -232,7 +232,7 @@ $messages = array(
 'cancel' => 'Kanselaron',
 'moredotdotdot' => 'Kadagdagan...',
 'mypage' => 'An sakóng pahina',
-'mytalk' => 'An sakóng olay',
+'mytalk' => 'Orolayan',
 'anontalk' => 'Olay para kaining IP address',
 'navigation' => 'Nabigasyon',
 'and' => '&#32;asin',
@@ -1173,7 +1173,7 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 
 # Preferences page
 'preferences' => 'Mga kabòtan',
-'mypreferences' => 'Mga kabòtan ko',
+'mypreferences' => 'Mga Kamuyahan ko',
 'prefs-edits' => 'Bilang kan mga hirá:',
 'prefsnologin' => 'Dai nakalaog',
 'prefsnologintext' => 'Ika dapat na magin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nakalaog na]</span> tanganing tuytuyon an mga kabotan nin paragamit.',
@@ -2105,7 +2105,7 @@ An e-surat na adres na saimong ilalaog sa [[Special:Preferences|saimong paragami
 
 # Watchlist
 'watchlist' => 'Pigbabantayan ko',
-'mywatchlist' => 'Babantáyan ko',
+'mywatchlist' => 'Bantay-listahan',
 'watchlistfor2' => 'Para ki $1 $2',
 'nowatchlist' => 'Mayo ka man na mga bagay saimong lista nin pigbabantayan.',
 'watchlistanontext' => 'Mag $1 tabi para mahiling o maghira nin mga bagay saimong lista nin mga pigbabantayan.',
@@ -2367,7 +2367,7 @@ $1",
 # Contributions
 'contributions' => 'Mga kontribusyon kan parágamit',
 'contributions-title' => 'Mga kontribusyon kan paragamit para sa $1',
-'mycontris' => 'Mga ambág ko',
+'mycontris' => 'Mga Kaarambagan',
 'contribsub2' => 'Para sa $1 ($2)',
 'nocontribs' => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.',
 'uctop' => '(alituktok)',
@@ -2408,7 +2408,7 @@ An pinakahuring entrada sa talaan nin pagbara nakahaya sa ibaba bilang reperensi
 'whatlinkshere-hideredirs' => '$1 mga panukdong otro',
 'whatlinkshere-hidetrans' => '$1 kabaling-binalyuhan',
 'whatlinkshere-hidelinks' => '$1 mga kasugpon',
-'whatlinkshere-hideimages' => '$1 mga kasugpon kan imahe',
+'whatlinkshere-hideimages' => '$1 mga kasugpon nin mga sagunson',
 'whatlinkshere-filters' => 'Mga pansarà',
 
 # Block/unblock
