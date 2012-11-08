@@ -1042,6 +1042,34 @@ Templates: Pre: 1f: Wrapping should be based on expanded content
 </pre>
 !!end
 
+!! test
+Templates: Strip whitespace from named parameters, but not positional ones
+!! input
+{{echo|
+ foo}}
+
+{{echo|
+* foo}}
+
+{{echo| 1 =
+ foo}}
+
+{{echo| 1 =
+* foo}}
+!! result
+<pre>foo
+</pre>
+<p><br />
+</p>
+<ul><li> foo
+</li></ul>
+<p>foo
+</p>
+<ul><li> foo
+</li></ul>
+
+!! end
+
 ###
 ### Parsoid-centric tests for testing RT edge cases for pre
 ###
