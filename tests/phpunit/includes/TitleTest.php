@@ -126,11 +126,11 @@ class TitleTest extends MediaWikiTestCase {
 		# - wgDefaultLanguageVariant
 		# - Optional message
 		return array(
-			array( 'fr', 'Main_page', 'fr', 'fr', false ),
-			array( 'es', 'Main_page', 'es', 'zh-tw', false ),
-			array( 'zh', 'Main_page', 'zh', 'zh-tw', false ),
+			array( 'fr', 'Help:I_need_somebody', 'fr', 'fr', false ),
+			array( 'es', 'Help:I_need_somebody', 'es', 'zh-tw', false ),
+			array( 'zh', 'Help:I_need_somebody', 'zh', 'zh-tw', false ),
 
-			array( 'es',    'Main_page',                 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es',    'Help:I_need_somebody',      'es', 'zh-tw', 'zh-cn' ),
 			array( 'es',    'MediaWiki:About',           'es', 'zh-tw', 'zh-cn' ),
 			array( 'es',    'MediaWiki:About/',          'es', 'zh-tw', 'zh-cn' ),
 			array( 'de',    'MediaWiki:About/de',        'es', 'zh-tw', 'zh-cn' ),
@@ -139,7 +139,7 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'en',    'User:JohnDoe/Common.js',    'es', 'zh-tw', 'zh-cn' ),
 			array( 'en',    'User:JohnDoe/Monobook.css', 'es', 'zh-tw', 'zh-cn' ),
 
-			array( 'zh-cn', 'Main_page',                 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-cn', 'Help:I_need_somebody',      'zh', 'zh-tw', 'zh-cn' ),
 			array( 'zh',    'MediaWiki:About',           'zh', 'zh-tw', 'zh-cn' ),
 			array( 'zh',    'MediaWiki:About/',          'zh', 'zh-tw', 'zh-cn' ),
 			array( 'de',    'MediaWiki:About/de',        'zh', 'zh-tw', 'zh-cn' ),
