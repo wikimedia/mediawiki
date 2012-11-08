@@ -2205,6 +2205,15 @@ http:/example.com
 !! end
 
 !! test
+Bracketed external links with template-generated invalid target
+!! input
+[{{echo|http:/example.com}} title]
+!! result
+<p>[http:/example.com title]
+</p>
+!! end
+
+!! test
 Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
 !! input
 ''[http://example.com text'']
