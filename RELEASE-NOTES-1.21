@@ -67,6 +67,8 @@ production.
 * (bug 41990) Fix regression: API edit with redirect=true and lacking
   starttimestamp and basetimestamp should not cause an edit conflict.
 * (bug 41706) EditPage: Preloaded page should be converted if possible and needed.
+* (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
+  actually sorted.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt

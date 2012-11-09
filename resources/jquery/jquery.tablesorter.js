@@ -545,7 +545,8 @@
 					// Declare and cache.
 					var $document, $headers, cache, config, sortOrder,
 						$table = $( table ),
-						shiftDown = 0;
+						shiftDown = 0,
+						firstTime = true;
 
 					// Quit if no tbody
 					if ( !table.tBodies ) {
@@ -589,26 +590,27 @@
 					// performance improvements in some browsers.
 					cacheRegexs();
 
-					// Legacy fix of .sortbottoms
-					// Wrap them inside inside a tfoot (because that's what they actually want to be) &
-					// and put the <tfoot> at the end of the <table>
-					var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
-					if ( $sortbottoms.length ) {
-						var $tfoot = $table.children( 'tfoot' );
-						if ( $tfoot.length ) {
-							$tfoot.eq(0).prepend( $sortbottoms );
-						} else {
-							$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
+					function setupForFirstSort() {
+						firstTime = false;
+
+						// Legacy fix of .sortbottoms
+						// Wrap them inside inside a tfoot (because that's what they actually want to be) &
+						// and put the <tfoot> at the end of the <table>
+						var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
+						if ( $sortbottoms.length ) {
+							var $tfoot = $table.children( 'tfoot' );
+							if ( $tfoot.length ) {
+								$tfoot.eq(0).prepend( $sortbottoms );
+							} else {
+								$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
+							}
 						}
-					}
 
-					explodeRowspans( $table );
+						explodeRowspans( $table );
 
-					// try to auto detect column type, and store in tables config
-					table.config.parsers = buildParserCache( table, $headers );
-
-					// initially build the cache for the tbody cells (to be able to sort initially)
-					cache = buildCache( table );
+						// try to auto detect column type, and store in tables config
+						table.config.parsers = buildParserCache( table, $headers );
+					};
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
@@ -617,6 +619,10 @@
 							// The user clicked on a link inside a table header
 							// Do nothing and let the default link click action continue
 							return true;
+						}
+
+						if ( firstTime ) {
+							setupForFirstSort();
 						}
 
 						// Build the cache for the tbody cells
@@ -697,6 +703,10 @@
 					 */
 					$table.data( 'tablesorter' ).sort = function( sortList ) {
 
+						if ( firstTime ) {
+							setupForFirstSort();
+						}
+
 						if ( sortList === undefined ) {
 							sortList = config.sortList;
 						} else if ( sortList.length > 0 ) {
@@ -715,7 +725,7 @@
 
 					// sort initially
 					if ( config.sortList.length > 0 ) {
-						explodeRowspans( $table );
+						setupForFirstSort();
 						config.sortList = convertSortList( config.sortList );
 						$table.data( 'tablesorter' ).sort();
 					}
