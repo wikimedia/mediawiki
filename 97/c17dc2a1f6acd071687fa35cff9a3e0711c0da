@@ -1,0 +1,9 @@
+Code-Review+2: Tim Starling <tstarling@wikimedia.org>
+Verified+1: Tim Starling <tstarling@wikimedia.org>
+Code-Review+1: Hashar <hashar@free.fr>
+Verified+1: jenkins-bot
+Submitted-by: Tim Starling <tstarling@wikimedia.org>
+Submitted-at: Fri, 09 Nov 2012 06:33:10 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/28492
+Project: mediawiki/core
+Branch: refs/heads/chinese-collation
