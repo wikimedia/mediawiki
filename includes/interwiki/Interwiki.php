@@ -70,9 +70,11 @@ class Interwiki {
 			return self::$smCache[$prefix];
 		}
 		global $wgInterwikiCache;
+		$iw = false;
 		if( $wgInterwikiCache ) {
 			$iw = Interwiki::getInterwikiCached( $prefix );
-		} else {
+		}
+		if ( !$iw ) {
 			$iw = Interwiki::load( $prefix );
 			if( !$iw ) {
 				$iw = false;
@@ -97,15 +99,16 @@ class Interwiki {
 	protected static function getInterwikiCached( $prefix ) {
 		$value = self::getInterwikiCacheEntry( $prefix );
 
-		$s = new Interwiki( $prefix );
-		if ( $value != '' ) {
-			// Split values
-			list( $local, $url ) = explode( ' ', $value, 2 );
-			$s->mURL = $url;
-			$s->mLocal = (int)$local;
-		} else {
-			$s = false;
+		if ( $value == '' ) {
+			return false;
 		}
+
+		$s = new Interwiki( $prefix );
+
+		// Split values
+		list( $local, $url ) = explode( ' ', $value, 2 );
+		$s->mURL = $url;
+		$s->mLocal = (int)$local;
 		return $s;
 	}
 
