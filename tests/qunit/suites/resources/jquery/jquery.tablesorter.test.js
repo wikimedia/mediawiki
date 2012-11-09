@@ -393,6 +393,25 @@
 		}
 	);
 
+	QUnit.test( 'Rowspan not exploded on init', 1, function ( assert ) {
+		var $table = tableCreate( header, planets );
+
+		// Modify the table to have a multiple-row-spanning cell:
+		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
+		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
+		// - Set rowspan for 2nd cell of 3rd row to 3.
+		//   This covers the removed cell in the 4th and 5th row.
+		$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
+
+		$table.tablesorter();
+
+		assert.equal(
+			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan' ),
+			3,
+			'Rowspan not exploded'
+		);
+	});
+
 	var planetsRowspan = [ [ 'Earth', '6051.8' ], jupiter, [ 'Mars', '6051.8' ], mercury, saturn, venus ];
 	var planetsRowspanII = [ jupiter, mercury, saturn, venus, [ 'Venus', '6371.0' ], [ 'Venus', '3390.0' ] ];
 
@@ -537,6 +556,7 @@
 			'</table>'
 		);
 		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
 
 		assert.equal(
 			$table.data( 'tablesorter' ).config.parsers[0].id,
