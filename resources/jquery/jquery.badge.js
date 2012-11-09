@@ -41,10 +41,9 @@
 				$badge.find( '.mw-badge-content' ).text( text );
 			} else {
 				// Otherwise, create a new badge with the specified text and style
-				div = document.createElement( 'div' );
-				div.className = 'mw-badge mw-badge-' + ( inline ? 'inline' : 'overlay' );
-				div.innerHTML = '<span class="mw-badge-content">' + text + '</span>';
-				$( div ).appendTo( this );
+				$badge = $( '<div class="mw-badge mw-badge-' + ( inline ? 'inline' : 'overlay' ) + '"></div>' )
+					.append( $( '<span class="mw-badge-content"></span>' ).text ( text ) )
+					.appendTo( this );
 			}
 		} else {
 			$badge.remove();
