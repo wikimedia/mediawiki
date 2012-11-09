@@ -44,6 +44,7 @@
 			div = document.createElement( 'div' );
 			div.className = 'mw-badge mw-badge-' + ( inline ? 'inline' : 'overlay' );
 			div.innerHTML = '<span class="mw-badge-content">' + text + '</span>';
+			$( div ).appendTo( this );
 		} else {
 			$badge.remove();
 		}
