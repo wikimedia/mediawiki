@@ -83,7 +83,7 @@ $messages = array(
 
 'underline-always' => 'Кезээде',
 'underline-never' => 'Кажан-даа',
-'underline-default' => 'Веб-браузерниң ниити үнези',
+'underline-default' => 'Кештиң азы веб-браузерниң ниити үнези',
 
 # Font style option in Special:Preferences
 'editfont-default' => 'Веб-браузерниң ниити үнези',
@@ -158,8 +158,8 @@ $messages = array(
 'newwindow' => '(чаа көзенээ ажыытынар)',
 'cancel' => 'Соксаары',
 'moredotdotdot' => 'Артык...',
-'mypage' => 'Мээң арыным',
-'mytalk' => 'Мээң чугаам',
+'mypage' => 'Арын',
+'mytalk' => 'Чугаа',
 'anontalk' => 'Бо ИП-адрестиң чугаазы',
 'navigation' => 'Навигация',
 'and' => '&#32;болгаш',
@@ -331,6 +331,7 @@ $messages = array(
 'viewsource' => 'Дөзүн көөрү',
 'actionthrottled' => 'Шеглээн дүрген',
 'sqlhidden' => '(SQL айтырыгны чажырган)',
+'exception-nologin' => 'Кирбес',
 
 # Login and logout pages
 'welcomecreation' => '== Кирип моорлаңар, $1! ==
@@ -386,6 +387,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'resetpass-temp-password' => 'Түр чажыт сөс:',
 
 # Special:PasswordReset
+'passwordreset' => 'Чажыт сөстү дүжүрү',
 'passwordreset-legend' => 'Чажыт атты дүжүр',
 'passwordreset-username' => 'Aжыглакчының ады:',
 'passwordreset-domain' => 'Домен:',
@@ -547,6 +549,7 @@ Please check if you want to create/edit this page.',
 'searchprofile-everything-tooltip' => 'Шупту арыннардан дилээри (сумележиишкиннерден база)',
 'searchprofile-advanced-tooltip' => 'Айыткан аттар делгемнеринден дилээри',
 'search-result-size' => '$1 ({{PLURAL:$2|$2 сөс}})',
+'search-result-category-size' => '{{PLURAL:$1|1 кежигүн|$1 кежигүн}} ({{PLURAL:$2|1 aдаккы бөлүк|$2 aдаккы бөлүк}}, {{PLURAL:$3|1 файл|$3 файл}})',
 'search-redirect' => '($1-н шиглелге)',
 'search-section' => '(«$1» деп салбыр)',
 'search-suggest' => 'Силер «$1» деп бодадыңар чадавас',
@@ -561,7 +564,7 @@ Please check if you want to create/edit this page.',
 
 # Preferences page
 'preferences' => 'Шилилгелер',
-'mypreferences' => 'Мээң шилилгелерим',
+'mypreferences' => 'Шилилгелер',
 'prefs-edits' => 'Өскерлиишкиннериңерниң саны:',
 'changepassword' => 'Чажыт сөстү өскертири',
 'prefs-skin' => 'Кеш',
@@ -898,7 +901,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # Watchlist
 'watchlist' => 'Мээң хайгаарал даңзым',
-'mywatchlist' => 'Мээң хайгаарал даңзым',
+'mywatchlist' => 'Хайгаарал даңзы',
 'watchlistfor2' => '$1, силерге $2',
 'nowatchlist' => 'Силерниң хайгаарал даңзыңар куруг.',
 'watchnologin' => 'Кирбес',
@@ -965,7 +968,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 # Contributions
 'contributions' => 'Ажыглакчыниң салыышкыннары',
 'contributions-title' => '«$1» деп ажыглакчының салыышкыннары',
-'mycontris' => 'Мээң салыышкыннарым',
+'mycontris' => 'Салыышкыннар',
 'contribsub2' => '$1 ($2)',
 'uctop' => '(баш)',
 'month' => 'Айдан:',
@@ -996,7 +999,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'whatlinkshere-hideredirs' => '$1-че шиглиглер',
 'whatlinkshere-hidetrans' => '$1 даңзылааннар',
 'whatlinkshere-hidelinks' => 'холбааларны $1',
-'whatlinkshere-hideimages' => 'Файлдың холбаалары $1',
+'whatlinkshere-hideimages' => 'Файлдың холбааларын $1',
 'whatlinkshere-filters' => 'Шүүрлер',
 
 # Block/unblock
@@ -1313,4 +1316,6 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'duration-decades' => '$1 {{PLURAL:$1|он хонук|он хонук}}',
 'duration-centuries' => '$1 {{PLURAL:$1|чүс чыл|чүс чыл}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'чугаалажыры',
 );

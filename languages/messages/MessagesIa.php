@@ -12,6 +12,7 @@
  * @author Malafaya
  * @author McDutchie
  * @author Reedy
+ * @author Yfdyh000
  * @author לערי ריינהארט
  */
 
@@ -1957,7 +1958,8 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-mostpopular' => 'Le paginas plus visitate',
 
 'disambiguations' => 'Paginas con ligamines a paginas de disambiguation',
-'disambiguationspage' => 'Template:Disambiguation',
+'disambiguationspage' => 'Template:Disambig
+Template:Disambiguation',
 'disambiguations-text' => "Le sequente paginas contine al minus un ligamine a un '''pagina de disambiguation'''.
 Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",

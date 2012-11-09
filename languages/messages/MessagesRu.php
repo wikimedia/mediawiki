@@ -2203,7 +2203,7 @@ $1',
 
 'withoutinterwiki' => 'Страницы без интервики-ссылок',
 'withoutinterwiki-summary' => 'Следующие страницы не имеют интервики-ссылок:',
-'withoutinterwiki-legend' => 'Приставка',
+'withoutinterwiki-legend' => 'Префикс',
 'withoutinterwiki-submit' => 'Показать',
 
 'fewestrevisions' => 'Страницы с наименьшим количеством версий',
@@ -3002,7 +3002,7 @@ $1',
 'allmessages-filter-unmodified' => 'Неизменённые',
 'allmessages-filter-all' => 'Все',
 'allmessages-filter-modified' => 'Изменённые',
-'allmessages-prefix' => 'Фильтр по приставке:',
+'allmessages-prefix' => 'Фильтр по префиксу:',
 'allmessages-language' => 'Язык:',
 'allmessages-filter-submit' => 'Перейти',
 

@@ -129,7 +129,7 @@ $messages = array(
 
 'underline-always' => 'எப்பொழுதும்',
 'underline-never' => 'எப்போதுமில்லை',
-'underline-default' => 'உலாவி இயல்பிருப்பு',
+'underline-default' => 'தோல் அல்லது உலாவி இயல்பிருப்பு',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'தொகுத்தல் பெட்டி எழுத்துரு:',
@@ -214,8 +214,8 @@ $messages = array(
 'newwindow' => '(புதிய சாளரத்துள் திறக்கும்)',
 'cancel' => 'சேமிக்காமல் திரும்பு',
 'moredotdotdot' => 'மேலும்...',
-'mypage' => 'எனது பக்கம்',
-'mytalk' => 'என் பேச்சு',
+'mypage' => 'பக்கம்',
+'mytalk' => 'பேச்சு',
 'anontalk' => 'இந்த ஐ.பி. முகவரிக்கான பேச்சு',
 'navigation' => 'வழிசெலுத்தல்',
 'and' => ' மற்றும்',
@@ -1103,7 +1103,7 @@ $1",
 
 # Preferences page
 'preferences' => 'விருப்பங்கள்',
-'mypreferences' => 'என் விருப்பத்தேர்வுகள்',
+'mypreferences' => 'விருப்பத்தேர்வுகள்',
 'prefs-edits' => 'தொகுப்புகளின் எண்ணிக்கை:',
 'prefsnologin' => 'புகுபதிகை செய்யப்படவில்லை',
 'prefsnologintext' => 'பயனர் விருப்பத்தேர்வுகளை அமைப்பதற்கு நீங்கள் <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} புகுபதிகை ]</span> செய்திருக்க வேண்டும்.',
@@ -1989,7 +1989,7 @@ $1',
 
 # Watchlist
 'watchlist' => 'என் கவனிப்புப் பட்டியல்',
-'mywatchlist' => 'என் கவனிப்புப் பட்டியல்',
+'mywatchlist' => 'கவனிப்புப் பட்டியல்',
 'watchlistfor2' => '$1 பயனரின் ($2)',
 'nowatchlist' => 'உங்களுடைய கவனிப்புப் பட்டியலில் ஒரு விடயமும் இல்லை.',
 'watchlistanontext' => 'உங்கள் கவனிப்புப் பட்டியலைப் பார்க்க அல்லது தொகுக்க அருள் கூர்ந்து $1 செய்யுங்கள்.',
@@ -2234,7 +2234,7 @@ $1',
 # Contributions
 'contributions' => 'பயனர் பங்களிப்புக்கள்',
 'contributions-title' => '$1 இற்கான பயனர் பங்களிப்புகள்',
-'mycontris' => 'என் பங்களிப்புக்கள்',
+'mycontris' => 'பங்களிப்புக்கள்',
 'contribsub2' => '$1 பயனரின் ($2)',
 'nocontribs' => 'இந்த நிபந்தனையுடன் ஒத்துப்போகும் வகையில் மாற்றங்களெதுவும் காணப்படவில்லை.',
 'uctop' => '(மேல்)',
@@ -2722,7 +2722,7 @@ $1',
 'pageinfo-watchers' => 'பார்வையாளர்கள் எண்ணிக்கை',
 'pageinfo-firstuser' => 'பக்க உருவாக்குநர்',
 'pageinfo-firsttime' => 'பக்கம் உருவாக்கப்பட்ட காலம்',
-'pageinfo-lastuser' => 'பிந்திய தொகுப்பாளர்',
+'pageinfo-lastuser' => 'அண்மைய தொகுப்பாளர்',
 'pageinfo-edits' => 'தொகுப்புகளின் எண்ணிக்கை:',
 'pageinfo-authors' => 'சாதகமான அம்சங்களை பெற்றிருக்கும் எழுத்தாளர்கள் எண்ணிக்கை',
 
