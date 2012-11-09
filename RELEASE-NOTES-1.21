@@ -61,6 +61,8 @@ production.
 * (bug 41793) Contribution links to users with 0 edits on Special:ListUsers didn't
   show up red.
 * (bug 41899) A PHP notice no longer occurs when using the "rvcontinue" API parameter.
+* (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
+  actually sorted.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
