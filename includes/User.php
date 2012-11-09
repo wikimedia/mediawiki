@@ -1102,10 +1102,10 @@ class User {
 		}
 
 		if ( is_array( $data ) ) {
-			if ( is_array( $data['user_groups'] ) ) {
+			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
 				$this->mGroups = $data['user_groups'];
 			}
-			if ( is_array( $data['user_properties'] ) ) {
+			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
 				$this->loadOptions( $data['user_properties'] );
 			}
 		}
@@ -2357,7 +2357,7 @@ class User {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
 			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights ) );
 			// Force reindexation of rights when a hook has unset one of them
-			$this->mRights = array_values( $this->mRights );
+			$this->mRights = array_values( array_unique( $this->mRights ) );
 		}
 		return $this->mRights;
 	}
@@ -2389,6 +2389,8 @@ class User {
 			) );
 			# Hook for additional groups
 			wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
+			// Force reindexation of groups when a hook has unset one of them
+			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
 			wfProfileOut( __METHOD__ );
 		}
 		return $this->mEffectiveGroups;
@@ -3979,7 +3981,7 @@ class User {
 		// Pull from a slave to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_SLAVE );
-		$count = $dbr->selectField(
+		$count = (int) $dbr->selectField(
 			'revision',
 			'COUNT(rev_user)',
 			array( 'rev_user' => $this->getId() ),

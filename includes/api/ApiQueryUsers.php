@@ -138,7 +138,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				if ( !isset( $userGroups ) ) {
 					$user = User::newFromRow( $row );
 				} else {
-					if ( !is_array( $userGroups[$row->user_name] ) ) {
+					if ( !isset( $userGroups[$row->user_name] ) || !is_array( $userGroups[$row->user_name] ) ) {
 						$userGroups[$row->user_name] = array();
 					}
 					$user = User::newFromRow( $row, array( 'user_groups' => $userGroups[$row->user_name] ) );
