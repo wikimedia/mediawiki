@@ -1497,7 +1497,8 @@ displayed
 &$transform: whether or not to expand variables and templates
 	in the message (bool)
 
-'OldChangesListRecentChangesLine': Customize entire Recent Changes line.
+'OldChangesListRecentChangesLine': Customize entire Recent Changes line,
+or return false to omit the line from RecentChanges and Watchlist special pages.
 &$changeslist: The OldChangesList instance.
 &$s: HTML of the form "<li>...</li>" containing one RC entry.
 &$rc: The RecentChange object.

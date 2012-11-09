@@ -525,8 +525,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				}
 				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 			}
-			$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
-			--$limit;
+
+			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
+			if ( $changeLine !== false ) {
+				$s .= $changeLine;
+				--$limit;
+			}
 		}
 		$s .= $list->endRecentChangesList();
 		$this->getOutput()->addHTML( $s );
