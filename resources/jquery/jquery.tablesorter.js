@@ -324,20 +324,14 @@
 		return false;
 	}
 
-	function setHeadersCss( table, $headers, list, css, msg ) {
+	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
 		// Remove all header information and reset titles to default message
 		$headers.removeClass( css[0] ).removeClass( css[1] ).attr( 'title', msg[1] );
 
-		var h = [];
-		$headers.each( function ( offset ) {
-			if ( !this.sortDisabled ) {
-				h[this.column] = $( this );
-			}
-		} );
-
-		var l = list.length;
-		for ( var i = 0; i < l; i++ ) {
-			h[ list[i][0] ].addClass( css[ list[i][1] ] ).attr( 'title', msg[ list[i][1] ] );
+		for ( var i = 0; i < list.length; i++ ) {
+			$headers.eq( columnToHeader[ list[i][0] ] )
+				.addClass( css[ list[i][1] ] )
+				.attr( 'title', msg[ list[i][1] ] );
 		}
 	}
 
@@ -544,6 +538,7 @@
 				return $tables.each( function ( i, table ) {
 					// Declare and cache.
 					var $document, $headers, cache, config, sortOrder,
+						headerToColumns, columnToHeader, colspanOffset,
 						$table = $( table ),
 						shiftDown = 0;
 
@@ -610,6 +605,22 @@
 					// initially build the cache for the tbody cells (to be able to sort initially)
 					cache = buildCache( table );
 
+					// as each header can span over multiple columns (using colspan=N),
+					// we have to bidirectionally map headers to their columns and columns to their headers
+					headerToColumns = [];
+					columnToHeader = [];
+					colspanOffset = 0;
+					$headers.each( function ( headerIndex ) {
+						var columns = [];
+						for ( var i = 0; i < this.colSpan; i++ ) {
+							columnToHeader[ colspanOffset + i ] = headerIndex;
+							columns.push( colspanOffset + i )
+						}
+
+						headerToColumns[ headerIndex ] = columns;
+						colspanOffset += this.colSpan;
+					} );
+
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
 					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
@@ -631,21 +642,25 @@
 						if ( !table.sortDisabled && totalRows > 0 ) {
 
 							// Cache jQuery object
-							var $cell = $( this );
-
-							// Get current column index
-							var i = this.column;
+							var $cell = $( this ), cell = this;
 
 							// Get current column sort order
 							this.order = this.count % 2;
 							this.count++;
 
-							// User only wants to sort on one column
+							// Get current column index
+							var columns = headerToColumns[this.column];
+							var newSortList = $.map( columns, function (c) {
+								// jQuery "helpfully" flattens the arrays...
+								return [[c, cell.order]];
+							});
+							// Index of first column belonging to this header
+							var i = columns[0];
+
+							// User only wants to sort on one column set
 							if ( !e[config.sortMultiSortKey] ) {
-								// Flush the sort list
-								config.sortList = [];
-								// Add column to sort list
-								config.sortList.push( [i, this.order] );
+								// Flush the sort list and add new columns
+								config.sortList = newSortList;
 
 							// Multi column sorting
 							} else {
@@ -662,13 +677,13 @@
 										}
 									}
 								} else {
-									// Add column to sort list array
-									config.sortList.push( [i, this.order] );
+									// Add columns to sort list array
+									config.sortList = config.sortList.concat( newSortList );
 								}
 							}
 
 							// Set CSS for headers
-							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg );
+							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, columnToHeader );
 							appendToTable(
 								$table[0], multisort( $table[0], config.sortList, cache )
 							);
@@ -707,7 +722,7 @@
 						cache = buildCache( table );
 
 						// set css for headers
-						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg );
+						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg, columnToHeader );
 
 						// sort the table and append it to the dom
 						appendToTable( table, multisort( table, sortList, cache ) );
