@@ -121,6 +121,9 @@ production.
 * (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
   structual equality of HTML (ignoring insignificant differences like
   quotmarks, order and whitespace in the attribute list).
+* Added &$allowAll argument to getUserPermissionsErrors and
+  getUserPermissionsErrorsExpensive hooks - it allows extensions to allow
+  some action even when normal MW permission checks deny it.
 
 === Bug fixes in 1.21 ===
 * (bug 42649) PHP Fatal error: Call to a member function isLocal() on a

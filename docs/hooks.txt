@@ -1212,10 +1212,13 @@ array( messagename, param1, param2, ... ). For consistency, error messages
 should be plain text with no special coloring, bolding, etc. to show that
 they're errors; presenting them properly to the user as errors is done by the
 caller.
+Also, if your extension wants to allow the action even when built-in MediaWiki
+permission checks deny it, set $allowAll to true and return false.
 $title: Title object being checked against
 $user : Current user object
 $action: Action being checked
-$result: User permissions error to add. If none, return true.
+&$result: User permissions error to add. If none, return true.
+&$allowAll: true allows the action even when built-in MW permission checks deny it.
 
 'getUserPermissionsErrorsExpensive': Equal to getUserPermissionsErrors, but is
 called only if expensive checks are enabled. Add a permissions error when
