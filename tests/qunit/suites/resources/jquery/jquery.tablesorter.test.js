@@ -255,6 +255,42 @@
 		);
 	} );
 
+	// Sorting with colspans
+	header = [ 'column1a' , 'column1b', 'column1c', 'column2' ];
+	var
+		aaa1 = [ 'A', 'A', 'A', '1' ],
+		aab5 = [ 'A', 'A', 'B', '5' ],
+		abc3 = [ 'A', 'B', 'C', '3' ],
+		bbc2 = [ 'B', 'B', 'C', '2' ],
+		caa4 = [ 'C', 'A', 'A', '4' ];
+	var initial = [ aab5, aaa1, abc3, bbc2, caa4 ];
+	tableTest( 'Sorting with colspanned headers: spanned column',
+		header,
+		initial,
+		[ aaa1, aab5, abc3, bbc2, caa4 ],
+		function ( $table ) {
+			// Make colspanned header for test
+			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
+			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+	tableTest( 'Sorting with colspanned headers: subsequent column',
+		header,
+		initial,
+		[ aaa1, bbc2, abc3, caa4, aab5 ],
+		function ( $table ) {
+			// Make colspanned header for test
+			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
+			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(1)' ).click();
+		}
+	);
+
 	// Regression tests!
 	tableTest(
 		'Bug 28775: German-style (dmy) short numeric dates',
