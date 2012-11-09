@@ -514,6 +514,19 @@ class SpecialPage {
 	}
 
 	/**
+	 * Is this page cached?
+	 * Expensive pages are cached or disabled in miser mode.
+	 * Used by QueryPage and subclasses, moved here so that
+	 * Special:SpecialPages can safely call it for all special pages.
+	 *
+	 * @return Boolean
+	 * @since 1.21
+	 */
+	public function isCached() {
+		return false;
+	}
+
+	/**
 	 * Can be overridden by subclasses with more complicated permissions
 	 * schemes.
 	 *
