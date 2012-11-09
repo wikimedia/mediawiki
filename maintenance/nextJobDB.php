@@ -48,7 +48,7 @@ class nextJobDB extends Maintenance {
 		// regenerate the cache. Use any available stale cache if another
 		// process is currently regenerating the pending DB information.
 		if ( !$pendingDbInfo || mt_rand( 0, 100 ) == 0 ) {
-			$lock = $wgMemc->add( 'jobqueue:dbs:v3:lock', 1 ); // lock
+			$lock = $wgMemc->add( 'jobqueue:dbs:v3:lock', 1, 1800 ); // lock
 			if ( $lock ) {
 				$pendingDbInfo = array(
 					'pendingDBs' => $this->getPendingDbs(),
