@@ -2782,6 +2782,13 @@ $wgFooterIcons = array(
 $wgUseCombinedLoginLink = false;
 
 /**
+ *  Appearance of user page and talk page labels in personal tools.
+ *  - true = combine links into a single label
+ *  - false = keep links in separate labels
+ */
+$wgVectorCombineUserTalk = false;
+
+/**
  * Search form look for Vector skin only.
  *  - true = use an icon search button
  *  - false = use Go & Search buttons
