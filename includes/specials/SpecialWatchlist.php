@@ -432,7 +432,10 @@ class SpecialWatchlist extends SpecialPage {
 				$rc->numberofWatchingusers = 0;
 			}
 
-			$s .= $list->recentChangesLine( $rc, $updated, $counter );
+			$changeLine = $list->recentChangesLine( $rc, $updated, $counter );
+			if ( $changeLine !== false ) {
+				$s .= $list->recentChangesLine( $rc, $updated, $counter );
+			}
 		}
 		$s .= $list->endRecentChangesList();
 
