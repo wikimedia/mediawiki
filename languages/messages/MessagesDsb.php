@@ -291,8 +291,8 @@ $messages = array(
 'newwindow' => '(se wótcynijo w nowem woknje)',
 'cancel' => 'Pśetergnuś',
 'moredotdotdot' => 'Wěcej…',
-'mypage' => 'Mój bok',
-'mytalk' => 'mója diskusija',
+'mypage' => 'Bok',
+'mytalk' => 'Diskusija',
 'anontalk' => 'Diskusija z toś teju IP',
 'navigation' => 'Nawigacija',
 'and' => '&#32;a',
@@ -1190,7 +1190,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 
 # Preferences page
 'preferences' => 'Nastajenja',
-'mypreferences' => 'nastajenja',
+'mypreferences' => 'Nastajenja',
 'prefs-edits' => 'Licba wobźěłanjow:',
 'prefsnologin' => 'Njejsy pśizjawjony',
 'prefsnologintext' => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
@@ -2119,7 +2119,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 
 # Watchlist
 'watchlist' => 'Wobglědowańka',
-'mywatchlist' => 'wobglědowańka',
+'mywatchlist' => 'Wobglědowańka',
 'watchlistfor2' => 'Za wužywarja $1 $2',
 'nowatchlist' => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext' => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
@@ -2368,7 +2368,7 @@ $1',
 # Contributions
 'contributions' => 'Wužywarske pśinoski',
 'contributions-title' => 'Wužywarske pśinoski wót $1',
-'mycontris' => 'móje pśinoski',
+'mycontris' => 'Pśinoski',
 'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Za toś te kriterije njejsu žedne změny se namakali.',
 'uctop' => '(aktualny)',

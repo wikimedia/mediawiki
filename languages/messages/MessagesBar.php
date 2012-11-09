@@ -1056,7 +1056,7 @@ Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listg
 'listgrouprights-group' => 'Gruppm',
 'listgrouprights-rights' => 'Rechte',
 'listgrouprights-helppage' => 'Help:Gruppmrechte',
-'listgrouprights-members' => '(Mitgliaderlisten)',
+'listgrouprights-members' => '(Mitgliedalistn)',
 'listgrouprights-addgroup' => 'Benutzer zua {{PLURAL:$2|derer Gruppm|dé Gruppm}} dazuadoah: $1',
 'listgrouprights-removegroup' => 'Benutzer aus {{PLURAL:$2|derer Gruppm|dé Gruppm}} entferner: $1',
 'listgrouprights-addgroup-all' => 'Benutzer zua olle Gruppm dazuadoah',

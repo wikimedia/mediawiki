@@ -1041,7 +1041,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 * '''Opera:''' vacía la caché en ''Herramientas → Preferencias''",
 'usercssyoucanpreview' => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo CSS antes de guardarlo.",
 'userjsyoucanpreview' => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo JS antes de guardarlo.",
-'usercsspreview' => "'''Recuerda que solo estás previsualizando tu CSS de usuario.'''
+'usercsspreview' => "'''Recuerda que sólo estás previsualizando tu CSS de usuario.'''
 '''¡Aún no se ha guardado!'''",
 'userjspreview' => "'''¡Recuerda que solo estás previsualizando tu JavaScript de usuario.'''
 '''¡Aún no se ha guardado!'''",
@@ -1049,7 +1049,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 '''¡Aún no se ha guardado!'''",
 'sitejspreview' => "'''Recuerda que sólo estás previsualizando este código JavaScript.'''
 '''¡Aún no se ha guardado!'''",
-'userinvalidcssjstitle' => "'''Aviso:''' No existe la skin «$1». Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/vector.css en vez de {{ns:user}}:Ejemplo/Vector.css.",
+'userinvalidcssjstitle' => "'''Aviso:''' No existe la piel «$1». Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/vector.css en vez de {{ns:user}}:Ejemplo/Vector.css.",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Recuerda que esto es solo una previsualización.'''
@@ -1193,8 +1193,8 @@ El motivo dado por $3 es ''$2''",
 'page_first' => 'primeras',
 'page_last' => 'últimas',
 'histlegend' => "Selección de diferencias: marca los selectores de las versiones a comparar y pulsa ''enter'' o el botón de abajo.<br />
-Leyenda: (act) = diferencias con la versión actual,
-(prev) = diferencias con la versión previa, M = edición menor",
+Leyenda: '''(act)''' = diferencias con la versión actual,
+'''(ant)''' = diferencias con la versión anterior, '''m''' = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
 'history-show-deleted' => 'Solo ediciones ocultadas',
 'histfirst' => 'Primeras',
@@ -1257,7 +1257,7 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-text' => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm' => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
-'revdelete-suppress-text' => "La herramienta de supresión '''sólo''' debería usarse en los siguientes casos:
+'revdelete-suppress-text' => "La herramienta de supresión '''solo''' debería usarse en los siguientes casos:
 * Información potencialmente injuriosa o calumniante.
 * Información personal inapropiada, tal como:
 *: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",

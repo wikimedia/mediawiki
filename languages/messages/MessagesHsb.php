@@ -286,8 +286,8 @@ $messages = array(
 'newwindow' => '(wočinja so w nowym woknje)',
 'cancel' => 'Přetorhnyć',
 'moredotdotdot' => 'Wjace…',
-'mypage' => 'Moja strona',
-'mytalk' => 'moja diskusija',
+'mypage' => 'Strona',
+'mytalk' => 'Diskusija',
 'anontalk' => 'Diskusijna strona tuteje IP.adresy',
 'navigation' => 'Nawigacija',
 'and' => '&#32;a',
@@ -1189,7 +1189,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 
 # Preferences page
 'preferences' => 'Nastajenja',
-'mypreferences' => 'nastajenja',
+'mypreferences' => 'Nastajenja',
 'prefs-edits' => 'Ličba změnow:',
 'prefsnologin' => 'Njepřizjewjeny',
 'prefsnologintext' => 'Dyrbiš <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} přizjewjeny]</span>  być, zo by móhł nastajenja postajić.',
@@ -2120,7 +2120,7 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 
 # Watchlist
 'watchlist' => 'wobkedźbowanki',
-'mywatchlist' => 'wobkedźbowanki',
+'mywatchlist' => 'Wobkedźbowanki',
 'watchlistfor2' => 'Za wužiwarja $1 $2',
 'nowatchlist' => 'Nimaš žane strony w swojich wobkedźbowankach.',
 'watchlistanontext' => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',
@@ -2372,7 +2372,7 @@ $1',
 # Contributions
 'contributions' => 'Přinoški wužiwarja',
 'contributions-title' => 'Wužiwarske přinoški wot „$1“',
-'mycontris' => 'moje přinoški',
+'mycontris' => 'Přinoški',
 'contribsub2' => 'za wužiwarja $1 ($2)',
 'nocontribs' => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
 'uctop' => '(aktualnje)',

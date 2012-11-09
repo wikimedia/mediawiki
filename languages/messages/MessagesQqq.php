@@ -347,8 +347,9 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
 'mypage' => "A text for the link to the user's user page in the links at the top of the page.",
-'mytalk' => 'Used as link title in "Personal tools" toolbar.',
-'mytalk-parenthetical' => 'When user page and talk combined into single label, link title for talk label',
+'mytalk' => 'In the personal urls page section - right upper corner.
+
+Used as link title in "Personal tools" toolbar.',
 'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 
@@ -5030,4 +5031,6 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
+# Unknown messages
+'mytalk-parenthetical' => 'When user page and talk combined into single label, link title for talk label',
 );

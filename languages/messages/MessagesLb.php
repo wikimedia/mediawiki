@@ -314,8 +314,8 @@ $messages = array(
 'newwindow' => '(geet an enger neier Fënster op)',
 'cancel' => 'Zréck',
 'moredotdotdot' => 'Méi …',
-'mypage' => 'Meng Säit',
-'mytalk' => 'Meng Diskussioun',
+'mypage' => 'Säit',
+'mytalk' => 'Diskussioun',
 'anontalk' => 'Diskussioun fir dës IP Adress',
 'navigation' => 'Navigatioun',
 'and' => '&#32;a(n)',
@@ -1226,7 +1226,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Preferences page
 'preferences' => 'Astellungen',
-'mypreferences' => 'Meng Astellungen',
+'mypreferences' => 'Astellungen',
 'prefs-edits' => 'Zuel vun den Ännerungen:',
 'prefsnologin' => 'Net ageloggt',
 'prefsnologintext' => 'Dir musst <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}ageloggt]</span> sinn, fir Är Astellungen änneren ze kënnen.',
@@ -2140,7 +2140,7 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 
 # Watchlist
 'watchlist' => 'Meng Iwwerwaachungslëscht',
-'mywatchlist' => 'Meng Iwwerwaachungslëscht',
+'mywatchlist' => 'Iwwerwaachungslëscht',
 'watchlistfor2' => 'Vum $1 $2',
 'nowatchlist' => 'Är Iwwerwaachungslëscht ass eidel.',
 'watchlistanontext' => "Dir musst $1 fir Säiten op ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
@@ -2402,7 +2402,7 @@ $1',
 # Contributions
 'contributions' => 'Kontributioune vum Benotzer',
 'contributions-title' => 'Kontributioune vum $1',
-'mycontris' => 'Meng Kontributiounen',
+'mycontris' => 'Kontributiounen',
 'contribsub2' => 'Fir $1 ($2)',
 'nocontribs' => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
 'uctop' => '(aktuell)',

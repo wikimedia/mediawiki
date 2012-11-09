@@ -3208,7 +3208,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-edits' => 'Gesamtzahl der Bearbeitungen',
 'pageinfo-authors' => 'Gesamtzahl unterschiedlicher Autoren',
 'pageinfo-recent-edits' => 'Anzahl der kürzlich erfolgten Bearbeitungen (innerhalb der letzten $1)',
-'pageinfo-recent-authors' => 'Anzahl der unterschiedlichen Autoren',
+'pageinfo-recent-authors' => 'Anzahl unterschiedlicher Autoren',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisches Wort|Magische Wörter}} ($1)',
 'pageinfo-hidden-categories' => 'Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)',
@@ -4150,4 +4150,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'Diskussion',
 );

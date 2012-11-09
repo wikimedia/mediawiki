@@ -3411,34 +3411,34 @@ për scancelé la conferma ëd l'adrëssa ëd pòsta eletrònica:
 $5
 
 Cost còdes ëd conferma a l'é bon fin-a al $4.",
-'confirmemail_body_changed' => "Cheidun, a l'é belfé ch'a sia chiel, da l'adrëssa IP \$1,
-a l'ha cangià l'adrëssa ëd pòsta eletrònica dël cont \"\$2\" con st'adrëssa-sì dzora a {{SITENAME}}.
+'confirmemail_body_changed' => "Cheidun, a l'é belfé ch'a sia chiel, da l'adrëssa IP $1,
+a l'ha cangià l'adrëssa ëd pòsta eletrònica dël cont «$2» con st'adrëssa-sì dzora a {{SITENAME}}.
 
 Për confirmé che sto cont-sì a l'é pròpi sò e për riativé
-le possibilità ëd pòsta eletrònica dzora a {{SITENAME}}, ch'a deurba sto colegament-sì an sò navigador:
+le fonsion ëd pòsta eletrònica dzora a {{SITENAME}}, ch'a deurba costa liura-sì an sò navigador:
 
-\$3
+$3
 
-Se ël cont a l'é *nen* sò, ch'a vada andré a sto colegament-sì
+Se ël cont a l'é *nen* sò, ch'a-i vada dapress a costa liura-sì
 për scancelé la conferma dl'adrëssa ëd pòsta eletrònica:
 
-\$5
+$5
 
-Ës còdes ëd conferma a scadrà a \$4.",
-'confirmemail_body_set' => "Quaidun, miraco chiel, da l'adrëssa IP \$1,
-a l'ha ampostà l'adrëssa ëd pòsta eletrònica dël cont \"\$2\" con costa adrëssa su {{SITENAME}}.
+Ës còdes ëd conferma a scadrà ël $4.",
+'confirmemail_body_set' => "Quaidun, miraco chiel, da l'adrëssa IP $1,
+a l'ha ampostà l'adrëssa ëd pòsta eletrònica dël cont «$2» con costa adrëssa su {{SITENAME}}.
 
 Për confirmé che sto cont a l'é pròpi sò e ativé torna
 le funsion ëd pòsta eletrònica su {{SITENAME}}, ch'a duverta cost'anliura an sò navigador:
 
-\$3
+$3
 
 Se ël cont a l'é *pa* sò, ch'a-j vada dapress a st'anliura
 për scancelé la conferma ëd l'adrëssa ëd pòsta eletrònica:
 
-\$5
+$5
 
-Cost còdes ëd conferma a scad ai \$4.",
+Cost còdes ëd conferma a scad ai $4.",
 'confirmemail_invalidated' => "Conferma ëd l'adrëssa e-mail scanselà",
 'invalidateemail' => "Scansela l'e-mail ëd conferma",
 

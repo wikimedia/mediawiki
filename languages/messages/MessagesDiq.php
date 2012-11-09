@@ -4742,4 +4742,6 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'behse',
 );
