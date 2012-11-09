@@ -39,11 +39,13 @@
 			// If a badge already exists, reuse it
 			if ( $badge.length ) {
 				$badge.find( '.mw-badge-content' ).text( text );
+			} else {
+				// Otherwise, create a new badge with the specified text and style
+				div = document.createElement( 'div' );
+				div.className = 'mw-badge mw-badge-' + ( inline ? 'inline' : 'overlay' );
+				div.innerHTML = '<span class="mw-badge-content">' + text + '</span>';
+				$( div ).appendTo( this );
 			}
-			// Otherwise, create a new badge with the specified text and style
-			div = document.createElement( 'div' );
-			div.className = 'mw-badge mw-badge-' + ( inline ? 'inline' : 'overlay' );
-			div.innerHTML = '<span class="mw-badge-content">' + text + '</span>';
 		} else {
 			$badge.remove();
 		}
