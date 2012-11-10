@@ -59,7 +59,8 @@ production.
 * (bug 37963) Fixed loading process for user options
 
 === API changes in 1.21 ===
-* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
+* prop=revisions and list=deletedrevs can now report the contentmodel and contentformat,
+  see docs/contenthandler.txt
 * action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
   page content; See docs/contenthandler.txt for details.
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
