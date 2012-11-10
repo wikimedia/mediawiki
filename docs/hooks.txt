@@ -310,6 +310,15 @@ before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
 $EditPage: the EditPage object
 
+'AlternateEditPreview': before generating the preview of the page when editing
+( EditPage::getPreviewText() ).
+$EditPage: the EditPage object
+&$content: the Content object for the text field from the edit page
+&$previewHTML: Text to be placed into the page for the preview
+&$parserOutput: the ParserOutput object for the preview
+return false and set $previewHTML and $parserOutput to output custom page
+preview HTML.
+
 'AlternateUserMailer': Called before mail is sent so that mail could
 be logged (or something else) instead of using PEAR or PHP's mail().
 Return false to skip the regular method of sending mail.  Return a
@@ -880,6 +889,12 @@ Return false to halt editing; you'll need to handle error messages, etc.
 yourself. Alternatively, modifying $error and returning true will cause the
 contents of $error to be echoed at the top of the edit form as wikitext.
 Return true without altering $error to allow the edit to proceed.
+
+'EditPage::showStandardInputs:options': allows injection of form fields into
+the editOptions area
+$editor: EditPage instance (object)
+$out: an OutputPage instance to write to
+return value is ignored (should always be true)
 
 'EditPageBeforeConflictDiff': allows modifying the EditPage object and output
 when there's an edit conflict.  Return false to halt normal diff output; in
