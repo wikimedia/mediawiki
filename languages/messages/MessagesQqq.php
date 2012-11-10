@@ -4959,6 +4959,7 @@ $4 is the gender of the target user.',
 'feedback-subject' => 'Label for a text input
 {{Identical|Subject}}',
 'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.',
+'feedback-terms' => 'Label for a checkbox asking for permissions to submit browser information',
 'feedback-cancel' => 'Button label
 {{Identical|Cancel}}',
 'feedback-submit' => 'Button label
