@@ -5006,10 +5006,11 @@ $4 is the gender of the target user.',
 'feedback-subject' => 'Label for a text input
 {{Identical|Subject}}',
 'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.',
+'feedback-terms' => 'Label for a checkbox asking for permissions to submit browser information',
 'feedback-cancel' => 'Button label
 {{Identical|Cancel}}',
-'feedback-submit' => 'Button label
-{{Identical|Submit}}',
+'feedback-publish' => 'Button label
+{{Identical|Publish Feedback}}',
 'feedback-adding' => 'Progress notice',
 'feedback-error1' => 'Error message, appears when an unknown error occurs submitting feedback',
 'feedback-error2' => 'Error message, appears when we could not add feedback',
@@ -5019,6 +5020,12 @@ $4 is the gender of the target user.',
 {{Identical|Done}}',
 'feedback-bugcheck' => 'Message that appears before the user submits a bug, reminding them to check for known bugs.',
 'feedback-bugnew' => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
+'feedback-back' => 'Button label
+{{Identical|Back}}',
+'feedback-incomplete' => 'Incomplete form notice.',
+'feedback-doanyway' => 'Button label
+{{Identical|Publish Anyway}}',
+
 
 # Search suggestions
 'searchsuggest-search' => 'Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)
