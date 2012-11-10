@@ -14,6 +14,7 @@ class TestSample extends MediaWikiLangTestCase {
 		// This sets the globals and will restore them automatically
 		// after each test.
 		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
 			'wgContLang' => Language::factory( 'en' ),
 		) );
 	}

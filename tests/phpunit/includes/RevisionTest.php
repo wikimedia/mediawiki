@@ -5,12 +5,12 @@
  */
 class RevisionTest extends MediaWikiTestCase {
 	protected function setUp() {
-		global $wgContLang;
-
 		parent::setUp();
 
+		$contLang = Language::factory( 'en' );
 		$this->setMwGlobals( array(
-			'wgContLang' => Language::factory( 'en' ),
+			'wgLanguageCode' => 'en',
+			'wgContLang' => $contLang,
 			'wgLegacyEncoding' => false,
 			'wgCompressRevisions' => false,
 
@@ -41,7 +41,7 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		$contLang->resetNamespaces(); # reset namespace cache
 	}
 
 	function tearDown() {
