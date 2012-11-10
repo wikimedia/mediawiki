@@ -489,6 +489,73 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideMerge()
+	 */
+	public function testMerge( $old, $mine, $yours, $expectedOK, $expected ) {
+		$ok = wfMerge( $old, $mine, $yours, $result );
+
+		$this->assertEquals( $expectedOK, $ok, 'is merge clean?' );
+
+		if ( $ok ) {
+			$this->assertEquals( $expected, $result, 'is merge result as ecxpected?' );
+		}
+	}
+
+	public static function provideMerge() {
+		return array(
+
+			// #0: clean merge
+			array(
+				// old:
+				"one one one\n" . // trimmed
+				"\n" .
+				"two two two",
+
+					// mine:
+				"one one one ONE ONE\n" .
+				"\n" .
+				"two two two\n", // with tailing whitespace
+
+				// yours:
+				"one one one\n" .
+				"\n" .
+				"two two TWO TWO", // trimmed
+
+				// ok:
+				true,
+
+				// result:
+				"one one one ONE ONE\n" .
+				"\n" .
+				"two two TWO TWO\n", // note: will always end in a newline
+			),
+
+			// #1: conflict, fail
+			array(
+				// old:
+				"one one one", // trimmed
+
+				// mine:
+				"one one one ONE ONE\n" .
+				"\n" .
+				"bla bla\n" .
+				"\n", // with tailing whitespace
+
+				// yours:
+				"one one one\n" .
+				"\n" .
+				"two two", // trimmed
+
+				// ok:
+				false,
+
+				// result:
+				null,
+			),
+		);
+	}
+
+	/**
 	 * @dataProvider provideMakeUrlIndexes()
 	 */
 	function testMakeUrlIndexes( $url, $expected ) {
