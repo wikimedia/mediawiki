@@ -37,4 +37,41 @@ class LanguageHeTest extends LanguageClassesTestCase {
 			array( 'other', 3 ), // Plural
 		);
 	}
+
+	/** @dataProvider providerGrammar */
+	function testGrammar( $result, $word, $case ) {
+		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	// The comments in the beginning of the line help avoid RTL problems
+	// with text editors.
+	function providerGrammar() {
+		return array (
+			array(
+				/* result */ 'וויקיפדיה',
+				/* word   */ 'ויקיפדיה',
+				/* case   */ 'תחילית',
+			),
+			array(
+				/* result */ 'וולפגנג',
+				/* word   */ 'וולפגנג',
+				/* case   */ 'prefixed',
+			),
+			array(
+				/* result */ 'קובץ',
+				/* word   */ 'הקובץ',
+				/* case   */ 'תחילית',
+			),
+			array(
+				/* result */ '־Wikipedia',
+				/* word   */ 'Wikipedia',
+				/* case   */ 'תחילית',
+			),
+			array(
+				/* result */ '־1995',
+				/* word   */ '1995',
+				/* case   */ 'תחילית',
+			),
+		);
+	}
 }
