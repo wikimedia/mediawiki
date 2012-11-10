@@ -102,6 +102,8 @@ production.
    $wgDBWindowsAuthentication, which makes the web server authenticate against
    the database server using Integrated Windows Authentication instead of
    $wgDBuser/$wgDBpassword.
+* JS feedback dialog includes user agent and requires the user to tick a box
+  saying they agree to the Terms of use.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

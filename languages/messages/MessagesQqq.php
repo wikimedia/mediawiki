@@ -782,6 +782,12 @@ See also:
 Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki.
 
 Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].',
+'termsofuse' => 'Used as page name to link to the terms of use. The page contains a legal notice providing information about the terms of use of the site. Example: [[Terms of use]].
+Example: [[{{MediaWiki:Termsofusepage}}|{{MediaWiki:Termsofuse}}]].',
+'termsofusepage' => '{{doc-important|Do not change the <code>Project:</code> part.}}
+Used as link to the page that contains the terms of use.
+
+Example: [[{{MediaWiki:Termsofusepage}}|{{MediaWiki:Termsofuse}}]].',
 
 'badaccess' => 'Title shown within page indicating unauthorized access.
 {{Identical|Permission error}}',
@@ -10506,12 +10512,11 @@ Parameters:
 * $3 - Feedback page URL',
 'feedback-subject' => 'Label for a text input
 {{Identical|Subject}}',
-'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.
-{{Identical|Message}}',
+'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.',
+'feedback-terms' => 'Label for a checkbox asking for permissions to submit browser information, linking to {{msg-mw|termsofusepage}} with display text {{msg-mw|termsofuse}}.',
 'feedback-cancel' => 'Button label
 {{Identical|Cancel}}',
-'feedback-submit' => 'Button label
-{{Identical|Submit}}',
+'feedback-publish' => 'Button label',
 'feedback-adding' => 'Progress notice',
 'feedback-error1' => 'Error message, appears when an unknown error occurs submitting feedback',
 'feedback-error2' => 'Error message, appears when we could not add feedback',
@@ -10526,6 +10531,9 @@ Parameters:
 Parameters:
 * $1 - bug list page URL',
 'feedback-bugnew' => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
+'feedback-back' => 'Button label',
+'feedback-incomplete' => 'Incomplete form notice.',
+'feedback-doanyway' => 'Button label',
 
 # Search suggestions
 'searchsuggest-search' => 'Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)
