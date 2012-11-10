@@ -23,6 +23,8 @@ class TextContentTest extends MediaWikiTestCase {
 				CONTENT_MODEL_JAVASCRIPT,
 			),
 			'wgAlwaysUseTidy' => false,
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
 		) );
 
 		$this->context = new RequestContext( new FauxRequest() );
