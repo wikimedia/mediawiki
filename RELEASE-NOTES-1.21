@@ -41,6 +41,10 @@ production.
   for use with Microdata.
 * The HTML5 <mark> tag has been whitelisted.
 * Added ParserCloned hook for when the Parser object is cloned.
+* Added AlternateEditPreview hook to allow extensions to replace the page
+  preview from the edit page.
+* Added EditPage::showStandardInputs:options hook to allow extensions to add
+  new fields to the "editOptions" area of the edit form.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.

@@ -2780,7 +2780,9 @@ HTML
 			wfMessage( 'newwindow' )->parse();
 		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
 		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
-		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
+		$wgOut->addHTML( "</div><!-- editButtons -->\n" );
+		wfRunHooks( 'EditPage::showStandardInputs:options', array( $this, $wgOut, &$tabindex ) );
+		$wgOut->addHTML( "</div><!-- editOptions -->\n" );
 	}
 
 	/**
@@ -2929,6 +2931,12 @@ HTML
 
 		try {
 			$content = $this->toEditContent( $this->textbox1 );
+
+			$previewHTML = '';
+			if ( !wfRunHooks( 'AlternateEditPreview', array( $this, &$content, &$previewHTML, &$this->mParserOutput ) ) ) {
+				wfProfileOut( __METHOD__ );
+				return $previewHTML;
+			}
 
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
