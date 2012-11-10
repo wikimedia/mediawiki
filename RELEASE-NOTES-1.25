@@ -107,6 +107,8 @@ production.
   to allow extensions to override how links to pages are rendered within NS_CATEGORY
 * (T19665) Special:WantedPages only lists page which having at least one red link
   pointing to it.
+* JS feedback dialog includes user agent and requires the user to tick a box
+  saying they agree to the Terms of use.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past

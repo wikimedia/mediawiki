@@ -57,7 +57,7 @@
 		}
 
 		if ( options.dialogTitleMessageKey === undefined ) {
-			options.dialogTitleMessageKey = 'feedback-submit';
+			options.dialogTitleMessageKey = 'feedback-publish';
 		}
 
 		if ( options.bugsLink === undefined ) {
@@ -101,6 +101,7 @@
 			} );
 
 			// TODO: Use a stylesheet instead of these inline styles in the template
+			// FIXME: This is using an un-namespaced filename
 			this.$dialog = mw.template.get( 'mediawiki.feedback', 'dialog.html' ).render();
 			this.$dialog.find( '.feedback-mode small p' ).msg(
 				'feedback-bugornote',
@@ -110,8 +111,10 @@
 			);
 			this.$dialog.find( '.feedback-form .subject span' ).msg( 'feedback-subject' );
 			this.$dialog.find( '.feedback-form .message span' ).msg( 'feedback-message' );
+			this.$dialog.find( '.feedback-form .terms span' ).msg( 'feedback-terms' );
 			this.$dialog.find( '.feedback-bugs p' ).msg( 'feedback-bugcheck', $bugsListLink );
-			this.$dialog.find( '.feedback-submitting span' ).msg( 'feedback-adding' );
+			this.$dialog.find( '.feedback-notice .incomplete span' ).msg( 'feedback-incomplete' );
+			this.$dialog.find( '.feedback-notice .publishing span' ).msg( 'feedback-adding' );
 			this.$dialog.find( '.feedback-thanks' ).msg( 'feedback-thanks', fb.title.getNameText(),
 				$feedbackPageLink.clone() );
 
@@ -125,6 +128,7 @@
 
 			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get( 0 );
 			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get( 0 );
+			this.termsInput = this.$dialog.find( 'input.feedback-terms' ).get(0);
 		},
 
 		/**
@@ -143,10 +147,10 @@
 		},
 
 		/**
-		 * Display the submitting section.
+		 * Display the publishing section.
 		 */
-		displaySubmitting: function () {
-			this.display( 'submitting' );
+		displayPublishing: function () {
+			this.display( 'publishing' );
 		},
 
 		/**
@@ -184,6 +188,24 @@
 			} );
 		},
 
+		displayFormIncomplete: function () {
+			var fb = this,
+				buttons = {};
+			this.display( 'incomplete' );
+			buttons[ mw.msg( 'feedback-back' ) ] = function () {
+				fb.displayForm( {
+					'subject':  $( fb.subjectInput ).val(),
+					'message': $( fb.messageInput ).val()
+				} );
+			};
+			buttons[ mw.msg( 'feedback-doanyway' )] = function () {
+				fb.publish();
+			};
+			this.$dialog.dialog( {
+				buttons: buttons
+			} );
+		},
+
 		/**
 		 * Display the feedback form
 		 * @param {Object} [contents] Prefilled contents for the feedback form.
@@ -196,17 +218,10 @@
 
 			this.subjectInput.value = ( contents && contents.subject ) ? contents.subject : '';
 			this.messageInput.value = ( contents && contents.message ) ? contents.message : '';
-
 			this.display( 'form' );
 
-			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
-			formButtons[ mw.msg( 'feedback-submit' ) ] = function () {
-				fb.submit();
-			};
-			formButtons[ mw.msg( 'feedback-cancel' ) ] = function () {
-				fb.cancel();
-			};
 			this.$dialog.dialog( { buttons: formButtons } ); // put the buttons back
+			this.togglePublish();
 		},
 
 		/**
@@ -229,14 +244,35 @@
 		/**
 		 * Close the feedback form.
 		 */
+		areTermsChecked: function () {
+			return $( '.feedback-terms' ).prop( 'checked' );
+		},
+
+		togglePublish: function () {
+			$( '#mw-feedback-publish' ).button(
+				this.areTermsChecked() ? 'enable' : 'disable'
+			);
+		},
+
+		isFormValid: function () {
+			if (
+				$.trim( $( '.feedback-subject' ).val() ) !== '' &&
+				$.trim( $( '.feedback-message' ).val() ) !== '' &&
+				this.areTermsChecked()
+			) {
+				return true;
+			}
+			return false;
+		},
+
 		cancel: function () {
 			this.$dialog.dialog( 'close' );
 		},
 
 		/**
-		 * Submit the feedback form.
+		 * Publish the feedback form.
 		 */
-		submit: function () {
+		publish: function () {
 			var subject, message,
 				fb = this;
 
@@ -246,11 +282,26 @@
 			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
 			// with posting this without their explicit consent
 			message = $.trim( this.messageInput.value );
-			if ( message.indexOf( '~~~' ) === -1 ) {
-				message += ' ~~~~';
+
+			function err() {
+				// ajax request failed
+				fb.displayError( 'feedback-error3' );
 			}
 
-			this.displaySubmitting();
+			// Get the values to publish.
+			subject = this.subjectInput.value;
+
+			// Get the Browser info if permissions granted and append with message.
+			message = ( this.termsInput.checked ?
+				'<small>User agent: ' + mw.html.escape( navigator.userAgent ) + '</small>\n\n' :
+				'' ) + this.messageInput.value;
+
+			// Add signature.
+			if ( message.indexOf( '~~~' ) === -1 ) {
+				message += '\n\n~~~~';
+			}
+
+			this.displayPublishing();
 
 			// Post the message, resolving redirects
 			this.api.newSection(
