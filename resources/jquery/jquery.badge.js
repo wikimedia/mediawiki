@@ -33,7 +33,7 @@
 	 *   if the badge should overlay the parent element (default is inline)
 	 */
 	$.fn.badge = function ( text, inline ) {
-		var div, $badge = this.find( '.mw-badge' );
+		var $badge = this.find( '.mw-badge' );
 
 		if ( text ) {
 			// If a badge already exists, reuse it
