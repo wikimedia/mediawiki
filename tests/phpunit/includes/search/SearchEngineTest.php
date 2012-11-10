@@ -13,6 +13,12 @@ class SearchEngineTest extends MediaWikiTestCase {
 	 */
 	protected function setUp() {
 		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+		));
+
 		// Search tests require MySQL or SQLite with FTS
 		# Get database type and version
 		$dbType = $this->db->getType();
