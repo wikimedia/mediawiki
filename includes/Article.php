@@ -704,9 +704,8 @@ class Article extends Page {
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
-					// @todo: shouldn't we be passing $this->getPage() to PoolWorkArticleView instead of plain $this?
-					$poolArticleView = new PoolWorkArticleView( $this, $parserOptions,
-						$this->getRevIdFetched(), $useParserCache, $this->getContentObject(), $this->getContext() );
+					$poolArticleView = new PoolWorkArticleView( $this->getPage(), $parserOptions,
+						$this->getRevIdFetched(), $useParserCache, $this->getContentObject() );
 
 					if ( !$poolArticleView->execute() ) {
 						$error = $poolArticleView->getError();
