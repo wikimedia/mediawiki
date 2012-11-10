@@ -688,7 +688,7 @@ class Article extends Page {
 						$outputDone = true;
 					} else {
 						$content = $this->getContentObject();
-						$rt = $content->getRedirectChain();
+						$rt = $content ? $content->getRedirectChain() : null;
 						if ( $rt ) {
 							wfDebug( __METHOD__ . ": showing redirect=no page\n" );
 							# Viewing a redirect page (e.g. with parameter redirect=no)
@@ -842,10 +842,14 @@ class Article extends Page {
 				'clearyourcache' );
 		}
 
-		// Give hooks a chance to customise the output
-		if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
-			$po = $this->mContentObject->getParserOutput( $this->getTitle() );
-			$outputPage->addHTML( $po->getText() );
+		$this->fetchContentObject();
+
+		if ( $this->mContentObject ) {
+			// Give hooks a chance to customise the output
+			if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mContentObject, $this->getTitle(), $outputPage ) ) ) {
+				$po = $this->mContentObject->getParserOutput( $this->getTitle() );
+				$outputPage->addHTML( $po->getText() );
+			}
 		}
 	}
 

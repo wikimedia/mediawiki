@@ -3981,7 +3981,7 @@ class Title {
 		$content = $rev->getContent();
 		# Does the redirect point to the source?
 		# Or is it a broken self-redirect, usually caused by namespace collisions?
-		$redirTitle = $content->getRedirectTarget();
+		$redirTitle = $content ? $content->getRedirectTarget() : null;
 
 		if ( $redirTitle ) {
 			if ( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&

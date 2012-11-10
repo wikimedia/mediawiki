@@ -1237,8 +1237,8 @@ class WikiPage extends Page implements IDBAccessObject {
 		wfProfileIn( __METHOD__ );
 
 		$content = $revision->getContent();
-		$len = $content->getSize();
-		$rt = $content->getUltimateRedirectTarget();
+		$len = $content ? $content->getSize() : 0;
+		$rt = $content ? $content->getUltimateRedirectTarget() : null;
 
 		$conditions = array( 'page_id' => $this->getId() );
 
@@ -1469,11 +1469,6 @@ class WikiPage extends Page implements IDBAccessObject {
 			// Bug 30711: always use current version when adding a new section
 			if ( is_null( $edittime ) || $section == 'new' ) {
 				$oldContent = $this->getContent();
-				if ( ! $oldContent ) {
-					wfDebug( __METHOD__ . ": no page text\n" );
-					wfProfileOut( __METHOD__ );
-					return null;
-				}
 			} else {
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
@@ -1488,6 +1483,13 @@ class WikiPage extends Page implements IDBAccessObject {
 				$oldContent = $rev->getContent();
 			}
 
+			if ( ! $oldContent ) {
+				wfDebug( __METHOD__ . ": no page text\n" );
+				wfProfileOut( __METHOD__ );
+				return null;
+			}
+
+			//FIXME: $oldContent might be null?
 			$newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
 		}
 
@@ -1852,6 +1854,10 @@ class WikiPage extends Page implements IDBAccessObject {
 			# Bug 37225: use accessor to get the text as Revision may trim it
 			$content = $revision->getContent(); // sanity; get normalized version
 
+			if ( $content ) {
+				$newsize = $content->getSize();
+			}
+
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
 
@@ -1864,7 +1870,7 @@ class WikiPage extends Page implements IDBAccessObject {
 					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 				# Add RC row to the DB
 				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-					'', $content->getSize(), $revisionId, $patrolled );
+					'', $newsize, $revisionId, $patrolled );
 
 				# Log auto-patrolled edits
 				if ( $patrolled ) {
@@ -1956,7 +1962,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) {
-		global $wgParser, $wgContLang, $wgUser;
+		global $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
 
@@ -1977,23 +1983,21 @@ class WikiPage extends Page implements IDBAccessObject {
 		$edit = (object)array();
 		$edit->revid = $revid;
 
-		$edit->pstContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
-		$edit->pst = $edit->pstContent->serialize( $serialization_format ); #XXX: do we need this??
+		$edit->pstContent = $content ? $content->preSaveTransform( $this->mTitle, $user, $popts ) : null;
+
 		$edit->format = $serialization_format;
-
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-
-		$edit->output = $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts );
+		$edit->output = $edit->pstContent ? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts ) : null;
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
 
 		#NOTE: B/C for hooks! don't use these fields!
-		$edit->newText = ContentHandler::getContentText( $edit->newContent );
+		$edit->newText = $edit->newContent ? ContentHandler::getContentText( $edit->newContent ) : '';
 		$edit->oldText = $edit->oldContent ? ContentHandler::getContentText( $edit->oldContent ) : '';
+		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialization_format ) : '';
 
 		$this->mPreparedEdit = $edit;
-
 		return $edit;
 	}
 
@@ -2038,8 +2042,10 @@ class WikiPage extends Page implements IDBAccessObject {
 		}
 
 		# Update the links tables and other secondary data
-		$updates = $content->getSecondaryDataUpdates( $this->getTitle(), null, true, $editInfo->output );
-		DataUpdate::runUpdates( $updates );
+		if ( $content ) {
+			$updates = $content->getSecondaryDataUpdates( $this->getTitle(), null, true, $editInfo->output );
+			DataUpdate::runUpdates( $updates );
+		}
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
@@ -2111,7 +2117,7 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			#XXX: could skip pseudo-messages like js/css here, based on content model.
-			$msgtext = $content->getWikitextForTransclusion();
+			$msgtext = $content ? $content->getWikitextForTransclusion() : null;
 			if ( $msgtext === false || $msgtext === null ) $msgtext = '';
 
 			MessageCache::singleton()->replace( $shortTitle, $msgtext );
