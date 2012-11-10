@@ -43,12 +43,14 @@ var language = {
 	 * @param forms array List of plural forms
 	 * @return string Correct form for quantifier in this language
 	 */
-	convertPlural: function( count, forms ) {
-		var pluralFormIndex = 0;
+	convertPlural: function ( count, forms ) {
+		var pluralRules,
+			pluralFormIndex = 0;
+
 		if ( !forms || forms.length === 0 ) {
 			return '';
 		}
-		var pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
+		pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
 		if ( !pluralRules ) {
 			// default fallback.
 			return ( count === 1 ) ? forms[0] : forms[1];
@@ -78,8 +80,8 @@ var language = {
 	 * @param {num} number Value to be converted
 	 * @param {boolean} integer Convert the return value to an integer
 	 */
-	convertNumber: function( num, integer ) {
-		var i, tmp, transformTable;
+	convertNumber: function ( num, integer ) {
+		var i, tmp, transformTable, numberString, convertedNumber;
 
 		if ( !mw.language.digitTransformTable ) {
 			return num;
@@ -97,8 +99,8 @@ var language = {
 			}
 			transformTable = tmp;
 		}
-		var numberString = '' + num;
-		var convertedNumber = '';
+		numberString = '' + num;
+		convertedNumber = '';
 		for ( i = 0; i < numberString.length; i++ ) {
 			if ( transformTable[ numberString[i] ] ) {
 				convertedNumber += transformTable[numberString[i]];
@@ -121,7 +123,7 @@ var language = {
 	 *
 	 * @return string
 	 */
-	gender: function( gender, forms ) {
+	gender: function ( gender, forms ) {
 		if ( !forms || forms.length === 0 ) {
 			return '';
 		}

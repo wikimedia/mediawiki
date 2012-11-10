@@ -1,4 +1,6 @@
-# upstream libs
+# third-party libs
+extensions/
+node_modules/
 resources/jquery/jquery.appear.js
 resources/jquery/jquery.async.js
 resources/jquery/jquery.cycle.all.js
@@ -13,9 +15,13 @@ resources/jquery/jquery.mockjax.js
 resources/jquery/jquery.qunit.js
 resources/jquery/jquery.validate.js
 resources/jquery/jquery.xmldom.js
-resources/jquery.effects
-resources/jquery.tipsy
-resources/jquery.ui
-resources/mediawiki.libs
-tests/jasmine/lib/jasmine-1.0.1/jasmine-html.js
-tests/jasmine/lib/jasmine-1.0.1/jasmine.js
+resources/jquery.effects/
+resources/jquery.tipsy/
+resources/jquery.ui/
+resources/mediawiki.libs/
+
+# legacy scripts
+skins/common/
+
+# github.com/jshint/jshint/issues/729
+tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js

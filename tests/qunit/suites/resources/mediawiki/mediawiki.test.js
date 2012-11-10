@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 
 QUnit.module( 'mediawiki', QUnit.newMwEnvironment() );
 
@@ -215,7 +215,7 @@ QUnit.asyncTest( 'mw.loader', 2, function ( assert ) {
 
 		// /sample/awesome.js declares the "mw.loader.testCallback" function
 		// which contains a call to start() and ok()
-		assert.strictEqual( isAwesomeDone, true, "test.callback module should've caused isAwesomeDone to be true" );
+		assert.strictEqual( isAwesomeDone, true, 'test.callback module should\'ve caused isAwesomeDone to be true' );
 		delete mw.loader.testCallback;
 
 	}, function () {
@@ -481,8 +481,8 @@ QUnit.test( 'mw.loader missing dependency', 13, function ( assert ) {
 	mw.loader.using(
 		['test.module7'],
 		function () {
-			assert.ok( false, "Success fired despite missing dependency" );
-			assert.ok( true , "QUnit expected() count dummy" );
+			assert.ok( false, 'Success fired despite missing dependency' );
+			assert.ok( true , 'QUnit expected() count dummy' );
 		},
 		function ( e, dependencies ) {
 			assert.strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
@@ -492,8 +492,8 @@ QUnit.test( 'mw.loader missing dependency', 13, function ( assert ) {
 	mw.loader.using(
 		['test.module9'],
 		function () {
-			assert.ok( false, "Success fired despite missing dependency" );
-			assert.ok( true , "QUnit expected() count dummy" );
+			assert.ok( false, 'Success fired despite missing dependency' );
+			assert.ok( true , 'QUnit expected() count dummy' );
 		},
 		function ( e, dependencies ) {
 			assert.strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
@@ -646,4 +646,4 @@ QUnit.test( 'mw.html', 13, function ( assert ) {
 
 });
 
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );

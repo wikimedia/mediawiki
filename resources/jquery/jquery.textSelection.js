@@ -25,6 +25,11 @@
 	}
 
 	$.fn.textSelection = function ( command, options ) {
+		var fn,
+			context,
+			hasIframe,
+			needSave,
+			retval;
 
 		/**
 		 * Helper function to get an IE TextRange object for an element
@@ -52,7 +57,7 @@
 			}
 		}
 
-		var fn = {
+		fn = {
 			/**
 			 * Get the contents of the textarea
 			 */
@@ -168,16 +173,16 @@
 							range2.collapse();
 							range2.moveStart( 'character', -1 );
 							// FIXME: Which check is correct?
-							if ( range2.text !== "\r" && range2.text !== "\n" && range2.text !== "" ) {
-								insertText = "\n" + insertText;
-								pre += "\n";
+							if ( range2.text !== '\r' && range2.text !== '\n' && range2.text !== '' ) {
+								insertText = '\n' + insertText;
+								pre += '\n';
 							}
 							range3 = document.selection.createRange();
 							range3.collapse( false );
 							range3.moveEnd( 'character', 1 );
-							if ( range3.text !== "\r" && range3.text !== "\n" && range3.text !== "" ) {
-								insertText += "\n";
-								post += "\n";
+							if ( range3.text !== '\r' && range3.text !== '\n' && range3.text !== '' ) {
+								insertText += '\n';
+								post += '\n';
 							}
 						}
 
@@ -216,13 +221,13 @@
 							insertText = doSplitLines( selText, pre, post );
 						}
 						if ( options.ownline ) {
-							if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== "\n" && this.value.charAt( startPos - 1 ) !== "\r" ) {
-								insertText = "\n" + insertText;
-								pre += "\n";
+							if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== '\n' && this.value.charAt( startPos - 1 ) !== '\r' ) {
+								insertText = '\n' + insertText;
+								pre += '\n';
 							}
-							if ( this.value.charAt( endPos ) !== "\n" && this.value.charAt( endPos ) !== "\r" ) {
-								insertText += "\n";
-								post += "\n";
+							if ( this.value.charAt( endPos ) !== '\n' && this.value.charAt( endPos ) !== '\r' ) {
+								insertText += '\n';
+								post += '\n';
 							}
 						}
 						this.value = this.value.substring( 0, startPos ) + insertText +
@@ -230,9 +235,9 @@
 						// Setting this.value scrolls the textarea to the top, restore the scroll position
 						this.scrollTop = scrollTop;
 						if ( window.opera ) {
-							pre = pre.replace( /\r?\n/g, "\r\n" );
-							selText = selText.replace( /\r?\n/g, "\r\n" );
-							post = post.replace( /\r?\n/g, "\r\n" );
+							pre = pre.replace( /\r?\n/g, '\r\n' );
+							selText = selText.replace( /\r?\n/g, '\r\n' );
+							post = post.replace( /\r?\n/g, '\r\n' );
 						}
 						if ( isSample && options.selectPeri && !options.splitlines ) {
 							this.selectionStart = startPos + pre.length;
@@ -261,7 +266,21 @@
 			 */
 			 getCaretPosition: function ( options ) {
 				function getCaret( e ) {
-					var caretPos = 0, endPos = 0;
+					var caretPos = 0,
+						endPos = 0,
+						preText, rawPreText, periText,
+						rawPeriText, postText, rawPostText,
+						// IE Support
+						preFinished,
+						periFinished,
+						postFinished,
+						// Range containing text in the selection
+						periRange,
+						// Range containing text before the selection
+						preRange,
+						// Range containing text after the selection
+						postRange;
+
 					if ( document.selection && document.selection.createRange ) {
 						// IE doesn't properly report non-selected caret position through
 						// the selection ranges when textarea isn't focused. This can
@@ -269,20 +288,10 @@
 						// whatever we do later (bug 31847).
 						activateElementOnIE( e );
 
-						var
-							preText, rawPreText, periText,
-							rawPeriText, postText, rawPostText,
-
-							// IE Support
-							preFinished = false,
-							periFinished = false,
-							postFinished = false,
-							// Range containing text in the selection
-							periRange = document.selection.createRange().duplicate(),
-							// Range containing text before the selection
-							preRange,
-							// Range containing text after the selection
-							postRange;
+						preFinished = false;
+						periFinished = false;
+						postFinished = false;
+						periRange = document.selection.createRange().duplicate();
 
 						preRange = rangeForElementIE( e ),
 						// Move the end where we need it
@@ -309,7 +318,7 @@
 								} else {
 									preRange.moveEnd( 'character', -1 );
 									if ( preRange.text === preText ) {
-										rawPreText += "\r\n";
+										rawPreText += '\r\n';
 									} else {
 										preFinished = true;
 									}
@@ -321,7 +330,7 @@
 								} else {
 									periRange.moveEnd( 'character', -1 );
 									if ( periRange.text === periText ) {
-										rawPeriText += "\r\n";
+										rawPeriText += '\r\n';
 									} else {
 										periFinished = true;
 									}
@@ -333,15 +342,15 @@
 								} else {
 									postRange.moveEnd( 'character', -1 );
 									if ( postRange.text === postText ) {
-										rawPostText += "\r\n";
+										rawPostText += '\r\n';
 									} else {
 										postFinished = true;
 									}
 								}
 							}
 						} while ( ( !preFinished || !periFinished || !postFinished ) );
-						caretPos = rawPreText.replace( /\r\n/g, "\n" ).length;
-						endPos = caretPos + rawPeriText.replace( /\r\n/g, "\n" ).length;
+						caretPos = rawPreText.replace( /\r\n/g, '\n' ).length;
+						endPos = caretPos + rawPeriText.replace( /\r\n/g, '\n' ).length;
 					} else if ( e.selectionStart || e.selectionStart === 0 ) {
 						// Firefox support
 						caretPos = e.selectionStart;
@@ -405,20 +414,22 @@
 					return Math.floor( e.scrollWidth / ( $.client.profile().platform === 'linux' ? 7 : 8 ) );
 				}
 				function getCaretScrollPosition( e ) {
-					var i, j;
 					// FIXME: This functions sucks and is off by a few lines most
 					// of the time. It should be replaced by something decent.
-					var text = e.value.replace( /\r/g, '' );
-					var caret = $( e ).textSelection( 'getCaretPosition' );
-					var lineLength = getLineLength( e );
-					var row = 0;
-					var charInLine = 0;
-					var lastSpaceInLine = 0;
+					var i, j,
+						nextSpace,
+						text = e.value.replace( /\r/g, '' ),
+						caret = $( e ).textSelection( 'getCaretPosition' ),
+						lineLength = getLineLength( e ),
+						row = 0,
+						charInLine = 0,
+						lastSpaceInLine = 0;
+
 					for ( i = 0; i < caret; i++ ) {
 						charInLine++;
 						if ( text.charAt( i ) === ' ' ) {
 							lastSpaceInLine = charInLine;
-						} else if ( text.charAt( i ) === "\n" ) {
+						} else if ( text.charAt( i ) === '\n' ) {
 							lastSpaceInLine = 0;
 							charInLine = 0;
 							row++;
@@ -431,11 +442,11 @@
 							}
 						}
 					}
-					var nextSpace = 0;
+					nextSpace = 0;
 					for ( j = caret; j < caret + lineLength; j++ ) {
 						if (
 							text.charAt( j ) === ' ' ||
-							text.charAt( j ) === "\n" ||
+							text.charAt( j ) === '\n' ||
 							caret === text.length
 						) {
 							nextSpace = j;
@@ -542,16 +553,16 @@
 				break;
 		}
 
-		var context = $(this).data( 'wikiEditor-context' );
-		var hasIframe = typeof context !== 'undefined' && context && typeof context.$iframe !== 'undefined';
+		context = $(this).data( 'wikiEditor-context' );
+		hasIframe = context !== undefined && context && context.$iframe !== undefined;
 
 		// IE selection restore voodoo
-		var needSave = false;
+		needSave = false;
 		if ( hasIframe && context.savedSelection !== null ) {
 			context.fn.restoreSelection();
 			needSave = true;
 		}
-		var retval = ( hasIframe ? context.fn : fn )[command].call( this, options );
+		retval = ( hasIframe ? context.fn : fn )[command].call( this, options );
 		if ( hasIframe && needSave ) {
 			context.fn.saveSelection();
 		}

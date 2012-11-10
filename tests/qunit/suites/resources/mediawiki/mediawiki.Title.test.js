@@ -1,58 +1,59 @@
-( function () {
+( function ( mw ) {
 
 // mw.Title relies on these three config vars
 // Restore them after each test run
 var config = {
-	"wgFormattedNamespaces": {
-		"-2": "Media",
-		"-1": "Special",
-		"0": "",
-		"1": "Talk",
-		"2": "User",
-		"3": "User talk",
-		"4": "Wikipedia",
-		"5": "Wikipedia talk",
-		"6": "File",
-		"7": "File talk",
-		"8": "MediaWiki",
-		"9": "MediaWiki talk",
-		"10": "Template",
-		"11": "Template talk",
-		"12": "Help",
-		"13": "Help talk",
-		"14": "Category",
-		"15": "Category talk",
+	wgFormattedNamespaces: {
+		'-2': 'Media',
+		'-1': 'Special',
+		0: '',
+		1: 'Talk',
+		2: 'User',
+		3: 'User talk',
+		4: 'Wikipedia',
+		5: 'Wikipedia talk',
+		6: 'File',
+		7: 'File talk',
+		8: 'MediaWiki',
+		9: 'MediaWiki talk',
+		10: 'Template',
+		11: 'Template talk',
+		12: 'Help',
+		13: 'Help talk',
+		14: 'Category',
+		15: 'Category talk',
 		// testing custom / localized namespace
-		"100": "Penguins"
+		100: 'Penguins'
 	},
-	"wgNamespaceIds": {
-		"media": -2,
-		"special": -1,
-		"": 0,
-		"talk": 1,
-		"user": 2,
-		"user_talk": 3,
-		"wikipedia": 4,
-		"wikipedia_talk": 5,
-		"file": 6,
-		"file_talk": 7,
-		"mediawiki": 8,
-		"mediawiki_talk": 9,
-		"template": 10,
-		"template_talk": 11,
-		"help": 12,
-		"help_talk": 13,
-		"category": 14,
-		"category_talk": 15,
-		"image": 6,
-		"image_talk": 7,
-		"project": 4,
-		"project_talk": 5,
+	wgNamespaceIds: {
+		/*jshint camelcase: false */
+		media: -2,
+		special: -1,
+		'': 0,
+		talk: 1,
+		user: 2,
+		user_talk: 3,
+		wikipedia: 4,
+		wikipedia_talk: 5,
+		file: 6,
+		file_talk: 7,
+		mediawiki: 8,
+		mediawiki_talk: 9,
+		template: 10,
+		template_talk: 11,
+		help: 12,
+		help_talk: 13,
+		category: 14,
+		category_talk: 15,
+		image: 6,
+		image_talk: 7,
+		project: 4,
+		project_talk: 5,
 		/* testing custom / alias */
-		"penguins": 100,
-		"antarctic_waterfowl": 100
+		penguins: 100,
+		antarctic_waterfowl: 100
 	},
-	"wgCaseSensitiveNamespaces": []
+	wgCaseSensitiveNamespaces: []
 };
 
 QUnit.module( 'mediawiki.Title', QUnit.newMwEnvironment({ config: config }) );
@@ -78,7 +79,7 @@ QUnit.test( 'Transformation', 8, function ( assert ) {
 
 	title = new mw.Title( '   MediaWiki:  Foo   bar   .js   ' );
 	// Don't ask why, it's the way the backend works. One space is kept of each set
-	assert.equal( title.getName(), 'Foo_bar_.js', "Merge multiple spaces to a single space." );
+	assert.equal( title.getName(), 'Foo_bar_.js', 'Merge multiple spaces to a single space.' );
 });
 
 QUnit.test( 'Main text for filename', 8, function ( assert ) {
@@ -116,7 +117,7 @@ QUnit.test( 'Namespace detection and conversion', 6, function ( assert ) {
 
 QUnit.test( 'Throw error on invalid title', 1, function ( assert ) {
 	assert.throws(function () {
-		var title = new mw.Title( '' );
+		return new mw.Title( '' );
 	}, 'Throw error on empty string' );
 });
 
@@ -197,4 +198,4 @@ QUnit.test( 'getUrl', 2, function ( assert ) {
 	assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 });
 
-}() );
+}( mediaWiki ) );

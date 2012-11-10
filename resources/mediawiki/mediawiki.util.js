@@ -62,7 +62,8 @@
 
 			/* Fill $content var */
 			util.$content = ( function () {
-				var $content, selectors = [
+				var i, l, $content, selectors;
+				selectors = [
 					// The preferred standard for setting $content (class="mw-body")
 					// You may also use (class="mw-body mw-body-primary") if you use
 					// mw-body in multiple locations.
@@ -94,7 +95,7 @@
 					// not inserted bodytext yet. But in any case <body> should always exist
 					'body'
 				];
-				for ( var i = 0, l = selectors.length; i < l; i++ ) {
+				for ( i = 0, l = selectors.length; i < l; i++ ) {
 					$content = $( selectors[i] ).first();
 					if ( $content.length ) {
 						return $content;
@@ -484,7 +485,7 @@
 		 * is determined by validation.
 		 */
 		validateEmail: function ( mailtxt ) {
-			var rfc5322_atext, rfc1034_ldh_str, HTML5_email_regexp;
+			var rfc5322Atext, rfc1034LdhStr, html5EmailRegexp;
 
 			if ( mailtxt === '' ) {
 				return null;
@@ -515,7 +516,7 @@
 						 "|" / "}" /
 						 "~"
 			*/
-			rfc5322_atext = "a-z0-9!#$%&'*+\\-/=?^_`{|}~";
+			rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
 
 			/**
 			 * Next define the RFC 1034 'ldh-str'
@@ -526,30 +527,30 @@
 			 *	<let-dig-hyp> ::= <let-dig> | "-"
 			 *	<let-dig> ::= <letter> | <digit>
 			 */
-			rfc1034_ldh_str = "a-z0-9\\-";
+			rfc1034LdhStr = 'a-z0-9\\-';
 
-			HTML5_email_regexp = new RegExp(
+			html5EmailRegexp = new RegExp(
 				// start of string
 				'^'
 				+
 				// User part which is liberal :p
-				'[' + rfc5322_atext + '\\.]+'
+				'[' + rfc5322Atext + '\\.]+'
 				+
 				// 'at'
 				'@'
 				+
 				// Domain first part
-				'[' + rfc1034_ldh_str + ']+'
+				'[' + rfc1034LdhStr + ']+'
 				+
 				// Optional second part and following are separated by a dot
-				'(?:\\.[' + rfc1034_ldh_str + ']+)*'
+				'(?:\\.[' + rfc1034LdhStr + ']+)*'
 				+
 				// End of string
 				'$',
 				// RegExp is case insensitive
 				'i'
 			);
-			return (null !== mailtxt.match( HTML5_email_regexp ) );
+			return (null !== mailtxt.match( html5EmailRegexp ) );
 		},
 
 		/**

@@ -1,8 +1,8 @@
 /**
- *  CLDR related utility methods
+ *  CLDR related utility methods.
  */
-( function( mw ) {
-	"use strict";
+( function ( mw ) {
+	'use strict';
 
 	var cldr = {
 		/**
@@ -10,19 +10,20 @@
 		 * In case none of the rules passed, we return pluralRules.length
 		 * That means it is the "other" form.
 		 * @param number
-		 * @param pluralRules
-		 * @return plural form index
+		 * @param {Array} pluralRules
+		 * @return {number} plural form index
 		 */
-		getPluralForm: function( number, pluralRules ) {
-			var pluralFormIndex = 0;
-			for ( pluralFormIndex = 0; pluralFormIndex < pluralRules.length; pluralFormIndex++ ) {
-				if ( mw.libs.pluralRuleParser( pluralRules[pluralFormIndex], number ) ) {
+		getPluralForm: function ( number, pluralRules ) {
+			var i;
+			for ( i = 0; i < pluralRules.length; i++ ) {
+				if ( mw.libs.pluralRuleParser( pluralRules[i], number ) ) {
 					break;
 				}
 			}
-			return pluralFormIndex;
+			return i;
 		}
 	};
 
 	mw.cldr = cldr;
-} )( mediaWiki );
+
+}( mediaWiki ) );

@@ -1,1 +1,5 @@
-mw.special = {};
+/*
+ * Namespace for mediawiki.special.* modules
+ */
+
+mediaWiki.special = {};
