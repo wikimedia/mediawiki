@@ -240,6 +240,7 @@ class LocalisationCache {
 	 * @return mixed
 	 */
 	public function getItem( $code, $key ) {
+		wfDebug( __METHOD__ . ": " . $code . "|" . $key );
 		if ( !isset( $this->loadedItems[$code][$key] ) ) {
 			wfProfileIn( __METHOD__ . '-load' );
 			$this->loadItem( $code, $key );
@@ -379,7 +380,7 @@ class LocalisationCache {
 		}
 
 		$deps = $this->store->get( $code, 'deps' );
-		$keys = $this->store->get( $code, 'list', 'messages' );
+		$keys = $this->store->get( $code, 'list' );
 		$preload = $this->store->get( $code, 'preload' );
 		// Different keys may expire separately, at least in LCStore_Accel
 		if ( $deps === null || $keys === null || $preload === null ) {
