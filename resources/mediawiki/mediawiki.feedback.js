@@ -107,11 +107,18 @@
 							mw.msg( 'feedback-subject' ),
 							$( '<br>' ),
 							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width: 99%;"/>' )
+								.keyup( this.validateForm )
 						),
 						$( '<div style="margin-top: 0.4em;"></div>' ).append(
 							mw.msg( 'feedback-message' ),
 							$( '<br>' ),
 							$( '<textarea name="message" class="feedback-message" style="width: 99%;" rows="5" cols="60"></textarea>' )
+								.keyup( this.validateForm )
+						),
+						$( '<div style="margin-top: 0.4em;"></div>' ).append(
+							$( '<br>' ),
+							$( '<input type="checkbox" name="terms" class="feedback-terms" ></input>' ).click( this.validateForm ),
+							mw.msg( 'feedback-terms' )
 						)
 					),
 					$( '<div class="feedback-mode feedback-bugs"></div>' ).append(
@@ -135,17 +142,18 @@
 					color: '#0645ad'
 				} );
 
-				this.$dialog.dialog({
+				this.$dialog.dialog( {
 					width: 500,
 					autoOpen: false,
 					title: mw.msg( this.dialogTitleMessageKey ),
 					modal: true,
 					buttons: fb.buttons
-				});
+				} );
 
 			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
 			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get(0);
 
+			this.termsInput = this.$dialog.find( 'input.feedback-terms' ).get(0);
 		},
 
 		display: function ( s ) {
@@ -199,13 +207,23 @@
 
 			this.display( 'form' );
 
-			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
-			formButtons[ mw.msg( 'feedback-submit' ) ] = function () {
-				fb.submit();
-			};
-			formButtons[ mw.msg( 'feedback-cancel' ) ] = function () {
-				fb.cancel();
-			};
+			// Set up buttons for the dialog.
+			formButtons = [
+				{
+					'id': 'mw-feedback-submit',
+					text: mw.msg( 'feedback-submit' ),
+					click: function () {
+						fb.submit();
+					},
+					disabled: true
+				},
+				{
+					text: mw.msg( 'feedback-cancel' ),
+					click: function () {
+						fb.cancel();
+					}
+				}
+			];
 			this.$dialog.dialog( { buttons: formButtons } ); // put the buttons back
 		},
 
@@ -218,6 +236,18 @@
 				fb.$dialog.dialog( 'close' );
 			};
 			this.$dialog.dialog( { buttons: closeButton } );
+		},
+
+		validateForm: function () {
+			var action = 'disable';
+			if (
+				$( '.feedback-subject' ).val() !== '' &&
+				$( '.feedback-message' ).val() !== '' &&
+				$( '.feedback-terms' ).prop( 'checked' )
+			) {
+				action = 'enable';
+			}
+			$( '#mw-feedback-submit' ).button( action );
 		},
 
 		cancel: function () {
@@ -250,9 +280,12 @@
 			// Get the values to submit.
 			subject = this.subjectInput.value;
 
-			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
-			// with posting this without their explicit consent
-			message = this.messageInput.value;
+			// Get the Browser info if permissions granted and append with message.
+			message = ( this.termsInput.checked ?
+				'<small>User agent: ' + mw.html.escape( navigator.userAgent ) + '</small>\n\n' :
+				'' ) + this.messageInput.value;
+
+			// Add signature.
 			if ( message.indexOf( '~~~' ) === -1 ) {
 				message += ' ~~~~';
 			}
@@ -265,8 +298,8 @@
 		/**
 		 * Modify the display form, and then open it, focusing interface on the subject.
 		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
-		 *						subject: {String}
-		 *						message: {String}
+		 *	subject: {String}
+		 *	message: {String}
 		 */
 		launch: function ( contents ) {
 			this.displayForm( contents );
