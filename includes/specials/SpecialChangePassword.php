@@ -27,6 +27,9 @@
  * @ingroup SpecialPage
  */
 class SpecialChangePassword extends UnlistedSpecialPage {
+
+	protected $mUserName, $mOldpass, $mNewpass, $mRetype, $mDomain, $mRetypePass;
+
 	public function __construct() {
 		parent::__construct( 'ChangePassword' );
 	}
@@ -105,6 +108,9 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->getOutput()->redirect( $titleObj->getFullURL() );
 	}
 
+	/**
+	 * @param $msg string
+	 */
 	function error( $msg ) {
 		$this->getOutput()->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
 	}
@@ -170,6 +176,10 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		);
 	}
 
+	/**
+	 * @param $fields array
+	 * @return string
+	 */
 	function pretty( $fields ) {
 		$out = '';
 		foreach ( $fields as $list ) {
