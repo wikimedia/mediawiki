@@ -113,6 +113,8 @@ class SqliteInstaller extends DatabaseInstaller {
 			$dir = self::realpath( $dir );
 			$this->setVar( 'wgSQLiteDataDir', $dir );
 		}
+		# Table prefix is not used on SQLite, keep it empty
+		$this->setVar( 'wgDBprefix', '' );
 		return $result;
 	}
 
