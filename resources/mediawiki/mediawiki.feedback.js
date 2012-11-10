@@ -101,6 +101,11 @@
 							mw.msg( 'feedback-message' ),
 							$( '<br>' ),
 							$( '<textarea name="message" class="feedback-message" style="width: 99%;" rows="5" cols="60"></textarea>' )
+						),
+						$( '<div style="margin-top: 0.4em;"></div>' ).append(
+							$( '<br>' ),
+							$( '<input type="checkbox" name="terms" class="feedback-terms" ></input>' ),
+							mw.msg( 'feedback-terms' )
 						)
 					),
 					$( '<div class="feedback-mode feedback-bugs"></div>' ).append(
@@ -135,6 +140,7 @@
 			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
 			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get(0);
 
+			this.termsInput = this.$dialog.find( 'input.feedback-terms' ).get(0);
 		},
 
 		display: function ( s ) {
@@ -239,9 +245,10 @@
 			// Get the values to submit.
 			subject = this.subjectInput.value;
 
-			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
-			// with posting this without their explicit consent
-			message = this.messageInput.value;
+
+
+			// Get the Browser info if permissions granted and append with message.
+			message = ( this.termsInput.checked ? '<small>User agent: ' + mw.html.escape( navigator.userAgent ) + '</small>\n\n' : '' ) + this.messageInput.value;
 			if ( message.indexOf( '~~~' ) === -1 ) {
 				message += ' ~~~~';
 			}

@@ -4901,6 +4901,9 @@ This site is experiencing technical difficulties.',
 Otherwise, you can use the easy form below. Your comment will be added to the page "[$3 $2]", along with your username.',
 'feedback-subject'   => 'Subject:',
 'feedback-message'   => 'Message:',
+'feedback-terms'     => 'I understand that my user agent information includes information about my
+exact browser and operating system version and will be shared publicly alongside my feedback. I agree to provide feedback in accordance with the Terms
+of Use.',
 'feedback-cancel'    => 'Cancel',
 'feedback-submit'    => 'Submit Feedback',
 'feedback-adding'    => 'Adding feedback to page...',

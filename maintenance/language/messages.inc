@@ -3748,6 +3748,7 @@ $wgMessageStructure = array(
 		'feedback-bugornote',
 		'feedback-subject',
 		'feedback-message',
+		'feedback-terms',
 		'feedback-cancel',
 		'feedback-submit',
 		'feedback-adding',
