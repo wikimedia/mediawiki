@@ -79,6 +79,11 @@ class BackupDumperPageTest extends DumpTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+		));
+
 		// Since we will restrict dumping by page ranges (to allow
 		// working tests, even if the db gets prepopulated by a base
 		// class), we have to assert, that the page id are consecutively
