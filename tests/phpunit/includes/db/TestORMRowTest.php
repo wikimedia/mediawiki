@@ -78,8 +78,16 @@ class TestORMRowTest extends ORMRowTest {
 				test_stuff                 BLOB                NOT NULL,
 				test_moarstuff             BLOB                NOT NULL,
 				test_time                  varbinary(14)       NOT NULL
-			);'
+			);',
+			__METHOD__
 		);
+	}
+
+	protected function tearDown() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->dropTable( 'orm_test', __METHOD__ );
+
+		parent::tearDown();
 	}
 
 	public function constructorTestProvider() {
