@@ -985,7 +985,7 @@ class Revision implements IDBAccessObject {
 	 * Gets the content object for the revision
 	 *
 	 * @since 1.21
-	 * @return Content
+	 * @return Content|null
 	 */
 	protected function getContentInternal() {
 		if( is_null( $this->mContent ) ) {
@@ -1003,7 +1003,8 @@ class Revision implements IDBAccessObject {
 				: $handler->unserializeContent( $this->mText, $format );
 		}
 
-		return $this->mContent->copy(); // NOTE: copy() will return $this for immutable content objects
+		// NOTE: copy() will return $this for immutable content objects
+		return $this->mContent ? $this->mContent->copy() : null;
 	}
 
 	/**
