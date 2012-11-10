@@ -489,6 +489,86 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param String $old: Text as it was in the database
+	 * @param String $mine: Text submitted while user was editing
+	 * @param String $yours: Text submitted by the user
+	 * @param Boolean $expectedMergeResult Whether the merge should be a success
+	 * @param String $expectedText: Text after merge has been completed
+	 *
+	 * @dataProvider provideMerge()
+	 */
+	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
+		$mergedText = null;
+		$isMerged = wfMerge( $old, $mine, $yours, $mergedText );
+
+		$msg = 'Merge should be a ';
+		$msg .= $expectedMergeResult ? 'success' : 'failure';
+		$this->assertEquals( $expectedMergeResult, $isMerged, $msg );
+
+		if( $isMerged ) {
+			// Verify the merged text
+			$this->assertEquals( $expectedText, $mergedText,
+				'is merged text as expected?' );
+		}
+	}
+
+	public static function provideMerge() {
+		$EXPECT_MERGE_SUCCESS = true;
+		$EXPECT_MERGE_FAILURE = false;
+
+		return array(
+
+			// #0: clean merge
+			array(
+				// old:
+				"one one one\n" . // trimmed
+				"\n" .
+				"two two two",
+
+				// mine:
+				"one one one ONE ONE\n" .
+				"\n" .
+				"two two two\n", // with tailing whitespace
+
+				// yours:
+				"one one one\n" .
+				"\n" .
+				"two two TWO TWO", // trimmed
+
+				// ok:
+				$EXPECT_MERGE_SUCCESS,
+
+				// result:
+				"one one one ONE ONE\n" .
+				"\n" .
+				"two two TWO TWO\n", // note: will always end in a newline
+			),
+
+			// #1: conflict, fail
+			array(
+				// old:
+				"one one one", // trimmed
+
+				// mine:
+				"one one one ONE ONE\n" .
+				"\n" .
+				"bla bla\n" .
+				"\n", // with tailing whitespace
+
+				// yours:
+				"one one one\n" .
+				"\n" .
+				"two two", // trimmed
+
+				$EXPECT_MERGE_FAILURE,
+
+				// result:
+				null,
+			),
+		);
+	}
+
+	/**
 	 * @dataProvider provideMakeUrlIndexes()
 	 */
 	function testMakeUrlIndexes( $url, $expected ) {
