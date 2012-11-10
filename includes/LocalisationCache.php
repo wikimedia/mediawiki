@@ -379,7 +379,7 @@ class LocalisationCache {
 		}
 
 		$deps = $this->store->get( $code, 'deps' );
-		$keys = $this->store->get( $code, 'list', 'messages' );
+		$keys = $this->store->get( $code, 'list' );
 		$preload = $this->store->get( $code, 'preload' );
 		// Different keys may expire separately, at least in LCStore_Accel
 		if ( $deps === null || $keys === null || $preload === null ) {
