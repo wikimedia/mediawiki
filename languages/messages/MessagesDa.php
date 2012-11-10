@@ -322,7 +322,7 @@ $messages = array(
 'cancel' => 'Afbryd',
 'moredotdotdot' => 'Mere...',
 'mypage' => 'Min side',
-'mytalk' => 'Min diskussion',
+'mytalk' => 'Diskussion',
 'anontalk' => 'Diskussionsside for denne IP-adresse',
 'navigation' => 'Navigation',
 'and' => '&#32;og',
@@ -2169,7 +2169,7 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 
 # Watchlist
 'watchlist' => 'Overvågningsliste',
-'mywatchlist' => 'Min overvågningsliste',
+'mywatchlist' => 'Overvågningsliste',
 'watchlistfor2' => 'For $1 $2',
 'nowatchlist' => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext' => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
@@ -2423,7 +2423,7 @@ $1',
 # Contributions
 'contributions' => 'Brugerbidrag',
 'contributions-title' => 'Brugerbidrag for $1',
-'mycontris' => 'Mine bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'uctop' => ' (seneste)',
@@ -3854,4 +3854,6 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'diskussion',
 );

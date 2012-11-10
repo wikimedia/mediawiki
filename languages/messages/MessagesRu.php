@@ -693,7 +693,7 @@ $1',
 'sort-ascending' => 'Упорядочить по возрастанию',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Страница',
+'nstab-main' => 'Статья',
 'nstab-user' => 'Участник',
 'nstab-media' => 'Мультимедиа',
 'nstab-special' => 'Служебная страница',

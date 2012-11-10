@@ -3286,6 +3286,7 @@ Si vous l’exécutez, votre système peut être compromis.",
 'sp-newimages-showfrom' => 'Afficher les nouveaux fichiers à partir du $1 à $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'days-abbrev' => '$1 j',
 'seconds' => '{{PLURAL:$1|$1 seconde|$1 secondes}}',
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours' => '{{PLURAL:$1|$1 heure|$1 heures}}',

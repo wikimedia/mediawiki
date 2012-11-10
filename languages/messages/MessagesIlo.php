@@ -83,7 +83,7 @@ $messages = array(
 
 'underline-always' => 'Kanayon',
 'underline-never' => 'Saan uray kaanoman',
-'underline-default' => 'Kasisigud a pagbasabasa',
+'underline-default' => 'Kasisigud a kudil wenno pagbasabasa',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Urnosen ti kita ti letra iti lugar:',
@@ -168,8 +168,8 @@ $messages = array(
 'newwindow' => '(aglukat iti sabali a tawa)',
 'cancel' => 'Ukasen',
 'moredotdotdot' => 'Adu pay...',
-'mypage' => 'Panidko',
-'mytalk' => 'Pakitungtungak',
+'mypage' => 'Panid',
+'mytalk' => 'Tungtungan',
 'anontalk' => 'Tungtungan para iti daytoy a pagtaengan ti IP',
 'navigation' => 'Pagdaliasatan',
 'and' => '&#32;ken',
@@ -750,7 +750,7 @@ Annawid a .css ken .js dagiti titulo ket agususar ti babassit a letra, a kas dag
 'note' => "'''Paammo:'''",
 'previewnote' => "'''Laglagipem a daytoy ket panagipadas laeng.'''
 Dagiti sinukatam ket saan pay a naidulin!",
-'continue-editing' => 'Agtultuloy nga agurnos',
+'continue-editing' => 'Mapan idiay pagurnosan a lugar',
 'previewconflict' => 'Daytoy a panagpadas ket agiparang ti testo dita ngato a panagurnos a lugar a kasla agparang no kayatmo nga idulin.',
 'session_fail_preview' => "'''Pasensia! Saanmi a maaramid ti panag-urnos gapu ngamin ta naawanan ti gimong ti data.'''
 Pangngaasi a padasem manen.
@@ -1136,7 +1136,7 @@ Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
 
 # Preferences page
 'preferences' => 'Kaykayatan',
-'mypreferences' => 'Kaykayatko',
+'mypreferences' => 'Kaykayatan',
 'prefs-edits' => 'Bilang dagiti inurnos:',
 'prefsnologin' => 'Saan a nakastrek',
 'prefsnologintext' => 'Masapul a <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nakastrekka]</span> tapno makapili kadagiti kaykayatmo.',
@@ -1152,7 +1152,7 @@ Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
 'prefs-rc' => 'Kinaudi a binalbaliwan',
 'prefs-watchlist' => 'Listaan ti bambantayan',
 'prefs-watchlist-days' => 'Alaldaw nga iparang idiay listaan ti bambantayan:',
-'prefs-watchlist-days-max' => 'Kabayag nga $1 {{PLURAL:$1|nga aldaw|nga al-aldaw}}',
+'prefs-watchlist-days-max' => 'Kapaut nga $1 {{PLURAL:$1|nga aldaw|nga al-aldaw}}',
 'prefs-watchlist-edits' => 'Kaadu a bilang ti ipakita kadagiti sinukatan iti napadakkel a bambantayan:',
 'prefs-watchlist-edits-max' => 'Kaadu a bilang: 1000',
 'prefs-watchlist-token' => 'Tandaan ti bambantayan:',
@@ -1181,7 +1181,7 @@ Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
 No adda makaammo daytoy a tulbek ditoy a pagikabilan ket mabalin da a basaen ti binambantayam, masapul nga agpilika ti pateg a seguridad.
 
 Adda ditoy ti pugto a pateg a mausarmo: $1',
-'savedprefs' => 'Naidulin dagitoy kaykayatmon.',
+'savedprefs' => 'Naidulinen dagiti kakaykayatam.',
 'timezonelegend' => 'Sona ti oras:',
 'localtime' => 'Lokal nga oras:',
 'timezoneuseserverdefault' => 'Usaren ti wiki a kasisigud ($1)',
@@ -1220,7 +1220,7 @@ Ngem saanto a mabalinen nga ipasubli.',
 'yourrealname' => 'Pudno a nagan:',
 'yourlanguage' => 'Pagsasao:',
 'yourvariant' => 'Linaon ti sabali a pagsasao:',
-'prefs-help-variant' => 'Ti kaykayatmo a sabsabali a panagsurat a maipakita kadagiti linaon ti panid daytoy a wiki.',
+'prefs-help-variant' => 'Ti kinaykayatmo a kita ti pagsasao wenno sabali a panagsurat a maipakita kadagiti linaon ti panid daytoy a wiki.',
 'yournick' => 'Baro a pirma:',
 'prefs-help-signature' => 'Komentario kadagiti  pakipatangan a panid ket  mapirmaan koma iti "<nowiki>~~~~</nowiki>" nga agpabalin ti pirmam ken ti petsa.',
 'badsig' => 'Saan a pudno a kilaw a pirma.
@@ -1372,6 +1372,9 @@ Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak
 'rightslogtext' => 'Listaan daytoy kadagiti sinukatan a karbengan ti agar-aramat.',
 'rightslogentry' => 'sinukatan ti panagkameng iti bunggoy ti $1 manipud $2 iti $3',
 'rightslogentry-autopromote' => 'naautomatiko a naipangato a naggapo iti $2 idiay $3',
+'logentry-rights-rights' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3 manipud ti $4 iti $5',
+'logentry-rights-rights-legacy' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3',
+'logentry-rights-autopromote' => 'Ni $1 ket automatiko idi a naipangato manipud ti $4 iti $5',
 'rightsnone' => '(awan)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1998,7 +2001,7 @@ Kitaen met [[Special:WantedCategories|dagiti makidkiddaw a kategoria]].',
 'linksearch-ok' => 'Biruken',
 'linksearch-text' => 'Ti naataap a tarheta a kas "*.wikipedia.org" ket mabalin nga usaren.
 Masapul ti kangatuan a pagturayan, a kaspagarigan "*.org".<br />
-Natapayaen a protokol: <code>$1</code> (saanmo nga inayon dagitoy iti panagbirukmo) .',
+Dagiti nasuportaran a protokol: <code>$1</code> (naipakasigud ti http:// no awan ti protokol a nainaganan).',
 'linksearch-line' => 'Ti $1 ket nakasilpo idiay $2',
 'linksearch-error' => 'Ti naatap a tarheta ket agparang laeng iti pinagrugi ti nagan ti agsangaili.',
 
@@ -2047,7 +2050,7 @@ Adda pay ngata [[{{MediaWiki:Listgrouprights-helppage}}|adu pay a pakaammo]] a m
 'emailuser-title-target' => 'E-suratam daytoy nga {{GENDER:$1|agar-aramat}}',
 'emailuser-title-notarget' => 'E-suratan ti agar-aramat',
 'emailpage' => 'E-suratan ti agar-aramat',
-'emailpagetext' => 'Mabalinmo nga usaren ti kinabuklan dita baba nga agipatulod ti e-surat a mensahe daytoy nga agar-aramat.
+'emailpagetext' => 'Mabalinmo nga usaren ti kinabuklan dita baba nga agipatulod ti e-surat a mensahe ti daytoy nga {{GENDER:$1|agar-aramat}}.
 Ti e-surat nga inkabilmo idiay  [[Special:Preferences|kakaykayatam]] ket agparang a kas "Naggapu" a pagtaengan ti e-surat, tapno ti nagipatulodam ket makasungbat kenka.',
 'usermailererror' => 'Kita ti surat ket nangisubli ti biddut:',
 'defemailsubject' => '{{SITENAME}} e-surat naggapo ken ni "$1"',
@@ -2079,7 +2082,7 @@ Ti e-surat nga inkabilmo idiay  [[Special:Preferences|kakaykayatam]] ket agparan
 
 # Watchlist
 'watchlist' => 'Bambantayak',
-'mywatchlist' => 'Bambantayak',
+'mywatchlist' => 'Bambantayan',
 'watchlistfor2' => 'Para iti $1 $2',
 'nowatchlist' => 'Awan ti banag iti listaan dagiti bambantayam.',
 'watchlistanontext' => 'Pangngaasim ti $1 tapno makitam dagiti inurnosmo dita bambantayam.',
@@ -2346,7 +2349,7 @@ $1',
 # Contributions
 'contributions' => 'Naaramidan dagiti agar-aramat',
 'contributions-title' => 'Naaramidan ni $1',
-'mycontris' => 'Naaramidak',
+'mycontris' => 'Naar-aramid',
 'contribsub2' => 'Para iti $1 ($2)',
 'nocontribs' => 'Awan ti nasarakan a nasukatan a kapada daytoy a kita.',
 'uctop' => '(rabaw)',
@@ -2387,7 +2390,7 @@ Ti naudi a listaan ti panakaserra ket adda dita baba ta usaren a reperensia:',
 'whatlinkshere-hideredirs' => '$1 dagiti baw-ing',
 'whatlinkshere-hidetrans' => '$1 dagiti mailaklak-am',
 'whatlinkshere-hidelinks' => '$1 dagiti silpo',
-'whatlinkshere-hideimages' => '$1 dagiti silpo ti imahen',
+'whatlinkshere-hideimages' => '$1 a silsilpo ti papeles',
 'whatlinkshere-filters' => 'Dagiti sagat',
 
 # Block/unblock
@@ -2826,7 +2829,7 @@ Mabalinmo a kitaen ti taudanna.',
 'tooltip-upload' => 'Rugian ti agip-ipan',
 'tooltip-rollback' => '"Baliktaden"   isubli ti inurnos (dagiti inurnos) ti daytoy a panid ti kinaudi a nangaramid iti maysa a takla',
 'tooltip-undo' => '"Ibabawi" ipasubli daytoy nga urnos ken lukatanna ti kinabuklan ti urnos iti panagpadas. Agpabalin daytoy a mangikabil ti rason idiay pinakabuklan.',
-'tooltip-preferences-save' => 'Idulin dagiti kaykayatmo',
+'tooltip-preferences-save' => 'Idulin dagiti kakaykayatam',
 'tooltip-summary' => 'Ikabil ti bassit a pakabuklan',
 
 # Metadata
@@ -2856,7 +2859,7 @@ Daytoy ket mabalin a gapuanan babaen ti panilpo a naiparit ti akin ruar a pagsaa
 
 # Info page
 'pageinfo-title' => 'Pakaammo para iti "$1"',
-'pageinfo-not-current' => 'Ti pakaammo ket mabalin laeng a maiparang para iti agdama a panagbalbaliw.',
+'pageinfo-not-current' => 'Pasensia, saan a mabalin ti mangited ti pakaammo para kadagiti daan a panagbalbaliw.',
 'pageinfo-header-basic' => 'Kangrunaan a pakaammuan',
 'pageinfo-header-edits' => 'Pakasaritaan ti inurnos',
 'pageinfo-header-restrictions' => 'Panagsalaknib ti panid',
@@ -2865,6 +2868,7 @@ Daytoy ket mabalin a gapuanan babaen ti panilpo a naiparit ti akin ruar a pagsaa
 'pageinfo-default-sort' => 'Kasisigud a kangrunaan a panagilasin',
 'pageinfo-length' => 'Kaatiddog ti panid (kadagiti byte)',
 'pageinfo-article-id' => 'ID ti panid',
+'pageinfo-language' => 'Pagsasao ti naglaon a panid',
 'pageinfo-robot-policy' => 'Kasasaad ti panagbiruk a makina',
 'pageinfo-robot-index' => 'Mabalin a maipasurotan',
 'pageinfo-robot-noindex' => 'Saan a mabalin a maipasurotan',
@@ -3572,6 +3576,7 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 'version-license' => 'Lisensia',
 'version-poweredby-credits' => "Daytoy a wiki ket pinaandar ti '''[//www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
 'version-poweredby-others' => 'dadduma pay',
+'version-credits-summary' => 'Kayat mi kuma a pammadayawan dagiti sumaganad a tao para kadagiti inparawadda ti [[Special:Version|MediaWiki]].',
 'version-license-info' => 'Ti MediaWiki ket nawaya a software; maiwarasmo ken/wenno mabaliwam babaen ti banag iti GNU General Public License a naipablaak babaen ti Free Software Foundation; nupay iti bersion 2 iti Lisensia, wenno (ti panagpilim) ti  ania man a bersion.
 
 Ti MediaWiki ket naiwarwaras nga adda ti namnama a makatulong, ngem AWAN TI ANIA MAN A GARANTIA; nga awan pay ti naibagbaga a PANAKAILAKO wenno KALAINGAN NA ITI DAYTOY A PANGGEP. Kitaen ti GNU Sapasap a  Publiko a Lisensia para kadagiti adu pay a salaysay.
@@ -3790,4 +3795,6 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'tungtungan',
 );

@@ -1073,6 +1073,12 @@ Nem lett magyarázat csatolva.',
 Már létezik.',
 'defaultmessagetext' => 'Alapértelmezett szöveg',
 
+# Content models
+'content-model-wikitext' => 'wikiszöveg',
+'content-model-text' => 'egyszerű szöveg',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Figyelem: ezen a lapon túl sok erőforrásigényes elemzőfüggvény-hívás található.
 
@@ -1344,7 +1350,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Preferences page
 'preferences' => 'Beállítások',
-'mypreferences' => 'Beállításaim',
+'mypreferences' => 'Beállítások',
 'prefs-edits' => 'Szerkesztéseid száma:',
 'prefsnologin' => 'Nem jelentkeztél be',
 'prefsnologintext' => 'Saját beállításaid elmentéséhez <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} be kell jelentkezned.] </span>',
@@ -2187,7 +2193,7 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'linksearch-ns' => 'Névtér:',
 'linksearch-ok' => 'keresés',
 'linksearch-text' => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org". Legalább egy felső szintű tartománynak lennie kell, például "*.org"<br />
-Támogatott protokollok: <code>$1</code> (ezeket ne írd be a keresésbe).',
+Támogatott protokollok: <code>$1</code> (http:// az alapértelmezett, ha nincs protokoll megadva).',
 'linksearch-line' => '$1 hivatkozva innen: $2',
 'linksearch-error' => 'Helyettesítő karakterek csak a cím elején szerepelhetnek.',
 
@@ -2569,7 +2575,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'whatlinkshere-hideredirs' => 'átirányítások $1',
 'whatlinkshere-hidetrans' => 'beillesztések $1',
 'whatlinkshere-hidelinks' => 'linkek $1',
-'whatlinkshere-hideimages' => 'képhivatkozás $1',
+'whatlinkshere-hideimages' => 'fájlhivatkozások $1',
 'whatlinkshere-filters' => 'Elemek szűrése',
 
 # Block/unblock

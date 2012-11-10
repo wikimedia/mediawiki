@@ -195,7 +195,7 @@ $messages = array(
 
 'underline-always' => 'Palagi',
 'underline-never' => 'Hindi magpakailanman',
-'underline-default' => 'Tinakda ng pambasa-basa',
+'underline-default' => 'Tinakda ng pambasa-basa o balat',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Baguhin ang estilong pantitik ng lugar:',
@@ -284,7 +284,7 @@ $messages = array(
 'cancel' => 'Kanselahin',
 'moredotdotdot' => 'Damihan pa...',
 'mypage' => 'Pahina ko',
-'mytalk' => 'Usapan ko',
+'mytalk' => 'Usapan',
 'anontalk' => 'Usapan para sa IP na ito',
 'navigation' => 'Paglilibot (nabigasyon)',
 'and' => ',&#32;at',
@@ -865,7 +865,7 @@ Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na ma
 'note' => "'''Paunawa:'''",
 'previewnote' => "'''Tandaan na isa lamang itong paunang tingin.'''
 Hindi pa nasasagip ang mga binago mo!",
-'continue-editing' => 'Ipagpatuloy ang pamamatnugot',
+'continue-editing' => 'Pumunta sa pook ng pamamatnugot',
 'previewconflict' => 'Ipinamamalas ng paunang tinging ito ang teksto sa loob ng pangitaas na pook-patnugutan ng teksto ayon sa lilitaw na anyo nito kapag pinili mo ang pagsagip.',
 'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng sesyon ng datos.
 Paki ulit muli. Kung hindi ito gumana, subukang umalis sa pagkalagda at bumalik muli.'''",
@@ -1238,7 +1238,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 
 # Preferences page
 'preferences' => 'Mga kagustuhan',
-'mypreferences' => 'Mga nais ko',
+'mypreferences' => 'Mga nais',
 'prefs-edits' => 'Bilang ng mga pagbabago:',
 'prefsnologin' => 'Hindi nakalagda/nakatala',
 'prefsnologintext' => 'Kailangan mong <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
@@ -1299,7 +1299,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'timezoneregion-indian' => 'Karagatang Indyano',
 'timezoneregion-pacific' => 'Karagatang Pasipiko',
 'allowemail' => 'Pahintulutan ang e-liham mula sa ibang mga tagagamit',
-'prefs-searchoptions' => 'Mga pagpipilian para sa paghahanap',
+'prefs-searchoptions' => 'Paghahanap',
 'prefs-namespaces' => 'Mga espasyo ng pangalan',
 'defaultns' => 'O kaya maghanap sa mga pangalan ng espasyong ito:',
 'default' => 'Likas na pagtatakda',
@@ -2446,7 +2446,7 @@ $1',
 # Contributions
 'contributions' => 'Mga ambag ng tagagamit',
 'contributions-title' => 'Mga ambag ng tagagamit na si $1',
-'mycontris' => 'Mga ambag ko',
+'mycontris' => 'Mga ambag',
 'contribsub2' => 'Para kay $1 ($2)',
 'nocontribs' => 'Walang pagbabagong nakita sa binigay na kondisyon.',
 'uctop' => ' (itaas)',
@@ -2984,6 +2984,7 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 
 # Info page
 'pageinfo-title' => 'Kabatiran para sa "$1"',
+'pageinfo-not-current' => 'Maaari lamang ipakita ang impormasyon para sa kasalukuyang rebisyon.',
 'pageinfo-header-basic' => 'Saligang kabatiran',
 'pageinfo-header-edits' => 'Kasaysayan ng pamamatnugot',
 'pageinfo-header-restrictions' => 'Pruteksiyon ng pahina',

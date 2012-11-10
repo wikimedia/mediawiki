@@ -390,7 +390,7 @@ $messages = array(
 
 'underline-always' => '总是使用',
 'underline-never' => '从不使用',
-'underline-default' => '浏览器默认',
+'underline-default' => '浏览器默认设置',
 
 # Font style option in Special:Preferences
 'editfont-style' => '编辑区字体样式：',
@@ -476,7 +476,7 @@ $messages = array(
 'cancel' => '取消',
 'moredotdotdot' => '更多',
 'mypage' => '页面',
-'mytalk' => '讨论页',
+'mytalk' => '讨论',
 'anontalk' => '该IP地址的讨论',
 'navigation' => '导航',
 'and' => '和',
@@ -498,7 +498,7 @@ $messages = array(
 'vector-action-protect' => '保护',
 'vector-action-undelete' => '恢复',
 'vector-action-unprotect' => '更改保护',
-'vector-simplesearch-preference' => '启用简化搜索栏（仅适用Vector皮肤）',
+'vector-simplesearch-preference' => '启用简化搜索栏（仅Vector皮肤）',
 'vector-view-create' => '创建',
 'vector-view-edit' => '编辑',
 'vector-view-history' => '查看历史',
@@ -518,7 +518,7 @@ $messages = array(
 'searcharticle' => '提交',
 'history' => '页面历史',
 'history_short' => '历史',
-'updatedmarker' => '我上次访问以来的修改',
+'updatedmarker' => '我上次访问之后的更新',
 'printableversion' => '打印版本',
 'permalink' => '永久链接',
 'print' => '打印',
@@ -1342,7 +1342,7 @@ $1",
 
 # Preferences page
 'preferences' => '系统设置',
-'mypreferences' => '参数设置',
+'mypreferences' => '系统设置',
 'prefs-edits' => '编辑数量：',
 'prefsnologin' => '尚未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
@@ -3030,7 +3030,7 @@ $1被封禁的理由是：“$2”',
 'pageinfo-subpages-value' => '$1 （$2个重定向；$3个非重定向）',
 'pageinfo-firstuser' => '页面创建者',
 'pageinfo-firsttime' => '页面创建日期',
-'pageinfo-lastuser' => '最近的编者',
+'pageinfo-lastuser' => '最后编辑',
 'pageinfo-lasttime' => '最后编辑的日期',
 'pageinfo-edits' => '总编辑次数',
 'pageinfo-authors' => '不同编者总计',
@@ -3046,6 +3046,7 @@ $1被封禁的理由是：“$2”',
 'pageinfo-contentpage-yes' => '是',
 'pageinfo-protect-cascading' => '从这里开始连锁保护',
 'pageinfo-protect-cascading-yes' => '是',
+'pageinfo-protect-cascading-from' => '保护级联自',
 
 # Skin names
 'skinname-standard' => '标准',
@@ -3086,8 +3087,7 @@ $1',
 'nextdiff' => '下一编辑→',
 
 # Media information
-'mediawarning' => "'''警告'''：该文件类型可能包含恶意代码。
-运行它可能对您的系统带来危险。",
+'mediawarning' => "'''警告'''：该文件类型可能含有恶意代码。执行后你的系统可能受损。",
 'imagemaxsize' => '图像大小限制：<br /><u>（文件描述页）</u>',
 'thumbsize' => '缩略图大小：',
 'widthheightpage' => '$1×$2，$3页',
@@ -3304,7 +3304,7 @@ Variants for Chinese language
 'exif-worldregiondest' => '世界区域显示',
 'exif-countrydest' => '所示的国家',
 'exif-countrycodedest' => '国家代码',
-'exif-provinceorstatedest' => '省或状态显示',
+'exif-provinceorstatedest' => '省或州',
 'exif-citydest' => '所示的城市',
 'exif-sublocationdest' => '显示城市中的详细地点',
 'exif-objectname' => '简称',
@@ -3961,8 +3961,8 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-unknown-error' => '内部错误：尝试上传文件时出错。',
 'api-error-unknown-warning' => '未知的警告：$1',
 'api-error-unknownerror' => '未知错误：$1。',
-'api-error-uploaddisabled' => '此wiki关闭了上传功能。',
-'api-error-verification-error' => '此文件可能已损坏，或有错误的扩展名。',
+'api-error-uploaddisabled' => '该wiki停用上传。',
+'api-error-verification-error' => '该文件可能损坏或扩展名错误。',
 
 # Durations
 'duration-seconds' => '$1秒',

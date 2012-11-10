@@ -4181,4 +4181,6 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
+# Unknown messages
+'mytalk-parenthetical' => '토론',
 );

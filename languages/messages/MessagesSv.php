@@ -2242,8 +2242,8 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-ns' => 'Namnrymd:',
 'linksearch-ok' => 'Sök',
 'linksearch-text' => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
-Det krävs åtminstone en toppnivå-domän, t.ex. "*.org".<br />
-Protokoll som stöds: <code>$1</code> (lägg inte till något av dessa i din sökning).',
+Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
+Protokoll som stöds: <code>$1</code> (lägg inte till någon av dessa i din sökning).',
 'linksearch-line' => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 
@@ -4066,4 +4066,6 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'diskussion',
 );

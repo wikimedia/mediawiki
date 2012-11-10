@@ -259,7 +259,7 @@ $messages = array(
 'cancel' => 'Batilisha',
 'moredotdotdot' => 'Zaidi...',
 'mypage' => 'Ukurasa wangu',
-'mytalk' => 'Majadiliano yangu',
+'mytalk' => 'Majadiliano',
 'anontalk' => 'Majadiliano ya IP hii',
 'navigation' => 'Urambazaji',
 'and' => '&#32;na',
@@ -778,7 +778,7 @@ Labda itakusumbua kwamba kuna maoni mengine yanawekwa hapa na unaamini kwamba ha
 'noarticletext' => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
 'noarticletext-nopermission' => 'Kwa sasa hakuna maandishi katika ukurasa huu.
 Unaweza [[Special:Search/{{PAGENAME}}|kutafuta jina la ukurasa huu]] katika kurasa nyingine,
-au <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tafuta ingizo linalofanana]</span>.',
+au <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tafuta kumbukumbu zinazohusika]</span>, lakini huruhusiwi kuanzisha ukurasa huu.',
 'userpage-userdoesnotexist' => 'Akaunti ya mtumiaji "<nowiki>$1</nowiki>" haijasajilishwa.
 Ukitaka kuanzisha au kuhariri ukurasa huu tafadhali ucheki jina la akaunti.',
 'userpage-userdoesnotexist-view' => 'Akaunti ya mtumiaji "$1" haijasajilishwa.',
@@ -1131,7 +1131,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 
 # Preferences page
 'preferences' => 'Mapendekezo',
-'mypreferences' => 'Mapendekezo yangu',
+'mypreferences' => 'Mapendekezo',
 'prefs-edits' => 'Idadi ya marekebisho:',
 'prefsnologin' => 'Hujaingia',
 'prefsnologintext' => 'Inabidi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} uingie akaunti yako]</span> ili ubadilishe mapendekezo yako.',
@@ -1980,7 +1980,7 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 
 # Watchlist
 'watchlist' => 'Maangalizi yangu',
-'mywatchlist' => 'Maangalizi yangu',
+'mywatchlist' => 'Maangalizi',
 'watchlistfor2' => 'Kwa ajili ya $1 $2',
 'nowatchlist' => 'Hamna vitu katika maangalizi yako.',
 'watchlistanontext' => 'Tafadhali $1 ili kutazama au kuhariri vitu vilivyopo katika orodha yako ya maangalizi.',
@@ -2201,7 +2201,7 @@ $1',
 # Contributions
 'contributions' => 'Michango ya mtumiaji',
 'contributions-title' => 'Michango ya mtumiaji $1',
-'mycontris' => 'Michango yangu',
+'mycontris' => 'Michango',
 'contribsub2' => 'Kwa $1 ($2)',
 'nocontribs' => 'Mabadiliko yanayolingana na vigezo vilivyoulizwa hayakupatikana.',
 'uctop' => '(juu)',
