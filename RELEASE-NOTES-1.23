@@ -94,6 +94,8 @@ production.
   callbacks for frequently occurring events.
 * Special:ProtectedPages shows now a table. The timestamp, the reason and
   the protecting user is also shown.
+* JS feedback dialog includes user agent and requires the user to tick a box
+  saying they agree to the Terms of use.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
