@@ -46,10 +46,10 @@ $wgAutoloadClasses += array(
 	'WikiPageTest' => "$testDir/phpunit/includes/WikiPageTest.php",
 
 	//db
-	'ORMTableTest' => "$testFolder/phpunit/includes/db/ORMTableTest.php",
+	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 
 	//Selenium
-	'SeleniumTestConstants' => "$testFolder/selenium/SeleniumTestConstants.php",
+	'SeleniumTestConstants' => "$testDir/selenium/SeleniumTestConstants.php",
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
