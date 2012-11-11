@@ -64,7 +64,7 @@
 
 		/**
 		 * Get the categories that a particular page on the wiki belongs to
-		 * @param title {mw.Title}
+		 * @param title {mw.Title}, will follow redirects
 		 * @param success {Function} callback to pass categories to (or false, if title not found)
 		 * @param err {Function} optional callback to run if api error
 		 * @param async {Boolean} optional asynchronousness (default = true = async)
@@ -74,7 +74,8 @@
 			var params, ok;
 			params = {
 				prop: 'categories',
-				titles: title.toString()
+				titles: title.toString(),
+				redirects: ''
 			};
 			if ( async === undefined ) {
 				async = true;
