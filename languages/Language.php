@@ -2416,19 +2416,7 @@ class Language {
 		if ( is_array( $s ) ) {
 			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
 		}
-		# Check for non-UTF-8 URLs
-		$ishigh = preg_match( '/[\x80-\xff]/', $s );
-		if ( !$ishigh ) {
-			return $s;
-		}
-
-		if ( function_exists( 'mb_check_encoding' ) ) {
-			$isutf8 = mb_check_encoding( $s, 'UTF-8' );
-		} else {
-			$isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-					'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-		}
-		if ( $isutf8 ) {
+		if ( $StringUtils::isUtf8( $s ) ) {
 			return $s;
 		}
 
