@@ -373,7 +373,6 @@
 			// just add it to the bottom of their 'sidebar' element as a fallback
 			switch ( mw.config.get( 'skin' ) ) {
 			case 'standard':
-			case 'cologneblue':
 				$( '#quickbar' ).append( $link.after( '<br/>' ) );
 				return $link[0];
 			case 'nostalgia':
