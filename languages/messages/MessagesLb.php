@@ -1456,6 +1456,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'rightslogtext' => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
 'rightslogentry' => "huet d'Benotzerrechter vum $1 vun $2 op $3 geännert.",
 'rightslogentry-autopromote' => 'gouf automatesch aus dem Grupp $2 an de Grupp $3 gesat',
+'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
 'rightsnone' => '(keen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1563,7 +1564,7 @@ Fir e '''Bild''' op enger Säit zu benotzen, schreift amplaz vum Bild eng vun d�
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></code>''' fir déi ganz Versioun vum Fichier ze benotzen
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></code>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénke Rand mat 'alt text' als Beschreiwung
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></code>''' fir e Fichier direkt ze verlinken ouni de Fichier ze weisen",
-'upload-permitted' => 'Erlaabte Formater vun de Fichieren: $1.',
+'upload-permitted' => 'Erlaabt Formater vun de Fichieren: $1.',
 'upload-preferred' => 'Fichierszorten déi am beschte funktionéieren: $1.',
 'upload-prohibited' => 'Verbuede Fichiers Formater: $1.',
 'uploadlog' => 'Lëscht vun den eropgeluedene Fichieren',
@@ -3824,4 +3825,6 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'Diskussioun',
 );

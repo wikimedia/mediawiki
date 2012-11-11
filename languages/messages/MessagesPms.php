@@ -3793,4 +3793,6 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'discussion',
 );

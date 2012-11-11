@@ -314,10 +314,15 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'virus-unknownscanner' => 'intivirus poin connu:',
 
 # Login and logout pages
+'welcomecreation' => "== Binv'nute, $1 ! ==
+
+Vote compte o té créé.
+N'obliez poin d'parsonnaliser vos [[Special:Preferences|préférinches édseur {{SITENAME}}]].",
 'yourname' => "nom d'uzeu:",
 'yourpassword' => "Mot d'passe:",
 'yourpasswordagain' => "Intrer à nouvieu ch'mot d'passe:",
 'remembermypassword' => "Intrer oùtonmatiquemint l'prochaine fouos (pour un maximum éd $1 {{PLURAL:$1|jour|jours}})",
+'securelogin-stick-https' => "Réster connécté in HTTPS apré l'connécsion",
 'yourdomainname' => 'Vote donmène:',
 'login' => 'Intrer',
 'nav-login-createaccount' => 'Intrer / créer vote conpte',
@@ -636,6 +641,9 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzer pèr d’eutes prodjés.
 Vir apré ([$2 pache]).",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
+
+# List redirects
+'listredirects' => 'Lisse des érdiréccions',
 
 # Random page
 'randompage' => "Pache à l'bérlure",

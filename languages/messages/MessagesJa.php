@@ -2153,8 +2153,8 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 # MIME search
 'mimesearch' => 'MIMEタイプ検索',
 'mimesearch-summary' => 'このページでは、ファイルをMIMEタイプで絞り込みます。
-contenttype/subtypeの形式で入力してください（例：<code>image/jpeg</code>）。',
-'mimetype' => 'MIMEタイプ：',
+contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</code>)。',
+'mimetype' => 'MIMEタイプ:',
 'download' => 'ダウンロード',
 
 # Unwatched pages
@@ -3375,6 +3375,7 @@ $1',
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1、 $2 × $3',
 'seconds-abbrev' => '$1 s',
+'minutes-abbrev' => '$1 m',
 'hours-abbrev' => '$1 h',
 'days-abbrev' => '$1 d',
 'seconds' => '{{PLURAL:$1|$1 秒}}',

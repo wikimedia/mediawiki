@@ -716,7 +716,7 @@ $1 எனும் பயனரையோ வேறு [[{{MediaWiki:Grouppage-sy
 'noarticletext' => 'இப் பக்கத்தில் தற்பொழுது உள்ளடக்கம் எதுவுமில்லை. நீங்கள் இப்பக்க [[Special:Search/{{PAGENAME}}|தலைப்பை வேறு பக்கங்களில் தேடவோ]] அல்லது [{{fullurl:{{FULLPAGENAME}}|action=edit}} இப்பக்கத்தை தொகுக்கவோ] முடியும்.',
 'noarticletext-nopermission' => 'தற்பொழுது இப்பக்கத்தில் உரை எதுவும் இல்லை.
 நீங்கள் [[Special:Search/{{PAGENAME}}|பக்கத் தலைப்பை வைத்து]] அல்லது மற்ற பக்கங்களில்,
-or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} அல்லது தேடுதல் தொடர்பான பதிவுகளில் தேடவும்.]</span>.',
+அல்லது <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} அல்லது தேடுதல் தொடர்பான பதிவுகளில் தேடலாம்.]</span>, ஆனால் இந்தப் பக்கத்தை உருவாக்க அனுமதியில்லை.',
 'missing-revision' => "இந்த பரிசீலனை # $1  '' {{PAGENAME}}' பெயருள்ள பக்கத்தின் இல்லை.!N வேடிக்கையானN!இது தான் வழக்கமாக ஏற்பட்டிருக்கலாம் நீக்கப்பட்டுள்ளது பக்கத்திற்கு outdated வரலாறு இணைப்பை தொடர்ந்து.
 விவரங்கள் முடியும் கண்டறிய, [{{fullurl: {{# சிறப்பு: குறிப்பேடு}} / delete|page = {{FULLPAGENAMEE}}}} நீக்குதல் குறிப்பேடு].",
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" என்றக் கணக்கு இன்னமும் பதிவுச் செய்யப்படவில்லை. இதை உருவாக்க/தொகுக்க வேண்டுமா என்பதை உறுதிப்படுத்தவும்.',
@@ -818,6 +818,10 @@ or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'edit-already-exists' => 'புதிய பக்கமொன்றை உருவாக்க முடியாது.
 இப்பக்கம் ஏற்கனவே உள்ளது.',
 'defaultmessagetext' => 'இயல்பிருப்பு தகவல் உரை',
+
+# Content models
+'content-model-wikitext' => 'விக்கிஉரை',
+'content-model-javascript' => 'ஜாவா ஸ்கிரிப்ட்',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'எச்சரிக்கை: இப்பக்கம் அதிகளவு இலக்கணப் பாகுபடுத்திச் சார்புகளைக் கொண்டுள்ளது.
@@ -2718,6 +2722,7 @@ $1',
 'pageinfo-display-title' => 'காட்சித் தலைப்பு',
 'pageinfo-length' => 'பக்க நீளம் (எண்ணுண்மிகளில்)',
 'pageinfo-article-id' => 'பக்க அடையாள இலக்கம்',
+'pageinfo-language' => 'பக்க உள்ளடக்க மொழி',
 'pageinfo-robot-policy' => 'தேடற்பொறி நிலைமை',
 'pageinfo-views' => 'காட்சிகள் எண்ணிக்கை',
 'pageinfo-watchers' => 'பார்வையாளர்கள் எண்ணிக்கை',
@@ -2726,6 +2731,9 @@ $1',
 'pageinfo-lastuser' => 'அண்மைய தொகுப்பாளர்',
 'pageinfo-edits' => 'தொகுப்புகளின் எண்ணிக்கை:',
 'pageinfo-authors' => 'சாதகமான அம்சங்களை பெற்றிருக்கும் எழுத்தாளர்கள் எண்ணிக்கை',
+'pageinfo-redirectsto-info' => 'தகவல்',
+'pageinfo-contentpage-yes' => 'ஆம்',
+'pageinfo-protect-cascading-yes' => 'ஆம்',
 
 # Skin names
 'skinname-standard' => 'இயல்பான',
@@ -3607,4 +3615,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|நூற்றாண்டு|நூற்றாண்டுகள்}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ஆயிரம் ஆண்டு|ஆயிரம் ஆண்டுகள்}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'பேச்சு',
 );

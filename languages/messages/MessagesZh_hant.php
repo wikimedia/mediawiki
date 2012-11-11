@@ -212,9 +212,9 @@ $messages = array(
 # User preference toggles
 'tog-underline' => '連結加底線：',
 'tog-justify' => '段落對齊',
-'tog-hideminor' => '最近更改中隱藏小修改',
-'tog-hidepatrolled' => '最近更改中隱藏巡查過的編輯',
-'tog-newpageshidepatrolled' => '新頁面清單中隱藏巡查過的頁面',
+'tog-hideminor' => '隱藏最近更改中的小修改',
+'tog-hidepatrolled' => '隱藏最近更改中巡查過的編輯',
+'tog-newpageshidepatrolled' => '隱藏新頁面清單中巡查過的頁面',
 'tog-extendwatchlist' => '展開監視清單以顯示所有更改，不只是最近的',
 'tog-usenewrc' => '在最近更改和監視列表中整合同一頁的修改 （需要JavaScript）',
 'tog-numberheadings' => '標題自動編號',
@@ -250,7 +250,7 @@ $messages = array(
 'tog-watchlisthideliu' => '監視列表中隱藏登入用戶',
 'tog-watchlisthideanons' => '監視列表中隱藏匿名用戶',
 'tog-watchlisthidepatrolled' => '監視清單中隱藏已巡查的編輯',
-'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱',
+'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份副本到我的信箱',
 'tog-diffonly' => '比較版本差異時不顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏分類',
 'tog-noconvertlink' => '不轉換連結標題',
@@ -3919,4 +3919,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'mytalk-parenthetical' => '對話頁',
 );

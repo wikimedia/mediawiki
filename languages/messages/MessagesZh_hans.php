@@ -35,6 +35,7 @@
  * @author Kuailong
  * @author Liangent
  * @author Linforest
+ * @author Makecat
  * @author Mark85296341
  * @author MarkAHershberger
  * @author Mys 721tx
@@ -2165,7 +2166,7 @@ $1',
 'linksearch-ns' => '名字空间：',
 'linksearch-ok' => '搜索',
 'linksearch-text' => '制作可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />
-支持的协议：<code>$1</code>（不要包含在搜索中）。',
+支持的协议：<code>$1</code>（如果没有设置协议则默认为<nowiki>http://</nowiki>）。',
 'linksearch-line' => '$1 链自 $2',
 'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
