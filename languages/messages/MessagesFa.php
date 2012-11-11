@@ -2811,7 +2811,7 @@ $1',
 'ipb-disableusertalk' => 'جلوگیری از ویرایشی صفحهً بحث توسط خود کاربر در زمانی که بسته است',
 'ipb-change-block' => 'بستن دوبارهٔ کاربر با این تنظیم‌ها',
 'ipb-confirm' => 'تأیید بستن',
-'badipaddress' => 'نشانی آی‌‍ی غیر مجاز',
+'badipaddress' => 'نشانی آی‌پی غیر مجاز',
 'blockipsuccesssub' => 'بستن با موفقیت انجام شد',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] بسته شد.<br />
 برای بررسی بسته‌شده‌ها [[Special:BlockList|فهرست بسته‌شده‌ها]] را ببینید.',
@@ -4257,4 +4257,6 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'بحث',
 );
