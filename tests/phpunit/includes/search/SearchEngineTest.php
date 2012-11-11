@@ -4,7 +4,7 @@
  * @group Search
  * @group Database
  */
-class SearchEngineTest extends MediaWikiTestCase {
+class SearchEngineTest extends MediaWikiLangTestCase {
 	protected $search, $pageList;
 
 	/**
@@ -13,6 +13,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 	 */
 	protected function setUp() {
 		parent::setUp();
+
 		// Search tests require MySQL or SQLite with FTS
 		# Get database type and version
 		$dbType = $this->db->getType();
