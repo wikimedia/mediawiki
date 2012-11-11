@@ -5,7 +5,7 @@
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
  */
-class TextContentTest extends MediaWikiTestCase {
+class TextContentTest extends MediaWikiLangTestCase {
 	protected $context;
 
 	protected function setUp() {
