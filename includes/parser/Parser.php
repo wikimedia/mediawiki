@@ -1606,7 +1606,24 @@ class Parser {
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
-
+	/**
+	 * Get the rel attribute for a particular external link.
+	 *
+	 * @param $url String|bool optional URL, to extract the domain from for rel =>
+	 *   nofollow if appropriate
+ 	 * @param $title Title optional Title, for wgNoFollowNsExceptions lookups
+	 * @return String|null rel attribute for $url
+	 */
+	public static function getExternalLinkRel( $url = false, $title = null ) {
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
+		$ns = $title ? $title->getNamespace() : false;
+		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) &&
+				!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) )
+		{
+			return 'nofollow';
+		}
+		return null;
+	}
 	/**
 	 * Get an associative array of additional HTML attributes appropriate for a
 	 * particular external link.  This currently may include rel => nofollow
@@ -1619,13 +1636,8 @@ class Parser {
 	 */
 	function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
-		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
-		$ns = $this->mTitle->getNamespace();
-		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) &&
-				!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) )
-		{
-			$attribs['rel'] = 'nofollow';
-		}
+		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle );
+
 		if ( $this->mOptions->getExternalLinkTarget() ) {
 			$attribs['target'] = $this->mOptions->getExternalLinkTarget();
 		}
