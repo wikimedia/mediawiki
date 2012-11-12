@@ -69,6 +69,8 @@ production.
 * (bug 41706) EditPage: Preloaded page should be converted if possible and needed.
 * (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
   actually sorted.
+* (bug 2865)  User interface HTML elements don't use lang attribute
+              (completed the fix by adding the lang attribute to firstHeading)
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
