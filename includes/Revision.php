@@ -1404,11 +1404,7 @@ class Revision implements IDBAccessObject {
 	 * Lazy-load the revision's text.
 	 * Currently hardcoded to the 'text' table storage engine.
 	 *
-<<<<<<< HEAD
-	 * @return String|boolean the revision text, or false on failure
-=======
 	 * @return String|bool the revision's text, or false on failure
->>>>>>> (Bug 41244) Gracefully handle failure to load text blob.
 	 */
 	protected function loadText() {
 		wfProfileIn( __METHOD__ );
