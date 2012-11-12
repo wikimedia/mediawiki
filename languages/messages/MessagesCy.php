@@ -493,7 +493,7 @@ Ceisiwch eto ymhen rhai munudau.",
 'protectedpagetext' => "Mae'r dudalen hon wedi'i diogelu rhag cael ei golygu.",
 'viewsourcetext' => 'Cewch weld a chopïo côd y dudalen:',
 'viewyourtext' => "Cewch weld a copïo ffynhonnell ''eich golygiadau'' i'r dudalen hon:",
-'protectedinterface' => 'Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli.',
+'protectedinterface' => "Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli. Os am gyfieithu'r neges neu ei newid ym mhob wici yn hytrach nag yn hwn yn unig, defnyddiwch [//translatewiki.net/ translatewiki.net], y prosiect MediaWiki sy'n hyrwyddo'r gwaith cyfieithu.",
 'editinginterface' => "'''Dalier sylw:''' Rydych yn golygu tudalen sy'n rhan o destun rhyngwyneb y meddalwedd. Bydd newidiadau i'r dudalen hon yn effeithio ar y rhyngwyneb a ddefnyddir gan eraill. Os am gyfieithu'r neges, ystyriwch ddefnyddio [//translatewiki.net/wiki/Main_Page?setlang=cy translatewiki.net], sef y prosiect MediaWiki sy'n hyrwyddo creu wicïau amlieithog.",
 'sqlhidden' => '(cuddiwyd chwiliad SQL)',
 'cascadeprotected' => "Diogelwyd y dudalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen ganlynol|dudalen ganlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol}}, a {{PLURAL:$1|honno yn ei thro wedi ei|honno yn ei thro wedi ei|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu}} diogelu, a'r dewisiad 'sgydol' ynghynn:
@@ -788,7 +788,7 @@ Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:use
 'updated' => '(Diweddariad)',
 'note' => "'''Dalier sylw:'''",
 'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto!",
-'continue-editing' => 'Parhau i olygu',
+'continue-editing' => "Neidier i'r blwch golygu",
 'previewconflict' => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview' => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",
@@ -3705,6 +3705,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'feedback-bugnew' => "Edrychais ar y bygiau hysbys. Mae byg newydd gennyf i'w adrodd",
 
 # Search suggestions
+'searchsuggest-search' => 'Chwilio',
 'searchsuggest-containing' => 'yn cynnwys...',
 
 # API errors
@@ -3759,4 +3760,6 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'sgwrs',
 );

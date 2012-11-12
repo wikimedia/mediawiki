@@ -520,7 +520,7 @@ Sababu zilizotolewa ni "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Usanidi mbaya: kiskani virusi hakijulikani: ''$1''",
-'virus-scanfailed' => 'skani imeshindwa (kodi $1)',
+'virus-scanfailed' => 'skani imeshindwa (msimbo $1)',
 'virus-unknownscanner' => 'kipambana na virusi haijulikani:',
 
 # Login and logout pages
@@ -2569,6 +2569,8 @@ Tafadhali jaribu tena.',
 'pageinfo-header-edits' => 'Maharirio',
 'pageinfo-watchers' => 'Idadi ya wanaofuatilia',
 'pageinfo-edits' => 'Idadi ya maharirio',
+'pageinfo-contentpage-yes' => 'Ndiyo',
+'pageinfo-protect-cascading-yes' => 'Ndiyo',
 
 # Image deletion
 'deletedrevision' => 'Pitio la awali lililofutwa $1',
@@ -2887,7 +2889,7 @@ na kama *huja* sajili akaunti hii, fuata kiungo hiki ili kubatilisha uthibitisho
 
 $5
 
-Kodi hizi za uthibitisho zitaishia mnamo $4.',
+Msimbo huu wa uthibitisho utaishia mnamo $4.',
 'confirmemail_body_changed' => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, ambaye amebadilisha anwani ya barua pepe ya akaunti "$2" iwe anwani ya barua pepe hii, kule {{SITENAME}}.
 
 Ili kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, pamoja na kuwezesha upya zana zinazotumia barua pepe kule {{SITENAME}}, ufungue kiungo hiki katika kivinjari chako:
@@ -3178,4 +3180,6 @@ Tovuti hii inapata matatatizo wakati huu.',
 'duration-years' => '$1 {{PLURAL:$1|year|miaka}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|karne}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'majadiliano',
 );

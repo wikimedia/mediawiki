@@ -3439,17 +3439,17 @@ për scancelé la conferma ëd l'adrëssa ëd pòsta eletrònica:
 $5
 
 Cost còdes ëd conferma a scad ai $4.",
-'confirmemail_invalidated' => "Conferma ëd l'adrëssa e-mail scanselà",
-'invalidateemail' => "Scansela l'e-mail ëd conferma",
+'confirmemail_invalidated' => "Conferma ëd l'adrëssa ëd pòsta eletrònica anulà",
+'invalidateemail' => "Anulé la conferma dl'adrëssa ëd pòsta eletrònica",
 
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion ëd pàgine antra wiki diferente a l'é nen abilità]",
 'scarytranscludefailed' => "[Darmagi, ma lë stamp $1 a l'é pa podusse carié]",
 'scarytranscludefailed-httpstatus' => '[Letura dlë stamp falìa për $1: HTTP $2]',
-'scarytranscludetoolong' => "[L'URL a l'é tròp longa]",
+'scarytranscludetoolong' => "[L'adrëssa dl'aragnà a l'é tròp longa]",
 
 # Delete conflict
-'deletedwhileediting' => "'''Avertensa''': sta pàgina-sì a l'é staita scancelà quand che chiel (chila) a l'avìa già anandiasse a modifichela!",
+'deletedwhileediting' => "'''Avertensa''': sta pàgina-sì a l'é stàita scancelà quand che chiel a l'avìa già anandiasse a modifichela!",
 'confirmrecreate' => "L'utent [[User:$1|$1]] ([[User talk:$1|talk]]) a l'ha scancelà st'articol-sì quand che chiel (chila) a l'avia già anandiasse a modifichelo, dand coma motiv ëd la scancelament:
 ''$2''
 Për piasì, che an conferma che da bon a veul torna creélo.",

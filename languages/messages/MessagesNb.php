@@ -448,8 +448,8 @@ $messages = array(
 'newwindow' => '(åpnes i et nytt vindu)',
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Mer …',
-'mypage' => 'Egen brukerside',
-'mytalk' => 'Egen brukerdiskusjonsside',
+'mypage' => 'Min brukerside',
+'mytalk' => 'Min diskusjonsside',
 'anontalk' => 'Brukerdiskusjon for denne IP-adressen',
 'navigation' => 'Navigasjon',
 'and' => '&#32;og',
@@ -1384,7 +1384,7 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 
 # Preferences page
 'preferences' => 'Innstillinger',
-'mypreferences' => 'Egne brukerinnstillinger',
+'mypreferences' => 'Innstillinger',
 'prefs-edits' => 'Antall redigeringer:',
 'prefsnologin' => 'Ikke logget inn',
 'prefsnologintext' => 'Du må være <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
@@ -2322,7 +2322,7 @@ E-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil vis
 
 # Watchlist
 'watchlist' => 'Overvåkningsliste',
-'mywatchlist' => 'Egen brukers overvåkningsliste',
+'mywatchlist' => 'Overvåkningsliste',
 'watchlistfor2' => 'For $1 $2',
 'nowatchlist' => 'Du har ingenting i overvåkningslisten.',
 'watchlistanontext' => 'Vennligst $1 for å vise eller redigere sider på overvåkningslisten din.',
@@ -2573,7 +2573,7 @@ $1',
 # Contributions
 'contributions' => 'Brukerbidrag',
 'contributions-title' => 'Brukerbidrag av $1',
-'mycontris' => 'Mine redigeringer',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ingen endringer er funnet som passer disse kriteriene.',
 'uctop' => '(siste)',
@@ -4061,4 +4061,6 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'diskusjon',
 );
