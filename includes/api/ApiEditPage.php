@@ -54,28 +54,6 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
-		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
-			$contentHandler = $pageObj->getContentHandler();
-		} else {
-			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
-		}
-
-		// @todo ask handler whether direct editing is supported at all! make allowFlatEdit() method or some such
-
-		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
-			$params['contentformat'] = $contentHandler->getDefaultFormat();
-		}
-
-		$contentFormat = $params['contentformat'];
-
-		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$name = $titleObj->getPrefixedDBkey();
-			$model = $contentHandler->getModelID();
-
-			$this->dieUsage( "The requested format $contentFormat is not supported for content model ".
-							" $model used by $name", 'badformat' );
-		}
-
 		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {
@@ -104,7 +82,32 @@ class ApiEditPage extends ApiBase {
 
 				$apiResult->setIndexedTagName( $redirValues, 'r' );
 				$apiResult->addValue( null, 'redirects', $redirValues );
+
+				// Since the page changed, update $pageObj
+				$pageObj = WikiPage::factory( $titleObj );
 			}
+		}
+
+		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
+			$contentHandler = $pageObj->getContentHandler();
+		} else {
+			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
+		}
+
+		// @todo ask handler whether direct editing is supported at all! make allowFlatEdit() method or some such
+
+		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
+			$params['contentformat'] = $contentHandler->getDefaultFormat();
+		}
+
+		$contentFormat = $params['contentformat'];
+
+		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
+			$name = $titleObj->getPrefixedDBkey();
+			$model = $contentHandler->getModelID();
+
+			$this->dieUsage( "The requested format $contentFormat is not supported for content model ".
+							" $model used by $name", 'badformat' );
 		}
 
 		if ( $params['createonly'] && $titleObj->exists() ) {
