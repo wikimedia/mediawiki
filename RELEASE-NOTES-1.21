@@ -67,6 +67,8 @@ production.
 * (bug 41990) Fix regression: API edit with redirect=true and lacking
   starttimestamp and basetimestamp should not cause an edit conflict.
 * (bug 41706) EditPage: Preloaded page should be converted if possible and needed.
+* (bug 2865)  User interface HTML elements don't use lang attribute
+              (completed the fix by adding the lang attribute to firstHeading)
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
