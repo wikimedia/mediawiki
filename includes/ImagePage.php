@@ -327,7 +327,8 @@ class ImagePage extends Article {
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
 
-			$longDesc = wfMessage( 'parentheses', $this->displayImg->getLongDesc() )->text();
+			$filename = wfEscapeWikiText( $this->displayImg->getName() );
+			$linktext = $filename;
 
 			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this, &$out ) );
 
@@ -351,7 +352,7 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$msgbig = wfMessage( 'show-big-image' )->escaped();
+					$linktext = wfMessage( 'show-big-image' )->escaped();
 					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 						$thumbSizes = $wgImageLimits;
 					} else {
@@ -397,7 +398,6 @@ class ImagePage extends Article {
 				$params['height'] = $height;
 				$thumbnail = $this->displayImg->transform( $params );
 
-				$showLink = true;
 				$anchorclose = Html::rawElement( 'div', array( 'class' => 'mw-filepage-resolutioninfo' ), $msgsmall );
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
@@ -471,48 +471,39 @@ class ImagePage extends Article {
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
 				}
-			} else {
+			} elseif ( $this->displayImg->isSafeFile() ) {
 				# if direct link is allowed but it's not a renderable image, show an icon.
-				if ( $this->displayImg->isSafeFile() ) {
-					$icon = $this->displayImg->iconThumb();
+				$icon = $this->displayImg->iconThumb();
 
-					$out->addHTML( '<div class="fullImageLink" id="file">' .
-						$icon->toHtml( array( 'file-link' => true ) ) .
-						"</div>\n" );
-				}
-
-				$showLink = true;
+				$out->addHTML( '<div class="fullImageLink" id="file">' .
+					$icon->toHtml( array( 'file-link' => true ) ) .
+					"</div>\n" );
 			}
 
-			if ( $showLink ) {
-				$filename = wfEscapeWikiText( $this->displayImg->getName() );
-				$linktext = $filename;
-				if ( isset( $msgbig ) ) {
-					$linktext = wfEscapeWikiText( $msgbig );
-				}
-				$medialink = "[[Media:$filename|$linktext]]";
+			$longDesc = wfMessage( 'parentheses', $this->displayImg->getLongDesc() )->text();
 
-				if ( !$this->displayImg->isSafeFile() ) {
-					$warning = wfMessage( 'mediawarning' )->plain();
-					// dirmark is needed here to separate the file name, which
-					// most likely ends in Latin characters, from the description,
-					// which may begin with the file type. In RTL environment
-					// this will get messy.
-					// The dirmark, however, must not be immediately adjacent
-					// to the filename, because it can get copied with it.
-					// See bug 25277.
-					$out->addWikiText( <<<EOT
+			$medialink = "[[Media:$filename|$linktext]]";
+
+			if ( !$this->displayImg->isSafeFile() ) {
+				$warning = wfMessage( 'mediawarning' )->plain();
+				// dirmark is needed here to separate the file name, which
+				// most likely ends in Latin characters, from the description,
+				// which may begin with the file type. In RTL environment
+				// this will get messy.
+				// The dirmark, however, must not be immediately adjacent
+				// to the filename, because it can get copied with it.
+				// See bug 25277.
+				$out->addWikiText( <<<EOT
 <div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
-						);
-				} else {
-					$out->addWikiText( <<<EOT
+					);
+			} else {
+				$out->addWikiText( <<<EOT
 <div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
 </div>
 EOT
-					);
-				}
+				);
 			}
 
 			// Add cannot animate thumbnail warning
