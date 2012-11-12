@@ -855,7 +855,7 @@ class LoginForm extends SpecialPage {
 	 * @return Status object
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
-		global $wgServer, $wgScript, $wgNewPasswordExpiry;
+		global $wgCanonicalServer, $wgScript, $wgNewPasswordExpiry;
 
 		if ( $u->getEmail() == '' ) {
 			return Status::newFatal( 'noemail', $u->getName() );
@@ -872,7 +872,7 @@ class LoginForm extends SpecialPage {
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();
 		$userLanguage = $u->getOption( 'language' );
-		$m = $this->msg( $emailText, $ip, $u->getName(), $np, '<' . $wgServer . $wgScript . '>',
+		$m = $this->msg( $emailText, $ip, $u->getName(), $np, '<' . $wgCanonicalServer . $wgScript . '>',
 			round( $wgNewPasswordExpiry / 86400 ) )->inLanguage( $userLanguage )->text();
 		$result = $u->sendMail( $this->msg( $emailTitle )->inLanguage( $userLanguage )->text(), $m );
 

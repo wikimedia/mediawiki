@@ -61,6 +61,8 @@ production.
 * (bug 41793) Contribution links to users with 0 edits on Special:ListUsers didn't
   show up red.
 * (bug 41899) A PHP notice no longer occurs when using the "rvcontinue" API parameter.
+* (bug 42036) Account creation emails now contain canonical (not
+  protocol-relative) URLs.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
