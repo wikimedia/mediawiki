@@ -13,9 +13,9 @@
  * @author Marmzok
  */
 
-$rtl = true;
-
 $fallback = 'ckb';
+
+$rtl = true;
 
 $digitTransformTable = array(
 	'0' => '٠', # &#x0660;

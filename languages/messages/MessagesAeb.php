@@ -1,5 +1,5 @@
 <?php
-/**    زَوُن (   زَوُن)
+/** Arabic, Tunisian Spoken (تونسي)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -10,6 +10,10 @@
  * @author Abanima
  * @author Csisc
  */
+
+$fallback = 'ar';
+
+$rtl = true;
 
 $messages = array(
 # User preference toggles

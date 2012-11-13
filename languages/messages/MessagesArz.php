@@ -17,6 +17,8 @@
 
 $fallback = 'ar';
 
+$rtl = true;
+
 $namespaceNames = array(
 	NS_MEDIA            => 'ميديا',
 	NS_SPECIAL          => 'خاص',

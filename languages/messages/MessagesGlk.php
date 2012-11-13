@@ -14,6 +14,8 @@
 
 $fallback = 'fa';
 
+$rtl = true;
+
 $messages = array(
 'moredotdotdot' => 'ویشتر...',
 'mypage' => 'می هنه‌شر',
