@@ -29,6 +29,10 @@ $optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
 
 require_once( __DIR__ . '/../maintenance/commandLine.inc' );
 
+# The utilities classes are not in the Core autoloader:
+require_once( __DIR__ . '/parser/parserTest.inc' );
+require_once( __DIR__ . '/testHelpers.inc' );
+
 if ( isset( $options['help'] ) ) {
 	echo <<<ENDS
 MediaWiki $wgVersion parser test suite
