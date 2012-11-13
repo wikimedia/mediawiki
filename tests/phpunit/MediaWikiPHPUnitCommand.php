@@ -53,6 +53,22 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		}
 	}
 
+	public function run( array $argv, $exit = true ) {
+		$ret = parent::run( $argv, false );
+
+		// Return to real wiki db, so profiling data is preserved
+		MediaWikiTestCase::uninitTestDB();
+
+		// Log profiling data, e.g. in the database or UDP
+		wfLogProfilingData();
+
+		if ($exit) {
+			exit($ret);
+		} else {
+			return $ret;
+		}
+	}
+
 	public function showHelp() {
 		parent::showHelp();
 
