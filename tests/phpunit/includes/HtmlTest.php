@@ -467,9 +467,10 @@ class HtmlTest extends MediaWikiTestCase {
 		$cases[] = array( '<button></button>',
 			'button', array( 'formenctype' => 'application/x-www-form-urlencoded' )
 		);
-		$cases[] = array( '<button></button>',
-			'button', array( 'type' => 'submit' )
-		);
+		// Disabled: See comment in includes/Html.php
+		//$cases[] = array( '<button></button>',
+		//	'button', array( 'type' => 'submit' )
+		//);
 
 		$cases[] = array( '<canvas></canvas>',
 			'canvas', array( 'height' => '150' )

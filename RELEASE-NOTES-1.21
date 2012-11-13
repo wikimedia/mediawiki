@@ -66,6 +66,7 @@ production.
 * (bug 41990) Fix regression: API edit with redirect=true and lacking
   starttimestamp and basetimestamp should not cause an edit conflict.
 * (bug 41706) EditPage: Preloaded page should be converted if possible and needed.
+* (bug 42082) Don't strip type="submit" from <button>, breaks old versions of IE.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt

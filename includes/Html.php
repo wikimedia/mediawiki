@@ -301,7 +301,9 @@ class Html {
 			'button' => array(
 				'formaction' => 'GET',
 				'formenctype' => 'application/x-www-form-urlencoded',
-				'type' => 'submit',
+				// Note: This breaks IE7 and IE8 in compatability mode, because
+				// that browser defaults to type="button".
+				//'type' => 'submit',
 			),
 			'canvas' => array(
 				'height' => '150',
