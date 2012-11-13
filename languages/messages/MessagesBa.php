@@ -278,7 +278,7 @@ $messages = array(
 'cancel' => 'Бөтөрөргә',
 'moredotdotdot' => 'Дауамы...',
 'mypage' => 'Шәхси бит',
-'mytalk' => 'Минең менән әңгәмә',
+'mytalk' => 'Әңгәмә',
 'anontalk' => 'Был IP-адресының фекер алышыу бите',
 'navigation' => 'Төп йүнәлештәр',
 'and' => '&#32;һәм',
@@ -797,8 +797,8 @@ $2
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тап килгән журнал яҙмаларын таба]
 йәки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бындай исемле яңы бит яһай]'''</span> алаһығыҙ.",
 'noarticletext-nopermission' => 'Хәҙерге ваҡытта был биттә текст юҡ.
-Һеҙ башҡа мәҡәләләрҙә [[Special:Search/{{PAGENAME}}|был исемде]] йәки
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',
+Һеҙ башҡа биттәрҙә [[Special:Search/{{PAGENAME}}|был исемде]] йәки
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ, тик һеҙҙең бит яһау хоҡуғығыҙ юҡ.</span>',
 'missing-revision' => '"{{PAGENAME}}" исемле биттең $1 номерлы өлгөһө юҡ.
 
 Был хәл, ғәҙәттә, юйылған биткә яһалған һылтанманын ваҡыты үтеүенән барлыҡҡа килә.
@@ -1192,7 +1192,7 @@ $1",
 
 # Preferences page
 'preferences' => 'Көйләүҙәр',
-'mypreferences' => 'Көйләүҙәрем',
+'mypreferences' => 'Көйләүҙәр',
 'prefs-edits' => 'Төҙәтеүҙәр һаны:',
 'prefsnologin' => 'Танылмағанһығыҙ',
 'prefsnologintext' => 'Ҡатнашыусы көйләүҙәрен үҙгәртеү өсөн, һеҙ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}танылырға]</span> тейешһегеҙ.',
@@ -2386,7 +2386,7 @@ $1',
 # Contributions
 'contributions' => 'Ҡатнашыусы өлөшө',
 'contributions-title' => '$1 исемле ҡулланыусының кереткән өлөшө',
-'mycontris' => 'Башҡарған эштәр',
+'mycontris' => 'Өлөш',
 'contribsub2' => '$1 ($2) өсөн',
 'nocontribs' => 'Күрһәтелгән шарттарға яуап биргән үҙгәртеүҙәр табылманы.',
 'uctop' => '(аҙаҡҡы)',
@@ -2427,7 +2427,7 @@ $1',
 'whatlinkshere-hideredirs' => 'Йүнәлтеүҙәрҙе $1',
 'whatlinkshere-hidetrans' => 'Ҡушылғандарҙы $1',
 'whatlinkshere-hidelinks' => 'Һылтанмаларҙы $1',
-'whatlinkshere-hideimages' => 'Рәсем өсөн һылтанматарҙы $1',
+'whatlinkshere-hideimages' => 'файл һылтанмаларын $1',
 'whatlinkshere-filters' => 'Һайлау',
 
 # Block/unblock

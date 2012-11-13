@@ -21,7 +21,7 @@ $messages = array(
 'tog-hidepatrolled' => "Isalikut la reng edit a babanten (''controlled edits'') kareng bayung mengayalili",
 'tog-newpageshidepatrolled' => "Isalikut la reng bulung a babanten (''patrolled pages'') king listaan king bayung bulung (''new page list'')",
 'tog-extendwatchlist' => 'Dagdagan la reng babanten ba lang palto deng anggang mialilan, aliwa mu deng pekabayu.',
-'tog-usenewrc' => 'Mesanting la reng bayung mengayalili (JavaScript)',
+'tog-usenewrc' => '↓mesanting la reng bayung mengayalili (JavaScript)',
 'tog-numberheadings' => 'Tambing lang dinan nomiru deng pamagat',
 'tog-showtoolbar' => 'Ipakit ya panaliling toolbar (JavaScript)',
 'tog-editondblclick' => 'Alilan la reng bulung kapamilatan ning makataduang pamagpindut (JavaScript)',
@@ -29,7 +29,7 @@ $messages = array(
 Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'tog-editsectiononrightclick' => "Paganan ya ing pamag-edit seksiyon (section editing) kapamilata'ning pamag right click kareng pamagat da reng seksiyon (JavaScript)",
 'tog-showtoc' => 'Pakit ya ing kalamnan [table of contents] (kareng bulung a maki 3 o mas dakal a pamagat)',
-'tog-rememberpassword' => 'Tandanan ya ing kanakung login keng computer a ini (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword' => '↓Tandanan ya ing kanakung login keng computer a ini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Idagdag la deng bulung a lelengan ku kareng babanten',
 'tog-watchdefault' => 'Idagdag la reng bulung a inalilan ku kareng babanten',
 'tog-watchmoves' => 'Idagdag la reng bulung a inalis ku kareng babanten',
@@ -621,6 +621,7 @@ Ibie la para king kekang beluan deng kasulatan ning pamagbura ampong pamanalis (
 
 Kailangan, mas ditak la king $2 deti; $1 na la reng atyu ngeni.',
 'expensive-parserfunction-category' => 'Deng bulung a masiadung dakal ing karelang mangamal a parser function call',
+'post-expand-template-inclusion-category' => '↓Bulung nung nu ing ulma kayabe ya ing sukad sinobra ya',
 
 # "Undo" feature
 'undo-success' => 'E maliaring iurung ing pamag-edit a ini. Pakilawe mo reng pikumparang bersion king lalam ba mung akit nung ini pin ing buri mung gawan, at kaibat, i-save mo retang miyalilan bang mayari ing pamanurung king edit.',
@@ -699,6 +700,8 @@ Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang lam
 'revdelete-success' => "'''Mituldu na ing pamagbayu ning sala/kalinawan.'''",
 'logdelete-success' => "'''Mituldu na ing sala/lino (visibility) ning tala (log).'''",
 'revdel-restore' => 'Alilan ya ing mayaykit',
+'revdel-restore-deleted' => '↓meburang meyalili',
+'revdel-restore-visible' => '↓mayayakit a meyalili',
 'pagehist' => 'Amlat ning bulung',
 'deletedhist' => 'Meburang amlat',
 'revdelete-edit-reasonlist' => 'I-edit la reng sangkan king pamamura',
@@ -738,7 +741,7 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'mergelogpagetext' => 'Makabili la king lalam deng pekabayung pamisanib da reng amlat bulung (page history).',
 
 # Diffs
-'history-title' => 'Amlat ning pamagbayu king "$1"',
+'history-title' => '↓Amlat ning pamagbayu king "$1"',
 'lineno' => 'Gulis $1:',
 'compareselectedversions' => 'Pikumpara/piyanti la reng mepiling bersion',
 'editundo' => 'iurung',
@@ -759,6 +762,7 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'nextn' => 'tutuking {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Lon ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Atin bulung a mikilagiung \"[[:\$1]]\" keng wiking ini.'''",
+'searchmenu-new' => "↓'''Maglalang kang bulung \"[[:\$1]] keng wiking ini!'''",
 'searchhelp-url' => 'Help:Kalamnan',
 'searchprofile-everything' => 'Eganagana',
 'searchprofile-articles-tooltip' => 'Paintunan king$1',
@@ -987,7 +991,7 @@ Nung ibie me, magamit ya bang kilalanan ing kekang ambag.',
 'recentchangeslinked-toolbox' => 'Miyalilan a makaugne',
 'recentchangeslinked-title' => 'Deng miyalilan a maki kaugnayan king "$1"',
 'recentchangeslinked-noresult' => 'Alang miyalilan kareng bulung a pakasuglung ketang mebanggit a panaun.',
-'recentchangeslinked-summary' => "Makalista la king bulung a iti deng tauling mengayalilan kareng
+'recentchangeslinked-summary' => "↓Makalista la king bulung a iti deng tauling mengayalilan kareng 
 bulung a makasuglung ketang partikular a bulung. '''Makapal la pangasulat''' deng bulung
 king kekang watchlist (tala da reng babanten).",
 'recentchangeslinked-page' => 'Lagyu ning bulung:',
@@ -1123,7 +1127,7 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 'filehist-dimensions' => 'Sukad',
 'filehist-filesize' => 'Dagul ning simpan (file size)',
 'filehist-comment' => 'Komentu/Puna',
-'imagelinks' => "Suglung kareng simpan (''file links'')",
+'imagelinks' => "↓Suglung kareng simpan (''file links'')",
 'linkstoimage' => "Ing tutuking {{PLURAL:$1|page links|$1 pages link}} kaniting simpan (''file''):",
 'nolinkstoimage' => 'Alang bulung a pakasuglung king simpan (file) a ini.',
 'sharedupload' => "Ibat ya king $1 ining simpan (''file'') at maliari yang gamitan kareng aliwang proyectu.",
@@ -1538,6 +1542,7 @@ Mapaliaring putut ya ing kekang suglung, o misubli (restored) ya o milako king s
 'undelete-nodiff' => 'Alang meyakit kareng dating meyalili',
 'undeletebtn' => 'Ibálik yang pasibayu',
 'undeletelink' => 'lon/ibalik',
+'undeleteviewlink' => '↓lawen',
 'undeletereset' => 'Isubli king sadia (reset)',
 'undeletecomment' => 'Komentu:',
 'undeletedrevisions' => '{{PLURAL:$1|1 pamagbayung|$1 pamagbayung}} misubli',
@@ -1899,6 +1904,7 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 'tooltip-rollback' => "Susubli no ning \"rollback\" deng miyalilan o edit kaniting bulung ning tauling talayambag king metung a ''click''",
 'tooltip-undo' => "Ing \"undo\" susubli ne ing edit at bubusni ne ing edit form king preview mode.
 Paintulutan na ing pamandagdag king sangkan king sampulung (''summary'').",
+'tooltip-summary' => '↓Palub kang makuyad a kabilugan',
 
 # Stylesheets
 'common.css' => '/** CSS mikabit keni maging mabisa ya karing eganaganang pabalat */',

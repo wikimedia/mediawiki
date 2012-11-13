@@ -632,7 +632,7 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 
 # Change password dialog
 'resetpass' => 'Kubadilisha neno la siri',
-'resetpass_announce' => 'Umeingia na kodi za barua pepe za muda tu.
+'resetpass_announce' => 'Umeingia na msimbo wa barua pepe wa muda tu.
 Kumalizia kuingia ndani, ni lazima urekebishe neno la siri jipya hapa:',
 'resetpass_header' => 'Kubadilisha neno la siri la akaunti',
 'oldpassword' => 'Neno la siri la zamani',
@@ -2693,7 +2693,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-keywords' => 'Maneno yahusika',
 'exif-worldregioncreated' => 'Eneo la dunia palipopigwa picha',
 'exif-countrycreated' => 'Nchi palipopigwa picha',
-'exif-countrycodecreated' => 'Kodi ya nchi picha palipopigwa',
+'exif-countrycodecreated' => 'Msimbo wa nchi picha palipopigwa',
 'exif-countrydest' => 'Nchi inayoonyeshwa',
 'exif-citydest' => 'Mji umeonyeshwa',
 'exif-objectname' => 'Jina fupi',

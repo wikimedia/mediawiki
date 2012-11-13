@@ -1581,7 +1581,7 @@ HTML 태그를 확인하세요.',
 'userrights-unchangeable-col' => '바꿀 수 없는 권한',
 
 # Groups
-'group' => '권한:',
+'group' => '그룹:',
 'group-user' => '사용자',
 'group-autoconfirmed' => '자동 인증된 사용자',
 'group-bot' => '봇',

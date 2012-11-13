@@ -1276,7 +1276,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 # Merge log
 'mergelog' => 'Logê yew kerdişî',
 'pagemerge-logentry' => '[[$1]] u [[$2]] yew kerd (revizyonî heta $3)',
-'revertmerge' => 'Ro mevılêşne/pê meşane',
+'revertmerge' => 'Abırnê',
 'mergelogpagetext' => 'Cêr de jû liste esta ke mocnena ra, raya tewr peyêne kamci pela tarixi be a bine ra şanawa pê.',
 
 # Diffs

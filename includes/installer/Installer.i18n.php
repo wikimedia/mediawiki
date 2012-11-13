@@ -18302,6 +18302,7 @@ $messages['yi'] = array(
 	'config-page-language' => 'שפראַך',
 	'config-page-name' => 'נאָמען',
 	'config-page-options' => 'ברירות',
+	'config-ns-generic' => 'פראיעקט',
 	'config-admin-name' => 'אײַער נאָמען:',
 	'config-admin-password' => 'פאַסווארט:',
 	'config-admin-email' => 'בליצפּאָסט אַדרעס:',
