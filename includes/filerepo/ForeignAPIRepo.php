@@ -337,9 +337,10 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * @see FileRepo::getZoneUrl()
 	 * @param $zone String
+	 * @param $ext String|null Optional file extension
 	 * @return String
 	 */
-	function getZoneUrl( $zone ) {
+	function getZoneUrl( $zone, $ext = null ) {
 		switch ( $zone ) {
 			case 'public':
 				return $this->url;
