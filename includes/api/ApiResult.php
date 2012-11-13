@@ -332,19 +332,6 @@ class ApiResult extends ApiBase {
 	}
 
 	/**
-	 * Callback function for cleanUpUTF8()
-	 *
-	 * @param $s string
-	 */
-	private static function cleanUp_helper( &$s ) {
-		if ( !is_string( $s ) ) {
-			return;
-		}
-		global $wgContLang;
-		$s = $wgContLang->normalize( $s );
-	}
-
-	/**
 	 * Converts a Status object to an array suitable for addValue
 	 * @param Status $status
 	 * @param string $errorType
