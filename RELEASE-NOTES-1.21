@@ -65,7 +65,7 @@ production.
   protocol-relative) URLs.
 * (bug 41990) Fix regression: API edit with redirect=true and lacking
   starttimestamp and basetimestamp should not cause an edit conflict.
-* (Bug 41706) preload to convert content as needed.
+* (bug 41706) EditPage: Preloaded page should be converted if possible and needed.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
