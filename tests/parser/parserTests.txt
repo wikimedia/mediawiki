@@ -4557,6 +4557,20 @@ BUG 41: Template parameters shown as broken links
 </p>
 !! end
 
+!! test
+Template with targets containing wikilinks
+!! input
+{{[[foo]]}}
+
+{{[[{{echo|foo}}]]}}}}
+
+{{{{echo|[[foo}}]]}}}}
+!! result
+<p>{{<a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">foo</a>}}
+</p><p>{{<a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">foo</a>}}}}
+</p><p>{[[foo}}]]}
+</p>
+!! end
 
 !! article
 Template:MSGNW test
