@@ -14,12 +14,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @var DatabaseBase
 	 */
 	protected $db;
-	protected $oldTablePrefix;
-	protected $useTemporaryTables = true;
-	protected $reuseDB = false;
 	protected $tablesUsed = array(); // tables with data
 
+	private static $useTemporaryTables = true;
+	private static $reuseDB = false;
 	private static $dbSetup = false;
+	private static $oldTablePrefix = false;
 
 	/**
 	 * Holds the paths of temporary files/directories created through getNewTempFile,
@@ -65,20 +65,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 
 		if( $this->needsDB() ) {
-			global $wgDBprefix;
-			
-			$this->useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-			$this->reuseDB = $this->getCliArg('reuse-db');
+			// set up a DB connection for this test to use
+
+			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
+			self::$reuseDB = $this->getCliArg('reuse-db');
 
 			$this->db = wfGetDB( DB_MASTER );
 
 			$this->checkDbIsSupported();
 
-			$this->oldTablePrefix = $wgDBprefix;
-
 			if( !self::$dbSetup ) {
-				$this->initDB();
-				self::$dbSetup = true;
+				// switch to a temporary clone of the database
+				self::setupTestDB( $this->db, $this->dbPrefix() );
+
+				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+					$this->resetDB();
+				}
 			}
 
 			$this->addCoreDBData();
@@ -349,26 +351,67 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	private function initDB() {
-		global $wgDBprefix;
-		if ( $wgDBprefix === $this->dbPrefix() ) {
-			throw new MWException( 'Cannot run unit tests, the database prefix is already "unittest_"' );
+	/**
+	 * Restores MediaWiki to using the table set (table prefix) it was using before
+	 * setupTestDB() was called. Useful if we need to perform database operations
+	 * after the test run has finished (such as saving logs or profiling info).
+	 */
+	public static function teardownTestDB() {
+		if ( !self::$dbSetup ) {
+			return;
 		}
 
-		$tablesCloned = $this->listTables();
-		$dbClone = new CloneDatabase( $this->db, $tablesCloned, $this->dbPrefix() );
-		$dbClone->useTemporaryTables( $this->useTemporaryTables );
+		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
-		if ( ( $this->db->getType() == 'oracle' || !$this->useTemporaryTables ) && $this->reuseDB ) {
-			CloneDatabase::changePrefix( $this->dbPrefix() );
-			$this->resetDB();
+		self::$oldTablePrefix = false;
+		self::$dbSetup = false;
+	}
+
+	/**
+	 * Creates an empty skeleton of the wiki database by cloning its structure
+	 * to equivalent tables using the given $prefix. Then sets MediaWiki to
+	 * use the new set of tables (aka schema) instead of the original set.
+	 *
+	 * This is used to generate a dummy table set, typically consisting of temporary
+	 * tables, that will be used by tests instead of the original wiki database tables.
+	 *
+	 * @note: the original table prefix is stored in self::$oldTablePrefix. This is used
+	 * by teardownTestDB() to return the wiki to using the original table set.
+	 *
+	 * @note: this method only works when first called. Subsequent calls have no effect,
+	 * even if using different parameters.
+	 *
+	 * @param DatabaseBase $db The database connection
+	 * @param String  $prefix The prefix to use for the new table set (aka schema).
+	 *
+	 * @throws MWException if the database table prefix is already $prefix
+	 */
+	public static function setupTestDB( DatabaseBase $db, $prefix ) {
+		global $wgDBprefix;
+		if ( $wgDBprefix === $prefix ) {
+			throw new MWException( 'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
+		}
+
+		if ( self::$dbSetup ) {
+			return;
+		}
+
+		$tablesCloned = self::listTables( $db );
+		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
+		$dbClone->useTemporaryTables( self::$useTemporaryTables );
+
+		self::$dbSetup = true;
+		self::$oldTablePrefix = $wgDBprefix;
+
+		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+			CloneDatabase::changePrefix( $prefix );
 			return;
 		} else {
 			$dbClone->cloneTableStructure();
 		}
 
-		if ( $this->db->getType() == 'oracle' ) {
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+		if ( $db->getType() == 'oracle' ) {
+			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
 	}
 
@@ -378,7 +421,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function resetDB() {
 		if( $this->db ) {
 			if ( $this->db->getType() == 'oracle' )  {
-				if ( $this->useTemporaryTables ) {
+				if ( self::$useTemporaryTables ) {
 					wfGetLB()->closeAll();
 					$this->db = wfGetDB( DB_MASTER );
 				} else {
@@ -427,16 +470,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return strpos( $table, 'unittest_' ) !== 0;
 	}
 
-	protected function listTables() {
+	public static function listTables( $db ) {
 		global $wgDBprefix;
 
-		$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
+		$tables = $db->listTables( $wgDBprefix, __METHOD__ );
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 
 		// Don't duplicate test tables from the previous fataled run
 		$tables = array_filter( $tables, array( __CLASS__, 'isNotUnittest' ) );
 
-		if ( $this->db->getType() == 'sqlite' ) {
+		if ( $db->getType() == 'sqlite' ) {
 			$tables = array_flip( $tables );
 			// these are subtables of searchindex and don't need to be duped/dropped separately
 			unset( $tables['searchindex_content'] );
