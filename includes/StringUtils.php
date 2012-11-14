@@ -24,6 +24,27 @@
  * A collection of static methods to play with strings.
  */
 class StringUtils {
+
+	/**
+	 * Tests whether a string is valid UTF-8.
+	 *
+	 * @param string $value
+	 * @return boolean true, if the $value is a valid UTF-8 encoded string, false otherwise
+	 */
+	static function isUtf8 ($value) {
+		if ( preg_match( '/[\x80-\xff]/', $value ) !== 0 ) {
+			// There's at least one high bit set: do the full check. We also get here if preg_match returns false (indicates an error).
+			if ( function_exists( 'mb_check_encoding' ) ) {
+				return mb_check_encoding( $value, 'UTF-8' );
+			} else {
+				return preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+					'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $value );
+			}
+		}
+		// No high bits set: 7-bit-ASCII is valid UTF-8.
+		return true;
+	}
+
 	/**
 	 * Perform an operation equivalent to
 	 *
