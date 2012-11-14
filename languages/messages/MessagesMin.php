@@ -282,6 +282,7 @@ $1',
 'newmessagesdifflink' => 'parubahan terakhir',
 'youhavenewmessagesfromusers' => 'Sanak mandapek $1 dari {{PLURAL:$3|another user|$3 users}} ($2)',
 'youhavenewmessagesmanyusers' => 'Sanak mandapek $1 dari banyak pangguno ($2)',
+'newmessageslinkplural' => '{{PLURAL:$1|sabuah pasan baru|pasan baru}}',
 'youhavenewmessagesmulti' => 'Awak ang mandapek pasan baru pado $1',
 'editsection' => 'suntiang',
 'editold' => 'suntiang',
@@ -766,11 +767,20 @@ Barikuik adolah log panghapuihan dan pamindahan dari laman iko:",
 'moveddeleted-notice' => 'Laman iko alah dihapuih.
 Sabagai referensi, barikuik adolah log panghapusan dan pamindahan laman iko.',
 'log-fulllog' => 'Liek saluruah log',
+'edit-gone-missing' => 'Indak bisa mamperbarui halaman.
+Mungkin alah dihapuih.',
 'edit-conflict' => 'Konflik suntingan.',
 'edit-no-change' => 'Suntiangan sanak ditulak, karano indak ado parubahan nan tajadi ka teks.',
 'edit-already-exists' => 'Indak bisa mambuek halaman baru.
 Alah ado.',
 'defaultmessagetext' => 'Teks pasan default.',
+'invalid-content-data' => 'Data kanduangan indak valid.',
+
+# Content models
+'content-model-wikitext' => 'Teks wiki',
+'content-model-text' => 'Teks kosong',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Peringatan:''' Ukuran templat talalu gadang.
@@ -864,7 +874,7 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 
 # Preferences page
 'preferences' => 'Preferensi',
-'mypreferences' => 'Preferensi denai',
+'mypreferences' => 'Preferensi den',
 'prefs-beta' => 'Corak Beta',
 'prefs-labs' => 'Corak Uji',
 'youremail' => 'Surek Elektronik:',
@@ -1301,4 +1311,9 @@ Nan lainnyo akan tasuruak sacaro default.
 'searchsuggest-search' => 'Cari',
 'searchsuggest-containing' => 'Barisi...',
 
+# Durations
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millenia}}',
+
+# Unknown messages
+'mytalk-parenthetical' => 'kecek',
 );

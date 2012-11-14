@@ -3235,6 +3235,8 @@ $1',
 'markedaspatrollederror' => 'לא ניתן לסמן כבדוק',
 'markedaspatrollederrortext' => 'עליכם לציין גרסה שתציינו כבדוקה.',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
+'markedaspatrollednotify' => 'השינוי הזה ל{{GRAMMAR:תחילית|$1}} סומן כשינוי מנוטר.',
+'markedaspatrollederrornotify' => 'סימון המנוטר הכשל.',
 
 # Patrol log
 'patrol-log-page' => 'יומן שינויים בדוקים',

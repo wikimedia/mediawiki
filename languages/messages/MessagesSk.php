@@ -330,7 +330,7 @@ $messages = array(
 
 'underline-always' => 'Vždy',
 'underline-never' => 'Nikdy',
-'underline-default' => 'Štandardné nastavenie prehliadača',
+'underline-default' => 'Podľa nastavení prehliadača alebo témy vzhľadu',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Štýl písma oblasti na úpravy:',
@@ -415,8 +415,8 @@ $messages = array(
 'newwindow' => '(otvorí v novom okne)',
 'cancel' => 'Zrušiť',
 'moredotdotdot' => 'Viac...',
-'mypage' => 'Moja stránka',
-'mytalk' => 'Moja diskusia',
+'mypage' => 'Stránka',
+'mytalk' => 'Diskusia',
 'anontalk' => 'Diskusia k tejto IP adrese',
 'navigation' => 'Navigácia',
 'and' => '&#32;a',
@@ -1585,6 +1585,9 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'rightslogtext' => 'Toto je záznam zmien práv používateľa.',
 'rightslogentry' => 'členstvo v skupine zmenené pre $1 z $2 na $3',
 'rightslogentry-autopromote' => 'bol automaticky povýšený z $2 na $3',
+'logentry-rights-rights' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|bol automaticky povýšený|bola automaticky povýšená}} z $4 na $5',
 'rightsnone' => '(žiadne)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2208,7 +2211,7 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 'linksearch-ok' => 'Hľadať',
 'linksearch-text' => 'Je možné používať zástupné znaky, napr. „*.wikipedia.org“.
 Povinná je minimálne doména najvyššej úrovne, napr.. „*.org“.<br />
-Podporované protokoly: <code>$1</code> (nepridávajte ich do hľadania).',
+Podporované protokoly: <code>$1</code> (ak protokol nie je uvedený, použije sa <code>http://</code>).',
 'linksearch-line' => 'Na $1 odkazuje $2',
 'linksearch-error' => 'Zástupné znaky je možné použiť iba na začiatku názvu domény.',
 
@@ -2257,9 +2260,8 @@ Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie inform
 'emailuser-title-target' => 'E-mail {{GENDER:$1|tomuto používateľovi|tejto používateľke}}',
 'emailuser-title-notarget' => 'E-mail používateľovi',
 'emailpage' => 'E-mail používateľovi',
-'emailpagetext' => 'Ak tento používateľ zadal platnú emailovú adresu vo svojich nastaveniach,
-môžete mu pomocou nasledovného formulára poslať email.
-Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach]] sa zobrazí ako adresa odosielateľa emailu, aby vám mohol príjemca priamo odpovedať.',
+'emailpagetext' => 'Pomocou nasledovného formulára môžete {{GENDER:$1|tomuto používateľovi|tejto používateľke}} poslať e-mailovú správu.
+Mailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach]] sa zobrazí ako adresa odosielateľa mailu, aby vám mohol príjemca priamo odpovedať.',
 'usermailererror' => 'Emailový program vrátil chybu:',
 'defemailsubject' => 'email {{GRAMMAR:genitív|{{SITENAME}}}} od používateľa „$1“',
 'usermaildisabled' => 'Používateľ má vypnuté používanie emailu',
@@ -2541,7 +2543,7 @@ $1',
 # Contributions
 'contributions' => 'Príspevky používateľa',
 'contributions-title' => 'Príspevky používateľa pre $1',
-'mycontris' => 'Moje príspevky',
+'mycontris' => 'Príspevky',
 'contribsub2' => 'Príspevky $1 ($2)',
 'nocontribs' => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.',
 'uctop' => '(posledná úprava)',
@@ -2581,7 +2583,7 @@ Nižšie si môžete pozrieť najnovšiu položku záznamu blokovaní:',
 'whatlinkshere-hideredirs' => '$1 presmerovania',
 'whatlinkshere-hidetrans' => '$1 transklúzie',
 'whatlinkshere-hidelinks' => '$1 odkazy',
-'whatlinkshere-hideimages' => '$1 odkazov na obrázok',
+'whatlinkshere-hideimages' => '$1 odkazov na súbor',
 'whatlinkshere-filters' => 'Filtre',
 
 # Block/unblock
@@ -3116,6 +3118,9 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Vložená šablóna|Vložené šablóny}} ($1)',
 'pageinfo-toolboxlink' => 'Informácie o stránke',
+'pageinfo-protect-cascading' => 'Kaskádové zamknutie',
+'pageinfo-protect-cascading-yes' => 'Áno',
+'pageinfo-protect-cascading-from' => 'Zámky pochádzajú z kaskádových zamknutí',
 
 # Skin names
 'skinname-standard' => 'Klasický',
@@ -3757,8 +3762,8 @@ Skúste obyčajný náhľad.',
 Skúste obyčajný náhľad.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Zmeny novšie ako $1 {{PLURAL:$1|sekunda|sekundy|sekúnd}} nemožno v tomto zozname zobraziť.',
-'lag-warn-high' => 'Z dôvodu dlhej odozvy databázového servera zmeny novšie ako $1 {{PLURAL:$1|sekunda|sekundy|sekúnd}} nemožno v tomto zozname zobraziť.',
+'lag-warn-normal' => 'Úpravy za {{PLURAL:$1|poslednú sekundu|posledné $1 sekundy|posledných $1 sekúnd}} nemusia byť v tomto zozname zobrazené.',
+'lag-warn-high' => 'Kvôli dlhšej odozve databázového servera nemusia byť úpravy za {{PLURAL:$1|poslednú sekundu|posledné $1 sekundy|posledných $1 sekúnd}} v tomto zozname zobrazené.',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Váš zoznam sledovaných stránok obsahuje {{PLURAL:$1|jednu stránku|$1 stránky|$1 stránok}} nepočítajúc diskusné stránky.',
@@ -3816,6 +3821,7 @@ Tiež môžete [[Special:EditWatchlist|použiť štandardný editor]].',
 'version-license' => 'Licencia',
 'version-poweredby-credits' => "Táto wiki beží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'ďalší',
+'version-credits-summary' => 'Nasledujúcim osobám by sme radi poďakovali za ich príspevky k vývoju [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki je slobodný softvér; môžete ho šíriť a / alebo modifikovať podľa podmienok GNU General Public License, ktorú vydala Free Software Foundation; a to buď verzie 2 tejto licencie alebo (podľa vášho uváženia) ktorejkoľvek neskoršej verzie. 
 
 MediaWiki je šírený v nádeji, že bude užitočný, avšak BEZ AKEJKOĽVEK ZÁRUKY; neposkytujú sa ani implicitné záruky PREDAJNOSTI alebo VHODNOSTI NA URČITÝ ÚČEL. Ďalšie informácie nájdete v GNU General Public License.
@@ -4033,4 +4039,6 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'diskusia',
 );

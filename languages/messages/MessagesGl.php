@@ -3120,6 +3120,8 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'markedaspatrollederror' => 'Non se pode marcar como revisada',
 'markedaspatrollederrortext' => 'É preciso especificar unha revisión para marcala como revisada.',
 'markedaspatrollederror-noautopatrol' => 'Non está permitido que un mesmo marque as propias edicións como revisadas.',
+'markedaspatrollednotify' => 'A modificación feita en "$1" marcouse como revisada.',
+'markedaspatrollederrornotify' => 'Erro ao marcar como revisada.',
 
 # Patrol log
 'patrol-log-page' => 'Rexistro de revisións',

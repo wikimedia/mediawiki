@@ -2329,7 +2329,7 @@ Kontakta brukaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du får ikkje fleire endringsvarsel minder du vitjar sida på nytt.
+Du får ikkje fleire endringsvarsel før du vitjar sida på nytt.
 Du kan dessutan nullstilla varselflagga for alle sidene på overvakingslista di.
 
 Helsing det venlege meldingssystemet ditt for {{SITENAME}}
@@ -2341,7 +2341,7 @@ For å endra innstillingane dine for e-postvarsling, vitja
 For å endra innstillingane for overvakingslista di, vitja
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-For å fjerna sita frå overvakingslista di, vitja
+For å fjerna sida frå overvakingslista di, vitja
 $UNWATCHURL
 
 Attendemelding og hjelp:

@@ -3053,6 +3053,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'markedaspatrollederror' => 'Impossibile contrassegnare la voce come verificata',
 'markedaspatrollederrortext' => 'Occorre specificare una modifica da contrassegnare come verificata.',
 'markedaspatrollederror-noautopatrol' => 'Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.',
+'markedaspatrollednotify' => 'La modifica a $1 è stata contrassegnata come verificata.',
+'markedaspatrollederrornotify' => 'Errore durante la verifica.',
 
 # Patrol log
 'patrol-log-page' => 'Modifiche verificate',

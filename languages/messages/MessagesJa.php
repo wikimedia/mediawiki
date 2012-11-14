@@ -3314,6 +3314,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'markedaspatrollederror' => '巡回済みにできません',
 'markedaspatrollederrortext' => '巡回済みにするには、版を指定する必要があります。',
 'markedaspatrollederror-noautopatrol' => '自分の編集を巡回済みにする権限がありません。',
+'markedaspatrollednotify' => '$1 へのこの変更は巡回済みになりました。',
 
 # Patrol log
 'patrol-log-page' => '巡回記録',
@@ -4350,4 +4351,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'トーク',
 );

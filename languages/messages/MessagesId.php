@@ -383,7 +383,7 @@ $messages = array(
 
 'underline-always' => 'Selalu',
 'underline-never' => 'Tidak pernah',
-'underline-default' => 'Bawaan penjelajah web',
+'underline-default' => 'Kulit atau penjelajah bawaan',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Gaya tulisan komputer pada kotak penyuntingan:',
@@ -468,8 +468,8 @@ $messages = array(
 'newwindow' => '(buka di jendela baru)',
 'cancel' => 'Batalkan',
 'moredotdotdot' => 'Lainnya...',
-'mypage' => 'Halaman saya',
-'mytalk' => 'Pembicaraan saya',
+'mypage' => 'Halaman',
+'mytalk' => 'Pembicaraan',
 'anontalk' => 'Pembicaraan IP ini',
 'navigation' => 'Navigasi',
 'and' => '&#32;dan',
@@ -992,11 +992,10 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'userpage-userdoesnotexist-view' => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract' => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache' => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong tembolok peramban Anda untuk melihat perubahan.
+'clearyourcache' => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong singgahan peramban Anda untuk melihat perubahan.
 * '''Firefox / Safari:''' Tahan ''Shift'' sambil mengeklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
 * '''Google Chrome:''' Tekan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
 * '''Internet Explorer:''' Tahan ''Ctrl'' sambl mengeklik ''Refresh'', atau tekan ''Ctrl-F5''
-* '''Konqueror:''' Klik ''Reload'' atau tekan ''F5''
 * '''Opera:''' Bersihkan tembolok di ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview' => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
@@ -1091,6 +1090,14 @@ Halaman kemungkinan telah dihapus.',
 'edit-already-exists' => 'Tidak dapat membuat halaman baru
 karena telah ada.',
 'defaultmessagetext' => 'Teks baku',
+'invalid-content-data' => 'Data konten tidak sah',
+'content-not-allowed-here' => 'Konten "$1" tidak diizinkan di halaman [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'teks wiki',
+'content-model-text' => 'teks polos',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -1111,6 +1118,7 @@ Beberapa templat akan diabaikan.',
 'expansion-depth-exceeded-warning' => 'Page exceeded the expansion depth',
 'parser-unstrip-loop-warning' => 'Unstrip loop detected',
 'parser-unstrip-recursion-limit' => 'Unstrip recursion limit exceeded ($1)',
+'converter-manual-rule-error' => 'Kesalahan terdeteksi di aturan konversi bahasa manual',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
@@ -1241,9 +1249,10 @@ Anda tidak memiliki akses ke revisi ini.',
 'revdelete-concurrent-change' => 'Gagal mengubah revisi per $2, $1: statusnya kemungkinan telah diubah oleh pengguna lain bersamaan dengan Anda.
 Silakan periksa catatan log.',
 'revdelete-only-restricted' => 'Kesalahan sewaktu menyembunyikan butir bertanggal $2, $1: Anda tidak dapat menyembunyikan butir dari pengurus tanpa memilih juga salah satu opsi penyembunyian lainnya.',
-'revdelete-reason-dropdown' => '*Alasan penghapusan
+'revdelete-reason-dropdown' => '*Alasan penghapusan yang umum
 ** Pelanggaran hak cipta
-** Informasi pribadi yang tidak pantas
+** Komentar atau informasi pribadi yang tidak pantas
+** Nama pengguna yang tidak pantas
 ** Berpotensi mencemarkan nama baik',
 'revdelete-otherreason' => 'Alasan lain/tambahan:',
 'revdelete-reasonotherlist' => 'Alasan lain',
@@ -1371,7 +1380,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 
 # Preferences page
 'preferences' => 'Preferensi',
-'mypreferences' => 'Preferensi saya',
+'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Belum masuk log',
 'prefsnologintext' => 'Anda harus <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
@@ -1433,7 +1442,7 @@ Berikut ini adalah nilai acak yang dapat Anda gunakan: $1',
 'timezoneregion-indian' => 'Samudera Hindia',
 'timezoneregion-pacific' => 'Samudera Pasifik',
 'allowemail' => 'Izinkan pengguna lain mengirim surel',
-'prefs-searchoptions' => 'Pencarian',
+'prefs-searchoptions' => 'Cari',
 'prefs-namespaces' => 'Ruang nama',
 'defaultns' => 'Atau cari dalam ruang-ruang nama berikut:',
 'default' => 'baku',
@@ -2250,6 +2259,8 @@ Protokol yang didukung: <code>$1</code> (jangan tambahkan dalam pencarian Anda)'
 'mailnologin' => 'Tidak ada alamat surel',
 'mailnologintext' => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surel yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surel kepada pengguna lain.',
 'emailuser' => 'Surel pengguna',
+'emailuser-title-target' => 'Kirim surel ke {{GENDER:$1|pengguna}} ini',
+'emailuser-title-notarget' => 'Kirim surel',
 'emailpage' => 'Kirim surel ke pengguna ini',
 'emailpagetext' => 'Anda dapat menggunakan formulir di bawah ini untuk mengirimkan surel ke pengguna ini.
 Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] akan muncul sebagai alamat "Dari" dalam surel tersebut, sehingga penerima dapat langsung membalas kepada Anda.',
@@ -2283,7 +2294,7 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 
 # Watchlist
 'watchlist' => 'Daftar pantauan',
-'mywatchlist' => 'Pantauan saya',
+'mywatchlist' => 'Daftar pantauan',
 'watchlistfor2' => 'Untuk $1 $2',
 'nowatchlist' => 'Daftar pantauan Anda kosong.',
 'watchlistanontext' => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
@@ -2534,7 +2545,7 @@ $1',
 # Contributions
 'contributions' => 'Kontribusi pengguna',
 'contributions-title' => 'Kontribusi pengguna untuk $1',
-'mycontris' => 'Kontribusi saya',
+'mycontris' => 'Kontribusi',
 'contribsub2' => 'Untuk $1 ($2)',
 'nocontribs' => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
 'uctop' => ' (atas)',
@@ -3044,11 +3055,33 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 
 # Info page
 'pageinfo-title' => 'Informasi untuk "$1"',
-'pageinfo-header-edits' => 'Suntingan',
+'pageinfo-header-basic' => 'Informasi dasar',
+'pageinfo-header-edits' => 'Sejarah suntingan',
+'pageinfo-header-restrictions' => 'Perlindungan halaman',
+'pageinfo-header-properties' => 'Properti halaman',
+'pageinfo-display-title' => 'Judul tampilan',
+'pageinfo-default-sort' => 'Kunci urut baku',
+'pageinfo-length' => 'Panjang halaman (dalam bita)',
+'pageinfo-article-id' => 'ID Halaman',
+'pageinfo-language' => 'Bahasa isi halaman',
+'pageinfo-robot-policy' => 'Status mesin pencari',
+'pageinfo-robot-index' => 'Dapat diindeks',
+'pageinfo-robot-noindex' => 'Tidak dapat diindeks',
 'pageinfo-views' => 'Jumlah penampilan',
-'pageinfo-watchers' => 'Jumlah pemantau',
-'pageinfo-edits' => 'Jumlah suntingan',
-'pageinfo-authors' => 'Jumlah penulis yang berbeda',
+'pageinfo-watchers' => 'Jumlah pemantau halaman',
+'pageinfo-redirects-name' => 'Pengalihan ke halaman ini',
+'pageinfo-subpages-name' => 'Subhalaman halaman ini',
+'pageinfo-firstuser' => 'Pembuat halaman',
+'pageinfo-firsttime' => 'Tanggal pembuatan halaman',
+'pageinfo-lastuser' => 'Penyunting terakhir',
+'pageinfo-lasttime' => 'Tanggal suntingan terakhir',
+'pageinfo-edits' => 'Jumlah total suntingan',
+'pageinfo-authors' => 'Jumlah total penulis yang berbeda',
+'pageinfo-toolboxlink' => 'Informasi halaman',
+'pageinfo-redirectsto' => 'Beralih ke',
+'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-contentpage-yes' => 'Ya',
+'pageinfo-protect-cascading-yes' => 'Ya',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3987,4 +4020,6 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'duration-centuries' => '{{PLURAL:$1||}}$1 abad',
 'duration-millennia' => '{{PLURAL:$1||}}$1 milenium',
 
+# Unknown messages
+'mytalk-parenthetical' => 'bicara',
 );
