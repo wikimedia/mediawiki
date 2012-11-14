@@ -1641,6 +1641,7 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 * {{msg-mw|Prefs-watchlist-days}}
 * {{msg-mw|Prefs-watchlist-edits}}',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
+'prefs-analytics' => 'Label for the toggle box that enables/disables page view analytics.',
 
 # User rights
 'userrights' => 'Page title of [[Special:UserRights]].',
