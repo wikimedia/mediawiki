@@ -41,6 +41,7 @@
  * @author HalanTul
  * @author Huuchin
  * @author Illusion
+ * @author Iltever
  * @author Incnis Mrsi
  * @author Iniquity
  * @author Innv
@@ -516,7 +517,7 @@ $messages = array(
 'category-empty' => "''Эта категория в данный момент пуста.''",
 'hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
 'hidden-category-category' => 'Скрытые категории',
-'category-subcat-count' => '{{PLURAL:$2|Данная категория содержит только следующую подкатегорию.|{{PLURAL:$1|Показана $1 подкатегория|Показано $1 подкатегории|Показано $1 подкатегорий}} из $2, находящихся в этой категории.}}',
+'category-subcat-count' => '{{PLURAL:$2|Эта категория содержит только следующие подкатегории. |Эта категория содержит {{PLURAL:$1|subcategory|$1  подкатегорий}}, из $2 имеющихся.}}',
 'category-subcat-count-limited' => 'В этой категории {{PLURAL:$1|$1 подкатегория|$1 подкатегории|$1 подкатегорий}}.',
 'category-article-count' => '{{PLURAL:$2|Эта категория содержит только одну страницу.|{{PLURAL:$1|Показана $1 страница|Показано $1 страницы|Показано $1 страниц}} из $2, находящихся в этой категории.}}',
 'category-article-count-limited' => 'В этой категории {{PLURAL:$1|$1 страница|$1 страницы|$1 страниц}}.',

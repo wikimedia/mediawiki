@@ -2875,6 +2875,8 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'markedaspatrollederror' => 'As peul pa marché coma verificà',
 'markedaspatrollederrortext' => 'A venta che a spessìfica che version che a veul marchè coma verificà.',
 'markedaspatrollederror-noautopatrol' => "A l'ha nen ël përmess dë marchesse soe modìfiche coma «controlà».",
+'markedaspatrollednotify' => "Ës cambi a $1 a l'é stàit marcà com verificà.",
+'markedaspatrollederrornotify' => 'Marcagi com verificà falì.',
 
 # Patrol log
 'patrol-log-page' => 'Registr dij contròj',
@@ -3458,8 +3460,8 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 
 # action=purge
 'confirm_purge_button' => 'Va bin',
-'confirm-purge-top' => 'Veujdé la memorisassion dë sta pàgina-sì?',
-'confirm-purge-bottom' => 'Spurghé na pàgina a scansela la "cache" e a fà aparì le revision pì neuve.',
+'confirm-purge-top' => 'Dësvujdé la memorisassion dë sta pàgina-sì?',
+'confirm-purge-bottom' => 'Spurghé na pàgina a scancela la memorisassion local e a fà comparì la revision pì neuva.',
 
 # action=watch/unwatch
 'confirm-watch-button' => 'Va bin',

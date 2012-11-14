@@ -3051,6 +3051,8 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'markedaspatrollederror' => 'Ni mogoče označiti kot pregledano',
 'markedaspatrollederrortext' => 'Določite redakcijo, ki jo želite označiti kot pregledano.',
 'markedaspatrollederror-noautopatrol' => 'Svojih urejanj vam ni dovoljeno označiti kot nadzorovanih.',
+'markedaspatrollednotify' => 'Ta sprememba $1 je bila označena kot nadzorovana.',
+'markedaspatrollederrornotify' => 'Označevanje kot nadzorovano ni uspelo.',
 
 # Patrol log
 'patrol-log-page' => 'Dnevnik patrulje',

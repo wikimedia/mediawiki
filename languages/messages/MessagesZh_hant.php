@@ -3009,6 +3009,8 @@ $1被封禁的理由是“$2”',
 'markedaspatrollederror' => '不能標誌為已檢查',
 'markedaspatrollederrortext' => '{{GENDER:|你|妳|你}}需要指定某個版本才能標誌為已檢查。',
 'markedaspatrollederror-noautopatrol' => '您無法將{{GENDER:|你|妳|你}}自己所作的更改標記為已檢查。',
+'markedaspatrollednotify' => '$1的更改已標記為已巡查。',
+'markedaspatrollederrornotify' => '標記為巡查失敗。',
 
 # Patrol log
 'patrol-log-page' => '巡查日誌',

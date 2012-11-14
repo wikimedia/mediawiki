@@ -3144,6 +3144,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'markedaspatrollederror' => 'Không thể đánh dấu tuần tra',
 'markedaspatrollederrortext' => 'Bạn phải chọn phiên bản để đánh dấu tuần tra.',
 'markedaspatrollederror-noautopatrol' => 'Bạn không được đánh dấu tuần tra vào sửa đổi của bạn.',
+'markedaspatrollednotify' => 'Đã được đánh dấu tuần tra vào thay đổi tại $1.',
+'markedaspatrollederrornotify' => 'Đánh dấu tuần tra bị thất bại.',
 
 # Patrol log
 'patrol-log-page' => 'Nhật ký tuần tra',

@@ -2917,6 +2917,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'markedaspatrollederror' => 'Njemóžno jako přepruwowanu woznamjenić.',
 'markedaspatrollederrortext' => 'Dyrbiš wersiju podać, kotraž so ma jako přepruwowana woznamjenić.',
 'markedaspatrollederror-noautopatrol' => 'Njesměš swoje změny jako přepruwowane woznamjenjeć.',
+'markedaspatrollednotify' => 'Tuta změna do $1 je so jako dohladowana markěrowała.',
+'markedaspatrollederrornotify' => 'Markěrowanje jako dohladowane je so njeporadźiło.',
 
 # Patrol log
 'patrol-log-page' => 'Protokol přepruwowanjow',

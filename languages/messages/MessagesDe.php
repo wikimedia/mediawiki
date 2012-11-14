@@ -3242,6 +3242,8 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'markedaspatrollederror' => 'Markierung als „kontrolliert“ nicht möglich.',
 'markedaspatrollederrortext' => 'Du musst eine Seitenänderung auswählen.',
 'markedaspatrollederror-noautopatrol' => 'Es ist nicht erlaubt, eigene Bearbeitungen als kontrolliert zu markieren.',
+'markedaspatrollednotify' => 'Diese Änderung an $1 wurde als kontrolliert markiert.',
+'markedaspatrollederrornotify' => 'Der Versuch, die Version als kontrolliert zu markieren, ist fehlgeschlagen.',
 
 # Patrol log
 'patrol-log-page' => 'Kontroll-Logbuch',

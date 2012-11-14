@@ -967,7 +967,15 @@ $2
 'edit-already-exists' => 'נישט מעגליך צו שאַפֿן נייע בלאט.
 ער עקזיסטירט שוין.',
 'defaultmessagetext' => 'גרונטלעכער מעלדונג טעקסט',
+'content-failed-to-parse' => 'פארזן $2 אינהאלט פאר $1 מאדעל דורכגעפאלן: $3',
 'invalid-content-data' => 'אומגילטיקע אינהאלט דאטן',
+'content-not-allowed-here' => '"$1" אינהאלט נישט דערלויבט אויף בלאט [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'וויקיטעקסט',
+'content-model-text' => 'פשוטער טעקסט',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''אזהרה:''' דער בלאט אנטהאלט צופיל טייערע פארזירער רופן.
@@ -982,6 +990,8 @@ $2
 'parser-template-loop-warning' => 'מוסטער שלייף געטראפן: [[$1]]',
 'parser-template-recursion-depth-warning' => 'מוסטער רעקורסיע טיף מאקסימום איבערגעשטיגן ($1)',
 'language-converter-depth-warning' => 'אַריבער דעם שפּראַך קאַנווערטער טיף לימיט ($1)',
+'node-count-exceeded-category' => 'בלעטער וואו קנופצאל איז צו פיל',
+'node-count-exceeded-warning' => 'קנופנצאל אויפן בלאט צו הויך',
 'converter-manual-rule-error' => 'געטראפן א גרײַז אין האנטלעכן שפראך־קאנווערטירן כלל',
 
 # "Undo" feature
@@ -2871,6 +2881,7 @@ $1',
 'pageinfo-default-sort' => 'גרונט סארטירן שליסל',
 'pageinfo-length' => 'בלאט לענג (אין בייטן)',
 'pageinfo-article-id' => 'בלאט נומער',
+'pageinfo-language' => 'בלאט אינהאלט שפראך',
 'pageinfo-robot-policy' => 'זוכמאשין סטאטוס',
 'pageinfo-robot-index' => 'אינדעקסירבאר',
 'pageinfo-robot-noindex' => 'נישט אינדעקסירבאר',
@@ -3726,4 +3737,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
 'duration-millennia' => '$1 {{PLURAL:$1|יארטויזנט|יארטויזנטער}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'שמועס',
 );

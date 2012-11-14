@@ -1520,7 +1520,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'group-bot' => 'Roboți',
 'group-sysop' => 'Administratori',
 'group-bureaucrat' => 'Birocrați',
-'group-suppress' => 'Oversights',
+'group-suppress' => 'Supervizori',
 'group-all' => '(toți)',
 
 'group-user-member' => '{{GENDER:$1|utilizator|utilizatoare|utilizator}}',
@@ -1528,14 +1528,14 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'group-bot-member' => '{{GENDER:$1|robot}}',
 'group-sysop-member' => '{{GENDER:$1|administrator}}',
 'group-bureaucrat-member' => '{{GENDER:$1|birocrat}}',
-'group-suppress-member' => '{{GENDER:$1|supraveghetor}}',
+'group-suppress-member' => '{{GENDER:$1|supervizor}}',
 
 'grouppage-user' => '{{ns:project}}:Utilizatori',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilizator autoconfirmați',
 'grouppage-bot' => '{{ns:project}}:Boți',
 'grouppage-sysop' => '{{ns:project}}:Administratori',
 'grouppage-bureaucrat' => '{{ns:project}}:Birocrați',
-'grouppage-suppress' => '{{ns:project}}:Oversight',
+'grouppage-suppress' => '{{ns:project}}:Supervizori',
 
 # Rights
 'right-read' => 'Citește pagini',
@@ -3155,6 +3155,8 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'markedaspatrollederror' => 'Nu se poate marca ca verificat',
 'markedaspatrollederrortext' => 'Trebuie să specificați o versiune care să fie marcată ca verificată.',
 'markedaspatrollederror-noautopatrol' => 'Nu puteți marca propriile modificări ca verificate.',
+'markedaspatrollednotify' => 'Această modificare la $1 a fost marcată ca patrulată.',
+'markedaspatrollederrornotify' => 'Marcarea ca patrulată a eșuat.',
 
 # Patrol log
 'patrol-log-page' => 'Jurnal verificări',
