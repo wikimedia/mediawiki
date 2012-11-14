@@ -2675,6 +2675,7 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 * {{msg-mw|Prefs-watchlist-days}}
 * {{msg-mw|Prefs-watchlist-edits}}',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
+'prefs-analytics' => 'Label for the toggle box that enables/disables page view analytics.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.',

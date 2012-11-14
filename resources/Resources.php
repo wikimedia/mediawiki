@@ -724,6 +724,13 @@ return array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.history.diff.css',
 		'group' => 'mediawiki.action.history',
 	),
+	'mediawiki.action.view.analytics' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.analytics.js',
+		'dependencies' => array(
+			'mediawiki.util',
+			'mediawiki.api'
+		)
+	),
 	'mediawiki.action.view.dblClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
 		'dependencies' => array(

@@ -764,6 +764,15 @@ class Article implements Page {
 		$outputPage->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
 
+		/*
+		 * Include an analytics script if allowed.
+		 * This will only be included if anlytics is enabled and
+		 * the user has not turned off analytics.
+		 */
+		if( Hooks::isRegistered( 'Analytics' ) && $user->getBoolOption( 'analytics', true ) ) {
+			$outputPage->addModules( 'mediawiki.action.view.analytics' );
+		}
+
 		$this->showViewFooter();
 		$this->mPage->doViewUpdates( $user );
 

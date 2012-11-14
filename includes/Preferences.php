@@ -295,6 +295,14 @@ class Preferences {
 			);
 		}
 
+		if ( Hooks::isRegistered( 'Analytics' ) ) {
+			$defaultPreferences['analytics'] = array(
+				'type' => 'toggle',
+				'label-message' => 'prefs-analytics',
+				'section' => 'personal/info'
+			);
+		}
+
 		// Language
 		$languages = Language::fetchLanguageNames( null, 'mw' );
 		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
