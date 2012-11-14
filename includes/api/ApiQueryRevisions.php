@@ -546,9 +546,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			if ( $text === null ) {
 				$format = $this->contentFormat ? $this->contentFormat : $content->getDefaultFormat();
+				$model = $content->getModel();
 
 				if ( !$content->isSupportedFormat( $format ) ) {
-					$model = $content->getModel();
 					$name = $title->getPrefixedDBkey();
 
 					$this->dieUsage( "The requested format {$this->contentFormat} is not supported ".
@@ -556,7 +556,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				}
 
 				$text = $content->serialize( $format );
+
+				// always include format and model.
+				// Format is needed to deserialize, model is needed to interpret.
 				$vals['contentformat'] = $format;
+				$vals['contentmodel'] = $model;
 			}
 
 			if ( $text !== false ) {
