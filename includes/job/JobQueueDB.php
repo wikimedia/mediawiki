@@ -292,8 +292,9 @@ class JobQueueDB extends JobQueue {
 	 * @return integer Number of jobs recycled/deleted
 	 */
 	protected function recycleStaleJobs() {
-		$now    = time();
-		$dbw    = $this->getMasterDB();
+		$now   = time();
+		$dbw   = $this->getMasterDB();
+		$count = 0; // affected rows
 
 		if ( $this->claimTTL > 0 ) { // re-try stale jobs...
 			$claimCutoff = $dbw->timestamp( $now - $this->claimTTL );
@@ -311,6 +312,7 @@ class JobQueueDB extends JobQueue {
 					"job_attempts < {$dbw->addQuotes( self::MAX_ATTEMPTS )}" ),
 				__METHOD__
 			);
+			$count += $dbw->affectedRows();
 		}
 
 		// Just destroy stale jobs...
@@ -323,8 +325,10 @@ class JobQueueDB extends JobQueue {
 		if ( $this->claimTTL > 0 ) { // only prune jobs attempted too many times...
 			$conds[] = "job_attempts >= {$dbw->addQuotes( self::MAX_ATTEMPTS )}";
 		}
+		$dbw->delete( 'job', $conds, __METHOD__ );
+		$count += $dbw->affectedRows();
 
-		return $dbw->affectedRows();
+		return $count;
 	}
 
 	/**
