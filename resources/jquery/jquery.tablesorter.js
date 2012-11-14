@@ -889,6 +889,12 @@
 					s = [ match[3], match[1], match[2] ];
 				} else if ( mw.config.get( 'wgDefaultDateFormat' ) === 'dmy' ) {
 					s = [ match[3], match[2], match[1] ];
+				} else {
+					// FIXME
+					// Should never get here, but we do, since wikis also use non-American date formats
+					// e.g. fi.wikipedia uses "fi normal"
+					// see bug 42097
+					return '99999999';
 				}
 			} else if ( ( match = s.match( ts.dateRegex[1] ) ) !== null ) {
 				s = [ match[3], '' + ts.monthNames[match[2]], match[1] ];
