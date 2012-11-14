@@ -889,6 +889,10 @@
 					s = [ match[3], match[1], match[2] ];
 				} else if ( mw.config.get( 'wgDefaultDateFormat' ) === 'dmy' ) {
 					s = [ match[3], match[2], match[1] ];
+				} else {
+					// If we get here, we don't know which order the dd-dd-dddd
+					// date is in. So return something not entirely invalid.
+					return '99999999';
 				}
 			} else if ( ( match = s.match( ts.dateRegex[1] ) ) !== null ) {
 				s = [ match[3], '' + ts.monthNames[match[2]], match[1] ];
