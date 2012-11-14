@@ -156,7 +156,7 @@ class Preferences {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
 			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress;
+			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress, $wgAnalytics;
 
 		## User info #####################################
 		// Information panel
@@ -268,6 +268,14 @@ class Preferences {
 				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
 					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
 				'section' => 'personal/info',
+			);
+		}
+
+		if ( $wgAnalytics ) {
+			$defaultPreferences['analytics'] = array(
+				'type' => 'toggle',
+				'label-message' => 'prefs-analytics',
+				'section' => 'personal/info'
 			);
 		}
 
