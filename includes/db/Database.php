@@ -230,9 +230,9 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * @since 1.20
-	 * @var array of callable
+	 * @var array of Closure
 	 */
-	protected $trxIdleCallbacks = array();
+	protected $mTrxIdleCallbacks = array();
 
 	protected $mTablePrefix;
 	protected $mFlags;
@@ -535,6 +535,16 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Returns true if there is a transaction open with possible write
+	 * queries or transaction idle callbacks waiting on it to finish.
+	 *
+	 * @return bool
+	 */
+	public function writesOrCallbacksPending() {
+		return $this->mTrxLevel && ( $this->mTrxDoneWrites || $this->mTrxIdleCallbacks );
+	}
+
+	/**
 	 * Is a connection to the database open?
 	 * @return Boolean
 	 */
@@ -757,6 +767,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Bool operation success. true if already closed.
 	 */
 	public function close() {
+		if ( count( $this->mTrxIdleCallbacks ) ) { // sanity
+			throw new MWException( "Transaction idle callbacks still pending." );
+		}
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
@@ -926,7 +939,7 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( false === $ret && $this->wasErrorReissuable() ) {
 			# Transaction is gone, like it or not
 			$this->mTrxLevel = 0;
-			$this->trxIdleCallbacks = array(); // cancel
+			$this->mTrxIdleCallbacks = array(); // cancel
 			wfDebug( "Connection lost, reconnecting...\n" );
 
 			if ( $this->ping() ) {
@@ -2899,7 +2912,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	final public function onTransactionIdle( Closure $callback ) {
 		if ( $this->mTrxLevel ) {
-			$this->trxIdleCallbacks[] = $callback;
+			$this->mTrxIdleCallbacks[] = $callback;
 		} else {
 			$callback();
 		}
@@ -2911,16 +2924,20 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @since 1.20
 	 */
 	protected function runOnTransactionIdleCallbacks() {
+		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
+
 		$e = null; // last exception
 		do { // callbacks may add callbacks :)
-			$callbacks = $this->trxIdleCallbacks;
-			$this->trxIdleCallbacks = array(); // recursion guard
+			$callbacks = $this->mTrxIdleCallbacks;
+			$this->mTrxIdleCallbacks = array(); // recursion guard
 			foreach ( $callbacks as $callback ) {
 				try {
+					$this->clearFlag( DBO_TRX ); // make each query its own transaction
 					$callback();
+					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 				} catch ( Exception $e ) {}
 			}
-		} while ( count( $this->trxIdleCallbacks ) );
+		} while ( count( $this->mTrxIdleCallbacks ) );
 
 		if ( $e instanceof Exception ) {
 			throw $e; // re-throw any last exception
@@ -3037,7 +3054,7 @@ abstract class DatabaseBase implements DatabaseType {
 			wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
 		}
 		$this->doRollback( $fname );
-		$this->trxIdleCallbacks = array(); // cancel
+		$this->mTrxIdleCallbacks = array(); // cancel
 	}
 
 	/**
@@ -3618,5 +3635,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	public function __toString() {
 		return (string)$this->mConn;
+	}
+
+	public function __destruct() {
+		if ( count( $this->mTrxIdleCallbacks ) ) { // sanity
+			throw new MWException( "Transaction idle callbacks still pending." );
+		}
 	}
 }

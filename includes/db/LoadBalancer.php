@@ -926,7 +926,7 @@ class LoadBalancer {
 				continue;
 			}
 			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->trxLevel() && $conn->doneWrites() ) {
+				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					$conn->commit( __METHOD__, 'flush' );
 				}
 			}
