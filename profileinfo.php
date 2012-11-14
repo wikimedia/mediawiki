@@ -95,7 +95,7 @@ header( 'Content-Type: text/html; charset=utf-8' );
 
 	.table th,
 	.table td {
-		padding: 8px;
+		padding: 2px;
 		line-height: 20px;
 		text-align: left;
 		vertical-align: top;
@@ -233,7 +233,9 @@ class profile_point {
 	}
 
 	function name() {
-		return $this->name;
+		// Make sql queries wrap
+		$a = str_replace( ',', ', ', $this->name );
+		return $a;
 	}
 
 	function count() {
