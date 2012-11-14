@@ -277,15 +277,23 @@ QUnit.asyncTest( 'mw.loader.implement( styles={ "url": { <media>: [url, ..] } } 
 	mw.loader.implement(
 		'test.implement.b',
 		function () {
+			// Note: QUnit.start() must only be called when the entire test is
+			// complete. So make sure that it doesn't get called until *both*
+			// assertStyleAsyncs here have completed.
+			var pending = 2;
 			assertStyleAsync( assert, $element2, 'float', 'left', function () {
 				assert.notEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
 
-				QUnit.start();
+				if ( --pending <= 0 ) {
+					QUnit.start();
+				}
 			} );
 			assertStyleAsync( assert, $element3, 'float', 'right', function () {
 				assert.notEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
 
-				QUnit.start();
+				if ( --pending <= 0 ) {
+					QUnit.start();
+				}
 			} );
 		},
 		{
