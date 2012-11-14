@@ -1071,6 +1071,7 @@ $wgMessageStructure = array(
 		'prefs-displaysearchoptions',
 		'prefs-displaywatchlist',
 		'prefs-diffs',
+		'prefs-analytics',
 	),
 	'preferences-email' => array(
 		'email-address-validity-valid',
