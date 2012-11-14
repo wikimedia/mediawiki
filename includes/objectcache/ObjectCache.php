@@ -141,7 +141,7 @@ class ObjectCache {
 	 *
 	 * This always uses the PHP client, since the PECL client has a different
 	 * hashing scheme and a different interpretation of the flags bitfield, so
-	 * switching between the two clients randomly would be disasterous.
+	 * switching between the two clients randomly would be disastrous.
 	 *
 	 * @param $params array
 	 *
