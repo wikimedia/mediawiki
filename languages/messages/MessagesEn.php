@@ -1933,6 +1933,7 @@ Your e-mail address is not revealed when other users contact you.',
 'prefs-displaysearchoptions'    => 'Display options',
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
+'prefs-analytics'               => 'Enable collection of anonymous page-view analytics.',
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid'   => 'E-mail address appears valid',
