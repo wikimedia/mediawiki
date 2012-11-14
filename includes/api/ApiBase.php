@@ -1236,6 +1236,7 @@ abstract class ApiBase extends ContextSource {
 		// Miscellaneous interface messages
 		'actionthrottledtext' => array( 'code' => 'ratelimited', 'info' => "You've exceeded your rate limit. Please wait some time and try again" ),
 		'alreadyrolled' => array( 'code' => 'alreadyrolled', 'info' => "The page you tried to rollback was already rolled back" ),
+		'disabled' => array( 'code' => 'disabled', 'info' => "The request you tried to make is disabled by the wiki configuration." ),
 		'cantrollback' => array( 'code' => 'onlyauthor', 'info' => "The page you tried to rollback only has one author" ),
 		'readonlytext' => array( 'code' => 'readonly', 'info' => "The wiki is currently in read-only mode" ),
 		'sessionfailure' => array( 'code' => 'badtoken', 'info' => "Invalid token" ),

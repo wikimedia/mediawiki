@@ -425,6 +425,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiUndelete' => 'includes/api/ApiUndelete.php',
 	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiUserrights' => 'includes/api/ApiUserrights.php',
+	'ApiView' => 'includes/api/ApiView.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
 	'UsageException' => 'includes/api/ApiMain.php',
 
