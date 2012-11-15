@@ -788,6 +788,17 @@ And a <a href="/wiki/Main_Page" title="Main Page">link</a>
 !! end
 
 !! test
+Ident preformatting with inline content
+!! input
+ a
+ ''b''
+!! result
+<pre>a
+<i>b</i>
+</pre>
+!! end
+
+!! test
 <pre> with <nowiki> inside (compatibility with 1.6 and earlier)
 !! input
 <pre><nowiki>
