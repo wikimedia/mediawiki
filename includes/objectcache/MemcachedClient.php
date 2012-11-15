@@ -277,7 +277,7 @@ class MWMemcached {
 	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
 	 * longer must be the timestamp of the time at which the mapping should expire. It
-	 * is safe to use timestamps in all cases, regardless of exipration
+	 * is safe to use timestamps in all cases, regardless of expiration
 	 * eg: strtotime("+3 hour")
 	 *
 	 * @return Boolean
