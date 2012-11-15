@@ -81,17 +81,19 @@ class nextJobDB extends Maintenance {
 			$candidates = array_values( $candidates );
 			$db = $candidates[ mt_rand( 0, count( $candidates ) - 1 ) ];
 			if ( !$this->checkJob( $type, $db ) ) {
-				// This job is not available in the current database. Remove it from
-				// the cache.
 				if ( $type === false ) {
+					// There are no jobs available in the current database
 					foreach ( $pendingDBs as $type2 => $dbs ) {
 						$pendingDBs[$type2] = array_diff( $pendingDBs[$type2], array( $db ) );
 					}
 				} else {
+					// There are no jobs of this type available in the current database
 					$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
 				}
-
-				$wgMemc->set( $memcKey, $pendingDBs, 300 );
+				// Update the cache to remove the outdated information
+				$pendingDbInfo['pendingDBs'] = $pendingDBs;
+				// @TODO: fix race condition with these updates
+				$wgMemc->set( $memcKey, $pendingDbInfo, 300 );
 				$again = true;
 			}
 		} while ( $again );
