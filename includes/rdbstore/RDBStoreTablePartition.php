@@ -176,6 +176,23 @@ abstract class RDBStoreTablePartition {
 	}
 
 	/**
+	 * @see DatabaseBase::replace()
+	 * @see DatabaseBase::affectedRows()
+	 * @param $uniqueIndexes Array
+	 * @param $rows Array
+	 * @param $fname String
+	 * @return integer Number of affected rows
+	 */
+	final public function replace( $uniqueIndexes, $rows, $fname ) {
+		$rows = ( isset( $rows[0] ) && is_array( $rows[0] ) ) ? $rows : array( $rows );
+		array_map( array( $this, 'assertKeyCond' ), $rows ); // sanity
+
+		$dbw = $this->getMasterDB();
+		$dbw->replace( $this->pTable, $uniqueIndexes, $rows, $fname );
+		return $dbw->affectedRows();
+	}
+
+	/**
 	 * @see DatabaseBase::update()
 	 * @see DatabaseBase::affectedRows()
 	 * @param $values Array
@@ -233,6 +250,10 @@ abstract class RDBStoreTablePartition {
 	 * @param $conds array
 	 */
 	final protected function assertKeyCond( array $conds ) {
+		if ( $this->value === null ) {
+			return;
+		}
+
 		if ( !isset( $conds[$this->key] ) ) {
 			throw new MWException( "Shard column '{$this->key}' value not provided." );
 		} elseif ( $this->value !== null && strval( $conds[$this->key] ) !== $this->value ) {

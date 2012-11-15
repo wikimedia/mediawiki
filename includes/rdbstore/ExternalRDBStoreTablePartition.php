@@ -48,7 +48,7 @@ class ExternalRDBStoreTablePartition extends RDBStoreTablePartition {
 		$this->vTable   = (string)$table;
 		$this->pTable   = "{$table}__{$rdbStore->formatShardIndex( $index )}__{$key}";
 		$this->key      = (string)$key;
-		$this->value    = (string)$value;
+		$this->value    = $value === null ? null : (string)$value;
 		$this->wiki     = (string)$wiki;
 	}
 

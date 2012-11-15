@@ -205,19 +205,44 @@ class ExternalRDBStore extends RDBStore {
 	}
 
 	/**
+	 * Get the partition index a certain shard value maps to.
+	 * This renders rdbstore implementations capable of mapping out shard values to
+	 * partition stores so that queries spanning multiple shard keys can be performed
+	 * at once - if they're on the same server.
+	 *
+	 * @param $value string Shard key column value
+	 * @return int
+	 */
+	public function getPartitionIndex( $value ) {
+		// Map this row to a consistent table shard, which only depends on $value.
+		// This mapping MUST always remain consistent (immutable)!
+		$hash  = substr( sha1( $value ), 0, 4 ); // 65535 possible values
+		return (int)base_convert( $hash, 16, 10 ) % self::SHARD_COUNT; // [0,1023]
+	}
+
+	/**
 	 * Get an object representing a shard of a virtual DB table.
 	 * Each table is sharded on at least one column key, and possibly
-	 * denormalized and sharded on muliple column keys (e.g. rev ID, page ID, user ID).
+	 * denormalized and sharded on multiple column keys (e.g. rev ID, page ID, user ID).
 	 *
 	 * @see RDBStore::doGetPartition()
 	 * @return ExternalRDBStoreTablePartition
 	 */
 	protected function doGetPartition( $table, $column, $value, $wiki ) {
-		// Map this row to a consistent table shard, which only depends on $value.
-		// This mapping MUST always remain consistent (immutable)!
-		$hash  = substr( sha1( $value ), 0, 4 ); // 65535 possible values
-		$index = (int)base_convert( $hash, 16, 10 ) % self::SHARD_COUNT; // [0,1023]
+		$index = $this->getPartitionIndex( $value );
 		return new ExternalRDBStoreTablePartition( $this, $table, $index, $column, $value, $wiki );
+	}
+
+	/**
+	 * Get an object representing a shard of a virtual DB table.
+	 * Each table is sharded on at least one column key, and possibly
+	 * denormalized and sharded on multiple column keys (e.g. rev ID, page ID, user ID).
+	 *
+	 * @see RDBStore::doGetIndexPartition()
+	 * @return ExternalRDBStoreTablePartition
+	 */
+	protected function doGetIndexPartition( $table, $column, $index, $wiki ) {
+		return new ExternalRDBStoreTablePartition( $this, $table, $index, $column, null, $wiki );
 	}
 
 	/**
@@ -227,8 +252,8 @@ class ExternalRDBStore extends RDBStore {
 	protected function doGetAllPartitions( $table, $column, $wiki ) {
 		$partitions = array();
 		for ( $index = 0; $index < self::SHARD_COUNT; $index++ ) {
-			$partitions[] = new ExternalRDBStoreTablePartition(
-				$this, $table, $index, $column, null, $wiki
+			$partitions[] = new $this->getIndexPartition(
+				$table, $column, $index, $wiki
 			);
 		}
 		return $partitions;

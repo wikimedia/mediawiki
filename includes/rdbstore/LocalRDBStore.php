@@ -87,6 +87,20 @@ class LocalRDBStore extends RDBStore {
 	}
 
 	/**
+	 * Get the partition index a certain shard value maps to.
+	 * This renders rdbstore implementations capable of mapping out shard values to
+	 * partition stores so that queries spanning multiple shard keys can be performed
+	 * at once - if they're on the same server.
+	 *
+	 * @param $value string Shard key column value
+	 * @return int
+	 */
+	public function getPartitionIndex( $value ) {
+		// there's only 1 partition, this doesn't matter
+		return 0;
+	}
+
+	/**
 	 * @see RDBStore::doGetPartition()
 	 * @return LocalRDBStoreTablePartition
 	 */
@@ -95,6 +109,17 @@ class LocalRDBStore extends RDBStore {
 			throw new DBUnexpectedError( "Wiki ID '$wiki' does not match '{$this->wiki}'." );
 		}
 		return new LocalRDBStoreTablePartition( $this, $table, $column, $value, $wiki );
+	}
+
+	/**
+	 * @see RDBStore::doGetIndexPartition()
+	 * @return LocalRDBStoreTablePartition
+	 */
+	protected function doGetIndexPartition( $table, $column, $index, $wiki ) {
+		if ( $wiki !== $this->wiki ) {
+			throw new DBUnexpectedError( "Wiki ID '$wiki' does not match '{$this->wiki}'." );
+		}
+		return new LocalRDBStoreTablePartition( $this, $table, $column, null, $wiki );
 	}
 
 	/**

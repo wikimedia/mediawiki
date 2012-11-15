@@ -242,6 +242,17 @@ abstract class RDBStore {
 	abstract protected function finishOutermost();
 
 	/**
+	 * Get the partition index a certain shard value maps to.
+	 * This renders rdbstore implementations capable of mapping out shard values to
+	 * partition stores so that queries spanning multiple shard keys can be performed
+	 * at once - if they're on the same server.
+	 *
+	 * @param $value string Shard key column value
+	 * @return int
+	 */
+	abstract public function getPartitionIndex( $value );
+
+	/**
 	 * Get an object representing a shard of a virtual DB table.
 	 * If this store is not partitioned, this returns an object for the entire table.
 	 *
@@ -268,6 +279,66 @@ abstract class RDBStore {
 	 * @return RDBStoreTablePartition
 	 */
 	abstract protected function doGetPartition( $table, $column, $value, $wiki );
+
+	/**
+	 * Get an object representing a shard of a virtual DB table.
+	 * If this store is not partitioned, this returns an object for the entire table.
+	 *
+	 * Each table is canonically sharded on one column key, and may possibly be
+	 * denormalized and sharded on additional column keys (e.g. thread ID, user ID).
+	 *
+	 * @param $table string Virtual table name
+	 * @param $column string Shard key column name
+	 * @param $index int Partition index
+	 * @param $wiki string Wiki ID; defaults to the current wiki
+	 * @return RDBStoreTablePartition
+	 * @throws MWException
+	 */
+	final public function getIndexPartition( $table, $column, $index, $wiki = false ) {
+		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
+		if ( !isset( $column ) || !isset( $index ) ) {
+			throw new MWException( "Missing table shard column or partition index." );
+		}
+		return $this->doGetIndexPartition( $table, $column, $index, $wiki );
+	}
+
+	/**
+	 * @see RDBStore::getIndexPartition()
+	 * @return RDBStoreTablePartition
+	 */
+	abstract protected function doGetIndexPartition( $table, $column, $index, $wiki );
+
+	/**
+	 * Get a list of objects representing the shards containing the given shard column
+	 * values and a list of the corresponding given values per partition.
+	 *
+	 * @param $table string Virtual table name
+	 * @param $column string Shard key column name
+	 * @param $value array Shard key column values
+	 * @param $wiki string Wiki ID; defaults to the current wiki
+	 * @return array
+	 * @throws MWException
+	 */
+	final public function getMultiplePartitions( $table, $column, array $values, $wiki = false ) {
+		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
+		if ( !isset( $column ) || !isset( $values ) ) {
+			throw new MWException( "Missing table shard column or values." );
+		}
+
+		$partitions = array();
+		foreach ( $values as $value ) {
+			$index = $this->getPartitionIndex( $value );
+			$partitions[$index][] = $value;
+		}
+		foreach ( $partitions as $index => $values ) {
+			$partitions[$index] = array(
+				'partition' => $this->getIndexPartition( $table, $column, $index, $wiki ),
+				'values' => $values
+			);
+		}
+
+		return $partitions;
+	}
 
 	/**
 	 * Get a list of objects representing all shards of a virtual DB table.
