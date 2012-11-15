@@ -1629,6 +1629,9 @@ $text: actual text
 'ParserClearState': called at the end of Parser::clearState()
 $parser: Parser object being cleared
 
+'ParserCloned': called when the parser is cloned
+$parser: Newly-cloned Parser object
+
 'ParserFirstCallInit': called when the parser initialises for the first time
 &$parser: Parser object being cleared
 
