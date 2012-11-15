@@ -232,4 +232,25 @@
 		$el.byteLimit();
 	});
 
+	QUnit.test( 'Ensure we prevent adding of new characters if the limit is reached instead of trimming from the end (bug 40850)', 2, function ( assert ) {
+		var $el;
+
+		// We cannot reuse an <input /> because the original bug only manifested itself on the first time we hit the limit
+		$el = $( '<input type="text"/>' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit( 3 )
+			.val( 'aaa' ).trigger( 'change' )
+			.val( 'zaaa' ).trigger( 'change' );
+
+		assert.strictEqual( $el.val(), 'aaa', 'Verify that byteLimit() prevented adding a character at the beginning instead of trimming the end' );
+
+		$el = $( '<input type="text"/>' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit( 3 )
+			.val( 'aaa' ).trigger( 'change' )
+			.val( 'azaa' ).trigger( 'change' );
+
+		assert.strictEqual( $el.val(), 'aaa', 'Verify that byteLimit() prevented adding a character in the middle instead of trimming the end' );
+	});
+
 }( jQuery, mediaWiki ) );

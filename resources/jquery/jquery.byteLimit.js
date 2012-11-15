@@ -221,8 +221,11 @@
 				// This is a side-effect of limiting after the fact.
 				if ( res.trimmed === true ) {
 					this.value = res.newVal;
-					prevSafeVal = res.newVal;
 				}
+				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
+				// trimValForByteLength to compare the new value to an empty string instead of the old value,
+				// resulting in trimming always at the end instead of at the position of insertion.
+				prevSafeVal = res.newVal;
 			} );
 		} );
 	};
