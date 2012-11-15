@@ -182,8 +182,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['reason'] = $row->ipb_reason;
 			}
 			if ( $fld_range && !$row->ipb_auto ) {
-				$block['rangestart'] = IP::hexToQuad( $row->ipb_range_start );
-				$block['rangeend'] = IP::hexToQuad( $row->ipb_range_end );
+				$block['rangestart'] = IP::formatHex( $row->ipb_range_start );
+				$block['rangeend'] = IP::formatHex( $row->ipb_range_end );
 			}
 			if ( $fld_flags ) {
 				// For clarity, these flags use the same names as their action=block counterparts
