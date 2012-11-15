@@ -15,6 +15,8 @@
 
 $fallback = 'fa';
 
+$rtl = true;
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'لینکهای خط به زیر',

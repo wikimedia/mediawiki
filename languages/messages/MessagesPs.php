@@ -12,6 +12,8 @@
  * @author Umherirrender
  */
 
+$rtl = true;
+
 $namespaceNames = array(
 	NS_MEDIA            => 'رسنۍ',
 	NS_SPECIAL          => 'ځانګړی',
@@ -154,8 +156,6 @@ $magicWords = array(
 	'noindex'                   => array( '1', '__بې_ليکلړ__', '__NOINDEX__' ),
 	'protectionlevel'           => array( '1', 'ژغورکچه', 'PROTECTIONLEVEL' ),
 );
-
-$rtl = true;
 
 $messages = array(
 # User preference toggles
