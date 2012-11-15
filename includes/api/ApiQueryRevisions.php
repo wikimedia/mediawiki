@@ -787,7 +787,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 					ApiBase::PROP_NULLABLE => true
 				),
 				'texthidden' => 'boolean'
-			)
+			),
+			'contentmodel' => array(
+				'contentmodel' => 'string'
+			),
 		);
 
 		self::addTokenProperties( $props, $this->getTokenFunctions() );
