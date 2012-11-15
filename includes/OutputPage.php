@@ -1469,7 +1469,7 @@ class OutputPage extends ContextSource {
 	 * @param $interface Boolean: whether it is an interface message
 	 *								(for example disables conversion)
 	 */
-	public function addWikiTextTitle( $text, &$title, $linestart, $tidy = false, $interface = false ) {
+	public function addWikiTextTitle( $text, Title &$title, $linestart, $tidy = false, $interface = false ) {
 		global $wgParser;
 
 		wfProfileIn( __METHOD__ );
