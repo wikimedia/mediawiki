@@ -336,7 +336,7 @@ $messages = array(
 'listingcontinuesabbrev' => '續',
 'index-category' => '已做索引的頁面',
 'noindex-category' => '未做索引的頁面',
-'broken-file-category' => '有連結至已損壞檔案頁的連結之頁面',
+'broken-file-category' => '包含損壞的檔案連結的頁面',
 
 'about' => '關於',
 'article' => '內容頁面',

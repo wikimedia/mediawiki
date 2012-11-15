@@ -2921,6 +2921,8 @@ W zespominanju dajo se pśicyna pódaś.',
 'markedaspatrollederror' => 'Markěrowanje ako "kontrolěrowane" njejo móžne.',
 'markedaspatrollederrortext' => 'Musyš wersiju wuzwóliś.',
 'markedaspatrollederror-noautopatrol' => 'Njesmějoš swóje změny ako kontrolěrowane markěrowaś.',
+'markedaspatrollednotify' => 'Toś ta změna do $1 jo se ako doglědowana markěrowała.',
+'markedaspatrollederrornotify' => 'Markěrowanje ako doglědowane jo se njeraźiło.',
 
 # Patrol log
 'patrol-log-page' => 'Protokol kontrolow',

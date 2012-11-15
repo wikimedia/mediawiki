@@ -2876,7 +2876,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'markedaspatrollederrortext' => 'A venta che a spessìfica che version che a veul marchè coma verificà.',
 'markedaspatrollederror-noautopatrol' => "A l'ha nen ël përmess dë marchesse soe modìfiche coma «controlà».",
 'markedaspatrollednotify' => "Ës cambi a $1 a l'é stàit marcà com verificà.",
-'markedaspatrollederrornotify' => 'Marcagi com verificà falì.',
+'markedaspatrollederrornotify' => 'Marcadura com verificà falìa.',
 
 # Patrol log
 'patrol-log-page' => 'Registr dij contròj',
@@ -3472,8 +3472,8 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina andré',
 'imgmultipagenext' => 'pàgina anans →',
-'imgmultigo' => 'Va',
-'imgmultigoto' => 'Và a la pàgina $1',
+'imgmultigo' => 'Andé!',
+'imgmultigoto' => 'Andé a la pàgina $1',
 
 # Table pager
 'ascending_abbrev' => 'a chërse',

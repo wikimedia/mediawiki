@@ -3315,6 +3315,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'markedaspatrollederrortext' => '巡回済みにするには、版を指定する必要があります。',
 'markedaspatrollederror-noautopatrol' => '自分の編集を巡回済みにする権限がありません。',
 'markedaspatrollednotify' => '$1 へのこの変更は巡回済みになりました。',
+'markedaspatrollederrornotify' => '巡回済みにするのに失敗しました。',
 
 # Patrol log
 'patrol-log-page' => '巡回記録',

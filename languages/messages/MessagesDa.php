@@ -2974,6 +2974,8 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'markedaspatrollederror' => 'Markering som „kontrolleret“ ikke mulig.',
 'markedaspatrollederrortext' => 'Du skal vælge en sideændring.',
 'markedaspatrollederror-noautopatrol' => 'Du må ikke markere dine egne ændringer som kontrolleret.',
+'markedaspatrollednotify' => 'Denne ændring af $1 er blevet markeret som patruljeret.',
+'markedaspatrollederrornotify' => 'Markering som patruljeret mislykkedes.',
 
 # Patrol log
 'patrol-log-page' => 'Kontrollog',

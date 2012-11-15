@@ -472,7 +472,7 @@ $messages = array(
 'vector-view-view' => 'Bıwane',
 'vector-view-viewsource' => 'Çımey bıvêne',
 'actions' => 'Kerdışi',
-'namespaces' => 'Cayê namey',
+'namespaces' => 'Cayê namam',
 'variants' => 'Varyanti',
 
 'errorpagetitle' => 'Xırab',
@@ -1433,7 +1433,7 @@ Etıya şıma rê yew kılito raştameo ke şıma şenê bıgurenê/bıxebetnê:
 'timezoneregion-pacific' => 'Okyanuso Pasifik',
 'allowemail' => 'Karberê bini wa bışê mı rê e-posta bırışê.',
 'prefs-searchoptions' => 'Cı geyre',
-'prefs-namespaces' => 'Caê namey',
+'prefs-namespaces' => 'Cayê namam',
 'defaultns' => 'Eke heni, enê cayanê namey de cı geyre (sae ke):',
 'default' => 'qısur',
 'prefs-files' => 'Dosyey',
@@ -3652,6 +3652,8 @@ mw.loader.using( 'jquery.cookie', function() {
 'markedaspatrollederror' => 'Nişan nibeno ke devriye biyo',
 'markedaspatrollederrortext' => 'Ti gani revizyon işaret bike ke Nişanê devriye biyo',
 'markedaspatrollederror-noautopatrol' => 'Ti nieşkeno ke vurnayişê xo nişan bike ke devriye biyê.',
+'markedaspatrollednotify' => 'Na vurnayışa dewriye deye $1 nışan biyo.',
+'markedaspatrollederrornotify' => 'Nışan kerdışê dewriyey nêbı',
 
 # Patrol log
 'patrol-log-page' => 'Logê devriye',

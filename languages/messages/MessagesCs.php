@@ -3180,6 +3180,8 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'markedaspatrollederror' => 'Nelze označit za prověřené',
 'markedaspatrollederrortext' => 'Musíte zvolit revizi, která má být označena jako prověřená.',
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
+'markedaspatrollednotify' => 'Tato změna stránky $1 byla označena jako prověřená.',
+'markedaspatrollederrornotify' => 'Nepodařilo se označit jako prověřené.',
 
 # Patrol log
 'patrol-log-page' => 'Kniha prověřených editací',
