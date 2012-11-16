@@ -2824,6 +2824,24 @@ Table with row followed by newlines and table heading
 
 !! end
 
+# FIXME: Preserve the attribute properly (with an empty string as value) in
+# the PHP parser. Parsoid implements the behavior below.
+!! test
+Table attributes with empty value
+!! options
+disabled
+!! input
+{|
+| style=| hello
+|}
+!! result
+<table>
+<tr>
+<td style=""> hello
+</td></tr></table>
+
+!! end
+
 ###
 ### Internal links
 ###
@@ -7079,6 +7097,37 @@ div with illegal double attributes
 <div id="b">HTML rocks</div>
 
 !!end
+
+# FIXME: produce empty string instead of "class" in the PHP parser, following
+# the HTML5 spec.
+!! test
+div with empty attribute value, space before equals
+!! options
+disabled
+!! input
+<div class =>HTML rocks</div>
+!! result
+<div class="">HTML rocks</div>
+
+!! end
+
+# This it very inconsistent in the PHP parser: it returns 
+# class="class" if there is a space between the name and the equal sign (see
+# 'div with empty attribute value, space before equals'), but strips the
+# attribute completely if the space is missing. We hope that not much content
+# depends on this, so are implementing the behavior below in Parsoid for
+# consistencies' sake. Disabled for the PHP parser. 
+# FIXME: fix this behavior in the PHP parser?
+!! test
+div with empty attribute value, no space before equals
+!! options
+disabled
+!! input
+<div class=>HTML rocks</div>
+!! result
+<div class="">HTML rocks</div>
+
+!! end
 
 !! test
 HTML multiple attributes correction
