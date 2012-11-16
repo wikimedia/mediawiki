@@ -507,6 +507,7 @@ abstract class FileBackendStore extends FileBackend {
 					$subDir = $params['dir'] . "/{$subDirRel}"; // full path
 					$status->merge( $this->doClean( array( 'dir' => $subDir ) + $params ) );
 				}
+				unset( $subDirsRel ); // free directory for rmdir() on Windows (for FS backends)
 			}
 		}
 

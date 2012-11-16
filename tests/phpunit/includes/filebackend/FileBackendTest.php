@@ -1289,6 +1289,8 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$base = self::baseStorePath();
 		$dirs = array(
+			"$base/unittest-cont1",
+			"$base/unittest-cont1/e",
 			"$base/unittest-cont1/e/a",
 			"$base/unittest-cont1/e/a/b",
 			"$base/unittest-cont1/e/a/b/c",
@@ -2022,6 +2024,8 @@ class FileBackendTest extends MediaWikiTestCase {
 			foreach ( $iter as $file ) {
 				$this->backend->quickDelete( array( 'src' => "$base/$container/$file" ) );
 			}
+			// free the directory, to avoid Permission denied under windows on rmdir
+			unset( $iter );
 		}
 		$this->backend->clean( array( 'dir' => "$base/$container", 'recursive' => 1 ) );
 	}
