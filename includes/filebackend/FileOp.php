@@ -48,6 +48,7 @@ abstract class FileOp {
 	protected $doOperation = true; // boolean; operation is not a no-op
 	protected $sourceSha1; // string
 	protected $destSameAsSource; // boolean
+	protected $destExists; // boolean
 
 	/* Object life-cycle */
 	const STATE_NEW = 1;
@@ -351,7 +352,7 @@ abstract class FileOp {
 
 	/**
 	 * Check for errors with regards to the destination file already existing.
-	 * This also updates the destSameAsSource and sourceSha1 member variables.
+	 * Also set the destExists, destSameAsSource and sourceSha1 member variables.
 	 * A bad status will be returned if there is no chance it can be overwritten.
 	 *
 	 * @param $predicates Array
@@ -365,7 +366,8 @@ abstract class FileOp {
 			$this->sourceSha1 = $this->fileSha1( $this->params['src'], $predicates );
 		}
 		$this->destSameAsSource = false;
-		if ( $this->fileExists( $this->params['dst'], $predicates ) ) {
+		$this->destExists = $this->fileExists( $this->params['dst'], $predicates );
+		if ( $this->destExists ) {
 			if ( $this->getParam( 'overwrite' ) ) {
 				return $status; // OK
 			} elseif ( $this->getParam( 'overwriteSame' ) ) {
@@ -485,6 +487,7 @@ class CreateFileOp extends FileOp {
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
+		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
 		if ( $status->isOK() ) {
 			// Update file existence predicates
 			$predicates['exists'][$this->params['dst']] = true;
@@ -556,6 +559,7 @@ class StoreFileOp extends FileOp {
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
+		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
 		if ( $status->isOK() ) {
 			// Update file existence predicates
 			$predicates['exists'][$this->params['dst']] = true;
@@ -632,6 +636,7 @@ class CopyFileOp extends FileOp {
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
+		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
 		if ( $status->isOK() ) {
 			// Update file existence predicates
 			$predicates['exists'][$this->params['dst']] = true;
@@ -708,6 +713,7 @@ class MoveFileOp extends FileOp {
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
+		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
 		if ( $status->isOK() ) {
 			// Update file existence predicates
 			$predicates['exists'][$this->params['src']] = false;
