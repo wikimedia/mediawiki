@@ -493,6 +493,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 		global $wgParser;
 		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
 			$content = $revision->getContent();
+
+			// To match old API behavior and the behavior of the edit
+			// interface, just use empty text if no content can be fetched.
+			if ( $content === null ) {
+				$this->setWarning( "Revision content not found for revision " . $revision->getId() );
+				$content = $revision->getContentHandler()->makeEmptyContent();
+			}
+
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
