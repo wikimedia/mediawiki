@@ -318,7 +318,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
-		if ( !mb_check_encoding( $sql ) ) {
+		if ( !StringUtils::isUtf8( $sql ) ) {
 			throw new MWException( "SQL encoding is invalid\n$sql" );
 		}
 
@@ -1116,7 +1116,7 @@ class DatabaseOracle extends DatabaseBase {
 		if ( $col_type == 'CLOB' ) {
 			$col = 'TO_CHAR(' . $col . ')';
 			$val = $wgContLang->checkTitleEncoding( $val );
-		} elseif ( $col_type == 'VARCHAR2' && !mb_check_encoding( $val ) ) {
+		} elseif ( $col_type == 'VARCHAR2' ) {
 			$val = $wgContLang->checkTitleEncoding( $val );
 		}
 	}
