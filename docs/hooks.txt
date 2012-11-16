@@ -578,6 +578,12 @@ $create: Whether or not the restoration caused the page to be created
 (i.e. it didn't exist before)
 $comment: The comment associated with the undeletion.
 
+'ArticleUndeleteLogEntry': When a log entry is generated but not yet saved.
+The hook can return false and allow no log entry to be saved.
+$pageArchive: the PageArchive object
+&$logEntry: ManualLogEntry object
+$user: User who is performing the log action
+
 'ArticleUpdateBeforeRedirect': After a page is updated (usually on save),
 before the user is redirected back to the page
 &$article: the article
