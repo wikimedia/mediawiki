@@ -2806,6 +2806,24 @@ Template-generated table cell attributes and cell content
 
 !! end
 
+!! test
+Table with row followed by newlines and table heading
+!! input
+{|
+|-
+
+! foo
+|}
+!! result
+<table>
+
+
+<tr>
+<th> foo
+</th></tr></table>
+
+!! end
+
 ###
 ### Internal links
 ###
