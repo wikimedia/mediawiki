@@ -81,7 +81,10 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 				$rules[] = ".editsection { display: none; }\n";
 			}
 			if ( $options['editfont'] !== 'default' ) {
-				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
+				// Double-check that $options['editfont'] consists of safe characters only
+				if ( preg_match( '/^[a-zA-Z0-9_, -]+$/', $options['editfont'] ) ) {
+					$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
+				}
 			}
 			$style = implode( "\n", $rules );
 			if ( $this->getFlip( $context ) ) {
