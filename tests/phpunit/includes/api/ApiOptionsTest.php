@@ -116,6 +116,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->fail( "UsageException was not thrown" );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testReset() {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' );
@@ -133,6 +136,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$Success, $response );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testOptionWithValue() {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
@@ -151,6 +157,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$Success, $response );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testOptionResetValue() {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
@@ -168,6 +177,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$Success, $response );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testChange() {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
@@ -194,6 +206,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$Success, $response );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testResetChangeOption() {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' );
