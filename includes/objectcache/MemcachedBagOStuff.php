@@ -27,6 +27,11 @@
  * @ingroup Cache
  */
 class MemcachedBagOStuff extends BagOStuff {
+
+	// The maximum relative expiry in Memcached, equal to 30 days. Values
+	// exceeding this amount are interpreted as absolute UNIX timestamps.
+	const MAX_REL_EXPIRY = 2592000;  // 30 days.
+
 	protected $client;
 
 	/**
@@ -137,15 +142,17 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * TTLs higher than 30 days will be detected as absolute TTLs
-	 * (UNIX timestamps), and will result in the cache entry being
-	 * discarded immediately because the expiry is in the past.
-	 * Clamp expiries >30d at 30d, unless they're >=1e9 in which
-	 * case they are likely to really be absolute (1e9 = 2011-09-09)
+	 * To prevent cache stampedes, if expiry is exactly equal to
+	 * MAX_REL_EXPIRY, fudge it by substracting a random quantity of of time
+	 * less than or equal to 12 hours.
+	 *
+	 * Since 1.22, this will not attempt to second-guess the caller's
+	 * intentions. Previously, it assumed values greater than MAX_REL_EXPIRY
+	 * and less than 1e9 were mistakes, and it normalized them to MAX_REL_EXPIRY.
 	 */
 	function fixExpiry( $expiry ) {
-		if ( $expiry > 2592000 && $expiry < 1000000000 ) {
-			$expiry = 2592000;
+		if ( $expiry === self::MAX_REL_EXPIRY ) {
+			$expiry -= rand( 0, 43200 );
 		}
 		return $expiry;
 	}
