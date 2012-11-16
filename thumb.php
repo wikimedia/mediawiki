@@ -35,7 +35,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 	// Called from thumb_handler.php via 404; extract params from the URI...
 	wfThumbHandle404();
 } else {
-	// Called directly, use $_REQUEST params
+	// Called directly, use $_GET params
 	wfThumbHandleRequest();
 }
 
@@ -50,8 +50,8 @@ wfLogProfilingData();
  */
 function wfThumbHandleRequest() {
 	$params = get_magic_quotes_gpc()
-		? array_map( 'stripslashes', $_REQUEST )
-		: $_REQUEST;
+		? array_map( 'stripslashes', $_GET )
+		: $_GET;
 
 	wfStreamThumb( $params ); // stream the thumbnail
 }
@@ -91,6 +91,7 @@ function wfThumbHandle404() {
  */
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
+
 	wfProfileIn( __METHOD__ );
 
 	$headers = array(); // HTTP headers to send
@@ -172,9 +173,7 @@ function wfStreamThumb( array $params ) {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 		wfProfileOut( __METHOD__ );
 		return;
-	}
-	$sourcePath = $img->getPath();
-	if ( $sourcePath === false ) {
+	} elseif ( $img->getPath() === false ) {
 		wfThumbError( 500, 'The source file is not locally accessible.' );
 		wfProfileOut( __METHOD__ );
 		return;
@@ -189,72 +188,71 @@ function wfStreamThumb( array $params ) {
 		wfSuppressWarnings();
 		$imsUnix = strtotime( $imsString );
 		wfRestoreWarnings();
-		$sourceTsUnix = wfTimestamp( TS_UNIX, $img->getTimestamp() );
-		if ( $sourceTsUnix <= $imsUnix ) {
+		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
 			header( 'HTTP/1.1 304 Not Modified' );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 	}
 
-	$thumbName = $img->thumbName( $params );
-	if ( !strlen( $thumbName ) ) { // invalid params?
-		wfThumbError( 400, 'The specified thumbnail parameters are not valid.' );
-		wfProfileOut( __METHOD__ );
-		return;
-	}
-
-	$disposition = $img->getThumbDisposition( $thumbName );
-	$headers[] = "Content-Disposition: $disposition";
-
-	// Stream the file if it exists already...
+	// Get the normalized thumbnail name from the parameters...
 	try {
-		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
-		// For 404 handled thumbnails, we only use the the base name of the URI
-		// for the thumb params and the parent directory for the source file name.
-		// Check that the zone relative path matches up so squid caches won't pick
-		// up thumbs that would not be purged on source file deletion (bug 34231).
-		if ( isset( $params['rel404'] ) ) { // thumbnail was handled via 404
-			if ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
-				// Request for the canonical thumbnail name
-			} elseif ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
-				// Request for the "long" thumbnail name; redirect to canonical name
-				$response = RequestContext::getMain()->getRequest()->response();
-				$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
-				$response->header( 'Location: ' . wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
-				$response->header( 'Expires: ' .
-					gmdate( 'D, d M Y H:i:s', time() + 7*86400 ) . ' GMT' );
-				if ( $wgVaryOnXFP ) {
-					$varyHeader[] = 'X-Forwarded-Proto';
-				}
-				if ( count( $varyHeader ) ) {
-					$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
-				}
-				wfProfileOut( __METHOD__ );
-				return;
-			} else {
-				wfThumbError( 404, 'The given path of the specified thumbnail is incorrect.' );
-				wfProfileOut( __METHOD__ );
-				return;
-			}
-		}
-		$thumbPath = $img->getThumbPath( $thumbName );
-		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-			if ( count( $varyHeader ) ) {
-				$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
-			}
-			$img->getRepo()->streamFile( $thumbPath, $headers );
+		$thumbName = $img->thumbName( $params );
+		if ( !strlen( $thumbName ) ) { // invalid params?
+			wfThumbError( 400, 'The specified thumbnail parameters are not valid.' );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
+		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML() );
 		wfProfileOut( __METHOD__ );
 		return;
 	}
 
+	// For 404 handled thumbnails, we only use the the base name of the URI
+	// for the thumb params and the parent directory for the source file name.
+	// Check that the zone relative path matches up so squid caches won't pick
+	// up thumbs that would not be purged on source file deletion (bug 34231).
+	if ( isset( $params['rel404'] ) ) { // thumbnail was handled via 404
+		if ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
+			// Request for the canonical thumbnail name
+		} elseif ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
+			// Request for the "long" thumbnail name; redirect to canonical name
+			$response = RequestContext::getMain()->getRequest()->response();
+			$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
+			$response->header( 'Location: ' .
+				wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
+			$response->header( 'Expires: ' .
+				gmdate( 'D, d M Y H:i:s', time() + 7*86400 ) . ' GMT' );
+			if ( $wgVaryOnXFP ) {
+				$varyHeader[] = 'X-Forwarded-Proto';
+			}
+			if ( count( $varyHeader ) ) {
+				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+			}
+			wfProfileOut( __METHOD__ );
+			return;
+		} else {
+			wfThumbError( 404, 'The given path of the specified thumbnail is incorrect.' );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+	}
+
+	// Suggest a good name for users downloading this thumbnail
+	$headers[] = "Content-Disposition: {$img->getThumbDisposition( $thumbName )}";
+
 	if ( count( $varyHeader ) ) {
 		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+	}
+
+	// Stream the file if it exists already...
+	$thumbPath = $img->getThumbPath( $thumbName );
+	if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+		$img->getRepo()->streamFile( $thumbPath, $headers );
+		wfProfileOut( __METHOD__ );
+		return;
 	}
 
 	// Thumbnail isn't already there, so create the new thumbnail...
