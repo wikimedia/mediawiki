@@ -47,7 +47,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		$params = $this->extractRequestParams();
-		$changes = 0;
+		$changed = false;
 
 		if ( isset( $params['optionvalue'] ) && !isset( $params['optionname'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'optionname' ) );
@@ -55,26 +55,43 @@ class ApiOptions extends ApiBase {
 
 		if ( $params['reset'] ) {
 			$user->resetOptions();
-			$changes++;
+			$changed = true;
 		}
+
+		$changes = array();
 		if ( count( $params['change'] ) ) {
 			foreach ( $params['change'] as $entry ) {
 				$array = explode( '=', $entry, 2 );
-				$user->setOption( $array[0], isset( $array[1] ) ? $array[1] : null );
-				$changes++;
+				$changes[$array[0]] = isset( $array[1] ) ? $array[1] : null;
 			}
 		}
 		if ( isset( $params['optionname'] ) ) {
 			$newValue = isset( $params['optionvalue'] ) ? $params['optionvalue'] : null;
-			$user->setOption( $params['optionname'], $newValue );
-			$changes++;
+			$changes[$params['optionname']] = $newValue;
+		}
+		if ( !count( $changes ) ) {
+			$this->dieUsage( 'No changes were requested', 'nochanges' );
 		}
 
-		if ( $changes ) {
+		$prefs = Preferences::getPreferences( $user, $this->getContext() );
+		foreach ( $changes as $key => $value ) {
+			if ( !isset( $prefs[$key] ) ) {
+				$this->setWarning( "Not a valid preference: $key" );
+				continue;
+			}
+			$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+			$validation = $field->validate( $value, $user->getOptions() );
+			if ( $validation === true ) {
+				$user->setOption( $key, $value );
+				$changed = true;
+			} else {
+				$this->setWarning( "Validation error for '$key': $validation" );
+			}
+		}
+
+		if ( $changed ) {
 			// Commit changes
 			$user->saveSettings();
-		} else {
-			$this->dieUsage( 'No changes were requested', 'nochanges' );
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
