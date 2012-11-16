@@ -47,10 +47,10 @@ class UpdateSpecialPages extends Maintenance {
 				$this->error( "Uncallable function $call!" );
 				continue;
 			}
+			$this->output( sprintf( '%-30s ', $special ) );
 			$t1 = explode( ' ', microtime() );
 			call_user_func( $call, $dbw );
 			$t2 = explode( ' ', microtime() );
-			$this->output( sprintf( '%-30s ', $special ) );
 			$elapsed = ( $t2[0] - $t1[0] ) + ( $t2[1] - $t1[1] );
 			$hours = intval( $elapsed / 3600 );
 			$minutes = intval( $elapsed % 3600 / 60 );
