@@ -276,8 +276,8 @@ $messages = array(
 'newwindow' => '(se aperi in un nove fenestra)',
 'cancel' => 'Cancellar',
 'moredotdotdot' => 'Plus...',
-'mypage' => 'Mi pagina',
-'mytalk' => 'Mi discussion',
+'mypage' => 'Pagina',
+'mytalk' => 'Discussion',
 'anontalk' => 'Discussion pro iste adresse IP',
 'navigation' => 'Navigation',
 'and' => '&#32;e',
@@ -1244,7 +1244,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 
 # Preferences page
 'preferences' => 'Preferentias',
-'mypreferences' => 'Mi preferentias',
+'mypreferences' => 'Preferentias',
 'prefs-edits' => 'Numero de modificationes:',
 'prefsnologin' => 'Tu non ha aperite un session',
 'prefsnologintext' => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir session]</span> pro configurar preferentias de usator.',
@@ -2117,8 +2117,8 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-ns' => 'Spatio de nomines:',
 'linksearch-ok' => 'Cercar',
 'linksearch-text' => 'Es possibile usar metacharacteres como in "*.wikipedia.org".
-Necessita al minus un dominio de nivello superior, per exemplo "*.org".<br />
-Protocollos supportate: <code>$1</code> (non include alcun de istes in tu recerca).',
+Isto necessita specificar al minus le dominio de nivello superior, per exemplo "*.org".<br />
+Protocollos supportate: <code>$1</code> (http:// es assumite si nulle protocollo es specificate).',
 'linksearch-line' => '$1 ligate ab $2',
 'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 
@@ -2202,7 +2202,7 @@ como le adresse del expeditor, de sorta que le destinatario potera responder te 
 
 # Watchlist
 'watchlist' => 'Mi observatorio',
-'mywatchlist' => 'Mi observatorio',
+'mywatchlist' => 'Observatorio',
 'watchlistfor2' => 'De $1 $2',
 'nowatchlist' => 'Tu non ha paginas sub observation.',
 'watchlistanontext' => 'Tu debe $1 pro poter vider o modificar entratas in tu observatorio.',
@@ -2473,7 +2473,7 @@ $1',
 # Contributions
 'contributions' => 'Contributiones del usator',
 'contributions-title' => 'Contributiones del usator $1',
-'mycontris' => 'Mi contributiones',
+'mycontris' => 'Contributiones',
 'contribsub2' => 'Pro $1 ($2)',
 'nocontribs' => 'Necun modification ha essite trovate secundo iste criterios.',
 'uctop' => '(ultime)',
@@ -2513,7 +2513,7 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'whatlinkshere-hideredirs' => '$1 redirectiones',
 'whatlinkshere-hidetrans' => '$1 transclusiones',
 'whatlinkshere-hidelinks' => '$1 ligamines',
-'whatlinkshere-hideimages' => '$1 ligamines verso imagines',
+'whatlinkshere-hideimages' => '$1 le ligamines a files',
 'whatlinkshere-filters' => 'Filtros',
 
 # Block/unblock
@@ -3069,6 +3069,8 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'markedaspatrollederror' => 'Impossibile marcar como patruliate',
 'markedaspatrollederrortext' => 'Tu debe specificar un version a marcar como patruliate.',
 'markedaspatrollederror-noautopatrol' => 'Tu non es permittite a marcar tu proprie modificationes como patruliate.',
+'markedaspatrollednotify' => 'Iste modification de $1 ha essite marcate como patruliate.',
+'markedaspatrollederrornotify' => 'Le marcar como patruliate ha fallite.',
 
 # Patrol log
 'patrol-log-page' => 'Registro de patrulia',
@@ -3964,4 +3966,6 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'discussion',
 );

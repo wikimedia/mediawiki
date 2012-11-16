@@ -2330,9 +2330,16 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Info page
 'pageinfo-title' => '"$1" üçün məlumat',
+'pageinfo-header-basic' => 'Əsas məlumatlar',
 'pageinfo-header-edits' => 'Redaktələr',
+'pageinfo-header-restrictions' => 'Səhifə mühafizəsi',
+'pageinfo-header-properties' => 'Səhifə xüsusiyyətləri',
 'pageinfo-views' => 'Göstərmə səhifəsi',
 'pageinfo-watchers' => 'Baxış sayı',
+'pageinfo-firstuser' => 'Səhifəni yaradan',
+'pageinfo-firsttime' => 'Səhifənin yaranma tarixi',
+'pageinfo-lastuser' => 'Sonuncu redaktor',
+'pageinfo-lasttime' => 'Sonuncu redaktənin tarixi',
 'pageinfo-edits' => 'Redaktələrin sayı',
 'pageinfo-authors' => 'Fərqli müəlliflərin sayı',
 

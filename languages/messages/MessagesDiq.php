@@ -4745,5 +4745,5 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
 # Unknown messages
-'mytalk-parenthetical' => 'behse',
+'mytalk-parenthetical' => 'werênayış',
 );

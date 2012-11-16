@@ -4218,9 +4218,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'compare-rev1' => '版 1',
 'compare-rev2' => '版 2',
 'compare-submit' => '比較',
-'compare-invalid-title' => '指定したページ名は使用できません。',
-'compare-title-not-exists' => '指定されたページは存在しません。',
-'compare-revision-not-exists' => '指定された版は存在しません。',
+'compare-invalid-title' => '指定したページ名は無効です。',
+'compare-title-not-exists' => '指定したページは存在しません。',
+'compare-revision-not-exists' => '指定した版は存在しません。',
 
 # Database error messages
 'dberr-header' => 'このウィキには問題があります',
