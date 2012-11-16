@@ -3089,7 +3089,7 @@ To disable showing a particular link, set it to 'disable', e.g.
 Variants for Chinese language
 */
 'variantname-zh-hans' => '‪中文(简体)',
-'variantname-zh-hant' => '‪中文(繁體)',
+'variantname-zh-hant' => '‪繁體中文',
 'variantname-zh-cn' => '大陸簡體',
 'variantname-zh-tw' => '台灣正體',
 'variantname-zh-hk' => '香港繁體',

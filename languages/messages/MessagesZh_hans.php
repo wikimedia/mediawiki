@@ -1570,6 +1570,9 @@ $1",
 'rightslogtext' => '这是用户权限更改的日志。',
 'rightslogentry' => '将$1的用户组由$2更改为$3',
 'rightslogentry-autopromote' => '被自动提升自$2至$3',
+'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',
+'logentry-rights-rights-legacy' => '$1更改$3的用户组',
+'logentry-rights-autopromote' => '$1的用户组已自动从$4改为$5',
 'rightsnone' => '（无）',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2215,7 +2218,7 @@ $1',
 'emailuser-title-target' => '电邮联系该{{GENDER:$1|用户}}',
 'emailuser-title-notarget' => '电邮联系',
 'emailpage' => '电邮联系',
-'emailpagetext' => '你可以使用下面的表格向该用户发送电子邮件信息。你在[[Special:Preferences|你的系统设置]]中输入的电子邮件地址将显示为邮件的“发件人”地址，所以该用户将可以直接回复你。',
+'emailpagetext' => '你可以使用下面的表单向该用户发送电子邮件消息。你在[[Special:Preferences|你的系统设置]]中输入的电子邮件地址将显示为该邮件的“发件人”地址，所以该用户将可以直接回复你。',
 'usermailererror' => 'Mail 对象返回错误：',
 'defemailsubject' => '{{SITENAME}}来自用户“$1”的电子邮件',
 'usermaildisabled' => '用户电邮已停用',
@@ -2455,7 +2458,8 @@ $UNWATCHURL
 'undeletedrevisions' => '$1个版本已恢复',
 'undeletedrevisions-files' => '$1个版本和$2个文件已恢复',
 'undeletedfiles' => '$1个文件已经被恢复',
-'cannotundelete' => '恢复删除失败；可能已有其他人先行恢复了此页面。',
+'cannotundelete' => '恢复删除失败：
+$1',
 'undeletedpage' => "'''$1已经被恢复'''
 
 参考[[Special:Log/delete|删除日志]]查看删除及恢复记录。",
@@ -2755,6 +2759,7 @@ $1被封禁的理由是：“$2”',
 'immobile-target-namespace-iw' => '在移动页面时，跨wiki链接不是有效的目标。',
 'immobile-source-page' => '此页面不能移动。',
 'immobile-target-page' => '无法移动至该目标标题。',
+'bad-target-model' => '要求的目标使用不同的内容模式。无法从$1转换到$2。',
 'imagenocrossnamespace' => '无法将文件移动到非文件名字空间',
 'nonfile-cannot-move-to-file' => '无法将非文件移动到文件名字空间',
 'imagetypemismatch' => '该新扩展名与其类型不匹配',
@@ -3066,6 +3071,8 @@ $1被封禁的理由是：“$2”',
 'markedaspatrollederror' => '不能标志为已检查',
 'markedaspatrollederrortext' => '你需要指定某个版本才能标志为已检查。',
 'markedaspatrollederror-noautopatrol' => '您无法将你自己所作的更改标记为已检查。',
+'markedaspatrollednotify' => '$1的更改已被标记为已巡查。',
+'markedaspatrollederrornotify' => '标记为已巡查失败。',
 
 # Patrol log
 'patrol-log-page' => '巡查日志',
@@ -3976,4 +3983,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'mytalk-parenthetical' => '讨论',
 );

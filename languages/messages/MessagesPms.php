@@ -3483,8 +3483,8 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'table_pager_first' => 'Prima pàgina',
 'table_pager_last' => 'Ùltima pàgina',
 'table_pager_limit' => 'Smon-me $1 archivi për pàgina',
-'table_pager_limit_label' => 'Oget për pàgina:',
-'table_pager_limit_submit' => 'Va',
+'table_pager_limit_label' => 'Arzultà për pàgina:',
+'table_pager_limit_submit' => 'Andé',
 'table_pager_empty' => 'Pa gnun arsultà',
 
 # Auto-summaries

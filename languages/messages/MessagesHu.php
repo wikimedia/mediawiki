@@ -3078,6 +3078,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-default-sort' => 'Alapértelmezett rendezési kulcs',
 'pageinfo-length' => 'Lap hossza (bájtokban)',
 'pageinfo-article-id' => 'Lapazonosító',
+'pageinfo-language' => 'Laptartalom nyelve',
 'pageinfo-robot-policy' => 'Kereső motor státusz',
 'pageinfo-robot-index' => 'Indexelhető',
 'pageinfo-robot-noindex' => 'Nem indexelhető',
@@ -3097,6 +3098,12 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-magic-words' => 'Varázs{{PLURAL:$1|szó|szavak}} ($1)',
 'pageinfo-hidden-categories' => 'Rejtett {{PLURAL:$1|kategória|kategóriák}} ($1)',
 'pageinfo-templates' => 'Felhasznált {{PLURAL:$1|sablon|sablonok}} ($1)',
+'pageinfo-toolboxlink' => 'Lapinformációk',
+'pageinfo-redirectsto' => 'Átirányítás ide',
+'pageinfo-redirectsto-info' => 'infó',
+'pageinfo-contentpage' => 'Tartalmi lapnak számít',
+'pageinfo-contentpage-yes' => 'Igen',
+'pageinfo-protect-cascading-yes' => 'Igen',
 
 # Skin names
 'skinname-standard' => 'Klasszikus',
@@ -3118,6 +3125,8 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrollederror' => 'Nem lehet ellenőrzöttnek jelölni',
 'markedaspatrollederrortext' => 'Meg kell adnod egy ellenőrzöttként megjelölt változatot.',
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
+'markedaspatrollednotify' => '$1 változtatása ellenőrzöttnek lett jelölve.',
+'markedaspatrollederrornotify' => 'Nem sikerült ellenőrzöttnek jelölni.',
 
 # Patrol log
 'patrol-log-page' => 'Ellenőrzési napló (patrol)',
