@@ -48,6 +48,8 @@ abstract class FileBackendStore extends FileBackend {
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
 
+	const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
+
 	/**
 	 * @see FileBackend::__construct()
 	 *
@@ -601,14 +603,15 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( !$this->cheapCache->has( $path, 'stat' ) ) {
+		if ( !$this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
 			$this->primeFileCache( array( $path ) ); // check persistent cache
 		}
-		if ( $this->cheapCache->has( $path, 'stat' ) ) {
+		if ( $this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
 			$stat = $this->cheapCache->get( $path, 'stat' );
 			// If we want the latest data, check that this cached
-			// value was in fact fetched with the latest available data.
-			if ( !$latest || $stat['latest'] ) {
+			// value was in fact fetched with the latest available data
+			// (the process cache is ignored if it contains a negative).
+			if ( !$latest || ( is_array( $stat ) && $stat['latest'] ) ) {
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );
 				return $stat;
@@ -619,7 +622,7 @@ abstract class FileBackendStore extends FileBackend {
 		$stat = $this->doGetFileStat( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
-		if ( is_array( $stat ) ) { // don't cache negatives
+		if ( is_array( $stat ) ) { // file exists
 			$stat['latest'] = $latest;
 			$this->cheapCache->set( $path, 'stat', $stat );
 			$this->setFileCache( $path, $stat ); // update persistent cache
@@ -627,8 +630,11 @@ abstract class FileBackendStore extends FileBackend {
 				$this->cheapCache->set( $path, 'sha1',
 					array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
 			}
-		} else {
+		} elseif ( $stat === false ) { // file does not exist
+			$this->cheapCache->set( $path, 'stat', false );
 			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
+		} else { // an error occurred
+			wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -682,7 +688,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( $this->cheapCache->has( $path, 'sha1' ) ) {
+		if ( $this->cheapCache->has( $path, 'sha1', self::CACHE_TTL ) ) {
 			$stat = $this->cheapCache->get( $path, 'sha1' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
