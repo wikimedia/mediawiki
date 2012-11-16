@@ -36,6 +36,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgContentHandlerUseDB;
+
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -56,6 +58,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_content = isset( $prop['content'] );
 		$fld_token = isset( $prop['token'] );
+		$fld_contentmodel = isset( $prop['contentmodel'] );
 
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
@@ -103,10 +106,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
 		$this->addFieldsIf( 'ar_len', $fld_len );
 		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
+		$this->addFieldsIf( 'ar_content_model', ( $fld_contentmodel || $fld_content ) && $wgContentHandlerUseDB );
 
 		if ( $fld_content ) {
 			$this->addTables( 'text' );
 			$this->addFields( array( 'ar_text', 'ar_text_id', 'old_text', 'old_flags' ) );
+			$this->addFieldsIf( 'ar_content_format', $wgContentHandlerUseDB );
 			$this->addWhere( 'ar_text_id = old_id' );
 
 			// This also means stricter restrictions
@@ -246,8 +251,30 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['sha1'] = '';
 				}
 			}
-			if ( $fld_content ) {
-				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
+			if ( $fld_content || $fld_contentmodel ) {
+				$model = $wgContentHandlerUseDB ? $row->ar_content_model : null;
+				if ( !$model ) {
+					$model = $title->getContentModel();
+				}
+				if ( $fld_content ) {
+					$handler = ContentHandler::getForModelID( $model );
+					$format = $wgContentHandlerUseDB ? $row->ar_content_format : null;
+					if( !$format ) {
+						$format = $handler->getDefaultFormat();
+					}
+					// unserialize and serialize to give the content object a chance to
+					// apply normalization or removing garbage
+					$content = $handler->unserializeContent( Revision::getRevisionText( $row ), $format );
+					$text = $content->serialize( $format );
+					ApiResult::setContent( $rev, $text );
+					// always include format and model for the content.
+					// Format is needed to deserialize, model is needed to interpret.
+					$rev['contentformat'] = $format;
+					$rev['contentmodel'] = $model;
+				}
+				if ( $fld_contentmodel ) {
+					$rev['contentmodel'] = $model;
+				}
 			}
 
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
@@ -329,7 +356,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'len',
 					'sha1',
 					'content',
-					'token'
+					'token',
+					'contentmodel',
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
@@ -358,6 +386,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				' sha1           - Adds the SHA-1 (base 16) of the revision',
 				' content        - Adds the content of the revision',
 				' token          - Gives the edit token',
+				' contentmodel   - Content model id',
 			),
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
@@ -375,7 +404,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			),
 			'token' => array(
 				'token' => 'string'
-			)
+			),
+			'contentmodel' => array(
+				'contentmodel' => 'string'
+			),
 		);
 	}
 
