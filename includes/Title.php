@@ -908,7 +908,7 @@ class Title {
 
 	/**
 	 * Is this the mainpage?
-	 * @note Title::newFromText seams to be sufficiently optimized by the title
+	 * @note Title::newFromText seems to be sufficiently optimized by the title
 	 * cache that we don't need to over-optimize by doing direct comparisons and
 	 * acidentally creating new bugs where $title->equals( Title::newFromText() )
 	 * ends up reporting something differently than $title->isMainPage();
