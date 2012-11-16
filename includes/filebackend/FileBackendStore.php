@@ -97,6 +97,8 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - async       : Status will be returned immediately if supported.
 	 *                   If the status is OK, then its value field will be
 	 *                   set to a FileBackendStoreOpHandle object.
+	 *   - dstExists   : Whether a file exists at the destination (optimization).
+	 *                   Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -110,7 +112,9 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
+			if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+				$this->deleteFileCache( $params['dst'] ); // persistent cache
+			}
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -136,6 +140,8 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - async       : Status will be returned immediately if supported.
 	 *                   If the status is OK, then its value field will be
 	 *                   set to a FileBackendStoreOpHandle object.
+	 *   - dstExists   : Whether a file exists at the destination (optimization).
+	 *                   Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -149,7 +155,9 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
+			if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+				$this->deleteFileCache( $params['dst'] ); // persistent cache
+			}
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -175,6 +183,8 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - async               : Status will be returned immediately if supported.
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
+	 *   - dstExists           : Whether a file exists at the destination (optimization).
+	 *                           Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -184,7 +194,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
-		$this->deleteFileCache( $params['dst'] ); // persistent cache
+		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -240,6 +252,8 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - async               : Status will be returned immediately if supported.
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
+	 *   - dstExists           : Whether a file exists at the destination (optimization).
+	 *                           Callers can use "false" if no existing file is being changed.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -250,7 +264,9 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
-		$this->deleteFileCache( $params['dst'] ); // persistent cache
+		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -664,12 +680,19 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
 			$stat = $this->cheapCache->get( $path, 'stat' );
 			// If we want the latest data, check that this cached
-			// value was in fact fetched with the latest available data
-			// (the process cache is ignored if it contains a negative).
-			if ( !$latest || ( is_array( $stat ) && $stat['latest'] ) ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
-				return $stat;
+			// value was in fact fetched with the latest available data.
+			if ( is_array( $stat ) ) {
+				if ( !$latest || $stat['latest'] ) {
+					wfProfileOut( __METHOD__ . '-' . $this->name );
+					wfProfileOut( __METHOD__ );
+					return $stat;
+				}
+			} elseif ( in_array( $stat, array( 'NOT_EXIST', 'NOT_EXIST_LATEST' ) ) ) {
+				if ( !$latest || $stat === 'NOT_EXIST_LATEST' ) {
+					wfProfileOut( __METHOD__ . '-' . $this->name );
+					wfProfileOut( __METHOD__ );
+					return false;
+				}
 			}
 		}
 		wfProfileIn( __METHOD__ . '-miss' );
@@ -686,7 +709,7 @@ abstract class FileBackendStore extends FileBackend {
 					array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
 			}
 		} elseif ( $stat === false ) { // file does not exist
-			$this->cheapCache->set( $path, 'stat', false );
+			$this->cheapCache->set( $path, 'stat', $latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
 			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
 		} else { // an error occurred
 			wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
@@ -1661,6 +1684,8 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete the cached stat info for a file path.
 	 * The cache key is salted for a while to prevent race conditions.
+	 * Since negatives (404s) are not cached, this does not need to be called when
+	 * a file is created at a path were there was none before.
 	 *
 	 * @param $path string Storage path
 	 */
