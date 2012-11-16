@@ -24,6 +24,48 @@
  * A collection of static methods to play with strings.
  */
 class StringUtils {
+
+	/**
+	 * Test whether a string is valid UTF-8.
+	 *
+	 * This rely internally on the mbstring function mb_check_encoding()
+	 * hardcoded to check against UTF-8. Whenever the function is not available
+	 * we fallback to a pure PHP implementation. Setting $disableMbstring to
+	 * true will skip the use of mb_check_encoding, this is mostly intended for
+	 * unit testing our internal implementation.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $value String to check
+	 * @param boolean $disableMbstring Whether to use the pure PHP
+	 * implementation instead of trying mb_check_encoding. Intended for unit
+	 * testing. Default: false
+	 *
+	 * @return boolean Whether the given $value is a valid UTF-8 encoded string
+	 */
+	static function isUtf8( $value, $disableMbstring = false ) {
+
+		if ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
+			# no high bit set, this is pure ASCII which is defacto
+			# valid UTF-8
+			return true;
+		}
+
+		if ( !$disableMbstring && function_exists( 'mb_check_encoding' ) ) {
+			return mb_check_encoding( $value, 'UTF-8' );
+		} else {
+			$hasUtf8 = preg_match( '/^(?>
+				  [\x00-\x7f]
+				| [\xc0-\xdf][\x80-\xbf]
+				| [\xe0-\xef][\x80-\xbf]{2}
+				| [\xf0-\xf7][\x80-\xbf]{3}
+				| [\xf8-\xfb][\x80-\xbf]{4}
+				| \xfc[\x84-\xbf][\x80-\xbf]{4}
+			)+$/x', $value );
+			return ($hasUtf8 > 0 );
+		}
+	}
+
 	/**
 	 * Perform an operation equivalent to
 	 *
