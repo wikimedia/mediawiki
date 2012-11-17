@@ -23,6 +23,7 @@ production.
   and desktop displays (configurable with $wgResponsiveImages).
 * Added new backend to represent and store information about sites and site
   specific configuration.
+* jQuery updated to 1.8.3.
 * jQuery UI upgraded from 1.8.23 to 1.8.24.
 * Added separate fa_sha1 field to filearchive table. This allows sha1
   searches with the api in miser mode for deleted files.
