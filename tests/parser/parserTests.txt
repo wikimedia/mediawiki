@@ -2460,6 +2460,33 @@ http://[2404:130:0:1000::187:2]/index.php
 </p>
 !! end
 
+!! test
+Non-extlinks in brackets
+!! input
+[foo]
+[foo bar]
+[foo ''bar'']
+[fool's] errand
+[fool's errand]
+[{{echo|foo}}]
+[{{echo|foo}} bar]
+[{{echo|foo}} ''bar'']
+[{{echo|foo}}l's] errand
+[{{echo|foo}}l's errand]
+!! result
+<p>[foo]
+[foo bar]
+[foo <i>bar</i>]
+[fool's] errand
+[fool's errand]
+[foo]
+[foo bar]
+[foo <i>bar</i>]
+[fool's] errand
+[fool's errand]
+</p>
+!! end
+
 ###
 ### Quotes
 ###
