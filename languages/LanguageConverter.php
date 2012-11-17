@@ -155,17 +155,23 @@ class LanguageConverter {
 
 	/**
 	 * Get preferred language variant.
+	 *
+	 * @param $context IContextSource: context.
 	 * @return String: the preferred language code
 	 */
-	public function getPreferredVariant() {
-		global $wgDefaultLanguageVariant, $wgUser;
+	public function getPreferredVariant( $context = null ) {
+		global $wgDefaultLanguageVariant;
 
-		$req = $this->getURLVariant();
+		if ( !$context ) {
+			$context = RequestContext::getMain();
+		}
 
-		if ( $wgUser->isLoggedIn() && !$req ) {
-			$req = $this->getUserVariant();
+		$req = $this->getURLVariant( $context );
+
+		if ( $context->getUser()->isLoggedIn() && !$req ) {
+			$req = $this->getUserVariant( $context );
 		} elseif ( !$req ) {
-			$req = $this->getHeaderVariant();
+			$req = $this->getHeaderVariant( $context );
 		}
 
 		if ( $wgDefaultLanguageVariant && !$req ) {
@@ -185,15 +191,21 @@ class LanguageConverter {
 	/**
 	 * Get default variant.
 	 * This function would not be affected by user's settings
+	 *
+	 * @param $context IContextSource: context.
 	 * @return String: the default variant code
 	 */
-	public function getDefaultVariant() {
+	public function getDefaultVariant( $context = null ) {
 		global $wgDefaultLanguageVariant;
 
-		$req = $this->getURLVariant();
+		if ( !$context ) {
+			$context = RequestContext::getMain();
+		}
+
+		$req = $this->getURLVariant( $context );
 
 		if ( !$req ) {
-			$req = $this->getHeaderVariant();
+			$req = $this->getHeaderVariant( $context );
 		}
 
 		if ( $wgDefaultLanguageVariant && !$req ) {
@@ -221,20 +233,19 @@ class LanguageConverter {
 	/**
 	 * Get the variant specified in the URL
 	 *
+	 * @param $context IContextSource: context.
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	public function getURLVariant() {
-		global $wgRequest;
-
-		if ( $this->mURLVariant ) {
-			return $this->mURLVariant;
+	public function getURLVariant( $context = null ) {
+		if ( !$context ) {
+			$context = RequestContext::getMain();
 		}
 
 		// see if the preference is set in the request
-		$ret = $wgRequest->getText( 'variant' );
+		$ret = $context->getRequest()->getText( 'variant' );
 
 		if ( !$ret ) {
-			$ret = $wgRequest->getVal( 'uselang' );
+			$ret = $context->getRequest()->getVal( 'uselang' );
 		}
 
 		return $this->mURLVariant = $this->validateVariant( $ret );
@@ -243,27 +254,24 @@ class LanguageConverter {
 	/**
 	 * Determine if the user has a variant set.
 	 *
+	 * @param $context IContextSource: context.
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	protected function getUserVariant() {
-		global $wgUser;
-
-		// memoizing this function wreaks havoc on parserTest.php
-		/*
-		if ( $this->mUserVariant ) {
-			return $this->mUserVariant;
+	protected function getUserVariant( $context = null ) {
+		if ( !$context ) {
+			$context = RequestContext::getMain();
 		}
-		*/
 
 		// Get language variant preference from logged in users
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
-		if ( $wgUser->isLoggedIn() )  {
-			$ret = $wgUser->getOption( 'variant' );
+		$user = $context->getUser();
+		if ( $user->isLoggedIn() )  {
+			$ret = $user->getOption( 'variant' );
 		} else {
 			// figure out user lang without constructing wgLang to avoid
 			// infinite recursion
-			$ret = $wgUser->getOption( 'language' );
+			$ret = $user->getOption( 'language' );
 		}
 
 		return $this->mUserVariant = $this->validateVariant( $ret );
@@ -272,18 +280,19 @@ class LanguageConverter {
 	/**
 	 * Determine the language variant from the Accept-Language header.
 	 *
+	 * @param $context IContextSource: context.
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	protected function getHeaderVariant() {
-		global $wgRequest;
-
-		if ( $this->mHeaderVariant ) {
-			return $this->mHeaderVariant;
+	protected function getHeaderVariant( $context = null ) {
+		if ( !$context ) {
+			$context = RequestContext::getMain();
 		}
+
+		$request = $context->getRequest();
 
 		// see if some supported language variant is set in the
 		// HTTP header.
-		$languages = array_keys( $wgRequest->getAcceptLang() );
+		$languages = array_keys( $request->getAcceptLang() );
 		if ( empty( $languages ) ) {
 			return null;
 		}
@@ -746,22 +755,27 @@ class LanguageConverter {
 	 *
 	 * @param $link String: the name of the link
 	 * @param $nt Mixed: the title object of the link
-	 * @param $ignoreOtherCond Boolean: to disable other conditions when
+	 * @param $ignoreOtherCond Boolean: disable context-related conditions when
 	 *		we need to transclude a template or update a category's link
+	 * @param $context IContextSource: context.
 	 * @return Null, the input parameters may be modified upon return
 	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false, $context = null ) {
 		# If the article has already existed, there is no need to
 		# check it again, otherwise it may cause a fault.
 		if ( is_object( $nt ) && $nt->exists() ) {
 			return;
 		}
 
-		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest,
-			$wgUser;
-		$isredir = $wgRequest->getText( 'redirect', 'yes' );
-		$action = $wgRequest->getText( 'action' );
-		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
+		global $wgDisableLangConversion, $wgDisableTitleConversion;
+
+		if ( !$context ) {
+			$context = RequestContext::getMain();
+		}
+
+		$isredir = $context->getRequest()->getVal( 'redirect' );
+		$action = Action::getActionName( $context );
+		$linkconvert = $context->getRequest()->getVal( 'linkconvert' );
 		$disableLinkConversion = $wgDisableLangConversion
 			|| $wgDisableTitleConversion;
 		$linkBatch = new LinkBatch();
@@ -774,7 +788,7 @@ class LanguageConverter {
 				 || $action == 'edit'
 				 || $action == 'submit'
 				 || $linkconvert == 'no'
-				 || $wgUser->getOption( 'noconvertlink' ) == 1 ) ) ) {
+				 || $context->getUser()->getOption( 'noconvertlink' ) == 1 ) ) ) {
 			return;
 		}
 
