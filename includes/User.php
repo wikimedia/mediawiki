@@ -1266,7 +1266,7 @@ class User {
 	 *                    done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyWhitelist, $wgUser;
+		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
 
 		if ( -1 != $this->mBlockedby ) {
 			return;
@@ -1309,6 +1309,49 @@ class User {
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+			}
+		}
+
+		# (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		if ( !$block instanceof Block && $ip !== null && $wgApplyIpBlocksToXff ) {
+			$xForwardedFor = $this->getRequest()->getHeader( 'X-Forwarded-For' );
+			if ( $xForwardedFor !== false ) {
+				$ipchain = array_map( 'trim', explode( ',', $xForwardedFor ) );
+				$checkips = array();
+				foreach ( $ipchain as $xffIP ) {
+					# Discard invalid IP addresses. Since XFF can be spoofed and we do not
+					# necessarily trust the header given to us, make sure that we are only
+					# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+					# Do not treat private IP spaces as special as it may be desirable for wikis
+					# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+					if ( $xffIP === $ip || !IP::isValid( $xffIP ) ) {
+						continue;
+					}
+					$checkips[] = $xffIP;
+				}
+				if ( count( $checkips ) > 0 ) {
+					if ( $bFromSlave ) {
+						$db = wfGetDB( DB_SLAVE );
+					} else {
+						$db = wfGetDB( DB_MASTER );
+					}
+					# Build list of WHERE conditions. We first check if any of $checkips is blocked.
+					# Then, if the user is logged in, we ensure that we are not checking blocks
+					# that are marked anon_only, since Block::newFromRow does not check the
+					# anon_only flag and compare that to if the current user is logged in or not.
+					$where = array( 'ipb_address' => $checkips );
+					if ( $this->isLoggedIn() ) {
+						$where['ipb_anon_only'] = 0;
+					}
+					$row = $db->selectRow( 'ipblocks', Block::selectFields(), $where, __METHOD__ );
+					if ( $row !== false ) {
+						# We found a match, so apply this particular block.
+						# Also mangle the reason to alert the user that the block
+						# originated from matching the X-Forwarded-For header.
+						$block = Block::newFromRow( $row );
+						$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+					}
+				}
 			}
 		}
 
