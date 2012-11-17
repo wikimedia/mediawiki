@@ -164,7 +164,7 @@ class TestORMTable extends ORMTable {
 			'awesome' => 'bool',
 			'stuff' => 'array',
 			'moarstuff' => 'blob',
-			'time' => 'int', // TS_MW
+			'time' => 'float', // TS_MW
 		);
 	}
 
