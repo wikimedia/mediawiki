@@ -1266,7 +1266,7 @@ class User {
 	 *                    done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyWhitelist, $wgUser;
+		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
 
 		if ( -1 != $this->mBlockedby ) {
 			return;
@@ -1309,6 +1309,35 @@ class User {
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+			}
+		}
+		
+		# (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		# This potentially adds a lot of overhead, as it means loading of more Block objects,
+		# and thus more database queries, since it checks each individual IP in the XFF.
+		if ( !$block instanceof Block && $ip !== null && $wgApplyIpBlocksToXff ) {
+			$xForwardedFor = $this->getRequest()->getHeader( 'X-Forwarded-For' );
+			if ( $xForwardedFor !== false ) {
+				$ipchain = array_map( 'trim', explode( ',', $xForwardedFor ) );
+				foreach ( $ipchain as $xffIP ) {
+					# Discard invalid IP addresses. Since XFF can be spoofed and we do not
+					# necessarily trust the header given to us, make sure that we are only
+					# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+					# Do not treat private IP spaces as special as it may be desirable for wikis
+					# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+					if ( !IP::isValid( $xffIP ) ) {
+						continue;
+					}
+					$xffBlock = Block::newFromTarget( $this, $xffIP, !$bFromSlave );
+					if ( $xffBlock instanceof Block ) {
+						# We found a match, so apply this particular block
+						# Also mangle the reason to alert the user that the block
+						# originated from matching the X-Forwarded-For header.
+						$block = $xffBlock;
+						$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+						break;
+					}
+				}
 			}
 		}
 

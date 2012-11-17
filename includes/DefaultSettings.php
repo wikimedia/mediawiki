@@ -4242,6 +4242,13 @@ $wgSorbsUrl = array();
 $wgProxyWhitelist = array();
 
 /**
+ * Whether to apply IP blocks based on data in potentially untrusted
+ * X-Forwarded-For headers to allow blocking people using proxies without
+ * needing to block the entire proxy itself.
+ */
+$wgApplyIpBlocksToXff = false;
+
+/**
  * Simple rate limiter options to brake edit floods.
  *
  * Maximum number actions allowed in the given number of seconds; after that

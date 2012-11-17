@@ -3216,6 +3216,8 @@ Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking o
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'proxyblocksuccess' => '{{Identical|Done}}',
 'sorbs' => '{{optional}}',
+'xffblockreason' => 'This text describes that the user is being blocked because their IP was matched in the X-Forwarded-For header, a feature which is disabled by default:
+* $1 is the original block reason for the IP address matched in the X-Forwarded-For header',
 'cant-see-hidden-user' => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
 'ipbblocked' => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
 'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
