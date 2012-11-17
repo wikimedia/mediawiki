@@ -748,7 +748,7 @@ $title: the Title in question
 &$model: the model name. Use with CONTENT_MODEL_XXX constants.
 
 'ContentHandlerForModelID': Called when a ContentHandler is requested for a given
-cointent model name, but no entry for that model exists in $wgContentHandlers.
+content model name, but no entry for that model exists in $wgContentHandlers.
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
