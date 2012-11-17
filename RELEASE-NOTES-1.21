@@ -85,6 +85,8 @@ production.
   a security fix (bug 42202).
 * Added the ability to limit the wall clock time used by shell processes, 
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
+* (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
+  by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.

@@ -1271,7 +1271,7 @@ class User {
 	 *                    done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyWhitelist, $wgUser;
+		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
 
 		if ( -1 != $this->mBlockedby ) {
 			return;
@@ -1287,36 +1287,76 @@ class User {
 		// overwriting mBlockedby, surely?
 		$this->load();
 
-		# We only need to worry about passing the IP address to the Block generator if the
-		# user is not immune to autoblocks/hardblocks, and they are the current user so we
-		# know which IP address they're actually coming from
-		if ( !$this->isAllowed( 'ipblock-exempt' ) && $this->getID() == $wgUser->getID() ) {
-			$ip = $this->getRequest()->getIP();
-		} else {
-			$ip = null;
-		}
+		// User blocks.
+		$block = Block::newFromTarget( $this, null, !$bFromSlave );
 
-		# User/IP blocking
-		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
+		// Regular IP blocks.
+		// We only need to worry about passing the IP address to the Block generator if the
+		// user is not immune to autoblocks/hardblocks, and they are the current user so we
+		// know which IP address they're actually coming from
+		if ( !$block && !$this->isAllowed( 'ipblock-exempt' ) && $this->getID() == $wgUser->getID() ) {
+			// Start off with the direct remote IP.
+			$ip[] = $this->getRequest()->getIP();
 
-		# Proxy blocking
-		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
-			&& !in_array( $ip, $wgProxyWhitelist ) )
-		{
-			# Local list
-			if ( self::isLocallyBlockedProxy( $ip ) ) {
-				$block = new Block;
-				$block->setBlocker( wfMessage( 'proxyblocker' )->text() );
-				$block->mReason = wfMessage( 'proxyblockreason' )->text();
-				$block->setTarget( $ip );
-			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
-				$block = new Block;
-				$block->setBlocker( wfMessage( 'sorbs' )->text() );
-				$block->mReason = wfMessage( 'sorbsreason' )->text();
-				$block->setTarget( $ip );
+			// If necessary, add on the X-Forwarded-For IPs.
+			$xForwardedFor = $this->getRequest()->getHeader( 'X-Forwarded-For' );
+			if ( $wgApplyIpBlocksToXff && $xForwardedFor !== false ) {
+				$ip += array_map( 'trim', explode( ',', $xForwardedFor ) );
+			}
+
+			// Make sure all IPs are valid, and make the list unique.
+			$ip = array_unique( array_filter( $ip, 'IP::isValid' ) );
+			$proxyIps = array_diff( $ip, $wgProxyWhitelist );
+
+			// IP blocking (direct block or range blocking).
+			$conds = array( 'ipb_address' => $ip );
+			$conds += array_map( 'Block::getRangeCond', array_map( 'IP::toHex', $ip ) );
+			if ( $bFromSlave ) {
+				$db = wfGetDB( DB_SLAVE );
+			} else {
+				$db = wfGetDB( DB_MASTER );
+			}
+
+			// Make the list, and if the user is logged in, make sure to ignore
+			// anon-only blocks.
+			$conds = $db->makeList( $conds, LIST_OR );
+			if ( $this->isLoggedIn() ) {
+				$conds = array( $conds, 'ipb_anon_only' => 0 );
+			}
+
+			$row = $db->selectRow( 'ipblocks', Block::selectFields(), $conds, __METHOD__ );
+			if ( $row !== false ) {
+				// We found a block.
+				$block = Block::newFromRow( $row );
+				$hexIP = IP::toHex( $this->getRequest()->getIP() );
+				if (
+					$row->ipb_address != $this->getRequest()->getIP() &&
+					!(
+						strcmp( $hexIP, IP::toHex( $row->ipb_range_start ) ) >= 0 &&
+						strcmp( $hexIP, IP::toHex( $row->ipb_range_end ) ) <= 0
+					)
+				) {
+					// IP is from the XFF header, so mangle the message to notify
+					// the user of this.
+					$block->mReason = $this->msg( 'xffblockreason', $block->mReason )->text();
+				}
+			} elseif ( !$this->isAllowed( 'proxyunbannable' ) && $proxyIps ) {
+				// Local list
+				if ( array_filter( $proxyIps, 'self::isLocallyBlockedProxy' ) ) {
+					$block = new Block;
+					$block->setBlocker( wfMessage( 'proxyblocker' )->text() );
+					$block->mReason = wfMessage( 'proxyblockreason' )->text();
+					$block->setTarget( $ip );
+				} elseif ( $this->isAnon() && array_filter( $proxyIps, array( $this, 'isDnsBlacklisted' ) ) ) {
+					$block = new Block;
+					$block->setBlocker( wfMessage( 'sorbs' )->text() );
+					$block->mReason = wfMessage( 'sorbsreason' )->text();
+					$block->setTarget( $ip );
+				}
 			}
 		}
 
+		// Finally, if we have a block, store the info.
 		if ( $block instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlock = $block;
@@ -1330,7 +1370,7 @@ class User {
 			$this->mAllowUsertalk = false;
 		}
 
-		# Extensions
+		// Extensions
 		wfRunHooks( 'GetBlockedStatus', array( &$this ) );
 
 		wfProfileOut( __METHOD__ );
