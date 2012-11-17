@@ -1317,6 +1317,18 @@ class User {
 			}
 		}
 
+		# (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		if ( !$block instanceof Block && $ip !== null ) {
+			$row = $this->isBlockedByXff( $ip, $bFromSlave );
+			if ( $row !== false ) {
+				# We found a match, so apply this particular block.
+				# Also mangle the reason to alert the user that the block
+				# originated from matching the X-Forwarded-For header.
+				$block = Block::newFromRow( $row );
+				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+			}
+		}
+
 		if ( $block instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlock = $block;
@@ -1330,10 +1342,170 @@ class User {
 			$this->mAllowUsertalk = false;
 		}
 
-		# Extensions
+		// Extensions
 		wfRunHooks( 'GetBlockedStatus', array( &$this ) );
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Whether the IP is blocked by being present in the XFF header.
+	 *
+	 * @param $ip String|Bool IP to exclude from check, or false to check every IP.
+	 * @param $fromSlave Bool Whether to query the slave or master database
+	 * @return Object|Bool A row from the database if an IP in the XFF header
+	 *         matched an existing block or false if no blocks were found.
+	 * @since 1.21
+	 */
+	public function isBlockedByXff( $ip = false, $fromSlave = true ) {
+		global $wgApplyIpBlocksToXff;
+
+		if ( !$wgApplyIpBlocksToXff ) {
+			return false;
+		}
+file_put_contents( '/tmp/xff.log', __METHOD__." called with $ip\n", FILE_APPEND );
+		wfProfileIn( __METHOD__ );
+		$xForwardedFor = $this->getRequest()->getHeader( 'X-Forwarded-For' );
+		if ( $xForwardedFor === false ) {
+			return false;
+		}
+
+		$ipchain = array_map( 'trim', explode( ',', $xForwardedFor ) );
+		$conds = array();
+		foreach ( $ipchain as $xffIP ) {
+			# Discard invalid IP addresses. Since XFF can be spoofed and we do not
+			# necessarily trust the header given to us, make sure that we are only
+			# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+			# Do not treat private IP spaces as special as it may be desirable for wikis
+			# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+			if ( $xffIP === $ip || !IP::isValid( $xffIP ) ) {
+				continue;
+			}
+			# Don't check the local squid IPs, which will be in every request
+			if ( wfIsConfiguredProxy( $xffIP ) ) {
+				continue;
+			}
+			# Check both the original IP (to check against single blocks), as well as build
+			# the clause to check for rangeblocks for the given IP.
+			$conds['ipb_address'][] = $xffIP;
+			$conds[] = Block::getRangeCond( IP::toHex( $xffIP ) );
+		}
+
+		if ( count( $conds ) > 0 ) {
+			if ( $fromSlave ) {
+				$db = wfGetDB( DB_SLAVE );
+			} else {
+				$db = wfGetDB( DB_MASTER );
+			}
+			$conds = $db->makeList( $conds, LIST_OR );
+			if ( $this->isLoggedIn() ) {
+				$conds = array( $conds, 'ipb_anon_only' => 0 );
+			}
+			$selectFields = array_merge(
+				array( 'ipb_range_start', 'ipb_range_end' ),
+				Block::selectFields()
+			);
+			$rows = $db->select( 'ipblocks',
+				$selectFields,
+				$conds,
+				__METHOD__,
+				array( 'ORDER BY' => 'ipb_anon_only ASC, ipb_create_account DESC' )
+			);
+
+			if ( $rows->numRows() < 1 ) {
+				wfProfileOut( __METHOD__ );
+				return false;
+			} elseif ( $rows->numRows() == 1 ) {
+				wfProfileOut( __METHOD__ );
+				return $rows->fetchObject();
+			}
+
+			# If there are multiple blocks, find the most exact and strongest of the blocks.
+			# The logic for finding the "best" block is:
+			# * Blocks that match the block's target IP are preferred over ones in a range
+			# * Hardblocks are chosen over softblocks that prevent account creation
+			# * Softblocks that prevent account creation are chosen over other softblocks
+			# * Other softblocks are chosen over autoblocks
+			# * If there are multiple exact or range blocks at the same level, the one chosen
+			#   is random
+			$blocksList = array(
+				'hard' => false,
+				'disable_create' => false,
+				'other' => false,
+				'auto' => false
+			);
+			$blocksListRange = array(
+				'hard' => false,
+				'disable_create' => false,
+				'other' => false,
+				'auto' => false
+			);
+			$exactMatch = false;
+			$ipchain = array_reverse( $ipchain );
+			foreach ( $rows as $row ) {
+				if ( $row->ipb_anon_only && $blocksList['hard'] ) {
+					# We already have a specific hard block, skip any more
+					break;
+				} elseif ( !$row->ipb_create_account && $blocksList['disable_create'] ) {
+					# We already have an exact account creation block
+					break;
+				}
+				foreach ( $ipchain as $checkip ) {
+					$checkipHex = IP::toHex( $checkip );
+					if ( $row->ipb_address == $checkip ) {
+						$exactMatch = true;
+						if ( !$row->ipb_anon_only ) {
+							$blocksList['hard'] = $blocksList['hard'] ?: $row;
+						} elseif ( $row->ipb_create_account ) {
+							$blocksList['disable_create'] = $blocksList['disable_create'] ?: $row;
+						} elseif ( $row->ipb_auto ) {
+							$blocksList['auto'] = $blocksList['auto'] ?: $row;
+						} else {
+							$blocksList['other'] = $blocksList['other'] ?: $row;
+						}
+						# Found closest ip this block applies to, so stop searching
+						break;
+					} elseif ( !$exactMatch && $row->ipb_range_start <= $checkipHex
+						&& $row->ipb_range_end >= $checkipHex
+					) {
+						if ( !$row->ipb_anon_only ) {
+							$blocksListRange['hard'] = $blocksListRange['hard'] ?: $row;
+						} elseif ( $row->ipb_create_account ) {
+							$blocksListRange['disable_create'] = $blocksListRange['disable_create'] ?: $row;
+						} elseif ( $row->ipb_auto ) {
+							$blocksListRange['auto'] = $blocksListRange['auto'] ?: $row;
+						} else {
+							$blocksListRange['other'] = $blocksListRange['other'] ?: $row;
+						}
+						break;
+					}
+				}
+			}
+
+			if ( !$exactMatch ) {
+				$blocksList = $blocksListRange;
+			}
+
+			$block = false;
+			if ( $blocksList['hard'] ) {
+				$block = $blocksList['hard'];
+			} elseif ( $blocksList['disable_create'] ) {
+				$block = $blocksList['disable_create'];
+			} elseif ( $blocksList['other'] ) {
+				$block = $blocksList['other'];
+			} elseif ( $blocksList['auto'] ) {
+				$block = $blocksList['auto'];
+			} else {
+				// This shouldn't happen
+				throw new MWException( "Proxy block found, but couldn't be classified." );
+			}
+
+			wfProfileOut( __METHOD__ );
+			return $block;
+		}
+
+		wfProfileOut( __METHOD__ );
+		return false;
 	}
 
 	/**
