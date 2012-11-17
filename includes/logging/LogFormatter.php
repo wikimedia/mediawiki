@@ -438,7 +438,7 @@ class LogFormatter {
 		$entry = $this->entry;
 		$params = $this->extractParameters();
 		$params[0] = Message::rawParam( $this->getPerformerElement() );
-		$params[1] = $entry->getPerformer()->getName();
+		$params[1] = $this->canView( LogPage::DELETED_USER ) ? $entry->getPerformer()->getName() : '';
 		$params[2] = Message::rawParam( $this->makePageLink( $entry->getTarget() ) );
 
 		// Bad things happens if the numbers are not in correct order
