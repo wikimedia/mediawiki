@@ -305,8 +305,6 @@ div.vectorMenu ul {
 	border: solid 1px silver;
 	border-top-width: 0;
 	list-style: none;
-	list-style-image: none;
-	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	margin-left: -1px;
@@ -486,8 +484,6 @@ div#mw-panel div.portal div.body {
 }
 div#mw-panel div.portal div.body ul {
 	list-style: none;
-	list-style-image: none;
-	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
@@ -518,8 +514,6 @@ div#footer {
 }
 div#footer ul {
 	list-style: none;
-	list-style-image: none;
-	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
@@ -597,8 +591,7 @@ div#footer #footer-places li {
 		padding-right: 1px;
 		height: 2.25em;
 		white-space: nowrap;
-		list-style-type: none;
-		list-style-image: none;
+		list-style: none;
 		/* @embed */
 		background-image: url(images/preferences-break.png);
 		background-position: bottom right;
@@ -687,6 +680,7 @@ div#content {
 }
 
 ul {
+	list-style-type: disc;
 	/* @embed */
 	list-style-image: url(images/bullet-icon.png);
 }
