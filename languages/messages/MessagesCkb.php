@@ -1917,7 +1917,7 @@ $1',
 'allpagesbadtitle' => 'سەردێڕی لاپەڕە گونجاو نەبوو یان پێشگڕێکی بەینی‌زمانی یان بەینی‌ویکی هەبوو.
 لەوانەیە یەک یان زیاتر پیتی نەگونجاو بۆ سەردێڕی لەخۆ گرتبێ.',
 'allpages-bad-ns' => '{{SITENAME}} ناوبۆشایی نیە "$1".',
-'allpages-hide-redirects' => 'ڕەوانەکراوەکان بشارەوە',
+'allpages-hide-redirects' => 'ڕەوانەکەرەکان بشارەوە',
 
 # SpecialCachedPage
 'cachedspecial-refresh-now' => 'دواترین پیشانبدە',
@@ -2308,7 +2308,7 @@ $1',
 'whatlinkshere-prev' => '{{PLURAL:$1|پێشتر|$1 ی پێشتر}}',
 'whatlinkshere-next' => '{{PLURAL:$1|دیکە|$1 ی دیکە}}',
 'whatlinkshere-links' => '← بەستەرەکان',
-'whatlinkshere-hideredirs' => 'ڕەوانەکراوەکان $1',
+'whatlinkshere-hideredirs' => 'ڕەوانەکەرەکان $1',
 'whatlinkshere-hidetrans' => '$1 ھێنانەناوەوەکان',
 'whatlinkshere-hidelinks' => '$1 بەستەر',
 'whatlinkshere-hideimages' => '$1 بەستەرەکانی پەڕگە',

@@ -33,6 +33,7 @@
  * @author Nghtwlkr
  * @author Njardarlogar
  * @author Nsaa
+ * @author Pladask
  * @author Purodha
  * @author Qaqqalik
  * @author Samuelsen
@@ -1771,7 +1772,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'fileexists' => 'Ei fil med dette navnet finnes allerede.
 Sjekk <strong>[[:$1]]</strong> hvis du ikke er sikker på at du vil forandre den.
 [[$1|thumb]]',
-'filepageexists' => 'Beskrivelsessiden for denne filen finnes allerede på <strong>[[:$1]]</strong>, men ingen filer med dette navnet finnes. Sammendraget du skruver inn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å da lastet opp filen.
+'filepageexists' => 'Beskrivelsessiden for denne filen finnes allerede på <strong>[[:$1]]</strong>, men ingen filer med dette navnet finnes. Sammendraget du skriver inn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å ha lastet opp filen.
 [[$1|thumb]]',
 'fileexists-extension' => 'En fil med et lignende navn finnes: [[$2|thumb]]
 * Navnet på din fil: <strong>[[:$1]]</strong>

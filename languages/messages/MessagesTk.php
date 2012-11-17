@@ -171,8 +171,8 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'newwindow' => '(täze penjirede açylýar)',
 'cancel' => 'Goýbolsun et',
 'moredotdotdot' => 'Has köp...',
-'mypage' => 'Sahypam',
-'mytalk' => 'Pikir alyşma sahypam',
+'mypage' => 'Sahypa',
+'mytalk' => 'Pikir alyşma',
 'anontalk' => 'Bu IP-niň habarlaşyklary',
 'navigation' => 'Nawigasiýa',
 'and' => '&#32;we',
@@ -627,7 +627,7 @@ Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
 ýa-da bu sahypany [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktirläp bilersiňiz]</span>.',
 'noarticletext-nopermission' => 'Häzirki wagtda bu sahypada tekst ýok.
 Bu sahypa adyny [[Special:Search/{{PAGENAME}}|başga sahypalarda gözläp]]
-ýa-da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz].</span>',
+ýa-da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} degişli gündeliklerde gözleg geçirip bilersiňiz]</span>, ýöne bu sahypany döretmäge rugsadyňyz ýok.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" ulanyjy hasaby hasaba alynmandyr.
 Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
 'userpage-userdoesnotexist-view' => '"$1" ulanyjy hasaby hasaba alynmandyr.',
@@ -664,6 +664,7 @@ Eger şonda-da bolmasa, onda [[Special:UserLogout|sessiýany ýapyň-da]] gaýta
 Sahypanyň tekstine zeper ýetmeginiň öňüni almak maksady bilen özgerdişiňiz ret edildi.
 Bu ýagdaý kämahal içi ýalňyşly anonim web proksileri ulanylanda ýüze çykýar.",
 'editing' => '$1 sahypasyny redaktirleýärsiňiz',
+'creating' => '"$1" sahypasy döredilýär',
 'editingsection' => '"$1" sahypasynda bölüm redaktirleýärsiňiz',
 'editingcomment' => '$1 redaktirlenýär (täze bölüm)',
 'editconflict' => 'Özgerdiş çaknyşmasy: $1',
@@ -924,7 +925,7 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'mergelogpagetext' => 'Aşakdaky sanaw sahypalaryň geçmişleriniň iň soňky birleşdirmelerini görkezýär.',
 
 # Diffs
-'history-title' => '"$1" sahypasynyň geçmişi',
+'history-title' => '"$1" — sahypa geçmişi',
 'difference-multipage' => '(Sahypalaryň arasyndaky tapawut)',
 'lineno' => 'Setir $1:',
 'compareselectedversions' => 'Saýlanan wersiýalary deňeşdir',
@@ -1008,7 +1009,7 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 
 # Preferences page
 'preferences' => 'Ileri tutmalar',
-'mypreferences' => 'Ileri tutmalarym',
+'mypreferences' => 'Ileri tutmalar',
 'prefs-edits' => 'Özgerdiş sany:',
 'prefsnologin' => 'Sessiýa açmansyňyz',
 'prefsnologintext' => 'Ulanyjy ileri tutmalaryny üýtgetmek üçin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sessiýa açmagyňyz gerek]</span>.',
@@ -1828,7 +1829,7 @@ Goldanylýan protokollar: <code>$1</code>',
 
 # Watchlist
 'watchlist' => 'Gözegçilik sanawym',
-'mywatchlist' => 'Gözegçilik sanawym',
+'mywatchlist' => 'Gözegçilik sanawy',
 'watchlistfor2' => '$1 üçin  $2',
 'nowatchlist' => 'Gözegçilik sanawyňyzda hiçhili sahypa ýok.',
 'watchlistanontext' => 'Gözegçilik sanawyňyzdaky sahypalary görmek ýa-da redaktirlemek üçin $1.',
@@ -2081,7 +2082,7 @@ $1',
 # Contributions
 'contributions' => 'Ulanyjynyň goşantlary',
 'contributions-title' => '$1 üçin ulanyjy goşantlary',
-'mycontris' => 'Goşantlarym',
+'mycontris' => 'Goşantlar',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Bu kriteriýlere gabat gelýän üýtgeşme ýok.',
 'uctop' => '(iň soňky)',
@@ -2122,7 +2123,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 'whatlinkshere-hideredirs' => 'gönükdirmeleri $1',
 'whatlinkshere-hidetrans' => 'Atanaklaýyn girizmeleri $1',
 'whatlinkshere-hidelinks' => 'çykgytlary $1',
-'whatlinkshere-hideimages' => 'surat çykgytlaryny $1',
+'whatlinkshere-hideimages' => 'Faýl çykgytlaryny $1',
 'whatlinkshere-filters' => 'Filtrler',
 
 # Block/unblock

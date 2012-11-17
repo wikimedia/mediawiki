@@ -3485,10 +3485,10 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'table_pager_limit' => 'Smon-me $1 archivi për pàgina',
 'table_pager_limit_label' => 'Arzultà për pàgina:',
 'table_pager_limit_submit' => 'Andé',
-'table_pager_empty' => 'Pa gnun arsultà',
+'table_pager_empty' => 'Gnun arzultà',
 
 # Auto-summaries
-'autosumm-blank' => 'Pàgina dësveujdà',
+'autosumm-blank' => 'Pàgina dësvujdà',
 'autosumm-replace' => "Pàgina cambià con '$1'",
 'autoredircomment' => 'Ridiression anvers a [[$1]]',
 'autosumm-new' => "Creà la pàgina con '$1'",

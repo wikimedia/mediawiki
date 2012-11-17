@@ -1863,19 +1863,23 @@ Parameters:
 * $2 is a comma separated list of old user groups or {{msg-mw|Rightsnone}}
 * $3 is a comma separated list of new user groups',
 'logentry-rights-rights' => '*$1 - username
+*$2 - (see below)
 *$3 - username
 *$4 - list of user groups or {{msg-mw|Rightsnone}}
 *$5 - list of user groups or {{msg-mw|Rightsnone}}
-
+----
 {{Logentry}}',
 'logentry-rights-rights-legacy' => '*$1 - username
+*$2 - (see below)
 *$3 - username
-
+----
 {{Logentry}}',
 'logentry-rights-autopromote' => '*$1 - username
+*$2 - (see below)
+*$3 - (see below)
 *$4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}
 *$5 - comma separated list of new user groups
-
+----
 {{Logentry}}',
 'rightsnone' => 'Default rights for registered users.
 
