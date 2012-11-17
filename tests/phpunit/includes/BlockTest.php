@@ -228,4 +228,117 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
 	}
+
+	function testBlocksOnXff() {
+
+		$blockList = array(
+			array( 'target' => '70.2.0.0/16',
+				'type' =>  Block::TYPE_RANGE,
+				'desc' => 'Range Hardblock',
+				'ACDisable' => false,
+				'isHardblock' => true,
+				'isAutoBlocking' => false,
+			),
+			array( 'target' => '2001:4860:4001::/48',
+				'type' =>  Block::TYPE_RANGE,
+				'desc' => 'Range6 Hardblock',
+				'ACDisable' => false,
+				'isHardblock' => true,
+				'isAutoBlocking' => false,
+			),
+			array( 'target' => '60.2.0.0/16',
+				'type' =>  Block::TYPE_RANGE,
+				'desc' => 'Range Softblock with AC Disabled',
+				'ACDisable' => true,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			),
+			array( 'target' => '50.2.0.0/16',
+				'type' =>  Block::TYPE_RANGE,
+				'desc' => 'Range Softblock',
+				'ACDisable' => false,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			),
+			array( 'target' => '50.1.1.1',
+				'type' =>  Block::TYPE_IP,
+				'desc' => 'Exact Softblock',
+				'ACDisable' => false,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			),
+		);
+
+		foreach ( $blockList as $insBlock ) {
+			$target = $insBlock['target'];
+
+			if ( $insBlock['type'] === Block::TYPE_IP ) {
+				$target = User::newFromName( IP::sanitizeIP( $target ), false )->getName();
+			} elseif ( $insBlock['type'] === Block::TYPE_RANGE ) {
+				$target = IP::sanitizeRange( $target );
+			}
+
+			$block = new Block();
+			$block->setTarget( $target );
+			$block->setBlocker( 'testblocker@global' );
+			$block->mReason = $insBlock['desc'];
+			$block->mExpiry = 'infinity';
+			$block->prevents( 'createaccount', $insBlock['ACDisable'] );
+			$block->isHardblock( $insBlock['isHardblock'] );
+			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
+			$block->insert();
+		}
+
+		$xffHeaders = array(
+			array( 'xff' => '1.2.3.4, 70.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Hardblock'
+			),
+			array( 'xff' => '1.2.3.4, 50.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Softblock with AC Disabled'
+			),
+			array( 'xff' => '1.2.3.4, 70.2.1.1, 50.1.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Exact Softblock'
+			),
+			array( 'xff' => '1.2.3.4, 70.2.1.1, 50.2.1.1, 50.1.1.1, 2.3.4.5',
+				'count' => 3,
+				'result' => 'Exact Softblock'
+			),
+			array( 'xff' => '1.2.3.4, 70.2.1.1, 50.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Hardblock'
+			),
+			array( 'xff' => '1.2.3.4, 70.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Hardblock'
+			),
+			array( 'xff' => '50.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Softblock with AC Disabled'
+			),
+			array( 'xff' => '1.2.3.4, 50.1.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Exact Softblock'
+			),
+			array( 'xff' => '1.2.3.4, <$A_BUNCH-OF{INVALID}TEXT\>, 60.2.1.1, 2.3.4.5',
+				'count' => 1,
+				'result' => 'Range Softblock with AC Disabled'
+			),
+			array( 'xff' => '1.2.3.4, 50.2.1.1, 2001:4860:4001:802::1003, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range6 Hardblock'
+			),
+		);
+
+		foreach ( $xffHeaders as $test ) {
+			$list = array_map( 'trim', explode( ',', $test['xff'] ) );
+			$xffblocks = Block::getBlocksForIPList( $list, true );
+			$this->assertEquals( $test['count'], count( $xffblocks ), 'Number of blocks for ' . $test['xff'] );
+			$block = Block::chooseBlock( $xffblocks, $list );
+			$this->assertEquals( $test['result'], $block->mReason, 'Correct block type for XFF header ' . $test['xff'] );
+		}
+
+	}
 }
