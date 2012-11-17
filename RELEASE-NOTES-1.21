@@ -71,6 +71,8 @@ production.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
 * DatabaseUpdater class has two new methods to ease extensions schema changes:
   dropExtensionIndex and renameExtensionIndex.
+* (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
+  by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
