@@ -1318,6 +1318,21 @@ class User {
 			}
 		}
 
+		# (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		if ( !$block instanceof Block
+			&& $ip !== null
+			&& !$this->isAllowed( 'proxyunbannable' )
+			&& !in_array( $ip, $wgProxyWhitelist )
+		) {
+			$xff = $this->getRequest()->getHeader( 'X-Forwarded-For' );
+			$block = Block::newFromXFF( $xff, !$this->isLoggedIn(), $ip, $bFromSlave );
+			if ( $block instanceof Block ) {
+				# Mangle the reason to alert the user that the block
+				# originated from matching the X-Forwarded-For header.
+				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+			}
+		}
+
 		if ( $block instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlock = $block;
@@ -1331,7 +1346,7 @@ class User {
 			$this->mAllowUsertalk = false;
 		}
 
-		# Extensions
+		// Extensions
 		wfRunHooks( 'GetBlockedStatus', array( &$this ) );
 
 		wfProfileOut( __METHOD__ );
