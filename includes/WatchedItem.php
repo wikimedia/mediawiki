@@ -27,7 +27,7 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser, $id, $ns, $ti;
+	var $mTitle, $mUser;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
@@ -40,15 +40,30 @@ class WatchedItem {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
-		$wl->id = $user->getId();
-		# Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
-		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
-		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
-		# $wl->ns = $title->getNamespace() & ~1;
-		$wl->ns = $title->getNamespace();
 
-		$wl->ti = $title->getDBkey();
 		return $wl;
+	}
+
+	/**
+	 * Title being watched
+	 * @return Title
+	 */
+	protected function getTitle() {
+		return $this->mTitle;
+	}
+
+	/** Helper to retrieve the title namespace */
+	protected function getTitleNs() {
+		return $this->getTitle()->getNamespace();
+	}
+
+	/** Helper to retrieve the title DBkey */
+	protected function getTitleDBkey() {
+		return $this->getTitle()->getDBkey();
+	}
+	/** Helper to retrieve the user id */
+	protected function getUserId() {
+		return $this->mUser->getId();
 	}
 
 	/**
@@ -58,7 +73,11 @@ class WatchedItem {
 	 * @return array
 	 */
 	private function dbCond() {
-		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->ti );
+		return array(
+			'wl_user' => $this->getUserId(),
+			'wl_namespace' => $this->getTitleNs(),
+			'wl_title' => $this->getTitleDBkey(),
+		);
 	}
 
 	/**
@@ -144,9 +163,9 @@ class WatchedItem {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'watchlist',
 		  array(
-			'wl_user' => $this->id,
-			'wl_namespace' => MWNamespace::getSubject($this->ns),
-			'wl_title' => $this->ti,
+			'wl_user' => $this->getUserId(),
+			'wl_namespace' => MWNamespace::getSubject($this->getTitleNs()),
+			'wl_title' => $this->getTitleDBkey(),
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
@@ -154,9 +173,9 @@ class WatchedItem {
 		// namespace:page and namespace_talk:page need separate entries:
 		$dbw->insert( 'watchlist',
 		  array(
-			'wl_user' => $this->id,
-			'wl_namespace' => MWNamespace::getTalk($this->ns),
-			'wl_title' => $this->ti,
+			'wl_user' => $this->getUserId(),
+			'wl_namespace' => MWNamespace::getTalk($this->getTitleNs()),
+			'wl_title' => $this->getTitleDBkey(),
 			'wl_notificationtimestamp' => null
 		  ), __METHOD__, 'IGNORE' );
 
@@ -177,9 +196,9 @@ class WatchedItem {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'watchlist',
 			array(
-				'wl_user' => $this->id,
-				'wl_namespace' => MWNamespace::getSubject($this->ns),
-				'wl_title' => $this->ti
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getSubject($this->getTitleNs()),
+				'wl_title' => $this->getTitleDBkey(),
 			), __METHOD__
 		);
 		if ( $dbw->affectedRows() ) {
@@ -192,9 +211,9 @@ class WatchedItem {
 		# entries: clear them
 		$dbw->delete( 'watchlist',
 			array(
-				'wl_user' => $this->id,
-				'wl_namespace' => MWNamespace::getTalk($this->ns),
-				'wl_title' => $this->ti
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getTalk($this->getTitleNs()),
+				'wl_title' => $this->getTitleDBkey(),
 			), __METHOD__
 		);
 
