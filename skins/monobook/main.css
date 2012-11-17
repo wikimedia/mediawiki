@@ -71,6 +71,7 @@ a.new,
 }
 
 ul {
+	list-style-type: square;
 	/* @embed */
 	list-style-image: url(bullet.gif);
 }
@@ -268,9 +269,6 @@ table.rimage {
 }
 .portlet ul {
 	line-height: 1.5em;
-	list-style-type: square;
-	/* @embed */
-	list-style-image: url(bullet.gif);
 	font-size: 95%;
 }
 .portlet li {
@@ -432,7 +430,6 @@ li#pt-login {
 	background: none;
 	border-collapse: collapse;
 	padding-left: 1em;
-	list-style: none;
 	font-size: 95%;
 }
 #p-cactions ul {
@@ -585,8 +582,7 @@ div#footer li {
 	border-bottom: 0;
 	position: relative;
 	white-space: nowrap;
-	list-style-type: none;
-	list-style-image: none;
+	list-style: none;
 	z-index: 3;
 }
 #preftoc li.selected {
