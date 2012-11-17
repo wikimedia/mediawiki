@@ -1312,6 +1312,18 @@ class User {
 			}
 		}
 
+		# (bug 23343) Apply IP blocks to the contents of XFF headers, if enabled
+		if ( !$block instanceof Block && $ip !== null ) {
+			$row = $this->isBlockedByXff( $ip, $bFromSlave );
+			if ( $row !== false ) {
+				# We found a match, so apply this particular block.
+				# Also mangle the reason to alert the user that the block
+				# originated from matching the X-Forwarded-For header.
+				$block = Block::newFromRow( $row );
+				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+			}
+		}
+
 		if ( $block instanceof Block ) {
 			wfDebug( __METHOD__ . ": Found block.\n" );
 			$this->mBlock = $block;
@@ -1329,6 +1341,65 @@ class User {
 		wfRunHooks( 'GetBlockedStatus', array( &$this ) );
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Whether the IP is blocked by being present in the XFF header.
+	 *
+	 * @param $ip String|Bool IP to exclude from check, or false to check every IP.
+	 * @param $fromSlave Bool Whether to query the slave or master database
+	 * @return Object|Bool A row from the database if an IP in the XFF header
+	 *         matched an existing block or false if no blocks were found.
+	 * @since 1.21
+	 */
+	public function isBlockedByXff( $ip = false, $fromSlave = true ) {
+		global $wgApplyIpBlocksToXff;
+
+		if ( !$wgApplyIpBlocksToXff ) {
+			return false;
+		}
+
+		wfProfileIn( __METHOD__ );
+		$xForwardedFor = $this->getRequest()->getHeader( 'X-Forwarded-For' );
+		if ( $xForwardedFor !== false ) {
+			$ipchain = array_map( 'trim', explode( ',', $xForwardedFor ) );
+			$conds = array();
+			foreach ( $ipchain as $xffIP ) {
+				# Discard invalid IP addresses. Since XFF can be spoofed and we do not
+				# necessarily trust the header given to us, make sure that we are only
+				# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+				# Do not treat private IP spaces as special as it may be desirable for wikis
+				# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+				if ( $xffIP === $ip || !IP::isValid( $xffIP ) ) {
+					continue;
+				}
+				# Store both the original IP (to check against single blocks), as well as build
+				# the clause to check for rangeblocks for the given IP.
+				$conds['ipb_address'][] = $xffIP;
+				$conds[] = Block::getRangeCond( IP::toHex( $xffIP ) );
+			}
+			if ( count( $conds ) > 0 ) {
+				if ( $fromSlave ) {
+					$db = wfGetDB( DB_SLAVE );
+				} else {
+					$db = wfGetDB( DB_MASTER );
+				}
+				# Build list of WHERE conditions. We first check if any of $checkips is blocked.
+				# Then, if the user is logged in, we ensure that we are not checking blocks
+				# that are marked anon_only, since Block::newFromRow does not check the
+				# anon_only flag and compare that to if the current user is logged in or not.
+				$conds = $db->makeList( $conds, LIST_OR );
+				if ( $this->isLoggedIn() ) {
+					$conds = array( $conds, 'ipb_anon_only' => 0 );
+				}
+				$row = $db->selectRow( 'ipblocks', Block::selectFields(), $conds, __METHOD__ );
+				wfProfileOut( __METHOD__ );
+				return $row;
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return false;
 	}
 
 	/**
