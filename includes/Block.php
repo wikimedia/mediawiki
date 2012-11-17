@@ -1074,6 +1074,183 @@ class Block {
 		return null;
 	}
 
+
+	/**
+	 * Get all blocks that match any IP from an array of IP addresses
+	 *
+	 * @param Array $ipChain list of IPs (strings), usually retrieved from the
+	 *	   X-Forwarded-For header of the request
+	 * @param Bool $isAnon Exclude anonymous-only blocks if false
+	 * @param Bool $fromSlave Whether to query the slave or master database
+	 * @return Array of Blocks
+	 * @since 1.21
+	 */
+	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromSlave = true ) {
+		if ( !count( $ipChain ) ) {
+			return array();
+		}
+
+		wfProfileIn( __METHOD__ );
+		$blocks = array();
+		$conds = array();
+		foreach ( array_unique( $ipChain ) as $ipaddr ) {
+			# Discard invalid IP addresses. Since XFF can be spoofed and we do not
+			# necessarily trust the header given to us, make sure that we are only
+			# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
+			# Do not treat private IP spaces as special as it may be desirable for wikis
+			# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
+			if ( !IP::isValid( $ipaddr ) ) {
+				continue;
+			}
+			# Don't check trusted IPs (includes local squids which will be in every request)
+			if ( wfIsTrustedProxy( $ipaddr ) ) {
+				continue;
+			}
+			# Check both the original IP (to check against single blocks), as well as build
+			# the clause to check for rangeblocks for the given IP.
+			$conds['ipb_address'][] = $ipaddr;
+			$conds[] = self::getRangeCond( IP::toHex( $ipaddr ) );
+		}
+
+		if ( !count( $conds ) ) {
+			wfProfileOut( __METHOD__ );
+			return array();
+		}
+
+		if ( $fromSlave ) {
+			$db = wfGetDB( DB_SLAVE );
+		} else {
+			$db = wfGetDB( DB_MASTER );
+		}
+		$conds = $db->makeList( $conds, LIST_OR );
+		if ( !$isAnon ) {
+			$conds = array( $conds, 'ipb_anon_only' => 0 );
+		}
+		$selectFields = array_merge(
+			array( 'ipb_range_start', 'ipb_range_end' ),
+			Block::selectFields()
+		);
+		$rows = $db->select( 'ipblocks',
+			$selectFields,
+			$conds,
+			__METHOD__,
+			array( 'ORDER BY' => 'ipb_anon_only ASC, ipb_create_account DESC' )
+		);
+
+		foreach ( $rows as $row ) {
+			$block = self::newFromRow( $row );
+			if ( !$block->deleteIfExpired()  ) {
+				$blocks[] = $block;
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $blocks;
+	}
+
+	/**
+	 * From a list of multiple blocks, find the most exact and strongest Block.
+	 * The logic for finding the "best" block is:
+	 *  - Blocks that match the block's target IP are preferred over ones in a range
+	 *  - Hardblocks are chosen over softblocks that prevent account creation
+	 *  - Softblocks that prevent account creation are chosen over other softblocks
+	 *  - Other softblocks are chosen over autoblocks
+	 *  - If there are multiple exact or range blocks at the same level, the one chosen
+	 *    is random
+
+	 * @param Array $ipChain list of IPs (strings). This is used to determin how "close"
+	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
+	 *	  The order is furthest from the server to nearest (e.g., explode(',', $xff) )
+	 * @param Array $block Array of blocks, sorted with hard blocks before soft blocks,
+	 *	  and ones that disable account creation before those that don't. The db query
+	 *	  probably had 'ORDER BY' => 'ipb_anon_only ASC, ipb_create_account DESC'
+	 * @return Block|null the "best" block from the list
+	 */
+	public static function chooseBlock( array $blocks, array $ipChain  ) {
+		if ( !count( $blocks ) ) {
+			return null;
+		} elseif ( count( $blocks ) == 1 ) {
+			return array_pop( $blocks );
+		}
+
+		wfProfileIn( __METHOD__ );
+		$blocksListExact = array(
+			'hard' => false,
+			'disable_create' => false,
+			'other' => false,
+			'auto' => false
+		);
+		$blocksListRange = array(
+			'hard' => false,
+			'disable_create' => false,
+			'other' => false,
+			'auto' => false
+		);
+		$ipChain = array_reverse( $ipChain );
+
+		foreach ( $blocks as $block ) {
+			// Stop searching if we have already have a "better" block. This
+			// is why the order of the blocks matters
+			if ( !$block->isHardblock() && $blocksListExact['hard'] ) {
+				break;
+			} elseif ( !$block->prevents( 'createaccount' ) && $blocksListExact['disable_create'] ) {
+				break;
+			}
+
+			foreach ( $ipChain as $checkip ) {
+				$checkipHex = IP::toHex( $checkip );
+				if ( (string)$block->getTarget() === $checkip ) {
+					if ( $block->isHardblock() ) {
+						$blocksListExact['hard'] = $blocksListExact['hard'] ?: $block;
+					} elseif ( $block->prevents( 'createaccount' ) ) {
+						$blocksListExact['disable_create'] = $blocksListExact['disable_create'] ?: $block;
+					} elseif ( $block->mAuto ) {
+						$blocksListExact['auto'] = $blocksListExact['auto'] ?: $block;
+					} else {
+						$blocksListExact['other'] = $blocksListExact['other'] ?: $block;
+					}
+					// We found closest exact match in the ip list, so go to the next Block
+					break;
+				} elseif ( !array_filter( $blocksListExact )
+					&& $block->getRangeStart() <= $checkipHex
+					&& $block->getRangeEnd() >= $checkipHex
+				) {
+					if ( $block->isHardblock() ) {
+						$blocksListRange['hard'] = $blocksListRange['hard'] ?: $block;
+					} elseif ( $block->prevents( 'createaccount' ) ) {
+						$blocksListRange['disable_create'] = $blocksListRange['disable_create'] ?: $block;
+					} elseif ( $block->mAuto ) {
+						$blocksListRange['auto'] = $blocksListRange['auto'] ?: $block;
+					} else {
+						$blocksListRange['other'] = $blocksListRange['other'] ?: $block;
+					}
+					break;
+				}
+			}
+		}
+
+		$blocksList = &$blocksListExact;
+		if ( !array_filter( $blocksListExact ) ) {
+			$blocksList = &$blocksListRange;
+		}
+
+		$chosenBlock = null;
+		if ( $blocksList['hard'] ) {
+			$chosenBlock = $blocksList['hard'];
+		} elseif ( $blocksList['disable_create'] ) {
+			$chosenBlock = $blocksList['disable_create'];
+		} elseif ( $blocksList['other'] ) {
+			$chosenBlock = $blocksList['other'];
+		} elseif ( $blocksList['auto'] ) {
+			$chosenBlock = $blocksList['auto'];
+		} else {
+			throw new MWException( "Proxy block found, but couldn't be classified." );
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $chosenBlock;
+	}
+
 	/**
 	 * From an existing Block, get the target and the type of target.
 	 * Note that, except for null, it is always safe to treat the target
