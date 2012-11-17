@@ -1115,6 +1115,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		// Clear any file cache entries
+		$this->clearCache();
+
 		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
 		$async = ( $this->parallelize === 'implicit' );
 		$maxConcurrency = $this->concurrency; // throttle
