@@ -10497,6 +10497,29 @@ Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiw
 !! end
 
 !! test
+Proper conversion of text in external links
+!! options
+language=sr variant=sr-ec
+!! input
+http://www.google.com
+gopher://www.google.com
+[http://www.google.com http://www.google.com]
+[gopher://www.google.com gopher://www.google.com]
+[https://www.google.com irc://www.google.com]
+[ftp://www.google.com www.google.com/ftp://dir]
+[//www.google.com www.google.com]
+!! result
+<p><a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
+<a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
+<a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
+<a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
+<a rel="nofollow" class="external text" href="https://www.google.com">irc://www.google.com</a>
+<a rel="nofollow" class="external text" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
+<a rel="nofollow" class="external text" href="//www.google.com">www.гоогле.цом</a>
+</p>
+!! end
+
+!! test
 Do not convert roman numbers to language variants
 !! options
 language=sr variant=sr-ec

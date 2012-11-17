@@ -391,21 +391,6 @@ class KkConverter extends LanguageConverter {
 	}
 
 	/**
-	 * We want our external link captions to be converted in variants,
-	 * so we return the original text instead -{$text}-, except for URLs
-	 *
-	 * @param $text string
-	 * @param $noParse string|bool
-	 *
-	 * @return string
-	 */
-	function markNoConversion( $text, $noParse = false ) {
-		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
-			return parent::markNoConversion( $text );
-		return $text;
-	}
-
-	/**
 	 * @param $key string
 	 * @return String
 	 */

@@ -1314,7 +1314,8 @@ class Parser {
 		if ( $text === false ) {
 			# Not an image, make a link
 			$text = Linker::makeExternalLink( $url,
-				$this->getConverterLanguage()->markNoConversion($url), true, 'free',
+				$this->getConverterLanguage()->markNoConversion( $url, true ),
+				true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters

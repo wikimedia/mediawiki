@@ -3690,15 +3690,24 @@ class Language {
 	}
 
 	/**
-	 * Enclose a string with the "no conversion" tag. This is used by
-	 * various functions in the Parser
+	 * Prepare external link text for conversion. When the text is
+	 * a URL, it shouldn't be converted, and it'll be wrapped in
+	 * the "raw" tag (-{R| }-) to prevent conversion.
 	 *
-	 * @param $text String: text to be tagged for no conversion
-	 * @param $noParse bool
+	 * This function is called "markNoConversion" for historical
+	 * reasons.
+	 *
+	 * @param $text String: text to be used for external link
+	 * @param $noParse bool: wrap it without confirming it's a real URL first
 	 * @return string the tagged text
 	 */
 	public function markNoConversion( $text, $noParse = false ) {
-		return $this->mConverter->markNoConversion( $text, $noParse );
+		// Excluding protocal-relative URLs may avoid many false positives.
+		if ( $noParse || preg_match( '/^(?:' . wfUrlProtocolsWithoutProtRel() . ')/', $text ) ) {
+			return $this->mConverter->markNoConversion( $text );
+		} else {
+			return $text;
+		}
 	}
 
 	/**
