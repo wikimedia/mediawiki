@@ -244,7 +244,7 @@ abstract class UploadBase {
 			// @TODO: just make uploads work with storage paths
 			// UploadFromStash loads files via virtuals URLs
 			$tmpFile = $repo->getLocalCopy( $srcPath );
-			$tmpFile->bind( $this ); // keep alive with $thumb
+			$tmpFile->bind( $this ); // keep alive with $this
 			wfProfileOut( __METHOD__ );
 			return $tmpFile->getPath();
 		}
