@@ -60,7 +60,7 @@ class wikiStatsOutput extends statsOutput {
 			echo ', as well as the following languages that are not intended for system message translations, usually because they redirect to other language codes: ' . implode( ', ', $dummyCodes );
 		}
 		echo ".\n\n"; # dot to end sentence
-		echo '{| class="sortable wikitable" border="2" cellpadding="4" cellspacing="0" style="background-color: #F9F9F9; border: 1px #AAAAAA solid; border-collapse: collapse; clear:both;" width="100%"' . "\n";
+		echo '{| class="sortable wikitable" border="2" style="background-color: #F9F9F9; border: 1px #AAAAAA solid; border-collapse: collapse; clear:both; width:100%;"' . "\n";
 	}
 	function footer() {
 		echo "|}\n";
@@ -96,7 +96,7 @@ class wikiStatsOutput extends statsOutput {
 		$color = $red . $green . $blue;
 
 		$percent = parent::formatPercent( $subset, $total, $revert, $accuracy );
-		return 'bgcolor="#' . $color . '"|' . $percent;
+		return 'style="background-color:#' . $color . ';"|' . $percent;
 	}
 }
 
