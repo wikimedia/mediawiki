@@ -118,9 +118,11 @@ due to database schema changes.
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
 new database fields are filled with data.
 
-If you are upgrading from MediaWiki 1.4.x or earlier, some major database
-changes are made, and there is a slightly higher chance that things could
-break. Don't forget to always back up your database before upgrading!
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
