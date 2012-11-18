@@ -310,8 +310,12 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doConcatenate( array $params ) {
 		$status = Status::newGood();
+
 		$tmpPath = $params['dst']; // convenience
 		unset( $params['latest'] ); // sanity
+		$callback = isset( $params['callback'] )
+			? $params['callback']
+			: function( Status $status, $segment ) {};
 
 		// Check that the specified temp file is valid...
 		wfSuppressWarnings();
@@ -319,6 +323,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfRestoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
+			$callback( $status, null ); // update progress
 			return $status;
 		}
 
@@ -329,6 +334,7 @@ abstract class FileBackendStore extends FileBackend {
 				$fsFile = $this->getLocalReference( array( 'src' => $path ) );
 				if ( !$fsFile ) { // retry failed?
 					$status->fatal( 'backend-fail-read', $path );
+					$callback( $status, null ); // update progress
 					return $status;
 				}
 			}
@@ -339,16 +345,20 @@ abstract class FileBackendStore extends FileBackend {
 		$tmpHandle = fopen( $tmpPath, 'ab' );
 		if ( $tmpHandle === false ) {
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
+			$callback( $status, null ); // update progress
 			return $status;
 		}
 
+		$segment = 0; // segment number
 		// Build up the temp file using the source chunks (in order)...
 		foreach ( $fsFiles as $virtualSource => $fsFile ) {
+			++$segment; // first segment is "1"
 			// Get a handle to the local FS version
 			$sourceHandle = fopen( $fsFile->getPath(), 'rb' );
 			if ( $sourceHandle === false ) {
 				fclose( $tmpHandle );
 				$status->fatal( 'backend-fail-read', $virtualSource );
+				$callback( $status, null ); // update progress
 				return $status;
 			}
 			// Append chunk to file (pass chunk size to avoid magic quotes)
@@ -356,16 +366,20 @@ abstract class FileBackendStore extends FileBackend {
 				fclose( $sourceHandle );
 				fclose( $tmpHandle );
 				$status->fatal( 'backend-fail-writetemp', $tmpPath );
+				$callback( $status , null );
 				return $status;
 			}
 			fclose( $sourceHandle );
+			$callback( $status, $segment ); // update progress (chunk success)
 		}
 		if ( !fclose( $tmpHandle ) ) {
 			$status->fatal( 'backend-fail-closetemp', $tmpPath );
+			$callback( $status, null ); // update progress
 			return $status;
 		}
 
 		clearstatcache(); // temp file changed
+		$callback( $status, null ); // update progress (full success)
 
 		return $status;
 	}
