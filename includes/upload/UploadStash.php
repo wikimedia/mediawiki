@@ -182,7 +182,7 @@ class UploadStash {
 	 * @return UploadStashFile: file, or null on failure
 	 */
 	public function stashFile( $path, $sourceType = null ) {
-		if ( ! file_exists( $path ) ) {
+		if ( !is_file( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
@@ -192,12 +192,10 @@ class UploadStash {
 		// we will be initializing from some tmpnam files that don't have extensions.
 		// most of MediaWiki assumes all uploaded files have good extensions. So, we fix this.
 		$extension = self::getExtensionForPath( $path );
-		if ( ! preg_match( "/\\.\\Q$extension\\E$/", $path ) ) {
+		if ( !preg_match( "/\\.\\Q$extension\\E$/", $path ) ) {
 			$pathWithGoodExtension = "$path.$extension";
-			if ( ! rename( $path, $pathWithGoodExtension ) ) {
-				throw new UploadStashFileException( "couldn't rename $path to have a better extension at $pathWithGoodExtension" );
-			}
-			$path = $pathWithGoodExtension;
+		} else {
+			$pathWithGoodExtension = $path;
 		}
 
 		// If no key was supplied, make one.  a mysql insertid would be totally reasonable here, except
@@ -221,7 +219,7 @@ class UploadStash {
 		wfDebug( __METHOD__ . " key for '$path': $key\n" );
 
 		// if not already in a temporary area, put it there
-		$storeStatus = $this->repo->storeTemp( basename( $path ), $path );
+		$storeStatus = $this->repo->storeTemp( basename( $pathWithGoodExtension ), $path );
 
 		if ( ! $storeStatus->isOK() ) {
 			// It is a convention in MediaWiki to only return one error per API exception, even if multiple errors
@@ -243,9 +241,6 @@ class UploadStash {
 			throw new UploadStashFileException( "Error storing file in '$path': " . wfMessage( $errorMsg, $error )->text() );
 		}
 		$stashPath = $storeStatus->value;
-
-		// we have renamed the file so we have to cleanup once done
-		unlink($path);
 
 		// fetch the current user ID
 		if ( !$this->isLoggedIn ) {

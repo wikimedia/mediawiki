@@ -120,17 +120,24 @@ class UploadFromChunks extends UploadFromFile {
 		// Get a 0-byte temp file to perform the concatenation at
 		$tmpFile = TempFSFile::factory( 'chunkedupload_', $ext );
 		$tmpPath = $tmpFile
-			? $tmpFile->getPath()
+			? $tmpFile->bind( $this )->getPath() // keep alive with $this
 			: false; // fail in concatenate()
 		// Concatenate the chunks at the temp file
+		$tStart = microtime( true );
 		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
+		$tAmount = microtime( true ) - $tStart;
 		if( !$status->isOk() ){
 			return $status;
 		}
+		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds.\n" );
 		// Update the mTempPath and mLocalFile
 		// ( for FileUpload or normal Stash to take over )
 		$this->mTempPath = $tmpPath; // file system path
+		$tStart = microtime( true );
 		$this->mLocalFile = parent::stashFile();
+		$tAmount = microtime( true ) - $tStart;
+		$this->mLocalFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
+		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds.\n" );
 
 		return $status;
 	}
@@ -203,6 +210,9 @@ class UploadFromChunks extends UploadFromFile {
 					$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
 		$dbw = $this->repo->getMasterDb();
+		// Use a quick transaction since we will upload the full temp file into shared
+		// storage, which takes time for large files. We don't want to hold locks then.
+		$dbw->begin();
 		$dbw->update(
 			'uploadstash',
 			array(
@@ -213,6 +223,7 @@ class UploadFromChunks extends UploadFromFile {
 			array( 'us_key' => $this->mFileKey ),
 			__METHOD__
 		);
+		$dbw->commit();
 	}
 
 	/**
