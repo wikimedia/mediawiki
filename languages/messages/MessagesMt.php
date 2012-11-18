@@ -1941,15 +1941,16 @@ Daħħal: tip/sottotip, eż. <code>image/jpeg</code>.",
 'disambiguations-text' => "Il-Paġni li jinsabu f'din lista huma parti minn '''paġna ta' diżambigwazzjoni''' b'hekk għandhom jiġu relatati mas-suġġett preċiż minflok. <br />
 Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu mit-template elenkat f'[[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects' => 'Riindirizzi doppji',
-'doubleredirectstext' => 'Din il-paġna telenka dawk il-paġni li jindirizzaw lejn paġna oħra ta\' riindirizzament.
-Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn tirrindirizza t-tieni paġna, is-soltu magħrufa bħalha l-paġna "reali" fejn se twassal, fejn suppost l-ewwel riindirizz għandu jipponta.',
+'doubleredirects' => 'Rindirizzi doppji',
+'doubleredirectstext' => 'Din il-paġna telenka dawk il-paġni li jindirizzaw lejn paġna oħra ta\' rindirizzament.
+Kull filliera għandha ħolqa għall-ewwel u t-tieni rindirizz, kif ukoll fejn tirrindirizza t-tieni paġna, is-soltu magħrufa bħalha l-paġna "reali" fejn se twassal, fejn suppost l-ewwel rindirizz għandu jipponta.
+Daħliet <del>maqtugħa</del> saritilhom it-tiswija.',
 'double-redirect-fixed-move' => '[[$1]] ġie mmexxi awtomatikament, issa hu rindirizz għal [[$2]]',
 'double-redirect-fixed-maintenance' => "Tiswija ta' rindirizz doppju minn [[$1]] għal [[$2]].",
 'double-redirect-fixer' => "Tiswija ta' rindirizz",
 
-'brokenredirects' => 'Riindirizzi ħżiena',
-'brokenredirectstext' => 'Ir-riindirizzi segwenti għandhom ħoloq għal paġni ineżistenti:',
+'brokenredirects' => 'Rindirizzi ħżiena',
+'brokenredirectstext' => 'Ir-rindirizzi segwenti għandhom ħoloq lejn paġni li ma jeżistux:',
 'brokenredirects-edit' => 'editja',
 'brokenredirects-delete' => 'ħassar',
 

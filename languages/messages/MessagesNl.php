@@ -21,6 +21,7 @@
  * @author Hamaryns
  * @author Jens Liebenau
  * @author Kaganer
+ * @author Kippenvlees1
  * @author Krinkle
  * @author MarkvA
  * @author McDutchie
@@ -3295,6 +3296,8 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'markedaspatrollederror' => 'Kan niet als gecontroleerd worden aangemerkt',
 'markedaspatrollederrortext' => 'Selecteer een versie om als gecontroleerd aan te merken.',
 'markedaspatrollederror-noautopatrol' => 'U kunt uw eigen wijzigingen niet als gecontroleerd markeren.',
+'markedaspatrollednotify' => 'Deze bewerking op $1 is gemarkeerd als gecontroleerd.',
+'markedaspatrollederrornotify' => 'Markeren als gecontroleerd mislukt.',
 
 # Patrol log
 'patrol-log-page' => 'Markeerlogboek',

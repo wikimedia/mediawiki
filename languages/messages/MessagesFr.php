@@ -1813,25 +1813,25 @@ Veuillez vérifier que vous désirez vraiment importer ce fichier.',
 'fileexists' => "Un fichier existe déjà sous ce nom.
 Merci de vérifier <strong>[[:$1]]</strong> si vous n'êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
 [[$1|thumb]]",
-'filepageexists' => 'La page de description pour ce fichier a déjà été créée ici <strong>[[:$1]]</strong>, mais aucun fichier n’existe actuellement sous ce nom.
-Le résumé que vous allez spécifier n’apparaîtra pas sur la page de description.
-Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]',
+'filepageexists' => "La page de description pour ce fichier a déjà été créée ici <strong>[[:$1]]</strong>, mais aucun fichier n'existe actuellement sous ce nom.
+Le résumé que vous allez spécifier n'apparaîtra pas sur la page de description.
+Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]",
 'fileexists-extension' => 'Un fichier existe avec un nom proche : [[$2|thumb]]
 * Nom du fichier à importer : <strong>[[:$1]]</strong>
 * Nom du fichier existant : <strong>[[:$2]]</strong>
 Veuillez choisir un autre nom.',
 'fileexists-thumbnail-yes' => "Le fichier semble être une image en taille réduite ''(vignette)''. [[$1|thumb]]
 Veuillez vérifier le fichier <strong>[[:$1]]</strong>.
-Si le fichier vérifié est la même image avec la taille initiale, il n’y a pas besoin d’importer une version réduite.",
+Si le fichier vérifié est la même image avec la taille initiale, il n'y a pas besoin d'importer une version réduite.",
 'file-thumbnail-no' => "Le nom du fichier commence par <strong>$1</strong>.
-Il est possible qu’il s’agisse d’une version réduite ''(vignette)''.
+Il est possible qu'il s'agisse d'une version réduite ''(vignette)''.
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez modifier son nom.",
-'fileexists-forbidden' => 'Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
-Si vous voulez toujours importer votre fichier, merci de retourner en arrière et d’utiliser un nouveau nom. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden' => "Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
+Si vous voulez toujours importer votre fichier, merci de retourner en arrière et d'utiliser un nouveau nom. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'Un fichier portant ce nom existe déjà dans le dépôt de fichiers partagé.
 Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
-'file-deleted-duplicate' => 'Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de l’importer à nouveau.',
+'file-deleted-duplicate' => "Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de l'importer à nouveau.",
 'uploadwarning' => 'Attention !',
 'uploadwarning-text' => 'Modifiez la description du fichier et essayez de nouveau.',
 'savefile' => 'Sauvegarder le fichier',
@@ -1839,9 +1839,9 @@ Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et 
 'overwroteimage' => 'a importé une nouvelle version de « [[$1]] »',
 'uploaddisabled' => "Désolé, l'import de fichiers est désactivé.",
 'copyuploaddisabled' => 'Import de fichier par URL désactivé.',
-'uploadfromurl-queued' => 'Votre fichier a été mis dans la file d’attente.',
+'uploadfromurl-queued' => "Votre fichier a été mis dans la file d'attente.",
 'uploaddisabledtext' => "L'import de fichiers est désactivé sur ce wiki.",
-'php-uploaddisabledtext' => "L'import de fichiers a été désactivé dans PHP. Vérifiez l’option de configuration file_uploads.",
+'php-uploaddisabledtext' => "L'import de fichiers a été désactivé dans PHP. Vérifiez l'option de configuration file_uploads.",
 'uploadscripted' => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
 'uploadvirus' => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'uploadjava' => "C'est un fichier ZIP qui contient un fichier Java .class.
@@ -1854,8 +1854,8 @@ Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent contou
 'upload-description' => 'Description du fichier',
 'upload-options' => "Options d'import de fichiers",
 'watchthisupload' => 'Suivre ce fichier',
-'filewasdeleted' => 'Un fichier avec ce nom a déjà été importé, puis supprimé.
-Vous devriez vérifier $1 avant de l’importer à nouveau.',
+'filewasdeleted' => "Un fichier avec ce nom a déjà été importé, puis supprimé.
+Vous devriez vérifier $1 avant de l'importer à nouveau.",
 'filename-bad-prefix' => "Le nom du fichier commence par '''« $1 »''' qui est typiquement un nom attribué automatiquement par les appareils photo numériques.
 Veuillez choisir un nom de fichier descriptif.",
 'filename-prefix-blacklist' => ' #<!-- laisser cette ligne telle quelle --><pre>
@@ -1887,9 +1887,9 @@ $1',
 'upload-file-error-text' => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
 'upload-misc-error' => "Erreur d'import inconnue",
 'upload-misc-error-text' => "Une erreur inconnue est survenue pendant l'import.
-Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau.
+Veuillez vérifier que l'URL est valide et accessible, puis essayer à nouveau.
 Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].",
-'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
+'upload-too-many-redirects' => "L'URL contient trop de redirections.",
 'upload-unknown-size' => 'Taille inconnue',
 'upload-http-error' => 'Une erreur HTTP est survenue : $1',
 'upload-copy-upload-invalid-domain' => "La copie des téléchargements n'est pas disponible depuis ce domaine.",
@@ -1900,7 +1900,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-notexists' => "Le fichier $1 n'existe pas.",
 'backend-fail-hashes' => "Impossible d'obtenir les hachages du fichier pour comparaison.",
 'backend-fail-notsame' => 'Un fichier différent existe déjà pour $1 .',
-'backend-fail-invalidpath' => '$1 n’est pas un chemin de stockage valide.',
+'backend-fail-invalidpath' => "$1 n'est pas un chemin de stockage valide.",
 'backend-fail-delete' => 'Impossible de supprimer le fichier $1.',
 'backend-fail-alreadyexists' => 'Le fichier $1 existe déjà.',
 'backend-fail-store' => 'Impossible de stocker le fichier $1 en $2.',
@@ -1910,26 +1910,26 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-writetemp' => "Impossible d'écrire dans le fichier temporaire.",
 'backend-fail-closetemp' => 'Impossible de fermer le fichier temporaire.',
 'backend-fail-read' => 'Impossible de lire le fichier $1.',
-'backend-fail-create' => 'Impossible d’écrire le fichier $1.',
-'backend-fail-maxsize' => "Impossible d’écrire le fichier $1 parce qu'il est plus grand {{PLURAL:$2|qu'un octet|que $2 octets}}.",
+'backend-fail-create' => "Impossible d'écrire le fichier $1.",
+'backend-fail-maxsize' => "Impossible d'écrire le fichier $1 parce qu'il est plus grand {{PLURAL:$2|qu'un octet|que $2 octets}}.",
 'backend-fail-readonly' => 'Le support de stockage "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
 'backend-fail-synced' => 'Le fichier "$1" est dans un état incohérent dans les supports de stockage internes',
 'backend-fail-connect' => 'Impossible de se connecter au support de stockage "$1".',
 'backend-fail-internal' => 'Une erreur inconnue s\'est produite dans le support de stockage "$1".',
 'backend-fail-contenttype' => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 'backend-fail-batchsize' => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
-'backend-fail-usable' => 'Impossible de lire ou d’écrire le fichier « $1 » en raison de droits insuffisants ou répertoires/conteneurs manquants.',
+'backend-fail-usable' => "Impossible de lire ou d'écrire le fichier « $1 » en raison de droits insuffisants ou répertoires/conteneurs manquants.",
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Impossible de se connecter à la base de données du journal pour le terminal de stockage "$1".',
 'filejournal-fail-dbquery' => 'Impossible de mettre à jour la base de données du journal pour le terminal de stockage "$1".',
 
 # Lock manager
-'lockmanager-notlocked' => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',
+'lockmanager-notlocked' => "Impossible de déverrouiller « $1 » ; elle n'est pas verrouillée.",
 'lockmanager-fail-closelock' => 'Impossible de fermer le fichier de verrou pour « $1 ».',
 'lockmanager-fail-deletelock' => 'Impossible de supprimer le fichier de verrou pour « $1 ».',
-'lockmanager-fail-acquirelock' => 'Impossible d’obtenir le verrou pour « $1 ».',
-'lockmanager-fail-openlock' => 'Impossible d’ouvrir le fichier de verrou pour « $1» .',
+'lockmanager-fail-acquirelock' => "Impossible d'obtenir le verrou pour « $1 ».",
+'lockmanager-fail-openlock' => "Impossible d'ouvrir le fichier de verrou pour « $1» .",
 'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour « $1 ».',
 'lockmanager-fail-db-bucket' => 'Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.',
 'lockmanager-fail-db-release' => 'Impossible de relâcher les verrous sur la base de données $1.',
@@ -1937,8 +1937,8 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'lockmanager-fail-svr-release' => 'Impossible de relâcher les verrous sur le serveur $1.',
 
 # ZipDirectoryReader
-'zip-file-open-error' => 'Une erreur s’est produite lors de l’ouverture du fichier ZIP pour contrôle.',
-'zip-wrong-format' => 'Le fichier spécifié n’est pas une archive ZIP.',
+'zip-file-open-error' => "Une erreur s'est produite lors de l'ouverture du fichier ZIP pour contrôle.",
+'zip-wrong-format' => "Le fichier spécifié n'est pas une archive ZIP.",
 'zip-bad' => 'Le fichier est une archive ZIP corrompue ou illisible.
 Il ne peut pas être correctement vérifié pour la sécurité.',
 'zip-unsupported' => 'Le fichier est une archive ZIP qui utilise des caractéristiques non supportées par MediaWiki. 
@@ -1956,16 +1956,16 @@ Sa sécurité ne peut pas être correctement vérifiée.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Accès refusé',
-'img-auth-nopathinfo' => 'PATH_INFO manquant.
-Votre serveur n’est pas paramétré pour passer cette information.
+'img-auth-nopathinfo' => "PATH_INFO manquant.
+Votre serveur n'est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
-Voyez https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir' => "Le chemin demandé n’est pas le répertoire d'import configuré.",
+Voyez https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-notindir' => "Le chemin demandé n'est pas le répertoire d'import configuré.",
 'img-auth-badtitle' => 'Impossible de construire un titre valide à partir de « $1 ».',
-'img-auth-nologinnWL' => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
-'img-auth-nofile' => 'Le fichier « $1 » n’existe pas.',
-'img-auth-isdir' => 'Vous essayez d’accéder au répertoire « $1 ».
-Seul l’accès aux fichiers est permis.',
+'img-auth-nologinnWL' => "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",
+'img-auth-nofile' => "Le fichier « $1 » n'existe pas.",
+'img-auth-isdir' => "Vous essayez d'accéder au répertoire « $1 ».
+Seul l'accès aux fichiers est permis.",
 'img-auth-streaming' => 'Lecture en continu de « $1 ».',
 'img-auth-public' => 'La fonction de img_auth.php est d’afficher des fichiers d’un wiki privé.
 Ce wiki est configuré comme un wiki public.

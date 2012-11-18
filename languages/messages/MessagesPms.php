@@ -3502,8 +3502,8 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 # Live preview
 'livepreview-loading' => "Antramentr ch'as caria…",
 'livepreview-ready' => "Antramentr ch'as caria… Carià.",
-'livepreview-failed' => 'La "preuva dal viv" a l\'é falìa!
-Ch\'a preuva an manera sòlita.',
+'livepreview-failed' => "La preuva dal viv a l'é falìa!
+Ch'a preuva an manera sòlita.",
 'livepreview-error' => 'Conession falà: $1 "$2"
 Ch\'a preuva an manera sòlita.',
 

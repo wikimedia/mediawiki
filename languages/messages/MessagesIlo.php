@@ -2907,6 +2907,8 @@ Daytoy ket mabalin a gapuanan babaen ti panilpo a naiparit ti akin ruar a pagsaa
 'markedaspatrollederror' => 'Madi a mamarkaan a kas napatruliaan',
 'markedaspatrollederrortext' => 'Nasken a naganam ti maysa a rebision tapno mamarkaan a kas napatruliaan.',
 'markedaspatrollederror-noautopatrol' => 'Saanmo a mabalin a markaan dagita sinukatam a kas napatruliaan.',
+'markedaspatrollednotify' => 'Daytoy a panagbaliw ti $1 ket namarkaanen a kas napatruliaan.',
+'markedaspatrollederrornotify' => 'Ti panagmarka a kas napatruliaan ket napaay.',
 
 # Patrol log
 'patrol-log-page' => 'Listaan ti napatruliaan',

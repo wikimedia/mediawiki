@@ -3176,6 +3176,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'markedaspatrollederror' => 'Kan inte markera som patrullerad',
 'markedaspatrollederrortext' => 'Det går inte att markera som patrullerad utan att ange version.',
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
+'markedaspatrollederrornotify' => 'Markering som patrullerad misslyckades.',
 
 # Patrol log
 'patrol-log-page' => 'Patrulleringslogg',
