@@ -81,7 +81,8 @@ div.emptyPortlet {
 	display: none;
 }
 #p-personal ul {
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	margin: 0;
 	padding-left: 10em; /* Keep from overlapping logo */
 }
@@ -131,7 +132,8 @@ div.vectorTabs ul {
 }
 div.vectorTabs ul {
 	height: 100%;
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	margin: 0;
 	padding: 0;
 }
@@ -304,9 +306,8 @@ div.vectorMenu ul {
 	background-color: white;
 	border: solid 1px silver;
 	border-top-width: 0;
-	list-style: none;
-	list-style-image: none;
 	list-style-type: none;
+	list-style-image: none;
 	padding: 0;
 	margin: 0;
 	margin-left: -1px;
@@ -485,9 +486,8 @@ div#mw-panel div.portal div.body {
 	background-position: top left;
 }
 div#mw-panel div.portal div.body ul {
-	list-style: none;
-	list-style-image: none;
 	list-style-type: none;
+	list-style-image: none;
 	padding: 0;
 	margin: 0;
 }
@@ -517,9 +517,8 @@ div#footer {
 	direction: ltr;
 }
 div#footer ul {
-	list-style: none;
-	list-style-image: none;
 	list-style-type: none;
+	list-style-image: none;
 	margin: 0;
 	padding: 0;
 }
@@ -687,6 +686,7 @@ div#content {
 }
 
 ul {
+	list-style-type: disc;
 	/* @embed */
 	list-style-image: url(images/bullet-icon.png);
 }

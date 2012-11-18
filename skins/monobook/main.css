@@ -71,6 +71,7 @@ a.new,
 }
 
 ul {
+	list-style-type: square;
 	/* @embed */
 	list-style-image: url(bullet.gif);
 }
@@ -268,9 +269,6 @@ table.rimage {
 }
 .portlet ul {
 	line-height: 1.5em;
-	list-style-type: square;
-	/* @embed */
-	list-style-image: url(bullet.gif);
 	font-size: 95%;
 }
 .portlet li {
@@ -372,7 +370,8 @@ input.searchButton {
 	padding: 0 2em 0 3em;
 	margin: 0;
 	text-align: right;
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	z-index: 0;
 	background: none;
 	cursor: default;
@@ -432,11 +431,11 @@ li#pt-login {
 	background: none;
 	border-collapse: collapse;
 	padding-left: 1em;
-	list-style: none;
 	font-size: 95%;
 }
 #p-cactions ul {
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 }
 #p-cactions li {
 	display: inline;
@@ -824,7 +823,8 @@ div#searchTarget {
 }
 
 div#searchTarget ul li {
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 }
 
 div#searchTarget ul li:before {
