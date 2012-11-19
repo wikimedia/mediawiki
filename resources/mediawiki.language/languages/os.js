@@ -4,23 +4,24 @@
  */
 
 
-mediaWiki.language.convertGrammar = function( word, form ) {
-	var grammarForms = mw.language.getData( 'os', 'grammarForms' );
+mediaWiki.language.convertGrammar = function ( word, form ) {
+	var grammarForms = mediaWiki.language.getData( 'os', 'grammarForms' ),
+		// Ending for allative case
+		endAllative = 'мæ',
+		// Variable for 'j' beetwen vowels
+		jot = '',
+		// Variable for "-" for not Ossetic words
+		hyphen = '',
+		// Variable for ending
+		ending = '';
+
 	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word] ;
+		return grammarForms[form][word];
 	}
-	// Ending for allative case
-	var end_allative = 'мæ';
-	// Variable for 'j' beetwen vowels
-	var jot = '';
-	// Variable for "-" for not Ossetic words
-	var hyphen = '';
-	// Variable for ending
-	var ending = '';
 	// Checking if the $word is in plural form
 	if ( word.match( /тæ$/i ) ) {
 		word = word.substring( 0, word.length - 1 );
-		end_allative = 'æм';
+		endAllative = 'æм';
 	}
 	// Works if word is in singular form.
 	// Checking if word ends on one of the vowels: е, ё, и, о, ы, э, ю, я.
@@ -45,10 +46,10 @@ mediaWiki.language.convertGrammar = function( word, form ) {
 			ending = hyphen + jot + 'æн';
 			break;
 		case 'allative':
-			ending = hyphen + end_allative;
+			ending = hyphen + endAllative;
 			break;
 		case 'ablative':
-			if ( jot == 'й' ) {
+			if ( jot === 'й' ) {
 				ending = hyphen + jot + 'æ';
 			}
 			else {

@@ -3,21 +3,24 @@
  *  @author Santhosh Thottingal
  */
 
-mediaWiki.language.convertGrammar = function( word, form ) {
-	var grammarForms = mw.language.getData( 'fi', 'grammarForms' );
+mediaWiki.language.convertGrammar = function ( word, form ) {
+	var grammarForms, aou, origWord;
+
+	grammarForms = mediaWiki.language.getData( 'fi', 'grammarForms' );
 	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word] ;
+		return grammarForms[form][word];
 	}
 
 	// vowel harmony flag
-	var aou = word.match( /[aou][^äöy]*$/i );
-	var origWord = word;
+	aou = word.match( /[aou][^äöy]*$/i );
+	origWord = word;
 	if ( word.match( /wiki$/i ) ) {
 		aou = false;
 	}
 	//append i after final consonant
-	if ( word.match( /[bcdfghjklmnpqrstvwxz]$/i ) )
+	if ( word.match( /[bcdfghjklmnpqrstvwxz]$/i ) ) {
 		word += 'i';
+	}
 
 	switch ( form ) {
 		case 'genitive':
