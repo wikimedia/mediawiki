@@ -427,23 +427,75 @@
 	}
 
 	function explodeRowspans( $table ) {
-		// Split multi row cells into multiple cells with the same content
-		$table.find( '> tbody > tr > [rowspan]' ).each(function () {
-			var rowSpan = this.rowSpan;
-			this.rowSpan = 1;
-			var cell = $( this );
-			var next = cell.parent().nextAll();
+		var cells = $table.find( '> tbody > tr > [rowspan]' ).get();
+
+		// Short circuit
+		if ( !cells.length ) {
+			return;
+		}
+
+		// First, we need to make a property like cellIndex but taking into
+		// account colspans. We also cache the rowIndex to avoid having to take
+		// cell.parentNode.rowIndex in the sorting function below.
+		$table.find( '> tbody > tr > td, > tbody > tr > th' ).each( function () {
+			this.realCellIndex = this.cellIndex;
+			this.realRowIndex = this.parentNode.rowIndex;
+		} );
+		$table.find( '> tbody > tr > [colspan]' ).each( function () {
+			var delta = this.colSpan - 1;
+			if ( delta > 0 ) {
+				$( this ).nextAll( 'th, td' ).each( function () {
+					this.realCellIndex += delta;
+				} );
+			}
+		} );
+
+		// Split multi row cells into multiple cells with the same content.
+		// Sort by column then row index to avoid problems with odd table structures.
+		// Re-sort whenever a rowspanned cell's realCellIndex is changed, because it
+		// might change the sort order.
+		function resortCells() {
+			cells = cells.sort( function ( a, b ) {
+				var ret = a.realCellIndex - b.realCellIndex;
+				if ( !ret ) {
+					ret = a.realRowIndex - b.realRowIndex;
+				}
+				return ret;
+			} );
+			$.each( cells, function () {
+				this.needResort = false;
+			} );
+		}
+		resortCells();
+		while ( cells.length ) {
+			if ( cells[0].needResort ) {
+				resortCells();
+			}
+
+			var cell = cells.shift();
+			var rowSpan = cell.rowSpan;
+			var colSpan = cell.colSpan;
+			var cellIndex = cell.realCellIndex;
+			cell.rowSpan = 1;
+			var filterfunc = function () {
+				return this.realCellIndex >= cellIndex;
+			};
+			var next = $( cell ).parent().nextAll();
 			for ( var i = 0; i < rowSpan - 1; i++ ) {
-				var td = next.eq( i ).children( 'td' );
-				if ( !td.length ) {
-					next.eq( i ).append( cell.clone() );
-				} else if ( this.cellIndex === 0 ) {
-					td.eq( this.cellIndex ).before( cell.clone() );
+				var td = next.eq( i ).children( 'th, td' ).filter( filterfunc );
+				var clone = $( cell ).clone();
+				clone.realCellIndex = cellIndex;
+				if ( td.length ) {
+					td.each( function () {
+						this.realCellIndex += colSpan;
+						if ( this.rowSpan > 1 ) this.needResort = true;
+					} );
+					td.first().before( clone );
 				} else {
-					td.eq( this.cellIndex - 1 ).after( cell.clone() );
+					next.eq( i ).append( clone );
 				}
 			}
-		});
+		}
 	}
 
 	function buildCollationTable() {
