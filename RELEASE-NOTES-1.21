@@ -102,6 +102,7 @@ production.
   <h4>, <h5> or <h6> to only <h3>s, with a <h2> hidden heading above them.
   If you are styling or scripting the headings in a custom way, this change
   will require updates to your site's CSS or JS.
+* (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
