@@ -51,7 +51,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
+	 * Returns the english language, because JS is english, and should be handled as such.
 	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
