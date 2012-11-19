@@ -67,6 +67,7 @@
  */
 
 ( function ( $, mw ) {
+	/*jshint onevar:false */
 
 	/* Local scope */
 
@@ -303,7 +304,7 @@
 			}
 
 			if ( !this.sortDisabled ) {
-				var $th = $( this ).addClass( table.config.cssHeader ).attr( 'title', msg[1] );
+				$( this ).addClass( table.config.cssHeader ).attr( 'title', msg[1] );
 			}
 
 			// add cell to headerList
@@ -329,7 +330,7 @@
 		$headers.removeClass( css[0] ).removeClass( css[1] ).attr( 'title', msg[1] );
 
 		var h = [];
-		$headers.each( function ( offset ) {
+		$headers.each( function () {
 			if ( !this.sortDisabled ) {
 				h[this.column] = $( this );
 			}
@@ -380,8 +381,8 @@
 			ts.transformTable = {};
 
 			// Unpack the transform table
-			var ascii = separatorTransformTable[0].split( "\t" ).concat( digitTransformTable[0].split( "\t" ) );
-			var localised = separatorTransformTable[1].split( "\t" ).concat( digitTransformTable[1].split( "\t" ) );
+			var ascii = separatorTransformTable[0].split( '\t' ).concat( digitTransformTable[0].split( '\t' ) );
+			var localised = separatorTransformTable[1].split( '\t' ).concat( digitTransformTable[1].split( '\t' ) );
 
 			// Construct regex for number identification
 			for ( var i = 0; i < ascii.length; i++ ) {
@@ -393,9 +394,9 @@
 
 		// We allow a trailing percent sign, which we just strip. This works fine
 		// if percents and regular numbers aren't being mixed.
-		ts.numberRegex = new RegExp("^(" + "[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
-		"|" + "[-+\u2212]?" + digitClass + "+[\\s\\xa0]*%?" + // Generic localised
-		")$", "i");
+		ts.numberRegex = new RegExp('^(' + '[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?' + // Fortran-style scientific
+		'|' + '[-+\u2212]?' + digitClass + '+[\\s\\xa0]*%?' + // Generic localised
+		')$', 'i');
 	}
 
 	function buildDateTable() {
@@ -543,9 +544,8 @@
 			construct: function ( $tables, settings ) {
 				return $tables.each( function ( i, table ) {
 					// Declare and cache.
-					var $document, $headers, cache, config, sortOrder,
+					var $headers, cache, config,
 						$table = $( table ),
-						shiftDown = 0,
 						firstTime = true;
 
 					// Quit if no tbody
@@ -562,7 +562,7 @@
 							return;
 						}
 					}
-					$table.addClass( "jquery-tablesorter" );
+					$table.addClass( 'jquery-tablesorter' );
 
 					// FIXME config should probably not be stored in the plain table node
 					// New config object.
@@ -610,7 +610,7 @@
 
 						// try to auto detect column type, and store in tables config
 						table.config.parsers = buildParserCache( table, $headers );
-					};
+					}
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
@@ -635,9 +635,6 @@
 
 						var totalRows = ( $table[0].tBodies[0] && $table[0].tBodies[0].rows.length ) || 0;
 						if ( !table.sortDisabled && totalRows > 0 ) {
-
-							// Cache jQuery object
-							var $cell = $( this );
 
 							// Get current column index
 							var i = this.column;
@@ -747,10 +744,10 @@
 			},
 
 			formatDigit: function ( s ) {
+				var out, c, p, i;
 				if ( ts.transformTable !== false ) {
-					var out = '',
-						c;
-					for ( var p = 0; p < s.length; p++ ) {
+					out = '';
+					for ( p = 0; p < s.length; p++ ) {
 						c = s.charAt(p);
 						if ( c in ts.transformTable ) {
 							out += ts.transformTable[c];
@@ -760,31 +757,22 @@
 					}
 					s = out;
 				}
-				var i = parseFloat( s.replace( /[, ]/g, '' ).replace( "\u2212", '-' ) );
-				return ( isNaN(i)) ? 0 : i;
+				i = parseFloat( s.replace( /[, ]/g, '' ).replace( '\u2212', '-' ) );
+				return isNaN( i ) ? 0 : i;
 			},
 
 			formatFloat: function ( s ) {
 				var i = parseFloat(s);
-				return ( isNaN(i)) ? 0 : i;
+				return isNaN( i ) ? 0 : i;
 			},
 
 			formatInt: function ( s ) {
 				var i = parseInt( s, 10 );
-				return ( isNaN(i)) ? 0 : i;
+				return isNaN( i ) ? 0 : i;
 			},
 
 			clearTableBody: function ( table ) {
-				if ( $.browser.msie ) {
-					var empty = function ( el ) {
-						while ( el.firstChild ) {
-							el.removeChild( el.firstChild );
-						}
-					};
-					empty( table.tBodies[0] );
-				} else {
-					table.tBodies[0].innerHTML = '';
-				}
+				$( table.tBodies[0] ).empty();
 			}
 		};
 
@@ -799,7 +787,7 @@
 	// Add default parsers
 	ts.addParser( {
 		id: 'text',
-		is: function ( s ) {
+		is: function () {
 			return true;
 		},
 		format: function ( s ) {
@@ -890,7 +878,7 @@
 		is: function ( s ) {
 			return ( ts.dateRegex[0].test(s) || ts.dateRegex[1].test(s) || ts.dateRegex[2].test(s ));
 		},
-		format: function ( s, table ) {
+		format: function ( s ) {
 			var match;
 			s = $.trim( s.toLowerCase() );
 
@@ -951,7 +939,7 @@
 
 	ts.addParser( {
 		id: 'number',
-		is: function ( s, table ) {
+		is: function ( s ) {
 			return $.tablesorter.numberRegex.test( $.trim( s ));
 		},
 		format: function ( s ) {
