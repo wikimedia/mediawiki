@@ -427,3 +427,6 @@
 [submodule "extensions/UserMerge"]
 	path = extensions/UserMerge
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UserMerge.git
+[submodule "extensions/Solarium"]
+	path = extensions/Solarium
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Solarium.git
