@@ -999,7 +999,7 @@ class ApiMain extends ApiBase {
 				'Maximum lag can be used when MediaWiki is installed on a database replicated cluster.',
 				'To save actions causing any more site replication lag, this parameter can make the client',
 				'wait until the replication lag is less than the specified value.',
-				'In case of a replag error, a HTTP 503 error is returned, with the message like',
+				'In case of a replag error, error code "maxlag" is returned, with the message like',
 				'"Waiting for $host: $lag seconds lagged\n".',
 				'See https://www.mediawiki.org/wiki/Manual:Maxlag_parameter for more information',
 			),
