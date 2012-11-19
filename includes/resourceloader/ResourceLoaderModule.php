@@ -91,7 +91,7 @@ abstract class ResourceLoaderModule {
 	 * with ResourceLoader::register()
 	 *
 	 * @return Int ResourceLoaderModule class constant, the subclass default
-	 *     if not set manuall
+	 *     if not set manually
 	 */
 	public function getOrigin() {
 		return $this->origin;
