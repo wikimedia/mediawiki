@@ -559,7 +559,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$isAutoCreated = false;
-		if ( 0 == $u->getID() ) {
+		if ( $u->getID() == 0 ) {
 			$status = $this->attemptAutoCreate( $u );
 			if ( $status !== self::SUCCESS ) {
 				return $status;
@@ -569,8 +569,9 @@ class LoginForm extends SpecialPage {
 		} else {
 			global $wgExternalAuthType, $wgAutocreatePolicy;
 			if ( $wgExternalAuthType && $wgAutocreatePolicy != 'never'
-			&& is_object( $this->mExtUser )
-			&& $this->mExtUser->authenticate( $this->mPassword ) ) {
+				&& is_object( $this->mExtUser )
+				&& $this->mExtUser->authenticate( $this->mPassword )
+			) {
 				# The external user and local user have the same name and
 				# password, so we assume they're the same.
 				$this->mExtUser->linkToLocal( $u->getID() );
