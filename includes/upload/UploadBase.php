@@ -63,6 +63,8 @@ abstract class UploadBase {
 	const WINDOWS_NONASCII_FILENAME = 13;
 	const FILENAME_TOO_LONG = 14;
 
+	const SESSION_STATUS_KEY = 'wsUploadStatusData';
+
 	/**
 	 * @param $error int
 	 * @return string
@@ -785,13 +787,14 @@ abstract class UploadBase {
 	 * This method returns the file object, which also has a 'fileKey' property which can be passed through a form or
 	 * API request to find this stashed file again.
 	 *
+	 * @param $user User
 	 * @return UploadStashFile stashed file
 	 */
-	public function stashFile() {
+	public function stashFile( User $user = null ) {
 		// was stashSessionFile
 		wfProfileIn( __METHOD__ );
 
-		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
+		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
 		$this->mLocalFile = $file;
 
@@ -1494,6 +1497,28 @@ abstract class UploadBase {
 		} else {
 			return intval( $wgMaxUploadSize );
 		}
+	}
 
+	/**
+	 * Get the current status of a chunked upload (used for polling).
+	 * The status will be read from the *current* user session.
+	 * @param $statusKey string
+	 * @return Array|bool
+	 */
+	public static function getSessionStatus( $statusKey ) {
+		return isset( $_SESSION[self::SESSION_STATUS_KEY][$statusKey] )
+			? $_SESSION[self::SESSION_STATUS_KEY][$statusKey]
+			: false;
+	}
+
+	/**
+	 * Set the current status of a chunked upload (used for polling).
+	 * The status will be stored in the *current* user session.
+	 * @param $statusKey string
+	 * @param $value array|false
+	 * @return void
+	 */
+	public static function setSessionStatus( $statusKey, $value ) {
+		$_SESSION[self::SESSION_STATUS_KEY][$statusKey] = $value;
 	}
 }
