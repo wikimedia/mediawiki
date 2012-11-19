@@ -141,7 +141,7 @@ $messages = array(
 'category-article-count-limited' => 'Kategori iko mamiliki {{PLURAL:$1|ciek laman|$1 laman}} barikuik.',
 'category-file-count' => '{{PLURAL:$2|Kategori iko hanyo mamiliki ciek laman barikuik.|Kategori iko mamiliki {{PLURAL:$1|laman|$1 laman}} barikuik, dari total $2.}}',
 'category-file-count-limited' => 'Kategori iko mamiliki {{PLURAL:$1|laman|$1 laman}} barikuik.',
-'listingcontinuesabbrev' => 'cont.',
+'listingcontinuesabbrev' => 'lanjuik',
 'index-category' => 'Laman nan diindeks',
 'noindex-category' => 'Laman nan indak diindeks',
 'broken-file-category' => 'Laman jo gambar rusak',
@@ -286,9 +286,9 @@ $1',
 'youhavenewmessagesmulti' => 'Awak ang mandapek pasan baru pado $1',
 'editsection' => 'suntiang',
 'editold' => 'suntiang',
-'viewsourceold' => 'Caliak sumber',
+'viewsourceold' => 'caliak sumber',
 'editlink' => 'suntiang',
-'viewsourcelink' => 'Caliak sumber',
+'viewsourcelink' => 'caliak sumber',
 'editsectionhint' => 'Suntiang bagian: $1',
 'toc' => 'Daftar isi',
 'showtoc' => 'tampilkan',
@@ -811,7 +811,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 
 # Revision deletion
 'rev-delundel' => 'tampilkan/suruakkan',
-'revdel-restore' => 'Ganti tampilan',
+'revdel-restore' => 'ganti tampilan',
 'revdel-restore-deleted' => 'suntiangan nan alah dihapuih',
 'revdel-restore-visible' => 'tampilan revisi',
 
@@ -835,8 +835,8 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'notextmatches' => 'Indak ado judul nan pas',
 'prevn' => '{{PLURAL:$1|$1}} sabalunnyo',
 'nextn' => '{{PLURAL:$1|$1}} salanjuknyo',
-'prevn-title' => '$1 {{PLURAL:$1|hasil|hasil}} sabalunnyo',
-'nextn-title' => '$1 {{PLURAL:$1|hasil|hasil}} salanjuknyo',
+'prevn-title' => '$1 {{PLURAL:$1|Hasil|Hasil}} sabalunnyo',
+'nextn-title' => '$1 {{PLURAL:$1|Hasil|Hasil}} salanjuknyo',
 'shown-title' => 'Caliakkan $1 {{PLURAL:$1|hasil|hasil}} per laman',
 'viewprevnext' => 'Caliakkan ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Ado laman nan banamo \"[[:\$1]]\" pado wiki ko.'''",
@@ -1277,7 +1277,7 @@ Nan lainnyo akan tasuruak sacaro default.
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',
 'namespacesall' => 'semua',
-'monthsall' => 'semua',
+'monthsall' => 'sado',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tampilkan parubahan takaik',

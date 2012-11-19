@@ -2142,7 +2142,7 @@ evit gallout kas ur postel d'un implijer all.",
 'emailuser-title-target' => "Kas ur postel d'an {{PLURAL:$1|an implijer-mañ|an implijerez-mañ}}",
 'emailuser-title-notarget' => "Kas ur postel d'un implijer",
 'emailpage' => 'Postel implijer',
-'emailpagetext' => "Gallout a rit ober gant ar furmskrid a-is a-benn kas ur postel d'an implijer-mañ.
+'emailpagetext' => "Gallout a rit ober gant ar furmskrid a-is a-benn kas ur postel d'an {{GENDER:\$1|implijer|implijerez}}-mañ.
 E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h-c'hwi en ho [[Special:Preferences|Penndibaboù]], d'ar resever da c'hallout respont deoc'h war-eeun ma kar.",
 'usermailererror' => 'Fazi postel :',
 'defemailsubject' => 'Postel kaset eus {{SITENAME}} gant an implijer "$1"',
@@ -2400,7 +2400,8 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeletedrevisions' => 'Adsavet {{PLURAL:$1|1 stumm|$1 stumm}}',
 'undeletedrevisions-files' => 'Adsavet ez ez eus bet {{PLURAL:$1|1 stumm|$1 stumm}} ha {{PLURAL:$2|1 restr|$2 restr}}',
 'undeletedfiles' => '{{PLURAL:$1|1 restr|$1 restr}} adsavet',
-'cannotundelete' => "Dibosupl eo diziverkañ; moarvat eo bet diziverket gant unan bennak all araozoc'h.",
+'cannotundelete' => 'Dibosupl eo diziverkañ:
+$1',
 'undeletedpage' => "'''Diziverket eo bet $1'''
 
 Sellit ouzh [[Special:Log/delete|marilh an diverkadennoù]] evit teuler ur sell ouzh an diverkadennoù diwezhañ.",
@@ -2962,6 +2963,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-default-sort' => "Alc'hwez rummañ dre ziouer",
 'pageinfo-length' => 'Ment ar bajenn (en oktedoù)',
 'pageinfo-article-id' => 'Niverenn ar bajenn',
+'pageinfo-language' => 'Yezh ar bajenn',
 'pageinfo-robot-policy' => 'Statud al lusker klask',
 'pageinfo-robot-index' => "A c'haller menegeriñ",
 'pageinfo-robot-noindex' => "Ne c'haller ket menegeriñ",
@@ -3912,4 +3914,6 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'kaozeal',
 );

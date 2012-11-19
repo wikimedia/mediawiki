@@ -173,7 +173,7 @@ $messages = array(
 
 'underline-always' => 'Beti',
 'underline-never' => 'Inoiz ez',
-'underline-default' => 'Nabigatzailearen lehenetsitako balioa',
+'underline-default' => 'Lehenetsitako nabigatzailea',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Aldatu eremuko letra tipoa:',
@@ -258,8 +258,8 @@ $messages = array(
 'newwindow' => '(leiho berrian irekitzen da)',
 'cancel' => 'Utzi',
 'moredotdotdot' => 'Gehiago...',
-'mypage' => 'Nire orrialdea',
-'mytalk' => 'Nire eztabaida',
+'mypage' => 'Orrialdea',
+'mytalk' => 'Eztabaida',
 'anontalk' => 'IP honen eztabaida',
 'navigation' => 'Nabigazioa',
 'and' => '&#32;eta',
@@ -281,7 +281,7 @@ $messages = array(
 'vector-action-protect' => 'Babestu',
 'vector-action-undelete' => 'Berreskuratu',
 'vector-action-unprotect' => 'Babesa aldatu',
-'vector-simplesearch-preference' => 'Baimendu bilaketa gomendio hobetuak (Vector itxurarekin bakarrik)',
+'vector-simplesearch-preference' => 'Bilaketa barra sinplifikatua gaitu (Vector itxurarekin bakarrik)',
 'vector-view-create' => 'Sortu',
 'vector-view-edit' => 'Aldatu',
 'vector-view-history' => 'Historia ikusi',
@@ -493,7 +493,8 @@ Kontsulta: $2',
 Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext' => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
 'viewsourcetext' => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
-'protectedinterface' => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.',
+'protectedinterface' => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.
+Wiki guztientzako aldaketak egin edo gehitzeko, mesedez erabili [//translatewiki.net/ translatewiki.net], MediaWikiren lokalizazio proiektua.',
 'editinginterface' => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
 Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.
 Itzulpenetarako, [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
@@ -504,6 +505,7 @@ $2",
 'ns-specialprotected' => 'Ezin dira {{ns:special}} izen-tarteko orrialdeak editatu.',
 'titleprotected' => "[[User:$1|$1]]ek izenburu hau sortzea ekidin zuen.
 Emandako arrazoia ''$2'' izan zen.",
+'exception-nologin' => 'Saioa hasi gabe',
 
 # Virus scanner
 'virus-badscanner' => "Ezarpen txarrak: antibirus ezezaguna: ''$1''",
@@ -593,6 +595,7 @@ Ondorioz, ezin duzu kontu gehiago sortu.',
 'invalidemailaddress' => 'Ezin da e-posta helbide hori ontzat eman baliogabeko formatua duela dirudielako.
 
 Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
+'emaildisabled' => 'Gune honek ezin du e-postarik bidali.',
 'accountcreated' => 'Kontua sortuta',
 'accountcreatedtext' => '$1 erabiltzaile kontua sortu egin da.',
 'createaccount-title' => '{{SITENAME}}-rako kontua sortu',
@@ -734,9 +737,9 @@ Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen ba
 Beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bilatu lotutako logak],
 edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu]</span>.',
-'noarticletext-nopermission' => 'Une honetan ez dago texturik orri honetan.
-Beste orrietan [[Special:Search/{{PAGENAME}}|testua bilatu dezakezu]],
-edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} erlazionatutako erregistroak ikusi]</span>.',
+'noarticletext-nopermission' => 'Une honetan ez dago testurik orrialde honetan.
+Beste orrialdeetan [[Special:Search/{{PAGENAME}}|izenburu hau bilatu dezakezu]],
+edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} erlazionatutako erregistroak bilatu]</span>, baina ez duzu orrialde hau sortzeko baimenik.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'userpage-userdoesnotexist-view' => '"$1" erabiltzaile-kontua ez dago erregistraturik.',
 'blocked-notice-logextract' => 'Erabiltzaile hau blokeatuta dago une honetan.
@@ -760,7 +763,7 @@ Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'note' => "'''Oharra:'''",
 'previewnote' => "'''Gogoratu hau aurrikuspen bat dela.'''
 Zure aldaketak ez dira oraindik gorde!",
-'continue-editing' => 'Aldatzen jarraitu',
+'continue-editing' => 'Edizio-eremura joan',
 'previewconflict' => 'Aurreikuspenak aldaketen koadroan idatzitako testua erakusten du, gorde ondoren agertuko den bezala.',
 'session_fail_preview' => "'''Sentitzen dugu! Ezin izan da zure aldaketa prozesatu, saioko datu batzuen galera dela-eta. Mesedez, saiatu berriz. Arazoak jarraitzen badu, saiatu saioa amaitu eta berriz hasten.'''",
 'session_fail_preview_html' => "'''Sentitzen dugu! Ezin izan dugu zure aldaketa burutu, saio datu galera bat medio.'''
@@ -833,6 +836,12 @@ Ez du azalpenik eman.',
 'edit-no-change' => 'Zure edizioa baztertu da testua aldatu ez duzulako.',
 'edit-already-exists' => 'Ezin izan da orri berria sortu.
 Jada existitzen da.',
+
+# Content models
+'content-model-wikitext' => 'wikitestua',
+'content-model-text' => 'testu laua',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Adi: Orrialde honek parser funtzio deialdi oso garesti gehiegi ditu.
@@ -1107,7 +1116,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 
 # Preferences page
 'preferences' => 'Hobespenak',
-'mypreferences' => 'Nire hobespenak',
+'mypreferences' => 'Hobespenak',
 'prefs-edits' => 'Aldaketa kopurua:',
 'prefsnologin' => 'Saioa hasi gabe',
 'prefsnologintext' => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Izena eman]</span> behar duzu zure hobespenak ezartzeko.',
@@ -1118,6 +1127,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-beta' => 'Beta ezaugarriak',
 'prefs-datetime' => 'Data eta ordua',
 'prefs-labs' => 'Labs ezaugarriak',
+'prefs-user-pages' => 'Erabiltzaile orrialdeak',
 'prefs-personal' => 'Erabiltzaile profila',
 'prefs-rc' => 'Azken aldaketak',
 'prefs-watchlist' => 'Jarraipen zerrenda',
@@ -1166,7 +1176,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'timezoneregion-indian' => 'Indiar Ozeanoa',
 'timezoneregion-pacific' => 'Ozeano Barea',
 'allowemail' => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
-'prefs-searchoptions' => 'Bilaketa aukerak',
+'prefs-searchoptions' => 'Bilatu',
 'prefs-namespaces' => 'Izen-tarteak',
 'defaultns' => 'Bestela izen-tarte hauetan bilatu:',
 'default' => 'lehenetsia',
@@ -1836,7 +1846,7 @@ Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'linksearch-ok' => 'Bilatu',
 'linksearch-text' => '"*.wikipedia.org" bezalako izartxoak erabil daitezke.
 Gutxienez goi mailako domeinua behar du, adibidez "*.org".<br />
-Baimendutako protokoloak: <code>$1</code> (zure bilaketan hauek ez gehitu).',
+Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// hartzen da lehenetsitzat).',
 'linksearch-line' => '$1, $2(e)tik lotuta',
 'linksearch-error' => 'Komodinak izenaren hasieran bakarrik agertu beharko lirateke.',
 
@@ -2197,10 +2207,11 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'whatlinkshere-hideredirs' => '$1 birzuzenketak',
 'whatlinkshere-hidetrans' => '$1 transklusioak',
 'whatlinkshere-hidelinks' => '$1 loturak',
-'whatlinkshere-hideimages' => '$1 irudiak loturak ditu',
+'whatlinkshere-hideimages' => '$1 irudi loturak',
 'whatlinkshere-filters' => 'Iragazleak',
 
 # Block/unblock
+'autoblockid' => 'Blokeo automatikoa #$1',
 'block' => 'Erabiltzailea blokeatu',
 'unblock' => 'Erabiltzailea desblokeatu',
 'blockip' => 'Erabiltzailea blokeatu',
@@ -2599,6 +2610,9 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'pageinfo-header-edits' => 'Aldaketen historia',
 'pageinfo-views' => 'Bistaratze-kopurua',
 'pageinfo-edits' => 'Aldaketa kopuru totala',
+'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-contentpage-yes' => 'Bai',
+'pageinfo-protect-cascading-yes' => 'Bai',
 
 # Skin names
 'skinname-standard' => 'Lehenetsia',
@@ -3298,4 +3312,6 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'searchsuggest-search' => 'Bilatu',
 'searchsuggest-containing' => 'edukian...',
 
+# Unknown messages
+'mytalk-parenthetical' => 'eztabaida',
 );

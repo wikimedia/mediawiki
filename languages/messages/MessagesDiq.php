@@ -488,7 +488,7 @@ $messages = array(
 'updatedmarker' => 'cıkewtena mına peyêne ra dıme biyo rocane',
 'printableversion' => 'Asayışê çapkerdışi',
 'permalink' => 'Gıreyo jûqere',
-'print' => 'Çap ke',
+'print' => 'Nusten ke',
 'view' => 'Bıvin',
 'edit' => 'Bıvurnên',
 'create' => 'Vıraze',
@@ -1341,7 +1341,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searcheverything-enable' => 'cayê nameyê hemi de bigêre',
 'searchrelated' => 'eleqeyın',
 'searchall' => 'pêro',
-'showingresults' => "Heta {{PLURAL:$1|'''1''' netice|'''$1''' neticeyan}} ke pê #'''$2''' başli beno ey bimocne .",
+'showingresults' => "#$2 netican ra {{PLURAL:$1|'''1''' netica |'''$1''' neticey }} cêr deyê.",
 'showingresultsnum' => "'''$2''' netican ra nata  {{PLURAL:$3|'''1''' netice|'''$3''' neticeyê}} cêrde liste biyê.",
 'showingresultsheader' => "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' hetê '''$3'''}} qe '''$4'''",
 'nonefound' => "'''Teme''': Teyna tay namecayan cıgeyro beno.
@@ -4429,7 +4429,7 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'watchlistedit-raw-submit' => 'Listeyê seyri newen ke',
 'watchlistedit-raw-done' => 'Listeyê tuyê seyrkerdişi rocaniye biyo',
 'watchlistedit-raw-added' => '{{PLURAL:$1|1 seroğ|$1 seroğî}} de kerd:',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|1 seroğ|$1 seroğî}} de wedarno:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|1 seroğ|$1 seroği}} besteriyaye:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'vurnayışanê eleqadari bıvin',

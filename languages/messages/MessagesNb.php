@@ -3151,6 +3151,8 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'markedaspatrollederror' => 'Kan ikke merke som godkjent',
 'markedaspatrollederrortext' => 'Du må spesifisere en versjon å merke som godkjent.',
 'markedaspatrollederror-noautopatrol' => 'Du kan ikke merke dine egne endringer som godkjente.',
+'markedaspatrollednotify' => 'Denne endringen av $1 har blitt patruljert.',
+'markedaspatrollederrornotify' => 'Patruljering feilet.',
 
 # Patrol log
 'patrol-log-page' => 'Godkjenningslogg',

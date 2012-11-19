@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aig mest ei varasta
  * @author Andrijko Z.
  * @author Kaganer
  * @author Sura
@@ -221,7 +222,7 @@ $messages = array(
 'cancel' => 'Heitta pätand',
 'moredotdotdot' => 'Edeleze...',
 'mypage' => "Minun lehtpol'",
-'mytalk' => 'Minun lodud',
+'mytalk' => 'Lodud',
 'anontalk' => 'Lodud neciš IP-adresas',
 'navigation' => 'Navigacii',
 'and' => '&#32;da',
@@ -987,7 +988,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 
 # Preferences page
 'preferences' => 'Järgendused',
-'mypreferences' => 'Minun järgendused',
+'mypreferences' => 'Järgendused',
 'prefs-edits' => 'Redaktiruindoiden lugu:',
 'prefsnologin' => 'Tö et olgoi kirjutanus sistemha.',
 'prefsnologintext' => 'Teile pidab <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kirjutadas sistemha]</span>, miše toižetada järgendusid.',
@@ -1385,7 +1386,7 @@ Ku problem jäb jäl'ghepäi-ki, säkat pagin [[Special:ListUsers/sysop|sistemad
 'backend-fail-writetemp' => 'Ei voi toižetada pordaigašt failad.',
 'backend-fail-closetemp' => 'Ei voi saubata pordaigašt failad.',
 'backend-fail-read' => 'Ei voi lugeda "$1"-failad.',
-'backend-fail-create' => 'Ei voi säta "$1"-failad.',
+'backend-fail-create' => 'Ei voi kirjutada "$1"-failad.',
 
 # ZipDirectoryReader
 'zip-wrong-format' => 'Valitud fail ei ole ZIP-fail.',
@@ -1739,7 +1740,7 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 
 # Watchlist
 'watchlist' => 'Kaclendnimikirjutez',
-'mywatchlist' => 'Minun kaclendnimikirjutez',
+'mywatchlist' => 'Kaclendnimikirjutez',
 'watchlistfor2' => 'Kävutajale $1 $2',
 'nowatchlist' => "Teiden kaclendnimikirjutez om pall'az.",
 'watchlistanontext' => 'Olgat hüväd, $1, miše lugeda vai redaktiruida teiden kaclendnimikirjutez.',
@@ -2370,9 +2371,10 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'spambot_username' => 'MediaWikid puhtastadas spamaspäi',
 
 # Info page
-'pageinfo-header-edits' => 'Redakcijad',
+'pageinfo-header-edits' => 'Redakcijoiden istorii',
+'pageinfo-article-id' => 'Lehtpolen ID',
 'pageinfo-views' => 'Kacundoiden lugu',
-'pageinfo-watchers' => 'Kaclijoiden lugu',
+'pageinfo-watchers' => 'Lehtpolen kaclijoiden lugu',
 'pageinfo-edits' => 'Redakcijoiden lugumär',
 'pageinfo-authors' => 'Erazvuiččiden avtoroiden lugu',
 
@@ -2781,17 +2783,26 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-dc-publisher' => 'Pästai',
 'exif-dc-rights' => 'Oiktused',
 
+'exif-iimcategory-clj' => 'Ogerantegend da käskuz',
+'exif-iimcategory-dis' => 'Katastrofad da avarijad',
+'exif-iimcategory-fin' => 'Ekonomik da biznes',
 'exif-iimcategory-edu' => 'Openduzmär',
+'exif-iimcategory-evn' => 'Ümbrišt',
 'exif-iimcategory-hth' => 'Tervhuz',
+'exif-iimcategory-hum' => "Mel'hetartujad istorijad",
 'exif-iimcategory-lab' => 'Tö',
+'exif-iimcategory-lif' => 'Elonmahtuz da joudai aig',
 'exif-iimcategory-pol' => 'Politik',
 'exif-iimcategory-rel' => 'Religii da uskonduz',
 'exif-iimcategory-sci' => 'Tedo da tehnologii',
 'exif-iimcategory-soi' => 'Socialižed küzundad',
 'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Voinad, konfliktad da kundanholdundad',
 'exif-iimcategory-wea' => 'Sä',
 
 'exif-urgency-normal' => 'Normaline ($1)',
+'exif-urgency-low' => 'Madal ($1)',
+'exif-urgency-high' => 'Korged ($1)',
 
 # External editor support
 'edit-externally' => 'Redaktiruida nece fail irdprogrammal',
@@ -2934,6 +2945,7 @@ Kävutagat normaline ezikacund.',
 'version-specialpages' => 'Specialižed lehtpoled',
 'version-parserhooks' => 'Sintaksižen analizatoran sabustajad',
 'version-variables' => 'Vajehtujad lugud',
+'version-antispam' => 'Antispam',
 'version-skins' => 'Nägutemad',
 'version-other' => 'Toine',
 'version-mediahandlers' => 'Median radimed',
