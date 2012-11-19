@@ -1769,14 +1769,12 @@ class OutputPage extends ContextSource {
 				} else {
 					$aloption[] = 'string-contains=' . $variant;
 
-					// IE and some other browsers use another form of language code
-					// in their Accept-Language header, like "zh-CN" or "zh-TW".
+					// IE and some other browsers use BCP 47 standards in
+					// their Accept-Language header, like "zh-CN" or "zh-Hant".
 					// We should handle these too.
-					$ievariant = explode( '-', $variant );
-					if ( count( $ievariant ) == 2 ) {
-						$ievariant[1] = strtoupper( $ievariant[1] );
-						$ievariant = implode( '-', $ievariant );
-						$aloption[] = 'string-contains=' . $ievariant;
+					$variantBCP47 = wfBCP47( $variant );
+					if ( $variantBCP47 !== $variant ) {
+						$aloption[] = 'string-contains=' . $variantBCP47;
 					}
 				}
 			}
