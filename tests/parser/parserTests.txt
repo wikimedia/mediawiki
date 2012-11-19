@@ -3539,6 +3539,15 @@ Horizontal ruler -- <4 dashes render as plain text
 </p>
 !! end
 
+!! test
+Horizontal ruler -- Supports content following dashes on same line
+!! input
+---- Foo
+!! result
+<hr /> Foo
+
+!! end
+
 ###
 ### Block-level elements
 ###
