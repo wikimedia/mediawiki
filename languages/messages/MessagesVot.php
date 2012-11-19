@@ -87,6 +87,7 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Senez gruppaz on ainult vahtiaava cülci.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 cülciä kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}',
 'category-file-count' => '{{PLURAL:$2|Senez gruppaz on ainult vahtiaava faili.|{{PLURAL:$1|Vahtiaava alagruppa kuulub|Vahtiaava $1 failid kuuluvad}} sihee gruppaa. Cülcije cisla gruppaza on $2.}}',
 'listingcontinuesabbrev' => 'ladvaub',
+'noindex-category' => 'Ebäindekseeritettäväd lehocülled',
 
 'about' => 'Täätühsed',
 'newwindow' => '(avaub uuvvõza akkunaza)',
@@ -221,9 +222,11 @@ Kui cüsümüssessä ebõõ roocittu cülci, võib õlla õlõttõ löütännü 
 # Login and logout pages
 'yourname' => 'Cäüttijänimi:',
 'yourpassword' => 'Salasõna',
+'yourpasswordagain' => 'Tõissaga salain-sõna:',
 'remembermypassword' => 'Mäleht minuu (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'login' => 'Cirjut süäme',
 'nav-login-createaccount' => 'Cirjut süäme vai registriiroit cäüttijässi',
+'loginprompt' => 'Tüü piättä «cookies» võttamin luvata, štobõ entä sisteema ete esitellä.',
 'userlogin' => 'Cirjut süäme',
 'userloginnocreate' => 'Cirjut süäme',
 'logout' => 'Cirjut uloz',
@@ -231,7 +234,9 @@ Kui cüsümüssessä ebõõ roocittu cülci, võib õlla õlõttõ löütännü 
 'nologin' => "Kui Teille veel ebõõ cäüttijänimi, '''$1'''.",
 'nologinlink' => 'võitta loovva luguu',
 'createaccount' => 'Uusi cäüttijää',
+'gotaccount' => 'Tüü õõttõ jo registreerittu? $1.',
 'gotaccountlink' => 'Cirjut süäme',
+'userlogin-resetlink' => 'Vai unõhtittõ õma loginass?',
 'createaccountreason' => 'Süü:',
 'mailmypassword' => 'Lähet uusi salasõna elektropoštiikaa',
 'loginlanguagelabel' => 'Ceeli: $1',
@@ -294,12 +299,16 @@ Tüü võittõ [[Special:Search/{{PAGENAME}}|kaze nime nimettamizõ löütä]] m
 'template-semiprotected' => '(varjõttu anonüümeilt ja uusilt cäüttijilt)',
 'hiddencategories' => 'Kase cülci kuulub {{PLURAL:$1|vahtiaavaa salautõttuu gruppaa|vahtiaavii salautõttuisõõ gruppoisõõ}}:',
 'permissionserrorstext-withaction' => 'Teill ebõõ luppa $2 {{PLURAL:$1|vahtiaavass süüss|vahtiaaviss süiss}} peräss:',
+'recreate-moveddeleted-warn' => "'''Tähele-pano. Tüü loottõ taaz lehocülce, kumpa õli eespäi poisõttu.'''
+
+Tarkassaga, vai tarviz teile sitä tehä. Alapallõ õlla kaze lehocülle poissamizije ja nimije muuttamizije žurnaalad esitettü.",
 'moveddeleted-notice' => "Kase cülci on pühittü. Alla on sene cüľľee pühi'istori.",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Etetäätämin:''' lizettävije šabloonije summaarin koko on liiga suuri.
 Mõnõd šabloonad eväd lee lizettü.",
 'post-expand-template-inclusion-category' => 'Lehocülled, jõgõit vart lizettävije šabloonije sallittu koko on ületettü',
+'post-expand-template-argument-warning' => "'''Tähele-pano''': kase lehocülci sisältäb vähepält ühs šabloona, kumma argumental on liiga suuri avvamizõ koko. Mokomad argumentad eväd õltu näütettü",
 'post-expand-template-argument-category' => 'Lehocülled, jõgad sisälletä väl’l’ä-jätettü šabloonije argumentad.',
 
 # History pages
@@ -307,6 +316,7 @@ Mõnõd šabloonad eväd lee lizettü.",
 'currentrev' => 'Nücüin verzija',
 'currentrev-asof' => 'Nücüin verzija $1',
 'revisionasof' => 'Verzija $1',
+'revision-info' => '41. Verssija $1-ss; $2',
 'previousrevision' => '← Vanõpi verzija',
 'nextrevision' => 'Uuvvõpi verzija →',
 'currentrevisionlink' => 'Nücüin verzija',
@@ -345,6 +355,7 @@ Mõnõd šabloonad eväd lee lizettü.",
 'lineno' => 'Viiru $1:',
 'compareselectedversions' => 'Võrrõõ valitsõttuit verzijoit',
 'editundo' => 'kummut',
+'diff-multi' => 'Eb õõ näütettü {{PLURAL:$1|õsa-võttaja|õsa-võttajije}} {{PLURAL:$2|$2 väli-verssija $1|väli-verssijad $1}}',
 
 # Search results
 'searchresults' => 'Etsüü tulõmuhsõd',
@@ -373,6 +384,7 @@ Mõnõd šabloonad eväd lee lizettü.",
 'searchprofile-everything-tooltip' => 'Õttsigo kõikill lehocüllill (ceskussõõmizõ lehocülled siällhulgaz)',
 'searchprofile-advanced-tooltip' => 'Annõttu nimije tiloiz õttsia',
 'search-result-size' => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
+'search-result-category-size' => '$1 {{PLURAL:$1|jäse|$1 jäsentä}} ({{PLURAL:$2|1 all-kategoorija|$2 all-kategoorijad}}, {{PLURAL:$3|1 faili|$3 faila}})',
 'search-redirect' => '(mešaituz $1)',
 'search-section' => '(alajako $1)',
 'search-suggest' => 'Tähetidko: $1',
@@ -416,6 +428,8 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'gender-male' => 'Mehin',
 'gender-female' => 'Naisin',
 'email' => 'E-mail',
+'prefs-help-email' => 'E-mail eb õõ pakollin, ain se leeb vajallin, kui tüü unõhtattõ salain-sõnass.',
+'prefs-help-email-others' => 'Se lupabci muilõ õsa-võttajilõ võtta ühteüttä tejjeka tejje personaaliss lehocülless viittau kautta, ilma tejje e-mail’a tääotusõ vajaussa.',
 
 # User rights
 'userrights-reason' => 'Süü:',
@@ -447,11 +461,13 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'recentchanges-label-bot' => 'Kase kõrjauz on robotaka lootu',
 'recentchanges-label-unpatrolled' => 'Kasta kõrjaussa eb tarkisõtti veel',
 'rcnote' => 'Alla on {{PLURAL:$1|ühsi muutuz|viimeiziit $1 muutussiit}} viimeize {{PLURAL:$2|ühee päivää|$2 päivää}}, $4 $5.',
+'rcnotefrom' => 'Alapallõ õlla lugõtõltu muuttamizõd $2-lt ($1-lõssaa)',
 'rclistfrom' => 'Näüt uuvvõd muutuhsõd $1 alguss',
 'rcshowhideminor' => '$1 peened muutussõd',
 'rcshowhidebots' => '$1 botid',
 'rcshowhideliu' => '$1 süäme cirjutõnnud cäüttijäd',
 'rcshowhideanons' => '$1 anonüümid cäüttijäd',
+'rcshowhidepatr' => 'Tarkasõttu kõrjausije $1',
 'rcshowhidemine' => '$1 õmad muutussõd',
 'rclinks' => 'Näüt viimõiss $1 muutuhsõiss viimõizõ $2 päivää ajalt.<br />$3',
 'diff' => 'vahõ',
@@ -541,6 +557,7 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 'nbytes' => '$1 {{PLURAL:$1|baitti|baittia}}',
 'nmembers' => '$1 {{PLURAL:$1|selttsilain|selttsilaizõd}}',
 'prefixindex' => 'Kõik cüľľed prefiksiikaa',
+'usercreated' => '33. $3 on entä cirjannu $1 $2-na',
 'newpages' => 'Uuvvõd cüľľed',
 'newpages-username' => 'Cäüttijänimi:',
 'move' => 'Liikut',
@@ -683,10 +700,12 @@ Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 
 'sp-contributions-newbies' => 'Näüt uusijõõ cäüttijee muutuhsõd',
 'sp-contributions-blocklog' => 'piättelemized',
+'sp-contributions-uploads' => 'lassausõd',
 'sp-contributions-logs' => 'logid',
 'sp-contributions-talk' => 'Juttu',
 'sp-contributions-search' => 'Etsi avittamisiit',
 'sp-contributions-username' => 'IP-adressi vai cäüttijänimi',
+'sp-contributions-toponly' => 'Viimeized verssijad näüttä',
 'sp-contributions-submit' => 'Etsi',
 
 # What links here
@@ -694,6 +713,7 @@ Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 'whatlinkshere-title' => 'Cüľľed, kummad näütellä cüľľelle "$1"',
 'whatlinkshere-page' => 'Cülci:',
 'linkshere' => "Vahtiaavilt cülciilt on linkki cüľľelle '''[[:$1]]''':",
+'nolinkshere' => "Mitäid eb viitata '''[[:$1]]-sõ'''",
 'isredirect' => 'mešaituzcülci',
 'istemplate' => 'sisällütüz šabloonii',
 'isimage' => 'kuvalinkki',
@@ -760,6 +780,7 @@ Neill kõhtoill piättä liikuttaa vai ühissää cüľľee cäzi.",
 
 # Namespace 8 related
 'allmessagesname' => 'Nimi',
+'allmessagesdefault' => 'Standartin teksta',
 'allmessages-language' => 'Ceeli:',
 'allmessages-filter-submit' => 'Mee',
 
@@ -925,6 +946,16 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 
 # Special:SpecialPages
 'specialpages' => 'Osoobenoid cüľľed',
+
+# External image whitelist
+'external_image_whitelist' => '# Jättägä kase rivi mokomassi, minenä-mokomana se on õõmaz.<pre>
+# Sijottaga tänne säännollizije ilmaud’d’e fragmentad (se õsa, kumpa on // väliz)
+# ned leevät võrrõttu ulko-kuvije URL-sõ.
+# Sopivad leeväd näütettü kuvijna, muud leeväd näütettü kuvijsõ viitauina.
+# Rivid, kummad alguta //-ss, pietä kommentaarijina. Rivid eväd õlla tunnuttu registra suhtõsõ.
+# Sijottaga säännollizije ilmaud’d’e fragmentad kaze rivi ülez.
+
+# Jättägä kase rivi mokomassi, minenä-mokomana se on õõmaz.',
 
 # Special:Tags
 'tag-filter' => "[[Special:Tags|Deskriptorije]] fil'tra:",

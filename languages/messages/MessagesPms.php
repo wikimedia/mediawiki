@@ -3504,13 +3504,12 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'livepreview-ready' => "Antramentr ch'as caria… Carià.",
 'livepreview-failed' => "La preuva dal viv a l'é falìa!
 Ch'a preuva an manera sòlita.",
-'livepreview-error' => 'Conession falà: $1 "$2"
-Ch\'a preuva an manera sòlita.',
+'livepreview-error' => "Conession falìa: $1 «$2».
+Ch'a preuva an manera sòlita.",
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Le modìfiche pì neuve ëd $1 {{PLURAL:$1|second|second}} a podrìo nen ess-ie ant sta lista-sì.',
-'lag-warn-high' => "Për via che la màchina serventa a tarda a dene d'arspòsta, le modìfiche pì giovne che $1 {{PLURAL:$1|second|second}} fa
-a podrìo ëdcò nen ess-ie ant sta lista -sì.",
+'lag-warn-normal' => 'Le modìfiche veje men che $1 {{PLURAL:$1|second|second}} a podrìo nen ess-ie ant sta lista-sì.',
+'lag-warn-high' => 'Për via che la màchina serventa a tarda a dene na rispòsta, le modìfiche pì veje men che $1 {{PLURAL:$1|second|second}} a podrìo ëdcò nen ess-ie ant sta lista-sì.',
 
 # Watchlist editor
 'watchlistedit-numitems' => "A l'é antramentr ch'a ten sot ëuj {{PLURAL:$1|1 tìtol|$1 tìtoj}}, nen contand le pàgine ëd discussion.",
