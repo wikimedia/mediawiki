@@ -95,8 +95,7 @@ header( 'Content-Type: text/html; charset=utf-8' );
 
 	.table th,
 	.table td {
-		padding: 8px;
-		line-height: 20px;
+		padding: 0.1em;
 		text-align: left;
 		vertical-align: top;
 		border-top: 1px solid #ddd;
