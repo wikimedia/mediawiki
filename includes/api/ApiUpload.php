@@ -192,8 +192,8 @@ class ApiUpload extends ApiBase {
 		if ($this->mParams['offset'] == 0) {
 			$result['filekey'] = $this->performStash();
 		} else {
-			$status = $this->mUpload->addChunk($chunkPath, $chunkSize,
-										$this->mParams['offset']);
+			$status = $this->mUpload->addChunk(
+				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 				return array();
@@ -201,23 +201,38 @@ class ApiUpload extends ApiBase {
 
 			// Check we added the last chunk:
 			if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
-				$status = $this->mUpload->concatenateChunks();
+				if ( $this->mParams['asyncstash'] && !wfIsWindows() ) {
+					$statusKey = wfTimestampNow() . '.' . wfRandomString( 32 );
+					UploadFromChunks::setCurrentStatus(
+						$statusKey, array( 'result' => 'Poll', 'status' => Status::newGood() )
+					);
+					$cmd = wfShellWikiCmd(
+						"$IP/includes/upload/AssembleUploadChunks.php",
+						array(
+							'--filename', $this->mParams['filename'],
+							'--filekey', $this->mParams['filekey'],
+							'--statuskey', $statusKey,
+							'--quiet'
+						)
+					) . " > " . wfGetNull() . " 2>&1 &";
+					wfShellExec( $cmd ); // start a process in the background
+					$result['result'] = 'Poll';
+				} else {
+					$status = $this->mUpload->concatenateChunks();
+					if ( !$status->isGood() ) {
+						$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+						return array();
+					}
 
-				if ( !$status->isGood() ) {
-					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-					return array();
+					// We have a new filekey for the fully concatenated file.
+					$result['filekey'] =  $this->mUpload->getLocalFile()->getFileKey();
+
+					// Remove chunk from stash. (Checks against user ownership of chunks.)
+					$this->mUpload->stash->removeFile( $this->mParams['filekey'] );
+
+					$result['result'] = 'Success';
 				}
-
-				// We have a new filekey for the fully concatenated file.
-				$result['filekey'] =  $this->mUpload->getLocalFile()->getFileKey();
-
-				// Remove chunk from stash. (Checks against user ownership of chunks.)
-				$this->mUpload->stash->removeFile( $this->mParams['filekey'] );
-
-				$result['result'] = 'Success';
-
 			} else {
-
 				// Continue passing through the filekey for adding further chunks.
 				$result['filekey'] = $this->mParams['filekey'];
 			}
@@ -283,7 +298,19 @@ class ApiUpload extends ApiBase {
 		// chunk or one and only one of the following parameters is needed
 		if( !$this->mParams['chunk'] ) {
 			$this->requireOnlyOneParameter( $this->mParams,
-				'filekey', 'file', 'url', 'statuskey' );
+				'filekey', 'file', 'url', 'statuskey', 'filestatuskey' );
+		}
+
+		if ( $this->mParams['filestatuskey'] ) {
+			$progress = UploadFromChunks::getCurrentStatus( $this->mParams['filestatuskey'] );
+			if ( !$progress ) {
+				$this->dieUsage( 'No result in status data', 'missingresult' );
+			} elseif ( !$progress['status']->isGood() ) {
+				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+			}
+			unset( $progress['status'] ); // remove Status object
+			$this->getResult()->addValue( null, $this->getModuleName(), $progress );
+			return false;
 		}
 
 		if ( $this->mParams['statuskey'] ) {
@@ -300,7 +327,6 @@ class ApiUpload extends ApiBase {
 			}
 			$this->getResult()->addValue( null, $this->getModuleName(), $sessionData );
 			return false;
-
 		}
 
 		// The following modules all require the filename parameter to be set
@@ -612,6 +638,7 @@ class ApiUpload extends ApiBase {
 			'offset' => null,
 			'chunk' => null,
 
+			'asyncstash' => false,
 			'asyncdownload' => false,
 			'leavemessage' => false,
 			'statuskey' => null,
@@ -639,6 +666,7 @@ class ApiUpload extends ApiBase {
 			'offset' => 'Offset of chunk in bytes',
 			'filesize' => 'Filesize of entire upload',
 
+			'asyncstash', 'Make concatenation and stashing asyncronous',
 			'asyncdownload' => 'Make fetching a URL asynchronous',
 			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
 			'statuskey' => 'Fetch the upload status for this file key',

@@ -1494,6 +1494,30 @@ abstract class UploadBase {
 		} else {
 			return intval( $wgMaxUploadSize );
 		}
+	}
 
+	/**
+	 * Get the current status of a chunked upload (used for polling)
+	 * @param $statusKey string
+	 * @return Array|bool
+	 */
+	public static function getCurrentStatus( $statusKey ) {
+		global $wgMemc;
+
+		$key = wfMemcKey( 'chunkedupload', 'uploadstatus', $statusKey );
+		return $wgMemc->get( $key );
+	}
+
+	/**
+	 * Set the current status of a chunked upload (used for polling)
+	 * @param $statusKey string
+	 * @param $value array
+	 * @return bool
+	 */
+	public static function setCurrentStatus( $statusKey, array $value ) {
+		global $wgMemc, $wgUploadStashMaxAge;
+
+		$key = wfMemcKey( 'chunkedupload', 'uploadstatus', $statusKey );
+		return $wgMemc->set( $key, $value, $wgUploadStashMaxAge );
 	}
 }
