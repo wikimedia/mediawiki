@@ -193,6 +193,7 @@ production.
   extensions) performed using Git 1.7.8+ should now appear.
 * (bug 42184) $wgUploadSizeWarning missing second variable
 * (bug 40326) Check if files exist with a different extension during uploading
+* (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
