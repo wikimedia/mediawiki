@@ -785,13 +785,14 @@ abstract class UploadBase {
 	 * This method returns the file object, which also has a 'fileKey' property which can be passed through a form or
 	 * API request to find this stashed file again.
 	 *
+	 * @param $user User
 	 * @return UploadStashFile stashed file
 	 */
-	public function stashFile() {
+	public function stashFile( User $user = null ) {
 		// was stashSessionFile
 		wfProfileIn( __METHOD__ );
 
-		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
+		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
 		$this->mLocalFile = $file;
 
@@ -1494,6 +1495,32 @@ abstract class UploadBase {
 		} else {
 			return intval( $wgMaxUploadSize );
 		}
+	}
 
+	/**
+	 * Get the current status of a chunked upload (used for polling)
+	 * @param $statusKey string
+	 * @return Array|bool
+	 */
+	public static function getCurrentStatus( $statusKey ) {
+		$cache = wfGetCache( CACHE_DB );
+		$key = wfMemcKey( 'chunkedupload', 'uploadstatus', $statusKey );
+		return $cache->get( $key );
+	}
+
+	/**
+	 * Set the current status of a chunked upload (used for polling)
+	 * @param $statusKey string
+	 * @param $value array|false
+	 * @return bool
+	 */
+	public static function setCurrentStatus( $statusKey, $value ) {
+		global $wgUploadStashMaxAge;
+
+		$cache = wfGetCache( CACHE_DB );
+		$key = wfMemcKey( 'chunkedupload', 'uploadstatus', $statusKey );
+		return is_array( $value )
+			? $cache->set( $key, $value, $wgUploadStashMaxAge )
+			: $cache->delete( $key );
 	}
 }
