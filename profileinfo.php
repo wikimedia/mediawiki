@@ -192,10 +192,12 @@ class profile_point {
 
 		$ex = isset( $expand[$this->name()] );
 
+		$anchor = str_replace( '"', '', $this->name() );
+
 		if ( !$ex ) {
 			if ( count( $this->children ) ) {
 				$url = getEscapedProfileUrl( false, false, $expand + array( $this->name() => true ) );
-				$extet = ' <a href="' . $url . '">[+]</a>';
+				$extet = " <a id=\"{$anchor}\" href=\"{$url}#{$anchor}\">[+]</a>";
 			} else {
 				$extet = '';
 			}
@@ -206,8 +208,8 @@ class profile_point {
 					$e += array( $name => $ep );
 				}
 			}
-
-			$extet = ' <a href="' . getEscapedProfileUrl( false, false, $e ) . '">[–]</a>';
+			$url = getEscapedProfileUrl( false, false, $e );
+			$extet = " <a id=\"{$anchor}\" href=\"{$url}#{$anchor}\">[–]</a>";
 		}
 		?>
 		<tr>
