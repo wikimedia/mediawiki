@@ -456,6 +456,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/dao
 	'IDBAccessObject' => 'includes/dao/IDBAccessObject.php',
+	'ForeignDBAccessObject' => 'includes/dao/ForeignDBAccessObject.php',
 
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',

@@ -27,7 +27,7 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-abstract class ORMTable implements IORMTable {
+abstract class ORMTable extends ForeignDBAccessObject implements IORMTable {
 
 	/**
 	 * Gets the db field prefix.
@@ -54,15 +54,6 @@ abstract class ORMTable implements IORMTable {
 	 * @var integer DB_ enum
 	 */
 	protected $readDb = DB_SLAVE;
-
-	/**
-	 * The ID of any foreign wiki to use as a target for database operations,
-	 * or false to use the local wiki.
-	 *
-	 * @since 1.20
-	 * @var String|bool
-	 */
-	protected $wiki = false;
 
 	/**
 	 * Returns a list of default field values.
@@ -490,19 +481,6 @@ abstract class ORMTable implements IORMTable {
 	}
 
 	/**
-	 * Get the database type used for read operations.
-	 *
-	 * @see wfGetLB
-	 *
-	 * @since 1.20
-	 *
-	 * @return LoadBalancer The database load balancer object
-	 */
-	public function getLoadBalancer() {
-		return wfGetLB( $this->getTargetWiki() );
-	}
-
-	/**
 	 * Releases the lease on the given database connection. This is useful mainly
 	 * for connections to a foreign wiki. It does nothing for connections to the local wiki.
 	 *
@@ -513,10 +491,7 @@ abstract class ORMTable implements IORMTable {
 	 * @since 1.20
 	 */
 	public function releaseConnection( DatabaseBase $db ) {
-		if ( $this->wiki !== false ) {
-			// recycle connection to foreign wiki
-			$this->getLoadBalancer()->reuseConnection( $db );
-		}
+		parent::releaseConnection( $db ); // just make it public
 	}
 
 	/**
