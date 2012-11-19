@@ -924,7 +924,24 @@ class LoginForm extends SpecialPage {
 		 */
 		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
 
-		$this->displaySuccessfulLogin( $welcome_creation_msg, $injected_html );
+		$this->displaySuccessfulAccountCreation( $welcome_creation_msg, $injected_html );
+	}
+
+	/**
+	 * Display an "account creation successful" page.
+	 * @param $msgname string
+	 * @param $injected_html string
+	 */
+	private function displaySuccessfulAccountCreation( $msgname, $injected_html ) {
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'welcomeuser', $this->getUser()) );
+		if( $msgname ){
+			$out->addWikiMsg( $msgname, wfEscapeWikiText( $this->getUser()->getName() ) );
+		}
+
+		$out->addHTML( $injected_html );
+
+		$this->executeReturnTo( 'success' );
 	}
 
 	/**
