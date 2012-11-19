@@ -333,7 +333,7 @@ class Category {
 			),
 			array( 'cl_to' => $this->mName, 'page_id = cl_from' ),
 			__METHOD__,
-			'LOCK IN SHARE MODE'
+			array( 'LOCK IN SHARE MODE' )
 		);
 		$ret = $dbw->update(
 			'category',
