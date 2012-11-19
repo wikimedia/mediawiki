@@ -18,6 +18,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Site
+ * @license GNU GPL v2+
+ * @author John Erling Blad < jeblad@gmail.com >
+ * @author Daniel Kinzler
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
 /**
@@ -26,11 +31,6 @@
  * @since 1.21
  *
  * @ingroup Site
- *
- * @license GNU GPL v2+
- * @author John Erling Blad < jeblad@gmail.com >
- * @author Daniel Kinzler
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MediaWikiSite extends SiteObject {
 
