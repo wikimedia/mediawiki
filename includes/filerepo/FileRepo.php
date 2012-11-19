@@ -1682,10 +1682,11 @@ class FileRepo {
 	/**
 	 * Get an UploadStash associated with this repo.
 	 *
+	 * @param $user User
 	 * @return UploadStash
 	 */
-	public function getUploadStash() {
-		return new UploadStash( $this );
+	public function getUploadStash( User $user = null ) {
+		return new UploadStash( $this, $user );
 	}
 
 	/**

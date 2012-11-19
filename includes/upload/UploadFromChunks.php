@@ -37,7 +37,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @param $stash UploadStash
 	 * @param $repo FileRepo
 	 */
-	public function __construct( $user = false, $stash = false, $repo = false ) {
+	public function __construct( $user = null, $stash = false, $repo = false ) {
 		// user object. sometimes this won't exist, as when running from cron.
 		$this->user = $user;
 
@@ -60,6 +60,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		return true;
 	}
+
 	/**
 	 * Calls the parent stashFile and updates the uploadsession table to handle "chunks"
 	 *
@@ -134,7 +135,7 @@ class UploadFromChunks extends UploadFromFile {
 		// ( for FileUpload or normal Stash to take over )
 		$this->mTempPath = $tmpPath; // file system path
 		$tStart = microtime( true );
-		$this->mLocalFile = parent::stashFile();
+		$this->mLocalFile = parent::stashFile( $this->user );
 		$tAmount = microtime( true ) - $tStart;
 		$this->mLocalFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
 		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds.\n" );
