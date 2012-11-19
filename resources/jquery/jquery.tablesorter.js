@@ -421,24 +421,79 @@
 
 	}
 
+	/**
+	 * Replace all rowspanned cells in the body with clones in each row, so sorting
+	 * need not worry about them.
+	 *
+	 * @param $table jQuery object for a <table>
+	 */
 	function explodeRowspans( $table ) {
-		// Split multi row cells into multiple cells with the same content
-		$table.find( '> tbody > tr > [rowspan]' ).each(function () {
-			var rowSpan = this.rowSpan;
-			this.rowSpan = 1;
-			var cell = $( this );
-			var next = cell.parent().nextAll();
+		var rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
+
+		// Short circuit
+		if ( !rowspanCells.length ) {
+			return;
+		}
+
+		// First, we need to make a property like cellIndex but taking into
+		// account colspans. We also cache the rowIndex to avoid having to take
+		// cell.parentNode.rowIndex in the sorting function below.
+		$table.find( '> tbody > tr' ).each( function () {
+			var col = 0;
+			var l = this.cells.length;
+			for ( var i = 0; i < l; i++ ) {
+				this.cells[i].realCellIndex = col;
+				this.cells[i].realRowIndex = this.rowIndex;
+				col += this.cells[i].colSpan;
+			}
+		} );
+
+		// Split multi row cells into multiple cells with the same content.
+		// Sort by column then row index to avoid problems with odd table structures.
+		// Re-sort whenever a rowspanned cell's realCellIndex is changed, because it
+		// might change the sort order.
+		function resortCells() {
+			rowspanCells = rowspanCells.sort( function ( a, b ) {
+				var ret = a.realCellIndex - b.realCellIndex;
+				if ( !ret ) {
+					ret = a.realRowIndex - b.realRowIndex;
+				}
+				return ret;
+			} );
+			$.each( rowspanCells, function () {
+				this.needResort = false;
+			} );
+		}
+		resortCells();
+		while ( rowspanCells.length ) {
+			if ( rowspanCells[0].needResort ) {
+				resortCells();
+			}
+
+			var cell = rowspanCells.shift();
+			var rowSpan = cell.rowSpan;
+			var colSpan = cell.colSpan;
+			var spanningRealCellIndex = cell.realCellIndex;
+			cell.rowSpan = 1;
+			var filterfunc = function () {
+				return this.realCellIndex >= spanningRealCellIndex;
+			};
+			var $nextRows = $( cell ).parent().nextAll();
 			for ( var i = 0; i < rowSpan - 1; i++ ) {
-				var td = next.eq( i ).children( 'td' );
-				if ( !td.length ) {
-					next.eq( i ).append( cell.clone() );
-				} else if ( this.cellIndex === 0 ) {
-					td.eq( this.cellIndex ).before( cell.clone() );
+				var $tds = $( $nextRows.eq( i )[0].cells ).filter( filterfunc );
+				var $clone = $( cell ).clone();
+				$clone[0].realCellIndex = spanningRealCellIndex;
+				if ( $tds.length ) {
+					$tds.each( function () {
+						this.realCellIndex += colSpan;
+						if ( this.rowSpan > 1 ) this.needResort = true;
+					} );
+					$tds.first().before( $clone );
 				} else {
-					td.eq( this.cellIndex - 1 ).after( cell.clone() );
+					$nextRows.eq( i ).append( $clone );
 				}
 			}
-		});
+		}
 	}
 
 	function buildCollationTable() {
