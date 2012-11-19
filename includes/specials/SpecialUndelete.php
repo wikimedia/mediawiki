@@ -417,6 +417,9 @@ class PageArchive {
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->title );
 		$logEntry->setComment( $reason );
+
+		wfRunHooks( 'ArticleUndeleteLogEntry', array( $this, &$logEntry, $user ) );
+
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 
