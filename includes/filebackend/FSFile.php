@@ -131,7 +131,7 @@ class FSFile {
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$tempImage = (object)array();
+				$tempImage = (object)array(); // XXX (hack for File object)
 				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
 				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
