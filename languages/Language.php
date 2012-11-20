@@ -3482,8 +3482,18 @@ class Language {
 				}
 			}
 		}
-		// If all else fails, return the original string.
-		return $str;
+
+		// If all else fails, return a standard duration or timestamp description.
+		$time1 = strtotime( $str, 0 );
+		$time2 = strtotime( $str );
+		if ( $time1 === false ) { // Unknown format. Return it as-is in case.
+			return $str;
+		} elseif ( $time1 !== $time2 ) { // It's a relative timestamp.
+			// $time1 is relative to 0 so it's a duration length.
+			return $this->formatDuration( $time1 );
+		} else { // It's an absolute timestamp.
+			return $this->timeanddate( $time2 );
+		}
 	}
 
 	/**
