@@ -244,6 +244,15 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
+	 * @param $metadata mixed Result this handlers getMetadata() for a file
+	 * @return Array
+	 */
+	public function getStreamHeaders( $metadata ) {
+		return array();
+	}
+
+	/**
 	 * True if the handled types can be transformed
 	 * @return bool
 	 */

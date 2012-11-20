@@ -1390,17 +1390,21 @@ abstract class File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
+	 * Options to $options include:
+	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
+	 *
 	 * @param $srcPath String: local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
 	 *         rather than copy
+	 * @param $options Array Optional additional parameters
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 *
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function publish( $srcPath, $flags = 0 ) {
+	function publish( $srcPath, $flags = 0, array $options = array() ) {
 		$this->readOnlyError();
 	}
 
