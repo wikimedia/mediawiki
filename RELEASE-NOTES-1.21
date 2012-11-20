@@ -93,6 +93,10 @@ production.
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
+
+* (bug 34977) Now formatted numbers in Spanish use space as separator
+  for thousands, as mandated by the Real Academia Española.
+
 === Other changes in 1.21 ===
 
 == Compatibility ==
