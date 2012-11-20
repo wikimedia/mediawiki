@@ -93,6 +93,10 @@ production.
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
+
+* (bug 35031) Kurdish formatted numbers now use period and comma
+  as separators for thousands and decimals respectively.
+
 === Other changes in 1.21 ===
 
 == Compatibility ==
