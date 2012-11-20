@@ -1061,14 +1061,14 @@ class FileRepo {
 	/**
 	 * Publish a batch of files
 	 *
-	 * @param $triplets Array: (source, dest, archive) triplets or
-	 *        (source, dest, archive, options) quartets as per publish().
+	 * @param $ntuples Array: (source, dest, archive) triplets or
+	 *        (source, dest, archive, options) 4-tuples as per publish().
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source files should be deleted if possible
 	 * @throws MWException
 	 * @return FileRepoStatus
 	 */
-	public function publishBatch( array $triplets, $flags = 0 ) {
+	public function publishBatch( array $ntuples, $flags = 0 ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		$backend = $this->backend; // convenience
@@ -1083,9 +1083,9 @@ class FileRepo {
 		$operations = array();
 		$sourceFSFilesToDelete = array(); // cleanup for disk source files
 		// Validate each triplet and get the store operation...
-		foreach ( $triplets as $i => $triplet ) {
-			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
-			$options = isset( $triplet[3] ) ? $triplet[3] : array();
+		foreach ( $ntuples as $i => $ntuple ) {
+			list( $srcPath, $dstRel, $archiveRel ) = $ntuple;
+			$options = isset( $ntuple[3] ) ? $ntuple[3] : array();
 			// Resolve source to a storage path if virtual
 			$srcPath = $this->resolveToStoragePath( $srcPath );
 			if ( !$this->validateFilename( $dstRel ) ) {
@@ -1161,8 +1161,8 @@ class FileRepo {
 		// Execute the operations for each triplet
 		$status->merge( $backend->doOperations( $operations ) );
 		// Find out which files were archived...
-		foreach ( $triplets as $i => $triplet ) {
-			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
+		foreach ( $ntuples as $i => $ntuple ) {
+			list( $srcPath, $dstRel, $archiveRel ) = $ntuple;
 			$archivePath = $this->getZonePath( 'public' ) . "/$archiveRel";
 			if ( $this->fileExists( $archivePath ) ) {
 				$status->value[$i] = 'archived';
