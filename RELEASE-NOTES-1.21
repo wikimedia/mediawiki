@@ -95,6 +95,8 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * (bug 30040) Autonym for nds-nl is now 'Nedersaksies' (was 'Nedersaksisch').
+* (bug 35031) Kurdish formatted numbers now use period and comma
+  as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
 

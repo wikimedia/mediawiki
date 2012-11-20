@@ -51,6 +51,8 @@ $namespaceAliases = array(
 	'Kategorî_nîqaş'   => NS_CATEGORY_TALK,
 );
 
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
+
 $specialPageAliases = array(
 	'Categories'                => array( 'Dara_kategoriyan' ),
 	'DoubleRedirects'           => array( 'Redirect\'ên_ducarî' ),
