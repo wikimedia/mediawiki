@@ -137,6 +137,7 @@ production.
 * (bug 41733) Hide "New user message" (.usermessage) element from printable view.
 * (bug 39062) Special:Contributions will display changes that don't have
   a parent id instead of just an empty bullet item.
+* (bug 37209) "LinkCache doesn't currently know about this title" error fixed.
 * wfMerge() now works if $wgDiff3 contains spaces
 
 === API changes in 1.21 ===
