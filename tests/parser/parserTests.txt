@@ -4744,12 +4744,26 @@ Foo<noinclude>zar</noinclude><includeonly>bar</includeonly>
 !! end
 
 !! test
+Un-closed <noinclude>
+!! input
+<noinclude>
+!! result
+!! end
+
+!! test
 <onlyinclude> on a page
 !! input
 <onlyinclude>Foo</onlyinclude>bar
 !! result
 <p>Foobar
 </p>
+!! end
+
+!! test
+Un-closed <onlyinclude>
+!! input
+<onlyinclude>
+!! result
 !! end
 
 !! article
@@ -4808,6 +4822,13 @@ section=1
 ==Section 1==
 !! result
 ==Section 1==
+!! end
+
+!! test
+Un-closed <includeonly>
+!! input
+<includeonly>
+!! result
 !! end
 
 ###
