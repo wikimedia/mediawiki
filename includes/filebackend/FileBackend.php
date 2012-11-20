@@ -182,7 +182,8 @@ abstract class FileBackend {
 	 *         'content'             => <string of new file contents>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'disposition'         => <Content-Disposition header value>,
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     );
 	 * @endcode
 	 *
@@ -194,7 +195,8 @@ abstract class FileBackend {
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'disposition'         => <Content-Disposition header value>,
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 *
@@ -247,10 +249,14 @@ abstract class FileBackend {
 	 *   - overwriteSame       : An error will not be given if a file already
 	 *                           exists at the destination that has the same
 	 *                           contents as the new contents to be written there.
-	 *   - disposition         : When supplied, the backend will add a Content-Disposition
+	 *   - disposition         : If supplied, the backend will return a Content-Disposition
 	 *                           header when GETs/HEADs of the destination file are made.
-	 *                           Backends that don't support file metadata will ignore this.
-	 *                           See http://tools.ietf.org/html/rfc6266 (since 1.20).
+	 *                           Backends that don't support metadata ignore this.
+	 *                           See http://tools.ietf.org/html/rfc6266. (since 1.20)
+	 *   - headers             : If supplied, the backend will return these headers when
+	 *                           GETs/HEADs of the destination file are made. Header values
+	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
 	 *   - force               : Operation precondition errors no longer trigger an abort.
@@ -265,10 +271,10 @@ abstract class FileBackend {
 	 *   - nonJournaled        : Don't log this operation batch in the file journal.
 	 *                           This limits the ability of recovery scripts.
 	 *   - parallelize         : Try to do operations in parallel when possible.
-	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20).
+	 *   - bypassReadOnly      : Allow writes in read-only mode. (since 1.20)
 	 *   - preserveCache       : Don't clear the process cache before checking files.
 	 *                           This should only be used if all entries in the process
-	 *                           cache were added after the files were already locked (since 1.20).
+	 *                           cache were added after the files were already locked. (since 1.20)
 	 *
 	 * @remarks Remarks on locking:
 	 * File system paths given to operations should refer to files that are
@@ -411,7 +417,8 @@ abstract class FileBackend {
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'disposition'         => <Content-Disposition header value>,
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 * b) Copy a file system file into storage
@@ -420,7 +427,8 @@ abstract class FileBackend {
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
 	 *         'dst'                 => <storage path>,
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'disposition'         => <Content-Disposition header value>,
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 * c) Copy a file within storage
@@ -465,6 +473,10 @@ abstract class FileBackend {
 	 *                           header when GETs/HEADs of the destination file are made.
 	 *                           Backends that don't support file metadata will ignore this.
 	 *                           See http://tools.ietf.org/html/rfc6266 (since 1.20).
+	 *   - headers             : If supplied, the backend will return these headers when
+	 *                           GETs/HEADs of the destination file are made. Header values
+	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
 	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20)

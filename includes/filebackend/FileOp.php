@@ -466,7 +466,7 @@ abstract class FileOp {
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
 		return array( array( 'content', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition' ) );
+			array( 'overwrite', 'overwriteSame', 'disposition', 'headers' ) );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -529,7 +529,7 @@ class StoreFileOp extends FileOp {
 	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition' ) );
+			array( 'overwrite', 'overwriteSame', 'disposition', 'headers' ) );
 	}
 
 	/**

@@ -1027,18 +1027,25 @@ class FileRepo {
 	 * Returns a FileRepoStatus object. On success, the value contains "new" or
 	 * "archived", to indicate whether the file was new with that name.
 	 *
+	 * Options to $options include:
+	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
+	 *
 	 * @param $srcPath String: the source file system path, storage path, or URL
 	 * @param $dstRel String: the destination relative path
 	 * @param $archiveRel String: the relative path where the existing file is to
 	 *        be archived, if there is one. Relative to the public zone root.
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source file should be deleted if possible
+	 * @param $options Array Optional additional parameters
 	 * @return FileRepoStatus
 	 */
-	public function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
+	public function publish(
+		$srcPath, $dstRel, $archiveRel, $flags = 0, array $options = array()
+	) {
 		$this->assertWritableRepo(); // fail out if read-only
 
-		$status = $this->publishBatch( array( array( $srcPath, $dstRel, $archiveRel ) ), $flags );
+		$status = $this->publishBatch(
+			array( array( $srcPath, $dstRel, $archiveRel, $options ) ), $flags );
 		if ( $status->successCount == 0 ) {
 			$status->ok = false;
 		}
@@ -1054,7 +1061,8 @@ class FileRepo {
 	/**
 	 * Publish a batch of files
 	 *
-	 * @param $triplets Array: (source, dest, archive) triplets as per publish()
+	 * @param $triplets Array: (source, dest, archive) triplets or
+	 *        (source, dest, archive, options) quartets as per publish().
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source files should be deleted if possible
 	 * @throws MWException
@@ -1077,6 +1085,7 @@ class FileRepo {
 		// Validate each triplet and get the store operation...
 		foreach ( $triplets as $i => $triplet ) {
 			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
+			$options = isset( $triplet[3] ) ? $triplet[3] : array();
 			// Resolve source to a storage path if virtual
 			$srcPath = $this->resolveToStoragePath( $srcPath );
 			if ( !$this->validateFilename( $dstRel ) ) {
@@ -1100,6 +1109,9 @@ class FileRepo {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
 
+			// Set any desired headers to be use in GET/HEAD responses
+			$headers = isset( $options['headers'] ) ? $options['headers'] : array();
+
 			// Archive destination file if it exists.
 			// This will check if the archive file also exists and fail if does.
 			// This is a sanity check to avoid data loss. On Windows and Linux,
@@ -1117,25 +1129,28 @@ class FileRepo {
 			if ( FileBackend::isStoragePath( $srcPath ) ) {
 				if ( $flags & self::DELETE_SOURCE ) {
 					$operations[] = array(
-						'op'           => 'move',
-						'src'          => $srcPath,
-						'dst'          => $dstPath,
-						'overwrite'    => true // replace current
+						'op'        => 'move',
+						'src'       => $srcPath,
+						'dst'       => $dstPath,
+						'overwrite' => true, // replace current
+						'headers'   => $headers
 					);
 				} else {
 					$operations[] = array(
-						'op'           => 'copy',
-						'src'          => $srcPath,
-						'dst'          => $dstPath,
-						'overwrite'    => true // replace current
+						'op'        => 'copy',
+						'src'       => $srcPath,
+						'dst'       => $dstPath,
+						'overwrite' => true, // replace current
+						'headers'   => $headers
 					);
 				}
 			} else { // FS source path
 				$operations[] = array(
-					'op'           => 'store',
-					'src'          => $srcPath,
-					'dst'          => $dstPath,
-					'overwrite'    => true // replace current
+					'op'        => 'store',
+					'src'       => $srcPath,
+					'dst'       => $dstPath,
+					'overwrite' => true, // replace current
+					'headers'   => $headers
 				);
 				if ( $flags & self::DELETE_SOURCE ) {
 					$sourceFSFilesToDelete[] = $srcPath;

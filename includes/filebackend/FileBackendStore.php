@@ -93,6 +93,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - content       : the raw file contents
 	 *   - dst           : destination storage path
 	 *   - disposition   : Content-Disposition header value for the destination
+	 *   - headers       : HTTP header name/value map
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
@@ -130,6 +131,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src           : source path on disk
 	 *   - dst           : destination storage path
 	 *   - disposition   : Content-Disposition header value for the destination
+	 *   - headers       : HTTP header name/value map
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
@@ -1066,6 +1068,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		// Fix up custom header name/value pairs...
+		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
+
 		// Build up a list of FileOps...
 		$performOps = $this->getOperationsInternal( $ops );
 
@@ -1114,6 +1119,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
+
+		// Fix up custom header name/value pairs...
+		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
 
 		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
 		$async = ( $this->parallelize === 'implicit' );
@@ -1204,6 +1212,24 @@ abstract class FileBackendStore extends FileBackend {
 			throw new MWException( "This backend supports no asynchronous operations." );
 		}
 		return array();
+	}
+
+	/**
+	 * Strip long HTTP headers from a file operation
+	 *
+	 * @param $op array Same format as doOperation()
+	 * @return Array
+	 */
+	protected function stripInvalidHeadersFromOp( array $op ) {
+		if ( isset( $op['headers'] ) ) {
+			foreach ( $op['headers'] as $name => $value ) {
+				if ( strlen( $name ) > 255 || strlen( $value ) > 255 ) {
+					trigger_error( "Header '$name: $value' is too long." );
+					unset( $op['headers'][$name] );
+				}
+			}
+		}
+		return $op;
 	}
 
 	/**
