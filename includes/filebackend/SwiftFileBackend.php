@@ -236,6 +236,10 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( isset( $params['disposition'] ) ) {
 				$obj->headers['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
 			}
+			// Set any other custom headers if requested
+			if ( isset( $params['headers'] ) ) {
+				$obj->headers += $params['headers'];
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $obj->write_async( $params['content'] );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $op );
@@ -314,6 +318,10 @@ class SwiftFileBackend extends FileBackendStore {
 			// Set the Content-Disposition header if requested
 			if ( isset( $params['disposition'] ) ) {
 				$obj->headers['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
+			}
+			// Set any other custom headers if requested
+			if ( isset( $params['headers'] ) ) {
+				$obj->headers += $params['headers'];
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				wfSuppressWarnings();

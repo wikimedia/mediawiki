@@ -951,7 +951,7 @@ class LocalFile extends File {
 
 	/**
 	 * Upload a file and record it in the DB
-	 * @param $srcPath String: source storage path or virtual URL
+	 * @param $srcPath String: source storage path, virtual URL, or filesystem path
 	 * @param $comment String: upload description
 	 * @param $pageText String: text to use for the new description page,
 	 *                  if a new description page is created
@@ -972,11 +972,27 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
+		if ( !$props ) {
+			wfProfileIn( __METHOD__ . '-getProps' );
+			$props = FileBackend::isStoragePath( $srcPath )
+				? $this->repo->getFileProps( $srcPath )
+				: FSFile::getPropsFromPath( $srcPath );
+			wfProfileOut( __METHOD__ . '-getProps' );
+		}
+
+		$options = array();
+		$handler = MediaHandler::getHandler( $props['mime'] );
+		if ( $handler ) {
+			$options['headers'] = $handler->getStreamHeaders( $props['metadata'] );
+		} else {
+			$options['headers'] = array();
+		}
+
 		// truncate nicely or the DB will do it for us
 		// non-nicely (dangling multi-byte chars, non-truncated version in cache).
 		$comment = $wgContLang->truncate( $comment, 255 );
 		$this->lock(); // begin
-		$status = $this->publish( $srcPath, $flags );
+		$status = $this->publish( $srcPath, $flags, $options );
 
 		if ( $status->successCount > 0 ) {
 			# Essentially we are displacing any existing current file and saving
@@ -1252,11 +1268,12 @@ class LocalFile extends File {
 	 * @param $srcPath String: local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
+	 * @param $options Array Optional additional parameters
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publish( $srcPath, $flags = 0 ) {
-		return $this->publishTo( $srcPath, $this->getRel(), $flags );
+	function publish( $srcPath, $flags = 0, array $options = array() ) {
+		return $this->publishTo( $srcPath, $this->getRel(), $flags, $options );
 	}
 
 	/**
@@ -1270,10 +1287,11 @@ class LocalFile extends File {
 	 * @param $dstRel String: target relative path
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
+	 * @param $options Array Optional additional parameters
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publishTo( $srcPath, $dstRel, $flags = 0 ) {
+	function publishTo( $srcPath, $dstRel, $flags = 0, array $options = array() ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -1283,7 +1301,7 @@ class LocalFile extends File {
 		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
-		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags );
+		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags, $options );
 
 		if ( $status->value == 'new' ) {
 			$status->value = '';

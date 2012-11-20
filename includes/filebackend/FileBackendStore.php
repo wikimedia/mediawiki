@@ -1066,6 +1066,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		// Fix up custom header name/value pairs...
+		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
+
 		// Build up a list of FileOps...
 		$performOps = $this->getOperationsInternal( $ops );
 
@@ -1114,6 +1117,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
+
+		// Fix up custom header name/value pairs...
+		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
 
 		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
 		$async = ( $this->parallelize === 'implicit' );
@@ -1204,6 +1210,24 @@ abstract class FileBackendStore extends FileBackend {
 			throw new MWException( "This backend supports no asynchronous operations." );
 		}
 		return array();
+	}
+
+	/**
+	 * Strip long HTTP headers from a file operation
+	 *
+	 * @param $op array Same format as doOperation()
+	 * @return Array
+	 */
+	protected function stripInvalidHeadersFromOp( array $op ) {
+		if ( isset( $op['headers'] ) ) {
+			foreach ( $op['headers'] as $name => $value ) {
+				if ( strlen( $name ) > 255 || strlen( $value ) > 255 ) {
+					trigger_error( "Header '$name: $value' is too long." );
+					unset( $op['headers'][$name] );
+				}
+			}
+		}
+		return $op;
 	}
 
 	/**
