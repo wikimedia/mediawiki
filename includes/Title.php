@@ -2983,6 +2983,7 @@ class Title {
 			return $this->mLatestID = 0;
 		}
 		$linkCache = LinkCache::singleton();
+		$linkCache->addLinkObj( $this );
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
 		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
 			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
