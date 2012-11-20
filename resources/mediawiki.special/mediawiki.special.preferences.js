@@ -79,7 +79,10 @@ jQuery( document ).ready( function ( $ ) {
 	// <a href="#.."> will naturally set the hash, handled by onhashchange.
 	// But other things that change the hash will also be catched (e.g. using
 	// the Back and Forward browser navigation).
-	if ( 'onhashchange' in window ) {
+	// Note the special check for IE "compatibility" mode.
+	if ( 'onhashchange' in window &&
+		( document.documentMode === undefined || document.documentMode >= 8 )
+	) {
 		$(window).on( 'hashchange' , function () {
 			var hash = window.location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
