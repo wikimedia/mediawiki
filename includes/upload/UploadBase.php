@@ -683,9 +683,9 @@ abstract class UploadBase {
 			$this->mFilteredName = $this->mDesiredDestName;
 		}
 
-		# oi_archive_name is max 255 bytes, which include a timestamp and an
-		# exclamation mark, so restrict file name to 240 bytes.
-		if ( strlen( $this->mFilteredName ) > 240 ) {
+		# oi_archive_name is max 255 bytes, which include a timestamp, 'T' and an
+		# exclamation mark, so restrict file name to 239 bytes.
+		if ( strlen( $this->mFilteredName ) > 239 ) {
 			$this->mTitleError = self::FILENAME_TOO_LONG;
 			return $this->mTitle = null;
 		}
