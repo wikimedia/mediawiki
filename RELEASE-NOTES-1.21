@@ -97,6 +97,8 @@ changes to languages because of Bugzilla reports.
 * (bug 30040) Autonym for nds-nl is now 'Nedersaksies' (was 'Nedersaksisch').
 * (bug 34977) Now formatted numbers in Spanish use space as separator
   for thousands, as mandated by the Real Academia Española.
+* (bug 35031) Kurdish formatted numbers now use period and comma
+  as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
 
