@@ -3,6 +3,7 @@
  * Implements Special:Export
  *
  * Copyright © 2003-2008 Brion Vibber <brion@pobox.com>
+ * © 2010+ Vitaliy Filippov <vitalif@mail.ru>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,13 +25,13 @@
  */
 
 /**
- * A special page that allows users to export pages in a XML file
+ * A special page that allows users to export pages in a file
  *
  * @ingroup SpecialPage
  */
 class SpecialExport extends SpecialPage {
 
-	private $curonly, $doExport, $pageLinkDepth, $templates;
+	private $curonly, $doExport, $templates;
 	private $images;
 
 	public function __construct() {
@@ -50,58 +51,20 @@ class SpecialExport extends SpecialPage {
 		$this->doExport = false;
 		$request = $this->getRequest();
 		$this->templates = $request->getCheck( 'templates' );
-		$this->images = $request->getCheck( 'images' ); // Doesn't do anything yet
+		$this->images = $request->getCheck( 'images' );
 		$this->pageLinkDepth = $this->validateLinkDepth(
 			$request->getIntOrNull( 'pagelink-depth' )
 		);
 		$nsindex = '';
 		$exportall = false;
 
-		if ( $request->getCheck( 'addcat' ) ) {
-			$page = $request->getText( 'pages' );
-			$catname = $request->getText( 'catname' );
-
-			if ( $catname !== '' && $catname !== null && $catname !== false ) {
-				$t = Title::makeTitleSafe( NS_MAIN, $catname );
-				if ( $t ) {
-					/**
-					 * @todo FIXME: This can lead to hitting memory limit for very large
-					 * categories. Ideally we would do the lookup synchronously
-					 * during the export in a single query.
-					 */
-					$catpages = $this->getPagesFromCategory( $t );
-					if ( $catpages ) {
-						$page .= "\n" . implode( "\n", $catpages );
-					}
-				}
-			}
+		$state = $request->getValues();
+		$state['errors'] = array();
+		if ( !empty( $state['addcat'] ) ) {
+			self::addPagesExec( $state );
+			$page = $state['pages'];
 		}
-		elseif( $request->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
-			$page = $request->getText( 'pages' );
-			$nsindex = $request->getText( 'nsindex', '' );
-
-			if ( strval( $nsindex ) !== ''  ) {
-				/**
-				 * Same implementation as above, so same @todo
-				 */
-				$nspages = $this->getPagesFromNamespace( $nsindex );
-				if ( $nspages ) {
-					$page .= "\n" . implode( "\n", $nspages );
-				}
-			}
-		}
-		elseif( $request->getCheck( 'exportall' ) && $wgExportAllowAll ) {
-			$this->doExport = true;
-			$exportall = true;
-
-			/* Although $page and $history are not used later on, we
-			nevertheless set them to avoid that PHP notices about using
-			undefined variables foul up our XML output (see call to
-			doExport(...) further down) */
-			$page = '';
-			$history = '';
-		}
-		elseif( $request->wasPosted() && $par == '' ) {
+		elseif ( $request->wasPosted() && $par == '' ) {
 			$page = $request->getText( 'pages' );
 			$this->curonly = $request->getCheck( 'curonly' );
 			$rawOffset = $request->getVal( 'offset' );
@@ -161,25 +124,11 @@ class SpecialExport extends SpecialPage {
 
 		$list_authors = $request->getCheck( 'listauthors' );
 		if ( !$this->curonly || !$wgExportAllowListContributors ) {
-			$list_authors = false ;
+			$list_authors = false;
 		}
 
 		if ( $this->doExport ) {
-			$this->getOutput()->disable();
-
-			// Cancel output buffering and gzipping if set
-			// This should provide safer streaming for pages with history
-			wfResetOutputBuffers();
-			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
-
-			if( $request->getCheck( 'wpDownload' ) ) {
-				// Provide a sane filename suggestion
-				$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
-				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
-			}
-
 			$this->doExport( $page, $history, $list_authors, $exportall );
-
 			return;
 		}
 
@@ -188,31 +137,11 @@ class SpecialExport extends SpecialPage {
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );
-		$form .= Xml::inputLabel( $this->msg( 'export-addcattext' )->text(), 'catname', 'catname', 40 ) . '&#160;';
-		$form .= Xml::submitButton( $this->msg( 'export-addcat' )->text(), array( 'name' => 'addcat' ) ) . '<br />';
-
-		if ( $wgExportFromNamespaces ) {
-			$form .= Html::namespaceSelector(
-				array(
-					'selected' => $nsindex,
-					'label' => $this->msg( 'export-addnstext' )->text()
-				), array(
-					'name'  => 'nsindex',
-					'id'    => 'namespace',
-					'class' => 'namespaceselector',
-				)
-			) . '&#160;';
-			$form .= Xml::submitButton( $this->msg( 'export-addns' )->text(), array( 'name' => 'addns' ) ) . '<br />';
+		foreach ( $state['errors'] as $e ) {
+			$form .= wfMsgExt( $e[0], array( 'parse' ), $e[1] );
 		}
 
-		if ( $wgExportAllowAll ) {
-			$form .= Xml::checkLabel(
-				$this->msg( 'exportall' )->text(),
-				'exportall',
-				'exportall',
-				$request->wasPosted() ? $request->getCheck( 'exportall' ) : false
-			) . '<br />';
-		}
+		$form .= self::addPagesForm( $state );
 
 		$form .= Xml::element( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ), $page, false );
 		$form .= '<br />';
@@ -222,30 +151,16 @@ class SpecialExport extends SpecialPage {
 				$this->msg( 'exportcuronly' )->text(),
 				'curonly',
 				'curonly',
-				$request->wasPosted() ? $request->getCheck( 'curonly' ) : true
+				$request->getCheck( 'curonly' ) ? true : false
 			) . '<br />';
 		} else {
 			$out->addWikiMsg( 'exportnohistory' );
 		}
 
-		$form .= Xml::checkLabel(
-			$this->msg( 'export-templates' )->text(),
-			'templates',
-			'wpExportTemplates',
-			$request->wasPosted() ? $request->getCheck( 'templates' ) : false
-		) . '<br />';
-
-		if( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
-			$form .= Xml::inputLabel( $this->msg( 'export-pagelinks' )->text(), 'pagelink-depth', 'pagelink-depth', 20, 0 ) . '<br />';
-		}
-		// Enable this when we can do something useful exporting/importing image information. :)
-		//$form .= Xml::checkLabel( $this->msg( 'export-images' )->text(), 'images', 'wpExportImages', false ) . '<br />';
-		$form .= Xml::checkLabel(
-			$this->msg( 'export-download' )->text(),
-			'wpDownload',
-			'wpDownload',
-			$request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true
-		) . '<br />';
+		$form .= Xml::checkLabel( wfMsg( 'export-include-images' ), 'images', 'wpExportImages', $request->getCheck('images') ? true : false ) . '<br />';
+		$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
+		$form .= Xml::checkLabel( wfMsg( 'export-selfcontained' ), 'selfcontained', 'wpSelfContained', $request->getCheck('selfcontained') ? true : false ) . '<br />';
+		wfRunHooks( 'ExportAfterChecks', array( $this, &$form ) );
 
 		if ( $wgExportAllowListContributors ) {
 			$form .= Xml::checkLabel(
@@ -265,8 +180,9 @@ class SpecialExport extends SpecialPage {
 	/**
 	 * @return bool
 	 */
-	private function userCanOverrideExportDepth() {
-		return $this->getUser()->isAllowed( 'override-export-depth' );
+	public static function userCanOverrideExportDepth() {
+		global $wgUser;
+		return $wgUser->isAllowed( 'override-export-depth' );
 	}
 
 	/**
@@ -279,52 +195,22 @@ class SpecialExport extends SpecialPage {
 	 * @param $exportall Boolean: Whether to export everything
 	 */
 	private function doExport( $page, $history, $list_authors, $exportall ) {
+		global $wgExportMaxHistory, $wgOut, $wgSitename;
 
-		// If we are grabbing everything, enable full history and ignore the rest
-		if ( $exportall ) {
-			$history = WikiExporter::FULL;
-		} else {
+		$request = $this->getRequest();
 
-			$pageSet = array(); // Inverted index of all pages to look up
-
-			// Split up and normalize input
-			foreach( explode( "\n", $page ) as $pageName ) {
-				$pageName = trim( $pageName );
-				$title = Title::newFromText( $pageName );
-				if( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
-					// Only record each page once!
-					$pageSet[$title->getPrefixedText()] = true;
-				}
+		// Split up and normalize input
+		$pages = array();
+		foreach( explode( "\n", $page ) as $pageName ) {
+			$pageName = trim( $pageName );
+			$title = Title::newFromText( $pageName );
+			if( $title && $title->getInterwiki() == '' && $title->getText() !== '' &&
+			    $title->userCanRead() ) {
+				// Only record each page once!
+				$pages[ $title->getPrefixedText() ] = $title;
 			}
-
-			// Set of original pages to pass on to further manipulation...
-			$inputPages = array_keys( $pageSet );
-
-			// Look up any linked pages if asked...
-			if( $this->templates ) {
-				$pageSet = $this->getTemplates( $inputPages, $pageSet );
-			}
-			$linkDepth = $this->pageLinkDepth;
-			if( $linkDepth ) {
-				$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
-			}
-
-			/*
-			 // Enable this when we can do something useful exporting/importing image information. :)
-			 if( $this->images ) ) {
-			 $pageSet = $this->getImages( $inputPages, $pageSet );
-			 }
-			*/
-
-			$pages = array_keys( $pageSet );
-
-			// Normalize titles to the same format and remove dupes, see bug 17374
-			foreach( $pages as $k => $v ) {
-				$pages[$k] = str_replace( " ", "_", $v );
-			}
-
-			$pages = array_unique( $pages );
 		}
+		$pages = array_values( $pages );
 
 		/* Ok, let's get to it... */
 		if( $history == WikiExporter::CURRENT ) {
@@ -343,222 +229,376 @@ class SpecialExport extends SpecialPage {
 			wfRestoreWarnings();
 		}
 
-		$exporter = new WikiExporter( $db, $history, $buffer );
-		$exporter->list_authors = $list_authors;
+		$exporter = new WikiExporter( $db, $history, $buffer, WikiExporter::TEXT,
+			$list_authors, $request->getCheck( 'images' ), $request->getCheck( 'selfcontained' ) );
 		$exporter->openStream();
-
-		if ( $exportall ) {
-			$exporter->allPages();
-		} else {
-			foreach( $pages as $page ) {
-			/*
-			 if( $wgExportMaxHistory && !$this->curonly ) {
-			 $title = Title::newFromText( $page );
-			 if( $title ) {
-			 $count = Revision::countByTitle( $db, $title );
-			 if( $count > $wgExportMaxHistory ) {
-			 wfDebug( __FUNCTION__ .
-			 ": Skipped $page, $count revisions too big\n" );
-			 continue;
-			 }
-			 }
-			 }*/
-			#Bug 8824: Only export pages the user can read
-				$title = Title::newFromText( $page );
-				if( is_null( $title ) ) {
-					continue; #TODO: perhaps output an <error> tag or something.
-				}
-				if( !$title->userCan( 'read', $this->getUser() ) ) {
-					continue; #TODO: perhaps output an <error> tag or something.
-				}
-
-				$exporter->pageByTitle( $title );
-			}
+		$exporter->pagesByTitles( $pages );
+		$exporter->closeStream();
+		$archive = $mimetype = $extension = '';
+		if ( !$exporter->getArchive( $archive, $mimetype, $extension ) ) {
+			die();
 		}
 
-		$exporter->closeStream();
+		$wgOut->disable();
+		// Cancel output buffering and gzipping if set
+		// This should provide safer streaming for pages with history
+		wfResetOutputBuffers();
+		header( "Content-type: $mimetype" );
+		if( $request->getCheck( 'wpDownload' ) ) {
+			// Provide a sane filename suggestion
+			$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.' . $extension );
+			header( "Content-disposition: attachment;filename={$filename}" );
+		}
+		readfile( $archive );
 
 		if( $lb ) {
 			$lb->closeAll();
 		}
 	}
 
-	/**
-	 * @param $title Title
-	 * @return array
-	 */
-	private function getPagesFromCategory( $title ) {
-		global $wgContLang;
-
-		$name = $title->getDBkey();
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			array( 'page', 'categorylinks' ),
-			array( 'page_namespace', 'page_title' ),
-			array( 'cl_from=page_id', 'cl_to' => $name ),
-			__METHOD__,
-			array( 'LIMIT' => '5000' )
-		);
-
-		$pages = array();
-
-		foreach ( $res as $row ) {
-			$n = $row->page_title;
-			if ($row->page_namespace) {
-				$ns = $wgContLang->getNsText( $row->page_namespace );
-				$n = $ns . ':' . $n;
+	// Execute page selection form, save page list to $state['pages'] and errors to $state['errors']
+	static function addPagesExec( &$state ) {
+		// Split up and normalize input
+		$pageSet = array();
+		foreach( explode( "\n", $state['pages'] ) as $pageName ) {
+			$pageName = trim( $pageName );
+			$title = Title::newFromText( $pageName );
+			if( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
+				// Only record each page once!
+				$pageSet[ $title->getPrefixedText() ] = $title;
 			}
-
-			$pages[] = $n;
 		}
-		return $pages;
+
+		// Validate parameter values
+		$catname     = isset( $state['catname'] )     ? $state['catname']     : '';
+		$notcategory = isset( $state['notcategory'] ) ? $state['notcategory'] : '';
+		$namespace   = isset( $state['namespace'] )   ? $state['namespace']   : '';
+		$modifydate  = isset( $state['modifydate'] )  ? $state['modifydate']  : '';
+		if ( !strlen( $modifydate ) || !( $modifydate = wfTimestampOrNull( TS_MW, $modifydate ) ) ) {
+			$modifydate = NULL;
+		}
+		if ( !strlen( $catname ) || !( $catname = Title::newFromText( $catname, NS_CATEGORY ) ) ||
+			$catname->getNamespace() != NS_CATEGORY ) {
+			$catname = NULL;
+		}
+		if ( !strlen( $notcategory ) || !( $notcategory = Title::newFromText( $notcategory, NS_CATEGORY ) ) ||
+			$notcategory->getNamespace() != NS_CATEGORY ) {
+			$notcategory = NULL;
+		}
+		if ( $namespace === 'Main' || $namespace == '(Main)' || $namespace === wfMsg( 'blanknamespace' ) ) {
+			$namespace = 0;
+		} elseif ( $namespace === '' || !( $namespace = Title::newFromText( "$namespace:Dummy", NS_MAIN ) ) ) {
+			$namespace = NULL;
+		} else {
+			$namespace = $namespace->getNamespace();
+		}
+
+		// Add pages from requested category and/or namespace
+		if ( $modifydate !== NULL || $namespace !== NULL || $catname !== NULL ) {
+			$catpages = self::getPagesFromCategory( $catname, !empty( $state['closure'] ), $namespace, $modifydate );
+			foreach ( $catpages as $title ) {
+				$pageSet[ $title->getPrefixedText() ] = $title;
+			}
+		}
+
+		// Look up any linked pages if asked...
+		$linkDepth = self::validateLinkDepth( !empty( $state['link-depth'] ) ? $state['link-depth'] : 0 );
+		$t = !empty( $state[ 'templates' ] );
+		$p = !empty( $state[ 'pagelinks' ] );
+		$i = !empty( $state[ 'images' ] );
+		$s = !empty( $state[ 'subpages' ] );
+		$r = !empty( $state[ 'redirects' ] );
+		$step = 0;
+		do {
+			// Loop as there may be more than one closure type
+			$added = 0;
+			if( $t ) $added += self::getTemplates( $pageSet );
+			if( $p ) $added += self::getPagelinks( $pageSet );
+			if( $i ) $added += self::getImages( $pageSet );
+			if( $s ) $added += self::getSubpages( $pageSet );
+			if( $r ) $added += self::getRedirects( $pageSet );
+			$step++;
+		} while( $t+$p+$i+$s > 1 && $added > 0 && ( !$linkDepth || $step < $linkDepth ) );
+
+		// Filter user-readable pages (also MW Bug 8824)
+		foreach ( $pageSet as $key => $title ) {
+			if ( !$title->userCanRead() ) {
+				unset( $pageSet[ $key ] );
+			}
+		}
+
+		// Filter pages by $modifydate
+		if ( $modifydate !== NULL && $pageSet ) {
+			$ids = array();
+			foreach ( $pageSet as $key => $title ) {
+				$ids[ $title->getArticleId() ] = $title;
+			}
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->select( array( 'page', 'revision' ), 'page_id',
+				array(
+					'page_latest=rev_id',
+					'page_id' => array_keys( $ids ),
+					'rev_timestamp > '.$dbr->timestamp( $modifydate )
+				), __METHOD__ );
+			foreach ( $res as $row ) {
+				unset( $ids[ $row->page_id ] );
+			}
+			foreach ( $ids as $title ) {
+				unset( $pageSet[ $title->getPrefixedText() ] );
+			}
+		}
+
+		// Filter pages from requested NOT-category
+		if ( $notcategory !== NULL ) {
+			$notlist = self::getPagesFromCategory( $notcategory );
+			foreach ( $notlist as $title ) {
+				unset( $pageSet[ $title->getPrefixedText() ] );
+			}
+		}
+
+		// Save resulting page list
+		$pages = array_keys( $pageSet );
+		sort( $pages );
+		$state['pages'] = implode( "\n", $pages );
+
+		// Save errors
+		$state['errors'] = array();
+		if ( !$catname && isset( $state['catname'] ) && $state['catname'] !== '' ) {
+			$state['errors'][] = array( 'export-invalid-catname', $state['catname'] );
+		}
+		if ( !$notcategory && isset( $state['notcategory'] ) && $state['notcategory'] !== '' ) {
+			$state['errors'][] = array( 'export-invalid-notcategory', $state['notcategory'] );
+		}
+		if ( $modifydate ) {
+			$state['modifydate'] = wfTimestamp( TS_DB, $modifydate );
+		} elseif ( isset( $state['modifydate'] ) && $state['modifydate'] !== '' ) {
+			$state['errors'][] = array( 'export-invalid-modifydate', $state['modifydate'] );
+		}
+		if ( !$namespace && isset( $state['namespace'] ) && $state['namespace'] !== '' ) {
+			$state['errors'][] = array( 'export-invalid-namespace', $state['namespace'] );
+		}
 	}
 
-	/**
-	 * @param $nsindex int
-	 * @return array
-	 */
-	private function getPagesFromNamespace( $nsindex ) {
-		global $wgContLang;
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			'page',
-			array( 'page_namespace', 'page_title' ),
-			array( 'page_namespace' => $nsindex ),
-			__METHOD__,
-			array( 'LIMIT' => '5000' )
+	// Display page selection form, enclosed into a <fieldset>
+	static function addPagesForm( $state ) {
+		global $wgExportMaxLinkDepth, $wgRequest;
+		$form = '<fieldset class="addpages">';
+		$form .= '<legend>' . wfMsgExt( 'export-addpages', 'parse' ) . '</legend>';
+		$textboxes = array(
+			'catname'     => 20,
+			'namespace'   => 20,
+			'modifydate'  => 18,
+			'notcategory' => 20,
 		);
-
-		$pages = array();
-
-		foreach ( $res as $row ) {
-			$n = $row->page_title;
-
-			if ( $row->page_namespace ) {
-				$ns = $wgContLang->getNsText( $row->page_namespace );
-				$n = $ns . ':' . $n;
-			}
-
-			$pages[] = $n;
+		// Textboxes:
+		foreach ( $textboxes as $k => $size ) {
+			$form .= '<div class="ap_'.$k.'">' .
+				Xml::inputLabel( wfMsg( "export-$k" ), $k, "ap-$k", $size, !empty( $state[ $k ] ) ? $state[ $k ] : '' ) . '</div>';
 		}
-		return $pages;
+		if( $wgExportMaxLinkDepth || self::userCanOverrideExportDepth() ) {
+			$form .= Xml::inputLabel( wfMsg( 'export-link-depth' ), 'link-depth', 'link-depth', 20, $wgRequest->getVal('link-depth') ) . '<br />';
+		}
+		// Checkboxes:
+		foreach ( array( 'closure', 'templates', 'images', 'pagelinks', 'subpages', 'redirects' ) as $k ) {
+			$form .= '<div class="ap_'.$k.'">' . Xml::checkLabel(
+				wfMsg( "export-$k" ), $k, "ap-$k", !empty( $state[ $k ] ),
+				array( 'style' => 'vertical-align: middle' )
+			) . '</div>';
+		}
+		// Submit button:
+		$form .= '<div class="ap_submit">' . Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '</div>';
+		$form .= '</fieldset>';
+		return $form;
 	}
 
-	/**
-	 * Expand a list of pages to include templates used in those pages.
-	 * @param $inputPages array, list of titles to look up
-	 * @param $pageSet array, associative array indexed by titles for output
-	 * @return array associative array index by titles
-	 */
-	private function getTemplates( $inputPages, $pageSet ) {
-		return $this->getLinks( $inputPages, $pageSet,
-			'templatelinks',
-			array( 'namespace' => 'tl_namespace', 'title' => 'tl_title' ),
-			array( 'page_id=tl_from' )
-		);
+	// Get pages from ((category possibly with subcategories) and/or namespace), or (modified after $modifydate)
+	static function getPagesFromCategory( $categories, $closure = false, $namespace = NULL, $modifydate = NULL ) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		if ( $categories ) {
+			if ( is_object( $categories ) ) {
+				$categories = $categories->getDBkey();
+			}
+			$cats = array();
+			foreach ( ( is_array( $categories ) ? $categories : array( $categories ) ) as $c ) {
+				$cats[ $c ] = true;
+			}
+			// Get subcategories
+			while ( $categories && $closure ) {
+				$res = $dbr->select( array( 'page', 'categorylinks' ), 'page_title',
+					array( 'cl_from=page_id', 'cl_to' => $categories, 'page_namespace' => NS_CATEGORY ),
+					__METHOD__ );
+				$categories = array();
+				foreach ( $res as $row ) {
+					if ( !$cats[ $row->page_title ] ) {
+						$categories[] = $row->page_title;
+						$cats[ $row->page_title ] = $row;
+					}
+				}
+			}
+			$categories = array_keys( $cats );
+		}
+
+		// Get pages
+		$tables = array( 'page' );
+		$fields = 'page.*';
+		$where = array();
+		if ( $categories ) {
+			$tables[] = 'categorylinks';
+			$where[] = 'cl_from=page_id';
+			$where['cl_to'] = $categories;
+		}
+		if ( $namespace !== NULL ) {
+			$where['page_namespace'] = $namespace;
+		} elseif ( $categories === NULL && $modifydate !== NULL ) {
+			$where[] = 'page_touched >= '.$dbr->timestamp( $modifydate );
+		}
+		$res = $dbr->select( $tables, $fields, $where, __METHOD__ );
+		$pages = array();
+		foreach ( $res as $row ) {
+			$pages[] = Title::newFromRow( $row );
+		}
+
+		return array_values( $pages );
 	}
 
 	/**
 	 * Validate link depth setting, if available.
-	 * @param $depth int
-	 * @return int
 	 */
-	private function validateLinkDepth( $depth ) {
-		global $wgExportMaxLinkDepth;
-
-		if( $depth < 0 ) {
+	public static function validateLinkDepth( $depth ) {
+		global $wgExportMaxLinkDepth, $wgExportMaxLinkDepthLimit;
+		if( $depth <= 0 ) {
 			return 0;
 		}
-
-		if ( !$this->userCanOverrideExportDepth() ) {
-			if( $depth > $wgExportMaxLinkDepth ) {
-				return $wgExportMaxLinkDepth;
-			}
+		if ( !self::userCanOverrideExportDepth() &&
+			$depth > $wgExportMaxLinkDepth ) {
+			return $wgExportMaxLinkDepth;
 		}
-
-		/*
-		 * There's a HARD CODED limit of 5 levels of recursion here to prevent a
-		 * crazy-big export from being done by someone setting the depth
-		 * number too high. In other words, last resort safety net.
-		 */
-		return intval( min( $depth, 5 ) );
+		return $depth;
 	}
 
 	/**
-	 * Expand a list of pages to include pages linked to from that page.
-	 * @param $inputPages array
-	 * @param $pageSet array
-	 * @param $depth int
-	 * @return array
-	 */
-	private function getPageLinks( $inputPages, $pageSet, $depth ) {
-		for( ; $depth > 0; --$depth ) {
-			$pageSet = $this->getLinks(
-				$inputPages, $pageSet, 'pagelinks',
-				array( 'namespace' => 'pl_namespace', 'title' => 'pl_title' ),
-				array( 'page_id=pl_from' )
-			);
-			$inputPages = array_keys( $pageSet );
-		}
-
-		return $pageSet;
-	}
-
-	/**
-	 * Expand a list of pages to include images used in those pages.
-	 *
-	 * @param $inputPages array, list of titles to look up
-	 * @param $pageSet array, associative array indexed by titles for output
-	 *
+	 * Expand a list of pages to include templates used in those pages.
+	 * @param &$pageSet array, associative array indexed by titles
 	 * @return array associative array index by titles
 	 */
-	private function getImages( $inputPages, $pageSet ) {
-		return $this->getLinks(
-			$inputPages,
-			$pageSet,
-			'imagelinks',
-			array( 'namespace' => NS_FILE, 'title' => 'il_to' ),
-			array( 'page_id=il_from' )
+	public static function getTemplates( &$pageSet ) {
+		return self::getLinks(
+			$pageSet, 'templatelinks', 'tl_from',
+			array( 'page_namespace=tl_namespace', 'page_title=tl_title' )
 		);
 	}
 
 	/**
-	 * Expand a list of pages to include items used in those pages.
-	 * @return array
+	 * Expand a list of pages to include pages linked to from that page.
+	 * @param &$pageSet array, associative array indexed by title prefixed text for output
+	 * @return int count of added pages
 	 */
-	private function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
+	public static function getPageLinks( &$pageSet ) {
+		return self::getLinks(
+			$pageSet, 'pagelinks', 'pl_from',
+			array( 'page_namespace=pl_namespace', 'page_title=pl_title' )
+		);
+	}
+
+	/**
+	 * Expand a list of pages to include images used in those pages.
+	 * @param &$pageSet array, associative array indexed by title prefixed text for output
+	 * @return int count of added pages
+	 */
+	public static function getImages( &$pageSet ) {
+		return self::getLinks(
+			$pageSet, 'imagelinks', 'il_from',
+			array( 'page_namespace='.NS_FILE, 'page_title=il_to' )
+		);
+	}
+
+	/**
+	 * Expand a list of pages to include all their subpages.
+	 * @param &$pageSet array, associative array indexed by title prefixed text for output
+	 * @return int count of added pages
+	 */
+	public static function getSubpages( &$pageSet ) {
 		$dbr = wfGetDB( DB_SLAVE );
-
-		foreach( $inputPages as $page ) {
-			$title = Title::newFromText( $page );
-
-			if( $title ) {
-				$pageSet[$title->getPrefixedText()] = true;
-				/// @todo FIXME: May or may not be more efficient to batch these
-				///        by namespace when given multiple input pages.
-				$result = $dbr->select(
-					array( 'page', $table ),
-					$fields,
-					array_merge(
-						$join,
-						array(
-							'page_namespace' => $title->getNamespace(),
-							'page_title' => $title->getDBkey()
-						)
-					),
-					__METHOD__
-				);
-
-				foreach( $result as $row ) {
-					$template = Title::makeTitle( $row->namespace, $row->title );
-					$pageSet[$template->getPrefixedText()] = true;
-				}
+		$where = array();
+		$ids = array();
+		foreach ( $pageSet as $title ) {
+			$ids[ $title->getArticleId() ] = true;
+			$where[ $title->getNamespace() ][] = 'page_title LIKE '.$dbr->addQuotes( $title->getDBkey().'/%' );
+		}
+		foreach ( $where as $ns => &$w ) {
+			$w = '( page_namespace='.$ns.' AND ( '.implode( ' OR ', $w ).' ) )';
+		}
+		$where = '( '.implode( ' OR ', $where ).' )';
+		$result = $dbr->select( 'page', '*', array( $where ), __METHOD__ );
+		$added = 0;
+		foreach( $result as $row ) {
+			if( empty( $ids[ $row->page_id ] ) ) {
+				$add = Title::newFromRow( $row );
+				$pageSet[ $add->getPrefixedText() ] = $add;
+				$added++;
 			}
 		}
+		return $added;
+	}
 
-		return $pageSet;
+	/**
+	 * Expand a list of pages to include redirects linking to them.
+	 * @param &$pageSet array, associative array indexed by title prefixed text for output
+	 * @return int count of added pages
+	 */
+	public static function getRedirects( &$pageSet ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$where = array();
+		$ids = array();
+		foreach ( $pageSet as $title ) {
+			$ids[ $title->getArticleId() ] = true;
+			$where[ $title->getNamespace() ][] = $title->getDBkey();
+		}
+		foreach ( $where as $ns => &$w ) {
+			$w = '( rd_namespace='.$ns.' AND rd_title IN ( ' . $dbr->makeList( $w ) . ' ) )';
+		}
+		$where = '( '.implode( ' OR ', $where ).' )';
+		$result = $dbr->select( array( 'page', 'redirect' ), 'page.*', array( 'page_id=rd_from', $where ), __METHOD__ );
+		$added = 0;
+		foreach( $result as $row ) {
+			if( empty( $ids[ $row->page_id ] ) ) {
+				$add = Title::newFromRow( $row );
+				$pageSet[ $add->getPrefixedText() ] = $add;
+				$added++;
+			}
+		}
+		return $added;
+	}
+
+	/**
+	 * Expand a list of pages to include items used in those pages.
+	 * @private
+	 */
+	private static function getLinks( &$pageSet, $table, $id_field, $join ) {
+		if ( !$pageSet ) {
+			return 0;
+		}
+		$dbr = wfGetDB( DB_SLAVE );
+		$ids = array();
+		foreach( $pageSet as $title ) {
+			$ids[ $title->getArticleId() ] = true;
+		}
+		$result = $dbr->select(
+			array( 'page', $table ), 'page.*',
+			$join + array( $id_field => array_keys( $ids ) ),
+			__METHOD__,
+			array( 'GROUP BY' => 'page_id' )
+		);
+		$added = 0;
+		foreach( $result as $row ) {
+			if( empty( $ids[ $row->page_id ] ) ) {
+				$add = Title::newFromRow( $row );
+				$pageSet[ $add->getPrefixedText() ] = $add;
+				$added++;
+			}
+		}
+		return $added;
 	}
 
 }
