@@ -7197,6 +7197,23 @@ DIV IN UPPERCASE
 
 !!end
 
+!! test
+Non-ASCII pseudo-tags are rendered as text
+!! input
+<khyô>
+!! result
+<p>&lt;khyô&gt;
+</p>
+!! end
+
+!! test
+Pseudo-tag with URL 'name' renders as url link
+!! input
+<http://example.com/>
+!! result
+<p>&lt;<a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>&gt;
+</p>
+!! end
 
 !! test
 text with amp in the middle of nowhere
