@@ -7197,6 +7197,14 @@ DIV IN UPPERCASE
 
 !!end
 
+!! test
+Non-ASCII pseudo-tags are rendered as text
+!! input
+<khyô>
+!! result
+<p>&lt;khyô&gt;
+</p>
+!! end
 
 !! test
 text with amp in the middle of nowhere
