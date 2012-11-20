@@ -1078,5 +1078,36 @@ class LanguageTest extends LanguageClassesTestCase {
 			) ),
 		);
 	}
+
+	/**
+	 * @covers Language::translateBlockExpiry()
+	 * @dataProvider provideTranslateBlockExpiry
+	 */
+	function testTranslateBlockExpiry( $expectedData, $str, $desc ) {
+		$lang = $this->getLang();
+		if ( is_array( $expectedData ) ) {
+			list( $func, $arg ) = $expectedData;
+			$expected = $lang->$func( $arg );
+		} else {
+			$expected = $expectedData;
+		}
+		$this->assertEquals( $expected, $lang->translateBlockExpiry( $str ), $desc );
+	}
+
+	function provideTranslateBlockExpiry() {
+		return array(
+			array( '2 hours', '2 hours', 'simple data from ipboptions' ),
+			array( 'indefinite', 'infinite', 'infinite from ipboptions' ),
+			array( 'indefinite', 'infinity', 'alternative infinite from ipboptions' ),
+			array( 'indefinite', 'indefinite', 'another alternative infinite from ipboptions' ),
+			array( array( 'formatDuration', 1023 * 60 * 60 ), '1023 hours', 'relative' ),
+			array( array( 'formatDuration', -1023 ), '-1023 seconds', 'negative relative' ),
+			array( array( 'formatDuration', 0 ), 'now', 'now' ),
+			array( array( 'timeanddate', '20120102070000' ), '2012-1-1 7:00 +1 day', 'mixed, handled as absolute' ),
+			array( array( 'timeanddate', '19910203040506' ), '1991-2-3 4:05:06', 'absolute' ),
+			array( array( 'timeanddate', '19700101000000' ), '1970-1-1 0:00:00', 'absolute at epoch' ),
+			array( array( 'timeanddate', '19691231235959' ), '1969-12-31 23:59:59', 'time before epoch' ),
+		);
+	}
 }
 
