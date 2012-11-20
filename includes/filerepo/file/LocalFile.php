@@ -1302,7 +1302,11 @@ class LocalFile extends File {
 
 		$this->lock(); // begin
 
-		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
+		// 'T' is here to prevent collisions between old and new naming schemes:
+		// In the new scheme filenames contain revision timestamp instead of
+		// archiving timestamp which was approximately equal to the timestamp of
+		// a next revision.
+		$archiveName = 'T' . wfTimestamp( TS_MW, $this->getTimestamp() ) . '!'. $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
 		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags, $options );
