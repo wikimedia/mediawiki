@@ -424,3 +424,6 @@
 [submodule "extensions/Solarium"]
 	path = extensions/Solarium
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Solarium.git
+[submodule "extensions/Score"]
+	path = extensions/Score
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Score.git
