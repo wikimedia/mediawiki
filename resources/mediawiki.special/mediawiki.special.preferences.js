@@ -65,7 +65,7 @@ $legends.each( function ( i, legend ) {
 // If we've reloaded the page or followed an open-in-new-window,
 // make the selected tab visible.
 var hash = window.location.hash;
-if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 	switchPrefTab( hash.replace( '#mw-prefsection-' , '' ) );
 }
 
@@ -77,7 +77,7 @@ if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
 if ( 'onhashchange' in window ) {
 	$(window).on( 'hashchange' , function () {
 		var hash = window.location.hash;
-		if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+		if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 			switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 		} else if ( hash === '' ) {
 			switchPrefTab( 'personal', 'noHash' );

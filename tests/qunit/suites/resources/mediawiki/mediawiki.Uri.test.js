@@ -322,7 +322,7 @@ QUnit.test( 'Bad calls', 3, function ( assert ) {
 
 	assert.throws(
 		function () {
-			new mw.Uri( 'glaswegian penguins' );
+			return new mw.Uri( 'glaswegian penguins' );
 		},
 		function ( e ) {
 			return e.message === 'Bad constructor arguments';
@@ -332,7 +332,7 @@ QUnit.test( 'Bad calls', 3, function ( assert ) {
 
 	assert.throws(
 		function () {
-			new mw.Uri( 'foo.com/bar/baz', {
+			return new mw.Uri( 'foo.com/bar/baz', {
 				strictMode: true
 			});
 		},
