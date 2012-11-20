@@ -638,122 +638,15 @@ class Sanitizer {
 	}
 
 	/**
-	 * Take an array of attribute names and values and fix some deprecated values
-	 * for the given element type.
-	 * This does not validate properties, so you should ensure that you call
-	 * validateTagAttributes AFTER this to ensure that the resulting style rule
-	 * this may add is safe.
-	 *
-	 * - Converts most presentational attributes like align into inline css
-	 *
-	 * @param $attribs Array
-	 * @param $element String
-	 * @return Array
-	 */
-	static function fixDeprecatedAttributes( $attribs, $element ) {
-		global $wgHtml5, $wgCleanupPresentationalAttributes;
-
-		// presentational attributes were removed from html5, we can leave them
-		// in when html5 is turned off
-		if ( !$wgHtml5 || !$wgCleanupPresentationalAttributes ) {
-			return $attribs;
-		}
-
-		$table = array( 'table' );
-		$cells = array( 'td', 'th' );
-		$colls = array( 'col', 'colgroup' );
-		$tblocks = array( 'tbody', 'tfoot', 'thead' );
-		$h = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
-
-		$presentationalAttribs = array(
-			'align' => array( 'text-align', array_merge( array( 'caption', 'hr', 'div', 'p', 'tr' ), $table, $cells, $colls, $tblocks, $h ) ),
-			'clear' => array( 'clear', array( 'br' ) ),
-			'height' => array( 'height', $cells ),
-			'nowrap' => array( 'white-space', $cells ),
-			'size' => array( 'height', array( 'hr' ) ),
-			'type' => array( 'list-style-type', array( 'li', 'ol', 'ul' ) ),
-			'valign' => array( 'vertical-align', array_merge( $cells, $colls, $tblocks ) ),
-			'width' => array( 'width', array_merge( array( 'hr', 'pre' ), $table, $cells, $colls ) ),
-		);
-
-		// Ensure that any upper case or mixed case attributes are converted to lowercase
-		foreach ( $attribs as $attribute => $value ) {
-			if ( $attribute !== strtolower( $attribute ) && array_key_exists( strtolower( $attribute ), $presentationalAttribs ) ) {
-				$attribs[strtolower( $attribute )] = $value;
-				unset( $attribs[$attribute] );
-			}
-		}
-
-		$style = "";
-		foreach ( $presentationalAttribs as $attribute => $info ) {
-			list( $property, $elements ) = $info;
-
-			// Skip if this attribute is not relevant to this element
-			if ( !in_array( $element, $elements ) ) {
-				continue;
-			}
-
-			// Skip if the attribute is not used
-			if ( !array_key_exists( $attribute, $attribs ) ) {
-				continue;
-			}
-
-			$value = $attribs[$attribute];
-
-			// For nowrap the value should be nowrap instead of whatever text is in the value
-			if ( $attribute === 'nowrap' ) {
-				$value = 'nowrap';
-			}
-
-			// clear="all" is clear: both; in css
-			if ( $attribute === 'clear' && strtolower( $value ) === 'all' ) {
-				$value = 'both';
-			}
-
-			// Size based properties should have px applied to them if they have no unit
-			if ( in_array( $attribute, array( 'height', 'width', 'size' ) ) ) {
-				if ( preg_match( '/^[\d.]+$/', $value ) ) {
-					$value = "{$value}px";
-				}
-			}
-
-			// Table align is special, it's about block alignment instead of
-			// content align (see also bug 40306)
-			if ( $attribute === 'align' && in_array( $element, $table ) ) {
-				if ( $value === 'center' ) {
-					$style .= ' margin-left: auto;';
-					$property = 'margin-right';
-					$value = 'auto';
-				} else {
-					$property = 'float';
-				}
-			}
-
-			$style .= " $property: $value;";
-
-			unset( $attribs[$attribute] );
-		}
-
-		if ( $style ) {
-			// Prepend our style rules so that they can be overridden by user css
-			if ( isset($attribs['style']) ) {
-				$style .= " " . $attribs['style'];
-			}
-			$attribs['style'] = trim($style);
-		}
-
-		return $attribs;
-	}
-
-	/**
-	 * Takes attribute names and values for a tag and the tah name and
+	 * Takes attribute names and values for a tag and the tag name and
 	 * validates that the tag is allowed to be present.
 	 * This DOES NOT validate the attributes, nor does it validate the
 	 * tags themselves. This method only handles the special circumstances
 	 * where we may want to allow a tag within content but ONLY when it has
 	 * specific attributes set.
 	 *
-	 * @param $
+	 * @param $params
+	 * @param $element
 	 */
 	static function validateTag( $params, $element ) {
 		$params = Sanitizer::decodeTagAttributes( $params );
@@ -1024,7 +917,6 @@ class Sanitizer {
 		}
 
 		$decoded = Sanitizer::decodeTagAttributes( $text );
-		$decoded = Sanitizer::fixDeprecatedAttributes( $decoded, $element );
 		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
 
 		$attribs = array();

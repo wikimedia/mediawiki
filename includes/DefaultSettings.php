@@ -2536,11 +2536,6 @@ $wgAllowRdfaAttributes = false;
 $wgAllowMicrodataAttributes = false;
 
 /**
- * Cleanup as much presentational html like valign -> css vertical-align as we can
- */
-$wgCleanupPresentationalAttributes = true;
-
-/**
  * Should we try to make our HTML output well-formed XML?  If set to false,
  * output will be a few bytes shorter, and the HTML will arguably be more
  * readable.  If set to true, life will be much easier for the authors of
