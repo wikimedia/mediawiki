@@ -1123,6 +1123,9 @@ abstract class FileBackendStore extends FileBackend {
 		// Fix up custom header name/value pairs...
 		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
 
+		// Clear any file cache entries
+		$this->clearCache();
+
 		$supportedOps = array( 'create', 'store', 'copy', 'move', 'delete', 'null' );
 		$async = ( $this->parallelize === 'implicit' );
 		$maxConcurrency = $this->concurrency; // throttle
