@@ -34,6 +34,7 @@
  * @author Ssola
  * @author Toniher
  * @author Vriullop
+ * @author Àlex
  * @author לערי ריינהארט
  */
 
@@ -208,8 +209,8 @@ $messages = array(
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 'tog-showtoc' => 'Mostra la taula de continguts (per pàgines amb més de 3 seccions)',
 'tog-rememberpassword' => 'Recorda la sessió al navegador (per un màxim de {{PLURAL:$1|dia|dies}})',
-'tog-watchcreations' => 'Afegeix les pàgines que vagi creant a la llista de seguiment',
-'tog-watchdefault' => 'Afegeix les pàgines que vagi creant a la llista de seguiment',
+'tog-watchcreations' => 'Afegeix les pàgines que vagi creant i fitxers que carregui a la llista de seguiment',
+'tog-watchdefault' => 'Afegeix les pàgines que vagi editant a la llista de seguiment',
 'tog-watchmoves' => 'Afegeix les pàgines que reanomeni a la llista de seguiment',
 'tog-watchdeletion' => 'Afegeix les pàgines que elimini a la llista de seguiment',
 'tog-minordefault' => 'Marca totes les contribucions com a edicions menors per defecte',

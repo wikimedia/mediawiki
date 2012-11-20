@@ -365,8 +365,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|Find}}',
 'qbbrowse' => '{{Identical|Browse}}',
 'qbedit' => '{{Identical|Edit}}',
-'qbmyoptions' => '{{Identical|My pages}}
-Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.',
+'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
+{{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
 'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
 

@@ -3508,13 +3508,14 @@ Ch'a preuva an manera sòlita.",
 Ch'a preuva an manera sòlita.",
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Le modìfiche veje men che $1 {{PLURAL:$1|second|second}} a podrìo nen ess-ie ant sta lista-sì.',
-'lag-warn-high' => 'Për via che la màchina serventa a tarda a dene na rispòsta, le modìfiche pì veje men che $1 {{PLURAL:$1|second|second}} a podrìo ëdcò nen ess-ie ant sta lista-sì.',
+'lag-warn-normal' => 'Le modìfiche pì neuve ëd $1 {{PLURAL:$1|second}} a podrìo nen ess-ie ant sta lista-sì.',
+'lag-warn-high' => "Për via che la màchina serventa a tarda a dene d'arspòsta, le modìfiche fàite men che $1 {{PLURAL:$1|second}} fa
+a podrìo ëdcò nen ess-ie ant sta lista-sì.",
 
 # Watchlist editor
-'watchlistedit-numitems' => "A l'é antramentr ch'a ten sot ëuj {{PLURAL:$1|1 tìtol|$1 tìtoj}}, nen contand le pàgine ëd discussion.",
-'watchlistedit-noitems' => "A-i é pa gnun tìtol ch'as ten-a sot euj.",
-'watchlistedit-normal-title' => "Modifiché la lista ëd lòn ch'as ten sot euj",
+'watchlistedit-numitems' => "A l'é antramentr ch'a ten sot-euj {{PLURAL:$1|1 tìtol|$1 tìtoj}}, nen contand le pàgine ëd discussion.",
+'watchlistedit-noitems' => "A-i é pa gnun tìtol ch'as ten-a sot-euj.",
+'watchlistedit-normal-title' => "Modifiché la lista ëd lòn ch'as ten sot-euj",
 'watchlistedit-normal-legend' => "Gavé via ij tìtoj da 'nt la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-normal-explain' => "Ij tìtoj ch'a ten sot euj a son ësmonù ambelessì-sota. Për gavene via un ch'a-i fasa la crosëtta ant la casela ch'a l'ha aranda, e peuj ch'ai bata ansima a «{{int:Watchlistedit-normal-submit}}». As peul ëdcò [[Special:EditWatchlist/raw|modifiché la lista ampressa]].",
 'watchlistedit-normal-submit' => 'Gavé via ij tìtoj',

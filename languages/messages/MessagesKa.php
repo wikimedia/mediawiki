@@ -304,7 +304,7 @@ $messages = array(
 'cancel' => 'გაუქმება',
 'moredotdotdot' => 'ვრცლად...',
 'mypage' => 'გვერდი',
-'mytalk' => 'ჩემი განხილვა',
+'mytalk' => 'განხილვა',
 'anontalk' => 'ამ IP-ს განხილვა',
 'navigation' => 'ნავიგაცია',
 'and' => '&#32;და',
@@ -1248,7 +1248,7 @@ $1",
 
 # Preferences page
 'preferences' => 'კონფიგურაცია',
-'mypreferences' => 'ჩემი კონფიგურაცია',
+'mypreferences' => 'კონფიგურაცია',
 'prefs-edits' => 'რედაქციების რაოდენობა:',
 'prefsnologin' => 'შესული არ ხართ',
 'prefsnologintext' => 'თქვენ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} რეგისტრირებული უნდა იყოთ]</span> მომხმარებლის კონფიგურაციის შესაცვლელად.',
@@ -2184,7 +2184,7 @@ $1',
 
 # Watchlist
 'watchlist' => 'ჩემი კონტროლის სია',
-'mywatchlist' => 'ჩემი კონტროლის სია',
+'mywatchlist' => 'კონტროლის სია',
 'watchlistfor2' => '$1 ($2) თვის',
 'nowatchlist' => 'თქვენი კონტროლის სია ცარიელია.',
 'watchlistanontext' => '$1
@@ -2445,7 +2445,7 @@ $1',
 # Contributions
 'contributions' => 'მომხმარებლის წვლილი',
 'contributions-title' => 'მომხმარებლის წვლილი $1',
-'mycontris' => 'ჩემი წვლილი',
+'mycontris' => 'წვლილი',
 'contribsub2' => '$1 ($2) თვის',
 'nocontribs' => 'ძებნისას მითითებული პარამეტრების შესაბამისი არც ერთი ცვლილება ნაპოვნი არ არის',
 'uctop' => '(თავი)',

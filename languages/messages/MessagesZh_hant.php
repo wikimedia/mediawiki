@@ -2092,7 +2092,7 @@ Template:消除歧義',
 'listusersfrom' => '給定顯示用戶條件:',
 'listusers-submit' => '顯示',
 'listusers-noresult' => '找不到用戶。',
-'listusers-blocked' => '（已封鎖）',
+'listusers-blocked' => '（已封禁）',
 
 # Special:ActiveUsers
 'activeusers' => '活躍用戶列表',

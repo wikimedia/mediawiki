@@ -283,6 +283,7 @@ $1',
 'toc' => 'فہرست',
 'showtoc' => 'پشاوے',
 'hidetoc' => 'کھوشتاوے',
+'collapsible-collapse' => 'خاتمہ/Collapse',
 'thisisdeleted' => 'لوڑے  یا بحال کورے $1',
 'viewdeleted' => 'لوڑے $1؟',
 'restorelink' => '{{PLURAL:$1|ای ترمیم حذف ہوی|$1 ترامیم حذف ہونی}}',
@@ -569,6 +570,7 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'nextrevision' => '→پروشٹیو اعادہ',
 'currentrevisionlink' => 'حالیہ نظرثانی',
 'cur' => 'رائج',
+'next' => 'پروشٹیو',
 'last' => 'سابقہ',
 'histlegend' => "انتخاب: مختلف نسخان موازنہ کوریکو بچے ، پیامی خانان نشان زد کوری موڑا دیرو بٹنا کلک کورے۔
 
@@ -1059,6 +1061,8 @@ HTML tags لوڑے.',",
 * gpslongitude
 * gpsaltitude',
 
+'exif-dc-date' => 'تاریخ',
+
 # External editor support
 'edit-externally' => 'ھیہ مسلو ایڈیٹ کورے',
 'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)
@@ -1068,6 +1072,9 @@ HTML tags لوڑے.',",
 'watchlistall2' => 'سف',
 'namespacesall' => 'تھمامو',
 'monthsall' => 'سف',
+
+# action=purge
+'confirm_purge_button' => 'OK/ٹھیک شیر',
 
 # Table pager
 'table_pager_first' => 'آویلو صفحہ',
@@ -1080,10 +1087,27 @@ HTML tags لوڑے.',",
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'خبردار:\'\'\' ڈیفالٹ تاڑٰ(نغڑی) "$2" پروشٹیو ڈیفالٹ تاڑا "$1" لیگی شیر۔',
 
+# Special:FilePath
+'filepath-page' => 'فایل',
+'filepath-submit' => 'Go/بوغے',
+
 # Special:SpecialPages
 'specialpages' => 'اسپیشل صفحہ',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] filter:',
+'tag-filter-submit' => 'فلٹر',
+'tags-title' => 'Tags/ٹیگز',
 
+# Special:ComparePages
+'compare-page1' => 'صفحہ 1',
+
+# Feedback
+'feedback-message' => 'پیغام',
+
+# Search suggestions
+'searchsuggest-search' => 'Search/تلاش',
+
+# Unknown messages
+'mytalk-parenthetical' => 'مشقولگی',
 );

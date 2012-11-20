@@ -10,6 +10,7 @@
  * @author Aushulz
  * @author Gmelfi
  * @author Kaganer
+ * @author Markos90
  * @author Melos
  * @author Omnipaedista
  * @author Santu
@@ -2322,8 +2323,8 @@ Visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//trans
 'tooltip-ca-watch' => 'Agghiunci sta pàggina â tò lista di ossirvati spiciali',
 'tooltip-ca-unwatch' => 'Elìmina sta pàggina dâ tò lista di ossirvati spiciali',
 'tooltip-search' => "Cerca 'n {{SITENAME}}",
-'tooltip-search-go' => 'Vai a na pàggina cu chistu nomu esattu si asisti',
-'tooltip-search-fulltext' => 'Attrova pàggini pi chistu testu',
+'tooltip-search-go' => 'Vai a na pàggina cu chistu nomu esattu siddu asisti',
+'tooltip-search-fulltext' => 'Arriscedi pàggini pi chistu testu',
 'tooltip-p-logo' => 'Pàggina principali',
 'tooltip-n-mainpage' => 'Vìsita la pàggina principali',
 'tooltip-n-mainpage-description' => 'Talìa la pàggina principali',

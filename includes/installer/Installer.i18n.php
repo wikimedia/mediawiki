@@ -4175,6 +4175,8 @@ $messages['de-formal'] = array(
  * @author Mirzali
  */
 $messages['diq'] = array(
+	'config-title' => 'MediaWiki $1 sazkerdış',
+	'config-information' => 'Melumat',
 	'config-your-language' => 'Zıwanê şıma:',
 	'config-wiki-language' => 'Wiki zıwan:',
 	'config-back' => '← Peyser',
@@ -4185,7 +4187,10 @@ $messages['diq'] = array(
 	'config-page-name' => 'Name',
 	'config-page-options' => 'Weçinegi',
 	'config-page-install' => 'Barine',
+	'config-page-complete' => 'Temamyayo',
 	'config-page-readme' => 'Mı bıwane',
+	'config-page-copying' => 'Kopyayeno',
+	'config-page-upgradedoc' => 'Berzkerdış',
 	'config-restart' => 'E, fına dest pekê',
 	'config-sidebar' => "* [//www.mediawiki.org MediaWiki keye]
 * [//www.mediawiki.org/wiki/Help:Contents User's Şınasiye]
@@ -4214,11 +4219,13 @@ $messages['diq'] = array(
 	'config-admin-name' => 'Namey şıma:',
 	'config-admin-password' => 'Parola:',
 	'config-admin-password-confirm' => 'Fına parola:',
+	'config-profile-private' => 'Bexse wiki',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by' => 'Creative Commons Attribution',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
 	'config-license-pd' => 'Malê Şari',
 	'config-extensions' => 'Olekeni',
+	'config-help' => 'peşti',
 	'mainpagetext' => "'''MediaWiki vıst ra ser, vıraziya.'''",
 	'mainpagedocfooter' => 'Seba gurenayış u eyarkerdışê Wiki-Softwarey [//meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
 

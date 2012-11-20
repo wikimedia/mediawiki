@@ -1162,7 +1162,7 @@ Deze bestaat al.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
-'content-model-text' => 'platte tekst',
+'content-model-text' => 'tekst zonder opmaak',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
 
