@@ -2579,6 +2579,31 @@ A table with nothing but a caption
 !! end
 
 !! test
+Table td-cell syntax variations
+!! input
+{|
+| foo bar foo | baz
+| foo bar foo || baz
+| style='color:red;' | baz
+| style='color:red;' || baz
+|}
+!! result
+<table>
+<tr>
+<td> baz
+</td>
+<td> foo bar foo </td>
+<td> baz
+</td>
+<td style="color:red;"> baz
+</td>
+<td> style='color:red;' </td>
+<td> baz
+</td></tr></table>
+
+!! end
+
+!! test
 Simple table
 !! input
 {|
@@ -6090,6 +6115,19 @@ Image with multiple captions -- only last one is accepted
 [[Image:foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption3 - accepted"><img alt="Caption3 - accepted" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
+Image with width attribute at different positions
+!! input
+[[Image:foobar.jpg|200px|right|Caption]]
+[[Image:foobar.jpg|right|200px|Caption]]
+[[Image:foobar.jpg|right|Caption|200px]]
+!! result
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption"><img alt="Caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a></div>
 
 !! end
 
