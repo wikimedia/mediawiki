@@ -11,8 +11,7 @@
 		var params = {
 			action: 'watch',
 			title: String( page ),
-			token: mw.user.tokens.get( 'watchToken' ),
-			uselang: mw.config.get( 'wgUserLanguage' )
+			token: mw.user.tokens.get( 'watchToken' )
 		};
 		function ok( data ) {
 			success( data.watch );
