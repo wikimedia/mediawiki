@@ -660,11 +660,21 @@ abstract class FileBackend {
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
 	 *
+	 * If a callback function is given, it will be called each time a segment is
+	 * appended and when the overall concatenate operation completes or fails.
+	 * The arguments passed in are:
+	 *   - 1) A Status object containing errors if any problems occurred.
+	 *   - 2) The index of the relevant segment (starting at 1) if a segment was appended
+	 *        (including the last one) or null in the case of overall success or failure.
+	 * When a good Status is returned with a null segment, then the operation completed.
+	 * Callbacks should generally avoid throwing exceptions.
+	 *
 	 * @param $params Array Operation parameters
 	 * $params include:
 	 *   - srcs        : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *   - dst         : file system path to 0-byte temp file
 	 *   - parallelize : try to do operations in parallel when possible
+	 *   - callback    : closure called when chunks are appended and on success/failure
 	 * @return Status
 	 */
 	abstract public function concatenate( array $params );

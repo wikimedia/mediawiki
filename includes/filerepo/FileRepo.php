@@ -988,9 +988,10 @@ class FileRepo {
 	 * @param $dstPath String Target file system path
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source files
+	 * @param $callback Closure Optional callback function (see FileBackend::concatenate())
 	 * @return FileRepoStatus
 	 */
-	public function concatenate( array $srcPaths, $dstPath, $flags = 0 ) {
+	public function concatenate( array $srcPaths, $dstPath, $flags = 0, Closure $callback = null ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		$status = $this->newGood();
@@ -1003,7 +1004,7 @@ class FileRepo {
 		}
 
 		// Concatenate the chunks into one FS file
-		$params = array( 'srcs' => $sources, 'dst' => $dstPath );
+		$params = array( 'srcs' => $sources, 'dst' => $dstPath, 'callback' => $callback );
 		$status->merge( $this->backend->concatenate( $params ) );
 		if ( !$status->isOK() ) {
 			return $status;
