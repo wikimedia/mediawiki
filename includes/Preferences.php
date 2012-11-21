@@ -1373,7 +1373,7 @@ class Preferences {
 	 * @return bool|Status|string
 	 */
 	static function tryFormSubmit( $formData, $form, $entryPoint = 'internal' ) {
-		global $wgHiddenPrefs;
+		global $wgHiddenPrefs, $wgAuth;
 
 		$user = $form->getModifiedUser();
 		$result = true;
@@ -1421,6 +1421,8 @@ class Preferences {
 		}
 
 		$user->saveSettings();
+
+		$wgAuth->updateExternalDB( $user );
 
 		return $result;
 	}
