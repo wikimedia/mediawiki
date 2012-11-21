@@ -266,7 +266,7 @@
 	'nap' => 'Nnapulitano',	# Neapolitan
 	'nb' => "norsk (bokmål)\xE2\x80\x8E",		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
-	'nds-nl' => 'Nedersaksisch',	# Dutch Low Saxon
+	'nds-nl' => 'Nedersaksies',	# aka Nedersaksisch: Dutch Low Saxon
 	'ne' => 'नेपाली',	# Nepali
 	'new' => 'नेपाल भाषा',		# Newar / Nepal Bhasha
 	'ng' => 'Oshiwambo',		# Ndonga
