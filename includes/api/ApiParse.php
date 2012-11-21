@@ -72,7 +72,7 @@ class ApiParse extends ApiBase {
 		// TODO: Does this still need $wgTitle?
 		global $wgParser, $wgTitle;
 
-		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang breaks
+		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang
 		$oldLang = null;
 		if ( isset( $params['uselang'] ) && $params['uselang'] != $this->getContext()->getLanguage()->getCode() ) {
 			$oldLang = $this->getContext()->getLanguage(); // Backup language
