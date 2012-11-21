@@ -994,8 +994,10 @@ CREATE TABLE /*_*/uploadstash (
   -- chunk counter starts at 0, current offset is stored in us_size
   us_chunk_inx int unsigned NULL,
 
-  -- file properties from File::getPropsFromPath.  these may prove unnecessary.
-  --
+  -- Serialized file properties from File::getPropsFromPath
+  us_props blob,
+
+  -- file size in bytes
   us_size int unsigned NOT NULL,
   -- this hash comes from File::sha1Base36(), and is 31 characters
   us_sha1 varchar(31) NOT NULL,

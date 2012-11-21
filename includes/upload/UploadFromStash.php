@@ -98,7 +98,7 @@ class UploadFromStash extends UploadBase {
 		 */
 		$metadata = $this->stash->getMetadata( $key );
 		$this->initializePathInfo( $name,
-			$this->getRealPath ( $metadata['us_path'] ),
+			$this->getRealPath( $metadata['us_path'] ),
 			$metadata['us_size'],
 			false
 		);
