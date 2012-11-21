@@ -617,8 +617,11 @@ $2',
 
 您可以以匿名方式繼續使用{{SITENAME}}，或以相同或不同用戶身份<span class='plainlinks'>[$1 登入]</span>。
 請注意，如果你再次登入，此頁或會繼續顯示，直到您清除瀏覽器緩存。",
+'welcomeuser' => '歡迎，$1！',
 'welcomecreation' => '== 歡迎，$1！ ==
 您的賬號已經建立。
+不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
+'welcomecreation-agora' => '您的賬號已經建立。
 不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 'yourname' => '您的使用者名稱：',
 'yourpassword' => '您的密碼：',
@@ -1696,6 +1699,7 @@ $1',
 'backend-fail-notsame' => '$1已存在不同的文件。',
 'backend-fail-invalidpath' => '$1不是有效的存儲路徑。',
 'backend-fail-delete' => '無法刪除「$1」檔案。',
+'backend-fail-describe' => '無法修改檔案「$1」的元數據。',
 'backend-fail-alreadyexists' => '“$1”頁面已存在',
 'backend-fail-store' => '無法在$2存儲文件$1。',
 'backend-fail-copy' => '無法複製文件$1到$2。',

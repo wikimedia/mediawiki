@@ -344,8 +344,8 @@ $messages = array(
 'newwindow' => '(Mäht e neu Finster op, wann Dinge Brauser dat kann)',
 'cancel' => 'Stopp! Avbreche!',
 'moredotdotdot' => 'Mieh&nbsp;…',
-'mypage' => 'ming Metmaacher-Sigg',
-'mytalk' => 'ming Klaafsigg',
+'mypage' => 'Metmaachersigg',
+'mytalk' => 'Klaafsigg',
 'anontalk' => 'Klaaf för de IP-Adress',
 'navigation' => 'Jangk noh de',
 'and' => ', un',
@@ -1397,7 +1397,7 @@ dat dänne ihr Daate topaktuell sin,
 
 # Preferences page
 'preferences' => 'ming Enstellunge',
-'mypreferences' => 'ming Enstellunge',
+'mypreferences' => 'Enstellunge',
 'prefs-edits' => 'Aanzahl Änderunge am Wiki:',
 'prefsnologin' => 'Nit enjelogg',
 'prefsnologintext' => 'Do mööts ald <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
@@ -2316,7 +2316,7 @@ eins vun all däm op eimol.',
 
 Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
 
-De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code>es',
+De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code> un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
 'linksearch-line' => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 
@@ -2404,7 +2404,7 @@ Alles klor?',
 
 # Watchlist
 'watchlist' => 'ming Oppassliss',
-'mywatchlist' => 'ming Oppassliss',
+'mywatchlist' => 'Oppaßleß',
 'watchlistfor2' => 'För dä $1 $2',
 'nowatchlist' => 'En Ding Oppassliss es nix dren.',
 'watchlistanontext' => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
@@ -2664,7 +2664,7 @@ $1',
 # Contributions
 'contributions' => 'Däm Metmaacher sing Beidräch',
 'contributions-title' => 'Beidräsch fum  $1',
-'mycontris' => 'ming Beidräch',
+'mycontris' => 'Beidrähch',
 'contribsub2' => 'För dä Metmaacher: $1 ($2)',
 'nocontribs' => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
 'uctop' => ' (Neuste)',

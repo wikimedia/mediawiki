@@ -781,10 +781,13 @@ L'administrateur qui l'a verrouillé a fourni ce motif: « $3 ».",
 
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
+'welcomeuser' => 'Bienvenue, $1!',
 'welcomecreation' => "== Bienvenue, $1 ! ==
 
 Votre compte a été créé.
 N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].",
+'welcomecreation-agora' => "Votre compte a été créé.
+N'oubliez pas de modifier vos [[Special:Preferences|{{SITENAME}} préférences]].",
 'yourname' => "Nom d'utilisateur :",
 'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
@@ -1902,6 +1905,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-notsame' => 'Un fichier différent existe déjà pour $1 .',
 'backend-fail-invalidpath' => "$1 n'est pas un chemin de stockage valide.",
 'backend-fail-delete' => 'Impossible de supprimer le fichier $1.',
+'backend-fail-describe' => 'Impossible de modifier les métadonnées du fichier "$1".',
 'backend-fail-alreadyexists' => 'Le fichier $1 existe déjà.',
 'backend-fail-store' => 'Impossible de stocker le fichier $1 en $2.',
 'backend-fail-copy' => 'Impossible de copier le fichier $1 en $2.',

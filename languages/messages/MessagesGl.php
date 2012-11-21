@@ -352,7 +352,7 @@ $messages = array(
 'broken-file-category' => 'Páxinas con ligazóns rotas cara a ficheiros',
 
 'about' => 'Acerca de',
-'article' => 'Artigo',
+'article' => 'Páxina de contido',
 'newwindow' => '(abre unha ventá nova)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Máis...',
@@ -524,7 +524,7 @@ $1',
 'nstab-image' => 'Ficheiro',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template' => 'Modelo',
-'nstab-help' => 'Axuda',
+'nstab-help' => 'Páxina de axuda',
 'nstab-category' => 'Categoría',
 
 # Main script and global functions
@@ -612,7 +612,7 @@ $2',
 'namespaceprotected' => "Non dispón de permisos para modificar páxinas no espazo de nomes '''$1'''.",
 'customcssprotected' => 'Non dispón de permisos para modificar esta páxina de CSS, dado que contén a configuración persoal doutro usuario.',
 'customjsprotected' => 'Non dispón de permisos para modificar esta páxina de JavaScript, dado que contén a configuración persoal doutro usuario.',
-'ns-specialprotected' => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
+'ns-specialprotected' => 'Non se poden editar as páxinas no espazo de nomes "{{ns:special}}".',
 'titleprotected' => "Este título foi protexido da creación por [[User:$1|$1]].
 O motivo achegado é ''$2''.",
 'filereadonlyerror' => 'Non se puido modificar o ficheiro "$1" porque o repositorio "$2" está en modo de só lectura.
@@ -633,8 +633,11 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode <span class='plainlinks'>[$1 acceder de novo]</span> co mesmo nome de usuario ou con outro.
 Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema.",
+'welcomeuser' => 'Reciba a nosa benvida, $1!',
 'welcomecreation' => '== Reciba a nosa benvida, $1! ==
 A súa conta foi creada correctamente.
+Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
+'welcomecreation-agora' => 'A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
 'yourname' => 'Nome de usuario:',
 'yourpassword' => 'Contrasinal:',
@@ -1792,6 +1795,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-notsame' => 'Xa existe un ficheiro chamado "$1", con contidos diferentes.',
 'backend-fail-invalidpath' => '"$1" non é unha ruta de almacenamento válida.',
 'backend-fail-delete' => 'Non se deu borrado o ficheiro "$1".',
+'backend-fail-describe' => 'Non se puideron cambiar os metadatos do ficheiro "$1".',
 'backend-fail-alreadyexists' => 'O ficheiro "$1" xa existe.',
 'backend-fail-store' => 'Non se deu almacenado o ficheiro "$1" en "$2".',
 'backend-fail-copy' => 'Non se deu copiado o ficheiro "$1" en "$2".',
@@ -2971,7 +2975,7 @@ Pode ver o código fonte.',
 'tooltip-feed-atom' => 'Fonte de novas Atom desta páxina',
 'tooltip-t-contributions' => 'Ver a lista de contribucións {{GENDER:{{BASEPAGENAME}}|deste usuario|desta usuaria}}',
 'tooltip-t-emailuser' => 'Enviarlle unha mensaxe a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}} por correo electrónico',
-'tooltip-t-upload' => 'Cargar os ficheiros',
+'tooltip-t-upload' => 'Cargar ficheiros',
 'tooltip-t-specialpages' => 'Lista de todas as páxinas especiais',
 'tooltip-t-print' => 'Versión para imprimir da páxina',
 'tooltip-t-permalink' => 'Ligazón permanente a esta versión da páxina',

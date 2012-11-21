@@ -562,9 +562,11 @@ Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 
 Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainlinks'>[$1 se znowego pśizjawiś]</span> ako samski abo hynakšy wužywaŕ.
 Źiwaj na to, až někotare boki se dalej tak zwobraznjuju ako by hyšći pśizjawjeny był, až njewuproznijoš cache swójego wobglědowaka.",
+'welcomeuser' => 'Witaj $1',
 'welcomecreation' => '== Witaj, $1! ==
 
 Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences|nastajenja {{SITENAME}}]].',
+'welcomecreation-agora' => 'Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences|nastajenja za {{SITENAME}}]].',
 'yourname' => 'mě wužywarja',
 'yourpassword' => 'šćitne gronidło:',
 'yourpasswordagain' => 'Šćitne gronidło hyšći raz zapódaś:',
@@ -1659,6 +1661,7 @@ $1',
 'backend-fail-notsame' => 'Njeidentiska dataja $1 južo eksistěrujo.',
 'backend-fail-invalidpath' => '$1 njejo płaśiwy puśik za składowanje.',
 'backend-fail-delete' => 'Dataja $1 njedajo se wulašowaś.',
+'backend-fail-describe' => 'Metadaty za dataju "$1" njedaju se změniś.',
 'backend-fail-alreadyexists' => 'Dataja $1 južo eksistěrujo.',
 'backend-fail-store' => 'Dataja $1 njedajo se pód $2 składowaś.',
 'backend-fail-copy' => 'Dataja $1 njedajo se pód $2 kopěrowaś.',

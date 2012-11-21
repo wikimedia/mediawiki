@@ -448,8 +448,11 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 
 A peul tiré anans a dovré {{SITENAME}} coma Utent anònim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
 Ch'a nòta che chèiche pàgine a peulo continué a esse visualisà com s'a fussa ancor ant ël sistema, fin ch'a scancela nen la memòria local ëd sò navigador.",
+'welcomeuser' => 'Bin ëvnù, $1!',
 'welcomecreation' => '==Bin ëvnù, $1!==
 Sò cont a l\'é stàit creà.
+Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
+'welcomecreation-agora' => 'Sò cont a l\'é stàit creà.
 Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
 'yourname' => 'Sò stranòm',
 'yourpassword' => 'Soa ciav',
@@ -1584,6 +1587,7 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-notsame' => "N'archivi nen idéntich a esist già a $1.",
 'backend-fail-invalidpath' => "$1 a l'é pa un përcors ëd memorisassion bon.",
 'backend-fail-delete' => "As peul pa scanselesse l'archivi $1.",
+'backend-fail-describe' => 'As peeul pa cambiesse ij metadat për l\'archivi "$1".',
 'backend-fail-alreadyexists' => 'L\'archivi "$1" a esist già.',
 'backend-fail-store' => "As peul pa memorisesse l'archivi $1 a $2.",
 'backend-fail-copy' => "As peul pa copiesse l'archivi $1 su $2.",
@@ -3516,8 +3520,9 @@ a podrìo ëdcò nen ess-ie ant sta lista-sì.",
 'watchlistedit-numitems' => "A l'é antramentr ch'a ten sot-euj {{PLURAL:$1|1 tìtol|$1 tìtoj}}, nen contand le pàgine ëd discussion.",
 'watchlistedit-noitems' => "A-i é pa gnun tìtol ch'as ten-a sot-euj.",
 'watchlistedit-normal-title' => "Modifiché la lista ëd lòn ch'as ten sot-euj",
-'watchlistedit-normal-legend' => "Gavé via ij tìtoj da 'nt la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-normal-explain' => "Ij tìtoj ch'a ten sot euj a son ësmonù ambelessì-sota. Për gavene via un ch'a-i fasa la crosëtta ant la casela ch'a l'ha aranda, e peuj ch'ai bata ansima a «{{int:Watchlistedit-normal-submit}}». As peul ëdcò [[Special:EditWatchlist/raw|modifiché la lista ampressa]].",
+'watchlistedit-normal-legend' => "Gavé via ij tìtoj da 'nt la lista ëd lòn ch'as ten sot-euj",
+'watchlistedit-normal-explain' => "Ij tìtoj ch'a ten sot-euj a son ësmonù ambelessì-sota.
+Për gavene via un, ch'a-j fasa la crosëtta ant la casela ch'a l'ha aranda, e peuj ch'ai bata ansima a «{{int:Watchlistedit-normal-submit}}». As peul ëdcò [[Special:EditWatchlist/raw|modifiché la lista ampressa]].",
 'watchlistedit-normal-submit' => 'Gavé via ij tìtoj',
 'watchlistedit-normal-done' => "{{PLURAL:$1|1 tìtol a l'é|$1 tìtoj a son}} stait gavà via da 'nt la lista ëd lòn ch'as ten sot euj:",
 'watchlistedit-raw-title' => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",

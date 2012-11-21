@@ -799,7 +799,7 @@ Blokeringen udløber: $6
 Blokeringen er rettet mod: $7
 
 Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
-Du kan ikke bruge funktionen 'e-mail til denne bruger' medmindre der er angivet en gyldig email-adresse i dine
+Du kan ikke bruge funktionen 'e-mail til denne bruger' medmindre der er angivet en gyldig e-mailadresse i dine
 [[Special:Preferences|kontoindstillinger]], og du ikke er blevet blokeret fra at bruge den.
 
 Din nuværende IP-adresse er $3, og blokerings-id er #$5.
@@ -1319,7 +1319,7 @@ Her er en tilfældig genereret værdi som du kan bruge: $1',
 Det kan ikke gøres om.',
 'prefs-emailconfirm-label' => 'Bekræftelse af e-mail:',
 'prefs-textboxsize' => 'Størrelse på redigeringsvindue',
-'youremail' => 'Din e-mail-adresse:',
+'youremail' => 'Din e-mailadresse:',
 'username' => 'Brugernavn:',
 'uid' => 'Brugernummer:',
 'prefs-memberingroups' => 'Medlem af {{PLURAL:$1|gruppen|grupperne}}:',
@@ -2548,7 +2548,7 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'unblocklink' => 'ophæv blokering',
 'change-blocklink' => 'ændr blokering',
 'contribslink' => 'bidrag',
-'emaillink' => 'send email',
+'emaillink' => 'send e-mail',
 'autoblocker' => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".
 Begrundelse: "$2".',
 'blocklogpage' => 'Blokeringslog',

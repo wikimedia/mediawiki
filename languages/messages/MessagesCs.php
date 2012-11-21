@@ -765,8 +765,11 @@ Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3
 
 Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete <span class='plainlinks'>[$1 znovu přihlásit]</span> jako stejný či jiný uživatel.
 Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
+'welcomeuser' => 'Vítejte, uživateli $1!',
 'welcomecreation' => '== Vítejte, $1! ==
 Váš účet byl úspěšně vytvořen.
+Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
+'welcomecreation-agora' => 'Váš účet byl vytvořen.
 Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
 'yourname' => 'Uživatelské jméno:',
 'yourpassword' => 'Vaše heslo',
@@ -1882,6 +1885,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-notsame' => 'Odlišný soubor $1 už existuje.',
 'backend-fail-invalidpath' => '$1 je neplatná cesta k místu uložení.',
 'backend-fail-delete' => 'Soubor $1 nelze smazat.',
+'backend-fail-describe' => 'Nepodařilo se změnit metadata souboru „$1“.',
 'backend-fail-alreadyexists' => 'Soubor $1 už existuje.',
 'backend-fail-store' => 'Soubor $1 nelze uložit v $2.',
 'backend-fail-copy' => 'Soubor $1 nelze kopírovat do $2.',

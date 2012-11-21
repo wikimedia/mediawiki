@@ -675,9 +675,12 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 
 Si può continuare ad usare {{SITENAME}} come utente anonimo oppure <span class='plainlinks'>[$1 eseguire un nuovo accesso]</span>, con lo stesso nome utente o un nome diverso.
 Nota che alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
+'welcomeuser' => 'Benvenuto, $1!',
 'welcomecreation' => "== Benvenuto, $1! ==
 
 L'account è stato creato correttamente. Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
+'welcomecreation-agora' => "L'account è stato creato correttamente.
+Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
 'yourname' => 'Nome utente:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Ripeti la password:',
@@ -1770,6 +1773,7 @@ $1',
 'backend-fail-notsame' => 'Esiste già un file non identico a  $1 .',
 'backend-fail-invalidpath' => '$1 non è un percorso di archiviazione valido.',
 'backend-fail-delete' => 'Impossibile cancellare il file $1.',
+'backend-fail-describe' => 'Impossibile modificare i metadati del file "$1".',
 'backend-fail-alreadyexists' => 'Il file $1 esiste già.',
 'backend-fail-store' => 'Impossibilie memorizzare file  $1  in  $2 .',
 'backend-fail-copy' => 'Impossibile copiare il file  $1  in  $2 .',

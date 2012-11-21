@@ -138,7 +138,7 @@ $messages = array(
 'cancel' => 'Гьич авун',
 'moredotdotdot' => 'Мад...',
 'mypage' => 'Зин чар',
-'mytalk' => 'Зи веревирдрин ччин',
+'mytalk' => 'Žuzun',
 'anontalk' => 'И IP-адресдиз талукь веревирд.',
 'navigation' => 'Навигация',
 'and' => '&#32;ва',
@@ -593,7 +593,7 @@ Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra j
 
 # Preferences page
 'preferences' => 'Туькlуьрун',
-'mypreferences' => 'Зи низамарунар',
+'mypreferences' => 'Zi tïķïrunar',
 'prefs-edits' => 'Дьузар хъувунрин кьадар',
 'prefsnologin' => 'Куьне гьахьнавач',
 'changepassword' => 'Парол дегишарун',
@@ -937,7 +937,7 @@ Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra j
 
 # Watchlist
 'watchlist' => 'Зи вилив хуьнин сиягь',
-'mywatchlist' => 'Зи вилив хюнин сиягь',
+'mywatchlist' => 'Hizetun',
 'watchlistfor2' => '$1 $2 патал',
 'addedwatchtext' => "Чар \"[[:\$1]]\" тун хъувунай куьн [[Special:Watchlist|watchlist]].                                                                                                             Къвезмай дегишунар и чарчел ва галкlанавай чарчихъ ихтилатар жеда инна, ахъатдава \"сакlус яцlу''''' инна [[Special:RecentChanges|list of recent changes]] гьам кьизил авун.",
 'removedwatchtext' => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',
@@ -1024,7 +1024,7 @@ Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra j
 # Contributions
 'contributions' => 'Уртахди кутур крар',
 'contributions-title' => '$1 уртахди кутур крар',
-'mycontris' => 'За кутур кар',
+'mycontris' => 'Ktur paj',
 'contribsub2' => '($1)-ин кутур пай  ($2)',
 'uctop' => '(вини кьил)',
 'month' => ' Вацралай (ва адалай вилик)',
@@ -1055,7 +1055,7 @@ Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra j
 'whatlinkshere-hideredirs' => '$1 рахкъурунар',
 'whatlinkshere-hidetrans' => '$1 кутунар',
 'whatlinkshere-hidelinks' => '$1 элячlунар',
-'whatlinkshere-hideimages' => '$1 шикилриз элячIунар',
+'whatlinkshere-hideimages' => '$1 fajlrin eläçun',
 'whatlinkshere-filters' => 'Куьзунагар',
 
 # Block/unblock

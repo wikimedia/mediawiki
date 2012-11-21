@@ -2844,7 +2844,7 @@ por favor, asegúrate de entender las consecuencias del procedimiento antes de s
 'movepagetalktext' => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
 *Estés trasladando la página entre espacios de nombres diferentes,
 *Una página de discusión no vacía ya exista con el nombre nuevo, o
-*No actives la opción «Renombrar la página de discusión también».
+*No marques el recuadro «Renombrar la página de discusión asociada».
 
 En estos casos, deberás trasladar manualmente el contenido de la página de discusión.",
 'movearticle' => 'Renombrar página',

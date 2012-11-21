@@ -712,9 +712,12 @@ Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 
 Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă <span class='plainlinks'>[$1 reautentificați]</span> ca același sau ca alt utilizator.
 Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
+'welcomeuser' => 'Bun venit, $1!',
 'welcomecreation' => '==Bun venit, $1!==
 
-Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
+Contul dumneavoatră a fost creat. Nu uitați să vă modificați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
+'welcomecreation-agora' => 'Contul dumneavoastră a fost creat.
+Nu uitați să vă modificați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
 'yourname' => 'Nume de utilizator:',
 'yourpassword' => 'Parolă:',
 'yourpasswordagain' => 'Repetați parola:',
@@ -1836,6 +1839,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-notsame' => 'Un fișier diferit există deja pentru $1.',
 'backend-fail-invalidpath' => '$1 nu este o cale validă de stocare.',
 'backend-fail-delete' => 'Imposibil de șters fișierul $1.',
+'backend-fail-describe' => 'Imposibil de modificat metadatele pentru fișierul „$1”.',
 'backend-fail-alreadyexists' => 'Fișierul $1 există deja.',
 'backend-fail-store' => 'Imposibil de stocat fișierul $1 în $2.',
 'backend-fail-copy' => 'Imposibil de copiat fișierul $1 în $2.',

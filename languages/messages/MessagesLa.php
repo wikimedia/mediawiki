@@ -1907,7 +1907,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Pagina usoris tua',
 'tooltip-pt-mytalk' => 'Pagina disputationis tua',
-'tooltip-pt-preferences' => 'Praeferentiae meae',
+'tooltip-pt-preferences' => 'Praeferentiae tuae',
 'tooltip-pt-watchlist' => 'Paginae quae custodis ut eorum mutationes facilius vides',
 'tooltip-pt-mycontris' => 'Index conlationum tuarum',
 'tooltip-pt-login' => 'Te conventum aperire hortamur, non autem requisitum',
@@ -2384,4 +2384,6 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Search suggestions
 'searchsuggest-search' => 'Quaerere',
 
+# Unknown messages
+'mytalk-parenthetical' => 'disputatio',
 );

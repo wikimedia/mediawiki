@@ -588,9 +588,12 @@ $2',
 Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech <span class='plainlinks'>[$1 erëm aloggen]</span>.
 
 Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
+'welcomeuser' => 'Wëllkomm $1!',
 'welcomecreation' => '== Wëllkomm, $1! ==
 Äre Kont gouf kreéiert.
 Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
+'welcomecreation-agora' => "Äre Benotzerkont gouf ugeluecht.
+Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'änneren",
 'yourname' => 'Benotzernumm:',
 'yourpassword' => 'Passwuert:',
 'yourpasswordagain' => 'Passwuert nach eemol antippen:',
@@ -721,6 +724,12 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-capture-help' => 'Wann Dir dës Këscht ukräizt, gëtt de Mail (mam temporäre Passwuert) Iech gewisen an dem Benotzer geschéckt.',
 'passwordreset-email' => 'E-Mailadress:',
 'passwordreset-emailtitle' => 'Detailer vum Benotzerkont op{{SITENAME}}',
+'passwordreset-emailtext-ip' => "Iergendee mat der IP-Adress $1, wahrscheinlech Dir selwer, huet eng Erënnerung fir Är Benotzerkonteninformatiounen op {{SITENAME}} gefrot ($4). {{PLURAL:$3|De Benotzerkont ass|D'Benutzerkonte si}} mat dëser E-Mail-Adress verbonn:
+
+$2
+
+{{PLURAL:$3|Dëst temporärt Passwuert leeft|Dës temporär Passwierder lafe}} bannent {{PLURAL:$5|engem Dag|$5 Deeg}} of.
+Dir sollt Iech aloggen an een neit Passwuert festleeën. Wann een Aneren déi Ufro gemaach huet oder Dir Iech erëm un Äert Passwuert erënnere kënnt an et net ännere wëllt, kënnt Dir dës Noriicht ignoréieren an Äert aalt Passwuert weider benotzen.",
 'passwordreset-emailelement' => 'Benotzernumm: $1
 Temporärt Passwuert: $2',
 'passwordreset-emailsent' => 'Eng Erënnerungs-Mail gouf geschéckt.',

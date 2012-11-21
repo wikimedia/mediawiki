@@ -768,8 +768,11 @@ De opgegeven reden is "\'\'$3\'\'".',
 
 U kunt {{SITENAME}} nu anoniem gebruiken of weer <span class='plainlinks'>[$1 aanmelden]</span> als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
+'welcomeuser' => 'Welkom, $1!',
 'welcomecreation' => '== Welkom, $1! ==
 Uw gebruiker is geregistreerd.
+Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te passen.',
+'welcomecreation-agora' => 'Uw gebruiker is aangemaakt.
 Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te passen.',
 'yourname' => 'Gebruikersnaam:',
 'yourpassword' => 'Wachtwoord:',
@@ -1950,6 +1953,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-notsame' => 'Er staat al een niet-identiek bestand op de plaats $1.',
 'backend-fail-invalidpath' => '$1 is geen geldig opslagpad.',
 'backend-fail-delete' => 'Het bestand $1 kon niet verwijderd worden.',
+'backend-fail-describe' => 'Het was niet mogelijk de metadata aan te passen voor het bestand "$1".',
 'backend-fail-alreadyexists' => 'Het bestand $1 bestaat al.',
 'backend-fail-store' => 'Het was niet mogelijk het bestand $1 op te slaan op locatie $2.',
 'backend-fail-copy' => 'Het was niet mogelijk het bestand $1 te kopiëren naar $2.',
@@ -2151,7 +2155,7 @@ Invoer: inhoudstype/subtype, bijvoorbeeld <code>image/jpeg</code>.',
 # Unused templates
 'unusedtemplates' => 'Ongebruikte sjablonen',
 'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte {{ns:template}} die op geen enkele pagina gebruikt worden.
-Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
+Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens deze sjabloon te verwijderen.',
 'unusedtemplateswlh' => 'andere verwijzingen',
 
 # Random page
@@ -3857,8 +3861,8 @@ De bevestigingscode vervalt op $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablonen is uitgeschakeld]',
-'scarytranscludefailed' => '[Het sjabloon $1 kon niet opgehaald worden]',
-'scarytranscludefailed-httpstatus' => '[Het sjabloon $1 kon niet opgehaald worden: HTTP $2]',
+'scarytranscludefailed' => '[De sjabloon $1 kon niet opgehaald worden]',
+'scarytranscludefailed-httpstatus' => '[De sjabloon $1 kon niet opgehaald worden: HTTP $2]',
 'scarytranscludetoolong' => '[De URL is te lang]',
 
 # Delete conflict
@@ -4077,7 +4081,7 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'compare-rev1' => 'Versie 1',
 'compare-rev2' => 'Versie 2',
 'compare-submit' => 'Vergelijken',
-'compare-invalid-title' => 'De titel die u hebt opgegeven is ongeldig.',
+'compare-invalid-title' => 'De opgegeven pagina is ongeldig.',
 'compare-title-not-exists' => 'De titel die u hebt opgegeven bestaat niet.',
 'compare-revision-not-exists' => 'De versie die u hebt opgegeven bestaat niet.',
 

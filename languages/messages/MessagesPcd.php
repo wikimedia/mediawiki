@@ -362,6 +362,12 @@ j'm'escuse mais i feut prinde un aute nom.",
 'resetpass_forbidden' => "Chés mots d'passe is n'peu'te poin ète cangés",
 'resetpass-submit-loggedin' => "Canger ch'mot d'passe",
 
+# Special:PasswordReset
+'passwordreset' => "Ortreuver ch'mot d'passe",
+
+# Special:ChangeEmail
+'changeemail' => "Canger l'adrèche du imèle",
+
 # Edit page toolbar
 'bold_sample' => 'Cros teske',
 'bold_tip' => 'Cros teske',
@@ -622,6 +628,9 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'license' => 'Licince',
 'license-header' => 'Licince',
 
+# Special:ListFiles
+'listfiles' => 'Lisse des fichiés',
+
 # File description page
 'file-anchor-link' => 'Fichié',
 'filehist' => 'Histoère dech fichié',
@@ -657,6 +666,7 @@ Vir apré ([$2 pache]).",
 'nbytes' => '$1 {{PLURAL:$1|octé|octés}}',
 'nmembers' => '$1 {{PLURAL:$1|mimbe|mimbes}}',
 'prefixindex' => 'Tertous chés paches aveuc préfix',
+'listusers' => 'Lisse des uzeus',
 'usercreated' => '{{GENDER:$3|Créé}} ech $1 à $2',
 'newpages' => 'Novèles paches',
 'move' => 'Déplacher',
@@ -692,6 +702,9 @@ Vir apré ([$2 pache]).",
 # Special:LinkSearch
 'linksearch' => 'Loïens éstérieurs',
 'linksearch-line' => '$1 est loïé édpuis $2',
+
+# Special:ActiveUsers
+'activeusers' => 'Lisse des ouvreus uzeus',
 
 # Special:Log/newusers
 'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
@@ -821,6 +834,7 @@ I feut l'foaire seleumint pour inréyer ech vindalime et pi i feut ète acordant
 Donner apré ch'motif  (pèr egzimpe chiter chés paches qu'ont té vindalisées).",
 'ipboptions' => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 ésminne:1 week,2 ésminnes:2 weeks,1 moés:1 month,3 moés:3 months,6 moés:6 months,1 an:1 year,infini:infinite',
 'ipbotheroption' => 'eute',
+'blocklist' => 'Uzeus blotchés',
 'ipblocklist' => 'Uzeus blotchés',
 'blocklink' => 'blotcher',
 'unblocklink' => 'déblotcher',
@@ -937,6 +951,9 @@ Os pouvez vir l'source",
 'file-nohires' => 'Poin éd pu grande résoluchon possibe.',
 'svg-long-desc' => 'Fichié SVG, résoluchon éd $1 × $2 picsels, diminchon: $3',
 'show-big-image' => 'Plinne résoluchon',
+
+# Special:NewFiles
+'newimages' => "Galerie d'chés nouvieus fichiés",
 
 # Bad image list
 'bad_image_list' => "Ch'format ch'est:

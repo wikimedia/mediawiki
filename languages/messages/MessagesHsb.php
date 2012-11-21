@@ -558,9 +558,12 @@ Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
 
 Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom <span class='plainlinks'>[$1 zaso přizjewić]</span>.
 Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był, doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
+'welcomeuser' => 'Witaj $1',
 'welcomecreation' => '== Witaj, $1! ==
 
 Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|{{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
+'welcomecreation-agora' => 'Twoje konto bu wutworjene.
+Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
 'yourname' => 'Wužiwarske mjeno:',
 'yourpassword' => 'Hesło:',
 'yourpasswordagain' => 'Hesło znowa zapodać:',
@@ -1662,6 +1665,7 @@ $1',
 'backend-fail-notsame' => 'Dataja, kotraž identiska njeje, hižo pola $1 eksistuje.',
 'backend-fail-invalidpath' => '$1 płaćiwy pućik za składowanje njeje.',
 'backend-fail-delete' => 'Dataja $1 njeda so zhašeć.',
+'backend-fail-describe' => 'Metadaty za dataju "$1" njedadźa so změnić.',
 'backend-fail-alreadyexists' => 'Dataja $1 hižo eksistuje.',
 'backend-fail-store' => 'Dataja $1 njeda so pod $2 składować',
 'backend-fail-copy' => 'Dataja $1 njeda so do $2 kopěrować',

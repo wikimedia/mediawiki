@@ -816,10 +816,13 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 
 Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen <span class='plainlinks'>[$1 anmelden]</span>.
 Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
+'welcomeuser' => 'Willkommen, $1!',
 'welcomecreation' => '== Willkommen, $1! ==
 
 Dein Benutzerkonto wurde soeben eingerichtet.
 Vergiss nicht, deine [[Special:Preferences|Einstellungen]] für dieses Wiki anzupassen.',
+'welcomecreation-agora' => 'Dein Benutzerkonto wurde erstellt.
+Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.',
 'yourname' => 'Benutzername:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort wiederholen:',
@@ -1938,6 +1941,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-notsame' => 'Es ist bereits eine Datei $1 vorhanden, die nicht identisch ist.',
 'backend-fail-invalidpath' => '$1 ist kein gültiger Pfad zum Speichern.',
 'backend-fail-delete' => 'Die Datei $1 konnte nicht gelöscht werden.',
+'backend-fail-describe' => 'Die Metadaten für die Datei „$1“ konnten nicht geändert werden.',
 'backend-fail-alreadyexists' => 'Die Seite $1 ist bereits vorhanden',
 'backend-fail-store' => 'Die Datei $1 konnte nicht unter $2 gespeichert werden.',
 'backend-fail-copy' => 'Die Datei $1 konnte nicht nach $2 kopiert werden.',

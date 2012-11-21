@@ -447,9 +447,12 @@ Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'"
 
 Mabalinmo nga ituloy ti agusar iti {{SITENAME}} a di am-ammo, wenno <span class='plainlinks'>[\$1 sumrek ka manen]</span> iti sigud wenno sabali nga agar-aramat.
 Laglagipem a sumagmamano a pampanid ti mabalin a nakaparang latta a kasla nakaserrekka pay laeng, aginggana no dalusam ti \"cache\" ti panagbasabasam.",
-'welcomecreation' => '== Kablaaw, $1! ==
+'welcomeuser' => 'Naragsak nga isasangbay, $1!',
+'welcomecreation' => '== Naragsak nga isasangbay, $1! ==
 Naaramiden ti pakabilangam.
-Dimo liplipatan a sukatan dagita kaykayatmo idiay [[Special:Preferences|{{SITENAME}} kaykayat]].',
+Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITENAME}} kakaykayatan]].',
+'welcomecreation-agora' => 'Naaramiden ti pakabilangam.
+Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITENAME}} kakaykayatan]].',
 'yourname' => 'Nagan ti agar-aramat:',
 'yourpassword' => 'Kontrasenias:',
 'yourpasswordagain' => 'Uliten ti kontrasenias:',
@@ -1135,8 +1138,8 @@ Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
 'qbsettings-directionality' => 'Nasimpa, gapu laeng ti papanan ti panagsurat ti pagsasaom',
 
 # Preferences page
-'preferences' => 'Kaykayatan',
-'mypreferences' => 'Kaykayatan',
+'preferences' => 'Kakaykayatan',
+'mypreferences' => 'Kakaykayatan',
 'prefs-edits' => 'Bilang dagiti inurnos:',
 'prefsnologin' => 'Saan a nakastrek',
 'prefsnologintext' => 'Masapul a <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nakastrekka]</span> tapno makapili kadagiti kakaykayatam.',
@@ -1237,7 +1240,7 @@ Daytoy a pakaammo ket makita ti publiko.',
 'prefs-help-realname' => 'Saan a nasken ti pudno a nagan.
 Ngem no kayatmo nga ited, maaramat daytoy a kas pammadayaw ken pangpatalged iti obram.',
 'prefs-help-email' => 'Ti e-surat a pagtaengan ket saan a masapul, ngem masapul no agsukat ka ti kontrasenias, no baka malipatam ti kontrasenias mo.',
-'prefs-help-email-others' => 'Mabalinmo nga agpili tapno dagiti sabsabali nga agar-aramat ket ma e-suratandaka idiay panagsilpo ti panidmo wenno ti panid ti kapatangam.
+'prefs-help-email-others' => 'Mabalinmo nga agpili tapno dagiti sabsabali nga agar-aramat ket ma e-suratandaka idiay panagsilpo ti panidmo wenno ti panid ti tungtungam.
 Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak kenka.',
 'prefs-help-email-required' => 'Masapul ti e-surat a pagtaengan.',
 'prefs-info' => 'Kangrunaan a pakaammuan',
@@ -1612,6 +1615,7 @@ No ti parikut ket agsubli latta, kontaken ti [[Special:ListUsers/sysop|administr
 'backend-fail-notsame' => 'Addaan ti saan a kapada ti papeles idiay $1.',
 'backend-fail-invalidpath' => '$1 ket imbalido a pagnaan ti pagidulinan.',
 'backend-fail-delete' => 'Saan a maikkat ti papeles $1.',
+'backend-fail-describe' => 'Saam a mabaliwan ti metadata para iti papeles ti "$1".',
 'backend-fail-alreadyexists' => 'Ti papeles $1 ket addan.',
 'backend-fail-store' => 'Saan a maidulin ti papeles $1 idiay $2.',
 'backend-fail-copy' => 'Saan a makopia ti papeles $1 idiay $2.',
@@ -2796,7 +2800,7 @@ Mabalinmo a kitaen ti taudanna.',
 'tooltip-n-currentevents' => 'Agsapul iti lugar ti likud a pakaammo kadagiti agdama a paspasamak',
 'tooltip-n-recentchanges' => 'Listaan dagiti naudi a sinukatan iti wiki.',
 'tooltip-n-randompage' => 'Mangiparuar iti pugto a panid',
-'tooltip-n-help' => 'Ti lugar a pakasapulan.',
+'tooltip-n-help' => 'Ti lugar a pagsapulan',
 'tooltip-t-whatlinkshere' => 'Listaan ti am-amin a pampanid ti wiki a nakasilpo ditoy',
 'tooltip-t-recentchangeslinked' => 'Kinaudian a sinukatan  dagiti panid a nakasilpo ditoy a panid',
 'tooltip-feed-rss' => 'RSS a pakan para iti daytoy a panid',
@@ -3552,7 +3556,7 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 'watchlisttools-raw' => 'Urnosen ti kilaw a listaan ti bambantayan',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|patang]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|tungtungan]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Di amammo a pagpaatiddog nga etiketa "$1"',
@@ -3623,7 +3627,7 @@ Dagiti imahen ket agparang iti kadakkelan a resolusion, dagiti sabali a kita ti 
 'specialpages-group-users' => 'Dagiti agar-aramat ken karkarbengan',
 'specialpages-group-highuse' => 'Adu ti panaka-usar a pampanid',
 'specialpages-group-pages' => 'Listaan dagiti panid',
-'specialpages-group-pagetools' => 'Dagiti ramramit ti panid',
+'specialpages-group-pagetools' => 'Ramramit ti panid',
 'specialpages-group-wiki' => 'Linaon ti wiki ken ramramit',
 'specialpages-group-redirects' => 'Maibawbaw-ing dagiti espesial a pampanid',
 'specialpages-group-spam' => 'Ramramit kontra spam',

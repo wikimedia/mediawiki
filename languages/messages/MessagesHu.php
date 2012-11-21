@@ -4011,4 +4011,6 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
+# Unknown messages
+'mytalk-parenthetical' => 'vitalap',
 );

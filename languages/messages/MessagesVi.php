@@ -700,9 +700,12 @@ Bảo quản viên khóa nó đưa lý do là: “$3”.',
 'logouttext' => "'''Bạn đã đăng xuất.'''
 
 Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể <span class='plainlinks'>[$1 đăng nhập lại]</span> dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
+'welcomeuser' => 'Hoan nghênh, $1!',
 'welcomecreation' => '== Chào mừng, $1! ==
-Tài khoản của bạn đã mở.
-Đừng quên thay đổi [[Special:Preferences|tùy chọn cá nhân của bạn tại {{SITENAME}}]].',
+Tài khoản của bạn đã được mở.
+Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
+'welcomecreation-agora' => 'Tài khoản của bạn đã được mở.
+Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
 'yourname' => 'Tên người dùng:',
 'yourpassword' => 'Mật khẩu:',
 'yourpasswordagain' => 'Gõ lại mật khẩu',
@@ -1650,8 +1653,8 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'rclinks' => 'Xem $1 sửa đổi gần đây nhất trong $2 ngày qua; $3.',
 'diff' => 'khác',
 'hist' => 'sử',
-'hide' => 'ẩn',
-'show' => 'hiện',
+'hide' => 'Ẩn',
+'show' => 'Hiện',
 'minoreditletter' => 'n',
 'newpageletter' => 'M',
 'boteditletter' => 'b',
@@ -1830,6 +1833,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'backend-fail-notsame' => 'Một tập tin khác biệt đã tồn tại ở $1.',
 'backend-fail-invalidpath' => '$1 không phải đường dẫn lưu giữ hợp lệ.',
 'backend-fail-delete' => 'Không thể xóa tập tin $1.',
+'backend-fail-describe' => 'Không thể thay đổi siêu dữ liệu của tập tin “$1”.',
 'backend-fail-alreadyexists' => 'Tập tin $1 đã tồn tại.',
 'backend-fail-store' => 'Không thể lưu tập tin $1 tại $2.',
 'backend-fail-copy' => 'Không thể chép tập tin $1 đến $2.',
