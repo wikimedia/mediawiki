@@ -1071,7 +1071,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'welcomecreation'            => '== Welcome, $1! ==
 Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
-'welcomecreation-agora'            => 'Your account has been created.
+'welcomecreation-msg'            => 'Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',

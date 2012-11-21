@@ -746,8 +746,8 @@ See also {{msg-mw|protectedinterface}}.',
 'logouttext' => 'Log out message
 * $1 is an URL to [[Special:Userlogin]] containing returnto and returntoquery parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]',
-'welcomecreation' => 'The welcome message users see after registering a user account. $1 is the username of the new user.',
-'welcomecreation-agora' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user.',
+'welcomecreation' => 'The welcome message users see after registering a user account. $1 is the username of the new user. Userlogin in 1.21wmf5 instead uses split welcomeuser and welcomecreation-msg',
+'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user.',
 'yourname' => "In user preferences
 
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.
