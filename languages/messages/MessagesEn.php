@@ -1067,8 +1067,11 @@ The administrator who locked it offered this explanation: "$3".',
 
 You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
+'welcomeuser'                => 'Welcome, $1!',
 'welcomecreation'            => '== Welcome, $1! ==
 Your account has been created.
+Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
+'welcomecreation-agora'            => 'Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',
