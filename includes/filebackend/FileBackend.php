@@ -884,13 +884,13 @@ abstract class FileBackend {
 
 	/**
 	 * Get the properties of the file at a storage path in the backend.
-	 * Returns FSFile::placeholderProps() on failure.
+	 * This gives the result of FSFile::getProps() on a local copy of the file.
 	 *
 	 * @param $params Array
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return Array
+	 * @return Array Returns FSFile::placeholderProps() on failure
 	 */
 	abstract public function getFileProps( array $params );
 
