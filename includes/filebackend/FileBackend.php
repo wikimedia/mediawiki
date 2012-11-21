@@ -267,6 +267,9 @@ abstract class FileBackend {
 	 *   - headers             : If supplied, the backend will return these headers when
 	 *                           GETs/HEADs of the destination file are made. Header values
 	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *                           Existing headers will remain, but these will replace any
+	 *                           conflicting previous headers, and headers will be removed
+	 *                           if they are set to an empty string.
 	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
@@ -408,6 +411,21 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Performs a single describe operation.
+	 * This sets $params['op'] to 'describe' and passes it to doOperation().
+	 *
+	 * @see FileBackend::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 * @since 1.21
+	 */
+	final public function describe( array $params, array $opts = array() ) {
+		return $this->doOperation( array( 'op' => 'describe' ) + $params, $opts );
+	}
+
+	/**
 	 * Perform a set of independent file operations on some files.
 	 *
 	 * This does no locking, nor journaling, and possibly no stat calls.
@@ -503,6 +521,9 @@ abstract class FileBackend {
 	 *   - headers             : If supplied, the backend will return these headers when
 	 *                           GETs/HEADs of the destination file are made. Header values
 	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *                           Existing headers will remain, but these will replace any
+	 *                           conflicting previous headers, and headers will be removed
+	 *                           if they are set to an empty string.
 	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
@@ -617,6 +638,20 @@ abstract class FileBackend {
 	 */
 	final public function quickDelete( array $params ) {
 		return $this->doQuickOperation( array( 'op' => 'delete' ) + $params );
+	}
+
+	/**
+	 * Performs a single quick describe operation.
+	 * This sets $params['op'] to 'describe' and passes it to doQuickOperation().
+	 *
+	 * @see FileBackend::doQuickOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @return Status
+	 * @since 1.21
+	 */
+	final public function quickDescribe( array $params ) {
+		return $this->doQuickOperation( array( 'op' => 'describe' ) + $params );
 	}
 
 	/**

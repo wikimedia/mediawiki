@@ -1269,8 +1269,7 @@ abstract class FileBackendStore extends FileBackend {
 					trigger_error( "Header '$name: $value' is too long." );
 					unset( $op['headers'][$name] );
 				} elseif ( !strlen( $value ) ) {
-					trigger_error( "Header value for '$name' is empty." );
-					unset( $op['headers'][$name] ); // ignore
+					$op['headers'][$name] = ''; // null/false => ""
 				}
 			}
 		}
