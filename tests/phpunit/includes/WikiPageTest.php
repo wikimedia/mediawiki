@@ -704,13 +704,7 @@ more stuff
 
 	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
-		global $wgDiff3;
-
-		wfSuppressWarnings();
-		$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-		wfRestoreWarnings();
-
-		if( !$haveDiff3 ) {
+		if( !wfMergeEnabled() ) {
 			$this->markTestSkipped( "diff3 not installed or not found" );
 			return;
 		}

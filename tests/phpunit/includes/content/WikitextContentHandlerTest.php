@@ -103,15 +103,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @dataProvider dataMerge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
-		global $wgDiff3;
-
-		if ( !$wgDiff3 ) {
-			$this->markTestSkipped( "Can't test merge3(), since \$wgDiff3 is not configured" );
-		}
-
-		if ( !file_exists( $wgDiff3 ) ) {
-			#XXX: this sucks, since it uses arcane internal knowledge about TextContentHandler::merge3 and wfMerge.
-			$this->markTestSkipped( "Can't test merge3(), since \$wgDiff3 is misconfigured: can't find $wgDiff3" );
+		if ( !wfMergeEnabled() ) {
+			$this->markTestSkipped( "Can't test merge3(), since diff3 is not configured" );
+			return;
 		}
 
 		// test merge

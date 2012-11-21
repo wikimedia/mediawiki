@@ -356,25 +356,16 @@ hello
 		return array_merge( $tests, $testsWithAdam, $testsWithBerta );
 	}
 
-	function testHasValidDiff3() {
-		global $wgDiff3;
-
-		if ( !$wgDiff3 ) {
-			$this->markTestSkipped( "Can't test conflict resolution because \$wgDiff3 is not configured" );
-		} elseif ( !file_exists( $wgDiff3 ) ) {
-			#XXX: this sucks, since it uses arcane internal knowledge about TextContentHandler::merge3 and wfMerge.
-			$this->markTestSkipped( "Can't test conflict resolution because \$wgDiff3 is misconfigured: can't find $wgDiff3" );
-		}
-		$this->assertTrue( true );
-	}
-
 	/**
-	 * @depend testHasValidDiff3
 	 * @dataProvider provideAutoMerge
 	 */
 	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
 				$expectedCode, $expectedText, $message = null
 	) {
+		if ( !wfMergeEnabled() ) {
+			$this->markTestSkipped( "Can't test conflict resolution because diff3 is not configured" );
+			return;
+		}
 
 		//create page
 		$ns = $this->getDefaultWikitextNS();
