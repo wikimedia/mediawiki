@@ -93,6 +93,9 @@ production.
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
+
+* (bug 30040) Autonym for nds-nl now 'Nedersaksies', was 'Nedersaksisch'
+
 === Other changes in 1.21 ===
 
 == Compatibility ==
