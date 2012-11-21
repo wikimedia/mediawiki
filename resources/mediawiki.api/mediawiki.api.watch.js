@@ -25,7 +25,7 @@
 
 	$.extend( mw.Api.prototype, {
 		/**
-		 * Convinience method for 'action=watch'.
+		 * Convenience method for 'action=watch'.
 		 *
 		 * @param page {String|mw.Title} Full page name or instance of mw.Title
 		 * @param success {Function} Callback to which the watch object will be passed.
@@ -38,7 +38,7 @@
 			return doWatchInternal.call( this, page, success, err );
 		},
 		/**
-		 * Convinience method for 'action=watch&unwatch=1'.
+		 * Convenience method for 'action=watch&unwatch=1'.
 		 *
 		 * @param page {String|mw.Title} Full page name or instance of mw.Title
 		 * @param success {Function} Callback to which the watch object will be passed.
