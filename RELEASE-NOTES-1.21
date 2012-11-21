@@ -55,14 +55,14 @@ production.
   compatibility. This also works with Squid in reverse-proxy mode. If you wish 
   to support Squid configured in forward-proxy mode, set 
   $wgSquidPurgeUseHostHeader to false.
-* (bug 37020) sql.php with readline eats semicolon
+* (bug 37020) sql.php with readline eats semicolon.
 * (bug 11748) Properly handle optionally-closed HTML tags when Tidy is
   disabled, and don't wrap HTML-syntax definition lists in paragraphs.
 * (bug 41409) Diffs while editing an old revision should again diff against the
   current revision.
 * (bug 41494) Honor $wgLogExceptionBacktrace when logging non-API exceptions
   caught during API execution.
-* (bug 37963) Fixed loading process for user options
+* (bug 37963) Fixed loading process for user options.
 * (bug 26995) Update filename field on Upload page after having sanitized it.
 * (bug 41793) Contribution links to users with 0 edits on Special:ListUsers didn't
   show up red.
@@ -75,17 +75,17 @@ production.
 * (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
   actually sorted.
 * (bug 2865)  User interface HTML elements don't use lang attribute
-  (completed the fix by adding the lang attribute to firstHeading)
+  (completed the fix by adding the lang attribute to firstHeading).
 * (bug 42173) Removed namespace prefixes on Special:UncategorizedCategories.
 * (bug 36053) Log in "returnto" feature forgets query parameters if no
   title parameter was specified.
 
 === API changes in 1.21 ===
-* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
+* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt.
 * action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
   page content; See docs/contenthandler.txt for details.
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
-* (bug 40111) Disable minor edit for page/section creation by API
+* (bug 40111) Disable minor edit for page/section creation by API.
 * (bug 41042) Revert change to action=parse&page=... behavior when the page does not exist.
 
 === Languages updated in 1.21 ===
@@ -94,7 +94,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* (bug 30040) Autonym for nds-nl now 'Nedersaksies', was 'Nedersaksisch'
+* (bug 30040) Autonym for nds-nl is now 'Nedersaksies' (was 'Nedersaksisch').
 
 === Other changes in 1.21 ===
 
