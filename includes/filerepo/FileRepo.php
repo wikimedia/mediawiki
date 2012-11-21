@@ -1421,6 +1421,17 @@ class FileRepo {
 	}
 
 	/**
+	 * Get the size of a file with a given virtual URL/storage path
+	 *
+	 * @param $virtualUrl string
+	 * @return integer|bool False on failure
+	 */
+	public function getFileSize( $virtualUrl ) {
+		$path = $this->resolveToStoragePath( $virtualUrl );
+		return $this->backend->getFileSize( array( 'src' => $path ) );
+	}
+
+	/**
 	 * Get the sha1 (base 36) of a file with a given virtual URL/storage path
 	 *
 	 * @param $virtualUrl string

@@ -179,10 +179,18 @@ class UnregisteredLocalFile extends File {
 	 */
 	function getSize() {
 		$this->assertRepoDefined();
-		$props = $this->repo->getFileProps( $this->path );
-		if ( isset( $props['size'] ) ) {
-			return $props['size'];
-		}
-		return false; // doesn't exist
+		return $this->repo->getFileSize( $this->path );
+	}
+
+	/**
+	 * Optimize getLocalRefPath() by using an existing local reference.
+	 * The file at the path of $fsFile should not be deleted (or at least
+	 * not until the end of the request). This is mostly a performance hack.
+	 *
+	 * @param $fsFile FSFile
+	 * @return void
+	 */
+	public function setLocalReference( FSFile $fsFile ) {
+		$this->fsFile = $fsFile;
 	}
 }
