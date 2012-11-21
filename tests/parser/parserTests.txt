@@ -102,6 +102,12 @@ Template:table_attribs
 |</noinclude>style="color: red"| Foo
 !! endarticle
 
+!! article
+A?b
+!! text
+Weirdo titles!
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -3146,6 +3152,18 @@ Plain link to protocol-relative URL with link text
 [[//www.example.com Link text]]
 !! result
 <p>[<a rel="nofollow" class="external text" href="//www.example.com">Link text</a>]
+</p>
+!! end
+
+!! test
+Plain link to page with question mark in title
+!! input
+[[A?b]]
+
+[[A?b|Baz]]
+!! result
+<p><a href="/wiki/A%3Fb" title="A?b">A?b</a>
+</p><p><a href="/wiki/A%3Fb" title="A?b">Baz</a>
 </p>
 !! end
 
