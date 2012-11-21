@@ -106,7 +106,6 @@ class UploadStash {
 	 * @return UploadStashFile
 	 */
 	public function getFile( $key, $noAuth = false ) {
-
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
@@ -131,8 +130,13 @@ class UploadStash {
 			$this->initFile( $key );
 
 			// fetch fileprops
-			$path = $this->fileMetadata[$key]['us_path'];
-			$this->fileProps[$key] = $this->repo->getFileProps( $path );
+			if ( strlen( $this->fileMetadata[$key]['us_props'] ) ) {
+				$this->fileProps[$key] = unserialize( $this->fileMetadata[$key]['us_props'] );
+			} else { // b/c for rows with no us_props
+				wfDebug( __METHOD__ . " fetched props for $key from file\n" );
+				$path = $this->fileMetadata[$key]['us_path'];
+				$this->fileProps[$key] = $this->repo->getFileProps( $path );
+			}
 		}
 
 		if ( ! $this->files[$key]->exists() ) {
@@ -257,6 +261,7 @@ class UploadStash {
 			'us_key' => $key,
 			'us_orig_path' => $path,
 			'us_path' => $stashPath, // virtual URL
+			'us_props' => serialize( $fileProps ),
 			'us_size' => $fileProps['size'],
 			'us_sha1' => $fileProps['sha1'],
 			'us_mime' => $fileProps['mime'],
