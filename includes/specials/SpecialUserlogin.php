@@ -897,7 +897,8 @@ class LoginForm extends SpecialPage {
 		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
 
 		if( $injected_html !== '' ) {
-			$this->displaySuccessfulLogin( 'loginsuccess', $injected_html );
+			$this->displaySuccessfulAction( $this->msg( 'loginsuccesstitle' ),
+				'loginsuccess', $injected_html );
 		} else {
 			$this->executeReturnTo( 'successredirect' );
 		}
@@ -924,35 +925,21 @@ class LoginForm extends SpecialPage {
 		 */
 		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
 
-		$this->displaySuccessfulAccountCreation( $welcome_creation_msg, $injected_html );
+		$this->displaySuccessfulAction( $this->msg( 'welcomeuser', $this->getUser()->getName() ),
+			$welcome_creation_msg, $injected_html );
 	}
 
 	/**
-	 * Display an "account creation successful" page.
+	 * Display an "successful action" page.
+	 *
+	 * @param $title string|Message page's title
 	 * @param $msgname string
 	 * @param $injected_html string
 	 */
-	private function displaySuccessfulAccountCreation( $msgname, $injected_html ) {
+	private function displaySuccessfulAction( $title, $msgname, $injected_html ) {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'welcomeuser', $this->getUser()) );
-		if( $msgname ){
-			$out->addWikiMsg( $msgname, wfEscapeWikiText( $this->getUser()->getName() ) );
-		}
-
-		$out->addHTML( $injected_html );
-
-		$this->executeReturnTo( 'success' );
-	}
-
-	/**
-	 * Display a "login successful" page.
-	 * @param $msgname string
-	 * @param $injected_html string
-	 */
-	private function displaySuccessfulLogin( $msgname, $injected_html ) {
-		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'loginsuccesstitle' ) );
-		if( $msgname ){
+		$out->setPageTitle( $title );
+		if ( $msgname ) {
 			$out->addWikiMsg( $msgname, wfEscapeWikiText( $this->getUser()->getName() ) );
 		}
 
