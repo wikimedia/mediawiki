@@ -2875,6 +2875,25 @@ function wfShellWikiCmd( $script, array $parameters = array(), array $options = 
 }
 
 /**
+ * Check, if wfMerge would do a merge
+ *
+ * Created as single function to allow tests to call this and mark tests as skipped
+ *
+ * @return Bool
+ */
+function wfMergeEnabled() {
+	global $wgDiff3;
+
+	# This check may also protect against code injection in
+	# case of broken installations.
+	wfSuppressWarnings();
+	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+	wfRestoreWarnings();
+
+	return $haveDiff3;
+}
+
+/**
  * wfMerge attempts to merge differences between three texts.
  * Returns true for a clean merge and false for failure or a conflict.
  *
@@ -2885,18 +2904,12 @@ function wfShellWikiCmd( $script, array $parameters = array(), array $options = 
  * @return Bool
  */
 function wfMerge( $old, $mine, $yours, &$result ) {
-	global $wgDiff3;
-
-	# This check may also protect against code injection in
-	# case of broken installations.
-	wfSuppressWarnings();
-	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	wfRestoreWarnings();
-
-	if( !$haveDiff3 ) {
+	if( !wfMergeEnabled() ) {
 		wfDebug( "diff3 not found\n" );
 		return false;
 	}
+
+	global $wgDiff3;
 
 	# Make temporary files
 	$td = wfTempDir();

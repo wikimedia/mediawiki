@@ -498,6 +498,10 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @dataProvider provideMerge()
 	 */
 	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
+		if ( !wfMergeEnabled() ) {
+			$this->markTestSkipped( "Can't test merge3(), since diff3 is not configured" );
+		}
+
 		$mergedText = null;
 		$isMerged = wfMerge( $old, $mine, $yours, $mergedText );
 
