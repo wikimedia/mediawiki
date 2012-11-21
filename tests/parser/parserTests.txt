@@ -12757,6 +12757,48 @@ Escaping nowikis
 </p>
 !! end
 
+!! test
+Tag-like HTML structures are passed through as text
+!! input
+<x y>
+
+<x.y>
+
+<x-y>
+
+1>2
+
+x<y
+
+a>b
+
+1<d e>f
+!! result
+<p>&lt;x y&gt;
+</p><p>&lt;x.y&gt;
+</p><p>&lt;x-y&gt;
+</p><p>1&gt;2
+</p><p>x&lt;y
+</p><p>a&gt;b
+</p><p>1&lt;d e&gt;f
+</p>
+!! end
+
+
+# This fails in the PHP parser (see bug 40670,
+# https://bugzilla.wikimedia.org/show_bug.cgi?id=40670), so disabled for it.
+!! test
+Tag names followed by punctuation should not be recognized as tags
+!! options
+disabled
+!! input
+<s.ome> text
+!! result
+<p>&lt;s.ome&gt text
+</p>
+!! end
+
+
 TODO:
 more images
 more tables
