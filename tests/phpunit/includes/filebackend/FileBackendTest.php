@@ -635,7 +635,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$source = self::baseStorePath() . '/unittest-cont1/e/myfacefile.txt';
 
 		$op = array( 'op' => 'describe', 'src' => $source,
-			'headers' => array( 'X-Content-Length' => '91.3' ),
+			'headers' => array( 'X-Content-Length' => '91.3', 'Content-Old-Header' => '' ),
 			'disposition' => 'inline' );
 		$cases[] = array(
 			$op, // operation
