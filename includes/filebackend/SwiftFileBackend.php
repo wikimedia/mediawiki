@@ -583,9 +583,11 @@ class SwiftFileBackend extends FileBackendStore {
 
 		try {
 			$sContObj = $this->getContainer( $srcCont );
-			$srcObj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-			// Merge in the new metadata and header values...
-			$srcObj->headers = $hdrs;
+			// Get the latest version of the current metadata
+			$srcObj = $sContObj->get_object( $srcRel,
+				$this->headersFromParams( array( 'latest' => true ) ) );
+			// Merge in the metadata updates...
+			$srcObj->headers = $hdrs + $srcObj->headers;
 			$srcObj->sync_metadata(); // save to Swift
 			$this->purgeCDNCache( array( $srcObj ) );
 		} catch ( CDNNotEnabledException $e ) {
@@ -816,6 +818,7 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			}
 		}
+		trigger_error( "Unable to set SHA-1 metadata for $path", E_USER_WARNING );
 		$obj->setMetadataValues( array( 'Sha1base36' => false ) );
 		wfProfileOut( __METHOD__ );
 		return false; // failed
