@@ -10,6 +10,7 @@ class StructureTest extends MediaWikiTestCase {
 	 * Test.  If the file names do not end in Test, they will not be run.
 	 */
 	public function testUnitTestFileNamesEndWithTest() {
+		$this->assertTrue( false, 'testing Jenkins' );
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test does not work on Windows' );
 		}
