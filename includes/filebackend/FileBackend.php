@@ -267,6 +267,9 @@ abstract class FileBackend {
 	 *   - headers             : If supplied, the backend will return these headers when
 	 *                           GETs/HEADs of the destination file are made. Header values
 	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *                           Existing headers will remain, but these will replace any
+	 *                           conflicting previous headers, and headers will be removed
+	 *                           if they are set to an empty string.
 	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
@@ -503,6 +506,9 @@ abstract class FileBackend {
 	 *   - headers             : If supplied, the backend will return these headers when
 	 *                           GETs/HEADs of the destination file are made. Header values
 	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *                           Existing headers will remain, but these will replace any
+	 *                           conflicting previous headers, and headers will be removed
+	 *                           if they are set to an empty string.
 	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
