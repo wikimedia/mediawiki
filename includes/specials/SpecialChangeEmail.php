@@ -213,6 +213,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @return bool|string true or string on success, false on failure
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
+		global $wgAuth;
+
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			$this->error( 'invalidemailaddress' );
 			return false;
@@ -247,6 +249,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
 
 		$user->saveSettings();
+
+		$wgAuth->updateExternalDB( $user );
 
 		return $status->value;
 	}
