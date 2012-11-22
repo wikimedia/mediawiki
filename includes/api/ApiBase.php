@@ -68,6 +68,7 @@ abstract class ApiBase extends ContextSource {
 
 	private $mMainModule, $mModuleName, $mModulePrefix;
 	private $mParamCache = array();
+	private $mThrottle = null;
 
 	/**
 	 * Constructor
@@ -129,6 +130,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getModulePrefix() {
 		return $this->mModulePrefix;
+	}
+
+	/**
+	 * Get the throttle to be used on this action, or false
+	 * for no throttle.
+	 *
+	 * @since 1.21
+	 * @return Throttle to use
+	 */
+    public function getThrottle() {
+		return null;
 	}
 
 	/**
@@ -1277,6 +1289,7 @@ abstract class ApiBase extends ContextSource {
 		'summaryrequired' => array( 'code' => 'summaryrequired', 'info' => 'Summary required' ),
 		'import-rootpage-invalid' => array( 'code' => 'import-rootpage-invalid', 'info' => 'Root page is an invalid title' ),
 		'import-rootpage-nosubpage' => array( 'code' => 'import-rootpage-nosubpage', 'info' => 'Namespace "$1" of the root page does not allow subpages' ),
+		'throttled' => array( 'code' => 'throttled', 'info' => 'The action you tried to perform has been throttled' ),
 
 		// API-specific messages
 		'readrequired' => array( 'code' => 'readapidenied', 'info' => "You need read permission to use this module" ),
@@ -1540,6 +1553,10 @@ abstract class ApiBase extends ContextSource {
 		if ( $this->needsToken() ) {
 			$ret[] = array( 'missingparam', 'token' );
 			$ret[] = array( 'sessionfailure' );
+		}
+
+		if ( $this->getThrottle() !== null ) {
+			$ret[] = array( 'throttled' );
 		}
 
 		return $ret;
