@@ -786,6 +786,12 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		$throttle = $module->getThrottle();
+		if ( $throttle !== null && $throttle->increment() ) {
+			$timeRemaining = $throttle->getCurrentExpiry()->getTimestamp() - time();
+			$this->dieUsageMsg( array( 'throttled', $timeRemaining ) );
+		}
+
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
 		if ( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
