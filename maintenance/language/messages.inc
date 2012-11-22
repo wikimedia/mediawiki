@@ -402,6 +402,7 @@ $wgMessageStructure = array(
 		'viewsource-title',
 		'actionthrottled',
 		'actionthrottledtext',
+		'actionthrottledtext-expiry',
 		'protectedpagetext',
 		'viewsourcetext',
 		'viewyourtext',
