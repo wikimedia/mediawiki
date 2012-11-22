@@ -147,14 +147,13 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Get the interwiki list
 	 *
-	 * @todo Needs to respect interwiki cache!
 	 * @return Array
 	 */
 	private function getInterwikiList() {
-		$result = $this->db->select( 'interwiki', array( 'iw_prefix' ) );
+		$result = Interwiki::getAllPrefixes();
 		$prefixes = array();
 		foreach ( $result as $row ) {
-			$prefixes[] = $row->iw_prefix;
+			$prefixes[] = $row['iw_prefix'];
 		}
 		return $prefixes;
 	}
