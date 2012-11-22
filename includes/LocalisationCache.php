@@ -1160,7 +1160,7 @@ class LCStore_CDB implements LCStore {
 	}
 
 	protected function getFileName( $code ) {
-		if ( !$code || strpos( $code, '/' ) !== false ) {
+		if ( $code === '' || strpos( $code, '/' ) !== false ) {
 			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 		return "{$this->directory}/l10n_cache-$code.cdb";
