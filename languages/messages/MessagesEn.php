@@ -1056,6 +1056,7 @@ Query: $2',
 'actionthrottled'               => 'Action throttled',
 'actionthrottledtext'           => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
+'actionthrottledtext-expiry'    => 'You have performed this action too many times in a short space of time. You can try again at $1.',
 'protectedpagetext'             => 'This page has been protected to prevent editing or other actions.',
 'viewsourcetext'                => 'You can view and copy the source of this page:',
 'viewyourtext'                  => "You can view and copy the source of '''your edits''' to this page:",
