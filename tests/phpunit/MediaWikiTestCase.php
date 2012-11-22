@@ -789,4 +789,24 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		//        But frequently, this is used in fixture setup.
 		throw new MWException( "No namespace defaults to wikitext!" );
 	}
+
+	/**
+	 * Check, if $wgDiff3 is set and ready to merge
+	 * Will mark the calling test as skipped, if not ready
+	 *
+	 * @since 1.21
+	 */
+	protected function checkHasDiff3() {
+		global $wgDiff3;
+
+		# This check may also protect against code injection in
+		# case of broken installations.
+		wfSuppressWarnings();
+		$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+		wfRestoreWarnings();
+
+		if( !$haveDiff3 ) {
+			$this->markTestSkipped( "Skip test, since diff3 is not configured" );
+		}
+	}
 }
