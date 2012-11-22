@@ -4603,6 +4603,8 @@ Example:
 'prot_1movedto2' => 'Message description: [[mw:Manual:Interface/1movedto2]]',
 'protect-badnamespace-title' => 'Title of error page when trying to access action=protect on a non-protectable namespace (currently this only for the MediaWiki: namespace).',
 'protect-badnamespace-text' => 'Content of the error page that goes with {{msg-mw|protect-badnamespace-title}}.',
+'protect-norestrictiontypes-title' => 'Page title in case there aren\'t any restriction types (like edit or create) available ($1 represents the page title).',
+'protect-norestrictiontypes-text' => 'Content of the error page in case there aren\'t any restriction types (like edit or create) available.',
 'protect-legend' => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment' => '{{Identical|Reason}}',
 'protectexpiry' => '{{Identical|Expires}}',
