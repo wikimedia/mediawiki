@@ -2016,6 +2016,8 @@ $wgMessageStructure = array(
 		'prot_1movedto2',
 		'protect-badnamespace-title',
 		'protect-badnamespace-text',
+		'protect-norestrictiontypes-text',
+		'protect-norestrictiontypes-title',
 		'protect-legend',
 		'protectcomment',
 		'protectexpiry',
