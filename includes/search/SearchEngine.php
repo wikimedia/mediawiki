@@ -187,6 +187,11 @@ class SearchEngine {
 				return null;
 			}
 
+			# Try files if searching in the Media: namespace
+			if ( $title->getNamespace() == NS_MEDIA ) {
+				$title = Title::makeTitle( NS_FILE, $title->getText() );
+			}
+
 			if ( $title->isSpecialPage() || $title->isExternal() || $title->exists() ) {
 				return $title;
 			}
