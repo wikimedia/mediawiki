@@ -154,13 +154,17 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDeprecatedAttributes
+	 * @cover Sanitizer::fixTagAttributes
 	 */
-	function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl ) {
-
-		$this->assertEquals( " $inputAttr", Sanitizer::fixTagAttributes( $inputAttr, $inputEl ) );
+	function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl, $message = '' ) {
+		$this->assertEquals( " $inputAttr",
+			Sanitizer::fixTagAttributes( $inputAttr, $inputEl ),
+			$message
+		);
 	}
 
 	public static function provideDeprecatedAttributes() {
+		/** array( <attribute>, <element>, [message] ) */
 		return array(
 			array( 'clear="left"', 'br' ),
 			array( 'clear="all"', 'br' ),
@@ -178,10 +182,10 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCssCommentsFixtures
+	 * @cover Sanitizer::checkCss
 	 */
 	function testCssCommentsChecking( $expected, $css, $message = '' ) {
-		$this->assertEquals(
-			$expected,
+		$this->assertEquals( $expected,
 			Sanitizer::checkCss( $css ),
 			$message
 		);
