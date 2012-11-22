@@ -1777,6 +1777,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$attrs['class'] .= ' active';
 			$attrs['class'] = trim( $attrs['class'] );
 		}
+
 		return Html::rawElement( isset( $options['tag'] ) ? $options['tag'] : 'li', $attrs, $html );
 	}
 
