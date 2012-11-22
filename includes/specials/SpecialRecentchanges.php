@@ -110,7 +110,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		global $wgFeedLimit;
 		$opts = $this->getDefaultOptions();
 		# Feed is cached on limit,hideminor,namespace; other params would randomly not work
-		$opts->fetchValuesFromRequest( $this->getRequest(), array( 'limit', 'hideminor', 'namespace' ) );
+		$opts->fetchValuesFromRequest( $this->getRequest() );
 		$opts->validateIntBounds( 'limit', 0, $wgFeedLimit );
 		return $opts;
 	}
