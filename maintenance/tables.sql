@@ -860,6 +860,8 @@ CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
 CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
 -- Used in API and duplicate search
 CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1(10));
+-- Used to get media of one type
+CREATE INDEX /*i*/img_mime_type_media ON /*_*/image (img_major_mime,img_minor_mime,img_media_type);
 
 
 --
