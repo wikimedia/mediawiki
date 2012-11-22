@@ -189,6 +189,12 @@ class HTMLForm extends ContextSource {
 	);
 
 	/**
+	 * Throttle properties.
+	 */
+	private $mThrottle = null;
+	private $mThrottleReset;
+
+	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param array $descriptor of Field constructs, as described above
 	 * @param $context IContextSource available since 1.18, will become compulsory in 1.18.
@@ -386,6 +392,11 @@ class HTMLForm extends ContextSource {
 	 *     display.
 	 */
 	function trySubmit() {
+		if( $this->mThrottle !== null && $this->mThrottle->increment() ) {
+			$ts = $this->mThrottle->getCurrentExpiry()->getHumanTimestamp();
+			return array( 'actionthrottledtext-expiry', $ts );
+		}
+
 		# Check for validation
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( !empty( $field->mParams['nodata'] ) ) {
@@ -410,6 +421,10 @@ class HTMLForm extends ContextSource {
 		$data = $this->filterDataForSubmit( $this->mFieldData );
 
 		$res = call_user_func( $callback, $data, $this );
+
+		if( $this->mThrottle !== null && $this->mThrottleReset && $res === true ) {
+			$this->mThrottle->clear();
+		}
 
 		return $res;
 	}
@@ -1036,6 +1051,21 @@ class HTMLForm extends ContextSource {
 	 */
 	function suppressReset( $suppressReset = true ) {
 		$this->mShowReset = !$suppressReset;
+		return $this;
+	}
+
+	/**
+	 * Set a throttle limit on submissions of this form.
+	 *
+	 * @param Throttle $throttle Throttle to use
+	 * @param bool $resetOnSuccess Whether to reset on success
+	 *
+	 * @since 1.21
+	 * @return HTMLForm $this for chaining calls
+	 */
+	function setThrottle( Throttle $throttle, $resetOnSuccess ) {
+		$this->mThrottle = $throttle;
+		$this->mThrottleReset = $resetOnSuccess;
 		return $this;
 	}
 
