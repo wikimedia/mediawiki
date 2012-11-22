@@ -16,6 +16,13 @@ production.
   instead.
 
 === New features in 1.21 ===
+* (bug 38110) Schema changes (adding or dropping tables, indicies and
+  fields) can be now be done separately from from other changes that
+  update.php makes.  This is useful in environments that use database
+  permissions to restrict schema changes but allow the DB user that
+  MediaWiki normally runs as to perform other changes that update.php
+  makes.  Schema changes can be run seperately.  See the file UPGRADE
+  for more information.
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
 * Added ContentHandler facility to allow extensions to support other content than wikitext.
   See docs/contenthandler.txt for details.

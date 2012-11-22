@@ -48,6 +48,12 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$table = 'filearchive';
 		$conds = array( 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' );
+
+		if ( !$dbw->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
+			$this->output( "fa_sha1 column does not exist\n\n", true );
+			return false;
+		}
+
 		$this->output( "Populating fa_sha1 field from fa_storage_key\n" );
 		$endId = $dbw->selectField( $table, 'MAX(fa_id)', false, __METHOD__ );
 
