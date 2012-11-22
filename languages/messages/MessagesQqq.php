@@ -992,6 +992,8 @@ See also:
 * $1 - the name of the page',
 'actionthrottled' => 'This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.',
 'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
+'actionthrottledtext-expiry' => 'Similar to {{msg-mw|actionthrottledtext}}, except it takes the time the throttle expires at a parameter.
+* $1 - The formatted date and time (from MWTimestamp::getHumanTimestamp) when the throttle expires',
 'protectedpagetext' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
 The title for this message is {{msg-mw|protectedpage}}.",
