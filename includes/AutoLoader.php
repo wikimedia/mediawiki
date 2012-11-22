@@ -251,6 +251,7 @@ $wgAutoloadLocalClasses = array(
 	'Title' => 'includes/Title.php',
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
+	'Throttle' => 'includes/Throttle.php',
 	'ThrottledError' => 'includes/Exception.php',
 	'UIDGenerator' => 'includes/UIDGenerator.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
