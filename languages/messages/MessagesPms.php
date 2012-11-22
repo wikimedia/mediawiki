@@ -1587,7 +1587,7 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-notsame' => "N'archivi nen idéntich a esist già a $1.",
 'backend-fail-invalidpath' => "$1 a l'é pa un përcors ëd memorisassion bon.",
 'backend-fail-delete' => "As peul pa scanselesse l'archivi $1.",
-'backend-fail-describe' => 'As peeul pa cambiesse ij metadat për l\'archivi "$1".',
+'backend-fail-describe' => "Impossìbil cangé ij metadat për l'archivi «$1».",
 'backend-fail-alreadyexists' => 'L\'archivi "$1" a esist già.',
 'backend-fail-store' => "As peul pa memorisesse l'archivi $1 a $2.",
 'backend-fail-copy' => "As peul pa copiesse l'archivi $1 su $2.",
@@ -3524,8 +3524,8 @@ a podrìo ëdcò nen ess-ie ant sta lista-sì.",
 'watchlistedit-normal-explain' => "Ij tìtoj ch'a ten sot-euj a son ësmonù ambelessì-sota.
 Për gavene via un, ch'a-j fasa la crosëtta ant la casela ch'a l'ha aranda, e peuj ch'ai bata ansima a «{{int:Watchlistedit-normal-submit}}». As peul ëdcò [[Special:EditWatchlist/raw|modifiché la lista ampressa]].",
 'watchlistedit-normal-submit' => 'Gavé via ij tìtoj',
-'watchlistedit-normal-done' => "{{PLURAL:$1|1 tìtol a l'é|$1 tìtoj a son}} stait gavà via da 'nt la lista ëd lòn ch'as ten sot euj:",
-'watchlistedit-raw-title' => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
+'watchlistedit-normal-done' => "{{PLURAL:$1|Un tìtol a l'é|$1 tìtoj a son}} ëstàit gavà via da 'nt la lista ëd lòn ch'as ten sot-euj:",
+'watchlistedit-raw-title' => "Modifiché ampressa la lista ëd lòn ch'as ten sot-euj",
 'watchlistedit-raw-legend' => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-raw-explain' => "Ij tìtoj ch'a l'é antramentr ch'as ten sot euj a son ambelessì-sota, e a peulo modifichesse ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga.
 Quand a l'ha finì, ch'a-i bata ansima a \"{{int:Watchlistedit-raw-submit}}\".

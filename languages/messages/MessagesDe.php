@@ -573,6 +573,7 @@ $messages = array(
 'namespaces' => 'Namensräume',
 'variants' => 'Varianten',
 
+'navigation-heading' => 'Navigationsmenü',
 'errorpagetitle' => 'Fehler',
 'returnto' => 'Zurück zur Seite $1.',
 'tagline' => 'Aus {{SITENAME}}',

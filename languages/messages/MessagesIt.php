@@ -434,6 +434,7 @@ $messages = array(
 'namespaces' => 'Namespace',
 'variants' => 'Varianti',
 
+'navigation-heading' => 'Menu di navigazione',
 'errorpagetitle' => 'Errore',
 'returnto' => 'Torna a $1.',
 'tagline' => 'Da {{SITENAME}}.',

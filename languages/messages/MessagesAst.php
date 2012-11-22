@@ -470,8 +470,11 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 
 Pues siguir usando {{SITENAME}} de forma anónima, o pues <span class='plainlinks'>[$1 volver entrar]</span> como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
+'welcomeuser' => '¡Afayati, $1!',
 'welcomecreation' => "== ¡Bienllegáu, $1! ==
 Creóse la to cuenta.
+Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
+'welcomecreation-agora' => "Creóse la to cuenta.
 Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
 'yourname' => "Nome d'usuariu:",
 'yourpassword' => 'Clave:',
@@ -1639,6 +1642,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-notsame' => 'Yá esiste un ficheru non idénticu en $1.',
 'backend-fail-invalidpath' => "$1 nun ye una ruta d'almacenamientu válida.",
 'backend-fail-delete' => 'Nun se pudo desaniciar el ficheru $1.',
+'backend-fail-describe' => 'Nun se pudieron camudar los metadatos del ficheru "$1".',
 'backend-fail-alreadyexists' => 'El ficheru $1 yá esiste.',
 'backend-fail-store' => 'Nun se pudo guardar el ficheru $1 en $2.',
 'backend-fail-copy' => 'Nun se pudo copiar el ficheru $1 como $2.',
@@ -2959,6 +2963,8 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'markedaspatrollederror' => 'Nun se pue marcar como supervisada',
 'markedaspatrollederrortext' => 'Necesites conseñar una revisión pa marcala como supervisada.',
 'markedaspatrollederror-noautopatrol' => 'Nun tienes permisu pa marcar los cambios propios como supervisaos.',
+'markedaspatrollednotify' => 'Esti cambiu en $1 marcóse como revisáu.',
+'markedaspatrollederrornotify' => "Falló l'aición de marcar como revisáu.",
 
 # Patrol log
 'patrol-log-page' => 'Rexistru de supervisión',

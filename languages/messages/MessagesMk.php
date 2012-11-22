@@ -515,6 +515,7 @@ $messages = array(
 'namespaces' => 'Именски простори',
 'variants' => 'Варијанти',
 
+'navigation-heading' => 'Навигационо мени',
 'errorpagetitle' => 'Грешка',
 'returnto' => 'Назад на $1.',
 'tagline' => 'Од {{SITENAME}}',

@@ -510,6 +510,7 @@ $messages = array(
 'namespaces' => '이름공간',
 'variants' => '변수',
 
+'navigation-heading' => '둘러보기 메뉴',
 'errorpagetitle' => '오류',
 'returnto' => '$1(으)로 돌아갑니다.',
 'tagline' => '{{SITENAME}}',
@@ -755,8 +756,11 @@ $2',
 
 이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 <span class='plainlinks'>[$1 로그인]</span>해서 이용할 수 있습니다.
 웹 브라우저의 캐시를 지우지 않으면 몇몇 문서에서 로그인이 되어 있는 것처럼 보일 수 있다는 점을 유의해 주세요.",
-'welcomecreation' => '== $1 님, 환영합니다! ==
+'welcomeuser' => '$1, 환영합니다!',
+'welcomecreation' => '== $1, 환영합니다! ==
 계정이 만들어졌습니다.
+[[Special:Preferences|{{SITENAME}} 사용자 환경 설정]]을 바꿀 수 있습니다.',
+'welcomecreation-agora' => '계정이 만들어졌습니다.
 [[Special:Preferences|{{SITENAME}} 사용자 환경 설정]]을 바꿀 수 있습니다.',
 'yourname' => '사용자 이름:',
 'yourpassword' => '비밀번호:',
@@ -1924,6 +1928,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'backend-fail-notsame' => '$1 파일과 같은 이름을 가진 다른 파일이 존재합니다.',
 'backend-fail-invalidpath' => '$1 경로가 유효하지 않습니다.',
 'backend-fail-delete' => '$1 파일을 삭제할 수 없습니다.',
+'backend-fail-describe' => '"$1" 파일에 대한 메타데이터를 바꿀 수 없습니다.',
 'backend-fail-alreadyexists' => '$1 파일이 이미 존재합니다.',
 'backend-fail-store' => '$1 파일을 $2 경로에 저장하지 못했습니다.',
 'backend-fail-copy' => '$1 파일을 $2 경로에 복사하지 못했습니다.',

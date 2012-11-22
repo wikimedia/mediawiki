@@ -558,6 +558,8 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 صفحو نوشتۂ حذف شدگی و منتقلی ذیلا بطورِ حوالہ دیونو بویان.',
 
 # Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''خبردار:''' سانچو سایز بو لوٹ شیر.
+بعضی سانچہ شامل نو بونی.",
 'post-expand-template-inclusion-category' => 'ھش صفحات کہ ھتیرا ٹمپلیٹ یعنی سانچو ناپ لوٹ بیتی شیر۔',
 'post-expand-template-argument-category' => 'ھش صفحات کہ ھتیرا بوغینو بیرو سانچان یعنی(ٹمپلیٹان) لو شینی۔',
 
@@ -715,6 +717,7 @@ HTML tags لوڑے.',",
 'recentchangeslinked' => 'متعلقہ تبدیلی',
 'recentchangeslinked-toolbox' => 'موقعی تبدیلی',
 'recentchangeslinked-title' => 'متعلقہ تبدیلی "$1"',
+'recentchangeslinked-noresult' => 'ھمی صفحا موجودہ وختہ کیہ تبدیلی نیکی۔',
 'recentchangeslinked-summary' => "ھیہ ھتے تبدیلیان لسٹ شیر کہ ھیتان پھوک مدا پروشٹی ساوزینو بیتی شینی وا ھے صفحان سوم جستہ خور کیہ صفحہ چوکی شینی یا کیہ خاص زمرہ جاتو ممبرانن سوم چوکی شینی<br />
 ساوزیرو [[Special:Watchlist|موڑا صفحہ]] '''بولڈ''' شینی",
 'recentchangeslinked-page' => 'کھوار ویکیپیڈیو منصوبو صفحو لوڑے',

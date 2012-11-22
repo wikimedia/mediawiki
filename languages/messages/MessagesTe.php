@@ -1163,7 +1163,7 @@ $1",
 
 # Preferences page
 'preferences' => 'అభిరుచులు',
-'mypreferences' => 'నా అభిరుచులు',
+'mypreferences' => 'అభిరుచులు',
 'prefs-edits' => 'దిద్దుబాట్ల సంఖ్య:',
 'prefsnologin' => 'లాగిన్‌ అయిలేరు',
 'prefsnologintext' => 'వాడుకరి అభిరుచులను మార్చుకోడానికి, మీరు <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} లోనికి ప్రవేశించి]</span> ఉండాలి.',

@@ -51,6 +51,7 @@
  * @author Litlok
  * @author Lloffiwr
  * @author Louperivois
+ * @author Ltrlg
  * @author Lucyin
  * @author McDutchie
  * @author Meithal
@@ -539,6 +540,7 @@ $messages = array(
 'namespaces' => 'Espaces de noms',
 'variants' => 'Variantes',
 
+'navigation-heading' => 'Menu de navigation',
 'errorpagetitle' => 'Erreur',
 'returnto' => 'Revenir à la page $1.',
 'tagline' => 'De {{SITENAME}}',
@@ -4172,7 +4174,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-missingparam' => 'Erreur interne : Il manque des paramètres dans la requête.',
 'api-error-missingresult' => 'Erreur interne : Nous n’avons pas pu déterminer si la copie avait réussi.',
 'api-error-mustbeloggedin' => 'Vous devez être connecté pour télécharger des fichiers.',
-'api-error-mustbeposted' => 'Il y a un bogue dans ce logiciel ; il n’utilise pas la méthode HTTP adéquate.',
+'api-error-mustbeposted' => 'Erreur interne : cette requête nécessite la méthode HTTP POST.',
 'api-error-noimageinfo' => 'Le téléversement a réussi, mais le serveur n’a pas donné d’informations sur le fichier.',
 'api-error-nomodule' => 'Erreur interne : aucun module de versement défini.',
 'api-error-ok-but-empty' => 'Erreur interne : Le serveur n’a pas répondu.',
@@ -4199,5 +4201,5 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-millennia' => '$1 millénaire{{PLURAL:$1||s}}',
 
 # Unknown messages
-'mytalk-parenthetical' => 'discuter',
+'mytalk-parenthetical' => 'discussion',
 );

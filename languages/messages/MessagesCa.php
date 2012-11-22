@@ -25,6 +25,7 @@
  * @author Pasqual (ca)
  * @author Paucabot
  * @author PerroVerd
+ * @author Pitort
  * @author Pérez
  * @author Qllach
  * @author SMP
@@ -362,6 +363,7 @@ $messages = array(
 'namespaces' => 'Espais de noms',
 'variants' => 'Variants',
 
+'navigation-heading' => 'Menú de navegació',
 'errorpagetitle' => 'Error',
 'returnto' => 'Torna cap a $1.',
 'tagline' => 'De {{SITENAME}}',
@@ -601,10 +603,13 @@ L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 
 Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu <span class='plainlinks'>[$1 iniciar una sessió una altra vegada]</span> amb el mateix o un altre usuari.
 Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.",
+'welcomeuser' => 'Benvingut,  $1 !',
 'welcomecreation' => "== Us donem la benvinguda, $1! ==
 
 S'ha creat el vostre compte.
 No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].",
+'welcomecreation-agora' => 'El vostre compte ha estat creat.
+No oblideu de canviar les vostres [[Special:Preferences|{{SITENAME}} preferències]].',
 'yourname' => "Nom d'usuari",
 'yourpassword' => 'Contrasenya',
 'yourpasswordagain' => 'Escriviu una altra vegada la contrasenya',
@@ -1704,6 +1709,7 @@ $1',
 'backend-fail-notsame' => 'Ja existeix un fitxer no idèntic a $1.',
 'backend-fail-invalidpath' => "$1 no és un camí d'emmagatzemament vàlid.",
 'backend-fail-delete' => "No s'ha pogut suprimir el fitxer $1.",
+'backend-fail-describe' => 'La modificació de les metadades del fitxer "$1" no és possible.',
 'backend-fail-alreadyexists' => 'El fitxer $1 ja existeix.',
 'backend-fail-store' => "No s'ha pogut emmagatzemar el fitxer $1 a $2.",
 'backend-fail-copy' => "No s'ha pogut copiar el fitxer $1 a $2.",

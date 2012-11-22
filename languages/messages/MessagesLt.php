@@ -315,7 +315,7 @@ $messages = array(
 'newwindow' => '(atsidaro naujame lange)',
 'cancel' => 'Atšaukti',
 'moredotdotdot' => 'Daugiau...',
-'mypage' => 'Mano puslapis',
+'mypage' => 'Naudotojo puslapis',
 'mytalk' => 'Mano aptarimas',
 'anontalk' => 'Šio IP aptarimas',
 'navigation' => 'Naršymas',
@@ -3802,4 +3802,6 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'duration-centuries' => '$1 {{PLURAL:$1|amžius|amžiai|amžių}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tūkstantmetis|tūkstantmečiai|tūkstantmečių}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'aptarimas',
 );

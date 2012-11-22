@@ -443,8 +443,8 @@ $messages = array(
 'newwindow' => '(en nova fenestro)',
 'cancel' => 'Nuligi',
 'moredotdotdot' => 'Pli...',
-'mypage' => 'Mia paĝo',
-'mytalk' => 'Mia diskuto',
+'mypage' => 'Paĝo',
+'mytalk' => 'Diskuto',
 'anontalk' => 'Diskutpaĝo por tiu ĉi IP',
 'navigation' => 'Navigado',
 'and' => '&#32;kaj',
@@ -476,6 +476,7 @@ $messages = array(
 'namespaces' => 'Nomspacoj',
 'variants' => 'Variantoj',
 
+'navigation-heading' => 'Navigacia menuo',
 'errorpagetitle' => 'Eraro',
 'returnto' => 'Reiri al $1.',
 'tagline' => 'El {{SITENAME}}',
@@ -722,6 +723,7 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
 Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
+'welcomeuser' => 'Bonvenon, $1!',
 'welcomecreation' => '== Bonvenon, $1! ==
 Via konto estas kreita.
 Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
@@ -1377,7 +1379,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 
 # Preferences page
 'preferences' => 'Preferoj',
-'mypreferences' => 'Miaj preferoj',
+'mypreferences' => 'Preferoj',
 'prefs-edits' => 'Nombro de redaktoj:',
 'prefsnologin' => 'Ne jam salutis!',
 'prefsnologintext' => 'Vi devas esti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ensalutita]</span> por fari viajn preferojn.',
@@ -1608,6 +1610,8 @@ Jen hazarde generita valoro por via uzo: $1',
 'rightslogtext' => 'Ĉi tio estas protokolo pri la ŝanĝoj de uzantorajtoj.',
 'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
 'rightslogentry-autopromote' => 'estis aŭtomate altrangigita de $2 al $3',
+'logentry-rights-rights' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
+'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
 'rightsnone' => '(nenia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2557,7 +2561,7 @@ $1',
 # Contributions
 'contributions' => 'Kontribuoj de uzanto',
 'contributions-title' => 'Kontribuoj de uzanto $1',
-'mycontris' => 'Miaj kontribuoj',
+'mycontris' => 'Kontribuoj',
 'contribsub2' => 'De $1 ($2)',
 'nocontribs' => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
 'uctop' => ' (lasta)',
@@ -4034,4 +4038,6 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'Diskuto',
 );

@@ -389,6 +389,7 @@ $messages = array(
 'namespaces' => 'Espazos de nomes',
 'variants' => 'Variantes',
 
+'navigation-heading' => 'Menú de navegación',
 'errorpagetitle' => 'Erro',
 'returnto' => 'Volver a "$1".',
 'tagline' => 'De {{SITENAME}}',

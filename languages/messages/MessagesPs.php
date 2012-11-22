@@ -762,12 +762,15 @@ $1',
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
 'userjspreview' => "'''هېر مو نشي چې دا يوازې ستاسې د کارن د جاوا سکرېپټ آزمېيل/مخليدنه ده.'''
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
+'sitecsspreview' => "'''په پام کې دې وي چې دا يوازې ستاسې د CSS مخليدنه ده.'''
+'''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
 'sitejspreview' => "'''په پام کې مو اوسه چې تاسې يوازې د دغه جاواسکرېپټ کوډ مخليدنه کوۍ.'''
 '''تر اوسه پورې دا نه دی خوندي شوی!'''",
 'updated' => '(تازه)',
 'note' => "'''يادونه:'''",
 'previewnote' => "'''هېر مو نه شي چې دا يواځې يوه مخليدنه ده.'''
 ستاسې لخوا ترسره شوي بدلونونه لا تر اوسه پورې نه دي خوندي شوي!!",
+'continue-editing' => 'د سمولو سيمې ته ورتلل',
 'editing' => 'د $1 سمونه',
 'creating' => '$1 جوړېدنې کې دی',
 'editingsection' => '$1 (برخه) په سمېدنې کې دی',
@@ -1526,7 +1529,7 @@ $1',
 'allpagesto' => 'هغه مخونه کتل چې پای يې وي:',
 'allarticles' => 'ټول مخونه',
 'allinnamespace' => 'ټول مخونه ($1 نوم-تشيال)',
-'allnotinnamespace' => 'ټولې پاڼې (د $1 په نوم-تشيال کې نشته)',
+'allnotinnamespace' => 'ټول مخونه (د $1 نوم-تشيال پرته)',
 'allpagesprev' => 'پخواني',
 'allpagesnext' => 'راتلونکي',
 'allpagessubmit' => 'ورځه',
@@ -1695,7 +1698,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage' => 'پاڼه ړنګول',
+'deletepage' => 'مخ ړنګول',
 'confirm' => 'تاييد',
 'excontent' => 'د مخ مېنځپانګه دا وه: "$1"',
 'excontentauthor' => 'د مخ مېنځپانګه دا وه: "$1" (او يواځينی ونډه وال "[[Special:Contributions/$2|$2]]" وه)',
@@ -1894,7 +1897,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipblocklist-submit' => 'پلټل',
 'ipblocklist-localblock' => 'سيمه ايز بنديز',
 'ipblocklist-otherblocks' => '{{PLURAL:$1|بل بنديز|نور بنديزونه}}',
-'infiniteblock' => 'لامحدوده',
+'infiniteblock' => 'نامحدوده',
 'expiringblock' => 'په $1 نېټه، $2 بجو پای ته رسېږي',
 'anononlyblock' => 'يواځې ورکنومی',
 'createaccountblock' => 'په ګڼون جوړولو بنديز لګېدلی',
@@ -1925,8 +1928,10 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'lockdb' => 'توکبنسټ تړل',
 'unlockdb' => 'توکبنسټ پرانيستل',
 'lockconfirm' => 'هو، زه د توکبنسټ تړل غواړم.',
+'unlockconfirm' => 'هو، زه د توکبنسټ پرانيستل غواړم.',
 'lockbtn' => 'توکبنسټ تړل',
 'unlockbtn' => 'توکبنسټ پرانيستل',
+'databasenotlocked' => 'توکبنسټ نه دی تړل شوی.',
 
 # Move page
 'move-page' => '$1 لېږدول',
@@ -2004,7 +2009,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'allmessages' => 'د غونډال پيغامونه',
 'allmessagesname' => 'نوم',
 'allmessagesdefault' => 'تلواليزه پيغام متن',
-'allmessagescurrent' => 'اوسنی متن',
+'allmessagescurrent' => 'اوسنی پيغام متن',
 'allmessagestext' => 'دا د مېډياويکي په نوم-تشيال کې د غونډال د پيغامونو لړليک دی.
 که چېرته تاسې د ميډياويکي په ځايتابه کې ونډې ترسره کول غواړۍ نو لطفاً [//www.mediawiki.org/wiki/Localisation د ويډياويکي ځايتابه] او [//translatewiki.net translatewiki.net] نه ليدنه وکړۍ.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' ترېنه کار نه اخيستل کېږي ځکه چې '''\$wgUseDatabaseMessages''' مړ دی.",
@@ -2028,9 +2033,11 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'import-interwiki-namespace' => 'د موخې نوم-تشيال:',
 'import-upload-filename' => 'د دوتنې نوم:',
 'import-comment' => 'تبصره:',
+'import-revision-count' => '$1 {{PLURAL:$1|بڼه|بڼې}}',
 
 # Import log
 'importlogpage' => 'د واردولو يادښت',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|بڼه|بڼې}}',
 
 # JavaScriptTest
 'javascripttest' => 'د جاوا سکرېپټ آزمېښت',

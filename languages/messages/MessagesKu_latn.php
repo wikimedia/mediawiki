@@ -2154,4 +2154,6 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'searchsuggest-search' => 'Lêgerîn',
 'searchsuggest-containing' => 'dihundirîne...',
 
+# Unknown messages
+'mytalk-parenthetical' => 'gotûbêj',
 );

@@ -3984,5 +3984,5 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-millennia' => '$1千年',
 
 # Unknown messages
-'mytalk-parenthetical' => '讨论',
+'mytalk-parenthetical' => '留言',
 );

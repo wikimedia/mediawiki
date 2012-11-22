@@ -3299,7 +3299,11 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'revdelete-restricted' => 'administratzaileentzako mugak ezarri dira',
 'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
 'logentry-move-move' => '$1 wikilariak «$3» orria «$4» izenera aldatu du',
+'logentry-move-move-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketarik utzi gabe',
 'logentry-move-move_redir-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketa bat gainidatzita, birzuzenketarik utzi gabe',
+'logentry-newusers-newusers' => '$1 wikilariak erabiltzaile kontu bat sortu du',
+'logentry-newusers-create' => '$1 wikilariak erabiltzaile kontu bat sortu du',
+'logentry-newusers-create2' => '$1 wikilariak $3 erabiltzaile kontu bat sortu du',
 'newuserlog-byemail' => 'pasahitza e-postaz bidali da',
 
 # Feedback

@@ -202,7 +202,7 @@ $messages = array(
 'cancel' => 'বাতিল',
 'moredotdotdot' => 'আরও...',
 'mypage' => 'আমার পাতা',
-'mytalk' => 'আমার আলাপ',
+'mytalk' => 'আলোচনা',
 'anontalk' => 'এই বেনামী ব্যবহারকারীর আলাপের পাতা',
 'navigation' => 'পরিভ্রমণ',
 'and' => '&#32;এবং',
@@ -1123,7 +1123,7 @@ $1",
 
 # Preferences page
 'preferences' => 'আমার পছন্দ',
-'mypreferences' => 'আমার পছন্দ',
+'mypreferences' => 'পছন্দসমূহ',
 'prefs-edits' => 'সম্পাদনা সংখ্যা:',
 'prefsnologin' => 'আপনি লগ-ইন করেননি',
 'prefsnologintext' => 'ব্যবহারকারীর পছন্দ ঠিক করতে হলে আপনাকে অবশ্যই <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} লগইন]</span> করা অবস্থায় থাকতে হবে।',
@@ -1964,7 +1964,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'linksearch-ok' => 'অনুসন্ধান',
 'linksearch-text' => '"*.wikipedia.org" এর মত ওয়াইল্ড কার্ড ব্যবহার করা যেতে পারে।
 নূন্যতম একটি টপ লেভেল ডোমেইন প্রয়োজন, যেমন "*.org".<br />
-যে সকল প্রোটোকল সমর্থন করে: <code>$1</code> (অনুসন্ধান বক্সে এগুলো ব্যবহার করবেন না)।',
+যে সকল প্রোটোকল সমর্থন করে: <code>$1</code> (প্রোটকল উল্লেখ করা না হলে http:// ডিফল্ট হিসাবে ব্যবহৃত হবে)।',
 'linksearch-line' => '$2 থেকে $1 এ লিংক করা হয়েছে',
 'linksearch-error' => 'হোস্ট নামের শুরুতে কেবলমাত্র ওয়াইল্ডকার্ড ব্যবহার করা যায়।',
 
@@ -2045,7 +2045,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 
 # Watchlist
 'watchlist' => 'আমার নজর তালিকা',
-'mywatchlist' => 'আমার নজর তালিকা',
+'mywatchlist' => 'নজর তালিকা',
 'watchlistfor2' => '$1 ($2)-এর জন্য',
 'nowatchlist' => 'আপনার নজরতালিকা খালি।',
 'watchlistanontext' => 'আপনার নজরতালিকার আইটেমগুলি দেখতে বা সম্পাদনা করতে অনুগ্রহ করে $1।',
@@ -2307,7 +2307,7 @@ $1',
 # Contributions
 'contributions' => 'ব্যবহারকারীর অবদান',
 'contributions-title' => '$1 ব্যবহারকারীর অবদানসমূহ',
-'mycontris' => 'আমার অবদান',
+'mycontris' => 'অবদান',
 'contribsub2' => '$1 ($2)-এর জন্য',
 'nocontribs' => 'এই শর্তগুলির সাথে মিলে যায়, এমন কোন পরিবর্তন খুঁজে পাওয়া যায়নি।',
 'uctop' => '(শীর্ষ)',
@@ -2348,7 +2348,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 টি পুননির্দেশনা',
 'whatlinkshere-hidetrans' => '$1 ট্রান্সক্লুশন',
 'whatlinkshere-hidelinks' => '$1 টি সংযোগ',
-'whatlinkshere-hideimages' => '$1 চিত্র সংযোগ',
+'whatlinkshere-hideimages' => '$1 ফাইল সংযোগ',
 'whatlinkshere-filters' => 'ছাকনী',
 
 # Block/unblock

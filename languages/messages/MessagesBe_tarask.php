@@ -423,6 +423,7 @@ $messages = array(
 'namespaces' => 'Прасторы назваў',
 'variants' => 'Варыянты',
 
+'navigation-heading' => 'Навігацыйнае мэню',
 'errorpagetitle' => 'Памылка',
 'returnto' => 'Вярнуцца да старонкі «$1».',
 'tagline' => 'Зьвесткі з {{GRAMMAR:родны|{{SITENAME}}}}',

@@ -475,6 +475,7 @@ $messages = array(
 'namespaces' => 'Cayê namam',
 'variants' => 'Varyanti',
 
+'navigation-heading' => 'Menuya Navigasyoni',
 'errorpagetitle' => 'Xırab',
 'returnto' => 'Peyser şo $1.',
 'tagline' => '{{SITENAME}} ra',
@@ -722,9 +723,12 @@ Xızmetkarê  kılitkerdışi wa bewni ro enay wa çımra ravyarno: "$3".',
 
 Nıka kamiyê xo eşkera mekere u siteyê {{SITENAME}} ra eşkeni devam bıkeri, ya zi <span class='plainlinks'>[$1 newe ra hesabê xo akere]</span> (wazeni pey nameyê xo, wazeni pey yewna name).
 Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de hesabe şıma akerde aseno.",
+'welcomeuser' => 'Xeyr ameyê $1',
 'welcomecreation' => '== Şıma xeyr amey, $1! ==
 
 Hesabê şıma biyo a.
+[[Special:Preferences|{{SITENAME}} vurnayişê tercihanê xo]], xo vir ra mekere.',
+'welcomecreation-agora' => 'Hesabê şıma abiyo.
 [[Special:Preferences|{{SITENAME}} vurnayişê tercihanê xo]], xo vir ra mekere.',
 'yourname' => 'Namey karberi',
 'yourpassword' => 'Parola',
@@ -1341,7 +1345,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searcheverything-enable' => 'cayê nameyê hemi de bigêre',
 'searchrelated' => 'eleqeyın',
 'searchall' => 'pêro',
-'showingresults' => "#$2 netican ra {{PLURAL:$1|'''1''' netica |'''$1''' neticey }} cêr deyê.",
+'showingresults' => "#$2 netican ra {{PLURAL:$1|'''1''' netica|'''$1''' neticey}} cêr deyê.",
 'showingresultsnum' => "'''$2''' netican ra nata  {{PLURAL:$3|'''1''' netice|'''$3''' neticeyê}} cêrde liste biyê.",
 'showingresultsheader' => "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' hetê '''$3'''}} qe '''$4'''",
 'nonefound' => "'''Teme''': Teyna tay namecayan cıgeyro beno.
@@ -1847,6 +1851,7 @@ Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 'backend-fail-notsame' => 'Zey $1 ju dosya xora  esta.',
 'backend-fail-invalidpath' => '$1 rayê da depo kerdışa raştay niya.',
 'backend-fail-delete' => '$1 nê besterneyê',
+'backend-fail-describe' => 'Qande dosya da "$1" metadata nêvurêna.',
 'backend-fail-alreadyexists' => "Dosyay $1'ya nêwanêna",
 'backend-fail-store' => '$1 ra $2 berdışo nê wanêno',
 'backend-fail-copy' => '$1 ra $2 kopya kerdışena dosyayo nêbeno',

@@ -2582,7 +2582,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'whatlinkshere-hideredirs' => 'Yönlendirmeleri $1',
 'whatlinkshere-hidetrans' => 'Dönüştürmeleri $1',
 'whatlinkshere-hidelinks' => 'Bağlantıları $1',
-'whatlinkshere-hideimages' => 'Resim bağlantılarını $1',
+'whatlinkshere-hideimages' => 'Dosya bağlantılarını $1',
 'whatlinkshere-filters' => 'Süzgeçler',
 
 # Block/unblock
@@ -3959,4 +3959,6 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'duration-centuries' => '$1 {{PLURAL:$1|yüzyıl|yüzyıl}}',
 'duration-millennia' => '$1 {{PLURAL:$1|bin yıl|bin yıl}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'mesaj',
 );

@@ -525,6 +525,7 @@ $messages = array(
 'namespaces' => 'Jmenné prostory',
 'variants' => 'Varianty',
 
+'navigation-heading' => 'Navigační menu',
 'errorpagetitle' => 'Chyba',
 'returnto' => 'Návrat na stránku „$1“.',
 'tagline' => 'Z {{grammar:2sg|{{SITENAME}}}}',
