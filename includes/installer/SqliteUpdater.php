@@ -108,6 +108,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_attempts',      'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
+			array( 'addIndex', 'image', 'img_media_type_mime', 'patch-image-img-media-type-index.sql' ),
 		);
 	}
 
