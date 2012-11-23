@@ -64,6 +64,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		 */
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 
+		$needsResetDB = false;
+		$logName = get_class( $this ) . '::' . $this->getName( false );
+
 		if( $this->needsDB() ) {
 			// set up a DB connection for this test to use
 
@@ -75,22 +78,34 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->checkDbIsSupported();
 
 			if( !self::$dbSetup ) {
+				wfProfileIn( $logName . ' (clone-db)' );
+
 				// switch to a temporary clone of the database
 				self::setupTestDB( $this->db, $this->dbPrefix() );
 
 				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
 					$this->resetDB();
 				}
+
+				wfProfileOut( $logName . ' (clone-db)' );
 			}
 
+			wfProfileIn( $logName . ' (prepare-db)' );
 			$this->addCoreDBData();
 			$this->addDBData();
+			wfProfileOut( $logName . ' (prepare-db)' );
 
-			parent::run( $result );
+			$needsResetDB = true;
+		}
 
+		wfProfileIn( $logName );
+		parent::run( $result );
+		wfProfileOut( $logName );
+
+		if( $needsResetDB ) {
+			wfProfileIn( $logName . ' (reset-db)' );
 			$this->resetDB();
-		} else {
-			parent::run( $result );
+			wfProfileOut( $logName . ' (reset-db)' );
 		}
 	}
 
@@ -133,6 +148,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * happen in reverse order.
 	 */
 	protected function setUp() {
+		wfProfileIn( __METHOD__ );
 		parent::setUp();
 
 		/*
@@ -161,9 +177,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				$this->db->rollback();
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	protected function tearDown() {
+		wfProfileIn( __METHOD__ );
+
 		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
 			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
@@ -187,6 +207,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->mwGlobals = array();
 
 		parent::tearDown();
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**

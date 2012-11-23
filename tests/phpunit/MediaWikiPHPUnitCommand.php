@@ -54,7 +54,11 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 	}
 
 	public function run( array $argv, $exit = true ) {
+		wfProfileIn( __METHOD__ );
+
 		$ret = parent::run( $argv, false );
+
+		wfProfileOut( __METHOD__ );
 
 		// Return to real wiki db, so profiling data is preserved
 		MediaWikiTestCase::teardownTestDB();
