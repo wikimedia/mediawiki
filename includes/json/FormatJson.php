@@ -31,21 +31,16 @@ class FormatJson {
 	 * Returns the JSON representation of a value.
 	 *
 	 * @param $value Mixed: the value being encoded. Can be any type except a resource.
-	 * @param $isHtml Boolean
-	 *
-	 * @todo FIXME: "$isHtml" parameter's purpose is not documented. It appears to
-	 *        map to a parameter labeled "pretty-print output with indents and
-	 *        newlines" in Services_JSON::encode(), which has no string relation
-	 *        to HTML output.
+	 * @param $pretty Boolean: If true, adds non-significant whitespace to improve readability.
 	 *
 	 * @return string
 	 */
-	public static function encode( $value, $isHtml = false ) {
-		if ( !function_exists( 'json_encode' ) || ( $isHtml && version_compare( PHP_VERSION, '5.4.0', '<' ) ) ) {
+	public static function encode( $value, $pretty = false ) {
+		if ( !function_exists( 'json_encode' ) || ( $pretty && version_compare( PHP_VERSION, '5.4.0', '<' ) ) ) {
 			$json = new Services_JSON();
-			return $json->encode( $value, $isHtml );
+			return $json->encode( $value, $pretty );
 		} else {
-			return json_encode( $value, $isHtml ? JSON_PRETTY_PRINT : 0 );
+			return json_encode( $value, $pretty ? JSON_PRETTY_PRINT : 0 );
 		}
 	}
 
