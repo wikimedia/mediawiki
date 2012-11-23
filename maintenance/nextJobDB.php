@@ -44,26 +44,34 @@ class nextJobDB extends Maintenance {
 		$memcKey = 'jobqueue:dbs:v3';
 		$pendingDbInfo = $wgMemc->get( $memcKey );
 
-		// If the cache entry wasn't present, or in 1% of cases otherwise,
-		// regenerate the cache. Use any available stale cache if another
-		// process is currently regenerating the pending DB information.
-		if ( !$pendingDbInfo || mt_rand( 0, 100 ) == 0 ) {
-			$lock = $wgMemc->add( 'jobqueue:dbs:v3:lock', 1, 1800 ); // lock
-			if ( $lock ) {
+		// If the cache entry wasn't present, is stale, or in .1% of cases otherwise,
+		// regenerate the cache. Use any available stale cache if another process is
+		// currently regenerating the pending DB information.
+		if ( !is_array( $pendingDbInfo )
+			|| ( time() - $pendingDbInfo['timestamp'] ) > 300 // 5 minutes
+			|| mt_rand( 0, 999 ) == 0
+		) {
+			if ( $wgMemc->add( "$memcKey:rebuild", 1, 1800 ) ) { // lock
 				$pendingDbInfo = array(
 					'pendingDBs' => $this->getPendingDbs(),
 					'timestamp'  => time()
 				);
-				$wgMemc->set( $memcKey, $pendingDbInfo );
-				$wgMemc->delete( 'jobqueue:dbs:v3:lock' ); // unlock
+				for ( $attempts=1; $attempts <= 25; ++$attempts ) {
+					if ( $wgMemc->add( "$memcKey:lock", 1, 60 ) ) { // lock
+						$wgMemc->set( $memcKey, $pendingDbInfo );
+						$wgMemc->delete( "$memcKey:lock" ); // unlock
+						break;
+					}
+				}
+				$wgMemc->delete( "$memcKey:rebuild" ); // unlock
 			}
 		}
 
-		if ( !$pendingDbInfo || !$pendingDbInfo['pendingDBs'] ) {
+		if ( !is_array( $pendingDbInfo ) || !$pendingDbInfo['pendingDBs'] ) {
 			return; // no DBs with jobs or cache is both empty and locked
 		}
-		$pendingDBs = $pendingDbInfo['pendingDBs'];
 
+		$pendingDBs = $pendingDbInfo['pendingDBs']; // convenience
 		do {
 			$again = false;
 
@@ -90,10 +98,16 @@ class nextJobDB extends Maintenance {
 					// There are no jobs of this type available in the current database
 					$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
 				}
-				// Update the cache to remove the outdated information
+				// Update the cache to remove the outdated information.
+				// Make sure that this does not race (especially with full rebuilds).
 				$pendingDbInfo['pendingDBs'] = $pendingDBs;
-				// @TODO: fix race condition with these updates
-				$wgMemc->set( $memcKey, $pendingDbInfo );
+				if ( $wgMemc->add( "$memcKey:lock", 1, 60 ) ) { // lock
+					$curInfo = $wgMemc->get( $memcKey );
+					if ( $curInfo && $curInfo['timestamp'] === $pendingDbInfo['timestamp'] ) {
+						$wgMemc->set( $memcKey, $pendingDbInfo );
+					}
+					$wgMemc->delete( "$memcKey:lock" ); // unlock
+				}
 				$again = true;
 			}
 		} while ( $again );
