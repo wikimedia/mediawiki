@@ -332,7 +332,8 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 		$res = $this->rawSelectRow(
 			array( 'rowcount' => 'COUNT(*)' ),
 			$this->getPrefixedValues( $conditions ),
-			$options
+			$options,
+			__METHOD__
 		);
 
 		return $res->rowcount;
@@ -354,7 +355,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 		$result = $dbw->delete(
 			$this->getName(),
 			$conditions === array() ? '*' : $this->getPrefixedValues( $conditions ),
-			$functionName
+			is_null( $functionName ) ? __METHOD__ : $functionName
 		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 
 		$this->releaseConnection( $dbw );
