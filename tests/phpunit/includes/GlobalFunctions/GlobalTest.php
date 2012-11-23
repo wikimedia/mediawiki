@@ -498,6 +498,8 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @dataProvider provideMerge()
 	 */
 	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
+		$this->checkHasDiff3();
+
 		$mergedText = null;
 		$isMerged = wfMerge( $old, $mine, $yours, $mergedText );
 
