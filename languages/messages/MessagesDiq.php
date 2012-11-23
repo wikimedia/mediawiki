@@ -2578,7 +2578,7 @@ $1',
 # Contributions
 'contributions' => 'İştiraqê karberi',
 'contributions-title' => 'Dekerdenê karber de $1',
-'mycontris' => 'Cıkerdışi',
+'mycontris' => 'İştıraqi',
 'contribsub2' => 'Qandê $1 ($2)',
 'nocontribs' => 'Ena kriteriya de vurnayîş çini yo.',
 'uctop' => '(top)',

@@ -495,9 +495,12 @@ Ratio data est "\'\'$2\'\'".',
 
 Ignote continues {{grammar:ablative|{{SITENAME}}}} uti, aut conventum novum vel sub eodem vel novo nomine <span class='plainlinks'>[$1 aperias]</span>.
 Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusquam navigatrum purgaveris.",
+'welcomeuser' => 'Salve, $1!',
 'welcomecreation' => '== Salve, $1! ==
-Ratio tua iam creata est.
-Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusative|{{SITENAME}}}} mutare.',
+Ratio tua creata est.
+Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusative|{{SITENAME}}}} mutare.',
+'welcomecreation-agora' => 'Ratio tua creata est.
+Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusative|{{SITENAME}}}} mutare.',
 'yourname' => 'Nomen usoris:',
 'yourpassword' => 'Tessera:',
 'yourpasswordagain' => 'Tesseram adfirmare:',

@@ -701,9 +701,12 @@ Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 
 Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo <span class='plainlinks'>[$1 zalogować się ponownie]</span> jako ten sam lub inny użytkownik.
 Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
+'welcomeuser' => 'Witaj, $1!',
 'welcomecreation' => '== Witaj, $1! ==
 Twoje konto zostało utworzone.
 Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
+'welcomecreation-agora' => 'Twoje konto zostało utworzone.
+Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'yourname' => 'Nazwa {{GENDER:|użytkownika|użytkowniczki}}',
 'yourpassword' => 'Hasło',
 'yourpasswordagain' => 'Powtórz hasło',
@@ -1846,6 +1849,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-notsame' => 'Plik o podobnej nazwie już istnieje w $1.',
 'backend-fail-invalidpath' => '$1nie jest poprawną ścieżką zapisu.',
 'backend-fail-delete' => 'Nie można usunąć pliku $1.',
+'backend-fail-describe' => 'Nie udało się zmienić metadanych pliku "$1".',
 'backend-fail-alreadyexists' => 'Plik „$1” już istnieje',
 'backend-fail-store' => 'Nie może zapisać pliku  $1  w  $2 .',
 'backend-fail-copy' => 'Nie może skopiować pliku $1 do $2.',
@@ -2572,7 +2576,7 @@ $1',
 # Contributions
 'contributions' => 'Wkład użytkownika',
 'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
-'mycontris' => 'Moje edycje',
+'mycontris' => 'Edycje',
 'contribsub2' => 'Dla użytkownika $1 ($2)',
 'nocontribs' => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop' => ' (jako ostatnia)',
@@ -4111,4 +4115,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'dyskusja',
 );

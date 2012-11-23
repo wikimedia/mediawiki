@@ -517,6 +517,7 @@ $messages = array(
 'namespaces' => 'מרחבי שם',
 'variants' => 'גרסאות שפה',
 
+'navigation-heading' => 'תפריט הניווט',
 'errorpagetitle' => 'שגיאה',
 'returnto' => 'חזרה לדף $1.',
 'tagline' => 'מתוך {{SITENAME}}',

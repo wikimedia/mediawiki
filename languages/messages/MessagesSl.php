@@ -351,6 +351,7 @@ $messages = array(
 'namespaces' => 'Imenski prostori',
 'variants' => 'Različice',
 
+'navigation-heading' => 'Navigacijski meni',
 'errorpagetitle' => 'Napaka',
 'returnto' => 'Vrnite se na $1.',
 'tagline' => 'Iz {{GRAMMAR:rodilnik|{{SITENAME}}}}',
@@ -597,8 +598,11 @@ Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 
 {{GRAMMAR:tožilnik|{{SITENAME}}}} lahko zdaj uporabljate neprijavljeni ali pa se <span class='plainlinks'>[$1 ponovno prijavite]</span> kot enak ali drug uporabnik.
 Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni, dokler ne boste izpraznili predpomnilnika brskalnika.",
+'welcomeuser' => '$1, dobrodošli!',
 'welcomecreation' => '== Dobrodošli, $1! ==
 Ustvarili ste račun.
+Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
+'welcomecreation-agora' => 'Ustvarili ste račun.
 Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
 'yourname' => 'Uporabniško ime:',
 'yourpassword' => 'Geslo:',
@@ -1757,6 +1761,7 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-notsame' => 'Različna datoteka že obstaja na $1.',
 'backend-fail-invalidpath' => '$1 ni veljavna skladiščna pot.',
 'backend-fail-delete' => 'Ne morem izbrisati datoteke $1.',
+'backend-fail-describe' => 'Nisem mogel spremeniti metapodatkov datoteke »$1«.',
 'backend-fail-alreadyexists' => 'Datoteka $1 že obstaja.',
 'backend-fail-store' => 'Ne morem shraniti datoteke $1 na $2.',
 'backend-fail-copy' => 'Ne morem kopirati datoteke $1 na $2.',

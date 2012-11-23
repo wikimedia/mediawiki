@@ -9,6 +9,7 @@
  *
  * @author 334a
  * @author A2raya07
+ * @author Amire80
  * @author Basharh
  * @author Man2fly2002
  * @author Michaelovic
@@ -230,7 +231,7 @@ $messages = array(
 'article' => 'ܡܓܠܬܐ',
 'newwindow' => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
 'cancel' => 'ܒܛܘܠ',
-'moredotdotdot' => '...ܝܬܝܪ',
+'moredotdotdot' => 'ܝܬܝܪ...',
 'mypage' => 'ܦܐܬܝ',
 'mytalk' => 'ܡܡܠܠܝ',
 'anontalk' => 'ܡܡܠܠܐ ܕܗܢܐ ܐܝ ܦܝ (IP)',

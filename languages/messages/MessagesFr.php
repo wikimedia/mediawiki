@@ -2784,75 +2784,75 @@ Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissement
 'block-log-flags-noemail' => 'envoi de courriel interdit',
 'block-log-flags-nousertalk' => 'ne peut modifier sa propre page de discussion',
 'block-log-flags-angry-autoblock' => 'autoblocage amélioré activé',
-'block-log-flags-hiddenname' => 'nom d’utilisateur caché',
+'block-log-flags-hiddenname' => "nom d'utilisateur caché",
 'range_block_disabled' => 'Le droit administrateur de créer des blocages de plages IP est désactivé.',
-'ipb_expiry_invalid' => 'Durée d’expiration incorrecte.',
-'ipb_expiry_temp' => 'Les blocages de noms d’utilisateurs cachés doivent être permanents.',
+'ipb_expiry_invalid' => "Durée d'expiration incorrecte.",
+'ipb_expiry_temp' => "Les blocages de noms d'utilisateurs cachés doivent être permanents.",
 'ipb_hide_invalid' => 'Impossible de supprimer ce compte ; il semble avoir trop de modifications.',
 'ipb_already_blocked' => '« $1 » est déjà bloqué',
 'ipb-needreblock' => '$1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
 'unblock-hideuser' => "Vous ne pouvez pas débloquer cet utilisateur, car son nom d'utilisateur a été masqué.",
-'ipb_cant_unblock' => 'Erreur : identifiant de blocage $1 non trouvé.
-Il est possible qu’un déblocage ait déjà été effectué.',
-'ipb_blocked_as_range' => 'Erreur : l’adresse IP $1 n’est pas bloquée directement et ne peut donc pas être débloquée.
-Elle fait cependant partie de la plage $2 qui, elle, peut être débloquée.',
+'ipb_cant_unblock' => "Erreur : identifiant de blocage $1 non trouvé.
+Il est possible qu'un déblocage ait déjà été effectué.",
+'ipb_blocked_as_range' => "Erreur : l'adresse IP $1 n'est pas bloquée directement et ne peut donc pas être débloquée.
+Elle fait cependant partie de la plage $2 qui, elle, peut être débloquée.",
 'ip_range_invalid' => 'Plage IP incorrecte.',
 'ip_range_toolarge' => 'Les blocages de plages plus grandes que /$1 ne sont pas autorisées.',
 'blockme' => 'Bloquez-moi',
 'proxyblocker' => 'Bloqueur de mandataires',
 'proxyblocker-disabled' => 'Cette fonction est désactivée.',
-'proxyblockreason' => 'Votre adresse IP a été bloquée car il s’agit d’un mandataire ouvert.
-Veuillez contacter votre fournisseur d’accès Internet ou votre support technique et l’informer de ce sérieux problème de sécurité.',
+'proxyblockreason' => "Votre adresse IP a été bloquée car il s'agit d'un mandataire ouvert.
+Veuillez contacter votre fournisseur d'accès Internet ou votre support technique et l'informer de ce sérieux problème de sécurité.",
 'proxyblocksuccess' => 'Fait.',
 'sorbsreason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
-'cant-block-while-blocked' => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
-'cant-see-hidden-user' => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
-'ipbblocked' => 'Vous ne pouvez pas bloquer ou débloquer d’autres utilisateurs, parce que vous êtes vous-même bloqué',
-'ipbnounblockself' => 'Vous n’êtes pas autorisé à vous débloquer vous-même',
+'cant-block-while-blocked' => "Vous ne pouvez pas bloquer d'autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.",
+'cant-see-hidden-user' => "L'utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
+'ipbblocked' => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",
+'ipbnounblockself' => "Vous n'êtes pas autorisé à vous débloquer vous-même",
 
 # Developer tools
 'lockdb' => 'Verrouiller la base de données',
 'unlockdb' => 'Déverrouiller la base de données',
-'lockdbtext' => 'Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, d’enregistrer leurs préférences, de modifier leur liste de suivi et d’effectuer toutes les autres opérations nécessitant des changements dans la base de données.
-Veuillez confirmer que c’est bien là ce que vous voulez faire et que vous déverrouillerez la base dès que votre opération de maintenance sera terminée.',
-'unlockdbtext' => 'Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de changer leurs préférences, de modifier leur liste de suivi et d’effectuer les autres opérations nécessitant des changements dans la base de données.
-Veuillez confirmer que c’est bien là ce que vous voulez faire.',
+'lockdbtext' => "Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, d'enregistrer leurs préférences, de modifier leur liste de suivi et d'effectuer toutes les autres opérations nécessitant des changements dans la base de données.
+Veuillez confirmer que c'est bien là ce que vous voulez faire et que vous déverrouillerez la base dès que votre opération de maintenance sera terminée.",
+'unlockdbtext' => "Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de changer leurs préférences, de modifier leur liste de suivi et d'effectuer les autres opérations nécessitant des changements dans la base de données.
+Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 'lockconfirm' => 'Oui, je confirme que je souhaite verrouiller la base de données.',
 'unlockconfirm' => 'Oui, je confirme que je souhaite déverrouiller la base de données.',
 'lockbtn' => 'Verrouiller la base de données',
 'unlockbtn' => 'Déverrouiller la base de données',
-'locknoconfirm' => 'Vous n’avez pas coché la case de confirmation.',
+'locknoconfirm' => "Vous n'avez pas coché la case de confirmation.",
 'lockdbsuccesssub' => 'Verrouillage de la base de données réussi',
 'unlockdbsuccesssub' => 'Verrouillage de la base de données supprimé',
-'lockdbsuccesstext' => 'La base de données a été verrouillée.<br />
-N’oubliez pas de la [[Special:UnlockDB|déverrouiller]] lorsque vous aurez terminé votre opération de maintenance.',
+'lockdbsuccesstext' => "La base de données a été verrouillée.<br />
+N'oubliez pas de la [[Special:UnlockDB|déverrouiller]] lorsque vous aurez terminé votre opération de maintenance.",
 'unlockdbsuccesstext' => 'La base de données a été déverrouillée.',
-'lockfilenotwritable' => 'Le fichier de verrouillage de la base de données n’est pas inscriptible.
-Pour bloquer ou débloquer la base de données, il doit être accessible par le serveur web.',
-'databasenotlocked' => 'La base de données n’est pas verrouillée.',
+'lockfilenotwritable' => "Le fichier de verrouillage de la base de données n'est pas inscriptible.
+Pour bloquer ou débloquer la base de données, il doit être accessible par le serveur web.",
+'databasenotlocked' => "La base de données n'est pas verrouillée.",
 'lockedbyandtime' => '(par $1 le $2 à $3)',
 
 # Move page
 'move-page' => 'Renommer $1',
 'move-page-legend' => 'Renommer une page',
-'movepagetext' => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L’ancien titre deviendra une page de redirection vers le nouveau titre. Vous pouvez mettre à jour automatiquement les redirections actuelles qui pointent vers le titre original. Si vous choisissez de ne pas le faire, assurez-vous de vérifier toute [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]]. Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
+'movepagetext' => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L'ancien titre deviendra une page de redirection vers le nouveau titre. Vous pouvez mettre à jour automatiquement les redirections actuelles qui pointent vers le titre original. Si vous choisissez de ne pas le faire, assurez-vous de vérifier toute [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]]. Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
 
-Notez que la page ne sera '''pas''' renommée s’il existe déjà une page avec le nouveau titre, sauf si cette dernière a un historique de modifications vierge et est soit vide, soit une simple redirection. Ceci permet de renommer une page vers sa position d’origine si le déplacement s’avère erroné.
+Notez que la page ne sera '''pas''' renommée s'il existe déjà une page avec le nouveau titre, sauf si cette dernière a un historique de modifications vierge et est soit vide, soit une simple redirection. Ceci permet de renommer une page vers sa position d'origine si le déplacement s'avère erroné.
 
 '''Attention !'''
-Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée ; assurez-vous d’en avoir compris les conséquences avant de continuer.",
+Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée ; assurez-vous d'en avoir compris les conséquences avant de continuer.",
 'movepagetext-noredirectfixer' => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
-L’ancien titre deviendra une page de redirection vers le nouveau titre.
+L'ancien titre deviendra une page de redirection vers le nouveau titre.
 Vérifiez bien les [[Special:DoubleRedirects|doubles redirections]] ou les [[Special:BrokenRedirects|redirections cassées]].
 Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
 
-Notez que la page ne sera '''pas''' déplacée s’il existe déjà une page avec le nouveau titre, sauf si cette dernière a un historique de modifications vierge et est soit vide, soit une simple redirection. Ceci permet de renommer une page vers sa position d’origine si le déplacement s’avère erroné, et il est impossible d’écraser une page existante.
+Notez que la page ne sera '''pas''' déplacée s'il existe déjà une page avec le nouveau titre, sauf si cette dernière a un historique de modifications vierge et est soit vide, soit une simple redirection. Ceci permet de renommer une page vers sa position d'origine si le déplacement s'avère erroné, et il est impossible d'écraser une page existante.
 
 '''Attention !'''
-Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée ; assurez-vous d’en avoir compris les conséquences avant de continuer.",
+Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée ; assurez-vous d'en avoir compris les conséquences avant de continuer.",
 'movepagetalktext' => "La page de discussion associée, si présente, sera automatiquement renommée '''sauf si :'''
 * vous déplacez la page vers un autre espace de noms, ou
 * une page de discussion non vide existe déjà sous le nouveau nom, ou
@@ -2860,37 +2860,37 @@ Ceci peut provoquer un changement radical et imprévu pour une page souvent cons
 
 Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion manuellement si vous le désirez.",
 'movearticle' => 'Renommer la page :',
-'moveuserpage-warning' => "'''Attention :''' Vous êtes sur le point de renommer une page d’utilisateur. Veuillez noter que seul la page sera renommée et que l’utilisateur '''ne''' sera '''pas''' renommé.",
-'movenologin' => 'Vous n’êtes pas identifié{{GENDER:||e|(e)}}.',
-'movenologintext' => 'Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|identifié{{GENDER:||e|(e)}}]] avec un compte utilisateur enregistré et d’ancienneté suffisante.',
-'movenotallowed' => 'Vous n’avez pas la permission de renommer les pages.',
-'movenotallowedfile' => 'Vous n’avez pas la permission de renommer les fichiers.',
-'cant-move-user-page' => 'Vous n’avez pas la permission de renommer les pages principales d’utilisateurs (en dehors de leurs sous-pages).',
-'cant-move-to-user-page' => 'Vous n’avez pas la permission de renommer une page vers une page utilisateur (à l’exception d’une sous-page).',
+'moveuserpage-warning' => "'''Attention :''' Vous êtes sur le point de renommer une page d'utilisateur. Veuillez noter que seul la page sera renommée et que l'utilisateur '''ne''' sera '''pas''' renommé.",
+'movenologin' => "Vous n'êtes pas identifié{{GENDER:||e|(e)}}.",
+'movenologintext' => "Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|identifié{{GENDER:||e|(e)}}]] avec un compte utilisateur enregistré et d'ancienneté suffisante.",
+'movenotallowed' => "Vous n'avez pas la permission de renommer les pages.",
+'movenotallowedfile' => "Vous n'avez pas la permission de renommer les fichiers.",
+'cant-move-user-page' => "Vous n'avez pas la permission de renommer les pages principales d'utilisateurs (en dehors de leurs sous-pages).",
+'cant-move-to-user-page' => "Vous n'avez pas la permission de renommer une page vers une page utilisateur (à l'exception d'une sous-page).",
 'newtitle' => 'Vers le nouveau titre :',
 'move-watch' => 'Suivre les pages originale et nouvelle',
 'movepagebtn' => 'Renommer la page',
 'pagemovedsub' => 'Renommage réussi',
 'movepage-moved' => "'''« $1 »''' a été renommé '''« $2 »'''",
-'movepage-moved-redirect' => 'Une redirection depuis l’ancien nom a été créée.',
-'movepage-moved-noredirect' => 'La création d’une redirection depuis l’ancien nom a été annulée.',
-'articleexists' => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas correct.
-Veuillez en choisir un autre.',
+'movepage-moved-redirect' => "Une redirection depuis l'ancien nom a été créée.",
+'movepage-moved-noredirect' => "La création d'une redirection depuis l'ancien nom a été annulée.",
+'articleexists' => "Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n'est pas correct.
+Veuillez en choisir un autre.",
 'cantmove-titleprotected' => 'Vous ne pouvez pas déplacer une page vers cet emplacement car la création de page avec ce nouveau titre a été protégée.',
-'talkexists' => "'''La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.'''",
+'talkexists' => "'''La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.'''",
 'movedto' => 'renommé en',
 'movetalk' => 'Renommer aussi la page de discussion associée',
-'move-subpages' => 'Renommer les sous-pages (jusqu’à $1 {{PLURAL:$1|page|pages}})',
-'move-talk-subpages' => 'Renommer les sous-pages de la page de discussion (jusqu’à $1 pages)',
+'move-subpages' => "Renommer les sous-pages (jusqu'à $1 {{PLURAL:$1|page|pages}})",
+'move-talk-subpages' => "Renommer les sous-pages de la page de discussion (jusqu'à $1 pages)",
 'movepage-page-exists' => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement.',
 'movepage-page-moved' => 'La page $1 a été renommée en $2.',
-'movepage-page-unmoved' => 'La page $1 n’a pas pu être renommée en $2.',
+'movepage-page-unmoved' => "La page $1 n'a pas pu être renommée en $2.",
 'movepage-max-pages' => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne sera renommée automatiquement.',
 'movelogpage' => 'Journal des renommages',
 'movelogpagetext' => 'Voici la liste de toutes les pages renommées ou déplacées.',
 'movesubpage' => 'Sous-page{{PLURAL:$1||s}}',
 'movesubpagetext' => 'Cette page a $1 {{PLURAL:$1|sous-page affichée|sous-pages affichées}} ci-dessous.',
-'movenosubpage' => 'Cette page n’a aucune sous-page.',
+'movenosubpage' => "Cette page n'a aucune sous-page.",
 'movereason' => 'Motif :',
 'revertmove' => 'rétablir',
 'delete_and_move' => 'Supprimer et renommer',
@@ -2899,21 +2899,21 @@ La page de destination « [[:$1]] » existe déjà.
 Êtes-vous certain{{GENDER:||e|}} de vouloir la supprimer pour permettre ce renommage ?',
 'delete_and_move_confirm' => 'Oui, supprimer la page de destination',
 'delete_and_move_reason' => 'Page supprimée pour permettre le renommage depuis "[[$1]]"',
-'selfmove' => 'Les titres d’origine et de destination sont les mêmes ;
-impossible de renommer une page sur elle-même.',
-'immobile-source-namespace' => 'Vous ne pouvez pas renommer les pages dans l’espace de noms « $1 »',
-'immobile-target-namespace' => 'Vous ne pouvez pas renommer des pages vers l’espace de noms « $1 »',
+'selfmove' => "Les titres d'origine et de destination sont les mêmes ;
+impossible de renommer une page sur elle-même.",
+'immobile-source-namespace' => "Vous ne pouvez pas renommer les pages dans l'espace de noms « $1 »",
+'immobile-target-namespace' => "Vous ne pouvez pas renommer des pages vers l'espace de noms « $1 »",
 'immobile-target-namespace-iw' => 'Les destinations interwikis ne sont pas une cible valide pour les déplacements.',
-'immobile-source-page' => 'Cette page n’est pas renommable.',
-'immobile-target-page' => 'Il n’est pas possible de renommer la page vers ce titre.',
+'immobile-source-page' => "Cette page n'est pas renommable.",
+'immobile-target-page' => "Il n'est pas possible de renommer la page vers ce titre.",
 'bad-target-model' => 'La destination souhaitée utilise un autre modèle de contenu. Impossible de convertir de $1 vers $2.',
 'imagenocrossnamespace' => 'Impossible de renommer un fichier vers un espace de noms autre que fichier.',
-'nonfile-cannot-move-to-file' => "Impossible de renommer quelque chose d’autre qu'un fichier vers l’espace de noms fichier.",
+'nonfile-cannot-move-to-file' => "Impossible de renommer quelque chose d'autre qu'un fichier vers l'espace de noms fichier.",
 'imagetypemismatch' => 'La nouvelle extension de ce fichier ne correspond pas à son type.',
 'imageinvalidfilename' => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects' => 'Mettre à jour les redirections pointant vers le titre original',
 'move-leave-redirect' => 'Laisser une redirection vers le nouveau titre',
-'protectedpagemovewarning' => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d’administrateur puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
+'protectedpagemovewarning' => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagemovewarning' => "'''Note :''' Cette page a été protégée afin que seuls les utilisateurs enregistrés puissent la renommer. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'move-over-sharedrepo' => '== Le fichier existe ==
 [[:$1]] existe déjà sur un dépôt partagé. Renommer ce fichier rendra le fichier sur le dépôt partage inaccessible.',
@@ -2922,21 +2922,21 @@ Choisissez un autre nom.',
 
 # Export
 'export' => 'Exporter des pages',
-'exporttext' => 'Vous pouvez exporter en XML le texte et l’historique d’une page ou d’un ensemble de pages ;
-le résultat peut alors être importé dans un autre wiki utilisant le logiciel MediaWiki via la [[Special:Import|page d’importation]].
+'exporttext' => "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages ;
+le résultat peut alors être importé dans un autre wiki utilisant le logiciel MediaWiki via la [[Special:Import|page d'importation]].
 
-Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, à raison d’un titre par ligne. Sélectionnez si vous désirez ou non la version actuelle avec toutes les anciennes versions, avec les lignes de l’historique de la page, ou simplement la page actuelle avec des informations sur la dernière modification.
+Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, à raison d'un titre par ligne. Sélectionnez si vous désirez ou non la version actuelle avec toutes les anciennes versions, avec les lignes de l'historique de la page, ou simplement la page actuelle avec des informations sur la dernière modification.
 
-Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pour la page [[{{MediaWiki:Mainpage}}]].',
+Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pour la page [[{{MediaWiki:Mainpage}}]].",
 'exportall' => 'Exporter toutes les pages',
-'exportcuronly' => 'Exporter uniquement la version courante, sans l’historique complet',
+'exportcuronly' => "Exporter uniquement la version courante, sans l'historique complet",
 'exportnohistory' => "----
-'''Note :''' l’exportation de l’historique complet des pages à l’aide de ce formulaire a été désactivée pour des raisons de performance.",
+'''Note :''' l'exportation de l'historique complet des pages à l'aide de ce formulaire a été désactivée pour des raisons de performance.",
 'exportlistauthors' => 'Inclure une liste complète des contributeurs pour chaque page',
 'export-submit' => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat' => 'Ajouter',
-'export-addnstext' => 'Ajouter des pages dans l’espace de noms :',
+'export-addnstext' => "Ajouter des pages dans l'espace de noms :",
 'export-addns' => 'Ajouter',
 'export-download' => 'Enregistrer dans un fichier',
 'export-templates' => 'Inclure les modèles',
@@ -2947,9 +2947,9 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'allmessagesname' => 'Nom du message',
 'allmessagesdefault' => 'Message par défaut',
 'allmessagescurrent' => 'Message actuel',
-'allmessagestext' => 'Ceci est la liste des messages disponibles dans l’espace MediaWiki.
-Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.',
-'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n’est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
+'allmessagestext' => "Ceci est la liste des messages disponibles dans l'espace MediaWiki.
+Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
+'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n'est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
 'allmessages-filter-legend' => 'Filtrer',
 'allmessages-filter' => 'Filtrer par état de modification :',
 'allmessages-filter-unmodified' => 'Non modifié',
@@ -2969,67 +2969,67 @@ Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de Media
 'thumbnail-dest-create' => "Impossible d'enregistrer la vignette sur la destination",
 'thumbnail_invalid_params' => 'Paramètres de la miniature incorrects',
 'thumbnail_dest_directory' => 'Impossible de créer le répertoire de destination',
-'thumbnail_image-type' => 'Type d’image non supporté',
+'thumbnail_image-type' => "Type d'image non supporté",
 'thumbnail_gd-library' => 'Configuration incomplète de la bibliothèque GD : fonction $1 introuvable',
 'thumbnail_image-missing' => 'Le fichier suivant est introuvable : $1',
 
 # Special:Import
 'import' => 'Importer des pages',
 'importinterwiki' => 'Importation inter-wiki',
-'import-interwiki-text' => 'Sélectionnez un wiki et un titre de page à importer.
+'import-interwiki-text' => "Sélectionnez un wiki et un titre de page à importer.
 Les dates des versions et les noms des contributeurs seront préservés.
-Toutes les actions d’importation inter-wiki sont consignées dans l’[[Special:Log/import|historique des importations]].',
+Toutes les actions d'importation inter-wiki sont consignées dans l'[[Special:Log/import|historique des importations]].",
 'import-interwiki-source' => 'Wiki et page sources :',
-'import-interwiki-history' => 'Copier toutes les versions de l’historique de cette page',
+'import-interwiki-history' => "Copier toutes les versions de l'historique de cette page",
 'import-interwiki-templates' => 'Inclure tous les modèles',
 'import-interwiki-submit' => 'Importer',
 'import-interwiki-namespace' => 'Espace de noms de destination :',
 'import-interwiki-rootpage' => 'Page racine de destination (optionnelle):',
 'import-upload-filename' => 'Nom du fichier :',
 'import-comment' => 'Commentaire :',
-'importtext' => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant son [[Special:Export|outil d’exportation]].
-Sauvegardez-le sur votre disque dur puis importez-le ici.',
+'importtext' => "Veuillez exporter le fichier depuis le wiki d'origine en utilisant son [[Special:Export|outil d'exportation]].
+Sauvegardez-le sur votre disque dur puis importez-le ici.",
 'importstart' => 'Importation des pages…',
 'import-revision-count' => '$1 version{{PLURAL:$1||s}}',
 'importnopages' => 'Aucune page à importer.',
 'imported-log-entries' => '$1 {{PLURAL:$1|entrée|entrées}} du journal {{PLURAL:$1|importée|importées}}.',
-'importfailed' => 'Échec de l’importation : <nowiki>$1</nowiki>',
+'importfailed' => "Échec de l'importation : <nowiki>$1</nowiki>",
 'importunknownsource' => 'Type inconnu de la source à importer',
-'importcantopen' => 'Impossible d’ouvrir le fichier à importer',
+'importcantopen' => "Impossible d'ouvrir le fichier à importer",
 'importbadinterwiki' => 'Mauvais lien inter-wiki',
 'importnotext' => 'Vide ou sans texte',
-'importsuccess' => 'L’importation a réussi !',
-'importhistoryconflict' => 'Un conflit a été détecté dans l’historique des versions (cette page a pu être importée auparavant).',
-'importnosources' => "Aucune source d’importation inter-wiki n’a été définie et l'import direct d’historiques est désactivé.",
-'importnofile' => 'Aucun fichier d’importation n’a été envoyé.',
+'importsuccess' => "L'importation a réussi !",
+'importhistoryconflict' => "Un conflit a été détecté dans l'historique des versions (cette page a pu être importée auparavant).",
+'importnosources' => "Aucune source d'importation inter-wiki n'a été définie et l'import direct d'historiques est désactivé.",
+'importnofile' => "Aucun fichier d'importation n'a été envoyé.",
 'importuploaderrorsize' => "L'import du fichier a échoué.
 Sa taille est supérieure au maximum autorisé pour l'import de fichier.",
 'importuploaderrorpartial' => "L'import du fichier échoué.
-Son contenu n’a été transféré que partiellement.",
+Son contenu n'a été transféré que partiellement.",
 'importuploaderrortemp' => "L'import du fichier a échoué.
 Un dossier temporaire est manquant.",
-'import-parse-failure' => 'Échec lors de l’analyse du XML à importer',
+'import-parse-failure' => "Échec lors de l'analyse du XML à importer",
 'import-noarticle' => 'Aucune page à importer !',
 'import-nonewrevisions' => 'Toutes les versions ont été importées auparavant.',
 'xml-error-string' => '$1 à la ligne $2, colonne $3 (octet $4) : $5',
 'import-upload' => 'Import de données XML',
 'import-token-mismatch' => 'Perte des données de session. Veuillez réessayez.',
-'import-invalid-interwiki' => 'Impossible d’importer depuis le wiki spécifié.',
-'import-error-edit' => 'La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisés à la modifier.',
-'import-error-create' => 'La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisés à la créer.',
+'import-invalid-interwiki' => "Impossible d'importer depuis le wiki spécifié.",
+'import-error-edit' => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la modifier.",
+'import-error-create' => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la créer.",
 'import-error-interwiki' => "La page « $1 » n'est pas importée parce que son nom est réservé pour un lien externe (interwiki).",
-'import-error-special' => 'La page " $1 " n\'est pas importée parce qu\'elle appartient à un espace de noms special qui n’en autorise aucune.',
-'import-error-invalid' => 'Page « $1 » n’est pas importée parce que son nom n’est pas valide.',
+'import-error-special' => 'La page " $1 " n\'est pas importée parce qu\'elle appartient à un espace de noms special qui n\'en autorise aucune.',
+'import-error-invalid' => "Page « $1 » n'est pas importée parce que son nom n'est pas valide.",
 'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La page racine fournie est un titre non valide.',
 'import-rootpage-nosubpage' => 'L\'espace de noms "$1" de la page racine n\'autorise pas les sous-pages.',
 
 # Import log
 'importlogpage' => 'Journal des importations',
-'importlogpagetext' => 'Importations administratives de pages d’autres wikis, avec leur historique de modification.',
+'importlogpagetext' => "Importations administratives de pages d'autres wikis, avec leur historique de modification.",
 'import-logentry-upload' => 'a importé [[$1]] par envoi de fichier',
 'import-logentry-upload-detail' => '$1 version{{PLURAL:$1||s}}',
-'import-logentry-interwiki' => 'a importé $1 d’un wiki à l’autre',
+'import-logentry-interwiki' => "a importé $1 d'un wiki à l'autre",
 'import-logentry-interwiki-detail' => '$1 version{{PLURAL:$1||s}} depuis $2',
 
 # JavaScriptTest
@@ -3044,18 +3044,18 @@ Un dossier temporaire est manquant.",
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Votre page utilisateur',
-'tooltip-pt-anonuserpage' => 'La page utilisateur de l’IP avec laquelle vous contribuez',
+'tooltip-pt-anonuserpage' => "La page utilisateur de l'IP avec laquelle vous contribuez",
 'tooltip-pt-mytalk' => 'Votre page de discussion',
 'tooltip-pt-anontalk' => 'La page de discussion pour les contributions depuis cette adresse IP',
 'tooltip-pt-preferences' => 'Vos préférences',
 'tooltip-pt-watchlist' => 'La liste des pages dont vous suivez les modifications',
 'tooltip-pt-mycontris' => 'La liste de vos contributions',
-'tooltip-pt-login' => 'Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier ; ce n’est cependant pas obligatoire.',
-'tooltip-pt-anonlogin' => 'Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier ; ce n’est cependant pas obligatoire.',
+'tooltip-pt-login' => "Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier ; ce n'est cependant pas obligatoire.",
+'tooltip-pt-anonlogin' => "Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier ; ce n'est cependant pas obligatoire.",
 'tooltip-pt-logout' => 'Se déconnecter',
 'tooltip-ca-talk' => 'Discussion au sujet de cette page de contenu',
-'tooltip-ca-edit' => 'Vous pouvez modifier cette page.
-Veuillez utiliser le bouton de prévisualisation avant d’enregistrer.',
+'tooltip-ca-edit' => "Vous pouvez modifier cette page.
+Veuillez utiliser le bouton de prévisualisation avant d'enregistrer.",
 'tooltip-ca-addsection' => 'Commencer une nouvelle section',
 'tooltip-ca-viewsource' => 'Cette page est protégée.
 Vous pouvez toutefois en visualiser la source.',
@@ -3071,10 +3071,10 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-search-go' => 'Aller vers une page portant exactement ce nom si elle existe.',
 'tooltip-search-fulltext' => 'Rechercher les pages comportant ce texte.',
 'tooltip-p-logo' => 'Page principale',
-'tooltip-n-mainpage' => 'Visiter la page d’accueil du site',
-'tooltip-n-mainpage-description' => 'Aller à l’accueil',
+'tooltip-n-mainpage' => "Visiter la page d'accueil du site",
+'tooltip-n-mainpage-description' => "Aller à l'accueil",
 'tooltip-n-portal' => 'À propos du projet',
-'tooltip-n-currentevents' => 'Trouver les informations de fond sur l’actualité du moment',
+'tooltip-n-currentevents' => "Trouver les informations de fond sur l'actualité du moment",
 'tooltip-n-recentchanges' => 'Liste des modifications récentes sur le wiki',
 'tooltip-n-randompage' => 'Afficher une page au hasard',
 'tooltip-n-help' => 'Aide',
@@ -3096,7 +3096,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-ca-nstab-image' => 'Voir la page du fichier',
 'tooltip-ca-nstab-mediawiki' => 'Voir le message système',
 'tooltip-ca-nstab-template' => 'Voir le modèle',
-'tooltip-ca-nstab-help' => 'Voir la page d’aide',
+'tooltip-ca-nstab-help' => "Voir la page d'aide",
 'tooltip-ca-nstab-category' => 'Voir la page de la catégorie',
 'tooltip-minoredit' => 'Marquer mes modifications comme mineures',
 'tooltip-save' => 'Publier vos modifications',
@@ -3109,8 +3109,8 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-recreate' => 'Recréer la page même si celle-ci a été effacée',
 'tooltip-upload' => "Démarrer l'import",
 'tooltip-rollback' => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
-'tooltip-undo' => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
-Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
+'tooltip-undo' => "« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
+Permet de rétablir la version précédente et d'ajouter un motif dans la boîte de résumé.",
 'tooltip-preferences-save' => 'Sauvegarder les préférences',
 'tooltip-summary' => 'Entrez un bref résumé',
 
@@ -3155,20 +3155,20 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 # Attribution
 'anonymous' => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} sur {{SITENAME}}',
 'siteuser' => "{{GENDER:$2|l'utilisateur|l'utilisatrice|l'utilisateur}} $1 de {{SITENAME}}",
-'anonuser' => 'l’utilisateur anonyme $1 de {{SITENAME}}',
+'anonuser' => "l'utilisateur anonyme $1 de {{SITENAME}}",
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.',
 'othercontribs' => 'Basé sur le travail de $1.',
 'others' => 'autres',
-'siteusers' => '{{PLURAL:$2|l’utilisateur|les utilisateurs}} $1 de {{SITENAME}}',
-'anonusers' => '{{PLURAL:$2|l’utilisateur anonyme|les utilisateurs anonymes}} $1 de {{SITENAME}}',
+'siteusers' => "{{PLURAL:$2|l'utilisateur|les utilisateurs}} $1 de {{SITENAME}}",
+'anonusers' => "{{PLURAL:$2|l'utilisateur anonyme|les utilisateurs anonymes}} $1 de {{SITENAME}}",
 'creditspage' => 'Crédits de la page',
-'nocredits' => 'Il n’y a pas d’informations d’attribution disponibles pour cette page.',
+'nocredits' => "Il n'y a pas d'informations d'attribution disponibles pour cette page.",
 
 # Spam protection
 'spamprotectiontitle' => 'Filtre de protection anti-pollution',
-'spamprotectiontext' => 'La page que vous avez voulu sauvegarder a été bloquée par le filtre anti-pollution. Ceci est probablement dû à l’introduction d’un lien vers un site externe apparaissant sur la liste noire. Cette dernière utilise les expressions rationnelles suivantes :',
-'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",
-'spambot_username' => 'Nettoyage de pourriels par MediaWiki',
+'spamprotectiontext' => "La page que vous avez voulu sauvegarder a été bloquée par le filtre anti-pollution. Ceci est probablement dû à l'introduction d'un lien vers un site externe apparaissant sur la liste noire. Cette dernière utilise les expressions rationnelles suivantes :",
+'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de spam.",
+'spambot_username' => 'Nettoyage de spams par MediaWiki',
 'spam_reverting' => 'Rétablissement de la dernière version ne contenant pas de lien vers $1',
 'spam_blanking' => 'Toutes les versions contenant des liens vers $1 sont blanchies',
 'spam_deleting' => 'Toutes les versions contenaient des liens vers $1, suppression',
@@ -3229,18 +3229,18 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'markaspatrolledtext' => 'Marquer cette page comme relue',
 'markedaspatrolled' => 'Marquée comme relue',
 'markedaspatrolledtext' => 'La version sélectionnée de [[:$1]] a été marquée comme relue.',
-'rcpatroldisabled' => 'La fonction de relecture des modifications récentes n’est pas activée.',
+'rcpatroldisabled' => "La fonction de relecture des modifications récentes n'est pas activée.",
 'rcpatroldisabledtext' => 'La fonctionnalité de relecture des modifications récentes est actuellement désactivée.',
 'markedaspatrollederror' => 'Ne peut être marquée comme relue',
 'markedaspatrollederrortext' => 'Vous devez sélectionner une version pour pouvoir la marquer comme relue.',
-'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme relues.',
+'markedaspatrollederror-noautopatrol' => "Vous n'avez pas le droit de marquer vos propres modifications comme relues.",
 'markedaspatrollednotify' => 'Cette modification de $1 a été marquée comme contrôlée.',
 'markedaspatrollederrornotify' => 'Échec du marquage comme contrôlé.',
 
 # Patrol log
 'patrol-log-page' => 'Journal des relectures',
-'patrol-log-header' => 'Voici l’historique des versions relues.',
-'log-show-hide-patrol' => '$1 l’historique des relectures',
+'patrol-log-header' => "Voici l'historique des versions relues.",
+'log-show-hide-patrol' => "$1 l'historique des relectures",
 
 # Image deletion
 'deletedrevision' => 'Ancienne version $1 supprimée',
@@ -3248,10 +3248,10 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'filedeleteerror-long' => 'Des erreurs ont été rencontrées lors de la suppression du fichier :
 
 $1',
-'filedelete-missing' => 'Le fichier « $1 » ne peut pas être supprimé parce qu’il n’existe pas.',
-'filedelete-old-unregistered' => 'La version du fichier spécifiée « $1 » n’est pas dans la base de données.',
-'filedelete-current-unregistered' => 'Le fichier spécifié « $1 » n’est pas dans la base de données.',
-'filedelete-archive-read-only' => 'Le dossier d’archivage « $1 » n’est pas modifiable par le serveur.',
+'filedelete-missing' => "Le fichier « $1 » ne peut pas être supprimé parce qu'il n'existe pas.",
+'filedelete-old-unregistered' => "La version du fichier spécifiée « $1 » n'est pas dans la base de données.",
+'filedelete-current-unregistered' => "Le fichier spécifié « $1 » n'est pas dans la base de données.",
+'filedelete-archive-read-only' => "Le dossier d'archivage « $1 » n'est pas modifiable par le serveur.",
 
 # Browsing diffs
 'previousdiff' => '← Modification précédente',
@@ -3259,7 +3259,7 @@ $1',
 
 # Media information
 'mediawarning' => "'''Attention :''' ce type de fichier peut contenir du code malveillant.
-Si vous l’exécutez, votre système peut être compromis.",
+Si vous l'exécutez, votre système peut être compromis.",
 'imagemaxsize' => "Taille maximale des images :<br />''(pour les pages de description de fichier)''",
 'thumbsize' => 'Taille de la miniature :',
 'widthheightpage' => '$1 × $2, $3 page{{PLURAL:$3||s}}',
@@ -3302,17 +3302,17 @@ Si vous l’exécutez, votre système peut être compromis.",
 'ago' => 'Il y a $1',
 
 # Bad image list
-'bad_image_list' => 'Le format est le suivant :
+'bad_image_list' => "Le format est le suivant :
 
-Seules les listes d’énumération (commençant par *) sont prises en compte. Le premier lien d’une ligne doit être celui d’une mauvaise image.
-Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquelles l’image peut apparaître.',
+Seules les listes d'énumération (commençant par *) sont prises en compte. Le premier lien d'une ligne doit être celui d'une mauvaise image.
+Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquelles l'image peut apparaître.",
 
 # Metadata
 'metadata' => 'Métadonnées',
-'metadata-help' => 'Ce fichier contient des informations supplémentaires, probablement ajoutées par l’appareil photo numérique ou le numériseur utilisé pour le créer. Si le fichier a été modifié depuis son état original, certains détails peuvent ne pas refléter entièrement l’image modifiée.',
+'metadata-help' => "Ce fichier contient des informations supplémentaires, probablement ajoutées par l'appareil photo numérique ou le numériseur utilisé pour le créer. Si le fichier a été modifié depuis son état original, certains détails peuvent ne pas refléter entièrement l'image modifiée.",
 'metadata-expand' => 'Afficher les informations détaillées',
 'metadata-collapse' => 'Masquer les informations détaillées',
-'metadata-fields' => 'Les champs de métadonnées d’image listés dans ce message seront inclus dans la page de description de l’image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut.
+'metadata-fields' => "Les champs de métadonnées d'image listés dans ce message seront inclus dans la page de description de l'image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut.
 * make
 * model
 * datetimeoriginal
@@ -3325,7 +3325,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude',
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth' => 'Largeur',
@@ -3340,7 +3340,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-ycbcrpositioning' => 'Positionnement YCbCr',
 'exif-xresolution' => 'Résolution horizontale',
 'exif-yresolution' => 'Résolution verticale',
-'exif-stripoffsets' => 'Emplacement des données de l’image',
+'exif-stripoffsets' => "Emplacement des données de l'image",
 'exif-rowsperstrip' => 'Nombre de lignes par bande',
 'exif-stripbytecounts' => 'Taille en octets par bande',
 'exif-jpeginterchangeformat' => 'Position du SOI JPEG',
@@ -3350,36 +3350,36 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-ycbcrcoefficients' => 'Coefficients YCbCr',
 'exif-referenceblackwhite' => 'Valeurs de référence noir et blanc',
 'exif-datetime' => 'Date de modification',
-'exif-imagedescription' => 'Description de l’image',
-'exif-make' => 'Fabricant de l’appareil',
-'exif-model' => 'Modèle de l’appareil',
+'exif-imagedescription' => "Description de l'image",
+'exif-make' => "Fabricant de l'appareil",
+'exif-model' => "Modèle de l'appareil",
 'exif-software' => 'Logiciel utilisé',
 'exif-artist' => 'Auteur',
-'exif-copyright' => 'Détenteur du droit d’auteur',
+'exif-copyright' => "Détenteur du droit d'auteur",
 'exif-exifversion' => 'Version EXIF',
 'exif-flashpixversion' => 'Version FlashPix',
 'exif-colorspace' => 'Espace colorimétrique',
 'exif-componentsconfiguration' => 'Signification de chaque composante',
-'exif-compressedbitsperpixel' => 'Mode de compression de l’image',
-'exif-pixelydimension' => 'Largeur de l’image',
-'exif-pixelxdimension' => 'Hauteur de l’image',
-'exif-usercomment' => 'Commentaires de l’utilisateur',
+'exif-compressedbitsperpixel' => "Mode de compression de l'image",
+'exif-pixelydimension' => "Largeur de l'image",
+'exif-pixelxdimension' => "Hauteur de l'image",
+'exif-usercomment' => "Commentaires de l'utilisateur",
 'exif-relatedsoundfile' => 'Fichier audio associé',
 'exif-datetimeoriginal' => 'Date de la prise originelle',
 'exif-datetimedigitized' => 'Date de la numérisation',
 'exif-subsectime' => 'Date de modification',
 'exif-subsectimeoriginal' => 'Date de la prise originelle',
 'exif-subsectimedigitized' => 'Date de la numérisation',
-'exif-exposuretime' => 'Temps d’exposition',
+'exif-exposuretime' => "Temps d'exposition",
 'exif-exposuretime-format' => '$1 s ($2 s)',
 'exif-fnumber' => 'Ouverture',
-'exif-exposureprogram' => 'Programme d’exposition',
+'exif-exposureprogram' => "Programme d'exposition",
 'exif-spectralsensitivity' => 'Sensibilité spectrale',
 'exif-isospeedratings' => 'Sensibilité ISO',
-'exif-shutterspeedvalue' => 'vitesse d’obturation de l’APEX',
-'exif-aperturevalue' => 'Ouverture de l’APEX',
+'exif-shutterspeedvalue' => "vitesse d'obturation de l'APEX",
+'exif-aperturevalue' => "Ouverture de l'APEX",
 'exif-brightnessvalue' => 'Luminance APEX',
-'exif-exposurebiasvalue' => 'Correction d’exposition',
+'exif-exposurebiasvalue' => "Correction d'exposition",
 'exif-maxaperturevalue' => 'Ouverture maximale',
 'exif-subjectdistance' => 'Distance du sujet',
 'exif-meteringmode' => 'Mode de mesure',
@@ -3392,12 +3392,12 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-focalplaneyresolution' => 'Résolution verticale du plan focal',
 'exif-focalplaneresolutionunit' => 'Unité de résolution du plan focal',
 'exif-subjectlocation' => 'Localisation du sujet',
-'exif-exposureindex' => 'Index d’exposition',
+'exif-exposureindex' => "Index d'exposition",
 'exif-sensingmethod' => 'Type de capteur',
 'exif-filesource' => 'Source du fichier',
 'exif-scenetype' => 'Type de scène',
 'exif-customrendered' => 'Rendu personnalisé',
-'exif-exposuremode' => 'Mode d’exposition',
+'exif-exposuremode' => "Mode d'exposition",
 'exif-whitebalance' => 'Balance des blancs',
 'exif-digitalzoomratio' => 'Taux de zoom numérique',
 'exif-focallengthin35mmfilm' => 'Longueur focale pour un film 35 mm',
@@ -3408,13 +3408,13 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-sharpness' => 'Netteté',
 'exif-devicesettingdescription' => 'Description de la configuration du dispositif',
 'exif-subjectdistancerange' => 'Distance du sujet',
-'exif-imageuniqueid' => 'Identifiant unique de l’image',
+'exif-imageuniqueid' => "Identifiant unique de l'image",
 'exif-gpsversionid' => 'Version de la balise GPS',
 'exif-gpslatituderef' => 'Référence pour la latitude',
 'exif-gpslatitude' => 'Latitude',
 'exif-gpslongituderef' => 'Référence pour la longitude',
 'exif-gpslongitude' => 'Longitude',
-'exif-gpsaltituderef' => 'Référence d’altitude (0=altitude, 1=profondeur)',
+'exif-gpsaltituderef' => "Référence d'altitude (0=altitude, 1=profondeur)",
 'exif-gpsaltitude' => 'Altitude',
 'exif-gpstimestamp' => 'Heure GPS (horloge atomique)',
 'exif-gpssatellites' => 'Satellites utilisés pour la mesure',
@@ -3425,8 +3425,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsspeed' => 'Vitesse du récepteur GPS',
 'exif-gpstrackref' => 'Référence pour la direction du mouvement',
 'exif-gpstrack' => 'Direction du mouvement',
-'exif-gpsimgdirectionref' => 'Référence pour la direction de l’image',
-'exif-gpsimgdirection' => 'Direction de l’image',
+'exif-gpsimgdirectionref' => "Référence pour la direction de l'image",
+'exif-gpsimgdirection' => "Direction de l'image",
 'exif-gpsmapdatum' => 'Système géodésique utilisé',
 'exif-gpsdestlatituderef' => 'Référence pour la latitude de la destination',
 'exif-gpsdestlatitude' => 'Latitude de la destination',
@@ -3459,7 +3459,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-headline' => 'Titre',
 'exif-credit' => 'Crédit / fournisseur',
 'exif-source' => 'Source',
-'exif-editstatus' => 'Statut éditorial de l’image',
+'exif-editstatus' => "Statut éditorial de l'image",
 'exif-urgency' => 'Urgence',
 'exif-fixtureidentifier' => 'Nom élément récurrent',
 'exif-locationdest' => 'Lieu représenté',
@@ -3476,16 +3476,16 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-originaltransmissionref' => 'Code de localisation de la transmission originale',
 'exif-identifier' => 'Identifiant',
 'exif-lens' => 'Lentille utilisée',
-'exif-serialnumber' => 'Numéro de série de l’appareil photo',
+'exif-serialnumber' => "Numéro de série de l'appareil photo",
 'exif-cameraownername' => "Propriétaire de l'appareil photo",
 'exif-label' => 'Libellé',
 'exif-datetimemetadata' => 'Date de la dernière modification des métadonnées',
-'exif-nickname' => 'Nom informel de l’image',
+'exif-nickname' => "Nom informel de l'image",
 'exif-rating' => 'Note (sur 5)',
 'exif-rightscertificate' => 'Certificat de gestion des droits',
-'exif-copyrighted' => 'Statut du droit d’auteur',
-'exif-copyrightowner' => 'Détenteur du droit d’auteur',
-'exif-usageterms' => 'Conditions d’utilisation',
+'exif-copyrighted' => "Statut du droit d'auteur",
+'exif-copyrightowner' => "Détenteur du droit d'auteur",
+'exif-usageterms' => "Conditions d'utilisation",
 'exif-webstatement' => 'Déclaration de droits d’auteur en ligne',
 'exif-originaldocumentid' => 'Identifiant unique du document original',
 'exif-licenseurl' => 'URL de la licence',

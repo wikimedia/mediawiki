@@ -3952,8 +3952,7 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'specialpages' => 'Speciální stránky',
 'specialpages-note' => '----
 * Normální speciální stránky
-* <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>
-* <span class="mw-specialpagecached">Speciální stránky z&nbsp;cache (mohou být zastaralé)</span>',
+* <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other' => 'Ostatní',
 'specialpages-group-login' => 'Přihlášení / vytvoření účtu',

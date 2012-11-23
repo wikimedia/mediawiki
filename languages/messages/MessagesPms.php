@@ -3526,9 +3526,9 @@ Për gavene via un, ch'a-j fasa la crosëtta ant la casela ch'a l'ha aranda, e p
 'watchlistedit-normal-submit' => 'Gavé via ij tìtoj',
 'watchlistedit-normal-done' => "{{PLURAL:$1|Un tìtol a l'é|$1 tìtoj a son}} ëstàit gavà via da 'nt la lista ëd lòn ch'as ten sot-euj:",
 'watchlistedit-raw-title' => "Modifiché ampressa la lista ëd lòn ch'as ten sot-euj",
-'watchlistedit-raw-legend' => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-raw-explain' => "Ij tìtoj ch'a l'é antramentr ch'as ten sot euj a son ambelessì-sota, e a peulo modifichesse ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga.
-Quand a l'ha finì, ch'a-i bata ansima a \"{{int:Watchlistedit-raw-submit}}\".
+'watchlistedit-raw-legend' => "Modìfica lesta ëd la lista ëd lòn ch'as ten sot-euj",
+'watchlistedit-raw-explain' => "Ij tìtoj ch'a l'é antramentr ch'as ten sot-euj a son ambelessì-sota, e a peulo modifichesse ën giontand-ne e gavand-ne via da 'nt la lista; un tìtol për riga.
+Quand a l'ha finì, ch'a-i bata ansima a «{{int:Watchlistedit-raw-submit}}».
 As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'watchlistedit-raw-titles' => 'Tìtoj:',
 'watchlistedit-raw-submit' => 'Agiorné la Lista',

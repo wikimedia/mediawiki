@@ -525,6 +525,7 @@ $messages = array(
 'namespaces' => 'Espacios de nombres',
 'variants' => 'Variantes',
 
+'navigation-heading' => 'Menú de navegación',
 'errorpagetitle' => 'Error',
 'returnto' => 'Volver a $1.',
 'tagline' => 'De {{SITENAME}}',
@@ -766,10 +767,13 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 
 Puedes continuar usando {{SITENAME}} de forma anónima, o puedes <span class='plainlinks'>[$1 iniciar sesión otra vez]</span> con el mismo u otro usuario.
 Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.",
+'welcomeuser' => '¡Bienvenido, $1!',
 'welcomecreation' => '== ¡Bienvenido(a), $1! ==
 
 Tu cuenta ha sido creada.
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
+'welcomecreation-agora' => 'Tu cuenta ha sido creada.
+No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'yourname' => 'Nombre de usuario:',
 'yourpassword' => 'Contraseña:',
 'yourpasswordagain' => 'Confirma la contraseña:',
@@ -1905,6 +1909,7 @@ $1',
 'backend-fail-notsame' => 'Ya existe un fichero distinto en $1.',
 'backend-fail-invalidpath' => '$1 no es una ruta de almacenamiento válida',
 'backend-fail-delete' => 'No se pudo borrar el archivo «$1».',
+'backend-fail-describe' => 'No pudieron cambiar los metadatos del archivo "$1".',
 'backend-fail-alreadyexists' => 'El archivo  $1  ya existe.',
 'backend-fail-store' => 'No se pudo almacenar el archivo $1 en $2.',
 'backend-fail-copy' => 'No se pudo copiar el archivo $1 a $2.',
