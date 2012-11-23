@@ -242,7 +242,9 @@ class LockServerDaemon {
 		$m = explode( ':', $data ); // <session, key, command, type, values>
 		if ( count( $m ) == 5 ) {
 			list( $session, $key, $command, $type, $values ) = $m;
-			if ( sha1( $session . $command . $type . $values . $this->authKey ) !== $key ) {
+			$goodKey = hash_hmac( 'sha1',
+				"{$session}\n{$command}\n{$type}\n{$values}", $this->authKey );
+			if ( $goodKey !== $key ) {
 				return 'BAD_KEY';
 			} elseif ( strlen( $session ) !== 32 ) {
 				return 'BAD_SESSION';

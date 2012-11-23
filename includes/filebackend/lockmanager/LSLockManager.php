@@ -169,7 +169,7 @@ class LSLockManager extends QuorumLockManager {
 		$authKey = $this->lockServers[$lockSrv]['authKey'];
 		// Build of the command as a flat string...
 		$values = implode( '|', $values );
-		$key = sha1( $this->session . $action . $type . $values . $authKey );
+		$key = hash_hmac( 'sha1', "{$this->session}\n{$action}\n{$type}\n{$values}", $authKey );
 		// Send out the command...
 		if ( fwrite( $conn, "{$this->session}:$key:$action:$type:$values\n" ) === false ) {
 			return false;
