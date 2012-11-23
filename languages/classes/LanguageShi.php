@@ -137,21 +137,6 @@ class ShiConverter extends LanguageConverter {
 	}
 
 	/**
-	 * We want our external link captions to be converted in variants,
-	 * so we return the original text instead -{$text}-, except for URLs
-	 *
-	 * @param $text string
-	 * @param $noParse bool
-	 *
-	 * @return string
-	 */
-	function markNoConversion( $text, $noParse = false ) {
-		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
-			return parent::markNoConversion( $text );
-		return $text;
-	}
-
-	/**
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 *

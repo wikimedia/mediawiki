@@ -88,20 +88,6 @@ class ZhConverter extends LanguageConverter {
 	}
 
 	/**
-	 * there shouldn't be any latin text in Chinese conversion, so no need
-	 * to mark anything.
-	 * $noParse is there for compatibility with LanguageConvert::markNoConversion
-	 *
-	 * @param $text string
-	 * @param $noParse bool
-	 *
-	 * @return string
-	 */
-	function markNoConversion( $text, $noParse = false ) {
-		return $text;
-	}
-
-	/**
 	 * @param $key string
 	 * @return String
 	 */
