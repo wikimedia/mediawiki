@@ -1154,7 +1154,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 
 # Watchlist
 'watchlist' => 'Pela mına şêrkerdene',
-'mywatchlist' => 'Lista mına şêrkerdışi',
+'mywatchlist' => 'Lista şêrkerdışi',
 'watchlistfor2' => 'Serba $1 ($2)',
 'addedwatchtext' => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
 Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, u pele [[Special:RecentChanges|lista vurnaisunê peyênu]] de '''qolınd''' asena ke cı ra asan weçiniyo.",

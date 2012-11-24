@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bennylin
+ * @author Iwan Novirion
  * @author Luthfi94
  * @author Naval Scene
  * @author Rahmatdenas
@@ -25,7 +26,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Suruakkan suntingan nan lah dijago di parubahan tabaru',
 'tog-newpageshidepatrolled' => 'Suruakkan halaman nan lah dijago dari senarai halaman baru',
 'tog-extendwatchlist' => 'Kambangkan senarai pantauan untuak malihek sado parubahan, indak nan baru se',
-'tog-usenewrc' => 'Gunoan parubahan terkini tingkek lanjut (paralu JavaScript)',
+'tog-usenewrc' => 'Kalompok parubahan dek laman dalam parubahan tabaru jo daftar pantauan (paralu JavaScript)',
 'tog-numberheadings' => 'Agiah nomor judua sacaro otomatis',
 'tog-showtoolbar' => 'Tampilkan bilah suntiang (paralu JavaScript)',
 'tog-editondblclick' => 'Suntiang laman jo klik ganda (JavaScript)',
@@ -33,20 +34,20 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Hiduikan bagian panyuntiangan jo mangklik kanan pado judul bagian (JavaScript)',
 'tog-showtoc' => 'Caliakkan dafta isi (untuak laman nan mampunyoi labiah dari 3 subbagian)',
 'tog-rememberpassword' => 'Kana log masuak denai di peramban ko (salamo $1 {{PLURAL:$1|hari|hari}})',
-'tog-watchcreations' => 'Tambahkan halaman nan den buek ka daftar pantauan',
-'tog-watchdefault' => 'Tambahkan halaman nan den suntiang ka daftar pantauan',
-'tog-watchmoves' => 'Tambahkan halaman nan den pindahkan ka daftar pantauan',
-'tog-watchdeletion' => 'Tambahkan halaman nan den hapuih ka daftar pantauan',
+'tog-watchcreations' => 'Tambahkan laman nan den buek jo gambar nan den unggah ka daftar pantauan',
+'tog-watchdefault' => 'Tambahkan laman jo gambar nan den suntiang ka daftar pantauan',
+'tog-watchmoves' => 'Tambahkan laman jo gambar nan den pindah ka daftar pantauan',
+'tog-watchdeletion' => 'Tambahkan laman jo gambar nan den hapuih ka daftar pantauan',
 'tog-minordefault' => 'Tandoi sadoalah suntiangan sabagai suntiangan ketek sacaro baku',
 'tog-previewontop' => 'Tampilkan pratonton sabalun kotak suntiang',
 'tog-previewonfirst' => 'Caliakkan pratayang pado suntiangan patamo',
 'tog-nocache' => 'Matikan panyinggahan laman peramban',
-'tog-enotifwatchlistpages' => 'Kirim e-mail kalau laman nan den pantau lah barubah',
+'tog-enotifwatchlistpages' => 'Kirimkan surel kalau laman atau gambar pado daftar pantauan lah barubah',
 'tog-enotifusertalkpages' => 'E-mail ambo jiko laman barundiang denai lah barubah',
-'tog-enotifminoredits' => 'Kirim e-mail walau hanyo ado parubahan saketek',
+'tog-enotifminoredits' => 'Kirimkan surel juo untuk saketek suntingan pado laman jo gambar',
 'tog-enotifrevealaddr' => 'Cogokan alamaik e-mail den pado e-mail notifikasi',
 'tog-shownumberswatching' => 'Tujuakkan jumlah pamantau',
-'tog-oldsig' => 'Pratayang tando tangan:',
+'tog-oldsig' => 'Tando tangan kini:',
 'tog-fancysig' => 'Palakuan tando tangan sabagai teks wiki (tanpa suatu tautan otomatis)',
 'tog-externaleditor' => 'Gunokan editor eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [//www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
 'tog-externaldiff' => 'Gunokan diff eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [//www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
@@ -66,7 +67,7 @@ $messages = array(
 
 'underline-always' => 'Taruih',
 'underline-never' => 'Indak pernah',
-'underline-default' => 'Bawaan panjalajah web',
+'underline-default' => 'Kulik atau panjalajah web bawaan',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Gaya tulisan komputer pado kotak panyuntiangan:',
@@ -151,7 +152,7 @@ $messages = array(
 'newwindow' => '(buka di jendela baru)',
 'cancel' => 'Batalkan',
 'moredotdotdot' => 'Lainnyo...',
-'mypage' => 'Laman ambo',
+'mypage' => 'Laman',
 'mytalk' => 'Maota',
 'anontalk' => 'Ota IP iko',
 'navigation' => 'Pinteh',
@@ -173,8 +174,8 @@ $messages = array(
 'vector-action-move' => 'Pindahkan',
 'vector-action-protect' => 'Lindungi',
 'vector-action-undelete' => 'Pambatalan panghapusan',
-'vector-action-unprotect' => 'Palinduangan',
-'vector-simplesearch-preference' => 'Aktifkan pancarian saran nan disampurnokan (hanyo kulik Vector)',
+'vector-action-unprotect' => 'Tuka palinduangan',
+'vector-simplesearch-preference' => 'Aktifkan kotak pancarian sadarano (hanyo kulik Vector)',
 'vector-view-create' => 'Buek',
 'vector-view-edit' => 'Suntiang',
 'vector-view-history' => 'Caliak riwayaik nan lalu',
@@ -184,6 +185,7 @@ $messages = array(
 'namespaces' => 'Ruang namo:',
 'variants' => 'Variasi:',
 
+'navigation-heading' => 'Menu navigasi',
 'errorpagetitle' => 'Kesalahan',
 'returnto' => 'Baliak ka $1',
 'tagline' => 'Dari {{SITENAME}}',
@@ -210,8 +212,8 @@ $messages = array(
 'protect' => 'Lindungi',
 'protect_change' => 'ubah',
 'protectthispage' => 'Lindungi laman iko',
-'unprotect' => 'Palinduangan',
-'unprotectthispage' => 'Bukak palindungan laman iko',
+'unprotect' => 'Tuka palinduangan',
+'unprotectthispage' => 'Tuka palindungan laman ko',
 'newpage' => 'Laman baru',
 'talkpage' => 'Musyawarahkan laman ko',
 'talkpagelinktext' => 'Maota',
@@ -283,6 +285,7 @@ $1',
 'youhavenewmessagesfromusers' => 'Sanak mandapek $1 dari {{PLURAL:$3|another user|$3 users}} ($2)',
 'youhavenewmessagesmanyusers' => 'Sanak mandapek $1 dari banyak pangguno ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|sabuah pasan baru|pasan baru}}',
+'newmessagesdifflinkplural' => 'akhir {{PLURAL:$1|parubahan|parubahan}}',
 'youhavenewmessagesmulti' => 'Awak ang mandapek pasan baru pado $1',
 'editsection' => 'suntiang',
 'editold' => 'suntiang',
@@ -332,12 +335,12 @@ Dafta laman istimewa nan sah dapek dicaliak di [[Special:SpecialPages|{{int:spec
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan basis data',
-'dberrortext' => 'Ado kasalahan sintaks pado pamintaan basis data.
-Kasalahan ini mungkin manandokan adonyo sabuah \'\'bug\'\' dalam parangkek lunak.
+'dberrortext' => 'Kasalahan sintaks pado pamintaan basis data lah tajadi.
+Iko mungkin manandokan adonyo bug pado parangkek lunak.
 Pamintaan basis data nan tarakhir adalah:
-<blockquote><tt>$1</tt></blockquote>
-dari dalam fungsi "<tt>$2</tt>".
-Basis data manghasilkan kasalahan "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+dari dalam fungsi "<code>$2</code>".
+Basis data manghasilkan kasalahan "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Ado kasalahan sintaks pado pamintaan basis data.
 Pamintaan basis data nan terakhir adalah:
 "$1"
@@ -372,10 +375,12 @@ Silakan laporkan hal iko ka [[Special:ListUsers/sysop|Pangurus]], dangan manyabu
 'cannotdelete' => 'Laman atau berkas "$1" indak dapek dihapuih.
 Mungkin alah dihapuih jo urang lain.',
 'cannotdelete-title' => 'Indak bisa mangapuih halaman "$1"',
+'delete-hook-aborted' => 'Pengapusan batal jo hook.
+Indak ado keterangan.',
 'badtitle' => 'Judul indak sah',
 'badtitletext' => 'Permintaan judul laman indak sah, kosong, atau antarbaso atau antarwiki yang salah sambuang. Mungkin juo ado kandungan karakter yang indak buliah digunoan untuak judul.',
-'perfcached' => 'Data barikuik iko diambiak dari singgahan dan mungkin indak data nan baharu. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts' => 'Data barikut iko diambiak dari singgahan dan tarakhir dipabaharui pado $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached' => 'Data barikuik ko diambiak dari singgahan dan mungkin indak data nan baru. Nan tabanyak dari {{PLURAL:$1|suatu hasil dari|$1 hasilnyo}} ado di singgahan.',
+'perfcachedts' => 'Data barikuik ko singgahan, dan tarakhir diperbarui $1. Nan tabanyak dari {{PLURAL:$1|suatu hasil dari|$1 hasilnyo}} ado di singgahan.',
 'querypage-no-updates' => 'Pamutakhiran dari laman iko sadang dimatian. Data nan ado di siko saat iko indak akan dimuaik ulang.',
 'wrong_wfQuery_params' => 'Parameter salah ka wfQuery()<br />Fungsi: $1<br />Pamintaan: $2',
 'viewsource' => 'Caliak sumber',
@@ -400,6 +405,7 @@ Alasan nan diberikan adolah ''$2''.",
 'filereadonlyerror' => 'Indak bisa mangubah berkas "$1" karano repositori berkas "$2" dalam moda baco-sajo.
 
 Pangurus nan manguncinyo manawarkan penjelasan: "$3"',
+'invalidtitle-knownnamespace' => '↓Judul nan indak sah jo ruangnamo "$2" dan teks "$3"',
 'exception-nologin' => 'Indak log masuak',
 'exception-nologin-text' => 'Halaman ko hanyo bisa disuntiang dek pangguno badaftar.',
 
@@ -835,9 +841,9 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'notextmatches' => 'Indak ado judul nan pas',
 'prevn' => '{{PLURAL:$1|$1}} sabalunnyo',
 'nextn' => '{{PLURAL:$1|$1}} salanjuknyo',
-'prevn-title' => '$1 {{PLURAL:$1|Hasil|Hasil}} sabalunnyo',
-'nextn-title' => '$1 {{PLURAL:$1|Hasil|Hasil}} salanjuknyo',
-'shown-title' => 'Caliakkan $1 {{PLURAL:$1|hasil|hasil}} per laman',
+'prevn-title' => 'Sabalunnyo $1 {{PLURAL:$1|hasil|hasil}}',
+'nextn-title' => 'Barikuiknyo $1 {{PLURAL:$1|hasil|hasil}}',
+'shown-title' => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per laman',
 'viewprevnext' => 'Caliakkan ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Ado laman nan banamo \"[[:\$1]]\" pado wiki ko.'''",
 'searchmenu-new' => "'''Buek laman \"[[:\$1]]\" di wiki ko!'''",

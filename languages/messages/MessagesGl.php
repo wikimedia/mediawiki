@@ -1327,7 +1327,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Características experimentais',
 'prefs-user-pages' => 'Páxinas de usuario',
-'prefs-personal' => 'Información do usuario',
+'prefs-personal' => 'Información de usuario',
 'prefs-rc' => 'Cambios recentes',
 'prefs-watchlist' => 'Lista de vixilancia',
 'prefs-watchlist-days' => 'Número de días que mostrar na lista de vixilancia:',
@@ -3951,7 +3951,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-newusers-newusers' => '$1 creou unha conta de usuario',
 'logentry-newusers-create' => '$1 creou unha conta de usuario',
 'logentry-newusers-create2' => '$1 creou unha conta de usuario $3',
-'logentry-newusers-autocreate' => 'A conta $1 creouse automaticamente',
+'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
 'newuserlog-byemail' => 'contrasinal enviado por correo electrónico',
 
 # Feedback

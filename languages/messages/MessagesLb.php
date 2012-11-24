@@ -347,6 +347,7 @@ $messages = array(
 'namespaces' => 'Nummraim',
 'variants' => 'Varianten',
 
+'navigation-heading' => 'Navigatiounsmenü',
 'errorpagetitle' => 'Feeler',
 'returnto' => 'Zréck op $1.',
 'tagline' => 'Vu {{SITENAME}}',
@@ -3757,9 +3758,9 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-move-move_redir-noredirect' => "$1 huet d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
 'logentry-patrol-patrol' => "$1 huet d'Versioun $4 vun der Säit $3 als nogekuckt markéiert",
 'logentry-patrol-patrol-auto' => "$1 huet d'Versioun $4 vun der Säit $3 automatesch als nogekuckt markéiert",
-'logentry-newusers-newusers' => '$1  huet e Benotzerkont ugeluecht',
-'logentry-newusers-create' => '$1  huet e Benotzerkont ugeluecht',
-'logentry-newusers-create2' => '$1 huet ee Benotzerkont ugeluecht $3',
+'logentry-newusers-newusers' => 'De Benotzerkont $1 gouf ugeluecht',
+'logentry-newusers-create' => 'De Benotzerkont $1 gouf ugeluecht',
+'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch ugeluecht',
 'newuserlog-byemail' => "d'Passwuert gouf per E-Mail geschéckt",
 

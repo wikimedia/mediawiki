@@ -138,7 +138,7 @@ $messages = array(
 'cancel' => 'Гьич авун',
 'moredotdotdot' => 'Мад...',
 'mypage' => 'Зин чар',
-'mytalk' => 'Žuzun',
+'mytalk' => 'Зи веревирдрин ччин',
 'anontalk' => 'И IP-адресдиз талукь веревирд.',
 'navigation' => 'Навигация',
 'and' => '&#32;ва',
@@ -420,9 +420,9 @@ $messages = array(
 Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз,
 <span class="plainlinks"> [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз],
 ва я [{{fullurl:{{FULLPAGENAME}}|action=edit}} и тlвар алай ччин туькIуьриз жеда] </span>.',
-'noarticletext-nopermission' => 'Iseatda china kxhin avach.
-Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra jaghuriz ak\'ni
-<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} jurnalrin taluq\' tir kxhey zathar jaghuriz] jeda.',
+'noarticletext-nopermission' => 'Исятда и  ччина са текстни авач.
+Квевай [[Special:Search/{{PAGENAME}}| и тӀвар алай ччин]] муькуь ччинра жугъуриз ва я
+<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затӀар жугъуриз] жеда.',
 'blocked-notice-logextract' => 'И уртах алайчIава блокарнава.
 Агъадихъ блокарунин журналдикай эхиримжи кхьинар къалурнава:',
 'previewnote' => "'''Рикlел хуьх хьи, им анжах сифтедин килигун я.'''  
@@ -593,7 +593,7 @@ Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra j
 
 # Preferences page
 'preferences' => 'Туькlуьрун',
-'mypreferences' => 'Zi tïķïrunar',
+'mypreferences' => 'Зи низамарунар',
 'prefs-edits' => 'Дьузар хъувунрин кьадар',
 'prefsnologin' => 'Куьне гьахьнавач',
 'changepassword' => 'Парол дегишарун',

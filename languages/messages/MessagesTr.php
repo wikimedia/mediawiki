@@ -396,7 +396,7 @@ $messages = array(
 
 'underline-always' => 'Daima',
 'underline-never' => 'Asla',
-'underline-default' => 'Tarayıcı varsayılanı',
+'underline-default' => 'Tema veya Tarayıcı varsayılanı',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Düzenleme alanının yazı tipi:',
@@ -514,6 +514,7 @@ $messages = array(
 'namespaces' => 'Ad alanları',
 'variants' => 'Türevler',
 
+'navigation-heading' => 'Navigasyon menüsü',
 'errorpagetitle' => 'Hata',
 'returnto' => '$1 sayfasına geri dön.',
 'tagline' => '{{SITENAME}} sitesinden',

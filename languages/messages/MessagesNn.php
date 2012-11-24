@@ -482,6 +482,7 @@ $messages = array(
 'namespaces' => 'Namnerom',
 'variants' => 'Variantar',
 
+'navigation-heading' => 'Navigasjonsmeny',
 'errorpagetitle' => 'Feil',
 'returnto' => 'Attende til $1.',
 'tagline' => 'Frå {{SITENAME}}',
@@ -713,9 +714,12 @@ Administratoren som låste filsamlinga oppgav den fylgjande årsaka: «$3».',
 
 Du kan no halde fram å bruke {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge inn att]</span>  med same kontoen eller ein annan brukar kan logge inn.
 Ver merksam på at nokre sider framleis kan visast fram som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
+'welcomeuser' => 'Velkomen, $1!',
 'welcomecreation' => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
 Brukarkontoen din er oppretta.
 Hugs at du kan endre på [[Special:Preferences|innstillingane]] dine.',
+'welcomecreation-agora' => 'Brukarkontoen din er oppretta.
+Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}]].',
 'yourname' => 'Brukarnamn:',
 'yourpassword' => 'Passord:',
 'yourpasswordagain' => 'Skriv opp att passordet',
@@ -1810,6 +1814,7 @@ $1',
 'backend-fail-notsame' => 'Ein ikkje-identisk fil finst alt på «$1».',
 'backend-fail-invalidpath' => '$1 er ikkje ein gyldig lagringsstig.',
 'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
+'backend-fail-describe' => 'Kunne ikkje endra metadataa for fila «$1».',
 'backend-fail-alreadyexists' => 'Fila $1 finst frå før.',
 'backend-fail-store' => 'Kunne ikkje lagra fila «$1» på «$2».',
 'backend-fail-copy' => 'Kunne ikkje kopiera fila «$1» til «$2».',
@@ -3081,6 +3086,8 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'markedaspatrollederror' => 'Kan ikkje merke sida som patruljert',
 'markedaspatrollederrortext' => 'Du må markere ein versjon for å kunne godkjenne.',
 'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
+'markedaspatrollednotify' => 'Denne endringa på $1 har vorten merkt som patruljert.',
+'markedaspatrollederrornotify' => 'Det gjekk ikkje å merkja endringa som patruljert.',
 
 # Patrol log
 'patrol-log-page' => 'Patruljeringslogg',
@@ -3886,9 +3893,9 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'logentry-move-move_redir-noredirect' => '$1 flytte sida $3 til $4 over ei omdirigering utan å lata etter ei omdirigering',
 'logentry-patrol-patrol' => '$1 merkte versjon $4 av sida $3 som patruljert',
 'logentry-patrol-patrol-auto' => '$1 merkte automatisk versjon $4 av sida $3 som patruljert',
-'logentry-newusers-newusers' => '$1 oppretta ein brukarkonto',
-'logentry-newusers-create' => '$1 oppretta ein brukarkonto',
-'logentry-newusers-create2' => '$1 oppretta brukarkontoen $3',
+'logentry-newusers-newusers' => 'Brukarkontoen $1 vart oppretta',
+'logentry-newusers-create' => 'Brukarkontoen $1 vart oppretta',
+'logentry-newusers-create2' => 'Brukarkontoen $3 vart oppretta av $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
 'newuserlog-byemail' => 'passordet er sendt på e-post',
 

@@ -4279,10 +4279,10 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'logentry-move-move_redir-noredirect' => '$1 がページ「$3」をリダイレクトの「$4」に、リダイレクトを残さずに移動しました',
 'logentry-patrol-patrol' => '$1 がページ「$3」の版 $4 を巡回済みとしました',
 'logentry-patrol-patrol-auto' => '$1 が自動的にページ「$3」の版 $4 を巡回済みとしました',
-'logentry-newusers-newusers' => '$1 が利用者アカウントを作成しました',
-'logentry-newusers-create' => '$1 が利用者アカウントを作成しました',
-'logentry-newusers-create2' => '$1 が利用者アカウント $3 を作成しました',
-'logentry-newusers-autocreate' => 'アカウント $1 が自動的に作成されました',
+'logentry-newusers-newusers' => '利用者アカウント $1 が作成されました',
+'logentry-newusers-create' => '利用者アカウント $1 が作成されました',
+'logentry-newusers-create2' => '利用者アカウント $3 が $1 により作成されました',
+'logentry-newusers-autocreate' => '利用者アカウント $1 が自動的に作成されました',
 'newuserlog-byemail' => 'パスワードをメールでお送りしました',
 
 # Feedback

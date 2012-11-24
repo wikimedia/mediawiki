@@ -4247,9 +4247,9 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 ја премести страницата $3 на $4 презапишувајќи врз пренасочување без да остави пренасочување',
 'logentry-patrol-patrol' => '$1 ја означи ревизијата $4 на страницата $3 како испатролирана',
 'logentry-patrol-patrol-auto' => '$1 автоматски ја означи ревизијата $4 на страницата $3 како испатролирана',
-'logentry-newusers-newusers' => '$1 направи корисничка сметка',
-'logentry-newusers-create' => '$1 направи корисничка сметка',
-'logentry-newusers-create2' => '$1 направи корисничка сметка $3',
+'logentry-newusers-newusers' => 'Направена е корисничката сметка $1',
+'logentry-newusers-create' => 'Направена е корисничката сметка $1',
+'logentry-newusers-create2' => 'Направена е корисничката сметка $3; создавач: $1',
 'logentry-newusers-autocreate' => 'Сметката $1 е создадена автоматски',
 'newuserlog-byemail' => 'испратена лозинка по е-пошта',
 

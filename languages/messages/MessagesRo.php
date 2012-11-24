@@ -3969,9 +3969,9 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-move-move_redir-noredirect' => '$1 a redenumit pagina $3 în $4 înlocuind redirecționarea și fără a lăsa o redirecționare în loc',
 'logentry-patrol-patrol' => '$1 a marcat versiunea $4 a paginii $3 ca patrulată',
 'logentry-patrol-patrol-auto' => '$1 a marcat automat versiunea $4 a paginii $3 ca patrulată',
-'logentry-newusers-newusers' => '$1 a creat un cont de utilizator',
-'logentry-newusers-create' => '$1 a creat un cont de utilizator',
-'logentry-newusers-create2' => '$1 a creat un cont de utilizator $3',
+'logentry-newusers-newusers' => 'Contul de utilizator $1 a fost creat',
+'logentry-newusers-create' => 'Contul de utilizator $1 a fost creat',
+'logentry-newusers-create2' => 'Contul de utilizator $1 a fost creat de către $1',
 'logentry-newusers-autocreate' => 'Contul $1 a fost creat în mod automat',
 'newuserlog-byemail' => 'parola trimisă prin e-mail',
 

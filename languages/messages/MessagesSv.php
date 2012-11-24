@@ -728,8 +728,11 @@ Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 
 Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du <span class='plainlinks'>[$1 logga in igen]</span> som samma eller som en annan användare.
 Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.",
+'welcomeuser' => 'Välkommen, $1!',
 'welcomecreation' => '== Välkommen, $1! ==
 Ditt konto har skapats.
+Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].',
+'welcomecreation-agora' => 'Ditt konto har skapats.
 Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].',
 'yourname' => 'Användarnamn:',
 'yourpassword' => 'Lösenord:',
@@ -1861,6 +1864,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-notsame' => 'En icke-identisk fil redan finns på $1.',
 'backend-fail-invalidpath' => '$1 är inte en giltig sökväg för att spara.',
 'backend-fail-delete' => 'Kunde inte radera filen $1.',
+'backend-fail-describe' => 'Kunde inte att ändra metadata för filen "$1".',
 'backend-fail-alreadyexists' => 'Filen $1 finns redan.',
 'backend-fail-store' => 'Kunde inte spara filen $1 vid $2.',
 'backend-fail-copy' => 'Det gick inte att kopiera filen $1 till $2.',
@@ -2246,7 +2250,7 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-ok' => 'Sök',
 'linksearch-text' => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
 Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
-Protokoll som stöds: <code>$1</code> (lägg inte till någon av dessa i din sökning).',
+Protokoll som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).',
 'linksearch-line' => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 
@@ -3992,9 +3996,9 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-move-move_redir-noredirect' => '$1 flyttade sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 'logentry-patrol-patrol' => '$1 markerade versionen $4 av sidan $3 som patrullerad',
 'logentry-patrol-patrol-auto' => '$1 markerade automatiskt versionen $4 av sidan $3 som patrullerad',
-'logentry-newusers-newusers' => '$1 skapade ett användarkonto',
-'logentry-newusers-create' => '$1 skapade ett användarkonto',
-'logentry-newusers-create2' => '$1 skapade ett användarkonto $3',
+'logentry-newusers-newusers' => 'Användarkonto $1 skapades',
+'logentry-newusers-create' => 'Användarkonto $1 skapades',
+'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
 'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
 'newuserlog-byemail' => 'lösenord skickat med e-post',
 

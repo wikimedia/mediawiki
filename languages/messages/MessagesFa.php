@@ -592,6 +592,7 @@ $messages = array(
 'namespaces' => 'فضاهای نام',
 'variants' => 'گویش‌ها',
 
+'navigation-heading' => 'منوی ناوبری',
 'errorpagetitle' => 'خطا',
 'returnto' => 'بازگشت به $1.',
 'tagline' => 'از {{SITENAME}}',
@@ -843,9 +844,12 @@ $2',
 
 شما می‌توانید به استفادهٔ گمنام از {{SITENAME}} ادامه دهید، یا با همین حساب کاربری یا حسابی دیگر <span class='plainlinks'>[$1 به سامانه وارد شوید]</span>.
 توجه کنید که تا زمانی که میانگیر مرورگرتان را پاک نکنید، بعضی صفحه‌ها ممکن است به گونه‌ای نمایش یابند که گویی هنوز از سامانه خارج نشده‌اید.",
+'welcomeuser' => 'خوشامدید، $1!',
 'welcomecreation' => '==$1، خوش آمدید!==
 حساب شما ایجاد شد.
 فراموش نکنید که [[Special:Preferences|ترجیحات {{SITENAME}}]] را برای خود تغییر دهید.',
+'welcomecreation-agora' => 'حساب کاربری شما ایجاد شده است.
+فراموش نکنید که [[Special:Preferences|ترجیحات {{SITENAME}}]] خود را تغییر دهید.',
 'yourname' => 'نام کاربری:',
 'yourpassword' => 'گذرواژه:',
 'yourpasswordagain' => 'تکرار گذرواژه:',
@@ -1995,6 +1999,7 @@ $1',
 'backend-fail-notsame' => 'پروندهٔ غیریکسانی در $1 وجود دارد.',
 'backend-fail-invalidpath' => '$1 مسیر ذخیره‌سازی معتبری نیست.',
 'backend-fail-delete' => 'نمی‌توان پروندهٔ $1 را حذف کرد.',
+'backend-fail-describe' => 'نمی‌توان فرادادهٔ پروندهٔ «$1» را تغییر داد.',
 'backend-fail-alreadyexists' => 'پروندهٔ $1 از قبل وجود داشت.',
 'backend-fail-store' => 'نمی‌توان پروندهٔ $1 را در $2 ذخیره کرد.',
 'backend-fail-copy' => 'نمی‌توان پروندهٔ $1 را به $2 کپی کرد.',
@@ -3304,6 +3309,8 @@ $1',
 'markedaspatrollederror' => 'برچسب گشت زده نشد',
 'markedaspatrollederrortext' => 'باید یک نسخه را مشخص کنید تا برچسب گشت بخورد.',
 'markedaspatrollederror-noautopatrol' => 'شما نمی‌توانید به تغییرات انجام شده توسط خودتان برچسب گشت بزنید.',
+'markedaspatrollednotify' => 'این تغییر روی $1 برچسب گشت خورده است.',
+'markedaspatrollederrornotify' => 'زدن برچسب گشت، ناموفق بود.',
 
 # Patrol log
 'patrol-log-page' => 'سیاههٔ گشت',
@@ -4180,9 +4187,9 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 صفحهٔ $3 را بدون برجای‌گذاشتن تغییرمسیر به $4 که تغییرمسیر بود منتقل کرد',
 'logentry-patrol-patrol' => '$1 نسخه $4 صفحه $3 را به عنوان گشت خورده علامت زد',
 'logentry-patrol-patrol-auto' => '$1 نسخه $4 صفحه $3 را به طور خودکار به عنوان گشت خورده علامت زد',
-'logentry-newusers-newusers' => '$1 یک حساب کاربری ایجاد کرد',
-'logentry-newusers-create' => '$1 یک حساب کاربری ایجاد کرد',
-'logentry-newusers-create2' => '$1 یک حساب کاربری ایجاد کرد $3',
+'logentry-newusers-newusers' => 'حساب کاربری $1 ایجاد شد',
+'logentry-newusers-create' => 'حساب کاربری $1 ایجاد شد',
+'logentry-newusers-create2' => 'حساب کاربری $3 توسط $1 ایجاد شد',
 'logentry-newusers-autocreate' => 'حساب $1  به شکل خودکار ساخته شد',
 'newuserlog-byemail' => 'گذرواژه بوسیله رایانامه ارسال شد',
 

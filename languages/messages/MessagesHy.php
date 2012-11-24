@@ -629,7 +629,7 @@ $1',
 'cannotdelete-title' => 'Հնարավոր չէ ջնջել $1 էջը',
 'badtitle' => 'Անընդունելի անվանում',
 'badtitletext' => 'Հարցված էջի անվանումը անընդունելի է, դատարկ է կամ սխալ միջ-լեզվական կամ ինտերվիքի անվանում է։ Հնարավոր է, որ այն պարունակում է անթույլատրելի սիմվոլներ։',
-'perfcached' => 'Հետևյալ տվյալները վերցված են քեշից և հնարավոր է չարտացոլեն վերջին փոփոխությունները։ A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcached' => 'Հետևյալ տվյալները վերցված են քեշից և հնարավոր է չարտացոլեն վերջին փոփոխությունները։ Առավելագույն {{PLURAL:$1|արդյունք|$1 արդյունք}} է հասանելի քեշում։',
 'perfcachedts' => 'Հետևյալ տվյալները վերցված են քեշից և վերջին անգամ թարմացվել են $1։ A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Այս էջի փոփոխությունները ներկայումս արգելված են։ Այստեղի տվյալները այժմ չեն թարմացվի։',
 'wrong_wfQuery_params' => 'Անթույլատրելի պարամետրեր wfQuery() ֆունկցիայի համար<br />
@@ -1298,10 +1298,17 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'grouppage-suppress' => '{{ns:project}}:Հսկիչ',
 
 # Rights
-'right-edit' => 'էջերի խմբագրում',
-'right-move' => 'Տեղափոխել էջերը',
-'right-move-subpages' => 'Տեղափոխել էջերն իրենց ենթաէջերով',
+'right-read' => 'Դիտել էջեր',
+'right-edit' => 'Խմբագրել էջեր',
+'right-createtalk' => 'Ստեղծել քննարկման էջեր',
+'right-createaccount' => 'Ստեղծել նոր մասնակցային հաշիվներ',
+'right-minoredit' => 'Նշել խմբագրումը որպես ստուգված',
+'right-move' => 'Վերանվանել էջը',
+'right-move-subpages' => 'Վերանվանել էջն իր ենթաէջերով',
+'right-movefile' => 'Վերանվանել նիշքեր',
+'right-suppressredirect' => 'Էջը վերանավանելիս վերահղում չթողնել',
 'right-upload' => 'Նիշքերի բեռնում',
+'right-upload_by_url' => 'Բեռնել նիշքեր ինտերնետային հասցեից',
 'right-delete' => 'Էջերի ջնջում',
 
 # User rights log
@@ -1600,6 +1607,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'mostlinkedtemplates' => 'Կաղապարներ, որոնց շատ են հղվում',
 'mostcategories' => 'Ամենաշատ կատեգորիաներով էջեր',
 'mostimages' => 'Ամենաշատ օգտագործվող նկարներ',
+'mostinterwikis' => 'Ամենաշատ միջլեզվային հղումներով էջեր',
 'mostrevisions' => 'Ամենաշատ վերափոխումներով հոդվածներ',
 'prefixindex' => 'Բոլոր էջերը ըստ սկզբնատառի',
 'shortpages' => 'Կարճ էջեր',
@@ -2552,7 +2560,15 @@ $3
 'filepath-submit' => 'Անցնել',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch' => 'Փնտրել կրկնօրինակ պատկերներ',
+'fileduplicatesearch-summary' => 'Փնտրել կրկնօրինակ պատկերներ՝ հեշ արժեքների հիման վրա',
+'fileduplicatesearch-legend' => 'Փնտրել կրկնօրինակներ',
+'fileduplicatesearch-filename' => 'Նիշքի անուն․',
 'fileduplicatesearch-submit' => 'Որոնել',
+'fileduplicatesearch-info' => '$1 × $2 փիքսել<br />Նիշքի չափը՝ $3<br />MIME-տիպը՝ $4',
+'fileduplicatesearch-result-1' => '$1 նիշքը կրկնօրինակներ չունի',
+'fileduplicatesearch-result-n' => '$1 նիշքն ունի {{PLURAL:$2|1 նույնական կրկնօրինակ|$2 նույնական կրկնօրինակ}}.',
+'fileduplicatesearch-noresults' => '$1 անունով նիշք չի գտնվել',
 
 # Special:SpecialPages
 'specialpages' => 'Սպասարկող էջեր',
@@ -2581,6 +2597,8 @@ $3
 'tags-edit' => 'խմբագրել',
 
 # Special:ComparePages
+'comparepages' => 'Համեմատել էջեր',
+'compare-selector' => 'Համեմատել էջի տարբերակներ',
 'compare-page1' => 'Էջ 1',
 'compare-page2' => 'Էջ 2',
 'compare-submit' => 'Համեմատել',

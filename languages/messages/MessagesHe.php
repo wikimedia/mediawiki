@@ -4115,10 +4115,10 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 העביר את הדף $3 ל{{GRAMMAR:תחילית|$4}} תוך דריסת הפניה ובלי להשאיר הפניה',
 'logentry-patrol-patrol' => '$1 סימן את הגרסה $4 בדף $3 כבדוקה',
 'logentry-patrol-patrol-auto' => '$1 סימן אוטומטית את הגרסה $4 בדף $3 כבדוקה',
-'logentry-newusers-newusers' => '$1 יצר חשבון משתמש',
-'logentry-newusers-create' => '$1 יצר חשבון משתמש',
-'logentry-newusers-create2' => '$1 יצר חשבון משתמש $3',
-'logentry-newusers-autocreate' => 'החשבון $1 נוצר אוטומטית',
+'logentry-newusers-newusers' => 'חשבון המשתמש $1 נוצר',
+'logentry-newusers-create' => 'חשבון המשתמש $1 נוצר',
+'logentry-newusers-create2' => 'חשבון המשתמש $3 נוצר על ידי $1',
+'logentry-newusers-autocreate' => 'חשבון המשתמש $1 נוצר אוטומטית',
 'newuserlog-byemail' => 'הסיסמה נשלחה בדוא"ל',
 
 # Feedback
