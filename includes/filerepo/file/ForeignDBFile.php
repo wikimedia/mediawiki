@@ -57,9 +57,10 @@ class ForeignDBFile extends LocalFile {
 	/**
 	 * @param $srcPath String
 	 * @param $flags int
+	 * @param $options Array
 	 * @throws MWException
 	 */
-	function publish( $srcPath, $flags = 0 ) {
+	function publish( $srcPath, $flags = 0, array $options = array() ) {
 		$this->readOnlyError();
 	}
 
