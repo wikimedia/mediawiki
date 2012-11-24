@@ -53,41 +53,51 @@
 			// Generic selector for skins with multiple searchboxes (used by CologneBlue)
 			'.mw-searchInput'
 		];
+
+		// Fetch callback for $.suggestions.
+		function fetchFunction( query ) {
+			var $el, jqXhr;
+
+			if ( query.length !== 0 ) {
+				// If there is already a request running, we have to cancel it to avoid race conditions.
+				cancelFunction();
+
+				$el = $(this);
+				jqXhr = $.ajax( {
+					url: mw.util.wikiScript( 'api' ),
+					data: {
+						format: 'json',
+						action: 'opensearch',
+						search: query,
+						namespace: 0,
+						suggest: ''
+					},
+					dataType: 'json',
+					success: function ( data ) {
+						if ( $.isArray( data ) && data.length ) {
+							$el.suggestions( 'suggestions', data[1] );
+						}
+					}
+				});
+				$el.data( 'request', jqXhr );
+			}
+		};
+		
+		// Cancel callback for $.suggestions.
+		function cancelFunction() {
+			var jqXhr = $(this).data( 'request' );
+			// If the delay setting has caused the fetch to have not even happened
+			// yet, the jqXHR object will have never been set.
+			if ( jqXhr && $.isFunction( jqXhr.abort ) ) {
+				jqXhr.abort();
+				$(this).removeData( 'request' );
+			}
+		};
+
 		$( searchboxesSelectors.join(', ') )
 			.suggestions( {
-				fetch: function ( query ) {
-					var $el, jqXhr;
-
-					if ( query.length !== 0 ) {
-						$el = $(this);
-						jqXhr = $.ajax( {
-							url: mw.util.wikiScript( 'api' ),
-							data: {
-								format: 'json',
-								action: 'opensearch',
-								search: query,
-								namespace: 0,
-								suggest: ''
-							},
-							dataType: 'json',
-							success: function ( data ) {
-								if ( $.isArray( data ) && data.length ) {
-									$el.suggestions( 'suggestions', data[1] );
-								}
-							}
-						});
-						$el.data( 'request', jqXhr );
-					}
-				},
-				cancel: function () {
-					var jqXhr = $(this).data( 'request' );
-					// If the delay setting has caused the fetch to have not even happened
-					// yet, the jqXHR object will have never been set.
-					if ( jqXhr && $.isFunction( jqXhr.abort ) ) {
-						jqXhr.abort();
-						$(this).removeData( 'request' );
-					}
-				},
+				fetch: fetchFunction,
+				cancel: cancelFunction,
 				result: {
 					select: function ( $input ) {
 						$input.closest( 'form' ).submit();
