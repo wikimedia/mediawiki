@@ -74,26 +74,26 @@ $.fn.makeCollapsible = function () {
 						$containers = $collapsible.find( '> tbody > tr' );
 						if ( $defaultToggle ) {
 							// Exclude tablerow containing togglelink
-							$containers.not( $defaultToggle.closest( 'tr' ) ).stop(true, true).fadeOut();
+							$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
+						}
+
+						if ( options.instantHide ) {
+							$containers.hide();
 						} else {
-							if ( options.instantHide ) {
-								$containers.hide();
-							} else {
-								$containers.stop( true, true ).fadeOut();
-							}
+							$containers.stop( true, true ).fadeOut();
 						}
 
 					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
 						$containers = $collapsible.find( '> li' );
 						if ( $defaultToggle ) {
 							// Exclude list-item containing togglelink
-							$containers.not( $defaultToggle.parent() ).stop( true, true ).slideUp();
+							$containers = $containers.not( $defaultToggle.parent() );
+						}
+
+						if ( options.instantHide ) {
+							$containers.hide();
 						} else {
-							if ( options.instantHide ) {
-								$containers.hide();
-							} else {
-								$containers.stop( true, true ).slideUp();
-							}
+							$containers.stop( true, true ).slideUp();
 						}
 
 					} else {
@@ -111,10 +111,14 @@ $.fn.makeCollapsible = function () {
 						// Otherwise assume this is a customcollapse with a remote toggle
 						// .. and there is no collapsible-content because the entire element should be toggled
 						} else {
-							if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-								$collapsible.fadeOut();
+							if ( options.instantHide ) {
+								$collapsibleContent.hide();
 							} else {
-								$collapsible.slideUp();
+								if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
+									$collapsible.fadeOut();
+								} else {
+									$collapsible.slideUp();
+								}
 							}
 						}
 					}
