@@ -549,7 +549,7 @@ class Parser {
 	 * Also removes comments.
 	 * @return mixed|string
 	 */
-	function preprocess( $text, Title $title, ParserOptions $options, $revid = null ) {
+	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
@@ -4683,11 +4683,7 @@ class Parser {
 			global $wgTitle;
 			$title = $wgTitle;
 		}
-		if ( !$title ) {
-			# It's not uncommon having a null $wgTitle in scripts. See r80898
-			# Create a ghost title in such case
-			$title = Title::newFromText( 'Dwimmerlaik' );
-		}
+
 		$text = $this->preprocess( $text, $title, $options );
 
 		$executing = false;
