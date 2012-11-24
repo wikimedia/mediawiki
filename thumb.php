@@ -215,9 +215,9 @@ function wfStreamThumb( array $params ) {
 	// Check that the zone relative path matches up so squid caches won't pick
 	// up thumbs that would not be purged on source file deletion (bug 34231).
 	if ( isset( $params['rel404'] ) ) { // thumbnail was handled via 404
-		if ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
+		if ( rawurldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
 			// Request for the canonical thumbnail name
-		} elseif ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
+		} elseif ( rawurldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
 			// Request for the "long" thumbnail name; redirect to canonical name
 			$response = RequestContext::getMain()->getRequest()->response();
 			$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
@@ -234,7 +234,9 @@ function wfStreamThumb( array $params ) {
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
-			wfThumbError( 404, 'The given path of the specified thumbnail is incorrect.' );
+			wfThumbError( 404, "The given path of the specified thumbnail is incorrect;
+				expected '" . $img->getThumbRel( $thumbName ) . "' but got '" .
+				rawurldecode( $params['rel404'] ) . "'." );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
