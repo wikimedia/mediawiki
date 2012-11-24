@@ -1777,13 +1777,6 @@ abstract class BaseTemplate extends QuickTemplate {
 			$attrs['class'] .= ' active';
 			$attrs['class'] = trim( $attrs['class'] );
 		}
-
-		// A special case for the talk link in personal tools.
-		// See bug 41672 and 42337.
-		if ( $key === 'mytalk' ) {
-			$html = $this->getMsg( 'parentheses' )->rawParams( $html )->escaped();
-		}
-
 		return Html::rawElement( isset( $options['tag'] ) ? $options['tag'] : 'li', $attrs, $html );
 	}
 

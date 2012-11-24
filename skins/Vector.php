@@ -367,7 +367,7 @@ class VectorTemplate extends BaseTemplate {
 	 * @param $elements array
 	 */
 	protected function renderNavigation( $elements ) {
-		global $wgVectorUseSimpleSearch;
+		global $wgVectorUseSimpleSearch, $wgVectorCombineUserTalk;
 
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
@@ -452,6 +452,20 @@ class VectorTemplate extends BaseTemplate {
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
 <?php
 					$personalTools = $this->getPersonalTools();
+					if ( $wgVectorCombineUserTalk && isset( $personalTools['userpage'] ) ) {
+?>
+		<li>
+<?php
+						echo $this->makeListItem( 'userpage', $personalTools['userpage'], array( 'tag' => 'span' ) );
+?> <?php
+						$personalTools['mytalk']['links'][0]['text'] = $this->getMsg( 'mytalk-parenthetical' )->text();
+						$talkItem = $this->makeListItem( 'mytalk', $personalTools['mytalk'], array( 'tag' => 'span' ) );
+						echo $this->getMsg( 'parentheses' )->rawParams( $talkItem )->escaped();
+						unset( $personalTools['userpage'], $personalTools['mytalk'] );
+?>
+		</li>
+<?php
+					}
 					foreach ( $personalTools as $key => $item ) {
 						echo $this->makeListItem( $key, $item );
 					}
