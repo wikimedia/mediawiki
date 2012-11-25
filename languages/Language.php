@@ -172,19 +172,24 @@ class Language {
 	);
 
 	/**
-	 * Get a cached language object for a given language code
+	 * Get a cached or new language object for a given language code
 	 * @param $code String
 	 * @return Language
 	 */
 	static function factory( $code ) {
-		if ( !isset( self::$mLangObjCache[$code] ) ) {
-			if ( count( self::$mLangObjCache ) > 10 ) {
-				// Don't keep a billion objects around, that's stupid.
-				self::$mLangObjCache = array();
-			}
-			self::$mLangObjCache[$code] = self::newFromCode( $code );
-		}
-		return self::$mLangObjCache[$code];
+		global $wgLangObjCacheSize;
+
+		// get the language object to process
+		$langObj = isset( self::$mLangObjCache[$code] )
+			? self::$mLangObjCache[$code]
+			: self::newFromCode( $code );
+
+		// merge the language object in to get it up front in the cache
+		self::$mLangObjCache = array_merge( array( $code => $langObj ), self::$mLangObjCache );
+		// get rid of the oldest ones in case we have an overflow
+		self::$mLangObjCache = array_slice( self::$mLangObjCache, 0, $wgLangObjCacheSize, true );
+
+		return $langObj;
 	}
 
 	/**
