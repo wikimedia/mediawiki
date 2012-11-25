@@ -291,6 +291,7 @@ $messages = array(
 'namespaces' => 'Maeneo ya wiki',
 'variants' => 'Vibadala',
 
+'navigation-heading' => 'Urambazaji',
 'errorpagetitle' => 'Hitilafu',
 'returnto' => 'Rudia $1.',
 'tagline' => 'Kutoka {{SITENAME}}',
@@ -527,6 +528,7 @@ Sababu zilizotolewa ni "\'\'$2\'\'".',
 'logouttext' => "'''Umetoka kwenye akaunti yako.'''
 
 Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza <span class='plainlinks'>[$1 kuingia tena]</span> kwenye akaunti yako. Kumbuka kwamba kurasa nyingine zitaendelea kuonekana kana kwamba bado hujatoka kwenye akaunti yako, hadi utakaposafisha kache ya kivinjari.",
+'welcomeuser' => 'Karibu, $1!',
 'welcomecreation' => '== Karibu, $1! ==
 Ushafunguliwa akaunti yako tayari.
 Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',

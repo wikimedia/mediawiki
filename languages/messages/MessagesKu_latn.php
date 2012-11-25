@@ -220,6 +220,7 @@ $messages = array(
 'category-file-count' => '{{PLURAL:$2|Di vê kategoriyê de tenê ev dane heye:|Di vê kategoriyê de {{PLURAL:$2|daneyek heye|$2 dane hene}}. Jêr {{PLURAL:$1|daneyek tê|$1 dane tên}} nîşandan.}}',
 'category-file-count-limited' => 'Ev {{PLURAL:$1|daneya|$1 daneyên}} jêr di vê kategoriyê de ne.',
 'listingcontinuesabbrev' => 'dewam',
+'noindex-category' => 'Rûpelên bênimînok',
 'broken-file-category' => 'Rûpelên bi girêdanên xerabûyî',
 
 'about' => 'Der barê',

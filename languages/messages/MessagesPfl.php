@@ -32,6 +32,13 @@ $messages = array(
 'thursday' => 'Dunnaschdaach',
 'friday' => 'Fraidaach',
 'saturday' => 'Somschdaach',
+'sun' => 'Su',
+'mon' => 'Mo',
+'tue' => 'Di',
+'wed' => 'Mi',
+'thu' => 'Du',
+'fri' => 'Fr',
+'sat' => 'So',
 'january' => 'Jänner',
 'february' => 'Fewwer',
 'march' => 'März',
@@ -95,6 +102,7 @@ $messages = array(
 'vector-action-move' => 'Verschiewe',
 'vector-action-protect' => 'Schitze',
 'vector-view-edit' => 'Bearwaide',
+'vector-view-history' => 'Dadaigschischd',
 'vector-view-view' => 'Lese',
 'actions' => 'Agzione',
 
@@ -140,7 +148,8 @@ $messages = array(
 'aboutpage' => 'Project:Iwwer',
 'copyright' => 'Was do drin schdeht isch unner $1 verfiechbar.',
 'copyrightpage' => '{{ns:project}}:Urhewerrecht',
-'currentevents' => 'Was grad so bassiert isch',
+'currentevents' => 'Was grad so bassierd isch',
+'currentevents-url' => 'Brojegd: Leschdi Eraigniss',
 'disclaimers' => 'Hafdungsausschluß',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Hilf fer s Bearwaide',
@@ -389,7 +398,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'recentchangeslinked-to' => 'Zaisch Ännerunge uff Saide, wu do her verlinkt sinn',
 
 # Upload
-'upload' => 'Hochlade',
+'upload' => 'Nufflade',
 'uploadbtn' => 'Datei hochlade',
 'uploadlogpage' => 'Dateie-Logbuch',
 'savefile' => 'Datei schbeichere',
@@ -722,11 +731,11 @@ Du kannscht e Grund in dr Zammfassung aagewwe',
 'ilsubmit' => 'Such',
 
 # Bad image list
-'bad_image_list' => 'Format:
+'bad_image_list' => 'Formad:
 
-nur Zaile, die wu mit eme * aafange werre bericksichticht.
-De erscht Link muss e Link zu ere unerwinschte Datei sai.
-Annere Links in der glaiche Zail werre als Ausnahme behannelt, d. h. Saide, wu d Datei drin vorkumme därft.',
+nur Zaile, wu mid eme * aafange werre bericksichdischd.
+De erschd Link muss e Link zu ere unerwinschd Dadei sai.
+Annere Links in der glaiche Zail werre als Ausnahme behanneld, d. h. Saide, wu d Dadei drin vorkumme därfd.',
 
 # Metadata
 'metadata' => 'Metadata',

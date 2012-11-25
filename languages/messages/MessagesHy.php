@@ -14,6 +14,7 @@
  * @author Teak
  * @author Togaed
  * @author Vacio
+ * @author Vadgt
  * @author Xelgen
  * @author Համլետ
  * @author לערי ריינהארט
@@ -567,7 +568,7 @@ $1',
 'nstab-special' => 'Սպասարկող էջ',
 'nstab-project' => 'Նախագծի էջ',
 'nstab-image' => 'Նիշք',
-'nstab-mediawiki' => 'Ուղերձ',
+'nstab-mediawiki' => 'Հաղորդագրություն',
 'nstab-template' => 'Կաղապար',
 'nstab-help' => 'Օգնության էջ',
 'nstab-category' => 'Կատեգորիա',
@@ -677,17 +678,17 @@ $2',
 'yourdomainname' => 'Ձեր դոմենը.',
 'password-change-forbidden' => 'Այս վիքիում չեք կարող փոխել գաղտնաբառ։',
 'externaldberror' => 'Տեղի է ունեցել վավերացման արտաքին տվյալների բազայի սխալ, կամ դուք չունեք բավարար իրավունքներ ձեր արտաքին հաշվի փոփոխման համար։',
-'login' => 'Մտնել',
+'login' => 'Մտնել համակարգ',
 'nav-login-createaccount' => 'Մտնել / Գրանցվել',
 'loginprompt' => '{{SITENAME}} մուտք գործելու համար հարկավոր է քուքիները թույլատրել։',
 'userlogin' => 'Մտնել / Գրանցվել',
 'userloginnocreate' => 'Մտնել',
-'logout' => 'Ելնել',
+'logout' => 'Դուրս գալ համակարգից',
 'userlogout' => 'Ելնել',
 'notloggedin' => 'Դուք չեք մտել համակարգ',
 'nologin' => "Դեռևս չե՞ք գրանցվել։ '''$1'''։",
 'nologinlink' => 'Ստեղծեք մասնակցային հաշիվ',
-'createaccount' => 'Ստեղծել նոր մասնակցային հաշիվ',
+'createaccount' => 'Ստեղծել նոր հաշիվ',
 'gotaccount' => "Դուք արդեն գրանցվա՞ծ եք։ '''$1'''։",
 'gotaccountlink' => 'Մուտք գործեք համակարգ',
 'userlogin-resetlink' => 'Մոռացե՞լ եք Ձեր լոգին տվյալները։',
@@ -774,6 +775,7 @@ $2',
 # Special:PasswordReset
 'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
 'passwordreset-username' => 'Մասնակցի անուն.',
+'passwordreset-email' => 'Էլ-փոստի հասցեն՝',
 'passwordreset-emailelement' => 'Մասնակցային անուն. $1
 Ժամանակավոր գաղտնաբառ. $2',
 'passwordreset-emailsent' => 'Ուղարկվեց հիշեցնող էլ․ նամակ։',
@@ -786,7 +788,7 @@ $2',
 'changeemail-oldemail' => 'Ներկա էլ․ հասցե․',
 'changeemail-newemail' => 'Նոր էլ․ հասցե․',
 'changeemail-none' => '(ոչ մի)',
-'changeemail-submit' => 'Խմբագրել էլ․ հասցեն',
+'changeemail-submit' => 'Փոխել էլ․ հասցեն',
 'changeemail-cancel' => 'Չեղարկել',
 
 # Edit page toolbar
@@ -1392,6 +1394,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filename' => 'Նիշքի անվանում',
 'filedesc' => 'Ամփոփում',
 'fileuploadsummary' => 'Նկարագրություն՝',
+'filereuploadsummary' => 'Ֆայլի Փոփոխություները:',
 'filestatus' => 'Հեղինակային իրավունքի կարգավիճակ.',
 'filesource' => 'Աղբյուր՝',
 'uploadedfiles' => 'Բեռնված նիշքեր',
@@ -1712,6 +1715,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'usermaildisabledtext' => 'Այս վիքիում չեք կարղ էլ․ նամակ ուղարկել այլ մասնակիցների',
 'noemailtitle' => 'Չկա էլ-փոստի հասցե',
 'noemailtext' => 'Այս մասնակիցը չի նշել էլ-փոստի հասցե կամ նախընտրել է չստանալ էլ-նամակներ այլ մասնակիցներից։',
+'emailusername' => 'Մասնակցի անուն՝',
 'email-legend' => 'Ուղարկել էլ․ նամակ {{SITENAME}}յի այլ մասնակցի',
 'emailfrom' => 'Ումից.',
 'emailto' => 'Ում.',
@@ -2170,6 +2174,7 @@ $1',
 'export-submit' => 'Արտածել',
 'export-addcattext' => 'Ավելացնել էջեր կատեգորիայից.',
 'export-addcat' => 'Ավելացնել',
+'export-addns' => 'Ավելացնել',
 'export-download' => 'Առաջարկել հիշել որպես նիշք',
 
 # Namespace 8 related
@@ -2180,6 +2185,9 @@ $1',
 'allmessagestext' => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
 Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
+'allmessages-filter-all' => 'Բոլորը',
+'allmessages-language' => 'Լեզու',
+'allmessages-filter-submit' => 'Անցնել',
 
 # Thumbnails
 'thumbnail-more' => 'Ընդարձակել',
@@ -2479,11 +2487,13 @@ $3
 'unit-pixel' => ' փիքսել',
 
 # action=purge
-'confirm_purge_button' => 'OK',
+'confirm_purge_button' => 'ԼԱՎ',
 'confirm-purge-top' => 'Մաքրե՞լ այս էջի քեշը։',
 
 # action=watch/unwatch
+'confirm-watch-button' => 'ԼԱՎ',
 'confirm-watch-top' => 'Ավելացնե՞լ ձեր հսկացանկին',
+'confirm-unwatch-button' => 'ԼԱՎ',
 'confirm-unwatch-top' => 'Հեռացնե՞լ ձեր հսկացանկից։',
 
 # Multipage image navigation

@@ -309,6 +309,7 @@ $messages = array(
 'namespaces' => 'Spatios de nomines',
 'variants' => 'Variantes',
 
+'navigation-heading' => 'Menu de navigation',
 'errorpagetitle' => 'Error',
 'returnto' => 'Retornar a $1.',
 'tagline' => 'De {{SITENAME}}',
@@ -3892,9 +3893,9 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'logentry-move-move_redir-noredirect' => '$1 renominava le pagina $3 a $4, superscribente un redirection sin lassar un nove redirection',
 'logentry-patrol-patrol' => '$1 marcava le version $4 del pagina $3 como patruliate',
 'logentry-patrol-patrol-auto' => '$1 automaticamente marcava le version $4 del pagina $3 como patruliate',
-'logentry-newusers-newusers' => '$1 creava un conto de usator',
-'logentry-newusers-create' => '$1 creava un conto de usator',
-'logentry-newusers-create2' => '$1 creava un conto de usator $3',
+'logentry-newusers-newusers' => 'Le conto de usator $1 ha essite create',
+'logentry-newusers-create' => 'Le conto de usator $1 ha essite create',
+'logentry-newusers-create2' => 'Le conto de usator $3 ha essite create per $1',
 'logentry-newusers-autocreate' => 'Le conto $1 ha essite create automaticamente',
 'newuserlog-byemail' => 'contrasigno inviate per e-mail',
 

@@ -937,7 +937,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Зи вилив хуьнин сиягь',
-'mywatchlist' => 'Hizetun',
+'mywatchlist' => 'Зи вилив хюнин сиягь',
 'watchlistfor2' => '$1 $2 патал',
 'addedwatchtext' => "Чар \"[[:\$1]]\" тун хъувунай куьн [[Special:Watchlist|watchlist]].                                                                                                             Къвезмай дегишунар и чарчел ва галкlанавай чарчихъ ихтилатар жеда инна, ахъатдава \"сакlус яцlу''''' инна [[Special:RecentChanges|list of recent changes]] гьам кьизил авун.",
 'removedwatchtext' => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',
@@ -1024,7 +1024,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Уртахди кутур крар',
 'contributions-title' => '$1 уртахди кутур крар',
-'mycontris' => 'Ktur paj',
+'mycontris' => 'За кутур кар',
 'contribsub2' => '($1)-ин кутур пай  ($2)',
 'uctop' => '(вини кьил)',
 'month' => ' Вацралай (ва адалай вилик)',
@@ -1055,7 +1055,7 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 рахкъурунар',
 'whatlinkshere-hidetrans' => '$1 кутунар',
 'whatlinkshere-hidelinks' => '$1 элячlунар',
-'whatlinkshere-hideimages' => '$1 fajlrin eläçun',
+'whatlinkshere-hideimages' => '$1 шикилриз элячӀунар',
 'whatlinkshere-filters' => 'Куьзунагар',
 
 # Block/unblock

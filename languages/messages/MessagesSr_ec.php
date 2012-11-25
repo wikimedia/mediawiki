@@ -4402,4 +4402,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|векова}}',
 'duration-millennia' => '$1 {{PLURAL:$1|миленијум|миленијума|миленијума}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'разговор',
 );

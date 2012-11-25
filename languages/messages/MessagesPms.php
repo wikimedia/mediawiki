@@ -208,6 +208,7 @@ $messages = array(
 'namespaces' => 'Spassi nominaj',
 'variants' => 'Variant',
 
+'navigation-heading' => 'Lista ëd navigassion',
 'errorpagetitle' => 'Eror',
 'returnto' => 'Torna andré a $1.',
 'tagline' => 'Da {{SITENAME}}.',
@@ -3534,7 +3535,7 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'watchlistedit-raw-submit' => 'Agiorné la Lista',
 'watchlistedit-raw-done' => "La lista ëd lòn ch'as ten sot-euj a l'é stàita agiornà.",
 'watchlistedit-raw-added' => "{{PLURAL:$1|A l'é|As son}} giontasse {{PLURAL:$1|1 tìtol|$1 tìtoj}}:",
-'watchlistedit-raw-removed' => "A {{PLURAL:$1|l'é|son}} gavasse via {{PLURAL:$1|1 tìtol|$1 tìtoj}}:",
+'watchlistedit-raw-removed' => "{{PLURAL:$1|A l'é|As son}} gavasse via {{PLURAL:$1|1 tìtol|$1 tìtoj}}:",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'S-ciairé le modifiché amportante',
@@ -3722,9 +3723,9 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'logentry-move-move_redir-noredirect' => "$1 a l'ha tramudà la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
 'logentry-patrol-patrol' => "$1 a l'ha marcà la revision $4 dla pàgina $3 'me controlà",
 'logentry-patrol-patrol-auto' => "$1 a l'ha marcà automaticament la revision $4 dla pàgina $3 'me controlà",
-'logentry-newusers-newusers' => '$1 creà un cont utent',
-'logentry-newusers-create' => '$1 creà un cont utent',
-'logentry-newusers-create2' => '$1 creà un cont utent $3',
+'logentry-newusers-newusers' => "Ël cont utent $1 a l'é stàit creà",
+'logentry-newusers-create' => "Ël cont utent $1 a l'é stàit creà",
+'logentry-newusers-create2' => "Ël cont utent $3 a l'é stàit creà da $1",
 'logentry-newusers-autocreate' => "Ël cont $1 a l'é stàit creà an automàtich",
 'newuserlog-byemail' => 'ciav spedìa për pòsta eletrònica',
 

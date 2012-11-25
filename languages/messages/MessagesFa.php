@@ -1760,7 +1760,7 @@ $1",
 'rightslogentry-autopromote' => 'به طور خودکار از $2 به $3 ارتقا یافت',
 'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
 'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
-'logentry-rights-autopromote' => '$1به طور خودکار از $4  به $5 ارتقا یافت',
+'logentry-rights-autopromote' => '$1 به طور خودکار از $4 به $5 ارتقا یافت',
 'rightsnone' => '(هیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"

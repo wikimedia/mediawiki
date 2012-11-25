@@ -520,6 +520,7 @@ $messages = array(
 'namespaces' => 'Naamruimten',
 'variants' => 'Varianten',
 
+'navigation-heading' => 'Navigatiemenu',
 'errorpagetitle' => 'Fout',
 'returnto' => 'Terug naar $1.',
 'tagline' => 'Uit {{SITENAME}}',
@@ -4136,9 +4137,9 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-move-move_redir-noredirect' => '$1 heeft pagina $3 naar $4 hernoemd over een doorverwijzing zonder een doorverwijzing achter te laten',
 'logentry-patrol-patrol' => '$1 heeft versie $4 van pagina $3 als gecontroleerd gemarkeerd',
 'logentry-patrol-patrol-auto' => '$1 heeft versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
-'logentry-newusers-newusers' => '$1 heeft een gebruiker aangemaakt',
-'logentry-newusers-create' => '$1 is als gebruiker aangemaakt',
-'logentry-newusers-create2' => '$1 heeft een gebruiker $3 aangemaakt',
+'logentry-newusers-newusers' => 'Gebruiker $1 is aangemaakt',
+'logentry-newusers-create' => 'Gebruiker $1 is aangemaakt',
+'logentry-newusers-create2' => 'Gebruiker $3  is aangemaakt door $1',
 'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
 'newuserlog-byemail' => 'wachtwoord is verzonden per e-mail',
 

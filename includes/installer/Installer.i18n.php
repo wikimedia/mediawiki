@@ -4219,6 +4219,7 @@ $messages['diq'] = array(
 	'config-admin-name' => 'Namey şıma:',
 	'config-admin-password' => 'Parola:',
 	'config-admin-password-confirm' => 'Fına parola:',
+	'config-admin-email' => 'Adresa e-postey:',
 	'config-profile-private' => 'Bexse wiki',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by' => 'Creative Commons Attribution',

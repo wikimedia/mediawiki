@@ -487,6 +487,7 @@ $messages = array(
 'namespaces' => 'Namnrymder',
 'variants' => 'Varianter',
 
+'navigation-heading' => 'Navigeringsmeny',
 'errorpagetitle' => 'Fel',
 'returnto' => 'Tillbaka till $1.',
 'tagline' => 'Från {{SITENAME}}',
@@ -3133,6 +3134,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-default-sort' => 'Standardsorteringsnyckel',
 'pageinfo-length' => 'Sidlängd (i byte)',
 'pageinfo-article-id' => 'Sid-ID',
+'pageinfo-language' => 'Språk för sidinnehåll',
 'pageinfo-robot-policy' => 'Sökmotordirektiv',
 'pageinfo-robot-index' => 'Indexerbar',
 'pageinfo-robot-noindex' => 'Inte indexerbar',
@@ -3180,6 +3182,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'markedaspatrollederror' => 'Kan inte markera som patrullerad',
 'markedaspatrollederrortext' => 'Det går inte att markera som patrullerad utan att ange version.',
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
+'markedaspatrollednotify' => 'Denna ändring till $1 har markerats som patrullerad.',
 'markedaspatrollederrornotify' => 'Markering som patrullerad misslyckades.',
 
 # Patrol log

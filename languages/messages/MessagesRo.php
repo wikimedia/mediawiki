@@ -3971,7 +3971,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-patrol-patrol-auto' => '$1 a marcat automat versiunea $4 a paginii $3 ca patrulată',
 'logentry-newusers-newusers' => 'Contul de utilizator $1 a fost creat',
 'logentry-newusers-create' => 'Contul de utilizator $1 a fost creat',
-'logentry-newusers-create2' => 'Contul de utilizator $1 a fost creat de către $1',
+'logentry-newusers-create2' => 'Contul de utilizator $3 a fost creat de către $1',
 'logentry-newusers-autocreate' => 'Contul $1 a fost creat în mod automat',
 'newuserlog-byemail' => 'parola trimisă prin e-mail',
 

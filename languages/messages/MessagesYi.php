@@ -3513,6 +3513,9 @@ $5
 'hebrew-calendar-m11-gen' => 'אב',
 'hebrew-calendar-m12-gen' => 'אלול',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|רעדן]])',
+
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'ווארענונג:\'\'\' גרונט סארטשליסל "$2" פֿאָרט איבערן פֿריערדיגן גרונט סארטשליסל "$1".',
 
@@ -3659,9 +3662,9 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 האט באוועגט $3 צו $4 אריבער א ווייטערפירונג אן לאזן א  ווייטערפירונג',
 'logentry-patrol-patrol' => '$1 האט מארקירט רעוויזיע $4 פון בלאט $3 ווי קאנטראלירט',
 'logentry-patrol-patrol-auto' => '$1 האט אויטאמאטיש מארקירט רעוויזיע $4 פון בלאט $3 ווי קאנטראלירט',
-'logentry-newusers-newusers' => '$1 האט געשאפן א באניצער קאנטע',
-'logentry-newusers-create' => '$1 האט געשאפן א באניצער קאנטע',
-'logentry-newusers-create2' => '$1 האט געשאפן א באניצער קאנטע $3',
+'logentry-newusers-newusers' => 'באניצער קאנטע $1 געשאפן געווארן',
+'logentry-newusers-create' => 'באניצער קאנטע $1 געשאפן געווארן',
+'logentry-newusers-create2' => 'באניצער קאנטע $1 געשאפן געווארן דורך $3',
 'logentry-newusers-autocreate' => 'קאנטע $1 באשאפן אויטאמאטיש',
 'newuserlog-byemail' => 'פאַסווארט געשיקט דורך ע-פאסט',
 
