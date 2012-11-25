@@ -371,13 +371,17 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
+		$context = RequestContext::newExtraneousContext( Title::newMainPage() );
+		$context->setUser( $user );
 		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
-			if ( $page // not null
-				&& $page->isListed()
-				&& ( !$page->isRestricted() || $page->userCanExecute( $user ) )
-			) {
-				$pages[$name] = $page;
+			if ( $page ) { // not null
+				$page->setContext( $context );
+				if ( $page->isListed()
+					&& ( !$page->isRestricted() || $page->userCanExecute( $user ) )
+				) {
+					$pages[$name] = $page;
+				}
 			}
 		}
 		return $pages;
