@@ -85,6 +85,9 @@ production.
   title parameter was specified.
 * (bug 42410) API action=edit now returns correct timestamp for the new edit.
 * (bug 14901) Email notification mistakes log action for new page creation.
+  Enotif no longer sends "page has been created" notifications for some log actions.
+  The following events now have a correct message: page creation, deletion,
+  move, restore (undeletion), change (edit).
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt.
