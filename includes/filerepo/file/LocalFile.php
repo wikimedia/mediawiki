@@ -974,9 +974,15 @@ class LocalFile extends File {
 
 		if ( !$props ) {
 			wfProfileIn( __METHOD__ . '-getProps' );
-			$props = FileBackend::isStoragePath( $srcPath )
-				? $this->repo->getFileProps( $srcPath )
-				: FSFile::getPropsFromPath( $srcPath );
+
+			if (
+				$this->repo->isVirtualUrl ( $srcPath )  ||
+				FileBackend::isStoragePath( $srcPath )
+			) {
+				$props = $this->repo->getFileProps( $srcPath );
+			} else {
+				$props = FSFile::getPropsFromPath( $srcPath );
+			}
 			wfProfileOut( __METHOD__ . '-getProps' );
 		}
 
