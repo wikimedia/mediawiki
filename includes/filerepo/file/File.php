@@ -1745,6 +1745,18 @@ abstract class File {
 	}
 
 	/**
+	 * @return Array HTTP header name/value map to use for HEAD/GET request responses
+	 */
+	function getStreamHeaders() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getStreamHeaders( $this->getMetadata() );
+		} else {
+			return array();
+		}
+	}
+
+	/**
 	 * @return string
 	 */
 	function getLongDesc() {
