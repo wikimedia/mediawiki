@@ -1,4 +1,3 @@
-= MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
@@ -17,8 +16,8 @@ production.
 
 === New features in 1.21 ===
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
-* Added ContentHandler facility to allow extensions to support other content than wikitext.
-  See docs/contenthandler.txt for details.
+* Added ContentHandler facility to allow extensions to support other content
+  than wikitext. See docs/contenthandler.txt for details.
 * New feature was developed for showing high-DPI thumbnails for high-DPI mobile
   and desktop displays (configurable with $wgResponsiveImages).
 * Added new backend to represent and store information about sites and site
@@ -29,9 +28,10 @@ production.
   searches with the api in miser mode for deleted files.
 * Add initial and programmatic sorting for tablesorter.
 * Add the event "sortEnd.tablesorter", triggered after sorting has completed.
-* The Job system was refactored to allow for different backing stores for queues
-  as well as cross-wiki access to queues, among other things. The schema for the
-  DB queue was changed to support better concurrency and reduce deadlock errors.
+* The Job system was refactored to allow for different backing stores for
+  queues as well as cross-wiki access to queues, among other things. The schema
+  for the DB queue was changed to support better concurrency and reduce
+  deadlock errors.
 * Added ApiQueryORM class to facilitate creation of query API modules based on
   tables that have a corresponding ORMTable class.
 * (bug 40876) Icon for PSD (Adobe Photoshop) file types.
@@ -54,10 +54,10 @@ production.
   recentchanges table.
 * (bug 32951) Do not register internal externals with absolute protocol,
   when server has relative protocol.
-* (bug 39005) When purging proxies listed in $wgSquidServers using HTTP PURGE 
-  method requests, we now send a Host header by default, for Varnish 
-  compatibility. This also works with Squid in reverse-proxy mode. If you wish 
-  to support Squid configured in forward-proxy mode, set 
+* (bug 39005) When purging proxies listed in $wgSquidServers using HTTP PURGE
+  method requests, we now send a Host header by default, for Varnish
+  compatibility. This also works with Squid in reverse-proxy mode. If you wish
+  to support Squid configured in forward-proxy mode, set
   $wgSquidPurgeUseHostHeader to false.
 * (bug 37020) sql.php with readline eats semicolon.
 * (bug 11748) Properly handle optionally-closed HTML tags when Tidy is
@@ -68,14 +68,16 @@ production.
   caught during API execution.
 * (bug 37963) Fixed loading process for user options.
 * (bug 26995) Update filename field on Upload page after having sanitized it.
-* (bug 41793) Contribution links to users with 0 edits on Special:ListUsers didn't
-  show up red.
-* (bug 41899) A PHP notice no longer occurs when using the "rvcontinue" API parameter.
+* (bug 41793) Contribution links to users with 0 edits on Special:ListUsers
+  didn't show up red.
+* (bug 41899) A PHP notice no longer occurs when using the "rvcontinue" API
+  parameter.
 * (bug 42036) Account creation emails now contain canonical (not
   protocol-relative) URLs.
 * (bug 41990) Fix regression: API edit with redirect=true and lacking
   starttimestamp and basetimestamp should not cause an edit conflict.
-* (bug 41706) EditPage: Preloaded page should be converted if possible and needed.
+* (bug 41706) EditPage: Preloaded page should be converted if possible and
+  needed.
 * (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
   actually sorted.
 * (bug 2865)  User interface HTML elements don't use lang attribute
@@ -85,6 +87,9 @@ production.
   title parameter was specified.
 * (bug 42410) API action=edit now returns correct timestamp for the new edit.
 * (bug 14901) Email notification mistakes log action for new page creation.
+  Enotif no longer sends "page has been created" notifications for some log
+  actions. The following events now have a correct message: page creation,
+  deletion, move, restore (undeletion), change (edit).
 * (bug 457) In the sidebar of Vector, CologneBlue, Monobook, and Monobook-based
   skins, the heading levels have been changed from (variously per skin)
   <h4>, <h5> or <h6> to only <h3>s, with a <h2> hidden heading above them.
@@ -92,12 +97,15 @@ production.
   will require updates to your site's CSS or JS.
 
 === API changes in 1.21 ===
-* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt.
-* action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
-  page content; See docs/contenthandler.txt for details.
+* prop=revisions can now report the contentmodel and contentformat.
+  See docs/contenthandler.txt.
+* action=edit and action=parse now support contentmodel and contentformat
+  parameters to control the interpretation of page content.
+  See docs/contenthandler.txt for details.
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 * (bug 40111) Disable minor edit for page/section creation by API.
-* (bug 41042) Revert change to action=parse&page=... behavior when the page does not exist.
+* (bug 41042) Revert change to action=parse&page=... behavior when the page
+  does not exist.
 
 === Languages updated in 1.21 ===
 
