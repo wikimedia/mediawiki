@@ -233,8 +233,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider dataMakeContent
 	 */
 	public function testMakeContent( $data, $title, $modelId, $format, $expectedModelId, $expectedNativeData, $shouldFail ) {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers;
-
 		$title = Title::newFromText( $title );
 
 		try {

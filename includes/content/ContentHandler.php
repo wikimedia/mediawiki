@@ -712,8 +712,6 @@ abstract class ContentHandler {
 	 * @return string An appropriate auto-summary, or an empty string.
 	 */
 	public function getAutosummary( Content $oldContent = null, Content $newContent = null, $flags ) {
-		global $wgContLang;
-
 		// Decide what kind of auto-summary is needed.
 
 		// Redirect auto-summaries
