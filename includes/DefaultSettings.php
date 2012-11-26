@@ -6204,20 +6204,6 @@ $wgCompiledFiles = array();
 
 /** @} */ # End of HipHop compilation }
 
-
-/************************************************************************//**
- * @name   Mobile support
- * @{
- */
-
-/**
- * Name of the class used for mobile device detection, must be inherited from
- * IDeviceDetector.
- */
-$wgDeviceDetectionClass = 'DeviceDetection';
-
-/** @} */ # End of Mobile support }
-
 /************************************************************************//**
  * @name   Miscellaneous
  * @{
