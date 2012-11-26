@@ -2188,11 +2188,7 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 
 'enotif_mailer' => '{{SITENAME}} E-Mail-Informatiounssystem',
 'enotif_reset' => 'All Säiten als besicht markéieren',
-'enotif_newpagetext' => 'Dëst ass eng nei Säit.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
-'changed' => 'geännert',
-'created' => 'gemaach',
-'enotif_subject' => '[{{SITENAME}}] D\'Säit "$PAGETITLE" gouf vum $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',

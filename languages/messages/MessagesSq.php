@@ -2215,11 +2215,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 
 'enotif_mailer' => 'Postieri Njoftues i {{SITENAME}}',
 'enotif_reset' => 'Shëno të gjitha faqet e vizituara',
-'enotif_newpagetext' => 'Kjo është një faqe e re.',
 'enotif_impersonal_salutation' => 'Përdorues i {{SITENAME}}',
-'changed' => 'ndryshuar',
-'created' => 'u krijua',
-'enotif_subject' => '{{SITENAME}} faqja $PAGETITLE u $CHANGEDORCREATED prej $PAGEEDITOR',
 'enotif_lastvisited' => 'Shikoni $1 për të gjitha ndryshimet që prej vizitës tuaj të fundit.',
 'enotif_lastdiff' => 'Shikoni $1 për ndryshime.',
 'enotif_anon_editor' => 'përdorues anonim $1',

@@ -359,6 +359,7 @@ $messages = array(
 'namespaces' => 'Ruang nama',
 'variants' => 'Kelainan',
 
+'navigation-heading' => 'Menu pandu arah',
 'errorpagetitle' => 'Ralat',
 'returnto' => 'Kembali ke $1.',
 'tagline' => 'Daripada {{SITENAME}}.',
@@ -602,9 +603,12 @@ Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 'logouttext' => "'''Anda telah log keluar.'''
 
 Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh <span class='plainlinks'>[$1 log masuk sekali lagi]</span> sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
+'welcomeuser' => 'Selamat datang, $1!',
 'welcomecreation' => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutamaan {{SITENAME}}]] anda.',
+'welcomecreation-agora' => 'Akaun anda telah dibuka.
+Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]].',
 'yourname' => 'Nama pengguna:',
 'yourpassword' => 'Kata laluan:',
 'yourpasswordagain' => 'Ulangi kata laluan:',
@@ -1721,6 +1725,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-notsame' => 'Satu fail yang tidak seiras sudah wujud di $1.',
 'backend-fail-invalidpath' => '$1 bukan laluan storan yang sah.',
 'backend-fail-delete' => 'Fail $1 tidak dapat dihapuskan.',
+'backend-fail-describe' => 'Metadata untuk fail "$1" tidak dapat diubah.',
 'backend-fail-alreadyexists' => 'Fail $1 sudah wujud.',
 'backend-fail-store' => 'Fail $1 tidak dapat distorkan di $2.',
 'backend-fail-copy' => 'Fail $1 tidak dapat disalin ke $2.',
@@ -2230,11 +2235,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 
 'enotif_mailer' => 'Sistem Pemberitahuan {{SITENAME}}',
 'enotif_reset' => 'Tandakan semua laman sebagai telah dikunjungi',
-'enotif_newpagetext' => 'Ini adalah sebuah laman baru.',
 'enotif_impersonal_salutation' => 'Pengguna {{SITENAME}}',
-'changed' => 'diubah',
-'created' => 'dicipta',
-'enotif_subject' => 'Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED oleh $PAGEEDITOR',
 'enotif_lastvisited' => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir anda.',
 'enotif_lastdiff' => 'Rujuk $1 untuk melihat perubahan ini.',
 'enotif_anon_editor' => 'pengguna tanpa nama $1',
@@ -3846,9 +3847,9 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-move-move_redir-noredirect' => '$1 mengalihkan laman $3 ke $4 pada satu lencongan tanpa meninggalkan lencongan',
 'logentry-patrol-patrol' => '$1 menandakan semakan $4 daripada laman $3 sebagai dironda',
 'logentry-patrol-patrol-auto' => '$1 menandakan semakan $4 daripada laman $3 sebagai dironda secara automatik',
-'logentry-newusers-newusers' => '$1 membuka akaun pengguna',
-'logentry-newusers-create' => '$1 membuka akaun pengguna',
-'logentry-newusers-create2' => '$1 membuka akaun pengguna $3',
+'logentry-newusers-newusers' => 'Akaun pengguna $1 dibuka',
+'logentry-newusers-create' => 'Akaun pengguna $1 dibuka',
+'logentry-newusers-create2' => 'Akaun pengguna $3 dibuka oleh $1',
 'logentry-newusers-autocreate' => 'Akaun $1 dibuka secara automatik',
 'newuserlog-byemail' => 'kata laluan dihantar melalui e-mel',
 

@@ -2285,11 +2285,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 
 'enotif_mailer' => '{{SITENAME}} obaviještenje o pošti',
 'enotif_reset' => 'Označi sve strane kao posjećene',
-'enotif_newpagetext' => 'Ovo je novi članak.',
 'enotif_impersonal_salutation' => '{{SITENAME}} korisnik',
-'changed' => 'promijenjena',
-'created' => 'napravljena',
-'enotif_subject' => '{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED od strane $PAGEEDITOR',
 'enotif_lastvisited' => 'Pogledajte $1 za sve izmjene od vaše posljednje posjete.',
 'enotif_lastdiff' => 'Vidi $1 da pregledate ovu promjenu.',
 'enotif_anon_editor' => 'anonimni korisnik $1',

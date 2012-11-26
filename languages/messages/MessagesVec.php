@@ -2056,11 +2056,7 @@ I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fo
 
 'enotif_mailer' => 'Sistema de notifica via e-mail de {{SITENAME}}',
 'enotif_reset' => 'Segna tute le pagine come zà viste',
-'enotif_newpagetext' => 'Sta qua la xe na nova pàxena.',
 'enotif_impersonal_salutation' => 'Utente de {{SITENAME}}',
-'changed' => 'canbià',
-'created' => 'creà',
-'enotif_subject' => 'La pagina $PAGETITLE de {{SITENAME}} la xe stà $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited' => 'Varda $1 par tute le modifiche da la to ultima visita.',
 'enotif_lastdiff' => 'Varda $1 par visualizar la modifica.',
 'enotif_anon_editor' => 'utente anonimo $1',

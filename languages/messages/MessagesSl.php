@@ -2270,11 +2270,7 @@ Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tuk
 
 'enotif_mailer' => 'Obvestilni poštar {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'enotif_reset' => 'Označi vse strani kot prebrane',
-'enotif_newpagetext' => 'To je nova stran.',
 'enotif_impersonal_salutation' => 'Uporabnik {{GRAMMAR:rodilnik|{{SITENAME}}}}',
-'changed' => 'spremenil',
-'created' => 'ustvaril',
-'enotif_subject' => 'Stran {{GRAMMAR:rodilnik|{{SITENAME}}}} $PAGETITLE je $CHANGEDORCREATED $PAGEEDITOR',
 'enotif_lastvisited' => 'Za spremembe po vašem zadnjem obisku glejte $1.',
 'enotif_lastdiff' => 'Glej $1 za to spremembo.',
 'enotif_anon_editor' => 'brezimni uporabnik $1',

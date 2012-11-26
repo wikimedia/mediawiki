@@ -2443,11 +2443,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 
 'enotif_mailer' => '{{SITENAME}}-E-Mail-Benachrichtigungsdienst',
 'enotif_reset' => 'Alle Seiten als besucht markieren',
-'enotif_newpagetext' => 'Das ist eine neue Seite.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
-'changed' => 'geändert',
-'created' => 'erstellt',
-'enotif_subject' => '[{{SITENAME}}] Die Seite „$PAGETITLE“ wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Alle Änderungen auf einen Blick: $1',
 'enotif_lastdiff' => 'Siehe $1 nach dieser Änderung.',
 'enotif_anon_editor' => 'Anonymer Benutzer $1',

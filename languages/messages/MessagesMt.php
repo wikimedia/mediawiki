@@ -2202,11 +2202,7 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 
 'enotif_mailer' => "Sistema ta' notifikazzjoni bl-użu tal-posta elettronika fuq {{SITENAME}}",
 'enotif_reset' => 'Immarka l-paġni kollha bħala diġà viżitati',
-'enotif_newpagetext' => 'Din hija paġna ġdida.',
 'enotif_impersonal_salutation' => "Utent ta' {{SITENAME}}",
-'changed' => 'modifikata',
-'created' => 'inħolqot',
-'enotif_subject' => 'Il-Paġna $PAGETITLE ta\' {{SITENAME}} ġiet $CHANGEDORCREATED minn $PAGEEDITOR',
 'enotif_lastvisited' => 'Ara $1 għal modifiki kollha mill-aħħar żjara.',
 'enotif_lastdiff' => 'Ara $1 biex tara din l-modifika.',
 'enotif_anon_editor' => 'utent anonimu $1',

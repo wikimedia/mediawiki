@@ -1497,11 +1497,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'unwatching' => 'Decustodiens...',
 
 'enotif_reset' => 'Indicare omnes paginas visitatas',
-'enotif_newpagetext' => 'Haec pagina nova est.',
 'enotif_impersonal_salutation' => 'Usor {{grammar:genitive|{{SITENAME}}}}',
-'changed' => 'mutata',
-'created' => 'creata',
-'enotif_subject' => 'Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR $CHANGEDORCREATED est',
 'enotif_lastdiff' => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor' => 'usor ignotus $1',
 'enotif_body' => '

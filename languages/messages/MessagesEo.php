@@ -2342,11 +2342,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 
 'enotif_mailer' => 'Averta retmesaĝo de {{SITENAME}}',
 'enotif_reset' => 'Marki ĉiujn paĝojn vizititaj',
-'enotif_newpagetext' => 'Tiu ĉi estas nova paĝo',
 'enotif_impersonal_salutation' => 'Uzanto de {{SITENAME}}',
-'changed' => 'ŝanĝita',
-'created' => 'kreita',
-'enotif_subject' => 'la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED de $PAGEEDITOR',
 'enotif_lastvisited' => 'Vidi $1 por ĉiuj ŝanĝoj de post via lasta vizito.',
 'enotif_lastdiff' => 'Vidi $1 por rigardi ĉi tiun ŝanĝon.',
 'enotif_anon_editor' => 'anonima uzanto $1',

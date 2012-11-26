@@ -2368,11 +2368,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 
 'enotif_mailer' => '{{SITENAME}}s system för att få meddelanden om förändringar per e-post',
 'enotif_reset' => 'Markera alla sidor som besökta',
-'enotif_newpagetext' => 'Detta är en ny sida.',
 'enotif_impersonal_salutation' => '{{SITENAME}}användare',
-'changed' => 'ändrad',
-'created' => 'skapad',
-'enotif_subject' => '{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited' => 'På $1 återfinner du alla ändringar sedan ditt senaste besök.',
 'enotif_lastdiff' => 'Se denna ändring på $1',
 'enotif_anon_editor' => 'anonym användare $1',

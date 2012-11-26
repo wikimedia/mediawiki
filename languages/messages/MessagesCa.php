@@ -2213,11 +2213,7 @@ S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corres
 
 'enotif_mailer' => 'Sistema de notificació per correl de {{SITENAME}}',
 'enotif_reset' => 'Marca totes les pàgines com a visitades',
-'enotif_newpagetext' => 'Aquesta és una nova pàgina.',
 'enotif_impersonal_salutation' => 'usuari de la {{SITENAME}}',
-'changed' => 'modificada',
-'created' => 'creada',
-'enotif_subject' => 'La pàgina $PAGETITLE a {{SITENAME}} ha estat $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited' => "Vegeu $1 per a tots els canvis que s'han fet d'ença de la vostra darrera visita.",
 'enotif_lastdiff' => 'Consulteu $1 per a visualitzar aquest canvi.',
 'enotif_anon_editor' => 'usuari anònim $1',

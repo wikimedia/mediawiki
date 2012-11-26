@@ -1419,11 +1419,7 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'watchlist-options' => 'Ralvèn duhdàn',
 
 'enotif_reset' => 'Phêk zawng zawng tlawh tawh vek angin chhinchhiah rawh.',
-'enotif_newpagetext' => 'Hei hi phêk thar a ni.',
 'enotif_impersonal_salutation' => '{{SITENAME}} hmangtu',
-'changed' => 'tihdanglam a ni ta',
-'created' => 'siam a ni ta',
-'enotif_subject' => '{{SITENAME}} phêk $PAGETITLE tih hi $CHANGEDORCREATED,  $PAGEEDITOR bultum a ni.',
 'enotif_lastvisited' => 'I tlawh hnuhnùn ber hnu lama tihdanglam zawng zawng en i duh chuan $1 en rawh.',
 'enotif_lastdiff' => 'Hë tihdanglamna hi en tùrin $1 thlír rawh.',
 'enotif_anon_editor' => 'hmangtu hriat loh $1',

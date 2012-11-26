@@ -1754,11 +1754,7 @@ $3 макссь туфталсь - ''$2''",
 
 'enotif_mailer' => '{{SITENAME}} Пачфнематнень Кучи',
 'enotif_reset' => 'Путомс тяшкс сембе суваф лопатнень лангс',
-'enotif_newpagetext' => 'Тя од лопа.',
 'enotif_impersonal_salutation' => '{{SITENAME}} тиись',
-'changed' => 'полафтсь',
-'created' => 'тиф',
-'enotif_subject' => '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
 'enotif_lastvisited' => 'Ванк $1 тонь мекольце самдот меле сембе поланематнень няфтеманкса.',
 'enotif_lastdiff' => 'Ванк $1 тя полафнемать няфтеманкса.',
 'enotif_anon_editor' => 'лемфтома тиись $1',
@@ -2897,4 +2893,6 @@ $5
 'revdelete-unrestricted' => 'системонь вятиксненди кардафксне валхтфт',
 'newuserlog-byemail' => 'сувама валце кучф электрононь сёрмаса',
 
+# Unknown messages
+'mytalk-parenthetical' => 'корхтама',
 );

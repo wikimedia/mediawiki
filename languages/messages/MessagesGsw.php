@@ -2144,11 +2144,7 @@ Wänn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf �
 
 'enotif_mailer' => '{{SITENAME}} E-Mail-Benochrichtigungsdienscht',
 'enotif_reset' => 'Alli Syte as aagluegt markiere',
-'enotif_newpagetext' => 'Des isch e neiji Syte.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
-'changed' => 'gänderet',
-'created' => 'aagleit',
-'enotif_subject' => 'D {{SITENAME}} Syte $PAGETITLE isch vum $PAGEEDITOR $CHANGEDORCREATED wore.',
 'enotif_lastvisited' => '$1 zeigt alli Änderige uf s Mol.',
 'enotif_lastdiff' => 'Lueg $1 no däre Änderig.',
 'enotif_anon_editor' => 'Anonyme Benutzer $1',

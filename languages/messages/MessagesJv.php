@@ -1998,11 +1998,7 @@ Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhè
 
 'enotif_mailer' => 'Pangirim Notifikasi {{SITENAME}}',
 'enotif_reset' => 'Tandhanana kabèh kaca sing wis ditiliki',
-'enotif_newpagetext' => 'Iki sawijining kaca anyar.',
 'enotif_impersonal_salutation' => 'Panganggo {{SITENAME}}',
-'changed' => 'kaubah',
-'created' => 'kadamel',
-'enotif_subject' => 'Kaca $PAGETITLE ing {{SITENAME}} wis $CHANGEDORCREATED déning $PAGEEDITOR',
 'enotif_lastvisited' => 'Deleng $1 kanggo kabèh owah-owahan wiwit pungkasan panjenengan niliki.',
 'enotif_lastdiff' => 'Tilikana $1 kanggo mirsani owah-owahan iki.',
 'enotif_anon_editor' => 'panganggo anonim $1',

@@ -2241,11 +2241,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoul
 
 'enotif_mailer' => '{{SITENAME}} E-pos kennisgewings',
 'enotif_reset' => 'Merk alle bladsye as besoek',
-'enotif_newpagetext' => "Dis 'n nuwe bladsy.",
 'enotif_impersonal_salutation' => '{{SITENAME}} gebruiker',
-'changed' => 'verander',
-'created' => 'geskep',
-'enotif_subject' => 'Bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED deur $PAGEEDITOR',
 'enotif_lastvisited' => 'Sien $1 vir alle wysigings sedert u laaste besoek.',
 'enotif_lastdiff' => 'Sien $1 om hierdie wysiging te bekyk.',
 'enotif_anon_editor' => 'anonieme gebruiker $1',

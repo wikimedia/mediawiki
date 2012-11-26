@@ -2202,11 +2202,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 
 'enotif_mailer' => '{{SITENAME}}හි නිවේදන යවන්නා',
 'enotif_reset' => 'පිවිසුනු සියළු පිටු සලකුණු කරන්න',
-'enotif_newpagetext' => 'මෙය නව පිටුවකි.',
 'enotif_impersonal_salutation' => '{{SITENAME}} පරිශීලක',
-'changed' => 'වෙනස්කරන ලදි',
-'created' => 'තනන ලදි',
-'enotif_subject' => '{{SITENAME}}හි  $PAGETITLE යන පිටුව  $PAGEEDITOR විසින්  $CHANGEDORCREATED කෙරිණි',
 'enotif_lastvisited' => 'ඔබගේ අවසාන පිවිසුමට පසු සිදුවූ සියළු වෙනස්වීම් නැරඹුමට $1 බලන්න.',
 'enotif_lastdiff' => 'මෙම වෙනස නැරඹීම සඳහා $1 බලන්න.',
 'enotif_anon_editor' => 'නිර්නාමික පරිශීලක $1',

@@ -1424,11 +1424,7 @@ Gava tu bixwazî wê rûpelê ji nav lîsteya xwe ya şopandinê derbixî, li se
 'unwatching' => 'Neşopîne…',
 
 'enotif_reset' => 'Hemû rûpelan wek lêsekirî nîşanbide',
-'enotif_newpagetext' => 'Ev rûpeleke nû ye.',
 'enotif_impersonal_salutation' => 'Bikarhênerî {{SITENAME}}',
-'changed' => 'hate guhertin',
-'created' => 'hate afirandin',
-'enotif_subject' => '[{{SITENAME}}] Rûpelê "$PAGETITLE" ji $PAGEEDITOR hate $CANGEDORCREATED',
 'enotif_anon_editor' => 'Bikarhênerê/a neqeydkirî $1',
 'enotif_body' => 'Birêz $WATCHINGUSERNAME,
 

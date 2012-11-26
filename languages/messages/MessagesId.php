@@ -2330,11 +2330,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 
 'enotif_mailer' => 'Pengirim Notifikasi {{SITENAME}}',
 'enotif_reset' => 'Tandai semua halaman sebagai telah dikunjungi',
-'enotif_newpagetext' => 'Ini adalah halaman baru.',
 'enotif_impersonal_salutation' => 'Pengguna {{SITENAME}}',
-'changed' => 'diubah',
-'created' => 'dibuat',
-'enotif_subject' => 'Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED oleh $PAGEEDITOR',
 'enotif_lastvisited' => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir Anda.',
 'enotif_lastdiff' => 'Kunjungi $1 untuk melihat perubahan ini.',
 'enotif_anon_editor' => 'pengguna anonim $1',

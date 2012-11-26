@@ -2128,11 +2128,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 
 'enotif_mailer' => '{{SITENAME}} Notificatore de email',
 'enotif_reset' => 'Signe tutte le pàggene cumme visitete',
-'enotif_newpagetext' => "Queste è 'na pàgena nove.",
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
-'changed' => 'cangete',
-'created' => 'ccrejete',
-'enotif_subject' => '\'A pàgene de {{SITENAME}} $PAGETITLE ha state $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited' => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff' => 'Vide $1 pe vedè stu cangiamende.',
 'enotif_anon_editor' => 'Utende anonime $1',

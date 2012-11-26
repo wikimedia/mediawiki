@@ -1884,11 +1884,7 @@ Aňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýt
 
 'enotif_mailer' => '{{SITENAME}} Poçta Gullugy',
 'enotif_reset' => 'Ähli sahypalary barylyp görülen diýip belle',
-'enotif_newpagetext' => 'Bu täze sahypa.',
 'enotif_impersonal_salutation' => '{{SITENAME}} ulanyjysy',
-'changed' => 'üýtgedildi',
-'created' => 'döredildi',
-'enotif_subject' => '{{SITENAME}} sahypasy $PAGETITLE, $PAGEEDITOR tarapyndan $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Iň soňky gezek baryp göreliňiz bäri bolan ähli üýtgeşmeleri görmek üçin serediň: $1',
 'enotif_lastdiff' => 'Bu üýtgeşmäni görmek üçin serediň: $1',
 'enotif_anon_editor' => 'anonim ulanyjy $1',

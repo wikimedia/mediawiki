@@ -2021,11 +2021,7 @@ A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti o
 
 'enotif_mailer' => 'Olùránṣẹ́ ìfitọ́nilétí {{SITENAME}}',
 'enotif_reset' => 'Fàlà sí gbogbo àwọn ojúewé bíi bíbẹ̀wò',
-'enotif_newpagetext' => 'Ojúewé tuntun nìyí.',
 'enotif_impersonal_salutation' => 'Oníṣe {{SITENAME}}',
-'changed' => 'títúnṣẹ',
-'created' => 'dídá',
-'enotif_subject' => '$PAGEEDITOR $CHANGEDORCREATED ojúewé $PAGETITLE lórí {{SITENAME}}',
 'enotif_lastvisited' => 'Ẹ wo $1 fún gbogbo àwọn àtúnṣe látìgbà ìbẹ̀wò yín gbẹ̀yìn.',
 'enotif_lastdiff' => 'Ẹ wo $1 láti wo àtúnṣe yìí.',
 'enotif_anon_editor' => 'oníṣe aláìlórúkọ $1',

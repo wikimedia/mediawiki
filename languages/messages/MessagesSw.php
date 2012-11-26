@@ -2022,11 +2022,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 
 'enotif_mailer' => 'Huduma ya taarifa ya barua pepe kutoka kwa {{SITENAME}}',
 'enotif_reset' => 'Weka alama kwa kurasa zote zilizotembelewa',
-'enotif_newpagetext' => 'Ukurasa huu ni mpya.',
 'enotif_impersonal_salutation' => 'Kwa mtumiaji wa {{SITENAME}}',
-'changed' => 'alibadilisha',
-'created' => 'alianzisha',
-'enotif_subject' => '$PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}}',
 'enotif_lastvisited' => 'Tazama $1 kwa mabadiliko yote tangu ziara yako ya mwisho.',
 'enotif_lastdiff' => 'Tazama badiliko hili hapo $1.',
 'enotif_anon_editor' => 'mtumiaji bila jina $1',

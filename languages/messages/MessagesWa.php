@@ -1492,10 +1492,6 @@ Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «
 
 'enotif_mailer' => 'Notifiaedje pa emile di {{SITENAME}}',
 'enotif_reset' => 'Mårker totes les pådjes come vizitêyes',
-'enotif_newpagetext' => "C' est ene nouve pådje.",
-'changed' => 'candjeye',
-'created' => 'ahivêye',
-'enotif_subject' => 'Li pådje «$PAGETITLE» so {{SITENAME}} a stî $CHANGEDORCREATED pa $PAGEEDITOR',
 'enotif_lastvisited' => 'Loukîz $1 po tos les candjmints dispoy vosse dierinne vizite.',
 'enotif_body' => 'Binamé $WATCHINGUSERNAME,
 

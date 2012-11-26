@@ -2122,11 +2122,7 @@ Mailistanto ditoy dagiti pinagsukat daytoy a panid iti masakbayan agraman ti kan
 
 'enotif_mailer' => 'Agipatulod ti pakiammo ti {{SITENAME}}',
 'enotif_reset' => 'Markaan amin a pampanid a kas nasarungkaranen',
-'enotif_newpagetext' => 'Baro daytoy a panid.',
 'enotif_impersonal_salutation' => '{{SITENAME}} agar-aramat',
-'changed' => 'nasukatan',
-'created' => 'naaramid',
-'enotif_subject' => 'Ti {{SITENAME}} a panid a $PAGETITLE ket $CHANGEDORCREATED ni $PAGEEDITOR',
 'enotif_lastvisited' => 'Kitaen ti $1 para iti am-amin a panagsukat sipud ti naudi nga isasarungkarmo.',
 'enotif_lastdiff' => 'Kitaen ti $1 tapno mabuya daytoy a panagsukat.',
 'enotif_anon_editor' => 'di am-ammo nga agar-aramat $1',

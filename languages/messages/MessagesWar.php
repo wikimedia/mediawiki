@@ -1403,10 +1403,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'wlshowlast' => 'Igpakita an katapusan nga $1 nga mga oras $2 nga mga adlaw $3',
 'watchlist-options' => 'Mga pirilian han talaan han binabantayan',
 
-'enotif_newpagetext' => 'Ini in bag-o nga pakli.',
 'enotif_impersonal_salutation' => 'gumaramit han {{SITENAME}}',
-'changed' => 'naliwanan',
-'created' => 'nahimo',
 'enotif_anon_editor' => 'waray magpakilala nga gumaramit $1',
 
 # Delete

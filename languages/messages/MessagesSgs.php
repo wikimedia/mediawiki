@@ -1290,9 +1290,6 @@ Jēgo bikumet ožsėnuorietomiet liautėis keravuotė straipsnė, spauskat \"neb
 'unwatching' => 'Šalėnama ėš keravuojamu sāraša...',
 
 'enotif_reset' => 'Pažīmietė vėsus poslapius kāp aplonkītus',
-'enotif_newpagetext' => 'Tas īr naus poslapis.',
-'changed' => 'pakeitė',
-'created' => 'sokūrė',
 'enotif_anon_editor' => 'anuonėminis nauduotuos $1',
 
 # Delete

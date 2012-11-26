@@ -2327,11 +2327,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 
 'enotif_mailer' => '{{SITENAME}} Bildirim Postası',
 'enotif_reset' => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
-'enotif_newpagetext' => 'Yeni bir sayfa.',
 'enotif_impersonal_salutation' => '{{SITENAME}} kullanıcı',
-'changed' => 'değiştirildi',
-'created' => 'oluşturuldu',
-'enotif_subject' => '{{SITENAME}} sayfası $PAGETITLE, $PAGEEDITOR tarafından $CHANGEDORCREATED',
 'enotif_lastvisited' => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
 'enotif_lastdiff' => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
 'enotif_anon_editor' => 'anonim kullanıcı $1',

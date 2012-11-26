@@ -2329,11 +2329,7 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 
 'enotif_mailer' => 'Upozorňovač {{GRAMMAR:genitív|{{SITENAME}}}}',
 'enotif_reset' => 'Označiť všetky stránky ako „navštívené“',
-'enotif_newpagetext' => 'Toto je nová stránka.',
 'enotif_impersonal_salutation' => 'používateľ {{GRAMMAR:genitív|{{SITENAME}}}}',
-'changed' => 'zmene',
-'created' => 'vytvorení',
-'enotif_subject' => '{{SITENAME}} - stránka $PAGETITLE bola $CHANGEDORCREATED $PAGEEDITOR',
 'enotif_lastvisited' => 'Všetky zmeny od vašej poslednej návštevy uvidíte na $1.',
 'enotif_lastdiff' => 'Zmenu uvidíte v $1.',
 'enotif_anon_editor' => 'anonymný používateľ $1',

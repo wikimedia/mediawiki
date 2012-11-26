@@ -2350,11 +2350,7 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 
 'enotif_mailer' => 'Sistèmo de notificacion per mèssageria èlèctronica de {{SITENAME}}',
 'enotif_reset' => 'Marcar totes les pâges coment visitâs',
-'enotif_newpagetext' => 'O est una pâge novèla.',
 'enotif_impersonal_salutation' => 'Usanciér de {{SITENAME}}',
-'changed' => 'changiê',
-'created' => 'fêta',
-'enotif_subject' => 'La pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited' => 'Vêde $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff' => 'Vêde $1 por vêre cél changement.',
 'enotif_anon_editor' => 'usanciér pas encartâ $1',

@@ -926,9 +926,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'watching' => 'Хайгаарап турар...',
 'unwatching' => 'Хайгааравайн турар...',
 
-'enotif_newpagetext' => 'Бо чаа арын-дыр.',
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} ажыглакчызы',
-'changed' => 'өскертти',
 'enotif_anon_editor' => 'ат эвес ажыглакчы $1',
 
 # Delete

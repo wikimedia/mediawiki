@@ -1742,11 +1742,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 
 'enotif_mailer' => '{{SITENAME}} Bildiriş Xidməti',
 'enotif_reset' => 'Baxılmış bütün səhifələri işarələ.',
-'enotif_newpagetext' => 'Bu səhifə yeni səhifədir.',
 'enotif_impersonal_salutation' => '{{SITENAME}} istifadəçisi',
-'changed' => 'dəyişdi',
-'created' => 'yaradıldı',
-'enotif_subject' => '{{SITENAME}} saytındakı $PAGETITLE səhifəsi $PAGEEDITOR tərəfindən $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Sonuncu ziyarətinizdən indiyədək olan bütün dəyişiklikləri görmək üçün baxın: $1.',
 'enotif_lastdiff' => 'Bu dəyişikliyi görmək üçün $1 səhifəsinə baxın.',
 'enotif_anon_editor' => 'qeydiyyatsız istifadəçi $1',

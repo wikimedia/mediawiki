@@ -2359,11 +2359,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 
 'enotif_mailer' => '{{SITENAME}}s påminnelsessystem',
 'enotif_reset' => 'Merk alle sider som besøkt',
-'enotif_newpagetext' => 'Dette er en ny side.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-bruker',
-'changed' => 'endret',
-'created' => 'opprettet',
-'enotif_subject' => '{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited' => 'Se $1 for alle endringer siden ditt forrige besøk.',
 'enotif_lastdiff' => 'Se $1 for å se denne endringen.',
 'enotif_anon_editor' => 'anonym bruker $1',

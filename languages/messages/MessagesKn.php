@@ -1432,10 +1432,7 @@ $2',
 'unwatching' => 'ವೀಕ್ಷಣೆಯಿಂದ ತೆಗೆಯಲಾಗುತ್ತಿದೆ...',
 
 'enotif_reset' => 'ಭೇಟಿಯಿತ್ತ ಎಲ್ಲಾ ಪುಟಗಳನ್ನು ಗುರುತು ಮಾಡಿ',
-'enotif_newpagetext' => 'ಇದೊಂದು ಹೊಸ ಪುಟ.',
 'enotif_impersonal_salutation' => '{{SITENAME}} ಸದಸ್ಯ',
-'changed' => 'ಬದಲಾಯಿಸಲಾಗಿದೆ',
-'created' => 'ಸೃಷ್ಟಿಸಲ್ಪಟ್ಟಿದೆ',
 'enotif_lastvisited' => 'ನಿಮ್ಮ ಕಳೆದ ಭೇಟಿಯ ನಂತರದ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳಿಗೆ $1 ನೋಡಿ.',
 'enotif_anon_editor' => 'ಅನಾಮಧೇಯ ಸದಸ್ಯ $1',
 

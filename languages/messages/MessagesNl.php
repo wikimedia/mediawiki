@@ -2469,11 +2469,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 
 'enotif_mailer' => '{{SITENAME}}-berichtensysteem',
 'enotif_reset' => "Alle pagina's markeren als bezocht",
-'enotif_newpagetext' => 'Dit is een nieuwe pagina.',
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',
-'changed' => 'gewijzigd',
-'created' => 'aangemaakt',
-'enotif_subject' => 'Pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED door $PAGEEDITOR',
 'enotif_lastvisited' => 'Zie $1 voor alle wijzigingen sinds uw laatste bezoek.',
 'enotif_lastdiff' => 'Ga naar $1 om deze wijziging te bekijken.',
 'enotif_anon_editor' => 'anonieme gebruiker $1',

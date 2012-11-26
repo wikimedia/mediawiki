@@ -1993,11 +1993,7 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 
 'enotif_mailer' => '{{SITENAME}} Билдириу Почта',
 'enotif_reset' => 'Бютеу бетлени къаралгъанча белгиле',
-'enotif_newpagetext' => 'Бу джангы бетди',
 'enotif_impersonal_salutation' => '{{SITENAME}} къошулуучу',
-'changed' => 'тюрленди',
-'created' => 'къуралды',
-'enotif_subject' => '{{SITENAME}} бет $PAGETITLE, $PAGEEDITOR джанындан $CHANGEDORCREATED этилгенди.',
 'enotif_lastvisited' => 'Ахыр кириуюгюзден бу кереге дери болгъан бютеу тюрлениулени кёрюр ючюн $1-ге къара.',
 'enotif_lastdiff' => 'Бу тюрлениуню кёрюр ючюн, $1 бетге къарагъыз.',
 'enotif_anon_editor' => 'аноним къошулуучу $1',

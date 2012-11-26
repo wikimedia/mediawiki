@@ -2279,11 +2279,7 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 
 'enotif_mailer' => 'Sistema di notifica via e-mail di {{SITENAME}}',
 'enotif_reset' => 'Segna tutte le pagine come già visitate',
-'enotif_newpagetext' => 'Questa è una nuova pagina.',
 'enotif_impersonal_salutation' => 'Utente di {{SITENAME}}',
-'changed' => 'modificata',
-'created' => 'creata',
-'enotif_subject' => 'La pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited' => "Consultare $1 per vedere tutte le modifiche dall'ultima visita.",
 'enotif_lastdiff' => 'Vedere $1 per visualizzare la modifica.',
 'enotif_anon_editor' => 'utente anonimo $1',

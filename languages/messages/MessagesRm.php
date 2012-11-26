@@ -1944,11 +1944,7 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 
 'enotif_mailer' => "Servetsch d'infurmaziun per e-mail da {{SITENAME}}",
 'enotif_reset' => 'Marcar tut las paginas sco visitadas.',
-'enotif_newpagetext' => 'Quaii è ina nova pagina.',
 'enotif_impersonal_salutation' => 'Utilisader da {{SITENAME}}',
-'changed' => 'midada',
-'created' => 'creada',
-'enotif_subject' => 'La pagina $PAGETITLE da {{SITENAME}} è vegnida $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited' => 'Visita $1 per vesair tut las midadas dapi tia ultima visita.',
 'enotif_lastdiff' => 'Guarda $1 per vesair questa midada.',
 'enotif_anon_editor' => 'utilisader anonim $1',

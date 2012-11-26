@@ -2413,11 +2413,7 @@ L'adresse électronique que vous avez indiquée dans [[Special:Preferences|vos p
 
 'enotif_mailer' => 'Système de notification par courriel de {{SITENAME}}',
 'enotif_reset' => 'Marquer toutes les pages comme visitées',
-'enotif_newpagetext' => 'Ceci est une nouvelle page.',
 'enotif_impersonal_salutation' => 'Utilisateur de {{SITENAME}}',
-'changed' => 'modifiée',
-'created' => 'créée',
-'enotif_subject' => 'La page $PAGETITLE de {{SITENAME}} a été $CHANGEDORCREATED par $PAGEEDITOR',
 'enotif_lastvisited' => 'Voyez $1 pour tous les changements depuis votre dernière visite.',
 'enotif_lastdiff' => 'Voyez $1 pour visualiser ces changements.',
 'enotif_anon_editor' => 'utilisateur non-enregistré $1',
@@ -3486,7 +3482,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-copyrighted' => "Statut du droit d'auteur",
 'exif-copyrightowner' => "Détenteur du droit d'auteur",
 'exif-usageterms' => "Conditions d'utilisation",
-'exif-webstatement' => 'Déclaration de droits d’auteur en ligne',
+'exif-webstatement' => "Déclaration de droits d'auteur en ligne",
 'exif-originaldocumentid' => 'Identifiant unique du document original',
 'exif-licenseurl' => 'URL de la licence',
 'exif-morepermissionsurl' => 'Informations sur les licences alternatives',
@@ -3496,14 +3492,14 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-disclaimer' => 'Désistement',
 'exif-contentwarning' => 'Avertissement sur le contenu',
 'exif-giffilecomment' => 'Commentaire de fichier GIF',
-'exif-intellectualgenre' => 'Type d’élément',
+'exif-intellectualgenre' => "Type d'élément",
 'exif-subjectnewscode' => 'Code du sujet',
 'exif-scenecode' => 'Code de scène IPTC',
 'exif-event' => 'Événement représenté',
 'exif-organisationinimage' => 'Organisation représentée',
 'exif-personinimage' => 'Personne représentée',
-'exif-originalimageheight' => 'Hauteur de l’image avant qu’elle ait été recadrée',
-'exif-originalimagewidth' => 'Largeur de l’image avant qu’elle ait été recadrée',
+'exif-originalimageheight' => "Hauteur de l'image avant qu'elle ait été recadrée",
+'exif-originalimagewidth' => "Largeur de l'image avant qu'elle ait été recadrée",
 
 # EXIF attributes
 'exif-compression-1' => 'Non compressé',
@@ -3511,7 +3507,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-compression-3' => 'CCITT Groupe 3 codage du fax',
 'exif-compression-4' => 'CCITT Groupe 4 codage du fax',
 
-'exif-copyrighted-true' => 'Soumis au droit d’auteur',
+'exif-copyrighted-true' => "Soumis au droit d'auteur",
 'exif-copyrighted-false' => 'Domaine public',
 
 'exif-unknowndate' => 'Date inconnue',
@@ -3530,16 +3526,16 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 'exif-colorspace-65535' => 'Non calibré',
 
-'exif-componentsconfiguration-0' => 'N’existe pas',
+'exif-componentsconfiguration-0' => "N'existe pas",
 'exif-componentsconfiguration-5' => 'V',
 
 'exif-exposureprogram-0' => 'Indéfini',
 'exif-exposureprogram-1' => 'Manuel',
 'exif-exposureprogram-2' => 'Programme normal',
-'exif-exposureprogram-3' => 'Priorité à l’ouverture',
-'exif-exposureprogram-4' => 'Priorité à l’obturateur',
+'exif-exposureprogram-3' => "Priorité à l'ouverture",
+'exif-exposureprogram-4' => "Priorité à l'obturateur",
 'exif-exposureprogram-5' => 'Programme création (préférence à la profondeur de champ)',
-'exif-exposureprogram-6' => 'Programme action (préférence à la vitesse d’obturation)',
+'exif-exposureprogram-6' => "Programme action (préférence à la vitesse d'obturation)",
 'exif-exposureprogram-7' => 'Mode portrait (pour clichés de près avec arrière-plan flou)',
 'exif-exposureprogram-8' => 'Mode paysage (pour des clichés de paysages nets)',
 
@@ -3655,8 +3651,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsmeasuremode-3' => 'Mesure à 3 dimensions',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'Kilomètres à l’heure',
-'exif-gpsspeed-m' => 'Milles à l’heure',
+'exif-gpsspeed-k' => "Kilomètres à l'heure",
+'exif-gpsspeed-m' => "Milles à l'heure",
 'exif-gpsspeed-n' => 'Nœud',
 
 # Pseudotags used for GPSDestDistanceRef
@@ -3715,11 +3711,11 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-urgency-normal' => 'Normale ($1)',
 'exif-urgency-low' => 'Faible ($1)',
 'exif-urgency-high' => 'Haute ($1)',
-'exif-urgency-other' => 'Urgence définie par l’utilisateur ($1)',
+'exif-urgency-other' => "Urgence définie par l'utilisateur ($1)",
 
 # External editor support
 'edit-externally' => 'Modifier ce fichier en utilisant une application externe',
-'edit-externally-help' => '(Consulter [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] pour plus d’informations)',
+'edit-externally-help' => "(Consulter [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d'installation] pour plus d'informations)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',
@@ -3728,8 +3724,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'limitall' => 'tous',
 
 # E-mail address confirmation
-'confirmemail' => 'Confirmer l’adresse de courriel',
-'confirmemail_noemail' => 'Vous n’avez pas défini une adresse de courriel valide dans vos [[Special:Preferences|préférences]].',
+'confirmemail' => "Confirmer l'adresse de courriel",
+'confirmemail_noemail' => "Vous n'avez pas défini une adresse de courriel valide dans vos [[Special:Preferences|préférences]].",
 'confirmemail_text' => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie.
 Utilisez le bouton ci-dessous pour envoyer un courriel de confirmation à votre adresse.
 Le courriel inclura un lien comportant un code à usage unique et limité dans le temps ;
@@ -3738,39 +3734,39 @@ chargez ce lien dans votre navigateur pour confirmer que votre adresse de courri
 si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code.',
 'confirmemail_send' => 'Envoyer un code de confirmation',
 'confirmemail_sent' => 'Courriel de confirmation envoyé',
-'confirmemail_oncreate' => 'Un code de confirmation a été envoyé à votre adresse de courriel.
-Ce code n’est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonction de messagerie.',
-'confirmemail_sendfailed' => '{{SITENAME}} n’a pas pu vous envoyer le courriel de confirmation.
+'confirmemail_oncreate' => "Un code de confirmation a été envoyé à votre adresse de courriel.
+Ce code n'est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonction de messagerie.",
+'confirmemail_sendfailed' => "{{SITENAME}} n'a pas pu vous envoyer le courriel de confirmation.
 Veuillez vérifiez que votre adresse de courriel ne comprend aucun caractère incorrect.
 
-Le programme d’envoi de courriel a retourné l’indication suivante : $1',
+Le programme d'envoi de courriel a retourné l'indication suivante : $1",
 'confirmemail_invalid' => 'Code de confirmation incorrect.
 Celui-ci a peut-être expiré.',
 'confirmemail_needlogin' => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
 'confirmemail_success' => 'Votre adresse de courriel a été confirmée.
 Vous pouvez maintenant vous [[Special:UserLogin|{{MediaWiki:Loginreqlink}}]] et profiter du wiki.',
 'confirmemail_loggedin' => 'Votre adresse de courriel est maintenant confirmée.',
-'confirmemail_error' => 'Un problème est survenu lors de l’enregistrement de votre confirmation.',
-'confirmemail_subject' => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
-'confirmemail_body' => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1,
+'confirmemail_error' => "Un problème est survenu lors de l'enregistrement de votre confirmation.",
+'confirmemail_subject' => "Confirmation d'adresse de courriel pour {{SITENAME}}",
+'confirmemail_body' => "Quelqu'un, probablement vous, à partir de l'adresse IP $1,
 a enregistré un compte « $2 » avec cette adresse de courriel
 sur le site {{SITENAME}}.
 
 Pour confirmer que ce compte vous appartient vraiment et afin
-d’activer les fonctions de messagerie sur {{SITENAME}},
+d'activer les fonctions de messagerie sur {{SITENAME}},
 veuillez suivre ce lien dans votre navigateur :
 
 $3
 
-Si vous n’avez *pas* enregistré ce compte, n’ouvrez pas ce lien ;
-vous pouvez suivre l’autre lien ci-dessous pour annuler la
+Si vous n'avez *pas* enregistré ce compte, n'ouvrez pas ce lien ;
+vous pouvez suivre l'autre lien ci-dessous pour annuler la
 confirmation de votre adresse courriel :
 
 $5
 
-Ce code de confirmation expirera le $4.',
-'confirmemail_body_changed' => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1,
-a modifié l’adresse de courriel associée au compte « $2 » de {{SITENAME}}
+Ce code de confirmation expirera le $4.",
+'confirmemail_body_changed' => "Quelqu'un, probablement vous, à partir de l'adresse IP $1,
+a modifié l'adresse de courriel associée au compte « $2 » de {{SITENAME}}
 en cette adresse.
 
 Pour confirmer que ce compte vous appartient vraiment et afin
@@ -3779,14 +3775,14 @@ veuillez suivre ce lien dans votre navigateur :
 
 $3
 
-Si ce compte ne vous appartient *pas*, n’ouvrez pas ce lien ;
-vous pouvez suivre l’autre lien ci-dessous pour annuler la
+Si ce compte ne vous appartient *pas*, n'ouvrez pas ce lien ;
+vous pouvez suivre l'autre lien ci-dessous pour annuler la
 confirmation de votre adresse courriel :
 
 $5
 
-Ce code de confirmation expirera le $4.',
-'confirmemail_body_set' => 'Quelqu’un, probablement vous, de l’adresse IP $1, a modifié l’adresse de courriel du compte « $2 » en celle-ci sur {{SITENAME}}.
+Ce code de confirmation expirera le $4.",
+'confirmemail_body_set' => "Quelqu'un, probablement vous, de l'adresse IP $1, a modifié l'adresse de courriel du compte « $2 » en celle-ci sur {{SITENAME}}.
 
 Pour confirmer que ce compte vous appartient et réactiver les fonctions de courriel sur {{SITENAME}}, ouvrez ce lien dans votre navigateur Web :
 
@@ -3794,30 +3790,30 @@ $3
 
 Ce code de confirmation expirera le $4.
 
-Si le compte ne vous appartient PAS, suivez plutôt ce lien pour annuler la confirmation de l’adresse de courriel :
+Si le compte ne vous appartient PAS, suivez plutôt ce lien pour annuler la confirmation de l'adresse de courriel :
 
-$5',
-'confirmemail_invalidated' => 'Confirmation de l’adresse courriel annulée',
-'invalidateemail' => 'Annuler la confirmation de l’adresse de courriel',
+$5",
+'confirmemail_invalidated' => "Confirmation de l'adresse courriel annulée",
+'invalidateemail' => "Annuler la confirmation de l'adresse de courriel",
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',
 'scarytranscludefailed' => '[La récupération de modèle a échoué pour $1]',
 'scarytranscludefailed-httpstatus' => '[Échec de la récupération du modèle pour  $1 : HTTP  $2 ]',
-'scarytranscludetoolong' => '[L’URL est trop longue]',
+'scarytranscludetoolong' => "[L'URL est trop longue]",
 
 # Delete conflict
 'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous avez commencé à la modifier !",
-'confirmrecreate' => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant :
+'confirmrecreate' => "L'utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l'éditer, pour le motif suivant :
 : ''$2''
 Veuillez confirmer que vous désirez réellement recréer cette page.",
-'confirmrecreate-noreason' => 'L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer. Veuillez confirmer que vous désirez réellement recréer cette page.',
+'confirmrecreate-noreason' => "L'utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l'éditer. Veuillez confirmer que vous désirez réellement recréer cette page.",
 'recreate' => 'Recréer',
 
 # action=purge
 'confirm_purge_button' => 'Confirmer',
 'confirm-purge-top' => 'Voulez-vous rafraîchir cette page (purger le cache) ?',
-'confirm-purge-bottom' => 'Purger une page l’efface du cache de rendu et force sa dernière version à être régénérée et affichée.',
+'confirm-purge-bottom' => "Purger une page l'efface du cache de rendu et force sa dernière version à être régénérée et affichée.",
 
 # action=watch/unwatch
 'confirm-watch-button' => 'Valider',
@@ -3864,14 +3860,14 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 # Live preview
 'livepreview-loading' => 'Chargement...',
 'livepreview-ready' => 'Chargement … terminé !',
-'livepreview-failed' => 'L’aperçu rapide a échoué !
-Essayez la prévisualisation normale.',
+'livepreview-failed' => "L'aperçu rapide a échoué !
+Essayez la prévisualisation normale.",
 'livepreview-error' => 'Impossible de se connecter : $1 « $2 ».
 Essayez la prévisualisation normale.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Les modifications datant de moins de $1 seconde{{PLURAL:$1||s}} peuvent ne pas apparaître dans cette liste.',
-'lag-warn-high' => 'En raison d’un retard important du serveur de base de données, les modifications datant de moins de $1 seconde{{PLURAL:$1||s}} peuvent ne pas apparaître dans cette liste.',
+'lag-warn-high' => "En raison d'un retard important du serveur de base de données, les modifications datant de moins de $1 seconde{{PLURAL:$1||s}} peuvent ne pas apparaître dans cette liste.",
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Votre liste de suivi contient {{PLURAL:$1|un titre|$1 titres}}, sans compter les pages de discussion.',
@@ -3885,9 +3881,9 @@ Vous pouvez aussi [[Special:EditWatchlist/raw|modifier la liste en mode brut]].'
 'watchlistedit-normal-done' => '{{PLURAL:$1|Un titre a été enlevé|$1 titres ont été enlevés}} de votre liste de suivi :',
 'watchlistedit-raw-title' => 'Modifier la liste de suivi en mode brut',
 'watchlistedit-raw-legend' => 'Modification de la liste de suivi en mode brut',
-'watchlistedit-raw-explain' => 'Les titres de votre liste de suivi sont affichés ci-dessous et peuvent être modifiés en les ajoutant ou les retirant de la liste (un titre par ligne).
+'watchlistedit-raw-explain' => "Les titres de votre liste de suivi sont affichés ci-dessous et peuvent être modifiés en les ajoutant ou les retirant de la liste (un titre par ligne).
 Lorsque vous avez fini, cliquez sur le bouton « {{int:Watchlistedit-raw-submit}} » en bas.
-Vous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].',
+Vous pouvez aussi [[Special:EditWatchlist|utiliser l'éditeur normal]].",
 'watchlistedit-raw-titles' => 'Titres :',
 'watchlistedit-raw-submit' => 'Mettre à jour la liste de suivi',
 'watchlistedit-raw-done' => 'Votre liste de suivi a été mise à jour.',
@@ -3957,23 +3953,23 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].',
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])',
 
 # Core parser functions
-'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',
+'unknown_extension_tag' => "Balise d'extension « $1 » inconnue",
 'duplicate-defaultsort' => 'Attention : la clé de tri par défaut « $2 » écrase la précédente « $1 ».',
 
 # Special:Version
 'version' => 'Version',
 'version-extensions' => 'Extensions installées',
 'version-specialpages' => 'Pages spéciales',
-'version-parserhooks' => 'Greffons de l’analyseur syntaxique',
+'version-parserhooks' => "Greffons de l'analyseur syntaxique",
 'version-variables' => 'Variables',
-'version-antispam' => 'Prévention du pourriel',
+'version-antispam' => 'Prévention du spam',
 'version-skins' => 'Habillages',
 'version-other' => 'Divers',
 'version-mediahandlers' => 'Manipulateurs de médias',
 'version-hooks' => 'Greffons',
-'version-extension-functions' => 'Fonctions d’extension internes',
-'version-parser-extensiontags' => 'Balises étendues de l’analyseur syntaxique',
-'version-parser-function-hooks' => 'Fonctions étendues de l’analyseur syntaxique',
+'version-extension-functions' => "Fonctions d'extension internes",
+'version-parser-extensiontags' => "Balises étendues de l'analyseur syntaxique",
+'version-parser-function-hooks' => "Fonctions étendues de l'analyseur syntaxique",
 'version-hook-name' => 'Nom du greffon',
 'version-hook-subscribedby' => 'Abonnés :',
 'version-version' => '(Version $1)',
@@ -3981,37 +3977,37 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].',
 'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
 'version-credits-summary' => 'Nous tenons à remercier les personnes suivantes pour leur contribution à  [[Special:Version|MediaWiki]].',
-'version-license-info' => 'MediaWiki est un logiciel libre, vous pouvez le redistribuer ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.
+'version-license-info' => "MediaWiki est un logiciel libre, vous pouvez le redistribuer ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.
 
-MediaWiki est distribué dans l’espoir qu’il sera utile, mais SANS AUCUNE GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou D’ADAPTATION À UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails.
+MediaWiki est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou D'ADAPTATION À UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails.
 
-Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licence Publique Générale GNU] avec ce programme, sinon, écrivez à la Free Software Foundation, Inc., 51, rue Franklin, cinquième étage, Boston, MA 02110-1301, États-Unis ou [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lisez-la en ligne].',
+Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licence Publique Générale GNU] avec ce programme, sinon, écrivez à la Free Software Foundation, Inc., 51, rue Franklin, cinquième étage, Boston, MA 02110-1301, États-Unis ou [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lisez-la en ligne].",
 'version-software' => 'Logiciels installés',
 'version-software-product' => 'Produit',
 'version-software-version' => 'Version',
-'version-entrypoints' => 'URL des points d’entrée',
-'version-entrypoints-header-entrypoint' => 'Point d’entrée',
+'version-entrypoints' => "URL des points d'entrée",
+'version-entrypoints-header-entrypoint' => "Point d'entrée",
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d’article]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
 
 # Special:FilePath
-'filepath' => 'Chemin d’accès du fichier',
+'filepath' => "Chemin d'accès du fichier",
 'filepath-page' => 'Fichier :',
 'filepath-submit' => 'Aller',
-'filepath-summary' => 'Cette page spéciale retourne le chemin d’accès complet d’un fichier.
-Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.',
+'filepath-summary' => "Cette page spéciale retourne le chemin d'accès complet d'un fichier.
+Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Recherche de doublons',
-'fileduplicatesearch-summary' => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.',
+'fileduplicatesearch-summary' => "Recherche des copies de fichiers identiques d'après leur empreinte de hachage.",
 'fileduplicatesearch-legend' => 'Rechercher un doublon',
 'fileduplicatesearch-filename' => 'Nom du fichier :',
 'fileduplicatesearch-submit' => 'Rechercher',
 'fileduplicatesearch-info' => '$1 × $2 pixels<br />Taille du fichier : $3<br />Type MIME : $4',
-'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a aucun doublon.',
+'fileduplicatesearch-result-1' => "Le fichier « $1 » n'a aucun doublon.",
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 doublon|$2 doublons}}.',
-'fileduplicatesearch-noresults' => 'Aucun fichier nommé « $1 » n’a été trouvé.',
+'fileduplicatesearch-noresults' => "Aucun fichier nommé « $1 » n'a été trouvé.",
 
 # Special:SpecialPages
 'specialpages' => 'Pages spéciales',
@@ -4025,26 +4021,26 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'specialpages-group-changes' => 'Modifications récentes et journaux',
 'specialpages-group-media' => 'Rapports et import de fichiers médias',
 'specialpages-group-users' => 'Utilisateurs et droits rattachés',
-'specialpages-group-highuse' => 'Pages d’utilisation intensive',
+'specialpages-group-highuse' => "Pages d'utilisation intensive",
 'specialpages-group-pages' => 'Listes de pages',
 'specialpages-group-pagetools' => 'Outils pour les pages',
 'specialpages-group-wiki' => 'Données du wiki et outils',
 'specialpages-group-redirects' => 'Pages spéciales redirigées',
-'specialpages-group-spam' => 'Outils anti-pourriel',
+'specialpages-group-spam' => 'Outils anti-spam',
 
 # Special:BlankPage
 'blankpage' => 'Page vide',
 'intentionallyblankpage' => 'Cette page est laissée intentionellement vide.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Laisser cette ligne exactement telle quelle.<pre>
-#Indiquer les fragments d’expressions rationnelles (juste la partie indiquée entre les //) ci-dessous.
+'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle.<pre>
+#Indiquer les fragments d'expressions rationnelles (juste la partie indiquée entre les //) ci-dessous.
 #Ils correspondront avec les URL des images externes.
-#Celles qui correspondent s’afficheront comme des images, sinon seul un lien vers l’image sera affiché.
+#Celles qui correspondent s'afficheront comme des images, sinon seul un lien vers l'image sera affiché.
 #Les lignes commençant par un # seront considérées comme des commentaires.
-#Cette liste n’est pas sensible à la casse.
+#Cette liste n'est pas sensible à la casse.
 
-#Mettez tous les fragments d’expressions rationnelles au-dessus de cette ligne. Laissez cette dernière ligne telle quelle.</pre>',
+#Mettez tous les fragments d'expressions rationnelles au-dessus de cette ligne. Laissez cette dernière ligne telle quelle.</pre>",
 
 # Special:Tags
 'tags' => 'Balises des modifications valides',
@@ -4074,7 +4070,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 # Database error messages
 'dberr-header' => 'Ce wiki a un problème',
 'dberr-problems' => 'Désolé ! Ce site rencontre des difficultés techniques.',
-'dberr-again' => 'Essayez d’attendre quelques minutes et rechargez.',
+'dberr-again' => "Essayez d'attendre quelques minutes et rechargez.",
 'dberr-info' => '(Connexion au serveur de base de données impossible : $1)',
 'dberr-usegoogle' => 'Vous pouvez essayer de chercher avec Google pendant ce temps.',
 'dberr-outofdate' => 'Notez que leurs index de notre contenu peuvent être dépassés.',
@@ -4082,9 +4078,9 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 
 # HTML forms
 'htmlform-invalid-input' => 'Des problèmes sont survenus avec certaines valeurs',
-'htmlform-select-badoption' => 'La valeur que vous avez spécifiée n’est pas une option valide.',
-'htmlform-int-invalid' => 'La valeur que vous avec spécifiée n’est pas un entier.',
-'htmlform-float-invalid' => 'La valeur que vous avez spécifiée n’est pas un nombre.',
+'htmlform-select-badoption' => "La valeur que vous avez spécifiée n'est pas une option valide.",
+'htmlform-int-invalid' => "La valeur que vous avec spécifiée n'est pas un entier.",
+'htmlform-float-invalid' => "La valeur que vous avez spécifiée n'est pas un nombre.",
 'htmlform-int-toolow' => 'La valeur que vous avez spécifiée est plus petite que le minimum de $1',
 'htmlform-int-toohigh' => 'La valeur que vous avez spécifiée est plus grande que le maximum de $1',
 'htmlform-required' => 'Cette valeur est requise',
@@ -4122,15 +4118,15 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-move-move_redir-noredirect' => '$1 a déplacé la page $3 vers $4 par-dessus une redirection sans laisser de redirection',
 'logentry-patrol-patrol' => '$1 a marqué la révision $4 de la page $3 comme relue',
 'logentry-patrol-patrol-auto' => '$1 a automatiquement marqué la révision $4 de la page $3 comme relue',
-'logentry-newusers-newusers' => '$1 a créé un compte utilisateur',
-'logentry-newusers-create' => '$1 a créé son compte utilisateur',
-'logentry-newusers-create2' => '$1 a créé un compte utilisateur $3',
+'logentry-newusers-newusers' => 'Le compte utilisateur $1 a été créé',
+'logentry-newusers-create' => 'Le compte utilisateur $1 a été créé',
+'logentry-newusers-create2' => 'Le compte utilisateur $3 a été créé par $1',
 'logentry-newusers-autocreate' => 'Le compte $1 a été créé automatiquement',
 'newuserlog-byemail' => 'mot de passe envoyé par courriel',
 
 # Feedback
-'feedback-bugornote' => 'Si vous êtes prêt à décrire un problème technique en détail, veuillez [$1 signaler un bogue].
-Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentaire sera ajouté à la page « [$3 $2] », avec votre nom d’utilisateur et le navigateur que vous utilisez.',
+'feedback-bugornote' => "Si vous êtes prêt à décrire un problème technique en détail, veuillez [$1 signaler un bug].
+Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentaire sera ajouté à la page « [$3 $2] », avec votre nom d'utilisateur et le navigateur que vous utilisez.",
 'feedback-subject' => 'Objet :',
 'feedback-message' => 'Message :',
 'feedback-cancel' => 'Annuler',
@@ -4141,47 +4137,47 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-error3' => "Erreur : aucune réponse de l'API",
 'feedback-thanks' => 'Merci ! Votre commentaire a été publié sur la page "[$2 $1]".',
 'feedback-close' => 'Fait',
-'feedback-bugcheck' => 'Formidable ! Vérifiez simplement que ce n’est pas un des [$1 bogues déjà connus].',
-'feedback-bugnew' => "J'ai vérifié. Signaler un nouveau bogue",
+'feedback-bugcheck' => "Formidable ! Vérifiez simplement que ce n'est pas un des [$1 bugs déjà connus].",
+'feedback-bugnew' => "J'ai vérifié. Signaler un nouveau bug",
 
 # Search suggestions
 'searchsuggest-search' => 'Rechercher',
 'searchsuggest-containing' => 'contenant...',
 
 # API errors
-'api-error-badaccess-groups' => 'Vous n’êtes pas autorisé à verser des fichiers sur ce wiki.',
+'api-error-badaccess-groups' => "Vous n'êtes pas autorisé à verser des fichiers sur ce wiki.",
 'api-error-badtoken' => 'Erreur interne : mauvais « jeton ».',
 'api-error-copyuploaddisabled' => 'Les versements via URL sont désactivés sur ce serveur.',
-'api-error-duplicate' => 'Il y a déjà {{PLURAL:$1|[$2 un autre fichier présent]|[$2 d’autres fichiers présents]}} sur le site avec le même contenu.',
-'api-error-duplicate-archive' => 'Il y avait déjà {{PLURAL:$1|[$2 un autre fichier présent]|[$2 d’autres fichiers présents]}} sur le site avec le même contenu, mais {{PLURAL:$1|il a été supprimé|ils ont été supprimés}}.',
+'api-error-duplicate' => "Il y a déjà {{PLURAL:$1|[$2 un autre fichier présent]|[$2 d'autres fichiers présents]}} sur le site avec le même contenu.",
+'api-error-duplicate-archive' => "Il y avait déjà {{PLURAL:$1|[$2 un autre fichier présent]|[$2 d'autres fichiers présents]}} sur le site avec le même contenu, mais {{PLURAL:$1|il a été supprimé|ils ont été supprimés}}.",
 'api-error-duplicate-archive-popup-title' => 'Dupliquer {{PLURAL:$1|le fichier|les fichiers}} qui {{PLURAL:$1|a déjà été supprimé|ont déjà été supprimés}}',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|fichier|fichiers}} en double',
 'api-error-empty-file' => 'Le fichier que vous avez soumis était vide.',
 'api-error-emptypage' => "Création de pages vide n'est pas autorisée.",
-'api-error-fetchfileerror' => 'Erreur interne : Quelque chose s’est mal passé lors de la récupération du fichier.',
+'api-error-fetchfileerror' => "Erreur interne : Quelque chose s'est mal passé lors de la récupération du fichier.",
 'api-error-fileexists-forbidden' => 'Un fichier nommé "$1" existe déjà, et ne peut pas être écrasé.',
 'api-error-fileexists-shared-forbidden' => 'Un fichier nommé "$1" existe déjà dans le répertoire des fichiers partagés, et ne peut pas être écrasé.',
 'api-error-file-too-large' => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort' => 'Le nom du fichier est trop court.',
 'api-error-filetype-banned' => 'Ce type de fichier est interdit.',
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. {{PLURAL:$3|Le type de fichier autorisé est |Les types de fichiers autorisés sont}} $2.',
-'api-error-filetype-missing' => 'L’extension du fichier est manquante.',
+'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|n'est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. {{PLURAL:$3|Le type de fichier autorisé est |Les types de fichiers autorisés sont}} $2.",
+'api-error-filetype-missing' => "L'extension du fichier est manquante.",
 'api-error-hookaborted' => 'La modification que vous avez essayé de faire a été annulée par une extension.',
 'api-error-http' => 'Erreur interne : ne peut se connecter au serveur.',
-'api-error-illegal-filename' => 'Le nom du fichier n’est pas autorisé.',
-'api-error-internal-error' => 'Erreur interne : Quelque chose s’est mal passé lors du traitement de votre import sur le wiki.',
+'api-error-illegal-filename' => "Le nom du fichier n'est pas autorisé.",
+'api-error-internal-error' => "Erreur interne : Quelque chose s'est mal passé lors du traitement de votre import sur le wiki.",
 'api-error-invalid-file-key' => 'Erreur interne : aucun fichier trouvé dans le stockage temporaire.',
 'api-error-missingparam' => 'Erreur interne : Il manque des paramètres dans la requête.',
-'api-error-missingresult' => 'Erreur interne : Nous n’avons pas pu déterminer si la copie avait réussi.',
+'api-error-missingresult' => "Erreur interne : Nous n'avons pas pu déterminer si la copie avait réussi.",
 'api-error-mustbeloggedin' => 'Vous devez être connecté pour télécharger des fichiers.',
 'api-error-mustbeposted' => 'Erreur interne : cette requête nécessite la méthode HTTP POST.',
-'api-error-noimageinfo' => 'Le téléversement a réussi, mais le serveur n’a pas donné d’informations sur le fichier.',
+'api-error-noimageinfo' => "Le téléversement a réussi, mais le serveur n'a pas donné d'informations sur le fichier.",
 'api-error-nomodule' => 'Erreur interne : aucun module de versement défini.',
-'api-error-ok-but-empty' => 'Erreur interne : Le serveur n’a pas répondu.',
-'api-error-overwrite' => 'Écraser un fichier existant n’est pas autorisé.',
-'api-error-stashfailed' => 'Erreur interne : le serveur n’a pas pu enregistrer le fichier temporaire.',
-'api-error-timeout' => 'Le serveur n’a pas répondu dans le délai imparti.',
-'api-error-unclassified' => 'Une erreur inconnue s’est produite',
+'api-error-ok-but-empty' => "Erreur interne : Le serveur n'a pas répondu.",
+'api-error-overwrite' => "Écraser un fichier existant n'est pas autorisé.",
+'api-error-stashfailed' => "Erreur interne : le serveur n'a pas pu enregistrer le fichier temporaire.",
+'api-error-timeout' => "Le serveur n'a pas répondu dans le délai imparti.",
+'api-error-unclassified' => "Une erreur inconnue s'est produite",
 'api-error-unknown-code' => 'Erreur inconnue : « $1 »',
 'api-error-unknown-error' => 'Erreur interne : Quelque chose a mal tourné lors du versement de votre fichier.',
 'api-error-unknown-warning' => 'Avertissement inconnu : $1',

@@ -2136,11 +2136,7 @@ Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weur
 
 'enotif_mailer' => '{{SITENAME}} notificatiemail',
 'enotif_reset' => "Mèrk alle bezochde pazjena's aan.",
-'enotif_newpagetext' => "DIt is 'n nuuj pazjena.",
 'enotif_impersonal_salutation' => '{{SITENAME}} gebroeker',
-'changed' => 'verangerd',
-'created' => 'aangemaak',
-'enotif_subject' => 'De {{SITENAME}}pagina $PAGETITLE is $CHANGEDORCREATED door $PAGEEDITOR',
 'enotif_lastvisited' => 'Zuug $1 veur al verangeringe saer dien lèste bezeuk.',
 'enotif_lastdiff' => 'Zuug $1 om deze wieziging te zeen.',
 'enotif_anon_editor' => 'anonieme gebroeker $1',

@@ -616,8 +616,6 @@ $messages = array(
 'watching' => 'блюдєниѥ ...',
 'unwatching' => 'оставьлєниѥ блюдєниꙗ ...',
 
-'created' => 'сътворѥнъ ѥстъ',
-
 # Delete
 'deletepage' => 'поничьжєниѥ',
 'excontent' => "вънѫтри бѣ: '$1'",

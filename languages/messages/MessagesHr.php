@@ -2251,11 +2251,7 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 
 'enotif_mailer' => '{{SITENAME}} - izvješća o promjenama',
 'enotif_reset' => 'Označi sve stranice kao već posjećene',
-'enotif_newpagetext' => 'Ovo je nova stranica.',
 'enotif_impersonal_salutation' => '{{SITENAME}} suradnik',
-'changed' => 'promijenio',
-'created' => 'stvorio',
-'enotif_subject' => '{{SITENAME}}: Stranicu $PAGETITLE je $CHANGEDORCREATED suradnik $PAGEEDITOR',
 'enotif_lastvisited' => 'Pogledaj $1 za promjene od zadnjeg posjeta.',
 'enotif_lastdiff' => 'Pogledajte $1 kako biste mogli vidjeti tu izmjenu.',
 'enotif_anon_editor' => 'neprijavljeni suradnik $1',
@@ -3921,4 +3917,6 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}',
 
+# Unknown messages
+'mytalk-parenthetical' => 'razgovor',
 );

@@ -2095,11 +2095,7 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 
 'enotif_mailer' => '{{SITENAME}} - Servissi ëd Notìfica Postal',
 'enotif_reset' => 'Marché tute le pàgine tanme visità',
-'enotif_newpagetext' => "Costa-sì a l'é na pàgina neuva",
 'enotif_impersonal_salutation' => 'utent ëd {{SITENAME}}',
-'changed' => 'modificà',
-'created' => 'creà',
-'enotif_subject' => 'La pàgina $PAGETITLE ëd {{SITENAME}} a l\'é staita $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited' => "Che as varda $1 për ës-ciaré tute le modìfiche da 'nt l'ùltima vira che a l'é passà.",
 'enotif_lastdiff' => "Ch'a varda $1 për visioné sta modìfica.",
 'enotif_anon_editor' => 'utent anònim $1',
@@ -3539,8 +3535,8 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'S-ciairé le modifiché amportante',
-'watchlisttools-edit' => "Vardé e modifiché la lista ëd lòn ch'as ten sot euj",
-'watchlisttools-raw' => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
+'watchlisttools-edit' => "Vardé e modifiché la lista ëd lòn ch'as ten sot-euj",
+'watchlisttools-raw' => "Modifiché ampressa la lista ëd lòn ch'as ten sot-euj",
 
 # Iranian month names
 'iranian-calendar-m1' => 'Prim mèis Jalāli',
@@ -3560,8 +3556,8 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ciaciarade]])',
 
 # Core parser functions
-'unknown_extension_tag' => 'Tacolèt d\'estension "$1" pa conossù',
-'duplicate-defaultsort' => "'''Atension:''' La ciav d'ordinament ëd default \"\$2\" a ven al pòst ëd cola ëd prima \"\$1\"",
+'unknown_extension_tag' => "Tichëtta d'estension «$1» pa conossùa",
+'duplicate-defaultsort' => "'''Atension:''' La ciav d'ordinament ëstàndard «$2» a pija ël pòst ëd cola ëd prima «$1».",
 
 # Special:Version
 'version' => 'Version',

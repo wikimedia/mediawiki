@@ -2292,11 +2292,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 
 'enotif_mailer' => '{{GRAMMAR:genitive|{{SITENAME}}}} lehekülje muutmise teavitaja',
 'enotif_reset' => 'Märgi kõik lehed loetuks',
-'enotif_newpagetext' => 'See on uus lehekülg.',
 'enotif_impersonal_salutation' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja',
-'changed' => 'muutnud lehekülge',
-'created' => 'loonud lehekülje',
-'enotif_subject' => '$PAGEEDITOR on {{GRAMMAR:inessive|{{SITENAME}}}} $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited' => 'Kõigi sinu viimase külastuse järel tehtud muudatuste nägemiseks vaata: $1.',
 'enotif_lastdiff' => 'Muudatus on leheküljel $1.',
 'enotif_anon_editor' => 'anonüümne kasutaja $1',

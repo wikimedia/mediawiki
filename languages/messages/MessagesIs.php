@@ -2177,11 +2177,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'watcherrortext' => 'Villa kom upp við breytingu á stillingum vaktlistans fyrir "$1".',
 
 'enotif_reset' => 'Merkja allar síður sem skoðaðar',
-'enotif_newpagetext' => 'Þetta er ný síða.',
 'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
-'changed' => 'breytt',
-'created' => 'búin til',
-'enotif_subject' => '$PAGETITLE á {{SITENAME}} hefur verið $CHANGEDORCREATED af $PAGEEDITOR',
 'enotif_lastvisited' => 'Heimsóttu eftirfarandi tengil til að sjá allar breytingar síðan 
 þú heimsóttir síðuna síðast:
   $1',

@@ -2161,11 +2161,7 @@ $1',
 
 'enotif_mailer' => '{{SITENAME}} проектының белдереү хеҙмәте',
 'enotif_reset' => 'Бөтә биттәрҙе ҡаралған тип билдәләргә',
-'enotif_newpagetext' => 'Был яңы бит.',
 'enotif_impersonal_salutation' => '{{SITENAME}} проектының ҡатнашыусыһы',
-'changed' => 'үҙгәртелгән',
-'created' => 'булдырылды',
-'enotif_subject' => '{{SITENAME}} проектының $PAGETITLE бите $PAGEEDITOR тарафынан $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Һеҙҙең аҙаҡҡы кереүегеҙҙән һуңғы үҙгәртеүҙәрҙе ҡарау өсөн, $1 ҡарағыҙ.',
 'enotif_lastdiff' => 'Был үҙгәртеүҙе ҡарау өсөн, $1 ҡарағыҙ.',
 'enotif_anon_editor' => 'танылмаған ҡатнашыусы $1',
@@ -3558,7 +3554,7 @@ $5
 'watchlisttools-raw' => 'Текст һымаҡ үҙгәртеү',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|фекер алышыу]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|әңгәмә]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Билдәһеҙ "$1" киңәйтеү тегы',

@@ -2483,11 +2483,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 
 'enotif_mailer' => '{{SITENAME}} 通知メール',
 'enotif_reset' => 'すべてのページを訪問済みにする',
-'enotif_newpagetext' => 'これは新しいページです。',
 'enotif_impersonal_salutation' => '{{SITENAME}} 利用者',
-'changed' => '変更',
-'created' => '作成',
-'enotif_subject' => '{{SITENAME}}のページ「$PAGETITLE」が$PAGEEDITORによって$CHANGEDORCREATEDされました',
 'enotif_lastvisited' => '最後に閲覧して以降のすべての変更は $1 をご覧ください。',
 'enotif_lastdiff' => 'この変更内容を表示するには $1 をご覧ください。',
 'enotif_anon_editor' => '匿名利用者「$1」',

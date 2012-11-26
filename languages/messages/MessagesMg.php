@@ -2187,11 +2187,7 @@ Aoriana, raha irinao ny hanaisotra azy ao amin'ny pejy arahanao maso, dia tsindr
 
 'enotif_mailer' => "Fomba fampandrenesana amin'ny alalan'ny imailaka an'i {{SITENAME}}",
 'enotif_reset' => 'Marihana ho efa voavaky ny pejy rehetra',
-'enotif_newpagetext' => 'Pejy vaovao ity pejy ity.',
 'enotif_impersonal_salutation' => "Mpikamban'i {{SITENAME}}",
-'changed' => 'voaova',
-'created' => 'voaforona',
-'enotif_subject' => '$CHANGEDORCREATED $PAGEEDITOR ny pejy $PAGETITLE tao amin\'ny {{SITENAME}}',
 'enotif_lastvisited' => "Jereo eto $1 ny niova rehetra hatramin'ny fitsidihanao farany.",
 'enotif_lastdiff' => 'Jereo $1 mba ahitana ireo fanovana ireo.',
 'enotif_anon_editor' => 'mpikambana tsy nisoratra anarana $1',

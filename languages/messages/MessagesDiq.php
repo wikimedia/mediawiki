@@ -437,10 +437,10 @@ $messages = array(
 
 'linkprefix' => "'''MediaWiki niya ro.'''",
 
-'about' => 'Heqa',
+'about' => 'Heqa cı de',
 'article' => 'Wesiqe',
 'newwindow' => '(pençereyê newey de beno a)',
-'cancel' => 'Bıterkne',
+'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
 'mypage' => 'Per',
 'mytalk' => 'Werênayış',
@@ -541,7 +541,7 @@ $1',
 'pool-errorunknown' => 'Xeta nêzanıtiye',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Heqa de {{SITENAME}}',
+'aboutsite' => 'Heqa {{SITENAME}}i de',
 'aboutpage' => 'Project:Heqdê cı',
 'copyright' => 'Zerrek bınê $1 dero.',
 'copyrightpage' => '{{ns:project}}:Heqa telifi',
@@ -836,7 +836,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 'resetpass_forbidden' => 'parolayi nêvuryayi',
 'resetpass-no-info' => 'şıma gani hesab akere u hona bıeşke bırese cı',
 'resetpass-submit-loggedin' => 'Parola bıvurne',
-'resetpass-submit-cancel' => 'Bıterkne',
+'resetpass-submit-cancel' => 'Bıtexelne',
 'resetpass-wrong-oldpass' => 'parolayo parola maqbul niyo.
 şıma ya parolaye xo vurnayo ya zi parolayo muwaqqat waşto.',
 'resetpass-temp-password' => 'parolayo muweqet:',
@@ -880,7 +880,7 @@ Parola vêrdiye: $2',
 'changeemail-newemail' => 'E-posta adresiyo newe:',
 'changeemail-none' => '(Çıno)',
 'changeemail-submit' => 'E-postay xo bıvurne',
-'changeemail-cancel' => 'Bıterkne',
+'changeemail-cancel' => 'Bıtexelne',
 
 # Edit page toolbar
 'bold_sample' => 'Metno qalın',
@@ -2356,11 +2356,7 @@ Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem 
 
 'enotif_mailer' => 'postaya xeberdayişi {{SITENAME}}',
 'enotif_reset' => 'Pela pêro ziyaret kerde deye mor ke',
-'enotif_newpagetext' => 'Ena yew pela newî ya.',
 'enotif_impersonal_salutation' => '{{SITENAME}} karber',
-'changed' => 'vurneya',
-'created' => 'viraziya',
-'enotif_subject' => 'pelê {{SITENAME}}i $PAGETITLE, hetê/perrê $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => 'ziyareta şıma ye peyini ra nata heme vuryayiş ê ke biyê bıewnê $1i re..',
 'enotif_lastdiff' => 'qey vinayişê ney vurnayişi bıewnê pelê $1i',
 'enotif_anon_editor' => 'karbero anonim $1',

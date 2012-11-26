@@ -627,8 +627,6 @@ Cülci leeb cirjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viime
 'watching' => 'Kattsõõn…',
 'unwatching' => 'Kattsõõmizõõ lõpõttõmin…',
 
-'enotif_newpagetext' => 'Kase on vassõn cülci.',
-
 # Delete
 'deletepage' => 'Pühi cülci',
 'delete-legend' => 'Pühi',

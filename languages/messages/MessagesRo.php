@@ -2358,11 +2358,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 
 'enotif_mailer' => 'Sistemul de notificare {{SITENAME}}',
 'enotif_reset' => 'Marchează toate paginile vizitate',
-'enotif_newpagetext' => 'Aceasta este o pagină nouă.',
 'enotif_impersonal_salutation' => 'Utilizator {{SITENAME}}',
-'changed' => 'modificată',
-'created' => 'creată',
-'enotif_subject' => 'Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED de $PAGEEDITOR',
 'enotif_lastvisited' => 'Vedeți $1 pentru toate modificările de la ultima dvs. vizită.',
 'enotif_lastdiff' => 'Apasă $1 pentru a vedea această schimbare.',
 'enotif_anon_editor' => 'utilizator anonim $1',

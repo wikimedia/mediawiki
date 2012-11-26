@@ -2213,11 +2213,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ, klikit war "Paouez da e
 
 'enotif_mailer' => 'Posteler Kemenn {{SITENAME}}',
 'enotif_reset' => 'Merkañ an holl bajennoù evel gwelet',
-'enotif_newpagetext' => 'Ur bajenn nevez eo homañ.',
 'enotif_impersonal_salutation' => 'implijer {{SITENAME}}',
-'changed' => 'kemmet',
-'created' => 'Krouet',
-'enotif_subject' => '$CHANGEDORCREATED eo bet pajenn $PAGETITLE {{SITENAME}} gant $PAGEEDITOR',
 'enotif_lastvisited' => 'Sellet ouzh $1 evit gwelet an holl gemmoù abaoe ho selladenn ziwezhañ.',
 'enotif_lastdiff' => "Gwelet $1 evit sellet ouzh ar c'hemm-mañ.",
 'enotif_anon_editor' => 'implijer dizanv $1',

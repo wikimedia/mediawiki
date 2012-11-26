@@ -2227,11 +2227,7 @@ Qampa [[Special:Preferences|allinkachinaykikunapi]] qillqakamachisqayki imamayta
 
 'enotif_mailer' => '{{SITENAME}}pa chaski musyachina sirwiqnin',
 'enotif_reset' => "Tukuy p'anqakunata watukusqakama sananchay",
-'enotif_newpagetext' => "Musuq p'anqam.",
 'enotif_impersonal_salutation' => '{{SITENAME}}pa ruraqnin',
-'changed' => 'hukchasqa',
-'created' => 'kamarirqan',
-'enotif_subject' => '{{SITENAME}}pi $PAGETITLE sutiyuq p\'anqaqa $PAGEEDITOR-pa $CHANGEDORCREATED-nñam',
 'enotif_lastvisited' => "$1 sutiyuq p'anqata qhaway qayna watukamusqaykimantapacha tukuy hukchasqakunata rikunaykipaq.",
 'enotif_lastdiff' => "$1 sutiyuq p'anqata qhaway kay hukchasqata rikunaykipaq.",
 'enotif_anon_editor' => 'sutinnaq ruraq $1',

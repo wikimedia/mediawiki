@@ -2375,11 +2375,7 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 
 'enotif_mailer' => 'Gerador de Notificações da {{SITENAME}}',
 'enotif_reset' => 'Marcar todas as páginas como visitadas',
-'enotif_newpagetext' => 'Esta é uma página nova.',
 'enotif_impersonal_salutation' => 'Utilizador da "{{SITENAME}}"',
-'changed' => 'alterada',
-'created' => 'criada',
-'enotif_subject' => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Consulte $1 para ver esta alteração.',
 'enotif_anon_editor' => 'utilizador anónimo $1',

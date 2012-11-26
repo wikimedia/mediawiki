@@ -2148,11 +2148,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 
 'enotif_mailer' => 'Notificación de corréu de {{SITENAME}}',
 'enotif_reset' => 'Marcar toles páxines visitaes',
-'enotif_newpagetext' => 'Esta ye una páxina nueva.',
 'enotif_impersonal_salutation' => 'Usuariu de {{SITENAME}}',
-'changed' => 'camudada',
-'created' => 'creada',
-'enotif_subject' => 'La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited' => 'Mira en $1 pa ver tolos cambios dende la cabera visita.',
 'enotif_lastdiff' => 'Mira en $1 pa ver esti cambéu.',
 'enotif_anon_editor' => 'usuariu anónimu $1',

@@ -2414,11 +2414,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 
 'enotif_mailer' => 'Notificación por correo de {{SITENAME}}',
 'enotif_reset' => 'Marcar todas las páginas como visitadas',
-'enotif_newpagetext' => 'Se trata de una nueva página.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
-'changed' => 'modificada',
-'created' => 'creada',
-'enotif_subject' => 'La página $PAGETITLE de {{SITENAME}} ha sido $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited' => 'Consulta $1 para ver todos los cambios realizados desde tu última visita.',
 'enotif_lastdiff' => 'Consulta $1 para ver este cambio.',
 'enotif_anon_editor' => 'usuario anónimo $1',

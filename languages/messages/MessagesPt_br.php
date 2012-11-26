@@ -2358,11 +2358,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 
 'enotif_mailer' => '{{SITENAME}} Email de Notificação',
 'enotif_reset' => 'Marcar todas páginas como visitadas',
-'enotif_newpagetext' => 'Esta é uma página nova.',
 'enotif_impersonal_salutation' => 'Usuário do projeto "{{SITENAME}}"',
-'changed' => 'alterada',
-'created' => 'criada',
-'enotif_subject' => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor' => 'usuário anônimo $1',

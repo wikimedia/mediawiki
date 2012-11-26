@@ -2085,11 +2085,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 
 'enotif_mailer' => '{{SITENAME}} বিজ্ঞপ্তি ই-মেইল প্রেরক',
 'enotif_reset' => 'সমস্ত পাতা দেখা হয়েছে হিসেবে চিহ্নিত করুন',
-'enotif_newpagetext' => 'এটি একটি নতুন পাতা।',
 'enotif_impersonal_salutation' => '{{SITENAME}} ব্যবহারকারী',
-'changed' => 'পরিবর্তিত',
-'created' => 'তৈরী হয়েছিল',
-'enotif_subject' => '{{SITENAME}}-এর $PAGETITLE শিরোনামের পাতাটি $PAGEEDITOR কর্তৃক $CHANGEDORCREATED হয়েছে',
 'enotif_lastvisited' => 'আপনার শেষ আগমনের পরে সংঘটিত সমস্ত পরিবর্তনের জন্য $1 দেখুন।',
 'enotif_lastdiff' => 'এই পরিবর্তনটি দেখার জন্য $1 দেখুন।',
 'enotif_anon_editor' => 'বেনামী ব্যবহারকারী $1',

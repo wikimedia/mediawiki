@@ -971,14 +971,14 @@ Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude vaše editace z
 'blockedtitle' => 'Uživatel zablokován',
 'blockedtext' => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
-Zablokování provedl{{gender:$4||a}} $1.
+Zablokování provedl{{GENDER:$4||a}} $1.
 Udaným důvodem bylo ''$2''.
 
 * Začátek blokování: $8
 * Zablokování vyprší: $6
 * Blokovaný uživatel: $7
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$4|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{GENDER:$4|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud vám byla tato možnost zakázána.
 Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext' => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
@@ -2390,11 +2390,7 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 
 'enotif_mailer' => 'Zasílač hlášení {{grammar:2sg|{{SITENAME}}}}',
 'enotif_reset' => 'Označit vše jako navštívené',
-'enotif_newpagetext' => 'Toto je nová stránka.',
 'enotif_impersonal_salutation' => 'Uživatel {{grammar:2sg|{{SITENAME}}}}',
-'changed' => 'upravil',
-'created' => 'vytvořil',
-'enotif_subject' => '$PAGEEDITOR upravil stránku $PAGETITLE na {{grammar:6sg|{{SITENAME}}}}.',
 'enotif_lastvisited' => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 'enotif_lastdiff' => 'Tuto změnu vizte na $1 .',
 'enotif_anon_editor' => 'anonymní uživatel $1',

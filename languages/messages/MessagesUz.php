@@ -1087,11 +1087,7 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 
 'enotif_mailer' => "{{SITENAME}} Pochta orqali e'lon qilish xizmati",
 'enotif_reset' => "Hamma sahifalarni ko'rib chiqilgan deb belgilash",
-'enotif_newpagetext' => 'Bu yangi sahifa',
 'enotif_impersonal_salutation' => '{{SITENAME}} ishtirokchisi',
-'changed' => 'o‘zgartirildi',
-'created' => 'yaratildi',
-'enotif_subject' => '"{{SITENAME}}" loyihasining $PAGETITLE sahifasi $PAGEEDITOR tomonidan $CHANGEDORCREATED',
 'enotif_lastvisited' => "Oxirgi tashrifingizdan buyon sodir bo'lgan barcha o'zgarishlarni ko'rish uchun $1 ga qarang.",
 'enotif_lastdiff' => "O'zgarishlar bilan tanishish uchun $1 ga qarang.",
 'enotif_anon_editor' => 'anonim ishtirokchi $1',

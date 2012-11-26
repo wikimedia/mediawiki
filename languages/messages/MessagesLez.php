@@ -952,9 +952,6 @@ $messages = array(
 'watching' => 'Килигун...',
 'unwatching' => 'Амма клигнай',
 
-'changed' => 'дегишнава',
-'created' => 'туькIуьрнава',
-
 # Delete
 'deletepage' => 'Къакъудун хъувун',
 'confirm' => 'Тестикьун',

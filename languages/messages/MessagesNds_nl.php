@@ -2320,11 +2320,7 @@ Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wör
 
 'enotif_mailer' => '{{SITENAME}}-berichgevingssysteem',
 'enotif_reset' => 'Markeer alle ziejen as bezöcht.',
-'enotif_newpagetext' => 'Dit is n nieje zied.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-gebruker',
-'changed' => 'ewiezigd',
-'created' => 'an-emaakt',
-'enotif_subject' => '{{SITENAME}}-zied $PAGETITLE is $CHANGEDORCREATED deur $PAGEEDITOR',
 'enotif_lastvisited' => 'Zie $1 veur alle wiezigingen sinds joew leste bezeuk.',
 'enotif_lastdiff' => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor' => 'anonieme gebruker $1',

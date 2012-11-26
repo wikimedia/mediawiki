@@ -2127,11 +2127,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr wylio, cliciwch ar \"Stopio gwylio\" y
 
 'enotif_mailer' => 'Sustem hysbysu {{SITENAME}}',
 'enotif_reset' => 'Ystyried bod pob tudalen wedi cael ymweliad',
-'enotif_newpagetext' => 'Mae hon yn dudalen newydd.',
 'enotif_impersonal_salutation' => 'at ddefnyddiwr {{SITENAME}}',
-'changed' => 'Newidiwyd',
-'created' => 'crëwyd',
-'enotif_subject' => '$CHANGEDORCREATED y dudalen \'$PAGETITLE\' ar {{SITENAME}} gan $PAGEEDITOR',
 'enotif_lastvisited' => 'Gwelwch $1 am bob newid ers eich ymweliad blaenorol.',
 'enotif_lastdiff' => 'Gallwch weld y newid ar $1.',
 'enotif_anon_editor' => 'defnyddiwr anhysbys $1',

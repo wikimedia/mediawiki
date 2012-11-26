@@ -2313,11 +2313,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 
 'enotif_mailer' => '{{SITENAME}}-endringsmeldingssendar',
 'enotif_reset' => 'Merk alle sidene som vitja',
-'enotif_newpagetext' => 'Dette er ei ny side.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
-'changed' => 'endra',
-'created' => 'oppretta',
-'enotif_subject' => '{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited' => 'Sjå $1 for alle endringane sidan siste vitjing.',
 'enotif_lastdiff' => 'Sjå $1 for å sjå denne endringa.',
 'enotif_anon_editor' => 'anonym brukar $1',

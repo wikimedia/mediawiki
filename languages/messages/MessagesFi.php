@@ -2299,11 +2299,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 
 'enotif_mailer' => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
 'enotif_reset' => 'Merkitse kaikki sivut kerralla nähdyiksi',
-'enotif_newpagetext' => 'Tämä on uusi sivu.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-käyttäjä',
-'changed' => 'muuttanut sivua',
-'created' => 'luonut sivun',
-'enotif_subject' => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited' => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
 'enotif_lastdiff' => 'Muutos on osoitteessa $1.',
 'enotif_anon_editor' => 'kirjautumaton käyttäjä $1',

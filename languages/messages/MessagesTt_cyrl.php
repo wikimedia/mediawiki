@@ -1763,11 +1763,7 @@ PICT # төрле
 'watching' => 'Күзәтү исемлегемә өстәүе…',
 'unwatching' => 'Күзәтү исемлегемнән чыгаруы…',
 
-'enotif_newpagetext' => 'Бу яңа бит.',
 'enotif_impersonal_salutation' => '{{SITENAME}} кулланучы',
-'changed' => 'үзгәртелде',
-'created' => 'төзергән',
-'enotif_subject' => '{{SITENAME}} проектының $PAGETITLE бите $PAGEEDITOR тарафыннан $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Соңгы керүегездән соң булган барлык үзгәртүләрне күрер өчен, бу сылтама аша узыгыз: $1',
 'enotif_body' => 'Хөрмәтле $WATCHINGUSERNAME,
 

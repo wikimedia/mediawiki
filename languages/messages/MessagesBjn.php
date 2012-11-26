@@ -2131,11 +2131,7 @@ Parubahan-parubahan salanjutnya pada tungkaran ini dan tungkaran pamandiran tara
 
 'enotif_mailer' => 'Panyurili pamadahan {{SITENAME}}',
 'enotif_reset' => 'Tandai samunyaan tutungkaran sudah diilangi',
-'enotif_newpagetext' => 'Ngini adalah sabuah tungkaran hanyar.',
 'enotif_impersonal_salutation' => 'Pamuruk {{SITENAME}}',
-'changed' => "ta'ubah",
-'created' => "ta'ulah",
-'enotif_subject' => 'Tungkaran $PAGETITLE pintang {{SITENAME}} sudah $CHANGEDORCREATED ulih $PAGEEDITOR',
 'enotif_lastvisited' => 'Janaki $1 gasan samunyaan parubahan mula Pian pauncitan tadi bailang.',
 'enotif_lastdiff' => 'Janaki $1 hagaan maniringi parubahan ngini.',
 'enotif_anon_editor' => 'pamuruk kada-bangaran $1',

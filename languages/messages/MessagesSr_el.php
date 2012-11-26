@@ -930,14 +930,14 @@ Ako ponovo kliknete na „{{int:savearticle}}“, vaša izmena će biti sačuvan
 'blockedtitle' => 'Korisnik je blokiran',
 'blockedtext' => "'''Vaše korisničko ime ili IP adresa je blokirana.'''
 
-Blokiranje je {{GENDER:$1|izvršio|izvršila|izvršio}} $1.
+Blokiranje je {{GENDER:$4|izvršio|izvršila|izvršio}} $1.
 Razlog: ''$2''.
 
 * Datum blokiranja: $8
 * Blokiranje ističe: $6
 * Ime korisnika: $7
 
-Obratite se {{GENDER:$1|korisniku|korisnici|korisniku}} $1 ili [[{{MediaWiki:Grouppage-sysop}}|administratoru]] da razjasnite stvar.
+Obratite se {{GENDER:$4|korisniku|korisnici|korisniku}} $1 ili [[{{MediaWiki:Grouppage-sysop}}|administratoru]] da razjasnite stvar.
 Ne možete koristiti mogućnost „Pošalji poruku ovom korisniku“ ako niste uneli ispravnu e-adresu u [[Special:Preferences|podešavanjima]].
 Vaša blokirana IP adresa je $3, a IB $5.
 Navedite sve podatke iznad pri stvaranja bilo kakvih upita.",
@@ -2408,11 +2408,7 @@ Ukoliko budete želeli da uklonite stranicu sa spiska nadgledanja, kliknite opet
 
 'enotif_mailer' => '{{SITENAME}} e-obaveštenje',
 'enotif_reset' => 'Označi sve stranice kao posećene',
-'enotif_newpagetext' => 'Ovo je nova stranica.',
 'enotif_impersonal_salutation' => '{{SITENAME}} korisnik',
-'changed' => 'izmenjena',
-'created' => 'napravljena',
-'enotif_subject' => '{{SITENAME}} stranica $PAGETITLE je $CHANGEDORCREATED od strane $PAGEEDITOR',
 'enotif_lastvisited' => 'Pogledajte $1 za sve izmene od vaše poslednje posete.',
 'enotif_lastdiff' => 'Pogledajte $1 da vidite ovu izmenu.',
 'enotif_anon_editor' => 'anoniman korisnik $1',

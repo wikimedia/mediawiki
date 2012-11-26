@@ -2110,11 +2110,7 @@ PICT # misc.
 
 'enotif_mailer' => 'نظام {{SITENAME}} البريدى للإخطارات',
 'enotif_reset' => 'علم على كل الصفحات كأنك خلاص زرتها',
-'enotif_newpagetext' => 'دى صفحه جديده.',
 'enotif_impersonal_salutation' => 'يوزر {{SITENAME}}',
-'changed' => 'اتغيرت',
-'created' => 'إتنشأت',
-'enotif_subject' => 'صفحة {{SITENAME}} $PAGETITLE تم $CHANGEDORCREATED بواسطة $PAGEEDITOR',
 'enotif_lastvisited' => 'شوف $1 لمراجعة كل التغييرات اللى حصلت من أخر زيارة ليك.',
 'enotif_lastdiff' => 'شوف $1 علشان تبص على التغيير دا.',
 'enotif_anon_editor' => 'يوزر مش معروف $1',
