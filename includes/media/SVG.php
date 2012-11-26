@@ -214,6 +214,8 @@ class SvgHandler extends ImageHandler {
 		if ( isset( $metadata['width'] ) && isset( $metadata['height'] ) ) {
 			return array( $metadata['width'], $metadata['height'], 'SVG',
 					"width=\"{$metadata['width']}\" height=\"{$metadata['height']}\"" );
+		} else { // error
+			return array( 0, 0, 'SVG', "width=\"0\" height=\"0\"" );
 		}
 	}
 
@@ -232,6 +234,12 @@ class SvgHandler extends ImageHandler {
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
+
+		$metadata = $this->unpackMetadata( $file->getMetadata() );
+		if ( isset( $metadata['error'] ) ) {
+			return wfMessage( 'svg-long-error', $metadata['error']['message'] )->text();
+		}
+
 		$size = $wgLang->formatSize( $file->getSize() );
 
 		if ( $this->isAnimatedImage( $file ) ) {
@@ -240,23 +248,23 @@ class SvgHandler extends ImageHandler {
 			$msg = wfMessage( 'svg-long-desc' );
 		}
 
-		$msg->numParams(
-			$file->getWidth(),
-			$file->getHeight()
-		);
-		$msg->Params( $size );
+		$msg->numParams( $file->getWidth(), $file->getHeight() )->params( $size );
+
 		return $msg->parse();
 	}
 
 	function getMetadata( $file, $filename ) {
+		$metadata = array( 'version' => self::SVG_METADATA_VERSION );
 		try {
-			$metadata = SVGMetadataExtractor::getMetadata( $filename );
-		} catch( Exception $e ) {
-			// Broken file?
+			$metadata += SVGMetadataExtractor::getMetadata( $filename );
+		} catch( MWException $e ) { // @TODO: SVG specific exceptions
+			// File not found, broken, etc.
+			$metadata['error'] = array(
+				'message' => $e->getMessage(),
+				'code'    => $e->getCode()
+			);
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
-			return '0';
 		}
-		$metadata['version'] = self::SVG_METADATA_VERSION;
 		return serialize( $metadata );
 	}
 
@@ -306,7 +314,7 @@ class SvgHandler extends ImageHandler {
 			return false;
 		}
 		$metadata = $this->unpackMetadata( $metadata );
-		if ( !$metadata ) {
+		if ( !$metadata || isset( $metadata['error'] ) ) {
 			return false;
 		}
 
