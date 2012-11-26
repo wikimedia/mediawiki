@@ -209,4 +209,10 @@ class DatabaseTest extends MediaWikiTestCase {
 				. ( $this->db->getType() == 'postgres' ? '()' : '' )
 		);
 	}
+
+	function testUnknownTableCorruptsResults() {
+		$res = $this->db->select( 'page', '*', array( 'page_id' => 1 ) );
+		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
+		$this->assertInternalType( 'int', $res->numRows() );
+	}
 }
