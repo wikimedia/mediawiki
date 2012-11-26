@@ -427,3 +427,6 @@
 [submodule "extensions/Wikibase"]
 	path = extensions/Wikibase
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikibase.git
+[submodule "extensions/TemplateSandbox"]
+	path = extensions/TemplateSandbox
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateSandbox.git
