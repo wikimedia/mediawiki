@@ -7,6 +7,7 @@
  *
  * @group API
  * @group Database
+ * @group medium
  */
 class ApiEditPageTest extends ApiTestCase {
 
