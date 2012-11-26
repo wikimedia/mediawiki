@@ -3709,6 +3709,9 @@ Start with a lowercase letter, unless the first word is “SVG”.',
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
+
+'svg-long-error' => 'Displayed for invalid SVG file metadata.
+* $1 is the error message.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
 'show-big-image-size' => '
