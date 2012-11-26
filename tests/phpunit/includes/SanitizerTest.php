@@ -70,10 +70,10 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @param Boolean $escaped Wheter sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
+		global $wgHtml5;
 
 		# Enable HTML5 mode
-		global $wgHTML5;
-		$save = $wgHTML5;
+		$save = $wgHtml5;
 		$wgHTML5 = true;
 
 		if( $escaped ) {
@@ -85,7 +85,7 @@ class SanitizerTest extends MediaWikiTestCase {
 				Sanitizer::removeHTMLtags( "<$tag>" )
 			);
 		}
-		$wgHTML5 = $save;
+		$wgHtml5 = $save;
 	}
 
 	/**
