@@ -313,9 +313,6 @@
 [submodule "extensions/StrategyWiki"]
 	path = extensions/StrategyWiki
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/StrategyWiki.git
-[submodule "extensions/StringFunctionsEscaped"]
-	path = extensions/StringFunctionsEscaped
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/StringFunctionsEscaped.git
 [submodule "extensions/SubPageList3"]
 	path = extensions/SubPageList3
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubPageList3.git
