@@ -752,11 +752,10 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang;
+		global $wgMemc, $wgLang, $wgSecureLogin;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
-				global $wgSecureLogin;
 				# We've verified now, update the real record
 				$user = $this->getUser();
 				if( (bool)$this->mRemember != (bool)$user->getOption( 'rememberpassword' ) ) {

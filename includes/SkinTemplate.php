@@ -643,7 +643,6 @@ class SkinTemplate extends Skin {
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
 			# anonlogin & login are the same
-			global $wgSecureLogin;
 			$proto = $wgSecureLogin ? PROTO_HTTPS : null;
 
 			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
