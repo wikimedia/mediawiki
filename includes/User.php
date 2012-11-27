@@ -2454,30 +2454,29 @@ class User {
 	 * @return Int
 	 */
 	public function getEditCount() {
-		if( $this->getId() ) {
-			if ( !isset( $this->mEditCount ) ) {
-				/* Populate the count, if it has not been populated yet */
-				wfProfileIn( __METHOD__ );
-				$dbr = wfGetDB( DB_SLAVE );
-				// check if the user_editcount field has been initialized
-				$count = $dbr->selectField(
-					'user', 'user_editcount',
-					array( 'user_id' => $this->mId ),
-					__METHOD__
-				);
-
-				if( $count === null ) {
-					// it has not been initialized. do so.
-					$count = $this->initEditCount();
-				}
-				wfProfileOut( __METHOD__ );
-				$this->mEditCount = intval( $count );
-			}
-			return $this->mEditCount;
-		} else {
-			/* nil */
+		if ( !$this->getId() ) {
 			return null;
 		}
+
+		if ( !isset( $this->mEditCount ) ) {
+			/* Populate the count, if it has not been populated yet */
+			wfProfileIn( __METHOD__ );
+			$dbr = wfGetDB( DB_SLAVE );
+			// check if the user_editcount field has been initialized
+			$count = $dbr->selectField(
+				'user', 'user_editcount',
+				array( 'user_id' => $this->mId ),
+				__METHOD__
+			);
+
+			if( $count === null ) {
+				// it has not been initialized. do so.
+				$count = $this->initEditCount();
+			}
+			$this->mEditCount = intval( $count );
+			wfProfileOut( __METHOD__ );
+		}
+		return $this->mEditCount;
 	}
 
 	/**
