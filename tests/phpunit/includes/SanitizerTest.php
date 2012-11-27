@@ -74,7 +74,7 @@ class SanitizerTest extends MediaWikiTestCase {
 
 		# Enable HTML5 mode
 		$save = $wgHtml5;
-		$wgHTML5 = true;
+		$wgHtml5 = true;
 
 		if( $escaped ) {
 			$this->assertEquals( "&lt;$tag&gt;",
