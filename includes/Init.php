@@ -81,7 +81,7 @@ class MWInit {
 		global $IP;
 
 		if ( defined( 'MW_COMPILED' ) ) {
-			return "phase3/$file";
+			return "core/$file";
 		} else {
 			return "$IP/$file";
 		}
