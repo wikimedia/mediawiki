@@ -38,7 +38,6 @@ $wgAutoloadLocalClasses = array(
 	'AuthPlugin' => 'includes/AuthPlugin.php',
 	'AuthPluginUser' => 'includes/AuthPlugin.php',
 	'Autopromote' => 'includes/Autopromote.php',
-	'BacklinkCache' => 'includes/BacklinkCache.php',
 	'BadTitleError' => 'includes/Exception.php',
 	'BaseTemplate' => 'includes/SkinTemplate.php',
 	'Block' => 'includes/Block.php',
@@ -425,6 +424,7 @@ $wgAutoloadLocalClasses = array(
 	'UsageException' => 'includes/api/ApiMain.php',
 
 	# includes/cache
+	'BacklinkCache' => 'includes/cache/BacklinkCache.php',
 	'CacheDependency' => 'includes/cache/CacheDependency.php',
 	'ConstantDependency' => 'includes/cache/CacheDependency.php',
 	'DependencyWrapper' => 'includes/cache/CacheDependency.php',
