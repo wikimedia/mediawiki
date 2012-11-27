@@ -1110,5 +1110,36 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'dummy', 'dummy', 'return garbage as is' ),
 		);
 	}
+
+	/**
+	 * @covers Language::commafy()
+	 * @dataProvider provideCommafyData
+	 */
+	function testCommafy( $number, $numbersWithCommas ) {
+		$this->assertEquals(
+			$numbersWithCommas,
+			$this->getLang()->commafy( $number ),
+			"commafy('$number')"
+		);
+	}
+
+	function provideCommafyData() {
+		return array(
+			array( 1, '1' ),
+			array( 10, '10' ),
+			array( 100, '100' ),
+			array( 1000, '1,000' ),
+			array( 10000, '10,000' ),
+			array( 100000, '100,000' ),
+			array( 1000000, '1,000,000' ),
+			array( 1.0000, '1.0000' ),
+			array( 10.0000, '10.0000' ),
+			array( 100.0000, '100.0000' ),
+			array( 1000.0000, '1,000.0000' ),
+			array( 10000.0000, '10,000.0000' ),
+			array( 100000.0000, '100,000.0000' ),
+			array( 1000000.0000, '1,000,000.0000' ),
+		);
+	}
 }
 
