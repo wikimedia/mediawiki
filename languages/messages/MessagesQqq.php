@@ -4504,6 +4504,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'ellipsis' => '{{optional}}',
 'percent' => '{{optional}}',
 'parentheses' => '{{optional}}',
+'quotation-marks' => '{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',
