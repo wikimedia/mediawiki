@@ -27,7 +27,7 @@ class TestSample extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Name tests so that PHPUnit can turn them into sentances when
+	 * Name tests so that PHPUnit can turn them into sentences when
 	 * they run.  While MediaWiki isn't strictly an Agile Programming
 	 * project, you are encouraged to use the naming described under
 	 * "Agile Documentation" at
