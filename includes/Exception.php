@@ -507,7 +507,7 @@ class UserBlockedError extends ErrorPageError {
  *
  * @par Example:
  * @code
- * if( $user->isAnon ) {
+ * if( $user->isAnon() ) {
  * 	throw new UserNotLoggedIn();
  * }
  * @endcode
