@@ -42,9 +42,6 @@ class FileOpBatch {
 	 * $opts is an array of options, including:
 	 *   - force        : Errors that would normally cause a rollback do not.
 	 *                    The remaining operations are still attempted if any fail.
-	 *   - allowStale   : Don't require the latest available data.
-	 *                    This can increase performance for non-critical writes.
-	 *                    This has no effect unless the 'force' flag is set.
 	 *   - nonJournaled : Don't log this operation batch in the file journal.
 	 *   - concurrency  : Try to do this many operations in parallel when possible.
 	 *
@@ -69,7 +66,6 @@ class FileOpBatch {
 		}
 
 		$batchId = $journal->getTimestampedUUID();
-		$allowStale = !empty( $opts['allowStale'] );
 		$ignoreErrors = !empty( $opts['force'] );
 		$journaled = empty( $opts['nonJournaled'] );
 		$maxConcurrency = isset( $opts['concurrency'] ) ? $opts['concurrency'] : 1;
@@ -84,7 +80,6 @@ class FileOpBatch {
 		foreach ( $performOps as $index => $fileOp ) {
 			$backendName = $fileOp->getBackend()->getName();
 			$fileOp->setBatchId( $batchId ); // transaction ID
-			$fileOp->allowStaleReads( $allowStale ); // consistency level
 			// Decide if this op can be done concurrently within this sub-batch
 			// or if a new concurrent sub-batch must be started after this one...
 			if ( $fileOp->dependsOn( $curBatchDeps )
