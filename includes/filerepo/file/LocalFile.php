@@ -771,6 +771,14 @@ class LocalFile extends File {
 
 		// Delete thumbnails
 		$files = $this->getThumbnails();
+		// Allways purge all files from squid.
+		// Get list of urls before handlers can filter it.
+		if ( $wgUseSquid ) {
+			$urls = array();
+			foreach( $files as $file ) {
+				$urls[] = $this->getThumbUrl( $file );
+			}
+		}
 
 		// Give media handler a chance to filter the purge list
 		if ( !empty( $options['forThumbRefresh'] ) ) {
@@ -788,10 +796,6 @@ class LocalFile extends File {
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
-			$urls = array();
-			foreach( $files as $file ) {
-				$urls[] = $this->getThumbUrl( $file );
-			}
 			SquidUpdate::purge( $urls );
 		}
 
