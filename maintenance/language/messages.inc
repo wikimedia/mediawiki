@@ -169,6 +169,7 @@ $wgMessageStructure = array(
 		'moredotdotdot',
 		'mypage',
 		'mytalk',
+		'mytalk-parenthetical',
 		'anontalk',
 		'navigation',
 		'and',
