@@ -2863,30 +2863,30 @@ class Language {
 		return "<em>$text</em>";
 	}
 
-	 /**
-	  * Normally we output all numbers in plain en_US style, that is
-	  * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
-	  * point twohundredthirtyfive. However this is not suitable for all
-	  * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
-	  * Icelandic just want to use commas instead of dots, and dots instead
-	  * of commas like "293.291,235".
-	  *
-	  * An example of this function being called:
-	  * <code>
-	  * wfMessage( 'message' )->numParams( $num )->text()
-	  * </code>
-	  *
-	  * See LanguageGu.php for the Gujarati implementation and
-	  * $separatorTransformTable on MessageIs.php for
-	  * the , => . and . => , implementation.
-	  *
-	  * @todo check if it's viable to use localeconv() for the decimal
-	  *       separator thing.
-	  * @param $number Mixed: the string to be formatted, should be an integer
-	  *        or a floating point number.
-	  * @param $nocommafy Bool: set to true for special numbers like dates
-	  * @return string
-	  */
+	/**
+	 * Normally we output all numbers in plain en_US style, that is
+	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
+	 * point twohundredthirtyfive. However this is not suitable for all
+	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
+	 * Icelandic just want to use commas instead of dots, and dots instead
+	 * of commas like "293.291,235".
+	 *
+	 * An example of this function being called:
+	 * <code>
+	 * wfMessage( 'message' )->numParams( $num )->text()
+	 * </code>
+	 *
+	 * See LanguageGu.php for the Gujarati implementation and
+	 * $separatorTransformTable on MessageIs.php for
+	 * the , => . and . => , implementation.
+	 *
+	 * @todo check if it's viable to use localeconv() for the decimal
+	 *       separator thing.
+	 * @param $number Mixed: the string to be formatted, should be an integer
+	 *        or a floating point number.
+	 * @param $nocommafy Bool: set to true for special numbers like dates
+	 * @return string
+	 */
 	public function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
 		if ( !$nocommafy ) {
@@ -2929,37 +2929,37 @@ class Language {
 	/**
 	 * Adds commas to a given number
 	 * @since 1.19
-	 * @param $_ mixed
+	 * @param $number mixed
 	 * @return string
 	 */
-	function commafy( $_ ) {
+	function commafy( $number ) {
 		$digitGroupingPattern = $this->digitGroupingPattern();
-		if ( $_ === null ) {
+		if ( $number === null ) {
 			return '';
 		}
 
 		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
 			// default grouping is at thousands,  use the same for ###,###,### pattern too.
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
+			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
 		} else {
 			// Ref: http://cldr.unicode.org/translation/number-patterns
 			$sign = "";
-			if ( intval( $_ ) < 0 ) {
+			if ( intval( $number ) < 0 ) {
 				// For negative numbers apply the algorithm like positive number and add sign.
 				$sign =  "-";
-				$_ = substr( $_, 1 );
+				$number = substr( $number, 1 );
 			}
-			$numberpart = array();
-			$decimalpart = array();
+			$integerPart = array();
+			$decimalPart = array();
 			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/\d+/", $_, $numberpart );
-			preg_match( "/\.\d*/", $_, $decimalpart );
-			$groupedNumber = ( count( $decimalpart ) > 0 ) ? $decimalpart[0]:"";
-			if ( $groupedNumber  === $_ ) {
+			preg_match( "/\d+/", $number, $integerPart );
+			preg_match( "/\.\d*/", $number, $decimalPart );
+			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0]:"";
+			if ( $groupedNumber  === $number ) {
 				// the string does not have any number part. Eg: .12345
 				return $sign . $groupedNumber;
 			}
-			$start = $end = strlen( $numberpart[0] );
+			$start = $end = strlen( $integerPart[0] );
 			while ( $start > 0 ) {
 				$match = $matches[0][$numMatches -1] ;
 				$matchLen = strlen( $match );
@@ -2967,7 +2967,7 @@ class Language {
 				if ( $start < 0 ) {
 					$start = 0;
 				}
-				$groupedNumber = substr( $_ , $start, $end -$start ) . $groupedNumber ;
+				$groupedNumber = substr( $number , $start, $end -$start ) . $groupedNumber ;
 				$end = $start;
 				if ( $numMatches > 1 ) {
 					// use the last pattern for the rest of the number
@@ -2980,6 +2980,7 @@ class Language {
 			return $sign . $groupedNumber;
 		}
 	}
+
 	/**
 	 * @return String
 	 */
