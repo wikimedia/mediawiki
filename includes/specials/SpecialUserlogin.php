@@ -915,7 +915,19 @@ class LoginForm extends SpecialPage {
 		# Run any hooks; display injected HTML
 		$currentUser = $this->getUser();
 		$injected_html = '';
-		$welcome_creation_msg = 'welcomecreation';
+		$welcome_creation_msg = 'welcomecreation-agora';
+
+		$onboardingPage = false;
+		// XXX Can the Onboarding extension signal through existing hooks that
+		// it wants to redirect to its own page?
+		// Note that the extension can't simply perform its own redirect on 
+		// BeforeWelcomeCreation, as it needs access to the mReturnTo and
+		// mReturnToQuery member variables so that it can fabricate its own
+		//	[← No thanks, back to Xyz] button.
+		// Unless it scans the query string itself on BeforeWelcomeCreation for these.
+		if ( true || $wgRequest->getBool( 'agoraForm' ) ) { // new appearance  TEMP
+			$onboardingPage = true;
+		}
 
 		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
 
@@ -925,6 +937,15 @@ class LoginForm extends SpecialPage {
 		 * @since 1.18
 		 */
 		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
+
+		if ( $onboardingPage ) {
+			// UserLoginComplete and BeforeWelcomeCreation hooks have run, and
+			// they may have overridden msgname and supplied $injected_html.
+			// But we want to show a new special page.
+			// $this->executeReturnTo( 'redirectremember', 'Special:WelcomeUser' );
+			$this->executeReturnTo( 'redirectremember', 'E3_Test_Onboarding' );
+			return;
+		}
 
 		$this->displaySuccessfulAction( $this->msg( 'welcomeuser', $this->getUser()->getName() ),
 			$welcome_creation_msg, $injected_html );
@@ -940,6 +961,7 @@ class LoginForm extends SpecialPage {
 	private function displaySuccessfulAction( $title, $msgname, $injected_html ) {
 		$out = $this->getOutput();
 		$out->setPageTitle( $title );
+
 		if ( $msgname ) {
 			$out->addWikiMsg( $msgname, wfEscapeWikiText( $this->getUser()->getName() ) );
 		}
@@ -990,13 +1012,28 @@ class LoginForm extends SpecialPage {
 	 *    - error: display a return to link ignoring $wgRedirectOnLogin
 	 *    - success: display a return to link using $wgRedirectOnLogin if needed
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
+	 *    - redirectremember: send an HTTP redirect using $wgRedirectOnLogin if needed
+	 * @param $redirectUrl string optional URL to which to redirect, only used in
+	 *    'redirectremember' case
 	 */
-	private function executeReturnTo( $type ) {
+	private function executeReturnTo( $type, $redirectUrl ) {
 		global $wgRedirectOnLogin, $wgSecureLogin;
 
 		if ( $type != 'error' && $wgRedirectOnLogin !== null ) {
 			$returnTo = $wgRedirectOnLogin;
 			$returnToQuery = array();
+		} elseif ( $type == 'redirectremember' ) {
+			// sample URL: When user clicks 'Create account' on
+			// E3_Test_Onboarding?param1=one&param2=two , the URL here is
+			// ?title=Special:UserLogin&returnto=E3+Test+Onboarding&returntoquery=param1%3Done%26param2%3Dtwo&type=signup
+			$returnTo = $redirectUrl;
+			$returnToQuery = array_merge(
+				array(
+					'returnto' => $this->mReturnTo,
+					'fromSignup' => 1
+				),
+				wfCgiToArray( $this->mReturnToQuery )
+			);
 		} else {
 			$returnTo = $this->mReturnTo;
 			$returnToQuery = wfCgiToArray( $this->mReturnToQuery );
@@ -1018,7 +1055,7 @@ class LoginForm extends SpecialPage {
 			$proto = PROTO_RELATIVE;
 		}
 
-		if ( $type == 'successredirect' ) {
+		if ( $type == 'successredirect' || $type == 'redirectremember' ) {
 			$redirectUrl = $returnToTitle->getFullURL( $returnToQuery, false, $proto );
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
