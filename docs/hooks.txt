@@ -899,6 +899,7 @@ Return true without altering $error to allow the edit to proceed.
 the editOptions area
 $editor: EditPage instance (object)
 $out: an OutputPage instance to write to
+&$tabindex: HTML tabindex of the last edit check/button
 return value is ignored (should always be true)
 
 'EditPageBeforeConflictDiff': allows modifying the EditPage object and output
