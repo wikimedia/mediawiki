@@ -78,7 +78,10 @@ class RefreshLinksJob extends Job {
 			$content = $revision->getContentHandler()->makeEmptyContent();
 		}
 
-		$updates = $content->getSecondaryDataUpdates( $title, null, false );
+		// Revision ID must be passed to the parser output to get revision variables correct
+		$parserOutput = $content->getParserOutput( $title, $revision->getId(), null, false );
+
+		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput );
 		DataUpdate::runUpdates( $updates );
 		wfProfileOut( $fname );
 	}
