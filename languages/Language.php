@@ -177,6 +177,12 @@ class Language {
 	 * @return Language
 	 */
 	static function factory( $code ) {
+		global $wgDummyLanguageCodes;
+		
+		if( isset( $wgDummyLanguageCodes[$code] ) ) {
+			$code = $wgDummyLanguageCodes[$code];
+		}
+		
 		if ( !isset( self::$mLangObjCache[$code] ) ) {
 			if ( count( self::$mLangObjCache ) > 10 ) {
 				// Don't keep a billion objects around, that's stupid.
