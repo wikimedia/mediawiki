@@ -160,8 +160,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @dataProvider dataGetAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
-		global $wgLanguageCode, $wgContLang;
-
 		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
 		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
 

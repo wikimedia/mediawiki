@@ -10,7 +10,7 @@
 class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function setup() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContLang;
+		global $wgContLang;
 
 		parent::setUp();
 

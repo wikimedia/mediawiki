@@ -515,7 +515,7 @@ class Article extends Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgParser, $wgUseFileCache, $wgUseETag, $wgDebugToolbar;
+		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar;
 
 		wfProfileIn( __METHOD__ );
 

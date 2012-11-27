@@ -80,8 +80,6 @@ class DumpRenderer extends Maintenance {
 	 * @param $rev Revision
 	 */
 	public function handleRevision( $rev ) {
-		global $wgParserConf;
-
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
