@@ -3798,6 +3798,4 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'duration-centuries' => '$1 {{PLURAL:$1|amžius|amžiai|amžių}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tūkstantmetis|tūkstantmečiai|tūkstantmečių}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'aptarimas',
 );

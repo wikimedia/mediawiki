@@ -3485,6 +3485,4 @@ $5
 'searchsuggest-search' => 'تدوير',
 'searchsuggest-containing' => 'جوّاه...',
 
-# Unknown messages
-'mytalk-parenthetical' => 'كلام',
 );

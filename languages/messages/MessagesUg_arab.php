@@ -2062,11 +2062,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 
 'enotif_mailer' => '{{SITENAME}} ئېلخەت ئۇقتۇرغۇچ',
 'enotif_reset' => 'ھەممە بەتكە ئوقۇلدى بەلگىسى سال',
-'enotif_newpagetext' => 'بۇ يېڭى بەت.',
 'enotif_impersonal_salutation' => '{{SITENAME}} ئىشلەتكۈچى',
-'changed' => 'ئۆزگەردى',
-'created' => 'قۇرغان',
-'enotif_subject' => '{{SITENAME}} نىڭ $PAGETITLE بېتىنى $CHANGEDORCREATED ئۆزگەرتكۈچى$PAGEEDITOR',
 'enotif_lastvisited' => 'ئالدىنقى قېتىملىق زىيارەتتىن كېيىنكى ھەممە ئۆزگەرتىشنى $1 كۆرۈڭ.',
 'enotif_lastdiff' => 'بۇ ئۆزگەرتىشنى كۆرمەكچى بولسىڭىز $1 كۆرۈڭ.',
 'enotif_anon_editor' => '$1 ئاتسىز ئىشلەتكۈچى',

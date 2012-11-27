@@ -2391,6 +2391,11 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'enotif_mailer' => 'Zasílač hlášení {{grammar:2sg|{{SITENAME}}}}',
 'enotif_reset' => 'Označit vše jako navštívené',
 'enotif_impersonal_salutation' => 'Uživatel {{grammar:2sg|{{SITENAME}}}}',
+'enotif_subject_deleted' => '$2 {{gender:$2|smazal|smazala}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
+'enotif_subject_created' => '$2 {{gender:$2|založil|založila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
+'enotif_subject_moved' => '$2 {{gender:$2|přesunul|přesunula}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
+'enotif_subject_restored' => '$2 {{gender:$2|obnovil|obnovila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
+'enotif_subject_changed' => '$2 {{gender:$2|změnil|změnila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_lastvisited' => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 'enotif_lastdiff' => 'Tuto změnu vizte na $1 .',
 'enotif_anon_editor' => 'anonymní uživatel $1',
@@ -4130,6 +4135,4 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'diskuse',
 );

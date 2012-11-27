@@ -3924,6 +3924,4 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'arutelu',
 );

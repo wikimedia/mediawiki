@@ -3312,6 +3312,4 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'searchsuggest-search' => 'Bilatu',
 'searchsuggest-containing' => 'edukian...',
 
-# Unknown messages
-'mytalk-parenthetical' => 'eztabaida',
 );

@@ -884,11 +884,13 @@ $2
 'edit-already-exists' => 'కొత్త పేజీని సృష్టించలేము.
 అది ఇప్పటికే ఉంది.',
 'defaultmessagetext' => 'అప్రమేయ సందేశపు పాఠ్యం',
+'invalid-content-data' => 'తప్పుడు విషయం',
 
 # Content models
 'content-model-wikitext' => 'వికీపాఠ్యం',
 'content-model-text' => 'సాదా పాఠ్యం',
 'content-model-javascript' => 'జావాస్క్రిప్ట్',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'హెచ్చరిక: ఈ పేజీలో ఖరీదైన పార్సరు పిలుపులు చాలా ఉన్నాయి.
@@ -1385,6 +1387,7 @@ $1",
 'right-siteadmin' => 'డేటాబేసును లాక్, అన్‌లాక్ చెయ్యి',
 'right-override-export-depth' => '5 లింకుల లోతు వరకు ఉన్న పేజీలతో సహా, పేజీలను ఎగుమతి చెయ్యి',
 'right-sendemail' => 'ఇతర వాడుకరులకు ఈ-మెయిలు పంపించగలగడం',
+'right-passwordreset' => 'సంకేతపదాన్ని పునరుద్ధరించిన ఈ-మెయిళ్ళు',
 
 # User rights log
 'rightslog' => 'వాడుకరుల హక్కుల మార్పుల చిట్టా',
@@ -1609,6 +1612,7 @@ $1',
 'backend-fail-opentemp' => 'తాత్కాలిక దస్త్రాన్ని తెరవలేకపోతున్నాం.',
 'backend-fail-closetemp' => 'తాత్కాలిక దస్త్రాన్ని మూసివేయలేకపోయాం.',
 'backend-fail-read' => '$1 దస్త్రము చదువలేకపోతిమి.',
+'backend-fail-create' => '$1 ఫైలులో రాయలేకున్నాం.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'ఈ ఫైలును ZIP పరీక్ష కోసం తెరవబోతే, ఏదో తెలియని లోపం ఎదురైంది.',
@@ -1990,6 +1994,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'mailnologintext' => 'ఇతరులకు ఈ-మెయిలు పంపించాలంటే, మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి, మరియు మీ [[Special:Preferences|అభిరుచుల]]లో సరైన ఈ-మెయిలు చిరునామా ఇచ్చి ఉండాలి.',
 'emailuser' => 'ఈ వాడుకరికి ఈ-మెయిలుని పంపించండి',
 'emailuser-title-target' => 'ఈ {{GENDER:$1|వాడుకరికి}} ఈమెయిలు పంపించండి',
+'emailuser-title-notarget' => 'ఈ-మెయిలు వాడుకరి',
 'emailpage' => 'వాడుకరికి ఈ-మెయిలుని పంపించు',
 'emailpagetext' => 'వాడుకరికి ఈమెయిలు సందేశము పంపించుటకు క్రింది ఫారంను ఉపయోగించవచ్చు. [[Special:Preferences|మీ వాడుకరి అభిరుచుల]]లో మీరిచ్చిన ఈ-మెయిలు చిరునామా "నుండి" ఆ సందేశం వచ్చినట్లుగా ఉంటుంది, కనుక వేగుని అందుకునేవారు నేరుగా మీకు జవాబివ్వగలుగుతారు.',
 'usermailererror' => 'మెయిలు ఆబ్జెక్టు ఈ లోపాన్ని చూపింది:',
@@ -3566,6 +3571,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|శతాబ్దం|శతాబ్దాలు}}',
 'duration-millennia' => '$1 {{PLURAL:$1|సహస్రాబ్దం|సహస్రాబ్దాలు}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'చర్చ',
 );

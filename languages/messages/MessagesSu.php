@@ -264,7 +264,7 @@ $messages = array(
 'cancel' => 'Bolay',
 'moredotdotdot' => 'Deui...',
 'mypage' => 'Kaca kuring',
-'mytalk' => 'Obrolan kuring',
+'mytalk' => 'Obrolan',
 'anontalk' => 'Obrolan pikeun IP ieu',
 'navigation' => 'Pituduh',
 'and' => '&#32;jeung',
@@ -758,9 +758,8 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.
 Anjeun bisa [[Special:Search/{{PAGENAME}}|nyusud judul ieu kaca]] dina kaca séjén,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nyusud log nu tumali],
 atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngédit ieu kaca]</span>.',
-'noarticletext-nopermission' => 'Kiwari ieu kaca euweuh eusian.
-Anjeun bisa [[Special:Search/{{PAGENAME}}|milari judul ieu kaca]] di kaca séjén,
-atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pilari log nu tumali]</span>.',
+'noarticletext-nopermission' => 'Kiwari can aya téks dina ieu kaca.
+Anjeun bisa [[Special:Search/{{PAGENAME}}|nyusud judul ieu kaca]] dina kaca séjén,atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nyusud log nu tumali]</span>, tapi teu wenang pikeun nyieun ieu kaca.',
 'userpage-userdoesnotexist' => 'Rekening pamaké "<nowiki>$1</nowiki>" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
 'userpage-userdoesnotexist-view' => 'Rekening pamaké "$1" teu aya dina daptar.',
 'blocked-notice-logextract' => 'Ieu pamaké keur dipeungpeuk.
@@ -1104,7 +1103,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 
 # Preferences page
 'preferences' => 'Préferénsi',
-'mypreferences' => 'Préferénsi',
+'mypreferences' => 'Préferéns',
 'prefs-edits' => 'Jumlah éditan:',
 'prefsnologin' => 'Can asup log',
 'prefsnologintext' => 'Anjeun kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} asup log]</span> pikeun ngatur préferénsi pamaké.',
@@ -1907,11 +1906,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 
 'enotif_mailer' => 'Surat Émbaran {{SITENAME}}',
 'enotif_reset' => 'Tandaan sadaya kaca nu geus dilongok',
-'enotif_newpagetext' => 'Kaca ieu anyar.',
 'enotif_impersonal_salutation' => 'Pamaké {{SITENAME}}',
-'changed' => 'geus robah',
-'created' => 'geus dijieun',
-'enotif_subject' => 'Kaca $PAGETITLE {{SITENAME}} geus $CHANGEDORCREATED ku $PAGEEDITOR',
 'enotif_lastvisited' => 'Tempo $1 pikeun sadaya parobahan ti saprak anjeun ninggalkeun ieu kaca.',
 'enotif_lastdiff' => 'Buka $1 pikeun nempo ieu parobahan.',
 'enotif_anon_editor' => 'pamaké anonim $1',
@@ -2085,7 +2080,7 @@ $1',
 # Contributions
 'contributions' => 'Kontribusi ti kontributor',
 'contributions-title' => 'Sumbangan tulisan ti $1',
-'mycontris' => 'Tulisan kuring',
+'mycontris' => 'Kontribusi',
 'contribsub2' => 'Pikeun $1 ($2)',
 'nocontribs' => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'uctop' => '(pangluhurna)',
@@ -2123,7 +2118,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'whatlinkshere-hideredirs' => '$1 alihan',
 'whatlinkshere-hidetrans' => '$1 transklusi',
 'whatlinkshere-hidelinks' => '$1 tutumbu',
-'whatlinkshere-hideimages' => '$1 tutumbu gambar',
+'whatlinkshere-hideimages' => '$1 tutumbu berkas',
 'whatlinkshere-filters' => 'Saringan',
 
 # Block/unblock

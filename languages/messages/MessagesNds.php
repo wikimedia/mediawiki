@@ -1897,11 +1897,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 
 'enotif_mailer' => '{{SITENAME}} E-Mail-Bescheedgeevdeenst',
 'enotif_reset' => 'All Sieden as besöcht marken',
-'enotif_newpagetext' => 'Dit is en ne’e Siet.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Bruker',
-'changed' => 'ännert',
-'created' => 'opstellt',
-'enotif_subject' => '[{{SITENAME}}] De Siet „$PAGETITLE“ is vun $PAGEEDITOR $CHANGEDORCREATED worrn',
 'enotif_lastvisited' => 'All Ännern siet dien letzten Besöök op een Blick: $1',
 'enotif_lastdiff' => 'Kiek bi $1 för dit Ännern.',
 'enotif_anon_editor' => 'Anonymen Bruker $1',

@@ -773,7 +773,10 @@ $2',
 'resetpass-temp-password' => 'Ժամանակավոր գաղտնաբառ.',
 
 # Special:PasswordReset
+'passwordreset' => 'Վերականգնել գաղտնաբառը',
+'passwordreset-text' => 'Լրացրեք ձևը՝ էլ-փոստով ձեր տվյալների մասին հիշեցում ստանալու համար։',
 'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
+'passwordreset-disabled' => 'Գաղտնաբառի վերականգնումը այս վիքիում թույլատրված չէ։',
 'passwordreset-username' => 'Մասնակցի անուն.',
 'passwordreset-email' => 'Էլ-փոստի հասցեն՝',
 'passwordreset-emailelement' => 'Մասնակցային անուն. $1
@@ -2646,6 +2649,4 @@ $3
 # Search suggestions
 'searchsuggest-search' => 'Որոնել',
 
-# Unknown messages
-'mytalk-parenthetical' => 'քննարկում',
 );

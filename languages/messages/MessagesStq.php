@@ -1932,11 +1932,7 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 
 'enotif_mailer' => '{{SITENAME}} tält Beskeed uur Email',
 'enotif_reset' => 'Markier aal besoachte Sieden',
-'enotif_newpagetext' => 'Dit is ne näie Siede.',
 'enotif_impersonal_salutation' => '{{SITENAME}} Benutser',
-'changed' => 'annerd',
-'created' => 'näi anlaid',
-'enotif_subject' => '{{SITENAME}} Siede $PAGETITLE wuude $CHANGEDORCREATED fon $PAGEEDITOR',
 'enotif_lastvisited' => 'Aal Annerengen ap aan Blik: $1',
 'enotif_lastdiff' => '$1 wiest alle Annerengen mäd aan Glap.',
 'enotif_anon_editor' => 'Anonyme Benutser $1',

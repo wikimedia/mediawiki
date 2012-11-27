@@ -3922,6 +3922,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'mytalk-parenthetical' => '留言',
 );

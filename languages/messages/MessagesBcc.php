@@ -1789,11 +1789,7 @@ PICT # misc.
 
 'enotif_mailer' => '{{SITENAME}} ایمیل دیم دهوک اخطاری',
 'enotif_reset' => 'نشان کن کل صفحات په داب چارتگین',
-'enotif_newpagetext' => 'شی یک نوکین صفحه ایت.',
 'enotif_impersonal_salutation' => '{{SITENAME}} کاربر',
-'changed' => 'عوض بوت.',
-'created' => 'شربوتت',
-'enotif_subject' => '{{SITENAME}} صفحه $PAGETITLE بوتت $CHANGEDORCREATED گون $PAGEEDITOR',
 'enotif_lastvisited' => 'بچار  $1 په کلین تغییرات چه شمی آهری چارگ.',
 'enotif_lastdiff' => 'بچار $1 په گندگ ای تغییر.',
 'enotif_anon_editor' => 'ناشناس کاربر $1',

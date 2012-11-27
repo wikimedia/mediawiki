@@ -3714,6 +3714,4 @@ MediaWiki се разпространява с надеждата, че ще б�
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|хилядолетие|хилядолетия}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'беседа',
 );

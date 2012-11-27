@@ -2299,24 +2299,30 @@ $1',
 'enotif_mailer' => 'Служба паштовага апавяшчэньня {{GRAMMAR:родны|{{SITENAME}}}}',
 'enotif_reset' => 'Пазначыць усе старонкі як прагледжаныя',
 'enotif_impersonal_salutation' => 'Удзельнік {{GRAMMAR:родны|{{SITENAME}}}}',
+'enotif_subject_deleted' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была выдаленая {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+'enotif_subject_created' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была створаная {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+'enotif_subject_moved' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была перанесеная {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+'enotif_subject_restored' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была адноўленая {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+'enotif_subject_changed' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была зьмененая {{GENDER:$2|удзельнікам|удзельніцай}} $2',
+'enotif_body_intro_deleted' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была выдаленая $PAGEEDITDATE {{GENDER:$2|удзельнікам|удзельніцай}} $2, па цяперашнюю вэрсію глядзіце $3.',
+'enotif_body_intro_created' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была створаная $PAGEEDITDATE {{GENDER:$2|удзельнікам|удзельніцай}} $2, па цяперашнюю вэрсію глядзіце $3.',
+'enotif_body_intro_moved' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была перанесеная $PAGEEDITDATE {{GENDER:$2|удзельнікам|удзельніцай}} $2, па цяперашнюю вэрсію глядзіце $3.',
+'enotif_body_intro_restored' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была адноўленая $PAGEEDITDATE {{GENDER:$2|удзельнікам|удзельніцай}} $2, па цяперашнюю вэрсію глядзіце $3.',
+'enotif_body_intro_changed' => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} «$1» была зьмененая $PAGEEDITDATE {{GENDER:$2|удзельнікам|удзельніцай}} $2, па цяперашнюю вэрсію глядзіце $3.',
 'enotif_lastvisited' => 'Глядзіце на $1 усе апошнія зьмены, якія адбыліся пасьля Вашага апошняга наведваньня.',
 'enotif_lastdiff' => 'Глядзіце $1, каб пабачыць гэтую зьмену.',
 'enotif_anon_editor' => 'ананімны ўдзельнік $1',
-'enotif_body' => 'Шаноўны $WATCHINGUSERNAME,
+'enotif_body' => 'Вітаем, $WATCHINGUSERNAME.
 
+$PAGEINTRO $NEWPAGE
 
-Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATE $PAGEEDITOR, глядзіце цяперашнюю вэрсію на $PAGETITLE_URL.
+Апісаньне зьменаў: $PAGESUMMARY $PAGEMINOREDIT
 
-$NEWPAGE
+Зьвязацца з рэдактарам:
+па электроннай пошце: $PAGEEDITOR_EMAIL
+празь вікі-старонку: $PAGEEDITOR_WIKI
 
-Кароткае апісаньне зьменаў: $PAGESUMMARY $PAGEMINOREDIT
-
-Зьвязацца з аўтарам:
-электронная пошта: $PAGEEDITOR_EMAIL
-вікі-старонка: $PAGEEDITOR_WIKI
-
-Паведамленьні ня будуць дасылацца ў выпадку паўторных рэдагаваньняў, пакуль Вы не наведаеце гэтую старонку.
-Вы можаце пазначыць сьцяжкі дасылкі паведамленьняў для ўсіх старонках назіраньня Вашага сьпісу назіраньня.
+Паведамленьні ня будуць дасылацца ў выпадку паўторных рэдагаваньняў, пакуль Вы не наведаеце гэтую старонку. Вы можаце пазначыць сьцяжкі дасылкі паведамленьняў для ўсіх старонках назіраньня Вашага сьпісу назіраньня.
 
              Сыстэма паведамленьняў {{GRAMMAR:родны|{{SITENAME}}}}
 
@@ -3990,6 +3996,4 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'duration-centuries' => '$1 {{PLURAL:$1|стагодзьдзе|стагодзьдзі|стагодзьдзяў}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячагодзьдзе|тысячагодзьдзі|тысячагодзьдзяў}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'гутаркі',
 );

@@ -26,6 +26,7 @@
  * @author Kaganer
  * @author Kiolalis
  * @author Kiriakos
+ * @author Kongr43gpen
  * @author Lou
  * @author MF-Warburg
  * @author Malafaya
@@ -1866,7 +1867,7 @@ $1',
 
 # Lock manager
 'lockmanager-notlocked' => 'Δεν μπορέσατε να  ξεκλειδώσετε το " $1 ". Δεν είναι κλειδωμένο.',
-'lockmanager-fail-closelock' => 'Δεν μπόρεσε να κλείσει το κλειδωμένο αρχείο για " $1 ".',
+'lockmanager-fail-closelock' => 'Δεν μπόρεσε να κλείσει το κλειδωμένο αρχείο για "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Παρουσιάστηκε σφάλμα κατά το άνοιγμα του αρχείου για ZIP ελέγχους.',
@@ -3991,6 +3992,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|Αιώνα|αιώνες}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Χιλιετία|Χιλιετίες}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'συζήτηση',
 );

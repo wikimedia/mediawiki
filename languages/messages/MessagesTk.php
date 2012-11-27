@@ -3163,6 +3163,4 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'searchsuggest-search' => 'Gözleg',
 'searchsuggest-containing' => 'öz içine alýar...',
 
-# Unknown messages
-'mytalk-parenthetical' => 'çekişme',
 );

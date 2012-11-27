@@ -807,6 +807,4 @@ $messages = array(
 # API errors
 'api-error-unknownerror' => 'нєвѣдома блаꙁна : ⁖ $1 ⁖',
 
-# Unknown messages
-'mytalk-parenthetical' => 'бєсѣда',
 );

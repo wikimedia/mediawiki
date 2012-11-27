@@ -3865,6 +3865,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|शताब्दी}}',
 'duration-millennia' => '$1 {{PLURAL:$1|सहस्राब्दी}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'वार्ता',
 );

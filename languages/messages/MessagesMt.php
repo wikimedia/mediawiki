@@ -1514,8 +1514,9 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 # User rights log
 'rightslog' => 'Drittijiet tal-utenti',
 'rightslogtext' => "Dan huwa r-reġistru tal-modifiki ta' drittijiet tal-utenti.",
-'rightslogentry' => "biddel is-sħubija ta' $1 mill-grupp $2 għall-grupp $3",
+'rightslogentry' => "biddel is-sħubija ta' $1 minn $2 għal $3",
 'rightslogentry-autopromote' => 'ġie awtomatikament promoss minn $2 għal $3',
+'logentry-rights-rights' => "$1 biddel is-sħubija ta' $3 minn $4 għal $5",
 'rightsnone' => '(xejn)',
 
 # Associated actions - in the sentence "You do not have permission to X"

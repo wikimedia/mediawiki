@@ -1034,10 +1034,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'watching' => 'Tlachiyacah...',
 'unwatching' => 'Ahtlachiyacah...',
 
-'enotif_newpagetext' => 'Inīn cah yancuīc zāzanilli.',
 'enotif_impersonal_salutation' => 'tlatequitiltilīlli īpan {{SITENAME}}',
-'changed' => 'ōmotlacuep',
-'created' => 'ōmochīuh',
 'enotif_anon_editor' => 'ahtōcātlatequitiltilīlli $1',
 'enotif_body' => 'Māhuizzoh $WATCHINGUSERNAME,
 

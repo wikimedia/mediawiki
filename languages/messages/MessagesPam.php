@@ -1390,11 +1390,7 @@ click me ing \"Tuknangan ing pamagbante\" (Unwatch) king gilid na ning bulung.",
 'unwatching' => 'E ne babanten...',
 
 'enotif_reset' => 'Dinan lang tanda deng eganaganang bulung a pintalan mu',
-'enotif_newpagetext' => 'Bayu yang bulung ini.',
 'enotif_impersonal_salutation' => 'talagamit king {{SITENAME}}',
-'changed' => 'miyalilan',
-'created' => 'melalang',
-'enotif_subject' => 'Ining bulung ning {{SITENAME}} a $PAGETITLE me$CHANGEDORCREATED ya kapamilatan nang $PAGEEDITOR',
 'enotif_lastvisited' => 'Lon me ing $1 para kareng eganaganang miyalilan
 manibat anyang tawli kang linabas.',
 'enotif_lastdiff' => 'Lon me ing $1 ba meng akit ining miyalilan.',

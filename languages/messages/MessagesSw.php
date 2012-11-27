@@ -3178,6 +3178,4 @@ Tovuti hii inapata matatatizo wakati huu.',
 'duration-years' => '$1 {{PLURAL:$1|year|miaka}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|karne}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'majadiliano',
 );

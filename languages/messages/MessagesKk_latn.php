@@ -1716,11 +1716,7 @@ Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mı
 
 'enotif_mailer' => '{{SITENAME}} eskertw xat jiberw qızmeti',
 'enotif_reset' => 'Barlıq bet kelip-ketildi dep belgile',
-'enotif_newpagetext' => 'Mınaw jaña bet.',
 'enotif_impersonal_salutation' => '{{SITENAME}} qatıswşısı',
-'changed' => 'özgertti',
-'created' => 'bastadı',
-'enotif_subject' => '{{SITENAME}} jobasında $PAGEEDITOR $PAGETITLE atawlı betti $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Soñğı kelip-ketwiñizden beri bolğan özgerister üşin $1 degendi qarañız.',
 'enotif_lastdiff' => 'Osı özgeris üşin $1 degendi qarañız.',
 'enotif_anon_editor' => 'tirkelgisiz qatıswşı $1',

@@ -18,6 +18,7 @@
  * @author Jay
  * @author Kaganer
  * @author KartikMistry
+ * @author Kondi
  * @author Metrix1312
  * @author Mohit.dalal
  * @author Nehal
@@ -850,7 +851,7 @@ $2
 'note' => "'''નોંધ:'''",
 'previewnote' => "'''આ ફક્ત પૂર્વાવલોકન છે;'''
 તમારા ફેરફારો હજુ સાચવવામાં નથી આવ્યા!",
-'continue-editing' => 'વાંચવાનું ચાલુ રાખો',
+'continue-editing' => 'ફેરફાર કરવાનું ચાલુ રાખો',
 'previewconflict' => 'જો તમે આ પાનું સાચવશો તો આ પ્રિવ્યુમાં દેખાય છે તેવું સચવાશે.',
 'session_fail_preview' => "'''અફસોસ છે! સત્ર માહિતી ખોઇ દેવાને કારણે અમે તમારું કાર્ય સાચવી ન શક્યાં.'''
 કૃપયા ફરી પ્રયત્ન કરો.

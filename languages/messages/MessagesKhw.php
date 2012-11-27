@@ -693,6 +693,7 @@ HTML tags لوڑے.',",
 'recentchanges-label-newpage' => 'ھیہ ترمیم نوغ صفحہ تخلیق آریر',
 'recentchanges-label-minor' => 'ھیہ ای معمولی ترمیم شیر',
 'recentchanges-label-bot' => 'ھیہ ایڈیٹو خود کار بوٹو زریعا انجام دیونو ہوی',
+'recentchanges-label-unpatrolled' => 'ھیہ ترمیمو ھمونیہ پت مراجعت(Patrolled) کورونو نو بیتی شیر',
 'rcnote' => "درج ذیل گزشتہ {{PLURAL:$2|بس|'''$2''' انوسا}} باک {{PLURAL:$1|'''ای''' تبدیلی شیر|آخری '''$1''' تبدیلی شینی}}، $5، $4.",
 'rcnotefrom' => "ھیہ موڑا '''$2''' کورونو بیرو تبدیلیان تفصیلات شینی ('''$1''' تبدیلیان پشینو بونیان)۔",
 'rclistfrom' => '$1 نوغ تبدیلیاں پشیک شروع کورے',
@@ -933,6 +934,7 @@ HTML tags لوڑے.',",
 
 # Block/unblock
 'blockip' => 'داخلہ ممنوع براۓ صارف',
+'ipboptions' => '2 گھنٹہ:2 hours,1 آنوس:1 day,3 بس:3 days,1 ہفتہ:1 week,2 ہفتہ:2 weeks,1 مس:1 month,3 مس:3 months,6 مس:6 months,1 سال:1 year,لامحدود:infinite',
 'ipblocklist' => 'داخلہ ممنوع براۓ صارف',
 'blocklink' => 'پاوبندی لیگاوے',
 'unblocklink' => 'پاوبندی ختم',
@@ -1111,6 +1113,4 @@ HTML tags لوڑے.',",
 # Search suggestions
 'searchsuggest-search' => 'Search/تلاش',
 
-# Unknown messages
-'mytalk-parenthetical' => 'مشقولگی',
 );

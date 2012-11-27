@@ -4063,6 +4063,4 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'discussão',
 );

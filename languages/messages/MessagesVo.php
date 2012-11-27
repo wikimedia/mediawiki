@@ -1692,11 +1692,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 
 'enotif_mailer' => 'Nunamasit ela {{SITENAME}}',
 'enotif_reset' => 'Malön padis pevisitöl valik',
-'enotif_newpagetext' => 'Atos binon pad nulik.',
 'enotif_impersonal_salutation' => 'Geban {{SITENAME}}-a',
-'changed' => 'pevotüköl',
-'created' => 'pejafon',
-'enotif_subject' => 'In {{SITENAME}}, pad: $PAGETITLE $CHANGEDORCREATED fa el $PAGEEDITOR',
 'enotif_lastvisited' => 'Logolös eli $1 ad tuvön lisedi votükamas valik pos visit lätik ola.',
 'enotif_lastdiff' => 'Logolös eli $1 ad tuvön votükami at.',
 'enotif_anon_editor' => 'geban nennemik: $1',

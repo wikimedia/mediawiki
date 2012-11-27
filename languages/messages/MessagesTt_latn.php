@@ -1514,11 +1514,7 @@ Bu bittä häm anıñ bäxäslegendä barlıq bulaçaq üzgärtülär şunda kü
 'watching' => 'Küzätü isemlegemä östäwe…',
 'unwatching' => 'Küzätü isemlegemnän çığaruı…',
 
-'enotif_newpagetext' => 'Bu yaña bit.',
 'enotif_impersonal_salutation' => '{{SITENAME}} qullanuçı',
-'changed' => 'üzgärtelde',
-'created' => 'tözergän',
-'enotif_subject' => '{{SITENAME}} proyektınıñ $PAGETITLE bite $PAGEEDITOR tarafınnan $CHANGEDORCREATED',
 'enotif_lastvisited' => 'Soñğı kerüegezdän soñ bulğan barlıq üzgärtülärne kürer öçen, bu sıltama aşa uzığız: $1',
 'enotif_body' => 'Xörmätle $WATCHINGUSERNAME,
 

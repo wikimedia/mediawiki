@@ -1327,6 +1327,4 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'duration-decades' => '$1 {{PLURAL:$1|он хонук|он хонук}}',
 'duration-centuries' => '$1 {{PLURAL:$1|чүс чыл|чүс чыл}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'чугаалажыры',
 );

@@ -3736,6 +3736,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
 'duration-millennia' => '$1 {{PLURAL:$1|יארטויזנט|יארטויזנטער}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'שמועס',
 );

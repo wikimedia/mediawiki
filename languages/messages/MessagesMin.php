@@ -841,9 +841,9 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'notextmatches' => 'Indak ado judul nan pas',
 'prevn' => '{{PLURAL:$1|$1}} sabalunnyo',
 'nextn' => '{{PLURAL:$1|$1}} salanjuknyo',
-'prevn-title' => 'Sabalunnyo $1 {{PLURAL:$1|hasil|hasil}}',
-'nextn-title' => 'Barikuiknyo $1 {{PLURAL:$1|hasil|hasil}}',
-'shown-title' => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per laman',
+'prevn-title' => '$1 {{PLURAL:$1|Hasil|Hasil-hasil}} sabalunnyo',
+'nextn-title' => '$1 {{PLURAL:$1|Hasil|Hasil-hasil}} barikuiknyo',
+'shown-title' => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil-hasil}} per laman',
 'viewprevnext' => 'Caliakkan ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Ado laman nan banamo \"[[:\$1]]\" pado wiki ko.'''",
 'searchmenu-new' => "'''Buek laman \"[[:\$1]]\" di wiki ko!'''",
@@ -1319,6 +1319,4 @@ Nan lainnyo akan tasuruak sacaro default.
 # Durations
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millenia}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'kecek',
 );

@@ -1641,6 +1641,4 @@ $3',
 'duration-centuries' => '$1 {{PLURAL:$1|æнус|æнусы}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мин аз|мин азы}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'ныхас',
 );

@@ -221,7 +221,7 @@ $messages = array(
 'hidden-category-category' => 'ܣܕܪ̈ܐ ܛܘܫܝ̈ܐ',
 'category-subcat-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܗܢܐ ܣܕܪܐ ܦܪܥܝܐ ܕܐܬܐ ܒܠܚܘܕ.|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ {{PLURAL:$1|ܣܕܪܐ ܦܪܥܝܐ ܕܐܬܐ|$1 ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ ܕܐܬܝܢ}}، ܡܢ ܣܘܝܟܐ ܕ $2.}}',
 'category-subcat-count-limited' => 'ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ {{PLURAL:$1|ܣܕܪܐ ܦܪܥܝܐ ܗܢܐ|$1 ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ ܗܠܝܢ}}.',
-'category-article-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܦܐܬܐ ܗܕܐ ܒܠܚܘܕ.|ܐܝܬ {{PLURAL:$1|ܦܐܬܐ ܕܐܬܝܐ|$1 ܦܐܬܬ̈ܐ ܕܐܬܝܢ}} ܒܣܕܪܐ ܗܢܐ, ܡܢ ܣܘܝܟܐ ܕ $2.}}',
+'category-article-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܠܝܬ ܒܗ ܦܐܬܬ̈ܐ.|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܦܐܬܐ ܗܕܐ ܒܠܚܘܕ.|{{PLURAL:$1||ܐܝܬ ܦܐܬܐ ܕܐܬܝܐ|ܐܝܬ $1 ܦܐܬܬ̈ܐ ܕܐܬܝܢ}} ܒܣܕܪܐ ܗܢܐ، ܡܢ ܣܘܝܟܐ ܕ $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|ܦܐܬܐ ܗܕܐ|$1 ܦܐܬܬ̈ܐ ܗܠܝܢ}} ܒܣܕܪܐ ܗܢܐ.',
 'category-file-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܠܦܦܐ ܕܐܬܐ ܒܠܚܘܕ.|{{PLURAL:$1|ܠܦܦܐ ܕܐܬܐ ܐܝܬܘܗܝ|$1 ܠܦܦ̈ܐ ܕܐܬܝܢ ܐܝܬܝܗܘܢ}} ܒܣܕܪܐ ܗܢܐ، ܡܢ ܣܘܝܟܐ ܕ $2.}}',
 'category-file-count-limited' => 'ܐܝܬ {{PLURAL:$1|ܠܦܦܐ ܕܐܬܐ|$1 ܠܦܦ̈ܐ ܕܐܬܝܢ}} ܒܣܕܪܐ ܗܫܝܐ.',
@@ -264,6 +264,7 @@ $messages = array(
 'namespaces' => 'ܚܩܠܬ̈ܐ',
 'variants' => 'ܡܫܬܚܠܦܢܘ̈ܬܐ',
 
+'navigation-heading' => 'ܡܟܬܒܘܬܐ ܕܐܠܦܪܘܬܐ',
 'errorpagetitle' => 'ܦܘܕܐ',
 'returnto' => 'ܕܥܘܪ ܠ$1.',
 'tagline' => 'ܡܢ {{SITENAME}}',
@@ -1344,7 +1345,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 ܨܘܝܒ̈ܐ',
 'whatlinkshere-hidetrans' => '$1 ܡܬܚܪ̈ܙܢܘܬܐ',
 'whatlinkshere-hidelinks' => '$1 ܐܣܘܪ̈ܐ',
-'whatlinkshere-hideimages' => 'ܐܣܘܪܐ ܕܠܦܦܐ',
+'whatlinkshere-hideimages' => '$1 ܐܣܘܪܐ ܕܠܦܦܐ',
 'whatlinkshere-filters' => 'ܡܨܦܝܢܝܬ̈ܐ',
 
 # Block/unblock

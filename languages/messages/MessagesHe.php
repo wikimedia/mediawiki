@@ -2424,14 +2424,22 @@ $1',
 'enotif_mailer' => 'הודעות {{SITENAME}}',
 'enotif_reset' => 'סימון כל הדפים כאילו נצפו',
 'enotif_impersonal_salutation' => 'משתמש של {{SITENAME}}',
+'enotif_subject_deleted' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נמחק על ידי {{gender:$2|$2}}',
+'enotif_subject_created' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נוצר על ידי {{gender:$2|$2}}',
+'enotif_subject_moved' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} הועבר על ידי {{gender:$2|$2}}',
+'enotif_subject_restored' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שוחזר על ידי {{gender:$2|$2}}',
+'enotif_subject_changed' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שונה על ידי {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נמחק ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
+'enotif_body_intro_created' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נוצר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
+'enotif_body_intro_moved' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} הועבר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
+'enotif_body_intro_restored' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שוחזר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
+'enotif_body_intro_changed' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שונה ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
 'enotif_lastvisited' => 'ראו $1 לכל השינויים מאז ביקורכם האחרון.',
 'enotif_lastdiff' => 'ראו $1 לשינוי זה.',
 'enotif_anon_editor' => 'משתמש אנונימי $1',
 'enotif_body' => 'לכבוד $WATCHINGUSERNAME,
 
-הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על ידי $PAGEEDITOR, ראו $PAGETITLE_URL לגרסה הנוכחית.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 תקציר העריכה: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -4189,6 +4197,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'שיחה',
 );

@@ -3979,6 +3979,4 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'mytalk-parenthetical' => '留言',
 );

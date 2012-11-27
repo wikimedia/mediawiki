@@ -3718,6 +3718,4 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'duration-centuries' => '$1 {{PLURAL:$1|öld|aldir}}',
 'duration-millennia' => '$1 {{PLURAL:$1|árþúsund}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'spjall',
 );

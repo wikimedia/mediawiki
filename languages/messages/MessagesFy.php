@@ -1714,10 +1714,7 @@ At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppelin
 'watching' => "Dwaande mei op'e folchlist te setten ...",
 'unwatching' => "Dwaande mei fan'e folchlist ôf te heljen ...",
 
-'enotif_newpagetext' => 'Dit is in nije side.',
 'enotif_impersonal_salutation' => 'meidogger fan {{SITENAME}}',
-'changed' => 'feroare',
-'created' => 'oanmakke',
 'enotif_body' => 'Bêste $WATCHINGUSERNAME,
 
 De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATE $CHANGEDORCREATED troch meidogger $PAGEEDITOR;

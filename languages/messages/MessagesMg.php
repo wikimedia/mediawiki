@@ -3303,7 +3303,11 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'logentry-suppress-delete' => "nofafan'i $1 ny pejy $3",
 'revdelete-restricted' => "nametraka fanerena ho an'ny mpandrindra",
 'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
-'logentry-newusers-create' => 'nanokatra ny kaontiny i $1',
-'newuserlog-byemail' => 'tenimiafina nalefa imailaka',
+'logentry-move-move' => "nanova ny anaran'i $3 ho $4 i $1",
+'logentry-newusers-newusers' => 'Noforonina ny kaontim-pikambana $1',
+'logentry-newusers-create' => 'Noforonina ny kaontim-pikambana $1',
+'logentry-newusers-create2' => "Noforonin'i $1 ny kaomtim-pikambana $3",
+'logentry-newusers-autocreate' => 'Noforonina ho azy ny kaontim-pikambana $&',
+'newuserlog-byemail' => "tenimiafina nalefa tamin'ny imailaka",
 
 );

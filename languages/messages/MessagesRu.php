@@ -535,7 +535,7 @@ $messages = array(
 'cancel' => 'Отменить',
 'moredotdotdot' => 'Далее…',
 'mypage' => 'Страница',
-'mytalk' => 'Обсуждения',
+'mytalk' => 'Обсуждение',
 'anontalk' => 'Обсуждение для этого IP-адреса',
 'navigation' => 'Навигация',
 'and' => '&#32;и',
@@ -1719,7 +1719,7 @@ $1",
 'rightslogentry-autopromote' => 'был автоматически переведён из $2 в $3',
 'logentry-rights-rights' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3 с $4 на $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3',
-'logentry-rights-autopromote' => '$1 {{GENDER:$1|был автоматически переведён|была автоматически переведена}} из $4 в $5',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|был автоматически переведён|была автоматически переведена}} из $4 в $5',
 'rightsnone' => '(нет)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2468,14 +2468,22 @@ $1',
 'enotif_mailer' => '{{SITENAME}} Служба извещений по почте',
 'enotif_reset' => 'Отметить все страницы как просмотренные',
 'enotif_impersonal_salutation' => 'Участник {{grammar:genitive|{{SITENAME}}}}',
+'enotif_subject_deleted' => 'Страница проекта «{{SITENAME}}» с именем «$1» была удалена {{gender:$2|участником|участницей}} $2',
+'enotif_subject_created' => 'Страница проекта «{{SITENAME}}» с именем «$1» была создана {{gender:$2|участником|участницей}} $2',
+'enotif_subject_moved' => 'Страница проекта «{{SITENAME}}» с именем «$1» была переименована {{gender:$2|участником|участницей}} $2',
+'enotif_subject_restored' => 'Страница проекта «{{SITENAME}}» с именем «$1» была восстановлена {{gender:$2|участником|участницей}} $2',
+'enotif_subject_changed' => 'Страница проекта «{{SITENAME}}» с именем «$1» была изменена {{gender:$2|участником|участницей}} $2',
+'enotif_body_intro_deleted' => '$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была удалена страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3',
+'enotif_body_intro_created' => '$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была создана страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3',
+'enotif_body_intro_moved' => '$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была переименована страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3',
+'enotif_body_intro_restored' => '$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была восстановлена страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3',
+'enotif_body_intro_changed' => '$PAGEEDITDATE {{gender:$2|участником|участницей}} $2 была изменена страница проекта «{{SITENAME}}» с именем «$1», см. текущую версию по ссылке: $3',
 'enotif_lastvisited' => 'См. $1 для просмотра всех изменений, произошедших с вашего последнего посещения.',
 'enotif_lastdiff' => 'См. $1 для ознакомления с изменением.',
 'enotif_anon_editor' => 'анонимный участник $1',
 'enotif_body' => 'Здравствуйте, $WATCHINGUSERNAME!
 
-$PAGEEDITDATE страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR, см. $PAGETITLE_URL для просмотра текущей версии.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Краткое описание изменения: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2483,8 +2491,7 @@ $NEWPAGE
 эл. почта: $PAGEEDITOR_EMAIL
 вики: $PAGEEDITOR_WIKI
 
-Если вы не посетите эту страницу, то в случае её дальнейших изменений уведомлений больше не будет.
-Вы можете также отключить опцию уведомления для всех страниц в вашем списке наблюдения.
+Если вы не посетите эту страницу, то в случае её дальнейших изменений уведомлений больше не будет. Вы можете также отключить опцию уведомления для всех страниц в вашем списке наблюдения.
 
              Система оповещения {{grammar:genitive|{{SITENAME}}}}
 
@@ -3091,7 +3098,7 @@ $1',
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Ваша страница участника',
 'tooltip-pt-anonuserpage' => 'Страница участника для моего IP',
-'tooltip-pt-mytalk' => 'Ваша страница обсуждений',
+'tooltip-pt-mytalk' => 'Ваша страница обсуждения',
 'tooltip-pt-anontalk' => 'Страница обсуждений для моего IP',
 'tooltip-pt-preferences' => 'Ваши настройки',
 'tooltip-pt-watchlist' => 'Список страниц, изменения в которых вы отслеживаете',
@@ -3253,8 +3260,11 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-toolboxlink' => 'Сведения о странице',
 'pageinfo-redirectsto' => 'Перенаправление',
 'pageinfo-redirectsto-info' => 'сведения',
+'pageinfo-contentpage' => 'Учитывается счётчиком как содержательная страница',
 'pageinfo-contentpage-yes' => 'Да',
+'pageinfo-protect-cascading' => 'Каскадная защита отсюда',
 'pageinfo-protect-cascading-yes' => 'Да',
+'pageinfo-protect-cascading-from' => 'Каскадная защита от',
 
 # Skin names
 'skinname-standard' => 'Классическое',
@@ -4257,6 +4267,4 @@ MediaWiki распространяется в надежде, что она бу
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'обсуждение',
 );

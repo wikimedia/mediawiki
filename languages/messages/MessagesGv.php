@@ -999,10 +999,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'watching' => 'Jannoo arrey...',
 'unwatching' => 'Stap y chur er arrey...',
 
-'enotif_newpagetext' => 'She duillag noa eh shoh.',
 'enotif_impersonal_salutation' => '{{SITENAME}} ymmydeyr',
-'changed' => 'ceaghlit',
-'created' => 'crooit',
 'enotif_anon_editor' => 'ymmydeyr $1 neuenmyssit',
 'enotif_body' => '$WATCHINGUSERNAME veen,
 

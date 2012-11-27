@@ -1090,6 +1090,14 @@ Verŝajne ĝi estis forigita.',
 'edit-already-exists' => 'Ne eblis krei novan paĝon.
 Ĝi jam ekzistas.',
 'defaultmessagetext' => 'Defaŭlta teksto',
+'invalid-content-data' => 'Enhavo estas malvalida',
+'content-not-allowed-here' => 'Enhavo de $1 ne estas permesita en paĝo [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'vikiteksto',
+'content-model-text' => 'ordinara teksto',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
@@ -1610,7 +1618,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'rightslogtext' => 'Ĉi tio estas protokolo pri la ŝanĝoj de uzantorajtoj.',
 'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
 'rightslogentry-autopromote' => 'estis aŭtomate altrangigita de $2 al $3',
-'logentry-rights-rights' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
+'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
 'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
 'rightsnone' => '(nenia)',
 
@@ -2275,7 +2283,7 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'emailuser-title-target' => 'Retpoŝti ĉi tiun {{GENDER:$1|uzanton}}',
 'emailuser-title-notarget' => 'Retpoŝti uzanton',
 'emailpage' => 'Retpoŝti uzanton',
-'emailpagetext' => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu uzanto.
+'emailpagetext' => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu {{GENDER:$1|uzanto|uzantino}}.
 La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevonto eblos respondi rekte al vi.',
 'usermailererror' => 'Resendita retmesaĝa erarsubjekto:',
 'defemailsubject' => '{{SITENAME}} retmesaĝo de uzanto "$1"',
@@ -3102,6 +3110,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-default-sort' => 'Pravaloro de ordiga ŝlosilo',
 'pageinfo-length' => 'Paĝgrandeco (en bajtoj)',
 'pageinfo-article-id' => 'Paĝa identigo',
+'pageinfo-language' => 'Lingvo de paĝa enhavo',
 'pageinfo-robot-policy' => 'Statuso de la serĉilo',
 'pageinfo-robot-index' => 'Indeksebla',
 'pageinfo-robot-noindex' => 'Ne indeksebla',
@@ -3956,9 +3965,9 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'logentry-move-move_redir-noredirect' => '$1 movis paĝon $3 al $4 anstataŭigante alidirektilon sen lasante alidirektilon',
 'logentry-patrol-patrol' => '$1 markis revizion $4 de paĝo $3 kiel patrolita',
 'logentry-patrol-patrol-auto' => '$1 aŭtomate markis revizion $4 de paĝo $3 kiel patrolita',
-'logentry-newusers-newusers' => '$1 kreis salutnomon',
-'logentry-newusers-create' => '$1 kreis salutnomon',
-'logentry-newusers-create2' => '$1 kreis salutnomo $3',
+'logentry-newusers-newusers' => '$1 kreis konton',
+'logentry-newusers-create' => '$1 kreis konton',
+'logentry-newusers-create2' => '$1 kreis uzanton $3',
 'logentry-newusers-autocreate' => 'Konto $1 estis kreita aŭtomate',
 'newuserlog-byemail' => 'pasvorto sendita retpoŝte',
 
@@ -4034,6 +4043,4 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'Diskuto',
 );

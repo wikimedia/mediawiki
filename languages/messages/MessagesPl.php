@@ -47,6 +47,7 @@
  * @author Szczepan1990
  * @author Timpul
  * @author ToSter
+ * @author Tsca
  * @author Woytecr
  * @author Wpedzich
  * @author Ymar
@@ -341,7 +342,7 @@ $messages = array(
 
 'underline-always' => 'zawsze',
 'underline-never' => 'nigdy',
-'underline-default' => 'według ustawień przeglądarki',
+'underline-default' => 'według ustawień skórki lub przeglądarki',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Styl czcionki w polu edycyjnym',
@@ -459,6 +460,7 @@ $messages = array(
 'namespaces' => 'Przestrzenie nazw',
 'variants' => 'Warianty',
 
+'navigation-heading' => 'Menu nawigacyjne',
 'errorpagetitle' => 'Błąd',
 'returnto' => 'Wróć do strony $1.',
 'tagline' => 'Z {{GRAMMAR:D.lp|{{SITENAME}}}}',
@@ -556,7 +558,7 @@ $1',
 'youhavenewmessages' => 'Masz $1 ($2).',
 'newmessageslink' => 'nowe wiadomości',
 'newmessagesdifflink' => 'różnica z poprzednią wersją',
-'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 innych użytkowników}} ($2).',
+'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 użytkowników}} ($2).',
 'youhavenewmessagesmanyusers' => 'Masz $1 od wielu użytkowników ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|$1 wiadomości}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|ostatnie $1 zmiany|ostatnie $1 zmian}}',
@@ -1602,7 +1604,10 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
 'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
+'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
+'logentry-rights-rights' => '$1 zmienił przynależność $3 do grup ($4 → $5)',
+'logentry-rights-rights-legacy' => '$1 zmienił przynależność $3 do grup',
+'logentry-rights-autopromote' => '$1 automatycznie zmienił przynależność ($4 → $5)',
 'rightsnone' => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2237,7 +2242,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok' => 'Szukaj',
 'linksearch-text' => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <code>$1</code> (nie podawaj ich podczas wyszukiwania).',
+Obsługiwane protokoły: <code>$1</code> (jeśli nie podano, domyślny to http://).',
 'linksearch-line' => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 
@@ -2612,7 +2617,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'whatlinkshere-hideredirs' => '$1 przekierowania',
 'whatlinkshere-hidetrans' => '$1 dołączenia',
 'whatlinkshere-hidelinks' => '$1 linki',
-'whatlinkshere-hideimages' => '$1 linki z grafik',
+'whatlinkshere-hideimages' => '$1 linki z plików',
 'whatlinkshere-filters' => 'Filtry',
 
 # Block/unblock
@@ -3104,7 +3109,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',
-'pageinfo-not-current' => 'Informacje mogą być wyświetlane tylko dla najnowszej wersji strony.',
+'pageinfo-not-current' => 'Niestety, te informacje nie są dostępne dla starych wersji stron.',
 'pageinfo-header-basic' => 'Podstawowe informacje',
 'pageinfo-header-edits' => 'Historia edycji',
 'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
@@ -3163,6 +3168,8 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'markedaspatrollederror' => 'Nie można oznaczyć jako „sprawdzone”',
 'markedaspatrollederrortext' => 'Musisz wybrać wersję żeby oznaczyć ją jako „sprawdzoną”.',
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
+'markedaspatrollednotify' => 'Ta zmiana na stronie «$1» została oznaczona jako sprawdzona.',
+'markedaspatrollederrornotify' => 'Oznaczenie strony jako sprawdzonej nie powiodło się.',
 
 # Patrol log
 'patrol-log-page' => 'Rejestr patrolowania',
@@ -4033,9 +4040,9 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-move-move_redir-noredirect' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
 'logentry-patrol-patrol' => '$1 oznacza wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto' => '$1 automatycznie oznacza wersję $4 strony $3 jako sprawdzoną',
-'logentry-newusers-newusers' => '$1 tworzy konto użytkownika',
-'logentry-newusers-create' => '$1 tworzy konto użytkownika',
-'logentry-newusers-create2' => '$1 tworzy konto użytkownika $3',
+'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
+'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
+'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
 'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
 'newuserlog-byemail' => 'hasło zostało wysłane e‐mailem',
 
@@ -4111,6 +4118,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'dyskusja',
 );

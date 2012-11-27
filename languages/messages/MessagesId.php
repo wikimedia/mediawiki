@@ -491,7 +491,7 @@ $messages = array(
 'vector-action-protect' => 'Lindungi',
 'vector-action-undelete' => 'Pembatalan penghapusan',
 'vector-action-unprotect' => 'Ubah perlindungan',
-'vector-simplesearch-preference' => 'Aktifkan pencarian saran yang disempurnakan (hanya kulit Vector)',
+'vector-simplesearch-preference' => 'Aktifkan bilah pencarian sederhana (hanya kulit Vector)',
 'vector-view-create' => 'Buat',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Versi terdahulu',
@@ -654,9 +654,9 @@ Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:s
 'dberrortext' => 'Ada kesalahan sintaks pada permintaan basis data.
 Kesalahan ini mungkin menandakan adanya sebuah \'\'bug\'\' dalam perangkat lunak.
 Permintaan basis data yang terakhir adalah:
-<blockquote><tt>$1</tt></blockquote>
-dari dalam fungsi "<tt>$2</tt>".
-Basis data menghasilkan kesalahan "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+dari dalam fungsi "<code>$2</code>".
+Basis data menghasilkan kesalahan "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Ada kesalahan sintaks pada permintaan basis data.
 Permintaan basis data yang terakhir adalah:
 "$1"
@@ -704,9 +704,9 @@ Mungkin telah dihapus oleh orang lain.',
 'protectedpagetext' => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
 'viewsourcetext' => 'Anda dapat melihat atau menyalin sumber halaman ini:',
 'viewyourtext' => "Anda dapat melihat atau menyalin sumber dari '''suntingan Anda''' ke halaman ini:",
-'protectedinterface' => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
-'editinginterface' => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak situs ini. Perubahan teks ini akan mempengaruhi tampilan pada antarmuka pengguna untuk pengguna lain.
-Untuk terjemahan, harap gunakan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek pelokalan MediaWiki.",
+'protectedinterface' => 'Halaman ini memuat teks antarmuka untuk perangkat lunak pada wiki ini, dan dilindungi terhadap penyalahgunaan. Untuk menambah atau mengubah terjemahan pada semua wiki, harap gunakan [//translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.',
+'editinginterface' => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak situs ini. Perubahan teks ini akan memengaruhi tampilan pada antarmuka pengguna untuk pengguna lain di wiki ini.
+Untuk menambah atau mengubahterjemahan untuk semua wiki, harap gunakan [//translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.",
 'sqlhidden' => '(Permintaan SQL disembunyikan)',
 'cascadeprotected' => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
 $2',
@@ -992,7 +992,7 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'userpage-userdoesnotexist-view' => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract' => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache' => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong singgahan peramban Anda untuk melihat perubahan.
+'clearyourcache' => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memintas singgahan peramban Anda untuk melihat perubahan.
 * '''Firefox / Safari:''' Tahan ''Shift'' sambil mengeklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
 * '''Google Chrome:''' Tekan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
 * '''Internet Explorer:''' Tahan ''Ctrl'' sambl mengeklik ''Refresh'', atau tekan ''Ctrl-F5''
@@ -1848,7 +1848,7 @@ Silakan hubungi salah seorang [[Special:ListUsers/sysop|pengurus]].',
 'backend-fail-internal' => 'Kesalahan yang tidak dikenal terjadi di backend penyimpanan "$1".',
 'backend-fail-contenttype' => 'Tidak dapat menentukan tipe konten dari berkas yang disimpan di "$1".',
 'backend-fail-batchsize' => 'Penyimpanan backend diberikan batch $1 berkas {{PLURAL:$1||}}operasi; batasnya adalah $2 {{PLURAL:$2||}}operasi.',
-'backend-fail-usable' => 'Tidak dapat membuat berkas $1 karena izin tidak memadai atau direktori/kontainer yang hilang.',
+'backend-fail-usable' => 'Tidak dapat membaca atau menulis berkas "$1" karena izin tidak memadai atau direktori/kontainer hilang.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Tidak dapat menyambung ke database jurnal untuk penyimpanan backend "$1".',
@@ -2213,8 +2213,8 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-ns' => 'Ruang nama:',
 'linksearch-ok' => 'Cari',
 'linksearch-text' => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
-Membutuhkan sedikitnya satu ranah tingkat atas, misalnya "*.org".<br />
-Protokol yang didukung: <code>$1</code> (jangan tambahkan dalam pencarian Anda)',
+Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
+Protokol yang didukung: <code>$1</code> (menggunakan http:// bila protokol tidak ditentukan)',
 'linksearch-line' => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 
@@ -3940,7 +3940,7 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'logentry-move-move_redir-noredirect' => '$1 memindahkan halaman $3 ke $4 melalui pengalihan tanpa membuat pengalihan',
 'logentry-patrol-patrol' => '$1 menandai revisi $4 dari halaman $3 terpatroli',
 'logentry-patrol-patrol-auto' => '$1 secara otomatis menandai revisi $4 dari halaman $3 terpatroli',
-'logentry-newusers-newusers' => '$1 membuat akun pengguna',
+'logentry-newusers-newusers' => 'Akun pengguna $1 telah dibuat',
 'logentry-newusers-create' => '$1 membuat akun pengguna',
 'logentry-newusers-create2' => '$1 membuat akun pengguna $3',
 'logentry-newusers-autocreate' => 'Akun $1 dibuat secara otomatis',
@@ -3980,7 +3980,7 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'api-error-file-too-large' => 'Berkas yang Anda kirim terlalu besar.',
 'api-error-filename-tooshort' => 'Nama berkas terlalu pendek.',
 'api-error-filetype-banned' => 'Jenis berkas ini dilarang.',
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|adalah ekstensi berkas yang tidak diizinkan|adalah ekstensi berkas yang tidak diizinkan}}. {{PLURAL:$3|Jenis berkas yang diperolehkan adalah|Jenis berkas yang diperolehkan adalah}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|bukan ekstensi berkas yang diizinkan|bukan ekstensi berkas yang diizinkan}}. {{PLURAL:$3|Jenis berkas yang diizinkan adalah|Jenis berkas yang diizinkan adalah}} $2.',
 'api-error-filetype-missing' => 'Berkas tidak memiliki ekstensi.',
 'api-error-hookaborted' => 'Modifikasi yang Anda coba lakukan dibatalkan oleh suatu kaitan ekstensi.',
 'api-error-http' => 'Kesalahan internal: tidak dapat menghubungkan ke peladen.',
@@ -4016,6 +4016,4 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'duration-centuries' => '{{PLURAL:$1||}}$1 abad',
 'duration-millennia' => '{{PLURAL:$1||}}$1 milenium',
 
-# Unknown messages
-'mytalk-parenthetical' => 'bicara',
 );

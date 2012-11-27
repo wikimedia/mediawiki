@@ -882,8 +882,6 @@ $1',
 'watching' => 'Шинҗллһнә бүтлклд немлһн...',
 'unwatching' => 'Шинҗлһнә бүрткләс һарһлһн...',
 
-'changed' => 'сольв',
-'created' => 'бүтәв',
 'enotif_body' => 'Мендвт, күндтә $WATCHINGUSERNAME,
 
 $PAGEEDITDATE цагт {{SITENAME}} төсвин $PAGETITLE халхиг $PAGEEDITOR $CHANGEDORCREATED. Ода болсн халхна янз үзҗ седхлә, $PAGETITLE_URL хәләтн.

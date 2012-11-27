@@ -3611,6 +3611,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|நூற்றாண்டு|நூற்றாண்டுகள்}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ஆயிரம் ஆண்டு|ஆயிரம் ஆண்டுகள்}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'பேச்சு',
 );

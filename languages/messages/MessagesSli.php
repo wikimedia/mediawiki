@@ -1438,9 +1438,6 @@ Wenn du de Seite wieder vu denner Beobachtungsliste entferna mechtest, klicke uf
 
 'enotif_mailer' => '{{SITENAME}}-E-Mail-Benoachrichtigungsdienst',
 'enotif_reset' => 'Olle Seyta ols besucht markiern',
-'enotif_newpagetext' => 'Doas ies anne neue Seite.',
-'created' => 'erzeugt',
-'enotif_subject' => '[{{SITENAME}}] De Seite "$PAGETITLE" wurde vu $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => "Olle Änderunga uff a'n Blick: $1",
 'enotif_lastdiff' => 'Siehe $1 noach dieser Änderung.',
 'enotif_anon_editor' => 'Anonymer Nutzer $1',

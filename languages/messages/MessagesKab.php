@@ -2037,11 +2037,7 @@ Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk a
 
 'enotif_mailer' => 'Email n talɣut n {{SITENAME}}',
 'enotif_reset' => 'Rcem akk isebtar mmeẓren',
-'enotif_newpagetext' => 'Wagi d asebter amaynut.',
 'enotif_impersonal_salutation' => 'Amseqdac n {{SITENAME}}',
-'changed' => 'yettubeddel',
-'created' => 'yettwaxleq',
-'enotif_subject' => 'Asebter $PAGETITLE n {{SITENAME}} $CHANGEDORCREATED sɣur $PAGEEDITOR',
 'enotif_lastvisited' => 'Ẓer $1 i akk ibeddlen segwasmi tkecmeḍ tikelt taneggarut.',
 'enotif_lastdiff' => 'Ẓer $1 akken ad tmuqleḍ abeddel.',
 'enotif_anon_editor' => 'aseqdac ur i siggezen ara $1',

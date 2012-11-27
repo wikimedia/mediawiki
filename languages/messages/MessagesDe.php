@@ -2444,16 +2444,22 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'enotif_mailer' => '{{SITENAME}}-E-Mail-Benachrichtigungsdienst',
 'enotif_reset' => 'Alle Seiten als besucht markieren',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
+'enotif_subject_deleted' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} gelöscht',
+'enotif_subject_created' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} erstellt',
+'enotif_subject_moved' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} verschoben',
+'enotif_subject_restored' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} wiederhergestellt',
+'enotif_subject_changed' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} geändert',
+'enotif_body_intro_deleted' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} gelöscht. Siehe $3 für deren aktuelle Version.',
+'enotif_body_intro_created' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} erstellt. Siehe $3 für deren aktuelle Version.',
+'enotif_body_intro_moved' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} verschoben. Siehe $3 für deren aktuelle Version.',
+'enotif_body_intro_restored' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} wiederhergestellt. Siehe $3 für deren aktuelle Version.',
+'enotif_body_intro_changed' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} geändert. Siehe $3 für deren aktuelle Version.',
 'enotif_lastvisited' => 'Alle Änderungen auf einen Blick: $1',
 'enotif_lastdiff' => 'Siehe $1 nach dieser Änderung.',
 'enotif_anon_editor' => 'Anonymer Benutzer $1',
 'enotif_body' => 'Hallo $WATCHINGUSERNAME,
 
-die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uhr $CHANGEDORCREATED.
-
-Aktuelle Version: $PAGETITLE_URL
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Zusammenfassung des Bearbeiters: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -4153,6 +4159,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'Diskussion',
 );

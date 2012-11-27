@@ -2893,6 +2893,4 @@ $5
 'revdelete-unrestricted' => 'системонь вятиксненди кардафксне валхтфт',
 'newuserlog-byemail' => 'сувама валце кучф электрононь сёрмаса',
 
-# Unknown messages
-'mytalk-parenthetical' => 'корхтама',
 );

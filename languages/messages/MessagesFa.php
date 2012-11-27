@@ -4260,6 +4260,4 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'بحث',
 );

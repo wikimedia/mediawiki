@@ -3530,6 +3530,4 @@ $5
 # API errors
 'api-error-mustbeloggedin' => 'กรุณาลงชื่อเข้าใช้เพื่ออัปโหลดไฟล์',
 
-# Unknown messages
-'mytalk-parenthetical' => 'พูดคุย',
 );

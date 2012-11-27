@@ -2441,13 +2441,22 @@ $1',
 'enotif_mailer' => '{{SITENAME}} Систем за известување',
 'enotif_reset' => 'Означи ги сите страници како посетени',
 'enotif_impersonal_salutation' => 'Википедија корисник',
+'enotif_subject_deleted' => 'Страницата $1 на {{SITENAME}} е избришана од {{gender:$2|$2}}',
+'enotif_subject_created' => 'Страницата $1 на {{SITENAME}} е создадена од {{gender:$2|$2}}',
+'enotif_subject_moved' => 'Страницата $1 на {{SITENAME}} е преместена од {{gender:$2|$2}}',
+'enotif_subject_restored' => 'Страницата $1 на {{SITENAME}} е повратена од {{gender:$2|$2}}',
+'enotif_subject_changed' => 'Страницата $1 на {{SITENAME}} е изменета од {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Страницата $1 на {{SITENAME}} е избришана на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
+'enotif_body_intro_created' => 'Страницата $1 на {{SITENAME}} е создадена на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
+'enotif_body_intro_moved' => 'Страницата $1 на {{SITENAME}} е преместена на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
+'enotif_body_intro_restored' => 'Страницата $1 на {{SITENAME}} е повратена на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
+'enotif_body_intro_changed' => 'Страницата $1 на {{SITENAME}} е изменета на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
 'enotif_lastvisited' => 'Видете $1 за сите промени од вашата последна посета.',
 'enotif_lastdiff' => 'Видете $1 за да ја видите оваа промена.',
 'enotif_anon_editor' => 'анонимен корисник $1',
 'enotif_body' => 'Почитуван(а) $WATCHINGUSERNAME,
 
-
-На $PAGEEDITDATE е $CHANGEDORCREATED страницата „$PAGETITLE“ на проектот {{SITENAME}}. Измената ја изврши $PAGEEDITOR. Погледајте ја тековната верзија на $PAGETITLE_URL.
+$PAGEINTRO $NEWPAGE
 
 $NEWPAGE
 
@@ -2460,7 +2469,7 @@ $NEWPAGE
 Повеќе нема да добивате известувања во случај на други понатамошни промени, освен ако не ја посетите оваа страница.
 Можете и да ги поништите ознаките за известување за сите набљудувани страници на вашиот список на набљудувања.
 
-             Системот за известување на {{SITENAME}}
+Известителниот систем на {{SITENAME}}
 
 --
 Ако сакате да ги измените нагодувањата за известување по е-пошта, посетете ја страницата
@@ -2472,7 +2481,7 @@ $NEWPAGE
 За да ја избришете страницата од списокот на набљудувања, посетете ја страницата
 $UNWATCHURL
 
-Повратни информации и помош:
+Ваши мислења, прашања и повеќе помош:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -4321,6 +4330,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'разговор',
 );

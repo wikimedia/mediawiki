@@ -3477,6 +3477,4 @@ $5
 'api-error-unknownerror' => 'अज्ञात त्रुटि: "$1".',
 'api-error-uploaddisabled' => 'यस विकिमा अपलोड निस्क्रिय गरिएकोछ।',
 
-# Unknown messages
-'mytalk-parenthetical' => 'वार्ता',
 );

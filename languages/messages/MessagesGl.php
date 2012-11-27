@@ -2302,18 +2302,25 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'unwatching' => 'Deixando de vixiar...',
 'watcherrortext' => 'Houbo un erro ao cambiar as súas opcións de vixilancia para a páxina "$1".',
 
-'enotif_mailer' => 'Correo de aviso de {{SITENAME}}',
+'enotif_mailer' => 'Sistema de notificacións por correo de {{SITENAME}}',
 'enotif_reset' => 'Marcar todas as páxinas como visitadas',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
-'enotif_lastvisited' => 'Vexa $1 para comprobar todos os cambios desde a súa última visita.',
-'enotif_lastdiff' => 'Vexa $1 para visualizar esta modificación.',
+'enotif_subject_deleted' => '{{GENDER:$2|$2}} borrou a páxina chamada "$1" en {{SITENAME}}',
+'enotif_subject_created' => '{{GENDER:$2|$2}} creou a páxina chamada "$1" en {{SITENAME}}',
+'enotif_subject_moved' => '{{GENDER:$2|$2}} trasladou a páxina chamada "$1" en {{SITENAME}}',
+'enotif_subject_restored' => '{{GENDER:$2|$2}} restaurou a páxina chamada "$1" en {{SITENAME}}',
+'enotif_subject_changed' => '{{GENDER:$2|$2}} modificou a páxina chamada "$1" en {{SITENAME}}',
+'enotif_body_intro_deleted' => '{{GENDER:$2|$2}} borrou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
+'enotif_body_intro_created' => '{{GENDER:$2|$2}} creou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
+'enotif_body_intro_moved' => '{{GENDER:$2|$2}} trasladou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
+'enotif_body_intro_restored' => '{{GENDER:$2|$2}} restaurou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
+'enotif_body_intro_changed' => '{{GENDER:$2|$2}} modificou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
+'enotif_lastvisited' => 'Consulte $1 para comprobar todos os cambios feitos desde a súa última visita.',
+'enotif_lastdiff' => 'Consulte $1 para ver esta modificación.',
 'enotif_anon_editor' => 'usuario anónimo $1',
-'enotif_body' => 'Estimado $WATCHINGUSERNAME:
+'enotif_body' => 'Boas, $WATCHINGUSERNAME:
 
-
-A páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, olle $PAGETITLE_URL para comprobar a versión actual.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Resumo de edición: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2321,10 +2328,9 @@ Pode contactar co editor:
 por correo electrónico: $PAGEEDITOR_EMAIL
 no wiki: $PAGEEDITOR_WIKI
 
-Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina.
-Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
+Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina. Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
 
-             O sistema de aviso de {{SITENAME}}
+	O sistema de avisos de {{SITENAME}}
 
 --
 Para cambiar as notificacións por correo electrónico, visite
@@ -4022,6 +4028,4 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'conversa',
 );

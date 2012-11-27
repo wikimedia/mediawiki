@@ -3917,6 +3917,4 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'razgovor',
 );

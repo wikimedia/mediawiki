@@ -3993,6 +3993,4 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'duration-centuries' => '$1 {{PLURAL:$1|საუკუნე|საუკუნე}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ათასწლეული|ათასწლეული}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'განხილვა',
 );

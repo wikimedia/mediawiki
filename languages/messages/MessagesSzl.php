@@ -1715,11 +1715,7 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 
 'enotif_mailer' => 'Powjadomjyńe s {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'enotif_reset' => 'Uoznoč wšyjstke zajty kej uodwjydzůne',
-'enotif_newpagetext' => 'To je nowo zajta.',
 'enotif_impersonal_salutation' => 'užytkowńik {{GRAMMAR:D.lp|{{SITENAME}}}}',
-'changed' => 'pomjyńono',
-'created' => 'utwořono',
-'enotif_subject' => 'Zajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED bez užytkowńika $PAGEEDITOR',
 'enotif_lastvisited' => 'Uobejřij na zajće $1 wšyjstke půmjyńańo uod Twojej uostatńij wizyty.',
 'enotif_lastdiff' => 'Uobejřij na zajće $1 te pomjyńeńe.',
 'enotif_anon_editor' => 'užytkowńik anůnimowy $1',

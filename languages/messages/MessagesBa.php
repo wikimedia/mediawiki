@@ -3798,6 +3798,4 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
 'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'әңг',
 );

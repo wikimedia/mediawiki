@@ -3464,6 +3464,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|سەدە|سەدە}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ھەزارە|ھەزارە}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'لێدوان',
 );

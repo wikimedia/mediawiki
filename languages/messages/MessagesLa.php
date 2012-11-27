@@ -2383,6 +2383,4 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Search suggestions
 'searchsuggest-search' => 'Quaerere',
 
-# Unknown messages
-'mytalk-parenthetical' => 'disputatio',
 );

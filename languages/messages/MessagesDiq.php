@@ -2360,7 +2360,7 @@ Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem 
 'enotif_lastvisited' => 'ziyareta şıma ye peyini ra nata heme vuryayiş ê ke biyê bıewnê $1i re..',
 'enotif_lastdiff' => 'qey vinayişê ney vurnayişi bıewnê pelê $1i',
 'enotif_anon_editor' => 'karbero anonim $1',
-'enotif_body' => 'Embazê $WATCHINGUSERNAME,
+'enotif_body' => 'Erciyayê $WATCHINGUSERNAME,
 
 {{SITENAME}} keyepel de no $PAGETITLE pelo sernameyın re $PAGEEDITDATE no tarix de $PAGEEDITOR no karberi $CHANGEDORCREATED. şıma eşkeni bıresi halê no peli re $PAGETITLE_URL na adresi ra.
 
@@ -2377,13 +2377,16 @@ no pel o ke behs beno heta ziyaret kerdışê yewna heli, mesajê vuriyayişi n�
            {{SITENAME}} sistemê hişyariyê keyepeli.
 
 --
-qey vurnayişê eyari:
+Qey vurnayişê eyari:
 {{canonicalurl:{{#Special:Watchlist/edit}}}}
 
-qey wedarayişê ena pele liste xo ra seyr kerdişi, şo
+Qey vurnayişê eyaran de lista seyri:
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+Qey wedarayişê ena pele liste xo ra seyr kerdişi, şo
 $UNWATCHURL
 
-qey hemkari u pêşniyazi:
+Qey hemkari u pêşniyazi:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2885,7 +2888,7 @@ ma vaci: qey pelê "[[{{MediaWiki:Mainpage}}]]i " [[{{#Special:Export}}/{{MediaW
 # Namespace 8 related
 'allmessages' => 'Mesacê sistemi',
 'allmessagesname' => 'Name',
-'allmessagesdefault' => 'Hesıbyaye metnê mesaci',
+'allmessagesdefault' => 'Metnê mesacê hesabiyayey',
 'allmessagescurrent' => 'Nuşteyê mesacê rocaney',
 'allmessagestext' => 'na liste, listeya mesajê cayê nameyê wikimedya yo.
 eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê [//www.mediawiki.org/wiki/Localisation mahalli kerdışê wikimedyayi] u [//translatewiki.net translatewiki.net] ziyaret bıkerê.',
@@ -3016,7 +3019,7 @@ Kerem ke, qeydkerdış ra ver gocega verqayti bıxebetne.',
 'tooltip-n-currentevents' => 'Vurnayışanê peyênan de melumatê pey bıvêne',
 'tooltip-n-recentchanges' => 'Wiki de lista vurnayışanê peyênan',
 'tooltip-n-randompage' => 'Şırê pera ke raştameyê',
-'tooltip-n-help' => 'Qande desteg grotışi',
+'tooltip-n-help' => 'Cayê doskerdışi',
 'tooltip-t-whatlinkshere' => 'Lista pelanê wikiya pêroina ke tiya gırê bena',
 'tooltip-t-recentchangeslinked' => 'Vurnayışê peyênê pelanê ke ena pela ra gırê biyê',
 'tooltip-feed-rss' => 'RSS feed qe ena pele',
@@ -4524,7 +4527,7 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'version-license' => 'Lisans',
 'version-poweredby-credits' => "Ena wiki, dezginda '''[//www.mediawiki.org/ MediaWiki]''' ya piya vıraziyaya, heqê telifi © 2001-$1 $2.",
 'version-poweredby-others' => 'Zewmi',
-'version-credits-summary' => 'Ma qayılime ke [[Special:Version|MediaWiki]] rê ke kami desteg dayo wa mayê vanime inan bışınasne.',
+'version-credits-summary' => 'Ma qayılime ke [[Special:Version|MediaWiki]] rê ke kami destek dayo wa mayê vanime inan bışınasne.',
 'version-license-info' => "MediaWiki xoseri jew nuştereno; MediaWiki'yer, weqfê xoseri nuşteren GNU lisansiya merdumi şene ke vıla kerê, bıvurnê u timar kerê.
 
 Nuşterenê MediaWiki merdumi cı ra nahfat bivinê deye êyê mısade danê; feqet ke nêşeno BIROŞO yana XOSERİ VILA KERO qerantiya ney çına. bewni rê lisansta GNU'y.
@@ -4744,6 +4747,4 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'werênayış',
 );

@@ -2470,6 +2470,16 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'enotif_mailer' => '{{SITENAME}}-berichtensysteem',
 'enotif_reset' => "Alle pagina's markeren als bezocht",
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',
+'enotif_subject_deleted' => '{{SITENAME}} pagina $1 is verwijderd door {{gender:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}} pagina $1 is aangemaakt door {{gender:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}} pagina $1 is verplaatst door {{gender:$2|$2}}',
+'enotif_subject_restored' => '{{SITENAME}} pagina $1 is hersteld door {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}} pagina $1 is bewerkt door {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'De {{SITENAME}} pagina $1 is verwijderd op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
+'enotif_body_intro_created' => 'De {{SITENAME}} pagina $1 is aangemaakt op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
+'enotif_body_intro_moved' => 'De {{SITENAME}} pagina $1 is verplaatst op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
+'enotif_body_intro_restored' => 'De {{SITENAME}} pagina $1 is hersteld op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
+'enotif_body_intro_changed' => 'De {{SITENAME}} pagina $1 is bewerkt op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
 'enotif_lastvisited' => 'Zie $1 voor alle wijzigingen sinds uw laatste bezoek.',
 'enotif_lastdiff' => 'Ga naar $1 om deze wijziging te bekijken.',
 'enotif_anon_editor' => 'anonieme gebruiker $1',
@@ -4211,6 +4221,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'overleg',
 );

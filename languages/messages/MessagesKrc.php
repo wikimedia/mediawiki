@@ -3577,6 +3577,4 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 'duration-centuries' => '$1 {{PLURAL:$1|ёмюр}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мингджыллыкъ}}',
 
-# Unknown messages
-'mytalk-parenthetical' => 'сюзюу',
 );
