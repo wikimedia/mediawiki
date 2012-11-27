@@ -500,25 +500,24 @@ class UserBlockedError extends ErrorPageError {
 /**
  * Shows a generic "user is not logged in" error page.
  *
- * This is essentially an ErrorPageError exception which by default use the
+ * This is essentially an ErrorPageError exception which by default uses the
  * 'exception-nologin' as a title and 'exception-nologin-text' for the message.
  * @see bug 37627
  * @since 1.20
  *
  * @par Example:
  * @code
- * if( $user->isAnon ) {
+ * if( $user->isAnon() ) {
  * 	throw new UserNotLoggedIn();
  * }
  * @endcode
  *
- * Please note the parameters are mixed up compared to ErrorPageError, this
- * is done to be able to simply specify a reason whitout overriding the default
- * title.
+ * Note the parameter order differs from ErrorPageError, this allows you to
+ * simply specify a reason without overriding the default title.
  *
  * @par Example:
  * @code
- * if( $user->isAnon ) {
+ * if( $user->isAnon() ) {
  * 	throw new UserNotLoggedIn( 'action-require-loggedin' );
  * }
  * @endcode
@@ -533,7 +532,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	 * @param $titleMsg A message key to set the page title.
 	 *        Optional, default: 'exception-nologin'
 	 * @param $params Parameters to wfMessage().
-	 *        Optiona, default: null
+	 *        Optional, default: null
 	 */
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',
