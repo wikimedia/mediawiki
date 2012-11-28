@@ -209,7 +209,7 @@ $messages = array(
 
 'underline-always'  => 'pśecej',
 'underline-never'   => 'žednje',
-'underline-default' => 'pó standarźe browsera',
+'underline-default' => 'Standard drastwy abo wobglědowaka',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Pismowy stil wobźěłowańskego póla:',
@@ -294,8 +294,8 @@ $messages = array(
 'newwindow'     => '(se wótcynijo w nowem woknje)',
 'cancel'        => 'Pśetergnuś',
 'moredotdotdot' => 'Wěcej…',
-'mypage'        => 'Mój bok',
-'mytalk'        => 'mója diskusija',
+'mypage'        => 'Bok',
+'mytalk'        => 'Diskusija',
 'anontalk'      => 'Diskusija z toś teju IP',
 'navigation'    => 'Nawigacija',
 'and'           => '&#32;a',
@@ -1148,7 +1148,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
-'mypreferences'                 => 'nastajenja',
+'mypreferences'                 => 'Nastajenja',
 'prefs-edits'                   => 'Licba wobźěłanjow:',
 'prefsnologin'                  => 'Njejsy pśizjawjony',
 'prefsnologintext'              => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
@@ -1923,7 +1923,7 @@ Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'linksearch-ok'    => 'Pytaś',
 'linksearch-text'  => 'Jo móžno zastupne znamuška kaž "*.wikipedia.org" wužywaś. 
 Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
-Pódpěrane protokole: <code>$1</code> (pšosym njepódaj je w swójom pytanju).',
+Pódpěrane protokole: <code>$1</code> (standard jo http://, jolic žeden protokol njejo pódany).',
 'linksearch-line'  => '$1 wótkazany z $2',
 'linksearch-error' => 'Zasupne znamješko daju se jano na zachopjeńku URL wužywaś.',
 
@@ -1973,7 +1973,7 @@ Pódpěrane protokole: <code>$1</code> (pšosym njepódaj je w swójom pytanju).
 'mailnologintext'      => 'Dejš [[Special:UserLogin|pśizjawjony]] byś a płaśiwu e-mailowu adresu w swójich [[Special:Preferences|nastajenjach]] měś, aby drugim wužywarjam e-mail pósłał.',
 'emailuser'            => 'Toś tomu wužywarjeju e-mail pósłaś',
 'emailpage'            => 'E-mail wužywarjeju',
-'emailpagetext'        => 'Móžoš slědujucy formular wužywaś, aby toś tomu wužywarjeju e-mail pósłał.
+'emailpagetext'        => 'Móžoš slědujucy formular wužywaś, aby toś tomu {{GENDER:$1|wužywarjeju}} e-mail pósłał.
 E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužywarskich nastajenjach]], zjawi se ako adresa w pólu "Wót" e-maile, aby dostawaŕ móžo śi direktnje wótegroniś.',
 'usermailererror'      => 'E-mailowy objekt jo zmólku wrośił.',
 'defemailsubject'      => '{{SITENAME}} e-mail',
@@ -2005,7 +2005,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
-'mywatchlist'          => 'wobglědowańka',
+'mywatchlist'          => 'Wobglědowańka',
 'watchlistfor2'        => 'Za wužywarja $1 $2',
 'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
@@ -2248,7 +2248,7 @@ $1',
 # Contributions
 'contributions'       => 'Wužywarske pśinoski',
 'contributions-title' => 'Wužywarske pśinoski wót $1',
-'mycontris'           => 'móje pśinoski',
+'mycontris'           => 'Pśinoski',
 'contribsub2'         => 'Za $1 ($2)',
 'nocontribs'          => 'Za toś te kriterije njejsu žedne změny se namakali.',
 'uctop'               => '(aktualny)',

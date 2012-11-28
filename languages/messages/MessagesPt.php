@@ -439,7 +439,7 @@ $messages = array(
 'newwindow'     => '(abre numa janela nova)',
 'cancel'        => 'Cancelar',
 'moredotdotdot' => 'Mais...',
-'mypage'        => 'Utilizador',
+'mypage'        => 'Página',
 'mytalk'        => 'Discussão',
 'anontalk'      => 'Discussão para este IP',
 'navigation'    => 'Navegação',
@@ -2525,7 +2525,7 @@ Para referência é apresentado abaixo o último registo de bloqueio:',
 'whatlinkshere-hideredirs' => '$1 redireccionamentos',
 'whatlinkshere-hidetrans'  => '$1 transclusões',
 'whatlinkshere-hidelinks'  => '$1 links',
-'whatlinkshere-hideimages' => '$1 links para imagens',
+'whatlinkshere-hideimages' => '$1 links para ficheiros',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock

@@ -109,7 +109,7 @@ $messages = array(
 
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
-'underline-default' => 'Restolador por defeutu',
+'underline-default' => 'Predeterminao del aspeutu o del restolador',
 
 # Font style option in Special:Preferences
 'editfont-style'     => "Estilu de fonte de l'área d'edición:",
@@ -194,8 +194,8 @@ $messages = array(
 'newwindow'     => '(ábrese nuna ventana nueva)',
 'cancel'        => 'Encaboxar',
 'moredotdotdot' => 'Más...',
-'mypage'        => 'La mio páxina',
-'mytalk'        => 'El mio alderique',
+'mypage'        => 'Páxina',
+'mytalk'        => 'Alderique',
 'anontalk'      => 'Alderique pa esta IP',
 'navigation'    => 'Navegación',
 'and'           => '&#32;y',
@@ -1111,7 +1111,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 
 # Preferences page
 'preferences'                   => 'Preferencies',
-'mypreferences'                 => 'Les mios preferencies',
+'mypreferences'                 => 'Preferencies',
 'prefs-edits'                   => "Númberu d'ediciones:",
 'prefsnologin'                  => 'Non identificáu',
 'prefsnologintext'              => 'Necesites tar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
@@ -1907,7 +1907,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-ok'    => 'Guetar',
 'linksearch-text'  => 'Se puen usar comodinos como "*.wikipedia.org".
 Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
-Protocolos almitíos: <code>$1</code> (nun amiestes dengún d\'estos na to gueta).',
+Protocolos almitíos: <code>$1</code> (el predetermináu ye http:// si nun se conseña dengún protocolu).',
 'linksearch-line'  => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 
@@ -1960,8 +1960,8 @@ y tener una direición de corréu válida nes tos [[Special:Preferences|preferen
 pa poder unviar correos a otros usuarios.',
 'emailuser'            => 'Manda-y un corréu a esti usuariu',
 'emailpage'            => 'Envigar un corréu electrónicu a un usuariu',
-'emailpagetext'        => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
-La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
+'emailpagetext'        => 'Pues usar el formulariu de más abaxo pa unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}.
+La direición de corréu electrónicu qu\'especificasti nes [[Special:Preferences|tos preferencies d\'usuariu]] va apaecer como la direición "Dende" del corréu, pa que\'l que lo recibe seya quien a respondete direutamente a ti.',
 'usermailererror'      => "L'operador de corréu devolvió un error:",
 'defemailsubject'      => 'Corréu electrónicu de {{SITENAME}}',
 'usermaildisabled'     => 'Corréu del usuariu desactiváu',
@@ -1992,7 +1992,7 @@ La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences
 
 # Watchlist
 'watchlist'            => 'La mio páxina de vixilancia',
-'mywatchlist'          => 'La mio llista de vixilancia',
+'mywatchlist'          => 'Llista de vixilancia',
 'watchlistfor2'        => 'Pa $1 $2',
 'nowatchlist'          => 'La to llista de vixilancia ta vacia.',
 'watchlistanontext'    => 'Por favor $1 pa ver o editar entraes na to llista de vixilancia.',
@@ -2248,7 +2248,7 @@ $1",
 # Contributions
 'contributions'       => 'Collaboraciones del usuariu',
 'contributions-title' => "Contribuciones d'usuariu pa $1",
-'mycontris'           => 'Les mios collaboraciones',
+'mycontris'           => 'Collaboraciones',
 'contribsub2'         => 'De $1 ($2)',
 'nocontribs'          => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
 'uctop'               => '(actual)',
@@ -2289,7 +2289,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'whatlinkshere-hideredirs' => '$1 redireiciones',
 'whatlinkshere-hidetrans'  => '$1 tresclusiones',
 'whatlinkshere-hidelinks'  => '$1 enllaces',
-'whatlinkshere-hideimages' => "$1 enllaces d'imaxe",
+'whatlinkshere-hideimages' => '$1 los enllaces al ficheru',
 'whatlinkshere-filters'    => 'Peñeres',
 
 # Block/unblock

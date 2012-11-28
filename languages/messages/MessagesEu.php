@@ -174,7 +174,7 @@ $messages = array(
 
 'underline-always'  => 'Beti',
 'underline-never'   => 'Inoiz ez',
-'underline-default' => 'Nabigatzailearen lehenetsitako balioa',
+'underline-default' => 'Lehenetsitako nabigatzailea',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Aldatu eremuko letra tipoa:',
@@ -259,8 +259,8 @@ $messages = array(
 'newwindow'     => '(leiho berrian irekitzen da)',
 'cancel'        => 'Utzi',
 'moredotdotdot' => 'Gehiago...',
-'mypage'        => 'Nire orrialdea',
-'mytalk'        => 'Nire eztabaida',
+'mypage'        => 'Orrialdea',
+'mytalk'        => 'Eztabaida',
 'anontalk'      => 'IP honen eztabaida',
 'navigation'    => 'Nabigazioa',
 'and'           => '&#32;eta',
@@ -277,13 +277,13 @@ $messages = array(
 'faqpage'        => 'Project:Maiz egindako galderak',
 
 # Vector skin
-'vector-action-addsection'       => 'Mintzagaia gehitu',
+'vector-action-addsection'       => 'Gehitu atala',
 'vector-action-delete'           => 'Ezabatu',
 'vector-action-move'             => 'Mugitu',
 'vector-action-protect'          => 'Babestu',
 'vector-action-undelete'         => 'Berreskuratu',
 'vector-action-unprotect'        => 'Babesa aldatu',
-'vector-simplesearch-preference' => 'Baimendu bilaketa gomendio hobetuak (Vector itxurarekin bakarrik)',
+'vector-simplesearch-preference' => 'Bilaketa barra sinplifikatua gaitu (Vector itxurarekin bakarrik)',
 'vector-view-create'             => 'Sortu',
 'vector-view-edit'               => 'Aldatu',
 'vector-view-history'            => 'Historia ikusi',
@@ -493,7 +493,8 @@ Kontsulta: $2',
 Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext'    => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
 'viewsourcetext'       => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
-'protectedinterface'   => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.',
+'protectedinterface'   => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.
+Wiki guztientzako aldaketak egin edo gehitzeko, mesedez erabili [//translatewiki.net/ translatewiki.net], MediaWikiren lokalizazio proiektua.',
 'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
 Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.
 Itzulpenetarako, [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
@@ -1112,7 +1113,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 
 # Preferences page
 'preferences'                   => 'Hobespenak',
-'mypreferences'                 => 'Nire hobespenak',
+'mypreferences'                 => 'Hobespenak',
 'prefs-edits'                   => 'Aldaketa kopurua:',
 'prefsnologin'                  => 'Saioa hasi gabe',
 'prefsnologintext'              => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Izena eman]</span> behar duzu zure hobespenak ezartzeko.',
@@ -1169,7 +1170,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'timezoneregion-indian'         => 'Indiar Ozeanoa',
 'timezoneregion-pacific'        => 'Ozeano Barea',
 'allowemail'                    => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
-'prefs-searchoptions'           => 'Bilaketa aukerak',
+'prefs-searchoptions'           => 'Bilatu',
 'prefs-namespaces'              => 'Izen-tarteak',
 'defaultns'                     => 'Bestela izen-tarte hauetan bilatu:',
 'default'                       => 'lehenetsia',
@@ -1835,7 +1836,7 @@ Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'linksearch-ok'    => 'Bilatu',
 'linksearch-text'  => '"*.wikipedia.org" bezalako izartxoak erabil daitezke.
 Gutxienez goi mailako domeinua behar du, adibidez "*.org".<br />
-Baimendutako protokoloak: <code>$1</code> (zure bilaketan hauek ez gehitu).',
+Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// hartzen da lehenetsitzat).',
 'linksearch-line'  => '$1, $2(e)tik lotuta',
 'linksearch-error' => 'Komodinak izenaren hasieran bakarrik agertu beharko lirateke.',
 
@@ -2201,10 +2202,11 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'whatlinkshere-hideredirs' => '$1 birzuzenketak',
 'whatlinkshere-hidetrans'  => '$1 transklusioak',
 'whatlinkshere-hidelinks'  => '$1 loturak',
-'whatlinkshere-hideimages' => '$1 irudiak loturak ditu',
+'whatlinkshere-hideimages' => '$1 irudi loturak',
 'whatlinkshere-filters'    => 'Iragazleak',
 
 # Block/unblock
+'autoblockid'                     => 'Blokeo automatikoa #$1',
 'block'                           => 'Erabiltzailea blokeatu',
 'unblock'                         => 'Erabiltzailea desblokeatu',
 'blockip'                         => 'Erabiltzailea blokeatu',

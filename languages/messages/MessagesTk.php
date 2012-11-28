@@ -172,8 +172,8 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'newwindow'     => '(täze penjirede açylýar)',
 'cancel'        => 'Goýbolsun et',
 'moredotdotdot' => 'Has köp...',
-'mypage'        => 'Sahypam',
-'mytalk'        => 'Pikir alyşma sahypam',
+'mypage'        => 'Sahypa',
+'mytalk'        => 'Pikir alyşma',
 'anontalk'      => 'Bu IP-niň habarlaşyklary',
 'navigation'    => 'Nawigasiýa',
 'and'           => '&#32;we',
@@ -195,7 +195,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'vector-action-move'             => 'Adyny üýtget',
 'vector-action-protect'          => 'Goraga al',
 'vector-action-undelete'         => 'Öçürmäni yzyna al',
-'vector-action-unprotect'        => 'Goragy aýyr',
+'vector-action-unprotect'        => 'Goragy üýtget',
 'vector-simplesearch-preference' => 'Giňeldilen gözleg tekliplerini aç (Diňe Vector bezegi üçin)',
 'vector-view-create'             => 'Döret',
 'vector-view-edit'               => 'Redaktirle',
@@ -231,7 +231,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'protect'           => 'Goraga al',
 'protect_change'    => 'üýtget',
 'protectthispage'   => 'Sahypany gorag astyna al',
-'unprotect'         => 'Goragy aýyr',
+'unprotect'         => 'Goragy üýtget',
 'unprotectthispage' => 'Sahypanyň goragyny aýyr',
 'newpage'           => 'Täze sahypa',
 'talkpage'          => 'Sahypany ara alyp maslahatlaş',
@@ -313,6 +313,8 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 'toc'                     => 'Mazmuny',
 'showtoc'                 => 'görkez',
 'hidetoc'                 => 'gizle',
+'collapsible-collapse'    => 'Ýygna',
+'collapsible-expand'      => 'Giňelt',
 'thisisdeleted'           => '$1 görmek ýa-da dikeltmek isleýärsiňizmi?',
 'viewdeleted'             => '$1 gör?',
 'restorelink'             => '{{PLURAL:$1|bir öçürilen özgerdişi|$1 öçürilen özgerdişi}}',
@@ -533,7 +535,12 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'resetpass-temp-password'   => 'Wagtlaýyn parol:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Ulanyjy ady:',
+'passwordreset'              => 'Paroly nol et',
+'passwordreset-legend'       => 'Paroly nol et',
+'passwordreset-username'     => 'Ulanyjy ady:',
+'passwordreset-domain'       => 'Domen:',
+'passwordreset-emailelement' => 'Ulanyjy ady: $1
+Wagtlaýyn parol: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Goýy tekst',
@@ -795,7 +802,7 @@ Wikiden öçürilen ýa-da adynyň üýtgedilen bolmagy ahmal.
 Baglanyşykly täze sahypalar üçin [[Special:Search|wikide gözleg geçirip]] görüň.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(teswir aýyryldy)',
+'rev-deleted-comment'         => '(özgerdişiň gysgaça düşündirişi aýryldy)',
 'rev-deleted-user'            => '(ulanyjy ady aýyryldy)',
 'rev-deleted-event'           => '(gündelik işi aýyryldy)',
 'rev-deleted-user-contribs'   => '[ulanyjy ady ýa-da IP adresi aýrylypdyr - özgerdiş goşantlardan gizlenildi]',
@@ -937,7 +944,7 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'mergelogpagetext'   => 'Aşakdaky sanaw sahypalaryň geçmişleriniň iň soňky birleşdirmelerini görkezýär.',
 
 # Diffs
-'history-title'            => '"$1" sahypasynyň geçmişi',
+'history-title'            => '"$1" — sahypa geçmişi',
 'difference'               => '(Wersiýalaryň aratapawudy)',
 'difference-multipage'     => '(Sahypalaryň arasyndaky tapawut)',
 'lineno'                   => 'Setir $1:',
@@ -1024,7 +1031,7 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 
 # Preferences page
 'preferences'                   => 'Ileri tutmalar',
-'mypreferences'                 => 'Ileri tutmalarym',
+'mypreferences'                 => 'Ileri tutmalar',
 'prefs-edits'                   => 'Özgerdiş sany:',
 'prefsnologin'                  => 'Sessiýa açmansyňyz',
 'prefsnologintext'              => 'Ulanyjy ileri tutmalaryny üýtgetmek üçin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sessiýa açmagyňyz gerek]</span>.',
@@ -1084,7 +1091,7 @@ Gabat gelşine görä döredilen şu bahany ulanyp bilersiňiz: $1',
 'timezoneregion-indian'         => 'Hindi okeany',
 'timezoneregion-pacific'        => 'Ýuwaş okean',
 'allowemail'                    => 'Başga ulanyjylar maňa e-poçta iberip bilsin',
-'prefs-searchoptions'           => 'Gözleg opsiýalary',
+'prefs-searchoptions'           => 'Gözleg',
 'prefs-namespaces'              => 'At giňişlikleri',
 'defaultns'                     => 'Bolmasa şu at giňişliklerinde gözleg geçiriň:',
 'default'                       => 'gaýybana',
@@ -1850,7 +1857,7 @@ Goldanylýan protokollar: <code>$1</code>',
 
 # Watchlist
 'watchlist'            => 'Gözegçilik sanawym',
-'mywatchlist'          => 'Gözegçilik sanawym',
+'mywatchlist'          => 'Gözegçilik sanawy',
 'watchlistfor2'        => '$1 üçin  $2',
 'nowatchlist'          => 'Gözegçilik sanawyňyzda hiçhili sahypa ýok.',
 'watchlistanontext'    => 'Gözegçilik sanawyňyzdaky sahypalary görmek ýa-da redaktirlemek üçin $1.',
@@ -2106,7 +2113,7 @@ $1',
 # Contributions
 'contributions'       => 'Ulanyjynyň goşantlary',
 'contributions-title' => '$1 üçin ulanyjy goşantlary',
-'mycontris'           => 'Goşantlarym',
+'mycontris'           => 'Goşantlar',
 'contribsub2'         => '$1 ($2)',
 'nocontribs'          => 'Bu kriteriýlere gabat gelýän üýtgeşme ýok.',
 'uctop'               => '(iň soňky)',
@@ -2147,7 +2154,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 'whatlinkshere-hideredirs' => 'gönükdirmeleri $1',
 'whatlinkshere-hidetrans'  => 'Atanaklaýyn girizmeleri $1',
 'whatlinkshere-hidelinks'  => 'çykgytlary $1',
-'whatlinkshere-hideimages' => 'surat çykgytlaryny $1',
+'whatlinkshere-hideimages' => 'Faýl çykgytlaryny $1',
 'whatlinkshere-filters'    => 'Filtrler',
 
 # Block/unblock

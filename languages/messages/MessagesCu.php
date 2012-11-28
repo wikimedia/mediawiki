@@ -154,8 +154,8 @@ $messages = array(
 'article'       => 'члѣнъ',
 'newwindow'     => '(иномь окънѣ)',
 'moredotdotdot' => 'вѧщє ···',
-'mypage'        => 'моꙗ страница',
-'mytalk'        => 'моꙗ бєсѣда',
+'mypage'        => 'страница',
+'mytalk'        => 'бєсѣда',
 'navigation'    => 'плаваниѥ',
 'and'           => '&#32;и',
 
@@ -396,7 +396,7 @@ $messages = array(
 
 # Preferences page
 'preferences'               => 'строи',
-'mypreferences'             => 'мои строи',
+'mypreferences'             => 'строи',
 'changepassword'            => 'таина словєсє иꙁмѣнѥниѥ',
 'prefs-rc'                  => 'послѣдьнѩ мѣнꙑ',
 'prefs-watchlist'           => 'блюдєниꙗ',
@@ -492,6 +492,8 @@ $messages = array(
 'filedesc'            => 'опьсаниѥ',
 'fileuploadsummary'   => 'опьсаниѥ:',
 'uploadedimage'       => '⁖ [[$1]] ⁖ положєнъ ѥстъ',
+'upload-source'       => 'источьно дѣло',
+'sourcefilename'      => 'источьна дѣла имꙗ :',
 'watchthisupload'     => 'си дѣла блюдєниѥ',
 'upload-success-subj' => 'дѣло положєно ѥстъ',
 
@@ -606,7 +608,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'        => 'моꙗ блюдєниꙗ',
-'mywatchlist'      => 'моꙗ блюдєниꙗ',
+'mywatchlist'      => 'блюдєниꙗ',
 'addedwatchtext'   => "страница ⁖ [[:$1]] ⁖ нꙑнѣ подъ твоимь [[Special:Watchlist|блюдєниѥмь]] ѥстъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣнꙑ страницѧ ⁖ [[Special:Watchlist|моꙗ блюдєниꙗ]] ⁖ покаꙁанꙑ сѫтъ и  [[Special:RecentChanges|послѣдьнъ мѣнъ]] каталоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",
 'removedwatchtext' => 'страница ⁖ [[:$1]] ⁖ нꙑнѣ твоѥго [[Special:Watchlist|блюдєниꙗ]] иꙁнєсєна ѥстъ',
@@ -658,7 +660,7 @@ $messages = array(
 # Contributions
 'contributions'       => 'польꙃєватєлꙗ добродѣꙗниꙗ',
 'contributions-title' => 'польꙃєватєлꙗ ⁖ $1 ⁖ добродѣꙗниꙗ',
-'mycontris'           => 'моꙗ добродѣꙗниꙗ',
+'mycontris'           => 'добродѣꙗниꙗ',
 'contribsub2'         => 'польꙃєватєлꙗ имѧ ⁖ $1 ⁖ ѥстъ ($2)',
 'uctop'               => '(послѣдьнꙗ мѣна)',
 
@@ -693,6 +695,7 @@ $messages = array(
 'blocklink'          => 'ꙁагради',
 'contribslink'       => 'добродѣꙗниꙗ',
 'blocklogpage'       => 'ꙁаграждєниꙗ їсторїꙗ',
+'blocklogentry'      => 'ꙁаградихъ [[$1]] на врѣмѧ $2 $3',
 
 # Move page
 'move-page'               => 'прѣимєнованиѥ ⁖ $1 ⁖',
@@ -739,6 +742,7 @@ $messages = array(
 'tooltip-t-specialpages'         => 'вьсѣѩ нарочьнъ страницѧ каталогъ',
 'tooltip-t-print'                => 'сѥѩ страницѧ пєчатьнъ обраꙁъ',
 'tooltip-ca-nstab-special'       => 'си нарочьна страница ѥстъ · ѥѩжє иꙁмѣнꙗти нє можєши',
+'tooltip-minoredit'              => 'оꙁначи ꙗко малоу мѣноу',
 'tooltip-watch'                  => 'си страницѧ блюдєниѥ',
 
 # Info page

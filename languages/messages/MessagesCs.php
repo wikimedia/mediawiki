@@ -400,7 +400,7 @@ $messages = array(
 
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
-'underline-default' => 'Podle nastavení prohlížeče',
+'underline-default' => 'Podle nastavení prohlížeče nebo vzhledu',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Druh písma v editačním poli:',
@@ -485,8 +485,8 @@ $messages = array(
 'newwindow'     => '(otevře se v novém okně)',
 'cancel'        => 'Storno',
 'moredotdotdot' => 'Další…',
-'mypage'        => 'Moje stránka',
-'mytalk'        => 'Moje diskuse',
+'mypage'        => 'Stránka',
+'mytalk'        => 'Diskuse',
 'anontalk'      => 'Diskuse k této IP adrese',
 'navigation'    => 'Navigace',
 'and'           => '&#32;a',
@@ -926,16 +926,16 @@ Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude vaše editace z
 'summary-preview'                  => 'Náhled shrnutí:',
 'subject-preview'                  => 'Náhled předmětu/nadpisu:',
 'blockedtitle'                     => 'Uživatel zablokován',
-'blockedtext'                      => "Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
+'blockedtext'                      => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
-Zablokování provedl{{gender:$1||a}} $1.
+Zablokování provedl{{GENDER:$4||a}} $1.
 Udaným důvodem bylo ''$2''.
 
 * Začátek blokování: $8
 * Zablokování vyprší: $6
 * Blokovaný uživatel: $7
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$1|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{GENDER:$4|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud vám byla tato možnost zakázána.
 Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext'                  => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
@@ -2142,7 +2142,7 @@ Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
 'linksearch-ok'    => 'Hledat',
 'linksearch-text'  => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.
 Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />
-Podporované protokoly: <code>$1</code> (nepřidávejte je do hledání).',
+Podporované protokoly: <code>$1</code> (pokud není protokol uveden, použije se http://).',
 'linksearch-line'  => '$2 odkazuje na $1',
 'linksearch-error' => 'Zástupné znaky lze použít jen na začátku doménového jména.',
 
@@ -2194,7 +2194,7 @@ Podporované protokoly: <code>$1</code> (nepřidávejte je do hledání).',
 'mailnologintext'      => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:UserLogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
 'emailuser'            => 'Poslat e-mail',
 'emailpage'            => 'Poslat e-mail',
-'emailpagetext'        => 'Pomocí níže zobrazeného formuláře můžete tomuto uživateli poslat zprávu e-mailem.
+'emailpagetext'        => 'Pomocí níže zobrazeného formuláře můžete {{GENDER:$1|tomuto uživateli|této uživatelce}} poslat zprávu e-mailem.
 E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se objeví jako adresa odesílatele pošty, aby vám adresát mohl odpovědět přímo.',
 'usermailererror'      => 'Chyba poštovního programu:',
 'defemailsubject'      => 'E-mail z {{grammar:2sg|{{SITENAME}}}}',
@@ -2469,7 +2469,7 @@ $1',
 # Contributions
 'contributions'       => 'Příspěvky uživatele',
 'contributions-title' => 'Příspěvky uživatele $1',
-'mycontris'           => 'Mé příspěvky',
+'mycontris'           => 'Příspěvky',
 'contribsub2'         => '$1 ($2)',
 'nocontribs'          => 'Nenalezeny žádné změny vyhovující kritériím.',
 'uctop'               => ' (aktuální)',

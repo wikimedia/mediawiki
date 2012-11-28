@@ -35,6 +35,7 @@
  * @author Tusharpawar1982
  * @author V.narsikar
  * @author Vpnagarkar
+ * @author Ydyashad
  * @author Ynwala
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
@@ -711,7 +712,7 @@ $2',
 'yourname'                   => 'तुमचे नाव',
 'yourpassword'               => 'तुमचा परवलीचा शब्द',
 'yourpasswordagain'          => 'तुमचा परवलीचा शब्द पुन्हा लिहा',
-'remembermypassword'         => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
+'remembermypassword'         => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवस|दिवसांसाठी}})',
 'securelogin-stick-https'    => 'प्रवेशानंतर एचटीटीपीएसच्या संपर्कात रहा',
 'yourdomainname'             => 'तुमचे क्षेत्र (डॉमेन) :',
 'externaldberror'            => 'विदागार ’खातरजमा’ (प्रमाणितीकरण) त्रुटी होती अथवा तुम्हाला तुमचे बाह्य खाते अद्ययावत  करण्याची परवानगी नाही.',

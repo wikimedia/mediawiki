@@ -397,7 +397,7 @@ $messages = array(
 
 'underline-always'  => 'תמיד',
 'underline-never'   => 'לעולם לא',
-'underline-default' => 'ברירת מחדל של הדפדפן',
+'underline-default' => 'ברירת מחדל של העיצוב או של הדפדפן',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'הגופן בתיבת העריכה:',
@@ -482,8 +482,8 @@ $messages = array(
 'newwindow'     => '(נפתח בחלון חדש)',
 'cancel'        => 'ביטול / יציאה',
 'moredotdotdot' => 'עוד…',
-'mypage'        => 'הדף שלי',
-'mytalk'        => 'דף השיחה שלי',
+'mypage'        => 'דף משתמש',
+'mytalk'        => 'שיחה',
 'anontalk'      => 'השיחה עבור IP זה',
 'navigation'    => 'ניווט',
 'and'           => '&#32;וגם',
@@ -747,7 +747,7 @@ $2',
 שימו לב כי ייתכן שדפים אחדים ימשיכו להיות מוצגים כאילו אתם עדיין מחוברים לחשבון עד שתנקו את המטמון של הדפדפן שלכם.",
 'welcomecreation'            => '== ברוך בואך, $1! ==
 חשבונך נוצר.
-נא לא לשכוח להתאים את [[Special:Preferences|העדפות המשתמש]] שלך באתר {{SITENAME}}.',
+נא לא לשכוח להתאים את [[Special:Preferences|העדפות המשתמש]] שלך ב{{grammar:תחילית|{{SITENAME}}}}.',
 'yourname'                   => 'שם משתמש:',
 'yourpassword'               => 'סיסמה:',
 'yourpasswordagain'          => 'הקש סיסמה שנית:',
@@ -1381,7 +1381,7 @@ $1",
 
 # Preferences page
 'preferences'                   => 'העדפות',
-'mypreferences'                 => 'ההעדפות שלי',
+'mypreferences'                 => 'העדפות',
 'prefs-edits'                   => 'מספר עריכות:',
 'prefsnologin'                  => 'לא נכנסת לחשבון',
 'prefsnologintext'              => 'עליכם <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} להיכנס לחשבון]</span> כדי לשנות העדפות משתמש.',
@@ -1531,11 +1531,11 @@ $1",
 'group-all'           => '(הכול)',
 
 'group-user-member'          => 'משתמש',
-'group-autoconfirmed-member' => '{{GENDER:$1|משתמש ותיק|משתמשת ותיקה}}',
-'group-bot-member'           => '{{GENDER:$1|בוט}}',
-'group-sysop-member'         => '{{GENDER:$1|מפעיל מערכת|מפעילת מערכת}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|ביורוקרט|ביורוקרטית}}',
-'group-suppress-member'      => '{{GENDER:$1|מסתיר|מסתירה}}',
+'group-autoconfirmed-member' => 'משתמש ותיק',
+'group-bot-member'           => 'בוט',
+'group-sysop-member'         => 'מפעיל מערכת',
+'group-bureaucrat-member'    => 'ביורוקרט',
+'group-suppress-member'      => 'מסתיר',
 
 'grouppage-user'          => '{{ns:project}}:משתמש רשום',
 'grouppage-autoconfirmed' => '{{ns:project}}:משתמש ותיק',
@@ -2181,7 +2181,7 @@ $1',
 'linksearch-ok'    => 'חיפוש',
 'linksearch-text'  => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.
 נדרשת לפחות סיומת אינטרנט (TLD), למשל <span dir="ltr">"*.org"</span>.<br />
-פרוטוקולים נתמכים: <code dir="ltr">$1</code> (אין להוסיף אותם בחיפוש).',
+פרוטוקולים נתמכים: <code dir="ltr">$1</code> (ברירת המחדל היא <span dir="ltr">http://</span> אם לא צוין פרוטוקול).',
 'linksearch-line'  => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 
@@ -2232,7 +2232,7 @@ $1',
 'mailnologintext'      => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] ולהגדיר לעצמכם כתובת דואר אלקטרוני תקינה ב[[Special:Preferences|העדפות המשתמש]] שלכם כדי לשלוח דואר למשתמש אחר.',
 'emailuser'            => 'שליחת דואר אלקטרוני למשתמש זה',
 'emailpage'            => 'שליחת דואר למשתמש',
-'emailpagetext'        => 'ניתן להשתמש בטופס כדי לשלוח הודעת דואר אלקטרוני למשתמש זה.
+'emailpagetext'        => 'ניתן להשתמש בטופס כדי לשלוח הודעת דואר אלקטרוני {{GENDER:$1|למשתמש זה|למשתמשת זו}}.
 כתובת הדואר האלקטרוני שכתבתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת שההודעה נשלחה ממנה, כדי לאפשר תגובה ישירה.',
 'usermailererror'      => 'אובייקט הדואר החזיר שגיאה:',
 'defemailsubject'      => 'דוא"ל {{SITENAME}}',
@@ -2264,7 +2264,7 @@ $1',
 
 # Watchlist
 'watchlist'            => 'רשימת המעקב שלי',
-'mywatchlist'          => 'רשימת המעקב שלי',
+'mywatchlist'          => 'רשימת מעקב',
 'watchlistfor2'        => 'עבור $1 $2',
 'nowatchlist'          => 'אין דפים ברשימת המעקב.',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
@@ -2516,7 +2516,7 @@ $1',
 # Contributions
 'contributions'       => 'תרומות המשתמש',
 'contributions-title' => 'תרומות של המשתמש $1',
-'mycontris'           => 'התרומות שלי',
+'mycontris'           => 'תרומות',
 'contribsub2'         => 'עבור $1 ($2)',
 'nocontribs'          => 'לא נמצאו שינויים המתאימים לקריטריונים אלו.',
 'uctop'               => '(אחרון)',

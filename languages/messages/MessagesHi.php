@@ -30,6 +30,7 @@
  * @author Omprakash
  * @author Pulkitsingh01
  * @author Purodha
+ * @author Raj Singh
  * @author Rajesh
  * @author Rajivkurjee
  * @author Reedy
@@ -131,7 +132,7 @@ $messages = array(
 
 'underline-always'  => 'सदैव',
 'underline-never'   => 'कभी नहीं',
-'underline-default' => 'ब्राउज़र डिफ़ॉल्ट',
+'underline-default' => 'त्वचा या ब्राउज़र डिफ़ॉल्ट',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'सम्पादन क्षेत्र की मुद्रलिपि शैली:',
@@ -1079,7 +1080,7 @@ $1",
 'search-result-size'               => '$1 ({{PLURAL:$2|$2 शब्द}})',
 'search-result-category-size'      => '{{PLURAL:$1|$1 सदस्य}} ({{PLURAL:$2|$2 उपश्रेणी|$2 उपश्रेणियाँ}}, {{PLURAL:$3|$3 सञ्चिका|$3 सञ्चिकाएँ}})',
 'search-result-score'              => 'संबद्ध: $1%',
-'search-redirect'                  => '(पुनर्निर्देश $1)',
+'search-redirect'                  => '($1 से पुनर्निर्देशित)',
 'search-section'                   => '(अनुभाग $1)',
 'search-suggest'                   => 'कहीं आपका मतलब $1 तो नहीं था?',
 'search-interwiki-caption'         => 'अन्य प्रकल्प',
@@ -1121,7 +1122,7 @@ $1",
 
 # Preferences page
 'preferences'                   => 'मेरी वरीयताएँ',
-'mypreferences'                 => 'मेरी वरीयताएँ',
+'mypreferences'                 => 'मेरी पसंद',
 'prefs-edits'                   => 'संपादन संख्या:',
 'prefsnologin'                  => 'लॉग इन नहीं किया है',
 'prefsnologintext'              => 'वरीयताएँ बदलने के लिए आपको <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} सत्रारंभ]</span> करना होगा।',

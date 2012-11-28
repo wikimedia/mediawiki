@@ -270,7 +270,7 @@ $messages = array(
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
-'underline-default' => 'Opción do propio navegador',
+'underline-default' => 'Opción predeterminada da aparencia ou do navegador',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Tipo de letra da caixa de edición:',
@@ -351,12 +351,12 @@ $messages = array(
 'broken-file-category'           => 'Páxinas con ligazóns rotas cara a ficheiros',
 
 'about'         => 'Acerca de',
-'article'       => 'Artigo',
+'article'       => 'Páxina de contido',
 'newwindow'     => '(abre unha ventá nova)',
 'cancel'        => 'Cancelar',
 'moredotdotdot' => 'Máis...',
-'mypage'        => 'A miña páxina',
-'mytalk'        => 'A miña conversa',
+'mypage'        => 'Páxina',
+'mytalk'        => 'Conversa',
 'anontalk'      => 'Conversa con este enderezo IP',
 'navigation'    => 'Navegación',
 'and'           => '&#32;e',
@@ -520,7 +520,7 @@ $1',
 'nstab-image'     => 'Ficheiro',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Modelo',
-'nstab-help'      => 'Axuda',
+'nstab-help'      => 'Páxina de axuda',
 'nstab-category'  => 'Categoría',
 
 # Main script and global functions
@@ -604,7 +604,7 @@ $2',
 'namespaceprotected'   => "Non dispón de permisos para modificar páxinas no espazo de nomes '''$1'''.",
 'customcssprotected'   => 'Non dispón de permisos para modificar esta páxina de CSS, dado que contén a configuración persoal doutro usuario.',
 'customjsprotected'    => 'Non dispón de permisos para modificar esta páxina de JavaScript, dado que contén a configuración persoal doutro usuario.',
-'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
+'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes "{{ns:special}}".',
 'titleprotected'       => "Este título foi protexido da creación por [[User:$1|$1]].
 O motivo achegado é ''$2''.",
 
@@ -1265,7 +1265,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 
 # Preferences page
 'preferences'                   => 'Preferencias',
-'mypreferences'                 => 'As miñas preferencias',
+'mypreferences'                 => 'Preferencias',
 'prefs-edits'                   => 'Número de edicións:',
 'prefsnologin'                  => 'Non accedeu ao sistema',
 'prefsnologintext'              => 'Debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} acceder ao sistema]</span> para modificar as preferencias de usuario.',
@@ -1276,7 +1276,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-beta'                    => 'Características en probas',
 'prefs-datetime'                => 'Data e hora',
 'prefs-labs'                    => 'Características experimentais',
-'prefs-personal'                => 'Información do usuario',
+'prefs-personal'                => 'Información de usuario',
 'prefs-rc'                      => 'Cambios recentes',
 'prefs-watchlist'               => 'Lista de vixilancia',
 'prefs-watchlist-days'          => 'Número de días que mostrar na lista de vixilancia:',
@@ -1489,7 +1489,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 # User rights log
 'rightslog'                  => 'Rexistro de dereitos de usuario',
 'rightslogtext'              => 'Este é un rexistro dos cambios nos permisos de usuario.',
-'rightslogentry'             => 'cambiou o grupo ao que pertence "$1" de $2 a $3',
+'rightslogentry'             => 'cambiou o grupo ao que pertence $1 de $2 a $3',
 'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
 'rightsnone'                 => '(ningún)',
 
@@ -1541,7 +1541,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'recentchanges-label-unpatrolled'   => 'Esta edición aínda non foi comprobada',
 'rcnote'                            => "A continuación {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata o $4 ás $5.",
 'rcnotefrom'                        => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
-'rclistfrom'                        => 'Mostrar os cambios novos desde as $1',
+'rclistfrom'                        => 'Mostrar os cambios novos desde o $1',
 'rcshowhideminor'                   => '$1 as edicións pequenas',
 'rcshowhidebots'                    => '$1 os bots',
 'rcshowhideliu'                     => '$1 os usuarios rexistrados',
@@ -2062,7 +2062,7 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ok'    => 'Procurar',
 'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".
 Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (non engada ningún destes na súa procura).',
+Protocolos soportados: <code>$1</code> (úsase http:// como predeterminado se non se especifica ningún protocolo).',
 'linksearch-line'  => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
@@ -2113,8 +2113,8 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'mailnologintext'      => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
 'emailuser'            => 'Enviar un correo electrónico a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}}',
 'emailpage'            => 'Enviar un correo electrónico a un usuario',
-'emailpagetext'        => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
-O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
+'emailpagetext'        => 'Pode usar o seguinte formulario para enviar unha mensaxe de correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}.
+O enderezo de correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que {{GENDER:$1|o receptor|a receptora}} da mensaxe poderá responderlle directamente.',
 'usermailererror'      => 'O obxecto enviado deu unha mensaxe de erro:',
 'defemailsubject'      => 'Correo electrónico de {{SITENAME}}',
 'usermaildisabled'     => 'O correo electrónico do usuario está desactivado',
@@ -2145,7 +2145,7 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 
 # Watchlist
 'watchlist'            => 'A miña lista de vixilancia',
-'mywatchlist'          => 'A miña lista de vixilancia',
+'mywatchlist'          => 'Lista de vixilancia',
 'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => 'Non ten elementos na súa lista de vixilancia.',
 'watchlistanontext'    => 'Faga o favor de $1 ao sistema para ver ou editar os elementos da súa lista de vixilancia.',
@@ -2179,15 +2179,15 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'unwatching'     => 'Deixando de vixiar...',
 'watcherrortext' => 'Houbo un erro ao cambiar as súas opcións de vixilancia para a páxina "$1".',
 
-'enotif_mailer'                => 'Correo de aviso de {{SITENAME}}',
+'enotif_mailer'                => 'Sistema de notificacións por correo de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as páxinas como visitadas',
 'enotif_newpagetext'           => 'Esta é unha páxina nova.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
 'enotif_subject'               => 'A páxina de {{SITENAME}} chamada "$PAGETITLE" foi $CHANGEDORCREATED por $PAGEEDITOR',
-'enotif_lastvisited'           => 'Vexa $1 para comprobar todos os cambios desde a súa última visita.',
-'enotif_lastdiff'              => 'Vexa $1 para visualizar esta modificación.',
+'enotif_lastvisited'           => 'Consulte $1 para comprobar todos os cambios feitos desde a súa última visita.',
+'enotif_lastdiff'              => 'Consulte $1 para ver esta modificación.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME:
 
@@ -2403,7 +2403,7 @@ $1',
 # Contributions
 'contributions'       => 'Contribucións {{GENDER:{{BASEPAGENAME}}|do usuario|da usuaria}}',
 'contributions-title' => 'Contribucións de $1',
-'mycontris'           => 'As miñas contribucións',
+'mycontris'           => 'Contribucións',
 'contribsub2'         => 'De $1 ($2)',
 'nocontribs'          => 'Non se deron atopado cambios con eses criterios.',
 'uctop'               => '(última revisión)',
@@ -2443,7 +2443,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'whatlinkshere-hideredirs' => '$1 as redireccións',
 'whatlinkshere-hidetrans'  => '$1 as inclusións',
 'whatlinkshere-hidelinks'  => '$1 as ligazóns',
-'whatlinkshere-hideimages' => '$1 as ligazóns á imaxe',
+'whatlinkshere-hideimages' => '$1 as ligazóns ao ficheiro',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
@@ -2824,7 +2824,7 @@ Pode ver o código fonte.',
 'tooltip-feed-atom'               => 'Fonte de novas Atom desta páxina',
 'tooltip-t-contributions'         => 'Ver a lista de contribucións {{GENDER:{{BASEPAGENAME}}|deste usuario|desta usuaria}}',
 'tooltip-t-emailuser'             => 'Enviarlle unha mensaxe a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}} por correo electrónico',
-'tooltip-t-upload'                => 'Cargar os ficheiros',
+'tooltip-t-upload'                => 'Cargar ficheiros',
 'tooltip-t-specialpages'          => 'Lista de todas as páxinas especiais',
 'tooltip-t-print'                 => 'Versión para imprimir da páxina',
 'tooltip-t-permalink'             => 'Ligazón permanente a esta versión da páxina',
@@ -2876,7 +2876,7 @@ Pode ver o código fonte.',
 'nostalgia.js'           => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Morriña */',
 'cologneblue.js'         => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Azul colonial */',
 'monobook.js'            => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia MonoBook */',
-'myskin.js'              => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia A miña aparencia */',
+'myskin.js'              => '/* O JavaScript que se coloque aquí afectará a quen use a aparencia A miña aparencia */',
 'chick.js'               => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Parrulo */',
 'simple.js'              => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Sinxela */',
 'modern.js'              => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Moderna */',

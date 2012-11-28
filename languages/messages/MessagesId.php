@@ -378,7 +378,7 @@ $messages = array(
 
 'underline-always'  => 'Selalu',
 'underline-never'   => 'Tidak pernah',
-'underline-default' => 'Bawaan penjelajah web',
+'underline-default' => 'Kulit atau penjelajah bawaan',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Gaya tulisan komputer pada kotak penyuntingan:',
@@ -463,8 +463,8 @@ $messages = array(
 'newwindow'     => '(buka di jendela baru)',
 'cancel'        => 'Batalkan',
 'moredotdotdot' => 'Lainnya...',
-'mypage'        => 'Halaman saya',
-'mytalk'        => 'Pembicaraan saya',
+'mypage'        => 'Halaman',
+'mytalk'        => 'Pembicaraan',
 'anontalk'      => 'Pembicaraan IP ini',
 'navigation'    => 'Navigasi',
 'and'           => '&#32;dan',
@@ -487,7 +487,7 @@ $messages = array(
 'vector-action-protect'          => 'Lindungi',
 'vector-action-undelete'         => 'Pembatalan penghapusan',
 'vector-action-unprotect'        => 'Ubah perlindungan',
-'vector-simplesearch-preference' => 'Aktifkan pencarian saran yang disempurnakan (hanya kulit Vector)',
+'vector-simplesearch-preference' => 'Aktifkan bilah pencarian sederhana (hanya kulit Vector)',
 'vector-view-create'             => 'Buat',
 'vector-view-edit'               => 'Sunting',
 'vector-view-history'            => 'Versi terdahulu',
@@ -646,9 +646,9 @@ Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:s
 'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data.
 Kesalahan ini mungkin menandakan adanya sebuah \'\'bug\'\' dalam perangkat lunak.
 Permintaan basis data yang terakhir adalah:
-<blockquote><tt>$1</tt></blockquote>
-dari dalam fungsi "<tt>$2</tt>".
-Basis data menghasilkan kesalahan "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+dari dalam fungsi "<code>$2</code>".
+Basis data menghasilkan kesalahan "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data.
 Permintaan basis data yang terakhir adalah:
 "$1"
@@ -694,9 +694,9 @@ Mungkin telah dihapus oleh orang lain.',
 'actionthrottledtext'  => 'Anda dibatasi untuk melakukan tindakan ini terlalu banyak dalam waktu pendek. Silakan mencoba lagi setelah beberapa menit.',
 'protectedpagetext'    => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
 'viewsourcetext'       => 'Anda dapat melihat atau menyalin sumber halaman ini:',
-'protectedinterface'   => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
-'editinginterface'     => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak situs ini. Perubahan teks ini akan mempengaruhi tampilan pada antarmuka pengguna untuk pengguna lain.
-Untuk terjemahan, harap gunakan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek pelokalan MediaWiki.",
+'protectedinterface'   => 'Halaman ini memuat teks antarmuka untuk perangkat lunak pada wiki ini, dan dilindungi terhadap penyalahgunaan. Untuk menambah atau mengubah terjemahan pada semua wiki, harap gunakan [//translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.',
+'editinginterface'     => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak situs ini. Perubahan teks ini akan memengaruhi tampilan pada antarmuka pengguna untuk pengguna lain di wiki ini.
+Untuk menambah atau mengubahterjemahan untuk semua wiki, harap gunakan [//translatewiki.net/ translatewiki.net], proyek pelokalan MediaWiki.",
 'sqlhidden'            => '(Permintaan SQL disembunyikan)',
 'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
 $2',
@@ -955,11 +955,10 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong tembolok peramban Anda untuk melihat perubahan.
+'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memintas singgahan peramban Anda untuk melihat perubahan.
 * '''Firefox / Safari:''' Tahan ''Shift'' sambil mengeklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
 * '''Google Chrome:''' Tekan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
 * '''Internet Explorer:''' Tahan ''Ctrl'' sambl mengeklik ''Refresh'', atau tekan ''Ctrl-F5''
-* '''Konqueror:''' Klik ''Reload'' atau tekan ''F5''
 * '''Opera:''' Bersihkan tembolok di ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
@@ -1206,9 +1205,10 @@ Anda tidak memiliki akses ke revisi ini.',
 'revdelete-concurrent-change' => 'Gagal mengubah revisi per $2, $1: statusnya kemungkinan telah diubah oleh pengguna lain bersamaan dengan Anda.
 Silakan periksa catatan log.',
 'revdelete-only-restricted'   => 'Kesalahan sewaktu menyembunyikan butir bertanggal $2, $1: Anda tidak dapat menyembunyikan butir dari pengurus tanpa memilih juga salah satu opsi penyembunyian lainnya.',
-'revdelete-reason-dropdown'   => '*Alasan penghapusan
+'revdelete-reason-dropdown'   => '*Alasan penghapusan yang umum
 ** Pelanggaran hak cipta
-** Informasi pribadi yang tidak pantas
+** Komentar atau informasi pribadi yang tidak pantas
+** Nama pengguna yang tidak pantas
 ** Berpotensi mencemarkan nama baik',
 'revdelete-otherreason'       => 'Alasan lain/tambahan:',
 'revdelete-reasonotherlist'   => 'Alasan lain',
@@ -1337,7 +1337,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 
 # Preferences page
 'preferences'                   => 'Preferensi',
-'mypreferences'                 => 'Preferensi saya',
+'mypreferences'                 => 'Preferensi',
 'prefs-edits'                   => 'Jumlah suntingan:',
 'prefsnologin'                  => 'Belum masuk log',
 'prefsnologintext'              => 'Anda harus <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
@@ -1396,7 +1396,7 @@ Berikut ini adalah nilai acak yang dapat Anda gunakan: $1',
 'timezoneregion-indian'         => 'Samudera Hindia',
 'timezoneregion-pacific'        => 'Samudera Pasifik',
 'allowemail'                    => 'Izinkan pengguna lain mengirim surel',
-'prefs-searchoptions'           => 'Pencarian',
+'prefs-searchoptions'           => 'Cari',
 'prefs-namespaces'              => 'Ruang nama',
 'defaultns'                     => 'Atau cari dalam ruang-ruang nama berikut:',
 'default'                       => 'baku',
@@ -2104,8 +2104,8 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-ns'    => 'Ruang nama:',
 'linksearch-ok'    => 'Cari',
 'linksearch-text'  => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
-Membutuhkan sedikitnya satu ranah tingkat atas, misalnya "*.org".<br />
-Protokol yang didukung: <code>$1</code> (jangan tambahkan dalam pencarian Anda)',
+Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
+Protokol yang didukung: <code>$1</code> (menggunakan http:// bila protokol tidak ditentukan)',
 'linksearch-line'  => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 
@@ -2187,7 +2187,7 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan',
-'mywatchlist'          => 'Pantauan saya',
+'mywatchlist'          => 'Daftar pantauan',
 'watchlistfor2'        => 'Untuk $1 $2',
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
@@ -2433,7 +2433,7 @@ $1',
 # Contributions
 'contributions'       => 'Kontribusi pengguna',
 'contributions-title' => 'Kontribusi pengguna untuk $1',
-'mycontris'           => 'Kontribusi saya',
+'mycontris'           => 'Kontribusi',
 'contribsub2'         => 'Untuk $1 ($2)',
 'nocontribs'          => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
 'uctop'               => ' (atas)',
@@ -2922,14 +2922,14 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 
 # Info page
 'pageinfo-title'            => 'Informasi untuk "$1"',
-'pageinfo-header-edits'     => 'Suntingan',
+'pageinfo-header-edits'     => 'Sejarah suntingan',
 'pageinfo-header-watchlist' => 'Daftar pantauan',
 'pageinfo-header-views'     => 'Tampilan',
 'pageinfo-subjectpage'      => 'Halaman',
 'pageinfo-talkpage'         => 'Halaman pembicaraan',
-'pageinfo-watchers'         => 'Jumlah pemantau',
+'pageinfo-watchers'         => 'Jumlah pemantau halaman',
 'pageinfo-edits'            => 'Jumlah suntingan',
-'pageinfo-authors'          => 'Jumlah penulis yang berbeda',
+'pageinfo-authors'          => 'Jumlah total penulis yang berbeda',
 'pageinfo-views'            => 'Jumlah penampilan',
 'pageinfo-viewsperedit'     => 'Jumlah penampilan per suntingan',
 

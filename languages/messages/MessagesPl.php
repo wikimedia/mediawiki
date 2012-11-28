@@ -308,7 +308,7 @@ $messages = array(
 
 'underline-always'  => 'zawsze',
 'underline-never'   => 'nigdy',
-'underline-default' => 'według ustawień przeglądarki',
+'underline-default' => 'według ustawień skórki lub przeglądarki',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Styl czcionki w polu edycyjnym',
@@ -393,8 +393,8 @@ $messages = array(
 'newwindow'     => '(otwiera się w nowym oknie)',
 'cancel'        => 'Anuluj',
 'moredotdotdot' => 'Więcej...',
-'mypage'        => 'Moja strona',
-'mytalk'        => 'Moja dyskusja',
+'mypage'        => 'Strona',
+'mytalk'        => 'Dyskusja',
 'anontalk'      => 'Dyskusja tego IP',
 'navigation'    => 'Nawigacja',
 'and'           => '&#32;oraz',
@@ -1352,7 +1352,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'timezoneregion-indian'         => 'Ocean Indyjski',
 'timezoneregion-pacific'        => 'Ocean Spokojny',
 'allowemail'                    => 'Zgadzam się, by inni użytkownicy mogli przesyłać do mnie e‐maile',
-'prefs-searchoptions'           => 'Szukaj',
+'prefs-searchoptions'           => 'Wyszukiwanie',
 'prefs-namespaces'              => 'Przestrzenie nazw',
 'defaultns'                     => 'Albo przeszukuj przestrzenie nazw:',
 'default'                       => 'domyślnie',
@@ -1518,7 +1518,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rightslog'                  => 'Uprawnienia',
 'rightslogtext'              => 'Rejestr zmian uprawnień użytkowników.',
 'rightslogentry'             => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
+'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
 'rightsnone'                 => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2086,7 +2086,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok'    => 'Szukaj',
 'linksearch-text'  => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <code>$1</code> (nie podawaj ich podczas wyszukiwania).',
+Obsługiwane protokoły: <code>$1</code> (jeśli nie podano, domyślny to http://).',
 'linksearch-line'  => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 
@@ -2137,7 +2137,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'mailnologintext'      => 'Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e‐mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e‐mail do innego użytkownika.',
 'emailuser'            => 'Wyślij e‐mail do tego użytkownika',
 'emailpage'            => 'Wyślij e‐mail do użytkownika',
-'emailpagetext'        => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do tego użytkownika.
+'emailpagetext'        => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}.
 Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror'      => 'Moduł obsługi poczty zwrócił błąd:',
 'defemailsubject'      => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
@@ -2422,7 +2422,7 @@ $1',
 # Contributions
 'contributions'       => 'Wkład użytkownika',
 'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
-'mycontris'           => 'Moje edycje',
+'mycontris'           => 'Edycje',
 'contribsub2'         => 'Dla użytkownika $1 ($2)',
 'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop'               => ' (jako ostatnia)',
@@ -2462,7 +2462,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'whatlinkshere-hideredirs' => '$1 przekierowania',
 'whatlinkshere-hidetrans'  => '$1 dołączenia',
 'whatlinkshere-hidelinks'  => '$1 linki',
-'whatlinkshere-hideimages' => '$1 linki z grafik',
+'whatlinkshere-hideimages' => '$1 linki z plików',
 'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock

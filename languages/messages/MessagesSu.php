@@ -266,7 +266,7 @@ $messages = array(
 'cancel'        => 'Bolay',
 'moredotdotdot' => 'Deui...',
 'mypage'        => 'Kaca kuring',
-'mytalk'        => 'Obrolan kuring',
+'mytalk'        => 'Obrolan',
 'anontalk'      => 'Obrolan pikeun IP ieu',
 'navigation'    => 'Pituduh',
 'and'           => '&#32;jeung',
@@ -1108,7 +1108,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 
 # Preferences page
 'preferences'                   => 'Préferénsi',
-'mypreferences'                 => 'Préferénsi',
+'mypreferences'                 => 'Préferéns',
 'prefs-edits'                   => 'Jumlah éditan:',
 'prefsnologin'                  => 'Can asup log',
 'prefsnologintext'              => 'Anjeun kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} asup log]</span> pikeun ngatur préferénsi pamaké.',
@@ -2065,7 +2065,7 @@ $1',
 # Contributions
 'contributions'       => 'Kontribusi ti kontributor',
 'contributions-title' => 'Sumbangan tulisan ti $1',
-'mycontris'           => 'Tulisan kuring',
+'mycontris'           => 'Kontribusi',
 'contribsub2'         => 'Pikeun $1 ($2)',
 'nocontribs'          => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'uctop'               => '(pangluhurna)',
@@ -2103,7 +2103,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'whatlinkshere-hideredirs' => '$1 alihan',
 'whatlinkshere-hidetrans'  => '$1 transklusi',
 'whatlinkshere-hidelinks'  => '$1 tutumbu',
-'whatlinkshere-hideimages' => '$1 tutumbu gambar',
+'whatlinkshere-hideimages' => '$1 tutumbu berkas',
 'whatlinkshere-filters'    => 'Saringan',
 
 # Block/unblock
