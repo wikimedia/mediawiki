@@ -670,7 +670,7 @@ XHTML id names.
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
-'underline-default' => 'Browser default',
+'underline-default' => 'Skin or browser default',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Edit area font style:',
@@ -758,8 +758,8 @@ XHTML id names.
 'newwindow'     => '(opens in new window)',
 'cancel'        => 'Cancel',
 'moredotdotdot' => 'More...',
-'mypage'        => 'My page',
-'mytalk'        => 'My talk',
+'mypage'        => 'Page',
+'mytalk'        => 'Talk',
 'anontalk'      => 'Talk for this IP address',
 'navigation'    => 'Navigation',
 'and'           => '&#32;and',
@@ -2665,7 +2665,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-ok'    => 'Search',
 'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
-Supported protocols: <code>$1</code> (do not add any of these in your search).',
+Supported protocols: <code>$1</code> (defaults to http:// if no protocol is specified).',
 'linksearch-line'  => '$1 is linked from $2',
 'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
 
@@ -2715,7 +2715,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'            => 'E-mail this user',
 'emailpage'            => 'E-mail user',
-'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
+'emailpagetext'        => 'You can use the form below to send an e-mail message to this {{GENDER:$1|user}}.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
 'usermailererror'      => 'Mail object returned error:',
 'defemailsubject'      => '{{SITENAME}} e-mail from user "$1"',
@@ -2748,7 +2748,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 
 # Watchlist
 'watchlist'            => 'My watchlist',
-'mywatchlist'          => 'My watchlist',
+'mywatchlist'          => 'Watchlist',
 'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
@@ -2805,8 +2805,7 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further changes unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
 
 			 Your friendly {{SITENAME}} notification system
 
@@ -3013,7 +3012,7 @@ $1',
 # Contributions
 'contributions'       => 'User contributions',
 'contributions-title' => 'User contributions for $1',
-'mycontris'           => 'My contributions',
+'mycontris'           => 'Contributions',
 'contribsub2'         => 'For $1 ($2)',
 'nocontribs'          => 'No changes were found matching these criteria.',
 'uctop'               => '(top)',
@@ -3058,7 +3057,7 @@ The latest block log entry is provided below for reference:',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 links',
-'whatlinkshere-hideimages' => '$1 image links',
+'whatlinkshere-hideimages' => '$1 file links',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
@@ -4705,10 +4704,10 @@ This site is experiencing technical difficulties.',
 'logentry-move-move_redir-noredirect' => '$1 moved page $3 to $4 over a redirect without leaving a redirect',
 'logentry-patrol-patrol'              => '$1 marked revision $4 of page $3 patrolled',
 'logentry-patrol-patrol-auto'         => '$1 automatically marked revision $4 of page $3 patrolled',
-'logentry-newusers-newusers'          => '$1 created a user account',
-'logentry-newusers-create'            => '$1 created a user account',
-'logentry-newusers-create2'           => '$1 created a user account $3',
-'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
+'logentry-newusers-newusers'          => 'User account $1 was created',
+'logentry-newusers-create'            => 'User account $1 was created',
+'logentry-newusers-create2'           => 'User account $3 was created by $1',
+'logentry-newusers-autocreate'        => 'User account $1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
 # Feedback
