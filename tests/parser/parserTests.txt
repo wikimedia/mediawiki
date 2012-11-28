@@ -11977,6 +11977,19 @@ Strip marker in formatNum
 !! end
 
 !! test
+Check noCommafy in formatNum
+!! options
+language=be-tarask
+!! input
+{{formatnum:123456.78}}
+{{formatnum:123456.78|NC}}
+!! result
+<p>123 456,78
+123456.78
+</p>
+!! end
+
+!! test
 Strip marker in grammar
 !! options
 language=fi
