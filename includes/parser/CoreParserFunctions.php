@@ -269,12 +269,14 @@ class CoreParserFunctions {
 	/**
 	 * @param $parser Parser
 	 * @param string $num
-	 * @param null $raw
+	 * @param string $arg
 	 * @return
 	 */
-	static function formatnum( $parser, $num = '', $raw = null) {
-		if ( self::isRaw( $raw ) ) {
+	static function formatnum( $parser, $num = '', $arg = null ) {
+		if ( self::matchAgainstMagicword( 'rawsuffix', $arg ) ) {
 			$func = array( $parser->getFunctionLang(), 'parseFormattedNumber' );
+		} elseif ( self::matchAgainstMagicword( 'nocommafysuffix', $arg ) ) {
+			$func = array( $parser->getFunctionLang(), 'formatNumNoSeparators' );
 		} else {
 			$func = array( $parser->getFunctionLang(), 'formatNum' );
 		}
@@ -386,20 +388,27 @@ class CoreParserFunctions {
 		return '';
 	}
 
-	static function isRaw( $param ) {
-		static $mwRaw;
-		if ( !$mwRaw ) {
-			$mwRaw =& MagicWord::get( 'rawsuffix' );
-		}
-		if ( is_null( $param ) ) {
+	/**
+	 * Matches the given value against the value of given magic word
+	 *
+	 * @param string $magicword magic word key
+	 * @param mixed $value value to match
+	 * @return boolean true on successful match
+	 */
+	static private function matchAgainstMagicword( $magicword, $value ) {
+		if( $value === '' )
 			return false;
-		} else {
-			return $mwRaw->match( $param );
+
+		try {
+			$mwObject = MagicWord::get( $magicword );
+			return $mwObject->match( $value );
+		} catch( MWException $e ) {
+			return false;
 		}
 	}
 
 	static function formatRaw( $num, $raw ) {
-		if( self::isRaw( $raw ) ) {
+		if( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
 			return $num;
 		} else {
 			global $wgContLang;
@@ -585,7 +594,7 @@ class CoreParserFunctions {
 		static $cache = array();
 
 		// split the given option to its variable
-		if( self::isRaw( $arg1 ) ) {
+		if( self::matchAgainstMagicword( 'rawsuffix', $arg1 ) ) {
 			//{{pagesincategory:|raw[|type]}}
 			$raw = $arg1;
 			$type = $magicWords->matchStartToEnd( $arg2 );

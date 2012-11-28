@@ -2911,6 +2911,18 @@ class Language {
 	}
 
 	/**
+	 * Front-end for non-commafied formatNum
+	 *
+	 * @param mixed $number the string to be formatted, should be an integer
+	 *        or a floating point number.
+	 * @since 1.21
+	 * @return string
+	 */
+	public function formatNumNoSeparators( $number ) {
+		return $this->formatNum( $number, true );
+	}
+
+	/**
 	 * @param $number string
 	 * @return string
 	 */
