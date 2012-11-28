@@ -697,6 +697,8 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
+	'MediaWiki\JUnit\Format' => 'includes/libs/JUnit.php',
+	'MediaWiki\JUnit\Recorder' => 'includes/libs/JUnit.php',
 
 	# includes/logging
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
