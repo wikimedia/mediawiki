@@ -2917,6 +2917,17 @@ class Language {
 	}
 
 	/**
+	 * Front-end for non-commafied formatNum
+	 *
+	 * @param $number Mixed: the string to be formatted, should be an integer
+	 *        or a floating point number.
+	 * @return string
+	 */
+	public function formatNumNoCommafy( $number ) {
+		return $this->formatNum( $number, true );
+	}
+
+	/**
 	 * @param $number string
 	 * @return string
 	 */

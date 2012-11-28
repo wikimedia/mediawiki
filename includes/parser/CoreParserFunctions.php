@@ -269,12 +269,14 @@ class CoreParserFunctions {
 	/**
 	 * @param $parser Parser
 	 * @param string $num
-	 * @param null $raw
+	 * @param null $arg
 	 * @return
 	 */
-	static function formatnum( $parser, $num = '', $raw = null) {
-		if ( self::isRaw( $raw ) ) {
+	static function formatnum( $parser, $num = '', $arg = null) {
+		if ( self::isRaw( $arg ) ) {
 			$func = array( $parser->getFunctionLang(), 'parseFormattedNumber' );
+		} elseif ( self::isNoCommafy( $arg ) ) {
+			$func = array( $parser->getFunctionLang(), 'formatNumNoCommafy' );
 		} else {
 			$func = array( $parser->getFunctionLang(), 'formatNum' );
 		}
@@ -395,6 +397,18 @@ class CoreParserFunctions {
 			return false;
 		} else {
 			return $mwRaw->match( $param );
+		}
+	}
+
+	static function isNoCommafy( $param ) {
+		static $mwNoCommafy;
+		if ( !$mwNoCommafy ) {
+			$mwNoCommafy =& MagicWord::get( 'nocommafysuffix' );
+		}
+		if ( is_null( $param ) ) {
+			return false;
+		} else {
+			return $mwNoCommafy->match( $param );
 		}
 	}
 
