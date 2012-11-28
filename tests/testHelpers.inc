@@ -21,7 +21,14 @@
  * @ingroup Testing
  */
 
-class TestRecorder {
+interface iTestRecorder {
+	function start();
+	function record( $test, $result );
+	function end();
+	function report();
+}
+
+class TestRecorder implements iTestRecorder {
 	var $parent;
 	var $term;
 
@@ -67,6 +74,52 @@ class TestRecorder {
 
 		return ( $success == $total );
 	}
+}
+
+/**
+ * Class that let you recorder test results in multiple recorders.
+ * An example would be to both display the results and generate
+ * a log file in a specific format (such as JUnit)
+ */
+class MultiTestRecorder implements iTestRecorder {
+
+	protected $recorders;
+
+	function start() {
+		$this->dispatch();
+	}
+	function end() {
+		$this->dispatch();
+	}
+	function record( $test, $result ) {
+		$this->dispatch( $test, $result );
+	}
+	function report() {
+		$this->dispatch();
+	}
+
+	/**
+	 * @return self for function chaining
+	 */
+	function addRecorder( TestRecorder $recorder ) {
+		$this->recorders[] = $recorder;
+		return $this;
+	}
+
+	protected function dispatch() {
+		list( $class, $methodName) = explode( '::', wfGetCaller() );
+		$callerArgs   = func_get_args();
+
+		foreach( $this->recorders as $recorder ) {
+			#$rec_name = get_class( $recorder );
+			#wfDebug( __METHOD__ . " dispatching to $rec_name::$methodName\n" );
+			call_user_func_array(
+				array( $recorder, $methodName ),
+				$callerArgs
+			);
+		}
+	}
+
 }
 
 class DbTestPreviewer extends TestRecorder {
@@ -317,6 +370,33 @@ class DbTestRecorder extends DbTestPreviewer {
 				'ti_success' => $result ? 1 : 0,
 			),
 			__METHOD__ );
+	}
+}
+
+class JunitTestRecorder extends TestRecorder {
+
+	protected $junitFile;
+	protected $results;
+
+	function __construct( $junitFile = null ) {
+		$this->junitFile;
+		$this->recorder = new \MediaWiki\JUNIT\Recorder();
+	}
+
+	function start() {
+		$this->recorder->start();
+	}
+	function end() {
+		$this->recorder->stop();
+	}
+
+	function record( $test, $result ) {
+		$status = $result === true ? 'pass' : 'fail';
+		$this->recorder->addResult( $test, $status);
+	}
+
+	function report() {
+		$this->recorder->dumpXML();
 	}
 }
 
