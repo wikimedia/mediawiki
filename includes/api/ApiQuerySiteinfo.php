@@ -227,6 +227,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( MWNamespace::isNonincludable( $ns ) ) {
 				$data[$ns]['nonincludable'] = '';
 			}
+
+			$contentmodel = MWNamespace::getNamespaceContentModel( $ns );
+			if ( $contentmodel ) {
+				$data[$ns]['contentmodel'] = $contentmodel;
+			}
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
