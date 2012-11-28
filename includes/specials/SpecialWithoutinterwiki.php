@@ -29,14 +29,19 @@
  */
 class WithoutInterwikiPage extends PageQueryPage {
 	private $prefix = '';
+	private $namespace = NS_MAIN;
 
 	function __construct( $name = 'Withoutinterwiki' ) {
 		parent::__construct( $name );
 	}
 
 	function execute( $par ) {
+		$this->namespace = $this->getRequest()->getVal( 'namespace', $par );
+		if ( !MWNamespace::exists( $this->namespace ) )
+			$this->namespace = NS_MAIN;
+
 		$this->prefix = Title::capitalize(
-			$this->getRequest()->getVal( 'prefix', $par ), NS_MAIN );
+			$this->getRequest()->getVal( 'prefix', $par ), $this->namespace );
 		parent::execute( $par );
 	}
 
@@ -48,15 +53,16 @@ class WithoutInterwikiPage extends PageQueryPage {
 			return '';
 		}
 
-		$prefix = $this->prefix;
-		$t = $this->getTitle();
-
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) .
-			Html::hidden( 'title', $t->getPrefixedText() ) .
-			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . ' ' .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Xml::buildForm( array(
+				'allpagesprefix' => Xml::input( 'prefix', 20, false, array( 'id' => 'wiprefix' ) ),
+				'namespace' => Html::namespaceSelector(
+					array( 'selected' => $this->namespace ),
+					array( 'name' => 'namespace', 'id' => 'wiprefix' ) )
+				) , 'withoutinterwiki-submit' ).
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 	}
@@ -84,7 +90,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 					'title' => 'page_title',
 					'value' => 'page_title' ),
 			'conds' => array ( 'll_title IS NULL',
-					'page_namespace' => MWNamespace::getContentNamespaces(),
+					'page_namespace' => $this->namespace,
 					'page_is_redirect' => 0 ),
 			'join_conds' => array ( 'langlinks' => array (
 					'LEFT JOIN', 'll_from = page_id' ) )
