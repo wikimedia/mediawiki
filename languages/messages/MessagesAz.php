@@ -9,7 +9,10 @@
  *
  * @author Cekli829
  * @author Don Alessandro
+ * @author E THP
+ * @author Ebrahimi-amir
  * @author Emperyan
+ * @author Erdemaslancan
  * @author Gulmammad
  * @author Kaganer
  * @author PPerviz
@@ -956,7 +959,7 @@ $1",
 
 # Preferences page
 'preferences'                   => 'Nizamlamalar',
-'mypreferences'                 => 'Nizamlamalarım',
+'mypreferences'                 => 'Nizamlamalar',
 'prefs-edits'                   => 'Redaktələrin sayı:',
 'prefsnologin'                  => 'Daxil olmamısınız',
 'prefsnologintext'              => 'Nizamlamaları dəyişmək üçün <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} daxil olmaq]</span> zəruridir.',

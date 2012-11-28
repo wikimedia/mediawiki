@@ -203,7 +203,7 @@ $messages = array(
 
 'underline-always'  => 'Přeco',
 'underline-never'   => 'Ženje',
-'underline-default' => 'Standard wobhladowaka',
+'underline-default' => 'Standard drasty abo wobhladowaka',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Pismowy stil wobdźěłowanskeho pola:',
@@ -288,8 +288,8 @@ $messages = array(
 'newwindow'     => '(wočinja so w nowym woknje)',
 'cancel'        => 'Přetorhnyć',
 'moredotdotdot' => 'Wjace…',
-'mypage'        => 'Moja strona',
-'mytalk'        => 'moja diskusija',
+'mypage'        => 'Strona',
+'mytalk'        => 'Diskusija',
 'anontalk'      => 'Diskusijna strona tuteje IP.adresy',
 'navigation'    => 'Nawigacija',
 'and'           => '&#32;a',
@@ -1151,7 +1151,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
-'mypreferences'                 => 'nastajenja',
+'mypreferences'                 => 'Nastajenja',
 'prefs-edits'                   => 'Ličba změnow:',
 'prefsnologin'                  => 'Njepřizjewjeny',
 'prefsnologintext'              => 'Dyrbiš <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} přizjewjeny]</span>  być, zo by móhł nastajenja postajić.',
@@ -1975,7 +1975,7 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'linksearch-ok'    => 'Pytać',
 'linksearch-text'  => 'Zastupniske znamješka kaž "*.wikipedia.org" móža so wužiwać.
 Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
-Podpěrowane protokole: <code>$1</code> (prošu njepodaj je w swojim pytanje).',
+Podpěrowane protokole: <code>$1</code> (standard je http://, jeli žadyn protokol njeje podaty).',
 'linksearch-line'  => '$1 je z $2 wotkazany.',
 'linksearch-error' => 'Zastupniske znamjenja dadźa so jenož na spočatku URL wužiwać.',
 
@@ -2021,7 +2021,7 @@ Podpěrowane protokole: <code>$1</code> (prošu njepodaj je w swojim pytanje).',
 'mailnologintext'      => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być a płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|nastajenjach]] měć, zo by druhim wužiwarjam mejlki pósłać móhł.',
 'emailuser'            => 'Wužiwarjej mejlku pósłać',
 'emailpage'            => 'Wužiwarjej mejlku pósłać',
-'emailpagetext'        => 'Móžeš slědowacy formular wužiwać, zo by tutomu wužiwarjej e-mejlku pósłał.
+'emailpagetext'        => 'Móžeš slědowacy formular wužiwać, zo by tutomu {{GENDER:$1|wužiwarjej}} e-mejlku pósłał.
 E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nastajenjach]] zapodał, zjewi so jako adresa "Wot" e-mejlki, tak zo přijimowar móže ći direktnje wotmołwić.',
 'usermailererror'      => 'E-mejlowy objekt je zmylk wróćił:',
 'defemailsubject'      => '{{SITENAME}} - e-mejlka wot wužiwarja "$1"',
@@ -2053,7 +2053,7 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 
 # Watchlist
 'watchlist'            => 'wobkedźbowanki',
-'mywatchlist'          => 'wobkedźbowanki',
+'mywatchlist'          => 'Wobkedźbowanki',
 'watchlistfor2'        => 'Za wužiwarja $1 $2',
 'nowatchlist'          => 'Nimaš žane strony w swojich wobkedźbowankach.',
 'watchlistanontext'    => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',
@@ -2302,7 +2302,7 @@ $1',
 # Contributions
 'contributions'       => 'Přinoški wužiwarja',
 'contributions-title' => 'Wužiwarske přinoški wot „$1“',
-'mycontris'           => 'moje přinoški',
+'mycontris'           => 'Přinoški',
 'contribsub2'         => 'za wužiwarja $1 ($2)',
 'nocontribs'          => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
 'uctop'               => '(aktualnje)',
@@ -2342,7 +2342,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'whatlinkshere-hideredirs' => 'Daleposrědkowanja $1',
 'whatlinkshere-hidetrans'  => 'Zapřijeća $1',
 'whatlinkshere-hidelinks'  => 'Wotkazy $1',
-'whatlinkshere-hideimages' => 'wobrazowe wotkazy $1',
+'whatlinkshere-hideimages' => 'Datajowe wotkazy $1',
 'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock
@@ -3609,8 +3609,8 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'logentry-move-move_redir-noredirect' => '$1 přesuny stronu $3 do $4 přepisujo dalesposrědkowanje, bjeztoho zo by dalesposrědkowanje wutworił',
 'logentry-patrol-patrol'              => '$1 markěrowaše wersiju $4 strony $3 jako skontrolowanu',
 'logentry-patrol-patrol-auto'         => '$1 awtomatisce markěrowaše wersiju $4 strony $3 jako skontrolowanu',
-'logentry-newusers-newusers'          => '$1 je wužiwarske konto załožił',
-'logentry-newusers-create'            => '$1 je wužiwarske konto załožił',
+'logentry-newusers-newusers'          => 'Wužiwarske konto $1 je so załožiło',
+'logentry-newusers-create'            => 'Wužiwarske konto $1 je so załožiło',
 'logentry-newusers-create2'           => '$1 załoži wužiwarske konto $3',
 'logentry-newusers-autocreate'        => 'Konto $1 je so awtomatisce załožiło',
 'newuserlog-byemail'                  => 'Hesło z e-mejlku pósłane',

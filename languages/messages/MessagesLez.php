@@ -1059,7 +1059,7 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 рахкъурунар',
 'whatlinkshere-hidetrans'  => '$1 кутунар',
 'whatlinkshere-hidelinks'  => '$1 элячlунар',
-'whatlinkshere-hideimages' => '$1 шикилриз элячIунар',
+'whatlinkshere-hideimages' => '$1 шикилриз элячӀунар',
 'whatlinkshere-filters'    => 'Куьзунагар',
 
 # Block/unblock

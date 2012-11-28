@@ -174,7 +174,7 @@ $messages = array(
 
 'underline-always'  => 'immer',
 'underline-never'   => 'nie',
-'underline-default' => 'Browser-Vorystellig',
+'underline-default' => 'Voryystellig vu dr Benutzeroberfleichi oder em Brwoser',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Schriftfamilie fir dr Text im Bearbeitigsfänschter:',
@@ -259,8 +259,8 @@ $messages = array(
 'newwindow'     => '(imene nöie Fänschter)',
 'cancel'        => 'Abbräche',
 'moredotdotdot' => 'Meh …',
-'mypage'        => 'Myyni Syte',
-'mytalk'        => 'Myyni Diskussionsyte',
+'mypage'        => 'Syte',
+'mytalk'        => 'Diskussionsyte',
 'anontalk'      => 'Diskussionssyste vo sellere IP',
 'navigation'    => 'Navigation',
 'and'           => '&#32;un',
@@ -1139,7 +1139,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 
 # Preferences page
 'preferences'                   => 'Yystellige',
-'mypreferences'                 => 'Ystellige',
+'mypreferences'                 => 'Yystellige',
 'prefs-edits'                   => 'Aazahl vu dr Bearbeitige:',
 'prefsnologin'                  => 'Nid aagmäldet',
 'prefsnologintext'              => 'Du muesch <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
@@ -1952,7 +1952,7 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'linksearch-pat'   => 'Suechmuschter:',
 'linksearch-ns'    => 'Namensruum:',
 'linksearch-ok'    => 'Sueche',
-'linksearch-text'  => 'Die Spezialsyte macht d Suechi no Syte megli, wu s bstimmti Weblink din het. Doderby chenne Platzhalter wie zem Byschpel <code>*.byschpel.de</code> brucht wäre. S mueß zmindecht ei Top-Level-Domain, z. B. „*.org“. aagee wäre. <br />Unterstitzti Protokoll: <code>$1</code> (Die bitte nit bi dr Suechaafrog aagee.)',
+'linksearch-text'  => 'Die Spezialsyte macht d Suechi no Syte megli, wu s bstimmti Weblink din het. Doderby chenne Platzhalter wie zem Byschpel <code>*.byschpel.de</code> brucht wäre. S mueß zmindecht ei Top-Level-Domain, z. B. „*.org“. aagee wäre. <br />Unterstitzti Protokoll: <code>$1</code> (Standard isch http, wänn kei Protokoll aagee isch).',
 'linksearch-line'  => '$1 isch vo $2 verknüpft',
 'linksearch-error' => 'Platzhalter chönne numme am Aafang verwändet werre.',
 
@@ -1999,8 +1999,8 @@ Zuesätzligi Informatione iber einzelni Rächt git s [[{{MediaWiki:Listgrouprigh
 'mailnologintext'      => 'Du muesch [[Special:UserLogin|aagmäldet syy]] un e bstätigti E-Mail-Adräss in Dyyne [[Special:Preferences|Yystellige]] aagee ha, fir dass epper anderem es E-Mail chasch schicke.',
 'emailuser'            => 'Es Mail schrybe',
 'emailpage'            => 'E-Mail an Benutzer',
-'emailpagetext'        => 'Du chasch im Benutzer mit däm Formular e E-Mail schicke.
-As Absender wird d E-Mail-Adräss us Dyyne [[Special:Preferences|Yystellige]] yytrait, ass dr Benutzer Dir cha Antwort gee.',
+'emailpagetext'        => 'Du chasch {{GENDER:$1|em Benutzer|dr Benutzeri}} mit däm Formular e E-Mail schicke.
+As Absender wird d E-Mail-Adräss us Dyyne [[Special:Preferences|Yystellige]] yytrait, ass {{GENDER:$1|dr Benutzer|d Benutzeri}} Dir cha Antwort gee.',
 'usermailererror'      => 'S Mail-Objekt het e Fähler zruckgee:',
 'defemailsubject'      => '{{SITENAME}}-E-Mail vum Benutzer „$1“',
 'usermaildisabled'     => 'Benutzer-E-Mail abgstellt',
@@ -2320,7 +2320,7 @@ Do chunnt dr aktuäll Yytrag us em Benutzersperr-Logbuech:',
 'whatlinkshere-hideredirs' => 'Wyterleitige $1',
 'whatlinkshere-hidetrans'  => 'Vorlageyybindige $1',
 'whatlinkshere-hidelinks'  => 'Links $1',
-'whatlinkshere-hideimages' => 'Dateigleicher $1',
+'whatlinkshere-hideimages' => 'Dateilink $1',
 'whatlinkshere-filters'    => 'Filter',
 
 # Block/unblock

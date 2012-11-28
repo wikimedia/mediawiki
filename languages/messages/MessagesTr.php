@@ -374,7 +374,7 @@ $messages = array(
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
-'underline-default' => 'Tarayıcı varsayılanı',
+'underline-default' => 'Tema veya Tarayıcı varsayılanı',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Düzenleme alanının yazı tipi:',
@@ -459,8 +459,8 @@ $messages = array(
 'newwindow'     => '(yeni bir pencerede açılır)',
 'cancel'        => 'İptal',
 'moredotdotdot' => 'Daha...',
-'mypage'        => 'sayfam',
-'mytalk'        => 'Mesaj sayfam',
+'mypage'        => 'Sayfa',
+'mytalk'        => 'Mesaj',
 'anontalk'      => "Bu IP'nin iletileri",
 'navigation'    => 'Gezinti',
 'and'           => '&#32;ve',
@@ -1345,7 +1345,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 
 # Preferences page
 'preferences'                   => 'Tercihler',
-'mypreferences'                 => 'Tercihlerim',
+'mypreferences'                 => 'Tercihler',
 'prefs-edits'                   => 'Değişiklik sayısı:',
 'prefsnologin'                  => 'Oturum açık değil',
 'prefsnologintext'              => 'Kullanıcı tercihlerinizi ayarlamak için <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} giriş yapmalısınız]</span>.',
@@ -2231,7 +2231,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 
 # Watchlist
 'watchlist'            => 'İzleme listem',
-'mywatchlist'          => 'İzleme listem',
+'mywatchlist'          => 'İzleme listesi',
 'watchlistfor2'        => '$1 için $2',
 'nowatchlist'          => 'İzleme listesinde hiçbir madde bulunmuyor.',
 'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek ya da değiştirmek için $1.',
@@ -2488,7 +2488,7 @@ $1',
 # Contributions
 'contributions'       => 'Kullanıcının katkıları',
 'contributions-title' => '$1 için kullanıcı katkıları',
-'mycontris'           => 'Katkılarım',
+'mycontris'           => 'Katkılar',
 'contribsub2'         => '$1 ($2)',
 'nocontribs'          => 'Bu kriterlere uyan değişiklik bulunamadı',
 'uctop'               => '(son)',
@@ -2528,7 +2528,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'whatlinkshere-hideredirs' => 'Yönlendirmeleri $1',
 'whatlinkshere-hidetrans'  => 'Dönüştürmeleri $1',
 'whatlinkshere-hidelinks'  => 'Bağlantıları $1',
-'whatlinkshere-hideimages' => 'Resim bağlantılarını $1',
+'whatlinkshere-hideimages' => 'Dosya bağlantılarını $1',
 'whatlinkshere-filters'    => 'Süzgeçler',
 
 # Block/unblock

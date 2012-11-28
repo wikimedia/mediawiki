@@ -193,7 +193,7 @@ $messages = array(
 
 'underline-always'  => 'ఎల్లప్పుడూ',
 'underline-never'   => 'ఎప్పటికీ వద్దు',
-'underline-default' => 'విహారిణి అప్రమేయం',
+'underline-default' => 'అలంకారపు లేదా విహారిణి అప్రమేయం',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'దిద్దుబాటు పెట్టె ఫాంటు శైలి:',
@@ -278,8 +278,8 @@ $messages = array(
 'newwindow'     => '(కొత్త కిటికీలో వస్తుంది)',
 'cancel'        => 'రద్దు',
 'moredotdotdot' => 'ఇంకా...',
-'mypage'        => 'నా పేజీ',
-'mytalk'        => 'నా గురించి చర్చ',
+'mypage'        => 'పుట',
+'mytalk'        => 'చర్చ',
 'anontalk'      => 'ఈ ఐ.పి.కి సంబంధించిన చర్చ',
 'navigation'    => 'మార్గదర్శకం',
 'and'           => '&#32;మరియు',
@@ -709,7 +709,7 @@ $2
 'nowiki_sample'   => 'ఫార్మాటు చేయకూడని పాఠ్యాన్ని ఇక్కడ చేర్చండి',
 'nowiki_tip'      => 'వికీ ఫార్మాటును పట్టించుకోవద్దు',
 'image_tip'       => 'పొదిగిన ఫైలు',
-'media_tip'       => 'ఫైలు లింకు',
+'media_tip'       => 'దస్త్రపు లంకె',
 'sig_tip'         => 'టైంస్టాంపుతో సహా మీ సంతకం',
 'hr_tip'          => 'అడ్డగీత (అరుదుగా వాడండి)',
 
@@ -1151,7 +1151,7 @@ $1",
 
 # Preferences page
 'preferences'                   => 'అభిరుచులు',
-'mypreferences'                 => 'నా అభిరుచులు',
+'mypreferences'                 => 'అభిరుచులు',
 'prefs-edits'                   => 'దిద్దుబాట్ల సంఖ్య:',
 'prefsnologin'                  => 'లాగిన్‌ అయిలేరు',
 'prefsnologintext'              => 'వాడుకరి అభిరుచులను మార్చుకోడానికి, మీరు <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} లోనికి ప్రవేశించి]</span> ఉండాలి.',
@@ -1372,6 +1372,7 @@ $1",
 'right-siteadmin'             => 'డేటాబేసును లాక్, అన్‌లాక్ చెయ్యి',
 'right-override-export-depth' => '5 లింకుల లోతు వరకు ఉన్న పేజీలతో సహా, పేజీలను ఎగుమతి చెయ్యి',
 'right-sendemail'             => 'ఇతర వాడుకరులకు ఈ-మెయిలు పంపించగలగడం',
+'right-passwordreset'         => 'సంకేతపదాన్ని పునరుద్ధరించిన ఈ-మెయిళ్ళు',
 
 # User rights log
 'rightslog'      => 'వాడుకరుల హక్కుల మార్పుల చిట్టా',
@@ -1596,6 +1597,7 @@ $1',
 'backend-fail-opentemp'      => 'తాత్కాలిక దస్త్రాన్ని తెరవలేకపోతున్నాం.',
 'backend-fail-closetemp'     => 'తాత్కాలిక దస్త్రాన్ని మూసివేయలేకపోయాం.',
 'backend-fail-read'          => '$1 దస్త్రము చదువలేకపోతిమి.',
+'backend-fail-create'        => '$1 ఫైలులో రాయలేకున్నాం.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'ఈ ఫైలును ZIP పరీక్ష కోసం తెరవబోతే, ఏదో తెలియని లోపం ఎదురైంది.',
@@ -2002,7 +2004,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 
 # Watchlist
 'watchlist'            => 'నా వీక్షణ జాబితా',
-'mywatchlist'          => 'నా వీక్షణ జాబితా',
+'mywatchlist'          => 'వీక్షణ జాబితా',
 'watchlistfor2'        => '$1 కొరకు $2',
 'nowatchlist'          => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
 'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1.',
@@ -2242,7 +2244,7 @@ $UNWATCHURL కి వెళ్ళండి.
 # Contributions
 'contributions'       => 'వాడుకరి రచనలు',
 'contributions-title' => '$1 యొక్క మార్పులు-చేర్పులు',
-'mycontris'           => 'నా మార్పులు-చేర్పులు',
+'mycontris'           => 'మార్పులు చేర్పులు',
 'contribsub2'         => '$1 ($2) కొరకు',
 'nocontribs'          => 'ఈ విధమైన మార్పులేమీ దొరకలేదు.',
 'uctop'               => '(పైది)',
@@ -2283,7 +2285,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'whatlinkshere-hideredirs' => 'దారిమార్పులను $1',
 'whatlinkshere-hidetrans'  => '$1 ట్రాన్స్‌క్లూజన్లు',
 'whatlinkshere-hidelinks'  => 'లింకులను $1',
-'whatlinkshere-hideimages' => '$1 బొమ్మల లింకులు',
+'whatlinkshere-hideimages' => '$1 దస్త్రాల లంకెలు',
 'whatlinkshere-filters'    => 'వడపోతలు',
 
 # Block/unblock
@@ -3406,7 +3408,7 @@ $5
 * <span class="mw-specialpagecached">Cached ప్రత్యేక పుటలు (పాతబడి ఉండొచ్చు).</span>',
 'specialpages-group-maintenance' => 'నిర్వహణా నివేదికలు',
 'specialpages-group-other'       => 'ఇతర ప్రత్యేక పేజీలు',
-'specialpages-group-login'       => 'ప్రవేశించండి / నమోదుచేసుకోండి',
+'specialpages-group-login'       => 'ప్రవేశించండి / ఖాతాను సృష్టించుకోండి',
 'specialpages-group-changes'     => 'ఇటీవలి మార్పులు మరియు దినచర్యలు',
 'specialpages-group-media'       => 'మాధ్యమ నివేదికలు మరియు ఎగుమతులు',
 'specialpages-group-users'       => 'వాడుకర్లు మరియు హక్కులు',

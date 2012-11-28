@@ -347,8 +347,8 @@ $messages = array(
 'newwindow'     => '(Mäht e neu Finster op, wann Dinge Brauser dat kann)',
 'cancel'        => 'Stopp! Avbreche!',
 'moredotdotdot' => 'Mieh&nbsp;…',
-'mypage'        => 'ming Metmaacher-Sigg',
-'mytalk'        => 'ming Klaafsigg',
+'mypage'        => 'Metmaachersigg',
+'mytalk'        => 'Klaafsigg',
 'anontalk'      => 'Klaaf för de IP-Adress',
 'navigation'    => 'Jangk noh de',
 'and'           => ', un',
@@ -1360,7 +1360,7 @@ dat dänne ihr Daate topaktuell sin,
 
 # Preferences page
 'preferences'                   => 'ming Enstellunge',
-'mypreferences'                 => 'ming Enstellunge',
+'mypreferences'                 => 'Enstellunge',
 'prefs-edits'                   => 'Aanzahl Änderunge am Wiki:',
 'prefsnologin'                  => 'Nit enjelogg',
 'prefsnologintext'              => 'Do mööts ald <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
@@ -1450,7 +1450,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'yourgender'                    => 'Do bes *',
 'gender-unknown'                => 'wesse mer nit',
 'gender-male'                   => 'Kääl odder Jung',
-'gender-female'                 => 'Möhn, Weech odder Mädche',
+'gender-female'                 => 'Möhn, Weesch odder Mädsche',
 'prefs-help-gender'             => '* Moß mer nit aanjevve, un wann et aanjejovve eß, dann kallt et Wiki övver Desch als „dä Pitter“ udder „dat Tiina“, sönß uns „Metmaacher Pütz“. Dat kritt de janne Welt ze sinn, nit nur Do allein.',
 'email'                         => '<i lang="en">e-mail</i>',
 'prefs-help-realname'           => '* Dinge richtije Name — kanns De fott looße — wann De en ävver nenne wells, dann weed dä jebruch, öm Ding Beidräch domet ze schmöcke.',
@@ -2253,7 +2253,7 @@ eins vun all däm op eimol.',
 
 Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
 
-De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code>es',
+De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code> un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
 'linksearch-line'  => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 
@@ -2303,11 +2303,10 @@ Adress en Dinge [[Special:Preferences|ming Enstellunge]] stonn han, öm en E-Mai
 schecke.',
 'emailuser'            => 'E-mail aan dä Metmaacher',
 'emailpage'            => 'Verscheck <i lang="en">e-mail</i> aan ene Metmaacher',
-'emailpagetext'        => 'Wann heh dä Metmaacher en Adräß för sing <i lang="en">e-mail</i> aanjejovve hätt en singe Enstellunge,
-un die deit et och, dann kanns De met däm Fomular hee unge en einzel <i lang="en">e-mail</i> aan dä Metmaacher schecke.
+'emailpagetext'        => 'Wann {{GENDER:$1|dä Metmaacher heh|dat heh|heh dä Metmaacher|sei|dat heh}} en Adräß för sing <i lang="en">e-mail</i> aanjejovve hätt en singe Enstellunge, un die deit et och, dann kanns De met däm Fomular heh unge en einzel <i lang="en">e-mail</i> aan {{GENDER:$1|inn|it|dä Metmaacher|heh di Metmaacherėn|et}} schecke.
 
 Ding <i lang="en">e-mail</i>-Adräß, di De en [[Special:Preferences|Ding eije Enstellunge]] aanjejovve häs,
-di weed als em Afsender sing Adräß en Ding <i lang="en">e-mail</i> enjedrage.
+di weed als em Afsender sing Adräß enjedrare.
 Domet kann, wä di <i lang="en">e-mail</i> kritt, drop antwoote, un di Antwood jeiht tirek aan Desch.
 Alles klor?',
 'usermailererror'      => 'Dat E-Mail-Objek jov ene Fähler us:',
@@ -2340,7 +2339,7 @@ Alles klor?',
 
 # Watchlist
 'watchlist'            => 'ming Oppassliss',
-'mywatchlist'          => 'ming Oppassliss',
+'mywatchlist'          => 'Oppaßleß',
 'watchlistfor2'        => 'För dä $1 $2',
 'nowatchlist'          => 'En Ding Oppassliss es nix dren.',
 'watchlistanontext'    => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
@@ -2596,7 +2595,7 @@ $1',
 # Contributions
 'contributions'       => 'Däm Metmaacher sing Beidräch',
 'contributions-title' => 'Beidräsch fum  $1',
-'mycontris'           => 'ming Beidräch',
+'mycontris'           => 'Beidrähch',
 'contribsub2'         => 'För dä Metmaacher: $1 ($2)',
 'nocontribs'          => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
 'uctop'               => ' (Neuste)',

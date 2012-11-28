@@ -331,7 +331,7 @@ $messages = array(
 'cancel'        => 'අත් හරින්න',
 'moredotdotdot' => 'තවත්...',
 'mypage'        => 'මගේ පිටුව',
-'mytalk'        => 'මගේ සාකච්ඡා',
+'mytalk'        => 'සාකච්ඡාව',
 'anontalk'      => 'මෙම අයිපී ලිපිනය සඳහා සාකච්ඡාව',
 'navigation'    => 'යාත්‍රණය',
 'and'           => '&#32;සහ',
@@ -1239,7 +1239,7 @@ $1",
 
 # Preferences page
 'preferences'                   => 'අභිරුචි',
-'mypreferences'                 => 'මගේ අභිරුචි',
+'mypreferences'                 => 'අභිරුචීන්',
 'prefs-edits'                   => 'සංස්කරණයන් සංඛ්‍යාව:',
 'prefsnologin'                  => 'පිවිසී නැත (Not logged in)',
 'prefsnologintext'              => 'පරිශීලක අභිරුචි සැකසීමට නම්, ඔබ  <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} ප්‍රවිෂ්ටවී]</span> සිටිය යුතුය.',
@@ -2157,7 +2157,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 
 # Watchlist
 'watchlist'            => 'මගේ මුර-ලැයිස්තුව',
-'mywatchlist'          => 'මගේ මුර ලැයිස්තුව',
+'mywatchlist'          => 'මුර-ලැයිස්තුව',
 'watchlistfor2'        => '$1 සඳහා ($2)',
 'nowatchlist'          => 'ඔබගේ මුර-ලැයිස්තුවේ කිසිදු අයිතමයක් නොමැත.',
 'watchlistanontext'    => 'ඔබගේ මුර-ලැයිස්තුවෙහි අයිතම නැරඹීමට හෝ සංස්කරණය කිරීමට හෝ කරුණාකර $1 සපුරන්න.',
@@ -2420,7 +2420,7 @@ $1',
 # Contributions
 'contributions'       => 'මෙම පරිශීලකගේ දායකත්වයන්',
 'contributions-title' => ' $1 සඳහා පරිශීලක දායකත්වයන්',
-'mycontris'           => 'මගේ දායකත්ව',
+'mycontris'           => 'දායකත්ව',
 'contribsub2'         => '$1 සඳහා ($2)',
 'nocontribs'          => 'මෙම උපමානයන් හා ගැලපෙන වෙනස්වීම් හමුනොවිණි.',
 'uctop'               => '(ඉහලම)',
@@ -2461,7 +2461,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 යළි-යොමුකරයි',
 'whatlinkshere-hidetrans'  => '$1 අන්තර්ගතයන්',
 'whatlinkshere-hidelinks'  => 'සබැඳියන් $1',
-'whatlinkshere-hideimages' => 'රූප සබැඳි $1',
+'whatlinkshere-hideimages' => 'ගොනු සබැඳි $1',
 'whatlinkshere-filters'    => 'පෙරහන්',
 
 # Block/unblock
@@ -2952,7 +2952,7 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'pageinfo-talkpage'         => 'සාකච්ඡා පිටුව',
 'pageinfo-watchers'         => 'පිටු මුරකරන්නන් සංඛ්‍යාව',
 'pageinfo-edits'            => 'සංස්කරණයන් සංඛ්‍යාව',
-'pageinfo-authors'          => 'ප්‍රභින්න කර්තෘවරුන් මුළු  සංඛ්‍යාව',
+'pageinfo-authors'          => 'ප්‍රභින්න කර්තෘවරුන් මුළු සංඛ්‍යාව',
 'pageinfo-views'            => 'නැරඹුම් සංඛ්‍යාව',
 'pageinfo-viewsperedit'     => 'එක් සංස්කරණයකට නැරඹුම් ගණන',
 

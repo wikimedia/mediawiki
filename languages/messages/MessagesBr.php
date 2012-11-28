@@ -229,7 +229,7 @@ $messages = array(
 
 'underline-always'  => 'Atav',
 'underline-never'   => 'Morse',
-'underline-default' => 'Diouzh ar merdeer',
+'underline-default' => 'Merdeer dre ziouer',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Stil font an takad skridaozañ :',
@@ -2029,7 +2029,7 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù goulennet a vank]].',
 'linksearch-ok'    => 'Klask',
 'linksearch-text'  => 'Gallout a reer implijout arouezennoù "joker" evel, da skouer, "*.wikipedia.org".
 Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
-Protokoloù skoret : <code>$1</code> (na lakait hini ebet eus ar re-se en ho klask)',
+Protokoloù skoret : <code>$1</code> (defaults to http:// na lakait hini ebet eus ar re-se en ho klask)',
 'linksearch-line'  => '$1 gant ul liamm adal $2',
 'linksearch-error' => "N'hall an arouezennoù joker bezañ implijet nemet e deroù anv domani an ostiz.",
 
@@ -2078,7 +2078,7 @@ ha bezañ merket ur chomlec'h postel reizh en ho [[Special:Preferences|penndibab
 evit gallout kas ur postel d'un implijer all.",
 'emailuser'            => "Kas ur postel d'an implijer-mañ",
 'emailpage'            => 'Postel implijer',
-'emailpagetext'        => "Gallout a rit ober gant ar furmskrid a-is a-benn kas ur postel d'an implijer-mañ.
+'emailpagetext'        => "Gallout a rit ober gant ar furmskrid a-is a-benn kas ur postel d'an {{GENDER:\$1|implijer|implijerez}}-mañ.
 E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h-c'hwi en ho [[Special:Preferences|Penndibaboù]], d'ar resever da c'hallout respont deoc'h war-eeun ma kar.",
 'usermailererror'      => 'Fazi postel :',
 'defemailsubject'      => 'Postel kaset eus {{SITENAME}} gant an implijer "$1"',
@@ -2407,7 +2407,7 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'whatlinkshere-hideredirs' => '$1 adkas',
 'whatlinkshere-hidetrans'  => '$1 treuzkluzadur',
 'whatlinkshere-hidelinks'  => '$1 liamm',
-'whatlinkshere-hideimages' => '$1 liamm skeudennoù',
+'whatlinkshere-hideimages' => '$1 ar restroù liammet',
 'whatlinkshere-filters'    => 'Siloù',
 
 # Block/unblock

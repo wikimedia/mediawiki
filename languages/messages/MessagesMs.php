@@ -242,7 +242,7 @@ $messages = array(
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
-'underline-default' => 'Pelayar web utama',
+'underline-default' => 'Tetapan azali kulit/pelayar',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Gaya fon ruang sunting:',
@@ -329,8 +329,8 @@ $messages = array(
 'newwindow'     => '(dibuka di tetingkap baru)',
 'cancel'        => 'Batalkan',
 'moredotdotdot' => 'Lagi...',
-'mypage'        => 'Laman saya',
-'mytalk'        => 'Perbualan saya',
+'mypage'        => 'Halaman',
+'mytalk'        => 'Perbualan',
 'anontalk'      => 'Perbualan bagi IP ini',
 'navigation'    => 'Pandu arah',
 'and'           => '&#32;dan',
@@ -1213,7 +1213,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 
 # Preferences page
 'preferences'                   => 'Keutamaan',
-'mypreferences'                 => 'Keutamaan saya',
+'mypreferences'                 => 'Keutamaan',
 'prefs-edits'                   => 'Jumlah suntingan:',
 'prefsnologin'                  => 'Belum log masuk',
 'prefsnologintext'              => 'Anda hendaklah <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} log masuk]</span> terlebih dahulu untuk menetapkan keutamaan.',
@@ -2042,7 +2042,7 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ok'    => 'Cari',
 'linksearch-text'  => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
 Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
-Protokol yang disokong: <code>$1</code> (jangan bubuh sebarang protokol ini dalam carian anda)',
+Protokol yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol dinyatakan).',
 'linksearch-line'  => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 
@@ -2091,7 +2091,7 @@ terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 [[Special:Preferences|laman keutamaan]] untuk mengirim e-mel kepada pengguna lain.',
 'emailuser'            => 'Kirim e-mel kepada pengguna ini',
 'emailpage'            => 'E-mel pengguna',
-'emailpagetext'        => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
+'emailpagetext'        => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada {{GENDER:$1|pengguna}} ini.
 
 Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan digunakan sebagai alamat "Daripada" dalam e-mel tersebut supaya si penerima boleh membalasnya.',
 'usermailererror'      => 'Objek Mail memulangkan ralat:',
@@ -2124,7 +2124,7 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 
 # Watchlist
 'watchlist'            => 'Senarai pantau',
-'mywatchlist'          => 'Senarai pantau saya',
+'mywatchlist'          => 'Senarai pantau',
 'watchlistfor2'        => 'Bagi $1 $2',
 'nowatchlist'          => 'Tiada item dalam senarai pantau anda.',
 'watchlistanontext'    => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
@@ -2383,7 +2383,7 @@ $1',
 # Contributions
 'contributions'       => 'Sumbangan pengguna',
 'contributions-title' => 'Sumbangan oleh $1',
-'mycontris'           => 'Sumbangan saya',
+'mycontris'           => 'Sumbangan',
 'contribsub2'         => 'Oleh $1 ($2)',
 'nocontribs'          => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
 'uctop'               => '(puncak)',
@@ -2422,7 +2422,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 pelencongan',
 'whatlinkshere-hidetrans'  => '$1 penyertaan',
 'whatlinkshere-hidelinks'  => '$1 pautan',
-'whatlinkshere-hideimages' => '$1 pautan imej',
+'whatlinkshere-hideimages' => '$1 pautan fail',
 'whatlinkshere-filters'    => 'Penapis',
 
 # Block/unblock
@@ -3734,9 +3734,9 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-move-move_redir-noredirect' => '$1 mengalihkan laman $3 ke $4 pada satu lencongan tanpa meninggalkan lencongan',
 'logentry-patrol-patrol'              => '$1 menandakan semakan $4 daripada laman $3 sebagai dironda',
 'logentry-patrol-patrol-auto'         => '$1 menandakan semakan $4 daripada laman $3 sebagai dironda secara automatik',
-'logentry-newusers-newusers'          => '$1 membuka akaun pengguna',
-'logentry-newusers-create'            => '$1 membuka akaun pengguna',
-'logentry-newusers-create2'           => '$1 membuka akaun pengguna $3',
+'logentry-newusers-newusers'          => 'Akaun pengguna $1 dibuka',
+'logentry-newusers-create'            => 'Akaun pengguna $1 dibuka',
+'logentry-newusers-create2'           => 'Akaun pengguna $3 dibuka oleh $1',
 'logentry-newusers-autocreate'        => 'Akaun $1 dibuka secara automatik',
 'newuserlog-byemail'                  => 'kata laluan dihantar melalui e-mel',
 

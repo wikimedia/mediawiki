@@ -12,6 +12,7 @@
  * @author Malafaya
  * @author McDutchie
  * @author Reedy
+ * @author Yfdyh000
  * @author לערי ריינהארט
  */
 
@@ -193,7 +194,7 @@ $messages = array(
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunquam',
-'underline-default' => 'Secundo le configuration del navigator',
+'underline-default' => 'Como definite per tu navigator o apparentia',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Stilo de litteras del area de modification:',
@@ -278,8 +279,8 @@ $messages = array(
 'newwindow'     => '(se aperi in un nove fenestra)',
 'cancel'        => 'Cancellar',
 'moredotdotdot' => 'Plus...',
-'mypage'        => 'Mi pagina',
-'mytalk'        => 'Mi discussion',
+'mypage'        => 'Pagina',
+'mytalk'        => 'Discussion',
 'anontalk'      => 'Discussion pro iste adresse IP',
 'navigation'    => 'Navigation',
 'and'           => '&#32;e',
@@ -1206,7 +1207,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 
 # Preferences page
 'preferences'                   => 'Preferentias',
-'mypreferences'                 => 'Mi preferentias',
+'mypreferences'                 => 'Preferentias',
 'prefs-edits'                   => 'Numero de modificationes:',
 'prefsnologin'                  => 'Tu non ha aperite un session',
 'prefsnologintext'              => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir session]</span> pro configurar preferentias de usator.',
@@ -1902,7 +1903,8 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-mostpopular'       => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas con ligamines a paginas de disambiguation',
-'disambiguationspage'  => 'Template:Disambiguation',
+'disambiguationspage'  => 'Template:Disambig
+Template:Disambiguation',
 'disambiguations-text' => "Le sequente paginas contine al minus un ligamine a un '''pagina de disambiguation'''.
 Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",
@@ -2051,8 +2053,8 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-ns'    => 'Spatio de nomines:',
 'linksearch-ok'    => 'Cercar',
 'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".
-Necessita al minus un dominio de nivello superior, per exemplo "*.org".<br />
-Protocollos supportate: <code>$1</code> (non include alcun de istes in tu recerca).',
+Isto necessita specificar al minus le dominio de nivello superior, per exemplo "*.org".<br />
+Protocollos supportate: <code>$1</code> (http:// es assumite si nulle protocollo es specificate).',
 'linksearch-line'  => '$1 ligate ab $2',
 'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 
@@ -2101,9 +2103,9 @@ e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.',
 'emailuser'            => 'Inviar e-mail a iste usator',
 'emailpage'            => 'Inviar e-mail al usator',
-'emailpagetext'        => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
-Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
-como le adresse del expeditor del e-mail, de modo que le destinatario pote responder directemente a te.',
+'emailpagetext'        => 'Le formulario sequente es pro inviar un message de e-mail a iste {{GENDER:$1|usator}}.
+Le adresse de e-mail que tu specificava in [[Special:Preferences|tu preferentias de usator]] apparera
+como le adresse del expeditor, de sorta que le destinatario potera responder te directemente.',
 'usermailererror'      => 'Le objecto de e-mail retornava le error:',
 'defemailsubject'      => 'E-mail del usator "$1" de {{SITENAME}}',
 'usermaildisabled'     => 'E-mail a usatores disactivate',
@@ -2134,7 +2136,7 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 
 # Watchlist
 'watchlist'            => 'Mi observatorio',
-'mywatchlist'          => 'Mi observatorio',
+'mywatchlist'          => 'Observatorio',
 'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => 'Tu non ha paginas sub observation.',
 'watchlistanontext'    => 'Tu debe $1 pro poter vider o modificar entratas in tu observatorio.',
@@ -2403,7 +2405,7 @@ $1',
 # Contributions
 'contributions'       => 'Contributiones del usator',
 'contributions-title' => 'Contributiones del usator $1',
-'mycontris'           => 'Mi contributiones',
+'mycontris'           => 'Contributiones',
 'contribsub2'         => 'Pro $1 ($2)',
 'nocontribs'          => 'Necun modification ha essite trovate secundo iste criterios.',
 'uctop'               => '(ultime)',
@@ -2443,7 +2445,7 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'whatlinkshere-hideredirs' => '$1 redirectiones',
 'whatlinkshere-hidetrans'  => '$1 transclusiones',
 'whatlinkshere-hidelinks'  => '$1 ligamines',
-'whatlinkshere-hideimages' => '$1 ligamines verso imagines',
+'whatlinkshere-hideimages' => '$1 le ligamines a files',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
@@ -3774,9 +3776,9 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'logentry-move-move_redir-noredirect' => '$1 renominava le pagina $3 a $4, superscribente un redirection sin lassar un nove redirection',
 'logentry-patrol-patrol'              => '$1 marcava le version $4 del pagina $3 como patruliate',
 'logentry-patrol-patrol-auto'         => '$1 automaticamente marcava le version $4 del pagina $3 como patruliate',
-'logentry-newusers-newusers'          => '$1 creava un conto de usator',
-'logentry-newusers-create'            => '$1 creava un conto de usator',
-'logentry-newusers-create2'           => '$1 creava un conto de usator $3',
+'logentry-newusers-newusers'          => 'Le conto de usator $1 ha essite create',
+'logentry-newusers-create'            => 'Le conto de usator $1 ha essite create',
+'logentry-newusers-create2'           => 'Le conto de usator $3 ha essite create per $1',
 'logentry-newusers-autocreate'        => 'Le conto $1 ha essite create automaticamente',
 'newuserlog-byemail'                  => 'contrasigno inviate per e-mail',
 

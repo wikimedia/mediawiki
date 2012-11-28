@@ -12,6 +12,7 @@
  * @author Casual
  * @author CoderSI
  * @author Lyncos
+ * @author Nataev
  * @author Sociologist
  * @author Urhixidur
  * @author Xexdof
@@ -167,7 +168,7 @@ $messages = array(
 'newwindow'     => '(yangi oynada ochiladi)',
 'cancel'        => 'Bekor qilish',
 'moredotdotdot' => 'Batafsil...',
-'mypage'        => 'Shaxsiy sahifa',
+'mypage'        => 'Sahifa',
 'mytalk'        => 'Suhbatim',
 'anontalk'      => 'Bu IP uchun suhbat',
 'navigation'    => 'Saytda harakatlanish',
@@ -545,7 +546,7 @@ Ayrim andozalar qo'shilmaydi.",
 
 # History pages
 'viewpagelogs'           => 'Ushbu sahifaga doir qaydlarni koʻrsat',
-'nohistory'              => "Ushbu sahifa uchun o'zgarishlar tarixi mavjud emas.",
+'nohistory'              => 'Ushbu sahifa uchun oʻzgarishlar tarixi mavjud emas.',
 'currentrev'             => 'Hozirgi koʻrinishi',
 'currentrev-asof'        => '$1dagi, joriy koʻrinishi',
 'revisionasof'           => '$1 paytdagi koʻrinishi',
@@ -569,8 +570,8 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'historyempty'           => '(boʻsh)',
 
 # Revision feed
-'history-feed-title'          => "O'zgarishlar tarixi",
-'history-feed-description'    => "Vikidagi mazkur sahifaning o'zgarishlar tarixi",
+'history-feed-title'          => 'Oʻzgarishlar tarixi',
+'history-feed-description'    => 'Vikidagi mazkur sahifaning oʻzgarishlar tarixi',
 'history-feed-item-nocomment' => '$1 $2 da',
 
 # Revision deletion
@@ -607,7 +608,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'revertmerge'        => "Bo'lish",
 
 # Diffs
-'history-title'            => "$1 - o'zgarishlar tarixi",
+'history-title'            => '$1 - oʻzgarishlar tarixi',
 'difference'               => '(Koʻrinishlar orasidagi farq)',
 'difference-multipage'     => '(Sahifalar orasidagi farq)',
 'lineno'                   => 'Qator $1:',
@@ -1217,7 +1218,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'whatlinkshere-hideredirs' => "$1 qayta yo'naltirishlar",
 'whatlinkshere-hidetrans'  => '$1 kiritmalar',
 'whatlinkshere-hidelinks'  => '$1 havolalar',
-'whatlinkshere-hideimages' => '$1 rasmlar uchun havolalar',
+'whatlinkshere-hideimages' => '$1 fayllar uchun havolalar',
 'whatlinkshere-filters'    => 'Filtrlar',
 
 # Block/unblock

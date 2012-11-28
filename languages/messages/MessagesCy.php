@@ -166,7 +166,7 @@ $messages = array(
 
 'underline-always'  => 'Bob amser',
 'underline-never'   => 'Byth',
-'underline-default' => 'Rhagosodyn y porwr',
+'underline-default' => "Rhagosodyn y porwr neu'r wedd",
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Arddull y ffont yn y blwch golygu:',
@@ -251,8 +251,8 @@ $messages = array(
 'newwindow'     => '(yn agor mewn ffenest newydd)',
 'cancel'        => 'Diddymu',
 'moredotdotdot' => 'Rhagor...',
-'mypage'        => 'Fy nhudalen',
-'mytalk'        => 'Fy sgwrs',
+'mypage'        => 'Tudalen defnyddiwr',
+'mytalk'        => 'Sgwrs',
 'anontalk'      => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
 'navigation'    => 'Panel llywio',
 'and'           => '&#32;a/ac',
@@ -490,8 +490,8 @@ Ceisiwch eto ymhen rhai munudau.",
 'protectedpagetext'    => "Mae'r dudalen hon wedi'i diogelu rhag cael ei golygu.",
 'viewsourcetext'       => 'Cewch weld a chopïo côd y dudalen:',
 'viewyourtext'         => "Cewch weld a copïo ffynhonnell ''eich golygiadau'' i'r dudalen hon:",
-'protectedinterface'   => 'Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli.',
-'editinginterface'     => "'''Dalier sylw:''' Rydych yn golygu tudalen sy'n rhan o destun rhyngwyneb y meddalwedd. Bydd newidiadau i'r dudalen hon yn effeithio ar y rhyngwyneb a ddefnyddir gan eraill. Os am gyfieithu'r neges, ystyriwch ddefnyddio [//translatewiki.net/wiki/Main_Page?setlang=cy translatewiki.net], sef y prosiect MediaWiki sy'n hyrwyddo creu wicïau amlieithog.",
+'protectedinterface'   => "Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli. Os am gyfieithu'r neges neu ei newid ym mhob wici yn hytrach nag yn hwn yn unig, defnyddiwch [//translatewiki.net/ translatewiki.net], y prosiect MediaWiki sy'n hyrwyddo'r gwaith cyfieithu.",
+'editinginterface'     => "'''Dalier sylw:''' Rydych yn golygu tudalen sy'n rhan o destun rhyngwyneb y meddalwedd. Bydd newidiadau i'r dudalen hon yn effeithio ar y rhyngwyneb a ddefnyddir ar y wici hwn yn unig. Os am gyfieithu'r neges rhagosodedig a ddefnyddir ar bob wici, ystyriwch ddefnyddio [//translatewiki.net/ translatewiki.net], sef y prosiect MediaWiki sy'n hyrwyddo creu rhyngwyneb amlieithog ar wicïau.",
 'sqlhidden'            => '(cuddiwyd chwiliad SQL)',
 'cascadeprotected'     => "Diogelwyd y dudalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen ganlynol|dudalen ganlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol|tudalennau canlynol}}, a {{PLURAL:$1|honno yn ei thro wedi ei|honno yn ei thro wedi ei|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu|rheiny yn eu tro wedi eu}} diogelu, a'r dewisiad 'sgydol' ynghynn:
 $2",
@@ -1127,7 +1127,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 
 # Preferences page
 'preferences'                   => 'Dewisiadau',
-'mypreferences'                 => 'Fy newisiadau',
+'mypreferences'                 => 'Dewisiadau',
 'prefs-edits'                   => 'Nifer y golygiadau:',
 'prefsnologin'                  => 'Nid ydych wedi mewngofnodi',
 'prefsnologintext'              => 'Rhaid i chi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} fewngofnodi]</span> er mwyn gosod eich dewisiadau defnyddiwr.',
@@ -1951,7 +1951,7 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'linksearch-ok'    => 'Chwilio',
 'linksearch-text'  => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".
 Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
-Protocoliau sy\'n cael eu cynnal: <code>$1</code> (peidiwch ag ychwanegu\'r rhain wrth ysgrifennu\'r ymholiad).',
+Protocoliau sy\'n cael eu cynnal: <code>$1</code> (yn neidio i http:// os na roddir protocol o gwbl).',
 'linksearch-line'  => 'Mae cysylltiad i gael i $1 oddi wrth $2',
 'linksearch-error' => "Dim ond ar ddechrau enw'r gwesteiwr y gallwch osod cardiau gwyllt.",
 
@@ -1999,8 +1999,8 @@ a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
 er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'emailuser'            => 'Anfon e-bost at y defnyddiwr hwn',
 'emailpage'            => 'Anfon e-bost at ddefnyddiwr',
-'emailpagetext'        => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod.
-Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes \"Oddi wrth\" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.",
+'emailpagetext'        => 'Os yw\'r cyfeiriad e-bost sydd yn newisiadau\'r {{GENDER:$1|defnyddiwr}} hwn yn un dilys, gellir anfon neges ato o\'i ysgrifennu ar y ffurflen isod.
+Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes "Oddi wrth" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.',
 'usermailererror'      => 'Dychwelwyd gwall gan y rhaglen e-bost:',
 'defemailsubject'      => '{{SITENAME}} yn anfon e-bost oddi wrth y defnyddiwr "$1"',
 'usermaildisabled'     => 'Dim modd anfon e-bost at ddefnyddwyr',
@@ -2031,7 +2031,7 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 
 # Watchlist
 'watchlist'            => 'Fy rhestr wylio',
-'mywatchlist'          => 'Fy rhestr wylio',
+'mywatchlist'          => 'Rhestr wylio',
 'watchlistfor2'        => 'Yn ôl gofyn $1 $2',
 'nowatchlist'          => "Mae eich rhestr wylio'n wag.",
 'watchlistanontext'    => "Rhaid $1 er mwyn gweld neu ddiwygio'ch rhestr wylio.",
@@ -2288,7 +2288,7 @@ $1',
 # Contributions
 'contributions'       => "Cyfraniadau'r defnyddiwr",
 'contributions-title' => "Cyfraniadau'r defnyddiwr am $1",
-'mycontris'           => 'Fy nghyfraniadau',
+'mycontris'           => 'Cyfraniadau',
 'contribsub2'         => 'Dros $1 ($2)',
 'nocontribs'          => "Heb ddod o hyd i newidiadau gyda'r meini prawf hyn.",
 'uctop'               => '(cyfredol)',
@@ -2329,7 +2329,7 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'whatlinkshere-hideredirs' => '$1 ailgyfeiriadau',
 'whatlinkshere-hidetrans'  => '$1 cynhwysion',
 'whatlinkshere-hidelinks'  => '$1 cysylltau',
-'whatlinkshere-hideimages' => '$1 cysylltau delweddau',
+'whatlinkshere-hideimages' => '$1 cysylltau ffeiliau',
 'whatlinkshere-filters'    => 'Hidlau',
 
 # Block/unblock
@@ -3607,9 +3607,9 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-move-move_redir-noredirect' => 'Symudwyd y dudalen $3 i $4 gan $1 dros ddolen ailgyfeirio heb adael dolen ailgyfeirio newydd',
 'logentry-patrol-patrol'              => "Rhoddodd $1 nod ar ddiwygiad $4 o'r dudalen $3 yn dynodi ei fod wedi derbyn ymweliad patrôl",
 'logentry-patrol-patrol-auto'         => "Rhoddodd $1 nod yn awtomatig ar ddiwygiad $4 o'r dudalen $3 yn dynodi ei fod wedi derbyn ymweliad patrôl",
-'logentry-newusers-newusers'          => 'Crëodd $1 gyfrif defnyddiwr',
-'logentry-newusers-create'            => 'Crëodd $1 gyfrif defnyddiwr',
-'logentry-newusers-create2'           => 'Crëodd $1 y cyfrif defnyddiwr $3',
+'logentry-newusers-newusers'          => 'Dechreuwyd y cyfrif defnyddiwr $1',
+'logentry-newusers-create'            => 'Dechreuwyd y cyfrif defnyddiwr $1',
+'logentry-newusers-create2'           => 'Dechreuwyd y cyfrif defnyddiwr $3 gan $1',
 'logentry-newusers-autocreate'        => 'Crëwyd y cyfrif $1 yn awtomatig',
 'newuserlog-byemail'                  => 'anfonwyd y cyfrinair trwy e-bost',
 

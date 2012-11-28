@@ -36,6 +36,7 @@
  * @author Tusharpawar1982
  * @author V.narsikar
  * @author Vpnagarkar
+ * @author Ydyashad
  * @author Ynwala
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
@@ -716,7 +717,7 @@ $2',
 'yourname'                   => 'तुमचे नाव',
 'yourpassword'               => 'तुमचा परवलीचा शब्द',
 'yourpasswordagain'          => 'तुमचा परवलीचा शब्द पुन्हा लिहा',
-'remembermypassword'         => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
+'remembermypassword'         => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवस|दिवसांसाठी}})',
 'securelogin-stick-https'    => 'प्रवेशानंतर एचटीटीपीएसच्या संपर्कात रहा',
 'yourdomainname'             => 'तुमचे क्षेत्र (डॉमेन) :',
 'externaldberror'            => 'विदागार ’खातरजमा’ (प्रमाणितीकरण) त्रुटी होती अथवा तुम्हाला तुमचे बाह्य खाते अद्ययावत  करण्याची परवानगी नाही.',
@@ -3725,7 +3726,7 @@ $5
 'sqlite-no-fts'  => 'पूर्ण-मजकूर शोध समर्थनाविरहित $1',
 
 # New logging system
-'logentry-delete-delete'              => '$1 वगळले पान $3',
+'logentry-delete-delete'              => '$1 वगळलेले पान $3',
 'logentry-delete-restore'             => '$1 restored पृष्ठ  $3',
 'logentry-delete-event'               => ' $3: $4 वरील  {{PLURAL:$5|एका नोंद घटने |$5 lनोंद घटनां}} ची दृष्यता $1 बदलली',
 'logentry-delete-revision'            => '$3: $4 पानावरील  {{PLURAL:$5|एका आवृत्ती |$5 lआवृत्यां}} ची दृष्यता $1 बदलली',

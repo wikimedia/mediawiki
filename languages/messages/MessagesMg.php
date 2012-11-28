@@ -352,7 +352,7 @@ $messages = array(
 'cancel'        => 'Aoka ihany',
 'moredotdotdot' => 'Tohiny...',
 'mypage'        => 'Pejiko',
-'mytalk'        => 'Ny diniko',
+'mytalk'        => 'Dinika',
 'anontalk'      => "Resaka ho an'io adiresy IP io",
 'navigation'    => 'Fikarohana',
 'and'           => '&#32;sy',
@@ -1242,7 +1242,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 
 # Preferences page
 'preferences'                   => 'Ny momba anao',
-'mypreferences'                 => 'Ny safidiko',
+'mypreferences'                 => 'Safidy',
 'prefs-edits'                   => 'isa ny fanovàna :',
 'prefsnologin'                  => 'Tsy tafiditra',
 'prefsnologintext'              => 'Mila <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} misoratra ary tafiditra]</span> amin\'ny kaontinao ianao vao afaka manova ny safidinao.',
@@ -1893,7 +1893,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'statistics-views-total'       => 'Tsidika',
 'statistics-views-peredit'     => 'Tsidika isaky ny fanovana',
 'statistics-users'             => '[[Special:ListUsers|Mpikambana]] nisoratra anarana',
-'statistics-users-active'      => 'Mpikambana manova matetika',
+'statistics-users-active'      => 'Mpikambana mavitrika',
 'statistics-users-active-desc' => "Mpikambana nanao zavatra teto tanatin'ny $1 andro{{PLURAL:}}.",
 'statistics-mostpopular'       => 'Pejy voatsidika',
 
@@ -2115,7 +2115,7 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 
 # Watchlist
 'watchlist'            => 'Narahiko maso',
-'mywatchlist'          => 'Pejy arahako',
+'mywatchlist'          => 'Pejy arahana',
 'watchlistfor2'        => "Ho an'i $1 $2",
 'nowatchlist'          => 'Tsy manaraka pejy ianao.',
 'watchlistanontext'    => "Andana $1 hahafahanao mijery na manova zavatra ao amin'ny pejy arahanao.",
@@ -2367,7 +2367,7 @@ $1',
 # Contributions
 'contributions'       => "Fandraisan'anjaran'ny mpikambana",
 'contributions-title' => "Fandraisan'anjaran'i $1",
-'mycontris'           => 'Ny nosoratako',
+'mycontris'           => "Fandraisan'anjara",
 'contribsub2'         => "ho an'ny $1 ($2)",
 'nocontribs'          => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.",
 'uctop'               => ' (loha)',
@@ -2408,7 +2408,7 @@ Aseho eo ambany ny iditra farany ao amin'ny laogim-panakanana  mba hampahalala :
 'whatlinkshere-hideredirs' => '$1 ny fihodinana',
 'whatlinkshere-hidetrans'  => '$1 ny tsofo-pejy',
 'whatlinkshere-hidelinks'  => '$1 ny rohy',
-'whatlinkshere-hideimages' => '$1 rakitra mirohy',
+'whatlinkshere-hideimages' => '$1 ny rakitra mirohy',
 'whatlinkshere-filters'    => 'sivana',
 
 # Block/unblock
@@ -2910,6 +2910,13 @@ Raha alefanao ilay izy, mety ho simban'io renifango io ny solosainao.",
 'bydate'                => 'araka ny daty',
 'sp-newimages-showfrom' => "Aseho ny rakitra vaovao manomboka amin'ny $1 tamin'ny $2",
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => 'segondra{{PLURAL:$1}}',
+'minutes' => 'minitra{{PLURAL:$1}}',
+'hours'   => 'ora{{PLURAL:$1}}',
+'days'    => 'andro{{PLURAL:$1}}',
+'ago'     => '$1 lasa izay',
+
 # Bad image list
 'bad_image_list' => "Ity ny andrefiny :
 
@@ -3267,10 +3274,15 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'htmlform-selectorother-other' => 'Hafa',
 
 # New logging system
-'logentry-delete-delete'   => "nofafan'i $1 ny pejy $3",
-'logentry-suppress-delete' => "nofafan'i $1 ny pejy $3",
-'revdelete-restricted'     => "nametraka fanerena ho an'ny mpandrindra",
-'revdelete-unrestricted'   => "fanerena nesorina tamin'ny mpandrindra",
-'newuserlog-byemail'       => 'tenimiafina nalefa imailaka',
+'logentry-delete-delete'       => "nofafan'i $1 ny pejy $3",
+'logentry-suppress-delete'     => "nofafan'i $1 ny pejy $3",
+'revdelete-restricted'         => "nametraka fanerena ho an'ny mpandrindra",
+'revdelete-unrestricted'       => "fanerena nesorina tamin'ny mpandrindra",
+'logentry-move-move'           => "nanova ny anaran'i $3 ho $4 i $1",
+'logentry-newusers-newusers'   => 'Noforonina ny kaontim-pikambana $1',
+'logentry-newusers-create'     => 'Noforonina ny kaontim-pikambana $1',
+'logentry-newusers-create2'    => "Noforonin'i $1 ny kaomtim-pikambana $3",
+'logentry-newusers-autocreate' => 'Noforonina ho azy ny kaontim-pikambana $&',
+'newuserlog-byemail'           => "tenimiafina nalefa tamin'ny imailaka",
 
 );

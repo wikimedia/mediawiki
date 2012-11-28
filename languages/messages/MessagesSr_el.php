@@ -354,7 +354,7 @@ $messages = array(
 
 'underline-always'  => 'uvek podvlači',
 'underline-never'   => 'nikad ne podvlači',
-'underline-default' => 'po postavkama pregledača',
+'underline-default' => 'prema temi ili pregledaču',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Izgled fonta u uređivačkom okviru:',
@@ -919,14 +919,14 @@ Ako ponovo kliknete na „{{int:savearticle}}“, vaša izmena će biti sačuvan
 'blockedtitle'                     => 'Korisnik je blokiran',
 'blockedtext'                      => "'''Vaše korisničko ime ili IP adresa je blokirana.'''
 
-Blokiranje je {{GENDER:$1|izvršio|izvršila|izvršio}} $1.
+Blokiranje je {{GENDER:$4|izvršio|izvršila|izvršio}} $1.
 Razlog: ''$2''.
 
 * Datum blokiranja: $8
 * Blokiranje ističe: $6
 * Ime korisnika: $7
 
-Obratite se {{GENDER:$1|korisniku|korisnici|korisniku}} $1 ili [[{{MediaWiki:Grouppage-sysop}}|administratoru]] da razjasnite stvar.
+Obratite se {{GENDER:$4|korisniku|korisnici|korisniku}} $1 ili [[{{MediaWiki:Grouppage-sysop}}|administratoru]] da razjasnite stvar.
 Ne možete koristiti mogućnost „Pošalji poruku ovom korisniku“ ako niste uneli ispravnu e-adresu u [[Special:Preferences|podešavanjima]].
 Vaša blokirana IP adresa je $3, a IB $5.
 Navedite sve podatke iznad pri stvaranja bilo kakvih upita.",
@@ -2222,7 +2222,7 @@ Pogledajte i [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-ok'    => 'Pretraži',
 'linksearch-text'  => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.<br />
 Potreban je najviši domen, kao „*.org“.<br />
-Podržani protokoli: <code>$1</code> (ne stavljajte u pretragu)',
+Podržani protokoli: <code>$1</code> (zadaje http:// ako ne navedete protokol).',
 'linksearch-line'  => '$1 veza u $2',
 'linksearch-error' => 'Džokeri se mogu pojaviti samo na početku adrese.',
 
@@ -2271,8 +2271,8 @@ Pogledajte [[{{MediaWiki:Listgrouprights-helppage}}|više detalja]] o pojedinač
 'mailnologintext'      => 'Morate biti [[Special:UserLogin|prijavljeni]] i imati ispravnu e-adresu u [[Special:Preferences|podešavanjima]] da biste slali e-poruke drugim korisnicima.',
 'emailuser'            => 'Pošalji e-poruku',
 'emailpage'            => 'Slanje e-poruka',
-'emailpagetext'        => 'Koristite ovaj obrazac da pošaljete e-poruku ovom korisniku.
-E-adresa koju ste uneli u [[Special:Preferences|podešavanjima]] će biti prikazana kao adresa pošiljaoca, tako da će primalac poruke moći da vam odgovori.',
+'emailpagetext'        => 'Možete da koristite donji obrazac da pošaljete e-poruku {{GENDER:$1|ovom korisniku|ovoj korisnici|ovom korisniku|}}.
+E-adresa koju ste uneli u vašim [[Special:Preferences|podešavanjima]] će se prikazati u polju „Od“, tako da će primalac moći da vam odgovori direktno.',
 'usermailererror'      => 'Došlo je do greške pri slanju poruke:',
 'defemailsubject'      => '{{SITENAME}} e-adresa {{GENDER:$1|korisnika|korisnice|korisnika}} $1',
 'usermaildisabled'     => 'Korisnička e-pošta je onemogućena',
@@ -2608,7 +2608,7 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 'whatlinkshere-hideredirs' => '$1 preusmerenja',
 'whatlinkshere-hidetrans'  => '$1 uključivanja',
 'whatlinkshere-hidelinks'  => '$1 veze',
-'whatlinkshere-hideimages' => '$1 veze do slika',
+'whatlinkshere-hideimages' => '$1 veze do datoteke',
 'whatlinkshere-filters'    => 'Filteri',
 
 # Block/unblock

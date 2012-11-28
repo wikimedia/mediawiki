@@ -11,6 +11,7 @@
  * @author Justincheng12345
  * @author Omnipaedista
  * @author Shinjiman
+ * @author Simon Shek
  * @author Super Wang
  */
 
@@ -873,7 +874,7 @@ $1",
 'history-title'            => '$1之誌',
 'difference'               => '（辨異）',
 'difference-multipage'     => '（辨頁）',
-'lineno'                   => '列$1：',
+'lineno'                   => '第$1行：',
 'compareselectedversions'  => '辨二擇',
 'showhideselectedversions' => '示／藏之擇',
 'editundo'                 => '悔',

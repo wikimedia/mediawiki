@@ -432,7 +432,7 @@ $messages = array(
 
 'underline-always'  => 'immer',
 'underline-never'   => 'nie',
-'underline-default' => 'abhängig von der Browsereinstellung',
+'underline-default' => 'abhängig von der Benutzeroberfläche oder Browsereinstellung',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Schriftart für den Text im Bearbeitungsfenster:',
@@ -518,7 +518,7 @@ $messages = array(
 'cancel'        => 'Abbrechen',
 'moredotdotdot' => 'Mehr …',
 'mypage'        => 'Eigene Seite',
-'mytalk'        => 'Eigene Diskussion',
+'mytalk'        => 'Diskussion',
 'anontalk'      => 'Diskussionsseite dieser IP',
 'navigation'    => 'Navigation',
 'and'           => '&#32;und',
@@ -2230,7 +2230,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'linksearch-pat'   => 'Suchmuster:',
 'linksearch-ns'    => 'Namensraum:',
 'linksearch-ok'    => 'Suchen',
-'linksearch-text'  => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Diese bitte nicht bei der Suchanfrage angeben.)',
+'linksearch-text'  => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Standard ist http, falls kein Protokoll angegeben ist.)',
 'linksearch-line'  => '$1 ist verlinkt von $2',
 'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
 
@@ -2277,8 +2277,8 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'mailnologintext'      => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser'            => 'E-Mail an diesen Benutzer',
 'emailpage'            => 'E-Mail an Benutzer',
-'emailpagetext'        => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
-Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
+'emailpagetext'        => 'Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular eine E-Mail senden.
+Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir antworten kann.',
 'usermailererror'      => 'Das E-Mail-Objekt gab einen Fehler zurück:',
 'defemailsubject'      => '{{SITENAME}} – E-Mail von Benutzer „$1“',
 'usermaildisabled'     => 'E-Mail-Empfang deaktiviert',
@@ -2556,7 +2556,7 @@ $1',
 # Contributions
 'contributions'       => 'Benutzerbeiträge',
 'contributions-title' => 'Benutzerbeiträge von „$1“',
-'mycontris'           => 'Eigene Beiträge',
+'mycontris'           => 'Beiträge',
 'contribsub2'         => 'Von $1 ($2)',
 'nocontribs'          => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'uctop'               => '(aktuell)',
