@@ -384,12 +384,19 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param $rc RecentChange
+	 */
+	public function getTimestamp( $rc ) {
+		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
+			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+	}
+
+	/**
 	 * @param $s
 	 * @param $rc RecentChange
 	 */
 	public function insertTimestamp( &$s, $rc ) {
-		$s .= $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
-			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+		$s .= $this->getTimestamp( $rc );
 	}
 
 	/**
