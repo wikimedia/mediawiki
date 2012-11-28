@@ -284,6 +284,7 @@ $1',
 'toc' => 'فہرست',
 'showtoc' => 'پشاوے',
 'hidetoc' => 'کھوشتاوے',
+'collapsible-collapse' => 'خاتمہ/Collapse',
 'thisisdeleted' => 'لوڑے  یا بحال کورے $1',
 'viewdeleted' => 'لوڑے $1؟',
 'restorelink' => '{{PLURAL:$1|ای ترمیم حذف ہوی|$1 ترامیم حذف ہونی}}',
@@ -557,6 +558,12 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'moveddeleted-notice' => 'ھیہ ای حذف شدہ صفحہ شیر.
 صفحو نوشتۂ حذف شدگی و منتقلی ذیلا بطورِ حوالہ دیونو بویان.',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''خبردار:''' سانچو سایز بو لوٹ شیر.
+بعضی سانچہ شامل نو بونی.",
+'post-expand-template-inclusion-category' => 'ھش صفحات کہ ھتیرا ٹمپلیٹ یعنی سانچو ناپ لوٹ بیتی شیر۔',
+'post-expand-template-argument-category' => 'ھش صفحات کہ ھتیرا بوغینو بیرو سانچان یعنی(ٹمپلیٹان) لو شینی۔',
+
 # History pages
 'viewpagelogs' => 'ھیہ صفحہو بچے نوشتہ جاتن لوڑے',
 'currentrev-asof' => 'حالیہ نظرثانی بمطابق $1',
@@ -566,6 +573,7 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'nextrevision' => '→پروشٹیو اعادہ',
 'currentrevisionlink' => 'حالیہ نظرثانی',
 'cur' => 'رائج',
+'next' => 'پروشٹیو',
 'last' => 'سابقہ',
 'histlegend' => "انتخاب: مختلف نسخان موازنہ کوریکو بچے ، پیامی خانان نشان زد کوری موڑا دیرو بٹنا کلک کورے۔
 
@@ -686,6 +694,7 @@ HTML tags لوڑے.',",
 'recentchanges-label-newpage' => 'ھیہ ترمیم نوغ صفحہ تخلیق آریر',
 'recentchanges-label-minor' => 'ھیہ ای معمولی ترمیم شیر',
 'recentchanges-label-bot' => 'ھیہ ایڈیٹو خود کار بوٹو زریعا انجام دیونو ہوی',
+'recentchanges-label-unpatrolled' => 'ھیہ ترمیمو ھمونیہ پت مراجعت(Patrolled) کورونو نو بیتی شیر',
 'rcnote' => "درج ذیل گزشتہ {{PLURAL:$2|بس|'''$2''' انوسا}} باک {{PLURAL:$1|'''ای''' تبدیلی شیر|آخری '''$1''' تبدیلی شینی}}، $5، $4.",
 'rcnotefrom' => "ھیہ موڑا '''$2''' کورونو بیرو تبدیلیان تفصیلات شینی ('''$1''' تبدیلیان پشینو بونیان)۔",
 'rclistfrom' => '$1 نوغ تبدیلیاں پشیک شروع کورے',
@@ -710,6 +719,7 @@ HTML tags لوڑے.',",
 'recentchangeslinked' => 'متعلقہ تبدیلی',
 'recentchangeslinked-toolbox' => 'موقعی تبدیلی',
 'recentchangeslinked-title' => 'متعلقہ تبدیلی "$1"',
+'recentchangeslinked-noresult' => 'ھمی صفحا موجودہ وختہ کیہ تبدیلی نیکی۔',
 'recentchangeslinked-summary' => "ھیہ ھتے تبدیلیان لسٹ شیر کہ ھیتان پھوک مدا پروشٹی ساوزینو بیتی شینی وا ھے صفحان سوم جستہ خور کیہ صفحہ چوکی شینی یا کیہ خاص زمرہ جاتو ممبرانن سوم چوکی شینی<br />
 ساوزیرو [[Special:Watchlist|موڑا صفحہ]] '''بولڈ''' شینی",
 'recentchangeslinked-page' => 'کھوار ویکیپیڈیو منصوبو صفحو لوڑے',
@@ -747,6 +757,8 @@ HTML tags لوڑے.',",
 
 # Statistics
 'statistics' => 'اعداد و شمار',
+
+'disambiguationspage' => 'سانچہ: ڈسایمبگ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایٹ|بایٹس}}',
@@ -923,6 +935,7 @@ HTML tags لوڑے.',",
 
 # Block/unblock
 'blockip' => 'داخلہ ممنوع براۓ صارف',
+'ipboptions' => '2 گھنٹہ:2 hours,1 آنوس:1 day,3 بس:3 days,1 ہفتہ:1 week,2 ہفتہ:2 weeks,1 مس:1 month,3 مس:3 months,6 مس:6 months,1 سال:1 year,لامحدود:infinite',
 'ipblocklist' => 'داخلہ ممنوع براۓ صارف',
 'blocklink' => 'پاوبندی لیگاوے',
 'unblocklink' => 'پاوبندی ختم',
@@ -1054,6 +1067,8 @@ HTML tags لوڑے.',",
 * gpslongitude
 * gpsaltitude',
 
+'exif-dc-date' => 'تاریخ',
+
 # External editor support
 'edit-externally' => 'ھیہ مسلو ایڈیٹ کورے',
 'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)
@@ -1064,6 +1079,9 @@ HTML tags لوڑے.',",
 'namespacesall' => 'تھمامو',
 'monthsall' => 'سف',
 
+# action=purge
+'confirm_purge_button' => 'OK/ٹھیک شیر',
+
 # Table pager
 'table_pager_first' => 'آویلو صفحہ',
 
@@ -1072,10 +1090,28 @@ HTML tags لوڑے.',",
 'watchlisttools-edit' => 'لوڑے یا واچ لسٹہ ترمیم کورے',
 'watchlisttools-raw' => 'نوغ واچ لسٹان ایڈیٹ کورے',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'خبردار:\'\'\' ڈیفالٹ تاڑٰ(نغڑی) "$2" پروشٹیو ڈیفالٹ تاڑا "$1" لیگی شیر۔',
+
+# Special:FilePath
+'filepath-page' => 'فایل',
+'filepath-submit' => 'Go/بوغے',
+
 # Special:SpecialPages
 'specialpages' => 'اسپیشل صفحہ',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] filter:',
+'tag-filter-submit' => 'فلٹر',
+'tags-title' => 'Tags/ٹیگز',
+
+# Special:ComparePages
+'compare-page1' => 'صفحہ 1',
+
+# Feedback
+'feedback-message' => 'پیغام',
+
+# Search suggestions
+'searchsuggest-search' => 'Search/تلاش',
 
 );

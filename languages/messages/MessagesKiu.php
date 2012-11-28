@@ -100,7 +100,7 @@ $messages = array(
 
 'underline-always' => 'Tım',
 'underline-never' => 'Qet',
-'underline-default' => 'Qerar cıfeteliyawoği dest dero',
+'underline-default' => 'Cild ya ki cıfeteliyayoğo hesebiyaye',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Warê vurnayena terzê nustey:',
@@ -591,7 +591,7 @@ Dosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{
 'note' => "'''Not:'''",
 'previewnote' => "Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",
-'editing' => 'Tıya $1 vurnena',
+'editing' => '$1 Vurnayis',
 'editingsection' => 'Vurnaena $1 (qısım)',
 'editingcomment' => '$1 vurnino (qısımo newe)',
 'editconflict' => 'Têverabiyaena vurnaişi: $1',
@@ -1155,7 +1155,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 
 # Watchlist
 'watchlist' => 'Pela mına şêrkerdene',
-'mywatchlist' => 'Lista mına şêrkerdışi',
+'mywatchlist' => 'Lista şêrkerdışi',
 'watchlistfor2' => 'Serba $1 ($2)',
 'addedwatchtext' => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
 Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, u pele [[Special:RecentChanges|lista vurnaisunê peyênu]] de '''qolınd''' asena ke cı ra asan weçiniyo.",
@@ -1260,7 +1260,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 # Contributions
 'contributions' => 'İştırakê karberi',
 'contributions-title' => '$1 de iştırakê karberi',
-'mycontris' => 'İştıraqê mı',
+'mycontris' => 'İştıraqi',
 'contribsub2' => 'Serba $1 ($2)',
 'uctop' => '(ser)',
 'month' => 'Asme ra (u ravêr):',
@@ -1291,7 +1291,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'whatlinkshere-hideredirs' => 'peyser sono $1',
 'whatlinkshere-hidetrans' => 'İlawekerdê çaprazi $1',
 'whatlinkshere-hidelinks' => '$1 girey',
-'whatlinkshere-hideimages' => 'girê resmu $1',
+'whatlinkshere-hideimages' => 'Girê dosya $1',
 'whatlinkshere-filters' => 'Filtrey',
 
 # Block/unblock

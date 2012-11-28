@@ -361,7 +361,7 @@ $messages = array(
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldri',
-'underline-default' => 'Nettlesarstandard',
+'underline-default' => 'Drakt- eller nettlesarstandard',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Endre stilen for skrifttypen i området:',
@@ -449,7 +449,7 @@ $messages = array(
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Meir …',
 'mypage' => 'Sida mi',
-'mytalk' => 'Diskusjonssida mi',
+'mytalk' => 'Diskusjon',
 'anontalk' => 'Diskusjonside for denne IP-adressa',
 'navigation' => 'Navigering',
 'and' => '&#32;og',
@@ -937,11 +937,9 @@ Han kan ha vorten flytta eller sletta medan du såg på sida.',
 
 Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|endra passord]]''-sida etter innlogging.",
 'newarticle' => '(Ny)',
-'newarticletext' => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
-* For å opprette ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.
-* Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
-* Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
-* Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
+'newarticletext' => "Du har følgt ei lenkje til ei side som ikkje finst enno.
+For å opprette sida, kan du skrive i boksen under (sjå [[{{MediaWiki:Helppage}}|hjelpesida]] for meir informasjon).
+Dersom du ikkje ønskjer å opprette sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext' => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext' => 'Det er nett no ikkje noko tekst på denne sida.
@@ -1017,7 +1015,7 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 Systemadministratoren som låste databasen gav følgjande årsak: $1",
 'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endra henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
-'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endra henne.
+'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.
 Det siste loggelementet er oppgjeve under som referanse:",
 'cascadeprotectedwarning' => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning' => "'''Åtvaring: Denne sida er verna, så berre [[Special:ListGroupRights|nokre brukarar]] kan opprette henne.'''
@@ -1337,7 +1335,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 
 # Preferences page
 'preferences' => 'Innstillingar',
-'mypreferences' => 'Innstillingane mine',
+'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal på endringar:',
 'prefsnologin' => 'Ikkje innlogga',
 'prefsnologintext' => 'Du må vere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
@@ -1613,7 +1611,7 @@ Dette kan ikkje tilbakestillast.',
 'recentchanges-summary' => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description' => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
 'recentchanges-label-newpage' => 'Endringa oppretta ei ny side',
-'recentchanges-label-minor' => 'Dette er ei mindre endring',
+'recentchanges-label-minor' => 'Endringa er småplukk',
 'recentchanges-label-bot' => 'Denne endringa vart gjort av ein bot',
 'recentchanges-label-unpatrolled' => 'Endringa er ikkje patruljert enno',
 'rcnote' => "Nedanfor er {{PLURAL:$1|den siste endringa gjord|dei siste '''$1''' endringane gjorde}} {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
@@ -2181,7 +2179,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'linksearch-ok' => 'Søk',
 'linksearch-text' => 'Jokerteikn som «*.wikipedia.org» kan nyttast.
 Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
-Støtta protokollar: <code>$1</code> (ikkje legg til nokon av desse i søket ditt)',
+Støtta protokollar: <code>$1</code> (nyttar http:// som standard om ingen protokoll er oppgjeven)',
 'linksearch-line' => '$2 lenkjer til $1',
 'linksearch-error' => 'Jokerteikn kan berre nyttast føre tenarnamnet.',
 
@@ -2229,7 +2227,7 @@ Støtta protokollar: <code>$1</code> (ikkje legg til nokon av desse i søket dit
 'emailuser-title-target' => 'Send epost åt {{GENDER:$1|brukaren}}',
 'emailuser-title-notarget' => 'Send e-post åt brukar',
 'emailpage' => 'Send e-post åt brukar',
-'emailpagetext' => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne brukaren.
+'emailpagetext' => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne {{GENDER:$1|brukaren}}.
 E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukke opp i «frå»-feltet på denne e-posten, så mottakaren er i stand til å svare.',
 'usermailererror' => 'E-post systemet gav feilmelding:',
 'defemailsubject' => '{{SITENAME}} epost frå brukar "$1"',
@@ -2261,7 +2259,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 
 # Watchlist
 'watchlist' => 'Overvakingsliste',
-'mywatchlist' => 'Overvakingslista mi',
+'mywatchlist' => 'Overvakingsliste',
 'watchlistfor2' => 'For $1 $2',
 'nowatchlist' => 'Du har ikkje noko i overvakingslista di.',
 'watchlistanontext' => 'Du lyt $1 for å vise eller endre sider på overvakingslista di.',
@@ -2510,7 +2508,7 @@ $1',
 # Contributions
 'contributions' => 'Brukarbidrag',
 'contributions-title' => 'Bidrag av $1',
-'mycontris' => 'Eigne bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.',
 'uctop' => ' (øvst)',
@@ -2752,7 +2750,7 @@ I desse falla lyt du flytta eller fletta sida manuelt, om ynskeleg.",
 'delete_and_move' => 'Slett og flytt',
 'delete_and_move_text' => '== Sletting påkravd ==
 
-Målsida «[[:$1]]» finst alt. Vil du sletta henne for å gjeva rom for flytting?',
+Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
 'delete_and_move_reason' => 'Sletta for å gje rom for flytting frå «[[$1]]»',
 'selfmove' => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',
@@ -3012,7 +3010,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-not-current' => 'Informasjon vert berre vist for den gjeldande versjonen.',
+'pageinfo-not-current' => 'Orsak, det er umogeleg å gjeva denne informasjonen for gamle versjonar.',
 'pageinfo-header-basic' => 'Grunnleggjande informasjon',
 'pageinfo-header-edits' => 'Endringshistorikk',
 'pageinfo-header-restrictions' => 'Sidevern',
@@ -3507,6 +3505,7 @@ Andre er gøymde som standard.
 'exif-ycbcrpositioning-2' => 'Samanfallande',
 
 'exif-dc-contributor' => 'Bidragsytarar',
+'exif-dc-coverage' => 'Rom- eller tidssutstrekning til medium',
 'exif-dc-date' => 'Dato(ar)',
 'exif-dc-publisher' => 'Utgjevar',
 'exif-dc-relation' => 'Skylde medium',
@@ -3723,8 +3722,13 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-hook-subscribedby' => 'Brukt av',
 'version-version' => '(versjon $1)',
 'version-license' => 'Lisens',
-'version-poweredby-credits' => "Denne wikien er dreven av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Denne wikien er driven av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
+'version-license-info' => 'MediaWiki er fri programvare; du kan redistribuera det og/eller modifisera det under krava i GNU General Public License som publisert av Free Software Foundation; anten versjon 2 av lisensen, eller (om du ynskjer det) ein kvar seinare versjon.
+
+MediaWiki er distribuert i håp om at det vil vera nyttig, men UTAN NOKON GARANTI; ikkje eingong ein implisitt garanti for at det KAN SELJAST eller at det EIGNAR SEG TIL EIT VISST FØREMÅL. Sjå GNU General Public License for fleire detaljar.
+
+Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Public License] saman med dette programmet; om ikkje, skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [//www.gnu.org/licenses/old-licenses/gpl-2.0.html les det på nettet].',
 'version-software' => 'Installert programvare',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versjon',
@@ -3858,9 +3862,9 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'logentry-move-move_redir-noredirect' => '$1 flytte sida $3 til $4 over ei omdirigering utan å lata etter ei omdirigering',
 'logentry-patrol-patrol' => '$1 merkte versjon $4 av sida $3 som patruljert',
 'logentry-patrol-patrol-auto' => '$1 merkte automatisk versjon $4 av sida $3 som patruljert',
-'logentry-newusers-newusers' => '$1 oppretta ein brukarkonto',
-'logentry-newusers-create' => '$1 oppretta ein brukarkonto',
-'logentry-newusers-create2' => '$1 oppretta brukarkontoen $3',
+'logentry-newusers-newusers' => 'Brukarkontoen $1 vart oppretta',
+'logentry-newusers-create' => 'Brukarkontoen $1 vart oppretta',
+'logentry-newusers-create2' => 'Brukarkontoen $3 vart oppretta av $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
 'newuserlog-byemail' => 'passordet er sendt på e-post',
 

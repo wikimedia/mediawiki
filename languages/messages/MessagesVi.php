@@ -345,7 +345,7 @@ $messages = array(
 
 'underline-always' => 'Luôn luôn',
 'underline-never' => 'Không bao giờ',
-'underline-default' => 'Mặc định của trình duyệt',
+'underline-default' => 'Mặc định của hình dạng hoặc trình duyệt',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Kiểu phông chữ trong khung sửa đổi:',
@@ -430,8 +430,8 @@ $messages = array(
 'newwindow' => '(mở cửa sổ mới)',
 'cancel' => 'Hủy bỏ',
 'moredotdotdot' => 'Thêm nữa…',
-'mypage' => 'Trang của tôi',
-'mytalk' => 'Thảo luận với tôi',
+'mypage' => 'Trang cá nhân',
+'mytalk' => 'Thảo luận',
 'anontalk' => 'Thảo luận với IP này',
 'navigation' => 'Xem nhanh',
 'and' => '&#32;và',
@@ -703,8 +703,8 @@ Bảo quản viên khóa nó đưa lý do là: “$3”.',
 
 Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể [[Special:UserLogin|đăng nhập lại]] dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
 'welcomecreation' => '== Chào mừng, $1! ==
-Tài khoản của bạn đã mở.
-Đừng quên thay đổi [[Special:Preferences|tùy chọn cá nhân của bạn tại {{SITENAME}}]].',
+Tài khoản của bạn đã được mở.
+Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
 'yourname' => 'Tên người dùng:',
 'yourpassword' => 'Mật khẩu:',
 'yourpasswordagain' => 'Gõ lại mật khẩu',
@@ -1577,7 +1577,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 # User rights log
 'rightslog' => 'Nhật trình cấp quyền thành viên',
 'rightslogtext' => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
-'rightslogentry' => 'đã đổi cấp của thành viên $1 từ $2 thành $3',
+'rightslogentry' => 'đã đổi các nhóm liên kết của thành viên $1 từ $2 thành $3',
 'rightslogentry-autopromote' => 'được tự động phong cấp từ $2 đến $3',
 'rightsnone' => '(không có)',
 
@@ -1640,8 +1640,8 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'rclinks' => 'Xem $1 sửa đổi gần đây nhất trong $2 ngày qua; $3.',
 'diff' => 'khác',
 'hist' => 'sử',
-'hide' => 'ẩn',
-'show' => 'hiện',
+'hide' => 'Ẩn',
+'show' => 'Hiện',
 'minoreditletter' => 'n',
 'newpageletter' => 'M',
 'boteditletter' => 'b',
@@ -2203,7 +2203,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'linksearch-pat' => 'Mẫu liên kết:',
 'linksearch-ns' => 'Không gian tên:',
 'linksearch-ok' => 'Tìm kiếm',
-'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <code>$1</code>; vui lòng không đưa giao thức vào truy vấn.",
+'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <code>$1</code>; mặc định là <code>http://</code> nếu không định rõ giao thức trong truy vấn.",
 'linksearch-line' => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 
@@ -2252,7 +2252,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'emailuser-title-target' => '{{GENDER:$1}}Gửi thư cho người dùng này',
 'emailuser-title-notarget' => 'Gửi thư cho người dùng',
 'emailpage' => 'Gửi thư',
-'emailpagetext' => 'Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
+'emailpagetext' => '{{GENDER:$1}}Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
 Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
 'usermailererror' => 'Lỗi gửi thư:',
 'defemailsubject' => 'Thư của người dùng "$1" tại {{SITENAME}}',
@@ -2284,7 +2284,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 
 # Watchlist
 'watchlist' => 'Trang tôi theo dõi',
-'mywatchlist' => 'Trang tôi theo dõi',
+'mywatchlist' => 'Trang theo dõi',
 'watchlistfor2' => 'Của $1 $2',
 'nowatchlist' => 'Danh sách theo dõi của bạn không có gì.',
 'watchlistanontext' => 'Xin hãy $1 để xem hay sửa đổi các trang được theo dõi.',
@@ -2543,7 +2543,7 @@ $1',
 # Contributions
 'contributions' => 'Đóng góp của thành viên',
 'contributions-title' => 'Đóng góp của thành viên $1',
-'mycontris' => 'Đóng góp của tôi',
+'mycontris' => 'Đóng góp',
 'contribsub2' => 'Của $1 ($2)',
 'nocontribs' => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
 'uctop' => '(mới nhất)',
@@ -2582,7 +2582,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 trang đổi hướng',
 'whatlinkshere-hidetrans' => '$1 trang nhúng',
 'whatlinkshere-hidelinks' => '$1 liên kết',
-'whatlinkshere-hideimages' => '$1 liên kết hình',
+'whatlinkshere-hideimages' => '$1 liên kết tập tin',
 'whatlinkshere-filters' => 'Bộ lọc',
 
 # Block/unblock
@@ -3076,7 +3076,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Info page
 'pageinfo-title' => 'Thông tin về “$1”',
-'pageinfo-not-current' => 'Thông tin được hiển thị có thể chỉ có liên quan đến phiên bản hiện hành.',
+'pageinfo-not-current' => 'Rất tiếc, không thể cung cấp các chi tiết này đối với các phiên bản cũ.',
 'pageinfo-header-basic' => 'Thông tin cơ bản',
 'pageinfo-header-edits' => 'Lịch sử sửa đổi',
 'pageinfo-header-restrictions' => 'Mức khóa trang',
@@ -3450,6 +3450,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-compression-3' => 'CCITT Nhóm 3: mã hóa fax',
 'exif-compression-4' => 'CCITT Nhóm 4: mã hóa fax',
 'exif-compression-6' => 'JPEG (cũ)',
+'exif-compression-34712' => 'JPEG 2000',
 
 'exif-copyrighted-true' => 'Dưới bản quyền',
 'exif-copyrighted-false' => 'Phạm vi công cộng',
@@ -4053,8 +4054,8 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'logentry-move-move_redir-noredirect' => '$1 đã đổi $3 thành $4 qua đổi hướng (đã tắt đổi hướng)',
 'logentry-patrol-patrol' => '$1 đã đánh dấu tuần tra phiên bản $4 của trang $3',
 'logentry-patrol-patrol-auto' => '$1 đã tự động đánh dấu tuần tra phiên bản $4 của trang $3',
-'logentry-newusers-newusers' => '$1 đã mở tài khoản mới',
-'logentry-newusers-create' => '$1 đã mở tài khoản mới',
+'logentry-newusers-newusers' => 'Đã mở tài khoản người dùng $1',
+'logentry-newusers-create' => 'Đã mở tài khoản người dùng $1',
 'logentry-newusers-create2' => '$1 đã mở tài khoản người dùng $3',
 'logentry-newusers-autocreate' => 'Tài khoản $1 đã được mở tự động',
 'newuserlog-byemail' => 'gửi mật khẩu qua thư điện tử',

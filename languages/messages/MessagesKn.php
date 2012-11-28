@@ -196,7 +196,7 @@ $messages = array(
 'cancel' => 'ವಜಾ ಮಾಡಿ',
 'moredotdotdot' => 'ಇನ್ನಷ್ಟು...',
 'mypage' => 'ನನ್ನ ಪುಟ',
-'mytalk' => 'ನನ್ನ ಚರ್ಚೆ',
+'mytalk' => 'ಚರ್ಚೆ',
 'anontalk' => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
 'navigation' => 'ಸಂಚರಣೆ',
 'and' => '&#32;ಮತ್ತು',
@@ -876,7 +876,7 @@ $2',
 
 # Preferences page
 'preferences' => 'ಪ್ರಾಶಸ್ತ್ಯಗಳು',
-'mypreferences' => 'ನನ್ನ ಪ್ರಾಶಸ್ತ್ಯಗಳು',
+'mypreferences' => 'ಪ್ರಾಶಸ್ತ್ಯಗಳು',
 'prefs-edits' => 'ಸಂಪಾದನೆಗಳ ಸಂಖ್ಯೆ:',
 'prefsnologin' => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'prefsnologintext' => 'ಬಳಕೆದಾರ ಪ್ರಾಶಸ್ತ್ಯಗಳನ್ನು ಬದಲಾಯಿಸಲು ನೀವು <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ಲಾಗ್ ಇನ್]</span> ಆಗಿರಬೇಕು.',
@@ -1405,7 +1405,7 @@ $2',
 
 # Watchlist
 'watchlist' => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
-'mywatchlist' => 'ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
+'mywatchlist' => 'ವೀಕ್ಷಣಾಪಟ್ಟಿ',
 'watchlistfor2' => '$1 ($2) ಗೆ',
 'nowatchlist' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
 'watchlistanontext' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ನೋಡಲು ಅಥವ ಸಂಪಾದಿಸಲು ದಯವಿಟ್ಟು $1 ಮಾಡಿ.',
@@ -1542,7 +1542,7 @@ $2',
 # Contributions
 'contributions' => 'ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳು',
 'contributions-title' => '$1 ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳು',
-'mycontris' => 'ನನ್ನ ಕಾಣಿಕೆಗಳು',
+'mycontris' => 'ಕಾಣಿಕೆಗಳು',
 'contribsub2' => '$1 ($2) ಗೆ',
 'uctop' => ' (ಮೇಲಕ್ಕೆ)',
 'month' => 'ಈ ತಿಂಗಳಿಂದ (ಮತ್ತು ಮುಂಚಿನ):',
@@ -2121,5 +2121,16 @@ $5
 # New logging system
 'revdelete-restricted' => 'ನಿರ್ವಾಹಕರಿಗೆ ನಿಬಂಧನೆಗಳನ್ನು ಅನ್ವಯಿಸಲಾಯಿತು',
 'revdelete-unrestricted' => 'ನಿರ್ವಾಹಕರ ನಿಬಂಧನೆಗಳನ್ನು ತೆಗೆಯಲಾಯಿತು',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|ಕ್ಷಣ|ಕ್ಷಣಗಳು}}',
+'duration-minutes' => '$1 {{PLURAL:$1|ನಿಮಿಷ|ನಿಮಿಷಗಳು}}',
+'duration-hours' => '$1 {{PLURAL:$1|ಘಂಟೆ|ಘಂಟೆಗಳು}}',
+'duration-days' => '$1 {{PLURAL:$1|ದಿನ|ದಿನಗಳು}}',
+'duration-weeks' => '$1 {{PLURAL:$1|ವಾರ|ವಾರಗಳು}}',
+'duration-years' => '$1 {{PLURAL:$1|ವರ್ಷ|ವರ್ಷಗಳು}}',
+'duration-decades' => '$1 {{PLURAL:$1|ದಶಕ|ದಶಕಗಳು}}',
+'duration-centuries' => '$1 {{PLURAL:$1|ಶತಮಾನ|ಶತಮಾನಗಳು}}',
+'duration-millennia' => '$1 {{PLURAL:$1|ಸಹಸ್ರಮಾನ|ಸಹಸ್ರಮಾನಗಳು}}',
 
 );

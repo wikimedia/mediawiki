@@ -480,7 +480,7 @@ $messages = array(
 
 'underline-always' => 'همیشه',
 'underline-never' => 'هرگز',
-'underline-default' => 'پیش‌فرض مرورگر',
+'underline-default' => 'پوسته یا مرورگر پیش‌فرض',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'سبک قلم جعبهٔ ویرایش:',
@@ -565,8 +565,8 @@ $messages = array(
 'newwindow' => '(در پنجرهٔ جدید باز می‌شود)',
 'cancel' => 'لغو',
 'moredotdotdot' => 'بیشتر...',
-'mypage' => 'صفحهٔ من',
-'mytalk' => 'بحث من',
+'mypage' => 'صفحه',
+'mytalk' => 'بحث',
 'anontalk' => 'بحث برای این آی‌پی',
 'navigation' => 'گشتن',
 'and' => '&#32;و',
@@ -1121,13 +1121,13 @@ $2
 'userpage-userdoesnotexist-view' => 'حساب کاربری «$1» ثبت نشده‌است.',
 'blocked-notice-logextract' => 'دسترسی این کاربر در حال حاضر بسته است.
 آخرین مورد سیاهه قطع دسترسی در زیر آمده‌است:',
-'clearyourcache' => "''نکته:''' پس از ذخیره‌کردن ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را پاک کنید.
+'clearyourcache' => "'''نکته:''' پس از ذخیره‌کردن ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را پاک کنید.
 *'''فایرفاکس / سافاری:'''  کلید ''Shift'' را نگه دارید و روی دکمهٔ ''Reload'' کلیک کنید، یا کلید‌های ''Ctrl-F5'' یا ''Ctrl-R'' را با هم فشار دهید (در رایانه‌های اپل مکینتاش کلید‌های ''⌘-R'')
 *'''گوگل کروم:'''کلیدهای ''Ctrl+Shift+R'' را با هم فشار دهید. (در رایانه‌های اپل مکینتاش کلید‌های ''⌘-Shift-R'')
 *'''اینترنت اکسپلورر:''' کلید ''Ctrl'' را نگه‌دارید و روی دکمهٔ ''Refresh'' کلیک کنید، یا کلید‌های ''Ctrl-F5'' را با هم فشار دهید
 *'''اپرا:''' حافظهٔ نهانی مرورگر را از طریق منوی ''Tools &rarr; Preferences'' پاک کنید",
 'usercssyoucanpreview' => "'''نکته:''' پیش از ذخیره‌کردن فایل سی‌اس‌اس خود، با دکمهٔ '''{{int:showpreview}}''' آن را آزمایش کنید.",
-'userjsyoucanpreview' => "''نکته:''' پیش از ذخیره‌کردن فایل جاوااسکریپت خود، با دکمهٔ '''{{int:showpreview}}''' آن را آزمایش کنید.",
+'userjsyoucanpreview' => "'''نکته:''' پیش از ذخیره‌کردن فایل جاوااسکریپت خود، با دکمهٔ '''{{int:showpreview}}''' آن را آزمایش کنید.",
 'usercsspreview' => "'''فراموش مکنید که شما فقط دارید پیش‌نمایش سی‌اس‌اس کاربری‌تان را می‌بینید.'''
 '''این سی‌اس‌اس هنوز ذخیره نشده‌است!'''",
 'userjspreview' => "'''به یاد داشته باشید که شما فقط دارید جاوااسکریپت کاربری‌تان را امتحان می‌کنید/پیش‌نمایش آن را می‌بینید.'''
@@ -1517,7 +1517,7 @@ $1",
 
 # Preferences page
 'preferences' => 'ترجیحات',
-'mypreferences' => 'ترجیحات من',
+'mypreferences' => 'ترجیحات',
 'prefs-edits' => 'تعداد ویرایش‌ها:',
 'prefsnologin' => 'به سامانه وارد نشده‌اید',
 'prefsnologintext' => 'برای تنظیم ترجیحات کاربر باید <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} به سامانه وارد شوید]</span>.',
@@ -2381,7 +2381,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'linksearch-ok' => 'جستجو',
 'linksearch-text' => 'نشانه‌هایی مانند «‎*.wikipedia.org» را می‌توان استفاده کرد.
 حداقل یک دامنه سطح بالا ، به عنوان مثال "*.org" نیاز دارد.<br />
-پروتکل‌های پشتیبانی‌شده: <code>$1</code> (هیچ یک از این موارد را در جستجوی خود نیافزایید)',
+پروتکل‌های پشتیبانی‌شده: <code>$1</code> (پیش‌فرض برای http:// در صورت مشخص نشدن پروتکل تنظیم شده‌است)',
 'linksearch-line' => '$1 از $2 پیوند دارد',
 'linksearch-error' => 'نشانه‌ها فقط در ابتدای نام میزبان اینترنتی می‌توانند استفاده شوند.',
 
@@ -2430,7 +2430,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'emailuser-title-target' => 'ایمیل این {{GENDER:$1| کاربر}}',
 'emailuser-title-notarget' => 'رایانامه به کاربر',
 'emailpage' => 'رایانامه به کاربر',
-'emailpagetext' => 'شما می‌توانید از فرم زیر برای ارسال یک رایانامه به این کاربر استفاده کنید.
+'emailpagetext' => 'شما می‌توانید از فرم زیر برای ارسال یک رایانامه به این {{GENDER:$1|کاربر}} استفاده کنید.
 نشانی رایانامه‌ای که در [[Special:Preferences|ترجیحات کاربریتان]] وارد کرده‌اید در نشانی فرستنده (From) نامه خواهد آمد، تا گیرنده بتواند پاسخ دهد.',
 'usermailererror' => 'رایانامه دچار خطا شد:',
 'defemailsubject' => 'رایانامه {{SITENAME}} از طرف کاربر «$1»',
@@ -2462,7 +2462,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 # Watchlist
 'watchlist' => 'فهرست پی‌گیری‌های من',
-'mywatchlist' => 'پی‌گیری‌های من',
+'mywatchlist' => 'فهرست پی‌گیری‌ها',
 'watchlistfor2' => 'برای $1 $2',
 'nowatchlist' => 'در فهرست پی‌گیری‌های شما هیچ موردی نیست.',
 'watchlistanontext' => 'برای مشاهده و ویرایش فهرست پی‌گیری‌های خود از $1 استفاده کنید.',
@@ -2726,7 +2726,7 @@ $1',
 # Contributions
 'contributions' => 'مشارکت‌های کاربری',
 'contributions-title' => 'مشارکت‌های کاربری $1',
-'mycontris' => 'مشارکت‌های من',
+'mycontris' => 'مشارکت‌ها',
 'contribsub2' => 'برای $1 ($2)',
 'nocontribs' => 'هیچ تغییری با این مشخصات یافت نشد.',
 'uctop' => ' (بالا)',
@@ -2767,7 +2767,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 تغییرمسیر',
 'whatlinkshere-hidetrans' => '$1 تراگنجانش‌ها',
 'whatlinkshere-hidelinks' => '$1 پیوند',
-'whatlinkshere-hideimages' => '$1 پیوند به تصویر',
+'whatlinkshere-hideimages' => '$1 پیوندهای پرونده',
 'whatlinkshere-filters' => 'پالایه‌ها',
 
 # Block/unblock
@@ -2806,7 +2806,7 @@ $1',
 'ipb-disableusertalk' => 'جلوگیری از ویرایشی صفحهً بحث توسط خود کاربر در زمانی که بسته است',
 'ipb-change-block' => 'بستن دوبارهٔ کاربر با این تنظیم‌ها',
 'ipb-confirm' => 'تأیید بستن',
-'badipaddress' => 'نشانی آی‌‍ی غیر مجاز',
+'badipaddress' => 'نشانی آی‌پی غیر مجاز',
 'blockipsuccesssub' => 'بستن با موفقیت انجام شد',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] بسته شد.<br />
 برای بررسی بسته‌شده‌ها [[Special:BlockList|فهرست بسته‌شده‌ها]] را ببینید.',
@@ -3240,7 +3240,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'اطلاعات در مورد «$1»',
-'pageinfo-not-current' => 'اطلاعات ممکن است تنها برای نسخهٔ فعلی نمایش داده شود.',
+'pageinfo-not-current' => 'متاسفانه تهیه اطلاعات ویرایش‌های قدیمی غیرممکن است.',
 'pageinfo-header-basic' => 'اطلاعات اولیه',
 'pageinfo-header-edits' => 'ویرایش تاریخچه',
 'pageinfo-header-restrictions' => 'حفاظت از صفحه',
@@ -4164,9 +4164,9 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 صفحهٔ $3 را بدون برجای‌گذاشتن تغییرمسیر به $4 که تغییرمسیر بود منتقل کرد',
 'logentry-patrol-patrol' => '$1 نسخه $4 صفحه $3 را به عنوان گشت خورده علامت زد',
 'logentry-patrol-patrol-auto' => '$1 نسخه $4 صفحه $3 را به طور خودکار به عنوان گشت خورده علامت زد',
-'logentry-newusers-newusers' => '$1 یک حساب کاربری ایجاد کرد',
-'logentry-newusers-create' => '$1 یک حساب کاربری ایجاد کرد',
-'logentry-newusers-create2' => '$1 یک حساب کاربری ایجاد کرد $3',
+'logentry-newusers-newusers' => 'حساب کاربری $1 ایجاد شد',
+'logentry-newusers-create' => 'حساب کاربری $1 ایجاد شد',
+'logentry-newusers-create2' => 'حساب کاربری $3 توسط $1 ایجاد شد',
 'logentry-newusers-autocreate' => 'حساب $1  به شکل خودکار ساخته شد',
 'newuserlog-byemail' => 'گذرواژه بوسیله رایانامه ارسال شد',
 

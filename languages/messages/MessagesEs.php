@@ -409,7 +409,7 @@ $messages = array(
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Valor predeterminado del navegador',
+'underline-default' => 'Aspecto (skin) o navegador predeterminado',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Estilo de tipografía del área de edición:',
@@ -514,7 +514,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Nueva sección',
 'vector-action-delete' => 'Borrar',
-'vector-action-move' => 'Mover',
+'vector-action-move' => 'Trasladar',
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protección',
@@ -1045,7 +1045,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 * '''Opera:''' vacía la caché en ''Herramientas → Preferencias''",
 'usercssyoucanpreview' => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo CSS antes de guardarlo.",
 'userjsyoucanpreview' => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo JS antes de guardarlo.",
-'usercsspreview' => "'''Recuerda que solo estás previsualizando tu CSS de usuario.'''
+'usercsspreview' => "'''Recuerda que sólo estás previsualizando tu CSS de usuario.'''
 '''¡Aún no se ha guardado!'''",
 'userjspreview' => "'''¡Recuerda que solo estás previsualizando tu JavaScript de usuario.'''
 '''¡Aún no se ha guardado!'''",
@@ -1053,11 +1053,11 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 '''¡Aún no se ha guardado!'''",
 'sitejspreview' => "'''Recuerda que sólo estás previsualizando este código JavaScript.'''
 '''¡Aún no se ha guardado!'''",
-'userinvalidcssjstitle' => "'''Aviso:''' No existe la skin «$1». Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/vector.css en vez de {{ns:user}}:Ejemplo/Vector.css.",
+'userinvalidcssjstitle' => "'''Aviso:''' No existe la piel «$1». Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/vector.css en vez de {{ns:user}}:Ejemplo/Vector.css.",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''¡Recuerda que esto es solo una previsualización.'''
-¡Tus cambios aún no se ha guardado!",
+'previewnote' => "'''Recuerda que esto es solo una previsualización.'''
+¡Tus cambios aún no se han guardado!",
 'continue-editing' => 'Ir al área de edición',
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
 'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
@@ -1188,8 +1188,8 @@ El motivo dado por $3 es ''$2''",
 'page_first' => 'primeras',
 'page_last' => 'últimas',
 'histlegend' => "Selección de diferencias: marca los selectores de las versiones a comparar y pulsa ''enter'' o el botón de abajo.<br />
-Leyenda: (act) = diferencias con la versión actual,
-(prev) = diferencias con la versión previa, M = edición menor",
+Leyenda: '''(act)''' = diferencias con la versión actual,
+'''(ant)''' = diferencias con la versión anterior, '''m''' = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
 'history-show-deleted' => 'Solo ediciones ocultadas',
 'histfirst' => 'Primeras',
@@ -1252,7 +1252,7 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-text' => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm' => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
-'revdelete-suppress-text' => "La herramienta de supresión '''sólo''' debería usarse en los siguientes casos:
+'revdelete-suppress-text' => "La herramienta de supresión '''solo''' debería usarse en los siguientes casos:
 * Información potencialmente injuriosa o calumniante.
 * Información personal inapropiada, tal como:
 *: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",
@@ -1600,8 +1600,8 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'right-minoredit' => 'Marcar ediciones como «menores»',
 'right-move' => 'Trasladar páginas',
 'right-move-subpages' => 'Trasladar páginas con sus subpáginas',
-'right-move-rootuserpages' => 'Mover páginas del usuario raíz',
-'right-movefile' => 'Mover archivos',
+'right-move-rootuserpages' => 'Trasladar páginas de usuario raíz',
+'right-movefile' => 'Trasladar archivos',
 'right-suppressredirect' => 'No crear redirecciones de las páginas fuente  al trasladar páginas',
 'right-upload' => 'Subir archivos',
 'right-reupload' => 'Subir una nueva versión de un archivo existente',
@@ -1667,10 +1667,10 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'action-createtalk' => 'crear páginas de discusión',
 'action-createaccount' => 'crear esta cuenta de usuario',
 'action-minoredit' => 'marcar este cambio como menor',
-'action-move' => 'mover esta página',
-'action-move-subpages' => 'mover esta página y sus subpáginas',
-'action-move-rootuserpages' => 'mover páginas del usuario raíz',
-'action-movefile' => 'mover este archivo',
+'action-move' => 'trasladar esta página',
+'action-move-subpages' => 'trasladar esta página y sus subpáginas',
+'action-move-rootuserpages' => 'trasladar páginas de usuario raíz',
+'action-movefile' => 'trasladar este archivo',
 'action-upload' => 'subir este archivo',
 'action-reupload' => 'reemplazar este archivo existente',
 'action-reupload-shared' => 'reemplazar este archivo existente en un depósito compartido',
@@ -1899,7 +1899,7 @@ $1',
 'backend-fail-alreadyexists' => 'El archivo  $1  ya existe.',
 'backend-fail-store' => 'No se pudo almacenar el archivo $1 en $2.',
 'backend-fail-copy' => 'No se pudo copiar el archivo $1 a $2.',
-'backend-fail-move' => 'No se pudo mover el archivo $1 a $2.',
+'backend-fail-move' => 'No se pudo trasladar el archivo $1 a $2.',
 'backend-fail-opentemp' => 'No se pudo crear archivo temporal.',
 'backend-fail-writetemp' => 'No se pudo escribir en el archivo temporal.',
 'backend-fail-closetemp' => 'No se pudo cerrar el archivo temporal.',
@@ -2115,7 +2115,7 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'statistics-articles' => 'Páginas de contenido',
 'statistics-pages' => 'Páginas',
 'statistics-pages-desc' => 'Todas las páginas en el wiki, incluyendo páginas de discusión, redirecciones, etc.',
-'statistics-files' => 'Ficheros subidos',
+'statistics-files' => 'Archivos subidos',
 'statistics-edits' => 'Ediciones en páginas desde que {{SITENAME}} fue instalado',
 'statistics-edits-average' => 'Media de ediciones por página',
 'statistics-views-total' => 'Visitas totales',
@@ -2283,8 +2283,8 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ns' => 'Espacio de nombre:',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
-Es necesario, por lo menos, un dominio de nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (no añada ninguno de estos en su búsqueda).',
+Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
+Protocolos soportados: <code>$1</code> (si no se especifica ninguno, el protocolo por defecto es http://).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2333,8 +2333,8 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'emailuser-title-target' => 'Enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}',
 'emailuser-title-notarget' => 'Enviar un correo electrónico al usuario',
 'emailpage' => 'Correo electrónico a usuario',
-'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
-La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
+'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}.
+La dirección de correo electrónico que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el campo "Remitente" o "De" para que el destinatario pueda responderte.',
 'usermailererror' => 'El sistema de correo devolvió un error:',
 'defemailsubject' => 'Correo electrónico enviado por el usuario «$1» desde {{SITENAME}}',
 'usermaildisabled' => 'Correo electrónico del usuario deshabilitado',
@@ -2617,14 +2617,14 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribuciones del usuario',
+'contributions' => 'Contribuciones {{GENDER:{{BASEPAGENAME}}|del usuario|de la usuaria}}',
 'contributions-title' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris' => 'Contribuciones',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'No se encontraron cambios que cumplieran estos criterios.',
 'uctop' => '(última edición)',
-'month' => 'Desde el mes (y anterior):',
-'year' => 'Desde el año (y anterior):',
+'month' => 'Desde el mes (y anteriores):',
+'year' => 'Desde el año (y anteriores):',
 
 'sp-contributions-newbies' => 'Mostrar solo las contribuciones de usuarios nuevos',
 'sp-contributions-newbies-sub' => 'Para cuentas nuevas',
@@ -2659,7 +2659,7 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'whatlinkshere-hideredirs' => '$1 redirecciones',
 'whatlinkshere-hidetrans' => '$1 inclusiones',
 'whatlinkshere-hidelinks' => '$1 enlaces',
-'whatlinkshere-hideimages' => '$1 enlaces a imágenes',
+'whatlinkshere-hideimages' => '$1 enlaces a archivos',
 'whatlinkshere-filters' => 'Filtros',
 
 # Block/unblock
@@ -2761,7 +2761,7 @@ Consulta la [[Special:BlockList|lista de bloqueos]] para ver la lista de bloqueo
 'block-log-flags-noemail' => 'correo electrónico deshabilitado',
 'block-log-flags-nousertalk' => 'no puede editar su propia página de discusión',
 'block-log-flags-angry-autoblock' => 'autobloqueo avanzado habilitado',
-'block-log-flags-hiddenname' => 'nombre de usuario oculto',
+'block-log-flags-hiddenname' => 'nombre de usuario ocultado',
 'range_block_disabled' => 'La facultad de administrador de crear bloqueos por rangos está deshabilitada.',
 'ipb_expiry_invalid' => 'El tiempo de caducidad no es válido.',
 'ipb_expiry_temp' => 'Los bloqueos a nombres de usuario ocultos deben ser permanentes.',
@@ -2809,7 +2809,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 # Move page
 'move-page' => 'Trasladar $1',
 'move-page-legend' => 'Renombrar página',
-'movepagetext' => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
+'movepagetext' => "Usando el siguiente formulario se renombrará una página, trasladando todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.
 Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
@@ -2821,7 +2821,7 @@ Esto significa que podrás renombrar una página a su título original si has co
 '''¡Aviso!'''
 Este puede ser un cambio drástico e inesperado para una página popular;
 por favor, asegúrate de entender las consecuencias del procedimiento antes de seguir adelante.",
-'movepagetext-noredirectfixer' => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
+'movepagetext-noredirectfixer' => "Usando el siguiente formulario se renombrará una página, trasladando todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
@@ -2833,19 +2833,19 @@ Esto significa que podrás renombrar una página a su título original si has co
 Este puede ser un cambio drástico e inesperado para una página popular;
 por favor, asegúrate de entender las consecuencias del procedimiento antes de seguir adelante.",
 'movepagetalktext' => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
-*Esté moviendo la página entre espacios de nombres diferentes,
+*Estés trasladando la página entre espacios de nombres diferentes,
 *Una página de discusión no vacía ya exista con el nombre nuevo, o
-*No actives la opción «Renombrar la página de discusión también».
+*No marques el recuadro «Renombrar la página de discusión asociada».
 
 En estos casos, deberás trasladar manualmente el contenido de la página de discusión.",
 'movearticle' => 'Renombrar página',
-'moveuserpage-warning' => "'''Aviso:''' estás a punto de mover una página de usuario. Ten en cuenta que solo será trasladada la página; el usuario '''no''' será renombrado.",
+'moveuserpage-warning' => "'''Aviso:''' estás a punto de trasladar una página de usuario. Ten en cuenta que solo será trasladada la página; el usuario '''no''' será renombrado.",
 'movenologin' => 'No has iniciado sesión',
 'movenologintext' => 'Es necesario ser usuario registrado y [[Special:UserLogin|haber iniciado sesión]] para renombrar una página.',
-'movenotallowed' => 'No tienes permiso para mover páginas.',
-'movenotallowedfile' => 'No tienes permiso para mover archivos.',
-'cant-move-user-page' => 'No tienes permiso para mover páginas de usuario (excepto subpáginas).',
-'cant-move-to-user-page' => 'No tienes permiso para mover una página a una página de usuario (excepto a subpáginas de usuario).',
+'movenotallowed' => 'No tienes permiso para trasladar páginas.',
+'movenotallowedfile' => 'No tienes permiso para trasladar archivos.',
+'cant-move-user-page' => 'No tienes permiso para trasladar páginas de usuario (excepto subpáginas).',
+'cant-move-to-user-page' => 'No tienes permiso para trasladar una página a una página de usuario (excepto a subpáginas de usuario).',
 'newtitle' => 'A título nuevo:',
 'move-watch' => 'Vigilar páginas de origen y destino',
 'movepagebtn' => 'Renombrar página',
@@ -2855,8 +2855,8 @@ En estos casos, deberás trasladar manualmente el contenido de la página de dis
 'movepage-moved-noredirect' => 'Se ha suprimido la creación de la redirección.',
 'articleexists' => 'Ya existe una página con ese nombre, o el nombre que has escogido no es válido.
 Por favor, elige otro nombre.',
-'cantmove-titleprotected' => 'No puedes mover la página a esta ubicación, porque el nuevo título ha sido protegido para evitar su creación.',
-'talkexists' => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpora sus contenidos manualmente.',
+'cantmove-titleprotected' => 'No puedes trasladar la página a esta ubicación, porque el nuevo título ha sido protegido para evitar su creación.',
+'talkexists' => 'La página fue renombrada con éxito, pero la discusión no se pudo trasladar porque ya existe una con el título nuevo. Por favor, incorpora sus contenidos manualmente.',
 'movedto' => 'renombrado a',
 'movetalk' => 'Renombrar la página de discusión asociada',
 'move-subpages' => 'Intentar trasladar las subpáginas (hasta $1)',
@@ -2864,7 +2864,7 @@ Por favor, elige otro nombre.',
 'movepage-page-exists' => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
 'movepage-page-moved' => 'La página $1 ha sido trasladada a $2.',
 'movepage-page-unmoved' => 'La página $1 no se ha podido trasladar a $2.',
-'movepage-max-pages' => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
+'movepage-max-pages' => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no van a trasladarse más automáticamente.',
 'movelogpage' => 'Registro de traslados',
 'movelogpagetext' => 'Abajo se encuentra una lista de páginas trasladadas.',
 'movesubpage' => '{{PLURAL:$1|Subpágina|Subpáginas}}',
@@ -2886,7 +2886,7 @@ no se puede trasladar una página sobre sí misma.',
 'immobile-source-page' => 'Esta página no se puede renombrar.',
 'immobile-target-page' => 'No se puede trasladar a tal título.',
 'imagenocrossnamespace' => 'No se puede trasladar el fichero a otro espacio de nombres',
-'nonfile-cannot-move-to-file' => 'No es posible mover un no-archivo al espacio de nombres de archivo',
+'nonfile-cannot-move-to-file' => 'No es posible trasladar lo que no es un archivo al espacio de nombres de archivo',
 'imagetypemismatch' => 'La nueva extensión de archivo no corresponde con su tipo',
 'imageinvalidfilename' => 'El nombre del fichero de destino no es válido',
 'fix-double-redirects' => 'Actualizar las redirecciones que apuntan al título original',
@@ -2896,7 +2896,7 @@ A continuación se muestra la última entrada de registro para referencia:",
 'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada para que  solamente usuarios registrados pueden moverla.
 A continuación se muestra la última entrada de registro para referencia:",
 'move-over-sharedrepo' => '== El archivo existe ==
-[[:$1]] existe en un repositorio compartido. Mover el archivo a este título invalidará el archivo compartido.',
+[[:$1]] existe en un repositorio compartido. El traslado a este título invalidará la compartición del archivo.',
 'file-exists-sharedrepo' => 'El nombre de archivo elegido ya está siendo usado en un repositorio compartido.
 Por favor, elige otro nombre.',
 
@@ -3042,8 +3042,8 @@ Puedes ver su código fuente',
 'tooltip-ca-unprotect' => 'Cambiar protección de esta página',
 'tooltip-ca-delete' => 'Borrar esta página',
 'tooltip-ca-undelete' => 'Restaurar las ediciones hechas a esta página antes de que fuese borrada',
-'tooltip-ca-move' => 'Mover esta página',
-'tooltip-ca-watch' => 'Añadir esta página a su lista de seguimiento',
+'tooltip-ca-move' => 'Trasladar esta página',
+'tooltip-ca-watch' => 'Añadir esta página a tu lista de seguimiento',
 'tooltip-ca-unwatch' => 'Borrar esta página de su lista de seguimiento',
 'tooltip-search' => 'Buscar en {{SITENAME}}',
 'tooltip-search-go' => 'Ir al artículo con este nombre exacto si existe',
@@ -3081,7 +3081,7 @@ Puedes ver su código fuente',
 'tooltip-preview' => 'Previsualiza los cambios realizados. ¡Por favor, hazlo antes de grabar!',
 'tooltip-diff' => 'Muestra los cambios que ha introducido en el texto.',
 'tooltip-compareselectedversions' => 'Ver las diferencias entre las dos versiones seleccionadas de esta página.',
-'tooltip-watch' => 'Añadir esta página a su lista de seguimiento',
+'tooltip-watch' => 'Añadir esta página a tu lista de seguimiento',
 'tooltip-watchlistedit-normal-submit' => 'Borrar páginas',
 'tooltip-watchlistedit-raw-submit' => 'Actualizar lista de seguimiento',
 'tooltip-recreate' => 'Recupera una página que ha sido borrada',
@@ -3154,7 +3154,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',
-'pageinfo-not-current' => 'Únicamente se puede mostrar la información para la revisión actual.',
+'pageinfo-not-current' => 'Lo sentimos, no es posible mostrar esta información para las revisiones antiguas.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de ediciones',
 'pageinfo-header-restrictions' => 'Protección de página',
@@ -3254,7 +3254,7 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 # Special:NewFiles
 'newimages' => 'Galería de imágenes nuevas',
 'imagelisttext' => "Debajo hay una lista de '''$1''' {{PLURAL:$1|imagen|imágenes}} ordenadas $2.",
-'newimages-summary' => 'Esta página especial muestra una galería de los últimos ficheros subidos.',
+'newimages-summary' => 'Esta página especial muestra una galería de los últimos archivos subidos.',
 'newimages-legend' => 'Nombre del fichero',
 'newimages-label' => 'Nombre del fichero (o una parte):',
 'showhidebots' => '($1 bots)',
@@ -4004,9 +4004,9 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-suppress-revision' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-suppress-event-legacy' => '$1 modificó secretamente la visibilidad de los eventos del registro en $3',
 'logentry-suppress-revision-legacy' => '$1 modificó secretamente la visibilidad de las ediciones en la página $3',
-'revdelete-content-hid' => 'contenido oculto',
+'revdelete-content-hid' => 'contenido ocultado',
 'revdelete-summary-hid' => 'resumen de edición oculto',
-'revdelete-uname-hid' => 'nombre de usuario oculto',
+'revdelete-uname-hid' => 'nombre de usuario ocultado',
 'revdelete-content-unhid' => 'contenido mostrado',
 'revdelete-summary-unhid' => 'resumen de edición mostrado',
 'revdelete-uname-unhid' => 'nombre de usuario mostrado',
@@ -4018,9 +4018,9 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-move-move_redir-noredirect' => '$1 movió la página $3 a $4 sobre una redirección, sin dejar redirección',
 'logentry-patrol-patrol' => '$1 marcó la edición $4 de la página $3 como patrullada',
 'logentry-patrol-patrol-auto' => '$1 marcó automáticamente la edición $4 de la página $3 como patrullada',
-'logentry-newusers-newusers' => '$1 creó una cuenta de usuario',
-'logentry-newusers-create' => '$1 creó una cuenta de usuario',
-'logentry-newusers-create2' => '$1 creó una cuenta de usuario $3',
+'logentry-newusers-newusers' => 'Se ha creado la cuenta de usuario $1',
+'logentry-newusers-create' => 'Se ha creado la cuenta de usuario $1',
+'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'newuserlog-byemail' => 'contraseña enviada por correo electrónico',
 

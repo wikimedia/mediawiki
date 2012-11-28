@@ -36,6 +36,7 @@
  * @author Tusharpawar1982
  * @author V.narsikar
  * @author Vpnagarkar
+ * @author Ydyashad
  * @author Ynwala
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
@@ -580,6 +581,7 @@ $1',
 'youhavenewmessages' => 'तुमच्यासाठी $1 ($2).',
 'newmessageslink' => 'नवीन संदेश',
 'newmessagesdifflink' => 'ताजा बदल',
+'newmessagesdifflinkplural' => 'मागिल {{PLURAL:$1|बदल}}',
 'youhavenewmessagesmulti' => '$1 वर तुमच्यासाठी नवीन संदेश आहेत.',
 'editsection' => 'संपादन',
 'editold' => 'संपादन',
@@ -717,7 +719,7 @@ $2',
 'yourname' => 'तुमचे नाव',
 'yourpassword' => 'तुमचा परवलीचा शब्द',
 'yourpasswordagain' => 'तुमचा परवलीचा शब्द पुन्हा लिहा',
-'remembermypassword' => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
+'remembermypassword' => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवस|दिवसांसाठी}})',
 'securelogin-stick-https' => 'प्रवेशानंतर एचटीटीपीएसच्या संपर्कात रहा',
 'yourdomainname' => 'तुमचे क्षेत्र (डॉमेन) :',
 'externaldberror' => 'विदागार ’खातरजमा’ (प्रमाणितीकरण) त्रुटी होती अथवा तुम्हाला तुमचे बाह्य खाते अद्ययावत  करण्याची परवानगी नाही.',
@@ -2161,6 +2163,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'mailnologin' => 'पाठविण्याचा पत्ता नाही',
 'mailnologintext' => 'इतर सदस्यांना विपत्र(ई-मेल) पाठवण्याकरिता तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असणे आणि  प्रमाणित (ई-मेल) पत्ता तुमच्या [[Special:Preferences|पसंतीत]] नमुद असणे आवश्यक आहे.',
 'emailuser' => 'या सदस्याला ई-मेल पाठवा',
+'emailuser-title-notarget' => 'विपत्र (ईमेल) उपयोगकर्ता',
 'emailpage' => 'विपत्र (ईमेल) उपयोगकर्ता',
 'emailpagetext' => 'जर या सदस्याने प्रमाणित विपत्र (ईमेल)पत्ता तीच्या अथवा त्याच्या सदस्य पसंतीत नमुद केला असेल,तर खालील सारणी तुम्हाला एक(च) संदेश पाठवेल.तुम्ही तुमच्या [[Special:Preferences|सदस्य पसंतीत]] नमुद केलेला विपत्र पत्ता "कडून" पत्त्यात येईल म्हणजे  प्राप्तकरता आपल्याला उत्तर देऊ शकेल.',
 'usermailererror' => 'पत्र बाब त्रुटी वापस पाठवली:',
@@ -2933,7 +2936,10 @@ $1',
 
 # Info page
 'pageinfo-title' => '"$1" च्याबद्दल माहिती',
+'pageinfo-not-current' => 'माफ करा, जुन्या अवृतिला माहिती देणे अक्षक्य आहे|',
+'pageinfo-header-basic' => 'मूलभूत माहिती',
 'pageinfo-header-edits' => 'संपादने',
+'pageinfo-header-restrictions' => 'पान सुरक्षा',
 'pageinfo-views' => 'अभिप्रायांची संख्या',
 'pageinfo-watchers' => 'पाहणाऱ्यांची संख्या',
 'pageinfo-edits' => 'संपादनांची संख्या',
@@ -3732,7 +3738,7 @@ $5
 'sqlite-no-fts' => 'पूर्ण-मजकूर शोध समर्थनाविरहित $1',
 
 # New logging system
-'logentry-delete-delete' => '$1 वगळले पान $3',
+'logentry-delete-delete' => '$1 वगळलेले पान $3',
 'logentry-delete-restore' => '$1 restored पृष्ठ  $3',
 'logentry-delete-event' => ' $3: $4 वरील  {{PLURAL:$5|एका नोंद घटने |$5 lनोंद घटनां}} ची दृष्यता $1 बदलली',
 'logentry-delete-revision' => '$3: $4 पानावरील  {{PLURAL:$5|एका आवृत्ती |$5 lआवृत्यां}} ची दृष्यता $1 बदलली',

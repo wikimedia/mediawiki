@@ -279,8 +279,8 @@ $messages = array(
 'newwindow' => '(in fenestra nova aperietur)',
 'cancel' => 'Abrogare',
 'moredotdotdot' => 'Plus...',
-'mypage' => 'Pagina mea',
-'mytalk' => 'Disputatio mea',
+'mypage' => 'Pagina',
+'mytalk' => 'Disputatio',
 'anontalk' => 'Disputatio huius IP',
 'navigation' => 'Navigatio',
 'and' => '&#32;et',
@@ -497,8 +497,8 @@ Ratio data est "\'\'$2\'\'".',
 Ignote continues {{grammar:ablative|{{SITENAME}}}} uti, aut conventum novum vel sub eodem vel novo nomine [[Special:UserLogin|aperias]].
 Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusquam navigatrum purgaveris.",
 'welcomecreation' => '== Salve, $1! ==
-Ratio tua iam creata est.
-Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusative|{{SITENAME}}}} mutare.',
+Ratio tua creata est.
+Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusative|{{SITENAME}}}} mutare.',
 'yourname' => 'Nomen usoris:',
 'yourpassword' => 'Tessera:',
 'yourpasswordagain' => 'Tesseram adfirmare:',
@@ -879,7 +879,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 
 # Preferences page
 'preferences' => 'Praeferentiae',
-'mypreferences' => 'Praeferentiae meae',
+'mypreferences' => 'Praeferentiae',
 'prefs-edits' => 'Numerus recensionum:',
 'prefsnologin' => 'Conventum non est apertum',
 'prefsnologintext' => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
@@ -1658,7 +1658,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 # Contributions
 'contributions' => 'Conlationes usoris',
 'contributions-title' => 'Conlationes usoris $1',
-'mycontris' => 'Conlationes meae',
+'mycontris' => 'Conlationes',
 'contribsub2' => 'Pro $1 ($2)',
 'nocontribs' => 'Nullae mutationes inventae sunt ex his indiciis.',
 'uctop' => ' (vertex)',
@@ -1908,7 +1908,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Pagina usoris tua',
 'tooltip-pt-mytalk' => 'Pagina disputationis tua',
-'tooltip-pt-preferences' => 'Praeferentiae meae',
+'tooltip-pt-preferences' => 'Praeferentiae tuae',
 'tooltip-pt-watchlist' => 'Paginae quae custodis ut eorum mutationes facilius vides',
 'tooltip-pt-mycontris' => 'Index conlationum tuarum',
 'tooltip-pt-login' => 'Te conventum aperire hortamur, non autem requisitum',
@@ -2376,9 +2376,9 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'logentry-move-move-noredirect' => '$1 movit paginam $3 ad $4 sine redirectione',
 'logentry-move-move_redir' => '$1 movit paginam $3 ad $4 praeter redirectionem',
 'logentry-move-move_redir-noredirect' => '$1 movit paginam $3 ad $4 praeter redirectionem sine redirectione',
-'logentry-newusers-newusers' => '$1 creavit rationem usoris',
-'logentry-newusers-create' => '$1 creavit rationem usoris',
-'logentry-newusers-create2' => '$1 creavit rationem usoris $3',
+'logentry-newusers-newusers' => 'Ratio usoris $1 creata est',
+'logentry-newusers-create' => 'Ratio usoris $1 creata est',
+'logentry-newusers-create2' => 'Ratio usoris $3 creata est ab usore $1',
 'logentry-newusers-autocreate' => 'Ratio $1 automatice creata est',
 'newuserlog-byemail' => 'tessera missa litteris electronicis',
 

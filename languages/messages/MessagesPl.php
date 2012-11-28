@@ -47,6 +47,7 @@
  * @author Szczepan1990
  * @author Timpul
  * @author ToSter
+ * @author Tsca
  * @author Woytecr
  * @author Wpedzich
  * @author Ymar
@@ -342,7 +343,7 @@ $messages = array(
 
 'underline-always' => 'zawsze',
 'underline-never' => 'nigdy',
-'underline-default' => 'według ustawień przeglądarki',
+'underline-default' => 'według ustawień skórki lub przeglądarki',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Styl czcionki w polu edycyjnym',
@@ -427,8 +428,8 @@ $messages = array(
 'newwindow' => '(otwiera się w nowym oknie)',
 'cancel' => 'Anuluj',
 'moredotdotdot' => 'Więcej...',
-'mypage' => 'Moja strona',
-'mytalk' => 'Moja dyskusja',
+'mypage' => 'Strona',
+'mytalk' => 'Dyskusja',
 'anontalk' => 'Dyskusja tego IP',
 'navigation' => 'Nawigacja',
 'and' => '&#32;oraz',
@@ -558,10 +559,10 @@ $1',
 'youhavenewmessages' => 'Masz $1 ($2).',
 'newmessageslink' => 'nowe wiadomości',
 'newmessagesdifflink' => 'różnica z poprzednią wersją',
-'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 innych użytkowników}} ($2).',
+'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 użytkowników}} ($2).',
 'youhavenewmessagesmanyusers' => 'Masz $1 od wielu użytkowników ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|$1 wiadomości}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|ostatnie $1 zmiany|ostatnie $1 zmian}}',
+'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|nowe wiadomości}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|ostatnie zmiany}}',
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości na $1',
 'editsection' => 'edytuj',
 'editold' => 'edytuj',
@@ -1424,7 +1425,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'timezoneregion-indian' => 'Ocean Indyjski',
 'timezoneregion-pacific' => 'Ocean Spokojny',
 'allowemail' => 'Zgadzam się, by inni użytkownicy mogli przesyłać do mnie e‐maile',
-'prefs-searchoptions' => 'Szukaj',
+'prefs-searchoptions' => 'Wyszukiwanie',
 'prefs-namespaces' => 'Przestrzenie nazw',
 'defaultns' => 'Albo przeszukuj przestrzenie nazw:',
 'default' => 'domyślnie',
@@ -1592,7 +1593,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
 'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightslogentry-autopromote' => 'automatycznie zmienia przynależność ($2 → $3)',
+'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
 'rightsnone' => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2226,7 +2227,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok' => 'Szukaj',
 'linksearch-text' => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <code>$1</code> (nie podawaj ich podczas wyszukiwania).',
+Obsługiwane protokoły: <code>$1</code> (jeśli nie podano, domyślny to http://).',
 'linksearch-line' => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 
@@ -2275,7 +2276,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'emailuser-title-target' => 'Wyślij e-mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki|tego użytkownika}}',
 'emailuser-title-notarget' => 'Wyślij wiadomość e‐mail',
 'emailpage' => 'Wyślij e‐mail do użytkownika',
-'emailpagetext' => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do tego użytkownika.
+'emailpagetext' => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}.
 Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror' => 'Moduł obsługi poczty zwrócił błąd:',
 'defemailsubject' => '{{SITENAME}} – e‐mail od użytkownika „$1“',
@@ -2565,7 +2566,7 @@ $1',
 # Contributions
 'contributions' => 'Wkład użytkownika',
 'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
-'mycontris' => 'Moje edycje',
+'mycontris' => 'Edycje',
 'contribsub2' => 'Dla użytkownika $1 ($2)',
 'nocontribs' => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop' => ' (jako ostatnia)',
@@ -2605,7 +2606,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'whatlinkshere-hideredirs' => '$1 przekierowania',
 'whatlinkshere-hidetrans' => '$1 dołączenia',
 'whatlinkshere-hidelinks' => '$1 linki',
-'whatlinkshere-hideimages' => '$1 linki z grafik',
+'whatlinkshere-hideimages' => '$1 linki z plików',
 'whatlinkshere-filters' => 'Filtry',
 
 # Block/unblock
@@ -3097,7 +3098,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',
-'pageinfo-not-current' => 'Informacje mogą być wyświetlane tylko dla najnowszej wersji strony.',
+'pageinfo-not-current' => 'Niestety, te informacje nie są dostępne dla starych wersji stron.',
 'pageinfo-header-basic' => 'Podstawowe informacje',
 'pageinfo-header-edits' => 'Historia edycji',
 'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
@@ -4015,9 +4016,9 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-move-move_redir-noredirect' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
 'logentry-patrol-patrol' => '$1 oznacza wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto' => '$1 automatycznie oznacza wersję $4 strony $3 jako sprawdzoną',
-'logentry-newusers-newusers' => '$1 tworzy konto użytkownika',
-'logentry-newusers-create' => '$1 tworzy konto użytkownika',
-'logentry-newusers-create2' => '$1 tworzy konto użytkownika $3',
+'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
+'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
+'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
 'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
 'newuserlog-byemail' => 'hasło zostało wysłane e‐mailem',
 

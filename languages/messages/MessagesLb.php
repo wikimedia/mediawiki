@@ -229,7 +229,7 @@ $messages = array(
 
 'underline-always' => 'Ëmmer',
 'underline-never' => 'Ni',
-'underline-default' => 'vun der Browserastellung ofhängeg',
+'underline-default' => 'Skin oder Standard vum Browser',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Schrëftfamill fir d'Ännerungsfënster:",
@@ -314,8 +314,8 @@ $messages = array(
 'newwindow' => '(geet an enger neier Fënster op)',
 'cancel' => 'Zréck',
 'moredotdotdot' => 'Méi …',
-'mypage' => 'Meng Säit',
-'mytalk' => 'Meng Diskussioun',
+'mypage' => 'Säit',
+'mytalk' => 'Diskussioun',
 'anontalk' => 'Diskussioun fir dës IP Adress',
 'navigation' => 'Navigatioun',
 'and' => '&#32;a(n)',
@@ -722,6 +722,12 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-capture-help' => 'Wann Dir dës Këscht ukräizt, gëtt de Mail (mam temporäre Passwuert) Iech gewisen an dem Benotzer geschéckt.',
 'passwordreset-email' => 'E-Mailadress:',
 'passwordreset-emailtitle' => 'Detailer vum Benotzerkont op{{SITENAME}}',
+'passwordreset-emailtext-ip' => "Iergendee mat der IP-Adress $1, wahrscheinlech Dir selwer, huet eng Erënnerung fir Är Benotzerkonteninformatiounen op {{SITENAME}} gefrot ($4). {{PLURAL:$3|De Benotzerkont ass|D'Benutzerkonte si}} mat dëser E-Mail-Adress verbonn:
+
+$2
+
+{{PLURAL:$3|Dëst temporärt Passwuert leeft|Dës temporär Passwierder lafe}} bannent {{PLURAL:$5|engem Dag|$5 Deeg}} of.
+Dir sollt Iech aloggen an een neit Passwuert festleeën. Wann een Aneren déi Ufro gemaach huet oder Dir Iech erëm un Äert Passwuert erënnere kënnt an et net ännere wëllt, kënnt Dir dës Noriicht ignoréieren an Äert aalt Passwuert weider benotzen.",
 'passwordreset-emailelement' => 'Benotzernumm: $1
 Temporärt Passwuert: $2',
 'passwordreset-emailsent' => 'Eng Erënnerungs-Mail gouf geschéckt.',
@@ -1219,7 +1225,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Preferences page
 'preferences' => 'Astellungen',
-'mypreferences' => 'Meng Astellungen',
+'mypreferences' => 'Astellungen',
 'prefs-edits' => 'Zuel vun den Ännerungen:',
 'prefsnologin' => 'Net ageloggt',
 'prefsnologintext' => 'Dir musst <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}ageloggt]</span> sinn, fir Är Astellungen änneren ze kënnen.',
@@ -1556,7 +1562,7 @@ Fir e '''Bild''' op enger Säit zu benotzen, schreift amplaz vum Bild eng vun d�
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></code>''' fir déi ganz Versioun vum Fichier ze benotzen
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></code>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénke Rand mat 'alt text' als Beschreiwung
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></code>''' fir e Fichier direkt ze verlinken ouni de Fichier ze weisen",
-'upload-permitted' => 'Erlaabte Formater vun de Fichieren: $1.',
+'upload-permitted' => 'Erlaabt Formater vun de Fichieren: $1.',
 'upload-preferred' => 'Fichierszorten déi am beschte funktionéieren: $1.',
 'upload-prohibited' => 'Verbuede Fichiers Formater: $1.',
 'uploadlog' => 'Lëscht vun den eropgeluedene Fichieren',
@@ -2050,9 +2056,9 @@ Kuckt och [[Special:WantedCategories|Gewënscht Kategorien]].',
 'linksearch-pat' => 'Sich-Critère:',
 'linksearch-ns' => 'Nummraum:',
 'linksearch-ok' => 'Sichen',
-'linksearch-text' => 'Sougennante "Wildcards" wéi zum Beispill <code>*.example.com</code> kënne benotzt ginn.
+'linksearch-text' => '"Wildcards" wéi zum Beispill "*.example.com" kënne benotzt ginn.
 Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
-Ënnerstëtzte Protekoller: <code>$1</code>',
+Ënnerstëtzte Protekoller: <code>$1</code> (http:// gëtt benotzt wann näischt spezifizéiert gëtt).',
 'linksearch-line' => '$1 verlinkt vun $2',
 'linksearch-error' => 'Wildcards (*,?) kënnen nëmmen am Ufank vum Host-Numm benotzt ginn.',
 
@@ -2101,7 +2107,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'emailuser-title-target' => '{{GENDER:$1|Dëser Benotzerin|Dësem Benotzer}} eng Mail schécken',
 'emailuser-title-notarget' => 'Dem Benotzer eng E-Mail schécken',
 'emailpage' => 'Dem Benotzer eng E-Mail schécken',
-'emailpagetext' => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
+'emailpagetext' => 'Dir kënnt mat dësem Formulaire {{GENDER:$1|dësem Benotzer}} en E-Mail-Message schécken.
 D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech direkt äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => '{{SITENAME}} E-Mail vum Benotzer "$1"',
@@ -2133,7 +2139,7 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 
 # Watchlist
 'watchlist' => 'Meng Iwwerwaachungslëscht',
-'mywatchlist' => 'Meng Iwwerwaachungslëscht',
+'mywatchlist' => 'Iwwerwaachungslëscht',
 'watchlistfor2' => 'Vum $1 $2',
 'nowatchlist' => 'Är Iwwerwaachungslëscht ass eidel.',
 'watchlistanontext' => "Dir musst $1 fir Säiten op ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
@@ -2394,7 +2400,7 @@ $1',
 # Contributions
 'contributions' => 'Kontributioune vum Benotzer',
 'contributions-title' => 'Kontributioune vum $1',
-'mycontris' => 'Meng Kontributiounen',
+'mycontris' => 'Kontributiounen',
 'contribsub2' => 'Fir $1 ($2)',
 'nocontribs' => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
 'uctop' => '(aktuell)',
@@ -2434,7 +2440,7 @@ $1',
 'whatlinkshere-hideredirs' => 'Viruleedunge $1',
 'whatlinkshere-hidetrans' => 'Agebonne Schabloune $1',
 'whatlinkshere-hidelinks' => 'Linken $1',
-'whatlinkshere-hideimages' => '$1 Linken op de Fichier',
+'whatlinkshere-hideimages' => 'Linken op Fichiere $1',
 'whatlinkshere-filters' => 'Filteren',
 
 # Block/unblock
@@ -2903,7 +2909,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
-'pageinfo-not-current' => 'Dës Informatioune kënnen nëmme fir dës Versioun gewise ginn.',
+'pageinfo-not-current' => 'Pardon, et ass onméiglech dës Informatioun fir al Versiounen ze weisen.',
 'pageinfo-header-basic' => 'Basisinformatiounen',
 'pageinfo-header-edits' => 'Historique vun den Ännerungen',
 'pageinfo-header-restrictions' => 'Spär vun der Säit',
@@ -2917,6 +2923,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-redirects-name' => 'Viruleedungen op dës Säit',
 'pageinfo-subpages-name' => 'Ënnersäite vun dëser Säit',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|Viruleedung|Viruleedungen}}; $3 {{PLURAL:$3|Ënnersäit|Ënnersäiten}})',
+'pageinfo-firstuser' => '1. Auteur vun der Säit',
 'pageinfo-firsttime' => 'Datum vum Uleeë vun der Säit',
 'pageinfo-lastuser' => 'Leschte Benotzer deen eppes geännert huet',
 'pageinfo-lasttime' => 'Datum vun der leschter Ännerung',
@@ -3730,9 +3737,9 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-move-move_redir-noredirect' => "$1 huet d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
 'logentry-patrol-patrol' => "$1 huet d'Versioun $4 vun der Säit $3 als nogekuckt markéiert",
 'logentry-patrol-patrol-auto' => "$1 huet d'Versioun $4 vun der Säit $3 automatesch als nogekuckt markéiert",
-'logentry-newusers-newusers' => '$1  huet e Benotzerkont ugeluecht',
-'logentry-newusers-create' => '$1  huet e Benotzerkont ugeluecht',
-'logentry-newusers-create2' => '$1 huet ee Benotzerkont ugeluecht $3',
+'logentry-newusers-newusers' => 'De Benotzerkont $1 gouf ugeluecht',
+'logentry-newusers-create' => 'De Benotzerkont $1 gouf ugeluecht',
+'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch ugeluecht',
 'newuserlog-byemail' => "d'Passwuert gouf per E-Mail geschéckt",
 

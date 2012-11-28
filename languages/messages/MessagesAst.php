@@ -107,7 +107,7 @@ $messages = array(
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Restolador por defeutu',
+'underline-default' => 'Predeterminao del aspeutu o del restolador',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Estilu de fonte de l'área d'edición:",
@@ -192,8 +192,8 @@ $messages = array(
 'newwindow' => '(ábrese nuna ventana nueva)',
 'cancel' => 'Encaboxar',
 'moredotdotdot' => 'Más...',
-'mypage' => 'La mio páxina',
-'mytalk' => 'El mio alderique',
+'mypage' => 'Páxina',
+'mytalk' => 'Alderique',
 'anontalk' => 'Alderique pa esta IP',
 'navigation' => 'Navegación',
 'and' => '&#32;y',
@@ -779,7 +779,7 @@ Les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{n
 'note' => "'''Nota:'''",
 'previewnote' => "'''Alcuerdate de qu'esto ye sólo una vista previa.'''
 ¡Los cambios entá nun se guardaron!",
-'continue-editing' => 'Siguir editando',
+'continue-editing' => "Dir al área d'edición",
 'previewconflict' => "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 'session_fail_preview' => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",
@@ -1146,7 +1146,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 
 # Preferences page
 'preferences' => 'Preferencies',
-'mypreferences' => 'Les mios preferencies',
+'mypreferences' => 'Preferencies',
 'prefs-edits' => "Númberu d'ediciones:",
 'prefsnologin' => 'Non identificáu',
 'prefsnologintext' => 'Necesites tar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
@@ -2013,7 +2013,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-ok' => 'Guetar',
 'linksearch-text' => 'Se puen usar comodinos como "*.wikipedia.org".
 Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
-Protocolos almitíos: <code>$1</code> (nun amiestes dengún d\'estos na to gueta).',
+Protocolos almitíos: <code>$1</code> (el predetermináu ye http:// si nun se conseña dengún protocolu).',
 'linksearch-line' => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 
@@ -2064,8 +2064,8 @@ pa poder unviar correos a otros usuarios.',
 'emailuser-title-target' => 'Unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}',
 'emailuser-title-notarget' => 'Unviar un corréu electrónicu a un usuariu',
 'emailpage' => 'Envigar un corréu electrónicu a un usuariu',
-'emailpagetext' => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
-La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
+'emailpagetext' => 'Pues usar el formulariu de más abaxo pa unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}.
+La direición de corréu electrónicu qu\'especificasti nes [[Special:Preferences|tos preferencies d\'usuariu]] va apaecer como la direición "Dende" del corréu, pa que\'l que lo recibe seya quien a respondete direutamente a ti.',
 'usermailererror' => "L'operador de corréu devolvió un error:",
 'defemailsubject' => 'Corréu electrónicu del usuariu «$1» de {{SITENAME}}',
 'usermaildisabled' => 'Corréu del usuariu desactiváu',
@@ -2096,7 +2096,7 @@ La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences
 
 # Watchlist
 'watchlist' => 'La mio páxina de vixilancia',
-'mywatchlist' => 'La mio llista de vixilancia',
+'mywatchlist' => 'Llista de vixilancia',
 'watchlistfor2' => 'Pa $1 $2',
 'nowatchlist' => 'La to llista de vixilancia ta vacia.',
 'watchlistanontext' => 'Por favor $1 pa ver o editar entraes na to llista de vixilancia.',
@@ -2357,7 +2357,7 @@ $1",
 # Contributions
 'contributions' => 'Collaboraciones del usuariu',
 'contributions-title' => "Contribuciones d'usuariu pa $1",
-'mycontris' => 'Les mios collaboraciones',
+'mycontris' => 'Collaboraciones',
 'contribsub2' => 'De $1 ($2)',
 'nocontribs' => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
 'uctop' => '(actual)',
@@ -2398,7 +2398,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'whatlinkshere-hideredirs' => '$1 redireiciones',
 'whatlinkshere-hidetrans' => '$1 tresclusiones',
 'whatlinkshere-hidelinks' => '$1 enllaces',
-'whatlinkshere-hideimages' => "$1 enllaces d'imaxe",
+'whatlinkshere-hideimages' => '$1 los enllaces al ficheru',
 'whatlinkshere-filters' => 'Peñeres',
 
 # Block/unblock
@@ -2892,7 +2892,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',
-'pageinfo-not-current' => 'Namái se pue amosar la información pa la revisión actual.',
+'pageinfo-not-current' => 'Sentimoslo, ye imposible dar esta información de les revisiones antigües.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => "Historial d'ediciones",
 'pageinfo-header-restrictions' => 'Proteición de páxina',
@@ -3756,9 +3756,9 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-move-move_redir-noredirect' => '$1 treslladó la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
 'logentry-patrol-patrol' => '$1 marcó la revisión $4 de la páxina "$3" como patrullada',
 'logentry-patrol-patrol-auto' => '$1 marcó automaticamente la revisión $4 de la páxina "$3" como patrullada',
-'logentry-newusers-newusers' => "$1 creó una cuenta d'usuariu",
-'logentry-newusers-create' => "$1 creó una cuenta d'usuariu",
-'logentry-newusers-create2' => "$1 creó una cuenta d'usuariu $3",
+'logentry-newusers-newusers' => "Se creó la cuenta d'usuariu $1",
+'logentry-newusers-create' => "Se creó la cuenta d'usuariu $1",
+'logentry-newusers-create2' => "$1 creó la cuenta d'usuariu $3",
 'logentry-newusers-autocreate' => 'La cuenta $1 se creó automáticamente',
 'newuserlog-byemail' => 'conseña unviada per corréu electrónicu',
 

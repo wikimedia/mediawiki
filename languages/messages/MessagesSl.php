@@ -233,7 +233,7 @@ $messages = array(
 
 'underline-always' => 'Vedno',
 'underline-never' => 'Nikoli',
-'underline-default' => 'Privzeto (brskalnik)',
+'underline-default' => 'Koža ali privzeto v brskalniku',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Uredi področni slog pisave:',
@@ -318,7 +318,7 @@ $messages = array(
 'newwindow' => '(odpre se novo okno)',
 'cancel' => 'Prekliči',
 'moredotdotdot' => 'Več ...',
-'mypage' => 'Moja stran',
+'mypage' => 'Stran',
 'mytalk' => 'Pogovor',
 'anontalk' => 'Pogovorna stran IP',
 'navigation' => 'Navigacija',
@@ -1559,7 +1559,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'rclinks' => 'Prikaži zadnjih $1 sprememb v zadnjih $2 dneh<br />$3',
 'diff' => 'prim',
 'hist' => 'zgod',
-'hide' => 'skrij',
+'hide' => 'Skrij',
 'show' => 'Prikaži',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
@@ -2135,9 +2135,9 @@ Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'linksearch-pat' => 'Iskalni vzorec:',
 'linksearch-ns' => 'Imenski prostor:',
 'linksearch-ok' => 'Išči',
-'linksearch-text' => 'Nadomestne znake, kot je »*.wikipedia.org«, lahko uporabljate.
+'linksearch-text' => 'Uporabljate lahko nadomestne znake, kot je »*.wikipedia.org«.
 Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
-Podprti protokoli: <code>$1</code> (teh ne dodajte v svoje iskanje).',
+Podprti protokoli: <code>$1</code> (če protokol ni določen, se privzame http://).',
 'linksearch-line' => '$1 povezano iz $2',
 'linksearch-error' => 'Jokerji se lahko pojavijo le na začetku gostiteljskega imena.',
 
@@ -2186,8 +2186,8 @@ Morda so na razpolago tudi [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 'emailuser-title-target' => 'Pošlji {{GENDER:$1|uporabniku|uporabnici}} e-pošto',
 'emailuser-title-notarget' => 'Pošlji uporabniku e-pismo',
 'emailpage' => 'Pošlji uporabniku e-pismo',
-'emailpagetext' => 'S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
-E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo prejemnik lahko odgovoril neposredno vam.',
+'emailpagetext' => 'S spodnjim obrazcem lahko {{GENDER:$1|uporabniku|uporabnici}} pošljete e-poštno sporočilo.
+E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo {{GENDER:$1|prejemnik lahko odgovoril|prejemnica lahko odgovorila}} neposredno vam.',
 'usermailererror' => 'Predmet e-pošte je vrnil napako:',
 'defemailsubject' => 'Elektronska pošta {{GRAMMAR:rodilnik|{{SITENAME}}}} od uporabnika »$1«',
 'usermaildisabled' => 'Uporabniška e-pošta je onemogočena',
@@ -2523,7 +2523,7 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'whatlinkshere-hideredirs' => '$1 preusmeritve',
 'whatlinkshere-hidetrans' => '$1 vključitve',
 'whatlinkshere-hidelinks' => '$1 povezave',
-'whatlinkshere-hideimages' => '$1 povezave slik',
+'whatlinkshere-hideimages' => '$1 povezave datotek',
 'whatlinkshere-filters' => 'Filtri',
 
 # Block/unblock
@@ -2992,7 +2992,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
-'pageinfo-not-current' => 'Prikažemo lahko samo podatke trenutne redakcije.',
+'pageinfo-not-current' => 'Oprostite, vendar ne moremo nuditi podatkov starejših redakcij.',
 'pageinfo-header-basic' => 'Osnovni podatki',
 'pageinfo-header-edits' => 'Zgodovina urejanja',
 'pageinfo-header-restrictions' => 'Zaščita strani',

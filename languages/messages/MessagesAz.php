@@ -9,7 +9,10 @@
  *
  * @author Cekli829
  * @author Don Alessandro
+ * @author E THP
+ * @author Ebrahimi-amir
  * @author Emperyan
+ * @author Erdemaslancan
  * @author Gulmammad
  * @author Kaganer
  * @author PPerviz
@@ -953,7 +956,7 @@ $1",
 
 # Preferences page
 'preferences' => 'Nizamlamalar',
-'mypreferences' => 'Nizamlamalarım',
+'mypreferences' => 'Nizamlamalar',
 'prefs-edits' => 'Redaktələrin sayı:',
 'prefsnologin' => 'Daxil olmamısınız',
 'prefsnologintext' => 'Nizamlamaları dəyişmək üçün <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} daxil olmaq]</span> zəruridir.',
@@ -2325,9 +2328,16 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Info page
 'pageinfo-title' => '"$1" üçün məlumat',
+'pageinfo-header-basic' => 'Əsas məlumatlar',
 'pageinfo-header-edits' => 'Redaktələr',
+'pageinfo-header-restrictions' => 'Səhifə mühafizəsi',
+'pageinfo-header-properties' => 'Səhifə xüsusiyyətləri',
 'pageinfo-views' => 'Göstərmə səhifəsi',
 'pageinfo-watchers' => 'Baxış sayı',
+'pageinfo-firstuser' => 'Səhifəni yaradan',
+'pageinfo-firsttime' => 'Səhifənin yaranma tarixi',
+'pageinfo-lastuser' => 'Sonuncu redaktor',
+'pageinfo-lasttime' => 'Sonuncu redaktənin tarixi',
 'pageinfo-edits' => 'Redaktələrin sayı',
 'pageinfo-authors' => 'Fərqli müəlliflərin sayı',
 

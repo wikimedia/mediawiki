@@ -352,7 +352,7 @@ $messages = array(
 'tog-watchlisthidebots' => 'Piilota bottien muokkaukset',
 'tog-watchlisthideminor' => 'Piilota pienet muokkaukset',
 'tog-watchlisthideliu' => 'Piilota kirjautuneiden käyttäjien muokkaukset tarkkailulistalta',
-'tog-watchlisthideanons' => 'Piilota anonyymien käyttäjien muokkaukset tarkkailulistalta',
+'tog-watchlisthideanons' => 'Piilota rekisteröitymättömien käyttäjien muokkaukset tarkkailulistalta',
 'tog-watchlisthidepatrolled' => 'Piilota tarkastetut muokkaukset tarkkailulistalta',
 'tog-ccmeonemails' => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly' => 'Älä näytä sivun sisältöä versioita vertailtaessa',
@@ -362,7 +362,7 @@ $messages = array(
 
 'underline-always' => 'Aina',
 'underline-never' => 'Ei koskaan',
-'underline-default' => 'Selaimen oletustapa',
+'underline-default' => 'Ulkoasun tai selaimen oletustapa',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Muokkauskentän kirjasintyyppi',
@@ -459,7 +459,7 @@ $messages = array(
 'qbedit' => 'Muokkaa',
 'qbpageoptions' => 'Sivuasetukset',
 'qbpageinfo' => 'Sivun tiedot',
-'qbmyoptions' => 'Asetukset',
+'qbmyoptions' => 'Omat sivut',
 'qbspecialpages' => 'Toimintosivut',
 'faq' => 'Usein kysytyt kysymykset',
 'faqpage' => 'Project:Usein kysytyt kysymykset',
@@ -675,7 +675,7 @@ Joku muu on saattanut poistaa sen.',
 'badtitle' => 'Virheellinen otsikko',
 'badtitletext' => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
 'perfcached' => 'Tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
-'perfcachedts' => 'Tiedot ovat välimuistista ja se päivitettiin viimeksi $1. Välimuistissa on saatavilla enintään {{PLURAL:$4|yksi tulos|$4 tulosta}}.',
+'perfcachedts' => 'Nämä tiedot ovat välimuistista, ja ne on päivitetty viimeksi $1. Välimuistissa on saatavilla enintään {{PLURAL:$4|yksi tulos|$4 tulosta}}.',
 'querypage-no-updates' => 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
 'wrong_wfQuery_params' => 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
 'viewsource' => 'Lähdekoodi',
@@ -883,7 +883,7 @@ Väliaikainen salasana: $2',
 'image_sample' => 'Esimerkki.jpg',
 'image_tip' => 'Tallennettu tiedosto',
 'media_sample' => 'Esimerkki.ogg',
-'media_tip' => 'Mediatiedostolinkki',
+'media_tip' => 'Tiedostolinkki',
 'sig_tip' => 'Allekirjoitus aikamerkinnällä',
 'hr_tip' => 'Vaakasuora viiva',
 
@@ -2176,7 +2176,7 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'linksearch-ok' => 'Etsi',
 'linksearch-text' => 'Tähteä (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
 Vähintään ylätason verkkotunnus, esimerkiksi "*.org", tarvitaan.<br />
-Tuetut protokollat: <code>$1</code> (älä lisää näitä hakuusi).',
+Tuetut protokollat: <code>$1</code> (oletuksena on <code>http://</code>, jos protokollaa ei määritetä).',
 'linksearch-line' => '$1 on linkitetty sivulta $2',
 'linksearch-error' => 'Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.',
 
@@ -2225,7 +2225,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailuser-title-target' => 'Lähetä sähköpostia tälle {{GENDER:$1|käyttäjälle}}',
 'emailuser-title-notarget' => 'Lähetä sähköpostia käyttäjälle',
 'emailpage' => 'Lähetä sähköpostia käyttäjälle',
-'emailpagetext' => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
+'emailpagetext' => 'Jos tämä {{GENDER:$1|käyttäjä}} on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror' => 'Postitus palautti virheen:',
 'defemailsubject' => 'Sähköpostia käyttäjältä $1 sivustolta {{SITENAME}}',
 'usermaildisabled' => 'Käyttäjien sähköposti poistettu käytöstä',
@@ -2281,7 +2281,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchlistcontains' => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
 'iteminvalidname' => 'Sivun $1 kanssa oli ongelmia! Sivun nimessä on vikaa.',
 'wlnote' => "Alla on {{PLURAL:$1|yksi muutos|'''$1''' muutosta}} viimeisen {{PLURAL:$2|tunnin|'''$2''' tunnin}} ajalta $3 kello $4 asti.",
-'wlshowlast' => 'Näytä viimeiset $1 tuntia tai $2 päivää$3',
+'wlshowlast' => 'Näytä viimeiset $1 tuntia tai $2 päivää, $3',
 'watchlist-options' => 'Tarkkailulistan asetukset',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -3552,7 +3552,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'edit-externally-help' => '(Katso [//www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => ', koko historia',
+'watchlistall2' => 'koko historia',
 'namespacesall' => 'kaikki',
 'monthsall' => 'kaikki',
 'limitall' => 'kaikki',
@@ -3871,8 +3871,8 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'logentry-move-move_redir-noredirect' => '$1 siirsi sivun $3 ohjauksen $4 päälle luomatta ohjausta',
 'logentry-patrol-patrol' => '$1 merkitsi sivun $3 muutoksen $4 tarkastetuksi',
 'logentry-patrol-patrol-auto' => '$1 merkitsi automaattisesti sivun $3 muutoksen $4 tarkastetuksi',
-'logentry-newusers-newusers' => '$1 loi käyttäjätunnuksen',
-'logentry-newusers-create' => '$1 loi käyttäjätunnuksen',
+'logentry-newusers-newusers' => 'Käyttäjätunnus $1 luotiin',
+'logentry-newusers-create' => 'Käyttäjätunnus $1 luotiin',
 'logentry-newusers-create2' => '$1 loi käyttäjätunnuksen $3',
 'logentry-newusers-autocreate' => 'Käyttäjätunnus $1 luotiin automaattisesti',
 'newuserlog-byemail' => 'salasana lähetetty sähköpostitse',

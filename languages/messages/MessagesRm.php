@@ -176,7 +176,7 @@ $messages = array(
 'cancel' => 'refusar las midadas',
 'moredotdotdot' => 'Dapli...',
 'mypage' => 'mia pagina',
-'mytalk' => 'Mia pagina da discussiun',
+'mytalk' => 'discussiun',
 'anontalk' => 'Pagina da discussiun da questa IP',
 'navigation' => 'Navigaziun',
 'and' => '&#32;e',
@@ -471,7 +471,7 @@ Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].'
 'userlogin' => "T'annunziar / registrar",
 'userloginnocreate' => "T'annunziar",
 'logout' => 'Sortir',
-'userlogout' => 'Sortir',
+'userlogout' => 'sortir',
 'notloggedin' => "Betg s'annunzià",
 'nologin' => "Anc nagin conto? '''$1'''.",
 'nologinlink' => "Crear in conto d'utilisader",
@@ -1105,7 +1105,7 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 
 # Preferences page
 'preferences' => 'Preferenzas',
-'mypreferences' => 'Mias preferenzas',
+'mypreferences' => 'preferenzas',
 'prefs-edits' => 'Dumber da las modificaziuns:',
 'prefsnologin' => "Betg t'annunzià",
 'prefsnologintext' => 'Ti stos esser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} t\'annunzià]</span> per midar tias preferenzas.',
@@ -1908,8 +1908,8 @@ L'adressa dad e-mail che ti has endatà en [[Special:Preferences|tias preferenza
 'usermessage-editor' => 'Messenger dal sistem',
 
 # Watchlist
-'watchlist' => "Mia glista d'observaziun",
-'mywatchlist' => "Mia glista d'observaziun",
+'watchlist' => "glista d'observaziun",
+'mywatchlist' => "glista d'observaziun",
 'watchlistfor2' => 'Per $1 $2',
 'nowatchlist' => "Ti n'has nagins elements sin tia glista d'observaziun.",
 'watchlistanontext' => "Ti stos $1 per vesair u modifitgar elements sin tia glista d'observaziun",
@@ -2118,7 +2118,7 @@ Sch'ina nova pagina cun il medem num è vegnida creada dapi che la pagina è veg
 # Contributions
 'contributions' => "Contribuziuns da l'utilisader",
 'contributions-title' => "Contribuziuns d'utilisader da $1",
-'mycontris' => 'Mias contribuziuns',
+'mycontris' => 'contribuziuns',
 'contribsub2' => 'Per $1 ($2)',
 'nocontribs' => 'Chattà naginas modificaziuns che correspundan a quests criteris.',
 'uctop' => '(actual)',

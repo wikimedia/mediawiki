@@ -9,6 +9,7 @@
  *
  * @author Freeyak
  * @author Jason (on bo.wikipedia.org)
+ * @author YeshiTuhden
  */
 
 $digitTransformTable = array(
@@ -231,6 +232,7 @@ $messages = array(
 'disclaimerpage' => 'Project:སྤྱིའི་དགག་བྱ།',
 'edithelp' => 'རྩོམ་སྒྲིག་རོགས་རམ།',
 'edithelppage' => 'Help:རྩོམ་སྒྲིག',
+'helppage' => 'Help:ནང་དོན་',
 'mainpage' => 'གཙོ་ངོས།',
 'mainpage-description' => 'གཙོ་ངོས།',
 'policy-url' => 'Project: སྒྲིག་གཞི།',
@@ -396,6 +398,8 @@ $messages = array(
 'templatesused' => 'ཤོག་ངོས་འདིར་སྤྱད་པའི་ {{PLURAL:$1|དཔེ་པང་།|དཔེ་པང་།}}',
 'template-protected' => 'སྲུང་སྐྱོབ་འོག་ཡོད་པ།',
 'nocreate-loggedin' => 'ཤོག་ངོས་གསར་བཟོའི་ཆོག་མཆན་མི་འདུག',
+'recreate-moveddeleted-warn' => "'''ཉེན་བརྡ་:རང་གིས་སུབ་ཚར་བའི་ཤོག་ལེ་ཞིག་བསྐྱར་བཟོ་བྱེད་ཀྱི་འདུག་ '''
+ཁྱེད་རང་གལ་སྲིད་མུ་མཐུད་ཤོག་ལེ་འདི་བཟོ་ཅོས་བྱེད་འདོད་ན་སྟབས་བདེ་ཞིག་ལ་ང་ཚོས་སུབ་བཟིན་པའི་ཤོག་ལེ་འདིར་ཉར་ཡོད།",
 
 # History pages
 'viewpagelogs' => 'ཤོག་ངོས་འདིའི་ཉིན་ཐོ་ལ་ལྟ་བ།',
@@ -446,9 +450,14 @@ $messages = array(
 'nextn' => 'རྗེས་མ་{{PLURAL:$1|$1}}',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3)ལ་ལྟ་བ།',
 'searchmenu-legend' => 'འཚོལ་ཞིབ་འདེམས་ཚན།',
+'searchmenu-new' => 'ལྦེ་ཁེ་སྟེང་ལ་ཤོག་ལེ་ [[:$1]]བཟོས།',
+'searchprofile-project' => 'རོགས་རམ་དང་འཆར་གཞིའི་ཤོག་ངོས་',
+'searchprofile-everything' => 'ཚང་མ་',
+'searchprofile-advanced' => 'མཐོ་རིམ་',
 'searchprofile-articles-tooltip' => '$1ནང་དུ་འཚོལ་བ།',
 'searchprofile-project-tooltip' => '$1ནང་དུ་འཚོལ་བ།',
 'searchprofile-images-tooltip' => 'ཡིག་ཆ་འཚོལ་བ།',
+'searchprofile-everything-tooltip' => 'བརྗོད་དོན་ཚང་མ་འཚོལ་གཞིབ་བྱེད་(གྲོས་མེས་ཤོག་ངོས་ཡང་འཚུད་པ་)',
 'search-result-size' => '$1({{PLURAL:$2|1 word|$2 words}})',
 'search-redirect' => '($1རིམ་འགྲེམ།)',
 'search-section' => '(ཚན་པ $1)',
@@ -458,6 +467,7 @@ $messages = array(
 'search-interwiki-more' => '（དེ་ལས་མང་བ།）',
 'search-relatedarticle' => 'འབྲེལ་ཡོད།',
 'searchall' => 'ཚང་མ།',
+'search-nonefound' => 'ཁྱེད་ཀྱི་འདྲི་ཞིབ་དང་མཐུན་པའི་ལན་མི་འདུག་',
 'powersearch' => 'ཞིབ་ཏུ་འཚོལ་བ།',
 'powersearch-legend' => 'ཞིབ་ཏུ་འཚོལ་བ།',
 'powersearch-ns' => 'མིང་གནས་ནང་འཚོལ་བ།',
@@ -732,6 +742,7 @@ $messages = array(
 
 # Undelete
 'undeletelink' => 'ལྟ་བ། / བསྐྱར་འདྲེན།',
+'undeleteviewlink' => 'ལྟ་བ་',
 'undelete-search-submit' => 'འཚོལ།',
 
 # Namespace form on various pages
@@ -785,6 +796,7 @@ $messages = array(
 
 # Namespace 8 related
 'allmessages' => 'མ་ལག་གི་སྐད་ཆ།',
+'allmessagesname' => 'མིང་',
 
 # Thumbnails
 'thumbnail-more' => 'ཆེ་རུ་གཏོང་བ།',
@@ -839,6 +851,7 @@ $messages = array(
 'tooltip-save' => 'བཟོ་བཅོས་ཉར་ཚགས་བྱོས།',
 'tooltip-preview' => 'ཉར་ཚགས་ཀྱི་སྔོན་དུ་བཟོ་བཅོས་ལ་བསྐྱར་ཞིབ་གནང་རོགས།',
 'tooltip-diff' => 'གང་ལ་བཟོ་བཅོས་བྱས་པའི་ཡིག་འབྲུ་སྟོན་པ།',
+'tooltip-summary' => 'ཕྱོགས་བསྡོམས་ཐུང་ངུ་ཞིག་འབྲིས་',
 
 # Browsing diffs
 'previousdiff' => '← རྩོམ་སྒྲིག་རྙིང་བ།',

@@ -14,6 +14,7 @@
  * @author O.bangash
  * @author Rachitrali
  * @author Reedy
+ * @author Tahir mq
  * @author Wisesabre
  * @author ZxxZxxZ
  * @author לערי ריינהארט
@@ -195,6 +196,7 @@ $messages = array(
 'vector-action-delete' => 'حذف کرو',
 'vector-action-move' => 'منتقل کرو',
 'vector-action-protect' => 'محفوظ کرو',
+'vector-action-undelete' => 'بحال',
 'vector-action-unprotect' => 'تحفظ میں تبدیلی',
 'vector-view-create' => 'تخلیق',
 'vector-view-edit' => 'ترمیم',
@@ -215,6 +217,7 @@ $messages = array(
 'searcharticle' => 'چلو',
 'history' => 'تاریخچہ ء صفحہ',
 'history_short' => 'تاریخچہ',
+'updatedmarker' => 'میری آخری آمد تک جدید',
 'printableversion' => 'قابل طبع نسخہ',
 'permalink' => 'مستقل کڑی',
 'print' => 'طباعت',
@@ -263,6 +266,7 @@ $messages = array(
 برائے مہربانی! صفحہ دیکھنے کیلئے دوبارہ کوشش کرنے سے پہلے ذرا انتظار فرمالیجئے.
 
 $1',
+'pool-errorunknown' => 'نامعلوم خطا',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'کا تعارف {{SITENAME}}',
@@ -300,6 +304,7 @@ $1',
 'youhavenewmessages' => 'آپکے لیۓ ایک $1 ہے۔ ($2)',
 'newmessageslink' => 'نئے پیغامات',
 'newmessagesdifflink' => 'تـجـدیـد مـاقـبل آخـر سے فـرق',
+'newmessagesdifflinkplural' => 'آخری {{PLURAL:$1|تبدیلی|تبدیلیاں}}',
 'youhavenewmessagesmulti' => 'ء$1 پر آپ کیلئے نئے پیغامات ہیں',
 'editsection' => 'ترمیم',
 'editsection-brackets' => '[$1]',
@@ -311,6 +316,7 @@ $1',
 'toc' => 'فہرست',
 'showtoc' => 'دکھائیں',
 'hidetoc' => 'چھپائیں',
+'collapsible-expand' => 'توسیع',
 'thisisdeleted' => 'دیکھیں یا بحال کریں $1؟',
 'viewdeleted' => 'دیکھیں $1؟',
 'restorelink' => '{{PLURAL:$1|ایک ترمیم حذف ہوچکی|$1 ترامیم حذف ہوچکیں}}',
@@ -324,6 +330,8 @@ $1',
 'feed-atom' => 'اٹوم',
 'feed-rss' => 'آر ایس ایس',
 'red-link-title' => '$1 (صفحہ موجود نہیں)',
+'sort-descending' => 'ترتیب نزولی',
+'sort-ascending' => 'ترتیب صعودی',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'صفحہ',
@@ -389,6 +397,7 @@ Warning: Page may not contain recent updates.',
 'badarticleerror' => 'اس صفحہ پر یہ عمل انجام نہیں دیا جاسکتا۔',
 'cannotdelete' => 'صفحہ یا ملف $1 کو حذف نہیں کیا جاسکتا.
 ہوسکتا ہے کہ اسے پہلے ہی کسی نے حذف کردیا ہو.',
+'cannotdelete-title' => 'صفحہ ھذف نہیں کیا جا سکتا "$1"',
 'badtitle' => 'خراب عنوان',
 'badtitletext' => 'درخواست شدہ صفحہ کا عنوان ناقص، خالی، یا کوئی غلط ربط شدہ بین لسانی یا بین ویکی عنوان ہے.
 شاید اِس میں ایک یا زیادہ ایسے حروف موجود ہوں جو عنوانات میں استعمال نہیں ہوسکتے.',
@@ -409,6 +418,7 @@ Warning: Page may not contain recent updates.',
 'ns-specialprotected' => 'خاص صفحات کی تدوین نہیں کی جاسکتی.',
 'titleprotected' => 'اس عنوان کو [[User:$1|$1]] نے تخلیق سے محفوظ کیا ہے.
 وجہ یہ بتائی گئی ہے: "\'\'$2\'\'"',
+'exception-nologin' => 'غیر داخل نوشتہ',
 
 # Virus scanner
 'virus-badscanner' => "خراب وضعیت: انجان وائرسی مفراس: ''$1''",
@@ -426,6 +436,7 @@ Warning: Page may not contain recent updates.',
 'yourpasswordagain' => 'کلمۂ شناخت دوبارہ لکھیں',
 'remembermypassword' => 'اِس متصفح پر میرے داخلِ نوشتگی معلومات یاد رکھو (زیادہ سے زیادہ $1 {{PLURAL:$1|دِن|ایام}} کیلئے)',
 'yourdomainname' => 'آپکا ڈومین',
+'password-change-forbidden' => 'آپ اس ویکی پر پارلفظ (پاس روڈ) تبدیل نہیں کر سکتے',
 'externaldberror' => 'یا تو توثیقی ڈیٹابیس میں خطا واقع ہوئی اور یا آپ کو بیرونی کھاتہ بتاریخ کرنے کی اِجازت نہیں ہے.',
 'login' => 'داخل ہوں',
 'nav-login-createaccount' => 'کھاتہ کھولیں یا اندراج کریں',
@@ -511,6 +522,9 @@ Warning: Page may not contain recent updates.',
 دوبارہ کوشش کرنے سے پہلے انتظار فرمائیے.',
 'loginlanguagelabel' => 'زبان: $1',
 
+# E-mail sending
+'user-mail-no-addy' => 'برقی ڈاک بھیجنے کی کوشش بغیر برقی ڈاک پتہ',
+
 # Change password dialog
 'resetpass' => 'پارلفظ تبدیل کریں',
 'resetpass_announce' => 'آپ ایک برقی ارسال کردہ عارضی رمز کے ساتھ داخل ہوئے ہیں.
@@ -533,6 +547,15 @@ Warning: Page may not contain recent updates.',
 # Special:PasswordReset
 'passwordreset' => 'پارلفظ کی بازتعینی',
 'passwordreset-username' => 'اسمِ صارف:',
+'passwordreset-domain' => 'ساحہ:',
+'passwordreset-email' => 'برقی ڈاک پتہ:',
+
+# Special:ChangeEmail
+'changeemail-oldemail' => 'حالیہ برقی ڈاک پتہ:',
+'changeemail-newemail' => 'نیا برقی ڈاک پتہ:',
+'changeemail-none' => '(کوئی نہیں)',
+'changeemail-submit' => 'برقی ڈاک تبدیل کریں',
+'changeemail-cancel' => 'منسوخ',
 
 # Edit page toolbar
 'bold_sample' => 'دبیز متن',
@@ -606,7 +629,7 @@ $1 نے پابندی لگائی تھی.
 'noarticletext' => 'اِس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
 آپ دیگں صفحات میں [[Special:Search/{{PAGENAME}}|اِس صفحہ کے عنوان کیلئے تلاش کرسکتے ہیں]]، <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} متعلقہ نوشتہ جات تلاش کرسکتے ہیں],
 یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اِس صفحہ میں ترمیم کرسکتے ہیں]</span>',
-'noarticletext-nopermission' => 'اِس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
+'noarticletext-nopermission' => 'اس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
 آپ دیگں صفحات میں [[Special:Search/{{PAGENAME}}|اِس صفحہ کے عنوان کیلئے]] یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} متعلقہ نوشتہ جات تلاش کرسکتے ہیں]</span>',
 'updated' => '(اپ ڈیٹڈ)',
 'note' => "'''نوٹ:'''",
@@ -625,6 +648,7 @@ $1 نے پابندی لگائی تھی.
 \"محفوظ\" کا بٹن ٹک کرنے سے '''صرف''' بالائی متن محفوظ ہوگا.",
 'yourtext' => 'آپ کی تحریر',
 'storedversion' => 'ذخیرہ شدہ نظرثانی',
+'nonunicodebrowser' => '"انتباہ: آپ کا براؤزر یونی کوڈ کے مطابق نہیں ہے."',
 'editingold' => "'''انتباہ: آپ اس صفحے کا ایک پرانا مسودہ مرتب کررہے ہیں۔ اگر آپ اسے محفوظ کرتے ہیں تو اس صفحے کے اس پرانے مسودے سے اب تک کی جانے والی تمام تدوین ضائع ہو جاۓ گی۔'''",
 'yourdiff' => 'تضادات',
 'copyrightwarning' => "یہ یادآوری کرلیجیۓ کہ {{SITENAME}} میں تمام تحریری شراکت جی این یو آزاد مسوداتی اجازہ ($2)کے تحت تصور کی جاتی ہے (مزید تفصیل کیلیۓ $1 دیکھیۓ)۔ اگر آپ اس بات سے متفق نہیں کہ آپکی تحریر میں ترمیمات کری جائیں اور اسے آزادانہ (جیسے ضرورت ہو) استعمال کیا جاۓ تو براۓ کرم اپنی تصانیف یہاں داخل نہ کیجیۓ۔ اگر آپ یہاں اپنی تحریر جمع کراتے ہیں تو آپ اس بات کا بھی اقرار کر رہے ہیں کہ، اسے آپ نے خود تصنیف کیا ہے یا دائرہ ءعام (پبلک ڈومین) سے حاصل کیا ہے یا اس جیسے کسی اور آذاد وسیلہ سے۔'''بلااجازت ایسا کام داخل نہ کیجیۓ جسکا حق ِطبع و نشر محفوظ ہو!'''",
@@ -749,6 +773,7 @@ $1",
 
 # Diffs
 'history-title' => '"$1" کا نظرثانی تاریخچہ',
+'difference-multipage' => '(فرق مابین صفحات)',
 'lineno' => 'لکیر $1:',
 'compareselectedversions' => 'منتخب متـن کا موازنہ',
 'editundo' => 'استرجع',
@@ -802,6 +827,7 @@ $1",
 'powersearch-ns' => 'جائے نام میں تلاش:',
 'powersearch-redir' => 'فہرستِ رجوع مکرر',
 'powersearch-field' => 'تلاش برائے',
+'powersearch-togglelabel' => 'جانچ',
 'powersearch-toggleall' => 'تمام',
 'powersearch-togglenone' => 'کوئی نہیں',
 'search-external' => 'بیرونی تلاش',
@@ -824,6 +850,7 @@ $1",
 'skin-preview' => 'پیش منظر',
 'datedefault' => 'کوئی ترجیحات نہیں',
 'prefs-datetime' => 'تاریخ و وقت',
+'prefs-user-pages' => 'صارف صفحات',
 'prefs-personal' => 'نمایۂ صارف',
 'prefs-rc' => 'حالیہ تبدیلیاں',
 'prefs-watchlist' => 'زیرِنظر فہرست',
@@ -843,6 +870,7 @@ $1",
 'rows' => 'صفیں:',
 'columns' => 'قطاریں:',
 'searchresultshead' => 'تلاش',
+'stub-threshold-disabled' => 'غیر فعال',
 'recentchangesdays' => 'حالیہ تبدیلیوں میں دکھائی جانے والے ایّام:',
 'recentchangesdays-max' => '(زیادہ سے زیادہ $1 {{PLURAL:$1|دن|ایام}})',
 'recentchangescount' => 'دکھائی جانے والی ترامیم کی تعداد:',
@@ -898,6 +926,11 @@ HTML tags جانچئے.',
 'prefs-i18n' => 'بین الاقوامیت',
 'prefs-signature' => 'دستخط',
 'prefs-dateformat' => 'شکلبندِ تاریخ',
+'prefs-advancedediting' => 'اعلی اختیارات',
+'prefs-advancedrc' => 'اعلی اختیارات',
+'prefs-advancedrendering' => 'اعلی اختیارات',
+'prefs-advancedsearchoptions' => 'اعلی اختیارات',
+'prefs-advancedwatchlist' => 'اعلی اختیارات',
 'prefs-diffs' => 'فروق',
 
 # User rights
@@ -940,6 +973,11 @@ HTML tags جانچئے.',
 'grouppage-autoconfirmed' => '{{ns:project}}:خود توثیق شدہ صارف',
 'grouppage-bot' => '{{ns:project}}:روبہ جات',
 'grouppage-sysop' => '{{ns:project}}:منتظمین',
+
+# Rights
+'right-upload' => 'ملفات زبراثقال (اپ لوڈ) کریں',
+'right-delete' => 'صفحات حذف کریں',
+'right-sendemail' => 'دیگر صارفین کو برقی ڈاک بھیجیں',
 
 # User rights log
 'rightslog' => 'نوشتہ صارفی اختیارات',
@@ -1267,7 +1305,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'whatlinkshere-hideredirs' => 'رجوع مکررات $1',
 'whatlinkshere-hidetrans' => 'تضمینات',
 'whatlinkshere-hidelinks' => 'روابط $1',
-'whatlinkshere-hideimages' => 'روابطِ تصویر $1',
+'whatlinkshere-hideimages' => 'روابطِ تصاویر $1',
 'whatlinkshere-filters' => 'فلٹرذ',
 
 # Block/unblock

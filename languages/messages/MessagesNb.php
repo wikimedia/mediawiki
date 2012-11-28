@@ -33,6 +33,7 @@
  * @author Nghtwlkr
  * @author Njardarlogar
  * @author Nsaa
+ * @author Pladask
  * @author Purodha
  * @author Qaqqalik
  * @author Samuelsen
@@ -40,6 +41,7 @@
  * @author Sjurhamre
  * @author Stigmj
  * @author Teak
+ * @author Wouterkoch
  * @author לערי ריינהארט
  */
 
@@ -363,7 +365,7 @@ $messages = array(
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldri',
-'underline-default' => 'Bruk nettleserstandard',
+'underline-default' => 'Nettleserens standardinnstillinger',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Skrifttype i redigeringsboksen:',
@@ -448,7 +450,7 @@ $messages = array(
 'newwindow' => '(åpnes i et nytt vindu)',
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Mer …',
-'mypage' => 'Min side',
+'mypage' => 'Min brukerside',
 'mytalk' => 'Min diskusjonsside',
 'anontalk' => 'Brukerdiskusjon for denne IP-adressen',
 'navigation' => 'Navigasjon',
@@ -1010,7 +1012,7 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 'note' => "'''Merk:'''",
 'previewnote' => "'''Husk at dette bare er en forhåndsvisning.'''
 Endringene dine har ikke blitt lagret ennå!",
-'continue-editing' => 'Fortsett med redigeringen',
+'continue-editing' => 'Gå til redigeringsfeltet',
 'previewconflict' => 'Slik vil teksten i redigeringsvinduet se ut dersom du lagrer den.',
 'session_fail_preview' => "'''Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.'''
 Prøv igjen.
@@ -1760,7 +1762,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'fileexists' => 'Ei fil med dette navnet finnes allerede.
 Sjekk <strong>[[:$1]]</strong> hvis du ikke er sikker på at du vil forandre den.
 [[$1|thumb]]',
-'filepageexists' => 'Beskrivelsessiden for denne filen finnes allerede på <strong>[[:$1]]</strong>, men ingen filer med dette navnet finnes. Sammendraget du skruver inn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å da lastet opp filen.
+'filepageexists' => 'Beskrivelsessiden for denne filen finnes allerede på <strong>[[:$1]]</strong>, men ingen filer med dette navnet finnes. Sammendraget du skriver inn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å ha lastet opp filen.
 [[$1|thumb]]',
 'fileexists-extension' => 'En fil med et lignende navn finnes: [[$2|thumb]]
 * Navnet på din fil: <strong>[[:$1]]</strong>
@@ -2228,7 +2230,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-pat' => 'Søkemønster:',
 'linksearch-ns' => 'Navnerom:',
 'linksearch-ok' => 'Søk',
-'linksearch-text' => 'Jokertegn som «*.wikipedia.org» kan brukes.
+'linksearch-text' => 'Jokertegn slik som i «*.wikipedia.org» kan brukes.
 Det kreves at det oppgis minst et toppnivådomene, for eksempel «*.org».<br />
 Støttede protokoller: <code>$1</code> (ikke legg til noen av disse i søket ditt).',
 'linksearch-line' => '$1 lenkes fra $2',
@@ -2279,8 +2281,8 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'emailuser-title-target' => 'Send epost til denne {{GENDER:$1|brukeren}}',
 'emailuser-title-notarget' => 'E-post til bruker',
 'emailpage' => 'E-post til bruker',
-'emailpagetext' => 'Du kan bruke skjemaet nedenfor for å sende en e-post til denne brukeren.
-Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
+'emailpagetext' => 'Du kan bruke skjemaet under for å sende en e-post til denne {{GENDER:$1|brukeren}}.
+E-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil vises i «Fra»-feltet i e-posten, slik at mottakeren kan svare deg direkte.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
 'defemailsubject' => 'E-post fra {{SITENAME}}-brukeren «$1»',
 'usermaildisabled' => 'Brukerepost deaktivert',
@@ -2561,7 +2563,7 @@ $1',
 # Contributions
 'contributions' => 'Brukerbidrag',
 'contributions-title' => 'Brukerbidrag av $1',
-'mycontris' => 'Mine bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ingen endringer er funnet som passer disse kriteriene.',
 'uctop' => '(siste)',
@@ -3081,7 +3083,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-not-current' => 'Informasjonen vises kanskje bare for den gjeldende revisjonen.',
+'pageinfo-not-current' => 'Beklager, det er ikke mulig å vise denne informasjonen for gamle revisjoner.',
 'pageinfo-header-basic' => 'Grunnleggende informasjon',
 'pageinfo-header-edits' => 'Redigeringshistorikk',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',

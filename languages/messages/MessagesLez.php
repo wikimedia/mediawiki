@@ -421,9 +421,9 @@ $messages = array(
 Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз,
 <span class="plainlinks"> [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз],
 ва я [{{fullurl:{{FULLPAGENAME}}|action=edit}} и тlвар алай ччин туькIуьриз жеда] </span>.',
-'noarticletext-nopermission' => 'Iseatda china kxhin avach.
-Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra jaghuriz ak\'ni
-<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} jurnalrin taluq\' tir kxhey zathar jaghuriz] jeda.',
+'noarticletext-nopermission' => 'Исятда и  ччина са текстни авач.
+Квевай [[Special:Search/{{PAGENAME}}| и тӀвар алай ччин]] муькуь ччинра жугъуриз ва я
+<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затӀар жугъуриз] жеда.',
 'blocked-notice-logextract' => 'И уртах алайчIава блокарнава.
 Агъадихъ блокарунин журналдикай эхиримжи кхьинар къалурнава:',
 'previewnote' => "'''Рикlел хуьх хьи, им анжах сифтедин килигун я.'''  
@@ -1056,7 +1056,7 @@ Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra j
 'whatlinkshere-hideredirs' => '$1 рахкъурунар',
 'whatlinkshere-hidetrans' => '$1 кутунар',
 'whatlinkshere-hidelinks' => '$1 элячlунар',
-'whatlinkshere-hideimages' => '$1 шикилриз элячIунар',
+'whatlinkshere-hideimages' => '$1 шикилриз элячӀунар',
 'whatlinkshere-filters' => 'Куьзунагар',
 
 # Block/unblock

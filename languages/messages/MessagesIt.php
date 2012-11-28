@@ -19,6 +19,7 @@
  * @author Brownout
  * @author Candalua
  * @author Civvì
+ * @author Codicorumus
  * @author Cruccone
  * @author Cryptex
  * @author Dakrismeno
@@ -316,7 +317,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
-'underline-default' => 'Mantieni le impostazioni del browser',
+'underline-default' => 'Mantieni le impostazioni del browser o della skin',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stile del carattere nella casella di modifica:',
@@ -401,8 +402,8 @@ $messages = array(
 'newwindow' => '(si apre in una nuova finestra)',
 'cancel' => 'Annulla',
 'moredotdotdot' => 'Altro...',
-'mypage' => 'La mia pagina',
-'mytalk' => 'mie discussioni',
+'mypage' => 'Pagina',
+'mytalk' => 'discussioni',
 'anontalk' => 'Discussioni per questo IP',
 'navigation' => 'Navigazione',
 'and' => '&#32;e',
@@ -1094,7 +1095,7 @@ Legenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:las
 'rev-deleted-text-permission' => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.",
 'rev-deleted-text-unhide' => "Questa versione della pagina è stata '''cancellata'''.
-Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.
+Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.
 Agli amministratori è ancora consentito [$1 visualizzare questa versione] se necessario.",
 'rev-suppressed-text-unhide' => "Questa versione della pagina è stata '''rimossa'''.
 Consultare il [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} log di rimozione] per ulteriori dettagli.
@@ -2145,7 +2146,7 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'linksearch-ok' => 'Cerca',
 'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".<br />
 È necessario almeno un dominio di primo livello, ad esempio "*.org".<br />
-Protocolli supportati: <code>$1</code> (non aggiungere nessuno di questi nella tua ricerca).',
+Protocolli supportati: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).',
 'linksearch-line' => '$1 presente nella pagina $2',
 'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 
@@ -2194,7 +2195,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'emailuser-title-target' => 'Invia una e-mail a questo {{GENDER:$1|utente}}',
 'emailuser-title-notarget' => 'Invia una e-mail a un utente',
 'emailpage' => "Invia un messaggio e-mail all'utente",
-'emailpagetext' => 'Usare il modulo sottostante per inviare un messaggio e-mail all\'utente indicato. L\'indirizzo specificato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
+'emailpagetext' => 'Usare il modulo sottostante per inviare un messaggio e-mail all\'{{GENDER:$1|utente}} indicato. L\'indirizzo specificato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
 'usermailererror' => "L'oggetto mail ha restituito l'errore:",
 'defemailsubject' => 'Messaggio da {{SITENAME}} dall\'utente "$1"',
 'usermaildisabled' => 'e-mail utente disabilitata',
@@ -2475,7 +2476,7 @@ $1',
 # Contributions
 'contributions' => 'Contributi utente',
 'contributions-title' => 'Contributi di $1',
-'mycontris' => 'miei contributi',
+'mycontris' => 'contributi',
 'contribsub2' => 'Per $1 ($2)',
 'nocontribs' => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
 'uctop' => '(ultima per la pagina)',
@@ -2514,7 +2515,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 redirect',
 'whatlinkshere-hidetrans' => '$1 inclusioni',
 'whatlinkshere-hidelinks' => '$1 link',
-'whatlinkshere-hideimages' => '$1 link da immagini',
+'whatlinkshere-hideimages' => '$1 link da file',
 'whatlinkshere-filters' => 'Filtri',
 
 # Block/unblock
@@ -2993,7 +2994,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Info page
 'pageinfo-title' => 'Informazioni per "$1"',
-'pageinfo-not-current' => 'Le informazioni possono essere visualizzate solo per la versione corrente.',
+'pageinfo-not-current' => "Spiacente, ma è impossibile fornire quest'informazione per vecchie versioni.",
 'pageinfo-header-basic' => 'Informazioni di base',
 'pageinfo-header-edits' => 'Cronologia delle modifiche',
 'pageinfo-header-restrictions' => 'Protezione della pagina',
@@ -3006,7 +3007,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-robot-index' => 'Indicizzabile',
 'pageinfo-robot-noindex' => 'Non indicizzabile',
 'pageinfo-views' => 'Numero di visualizzazioni',
-'pageinfo-watchers' => 'Numero di utenti che hanno la pagina nei loro Osservati Speciali',
+'pageinfo-watchers' => 'Numero di utenti che hanno la pagina nei loro osservati speciali',
 'pageinfo-redirects-name' => 'Redirect a questa pagina',
 'pageinfo-subpages-name' => 'Sottopagine di questa pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirect}}; $3 {{PLURAL:$3|non redirect}})',
@@ -3857,9 +3858,9 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-move-move_redir-noredirect' => '$1 ha spostato la pagina $3 a $4 al posto di un redirect senza lasciare redirect',
 'logentry-patrol-patrol' => '$1 ha segnato la versione $4 della pagina $3 come verificata',
 'logentry-patrol-patrol-auto' => '$1 ha segnato automaticamente la versione $4 della pagina $3 come verificata',
-'logentry-newusers-newusers' => "$1 ha creato un'utenza",
-'logentry-newusers-create' => "$1 ha creato un'utenza",
-'logentry-newusers-create2' => "$1 ha creato un'utenza $3",
+'logentry-newusers-newusers' => "L'account utente $1 è stato creato",
+'logentry-newusers-create' => "L'account utente $1 è stato creato",
+'logentry-newusers-create2' => "L'account utente $3 è stato creato da $1",
 'logentry-newusers-autocreate' => "L'utenza $1 è stata creata automaticamente",
 'newuserlog-byemail' => 'password inviata via mail',
 

@@ -207,7 +207,7 @@ $messages = array(
 
 'underline-always' => 'pśecej',
 'underline-never' => 'žednje',
-'underline-default' => 'pó standarźe browsera',
+'underline-default' => 'Standard drastwy abo wobglědowaka',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Pismowy stil wobźěłowańskego póla:',
@@ -292,8 +292,8 @@ $messages = array(
 'newwindow' => '(se wótcynijo w nowem woknje)',
 'cancel' => 'Pśetergnuś',
 'moredotdotdot' => 'Wěcej…',
-'mypage' => 'Mój bok',
-'mytalk' => 'mója diskusija',
+'mypage' => 'Bok',
+'mytalk' => 'Diskusija',
 'anontalk' => 'Diskusija z toś teju IP',
 'navigation' => 'Nawigacija',
 'and' => '&#32;a',
@@ -1183,7 +1183,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 
 # Preferences page
 'preferences' => 'Nastajenja',
-'mypreferences' => 'nastajenja',
+'mypreferences' => 'Nastajenja',
 'prefs-edits' => 'Licba wobźěłanjow:',
 'prefsnologin' => 'Njejsy pśizjawjony',
 'prefsnologintext' => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
@@ -2029,7 +2029,7 @@ Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'linksearch-ok' => 'Pytaś',
 'linksearch-text' => 'Jo móžno zastupne znamuška kaž "*.wikipedia.org" wužywaś. 
 Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
-Pódpěrane protokole: <code>$1</code> (pšosym njepódaj je w swójom pytanju).',
+Pódpěrane protokole: <code>$1</code> (standard jo http://, jolic žeden protokol njejo pódany).',
 'linksearch-line' => '$1 wótkazany z $2',
 'linksearch-error' => 'Zasupne znamješko daju se jano na zachopjeńku URL wužywaś.',
 
@@ -2077,7 +2077,7 @@ Pódpěrane protokole: <code>$1</code> (pšosym njepódaj je w swójom pytanju).
 'emailuser-title-target' => 'E-mail na {{GENDER:$1|toś tomu wužywarjeju|toś tej wužywarce}} pósłaś',
 'emailuser-title-notarget' => 'E-mail wužywarjeju',
 'emailpage' => 'E-mail wužywarjeju',
-'emailpagetext' => 'Móžoš slědujucy formular wužywaś, aby toś tomu wužywarjeju e-mail pósłał.
+'emailpagetext' => 'Móžoš slědujucy formular wužywaś, aby toś tomu {{GENDER:$1|wužywarjeju}} e-mail pósłał.
 E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužywarskich nastajenjach]], zjawi se ako adresa w pólu "Wót" e-maile, aby dostawaŕ móžo śi direktnje wótegroniś.',
 'usermailererror' => 'E-mailowy objekt jo zmólku wrośił.',
 'defemailsubject' => '{{SITENAME}} - e-mail wót wužywarja "$1"',
@@ -2109,7 +2109,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 
 # Watchlist
 'watchlist' => 'Wobglědowańka',
-'mywatchlist' => 'wobglědowańka',
+'mywatchlist' => 'Wobglědowańka',
 'watchlistfor2' => 'Za wužywarja $1 $2',
 'nowatchlist' => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext' => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
@@ -2357,7 +2357,7 @@ $1',
 # Contributions
 'contributions' => 'Wužywarske pśinoski',
 'contributions-title' => 'Wužywarske pśinoski wót $1',
-'mycontris' => 'móje pśinoski',
+'mycontris' => 'Pśinoski',
 'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Za toś te kriterije njejsu žedne změny se namakali.',
 'uctop' => '(aktualny)',
@@ -2851,7 +2851,7 @@ W zespominanju dajo se pśicyna pódaś.',
 
 # Info page
 'pageinfo-title' => 'Informacije za bok "$1"',
-'pageinfo-not-current' => 'Informacije daju se jano za aktualnu wersiju zwobrazniś.',
+'pageinfo-not-current' => 'Bóžko njedaju se toś te informacije za stare wersije pódaś.',
 'pageinfo-header-basic' => 'Zakładne informacije',
 'pageinfo-header-edits' => 'Historiju wobźěłaś',
 'pageinfo-header-restrictions' => 'Šćit boka',
@@ -3707,8 +3707,8 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'logentry-move-move_redir-noredirect' => '$1 jo pśesunuł bok $3 do $4 a jo pśepisał dalejpósrědnjenje, mimo až jo napórał dalejpósrědnjenje',
 'logentry-patrol-patrol' => '$1 jo markěrował wersiju $4 boka $3 ako doglědowanu',
 'logentry-patrol-patrol-auto' => '$1 jo awtomatiski markěrował wersiju $4 boka $3 ako doglědowanu',
-'logentry-newusers-newusers' => '$1 jo załožył wužywarske konto',
-'logentry-newusers-create' => '$1 jo załožył wužywarske konto',
+'logentry-newusers-newusers' => 'Wužywarske konto $1 jo se załožyło',
+'logentry-newusers-create' => 'Wužywarske konto $1 jo se załožyło',
 'logentry-newusers-create2' => '$1 jo załožył wužywarske konto $3',
 'logentry-newusers-autocreate' => 'Konto $1 jo se awtomatiski załožyło',
 'newuserlog-byemail' => 'Pótajne słowo bu pśez e-mail pósłane.',

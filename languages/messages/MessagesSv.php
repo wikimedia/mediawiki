@@ -9,6 +9,7 @@
  *
  * @author Ainali
  * @author Boivie
+ * @author Cybjit
  * @author Dafer45
  * @author Diupwijk
  * @author EPO
@@ -454,7 +455,7 @@ $messages = array(
 'cancel' => 'Avbryt',
 'moredotdotdot' => 'Mer...',
 'mypage' => 'Min sida',
-'mytalk' => 'Min diskussion',
+'mytalk' => 'Diskussion',
 'anontalk' => 'Diskussionssida för denna IP-adress',
 'navigation' => 'Navigering',
 'and' => '&#32;och',
@@ -1376,7 +1377,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Preferences page
 'preferences' => 'Inställningar',
-'mypreferences' => 'Mina inställningar',
+'mypreferences' => 'Inställningar',
 'prefs-edits' => 'Antal redigeringar:',
 'prefsnologin' => 'Inte inloggad',
 'prefsnologintext' => 'Du måste vara <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
@@ -2233,8 +2234,8 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-ns' => 'Namnrymd:',
 'linksearch-ok' => 'Sök',
 'linksearch-text' => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
-Det krävs åtminstone en toppnivå-domän, t.ex. "*.org".<br />
-Protokoll som stöds: <code>$1</code> (lägg inte till något av dessa i din sökning).',
+Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
+Protokoll som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).',
 'linksearch-line' => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 
@@ -2283,7 +2284,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'emailuser-title-target' => 'Skicka e-post till denna {{GENDER:$1|användare}}',
 'emailuser-title-notarget' => 'E-postanvändare',
 'emailpage' => 'Skicka e-post till användare',
-'emailpagetext' => 'Du kan använda det här formuläret för att skicka e-post till den här användaren.
+'emailpagetext' => 'Du kan använda formuläret nedan för att skicka e-post till den här {{GENDER:$1|användaren}}.
 Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post från användare "$1"',
@@ -2315,7 +2316,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 
 # Watchlist
 'watchlist' => 'Bevakningslista',
-'mywatchlist' => 'Min bevakningslista',
+'mywatchlist' => 'Bevakningslista',
 'watchlistfor2' => 'För $1 $2',
 'nowatchlist' => 'Du har inga sidor i din bevakningslista.',
 'watchlistanontext' => 'Du måste $1 för att se eller redigera din bevakningslista.',
@@ -2569,7 +2570,7 @@ $1',
 # Contributions
 'contributions' => 'Användarbidrag',
 'contributions-title' => 'Bidrag av $1',
-'mycontris' => 'Mina bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'För $1 ($2)',
 'nocontribs' => 'Inga ändringar som motsvarar dessa kriterier hittades.',
 'uctop' => '(senaste)',
@@ -3107,7 +3108,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
-'pageinfo-not-current' => 'Information kan endast visas för den aktuella versionen.',
+'pageinfo-not-current' => 'Informationen kan endast visas för den aktuella versionen.',
 'pageinfo-header-basic' => 'Grundläggande information',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidskydd',
@@ -3970,9 +3971,9 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-move-move_redir-noredirect' => '$1 flyttade sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 'logentry-patrol-patrol' => '$1 markerade versionen $4 av sidan $3 som patrullerad',
 'logentry-patrol-patrol-auto' => '$1 markerade automatiskt versionen $4 av sidan $3 som patrullerad',
-'logentry-newusers-newusers' => '$1 skapade ett användarkonto',
-'logentry-newusers-create' => '$1 skapade ett användarkonto',
-'logentry-newusers-create2' => '$1 skapade ett användarkonto $3',
+'logentry-newusers-newusers' => 'Användarkonto $1 skapades',
+'logentry-newusers-create' => 'Användarkonto $1 skapades',
+'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
 'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
 'newuserlog-byemail' => 'lösenord skickat med e-post',
 

@@ -236,7 +236,7 @@ $messages = array(
 
 'underline-always' => 'Altid',
 'underline-never' => 'Aldrig',
-'underline-default' => 'Brug browserens indstilling',
+'underline-default' => 'Brug browserens indstilling eller standarden for det valgte udseende',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Skriftstil ved redigering:',
@@ -321,8 +321,8 @@ $messages = array(
 'newwindow' => '(åbner i et nyt vindue)',
 'cancel' => 'Afbryd',
 'moredotdotdot' => 'Mere...',
-'mypage' => 'Min side',
-'mytalk' => 'Min diskussion',
+'mypage' => 'Side',
+'mytalk' => 'Diskussion',
 'anontalk' => 'Diskussionsside for denne IP-adresse',
 'navigation' => 'Navigation',
 'and' => '&#32;og',
@@ -800,7 +800,7 @@ Blokeringen udløber: $6
 Blokeringen er rettet mod: $7
 
 Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
-Du kan ikke bruge funktionen 'e-mail til denne bruger' medmindre der er angivet en gyldig email-adresse i dine
+Du kan ikke bruge funktionen 'e-mail til denne bruger' medmindre der er angivet en gyldig e-mailadresse i dine
 [[Special:Preferences|kontoindstillinger]], og du ikke er blevet blokeret fra at bruge den.
 
 Din nuværende IP-adresse er $3, og blokerings-id er #$5.
@@ -1311,7 +1311,7 @@ Her er en tilfældig genereret værdi som du kan bruge: $1',
 Det kan ikke gøres om.',
 'prefs-emailconfirm-label' => 'Bekræftelse af e-mail:',
 'prefs-textboxsize' => 'Størrelse på redigeringsvindue',
-'youremail' => 'Din e-mail-adresse:',
+'youremail' => 'Din e-mailadresse:',
 'username' => 'Brugernavn:',
 'uid' => 'Brugernummer:',
 'prefs-memberingroups' => 'Medlem af {{PLURAL:$1|gruppen|grupperne}}:',
@@ -2076,7 +2076,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-ok' => 'Søg',
 'linksearch-text' => 'Wildcards som "*.wikipedia.org" kan benyttes.
 Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
-Understøttede protokoller: <code>$1</code> (tilføj ikke protokollerne til din søgning).',
+Understøttede protokoller: <code>$1</code> (bruger automatisk http:// hvis der ikke er angivet nogen protokol).',
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 
@@ -2126,8 +2126,8 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'emailuser-title-target' => 'Send email til denne {{GENDER:$1|bruger}}',
 'emailuser-title-notarget' => 'Send email til en bruger',
 'emailpage' => 'E-mail bruger',
-'emailpagetext' => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne bruger.
-Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
+'emailpagetext' => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne {{GENDER:$1|bruger}}.
+Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]], vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
 'usermailererror' => 'E-mail-modulet returnerede en fejl:',
 'defemailsubject' => '{{SITENAME}}-email fra brugeren "$1"',
 'usermaildisabled' => 'Bruger-e-mail deaktiveret',
@@ -2158,7 +2158,7 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 
 # Watchlist
 'watchlist' => 'Overvågningsliste',
-'mywatchlist' => 'Min overvågningsliste',
+'mywatchlist' => 'Overvågningsliste',
 'watchlistfor2' => 'For $1 $2',
 'nowatchlist' => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext' => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
@@ -2411,7 +2411,7 @@ $1',
 # Contributions
 'contributions' => 'Brugerbidrag',
 'contributions-title' => 'Brugerbidrag for $1',
-'mycontris' => 'Mine bidrag',
+'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
 'nocontribs' => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'uctop' => ' (seneste)',
@@ -2451,7 +2451,7 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'whatlinkshere-hideredirs' => '$1 omdirigeringer',
 'whatlinkshere-hidetrans' => '$1 inkluderinger',
 'whatlinkshere-hidelinks' => '$1 henvisninger',
-'whatlinkshere-hideimages' => '$1 fillinks',
+'whatlinkshere-hideimages' => '$1 filhenvisninger',
 'whatlinkshere-filters' => 'Filtre',
 
 # Block/unblock
@@ -2536,7 +2536,7 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'unblocklink' => 'ophæv blokering',
 'change-blocklink' => 'ændr blokering',
 'contribslink' => 'bidrag',
-'emaillink' => 'send email',
+'emaillink' => 'send e-mail',
 'autoblocker' => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".
 Begrundelse: "$2".',
 'blocklogpage' => 'Blokeringslog',
@@ -2904,7 +2904,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
-'pageinfo-not-current' => 'Oplysninger vises kun for den aktuelle version.',
+'pageinfo-not-current' => 'Beklager, det er umuligt at give denne information for gamle udgaver.',
 'pageinfo-header-basic' => 'Grundlæggende oplysninger',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',

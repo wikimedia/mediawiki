@@ -21,6 +21,7 @@
  * @author Hamaryns
  * @author Jens Liebenau
  * @author Kaganer
+ * @author Kippenvlees1
  * @author Krinkle
  * @author MarkvA
  * @author McDutchie
@@ -398,7 +399,7 @@ $messages = array(
 
 'underline-always' => 'Altijd',
 'underline-never' => 'Nooit',
-'underline-default' => 'Webbrowser-standaard',
+'underline-default' => 'Standaard in uw vormgeving of webbrowser',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Lettertypestijl bewerkingsvenster:',
@@ -483,8 +484,8 @@ $messages = array(
 'newwindow' => '(opent in een nieuw venster)',
 'cancel' => 'Annuleren',
 'moredotdotdot' => 'Meer…',
-'mypage' => 'Mijn gebruikerspagina',
-'mytalk' => 'Mijn overleg',
+'mypage' => 'Gebruikerspagina',
+'mytalk' => 'Overleg',
 'anontalk' => 'Overlegpagina voor dit IP-adres',
 'navigation' => 'Navigatie',
 'and' => '&#32;en',
@@ -1448,7 +1449,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 
 # Preferences page
 'preferences' => 'Voorkeuren',
-'mypreferences' => 'Mijn voorkeuren',
+'mypreferences' => 'Voorkeuren',
 'prefs-edits' => 'Aantal bewerkingen:',
 'prefsnologin' => 'Niet aangemeld',
 'prefsnologintext' => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aangemeld]</span> zijn om uw voorkeuren te kunnen instellen.',
@@ -2136,7 +2137,7 @@ Invoer: inhoudstype/subtype, bijvoorbeeld <code>image/jpeg</code>.',
 # Unused templates
 'unusedtemplates' => 'Ongebruikte sjablonen',
 'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte {{ns:template}} die op geen enkele pagina gebruikt worden.
-Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
+Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens deze sjabloon te verwijderen.',
 'unusedtemplateswlh' => 'andere verwijzingen',
 
 # Random page
@@ -2330,8 +2331,8 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'linksearch-ns' => 'Naamruimte:',
 'linksearch-ok' => 'Zoeken',
 'linksearch-text' => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.
-Heeft tenminste een topleveldomein, zoals bijvoorbeeld "*.org".<br />
-Ondersteunde protocollen: <code>$1</code> (voeg deze niet toe in uw zoekopdracht).',
+Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
+Ondersteunde protocollen: <code>$1</code> (wordt "http://"als er geen protocol wordt opgegeven).',
 'linksearch-line' => '$1 heeft een verwijzing in $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
@@ -2380,7 +2381,7 @@ Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individu
 'emailuser-title-target' => 'Deze {{GENDER:$1|gebruiker}} e-mailen',
 'emailuser-title-notarget' => 'Gebruiker e-mailen',
 'emailpage' => 'Gebruiker e-mailen',
-'emailpagetext' => 'Via dit formulier kunt u een e-mail aan deze gebruiker verzenden.
+'emailpagetext' => 'Via dit formulier kunt u een e-mail aan {{GENDER:$1|deze gebruiker}} verzenden.
 Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] wordt als afzender gebruikt.
 De ontvanger kan dus direct naar u reageren.',
 'usermailererror' => 'Foutmelding bij het verzenden:',
@@ -2413,7 +2414,7 @@ De ontvanger kan dus direct naar u reageren.',
 
 # Watchlist
 'watchlist' => 'Volglijst',
-'mywatchlist' => 'Mijn volglijst',
+'mywatchlist' => 'Volglijst',
 'watchlistfor2' => 'Voor $1 $2',
 'nowatchlist' => 'Uw volglijst is leeg.',
 'watchlistanontext' => 'Om uw volglijst te bekijken of te bewerken moet u zich $1.',
@@ -2676,7 +2677,7 @@ $1',
 # Contributions
 'contributions' => 'Gebruikersbijdragen',
 'contributions-title' => 'Bijdragen van $1',
-'mycontris' => 'Mijn bijdragen',
+'mycontris' => 'Bijdragen',
 'contribsub2' => 'Voor $1 ($2)',
 'nocontribs' => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'uctop' => '(laatste wijziging)',
@@ -2717,7 +2718,7 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
 'whatlinkshere-hidetrans' => 'Transclusies $1',
 'whatlinkshere-hidelinks' => 'verwijzingen $1',
-'whatlinkshere-hideimages' => 'bestandsverwijzingen $1',
+'whatlinkshere-hideimages' => 'Bestandsverwijzingen $1',
 'whatlinkshere-filters' => 'Filters',
 
 # Block/unblock
@@ -3222,7 +3223,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',
-'pageinfo-not-current' => 'Gegevens worden mogelijk alleen weergegeven voor de huidige versie.',
+'pageinfo-not-current' => 'Deze gegevens zijn alleen beschikbaar voor de huidige versie.',
 'pageinfo-header-basic' => 'Basisgegevens',
 'pageinfo-header-edits' => 'Bewerkingsgeschiedenis',
 'pageinfo-header-restrictions' => 'Paginabeveiliging',
@@ -3831,7 +3832,7 @@ De bevestigingscode vervalt op $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablonen is uitgeschakeld]',
-'scarytranscludefailed' => '[Het sjabloon $1 kon niet opgehaald worden]',
+'scarytranscludefailed' => '[De sjabloon $1 kon niet opgehaald worden]',
 'scarytranscludetoolong' => '[De URL is te lang]',
 
 # Delete conflict
@@ -4049,7 +4050,7 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'compare-rev1' => 'Versie 1',
 'compare-rev2' => 'Versie 2',
 'compare-submit' => 'Vergelijken',
-'compare-invalid-title' => 'De titel die u hebt opgegeven is ongeldig.',
+'compare-invalid-title' => 'De opgegeven pagina is ongeldig.',
 'compare-title-not-exists' => 'De titel die u hebt opgegeven bestaat niet.',
 'compare-revision-not-exists' => 'De versie die u hebt opgegeven bestaat niet.',
 
@@ -4104,9 +4105,9 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-move-move_redir-noredirect' => '$1 heeft pagina $3 naar $4 hernoemd over een doorverwijzing zonder een doorverwijzing achter te laten',
 'logentry-patrol-patrol' => '$1 heeft versie $4 van pagina $3 als gecontroleerd gemarkeerd',
 'logentry-patrol-patrol-auto' => '$1 heeft versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
-'logentry-newusers-newusers' => '$1 heeft een gebruiker aangemaakt',
-'logentry-newusers-create' => '$1 is als gebruiker aangemaakt',
-'logentry-newusers-create2' => '$1 heeft een gebruiker $3 aangemaakt',
+'logentry-newusers-newusers' => 'Gebruiker $1 is aangemaakt',
+'logentry-newusers-create' => 'Gebruiker $1 is aangemaakt',
+'logentry-newusers-create2' => 'Gebruiker $3 is aangemaakt door $1',
 'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
 'newuserlog-byemail' => 'wachtwoord is verzonden per e-mail',
 

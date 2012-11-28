@@ -360,7 +360,7 @@ $messages = array(
 
 'underline-always' => 'mindig',
 'underline-never' => 'soha',
-'underline-default' => 'a böngésző alapértelmezése szerint',
+'underline-default' => 'Felület és böngésző alapértelmezése szerint',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'A szerkesztőterület betűtípusa:',
@@ -446,7 +446,7 @@ $messages = array(
 'cancel' => 'Mégse',
 'moredotdotdot' => 'Tovább…',
 'mypage' => 'Lapom',
-'mytalk' => 'Vitalapom',
+'mytalk' => 'Vitalap',
 'anontalk' => 'Az IP-címhez tartozó vitalap',
 'navigation' => 'Navigáció',
 'and' => '&#32;és',
@@ -1346,7 +1346,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Preferences page
 'preferences' => 'Beállítások',
-'mypreferences' => 'Beállításaim',
+'mypreferences' => 'Beállítások',
 'prefs-edits' => 'Szerkesztéseid száma:',
 'prefsnologin' => 'Nem jelentkeztél be',
 'prefsnologintext' => 'Saját beállításaid elmentéséhez <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} be kell jelentkezned.] </span>',
@@ -2189,7 +2189,7 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'linksearch-ns' => 'Névtér:',
 'linksearch-ok' => 'keresés',
 'linksearch-text' => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org". Legalább egy felső szintű tartománynak lennie kell, például "*.org"<br />
-Támogatott protokollok: <code>$1</code> (ezeket ne írd be a keresésbe).',
+Támogatott protokollok: <code>$1</code> (http:// az alapértelmezett, ha nincs protokoll megadva).',
 'linksearch-line' => '$1 hivatkozva innen: $2',
 'linksearch-error' => 'Helyettesítő karakterek csak a cím elején szerepelhetnek.',
 
@@ -2239,7 +2239,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'emailuser-title-notarget' => 'E-mail küldése a felhasználónak',
 'emailpage' => 'E-mail küldése',
 'emailpagetext' => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
-Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
+Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.',
 'usermailererror' => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject' => '{{SITENAME}} e-mail a következő felhasználótól: „$1”',
 'usermaildisabled' => 'Email fogadás letiltva',
@@ -2270,7 +2270,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 
 # Watchlist
 'watchlist' => 'Figyelőlistám',
-'mywatchlist' => 'Figyelőlistám',
+'mywatchlist' => 'Figyelőlista',
 'watchlistfor2' => '$1 részére $2',
 'nowatchlist' => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext' => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
@@ -2531,7 +2531,7 @@ $1',
 # Contributions
 'contributions' => 'Szerkesztő közreműködései',
 'contributions-title' => '$1 közreműködései',
-'mycontris' => 'Közreműködéseim',
+'mycontris' => 'Közreműködések',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Nem található a feltételeknek megfelelő változtatás.',
 'uctop' => ' (utolsó)',
@@ -2571,7 +2571,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'whatlinkshere-hideredirs' => 'átirányítások $1',
 'whatlinkshere-hidetrans' => 'beillesztések $1',
 'whatlinkshere-hidelinks' => 'linkek $1',
-'whatlinkshere-hideimages' => 'képhivatkozás $1',
+'whatlinkshere-hideimages' => 'fájlhivatkozások $1',
 'whatlinkshere-filters' => 'Elemek szűrése',
 
 # Block/unblock

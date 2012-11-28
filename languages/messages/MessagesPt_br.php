@@ -447,8 +447,8 @@ $messages = array(
 'newwindow' => '(abre em uma nova janela)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Mais...',
-'mypage' => 'Minha página',
-'mytalk' => 'Minha discussão',
+'mypage' => 'Página',
+'mytalk' => 'Discussão',
 'anontalk' => 'Discussão para este IP',
 'navigation' => 'Navegação',
 'and' => '&#32;e',
@@ -1376,7 +1376,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 
 # Preferences page
 'preferences' => 'Preferências',
-'mypreferences' => 'Minhas preferências',
+'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
 'prefsnologin' => 'Não autenticado',
 'prefsnologintext' => 'É necessário estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticado]</span> para definir as suas preferências.',
@@ -2582,7 +2582,7 @@ $1',
 # Contributions
 'contributions' => 'Contribuições {{GENDER:{{BASEPAGENAME}}|do usuário|da usuária}}',
 'contributions-title' => 'Contribuições {{GENDER:$1|do usuário|da usuária}} $1',
-'mycontris' => 'Minhas contribuições',
+'mycontris' => 'Contribuições',
 'contribsub2' => 'Para $1 ($2)',
 'nocontribs' => 'Não foram encontradas mudanças com este critério.',
 'uctop' => '(atual)',

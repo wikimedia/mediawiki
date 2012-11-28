@@ -318,7 +318,7 @@ $messages = array(
 'cancel' => 'זיי מבטל',
 'moredotdotdot' => 'נאך…',
 'mypage' => 'מײַן בלאט',
-'mytalk' => 'מײַן שמועס',
+'mytalk' => 'שמועס',
 'anontalk' => 'דאס רעדן פון דעם IP',
 'navigation' => 'נאַוויגאַציע',
 'and' => '&#32;און',
@@ -983,6 +983,8 @@ $2
 'parser-template-loop-warning' => 'מוסטער שלייף געטראפן: [[$1]]',
 'parser-template-recursion-depth-warning' => 'מוסטער רעקורסיע טיף מאקסימום איבערגעשטיגן ($1)',
 'language-converter-depth-warning' => 'אַריבער דעם שפּראַך קאַנווערטער טיף לימיט ($1)',
+'node-count-exceeded-category' => 'בלעטער וואו קנופצאל איז צו פיל',
+'node-count-exceeded-warning' => 'קנופנצאל אויפן בלאט צו הויך',
 'converter-manual-rule-error' => 'געטראפן א גרײַז אין האנטלעכן שפראך־קאנווערטירן כלל',
 
 # "Undo" feature
@@ -2070,8 +2072,8 @@ $1",
 'emailuser-title-target' => 'שיקן {{GENDER:$1|דעם באניצער|די באניצערין}} ע־פאסט',
 'emailuser-title-notarget' => 'שיקן א באניצער ע־פאסט',
 'emailpage' => 'שיקן ע-פאסט צו באַניצער',
-'emailpagetext' => 'איר קענט ניצן דעם פֿארעם אונטן צו שיקן אן בליצבריוו צו דעם דאזיגן באַניצער.
-דער ע-פאסט אדרעס וואס איר האט אריינגעלייגט אין [[Special:Preferences| אייערע באניצער פרעפערנעצן]] וועט זיך ווייזן כאילו דאס איז געקומען פון דארטן, בכדי צו דערמעגלעכן א תשובה.',
+'emailpagetext' => 'איר קענט ניצן די פֿארעם אונטן צו שיקן א בליצבריוו צו {{GENDER:$1|דעם דאזיגן באַניצער|דער דאזיגער באַניצערין}}.
+דער ע-פאסט אדרעס וואס איר האט אריינגעלייגט אין [[Special:Preferences| אייערע באַניצער פרעפערנעצן]] וועט זיך ווײַזן כאילו דאס איז געקומען פון דארטן, בכדי צו דערמעגלעכן א תשובה.',
 'usermailererror' => 'בליצבריוו האט צוריקגעשיקט א טעות:',
 'defemailsubject' => 'ע-פאסט פון באַניצער "$1" {{SITENAME}}',
 'usermaildisabled' => 'באַניצער ע־פאסט אומאַקטיוויזירט',
@@ -2103,7 +2105,7 @@ $1",
 
 # Watchlist
 'watchlist' => 'מיין אויפפַּאסונג ליסטע',
-'mywatchlist' => 'מיין אויפפַּאסונג ליסטע',
+'mywatchlist' => 'אויפפַּאסונג ליסטע',
 'watchlistfor2' => 'פֿאַר $1 $2',
 'nowatchlist' => 'איר האט נישט קיין שום בלעטער אין אייער אויפפַּאסונג ליסטע.',
 'watchlistanontext' => 'ביטע $1 כדי צו זען אדער ענדערן בלעטער אין אייער אַכטגעבן ליסטע.',
@@ -2353,7 +2355,7 @@ $1',
 # Contributions
 'contributions' => "באניצער'ס בײַשטײַערונגען",
 'contributions-title' => 'בײַשטײַערונגען פֿון באַניצער $1',
-'mycontris' => 'מײַנע בײַשטײַערונגען',
+'mycontris' => 'בײַשטײַערונגען',
 'contribsub2' => 'וועגן $1 ($2)',
 'nocontribs' => 'נישט געטראפן קיין ענדערונגען צוזאמעגעפאסט מיט די קריטעריעס.',
 'uctop' => '(לעצטע)',
@@ -2393,7 +2395,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 ווײַטערפֿירונגען',
 'whatlinkshere-hidetrans' => '$1 אַריבערשליסונגען',
 'whatlinkshere-hidelinks' => '$1 פֿאַרבינדונגען',
-'whatlinkshere-hideimages' => '$1 בילדער פֿאַרבינדונגען',
+'whatlinkshere-hideimages' => '$1 טעקע פֿאַרבינדונגען',
 'whatlinkshere-filters' => 'פֿילטערס',
 
 # Block/unblock
@@ -2864,6 +2866,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'אינפֿאָרמאַציע פֿאַר "$1"',
+'pageinfo-not-current' => 'קען ווייזן אינפארמאציע נאר פאר דער לויפיקער רעוויזיע.',
 'pageinfo-header-basic' => 'גרונטלעכע אינפֿארמאַציע',
 'pageinfo-header-edits' => '!רעדאַקטירן היסטאריע',
 'pageinfo-header-restrictions' => 'בלאט באַשיצונג',
@@ -2873,6 +2876,8 @@ $1',
 'pageinfo-length' => 'בלאט לענג (אין בייטן)',
 'pageinfo-article-id' => 'בלאט נומער',
 'pageinfo-robot-policy' => 'זוכמאשין סטאטוס',
+'pageinfo-robot-index' => 'אינדעקסירבאר',
+'pageinfo-robot-noindex' => 'נישט אינדעקסירבאר',
 'pageinfo-views' => 'צאַל קוקן',
 'pageinfo-watchers' => '!צאָל בלאט אויפֿפאַסער',
 'pageinfo-redirects-name' => 'ווײַטערפירונגען צו דעם בלאט',
@@ -3017,6 +3022,11 @@ $1',
 'exif-orientation' => 'אריענטאַציע',
 'exif-samplesperpixel' => 'צאל קאמאפאנענטן',
 'exif-planarconfiguration' => 'דאטן איינארדנונג',
+'exif-xresolution' => 'האריזאנטאלע רעזאלוציע',
+'exif-yresolution' => 'ווערטיקאלע רעזאלוציע',
+'exif-stripoffsets' => 'בילדדאטן פלאציר',
+'exif-rowsperstrip' => 'צאל שורות אין א שטרייף',
+'exif-stripbytecounts' => 'בייטן אין א קאמפרימירטן שטרייף',
 'exif-jpeginterchangeformatlength' => 'בייטן פון JPEG דאטן',
 'exif-datetime' => 'טעקע ענדערונג דאטע און צײַט',
 'exif-imagedescription' => 'בילד טיטל',
@@ -3496,6 +3506,9 @@ $5
 'hebrew-calendar-m11-gen' => 'אב',
 'hebrew-calendar-m12-gen' => 'אלול',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|רעדן]])',
+
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'ווארענונג:\'\'\' גרונט סארטשליסל "$2" פֿאָרט איבערן פֿריערדיגן גרונט סארטשליסל "$1".',
 
@@ -3642,9 +3655,9 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 האט באוועגט $3 צו $4 אריבער א ווייטערפירונג אן לאזן א  ווייטערפירונג',
 'logentry-patrol-patrol' => '$1 האט מארקירט רעוויזיע $4 פון בלאט $3 ווי קאנטראלירט',
 'logentry-patrol-patrol-auto' => '$1 האט אויטאמאטיש מארקירט רעוויזיע $4 פון בלאט $3 ווי קאנטראלירט',
-'logentry-newusers-newusers' => '$1 האט געשאפן א באניצער קאנטע',
-'logentry-newusers-create' => '$1 האט געשאפן א באניצער קאנטע',
-'logentry-newusers-create2' => '$1 האט געשאפן א באניצער קאנטע $3',
+'logentry-newusers-newusers' => 'באניצער קאנטע $1 געשאפן געווארן',
+'logentry-newusers-create' => 'באניצער קאנטע $1 געשאפן געווארן',
+'logentry-newusers-create2' => 'באניצער קאנטע $1 געשאפן געווארן דורך $3',
 'logentry-newusers-autocreate' => 'קאנטע $1 באשאפן אויטאמאטיש',
 'newuserlog-byemail' => 'פאַסווארט געשיקט דורך ע-פאסט',
 

@@ -2182,6 +2182,7 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
 'emailuser' => 'Pošalji e-poštu ovom suradniku',
+'emailuser-title-target' => 'Pošalji poruku {{GENDER:$1|suradniku|suradnici|suradniku}}',
 'emailuser-title-notarget' => 'Pošalji e-poštu suradniku',
 'emailpage' => 'Pošalji e-poštu suradniku',
 'emailpagetext' => 'Možete koristiti ovaj obrazac za slanje elektroničke pošte ovom suradniku.

@@ -254,7 +254,7 @@ $messages = array(
 'cancel' => 'Ләғв кардеј',
 'moredotdotdot' => 'Веј...',
 'mypage' => 'Чымы сәһифә',
-'mytalk' => 'Чымы мызокирә сәһифә',
+'mytalk' => 'Мызокирон',
 'anontalk' => 'Бо ын IP-унвони мызокирә',
 'navigation' => 'Навигасијә',
 'and' => '&#32;ијән',
@@ -488,6 +488,7 @@ $messages = array(
 'savearticle' => 'Сәһифә огәтеј',
 'preview' => 'Сыфтәнә нишо дој',
 'showpreview' => 'Сыфтәнә нишо дој',
+'showlivepreview' => 'Товинә сыфтәнә нишо дој',
 'showdiff' => 'Дәғандә быә дәгишон',
 'anoneditwarning' => "'''Дығғәт.''' Шымә ыштәни едәштәнијоне системәдә.
 Шымә IP-унвон бә ым сәһифә дәгишон тарых ғејд бәбе.",
@@ -779,7 +780,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Чымы ноғо доә сијоһи',
-'mywatchlist' => 'Чымы ноғо доә сијоһи',
+'mywatchlist' => 'Чәшәвәно кардә сијоһи',
 'watchlistfor2' => 'Бо $1 $2',
 'watch' => 'Думотоно егыниеј',
 'unwatch' => 'Думотоно ныегыниеј',
@@ -816,7 +817,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Иштирокәкә гәнҹ',
 'contributions-title' => 'Иштирокәкә гәнҹ $1',
-'mycontris' => 'Чымы гәнҹ',
+'mycontris' => 'Гәнҹ',
 'contribsub2' => 'Гәнҹ $1 ($2)',
 'uctop' => '(охонәни)',
 'month' => 'Че мангику (һәнијән рә):',
@@ -847,7 +848,7 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 бә тожә унвон вығандеј',
 'whatlinkshere-hidetrans' => '$1 әловон',
 'whatlinkshere-hidelinks' => '$1 сәбонон',
-'whatlinkshere-hideimages' => '$1 сәбонон бо шикилон',
+'whatlinkshere-hideimages' => '$1 фајлинә сәбонон',
 'whatlinkshere-filters' => 'Филтрон',
 
 # Block/unblock

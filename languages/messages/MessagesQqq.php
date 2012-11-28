@@ -197,13 +197,23 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-norollbackdiff' => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that. {{Gender}}
 {{Identical|Rollback}}",
 
-'underline-always' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "always underline links", there are also options "never" and "browser default". {{Gender}}
+'underline-always' => 'Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].
+
+This option means "always underline links", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-default}}.
+
+{{Gender}}
 {{Identical|Always}}',
-'underline-never' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "never underline links", there are also options "always" and "browser default". {{Gender}}
+'underline-never' => 'Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].
 
+This option means "never underline links", there are also options {{msg-mw|Underline-always}} and {{msg-mw|Underline-default}}.
+
+{{Gender}}
 {{Identical|Never}}',
-'underline-default' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "underline links as in your browser", there are also options "never" and "always". {{Gender}}
+'underline-default' => 'Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].
 
+This option means "underline links as in your user skin or your browser", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-always}}.
+
+{{Gender}}
 {{Identical|Browser default}}',
 
 # Font style option in Special:Preferences
@@ -336,7 +346,10 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
-'mytalk' => 'In the personal urls page section - right upper corner.',
+'mypage' => "A text for the link to the user's user page in the links at the top of the page.",
+'mytalk' => 'In the personal urls page section - right upper corner.
+
+Used as link title in "Personal tools" toolbar.',
 'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 
@@ -352,7 +365,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|Find}}',
 'qbbrowse' => '{{Identical|Browse}}',
 'qbedit' => '{{Identical|Edit}}',
-'qbmyoptions' => '{{Identical|My pages}}',
+'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
+{{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
 'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
 
@@ -465,6 +479,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".
 {{Identical|View}}',
 'toolbox' => 'The title of the toolbox below the search menu.',
+'viewtalkpage' => 'Used in Standard (a.k.a. Classic) skin as a link to talk page for all namespaces, in edit or history mode.',
 'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.
 {{Identical|Otherlanguages}}',
 'redirectedfrom' => 'The text displayed when a certain page is redirected to another page.
@@ -1454,7 +1469,7 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'preferences' => 'Title of the Special:Preferences page.
 
 {{Identical|Preferences}}',
-'mypreferences' => 'Action link label that leads to Special:Preferences; appears in the top menu (e.g. "Username My talk My preferences My watchlist My contributions Log out").
+'mypreferences' => 'Action link label that leads to Special:Preferences; appears in the top menu (e.g. "Username Talk Preferences Watchlist Contributions Log out").
 
 {{Identical|My preferences}}',
 'prefs-edits' => 'In user preferences.',
@@ -3026,7 +3041,11 @@ Example line:
 'whatlinkshere-hidelinks' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
 * $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
 'whatlinkshere-hideimages' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
-* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}
+
+See also:
+*{{msg-mw|Isimage}}
+*{{msg-mw|Media_tip}}',
 'whatlinkshere-filters' => '{{Identical|Filter}}',
 
 # Block/unblock
@@ -3507,7 +3526,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-header-properties' => 'Table section header in action=info.',
 'pageinfo-display-title' => 'The title that is displayed when the page is viewed.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
-'pageinfo-length' => 'પૃષ્ઠની લંબાઇ બાઇટમાં',
+'pageinfo-length' => 'The length of the page, in bytes.',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
 'pageinfo-robot-policy' => 'The search engine status of the page.
 *{{msg-mw|Pageinfo-robot-index}}
@@ -3599,7 +3618,7 @@ Parameters:
 Start with a lowercase letter, unless the first word is “SVG”.',
 'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
 * $1 is the width in pixels
-* $2 is the height in pixels, and 
+* $2 is the height in pixels, and
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
@@ -4647,7 +4666,8 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-parser-function-hooks' => 'Shown in [[Special:Version]]',
 'version-hook-name' => 'Shown in [[Special:Version]]',
 'version-hook-subscribedby' => 'Shown in [[Special:Version]]',
-'version-version' => '{{Identical|Version}}',
+'version-version' => '*$1 - version number
+{{Identical|Version}}',
 'version-svn-revision' => '{{optional}}
 This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
 
@@ -4860,6 +4880,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 
 $4 is the gender of the target user.',
 'logentry-newusers-create2' => '{{Logentry}}
+
+$4 is the name of the target user.',
+'logentry-newusers-autocreate' => '{{Logentry}}
 
 $4 is the gender of the target user.',
 
