@@ -41,11 +41,14 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Удзельніца' => NS_USER,
-	'Гутаркі ўдзельніцы' => NS_USER_TALK,
-	'Абмеркаваньне_$1' => NS_PROJECT_TALK,
+	'Абмеркаваньне_$1' => NS_PROJECT_TALK, // legacy support for old non-inflected links
 	'Выява' => NS_FILE,
-	'Абмеркаваньне выявы' => NS_FILE_TALK,
+	'Абмеркаваньне_выявы' => NS_FILE_TALK,
+);
+
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Удзельнік', 'female' => 'Удзельніца' ),
+	NS_USER_TALK => array( 'male' => 'Гутаркі_ўдзельніка', 'female' => 'Гутаркі_ўдзельніцы' ),
 );
 
 $specialPageAliases = array(
