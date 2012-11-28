@@ -666,7 +666,7 @@ XHTML id names.
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
-'underline-default' => 'Browser default',
+'underline-default' => 'Skin or browser default',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Edit area font style:',
@@ -754,8 +754,8 @@ XHTML id names.
 'newwindow'     => '(opens in new window)',
 'cancel'        => 'Cancel',
 'moredotdotdot' => 'More...',
-'mypage'        => 'My page',
-'mytalk'        => 'My talk',
+'mypage'        => 'Page',
+'mytalk'        => 'Talk',
 'anontalk'      => 'Talk for this IP address',
 'navigation'    => 'Navigation',
 'and'           => '&#32;and',
@@ -1743,7 +1743,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 # Preferences page
 'preferences'                   => 'Preferences',
 'preferences-summary'           => '', # do not translate or duplicate this message to other languages
-'mypreferences'                 => 'My preferences',
+'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
 'prefsnologin'                  => 'Not logged in',
 'prefsnologintext'              => 'You must be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> to set user preferences.',
@@ -2611,7 +2611,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-ok'    => 'Search',
 'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
-Supported protocols: <code>$1</code> (do not add any of these in your search).',
+Supported protocols: <code>$1</code> (defaults to http:// if no protocol is specified).',
 'linksearch-line'  => '$1 is linked from $2',
 'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
 
@@ -2666,7 +2666,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'            => 'E-mail this user',
 'emailpage'            => 'E-mail user',
-'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
+'emailpagetext'        => 'You can use the form below to send an e-mail message to this {{GENDER:$1|user}}.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
 'usermailererror'      => 'Mail object returned error:',
 'defemailsubject'      => '{{SITENAME}} e-mail',
@@ -2699,7 +2699,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 
 # Watchlist
 'watchlist'            => 'My watchlist',
-'mywatchlist'          => 'My watchlist',
+'mywatchlist'          => 'Watchlist',
 'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
@@ -2756,8 +2756,7 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further changes unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
 
 			 Your friendly {{SITENAME}} notification system
 
@@ -2963,7 +2962,7 @@ $1',
 # Contributions
 'contributions'       => 'User contributions',
 'contributions-title' => 'User contributions for $1',
-'mycontris'           => 'My contributions',
+'mycontris'           => 'Contributions',
 'contribsub2'         => 'For $1 ($2)',
 'nocontribs'          => 'No changes were found matching these criteria.',
 'uctop'               => '(top)',
