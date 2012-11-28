@@ -3210,6 +3210,7 @@ Jeho spustením môžete kompromitovať svoj systém.",
 'hours' => '{{PLURAL:$1|$1 hodina|$1 hodiny|$1 hodín}}',
 'days' => '{{PLURAL:$1|$1 deň|$1 dni|$1 dní}}',
 'ago' => 'pred: $1',
+'just-now' => 'Pred chvíľkou',
 
 # Bad image list
 'bad_image_list' => 'Formát je nasledovný:

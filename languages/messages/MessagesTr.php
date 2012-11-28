@@ -3137,6 +3137,7 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'hours' => '{{PLURAL:$1|$1 saat|$1 saat}}',
 'days' => '{{PLURAL:$1|$1 gün|$1 gün}}',
 'ago' => '$1 önce',
+'just-now' => 'Hemen şimdi',
 
 # Bad image list
 'bad_image_list' => 'Biçim aşağıdaki gibidir:

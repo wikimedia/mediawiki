@@ -3129,6 +3129,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'hours' => '$1 {{PLURAL:$1|ura|uri|ure|ur}}',
 'days' => '$1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
 'ago' => 'pred $1',
+'just-now' => 'pravkar',
 
 # Bad image list
 'bad_image_list' => 'Oblika je naslednja:
@@ -3965,4 +3966,6 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
+# Unknown messages
+'svg-long-error' => 'Neveljavna datoteka SVG: $1',
 );

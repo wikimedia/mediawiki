@@ -1438,7 +1438,7 @@ $1",
 # Preferences page
 'preferences' => 'Налаштування',
 'mypreferences' => 'Налаштування',
-'prefs-edits' => 'Число редагувань:',
+'prefs-edits' => 'Кількість редагувань:',
 'prefsnologin' => 'Ви не ввійшли в систему',
 'prefsnologintext' => 'Щоб змінити налаштування користувача, ви повинні <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ввійти до системи]</span>.',
 'changepassword' => 'Змінити пароль',

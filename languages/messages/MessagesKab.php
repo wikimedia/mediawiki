@@ -2545,6 +2545,7 @@ Lukan a t-tesseqdceḍ yezmer ad yexsser aselkim inek/inem.",
 'hours' => '{{PLURAL:$1|$1 asrag|$1 isragen}}',
 'days' => '{{PLURAL:$1|$1 ass|$1 ussan}}',
 'ago' => '$1 aya',
+'just-now' => 'Tura kan',
 
 # Bad image list
 'bad_image_list' => 'Amasal d-wagi :

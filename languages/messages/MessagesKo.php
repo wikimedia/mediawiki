@@ -3344,6 +3344,7 @@ $1',
 'hours' => '$1시간',
 'days' => '$1일',
 'ago' => '$1 전',
+'just-now' => '방금',
 
 # Bad image list
 'bad_image_list' => '형식은 아래와 같습니다.

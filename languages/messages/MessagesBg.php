@@ -999,12 +999,12 @@ $2
 'content-failed-to-parse' => 'Не може да се анализира $2 съдържание за $1 модел:$3',
 'invalid-content-data' => 'Невалидни данни за съдържание',
 'content-not-allowed-here' => '
-"$1" съдържание не е позволено на страница [[$2]]',
+На страницата [[$2]] не е позволено използването на $1',
 
 # Content models
 'content-model-wikitext' => 'уикитекст',
-'content-model-text' => 'текстов формат',
-'content-model-javascript' => 'JavaScript',
+'content-model-text' => 'обикновен текст',
+'content-model-javascript' => 'Джаваскрипт',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
@@ -1584,11 +1584,11 @@ $1 е автоматично повишен от $4 до $5',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|наблюдаващ потребител|наблюдаващи потребители}}]',
 'rc_categories' => 'Само от категории (разделител „|“)',
 'rc_categories_any' => 'Която и да е',
-'rc-change-size-new' => '$1 {{PLURAL:$1|бит|бита}} след промяна',
+'rc-change-size-new' => '$1 {{PLURAL:$1|бит|бита}} след редакцията',
 'newsectionsummary' => 'Нова тема /* $1 */',
 'rc-enhanced-expand' => 'Показване на детайли (изисква JavaScript)',
 'rc-enhanced-hide' => 'Скриване на детайли',
-'rc-old-title' => 'първоначално създаден като "$1"',
+'rc-old-title' => 'първоначално създадена като „$1“',
 
 # Recent changes linked
 'recentchangeslinked' => 'Свързани промени',

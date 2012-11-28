@@ -3253,6 +3253,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'days' => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
 'ago' => 'před 
 $1',
+'just-now' => 'Právě teď',
 
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:

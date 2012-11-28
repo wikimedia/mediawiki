@@ -3371,6 +3371,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 uur|$1 uur}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagen}}',
 'ago' => '$1 geleden',
+'just-now' => 'Daarnet',
 
 # Bad image list
 'bad_image_list' => "De opmaak is als volgt:
@@ -4219,4 +4220,6 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'svg-long-error' => 'Ongeldig SVG-bestand: $1',
 );

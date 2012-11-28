@@ -55,6 +55,7 @@
 	'avk' => 'Kotava', # Kotava
 	'ay' => 'Aymar aru',	# Aymara
 	'az' => 'azərbaycanca',	# Azerbaijani
+	'azb' => 'تورکجه',	# South Azerbaijani
 	'ba' => 'башҡортса',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
 	'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 693-3 since 2010-06-30 )
