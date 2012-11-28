@@ -66,7 +66,7 @@ div#mw-head {
 	right: 0;
 	width: 100%;
 }
-div#mw-head h3 {
+div#mw-head h3, div#mw-head h5 {
 	margin: 0;
 	padding: 0;
 }
@@ -82,7 +82,7 @@ div.emptyPortlet {
 	/* Display on top of page tabs - bug 37158 */
 	z-index: 1;
 }
-#p-personal h3 {
+#p-personal h3, #p-personal h5 {
 	display: none;
 }
 #p-personal ul {
@@ -114,8 +114,8 @@ div.emptyPortlet {
 	margin-top: 2.5em;
 }
 /* Navigation Labels */
-div.vectorTabs h3,
-div.vectorMenu h3 span {
+div.vectorTabs h3, div.vectorTabs h5,
+div.vectorMenu h3 span, div.vectorMenu h5 span {
 	display: none;
 }
 /* Namespaces and Views */
@@ -235,22 +235,22 @@ body.rtl div.vectorMenu {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div#mw-head div.vectorMenu h3 {
+div#mw-head div.vectorMenu h3, div#mw-head div.vectorMenu h5 {
 	float: left;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div#mw-head div.vectorMenu h3 {
+div#mw-head div.vectorMenu h3, div#mw-head div.vectorMenu h5 {
 	background-position: bottom left;
 	margin-left: -1px;
 }
 /* IGNORED BY IE6 */
-div#mw-head div.vectorMenu > h3 {
+div#mw-head div.vectorMenu > h3, div#mw-head div.vectorMenu > h5 {
 	background-image: none;
 }
-div.vectorMenu#p-variants #mw-vector-current-variant {
+div#mw-head div.vectorMenu h4, div.vectorMenu#p-variants #mw-vector-current-variant {
 	display: inline-block;
 	float: left;
 	font-size: 0.8em;
@@ -261,7 +261,7 @@ div.vectorMenu#p-variants #mw-vector-current-variant {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div.vectorMenu h3 a {
+div.vectorMenu h3 a, div.vectorMenu h5 a {
 	display: inline-block;
 	width: 24px;
 	height: 1.9em;
@@ -271,11 +271,11 @@ div.vectorMenu h3 a {
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div.vectorMenu h3 a {
+div.vectorMenu h3 a, div.vectorMenu h5 a {
 	background-position: bottom right;
 }
 /* IGNORED BY IE6 */
-div.vectorMenu h3 > a {
+div.vectorMenu h3 > a, div.vectorMenu h5 > a {
 	display: block;
 }
 div.vectorMenu div.menu {
@@ -354,7 +354,7 @@ div.vectorMenu li.selected a:visited {
 	text-decoration: none;
 }
 /* Search */
-#p-search h3 {
+#p-search h3, #p-search h5 {
 	display: none;
 }
 /* @noflip */
@@ -471,7 +471,7 @@ div#mw-panel div.portal {
 	padding-bottom: 1.5em;
 	direction: ltr;
 }
-div#mw-panel div.portal h3 {
+div#mw-panel div.portal h3, div#mw-panel div.portal h5 {
 	font-weight: normal;
 	color: #444;
 	padding: 0.25em;
