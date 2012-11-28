@@ -3,6 +3,17 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.20.1 ==
+
+This is a security release of the MediaWiki 1.20 branch
+
+=== Changes since 1.20 ===
+* (bug 40995) Prevent session fixation in Special:UserLogin (CVE-2012-5391)
+* (bug 41400) Prevent linker regex from exceeding PCRE backtrack limit
+* Javscript Lint fixes
+* (bug 40632) Remove CleanupPresentationalAttributes feature
+* [Database] Fixed case where trx idle callbacks might be lost.
+
 == MediaWiki 1.20 ==
 
 MediaWiki 1.20 is a stable release.
