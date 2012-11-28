@@ -1573,6 +1573,33 @@ should be left alone
 ## and http://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
 
 !! test
+Table / list interaction: indented table with lists in table contents
+!! input
+:{|
+|-
+| a
+* b
+|-
+| c
+* d
+|}
+!! result
+<dl><dd><table>
+
+<tr>
+<td> a
+<ul><li> b
+</li></ul>
+</td></tr>
+<tr>
+<td> c
+<ul><li> d
+</li></ul>
+</td></tr></table></dd></dl>
+
+!! end
+
+!! test
 Definition Lists: Nesting: Multi-level (Parsoid only)
 !! options
 disabled
