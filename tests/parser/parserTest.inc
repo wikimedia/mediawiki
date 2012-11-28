@@ -218,6 +218,16 @@ class ParserTest {
 		} else {
 			$this->recorder = new TestRecorder( $this );
 		}
+
+		if( isset( $options['log-junit'] ) ) {
+			$oldRecorder   = $this->recorder;
+			$junitRecorder = new JunitTestRecorder( $options['log-junit'] );
+
+			$this->recorder = new MultiTestRecorder();
+			$this->recorder
+				->addRecorder( $oldRecorder   )
+				->addRecorder( $junitRecorder );
+		}
 	}
 
 	/**

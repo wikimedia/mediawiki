@@ -25,7 +25,7 @@
  */
 
 $otions = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
-$optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
+$optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion', 'log-junit' );
 
 require_once( __DIR__ . '/../maintenance/commandLine.inc' );
 require_once( __DIR__ . '/TestsAutoLoader.php' );
@@ -45,6 +45,7 @@ Options:
   --filter         Alias for --regex
   --file=<testfile> Run test cases from a custom file instead of parserTests.txt
   --record         Record tests in database
+  --log-junit      Log test result using the JUnit format
   --compare        Compare with recorded results, without updating the database.
   --setversion     When using --record, set the version string to use (useful
                    with git-svn so that you can get the exact revision)
