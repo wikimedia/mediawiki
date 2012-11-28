@@ -1754,7 +1754,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 # Preferences page
 'preferences'                   => 'Preferences',
 'preferences-summary'           => '', # do not translate or duplicate this message to other languages
-'mypreferences'                 => 'My preferences',
+'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
 'prefsnologin'                  => 'Not logged in',
 'prefsnologintext'              => 'You must be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> to set user preferences.',
