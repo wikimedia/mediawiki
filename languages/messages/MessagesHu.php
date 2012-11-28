@@ -445,7 +445,7 @@ $messages = array(
 'cancel' => 'Mégse',
 'moredotdotdot' => 'Tovább…',
 'mypage' => 'Lapom',
-'mytalk' => 'Vitalapom',
+'mytalk' => 'Vitalap',
 'anontalk' => 'Az IP-címhez tartozó vitalap',
 'navigation' => 'Navigáció',
 'and' => '&#32;és',
@@ -2274,7 +2274,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 
 # Watchlist
 'watchlist' => 'Figyelőlistám',
-'mywatchlist' => 'Figyelőlistám',
+'mywatchlist' => 'Figyelőlista',
 'watchlistfor2' => '$1 részére $2',
 'nowatchlist' => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext' => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
@@ -2531,7 +2531,7 @@ $1',
 # Contributions
 'contributions' => 'Szerkesztő közreműködései',
 'contributions-title' => '$1 közreműködései',
-'mycontris' => 'Közreműködéseim',
+'mycontris' => 'Közreműködések',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Nem található a feltételeknek megfelelő változtatás.',
 'uctop' => ' (utolsó)',

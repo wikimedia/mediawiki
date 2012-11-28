@@ -2442,14 +2442,22 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'enotif_mailer' => '{{SITENAME}} 자동 알림 메일',
 'enotif_reset' => '모든 문서를 방문한 것으로 표시하기',
 'enotif_impersonal_salutation' => '{{SITENAME}} 사용자',
+'enotif_subject_deleted' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 삭제했습니다',
+'enotif_subject_created' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 만들었습니다',
+'enotif_subject_moved' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 옮겼습니다',
+'enotif_subject_restored' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 복구했습니다',
+'enotif_subject_changed' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 바꾸었습니다',
+'enotif_body_intro_deleted' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 삭제했습니다. 현재 판은 $3 에서 볼 수 있습니다.',
+'enotif_body_intro_created' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 만들었습니다. 현재 판은 $3 에서 볼 수 있습니다.',
+'enotif_body_intro_moved' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 옮겼습니다. 현재 판은 $3 에서 볼 수 있습니다.',
+'enotif_body_intro_restored' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 복구했습니다. 현재 판은 $3 에서 볼 수 있습니다.',
+'enotif_body_intro_changed' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 바꾸었습니다. 현재 판은 $3 에서 볼 수 있습니다.',
 'enotif_lastvisited' => '마지막으로 방문한 뒤 생긴 모든 바뀜 사항을 보려면 $1 을 보세요.',
 'enotif_lastdiff' => '이 바뀐 내용을 보려면 $1 을 보세요.',
 'enotif_anon_editor' => '익명 사용자 $1',
 'enotif_body' => '$WATCHINGUSERNAME님,
 
-{{SITENAME}}의 $PAGETITLE 문서를 $PAGEEDITDATE에 $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. 현재의 문서는 $PAGETITLE_URL 에서 볼 수 있습니다.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 편집 요약: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2457,8 +2465,7 @@ $NEWPAGE
 이메일: $PAGEEDITOR_EMAIL
 위키: $PAGEEDITOR_WIKI
 
-이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다.
-모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.
+이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다. 모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.
 
 {{SITENAME}} 알림 시스템
 
