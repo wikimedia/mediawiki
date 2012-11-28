@@ -19,6 +19,7 @@
  * @author Brownout
  * @author Candalua
  * @author Civvì
+ * @author Codicorumus
  * @author Cruccone
  * @author Cryptex
  * @author Dakrismeno
@@ -1106,7 +1107,7 @@ Legenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:las
 'rev-deleted-text-permission' => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.",
 'rev-deleted-text-unhide' => "Questa versione della pagina è stata '''cancellata'''.
-Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.
+Consultare il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log delle cancellazioni] per ulteriori dettagli.
 Agli amministratori è ancora consentito [$1 visualizzare questa versione] se necessario.",
 'rev-suppressed-text-unhide' => "Questa versione della pagina è stata '''rimossa'''.
 Consultare il [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} log di rimozione] per ulteriori dettagli.

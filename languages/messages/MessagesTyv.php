@@ -148,7 +148,10 @@ $messages = array(
 'category-empty' => "''Амгы бо бөлүкте медиа база арыннар чок.''",
 'hidden-categories' => '{{PLURAL:$1|Чажыт бөлүк|Чажыт бөлүктер}}',
 'hidden-category-category' => 'Чажыт бөлүктер',
+'category-subcat-count' => '{{PLURAL:$2|Бо категория чүгле дараазында адыр-категориялыг.|Бо категорияның шупту $2 адыр-категориязының аразындан дараазында $1 адыр-категорияны көргүскен.}}',
 'category-subcat-count-limited' => 'Бо бөлүк {{PLURAL:$1|бир|$1}} адаккы бөлүктүү.',
+'category-article-count' => '{{PLURAL:$2|Бо категория чүгле дараазында арыннарлыг.|Бо категорияның шупту $2 арыннарының аразындан дараазында $1 арынын көргүскен.}}',
+'category-file-count' => '{{PLURAL:$2|Бо категория чүгле чаңгыс файлдыг.|Бо категорияның ниити $2 файлының $1 файлын көргүскен.}}',
 'listingcontinuesabbrev' => '(уланчы)',
 'noindex-category' => 'Индекстелбес арынар',
 'broken-file-category' => 'Ажылдавайн турар файл-шөлүлгелиг арыннар',
@@ -471,6 +474,8 @@ Please check if you want to create/edit this page.',
 'post-expand-template-inclusion-warning' => 'Сагындырыг: Кошкан майыктарның ниити хемчээли дендии улуг.
 Чамдык майыктар коштунмаан боор.',
 'post-expand-template-inclusion-category' => 'Кожар майыктарга чөшпээрээн хемчээлин ашкан арыннар',
+'post-expand-template-argument-warning' => "'''Кичээнгейлиг:''' бо арында тоң дора дээрге (по крайней мере) чаңгыс майыктыг, а ооң аргументизи эмин эрттир улуг калбаяр хемчээлдиг.
+Ындыг чергелиг аргументилерни эрттирип каан.",
 'post-expand-template-argument-category' => "Аргументилери салдынмаан майыктарлыг '''арыннар'''",
 
 # History pages
@@ -770,6 +775,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'filehist-filesize' => 'Файл хемчээли',
 'filehist-comment' => 'Тайылбыр',
 'imagelinks' => 'Файлдың ажыглаашкыны',
+'linkstoimage' => 'Бердинген файлче дараазында {{PLURAL:$1|арын шөлүдүп тур|$1 арын шөлүдүп тур}}:',
 'nolinkstoimage' => 'Бердинген файлче шөлүп турар арыннар чок.',
 
 # File reversion
@@ -1134,6 +1140,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'tooltip-compareselectedversions' => 'Бо арынның шилиттинген ийи хевиринниң ылгалын көөр.',
 'tooltip-watch' => 'Силерниң хайгаарал даңзызынга бо арынны немерелээри',
 'tooltip-rollback' => 'Сөөлгү киржикчиниң өскерилгелерин чаңгыс баскаш, ойталаар',
+'tooltip-undo' => 'Киирген эдигни казааш, ойталалдың чылдагаанын айтыр аргалыг мурнай көргүзүүн көргүзер.',
 'tooltip-summary' => 'Кысказы-биле бижиңер',
 
 # Attribution
@@ -1181,6 +1188,13 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'days' => '{{PLURAL:$1|$1 хүн|$1 хүн}}',
 'ago' => '$1 бурунгаар',
 
+# Bad image list
+'bad_image_list' => 'Формады мындыг боор ужурлуг:
+
+Чүгле даңзының идегеттери (элементилери) санатынар боор (* деп демдектен эгелээн одуруглар).
+Одуругнуң бирги шөлүдүү салдынмас чурумалче шөлүдүг болуру албан.
+Ол-ла одуругнуң арткан шөлүдүглери онзагай кылдыр азы чурумал капсырып болур чүүлдер кылдыр санаттынар.',
+
 # Metadata
 'metadata' => 'Чурумал дугайында медээлер',
 'metadata-fields' => 'Бо даңзыда айыткан чурумалдар метаданныйларның кезектери чурумалдың арынынга көстүп кээр, метаданныйлар таблицазын дүрүп каан болур. 
@@ -1222,6 +1236,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # External editor support
 'edit-externally' => 'Бо файлды даштыкы капсырылга-биле эдер',
+'edit-externally-help' => '(Улаштыр тодарадырда бо [//www.mediawiki.org/wiki/Manual:External_editors кыстып алыр саавырны] көрүңер)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'шупту',

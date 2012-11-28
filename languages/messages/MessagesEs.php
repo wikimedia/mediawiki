@@ -2415,26 +2415,32 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'enotif_mailer' => 'Notificación por correo de {{SITENAME}}',
 'enotif_reset' => 'Marcar todas las páginas como visitadas',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
+'enotif_subject_deleted' => 'La página $1 de {{SITENAME}} ha sido eliminada por {{gender:$2|$2}}',
+'enotif_subject_created' => 'La página $1 de {{SITENAME}} ha sido creada por {{GENDER:$2|$2}}',
+'enotif_subject_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada por {{GENDER:$2|$2}}',
+'enotif_subject_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada por {{GENDER:$2|$2}}',
+'enotif_subject_changed' => 'La página $1 de {{SITENAME}} ha sido cambiada por {{GENDER:$2|$2}}',
+'enotif_body_intro_deleted' => 'La página $1 de {{SITENAME}} ha sido borrada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
+'enotif_body_intro_created' => 'La página $1 de {{SITENAME}} ha sido creada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
+'enotif_body_intro_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
+'enotif_body_intro_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
+'enotif_body_intro_changed' => 'La página $1 de {{SITENAME}} ha sido cambiada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
 'enotif_lastvisited' => 'Consulta $1 para ver todos los cambios realizados desde tu última visita.',
 'enotif_lastdiff' => 'Consulta $1 para ver este cambio.',
 'enotif_anon_editor' => 'usuario anónimo $1',
 'enotif_body' => 'Estimado/a $WATCHINGUSERNAME,
 
-La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATE por el usuario $PAGEEDITOR.
-La versión actual se encuentra en $PAGETITLE_URL
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
+Resumen de edición: $PAGESUMMARY $PAGEMINOREDIT
 
-El resumen de edición es: $PAGESUMMARY $PAGEMINOREDIT
-
-Contacta al editor:
+Contacta con el editor:
 Correo electrónico: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-No habrá otras notificaciones en caso de cambios adicionales, a menos que visites esta página nuevamente.
-También puedes reestablecer las notificaciones para todas tus páginas vigiladas en tu página de vigilancia.
+No habrá otras notificaciones en caso de cambios adicionales, a menos que visites esta página nuevamente. También puedes reestablecer las notificaciones de todas tus páginas que sigas en tu página de vigilancia.
 
-             El sistema de notificación de {{SITENAME}}.
+El sistema de notificaciones de {{SITENAME}}.
 
 --
 Para cambiar las opciones de tu lista de seguimiento, visita:
@@ -2443,7 +2449,7 @@ Para cambiar las opciones de tu lista de seguimiento, visita:
 Para borrar la página de tu lista de seguimiento visita:
 $UNWATCHURL
 
-Retroalimentación y asistencia adicional:
+Comentarios y asistencia adicional:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -4041,9 +4047,9 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-move-move_redir-noredirect' => '$1 movió la página $3 a $4 sobre una redirección, sin dejar redirección',
 'logentry-patrol-patrol' => '$1 marcó la edición $4 de la página $3 como patrullada',
 'logentry-patrol-patrol-auto' => '$1 marcó automáticamente la edición $4 de la página $3 como patrullada',
-'logentry-newusers-newusers' => '$1 creó una cuenta de usuario',
-'logentry-newusers-create' => '$1 creó una cuenta de usuario',
-'logentry-newusers-create2' => '$1 creó una cuenta de usuario $3',
+'logentry-newusers-newusers' => 'Se ha creado la cuenta de usuario $1',
+'logentry-newusers-create' => 'Se ha creado la cuenta de usuario $1',
+'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'newuserlog-byemail' => 'contraseña enviada por correo electrónico',
 

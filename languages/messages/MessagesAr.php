@@ -50,6 +50,7 @@
  * @author TTMTT
  * @author Tarawneh
  * @author TheEgyptian
+ * @author Tux-tn
  * @author Uwe a
  * @author Zack wadghiri
  * @author Zanatos
@@ -1264,6 +1265,7 @@ $2
 'content-not-allowed-here' => '"$1" المحتوى غير مسموح على صفحة [[$2]]',
 
 # Content models
+'content-model-text' => 'نص عادي',
 'content-model-javascript' => 'جافاسكربت',
 
 # Parser/template warnings

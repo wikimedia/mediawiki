@@ -2336,15 +2336,22 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'enotif_mailer' => 'Thông báo của {{SITENAME}}',
 'enotif_reset' => 'Đánh dấu đã xem mọi trang',
 'enotif_impersonal_salutation' => 'thành viên {{SITENAME}}',
+'enotif_subject_deleted' => 'Trang $1 tại {{SITENAME}} đã được xóa bởi $2.',
+'enotif_subject_created' => 'Trang $1 tại {{SITENAME}} đã được tạo ra bởi $2.',
+'enotif_subject_moved' => 'Trang $1 tại {{SITENAME}} đã được di chuyển bởi $2.',
+'enotif_subject_restored' => 'Trang $1 tại {{SITENAME}} đã được phục hồi bởi $2.',
+'enotif_subject_changed' => 'Trang $1 tại {{SITENAME}} đã được thay đổi bởi $2.',
+'enotif_body_intro_deleted' => 'Trang $1 tại {{SITENAME}} đã được $2 xóa vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',
+'enotif_body_intro_created' => 'Trang $1 tại {{SITENAME}} đã được $2 tạo ra vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',
+'enotif_body_intro_moved' => 'Trang $1 tại {{SITENAME}} đã được $2 di chuyển vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',
+'enotif_body_intro_restored' => 'Trang $1 tại {{SITENAME}} đã được $2 phục hồi vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',
+'enotif_body_intro_changed' => 'Trang $1 tại {{SITENAME}} đã được $2 thay đổi vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',
 'enotif_lastvisited' => 'Xem $1 để biết các thay đổi diễn ra từ lần xem cuối cùng của bạn.',
 'enotif_lastdiff' => 'Vào $1 để xem sự thay đổi này.',
 'enotif_anon_editor' => 'người dùng vô danh $1',
 'enotif_body' => 'Xin chào $WATCHINGUSERNAME,
 
-
-Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATE, xem phiên bản hiện hành tại $PAGETITLE_URL.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Tóm lược sửa đổi: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2352,8 +2359,7 @@ Liên lạc với người viết trang qua:
 thư: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó.
-Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
+Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó. Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
 
               Hệ thống báo tin {{SITENAME}} thân thiện của bạn
 

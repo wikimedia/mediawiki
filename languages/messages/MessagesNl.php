@@ -2470,24 +2470,22 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'enotif_mailer' => '{{SITENAME}}-berichtensysteem',
 'enotif_reset' => "Alle pagina's markeren als bezocht",
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',
-'enotif_subject_deleted' => '{{SITENAME}} pagina $1 is verwijderd door {{gender:$2|$2}}',
-'enotif_subject_created' => '{{SITENAME}} pagina $1 is aangemaakt door {{gender:$2|$2}}',
-'enotif_subject_moved' => '{{SITENAME}} pagina $1 is verplaatst door {{gender:$2|$2}}',
-'enotif_subject_restored' => '{{SITENAME}} pagina $1 is hersteld door {{gender:$2|$2}}',
-'enotif_subject_changed' => '{{SITENAME}} pagina $1 is bewerkt door {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'De {{SITENAME}} pagina $1 is verwijderd op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
-'enotif_body_intro_created' => 'De {{SITENAME}} pagina $1 is aangemaakt op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
-'enotif_body_intro_moved' => 'De {{SITENAME}} pagina $1 is verplaatst op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
-'enotif_body_intro_restored' => 'De {{SITENAME}} pagina $1 is hersteld op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
-'enotif_body_intro_changed' => 'De {{SITENAME}} pagina $1 is bewerkt op $PAGEEDITDATE door {{gender:$2|$2}}, zie $3 voor de huidige versie.',
+'enotif_subject_deleted' => '{{SITENAME}}: pagina $1 is verwijderd door {{GENDER:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}}: pagina $1 is aangemaakt door {{GENDER:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}}: pagina $1 is hernoemd door {{GENDER:$2|$2}}',
+'enotif_subject_restored' => '{{SITENAME}}: pagina $1 is teruggeplaatst door {{GENDER:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}}: pagina $1 is bewerkt door {{GENDER:$2|$2}}',
+'enotif_body_intro_deleted' => 'De pagina $1 op {{SITENAME}} is verwijderd door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
+'enotif_body_intro_created' => 'De pagina $1 op {{SITENAME}} is aangemaakt door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
+'enotif_body_intro_moved' => 'De pagina $1 op {{SITENAME}} is hernoemd door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
+'enotif_body_intro_restored' => 'De pagina $1 op {{SITENAME}} is teruggeplaatst door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
+'enotif_body_intro_changed' => 'De pagina $1 op {{SITENAME}} is bewerkt door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
 'enotif_lastvisited' => 'Zie $1 voor alle wijzigingen sinds uw laatste bezoek.',
 'enotif_lastdiff' => 'Ga naar $1 om deze wijziging te bekijken.',
 'enotif_anon_editor' => 'anonieme gebruiker $1',
 'enotif_body' => 'Beste $WATCHINGUSERNAME,
 
-De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE door $PAGEEDITOR. Zie $PAGETITLE_URL voor de huidige versie.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Samenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -4145,7 +4143,7 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-patrol-patrol-auto' => '$1 heeft versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
 'logentry-newusers-newusers' => 'Gebruiker $1 is aangemaakt',
 'logentry-newusers-create' => 'Gebruiker $1 is aangemaakt',
-'logentry-newusers-create2' => 'Gebruiker $3  is aangemaakt door $1',
+'logentry-newusers-create2' => 'Gebruiker $3 is aangemaakt door $1',
 'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
 'newuserlog-byemail' => 'wachtwoord is verzonden per e-mail',
 

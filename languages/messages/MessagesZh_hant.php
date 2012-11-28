@@ -3075,6 +3075,7 @@ $1',
 'hours' => '$1小時',
 'days' => '$1天',
 'ago' => '$1前',
+'just-now' => '剛才',
 
 # Bad image list
 'bad_image_list' => '請按照下列格式編寫：

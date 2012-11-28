@@ -4197,4 +4197,6 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
+# Unknown messages
+'svg-long-error' => 'קובץ SVG לא תקין: $1',
 );
