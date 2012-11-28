@@ -3300,6 +3300,7 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'hours' => '{{PLURAL:$1|una hora|$1 horas}}',
 'days' => '{{PLURAL:$1|un día|$1 días}}',
 'ago' => 'hace $1',
+'just-now' => 'Ahora mismo',
 
 # Bad image list
 'bad_image_list' => 'El formato es el siguiente:

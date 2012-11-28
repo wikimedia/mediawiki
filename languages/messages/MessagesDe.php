@@ -3314,6 +3314,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
 'ago' => 'vor $1',
+'just-now' => 'Gerade eben',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -4159,4 +4160,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'svg-long-error' => 'Ungültige SVG-Datei: $1',
 );

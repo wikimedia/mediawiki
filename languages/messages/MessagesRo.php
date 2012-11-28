@@ -3228,6 +3228,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'hours' => '{{PLURAL:$1|o oră|$1 ore|$1 de ore}}',
 'days' => '{{PLURAL:$1|o zi|$1 zile|$1 de zile}}',
 'ago' => '$1 în urmă',
+'just-now' => 'Chiar acum',
 
 # Bad image list
 'bad_image_list' => 'Formatul este următorul:

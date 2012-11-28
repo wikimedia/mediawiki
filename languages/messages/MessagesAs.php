@@ -3084,6 +3084,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 ঘন্টা|$1 ঘন্টা}}',
 'days' => '{{PLURAL:$1|$1 দিন|$1 দিন}}',
 'ago' => '$1 আগেয়ে',
+'just-now' => 'এইমাত্ৰ',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:

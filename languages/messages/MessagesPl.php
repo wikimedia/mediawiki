@@ -3236,6 +3236,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'hours' => '{{PLURAL:$1|$1 godzina|$1 godziny|$1 godzin}}',
 'days' => '{{PLURAL:$1|$1 dzień|$1 dni}}',
 'ago' => '$1 temu',
+'just-now' => 'przed chwilą',
 
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:

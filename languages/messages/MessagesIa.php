@@ -3135,6 +3135,7 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'hours' => '{{PLURAL:$1|$1 hora|$1 horas}}',
 'days' => '{{PLURAL:$1|$1 die|$1 dies}}',
 'ago' => '$1 retro',
+'just-now' => 'Justo nunc',
 
 # Bad image list
 'bad_image_list' => 'Le formato es como seque:
