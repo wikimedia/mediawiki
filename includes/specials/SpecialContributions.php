@@ -534,8 +534,8 @@ class SpecialContributions extends SpecialPage {
 			);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
-		if ( $explain->exists() ) {
-			$form .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
+		if ( !$explain->isBlank() ) {
+			$form .= "<p id='mw-sp-contributions-explain'>{$explain->text()}</p>";
 		}
 		$form .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
