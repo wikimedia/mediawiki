@@ -28,35 +28,44 @@
  * @ingroup SpecialPage
  */
 class WithoutInterwikiPage extends PageQueryPage {
-	private $prefix = '';
+	/**
+	 * Contains three values:
+	 *  - NS index
+	 *  - Title for DB (underscored)
+	 *  - Title for View (spaced)
+	 *
+	 * @var array $prefix
+	 */
+	private $prefix = array();
 
 	function __construct( $name = 'Withoutinterwiki' ) {
 		parent::__construct( $name );
 	}
 
 	function execute( $par ) {
-		$this->prefix = Title::capitalize(
-			$this->getRequest()->getVal( 'prefix', $par ), NS_MAIN );
+		$this->prefix = $this->getNamespaceKeyAndText(
+			$this->getRequest()->getInt( 'namespace', NS_MAIN ),
+			$this->getRequest()->getVal( 'prefix', $par ) );
+
 		parent::execute( $par );
 	}
 
 	function getPageHeader() {
-		global $wgScript;
-
 		# Do not show useless input form if special page is cached
 		if( $this->isCached() ) {
 			return '';
 		}
 
-		$prefix = $this->prefix;
-		$t = $this->getTitle();
-
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) .
-			Html::hidden( 'title', $t->getPrefixedText() ) .
-			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . ' ' .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Xml::buildForm( array(
+				'allpagesprefix' => Xml::input( 'prefix', 20, $this->prefix[2], array( 'id' => 'wiprefix' ) ),
+				'namespace' => Html::namespaceSelector(
+					array( 'selected' => $this->prefix[0] ),
+					array( 'name' => 'namespace', 'id' => 'wiprefix' ) )
+				) , 'withoutinterwiki-submit' ).
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 	}
@@ -78,21 +87,54 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
+		$ns = MWNamespace::getSubjectNamespaces();
+		$title = '';
+		if ( $this->prefix && $this->prefix[1] ) {
+			$ns = $this->prefix[0];
+			$title = $this->prefix[1];
+		}
+
 		$query = array (
 			'tables' => array ( 'page', 'langlinks' ),
 			'fields' => array ( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'page_title' ),
 			'conds' => array ( 'll_title IS NULL',
-					'page_namespace' => MWNamespace::getContentNamespaces(),
+					'page_namespace' => $ns,
 					'page_is_redirect' => 0 ),
 			'join_conds' => array ( 'langlinks' => array (
 					'LEFT JOIN', 'll_from = page_id' ) )
 		);
-		if ( $this->prefix ) {
+		if ( $title ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );
+			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix[1], $dbr->anyString() );
 		}
 		return $query;
+	}
+
+	/**
+	 * @param $ns Integer: the namespace of the article
+	 * @param $text String: the name of the article
+	 * @return array( int namespace, string dbkey, string pagename ) or NULL on error
+	 */
+	private function getNamespaceKeyAndText( $ns, $text ) {
+		if ( $text == '' )
+			return array( $ns, '', '' );
+
+		$t = Title::makeTitleSafe( $ns, $text );
+		if ( $t && $t->isLocal() ) {
+			return array( $t->getNamespace(), $t->getDBkey(), $t->getText() );
+		} elseif ( $t ) {
+			return null;
+		}
+
+		// try again, in case the problem was an empty pagename
+		$text = preg_replace('/(#|$)/', 'X$1', $text);
+		$t = Title::makeTitleSafe($ns, $text);
+		if ( $t && $t->isLocal() ) {
+			return array( $t->getNamespace(), '', '' );
+		} else {
+			return null;
+		}
 	}
 }
