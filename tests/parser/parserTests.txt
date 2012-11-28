@@ -2740,16 +2740,73 @@ Multiplication table
 
 !! end
 
+!! test
+Accept "||" in table headings
+!! input
+{|
+!h1 || h2
+|}
+!! result
+<table>
+<tr>
+<th>h1 </th>
+<th> h2
+</th></tr></table>
+
+!! end
+
+!! test
+Accept "||" in indented table headings
+!! input
+:{|
+!h1 || h2
+|}
+!! result
+<dl><dd><table>
+<tr>
+<th>h1 </th>
+<th> h2
+</th></tr></table></dd></dl>
+
+!! end
+
+!! test
+Accept empty attributes in td/th cells (td/th cells starting with leading ||)
+!! input
+{|
+|! h1
+|| a 
+|}
+!! result
+<table>
+<tr>
+<td>! h1
+</td>
+<td> a
+</td></tr></table>
+
+!! end
+
 !!test
-Allow +/- in 2nd and later cells in a row
+Allow +/- in 2nd and later cells in a row, or in 1st cell when td-attributes are present
 !!input
 {|
+|-
+|style='color:red;'| +1
+|style='color:blue;'| -1
+|-
 | 1 || 2 || 3
 |-
 | 1 || +2 || -3
 |}
 !!result
 <table>
+
+<tr>
+<td style="color:red;"> +1
+</td>
+<td style="color:blue;"> -1
+</td></tr>
 <tr>
 <td> 1 </td>
 <td> 2 </td>
