@@ -227,6 +227,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
 			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
+			array( 'dropField', 'recentchanges', 'rc_cur_time',         'patch-rc_cur_time.sql' ),
 		);
 	}
 
