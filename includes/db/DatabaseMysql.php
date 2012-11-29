@@ -414,7 +414,6 @@ class DatabaseMysql extends DatabaseBase {
 		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
 		$table = $this->tableName( $table );
 		$index = $this->indexName( $index );
-
 		$sql = 'SHOW INDEX FROM ' . $table;
 		$res = $this->query( $sql, $fname );
 
@@ -429,6 +428,7 @@ class DatabaseMysql extends DatabaseBase {
 				$result[] = $row;
 			}
 		}
+
 		return empty( $result ) ? false : $result;
 	}
 

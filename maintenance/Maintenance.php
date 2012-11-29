@@ -109,12 +109,6 @@ abstract class Maintenance {
 	private $mDb = null;
 
 	/**
-	 * Used when creating separate schema files.
-	 * @var resource
-	 */
-	public $fileHandle;
-
-	/**
 	 * List of all the core maintenance scripts. This is added
 	 * to scripts added by extensions in $wgMaintenanceScripts
 	 * and returned by getMaintenanceScripts()
