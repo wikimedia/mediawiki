@@ -565,4 +565,16 @@ class HtmlTest extends MediaWikiTestCase {
 		return $ret;
 	}
 
+	public function testFormValidationBlacklist() {
+		$this->assertEmpty(
+			Html::expandAttributes( array( 'min' => 1, 'max' => 100, 'pattern' => 'abc', 'required' => true, 'step' => 2 ) ),
+			'Blacklist form validation attributes.'
+		);
+		$this->assertEquals(
+			' step="any"',
+			Html::expandAttributes( array( 'min' => 1, 'max' => 100, 'pattern' => 'abc', 'required' => true, 'step' => 'any' ) ),
+			"Allow special case 'step=\"any\"'."
+		);
+	}
+
 }

@@ -479,7 +479,13 @@ class Html {
 			# server-side validation.  Opera is the only other implementation at
 			# this time, and has ugly UI, so just kill the feature entirely until
 			# we have at least one good implementation.
-			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required', 'step' ) ) ) {
+
+			# As the default value of "1" for "step" rejects decimal
+			# numbers to be entered in 'type="number"' fields, allow
+			# the special case 'step="any"'.
+
+			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required' ) ) ||
+				 $key === 'step' && $value !== 'any' ) {
 				continue;
 			}
 
