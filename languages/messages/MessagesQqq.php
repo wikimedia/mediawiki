@@ -805,6 +805,9 @@ See also:
 'red-link-title' => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 'sort-descending' => 'JavaScript message. Used by sortable table script.',
 'sort-ascending' => 'JavaScript message. Used by sortable table script.',
+'tooltip-iwiki' => 'Format of a sidebar interwiki link tooltip. Parameters:
+* $1 - Page name in the target wiki
+* $2 - Target wiki language autonym',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'The name for the tab of the main namespace. Example: [[Example]]
