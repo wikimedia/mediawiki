@@ -3065,6 +3065,23 @@ function wfHttpOnlySafe() {
 }
 
 /**
+ * Check if there is sufficent entropy in php's built-in session generation
+ * PHP's built-in session entropy is enabled if:
+ * - entropy_file is set or you're on Windows with php 5.3.3+
+ * - AND entropy_length is > 0
+ * We treat it as disabled if it doesn't have an entropy length of at least 32
+ *
+ * @return bool true = there is sufficient entropy
+ */
+function wfCheckEntropy() {
+	return (
+			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
+			|| ini_get( 'session.entropy_file' )
+		)
+		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
+}
+
+/**
  * Override session_id before session startup if php's built-in
  * session generation code is not secure.
  */
@@ -3074,16 +3091,8 @@ function wfFixSessionID() {
 		return;
 	}
 
-	// PHP's built-in session entropy is enabled if:
-	// - entropy_file is set or you're on Windows with php 5.3.3+
-	// - AND entropy_length is > 0
-	// We treat it as disabled if it doesn't have an entropy length of at least 32
-	$entropyEnabled = (
-			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
-			|| ini_get( 'session.entropy_file' )
-		)
-		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
-	
+	$entropyEnabled = wfCheckEntropy();
+
 	// If built-in entropy is not enabled or not sufficient override php's built in session id generation code
 	if ( !$entropyEnabled ) {
 		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, overriding session id generation using our cryptrand source.\n" );

@@ -717,6 +717,8 @@ class LoginForm extends SpecialPage {
 					global $wgLang, $wgRequest;
 					$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 					$wgLang = Language::factory( $code );
+					// Reset SessionID on Successful login (bug 40995)
+					$this->renewSessionId();
 					return $this->successfulLogin();
 				} else {
 					return $this->cookieRedirectCheck( 'login' );
@@ -1156,6 +1158,23 @@ class LoginForm extends SpecialPage {
 	public static function clearCreateaccountToken() {
 		global $wgRequest;
 		$wgRequest->setSessionData( 'wsCreateaccountToken', null );
+	}
+
+ 	/**
+	 * Renew the user's session id, using strong entropy
+	 */
+	private function renewSessionId() {
+		if ( wfCheckEntropy() ) {
+			session_regenerate_id( false );
+		} else {
+			//If we don't trust PHP's entropy, we have to replace the session manually
+			$tmp = $_SESSION;
+			session_unset();
+			session_write_close();
+			session_id( MWCryptRand::generateHex( 32 ) );
+			session_start();
+			$_SESSION = $tmp;
+		}
 	}
 
 	/**
