@@ -263,9 +263,13 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private static function getwgVersionLinked() {
 		global $wgVersion;
-		$versionParts = array();
-		preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
-		return "[https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]} $wgVersion]";
+		$versionString = "";
+		if( wfRunHooks( 'SpecialVersionVersionUrl', array( $wgVersion, &$versionUrl ) ) ) {
+			$versionParts = array();
+			preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
+			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
+		}
+		return "[$versionUrl $wgVersion]";
 	}
 
 	/**
