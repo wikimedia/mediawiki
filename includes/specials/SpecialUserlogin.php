@@ -914,7 +914,7 @@ class LoginForm extends SpecialPage {
 		# Run any hooks; display injected HTML
 		$currentUser = $this->getUser();
 		$injected_html = '';
-		$welcome_creation_msg = 'welcomecreation';
+		$welcome_creation_msg = 'welcomecreation-msg';
 
 		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
 
