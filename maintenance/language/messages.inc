@@ -427,8 +427,7 @@ $wgMessageStructure = array(
 	'login' => array(
 		'logouttext',
 		'welcomeuser',
-		'welcomecreation',
-		'welcomecreation-agora',
+		'welcomecreation-msg',
 		'yourname',
 		'yourpassword',
 		'yourpasswordagain',
