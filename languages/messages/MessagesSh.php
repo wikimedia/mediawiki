@@ -616,9 +616,6 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 
 Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo <span class='plainlinks'>[$1 prijaviti]</span> kao isti ili kao drugi korisnik.
 Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
-'welcomecreation' => '== Dobro došli, $1! ==
-Vaš korisnički račun je napravljen.
-Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].',
 'yourname' => 'Korisničko ime:',
 'yourpassword' => 'Lozinka/zaporka:',
 'yourpasswordagain' => 'Ponovno utipkajte lozinku/zaporku:',

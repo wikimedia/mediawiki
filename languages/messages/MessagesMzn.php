@@ -504,9 +504,6 @@ $2، $1',
 'sqlhidden' => '(دستور اس‌کیوال دپوشنی‌یه بیّه)',
 
 # Login and logout pages
-'welcomecreation' => '==$1، خِش بمونی!==
-شِمه حساب بساته بیّه.
-فراموش نکانین که [[Special:Preferences|شه ترجیحات {{SITENAME}}]] ره تنظیم هاکنین.',
 'yourname' => 'شمه کاروری‌نوم:',
 'yourpassword' => 'شمه پسورد',
 'yourpasswordagain' => 'پسورد ره دِباره بنویس',

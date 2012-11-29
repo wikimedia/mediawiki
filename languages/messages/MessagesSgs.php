@@ -394,9 +394,6 @@ Ožklausėms: $2',
 
 Galat ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba <span class='plainlinks'>[$1 prisėjonkat]</span> ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
 Pastebiejims: katruos nekatruos poslapiuos ė tuoliau gal ruodītė būktā būtomiet prisėjongės lėgė tuol, kumet ėšvalīsėt sava naršīklės dietovė (''cache'').",
-'welcomecreation' => '== Svēkė, $1! ==
-
-Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava [[Special:Preferences|{{SITENAME}} nustatīmu]].',
 'yourname' => 'Nauduotuojė vards:',
 'yourpassword' => 'Slaptažuodis:',
 'yourpasswordagain' => 'Pakartuoket slaptažuodė:',

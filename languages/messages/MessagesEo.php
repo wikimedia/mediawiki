@@ -724,9 +724,6 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
 Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
 'welcomeuser' => 'Bonvenon, $1!',
-'welcomecreation' => '== Bonvenon, $1! ==
-Via konto estas kreita.
-Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'yourname' => 'Salutnomo:',
 'yourpassword' => 'Pasvorto:',
 'yourpasswordagain' => 'Retajpu pasvorton',

@@ -722,10 +722,6 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 
 Možete da nastavite s korišćenjem ovog vikija kao gost, ili se <span class='plainlinks'>[$1 ponovo prijavite]</span> kao drugi korisnik.
 Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još prijavljeni, sve dok ne očistite privremenu memoriju svog pregledača.",
-'welcomecreation' => '== Dobro došli, $1! ==
-
-Vaš nalog je otvoren.
-Ne zaboravite da prilagodite svoja [[Special:Preferences|podešavanja]].',
 'yourname' => 'Korisničko ime:',
 'yourpassword' => 'Lozinka:',
 'yourpasswordagain' => 'Potvrda lozinke:',

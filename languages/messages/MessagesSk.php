@@ -690,10 +690,6 @@ Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
 
 Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete opäť <span class='plainlinks'>[$1 prihlásiť]</span> pod rovnakým alebo odlišným používateľským menom.
 Uvedomte si, že niektoré stránky sa môžu naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete vyrovnávaciu pamäť vášho prehliadača.",
-'welcomecreation' => '== Vitaj, $1! ==
-
-Vaše konto je vytvorené.
-Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastavenia]].',
 'yourname' => 'Používateľské meno:',
 'yourpassword' => 'Heslo:',
 'yourpasswordagain' => 'Zopakujte heslo:',

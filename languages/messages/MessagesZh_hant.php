@@ -42,6 +42,7 @@
  * @author Wong128hk
  * @author Wrightbus
  * @author Xiaomingyan
+ * @author Yfdyh000
  * @author Yuyu
  */
 
@@ -577,7 +578,8 @@ $1',
 'badtitletext' => '所請求頁面的標題是無效的、不存在，跨語言或跨wiki連結的標題錯誤。它可能包含一個或更多的不能用於標題的字符。',
 'perfcached' => '下列是快取資料，因此可能不是最新的。最多{{PLURAL:$1|只有1個結果|$1個結果}}可用。',
 'perfcachedts' => '下列是快取資料，其最後更新時間是$1。只有{{PLURAL:$4|一個結果|$4個結果}}會被顯示。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
-'querypage-no-updates' => '目前禁止對此頁面進行更新。此處的資料將不能被立即重新整理。',
+'querypage-no-updates' => '目前禁止對此頁面進行更新。
+此處的資料將不能被立即重新整理。',
 'wrong_wfQuery_params' => '錯誤的參數被傳遞到 wfQuery（）<br />
 函數：$1<br />
 查詢：$2',
@@ -619,10 +621,7 @@ $2',
 您可以以匿名方式繼續使用{{SITENAME}}，或以相同或不同用戶身份<span class='plainlinks'>[$1 登入]</span>。
 請注意，如果你再次登入，此頁或會繼續顯示，直到您清除瀏覽器緩存。",
 'welcomeuser' => '歡迎，$1！',
-'welcomecreation' => '== 歡迎，$1！ ==
-您的賬號已經建立。
-不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
-'welcomecreation-agora' => '您的賬號已經建立。
+'welcomecreation-msg' => '您的賬號已經建立。
 不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 'yourname' => '用戶名：',
 'yourpassword' => '您的密碼：',
@@ -2209,15 +2208,22 @@ Template:消除歧義',
 'enotif_mailer' => '{{SITENAME}}郵件通知器',
 'enotif_reset' => '將所有頁面標為已閱讀',
 'enotif_impersonal_salutation' => '{{SITENAME}}用戶',
+'enotif_subject_deleted' => '{{SITENAME}}的「$1」頁面被$2刪除',
+'enotif_subject_created' => '{{SITENAME}}的「$1」頁面被$2建立',
+'enotif_subject_moved' => '{{SITENAME}}的「$1」頁面被$2移動',
+'enotif_subject_restored' => '{{SITENAME}}的「$1」頁面被$2恢復',
+'enotif_subject_changed' => '{{SITENAME}}的「$1」頁面被$2修改',
+'enotif_body_intro_deleted' => '{{SITENAME}}的「$1」頁面於$PAGEEDITDATE被$2刪除，請見$3瀏覽當前版本。',
+'enotif_body_intro_created' => '{{SITENAME}}的「$1」頁面於$PAGEEDITDATE被$2建立，請見$3瀏覽當前版本。。',
+'enotif_body_intro_moved' => '{{SITENAME}}的「$1」頁面於$PAGEEDITDATE被$2移動，請見$3瀏覽當前版本。',
+'enotif_body_intro_restored' => '{{SITENAME}}的「$1」頁面於$PAGEEDITDATE被$2恢復，請見$3瀏覽當前版本。',
+'enotif_body_intro_changed' => '{{SITENAME}}的「$1」頁面於$PAGEEDITDATE被$2修改，請見$3瀏覽當前版本。',
 'enotif_lastvisited' => '請參閱 $1 檢視你上次訪問後的所有更改。',
 'enotif_lastdiff' => '請參閱 $1 檢視該更改。',
 'enotif_anon_editor' => '匿名用戶$1',
-'enotif_body' => '親愛的$WATCHINGUSERNAME：
+'enotif_body' => '$WATCHINGUSERNAME：
 
-
-{{SITENAME}}的頁面$PAGETITLE已經於$PAGEEDITDATE由$PAGEEDITOR$CHANGEDORCREATED，請見 $PAGETITLE_URL 瀏覽現在的版本。
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 編輯摘要：$PAGESUMMARY $PAGEMINOREDIT
 
@@ -2226,22 +2232,21 @@ $NEWPAGE
 郵件：$PAGEEDITOR_EMAIL
 本站：$PAGEEDITOR_WIKI
 
-在您訪問此頁之前，將來的更改將不會向您發通知。
-您也可以在監視列表中重設您所有監視頁面的通知標記。
+在您訪問此頁之前，將來的更改將不會向您發出通知。您也可以在監視列表中重設您所有監視頁面的通知標記。
 
-			 友好的{{SITENAME}}通知系統
+{{SITENAME}}通知系統啟
 
 --
-要改變您的電郵設定，請參閱
+更改電郵通知設定：
 {{canonicalurl:{{#special:Preferences}}}}
 
-要改變您的監視列表設定，請參閱
+更改監視列表設定：
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-要刪除您監視清單中的該頁面，請參閱
+從監視列表中刪除此頁面：
 $UNWATCHURL
 
-回饋和進一步的幫助：
+回饋和其他幫助：
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -3923,4 +3928,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'svg-long-error' => '無效的SVG檔案：$1',
 );

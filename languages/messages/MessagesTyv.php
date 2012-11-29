@@ -148,10 +148,10 @@ $messages = array(
 'category-empty' => "''Амгы бо бөлүкте медиа база арыннар чок.''",
 'hidden-categories' => '{{PLURAL:$1|Чажыт бөлүк|Чажыт бөлүктер}}',
 'hidden-category-category' => 'Чажыт бөлүктер',
-'category-subcat-count' => '{{PLURAL:$2|Бо категория чүгле дараазында адыр-категориялыг.|Бо категорияның шупту $2 адыр-категориязының аразындан дараазында $1 адыр-категорияны көргүскен.}}',
+'category-subcat-count' => '{{PLURAL:$2|Бо бөлүк чүгле дараазында адыр-бөлүклүг.|Бо бөлүктүң шупту $2 адыр-бөлүүнүң аразындан дараазында $1 адыр-бөлүктү көргүскен.}}',
 'category-subcat-count-limited' => 'Бо бөлүк {{PLURAL:$1|бир|$1}} адаккы бөлүктүү.',
-'category-article-count' => '{{PLURAL:$2|Бо категория чүгле дараазында арыннарлыг.|Бо категорияның шупту $2 арыннарының аразындан дараазында $1 арынын көргүскен.}}',
-'category-file-count' => '{{PLURAL:$2|Бо категория чүгле чаңгыс файлдыг.|Бо категорияның ниити $2 файлының $1 файлын көргүскен.}}',
+'category-article-count' => '{{PLURAL:$2|Бо бөлүк чүгле дараазында арыннарлыг.|Бо бөлүктүң шупту $2 арыннарының аразындан дараазында $1 арынын көргүскен.}}',
+'category-file-count' => '{{PLURAL:$2|Бо бөлүк чүгле чаңгыс файлдыг.|Бо бөлүктүң ниити $2 файлының $1 файлын көргүскен.}}',
 'listingcontinuesabbrev' => '(уланчы)',
 'noindex-category' => 'Индекстелбес арынар',
 'broken-file-category' => 'Ажылдавайн турар файл-шөлүлгелиг арыннар',
@@ -339,9 +339,6 @@ $messages = array(
 'exception-nologin' => 'Кирбес',
 
 # Login and logout pages
-'welcomecreation' => '== Кирип моорлаңар, $1! ==
-Силер бүрүткел бижик has been created.
-Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname' => 'Aжыглакчының ады',
 'yourpassword' => 'Чажыт сөс',
 'yourpasswordagain' => 'Чажыт сөзүңерни катап бижиңер:',
@@ -465,7 +462,7 @@ Please check if you want to create/edit this page.',
 'templatesused' => 'Бо арында {{PLURAL:$1|Майык|Майыктар}} ажыглаттырган:',
 'template-protected' => '(камгалаан)',
 'template-semiprotected' => '(четпес камгалаан)',
-'hiddencategories' => 'Бо арын $1 {{PLURAL:$1|чажыт категорияга}} хамааржыр:',
+'hiddencategories' => 'Бо арын {{PLURAL:$1|$1 чажыт бөлүкке}} хамааржыр:',
 'permissionserrorstext-withaction' => "Мында «'''$2'''» силерниң эргеңер чок, {{PLURAL:$1|чылдагааны|чылдагааннары}}:",
 'moveddeleted-notice' => 'Бо арын ап каавыткан.
 Адаанда ап каавыткан биле өскээр адаан бижиктер шынзылгазын көргүскен.',
@@ -568,6 +565,7 @@ Please check if you want to create/edit this page.',
 'searcheverything-enable' => 'Шупту аттар делгемнеринден дилээри',
 'searchrelated' => 'холбаалыг',
 'searchall' => 'шупту',
+'showingresultsheader' => "«'''$4'''» дилээниниң {{PLURAL:$5|'''$3''' одуругдан '''$1''' түңнели|'''$3''' одуругдан '''$1—$2''' түңнелдери}}",
 'search-nonefound' => 'Айыткан негелдениң түңнели чок',
 'powersearch' => 'Advanced search',
 'powersearch-ns' => 'Аттар делгемнеринден дилээри:',
@@ -722,6 +720,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'recentchangeslinked-toolbox' => 'Хамааржыр өскерлиишкиннер',
 'recentchangeslinked-title' => '«$1» деп арынга хамаарыштырган өскерлиишкиннер',
 'recentchangeslinked-noresult' => 'Холбаштырган арыннарда айыткан үе иштинде кандыг-даа өскертилге турбаан.',
+'recentchangeslinked-summary' => "Айыткан арынның (азы айыткан бөлүкке хамаарышкан) шөлүлүглериниң чедер арыннарнының чаа өскерилгер даңзызы.
+[[Special:Watchlist|Силерниң хайгаарал даңзызынче]] кирип турар арыннарны '''ылгап каан'''.",
 'recentchangeslinked-page' => 'Арынның ады:',
 'recentchangeslinked-to' => 'Айыткан арынче шөлүп турар арыннарга өскерилгелерни көргүзер',
 
@@ -777,6 +777,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'imagelinks' => 'Файлдың ажыглаашкыны',
 'linkstoimage' => 'Бердинген файлче дараазында {{PLURAL:$1|арын шөлүдүп тур|$1 арын шөлүдүп тур}}:',
 'nolinkstoimage' => 'Бердинген файлче шөлүп турар арыннар чок.',
+'sharedupload-desc-here' => 'Моон $1 алган файл өске төлевилелдерге ажыглаттынып болур.
+Ооң [$2 допчу тайылбыр арынындан] медеглели адаанда бердинген.',
 
 # File reversion
 'filerevert' => '$1 эгидип тургузары',
@@ -1197,6 +1199,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # Metadata
 'metadata' => 'Чурумал дугайында медээлер',
+'metadata-help' => 'Бо файл немелде данныйларлыг:санныг камералар азы сканнерлер дугайында медеглел. Файл чаяанының соонда эдидип турган болза, чамдык параметрлери амгы чурумалга меге кылдыр хамааржып болур.',
 'metadata-fields' => 'Бо даңзыда айыткан чурумалдар метаданныйларның кезектери чурумалдың арынынга көстүп кээр, метаданныйлар таблицазын дүрүп каан болур. 
 Арткан кезектер аайлаан ёзугаар чажыт көстүр.
 * make

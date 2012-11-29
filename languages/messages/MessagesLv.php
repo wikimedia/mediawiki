@@ -430,9 +430,6 @@ Norādītais iemesls bija ''$2''.",
 
 Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezties]</span> kā cits lietotājs vai varbūt tas pats.
 Ņem vērā, ka arī pēc iziešanas, dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.",
-'welcomecreation' => '== Laipni lūdzam, $1! ==
-
-Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Special:Preferences|{{grammar:ģenitīvs|{{SITENAME}}}} izmantošanas izvēles]].',
 'yourname' => 'Tavs lietotājvārds',
 'yourpassword' => 'Tava parole:',
 'yourpasswordagain' => 'Atkārto paroli',

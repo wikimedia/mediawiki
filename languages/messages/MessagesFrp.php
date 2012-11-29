@@ -713,9 +713,6 @@ La rêson balyêye est « ''$2'' ».",
 
 Vos pouede continuar a empleyér {{SITENAME}} de façon anonima ou ben <span class='plainlinks'>[$1 vos tornar branchiér]</span> desot lo mémo nom ou un ôtro.
 Notâd qu’y at des pâges que pôvont étre oncor fêtes vêre coment se vos érâd adés branchiê{{GENDER:||ye|(ye)}}, tant que vos èfaciéd lo cacho de voutron navigator.",
-'welcomecreation' => '== Benvegnua, $1 ! ==
-Voutron compto est étâ fêt.
-Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus {{SITENAME}}]].',
 'yourname' => 'Nom d’utilisator :',
 'yourpassword' => 'Contresegno :',
 'yourpasswordagain' => 'Confirmâd lo contresegno :',

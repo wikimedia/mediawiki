@@ -342,9 +342,6 @@ Cur coontey jeh da [[Special:ListUsers/sysop|reireyder]], as goaill stiagh yn UR
 'virus-unknownscanner' => 'ronseyder noi-veerys gyn enney',
 
 # Login and logout pages
-'welcomecreation' => '== Failt ort, $1! ==
-Ta dty choontys crooit nish.<br />
-Ny jean jarrood dty [[Special:Preferences|hosheeaghtyn {{SITENAME}}]] y chaghlaa.',
 'yourname' => "Dt'ennym ymmydeyr:",
 'yourpassword' => 'Fockle yn arrey:',
 'yourpasswordagain' => "Aascreeu d'ockle arrey:",

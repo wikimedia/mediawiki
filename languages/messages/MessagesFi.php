@@ -715,10 +715,7 @@ Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.
 Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai <span class='plainlinks'>[$1 kirjautua uudelleen sisään]</span>.
 Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut sisään, kunnes tyhjennät selaimen välimuistin.",
 'welcomeuser' => 'Tervetuloa $1!',
-'welcomecreation' => '== Tervetuloa $1! ==
-Käyttäjätunnuksesi on luotu.
-Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksiasi]].',
-'welcomecreation-agora' => 'Käyttäjätunnuksesi on luotu.
+'welcomecreation-msg' => 'Käyttäjätunnuksesi on luotu.
 Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksiasi]].',
 'yourname' => 'Käyttäjätunnus',
 'yourpassword' => 'Salasana',

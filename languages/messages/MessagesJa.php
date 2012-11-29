@@ -778,10 +778,7 @@ $2',
 このまま匿名で{{SITENAME}}の使用を続行できます。同じまたは別の利用者として<span class='plainlinks'>[$1 もう一度ログイン]</span>することもできます。
 なお、ページによっては、ブラウザーのキャッシュをクリアするまで、ログインしているかのように表示され続ける場合があるためご注意ください。",
 'welcomeuser' => 'ようこそ、$1さん!',
-'welcomecreation' => '== ようこそ、$1 さん！ ==
-アカウントが作成されました。
-[[Special:Preferences|{{SITENAME}}の個人設定]]の変更も忘れないようにしてください。',
-'welcomecreation-agora' => 'アカウントが作成されました。
+'welcomecreation-msg' => 'アカウントが作成されました。
 [[Special:Preferences|{{SITENAME}}の個人設定]]の変更も忘れないようにしてください。',
 'yourname' => '利用者名:',
 'yourpassword' => 'パスワード:',
@@ -4358,4 +4355,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
+# Unknown messages
+'svg-long-error' => '無効な SVG ファイル: $1',
 );

@@ -665,9 +665,6 @@ Ir-raġuni li ġiet mogħtija kienet ''$2''.",
 
 Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa <span class='plainlinks'>[$1 tidħol]</span> bħala l-istess utent jew wieħed differenti.
 Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra mill-kont qatt ma seħħ, sakemm ma tħassarx il-cache tal-browser.",
-'welcomecreation' => "== Merħba, $1! ==
-Il-kont tiegħek ġie maħluq.<br />
-Tinsiex tippersonalizza l-[[Special:Preferences|preferenzi]] ta' {{SITENAME}}.",
 'yourname' => 'Isem tal-utent:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => "Erġa' ikteb il-password:",

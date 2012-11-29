@@ -770,10 +770,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 U kunt {{SITENAME}} nu anoniem gebruiken of weer <span class='plainlinks'>[$1 aanmelden]</span> als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
 'welcomeuser' => 'Welkom, $1!',
-'welcomecreation' => '== Welkom, $1! ==
-Uw gebruiker is geregistreerd.
-Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te passen.',
-'welcomecreation-agora' => 'Uw gebruiker is aangemaakt.
+'welcomecreation-msg' => 'Uw gebruiker is aangemaakt.
 Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te passen.',
 'yourname' => 'Gebruikersnaam:',
 'yourpassword' => 'Wachtwoord:',

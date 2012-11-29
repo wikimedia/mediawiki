@@ -413,7 +413,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
 'tog-extendwatchlist' => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc' => 'Seitenbezogene Gruppierung bei den „Letzten Änderungen“ und auf der Beobachtungsliste (benötigt JavaScript)',
+'tog-usenewrc' => 'Seitenbezogene Gruppierung in den „Letzten Änderungen“ und auf der Beobachtungsliste (benötigt JavaScript)',
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen (benötigt JavaScript)',
 'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
@@ -818,12 +818,6 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen <span class='plainlinks'>[$1 anmelden]</span>.
 Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomeuser' => 'Willkommen, $1!',
-'welcomecreation' => '== Willkommen, $1! ==
-
-Dein Benutzerkonto wurde soeben eingerichtet.
-Vergiss nicht, deine [[Special:Preferences|Einstellungen]] für dieses Wiki anzupassen.',
-'welcomecreation-agora' => 'Dein Benutzerkonto wurde erstellt.
-Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.',
 'yourname' => 'Benutzername:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort wiederholen:',

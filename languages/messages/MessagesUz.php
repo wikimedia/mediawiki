@@ -373,9 +373,6 @@ Ushbu xabar tarjimasini qo'shish yoki o'zgartirish uchun, iltimos, MediaWikining
 
 {{SITENAME}} saytidan anonim holda foydalanishda davom etishindiz mumkin. Yoki siz yana hozirgi yoki boshqa foydalanuvchi nomi bilan qaytadan tizimga kirishingiz mumkin.
 Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguningizga qadar xuddi tizimga kirganingizdagidek ko'rinishda davom etaverishi mumkin.",
-'welcomecreation' => '== Xush kelibsiz, $1! ==
-Siz yangi hisob yaratdingiz.
-[[Special:Preferences|{{SITENAME}}dagi shaxsiy moslamalaringizni]] oʻzgartirish yodingizdan chiqmasin.',
 'yourname' => 'Foydalanuvchi nomi',
 'yourpassword' => 'Maxfiy soʻz',
 'yourpasswordagain' => 'Maxfiy so‘zni qayta kiriting:',

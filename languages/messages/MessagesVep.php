@@ -473,9 +473,6 @@ Sü om "\'\'$2\'\'".',
 
 Sab jatkta rad {{SITENAME}}-saital anonimižikš, vai <span class='plainlinks'>[$1 kirjutagatoiš udes]</span> sil-žo vai toižel kävutajan nimel.
 Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel teiden lähtendad sistemaspäi. Miše vajehtada niiden nägu, puhtastagat teiden kaclimen keš.",
-'welcomecreation' => '== Tulgat tervhen, $1! ==
-Teiden registracii om loptud.
-Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
 'yourname' => 'Kävutajan nimi:',
 'yourpassword' => 'Peitsana:',
 'yourpasswordagain' => 'Kirjutagat peitsana udes:',

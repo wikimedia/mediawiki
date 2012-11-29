@@ -613,9 +613,6 @@ $1',
 
 你重可以用匿名身份用{{SITENAME}}，又或者<span class='plainlinks'>[$1 重新登入]</span>。
 但係留意某啲頁面可能會繼續話你未登入，除非等你清除瀏覽器嘅快取儲存。",
-'welcomecreation' => '== 歡迎， $1！ ==
-
-你個戶口已經起好。唔好唔記得去改改你嘅[[Special:Preferences|{{SITENAME}}喜好設定]]喎。',
 'yourname' => '用戶名:',
 'yourpassword' => '密碼:',
 'yourpasswordagain' => '再輸入密碼:',

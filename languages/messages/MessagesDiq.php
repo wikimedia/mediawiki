@@ -724,11 +724,7 @@ Xızmetkarê  kılitkerdışi wa bewni ro enay wa çımra ravyarno: "$3".',
 Nıka kamiyê xo eşkera mekere u siteyê {{SITENAME}} ra eşkeni devam bıkeri, ya zi <span class='plainlinks'>[$1 newe ra hesabê xo akere]</span> (wazeni pey nameyê xo, wazeni pey yewna name).
 Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de hesabe şıma akerde aseno.",
 'welcomeuser' => 'Xeyr ameyê $1',
-'welcomecreation' => '== Şıma xeyr amey, $1! ==
-
-Hesabê şıma biyo a.
-[[Special:Preferences|{{SITENAME}} vurnayişê tercihanê xo]], xo vir ra mekere.',
-'welcomecreation-agora' => 'Hesabê şıma abiyo.
+'welcomecreation-msg' => 'Hesabê şıma abiyo.
 [[Special:Preferences|{{SITENAME}} vurnayişê tercihanê xo]], xo vir ra mekere.',
 'yourname' => 'Namey karberi',
 'yourpassword' => 'Parola',
@@ -2357,6 +2353,16 @@ Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem 
 'enotif_mailer' => 'postaya xeberdayişi {{SITENAME}}',
 'enotif_reset' => 'Pela pêro ziyaret kerde deye mor ke',
 'enotif_impersonal_salutation' => '{{SITENAME}} karber',
+'enotif_subject_deleted' => '{{SITENAME}} de pera $1 {{gender:$2|$2}} esterıt.',
+'enotif_subject_created' => '{{SITENAME}} de pera $1 {{gender:$2|$2}} vıraşt',
+'enotif_subject_moved' => '{{SITENAME}} de pera $1 {{gender:$2|$2}} berde',
+'enotif_subject_restored' => '{{SITENAME}} de pera $1 {{gender:$2|$2}} timar ke',
+'enotif_subject_changed' => '{{SITENAME}} de pera $1 {{gender:$2|$2}} vurne',
+'enotif_body_intro_deleted' => '{{SITENAME}} de pera $1 $PAGEEDITDATE de {{gender:$2|$2}}i esterıt, rewizyonê $3 bıvin.',
+'enotif_body_intro_created' => '{{SITENAME}} de pera $1 $PAGEEDITDATE de {{gender:$2|$2}}i vıraşt, rewizyonê $3 bıvin.',
+'enotif_body_intro_moved' => '{{SITENAME}} de pera $1 $PAGEEDITDATE de {{gender:$2|$2}}i berd, rewizyonê $3 bıvin.',
+'enotif_body_intro_restored' => '{{SITENAME}} de pera $1 $PAGEEDITDATE de {{gender:$2|$2}}i timar ke, rewizyonê $3 bıvin.',
+'enotif_body_intro_changed' => '{{SITENAME}} de pera $1 $PAGEEDITDATE de {{gender:$2|$2}}i vurne, rewizyonê $3 bıvin.',
 'enotif_lastvisited' => 'ziyareta şıma ye peyini ra nata heme vuryayiş ê ke biyê bıewnê $1i re..',
 'enotif_lastdiff' => 'qey vinayişê ney vurnayişi bıewnê pelê $1i',
 'enotif_anon_editor' => 'karbero anonim $1',
@@ -3726,6 +3732,7 @@ Gurênayışê nae de, beno ke sistemê şıma zerar bıvêno.",
 'hours' => 'Verdê {{PLURAL:$1|$1 seata|$1 seata}}',
 'days' => 'Verdê {{PLURAL:$1|$1 rocan|$1 rocan}}',
 'ago' => 'Verdê $1',
+'just-now' => 'Hema newke',
 
 # Bad image list
 'bad_image_list' => 'Şeklo umumi wınayo:
@@ -4747,4 +4754,6 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
+# Unknown messages
+'svg-long-error' => "Nêmeqbul dosyaya SVG'i: $1",
 );

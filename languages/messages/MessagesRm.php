@@ -453,9 +453,6 @@ L\'administratur che ha bloccà l\'access da scriva ha dà suandanta explicaziun
 'logouttext' => "'''Sortì cun success.'''
 
 Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos <span class='plainlinks'>[$1 t'annunziar]</span> sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes navigatur.",
-'welcomecreation' => '==Bainvegni, $1! ==
-Tes conto è vegni creà.
-Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].',
 'yourname' => "Num d'utilisader",
 'yourpassword' => 'pled-clav',
 'yourpasswordagain' => 'repeter pled-clav',

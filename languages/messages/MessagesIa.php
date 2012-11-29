@@ -555,10 +555,7 @@ Le administrator qui lo blocava offereva iste explication: "$3".',
 Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote <span class='plainlinks'>[$1 aperir un nove session]</span> con le mesme nomine de usator o con un altere.
 Nota que alcun paginas pote continuar a apparer como si tu esserea ancora authenticate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
 'welcomeuser' => 'Benvenite, $1!',
-'welcomecreation' => '== Benvenite, $1! ==
-Tu conto ha essite create.
-Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
-'welcomecreation-agora' => 'Tu conto ha essite create.
+'welcomecreation-msg' => 'Tu conto ha essite create.
 Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
 'yourname' => 'Nomine de usator:',
 'yourpassword' => 'Contrasigno:',

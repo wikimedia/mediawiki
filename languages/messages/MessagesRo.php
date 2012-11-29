@@ -714,10 +714,7 @@ Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă <span class='plainlinks'>[$1 reautentificați]</span> ca același sau ca alt utilizator.
 Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
 'welcomeuser' => 'Bun venit, $1!',
-'welcomecreation' => '==Bun venit, $1!==
-
-Contul dumneavoatră a fost creat. Nu uitați să vă modificați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
-'welcomecreation-agora' => 'Contul dumneavoastră a fost creat.
+'welcomecreation-msg' => 'Contul dumneavoastră a fost creat.
 Nu uitați să vă modificați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
 'yourname' => 'Nume de utilizator:',
 'yourpassword' => 'Parolă:',
@@ -4050,4 +4047,6 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
+# Unknown messages
+'svg-long-error' => 'Fișier SVG invalid: $1',
 );

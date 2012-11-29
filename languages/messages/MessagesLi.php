@@ -559,9 +559,6 @@ d\'n Opgegaeve raej vanne sloetendje admin waar "\'\'$3\'\'".',
 
 De kèns {{SITENAME}} noe anoniem (mit vermeljing van IP-adres) gebroeke, of <span class='plainlinks'>[$1 opnuuj aanmelde]</span> ónger dezelfde of 'ne angere naam.
 Mäögelik waert nog 'n deil pagina's getuind esofs te nog aangemeld bis pès te de cache van diene browser laeg maaks.",
-'welcomecreation' => '== Wèlkóm, $1! ==
-Diene gebroeker is noe vaerdig.
-Vergaet neet dien [[Special:Preferences|veurkäöre veur {{SITENAME}}]] aan te passe.',
 'yourname' => 'Diene gebroekersnaam',
 'yourpassword' => 'Die wachwaord',
 'yourpasswordagain' => 'Wachwaord opnuuj intype',

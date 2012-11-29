@@ -444,8 +444,6 @@ Batdume : ''$2''.",
 # Login and logout pages
 'logouttext' => 'Rin daletoe til solgluyanaf.
 Rin va {{SITENAME}} yoltiskon ware rofavel oke, bifoton kan ar yolt, va int toldogluyal.',
-'welcomecreation' => '<h2>Til drumbaf, $1!</h2><p>Rinaf favesikpata su zo redur.
-Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'yourname' => 'Rinaf favesikyolt',
 'yourpassword' => 'Rinaf remravlem',
 'yourpasswordagain' => 'Va rinaf remravlem tolon bazel',

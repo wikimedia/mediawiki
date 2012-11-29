@@ -523,8 +523,6 @@ $2',
 
 子可匿名還覽{{SITENAME}}，或<span class='plainlinks'>[$1 復登]</span>同簿、異簿。
 未清謄本，覽器文舊，且慎之。",
-'welcomecreation' => '== $1大駕光臨! ==
-子簿增矣，敬更[[Special:Preferences|簿註]]。',
 'yourname' => '名',
 'yourpassword' => '符節',
 'yourpasswordagain' => '復核節',

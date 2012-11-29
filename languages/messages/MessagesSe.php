@@ -385,9 +385,6 @@ $messages = array(
 'logouttext' => "'''Don leat dál loggen olggos {{GRAMMAR:elative|{{SITENAME}}}}s.'''
 
 Sáhtát joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman dahje logget ođđasit sisa",
-'welcomecreation' => '== Bures boahtin, $1! ==
-Du geavaheaddjidovddaldat lea dál anus.
-Ále vajáldahte rievdadit {{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid.',
 'yourname' => 'Geavaheaddjidovddaldat',
 'yourpassword' => 'Suollemassátni:',
 'yourpasswordagain' => 'Čále suollemassáni ođđasit:',

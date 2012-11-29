@@ -519,10 +519,7 @@ $1',
 You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser' => 'ਜੀ ਆਇਆ ਨੂੰ, $1!',
-'welcomecreation' => '== ਜੀ ਆਇਆਂ ਨੂੰ, $1! ==
-
-ਤੁਹਾਡਾ ਖਾਤਾ ਬਣ ਚੁੱਕਾ ਹੈ। ਆਪਣੀਆਂ [[Special:Preferences|{{SITENAME}} ਪਸੰਦਾਂ]] ਬਦਲਣੀਆਂ ਨਾ ਭੁੱਲੋ।',
-'welcomecreation-agora' => 'ਤੁਹਾਡਾ ਖਾਤਾ ਬਣ ਚੁੱਕਾ ਹੈ। ਆਪਣੀਆਂ [[Special:Preferences|{{SITENAME}} ਪਸੰਦਾਂ]] ਬਦਲਣੀਆਂ ਨਾ ਭੁੱਲੋ।',
+'welcomecreation-msg' => 'ਤੁਹਾਡਾ ਖਾਤਾ ਬਣ ਚੁੱਕਾ ਹੈ। ਆਪਣੀਆਂ [[Special:Preferences|{{SITENAME}} ਪਸੰਦਾਂ]] ਬਦਲਣੀਆਂ ਨਾ ਭੁੱਲੋ।',
 'yourname' => 'ਮੈਂਬਰ ਨਾਂ:',
 'yourpassword' => 'ਪਾਸਵਰਡ:',
 'yourpasswordagain' => 'ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਲਿਖੋ:',

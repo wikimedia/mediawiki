@@ -427,10 +427,6 @@ Görkezilen sebäp: ''$2''.",
 Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen <span class='plainlinks'>[$1 sessiýany ýaňadan]</span> açyp bilersiňiz.
 Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
 'welcomeuser' => 'Hoş geldiňiz, $1!',
-'welcomecreation' => '== Hoş geldiňiz, $1! ==
-
-Hasabyňyz açyldy.
-[[Special:Preferences|{{SITENAME}} saýtyndaky ileri tutmalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
 'yourname' => 'Ulanyjy adyňyz:',
 'yourpassword' => 'Parolyňyz:',
 'yourpasswordagain' => 'Paroly gaýtadan ýaz:',

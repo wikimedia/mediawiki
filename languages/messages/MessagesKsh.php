@@ -636,11 +636,7 @@ Dä Wiki_Köbes dovun hät beim Deeschmaache als Jrond aanjejovve: „$3“',
 Do künnts heh em Wiki wigger maache, als ene namelose Metmaacher. Do kanns De ävver och <span class='plainlinks'>[\$1 widder enlogge]</span>, als däselve oder och ene andere Metmaacher.
 Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe <i lang=\"en\">Cache</i> fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!",
 'welcomeuser' => 'Wellkumme $1!',
-'welcomecreation' => '== Dach, $1! ==
-Dinge Zojang för heh es do.
-Do bes jetz aanjemeldt.
-Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh för {{GRAMMAR:Akk|{{SITENAME}}}} zeräächmaache]].',
-'welcomecreation-agora' => 'Dinge Zohjang es enjerescht.
+'welcomecreation-msg' => 'Dinge Zohjang es enjerescht.
 Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].',
 'yourname' => 'Metmaacher_Naame:',
 'yourpassword' => 'Paßwoot:',

@@ -476,9 +476,6 @@ Göstərilən səbəb: "\'\'$2\'\'".',
 'logouttext' => "'''Sistemdən çıxdınız.'''
 
 Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər və ya eyni, yaxud başqa istifadəçi adı ilə <span class='plainlinks'>[$1 yenidən daxil ola]</span> bilərsiniz. Veb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
-'welcomecreation' => '== $1, xoş gəlmişsiniz! ==
-Hesabınız yaradıldı.
-[[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
 'yourname' => 'İstifadəçi adı',
 'yourpassword' => 'Parol:',
 'yourpasswordagain' => 'Parolu təkrar yazın:',

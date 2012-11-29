@@ -445,10 +445,6 @@ Anedbal i tid sekkweṛen yefkad taɣẓint agi : « $3 ».',
 
 Tzemreḍ ad tesseqdceḍ {{SITENAME}} d udrig, <span class='plainlinks'>[$1 ad tkecmeḍ daɣen]</span> s yisem n wemseqdac inek (neɣ nniḍen).
 Kra n isebtar zemren ad sskanen belli mazal-ik s yisem n wemseqdac inek armi temḥuḍ lkac.",
-'welcomecreation' => '== Anṣuf yisek (yisem), $1 ! ==
-
-Amiḍan ik (im) yesnulfad.
-Ur tettuḍ ara ad tbeddleḍ [[Special:Preferences|isemyifiyen inek (inem) ɣef {{SITENAME}}]].',
 'yourname' => 'Isem n wemseqdac',
 'yourpassword' => 'Awal n tbaḍnit',
 'yourpasswordagain' => 'Ɛiwed ssekcem awal n tbaḍnit',

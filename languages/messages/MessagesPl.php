@@ -704,10 +704,7 @@ Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo <span class='plainlinks'>[$1 zalogować się ponownie]</span> jako ten sam lub inny użytkownik.
 Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
 'welcomeuser' => 'Witaj, $1!',
-'welcomecreation' => '== Witaj, $1! ==
-Twoje konto zostało utworzone.
-Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
-'welcomecreation-agora' => 'Twoje konto zostało utworzone.
+'welcomecreation-msg' => 'Twoje konto zostało utworzone.
 Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'yourname' => 'Nazwa {{GENDER:|użytkownika|użytkowniczki}}',
 'yourpassword' => 'Hasło',

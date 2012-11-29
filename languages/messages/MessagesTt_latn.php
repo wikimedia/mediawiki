@@ -478,9 +478,6 @@ Ul kürsätkän säbäp: ''$2''.",
 
 Sez {{SITENAME}} proyektında anonim räweştä qala yäisä şul uq yäki başqa isem belän yañadan <span class='plainlinks'>[$1 kerä]</span> alasız.
 Qayber bitlär Sez kergän kebek kürsätelergä mömkin. Monı beterü öçen brauzer keşın çistartığız.",
-'welcomecreation' => '== Räxim itegez, $1! ==
-Sez terkäldegez.
-Saytnıñ şäxsi [[Special:Preferences|köylänmälären]] qararğa onıtmağız.',
 'yourname' => 'Qullanuçı iseme:',
 'yourpassword' => 'Sersüz:',
 'yourpasswordagain' => 'Sersüzne qabat kertü:',

@@ -508,9 +508,6 @@ An administrador na iyo an nagkandado kaini nagpahayag kaining kapaliwanagan: "$
 
 Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika <span class='plainlinks'>[$1 Maglaog giraray]</span> bilang pareho o bilang ibang paragamit.
 Giromdoma na an ibang mga pahina mapuwedeng padagos na magpapahiling siring baga na kun ika garo yaon man sana sa laog, sagkod na saimong malinigan mo an sarayan sa kilyawan.",
-'welcomecreation' => '== Maogmang Pag-abot, $1! ==
-An saimong panindog (account) naimukna na tabi.
-Dae ka man tabi malingaw na ribayan an saimong [[Special:Preferences|{{SITENAME}} mga kabôtan]].',
 'yourname' => 'Pangaran kan paragamit:',
 'yourpassword' => 'Pasa-taramon:',
 'yourpasswordagain' => 'Pakilaog giraray kan sekretong panlaog:',

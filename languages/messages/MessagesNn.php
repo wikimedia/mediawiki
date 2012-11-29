@@ -715,10 +715,7 @@ Administratoren som låste filsamlinga oppgav den fylgjande årsaka: «$3».',
 Du kan no halde fram å bruke {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge inn att]</span>  med same kontoen eller ein annan brukar kan logge inn.
 Ver merksam på at nokre sider framleis kan visast fram som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
 'welcomeuser' => 'Velkomen, $1!',
-'welcomecreation' => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
-Brukarkontoen din er oppretta.
-Hugs at du kan endre på [[Special:Preferences|innstillingane]] dine.',
-'welcomecreation-agora' => 'Brukarkontoen din er oppretta.
+'welcomecreation-msg' => 'Brukarkontoen din er oppretta.
 Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}]].',
 'yourname' => 'Brukarnamn:',
 'yourpassword' => 'Passord:',

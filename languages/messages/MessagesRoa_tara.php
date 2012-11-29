@@ -447,9 +447,6 @@ L\'amministratore ca l\'ha bloccate dèje sta spiegazione: "$3".',
 
 Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè <span class='plainlinks'>[$1 collegarte 'n'otra vote]</span> cumme 'u stesse utende o cumme 'n'otre utende.
 Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
-'welcomecreation' => "== Bovegne, $1! ==
-'U cunde tue ha state ccrejete.
-No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
 'yourname' => 'Nome utende:',
 'yourpassword' => 'Passuord:',
 'yourpasswordagain' => "Scrive 'a passuord notra vote:",

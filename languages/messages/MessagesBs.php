@@ -681,9 +681,6 @@ Iz razloga "\'\'$2\'\'".',
 
 Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo <span class='plainlinks'>[$1 prijaviti]</span> kao isti ili kao drugi korisnik.
 Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
-'welcomecreation' => '== Dobro došli, $1 ==
-Vaš nalog je napravljen.
-Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} podešavanja]].',
 'yourname' => 'Korisničko ime:',
 'yourpassword' => 'Šifra:',
 'yourpasswordagain' => 'Ponovite šifru:',

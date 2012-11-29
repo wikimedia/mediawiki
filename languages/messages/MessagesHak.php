@@ -328,7 +328,6 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 'logouttext' => "'''Ngì hien-chhai yí-kîn thui-chhut.'''
 
 Ngì khó-yî ki-siu̍k yî ngia̍k-miàng fông-sṳt sṳ́-yung {{SITENAME}}, fe̍t-chá chai-chhṳ yî siông-thùng fe̍t-he mò-thùng yung-fu sṳ̂n-fun tên-ngi̍p.",
-'welcomecreation' => '<h2>Fôn-ngiàng, $1!</h2><p>Ngì-ke chong-ho yí-kîn kien-li̍p, put-yeu mong-ki sat-chṳ {{SITENAME}} ke-ngìn chhâm-sṳ.</p>',
 'yourname' => 'Yung-fu-miàng',
 'yourpassword' => 'Me̍t-ma:',
 'yourpasswordagain' => 'Chai-chhṳ sû-ngi̍p me̍t-ma:',

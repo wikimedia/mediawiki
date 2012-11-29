@@ -713,9 +713,6 @@ De beheerder gaf hierveur de volgende reden: "$3".',
 
 Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen <span class='plainlinks'>[$1 opniej anmelden]</span> onder disse of n aandere gebrukersnaam.
 t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin totda'j t tussengeheugen van joew webkieker leegmaken.",
-'welcomecreation' => '== Welkom, $1! ==
-Joew gebrukersnaam is an-emaakt.
-Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] in te stellen.',
 'yourname' => 'Gebrukersnaam',
 'yourpassword' => 'Wachtwoord',
 'yourpasswordagain' => 'Opniej invoeren',

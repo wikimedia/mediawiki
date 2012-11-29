@@ -638,9 +638,6 @@ Möppudýrið sem læsti skránni gaf þessa ástæðu: "\'\'$3\'\'".',
 
 Þú getur haldið áfram að nota {{SITENAME}} óþekkt(ur), eða þú getur <span class='plainlinks'>[$1 skráð þig inn aftur]</span> sem sami eða annar notandi.
 Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá skráð(ur) inn, þangað til að þú hreinsar skyndiminnið í vafranum þínum.",
-'welcomecreation' => '== Velkomin(n), $1! ==
-Aðgangurinn þinn hefur verið búinn til.
-Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum.',
 'yourname' => 'Notandanafn:',
 'yourpassword' => 'Lykilorð:',
 'yourpasswordagain' => 'Endurrita lykilorð:',

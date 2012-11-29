@@ -724,9 +724,6 @@ Administrators nærmere begrunnelse: «$3».',
 
 Du kan fortsette å bruke {{SITENAME}} anonymt, eller <span class='plainlinks'>[$1 logge inn igjen]</span> som samme eller en annen bruker.
 Merk at noen sider kan vise at du fortsatt er logget inn fram til du tømmer mellomlageret i nettleseren.",
-'welcomecreation' => '==Velkommen, $1!==
-Brukerkontoen din har blitt opprettet.
-Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'yourname' => 'Brukernavn:',
 'yourpassword' => 'Passord:',
 'yourpasswordagain' => 'Gjenta passord',

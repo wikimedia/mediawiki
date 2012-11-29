@@ -616,9 +616,6 @@ Die rede hiervoor is "\'\'$3\'\'".',
 
 U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan weer <span class='plainlinks'>[$1 inteken]</span> as dieselfde of 'n ander gebruiker.
 Dit is moontlik dat sommige bladsye nog sal aandui dat u aangeteken is totdat u u webblaaier se kas skoonmaak.",
-'welcomecreation' => '== Welkom, $1! ==
-U rekening is geskep;
-moenie vergeet om u [[Special:Preferences|persoonlike voorkeure vir {{SITENAME}}]] te stel nie.',
 'yourname' => 'Gebruikersnaam:',
 'yourpassword' => 'Wagwoord:',
 'yourpasswordagain' => 'Herhaal wagwoord',

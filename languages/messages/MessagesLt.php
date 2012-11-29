@@ -589,9 +589,6 @@ Ją užrakinęs administratorius pateikė šį paaiškinimą: "$3".',
 
 Galite toliau naudoti {{SITENAME}} anonimiškai arba <span class='plainlinks'>[$1 prisijunkite]</span> iš naujo tuo pačiu ar kitu naudotoju.
 Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti, kad esate prisijungęs iki tol, kol išvalysite savo naršyklės podėlį.",
-'welcomecreation' => '== Sveiki, $1! ==
-
-Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo [[Special:Preferences|{{SITENAME}} nustatymų]].',
 'yourname' => 'Naudotojo vardas:',
 'yourpassword' => 'Slaptažodis:',
 'yourpasswordagain' => 'Pakartokite slaptažodį:',

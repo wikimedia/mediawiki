@@ -721,9 +721,6 @@ O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 
 É possível continuar usando {{SITENAME}} anonimamente ou <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
-'welcomecreation' => '== Bem-vindo(a), $1! ==
-A sua conta foi criada.
-Não se esqueça de personalizar as suas [[Special:Preferences|preferências no wiki {{SITENAME}}]].',
 'yourname' => 'Nome de usuário:',
 'yourpassword' => 'Senha:',
 'yourpasswordagain' => 'Redigite sua senha',

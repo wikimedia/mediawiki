@@ -670,10 +670,7 @@ $2',
 Вы можаце працягваць працу ў {{GRAMMAR:месны|{{SITENAME}}}} ананімна, альбо можаце <span class='plainlinks'>[$1 ўвайсьці ў сыстэму]</span> як той жа альбо іншы ўдзельнік.
 Некаторыя старонкі могуць паказвацца, быццам Вы ўсё яшчэ ў сыстэме. Каб гэтага пазьбегнуць, трэба ачысьціць кэш браўзэра.",
 'welcomeuser' => 'Вітаем, $1!',
-'welcomecreation' => '== Вітаем, $1! ==
-Ваш рахунак быў створаны.
-Не забудзьцеся зьмяніць Вашыя [[Special:Preferences|налады ў {{GRAMMAR:месны|{{SITENAME}}}}]].',
-'welcomecreation-agora' => 'Ваш рахунак быў створаны.
+'welcomecreation-msg' => 'Ваш рахунак быў створаны.
 Не забудзьцеся зьмяніць Вашыя [[Special:Preferences|налады ў {{GRAMMAR:месны|{{SITENAME}}}}]].',
 'yourname' => 'Імя ўдзельніка:',
 'yourpassword' => 'Пароль:',
@@ -2937,7 +2934,7 @@ $1',
 'javascripttest-qunit-heading' => 'Набор QUnit-тэстаў для MediaWiki JavaScript',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Ваша старонка ўдзельніка',
+'tooltip-pt-userpage' => 'Вашая ўласная старонка',
 'tooltip-pt-anonuserpage' => 'Старонка ўдзельніка для IP-адрасу, зь якога Вы рэдагуеце',
 'tooltip-pt-mytalk' => 'Ваша старонка гутарак',
 'tooltip-pt-anontalk' => 'Старонка гутарак пра рэдагаваньні, зробленыя з гэтага IP-адрасу',
@@ -3161,7 +3158,7 @@ $1',
 'hours' => '$1 {{PLURAL:$1|гадзіна|гадзіны|гадзінаў}}',
 'days' => '$1 {{PLURAL:$1|дзень|дні|дзён}}',
 'ago' => '$1 таму',
-'just-now' => 'Толькі што',
+'just-now' => 'толькі што',
 
 # Bad image list
 'bad_image_list' => 'Фармат наступны:
@@ -4000,4 +3997,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'duration-centuries' => '$1 {{PLURAL:$1|стагодзьдзе|стагодзьдзі|стагодзьдзяў}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячагодзьдзе|тысячагодзьдзі|тысячагодзьдзяў}}',
 
+# Unknown messages
+'svg-long-error' => 'Няслушны SVG-файл: $1',
 );

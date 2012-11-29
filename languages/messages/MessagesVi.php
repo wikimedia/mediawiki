@@ -702,10 +702,7 @@ Bảo quản viên khóa nó đưa lý do là: “$3”.',
 
 Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể <span class='plainlinks'>[$1 đăng nhập lại]</span> dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
 'welcomeuser' => 'Hoan nghênh, $1!',
-'welcomecreation' => '== Chào mừng, $1! ==
-Tài khoản của bạn đã được mở.
-Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
-'welcomecreation-agora' => 'Tài khoản của bạn đã được mở.
+'welcomecreation-msg' => 'Tài khoản của bạn đã được mở.
 Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
 'yourname' => 'Tên người dùng:',
 'yourpassword' => 'Mật khẩu:',
@@ -3222,6 +3219,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'hours' => '$1 giờ',
 'days' => '$1 ngày',
 'ago' => 'cách đây $1',
+'just-now' => 'vừa mới xong',
 
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:
@@ -4029,8 +4027,8 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'compare-rev1' => 'Phiên bản 1',
 'compare-rev2' => 'Phiên bản 2',
 'compare-submit' => 'So sánh',
-'compare-invalid-title' => 'Tựa trang chỉ định không hợp lệ.',
-'compare-title-not-exists' => 'Tựa trang chỉ định không tồn tại.',
+'compare-invalid-title' => 'Tên trang chỉ định không hợp lệ.',
+'compare-title-not-exists' => 'Tên trang chỉ định không tồn tại.',
 'compare-revision-not-exists' => 'Phiên bản chỉ định không tồn tại.',
 
 # Database error messages
@@ -4162,4 +4160,6 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
+# Unknown messages
+'svg-long-error' => 'Tập tin SVG có lỗi: $1',
 );

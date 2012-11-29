@@ -699,11 +699,7 @@ Administraator lukustas selle järgmisel põhjusel: "$3".',
 Võid jätkata {{GRAMMAR:genitive|{{SITENAME}}}} kasutamist anonüümselt, aga ka sama või mõne teise kasutajana uuesti <span class='plainlinks'>[$1 sisse logida]</span>.
 Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võidakse mõni lehekülg endiselt nii kuvada nagu oleksid ikka sisse logitud.",
 'welcomeuser' => 'Tere tulemast, $1!',
-'welcomecreation' => '== Tere tulemast, $1! ==
-
-Sinu konto on loodud.
-Ära unusta oma {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|eelistusi]] seada.',
-'welcomecreation-agora' => 'Sinu konto on loodud.
+'welcomecreation-msg' => 'Sinu konto on loodud.
 Ära unusta seada oma {{GRAMMAR:genitive|{{SITENAME}}}} [[Eri:Eelistused|eelistusi]].',
 'yourname' => 'Kasutajanimi:',
 'yourpassword' => 'Parool:',

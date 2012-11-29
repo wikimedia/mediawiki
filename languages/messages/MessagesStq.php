@@ -444,10 +444,6 @@ Die Administrator, die dän Skrieuwtougriep speerde, roate foulgjenden Gruund an
 
 Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier <span class='plainlinks'>[$1 anmäldje]</span>.
 Beoachtje, dät eenige Sieden noch anwiese konnen, dät du oumälded bäst, soloange du nit din Browsercache loosmoaked hääst.",
-'welcomecreation' => '== Wäilkuumen, $1 ==
-
-Dien Benutserkonto wuude iengjucht.
-Ferjeet nit, dien [[Special:Preferences|{{SITENAME}}-Ienstaalengen]] antoupaasjen.',
 'yourname' => 'Benutsernoome:',
 'yourpassword' => 'Paaswoud:',
 'yourpasswordagain' => 'Paaswoud wierhoalje:',

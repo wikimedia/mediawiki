@@ -415,10 +415,6 @@ $2",
 
 Du kåst {{SITENAME}} iatzerd anónym weiderdoah, óder di danaid unterm söwing óder am åndern Benutzernåm <span class='plainlinks'>[$1 åmöden]</span>.
 Beochtt ower, daas oanige Seiten noh åzoang kennern, daas du ågmödt bist, sólång du néd deih Browsercache glaard host.",
-'welcomecreation' => '== Servas, $1! ==
-
-Deih Benutzerkontó is grood eihgrichtt worn.
-Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] åzpassen',
 'yourname' => 'Benutzernåm:',
 'yourpassword' => 'Posswort:',
 'yourpasswordagain' => 'Posswort nóamoi',

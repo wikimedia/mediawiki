@@ -590,10 +590,7 @@ Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech <span class='plainlinks'>
 
 Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
 'welcomeuser' => 'Wëllkomm $1!',
-'welcomecreation' => '== Wëllkomm, $1! ==
-Äre Kont gouf kreéiert.
-Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
-'welcomecreation-agora' => "Äre Benotzerkont gouf ugeluecht.
+'welcomecreation-msg' => "Äre Benotzerkont gouf ugeluecht.
 Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'änneren",
 'yourname' => 'Benotzernumm:',
 'yourpassword' => 'Passwuert:',

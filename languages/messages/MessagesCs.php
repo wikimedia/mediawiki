@@ -767,10 +767,7 @@ Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3
 Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete <span class='plainlinks'>[$1 znovu přihlásit]</span> jako stejný či jiný uživatel.
 Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
 'welcomeuser' => 'Vítejte, uživateli $1!',
-'welcomecreation' => '== Vítejte, $1! ==
-Váš účet byl úspěšně vytvořen.
-Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
-'welcomecreation-agora' => 'Váš účet byl vytvořen.
+'welcomecreation-msg' => 'Váš účet byl vytvořen.
 Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
 'yourname' => 'Uživatelské jméno:',
 'yourpassword' => 'Vaše heslo',
@@ -2396,14 +2393,17 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'enotif_subject_moved' => '$2 {{gender:$2|přesunul|přesunula}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_restored' => '$2 {{gender:$2|obnovil|obnovila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_changed' => '$2 {{gender:$2|změnil|změnila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
+'enotif_body_intro_deleted' => 'V $PAGEEDITDATE {{gender:$2|smazal|smazala}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
+'enotif_body_intro_created' => 'V $PAGEEDITDATE {{gender:$2|založil|založila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
+'enotif_body_intro_moved' => 'V $PAGEEDITDATE {{gender:$2|přesunul|přesunula}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
+'enotif_body_intro_restored' => 'V $PAGEEDITDATE {{gender:$2|obnovil|obnovila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
+'enotif_body_intro_changed' => 'V $PAGEEDITDATE {{gender:$2|změnil|změnila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
 'enotif_lastvisited' => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 'enotif_lastdiff' => 'Tuto změnu vizte na $1 .',
 'enotif_anon_editor' => 'anonymní uživatel $1',
 'enotif_body' => 'Vážený uživateli $WATCHINGUSERNAME,
 
-Ve $PAGEEDITDATE $CHANGEDORCREATED $PAGEEDITOR stránku $PAGETITLE, vizte aktuální verzi na $PAGETITLE_URL .
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Shrnutí editace: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2411,8 +2411,7 @@ Uživatele, který změnu provedl, můžete kontaktovat:
 e-mailem: $PAGEEDITOR_EMAIL
 na wiki: $PAGEEDITOR_WIKI
 
-Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky.
-Případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
+Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky. Případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
 
 	S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
 
@@ -4136,4 +4135,6 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
+# Unknown messages
+'svg-long-error' => 'Neplatný soubor SVG: $1',
 );

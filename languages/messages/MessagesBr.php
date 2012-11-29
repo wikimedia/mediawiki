@@ -584,10 +584,6 @@ Setu amañ perak ''$2''.",
 
 Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe <span class='plainlinks'>[$1 kevreañ en-dro]</span> gant an hevelep anv pe un anv all mar fell deoc'h.
 Notit mat e c'hallo pajennoù zo kenderc'hel da vezañ diskwelet evel pa vefec'h kevreet c'hoazh, betek ma vo riñset krubuilh ho merdeer ganeoc'h.",
-'welcomecreation' => '== Degemer mat, $1! ==
-
-Krouet eo bet ho kont implijer.
-Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}}]].',
 'yourname' => 'Anv implijer :',
 'yourpassword' => 'Ger-tremen :',
 'yourpasswordagain' => 'Skrivit ho ker-tremen en-dro',

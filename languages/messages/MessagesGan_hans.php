@@ -401,9 +401,6 @@ $2',
 'logouttext' => "'''汝退出正哩。'''
 
 接到汝得匿名使用{{SITENAME}}，或<span class='plainlinks'>[$1 登入过]</span>。除非汝删吥浏览器缓存，只把子页面可能会接到话汝系登入状态。",
-'welcomecreation' => '== 欢迎, $1! ==
-
-建正哩汝𠮶帐户，莫𫍧记设置 [[Special:Preferences|{{SITENAME}}𠮶个人参数]]。',
 'yourname' => '用户名：',
 'yourpassword' => '密码：',
 'yourpasswordagain' => '输过道密码：',

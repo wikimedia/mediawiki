@@ -564,10 +564,7 @@ Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainlinks'>[$1 se znowego pśizjawiś]</span> ako samski abo hynakšy wužywaŕ.
 Źiwaj na to, až někotare boki se dalej tak zwobraznjuju ako by hyšći pśizjawjeny był, až njewuproznijoš cache swójego wobglědowaka.",
 'welcomeuser' => 'Witaj $1',
-'welcomecreation' => '== Witaj, $1! ==
-
-Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences|nastajenja {{SITENAME}}]].',
-'welcomecreation-agora' => 'Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences|nastajenja za {{SITENAME}}]].',
+'welcomecreation-msg' => 'Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences|nastajenja za {{SITENAME}}]].',
 'yourname' => 'mě wužywarja',
 'yourpassword' => 'šćitne gronidło:',
 'yourpasswordagain' => 'Šćitne gronidło hyšći raz zapódaś:',
@@ -2160,14 +2157,22 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 'enotif_mailer' => '{{SITENAME}} e-mailowe powěsći',
 'enotif_reset' => 'Wšykne boki ako woglědane markěrowaś',
 'enotif_impersonal_salutation' => '{{SITENAME}}-wužywaŕ',
+'enotif_subject_deleted' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} wulašował',
+'enotif_subject_created' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} napórał',
+'enotif_subject_moved' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} pśesunuł',
+'enotif_subject_restored' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} wótnowił',
+'enotif_subject_changed' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} změnił',
+'enotif_body_intro_deleted' => 'Bok{{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$1|$2}} wulašował, glědaj $3 za aktualnu wersiju.',
+'enotif_body_intro_created' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$2|$2}} napórał, glědaj $3 za aktualnu wersiju.',
+'enotif_body_intro_moved' => 'Bok{{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$1|$2}} pśesunuł, glědaj $3 za aktualnu wersiju.',
+'enotif_body_intro_restored' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$2|$2}} wótnowił, glědaj $3 za aktualnu wersiju.',
+'enotif_body_intro_changed' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$2|$2}} změnił, glědaj $3 za aktualnu wersiju.',
 'enotif_lastvisited' => 'Wšykne změny na jadno póglědnjenje: $1',
 'enotif_lastdiff' => 'Za toś tu změnu glědaj w $1.',
 'enotif_anon_editor' => 'anonymny wužywaŕ $1',
 'enotif_body' => 'Luby $WATCHINGUSERNAME,
 
-$PAGEEDITOR jo bok $PAGETITLE na {{GRAMMAR:lokatiw|{{SITENAME}}}} $PAGEEDITDATE $CHANGEDORCREATED, glědaj $PAGETITLE_URL za aktualnu wersiju.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Zespominanje wobźěłarja: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2175,10 +2180,9 @@ Kontakt z wobźěłarjom:
 E-mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Njebudu žedne dalšne powěźeńki w paźe dalšnych změnow, snaźkuli woglědujoš se toś ten bok.
-Móźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki slědk stajiś.
+Njebudu žedne dalšne powěźeńki w paźe dalšnych změnow, snaźkuli woglědujoš se toś ten bok. Móźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki slědk stajiś.
 
-             Twój pśijaśelny powěsćowy system {{SITENAME}}
+Twój pśijaśelny powěsćowy system {{SITENAME}}
 --
 Aby swoje nastajenja za e-mailowe zdźělenja změnił, woglědaj
 {{canonicalurl:{{#special:Preferences}}}}
@@ -2985,6 +2989,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 góźinu|$1 góźinoma|$1 góźinami|$1 góźinami}}',
 'days' => '{{PLURAL:$1|$1 dnjom|$1 dnjoma|$1 dnjami|$1 dnjami}}',
 'ago' => 'pśed $1',
+'just-now' => 'rowno',
 
 # Bad image list
 'bad_image_list' => 'Format jo slědujucy:
@@ -3809,4 +3814,6 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
+# Unknown messages
+'svg-long-error' => 'Njepłaśiwa SVG-dataja: $1',
 );

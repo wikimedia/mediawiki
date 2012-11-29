@@ -42,6 +42,7 @@
  * @author Fitoschido
  * @author Fluence
  * @author Gustronico
+ * @author Gwickwire
  * @author Hercule
  * @author Icvav
  * @author Imre
@@ -768,11 +769,7 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 Puedes continuar usando {{SITENAME}} de forma anónima, o puedes <span class='plainlinks'>[$1 iniciar sesión otra vez]</span> con el mismo u otro usuario.
 Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.",
 'welcomeuser' => '¡Bienvenido, $1!',
-'welcomecreation' => '== ¡Bienvenido(a), $1! ==
-
-Tu cuenta ha sido creada.
-No olvides personalizar [[Special:Preferences|tus preferencias]].',
-'welcomecreation-agora' => 'Tu cuenta ha sido creada.
+'welcomecreation-msg' => 'Tu cuenta ha sido creada.
 No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'yourname' => 'Nombre de usuario:',
 'yourpassword' => 'Contraseña:',
@@ -4127,4 +4124,6 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'svg-long-error' => 'Archivo SVG no válido: $1',
 );

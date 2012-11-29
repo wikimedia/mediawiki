@@ -604,10 +604,7 @@ Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 
 Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh <span class='plainlinks'>[$1 log masuk sekali lagi]</span> sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
 'welcomeuser' => 'Selamat datang, $1!',
-'welcomecreation' => '== Selamat datang, $1! ==
-
-Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutamaan {{SITENAME}}]] anda.',
-'welcomecreation-agora' => 'Akaun anda telah dibuka.
+'welcomecreation-msg' => 'Akaun anda telah dibuka.
 Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]].',
 'yourname' => 'Nama pengguna:',
 'yourpassword' => 'Kata laluan:',

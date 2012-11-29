@@ -716,9 +716,6 @@ A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
 
 Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy <span class='plainlinks'>[$1 ismét bejelentkezhetsz]</span> ugyanezzel, vagy egy másik névvel.
 Lehetséges, hogy néhány oldalon továbbra is azt látod, be vagy jelentkezve, mindaddig, amíg nem üríted a böngésződ gyorsítótárát.",
-'welcomecreation' => '== Köszöntünk, $1! ==
-A felhasználói fiókodat létrehoztuk.
-Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].',
 'yourname' => 'Szerkesztőneved:',
 'yourpassword' => 'Jelszavad:',
 'yourpasswordagain' => 'Jelszavad ismét:',

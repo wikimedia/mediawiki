@@ -452,9 +452,6 @@ Administrator kery zawarł wćepał kůmyntorz: "$3".',
 
 Možeš dali sam sprowjać zajty we {{SITENAME}} kej ńyzalůgowany užytkowńik, abo <span class='plainlinks'>[$1 zalůgować śe nazod]</span> kej tyn som abo inkšy užytkowńik.
 Dej pozůr, co na ńykerych zajtach přeglůndarka može dali pokozywać co ježeś zalůgowany, a bydźe tak aže uodśwjyžyš jeij cache.",
-'welcomecreation' => '== Witej, $1! ==
-Uotwarli my sam lo Ćebje kůnto.
-Ńy zapomńij poštalować [[Special:Preferences|preferencyji lo {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
 'yourname' => 'Mjano użytkowńika:',
 'yourpassword' => 'Hasło:',
 'yourpasswordagain' => 'Naszkryflej ausdruk zaś',

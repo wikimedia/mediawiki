@@ -785,11 +785,7 @@ L'administrateur qui l'a verrouillé a fourni ce motif: « $3 ».",
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
 'welcomeuser' => 'Bienvenue, $1!',
-'welcomecreation' => "== Bienvenue, $1 ! ==
-
-Votre compte a été créé.
-N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].",
-'welcomecreation-agora' => "Votre compte a été créé.
+'welcomecreation-msg' => "Votre compte a été créé.
 N'oubliez pas de modifier vos [[Special:Preferences|{{SITENAME}} préférences]].",
 'yourname' => "Nom d'utilisateur :",
 'yourpassword' => 'Mot de passe&nbsp;:',
@@ -3304,6 +3300,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'hours' => '{{PLURAL:$1|$1 heure|$1 heures}}',
 'days' => '{{PLURAL:$1|$1 jour|$1 jours}}',
 'ago' => 'Il y a $1',
+'just-now' => "à l'instant",
 
 # Bad image list
 'bad_image_list' => "Le format est le suivant :
@@ -4204,4 +4201,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 siècle{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 millénaire{{PLURAL:$1||s}}',
 
+# Unknown messages
+'svg-long-error' => 'Fichier SVG non valide: $1',
 );

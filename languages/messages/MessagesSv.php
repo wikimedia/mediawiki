@@ -730,10 +730,7 @@ Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du <span class='plainlinks'>[$1 logga in igen]</span> som samma eller som en annan användare.
 Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.",
 'welcomeuser' => 'Välkommen, $1!',
-'welcomecreation' => '== Välkommen, $1! ==
-Ditt konto har skapats.
-Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].',
-'welcomecreation-agora' => 'Ditt konto har skapats.
+'welcomecreation-msg' => 'Ditt konto har skapats.
 Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].',
 'yourname' => 'Användarnamn:',
 'yourpassword' => 'Lösenord:',
@@ -2660,7 +2657,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbotherreason' => 'Annan/ytterligare anledning:',
 'ipbhidename' => 'Dölj användarnamnet från redigeringar och listor',
 'ipbwatchuser' => 'Bevaka användarens användarsida och diskussionssida',
-'ipb-disableusertalk' => 'Hindra denne användare från att redigera sina egna diskussionssida under blockeringen',
+'ipb-disableusertalk' => 'Hindra användaren från att redigera sina egna diskussionssida under blockeringen',
 'ipb-change-block' => 'Återblockera användaren med de här inställningarna',
 'ipb-confirm' => 'Bekräfta blockering',
 'badipaddress' => 'Du har inte skrivit IP-adressen korrekt.',

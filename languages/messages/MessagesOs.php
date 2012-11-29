@@ -507,10 +507,7 @@ $2',
 Дæ бон у дарддæр архайай {{grammar:genitive|{{SITENAME}}}} æнæномæй, æви та <span class='plainlinks'>[$1 фæстæмæ бахизын]</span> раздæры номæй кæнæ та æндæр номæй.
 Дæ сæры дар æмæ иуæй иу фæрстæ гæнæн ис æвдыст цæуой афтæ, цымæ нырмæ дæр нæ рахызтæ. Уый тыххæй дæ браузеры кеш сафтид кæн.",
 'welcomeuser' => 'Æгас цу, $1!',
-'welcomecreation' => '== Ӕгас цу, $1! ==
-Дæ аккаунт арæзт æрцыдис.
-Ма дæ ферох уæт æркæсын дæ [[Special:Preferences|{{grammar:genitive|{{SITENAME}}}} уагæвæрдтæм]].',
-'welcomecreation-agora' => 'Дæ аккаунт арæзт æрцыдис.
+'welcomecreation-msg' => 'Дæ аккаунт арæзт æрцыдис.
 Ма дæ ферох уæт æркæсын дæ [[Special:Preferences|{{grammar:genitive|{{SITENAME}}}} уагæвæрдтæм]].',
 'yourname' => 'Фæсномыг:',
 'yourpassword' => 'Пароль:',

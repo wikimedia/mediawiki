@@ -669,9 +669,6 @@ Amachaq kamachiqqa kayrayku amachani nispa nirqanmi: "$3".',
 'logouttext' => "'''Llamk'apuy tiyayniykiqa puchukasqañam.'''
 
 Sutinnaq kaspaykipas {{SITENAME}}pi wamp'uytam atinki. Mana hinataq munaspaykiqa, <span class='plainlinks'>[$1 musuqmanta yaykuy]</span> ñawpaq icha huk sutiwan. Huk p'anqakunaqa kaqllam rikch'akunqa, ''cache'' nisqa pakasqa hallch'ata mana ch'usaqchaptiykiqa.",
-'welcomecreation' => '== Allinmi hamusqayki $1! ==
-Rakiqunaykiqa kicharisqañam.
-Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] kikinchayta.',
 'yourname' => 'Ruraq sutiyki:',
 'yourpassword' => 'Yaykuna rimayki',
 'yourpasswordagain' => 'Yaykuna rimaykita kutipayay',

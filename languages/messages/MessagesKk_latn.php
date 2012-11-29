@@ -689,9 +689,6 @@ Keltirilgen sebebi: ''$2''.",
 
 Jüýege kirmesten {{SITENAME}} jobasın paýdalanwın jalğastıra alasız, nemese däl sol ne özge qatıswşı bop qaýta krwiñiz mümkin.
 Añğartpa: Keýbir better şolğışıñızdıñ bürkemesin tazartqanşa deýin äli de kirp qalğanıñızdaý körinwi mümkin.",
-'welcomecreation' => '== Qoş keldiñiz, $1! ==
-Jaña tirkelgiñiz jasaldı.
-{{SITENAME}} baptalımdarıñızdı özgertwin umıtpañız.',
 'yourname' => 'Qatıswşı atıñız:',
 'yourpassword' => 'Qupïya söziñiz:',
 'yourpasswordagain' => 'Qupïya sözdi qaýtalañız:',

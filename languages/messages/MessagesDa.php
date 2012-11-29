@@ -354,6 +354,7 @@ $messages = array(
 'namespaces' => 'Navnerum',
 'variants' => 'Varianter',
 
+'navigation-heading' => 'Navigationsmenu',
 'errorpagetitle' => 'Fejl',
 'returnto' => 'Tilbage til $1.',
 'tagline' => 'Fra {{SITENAME}}',
@@ -594,9 +595,9 @@ Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
 
 Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge på igen]</span> som den samme eller en anden bruger.
 Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du tømmer din browsers cache.",
-'welcomecreation' => '== Velkommen, $1! ==
-
-Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Preferences|{{SITENAME}}-indstillinger]].',
+'welcomeuser' => 'Velkommen, $1!',
+'welcomecreation-msg' => 'Din konto er blevet oprettet.
+Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'yourname' => 'Dit brugernavn:',
 'yourpassword' => 'Din adgangskode:',
 'yourpasswordagain' => 'Gentag adgangskode',
@@ -1701,6 +1702,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-notsame' => 'En ikke-identisk fil eksisterer allerede som $1.',
 'backend-fail-invalidpath' => '$1 er ikke en gyldig lagringssti.',
 'backend-fail-delete' => 'Kunne ikke slette filen $1.',
+'backend-fail-describe' => 'Ikke kunne ændre metadata for filen "$1".',
 'backend-fail-alreadyexists' => 'Filen $1 findes allerede.',
 'backend-fail-store' => 'Kunne ikke gemme filen $1 i $2.',
 'backend-fail-copy' => 'Kunne ikke kopiere filen $1 til $2.',
@@ -2205,14 +2207,22 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 'enotif_mailer' => '{{SITENAME}} informationsmail',
 'enotif_reset' => 'Marker alle sider som besøgt',
 'enotif_impersonal_salutation' => '{{SITENAME}} bruger',
+'enotif_subject_deleted' => '{{SITENAME}} side $1 er blevet slettet af {{gender:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}} side $1 er blevet oprettet af {{gender:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}} side $1 er blevet flyttet af {{gender:$2|$2}}',
+'enotif_subject_restored' => '{{SITENAME}} side $1 er blevet gendannet af {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}} side $1 er blevet ændret af {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Siden {{SITENAME}} $1 er blevet slettet på $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
+'enotif_body_intro_created' => 'Siden {{SITENAME}} $1 er blevet oprettet på $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
+'enotif_body_intro_moved' => 'Siden {{SITENAME}} $1 er blevet flyttet på $PAGEEDITDATE af {{gender:$2|$2}}, se  $3  for den aktuelle revision.',
+'enotif_body_intro_restored' => 'Siden {{SITENAME}} $1 er blevet gendannet på $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
+'enotif_body_intro_changed' => 'Siden {{SITENAME}} $1 er blevet ændret på $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
 'enotif_lastvisited' => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_lastdiff' => 'Se $1 for at vise denne ændring.',
 'enotif_anon_editor' => 'anonym bruger $1',
 'enotif_body' => 'Kære $WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den aktuelle version.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Bidragyderens opsummering: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2220,13 +2230,12 @@ Kontakt bidragyderen:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer medmindre du besøger denne side.
-På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
+Du vil ikke modtage flere beskeder om yderligere ændringer medmindre du besøger denne side. På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
 
              Med venlig hilsen {{SITENAME}}s informationssystem
 
 --
-For at ændre dine indstillinger for e-mail-notifikationer, besøg
+For at ændre dine indstillinger for email notifikationer, besøg
 {{canonicalurl:{{#special:Preferences}}}}
 
 For at ændre indstillingerne for din overvågningsliste, besøg
@@ -3036,6 +3045,7 @@ Du kan beskadige dit system hvis du udfører den.",
 'hours' => '{{PLURAL: $1|$1 time|$1 timer}}',
 'days' => '{{PLURAL: $1|$1 dag|$1 dage}}',
 'ago' => '$1 siden',
+'just-now' => 'lige nu',
 
 # Bad image list
 'bad_image_list' => 'Formatet er:
@@ -3774,9 +3784,9 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-move-move_redir-noredirect' => '$1 flyttede siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
 'logentry-patrol-patrol' => '$1 markerede version $4 af siden $3 som patruljeret',
 'logentry-patrol-patrol-auto' => '$1 markerede automatisk version $4 af siden $3 som patruljeret',
-'logentry-newusers-newusers' => '$1 oprettede en brugerkonto',
-'logentry-newusers-create' => '$1 oprettede en brugerkonto',
-'logentry-newusers-create2' => '$1 oprettede brugerkontoen $3',
+'logentry-newusers-newusers' => 'Brugerkontoen $1 blev oprettet',
+'logentry-newusers-create' => 'Brugerkontoen $1 blev oprettet',
+'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
 'newuserlog-byemail' => 'kodeord tilsendt pr. e-mail',
 
@@ -3852,4 +3862,6 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
+# Unknown messages
+'svg-long-error' => 'Ugyldig SVG-fil: $1',
 );

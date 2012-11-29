@@ -751,10 +751,6 @@ Verilen sebep: ''$2''.",
 
 Şimdi anonim olarak {{SITENAME}} sitesini kullanmaya devam edebilirsiniz ya da aynı kullanıcı adıyla ya da ister başka bir kullanıcı adıyla <span class='plainlinks'>[$1 yeniden oturum açabilirsiniz]</span>.
 Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ oturumunuz açıkmış gibi görünebilir.",
-'welcomecreation' => '== Hoş geldin, $1! ==
-
-Hesabınız açıldı.
-[[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
 'yourname' => 'Kullanıcı adı:',
 'yourpassword' => 'Parola:',
 'yourpasswordagain' => 'Parolayı yeniden yaz:',

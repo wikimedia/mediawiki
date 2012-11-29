@@ -704,7 +704,8 @@ $1',
 'badtitletext' => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached' => '下列数据已缓存，但可能已过时。最高{{PLURAL:$1|一个结果|$1个结果}}在缓存中可用。',
 'perfcachedts' => '下列数据已缓存，最后更新于$1。缓存中最多可有{{PLURAL:$4|1个结果|$4个结果}}。',
-'querypage-no-updates' => '当前禁止对此页面进行更新。此处的数据将不能被立即刷新。',
+'querypage-no-updates' => '当前禁止对此页面进行更新。
+此处的数据将不能被立即刷新。',
 'wrong_wfQuery_params' => '错误的参数被传递到 wfQuery（）<br />
 函数：$1<br />
 查询：$2',
@@ -745,8 +746,6 @@ $2',
 'logouttext' => "'''您现在已经退出。'''
 
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份<span class='plainlinks'>[$1 登录]</span>。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
-'welcomecreation' => '== 欢迎，$1！ ==
-你的账户已创建。请别忘记更改你的[[Special:Preferences|{{SITENAME}}系统设置]]。',
 'yourname' => '用户名：',
 'yourpassword' => '密码：',
 'yourpasswordagain' => '再次输入密码：',

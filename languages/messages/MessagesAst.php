@@ -472,10 +472,7 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 Pues siguir usando {{SITENAME}} de forma anónima, o pues <span class='plainlinks'>[$1 volver entrar]</span> como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
 'welcomeuser' => '¡Afayati, $1!',
-'welcomecreation' => "== ¡Bienllegáu, $1! ==
-Creóse la to cuenta.
-Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
-'welcomecreation-agora' => "Creóse la to cuenta.
+'welcomecreation-msg' => "Creóse la to cuenta.
 Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
 'yourname' => "Nome d'usuariu:",
 'yourpassword' => 'Clave:',

@@ -505,8 +505,6 @@ De oanfierde reden is ''$2''.",
 
 Jo kinne de {{SITENAME}} fierders anonym brûke, of jo op 'e <span class='plainlinks'>[$1 nij oanmelde]</span> ûnder deselde of in oare namme.
 Mûglik wurdt noch in tal siden werjûn as wiene Jo oanmeld, oant Jo de cache fan Jo browser leegje.",
-'welcomecreation' => '<h2>Wolkom, $1!</h2><p>Jo ynstellings binne oanmakke.
-Ferjit net se oan jo foarkar oan te passen.',
 'yourname' => 'Jo meidochnamme:',
 'yourpassword' => 'Jo wachtwurd',
 'yourpasswordagain' => 'Jo wachtwurd (nochris)',

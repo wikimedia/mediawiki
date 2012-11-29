@@ -475,9 +475,6 @@ Kod binon: ''$2''.",
 
 Kanol laigebön {{SITENAME}} nennemiko, u kanol <span class='plainlinks'>[$1 nunädön oli dönu]</span> me gebananem ot u gebenanem votik.
 Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklinükol memi no laidüpik bevüresodanaföma olik.",
-'welcomecreation' => '== Benokömö, o $1! ==
-Kal olik pejafon.
-No glömolöd ad votükön [[Special:Preferences|buükamis olik in {{SITENAME}}]].',
 'yourname' => 'Gebananem:',
 'yourpassword' => 'Letavöd:',
 'yourpasswordagain' => 'Klavolös dönu letavödi:',

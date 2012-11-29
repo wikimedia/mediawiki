@@ -594,8 +594,6 @@ $2',
 'logouttext' => "'''איר האָט זיך ארויסלאָגירט.'''
 
 איר קענט ממשיך זיין ניצן {{SITENAME}} אַנאנים, אדער איר קענט  <span class='plainlinks'>[$1 צוריק אריינלאגירן]</span> מיט דעם זעלבן אדער אן אנדער באַניצער נאָמען. באמערקט אז געוויסע בלעטער קענען זיך ווייטער ארויסשטעלן אזוי ווי ווען איר זענט אריינלאגירט, ביז איר וועט אויסליידיגן דעם בלעטערער זאפאס.",
-'welcomecreation' => '== ברוך הבא, $1! ==
-אייער קאנטע איז באשאפן געווארן. נישט פארגעסן צו ענדערן אייערע [[Special:Preferences|{{SITENAME}} פרעפֿערענצן]].',
 'yourname' => 'באַניצער נאָמען:',
 'yourpassword' => 'פאסווארט',
 'yourpasswordagain' => 'ווידער אריינקלאפן פאסווארט',
@@ -2151,14 +2149,16 @@ $1",
 'enotif_mailer' => 'נאטיפאקאציע שיקער {{SITENAME}}',
 'enotif_reset' => 'באַצייכענען אלע בלעטער שוין געזען',
 'enotif_impersonal_salutation' => '{{SITENAME}} באַניצער',
+'enotif_subject_deleted' => '{{SITENAME}} בלאט $1 איז אויסגעמעקט געווארן דורך {{gender:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}} בלאט $1 איז געשאפן געווארן דורך {{gender:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}} בלאט $1 איז בגאוועגט געווארן דורך {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}} בלאט $1 איז געענדערט געווארן דורך {{gender:$2|$2}}',
 'enotif_lastvisited' => 'זעט $1 פֿאַר אלע ענדערונגען זינט אײַער לעצטן וויזיט.',
 'enotif_lastdiff' => 'זעט $1 פאר דער ענדערונג.',
 'enotif_anon_editor' => 'אַנאנימער באַניצער $1',
 'enotif_body' => 'טײַערער $WATCHINGUSERNAME,
 
-דער {{SITENAME}} בלאט $PAGETITLE איז געווארן $CHANGEDORCREATED אום $PAGEEDITDATE דורך $PAGEEDITOR, זעט $PAGETITLE_URL פאר דער איצטיגער ווערסיע.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 ענדערערס קורץ ווארט: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2172,6 +2172,9 @@ $NEWPAGE
 אייער פֿריינטליכע  {{SITENAME}} מעלדונגען סיסטעם
 
 --
+צו ענדערן אייער ע־פאסט נאטיפיקאציע שטעלונגען, באזוכט
+{{canonicalurl:{{#special:Preferences}}}}
+
 צו ענדערן אייער אויפֿפאסונג ליסטע, באזוכט
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
@@ -2758,6 +2761,7 @@ $1',
 # JavaScriptTest
 'javascripttest' => 'JavaScript טעסט',
 'javascripttest-title' => 'דורכפירנדיק $1 בדיקות',
+'javascripttest-pagetext-noframework' => ' דער בלאט איז רעזערווירט פאר JavaScript. פרואוון.',
 'javascripttest-pagetext-skins' => 'קלויבט א באניצער־אייבערפלאך מיט וואס דורכצופירן די בדיקות:',
 'javascripttest-qunit-intro' => 'זעט [$1 דאקומענטאציע פאר טעסטן] בײַ mediawiki.org.',
 'javascripttest-qunit-heading' => 'מעדיעוויקי JavaScript QUnit קאנטראל־פראגראם',
@@ -3097,6 +3101,7 @@ $1',
 'exif-gpsaltitude' => 'הייך',
 'exif-gpstimestamp' => 'GPS צייט (אטאם־זייגער)',
 'exif-gpssatellites' => 'סאטעליטן געניצט פאר מעסטן',
+'exif-gpsstatus' => 'אויפנעמער סטאטוס',
 'exif-gpsdop' => 'מאס פוקנטליכקייט',
 'exif-gpsspeedref' => 'גיך איינהייט',
 'exif-gpsspeed' => 'גיך פון GPS־אויפֿנעמער',

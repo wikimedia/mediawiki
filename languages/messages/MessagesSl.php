@@ -599,11 +599,6 @@ Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 {{GRAMMAR:tožilnik|{{SITENAME}}}} lahko zdaj uporabljate neprijavljeni ali pa se <span class='plainlinks'>[$1 ponovno prijavite]</span> kot enak ali drug uporabnik.
 Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni, dokler ne boste izpraznili predpomnilnika brskalnika.",
 'welcomeuser' => '$1, dobrodošli!',
-'welcomecreation' => '== Dobrodošli, $1! ==
-Ustvarili ste račun.
-Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
-'welcomecreation-agora' => 'Ustvarili ste račun.
-Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
 'yourname' => 'Uporabniško ime:',
 'yourpassword' => 'Geslo:',
 'yourpasswordagain' => 'Ponovno vpišite geslo',

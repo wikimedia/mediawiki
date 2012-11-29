@@ -607,9 +607,6 @@ As Grund is angeven: ''$2''.",
 
 Du kannst {{SITENAME}} nu anonym wiederbruken oder di ünner dissen oder en annern Brukernaam wedder <span class='plainlinks'>[$1 anmellen]</span>.
 Denk dor an, dat welk Sieden ünner Ümstänn noch jümmer so wiest warrn köönt, as wenn du anmellt weerst. Dat ännert sik, wenn du den Cache vun dien Browser leddig maakst.",
-'welcomecreation' => '== Willkamen, $1! ==
-Dien Brukerkonto is nu inricht.
-Vergeet nich, de Sied för di persönlich [[Special:Preferences|intostellen]].',
 'yourname' => 'Dien Brukernaam',
 'yourpassword' => 'Dien Passwoort',
 'yourpasswordagain' => 'Passwoort nochmal ingeven',

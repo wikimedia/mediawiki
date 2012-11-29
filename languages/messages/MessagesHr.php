@@ -711,10 +711,6 @@ $2',
 
 Možete nastaviti s korištenjem {{SITENAME}} neprijavljeni, ili se možete ponovo <span class='plainlinks'>[$1 prijaviti]</span> pod istim ili drugim imenom.
 Neke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
-'welcomecreation' => '== Dobrodošli, $1! ==
-Vaš je suradnički račun otvoren.
-
-Ne zaboravite prilagoditi [[Special:Preferences|{{SITENAME}} postavke]].',
 'yourname' => 'Suradničko ime',
 'yourpassword' => 'Lozinka:',
 'yourpasswordagain' => 'Ponovno upišite lozinku',

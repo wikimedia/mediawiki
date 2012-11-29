@@ -353,9 +353,6 @@ $messages = array(
 'viewsource' => 'Gweles an bennfenten',
 
 # Login and logout pages
-'welcomecreation' => '== Dynnargh, $1! ==
-Gwruthys yw agas acont.
-Na wrewgh ankevy dhe janjya agas [[Special:Preferences|dowisyansow {{SITENAME}}]].',
 'yourname' => 'Hanow usyer:',
 'yourpassword' => 'Ger tremena:',
 'yourpasswordagain' => 'Jynnscrifowgh agas ger tremena arta:',

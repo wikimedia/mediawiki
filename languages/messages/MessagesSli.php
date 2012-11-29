@@ -364,10 +364,6 @@ De Sperre wurde durch [[User:$1|$1]] miet der Begrindung ''„$2“'' eigerichte
 
 Du koast {{SITENAME}} jitz anonym wetter nutzen, oder diech erneut under damm selba oder a'm andern Nutzernoama <span class='plainlinks'>[$1 oamelda]</span>.
 Beachte, doas einige Seyta noo oazeiga kinna, doas du oagemeldet best, sulange du ne denn Browsercache gelaart host.",
-'welcomecreation' => '== Willkumma, $1! ==
-
-Dei Benutzerkonto wurde eigerichtet.
-Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.',
 'yourname' => 'Benutzernoame:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort wiederhola:',

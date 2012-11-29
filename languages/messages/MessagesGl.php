@@ -635,10 +635,7 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode <span class='plainlinks'>[$1 acceder de novo]</span> co mesmo nome de usuario ou con outro.
 Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema.",
 'welcomeuser' => 'Reciba a nosa benvida, $1!',
-'welcomecreation' => '== Reciba a nosa benvida, $1! ==
-A súa conta foi creada correctamente.
-Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
-'welcomecreation-agora' => 'A súa conta foi creada correctamente.
+'welcomecreation-msg' => 'A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
 'yourname' => 'Nome de usuario:',
 'yourpassword' => 'Contrasinal:',

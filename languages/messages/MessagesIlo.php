@@ -448,10 +448,7 @@ Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'"
 Mabalinmo nga ituloy ti agusar iti {{SITENAME}} a di am-ammo, wenno <span class='plainlinks'>[\$1 sumrek ka manen]</span> iti sigud wenno sabali nga agar-aramat.
 Laglagipem a sumagmamano a pampanid ti mabalin a nakaparang latta a kasla nakaserrekka pay laeng, aginggana no dalusam ti \"cache\" ti panagbasabasam.",
 'welcomeuser' => 'Naragsak nga isasangbay, $1!',
-'welcomecreation' => '== Naragsak nga isasangbay, $1! ==
-Naaramiden ti pakabilangam.
-Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITENAME}} kakaykayatan]].',
-'welcomecreation-agora' => 'Naaramiden ti pakabilangam.
+'welcomecreation-msg' => 'Naaramiden ti pakabilangam.
 Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITENAME}} kakaykayatan]].',
 'yourname' => 'Nagan ti agar-aramat:',
 'yourpassword' => 'Kontrasenias:',

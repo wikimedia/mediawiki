@@ -376,11 +376,6 @@ Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 'virus-unknownscanner' => 'ahmatic antivirus:',
 
 # Login and logout pages
-'welcomecreation' => '== ¡Ximopanōlti, $1! ==
-
-Mocuentah ōmochīuh.
-
-Ye tihuelīti titēchihtoa [[Special:Preferences|motlaēlēhuiliz]].',
 'yourname' => 'Motlatequitiltilīltōca:',
 'yourpassword' => 'Motlahtōlichtacāyo',
 'yourpasswordagain' => 'Motlahtōlichtacāyo occeppa',

@@ -450,10 +450,7 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 A peul tiré anans a dovré {{SITENAME}} coma Utent anònim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
 Ch'a nòta che chèiche pàgine a peulo continué a esse visualisà com s'a fussa ancor ant ël sistema, fin ch'a scancela nen la memòria local ëd sò navigador.",
 'welcomeuser' => 'Bin ëvnù, $1!',
-'welcomecreation' => '==Bin ëvnù, $1!==
-Sò cont a l\'é stàit creà.
-Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
-'welcomecreation-agora' => 'Sò cont a l\'é stàit creà.
+'welcomecreation-msg' => 'Sò cont a l\'é stàit creà.
 Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
 'yourname' => 'Sò stranòm',
 'yourpassword' => 'Soa ciav',
@@ -2096,14 +2093,22 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 'enotif_mailer' => '{{SITENAME}} - Servissi ëd Notìfica Postal',
 'enotif_reset' => 'Marché tute le pàgine tanme visità',
 'enotif_impersonal_salutation' => 'utent ëd {{SITENAME}}',
+'enotif_subject_deleted' => "La pàgina $1 ëd {{SITENAME}} a l'é stàita scancelà da {{gender:$2|$2}}",
+'enotif_subject_created' => "La pàgina $1 ëd {{SITENAME}} a l'é stàita creà da {{gender:$2|$2}}",
+'enotif_subject_moved' => "La pàgina $1 ëd {{SITENAME}} a l'é stàita tramudà da {{gender:$2|$2}}",
+'enotif_subject_restored' => "La pàgina $1 ëd {{SITENAME}} a l'é stàita ripristinà da {{gender:$2|$2}}",
+'enotif_subject_changed' => "La pàgina $1 ëd {{SITENAME}} a l'é stàita modificà da {{gender:$2|$2}}",
+'enotif_body_intro_deleted' => 'La pàgina $1 ëd {{SITENAME}} a l\'é stàita scancelà da {{gender:$2|$2}} ël $PAGEEDITDATE, vëdde $3 për la revision corenta.',
+'enotif_body_intro_created' => 'La pàgina $1 ëd {{SITENAME}} a l\'é stàita creà da {{gender:$2|$2}} ël $PAGEEDITDATE, vëdde $3 për la revision corenta.',
+'enotif_body_intro_moved' => 'La pàgina $1 ëd {{SITENAME}} a l\'é stàita tramudà da {{gender:$2|$2}} ël $PAGEEDITDATE, vëdde $3 për la revision corenta.',
+'enotif_body_intro_restored' => 'La pàgina $1 ëd {{SITENAME}} a l\'é stàita ripristinà da {{gender:$2|$2}} ël $PAGEEDITDATE, vëdde $3 për la revision corenta.',
+'enotif_body_intro_changed' => 'La pàgina $1 ëd {{SITENAME}} a l\'é stàita modificà da {{gender:$2|$2}} ël $PAGEEDITDATE, vëdde $3 për la revision corenta.',
 'enotif_lastvisited' => "Che as varda $1 për ës-ciaré tute le modìfiche da 'nt l'ùltima vira che a l'é passà.",
 'enotif_lastdiff' => "Ch'a varda $1 për visioné sta modìfica.",
 'enotif_anon_editor' => 'utent anònim $1',
 'enotif_body' => 'Car $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é stàita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR, che a varda $PAGETITLE_URL për la version corenta.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Resumé dl\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2941,6 +2946,7 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'hours' => '{{PLURAL:$1|$1 ora|$1 ore}}',
 'days' => '{{PLURAL:$1|$1 di|$1 di}}',
 'ago' => '$1 fa',
+'just-now' => 'pròpi adess',
 
 # Bad image list
 'bad_image_list' => "La forma a l'é costa-sì:
@@ -3580,7 +3586,7 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'version-poweredby-credits' => "Costa wiki-sì a marcia mersì a '''[//www.mediawiki.org/ MediaWiki]''', licensa © 2001-$1 $2.",
 'version-poweredby-others' => 'àutri',
 'version-credits-summary' => 'I tnoma a aringrassié le përson-e sì-dapress për soa contribussion a [[Special:Version|MediaWiki]].',
-'version-license-info' => "MediaWiki a l'é un programa lìber; a peul passelo an gir e/o modifichelo sota le condission dla Licensa Pùblica General GNU coma publicà da la Free Software Foundation; o la version 2 dla licensa o (a soa decision) qualsëssìa version apress.
+'version-license-info' => "MediaWiki a l'é un programa lìber; a peul passelo an gir o modifichelo sota le condission dla Licensa Pùblica General GNU coma publicà da la Free Software Foundation; o la version 2 dla licensa o (a soa decision) qualsëssìa version apress.
 
 MediaWiki a l'é distribuì ant la speransa che a sia ùtil, ma SENSA GNUN-A GARANSÌA; sensa gnanca la garansìa implìcita ëd COMERSIABILITA' o d'ADATAMENT A UN BUT PARTICOLAR. Ch'a lesa la Licensa General Pùblica GNU per pi 'd detaj.
 
@@ -3588,7 +3594,7 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'version-software' => 'Programa anstalà',
 'version-software-product' => 'Prodot',
 'version-software-version' => 'Version',
-'version-entrypoints' => "Anliure ëd pont d'intrada",
+'version-entrypoints' => "Anliure dij pont d'intrada",
 'version-entrypoints-header-entrypoint' => "Pont d'intrada",
 'version-entrypoints-header-url' => "Adrëssa an sl'aragnà",
 
@@ -3797,4 +3803,6 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
+# Unknown messages
+'svg-long-error' => 'Archivi SVG nen bon: $1',
 );

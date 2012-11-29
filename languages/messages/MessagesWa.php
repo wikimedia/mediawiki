@@ -424,10 +424,6 @@ $2",
 
 Vos ploz continouwer a naivyî so {{SITENAME}} anonimmint, oudonbén <span class='plainlinks'>[$1 vos relodjî]</span>, dizo l' minme uzeu ou dizo èn uzeu diferin.
 Notez ki des pådjes k' i gn a si pôrént continowuer a vey come si vos estîz elodjî, disk' a tant ki vos vudrîz l' muchete di vosse betchteu waibe.",
-'welcomecreation' => '== Bénvnowe, $1! ==
-
-Vosse conte a stî ahivé.
-Èn rovyîz nén di candjî les [[Special:Preferences|preferinces di {{SITENAME}}]] a vosse môde.',
 'yourname' => "Vosse no d' elodjaedje:",
 'yourpassword' => 'Vosse sicret',
 'yourpasswordagain' => 'Ritapez vosse sicret',

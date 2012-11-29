@@ -678,10 +678,7 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 Si può continuare ad usare {{SITENAME}} come utente anonimo oppure <span class='plainlinks'>[$1 eseguire un nuovo accesso]</span>, con lo stesso nome utente o un nome diverso.
 Nota che alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
 'welcomeuser' => 'Benvenuto, $1!',
-'welcomecreation' => "== Benvenuto, $1! ==
-
-L'account è stato creato correttamente. Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
-'welcomecreation-agora' => "L'account è stato creato correttamente.
+'welcomecreation-msg' => "L'account è stato creato correttamente.
 Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITENAME}}]].",
 'yourname' => 'Nome utente:',
 'yourpassword' => 'Password:',
@@ -3131,6 +3128,7 @@ $1',
 'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
 'days' => '{{PLURAL:$1|un giorno|$1 giorni}}',
 'ago' => '$1 fa',
+'just-now' => 'proprio ora',
 
 # Bad image list
 'bad_image_list' => "Il formato è il seguente:
@@ -3969,4 +3967,6 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
+# Unknown messages
+'svg-long-error' => 'File SVG non valido: $1',
 );

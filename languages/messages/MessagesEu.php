@@ -517,9 +517,6 @@ Emandako arrazoia ''$2'' izan zen.",
 
 Erabiltzaile anonimo bezala jarrai dezakezu {{SITENAME}} erabiltzen, edo <span class='plainlinks'>[$1 saioa has dezakezu berriz]</span> erabiltzaile berdinarekin edo ezberdin batekin.
 Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
-'welcomecreation' => '== Ongi etorri, $1! ==
-
-Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hobespenak]] aldatzea.',
 'yourname' => 'Erabiltzaile izena',
 'yourpassword' => 'Pasahitza:',
 'yourpasswordagain' => 'Pasahitza berriz',

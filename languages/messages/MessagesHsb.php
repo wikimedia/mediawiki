@@ -560,10 +560,7 @@ Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
 Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom <span class='plainlinks'>[$1 zaso přizjewić]</span>.
 Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był, doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
 'welcomeuser' => 'Witaj $1',
-'welcomecreation' => '== Witaj, $1! ==
-
-Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|{{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
-'welcomecreation-agora' => 'Twoje konto bu wutworjene.
+'welcomecreation-msg' => 'Twoje konto bu wutworjene.
 Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
 'yourname' => 'Wužiwarske mjeno:',
 'yourpassword' => 'Hesło:',
@@ -2164,15 +2161,23 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'enotif_mailer' => '{{SITENAME}} E-mejlowe zdźělenje',
 'enotif_reset' => 'Wšě strony jako wopytane woznamjenić',
 'enotif_impersonal_salutation' => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}}',
+'enotif_subject_deleted' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} zhašała',
+'enotif_subject_created' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} wutworiła',
+'enotif_subject_moved' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} přesunyła',
+'enotif_subject_restored' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} wobnowiła',
+'enotif_subject_changed' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} změniła',
+'enotif_body_intro_deleted' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$1|$2}} zhašała, hlej $3 za aktualnu wersiju',
+'enotif_body_intro_created' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} wutworiła, hlej $3 za aktualnu wersiju',
+'enotif_body_intro_moved' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} přesunyła, hlej $3 za aktualnu wersiju',
+'enotif_body_intro_restored' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} wobnowiła, hlej $3 za aktualnu wersiju',
+'enotif_body_intro_changed' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} změniła, hlej $3 za aktualnu wersiju',
 'enotif_lastvisited' => 'Hlej $1 za wšě změny po twojim poslednim wopyće.',
 'enotif_lastdiff' => 'Hlej $1 za tutu změnu.',
 'enotif_anon_editor' => 'anonymny wužiwar $1',
 'enotif_body' => 'Luby $WATCHINGUSERNAME,
 
+$PAGEINTRO $NEWPAGE
 
-Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDITDATE wot $PAGEEDITOR $CHANGEDORCREATED, hlej $PAGETITLE_URL za aktualnu wersiju.
-
-$NEWPAGE
 
 Zjeće wobdźěłarja: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2183,7 +2188,7 @@ wiki: $PAGEEDITOR_WIKI
 Njebudu žane druhe zdźělenki w padźe dalšich změnow, chibazo wopytaš tutu stronu.
 Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich wobkedźbowankach wróćo stajić.
 
-               Twój přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}
+Twój přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}
 
 --
 Zo by swoje nastajenja za e-mejlowe zdźělenja změnił, wopytaj
@@ -2983,6 +2988,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 hodźinu|$1 hodźinomaj|$1 hodźinami|$1 hodźinami}}',
 'days' => '{{PLURAL:$1|$1 dnjom|$1 dnjomaj|$1 dnjemi|$1 dnjemi}}',
 'ago' => 'před $1',
+'just-now' => 'runje',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -3801,4 +3807,6 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
+# Unknown messages
+'svg-long-error' => 'Njepłaćiwa SVG-dataja: $1',
 );

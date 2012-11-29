@@ -285,7 +285,7 @@ $1',
 'youhavenewmessagesfromusers' => 'Sanak mandapek $1 dari {{PLURAL:$3|another user|$3 users}} ($2)',
 'youhavenewmessagesmanyusers' => 'Sanak mandapek $1 dari banyak pangguno ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|sabuah pasan baru|pasan baru}}',
-'newmessagesdifflinkplural' => 'akhir {{PLURAL:$1|parubahan|parubahan}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|parubahan}} taakhia',
 'youhavenewmessagesmulti' => 'Awak ang mandapek pasan baru pado $1',
 'editsection' => 'suntiang',
 'editold' => 'suntiang',
@@ -390,7 +390,8 @@ Indak ado keterangan.',
 'protectedpagetext' => 'Laman iko alah dikunci untuak manghindari panyuntiangan.',
 'viewsourcetext' => 'Sanak dapek malihek atau manyalin sumber laman iko:',
 'viewyourtext' => 'Sanak bisa mancaliak dan mangopi sumber untuak "editan sanak" ka halaman iko',
-'protectedinterface' => 'Laman iko barisi teks antarmuko untuak digunoan oleh parangkaik lunak dan alah dikunci untuak manghindari kasalahan.',
+'protectedinterface' => 'Laman iko barisi teks antarmuko untuak digunoan oleh parangkaik lunak di wiki iko sajo, dan alah dikunci untuak manghindari kasalahan. 
+Untuak manambah atau mangubah tarjemahan di sadonyo wiki, tolong digunoan [//translatewiki.net/ translatewiki.net], yaitu proyek lokalisasi dari MediaWiki.',
 'editinginterface' => "'''Paringatan:''' Sanak manyuntiang suatu laman nan digunoan untuak manyediakan teks antarmuko untuak parangkaik lunak situs iko. Parubahan teks iko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
 Untuak tarjamahan, harap gunokan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
 'sqlhidden' => '(Pamintaan SQL disuruakkan)',
@@ -419,9 +420,8 @@ Pangurus nan manguncinyo manawarkan penjelasan: "$3"',
 
 Sanak dapek taruih manggunoan {{SITENAME}} sacaro anonim, atau Sanak dapek <span class='plainlinks'>[$1 masuak log liak]</span> sabagai pangguno nan samo atau pangguno nan lain.
 Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih masuak log sampai Sanak mambarasihan singgahan panjelajah web Sanak.",
-'welcomecreation' => '== Salamaik datang, $1! ==
-
-Akun Sanak alah dibuek. Jan lupo maatur konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Sanak.',
+'welcomeuser' => 'Salamaik datang, $1!',
+'welcomecreation-msg' => 'Akun Sanak alah dibuek. Jan lupo maatur konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Sanak.',
 'yourname' => 'Namo pangguno:',
 'yourpassword' => 'Kato sandi:',
 'yourpasswordagain' => 'Ulang baliak kato sandi:',

@@ -567,9 +567,6 @@ Ang tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: "$3".',
 
 Maaari kang tumuloy sa paggamit ng {{SITENAME}} nang hindi nakikilala (anonimo), o maaaring kang <span class='plainlinks'>[$1 lumagda/tumala muli]</span> bilang kapareho o ibang tagagamit.
 Tandaan na may ilang pahinang maaaring magpatuloy na nagpapakitang parang nakalagda ka pa rin, hanggang sa linisin mo ang iyong baunang pambasa-basa (''browser cache'').",
-'welcomecreation' => '== Maligayang pagdating, $1! ==
-Nilikha na ang iyong kuwenta.
-Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SITENAME}}]].',
 'yourname' => 'Bansag:',
 'yourpassword' => 'Hudyat:',
 'yourpasswordagain' => 'Hudyat mo uli:',

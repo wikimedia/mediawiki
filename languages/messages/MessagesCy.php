@@ -524,9 +524,6 @@ Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
 Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch <span class='plainlinks'>[$1 fewngofnodi eto]</span> wrth yr un un enw neu wrth enw arall.
 Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.",
 'welcomeuser' => 'Croeso, $1!',
-'welcomecreation' => "==Croeso, $1!==
-Mae eich cyfrif wedi'i greu.
-Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{SITENAME}}.",
 'yourname' => 'Eich enw defnyddiwr:',
 'yourpassword' => 'Eich cyfrinair:',
 'yourpasswordagain' => 'Ail-deipiwch y cyfrinair:',

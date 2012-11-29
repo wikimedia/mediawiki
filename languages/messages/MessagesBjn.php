@@ -540,9 +540,6 @@ Administrator nang takunci nintu manawarakan panjalasan: "$3".',
 
 Pian kawa manyambung hagan mangguna'akan {{SITENAME}} kada bangaran, atawa Pian kawa <span class='plainlinks'>[$1 babuat log pulang]</span> sawagai pamakai nang sama atawa sawagai pamakai balain.
 Catatan bahwasa babarapa tungkaran pinanya masih ha tarus manampaiakan Pian masih babuat log, sampai Pian mahabisakan timbuluk panjalajah web Pian.",
-'welcomecreation' => '==Salamat datang, $1!==
-Akun Pian sudah diulah.
-Jangan kada ingat hagan maubah [[Special:Preferences|kakatujuan {{SITENAME}}]] Pian.',
 'yourname' => 'Ngaran pamakai:',
 'yourpassword' => 'Katasunduk:',
 'yourpasswordagain' => 'Katik pulang katasunduk:',

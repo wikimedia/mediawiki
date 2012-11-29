@@ -314,10 +314,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'virus-unknownscanner' => 'intivirus poin connu:',
 
 # Login and logout pages
-'welcomecreation' => "== Binv'nute, $1 ! ==
-
-Vote compte o té créé.
-N'obliez poin d'parsonnaliser vos [[Special:Preferences|préférinches édseur {{SITENAME}}]].",
 'yourname' => "nom d'uzeu:",
 'yourpassword' => "Mot d'passe:",
 'yourpasswordagain' => "Intrer à nouvieu ch'mot d'passe:",

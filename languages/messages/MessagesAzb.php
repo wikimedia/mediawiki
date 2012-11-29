@@ -1,5 +1,5 @@
 <?php
-/** تورکجه (تورکجه)
+/** South Azerbaijani (تورکجه)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -186,6 +186,7 @@ $messages = array(
 'namespaces' => 'آدلار فضاسی',
 'variants' => 'واریانتلار',
 
+'navigation-heading' => 'ناویگاسيون مئنوسو',
 'errorpagetitle' => 'خطا',
 'returnto' => '$1-ه/ا قاییت',
 'tagline' => '{{SITENAME}} سایتیندان',
@@ -425,9 +426,7 @@ $2',
 'virus-unknownscanner' => 'تانینمامیش آنتی‌ویروس:',
 
 # Login and logout pages
-'welcomecreation' => '== $1، خوش گلمیشسینیز! == 
-حسابینیز يارادیلدی. 
-[[Special:Preferences|{{SITENAME}} نیزاملامالارینیزی]]ديَیشدیرميی اونوتمايین .',
+'welcomeuser' => 'خوش گلمیسینیز, $1!',
 'yourname' => 'ایستیفاده‌چی آدی:',
 'yourpassword' => 'رمز',
 'yourpasswordagain' => 'پسووردو یئنی‌دن یاز',
@@ -693,11 +692,18 @@ $2
 'moveddeleted-notice' => 'بو یارپاق سیلین‌میش‌دیر
 معلومات اوچون آشاغیدا بو یارپاق‌ین تاریخچه‌سیندن مووافیق سیلمه قئيدلری گؤستریلمیش‌دیر.',
 'log-fulllog' => 'بوتون بیلگی‌لری گؤستر',
+'edit-hook-aborted' => 'دوزلیش‌لر قارماق-پروسئ‌دور طرفین‌دن گئری قایتاریلیب.
+علاوه ایزاهات وئریلمه‌ییب.',
 'edit-conflict' => 'سیزله برابر دییشدیرمه',
+'edit-already-exists' => 'یئنی صحیفنی یاراتماق مومکون دئییل.
+بئله کی، بو آددا صحیفه آرتیق مؤوجوددور.',
 'defaultmessagetext' => 'دفالت دانیشیق متنی',
 
 # Content models
 'content-model-wikitext' => 'ویکی متن',
+'content-model-text' => 'ساده متن',
+'content-model-javascript' => 'جاوااسکریپت',
+'content-model-css' => 'سی‌اس‌اس',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''دیققت!''' داخیل ائدیلن شابلوْنلارین حجمی حددیندن آرتیق بؤيوکدور.
@@ -707,6 +713,16 @@ $2
 بو آرگومانلارین اوستون‌دن کئچیلیب‌دیر.",
 'post-expand-template-argument-category' => 'شابلونلاردا بوراخیلمیش آرگومانلارین مؤوجود اولدوغو صفحه‌لر',
 'parser-template-loop-warning' => '[[$1]]: شابلوندا دويون تاپیلدی',
+'parser-template-recursion-depth-warning' => '($1) شابلوندا درین‌لیک لیمیتی کئچیلدی',
+'language-converter-depth-warning' => '($1) دیل کونوئرتورونون لیمیتی کئچیلدی',
+
+# "Undo" feature
+'undo-success' => 'بو دَییشیک‌لیک گئری آلینا بیلر. لطفاً آشاغی‌داکی موقاییسه ائتمیی نظارت ائدین، حقیقتن بو دییشیک‌لیگی ائتمک ایستدیگینیزدن امین اولون و صحیفنی یازا‌راق بیر اوولکی دییشیک‌لیگی گئرییه آلین.',
+'undo-failure' => 'دییشیک‌لیک‌لرین توققوشماسی نتیجه‌سینده گئرییه قایتارما ایشی اوغورسوز اولدو.',
+'undo-norev' => 'دوزلیش‌لر گئری قایتاریلا بیلینمیر، چونکی اونلار یا مؤوجود دئییل، یا دا سیلینیب.',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'حساب آچیلمیر.',
 
 # History pages
 'viewpagelogs' => 'بو صحیفه‌نین قئیدلرینه باخ',
@@ -752,12 +768,21 @@ $2
 'revdelete-nooldid-title' => 'هدف ديَیشیکلیگی کئچرسیزدیر',
 'revdelete-nologtype-title' => 'هئچ بیر قئيد تیپی وئریلمه‌دی',
 'revdelete-nologtype-text' => 'بو عملیاتی دؤوره‌يه سوخماق اوچون بیر قئيد تیپی ایفاده ائتمه‌دینیز.',
+'revdelete-nologid-title' => 'يانلیش ژورنال يازیسی',
+'revdelete-no-file' => 'آختاریلان فايل مؤوجود دئيیل',
 'revdelete-show-file-submit' => 'بلی',
 'revdelete-legend' => 'محدودیتلری موعيينلشدیر:',
+'revdelete-hide-text' => 'صحیفه‌‌نین بو وئرسیياسی‌نین متنینی گیزله',
 'revdelete-hide-image' => 'فایلین ایچینده‌کیلرینی گیزلت',
+'revdelete-hide-name' => 'حرکتی و مقصدی گیزله‌مک',
+'revdelete-hide-comment' => 'ديَیشیکلیکلرین شرحینی گیزله',
+'revdelete-hide-user' => 'دَییشدیرن یازارین ایستیفاده‌چی آدینی/آی‌پی اونوانینی گیزله',
+'revdelete-radio-same' => '(ديَیشدیرمه)',
 'revdelete-radio-set' => 'بلی',
 'revdelete-radio-unset' => 'یوخ',
+'revdelete-suppress' => 'بیلگی‌لری ایداره‌چیلردن ده گیزله',
 'revdelete-log' => 'ندن',
+'logdelete-success' => "''' گونده‌لیک گؤرونوشو اوغورلا تاماملاندی.'''",
 'revdel-restore' => 'گؤرونوشو دییش',
 'revdel-restore-deleted' => 'سیلینمیش دئیشیلیک‌لر',
 'revdel-restore-visible' => 'گؤرونن دوزه‌لیشلر',
@@ -944,6 +969,7 @@ $2
 'searchresultshead' => 'آختار',
 'resultsperpage' => 'صحیفه‌‌يه عاید تاپیلمیش نتیجه‌لر:',
 'stub-threshold-disabled' => 'چالیشمایان',
+'recentchangescount' => 'سون ديَیشیکلیکلرده باشلیق سايی:',
 'savedprefs' => 'سئچیمینیز قئيد ائدیلدی.',
 'timezonelegend' => 'چاغ بؤلگه‌سی:',
 'localtime' => 'یئرلی چاغ:',
@@ -1033,6 +1059,9 @@ $2
 'userrights-groupsmember-auto' => 'گومان ائدیلن عضو:',
 'userrights-reason' => 'ندن:',
 'userrights-no-interwiki' => 'سیزه باشقا ویکی لايیهه‌لرده‌کی ایستیفاده‌چیلرین ائستاتوسونو ديَیشمه‌يه ایزین وئریلمه‌يیب',
+'userrights-nodatabase' => '$1 وئریلنلر بازاسی يا مؤوجود دئيیل، يا دا لوکال دئيیل.',
+'userrights-changeable-col' => 'ديَیشدیره بیلدیگینیز قروپلار',
+'userrights-unchangeable-col' => 'ديَیشدیره بیلمه‌دیگینیز قروپلار',
 
 # Groups
 'group' => 'گروپ:',
@@ -1217,6 +1246,15 @@ $2
 # Upload
 'upload' => 'فایل یوکله‌یین',
 'uploadbtn' => 'فایل یوکله‌یین',
+'reuploaddesc' => 'يوکلئمئ فورمونا گئری دؤن.',
+'upload-tryagain' => 'ديَشدیریلمیش فايل ایضاهینی گؤندر',
+'uploadnologin' => 'گیریش ائتمه‌میسینیز',
+'uploadnologintext' => 'فايل يوکله‌مک اوچون [[Special:UserLogin|گیریش ائتمه‌میسینیز]].',
+'uploaderror' => 'یوکلمه خطاسی',
+'upload-permitted' => 'ایجازه وئریلن فايل تیپلری: $1.',
+'upload-preferred' => 'ایجازه وئریلن فايل تیپلری: $1.',
+'upload-prohibited' => 'ایجازه وئریلمه‌ين فايل تیپلری: $1.',
+'uploadlog' => 'يوکله‌مه قئيدی',
 'uploadlogpage' => 'یوکلمه قئیدلری',
 'uploadlogpagetext' => 'آشاغیدا ان سون یوکله‌نیلن فایل‌لارین لیستی گؤستریلیر.
 داها گؤرونوش‌لو گؤسترمک اوچون، [[Special:NewFiles|یئنی فایل‌لار گالئری‌سینه]] باخین.',
@@ -1224,8 +1262,17 @@ $2
 'filedesc' => 'قیساسی',
 'fileuploadsummary' => 'قیساسی:',
 'filereuploadsummary' => 'فایل دَییشیکلری:',
+'filestatus' => 'مؤلف حوقوقلاری:',
 'filesource' => 'قایناق:',
+'uploadedfiles' => 'یوکلنمیش فایللار‌',
+'ignorewarning' => 'خبردارلیقلارا اهمیت وئرمه و فايلی ساخلا',
+'ignorewarnings' => 'بوتون خبردارلیقلارا محل قويماماق',
+'minlength1' => 'فايل آدی ان آزی بیر حرفدن عبارت اولمالیدیر.',
+'filetype-missing' => 'فايلین هئچ بیر اوزانتیسی يوخدور (مثلا، ".jpg").',
+'empty-file' => 'سیز یول‌لادیغینیز فایل، بوش ایدی.',
 'filename-tooshort' => 'فایل آدی چوخ قیسادی.',
+'unknown-error' => 'بیلینمه‌ين بیر خطا ياراندی.',
+'tmp-create-error' => 'مووققتی فايل يارادیلا بیلمه‌دی.',
 'uploadedimage' => '"[[$1]]" یوکلندی',
 'sourceurl' => 'قایناق آدرسی',
 'upload-description' => 'فایل ایضاهی',
@@ -1239,6 +1286,14 @@ $1',
 'upload-proto-error' => 'یانلیش پروتوکول',
 'upload-proto-error-text' => 'اوزاقدان یوکلمه، <code>http://</code> یوخسا <code>ftp://</code> ایله باشلانان آدرس ایسته‌ییر.',
 'upload-file-error' => 'ایچ خطاسی',
+
+# Special:UploadStash
+'uploadstash' => 'گیزلی يوکله‌مه',
+'uploadstash-clear' => 'مووققتی فايللاری تمیزله',
+'uploadstash-refresh' => 'فايل سیياهیسینی يئنیله',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'گیریش قاداغاندیر',
 
 'license' => 'لیسانس:',
 'license-header' => 'لیسانس',
@@ -1286,13 +1341,19 @@ $1',
 'nolinkstoimage' => 'بو فایلا هئچ بیر صحیفه باغلانماییب.',
 'sharedupload-desc-here' => 'بو فایل $1-دن‌دیر و آیری پروژه‌ده ایستیفاده اولماق امکانی وار.
 اونون باره‌سینده اولان شرح [$2 فایلین شرح صحیفه‌سی] آشاغیدا گوستریلیب.',
+'shared-repo-from' => '$1-دن',
+
+# File reversion
+'filerevert-legend' => 'فايلی اولکی وضعیتینه قايتار',
 
 # File deletion
+'filedelete' => 'سیل $1',
 'filedelete-legend' => 'فایلی سیل',
 'filedelete-intro' => "سیز '''[[Media:$1|$1]]''' فایلینی بوتون گئچمیشی‌له بیرلیکده سیلمک‌ده‌سینیز.",
 'filedelete-intro-old' => "سیز '''[[Media:$1|$1]]''' فایلینین [$4 $3، $2]-ده‌کی نوسخه‌سینی سیلمک‌ده‌سینیز.",
 'filedelete-comment' => 'نَدَن‌لیک:',
 'filedelete-submit' => 'سیل',
+'filedelete-reason-otherlist' => 'باشقا سبب',
 'filedelete-edit-reasonlist' => 'سیلمک دلیل‌لرینی دَییشدیر',
 'filedelete-maintenance' => 'ساخلاماق سیراسیندا، فایل‌لاری سیلمک و قایتارماق، گئچرلی اولاراق باغلی‌دیر.',
 'filedelete-maintenance-title' => 'فایل سیلیننمه‌دی',
@@ -1352,7 +1413,9 @@ $1',
 بیر صحیفه، بلیرلندیرمه صحیفه‌سی کیمی اولار، اگر [[MediaWiki:Disambiguationspage]] صحیفه‌سینه باغلانمیش بیر شابلون‌دان ایستیفاده ائتسه.",
 
 'doubleredirects' => 'ایکی‌قات یول‌لاندیرمالار',
+'double-redirect-fixer' => 'يؤنلندیرمه تعمیرجیسی',
 
+'brokenredirects' => 'خطالی ایستیقامتلندیرمه',
 'brokenredirects-edit' => 'دَییش',
 'brokenredirects-delete' => 'سیل',
 
@@ -1371,14 +1434,34 @@ $1',
 'nmembers' => '$1 {{PLURAL:$1|اویه|اویه‌لر}}',
 'nrevisions' => '{{PLURAL:$1|بیر|$1}} نوسخه',
 'nviews' => '{{PLURAL:$1|بیر|$1}} گؤرونوش',
+'lonelypages' => 'يئتیم صحیفه‌‌لر',
+'unusedcategories' => 'ایستیفاده ائدیلمه‌میش بؤلمه‌لر',
 'unusedimages' => 'ایشلنمه‌میش فایل‌لار',
 'popularpages' => 'سئویلن صحیفه‌لر',
+'wantedcategories' => 'یسته نن بؤلمه‌لر',
+'wantedpages' => 'ایسته نن صحیفه‌لر',
+'wantedpages-badtitle' => 'مراجعت زامانتی يانلیش باشلیق: $1',
+'wantedtemplates' => 'ایسته نن شابلونلار',
+'mostlinked' => 'ان چوخ کئچیدلنن صحیفه‌‌لر',
+'mostimages' => 'ان چوخ ایستیفاده ائدیلمیش شکیللر',
 'prefixindex' => 'پرئفیکس ایندئکسلی بوتون یارپاقلار',
+'shortpages' => 'قیسا صحیفه‌‌لر',
+'longpages' => 'اوزون صحیفه‌‌لر',
+'deadendpages' => 'کئچید وئرمه‌ين صحیفه‌‌لر',
+'deadendpagestext' => 'آشاغیداکی صحیفه‌‌لردن بو ویکیپئدیياداکی دیگر صحیفه‌‌لره هئچ بیر کئچید يوخدور.',
+'protectedpages' => 'محافظه‌‌لی صحیفه‌‌لر',
+'protectedpages-indef' => 'يالنیز مدتسیز محافظه‌‌لر',
+'listusers' => 'ایستیفاده‌چی سیياهیسی',
+'listusers-editsonly' => 'يالنیز دَییشدیرمه ائدن ایستیفاده‌چیلری گؤستر',
+'listusers-creationsort' => 'يارانما تاریخینه گؤره سیرالا',
+'usereditcount' => '$1 {{PLURAL:$1|دَییشدیرمه}}',
 'usercreated' => 'ساعت  $2, $1 تاریخ‌ده {{GENDER:$3|قئيدیاتدان کئچیب}}',
 'newpages' => 'يئنی صحیفه‌‌‌لر',
 'newpages-username' => 'ایستیفاده‌چی آدی:',
 'ancientpages' => 'ان اسکی صحیفه‌لر',
 'move' => 'آدینی دَییشدیر',
+'movethispage' => 'بو صحیفه‌‌نین آدینی ديَیشدیر',
+'notargettitle' => 'وئریلمه‌يیب',
 'pager-newer-n' => '{{PLURAL:$1|بیر داها یئنی|$1 داها یئنی}}',
 'pager-older-n' => '{{PLURAL:$1|بیر داها کؤهنه|$1 داها کؤهنه}}',
 'suppress' => 'باخان',
@@ -1390,12 +1473,18 @@ $1',
 'booksources-go' => 'گئت',
 
 # Special:Log
+'specialloguserlabel' => 'ایجراچی',
 'log' => 'سیاهه‌لر',
+'all-logs-page' => 'بوتون اجتماعی قئيدلر',
+'logempty' => 'ژورنالدا اويغون قئيد تاپیلمادی.',
 
 # Special:AllPages
 'allpages' => 'بوتون صحیفه‌لر',
 'alphaindexline' => '$1-دن $2-یه',
+'nextpage' => 'سونراکی صحیفه‌‌ ($1)',
 'allarticles' => 'بوتون یارپاقلار',
+'allpagesprev' => 'اونجه‌کی',
+'allpagesnext' => 'سونراکی',
 'allpagessubmit' => 'گئت',
 
 # Special:Categories
@@ -1498,6 +1587,10 @@ $1',
 'watchlist-options' => 'ایزله‌دیکلر سئچمه‌لری',
 
 # Delete
+'deletepage' => 'صحیفه‌‌نی سیل',
+'confirm' => 'تصدیق ائت',
+'delete-confirm' => 'سیل $1',
+'delete-legend' => 'سیل',
 'actioncomplete' => 'چالیشما سوناچاتدی',
 'actionfailed' => 'فعالیت اوغورسوزاولدو',
 'dellogpage' => 'سیلمه سییاهسی',
@@ -1508,10 +1601,28 @@ $1',
 # Protect
 'protectlogpage' => 'قوروما قئیدلری',
 'protectedarticle' => '"[[$1]]" قورولدو',
+'protect-otherreason-op' => 'دیگر سبب',
+'restriction-type' => 'حقوقلار',
+'restriction-level' => 'محدودیت درجه‌‌سی:',
+'minimum-size' => 'ان کوچیک بویوت',
+'maximum-size' => 'ان بویوک بویوت',
+'pagesize' => '(بایت)',
+
+# Restrictions (nouns)
+'restriction-edit' => 'دَییش',
+'restriction-move' => 'آدینی دَییشدیر',
+'restriction-upload' => 'یوکله',
+
+# Restriction levels
+'restriction-level-autoconfirmed' => '(ياریم-محافظه‌‌)',
 
 # Undelete
+'undelete' => 'سیلینمیش صحیفه‌‌لری گؤستر',
+'undelete-nodiff' => 'اولکی دَییشمه تاپیلمادی.',
 'undeletelink' => 'باخ/قایتار',
 'undeleteviewlink' => 'باخ',
+'undeletereset' => 'قور',
+'undelete-search-submit' => 'آختار',
 
 # Namespace form on various pages
 'namespace' => 'آد فضاسی:',

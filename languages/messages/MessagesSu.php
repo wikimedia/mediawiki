@@ -519,9 +519,6 @@ Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=e
 
 Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa <span class='plainlinks'>[$1 asup log deui]</span> salaku pamaké nu sarua atawa nu séjén deui.
 Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun ''cache'' panyungsi anjeun.",
-'welcomecreation' => '==Wilujeng sumping, $1!==
-Rekening anjeun geus dijieun.
-Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'yourname' => 'Sandiasma:',
 'yourpassword' => 'Sandi anjeun',
 'yourpasswordagain' => 'Ketik deui sandi anjeun',
