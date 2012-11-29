@@ -2131,6 +2131,10 @@ $form: The SpecialUpload object
 use this to change the tables headers
 $extTypes: associative array of extensions types
 
+'SpecialVersionVersionUrl': called when building the URL for Special:Version
+$wgVersion: Current $wgVersion for you to use
+&$versionUrl: Raw url to link to (eg: release notes)
+
 'SpecialWatchlistFilters': called after building form options at Watchlist
 $special: the special page object
 &$filters: associative array of filter definitions. The keys are the HTML name/URL parameters.
