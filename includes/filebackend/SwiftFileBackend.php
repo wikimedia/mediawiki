@@ -1370,6 +1370,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function closeConnection() {
 		if ( $this->conn ) {
 			$this->conn->close(); // close active cURL handles in CF_Http object
+			$this->conn = null;
 			$this->sessionStarted = 0;
 			$this->connContainerCache->clear();
 		}
