@@ -4407,6 +4407,24 @@ Nonexistent template
 </p>
 !! end
 
+!! test
+Template with invalid target containing tags
+!! input
+{{a<b>b</b>|{{echo|foo}}|{{echo|a}}={{echo|b}}|a = b}}
+!! result
+<p>{{a<b>b</b>|foo|a=b|a = b}}
+</p>
+!! end
+
+!! test
+Template with invalid target containing unclosed tag
+!! input
+{{a<b>|{{echo|foo}}|{{echo|a}}={{echo|b}}|a = b}}
+!! result
+<p>{{a<b>|foo|a=b|a = b}}</b>
+</p>
+!! end
+
 !! article
 Template:test
 !! text
