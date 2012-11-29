@@ -388,6 +388,11 @@ abstract class DatabaseUpdater {
 			}
 			$ret = call_user_func_array( $func, $params );
 			flush();
+
+			if( ( is_array( $func ) || !method_exists( $this, $func ) ) && $passSelf ) {
+				array_shift( $params );
+			}
+
 			if( $ret !== false ) {
 				$updatesDone[] = $params;
 			} else {
@@ -577,7 +582,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->db->sourceFile( $path );
 		}
- 		$this->output( "done.\n" );
+		$this->output( "done.\n" );
 		return true;
 	}
 
