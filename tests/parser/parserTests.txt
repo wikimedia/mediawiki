@@ -3075,6 +3075,15 @@ Link with suffix
 !! end
 
 !! test
+Link with HTML entity in suffix / tail
+!! input
+[[Main Page]]&quot;, [[Main Page]]&#97;
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>&quot;, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>&#97;
+</p>
+!! end
+
+!! test
 Link with 3 brackets
 !! input
 [[[main page]]]
