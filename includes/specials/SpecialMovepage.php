@@ -660,4 +660,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 		$out->addHTML( "</ul>\n" );
 	}
+
+	function getGroupName() {
+		return 'pagetools';
+	}
 }

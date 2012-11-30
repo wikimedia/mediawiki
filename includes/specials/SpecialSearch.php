@@ -1153,4 +1153,7 @@ class SpecialSearch extends SpecialPage {
 		$this->extraParams[$key] = $value;
 	}
 
+	function getGroupName() {
+		return 'redirects';
+	}
 }

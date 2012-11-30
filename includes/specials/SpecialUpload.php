@@ -720,6 +720,9 @@ class SpecialUpload extends SpecialPage {
 			$gallery->toHtml() . "</li>\n";
 	}
 
+	function getGroupName() {
+		return 'media';
+	}
 }
 
 /**

@@ -62,4 +62,8 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 
 		$out->returnToMain();
 	}
+
+	function getGroupName() {
+		return 'login';
+	}
 }

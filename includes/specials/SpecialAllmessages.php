@@ -77,6 +77,9 @@ class SpecialAllmessages extends SpecialPage {
 
 	}
 
+	function getGroupName() {
+		return 'wiki';
+	}
 }
 
 /**

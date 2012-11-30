@@ -205,6 +205,10 @@ class SpecialBlockList extends SpecialPage {
 			$out->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-ipblocklist-otherblocks' ), $list ) . "\n" );
 		}
 	}
+
+	function getGroupName() {
+		return 'users';
+	}
 }
 
 class BlockListPager extends TablePager {

@@ -285,8 +285,11 @@ class SpecialPageFactory {
 	 *
 	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
+	 * @deprecated 1.21 Override SpecialPage::getGroupName
 	 */
 	public static function setGroup( $page, $group ) {
+		wfDeprecated( __METHOD__, '1.21' );
+
 		global $wgSpecialPageGroups;
 		$name = is_object( $page ) ? $page->getName() : $page;
 		$wgSpecialPageGroups[$name] = $group;
@@ -297,28 +300,12 @@ class SpecialPageFactory {
 	 *
 	 * @param $page SpecialPage
 	 * @return String
+	 * @deprecated 1.21 Use SpecialPage::getFinalGroupName direct
 	 */
 	public static function getGroup( &$page ) {
-		$name = $page->getName();
+		wfDeprecated( __METHOD__, '1.21' );
 
-		global $wgSpecialPageGroups;
-		static $specialPageGroupsCache = array();
-		if ( isset( $specialPageGroupsCache[$name] ) ) {
-			return $specialPageGroupsCache[$name];
-		}
-		$msg = wfMessage( 'specialpages-specialpagegroup-' . strtolower( $name ) );
-		if ( !$msg->isBlank() ) {
-			$group = $msg->text();
-		} else {
-			$group = isset( $wgSpecialPageGroups[$name] )
-				? $wgSpecialPageGroups[$name]
-				: '-';
-		}
-		if ( $group == '-' ) {
-			$group = 'other';
-		}
-		$specialPageGroupsCache[$name] = $group;
-		return $group;
+		return $page->getFinalGroupName();
 	}
 
 	/**

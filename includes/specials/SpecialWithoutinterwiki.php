@@ -95,4 +95,8 @@ class WithoutInterwikiPage extends PageQueryPage {
 		}
 		return $query;
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }

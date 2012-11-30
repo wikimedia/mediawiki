@@ -290,6 +290,10 @@ class SpecialProtectedpages extends SpecialPage {
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
 				implode( "\n", $options ) ) . "</span>";
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }
 
 /**

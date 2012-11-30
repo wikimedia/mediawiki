@@ -510,4 +510,8 @@ class SpecialWatchlist extends SpecialPage {
 
 		return floor( $count / 2 );
 	}
+
+	function getGroupName() {
+		return 'changes';
+	}
 }

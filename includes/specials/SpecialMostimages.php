@@ -58,4 +58,7 @@ class MostimagesPage extends ImageQueryPage {
 		return $this->msg( 'nimagelinks' )->numParams( $row->value )->escaped() . '<br />';
 	}
 
+	function getGroupName() {
+		return 'highuse';
+	}
 }

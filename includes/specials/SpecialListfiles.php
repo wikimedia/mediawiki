@@ -51,6 +51,10 @@ class SpecialListFiles extends IncludableSpecialPage {
 		}
 		$this->getOutput()->addHTML( $html );
 	}
+
+	function getGroupName() {
+		return 'media';
+	}
 }
 
 /**

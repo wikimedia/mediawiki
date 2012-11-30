@@ -253,4 +253,8 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$user->setCookies();
 		$user->saveSettings();
 	}
+
+	function getGroupName() {
+		return 'users';
+	}
 }

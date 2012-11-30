@@ -64,4 +64,8 @@ class UnusedCategoriesPage extends QueryPage {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 		return Linker::link( $title, htmlspecialchars( $title->getText() ) );
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }

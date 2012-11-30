@@ -179,4 +179,8 @@ class SpecialBookSources extends SpecialPage {
 		$url = str_replace( '$1', $this->isbn, $url );
 		return '<li><a href="' . htmlspecialchars( $url ) . '" class="external">' . htmlspecialchars( $label ) . '</a></li>';
 	}
+
+	function getGroupName() {
+		return 'other';
+	}
 }

@@ -213,4 +213,8 @@ class SpecialUnblock extends SpecialPage {
 
 		return true;
 	}
+
+	function getGroupName() {
+		return 'users';
+	}
 }

@@ -906,4 +906,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			'mediawiki.special.recentchanges',
 		) );
 	}
+
+	function getGroupName() {
+		return 'changes';
+	}
 }

@@ -161,4 +161,8 @@ class DoubleRedirectsPage extends QueryPage {
 
 		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }

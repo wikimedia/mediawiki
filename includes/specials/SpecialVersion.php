@@ -824,6 +824,10 @@ class SpecialVersion extends SpecialPage {
 		return $out;
 	}
 
+	function getGroupName() {
+		return 'wiki';
+	}
+
 	function showEasterEgg() {
 		$rx = $rp = $xe = '';
 		$alpha = array("", "kbQW", "\$\n()");

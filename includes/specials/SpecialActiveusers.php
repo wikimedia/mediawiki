@@ -244,4 +244,7 @@ class SpecialActiveUsers extends SpecialPage {
 		}
 	}
 
+	function getGroupName() {
+		return 'users';
+	}
 }

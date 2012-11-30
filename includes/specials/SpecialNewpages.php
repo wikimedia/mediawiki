@@ -467,6 +467,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 		return '';
 	}
+
+	function getGroupName() {
+		return 'changes';
+	}
 }
 
 /**

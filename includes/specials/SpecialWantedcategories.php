@@ -72,4 +72,8 @@ class WantedCategoriesPage extends WantedQueryPage {
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }

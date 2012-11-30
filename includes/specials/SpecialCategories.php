@@ -50,6 +50,10 @@ class SpecialCategories extends SpecialPage {
 			Html::closeElement( 'div' )
 		);
 	}
+
+	function getGroupName() {
+		return 'pages';
+	}
 }
 
 /**

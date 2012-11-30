@@ -52,4 +52,8 @@ class WantedTemplatesPage extends WantedQueryPage {
 						'page_title = tl_title' ) ) )
 		);
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }

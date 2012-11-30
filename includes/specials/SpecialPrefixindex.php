@@ -263,4 +263,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		$this->getOutput()->addHTML( $out2 . $out . $footer );
 	}
+
+	function getGroupName() {
+		return 'pages';
+	}
 }

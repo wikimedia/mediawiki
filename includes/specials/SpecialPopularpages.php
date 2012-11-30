@@ -72,4 +72,8 @@ class PopularPagesPage extends QueryPage {
 		$nv = $this->msg( 'nviews' )->numParams( $result->value )->escaped();
 		return $this->getLanguage()->specialList( $link, $nv );
 	}
+
+	function getGroupName() {
+		return 'wiki';
+	}
 }

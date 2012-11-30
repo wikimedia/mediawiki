@@ -81,4 +81,8 @@ class LonelyPagesPage extends PageQueryPage {
 			return array( 'page_title' );
 		}
 	}
+
+	function getGroupName() {
+		return 'maintenance';
+	}
 }

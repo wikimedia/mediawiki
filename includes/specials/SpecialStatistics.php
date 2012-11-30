@@ -294,4 +294,8 @@ class SpecialStatistics extends SpecialPage {
 
 		return $return;
 	}
+
+	function getGroupName() {
+		return 'wiki';
+	}
 }

@@ -107,4 +107,8 @@ class MostlinkedPage extends QueryPage {
 			$this->msg( 'nlinks' )->numParams( $result->value )->escaped() );
 		return $this->getLanguage()->specialList( $link, $wlh );
 	}
+
+	function getGroupName() {
+		return 'highuse';
+	}
 }

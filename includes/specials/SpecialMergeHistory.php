@@ -423,6 +423,10 @@ class SpecialMergeHistory extends SpecialPage {
 
 		return true;
 	}
+
+	function getGroupName() {
+		return 'pagetools';
+	}
 }
 
 class MergeHistoryPager extends ReverseChronologicalPager {
