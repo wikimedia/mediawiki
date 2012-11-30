@@ -681,6 +681,9 @@ Iz razloga "\'\'$2\'\'".',
 
 Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo <span class='plainlinks'>[$1 prijaviti]</span> kao isti ili kao drugi korisnik.
 Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
+'welcomeuser' => 'Dobro došli, $1',
+'welcomecreation-msg' => 'Vaš nalog je napravljen.
+Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} podešavanja]].',
 'yourname' => 'Korisničko ime:',
 'yourpassword' => 'Šifra:',
 'yourpasswordagain' => 'Ponovite šifru:',
@@ -1052,6 +1055,7 @@ Izgleda da već postoji.',
 'defaultmessagetext' => 'Uobičajeni tekst poruke',
 
 # Content models
+'content-model-wikitext' => 'wikitekst',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
 
@@ -1569,6 +1573,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'rightslogtext' => 'Ovo je zapis promjena korisničkih prava.',
 'rightslogentry' => 'promjena članstva u grupi za $1 sa $2 na $3',
 'rightslogentry-autopromote' => 'je automatski unaprijeđen iz $2 u $3',
+'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
 'rightsnone' => '(nema)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2211,6 +2216,7 @@ O svakoj od njih postoje i [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
 da biste slali e-poštu drugim korisnicima.',
 'emailuser' => 'Pošalji e-poštu ovom korisniku',
+'emailuser-title-target' => 'Pošalji e-poruku {{GENDER:$1|korisniku|korisnici|korisniku}}',
 'emailuser-title-notarget' => 'Pošalji e-mail korisniku',
 'emailpage' => 'Pošalji e-mail korisniku',
 'emailpagetext' => 'Možete korisiti formu ispod za slanje e-mail poruka ovom korisniku.
@@ -2888,6 +2894,7 @@ Nedostaje privremeni folder.',
 'import-upload' => 'Postavljanje XML podataka',
 'import-token-mismatch' => 'Izgubljeni podaci sesije. Molimo pokušajte ponovno.',
 'import-invalid-interwiki' => 'Ne može se uvesti iz navedenog wikija.',
+'import-options-wrong' => '{{PLURAL:$2|Pogrešna opcija|Pogrešne opcije}}: <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => 'Zapisnik uvoza',
@@ -3026,14 +3033,25 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 # Info page
 'pageinfo-title' => 'Informacije za "$1"',
 'pageinfo-header-basic' => 'Osnovne informacije',
-'pageinfo-header-edits' => 'Izmjene',
+'pageinfo-header-edits' => 'Historija izmjena',
 'pageinfo-header-restrictions' => 'Zaštita stranice',
+'pageinfo-header-properties' => 'Svojstva stranice',
+'pageinfo-length' => 'Dužina stranice (u bajtovima)',
 'pageinfo-article-id' => 'ID stranice',
+'pageinfo-language' => 'Jezik sadržaja stranice',
 'pageinfo-views' => 'Broj pogleda',
 'pageinfo-watchers' => 'Broj onih koji pregledaju',
+'pageinfo-subpages-name' => 'Podstranice ove stranice',
+'pageinfo-firstuser' => 'Korisnik koji je napravio stranicu',
+'pageinfo-firsttime' => 'Datum stvaranja stranice',
+'pageinfo-lastuser' => 'Posljednji urednik stranice',
 'pageinfo-edits' => 'Ukupan broj izmjena',
 'pageinfo-authors' => 'Ukupan broj različitih autora',
+'pageinfo-recent-edits' => 'Broj nedavnih izmjena (u poslednjih $1)',
+'pageinfo-toolboxlink' => 'Informacije o stranici',
+'pageinfo-redirectsto' => 'Preusmjerava na',
 'pageinfo-redirectsto-info' => 'Informacije',
+'pageinfo-contentpage' => 'Broji se kao stranica sa sadržajem',
 'pageinfo-contentpage-yes' => 'Da',
 'pageinfo-protect-cascading-yes' => 'Da',
 
@@ -3910,8 +3928,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-move-move_redir-noredirect' => '$1 je premjestio stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja',
 'logentry-patrol-patrol' => '$1 je označio izmjenu $4 stranice $3 pregledanim',
 'logentry-patrol-patrol-auto' => '$1 je automatski označio izmjenu $4 stranice $3 pregledanim',
-'logentry-newusers-newusers' => '$1 je napravio korisnički račun',
-'logentry-newusers-create' => '$1 je napravio korisnički račun',
+'logentry-newusers-newusers' => 'Korisnički račun $1 je napravljen',
+'logentry-newusers-create' => 'Korisnički račun $1 je napravljen',
 'logentry-newusers-create2' => '$1 je napravio korisnički račun $3',
 'logentry-newusers-autocreate' => 'Korisnički račun $1 je automatski napravljen',
 'newuserlog-byemail' => 'šifra je poslana putem e-maila',
@@ -3947,6 +3965,7 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'api-error-empty-file' => 'Datoteka koju ste poslali je bila prazna.',
 'api-error-emptypage' => 'Stvaranje novih praznih stranica nije dozvoljeno.',
 'api-error-fetchfileerror' => 'Unutrašnja greška: pojavio se neki problem pri dobijanju podataka o datoteci.',
+'api-error-fileexists-forbidden' => 'Datoteka s imenom "$1" već postoji, i ne može biti zamijenjena.',
 'api-error-file-too-large' => 'Datoteka koju ste poslali je bila prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',

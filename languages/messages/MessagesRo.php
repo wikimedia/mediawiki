@@ -715,7 +715,7 @@ Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să f
 Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
 'welcomeuser' => 'Bun venit, $1!',
 'welcomecreation-msg' => 'Contul dumneavoastră a fost creat.
-Nu uitați să vă modificați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
+Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SITENAME}}.',
 'yourname' => 'Nume de utilizator:',
 'yourpassword' => 'Parolă:',
 'yourpasswordagain' => 'Repetați parola:',

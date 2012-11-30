@@ -3190,6 +3190,7 @@ O seu sistema pode quedar comprometido se o executa.",
 'hours' => '{{PLURAL:$1|$1 hora|$1 horas}}',
 'days' => '{{PLURAL:$1|$1 día|$1 días}}',
 'ago' => 'hai $1',
+'just-now' => 'agora mesmo',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -4025,4 +4026,6 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'svg-long-error' => 'Ficheiro SVG non válido: $1',
 );

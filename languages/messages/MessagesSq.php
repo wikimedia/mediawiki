@@ -382,6 +382,7 @@ $messages = array(
 'namespaces' => 'Hapsirat e emrit',
 'variants' => 'Variante',
 
+'navigation-heading' => 'Menuja e navigimit',
 'errorpagetitle' => 'Gabim',
 'returnto' => 'Kthehuni tek $1',
 'tagline' => 'Nga {{SITENAME}}',
@@ -627,6 +628,9 @@ Administratori i cili e mbylli atë e dha këtë shpjegim: "$3".',
 
  Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të <span class='plainlinks'>[$1 identifikoheni përsëri]</span> si përdoruesi i mëparshëm ose si një përdorues tjetër. 
  Kini parasysh që disa faqe mund të shfaqen sikur të ishit i identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
+'welcomeuser' => 'Mirësevini, $1!',
+'welcomecreation-msg' => 'Llogaria juaj u krijua. 
+Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]] tuaja.',
 'yourname' => 'Fusni nofkën tuaj',
 'yourpassword' => 'Fusni fjalëkalimin tuaj',
 'yourpasswordagain' => 'Fusni fjalëkalimin përsëri',
@@ -982,6 +986,9 @@ Duket se është grisur.',
 'edit-already-exists' => 'Faqja nuk mundej të hapet.
 Ajo tanimë ekziston.',
 'defaultmessagetext' => 'Teksti i porosisë së parazgjedhur',
+
+# Content models
+'content-model-text' => 'tekst i thejshtë',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.
@@ -2590,7 +2597,7 @@ Regjistri i bllokimeve është poshtë për referncë:',
 'blocklogtext' => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[Special:BlockList|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
 'unblocklogentry' => 'çbllokoi "$1"',
 'block-log-flags-anononly' => 'vetëm anonimët',
-'block-log-flags-nocreate' => 'krijimi i kontove është pamundësuar',
+'block-log-flags-nocreate' => 'krijimi i llogarive është pamundësuar',
 'block-log-flags-noautoblock' => 'vetëbllokimi është pamundësuar',
 'block-log-flags-noemail' => 'posta elektronike është e bllokuar',
 'block-log-flags-nousertalk' => 'nuk mund të redaktojë faqen e tij të diskutimit',

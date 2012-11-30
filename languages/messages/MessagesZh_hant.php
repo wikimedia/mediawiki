@@ -884,7 +884,8 @@ $2
 'userinvalidcssjstitle' => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/vector.css 不同於 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（已更新）',
 'note' => "'''注意:'''",
-'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''",
+'previewnote' => "'''請記住這只是預覽。'''
+您的更改尚未儲存！",
 'continue-editing' => '往編輯框',
 'previewconflict' => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview' => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
@@ -3041,7 +3042,7 @@ $1',
 # Media information
 'mediawarning' => "'''警告''': 該檔案類型可能包含惡意代碼。
 執行它可能對您的系統帶來危險。",
-'imagemaxsize' => "影像大小限制:<br />''（用在檔案描述頁面中）''",
+'imagemaxsize' => "影像大小限制：<br />''（用在檔案描述頁面中）''",
 'thumbsize' => '縮略圖大小：',
 'widthheightpage' => '$1 × $2, $3頁',
 'file-info' => '檔案大小: $1, MIME 類型: $2',

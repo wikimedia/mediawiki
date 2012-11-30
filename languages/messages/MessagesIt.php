@@ -2027,7 +2027,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'fewestrevisions' => 'Pagine con meno revisioni',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
+'nbytes' => '$1 {{PLURAL:$1|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorie}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|collegamento|collegamenti}}',

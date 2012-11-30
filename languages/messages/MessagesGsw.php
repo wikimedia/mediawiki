@@ -3681,9 +3681,9 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 'logentry-move-move_redir-noredirect' => '$1 het d Syte $3 nooch $4 verschobe un het debi e Wyterleitig überschrybe, ohni sälber eini aazlege',
 'logentry-patrol-patrol' => '$1 het Version $4 vo Syte $3 als kontrolliert markiert',
 'logentry-patrol-patrol-auto' => '$1 het Version $4 vo Syte $3 automatisch als kontrolliert markiert',
-'logentry-newusers-newusers' => '$1 het en Benutzerchonto erstellt',
-'logentry-newusers-create' => '$1 het en Benutzerchonto erstellt',
-'logentry-newusers-create2' => '$1 het en Benutzerchonto $3 erstellt',
+'logentry-newusers-newusers' => 'Benutzerkonto $1 isch aagleit wore.',
+'logentry-newusers-create' => 'Benutzerkonto $1 isch aagleit wore.',
+'logentry-newusers-create2' => 'Benutzerkonto $3 isch aalgeit wore vu $1',
 'logentry-newusers-autocreate' => 'S Benutzerchonto $1 isch automatisch erstellt worde',
 'newuserlog-byemail' => 's Passwort isch per E-Mail gschickt wore',
 
