@@ -1207,6 +1207,7 @@ class SkinTemplate extends Skin {
 			$rootUser = $user->getName();
 
 			$nav_urls['contributions'] = array(
+				'text' => $this->msg( 'contributions', $rootUser )->text(),
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
 			);
 
