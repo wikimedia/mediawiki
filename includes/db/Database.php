@@ -509,7 +509,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool
 	 */
 	public function writesOrCallbacksPending() {
-		return $this->mTrxLevel && ( $this->mTrxDoneWrites || $this->mTrxIdleCallbacks );
+		return $this->mTrxLevel && ( $this->mDoneWrites || $this->mTrxIdleCallbacks );
 	}
 
 	/**
