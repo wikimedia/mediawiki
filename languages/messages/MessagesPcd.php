@@ -647,8 +647,14 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 Vir apré ([$2 pache]).",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
 
+# MIME search
+'mimesearch' => 'Tracher pèr type éd contenu MIME',
+
 # List redirects
 'listredirects' => 'Lisse des érdiréccions',
+
+# Unused templates
+'unusedtemplates' => 'Modèles poin implouéyés',
 
 # Random page
 'randompage' => "Pache à l'bérlure",
@@ -656,15 +662,39 @@ Vir apré ([$2 pache]).",
 # Statistics
 'statistics' => 'Éstatistikes',
 
+'disambiguations' => 'Paches aveuc des loïens vers des paches du meume nom',
 'disambiguationspage' => 'Template:Omonymie',
+
+'doubleredirects' => 'Doubes érdireccions',
+
+'brokenredirects' => 'Érdireccions bérzillées',
+
+'withoutinterwiki' => 'Paches sans loïens intar-langues',
+
+'fewestrevisions' => 'Paches les moins canjées',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|octé|octés}}',
 'nmembers' => '$1 {{PLURAL:$1|mimbe|mimbes}}',
+'lonelypages' => 'Paches orfelines',
+'uncategorizedpages' => 'Paches sans catégories',
+'uncategorizedimages' => 'Fichiés sans catégories',
+'unusedcategories' => 'Catégories poin implouéyées',
+'unusedimages' => 'Fichiés orfelins',
+'wantedcategories' => 'Catégories granmint écmindées',
+'wantedpages' => 'Paches les pus écmindés',
+'wantedfiles' => 'Fichiés les pus écmindés',
+'wantedtemplates' => 'Modèles écmindés',
 'prefixindex' => 'Tertous chés paches aveuc préfix',
+'shortpages' => 'Courtes paches',
+'longpages' => 'Paches longues',
+'deadendpages' => "Paches in tchul d'so",
+'protectedpages' => 'Paches défènnées',
+'protectedtitles' => 'Tites défènnés',
 'listusers' => 'Lisse des uzeus',
 'usercreated' => '{{GENDER:$3|Créé}} ech $1 à $2',
 'newpages' => 'Novèles paches',
+'ancientpages' => 'Paches les pus vieilles',
 'move' => 'Déplacher',
 'movethispage' => "Déplacher l'pache-lo",
 'pager-newer-n' => '{{PLURAL:$1|pu nouvieu 1|pu nouvieus $1}}',
@@ -1009,6 +1039,9 @@ Chés eutes cans is s'ront muchés pèr défeut.
 # Special:FilePath
 'filepath-page' => 'Fichié :',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch' => 'Dénicher chés doublons',
+
 # Special:SpecialPages
 'specialpages' => 'Paches éspéchiales',
 'specialpages-group-users' => 'Uzeus pi leus droués',
@@ -1028,6 +1061,7 @@ Chés eutes cans is s'ront muchés pèr défeut.
 #Mettez tous chés bérlukes d’éspressions rationnelles au-d'sus éd chol line. Laichez chol darin.ne line telle quelle.</pre>",
 
 # Special:Tags
+'tags' => 'Balises des canjemints valides',
 'tag-filter' => 'Filtrer chés [[Special:Tags|balises]] :',
 
 # Special:ComparePages

@@ -2131,7 +2131,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'lonelypagestext' => 'Följande sidor länkas inte till från någon annan sida på {{SITENAME}}.',
 'uncategorizedpages' => 'Ej kategoriserade sidor',
 'uncategorizedcategories' => 'Ej kategoriserade kategorier',
-'uncategorizedimages' => 'Filer utan kategori',
+'uncategorizedimages' => 'Ej kategoriserade filer',
 'uncategorizedtemplates' => 'Ej kategoriserade mallar',
 'unusedcategories' => 'Tomma kategorier',
 'unusedimages' => 'Oanvända filer',
@@ -2366,14 +2366,22 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_mailer' => '{{SITENAME}}s system för att få meddelanden om förändringar per e-post',
 'enotif_reset' => 'Markera alla sidor som besökta',
 'enotif_impersonal_salutation' => '{{SITENAME}}användare',
+'enotif_subject_deleted' => '{{SITENAME}}sidan $1 har raderats av {{gender:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}}sidan $1 har skapats av {{gender:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}}sidan $1 har flyttats av {{gender:$2|$2}}',
+'enotif_subject_restored' => '{{SITENAME}}sidan $1 har återställts av {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}}sidan $1 har ändrats {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => '{{SITENAME}}sidan $1 raderades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
+'enotif_body_intro_created' => '{{SITENAME}}sidan $1 skapades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
+'enotif_body_intro_moved' => '{{SITENAME}}sidan $1 flyttades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
+'enotif_body_intro_restored' => '{{SITENAME}}sidan $1 återställdes den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
+'enotif_body_intro_changed' => '{{SITENAME}}sidan $1 ändrades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
 'enotif_lastvisited' => 'På $1 återfinner du alla ändringar sedan ditt senaste besök.',
 'enotif_lastdiff' => 'Se denna ändring på $1',
 'enotif_anon_editor' => 'anonym användare $1',
-'enotif_body' => '$WATCHINGUSERNAME,
+'enotif_body' => 'Hej $WATCHINGUSERNAME,
 
-{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR; se $PAGETITLE_URL för den nuvarande versionen.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Angiven sammanfattning av redigeringen: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2384,7 +2392,7 @@ wiki: $PAGEEDITOR_WIKI
 Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om ändringar av sidan.
 Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.
 
-             Hälsningar från {{SITENAME}}s meddelandesystem
+Hälsningar från {{SITENAME}}s meddelandesystem
 
 --
 För att ändra inställningarna för dina uppdateringar via e-post, besök
@@ -3241,6 +3249,7 @@ Om du kör den kan din dator skadas.",
 'hours' => '{{PLURAL:$1|$1 timme|$1 timmar}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagar}}',
 'ago' => '$1 sedan',
+'just-now' => 'precis nu',
 
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
@@ -4070,4 +4079,6 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'svg-long-error' => 'Felaktig SVG-fil: $1',
 );

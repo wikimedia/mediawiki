@@ -2186,6 +2186,11 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_mailer' => '{{SITENAME}} E-Mail-Informatiounssystem',
 'enotif_reset' => 'All Säiten als besicht markéieren',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
+'enotif_subject_deleted' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geläscht",
+'enotif_subject_created' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} ugeluecht",
+'enotif_subject_moved' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geréckelt",
+'enotif_subject_restored' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} restauréiert",
+'enotif_subject_changed' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geännert",
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',
@@ -2967,6 +2972,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'markedaspatrollederror' => 'Kann net als "nogekuckt" markéiert ginn.',
 'markedaspatrollederrortext' => 'Dir musst eng Säitenännerung auswielen.',
 'markedaspatrollederror-noautopatrol' => 'Dir däerft Är eegen Ännerungen net als nogekuckt markéieren.',
+'markedaspatrollednotify' => 'Dës Ännerung vu(n) $1 gouf als nogekuckt markéiert.',
 
 # Patrol log
 'patrol-log-page' => 'Logbuch vun den iwwerkuckte Versiounen',
@@ -3029,6 +3035,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'hours' => '{{PLURAL:$1|enger Stonn|$1 Stonnen}}',
 'days' => '{{PLURAL:$1|engem Dag|$1 Deeg}}',
 'ago' => 'viru(n) $1',
+'just-now' => 'grad elo',
 
 # Bad image list
 'bad_image_list' => 'Format:

@@ -818,6 +818,8 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen <span class='plainlinks'>[$1 anmelden]</span>.
 Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomeuser' => 'Willkommen, $1!',
+'welcomecreation-msg' => 'Dein Benutzerkonto wurde erstellt.
+Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.',
 'yourname' => 'Benutzername:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort wiederholen:',
@@ -2742,7 +2744,7 @@ Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperr
 'ipb-unblock' => 'IP-Adresse/Benutzer freigeben',
 'ipb-blocklist' => 'Alle aktuellen Sperren anzeigen',
 'ipb-blocklist-contribs' => 'Benutzerbeiträge von „$1“',
-'unblockip' => 'IP-Adresse freigeben',
+'unblockip' => 'Benutzer freigeben',
 'unblockiptext' => 'Mit diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.',
 'ipusubmit' => 'Freigeben',
 'unblocked' => '[[User:$1|$1]] wurde freigegeben',

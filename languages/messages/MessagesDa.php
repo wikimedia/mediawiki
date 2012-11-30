@@ -1673,6 +1673,20 @@ Det er ikke tilladt at uploade Javafiler, da det kan forårsage, at sikkerhedsre
 'watchthisupload' => 'Overvåg filen',
 'filewasdeleted' => 'En fil med dette navn er tidligere uploadet og i mellemtiden slettet igen. Kontroller først indførslen i $1, før du gemmer filen.',
 'filename-bad-prefix' => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
+'filename-prefix-blacklist' => ' #<!-- efterlad denne linje præcis som den er --> <pre>
+# Syntax is as follows:
+#   * Alt fra at "#" tegn til slutningen af linjen er en kommentar
+#   * Hver ikke tom linje er et præfiks for typiske filnavne automatisk tildelt af digitalkameraer
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # nogen mobil telefoner
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # div.
+ #</pre> <!-- efterlad denne linje præcis som den er -->',
 'upload-success-subj' => 'Oplægningen er gennemført',
 'upload-success-msg' => 'Din upload fra [$2] lykkedes. Den er tilgængelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Upload problem',

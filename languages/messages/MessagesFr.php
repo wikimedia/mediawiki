@@ -641,7 +641,7 @@ $1",
 'youhavenewmessagesfromusers' => "Vous avez $1 {{PLURAL:$3|d'un autre utilisateur|de $3 autres utilisateurs}} ($2).",
 'youhavenewmessagesmanyusers' => 'Vous avez $1 de nombreux utilisateurs ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un message|nouveaux messages}}',
-'newmessagesdifflinkplural' => 'dernières modification{{PLURAL:$1||s}}',
+'newmessagesdifflinkplural' => 'dernières modifications',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection' => 'modifier',
 'editold' => 'modifier',
@@ -693,12 +693,12 @@ Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Erreur',
 'databaseerror' => 'Erreur de la base de données',
-'dberrortext' => "Une erreur de syntaxe de la requête dans la base de données est survenue.
-Ceci peut indiquer un bug dans le logiciel.
+'dberrortext' => 'Une erreur de syntaxe de la requête dans la base de données est survenue.
+Ceci peut indiquer un bogue dans le logiciel.
 La dernière requête traitée par la base de données était :
 <blockquote><code>$1</code></blockquote>
 depuis la fonction « <code>$2</code> ».
-La base de données a renvoyé l'erreur « <samp>$3 : $4</samp> ».",
+La base de données a renvoyé l’erreur « <samp>$3 : $4</samp> ».',
 'dberrortextcl' => "Une requête dans la base de données comporte une erreur de syntaxe.
 La dernière requête émise était :
 « $1 »
