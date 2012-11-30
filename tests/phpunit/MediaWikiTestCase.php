@@ -830,4 +830,32 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->markTestSkipped( "Skip test, since diff3 is not configured" );
 		}
 	}
+
+	/**
+	 * Asserts that an exception of the specified type occurs when running
+	 * the provided code.
+	 *
+	 * @since 1.21
+	 *
+	 * @param callable $code
+	 * @param string $expected
+	 * @param string $message
+	 */
+	protected function assertException( $code, $expected = 'Exception', $message = '' ) {
+		$pokemons = null;
+
+		try {
+			call_user_func( $code );
+		}
+		catch ( Exception $pokemons ) {
+			// Gotta Catch 'Em All!
+		}
+
+		if ( $message === '' ) {
+			$message = 'An exception of type "' . $expected . '" should have been thrown';
+		}
+
+		$this->assertInstanceOf( $expected, $pokemons, $message );
+	}
+
 }
