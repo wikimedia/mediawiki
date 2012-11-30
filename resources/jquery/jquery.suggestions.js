@@ -414,6 +414,7 @@ $.suggestions = {
 					// if nothing is selected OR if something was selected with the mouse,
 					// cancel any current requests and submit the form
 					$.suggestions.cancel( context );
+					preventDefault = true;
 					context.config.$region.closest( 'form' ).submit();
 				} else if ( selected.is( '.suggestions-special' ) ) {
 					if ( typeof context.config.special.select === 'function' ) {
