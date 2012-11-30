@@ -122,6 +122,7 @@ production.
 * (bug 41042) Revert change to action=parse&page=... behavior when the page
   does not exist.
 * (bug 27202) Add timestamp sort to list=allimages.
+* (bug 29115) Add redirect target value on page info.
 
 === Languages updated in 1.21 ===
 

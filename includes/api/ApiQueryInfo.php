@@ -34,12 +34,12 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
 		$fld_readable = false, $fld_watched = false, $fld_notificationtimestamp = false,
-		$fld_preload = false, $fld_displaytitle = false;
+		$fld_preload = false, $fld_displaytitle = false, $fld_redirecttarget = false;
 
 	private $params, $titles, $missing, $everything, $pageCounter;
 
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
-		$pageLatest, $pageLength;
+		$pageLatest, $pageLength, $redirectTarget;
 
 	private $protections, $watched, $notificationtimestamps, $talkids, $subjectids, $displaytitles;
 
@@ -255,6 +255,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_readable = isset( $prop['readable'] );
 			$this->fld_preload = isset( $prop['preload'] );
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
+			$this->fld_redirecttarget = isset( $prop['redirecttarget'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -317,6 +318,10 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->getDisplayTitle();
 		}
 
+		if ( $this->fld_redirecttarget ) {
+			$this->redirectTarget = $pageSet->resolveIdsToRedirectTargets( array_keys( $this->pageIsRedir ) );
+		}
+
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title );
 			$fit = $result->addValue( array(
@@ -358,6 +363,13 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 			if ( $this->pageIsNew[$pageid] ) {
 				$pageInfo['new'] = '';
+			}
+			if ( $this->fld_redirecttarget && isset( $this->redirectTarget[$pageid] ) ) {
+				$targetTitle = $this->redirectTarget[$pageid];
+				$pageInfo['redirecttarget'] = $targetTitle->getPrefixedText();
+				if( $targetTitle->getFragment() !== '' ) {
+					$pageInfo['redirecttargetfragment'] = $targetTitle->getFragment();
+				}
 			}
 		}
 
@@ -686,6 +698,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'url',
 			'preload',
 			'displaytitle',
+			'redirecttarget',
 		);
 		if ( !is_null( $params['prop'] ) ) {
 			foreach ( $params['prop'] as $prop ) {
@@ -715,6 +728,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'readable', # private
 					'preload',
 					'displaytitle',
+					'redirecttarget',
 					// If you add more properties here, please consider whether they
 					// need to be added to getCacheMode()
 				) ),
@@ -740,6 +754,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				' readable              - Whether the user can read this page',
 				' preload               - Gives the text returned by EditFormPreloadText',
 				' displaytitle          - Gives the way the page title is actually displayed',
+				' redirecttarget        - Gives the redirect target, if this page is a redirect',
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
 			'continue' => 'When more results are available, use this to continue',
@@ -797,6 +812,13 @@ class ApiQueryInfo extends ApiQueryBase {
 			),
 			'displaytitle' => array(
 				'displaytitle' => 'string'
+			),
+			'redirecttarget' => array(
+				'redirecttarget' => 'string',
+				'redirecttargetfragment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
 			)
 		);
 
