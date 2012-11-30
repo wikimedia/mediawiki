@@ -70,7 +70,6 @@ class RebuildRecentchanges extends Maintenance {
 		$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
 			array(
 				'rc_timestamp'  => 'rev_timestamp',
-				'rc_cur_time'   => 'rev_timestamp',
 				'rc_user'       => 'rev_user',
 				'rc_user_text'  => 'rev_user_text',
 				'rc_namespace'  => 'page_namespace',
@@ -184,7 +183,6 @@ class RebuildRecentchanges extends Maintenance {
 		$dbw->insertSelect( 'recentchanges', array( 'user', "$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)" ),
 			array(
 				'rc_timestamp'  => 'log_timestamp',
-				'rc_cur_time'   => 'log_timestamp',
 				'rc_user'       => 'log_user',
 				'rc_user_text'  => 'user_name',
 				'rc_namespace'  => 'log_namespace',
