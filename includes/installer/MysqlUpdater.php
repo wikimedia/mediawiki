@@ -228,6 +228,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
+			array( 'dropField', 'recentchanges', 'rc_cur_time',         'patch-drop-rc_cur_time.sql' ),
 		);
 	}
 
