@@ -26,7 +26,6 @@
  * mAttribs:
  *  rc_id           id of the row in the recentchanges table
  *  rc_timestamp    time the entry was made
- *  rc_cur_time     timestamp on the cur row
  *  rc_namespace    namespace #
  *  rc_title        non-prefixed db key
  *  rc_type         is new entry, used to determine whether updating is necessary
@@ -143,7 +142,6 @@ class RecentChange {
 		return array(
 			'rc_id',
 			'rc_timestamp',
-			'rc_cur_time',
 			'rc_user',
 			'rc_user_text',
 			'rc_namespace',
@@ -240,7 +238,6 @@ class RecentChange {
 
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );
-		$this->mAttribs['rc_cur_time'] = $dbw->timestamp( $this->mAttribs['rc_cur_time'] );
 		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );
 
 		## If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
@@ -434,7 +431,6 @@ class RecentChange {
 		$rc->mPerformer = $user;
 		$rc->mAttribs = array(
 			'rc_timestamp'  => $timestamp,
-			'rc_cur_time'   => $timestamp,
 			'rc_namespace'  => $title->getNamespace(),
 			'rc_title'      => $title->getDBkey(),
 			'rc_type'       => RC_EDIT,
@@ -493,7 +489,6 @@ class RecentChange {
 		$rc->mPerformer = $user;
 		$rc->mAttribs = array(
 			'rc_timestamp'      => $timestamp,
-			'rc_cur_time'       => $timestamp,
 			'rc_namespace'      => $title->getNamespace(),
 			'rc_title'          => $title->getDBkey(),
 			'rc_type'           => RC_NEW,
@@ -602,7 +597,6 @@ class RecentChange {
 		$rc->mPerformer = $user;
 		$rc->mAttribs = array(
 			'rc_timestamp'  => $timestamp,
-			'rc_cur_time'   => $timestamp,
 			'rc_namespace'  => $target->getNamespace(),
 			'rc_title'      => $target->getDBkey(),
 			'rc_type'       => RC_LOG,
@@ -655,7 +649,6 @@ class RecentChange {
 	public function loadFromCurRow( $row ) {
 		$this->mAttribs = array(
 			'rc_timestamp' => wfTimestamp( TS_MW, $row->rev_timestamp ),
-			'rc_cur_time' => $row->rev_timestamp,
 			'rc_user' => $row->rev_user,
 			'rc_user_text' => $row->rev_user_text,
 			'rc_namespace' => $row->page_namespace,
