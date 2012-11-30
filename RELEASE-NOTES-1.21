@@ -113,6 +113,7 @@ production.
 * (bug 40111) Disable minor edit for page/section creation by API.
 * (bug 41042) Revert change to action=parse&page=... behavior when the page
   does not exist.
+* (bug 29115) Add redirect target value on page info.
 
 === Languages updated in 1.21 ===
 

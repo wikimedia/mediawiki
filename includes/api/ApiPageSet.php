@@ -624,10 +624,43 @@ class ApiPageSet extends ApiQueryBase {
 	 * @return LinkBatch
 	 */
 	private function getRedirectTargets() {
+		$redirectTitles = $this->resolveIdsToRedirectTargets( array_keys( $this->mPendingRedirectIDs ), 'profileDB' );
+
 		$lb = new LinkBatch();
+		foreach( $this->mPendingRedirectIDs as $rdfrom => $from ) {
+			if( !isset( $redirectTitles[$rdfrom] ) ) {
+				continue;
+			}
+			$to = $redirectTitles[$rdfrom];
+			if ( $to && !isset( $this->mAllPages[$to->getNamespace()][$to->getText()] ) ) {
+				$lb->addObj( $to );
+			}
+			$this->mRedirectTitles[$from->getPrefixedText()] = $to;
+		}
+		return $lb;
+	}
+
+	/**
+	 * Get the targets of redirects from the database
+	 *
+	 * Also creates entries in the redirect table for redirects that don't
+	 * have one.
+	 *
+	 * @param $redirectIDs array The array of pageids to resolve
+	 * @param $profileDB string if profileDBIn should called
+	 * @return array id => redirect target as title
+	 * @since 1.21
+	 */
+	public function resolveIdsToRedirectTargets( $redirectIDs, $profileDB = '' ) {
+		if( !$redirectIDs ) {
+			return array();
+		}
+
 		$db = $this->getDB();
 
-		$this->profileDBIn();
+		if( $profileDB ) {
+			$this->profileDBIn();
+		}
 		$res = $db->select(
 			'redirect',
 			array(
@@ -636,37 +669,38 @@ class ApiPageSet extends ApiQueryBase {
 				'rd_fragment',
 				'rd_interwiki',
 				'rd_title'
-			), array( 'rd_from' => array_keys( $this->mPendingRedirectIDs ) ),
+			), array( 'rd_from' => $redirectIDs ),
 			__METHOD__
 		);
-		$this->profileDBOut();
-		foreach ( $res as $row ) {
-			$rdfrom = intval( $row->rd_from );
-			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
-			$to = Title::makeTitle( $row->rd_namespace, $row->rd_title, $row->rd_fragment, $row->rd_interwiki );
-			unset( $this->mPendingRedirectIDs[$rdfrom] );
-			if ( !isset( $this->mAllPages[$row->rd_namespace][$row->rd_title] ) ) {
-				$lb->add( $row->rd_namespace, $row->rd_title );
-			}
-			$this->mRedirectTitles[$from] = $to;
+		if( $profileDB ) {
+			$this->profileDBOut();
 		}
 
-		if ( $this->mPendingRedirectIDs ) {
+		$redirectTitles = array();
+		foreach ( $res as $row ) {
+			$rdfrom = intval( $row->rd_from );
+			$to = Title::makeTitle( $row->rd_namespace, $row->rd_title, $row->rd_fragment, $row->rd_interwiki );
+			$redirectTitles[$rdfrom] = $to;
+		}
+
+		$unresolvedRedirectIDs = array_diff( $redirectIDs, array_keys( $redirectTitles ) );
+		if ( $unresolvedRedirectIDs ) {
 			// We found pages that aren't in the redirect table
 			// Add them
-			foreach ( $this->mPendingRedirectIDs as $id => $title ) {
-				$page = WikiPage::factory( $title );
+			foreach ( $unresolvedRedirectIDs as $id ) {
+				$page = WikiPage::newFromID( $id );
+				if ( !$page ) {
+					continue;
+				}
 				$rt = $page->insertRedirect();
 				if ( !$rt ) {
 					// What the hell. Let's just ignore this
 					continue;
 				}
-				$lb->addObj( $rt );
-				$this->mRedirectTitles[$title->getPrefixedText()] = $rt;
-				unset( $this->mPendingRedirectIDs[$id] );
+				$redirectTitles[$id] = $rt;
 			}
 		}
-		return $lb;
+		return $redirectTitles;
 	}
 
 	/**
