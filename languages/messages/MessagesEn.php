@@ -2889,7 +2889,7 @@ Future changes to this page and its associated talk page will be listed there.",
 'enotif_subject_moved'         => '{{SITENAME}} page $1 has been moved by {{gender:$2|$2}}',
 'enotif_subject_restored'      => '{{SITENAME}} page $1 has been restored by {{gender:$2|$2}}',
 'enotif_subject_changed'       => '{{SITENAME}} page $1 has been changed by {{gender:$2|$2}}',
-'enotif_body_intro_deleted'    => 'The {{SITENAME}} page $1 has been deleted on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
+'enotif_body_intro_deleted'    => 'The {{SITENAME}} page $1 has been deleted on $PAGEEDITDATE by {{gender:$2|$2}}, see $3.',
 'enotif_body_intro_created'    => 'The {{SITENAME}} page $1 has been created on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
 'enotif_body_intro_moved'      => 'The {{SITENAME}} page $1 has been moved on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
 'enotif_body_intro_restored'   => 'The {{SITENAME}} page $1 has been restored on $PAGEEDITDATE by {{gender:$2|$2}}, see $3 for the current revision.',
@@ -2907,7 +2907,7 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further activity unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
 
 			 Your friendly {{SITENAME}} notification system
 
