@@ -730,7 +730,7 @@ abstract class ContentHandler {
 				|| $ot->getFragment() != $rt->getFragment() )
 			{
 				$truncatedtext = $newContent->getTextForSummary(
-					250
+					255
 						- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
 						- strlen( $rt->getFullText() ) );
 

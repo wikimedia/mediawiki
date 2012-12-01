@@ -62,7 +62,7 @@ interface Content {
 	 * @param $maxLength int Maximum length of the summary text
 	 * @return string The summary text
 	 */
-	public function getTextForSummary( $maxLength = 250 );
+	public function getTextForSummary( $maxLength = 255 );
 
 	/**
 	 * Returns native representation of the data. Interpretation depends on
