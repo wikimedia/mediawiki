@@ -4056,9 +4056,27 @@ class User {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 * @param $wikiId string The wiki ID to use for getting remote wiki configuration
 	 * @return Array of internal group names
 	 */
-	public static function getAllGroups() {
+	public static function getAllGroups( $wikiId = null ) {
+		if ( $wikiId ) {
+			global $wgConf, $wgScriptPath;
+			$scriptPath = $wgConf->get( 'wgScriptPath', $wikiId ) or $wgScriptPath; // Hope it's either defined in wgConf or the same as the current wiki.
+			$req = MWHttpRequest::factory( $wgConf->get( 'wgCanonicalServer', $wikiId ) . $scriptPath . '/api.php?format=json&action=query&meta=siteinfo&siprop=usergroups' );
+			$status = $req->execute();
+			if ( $status->isOK() ) {
+				$response = json_decode( $req->getContent() );
+				$groups = array();
+				foreach ( $response->query->usergroups as $group ) {
+					if ( !isset( $group->implicit ) || !$group->implicit ) {
+						$groups[] = $group->name;
+					}
+				}
+				return array_diff( $groups, array( '*', 'user', 'autoconfirmed' ) ); // Not all wikis are necessarily able to tell which are implicit yet, so just assume the default
+			}
+		}
+
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return array_diff(
 			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
