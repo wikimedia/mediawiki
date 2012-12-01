@@ -160,6 +160,8 @@ production.
   (instead of returning incorrect results) even when the page ID is known.
 * (T74070) Duplicate search for archived files on file upload now omits the extension.
   This requires the fa_sha1 field being populated.
+* As part of T14518, cross-wiki user rights reflecting target wiki groups,
+  the meta=siteinfo API now returns whether or not a group is implicit.
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
