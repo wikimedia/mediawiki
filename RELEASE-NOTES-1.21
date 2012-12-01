@@ -204,6 +204,8 @@ production.
   script in includes/DefaultSettings.php
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
 * (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
