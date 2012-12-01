@@ -31,6 +31,7 @@ class UserrightsPage extends SpecialPage {
 	# either a GET parameter or a subpage-style parameter, so have a member
 	# variable for it.
 	protected $mTarget;
+	protected $mTargetDatabase;
 	protected $isself = false;
 
 	public function __construct() {
@@ -166,7 +167,7 @@ class UserrightsPage extends SpecialPage {
 			$user = $status->value;
 		}
 
-		$allgroups = $this->getAllGroups();
+		$allgroups = $this->getAllGroups( $this->mTargetDatabase );
 		$addgroup = array();
 		$removegroup = array();
 
@@ -306,6 +307,7 @@ class UserrightsPage extends SpecialPage {
 					return Status::newFatal( 'userrights-nodatabase', $database );
 				}
 			}
+			$this->mTargetDatabase = $database;
 		}
 
 		if( $name === '' ) {
@@ -518,10 +520,23 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Returns an array of all groups that may be edited
+	 * @param $targetDB string The target database.
 	 * @return array Array of groups that may be edited.
 	 */
-	protected static function getAllGroups() {
-		return User::getAllGroups();
+	protected static function getAllGroups( $targetDB ) {
+		global $wgConf;
+		if ( $targetDB == '' ) {
+			return User::getAllGroups();
+		} else {
+			// Just like User::getAllGroups, but with $wgConf->get
+			return array_diff(
+				array_merge(
+					array_keys( $wgConf->get( 'wgGroupPermissions', $targetDB ) ),
+					array_keys( $wgConf->get( 'wgRevokePermissions', $targetDB ) )
+				),
+				$wgConf->get( 'wgImplicitGroups', $targetDB )
+			);
+		}
 	}
 
 	/**
@@ -533,7 +548,8 @@ class UserrightsPage extends SpecialPage {
 	 * @return string XHTML table element with checkboxes
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
-		$allgroups = $this->getAllGroups();
+		$allgroups = $this->getAllGroups( $this->mTargetDatabase );
+
 		$ret = '';
 
 		# Put all column info into an associative array so that extensions can
@@ -626,7 +642,13 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) , 'add-self' => array( addablegroups to self), 'remove-self' => array( removable groups from self) )
 	 */
 	function changeableGroups() {
-		return $this->getUser()->changeableGroups();
+		global $wgConf;
+		if ( $this->mTargetDatabase != '' && $this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+			$a = array_keys( $wgConf->get( 'wgGroupPermissions', $this->mTargetDatabase ) );
+			return array( 'add' => $a, 'remove' => $a ); // TODO: This is probably wrong.
+		} else {
+			return $this->getUser()->changeableGroups();
+		}
 	}
 
 	/**
