@@ -31,6 +31,7 @@ class UserrightsPage extends SpecialPage {
 	# either a GET parameter or a subpage-style parameter, so have a member
 	# variable for it.
 	protected $mTarget;
+	protected $mTargetDatabase;
 	protected $isself = false;
 
 	public function __construct() {
@@ -347,6 +348,7 @@ class UserrightsPage extends SpecialPage {
 					return Status::newFatal( 'userrights-nodatabase', $database );
 				}
 			}
+			$this->mTargetDatabase = $database;
 		}
 
 		if ( $name === '' ) {
@@ -597,8 +599,8 @@ class UserrightsPage extends SpecialPage {
 	 * Returns an array of all groups that may be edited
 	 * @return array Array of groups that may be edited.
 	 */
-	protected static function getAllGroups() {
-		return User::getAllGroups();
+	protected function getAllGroups() {
+		return User::getAllGroups( $this->mTargetDatabase );
 	}
 
 	/**
@@ -723,7 +725,12 @@ class UserrightsPage extends SpecialPage {
 	 *  )
 	 */
 	function changeableGroups() {
-		return $this->getUser()->changeableGroups();
+		if ( $this->mTargetDatabase && $this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+			$allGroups = $this->getAllGroups();
+			return array( 'add' => $allGroups, 'remove' => $allGroups );
+		} else {
+			return $this->getUser()->changeableGroups();
+		}
 	}
 
 	/**
