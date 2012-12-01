@@ -98,7 +98,7 @@ class MessageContent extends AbstractContent {
 	/**
 	 * @see Content::getTextForSummary
 	 */
-	public function getTextForSummary( $maxlength = 250 ) {
+	public function getTextForSummary( $maxlength = 255 ) {
 		return substr( $this->mMessage->plain(), 0, $maxlength );
 	}
 

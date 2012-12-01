@@ -252,7 +252,7 @@ class WikitextContent extends TextContent {
 		return false;
 	}
 
-	public function getTextForSummary( $maxlength = 250 ) {
+	public function getTextForSummary( $maxlength = 255 ) {
 		$truncatedtext = parent::getTextForSummary( $maxlength );
 
 		# clean up unfinished links
