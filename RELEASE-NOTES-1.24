@@ -127,6 +127,8 @@ production.
 * (bug 65757) MSSQL: Update script drops unnamed constraints to be prepared
   for future updates. Because it's doing so heuristically, it may fail or drop
   wrong constraints.
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
@@ -147,6 +149,8 @@ production.
   The old format is still used if prop isn't provided, but this is deprecated.
 * meta=userinfo can now return the count of unread pages on the watchlist.
 * list=watchlist can now filter by unread status.
+* As part of bug 12518, cross-wiki user rights reflecting target wiki groups,
+  the API now returns whether a group is implicit or not in meta=siteinfo
 
 === Languages updated in 1.24 ===
 
