@@ -505,6 +505,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$arr = array(
 				'name' => $group,
 				'rights' => array_keys( $permissions, true ),
+				'implicit' => in_array( $group, $config->get( 'ImplicitGroups' ) ),
 			);
 
 			if ( $numberInGroup ) {
