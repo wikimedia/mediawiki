@@ -50,7 +50,7 @@ class TextContent extends AbstractContent {
 		return $this; # NOTE: this is ok since TextContent are immutable.
 	}
 
-	public function getTextForSummary( $maxlength = 250 ) {
+	public function getTextForSummary( $maxlength = 255 ) {
 		global $wgContLang;
 
 		$text = $this->getNativeData();
