@@ -4530,15 +4530,48 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Return the set of defined explicit groups.
+	 *
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 *
+	 * @param $wikiId string|null The wiki ID to use for getting remote wiki configuration
 	 * @return array Array of internal group names
 	 */
-	public static function getAllGroups() {
-		global $wgGroupPermissions, $wgRevokePermissions;
+	public static function getAllGroups( $wikiId = null ) {
+		if ( $wikiId ) {
+			return self::fetchAllRemoteGroups( $wikiId );
+		} else {
+			global $wgGroupPermissions, $wgRevokePermissions;
+			return array_diff(
+				array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
+				self::getImplicitGroups()
+			);
+		}
+	}
+
+	/**
+	 * Fetch the remote groups of a given wiki.
+	 *
+	 * This method fetches the data directly. To use caching and optimise for
+	 * the local wiki, use getAllGroups() instead.
+	 *
+	 * @param $wikiId The ID of the wiki to get groups from
+	 * @return array|bool Array of group names or boolean false if fetching
+	 *  was impossible or failed.
+	 * @throws MWException
+	 */
+	public static function fetchAllRemoteGroups( $wikiId ) {
+		global $wgConf;
+		$settings = $wgConf->getConfig(
+			$wikiId,
+			array( 'wgGroupPermissions', 'wgImplicitGroups', 'wgRevokePermissions' )
+		);
 		return array_diff(
-			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
-			self::getImplicitGroups()
+			array_merge(
+				array_keys( $settings["wgGroupPermissions"] ),
+				array_keys( $settings["wgRevokePermissions"] )
+			),
+			$settings["wgImplicitGroups"]
 		);
 	}
 
