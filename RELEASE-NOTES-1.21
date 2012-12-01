@@ -187,6 +187,8 @@ production.
   "password mismatch" error.
 * (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
   extensions) performed using Git 1.7.8+ should now appear.
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
