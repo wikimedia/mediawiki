@@ -152,6 +152,8 @@ production.
 * wfMerge() now works if $wgDiff3 contains spaces
 * (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
   ca-edit click instead opening URL directly.
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.

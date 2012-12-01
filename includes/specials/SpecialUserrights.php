@@ -31,6 +31,7 @@ class UserrightsPage extends SpecialPage {
 	# either a GET parameter or a subpage-style parameter, so have a member
 	# variable for it.
 	protected $mTarget;
+	protected $mTargetDatabase;
 	protected $isself = false;
 
 	public function __construct() {
@@ -306,6 +307,7 @@ class UserrightsPage extends SpecialPage {
 					return Status::newFatal( 'userrights-nodatabase', $database );
 				}
 			}
+			$this->mTargetDatabase = $database;
 		}
 
 		if( $name === '' ) {
@@ -520,8 +522,20 @@ class UserrightsPage extends SpecialPage {
 	 * Returns an array of all groups that may be edited
 	 * @return array Array of groups that may be edited.
 	 */
-	protected static function getAllGroups() {
-		return User::getAllGroups();
+	protected function getAllGroups() {
+		global $wgConf;
+		if ( $this->mTargetDatabase ) {
+			// Just like User::getAllGroups, but with $wgConf->get
+			return array_diff(
+				array_merge(
+					array_keys( $wgConf->get( 'wgGroupPermissions', $this->mTargetDatabase ) ),
+					array_keys( $wgConf->get( 'wgRevokePermissions', $this->mTargetDatabase ) )
+				),
+				$wgConf->get( 'wgImplicitGroups', $this->mTargetDatabase )
+			);
+		} else {
+			return User::getAllGroups();
+		}
 	}
 
 	/**
@@ -626,7 +640,12 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) , 'add-self' => array( addablegroups to self), 'remove-self' => array( removable groups from self) )
 	 */
 	function changeableGroups() {
-		return $this->getUser()->changeableGroups();
+		if ( $this->mTargetDatabase && $this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+			$allGroups = $this->getAllGroups();
+			return array( 'add' => $allGroups, 'remove' => $allGroups );
+		} else {
+			return $this->getUser()->changeableGroups();
+		}
 	}
 
 	/**
