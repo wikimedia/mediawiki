@@ -253,6 +253,8 @@ production.
   of fetching tokens are deprecated. The value needed for meta=tokens's 'type'
   parameter for each module is documented in the action=help output and is
   returned from action=paraminfo.
+* As part of bug 12518, cross-wiki user rights reflecting target wiki groups,
+  the meta=siteinfo API now returns whether or not a group is implicit.
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other
