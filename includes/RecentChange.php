@@ -235,6 +235,9 @@ class RecentChange {
 			unset( $this->mAttribs['rc_ip'] );
 		}
 
+		# Trim spaces on user supplied text
+		$this->mAttribs['rc_comment'] = trim( $this->mAttribs['rc_comment'] );
+
 		# Make sure summary is truncated (whole multibyte characters)
 		$this->mAttribs['rc_comment'] = $wgContLang->truncate( $this->mAttribs['rc_comment'], 255 );
 
