@@ -465,7 +465,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendUserGroups( $property, $numberInGroup ) {
 		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups;
-		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf, $wgImplicitGroups;
 
 		$data = array();
 		$result = $this->getResult();
@@ -473,6 +473,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$arr = array(
 				'name' => $group,
 				'rights' => array_keys( $permissions, true ),
+				'implicit' => in_array( $group, $wgImplicitGroups ),
 			);
 
 			if ( $numberInGroup ) {

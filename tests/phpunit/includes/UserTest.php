@@ -258,4 +258,41 @@ class UserTest extends MediaWikiTestCase {
 
 		$wgPasswordExpireGrace = $wgTemp;
 	}
+
+	/**
+	 * Test getting remote groups.
+	 * @covers User::getRemoteGroupDataFromResponse
+	 */
+	public function testGetRemoteGroupDataFromResponse() {
+		$this->assertEquals(
+			array( 'sysop' ),
+			User::getRemoteGroupDataFromResponse( array(
+				'query' => array( 'usergroups' => array(
+					array( 'name' => 'sysop', 'implicit' => false ),
+					array( 'name' => 'autoconfirmed', 'implicit' => true ),
+				) )
+			) )
+		);
+
+		$this->assertEquals(
+			array( 'sysop' ),
+			User::getRemoteGroupDataFromResponse( array(
+				'query' => array( 'usergroups' => array(
+					array( 'name' => 'sysop' ),
+					array( 'name' => 'autoconfirmed' ),
+				) )
+			) )
+		);
+
+		$this->assertEquals(
+			array( 'sysop', 'bureaucrat' ),
+			User::getRemoteGroupDataFromResponse( array(
+				'query' => array( 'usergroups' => array(
+					array( 'name' => 'sysop' ),
+					array( 'name' => 'autoconfirmed' ),
+					array( 'name' => 'bureaucrat' ),
+				) )
+			) )
+		);
+	}
 }
