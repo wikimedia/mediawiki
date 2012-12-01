@@ -234,6 +234,8 @@ production.
 * (bug 52006) Corrected documentation of $wgTranscludeCacheExpiry.
 * (bug 49694) $wgSpamRegex is now also applied on the new section headline text
   adding a new topic on a page
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
