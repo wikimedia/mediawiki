@@ -161,7 +161,42 @@
 				}
 			},
 			// Safari 5
-			// Opera 10
+			// Opera 10+
+			'Opera/9.80 (Windows NT 5.1)': {
+				title: 'Opera 10+ (exact version unspecified)',
+				platform: 'Win32',
+				profile: {
+					name: 'opera',
+					layout: 'presto',
+					layoutVersion: 'unknown',
+					platform: 'win',
+					version: '10',
+					versionBase: '10',
+					versionNumber: 10
+				}
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
+			// Opera 12
+			'Opera/9.80 (Windows NT 5.1) Presto/2.12.388 Version/12.11': {
+				title: 'Opera 12',
+				platform: 'Win32',
+				profile: {
+					name: 'opera',
+					layout: 'presto',
+					layoutVersion: 'unknown',
+					platform: 'win',
+					version: '12.11',
+					versionBase: '12',
+					versionNumber: 12.11
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Chrome 5
 			// Chrome 6
 			// Chrome 7
