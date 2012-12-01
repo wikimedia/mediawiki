@@ -520,8 +520,20 @@ class UserrightsPage extends SpecialPage {
 	 * Returns an array of all groups that may be edited
 	 * @return array Array of groups that may be edited.
 	 */
-	protected static function getAllGroups() {
-		return User::getAllGroups();
+	protected static function getAllGroups( $targetDB = '' ) {
+		global $wgConf;
+		if ( $targetDB == '' ) {
+			return User::getAllGroups();
+		} else {
+			// Just like User::getAllGroups, but with $wgConf->get
+			return array_diff(
+				array_merge(
+					array_keys( $wgConf->get( 'wgGroupPermissions', $targetDB ) ),
+					array_keys( $wgConf->get( 'wgRevokePermissions', $targetDB ) )
+				),
+				$wgConf->get( 'wgImplicitGroups', $targetDB )
+			);
+		}
 	}
 
 	/**
@@ -533,7 +545,12 @@ class UserrightsPage extends SpecialPage {
 	 * @return string XHTML table element with checkboxes
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
-		$allgroups = $this->getAllGroups();
+		if ( isset( $this->mTargetDatabase ) ) {
+			$allgroups = $this->getAllGroups( $this->mTargetDatabase );
+		} else {
+			$allgroups = $this->getAllGroups();
+		}
+
 		$ret = '';
 
 		# Put all column info into an associative array so that extensions can
@@ -626,7 +643,14 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) , 'add-self' => array( addablegroups to self), 'remove-self' => array( removable groups from self) )
 	 */
 	function changeableGroups() {
-		return $this->getUser()->changeableGroups();
+		global $wgConf;
+		$this->fetchUser( $this->mTarget ); // So $this->mTargetDatabase gets set. TODO: This is probably wrong.
+		if ( isset( $this->mTargetDatabase ) && $this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+			$a = array_keys( $wgConf->get( 'wgGroupPermissions', $this->mTargetDatabase ) );
+			return array( 'add' => $a, 'remove' => $a ); // TODO: This is probably wrong.
+		} else {
+			return $this->getUser()->changeableGroups();
+		}
 	}
 
 	/**
