@@ -1213,13 +1213,13 @@ class LocalFile extends File {
 			$status = $wikiPage->doEditContent( $content, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
 
 			if ( isset( $status->value['revision'] ) ) { // XXX; doEdit() uses a transaction
-				$dbw->begin();
+				$dbw->begin( __METHOD__ );
 				$dbw->update( 'logging',
 					array( 'log_page' => $status->value['revision']->getPage() ),
 					array( 'log_id' => $logId ),
 					__METHOD__
 				);
-				$dbw->commit(); // commit before anything bad can happen
+				$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 			}
 		}
 		wfProfileOut( __METHOD__ . '-edit' );

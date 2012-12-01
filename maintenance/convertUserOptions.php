@@ -56,7 +56,7 @@ class ConvertUserOptions extends Maintenance {
 				array( 'LIMIT' => 50, 'FOR UPDATE' )
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			wfWaitForSlaves();
 
