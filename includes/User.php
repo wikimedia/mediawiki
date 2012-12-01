@@ -4124,14 +4124,79 @@ class User {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @return Array of internal group names
+	 *
+	 * @param $wikiId string|null The wiki ID to use for getting remote wiki configuration
+	 * @return array Internal group names
 	 */
-	public static function getAllGroups() {
+	public static function getAllGroups( $wikiId = null ) {
+		if ( $wikiId ) {
+			return self::getAllRemoteGroups( $wikiId );
+		}
+
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return array_diff(
 			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
 			self::getImplicitGroups()
 		);
+	}
+
+	/**
+	 * Request the remote groups of a given wiki.
+	 * $wgConf must already know the $wgCanonicalServer of that wiki, and preferably the $wgScriptPath too.
+	 *
+	 * @param $wikiId string The ID of the wiki to get groups from
+	 * @return array Group names
+	 */
+	protected static function getAllRemoteGroups( $wikiId ) {
+		global $wgConf, $wgScriptPath;
+
+		// Hopefully it's either defined in wgConf or the same as the current wiki.
+		$scriptPath = $wgConf->get( 'wgScriptPath', $wikiId );
+		if ( !$scriptPath ) {
+			$scriptPath = $wgScriptPath;
+		}
+		$canonicalServer = $wgConf->get( 'wgCanonicalServer', $wikiId );
+		$url = $canonicalServer . $scriptPath . '/api.php?format=json&action=query&meta=siteinfo&siprop=usergroups';
+
+		$req = MWHttpRequest::factory( $url, array( 'connectTimeout' => 3, 'timeout' => 10 ) );
+		$status = $req->execute();
+
+		if ( $status->isOK() ) {
+			$response = FormatJson::decode( $req->getContent(), true );
+			return self::getRemoteGroupDataFromResponse( $response );
+		} else {
+			wfLogWarning( __METHOD__ . ": Failed to make HTTP request to $url for foreign user groups. Returning local groups instead." );
+			return self::getAllGroups();
+		}
+	}
+
+	/**
+	 * Takes an already-decoded response to a remote groups request and goes through it to try to get only explicit groups.
+	 *
+	 * @param array $response The decoded response from the remote wiki.
+	 * @return array Group names.
+	 */
+	public static function getRemoteGroupDataFromResponse( $response ) {
+		$groups = array();
+		// Wikis running older versions might not support sharing whether a group is implicit or not.
+		$canTellIfImplicit = false;
+
+		foreach ( $response['query']['usergroups'] as $group ) {
+			if ( isset( $group['implicit'] ) ) {
+				$canTellIfImplicit = true;
+			}
+
+			if ( !isset( $group['implicit'] ) || !$group['implicit'] ) {
+				$groups[] = $group['name'];
+			}
+		}
+
+		if ( $canTellIfImplicit ) {
+			return $groups;
+		} else {
+			// Just assume the default $wgImplicitGroups
+			return array_values( array_diff( $groups, array( '*', 'user', 'autoconfirmed' ) ) );
+		}
 	}
 
 	/**
