@@ -323,4 +323,41 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
 		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
 	}
+
+	/**
+	 * Test getting remote groups.
+	 * @covers User::getRemoteGroupDataFromResponse
+	 */
+	public function testGetRemoteGroupDataFromResponse() {
+		$class = new ReflectionClass( 'User' );
+		$method = $class->getMethod( 'getRemoteGroupDataFromResponse' );
+		$method->setAccessible( true );
+
+		$this->assertEquals(
+			array( 'sysop' ),
+			$method->invokeArgs( null, array( array(
+				// This is how MediaWiki 1.24 and later respond
+				array( 'name' => 'sysop', 'implicit' => false ),
+				array( 'name' => 'autoconfirmed', 'implicit' => true ),
+			) ) )
+		);
+
+		$this->assertEquals(
+			array( 'sysop' ),
+			$method->invokeArgs( null, array( array(
+				// This is how MediaWiki 1.23 and before respond
+				array( 'name' => 'sysop' ),
+				array( 'name' => 'autoconfirmed' ),
+			) ) )
+		);
+
+		$this->assertEquals(
+			array( 'sysop', 'bureaucrat' ),
+			$method->invokeArgs( null, array( array(
+				array( 'name' => 'sysop' ),
+				array( 'name' => 'autoconfirmed' ),
+				array( 'name' => 'bureaucrat' ),
+			) ) )
+		);
+	}
 }
