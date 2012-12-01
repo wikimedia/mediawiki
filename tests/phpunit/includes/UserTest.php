@@ -234,4 +234,28 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'someoption' ) );
 	}
+
+	/**
+	 * Test getting remote groups.
+	 * @covers User::getRemoteGroupDataFromResponse
+	 */
+	public function testRemoteGroups() {
+		$this->assertEquals( User::getRemoteGroupDataFromResponse( array(
+			'query' => array( 'usergroups' => array(
+				array( 'name' => 'sysop', 'implicit' => false ),
+				array( 'name' => 'autoconfirmed', 'implicit' => true ),
+			) )
+		) ), array( 'sysop' ) );
+
+		$this->assertEquals( User::getRemoteGroupDataFromResponse( array(
+			'query' => array( 'usergroups' => array(
+				array( 'name' => 'sysop' ),
+				array( 'name' => 'autoconfirmed' ),
+			) )
+		) ), array( 'sysop' ) );
+
+		global $wgConf;
+		$wgConf->extractAllGlobals( wfWikiId() );
+		$this->assertEquals( User::getAllRemoteGroups( wfWikiId() ), array_values( User::getAllGroups() ) );
+	}
 }
