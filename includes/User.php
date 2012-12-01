@@ -3863,14 +3863,26 @@ class User {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 * @param $wikiId string The wiki ID to use for getting remote wiki configuration
 	 * @return Array of internal group names
 	 */
-	public static function getAllGroups() {
-		global $wgGroupPermissions, $wgRevokePermissions;
-		return array_diff(
-			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
-			self::getImplicitGroups()
-		);
+	public static function getAllGroups( $wikiId = null ) {
+		if ( $wikiId ) {
+			global $wgConf;
+			return array_diff(
+				array_merge(
+					array_keys( $wgConf->get( 'wgGroupPermissions', $wikiId ) ),
+					array_keys( $wgConf->get( 'wgRevokePermissions', $wikiId ) )
+				),
+				$wgConf->get( 'wgImplicitGroups', $wikiId )
+			);
+		} else {
+			global $wgGroupPermissions, $wgRevokePermissions;
+			return array_diff(
+				array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
+				self::getImplicitGroups()
+			);
+		}
 	}
 
 	/**
