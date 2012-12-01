@@ -4124,9 +4124,47 @@ class User {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 * @param $wikiId string The wiki ID to use for getting remote wiki configuration
 	 * @return Array of internal group names
 	 */
-	public static function getAllGroups() {
+	public static function getAllGroups( $wikiId = null ) {
+		if ( $wikiId ) {
+			global $wgConf, $wgScriptPath;
+
+			// Hope it's either defined in wgConf or the same as the current wiki.
+			$scriptPath = $wgConf->get( 'wgScriptPath', $wikiId ) or $wgScriptPath;
+			$canonicalServer = $wgConf->get( 'wgCanonicalServer', $wikiId );
+			$url = $canonicalServer . $scriptPath . '/api.php?format=json&action=query&meta=siteinfo&siprop=usergroups';
+
+			$req = MWHttpRequest::factory( $url );
+			$status = $req->execute();
+
+			if ( $status->isOK() ) {
+				$response = json_decode( $req->getContent() );
+				$groups = array();
+				$canTellIfImplicit = false;
+
+				foreach ( $response->query->usergroups as $group ) {
+					if ( isset( $group->implicit ) ) {
+						$canTellIfImplicit = true;
+					}
+
+					if ( !isset( $group->implicit ) || !$group->implicit ) {
+						$groups[] = $group->name;
+					}
+				}
+
+				if ( $canTellIfImplicit ) {
+					return $groups;
+				} else {
+					// Just assume the default
+					return array_diff( $groups, array( '*', 'user', 'autoconfirmed' ) );
+				}
+			} else {
+				wfLogWarning( __METHOD__ . ": Failed to make HTTP request to $url for foreign user groups" );
+			}
+		}
+
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return array_diff(
 			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
