@@ -904,7 +904,14 @@ abstract class DatabaseBase implements DatabaseType {
 		} else {
 			$userName = '';
 		}
-		$commentedSql = preg_replace( '/\s/', " /* $fname $userName */ ", $sql, 1 );
+
+		// Add trace comment to the begin of the sql string, right after the operator.
+		// For one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
+		if ( strpos( $sql, ' ' ) === false ) {
+			$commentedSql = $sql . " /* $fname $userName */ ";
+		} else {
+			$commentedSql = preg_replace( '/\s/', " /* $fname $userName */ ", $sql, 1 );
+		}
 
 		# If DBO_TRX is set, start a transaction
 		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
