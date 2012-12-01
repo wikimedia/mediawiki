@@ -148,7 +148,12 @@
 				}
 				// Expose Opera 10's lies about being Opera 9.8
 				if ( name === 'opera' && version >= 9.8) {
-					version = ua.match( /version\/([0-9\.]*)/i )[1] || 10;
+					match = ua.match( /version\/([0-9\.]*)/i );
+					if ( match && match[1] ) {
+						version = match[1];
+					} else {
+						version = 10;
+					}
 				}
 				versionNumber = parseFloat( version, 10 ) || 0.0;
 
