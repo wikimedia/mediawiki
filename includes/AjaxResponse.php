@@ -204,7 +204,7 @@ class AjaxResponse {
 
 	/**
 	 * checkLastModified tells the client to use the client-cached response if
-	 * possible. If sucessful, the AjaxResponse is disabled so that
+	 * possible. If successful, the AjaxResponse is disabled so that
 	 * any future call to AjaxResponse::printText() have no effect.
 	 *
 	 * @param $timestamp string

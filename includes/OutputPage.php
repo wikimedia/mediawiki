@@ -611,7 +611,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * checkLastModified tells the client to use the client-cached page if
-	 * possible. If sucessful, the OutputPage is disabled so that
+	 * possible. If successful, the OutputPage is disabled so that
 	 * any future call to OutputPage->output() have no effect.
 	 *
 	 * Side effect: sets mLastModified for Last-Modified header
