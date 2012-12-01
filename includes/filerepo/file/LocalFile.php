@@ -996,6 +996,9 @@ class LocalFile extends File {
 			$options['headers'] = array();
 		}
 
+		// Trim spaces on user supplied text
+		$comment = trim( $comment );
+
 		// truncate nicely or the DB will do it for us
 		// non-nicely (dangling multi-byte chars, non-truncated version in cache).
 		$comment = $wgContLang->truncate( $comment, 255 );
