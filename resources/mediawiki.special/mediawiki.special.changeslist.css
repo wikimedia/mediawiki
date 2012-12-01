@@ -42,6 +42,7 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	zoom: 1;
 	width: 15px;
 	height: 15px;
+	cursor: pointer;
 }
 
 .mw-enhancedchanges-arrow.mw-enhancedchanges-arrow-space {
