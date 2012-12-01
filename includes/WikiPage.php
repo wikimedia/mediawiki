@@ -2772,6 +2772,9 @@ class WikiPage extends Page implements IDBAccessObject {
 			$summary = wfMsgReplaceArgs( $summary, $args );
 		}
 
+		# Trim spaces on user supplied text
+		$summary = trim( $summary );
+
 		# Truncate for whole multibyte characters.
 		$summary = $wgContLang->truncate( $summary, 255 );
 
