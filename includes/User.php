@@ -4334,16 +4334,127 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Return the set of defined explicit groups.
+	 *
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 *
+	 * @param $wikiId string|null The wiki ID to use for getting remote wiki configuration
 	 * @return array Array of internal group names
 	 */
-	public static function getAllGroups() {
+	public static function getAllGroups( $wikiId = null ) {
+		if ( $wikiId ) {
+			global $wgMemc;
+			$key = wfForeignMemcKey( $wikiId, false, 'user', 'userrights-interwiki', 'usergroups' );
+			$cachedValue = $wgMemc->get( $key );
+			if ( $cachedValue ) {
+				return $cachedValue;
+			}
+			$val = self::fetchAllRemoteGroups( $wikiId );
+			if ( $val ) {
+				// Cache 1 hour
+				$wgMemc->set( $key, $val, 3600 );
+				return $val;
+			}
+			// Else: Fetching failed, fallback to local groups instead
+		}
+
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return array_diff(
 			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
 			self::getImplicitGroups()
 		);
+	}
+
+	/**
+	 * Fetch the remote groups of a given wiki.
+	 *
+	 * $wgConf must already know the $wgCanonicalServer of that wiki, and
+	 * preferably the $wgScriptPath too.
+	 *
+	 * This method fetches the data directly. To use caching and optimise for
+	 * the local wiki, use getAllGroups() instead.
+	 *
+	 * @param $wikiId The ID of the wiki to get groups from
+	 * @return array|bool Array of group names or boolean false if fetching
+	 *  was impossible or failed.
+	 * @throws MWException
+	 */
+	public static function fetchAllRemoteGroups( $wikiId ) {
+		global $wgConf, $wgScriptPath;
+
+		// Hopefully it's either defined in wgConf or the same as the current wiki.
+		$scriptPath = $wgConf->get( 'wgScriptPath', $wikiId );
+		if ( !$scriptPath ) {
+			$scriptPath = $wgScriptPath;
+		}
+		$canonicalServer = $wgConf->get( 'wgCanonicalServer', $wikiId );
+		if ( !$canonicalServer ) {
+			wfLogWarning(
+				__METHOD__ . ": wgCanonicalServer is missing in wgConf for wiki '" . $wikiId . "'." .
+				"Returning local groups instead."
+			);
+			return false;
+		}
+		$url = $canonicalServer . $scriptPath . '/api.php?format=json&action=query&meta=siteinfo&siprop=usergroups';
+
+
+		$req = MWHttpRequest::factory( $url );
+		$status = $req->execute();
+
+		if ( $status->isOK() ) {
+			$response = FormatJson::decode( $req->getContent(), true );
+			if ( isset( $response['query']['usergroups'] ) ) {
+				return self::getRemoteGroupDataFromResponse( $response['query']['usergroups'] );
+			} else {
+				if ( isset( $response['error'] ) && $response['error']['code'] !== 'readapidenied' ) {
+					wfLogWarning(
+						__METHOD__ . ": Failed to make HTTP request to " . $url . " for foreign user groups. " .
+						"Code: " . $response['error']['code'] . ", " .
+						"info: " . $response['error']['info'] . ". " .
+						"Returning local groups instead."
+					);
+				}
+				return false;
+			}
+		} else {
+			wfLogWarning(
+				__METHOD__ . ": Failed to make HTTP request to " . $url . " for foreign user groups. " .
+				"Returning local groups instead."
+			);
+			return false;
+		}
+	}
+
+	/**
+	 * Takes an already-decoded response to a remote groups request and goes through it to try to get only explicit groups.
+	 *
+	 * @param $userGroups The user groups array from a meta=siteinfo&siprop=usergroups API query.
+	 * @return array Array of group names
+	 */
+	private static function getRemoteGroupDataFromResponse( $userGroups ) {
+		$groups = array();
+		// Wikis running older versions might not support sharing whether a group is implicit or not.
+		$canTellIfImplicit = false;
+
+		foreach ( $userGroups as $group ) {
+			if ( isset( $group['implicit'] ) ) {
+				$canTellIfImplicit = true;
+
+				if ( !$group['implicit'] ) {
+					$groups[] = $group['name'];
+				}
+			} else {
+				// Back-compat with MediaWiki < 1.24
+				$groups[] = $group['name'];
+			}
+		}
+
+		if ( $canTellIfImplicit ) {
+			return $groups;
+		} else {
+			// Back-compat with MediaWiki < 1.24, use the default $wgImplicitGroups instead.
+			return array_values( array_diff( $groups, array( '*', 'user', 'autoconfirmed' ) ) );
+		}
 	}
 
 	/**
