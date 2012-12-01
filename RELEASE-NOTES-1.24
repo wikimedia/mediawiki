@@ -38,10 +38,14 @@ production.
 * (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
   follow redirects to their target pages.
 * Parser now dies early if called recursively, instead of producing subtle bugs.
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
+* As part of bug 12518, cross-wiki user rights reflecting target wiki groups,
+  the API now returns whether a group is implicit or not in meta=siteinfo
 
 === Languages updated in 1.24 ===
 
