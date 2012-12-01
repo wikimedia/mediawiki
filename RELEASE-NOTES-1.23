@@ -106,6 +106,8 @@ production.
   compiled without support for MySQL yet with support for another DBMS.
 * (bug 56199) Raw option of parser functions must now match complete word,
   to take effect.
+* (bug 12518) Cross-wiki user rights interface reflects target wiki groups
+  instead of local wiki groups.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
@@ -124,6 +126,8 @@ production.
 * All API modules now support an assert parameter. See the new features section
   for more details.
 * Added prop=contributors to fetch the list of contributors to the page.
+* As part of bug 12518, cross-wiki user rights reflecting target wiki groups,
+  the API now returns whether a group is implicit or not in meta=siteinfo
 
 === Languages updated in 1.23 ===
 
