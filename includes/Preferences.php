@@ -158,18 +158,21 @@ class Preferences {
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
 			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress;
 
+		// retrieving user name for GENDER and misc.
+		$userName = $user->getName();
+
 		## User info #####################################
 		// Information panel
 		$defaultPreferences['username'] = array(
 			'type' => 'info',
-			'label-message' => 'username',
-			'default' => $user->getName(),
+			'label-message' => array( 'username', $userName ),
+			'default' => $userName,
 			'section' => 'personal/info',
 		);
 
 		$defaultPreferences['userid'] = array(
 			'type' => 'info',
-			'label-message' => 'uid',
+			'label-message' => array( 'uid', $userName ),
 			'default' => $user->getId(),
 			'section' => 'personal/info',
 		);
@@ -185,7 +188,7 @@ class Preferences {
 			$groupName  = User::getGroupName( $ueg );
 			$userGroups[] = User::makeGroupLinkHTML( $ueg, $groupName );
 
-			$memberName = User::getGroupMember( $ueg, $user->getName() );
+			$memberName = User::getGroupMember( $ueg, $userName );
 			$userMembers[] = User::makeGroupLinkHTML( $ueg, $memberName );
 		}
 		asort( $userGroups );
@@ -196,7 +199,7 @@ class Preferences {
 		$defaultPreferences['usergroups'] = array(
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
-				count( $userGroups ) )->parse(),
+				count( $userGroups ) )->params( $userName )->parse(),
 			'default' => $context->msg( 'prefs-memberingroups-type',
 				$lang->commaList( $userGroups ),
 				$lang->commaList( $userMembers )
@@ -507,14 +510,15 @@ class Preferences {
 		# be nice to somehow merge this back in there to avoid redundancy.
 		if ( $wgAllowUserCss || $wgAllowUserJs ) {
 			$linkTools = array();
+			$userName = $user->getName();
 
 			if ( $wgAllowUserCss ) {
-				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/common.css' );
+				$cssPage = Title::makeTitleSafe( NS_USER, $userName . '/common.css' );
 				$linkTools[] = Linker::link( $cssPage, $context->msg( 'prefs-custom-css' )->escaped() );
 			}
 
 			if ( $wgAllowUserJs ) {
-				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/common.js' );
+				$jsPage = Title::makeTitleSafe( NS_USER, $userName . '/common.js' );
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
 
@@ -1009,27 +1013,17 @@ class Preferences {
 			'section' => 'searchoptions/advancedsearchoptions',
 		);
 
-		$nsOptions = array();
-
-		foreach ( $wgContLang->getNamespaces() as $ns => $name ) {
-			if ( $ns < 0 ) {
-				continue;
-			}
-
-			$displayNs = str_replace( '_', ' ', $name );
-
-			if ( !$displayNs ) {
-				$displayNs = $context->msg( 'blanknamespace' )->text();
-			}
-
-			$displayNs = htmlspecialchars( $displayNs );
-			$nsOptions[$displayNs] = $ns;
+		$nsOptions = $wgContLang->getFormattedNamespaces();
+		$nsOptions[0] = $context->msg( 'blanknamespace' )->text();
+		foreach ( $nsOptions as $ns => $name ) {
+			if ( $ns < 0 )
+				unset( $nsOptions[$ns] );
 		}
 
 		$defaultPreferences['searchnamespaces'] = array(
 			'type' => 'multiselect',
 			'label-message' => 'defaultns',
-			'options' => $nsOptions,
+			'options' => array_flip( $nsOptions ),
 			'section' => 'searchoptions/advancedsearchoptions',
 			'prefix' => 'searchNs',
 		);
