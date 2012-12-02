@@ -1736,7 +1736,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				$status->merge( $prepStatus );
 
 				if ( !$status->isOK() ) {
-					$dbw->rollback();
+					$dbw->rollback( __METHOD__ );
 
 					wfProfileOut( __METHOD__ );
 					return $status;
@@ -1815,7 +1815,7 @@ class WikiPage extends Page implements IDBAccessObject {
 			$status->merge( $prepStatus );
 
 			if ( !$status->isOK() ) {
-				$dbw->rollback();
+				$dbw->rollback( __METHOD__ );
 
 				wfProfileOut( __METHOD__ );
 				return $status;

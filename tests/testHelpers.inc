@@ -275,7 +275,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		$this->db->begin();
+		$this->db->begin( __METHOD__ );
 
 		if ( ! $this->db->tableExists( 'testrun' )
 			|| ! $this->db->tableExists( 'testitem' ) )

@@ -77,7 +77,7 @@ class JobQueueDB extends JobQueue {
 
 				$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
 				if ( $atomic ) {
-					$dbw->begin(); // wrap all the job additions in one transaction
+					$dbw->begin( __METHOD__ ); // wrap all the job additions in one transaction
 				} else {
 					$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
 				}
@@ -87,14 +87,14 @@ class JobQueueDB extends JobQueue {
 					}
 				} catch ( DBError $e ) {
 					if ( $atomic ) {
-						$dbw->rollback();
+						$dbw->rollback( __METHOD__ );
 					} else {
 						$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 					}
 					throw $e;
 				}
 				if ( $atomic ) {
-					$dbw->commit();
+					$dbw->commit( __METHOD__ );
 				} else {
 					$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 				}
