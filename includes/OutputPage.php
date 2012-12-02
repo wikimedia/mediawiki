@@ -2975,6 +2975,7 @@ $templates
 			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
 			'wgMonthNames' => $lang->getMonthNamesArray(),
+			'wgMonthNamesGen' => $lang->getMonthNamesGenArray(),
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
 		);
