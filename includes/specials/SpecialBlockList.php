@@ -329,7 +329,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
-				$formatted = Linker::commentBlock( $value );
+				$formatted = Linker::formatComment( $value );
 				break;
 
 			case 'ipb_params':

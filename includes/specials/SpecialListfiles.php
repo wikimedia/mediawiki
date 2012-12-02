@@ -223,7 +223,7 @@ class ImageListPager extends TablePager {
 			case 'img_size':
 				return htmlspecialchars( $this->getLanguage()->formatSize( $value ) );
 			case 'img_description':
-				return Linker::commentBlock( $value );
+				return Linker::formatComment( $value );
 			case 'count':
 				return intval( $value ) + 1;
 		}
