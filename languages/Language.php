@@ -853,6 +853,17 @@ class Language {
 	}
 
 	/**
+	 * @return array
+	 */
+	function getMonthNamesGenArray() {
+		$monthNames = array( '' );
+		for ( $i = 1; $i < 13; $i++ ) {
+			$monthNames[] = $this->getMonthNameGen( $i );
+		}
+		return $monthNames;
+	}
+
+	/**
 	 * @param $key string
 	 * @return string
 	 */
