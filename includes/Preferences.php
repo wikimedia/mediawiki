@@ -162,14 +162,14 @@ class Preferences {
 		// Information panel
 		$defaultPreferences['username'] = array(
 			'type' => 'info',
-			'label-message' => 'username',
+			'label-message' => array( 'username', $user->getName() ),
 			'default' => $user->getName(),
 			'section' => 'personal/info',
 		);
 
 		$defaultPreferences['userid'] = array(
 			'type' => 'info',
-			'label-message' => 'uid',
+			'label-message' => array( 'uid', $user->getName() ),
 			'default' => $user->getId(),
 			'section' => 'personal/info',
 		);
@@ -196,7 +196,7 @@ class Preferences {
 		$defaultPreferences['usergroups'] = array(
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
-				count( $userGroups ) )->parse(),
+				count( $userGroups ) )->params( $user->getName() )->parse(),
 			'default' => $context->msg( 'prefs-memberingroups-type',
 				$lang->commaList( $userGroups ),
 				$lang->commaList( $userMembers )
