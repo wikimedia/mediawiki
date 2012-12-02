@@ -1576,9 +1576,13 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'youremail' => 'Label of the e-mail text box of the "E-mail options" section of "Special:Preferences".
 
 {{Identical|E-mail}}',
-'username' => '{{Identical|Username}}',
-'uid' => '{{Identical|User ID}}',
-'prefs-memberingroups' => 'This message is shown on [[Special:Preferences]], first tab. See also {{msg-mw|prefs-memberingroups-type}}.',
+'username' => 'Username field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).
+
+{{Identical|Username}}',
+'uid' => 'User ID field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).
+
+{{Identical|User ID}}',
+'prefs-memberingroups' => 'This message is shown on [[Special:Preferences]], first tab. See also {{msg-mw|prefs-memberingroups-type}}. $2 is the user name for GENDER.',
 'prefs-memberingroups-type' => '{{optional}}
 Parameters:
 * $1 is list of group names

@@ -1890,9 +1890,9 @@ This cannot be undone.',
 'prefs-emailconfirm-label'      => 'E-mail confirmation:',
 'prefs-textboxsize'             => 'Size of editing window',
 'youremail'                     => 'E-mail:',
-'username'                      => 'Username:',
-'uid'                           => 'User ID:',
-'prefs-memberingroups'          => 'Member of {{PLURAL:$1|group|groups}}:',
+'username'                      => '{{GENDER:$1|Username}}:',
+'uid'                           => '{{GENDER:$1|User}} ID:',
+'prefs-memberingroups'          => '{{GENDER:$2|Member}} of {{PLURAL:$1|group|groups}}:',
 'prefs-memberingroups-type'     => '$1', # only translate this message to other languages if you have to change it
 'prefs-registration'            => 'Registration time:',
 'prefs-registration-date-time'  => '$1', # only translate this message to other languages if you have to change it
