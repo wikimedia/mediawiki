@@ -88,7 +88,7 @@
 		);
 	} );
 
-	QUnit.test( 'Parse a uri with simple querystring', 1, function ( assert ) {
+	QUnit.test( '.getQueryString()', 2, function ( assert ) {
 		var uri = new mw.Uri( 'http://www.google.com/?q=uri' );
 
 		assert.deepEqual(
@@ -112,6 +112,14 @@
 			},
 			'basic object properties'
 		);
+
+		uri = new mw.Uri( 'https://example.org/mw/index.php?title=Sandbox/7&other=Sandbox/7&foo' );
+		assert.equal(
+			uri.getQueryString(),
+			'title=Sandbox/7&other=Sandbox%2F7&foo',
+			'title parameter is escaped the wiki-way'
+		);
+
 	} );
 
 	QUnit.test( 'Handle multiple query parameter (overrideKeys on)', 5, function ( assert ) {
