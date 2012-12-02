@@ -410,9 +410,6 @@ Alesane yakuwe "\'\'$2\'\'".',
 
 Rika teyeng terus nggunakna {{SITENAME}} kanthi anonim, utawa Rika teyeng <span class='plainlinks'>[$1 mlebu log maning]</span> nganggo jeneng panganggo sing padha utawa sejene.
 Digatekna ya, nek ana kaca sing esih terus nidokna nek rika esih mlebu log nnganti Rika mbusak singgahan nang panjelajah web-e Rika.",
-'welcomecreation' => '== Sugeng rawuh, $1! ==
-
-Akun Rika uwis digawe. Aja kelalen nata konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Rika.',
 'yourname' => 'Jeneng panganggo:',
 'yourpassword' => 'Tembung sandhi:',
 'yourpasswordagain' => 'Balèni tembung sandhi:',

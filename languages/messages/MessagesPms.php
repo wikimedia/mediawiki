@@ -3615,7 +3615,7 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'fileduplicatesearch-info' => '$1 × $2 pontin<br />Amzure: $3<br />Sòrt MIME: $4',
 'fileduplicatesearch-result-1' => "Pa gnun dobion për l'archivi «$1».",
 'fileduplicatesearch-result-n' => "A-i {{PLURAL:$2|é 'n dobion midem|son $2 dobion midem}} ëd l'archivi «$1».",
-'fileduplicatesearch-noresults' => 'Gnun archivi ciamà "$1" trovà.',
+'fileduplicatesearch-noresults' => "Gnun archivi ciamà «$1» a l'é stàit trovà.",
 
 # Special:SpecialPages
 'specialpages' => 'Pàgine Speciaj',
@@ -3627,7 +3627,7 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'specialpages-group-other' => 'Àutre pàgine speciaj',
 'specialpages-group-login' => 'Intré ant ël sistema / creé un cont',
 'specialpages-group-changes' => 'Ùltime modìfiche e registr',
-'specialpages-group-media' => 'Rapòrt dij file multimediaj e dle carie',
+'specialpages-group-media' => "Rapòrt e amportassion d'archivi multimojen",
 'specialpages-group-users' => 'Utent e drit',
 'specialpages-group-highuse' => 'Pàgine motobin dovrà',
 'specialpages-group-pages' => 'Liste ëd pàgine',

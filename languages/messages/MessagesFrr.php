@@ -423,10 +423,6 @@ Di grünj faan di administraator as: „$3“.',
 
 Dü koost {{SITENAME}} nü anonüüm widerbrüke, unti de wider uner diseelew unti en oudern brükernoome <span class='plainlinks'>[$1 önjmälde]</span>.
 Påås aw, dåt hu side nuch wise koone, dåt dü önjmälded bast, sülung dü ai dan browsercache lääsimååged heest.",
-'welcomecreation' => '== Wäljkiimen, $1! ==
-
-Din brükerkonto wörd inruchted.
-Ferjees ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen.',
 'yourname' => 'Brükernoome:',
 'yourpassword' => 'Pååsuurd:',
 'yourpasswordagain' => 'Schriw pååsuurd nuch iinjsen:',

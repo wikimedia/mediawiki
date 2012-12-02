@@ -162,8 +162,8 @@ $messages = array(
 'newwindow' => "(iapre jndr'à 'na fenestra nova)",
 'cancel' => 'Scangìlle',
 'moredotdotdot' => 'De cchiù...',
-'mypage' => "'A pàgene meje",
-'mytalk' => 'Ngazzaminde mie',
+'mypage' => "'A pàgena meje",
+'mytalk' => "'Ngazzaminde mie",
 'anontalk' => "'Ngazzaminde pe quiste IP",
 'navigation' => 'Naveghesce',
 'and' => '&#32;e',
@@ -1125,7 +1125,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 
 # Preferences page
 'preferences' => 'Me piece accussì',
-'mypreferences' => 'Me piece accussì',
+'mypreferences' => 'Me piace accussì',
 'prefs-edits' => 'Numere de cangiaminde:',
 'prefsnologin' => 'Non ge sinde colleghete',
 'prefsnologintext' => 'Tu a essere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} colleghete]</span> pe \'mbostà le preferenze de l\'utinde.',
@@ -2089,7 +2089,7 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 
 # Watchlist
 'watchlist' => 'Pàggene condrollete',
-'mywatchlist' => 'Pàggene condrollete',
+'mywatchlist' => 'Pàggene condrollate',
 'watchlistfor2' => 'Pe $1 $2',
 'nowatchlist' => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
 'watchlistanontext' => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
@@ -2394,7 +2394,7 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'whatlinkshere-hideredirs' => '$1 ridirezionaminde',
 'whatlinkshere-hidetrans' => '$1 transclusiune',
 'whatlinkshere-hidelinks' => '$1 collegaminde',
-'whatlinkshere-hideimages' => '$1 collegaminde a immaggine',
+'whatlinkshere-hideimages' => "$1 collegaminde a 'u file",
 'whatlinkshere-filters' => 'Filtre',
 
 # Block/unblock
@@ -3962,8 +3962,8 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-move-move_redir-noredirect' => "$1 pàgena spustate $3 a $4 sus a 'nu redirezionamende senze lassà 'nu redirezionamende",
 'logentry-patrol-patrol' => '$1 revisione marcate $4 de pàgene condrollate $3',
 'logentry-patrol-patrol-auto' => '$1 automaticamende revisione marcate $4 de pàgene condrollate $3',
-'logentry-newusers-newusers' => "$1 ccrejate 'nu cunde utende",
-'logentry-newusers-create' => "$1 ccrejate 'nu cunde utende",
+'logentry-newusers-newusers' => "'U cunde utende $1 ha state ccrejate",
+'logentry-newusers-create' => "'U cunde utende $1 ha state ccrejate",
 'logentry-newusers-create2' => "$1 ccrejate 'nu cunde utende $3",
 'logentry-newusers-autocreate' => "'U cunde utende $1 ha state ccrejate automaticamende",
 'newuserlog-byemail' => 'password mannete pe e-mail',

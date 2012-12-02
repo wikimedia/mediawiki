@@ -694,7 +694,7 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'viewsource-title' => 'Visa källkod för $1',
 'actionthrottled' => 'Åtgärden stoppades',
 'actionthrottledtext' => 'Som skydd mot spam, finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen. Försök igen om några minuter.',
-'protectedpagetext' => 'Den här sidan har skrivskyddats för att förhindra redigering.',
+'protectedpagetext' => 'Den här sidan har skrivskyddats för att förhindra redigering eller andra åtgärder.',
 'viewsourcetext' => 'Du kan se och kopiera denna sidas källtext:',
 'viewyourtext' => "Du kan se och kopiera källan för '''dina redigeringar''' på denna sida:",
 'protectedinterface' => 'Denna sida innehåller text för mjukvarans gränssnitt på denna wiki, och är skrivskyddad för att förebygga missbruk.
@@ -3160,7 +3160,9 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-redirectsto-info' => 'info',
 'pageinfo-contentpage' => 'Räknas som en innehållssida',
 'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading' => 'Skrivskydd kaskaderar härifrån',
 'pageinfo-protect-cascading-yes' => 'Ja',
+'pageinfo-protect-cascading-from' => 'Skrivskydd kaskaderar från',
 
 # Skin names
 'skinname-standard' => 'Standard',

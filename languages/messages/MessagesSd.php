@@ -713,10 +713,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'watching' => 'ٽيٽيندي...',
 'unwatching' => 'اڻ ٽيٽيندي...',
 
-'enotif_newpagetext' => 'هيءُ هڪ نئون صفحو آهي.',
-'changed' => 'تبديل ٿي ويو',
-'created' => 'ٺهي چڪو',
-
 # Delete
 'deletepage' => 'صفحو ڊاهيو',
 'confirm' => 'پڪ ڪريو',

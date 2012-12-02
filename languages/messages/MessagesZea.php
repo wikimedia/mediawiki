@@ -417,9 +417,6 @@ De heheven reeën is ''$2''.",
 
 Je kan {{SITENAME}} noe anoniem gebruken of wee anmelden as dezelven of een aore gebruker.
 Meuhlijk worn nog een antal pagina's weereheven asof a je anemeld bin totda je de cache van je browser leeg.",
-'welcomecreation' => '== Welkom, $1! ==
-Jen account is anemikt.
-Vergeet nie je [[Special:Preferences|vòkeuren voe {{SITENAME}}]] an te passen.',
 'yourname' => 'Gebrukersnaem',
 'yourpassword' => 'Wachtwoôrd',
 'yourpasswordagain' => 'Heef je wachtwoôrd opnieuw in:',

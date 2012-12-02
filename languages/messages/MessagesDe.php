@@ -782,7 +782,7 @@ Abfrage: $2',
 'actionthrottled' => 'Aktionsanzahl limitiert',
 'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
-'protectedpagetext' => 'Diese Seite wurde geschützt, um Bearbeitungen zu verhindern.',
+'protectedpagetext' => 'Diese Seite wurde geschützt, um Bearbeitungen sowie andere Aktionen zu verhindern.',
 'viewsourcetext' => 'Du kannst den Quelltext dieser Seite betrachten und kopieren:',
 'viewyourtext' => "Du kannst den Quelltext '''deiner Bearbeitung''' dieser Seite betrachten und kopieren:",
 'protectedinterface' => 'Diese Seite enthält Text für die Benutzeroberfläche der Software auf diesem Wiki und ist geschützt, um Missbrauch vorzubeugen.

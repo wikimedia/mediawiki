@@ -689,7 +689,7 @@ Perse: $2',
 'actionthrottled' => 'Kerden peysnaya',
 'actionthrottledtext' => 'Riyê tedbirê anti-spami ra,  wextê do kılmek de şıma nê fealiyeti nêşkenê zaf zêde bıkerê, şıma ki no hedi viyarna ra.
 Çend deqey ra tepeya reyna bıcerrebnên.',
-'protectedpagetext' => 'No pel qey nêvuriyayiş hao (nao) pawyeno.',
+'protectedpagetext' => 'Na per qey nêvuriyayiş ho pawyeno ya zi kerdışe bini.',
 'viewsourcetext' => 'To şikinay çımey na pele bıvêne u kopya kerê:',
 'viewyourtext' => "Na pela '''Vurnayışê ke kerdê''' re şıma şenê kopya kerê:",
 'protectedinterface' => 'Na pela qandê nusnerin destegê verri dana u kes xırabin nêqero deye kerda kılit.',

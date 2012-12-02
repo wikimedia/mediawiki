@@ -351,6 +351,7 @@ Erabiltzaile gehiegi ari da orrialde hau ikusi nahiean.
 Mesedez itxaron ezazu unetxo bat orrialde honetara berriz sartzen saiatu baino lehen.
 
 $1',
+'pool-timeout' => 'Lock-a itxoiten denbora amaitu da',
 'pool-queuefull' => 'Prozesuen zerrenda beteta dago',
 'pool-errorunknown' => 'Errore ezezaguna',
 
@@ -410,6 +411,8 @@ $1',
 'page-rss-feed' => '"$1" RSS Jarioa',
 'page-atom-feed' => '"$1" Atom Jarioa',
 'red-link-title' => '$1 (orria ez da existitzen)',
+'sort-descending' => 'Sailkatu beherantz',
+'sort-ascending' => 'Sailkatu gorantz',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Orrialdea',
@@ -493,11 +496,12 @@ Kontsulta: $2',
 Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext' => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
 'viewsourcetext' => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
+'viewyourtext' => "Orrialde honetara '''zure aldaketen''' jatorria ikus eta kopiatu ahal duzu:",
 'protectedinterface' => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.
 Wiki guztientzako aldaketak egin edo gehitzeko, mesedez erabili [//translatewiki.net/ translatewiki.net], MediaWikiren lokalizazio proiektua.',
 'editinginterface' => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
-Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.
-Itzulpenetarako, [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
+Orrialde honetako aldaketek wiki honetako erabiltzaile guztiei eragingo die.
+Itzulpenetarako, [//translatewiki.net/ translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
 'sqlhidden' => '(ezkutuko SQL kontsulta)',
 'cascadeprotected' => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
@@ -1403,6 +1407,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|lankide|lankide}} jarraitzen]',
 'rc_categories' => 'Kategorietara mugatu ("|" karaktereaz banandu)',
 'rc_categories_any' => 'Edozein',
+'rc-change-size-new' => '{{PLURAL:$1|Byte 1|$1 byte}} aldaketaren ostean',
 'newsectionsummary' => '/* $1 */ atal berria',
 'rc-enhanced-expand' => 'Erakutsi xehetasunak (JavaScript beharrezkoa da)',
 'rc-enhanced-hide' => 'Xehetasunak ezkutatu',
@@ -1917,7 +1922,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 
 # Watchlist
 'watchlist' => 'Nire jarraipen zerrenda',
-'mywatchlist' => 'Nire jarraipen zerrenda',
+'mywatchlist' => 'Jarraipen zerrenda',
 'watchlistfor2' => '$1 ($2)',
 'nowatchlist' => 'Zure jarraipen zerrenda hutsik dago.',
 'watchlistanontext' => 'Mesedez $1 zure jarraipen zerrendako orrialdeak ikusi eta aldatu ahal izateko.',
@@ -2161,7 +2166,7 @@ $1',
 # Contributions
 'contributions' => 'Lankidearen ekarpenak',
 'contributions-title' => '$1(r)entzat lankidearen ekarpenak',
-'mycontris' => 'Nire ekarpenak',
+'mycontris' => 'Ekarpenak',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.',
 'uctop' => ' (Azken aldaketa)',

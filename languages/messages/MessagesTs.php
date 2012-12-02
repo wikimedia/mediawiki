@@ -373,9 +373,6 @@ Hikwlaho ka xivangelo xa "\'\'$2\'\'".',
 
 Ungaya emahlweni utirhisa {{SITENAME}} handle ko tipaluxa, kumbe unga <span class='plainlinks'>[$1 pfula unghena nakambe]</span> tani hi mutirhisa un'wana kumbe kumbe hivuxokoxoko bya wena.
 Tsundzuka leswaku matluka man'wana mangaha komba onge upfule unghena eka wiki, loko ungasi sula tluka rakhompuyuta leri tsundzukaka matluka lawa uma vhakeleke.",
-'welcomecreation' => '== Hoyohoyo, eka Wena $1 ! ==
-Akhawunti yawena yitumbuluxiwile.
-Unda rivali ku cinca [[Special:Preferences|{{SITENAME}} minhlawulo ya wena]].',
 'yourname' => 'Vito ra vutirhisi',
 'yourpassword' => 'Vito-mpfungulo:',
 'yourpasswordagain' => 'Thlela u hoxa ritompfungulo ra wena:',

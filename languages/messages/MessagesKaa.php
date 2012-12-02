@@ -512,10 +512,6 @@ Keltirilgen sebep: ''$2''.",
 Siz {{SITENAME}} saytınan anonim halda paydalanıwın'ız mu'mkin.
 Yamasa siz ja'ne ha'zirgi yaki basqa paydalanıwshı atı menen <span class='plainlinks'>[$1 qaytadan sistemag'a kiriwin'izge]</span> boladı.
 Sonı este saqlan', ayrım betler sizin' brauzerin'izdin' keshi tazalanbag'anlıg'ı sebebli sistemada kirgenin'izdey ko'riniste dawam ettire beriwi mu'mkin.",
-'welcomecreation' => "== Xosh keldin'iz, $1! ==
-
-Akkauntın'ız jaratıldı.
-[[Special:Preferences|{{SITENAME}} sazlawların'ızdı]] o'zgertiwdi umıtpan'.",
 'yourname' => 'Paydalanıwshı atı:',
 'yourpassword' => 'Parol:',
 'yourpasswordagain' => "Paroldi qayta kiritin':",
@@ -1431,11 +1427,7 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 
 'enotif_mailer' => '{{SITENAME}} eskertiw xatın jiberiw xızmeti',
 'enotif_reset' => "Barlıq betti ko'rip shıg'ıldı dep belgile",
-'enotif_newpagetext' => 'Bul taza bet.',
 'enotif_impersonal_salutation' => '{{SITENAME}} paydalanıwshısı',
-'changed' => "o'zgertilgen",
-'created' => "jaratılg'an",
-'enotif_subject' => '{{SITENAME}} proektindegi $PAGEEDITOR $PAGETITLE atamalı betti $CHANGEDORCREATED',
 'enotif_lastvisited' => "Son'g'ı kirwin'izden beri bolg'an o'zgerisler ushın $1 degendi ko'rin'iz.",
 'enotif_lastdiff' => "Usı o'zgeris ushın $1 degendi ko'rin'iz.",
 'enotif_anon_editor' => 'anonim paydalanıwshı $1',

@@ -1093,8 +1093,6 @@ PICT # тайп тайпан
 'watching' => 'Тергаме мlогаман юкъаяккха…',
 'unwatching' => 'Тергаме мlогаман чура дlайаккха…',
 
-'enotif_newpagetext' => 'Хlара керла агlо ю.',
-
 # Delete
 'deletepage' => 'Дlайайá агlо',
 'confirm' => 'Къобалде',

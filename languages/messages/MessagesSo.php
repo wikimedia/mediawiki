@@ -366,9 +366,6 @@ Sababta neh waxaa waaye "\'\'$2\'\'".',
 'logouttext' => "'''Hada waad ka baxday.'''
 
 Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama <span class='plainlinks'>[$1 gudaha gal]</span> adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
-'welcomecreation' => "== Soo dhawoow, $1! ==
-Akoon kaada  waa la sameeyay.
-Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqyadaada]].",
 'yourname' => 'Magaca gudagalka:',
 'yourpassword' => 'Eraysir:',
 'yourpasswordagain' => 'Markale qor ereysirka:',

@@ -402,9 +402,6 @@ Ensonga gy\'awadde eri nti "\'\'$2\'\'".',
 
 Osobola okusigala nga okozesa {{SITENAME}} nga at'eyanjudde, ate osobola <span class='plainlinks'>[$1 n'okuddamu okuyingira]</span> nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
 Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya kalambula-neti yo.",
-'welcomecreation' => "== $1 tukwanirizza! == <br />
-Akawunti yo ekoledwa.<br />
-Tewerabira kwetereereza [[Special:Preferences|enteekateeka yo ey'oku {{SITENAME}}]].",
 'yourname' => "Ery'obwa memba",
 'yourpassword' => 'Ekigambo ekikuumi',
 'yourpasswordagain' => 'Ddamu ekigambo ekikuumi',

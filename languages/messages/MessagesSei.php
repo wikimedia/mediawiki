@@ -319,9 +319,6 @@ $2',
 
 Mecontinudad usadad {{SITENAME}} anon jïx me caápo dajcaitom ö jömcaitom.
 Páhinám pac continudad displayom dajme caápo, jánclearom mecachede browser.",
-'welcomecreation' => "== Q'$1! ==
-
-Mecaitom coccebj creatöx. Quiix hequáatlaácde {{SITENAME}} pos-poop.",
 'yourname' => 'Caitom ID:',
 'yourpassword' => 'Quimx canj:',
 'yourpasswordagain' => 'Vanquimx canj:',
@@ -889,10 +886,7 @@ iitom e-iitomde diijömde caitóm.',
 'watching' => 'Cáminot...',
 'unwatching' => 'Necáminot...',
 
-'enotif_newpagetext' => 'Jan coccebj hunpáhina.',
 'enotif_impersonal_salutation' => '{{SITENAME}} caitom',
-'changed' => 'quiixöx',
-'created' => 'creacöx',
 'enotif_anon_editor' => 'caitom anoniimom $1',
 
 # Delete

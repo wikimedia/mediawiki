@@ -1,5 +1,5 @@
 <?php
-/** Arabic, Tunisian Spoken (تونسي)
+/** Tunisian Spoken Arabic (   زَوُن)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -422,9 +422,6 @@ $2',
 
 تستطيع المتابعة باستعمال {{SITENAME}} كمجهول، أو <span class='plainlinks'>[$1 الدخول مرة أخرى]</span> بنفس الاسم أو باسم آخر.
 من الممكن أن ترى بعض الصفحات كما لو أنك مسجل الدخول، وذلك حتى تقوم بإفراغ الصفحات المختزنة في المتصفح لديك.",
-'welcomecreation' => '== مرحبا، $1! ==
-تم إنشاء حسابك.
-لا تنس أن تغير [[Special:Preferences|تفضيلاتك في {{SITENAME}}]].',
 'yourname' => 'اسم المستخدم:',
 'yourpassword' => 'كلمة السر:',
 'yourpasswordagain' => 'أعد كتابة كلمة السر:',

@@ -420,9 +420,6 @@ ossabab lli ĝtah hwwa "\'\'$2\'\'".',
 ila bghiti tqdr tstamr tstaml {{SITENAME}}  kamjhol , olla ila bghiti <span class='plainlinks'>[$1 tdkhl aawtani]</span> bnafs smiya ola bsmiya khra.
 
 tqdr tchof baad sfahi bhal ila msjl hta tfrgh lcache dyalk",
-'welcomecreation' => '== mrhba bik, $1! ==
-lcont dyalk raha mojoda
-matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'yourname' => 'smiṫ l-mosṫĥdim:',
 'yourpassword' => 'Saroṫ:',
 'yourpasswordagain' => 'aaawd ktb lmot de passe dyalk',
@@ -1694,11 +1691,7 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 
 'enotif_mailer' => '{{SITENAME}} nidam lbaridi',
 'enotif_reset' => 'Qiyyed ṣ-ṣefḫaṫ bḫal la zerṫihom kamlin',
-'enotif_newpagetext' => 'ṣfḫa jdida di.',
 'enotif_impersonal_salutation' => 'Mosṫeḫdim {{SITENAME}}',
-'changed' => 'Beddel',
-'created' => "tnch'at",
-'enotif_subject' => 'Ṣ-Ṣefḫa $PAGETITLE dyal {{SITENAME}} $CHANGEDORCREATEDha $PAGEEDITOR',
 'enotif_lastvisited' => 'Sir ċof $1 baċ ṫċof ṫ-ṫeġyiraṫ kamlin men ziyarṫek l-leĥĥraniya.',
 'enotif_lastdiff' => 'Ċof $1 baċ ṫċof had ṫ-ṫeġyiraṫ.',
 'enotif_anon_editor' => 'mosṫeĥdim ma mċejjelċ $1',

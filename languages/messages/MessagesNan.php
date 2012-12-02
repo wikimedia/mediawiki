@@ -395,8 +395,6 @@ $2',
 
 Lí ē-sái mài kì-miâ kè-siok sú-iōng {{SITENAME}}, mā ē-sái iōng kāng-ê a̍h-sī pa̍t-ê sin-hūn têng teng-ji̍p.
 Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-goân teng-ji̍p tiong; che chi-iàu piàⁿ tiāu lí ê browser ê cache chiū ē chèng-siông.",
-'welcomecreation' => '==Hoan-gêng $1!==
-Í-keng khui hó lí ê kháu-chō.  M̄-hó bē-kì-tit chhiâu lí ê iōng-chiá siat-tēng.',
 'yourname' => 'Lí ê iōng-chiá miâ-chheng:',
 'yourpassword' => 'Lí ê bi̍t-bé:',
 'yourpasswordagain' => 'Têng phah bi̍t-bé:',

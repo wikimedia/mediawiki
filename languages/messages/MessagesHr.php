@@ -967,8 +967,8 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 * '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
 * '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
 * '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
-'usercssyoucanpreview' => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog CSS prije snimanja.",
-'userjsyoucanpreview' => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog novog JavaScripta prije snimanja.",
+'usercssyoucanpreview' => "'''Savjet:''' Rabite puce \"{{int:showpreview}}\" za testiranje svog CSS-a prije snimanja.",
+'userjsyoucanpreview' => "'''Savjet:''' Rabite puce \"{{int:showpreview}}\" za testiranje svog novog JavaScripta prije snimanja.",
 'usercsspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS. Još nije snimljen!'''",
 'userjspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
 'sitecsspreview' => "'''Ne zaboravite ovo je samo pregled ovog CSS-a.'''

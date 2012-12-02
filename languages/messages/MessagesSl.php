@@ -562,7 +562,7 @@ Poizvedba: $2',
 'actionthrottled' => 'Dejanje zaustavljeno',
 'actionthrottledtext' => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
-'protectedpagetext' => 'Ta stran je bila zaklenjena za preprečitev urejanja.',
+'protectedpagetext' => 'Ta stran je bila zaklenjena za preprečitev urejanja ali drugih dejanj.',
 'viewsourcetext' => 'Lahko si ogledate in kopirate vsebino te strani:',
 'viewyourtext' => "Lahko si ogledate in kopirate vsebino '''vaših urejanj''' te strani:",
 'protectedinterface' => 'Prikazana stran vsebuje besedilo vmesnika programja na tem wikiju in je zaradi preprečevanja zlorab zaščitena.

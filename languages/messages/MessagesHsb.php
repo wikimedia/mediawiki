@@ -526,7 +526,7 @@ Wotprašenje: $2',
 'viewsource-title' => 'Žórłowy tekst za $1 sej wobhladać',
 'actionthrottled' => 'Akcije wobmjezowane',
 'actionthrottledtext' => 'Jako připrawa přećiwo spamej, je častosć wuwjedźenja tuteje akcije w krótkej dobje wobmjezowana a ty sy tutón limit překročił. Prošu spytaj za něšto mjeńšiny hišće raz.',
-'protectedpagetext' => 'Strona je přećiwo wobdźěłowanju škitana.',
+'protectedpagetext' => 'Tuta strona je přećiwo wobdźěłowanju abo druhim akcijam škitana.',
 'viewsourcetext' => 'Móžeš sej žórłowy tekst tuteje strony wobhladać a jón kopěrować:',
 'viewyourtext' => "Móžeš sej žórłowy tekst '''swojich změnow''' wobhladać a do slědowaceje strony kopěrować:",
 'protectedinterface' => 'Tuta strona wobsahuje tekst za wužiwarski powjerch softwary na tutym wikiju a je škitana, zo by so znjewužiwanje zadźěwało.

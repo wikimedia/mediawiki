@@ -587,7 +587,7 @@ $1',
 'viewsource-title' => '查看$1的源代碼',
 'actionthrottled' => '動作已壓制',
 'actionthrottledtext' => '基於反垃圾的考量，您現在於這段短時間之中限制去作這一個動作，而您已經超過這個上限。請在數分鐘後再嘗試。',
-'protectedpagetext' => '該頁面已被保護以防止編輯。',
+'protectedpagetext' => '該頁面已被保護以防止編輯或其他操作。',
 'viewsourcetext' => '{{GENDER:|你|妳|你}}可以檢視並複製本頁面的原始碼。',
 'viewyourtext' => "您可以查看並複製'''您對此頁面作出編輯後'''的源代碼：",
 'protectedinterface' => '該頁提供此wiki軟體的介面文字，它已被保護以防止惡意修改。
@@ -2960,7 +2960,7 @@ $1被封禁的理由是“$2”',
 'spam_deleting' => '所有包含連結至$1的修訂，刪除中',
 
 # Info page
-'pageinfo-title' => '“$1”的信息',
+'pageinfo-title' => '「$1」的信息',
 'pageinfo-not-current' => '抱歉，無法提供之前修訂版本的資訊。',
 'pageinfo-header-basic' => '基本資料',
 'pageinfo-header-edits' => '編輯歷史',

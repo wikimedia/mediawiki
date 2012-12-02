@@ -426,9 +426,6 @@ Mongungulud di minongunsi pinopointalang do kointalangan diti: "$3".',
 
 Milo ko do monilombus mongoguno {{SITENAME}} poinlisok, toi <span class='plainlinks'>[$1 sumuang log koh kawagu]</span> miagal ngaran di tiinu toi mongoguno ngaran suai.
 Birio do kipipiro bolikon popokito do maso poinsuang log koh poh gisom no do opugas nu dangkob do pogigihumnu.",
-'welcomecreation' => '== Kopiwosian, $1! ==
-Nowonsoi no takaunnu.
-Soroho no do mongolon [[Special:Preferences|{{SITENAME}} komoisoonnu]].',
 'yourname' => 'Ngarandait:',
 'yourpassword' => 'Kaatalib:',
 'yourpasswordagain' => 'Mintaipo kaatalib:',

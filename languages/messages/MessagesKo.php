@@ -721,7 +721,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 'actionthrottled' => '동작 중지',
 'actionthrottledtext' => '스팸을 막기 위해 짧은 시간 안에 이 작업을 너무 많이 하는 것을 막고 있습니다.
 제한을 넘었으니 몇 분 뒤에 새로 시도하세요.',
-'protectedpagetext' => '이 문서는 편집할 수 없도록 보호되어 있습니다.',
+'protectedpagetext' => '이 문서는 편집하거나 다른 행동을 할 수 없도록 보호되어 있습니다.',
 'viewsourcetext' => '문서의 원본을 보거나 복사할 수 있습니다:',
 'viewyourtext' => "이 문서에 남긴 '''내 편집''' 내용을 보거나 복사할 수 있습니다:",
 'protectedinterface' => '이 문서는 이 위키의 소프트웨어 인터페이스에 쓰이는 문서로, 부정 행위를 막기 위해 보호되어 있습니다.
@@ -1342,7 +1342,7 @@ $1",
 
 # Merge log
 'mergelog' => '병합 기록',
-'pagemerge-logentry' => '사용자가 [[$1]]을 [[$2]]에 병합 ($3판이 위로 옮겨짐)',
+'pagemerge-logentry' => '사용자가 [[$1]]을 [[$2]]에 병합했습니다 ($3판이 위로 옮겨짐)',
 'revertmerge' => '병합 해제',
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
@@ -2541,10 +2541,10 @@ $UNWATCHURL
 'protectlogpage' => '문서 보호 기록',
 'protectlogtext' => '아래의 목록은 문서 보호에 관한 바뀜 사항에 대한 기록입니다.
 현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하세요.',
-'protectedarticle' => '사용자가 "[[$1]]" 문서를 보호함',
-'modifiedarticleprotection' => '사용자가 "[[$1]]" 문서의 보호 설정을 바꿈',
-'unprotectedarticle' => '사용자가 "[[$1]]" 문서를 보호 해제함',
-'movedarticleprotection' => '사용자가 문서의 보호 설정을 "[[$2]]"에서 "[[$1]]"으로 옮김',
+'protectedarticle' => '사용자가 "[[$1]]" 문서를 보호했습니다',
+'modifiedarticleprotection' => '사용자가 "[[$1]]" 문서의 보호 설정을 바꿨습니다',
+'unprotectedarticle' => '사용자가 "[[$1]]" 문서를 보호 해제했습니다',
+'movedarticleprotection' => '사용자가 문서의 보호 설정을 "[[$2]]"에서 "[[$1]]"으로 옮겼습니다',
 'protect-title' => '"$1" 보호하기',
 'protect-title-notallowed' => '"$1" 문서의 보호 수준 보기',
 'prot_1movedto2' => '[[$1]] 문서를 [[$2]] 문서로 이동함',
@@ -2805,8 +2805,8 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 해당 사용자의 차단 기록은 다음과 같습니다:',
 'blocklog-showsuppresslog' => '이 사용자는 과거에 차단된 적이 있으며, 그 기록이 숨겨져 있습니다.
 해당 사용자의 차단 기록은 다음과 같습니다:',
-'blocklogentry' => '사용자가 [[$1]] 사용자를 $2 차단함 $3',
-'reblock-logentry' => '사용자가 [[$1]] 사용자의 차단 기간을 $2(으)로 바꿈 $3',
+'blocklogentry' => '사용자가 [[$1]] 사용자를 $2 차단했습니다 $3',
+'reblock-logentry' => '사용자가 [[$1]] 사용자의 차단 기간을 $2(으)로 바꾸었습니다 $3',
 'blocklogtext' => '이 목록은 사용자 차단/차단 해제 기록입니다.
 자동으로 차단된 IP 주소는 여기에 나오지 않습니다.
 [[Special:BlockList|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
@@ -4086,8 +4086,8 @@ $5
 'sqlite-no-fts' => '$1 (본문은 찾기에서 제외)',
 
 # New logging system
-'logentry-delete-delete' => '$1 사용자가 $3 문서를 삭제하였습니다.',
-'logentry-delete-restore' => '$1 사용자가 $3 문서를 복구하였습니다.',
+'logentry-delete-delete' => '$1 사용자가 $3 문서를 삭제했습니다.',
+'logentry-delete-restore' => '$1 사용자가 $3 문서를 복구했습니다.',
 'logentry-delete-event' => '$1 사용자가 $3의 기록 $5개에 대해 보이기 설정을 바꾸었습니다: $4',
 'logentry-delete-revision' => '$1 사용자가 $3 문서의 {{PLURAL:$5|$5개 편집}}의 설정을 바꾸었습니다: $4',
 'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 보이기 설정을 바꾸었습니다.',

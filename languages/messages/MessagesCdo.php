@@ -215,9 +215,6 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 # Login and logout pages
 'logouttext' => "'''Nṳ̄ hiêng-câi láuk-chók lāu.'''
 Nṳ̄ â̤-sāi sāi mò̤-miàng huŏng-sék gié-sṳ̆k găk {{SITENAME}} gè̤-dēng láuk, nṳ̄ iâ â̤-sāi sāi dè̤ng-iông gì dióng-hô̤ hĕ̤k-ciā bĕk-nó̤h bĭk dióng-hô̤ gái láuk-diē. Diŏh gé lā̤, nṳ̄ báuk-lāng-ké ká̤-chṳ̄ (''browser cache'') nâ mò̤ tĕ̤ng táh gó̤ uâ, ô gì hiĕk giăng â̤ hiēng-sê nṳ̄ gó muôi láuk-chók.",
-'welcomecreation' => '== Huăng-ngìng guŏng-lìng, $1! ==
-
-Nṳ̄ gì dióng-hô̤ ī-gĭng kŭi hō̤ lāu. Dāng nṳ̄ â̤-sāi siŭ-gāi nṳ̄ găk {{SITENAME}} gì siék-diâng.',
 'yourname' => 'Ê̤ṳng-hô-miàng',
 'yourpassword' => 'Mĭk-mā',
 'yourpasswordagain' => 'Dṳ̀ng-sĭng páh diē mĭk-mā',
@@ -604,8 +601,6 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Gáng-sê...',
-
-'enotif_newpagetext' => 'Cuòi sê sĭng hiĕk.',
 
 # Delete
 'deletepage' => 'Chēng hiĕk',

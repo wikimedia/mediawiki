@@ -89,13 +89,14 @@ $messages = array(
 'about' => 'Iwwer',
 'newwindow' => '(werd im e naie Fenschter uffgmacht)',
 'cancel' => 'Abbreche',
-'mytalk' => 'Gebabbel mit dir',
+'mytalk' => 'Dischbediere',
 'navigation' => 'Nawigadzion',
 
 # Cologne Blue skin
 'qbfind' => 'Finne',
 'qbedit' => 'Bearwaide',
 'qbmyoptions' => 'Mai Saide',
+'faq' => 'Ofd gschdeldi Froche',
 
 # Vector skin
 'vector-action-delete' => 'Lesche',
@@ -149,7 +150,7 @@ $messages = array(
 'copyright' => 'Was do drin schdeht isch unner $1 verfiechbar.',
 'copyrightpage' => '{{ns:project}}:Urhewerrecht',
 'currentevents' => 'Was grad so bassierd isch',
-'currentevents-url' => 'Brojegd: Leschdi Eraigniss',
+'currentevents-url' => 'Project: Leschdi Eraigniss',
 'disclaimers' => 'Hafdungsausschluß',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Hilf fer s Bearwaide',
@@ -194,13 +195,14 @@ $messages = array(
 'nstab-category' => 'Kadegorie',
 
 # General errors
-'missing-article' => 'De Text fer „$1“ $2 isch in de Datebank nit gfunne worre.
+'missing-article' => "De Text fer „$1“ $2 isch inde Daadebong'g nit gfunne worre.
 
-Normalerwais hääßt des, dass die Said gleschd worre isch.
+Normalerwais hääßd des, dass die Said gleschd worre isch.
 
-Wenn s des nit isch, hoscht villaicht en Fehler in de Datebank gfunne.
-Bitte meld des an e [[Special:ListUsers/sysop|Adminischtrator]], un gebb d URL dezu aa.',
+Wenns des nit isch, hoschd villaischd en Fehler in de Daadebong'g gfunne.
+Bidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebb d URL dezu aa.",
 'missingarticle-rev' => '(Versionsnummer#: $1)',
+'badtitle' => 'Schleschde Didl',
 'badtitletext' => 'De Titel vun de aageforderte Said isch nid giltich, leer, odder e nid giltiche Link vun eme annere Wiki.
 S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid gebraucht werre därfe.',
 'viewsource' => 'Quelltekschd betrachde',
@@ -295,7 +297,9 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'revdelete-radio-set' => 'Ja',
 'revdelete-radio-unset' => 'Nä',
 'revdelete-submit' => 'Uff die aussgewählt {{PLURAL:$1|Version|Versione}} owende',
-'revdel-restore' => 'Sichtbarkeit ännere',
+'revdel-restore' => 'Sischdbakaid ännere',
+'revdel-restore-deleted' => 'gleschdi Änarunge',
+'revdel-restore-visible' => 'sischdbari Änarunge',
 
 # Merge log
 'revertmerge' => 'Zammefiehrung rickgängich mache',
@@ -316,6 +320,8 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'notextmatches' => 'Kää Iwwerainstimmunge mit Inhalde',
 'prevn' => 'voriche {{PLURAL:$1|$1}}',
 'nextn' => 'negschte {{PLURAL:$1|$1}}',
+'prevn-title' => 'Frijari $1 {{PLURAL:$1|result|Ergewnis}}',
+'nextn-title' => 'Negschdi $1 {{PLURAL:$1|result|Ergewnis}}',
 'viewprevnext' => 'Gugg ($1 {{int:pipe-separator}} $2) ($3)',
 'searchprofile-everything' => 'Alles',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Word|$2 Wärder}})',
@@ -338,7 +344,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 
 # Preferences page
 'preferences' => 'Optione',
-'mypreferences' => 'Mai Aistellunge',
+'mypreferences' => 'Oistellunge',
 'saveprefs' => 'Oischdellunge schbeichere',
 'resetprefs' => 'Oischdellunge verwerfe',
 'guesstimezone' => 'Aus em Browser iwwernemme',
@@ -369,6 +375,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'recentchanges' => 'Was zuletschd gemachd worre isch',
 'recentchanges-legend' => 'Optione vun de Aazaich',
 'recentchanges-feed-description' => 'Di letschte Ännerunge vun {{SITENAME}} in des Feed aigewwe.',
+'recentchanges-label-minor' => "S'ische glänni Beawaidung",
 'rcnote' => "Aagezaicht {{PLURAL:$1|werd '''1''' Ännerung|werre die letschte '''$1''' Ännerunge}} {{PLURAL:$2|vum letschte Dach|in de letschte '''$2''' Dache}} (Stand: $4, $5)",
 'rclistfrom' => 'Zeich die letschte Ännerunge ab $1',
 'rcshowhideminor' => 'Klenne Ännerunge $1',
@@ -401,6 +408,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'upload' => 'Nufflade',
 'uploadbtn' => 'Datei hochlade',
 'uploadlogpage' => 'Dateie-Logbuch',
+'filedesc' => 'Zommefassung',
 'savefile' => 'Datei schbeichere',
 'uploadedimage' => 'hot „[[$1]]“ hochglade',
 
@@ -418,7 +426,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'filehist-help' => 'Drick uff e Zaidpunkt zum aazääche, wie s dort ausgsähne hot.',
 'filehist-revert' => 'zuriggsedze',
 'filehist-current' => 'aktuell',
-'filehist-datetime' => 'Zaidpunkt',
+'filehist-datetime' => 'Zaidpungd',
 'filehist-thumb' => 'Vorschaubild',
 'filehist-thumbtext' => 'Vorschaubild fer Version vum $1',
 'filehist-user' => 'Benutzer',
@@ -485,7 +493,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 
 # Watchlist
 'watchlist' => 'Beowachdungslischd',
-'mywatchlist' => 'Mai Beowachdungslischd',
+'mywatchlist' => 'Beowachdungslischd',
 'addedwatchtext' => "Die Said \"[[:\$1]]\" isch zu Dainer [[Special:Watchlist|Beowachdungslischt]] zugefiecht worre.
 Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre doo aagezaicht, un d Said werd '''fett''' aagezaicht in de [[Special:RecentChanges|Letschte Ännerunge]] fer dass es ääfacher isch zum finne.",
 'removedwatchtext' => 'D Said "[[:$1]]" isch aus [[Special:Watchlist|Dainer Beowachdungslischt]] rausgenumme worre.',
@@ -508,7 +516,7 @@ Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre
 'delete-legend' => 'Lesche',
 'confirmdeletetext' => 'Du bisch debai e Said z lesche mid alle Versione.
 Bitte du bstätiche, dass Du des wllscht du, dass Du verstehsch, was des hääßt, un dass Du des machscht in Iwweraistimmung mit de [[{{MediaWiki:Policy-url}}|Richtline]].',
-'actioncomplete' => 'Aktion fertich',
+'actioncomplete' => 'Agtion ferdisch',
 'deletedtext' => '"$1" isch gelescht worre.
 Guck $2 fer e Lischt vun de letschte Leschunge.',
 'dellogpage' => 'Leschlogbuch',
@@ -551,6 +559,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'undelete' => 'Widderherschdelle',
 'undeletebtn' => 'Widderherschdelle',
 'undeletelink' => 'aagucke/wirrer herstelle',
+'undeleteviewlink' => 'Ogugge',
 'undeletereset' => 'Zuricksetze',
 'undelete-show-file-submit' => 'Ja',
 
@@ -562,7 +571,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 # Contributions
 'contributions' => 'Was der gemacht hot',
 'contributions-title' => 'Benutzerbaidräch vun $1',
-'mycontris' => 'Was isch gemacht hab',
+'mycontris' => 'Baidräsch',
 'contribsub2' => 'Fer $1 ($2)',
 'uctop' => '(aktuell)',
 'month' => 'un Monet (un frieher):',
@@ -667,8 +676,8 @@ Bitte duu se vun Hand zammefiehre.'''",
 'tooltip-pt-login' => 'Du kannscht Dich aamelde, awwer du muscht s nit',
 'tooltip-pt-logout' => 'Abmelde',
 'tooltip-ca-talk' => 'Iwwer d Inhaltssaid dischbediere',
-'tooltip-ca-edit' => 'Du kannscht die Said bearwaide.
-Bitte brauch de Vorschau-Knopp vor em Schbaichere',
+'tooltip-ca-edit' => 'Du kannschd die Said bearwaide.
+Bidde nemmde Vorschau-Knobb vorm Schbaischere',
 'tooltip-ca-addsection' => 'E naie Abschnitt aaleche',
 'tooltip-ca-viewsource' => 'Die Said isch gschitzt.
 Du kannscht awwer de Quelltext aagucke',

@@ -371,10 +371,6 @@ The grunds for this are: ''$2''.",
 
 Ye can continue to uise {{SITENAME}} namelessly, or ye can log in again as the same or as a different uiser.
 Mynd that some pages micht continue tae be displayed as if ye war aye loggit in, till ye clear yer brouser cache.",
-'welcomecreation' => '== Guid tae see ye, $1! ==
-
-Yer accoont haes been creatit.
-Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname' => 'Yer uiser name',
 'yourpassword' => 'Passwaird:',
 'yourpasswordagain' => 'Retype passwaird:',
@@ -1098,9 +1094,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatching' => 'Unwatchin...',
 
 'enotif_reset' => 'Merk aa pages visitit',
-'changed' => 'chynged',
-'created' => 'creatit',
-'enotif_subject' => '{{SITENAME}} page $PAGETITLE haes been $CHANGEDORCREATED bi $PAGEEDITOR',
 'enotif_lastvisited' => 'Hae a leuk at $1 for aa chynges sin yer last visit.',
 
 # Delete

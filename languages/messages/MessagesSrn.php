@@ -442,9 +442,6 @@ Fu san ede: ''$2''.",
 
 Yu kan tan kebroiki {{SITENAME}} sondro nen, noso yu kan psa kon baka leki a srefi noso wan tra kebroikiman.
 Sabi taki a kan gersi leki yu psa kon ete, te leki yu leygi a cache fu yu browser.",
-'welcomecreation' => '== Welkom, $1! ==
-Yu account meki now.
-No fergiti fu kenki den seti fu yu gi {{SITENAME}}.',
 'yourname' => 'Kebroikiman nen:',
 'yourpassword' => 'Psa wortu:',
 'yourpasswordagain' => 'Psa wortu ete wan leysi:',

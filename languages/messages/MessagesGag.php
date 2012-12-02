@@ -376,9 +376,6 @@ Yalvarêrız benneyiniz URL - i hem raport ediniz bunu bir [[Special:ListUsers/s
 # Login and logout pages
 'logouttext' => "Sessiyayı kapattınız.
 Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki <span class='plainlinks'>[$1 enidän sessiya açmaa]</span> (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.",
-'welcomecreation' => '== Hoş geldiniz $1! ==
-
-Esapınız açıldı. Unutmayın [[Special:Preferences|{{SITENAME}} preferences]] seçimnerin diiştirmää.',
 'yourname' => 'Kullanıcı adınız',
 'yourpassword' => 'Parol',
 'yourpasswordagain' => 'Parolu enidän yaz',

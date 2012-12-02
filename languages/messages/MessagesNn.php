@@ -679,7 +679,7 @@ Funksjonen oppgav inga årsak.',
 'viewsource-title' => 'Sjå kjelda til $1',
 'actionthrottled' => 'Handlinga vart stoppa',
 'actionthrottledtext' => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
-'protectedpagetext' => 'Denne sida er verna for å hindre endring.',
+'protectedpagetext' => 'Sida har vorte verna for å hindra endring eller andre handlingar.',
 'viewsourcetext' => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
 'viewyourtext' => "Du kan sjå og kopiera kjelda til '''endringane dine''' på sida:",
 'protectedinterface' => 'Denne sida inneheld tekst nytta av brukargrensesnittet for programvara på wikien, og er låst for å hindra hærverk.
@@ -2311,6 +2311,8 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'enotif_mailer' => '{{SITENAME}}-endringsmeldingssendar',
 'enotif_reset' => 'Merk alle sidene som vitja',
 'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
+'enotif_subject_deleted' => '{{SITENAME}}-sida $1 har vorte sletta av {{gender:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}}-sida $1 har vorte oppretta av {{gender:$2|$2}}',
 'enotif_lastvisited' => 'Sjå $1 for alle endringane sidan siste vitjing.',
 'enotif_lastdiff' => 'Sjå $1 for å sjå denne endringa.',
 'enotif_anon_editor' => 'anonym brukar $1',
@@ -3143,6 +3145,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 time|$1 timar}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagar}}',
 'ago' => '$1 sidan',
+'just-now' => 'akkurat no',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
@@ -3964,4 +3967,6 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
+# Unknown messages
+'svg-long-error' => 'Ugild SVG-fil: $1',
 );

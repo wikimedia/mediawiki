@@ -514,10 +514,6 @@ Givin orsøk er "\'\'$2\'\'".',
 'logouttext' => "'''Tú hevur nú ritað út.'''
 Tú kanst halda fram at brúka {{SITENAME}} sum dulnevndur, ella kanst tú <span class='plainlinks'>[\$1 logga á aftur]</span> sum sami ella sum annar brúkari. 
 Legg til merkis, at summar síður framvegis vera vístar, sum um tú enn vart loggaður á, til tú hevur reinsa tín brovsara fyri \"cache\".",
-'welcomecreation' => '== Vælkomin, $1! ==
-
-Tín konta er nú stovnað.
-Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}} innstillingar]].',
 'yourname' => 'Títt brúkaranavn:',
 'yourpassword' => 'Títt loyniorð:',
 'yourpasswordagain' => 'Skriva loyniorð umaftur:',
@@ -1764,9 +1760,7 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'watching' => 'Eftirlitir...',
 'unwatching' => 'Strikar eftirlit...',
 
-'enotif_newpagetext' => 'Hetta er ein nýggj síða.',
 'enotif_impersonal_salutation' => '{{SITENAME}}brúkari',
-'created' => 'stovnað',
 
 # Delete
 'deletepage' => 'Strika síðu',

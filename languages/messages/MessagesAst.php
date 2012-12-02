@@ -436,7 +436,7 @@ Consulta: $2',
 'actionthrottled' => 'Aición llendada',
 'actionthrottledtext' => 'Como midida anti-spam, nun se pue repetir esta aición munches vegaes en pocu tiempu, y trespasasti esi llímite.
 Por favor vuelvi intentalo nunos minutos.',
-'protectedpagetext' => 'Esta páxina ta candada pa torgar la so edición.',
+'protectedpagetext' => 'Esta páxina ta candada pa torgar ediciones y otres aiciones.',
 'viewsourcetext' => "Pues ver y copiar la fonte d'esta páxina:",
 'viewyourtext' => "Pues ver y copiar la fonte de '''les tos ediciones''' d'esta páxina:",
 'protectedinterface' => "Esta páxina proporciona'l testu de la interfaz del software d'esta wiki, y ta candada pa torgar abusos.
@@ -3029,6 +3029,7 @@ Al executalu pues comprometer el to sistema.",
 'hours' => '{{PLURAL:$1|$1 hora|$1 hores}}',
 'days' => '{{PLURAL:$1|$1 día|$1 díes}}',
 'ago' => 'hai $1',
+'just-now' => 'agora mesmo',
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:
@@ -3864,4 +3865,6 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
+# Unknown messages
+'svg-long-error' => 'Ficheru SVG inválidu: $1',
 );

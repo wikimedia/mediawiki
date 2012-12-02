@@ -435,8 +435,6 @@ $2',
 
 এ পরিস্থিতিত তি বেনাঙল {{SITENAME}} ব্যবহার করানি পারর, নাইলে আরাক নাঙল <span class='plainlinks'>[$1 বারো হমানি]</span> পারর।
 খিয়াল থ, কোন কোন পাতা তি আগর অংতাত আসত বুলিয়া দেখা দিতে পারে। অসারে ইলে তি ব্রাওজারর ক্যাশ সেঙকরে বেলা (clear browser cache)।",
-'welcomecreation' => '==সম্ভাষা, $1! ==
-তর একাউন্টহান হঙিল। তর [[Special:Preferences|{{SITENAME}} পছনহান]] সিলানি না পাহুরিস।',
 'yourname' => 'আতাকুরার নাংহান (Username)',
 'yourpassword' => 'খন্তাচাবিগ (password)',
 'yourpasswordagain' => 'খন্তাচাবিগ (password) আরাকমু ইকর',
@@ -1278,8 +1276,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'চা...',
 'unwatching' => 'নাউচা...',
-
-'changed' => 'পতেসে',
 
 # Delete
 'deletepage' => 'পাতাহান পুস',

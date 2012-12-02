@@ -166,7 +166,7 @@ $messages = array(
 
 'underline-always' => 'Все',
 'underline-never' => 'Нїґда',
-'underline-default' => 'Хосновати наставлїня переглядача',
+'underline-default' => 'Хосновати наставлїня переглядача або взгляду',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Тіп писма в едітачнім полю:',
@@ -251,8 +251,8 @@ $messages = array(
 'newwindow' => '(отворить ся в новім окнї)',
 'cancel' => 'Зрушыти',
 'moredotdotdot' => 'Детайлнїше…',
-'mypage' => 'Моя сторінка',
-'mytalk' => 'Моя діскузія',
+'mypage' => 'Сторінка',
+'mytalk' => 'Діскузія',
 'anontalk' => 'Діскузія к тїй IP-адресї',
 'navigation' => 'Навіґація',
 'and' => '&#32;і',
@@ -274,7 +274,7 @@ $messages = array(
 'vector-action-protect' => 'Всокотити',
 'vector-action-undelete' => 'Обновити',
 'vector-action-unprotect' => 'Змінити замок',
-'vector-simplesearch-preference' => 'Поволити росшырены пропозіції гляданя (лем взгляд Vector )',
+'vector-simplesearch-preference' => 'Поволити спрощене поле гляданя (лем взгляд Vector )',
 'vector-view-create' => 'Створити',
 'vector-view-edit' => 'Едітовати',
 'vector-view-history' => 'Видїти історію',
@@ -284,6 +284,7 @@ $messages = array(
 'namespaces' => 'Просторы назв',
 'variants' => 'Варіанты',
 
+'navigation-heading' => 'Навіґачне меню',
 'errorpagetitle' => 'Хыба',
 'returnto' => 'Навернутя до сторінкы «$1».',
 'tagline' => 'Матеріал з {{grammar:genitive|{{SITENAME}}}}',
@@ -491,12 +492,14 @@ $1',
 'viewsource-title' => 'Видїти жрідло сторінкы $1',
 'actionthrottled' => 'Акція была придушена',
 'actionthrottledtext' => 'Взглядом ку протиспамовым крокам не можете жадану акцію провести барз часто в короткім часї. Спробуйте то знову о пару мінут.',
-'protectedpagetext' => 'Тота сторінка была замкнута, также ся не дасть едітовати',
+'protectedpagetext' => 'Тота сторінка была замкнута, жебы не годен быв єй едітовати або інакше мінити.',
 'viewsourcetext' => 'Можете видїти і копіровати код той сторінкы:',
 'viewyourtext' => "Можете собі посмотрити і скопіровати жрідловый текст '''вашых змін''' той сторінкы:",
 'protectedinterface' => 'Тота сторінка є частёв інтрефейсу проґрамового забеспечіня той вікі і єй можуть едітовати лем адміністраторы проєкту.
 Жебы придати або змінити переклады, просиме хоснуйте [//translatewiki.net/ translatewiki.net], локалізачный проєкт MediaWiki.',
-'editinginterface' => "'''Увага:''' Едітуєте сторінку,котра є частинов текстового інтерфейсу. Зміны той сторінкы выкличуть зміну інтерфейсу про іншых хоснователїв. Про переклад увідомлїня хоснуйте [//translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проєкт, што ся занимає локалізаціёв MediaWiki.",
+'editinginterface' => "'''Позірь:''' Едітуєте сторінку,котра є частинов текстового інтерфейсу.
+Зміны той сторінкы выкличуть зміну інтерфейсу про іншых хоснователїв той вікі. 
+Додати ці змінити переклады на вшыткых вікі просиме хоснуйте [//translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проєкт, што ся занимать локалізаціов MediaWiki.",
 'sqlhidden' => '(SQL запрос скрытый)',
 'cascadeprotected' => 'Сторінка є замнкута, бо є вложена до  {{PLURAL:$1|наслїдуючой сторінкы замкнуты|наслїдуючіх сторінок замнкнутых|наслїдуючіх сторінок замнкнутых}} каскадовым замком:
 $2',
@@ -522,6 +525,9 @@ $2',
 'logouttext' => "'''Нынї сьте одголошеный(а).'''
 
 Можете продовжовати в анонімнім перезераню і едітації {{grammar:2sg|{{SITENAME}}}}, або ся можете <span class='plainlinks'>[$1 зясь приголосити]</span> як тот самый або як іншый хоснователь. Даякы сторінкы ся можуть зображовати як кібы сьте были дотеперь приголошены, покы не змажете кеш переглядача.",
+'welcomeuser' => 'Вітайте, $1!',
+'welcomecreation-msg' => 'Ваше конто было вытворене.
+Не забудьте змінити свої [[Special:Preferences|наставлїня {{grammar:2sg|{{SITENAME}}}}]].',
 'yourname' => 'Імя хоснователя:',
 'yourpassword' => 'Гесло:',
 'yourpasswordagain' => 'Повторяйте гесло:',
@@ -2317,7 +2323,7 @@ $1',
 # Contributions
 'contributions' => 'Приспівок хоснователя',
 'contributions-title' => 'Приспівок хоснователя $1',
-'mycontris' => 'Мої приспівкы',
+'mycontris' => 'Приспівкы',
 'contribsub2' => 'Приспівок $1 ($2)',
 'nocontribs' => 'Ненайджены жадны зміны за тыма крітеріями.',
 'uctop' => ' (послїдня)',
@@ -2358,7 +2364,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 напрямлїня',
 'whatlinkshere-hidetrans' => '$1 вложіня',
 'whatlinkshere-hidelinks' => '$1 одказы',
-'whatlinkshere-hideimages' => '$1 вложіня файлу',
+'whatlinkshere-hideimages' => '$1 одказ на файл',
 'whatlinkshere-filters' => 'Філтры',
 
 # Block/unblock

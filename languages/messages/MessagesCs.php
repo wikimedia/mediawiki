@@ -23,6 +23,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Mr. Richard Bolla
+ * @author Quinn
  * @author Ragimiri
  * @author Reaperman
  * @author Spiffyk
@@ -732,7 +733,7 @@ Dotaz: $2',
 'viewsource-title' => 'Zobrazení zdroje stránky $1',
 'actionthrottled' => 'Akce byla pozastavena',
 'actionthrottledtext' => 'Vzhledem k protispamovým opatřením nemůžete požadovanou akci provádět příliš častokrát v krátké době. Zkuste to znovu za několik minut.',
-'protectedpagetext' => 'Tato stránka byla zamčena, takže ji nelze editovat.',
+'protectedpagetext' => 'Tato stránka byla zamčena, aby se předešlo jejímu editování.',
 'viewsourcetext' => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'viewyourtext' => "Můžete si prohlédnout a zkopírovat zdrojový kód '''vašich změn''' této stránky:",
 'protectedinterface' => 'Tato stránka obsahuje text softwarového rozhraní a je zamčena kvůli prevenci zneužití.

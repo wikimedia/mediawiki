@@ -571,7 +571,7 @@ Consulta: $2',
 'viewsource-title' => 'Mostra la font per a $1',
 'actionthrottled' => 'Acció limitada',
 'actionthrottledtext' => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
-'protectedpagetext' => 'Aquesta pàgina està protegida per evitar modificacions.',
+'protectedpagetext' => "S'ha protegit la pàgina per evitar-hi modificacions.",
 'viewsourcetext' => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
 'viewyourtext' => "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
 'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
@@ -3056,6 +3056,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'hours' => '{{PLURAL:$1|$1 hora|$1 hores}}',
 'days' => '{{PLURAL:$1|$1 dia|$1 dies}}',
 'ago' => 'fa $1',
+'just-now' => 'ara mateix',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
@@ -3886,4 +3887,6 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
+# Unknown messages
+'svg-long-error' => 'El fitxer SVG no és vàlid: $1',
 );

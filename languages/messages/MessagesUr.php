@@ -428,8 +428,6 @@ Warning: Page may not contain recent updates.',
 'logouttext' => "'''اب آپ خارج ہوچکے ہیں'''
 
 آپ گمنام طور پر {{SITENAME}}  کا استعمال جاری رکھ سکتے ہیں، یا دوبارہ اسی نام یا مختلف نام سے <span class='plainlinks'>[$1 دوبارہ داخلِ نوشتہ]</span> بھی ہو سکتے ہیں۔  یہ یاد آوری کرلیجیۓ کہ کچھ صفحات ایسے نظر آتے رہیں گے کہ جیسے ابھی آپ خارج نہیں ہوئے ، جب تک آپ اپنے متصفح کا ابطن صاف نہ کردیں۔",
-'welcomecreation' => '== خوش آمدید، $1 ! ==
-آپ کا کھاتہ بنا دیا گیا ہے۔ اپنی [[Special:Preferences|{{SITENAME}} ترجیحات]] مرتب کرنا مت بھولئے گا.',
 'yourname' => 'اسمِ رکنیت',
 'yourpassword' => 'کلمۂ شناخت',
 'yourpasswordagain' => 'کلمۂ شناخت دوبارہ لکھیں',
@@ -1214,10 +1212,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'wlnote' => 'نیچےآخری $1 تبدیلیاں ہیں جو کے پیچھلے <b>$2</b> گھنٹوں میں کی گئیں۔',
 'wlshowlast' => 'دکھائیں آخری $1 گھنٹے $2 دن $3',
 'watchlist-options' => 'اختیارات برائے زیرِنظرفہرست',
-
-'enotif_newpagetext' => 'یہ نیا صفحہ ہے.',
-'changed' => 'تبدیل کردیاگیا',
-'created' => 'بنا دیا گیا',
 
 # Delete
 'deletepage' => 'صفحہ ضائع کریں',

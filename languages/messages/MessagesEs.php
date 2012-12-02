@@ -734,7 +734,7 @@ Consulta: $2',
 'viewsource-title' => 'Ver el código fuente de «$1»',
 'actionthrottled' => 'Acción bloqueada',
 'actionthrottledtext' => "Como medida contra el ''spam'', la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite. Por favor inténtalo de nuevo en unos minutos.",
-'protectedpagetext' => 'Esta página ha sido protegida para evitar su edición.',
+'protectedpagetext' => 'Esta página ha sido protegida para evitar su edición u otras acciones.',
 'viewsourcetext' => 'Puedes ver y copiar el código fuente de esta página:',
 'viewyourtext' => "Puedes ver y copiar el código de '''tus ediciones''' a esta página:",
 'protectedinterface' => 'Esta página proporciona el texto de la interfaz del software en este wiki, y está protegida para prevenir el abuso.

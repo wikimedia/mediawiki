@@ -396,9 +396,6 @@ $2',
 'virus-unknownscanner' => 'Baṅ urum anṭvayras:',
 
 # Login and logout pages
-'welcomecreation' => '== Johar $1! ==
-Amaḱ ekaunṭ do tearena.
-Amaḱ [[Special:Preferance {{SITENAME}} pạsindko]] thir dohoe lạgit́te alom hiṛińa.',
 'yourname' => 'Beoboharicaḱ ńutum',
 'yourpassword' => 'Uku namber',
 'yourpasswordagain' => 'Arhõ oku namber olme',
@@ -972,8 +969,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ńeloḱ kana...',
-
-'changed' => 'Bodolena',
 
 # Delete
 'deletepage' => 'Sakam get giḍikam',

@@ -410,9 +410,6 @@ nekorekta interlinguale od interwikale ligilo.',
 
 Vu povas durar uzante {{SITENAME}} anonimale, o vu povas <span class='plainlinks'>[$1 enirar itere]</span> kom la sama o diferenta uzanto.
 Atencez ke kelka pagini posible duras montresar semblante ke vu ne ekirus, til vu vakuigas la tempala-magazino di vua navigilo.",
-'welcomecreation' => '== Bonveno, $1! ==
-Vua konto kreesis.
-Voluntez, ne obliviez chanjor vua [[Special:Preferences|preferaji en {{SITENAME}}]].',
 'yourname' => 'Vua uzantonomo:',
 'yourpassword' => 'Pasovorto:',
 'yourpasswordagain' => 'Riskribez la pasovorto:',
@@ -1083,7 +1080,6 @@ Volutez kontrolar <strong>[[:$1]]</strong> se vu ne esas certa pri chanjar olu.
 'watching' => 'Surveyanta…',
 'unwatching' => 'Cesanta surveyar…',
 
-'enotif_newpagetext' => 'Ico esas nula pagino.',
 'enotif_impersonal_salutation' => 'Uzanto di {{SITENAME}}',
 'enotif_anon_editor' => 'anonima uzanto $1',
 

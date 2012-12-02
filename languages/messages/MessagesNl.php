@@ -733,8 +733,7 @@ Zoekopdracht: $2',
 'actionthrottledtext' => 'Als maatregel tegen spam is het aantal keren per tijdseenheid dat u deze handeling kunt verrichten beperkt.
 De limiet is overschreden.
 Probeer het over een aantal minuten opnieuw.',
-'protectedpagetext' => 'Deze pagina is beveiligd.
-Bewerken is niet mogelijk.',
+'protectedpagetext' => 'Deze pagina is beveiligd. Bewerken of andere handelingen zijn niet mogelijk.',
 'viewsourcetext' => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'viewyourtext' => "U kunt '''uw bewerkingen''' aan de brontekst van deze pagina bekijken en kopiëren:",
 'protectedinterface' => "Deze pagina bevat tekst voor berichten van de software op deze wiki en is beveiligd om misbruik te voorkomen.

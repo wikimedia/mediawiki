@@ -593,7 +593,7 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Туькlуьрун',
-'mypreferences' => 'Зи низамарунар',
+'mypreferences' => 'Zi tïķïrunar',
 'prefs-edits' => 'Дьузар хъувунрин кьадар',
 'prefsnologin' => 'Куьне гьахьнавач',
 'changepassword' => 'Парол дегишарун',

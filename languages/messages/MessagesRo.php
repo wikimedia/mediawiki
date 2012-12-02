@@ -678,7 +678,7 @@ Interogarea: $2',
 'actionthrottled' => 'Acțiune limitată',
 'actionthrottledtext' => 'Ca o măsură anti-spam, aveți permisiuni limitate în a efectua această acțiune de prea multe ori într-o perioadă scurtă de timp, iar dv. tocmai ați depășit această limită.
 Vă rugăm să încercați din nou în câteva minute.',
-'protectedpagetext' => 'Această pagină este protejată împotriva modificărilor.',
+'protectedpagetext' => 'Această pagină este protejată împotriva modificărilor sau a altor acțiuni.',
 'viewsourcetext' => 'Se poate vizualiza și copia conținutul acestei pagini:',
 'viewyourtext' => "Se poate vizualiza și copia conținutul '''modificărilor dumneavoastră''' efectuate asupra acestei pagini:",
 'protectedinterface' => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.

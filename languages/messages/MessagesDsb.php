@@ -531,7 +531,7 @@ Wótpšašanje: $2',
 'viewsource-title' => 'Žrědłowy tekst za $1 se woglědaś',
 'actionthrottled' => 'Akcije limitowane',
 'actionthrottledtext' => 'Ako napšawa pśeśiwo spamoju, móžoš toś tu akciju jano někotare raze we wěstym case wuwjasć. Sy toś ten limit dośěgnuł. Pšosym wopytaj za někotare minuty hyšći raz.',
-'protectedpagetext' => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
+'protectedpagetext' => 'Toś ten bok jo pśeśiwo wobźěłowanjeju abo drugim akcijam šćitany.',
 'viewsourcetext' => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'viewyourtext' => "Móžoš se žrědłowy tekst '''swójich změnow''' woglědaś a do toś togo bok kopěrowaś:",
 'protectedinterface' => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary na toś tom wikiju a šćita se, aby se znjewužywanjeju zadorało.

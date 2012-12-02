@@ -599,7 +599,7 @@ Pescuda: $2',
 'actionthrottled' => 'Acción limitada',
 'actionthrottledtext' => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite.
 Inténteo de novo nuns minutos.",
-'protectedpagetext' => 'Esta páxina foi protexida para evitar a edición.',
+'protectedpagetext' => 'Esta páxina foi protexida para evitar a edición e outras accións.',
 'viewsourcetext' => 'Pode ver e copiar o código fonte desta páxina:',
 'viewyourtext' => "Pode ver e copiar o código fonte '''das súas edicións''' nesta páxina:",
 'protectedinterface' => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.

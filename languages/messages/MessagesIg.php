@@ -440,9 +440,6 @@ Maka ikuwaria na asụsụ nke ozor, biko chetu I ji [//translatewiki.net/wiki/M
 
 I nwèríkí jíwá {{SITENAME}} na nke ẹnwéghi áhà, mànà Í nwèríkí <span class='plainlinks'>[$1 bátá òzọr]</span> na áhà Í shị fwüo ma áhà ozọr.
 Màkwá na o dị ihü gi zi kà Í nor kwa ímé, o gi kwüshí mgbe Í sáfùrù cache ihe ishi a gá intanet gi.",
-'welcomecreation' => '== Nnöö, $1! ==
-Okíkè buwa gi a guchala.
-E chefụkwạlạ I gbanwere [[Special:Preferences|{{SITENAME}} iheichọrọ]].',
 'yourname' => "Áhà ọ'bànifé:",
 'yourpassword' => 'Okwúngáfè:',
 'yourpasswordagain' => 'Detuari mkpurụ okwu ejị a gafẹ:',
@@ -1140,9 +1137,6 @@ Ihe gi gbanwe na ógè gi bya nà ihüá na ihü okwu ya gi di ndétu ngáhù, n
 'unwatching' => 'O mele ka o na á hü kwagi...',
 
 'enotif_impersonal_salutation' => "ọ'bànifé {{SITENAME}}",
-'changed' => 'gbanwere',
-'created' => 'kèrè',
-'enotif_subject' => 'Ihü {{SITENAME}} $PAGETITLE à gálá $CHANGEDORCREATED nà áká $PAGEEDITOR',
 'enotif_anon_editor' => "ọ'bànifé ézíghị ihu $1",
 
 # Delete
