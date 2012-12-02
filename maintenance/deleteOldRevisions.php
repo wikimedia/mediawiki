@@ -48,23 +48,19 @@ class DeleteOldRevisions extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
-		$tbl_pag = $dbw->tableName( 'page' );
-		$tbl_rev = $dbw->tableName( 'revision' );
-
-		$pageIdClause = '';
-		$revPageClause = '';
+		$pageIdClause = array();
+		$revPageClause = array();
 
 		# If a list of page_ids was provided, limit results to that set of page_ids
 		if ( sizeof( $args ) > 0 ) {
-			$pageIdList = implode( ',', $args );
-			$pageIdClause = " WHERE page_id IN ({$pageIdList})";
-			$revPageClause = " AND rev_page IN ({$pageIdList})";
-			$this->output( "Limiting to {$tbl_pag}.page_id IN ({$pageIdList})\n" );
+			$pageIdClause = array( 'page_id' => $args );
+			$revPageClause = array( 'rev_page' => $args );
+			$this->output( "Limiting to page IDs " . implode( ',', $args ) . "\n" );
 		}
 
 		# Get "active" revisions from the page table
 		$this->output( "Searching for active revisions..." );
-		$res = $dbw->query( "SELECT page_latest FROM $tbl_pag{$pageIdClause}" );
+		$res = $dbw->select( 'page', 'page_latest', $pageIdClause, __METHOD__ );
 		$cur = array();
 		foreach ( $res as $row ) {
 			$cur[] = $row->page_latest;
@@ -72,10 +68,12 @@ class DeleteOldRevisions extends Maintenance {
 		$this->output( "done.\n" );
 
 		# Get all revisions that aren't in this set
-		$old = array();
 		$this->output( "Searching for inactive revisions..." );
-		$set = implode( ', ', $cur );
-		$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_id NOT IN ( $set ){$revPageClause}" );
+		if ( $cur ) {
+			$revPageClause[] = 'rev_id NOT IN (' . $dbw->makeList( $cur ) . ')';
+		}
+		$res = $dbw->select( 'revision', 'rev_id', $revPageClause, __METHOD__ );
+		$old = array();
 		foreach ( $res as $row ) {
 			$old[] = $row->rev_id;
 		}
@@ -88,8 +86,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Delete as appropriate
 		if ( $delete && $count ) {
 			$this->output( "Deleting..." );
-			$set = implode( ', ', $old );
-			$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
+			$dbw->delete( 'revision', array( 'rev_id' => $old ), __METHOD__ );
 			$this->output( "done.\n" );
 		}
 
