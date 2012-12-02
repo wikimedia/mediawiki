@@ -3116,7 +3116,7 @@ $1',
 'blanknamespace'                => '(Main)',
 
 # Contributions
-'contributions'         => 'User contributions',
+'contributions'         => '{{GENDER:$1|User}} contributions',
 'contributions-summary' => '', # do not translate or duplicate this message to other languages
 'contributions-title'   => 'User contributions for $1',
 'mycontris'             => 'Contributions',
