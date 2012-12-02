@@ -795,6 +795,25 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.language.monthNames' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.monthNames.js',
+		'dependencies' => 'mediawiki.language',
+		'messages' => array(
+			'january-gen',
+			'february-gen',
+			'march-gen',
+			'april-gen',
+			'may-gen',
+			'june-gen',
+			'july-gen',
+			'august-gen',
+			'september-gen',
+			'october-gen',
+			'november-gen',
+			'december-gen'
+		)
+	),
+
 	/* MediaWiki Libs */
 
 	'mediawiki.libs.jpegmeta' => array(
