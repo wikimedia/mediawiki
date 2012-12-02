@@ -1242,7 +1242,8 @@ CREATE TABLE /*_*/logging (
   -- Freeform text. Interpreted as edit history comments.
   log_comment varchar(255) NOT NULL default '',
 
-  -- LF separated list of miscellaneous parameters
+  -- miscellaneous parameters:
+  -- LF separated list (old system) or serialized PHP array (new system)
   log_params blob NOT NULL,
 
   -- rev_deleted for logs
