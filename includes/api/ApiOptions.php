@@ -74,13 +74,36 @@ class ApiOptions extends ApiBase {
 		}
 
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
+
+		// Multiselect options are stored in the database with one key per
+		// option, each having a boolean value. Extract those keys.
+		$multiselectOptions = array();
+		foreach ( $prefs as $name => $info ) {
+			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
+					( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
+				$options = HTMLFormField::flattenOptions( $info['options'] );
+				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
+
+				foreach ( $options as $value ) {
+					$multiselectOptions["$prefix$value"] = true;
+				}
+
+				unset( $prefs[$name] );
+			}
+		}
+
 		foreach ( $changes as $key => $value ) {
-			if ( !isset( $prefs[$key] ) ) {
+			if ( isset( $prefs[$key] ) ) {
+				$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+				$validation = $field->validate( $value, $user->getOptions() );
+			} elseif( isset( $multiselectOptions[$key] ) ) {
+				// A key for a multiselect option.
+				$validation = true;
+				$value = (bool)$value;
+			} else {
 				$this->setWarning( "Not a valid preference: $key" );
 				continue;
 			}
-			$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
-			$validation = $field->validate( $value, $user->getOptions() );
 			if ( $validation === true ) {
 				$user->setOption( $key, $value );
 				$changed = true;
