@@ -323,9 +323,6 @@ $2',
 'ns-specialprotected' => '‘A‘ole hiki ke ho‘opololei i nā ‘ao‘ao kūikawā',
 
 # Login and logout pages
-'welcomecreation' => '== E komo mai, $1! ==
-Ua hoʻokumu ʻia kāu moʻokāki.
-Mai poina e hoʻololi i [[Special:Preferences|kāu makemake ma {{SITENAME}}]].',
 'yourname' => "Inoa mea ho'ohana",
 'yourpassword' => 'ʻŌlelo hūnā:',
 'yourpasswordagain' => "Hua'ōlelo huna hou",
@@ -661,8 +658,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ke kia‘i nei...',
 'unwatching' => 'Ke wehe nei i ke kiaʻi...',
-
-'changed' => 'ua loli ‘ia',
 
 # Delete
 'deletepage' => 'Kāpae ʻaoʻao',

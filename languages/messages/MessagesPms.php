@@ -3633,8 +3633,8 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'specialpages-group-pages' => 'Liste ëd pàgine',
 'specialpages-group-pagetools' => 'Utiss për le pàgine',
 'specialpages-group-wiki' => 'Dat e utiss ëd la wiki',
-'specialpages-group-redirects' => 'Pàgine speciaj ëd rediression',
-'specialpages-group-spam' => 'Utiss contra lë spam',
+'specialpages-group-redirects' => 'Pàgine speciaj ëd ridiression',
+'specialpages-group-spam' => 'Utiss contra la rumenta',
 
 # Special:BlankPage
 'blankpage' => 'Pàgina bianca',

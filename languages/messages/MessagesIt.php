@@ -643,7 +643,7 @@ Query: $2',
 'viewsource-title' => 'Visualizza sorgente di $1',
 'actionthrottled' => 'Azione ritardata',
 'actionthrottledtext' => "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che in questo caso è stato superato. Si prega di riprovare tra qualche minuto.",
-'protectedpagetext' => 'Questa pagina è stata protetta per impedirne la modifica.',
+'protectedpagetext' => 'Questa pagina è stata protetta per impedirne la modifica o altre operazioni.',
 'viewsourcetext' => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'viewyourtext' => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
 'protectedinterface' => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software di questo sito ed è protetta per evitare possibili abusi.

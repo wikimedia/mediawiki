@@ -234,7 +234,7 @@ S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid 
 'nowiki_tip' => 'Wiki-Formatierunge ignoriere',
 'image_tip' => 'Bildverwais',
 'media_tip' => 'Dateilink',
-'sig_tip' => 'Dai Unnerschrift mit ener Zaitaagab',
+'sig_tip' => 'Dai Unnerschrifd mid ener Zaidaagab',
 'hr_tip' => 'Horizontale Linie (sparsam verwenne)',
 
 # Edit pages
@@ -377,7 +377,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'recentchanges-feed-description' => 'Di letschte Ännerunge vun {{SITENAME}} in des Feed aigewwe.',
 'recentchanges-label-minor' => "S'ische glänni Beawaidung",
 'rcnote' => "Aagezaicht {{PLURAL:$1|werd '''1''' Ännerung|werre die letschte '''$1''' Ännerunge}} {{PLURAL:$2|vum letschte Dach|in de letschte '''$2''' Dache}} (Stand: $4, $5)",
-'rclistfrom' => 'Zeich die letschte Ännerunge ab $1',
+'rclistfrom' => 'Zeich die ledschde Ännerunge ab $1',
 'rcshowhideminor' => 'Klenne Ännerunge $1',
 'rcshowhidebots' => 'Bots $1',
 'rcshowhideliu' => 'Aagemeldte Benutzer $1',
@@ -392,7 +392,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'newpageletter' => 'N',
 'boteditletter' => 'B',
 'rc-enhanced-expand' => "Details zaische (dodezu braucht's JavaScript)",
-'rc-enhanced-hide' => 'Details versteckeln',
+'rc-enhanced-hide' => 'Dedails versdeckle',
 
 # Recent changes linked
 'recentchangeslinked' => 'Was on verlinkde Saide gemacht worre isch',
@@ -688,7 +688,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-ca-watch' => 'Die Said zu Dainere Beowachdungslischt zufieche',
 'tooltip-ca-unwatch' => 'Die Said aus Dainer Beowachdunschlischde rausnemme',
 'tooltip-search' => 'Durchsuch {{SITENAME}}',
-'tooltip-search-go' => 'Geh zu ere Said mit genää dem Namme, wenn s se gebbt',
+'tooltip-search-go' => 'Geh zu ere Said mid genää dem Namme, wenn s se gebbt',
 'tooltip-search-fulltext' => 'Such in de Said nochm Tegschd',
 'tooltip-p-logo' => 'Haubdsaid',
 'tooltip-n-mainpage' => 'Uff d Hääptsaid geh',
@@ -702,7 +702,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-t-recentchangeslinked' => 'Letschde Ännerunge in Saide, wu vun do verlinkt sin',
 'tooltip-feed-rss' => 'RSS feed fer die Said',
 'tooltip-feed-atom' => 'Atom feed fer die Said',
-'tooltip-t-contributions' => 'Die letschte Baidräch vun däm Benutzer aagucke',
+'tooltip-t-contributions' => 'Die ledschde Baidräch vun däm Benudzer aagucke',
 'tooltip-t-emailuser' => 'Dem Benutzer e E-Mail schicke',
 'tooltip-t-upload' => 'Dateije nufflade',
 'tooltip-t-specialpages' => 'Lischd vun alle Schbezialsaide',
@@ -748,8 +748,8 @@ Annere Links in der glaiche Zail werre als Ausnahme behanneld, d. h. Saide, wu d
 
 # Metadata
 'metadata' => 'Metadata',
-'metadata-help' => 'Die Datei hot waitere Informatione, wahrschainlich vun de Digitalkamera oder vum Scanner, mit dem wu sie gmacht worre sinn.
-Wenn die Datei verännert worre isch, dann kann s sai, dass die zusätzlich Information fer die verännert Datei nimmi richtich isch.',
+'metadata-help' => 'Die Dadei hot waidere Informatione, wahrschainlich vun de Digidalkamera oder vum Scanner, mid dem wu sie gmacht worre sinn.
+Wenn die Dadei verännerd worre isch, dann kann s sai, dass die zusädzlich Information fer die verännert Dadei nimmi richdisch isch.',
 'metadata-expand' => 'Erwaiterte Details aazaiche',
 'metadata-collapse' => 'Erwaiterte Details versteckeln',
 'metadata-fields' => 'Die EXIF-Medadaade werren inde Bild-Bschraiwung a ogzaischd, wonn die Medadaade-Tabelle verschdegld isch.

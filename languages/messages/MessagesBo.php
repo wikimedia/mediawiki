@@ -701,9 +701,6 @@ $messages = array(
 'unwatching' => 'ལྟ་ཐོ་ལས་འདོར་བཞིན་པ་་་',
 
 'enotif_reset' => 'ཤོག་ངོས་ཚང་མ་བལྟས་ཟིན་དུ་རྟགས་རྒྱོབ།',
-'enotif_newpagetext' => 'ཤོག་ངོས་འདི་གསར་བ་རེད།',
-'changed' => 'བསྒྱུར་ཟིན།',
-'created' => 'བཟོས་ཟིན།',
 
 # Delete
 'deletepage' => 'ཤོག་ངོས་འདོར་བ།',

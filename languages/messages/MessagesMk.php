@@ -2670,7 +2670,7 @@ $1',
 'blanknamespace' => '(Главен)',
 
 # Contributions
-'contributions' => 'Кориснички придонеси',
+'contributions' => '{{GENDER:$1|Кориснички}} придонеси',
 'contributions-title' => 'Придонеси на корисникот $1',
 'mycontris' => 'Придонеси',
 'contribsub2' => 'За $1 ($2)',

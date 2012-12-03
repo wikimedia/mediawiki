@@ -687,9 +687,6 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 'watching' => 'Oserva...',
 'unwatching' => 'No oserva...',
 
-'enotif_newpagetext' => 'Esta es un paje nova',
-'created' => 'Creada',
-
 # Delete
 'deletepage' => 'Sutrae la paje',
 'confirm' => 'Aproba',

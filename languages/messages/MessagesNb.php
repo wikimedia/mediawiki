@@ -482,6 +482,7 @@ $messages = array(
 'namespaces' => 'Navnerom',
 'variants' => 'Varianter',
 
+'navigation-heading' => 'Navigasjonsmeny',
 'errorpagetitle' => 'Feil',
 'returnto' => 'Tilbake til $1.',
 'tagline' => 'Fra {{SITENAME}}',
@@ -690,7 +691,7 @@ Spørring: $2',
 'viewsource-title' => 'Vis kilden til $1',
 'actionthrottled' => 'Handlingsgrense overskredet',
 'actionthrottledtext' => 'For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.',
-'protectedpagetext' => 'Denne siden har blitt låst for redigeringer.',
+'protectedpagetext' => 'Denne siden har blitt låst for endringer.',
 'viewsourcetext' => 'Du kan se og kopiere kilden til denne siden:',
 'viewyourtext' => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
 'protectedinterface' => 'Denne siden fremskaffer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
@@ -724,6 +725,9 @@ Administrators nærmere begrunnelse: «$3».',
 
 Du kan fortsette å bruke {{SITENAME}} anonymt, eller <span class='plainlinks'>[$1 logge inn igjen]</span> som samme eller en annen bruker.
 Merk at noen sider kan vise at du fortsatt er logget inn fram til du tømmer mellomlageret i nettleseren.",
+'welcomeuser' => 'Velkommen, $1!',
+'welcomecreation-msg' => 'Kontoen din har blitt opprettet.
+Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.',
 'yourname' => 'Brukernavn:',
 'yourpassword' => 'Passord:',
 'yourpasswordagain' => 'Gjenta passord',
@@ -1855,6 +1859,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-notsame' => 'En ikke-identisk fil finnes allerede på $1.',
 'backend-fail-invalidpath' => '$1 er ikke en gyldig lagringsbane.',
 'backend-fail-delete' => 'Kunne ikke slette filen $1.',
+'backend-fail-describe' => 'Kunne ikke endre metadata for filen «$1».',
 'backend-fail-alreadyexists' => 'Filen $1 finnes allerede.',
 'backend-fail-store' => 'Kunne ikke lagre filen $1 på $2.',
 'backend-fail-copy' => 'Kunne ikke kopiere filen $1 til $2.',
@@ -2357,15 +2362,22 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'enotif_mailer' => '{{SITENAME}}s påminnelsessystem',
 'enotif_reset' => 'Merk alle sider som besøkt',
 'enotif_impersonal_salutation' => '{{SITENAME}}-bruker',
+'enotif_subject_deleted' => '{{SITENAME}}-siden $1 har blitt slettet av {{gender:$2|$2}}',
+'enotif_subject_created' => '{{SITENAME}}-siden $1 har blitt opprettet av {{gender:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}}-siden $1 har blitt flyttet av {{gender:$2|$2}}',
+'enotif_subject_restored' => '{{SITENAME}}-siden $1 har blitt gjenopprettet av {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}}-siden $1 har blitt endret av {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => '{{SITENAME}}-siden $1 ble slettet $PAGEEDITDATE av {{gender:$2|$2}}. Se $3 for den nåværende versjonen.',
+'enotif_body_intro_created' => '{{SITENAME}}-siden $1 ble opprettet $PAGEEDITDATE av {{gender:$2|$2}}. Se $3 for den nåværende versjonen.',
+'enotif_body_intro_moved' => '{{SITENAME}}-siden $1 ble flyttet $PAGEEDITDATE av {{gender:$2|$2}}. Se $3 for den nåværende versjonen.',
+'enotif_body_intro_restored' => '{{SITENAME}}-siden $1 ble gjenopprettet $PAGEEDITDATE av {{gender:$2|$2}}. Se $3 for den nåværende versjonen.',
+'enotif_body_intro_changed' => '{{SITENAME}}-siden $1 ble endret $PAGEEDITDATE av {{gender:$2|$2}}. Se $3 for den nåværende versjonen.',
 'enotif_lastvisited' => 'Se $1 for alle endringer siden ditt forrige besøk.',
 'enotif_lastdiff' => 'Se $1 for å se denne endringen.',
 'enotif_anon_editor' => 'anonym bruker $1',
 'enotif_body' => 'Kjære $WATCHINGUSERNAME,
 
-
-{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED den $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende revisjonen.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Redigeringssammendrag: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -3210,6 +3222,7 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'hours' => '{{PLURAL:$1|$1 time|$1 timer}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dager}}',
 'ago' => '$1 siden',
+'just-now' => 'nettopp',
 
 # Bad image list
 'bad_image_list' => 'Formatet er som følger:
@@ -3979,9 +3992,9 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-move-move_redir-noredirect' => '$1 flyttet siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
 'logentry-patrol-patrol' => '$1 markerte revisjon $4 av siden $3 som patruljert',
 'logentry-patrol-patrol-auto' => '$1 markerte automatisk revisjon $4 av siden $3 som patruljert',
-'logentry-newusers-newusers' => '$1 opprettet en brukerkonto',
-'logentry-newusers-create' => '$1 opprettet en brukerkonto',
-'logentry-newusers-create2' => '$1 opprettet en brukerkonto $3',
+'logentry-newusers-newusers' => 'Kontoen $1 ble opprettet',
+'logentry-newusers-create' => 'Kontoen $1 ble opprettet',
+'logentry-newusers-create2' => 'Kontoen $3 ble opprettet av $1',
 'logentry-newusers-autocreate' => 'Konto $1 ble opprettet automatisk',
 'newuserlog-byemail' => 'passord sendt på e-post',
 
@@ -4057,4 +4070,6 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'svg-long-error' => 'Ugyldig SVG-fil: $1',
 );

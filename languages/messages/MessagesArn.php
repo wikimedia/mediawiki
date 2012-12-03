@@ -663,9 +663,7 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'watching' => 'Llaytumekey...',
 'unwatching' => 'Llaytumekewelay...',
 
-'enotif_newpagetext' => 'Tüfachi ta we pakina',
 'enotif_impersonal_salutation' => '{{SITENAME}} kellufe',
-'created' => 'Llituy',
 
 # Delete
 'deletepage' => 'Ñamümün tüfachi pakina',

@@ -393,9 +393,6 @@ Podet èsser stadu burradu dae calicunu àteru.',
 
 Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes <span class='plainlinks'>[$1 identificare torra]</span> comente su de prima o comente usuàriu diferente.
 Tene contu ca is pàginas ki sunt giai abertas in àteras bentanas podent sighire a pàrrer comente cando fias identificadu, fintzas a cando non ddas renfriscas.",
-'welcomecreation' => "== Benènnidu, $1! ==
-S'account tuo est istadu creadu.
-No iscaressa de personalizare sas [[Special:Preferences|preferèntzias de {{SITENAME}}]].",
 'yourname' => 'Nùmene usuàriu',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Repite sa password:',
@@ -1066,9 +1063,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'watching' => 'Giunghende a sa watchlist...',
 'unwatching' => 'Boghende dae sa watchlist...',
 
-'enotif_newpagetext' => 'Custa est una pàgina noa.',
 'enotif_impersonal_salutation' => 'Usuàriu de {{SITENAME}}',
-'created' => 'creada',
 
 # Delete
 'deletepage' => 'Fùlia pàgina',

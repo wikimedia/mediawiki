@@ -262,9 +262,6 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 
 E lava te ke hoko atu ʻo ngāueʻaki he {{SITENAME}} tatau mo e ʻetita taʻehingoa, pe te ke kau-ki-ai mo e hingoa tatau pe hingoa kehe.
 Tokanga, mahalo pē ʻe ʻi ai ha ngaahi peesi ʻoku ʻasi ko koe kei kau-ki-ai aʻu ki he taimi te ke fakaʻatā ʻa e fafaʻo fakapalausa.",
-'welcomecreation' => '== Tali fiefia, $1! ==
-
-Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{SITENAME}}.',
 'yourname' => 'Hingoa ʻetita',
 'yourpassword' => 'Leatapu',
 'yourpasswordagain' => 'Toe ʻai leatapu',
@@ -780,10 +777,6 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'ʻOku leʻo...',
 'unwatching' => 'ʻOku taʻeleʻo...',
-
-'enotif_newpagetext' => 'Ko e peesi foʻou ia.',
-'changed' => 'ʻosi liliu',
-'created' => 'kuo fakatupu',
 
 # Delete
 'deletepage' => 'Tāmateʻi peesi',

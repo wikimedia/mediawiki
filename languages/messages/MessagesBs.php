@@ -413,7 +413,7 @@ $messages = array(
 'cancel' => 'Poništite',
 'moredotdotdot' => 'Još...',
 'mypage' => 'Moja stranica',
-'mytalk' => 'Moj razgovor',
+'mytalk' => 'Razgovor',
 'anontalk' => 'Razgovor za ovu IP adresu',
 'navigation' => 'Navigacija',
 'and' => '&#32;i',
@@ -1341,7 +1341,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 
 # Preferences page
 'preferences' => 'Podešavanja',
-'mypreferences' => 'Moje postavke',
+'mypreferences' => 'Postavke',
 'prefs-edits' => 'Broj izmjena:',
 'prefsnologin' => 'Niste prijavljeni',
 'prefsnologintext' => 'Da biste mogli podešavati korisnička podešavanja, morate <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} biti prijavljeni]</span>.',
@@ -2251,7 +2251,7 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 
 # Watchlist
 'watchlist' => 'Moji praćeni članci',
-'mywatchlist' => 'Moji praćeni članci',
+'mywatchlist' => 'Praćeni članci',
 'watchlistfor2' => 'Za $1 $2',
 'nowatchlist' => 'Nemate ništa na svom spisku praćenih članaka.',
 'watchlistanontext' => 'Molimo da $1 da možete vidjeti ili urediti stavke na Vašem spisku praćenja.',
@@ -2507,7 +2507,7 @@ $1',
 # Contributions
 'contributions' => 'Doprinosi korisnika',
 'contributions-title' => 'Doprinosi korisnika $1',
-'mycontris' => 'Moj doprinos',
+'mycontris' => 'Doprinos',
 'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
 'uctop' => ' (vrh)',
@@ -2547,7 +2547,7 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'whatlinkshere-hideredirs' => '$1 preusmjerenja',
 'whatlinkshere-hidetrans' => '$1 uključenja',
 'whatlinkshere-hidelinks' => '$1 linkove',
-'whatlinkshere-hideimages' => '$1 linkove slika',
+'whatlinkshere-hideimages' => 'Veze do datoteke $1',
 'whatlinkshere-filters' => 'Filteri',
 
 # Block/unblock

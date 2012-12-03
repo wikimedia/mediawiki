@@ -706,9 +706,7 @@ Paesswatt fer nau: $2',
 'watching' => 'Watsche…',
 'unwatching' => 'Nimmi watsche...',
 
-'enotif_newpagetext' => 'Sell iss en neies Blatt.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Yuuser',
-'changed' => 'gennert',
 
 # Delete
 'deletepage' => 'Blatt lesche',

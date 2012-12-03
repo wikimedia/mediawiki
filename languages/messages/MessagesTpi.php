@@ -653,11 +653,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'unwatching' => 'Wet liklik, i raus nau long lukautbuk...',
 
 'enotif_reset' => 'Makim olgeta pes olsem mi lukim pinis',
-'enotif_newpagetext' => 'Dispela emi nupela pes.',
 'enotif_impersonal_salutation' => 'yusa long {{SITENAME}}',
-'changed' => 'i senisim',
-'created' => 'i kirapim',
-'enotif_subject' => '$PAGEEDITOR $CHANGEDORCREATED pes $PAGETITLE long {{SITENAME}}',
 'enotif_anon_editor' => 'IP yusa $1',
 
 # Delete

@@ -422,9 +422,6 @@ Li motive dat es "\'\'$2\'\'".',
 'logouttext' => "'''Vu ha terminat vor session.'''
 Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse <span class='plainlinks'>[$1 aperter un session denov]</span> quam li sam usator o quam un diferent usator.
 Nota que alcun págines posse continuar esser monstrat quam si vu esset registrat, til que vu vacua li cache de tui navigator.",
-'welcomecreation' => '== Benevenit, $1! == 
-Tui conto hat esset creat. 
-Ne oblivia de mutar tui [[Special:Preferences|preferenties de {{SITENAME}}]].',
 'yourname' => 'Nómine de usator:',
 'yourpassword' => 'Parol-clave:',
 'yourpasswordagain' => 'Parol-clave denov:',
@@ -1012,8 +1009,6 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Vigilant...',
 'unwatching' => 'Desvigilant...',
-
-'created' => 'creat',
 
 # Delete
 'deletepage' => 'Deleter págine',

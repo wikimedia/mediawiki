@@ -297,9 +297,6 @@ Lista ida pájina espesiál nian [[Special:SpecialPages|iha ne'e]].",
 'ns-specialprotected' => 'La ema ida bele edita pájina espesiál sira.',
 
 # Login and logout pages
-'welcomecreation' => "== Loron di'ak, $1! ==
-Agora Ita iha konta iha ne'e.
-La haluha muda Ita-nia [[Special:Preferences|preferénsia]].",
 'yourname' => "Naran uza-na'in:",
 'login' => 'Log in',
 'nav-login-createaccount' => 'Log in / kriar konta ida',
@@ -660,11 +657,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'watching' => 'Hateke...',
 'unwatching' => 'La hateke...',
 
-'enotif_newpagetext' => "Ne'e pájina foun.",
 'enotif_impersonal_salutation' => "Uza-na'in {{SITENAME}} nian",
-'changed' => 'muda ona',
-'created' => 'kria ona',
-'enotif_subject' => '$PAGEEDITOR $CHANGEDORCREATED pájina $PAGETITLE iha {{SITENAME}}',
 
 # Delete
 'deletepage' => 'Halakon pájina',

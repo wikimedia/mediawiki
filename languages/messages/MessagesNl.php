@@ -2694,7 +2694,7 @@ $1',
 'blanknamespace' => '(Hoofdnaamruimte)',
 
 # Contributions
-'contributions' => 'Gebruikersbijdragen',
+'contributions' => '{{GENDER:$1|Gebruikersbijdragen}}',
 'contributions-title' => 'Bijdragen van $1',
 'mycontris' => 'Bijdragen',
 'contribsub2' => 'Voor $1 ($2)',

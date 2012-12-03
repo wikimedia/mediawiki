@@ -2656,7 +2656,7 @@ $1',
 'blanknamespace' => '(Основний)',
 
 # Contributions
-'contributions' => 'Внесок користувача',
+'contributions' => 'Внесок {{GENDER:$1|користувача|користувачки}}',
 'contributions-title' => 'Внесок користувача $1',
 'mycontris' => 'Внесок',
 'contribsub2' => 'Внесок $1 ($2)',
