@@ -252,7 +252,7 @@ class DjVuImage {
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
 			wfDebug( __METHOD__.": $cmd\n" );
 			$retval = '';
-			$txt = wfShellExec( $cmd, $retval );
+			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => 300000 ) );
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
 				# Strip some control characters
