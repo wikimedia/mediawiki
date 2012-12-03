@@ -321,9 +321,10 @@ abstract class DatabaseUpdater {
 		foreach( $updates as $funcList ) {
 			$func = $funcList[0];
 			$arg = $funcList[1];
+			$origParams = $funcList[2];
 			$ret = call_user_func_array( $func, $arg );
 			flush();
-			$this->updatesSkipped[] = $arg;
+			$this->updatesSkipped[] = $origParams;
 		}
 	}
 
@@ -380,6 +381,7 @@ abstract class DatabaseUpdater {
 		$updatesDone = array();
 		$updatesSkipped = array();
 		foreach ( $updates as $params ) {
+			$origParams = $params;
 			$func = array_shift( $params );
 			if( !is_array( $func ) && method_exists( $this, $func ) ) {
 				$func = array( $this, $func );
@@ -389,9 +391,9 @@ abstract class DatabaseUpdater {
 			$ret = call_user_func_array( $func, $params );
 			flush();
 			if( $ret !== false ) {
-				$updatesDone[] = $params;
+				$updatesDone[] = $origParams;
 			} else {
-				$updatesSkipped[] = array( $func, $params );
+				$updatesSkipped[] = array( $func, $params, $origParams );
 			}
 		}
 		$this->updatesSkipped = array_merge( $this->updatesSkipped, $updatesSkipped );
