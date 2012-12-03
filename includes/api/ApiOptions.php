@@ -69,7 +69,7 @@ class ApiOptions extends ApiBase {
 			$newValue = isset( $params['optionvalue'] ) ? $params['optionvalue'] : null;
 			$changes[$params['optionname']] = $newValue;
 		}
-		if ( !count( $changes ) ) {
+		if ( !$changed && !count( $changes ) ) {
 			$this->dieUsage( 'No changes were requested', 'nochanges' );
 		}
 
