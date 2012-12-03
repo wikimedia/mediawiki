@@ -59,7 +59,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 $wgConf = new SiteConfiguration;
 
 /** MediaWiki version number */
-$wgVersion = '1.20.1';
+$wgVersion = '1.20.2';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename = 'MediaWiki';
