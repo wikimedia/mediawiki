@@ -1,7 +1,8 @@
 <?php
-
 /**
- * Tests related to auto rotation
+ * Tests related to auto rotation.
+ *
+ * @group medium
  */
 class ExifRotationTest extends MediaWikiTestCase {
 
