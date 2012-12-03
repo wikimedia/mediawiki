@@ -463,7 +463,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return DatabaseBase The database object
 	 */
 	public function getReadDbConnection() {
-		return $this->getLoadBalancer()->getConnection( $this->getReadDb(), array(), $this->getTargetWiki() );
+		return $this->getConnection( $this->getReadDb(), array() );
 	}
 
 	/**
@@ -477,7 +477,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return DatabaseBase The database object
 	 */
 	public function getWriteDbConnection() {
-		return $this->getLoadBalancer()->getConnection( DB_MASTER, array(), $this->getTargetWiki() );
+		return $this->getConnection( DB_MASTER, array() );
 	}
 
 	/**
