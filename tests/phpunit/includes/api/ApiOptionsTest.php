@@ -63,6 +63,22 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			);
 		}
 
+		$preferences['testmultiselect'] = array(
+			'type' => 'multiselect',
+			'options' => array(
+				'Test' => array(
+					'<span dir="auto">Some HTML here for option 1</span>' => 'opt1',
+					'<span dir="auto">Some HTML here for option 2</span>' => 'opt2',
+					'<span dir="auto">Some HTML here for option 3</span>' => 'opt3',
+					'<span dir="auto">Some HTML here for option 4</span>' => 'opt4',
+				),
+			),
+			'section' => 'test',
+			'label' => '&#160;',
+			'prefix' => 'testmultiselect-',
+			'default' => array(),
+		);
+
 		return true;
 	}
 
@@ -259,6 +275,38 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		);
 
 		$response = $this->executeQuery( $this->getSampleRequest( $args ) );
+
+		$this->assertEquals( self::$Success, $response );
+	}
+
+	public function testMultiSelect() {
+		$this->mUserMock->expects( $this->never() )
+			->method( 'resetOptions' );
+
+		$this->mUserMock->expects( $this->at( 1 ) )
+			->method( 'setOption' )
+			->with( $this->equalTo( 'testmultiselect-opt1' ), $this->equalTo( true ) );
+
+		$this->mUserMock->expects( $this->at( 2 ) )
+			->method( 'setOption' )
+			->with( $this->equalTo( 'testmultiselect-opt2' ), $this->equalTo( false ) );
+
+		$this->mUserMock->expects( $this->at( 3 ) )
+			->method( 'setOption' )
+			->with( $this->equalTo( 'testmultiselect-opt3' ), $this->equalTo( false ) );
+
+		$this->mUserMock->expects( $this->at( 4 ) )
+			->method( 'setOption' )
+			->with( $this->equalTo( 'testmultiselect-opt4' ), $this->equalTo( false ) );
+
+		$this->mUserMock->expects( $this->once() )
+			->method( 'saveSettings' );
+
+		$request = $this->getSampleRequest( array(
+			'change' => 'testmultiselect-opt1=1|testmultiselect-opt2|testmultiselect-opt3=|testmultiselect-opt4=0'
+		) );
+
+		$response = $this->executeQuery( $request );
 
 		$this->assertEquals( self::$Success, $response );
 	}
