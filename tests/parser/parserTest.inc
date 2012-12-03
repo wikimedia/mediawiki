@@ -672,6 +672,8 @@ class ParserTest {
 			'wgNoFollowDomainExceptions' => array(),
 			'wgThumbnailScriptPath' => false,
 			'wgUseImageResize' => true,
+			'wgSVGConverter' => 'null',
+			'wgSVGConverters' => array( 'null' => 'echo "1">$output' ),
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,
 			'wgUseTidy' => false,
@@ -875,6 +877,19 @@ class ParserTest {
 			'fileExists'  => true
 			), $this->db->timestamp( '20010115123500' ), $user );
 
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.svg' ) );
+		$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', array(
+				'size'        => 12345,
+				'width'       => 240,
+				'height'      => 180,
+				'bits'        => 24,
+				'media_type'  => MEDIATYPE_DRAWING,
+				'mime'        => 'image/svg+xml',
+				'metadata'    => serialize( array() ),
+				'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+				'fileExists'  => true
+		), $this->db->timestamp( '20010115123500' ), $user );
+
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
 		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', array(
@@ -955,7 +970,11 @@ class ParserTest {
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
 		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
-
+		wfMkdirParents( $dir . '/f/ff', null, __METHOD__ );
+		copy( "$IP/skins/monobook/headbg.jpg", "$dir/f/ff/Foobar.svg" );
+		file_put_contents( "$dir/f/ff/Foobar.svg",
+			'<?xml version="1.0" encoding="utf-8"?>' .
+			'<svg xmlns="http://www.w3.org/2000/svg" />' );
 		return $dir;
 	}
 
@@ -1003,6 +1022,14 @@ class ParserTest {
 
 				"$dir/0/09/Bad.jpg",
 
+				"$dir/f/ff/Foobar.svg",
+				"$dir/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
+
 				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
 		);
@@ -1016,6 +1043,12 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a",
 				"$dir/thumb/3",
+
+				"$dir/f/ff/",
+				"$dir/f/",
+				"$dir/thumb/f/ff/Foobar.svg",
+				"$dir/thumb/f/ff/",
+				"$dir/thumb/f/",
 
 				"$dir/0/09/",
 				"$dir/0/",
