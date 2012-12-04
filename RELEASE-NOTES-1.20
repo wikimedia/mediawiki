@@ -9,7 +9,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 This is a maintenance release of the MediaWiki 1.20 branch
 
 === Changes since 1.20.1 ===
-* (bug 42638) Fix API action=options&reset=1 & unit tests
+* (bug 42638) Fix API action=options&reset=1 & unit tests.
 * (bug 42370) Fixed backport of 60cc060 to use mDoneWrites.
 
 == MediaWiki 1.20.1 ==
@@ -17,6 +17,7 @@ This is a maintenance release of the MediaWiki 1.20 branch
 This is a security release of the MediaWiki 1.20 branch
 
 === Changes since 1.20 ===
+* (bug 42202) Validate options to prevent html injection
 * (bug 40995) Prevent session fixation in Special:UserLogin (CVE-2012-5391)
 * (bug 41400) Prevent linker regex from exceeding PCRE backtrack limit
 * Javscript Lint fixes
