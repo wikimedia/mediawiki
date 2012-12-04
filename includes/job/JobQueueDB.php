@@ -110,6 +110,7 @@ class JobQueueDB extends JobQueue {
 					foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 						$dbw->insert( 'job', $rowBatch, __METHOD__ );
 					}
+					wfIncrStats( 'job-insert', count( $rows ) );
 				} catch ( DBError $e ) {
 					if ( $atomic ) {
 						$dbw->rollback( __METHOD__ );
@@ -164,11 +165,11 @@ class JobQueueDB extends JobQueue {
 				$wgMemc->set( $this->getEmptinessCacheKey(), 'true', self::CACHE_TTL );
 				break; // nothing to do
 			}
+			wfIncrStats( 'job-pop' );
 			// Get the job object from the row...
 			$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
 			if ( !$title ) {
 				$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-				wfIncrStats( 'job-pop' );
 				wfDebugLog( 'JobQueueDB', "Row has invalid title '{$row->job_title}'." );
 				continue; // try again
 			}
