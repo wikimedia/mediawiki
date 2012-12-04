@@ -127,9 +127,6 @@ abstract class JobQueue {
 		}
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doBatchPush( $jobs, $flags );
-		if ( $ok ) {
-			wfIncrStats( 'job-insert', count( $jobs ) );
-		}
 		wfProfileOut( __METHOD__ );
 		return $ok;
 	}
@@ -148,9 +145,6 @@ abstract class JobQueue {
 	final public function pop() {
 		wfProfileIn( __METHOD__ );
 		$job = $this->doPop();
-		if ( $job ) {
-			wfIncrStats( 'job-pop' );
-		}
 		wfProfileOut( __METHOD__ );
 		return $job;
 	}
