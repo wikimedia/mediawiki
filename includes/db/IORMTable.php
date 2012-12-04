@@ -230,6 +230,15 @@ interface IORMTable {
 	public function has( array $conditions = array() );
 
 	/**
+	 * Checks if the table exists
+	 *
+	 * @since 1.21
+	 *
+	 * @return boolean
+	 */
+	public function exists();
+
+	/**
 	 * Returns the amount of matching records.
 	 * Condition field names get prefixed.
 	 *

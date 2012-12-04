@@ -300,6 +300,21 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	}
 
 	/**
+	 * Checks if the table exists
+	 *
+	 * @since 1.21
+	 *
+	 * @return boolean
+	 */
+	public function exists() {
+		$dbr = $this->getReadDbConnection();
+		$exists = $dbr->tableExists( $this->getName() );
+		$this->releaseConnection( $dbr );
+
+		return $exists;
+	}
+
+	/**
 	 * Returns the amount of matching records.
 	 * Condition field names get prefixed.
 	 *
