@@ -218,9 +218,7 @@ class UIDGenerator {
 	 * Get a statistically unique 128-bit unsigned integer ID string.
 	 * The bits of the UID are prefixed with the time (down to the microsecond).
 	 *
-	 * Unlike timestampedUID64(), these IDs are suitable as UUIDs, without any enforced
-	 * uniqueness checks in the storage medium, such as a DB. Thus, this can be used to
-	 * make unique values of DB table column where the DBMS does not enforce uniqueness.
+	 * These IDs are suitable as globally unique IDs, without any enforced uniqueness.
 	 * New rows almost always have higher UIDs, which makes B-TREE updates on INSERT fast.
 	 * They can also be stored reasonably as a "DECIMAL(39) UNSIGNED" in MySQL.
 	 *
