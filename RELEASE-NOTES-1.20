@@ -3,6 +3,15 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+
+== MediaWiki 1.20.2 ==
+
+This is a maintenance release of the MediaWiki 1.20 branch
+
+=== Changes since 1.20.1 ===
+* (bug 42638) Fix API action=options&reset=1 & unit tests
+* (bug 42370) Fixed backport of 60cc060 to use mDoneWrites.
+
 == MediaWiki 1.20.1 ==
 
 This is a security release of the MediaWiki 1.20 branch
