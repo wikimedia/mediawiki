@@ -2603,7 +2603,7 @@ $1',
 'blanknamespace' => '(Hlavní)',
 
 # Contributions
-'contributions' => 'Příspěvky uživatele',
+'contributions' => 'Příspěvky {{GENDER:$1|uživatele|uživatelky}}',
 'contributions-title' => 'Příspěvky uživatele $1',
 'mycontris' => 'Příspěvky',
 'contribsub2' => '$1 ($2)',

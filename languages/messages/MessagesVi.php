@@ -2555,7 +2555,7 @@ $1',
 'blanknamespace' => '(Chính)',
 
 # Contributions
-'contributions' => 'Đóng góp của thành viên',
+'contributions' => '{{GENDER:$1}}Đóng góp của thành viên',
 'contributions-title' => 'Đóng góp của thành viên $1',
 'mycontris' => 'Đóng góp',
 'contribsub2' => 'Của $1 ($2)',

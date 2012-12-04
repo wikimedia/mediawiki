@@ -940,7 +940,7 @@ Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|end
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har følgt ei lenkje til ei side som ikkje finst enno.
 For å opprette sida, kan du skrive i boksen under (sjå [[{{MediaWiki:Helppage}}|hjelpesida]] for meir informasjon).
-Dersom du ikkje ønskjer å opprette sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
+Hamna du her ved ein feil, klikk på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext' => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext' => 'Det er nett no ikkje noko tekst på denne sida.
@@ -2313,15 +2313,20 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
 'enotif_subject_deleted' => '{{SITENAME}}-sida $1 har vorte sletta av {{gender:$2|$2}}',
 'enotif_subject_created' => '{{SITENAME}}-sida $1 har vorte oppretta av {{gender:$2|$2}}',
+'enotif_subject_moved' => '{{SITENAME}}-sida $1 har vorte flytta av {{gender:$2|$2}}',
+'enotif_subject_restored' => '{{SITENAME}}-sida $1 har vorte attoppretta av {{gender:$2|$2}}',
+'enotif_subject_changed' => '{{SITENAME}}-sida $1 har vorte endra av {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => '{{SITENAME}}-sida $1 vart sletta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
+'enotif_body_intro_created' => '{{SITENAME}}-sida $1 vart oppretta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
+'enotif_body_intro_moved' => '{{SITENAME}}-sida $1 vart flytt $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
+'enotif_body_intro_restored' => '{{SITENAME}}-sida $1 vart attoppretta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
+'enotif_body_intro_changed' => '{{SITENAME}}-sida $1 vart endra $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
 'enotif_lastvisited' => 'Sjå $1 for alle endringane sidan siste vitjing.',
 'enotif_lastdiff' => 'Sjå $1 for å sjå denne endringa.',
 'enotif_anon_editor' => 'anonym brukar $1',
 'enotif_body' => 'Kjære $WATCHINGUSERNAME,
 
-
-{{SITENAME}}-sida $PAGETITLE er vorten $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Endringssamandraget var: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2329,8 +2334,7 @@ Kontakta brukaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du får ikkje fleire endringsvarsel før du vitjar sida på nytt.
-Du kan dessutan nullstilla varselflagga for alle sidene på overvakingslista di.
+Du får ikkje fleire endringsvarsel før du vitjar sida på nytt. Du kan dessutan nullstilla varselflagga for alle sidene på overvakingslista di.
 
 Helsing det venlege meldingssystemet ditt for {{SITENAME}}
 
@@ -2519,7 +2523,7 @@ $1',
 'blanknamespace' => '(Hovud)',
 
 # Contributions
-'contributions' => 'Brukarbidrag',
+'contributions' => '{{GENDER:$1|Brukarbidrag}}',
 'contributions-title' => 'Bidrag av $1',
 'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',

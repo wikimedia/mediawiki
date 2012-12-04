@@ -2570,7 +2570,7 @@ $1',
 'blanknamespace' => '(മുഖ്യം)',
 
 # Contributions
-'contributions' => 'ഉപയോക്താവിന്റെ സംഭാവനകൾ',
+'contributions' => '{{GENDER:$1|ഉപയോക്താവിന്റെ}} സംഭാവനകൾ',
 'contributions-title' => '$1 എന്ന ഉപയോക്താവിന്റെ സംഭാവനകൾ',
 'mycontris' => 'സംഭാവനകൾ',
 'contribsub2' => '$1 എന്ന ഉപയോക്താവിന്റെ $2.',

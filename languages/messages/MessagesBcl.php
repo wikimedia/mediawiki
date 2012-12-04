@@ -2025,9 +2025,9 @@ Asin man hilnga an [[Special:WantedCategories|kinakaipong mga kategorya]].',
 'linksearch-pat' => 'Pangarugan sa paghahanap:',
 'linksearch-ns' => 'Espasyong-ngaran:',
 'linksearch-ok' => 'Hanápon',
-'linksearch-text' => 'Mga pantsambang baraha arog baka kan "*.wikipedia.org" mapuwedeng gamiton.
-Minakaipo kisera sarong halangkaw na mugtak nin kinasakupan, halimbawa "*.org".<br />
-Suportadong mga panundan: <code>$1</code> (dae magdagdag arinman kaini sa saimong paghahanap).',
+'linksearch-text' => 'Mga tsambang baraha arog baka kan "*.wikipedia.org" puwedeng paggamiton.
+Minakaipo kisera halangkaw na kamugtakan nin kinasakupan, halimbawa "*.org".<br />
+Suportadong mga panundan: <code>$1</code> (defaults to http:// kun mayo nin panundan na pinagkaag).',
 'linksearch-line' => '$1 an nakatakod sa $2',
 'linksearch-error' => 'Mga pantsambang baraha mapuwedeng magluwas sana sa poon kan hostname.',
 
@@ -2374,7 +2374,7 @@ $1",
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Mga kontribusyon kan parágamit',
+'contributions' => '{{GENDER:$1|Paragamit}} na mga kaambagan',
 'contributions-title' => 'Mga kontribusyon kan paragamit para sa $1',
 'mycontris' => 'Mga Kaarambagan',
 'contribsub2' => 'Para sa $1 ($2)',
@@ -2528,7 +2528,7 @@ Hilngon sa [[Special:BlockList|listahan nin kubkob]] para sa listahan kan presen
 'ipb_hide_invalid' => 'Dae nakayanan na untukon ining panindog; ini gayod nagkaigwa nin kadakulon na mga pagliliwat.',
 'ipb_already_blocked' => 'An "$1" pinagkubkob na',
 'ipb-needreblock' => 'An $1 pinagkubkob na. Gusto mong liwaton an mga panuytoy?',
-'ipb-otherblocks-header' => 'An ibang {{PLURAL:$1|kubkob|mga kubkob',
+'ipb-otherblocks-header' => 'An ibang {{PLURAL:$1|kubkob|mga kubkob}}',
 'unblock-hideuser' => 'Ika dae makakakubkog kaining paragamit, siring na an saindang paragamit na ngaran itinatago.',
 'ipb_cant_unblock' => 'Error: Dai nahanap an ID nin binagat na $1. Puede ser na dati nang binawi an pagbagat kaini.',
 'ipb_blocked_as_range' => 'Kasalaan: An IP na estada $1 dae direktang pinagkubkob asin dae puwedeng dae makukubkob.
@@ -2544,10 +2544,15 @@ Ini, baya, pinagkubkob bilang parte kan hidwas $2, na mapuwedeng daemakukubkob.'
 'sorbs_create_account_reason' => 'An saimong IP na estada pinaglista bilang sarong bukas na proksi sa laog kan DNSBL na ginagamit kan {{SITENAME}}.
 Ika dae makakamukna nin sarong panindog.',
 'cant-block-while-blocked' => 'Ika dae makakakubkob kan ibang mga paragamit mantang ika nakukubkob pa.',
+'cant-see-hidden-user' => 'An paragamit na pinagpubaran mong kubkubon pinagkubkob asin pinagtago na. Mala ta ika mayo nin karapatan na magtago nin paragamit, ika dae makakahiling or makakaliwat kan kinubkob na paragamit.',
+'ipbblocked' => 'Ika da makakakubkob or maghale nin kubkob sa ibang mga paragamit, nin huli ta ika mismo sa sadiri mo pinagkubkob na',
+'ipbnounblockself' => 'Ika dae pinagtutugutan na magkubkob kan sadiri mo',
 
 # Developer tools
 'lockdb' => 'Ikandado an base nin datos',
 'unlockdb' => 'Ibukás an base nin datos',
+'lockdbtext' => 'An pagkakandado kan datos-sarayan mag-uuntok sa abilidad kan gabos na mga paragamit na pagliwat nin mga pahina, pagsasangli kan saindang mga kamuyahan, pagliliwat kan saindang mga bantay-listahan, asin iba pang mga bagay na nagkakaipo nin mga pagsasangli sa laog kan datos-sarayan. Pakikumpirma lang tabi kun iyo ini an boot mong gibohon, asin na saimong bukasan an datos-saray kun an saimong pagpapakarhay tapos na.',
+'unlockdbtext' => 'An pagbubukas kan datos-sarayan magbabalik-liwat kan abilidad nin gabos na mga paragamit na makapagliwat nin mga pahina, pagsasangli kan saindang mga kamuyahan, pagliliwat kan saindang mga bantay-listahan, asin iba pang mga bagay na nagkakaipo nin mga pagsasangli sa laog kan datos-sarayan. Pakikumpirma lang tabi kun iyo ini an boot mong gibohon.',
 'lockconfirm' => 'Iyo, boot kong ikandado an base kan datos.',
 'unlockconfirm' => 'Iyo, boot kong bukasan an base kan datos.',
 'lockbtn' => 'Isará an base nin datos',
@@ -2560,19 +2565,22 @@ Ika dae makakamukna nin sarong panindog.',
 'unlockdbsuccesstext' => 'Pigbukasan na an base nin datos.',
 'lockfilenotwritable' => "An ''file'' na kandado kan base nin datos dai nasusuratan. Para makandado o mabukasan an bse nin datos, kaipuhan na nasusuratan ini kan web server.",
 'databasenotlocked' => 'Dai nakakandado an base nin datos.',
+'lockedbyandtime' => '(sa paagi ni {{GENDER:$1|$1}} kan $2 sa ika-$3)',
 
 # Move page
+'move-page' => 'Ibalyo an $1',
 'move-page-legend' => 'Ibalyó an páhina',
-'movepagetext' => "Matatàwan nin bàgong pangaran an sarong pahina na pigbabalyo an gabos na uusipón kaini gamit an pormularyo sa babâ.
-An dating titulo magigin redirektang pahina sa bàgong titulo.
-Dai babàgohon an mga takod sa dating titulo kan pahina;
-seguradohon tabì na mayong doble o raot na mga redirekta.
-Ika an responsable sa pagpaseguro na an mga takod nakatokdô kun sain dapat.
+'movepagetext' => "Sa paggagamit kan porma na yaon sa ibaba mariribayan nin pangaran an sarong pahina, maibabalyo an gabos kaining historiya pasiring baguhon na pangaran.
+An lumang titulo magigin sarong panlikwat na pahina pasiring sa baguhong titulo.
+Ika makakapagsumpay kan mga panlikwat na magtutukdo awtomatiko pasiring sa orihinal na titulo.
+Kun saimong pinili na dae, seguraduhon na ma-tsek kun [[Special:DoubleRedirects|doble]] o [[Special:BrokenRedirects|parasa an mga panlikwat]].
+Ika an responsable para himoong segurado na an mga kilyaw padagos na minatukdo kun saen sinda dapat na magduman.
 
-Giromdomon tabì na an pahina '''dai''' ibabalyó kun igwa nang pahina sa bàgong titulo, apwera kun mayò ining laog o sarong redirekta asin uusipón nin mga dating pagliwat. An boot sabihon kaini, pwede mong ibalik an dating pangaran kan pahina kun sain ini pigribayan nin pangaran kun napasalà ka, asin dai mo man sosoknongan an presenteng pahina.
+Giromdoma na an pahina '''dae''' maibabalyo kun igwa na nin sarong pahina sa baguhon na titulo, laen lang kun ini daeng laman o sarong panlikwat asin mayo nin nakaaging historiya nin pagliwat.
+Ini minapasabot na ika makakapagliwat nin pangaran nin sarong pahina pabalik sa kun saen ini pinagliwatan nin pangaran kun ika nakahimo nin kasalaan, asin ika dae makakasalambaw nin sarong eksistido nang pahina.
 
-'''PATANID!'''
-Pwede na dakulà asin dai seguradong pagbàgo ini kan sarong popular na pahina; seguradohon tabì na aram mo an konsekwensya kaini bago magdagos.",
+'''Patanid!'''
+Ini magigin sarong biglaan asin dae inaasahan na kaliwatan para sa sarong bantugan na pahina; pakiseguro sana na saimong nasabutan an mga konsekuwensiya kaini bago ipagpadagos.",
 'movepagetalktext' => "An kapadis na olay na páhina enseguidang ibabalyo kasabay kaini '''kun:'''
 *Igwa nang may laog na olay na páhina na may parehong pangaran, o
 *Halîon mo an marka sa kahon sa babâ.
@@ -2796,8 +2804,20 @@ Ini hurot na pinagkausa nin sarong sugpunan pasiring sa sarong pinagbawal na pan
 'pageinfo-header-properties' => 'Pampahinang propriyedades',
 'pageinfo-views' => 'Numero kan mga patanaw',
 'pageinfo-watchers' => 'Numero kan mga parabantay',
-'pageinfo-edits' => 'Numero kan mga pagliliwat',
-'pageinfo-authors' => 'Numero kan bantog na mga awtor',
+'pageinfo-firstuser' => 'Paramukna nin pahina',
+'pageinfo-firsttime' => 'Petsa kan pagmukna nin pahina',
+'pageinfo-lastuser' => 'Pinakahuring paraliwat',
+'pageinfo-lasttime' => 'Petsa kan pinakahuring pagliwat',
+'pageinfo-edits' => 'Kabilogan na bilang kan mga pagliwat',
+'pageinfo-authors' => 'Kabilogan na bilang kan pinagpalaen na mga awtor',
+'pageinfo-recent-edits' => 'Bilang kan dae pa sana nahahaloy na mga pagliliwat (sa laog kan nakaaging $1)',
+'pageinfo-recent-authors' => 'Bilang kan dae pa sana nahahaloy na pinagpalaen na mga awtor',
+'pageinfo-magic-words' => 'Mahiko {{PLURAL:$1|taramon|mga taramon}} ($1)',
+'pageinfo-hidden-categories' => 'Itinago na {{PLURAL:$1|kategorya|mga kategorya}} ($1)',
+'pageinfo-toolboxlink' => 'Pahina kan impormasyon',
+'pageinfo-redirectsto' => 'Mga panlikwat paduman sa',
+'pageinfo-redirectsto-info' => 'impo',
+'pageinfo-contentpage' => 'Pinagbilang siring sa sarong pahina nin laog',
 
 # Skin names
 'skinname-standard' => 'Klasiko',

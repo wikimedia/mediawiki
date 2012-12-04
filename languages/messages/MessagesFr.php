@@ -2639,7 +2639,7 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => "Contributions de l'utilisateur",
+'contributions' => "Contributions de l'{{GENDER:$1|utilisateur|utilisatrice}}",
 'contributions-title' => "Liste des contributions de l'utilisateur $1",
 'mycontris' => 'Contributions',
 'contribsub2' => 'Pour $1 ($2)',

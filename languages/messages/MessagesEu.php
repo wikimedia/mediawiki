@@ -316,7 +316,7 @@ $messages = array(
 'viewdeleted_short' => 'Ikusi ezabatutako {{PLURAL:$1|bidalketa bat|$1 bidalketa}}',
 'protect' => 'Babestu',
 'protect_change' => 'aldatu',
-'protectthispage' => 'Orrialde hau babestu',
+'protectthispage' => 'Orri hau babestu',
 'unprotect' => 'Babesa aldatu',
 'unprotectthispage' => 'Orrialde honen babesa aldatu',
 'newpage' => 'Orrialde berria',
@@ -495,13 +495,13 @@ Kontsulta: $2',
 'actionthrottledtext' => 'Spamaren aurkako neurri gisa ekintza hau denbora tarte laburrean aldi askotan egiteko mugapena duzu, eta muga hori zeharkatu duzu.
 Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext' => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
-'viewsourcetext' => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
+'viewsourcetext' => 'Orri honen iturburu-testua ikusi eta kopiatu dezakezu:',
 'viewyourtext' => "Orrialde honetara '''zure aldaketen''' jatorria ikus eta kopiatu ahal duzu:",
 'protectedinterface' => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.
 Wiki guztientzako aldaketak egin edo gehitzeko, mesedez erabili [//translatewiki.net/ translatewiki.net], MediaWikiren lokalizazio proiektua.',
-'editinginterface' => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
-Orrialde honetako aldaketek wiki honetako erabiltzaile guztiei eragingo die.
-Itzulpenetarako, [//translatewiki.net/ translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
+'editinginterface' => "'''Oharra:''' Softwarearen interfazerako testua duen orri bat aldatzen ari zara.
+Orri honetako aldaketek wiki honetako erabiltzaile guztiei eragingo diete.
+Itzulpenetarako, erabil ezazu [//translatewiki.net/ translatewiki.net], MediaWiki proiektuan.",
 'sqlhidden' => '(ezkutuko SQL kontsulta)',
 'cascadeprotected' => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
@@ -817,16 +817,16 @@ Azken erregistroko sarrera ematen da azpian erreferentzia gisa:",
 'edittools' => '<!-- Hemen jarritako testua aldaketa eta igoera formularioen azpian agertuko da. -->',
 'nocreatetitle' => 'Orrialdeak sortzea mugatuta',
 'nocreatetext' => 'Gune honek orrialde berriak sortzeko gaitasuna mugatu du. Atzera egin dezakezu existitzen den orrialde bat aldatzeko, edo [[Special:UserLogin|saio hasi edo kontua sortu]].',
-'nocreate-loggedin' => 'Ez daukazu orrialde berriak sortzeko baimenik.',
+'nocreate-loggedin' => 'Ez duzu orri berriak sortzeko baimenik.',
 'sectioneditnotsupported-title' => 'Ezin dira atalak aldatu',
 'sectioneditnotsupported-text' => 'Ezin dira atalak aldatu orrialde honetan.',
 'permissionserrors' => 'Baimen erroreak',
 'permissionserrorstext' => 'Ez duzu hori egiteko baimenik, hurrengo {{PLURAL:$1|arrazoia dela eta|arrazoiak direla eta}}:',
 'permissionserrorstext-withaction' => 'Ez duzu $2 egiteko eskumenik, honako {{PLURAL:$1|arrazoia dela eta:|arrazoiak direla eta:}}',
-'recreate-moveddeleted-warn' => "'''Oharra: Lehenago ezabatutako orrialdea birsortzen ari zara.'''
+'recreate-moveddeleted-warn' => "'''Oharra: Lehenago ezabatutako orri bat berriz sortzen ari zara.'''
 
-Pentsatu ea orrialde hau editatzen jarraitzeak zentzurik baduen.
-Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
+Pentsatu ea orri hau editatzen jarraitzeak zentzurik baduen.
+Hemen duzu orri honen ezabaketa erregistroa, badaezpada ere:",
 'moveddeleted-notice' => 'Orrialde hau ezabatua izan da.
 Orrialdearen ezabatze erregistroa behean agertzen da erreferentzia gisa.',
 'log-fulllog' => 'Erregistro osoa ikusi',
@@ -1413,9 +1413,9 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'rc-enhanced-hide' => 'Xehetasunak ezkutatu',
 
 # Recent changes linked
-'recentchangeslinked' => 'Lotutako orrialdeen aldaketak',
-'recentchangeslinked-feed' => 'Lotutako orrialdeen aldaketak',
-'recentchangeslinked-toolbox' => 'Lotutako orrialdeen aldaketak',
+'recentchangeslinked' => 'Lotutako orrietako aldaketak',
+'recentchangeslinked-feed' => 'Lotutako orrietako aldaketak',
+'recentchangeslinked-toolbox' => 'Lotutako orrietako aldaketak',
 'recentchangeslinked-title' => '"$1"(e)kin harremanetan dauden aldaketak',
 'recentchangeslinked-noresult' => 'Emandako epean ez da egon aldaketarik loturiko orrialdetan.',
 'recentchangeslinked-summary' => "Zerrenda honetan zehazturiko orrialde bati (edo kategoria berezi bateko azkeneko kideei) lotura duten orrietan eginiko azken aldaketak agertzen dira.
@@ -1807,7 +1807,7 @@ Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistar
 'log-title-wildcard' => 'Testu honekin hasten diren izenburuak bilatu',
 
 # Special:AllPages
-'allpages' => 'Orrialde guztiak',
+'allpages' => 'Orri guztiak',
 'alphaindexline' => '$1(e)tik $2(e)raino',
 'nextpage' => 'Hurrengo orrialdea ($1)',
 'prevpage' => 'Aurreko orrialdea ($1)',
@@ -2190,7 +2190,7 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'sp-contributions-submit' => 'Bilatu',
 
 # What links here
-'whatlinkshere' => 'Orri honetaranzko lotura dutenak',
+'whatlinkshere' => 'Honanzko lotura duten orriak',
 'whatlinkshere-title' => '$1(e)ra lotura duten orriak',
 'whatlinkshere-page' => 'Orrialdea:',
 'linkshere' => "Hauek dute '''[[:$1]]''' orrialderako lotura:",
@@ -2540,7 +2540,7 @@ Fitxategiaren atal bat baino ez zen igo.',
 'tooltip-n-randompage' => 'Ausazko orrialde bat kargatu',
 'tooltip-n-help' => 'Aurkitzeko lekua.',
 'tooltip-t-whatlinkshere' => 'Orri honetara lotura duten wiki orri guztien zerrenda',
-'tooltip-t-recentchangeslinked' => 'Orrialde honetatik lotutako orrialdeen azken aldaketak',
+'tooltip-t-recentchangeslinked' => 'Orri honetatik lotura duten orrietako azken aldaketak',
 'tooltip-feed-rss' => 'Orrialde honen RSS jarioa',
 'tooltip-feed-atom' => 'Orrialde honen atom jarioa',
 'tooltip-t-contributions' => 'Lankide honen ekarpen zerrenda ikusi',
@@ -2605,12 +2605,39 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'spam_blanking' => 'Berrikuspen guztiek $1(e)rako lotura zeukaten, husten',
 
 # Info page
+'pageinfo-header-basic' => 'Oinarrizko informazioa',
 'pageinfo-header-edits' => 'Aldaketen historia',
+'pageinfo-header-restrictions' => 'Orriaren babesa',
+'pageinfo-header-properties' => 'Orriaren propietateak',
+'pageinfo-display-title' => 'Ageri den izenburua',
+'pageinfo-default-sort' => 'Ordenatze irizpide lehenetsia',
+'pageinfo-length' => 'Orriaren neurria (byteak)',
+'pageinfo-article-id' => 'Orriaren identifikazio zenbakia',
+'pageinfo-language' => 'Orriaren edukiaren hizkuntza',
+'pageinfo-robot-policy' => 'Bilaketa motorraren egoera',
+'pageinfo-robot-index' => 'Indexagarria',
+'pageinfo-robot-noindex' => 'Indexaezina',
 'pageinfo-views' => 'Bistaratze-kopurua',
-'pageinfo-edits' => 'Aldaketa kopuru totala',
-'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-watchers' => 'Orriaren jarraitzaileen kopurua',
+'pageinfo-redirects-name' => 'Orri honetara dakarten birzuzenketak',
+'pageinfo-subpages-name' => 'Orri honen azpiorriak',
+'pageinfo-firstuser' => 'Orriaren sortzailea',
+'pageinfo-firsttime' => 'Orriaren sortze data',
+'pageinfo-lastuser' => 'Azken editorea',
+'pageinfo-lasttime' => 'Azken edizioaren data',
+'pageinfo-edits' => 'Edizio kopurua, guztira',
+'pageinfo-authors' => 'Egile kopurua, guztira',
+'pageinfo-recent-edits' => 'Oraintsuko edizioen kopurua (azken $1)',
+'pageinfo-recent-authors' => 'Oraintsuko egileen kopurua',
+'pageinfo-hidden-categories' => 'Ezkutuko {{PLURAL:$1|kategoria|kategoriak}} ($1)',
+'pageinfo-templates' => 'Txertatutako {{PLURAL:$1|txantiloia|txantiloiak}} ($1)',
+'pageinfo-toolboxlink' => 'Orri honen datuak',
+'pageinfo-redirectsto-info' => 'Informazioa',
+'pageinfo-contentpage' => 'Eduki-orritzat zenbatua',
 'pageinfo-contentpage-yes' => 'Bai',
+'pageinfo-protect-cascading' => 'Serieko babesa, orri honetatik',
 'pageinfo-protect-cascading-yes' => 'Bai',
+'pageinfo-protect-cascading-from' => 'Serieko babesak aktibatuta. Sorburua:',
 
 # Skin names
 'skinname-standard' => 'Lehenetsia',
@@ -3132,7 +3159,7 @@ Egiaztapen kode hau $4 iraungiko da.',
 'autosumm-blank' => 'Orritik eduki guztia ezabatuta',
 'autosumm-replace' => 'Orriaren edukiaren ordez, «$1» jarri da',
 'autoredircomment' => '[[$1]] orrialdera birzuzentzentzen',
-'autosumm-new' => 'Orrialde berria $1-(e)kin sortua',
+'autosumm-new' => 'Orria sortu da. Edukia: $1',
 
 # Live preview
 'livepreview-loading' => 'Kargatzen…',
@@ -3219,12 +3246,12 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'fileduplicatesearch-result-n' => '"$1" fitxategiak {{PLURAL:$2|kopia zehatz bakarra du|$2 kopia zehatz ditu}}.',
 
 # Special:SpecialPages
-'specialpages' => 'Orrialde bereziak',
+'specialpages' => 'Orri bereziak',
 'specialpages-note' => '----
-* Orrialde berezi arruntak.
-* <strong class="mw-specialpagerestricted">Mugatutako orrialde bereziak.</strong>',
+* Orri berezi arruntak.
+* <strong class="mw-specialpagerestricted">Mugatutako orri bereziak.</strong>',
 'specialpages-group-maintenance' => 'Mantentze-oharrak',
-'specialpages-group-other' => 'Beste orrialde berezi batzuk',
+'specialpages-group-other' => 'Beste orri berezi batzuk',
 'specialpages-group-login' => 'Saioa hasi / kontua sortu',
 'specialpages-group-changes' => 'Aldaketa berriak eta erregistroak',
 'specialpages-group-media' => 'Artxiboen orriak',

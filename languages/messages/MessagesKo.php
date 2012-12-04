@@ -2668,7 +2668,7 @@ $1',
 'blanknamespace' => '(일반)',
 
 # Contributions
-'contributions' => '사용자 기여',
+'contributions' => '{{GENDER:$1|사용자}} 기여',
 'contributions-title' => '$1 사용자의 기여 목록',
 'mycontris' => '기여 목록',
 'contribsub2' => '$1($2)의 기여',

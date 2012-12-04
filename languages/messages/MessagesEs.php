@@ -2630,7 +2630,7 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribuciones {{GENDER:{{BASEPAGENAME}}|del usuario|de la usuaria}}',
+'contributions' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}}',
 'contributions-title' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris' => 'Contribuciones',
 'contribsub2' => '$1 ($2)',

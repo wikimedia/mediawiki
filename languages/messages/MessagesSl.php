@@ -2495,7 +2495,7 @@ $1',
 'blanknamespace' => '(Osnovno)',
 
 # Contributions
-'contributions' => 'Uporabnikovi prispevki',
+'contributions' => '{{GENDER:$1|Uporabnikovi|Uporabničini}} prispevki',
 'contributions-title' => 'Prispevki uporabnika $1',
 'mycontris' => 'Prispevki',
 'contribsub2' => 'Uporabnik: $1 ($2)',

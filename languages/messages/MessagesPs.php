@@ -506,7 +506,7 @@ $1',
 'viewsource' => 'سرچينه کتل',
 'viewsource-title' => 'د $1 سرچينه کتل',
 'actionthrottled' => 'د دې کړنې مخنيوی وشو',
-'protectedpagetext' => 'دا مخ د بدلون او سمون د مخنيوي په تکل تړل شوی دی.',
+'protectedpagetext' => 'دا مخ د سمون او نورو کړنو د ترسره کولو په تکل ژغورل شوی.',
 'viewsourcetext' => 'تاسې د دې مخ سرچينه کتلی او لمېسلی شی:',
 'protectedinterface' => 'دا مخ د دې ويکي د ساوترې د ليدنمخ متن لري، او د ورانکارۍ په خاطر ژغورل شوی.
 په ټولو ويکي ګانو کې د ژباړې د ورګډولو او يا هم د ژباړې د سمون او بدلون لپاره د مېډياويکي د ځايتابه پروژه [//translatewiki.net/ translatewiki.net] وکاروۍ.',
@@ -816,6 +816,11 @@ $1',
 'edit-already-exists' => 'په دې نوم يو نوی مخ جوړ نه شو.
 پدې نوم د پخوا نه يو مخ شته.',
 'defaultmessagetext' => 'تلواليزه پيغام متن',
+
+# Content models
+'content-model-wikitext' => 'ويکي متن',
+'content-model-text' => 'ساده متن',
+'content-model-javascript' => 'جاواسکرېپټ',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
@@ -1799,7 +1804,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'blanknamespace' => '(آرنی)',
 
 # Contributions
-'contributions' => 'د کارن ونډې',
+'contributions' => '{{GENDER:$1|کارن}} ونډې',
 'contributions-title' => 'د $1 کارن ونډې',
 'mycontris' => 'ونډې',
 'contribsub2' => 'د $1 لپاره ($2)',
@@ -2122,7 +2127,10 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'pageinfo-header-restrictions' => 'مخ ژغورنه',
 'pageinfo-header-properties' => 'د مخ ځانتياوې',
 'pageinfo-display-title' => 'ښکارېدونکی سرليک',
+'pageinfo-length' => 'مخ اوږدوالی (په بايټونو)',
 'pageinfo-article-id' => 'د مخ پېژند',
+'pageinfo-language' => 'د مخ د مېنځپانګې ژبه',
+'pageinfo-robot-policy' => 'د پلټن ماشين دريځ',
 'pageinfo-robot-index' => 'ليکلړوړ',
 'pageinfo-robot-noindex' => 'ليکلړوړ نه',
 'pageinfo-views' => 'د کتنو شمېر',
@@ -2130,7 +2138,12 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'pageinfo-redirects-name' => 'دې مخ ته ورګرځونې',
 'pageinfo-subpages-name' => 'دې مخ ته څېرمه مخونه',
 'pageinfo-firstuser' => 'مخ جوړونکی',
+'pageinfo-firsttime' => 'د مخ جوړېدنې نېټه',
+'pageinfo-lastuser' => 'وروستنی سمونګر',
 'pageinfo-edits' => 'د ټولو سمونونو شمېر',
+'pageinfo-toolboxlink' => 'د مخ مالومات',
+'pageinfo-contentpage' => 'مېنځپانګيز مخ کې شمېرل شوی',
+'pageinfo-contentpage-yes' => 'هو',
 
 # Skin names
 'skinname-standard' => 'کلاسيک',
@@ -2641,8 +2654,8 @@ $5
 'revdelete-content-unhid' => 'مېنځپانګه ښکاره شوی',
 'revdelete-uname-unhid' => 'ښکاره کارن-نوم',
 'logentry-move-move' => '$1 د $3 مخ $4 ته ولېږداوه',
-'logentry-newusers-newusers' => '$1 يو کارن ګڼون جوړ کړ',
-'logentry-newusers-create' => '$1 يو کارن ګڼون جوړ کړ',
+'logentry-newusers-newusers' => 'د $1 کارن ګڼون جوړ شو',
+'logentry-newusers-create' => 'د $1 کارن ګڼون جوړ شو',
 'logentry-newusers-autocreate' => 'د $1 ګڼون په اتوماتيک ډول جوړ شو',
 'newuserlog-byemail' => 'پټنوم مو برېښليک ته درولېږه',
 

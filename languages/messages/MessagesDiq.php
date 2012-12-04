@@ -2581,7 +2581,7 @@ $1',
 'blanknamespace' => '(Ser)',
 
 # Contributions
-'contributions' => 'İştiraqê karberi',
+'contributions' => 'İştiraqê {{GENDER:$1|Karber}}i',
 'contributions-title' => 'Dekerdenê karber de $1',
 'mycontris' => 'İştıraqi',
 'contribsub2' => 'Qandê $1 ($2)',

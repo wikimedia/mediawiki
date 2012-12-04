@@ -671,7 +671,7 @@ Joku muu on saattanut poistaa sen.',
 'delete-hook-aborted' => 'Laajennuskoohdi esti muokkauksen antamatta syytä.',
 'badtitle' => 'Virheellinen otsikko',
 'badtitletext' => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
-'perfcached' => 'Tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
+'perfcached' => 'Nämä tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
 'perfcachedts' => 'Nämä tiedot ovat välimuistista, ja ne on päivitetty viimeksi $1. Välimuistissa on saatavilla enintään {{PLURAL:$4|yksi tulos|$4 tulosta}}.',
 'querypage-no-updates' => 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
 'wrong_wfQuery_params' => 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
@@ -2509,7 +2509,7 @@ $1',
 'blanknamespace' => '(sivut)',
 
 # Contributions
-'contributions' => 'Käyttäjän muokkaukset',
+'contributions' => '{{GENDER:$1|Käyttäjän}} muokkaukset',
 'contributions-title' => 'Käyttäjän $1 muokkaukset',
 'mycontris' => 'Omat muokkaukset',
 'contribsub2' => 'Käyttäjän $1 ($2) muokkaukset',
@@ -3147,6 +3147,7 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'hours' => '{{PLURAL:$1|$1 tunti|$1 tuntia}}',
 'days' => '{{PLURAL:$1|$1 päivä|$1 päivää}}',
 'ago' => '$1 sitten',
+'just-now' => 'juuri nyt',
 
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:

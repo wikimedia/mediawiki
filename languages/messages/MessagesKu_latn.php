@@ -1866,6 +1866,10 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'pageinfo-views' => 'Hejmara dîtinê',
 'pageinfo-watchers' => 'Hejmara kesên dişopînin',
 'pageinfo-edits' => 'Hejmara guherandinan',
+'pageinfo-toolboxlink' => 'Agahiya rûpelê',
+'pageinfo-redirectsto-info' => 'agahî',
+'pageinfo-contentpage-yes' => 'Erê',
+'pageinfo-protect-cascading-yes' => 'Erê',
 
 # Patrolling
 'markaspatrolleddiff' => 'Wek serrastkirî nîşan bide',
