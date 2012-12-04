@@ -236,6 +236,14 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Get the base 36 SHA1 of the file
+	 * @return string
+	 */
+	protected function getTempFileSha1Base36() {
+		return FSFile::getSha1Base36FromPath( $this->mTempPath );
+	}
+
+	/**
 	 * @param $srcPath String: the source path
 	 * @return string the real path if it was a virtual URL
 	 */
@@ -546,7 +554,9 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Check for non fatal problems with the file
+	 * Check for non fatal problems with the file.
+	 *
+	 * This should not assume that mTempPath is set.
 	 *
 	 * @return Array of warnings
 	 */
@@ -594,7 +604,7 @@ abstract class UploadBase {
 		}
 
 		// Check dupes against existing files
-		$hash = FSFile::getSha1Base36FromPath( $this->mTempPath );
+		$hash = $this->getTempFileSha1Base36();
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$title = $this->getTitle();
 		// Remove all matches against self
