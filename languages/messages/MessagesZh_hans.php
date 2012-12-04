@@ -509,6 +509,7 @@ $messages = array(
 'namespaces' => '名字空间',
 'variants' => '变换',
 
+'navigation-heading' => '导航菜单',
 'errorpagetitle' => '错误',
 'returnto' => '返回到$1。',
 'tagline' => '来自{{SITENAME}}',
@@ -608,7 +609,7 @@ $1',
 'newmessagesdifflink' => '最后更改',
 'youhavenewmessagesfromusers' => '你有来自{{PLURAL:$3| 另一位用户| $3位用户}}的$1（$2）。',
 'youhavenewmessagesmanyusers' => '你有来自多位用户的$1（$2）。',
-'newmessageslinkplural' => '{{PLURAL:$1|一条新信息|$1条信息}}',
+'newmessageslinkplural' => '{{PLURAL:$1|一条新信息|新信息}}',
 'newmessagesdifflinkplural' => '最新$1次更改',
 'youhavenewmessagesmulti' => '你在$1有新信息',
 'editsection' => '编辑',
@@ -616,7 +617,7 @@ $1',
 'viewsourceold' => '查看源代码',
 'editlink' => '编辑',
 'viewsourcelink' => '查看源代码',
-'editsectionhint' => '编辑段落：$1',
+'editsectionhint' => '编辑章节：$1',
 'toc' => '目录',
 'showtoc' => '显示',
 'hidetoc' => '隐藏',
@@ -713,7 +714,7 @@ $1',
 'viewsource-title' => '查看$1的源代码',
 'actionthrottled' => '操作被限制',
 'actionthrottledtext' => '基于反垃圾的考量，您被限制在短时间内多次重复该操作，但您已超过此上限。请在数分钟后再尝试。',
-'protectedpagetext' => '该页面已被保护以防止编辑。',
+'protectedpagetext' => '该页面已被保护以防止编辑和其他操作。',
 'viewsourcetext' => '您可以查看并复制此页面的源代码：',
 'viewyourtext' => "您可以查看并复制'''您对此页面作出编辑后'''的源代码：",
 'protectedinterface' => '该页提供此wiki软件的界面文字，它已被保护以防止恶意修改。
@@ -746,6 +747,7 @@ $2',
 'logouttext' => "'''您现在已经退出。'''
 
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份<span class='plainlinks'>[$1 登录]</span>。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
+'welcomeuser' => '欢迎，$1！',
 'yourname' => '用户名：',
 'yourpassword' => '密码：',
 'yourpasswordagain' => '再次输入密码：',
@@ -2485,7 +2487,7 @@ $1',
 'blanknamespace' => '（主要）',
 
 # Contributions
-'contributions' => '用户贡献',
+'contributions' => '{{GENDER:$1|用户}}贡献',
 'contributions-title' => '$1的用户贡献',
 'mycontris' => '贡献',
 'contribsub2' => '$1的贡献（$2）',
@@ -3978,4 +3980,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'svg-long-error' => '无效的SVG文件：$1',
 );

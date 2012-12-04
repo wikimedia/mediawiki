@@ -2526,7 +2526,7 @@ $1',
 'blanknamespace' => '(Асноўная)',
 
 # Contributions
-'contributions' => 'Унёсак',
+'contributions' => 'Унёсак {{GENDER:$1|удзельніка|удзельніцы}}',
 'contributions-title' => 'Унёсак {{GENDER:$1|удзельніка|удзельніцы}} $1',
 'mycontris' => 'Унёсак',
 'contribsub2' => 'Для $1 ($2)',

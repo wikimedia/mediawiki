@@ -134,8 +134,8 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorina}}',
-'category_header' => 'Seiten in da Kategorie „$1“',
-'subcategories' => 'Unterkategorien',
+'category_header' => 'Seitn in da Kategorie „$1“',
+'subcategories' => 'Untakategorina',
 'category-media-header' => 'Medien in da Kategorie „$1“',
 'category-empty' => "''De Kategorie enthoit im Moment koane Seitn und koane Medien ned.''",
 'hidden-categories' => '{{PLURAL:$1|Vasteckte Kategorie|Vasteckte Kategorina}}',
@@ -144,11 +144,11 @@ $messages = array(
 'category-subcat-count-limited' => 'In de Kategorie {{PLURAL:$1|is de foigande Unterkategorie|san de foiganden Unterkategorien}} eihsortird:',
 'category-article-count' => '{{PLURAL:$2|De Kategorie enthoit foigernde Seiten:|{{PLURAL:$1|Foigernde Seiten is aane voh insgsåmt $2 Seiten in derer Kategorie:|Es wern $1 voh insgsåmt $2 Seiten in derer Kategorie åzaagt:}}}}',
 'category-article-count-limited' => 'De {{PLURAL:$1|foigande Seiten is|foiganden $1 Seiten san}} in derer Kategorie enthoiden:',
-'category-file-count' => '{{PLURAL:$2|De Kategorie enthoid nua de foigande Datei.|De {{PLURAL:$1|foigande Datei is|$1 foigandn Datein san}} in dea Kategorie, vo $2 total.}}',
+'category-file-count' => '{{PLURAL:$2|De Kategorie enthoid foigende Datei:|{{PLURAL:$1|Foigende Datei is oane vo insgsamt $2 Datein in dera Kategorie:|Es wean $1 von insgsamt $2 Datein in dera Kategorie ozoagt:}}}}',
 'category-file-count-limited' => "{{PLURAL:$1|D' foingde Datei is|De foingden $1 Datein san}} in de Kategorie eisortird:",
-'listingcontinuesabbrev' => '(Furtsétzung)',
+'listingcontinuesabbrev' => '(Fortsetzung)',
 'index-category' => 'Indizirde Seiten',
-'noindex-category' => 'Néd-indizirde Seiten',
+'noindex-category' => 'Ned-indiziade Seitn',
 'broken-file-category' => 'Seiten mid kaputte Daateilinks',
 
 'about' => 'Iba',
@@ -189,14 +189,14 @@ $messages = array(
 'namespaces' => 'Namasramm',
 'variants' => 'Variantn',
 
-'errorpagetitle' => 'Feeler',
-'returnto' => 'Zruck zua da Seiten $1.',
+'errorpagetitle' => 'Fehla',
+'returnto' => 'Zruck za da Seitn $1.',
 'tagline' => 'Aus {{SITENAME}}',
 'help' => 'Huif',
 'search' => 'Suach',
 'searchbutton' => 'Suacha',
 'go' => 'Ausfyrn',
-'searcharticle' => 'Artiké',
+'searcharticle' => 'Artikl',
 'history' => 'Versiónen',
 'history_short' => 'Gschicht oschaugn',
 'updatedmarker' => '(gänderd)',
@@ -289,7 +289,7 @@ Schaug auf [[Special:Version|Versiónsseiten]]",
 'youhavenewmessagesmulti' => 'Du host neiche Nochrichtn: $1',
 'editsection' => 'Werkln',
 'editold' => 'Werkln',
-'viewsourceold' => 'Quötext åzoang',
+'viewsourceold' => 'Quejtext ozoagn',
 'editlink' => 'werkln',
 'viewsourcelink' => 'In Quejtext ozoagn',
 'editsectionhint' => 'Obschnitt beorbatn: $1',
@@ -376,8 +376,8 @@ Fois des ned zuatrifft, hosd eventuell an Fehla im Programm gfundn. Bittschee in
 'cannotdelete' => 'Dé Seiten óder Daatei "$1" kå néd gléschd wern.
 Méglicherweis iss schoh vohram åndern gléschd worn.',
 'cannotdelete-title' => 'Seiten „$1“ kå néd gléschd wern',
-'badtitle' => 'néd gütiger Titel',
-'badtitletext' => 'Da Titel voh da ågforderden Seiten is néd gütig, laar óder a ungütiger Sproochlink vohram åndern Wiki.',
+'badtitle' => 'koa gitiga Titl',
+'badtitletext' => 'Da Titl voh da ogfordatn Seitn is ned gitig, laar oda a ungitiga Sprochlink vonam andan Wiki.',
 'perfcached' => "Dé fóigernden Daaten staummern aus'm Cache und san méglicherweis nimmer aktuö. Maximoi {{PLURAL:$1|oah Ergebnis is|$1 Ergebniss san}} im Cache vafiagbor.",
 'perfcachedts' => "Dé Daaten staummern aus 'm Cache. Da Zeidbunkt voh da létzden Aktualisiarung: $1. Maximoi {{PLURAL:$4|oah Ergebnis is|$4 Ergebniss san}} im Cache vafiagbor.",
 'querypage-no-updates' => "'''Dé Aktualisiarungsfunkzión voh derer Seiten is derzeid deaktivird. Dé Daaten wern bis auf Weiders néd daneiert.'''",
@@ -415,17 +415,17 @@ $2",
 
 Du kåst {{SITENAME}} iatzerd anónym weiderdoah, óder di danaid unterm söwing óder am åndern Benutzernåm <span class='plainlinks'>[$1 åmöden]</span>.
 Beochtt ower, daas oanige Seiten noh åzoang kennern, daas du ågmödt bist, sólång du néd deih Browsercache glaard host.",
-'yourname' => 'Benutzernåm:',
-'yourpassword' => 'Posswort:',
+'yourname' => 'Nutzanama:',
+'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Es Passwort no amoi eigebm',
-'remembermypassword' => 'Mid dém Browser dauerhoft ågmödt bleim (maximoi $1 {{PLURAL:$1|Dog|Dog}})',
+'remembermypassword' => 'Mitm Brausa dauahoft ogmejd bleibm (maximoi $1 {{PLURAL:$1|Dog|Dog}})',
 'securelogin-stick-https' => "Noch'm Auhmöden mid HTTPS vabunden bleim",
 'yourdomainname' => 'Eanerne Domain:',
 'externaldberror' => 'Entweder es ligt a Feeler bai da externen Authentifiziarung vur oder du derfst dai externs Benytzerkonto ned aktualisirn.',
-'login' => 'Åmöden',
+'login' => 'Eilogga',
 'nav-login-createaccount' => 'Eilogga / Konto olegn',
 'loginprompt' => 'Zua Omejdung miassen Cookies aktiviat sei.',
-'userlogin' => 'Åmöden / Kontó erstön',
+'userlogin' => 'Eilogga / Konto olegn',
 'userloginnocreate' => 'Åmöden',
 'logout' => 'Obmöden',
 'userlogout' => 'Auslogga',
@@ -496,7 +496,7 @@ Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seit
 'minoredit' => 'Nua Kloanigkeidn san vaendat worn',
 'watchthis' => "D' Seiten beówochten",
 'savearticle' => 'Seitn speichan',
-'preview' => 'Vurschau',
+'preview' => 'Vorschau',
 'showpreview' => 'Vorschau zoagn',
 'showdiff' => 'Endarunga zoagn',
 'anoneditwarning' => "Du beorweitsd dé Seiten ois néd-ågmöidt. Wånn du dé speichertsd, werd deih aktuelle IP-Adress in da Versiónsgschichd aufzeichnet und is dodamid unwiaderruafflich '''éffmtléch''' zum åschauh.",
@@ -514,9 +514,9 @@ Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seit
 
 Des Posswort fyr des naiche Benutzerkonto kå auf da Speziaalseiten  „[[Special:ChangePassword|Posswort ändern]]“ gändert wern.',
 'newarticle' => '(Neich)',
-'newarticletext' => "Du bist am Link zua ner Seiten gfóigt, dé néd vurhånden is.
-Daas d' dé Seiten åléng kåst, trog dein Text in dé untensteeherde Boxen eih (schaug unter da [[{{MediaWiki:Helppage}}|Hüfeseiten]] fyr merer Informaziónen).
-Bist du föschlicherweis dodan, dånn druck dé '''Zruck'''-Schoitflächen voh deim Browser.",
+'newarticletext' => 'Du bist am Link gfoigt, wos no koa Seitn gibt.
+Um de Seitn ozlegn, trog dein Text im untan Kostn ei (schaug af da [[{{MediaWiki:Helppage}}|Huifeseitn]] fia mea Infos).
+Wens a Irrtum is, dassd do bist, nach druck in Zruck-Knopf vom Brausa.',
 'anontalkpagetext' => "---- ''De Seiten werd dodazua hergnumma, am ned-ågmöiderten Benutzer Nochrichten z' hinterlossen.
 Wånnst mid de Kommentare auf derer Seiten nix åfanga kåst, is vamuatlich da friarerne Inhower vo derer IP-Adress gmoat und du kåstas ignorirn.
 Wånnst a anonymer Benutzer bist und denkst, das irrelevante Kommentare ån di grichtt worn san, [[Special:UserLogin|möid de bittschee å]], um zuakynfteg Vawirrung z' vamein.''",
@@ -565,7 +565,7 @@ Zur Informazion foigt da aktuöie Logbuachaitrog:",
 'templatesusedpreview' => "{{PLURAL:$1|De foigande Vurlog werd|D' foiganden Vurlong wern}} in derer Saiten-Vurschau vawendt:",
 'templatesusedsection' => '{{PLURAL:$1|Dé fóigende Vurlog werd|Fóigende Vurlong wern}} voh dém Obschnit vawendt:',
 'template-protected' => '(schreibgschitzt)',
-'template-semiprotected' => '(schreibgschytzd fyr néd-ågmödte Benützer)',
+'template-semiprotected' => '(schreibgschitzt fia ned-ogmejdte Nutza)',
 'hiddencategories' => 'De Seitn is in {{PLURAL:$1|a vasteckde Kategorie|$1 vasteckde Kategorina}} eisortiad:',
 'nocreatetitle' => 'De Erstöiung vo naiche Saiten is aigschränkt.',
 'nocreate-loggedin' => "Du host koah Berechtigung, neiche Seiten z' erstön.",
@@ -584,7 +584,8 @@ Des Lesch- und Vaschiab-Logbuach dazua findsd do:",
 'post-expand-template-inclusion-warning' => 'Obocht: De Gress vo eibundne Vorlong is z gross.
 A poar Vorlogn wean ned eibundn.',
 'post-expand-template-inclusion-category' => 'Seitn, wo d Gress vo de eibundnan Vorlogn ibaschrittn is',
-'post-expand-template-argument-warning' => "'''Ówocht:''' Dé Seiten enthoit minderstens oah Argument in ner Vurlog, dés expandird z' gróss is. Dé Argumentt wern ignorird.",
+'post-expand-template-argument-warning' => "'''Obocht:''' De Seitn enthoit mindastns oa Argument in da Vorlog, wo expandiat z grouss is. 
+De Parameta wean ignoriad.",
 'post-expand-template-argument-category' => 'Seiten, dé ignorirde Vurlongargumentt enthoiden',
 
 # "Undo" feature
@@ -594,7 +595,7 @@ A poar Vorlogn wean ned eibundn.',
 'cantcreateaccounttitle' => 'Benutzerkonto kå ned erstöd wern',
 
 # History pages
-'viewpagelogs' => 'Logbiacher fyr dé Seiten åzoang',
+'viewpagelogs' => 'Logbiacha fia de Datei ozoagn',
 'currentrev' => 'Aktuelle Versión',
 'currentrev-asof' => 'Letzte Version vo $1',
 'revisionasof' => 'Version vom $1',
@@ -607,11 +608,11 @@ A poar Vorlogn wean ned eibundn.',
 'last' => 'Friaare',
 'page_first' => 'Auhfaung',
 'page_last' => 'End',
-'histlegend' => "Zur da Auhzoag voh dé Änderrungen oahfoch dé z' vagleichenden Versiónen auswön und d' Schoitflächen „{{int:compareselectedversions}}“ drucken.<br />
-* ({{int:cur}}) = Unterschiad zua da aktuön Versión, ({{int:last}}) = Unterschiad zua da vurhering Versión
-* Uarzeid/Daatum = Versión zua derer Zeid, Benutzernaum/IP-Adress vom Beorweiter, {{int:minoreditletter}} = Kloane Änderrung",
-'history-fieldset-title' => 'Suach in da Versiónsgschicht',
-'history-show-deleted' => 'netter gléschde Versiónen',
+'histlegend' => 'Zua Ozoag vo de Endarunga oafoch de z vagleichandn Versiona und Schoitflechn „{{int:compareselectedversions}}“ druckn.<br />
+* ({{int:cur}}) = Unterschied zua aktuelln Version, ({{int:last}}) = Unterschied zua vorherign Version
+* Uhrzeid/Datum = Version za dera Zeid, Nutzanama/IP-Adress vom Beorbata, {{int:minoreditletter}} = Kloane Endarung',
+'history-fieldset-title' => 'Suach in da Versionsgschicht',
+'history-show-deleted' => 'Nua gleschte Versiona',
 'histfirst' => 'Ejtaste',
 'histlast' => 'Neiaste',
 'historyempty' => '(laar)',
@@ -665,7 +666,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'nextn-title' => '{{PLURAL:$1|Foilgends Ergebnis|Foigende $1 Ergebniss}}',
 'shown-title' => 'Zoag $1 {{PLURAL:$1|Ergebnis|Ergebniss}} pro Seitn',
 'viewprevnext' => 'Zoag ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-exists' => "'''Es gibt a Seiten, dé'n Nåmen „[[:$1]]“ hod.'''",
+'searchmenu-exists' => "'''Es gibt a Seiten, wo „[[:$1]]“ hoasst.'''",
 'searchmenu-new' => "'''De Seitn „[[:$1]]“ in em Wiki eastejn.'''",
 'searchprofile-articles' => 'Inhoidsseitn',
 'searchprofile-project' => 'Huif- und Projektseitn',
@@ -803,7 +804,7 @@ Stand: $4, $5 Uhr.",
 'recentchangeslinked-feed' => 'Valinkts priaffm',
 'recentchangeslinked-toolbox' => 'Endarunga af valinktn Seitn',
 'recentchangeslinked-title' => 'Änderrungen ån Seiten, dé voh „$1“ valinkt san',
-'recentchangeslinked-noresult' => 'Im ausgwöden Zeidraum san an dé valinkden Seiten koane Änderrungen vurgnummer worn.',
+'recentchangeslinked-noresult' => 'Im ausgwejtn Zeidraum san an dena valinkdn Seitn koane Endarunga vorgnumma worn.',
 'recentchangeslinked-summary' => "Des is a Listn vo de letztn Endarunga af Seitn, de wo vo ana bstimmtn Seitn valinkt san (bzw. za ana bstimmtn Kategorie ghean).
 Seitn af [[Special:Watchlist|deina Beobochtungslistn]] san '''fett'''.",
 'recentchangeslinked-page' => 'Seiten:',
@@ -895,7 +896,7 @@ Seitn af [[Special:Watchlist|deina Beobochtungslistn]] san '''fett'''.",
 'linkstoimage-more' => "Es {{PLURAL:$1|valinkt|valinkn}} mea wia {{PLURAL:$1|oa Seitn |$1 Seitn}} auf de Datei.
 De foignde Listn zaagt netta {{PLURAL:$1|in easten Link|de easten $1 Links}} auf de Datei.
 A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
-'nolinkstoimage' => 'Koah Seiten bnutzd dé Daatei.',
+'nolinkstoimage' => 'De Datei wead vo koana Seitn gnutzt.',
 'morelinkstoimage' => '[[Special:WhatLinksHere/$1|Weidare Links]] fia de Datei.',
 'duplicatesoffile' => "{{PLURAL:$1|D'foignde Datei is a Duplikat|De foigndn $1 Datein han Duplikate}} vu dea Datei ([[Special:FileDuplicateSearch/$2|weidare Deteus]]):",
 'sharedupload' => 'De Datei stãmmt aus $1 und deaf bei ãndare Projekte vawendt wean.',
@@ -1001,7 +1002,7 @@ Links as Naumensraim wern do néd afglistt.",
 'booksources-go' => 'Suach',
 
 # Special:Log
-'log' => 'Logbiacher',
+'log' => 'Logbiacha',
 'all-logs-page' => 'Olle effmtlichen Logbiacher',
 'alllogstext' => 'Des is de kombinierte Anzeige vo alle in {{SITENAME}} gführten Logbiacha. Die Ausgabe ko durch de Auswahl vom Logbuchtyp, vom Benutzer oder vom Seitntitel eigschränkt wern.',
 'logempty' => 'Koane passenden Einträg.',
@@ -1014,7 +1015,7 @@ Links as Naumensraim wern do néd afglistt.",
 'prevpage' => 'Vurherige Seiten ($1)',
 'allpagesfrom' => 'Seiten auhzoang ob:',
 'allpagesto' => 'Seiten auhzoang bis:',
-'allarticles' => 'Olle Seiten',
+'allarticles' => 'Olle Seitn',
 'allinnamespace' => 'Olle Seiten (Naumensraum: $1)',
 'allnotinnamespace' => 'Ollte Seiten  (néd im $1 Naumensraum)',
 'allpagesprev' => 'Vurige',
@@ -1038,7 +1039,7 @@ Links as Naumensraim wern do néd afglistt.",
 'linksearch-ns' => 'Nåmensraum:',
 'linksearch-ok' => 'Suacher',
 'linksearch-text' => "Dé Speziaalseiten do daméglicht d' Suach noch Seiten, in dénen bstimmte Weblinks enthoiden san. Dodabei kennern Blootzhoiter wia beispüsweis  <code>*.beispü.at</code> hergnummer wern. Es muass mindastens a Top-Level-Domain, z. Bsp. „*.org“. auhgeem wern. <br />Unterstytzde Protokói: <code>$1</code> (Dé bittscheh bei da Suachauhgob auhgeem.)",
-'linksearch-line' => '$1 is valinkt voh $2',
+'linksearch-line' => '$1 is valinkt vo $2',
 
 # Special:ListUsers
 'listusers-submit' => 'Zoag',
@@ -1086,7 +1087,7 @@ Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listg
 'usermessage-editor' => 'Systém-Messenger',
 
 # Watchlist
-'watchlist' => 'Beówochtungslisten',
+'watchlist' => 'Beobochtungslistn',
 'mywatchlist' => 'Mei Beobochta',
 'watchlistfor2' => 'Vo $1 $2',
 'nowatchlist' => 'Es gibt koane Eihträg auf deiner Beówochtungslisten.',
@@ -1102,7 +1103,7 @@ Waunnst dé Seiten wieder voh deiner Beówochtungslisten weggerddoah mechst, dru
 'removedwatchtext' => "D' Seiten „[[:$1]]“ is voh deiner [[Special:Watchlist|Beówochtungslisten]] wegdauh worn.",
 'watch' => 'Beobochtn',
 'watchthispage' => "D' Seiten beówochten",
-'unwatch' => 'nimmer beówochten',
+'unwatch' => 'nimma beobochtn',
 'unwatchthispage' => 'Nimmer beówochten',
 'notanarticle' => 'Koah Seiten',
 'notvisiblerev' => 'Versión is gléschd worn',
@@ -1166,10 +1167,10 @@ Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-legend' => 'Léschen',
 'historywarning' => "'''Ochtung:''' Dé Seiten, dé du léschen mecherst, hod a Versiónsgschicht mid epper $1 {{PLURAL:$1|Versión|Versiónen}}:",
 'confirmdeletetext' => "Du bist dabei, a Seiten mid olle zuaghering ödern Versiónen z' léschen. Bittscheh bstätig dodazua, daas da d' Kónsequenzen bewusst san und daas du in Ywereihstimmung mid d' [[{{MediaWiki:Policy-url}}|Richtlinien]] haundelst.",
-'actioncomplete' => 'Akzión beéndt',
-'actionfailed' => 'Akzión föögschlong',
+'actioncomplete' => 'Aktion beendt',
+'actionfailed' => 'Akzion fejgschlogn',
 'deletedtext' => '„$1“ is glöscht worn. Im $2 findn Sie a Listn vo de letzten Löschungen.',
-'dellogpage' => 'Lésch-Logbiache',
+'dellogpage' => 'Lesch-Logbuach',
 'deletionlog' => 'Lösch-Logbuach',
 'reverted' => 'Auf a oide Version zruckgesetzt',
 'deletecomment' => 'Grund:',
@@ -1239,13 +1240,13 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'blanknamespace' => '(Seitn)',
 
 # Contributions
-'contributions' => 'Benutzerbeiträg',
+'contributions' => '{{GENDER:$1|Nutza}}beidreg',
 'contributions-title' => 'Nutzabeidräg vo „$1“',
 'mycontris' => 'Meine Beidreg',
 'contribsub2' => 'Vo $1 ($2)',
 'uctop' => '(aktuell)',
-'month' => 'und Monad',
-'year' => 'bis zum Jor:',
+'month' => 'und Monad:',
+'year' => 'Bis zan Joar:',
 
 'sp-contributions-newbies' => 'Nua Beidräg vo de neichn Nutza ozoagn',
 'sp-contributions-newbies-sub' => 'Fyr Neiling',
@@ -1263,13 +1264,13 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'whatlinkshere' => 'Links af de Seitn',
 'whatlinkshere-title' => 'Seiten, dé noch „$1“ valinken',
 'whatlinkshere-page' => 'Seiten:',
-'linkshere' => "D' vóigernden Seiten valinken noch '''„[[:$1]]“''':",
+'linkshere' => "De foigandn Seitn valinka af '''„[[:$1]]“''':",
 'nolinkshere' => "Koa Seitn valinkt af '''„[[:$1]]“'''.",
-'isredirect' => 'Weiderloatungsseiten',
-'istemplate' => 'Vurlongeihbindung',
-'isimage' => 'Daateilink',
-'whatlinkshere-prev' => "{{PLURAL:$1|vorige|d'voring $1}}",
-'whatlinkshere-next' => "{{PLURAL:$1|nexde|d'nexdn $1}}",
+'isredirect' => 'Weidaloatungsseitn',
+'istemplate' => 'Vorlogneinbindung',
+'isimage' => 'Dateilink',
+'whatlinkshere-prev' => '{{PLURAL:$1|vorige|vorign $1}}',
+'whatlinkshere-next' => '{{PLURAL:$1|naxde|naxdn $1}}',
 'whatlinkshere-links' => '← Vaweise',
 'whatlinkshere-hideredirs' => 'Weidaleitungen $1',
 'whatlinkshere-hidetrans' => 'Vurlongeihbindung $1',
@@ -1403,7 +1404,7 @@ Bittschee gib außadem druntn in '''neichn''' Nãm vu da Seitn ei und schreib ku
 'export' => 'Seitn exportian',
 
 # Namespace 8 related
-'allmessagesname' => 'Nåm:',
+'allmessagesname' => 'Nama:',
 'allmessagesdefault' => 'Standardtext',
 'allmessagescurrent' => 'Aktuella Text',
 'allmessagestext' => 'Des is a Listen vo de MediaWiki-Systemtextt.
@@ -1412,7 +1413,7 @@ Bsuach bittschee de Saiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Loka
 
 # Thumbnails
 'thumbnail-more' => 'vagressan',
-'thumbnail_error' => 'Feeler beim Erstön vom Vurschaubüd: $1',
+'thumbnail_error' => 'Fehla ban Estejn vom Vorschaubuidl: $1',
 
 # Special:Import
 'importnotext' => 'Laar oder koa Text',
@@ -1433,9 +1434,9 @@ Bsuach bittschee de Saiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Loka
 'tooltip-ca-addsection' => 'Neichn Obschnitt ofanga',
 'tooltip-ca-viewsource' => 'De Seitn is gschitzd. In Quejtext konsda oschaugn.',
 'tooltip-ca-history' => 'Friaare Versiona vo dera Seitn',
-'tooltip-ca-protect' => 'Seiten schytzen',
+'tooltip-ca-protect' => 'Seitn schitzn',
 'tooltip-ca-unprotect' => 'Seitenschutz ändern',
-'tooltip-ca-delete' => 'De Seitn löschen',
+'tooltip-ca-delete' => 'De Seitn leschn',
 'tooltip-ca-undelete' => 'Eihträg wiederherstön, bevur dé Seiten gléscht worn is.',
 'tooltip-ca-move' => 'De Seitn vaschiabm',
 'tooltip-ca-watch' => 'De Seitn zua Beobochtungslistn dazua doa',
@@ -1467,18 +1468,18 @@ Hintagrundinfo za Neiigkeidn',
 'tooltip-ca-nstab-user' => 'Benutzerseiten åzoang',
 'tooltip-ca-nstab-media' => 'Meediendaateiseiten åzoang',
 'tooltip-ca-nstab-special' => 'Des is a Spezialseitn, wosd ned beorbatn konst.',
-'tooltip-ca-nstab-project' => 'Portoiseiten åzoang',
+'tooltip-ca-nstab-project' => 'Projektseitn ozoagn',
 'tooltip-ca-nstab-image' => 'Dateiseiten ozoagn',
 'tooltip-ca-nstab-mediawiki' => 'MediaWiki-Systémtext åzoang',
 'tooltip-ca-nstab-template' => 'Vorlog ozoagn',
 'tooltip-ca-nstab-help' => 'Huifseitn oozoang',
 'tooltip-ca-nstab-category' => 'Kategorieseitn ozoagn',
-'tooltip-minoredit' => 'Dé Änderrung ois a kloane markirn.',
+'tooltip-minoredit' => 'Ois kloane Endarung markian.',
 'tooltip-save' => 'Endarunga speichan',
 'tooltip-preview' => 'A Vurschau voh dé Änderrungen an derer Seiten. Bittscheh vurm Speichern bnutzen!',
 'tooltip-diff' => 'Änderrungen am Text zoang',
 'tooltip-compareselectedversions' => 'Unterschiade zwischen zwoa ausgwöde Versiónen voh derer  Seiten vagleichen.',
-'tooltip-watch' => 'Dé Seiten zua persénlichen Beówochtungslisten dazua doah',
+'tooltip-watch' => 'De Seitn zua Beobochtungslistn gebm',
 'tooltip-recreate' => 'Seitn nei erstelln, obwoi sie glöscht worn is.',
 'tooltip-upload' => 'Start as Aufféloon',
 'tooltip-rollback' => 'Setzt olle Endarunga zruck, de wo vom gleichn Nutza gmocht worn san.',
@@ -1503,7 +1504,7 @@ Hintagrundinfo za Neiigkeidn',
 
 # Media information
 'file-info-size' => '$1 × $2 Pixel, Dateigress: $3, MIME-Typ: $4',
-'file-nohires' => 'Es gibt koah heecherne Auflésung.',
+'file-nohires' => 'Es gibt koa hehare Aflesung.',
 'svg-long-desc' => 'SVG-Datei, Basisgress: $1 × $2 Pixl, Dateigress: $3',
 'show-big-image' => 'Versión in heecherner Auflésung',
 
@@ -1525,8 +1526,8 @@ Irgendwejche foigandn Links in da sejm Zein definian Ausnahma, z. B. Seitn wo de
 'metadata-help' => 'Dé Daatei enthoit weiderne Informaziónen, dé in da Reegel voh da Digitoikammera óder am vawenderden Scanner ståmmern. Durch a noochträgliche Beorweidung voh da Originoidaatei kennern oanige Deteils vaänderd worn seih.',
 'metadata-expand' => 'Erweitate Deteus eiblendn',
 'metadata-collapse' => "D' erweiterden Details eihblenden",
-'metadata-fields' => "D' fóigernden Föder voh dé EXIF-Metadaaten, dé in dém MediaWiki-Systémtext ågeem san, wern auf Büdelbschreiwungsseiten mid eihkloppter Metadaatentabön åzoagt.
-Weiderne wern standardmässig néd åzoagt.
+'metadata-fields' => 'De foigandn Fejda vo de EXIF-Metadaten, wo im MediaWiki-Systemtext ogebm san, wean auf Buidbschriebseitn mid eikloppta Metadatentabejn ozoagt.
+Weidane wean standardmassi ned ozoagt.
 * make
 * model
 * datetimeoriginal
@@ -1539,7 +1540,7 @@ Weiderne wern standardmässig néd åzoagt.
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude",
+* gpsaltitude',
 
 # EXIF tags
 'exif-gpsspeed' => 'Gschwindigkeid vom GPS-Empfänger',
@@ -1547,8 +1548,8 @@ Weiderne wern standardmässig néd åzoagt.
 'exif-componentsconfiguration-0' => 'Gibts néd',
 
 # External editor support
-'edit-externally' => 'Dé Daatei mid am externen Prógramm beorweiden',
-'edit-externally-help' => '(Schaug unter [//www.mediawiki.org/wiki/Manual:External_editors Installaziónsåweisungen] fyr weiderne Informaziónen)',
+'edit-externally' => 'De Datei mid am externa Programm beorbatn',
+'edit-externally-help' => '(Schaug unter [//www.mediawiki.org/wiki/Manual:External_editors Installationsoweisunga] fia weidane Infos)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'olle',

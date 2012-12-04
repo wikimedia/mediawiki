@@ -2641,7 +2641,7 @@ $1',
 'blanknamespace' => '(ראשי)',
 
 # Contributions
-'contributions' => 'תרומות המשתמש',
+'contributions' => 'תרומות {{GENDER:$1|המשתמש|המשתמשת}}',
 'contributions-title' => 'תרומות של המשתמש $1',
 'mycontris' => 'תרומות',
 'contribsub2' => 'עבור $1 ($2)',

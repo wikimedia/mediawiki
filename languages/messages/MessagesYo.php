@@ -186,8 +186,8 @@ $messages = array(
 'newwindow' => '(yíò sí nínú fèrèsè tuntun)',
 'cancel' => 'Fagilé',
 'moredotdotdot' => 'Ẹ̀kúnrẹ́rẹ́...',
-'mypage' => 'Ojúewé mi',
-'mytalk' => 'Ọ̀rọ̀ mi',
+'mypage' => 'Ojúewé',
+'mytalk' => 'Ọ̀rọ̀',
 'anontalk' => 'Ọ̀rọ̀ fún IP yí',
 'navigation' => 'Atọ́ka',
 'and' => '&#32;àti',
@@ -1091,7 +1091,7 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 
 # Preferences page
 'preferences' => 'Àwọn ìfẹ́ràn',
-'mypreferences' => 'Àwọn ìfẹ́ràn mi',
+'mypreferences' => 'Àwọn ìfẹ́ràn',
 'prefs-edits' => 'Iye àwọn àtúnṣe:',
 'prefsnologin' => 'Ẹ kò tíì wọlé',
 'prefsnologintext' => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
@@ -1981,7 +1981,7 @@ Bákannáà ẹ wo [[Special:WantedCategories|àwọn ẹ̀ka wíwá]].',
 
 # Watchlist
 'watchlist' => 'Ìmójútó mi',
-'mywatchlist' => 'Ìmójútó mi',
+'mywatchlist' => 'Ìmójútó',
 'watchlistfor2' => 'Fún $1 $2',
 'nowatchlist' => 'Ẹ kò ní ohun kankan nínú ìmójútó yín.',
 'watchlistanontext' => 'Ẹ jọ̀wọ́ $1 láti wò tàbí ṣàtúnṣe àwọn ohun inú ìmójútó yín.',
@@ -2218,9 +2218,9 @@ $1',
 'blanknamespace' => '(Gbangba)',
 
 # Contributions
-'contributions' => 'Àwọn àfikún ẹnitínṣe',
+'contributions' => 'Àwọn àfikún {{GENDER:$1|oníṣe}}',
 'contributions-title' => 'Àwọn àfikún oníṣe fún $1',
-'mycontris' => 'Àwọn àfikún mi',
+'mycontris' => 'Àwọn àfikún',
 'contribsub2' => 'Fún $1 ($2)',
 'uctop' => '(lókè)',
 'month' => 'Láti osù (àti sẹ́yìn):',
@@ -2260,7 +2260,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 àtúnjúwe',
 'whatlinkshere-hidetrans' => '$1 ìkómọ́ra',
 'whatlinkshere-hidelinks' => '$1 ìjápọ̀',
-'whatlinkshere-hideimages' => '$1 àwọn ìjápọ̀ àwòrán',
+'whatlinkshere-hideimages' => '$1 àwọn ìjápọ̀ fáìlì',
 'whatlinkshere-filters' => 'Ajọ̀',
 
 # Block/unblock

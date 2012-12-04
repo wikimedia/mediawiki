@@ -241,7 +241,7 @@ $messages = array(
 
 'underline-always' => 'සැමවිටම කරන්න',
 'underline-never' => 'කිසිවිටෙක නොකරන්න',
-'underline-default' => 'බ්‍රවුසරයෙහි පෙරනිමිය අනුවය',
+'underline-default' => 'සම හෝ ගවේෂකයෙහි පෙරනිමිය',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'අකුරු විලාසයන් සංස්කරණ පෙදෙස:',
@@ -328,7 +328,7 @@ $messages = array(
 'newwindow' => '(නව කවුළුවක විවෘතවේ)',
 'cancel' => 'අත් හරින්න',
 'moredotdotdot' => 'තවත්...',
-'mypage' => 'මගේ පිටුව',
+'mypage' => 'පිටුව',
 'mytalk' => 'සාකච්ඡාව',
 'anontalk' => 'මෙම අයිපී ලිපිනය සඳහා සාකච්ඡාව',
 'navigation' => 'යාත්‍රණය',
@@ -351,7 +351,7 @@ $messages = array(
 'vector-action-protect' => 'ආරක්‍ෂණය',
 'vector-action-undelete' => 'මකාදැමීම අවලංගු කරන්න',
 'vector-action-unprotect' => 'ආරක්ෂණ තත්වය වෙනස් කරන්න',
-'vector-simplesearch-preference' => 'වැඩිදියුණුකළ සෙවුම් යෝජනා සක්‍රීය කරන්න (වෙක්ටර් තීමය සඳහා පමණි)',
+'vector-simplesearch-preference' => 'සුළු කළ සෙවුම් බාරය (වෙක්ටර් තීමය සඳහා පමණි)',
 'vector-view-create' => 'තනන්න',
 'vector-view-edit' => 'සංස්කරණය',
 'vector-view-history' => 'ඉතිහාසය නරඹන්න',
@@ -878,7 +878,7 @@ $2
 'note' => "'''සටහන:'''",
 'previewnote' => "'''මෙය පෙරදසුනක් පමණක් බව සිහිතබාගන්න.'''
 ඔබගේ වෙනස්කිරීම් තවමත් සුරැකීමට ලක් කොට නොමැත!",
-'continue-editing' => 'සංස්කරණය කරගෙනයන්න',
+'continue-editing' => 'සංස්කරණ කලාපය වෙත යන්න',
 'previewconflict' => 'ඔබ විසින් සුරැකීම තෝරාගත්තොත්,  ඉහළ පෙළ සංස්කරණ සරියෙහි,  පෙළ දර්ශනය විය හැකි අයුර මෙම පෙර-දසුනෙන් ආවර්ජනය වේ.',
 'session_fail_preview' => "'''කණගාටුයි! සැසි දත්ත හානියක් හේතුවෙන් අප විසින් ඔබගේ  සංස්කරණය ක්‍රියායයනය කිරීමට නොහැකි වී ඇත.
 කරුණාකර නැවත උත්සාහ කරන්න.
@@ -1933,9 +1933,9 @@ When filtered by user, only files where that user uploaded the most recent versi
 
 'disambiguations' => 'නිරාකරණ පිටු සඳහා සබැදෙන පිටු',
 'disambiguationspage' => 'Template:තේරුම් නිරාකරණය',
-'disambiguations-text' => "ඉදිරි පිටු '''වක්‍රෝත්තිහරණ පිටුව'''කට සබැ‍ඳේ.
+'disambiguations-text' => "පහත දැක්වෙන පිටු අතර '''වක්‍රෝත්තිහරණ පිටුවකට''' සබැඳෙන එක් සබැඳියක් හෝ ඇත.
 ඒවා ඒ වෙනුවට අනුරූප මාතෘකාවට සබැඳිය යුතුය.<br />
-යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය",
+යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය.",
 
 'doubleredirects' => 'ද්විත්ව යළි-යොමුකිරීම්',
 'doubleredirectstext' => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.
@@ -2419,7 +2419,7 @@ $1',
 'blanknamespace' => '(ප්‍රධාන)',
 
 # Contributions
-'contributions' => 'මෙම පරිශීලකගේ දායකත්වයන්',
+'contributions' => '{{GENDER:$1|පරිශීලකගේ}} දායකත්වයන්',
 'contributions-title' => ' $1 සඳහා පරිශීලක දායකත්වයන්',
 'mycontris' => 'දායකත්ව',
 'contribsub2' => '$1 සඳහා ($2)',

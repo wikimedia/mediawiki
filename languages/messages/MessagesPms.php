@@ -3638,17 +3638,17 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 
 # Special:BlankPage
 'blankpage' => 'Pàgina bianca',
-'intentionallyblankpage' => "Sta pàgina-sì a l'é lassà antensionalment an bianch.",
+'intentionallyblankpage' => "Costa pàgina a l'é lassà veuida a pòsta.",
 
 # External image whitelist
-'external_image_whitelist' => "  #Lassa sta riga-sì pròpi con a l'é<pre>
-#Buta ij tòch d'espression regolar (mach la part che a va an tra //) sota
-#Ste sì a saran confrontà con le URL dle figure esterne (hotlinked)
-#Cole che as cobio a saran visualisà com figure, dasnò a sarà mach mostà un colegament a la figura
+'external_image_whitelist' => "  #Lassé costa riga-sì pròpi 'me ch'a l'é<pre>
+#Buté ij fragment d'espression regolar (mach la part che a va antra le //) sì-sota
+#Coste-sì a saran confrontà con le liure dle figure esterne
+#Cole che as cobio a saran visualisà com figure, dësnò a sarà mach mostrà na liura a la figura
 #Le linie che a ancamin-o con # a saran tratà com coment
-#Sòn sì a l'é pa sensìbil a minuscol o maiuscol
+#La lista a l'é indiferenta a minùscol o majùscol
 
-#Buta tùit ij tòch ëd regex sota sta linia-sì. Lassa sta linia-sì pròpi com a l'é</pre>",
+#Buté tùit ij fragment d'espression regolar sota sta linia-sì. Lassé costa linia pròpi com a l'é</pre>",
 
 # Special:Tags
 'tags' => 'Tag ëd modìfiche vàlid',
