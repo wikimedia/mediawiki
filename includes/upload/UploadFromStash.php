@@ -89,7 +89,7 @@ class UploadFromStash extends UploadBase {
 	 * @param $key string
 	 * @param $name string
 	 */
-	public function initialize( $key, $name = 'upload_file' ) {
+	public function initialize( $key, $name = 'upload_file', $initTempFile = true ) {
 		/**
 		 * Confirming a temporarily stashed upload.
 		 * We don't want path names to be forged, so we keep
@@ -98,7 +98,7 @@ class UploadFromStash extends UploadBase {
 		 */
 		$metadata = $this->stash->getMetadata( $key );
 		$this->initializePathInfo( $name,
-			$this->getRealPath( $metadata['us_path'] ),
+			$initTempFile ? $this->getRealPath( $metadata['us_path'] ) : false,
 			$metadata['us_size'],
 			false
 		);
@@ -127,6 +127,14 @@ class UploadFromStash extends UploadBase {
 	 */
 	public function getSourceType() {
 		return $this->mSourceType;
+	}
+
+	/**
+	 * Get the base 36 SHA1 of the file
+	 * @return string
+	 */
+	protected function getTempFileSha1Base36() {
+		return $this->mFileProps['sha1'];
 	}
 
 	/**
