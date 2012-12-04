@@ -542,7 +542,7 @@ nowiki 3
 ### Comments
 ###
 !! test
-Comments and Pre
+Comments and Indent-Pre
 !! input
 <!-- comment 1 --> asdf
 
@@ -948,7 +948,7 @@ Bug 6200: Preformatted in <blockquote>
 !! end
 
 !!test
-Templates: Pre: 1a. Templates that break a line should suppress <pre>
+Templates: Indent-Pre: 1a. Templates that break a line should suppress <pre>
 !!input
  {{echo|}}
 !!result
@@ -956,7 +956,7 @@ Templates: Pre: 1a. Templates that break a line should suppress <pre>
 !!end
 
 !!test
-Templates: Pre: 1b. Templates that break a line should suppress <pre>
+Templates: Indent-Pre: 1b. Templates that break a line should suppress <pre>
 !!input
  {{echo|
 foo}}
@@ -966,7 +966,7 @@ foo}}
 !!end
 
 !! test
-Templates: Pre: 1c: Wrapping should be based on expanded content
+Templates: Indent-Pre: 1c: Wrapping should be based on expanded content
 !! input
  {{echo|a
 b}}
@@ -978,7 +978,7 @@ b}}
 !!end
 
 !! test
-Templates: Pre: 1d: Wrapping should be based on expanded content
+Templates: Indent-Pre: 1d: Wrapping should be based on expanded content
 !! input
  {{echo|a
 b
@@ -999,7 +999,7 @@ c
 !!end
 
 !!test
-Templates: Pre: 1e. Wrapping should be based on expanded content
+Templates: Indent-Pre: 1e. Wrapping should be based on expanded content
 !!input
 {{echo| foo}}
 
@@ -1030,7 +1030,7 @@ bar
 !!end
 
 !! test
-Templates: Pre: 1f: Wrapping should be based on expanded content
+Templates: Indent-Pre: 1f: Wrapping should be based on expanded content
 !! input
 {{echo| }}a
 
@@ -1120,7 +1120,7 @@ Templates: Strip whitespace from named parameters, but not positional ones
 ###
 
 !!test
-1a. Pre and Comments
+1a. Indent-Pre and Comments
 !!input
  a
 <!--a-->
@@ -1133,7 +1133,7 @@ c
 !!end
 
 !!test
-1b. Pre and Comments
+1b. Indent-Pre and Comments
 !!input
  a
  <!--a-->
@@ -1146,7 +1146,7 @@ c
 !!end
 
 !!test
-1c. Pre and Comments
+1c. Indent-Pre and Comments
 !!input
 <!--a-->  a
 
@@ -1159,7 +1159,7 @@ c
 !!end
 
 !!test
-2a. Pre and tables
+2a. Indent-Pre and tables
 !!input
  {|
  |-
@@ -1180,7 +1180,7 @@ c
 !!end
 
 !!test
-2b. Pre and tables
+2b. Indent-Pre and tables
 !!input
   {|
  |-
@@ -1196,7 +1196,7 @@ c
 !!end
 
 !!test
-3a. Pre and block tags (single-line html)
+3a. Indent-Pre and block tags (single-line html)
 !!input
  <p> foo </p>
  <div> foo </div>
@@ -1209,7 +1209,7 @@ c
 !!end
 
 !!test
-3b. Pre and block tags (pre-content on separate line)
+3b. Indent-Pre and block tags (pre-content on separate line)
 !!input
 <p>
  foo
@@ -1276,6 +1276,80 @@ c
 <tr>
 <td>foo
 </td></tr></table>
+
+!!end
+
+###
+### HTML-pre (some to spec PHP parser behavior and some Parsoid-RT-centric)
+###
+
+!!test
+HTML-pre: 1. embedded newlines
+!!input
+<pre>foo</pre>
+
+<pre>
+foo
+</pre>
+
+<pre>
+
+foo
+</pre>
+
+<pre>
+
+
+foo
+</pre>
+!!result
+<pre>foo</pre>
+<pre>
+foo
+</pre>
+<pre>
+
+foo
+</pre>
+<pre>
+
+
+foo
+</pre>
+
+!!end
+
+!!test
+HTML-pre: 2: indented text
+!!input
+<pre>
+ foo
+</pre>
+!!result
+<pre>
+ foo
+</pre>
+
+!!end
+
+!!test
+HTML-pre: 3: other wikitext
+!!input
+<pre>
+* foo
+# bar
+= no-h =
+'' no-italic ''
+[[ NoLink ]]
+</pre>
+!!result
+<pre>
+* foo
+# bar
+= no-h =
+'' no-italic ''
+[[ NoLink ]]
+</pre>
 
 !!end
 
