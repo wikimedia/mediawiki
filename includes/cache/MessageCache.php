@@ -347,12 +347,12 @@ class MessageCache {
 		}
 
 		if ( !$success ) {
-			# Bad luck... this should not happen
-			$where[] = 'loading FAILED - cache is disabled';
-			$info = implode( ', ', $where );
-			wfDebug( __METHOD__ . ": Loading $code... $info\n" );
 			$this->mDisable = true;
 			$this->mCache = false;
+			// This used to go on, but that led to lots of nasty side
+			// effects like gadgets and sidebar getting cached with their
+			// default content
+			throw new MWException( "MessageCache failed to load messages" );
 		} else {
 			# All good, just record the success
 			$info = implode( ', ', $where );
