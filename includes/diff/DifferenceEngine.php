@@ -38,6 +38,9 @@ class DifferenceEngine extends ContextSource {
 	 * @private
 	 */
 	var $mOldid, $mNewid;
+	/**
+	 * @var Content
+	 */
 	var $mOldContent, $mNewContent;
 	protected $mDiffLang;
 
