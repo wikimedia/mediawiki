@@ -383,7 +383,7 @@ class UserrightsPage extends SpecialPage {
 			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel( $this->msg( 'userrights-user-editname' )->text(), 'user', 'username', 30, str_replace( '_', ' ', $this->mTarget ) ) . ' ' .
+			Xml::inputLabel( $this->msg( 'userrights-user-editname' )->text(), 'user', 'username', 30, $this->mTarget ) . ' ' .
 			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n"
@@ -458,12 +458,24 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $displayedAutolist . "</p>\n";
 		}
 
-		$userToolLinks = Linker::userToolLinks(
+		if ( isset( $user->name ) ) { // UserRightsProxy
+			$userName = wfEscapeWikiText( $user->name );
+			$wiki = WikiMap::getWiki( $this->mTargetDatabase );
+			$userNameLink = Linker::makeExternalLink( $wiki->getFullUrl( 'User:' . $userName ), $userName );
+			$userToolLinks = $this->remoteUserToolLinks(
+				$wiki,
+				$userName
+			);
+		} else { // User
+			$userName = wfEscapeWikiText( $user->getName() );
+			$userNameLink = Linker::link( $user->getUserPage(), $userName );
+			$userToolLinks = Linker::userToolLinks(
 				$user->getId(),
-				$user->getName(),
+				$userName,
 				false, /* default for redContribsWhenNoEdits */
 				Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
-		);
+			);
+		}
 
 		$this->getOutput()->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
@@ -471,7 +483,7 @@ class UserrightsPage extends SpecialPage {
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), $this->msg( 'userrights-editusergroup', $user->getName() )->text() ) .
-			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )->rawParams( $userToolLinks )->parse() .
+			$this->msg( 'editinguser' )->rawParams( $userNameLink )->rawParams( $userToolLinks )->parse() .
 			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 			$grouplist .
 			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
@@ -495,6 +507,44 @@ class UserrightsPage extends SpecialPage {
 			Xml::closeElement( 'table' ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
+		);
+	}
+
+	/**
+	 * Generate standard user tool links for the target wiki (talk, contributions, block, email)
+	 *
+	 * @param $wiki WikiReference: target wiki
+	 * @param $userText String: user name or IP address
+	 * @return String: HTML fragment
+	 */
+	public function remoteUserToolLinks( $wiki, $userText ) {
+		global $wgLang;
+
+		$items = array(
+			$this->remoteUserToolLink( $wiki, 'User talk:' . $userText, 'talkpagelinktext' ),
+			$this->remoteUserToolLink( $wiki, 'Special:Contributions/' . $userText, 'contribslink' ),
+			$this->remoteUserToolLink( $wiki, 'Special:Block/' . $userText, 'blocklink' ),
+			$this->remoteUserToolLink( $wiki, 'Special:Emailuser/' . $userText, 'emaillink' )
+		);
+
+		return wfMessage( 'word-separator' )->plain()
+			. '<span class="mw-usertoollinks plainlinks">'
+			. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+			. '</span>';
+	}
+
+	/**
+	 * Generate a remote tool link
+	 *
+	 * @param $wiki WikiReference: target wiki
+	 * @param $target string: Target page name
+	 * @param $message string: Message name for the link text
+	 * @return string: HTML fragment
+	 */
+	public function remoteUserToolLink( $wiki, $target, $message ) {
+		return Linker::makeExternalLink(
+			$wiki->getFullUrl( $target ),
+			wfMessage( $message )->escaped()
 		);
 	}
 
