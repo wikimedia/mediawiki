@@ -290,6 +290,16 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
+	 * Default implementation hardcodes 'desktop'.
+	 *
+	 * @return array of strings
+	 */
+	public function getTargets() {
+		return array( 'desktop' );
+	}
+
+	/**
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
@@ -451,12 +461,19 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
-	 * Default implementation hardcodes 'desktop'.
-	 *
-	 * @return array of strings
+	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
+	 * but returns 1 instead.
+	 * @param $filename string File name
+	 * @return int UNIX timestamp, or 1 if the file doesn't exist
 	 */
-	public function getTargets() {
-		return array( 'desktop' );
+	protected static function safeFilemtime( $filename ) {
+		if ( file_exists( $filename ) ) {
+			return filemtime( $filename );
+		} else {
+			// We only ever map this function on an array if we're gonna call max() after,
+			// so return our standard minimum timestamps here. This is 1, not 0, because
+			// wfTimestamp(0) == NOW
+			return 1;
+		}
 	}
 }
