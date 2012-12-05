@@ -27,13 +27,15 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ORMTableTest extends MediaWikiTestCase {
+class ORMTableTest extends MediaWikiTestCase {
 
 	/**
 	 * @since 1.21
 	 * @return string
 	 */
-	protected abstract function getTableClass();
+	protected function getTableClass() {
+		return 'PageORMTableForTesting';
+	}
 
 	/**
 	 * @since 1.21
@@ -62,4 +64,81 @@ abstract class ORMTableTest extends MediaWikiTestCase {
 		$this->assertTrue( $class::singleton() === $class::singleton() );
 	}
 
+	/**
+	 * @since 1.21
+	 */
+	public function testIgnoreErrorsOverride() {
+		$table = $this->getTable();
+
+		$db = $table->getReadDbConnection();
+		$db->ignoreErrors( true );
+
+		try {
+			$table->rawSelect( "this is invalid" );
+			$this->fail( "An invalid query should trigger a DBQueryError even if ignoreErrors is enabled." );
+		} catch ( DBQueryError $ex ) {
+			$this->assertTrue( true, "just making phpunit happy" );
+		}
+
+		$db->ignoreErrors( false );
+	}
+
+}
+
+/**
+ * Dummy ORM table for testing, reading Title objects from the page table.
+ *
+ * @since 1.21
+ */
+
+class PageORMTableForTesting extends ORMTable {
+
+	/**
+	 * @see ORMTable::getName
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return 'page';
+	}
+
+	/**
+	 * @see ORMTable::getRowClass
+	 *
+	 * @return string
+	 */
+	public function getRowClass() {
+		return 'Title';
+	}
+
+	/**
+	 * @see ORMTable::newRow
+	 *
+	 * @return IORMRow
+	 */
+	public function newRow( array $data, $loadDefaults = false ) {
+		return Title::makeTitle( $data['namespace'], $data['title'] );
+	}
+
+	/**
+	 * @see ORMTable::getFields
+	 *
+	 * @return array
+	 */
+	public function getFields() {
+		return array(
+			'id' => 'int',
+			'namespace' => 'int',
+			'title' => 'str',
+		);
+	}
+
+	/**
+	 * @see ORMTable::getFieldPrefix
+	 *
+	 * @return string
+	 */
+	protected function getFieldPrefix() {
+		return 'page_';
+	}
 }

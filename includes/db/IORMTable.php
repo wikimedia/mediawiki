@@ -97,6 +97,8 @@ interface IORMTable {
 	 * Selects the the specified fields of the records matching the provided
 	 * conditions and returns them as DBDataObject. Field names get prefixed.
 	 *
+	 * @see DatabaseBase::select()
+	 *
 	 * @since 1.20
 	 *
 	 * @param array|string|null $fields
@@ -104,7 +106,8 @@ interface IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return ORMResult
+	 * @return ORMResult The result set
+	 * @throw DBQueryError if the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function select( $fields = null, array $conditions = array(),
 							array $options = array(), $functionName = null );
@@ -136,6 +139,7 @@ interface IORMTable {
 	 * @param null|string $functionName
 	 *
 	 * @return ResultWrapper
+	 * @throw DBQueryError if the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
 							   array $options = array(), $functionName = null );
