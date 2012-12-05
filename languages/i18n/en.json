@@ -1035,7 +1035,7 @@
 	"userrights-lookup-user": "Manage user groups",
 	"userrights-user-editname": "Enter a username:",
 	"editusergroup": "Edit user groups",
-	"editinguser": "Changing user rights of user <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Changing user rights of user <strong>$1</strong> $2",
 	"userrights-editusergroup": "Edit user groups",
 	"saveusergroups": "Save user groups",
 	"userrights-groupsmember": "Member of:",
