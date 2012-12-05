@@ -95,7 +95,8 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 */
 	public function select( $fields = null, array $conditions = array(),
 							array $options = array(), $functionName  = null ) {
-		return new ORMResult( $this, $this->rawSelect( $fields, $conditions, $options, $functionName ) );
+		$res = $this->rawSelect( $fields, $conditions, $options, $functionName );
+		return new ORMResult( $this, $res );
 	}
 
 	/**
@@ -109,7 +110,8 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return array of self
+	 * @return array of row objects
+	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode).
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
 								   array $options = array(), $functionName  = null ) {
@@ -130,11 +132,12 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param null|string|array $fields
-	 * @param array $conditions
-	 * @param array $options
-	 * @param null|string $functionName
+	 * @param array             $conditions
+	 * @param array             $options
+	 * @param null|string       $functionName
 	 *
 	 * @return ResultWrapper
+	 * @throws DBQueryError if the quey failed (even if the database was in ignoreErrors mode).
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
 							   array $options = array(), $functionName  = null ) {
@@ -154,7 +157,29 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 			$options
 		);
 
+		/* @var Exception $error */
+		$error = null;
+
+		if ( $result === false ) {
+			// Database connection was in "ignoreErrors" mode. We don't like that.
+			// So, we emulate the DBQueryError that should have been thrown.
+			$error = new \DBQueryError(
+				$dbr,
+				$dbr->lastError(),
+				$dbr->lastErrno(),
+				$dbr->lastQuery(),
+				is_null( $functionName ) ? __METHOD__ : $functionName
+			);
+		}
+
 		$this->releaseConnection( $dbr );
+
+		if ( $error ) {
+			// Note: construct the error before releasing the connection,
+			// but throw it after.
+			throw $error;
+		}
+
 		return $result;
 	}
 
@@ -227,7 +252,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 
 		$objects = $this->select( $fields, $conditions, $options, $functionName );
 
-		return $objects->isEmpty() ? false : $objects->current();
+		return ( !$objects || $objects->isEmpty() ) ? false : $objects->current();
 	}
 
 	/**
