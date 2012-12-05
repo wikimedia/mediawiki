@@ -464,7 +464,7 @@ Use this to change the content in this area or how it is loaded.
  $output: the OutputPage object ($wgOut)
 
 'ArticleDelete': before an article is deleted
-$article: the WikiPage (object) being deleted
+$wikiPage: the WikiPage (object) being deleted
 $user: the user (object) deleting the article
 $reason: the reason (string) the article is being deleted
 $error: if the deletion was prohibited, the (raw HTML) error message to display
@@ -473,7 +473,7 @@ $status: Status object, modify this to throw an error. Overridden by $error
   (added in 1.20)
 
 'ArticleDeleteComplete': after an article is deleted
-$article: the WikiPage that was deleted
+$wikiPage: the WikiPage that was deleted
 $user: the user that deleted the article
 $reason: the reason the article was deleted
 $id: id of the article that was deleted
@@ -482,18 +482,18 @@ $logEntry: the ManualLogEntry used to record the deletion
 
 'ArticleEditUpdateNewTalk': before updating user_newtalk when a user talk page
 was changed
-$article: WikiPage (object) of the user talk page
+$wikiPage: WikiPage (object) of the user talk page
 
 'ArticleEditUpdates': when edit updates (mainly link tracking) are made when an
 article has been changed
-$article: the WikiPage (object)
+$wikiPage: the WikiPage (object)
 $editInfo: data holder that includes the parser output ($editInfo->output) for
 that page after the change
 $changed: bool for if the page was changed
 
 'ArticleEditUpdatesDeleteFromRecentchanges': before deleting old entries from
 recentchanges table, return false to not delete old entries
-$article: WikiPage (object) being modified
+$wikiPage: WikiPage (object) being modified
 
 'ArticleFromTitle': when creating an article object from a title object using
 Wiki::articleFromTitle()
@@ -501,7 +501,7 @@ $title: title (object) used to create the article object
 $article: article (object) that will be returned
 
 'ArticleInsertComplete': After a new article is created. DEPRECATED, use PageContentInsertComplete
-$article: WikiPage created
+$wikiPage: WikiPage created
 $user: User creating the article
 $text: New content
 $summary: Edit summary/comment
@@ -516,33 +516,33 @@ $targetTitle: target title (object)
 $destTitle: destination title (object)
 
 'ArticlePageDataAfter': after loading data of an article from the database
-$article: WikiPage (object) whose data were loaded
+$wikiPage: WikiPage (object) whose data were loaded
 $row: row (object) returned from the database server
 
 'ArticlePageDataBefore': before loading data of an article from the database
-$article: WikiPage (object) that data will be loaded
+$wikiPage: WikiPage (object) that data will be loaded
 $fields: fileds (array) to load from the database
 
 'ArticlePrepareTextForEdit': called when preparing text to be saved
-$article: the WikiPage being saved
+$wikiPage: the WikiPage being saved
 $popts: parser options to be used for pre-save transformation
 
 'ArticleProtect': before an article is protected
-$article: the WikiPage being protected
+$wikiPage: the WikiPage being protected
 $user: the user doing the protection
 $protect: boolean whether this is a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether this is for move only or not
 
 'ArticleProtectComplete': after an article is protected
-$article: the WikiPage that was protected
+$wikiPage: the WikiPage that was protected
 $user: the user who did the protection
 $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether it was for move only or not
 
 'ArticlePurge': before executing "&action=purge"
-$article: WikiPage (object) to purge
+$wikiPage: WikiPage (object) to purge
 
 'ArticleRevisionVisibilitySet': called when changing visibility of one or more
 revision of an article
@@ -554,13 +554,13 @@ $revision: the revision
 $oldPageID: the page ID of the revision when archived (may be null)
 
 'ArticleRollbackComplete': after an article rollback is completed
-$article: the WikiPage that was edited
+$wikiPage: the WikiPage that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
 'ArticleSave': before an article is saved. DEPRECATED, use PageContentSave instead
-$article: the WikiPage (object) being saved
+$wikiPage: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $text: the new article text
 $summary: the article summary (comment)
@@ -569,7 +569,7 @@ $iswatch: watch flag
 $section: section #
 
 'ArticleSaveComplete': After an article has been updated. DEPRECATED, use PageContentSaveComplete instead.
-$article: WikiPage modified
+$wikiPage: WikiPage modified
 $user: User performing the modification
 $text: New content
 $summary: Edit summary/comment
@@ -1502,7 +1502,7 @@ Hooks may change this value to override the return value of MWNamespace::isMovab
 
 'NewRevisionFromEditComplete': called when a revision was inserted
 due to an edit
-$article: the WikiPage edited
+$wikiPage: the WikiPage edited
 $rev: the new revision
 $baseID: the revision ID this was based off, if any
 $user: the editing user
@@ -1564,7 +1564,7 @@ $links: array, intended to hold the result. Must be an associative array with
 	category types as keys and arrays of HTML links as values.
 
 'PageContentInsertComplete': After a new article is created
-$article: WikiPage created
+$wikiPage: WikiPage created
 $user: User creating the article
 $content: New content as a Content object
 $summary: Edit summary/comment
@@ -1581,7 +1581,7 @@ $title: Title object
 $wgLang: the user language
 
 'PageContentSave': before an article is saved.
-$article: the WikiPage (object) being saved
+$wikiPage: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $content: the new article content, as a Content object
 $summary: the article summary (comment)
@@ -1590,7 +1590,7 @@ $iswatch: watch flag
 $section: section #
 
 'PageContentSaveComplete': After an article has been updated
-$article: WikiPage modified
+$wikiPage: WikiPage modified
 $user: User performing the modification
 $content: New content, as a Content object
 $summary: Edit summary/comment
