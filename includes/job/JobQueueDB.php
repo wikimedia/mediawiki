@@ -85,11 +85,8 @@ class JobQueueDB extends JobQueue {
 			) {
 				global $wgMemc;
 
-				$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
 				if ( $atomic ) {
 					$dbw->begin( __METHOD__ ); // wrap all the job additions in one transaction
-				} else {
-					$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
 				}
 				try {
 					// Strip out any duplicate jobs that are already in the queue...
@@ -116,15 +113,11 @@ class JobQueueDB extends JobQueue {
 				} catch ( DBError $e ) {
 					if ( $atomic ) {
 						$dbw->rollback( __METHOD__ );
-					} else {
-						$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 					}
 					throw $e;
 				}
 				if ( $atomic ) {
 					$dbw->commit( __METHOD__ );
-				} else {
-					$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 				}
 
 				$wgMemc->set( $key, 'false', $ttl ); // queue is not empty
@@ -150,51 +143,43 @@ class JobQueueDB extends JobQueue {
 
 		$uuid = wfRandomString( 32 ); // pop attempt
 		$job = false; // job popped off
-		$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
-		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
-		try {
-			// Occasionally recycle jobs back into the queue that have been claimed too long
-			if ( mt_rand( 0, 99 ) == 0 ) {
-				$this->recycleStaleJobs();
-			}
-			do { // retry when our row is invalid or deleted as a duplicate
-				// Try to reserve a row in the DB...
-				if ( in_array( $this->order, array( 'fifo', 'timestamp' ) ) ) {
-					$row = $this->claimOldest( $uuid );
-				} else { // random first
-					$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
-					$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
-					$row  = $this->claimRandom( $uuid, $rand, $gte );
-					if ( !$row ) { // need to try the other direction
-						$row = $this->claimRandom( $uuid, $rand, !$gte );
-					}
-				}
-				// Check if we found a row to reserve...
-				if ( !$row ) {
-					$wgMemc->set( $this->getEmptinessCacheKey(), 'true', self::CACHE_TTL );
-					break; // nothing to do
-				}
-				// Get the job object from the row...
-				$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
-				if ( !$title ) {
-					$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-					wfIncrStats( 'job-pop' );
-					wfDebugLog( 'JobQueueDB', "Row has invalid title '{$row->job_title}'." );
-					continue; // try again
-				}
-				$job = Job::factory( $row->job_cmd, $title,
-					self::extractBlob( $row->job_params ), $row->job_id );
-				// Flag this job as an old duplicate based on its "root" job...
-				if ( $this->isRootJobOldDuplicate( $job ) ) {
-					$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
-				}
-				break; // done
-			} while( true );
-		} catch ( DBError $e ) {
-			$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
-			throw $e;
+		// Occasionally recycle jobs back into the queue that have been claimed too long
+		if ( mt_rand( 0, 99 ) == 0 ) {
+			$this->recycleStaleJobs();
 		}
-		$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
+		do { // retry when our row is invalid or deleted as a duplicate
+			// Try to reserve a row in the DB...
+			if ( in_array( $this->order, array( 'fifo', 'timestamp' ) ) ) {
+				$row = $this->claimOldest( $uuid );
+			} else { // random first
+				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
+				$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+				$row  = $this->claimRandom( $uuid, $rand, $gte );
+				if ( !$row ) { // need to try the other direction
+					$row = $this->claimRandom( $uuid, $rand, !$gte );
+				}
+			}
+			// Check if we found a row to reserve...
+			if ( !$row ) {
+				$wgMemc->set( $this->getEmptinessCacheKey(), 'true', self::CACHE_TTL );
+				break; // nothing to do
+			}
+			// Get the job object from the row...
+			$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
+			if ( !$title ) {
+				$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
+				wfIncrStats( 'job-pop' );
+				wfDebugLog( 'JobQueueDB', "Row has invalid title '{$row->job_title}'." );
+				continue; // try again
+			}
+			$job = Job::factory( $row->job_cmd, $title,
+				self::extractBlob( $row->job_params ), $row->job_id );
+			// Flag this job as an old duplicate based on its "root" job...
+			if ( $this->isRootJobOldDuplicate( $job ) ) {
+				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
+			}
+			break; // done
+		} while( true );
 
 		return $job;
 	}
@@ -362,16 +347,8 @@ class JobQueueDB extends JobQueue {
 		$dbw = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
-		$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
-		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
-		try {
-			// Delete a row with a single DELETE without holding row locks over RTTs...
-			$dbw->delete( 'job', array( 'job_cmd' => $this->type, 'job_id' => $job->getId() ) );
-		} catch ( Exception $e ) {
-			$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
-			throw $e;
-		}
-		$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
+		// Delete a row with a single DELETE without holding row locks over RTTs...
+		$dbw->delete( 'job', array( 'job_cmd' => $this->type, 'job_id' => $job->getId() ) );
 
 		return true;
 	}
