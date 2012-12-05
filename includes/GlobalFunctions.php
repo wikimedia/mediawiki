@@ -1427,6 +1427,8 @@ function wfMessageFallback( /*...*/ ) {
  * @return String
  */
 function wfMsg( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReal( $key, $args );
@@ -1441,6 +1443,8 @@ function wfMsg( $key ) {
  * @return String
  */
 function wfMsgNoTrans( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReal( $key, $args, true, false, false );
@@ -1472,6 +1476,8 @@ function wfMsgNoTrans( $key ) {
  * @return String
  */
 function wfMsgForContent( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
@@ -1493,6 +1499,8 @@ function wfMsgForContent( $key ) {
  * @return String
  */
 function wfMsgForContentNoTrans( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
@@ -1518,6 +1526,8 @@ function wfMsgForContentNoTrans( $key ) {
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform = true ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	wfProfileIn( __METHOD__ );
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
@@ -1538,6 +1548,8 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
  * @return string
  */
 function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	wfRunHooks( 'NormalizeMessageKey', array( &$key, &$useDB, &$langCode, &$transform ) );
 
 	$cache = MessageCache::singleton();
@@ -1592,6 +1604,8 @@ function wfMsgReplaceArgs( $message, $args ) {
  * @return string
  */
 function wfMsgHtml( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReplaceArgs( htmlspecialchars( wfMsgGetKey( $key ) ), $args );
@@ -1611,6 +1625,8 @@ function wfMsgHtml( $key ) {
  * @return string
  */
 function wfMsgWikiHtml( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReplaceArgs(
@@ -1642,6 +1658,8 @@ function wfMsgWikiHtml( $key ) {
  * @return String
  */
 function wfMsgExt( $key, $options ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	$args = func_get_args();
 	array_shift( $args );
 	array_shift( $args );
@@ -1722,6 +1740,8 @@ function wfMsgExt( $key, $options ) {
  * @return Boolean True if the message *doesn't* exist.
  */
 function wfEmptyMsg( $key ) {
+	wfDeprecated( __METHOD__, '1.21' );
+
 	return MessageCache::singleton()->get( $key, /*useDB*/true, /*content*/false ) === false;
 }
 
