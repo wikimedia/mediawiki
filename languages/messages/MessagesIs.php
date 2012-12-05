@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bjarki S
  * @author Cessator
  * @author Friðrik Bragi Dýrfjörð
  * @author Gott wisst
@@ -2898,11 +2899,42 @@ Vinsamlegast reyndu aftur.',
 
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',
+'pageinfo-header-basic' => 'Grunnupplýsingar',
 'pageinfo-header-edits' => 'Breytingarskrá',
+'pageinfo-header-restrictions' => 'Verndunarstig síðunnar',
+'pageinfo-header-properties' => 'Eiginleikar síðunnar',
+'pageinfo-display-title' => 'Sýnilegur titill',
+'pageinfo-default-sort' => 'Sjálfgefinn röðunarlykill',
+'pageinfo-length' => 'Lengd síðunnar (í bætum)',
+'pageinfo-article-id' => 'Einkennisnúmer síðunnar',
+'pageinfo-language' => 'Tungumál síðunnar',
+'pageinfo-robot-policy' => 'Leitarvélastaða',
+'pageinfo-robot-index' => 'Skráanleg',
+'pageinfo-robot-noindex' => 'Óskráanleg',
 'pageinfo-views' => 'Fjöldi innlita',
 'pageinfo-watchers' => 'Fjöldi notenda, sem vakta síðuna',
+'pageinfo-redirects-name' => 'Tilvísanir til þessarar síðu',
+'pageinfo-subpages-name' => 'Undirsíður þessarar síðu',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|tilvísun|tilvísanir}}; $3 {{PLURAL:$3|ekki tilvísun|ekki tilvísanir}})',
+'pageinfo-firstuser' => 'Stofnandi síðunnar',
+'pageinfo-firsttime' => 'Dagsetning stofnunar síðunnar',
+'pageinfo-lastuser' => 'Síðasti notandinn til þess að breyta',
+'pageinfo-lasttime' => 'Dagsetning síðustu breytingar',
 'pageinfo-edits' => 'Heildarfjöldi breytinga',
 'pageinfo-authors' => 'Heildarfjöldi einstakra höfunda',
+'pageinfo-recent-edits' => 'Fjöldi nýlegra breytinga á síðunni (síðustu $1)',
+'pageinfo-recent-authors' => 'Fjöldi notenda sem breytt hafa síðunni nýlega',
+'pageinfo-magic-words' => 'Töfra {{PLURAL:$1|orð}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Innifalið snið|Innifalin snið}} ($1)',
+'pageinfo-toolboxlink' => 'Síðuupplýsingar',
+'pageinfo-redirectsto' => 'Vísar til',
+'pageinfo-redirectsto-info' => 'upplýsingar',
+'pageinfo-contentpage' => 'Talin sem efnissíða',
+'pageinfo-contentpage-yes' => 'Já',
+'pageinfo-protect-cascading' => 'Keðjuvörn hefst hér',
+'pageinfo-protect-cascading-yes' => 'Já',
+'pageinfo-protect-cascading-from' => 'Keðjuvörn stafar frá',
 
 # Skin names
 'skinname-standard' => 'Sígilt',

@@ -518,7 +518,7 @@ $1',
 
 You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
-'welcomeuser' => 'ਸਵਾਗਤ, $1!',
+'welcomeuser' => 'ਸੁਆਗਤ, $1!',
 'welcomecreation-msg' => 'ਤੁਹਾਡਾ ਖਾਤਾ ਬਣ ਚੁੱਕਾ ਹੈ। ਆਪਣੀਆਂ [[Special:Preferences|{{SITENAME}} ਪਸੰਦਾਂ]] ਬਦਲਣੀਆਂ ਨਾ ਭੁੱਲੋ।',
 'yourname' => 'ਮੈਂਬਰ ਨਾਂ:',
 'yourpassword' => 'ਪਾਸਵਰਡ:',

@@ -3219,7 +3219,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'hours' => '$1 giờ',
 'days' => '$1 ngày',
 'ago' => 'cách đây $1',
-'just-now' => 'vừa mới xong',
+'just-now' => 'hồi nãy',
 
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:

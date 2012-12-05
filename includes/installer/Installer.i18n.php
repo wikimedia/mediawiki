@@ -18019,6 +18019,7 @@ $messages['ug-arab'] = array(
  * @author AS
  * @author Ahonc
  * @author Alex Khimich
+ * @author Base
  * @author Diemon.ukr
  * @author Тест
  */
@@ -18087,12 +18088,23 @@ $1',
 	'config-db-name' => 'Назва бази даних:',
 	'config-db-password' => 'Пароль бази даних:',
 	'config-db-charset' => 'Кодування бази даних',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-db-port' => 'Порт бази даних:',
+	'config-header-mysql' => 'Налаштування MySQL',
+	'config-header-postgres' => 'Налаштування PostgreSQL',
+	'config-header-sqlite' => 'Налаштування SQLite',
+	'config-header-oracle' => 'Налаштування Oracle',
+	'config-header-ibm_db2' => 'Налаштування IBM DB2',
 	'config-invalid-db-type' => 'Невірний тип бази даних',
+	'config-missing-db-name' => "Ви повинні ввести значення параметру «Ім'я бази даних»",
+	'config-missing-db-host' => 'Ви повинні ввести значення параметру «Хост бази даних»',
+	'config-missing-db-server-oracle' => 'Ви повинні ввести значення параметру «TNS бази даних»',
 	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).',
 	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1".
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).',
+	'config-sqlite-readonly' => 'Файл <code>$1</code> недоступний для запису.',
 	'config-sqlite-cant-create-db' => 'Не вдалося створити файл бази даних <code>$1</code>.',
 	'config-db-web-create' => 'Створити обліковий запис, якщо його ще не існує',
 	'config-mysql-charset' => 'Кодування бази даних:',

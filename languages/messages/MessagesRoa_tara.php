@@ -2352,7 +2352,7 @@ $1",
 'blanknamespace' => '(Prengepàle)',
 
 # Contributions
-'contributions' => "Condrebbute de l'utende",
+'contributions' => "Condrebbute de l'{{GENDER:$1|utende}}",
 'contributions-title' => "Condrebbute de l'utende pe $1",
 'mycontris' => 'Condrebbute mie',
 'contribsub2' => 'Pe $1 ($2)',

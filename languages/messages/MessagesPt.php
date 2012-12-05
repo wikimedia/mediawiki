@@ -1619,6 +1619,7 @@ Esta informação será pública.',
 'rightslogtext' => 'Este é um registo de mudanças nos privilégios dos utilizadores.',
 'rightslogentry' => 'alterou grupos de $1 (de $2 para $3)',
 'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
+'logentry-rights-rights' => '$1 modificou os privilégios do utilizador  $3  de  $4  para $5',
 'rightsnone' => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2590,7 +2591,7 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribuições do utilizador',
+'contributions' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}}',
 'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
 'mycontris' => 'Contribuições',
 'contribsub2' => 'Para $1 ($2)',

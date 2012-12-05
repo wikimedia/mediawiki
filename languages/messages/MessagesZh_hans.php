@@ -748,6 +748,8 @@ $2',
 
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份<span class='plainlinks'>[$1 登录]</span>。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
 'welcomeuser' => '欢迎，$1！',
+'welcomecreation-msg' => '你的账户已创建。
+请别忘记更改你的[[Special:Preferences|{{SITENAME}}参数设置]]。',
 'yourname' => '用户名：',
 'yourpassword' => '密码：',
 'yourpasswordagain' => '再次输入密码：',

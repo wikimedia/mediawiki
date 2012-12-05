@@ -3562,7 +3562,7 @@ Dëse Confirmatiouns-Code leeft den $4 of.',
 'autosumm-new' => "Säit ugeluecht mat: '$1'",
 
 # Live preview
-'livepreview-loading' => 'Lueden…',
+'livepreview-loading' => 'Lueden...',
 'livepreview-ready' => 'Lueden … Fäerdeg!',
 'livepreview-failed' => "Live-Preview huet net fonctionéiert! Benotzt w.e.g. d'Fonctioun ''Kucken ouni ofzespäicheren''.",
 'livepreview-error' => "Verbindung net méiglech: $1 „$2“.

@@ -864,8 +864,9 @@ Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na ma
 Hindi pa nasasagip ang mga binago mo!",
 'continue-editing' => 'Pumunta sa pook ng pamamatnugot',
 'previewconflict' => 'Ipinamamalas ng paunang tinging ito ang teksto sa loob ng pangitaas na pook-patnugutan ng teksto ayon sa lilitaw na anyo nito kapag pinili mo ang pagsagip.',
-'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng sesyon ng datos.
-Paki ulit muli. Kung hindi ito gumana, subukang umalis sa pagkalagda at bumalik muli.'''",
+'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng datos ng sesyon.'''
+Pakiulit muli.
+Kung hindi ito gumana, subukang [[Special:UserLogout|umalis sa pagkalagda]] at bumalik muli.",
 'session_fail_preview_html' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng datos ng sesyon.'''
 
 ''Dahil naka-andar ang hilaw na HTML sa {{SITENAME}}, nakatago ang paunang tingin bilang pag-iingat sa mga paglusob ng JavaScript.''
@@ -2437,7 +2438,7 @@ $1',
 'blanknamespace' => '(Pangunahin)',
 
 # Contributions
-'contributions' => 'Mga ambag ng tagagamit',
+'contributions' => 'Mga ambag ng {{GENDER:$1|tagagamit}}',
 'contributions-title' => 'Mga ambag ng tagagamit na si $1',
 'mycontris' => 'Mga ambag',
 'contribsub2' => 'Para kay $1 ($2)',
@@ -2481,7 +2482,7 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa ibaba para sa pa
 'whatlinkshere-hideredirs' => '$1 mga pagturo/pagpapanuto',
 'whatlinkshere-hidetrans' => '$1 paglipat-sali (transklusyon)',
 'whatlinkshere-hidelinks' => '$1 mga kawing',
-'whatlinkshere-hideimages' => '$1 mga kawing ng/sa larawan',
+'whatlinkshere-hideimages' => '$1 kawing ng/sa talaksan',
 'whatlinkshere-filters' => 'Mga pansala',
 
 # Block/unblock

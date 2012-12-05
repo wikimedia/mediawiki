@@ -2234,7 +2234,7 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 'enotif_lastvisited' => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_lastdiff' => 'Se $1 for at vise denne ændring.',
 'enotif_anon_editor' => 'anonym bruger $1',
-'enotif_body' => 'Kære $WATCHINGUSERNAME,
+'enotif_body' => 'Kære $WATCHINGUSERNAME
 
 $PAGEINTRO $NEWPAGE
 
@@ -2244,12 +2244,12 @@ Kontakt bidragyderen:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer medmindre du besøger denne side. På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
+Du vil ikke modtage flere beskeder om yderligere ændringer medmindre du besøger denne side. På din overvågningsliste kan du også nulstille alle markeringer for de sider, du overvåger.
 
              Med venlig hilsen {{SITENAME}}s informationssystem
 
 --
-For at ændre dine indstillinger for email notifikationer, besøg
+For at ændre dine indstillinger for e-mail meddelelser, besøg
 {{canonicalurl:{{#special:Preferences}}}}
 
 For at ændre indstillingerne for din overvågningsliste, besøg
@@ -2440,7 +2440,7 @@ $1',
 'blanknamespace' => '(Hoved)',
 
 # Contributions
-'contributions' => 'Brugerbidrag',
+'contributions' => '{{GENDER:$1|Brugerbidrag}}',
 'contributions-title' => 'Brugerbidrag for $1',
 'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',

@@ -3969,4 +3969,6 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
+# Unknown messages
+'svg-long-error' => 'Kelvoton SVG-tiedosto: $1',
 );
