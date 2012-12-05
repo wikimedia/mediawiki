@@ -91,11 +91,12 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return ORMResult
+	 * @return ORMResult|boolean
 	 */
 	public function select( $fields = null, array $conditions = array(),
 							array $options = array(), $functionName  = null ) {
-		return new ORMResult( $this, $this->rawSelect( $fields, $conditions, $options, $functionName ) );
+		$res = $this->rawSelect( $fields, $conditions, $options, $functionName );
+		return $res ? new ORMResult( $this, $res ) : null;
 	}
 
 	/**
@@ -227,7 +228,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 
 		$objects = $this->select( $fields, $conditions, $options, $functionName );
 
-		return $objects->isEmpty() ? false : $objects->current();
+		return ( !$objects || $objects->isEmpty() ) ? false : $objects->current();
 	}
 
 	/**
