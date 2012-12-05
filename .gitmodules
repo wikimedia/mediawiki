@@ -427,3 +427,6 @@
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateSandbox.git
+[submodule "extensions/DataValues"]
+	path = extensions/DataValues
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DataValues.git
