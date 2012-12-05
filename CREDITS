@@ -2,7 +2,10 @@ MediaWiki 1.21 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
-<!-- Please notice that the following can be found parsed under Special:Version/Credits -->
+<!--
+	Please notice that the following can be found on Special:Version/Credits so
+	DO NOT change the structure of this file without checking that the special page still works
+-->
 == Developers ==
 * Aaron Schulz
 * Alex Z.

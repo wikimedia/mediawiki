@@ -79,12 +79,21 @@ class SpecialVersion extends SpecialPage {
 			// Header
 			$out->addHTML( wfMessage( 'version-credits-summary' )->parseAsBlock() );
 
-			$wikiText = file_get_contents( $IP . '/CREDITS' );
+			$creditsText = file_get_contents( $IP . '/CREDITS' );
 
-			// Take everything from the first section onwards, to remove the (not localized) header
-			$wikiText = substr( $wikiText, strpos( $wikiText, '==' ) );
+			// Split up into sections to apply translations
+			$creditsText = explode( '==', $creditsText );
 
-			$out->addWikiText( $wikiText );
+			// Remove everything till the first section, to remove the (not localized) header
+			$creditsText[0] = '';
+
+			// All uneven keys contain headlines
+			$creditsText[1] = wfMessage( 'version-credits-developers' )->text();
+			$creditsText[3] = wfMessage( 'version-credits-patch-contributors' )->text();
+			$creditsText[5] = wfMessage( 'version-credits-translators' )->text();
+			$creditsText = implode( '==', $creditsText );
+
+			$out->addWikiText( $creditsText );
 		}
 	}
 
