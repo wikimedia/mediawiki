@@ -613,8 +613,8 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get complete diff table, including header
 	 *
-	 * @param $otitle Title: old title
-	 * @param $ntitle Title: new title
+	 * @param string|bool $otitle Header for old text or false
+	 * @param string|bool $ntitle Header for new text or false
 	 * @param $notice String: HTML between diff header and body
 	 * @return mixed
 	 */
