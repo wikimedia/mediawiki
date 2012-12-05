@@ -248,7 +248,6 @@ $wgAutoloadLocalClasses = array(
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
 	'ThrottledError' => 'includes/Exception.php',
-	'UIDGenerator' => 'includes/UIDGenerator.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
