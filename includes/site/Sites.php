@@ -32,9 +32,9 @@ class Sites {
 
 	/**
 	 * @since 1.21
-	 * @var SiteList|false
+	 * @var SiteList|null
 	 */
-	protected $sites = false;
+	protected $sites = null;
 
 	/**
 	 * Constructor.
@@ -65,7 +65,7 @@ class Sites {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string|false $globalId
+	 * @param string|boolean false $globalId
 	 *
 	 * @return Site
 	 */
@@ -95,7 +95,7 @@ class Sites {
 	 */
 	public function getSites( $source = 'cache' ) {
 		if ( $source === 'cache' ) {
-			if ( $this->sites === false ) {
+			if ( $this->sites === null ) {
 				$cache = wfGetMainCache();
 				$sites = $cache->get( 'sites-cache' );
 
