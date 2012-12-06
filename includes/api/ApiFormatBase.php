@@ -180,7 +180,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 			}
 ?>
-<pre>
+<pre style='white-space: pre-wrap;'>
 <?php
 
 
