@@ -97,7 +97,7 @@ class Sites {
 		if ( $source === 'cache' ) {
 			if ( $this->sites === false ) {
 				$cache = wfGetMainCache();
-				$sites = $cache->get( 'sites-cache' );
+				$sites = $cache->get( wfMemcKey( 'sites' ) );
 
 				if ( is_object( $sites ) ) {
 					$this->sites = $sites;
@@ -170,7 +170,7 @@ class Sites {
 		}
 
 		$cache = wfGetMainCache();
-		$cache->set( 'sites-cache', $this->sites );
+		$cache->set( wfMemcKey( 'sites' ), $this->sites );
 	}
 
 	/**
