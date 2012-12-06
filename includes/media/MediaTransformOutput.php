@@ -32,7 +32,7 @@ abstract class MediaTransformOutput {
 	 */
 	var $file;
 
-	var $width, $height, $url, $page, $path;
+	var $width, $height, $url, $page, $path, $lang;
 
 	/**
 	 * @var array Associative array mapping optional supplementary image files
@@ -201,8 +201,18 @@ abstract class MediaTransformOutput {
 			  $query = 'page=' . urlencode( $this->page );
 		}
 		if( $params ) {
-			$query .= $query ? '&'.$params : $params;
+			if( strlen( $query ) > 0 ) {
+				$query .= '&';
+			}
+			$query .= $params;
 		}
+		if( $this->lang ) {
+			if( strlen( $query ) > 0 ) {
+				$query .= '&';
+			}
+			$query .= 'lang=' . urlencode( $this->lang );
+		}
+
 		$attribs = array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
@@ -237,10 +247,11 @@ class ThumbnailImage extends MediaTransformOutput {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
+		$defaults = array(
+			'page' => false,
+			'lang' => false
+		);
 		if( is_array( $parameters ) ){
-			$defaults = array(
-				'page' => false
-			);
 			$actualParams = $parameters + $defaults;
 		} else {
 			# Using old format, should convert. Later a warning could be added here.
@@ -249,7 +260,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				'width' => $path,
 				'height' => $parameters,
 				'page' => ( $numArgs > 5 ) ? func_get_arg( 5 ) : false
-			);
+			) + $defaults;
 			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
 		}
 
@@ -264,6 +275,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->height = round( $actualParams['height'] );
 
 		$this->page = $actualParams['page'];
+		$this->lang = $actualParams['lang'];
 	}
 
 	/**
