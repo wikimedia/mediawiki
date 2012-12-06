@@ -290,7 +290,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
 		<?php } ?>
 		<h1 id="firstHeading" lang="<?php
-			$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageLanguage()->getCode();
+			$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 			$this->html( 'pageLanguage' );
 		?>"><span dir="auto"><?php echo $this->data['title'] ?></span></h1>
 		<?php if ( $this->translator->translate( 'tagline' ) ) { ?>
