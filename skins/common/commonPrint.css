@@ -385,3 +385,8 @@ p {
 	padding-left: .2em;
 	border-left: none;
 }
+
+.usermessage { /*Hiding the new message notification on a print page. */
+	visibility:hidden;
+	display:none;
+}
