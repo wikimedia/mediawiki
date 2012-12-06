@@ -183,7 +183,7 @@ $messages = array(
 'cancel' => 'Atcelt',
 'moredotdotdot' => 'Vairāk...',
 'mypage' => 'Mana lapa',
-'mytalk' => 'Mana diskusiju lapa',
+'mytalk' => 'Diskusijas',
 'anontalk' => 'Šīs IP adreses diskusija',
 'navigation' => 'Navigācija',
 'and' => '&#32;un',
@@ -961,7 +961,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 
 # Preferences page
 'preferences' => 'Izvēles',
-'mypreferences' => 'Mani uzstādījumi',
+'mypreferences' => 'Izvēles',
 'prefs-edits' => 'Izmaiņu skaits:',
 'prefsnologin' => 'Neesi iegājis',
 'prefsnologintext' => 'Tev jābūt <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} iegājušam]</span>, lai mainītu lietotāja izvēles.',
@@ -1777,7 +1777,7 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 
 # Watchlist
 'watchlist' => 'Mani uzraugāmie raksti',
-'mywatchlist' => 'Mani uzraugāmie raksti',
+'mywatchlist' => 'Uzraugāmie raksti',
 'nowatchlist' => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchlistanontext' => 'Lūdzu $1, lai apskatītu vai labotu savu uzraugāmo rakstu saraksta saturu.',
 'watchnologin' => 'Neesi iegājis',
@@ -2003,9 +2003,9 @@ $1',
 'blanknamespace' => '(Pamatlapa)',
 
 # Contributions
-'contributions' => 'Lietotāja devums',
+'contributions' => '{{GENDER:$1|Lietotāja|Lietotājas|Lietotāja}} devums',
 'contributions-title' => 'Lietotāja $1 devums',
-'mycontris' => 'Mans devums',
+'mycontris' => 'Devums',
 'contribsub2' => 'Lietotājs: $1 ($2)',
 'nocontribs' => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
 'uctop' => '(pēdējā izmaiņa)',
@@ -2045,7 +2045,7 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 'whatlinkshere-hideredirs' => '$1 pāradresācijas',
 'whatlinkshere-hidetrans' => '$1 lapas, kurās šī lapa izmantota kā veidne',
 'whatlinkshere-hidelinks' => '$1 saites',
-'whatlinkshere-hideimages' => '$1 attēlu saites',
+'whatlinkshere-hideimages' => '$1 failu saites',
 'whatlinkshere-filters' => 'Filtri',
 
 # Block/unblock

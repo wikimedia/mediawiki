@@ -3890,9 +3890,9 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-move-move_redir-noredirect' => '$1 ha spostato la pagina $3 a $4 al posto di un redirect senza lasciare redirect',
 'logentry-patrol-patrol' => '$1 ha segnato la versione $4 della pagina $3 come verificata',
 'logentry-patrol-patrol-auto' => '$1 ha segnato automaticamente la versione $4 della pagina $3 come verificata',
-'logentry-newusers-newusers' => "L'account utente $1 è stato creato",
-'logentry-newusers-create' => "L'account utente $1 è stato creato",
-'logentry-newusers-create2' => "L'account utente $3 è stato creato da $1",
+'logentry-newusers-newusers' => "L'utenza $1 è stata creata",
+'logentry-newusers-create' => "L'utenza $1 è stata creata",
+'logentry-newusers-create2' => "L'utenza $3 è stata creata da $1",
 'logentry-newusers-autocreate' => "L'utenza $1 è stata creata automaticamente",
 'newuserlog-byemail' => 'password inviata via mail',
 

@@ -48,6 +48,7 @@
  * @author Timpul
  * @author ToSter
  * @author Tsca
+ * @author WTM
  * @author Woytecr
  * @author Wpedzich
  * @author Ymar
@@ -2362,9 +2363,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_anon_editor' => 'użytkownik anonimowy $1',
 'enotif_body' => 'Szanowny $WATCHINGUSERNAME,
 
-strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATE przez użytkownika $PAGEEDITOR. Zobacz na stronie $PAGETITLE_URL aktualną wersję.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Opis zmiany: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2372,8 +2371,7 @@ Kontakt do autora:
 mail – $PAGEEDITOR_EMAIL
 wiki – $PAGEEDITOR_WIKI
 
-W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony.
-Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
+W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony. Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
 	Wiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
 

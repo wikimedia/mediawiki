@@ -245,7 +245,7 @@ $messages = array(
 'cancel' => 'Ógilda',
 'moredotdotdot' => 'Meira...',
 'mypage' => 'Mín síða',
-'mytalk' => 'Mítt kjak',
+'mytalk' => 'Kjak',
 'anontalk' => 'Kjak til hesa ip-adressuna',
 'navigation' => 'Navigatión',
 'and' => '&#32;og',
@@ -514,6 +514,9 @@ Givin orsøk er "\'\'$2\'\'".',
 'logouttext' => "'''Tú hevur nú ritað út.'''
 Tú kanst halda fram at brúka {{SITENAME}} sum dulnevndur, ella kanst tú <span class='plainlinks'>[\$1 logga á aftur]</span> sum sami ella sum annar brúkari. 
 Legg til merkis, at summar síður framvegis vera vístar, sum um tú enn vart loggaður á, til tú hevur reinsa tín brovsara fyri \"cache\".",
+'welcomeuser' => 'Vælkomin, $1!',
+'welcomecreation-msg' => 'Tín konta er nú stovnað.
+Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].',
 'yourname' => 'Títt brúkaranavn:',
 'yourpassword' => 'Títt loyniorð:',
 'yourpasswordagain' => 'Skriva loyniorð umaftur:',
@@ -790,7 +793,6 @@ Tann seinasti sperringar gerðalistin er her niðanfyri fyri ávísing:',
 * '''Firefox / Safari:''' Halt ''Shift'' meðan tú klikkir á ''Reload'', ella trýst antin ''Ctrl-F5'' ella ''Ctrl-R'' (''Command-R'' á einari Mac)
 * '''Google Chrome:''' Trýst ''Ctrl-Shift-R'' (''⌘-Shift-R'' á einari Mac)
 * '''Internet Explorer:''' Halt ''Ctrl'' meðan tú trýstir á ''Refresh'', ella trýst á ''Ctrl-F5''
-* '''Konqueror:''' Trýst ''Reload'' ella trýst ''F5''
 * '''Opera:''' Reinsa cache í ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Gott ráð:''' Brúka \"{{int:showpreview}}\" knappin fyri at royna tína nýggju CSS áðrenn tú goymir.",
 'userjsyoucanpreview' => "'''Gott ráð:''' Brúka \"{{int:showpreview}}\" knappin fyri at royna títt nýggja JavaScript áðrenn tú goymir.",
@@ -1099,7 +1101,7 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 
 # Preferences page
 'preferences' => 'Innstillingar',
-'mypreferences' => 'Mínar innstillingar',
+'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal av rættingum:',
 'prefsnologin' => 'Tú hevur ikki ritað inn',
 'changepassword' => 'Broyt loyniorð',
@@ -1850,16 +1852,16 @@ broytti tað aftur til seinastu versjón hjá $2.',
 'blanknamespace' => '(Greinir)',
 
 # Contributions
-'contributions' => 'Brúkaraíkast',
-'contributions-title' => 'Brúkara íkøst fyri $1',
-'mycontris' => 'Mítt íkast',
+'contributions' => '{{GENDER:$1|Brúkaraíkøst}}',
+'contributions-title' => 'Brúkaraíkøst fyri $1',
+'mycontris' => 'Íkøst',
 'contribsub2' => 'Eftir $1 ($2)',
 'uctop' => '(ovast)',
 'month' => 'Frá mánaði (og áðrenn):',
 'year' => 'Frá ár (og áðrenn):',
 
 'sp-contributions-newbies' => 'Vís bert íkast frá nýggjum kontoum',
-'sp-contributions-blocklog' => 'Bannagerðabók',
+'sp-contributions-blocklog' => 'bannagerðabók',
 'sp-contributions-uploads' => 'uploads',
 'sp-contributions-logs' => 'gerðalistar (logglistar)',
 'sp-contributions-talk' => 'kjak',
@@ -1883,7 +1885,7 @@ broytti tað aftur til seinastu versjón hjá $2.',
 'whatlinkshere-hideredirs' => '$1 umdirigeringar',
 'whatlinkshere-hidetrans' => '$1 innkluderingar (transclusions)',
 'whatlinkshere-hidelinks' => '$1 slóðir',
-'whatlinkshere-hideimages' => '$1 mynda slóðir',
+'whatlinkshere-hideimages' => '$1 fíluslóðir',
 'whatlinkshere-filters' => 'Filtur',
 
 # Block/unblock
@@ -2114,6 +2116,12 @@ Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] o
 'ilsubmit' => 'Leita',
 'bydate' => 'eftir dato',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekund}}',
+'minutes' => '{{PLURAL:$1|$1 minuttur|$1 minuttir}}',
+'hours' => '{{PLURAL:$1|$1 tími|$1 tímar}}',
+'days' => '{{PLURAL:$1|$1 dagur|$1 dagar}}',
+
 # Bad image list
 'bad_image_list' => 'Støddin er soleiðis: 
 
@@ -2238,6 +2246,8 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] filtur:',
+'tags-edit' => 'rætta',
+'tags-hitcount' => '$1 {{PLURAL:$1|broyting|broytingar}}',
 
 # Special:ComparePages
 'compare-page1' => 'Síða 1',
@@ -2254,5 +2264,15 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'api-error-ok-but-empty' => 'Internur feilur: Onki svar frá servara.',
 'api-error-unclassified' => 'Ein ókendur feilur hendi.',
 'api-error-unknown-code' => 'Ókendur feilur: "$1"',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuttur|minuttir}}',
+'duration-hours' => '$1 {{PLURAL:$1|tími|tímar}}',
+'duration-days' => '$1 {{PLURAL:$1|dagur|dagar}}',
+'duration-weeks' => '$1 {{PLURAL:$1|vika|vikur}}',
+'duration-years' => '$1 {{PLURAL:$1|ár}}',
+'duration-decades' => '$1 {{PLURAL:$1|áratíggju}}',
+'duration-centuries' => '$1 {{PLURAL:$1|øld|øldir}}',
 
 );

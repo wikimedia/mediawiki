@@ -314,6 +314,7 @@ $messages = array(
 'namespaces' => 'شوێنناوەکان',
 'variants' => 'شێوەزارەکان',
 
+'navigation-heading' => 'مێنۆی ڕێدۆزی',
 'errorpagetitle' => 'ھەڵە',
 'returnto' => 'بگەڕێوە بۆ $1.',
 'tagline' => 'لە {{SITENAME}}',

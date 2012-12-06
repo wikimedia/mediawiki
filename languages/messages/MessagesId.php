@@ -734,6 +734,8 @@ Administrator yang terkunci menawarkan penjelasan ini: " $3 ".',
 
 Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat <span class='plainlinks'>[$1 masuk log lagi]</span> sebagai pengguna yang sama atau pengguna yang lain.
 Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan singgahan penjelajah web Anda",
+'welcomeuser' => 'Selamat datang,  $1 !',
+'welcomecreation-msg' => 'Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Anda.',
 'yourname' => 'Nama pengguna:',
 'yourpassword' => 'Kata sandi:',
 'yourpasswordagain' => 'Ulangi kata sandi:',

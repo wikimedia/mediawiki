@@ -3196,7 +3196,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-recent-authors' => 'Número de autores distintos recientes',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
-'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Plantilla incluida|Plantillas incluidas}} ($1)',
 'pageinfo-toolboxlink' => 'Información de la página',
 'pageinfo-redirectsto' => 'Redirige a',
 'pageinfo-redirectsto-info' => 'Información',

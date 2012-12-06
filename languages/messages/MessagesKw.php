@@ -12,6 +12,7 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author Mongvras
+ * @author Nemo bis
  * @author Nicky.ker
  * @author Nrowe
  * @author Scryfer
@@ -387,8 +388,7 @@ $1',
 Why a yll pesya usya {{SITENAME}} heb hanow, po why a yll <span class='plainlinks'>[$1 omgelmy arta]</span> avel an keth devnydhyer po avel devnydhyer aral.
 Notyowgh: Neb folennow a alsa bos disqwedhys kepar del owgh why omgelmys whath, erna wryllowgh why clerhe cache agas peurel.",
 'welcomeuser' => 'Dynnargh, $1!',
-'welcomecreation-msg' => '== Dynnargh, $1! ==
-Gwruthys yw agas acont.
+'welcomecreation-msg' => 'Gwruthys yw agas acont.
 Na wrewgh ankevy dhe janjya agas [[Special:Preferences|dowisyansow {{SITENAME}}]].',
 'yourname' => 'Hanow usyer:',
 'yourpassword' => 'Ger tremena:',
@@ -519,7 +519,7 @@ Orth agas omgelmy lemmyn...',
 'showdiff' => 'Disqwedhes an chanjyow',
 'anoneditwarning' => "'''Gwarnyans:''' Nyns owgh why omgelmys.
 Recordys a vedh agas trigva IP yn istory an folen-ma.",
-'anonpreviewwarning' => "''Nyns owgh why omgelmys. Gwitha a wra recordya agas trigva IP yn istory chanjya an folen-ma.''",
+'anonpreviewwarning' => "''Nyns owgh why omgelmys. Dre witha, agas trigva IP a vedh recordyes yn istory chanjya an folen-ma.''",
 'summary-preview' => "Ragwel a'n derivas kot:",
 'loginreqtitle' => 'Res yw omgelmy',
 'loginreqlink' => 'omgelmy',
@@ -607,6 +607,7 @@ Alwhedh: '''({{int:cur}})''' = an dyffrans dhyworth an amendyans diwettha, '''({
 
 # Diffs
 'history-title' => 'Istory an folen "$1"',
+'difference-title' => 'Dyffransow ynter amendyansow a "$1"',
 'difference-multipage' => '(Dyffrans ynter an folennow)',
 'lineno' => 'Linen $1:',
 'compareselectedversions' => 'Kehevely an amendyansow dowisyes',

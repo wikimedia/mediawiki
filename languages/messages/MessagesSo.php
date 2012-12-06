@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Abshirdheere
  * @author Maax
  * @author Mimursal
  * @author Yariiska
@@ -337,6 +338,7 @@ Fadlan u sheek [[Special:ListUsers/sysop|maamulaha]], kana digtooneesii URL-ka.'
 'filenotfound' => 'Ma oo san helin  faylka "$1".',
 'fileexistserror' => 'Ma ku qori karin faylka "$1": faylkan wuu jiraa.',
 'unexpected' => 'Qiimo loo maleeneenin: "$1"="$2".',
+'formerror' => 'Qalad: suura gal maaha in la diraa qoraalkaan',
 'badarticleerror' => 'Shaqadaan ma lagu sameyn karo boggaan.',
 'cannotdelete' => 'Boggaan ama file\'ka "$1" mala tirtiri karo.
 waxaa laga yaabaa in oo qof kale tirtiray .',
@@ -366,6 +368,7 @@ Sababta neh waxaa waaye "\'\'$2\'\'".',
 'logouttext' => "'''Hada waad ka baxday.'''
 
 Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama <span class='plainlinks'>[$1 gudaha gal]</span> adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
+'welcomeuser' => 'Soo dhowoow, $1',
 'yourname' => 'Magaca gudagalka:',
 'yourpassword' => 'Eraysir:',
 'yourpasswordagain' => 'Markale qor ereysirka:',
@@ -414,6 +417,7 @@ Sax hingaada, ama  [[Special:UserLogin/signup|samayso magac gudagale ah]].',
 'wrongpasswordempty' => 'Erayga sirta aad qortay wuxuu ahaa ebar. Fadlan iskuday markale.',
 'passwordtooshort' => 'Erayada sirta ah waa in oo ahaadaa ugu yaraan  {{PLURAL:$1|1 xaraf|$1 xarfood}} .',
 'password-name-match' => 'Eraygaaga sirta ah waa in oo ka badalnaadaa magacaaga gudagale',
+'password-login-forbidden' => 'Waxaa laga joojiyey adeegsiga magacaan iyo nambar sirtiisaba.',
 'mailmypassword' => 'E-mail iigu soo dir ereysir cusub',
 'passwordremindertitle' => 'Eraysir ku meelgaar ah oo loogu talagalay {{SITENAME}}',
 'passwordremindertext' => 'Qof (laga yaabo in aad adiga tahay, kana soo galay cinwaanka-IP-ka  $1) ayaa eraysir oo cusub u codsaday  {{SITENAME}}  ($4).
@@ -500,6 +504,7 @@ Ereysirka kumeelgaarka ah: $2',
 'changeemail-newemail' => 'Ciwaan e-mail oo cusub:',
 'changeemail-none' => '(waxna)',
 'changeemail-submit' => 'Bedel e-mailka',
+'changeemail-cancel' => 'Ka noqo',
 
 # Edit page toolbar
 'bold_sample' => 'Far butac ah',
@@ -558,6 +563,7 @@ fadlan ku soo dar faahfaahinta ku qoran kor su'aalo kasto oo sameyso.",
 'whitelistedittext' => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
 'confirmedittext' => 'Waa in aad xaqiijisaa e-mailkaada inta aadan bogaga wax ka bedelin.
 fadlan ku dar kuna xaqiiji e-mailkaada meesha  [[Special:Preferences|dooqyada gudagalahaaga]].',
+'nosuchsectiontitle' => 'Qaybtaan lama heli karo',
 'nosuchsectiontext' => 'Waxaa baroobeysay in aad wax ka bedesho maqaal jirin.
 Waxaa laga yaabaa in la wareejiyay ama la tirtiray adiga oo fiirinaayo bogga.',
 'loginreqtitle' => 'Waxaa loo baahanyahay gudagalid',
@@ -629,6 +635,7 @@ Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa meeshaan:",
 'moveddeleted-notice' => 'Boggaan waa la tirtiray.
 Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa hoostaan.',
 'edit-conflict' => 'Wax bedel isku dhacay',
+'edit-already-exists' => 'Bog cusub lama samayn karo, wuu jiraa bogaan.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Digniin:''' Aad oo u weyn yahay tusmo'da aad ku dartay.

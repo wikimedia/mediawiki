@@ -340,8 +340,8 @@ $messages = array(
 'newwindow' => '(verskyn in nuwe venster)',
 'cancel' => 'Kanselleer',
 'moredotdotdot' => 'Meer…',
-'mypage' => 'My bladsy',
-'mytalk' => 'My besprekings',
+'mypage' => 'Gebruikersblad',
+'mytalk' => 'Bespreking',
 'anontalk' => 'Besprekingsblad vir hierdie IP',
 'navigation' => 'Navigasie',
 'and' => '&#32;en',
@@ -373,6 +373,7 @@ $messages = array(
 'namespaces' => 'Naamruimtes',
 'variants' => 'Variante',
 
+'navigation-heading' => 'Navigasie-keuseskerm',
 'errorpagetitle' => 'Fout',
 'returnto' => 'Keer terug na $1.',
 'tagline' => 'Vanuit {{SITENAME}}',
@@ -616,6 +617,9 @@ Die rede hiervoor is "\'\'$3\'\'".',
 
 U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan weer <span class='plainlinks'>[$1 inteken]</span> as dieselfde of 'n ander gebruiker.
 Dit is moontlik dat sommige bladsye nog sal aandui dat u aangeteken is totdat u u webblaaier se kas skoonmaak.",
+'welcomeuser' => 'Welkom, $1!',
+'welcomecreation-msg' => 'U gebruiker is geskep.
+Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel nie.',
 'yourname' => 'Gebruikersnaam:',
 'yourpassword' => 'Wagwoord:',
 'yourpasswordagain' => 'Herhaal wagwoord',
@@ -971,6 +975,12 @@ Dit lyk of dit verwyder is.',
 Dit bestaan alreeds.',
 'defaultmessagetext' => 'Verstekteks',
 
+# Content models
+'content-model-wikitext' => 'Wikiteks',
+'content-model-text' => 'eenvoudige teks',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Waarskuwing: Die bladsy gebruik te veel duur ontlederfunksies.
 
@@ -1258,7 +1268,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 
 # Preferences page
 'preferences' => 'Voorkeure',
-'mypreferences' => 'My voorkeure',
+'mypreferences' => 'Voorkeure',
 'prefs-edits' => 'Aantal wysigings:',
 'prefsnologin' => 'Nie ingeteken nie',
 'prefsnologintext' => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aanteken]</span> om voorkeure te kan verander.',
@@ -1321,7 +1331,7 @@ Hier volg 'n lukraak gegenereerde waarde wat u kan gebruik: $1",
 'timezoneregion-indian' => 'Indiese Oseaan',
 'timezoneregion-pacific' => 'Stille Oseaan',
 'allowemail' => 'Laat e-pos van ander toe',
-'prefs-searchoptions' => 'Soekopsies',
+'prefs-searchoptions' => 'Soek',
 'prefs-namespaces' => 'Naamruimtes',
 'defaultns' => 'Anders soek in hierdie naamruimtes:',
 'default' => 'verstek',
@@ -1887,6 +1897,7 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 'uploadnewversion-linktext' => "Laai 'n nuwe weergawe van hierdie lêer",
 'shared-repo-from' => 'vanaf $1',
 'shared-repo' => "'n gedeelde lêerbank",
+'upload-disallowed-here' => 'U kan nie die lêer oorskryf nie.',
 
 # File reversion
 'filerevert' => 'Maak $1 ongedaan',
@@ -2964,10 +2975,17 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 # Info page
 'pageinfo-title' => 'Inligting oor "$1"',
 'pageinfo-header-edits' => 'Wysigingsgeskiedenis',
+'pageinfo-article-id' => 'Bladsy-ID',
+'pageinfo-robot-index' => 'Indekseerbaar',
+'pageinfo-robot-noindex' => 'Nie indekseerbaar nie',
 'pageinfo-views' => 'Aantal kere gewys',
 'pageinfo-watchers' => 'Aantal dophouers',
 'pageinfo-edits' => 'Totale aantal wysigings',
 'pageinfo-authors' => 'Totale aantal verskillende outeurs',
+'pageinfo-redirectsto' => 'Stuur aan na',
+'pageinfo-redirectsto-info' => 'Inligting',
+'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading-yes' => 'Ja',
 
 # Skin names
 'skinname-standard' => 'Standaard',
@@ -3043,6 +3061,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 uur|$1 ure}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dae}}',
 'ago' => '$1 gelede',
+'just-now' => 'Nou net',
 
 # Bad image list
 'bad_image_list' => "Die formaat is as volg:
@@ -3790,9 +3809,9 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'logentry-move-move_redir-noredirect' => "$1 het bladsy $3 na $4 oor 'n bestaande aanstuur geskuif sonder om 'n aanstuur agter te laat",
 'logentry-patrol-patrol' => '$1 het weergawe $4 van bladsy $3 as gekontroleerd gemerk',
 'logentry-patrol-patrol-auto' => '$1 het weergawe $4 van bladsy $3 outomaties as gekontroleerd gemerk',
-'logentry-newusers-newusers' => "$1 het 'n gebruiker geskep",
-'logentry-newusers-create' => "$1 het 'n gebruiker geskep",
-'logentry-newusers-create2' => "$1 het 'n gebruiker $3 geskep",
+'logentry-newusers-newusers' => 'Gebruiker $1 is geskep',
+'logentry-newusers-create' => 'Gebruiker $1 is geskep',
+'logentry-newusers-create2' => 'Gebruiker $3 is deur $1 geskep',
 'logentry-newusers-autocreate' => 'Die gebruiker $1 is outomaties geskep',
 'newuserlog-byemail' => 'wagwoord is per e-pos versend',
 
@@ -3868,4 +3887,6 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'svg-long-error' => 'Ongeldige SVG-lêer: $1',
 );

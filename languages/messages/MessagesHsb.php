@@ -2376,7 +2376,7 @@ $1',
 'blanknamespace' => '(Nastawki)',
 
 # Contributions
-'contributions' => 'Přinoški wužiwarja',
+'contributions' => 'Přinoški {{GENDER:$1|wužiwarja|wužiwarki}}',
 'contributions-title' => 'Wužiwarske přinoški wot „$1“',
 'mycontris' => 'Přinoški',
 'contribsub2' => 'za wužiwarja $1 ($2)',
