@@ -322,6 +322,12 @@ class ImagePage extends Article {
 			} else {
 				$params = array( 'page' => $page );
 			}
+
+			$renderLang = $request->getVal( 'lang' );
+			if ( !is_null( $renderLang ) ) {
+				$params['lang'] = $renderLang;
+			}
+
 			$width_orig = $this->displayImg->getWidth( $page );
 			$width = $width_orig;
 			$height_orig = $this->displayImg->getHeight( $page );
