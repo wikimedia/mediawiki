@@ -5,10 +5,10 @@
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
  */
-class JavascriptContentTest extends TextContentTest {
+class JavaScriptContentTest extends TextContentTest {
 
 	public function newContent( $text ) {
-		return new JavascriptContent( $text );
+		return new JavaScriptContent( $text );
 	}
 
 	public static function dataGetParserOutput() {
@@ -263,10 +263,10 @@ class JavascriptContentTest extends TextContentTest {
 
 	public static function dataEquals( ) {
 		return array(
-			array( new JavascriptContent( "hallo" ), null, false ),
-			array( new JavascriptContent( "hallo" ), new JavascriptContent( "hallo" ), true ),
-			array( new JavascriptContent( "hallo" ), new CssContent( "hallo" ), false ),
-			array( new JavascriptContent( "hallo" ), new JavascriptContent( "HALLO" ), false ),
+			array( new JavaScriptContent( "hallo" ), null, false ),
+			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "hallo" ), true ),
+			array( new JavaScriptContent( "hallo" ), new CssContent( "hallo" ), false ),
+			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "HALLO" ), false ),
 		);
 	}
 

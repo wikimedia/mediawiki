@@ -362,7 +362,7 @@ just a test"
 		return array(
 			array( new WikitextContent( "hallo" ), null, false ),
 			array( new WikitextContent( "hallo" ), new WikitextContent( "hallo" ), true ),
-			array( new WikitextContent( "hallo" ), new JavascriptContent( "hallo" ), false ),
+			array( new WikitextContent( "hallo" ), new JavaScriptContent( "hallo" ), false ),
 			array( new WikitextContent( "hallo" ), new TextContent( "hallo" ), false ),
 			array( new WikitextContent( "hallo" ), new WikitextContent( "HALLO" ), false ),
 		);

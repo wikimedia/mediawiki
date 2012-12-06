@@ -318,7 +318,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		return array(
 			array( new TextContent( "hallo" ), null, false ),
 			array( new TextContent( "hallo" ), new TextContent( "hallo" ), true ),
-			array( new TextContent( "hallo" ), new JavascriptContent( "hallo" ), false ),
+			array( new TextContent( "hallo" ), new JavaScriptContent( "hallo" ), false ),
 			array( new TextContent( "hallo" ), new WikitextContent( "hallo" ), false ),
 			array( new TextContent( "hallo" ), new TextContent( "HALLO" ), false ),
 		);
