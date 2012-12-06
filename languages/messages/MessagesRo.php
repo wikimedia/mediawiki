@@ -1184,7 +1184,7 @@ Ca administrator puteți vedea în continuare această diferență dinte versiun
 Ca administrator puteți vedea în continuare această diferență dinte versiuni; detalii puteți găsi în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-delundel' => 'șterge/recuperează',
 'rev-showdeleted' => 'arată',
-'revisiondelete' => 'Șterge/recuperează versiuni',
+'revisiondelete' => 'Ștergere/recuperare versiuni',
 'revdelete-nooldid-title' => 'Versiune invalidă',
 'revdelete-nooldid-text' => 'Fie nu ați specificat versiunea pentru a efectua această
 funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascundeți versiunea curentă.',

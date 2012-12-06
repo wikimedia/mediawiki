@@ -628,7 +628,7 @@ Administratori i cili e mbylli atë e dha këtë shpjegim: "$3".',
 
  Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të <span class='plainlinks'>[$1 identifikoheni përsëri]</span> si përdoruesi i mëparshëm ose si një përdorues tjetër. 
  Kini parasysh që disa faqe mund të shfaqen sikur të ishit i identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
-'welcomeuser' => 'Mirësevini, $1!',
+'welcomeuser' => 'Mirë se vini, $1!',
 'welcomecreation-msg' => 'Llogaria juaj u krijua. 
 Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]] tuaja.',
 'yourname' => 'Fusni nofkën tuaj',

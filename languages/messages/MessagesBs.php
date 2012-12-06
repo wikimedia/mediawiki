@@ -285,7 +285,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Sakrij patrolirane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled' => 'Sakrij patrolirane stranice sa spiska novih stranica',
 'tog-extendwatchlist' => 'Proširi spisak praćenja za pogled svih izmjena, ne samo nedavnih',
-'tog-usenewrc' => 'Korištenje poboljšanog spiska nedavnih izmjena (zahtijeva JavaScript)',
+'tog-usenewrc' => 'Grupiraj izmjene po stranicama sa nedavnih izmjena i praćenih članaka (zahtijeva JavaScript)',
 'tog-numberheadings' => 'Automatski numeriši podnaslove',
 'tog-showtoolbar' => 'Prikaži dugmiće za izmjene (JavaScript)',
 'tog-editondblclick' => 'Izmijeni stranice dvostrukim klikom (JavaScript)',
@@ -293,15 +293,15 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)',
 'tog-showtoc' => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword' => 'Zapamti moju šifru u ovom pregledniku (najviše $1 {{PLURAL:$1|dan|dana}})',
-'tog-watchcreations' => 'Dodaj stranice koje ja napravim u moj spisak praćenih članaka',
-'tog-watchdefault' => 'Dodaj stranice koje uređujem u moj spisak praćenih članaka',
-'tog-watchmoves' => 'Stranice koje pomjerim dodaj na spisak praćenja',
-'tog-watchdeletion' => 'Stranice koje obrišem dodaj na spisak praćenja',
+'tog-watchcreations' => 'Dodaj stranice i datoteke koje napravim na moj spisak praćenih članaka',
+'tog-watchdefault' => 'Dodaj stranice i datoteke koje uređujem na moj spisak praćenih članaka',
+'tog-watchmoves' => 'Dodaj stranice i datoteke koje pomjerim na moj spisak praćenih članaka',
+'tog-watchdeletion' => 'Dodaj stranice i datoteke koje izbrišem na moj spisak praćenih članaka',
 'tog-minordefault' => 'Označi sve izmjene malim isprva',
 'tog-previewontop' => 'Prikaži pretpregled prije polja za izmjenu a ne poslije',
 'tog-previewonfirst' => 'Prikaži izgled pri prvoj izmjeni',
 'tog-nocache' => 'Onemogući keširanje stranica u pregledniku',
-'tog-enotifwatchlistpages' => 'Pošalji mi e-poštu kad se promijene stranice',
+'tog-enotifwatchlistpages' => 'Pošalji mi e-mail kada se promijeni stranica ili datoteka sa mog spiska praćenih članaka',
 'tog-enotifusertalkpages' => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
 'tog-enotifminoredits' => 'Pošalji mi e-poštu također za male izmjene u stranicama i datotekama',
 'tog-enotifrevealaddr' => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
@@ -327,7 +327,7 @@ $messages = array(
 
 'underline-always' => 'Uvijek',
 'underline-never' => 'Nikad',
-'underline-default' => 'Po podešavanjima preglednika',
+'underline-default' => 'Po standardu izgleda ili preglednika',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Stil slova područja uređivanja:',
@@ -412,7 +412,7 @@ $messages = array(
 'newwindow' => '(otvara se u novom prozoru)',
 'cancel' => 'Poništite',
 'moredotdotdot' => 'Još...',
-'mypage' => 'Moja stranica',
+'mypage' => 'Korisnička stranica',
 'mytalk' => 'Razgovor',
 'anontalk' => 'Razgovor za ovu IP adresu',
 'navigation' => 'Navigacija',
@@ -435,7 +435,7 @@ $messages = array(
 'vector-action-protect' => 'Zaštiti',
 'vector-action-undelete' => 'Vrati obrisano',
 'vector-action-unprotect' => 'Promijeni zaštitu',
-'vector-simplesearch-preference' => 'Omogući napredne sugestije pretrage (samo vector koža)',
+'vector-simplesearch-preference' => 'Omogući pojednostavljenu traku pretrage (samo vektorski izgled)',
 'vector-view-create' => 'Napravi',
 'vector-view-edit' => 'Uređivanje',
 'vector-view-history' => 'Pregled historije',
@@ -445,6 +445,7 @@ $messages = array(
 'namespaces' => 'Imenski prostori',
 'variants' => 'Varijante',
 
+'navigation-heading' => 'Navigacija',
 'errorpagetitle' => 'Greška',
 'returnto' => 'Povratak na $1.',
 'tagline' => 'Izvor: {{SITENAME}}',
@@ -597,10 +598,10 @@ Spisak valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int
 # General errors
 'error' => 'Greška',
 'databaseerror' => 'Greška u bazi',
-'dberrortext' => 'Desila se sintaksna greška upita baze.
-Ovo se desilo zbog moguće greške u softveru.
-Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote> iz funkcije "<tt>$2</tt>".
-Baza podataka je vratila grešku "<tt>$3: $4</tt>".',
+'dberrortext' => 'Desila je se sintaksna greška kod upita prema bazi podataka.
+Ovo je se desilo zbog moguće greške u softveru.
+Posljednji pokušani upit je bio: <blockquote><code>$1</code></blockquote> iz funkcije "<code>$2</code>".
+Baza podataka je vratila grešku "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Desila se sintaksna greška upita baze.
 Posljednji pokušani upit je bio:
 "$1"
@@ -638,6 +639,8 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'cannotdelete' => 'Ne može se obrisati stranica ili datoteka "$1".
 Moguće je da ju je neko drugi već obrisao.',
 'cannotdelete-title' => 'Ne mogu izbrisati stranicu "$1"',
+'delete-hook-aborted' => 'Brisanje je prekinuo softverski priključak.
+Nije ponuđeno nikakvo objašnjenje.',
 'badtitle' => 'Loš naslov',
 'badtitletext' => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
 'perfcached' => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani. Keš sadrži najviše {{PLURAL:$1|jedan rezultat|$1 rezultata}}.',
@@ -2505,7 +2508,7 @@ $1',
 'blanknamespace' => '(Glavno)',
 
 # Contributions
-'contributions' => 'Doprinosi korisnika',
+'contributions' => 'Doprinosi {{GENDER:$1|korisnika|korisnice|korisnika}}',
 'contributions-title' => 'Doprinosi korisnika $1',
 'mycontris' => 'Doprinos',
 'contribsub2' => 'Za $1 ($2)',
@@ -3036,6 +3039,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-header-edits' => 'Historija izmjena',
 'pageinfo-header-restrictions' => 'Zaštita stranice',
 'pageinfo-header-properties' => 'Svojstva stranice',
+'pageinfo-display-title' => 'Naslov stranice',
 'pageinfo-length' => 'Dužina stranice (u bajtovima)',
 'pageinfo-article-id' => 'ID stranice',
 'pageinfo-language' => 'Jezik sadržaja stranice',

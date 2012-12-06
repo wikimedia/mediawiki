@@ -522,6 +522,7 @@ La mutivazzioni è chista: ''$2''.",
 
 Poi cuntinuari a usari {{SITENAME}} di manera anònima, o poi <span class='plainlinks'>[$1 tràsiri n'àutra vota]</span> cu lu stissu o cu n'àutru nomu d'utenti.
 Accura chi quarchi pàggina pò cuntinuari a èssiri ammustrata comu si nun avissi nisciutu nzinu a quannu tu nun scancelli tutta la mimoria dû tò browser.",
+'welcomeuser' => 'Bommegna, $1!',
 'yourname' => "Lu tò nomu d'utenti (''user name'')",
 'yourpassword' => "La tò ''password''",
 'yourpasswordagain' => "Scrivi la password n'àutra vota",

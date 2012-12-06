@@ -2412,7 +2412,7 @@ $1',
 'blanknamespace' => '(Haapt)',
 
 # Contributions
-'contributions' => 'Kontributioune vum Benotzer',
+'contributions' => 'Kontributioune vum Benotzer $1',
 'contributions-title' => 'Kontributioune vum $1',
 'mycontris' => 'Kontributiounen',
 'contribsub2' => 'Fir $1 ($2)',

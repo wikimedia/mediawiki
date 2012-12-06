@@ -751,6 +751,9 @@ Verilen sebep: ''$2''.",
 
 Şimdi anonim olarak {{SITENAME}} sitesini kullanmaya devam edebilirsiniz ya da aynı kullanıcı adıyla ya da ister başka bir kullanıcı adıyla <span class='plainlinks'>[$1 yeniden oturum açabilirsiniz]</span>.
 Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ oturumunuz açıkmış gibi görünebilir.",
+'welcomeuser' => 'Hoş geldin $1!',
+'welcomecreation-msg' => 'Hesabınız açıldı.
+[[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
 'yourname' => 'Kullanıcı adı:',
 'yourpassword' => 'Parola:',
 'yourpasswordagain' => 'Parolayı yeniden yaz:',
@@ -2533,7 +2536,7 @@ $1',
 'blanknamespace' => '(Ana)',
 
 # Contributions
-'contributions' => 'Kullanıcının katkıları',
+'contributions' => '{{GENDER:$1|Kullanıcı}} katkıları',
 'contributions-title' => '$1 için kullanıcı katkıları',
 'mycontris' => 'Katkılar',
 'contribsub2' => '$1 ($2)',
@@ -2614,8 +2617,8 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'ipb-confirm' => 'Engeli onayla',
 'badipaddress' => 'Geçersiz IP adresi',
 'blockipsuccesssub' => 'IP adresi engelleme işlemi başarılı oldu',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] engellendi.
-<br />Engellemeleri gözden geçirmek için [[Special:BlockList|IP adresi engellenenler]] listesine bakınız.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] engellendi.<br />
+Engellemeleri gözden geçirmek için [[Special:BlockList|engel listesine]] bakınız.',
 'ipb-blockingself' => 'Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?',
 'ipb-confirmhideuser' => '"Kullanıcıyı gizle" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?',
 'ipb-edit-dropdown' => 'Engelleme nedenleri düzenle',
@@ -3882,8 +3885,8 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'logentry-move-move-noredirect' => '$1 $3 sayfasını $4 sayfasına yönlendirme olmaksızın taşıdı',
 'logentry-move-move_redir' => '$1 $3 sayfasını $4 sayfasına yönlendirme üzerinden taşıdı',
 'logentry-patrol-patrol-auto' => '$1 $3 sayfasını $4 sürümü ile kontrol etti',
-'logentry-newusers-newusers' => '$1 kullanıcı hesabı oluşturdu',
-'logentry-newusers-create' => '$1 kullanıcı hesabı oluşturdu',
+'logentry-newusers-newusers' => 'Kullanıcı hesabı $1 oluşturdu',
+'logentry-newusers-create' => 'Kullanıcı hesabı $1 oluşturdu',
 'logentry-newusers-create2' => '$1 kullanıcı hesabı oluşturdu $3',
 'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
 'newuserlog-byemail' => 'e-posta yoluyla şifre gönderilmiştir',
@@ -3953,4 +3956,6 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'duration-centuries' => '$1 {{PLURAL:$1|yüzyıl|yüzyıl}}',
 'duration-millennia' => '$1 {{PLURAL:$1|bin yıl|bin yıl}}',
 
+# Unknown messages
+'svg-long-error' => 'Geçersiz SVG dosyası: $1',
 );

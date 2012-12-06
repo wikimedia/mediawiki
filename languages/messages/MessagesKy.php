@@ -40,6 +40,7 @@ $messages = array(
 'tog-showtoolbar' => 'Оңдоо учурунда аспаптар тактасын көрсөтүү (JavaScript талап кылынат)',
 'tog-editondblclick' => 'Эки басып баракты оңдоо (JavaScript талап кылынат)',
 'tog-editsection' => 'Ар бир секция үчүн «оңдоо» шилтемеси',
+'tog-oldsig' => 'Кезектеги кол:',
 
 'underline-always' => 'Дайыма',
 'underline-never' => 'Эч качан',
@@ -112,7 +113,7 @@ $messages = array(
 'category-subcat-count' => '{{PLURAL:$2|Бул категория төмөнкү көмөк категорияны камтыйт.|Бул категорияда жалпы $2, {{PLURAL:$1|көмөк категория|$1 көмөк категория}} бар.}}',
 'category-subcat-count-limited' => 'Бул категорияда {{PLURAL:$1|$1|$1|$1}} ички категория бар.',
 'category-article-count' => '{{PLURAL:$2|Бул категория төмөнкү баракты камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|барак|$1 барак}} бар.}}',
-'category-article-count-limited' => 'Бул категорияда $1 барак бар.',
+'category-article-count-limited' => 'Бул категорияда {{PLURAL:$1|$1 барак}} бар.',
 'category-file-count' => '{{PLURAL:$2|Бул категория төмөнкү файлды камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|файл|$1 файл}} бар.}}',
 'category-file-count-limited' => 'Бул категорияда {{PLURAL:$1|$1|$1|$1}} файл бар.',
 'listingcontinuesabbrev' => 'уланд.',
@@ -125,7 +126,7 @@ $messages = array(
 'newwindow' => '(жаңы терезеде ачылат)',
 'cancel' => 'Жокко чыгаруу',
 'moredotdotdot' => 'Уландысы...',
-'mypage' => 'Барагым',
+'mypage' => 'Барак',
 'mytalk' => 'Талкуулоо',
 'anontalk' => 'Бул IP дарек үчүн талкуу',
 'navigation' => 'Навигация',
@@ -209,6 +210,7 @@ $messages = array(
 'jumpto' => 'Өтүү:',
 'jumptonavigation' => 'багыттоо',
 'jumptosearch' => 'издөө',
+'pool-errorunknown' => 'Белгисиз ката',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => '{{SITENAME}} тууралуу',
@@ -223,11 +225,15 @@ $messages = array(
 'helppage' => 'Help:Мазмун',
 'mainpage' => 'Башбарак',
 'mainpage-description' => 'Башбарак',
+'policy-url' => 'Project:Эрежелер',
 'portal' => 'Жамаат порталы',
 'portal-url' => 'Project:Жамаат порталы',
 'privacy' => 'Маалыматты купуя сактоо саясаты',
 'privacypage' => 'Project:Маалыматты купуя сактоо саясаты',
 
+'badaccess' => 'Кирүү катасы',
+
+'ok' => 'OK',
 'retrievedfrom' => '"$1" булагындан алынды',
 'youhavenewmessages' => 'Сизге $1 ($2) бар.',
 'newmessageslink' => 'жаңы билдирүүлөр',
@@ -261,6 +267,7 @@ $messages = array(
 
 # General errors
 'error' => 'Ката',
+'databaseerror' => 'Маалымат базасынын катасы',
 'missing-article' => 'Табылууга тийиш «$1» $2 деп аталган баракта текст маалыматтар базасында табылган жок.
 
 Бул сыяктуу абал өчүрүлгөн барактын өзгөрүүлөрдүн тарыхына эски шилтеме менен өткөндө учурайт.
@@ -284,6 +291,9 @@ $messages = array(
 'badtitletext' => 'Талап кылынган барак аталышы туура эмес, бош, же тилдер-аралык же уики-аралык аталышы туура эмес шилтемеленген.
 Балким аталышта колдонулбай турган бир же андан көп белги камтылган.',
 'viewsource' => 'Кароо',
+
+# Virus scanner
+'virus-unknownscanner' => 'белгисиз антивирус:',
 
 # Login and logout pages
 'yourname' => 'Колдонуучу аты',
@@ -321,9 +331,11 @@ $messages = array(
 
 # Change password dialog
 'resetpass' => 'Сырсөздү өзгөртүү',
+'resetpass_header' => 'Эсеп жазуусунун сырсөзүн өзгөртүү',
 'oldpassword' => 'Эски сырсөз:',
 'newpassword' => 'Жаңы сырсөз:',
 'retypenew' => 'Жаңы сырсөздү кайта киргизиңиз:',
+'resetpass_forbidden' => 'Сырсөздү өзгөртүүгө мүмкүн эмес',
 'resetpass-submit-loggedin' => 'Сырсөздү өзгөртүү',
 'resetpass-submit-cancel' => 'Жокко чыгаруу',
 'resetpass-temp-password' => 'Убактылуу сырсөз:',
@@ -374,6 +386,7 @@ $messages = array(
 'showdiff' => 'Өзгөртүүлөрдү көрсөтүү',
 'anoneditwarning' => "'''Эскертүү:''' Сиз каттоодон өткөн жоксуз.
 IP дарегиңиз бул барактын оңдоо тарыхына жазылат.",
+'blockedtitle' => 'Катышуучу тосмолонгон',
 'blockedtext' => 'Сиздин колдонуучу атыңыз же IP дарегиңиз тосмолонгон',
 'blockednoreason' => 'себеби көрсөтүлгөн жок',
 'loginreqtitle' => 'Колдонуучунун аты талап кылынат',
@@ -513,7 +526,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'searchall' => 'баары',
 'showingresultsheader' => "'''$4''' үчүн {{PLURAL:$5|'''$3''' жыйынтыктан '''$1'''-и|'''$1 - $2''' -дан '''$3''' жыйынтык}}",
 'search-nonefound' => 'Талапка төп маалымат табылган жок.',
-'powersearch' => 'Издөө',
+'powersearch' => 'Кеңейтилген издөө',
 'powersearch-legend' => 'Кеңейтилген издөө',
 'powersearch-toggleall' => 'Баары',
 'powersearch-togglenone' => 'Эчтеке',
@@ -523,7 +536,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'qbsettings-none' => 'Көрсөтпөө',
 
 # Preferences page
-'preferences' => 'Ыңгайлаштыруу',
+'preferences' => 'Ырастоолор',
 'mypreferences' => 'Ырастоолор',
 'prefs-edits' => 'Өзгөртүүлөрдүн саны',
 'changepassword' => 'Сырсөздү өзгөртүү',
@@ -534,7 +547,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-watchlist' => 'Байкоо тизмеси',
 'prefs-resetpass' => 'Сырсөздү өзгөртүү',
 'saveprefs' => 'Сактоо',
-'prefs-editing' => 'Оңдоо',
+'prefs-editing' => 'Редакторлоо',
 'searchresultshead' => 'Издөө',
 'localtime' => 'Жергиликтүү убакыт',
 'servertime' => 'Сервер убагы:',
@@ -552,12 +565,12 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'default' => 'жарыяланбасча',
 'prefs-files' => 'Файлдар',
 'youremail' => 'Электрондук дарек:',
-'username' => 'Колдонуучунун аты:',
+'username' => 'Катышуучунун аты:',
 'uid' => 'Колдонуучунун ID си:',
 'yourrealname' => 'Анык атыңыз:',
 'yourlanguage' => 'Тил:',
 'yourvariant' => 'Вариант:',
-'yournick' => 'Такма атыңыз:',
+'yournick' => 'Жаңы колуңуз:',
 'yourgender' => 'Жыныс:',
 'gender-male' => 'Эркек',
 'gender-female' => 'Аял',
@@ -567,12 +580,12 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 Электрондук дарегиңиз башка кодонуучуларга байланыш түзгөндө көрүнбөйт.',
 'prefs-info' => 'Негизги маалыматтары',
 'prefs-dateformat' => 'Дата форматы',
-'prefs-advancedediting' => 'Кеңейтилген',
-'prefs-advancedrc' => 'Кеңейтилген',
-'prefs-advancedrendering' => 'Кеңейтилген',
-'prefs-advancedsearchoptions' => 'Кеңейтилген',
-'prefs-advancedwatchlist' => 'Кеңейтилген',
-'prefs-displayrc' => 'Көрсөтүүнү тууралоо',
+'prefs-advancedediting' => 'Кеңейтилген ырастоолор',
+'prefs-advancedrc' => 'Кеңейтилген ырастоолор',
+'prefs-advancedrendering' => 'Кеңейтилген ырастоолор',
+'prefs-advancedsearchoptions' => 'Кеңейтилген ырастоолор',
+'prefs-advancedwatchlist' => 'Кеңейтилген ырастоолор',
+'prefs-displayrc' => 'Көрсөтүүнүн ырастоолору',
 
 # User rights
 'userrights-reason' => 'Себеп:',
@@ -646,7 +659,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'uploadlog' => 'жүктөө журналы',
 'uploadlogpage' => 'Жүктөөлөрдүн тизмеси',
 'filedesc' => 'Кыска түшүндүрмө',
-'fileuploadsummary' => 'Кыска түшүндүрмө:',
+'fileuploadsummary' => 'Кыскача баяндама:',
 'uploadedfiles' => 'Жүктөлгөн файлдар',
 'savefile' => 'Файлды сактоо',
 'uploadedimage' => '"[[$1]]" жүктөлдү',
@@ -664,7 +677,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'http-invalid-url' => 'Туура эмес URL: $1',
 
 'license' => 'Лицензиялоо:',
-'license-header' => 'Лицензиялоо:',
+'license-header' => 'Лицензиялоо',
 
 # Special:ListFiles
 'imgfile' => 'файл',
@@ -683,8 +696,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'filehist-deleteall' => 'баарын өчүрүү',
 'filehist-deleteone' => 'өчүрүү',
 'filehist-revert' => 'кайтаруу',
-'filehist-current' => 'учурдагы',
-'filehist-datetime' => 'Күн/Саат',
+'filehist-current' => 'кезектеги',
+'filehist-datetime' => 'Дата/Убакыт',
 'filehist-thumb' => 'Миниатюра',
 'filehist-thumbtext' => '$1 -дагы версиясы үчүн кичирейтилген сүрөтү',
 'filehist-user' => 'Катышуучу',
@@ -692,7 +705,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'filehist-filesize' => 'Файл өлчөмү',
 'filehist-comment' => 'Эскертүү',
 'filehist-missing' => 'Файл жок болот',
-'imagelinks' => 'Файл пайдалануу',
+'imagelinks' => 'Файлды колдонуу',
 'linkstoimage' => 'Бул файлга болгон {{PLURAL:$1|шилтеме|$1 шилтеме}} :',
 'nolinkstoimage' => 'Бул файлга шилтеме берген барак жок.',
 'sharedupload-desc-here' => 'Бул файл $1 -дан  жана башка долбоорлордо пайдаланылышы мүмкүн.
@@ -711,15 +724,15 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'download' => 'жүктөп алуу',
 
 # Unused templates
-'unusedtemplates' => 'Колдонулбаган нускалар',
-'unusedtemplateswlh' => 'Башка шилтемелер',
+'unusedtemplates' => 'Колдонулбаган шаблондор',
+'unusedtemplateswlh' => 'башка шилтемелер',
 
 # Random page
 'randompage' => 'Тушкелди макала',
 
 # Statistics
 'statistics' => 'Статистика',
-'statistics-header-users' => 'Колдонуучулардын статистикасы',
+'statistics-header-users' => 'Катышуучулар боюнча статистика',
 'statistics-pages' => 'Барак',
 
 'disambiguationspage' => 'Template:көп маанилүү',
@@ -750,22 +763,22 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Book sources
 'booksources' => 'Китеп тууралуу маалыматтар',
 'booksources-search-legend' => 'Китеп тууралуу маалыматтарды издөө',
-'booksources-go' => 'Алга',
+'booksources-go' => 'Табуу',
 
 # Special:Log
 'specialloguserlabel' => 'Аткаруучу:',
 'speciallogtitlelabel' => 'Аталышы:',
-'log' => 'Тизмелер',
+'log' => 'Журналдар',
 
 # Special:AllPages
 'allpages' => 'Бардык барактар',
 'alphaindexline' => '$1 -дан $2 чейин',
 'nextpage' => 'Кийинки барак ($1)',
 'allpagesfrom' => '-дан башталган барактарды көрсөтүү:',
-'allarticles' => 'Бардык макалалар',
+'allarticles' => 'Бүт барактар',
 'allpagesprev' => 'Абалкы',
 'allpagesnext' => 'Кийинки',
-'allpagessubmit' => 'Алга',
+'allpagessubmit' => 'Аткаруу',
 'allpagesprefix' => '- префикси менен барактарды көрсөтүү',
 
 # Special:Categories
@@ -817,12 +830,12 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Delete
 'deletepage' => 'Баракты өчүрүү',
-'confirm' => 'Ырастоо',
+'confirm' => 'Аныктоо',
 'delete-legend' => 'Өчүрүү',
 'actioncomplete' => 'Иш-аракет жыйынтыкталды',
 'actionfailed' => 'Аракет натыйжасыз болду',
-'dellogpage' => 'Өчүрүлгөндөрдүн тизмеси',
-'deletecomment' => 'Себеп',
+'dellogpage' => 'Өчүрүүлөрдүн журналы',
+'deletecomment' => 'Себеп:',
 'deletereasonotherlist' => 'Башка себеп',
 
 # Rollback
@@ -863,17 +876,17 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'year' => 'Жылынан (жана андан мурун):',
 
 'sp-contributions-newbies' => 'Жаңы колдонуучулардын гана салымдарын көрсөт',
-'sp-contributions-blocklog' => 'тосмолордун тизмеси',
+'sp-contributions-blocklog' => 'тосмолоолордун журналы',
 'sp-contributions-uploads' => 'жүктөөлөр',
-'sp-contributions-logs' => 'тизме',
+'sp-contributions-logs' => 'журналдар',
 'sp-contributions-talk' => 'талкуулоо',
 'sp-contributions-search' => 'Салымдарымды издөө',
-'sp-contributions-username' => 'IP дареги же колдонуучунун аты:',
+'sp-contributions-username' => 'IP-дарек же катышуучунун аты:',
 'sp-contributions-toponly' => 'Соңку версиялары болгон оңдоолорду гана көрсөтүү',
 'sp-contributions-submit' => 'Издөө',
 
 # What links here
-'whatlinkshere' => 'Жетелеме шилтемелер',
+'whatlinkshere' => 'Шилтемелерди бул жакка',
 'whatlinkshere-title' => '"$1" -га шилтеме берген барактар',
 'whatlinkshere-page' => 'Барак:',
 'linkshere' => "'''[[:$1]]''' барагына шилтеме берген барактар:",
@@ -888,7 +901,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'whatlinkshere-hidetrans' => '$1 кошуулары',
 'whatlinkshere-hidelinks' => 'Шилтемелерди $1',
 'whatlinkshere-hideimages' => 'Сүрөт шилтемелерин $1',
-'whatlinkshere-filters' => 'Чыпкалар',
+'whatlinkshere-filters' => 'Фильтрлер',
 
 # Block/unblock
 'block' => 'Катышуучуну блокко салуу',
@@ -896,12 +909,12 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'blockip-title' => 'Катышуучуну блокко салуу',
 'blockip-legend' => 'Катышуучуну блокко салуу',
 'ipadressorusername' => 'IP дарек же колдонуучу аты:',
-'ipbreason' => 'Себеп',
+'ipbreason' => 'Себеп:',
 'ipbreasonotherlist' => 'Башка себеп',
 'ipbother' => 'Башка убакыт:',
 'ipboptions' => '2 саат:2 hours,1 күн:1 day,3 күн:3 days,1 жума:1 week,2 жума:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мөөнөтсүз:infinite',
 'ipbotheroption' => 'башка',
-'ipblocklist' => 'Тосмолонгон колдонуучулар',
+'ipblocklist' => 'Тосмолонгон катышуучулар',
 'blocklist-reason' => 'Себеп',
 'ipblocklist-submit' => 'Издөө',
 'blocklink' => 'блокко салуу',
@@ -909,13 +922,13 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'change-blocklink' => 'блоктоону өзгөртүү',
 'contribslink' => 'салым',
 'emaillink' => 'кат жиберүү',
-'blocklogpage' => 'Тосмоолордун тизмеси',
+'blocklogpage' => 'Тосмолоолордун журналы',
 'blocklogentry' => '[[$1]] тосмолонду, тосмолоо мөөнөтү: $2 $3',
-'block-log-flags-nocreate' => 'Каттоо мүмкүн эмес',
+'block-log-flags-nocreate' => 'эсеп жазуусун жаратуу өчүрүлгөн',
 
 # Move page
-'movelogpage' => 'Өзгөртүлгөн аталыштардын тизмеси',
-'movereason' => 'Себеп',
+'movelogpage' => 'Өзгөртүлгөн аттардын журналы',
+'movereason' => 'Себеп:',
 'revertmove' => 'кайтаруу',
 'delete_and_move_confirm' => 'Ооба, бул баракты өчүрөм',
 
@@ -925,14 +938,14 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'export-addns' => 'Кошуу',
 
 # Namespace 8 related
-'allmessages' => 'Система билдирүүлөрү',
+'allmessages' => 'Системалык билдирмелер',
 'allmessagesname' => 'Ат',
 'allmessagesdefault' => 'Белгиленген билдирүүнүн тексти',
 'allmessagescurrent' => 'Учурдагы текст',
 'allmessages-filter-legend' => 'Фильтр',
-'allmessages-filter-all' => 'Бардыгы',
+'allmessages-filter-all' => 'Баары',
 'allmessages-language' => 'Тил:',
-'allmessages-filter-submit' => 'Алга',
+'allmessages-filter-submit' => 'Өтүү',
 
 # Thumbnails
 'thumbnail-more' => 'Чоңойтуу',
@@ -1019,15 +1032,15 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Media information
 'file-info-size' => '$1 × $2 пиксель, файлдын көлөмү: $3, MIME түрү: $4',
-'file-nohires' => 'Мындан дагы толук чечилиши жок.',
+'file-nohires' => 'Мындан чоңураак чечим жок.',
 'svg-long-desc' => 'SVG файл, шарттуу түрдө $1 × $2 пиксел, файлдын көлөмү: $3',
 'show-big-image' => 'Толук чечими',
 
 # Special:NewFiles
-'newimages' => 'Жаңы файлдардын галлереясы',
+'newimages' => 'Жаңы файлдардын галереясы',
 'newimages-legend' => 'Фильтр',
 'ilsubmit' => 'Издөө',
-'bydate' => 'Күнү боюнча',
+'bydate' => 'дата боюнча',
 
 # Bad image list
 'bad_image_list' => 'Төмөнкү калыпта болуш керек:
@@ -1059,7 +1072,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # EXIF tags
 'exif-artist' => 'Автор',
 'exif-filesource' => 'Файл булагы',
-'exif-contrast' => 'Контраст',
+'exif-contrast' => 'Карама-каршылык',
 'exif-keywords' => 'Ачкыч сөздөр',
 'exif-source' => 'Булак',
 'exif-languagecode' => 'Тил',
@@ -1087,8 +1100,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'limitall' => 'баары',
 
 # E-mail address confirmation
-'confirmemail' => 'Электрондук даректи ырастоо',
-'confirmemail_loggedin' => 'Электрондук дарегиңиз ырасталды.',
+'confirmemail' => 'Электрондук даректи аныктоо',
+'confirmemail_loggedin' => 'Электрондук дарегиңиз аныкталды.',
 
 # Delete conflict
 'recreate' => 'Кайтадан жаратуу',
@@ -1142,7 +1155,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 #Туруктуу айтылыштардын бөлүмдөрүн ушул саптын үстүнө жайгаштыр. Бул сапты болгондой калтыруу.</pre>',
 
 # Special:Tags
-'tag-filter' => '[[Special:Tags|Энбелги]] чыпкасы:',
+'tag-filter' => '[[Special:Tags|Белги]] фильтри:',
 'tag-filter-submit' => 'Фильтрдөө',
 'tags-title' => 'Белгилер',
 'tags-edit' => 'оңдоо',
@@ -1165,5 +1178,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # API errors
 'api-error-unknown-code' => 'Белгисиз ката: "$1".',
+'api-error-unknownerror' => 'Белгисиз ката: «$1».',
 
 );

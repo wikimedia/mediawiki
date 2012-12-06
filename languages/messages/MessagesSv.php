@@ -2586,7 +2586,7 @@ $1',
 'blanknamespace' => '(Huvudnamnrymden)',
 
 # Contributions
-'contributions' => 'Användarbidrag',
+'contributions' => '{{GENDER:$1|Användarbidrag}}',
 'contributions-title' => 'Bidrag av $1',
 'mycontris' => 'Bidrag',
 'contribsub2' => 'För $1 ($2)',

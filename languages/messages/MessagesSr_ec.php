@@ -3325,6 +3325,8 @@ $1',
 'markedaspatrollederror' => 'Не могу да означим као патролирано',
 'markedaspatrollederrortext' => 'Морате изабрати измену да бисте је означили као прегледану.',
 'markedaspatrollederror-noautopatrol' => 'Не можете да означите своје измене као патролиране.',
+'markedaspatrollednotify' => 'Ова измена на страници $1 је означена као прегледана.',
+'markedaspatrollederrornotify' => 'Није успешно означавање ове страницее као прегледаном.',
 
 # Patrol log
 'patrol-log-page' => 'Дневник патролирања',

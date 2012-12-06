@@ -603,9 +603,9 @@ L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 
 Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu <span class='plainlinks'>[$1 iniciar una sessió una altra vegada]</span> amb el mateix o un altre usuari.
 Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.",
-'welcomeuser' => 'Benvingut,  $1 !',
+'welcomeuser' => 'Benvingut, $1!',
 'welcomecreation-msg' => 'El vostre compte ha estat creat.
-No oblideu de canviar les vostres [[Special:Preferences|{{SITENAME}} preferències]].',
+No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].',
 'yourname' => "Nom d'usuari",
 'yourpassword' => 'Contrasenya',
 'yourpasswordagain' => 'Escriviu una altra vegada la contrasenya',

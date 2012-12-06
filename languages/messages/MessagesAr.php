@@ -882,6 +882,9 @@ $2',
 
 تستطيع المتابعة باستعمال {{SITENAME}} كمجهول، أو <span class='plainlinks'>[$1 الدخول مرة أخرى]</span> بنفس الاسم أو باسم آخر.
 من الممكن أن ترى بعض الصفحات كما لو أنك مسجل الدخول، وذلك حتى تقوم بإفراغ الصفحات المختزنة في المتصفح لديك.",
+'welcomeuser' => 'أهلاً بك يا $1!',
+'welcomecreation-msg' => 'تم إنشاء حسابك.
+لا تنس تعديل [[Special:Preferences|تفضيلاتك في {{SITENAME}}]].',
 'yourname' => 'اسم المستخدم:',
 'yourpassword' => 'كلمة السر:',
 'yourpasswordagain' => 'أعد كتابة كلمة السر:',
@@ -1262,8 +1265,10 @@ $2
 'content-not-allowed-here' => '"$1" المحتوى غير مسموح على صفحة [[$2]]',
 
 # Content models
+'content-model-wikitext' => 'نص ويكي',
 'content-model-text' => 'نص عادي',
 'content-model-javascript' => 'جافاسكربت',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''تحذير:''' هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.

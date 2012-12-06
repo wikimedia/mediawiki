@@ -3235,6 +3235,8 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'markedaspatrollederror' => 'Ne mogu da označim kao patrolirano',
 'markedaspatrollederrortext' => 'Morate izabrati izmenu da biste je označili kao pregledanu.',
 'markedaspatrollederror-noautopatrol' => 'Ne možete da označite svoje izmene kao patrolirane.',
+'markedaspatrollednotify' => 'Ova izmena na stranici $1 je označena kao pregledana.',
+'markedaspatrollederrornotify' => 'Nije uspešno označavanje ove stranice kao pregledanom.',
 
 # Patrol log
 'patrol-log-page' => 'Dnevnik patroliranja',

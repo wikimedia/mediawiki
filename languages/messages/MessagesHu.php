@@ -477,6 +477,7 @@ $messages = array(
 'namespaces' => 'Névterek',
 'variants' => 'Változók',
 
+'navigation-heading' => 'Navigációs menü',
 'errorpagetitle' => 'Hiba',
 'returnto' => 'Vissza a(z) $1 laphoz.',
 'tagline' => 'A {{SITENAME}} wikiből',
@@ -2526,7 +2527,7 @@ $1',
 'blanknamespace' => '(Fő)',
 
 # Contributions
-'contributions' => 'Szerkesztő közreműködései',
+'contributions' => '{{GENDER:$1|Szerkesztő}} közreműködései',
 'contributions-title' => '$1 közreműködései',
 'mycontris' => 'Közreműködések',
 'contribsub2' => '$1 ($2)',
@@ -3183,6 +3184,7 @@ A futtatása során kárt tehet a számítógépedben.",
 'hours' => '{{PLURAL:$1|egy|$1}} órával',
 'days' => '{{PLURAL:$1|egy|$1}} nappal',
 'ago' => '$1 ezelőtt',
+'just-now' => 'épp most',
 
 # Bad image list
 'bad_image_list' => 'A formátum a következő:
@@ -3927,9 +3929,9 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-move-move_redir-noredirect' => '$1 átnevezte a(z) $3 lapot $4 lapra az átirányítást felülírva, átirányítás nélkül',
 'logentry-patrol-patrol' => '$1 a(z) $3 lap $4 változatát ellenőrzöttnek jelölte',
 'logentry-patrol-patrol-auto' => '$1 a(z) $3 lap $4 változatát automatikusan ellenőrzöttnek jelölte',
-'logentry-newusers-newusers' => '$1 létrehozott egy felhasználói fiókot',
-'logentry-newusers-create' => '$1 létrehozott egy felhasználói fiókot',
-'logentry-newusers-create2' => '$1 létrehozott egy felhasználói fiókot $3',
+'logentry-newusers-newusers' => '$1 felhasználói fiók létrehozva',
+'logentry-newusers-create' => '$1 felhasználói fiók létrehozva',
+'logentry-newusers-create2' => '$1 létrehozta $3 felhasználói fiókját',
 'logentry-newusers-autocreate' => '$1 fiók automatikusan létrehozva',
 'newuserlog-byemail' => 'a jelszót kiküldtük a megadott e-mail címre',
 

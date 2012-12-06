@@ -96,7 +96,6 @@ $messages = array(
 'qbfind' => 'Koluka',
 'qbbrowse' => 'Kolúka',
 'qbedit' => 'Kobɔngisa',
-'qbpageinfo' => 'Context',
 'qbspecialpages' => 'Nkásá gudi',
 'faq' => 'Mitúná Mizóngelaka (MM)',
 
@@ -231,6 +230,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'viewsource' => 'Komɔ́nisa mosólo',
 
 # Login and logout pages
+'welcomeuser' => 'Mbɔ́tɛ na Wikipedia, $1',
 'yourname' => 'Nkómbó ya mosáleli:',
 'yourpassword' => 'Banda nayó:',
 'yourpasswordagain' => 'Banda naíno:',
@@ -259,6 +259,10 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'passwordreset-username' => 'Nkómbó ya mosáleli:',
 'passwordreset-email' => 'Adɛlɛ́sɛ-ímɛ́lɛ:',
 
+# Special:ChangeEmail
+'changeemail-none' => '(mɔ́kɔ́ tɛ́)',
+'changeemail-cancel' => 'Kozóngela',
+
 # Edit page toolbar
 'bold_sample' => 'Nkomá ya mbinga',
 'bold_tip' => 'Nkomá ya mbinga',
@@ -282,6 +286,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'preview' => 'Botáli',
 'showpreview' => 'Kotála yambo',
 'showdiff' => 'Komɔ́nisa mbóngwana',
+'loginreqlink' => 'komíkitola (log in)',
 'newarticle' => '(Sika)',
 'editing' => 'Kokoma «$1»',
 'editingsection' => 'Bobɔngisi ya «$1» (sɛksió)',
@@ -291,6 +296,10 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'templatesusedpreview' => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o botáli boye:',
 'template-protected' => '(na bobáteli)',
 'template-semiprotected' => '(na bobáteli ya ndámbo)',
+
+# Content models
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # History pages
 'viewpagelogs' => 'Komɔ́nisa zuluná ya lonkásá loye',
@@ -304,9 +313,17 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'last' => 'ya nsúka',
 'histfirst' => 'ya yambo',
 'histlast' => 'ya nsúka',
+'historyempty' => '(mpámba)',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 o $2',
 
 # Revision deletion
 'rev-delundel' => 'komɔ́nisa/kobomba',
+'rev-showdeleted' => 'komɔ́nisa',
+'revdelete-show-file-submit' => 'Ɛɛ',
+'revdelete-radio-set' => 'Ɛɛ',
+'revdelete-radio-unset' => 'Tɛ́',
 'revdel-restore' => 'kobóngola emɔnanela',
 
 # Merge log
@@ -348,17 +365,36 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'powersearch-ns' => 'Koluka o ntáká ya nkómbó :',
 'powersearch-redir' => 'Kotíya molɔngɔ́ mwa mayendisi',
 'powersearch-field' => 'Koluka',
+'powersearch-toggleall' => 'Nyɔ́nsɔ',
+'powersearch-togglenone' => 'Mɔ́kɔ́ tɛ́',
+
+# Quickbar
+'qbsettings-none' => 'Mɔ́kɔ́ tɛ́',
 
 # Preferences page
 'preferences' => 'Malúli',
 'mypreferences' => 'Malúli ma ngáí',
+'skin-preview' => 'Botáli',
 'prefs-datetime' => 'Mokɔlɔ mpé ntángo',
 'prefs-rc' => 'Mbóngwana ya nsúka',
 'saveprefs' => 'kobómbisa',
+'rows' => 'Mikɔlɔ́tɔ:',
+'columns' => 'Makonzí:',
 'searchresultshead' => 'Boluki',
+'timezonelegend' => 'Ndámbo ya ngonga:',
+'localtime' => "Ngonga y'epái:",
+'timezoneregion-africa' => 'Afríka',
+'timezoneregion-america' => 'Ameríka',
+'timezoneregion-antarctica' => 'Antarktíka',
+'timezoneregion-arctic' => 'Arktíka',
+'timezoneregion-asia' => 'Azía',
+'timezoneregion-atlantic' => 'Atlantíki (lombú monɛ́nɛ)',
+'timezoneregion-europe' => 'Erópa',
+'timezoneregion-indian' => 'India (lombú monɛ́nɛ)',
+'timezoneregion-pacific' => 'Pasifíki (lombú monɛ́nɛ)',
 'allowemail' => 'Enable mokánda from other users',
 'youremail' => 'Mokandá (e-mail) *',
-'username' => 'Nkómbó ya mosáleli :',
+'username' => 'Nkómbó ya mosáleli:',
 'yourrealname' => 'nkómbó ya sɔ̂lɔ́',
 'yourlanguage' => 'Lokótá',
 'email' => 'Mokánda',
@@ -455,7 +491,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'shortpages' => 'Nkásá ya mokúsé',
 'longpages' => 'Nkásá ya molaí',
 'newpages' => 'Ekakoli ya sika',
-'newpages-username' => 'Nkómbó ya mosáleli :',
+'newpages-username' => 'Nkómbó ya mosáleli:',
 'move' => 'Kobóngola nkómbó',
 'movethispage' => 'Kobóngola nkómbó ya lonkásá loye',
 
@@ -505,8 +541,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Kolanda...',
 'unwatching' => 'Kolanda tɛ́...',
-
-'created' => 'ekomákí',
 
 # Delete
 'deletepage' => 'Kolímwisa lonkásá loye',

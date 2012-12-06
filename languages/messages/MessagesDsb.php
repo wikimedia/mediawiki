@@ -2370,7 +2370,7 @@ $1',
 'blanknamespace' => '(Nastawki)',
 
 # Contributions
-'contributions' => 'Wužywarske pśinoski',
+'contributions' => 'Pśinoski {{GENDER:$1|wužywarja|wužywarki}}',
 'contributions-title' => 'Wužywarske pśinoski wót $1',
 'mycontris' => 'Pśinoski',
 'contribsub2' => 'Za $1 ($2)',
