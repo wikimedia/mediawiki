@@ -1268,7 +1268,8 @@ class Linker {
 		$comment = self::formatLinksInComment( $comment, $title, $local );
 
 		wfProfileOut( __METHOD__ );
-		return $comment;
+		// Sometimes, regexes fail and return null instead of strings (bug 42435 and friends)
+		return is_null( $comment ) ? '' : $comment;
 	}
 
 	/**
