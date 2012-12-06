@@ -63,6 +63,7 @@ class WikitextContent extends TextContent {
 		$text = $with->getNativeData();
 
 		if ( $section === '' ) {
+			wfProfileOut( __METHOD__ );
 			return $with; # XXX: copy first?
 		} if ( $section == 'new' ) {
 			# Inserting a new section
