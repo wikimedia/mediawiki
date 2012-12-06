@@ -123,11 +123,13 @@ abstract class ApiFormatBase extends ApiBase {
 
 	/**
 	 * Initialize the printer function and prepare the output headers, etc.
-	 * This method must be the first outputing method during execution.
-	 * A help screen's header is printed for the HTML-based output
-	 * @param $isError bool Whether an error message is printed
+	 * This method must be the first outputting method during execution.
+	 * A human-targeted notice about available formats is printed for the HTML-based output,
+	 * except for help screens (caused by either an error in the API parameters,
+	 * the calling of action=help, or requesting the root script api.php).
+	 * @param $isHelpScreen bool Whether a help screen is going to be shown
 	 */
-	function initPrinter( $isError ) {
+	function initPrinter( $isHelpScreen ) {
 		if ( $this->mDisabled ) {
 			return;
 		}
@@ -164,7 +166,7 @@ abstract class ApiFormatBase extends ApiBase {
 <?php
 
 
-			if ( !$isError ) {
+			if ( !$isHelpScreen ) {
 ?>
 <br />
 <small>
@@ -175,15 +177,18 @@ To see the non HTML representation of the <?php echo( $this->mFormat ); ?> forma
 See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 <a href='<?php echo( $script ); ?>'>API help</a> for more information.
 </small>
+<pre style='white-space: pre-wrap;'>
 <?php
 
 
-			}
+			} else { // don't wrap the contents of the <pre> for help screens
+			          // because these are actually formatted to rely on
+			          // the monospaced font for layout purposes
 ?>
 <pre>
 <?php
 
-
+			}
 		}
 	}
 
