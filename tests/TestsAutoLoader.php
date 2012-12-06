@@ -65,6 +65,7 @@ $wgAutoloadClasses += array(
 	'ContentHandlerTest' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'JavascriptContentTest' => "$testDir/phpunit/includes/content/JavascriptContentTest.php",
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
+	'WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
 
 	# tests/phpunit/includes/db
 	'ORMRowTest' => "$testDir/phpunit/includes/db/ORMRowTest.php",
