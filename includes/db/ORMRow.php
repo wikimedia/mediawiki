@@ -453,8 +453,8 @@ abstract class ORMRow implements IORMRow {
 	}
 
 	/**
-	 * Gets called after successfull removal.
-	 * Can be overriden to get rid of linked data.
+	 * Gets called after successful removal.
+	 * Can be overridden to get rid of linked data.
 	 *
 	 * @since 1.20
 	 */
