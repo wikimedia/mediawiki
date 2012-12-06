@@ -1976,7 +1976,7 @@ class Language {
 		$segments = array();
 
 		foreach ( $intervals as $intervalName => $intervalValue ) {
-			$message = new Message( 'duration-' . $intervalName, array( $intervalValue ) );
+			$message = Message::newFromKey( 'duration-' . $intervalName )->numParams( $intervalValue );
 			$segments[] = $message->inLanguage( $this )->escaped();
 		}
 
