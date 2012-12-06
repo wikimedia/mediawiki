@@ -1,6 +1,6 @@
 <?php
 
-class LinkerTest extends MediaWikiTestCase {
+class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCasesForUserLink
