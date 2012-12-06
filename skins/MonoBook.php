@@ -109,17 +109,18 @@ class MonoBookTemplate extends BaseTemplate {
 <div id="column-one"<?php $this->html('userlangattributes')  ?>>
 	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 <?php $this->cactions(); ?>
+<?php if( count( $this->getPersonalTools() ) > 0 ) { ?>
 	<div class="portlet" id="p-personal" role="navigation">
 		<h3><?php $this->msg('personaltools') ?></h3>
 		<div class="pBody">
 			<ul<?php $this->html('userlangattributes') ?>>
-<?php		foreach($this->getPersonalTools() as $key => $item) { ?>
-				<?php echo $this->makeListItem($key, $item); ?>
-
-<?php		} ?>
+<?php		foreach($this->getPersonalTools() as $key => $item) {
+				echo $this->makeListItem($key, $item);
+			} ?>
 			</ul>
 		</div>
 	</div>
+<?php } ?>
 	<div class="portlet" id="p-logo" role="banner">
 <?php
 			echo Html::element( 'a', array(
