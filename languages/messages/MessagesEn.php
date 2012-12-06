@@ -2899,7 +2899,9 @@ Future changes to this page and its associated talk page will be listed there, a
 'enotif_anon_editor'           => 'anonymous user $1',
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
-$PAGEINTRO $NEWPAGE
+$PAGEINTRO
+
+$NEWPAGE
 
 Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
 
