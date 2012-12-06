@@ -274,7 +274,13 @@
 					var k = Uri.encode( key ),
 						vals = $.isArray( val ) ? val : [ val ];
 					$.each( vals, function ( i, v ) {
-						args.push( k + ( v === null ? '' : '=' + Uri.encode( v ) ) );
+						if ( v === null ) {
+							args.push( k );
+						} else if ( k === 'title' ) {
+							args.push( k + '=' + mw.util.wikiUrlencode( v ) );
+						} else {
+							args.push( k + '=' + Uri.encode( v ) );
+						}
 					} );
 				} );
 				return args.join( '&' );
