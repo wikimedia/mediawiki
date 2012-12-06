@@ -340,13 +340,13 @@ class ImagePage extends Article {
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
 					# First case, the limiting factor is the width, not the height.
-					if ( $width / $height >= $maxWidth / $maxHeight ) {
-						$height = round( $height * $maxWidth / $width );
+					if ( $width / $height >= $maxWidth / $maxHeight ) { // FIXME: Possible divison by 0. bug 36911
+						$height = round( $height * $maxWidth / $width ); // FIXME: Possible divison by 0. bug 36911
 						$width = $maxWidth;
 						# Note that $height <= $maxHeight now.
 					} else {
-						$newwidth = floor( $width * $maxHeight / $height );
-						$height = round( $height * $newwidth / $width );
+						$newwidth = floor( $width * $maxHeight / $height ); // FIXME: Possible divison by 0. bug 36911
+						$height = round( $height * $newwidth / $width ); // FIXME: Possible divison by 0. bug 36911
 						$width = $newwidth;
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
