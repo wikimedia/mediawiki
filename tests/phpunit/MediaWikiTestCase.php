@@ -186,11 +186,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// Clean up open transactions
 		if ( $this->needsDB() && $this->db ) {
+			// Clean up open transactions
 			while( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
+
+			// don't ignore DB errors
+			$this->db->ignoreErrors( false );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -208,11 +211,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// Clean up open transactions
 		if ( $this->needsDB() && $this->db ) {
+			// Clean up open transactions
 			while( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
+
+			// don't ignore DB errors
+			$this->db->ignoreErrors( false );
 		}
 
 		// Restore mw globals
