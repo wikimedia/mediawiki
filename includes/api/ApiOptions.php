@@ -54,7 +54,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		if ( $params['reset'] ) {
-			$user->resetOptions();
+			$user->resetOptions( true );
 			$changed = true;
 		}
 
@@ -104,6 +104,9 @@ class ApiOptions extends ApiBase {
 				// A key for a multiselect option.
 				$validation = true;
 				$value = (bool)$value;
+			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
+				// Allow non-default preferences prefixed with 'userjs-', to be set by user scripts
+				$validation = true;
 			} else {
 				$this->setWarning( "Not a valid preference: $key" );
 				continue;
