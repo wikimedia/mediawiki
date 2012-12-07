@@ -827,6 +827,7 @@ class SkinTemplate extends Skin {
 			$subjectPage = $title->getSubjectPage();
 			$talkPage = $title->getTalkPage();
 
+
 			// Determines if this is a talk page
 			$isTalk = $title->isTalkPage();
 
@@ -854,6 +855,17 @@ class SkinTemplate extends Skin {
 				$talkPage, array( "nstab-$talkId", 'talk' ), $isTalk && !$preventActiveTabs, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
+
+			$extraTabs = $this->loadExtraTabs();
+			if( is_array( $extraTabs ) && !empty( $extraTabs ) ) {
+				foreach ( $extraTabs as $extraTabId => $extraTabDefinition ) {
+					if ( in_array( $title->getSubjectPage()->getNamespace(), $extraTabDefinition['namespaces'] ) ) {
+						$extraTabTitle = Title::makeTitle( $extraTabDefinition['target'], $title->getText() );
+						$content_navigation['namespaces'][$extraTabId] =
+							$this->tabAction( $extraTabTitle, $extraTabDefinition['messages'], false, '', $userCanRead );
+					}
+				}
+			}
 
 			if ( $userCanRead ) {
 				// Adds view view link
@@ -1076,6 +1088,41 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ );
 
 		return $content_navigation;
+	}
+
+	/**
+	 * Loads extra tabs definitions from DB
+	 *
+	 * @todo Caching required (?)
+	 * @return array|boolean false returned if tabs not defined
+	 */
+	protected function loadExtraTabs() {
+		$rawDefinition = wfMessage( 'extratabs-definition' )->inContentLanguage();
+		if( !$rawDefinition->exists() )
+			return false;
+
+		$rawDefinition = $rawDefinition->plain();
+
+		$rawDefinition = preg_replace( '/<!--.*-->/s', '', $rawDefinition );
+		$rawDefinition = preg_split( '/(\r\n|\r|\n)+/', $rawDefinition );
+
+		$tabs = array();
+
+		foreach( $rawDefinition as $tab ) {
+			if( !preg_match( '/^\*\s*([a-z]+)\|((\d,?)+)\|(\d+)\|(([a-z\-]+,?)+)\s*$/', $tab, $matches ) )
+				continue;
+			$messages = explode( ',', $matches[5] );
+			array_walk( $messages, function( &$message ) {
+				$message = 'nstab-extra-' . $message; // limiting scope
+			});
+			$tabs[$matches[1]] = array(
+				'target' => $matches[4], // taget namespace
+				'namespaces' => explode( ',', $matches[2] ), // show in specified NSs only
+				'messages' => $messages
+			);
+		}
+
+		return $tabs;
 	}
 
 	/**
