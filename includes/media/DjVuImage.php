@@ -25,6 +25,11 @@
  */
 
 /**
+ * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+ */
+define( 'DJVUTXT_MEMORY_LIMIT', 300000 );
+
+/**
  * Support for detecting/validating DjVu image files and getting
  * some basic file metadata (resolution etc)
  *
@@ -252,7 +257,7 @@ class DjVuImage {
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
 			wfDebug( __METHOD__.": $cmd\n" );
 			$retval = '';
-			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => 300000 ) );
+			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => DJVUTXT_MEMORY_LIMIT ) );
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
 				# Strip some control characters
