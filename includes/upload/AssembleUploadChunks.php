@@ -38,6 +38,8 @@ class AssembleUploadChunks extends Maintenance {
 	}
 
 	public function execute() {
+		$e = null;
+		wfDebug( "Started assembly for file {$this->getOption( 'filename' )}\n" );
 		wfSetupSession( $this->getOption( 'sessionid' ) );
 		try {
 			$user = User::newFromId( $this->getOption( 'userid' ) );
@@ -49,6 +51,7 @@ class AssembleUploadChunks extends Maintenance {
 			$upload->continueChunks(
 				$this->getOption( 'filename' ),
 				$this->getOption( 'filekey' ),
+				// @TODO: set User?
 				RequestContext::getMain()->getRequest() // dummy request
 			);
 
@@ -59,6 +62,7 @@ class AssembleUploadChunks extends Maintenance {
 					$this->getOption( 'filekey' ),
 					array( 'result' => 'Failure', 'status' => $status )
 				);
+				session_write_close();
 				$this->error( $status->getWikiText() . "\n", 1 ); // die
 			}
 
@@ -93,9 +97,12 @@ class AssembleUploadChunks extends Maintenance {
 					'status' => Status::newFatal( 'api-error-stashfailed' )
 				)
 			);
-			throw $e;
 		}
 		session_write_close();
+		if ( $e ) {
+			throw $e;
+		}
+		wfDebug( "Finished assembly for file {$this->getOption( 'filename' )}\n" );
 	}
 }
 
