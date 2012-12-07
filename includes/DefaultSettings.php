@@ -1265,6 +1265,12 @@ $wgSMTP = false;
 $wgAdditionalMailParams = null;
 
 /**
+ * For parts of the system that have been updated to provide HTML email content, send
+ * both text and HTML parts as the body of the email
+ */
+$wgAllowHTMLEmail = false;
+
+/**
  * True: from page editor if s/he opted-in. False: Enotif mails appear to come
  * from $wgEmergencyContact
  */
