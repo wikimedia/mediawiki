@@ -171,7 +171,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 
 		$elementClass = $list->getObjectType();
 
-		foreach ( array( 42, 'foo', array(), new \stdClass(), 4.2 ) as $element ) {
+		foreach ( array( 42, 'foo', array(), new stdClass, 4.2 ) as $element ) {
 			$validValid = $element instanceof $elementClass;
 
 			try{
