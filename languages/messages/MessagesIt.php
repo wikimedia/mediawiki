@@ -2288,25 +2288,25 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'enotif_body_intro_moved' => 'La pagina $1 di {{SITENAME}} è stata spostata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
 'enotif_body_intro_restored' => 'La pagina $1 di {{SITENAME}} è stata ripristinata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
 'enotif_body_intro_changed' => 'La pagina $1 di {{SITENAME}} è stata modificata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
-'enotif_lastvisited' => "Consultare $1 per vedere tutte le modifiche dall'ultima visita.",
-'enotif_lastdiff' => 'Vedere $1 per visualizzare la modifica.',
+'enotif_lastvisited' => "Visita $1 per vedere tutte le modifiche dall'ultima visita.",
+'enotif_lastdiff' => 'Visita $1 per vedere la modifica.',
 'enotif_anon_editor' => 'utente anonimo $1',
 'enotif_body' => 'Gentile $WATCHINGUSERNAME,
 
 $PAGEINTRO $NEWPAGE
 
-Oggetto della modifica, inserito dall\'autore: $PAGESUMMARY $PAGEMINOREDIT
+Oggetto dell\'intervento, inserito dall\'autore: $PAGESUMMARY $PAGEMINOREDIT
 
-Contatta l\'autore della modifica:
-via e-mail: $PAGEEDITOR_EMAIL
+Contatta l\'autore:
+via posta elettronica: $PAGEEDITOR_EMAIL
 sul sito: $PAGEEDITOR_WIKI
 
-Non verranno inviate altre notifiche in caso di ulteriori cambiamenti, a meno che tu non visiti la pagina. Inoltre, è possibile reimpostare l\'avviso di notifica per tutte le pagine nella lista degli osservati speciali.
+Non verranno inviate altre notifiche in caso di ulteriori attività, se non visiti la pagina. Inoltre, è possibile modificare le impostazioni di notifica per tutte le pagine nella lista degli osservati speciali.
 
              Il sistema di notifica di {{SITENAME}}, al tuo servizio
 
 --
-Per modificare le impostazioni delle notifiche via email, visita 
+Per modificare le impostazioni delle notifiche via posta elettronica, visita 
 {{canonicalurl:{{#special:Preferences}}}}
 
 Per modificare la lista degli osservati speciali, visita 

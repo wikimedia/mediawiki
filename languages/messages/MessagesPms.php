@@ -3659,8 +3659,8 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'tags-tag' => 'Nòm ëd la tichëtta',
 'tags-display-header' => 'Aparensa ant la lista dle modìfiche',
 'tags-description-header' => 'Descrission completa dël significà',
-'tags-hitcount-header' => 'Modìfiche con tag',
-'tags-edit' => 'modìfica',
+'tags-hitcount-header' => 'Modìfiche con tichëtta',
+'tags-edit' => 'modifiché',
 'tags-hitcount' => '$1 {{PLURAL:$1|cambiament|cambiament}}',
 
 # Special:ComparePages

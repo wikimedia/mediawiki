@@ -3822,6 +3822,14 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|segundo|mga segundo}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1 {{PLURAL:$1|oras|mga oras}}',
+'duration-days' => '$1 {{PLURAL:$1|aldaw|mga aldaw}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semana|mga semana}}',
+'duration-years' => '$1 {{PLURAL:$1|taon|mga taon}}',
+'duration-decades' => '$1 {{PLURAL:$1|dekada|mga dekada}}',
+'duration-centuries' => '$1 {{PLURAL:$1|siglo|mga siglo}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga millenyo}}',
 
 # Unknown messages
 'svg-long-error' => 'Imbalidong SVG na sagunson: $1',

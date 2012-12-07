@@ -2372,11 +2372,12 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'pageinfo-magic-words' => 'Մոգական {{PLURAL:$1|բառ|բառեր}} ($1)',
 'pageinfo-hidden-categories' => 'Թաքնված {{PLURAL:$1|կաղապար|կաղապարներ}} ($1)',
 'pageinfo-templates' => 'Օգտագործված {{PLURAL:$1|կաղապար|կաղապարներ}} ($1)',
-'pageinfo-toolboxlink' => 'Էջի տվյալներ',
+'pageinfo-toolboxlink' => 'Էջի վիճակագրություն',
 'pageinfo-redirectsto' => 'Վերահղում է դեպի',
 'pageinfo-redirectsto-info' => 'տվյալներ',
 'pageinfo-contentpage' => 'Հաշվառված որպես բովանդակային էջ',
 'pageinfo-contentpage-yes' => 'Այո',
+'pageinfo-protect-cascading-yes' => 'Այո',
 
 # Skin names
 'skinname-standard' => 'Դասական',
@@ -2397,6 +2398,8 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'markedaspatrollederror' => 'Չհաջողվեց նշել որպես ստուգված',
 'markedaspatrollederrortext' => 'Անհրաժեշտ է ընտրել տարբերակ՝ որպես ստուգված նշելու համար։',
 'markedaspatrollederror-noautopatrol' => 'Ձեզ չի թույլատրվում ձեր կատարած փոփոխությունները նշել որպես ստուգված։',
+'markedaspatrollednotify' => 'Այս փոփոխությունը $1 էջում նշվել է ստուգված',
+'markedaspatrollederrornotify' => 'Ստուգված նշել չհաջողվեց։',
 
 # Patrol log
 'patrol-log-page' => 'Պարեկման տեղեկամատյան',
@@ -2430,6 +2433,7 @@ $1',
 # Special:NewFiles
 'newimages' => 'Նոր նիշքերի սրահ',
 'imagelisttext' => "Ստորև բերված է '''$1''' {{PLURAL:$1|նիշքի}} ցանկ՝ դասավորված ըստ $2։",
+'newimages-legend' => 'Ֆիլտր',
 'showhidebots' => '($1 բոտերին)',
 'noimages' => 'Տեսնելու բան չկա։',
 'ilsubmit' => 'Որոնել',
