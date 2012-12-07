@@ -35,11 +35,11 @@ class TestSample extends MediaWikiLangTestCase {
 	 */
 	function testTitleObjectStringConversion() {
 		$title = Title::newFromText("text");
-		$this->assertEquals("Text", $title->__toString(), "Title creation");
+		$this->assertEquals("Text", $title->getPrefixedText(), "Title creation");
 		$this->assertEquals("Text", "Text", "Automatic string conversion");
 
 		$title = Title::newFromText("text", NS_MEDIA);
-		$this->assertEquals("Media:Text", $title->__toString(), "Title creation with namespace");
+		$this->assertEquals("Media:Text", $title->getPrefixedText(), "Title creation with namespace");
 
 	}
 
