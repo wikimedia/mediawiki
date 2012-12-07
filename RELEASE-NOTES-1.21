@@ -62,6 +62,8 @@ production.
   group has no key in wgDebugLogGroups, that will help triage the default log.
 * (bug 24620) Add types to LogFormatter.
 * jQuery JSON upgraded from 2.3 to 2.4.0.
+* New preference type - 'api'. It allows handling of preferences that don't
+  appear in the Special:Prefs form through the API.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
