@@ -344,6 +344,10 @@ class JobQueueDB extends JobQueue {
 	 * @return Job|bool
 	 */
 	protected function doAck( Job $job ) {
+		if ( !$job->getId() ) {
+			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
+		}
+
 		$dbw = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
