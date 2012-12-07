@@ -94,8 +94,18 @@ class ApiOptions extends ApiBase {
 
 		foreach ( $changes as $key => $value ) {
 			if ( isset( $prefs[$key] ) ) {
-				$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
-				$validation = $field->validate( $value, $user->getOptions() );
+				if ( isset( $prefs[$key]['type'] ) && $prefs[$key]['type'] === 'api' ) {
+					if ( strlen( $key ) > 255 ) {
+						$validation = "key too long (no more than 255 bytes allowed)";
+					} elseif ( preg_match( "/[^a-zA-Z0-9_-]/", $key ) !== 0 ) {
+						$validation = "invalid key (only a-z, A-Z, 0-9, _, - allowed)";
+					} else {
+						$validation = true;
+					}
+				} else {
+					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+					$validation = $field->validate( $value, $user->getOptions() );
+				}
 			} elseif( isset( $multiselectOptions[$key] ) ) {
 				// A key for a multiselect option.
 				$validation = true;
@@ -104,6 +114,7 @@ class ApiOptions extends ApiBase {
 				$this->setWarning( "Not a valid preference: $key" );
 				continue;
 			}
+
 			if ( $validation === true ) {
 				$user->setOption( $key, $value );
 				$changed = true;
