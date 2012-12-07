@@ -1240,6 +1240,13 @@ class Preferences {
 			$formDescriptor = array_diff_key( $formDescriptor, $removeKeys );
 		}
 
+		// Remove type=api preferences. They are not intended for rendering in the form.
+		foreach ( $formDescriptor as $name => $info ) {
+			if ( isset( $info['type'] ) && $info['type'] === 'api' ) {
+				unset( $formDescriptor[$name] );
+			}
+		}
+
 		/**
 		 * @var $htmlForm PreferencesForm
 		 */
