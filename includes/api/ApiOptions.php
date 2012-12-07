@@ -54,7 +54,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		if ( $params['reset'] ) {
-			$user->resetOptions();
+			$user->resetOptions( 'all' );
 			$changed = true;
 		}
 
@@ -74,39 +74,37 @@ class ApiOptions extends ApiBase {
 		}
 
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
-
-		// Multiselect options are stored in the database with one key per
-		// option, each having a boolean value. Extract those keys.
-		$multiselectOptions = array();
-		foreach ( $prefs as $name => $info ) {
-			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-					( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
-				$options = HTMLFormField::flattenOptions( $info['options'] );
-				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
-
-				foreach ( $options as $value ) {
-					$multiselectOptions["$prefix$value"] = true;
-				}
-
-				unset( $prefs[$name] );
-			}
-		}
+		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
 
 		foreach ( $changes as $key => $value ) {
-			if ( isset( $prefs[$key] ) ) {
-				if ( $prefs[$key]['type'] === 'api' ) {
-					$validation = true;
-				} else {
+			switch ( $prefsKinds[$key] ) {
+				case 'registered':
+					// Regular option.
 					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
 					$validation = $field->validate( $value, $user->getOptions() );
-				}
-			} elseif( isset( $multiselectOptions[$key] ) ) {
-				// A key for a multiselect option.
-				$validation = true;
-				$value = (bool)$value;
-			} else {
-				$this->setWarning( "Not a valid preference: $key" );
-				continue;
+					break;
+				case 'registered-multiselect':
+					// A key for a multiselect option.
+					$validation = true;
+					$value = (bool)$value;
+					break;
+				case 'registered-api':
+					// API-only key, not shown on Special:Preferences
+					$validation = true;
+					break;
+				case 'userjs':
+					// Allow non-default preferences prefixed with 'userjs-', to be set by user scripts
+					if ( strlen( $key ) > 255 ) {
+						$validation = "key too long (no more than 255 bytes allowed)";
+					} elseif ( preg_match( "/[^a-zA-Z0-9_-]/", $key ) !== 0 ) {
+						$validation = "invalid key (only a-z, A-Z, 0-9, _, - allowed)";
+					} else {
+						$validation = true;
+					}
+					break;
+				case 'unused':
+					$validation = "not a valid preference";
+					break;
 			}
 
 			if ( $validation === true ) {
@@ -175,7 +173,11 @@ class ApiOptions extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Change preferences of the current user';
+		return array(
+			'Change preferences of the current user',
+			'Only options which are registered in core or in one of installed extensions,',
+			'or as options with keys prefixed with \'userjs-\' (intended to be used by user scripts), can be set.'
+		);
 	}
 
 	public function getPossibleErrors() {

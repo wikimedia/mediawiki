@@ -2305,12 +2305,106 @@ class User {
 	}
 
 	/**
-	 * Reset all options to the site defaults
+	 * Return an associative array mapping preferences keys to the kind of a preference they're
+	 * used for. Different kinds are handled differently when setting or reading preferences.
+	 *
+	 * Currently, the kind is one of:
+	 * - 'registered' - preferences which are registered in core MediaWiki or
+	 *                  by extensions using the UserGetDefaultOptions hook.
+	 * - 'registered-api' - as above, but not shown on Special:Preferences,
+	 *                      intended to be set via API.
+	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
+	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
+	 *              be used by user scripts.
+	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
+	 *              These are usually legacy options, removed in newer versions.
+	 *
+	 * @param $context IContextSource
+	 * @param $options array assoc. array with options keys to check as keys. Defaults to $this->mOptions.
+	 * @return array the key => kind mapping data
 	 */
-	public function resetOptions() {
-		$this->load();
+	public function getOptionKinds( IContextSource $context, $options = null ) {
+		$this->loadOptions();
+		if ( $options === null ) {
+			$options = $this->mOptions;
+		}
 
-		$this->mOptions = self::getDefaultOptions();
+		$prefs = Preferences::getPreferences( $user, $context );
+		$mapping = array();
+
+		// Multiselect options are stored in the database with one key per
+		// option, each having a boolean value. Extract those keys.
+		$multiselectOptions = array();
+		foreach ( $prefs as $name => $info ) {
+			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
+					( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
+				$opts = HTMLFormField::flattenOptions( $info['options'] );
+				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
+
+				foreach ( $opts as $value ) {
+					$multiselectOptions["$prefix$value"] = true;
+				}
+			}
+		}
+
+		// $value is ignored
+		foreach ( $options as $key => $value ) {
+			if ( isset( $prefs[$key] ) ) {
+				if ( isset( $prefs[$key]['type'] ) && $prefs[$key]['type'] === 'api' ) {
+					$mapping[$key] = 'registered-api';
+				} else {
+					$mapping[$key] = 'registered';
+				}
+			} elseif( isset( $multiselectOptions[$key] ) ) {
+				$mapping[$key] = 'registered-multiselect';
+			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
+				$mapping[$key] = 'userjs';
+			} else {
+				$mapping[$key] = 'unused';
+			}
+		}
+
+		return $mapping;
+	}
+
+	/**
+	 * Reset certain (or all) options to the site defaults
+	 *
+	 * The optional parameter determines which kinds of preferences will be reset.
+	 * Supported values are everything that can be reported by getOptionKinds()
+	 * and 'all', which forces a reset of *all* preferences and overrides everything else.
+	 *
+	 * @param $resetKinds array|string which kinds of preferences to reset. Default is
+	 * array( 'registered', 'registered-api', 'registered-multiselect', 'unused' ) for back-compat.
+	 */
+	public function resetOptions(
+		$resetKinds = array( 'registered', 'registered-api', 'registered-multiselect', 'unused' )
+	) {
+		$this->load();
+		$defaultOptions = self::getDefaultOptions();
+		$optionKinds = $this->getOptionKinds();
+
+		if ( !is_array( $resetKinds ) ) {
+			$resetKinds = array( $resetKinds );
+		}
+
+		if ( in_array( 'all', $resetKinds ) ) {
+			$newOptions = $defaultOptions;
+		} else {
+			$newOptions = array();
+
+			// Use default values for the options that should be deleted, and
+			// copy old values for the ones that shouldn't.
+			foreach ( $this->mOptions as $key => $value ) {
+				if ( in_array( $optionKinds[$key], $resetKinds ) ) {
+					$newOptions[$key] = $defaultOptions[$key];
+				} else {
+					$newOptions[$key] = $value;
+				}
+			}
+		}
+
+		$this->mOptions = $newOptions;
 		$this->mOptionsLoaded = true;
 	}
 
