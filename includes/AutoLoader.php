@@ -98,6 +98,7 @@ $wgAutoloadLocalClasses = array(
 	'HistoryBlobStub' => 'includes/HistoryBlob.php',
 	'Hooks' => 'includes/Hooks.php',
 	'Html' => 'includes/Html.php',
+	'HTMLApiField' => 'includes/HTMLForm.php',
 	'HTMLCheckField' => 'includes/HTMLForm.php',
 	'HTMLEditTools' => 'includes/HTMLForm.php',
 	'HTMLFloatField' => 'includes/HTMLForm.php',
