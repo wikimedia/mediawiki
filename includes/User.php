@@ -2306,11 +2306,31 @@ class User {
 
 	/**
 	 * Reset all options to the site defaults
+	 *
+	 * @param $reallyEverything bool
 	 */
-	public function resetOptions() {
+	public function resetOptions( $reallyEverything = false ) {
 		$this->load();
 
+		// Find the preferences keys which we want to keep, even though we're resetting other ones.
+		// Don't keep anything if $reallyEverything is true.
+		if ( $reallyEverything ) {
+			$keepKeys = array();
+		} else {
+			// Scan all currently set prefs keys, and keep the ones starting with 'userjs-'.
+			$keepKeys = array_filter( array_keys( $this->mOptions ), function ( $key ) {
+				return substr( $key, 0, 7 ) === 'userjs-';
+			});
+		}
+
+		$oldOptions = $this->mOptions;
 		$this->mOptions = self::getDefaultOptions();
+
+		// Restore the values which we want to keep.
+		foreach ( $keepKeys as $key ) {
+			$this->mOptions[$key] = $oldOptions[$key];
+		}
+
 		$this->mOptionsLoaded = true;
 	}
 
