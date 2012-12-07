@@ -1413,9 +1413,8 @@ class Preferences {
 			$formData[$pref] = $user->getOption( $pref, null, true );
 		}
 
-		//  Keeps old preferences from interfering due to back-compat
-		//  code, etc.
-		$user->resetOptions();
+		// Keep old preferences from interfering due to back-compat code, etc.
+		$user->resetOptions( 'unused', $form->getContext() );
 
 		foreach ( $formData as $key => $value ) {
 			$user->setOption( $key, $value );
