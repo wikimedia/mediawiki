@@ -71,6 +71,12 @@ production.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
 * New preference type - 'api'. Preferences of this type are not shown on
   Special:Preferences, but are still available via the action=options API.
+* (bug 40124) action=options API also allows for setting of arbitrary
+  preferences, provided that their names are prefixed with 'userjs-'. This
+  officially reenables the feature that was undocumented and defective
+  in MW 1.20 (saving preferences using Special:Preferences cleared any
+  additional fields) and which has been disabled in 1.20.1 as a part of
+  a security fix (bug 42202).
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
