@@ -377,7 +377,8 @@ class JobQueueDB extends JobQueue {
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
 		// Delete a row with a single DELETE without holding row locks over RTTs...
-		$dbw->delete( 'job', array( 'job_cmd' => $this->type, 'job_id' => $job->getId() ) );
+		$dbw->delete( 'job',
+			array( 'job_cmd' => $this->type, 'job_id' => $job->getId() ), __METHOD__ );
 
 		return true;
 	}
