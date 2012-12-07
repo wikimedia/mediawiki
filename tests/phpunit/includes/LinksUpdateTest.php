@@ -129,7 +129,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	public function testUpdate_langlinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
-		$po->addLanguageLink( Title::newFromText( "en:Foo" ) );
+		$po->addLanguageLink( Title::newFromText( "en:Foo" )->getFullText() );
 
 
 		$this->assertLinksUpdate( $t, $po, 'langlinks', 'll_lang, ll_title', 'll_from = 111', array(
