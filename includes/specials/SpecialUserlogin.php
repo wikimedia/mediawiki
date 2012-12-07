@@ -752,7 +752,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin;
+		global $wgMemc, $wgLang, $wgSecureLogin, $wgCookieSecure;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -763,6 +763,17 @@ class LoginForm extends SpecialPage {
 					$user->saveSettings();
 				} else {
 					$user->invalidateCache();
+				}
+
+				$cookieParams = session_get_cookie_params();
+				if(
+					$wgSecureLogin &&
+					!$this->mStickHTTPS &&
+					$cookieParams['secure']
+				) {
+					session_write_close();
+					$wgCookieSecure = false;
+					wfSetupSession();
 				}
 
 				if( $wgSecureLogin && !$this->mStickHTTPS ) {
