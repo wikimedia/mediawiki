@@ -54,7 +54,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		if ( $params['reset'] ) {
-			$user->resetOptions();
+			$user->resetOptions( true );
 			$changed = true;
 		}
 
@@ -75,12 +75,17 @@ class ApiOptions extends ApiBase {
 
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
 		foreach ( $changes as $key => $value ) {
-			if ( !isset( $prefs[$key] ) ) {
+			if ( isset( $prefs[$key] ) ) {
+				$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+				$validation = $field->validate( $value, $user->getOptions() );
+			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
+				// Allow non-default preferences prefixed with 'userjs-', to be set by user scripts
+				$validation = true;
+			} else {
 				$this->setWarning( "Not a valid preference: $key" );
 				continue;
 			}
-			$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
-			$validation = $field->validate( $value, $user->getOptions() );
+
 			if ( $validation === true ) {
 				$user->setOption( $key, $value );
 				$changed = true;
