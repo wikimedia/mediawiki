@@ -88,15 +88,16 @@ class MaintenanceFixup extends Maintenance {
 	 * Safety net around register_shutdown_function of Maintenance.php
 	 */
 	public function __destruct() {
-		if ( ( ! $this->shutdownSimulated ) && ( ! $this->testCase->hasFailed() ) ) {
+		if ( ! $this->shutdownSimulated ) {
 			// Someone generated a MaintenanceFixup instance without calling
 			// simulateShutdown. We'd have to raise a PHPUnit exception to correctly
 			// flag this illegal usage. However, we are already in a destruktor, which
 			// would trigger undefined behaviour. Hence, we can only report to the
 			// error output :( Hopefully people read the PHPUnit output.
-			fwrite( STDERR, "ERROR! Instance of " . __CLASS__ . " destructed without "
-				. "calling simulateShutdown method. Call simulateShutdown on the "
-				. "instance before it gets destructed." );
+			$name = $this->testCase->getName();
+			fwrite( STDERR, "ERROR! Instance of " . __CLASS__ . " for test $name "
+				. "destructed without calling simulateShutdown method. Call "
+				. "simulateShutdown on the instance before it gets destructed." );
 		}
 
 		// The following guard is required, as PHP does not offer default destructors :(
@@ -148,6 +149,14 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$this->m = new MaintenanceFixup( $this );
 	}
 
+	protected function tearDown() {
+		if ( $this->m ) {
+			$this->m->simulateShutdown();
+			$this->m = null;
+		}
+		parent::tearDown();
+	}
+
 
 	/**
 	 * asserts the output before and after simulating shutdown
@@ -167,6 +176,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 				"Output before shutdown simulation" );
 
 		$this->m->simulateShutdown();
+		$this->m = null;
 
 		$postShutdownOutput = $preShutdownOutput . ( $expectNLAppending ? "\n" : "" );
 		$this->expectOutputString( $postShutdownOutput );
