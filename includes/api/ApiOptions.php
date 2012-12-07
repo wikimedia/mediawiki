@@ -104,6 +104,14 @@ class ApiOptions extends ApiBase {
 				$this->setWarning( "Not a valid preference: $key" );
 				continue;
 			}
+
+			if ( $prefs[$key]['type'] === 'api' ) {
+				$validation = true;
+			} else {
+				$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+				$validation = $field->validate( $value, $user->getOptions() );
+			}
+
 			if ( $validation === true ) {
 				$user->setOption( $key, $value );
 				$changed = true;
