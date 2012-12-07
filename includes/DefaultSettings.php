@@ -6001,6 +6001,30 @@ $wgAPIMaxUncachedDiffs = 1;
 $wgAPIRequestLog = false;
 
 /**
+ * Split the API debug log per requested action.
+ *
+ * On high trafic sites, the 'api' debug log could be to large making
+ * it a bit long to grep for any informations.  Setting this to true
+ * will make the debug log group prefixed with a dash and the action name. Non
+ * existent actions are logged in the generic 'api' log group.
+ *
+ * You will need to setup $wgDebugLogGroups for each API action. The log
+ * group are prefixed with 'api-'.  Invalid actions will be logged in the
+ * default group 'api'.
+ *
+ * @par Example:
+ * @code
+ * $wgAPIDebugLogPerActions = true;
+ * $wgDebugLogGroups['api']            = '/log/api-default.log';
+ * $wgDebugLogGroups['api-query']      = '/log/api-query.log';
+ * $wgDebugLogGroups['api-opensearch'] = '/log/api-opensearch.log';
+ * @endcode
+ *
+ * @since 1.21
+ */
+$wgAPIDebugLogPerActions = false;
+
+/**
  * Set the timeout for the API help text cache. If set to 0, caching disabled
  */
 $wgAPICacheHelpTimeout = 60*60;
