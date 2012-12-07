@@ -843,6 +843,8 @@ class ApiMain extends ApiBase {
 	 * @param $time Time in seconds
 	 */
 	protected function logRequest( $time ) {
+		global $wgAPIDebugLogPerActions, $wgDebugLogGroups;
+
 		$request = $this->getRequest();
 		$milliseconds = $time === null ? '?' : round( $time * 1000 );
 		$s = 'API' .
@@ -850,6 +852,7 @@ class ApiMain extends ApiBase {
 			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
 			' ' . $request->getIP() .
 			' T=' . $milliseconds .'ms';
+
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
@@ -864,7 +867,20 @@ class ApiMain extends ApiBase {
 			}
 		}
 		$s .= "\n";
-		wfDebugLog( 'api', $s, false );
+
+		# Log request in a debug log group
+		$debugLogGroup = 'api';
+
+		# Make sure that is actually a valid action
+		if( $wgAPIDebugLogPerActions && $this->isAction( $this->mAction ) ) {
+			$newLogGroup = "{$debugLogGroup}-{$this->mAction}";
+			if( array_key_exists( $newLogGroup, $wgDebugLogGroups ) ) {
+				# Valid action, prefix log group with the action name
+				$debugLogGroup = $newLogGroup;
+			}
+		}
+
+		wfDebugLog( $debugLogGroup, $s, false );
 	}
 
 	/**
@@ -1251,6 +1267,17 @@ class ApiMain extends ApiBase {
 	 */
 	function getModules() {
 		return $this->mModules;
+	}
+
+	/**
+	 * Whether the action name has a registered module.
+	 *
+	 * @param $actionName string: Action name as passed in the URL query.
+	 * @since 1.21
+	 * @return boolean
+	 */
+	function isAction( $actionName ) {
+		return array_key_exists( $actionName, $this->mModules );
 	}
 
 	/**
