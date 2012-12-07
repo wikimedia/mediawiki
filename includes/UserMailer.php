@@ -498,7 +498,7 @@ class EmailNotification {
 				'pageStatus' => $pageStatus
 			);
 			$job = new EnotifNotifyJob( $title, $params );
-			$job->insert();
+			JobQueueGroup::singleton()->push( $job );
 		} else {
 			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $pageStatus );
 		}

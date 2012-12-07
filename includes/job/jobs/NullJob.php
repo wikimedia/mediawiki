@@ -52,7 +52,7 @@ class NullJob extends Job {
 			$params = $this->params;
 			$params['lives']--;
 			$job = new self( $this->title, $params );
-			$job->insert();
+			JobQueueGroup::singleton()->push( $job );
 		}
 		return true;
 	}

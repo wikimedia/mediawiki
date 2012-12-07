@@ -332,7 +332,7 @@ class UploadFromUrl extends UploadBase {
 			'sessionKey' => $sessionKey,
 		) );
 		$job->initializeSessionData();
-		$job->insert();
+		JobQueueGroup::singleton()->push( $job );
 		return $sessionKey;
 	}
 
