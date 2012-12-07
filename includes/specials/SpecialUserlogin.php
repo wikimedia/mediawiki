@@ -752,7 +752,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin;
+		global $wgMemc, $wgLang, $wgSecureLogin, $wgCookieSecure;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -1264,15 +1264,21 @@ class LoginForm extends SpecialPage {
 	 * Renew the user's session id, using strong entropy
 	 */
 	private function renewSessionId() {
-		if ( wfCheckEntropy() ) {
+		global $wgSecureLogin, $wgCookieSecure;
+		if( $wgSecureLogin && !$this->mStickHTTPS ) {
+			$wgCookieSecure = false;
+		}
+
+		// If either we don't trust PHP's entropy, or if we need
+		// to change cookie settings when logging in because of
+		// wpStickHTTPS, then change the session ID manually.
+		$cookieParams = session_get_cookie_params();
+		if ( wfCheckEntropy() && $wgCookieSecure == $cookieParams['secure'] ) {
 			session_regenerate_id( false );
 		} else {
-			//If we don't trust PHP's entropy, we have to replace the session manually
 			$tmp = $_SESSION;
-			session_unset();
-			session_write_close();
-			session_id( MWCryptRand::generateHex( 32 ) );
-			session_start();
+			session_destroy();
+			wfSetupSession( MWCryptRand::generateHex( 32 ) );
 			$_SESSION = $tmp;
 		}
 	}
