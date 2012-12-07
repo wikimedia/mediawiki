@@ -96,6 +96,7 @@ class HTMLForm extends ContextSource {
 
 	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	static $typeMappings = array(
+		'api' => 'HTMLApiField',
 		'text' => 'HTMLTextField',
 		'textarea' => 'HTMLTextAreaField',
 		'select' => 'HTMLSelectField',
@@ -2423,5 +2424,23 @@ class HTMLEditTools extends HTMLFormField {
 		}
 		$msg->inContentLanguage();
 		return $msg;
+	}
+}
+
+class HTMLApiField extends HTMLFormField {
+	public function getTableRow( $value ) {
+		return '';
+	}
+
+	public function getDiv( $value ) {
+		return $this->getTableRow( $value );
+	}
+
+	public function getRaw( $value ) {
+		return $this->getTableRow( $value );
+	}
+
+	public function getInputHTML( $value ) {
+		return '';
 	}
 }
