@@ -21,6 +21,7 @@
  * @author <brion@pobox.com>
  * @author <mail@tgries.de>
  * @author Tim Starling
+ * @author Luke Welling lwelling@wikimedia.org
  */
 
 
@@ -112,6 +113,10 @@ class UserMailer {
 	 * @param $headers array Associative Array: keys are header field names,
 	 *                 values are ... values.
 	 * @param $endl String: The end of line character.  Defaults to "\n"
+	 *
+	 * Note RFC2822 says newlines must be CRLF (\r\n)
+	 * but php mail naively "corrects" it and requires \n for the "correction" to work
+	 *
 	 * @return String
 	 */
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
@@ -149,7 +154,7 @@ class UserMailer {
 	 * @param $to MailAddress: recipient's email (or an array of them)
 	 * @param $from MailAddress: sender's email
 	 * @param $subject String: email's subject.
-	 * @param $body String: email's text.
+	 * @param $body String: email's text or Array of two strings to be the text and html bodies
 	 * @param $replyto MailAddress: optional reply-to email (default: null).
 	 * @param $contentType String: optional custom Content-Type (default: text/plain; charset=UTF-8)
 	 * @throws MWException
@@ -211,18 +216,50 @@ class UserMailer {
 		}
 
 		$headers['Date'] = date( 'r' );
-		$headers['MIME-Version'] = '1.0';
-		$headers['Content-type'] = ( is_null( $contentType ) ?
-			'text/plain; charset=UTF-8' : $contentType );
-		$headers['Content-transfer-encoding'] = '8bit';
-
 		$headers['Message-ID'] = self::makeMsgId();
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 
+		# Line endings need to be different on Unix and Windows due to
+		# the bug described at http://trac.wordpress.org/ticket/2603
+		if ( wfIsWindows() ) {
+			$endl = "\r\n";
+		} else {
+			$endl = "\n";
+		}
+
+		if( is_array( $body )) {
+			// we are sending a multipart message
+			wfDebug( "Assembling mulitpart mime email\n" );
+			if ( !stream_resolve_include_path( 'Mail/mime.php' ) ) {
+				throw new MWException( 'PEAR Mail_Mime package is not installed' );
+			}
+			require_once( 'Mail/mime.php' );
+			if ( wfIsWindows() ) {
+				$body[0] = str_replace( "\n", "\r\n", $body[0] );
+				$body[1] = str_replace( "\n", "\r\n", $body[1] );
+			}
+			$mime = new Mail_mime( array( 'eol' => $endl ) );
+			$mime->setTXTBody( $body[0] );
+			$mime->setHTMLBody( $body[1] );
+			$body = $mime->get();  // must call get() before headers()
+			$headers = $mime->headers( $headers );
+		}
+		else {
+			if ( wfIsWindows() ) {
+				$body = str_replace( "\n", "\r\n", $body );
+			}
+			$headers['MIME-Version'] = '1.0';
+			$headers['Content-type'] = ( is_null( $contentType ) ?
+				'text/plain; charset=UTF-8' : $contentType );
+			$headers['Content-transfer-encoding'] = '8bit';
+		}
+
 		$ret = wfRunHooks( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
 		if ( $ret === false ) {
+			// the hook implementation will return false to skip regular mail sending
 			return Status::newGood();
 		} elseif ( $ret !== true ) {
+			// the hook implementation will return a string to pass an error message
 			return Status::newFatal( 'php-mail-error', $ret );
 		}
 
@@ -231,12 +268,7 @@ class UserMailer {
 			# PEAR MAILER
 			#
 
-			if ( function_exists( 'stream_resolve_include_path' ) ) {
-				$found = stream_resolve_include_path( 'Mail.php' );
-			} else {
-				$found = Fallback::stream_resolve_include_path( 'Mail.php' );
-			}
-			if ( !$found ) {
+			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
 				throw new MWException( 'PEAR mail package is not installed' );
 			}
 			require_once( 'Mail.php' );
@@ -277,16 +309,6 @@ class UserMailer {
 			#
 			# PHP mail()
 			#
-
-			# Line endings need to be different on Unix and Windows due to
-			# the bug described at http://trac.wordpress.org/ticket/2603
-			if ( wfIsWindows() ) {
-				$body = str_replace( "\n", "\r\n", $body );
-				$endl = "\r\n";
-			} else {
-				$endl = "\n";
-			}
-
 			if( count($to) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
@@ -300,6 +322,7 @@ class UserMailer {
 			set_error_handler( 'UserMailer::errorHandler' );
 
 			$safeMode = wfIniGetBool( 'safe_mode' );
+
 			foreach ( $to as $recip ) {
 				if ( $safeMode ) {
 					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
@@ -347,6 +370,12 @@ class UserMailer {
 	/**
 	 * Converts a string into quoted-printable format
 	 * @since 1.17
+	 *
+	 * From PHP5.3 there is a built in function quoted_printable_encode()
+	 * This method does not duplicate that.
+	 * This method is doing Q encoding inside encoded-words as defined by RFC 2047
+	 * This is for email headers.
+	 * The built in quoted_printable_encode() is for email bodies
 	 * @return string
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
@@ -498,7 +527,7 @@ class EmailNotification {
 				'pageStatus' => $pageStatus
 			);
 			$job = new EnotifNotifyJob( $title, $params );
-			JobQueueGroup::singleton()->push( $job );
+			JobQueueGroup::singleton->push( $job );
 		} else {
 			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $pageStatus );
 		}
