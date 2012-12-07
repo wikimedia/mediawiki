@@ -169,6 +169,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   uploads.
 * (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
   mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
+* New preference type - 'api'. Preferences of this type are not shown on
+  Special:Preferences, but are still available via the action=options API.
 
 === Known issues in 1.20.0 ===
 These are issues that we're targeting to be fixed in a later release
