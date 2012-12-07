@@ -92,6 +92,11 @@ class Preferences {
 
 		## Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
+
+			if ( $info['type'] === 'api' ) {
+				// HTMLForm validation not required for preferences not rendered in a page
+				continue;
+			}
 			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
 			$field = HTMLForm::loadInputFromParameters( $name, $info ); // For validation
 			$defaultOptions = User::getDefaultOptions();
@@ -1246,6 +1251,13 @@ class Preferences {
 			$formDescriptor = array_diff_key( $formDescriptor, $removeKeys );
 		}
 
+		// Remove type=api preferences. They are not for rendering in screen.
+		foreach ( $formDescriptor as $name => &$info ) {
+
+			if ( $info['type'] === 'api' ) {
+				unset( $formDescriptor[$name] );
+			}
+		}
 		/**
 		 * @var $htmlForm PreferencesForm
 		 */
