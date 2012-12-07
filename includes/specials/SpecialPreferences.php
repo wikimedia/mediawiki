@@ -78,7 +78,7 @@ class SpecialPreferences extends SpecialPage {
 
 	public function submitReset( $formData ) {
 		$user = $this->getUser();
-		$user->resetOptions();
+		$user->resetOptions( 'all' );
 		$user->saveSettings();
 
 		$url = $this->getTitle()->getFullURL( 'success' );
