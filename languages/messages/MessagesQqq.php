@@ -2777,6 +2777,7 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 'watcherrortext' => 'When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed. See also {{msg|addedwatchtext}}. and {{msg|addedwatchtext}}. This message is used raw and should not contain wikitext.',
 
 'enotif_reset' => "This should be translated as \"Mark all pages '''as''' visited\".",
+'enotif_impersonal_salutation' => 'Used for impersonal e-mail notifications, suitable for bulk mailing.',
 'enotif_subject_deleted' => 'Email notification subject for deleted pages, $1 is page title, $2 is page editor.',
 'enotif_subject_created' => 'Email notification subject for new pages, $1 is page title, $2 is page editor.',
 'enotif_subject_moved' => 'Email notification subject for pages that get moved, $1 is page title, $2 is page editor.',
@@ -2794,7 +2795,25 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $1 is the anonymous user name (i.e. an IP address).',
 'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
-* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
+*$WATCHINGUSERNAME is the username of the user receiving the notification.
+*$PAGEINTRO is the first line of the message, saying what happened. It currently can be either of:
+**{{msg-mw|enotif body intro deleted}}
+**{{msg-mw|enotif body intro created}}
+**{{msg-mw|enotif body intro moved}}
+**{{msg-mw|enotif body intro restored}} 
+**{{msg-mw|enotif body intro changed}} (for all the other cases).
+*$NEWPAGE consists of
+**{{msg-mw|enotif lastdiff}}
+**a newline
+**{{msg-mw|enotif lastvisited}}
+*$PAGEEDITOR_EMAIL and $PAGEEDITOR_WIKI are links respectively to the e-mail user special page and user page for the user who performed the action.
+
+The subject of the e-mail is one of the following messages:
+*{{msg-mw|enotif subject deleted}}
+*{{msg-mw|enotif subject created}}
+*{{msg-mw|enotif subject moved}}
+*{{msg-mw|enotif subject restored}}
+*{{msg-mw|enotif subject changed}}',
 
 # Delete
 'confirm' => 'Submit button text for protection confirmation
