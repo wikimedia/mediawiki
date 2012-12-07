@@ -78,6 +78,12 @@ production.
 * $wgPageInfoTransclusionLimit limits the list size of transcluded articles
   on the info action. Default is 50.
 * Added action=createaccount to allow user account creation.
+* (bug 40124) action=options API also allows for setting of arbitrary
+  preferences, provided that their names are prefixed with 'userjs-'. This
+  officially reenables the feature that was undocumented and defective
+  in MW 1.20 (saving preferences using Special:Preferences cleared any
+  additional fields) and which has been disabled in 1.20.1 as a part of
+  a security fix (bug 42202).
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
