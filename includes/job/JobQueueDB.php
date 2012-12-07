@@ -174,6 +174,7 @@ class JobQueueDB extends JobQueue {
 			}
 			$job = Job::factory( $row->job_cmd, $title,
 				self::extractBlob( $row->job_params ), $row->job_id );
+			$job->id = $row->job_id; // XXX: work around broken subclasses
 			// Flag this job as an old duplicate based on its "root" job...
 			if ( $this->isRootJobOldDuplicate( $job ) ) {
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
@@ -344,6 +345,10 @@ class JobQueueDB extends JobQueue {
 	 * @return Job|bool
 	 */
 	protected function doAck( Job $job ) {
+		if ( !$job->getId() ) {
+			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
+		}
+
 		$dbw = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
