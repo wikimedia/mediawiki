@@ -123,10 +123,6 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 			unset( $list[$offset] );
 			$this->assertEquals( $count - 1, $list->count() );
 		}
-
-		$exception = null;
-		try { $list->offsetUnset( 'sdfsedtgsrdysftu' ); } catch ( \Exception $exception ){}
-		$this->assertInstanceOf( '\Exception', $exception );
 	}
 
 	/**
