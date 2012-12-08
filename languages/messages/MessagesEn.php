@@ -1229,7 +1229,7 @@ Please enter a well-formatted address or empty that field.',
 'cannotchangeemail'               => 'Account email addresses cannot be changed on this wiki.',
 'emaildisabled'                   => 'This site cannot send emails.',
 'accountcreated'                  => 'Account created',
-'accountcreatedtext'              => 'The user account for $1 has been created.',
+'accountcreatedtext'              => 'The user account for [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) has been created.',
 'createaccount-title'             => 'Account creation for {{SITENAME}}',
 'createaccount-text'              => 'Someone created an account for your email address on {{SITENAME}} ($4) named "$2", with password "$3".
 You should log in and change your password now.

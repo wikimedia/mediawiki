@@ -1298,13 +1298,13 @@ Parameters:
 'invalidemailaddress' => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'cannotchangeemail' => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
 'emaildisabled' => 'Error message shown when user tries to set an e-mail address but e-mail features are disabled.',
-'accountcreated' => 'Used as page title in [[Special:UserLogin]].
+'accountcreated' => 'Page title in [[Special:UserLogin]] when a logged-in user creates an account.
 
 See also:
 * {{msg-mw|Accountcreated|title}}
 * {{msg-mw|Accountcreatedtext|message}}',
-'accountcreatedtext' => 'Used in [[Special:UserLogin]]. Parameters:
-* $1 - username
+'accountcreatedtext' => 'Text shown in [[Special:UserLogin]] when a logged-in user creates an account. Parameters:
+* $1 - the new username
 See also:
 * {{msg-mw|Accountcreated|title}}
 * {{msg-mw|Accountcreatedtext|message}}',
