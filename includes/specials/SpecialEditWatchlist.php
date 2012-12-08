@@ -393,13 +393,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			if( $title instanceof Title ) {
 				$rows[] = array(
 					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => ( $title->getNamespace() & ~1 ),
+					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
 				);
 				$rows[] = array(
 					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => ( $title->getNamespace() | 1 ),
+					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
 				);
@@ -427,7 +427,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'watchlist',
 					array(
 						'wl_user' => $this->getUser()->getId(),
-						'wl_namespace' => ( $title->getNamespace() & ~1 ),
+						'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 						'wl_title' => $title->getDBkey(),
 					),
 					__METHOD__
@@ -436,7 +436,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'watchlist',
 					array(
 						'wl_user' => $this->getUser()->getId(),
-						'wl_namespace' => ( $title->getNamespace() | 1 ),
+						'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 						'wl_title' => $title->getDBkey(),
 					),
 					__METHOD__

@@ -3695,8 +3695,8 @@ class Title {
 		}
 
 		# Update watchlists
-		$oldnamespace = $this->getNamespace() & ~1;
-		$newnamespace = $nt->getNamespace() & ~1;
+		$oldnamespace = MWNamespace::getSubject( $this->getNamespace() );
+		$newnamespace = MWNamespace::getSubject( $nt->getNamespace() );
 		$oldtitle = $this->getDBkey();
 		$newtitle = $nt->getDBkey();
 
