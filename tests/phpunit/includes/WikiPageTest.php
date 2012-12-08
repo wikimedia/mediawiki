@@ -548,7 +548,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		if ( !$wgContentHandlerUseDB && ContentHandler::getDefaultModelFor( $title ) != $model ) {
 			$this->markTestSkipped( "Can not use non-default content model $model for "
-				. $title->getPrefixedDBkey() . " with \wgArticleCountMethod disabled." );
+				. $title->getPrefixedDBkey() . " with \$wgContentHandlerUseDB disabled." );
 		}
 
 		$page = $this->createPage( $title, $text, $model );
