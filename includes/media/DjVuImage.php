@@ -34,9 +34,19 @@
  * @ingroup Media
  */
 class DjVuImage {
+	/**
+	 * Constructor
+	 *
+	 * @param string $filename The DjVu file name.
+	 */
 	function __construct( $filename ) {
 		$this->mFilename = $filename;
 	}
+
+        /**
+         * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+         */
+	const DJVUTXT_MEMORY_LIMIT = 300000;
 
 	/**
 	 * Check if the given file is indeed a valid DjVu image file
@@ -252,7 +262,7 @@ class DjVuImage {
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
 			wfDebug( __METHOD__.": $cmd\n" );
 			$retval = '';
-			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => 300000 ) );
+			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
 				# Strip some control characters
