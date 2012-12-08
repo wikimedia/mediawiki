@@ -42,6 +42,10 @@ class SkinCologneBlue extends SkinTemplate {
 		$out->addModuleStyles( 'mediawiki.legacy.shared' );
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );
+		
+		/* Loading common print stylesheets */
+		$out->addModuleStyles( 'mediawiki.legacy.commonPrint' );
+		$out->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 	}
 
 	/**
