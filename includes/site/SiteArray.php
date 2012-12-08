@@ -86,12 +86,12 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	 * @param mixed $index
 	 */
 	public function offsetUnset( $index ) {
-		/**
-		 * @var Site $site
-		 */
-		$site = $this->offsetGet( $index );
+		if ( $this->offsetExists( $index ) ) {
+			/**
+			 * @var Site $site
+			 */
+			$site = $this->offsetGet( $index );
 
-		if ( $site !== false ) {
 			unset( $this->byGlobalId[$site->getGlobalId()] );
 			unset( $this->byInternalId[$site->getInternalId()] );
 		}
