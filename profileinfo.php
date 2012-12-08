@@ -214,7 +214,7 @@ class profile_point {
 		?>
 		<tr>
 		<th><div style="margin-left: <?php echo (int)$indent; ?>em;">
-			<?php echo htmlspecialchars( $this->name() ) . $extet ?>
+			<?php echo htmlspecialchars( str_replace( ',', ', ', $this->name() ) ) . $extet ?>
 		</div></th>
 		<td class="mw-profileinfo-timep"><?php echo @wfPercent( $this->time() / self::$totaltime * 100 ); ?></td>
 		<td class="mw-profileinfo-memoryp"><?php echo @wfPercent( $this->memory() / self::$totalmemory * 100 ); ?></td>
