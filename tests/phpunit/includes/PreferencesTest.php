@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class PreferencesTest extends MediaWikiTestCase {
 	/** Array of User objects */
 	private $prefUsers;

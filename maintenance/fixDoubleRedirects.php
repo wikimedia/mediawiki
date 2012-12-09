@@ -129,7 +129,7 @@ class FixDoubleRedirects extends Maintenance {
 
 	protected function queueJobs( $jobs, $dryrun = false ) {
 		$this->output( "Queuing batch of " . count( $jobs ) . " double redirects.\n" );
-		Job::batchInsert( $dryrun ? array() : $jobs );
+		JobQueueGroup::singleton()->push( $dryrun ? array() : $jobs );
 	}
 }
 

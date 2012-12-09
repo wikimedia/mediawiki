@@ -111,7 +111,7 @@ class MemcLockManager extends QuorumLockManager {
 			foreach ( $paths as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
-			return;
+			return; // FIXME: Should return a Status object
 		}
 
 		// Fetch all the existing lock records...

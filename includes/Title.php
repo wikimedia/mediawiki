@@ -675,6 +675,7 @@ class Title {
 	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
+	 * @throws MWException
 	 * @return String: Content model id
 	 */
 	public function getContentModel() {
@@ -2972,6 +2973,7 @@ class Title {
 	 * What is the page_latest field for this page?
 	 *
 	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @throws MWException
 	 * @return Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
@@ -3695,8 +3697,8 @@ class Title {
 		}
 
 		# Update watchlists
-		$oldnamespace = $this->getNamespace() & ~1;
-		$newnamespace = $nt->getNamespace() & ~1;
+		$oldnamespace = MWNamespace::getSubject( $this->getNamespace() );
+		$newnamespace = MWNamespace::getSubject( $nt->getNamespace() );
 		$oldtitle = $this->getDBkey();
 		$newtitle = $nt->getDBkey();
 

@@ -252,7 +252,7 @@ class Preferences {
 		if ( $wgAuth->allowPasswordChange() ) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), array(),
-				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
+				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 
 			$defaultPreferences['password'] = array(
 				'type' => 'info',
@@ -367,7 +367,7 @@ class Preferences {
 				SpecialPage::getTitleFor( 'ChangeEmail' ),
 				$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->escaped(),
 				array(),
-				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
+				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 
 			$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
 			if ( $wgAuth->allowPropChange( 'emailaddress' ) ) {

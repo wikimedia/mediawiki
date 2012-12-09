@@ -131,6 +131,7 @@ abstract class ContentHandler {
 	 * @param $format null|string the format to use for deserialization. If not
 	 *    given, the model's default format is used.
 	 *
+	 * @throws MWException
 	 * @return Content a Content object representing $text
 	 *
 	 * @throw MWException if $model or $format is not supported or if $text can

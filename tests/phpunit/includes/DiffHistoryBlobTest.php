@@ -14,6 +14,7 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 			$this->markTestSkipped( 'Neither the hash nor mhash extension is available' );
 			return;
 		}
+		parent::setUp();
 	}
 
 	/**

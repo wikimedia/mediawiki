@@ -43,6 +43,7 @@
  * @author Muttley
  * @author Mzm5zbC3
  * @author Ohgi
+ * @author Ort43v
  * @author Penn Station
  * @author Reedy
  * @author Schu
@@ -876,7 +877,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 このアカウントが何かの手違いで作成された場合は、このメッセージを無視してください。',
 'usernamehasherror' => '利用者名には番号記号を含めることができません',
 'login-throttled' => 'ログインの失敗が制限回数を超えました。
-しばらく時間をおいてから再度お試しください。',
+しばらく時間をおいてから再度試してください。',
 'login-abort-generic' => 'ログインに失敗しました - 中止',
 'loginlanguagelabel' => '言語: $1',
 'suspicious-userlogout' => '壊れたブラウザーまたはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
@@ -2014,7 +2015,7 @@ $1',
 'uploadstash-summary' => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルを表示します。これらのファイルは、アップロードした利用者以外閲覧できません。',
 'uploadstash-clear' => '未公開ファイルを消去',
 'uploadstash-nofiles' => '未公開ファイルはありません。',
-'uploadstash-badtoken' => '操作を実行できませんでした。編集するための認証の期限切れが原因である可能性があります。再度お試しください。',
+'uploadstash-badtoken' => '操作を実行できませんでした。編集するための認証の期限切れが原因である可能性があります。再度試してください。',
 'uploadstash-errclear' => 'ファイルの消去に失敗しました。',
 'uploadstash-refresh' => 'ファイルの一覧を更新',
 'invalid-chunk-offset' => '無効なチャンクオフセット',
@@ -2480,15 +2481,17 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 
 'enotif_mailer' => '{{SITENAME}} 通知メール',
 'enotif_reset' => 'すべてのページを訪問済みにする',
-'enotif_impersonal_salutation' => '{{SITENAME}} 利用者',
+'enotif_impersonal_salutation' => '{{SITENAME}}の利用者',
 'enotif_subject_deleted' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が削除しました',
 'enotif_subject_created' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が作成しました',
 'enotif_subject_moved' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が移動しました',
 'enotif_subject_restored' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が復元しました',
 'enotif_subject_changed' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が変更しました',
-'enotif_body_intro_deleted' => '{{SITENAME}} のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって削除されました。現在の版は$3で閲覧できます。',
-'enotif_body_intro_created' => '{{SITENAME}} のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって作成されました。現在の版は$3で閲覧できます。',
-'enotif_body_intro_changed' => '{{SITENAME}} のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって変更されました。現在の版は$3で閲覧できます。',
+'enotif_body_intro_deleted' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって削除されました。現在の版は$3で閲覧できます。',
+'enotif_body_intro_created' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって作成されました。現在の版は$3で閲覧できます。',
+'enotif_body_intro_moved' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって移動されました。現在の版は$3で閲覧できます。',
+'enotif_body_intro_restored' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって復元されました。現在の版は$3で閲覧できます。',
+'enotif_body_intro_changed' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって変更されました。現在の版は$3で閲覧できます。',
 'enotif_lastvisited' => '最終訪問以降のすべての変更は $1 をご覧ください。',
 'enotif_lastdiff' => 'この変更内容を表示するには $1 をご覧ください。',
 'enotif_anon_editor' => '匿名利用者「$1」',
@@ -3391,6 +3394,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 時間}}',
 'days' => '{{PLURAL:$1|$1 日}}',
 'ago' => '$1前',
+'just-now' => 'ちょうど今',
 
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：

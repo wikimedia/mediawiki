@@ -117,6 +117,7 @@ abstract class JobQueue {
 	 *
 	 * @param $jobs array List of Jobs
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
+	 * @throws MWException
 	 * @return bool
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
@@ -165,6 +166,7 @@ abstract class JobQueue {
 	 * Acknowledge that a job was completed
 	 *
 	 * @param $job Job
+	 * @throws MWException
 	 * @return bool
 	 */
 	final public function ack( Job $job ) {
@@ -209,6 +211,7 @@ abstract class JobQueue {
 	 * previous "root job" for the same task of "update links of pages that use template X".
 	 *
 	 * @param $job Job
+	 * @throws MWException
 	 * @return bool
 	 */
 	final public function deduplicateRootJob( Job $job ) {

@@ -62,6 +62,7 @@ class ArticleTest extends MediaWikiTestCase {
 	function testStaticFunctions() {
 		$this->hideDeprecated( 'Article::getAutosummary' );
 		$this->hideDeprecated( 'WikiPage::getAutosummary' );
+		$this->hideDeprecated( 'CategoryPage::getAutosummary' ); // Inherited from Article
 
 		$this->assertEquals( WikiPage::selectFields(), Article::selectFields(),
 			"Article static functions" );

@@ -151,6 +151,7 @@ class SiteObject extends ORMRow implements Site {
 	 *
 	 * @since 1.21
 	 *
+	 * @throws MWException
 	 * @return string|false
 	 */
 	public function getProtocol() {
@@ -439,7 +440,7 @@ class SiteObject extends ORMRow implements Site {
 	}
 
 	/**
-	 * @see ORMRow::save
+	 * @see IORMRow::save
 	 * @see Site::save
 	 *
 	 * @since 1.21
@@ -449,7 +450,7 @@ class SiteObject extends ORMRow implements Site {
 	 * @return boolean Success indicator
 	 */
 	public function save( $functionName = null ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->table->getWriteDbConnection();
 
 		$trx = $dbw->trxLevel();
 
@@ -493,6 +494,25 @@ class SiteObject extends ORMRow implements Site {
 		}
 
 		return $success;
+	}
+
+	/**
+	 * @since 1.21
+	 *
+	 * @see ORMRow::onRemoved
+	 */
+	protected function onRemoved() {
+		$dbw = $this->table->getWriteDbConnection();
+
+		$dbw->delete(
+			'site_identifiers',
+			array(
+				'si_site' => $this->getId()
+			),
+			__METHOD__
+		);
+
+		parent::onRemoved();
 	}
 
 	/**

@@ -954,10 +954,11 @@ class LoadBalancer {
 	 * @return bool
 	 */
 	function allowLagged( $mode = null ) {
-		if ( $mode === null) {
+		if ( $mode === null ) {
 			return $this->mAllowLagged;
 		}
 		$this->mAllowLagged = $mode;
+		return $this->mAllowLagged;
 	}
 
 	/**

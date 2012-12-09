@@ -279,9 +279,6 @@ abstract class FileBackend {
 	 *   - nonLocking          : No locks are acquired for the operations.
 	 *                           This can increase performance for non-critical writes.
 	 *                           This has no effect unless the 'force' flag is set.
-	 *   - allowStale          : Don't require the latest available data.
-	 *                           This can increase performance for non-critical writes.
-	 *                           This has no effect unless the 'force' flag is set.
 	 *   - nonJournaled        : Don't log this operation batch in the file journal.
 	 *                           This limits the ability of recovery scripts.
 	 *   - parallelize         : Try to do operations in parallel when possible.
@@ -315,7 +312,6 @@ abstract class FileBackend {
 		}
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
-			unset( $opts['allowStale'] );
 		}
 		return $this->doOperationsInternal( $ops, $opts );
 	}

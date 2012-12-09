@@ -456,15 +456,6 @@ interface IORMTable {
 	public function unprefixFieldName( $fieldName );
 
 	/**
-	 * Get an instance of this class.
-	 *
-	 * @since 1.20
-	 *
-	 * @return IORMTable
-	 */
-	public static function singleton();
-
-	/**
 	 * Get an array with fields from a database result,
 	 * that can be fed directly to the constructor or
 	 * to setFields.

@@ -70,11 +70,11 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @param Boolean $escaped Wheter sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
-		global $wgHtml5;
-
-		# Enable HTML5 mode
-		$save = $wgHtml5;
-		$wgHtml5 = true;
+		$this->setMwGlobals( array(
+			# Enable HTML5 mode
+			'wgHtml5' => true,
+			'wgUseTidy' => false
+		));
 
 		if( $escaped ) {
 			$this->assertEquals( "&lt;$tag&gt;",
@@ -85,7 +85,6 @@ class SanitizerTest extends MediaWikiTestCase {
 				Sanitizer::removeHTMLtags( "<$tag>" )
 			);
 		}
-		$wgHtml5 = $save;
 	}
 
 	/**
@@ -103,7 +102,10 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	function testSelfClosingTag() {
-		$GLOBALS['wgUseTidy'] = false;
+		$this->setMwGlobals( array(
+			'wgUseTidy' => false
+		));
+
 		$this->assertEquals(
 			'<div>Hello world</div>',
 			Sanitizer::removeHTMLtags( '<div>Hello world</div />' ),
