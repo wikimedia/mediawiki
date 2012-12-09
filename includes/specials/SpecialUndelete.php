@@ -447,9 +447,9 @@ class PageArchive {
 			$makepage = false;
 			# Page already exists. Import the history, and if necessary
 			# we'll update the latest revision field in the record.
-			$newid = 0;
-			$pageId = $page->page_id;
+
 			$previousRevId = $page->page_latest;
+
 			# Get the time span of this page
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
 				array( 'rev_id' => $previousRevId ),
@@ -532,10 +532,8 @@ class PageArchive {
 		$revision = Revision::newFromArchiveRow( $row,
 			array(
 				'title' => $article->getTitle(), // used to derive default content model
-			) );
-
-		$m = $revision->getContentModel();
-
+			)
+		);
 		$user = User::newFromName( $revision->getRawUserText(), false );
 		$content = $revision->getContent( Revision::RAW );
 

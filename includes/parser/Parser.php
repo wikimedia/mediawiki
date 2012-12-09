@@ -1540,8 +1540,7 @@ class Parser {
 		$i = 0;
 		while ( $i<count( $bits ) ) {
 			$url = $bits[$i++];
-			// @todo FIXME: Unused variable.
-			$protocol = $bits[$i++];
+			$i++; // protocol
 			$text = $bits[$i++];
 			$trail = $bits[$i++];
 
@@ -3845,7 +3844,7 @@ class Parser {
 				$output = call_user_func_array( $this->mTagHooks[$name],
 					array( $content, $attributes, $this, $frame ) );
 			} elseif ( isset( $this->mFunctionTagHooks[$name] ) ) {
-				list( $callback, $flags ) = $this->mFunctionTagHooks[$name];
+				list( $callback, ) = $this->mFunctionTagHooks[$name];
 				if ( !is_callable( $callback ) ) {
 					throw new MWException( "Tag hook for $name is not callable\n" );
 				}

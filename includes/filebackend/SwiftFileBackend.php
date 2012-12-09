@@ -634,7 +634,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (a) Check if container already exists
 		try {
-			$contObj = $this->getContainer( $fullCont );
+			$this->getContainer( $fullCont );
 			// NoSuchContainerException not thrown: container must exist
 			return $status; // already exists
 		} catch ( NoSuchContainerException $e ) {
@@ -869,8 +869,6 @@ class SwiftFileBackend extends FileBackendStore {
 				try {
 					$sContObj = $this->getContainer( $srcCont );
 					$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-					// Get source file extension
-					$ext = FileBackend::extensionFromPath( $path );
 					// Create a new temporary memory file...
 					$handle = fopen( 'php://temp', 'wb' );
 					if ( $handle ) {
