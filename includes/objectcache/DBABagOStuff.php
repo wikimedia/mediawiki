@@ -211,7 +211,7 @@ class DBABagOStuff extends BagOStuff {
 
 		# Insert failed, check to see if it failed due to an expired key
 		if ( !$ret ) {
-			list( $value, $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
+			list( , $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
 
 			if ( $expiry && $expiry < time() ) {
 				# Yes expired, delete and try again

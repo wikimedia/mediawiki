@@ -1030,8 +1030,6 @@ abstract class ContentHandler {
 			wfSuppressWarnings();
 
 			foreach ( $handlers as $handler ) {
-				$info = '';
-
 				if ( is_array( $handler ) ) {
 					if ( is_object( $handler[0] ) ) {
 						$info = get_class( $handler[0] );

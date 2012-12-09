@@ -331,10 +331,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return bool
 	 */
 	private function showUploads( $status = null ) {
-		if ( $status === null ) {
-			$status = Status::newGood();
-		}
-
 		// sets the title, etc.
 		$this->setHeaders();
 		$this->outputHeader();

@@ -345,7 +345,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				);
 			}
 		} else {
-			list( $host, $lag, $index ) = $lb->getMaxLag();
+			list( , $lag, $index ) = $lb->getMaxLag();
 			$data[] = array(
 				'host' => $wgShowHostnames
 						? $lb->getServerName( $index )

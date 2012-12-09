@@ -322,7 +322,7 @@ abstract class DatabaseUpdater {
 			$func = $funcList[0];
 			$arg = $funcList[1];
 			$origParams = $funcList[2];
-			$ret = call_user_func_array( $func, $arg );
+			call_user_func_array( $func, $arg );
 			flush();
 			$this->updatesSkipped[] = $origParams;
 		}
