@@ -745,6 +745,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $write array
 	 * @param $method string
 	 * @param $lowPriority bool
+	 * @return bool
 	 */
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		$items = array();
@@ -760,10 +761,12 @@ class DatabaseMysql extends DatabaseBase {
 		}
 		$sql = "LOCK TABLES " . implode( ',', $items );
 		$this->query( $sql, $method );
+		return true;
 	}
 
 	/**
 	 * @param $method string
+	 * @return bool
 	 */
 	public function unlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
@@ -878,6 +881,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $newName
 	 * @param $temporary bool
 	 * @param $fname string
+	 * @return bool
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseMysql::duplicateTableStructure' ) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';

@@ -2286,7 +2286,7 @@ class LocalFileRestoreBatch {
 	/**
 	 * Delete unused files in the deleted zone.
 	 * This should be called from outside the transaction in which execute() was called.
-	 * @return FileRepoStatus|void
+	 * @return FileRepoStatus
 	 */
 	function cleanup() {
 		if ( !$this->cleanupBatch ) {
