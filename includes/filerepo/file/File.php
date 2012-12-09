@@ -1800,7 +1800,7 @@ abstract class File {
 	}
 
 	/**
-	 * @return Title
+	 * @return Title|null
 	 */
 	function getRedirectedTitle() {
 		if ( $this->redirected ) {
@@ -1809,6 +1809,7 @@ abstract class File {
 			}
 			return $this->redirectTitle;
 		}
+		return null;
 	}
 
 	/**
