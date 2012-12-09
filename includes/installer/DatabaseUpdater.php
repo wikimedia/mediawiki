@@ -721,8 +721,8 @@ abstract class DatabaseUpdater {
 		} elseif( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 			$this->insertUpdateRow( $updateKey );
+			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 		}
 		return true;
 	}
