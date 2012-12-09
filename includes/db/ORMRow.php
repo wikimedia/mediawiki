@@ -120,7 +120,8 @@ abstract class ORMRow implements IORMRow {
 			$result = $this->table->rawSelectRow(
 				$this->table->getPrefixedFields( $fields ),
 				array( $this->table->getPrefixedField( 'id' ) => $this->getId() ),
-				array( 'LIMIT' => 1 )
+				array( 'LIMIT' => 1 ),
+				__METHOD__
 			);
 
 			if ( $result !== false ) {
@@ -418,7 +419,7 @@ abstract class ORMRow implements IORMRow {
 	public function remove() {
 		$this->beforeRemove();
 
-		$success = $this->table->delete( array( 'id' => $this->getId() ) );
+		$success = $this->table->delete( array( 'id' => $this->getId() ), __METHOD__ );
 
 		// DatabaseBase::delete does not always return true for success as documented...
 		$success = $success !== false;
