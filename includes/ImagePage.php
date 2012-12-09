@@ -1225,7 +1225,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 * @param ImagePage $imagePage
 	 */
 	function __construct( $imagePage ) {
-		parent::__construct();
+		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = clone ( $imagePage->getTitle() );
 		$this->mTitle->setFragment( '#filehistory' );
