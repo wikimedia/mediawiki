@@ -517,6 +517,8 @@ class EmailNotification {
 	 * @param $minorEdit bool
 	 * @param $oldid int Revision ID
 	 * @param $watchers array of user IDs
+	 * @param string $pageStatus
+	 * @throws MWException
 	 */
 	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
 		$oldid, $watchers, $pageStatus = 'changed' ) {

@@ -432,9 +432,10 @@ class PageArchive {
 	 * be stuffed into old, otherwise the most recent will go into cur.
 	 *
 	 * @param $timestamps Array: pass an empty array to restore all revisions, otherwise list the ones to undelete.
-	 * @param $comment String
 	 * @param $unsuppress Boolean: remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 *
+	 * @param $comment String
+	 * @throws ReadOnlyError
 	 * @return Status, containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {

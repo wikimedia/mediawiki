@@ -3034,6 +3034,7 @@ class User {
 	 * so it is still advisable to make the call conditional on isLoggedIn(),
 	 * and to commit the transaction after calling.
 	 *
+	 * @throws MWException
 	 * @return Status
 	 */
 	public function addToDatabase() {

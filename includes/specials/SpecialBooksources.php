@@ -130,6 +130,7 @@ class SpecialBookSources extends SpecialPage {
 	 * Determine where to get the list of book sources from,
 	 * format and output them
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	private function showList() {
