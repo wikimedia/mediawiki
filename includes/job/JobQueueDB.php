@@ -54,6 +54,7 @@ class JobQueueDB extends JobQueue {
 		);
 
 		$wgMemc->add( $key, $found ? 'false' : 'true', self::CACHE_TTL );
+		return (bool)$found;
 	}
 
 	/**
