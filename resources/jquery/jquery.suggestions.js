@@ -93,10 +93,9 @@ $.suggestions = {
 			}
 		}
 
-		// Cancel previous call
-		if ( context.data.timerID !== null ) {
-			clearTimeout( context.data.timerID );
-		}
+		// If there is already a request running, we have to cancel it to avoid race conditions
+		$.suggestions.cancel( context );
+
 		if ( delayed ) {
 			// Start a new asynchronous call
 			context.data.timerID = setTimeout( maybeFetch, context.config.delay );
