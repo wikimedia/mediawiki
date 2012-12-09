@@ -118,6 +118,7 @@ production.
 * (bug 41342) jquery.suggestions should cancel any active (async) fetches
   before it triggers another fetch.
 * (bug 42184) $wgUploadSizeWarning missing second variable
+* (bug 22471) show local image usage of foreign file redirects (ForeignDB only).
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.

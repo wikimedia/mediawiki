@@ -1577,6 +1577,17 @@ class FileRepo {
 	}
 
 	/**
+	 * Select the redirect names pointing to $title.
+	 * STUB
+	 *
+	 * @param $title Title of image
+	 * @return array of Title objects
+	 */
+	public function getFileRedirects( Title $title ) {
+		return array();
+	}
+
+	/**
 	 * Invalidates image redirect cache related to that image
 	 * Doesn't do anything for repositories that don't support image redirects.
 	 *
