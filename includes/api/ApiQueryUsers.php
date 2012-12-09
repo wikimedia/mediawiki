@@ -250,7 +250,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 			$done[] = $u;
 		}
-		return $result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
+		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
 	}
 
 	/**
