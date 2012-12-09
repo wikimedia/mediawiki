@@ -81,13 +81,13 @@ $messages = array(
 'editfont-serif' => 'Schrift mid Serifen',
 
 # Dates
-'sunday' => 'Sunndog',
+'sunday' => 'Sundog',
 'monday' => 'Mondog',
 'tuesday' => 'Deansdog',
 'wednesday' => 'Midwoch',
-'thursday' => 'Dunnersdog',
+'thursday' => 'Dunasdog',
 'friday' => 'Freidog',
-'saturday' => 'Såmsdog',
+'saturday' => 'Samsdog',
 'sun' => 'Su',
 'mon' => 'Mo',
 'tue' => 'De',
@@ -173,9 +173,9 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Obschnit dazuafyng',
+'vector-action-addsection' => 'An Obschnitt dazua doa',
 'vector-action-delete' => 'Leschn',
-'vector-action-move' => 'Vaschiam',
+'vector-action-move' => 'Vaschiabm',
 'vector-action-protect' => 'Schitzn',
 'vector-action-undelete' => 'Wiederherstön',
 'vector-action-unprotect' => 'freigeem',
@@ -648,7 +648,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 # Diffs
 'history-title' => 'Gschicht vo „$1“ oschaugn',
 'lineno' => 'Zein $1:',
-'compareselectedversions' => 'Gwöde Versionen vagleichen',
+'compareselectedversions' => 'Ausgwejde Versiona vagleicha',
 'editundo' => 'zruck doa',
 'diff-multi' => '({{PLURAL:$1|A dazwischnliegade Version|$1 dazwiscenliegade Versiona}} {{PLURAL:$2|vonam Nutza|vo $2 Nutzan}} {{PLURAL:$1|wead|wean}} ned ozoagt)',
 
@@ -1262,8 +1262,8 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 
 # What links here
 'whatlinkshere' => 'Links af de Seitn',
-'whatlinkshere-title' => 'Seiten, dé noch „$1“ valinken',
-'whatlinkshere-page' => 'Seiten:',
+'whatlinkshere-title' => 'Seitn, wo af „$1“ valinka',
+'whatlinkshere-page' => 'Seitn:',
 'linkshere' => "De foigandn Seitn valinka af '''„[[:$1]]“''':",
 'nolinkshere' => "Koa Seitn valinkt af '''„[[:$1]]“'''.",
 'isredirect' => 'Weidaloatungsseitn',
@@ -1272,7 +1272,7 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'whatlinkshere-prev' => '{{PLURAL:$1|vorige|vorign $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|naxde|naxdn $1}}',
 'whatlinkshere-links' => '← Vaweise',
-'whatlinkshere-hideredirs' => 'Weidaleitungen $1',
+'whatlinkshere-hideredirs' => 'Weidaloatunga $1',
 'whatlinkshere-hidetrans' => 'Vurlongeihbindung $1',
 'whatlinkshere-hidelinks' => 'Links $1',
 'whatlinkshere-hideimages' => '$1 Dateilinks',
@@ -1440,7 +1440,7 @@ Bsuach bittschee de Saiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Loka
 'tooltip-ca-undelete' => 'Eihträg wiederherstön, bevur dé Seiten gléscht worn is.',
 'tooltip-ca-move' => 'De Seitn vaschiabm',
 'tooltip-ca-watch' => 'De Seitn zua Beobochtungslistn dazua doa',
-'tooltip-ca-unwatch' => 'Dé Seiten voh da persénlichen Beówochtungslisten entferner',
+'tooltip-ca-unwatch' => 'De Seitn vom "Beobochta" wegga doa',
 'tooltip-search' => '{{SITENAME}} duachsuacha',
 'tooltip-search-go' => 'Gee direkt zua derer Seiten, dé exakd am eihgeewernen Nåm entspricht.',
 'tooltip-search-fulltext' => 'Suach noch Seitn, wo den Text enthoiden',

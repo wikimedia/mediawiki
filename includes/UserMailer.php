@@ -498,7 +498,7 @@ class EmailNotification {
 				'pageStatus' => $pageStatus
 			);
 			$job = new EnotifNotifyJob( $title, $params );
-			$job->insert();
+			JobQueueGroup::singleton()->push( $job );
 		} else {
 			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $pageStatus );
 		}
@@ -517,6 +517,8 @@ class EmailNotification {
 	 * @param $minorEdit bool
 	 * @param $oldid int Revision ID
 	 * @param $watchers array of user IDs
+	 * @param string $pageStatus
+	 * @throws MWException
 	 */
 	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
 		$oldid, $watchers, $pageStatus = 'changed' ) {
@@ -780,13 +782,15 @@ class EmailNotification {
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
-	 * @return Status
+	 * @param $addresses array
+	 * @return Status|null
 	 */
 	function sendImpersonal( $addresses ) {
 		global $wgContLang;
 
-		if ( empty( $addresses ) )
-			return;
+		if ( empty( $addresses ) ) {
+			return null;
+		}
 
 		$body = str_replace(
 				array( '$WATCHINGUSERNAME',

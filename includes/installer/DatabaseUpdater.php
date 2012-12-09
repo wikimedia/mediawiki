@@ -721,8 +721,8 @@ abstract class DatabaseUpdater {
 		} elseif( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 			$this->insertUpdateRow( $updateKey );
+			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
 		}
 		return true;
 	}
@@ -817,7 +817,7 @@ abstract class DatabaseUpdater {
 	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
-			return;
+			return true;
 		}
 
 		return $this->applyPatch( 'patch-tc-timestamp.sql', false,

@@ -3235,7 +3235,7 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 'markedaspatrollederror' => 'Ne peut être marquée comme relue',
 'markedaspatrollederrortext' => 'Vous devez sélectionner une version pour pouvoir la marquer comme relue.',
 'markedaspatrollederror-noautopatrol' => "Vous n'avez pas le droit de marquer vos propres modifications comme relues.",
-'markedaspatrollednotify' => 'Cette modification de $1 a été marquée comme contrôlée.',
+'markedaspatrollednotify' => 'Cette modification de $1 a été marquée comme relue.',
 'markedaspatrollederrornotify' => 'Échec du marquage comme contrôlé.',
 
 # Patrol log

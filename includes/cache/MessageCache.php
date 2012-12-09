@@ -257,7 +257,8 @@ class MessageCache {
 	 * or false if populating empty cache fails. Also returns true if MessageCache
 	 * is disabled.
 	 *
-	 * @param $code String: language to which load messages
+	 * @param bool|String $code String: language to which load messages
+	 * @throws MWException
 	 * @return bool
 	 */
 	function load( $code = false ) {

@@ -41,6 +41,7 @@ $messages = array(
 'tog-editondblclick' => 'Эки басып баракты оңдоо (JavaScript талап кылынат)',
 'tog-editsection' => 'Ар бир секция үчүн «оңдоо» шилтемеси',
 'tog-oldsig' => 'Кезектеги кол:',
+'tog-showhiddencats' => 'Жашырылган категорияларды көрсөтүү',
 
 'underline-always' => 'Дайыма',
 'underline-never' => 'Эч качан',
@@ -248,6 +249,9 @@ $messages = array(
 'toc' => 'Мазмун',
 'showtoc' => 'көрсөтүү',
 'hidetoc' => 'Жашыруу',
+'collapsible-collapse' => 'Түрүү',
+'collapsible-expand' => 'Жаюу',
+'viewdeleted' => 'Көрүү $1?',
 'site-rss-feed' => '$1 RSS тилкеси',
 'site-atom-feed' => '$1 Atom агымы',
 'page-atom-feed' => '"$1" Atom агымы',
@@ -291,11 +295,15 @@ $messages = array(
 'badtitletext' => 'Талап кылынган барак аталышы туура эмес, бош, же тилдер-аралык же уики-аралык аталышы туура эмес шилтемеленген.
 Балким аталышта колдонулбай турган бир же андан көп белги камтылган.',
 'viewsource' => 'Кароо',
+'viewsource-title' => '$1 барагынын баштапкы кодун көрүү',
+'ns-specialprotected' => 'Атайын барактарды оңдоого мүмкүн эмес.',
 
 # Virus scanner
+'virus-scanfailed' => 'скандоо катасы (код $1)',
 'virus-unknownscanner' => 'белгисиз антивирус:',
 
 # Login and logout pages
+'welcomeuser' => 'Кош келиңиз, $1!',
 'yourname' => 'Колдонуучу аты',
 'yourpassword' => 'Сырсөз',
 'yourpasswordagain' => 'Сырсөздү кайра жазыңыз',
@@ -389,6 +397,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'blockedtitle' => 'Катышуучу тосмолонгон',
 'blockedtext' => 'Сиздин колдонуучу атыңыз же IP дарегиңиз тосмолонгон',
 'blockednoreason' => 'себеби көрсөтүлгөн жок',
+'nosuchsectiontitle' => 'Бөлүктүү табууга мүмкүн эмес',
 'loginreqtitle' => 'Колдонуучунун аты талап кылынат',
 'loginreqlink' => 'Кирүү',
 'accmailtitle' => 'Сырсөз жөнөтүлдү.',
@@ -406,9 +415,10 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз]</span>.',
 'userpage-userdoesnotexist' => '"$1" Мындай колдонуучу катталган эмес. Ушул баракты түзүүнү же оңдогонду каалганыңыз анык болсун',
 'updated' => '(Жаңыртылды)',
+'note' => "'''Эскертүү:'''",
 'previewnote' => "'''Бул алдын ала көрүнүшү гана болгонун эсиңизге алыңыз.'''
 Өзгөртүүлөрүңүз сактала элек!",
-'continue-editing' => 'Өзгөртүүүлөрдү улантабыз',
+'continue-editing' => 'Редакторлоону улантуу',
 'session_fail_preview' => 'Кечиресиз, байланыш үзүлгөндүктөн сиздин өзгөртүүлөр сакталган жок. Дагы бир жолу аракет кылып көрүңүз. Болбосо, [[Special:UserLogout|logging out]] аткарып, кайра кирип көрүңүз.',
 'editing' => 'Оңдоо $1',
 'creating' => '$1 түзүлүүдө',
@@ -420,6 +430,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'template-protected' => '(корголгон)',
 'template-semiprotected' => '(жарым-жартылай корголгон)',
 'hiddencategories' => 'Бул барак {{PLURAL:$1|1 жашыруун категориянын|$1 жашыруун категориялардын}} мүчөсү:',
+'nocreatetitle' => 'Барактарды жаратуу чектелген',
 'permissionserrorstext-withaction' => 'Сизге $2, төмөнкү {{PLURAL:$1|себеп|себеп}} менен уруксат жок:',
 'recreate-moveddeleted-warn' => "'''Эскертүү: Сиз мурун өчүрүлгөн баракты кайра баштап жатасыз.'''
 
@@ -431,6 +442,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'edit-already-exists' => 'Жаңы барак түзүү мүмкүн эмес. Мындай барак бар',
 
 # Content models
+'content-model-wikitext' => 'уики-текст',
+'content-model-text' => 'жөнөкөй текст',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
 
@@ -473,18 +486,29 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Revision deletion
 'rev-delundel' => 'көрсөтүү/жашыруу',
 'rev-showdeleted' => 'көрсөтүү',
+'revdelete-show-file-submit' => 'Ооба',
+'revdelete-hide-image' => 'Файл мазмунун жашыруу',
+'revdelete-radio-same' => '(өзгөртпөө)',
+'revdelete-radio-set' => 'Ооба',
+'revdelete-radio-unset' => 'Жок',
+'revdelete-log' => 'Себеп:',
 'revdel-restore' => 'көрүнүшүн өзгөртүү',
 'revdel-restore-deleted' => 'өчүрүлгөн версиялар',
 'revdel-restore-visible' => 'көрүнүүчү версиялары',
+'pagehist' => 'Барактын тарыхы',
+'deletedhist' => 'Өчүрүүлөрдүн тарыхы',
 'revdelete-reasonotherlist' => 'Башка себеп',
+'revdelete-edit-reasonlist' => 'Өчүрүү себептерин оңдоо',
 'revdelete-offender' => 'Барак версиясынын автору:',
 
 # History merging
+'mergehistory' => 'Барактардын тарыхын бириктирүү',
 'mergehistory-from' => 'Баштапкы барак:',
 'mergehistory-submit' => 'Версияларды бириктирүү',
 'mergehistory-reason' => 'Себеп',
 
 # Merge log
+'mergelog' => 'Бириктирүүлөрдүн журналы',
 'revertmerge' => 'Бөлүү',
 
 # Diffs
@@ -522,14 +546,19 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'search-redirect' => '($1 кайра багыттоо)',
 'search-section' => '($1 бөлүмү)',
 'search-suggest' => 'Ушуну кааладыңызбы: $1',
+'search-interwiki-caption' => 'Тектеш долбоорлор',
+'search-interwiki-default' => '$1 жыйын.:',
+'search-interwiki-more' => '(көбүрөөк)',
 'searchrelated' => 'байланыштуу',
 'searchall' => 'баары',
 'showingresultsheader' => "'''$4''' үчүн {{PLURAL:$5|'''$3''' жыйынтыктан '''$1'''-и|'''$1 - $2''' -дан '''$3''' жыйынтык}}",
 'search-nonefound' => 'Талапка төп маалымат табылган жок.',
 'powersearch' => 'Кеңейтилген издөө',
 'powersearch-legend' => 'Кеңейтилген издөө',
+'powersearch-field' => 'Издөө',
 'powersearch-toggleall' => 'Баары',
 'powersearch-togglenone' => 'Эчтеке',
+'search-external' => 'Тышкы издөө',
 
 # Quickbar
 'qbsettings' => 'Навигация панели',
@@ -541,15 +570,22 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-edits' => 'Өзгөртүүлөрдүн саны',
 'changepassword' => 'Сырсөздү өзгөртүү',
 'skin-preview' => 'Алдын ала көрүү',
+'prefs-beta' => 'Бета-мүмкүнчүлүктөр',
 'prefs-datetime' => 'Дата жана убакыт',
 'prefs-user-pages' => 'Катышуучунун барактары',
 'prefs-rc' => 'Соңку өзгөрүүлөр',
 'prefs-watchlist' => 'Байкоо тизмеси',
 'prefs-resetpass' => 'Сырсөздү өзгөртүү',
+'prefs-email' => 'Электрондук почтанын параметрлери',
 'saveprefs' => 'Сактоо',
 'prefs-editing' => 'Редакторлоо',
+'rows' => 'Сап:',
+'columns' => 'Тилке:',
 'searchresultshead' => 'Издөө',
-'localtime' => 'Жергиликтүү убакыт',
+'stub-threshold-disabled' => 'Өчүрүлгөн',
+'timezonelegend' => 'Сааттык алкак:',
+'localtime' => 'Жердик убакыт:',
+'timezoneoffset' => 'Жылыш¹:',
 'servertime' => 'Сервер убагы:',
 'timezoneregion-africa' => 'Африка',
 'timezoneregion-america' => 'Америка',
@@ -569,7 +605,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'uid' => 'Колдонуучунун ID си:',
 'yourrealname' => 'Анык атыңыз:',
 'yourlanguage' => 'Тил:',
-'yourvariant' => 'Вариант:',
+'yourvariant' => 'Мазмундун тил варианты:',
 'yournick' => 'Жаңы колуңуз:',
 'yourgender' => 'Жыныс:',
 'gender-male' => 'Эркек',
@@ -579,6 +615,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-help-email-others' => 'Ошондой эле башкалар сиз менен колдонуучу же талкуу барактарыңыздагы шилтеме аркылуу байланыш түзүүгө уруксат берүүнү тандай аласыз.
 Электрондук дарегиңиз башка кодонуучуларга байланыш түзгөндө көрүнбөйт.',
 'prefs-info' => 'Негизги маалыматтары',
+'prefs-i18n' => 'Интернационализация',
+'prefs-signature' => 'Кол тамга',
 'prefs-dateformat' => 'Дата форматы',
 'prefs-advancedediting' => 'Кеңейтилген ырастоолор',
 'prefs-advancedrc' => 'Кеңейтилген ырастоолор',
@@ -586,6 +624,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-advancedsearchoptions' => 'Кеңейтилген ырастоолор',
 'prefs-advancedwatchlist' => 'Кеңейтилген ырастоолор',
 'prefs-displayrc' => 'Көрсөтүүнүн ырастоолору',
+'prefs-displaysearchoptions' => 'Көрсөтүүнүн ырастоолору',
+'prefs-displaywatchlist' => 'Көрсөтүүнүн ырастоолору',
 
 # User rights
 'userrights-reason' => 'Себеп:',
@@ -593,14 +633,29 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Groups
 'group' => 'Топ:',
 'group-user' => 'Катышуучулар',
+'group-bot' => 'Боттор',
 'group-sysop' => 'Администраторлор',
 'group-bureaucrat' => 'Бюрократтар',
+'group-all' => '(баары)',
 
-'group-bureaucrat-member' => 'Бюрократ',
+'group-user-member' => '{{GENDER:$1|катышуучу}}',
+'group-bot-member' => '{{GENDER:$1|бот}}',
+'group-sysop-member' => '{{GENDER:$1|администратор}}',
+'group-bureaucrat-member' => '{{GENDER:$1|бюрократ}}',
+
+'grouppage-user' => '{{ns:project}}:Катышуучулар',
+'grouppage-bot' => '{{ns:project}}:Боттор',
+'grouppage-sysop' => '{{ns:project}}:Администраторлор',
 
 # Rights
+'right-edit' => 'Барактарды оңдоо',
+'right-move' => 'Барактарды ташуу',
+'right-movefile' => 'Файлдарды ташуу',
 'right-upload' => 'Файлдарды жүктөө',
 'right-delete' => 'Барактарды өчүрүү',
+'right-browsearchive' => 'Өчүрүлгөн барактарды издөө',
+'right-suppressionlog' => 'Жеке журналдарды көрүү',
+'right-userrights' => 'Бүт катышуучулардын укуктарын оңдоо',
 
 # User rights log
 'rightsnone' => '(жок)',
@@ -609,7 +664,13 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'action-read' => 'бул баракты окуу',
 'action-edit' => 'бул баракты оңдоо',
 'action-createpage' => 'барактарды жаратуу',
+'action-createtalk' => 'талкуулоо барагын жаратуу',
+'action-createaccount' => 'бул эсеп жазуусун жаратуу',
+'action-upload' => 'бул файлды жүктөө',
 'action-delete' => 'бул баракты өчүрүү',
+'action-suppressionlog' => 'бул жеке журналды көрүү',
+'action-userrights' => 'бүт катышуучулардын укуктарын оңдоо',
+'action-sendemail' => 'электрондук каттарды жөнөтүү',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|өзгөрүү|өзгөрүү}}',
@@ -638,6 +699,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'minoreditletter' => 'м',
 'newpageletter' => 'Ж',
 'boteditletter' => 'б',
+'rc_categories_any' => 'Каалаган',
 'rc-enhanced-expand' => 'Кошумча маалыматтарды көрсөтүү (JavaScript талап кылынат)',
 'rc-enhanced-hide' => 'Кошумча маалыматтарды жашыруу',
 
@@ -658,15 +720,22 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'uploaderror' => 'Жүктөө катасы',
 'uploadlog' => 'жүктөө журналы',
 'uploadlogpage' => 'Жүктөөлөрдүн тизмеси',
+'filename' => 'Файл аты',
 'filedesc' => 'Кыска түшүндүрмө',
 'fileuploadsummary' => 'Кыскача баяндама:',
+'filereuploadsummary' => 'Файлдагы өзгөрүүлөр:',
+'filesource' => 'Булак:',
 'uploadedfiles' => 'Жүктөлгөн файлдар',
 'savefile' => 'Файлды сактоо',
 'uploadedimage' => '"[[$1]]" жүктөлдү',
 'upload-source' => 'Баштапкы файл',
+'sourcefilename' => 'Булактын файл аты:',
+'sourceurl' => 'Булактын URL-дареги:',
 'upload-description' => 'Файл баяндамасы',
 'upload-success-subj' => 'Ийгиликтүү жүктөлдү',
+'upload-failure-subj' => 'Жүктөө көйгөйү',
 
+'upload-proto-error' => 'Туура эмес протокол',
 'upload-file-error' => 'Ички ката',
 'upload-unknown-size' => 'Белгисиз өлчөм',
 
@@ -682,6 +751,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Special:ListFiles
 'imgfile' => 'файл',
 'listfiles' => 'Файлдар тизмеси',
+'listfiles_thumb' => 'Миниатюра',
 'listfiles_date' => 'Дата',
 'listfiles_name' => 'Ат',
 'listfiles_user' => 'Катышуучу',
@@ -700,6 +770,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'filehist-datetime' => 'Дата/Убакыт',
 'filehist-thumb' => 'Миниатюра',
 'filehist-thumbtext' => '$1 -дагы версиясы үчүн кичирейтилген сүрөтү',
+'filehist-nothumb' => 'Миниатюра жок',
 'filehist-user' => 'Катышуучу',
 'filehist-dimensions' => 'Өлчөмдөр',
 'filehist-filesize' => 'Файл өлчөмү',
@@ -1077,17 +1148,57 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'exif-source' => 'Булак',
 'exif-languagecode' => 'Тил',
 
+'exif-subjectdistance-value' => '$1 метр',
+
 'exif-meteringmode-0' => 'Белгисиз',
 'exif-meteringmode-255' => 'Башка',
 
+'exif-lightsource-0' => 'Белгисиз',
+'exif-lightsource-4' => 'Жарк',
+'exif-lightsource-11' => 'Көлөкө',
+
+# Flash modes
+'exif-flash-mode-3' => 'автоматтык режим',
+
 'exif-focalplaneresolutionunit-2' => 'дюйм',
+
+'exif-scenecapturetype-0' => 'Стандарттуу',
+'exif-scenecapturetype-1' => 'Ландшафт',
+'exif-scenecapturetype-2' => 'Портрет',
+'exif-scenecapturetype-3' => 'Түнкү тартуу',
 
 'exif-gaincontrol-0' => 'Жок',
 
+'exif-subjectdistancerange-0' => 'Белгисиз',
+'exif-subjectdistancerange-1' => 'Макротартуу',
+
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Километр',
+'exif-gpsdestdistance-m' => 'Миля',
 
-'exif-dc-rights' => 'Укутар',
+'exif-gpsdop-excellent' => 'Мыкты ($1)',
+'exif-gpsdop-good' => 'Жакшы ($1)',
+'exif-gpsdop-moderate' => 'Орточо ($1)',
+'exif-gpsdop-poor' => 'Начар ($1)',
+
+'exif-dc-contributor' => 'Авторлоштор',
+'exif-dc-date' => 'Дата(лар)',
+'exif-dc-publisher' => 'Бастыруучу',
+'exif-dc-rights' => 'Укуктар',
+'exif-dc-source' => 'Баштапкы медиа',
+'exif-dc-type' => 'Медианын түрү',
+
+'exif-iimcategory-fin' => 'Экономика жана бизнес',
+'exif-iimcategory-edu' => 'Билим',
+'exif-iimcategory-evn' => 'Айлана чөйрө',
+'exif-iimcategory-hth' => 'Ден соолук',
+'exif-iimcategory-lab' => 'Эмгек',
+'exif-iimcategory-pol' => 'Саясат',
+'exif-iimcategory-rel' => 'Дин жана ишеним',
+'exif-iimcategory-sci' => 'Илим жана техника',
+'exif-iimcategory-soi' => 'Социалдык маселелер',
+'exif-iimcategory-spo' => 'Спорт',
+'exif-iimcategory-wea' => 'Аба ырайы',
 
 # External editor support
 'edit-externally' => 'Бул файлды сырткы программа колдонуу аркылуу оңдоо',
@@ -1113,6 +1224,18 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'confirm-watch-button' => 'ОК',
 'confirm-unwatch-button' => 'ОК',
 
+# Multipage image navigation
+'imgmultipageprev' => '← мурунку барак',
+'imgmultipagenext' => 'кийинки барак →',
+'imgmultigo' => 'Өтүү!',
+
+# Table pager
+'table_pager_next' => 'Кийинки барак',
+'table_pager_prev' => 'Мурунку барак',
+'table_pager_first' => 'Биринчи барак',
+'table_pager_last' => 'Акыркы барак',
+'table_pager_limit_submit' => 'Аткаруу',
+
 # Live preview
 'livepreview-loading' => 'Жүктөө...',
 
@@ -1126,7 +1249,9 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Special:Version
 'version' => 'Версия',
+'version-variables' => 'Өзгөрмөлөр',
 'version-other' => 'Башка',
+'version-version' => '(Версия $1)',
 'version-license' => 'Лицензия',
 'version-software' => 'Орнотулган программалык камсыздоо',
 'version-software-product' => 'Продукт',
@@ -1136,6 +1261,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Special:FilePath
 'filepath' => 'Файл жолу',
 'filepath-page' => 'Файл:',
+'filepath-submit' => 'Өтүү',
 
 # Special:SpecialPages
 'specialpages' => 'Атайын барактар',

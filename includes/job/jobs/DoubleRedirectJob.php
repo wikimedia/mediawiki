@@ -66,11 +66,11 @@ class DoubleRedirectJob extends Job {
 				'redirTitle' => $redirTitle->getPrefixedDBkey() ) );
 			# Avoid excessive memory usage
 			if ( count( $jobs ) > 10000 ) {
-				Job::batchInsert( $jobs );
+				JobQueueGroup::singleton()->push( $jobs );
 				$jobs = array();
 			}
 		}
-		Job::batchInsert( $jobs );
+		JobQueueGroup::singleton()->push( $jobs );
 	}
 
 	function __construct( $title, $params = false, $id = 0 ) {

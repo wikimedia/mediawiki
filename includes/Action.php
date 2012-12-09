@@ -455,9 +455,10 @@ abstract class FormAction extends Action {
 
 	/**
 	 * @see Action::execute()
-	 * @throws ErrorPageError
+	 *
 	 * @param $data array|null
 	 * @param $captureErrors bool
+	 * @throws ErrorPageError|Exception
 	 * @return bool
 	 */
 	public function execute( array $data = null, $captureErrors = true ) {
@@ -546,7 +547,7 @@ abstract class FormlessAction extends Action {
 	 * forms, they probably won't have any data, but some (eg rollback) may do
 	 * @param $data Array values that would normally be in the GET request
 	 * @param $captureErrors Bool whether to catch exceptions and just return false
-	 * @throws ErrorPageError
+	 * @throws ErrorPageError|Exception
 	 * @return Bool whether execution was successful
 	 */
 	public function execute( array $data = null, $captureErrors = true ) {

@@ -254,13 +254,14 @@ class SpecialPage {
 	 *
 	 * @param $name String
 	 * @param $subpage String|Bool subpage string, or false to not use a subpage
+	 * @param $fragment String the link fragment (after the "#")
 	 * @throws MWException
 	 * @return Title object
 	 */
-	public static function getTitleFor( $name, $subpage = false ) {
+	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
 		if ( $name ) {
-			return Title::makeTitle( NS_SPECIAL, $name );
+			return Title::makeTitle( NS_SPECIAL, $name, $fragment );
 		} else {
 			throw new MWException( "Invalid special page name \"$name\"" );
 		}

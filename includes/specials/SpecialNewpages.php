@@ -140,7 +140,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 			$feedType = $this->opts->getValue( 'feed' );
 			if( $feedType ) {
-				return $this->feed( $feedType );
+				$this->feed( $feedType );
+				return;
 			}
 
 			$allValues = $this->opts->getAllValues();

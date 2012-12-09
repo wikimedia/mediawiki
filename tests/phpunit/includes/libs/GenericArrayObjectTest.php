@@ -110,7 +110,10 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @param GenericArrayObject $list
 	 */
 	public function testUnset( GenericArrayObject $list ) {
-		if ( !$list->isEmpty() ) {
+		if ( $list->isEmpty() ) {
+			$this->assertTrue( true ); // We cannot test unset if there are no elements
+		}
+		else {
 			$offset = $list->getIterator()->key();
 			$count = $list->count();
 			$list->offsetUnset( $offset );
@@ -123,10 +126,6 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 			unset( $list[$offset] );
 			$this->assertEquals( $count - 1, $list->count() );
 		}
-
-		$exception = null;
-		try { $list->offsetUnset( 'sdfsedtgsrdysftu' ); } catch ( \Exception $exception ){}
-		$this->assertInstanceOf( '\Exception', $exception );
 	}
 
 	/**

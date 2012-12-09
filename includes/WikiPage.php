@@ -1409,6 +1409,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @param $text String: new text of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
+	 * @throws MWException
 	 * @return String new complete article text, or null if error
 	 *
 	 * @deprecated since 1.21, use replaceSectionContent() instead
@@ -1451,6 +1452,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 *
+	 * @throws MWException
 	 * @return Content new complete article content, or null if error
 	 *
 	 * @since 1.21
@@ -1599,10 +1601,11 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param $baseRevId the revision ID this edit was based off, if any
+	 * @param bool|\the $baseRevId the revision ID this edit was based off, if any
 	 * @param $user User the user doing the edit
 	 * @param $serialisation_format String: format for storing the content in the database
 	 *
+	 * @throws MWException
 	 * @return Status object. Possible errors:
 	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
 	 *     edit-gone-missing:       In update mode, but the article didn't exist

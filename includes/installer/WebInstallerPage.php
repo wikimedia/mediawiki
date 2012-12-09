@@ -422,6 +422,7 @@ class WebInstaller_Welcome extends WebInstallerPage {
 		} else {
 			$this->parent->showStatusMessage( $status );
 		}
+		return '';
 	}
 
 }

@@ -271,7 +271,7 @@ Manual:External_editors ਹੋਰ ਜਾਣਕਾਰੀ।])',
 'cancel' => 'ਰੱਦ ਕਰੋ',
 'moredotdotdot' => 'ਹੋਰ...',
 'mypage' => 'ਪੰਨਾ',
-'mytalk' => 'ਮੇਰੀ ਚਰਚਾ',
+'mytalk' => 'ਗੱਲ-ਬਾਤ',
 'anontalk' => 'ਇਸ IP ਲਈ ਗੱਲ-ਬਾਤ',
 'navigation' => 'ਰਹਿਨੁਮਾਈ',
 'and' => '&#32;ਅਤੇ',
@@ -282,7 +282,7 @@ Manual:External_editors ਹੋਰ ਜਾਣਕਾਰੀ।])',
 'qbedit' => 'ਸੋਧ',
 'qbpageoptions' => 'ਇਹ ਪੰਨਾ',
 'qbmyoptions' => 'ਮੇਰੇ ਪੰਨੇ',
-'qbspecialpages' => 'ਖਾਸ ਪੰਨੇ',
+'qbspecialpages' => 'ਖ਼ਾਸ ਪੰਨੇ',
 'faq' => 'ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲ਼ੇ ਸਵਾਲ',
 'faqpage' => 'Project:ਸਵਾਲ-ਜਵਾਬ',
 
@@ -333,7 +333,7 @@ Manual:External_editors ਹੋਰ ਜਾਣਕਾਰੀ।])',
 'unprotectthispage' => 'ਇਹ ਸਫ਼ੇ ਦੀ ਸੁਰੱਖਿਆ ਬਦਲੋ',
 'newpage' => 'ਨਵਾਂ ਸਫ਼ਾ',
 'talkpage' => 'ਇਸ ਸਫ਼ੇ ਬਾਰੇ ਚਰਚਾ ਕਰੋ',
-'talkpagelinktext' => 'ਚਰਚਾ',
+'talkpagelinktext' => 'ਗੱਲ-ਬਾਤ',
 'specialpage' => 'ਖ਼ਾਸ ਸਫ਼ਾ',
 'personaltools' => 'ਨਿੱਜੀ ਸੰਦ',
 'postcomment' => 'ਨਵਾਂ ਸੈਕਸ਼ਨ',
@@ -1122,10 +1122,10 @@ $3|'''1''' ਨਤੀਜਾ|'''$3''' ਨਤੀਜੇ}} ਵਖਾਓ।",
 'group-bot' => 'ਬੋਟ',
 'group-all' => '(ਸਭ)',
 
-'group-user-member' => '{{GENDER:$1|ਮੈਂਬਰ}}',
+'group-user-member' => '{{GENDER:$1|ਵਰਤੋਂਕਾਰ}}',
 'group-bot-member' => 'ਬੋਟ',
 
-'grouppage-user' => '{{ns:project}}:ਮੈਂਬਰ',
+'grouppage-user' => '{{ns:project}}:ਵਰਤੋਂਕਾਰ',
 
 # Rights
 'right-read' => 'ਸਫ਼ੇ ਪੜ੍ਹਨਾ',
@@ -1563,7 +1563,7 @@ to upload files.',
 
 # Watchlist
 'watchlist' => 'ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ',
-'mywatchlist' => 'ਨਿਗਰਾਨੀ-ਲਿਸਟ',
+'mywatchlist' => 'ਨਿਗਰਾਨੀ-ਸੂਚੀ',
 'watchlistfor2' => '$1 $2 ਲਈ',
 'nowatchlist' => 'ਤੁਹਾਡੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਕੋਈ ਚੀਜ਼ ਨਹੀਂ ਹੈ।',
 'watchlistanontext' => 'ਆਪਣੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚਲੀਆਂ ਚੀਜ਼ਾਂ ਵੇਖਣ ਜਾਂ ਸੋਧਣ ਲਈ ਮਿਹਰਬਾਨੀ ਕਰਕੇ $1।',
@@ -1700,7 +1700,7 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'blanknamespace' => '(ਮੁੱਖ)',
 
 # Contributions
-'contributions' => 'ਮੈਂਬਰ ਯੋਗਦਾਨ',
+'contributions' => 'ਵਰਤੋਂਕਾਰ ਯੋਗਦਾਨ',
 'contributions-title' => '$1 ਦੇ ਯੋਗਦਾਨ',
 'mycontris' => 'ਯੋਗਦਾਨ',
 'contribsub2' => '$1 ($2) ਲਈ',
@@ -2098,7 +2098,7 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'version' => 'ਵਰਜਨ',
 
 # Special:SpecialPages
-'specialpages' => 'ਖਾਸ ਪੰਨੇ',
+'specialpages' => 'ਖ਼ਾਸ ਪੰਨੇ',
 'specialpages-group-login' => 'ਲਾਗਇਨ / ਖਾਤਾ ਬਣਾਓ',
 
 # Special:BlankPage

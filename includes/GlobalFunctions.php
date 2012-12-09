@@ -1037,7 +1037,7 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 			wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
 		}
 	} elseif ( $public === true ) {
-		wfDebug( $text, true );
+		wfDebug( "[$logGroup] $text", true );
 	}
 }
 

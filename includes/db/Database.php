@@ -780,6 +780,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Closes a database connection.
 	 * if it is open : commits any open transactions
 	 *
+	 * @throws MWException
 	 * @return Bool operation success. true if already closed.
 	 */
 	public function close() {
@@ -3280,6 +3281,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *      generated dynamically using $filename
 	 * @param bool|callable $inputCallback Callback: Optional function called for each complete line sent
 	 * @throws MWException
+	 * @throws Exception|MWException
 	 * @return bool|string
 	 */
 	public function sourceFile(

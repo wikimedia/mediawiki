@@ -216,7 +216,7 @@ class MWTimestamp {
 
 		if( $message ) {
 			$initial = call_user_func_array( 'wfMessage', $message );
-			return wfMessage( 'ago', $initial );
+			return wfMessage( 'ago', $initial->parse() );
 		} else {
 			return wfMessage( 'just-now' );
 		}

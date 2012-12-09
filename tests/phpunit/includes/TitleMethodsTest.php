@@ -2,6 +2,7 @@
 
 /**
  * @group ContentHandler
+ * @group Database
  *
  * @note: We don't make assumptions about the main namespace.
  *        But we do expect the Help namespace to contain Wikitext.

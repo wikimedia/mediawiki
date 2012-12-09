@@ -114,8 +114,7 @@ function readaline( $prompt = '' ) {
  * @param $doxyGenerateMan Boolean
  * @return string
  */
-function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $input, $exclude, $excludePatterns, $doxyGenerateMan ) {
-	global $doxygenInputFilter;
+function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $input, $exclude, $excludePatterns, $doxyGenerateMan, $doxygenInputFilter ) {
 
 	$template = file_get_contents( $doxygenTemplate );
 	// Replace template placeholders by correct values.
@@ -242,7 +241,7 @@ $version = 'master';
 $excludedPaths = $mwPath . join( " $mwPath", $mwExcludePaths );
 print "EXCLUDE: $excludedPaths\n\n";
 
-$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan );
+$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan, $doxygenInputFilter );
 $command = $doxygenBin . ' ' . $generatedConf;
 
 echo <<<TEXT

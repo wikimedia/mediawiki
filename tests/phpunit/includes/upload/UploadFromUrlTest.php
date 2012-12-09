@@ -3,6 +3,7 @@
 /**
  * @group Broken
  * @group Upload
+ * @group Database
  */
 class UploadFromUrlTest extends ApiTestCase {
 
@@ -36,9 +37,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * Ensure that the job queue is empty before continuing
 	 */
 	public function testClearQueue() {
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		while ( $job ) {
-			$job = Job::pop();
+			$job = JobQueueGroup::singleton()->pop();
 		}
 		$this->assertFalse( $job );
 	}
@@ -141,7 +142,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertEquals( $data[0]['upload']['result'], 'Queued', 'Queued upload' );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ), 'Queued upload inserted' );
 	}
 
@@ -202,7 +203,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	public function testSyncDownload( $data ) {
 		$token = $this->user->getEditToken();
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
 
 		$this->user->addGroup( 'users' );
@@ -214,7 +215,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			'token' => $token,
 		), $data );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job );
 
 		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
@@ -244,7 +245,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			'ignorewarnings' => 1,
 		) );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 		$job->run();
 
@@ -272,7 +273,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 		$this->assertTrue( $exception );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job );
 
 		return;
@@ -314,7 +315,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertTrue( isset( $data[0]['upload']['statuskey'] ) );
 		$statusKey = $data[0]['upload']['statuskey'];
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 
 		$status = $job->run();
