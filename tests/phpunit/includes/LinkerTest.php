@@ -9,6 +9,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg='' ) {
 		$this->setMwGlobals( array(
 			'wgArticlePath' => '/wiki/$1',
+			'wgWellFormedXml' => true,
 	   	) );
 
 		$this->assertEquals( $expected,
