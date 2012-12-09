@@ -729,7 +729,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'gotaccount' => "Masz już konto? '''$1'''.",
 'gotaccountlink' => 'Zaloguj się',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
-'createaccountmail' => 'poprzez e‐mail',
+'createaccountmail' => 'Wyślij hasło e-mailem',
 'createaccountreason' => 'Powód',
 'badretype' => 'Wprowadzone hasła różnią się między sobą.',
 'userexists' => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
@@ -2425,7 +2425,7 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 'rollbacklinkcount' => 'cofnij $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'rollbacklinkcount-morethan' => 'cofnij więcej niż $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'rollbackfailed' => 'Nie udało się cofnąć zmiany',
-'cantrollback' => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
+'cantrollback' => 'Nie można cofnąć edycji tego autora, ponieważ jest jedynym autorem tej strony.',
 'alreadyrolled' => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
@@ -3668,7 +3668,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # E-mail address confirmation
 'confirmemail' => 'Potwierdzanie adresu e‐mail',
-'confirmemail_noemail' => 'Nie {{GENDER:|podałeś|podałaś}} prawidłowego adresu e‐mail w [[Special:Preferences|preferencjach]].',
+'confirmemail_noemail' => 'Nie podał{{GENDER:|eś|aś|eś/aś}} prawidłowego adresu e‐mail w [[Special:Preferences|preferencjach]].',
 'confirmemail_text' => 'Projekt {{SITENAME}} wymaga weryfikacji adresu e‐mail przed użyciem funkcji korzystających z poczty.
 Wciśnij przycisk poniżej aby wysłać na swój adres list z linkiem do strony WWW.
 List będzie zawierał link do strony, w którym zakodowany będzie identyfikator.
@@ -3691,15 +3691,15 @@ Możesz [[Special:UserLogin|zalogować się]] i korzystać z szerszego wachlarza
 'confirmemail_error' => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
 'confirmemail_subject' => '{{SITENAME}} – weryfikacja adresu e‐mail',
 'confirmemail_body' => 'Ktoś łącząc się z komputera o adresie IP $1
-zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto „$2” podając niniejszy adres e‐mail.
+zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto „$2”, podając niniejszy adres e‐mail.
 
-Aby potwierdzić, że to Ty {{GENDER:|zarejestrowałeś|zarejestrowałaś}} to konto oraz, aby włączyć
-wszystkie funkcje korzystające z poczty elektronicznej, otwórz w swojej
+Aby potwierdzić, że to Ty zarejestrował{{GENDER:|eś|aś|eś/aś}} to konto i włączyć
+wszystkie funkcje korzystające z poczty elektronicznej otwórz w swojej
 przeglądarce ten link:
 
 $3
 
-Jeśli to *nie* Ty {{GENDER:|zarejestrowałeś|zarejestrowałaś}} konto, otwórz w swojej przeglądarce
+Jeśli to *nie* Ty zarejestrował{{GENDER:|eś|aś|eś/aś}} konto, otwórz w swojej przeglądarce
 poniższy link, aby anulować potwierdzenie adresu e‐mail:
 
 $5

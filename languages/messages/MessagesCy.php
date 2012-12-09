@@ -2055,7 +2055,7 @@ er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'emailuser-title-notarget' => 'Anfon e-bost at ddefnyddiwr',
 'emailpage' => 'Anfon e-bost at ddefnyddiwr',
 'emailpagetext' => 'Os yw\'r cyfeiriad e-bost sydd yn newisiadau\'r {{GENDER:$1|defnyddiwr}} hwn yn un dilys, gellir anfon neges ato o\'i ysgrifennu ar y ffurflen isod.
-Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes "Oddi wrth" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.',
+Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau]] yn ymddangos ym maes "Oddi wrth" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb uniongyrchol atoch.',
 'usermailererror' => 'Dychwelwyd gwall gan y rhaglen e-bost:',
 'defemailsubject' => '{{SITENAME}} yn anfon e-bost oddi wrth y defnyddiwr "$1"',
 'usermaildisabled' => 'Dim modd anfon e-bost at ddefnyddwyr',
@@ -2339,7 +2339,7 @@ $1',
 'blanknamespace' => '(Prif)',
 
 # Contributions
-'contributions' => "Cyfraniadau'r defnyddiwr",
+'contributions' => "{{GENDER:$1|Cyfraniadau'r defnyddiwr}}",
 'contributions-title' => "Cyfraniadau'r defnyddiwr am $1",
 'mycontris' => 'Cyfraniadau',
 'contribsub2' => 'Dros $1 ($2)',

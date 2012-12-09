@@ -345,6 +345,7 @@ $messages = array(
 'namespaces' => 'Esaouennoù anv',
 'variants' => 'Adstummoù',
 
+'navigation-heading' => 'Lañser merdeiñ',
 'errorpagetitle' => 'Fazi',
 'returnto' => "Distreiñ d'ar bajenn $1.",
 'tagline' => 'Eus {{SITENAME}}',
@@ -584,6 +585,7 @@ Setu amañ perak ''$2''.",
 
 Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe <span class='plainlinks'>[$1 kevreañ en-dro]</span> gant an hevelep anv pe un anv all mar fell deoc'h.
 Notit mat e c'hallo pajennoù zo kenderc'hel da vezañ diskwelet evel pa vefec'h kevreet c'hoazh, betek ma vo riñset krubuilh ho merdeer ganeoc'h.",
+'welcomeuser' => 'Degemer mat $1 !',
 'yourname' => 'Anv implijer :',
 'yourpassword' => 'Ger-tremen :',
 'yourpasswordagain' => 'Skrivit ho ker-tremen en-dro',
@@ -2424,7 +2426,7 @@ $1',
 'blanknamespace' => '(Pennañ)',
 
 # Contributions
-'contributions' => 'Degasadennoù an implijer',
+'contributions' => 'Degasadennoù an {{GENDER:$1|implijer|implijerez}}',
 'contributions-title' => 'Degasadennoù an implijer evit $1',
 'mycontris' => 'Ma degasadennoù',
 'contribsub2' => 'Evit $1 ($2)',
@@ -3828,9 +3830,9 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-move-move_redir-noredirect' => 'kaset ar bajenn $3 da $4 gant $1 dreist un adkas hep lezel un adkas',
 'logentry-patrol-patrol' => 'Merket eo bet an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
 'logentry-patrol-patrol-auto' => 'Merket eo bet ent emgefre an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
-'logentry-newusers-newusers' => '$1 en deus krouet ur gont implijer',
-'logentry-newusers-create' => '$1 en deus krouet ur gont implijer',
-'logentry-newusers-create2' => '$1 en deus krouet ur gont implijer $3',
+'logentry-newusers-newusers' => 'Ar gont implijer $1 oa bet krouet',
+'logentry-newusers-create' => 'Ar gont implijer $1 oa bet krouet',
+'logentry-newusers-create2' => 'Ar gont implijer $3 oa bet krouet gant $1',
 'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
 'newuserlog-byemail' => 'ger-tremen kaset dre bostel',
 
@@ -3906,4 +3908,6 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
+# Unknown messages
+'svg-long-error' => 'Restr SVG direizh : $1',
 );

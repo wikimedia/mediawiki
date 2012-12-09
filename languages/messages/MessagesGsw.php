@@ -2350,7 +2350,7 @@ $1',
 'blanknamespace' => '(Haupt-)',
 
 # Contributions
-'contributions' => 'Benutzer-Byträg',
+'contributions' => '{{GENDER:$1|Benutzer-Byträg}}',
 'contributions-title' => 'Benutzerbyytreg vu „$1“',
 'mycontris' => 'Myyni Byyträg',
 'contribsub2' => 'Für $1 ($2)',
@@ -2876,6 +2876,7 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 'markedaspatrollederror' => 'Markierig as „kontrolliert“ nit megli.',
 'markedaspatrollederrortext' => 'Du muesch e Syteänderig uswehle.',
 'markedaspatrollederror-noautopatrol' => 'S isch nit erlaubt, eigeni Bearbeitige as kontrolliert z markiere.',
+'markedaspatrollednotify' => 'Die Änderig an $1 isch as kontrolliert markiert wore.',
 
 # Patrol log
 'patrol-log-page' => 'Kontroll-Logbuech',

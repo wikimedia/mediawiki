@@ -1800,7 +1800,7 @@ $1',
 'backend-fail-notsame' => 'Epäidenttinen tiedosto on jo olemassa sijainnissa $1.',
 'backend-fail-invalidpath' => '$1 ei ole sallittu tallennuspolku.',
 'backend-fail-delete' => 'Tiedostoa $1 ei voitu poistaa.',
-'backend-fail-describe' => 'Tiedoston "$1" metatietoja ei voitu muuttaa.',
+'backend-fail-describe' => 'Tiedoston ”$1” metatietojen muuttaminen epäonnistui.',
 'backend-fail-alreadyexists' => 'Tiedosto $1 on jo olemassa.',
 'backend-fail-store' => 'Tiedostoa $1 ei voitu tallentaa polkuun $2.',
 'backend-fail-copy' => 'Tiedostoa ei voitu kopioida kohteesta $1 kohteeseen $2.',
@@ -2441,10 +2441,10 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'pagesize' => 'tavua',
 
 # Restrictions (nouns)
-'restriction-edit' => 'muokkaus',
-'restriction-move' => 'siirto',
-'restriction-create' => 'luonti',
-'restriction-upload' => 'tiedostotallennus',
+'restriction-edit' => 'Muokkaus',
+'restriction-move' => 'Siirto',
+'restriction-create' => 'Luonti',
+'restriction-upload' => 'Tiedostotallennus',
 
 # Restriction levels
 'restriction-level-sysop' => 'täysin suojattu',

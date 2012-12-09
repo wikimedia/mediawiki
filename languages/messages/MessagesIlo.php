@@ -2352,7 +2352,7 @@ $1',
 'blanknamespace' => '(Umuna)',
 
 # Contributions
-'contributions' => 'Naaramidan dagiti agar-aramat',
+'contributions' => 'Naar-aramid ti {{GENDER:$1|Agar-aramat}}',
 'contributions-title' => 'Naaramidan ni $1',
 'mycontris' => 'Naar-aramid',
 'contribsub2' => 'Para iti $1 ($2)',

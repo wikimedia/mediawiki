@@ -75,6 +75,7 @@
  * @author Tititou36
  * @author TouzaxA
  * @author Tpt
+ * @author Trizek
  * @author Urhixidur
  * @author VIGNERON
  * @author Verdy p
@@ -785,7 +786,7 @@ L'administrateur qui l'a verrouillé a fourni ce motif: « $3 ».",
 
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
-'welcomeuser' => 'Bienvenue, $1!',
+'welcomeuser' => 'Bienvenue, $1&nbsp;!',
 'welcomecreation-msg' => "Votre compte a été créé.
 N'oubliez pas de modifier vos [[Special:Preferences|{{SITENAME}} préférences]].",
 'yourname' => "Nom d'utilisateur :",
@@ -3512,6 +3513,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-compression-2' => 'CCITT Groupe 3 Longueur du codage Huffman modifié de dimension 1',
 'exif-compression-3' => 'CCITT Groupe 3 codage du fax',
 'exif-compression-4' => 'CCITT Groupe 4 codage du fax',
+'exif-compression-6' => 'JPEG (ancien)',
 
 'exif-copyrighted-true' => "Soumis au droit d'auteur",
 'exif-copyrighted-false' => 'Domaine public',

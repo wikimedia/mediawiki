@@ -572,7 +572,7 @@ Pertanyaan: $2',
 'viewsource-title' => 'Lihat sumber bagi $1',
 'actionthrottled' => 'Tindakan didikitkan',
 'actionthrottledtext' => 'Untuk mencegah spam, anda dihadkan daripada melakukan tindakan ini berulang kali dalam ruang waktu yang singkat, dan anda telah melebihi had tersebut. Sila cuba lagi selepas beberapa minit.',
-'protectedpagetext' => 'Laman ini telah dikunci untuk menghalang penyuntingan.',
+'protectedpagetext' => 'Laman ini telah dikunci untuk melarang penyuntingan atau sebarang tindakan yang lain.',
 'viewsourcetext' => 'Anda boleh melihat dan menyalin sumber bagi laman ini:',
 'viewyourtext' => "Anda boleh melihat dan menyalin sumber '''suntingan anda''' kepada laman ini:",
 'protectedinterface' => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.
@@ -1361,9 +1361,9 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-advancedrendering' => 'Pilihan lanjutan',
 'prefs-advancedsearchoptions' => 'Pilihan lanjutan',
 'prefs-advancedwatchlist' => 'Pilihan lanjutan',
-'prefs-displayrc' => 'Papar pilihan',
-'prefs-displaysearchoptions' => 'Papar pilihan',
-'prefs-displaywatchlist' => 'Papar pilihan',
+'prefs-displayrc' => 'Pilihan paparan',
+'prefs-displaysearchoptions' => 'Pilihan paparan',
+'prefs-displaywatchlist' => 'Pilihan paparan',
 'prefs-diffs' => 'Beza',
 
 # User preference: e-mail validation using jQuery
@@ -2233,38 +2233,44 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_mailer' => 'Sistem Pemberitahuan {{SITENAME}}',
 'enotif_reset' => 'Tandakan semua laman sebagai telah dikunjungi',
 'enotif_impersonal_salutation' => 'Pengguna {{SITENAME}}',
+'enotif_subject_deleted' => 'Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}}',
+'enotif_subject_created' => 'Halaman $1 di {{SITENAME}} telah diwujudkan oleh {{gender:$2|$2}}',
+'enotif_subject_moved' => 'Halaman $1 di {{SITENAME}} telah dipindahkan oleh {{gender:$2|$2}}',
+'enotif_subject_restored' => 'Halaman $1 di {{SITENAME}} telah dipulihkan oleh {{gender:$2|$2}}',
+'enotif_subject_changed' => 'Halaman $1 di {{SITENAME}} telah disunting oleh {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
+'enotif_body_intro_created' => 'Halaman $1 di {{SITENAME}} telah diwujudkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
+'enotif_body_intro_moved' => 'Halaman $1 di {{SITENAME}} telah dipindahkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
+'enotif_body_intro_restored' => 'Halaman $1 di {{SITENAME}} telah dipulihkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
+'enotif_body_intro_changed' => 'Halaman $1 di {{SITENAME}} telah disunting oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
 'enotif_lastvisited' => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir anda.',
 'enotif_lastdiff' => 'Rujuk $1 untuk melihat perubahan ini.',
 'enotif_anon_editor' => 'pengguna tanpa nama $1',
 'enotif_body' => '$WATCHINGUSERNAME,
 
-
-Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR; sila lihat $PAGETITLE_URL untuk semakan terkini.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Ringkasan penyunting: $PAGESUMMARY $PAGEMINOREDIT
 
-Hubungi penyunting tersebut:
+Hubungi penyunting:
 mel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Tiada pemberitahuan lain akan dikirim berkaitan perubahan selanjutnya melainkan anda mengunjungi laman tersebut.
-Anda juga boleh menetapkan semula penanda pemberitahuan bagi semua laman dalam senarai pantau anda.
+Tiada lagi pemberitahuan lanjut sekiranya terdapat suntingan selanjutnya melainkan anda mengunjungi halaman berkenaan. Anda juga boleh menetapkan semula tanda-tanda pemberitahuan untuk kesemua halaman dalam senarai pantau anda.
 
-         Sistem pemberitahuan {{SITENAME}} anda yang ramah mesra
+			 Sistem pemberitahuan {{SITENAME}} yang mesra
 
 --
-Untuk mengubah tetapan pemberitahuan e-mel anda, lawati
+Untuk mengubah tetapan pemberitahuan melalui e-mel anda, kunjungi
 {{canonicalurl:{{#special:Preferences}}}}
 
-Untuk mengubah tetapan senarai pantau anda, lawati
+Untuk mengubah tetapan senarai pantau anda, kunjungi
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Untuk menghapuskan laman ini dari senarai pantau anda, lawati
+Untuk menggugurkan halaman ini daripada senarai pantau anda, kunjungi
 $UNWATCHURL
 
-Maklum balas dan bantuan:
+Maklum balas dan bantuan selanjutnya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2447,7 +2453,7 @@ $1',
 'blanknamespace' => '(Utama)',
 
 # Contributions
-'contributions' => 'Sumbangan pengguna',
+'contributions' => 'Sumbangan {{GENDER:$1|pengguna}}',
 'contributions-title' => 'Sumbangan oleh $1',
 'mycontris' => 'Sumbangan',
 'contribsub2' => 'Oleh $1 ($2)',
@@ -3089,6 +3095,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'hours' => '$1 jam',
 'days' => '$1 hari',
 'ago' => '$1 yang lalu',
+'just-now' => 'tadi',
 
 # Bad image list
 'bad_image_list' => 'Berikut adalah format yang digunakan:
@@ -3922,4 +3929,6 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
+# Unknown messages
+'svg-long-error' => 'Fail SVG tidak sah: $1',
 );

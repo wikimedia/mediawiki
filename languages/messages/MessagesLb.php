@@ -2809,6 +2809,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'javascripttest-title' => '$1-Tester ginn elo gemaach',
 'javascripttest-pagetext-noframework' => 'Dës Säit ass fir Java-Script-Tester reservéiert.',
 'javascripttest-pagetext-unknownframework' => 'Onbekannten Test-Framework "$1".',
+'javascripttest-pagetext-frameworks' => 'Sicht w.e.g. eng vun dësen Test-Strukturen eraus: $1',
 'javascripttest-qunit-intro' => "Kuckt d'[$1 Dokumentatioun vun den Tester] op mediawiki.org",
 
 # Tooltip help for the actions
@@ -2977,6 +2978,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'markedaspatrollederrortext' => 'Dir musst eng Säitenännerung auswielen.',
 'markedaspatrollederror-noautopatrol' => 'Dir däerft Är eegen Ännerungen net als nogekuckt markéieren.',
 'markedaspatrollednotify' => 'Dës Ännerung vu(n) $1 gouf als nogekuckt markéiert.',
+'markedaspatrollederrornotify' => 'Markéieren als kontrolléiert huet net fonctionnéiert.',
 
 # Patrol log
 'patrol-log-page' => 'Logbuch vun den iwwerkuckte Versiounen',

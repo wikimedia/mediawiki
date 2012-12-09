@@ -326,7 +326,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => 'Խմբագրման շրջանի տառատեսակի ձևը.',
 'editfont-default' => 'Զննարկիչի լռելյայն տառատեսակը',
-'editfont-monospace' => 'Միալայն տառատեսակ',
+'editfont-monospace' => 'Մոնոսփեյս տառատեսակ',
 'editfont-sansserif' => 'Սանս-սերիֆ տառատեսակ',
 'editfont-serif' => 'Սերիֆ տառատեսակ',
 
@@ -1120,7 +1120,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'search-result-score' => 'Համընկնում $1%',
 'search-redirect' => '(վերահղում $1)',
 'search-section' => '(բաժին $1)',
-'search-suggest' => 'Դուք ի նկատի ունե՞ք՝ $1',
+'search-suggest' => 'Գուցե նկատի ունե՞ք՝ $1',
 'search-interwiki-caption' => 'Կից նախագծեր',
 'search-interwiki-default' => '$1 արդյունք.',
 'search-interwiki-more' => '(էլի)',

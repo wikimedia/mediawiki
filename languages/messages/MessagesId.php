@@ -23,6 +23,7 @@
  * @author J Subhi
  * @author Kaganer
  * @author Kenrick95
+ * @author Mahali syarifuddin
  * @author McDutchie
  * @author Meursault2004
  * @author Remember the dot
@@ -509,7 +510,7 @@ $messages = array(
 'searchbutton' => 'Cari',
 'go' => 'Tuju ke',
 'searcharticle' => 'Tuju ke',
-'history' => 'Versi terdahulu halaman',
+'history' => 'Halaman riwayat',
 'history_short' => 'Versi terdahulu',
 'updatedmarker' => 'diubah sejak kunjungan terakhir saya',
 'printableversion' => 'Versi cetak',
@@ -533,11 +534,11 @@ $messages = array(
 'talkpage' => 'Bicarakan halaman ini',
 'talkpagelinktext' => 'Bicara',
 'specialpage' => 'Halaman istimewa',
-'personaltools' => 'Akun',
+'personaltools' => 'Peralatan pribadi',
 'postcomment' => 'Bagian baru',
 'articlepage' => 'Lihat halaman isi',
 'talk' => 'Pembicaraan',
-'views' => 'Halaman',
+'views' => 'Tampilan',
 'toolbox' => 'Peralatan',
 'userpage' => 'Lihat halaman pengguna',
 'projectpage' => 'Lihat halaman proyek',
@@ -922,7 +923,8 @@ Sandi sementara: $2',
 'showpreview' => 'Lihat pratayang',
 'showlivepreview' => 'Pratayang langsung',
 'showdiff' => 'Lihat perubahan',
-'anoneditwarning' => 'Anda tidak terdaftar masuk. Alamat IP Anda akan tercatat dalam sejarah (versi terdahulu) halaman ini.',
+'anoneditwarning' => "'''Peringatan:''' Anda tidak terdaftar masuk.
+Alamat IP Anda akan tercatat dalam sejarah (versi terdahulu) halaman ini.",
 'anonpreviewwarning' => "''Anda belum masuk log. Menyimpan halaman akan menyebabkan alamat IP Anda tercatat pada riwayat suntingan laman ini.''",
 'missingsummary' => "'''Peringatan:''' Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol Simpan, suntingan Anda akan disimpan tanpa ringkasan penyuntingan.",
 'missingcommenttext' => 'Harap masukkan komentar di bawah ini.',
@@ -982,7 +984,7 @@ Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komenta
 'noarticletext' => 'Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'noarticletext-nopermission' => '!Saat ini tidak ada teks di halaman ini.
-Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait]</span>, tapi anda tidak memiliki izin untuk membuat halaman ini',
+Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait]</span>, tapi Anda tidak memiliki izin untuk membuat halaman ini',
 'missing-revision' => 'Revisi #$1 halaman berjudul "{{PAGENAME}}" tidak eksks.
 
 Hal ini biasanya disebabkan oleh tautan versi terdahulu menuju halaman yang sudah dihapus.
@@ -2181,7 +2183,7 @@ Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna
 'allnotinnamespace' => 'Daftar halaman (bukan ruang nama $1)',
 'allpagesprev' => 'Sebelumnya',
 'allpagesnext' => 'Selanjutnya',
-'allpagessubmit' => 'Cari',
+'allpagessubmit' => 'Pergi',
 'allpagesprefix' => 'Tampilkan halaman dengan awalan:',
 'allpagesbadtitle' => 'Judul halaman yang diberikan tidak sah atau memiliki awalan antar-bahasa atau antar-wiki. Judul tersebut mungkin juga mengandung satu atau lebih aksara yang tidak dapat digunakan dalam judul.',
 'allpages-bad-ns' => '{{SITENAME}} tidak memiliki ruang nama "$1".',
@@ -2940,10 +2942,10 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'tooltip-pt-anonlogin' => 'Anda disarankan untuk masuk log, meskipun hal itu tidak diwajibkan.',
 'tooltip-pt-logout' => 'Keluar log',
 'tooltip-ca-talk' => 'Pembicaraan halaman isi',
-'tooltip-ca-edit' => 'Sunting halaman ini. Gunakan tombol pratayang sebelum menyimpan.',
+'tooltip-ca-edit' => 'Anda dapat menyunting halaman ini. Gunakan tombol pratayang sebelum menyimpan',
 'tooltip-ca-addsection' => 'Mulai bagian baru',
 'tooltip-ca-viewsource' => 'Halaman ini dilindungi. Anda hanya dapat melihat sumbernya.',
-'tooltip-ca-history' => 'Versi-versi sebelumnya dari halaman ini.',
+'tooltip-ca-history' => 'Revisi-revisi sebelumnya dari halaman ini.',
 'tooltip-ca-protect' => 'Lindungi halaman ini',
 'tooltip-ca-unprotect' => 'Ubah perlindungan halaman ini',
 'tooltip-ca-delete' => 'Hapus halaman ini',
@@ -2957,7 +2959,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'tooltip-p-logo' => 'Kunjungi Halaman Utama',
 'tooltip-n-mainpage' => 'Kunjungi Halaman Utama',
 'tooltip-n-mainpage-description' => 'Kunjungi Halaman Utama',
-'tooltip-n-portal' => 'Tentang proyek, apa yang dapat anda lakukan, di mana mencari sesuatu',
+'tooltip-n-portal' => 'Tentang proyek, apa yang dapat Anda lakukan, di mana untuk mencari sesuatu',
 'tooltip-n-currentevents' => 'Temukan informasi tentang peristiwa terkini',
 'tooltip-n-recentchanges' => 'Daftar perubahan terbaru dalam wiki.',
 'tooltip-n-randompage' => 'Tampilkan sembarang halaman',

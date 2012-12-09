@@ -2210,14 +2210,22 @@ S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corres
 'enotif_mailer' => 'Sistema de notificació per correl de {{SITENAME}}',
 'enotif_reset' => 'Marca totes les pàgines com a visitades',
 'enotif_impersonal_salutation' => 'usuari de la {{SITENAME}}',
+'enotif_subject_deleted' => 'La pàgina $1 de {{SITENAME}} ha estat suprimida per {{gender:$2|$2}}',
+'enotif_subject_created' => 'La pàgina $1 de {{SITENAME}} ha estat creada per {{gender:$2|$2}}',
+'enotif_subject_moved' => 'La pàgina $1 de {{SITENAME}} ha estat reanomenada per {{gender:$2|$2}}',
+'enotif_subject_restored' => 'La pàgina $1 de {{SITENAME}} ha estat restaurada per {{gender:$2|$2}}',
+'enotif_subject_changed' => 'La pàgina $1 de {{SITENAME}} ha estat canviada per {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'La pàgina $1 de {{SITENAME}} ha estat suprimida el $PAGEEDITDATE per {{gender:$2|$2}}. Aneu a $3 per veure la revisió actual.',
+'enotif_body_intro_created' => 'La pàgina $1 de {{SITENAME}} ha estat creada el $PAGEEDITDATE per {{gender:$2|$2}}. Aneu a $3 per veure la revisió actual.',
+'enotif_body_intro_moved' => 'La pàgina $1 de {{SITENAME}} ha estat reanomenada el $PAGEEDITDATE per {{gender:$2|$2}}. Aneu a $3 per veure la revisió actual.',
+'enotif_body_intro_restored' => 'La pàgina $1 de {{SITENAME}} ha estat restaurada el $PAGEEDITDATE per {{gender:$2|$2}}. Aneu a $3 per veure la revisió actual.',
+'enotif_body_intro_changed' => 'La pàgina $1 de {{SITENAME}} ha estat canviada el $PAGEEDITDATE per {{gender:$2|$2}}. Aneu a $3 per veure la revisió actual.',
 'enotif_lastvisited' => "Vegeu $1 per a tots els canvis que s'han fet d'ença de la vostra darrera visita.",
 'enotif_lastdiff' => 'Consulteu $1 per a visualitzar aquest canvi.',
 'enotif_anon_editor' => 'usuari anònim $1',
-'enotif_body' => 'Benvolgut $WATCHINGUSERNAME,
+'enotif_body' => 'Benvolgut/uda $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATE per $PAGEEDITOR, vegeu la versió actual a $PAGETITLE_URL.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Resum de l\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2228,7 +2236,7 @@ wiki: $PAGEEDITOR_WIKI
 No rebreu més notificacions de futurs canvis si no visiteu la pàgina.
 També podeu canviar el mode de notificació de les pàgines que vigileu en la vostra llista de seguiment.
 
-			 El servei de notificacions del projecte {{SITENAME}}
+El servei de notificacions del projecte {{SITENAME}}
 
 --
 Per a canviar les opcions de notificació per correu electrònic aneu a

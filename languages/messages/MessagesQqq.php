@@ -2802,10 +2802,12 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 **{{msg-mw|enotif body intro moved}}
 **{{msg-mw|enotif body intro restored}} 
 **{{msg-mw|enotif body intro changed}} (for all the other cases).
-*$NEWPAGE consists of
-**{{msg-mw|enotif lastdiff}}
-**a newline
-**{{msg-mw|enotif lastvisited}}
+*$NEWPAGE consists of either
+**if the page is new (in older releases), {{msg-mw|enotif newpagetext}}
+**if the page has a previous revision,
+***{{msg-mw|enotif lastdiff}}
+***a newline
+***{{msg-mw|enotif lastvisited}}
 *$PAGEEDITOR_EMAIL and $PAGEEDITOR_WIKI are links respectively to the e-mail user special page and user page for the user who performed the action.
 
 The subject of the e-mail is one of the following messages:

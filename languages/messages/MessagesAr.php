@@ -1795,6 +1795,9 @@ $1",
 'rightslogtext' => 'هذا سجل بالتغييرات في صلاحيات المستخدمين.',
 'rightslogentry' => 'غير صلاحيات $1 من $2 إلى $3',
 'rightslogentry-autopromote' => 'تمت ترقيته تلقائيا من $2 إلى $3',
+'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',
+'logentry-rights-rights-legacy' => 'غير $1 صلاحيات $3',
+'logentry-rights-autopromote' => 'تمت ترقية $1 تلقائياً من  $4 إلى $5',
 'rightsnone' => '(لا شيء)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2041,6 +2044,7 @@ $1',
 'backend-fail-notsame' => 'يوجد بالفعل ملف غير متطابق في $1.',
 'backend-fail-invalidpath' => '$1 ليس مساراً صالحاً للتخزين.',
 'backend-fail-delete' => 'لم يمكن حذف الملف $1.',
+'backend-fail-describe' => 'لا يمكن تغيير البيانات التعريف (metadata) للملف " $1 ".',
 'backend-fail-alreadyexists' => 'الملف $1 موجود بالفعل.',
 'backend-fail-store' => 'لا يمكن تخزين الملف $1 في $2 .',
 'backend-fail-copy' => 'لا يمكن نسخ الملف  $1  إلى  $2 .',
@@ -2553,6 +2557,8 @@ $1',
 'enotif_mailer' => 'نظام {{SITENAME}} البريدي للإخطارات',
 'enotif_reset' => 'علم على كل الصفحات كمزارة',
 'enotif_impersonal_salutation' => 'مستخدم {{SITENAME}}',
+'enotif_subject_deleted' => 'الصفحة {{SITENAME}} $1 حذفها {{الجنس: $2 | $2 }}',
+'enotif_subject_created' => 'الصفحة {{SITENAME}}  $1  أنشأها {{الجنس: $2 | $2 }}',
 'enotif_lastvisited' => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff' => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor' => 'مستخدم مجهول $1',
@@ -3380,6 +3386,7 @@ $1',
 'markedaspatrollederror' => 'لا يمكن التعليم بالمراجعة',
 'markedaspatrollederrortext' => 'يجب عليك اختيار المراجعة التي تريد أن تشير أنها مراجعة',
 'markedaspatrollederror-noautopatrol' => 'لا يجوز لك تعليم تغييراتك الشخصية بعلامة المراجعة.',
+'markedaspatrollednotify' => 'هذا التغيير لـ $1  تم تعليمه كمراقب.',
 
 # Patrol log
 'patrol-log-page' => 'سجل الخفر',
@@ -3447,6 +3454,7 @@ $1',
 'hours' => '{{PLURAL:$1||ساعة واحدة|ساعتين|$1 ساعات|$1 ساعة}}',
 'days' => '{{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}}',
 'ago' => 'قبل $1',
+'just-now' => 'الآن فقط',
 
 # Bad image list
 'bad_image_list' => 'الصيغة كالتالي:
@@ -4179,6 +4187,7 @@ $5
 'version-license' => 'الرخصة',
 'version-poweredby-credits' => "تدار هذه الويكي ب'''[//www.mediawiki.org/ ميدياويكي]''', حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
+'version-credits-summary' => 'نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[خاص:نسخة|ميدياويكي]].',
 'version-license-info' => "ميدياويكي برنامج حر، يحق لك توزيعه و/أو تعديله وفقاً لبنود رخصة غنو العمومية كما نشرتها مؤسسة البرمجيات الحرة، الإصدار الثاني أو (وفقا لاختيارك أنت) أي إصدار لاحق.
 
 هذا البرنامج يوزع على أمل أن يكون مفيداً، ولكن '''دون أية ضمانات'''، بما في ذلك ضمانات '''التسويق''' أو '''الملاءمة لغرض معين'''. انظر رخصة غنو العمومية لمزيد من التفاصيل.
@@ -4398,4 +4407,6 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
+# Unknown messages
+'svg-long-error' => 'ملف SVG غير صالح: $1',
 );

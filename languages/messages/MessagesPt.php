@@ -719,6 +719,9 @@ O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
 Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de utilizador ou com um nome de utilizador diferente.
 Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a cache do seu browser.",
 'welcomeuser' => 'Bem-vindo, $1!',
+'welcomecreation-msg' => '== Bem-vindo, $1! ==
+A sua conta foi criada.
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].',
 'yourname' => 'Nome de utilizador:',
 'yourpassword' => 'Palavra-chave:',
 'yourpasswordagain' => 'Repita a palavra-chave:',

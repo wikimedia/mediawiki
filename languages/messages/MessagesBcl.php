@@ -3784,7 +3784,7 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'api-error-badtoken' => 'Panlaog na kasalaan: Raot na pangilip',
 'api-error-copyuploaddisabled' => 'An pagkakarga sa paagi kan URL pinag-untok sa serbidor na ini.',
 'api-error-duplicate' => 'Igwa {{PLURAL:$1|nin [$2 ibang sagunson]|mga [$2 iba pang mga sagunson]}} na yaon sa sityo na igwa nin kaparehong laog.',
-'api-error-duplicate-archive' => 'Igwa {{PLURAL:$1|kaidto nin {$2 ibang sagunson]|kaidto nin {$2 ibang mga sagunson]}} na yaon sa sityo na igwa nin kaparehong laog, alagad {{PLURAL:$1|ini kaidto|sinda kaidto}} pinagpura na.',
+'api-error-duplicate-archive' => 'Igwa {{PLURAL:$1|kaidto nin [$2 ibang sagunson]|kaidto nin [$2 ibang mga sagunson]}} na yaon sa sityo na igwa nin kaparehong laog, alagad {{PLURAL:$1|ini kaidto|sinda kaidto}} pinagpura na.',
 'api-error-duplicate-archive-popup-title' => 'Kambal na {{PLURAL:$1|sagunson na|mga sagunson na}} pinagpura na.',
 'api-error-duplicate-popup-title' => 'Kambal na {{PLURAL:$1|sagunson|mga sagunson}}.',
 'api-error-empty-file' => 'An sagunson na saimong pinagsumite daeng laog.',

@@ -3670,9 +3670,9 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'compare-page2' => 'Pàgina 2',
 'compare-rev1' => 'Revision 1',
 'compare-rev2' => 'Revision 2',
-'compare-submit' => 'Confronta',
+'compare-submit' => 'Confronté',
 'compare-invalid-title' => "Ël tìtol ch'a l'ha spessificà a va pa bin.",
-'compare-title-not-exists' => "Ël tìtol ch'a l'ha spessificà a esist pa",
+'compare-title-not-exists' => "Ël tìtol ch'a l'ha spessificà a esist pa.",
 'compare-revision-not-exists' => "La revision che it l'has spessificà a esist pa.",
 
 # Database error messages

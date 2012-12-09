@@ -2841,7 +2841,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'tooltip-ca-nstab-project' => 'Uri l-paġna tal-proġett',
 'tooltip-ca-nstab-image' => 'Uri l-paġna tal-fajl',
 'tooltip-ca-nstab-mediawiki' => 'Uri l-messaġġ tas-sistema',
-'tooltip-ca-nstab-template' => 'Uri t-template',
+'tooltip-ca-nstab-template' => 'Ara l-mudell',
 'tooltip-ca-nstab-help' => 'Uri l-paġna tal-għajnuna',
 'tooltip-ca-nstab-category' => 'Uri l-paġna kategorika',
 'tooltip-minoredit' => 'Immarka din bħala modifika minuri',

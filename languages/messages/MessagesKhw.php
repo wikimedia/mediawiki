@@ -237,6 +237,7 @@ $messages = array(
 برائے مہربانی! صفحو لوڑیکو بچے دوبارہ کوشش کوریکاری پروشٹی پھوکرو انتظار کورے.
 
 $1',
+'pool-errorunknown' => 'نامعلوم خطا',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'تعارف {{SITENAME}}',
@@ -284,6 +285,7 @@ $1',
 'showtoc' => 'پشاوے',
 'hidetoc' => 'کھوشتاوے',
 'collapsible-collapse' => 'خاتمہ/Collapse',
+'collapsible-expand' => 'فراخ کورے',
 'thisisdeleted' => 'لوڑے  یا بحال کورے $1',
 'viewdeleted' => 'لوڑے $1؟',
 'restorelink' => '{{PLURAL:$1|ای ترمیم حذف ہوی|$1 ترامیم حذف ہونی}}',
@@ -478,6 +480,10 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 
 # Special:PasswordReset
 'passwordreset' => 'پاسورڈو ری سیٹ کورے',
+'passwordreset-username' => 'ممبارو نم',
+
+# Special:ChangeEmail
+'changeemail-none' => '(نو)',
 
 # Edit page toolbar
 'bold_sample' => 'بوسک متن',

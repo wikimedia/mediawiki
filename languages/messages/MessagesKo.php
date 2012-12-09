@@ -1160,10 +1160,10 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'parser-template-loop-warning' => '재귀적인 틀이 발견되었습니다: [[$1]]',
 'parser-template-recursion-depth-warning' => '틀 반복 횟수 제한을 초과함($1)',
 'language-converter-depth-warning' => '언어 변환기 실행 제한 초과($1)',
-'node-count-exceeded-category' => '페이지가 노드 횟수를 초과하였습니다.',
-'node-count-exceeded-warning' => '페이지가 노드 수를 초과하였습니다.',
-'expansion-depth-exceeded-category' => '페이지가 확장 깊이를 초과하였습니다.',
-'expansion-depth-exceeded-warning' => '페이지가 확장 깊이를 초과하였습니다',
+'node-count-exceeded-category' => '문서가 노드 횟수를 초과하였습니다.',
+'node-count-exceeded-warning' => '문서가 노드 수를 초과하였습니다.',
+'expansion-depth-exceeded-category' => '문서가 확장 깊이를 초과하였습니다.',
+'expansion-depth-exceeded-warning' => '문서가 확장 깊이를 초과하였습니다',
 'parser-unstrip-loop-warning' => '스트립하지 않는 반복이 감지되었습니다',
 'parser-unstrip-recursion-limit' => '스트립하지 않는 재귀 한도가 초과됨 ($1)',
 'converter-manual-rule-error' => '언어 변환 규칙을 수동으로 지정하는 도중 오류',
@@ -2296,7 +2296,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => '지금 이 문서의 캐시된 버전을 보고 있습니다. 이 버전은 최대 $1만큼 지난 버전일 가능성이 있습니다.',
-'cachedspecial-viewing-cached-ts' => '현재 이 페이지는 캐시 처리된 버전으로 현재 문서 상태를 반영하지 않을 수도 있습니다.',
+'cachedspecial-viewing-cached-ts' => '현재 이 문서는 캐시 처리된 버전으로 현재 문서 상태를 반영하지 않을 수도 있습니다.',
 'cachedspecial-refresh-now' => '최신 버전 보기.',
 
 # Special:Categories
@@ -3077,7 +3077,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # JavaScriptTest
 'javascripttest' => '자바스크립트 테스트',
 'javascripttest-title' => '$1 테스트 실행',
-'javascripttest-pagetext-noframework' => '이 페이지는 자바스크립트 테스트를 실행하기 위한 용도로 할당되어 있습니다.',
+'javascripttest-pagetext-noframework' => '이 문서는 자바스크립트 테스트를 실행하기 위한 용도로 할당되어 있습니다.',
 'javascripttest-pagetext-unknownframework' => '실험용 프레임워크 "$1"를 알 수 없습니다.',
 'javascripttest-pagetext-frameworks' => '다음 실험용 프레임워크 중 하나를 선택하세요: $1',
 'javascripttest-pagetext-skins' => '실험할 스킨을 선택하세요:',
@@ -3779,7 +3779,7 @@ Variants for Chinese language
 'edit-externally-help' => '(자세한 정보는 [//www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하세요)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => '모든 기간',
+'watchlistall2' => '모두',
 'namespacesall' => '모두',
 'monthsall' => '모든 달',
 'limitall' => '모두',
