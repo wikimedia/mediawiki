@@ -3,6 +3,7 @@
 /**
  * @group Broken
  * @group Upload
+ * @group Database
  */
 class UploadFromUrlTest extends ApiTestCase {
 
