@@ -361,7 +361,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 
 					if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {
-						list( $ext, $mime ) = $file->getHandler()->getThumbType(
+						list( , $mime ) = $file->getHandler()->getThumbType(
 							$mto->getExtension(), $file->getMimeType(), $thumbParams );
 						$vals['thumbmime'] = $mime;
 					}

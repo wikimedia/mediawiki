@@ -704,9 +704,6 @@ class LoadBalancer {
 				'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
-		$host = $server['host'];
-		$dbname = $server['dbname'];
-
 		if ( $dbNameOverride !== false ) {
 			$server['dbname'] = $dbname = $dbNameOverride;
 		}

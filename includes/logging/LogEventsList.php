@@ -307,7 +307,6 @@ class LogEventsList extends ContextSource {
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
 
-		$title = $entry->getTarget();
 		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
 			$entry->getTimestamp(), $this->getUser() ) );
 

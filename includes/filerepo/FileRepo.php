@@ -953,7 +953,6 @@ class FileRepo {
 
 		$date       = gmdate( "YmdHis" );
 		$hashPath   = $this->getHashPath( $originalName );
-		$dstRel     = "{$hashPath}{$date}!{$originalName}";
 		$dstUrlRel  = $hashPath . $date . '!' . rawurlencode( $originalName );
 		$virtualUrl = $this->getVirtualUrl( 'temp' )  . '/' . $dstUrlRel;
 
@@ -1083,7 +1082,7 @@ class FileRepo {
 		$operations = array();
 		$sourceFSFilesToDelete = array(); // cleanup for disk source files
 		// Validate each triplet and get the store operation...
-		foreach ( $ntuples as $i => $ntuple ) {
+		foreach ( $ntuples as $ntuple ) {
 			list( $srcPath, $dstRel, $archiveRel ) = $ntuple;
 			$options = isset( $ntuple[3] ) ? $ntuple[3] : array();
 			// Resolve source to a storage path if virtual
@@ -1162,7 +1161,7 @@ class FileRepo {
 		$status->merge( $backend->doOperations( $operations ) );
 		// Find out which files were archived...
 		foreach ( $ntuples as $i => $ntuple ) {
-			list( $srcPath, $dstRel, $archiveRel ) = $ntuple;
+			list( , , $archiveRel ) = $ntuple;
 			$archivePath = $this->getZonePath( 'public' ) . "/$archiveRel";
 			if ( $this->fileExists( $archivePath ) ) {
 				$status->value[$i] = 'archived';
@@ -1189,7 +1188,7 @@ class FileRepo {
 	 */
 	protected function initDirectory( $dir ) {
 		$path = $this->resolveToStoragePath( $dir );
-		list( $b, $container, $r ) = FileBackend::splitStoragePath( $path );
+		list( , $container, ) = FileBackend::splitStoragePath( $path );
 
 		$params = array( 'dir' => $path );
 		if ( $this->isPrivate || $container === $this->zones['deleted']['container'] ) {

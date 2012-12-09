@@ -638,9 +638,8 @@ class LocalFile extends File {
 	 *        RTT regression for wikis without 404 handling.
 	 */
 	function migrateThumbFile( $thumbName ) {
-		$thumbDir = $this->getThumbPath();
-
 		/* Old code for bug 2532
+		$thumbDir = $this->getThumbPath();
 		$thumbPath = "$thumbDir/$thumbName";
 		if ( is_dir( $thumbPath ) ) {
 			// Directory where file should be
@@ -1866,7 +1865,7 @@ class LocalFileDeleteBatch {
 		$this->file->lock();
 		// Leave private files alone
 		$privateFiles = array();
-		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
+		list( $oldRels, ) = $this->getOldRels();
 		$dbw = $this->file->repo->getMasterDB();
 
 		if ( !empty( $oldRels ) ) {
@@ -1944,7 +1943,7 @@ class LocalFileDeleteBatch {
 		$files = $newBatch = array();
 
 		foreach ( $batch as $batchItem ) {
-			list( $src, $dest ) = $batchItem;
+			list( $src, ) = $batchItem;
 			$files[$src] = $this->file->repo->getVirtualUrl( 'public' ) . '/' . rawurlencode( $src );
 		}
 

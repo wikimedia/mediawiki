@@ -989,7 +989,7 @@ abstract class Installer {
 				continue;
 			}
 
-			list( $all, $lang, $territory, $charset, $modifier ) = $m;
+			list( , $lang, , , ) = $m;
 
 			$candidatesByLocale[$m[0]] = $m;
 			$candidatesByLang[$lang][] = $m;

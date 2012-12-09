@@ -199,7 +199,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function detectProtocol() {
-		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
+		list( $proto, ) = self::detectProtocolAndStdPort();
 		return $proto;
 	}
 

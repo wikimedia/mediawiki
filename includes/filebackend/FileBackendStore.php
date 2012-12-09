@@ -447,7 +447,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doPrepareInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doPrepareInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
@@ -487,7 +487,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doSecureInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doSecureInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
@@ -527,7 +527,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doPublishInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doPublishInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
@@ -589,7 +589,7 @@ abstract class FileBackendStore extends FileBackend {
 			$this->deleteContainerCache( $fullCont ); // purge cache
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doCleanInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 				$this->deleteContainerCache( "{$fullCont}{$suffix}" ); // purge cache
@@ -954,7 +954,7 @@ abstract class FileBackendStore extends FileBackend {
 			return $this->doDirectoryExists( $fullCont, $dir, $params );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			$res = false; // response
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$exists = $this->doDirectoryExists( "{$fullCont}{$suffix}", $dir, $params );
@@ -994,7 +994,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			return new FileBackendStoreShardDirIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
@@ -1027,7 +1027,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
-			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			return new FileBackendStoreShardFileIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
@@ -1305,7 +1305,7 @@ abstract class FileBackendStore extends FileBackend {
 	final public function preloadCache( array $paths ) {
 		$fullConts = array(); // full container names
 		foreach ( $paths as $path ) {
-			list( $fullCont, $r, $s ) = $this->resolveStoragePath( $path );
+			list( $fullCont, , ) = $this->resolveStoragePath( $path );
 			$fullConts[] = $fullCont;
 		}
 		// Load from the persistent file and container caches
@@ -1468,7 +1468,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return bool
 	 */
 	final public function isSingleShardPathInternal( $storagePath ) {
-		list( $c, $r, $shard ) = $this->resolveStoragePath( $storagePath );
+		list( , , $shard ) = $this->resolveStoragePath( $storagePath );
 		return ( $shard !== null );
 	}
 
@@ -1611,7 +1611,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		// Get all the corresponding cache keys for paths...
 		foreach ( $paths as $path ) {
-			list( $fullCont, $r, $s ) = $this->resolveStoragePath( $path );
+			list( $fullCont, , ) = $this->resolveStoragePath( $path );
 			if ( $fullCont !== null ) { // valid path for this backend
 				$contNames[$this->containerCacheKey( $fullCont )] = $fullCont;
 			}
@@ -1712,7 +1712,7 @@ abstract class FileBackendStore extends FileBackend {
 		$paths = array_filter( $paths, 'strlen' ); // remove nulls
 		// Get all the corresponding cache keys for paths...
 		foreach ( $paths as $path ) {
-			list( $cont, $rel, $s ) = $this->resolveStoragePath( $path );
+			list( , $rel, ) = $this->resolveStoragePath( $path );
 			if ( $rel !== null ) { // valid path for this backend
 				$pathNames[$this->fileCacheKey( $path )] = $path;
 			}

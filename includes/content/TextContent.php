@@ -173,8 +173,6 @@ class TextContent extends AbstractContent {
 
 		# @todo: could implement this in DifferenceEngine and just delegate here?
 
-		if ( !$lang ) $lang = $wgContLang;
-
 		$otext = $this->getNativeData();
 		$ntext = $this->getNativeData();
 

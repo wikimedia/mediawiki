@@ -627,7 +627,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$result = array();
 
 		// loop all results and collect them in an array
-		foreach ( $data as $j => $query ) {
+		foreach ( $data as $query ) {
 			foreach ( $query as $i => $row ) {
 				// use index column as key, allowing us to easily sort in PHP
 				$result[$row->{$this->getIndexField()} . "-$i"] = $row;
