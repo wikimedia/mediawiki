@@ -990,6 +990,7 @@ class DumpFileOutput extends DumpOutput {
 
 	/**
 	 * @param $string string
+	 * @return bool
 	 */
 	function write( $string ) {
 		fputs( $this->handle, $string );

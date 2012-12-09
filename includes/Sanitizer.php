@@ -647,6 +647,7 @@ class Sanitizer {
 	 *
 	 * @param $params
 	 * @param $element
+	 * @return bool
 	 */
 	static function validateTag( $params, $element ) {
 		$params = Sanitizer::decodeTagAttributes( $params );
