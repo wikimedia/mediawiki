@@ -119,7 +119,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		if ( method_exists( $this->mPreprocessor, 'preprocessToXml' ) ) {
 			return $this->normalizeXml( $this->mPreprocessor->preprocessToXml( $wikiText ) );
 		}
-		
+
 		$dom = $this->mPreprocessor->preprocessToObj( $wikiText );
 		if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 			return $dom->saveXML();
@@ -136,11 +136,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 */
 	function normalizeXml( $xml ) {
 		return preg_replace( '!<([a-z]+)/>!', '<$1></$1>', str_replace( ' />', '/>', $xml ) );
-		
-		$dom = new DOMDocument();
-		// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
-		$dom->loadXML( $xml, 1 << 19 );
-		return $dom->saveXML();
 	}
 
 	/**
