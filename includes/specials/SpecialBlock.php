@@ -59,6 +59,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Checks that the user can unblock themselves if they are trying to do so
 	 *
 	 * @param User $user
+	 * @return Bool
 	 * @throws ErrorPageError
 	 */
 	protected function checkExecutePermissions( User $user ) {
