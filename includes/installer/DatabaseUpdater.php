@@ -817,7 +817,7 @@ abstract class DatabaseUpdater {
 	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
-			return;
+			return true;
 		}
 
 		return $this->applyPatch( 'patch-tc-timestamp.sql', false,

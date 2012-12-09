@@ -652,7 +652,7 @@ abstract class QueryPage extends SpecialPage {
 
 		if ( !$wgFeed ) {
 			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
-			return;
+			return false;
 		}
 
 		global $wgFeedLimit;

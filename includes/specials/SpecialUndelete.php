@@ -827,7 +827,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if( $result->numRows() == 0 ) {
 			$out->addWikiMsg( 'undelete-no-results' );
-			return;
+			return false;
 		}
 
 		$out->addWikiMsg( 'undeletepagetext', $this->getLanguage()->formatNum( $result->numRows() ) );

@@ -782,13 +782,15 @@ class EmailNotification {
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
-	 * @return Status
+	 * @param $addresses array
+	 * @return Status|null
 	 */
 	function sendImpersonal( $addresses ) {
 		global $wgContLang;
 
-		if ( empty( $addresses ) )
-			return;
+		if ( empty( $addresses ) ) {
+			return null;
+		}
 
 		$body = str_replace(
 				array( '$WATCHINGUSERNAME',

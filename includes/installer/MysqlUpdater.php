@@ -790,9 +790,8 @@ class MysqlUpdater extends DatabaseUpdater {
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
 			return true;
-		} else {
-			$this->applyPatch( 'patch-profiling-memory.sql', false, "Adding pf_memory field to table profiling" );
 		}
+		return $this->applyPatch( 'patch-profiling-memory.sql', false, "Adding pf_memory field to table profiling" );
 	}
 
 	protected function doFilearchiveIndicesUpdate() {

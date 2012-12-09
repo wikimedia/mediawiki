@@ -1336,8 +1336,10 @@ class FauxRequest extends WebRequest {
 	 * @return mixed
 	 */
 	public function getSessionData( $key ) {
-		if( isset( $this->session[$key] ) )
+		if( isset( $this->session[$key] ) ) {
 			return $this->session[$key];
+		}
+		return null;
 	}
 
 	/**
