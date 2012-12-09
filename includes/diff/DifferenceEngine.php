@@ -735,6 +735,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param $old Content: old content
 	 * @param $new Content: new content
 	 *
+	 * @return bool|string
 	 * @since 1.21
 	 * @throws MWException if $old or $new are not instances of TextContent.
 	 */
@@ -760,6 +761,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param $otext String: old text, must be already segmented
 	 * @param $ntext String: new text, must be already segmented
+	 * @return bool|string
 	 * @deprecated since 1.21, use generateContentDiffBody() instead!
 	 */
 	function generateDiffBody( $otext, $ntext ) {

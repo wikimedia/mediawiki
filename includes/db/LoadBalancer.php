@@ -732,6 +732,7 @@ class LoadBalancer {
 
 	/**
 	 * @param $conn
+	 * @return bool
 	 * @throws DBConnectionError
 	 */
 	function reportConnectionError( &$conn ) {

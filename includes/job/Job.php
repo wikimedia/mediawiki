@@ -83,6 +83,7 @@ abstract class Job {
 	 * removed later on, when the first one is popped.
 	 *
 	 * @param $jobs array of Job objects
+	 * @return bool
 	 * @deprecated 1.21
 	 */
 	public static function batchInsert( $jobs ) {
@@ -97,6 +98,7 @@ abstract class Job {
 	 * large batches of jobs can cause slave lag.
 	 *
 	 * @param $jobs array of Job objects
+	 * @return bool
 	 * @deprecated 1.21
 	 */
 	public static function safeBatchInsert( $jobs ) {
