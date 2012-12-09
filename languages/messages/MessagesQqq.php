@@ -3097,6 +3097,11 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'nolinkshere' => 'This appears on Whatlinkshere pages which are empty.
 
 Parameter $1 is a page title.',
+'nolinkshere-ns' => 'This appears on Special:Whatlinkshere pages when no results are found and the user selected to only look in a specificed namespace. Parameter $1 is a page title.',
+'nomorelinkshere' => 'This appears on Special:Whatlinkshere pages when no more results are found. Parameter $1 is a page title. Parameter $2 is an article title used to construct a more useful link target.',
+'nomorelinkshere-ns' => 'This appears on Special:Whatlinkshere pages when no more results are found and the user selected to only look in a specificed namespace. Parameter $1 is a page title. Parameter $2 is an article title used to construct a more useful link target.',
+'nomorelinkshere-lost' => 'This appears on Special:Whatlinkshere pages when no more results are found. Parameter $1 is a page title.',
+'nomorelinkshere-ns-lost' => 'This appears on Special:Whatlinkshere pages when no more results are found and the user selected to only look in a specificed namespace. Parameter $1 is a page title.',
 'isredirect' => 'Displayed in Special:WhatLinksHere (see [{{fullurl:Special:WhatLinksHere/Project:Translator|hidelinks=1}} Special:WhatLinksHere/Project:Translator] for example).
 
 {{Identical|Redirect page}}',

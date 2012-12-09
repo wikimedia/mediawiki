@@ -188,15 +188,24 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
-			if ( 0 == $level ) {
+			if ( $level == 0 ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
 				// Show filters only if there are links
 				if( $hidelinks || $hidetrans || $hideredirs || $hideimages )
 					$out->addHTML( $this->getFilterPanel() );
 
-				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
-				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+				if( $from && $back ) {
+					$errMsg = is_int( $namespace ) ? 'nomorelinkshere-ns' : 'nomorelinkshere';
+					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText(), $back );
+				} else {
+					if ($from) {
+						$errMsg = is_int($namespace) ? 'nomorelinkshere-ns-lost' : 'nomorelinkshere-lost';
+					} else {
+						$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
+					}
+					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+				}
 			}
 			return;
 		}
