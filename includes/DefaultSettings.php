@@ -2166,6 +2166,12 @@ $wgUsePrivateIPs = false;
 $wgLanguageCode = 'en';
 
 /**
+ * Language cache size, or really how many languages can we handle
+ * simultanously without degrading to crawl speed.
+ */
+$wgLangObjCacheSize = 10;
+
+/**
  * Some languages need different word forms, usually for different cases.
  * Used in Language::convertGrammar().
  *
