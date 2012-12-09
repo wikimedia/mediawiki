@@ -138,6 +138,8 @@ class Hooks {
 	 * @param $event String: event name
 	 * @param $args  Array: parameters passed to hook functions
 	 *
+	 * @throws MWException
+	 * @throws FatalError
 	 * @return Boolean True if no handler aborted the hook
 	 */
 	public static function run( $event, $args = array() ) {

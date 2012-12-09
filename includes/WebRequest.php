@@ -1044,6 +1044,7 @@ HTML;
 	 *
 	 * @since 1.19
 	 *
+	 * @throws MWException
 	 * @return String
 	 */
 	protected function getRawIP() {

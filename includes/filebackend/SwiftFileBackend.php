@@ -1318,8 +1318,9 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Get an authenticated connection handle to the Swift proxy
 	 *
-	 * @return CF_Connection|bool False on failure
 	 * @throws CloudFilesException
+	 * @throws CloudFilesException|Exception
+	 * @return CF_Connection|bool False on failure
 	 */
 	protected function getConnection() {
 		if ( $this->connException instanceof CloudFilesException ) {

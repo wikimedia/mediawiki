@@ -76,6 +76,7 @@ class JobQueueGroup {
 	 * Insert jobs into the respective queues of with the belong
 	 *
 	 * @param $jobs Job|array A single Job or a list of Jobs
+	 * @throws MWException
 	 * @return bool
 	 */
 	public function push( $jobs ) {

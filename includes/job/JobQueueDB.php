@@ -58,6 +58,9 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doBatchPush()
+	 * @param array $jobs
+	 * @param $flags
+	 * @throws DBError|Exception
 	 * @return bool
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
@@ -366,6 +369,8 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doAck()
+	 * @param Job $job
+	 * @throws MWException
 	 * @return Job|bool
 	 */
 	protected function doAck( Job $job ) {
@@ -385,6 +390,8 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doDeduplicateRootJob()
+	 * @param Job $job
+	 * @throws MWException
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {

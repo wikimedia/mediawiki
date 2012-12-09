@@ -151,6 +151,7 @@ class SiteObject extends ORMRow implements Site {
 	 *
 	 * @since 1.21
 	 *
+	 * @throws MWException
 	 * @return string|false
 	 */
 	public function getProtocol() {

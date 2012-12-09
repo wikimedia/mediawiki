@@ -819,6 +819,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	 * Constructor
 	 *
 	 * @param $page WikiPage Page we are updating
+	 * @throws MWException
 	 */
 	function __construct( WikiPage $page ) {
 		parent::__construct( false ); // no implicit transaction

@@ -86,6 +86,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @throws
 	 * @return DatabaseBase
 	 */
 	protected function getDB() {
