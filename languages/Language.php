@@ -473,9 +473,13 @@ class Language {
 	 * getNsText() except with '_' changed to ' ', useful for
 	 * producing output.
 	 *
-	 * @param $index string
+	 * <code>
+	 * $mw_ns = $wgContLang->getFormattedNsText( NS_MEDIAWIKI_TALK );
+	 * echo $mw_ns; // prints 'MediaWiki talk'
+	 * </code>
 	 *
-	 * @return array
+	 * @param int $index The array key of the namespace to return
+	 * @return string Namespace name without underscores (empty string if namespace does not exist)
 	 */
 	function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
