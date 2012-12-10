@@ -231,12 +231,7 @@ class UserMailer {
 			# PEAR MAILER
 			#
 
-			if ( function_exists( 'stream_resolve_include_path' ) ) {
-				$found = stream_resolve_include_path( 'Mail.php' );
-			} else {
-				$found = Fallback::stream_resolve_include_path( 'Mail.php' );
-			}
-			if ( !$found ) {
+			if ( ! stream_resolve_include_path( 'Mail.php' ) ) {
 				throw new MWException( 'PEAR mail package is not installed' );
 			}
 			require_once( 'Mail.php' );
