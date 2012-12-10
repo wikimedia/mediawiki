@@ -2213,6 +2213,9 @@ $wgDummyLanguageCodes = array(
 	'zh-yue' => 'yue',
 );
 
+/** Allows setting custom page language via {{setpagelanguage}} function */
+$wgAllowSetPageLanguage = true;
+
 /**
  * Character set for use in the article edit box. Language-specific encodings
  * may be defined.

@@ -31,7 +31,7 @@ class CoreParserFunctions {
 	 * @return void
 	 */
 	static function register( $parser ) {
-		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
+		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions, $wgAllowSetPageLanguage;
 
 		# Syntax for arguments (see self::setFunctionHook):
 		#  "name for lookup in localized magic words array",
@@ -105,10 +105,13 @@ class CoreParserFunctions {
 		if ( $wgAllowSlowParserFunctions ) {
 			$parser->setFunctionHook( 'pagesinnamespace', array( __CLASS__, 'pagesinnamespace' ), SFH_NO_HASH );
 		}
+		if( $wgAllowSetPageLanguage ) {
+			$parser->setFunctionHook( 'setpagelanguage', array( __CLASS__, 'setpagelanguage' ), SFH_NO_HASH );
+		}
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $part1
 	 * @return array
 	 */
@@ -867,5 +870,20 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+
+	/**
+	 * @global array $wgHooks
+	 * @param Parser $parser
+	 * @param string $setLang
+	 * @return void
+	 */
+	static function setpagelanguage( $parser, $setLang ) {
+		global $wgHooks;
+		$wgHooks['PageContentLanguage']['SetPageLanguage'] = function( $title, &$pageLang, $wgLang ) use ($parser, $setLang) {
+			if( $setLang !== '' && Language::isValidBuiltInCode( $setLang ) )
+				$pageLang = $setLang;
+			return true;
+		};
 	}
 }
