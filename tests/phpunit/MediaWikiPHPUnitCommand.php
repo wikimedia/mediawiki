@@ -9,6 +9,7 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		'keep-uploads' => false,
 		'use-normal-tables' => false,
 		'reuse-db' => false,
+		'wiki=' => false,
 	);
 
 	public function __construct() {
