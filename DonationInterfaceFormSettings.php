@@ -371,8 +371,8 @@ $forms_whitelist['cc-vmad'] = $forms_whitelist['cc-vmd'];
 $forms_whitelist['cc-vmaj'] = $forms_whitelist['cc-vmj'];
 
 $forms_whitelist['email-cc-vma'] = $forms_whitelist['email-cc-vm'];
-$forms_whitelist['email-cc-vmad'] = $forms_whitelist['email-cc-vmd'];
-$forms_whitelist['email-cc-vmaj'] = $forms_whitelist['email-cc-vmj'];
+$forms_whitelist['email-cc-vmad'] = $forms_whitelist['email-cc-vm'];
+$forms_whitelist['email-cc-vmaj'] = $forms_whitelist['email-cc-vm'];
 
 $forms_whitelist['rcc-vma'] = $forms_whitelist['rcc-vm'];
 $forms_whitelist['rcc-vmad'] = $forms_whitelist['rcc-vmd'];
