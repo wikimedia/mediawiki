@@ -1603,7 +1603,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'rightslogtext' => 'Este é um registro de mudanças nos privilégios de usuários.',
 'rightslogentry' => 'alterou os grupos de privilégios {{GENDER:$1|do usuário|da usuária|de usuário para}} $1 (de $2 para $3)',
 'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
-'logentry-rights-rights' => '$1 alterou os grupos de privilégios a quais pertence $3 de $4 para $5',
+'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
 'rightsnone' => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"

@@ -3016,7 +3016,7 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 
 {{Identical|View}}
 {{Identical|Restore}}',
-'undeleteviewlink' => 'ਦੇਖੋ',
+'undeleteviewlink' => 'First part of {{msg-mw|undeletelink}}',
 'undeletereset' => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',

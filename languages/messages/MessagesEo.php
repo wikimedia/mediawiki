@@ -724,6 +724,8 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
 Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
 'welcomeuser' => 'Bonvenon, $1!',
+'welcomecreation-msg' => 'Vian konton kreis.
+Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'yourname' => 'Salutnomo:',
 'yourpassword' => 'Pasvorto:',
 'yourpasswordagain' => 'Retajpu pasvorton',
@@ -1087,6 +1089,7 @@ Verŝajne ĝi estis forigita.',
 'edit-already-exists' => 'Ne eblis krei novan paĝon.
 Ĝi jam ekzistas.',
 'defaultmessagetext' => 'Defaŭlta teksto',
+'content-failed-to-parse' => 'Oni malsukcesis analizi $2-entenon laŭ la $1-modelo: $3',
 'invalid-content-data' => 'Enhavo estas malvalida',
 'content-not-allowed-here' => 'Enhavo de $1 ne estas permesita en paĝo [[$2]]',
 
@@ -1617,6 +1620,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'rightslogentry-autopromote' => 'estis aŭtomate altrangigita de $2 al $3',
 'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
 'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
+'logentry-rights-autopromote' => '$1 estis aŭtomate altrangigita de $4 al $5',
 'rightsnone' => '(nenia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1844,6 +1848,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-notsame' => 'Malsama dosiero jam ekzistas ĉe $1.',
 'backend-fail-invalidpath' => '$1 ne estas valida pado por konservujo.',
 'backend-fail-delete' => 'Ne povis forigi dosieron "$1".',
+'backend-fail-describe' => 'Ne povis ŝanĝi la metadatenon de la dosiero "$1".',
 'backend-fail-alreadyexists' => 'La dosiero "$1" jam ekzistas.',
 'backend-fail-store' => 'Ne povis konservi dosieron $1 ĉe $2.',
 'backend-fail-copy' => 'Ne povis kopii dosieron $1 al $2.',
@@ -2348,14 +2353,25 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_mailer' => 'Averta retmesaĝo de {{SITENAME}}',
 'enotif_reset' => 'Marki ĉiujn paĝojn vizititaj',
 'enotif_impersonal_salutation' => 'Uzanto de {{SITENAME}}',
+'enotif_subject_deleted' => 'La paĝon $1 de {{SITENAME}} forigis {{gender:$2|$2}}',
+'enotif_subject_created' => 'La paĝon $1 de {{SITENAME}} kreis {{gender:$2|$2}}',
+'enotif_subject_moved' => 'La paĝon $1 de {{SITENAME}} movis {{gender:$2|$2}}',
+'enotif_subject_restored' => 'La paĝon $1 de {{SITENAME}} remetis {{gender:$2|$2}}',
+'enotif_subject_changed' => 'La paĝon $1 de {{SITENAME}} ŝanĝis {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'La paĝon $1 de {{SITENAME}} forigis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
+'enotif_body_intro_created' => 'La paĝon $1 de {{SITENAME}} kreis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
+'enotif_body_intro_moved' => 'La paĝon $1 de {{SITENAME}} movis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
+'enotif_body_intro_restored' => 'La paĝon $1 de {{SITENAME}} remetis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
+'enotif_body_intro_changed' => 'La paĝon $1 de {{SITENAME}} ŝanĝis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
 'enotif_lastvisited' => 'Vidi $1 por ĉiuj ŝanĝoj de post via lasta vizito.',
 'enotif_lastdiff' => 'Vidi $1 por rigardi ĉi tiun ŝanĝon.',
 'enotif_anon_editor' => 'anonima uzanto $1',
 'enotif_body' => 'Kara $WATCHINGUSERNAME,
 
-La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR; vidu $PAGETITLE_URL por la nuna revizio.
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
+Redaktinta resumo:
+$PAGESUMMARY $PAGEMINOREDIT
 
 Resumo pri la ŝanĝo de la redaktinto: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2363,18 +2379,18 @@ Kontaktu la redaktinton:
 retpoŝte: $PAGEEDITOR_EMAIL
 vikie: $PAGEEDITOR_WIKI
 
-Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus la paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
+Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus ĉi tiun paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
             Sincere via, la avertsistemo de {{SITENAME}}
 
 --
-Por ŝanĝi vian retpoŝtan notigadan preferon, klaku
+Por ŝanĝi vian retpoŝtan avertadajn preferojn, klaku
 {{canonicalurl:{{#special:Preferences}}}}
 
-Por ŝanĝi vian preferon de la atentaro, klaku
+Por ŝanĝi vian preferojn de la atentaro, klaku
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Por forigi la paĝon de via atentaro, klaku
+Por forigi ĉi tiun paĝon de via atentaro, klaku
 $UNWATCHURL
 
 Komentoj kaj plia helpo:
@@ -2560,7 +2576,7 @@ $1',
 'blanknamespace' => '(Artikoloj)',
 
 # Contributions
-'contributions' => 'Kontribuoj de uzanto',
+'contributions' => 'Kontribuoj de {{GENDER:$1|uzanto|uzantino}}',
 'contributions-title' => 'Kontribuoj de uzanto $1',
 'mycontris' => 'Kontribuoj',
 'contribsub2' => 'De $1 ($2)',
@@ -2833,6 +2849,7 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 'immobile-target-namespace-iw' => 'Intervikia ligilo ne estas valida celo por paĝa movo.',
 'immobile-source-page' => 'Ĉi tiu paĝo ne estas movebla.',
 'immobile-target-page' => 'Ne povas movi al tiu destina titolo.',
+'bad-target-model' => 'La celo dezira uzas malakordan entenmodelon. Ne povas  ŝanĝi el $1 al $2.',
 'imagenocrossnamespace' => 'Ne povas movi dosieron al nedosiera nomspaco',
 'nonfile-cannot-move-to-file' => 'Ne povas movi ne-dosieron al dosiera nomspaco',
 'imagetypemismatch' => 'La nova dosierfinaĵo ne kongruas ĝian dosiertipon.',
@@ -3157,6 +3174,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'markedaspatrollederror' => 'Ne povas marki kiel patrolitan',
 'markedaspatrollederrortext' => 'Vi devas specifi version por marki kiel patrolitan.',
 'markedaspatrollederror-noautopatrol' => 'Vi ne rajtas marki viajn proprajn ŝanĝojn kiel patrolitajn.',
+'markedaspatrollednotify' => 'Ĉi tiun ŝanĝon al $1 markis kiel patrolatan.',
+'markedaspatrollederrornotify' => 'Malsukcesis marki la dosieron kiel patrolatan.',
 
 # Patrol log
 'patrol-log-page' => 'Protokolo pri patrolado',
@@ -3219,6 +3238,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 horo|$1 horoj}}',
 'days' => '{{PLURAL:$1|$1 tago|$1 tagoj}}',
 'ago' => 'antaŭ $1',
+'just-now' => 'ĵus nune',
 
 # Bad image list
 'bad_image_list' => 'La formato estas jen:
@@ -3431,6 +3451,7 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-compression-2' => 'CCITT-Grupo 3 modifita ciferado laŭ Huffman Dimensio-1',
 'exif-compression-3' => 'CCITT Grupo-3 ĉifrado por faksilo',
 'exif-compression-4' => 'CCITT Grupo-4 ĉifrado por faksilo',
+'exif-compression-8' => 'Malŝveli (Adobe)',
 
 'exif-copyrighted-true' => 'Sub aŭtorrajto',
 'exif-copyrighted-false' => 'Sub publika domajno',
@@ -3796,6 +3817,64 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'watchlisttools-edit' => 'Rigardi kaj redakti atentaron',
 'watchlisttools-raw' => 'Redakti krudan atentaron',
 
+# Iranian month names
+'iranian-calendar-m1' => 'farvardino',
+'iranian-calendar-m2' => 'ordibeheŝto',
+'iranian-calendar-m3' => 'ĥordado',
+'iranian-calendar-m4' => 'tiro',
+'iranian-calendar-m5' => 'mordado',
+'iranian-calendar-m6' => 'ŝahrivaro',
+'iranian-calendar-m7' => 'mehro',
+'iranian-calendar-m8' => 'abano',
+'iranian-calendar-m9' => 'azaro',
+'iranian-calendar-m10' => 'dejo',
+'iranian-calendar-m11' => 'bahmano',
+'iranian-calendar-m12' => 'esfando',
+
+# Hijri month names
+'hijri-calendar-m1' => 'muharamo',
+'hijri-calendar-m2' => 'safaro',
+'hijri-calendar-m3' => 'rabi-ul-aŭŭalo',
+'hijri-calendar-m4' => 'rabi-us-sanio',
+'hijri-calendar-m5' => 'ĵumada-l-ulo',
+'hijri-calendar-m6' => 'ĵumada-l-aĥiro',
+'hijri-calendar-m7' => 'raĵabo',
+'hijri-calendar-m8' => 'ŝabano',
+'hijri-calendar-m9' => 'ramadano',
+'hijri-calendar-m10' => 'ŝaŭalo',
+'hijri-calendar-m11' => 'du-l-kado',
+'hijri-calendar-m12' => 'du-l-hiĵo',
+
+# Hebrew month names
+'hebrew-calendar-m1' => 'tiŝrio',
+'hebrew-calendar-m2' => 'ĥeŝvano',
+'hebrew-calendar-m3' => 'kislevo',
+'hebrew-calendar-m4' => 'teveto',
+'hebrew-calendar-m5' => 'ŝevato',
+'hebrew-calendar-m6' => 'adaro',
+'hebrew-calendar-m6a' => 'adaro 1',
+'hebrew-calendar-m6b' => 'adaro 2',
+'hebrew-calendar-m7' => 'nisano',
+'hebrew-calendar-m8' => 'ijaro',
+'hebrew-calendar-m9' => 'sivano',
+'hebrew-calendar-m10' => 'tamuzo',
+'hebrew-calendar-m11' => 'abo',
+'hebrew-calendar-m12' => 'elulo',
+'hebrew-calendar-m1-gen' => 'tiŝrio',
+'hebrew-calendar-m2-gen' => 'ĥeŝvano',
+'hebrew-calendar-m3-gen' => 'kislevo',
+'hebrew-calendar-m4-gen' => 'teveto',
+'hebrew-calendar-m5-gen' => 'ŝevato',
+'hebrew-calendar-m6-gen' => 'adaro',
+'hebrew-calendar-m6a-gen' => 'adaro 1',
+'hebrew-calendar-m6b-gen' => 'adaro 2',
+'hebrew-calendar-m7-gen' => 'nisano',
+'hebrew-calendar-m8-gen' => 'ijaro',
+'hebrew-calendar-m9-gen' => 'sivano',
+'hebrew-calendar-m10-gen' => 'tamuzo',
+'hebrew-calendar-m11-gen' => 'abo',
+'hebrew-calendar-m12-gen' => 'elulo',
+
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskuto]])',
 
@@ -3823,6 +3902,7 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'version-license' => 'Permesilo',
 'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[//www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
 'version-poweredby-others' => 'aliaj',
+'version-credits-summary' => 'Ni ŝatus agnoski la sekvajn personojn pro siaj kontribuoj al [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.
 
 Tiun ĉi verkon ni distribuas esperante, ke ĝi utilos, sed SEN IA AJN GARANTIO; eĉ sen la implica garantio de SURMERKATIGEBLECO aŭ TAŬGECO POR IA DIFINITA CELO. Vidu GNU General Public License por pliaj detaloj.
@@ -4040,4 +4120,6 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
+# Unknown messages
+'svg-long-error' => 'Malvalida SVG-dosiero: $1',
 );

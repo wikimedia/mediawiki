@@ -420,9 +420,9 @@ $1',
 # Login and logout pages
 'logouttext' => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
 
-ܡܨܐ ܐܢܬ ܐܦܠܚܬ {{SITENAME}} ܐܝܟ ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ<span class='plainlinks'>[$1 ܬܥܘܠ]</span> ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܦܠܚܢܐ ܐܚܪܢܐ.
+ܡܨܬ ܐܦܠܚܬ {{SITENAME}} ܐܝܟ ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܬ ܕ<span class='plainlinks'>[$1 ܬܥܘܠ]</span> ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܦܠܚܢܐ ܐܚܪܢܐ.
 
-ܚܕ ܟܡܐ ܡܢ ܦܐܬܬ̈ܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܦܐܬܬ̈ܐ ܠܒܝܟܬ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
+ܚܕ ܟܡܐ ܡܢ ܦܐܬܬ̈ܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܐܝܬܝܟ ܥܕܡܐ ܕܐܣܦܩܬ ܠܦܐܬܬ̈ܐ ܠܒܝܟܬ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ.",
 'yourname' => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'yourpassword' => 'ܡܠܬܐ ܕܥܠܠܐ:',
 'yourpasswordagain' => 'ܟܬܘܒ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܬܐ ܐܚܪܬܐ:',
@@ -1662,7 +1662,7 @@ $1',
 'watchlistedit-normal-legend' => 'ܠܚܝ ܟܘܢܝ̈ܐ ܡܢ ܪ̈ܗܝܬܟ',
 'watchlistedit-normal-explain' => 'ܟܘܢܝ̈ܐ ܒܪ̈ܗܝܬܟ ܡܬܚܘܝܢ ܠܬܚܬ.
 ܠܠܚܝܐ ܕܟܘܢܝܐ, ܫܘܕܥ ܥܠ ܣܢܕܘܩܐ ܕܕܦܢܗ, ܘܕܘܫ "{{int:Watchlistedit-normal-submit}}".
-ܡܨܐ ܐܢܬ ܕ[[Special:EditWatchlist/raw|ܬܫܚܠܦ ܪ̈ܗܝܬܐ ܦܛܝܪ̈ܬܐ]].',
+ܡܨܬ ܕ[[Special:EditWatchlist/raw|ܬܫܚܠܦܬ ܪ̈ܗܝܬܐ ܦܛܝܪ̈ܬܐ]].',
 'watchlistedit-normal-submit' => 'ܠܚܝ ܟܘܢܝܐ',
 'watchlistedit-normal-done' => '{{PLURAL:$1|ܚܕ ܟܘܢܝܐ ܐܬܠܚܝ|$1 ܟܘܢܝ̈ܐ ܐܬܠܚܘܢ}} ܡܢ ܪ̈ܗܝܬܟ:',
 'watchlistedit-raw-title' => 'ܫܚܠܦ ܪ̈ܗܝܬܐ ܦܛܝܪ̈ܬܐ',

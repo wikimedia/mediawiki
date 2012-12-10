@@ -3673,11 +3673,12 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'compare-submit' => 'Confronté',
 'compare-invalid-title' => "Ël tìtol ch'a l'ha spessificà a va pa bin.",
 'compare-title-not-exists' => "Ël tìtol ch'a l'ha spessificà a esist pa.",
-'compare-revision-not-exists' => "La revision che it l'has spessificà a esist pa.",
+'compare-revision-not-exists' => "La revision che a l'ha spessificà a esist pa.",
 
 # Database error messages
 'dberr-header' => "Sta wiki-sì a l'ha un problema",
-'dberr-problems' => "Spiasent! Sto sit-sì a l'ha dle dificoltà técniche.",
+'dberr-problems' => "An dëspias!
+Ës sit a l'ha dle dificoltà técniche.",
 'dberr-again' => 'Preuva a speté cheich minute e a torna carié.',
 'dberr-info' => '(As peul pa contaté ël database server: $1)',
 'dberr-usegoogle' => 'It peule prové a serché con Google ant ël mentre.',

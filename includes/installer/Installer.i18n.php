@@ -13488,9 +13488,9 @@ U kunt MediaWiki niet installeren.',
 MediaWiki heeft PHP $2 of hoger nodig om correct te kunnen werken.',
 	'config-unicode-using-utf8' => 'Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.',
 	'config-unicode-using-intl' => 'Voor Unicode-normalisatie wordt de [http://pecl.php.net/intl PECL-extensie intl] gebruikt.',
-	'config-unicode-pure-php-warning' => "'''Waarschuwing''': De [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicode-normalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.
-Als u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisatie].",
-	'config-unicode-update-warning' => "'''Waarschuwing''': De geïnstalleerde versie van de Unicode-normalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].
+	'config-unicode-pure-php-warning' => "'''Waarschuwing''': de [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicodenormalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.
+Als u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicodenormalisatie].",
+	'config-unicode-update-warning' => "'''Waarschuwing''': de geïnstalleerde versie van de Unicodenormalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].
 U moet [//www.mediawiki.org/wiki/Unicode_normalization_considerations bijwerken] als Unicode voor u van belang is.",
 	'config-no-db' => 'Het was niet mogelijk een geschikte databasedriver te vinden voor PHP.
 U moet een databasedriver installeren voor PHP.
@@ -13501,7 +13501,7 @@ Als u PHP zelf hebt gecompileerd, wijzig dan uw instellingen zodat een databased
 Als u PHP hebt geïnstalleerd via een Debian- of Ubuntu-package, installeer dan ook de module php5-mysql.',
 	'config-outdated-sqlite' => "''' Waarschuwing:''' u gebruikt SQLite $1. SQLite is niet beschikbaar omdat de minimaal vereiste versie $2 is.",
 	'config-no-fts3' => "'''Waarschuwing''': SQLite is gecompileerd zonder de module [//sqlite.org/fts3.html FTS3]; er zijn geen zoekfuncties niet beschikbaar.",
-	'config-register-globals' => "'''Waarschuwing: De PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''
+	'config-register-globals' => "'''Waarschuwing: de PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''
 '''Schakel deze uit als dat mogelijk is.'''
 MediaWiki kan ermee werken, maar uw server is dan meer kwetsbaar voor beveiligingslekken.",
 	'config-magic-quotes-runtime' => "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] is actief!'''
@@ -13661,7 +13661,7 @@ Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en st
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en streepjes (-).',
 	'config-connection-error' => '$1.
 
-Controleer de host, gebruikersnaam en wachtwoord hieronder in en probeer het opnieuw.',
+Controleer de host, gebruikersnaam en wachtwoord en probeer het opnieuw.',
 	'config-invalid-schema' => 'Ongeldig schema voor MediaWiki "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-db-sys-create-oracle' => 'Het installatieprogramma biedt alleen de mogelijkheid een nieuwe gebruiker aan te maken met de SYSDBA-gebruiker.',
@@ -13690,14 +13690,14 @@ Voer op een Linux-systeem de volgende opdrachten uit:
 <pre>cd $2
 mkdir $3
 chmod a+w $3</pre>',
-	'config-sqlite-mkdir-error' => 'Er is een fout opgetreden bij het aanmaken van de gegevensmap "$1".
+	'config-sqlite-mkdir-error' => 'Er is een fout opgetreden tijdens het aanmaken van de gegevensmap "$1".
 Controleer de locatie en probeer het opnieuw.',
 	'config-sqlite-dir-unwritable' => 'Het was niet mogelijk in de map "$1" te schrijven.
 Wijzig de rechten zodat de webserver erin kan schrijven en probeer het opnieuw.',
 	'config-sqlite-connection-error' => '$1.
 
 Controleer de map voor gegevens en de databasenaam hieronder en probeer het opnieuw.',
-	'config-sqlite-readonly' => 'Het bestand <code>$1</code> kan niet geschreven worden.',
+	'config-sqlite-readonly' => 'Er kan niet naar bestand <code>$1</code> worden geschreven.',
 	'config-sqlite-cant-create-db' => 'Het was niet mogelijk het databasebestand <code>$1</code> aan te maken.',
 	'config-sqlite-fts3-downgrade' => 'PHP heeft geen ondersteuning voor FTS3.
 De tabellen worden gedowngrade.',
@@ -13827,7 +13827,7 @@ Het is ook lastig inhoud te hergebruiken onder de GFDL.",
 Als u niet wilt dat e-mailen mogelijk is, dan kunt u de instellingen hier uitschakelen.",
 	'config-email-user' => 'E-mail tussen gebruikers inschakelen',
 	'config-email-user-help' => 'Gebruikers toestaan e-mail aan elkaar te verzenden als dit in de voorkeuren is ingesteld.',
-	'config-email-usertalk' => 'Gebruikersoverlegnotificatie inschakelen',
+	'config-email-usertalk' => 'Gebruikersoverlegmeldingen inschakelen',
 	'config-email-usertalk-help' => 'Gebruikers toestaan notificaties te ontvangen bij wijzigingen op de eigen overlegpagina als dit in de voorkeuren is ingesteld',
 	'config-email-watchlist' => 'Volglijstnotificatie inschakelen',
 	'config-email-watchlist-help' => "Gebruikers toestaan notificaties te ontvangen bij wijzigingen van pagina's op hun volglijst als dit in de voorkeuren is ingesteld",
@@ -13862,13 +13862,13 @@ Meer informatie over deze functie en hoe deze in te stellen voor andere wiki\'s 
 	'config-cc-error' => 'De licentiekiezer van Creative Commons heeft geen resultaat opgeleverd.
 Voer de licentie handmatig in.',
 	'config-cc-again' => 'Opnieuw kiezen...',
-	'config-cc-not-chosen' => 'Kies alstublieft de Creative Commons-licentie die u wilt gebruiken en klik op "doorgaan".',
+	'config-cc-not-chosen' => 'Kies alstublieft de Creative Commonslicentie die u wilt gebruiken en klik op "doorgaan".',
 	'config-advanced-settings' => 'Gevorderde instellingen',
 	'config-cache-options' => 'Instellingen voor het cachen van objecten:',
 	'config-cache-help' => 'Het cachen van objecten wordt gebruikt om de snelheid van MediaWiki te verbeteren door vaak gebruikte gegevens te bewaren.
 Middelgrote tot grote websites wordt geadviseerd dit in te schakelen en ook kleine sites merken de voordelen.',
 	'config-cache-none' => 'Niets cachen.
-Er gaat geen functionaliteit verloren, maar dit kan invloed hebben op de snelheid.',
+Er gaat geen functionaliteit verloren, maar dit kan invloed hebben op de prestaties.',
 	'config-cache-accel' => 'Cachen van objecten via PHP (APC, XCache of WinCache)',
 	'config-cache-memcached' => 'Memcached gebruiken (dit vereist aanvullende instellingen)',
 	'config-memcached-servers' => 'Memcachedservers:',
@@ -13890,8 +13890,8 @@ Mogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen n
 Ga alstublieft door naar de volgende pagina.",
 	'config-install-begin' => 'Als u nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
 Als u nog wijzigingen wilt maken, klik dan op "Terug".',
-	'config-install-step-done' => 'Afgerond',
-	'config-install-step-failed' => 'Mislukt',
+	'config-install-step-done' => 'afgerond',
+	'config-install-step-failed' => 'mislukt',
 	'config-install-extensions' => 'Inclusief uitbreidingen',
 	'config-install-database' => 'Database inrichten',
 	'config-install-schema' => 'Het schema wordt aangemaakt',
