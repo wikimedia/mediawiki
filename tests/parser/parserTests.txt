@@ -5694,7 +5694,7 @@ disabled
 |bar
 |}
 !!result
-<table data-parsoid="{&quot;src&quot;:&quot;{|\n|{{echo|foo&lt;/table&gt;}}\n|bar\n|}&quot;}" about="#mwt1" typeof="mw:Object/Template ">
+<table  about="#mwt1" typeof="mw:Object/Template ">
 <tbody><tr><td>foo</td></tr></tbody></table><span about="#mwt1">
 bar</span><span about="#mwt1">
 </span>
@@ -5726,14 +5726,14 @@ disabled
   </tr>
 </table>
 !!result
-<table data-parsoid="{&quot;src&quot;:&quot;&lt;table&gt;\n  &lt;tr&gt;\n    &lt;td&gt;\n    &lt;table&gt;\n      &lt;tr&gt;\n        &lt;td&gt;1. {{echo|foo &lt;/table&gt;}}&lt;/td&gt;\n        &lt;td&gt; bar &lt;/td&gt;\n        &lt;td&gt;2. {{echo|baz &lt;/table&gt;}}&lt;/td&gt;\n      &lt;/tr&gt;\n      &lt;tr&gt;\n        &lt;td&gt;abc&lt;/td&gt;\n      &lt;/tr&gt;\n    &lt;/table&gt;\n    &lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;td&gt;xyz&lt;/td&gt;\n  &lt;/tr&gt;\n&lt;/table&gt;&quot;}" about="#mwt1" typeof="mw:Object/Template">
-  <tbody><tr data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
-    <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
-    <table data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
-      <tbody><tr data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
-        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">1. foo </td></tr></tbody></table></td>
-        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}"> bar </td>
-        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">2. baz </td></tr></tbody></table><span about="#mwt1">
+<table  about="#mwt1" typeof="mw:Object/Template">
+  <tbody><tr >
+    <td >
+    <table >
+      <tbody><tr >
+        <td >1. foo </td></tr></tbody></table></td>
+        <td > bar </td>
+        <td >2. baz </td></tr></tbody></table><span about="#mwt1">
       </span><span about="#mwt1">
       
         abc</span><span about="#mwt1">
@@ -7505,6 +7505,10 @@ Namespaced link must have a title (bad fragment version)
 !!end
 
 
+###
+### HTML tags and HTML attributes
+###
+
 !! test
 div with no attributes
 !! input
@@ -7561,6 +7565,18 @@ disabled
 !! result
 <div class="">HTML rocks</div>
 
+!! end
+
+# The PHP parser escapes the opening brace to &#123; for some reason, so
+# disabled this test for it.
+!! test
+div with braces in attribute value
+!! options
+disabled
+!! input
+<div title="{}">Foo</div>
+!! result
+<div title="{}">Foo</div>
 !! end
 
 # This it very inconsistent in the PHP parser: it returns 
@@ -12956,7 +12972,7 @@ disabled
 !! input
 [[Foo|<nowiki>Foo''boo''</nowiki>]]
 !! result
-<a rel="mw:WikiLink" href="Foo" data-parsoid="{&quot;tsr&quot;:[0,7],&quot;contentPos&quot;:[5,5],&quot;src&quot;:&quot;[[Foo]]&quot;,&quot;bsp&quot;:[0,7],&quot;stx&quot;:&quot;simple&quot;}">Foo''boo''</a>
+<a rel="mw:WikiLink" href="Foo">Foo''boo''</a>
 !! end
 
 !! test
