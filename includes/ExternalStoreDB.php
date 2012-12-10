@@ -137,11 +137,11 @@ class ExternalStoreDB {
 
 		$cacheID = ( $itemID === false ) ? "$cluster/$id" : "$cluster/$id/";
 		if( isset( $externalBlobCache[$cacheID] ) ) {
-			wfDebug( "ExternalStoreDB::fetchBlob cache hit on $cacheID\n" );
+			wfDebugLog( 'ExternalStoreDB-cache', "ExternalStoreDB::fetchBlob cache hit on $cacheID\n" );
 			return $externalBlobCache[$cacheID];
 		}
 
-		wfDebug( "ExternalStoreDB::fetchBlob cache miss on $cacheID\n" );
+		wfDebugLog( 'ExternalStoreDB-cache', "ExternalStoreDB::fetchBlob cache miss on $cacheID\n" );
 
 		$dbr =& $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ), 'blob_text', array( 'blob_id' => $id ), __METHOD__ );
