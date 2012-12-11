@@ -52,7 +52,7 @@ class RefreshLinksJob extends Job {
 		# This way, we get the correct page_latest for templates or files that just changed
 		# milliseconds ago, having triggered this job to begin with.
 		if ( isset( $this->params['masterPos'] ) ) {
-			wfGetLB()->waitFor( $this->params['masterPos'] );
+			#wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
 		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );

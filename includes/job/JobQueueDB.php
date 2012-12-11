@@ -198,6 +198,7 @@ class JobQueueDB extends JobQueue {
 	 * @return Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
+		$dbr  = $this->getSlaveDB();
 		$dbw  = $this->getMasterDB();
 		$dir  = $gte ? 'ASC' : 'DESC';
 		$ineq = $gte ? '>=' : '<=';
@@ -208,7 +209,7 @@ class JobQueueDB extends JobQueue {
 		// not replication safe. Due to http://bugs.mysql.com/bug.php?id=6980, subqueries cannot
 		// be used here with MySQL.
 		do {
-			$row = $dbw->selectRow( 'job', '*', // find a random job
+			$row = $dbr->selectRow( 'job', '*', // find a random job
 				array(
 					'job_cmd'   => $this->type,
 					'job_token' => '',
