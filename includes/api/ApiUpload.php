@@ -211,7 +211,8 @@ class ApiUpload extends ApiBase {
 					}
 					UploadBase::setSessionStatus(
 						$this->mParams['filekey'],
-						array( 'result' => 'Poll', 'status' => Status::newGood() )
+						array( 'result' => 'Poll',
+							'stage' => 'queued', 'status' => Status::newGood() )
 					);
 					$retVal = 1;
 					$cmd = wfShellWikiCmd(

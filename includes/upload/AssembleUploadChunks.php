@@ -47,6 +47,11 @@ class AssembleUploadChunks extends Maintenance {
 				throw new MWException( "No user with ID " . $this->getOption( 'userid' ) . "." );
 			}
 
+			UploadBase::setSessionStatus(
+				$this->getOption( 'filekey' ),
+				array( 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() )
+			);
+
 			$upload = new UploadFromChunks( $user );
 			$upload->continueChunks(
 				$this->getOption( 'filename' ),
@@ -60,7 +65,7 @@ class AssembleUploadChunks extends Maintenance {
 			if ( !$status->isGood() ) {
 				UploadBase::setSessionStatus(
 					$this->getOption( 'filekey' ),
-					array( 'result' => 'Failure', 'status' => $status )
+					array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
 				);
 				session_write_close();
 				$this->error( $status->getWikiText() . "\n", 1 ); // die
@@ -84,6 +89,7 @@ class AssembleUploadChunks extends Maintenance {
 				$this->getOption( 'filekey' ),
 				array(
 					'result'    => 'Success',
+					'stage'     => 'assembling',
 					'filekey'   => $newFileKey,
 					'imageinfo' => $imageInfo,
 					'status'    => Status::newGood()
@@ -94,6 +100,7 @@ class AssembleUploadChunks extends Maintenance {
 				$this->getOption( 'filekey' ),
 				array(
 					'result' => 'Failure',
+					'stage'  => 'assembling',
 					'status' => Status::newFatal( 'api-error-stashfailed' )
 				)
 			);

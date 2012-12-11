@@ -1519,6 +1519,10 @@ abstract class UploadBase {
 	 * @return void
 	 */
 	public static function setSessionStatus( $statusKey, $value ) {
-		$_SESSION[self::SESSION_STATUS_KEY][$statusKey] = $value;
+		if ( $value === false ) {
+			unset( $_SESSION[self::SESSION_STATUS_KEY][$statusKey] );
+		} else {
+			$_SESSION[self::SESSION_STATUS_KEY][$statusKey] = $value;
+		}
 	}
 }
