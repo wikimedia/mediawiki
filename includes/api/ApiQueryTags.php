@@ -162,7 +162,7 @@ class ApiQueryTags extends ApiQueryBase {
 			'prop' => array(
 				'Which properties to get',
 				' name         - Adds name of tag',
-				' displayname  - Adds system messsage for the tag',
+				' displayname  - Adds system message for the tag',
 				' description  - Adds description of the tag',
 				' hitcount     - Adds the amount of revisions that have this tag',
 			),
