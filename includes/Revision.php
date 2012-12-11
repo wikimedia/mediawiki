@@ -1148,9 +1148,13 @@ class Revision implements IDBAccessObject {
 	  *
 	  * @param $row Object: the text data
 	  * @param $prefix String: table prefix (default 'old_')
+	  * @param $wiki String|false: the name of the wiki to load the revision text from
+	  *         (same as the the wiki $row was loaded from) or false to indicate the local
+	  *         wiki (this is the default). Otherwise, it must be a symbolic wiki database
+	  *         identifier as understood by the LoadBalancer class.
 	  * @return String: text the text requested or false on failure
 	  */
-	public static function getRevisionText( $row, $prefix = 'old_' ) {
+	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
 		wfProfileIn( __METHOD__ );
 
 		# Get data
@@ -1178,7 +1182,7 @@ class Revision implements IDBAccessObject {
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
-			$text = ExternalStore::fetchFromURL( $url );
+			$text = ExternalStore::fetchFromURL( $url, array( 'wiki' => $wiki ) );
 		}
 
 		// If the text was fetched without an error, convert it
