@@ -49,8 +49,8 @@ class JobQueueDB extends JobQueue {
 			return false;
 		}
 
-		$found = $this->getSlaveDB()->selectField(
-			'job', '1', array( 'job_cmd' => $this->type ), __METHOD__
+		$found = $this->getSlaveDB()->selectField( // unclaimed job
+			'job', '1', array( 'job_cmd' => $this->type, 'job_token' => '' ), __METHOD__
 		);
 
 		$wgMemc->add( $key, $found ? 'false' : 'true', self::CACHE_TTL );
