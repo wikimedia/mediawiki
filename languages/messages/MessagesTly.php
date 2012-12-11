@@ -813,7 +813,7 @@ $messages = array(
 'blanknamespace' => '(Әсос)',
 
 # Contributions
-'contributions' => 'Иштирокәкә гәнҹ',
+'contributions' => '{{GENDER:$1|Иштирокәкә}} гәнҹ',
 'contributions-title' => 'Иштирокәкә гәнҹ $1',
 'mycontris' => 'Гәнҹ',
 'contribsub2' => 'Гәнҹ $1 ($2)',

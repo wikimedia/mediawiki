@@ -631,7 +631,7 @@ Cơ sở dữ liệu báo lỗi “$3: $4”',
 'enterlockreason' => 'Nêu lý do khóa, cùng với thời hạn khóa',
 'readonlytext' => 'Cơ sở dữ liệu hiện đã bị khóa không nhận trang mới và các điều chỉnh khác, có lẽ để bảo trì cơ sở dữ liệu định kỳ, một thời gian ngắn nữa nó sẽ trở lại bình thường.
 
-Bảo quản viên khóa nó đã đưa ra lời giải thích sau: $1',
+Quản lý viên khóa nó đã đưa ra lời giải thích sau: $1',
 'missing-article' => 'Cơ sở dữ liệu không tìm thấy văn bản của trang lẽ ra phải có, trang      Normal   0               false   false   false      EN-US   X-NONE   X-NONE                                                     MicrosoftInternetExplorer4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     “$1” $2.
 
 Điều này thường xảy ra do nhấn vào liên kết khác biệt phiên bản đã quá lâu hoặc liên kết lịch sử của một trang đã bị xóa.
@@ -1017,7 +1017,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 Không thể lưu trang.",
 'readonlywarning' => "'''CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.'''
 
-Bảo quản viên khi khóa dữ liệu đã đưa ra lý do: $1",
+Quản lý viên khi khóa dữ liệu đã đưa ra lý do: $1",
 'protectedpagewarning' => "'''Cảnh báo: Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể sửa được.'''
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'semiprotectedpagewarning' => "'''Lưu ý:''' Trang này đã bị khóa nên chỉ có các thành viên có tài khoản mới có thể sửa đổi được.
@@ -1430,9 +1430,9 @@ Không có thể lùi lại tác động này.',
 'prefs-emailconfirm-label' => 'Xác nhận thư điện tử:',
 'prefs-textboxsize' => 'Kích cỡ hộp sửa đổi',
 'youremail' => 'Thư điện tử:',
-'username' => 'Tên người dùng:',
-'uid' => 'Số thứ tự thành viên:',
-'prefs-memberingroups' => 'Thành viên của {{PLURAL:$1|nhóm|nhóm}}:',
+'username' => '{{GENDER:$1}}Tên người dùng:',
+'uid' => '{{GENDER:$1}}Số thứ tự thành viên:',
+'prefs-memberingroups' => '{{GENDER:$1}}Thành viên của {{PLURAL:$1|nhóm|các nhóm}}:',
 'prefs-registration' => 'Lúc mở tài khoản:',
 'yourrealname' => 'Tên thật:',
 'yourlanguage' => 'Ngôn ngữ:',

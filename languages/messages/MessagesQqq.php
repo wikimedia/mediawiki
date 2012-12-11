@@ -59,6 +59,7 @@
  * @author Kizito
  * @author Klenje
  * @author Klutzy
+ * @author Krenair
  * @author Krinkle
  * @author Ktkaushik
  * @author Kwj2772
@@ -1666,7 +1667,7 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 Parameters:
 * $1 - the number of items in the list following the message, for PLURAL.
 * $2 - the user name, for GENDER.',
-'userrights-groupsmember-auto' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
+'userrights-groupsmember-auto' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
 "Implicit" is for groups that the user was automatically added to (such as "autoconfirmed"); cf. {{msg-mw|userrights-groupsmember}}
 
 Parameters
@@ -1686,11 +1687,11 @@ Parameters:
 See http://meta.wikimedia.org/w/index.php?title=Special%3ALog&type=rights for a usage of local databases: username@barwiki',
 'userrights-nologin' => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",
 'userrights-notallowed' => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
-'userrights-changeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is the head of a column of group assignements.
+'userrights-changeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignements.
 
 Parameters:
 * $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language can do without.',
-'userrights-unchangeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is the head of a column of group assignements.
+'userrights-unchangeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignements.
 
 Parameters:
 * $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.',
