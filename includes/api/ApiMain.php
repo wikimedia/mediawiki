@@ -375,7 +375,7 @@ class ApiMain extends ApiBase {
 			wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
 
 			// Log it
-			if ( !( $e instanceof UsageException ) ) {
+			if ( $e instanceof MWException && !( $e instanceof UsageException ) ) {
 				global $wgLogExceptionBacktrace;
 				if ( $wgLogExceptionBacktrace ) {
 					wfDebugLog( 'exception', $e->getLogMessage() . "\n" . $e->getTraceAsString() . "\n" );
