@@ -520,8 +520,15 @@ class LocalisationCache {
 	 */
 	public function getPluralRules( $code ) {
 		if ( $this->pluralRules === null ) {
-			$cldrPlural = __DIR__ . "/../languages/data/plurals.xml";
-			$mwPlural = __DIR__ . "/../languages/data/plurals-mediawiki.xml";
+
+			# FIXME: we should avoid using relative paths below
+			$cldrPlural = __DIR__ . "/../../languages/data/plurals.xml";
+			$mwPlural = __DIR__ . "/../../languages/data/plurals-mediawiki.xml";
+
+			if( !file_exists( $cldrPlural ) ) {
+				throw new MWException( "Could not find 'languages/data/plurals.xml'" );
+			}
+
 			// Load CLDR plural rules
 			$this->loadPluralFile( $cldrPlural );
 			if ( file_exists( $mwPlural ) ) {
