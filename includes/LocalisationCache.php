@@ -1031,7 +1031,6 @@ class LCStore_DB implements LCStore {
 			if ( $this->dbw->wasReadOnlyError() ) {
 				$this->readOnly = true;
 				$this->dbw->rollback( __METHOD__ );
-				$this->dbw->ignoreErrors( false );
 				return;
 			} else {
 				throw $e;

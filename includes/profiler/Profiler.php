@@ -524,52 +524,50 @@ class Profiler {
 			return;
 		}
 
-		$errorState = $dbw->ignoreErrors( true );
-
 		if( $wgProfilePerHost ){
 			$pfhost = wfHostname();
 		} else {
 			$pfhost = '';
 		}
 
-		$this->collateData();
+		try {
+			$this->collateData();
 
-		foreach( $this->mCollated as $name => $elapsed ){
-			$eventCount = $this->mCalls[$name];
-			$timeSum = (float) ($elapsed * 1000);
-			$memorySum = (float)$this->mMemory[$name];
-			$name = substr($name, 0, 255);
+			foreach( $this->mCollated as $name => $elapsed ){
+				$eventCount = $this->mCalls[$name];
+				$timeSum = (float) ($elapsed * 1000);
+				$memorySum = (float)$this->mMemory[$name];
+				$name = substr($name, 0, 255);
 
-			// Kludge
-			$timeSum = ($timeSum >= 0) ? $timeSum : 0;
-			$memorySum = ($memorySum >= 0) ? $memorySum : 0;
+				// Kludge
+				$timeSum = ($timeSum >= 0) ? $timeSum : 0;
+				$memorySum = ($memorySum >= 0) ? $memorySum : 0;
 
-			$dbw->update( 'profiling',
-				array(
-					"pf_count=pf_count+{$eventCount}",
-					"pf_time=pf_time+{$timeSum}",
-					"pf_memory=pf_memory+{$memorySum}",
-				),
-				array(
-					'pf_name' => $name,
-					'pf_server' => $pfhost,
-				),
-				__METHOD__ );
+				$dbw->update( 'profiling',
+					array(
+						"pf_count=pf_count+{$eventCount}",
+						"pf_time=pf_time+{$timeSum}",
+						"pf_memory=pf_memory+{$memorySum}",
+					),
+					array(
+						'pf_name' => $name,
+						'pf_server' => $pfhost,
+					),
+					__METHOD__ );
 
-			$rc = $dbw->affectedRows();
-			if ( $rc == 0 ) {
-				$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
-					'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
-					__METHOD__, array ('IGNORE'));
+				$rc = $dbw->affectedRows();
+				if ( $rc == 0 ) {
+					$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
+						'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
+						__METHOD__, array ('IGNORE'));
+				}
+				// When we upgrade to mysql 4.1, the insert+update
+				// can be merged into just a insert with this construct added:
+				//     "ON DUPLICATE KEY UPDATE ".
+				//     "pf_count=pf_count + VALUES(pf_count), ".
+				//     "pf_time=pf_time + VALUES(pf_time)";
 			}
-			// When we upgrade to mysql 4.1, the insert+update
-			// can be merged into just a insert with this construct added:
-			//     "ON DUPLICATE KEY UPDATE ".
-			//     "pf_count=pf_count + VALUES(pf_count), ".
-			//     "pf_time=pf_time + VALUES(pf_time)";
-		}
-
-		$dbw->ignoreErrors( $errorState );
+		} catch ( DBError $e ) {}
 	}
 
 	/**
