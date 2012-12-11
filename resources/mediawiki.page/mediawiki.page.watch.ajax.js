@@ -165,7 +165,7 @@
 							title: cleanTitle
 						}, cleanTitle
 					);
-					msg = mw.messsage( 'watcherrortext', link );
+					msg = mw.message( 'watcherrortext', link );
 
 					// Report to user about the error
 					mw.notify( msg, { tag: 'watch-self' } );
