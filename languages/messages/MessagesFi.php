@@ -3085,6 +3085,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'markedaspatrollederror' => 'Muutoksen merkitseminen tarkastetuksi epäonnistui.',
 'markedaspatrollederrortext' => 'Tarkastetuksi merkittävää versiota ei ole määritelty.',
 'markedaspatrollederror-noautopatrol' => 'Et voi merkitä omia muutoksiasi tarkastetuiksi.',
+'markedaspatrollednotify' => 'Tämä muutos sivuun $1 on merkitty tarkastetuksi.',
+'markedaspatrollederrornotify' => 'Tarkastetuksi merkitseminen epäonnistui.',
 
 # Patrol log
 'patrol-log-page' => 'Muutostentarkastusloki',

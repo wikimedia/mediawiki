@@ -33,6 +33,7 @@
  * @author Mikołka
  * @author Nux
  * @author Odder
+ * @author Odie2
  * @author Olgak85
  * @author Przemub
  * @author Reedy
@@ -1447,9 +1448,9 @@ Tej operacji nie można później cofnąć.',
 'prefs-emailconfirm-label' => 'Potwierdzenie adresu e‐mail',
 'prefs-textboxsize' => 'Rozmiar okna edycji',
 'youremail' => 'Twój adres e‐mail',
-'username' => 'Nazwa użytkownika',
-'uid' => 'ID użytkownika',
-'prefs-memberingroups' => 'Należy do {{PLURAL:$1|grupy|grup}}',
+'username' => '{{GENDER:$1|Nazwa użytkownika}}:',
+'uid' => '{{GENDER:$1|Identyfikator użytkownika}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Członek}} {{PLURAL:$1|grupy|grup}}:',
 'prefs-registration' => 'Data rejestracji',
 'yourrealname' => 'Imię i nazwisko',
 'yourlanguage' => 'Język interfejsu',
@@ -2358,6 +2359,16 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_mailer' => 'Powiadomienie z {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'enotif_reset' => 'Zaznacz wszystkie strony jako odwiedzone',
 'enotif_impersonal_salutation' => 'użytkownik {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'enotif_subject_deleted' => 'Strona projektu {{SITENAME}} o nazwie $1 została usunięta przez {{gender:$2|$2}}',
+'enotif_subject_created' => 'Strona projektu {{SITENAME}} o nazwie $1 została stworzona przez {{gender:$2|$2}}',
+'enotif_subject_moved' => 'Strona projektu {{SITENAME}} o nazwie $1 została przeniesiona przez {{gender:$2|$2}}',
+'enotif_subject_restored' => 'Strona projektu {{SITENAME}} o nazwie $1 została przywrócona przez {{gender:$2|$2}}',
+'enotif_subject_changed' => 'Strona projektu {{SITENAME}} o nazwie $1 została zmieniona przez {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Strona projektu {{SITENAME}} o nazwie $1 została usunięta $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
+'enotif_body_intro_created' => 'Strona projektu {{SITENAME}} o nazwie $1 została stworzona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
+'enotif_body_intro_moved' => 'Strona projektu {{SITENAME}} o nazwie $1 została przeniesiona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
+'enotif_body_intro_restored' => 'Strona projektu {{SITENAME}} o nazwie $1 została przywrócona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
+'enotif_body_intro_changed' => 'Strona projektu {{SITENAME}} o nazwie $1 została zmieniona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
 'enotif_lastvisited' => 'Zobacz na stronie $1 wszystkie zmiany od Twojej ostatniej wizyty.',
 'enotif_lastdiff' => 'Zobacz na stronie $1 tę zmianę.',
 'enotif_anon_editor' => 'użytkownik anonimowy $1',
@@ -2570,7 +2581,7 @@ $1',
 'blanknamespace' => '(Główna)',
 
 # Contributions
-'contributions' => 'Wkład użytkownika',
+'contributions' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}}',
 'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
 'mycontris' => 'Edycje',
 'contribsub2' => 'Dla użytkownika $1 ($2)',
@@ -4114,4 +4125,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
+# Unknown messages
+'svg-long-error' => 'Nieprawidłowy plik SVG:$1',
 );

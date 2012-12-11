@@ -517,7 +517,7 @@ $messages = array(
 
 'underline-always' => 'دائما',
 'underline-never' => 'أبدا',
-'underline-default' => 'تبعا لإعدادات المتصفح',
+'underline-default' => 'تبعا لإعدادات الواجهة أو المتصفح',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'نمط خط منطقة التحرير:',
@@ -603,7 +603,7 @@ $messages = array(
 'cancel' => 'إلغاء',
 'moredotdotdot' => 'المزيد...',
 'mypage' => 'صفحتي',
-'mytalk' => 'نقاشي',
+'mytalk' => 'نقاش',
 'anontalk' => 'النقاش لعنوان الأيبي هذا',
 'navigation' => 'إبحار',
 'and' => '&#32;و',
@@ -764,7 +764,7 @@ $1',
 'sort-ascending' => 'ترتيب تصاعدي',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'صفحة',
+'nstab-main' => 'الصفحة',
 'nstab-user' => 'صفحة {{GENDER:{{BASEPAGENAME}}|مستخدم|مستخدمة}}',
 'nstab-media' => 'صفحة وسيط',
 'nstab-special' => 'صفحة خاصة',
