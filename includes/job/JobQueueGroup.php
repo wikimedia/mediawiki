@@ -178,4 +178,17 @@ class JobQueueGroup {
 		}
 		return $types;
 	}
+
+	/**
+	 * Redistribute the keys after internal node changes
+	 *
+	 * @return integer Number of jobs moved
+	 */
+	public function redistribute() {
+		$count = 0;
+		foreach ( $this->getQueueTypes() as $type ) {
+			$count += $this->get( $type )->redistribute();
+		}
+		return $count;
+	}
 }

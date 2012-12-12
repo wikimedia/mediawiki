@@ -49,19 +49,19 @@ abstract class JobQueue {
 	/**
 	 * Get a job queue object of the specified type.
 	 * $params includes:
-	 *   class    : What job class to use (determines job type)
-	 *   wiki     : wiki ID of the wiki the jobs are for (defaults to current wiki)
-	 *   type     : The name of the job types this queue handles
-	 *   order    : Order that pop() selects jobs, one of "fifo", "timestamp" or "random".
-	 *              If "fifo" is used, the queue will effectively be FIFO. Note that
-	 *              job completion will not appear to be exactly FIFO if there are multiple
-	 *              job runners since jobs can take different times to finish once popped.
-	 *              If "timestamp" is used, the queue will at least be loosely ordered
-	 *              by timestamp, allowing for some jobs to be popped off out of order.
-	 *              If "random" is used, pop() will pick jobs in random order. This might be
-	 *              useful for improving concurrency depending on the queue storage medium.
-	 *   claimTTL : If supported, the queue will recycle jobs that have been popped
-	 *              but not acknowledged as completed after this many seconds.
+	 *   - class    : What job class to use (determines job type)
+	 *   - wiki     : wiki ID of the wiki the jobs are for (defaults to current wiki)
+	 *   - type     : The name of the job types this queue handles
+	 *   - order    : Order that pop() selects jobs, one of "fifo", "timestamp" or "random".
+	 *                If "fifo" is used, the queue will effectively be FIFO. Note that
+	 *                job completion will not appear to be exactly FIFO if there are multiple
+	 *                job runners since jobs can take different times to finish once popped.
+	 *                If "timestamp" is used, the queue will at least be loosely ordered
+	 *                by timestamp, allowing for some jobs to be popped off out of order.
+	 *                If "random" is used, pop() will pick jobs in random order. This might be
+	 *                useful for improving concurrency depending on the queue storage medium.
+	 *   - claimTTL : If supported, the queue will recycle jobs that have been popped
+	 *                but not acknowledged as completed after this many seconds.
 	 *
 	 * @param $params array
 	 * @return JobQueue
@@ -243,4 +243,24 @@ abstract class JobQueue {
 	 * @return void
 	 */
 	protected function doWaitForBackups() {}
+
+	/**
+	 * Redistribute the keys after internal node changes
+	 *
+	 * @return integer Number of jobs moved
+	 */
+	final public function redistribute() {
+		wfProfileIn( __METHOD__ );
+		$count = $this->doRedistribute();
+		wfProfileOut( __METHOD__ );
+		return $count;
+	}
+
+	/**
+	 * @see JobQueue::redistribute()
+	 * @return integer
+	 */
+	protected function doRedistribute() {
+		return true;
+	}
 }
