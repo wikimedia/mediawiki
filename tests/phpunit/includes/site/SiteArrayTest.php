@@ -65,4 +65,28 @@ class SiteArrayTest extends GenericArrayObjectTest {
 		return 'SiteArray';
 	}
 
+	/**
+	 * @dataProvider instanceProvider
+	 *
+	 * @since 1.21
+	 *
+	 * @param SiteArray $list
+	 */
+	public function testSerializationMore( SiteArray $list ) {
+		$serialization = serialize( $list );
+		/**
+		 * @var SiteArray $copy
+		 */
+		$copy = unserialize( $serialization );
+
+		$this->assertArrayEquals( $list->getGlobalIdentifiers(), $copy->getGlobalIdentifiers() );
+
+		/**
+		 * @var Site $site
+		 */
+		foreach ( $list as $site ) {
+			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
+		}
+	}
+
 }

@@ -241,4 +241,24 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 		} );
 	}
 
+	/**
+	 * @dataProvider instanceProvider
+	 *
+	 * @since 1.21
+	 *
+	 * @param GenericArrayObject $list
+	 */
+	public function testSerialization( GenericArrayObject $list ) {
+		$serialization = serialize( $list );
+		$copy = unserialize( $serialization );
+
+		$this->assertEquals( $serialization, serialize( $copy ) );
+		$this->assertEquals( count( $list ), count( $copy ) );
+
+		$list = $list->getArrayCopy();
+		$copy = $copy->getArrayCopy();
+
+		$this->assertArrayEquals( $list, $copy, true, true );
+	}
+
 }
