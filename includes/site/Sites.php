@@ -184,11 +184,9 @@ class Sites {
 	 * @return Site|false
 	 */
 	public function getSite( $globalId, $source = 'cache' ) {
-		if ( $source === 'cache' && $this->sites !== false ) {
-			return $this->sites->hasSite( $globalId ) ? $this->sites->getSite( $globalId ) : false;
-		}
+		$sites = $this->getSites( $source );
 
-		return SitesTable::singleton()->selectRow( null, array( 'global_key' => $globalId ) );
+		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : false;
 	}
 
 }
