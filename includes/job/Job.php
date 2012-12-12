@@ -39,6 +39,9 @@ abstract class Job {
 		$removeDuplicates,
 		$error;
 
+	/** @var Array Additional queue metadata */
+	public $metadata = array();
+
 	/*-------------------------------------------------------------------------
 	 * Abstract functions
 	 *------------------------------------------------------------------------*/
