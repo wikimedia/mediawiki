@@ -282,20 +282,14 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Get a Redis object with a connection suitable for fetching the specified key
+	 * Get a Redis object with a connection suitable for fetching the specified key.
+	 * Outside callers can use this function to build on top of the functionality here.
+	 *
+	 * @param $key string
+	 * @return Array (server name, Redis object)
 	 */
-	protected function getConnection( $key ) {
-		if ( count( $this->servers ) === 1 ) {
-			$candidates = $this->servers;
-		} else {
-			$candidates = $this->servers;
-			ArrayUtils::consistentHashSort( $candidates, $key, '/' );
-			if ( !$this->automaticFailover ) {
-				$candidates = array_slice( $candidates, 0, 1 );
-			}
-		}
-
-		foreach ( $candidates as $server ) {
+	public function getConnection( $key ) {
+		foreach ( $this->getServerCandidatesForKey( $key ) as $server ) {
 			$conn = $this->getConnectionToServer( $server );
 			if ( $conn ) {
 				return array( $server, $conn );
@@ -307,12 +301,13 @@ class RedisBagOStuff extends BagOStuff {
 	/**
 	 * Get a connection to the server with the specified name. Connections
 	 * are cached, and failures are persistent to avoid multiple timeouts.
+	 * Outside callers can use this function to build on top of the functionality here.
 	 *
 	 * @param $server
 	 * @throws MWException
 	 * @return Redis object, or false on failure
 	 */
-	protected function getConnectionToServer( $server ) {
+	public function getConnectionToServer( $server ) {
 		if ( isset( $this->deadServers[$server] ) ) {
 			$now = time();
 			if ( $now > $this->deadServers[$server] ) {
@@ -380,6 +375,25 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Get the prioritized list of which servers should handle a given key.
+	 *
+	 * @param $key string
+	 * @return Array
+	 */
+	protected function getServerCandidatesForKey( $key ) {
+		if ( count( $this->servers ) === 1 ) {
+			$candidates = $this->servers;
+		} else {
+			$candidates = $this->servers;
+			ArrayUtils::consistentHashSort( $candidates, $key, '/' );
+			if ( !$this->automaticFailover ) {
+				$candidates = array_slice( $candidates, 0, 1 );
+			}
+		}
+		return $candidates;
+	}
+
+	/**
 	 * Log a fatal error
 	 */
 	protected function logError( $msg ) {
@@ -391,8 +405,14 @@ class RedisBagOStuff extends BagOStuff {
 	 * and protocol errors. Sometimes it also closes the connection, sometimes
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
+	 *
+	 * Outside callers can use this function to build on top of the functionality here.
+	 *
+	 * @param $server string
+	 * @param $e RedisException
+	 * @return void
 	 */
-	protected function handleException( $server, $e ) {
+	public function handleException( $server, RedisException $e ) {
 		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
 		unset( $this->conns[$server] );
 	}
