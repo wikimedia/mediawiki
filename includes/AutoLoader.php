@@ -649,6 +649,7 @@ $wgAutoloadLocalClasses = array(
 	'JobQueue' => 'includes/job/JobQueue.php',
 	'JobQueueDB' => 'includes/job/JobQueueDB.php',
 	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
+	'JobQueueRedis' => 'includes/job/JobQueueRedis.php',
 
 	# includes/job/jobs
 	'DoubleRedirectJob' => 'includes/job/jobs/DoubleRedirectJob.php',
