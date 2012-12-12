@@ -1044,8 +1044,20 @@ Chés eutes cans is s'ront muchés pèr défeut.
 
 # Special:SpecialPages
 'specialpages' => 'Paches éspéchiales',
+'specialpages-note' => '----
+* Paches éspéchiales conformes.
+* <span class="mw-specialpagerestricted">Paches éspéchiales réstrintes.</span>
+* <span class="mw-specialpagecached">Paches éspéchiales seulemint in muche (pétète des viuseries).</span>',
+'specialpages-group-maintenance' => "Rapports d'maintenanche",
+'specialpages-group-other' => 'Eutes paches éspéchiales',
+'specialpages-group-changes' => 'Darins canjemints pi gazètes',
+'specialpages-group-media' => "Rapports pi imports d'chés fichiés médias",
 'specialpages-group-users' => 'Uzeus pi leus droués',
+'specialpages-group-highuse' => 'Paches bougrémint implouéyées',
 'specialpages-group-pages' => "Lisses d'chés paches",
+'specialpages-group-pagetools' => 'Otis pour chés paches',
+'specialpages-group-wiki' => 'Donnèes pi otis dech Wiki',
+'specialpages-group-redirects' => 'Paches éspéchiales ardirigées',
 
 # Special:BlankPage
 'blankpage' => 'Blanke pache',

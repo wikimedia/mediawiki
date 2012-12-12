@@ -283,7 +283,7 @@ $messages = array(
 'cancel' => 'Lassa star',
 'moredotdotdot' => 'Altro...',
 'mypage' => 'La me pagina',
-'mytalk' => 'le me discussion',
+'mytalk' => 'Discussion',
 'anontalk' => 'Discusion par sto IP',
 'navigation' => 'Navigasion',
 'and' => '&#32;e',
@@ -315,6 +315,7 @@ $messages = array(
 'namespaces' => 'Namespace',
 'variants' => 'Varianse',
 
+'navigation-heading' => 'Menù de navigassion',
 'errorpagetitle' => 'Erore',
 'returnto' => 'Torna a $1.',
 'tagline' => 'Da {{SITENAME}}',
@@ -411,6 +412,10 @@ $1',
 'youhavenewmessages' => 'Te ghè $1 ($2).',
 'newmessageslink' => 'dei mesagi novi',
 'newmessagesdifflink' => 'ultimo canbiamento',
+'youhavenewmessagesfromusers' => "Te ghè $1 da {{PLURAL:$3|n'altro utente|$3 utenti}} ($2).",
+'youhavenewmessagesmanyusers' => 'Te ghè $1 da vari utenti ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un messagio novo|dei messagi novi}}',
+'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|ultimo canbiamento|ultimi canbiamenti}}',
 'youhavenewmessagesmulti' => 'Te ghè messagi novi su $1',
 'editsection' => 'canbia',
 'editold' => 'canbia',
@@ -537,6 +542,7 @@ $2',
 L\'aministradore che ło ga blocà ga fornìo sta spiegasion: "$3".',
 'invalidtitle-knownnamespace' => 'Titoło no vałido co namespace "$2" e testo "$3"',
 'invalidtitle-unknownnamespace' => 'Titoło no vałido co namespace sconosùo "$1" e testo "$2"',
+'exception-nologin' => 'Acesso mia efetuà',
 
 # Virus scanner
 'virus-badscanner' => 'Erore de configurasion: antivirus sconossuo: "$1"',
@@ -548,6 +554,7 @@ L\'aministradore che ło ga blocà ga fornìo sta spiegasion: "$3".',
 
 Te poli 'ndar vanti doparando {{SITENAME}} come utente anonimo o se nò <span class='plainlinks'>[$1 entrar da novo]</span>, col stesso nome utente o uno difarente.
 Ocio che serte pagine podarìa èssar che ti 'e vedi come se te fussi 'ncora drento col to nome de prima, fin che no te neti la ''cache'' del to browser.",
+'welcomeuser' => 'Benvegnù, $1!',
 'yourname' => 'Nome utente:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'De novo la password:',
@@ -791,8 +798,8 @@ Se te sì un utente anonimo e te ghè ricevù dei messagi che te secondo ti i ge
 Te pol [[Special:Search/{{PAGENAME}}|sercar el titolo de sta pagina]] in altre pagine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina] o se nò [{{fullurl:{{FULLPAGENAME}}|action=edit}} canbiar la pagina]</span>.',
 'noarticletext-nopermission' => 'In sto momento no ghe xe nissun testo su sta pagina.
-Te pol [[Special:Search/{{PAGENAME}}|sercar el titolo de sta pagina]] in altre pagine,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina]</span>.',
+Te pol [[Special:Search/{{PAGENAME}}|sercar sto titolo de pagina]] in altre pagine,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina]</span>, ma no te ghè el parmesso de crear sta pagina.',
 'userpage-userdoesnotexist' => 'L\'account "<nowiki>$1</nowiki>" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
 'userpage-userdoesnotexist-view' => 'L\'utensa "$1" no la xe gnancora registrà.',
 'blocked-notice-logextract' => "Sto utente xè atualmente blocà.
@@ -889,6 +896,12 @@ Pararìa che la sìpia stà scancelà.',
 'edit-already-exists' => 'No se pol crear na pagina nova.
 La esiste de zà.',
 'defaultmessagetext' => 'Testo predefinìo',
+
+# Content models
+'content-model-wikitext' => 'wikitesto',
+'content-model-text' => 'testo normal',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
@@ -1166,7 +1179,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 
 # Preferences page
 'preferences' => 'Prefarense',
-'mypreferences' => 'prefarense',
+'mypreferences' => 'Prefarense',
 'prefs-edits' => 'Nùmaro de modifiche:',
 'prefsnologin' => 'No te ghè eseguìo el login',
 'prefsnologintext' => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login]</span> par poder personalixare le to preferense.',
@@ -1922,6 +1935,10 @@ Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el n
 'allpagesprefix' => 'Mostra le pagine che taca con:',
 'allpagesbadtitle' => "El titolo indicà par la pagina no'l xe mìa valido o el contien prefissi interlengua o interwiki. El podarìa inoltre contegner uno o più caràteri che no se pole doparar nei titoli.",
 'allpages-bad-ns' => 'El namespace "$1" no l\'esiste mìa su {{SITENAME}}.',
+'allpages-hide-redirects' => 'Scondi rimandi',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => "Varda l'ultima.",
 
 # Special:Categories
 'categories' => 'Categorie',
@@ -1990,6 +2007,8 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'mailnologin' => 'Nissun indirizo a cui mandarghe el messagio',
 'mailnologintext' => 'Par inviare messagi e-mail ad altri utenti bisogna [[Special:UserLogin|acedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].',
 'emailuser' => 'Scrìveghe a sto utente',
+'emailuser-title-target' => 'Scrivi na e-mail a {{GENDER:$1|sto|sta}} utente',
+'emailuser-title-notarget' => "Scrivi na e-mail a l'utente",
 'emailpage' => "Scrivi na e-mail a l'utente",
 'emailpagetext' => 'Te podi usar el modulo chi soto par mandare na e-mail a sto utente.
 La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte a ti diretamente.',
@@ -2001,6 +2020,8 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'noemailtext' => "Sto utente no'l gà indicà nissuna casela e-mail valida.",
 'nowikiemailtitle' => 'Posta elétronega mia parmessa',
 'nowikiemailtext' => 'Sto utente el ga sielto de no ricévar e-mail da i altri utenti.',
+'emailusername' => 'Nome utente:',
+'emailusernamesubmit' => 'Manda',
 'email-legend' => "Màndeghe na e-mail a n'altro utente de {{SITENAME}}",
 'emailfrom' => 'Da:',
 'emailto' => 'A:',
@@ -2019,12 +2040,13 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 
 # Watchlist
 'watchlist' => "Pagine tegnùe d'ocio",
-'mywatchlist' => "pagine tegnùe d'ocio",
+'mywatchlist' => "Pagine tegnùe d'ocio",
 'watchlistfor2' => 'De $1 $2',
 'nowatchlist' => "No te ghè indicà pagine da tegner d'ocio.",
 'watchlistanontext' => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
 'watchnologin' => 'Acesso mia efetuà',
 'watchnologintext' => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
+'addwatch' => "Tien d'ocio",
 'addedwatchtext' => "La pagina \"[[:\$1]]\" la xe stà zontà a la to [[Special:Watchlist|lista de pagine da tegner d'ocio]].
 I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fora qua, e la pagina la se vedarà in '''grosso''' sui [[Special:RecentChanges|ultimi canbiamenti]] par tegnerla d'ocio mejo.",
 'removedwatchtext' => 'La pagina "[[:$1]]" la xe stà cavà da le to [[Special:Watchlist|pagine tegnùe de ocio]].',
@@ -2247,9 +2269,9 @@ $1',
 'blanknamespace' => '(Prinsipale)',
 
 # Contributions
-'contributions' => 'Contributi utente',
+'contributions' => 'Contributi {{GENDER:$1|utente}}',
 'contributions-title' => 'Contributi de $1',
-'mycontris' => 'i me contributi',
+'mycontris' => 'Contributi',
 'contribsub2' => 'Par $1 ($2)',
 'nocontribs' => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.',
 'uctop' => '(ultima)',
@@ -2288,7 +2310,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 i rimandi',
 'whatlinkshere-hidetrans' => '$1 inclusion',
 'whatlinkshere-hidelinks' => '$1 colegamenti',
-'whatlinkshere-hideimages' => '$1 colegamenti a file',
+'whatlinkshere-hideimages' => '$1 colegamenti da file',
 'whatlinkshere-filters' => 'Filtri',
 
 # Block/unblock
@@ -2359,6 +2381,7 @@ Varda [[Special:BlockList|lista IP blocadi]] par vedare tuti i blochi.',
 'unblocklink' => 'sbloca',
 'change-blocklink' => 'canbia bloco',
 'contribslink' => 'contributi',
+'emaillink' => 'mandar email',
 'autoblocker' => 'Bloccà automaticamente parché el to indirisso IP el xè stà doparà de recente da "[[User:$1|$1]]". La motivassion del bloco de $1 la xe: "$2"',
 'blocklogpage' => 'Blochi',
 'blocklog-showlog' => 'Sto utente el xe stà zà blocà tenpo fa.
@@ -2697,7 +2720,42 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 
 # Info page
 'pageinfo-title' => 'Informasion par "$1"',
-'pageinfo-header-edits' => 'Modìfeghe',
+'pageinfo-header-basic' => 'Informassion de base',
+'pageinfo-header-edits' => 'Storia dei canbiamenti',
+'pageinfo-header-restrictions' => 'Protession de la pagina',
+'pageinfo-header-properties' => 'Proprietà de la pagina',
+'pageinfo-display-title' => 'Titolo mostrà',
+'pageinfo-default-sort' => 'Ciave de ordinamento predefinìo',
+'pageinfo-length' => 'Longhessa de la pagina (in byte)',
+'pageinfo-article-id' => 'ID de la pagina',
+'pageinfo-language' => 'Lengua del contenuto de la pagina',
+'pageinfo-robot-policy' => 'Stato par i motori de riserca',
+'pageinfo-robot-index' => 'Indicizabile',
+'pageinfo-robot-noindex' => 'Mia indicizabile',
+'pageinfo-views' => 'Nùmaro de visite',
+'pageinfo-watchers' => "Nùmaro de utenti che tien d'ocio sta pagina",
+'pageinfo-redirects-name' => 'Rimandi verso sta pagina',
+'pageinfo-subpages-name' => 'Sotopagine de sta pagina',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|rimandi}}; $3 {{PLURAL:$3|no rimandi}})',
+'pageinfo-firstuser' => 'Creador de sta pagina',
+'pageinfo-firsttime' => 'Data de creassion de la pagina',
+'pageinfo-lastuser' => 'Ultimo contribudor',
+'pageinfo-lasttime' => 'Data de ultima modifica',
+'pageinfo-edits' => 'Nùmaro totale de canbiamenti',
+'pageinfo-authors' => 'Nùmaro totale de autori difarenti',
+'pageinfo-recent-edits' => 'Nùmaro de canbiamenti recenti (in tei ultimi $1)',
+'pageinfo-recent-authors' => 'Nùmaro de autori difarenti recenti',
+'pageinfo-magic-words' => '{{PLURAL:$1|Parola magica|Parole magiche}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria sconta|Categorie sconte}} ($1)',
+'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',
+'pageinfo-toolboxlink' => 'Informassion su sta pagina',
+'pageinfo-redirectsto' => 'La rimanda a',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Contà come na pagina de contenuto',
+'pageinfo-contentpage-yes' => 'Sì',
+'pageinfo-protect-cascading' => 'Protession ricorsiva da qua',
+'pageinfo-protect-cascading-yes' => 'Sì',
+'pageinfo-protect-cascading-from' => 'Protession ricorsiva eredità da',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna la modifica come verificà',
@@ -2741,6 +2799,7 @@ La so esecuzion la podarìa danegiar el to computer.",
 'file-nohires' => 'No ghe xe version a risolussion pì granda.',
 'svg-long-desc' => 'file en formato SVG, dimension nominałi $1 × $2 pixel, dimension del file: $3',
 'show-big-image' => 'Version ad alta risołusion',
+'show-big-image-size' => '$1 × $2 pixel',
 'file-info-gif-looped' => 'ripetù',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
 'file-info-png-looped' => 'ripetù',
@@ -2758,6 +2817,14 @@ La so esecuzion la podarìa danegiar el to computer.",
 'ilsubmit' => 'Serca',
 'bydate' => 'data',
 'sp-newimages-showfrom' => 'Mostra i file piassè novi a partire da le ore $2 del $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|un secondo|$1 secondi}}',
+'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
+'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
+'days' => '{{PLURAL:$1|un zorno|$1 zorni}}',
+'ago' => '$1 fa',
+'just-now' => 'giusto desso',
 
 # Bad image list
 'bad_image_list' => 'El formato xe sto qua:
@@ -3140,6 +3207,10 @@ Par piaser, conferma che te vołi dal bon ricrear sta voxe.",
 'confirm-purge-top' => 'Vóto scancełar ła cache in sta pàxena?',
 'confirm-purge-bottom' => 'Netar la cache de na pàxena parmete de far védar la so version piassè ajornà.',
 
+# action=watch/unwatch
+'confirm-watch-button' => 'Va ben',
+'confirm-unwatch-button' => 'Va ben',
+
 # Multipage image navigation
 'imgmultipageprev' => '← la pagina prima',
 'imgmultipagenext' => 'la pagina dopo →',
@@ -3237,6 +3308,7 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'version-software' => 'Software instalà',
 'version-software-product' => 'Prodoto',
 'version-software-version' => 'Version',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Percorso de un file',
@@ -3366,8 +3438,25 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
 'newuserlog-byemail' => 'password spedìa par e-mail',
 
+# Feedback
+'feedback-subject' => 'Ogeto:',
+'feedback-message' => 'Messajo:',
+'feedback-cancel' => 'Anuła',
+'feedback-close' => 'Fato',
+
 # Search suggestions
 'searchsuggest-search' => 'Serca',
 'searchsuggest-containing' => 'che contien...',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|secondo|secondi}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minuti}}',
+'duration-hours' => '($1 {{PLURAL:$1|ora|ore}})',
+'duration-days' => '($1 {{PLURAL:$1|zorno|zorni}})',
+'duration-weeks' => '$1 {{PLURAL:$1|stimana|stimane}}',
+'duration-years' => '$1 {{PLURAL:$1|ano|ani}}',
+'duration-decades' => '$1 {{PLURAL:$1|decenio|deceni}}',
+'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenio|mileni}}',
 
 );

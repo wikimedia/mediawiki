@@ -698,7 +698,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'notloggedin' => 'Accesso non effettuato',
 'nologin' => "Non hai ancora un accesso? '''$1'''.",
 'nologinlink' => 'Registrati',
-'createaccount' => 'Crea un accesso',
+'createaccount' => "Crea un'utenza",
 'gotaccount' => "Hai già un accesso? '''$1'''.",
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',

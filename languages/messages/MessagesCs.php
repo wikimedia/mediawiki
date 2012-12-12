@@ -1647,9 +1647,9 @@ Tuto operaci nelze vrátit zpět.',
 'rightslogtext' => 'Toto je záznam změn uživatelských práv.',
 'rightslogentry' => 'změnil pro $1 zařazení ve skupinách z $2 na $3',
 'rightslogentry-autopromote' => 'byl automaticky povýšen z $2 na $3',
-'logentry-rights-rights' => '$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách',
-'logentry-rights-autopromote' => '$1 {{GENDER:$2|byl automaticky povýšen|byla automaticky povýšena}} z $4 na $5',
+'logentry-rights-rights' => '$1 {{GENDER:$1|změnil|změnila}} členství $3 ve skupinách z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|změnil|změnila}} členství $3 ve skupinách',
+'logentry-rights-autopromote' => '$1 {{GENDER:$1|byl automaticky povýšen|byla automaticky povýšena}} z $4 na $5',
 'rightsnone' => '(žádné)',
 
 # Associated actions - in the sentence "You do not have permission to X"

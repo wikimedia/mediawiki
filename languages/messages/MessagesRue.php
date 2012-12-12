@@ -1246,9 +1246,9 @@ $1",
 'prefs-emailconfirm-label' => 'Потверджіня електронічной пошты:',
 'prefs-textboxsize' => 'Розмір окна едітованя',
 'youremail' => 'Адреса електронічной пошты:',
-'username' => 'Мено хоснователя:',
-'uid' => 'Ідентіфікатор хоснователя:',
-'prefs-memberingroups' => 'Член {{PLURAL:$1|ґрупы|ґруп}}:',
+'username' => '{{GENDER:$1|Імя хоснователя}}:',
+'uid' => 'Ідентіфікатор {{GENDER:$1|хоснователя}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Член}} {{PLURAL:$1|ґрупы|ґруп}}:',
 'prefs-registration' => 'Час реґістрації:',
 'yourrealname' => 'Правдиве імя:',
 'yourlanguage' => 'Язык:',
@@ -2143,30 +2143,28 @@ $1',
 'enotif_lastvisited' => 'Видьте $1 про список вшыткых змін од минулой навщівы.',
 'enotif_lastdiff' => 'Тоту зміну видьте на $1',
 'enotif_anon_editor' => 'анонімный хоснователь $1',
-'enotif_body' => 'Дорогый хоснователю $WATCHINGUSERNAME,
+'enotif_body' => 'Честованый хоснователю $WATCHINGUSERNAME,
 
-У $PAGEEDITDATE была хоснователём $PAGEEDITOR $CHANGEDORCREATED сторінка $PAGETITLE, смотьте актуалну верзію на $PAGETITLE_URL .
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
-Куртый опис змін: $PAGESUMMARY $PAGEMINOREDIT
+Згорнутя едітованя: $PAGESUMMARY $PAGEMINOREDIT
 
-Хоснователя, котрый учінив зміну, можете контактовати:
+Хоснователя, котрый зміну учінив, можете контактовати:
 імейлом: $PAGEEDITOR_EMAIL
 на вікі: $PAGEEDITOR_WIKI
 
-Покы сторінку не навщівите, не будуть вам посыланы далшы повідомлїя о змінах той сторінкы.
-Припадно собі можете вынуловати флачы у своїм списку слїдованых сторінок.
+Покы сторінку не навщівите, не будуть вам заганяны далшы повідомлїня о змінах той сторінкы. Тыж собі можете вынуловати признакы у своїм списку слїдованых сторінок.
 
-	Поздравує ваш посылач повідомлїнь {{grammar:2sg|{{SITENAME}}}}
+	Поздравує вас ваш посылач голошіня {{grammar:2sg|{{SITENAME}}}}
 
 --
-Змінити наставлїня імейловых повідомлїнь можете на
+Змінити наштелёваня імейловых повідомлїнь можете на
 {{canonicalurl:{{#special:Preferences}}}}
 
-Наставлїня слїдованых сторінок можете змінити на
+Наштелёваня слїдованых сторінок можете змінити на
 {{canonicalurl:Special:Watchlist/edit}}
 
-Сторінку можете із своїх слїдованых вылучіти на
+Сторінку можете зо своїх слїдованых вышмарити на
 $UNWATCHURL
 
 Порада і контакт:
@@ -2873,10 +2871,15 @@ $1',
 'pageinfo-recent-authors' => 'Кількость авторів за остатнїй час',
 'pageinfo-magic-words' => '{{PLURAL:$1|Маґічне слово|Маґічны слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрыта катеґорія|Скрыты катеґорії}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Хоснована шаблона|Хоснованы шаблоны}} ($1)',
+'pageinfo-toolboxlink' => 'Інформації о сторінцї',
+'pageinfo-redirectsto' => 'Напрямлює на',
 'pageinfo-redirectsto-info' => 'інформація',
 'pageinfo-contentpage' => 'Рахує ся як статя',
 'pageinfo-contentpage-yes' => 'Гей',
+'pageinfo-protect-cascading' => 'Одты ся почінать каскадна охорона',
 'pageinfo-protect-cascading-yes' => 'Гей',
+'pageinfo-protect-cascading-from' => 'Каскадна охорона ся почінать гев',
 
 # Patrolling
 'markaspatrolleddiff' => 'Означіти як перевірене',
@@ -2888,6 +2891,8 @@ $1',
 'markedaspatrollederror' => 'Не дасть ся означіти як перевірене',
 'markedaspatrollederrortext' => 'Мусите зволити ревізію, котра має быти означена як перевірена.',
 'markedaspatrollederror-noautopatrol' => 'Не маєте дозволене означовати властны едітованя як перевірены.',
+'markedaspatrollednotify' => 'Гевся зміна сторінкы $1 была означена як одпратролована.',
+'markedaspatrollederrornotify' => 'Не вдало ся поставити позначку про патролёваня',
 
 # Patrol log
 'patrol-log-page' => 'Книга перевіреных едітовань',

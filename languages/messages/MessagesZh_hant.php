@@ -2724,7 +2724,7 @@ $1被封禁的理由是“$2”',
 
 此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯出「[[{{MediaWiki:Mainpage}}]]」頁面。',
 'exportall' => '導出所有頁面',
-'exportcuronly' => '僅包含目前的修訂，而不是全部的歷史。',
+'exportcuronly' => '只導出當前版本，不含完整歷史版本',
 'exportnohistory' => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",
 'exportlistauthors' => '為每個頁面包含貢獻者的完整列表',

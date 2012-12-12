@@ -3993,8 +3993,8 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'compare-rev2' => 'Wersja 2',
 'compare-submit' => 'Porównaj',
 'compare-invalid-title' => 'Tytuł jest nieprawidłowy.',
-'compare-title-not-exists' => 'Tytuł, który podałeś nie istnieje.',
-'compare-revision-not-exists' => 'Zmiana, którą wybrałeś nie istnieje.',
+'compare-title-not-exists' => 'Podany tytuł nie istnieje.',
+'compare-revision-not-exists' => 'Wybrana wersja nie istnieje.',
 
 # Database error messages
 'dberr-header' => 'Ta wiki nie działa poprawnie',

@@ -313,7 +313,7 @@ $messages = array(
 'cancel' => 'रद्द करें',
 'moredotdotdot' => 'और...',
 'mypage' => 'मेरा पृष्ठ',
-'mytalk' => 'मेरी सदस्य वार्ता',
+'mytalk' => 'वार्ता',
 'anontalk' => 'इस आइ॰पी के लिये वार्ता',
 'navigation' => 'भ्रमण',
 'and' => '&#32;और',
@@ -341,7 +341,7 @@ $messages = array(
 'vector-view-history' => 'इतिहास देखें',
 'vector-view-view' => 'पढ़ें',
 'vector-view-viewsource' => 'स्रोत देखें',
-'actions' => 'क्रियाएं',
+'actions' => 'क्रियाएँ',
 'namespaces' => 'नामस्थान',
 'variants' => 'संस्करण',
 
@@ -375,7 +375,7 @@ $messages = array(
 'unprotectthispage' => 'इस पृष्ठ को सुरक्षित करै',
 'newpage' => 'नया पृष्ठ',
 'talkpage' => 'इस पृष्ठ के बारे में चर्चा करें',
-'talkpagelinktext' => 'वार्ता',
+'talkpagelinktext' => 'चर्चा',
 'specialpage' => 'विशेष पृष्ठ',
 'personaltools' => 'वैयक्तिक औज़ार',
 'postcomment' => 'नया अनुभाग',
@@ -1232,7 +1232,7 @@ $1",
 
 # Preferences page
 'preferences' => 'मेरी वरीयताएँ',
-'mypreferences' => 'मेरी पसंद',
+'mypreferences' => 'पसंद',
 'prefs-edits' => 'संपादन संख्या:',
 'prefsnologin' => 'लॉग इन नहीं किया है',
 'prefsnologintext' => 'वरीयताएँ बदलने के लिए आपको <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} सत्रारंभ]</span> करना होगा।',
@@ -1524,7 +1524,7 @@ HTML टैग की जाँच करें।',
 'rcshowhidepatr' => 'जाँचे हुए सम्पादन $1',
 'rcshowhidemine' => 'मेरे बदलाव $1',
 'rclinks' => 'पिछले $2 दिनों में हुए $1 बदलाव दिखाएँ<br />$3',
-'diff' => 'अंतर',
+'diff' => 'फ़र्क',
 'hist' => 'इतिहास',
 'hide' => 'छिपाएँ',
 'show' => 'दिखाएँ',
@@ -1909,7 +1909,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'unusedtemplateswlh' => 'अन्य कड़ियाँ',
 
 # Random page
-'randompage' => 'किसी एक लेख पर जाएँ',
+'randompage' => 'यादृच्छिक पृष्ठ',
 'randompage-nopages' => 'कोई भी पृष्ठ {{PLURAL:$2|इस नामस्थान|इन नामस्थानों}} में नहीं हैं: $1।',
 
 # Random redirect
@@ -2173,7 +2173,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 
 # Watchlist
 'watchlist' => 'मेरी ध्यानसूची',
-'mywatchlist' => 'मेरी ध्यानसूची',
+'mywatchlist' => 'ध्यानसूची',
 'watchlistfor2' => '$1 $2 के लिए',
 'nowatchlist' => 'आपकी ध्यानसूची में कोई भी पृष्ठ नहीं हैं।',
 'watchlistanontext' => 'अपनी ध्यानसूची में मौजूद पृष्ठ देखने या फिर संपादित करने के लिये कॄपया $1 करें।',
@@ -2434,16 +2434,16 @@ $1',
 'blanknamespace' => '(मुख्य)',
 
 # Contributions
-'contributions' => 'सदस्य योगदान',
+'contributions' => '{{GENDER:$1|सदस्य}} योगदान',
 'contributions-title' => '$1 के योगदान',
-'mycontris' => 'मेरा योगदान',
+'mycontris' => 'योगदान',
 'contribsub2' => '$1 के लिये ($2)',
 'nocontribs' => 'इन कसौटियों से मिलनेवाले बदलाव मिले नहीं।',
 'uctop' => '(उपर)',
 'month' => 'इस महिनेसे (और पुरानें):',
 'year' => 'इस सालसे (और पुराने):',
 
-'sp-contributions-newbies' => 'सिर्फ नये सदस्योंका योगदान दर्शायें',
+'sp-contributions-newbies' => 'सिर्फ़ नये सदस्योंका योगदान दर्शायें',
 'sp-contributions-newbies-sub' => 'नये सदस्योंके लिये',
 'sp-contributions-newbies-title' => 'नए सदस्यों द्वारा योगदान',
 'sp-contributions-blocklog' => 'ब्लॉक सूची',
@@ -2476,7 +2476,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 पुनर्निर्देश',
 'whatlinkshere-hidetrans' => '$1 ट्रान्स्क्ल्युजन्स',
 'whatlinkshere-hidelinks' => '$1 कड़ियाँ',
-'whatlinkshere-hideimages' => '$1 चित्र कड़ियाँ',
+'whatlinkshere-hideimages' => '$1 फ़ाइल लिंक',
 'whatlinkshere-filters' => 'छन्ने',
 
 # Block/unblock
@@ -2868,13 +2868,13 @@ $1 को बाध्य करने का कारण है: "$2"',
 'tooltip-n-randompage' => 'किसी एक लेख पर जाएँ',
 'tooltip-n-help' => 'पता लगाने का स्थान',
 'tooltip-t-whatlinkshere' => 'यहाँ का हवाला देने वाले सभी विकि पन्नों की सूची',
-'tooltip-t-recentchangeslinked' => 'यहां जुडे हुए सभी पन्नोंमें हुए हाल के बदलाव',
+'tooltip-t-recentchangeslinked' => 'यहाँ जुडे हुए सभी पन्नोंमें हुए हाल के बदलाव',
 'tooltip-feed-rss' => 'इस पृष्ठ की आरएसएस फ़ीड',
 'tooltip-feed-atom' => 'इस पृष्ठ की अणु फ़ीड',
 'tooltip-t-contributions' => 'इस सदस्यके योगदानकी सूची देखियें',
 'tooltip-t-emailuser' => 'इस सदस्य को इमेल भेजें',
 'tooltip-t-upload' => 'संचिका चढ़ाएँ',
-'tooltip-t-specialpages' => 'सभी खास पन्नोंकी सूची',
+'tooltip-t-specialpages' => 'सभी खास पन्नों की सूची',
 'tooltip-t-print' => 'इस पृष्ठका छपानेलायक अवतरण',
 'tooltip-t-permalink' => 'पृष्ठ के इस संस्करण की स्थायी कड़ी',
 'tooltip-ca-nstab-main' => 'सामग्री वाला पृष्ठ देखें',
@@ -3022,7 +3022,7 @@ $1',
 
 # Metadata
 'metadata' => 'मेटाडाटा',
-'metadata-help' => 'इस फ़ाईलमें बढ़ाई हुई जानकारी हैं, हो सकता है कि यह फ़ाईल बनानेमें इस्तेमाल किये गए स्कैनर अथवा कैमेरा से यह प्राप्त हुई हैं । अगर यह फ़ाईल बदलदी गई हैं तो यह जानकारी नई फ़ाईलसे मेल नहीं खाने की आशंका हैं ।',
+'metadata-help' => 'इस फ़ाइल में बढ़ाई हुई जानकारी हैं, हो सकता है कि यह फ़ाइल बनाने में इस्तेमाल किये गए स्कैनर अथवा कैमेरा से यह प्राप्त हुई हैं। अगर यह फ़ाइल बदलदी गई हैं तो यह जानकारी नई फ़ाईलसे मेल नहीं खाने की आशंका हैं ।',
 'metadata-expand' => 'विस्तृत जानकारियां दिखाएं',
 'metadata-collapse' => 'विस्तृत जानकारियां छिपाएं',
 'metadata-fields' => 'जब मेटाडाटा तालिका को लघुरूप किया जाएगा तो इस सन्देश में सूचीबद्ध इएक्सआयएफ मेटाडाटा जानकारियां छवि प्रदर्शित होते समय सम्मिलित की जाएंगी।
@@ -3701,14 +3701,14 @@ $5
 'intentionallyblankpage' => 'यह पृष्ठ जानबूझ कर खाली छोड़ा गया है।',
 
 # External image whitelist
-'external_image_whitelist' => ' #এই লাইনটি ঠিক যেমন আছে তেমনি  রাখুন কারন এটি <pre>
-#রেগুলার এক্সপ্রেশনর টুকরো নীচে (শুধুমাত্র  // মধ্যে যে অংশ যায়) বসান
-# এই এক্সটার্নাল (hotlinked) ইমেজ URL-এর সাথে হবে মিলেছে
-# যে মেলার চিত্র হিসাবে প্রদর্শিত হবে, অন্যথায় শুধুমাত্র ইমেজ লিঙ্ক প্রদর্শিত হবে
-# প্রারম্ভে লাইনস মন্তব্যসমূহ হিসাবে ব্যবহার করা হয়
-# এই কেস অসংবেদী
+'external_image_whitelist' => 'इस लाइन बिल्कुल के रूप में यह #Leave है<pre>
+ #Put नियमित अभिव्यक्ति टुकड़े (बस हिस्सा है कि के बीच चला जाता है / /) के नीचे
+ # ये बाहरी (hotlinked) छवियों के यूआरएल के साथ मिलान किया जाएगा
+ # कि मैच उन छवियों के रूप में प्रदर्शित किया जाएगा, अन्यथा केवल छवि के लिए एक कड़ी दिखाया जाएगा
+ #Lines # साथ शुरुआत टिप्पणी के रूप में इलाज कर रहे हैं
+ # इस केस-असंवेदी है
 
-# এই রেখার উপরের regex টুকরা বসান. এই লাইন ছেড়ে ঠিক হয় </pre>',
+ #Put सब regex टुकड़े इस रेखा से ऊपर। वास्तव में यह है के रूप में इस लाइन छोड़ दो</pre>',
 
 # Special:Tags
 'tags' => 'वैध बदलाव चिप्पियाँ',

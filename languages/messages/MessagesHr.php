@@ -2262,27 +2262,32 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 'enotif_mailer' => '{{SITENAME}} - izvješća o promjenama',
 'enotif_reset' => 'Označi sve stranice kao već posjećene',
 'enotif_impersonal_salutation' => '{{SITENAME}} suradnik',
+'enotif_subject_deleted' => '{{gender:$2|Suradnik|Suradnica}} $2 {{gender:$2|je obrisao|je obrisala}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_created' => '{{gender:$2|Suradnik|Suradnica}} $2 {{gender:$2|je stvorio|je stvorila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_moved' => '{{gender:$2|Suradnik|Suradnica}} $2 {{gender:$2|je premjestio|je premjestila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_restored' => '{{gender:$2|Suradnik|Suradnica}} $2 {{gender:$2|je vratio|je vratila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_changed' => '{{gender:$2|Suradnik|Suradnica}} $2 {{gender:$2|je uredio|je uredila}} stranicu $1 projekta {{SITENAME}}',
 'enotif_lastvisited' => 'Pogledaj $1 za promjene od zadnjeg posjeta.',
 'enotif_lastdiff' => 'Pogledajte $1 kako biste mogli vidjeti tu izmjenu.',
 'enotif_anon_editor' => 'neprijavljeni suradnik $1',
 'enotif_body' => 'Poštovani $WATCHINGUSERNAME,
 
-stranica na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATE $CHANGEDORCREATED suradnik $PAGEEDITOR, pogledajte $PAGETITLE_URL za trenutačnu inačicu.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Sažetak urednika: $PAGESUMMARY $PAGEMINOREDIT
 
-Možete se javiti uredniku:
+Možete kontaktirati suradnika koji je zadnji uređivao stranicu:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Do Vašeg ponovnog posjeta stranici nećete dobivati nove obavijesti.
-Postavke za izvješćivanje možete resetirati za sve praćene stranice svog popisa praćenja.
+Do Vašeg ponovnog posjeta stranici nećete dobivati nove obavijesti. Postavke za izvješćivanje možete resetirati za sve praćene stranice svog popisa praćenja.
 
-            Vaš sustav izvješćivanja {{SITENAME}}.
+Vaš sustav izvješćivanja {{SITENAME}}.
 
 --
+Za promjene postavki izvješćivanja putem e-pošte, posjetite
+{{canonicalurl:{{#special:Preferences}}}}
+
 Za promjene svog popisa praćenja, posjetite
 {{canonicalurl:{{#special:EditWatchlist}}}}
 

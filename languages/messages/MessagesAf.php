@@ -865,8 +865,9 @@ As u per ongeluk hier uitgekom het, gebruik u blaaier se '''terug'''-knoppie.",
 U kan [[Special:Search/{{PAGENAME}}|vir die bladsytitel in ander bladsye soek]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]
 of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
-'noarticletext-nopermission' => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]</span>.',
+'noarticletext-nopermission' => 'Hierdie bladsy bevat geen teks nie.
+U kan vir die term [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]</span>, maar u kan nie die bladsy skep nie.',
 'missing-revision' => 'Die weergawe #$1 van die bladsy "{{PAGENAME}} bestaan nie.
 
 Dit word meestal veroorsaak deur die volg van \'n verouderde verwysing na \'n bladsy wat verwyder is.
@@ -1562,7 +1563,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'rclinks' => 'Vertoon die laaste $1 wysigings in die afgelope $2 dae<br />$3',
 'diff' => 'verskil',
 'hist' => 'geskiedenis',
-'hide' => 'versteek',
+'hide' => 'Versteek',
 'show' => 'Wys',
 'minoreditletter' => 'k',
 'newpageletter' => 'N',
@@ -2004,6 +2005,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|greep|grepe}}',
 'ncategories' => '$1 {{PLURAL:$1|kategorie|kategorieÃ«}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwikiskakel|interwikiskakels}}',
 'nlinks' => '$1 {{PLURAL:$1|skakel|skakels}}',
 'nmembers' => '$1 {{PLURAL:$1|lid|lede}}',
 'nrevisions' => '$1 {{PLURAL:$1|weergawe|weergawes}}',
@@ -2032,6 +2034,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 'mostlinkedtemplates' => 'Sjablone met die meeste skakels daarheen',
 'mostcategories' => 'Artikels met die meeste kategorieÃ«',
 'mostimages' => 'Beelde met meeste skakels daarheen',
+'mostinterwikis' => 'Artikels met die meeste interwikiskakels',
 'mostrevisions' => 'Artikels met meeste wysigings',
 'prefixindex' => 'Alle bladsye (voorvoegselindeks)',
 'prefixindex-namespace' => 'Alle bladsye met die voorvoegsel (naamruimte $1)',
@@ -2211,7 +2214,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 
 # Watchlist
 'watchlist' => 'My dophoulys',
-'mywatchlist' => 'My dophoulys',
+'mywatchlist' => 'Dophoulys',
 'watchlistfor2' => 'Vir $1 $2',
 'nowatchlist' => 'U het geen items in u dophoulys nie.',
 'watchlistanontext' => '$1 is noodsaaklik om u dophoulys te sien of te wysig.',
@@ -2468,9 +2471,9 @@ $1',
 'blanknamespace' => '(Hoof)',
 
 # Contributions
-'contributions' => 'Gebruikersbydraes',
+'contributions' => '{{GENDER:$1|Gebruikersbydraes}}',
 'contributions-title' => '$1 se bydraes',
-'mycontris' => 'My bydraes',
+'mycontris' => 'Bydraes',
 'contribsub2' => 'Vir $1 ($2)',
 'nocontribs' => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.',
 'uctop' => ' (boontoe)',
@@ -2510,7 +2513,7 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'whatlinkshere-hideredirs' => '$1 aansture',
 'whatlinkshere-hidetrans' => '$1 insluitings',
 'whatlinkshere-hidelinks' => '$1 skakels',
-'whatlinkshere-hideimages' => '$1 beeldskakels',
+'whatlinkshere-hideimages' => 'LÃªerskakels $1',
 'whatlinkshere-filters' => 'Filters',
 
 # Block/unblock
