@@ -42,6 +42,7 @@ class NullJob extends Job {
 		if ( !isset( $this->params['usleep'] ) ) {
 			$this->params['usleep'] = 0;
 		}
+		$this->removeDuplicates = !empty( $this->params['removeDuplicates'] );
 	}
 
 	public function run() {
