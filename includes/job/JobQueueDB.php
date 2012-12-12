@@ -188,7 +188,6 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
 		$dbw  = $this->getMasterDB();
-		$dir  = $gte ? 'ASC' : 'DESC';
 		$ineq = $gte ? '>=' : '<=';
 
 		$row = false; // the row acquired
@@ -202,8 +201,8 @@ class JobQueueDB extends JobQueue {
 					'job_cmd'   => $this->type,
 					'job_token' => '',
 					"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
-				__METHOD__,
-				array( 'ORDER BY' => "job_random {$dir}" )
+				__METHOD__
+				// Bug 42614: "ORDER BY job_random" causes slowness on mysql for some reason
 			);
 			if ( $row ) { // claim the job
 				$dbw->update( 'job', // update by PK
