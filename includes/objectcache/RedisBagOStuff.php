@@ -282,9 +282,13 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Get a Redis object with a connection suitable for fetching the specified key
+	 * Get a Redis object with a connection suitable for fetching the specified key.
+	 *
+	 * Outside callers can use this function to build on top of the functionality here.
+	 * @param $key string
+	 * @return Array (server name, Redis object)
 	 */
-	protected function getConnection( $key ) {
+	public function getConnection( $key ) {
 		if ( count( $this->servers ) === 1 ) {
 			$candidates = $this->servers;
 		} else {
@@ -404,8 +408,14 @@ class RedisBagOStuff extends BagOStuff {
 	 * and protocol errors. Sometimes it also closes the connection, sometimes
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
+	 *
+	 * Outside callers can use this function to build on top of the functionality here.
+	 *
+	 * @param $server string
+	 * @param $e RedisException
+	 * @return void
 	 */
-	protected function handleException( $server, $e ) {
+	protected function handleException( $server, RedisException $e ) {
 		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
 		unset( $this->conns[$server] );
 	}
