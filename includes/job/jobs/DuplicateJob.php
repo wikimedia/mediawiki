@@ -45,11 +45,12 @@ final class DuplicateJob extends Job {
 	 * @return Job
 	 */
 	public static function newFromJob( Job $job ) {
-		$job = new self( $job->getTitle(), $job->getParams(), $job->getId() );
-		$job->command = $job->getType();
-		$job->params  = is_array( $job->params ) ? $job->params : array();
-		$job->params  = array( 'isDuplicate' => true ) + $job->params;
-		return $job;
+		$djob = new self( $job->getTitle(), $job->getParams(), $job->getId() );
+		$djob->command  = $job->getType();
+		$djob->params   = is_array( $job->params ) ? $job->params : array();
+		$djob->params   = array( 'isDuplicate' => true ) + $job->params;
+		$djob->metadata = $job->metadata;
+		return $djob;
 	}
 
 	public function run() {
