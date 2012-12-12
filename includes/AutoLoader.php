@@ -448,6 +448,10 @@ $wgAutoloadLocalClasses = array(
 	'TitleDependency' => 'includes/cache/CacheDependency.php',
 	'TitleListDependency' => 'includes/cache/CacheDependency.php',
 
+	# includes/clientpool
+	'RedisConnectionPool' => 'includes/clientpool/RedisConnectionPool.php',
+	'RedisConnRef' => 'includes/clientpool/RedisConnectionPool.php',
+
 	# includes/context
 	'ContextSource' => 'includes/context/ContextSource.php',
 	'DerivativeContext' => 'includes/context/DerivativeContext.php',
@@ -652,6 +656,7 @@ $wgAutoloadLocalClasses = array(
 	'JobQueue' => 'includes/job/JobQueue.php',
 	'JobQueueDB' => 'includes/job/JobQueueDB.php',
 	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
+	'JobQueueRedis' => 'includes/job/JobQueueRedis.php',
 
 	# includes/job/jobs
 	'DoubleRedirectJob' => 'includes/job/jobs/DoubleRedirectJob.php',
