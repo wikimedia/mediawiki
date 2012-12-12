@@ -202,4 +202,39 @@ class SiteArray extends GenericArrayObject implements SiteList {
 		$this[] = $site;
 	}
 
+	/**
+	 * @see GenericArrayObject::getSerializationData
+	 *
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	protected function getSerializationData() {
+		return array_merge(
+			parent::getSerializationData(),
+			array(
+				'internalIds' => $this->byInternalId,
+				'globalIds' => $this->byGlobalId,
+			)
+		);
+	}
+
+	/**
+	 * @see GenericArrayObject::unserialize
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $serialization
+	 *
+	 * @return array
+	 */
+	public function unserialize( $serialization ) {
+		$serializationData = parent::unserialize( $serialization );
+
+		$this->byInternalId = $serializationData['internalIds'];
+		$this->byGlobalId = $serializationData['globalIds'];
+
+		return $serializationData;
+	}
+
 }
