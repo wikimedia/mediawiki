@@ -31,17 +31,30 @@
 	 *   null, false, '', etc.), any existing badge will be removed.
 	 * @param boolean inline True if the badge should be displayed inline, false
 	 *   if the badge should overlay the parent element (default is inline)
+	 * @param boolean displayZero True if the number zero should be displayed,
+	 *   false if the number zero should result in the badge being hidden
+	 *   (default is zero will result in the badge being hidden)
 	 */
-	$.fn.badge = function ( text, inline ) {
+	$.fn.badge = function ( text, inline, displayZero ) {
 		var $badge = this.find( '.mw-badge' );
+		var badgeStyleClass = 'mw-badge-' + ( inline ? 'inline' : 'overlay' );
+		var badgeColorClass = 'mw-badge-red'; // default color is red
 
+		// If we're displaying zero, change the color to grey
+		if ( displayZero && text === 0 ) {
+			badgeColorClass = 'mw-badge-grey';
+			// Change zero to string so that it will be displayed
+			text = '0';
+		}
 		if ( text ) {
 			// If a badge already exists, reuse it
 			if ( $badge.length ) {
 				$badge.find( '.mw-badge-content' ).text( text );
 			} else {
 				// Otherwise, create a new badge with the specified text and style
-				$badge = $( '<div class="mw-badge mw-badge-' + ( inline ? 'inline' : 'overlay' ) + '"></div>' )
+				$badge = $( '<div class="mw-badge"></div>' )
+					.addClass( badgeStyleClass )
+					.addClass( badgeColorClass )
 					.append( $( '<span class="mw-badge-content"></span>' ).text ( text ) )
 					.appendTo( this );
 			}
