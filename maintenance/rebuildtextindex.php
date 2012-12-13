@@ -86,11 +86,19 @@ class RebuildTextIndex extends Maintenance {
 	 * Populates the search index with content from all pages
 	 */
 	protected function populateSearchIndex() {
+		global $wgContentHandlerUseDB;
+
 		$res = $this->db->select( 'page', 'MAX(page_id) AS count' );
 		$s = $this->db->fetchObject( $res );
 		$count = $s->count;
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
+
+		$fields = array_merge(
+			Revision::selectPageFields(),
+			Revision::selectFields(),
+			Revision::selectTextFields()
+		);
 
 		while ( $n < $count ) {
 			if ( $n ) {
@@ -98,16 +106,25 @@ class RebuildTextIndex extends Maintenance {
 			}
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
 
-			$res = $this->db->select( array( 'page', 'revision', 'text' ),
-				array( 'page_id', 'page_namespace', 'page_title', 'old_flags', 'old_text' ),
+			$res = $this->db->select( array( 'page', 'revision', 'text' ), $fields,
 				array( "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ),
 				__METHOD__
-				);
+			);
 
 			foreach ( $res as $s ) {
-				$revtext = Revision::getRevisionText( $s );
-				$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );
-				$u->doUpdate();
+				try {
+					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
+
+					$rev = new Revision( $s );
+					$content = $rev->getContent();
+					$text = $content->getTextForSearchIndex();
+
+					$u = new SearchUpdate( $s->page_id, $title, $text );
+					$u->doUpdate();
+				} catch ( MWContentSerializationException $ex ) {
+					$this->output( "Failed to deserialize content of revision {$s->rev_id} of page "
+						. "`" . $title->getPrefixedDBkey() . "`!\n" );
+				}
 			}
 			$n += self::RTI_CHUNK_SIZE;
 		}
