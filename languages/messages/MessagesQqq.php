@@ -1464,8 +1464,8 @@ See also:
 
 See also:
 * {{msg-mw|Nocreatetext}}',
-'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
-'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
+'sectioneditnotsupported-title' => 'Page title of for an error page, shown when someone tries to edit a section, but section editing is not supported for that page, e.g. for JavaScript or completely non-textual content. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
+'sectioneditnotsupported-text' => 'Error message shown when someone tries to edit a section, but section editing is not supported for that page, e.g. for JavaScript or completely non-textual content. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrors' => 'Used as title of error message. See also:
 * {{msg-mw|loginreqtitle}}
 * {{msg-mw|permissionserrors}}',
