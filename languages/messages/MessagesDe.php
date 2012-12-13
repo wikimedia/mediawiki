@@ -1150,7 +1150,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'nocreatetext' => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].',
 'nocreate-loggedin' => 'Du hast nicht die erforderliche Berechtigung, um neue Seiten erstellen zu können.',
 'sectioneditnotsupported-title' => 'Die Bearbeitung von Abschnitten wird nicht unterstützt',
-'sectioneditnotsupported-text' => 'Die Bearbeitung von Abschnitten wird auf dieser Bearbeitungsseite nicht unterstützt.',
+'sectioneditnotsupported-text' => 'Die Bearbeitung von Abschnitten wird auf dieser Seite nicht unterstützt.',
 'permissionserrors' => 'Berechtigungsfehler',
 'permissionserrorstext' => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.

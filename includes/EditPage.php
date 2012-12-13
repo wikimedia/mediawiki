@@ -577,13 +577,15 @@ class EditPage {
 	}
 
 	/**
-	 * Does this EditPage class support section editing?
-	 * This is used by EditPage subclasses to indicate their ui cannot handle section edits
+	 * Returns whether section editing is supported for the current page.
+	 * Subclasses may override this to replace the default behavior, which is
+	 * to check ContentHandler::supportsSections.
 	 *
-	 * @return bool
+	 * @return bool true if this edit page supports sections, false otherwise.
 	 */
 	protected function isSectionEditSupported() {
-		return true;
+		$content_handler = ContentHandler::getForTitle( $this->mTitle );
+		return $content_handler->supportsSections();
 	}
 
 	/**
@@ -597,6 +599,13 @@ class EditPage {
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+
+		if ( $this->section !== null && $this->section !== '' ) {
+			if ( !$this->isSectionEditSupported() ) {
+				throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
+			}
+		}
+
 		$this->isNew = !$this->mTitle->exists() || $this->section == 'new';
 
 		if ( $request->wasPosted() ) {
