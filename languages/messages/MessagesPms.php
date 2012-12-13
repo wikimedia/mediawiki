@@ -3679,8 +3679,8 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'dberr-header' => "Sta wiki-sì a l'ha un problema",
 'dberr-problems' => "An dëspias!
 Ës sit a l'ha dle dificoltà técniche.",
-'dberr-again' => 'Preuva a speté cheich minute e a torna carié.',
-'dberr-info' => '(As peul pa contaté ël database server: $1)',
+'dberr-again' => "Ch'a speta chèiche minute e ch'a preuva torna a carié.",
+'dberr-info' => '(Conession al servent ëd base ëd dàit impossìbil: $1)',
 'dberr-usegoogle' => 'It peule prové a serché con Google ant ël mentre.',
 'dberr-outofdate' => 'Nòta che la soa indicisassion dij nòst contnù a podrìa nen esse agiornà.',
 'dberr-cachederror' => 'Sta sì a l\'ìé na còpia an "cache" ëd la pàgina ciamà, e a peul esse pa agiornà.',

@@ -434,7 +434,7 @@ $2',
 'welcomecreation-msg' => 'حسابینیز آچیلدی.
 [[Special:Preferences|{{SITENAME}}ترجیحلر]] دییشدیرمیی اونوتمایین.',
 'yourname' => 'ایستیفاده‌چی آدی:',
-'yourpassword' => 'پسوورد:',
+'yourpassword' => 'رمز:',
 'yourpasswordagain' => 'رمزی یئنی‌دن یازین:',
 'remembermypassword' => 'بو بیلگی‌سایاردا منیم گیریشیمی (چوخو $1 {{PLURAL:$1|گون}}ه قدر) یاددا ساخلا',
 'securelogin-stick-https' => 'گیرندن سونرا، HTTPS-ه باغلی قال',

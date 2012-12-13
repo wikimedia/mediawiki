@@ -291,6 +291,7 @@ $messages = array(
 'namespaces' => 'Izen-tarteak',
 'variants' => 'Aldaerak',
 
+'navigation-heading' => 'Nabigazio menua',
 'errorpagetitle' => 'Errorea',
 'returnto' => '$1(e)ra itzuli.',
 'tagline' => '{{SITENAME}}(e)tik',
@@ -478,7 +479,7 @@ Mesedez, bidali gertakar hau administradore bati, URLaren izena jarriz.',
 'unexpected' => 'Espero ez zen balioa: "$1"="$2".',
 'formerror' => 'Errorea: ezin izan da formularioa bidali',
 'badarticleerror' => 'Ezin da ekintza hau orrialde honetan burutu.',
-'cannotdelete' => 'Ezin izan da "$1" orrialde edo fitxategia ezabatu.
+'cannotdelete' => 'Ezin izan da «$1» orria edo fitxategia ezabatu.
 Baliteke beste norbaitek ezabatu izana.',
 'cannotdelete-title' => 'Ezin da "$1" orrialdea ezabatu',
 'badtitle' => 'Izenburu ezegokia',
@@ -521,6 +522,7 @@ Emandako arrazoia ''$2'' izan zen.",
 
 Erabiltzaile anonimo bezala jarrai dezakezu {{SITENAME}} erabiltzen, edo <span class='plainlinks'>[$1 saioa has dezakezu berriz]</span> erabiltzaile berdinarekin edo ezberdin batekin.
 Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
+'welcomeuser' => 'Ongi etorri, $1!',
 'yourname' => 'Erabiltzaile izena',
 'yourpassword' => 'Pasahitza:',
 'yourpasswordagain' => 'Pasahitza berriz',
@@ -1103,7 +1105,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'powersearch-field' => 'Bilatu',
 'powersearch-togglelabel' => 'Egiaztatu:',
 'powersearch-toggleall' => 'Guztiak',
-'powersearch-togglenone' => 'Bat ere',
+'powersearch-togglenone' => 'Bat ere ez',
 'search-external' => 'Kanpo bilaketa',
 'searchdisabled' => '{{SITENAME}}(e)n ezgaituta dago bilaketa. Dena dela, Google erabiliz ere egin dezakezu bilaketa. Kontuan izan bertan dituzten {{SITENAME}}(e)ko emaitzak zaharkituta egon daitezkeela.',
 
@@ -2026,7 +2028,7 @@ kontu izan.',
 'rollback' => 'Desegin aldaketak',
 'rollback_short' => 'Desegin',
 'rollbacklink' => 'desegin',
-'rollbacklinkcount' => 'desegin $1 {{PLURAL:$1|edizio bat|$1 edizio}}',
+'rollbacklinkcount' => 'desegin {{PLURAL:$1|edizio bat|$1 edizio}}',
 'rollbackfailed' => 'Desegiteak huts egin dud',
 'cantrollback' => 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
 'alreadyrolled' => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) [[$1]](e)n egindako azken aldaketa desegin;
@@ -3322,10 +3324,12 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'htmlform-selectorother-other' => 'Beste bat',
 
 # New logging system
+'logentry-delete-delete' => '$1 wikilariak $3 orria ezabatu du',
 'revdelete-restricted' => 'administratzaileentzako mugak ezarri dira',
 'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
 'logentry-move-move' => '$1 wikilariak «$3» orria «$4» izenera aldatu du',
 'logentry-move-move-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketarik utzi gabe',
+'logentry-move-move_redir' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketaren gainetik',
 'logentry-move-move_redir-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketa bat gainidatzita, birzuzenketarik utzi gabe',
 'logentry-newusers-newusers' => '$1 wikilariak erabiltzaile kontu bat sortu du',
 'logentry-newusers-create' => '$1 wikilariak erabiltzaile kontu bat sortu du',

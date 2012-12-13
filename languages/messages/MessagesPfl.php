@@ -81,7 +81,7 @@ $messages = array(
 'category_header' => 'Saide in de Kadegorie „$1“',
 'subcategories' => 'Unnerkadegorie',
 'category-media-header' => 'Medie in de Kadegorie „$1“',
-'hidden-categories' => '{{PLURAL:$1|Versteckelte Kadegorie|Versteckelte Kadegorie}}',
+'hidden-categories' => '{{PLURAL:$1|Verschdegelde Kadegorie|Verschdegelde Kadegorije}}',
 'category-subcat-count' => '{{PLURAL:$2|Die Kategorie hot die Unnerkategorie:|{{PLURAL:$1|Die Unnerkategori isch eni vun insgsamt $2 Unnerkategorie in derre Kategorie:|S werre $1 vun insgsamt $2 Unnerkategorie in derre Kategorie aagezeicht:}}}}',
 'category-article-count' => "{{PLURAL:$2|In derre Kadegorie hot's numme die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gebbt's in derre Kadegorie, vun insgsamt $2.}}",
 'listingcontinuesabbrev' => '(Forts.)',
@@ -153,12 +153,13 @@ $messages = array(
 'currentevents-url' => 'Project: Leschdi Eraigniss',
 'disclaimers' => 'Hafdungsausschluß',
 'disclaimerpage' => 'Project:Impressum',
-'edithelp' => 'Hilf fer s Bearwaide',
+'edithelp' => 'Hilf fers Bearwaide',
 'edithelppage' => 'Help:Ännere',
-'helppage' => 'Help:Inhalt',
+'helppage' => 'Help:Inhald',
 'mainpage' => 'Hääptsaid',
 'mainpage-description' => 'Startseid',
-'portal' => '{{SITENAME}}-Pordal',
+'portal' => '{{SITENAME}}-Bordal',
+'portal-url' => 'Project:Gmoinschafdsbordal',
 'privacy' => 'Dadeschuds',
 'privacypage' => 'Project:Daadeschutz',
 
@@ -187,7 +188,7 @@ $messages = array(
 'nstab-user' => 'Benutzersaid',
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezialsaid',
-'nstab-project' => 'Pordal',
+'nstab-project' => 'Bordal',
 'nstab-image' => 'Datei',
 'nstab-mediawiki' => 'Mitdeelung',
 'nstab-template' => 'Vorlaach',
@@ -290,6 +291,9 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'history-fieldset-title' => 'In de Versionsgschicht suche',
 'histfirst' => 'Ältschte',
 'histlast' => 'Naischte',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 om $2',
 
 # Revision deletion
 'rev-delundel' => 'zaich/versteckel',
@@ -422,10 +426,10 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 
 # File description page
 'file-anchor-link' => 'Datei',
-'filehist' => 'Dateigschicht',
+'filehist' => 'Dateigschischd',
 'filehist-help' => 'Drick uff e Zaidpunkt zum aazääche, wie s dort ausgsähne hot.',
 'filehist-revert' => 'zuriggsedze',
-'filehist-current' => 'aktuell',
+'filehist-current' => 'akduell',
 'filehist-datetime' => 'Zaidpungd',
 'filehist-thumb' => 'Vorschaubild',
 'filehist-thumbtext' => 'Vorschaubild fer Version vum $1',
@@ -485,7 +489,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'newuserlogpage' => 'Naiaameldungs-Logbuch',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(Mitgliederlischt)',
+'listgrouprights-members' => '(Mitgliederlischd)',
 
 # E-mail user
 'emailuser' => 'E-Mail on den Benutzer',
@@ -569,11 +573,11 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'blanknamespace' => '(Haaptsaid)',
 
 # Contributions
-'contributions' => 'Was der gemacht hot',
+'contributions' => '{{GENDER:$1|Wasa gemachd hod}}',
 'contributions-title' => 'Benutzerbaidräch vun $1',
 'mycontris' => 'Baidräsch',
 'contribsub2' => 'Fer $1 ($2)',
-'uctop' => '(aktuell)',
+'uctop' => '(akduell)',
 'month' => 'un Monet (un frieher):',
 'year' => 'Ab em Johr (un frieher):',
 
@@ -658,7 +662,7 @@ Bitte duu se vun Hand zammefiehre.'''",
 'delete_and_move_confirm' => 'Ja, Said lesche',
 
 # Export
-'export' => 'Saide exportiere',
+'export' => 'Saide expordiere',
 'export-submit' => 'Seide exbordiere',
 
 # Thumbnails
@@ -672,7 +676,7 @@ Bitte duu se vun Hand zammefiehre.'''",
 'tooltip-pt-mytalk' => 'Dai Dischbedier-Said',
 'tooltip-pt-preferences' => 'Dai Aistellunge',
 'tooltip-pt-watchlist' => 'D Lischt vun Saide, die wu du beowachde dusch',
-'tooltip-pt-mycontris' => 'Lischt vun Daine Baidräch',
+'tooltip-pt-mycontris' => 'Lischd vun Daine Baidräch',
 'tooltip-pt-login' => 'Du kannscht Dich aamelde, awwer du muscht s nit',
 'tooltip-pt-logout' => 'Abmelde',
 'tooltip-ca-talk' => 'Iwwer d Inhaltssaid dischbediere',
@@ -706,7 +710,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-t-emailuser' => 'Dem Benutzer e E-Mail schicke',
 'tooltip-t-upload' => 'Dateije nufflade',
 'tooltip-t-specialpages' => 'Lischd vun alle Schbezialsaide',
-'tooltip-t-print' => 'Druckversion vun derre Said',
+'tooltip-t-print' => 'Druggversion vun derre Said',
 'tooltip-t-permalink' => 'E dauerhafte Link zu derre Version vun de Said',
 'tooltip-ca-nstab-main' => 'D Inhaldssaid aagucke',
 'tooltip-ca-nstab-user' => 'D Benutzersaid aagucke',
@@ -721,9 +725,9 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-diff' => 'Guck, welle Ännerunge Du im Text gmacht hoscht',
 'tooltip-compareselectedversions' => 'D Unnerschied zwische denne zwai ausgwehlte Versione aagucke',
 'tooltip-watch' => 'Die Said zu Dainer Beowachdunglischd zufieche',
-'tooltip-rollback' => '„Zericksetze“ machd alle Bearwaidunge vum letschte Bearwaider rickgängich',
+'tooltip-rollback' => '„Zericksetze“ machd alle Bearwaidunge vum ledschde Bearwaider rickgängich',
 'tooltip-undo' => '„Zerick“ macht numme die Ännerung rickgängich un zaicht d Vorschau aa.
-Du kannscht e Grund in dr Zammfassung aagewwe',
+Du kannschd e Grund in dr Zammfassung aagewwe',
 
 # Browsing diffs
 'previousdiff' => '← Ältere Bearwaidung',

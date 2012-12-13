@@ -969,6 +969,9 @@ Os pouvez vir l'source",
 'tooltip-preferences-save' => 'Warder chés préférinches.',
 'tooltip-summary' => 'Intrer un tiot résumè',
 
+# Info page
+'pageinfo-toolboxlink' => "Informacions édseur l'page",
+
 # Browsing diffs
 'previousdiff' => '← Pu vieille édition',
 'nextdiff' => 'Nouvèle édichon →',

@@ -845,6 +845,8 @@ $2',
 شما می‌توانید به استفادهٔ گمنام از {{SITENAME}} ادامه دهید، یا با همین حساب کاربری یا حسابی دیگر <span class='plainlinks'>[$1 به سامانه وارد شوید]</span>.
 توجه کنید که تا زمانی که میانگیر مرورگرتان را پاک نکنید، بعضی صفحه‌ها ممکن است به گونه‌ای نمایش یابند که گویی هنوز از سامانه خارج نشده‌اید.",
 'welcomeuser' => 'خوشامدید، $1!',
+'welcomecreation-msg' => 'حساب کاربری شما ایجاد شده است.
+فراموش نکنید که [[Special:Preferences|ترجیحات {{SITENAME}}]] خود را تغییر دهید.',
 'yourname' => 'نام کاربری:',
 'yourpassword' => 'گذرواژه:',
 'yourpasswordagain' => 'تکرار گذرواژه:',
@@ -994,7 +996,7 @@ $2
 شما باید هم‌اکنون وارد شده و یک گذرواژهٔ جدید برگزینید. اگر شخص دیگری این درخواست را داده است، یا اگر گذرواژهٔ اصلی‌تان را به خاطر آوردید، و دیگر نمی‌خواهید که آن را تغییر دهید، می‌توانید این پیغام را نادیده بگیرید و به استفاده از گذرواژهٔ قبلی‌تان ادامه دهید.',
 'passwordreset-emailelement' => 'نام کاربری: $1
 گذرواژهٔ موقت: $2',
-'passwordreset-emailsent' => 'یک نامهٔ یادآور فرستاده شده است.',
+'passwordreset-emailsent' => 'یک نامهٔ یادآور فرستاده شد.',
 'passwordreset-emailsent-capture' => 'رایانامهٔ یادآور فرستاده شد، که به شرح زیر است.',
 'passwordreset-emailerror-capture' => 'رایانامهٔ یادآور همانطور که در زیر مشاهده می‌فرمایید ایجاد شد ولی ارسال آن به کاربر موفقیت‌آمیز نبود: $1',
 
@@ -1594,9 +1596,9 @@ $1",
 'prefs-emailconfirm-label' => 'تأیید رایانامه:',
 'prefs-textboxsize' => 'اندازهٔ جعبهٔ ویرایش',
 'youremail' => 'رایانامه:',
-'username' => 'نام کاربری:',
-'uid' => 'شناسهٔ کاربر:',
-'prefs-memberingroups' => 'عضو این {{PLURAL:$1|گروه|گروه‌ها}}:',
+'username' => '{{GENDER:$1|نام کاربری}}:',
+'uid' => 'شناسهٔ {{GENDER:$1|کاربری}}:',
+'prefs-memberingroups' => '{{GENDER:$2|عضو}} {{PLURAL:$1|گروه|گروه}}:',
 'prefs-registration' => 'زمان ثبت‌نام:',
 'yourrealname' => 'نام واقعی:',
 'yourlanguage' => 'زبان:',
@@ -2504,14 +2506,23 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'enotif_mailer' => 'رایانامهٔ اطلاع‌رسانی {{SITENAME}}',
 'enotif_reset' => 'علامت‌گذاری همهٔ صفحه‌ها به عنوان بازدید شده',
 'enotif_impersonal_salutation' => 'کاربر {{SITENAME}}',
+'enotif_subject_deleted' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} حذف شد.',
+'enotif_subject_created' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} ایجاد شده.',
+'enotif_subject_moved' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} انتقال یافت.',
+'enotif_subject_restored' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} احیا شد.',
+'enotif_subject_changed' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} تغییر کرد.',
+'enotif_body_intro_deleted' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} حذف شد. $3 را برای نسخهٔ کنونی شاهده کنید.',
+'enotif_body_intro_created' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} ایجاد شد. $3 را برای نسخهٔ کنونی شاهده کنید.',
+'enotif_body_intro_moved' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} انتقال یافت، $3 را برای نسخهٔ کنونی شاهده کنید.',
+'enotif_body_intro_restored' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} احیا شد، $3 را برای نسخهٔ کنونی شاهده کنید.',
+'enotif_body_intro_changed' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} تغییر کرد، $3 را برای نسخهٔ کنونی شاهده کنید.',
 'enotif_lastvisited' => 'برای دیدن همهٔ تغییرات از آخرین باری که سر زده‌اید $1 را ببینید.',
 'enotif_lastdiff' => 'برای نمایش این تغییر $1 را ببینید.',
 'enotif_anon_editor' => 'کاربر ناشناس $1',
 'enotif_body' => '$WATCHINGUSERNAME گرامی،
 
-صفحهٔ «$PAGETITLE» در {{SITENAME}} در $PAGEEDITDATE به‌دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی $PAGETITLE_URL را ببینید.
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
 
 توضیح ویراستار: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2520,7 +2531,7 @@ $NEWPAGE
 ویکی: $PAGEEDITOR_WIKI
 
 تا هنگامی که به صفحه سر نزده‌اید، در صورت رخ‌دادنِ احتمالیِ تغییراتِ بیشتر، اعلانیه‌ای برای شما فرستاده نخواهد شد.
-شما همچنین می‌توانید در صفحهٔ پی‌گیری‌های خود پرچم‌های مربوط به آگاهی‌رسانی را صفر کنید.
+شما همچنین می‌توانید در صفحهٔ پی‌گیری‌های خود پرچم‌های مربوط به آگاهی‌رسانی را صفر کنید همچنین می‌توانید پرچم‌های آگاهی‌سازی را بازنشانی کنید.
 
 دوستدار شما، سامانهٔ آگاهی‌رسانی {{SITENAME}}
 
@@ -2725,7 +2736,7 @@ $1',
 'blanknamespace' => '(اصلی)',
 
 # Contributions
-'contributions' => 'مشارکت‌های کاربری',
+'contributions' => 'مشارکت‌های {{GENDER:$1|کاربر}}',
 'contributions-title' => 'مشارکت‌های کاربری $1',
 'mycontris' => 'مشارکت‌ها',
 'contribsub2' => 'برای $1 ($2)',
@@ -4256,4 +4267,6 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
+# Unknown messages
+'svg-long-error' => 'پرونده SVG غیرمجاز: $1',
 );
