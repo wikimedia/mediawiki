@@ -533,11 +533,29 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 	/**
 	 * Get the query string to append to feed link URLs.
-	 * This is overridden by RCL to add the target parameter
-	 * @return bool
+	 * 
+	 * @return String|false
 	 */
 	public function getFeedQuery() {
-		return false;
+		global $wgFeedLimit;
+
+		$this->getOptions()->validateIntBounds( 'limit', 0, $wgFeedLimit );
+		$options = $this->getOptions()->getChangedValues();
+
+		// wfArrayToCgi() omits options set to null or false
+		foreach ( $options as &$value ) {
+			if ( $value === false ) {
+				$value = '0';
+			}
+		}
+		unset( $value );
+
+		$query = wfArrayToCgi( $options );
+		if ( $query !== "" ) {
+			return $query;
+		} else {
+			return false;
+		}
 	}
 
 	/**
