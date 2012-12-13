@@ -1322,20 +1322,17 @@ abstract class Skin extends ContextSource {
 					// Singular if no revision -> diff link will show latest change only in any case
 					$plural = false;
 				}
-				$plural = $plural ? 2 : 1;
-				// 2 signifies "more than one revision". We don't know how many, and even if we did,
-				// the number of revisions or authors is not necessarily the same as the number of
-				// "messages".
+				
 				$newMessagesLink = Linker::linkKnown(
 					$uTalkTitle,
-					$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
+					$this->msg( $plural ? 'newmessageslinkplural' : 'newmessageslinksingular' )->escaped(),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
 				$newMessagesDiffLink = Linker::linkKnown(
 					$uTalkTitle,
-					$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
+					$this->msg( $plural ? 'newmessagesdifflinkplural' : 'newmessagesdifflinksingular' )->escaped(),
 					array(),
 					$lastSeenRev !== null
 						? array( 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' )
