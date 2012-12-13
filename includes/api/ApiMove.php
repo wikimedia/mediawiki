@@ -83,8 +83,12 @@ class ApiMove extends ApiBase {
 
 		$r = array( 'from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason'] );
 		if ( !$params['noredirect'] || !$user->isAllowed( 'suppressredirect' ) ) {
-			$r['redirectcreated'] = '';
+			$handler = ContentHandler::getForTitle( $toTitle );
+			if ( $handler->supportsRedirects() ) {
+				$r['redirectcreated'] = '';
+			}
 		}
+
 		if( $toTitleExists ) {
 			$r['moveoverredirect'] = '';
 		}

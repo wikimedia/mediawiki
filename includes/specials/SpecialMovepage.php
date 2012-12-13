@@ -254,6 +254,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 		}
 
+		$handler = ContentHandler::getForTitle( $this->oldTitle );
+
 		$out->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
@@ -309,7 +311,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $user->isAllowed( 'suppressredirect' ) ) {
+		if ( $user->isAllowed( 'suppressredirect' ) && $handler->supportsRedirects() ) {
 			$out->addHTML( "
 				<tr>
 					<td></td>
@@ -451,6 +453,11 @@ class MovePageForm extends UnlistedSpecialPage {
 			$createRedirect = $this->leaveRedirect;
 		} else {
 			$createRedirect = true;
+		}
+
+		$handler = ContentHandler::getForTitle( $ot );
+		if ( !$handler->supportsRedirects() ) {
+			$createRedirect = false;
 		}
 
 		# Do the actual move.
