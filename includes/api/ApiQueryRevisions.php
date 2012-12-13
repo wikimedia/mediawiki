@@ -496,14 +496,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
-			if ( $this->section !== false ) {
+			if ( $content && $this->section !== false ) {
 				$content = $content->getSection( $this->section, false );
 				if ( !$content ) {
 					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
 				}
 			}
 		}
-		if ( $this->fld_content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $this->fld_content && $content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
 			$text = null;
 
 			if ( $this->generateXML ) {
@@ -567,7 +567,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiResult::setContent( $vals, $text );
 			}
 		} elseif ( $this->fld_content ) {
-			$vals['texthidden'] = '';
+			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+				$vals['texthidden'] = '';
+			} else {
+				$vals['textmissing'] = '';
+			}
 		}
 
 		if ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
@@ -579,7 +583,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$context->setTitle( $title );
 				$handler = $revision->getContentHandler();
 
-				if ( !is_null( $this->difftotext ) ) {
+				if ( !is_null( $content ) && !is_null( $this->difftotext ) ) {
 					$model = $title->getContentModel();
 
 					if ( $this->contentFormat
@@ -786,7 +790,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				),
-				'texthidden' => 'boolean'
+				'texthidden' => 'boolean',
+				'textmissing' => 'boolean',
 			),
 			'contentmodel' => array(
 				'contentmodel' => 'string'
