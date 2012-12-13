@@ -1,4 +1,3 @@
-
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
@@ -133,6 +132,8 @@ production.
 * (bug 39062) Special:Contributions will display changes that don't have
   a parent id instead of just an empty bullet item.
 * wfMerge() now works if $wgDiff3 contains spaces
+* (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
+  ca-edit click instead opening URL directly.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
