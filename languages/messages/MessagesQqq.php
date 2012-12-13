@@ -678,17 +678,16 @@ Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
 The message takes three parameters;
-*$1 {{msg-mw|newmessageslinkplural}},
-*$2 {{msg-mw|newmessagesdifflinkplural}}, and
-*$3 the number of authors who have edited the talk page since the owning user last viewed it.',
+* $1 {{msg-mw|newmessageslinksingular}} or {{msg-mw|newmessageslinkplural}},
+* $2 {{msg-mw|newmessagesdifflinksingular}} or {{msg-mw|newmessagesdifflinkplural}}, and
+* $3 the number of authors who have edited the talk page since the owning user last viewed it.',
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to{{msg-mw|youhavenewmessages}}. Parameters:
-* $1 is {{msg-mw|newmessageslinkplural}},
-* $2 is  {{msg-mw|newmessagesdifflinkplural}}.',
-'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
-This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
-since the last time the user has seen his or her talk page.',
-'newmessagesdifflinkplural' => 'Like {{msg-mw|newmessagesdifflink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).
-This message itself takes one parameter, $1, which is the number of new edits since the last time the user has seen his or her talk page.',
+* $1 {{msg-mw|newmessageslinksingular}} or {{msg-mw|newmessageslinkplural}},
+* $2 {{msg-mw|newmessagesdifflinksingular}} or {{msg-mw|newmessagesdifflinkplural}}.',
+'newmessageslinksingular' => 'Like {{msg-mw|newmessageslink}}, singular form. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).',
+'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}}, plural form. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).',
+'newmessagesdifflinksingular' => 'Like {{msg-mw|newmessagesdifflink}}, singular form. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).',
+'newmessagesdifflinkplural' => 'Like {{msg-mw|newmessagesdifflink}}, plural form. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).',
 'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
