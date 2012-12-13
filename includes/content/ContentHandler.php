@@ -442,6 +442,9 @@ abstract class ContentHandler {
 	 * This default implementation always returns null. Subclasses supporting redirects
 	 * must override this method.
 	 *
+	 * Note that subclasses that override this method to return a Content object
+	 * should also override supportsRedirects() to return true.
+	 *
 	 * @since 1.21
 	 *
 	 * @param Title $destination the page to redirect to.
@@ -965,12 +968,27 @@ abstract class ContentHandler {
 
 	/**
 	 * Returns true if this content model supports sections.
-	 *
 	 * This default implementation returns false.
+	 *
+	 * Content models that return true here should also implement
+	 * Content::getSection, Content::replaceSection, etc. to handle sections..
 	 *
 	 * @return boolean whether sections are supported.
 	 */
 	public function supportsSections() {
+		return false;
+	}
+
+	/**
+	 * Returns true if this content model supports redirects.
+	 * This default implementation returns false.
+	 *
+	 * Content models that return true here should also implement
+	 * ContentHandler::makeRedirectContent to return a Content object.
+	 *
+	 * @return boolean whether redirects are supported.
+	 */
+	public function supportsRedirects() {
 		return false;
 	}
 

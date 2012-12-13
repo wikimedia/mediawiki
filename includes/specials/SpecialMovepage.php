@@ -254,6 +254,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 		}
 
+		$handler = ContentHandler::getForTitle( $this->oldTitle );
+
 		$out->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
@@ -309,7 +311,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $user->isAllowed( 'suppressredirect' ) ) {
+		if ( $user->isAllowed( 'suppressredirect' ) && $handler->supportsRedirects() ) {
 			$out->addHTML( "
 				<tr>
 					<td></td>
@@ -447,7 +449,11 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 		}
 
-		if ( $user->isAllowed( 'suppressredirect' ) ) {
+		$handler = ContentHandler::getForTitle( $ot );
+
+		if ( !$handler->supportsRedirects() ) {
+			$createRedirect = false;
+		} elseif ( $user->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = $this->leaveRedirect;
 		} else {
 			$createRedirect = true;
@@ -477,7 +483,18 @@ class MovePageForm extends UnlistedSpecialPage {
 		$oldText = $ot->getPrefixedText();
 		$newText = $nt->getPrefixedText();
 
-		$msgName = $createRedirect ? 'movepage-moved-redirect' : 'movepage-moved-noredirect';
+		if ( $ot->exists() ) {
+			//NOTE: we assume that if the old title exists, it's because it was re-created as
+			// a redirect to the new title. This is not safe, but what we did before was
+			// even worse: we just determined whether a redirect should have been created,
+			// and reported that it was created if it should have, without any checks.
+			// Also note that isRedirect() is unreliable because of bug 37209.
+			$msgName = 'movepage-moved-redirect';
+		} else {
+			$msgName = 'movepage-moved-noredirect';
+		}
+
+
 		$out->addHTML( $this->msg( 'movepage-moved' )->rawParams( $oldLink,
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );
 		$out->addWikiMsg( $msgName );
