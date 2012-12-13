@@ -33,6 +33,7 @@ class JobQueueDB extends JobQueue {
 	const MAX_AGE_PRUNE   = 604800; // integer; seconds a job can live once claimed
 	const MAX_ATTEMPTS    = 3; // integer; number of times to try a job
 	const MAX_JOB_RANDOM  = 2147483647; // integer; 2^31 - 1, used for job_random
+	const MAX_OFFSET      = 255; // integer; maximum number of rows to skip
 
 	/**
 	 * @see JobQueue::doIsEmpty()
@@ -209,9 +210,6 @@ class JobQueueDB extends JobQueue {
 				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
 				$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
 				$row  = $this->claimRandom( $uuid, $rand, $gte );
-				if ( !$row ) { // need to try the other direction
-					$row = $this->claimRandom( $uuid, $rand, !$gte );
-				}
 			}
 			// Check if we found a row to reserve...
 			if ( !$row ) {
@@ -249,23 +247,55 @@ class JobQueueDB extends JobQueue {
 	 * @return Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
-		$dbw  = $this->getMasterDB();
-		$ineq = $gte ? '>=' : '<=';
+		global $wgMemc;
+
+		$dbw = $this->getMasterDB();
+		// Check cache to see if the queue has <= OFFSET items
+		$tinyQueue = $wgMemc->get( $this->getCacheKey( 'small' ) );
 
 		$row = false; // the row acquired
+		$invertedDirection = false; // whether one job_random direction was already scanned
 		// This uses a replication safe method for acquiring jobs. One could use UPDATE+LIMIT
 		// instead, but that either uses ORDER BY (in which case it deadlocks in MySQL) or is
 		// not replication safe. Due to http://bugs.mysql.com/bug.php?id=6980, subqueries cannot
 		// be used here with MySQL.
 		do {
-			$row = $dbw->selectRow( 'job', '*', // find a random job
-				array(
-					'job_cmd'   => $this->type,
-					'job_token' => '',
-					"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
-				__METHOD__
-				// Bug 42614: "ORDER BY job_random" causes slowness on mysql for some reason
-			);
+			if ( $tinyQueue ) { // queue has <= MAX_OFFSET rows
+				// For small queues, using OFFSET will overshoot and return no rows more often.
+				// Instead, this uses job_random to pick a row (possibly checking both directions).
+				$ineq = $gte ? '>=' : '<=';
+				$dir  = $gte ? 'ASC' : 'DESC';
+				$row  = $dbw->selectRow( 'job', '*', // find a random job
+					array(
+						'job_cmd'   => $this->type,
+						'job_token' => '', // unclaimed
+						"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
+					__METHOD__,
+					array( 'ORDER BY' => "job_random {$dir}" )
+				);
+				if ( !$row && !$invertedDirection ) {
+					$gte = !$gte;
+					$invertedDirection = true;
+					continue; // try the other direction
+				}
+			} else { // table *may* have >= MAX_OFFSET rows
+				// Bug 42614: "ORDER BY job_random" with a job_random inequality causes high CPU
+				// in MySQL if there are many rows for some reason. This uses a small OFFSET
+				// instead of job_random for reducing excess claim retries.
+				$row = $dbw->selectRow( 'job', '*', // find a random job
+					array(
+						'job_cmd'   => $this->type,
+						'job_token' => '', // unclaimed
+					),
+					__METHOD__,
+					array( 'OFFSET' => mt_rand( 0, self::MAX_OFFSET ) )
+				);
+				if ( !$row ) {
+					$tinyQueue = true; // we know the queue must have <= MAX_OFFSET rows
+					$wgMemc->set( $this->getCacheKey( 'small' ), 1, 30 );
+					continue; // use job_random
+				}
+			}
 			if ( $row ) { // claim the job
 				$dbw->update( 'job', // update by PK
 					array(
