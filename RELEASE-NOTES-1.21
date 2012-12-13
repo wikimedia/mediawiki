@@ -1,4 +1,3 @@
-
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
@@ -112,6 +111,8 @@ production.
   <h4>, <h5> or <h6> to only <h3>s, with a <h2> hidden heading above them.
   If you are styling or scripting the headings in a custom way, this change
   will require updates to your site's CSS or JS.
+* (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
+  ca-edit click instead opening URL directly.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
