@@ -3125,6 +3125,29 @@ disabled
 
 !! end
 
+!! test
+Wikitext table with a lot of comments
+!! input
+{|
+<!-- c0 -->
+| foo
+<!-- c1 -->
+|- <!-- c2 -->
+<!-- c3 -->
+|<!-- c4 -->
+<!-- c5 -->
+|}
+!! result
+<table>
+<tr>
+<td> foo
+</td></tr>
+<tr>
+<td>
+</td></tr></table>
+
+!! end
+
 ###
 ### Internal links
 ###
