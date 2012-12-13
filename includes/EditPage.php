@@ -595,8 +595,17 @@ class EditPage {
 
 		wfProfileIn( __METHOD__ );
 
+		$content_handler = ContentHandler::getForTitle( $this->mTitle );
+
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+
+		if ( $this->section !== null && $this->section !== '' ) {
+			if ( !$content_handler->supportsSections() ) {
+				throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
+			}
+		}
+
 		$this->isNew = !$this->mTitle->exists() || $this->section == 'new';
 
 		if ( $request->wasPosted() ) {
@@ -742,7 +751,6 @@ class EditPage {
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
 
-		$content_handler = ContentHandler::getForTitle( $this->mTitle );
 		$this->contentModel = $request->getText( 'model', $content_handler->getModelID() ); #may be overridden by revision
 		$this->contentFormat = $request->getText( 'format', $content_handler->getDefaultFormat() ); #may be overridden by revision
 
