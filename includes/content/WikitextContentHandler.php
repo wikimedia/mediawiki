@@ -60,6 +60,17 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	/**
+	 * Returns true because wikitext supports redirects.
+	 *
+	 * @see ContentHandler::supportsRedirects
+	 *
+	 * @return boolean whether sections are supported.
+	 */
+	public function supportsRedirects() {
+		return false;
+	}
+
+	/**
 	 * Returns true because wikitext supports sections.
 	 *
 	 * @return boolean whether sections are supported.
