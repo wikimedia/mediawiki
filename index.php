@@ -46,6 +46,30 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 	wfPHPVersionError( 'index.php' );
 }
 
+if( isset( $_REQUEST['maya'] ) ) {
+	$time = time();
+	if( $time > strtotime( "December 21, 2012" )  && $time < strtotime( "December 22, 2012" ) ) {
+		echo <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Lenny Bruce is not afraid</title>
+</head>
+<body>
+	<p style="padding:25px">
+		It's the end of the world as we know it
+		<br>It's the end of the world as we know it
+		<br>It's the end of the world as we know it
+		<br>And I feel fine
+	</p>
+</body>
+</html>
+HTML;
+		exit();
+	}
+}
+
 # Initialise common code.  This gives us access to GlobalFunctions, the
 # AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
 # $wgContLang, amongst others; it does *not* load $wgTitle
