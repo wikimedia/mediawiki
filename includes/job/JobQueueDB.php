@@ -213,8 +213,10 @@ class JobQueueDB extends JobQueue {
 					'job_cmd'   => $this->type,
 					'job_token' => '',
 					"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
-				__METHOD__
-				// Bug 42614: "ORDER BY job_random" causes slowness on mysql for some reason
+				__METHOD__,
+				// Bug 42614: "ORDER BY job_random" causes high CPU on mysql for some reason.
+				// Use a small OFFSET instead of job_random for reducing excess claim retries.
+				array( 'OFFSET' => mt_rand( 0, 255 ) )
 			);
 			if ( $row ) { // claim the job
 				$dbw->update( 'job', // update by PK
