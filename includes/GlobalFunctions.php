@@ -2216,7 +2216,7 @@ function wfSuppressWarnings( $end = false ) {
 			if( !defined( 'E_DEPRECATED' ) ) {
 				define( 'E_DEPRECATED', 8192 );
 			}
-			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED ) );
+			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_STRICT ) );
 		}
 		++$suppressCount;
 	}
