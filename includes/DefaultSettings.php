@@ -5003,9 +5003,9 @@ $wgGitRepositoryViewers = array(
 /**
  * Recentchanges items are periodically purged; entries older than this many
  * seconds will go.
- * Default: 13 weeks = about three months
+ * Default: 90 days = about three months
  */
-$wgRCMaxAge = 13 * 7 * 24 * 3600;
+$wgRCMaxAge = 90 * 24 * 3600;
 
 /**
  * Filter $wgRCLinkDays by $wgRCMaxAge to avoid showing links for numbers
