@@ -557,7 +557,8 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
 == Getting started ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localise MediaWiki for your language]",
 );
 
 /** Message documentation (Message documentation)
