@@ -5770,6 +5770,29 @@ disabled
 </span>
 !!end
 
+!! test
+Templates: Ugly templates: 3. unused newline-only template parameter
+!! input
+{{echo|foo
+|
+}}
+!! result
+<p>foo
+</p>
+!! end
+
+# This looks like a bug: a single newline triggers p/br for some reason.
+!! test
+Templates: Ugly templates: 3. used newline-only template parameter
+!! input
+{{echo|
+}}
+!! result
+<p><br />
+</p>
+!! end
+
+
 !!test
 Parser Functions: 1. Simple example
 !!input
