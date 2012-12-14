@@ -519,9 +519,11 @@ class LocalisationCache {
 	 * @since 1.20
 	 */
 	public function getPluralRules( $code ) {
+		global $IP;
+
 		if ( $this->pluralRules === null ) {
-			$cldrPlural = __DIR__ . "/../languages/data/plurals.xml";
-			$mwPlural = __DIR__ . "/../languages/data/plurals-mediawiki.xml";
+			$cldrPlural = "$IP/languages/data/plurals.xml";
+			$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
 			// Load CLDR plural rules
 			$this->loadPluralFile( $cldrPlural );
 			if ( file_exists( $mwPlural ) ) {
