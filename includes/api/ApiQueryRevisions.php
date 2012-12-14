@@ -439,12 +439,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_sha1 ) {
+		if ( $this->fld_sha1 && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
 			if ( $revision->getSha1() != '' ) {
 				$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
 			} else {
 				$vals['sha1'] = '';
 			}
+		} elseif ( $this->fld_sha1 ) {
+			$vals['sha1hidden'] = '';
 		}
 
 		if ( $this->fld_contentmodel ) {
