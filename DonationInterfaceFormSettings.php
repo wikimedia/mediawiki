@@ -361,26 +361,6 @@ $forms_whitelist['email-cc-vm'] = array(
 	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
 );
 
-/****************************************************
- * OVERRIDE ALL AMEX FORMS TO NON-AMEX FORMS DURING *
- * GLOBALCOLLECT'S "STUPID" PERIOD                  *
- ****************************************************/
-
-$forms_whitelist['cc-vma'] = $forms_whitelist['cc-vm'];
-$forms_whitelist['cc-vmad'] = $forms_whitelist['cc-vmd'];
-$forms_whitelist['cc-vmaj'] = $forms_whitelist['cc-vmj'];
-
-$forms_whitelist['email-cc-vma'] = $forms_whitelist['email-cc-vm'];
-$forms_whitelist['email-cc-vmad'] = $forms_whitelist['email-cc-vm'];
-$forms_whitelist['email-cc-vmaj'] = $forms_whitelist['email-cc-vm'];
-
-$forms_whitelist['rcc-vma'] = $forms_whitelist['rcc-vm'];
-$forms_whitelist['rcc-vmad'] = $forms_whitelist['rcc-vmd'];
-$forms_whitelist['rcc-vmaj'] = $forms_whitelist['rcc-vmj'];
-
-// END STUPIDITY
-
-
 //Yes: We definitely want to blow away everything that didn't come from this file. 
 $wgDonationInterfaceAllowedHtmlForms = $forms_whitelist;
 $wgDonationInterfaceFormDirs = $form_dirs;
