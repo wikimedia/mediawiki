@@ -28,10 +28,11 @@
  * @since 1.21
  */
 class JobQueueDB extends JobQueue {
-	const CACHE_TTL      = 300; // integer; seconds to cache queue information
-	const MAX_AGE_PRUNE  = 604800; // integer; seconds a job can live once claimed
-	const MAX_ATTEMPTS   = 3; // integer; number of times to try a job
-	const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
+	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
+	const CACHE_TTL_LONG  = 300; // integer; seconds to cache info that is kept up to date
+	const MAX_AGE_PRUNE   = 604800; // integer; seconds a job can live once claimed
+	const MAX_ATTEMPTS    = 3; // integer; number of times to try a job
+	const MAX_JOB_RANDOM  = 2147483647; // integer; 2^31 - 1, used for job_random
 
 	/**
 	 * @see JobQueue::doIsEmpty()
@@ -40,7 +41,7 @@ class JobQueueDB extends JobQueue {
 	protected function doIsEmpty() {
 		global $wgMemc;
 
-		$key = $this->getEmptinessCacheKey();
+		$key = $this->getCacheKey( 'empty' );
 
 		$isEmpty = $wgMemc->get( $key );
 		if ( $isEmpty === 'true' ) {
@@ -52,9 +53,57 @@ class JobQueueDB extends JobQueue {
 		$found = $this->getSlaveDB()->selectField( // unclaimed job
 			'job', '1', array( 'job_cmd' => $this->type, 'job_token' => '' ), __METHOD__
 		);
-		$wgMemc->add( $key, $found ? 'false' : 'true', self::CACHE_TTL );
+		$wgMemc->add( $key, $found ? 'false' : 'true', self::CACHE_TTL_LONG );
 
 		return !$found;
+	}
+
+	/**
+	 * @see JobQueue::doGetSize()
+	 * @return integer
+	 */
+	protected function doGetSize() {
+		global $wgMemc;
+
+		$key = $this->getCacheKey( 'size' );
+
+		$size = $wgMemc->get( $key );
+		if ( is_int( $size ) ) {
+			return $size;
+		}
+
+		$dbr = $this->getSlaveDB();
+		$size = (int)$dbr->selectField( 'job', 'COUNT(*)',
+			array( 'job_cmd' => $this->type, 'job_token' => '' ),
+			__METHOD__
+		);
+		$wgMemc->set( $key, $size, self::CACHE_TTL_SHORT );
+
+		return $size;
+	}
+
+	/**
+	 * @see JobQueue::doGetAcquiredCount()
+	 * @return integer
+	 */
+	protected function doGetAcquiredCount() {
+		global $wgMemc;
+
+		$key = $this->getCacheKey( 'acquiredcount' );
+
+		$count = $wgMemc->get( $key );
+		if ( is_int( $count ) ) {
+			return $count;
+		}
+
+		$dbr = $this->getSlaveDB();
+		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
+			array( 'job_cmd' => $this->type, "job_token !={$dbr->addQuotes('')}" ),
+			__METHOD__
+		);
+		$wgMemc->set( $key, $count, self::CACHE_TTL_SHORT );
+
+		return $count;
 	}
 
 	/**
@@ -81,8 +130,8 @@ class JobQueueDB extends JobQueue {
 			}
 
 			$atomic = ( $flags & self::QoS_Atomic );
-			$key    = $this->getEmptinessCacheKey();
-			$ttl    = self::CACHE_TTL;
+			$key    = $this->getCacheKey( 'empty' );
+			$ttl    = self::CACHE_TTL_LONG;
 
 			$dbw->onTransactionIdle(
 				function() use ( $dbw, $rowSet, $rowList, $atomic, $key, $ttl
@@ -139,7 +188,7 @@ class JobQueueDB extends JobQueue {
 	protected function doPop() {
 		global $wgMemc;
 
-		if ( $wgMemc->get( $this->getEmptinessCacheKey() ) === 'true' ) {
+		if ( $wgMemc->get( $this->getCacheKey( 'empty' ) ) === 'true' ) {
 			return false; // queue is empty
 		}
 
@@ -166,7 +215,7 @@ class JobQueueDB extends JobQueue {
 			}
 			// Check if we found a row to reserve...
 			if ( !$row ) {
-				$wgMemc->set( $this->getEmptinessCacheKey(), 'true', self::CACHE_TTL );
+				$wgMemc->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
 				break; // nothing to do
 			}
 			wfIncrStats( 'job-pop' );
@@ -495,9 +544,9 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @return string
 	 */
-	private function getEmptinessCacheKey() {
+	private function getCacheKey( $property ) {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'isempty' );
+		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $property );
 	}
 
 	/**

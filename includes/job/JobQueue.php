@@ -96,7 +96,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Quickly check if the queue is empty.
+	 * Quickly check if the queue is empty (has no available jobs).
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * @return bool
@@ -113,6 +113,44 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	abstract protected function doIsEmpty();
+
+	/**
+	 * Get the number of available jobs in the queue.
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * @return integer
+	 */
+	final public function getSize() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doGetSize();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::getSize()
+	 * @return integer
+	 */
+	abstract protected function doGetSize();
+
+	/**
+	 * Get the number of acquired jobs (these are temporarily out of the queue).
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * @return integer
+	 */
+	final public function getAcquiredCount() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doGetAcquiredCount();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::getAcquiredCount()
+	 * @return integer
+	 */
+	abstract protected function doGetAcquiredCount();
 
 	/**
 	 * Push a batch of jobs into the queue
