@@ -575,23 +575,30 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param $db DatabaseBase
 	 * @param $audience string, public/user
+	 * @param $user User object to check, or null to use $wgUser
 	 * @return Mixed: string or false
 	 */
-	public static function getExcludeClause( $db, $audience = 'public' ) {
-		global $wgLogRestrictions, $wgUser;
+	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {
+		global $wgLogRestrictions;
+
+		if ( $audience != 'public' && $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
 		// Reset the array, clears extra "where" clauses when $par is used
 		$hiddenLogs = array();
+
 		// Don't show private logs to unprivileged users
 		foreach( $wgLogRestrictions as $logType => $right ) {
-			if( $audience == 'public' || !$wgUser->isAllowed($right) ) {
-				$safeType = $db->strencode( $logType );
-				$hiddenLogs[] = $safeType;
+			if( $audience == 'public' || !$user->isAllowed( $right ) ) {
+				$hiddenLogs[] = $logType;
 			}
 		}
-		if( count($hiddenLogs) == 1 ) {
+		if( count( $hiddenLogs ) == 1 ) {
 			return 'log_type != ' . $db->addQuotes( $hiddenLogs[0] );
 		} elseif( $hiddenLogs ) {
-			return 'log_type NOT IN (' . $db->makeList($hiddenLogs) . ')';
+			return 'log_type NOT IN (' . $db->makeList( $hiddenLogs ) . ')';
 		}
 		return false;
 	}
