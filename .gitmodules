@@ -430,9 +430,6 @@
 [submodule "extensions/DataValues"]
 	path = extensions/DataValues
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DataValues.git
-[submodule "extensions/Onboarding"]
-	path = extensions/Onboarding
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Onboarding.git
 [submodule "extensions/GettingStarted"]
 	path = extensions/GettingStarted
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GettingStarted.git
