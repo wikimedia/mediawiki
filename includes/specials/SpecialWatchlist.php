@@ -459,11 +459,10 @@ class SpecialWatchlist extends SpecialPage {
 
 	protected function daysLink( $d, $options = array() ) {
 		$options['days'] = $d;
-		$message = ( $d ? $this->getLanguage()->formatNum( $d ) : $this->msg( 'watchlistall2' )->escaped() );
 
 		return Linker::linkKnown(
 			$this->getTitle(),
-			$message,
+			$this->getLanguage()->formatNum( $d ),
 			array(),
 			$options
 		);
@@ -475,8 +474,11 @@ class SpecialWatchlist extends SpecialPage {
 	 * @return string
 	 */
 	protected function cutoffLinks( $days, $options = array() ) {
+		global $wgRCMaxAge;
+		$watchlistMaxDays = ceil( $wgRCMaxAge / ( 3600 * 24 ) );
+
 		$hours = array( 1, 2, 6, 12 );
-		$days = array( 1, 3, 7 );
+		$days = array( 1, 3, 7, $watchlistMaxDays );
 		$i = 0;
 		foreach( $hours as $h ) {
 			$hours[$i++] = $this->hoursLink( $h, $options );
@@ -487,8 +489,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		return $this->msg( 'wlshowlast' )->rawParams(
 			$this->getLanguage()->pipeList( $hours ),
-			$this->getLanguage()->pipeList( $days ),
-			$this->daysLink( 0, $options ) )->parse();
+			$this->getLanguage()->pipeList( $days ) )->parse();
 	}
 
 	/**

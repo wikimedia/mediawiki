@@ -3347,7 +3347,6 @@ $wgMessageStructure = array(
 		'edit-externally-help',
 	),
 	'all' => array(
-		'watchlistall2',
 		'namespacesall',
 		'monthsall',
 		'limitall',
