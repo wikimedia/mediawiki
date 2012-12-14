@@ -186,8 +186,6 @@ abstract class ContentHandler {
 	 * @return null|string default model name for the page given by $title
 	 */
 	public static function getDefaultModelFor( Title $title ) {
-		global $wgNamespaceContentModels;
-
 		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
 		//       because it is used to initialize the mContentModel member.
 
@@ -195,11 +193,7 @@ abstract class ContentHandler {
 
 		$ext = false;
 		$m = null;
-		$model = null;
-
-		if ( !empty( $wgNamespaceContentModels[ $ns ] ) ) {
-			$model = $wgNamespaceContentModels[ $ns ];
-		}
+		$model = MWNamespace::getNamespaceContentModel( $ns );
 
 		// Hook can determine default model
 		if ( !wfRunHooks( 'ContentHandlerDefaultModelFor', array( $title, &$model ) ) ) {
