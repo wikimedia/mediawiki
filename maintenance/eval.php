@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP lacks an interactive mode, but this can be very helpful when debugging.
  * This script lets a command-line user start up the wiki engine and then poke
