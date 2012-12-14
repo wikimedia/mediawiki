@@ -302,55 +302,51 @@ abstract class QueryPage extends SpecialPage {
 			return false;
 		}
 
-		if ( $ignoreErrors ) {
-			$ignoreW = $dbw->ignoreErrors( true );
-			$ignoreR = $dbr->ignoreErrors( true );
-		}
-
-		# Clear out any old cached data
-		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
-		# Do query
-		$res = $this->reallyDoQuery( $limit, false );
-		$num = false;
-		if ( $res ) {
-			$num = $res->numRows();
-			# Fetch results
-			$vals = array();
-			while ( $res && $row = $dbr->fetchObject( $res ) ) {
-				if ( isset( $row->value ) ) {
-					if ( $this->usesTimestamps() ) {
-						$value = wfTimestamp( TS_UNIX,
-							$row->value );
+		try {
+			# Clear out any old cached data
+			$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
+			# Do query
+			$res = $this->reallyDoQuery( $limit, false );
+			$num = false;
+			if ( $res ) {
+				$num = $res->numRows();
+				# Fetch results
+				$vals = array();
+				while ( $res && $row = $dbr->fetchObject( $res ) ) {
+					if ( isset( $row->value ) ) {
+						if ( $this->usesTimestamps() ) {
+							$value = wfTimestamp( TS_UNIX,
+								$row->value );
+						} else {
+							$value = intval( $row->value ); // @bug 14414
+						}
 					} else {
-						$value = intval( $row->value ); // @bug 14414
+						$value = 0;
 					}
-				} else {
-					$value = 0;
+
+					$vals[] = array( 'qc_type' => $this->getName(),
+							'qc_namespace' => $row->namespace,
+							'qc_title' => $row->title,
+							'qc_value' => $value );
 				}
 
-				$vals[] = array( 'qc_type' => $this->getName(),
-						'qc_namespace' => $row->namespace,
-						'qc_title' => $row->title,
-						'qc_value' => $value );
-			}
-
-			# Save results into the querycache table on the master
-			if ( count( $vals ) ) {
-				if ( !$dbw->insert( 'querycache', $vals, __METHOD__ ) ) {
-					// Set result to false to indicate error
-					$num = false;
+				# Save results into the querycache table on the master
+				if ( count( $vals ) ) {
+					$dbw->insert( 'querycache', $vals, __METHOD__ );
 				}
+				# Update the querycache_info record for the page
+				$dbw->delete( 'querycache_info', array( 'qci_type' => $this->getName() ), $fname );
+				$dbw->insert( 'querycache_info',
+					array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ),
+					$fname );
 			}
-			if ( $ignoreErrors ) {
-				$dbw->ignoreErrors( $ignoreW );
-				$dbr->ignoreErrors( $ignoreR );
+		} catch ( DBError $e ) {
+			if ( !$ignoreErrors ) {
+				throw $e; // report query error
 			}
-
-			# Update the querycache_info record for the page
-			$dbw->delete( 'querycache_info', array( 'qci_type' => $this->getName() ), $fname );
-			$dbw->insert( 'querycache_info', array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ), $fname );
-
+			$num = false; // set result to false to indicate error
 		}
+
 		return $num;
 	}
 
