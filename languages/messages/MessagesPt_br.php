@@ -2357,17 +2357,24 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_mailer' => '{{SITENAME}} Email de Notificação',
 'enotif_reset' => 'Marcar todas páginas como visitadas',
 'enotif_impersonal_salutation' => 'Usuário do projeto "{{SITENAME}}"',
+'enotif_subject_deleted' => 'A página $1 da {{SITENAME}} foi eliminada por {{gender:$2|$2}}',
+'enotif_subject_created' => 'A página $1 da {{SITENAME}} foi criada por {{gender:$2|$2}}',
+'enotif_subject_moved' => 'A página $1 da {{SITENAME}} foi movida por {{gender:$2|$2}}',
+'enotif_subject_restored' => 'A página $1 da {{SITENAME}} foi restaurada por {{gender:$2|$2}}',
+'enotif_subject_changed' => 'A página $1 da {{SITENAME}} foi alterada por {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'A página $1 da {{SITENAME}} foi eliminada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
+'enotif_body_intro_created' => 'A página $1 da {{SITENAME}} foi criada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
+'enotif_body_intro_moved' => 'A página $1 da {{SITENAME}} foi movida em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
+'enotif_body_intro_restored' => 'A página $1 da {{SITENAME}} foi restaurada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
+'enotif_body_intro_changed' => 'A página $1 da {{SITENAME}} foi alterada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor' => 'usuário anônimo $1',
 'enotif_body' => 'Caro(a) $WATCHINGUSERNAME,
 
+$PAGEINTRO $NEWPAGE
 
-A página $PAGETITLE da {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para ver a versão atual.
-
-$NEWPAGE
-
-Resumo da edição: $PAGESUMMARY $PAGEMINOREDIT
+Resumo do editor: $PAGESUMMARY $PAGEMINOREDIT
 
 Contate o editor:
 e-mail: $PAGEEDITOR_EMAIL
@@ -2379,7 +2386,7 @@ Você pode também reativar as notificações para todas páginas na sua lista d
 O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências das notificações por correio electrónico, visite
+Para alterar as suas preferências das notificações por correio electrônico, visite
 {{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite
