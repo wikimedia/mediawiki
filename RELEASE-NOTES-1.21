@@ -124,6 +124,8 @@ production.
 * (bug 41042) Revert change to action=parse&page=... behavior when the page
   does not exist.
 * (bug 27202) Add timestamp sort to list=allimages.
+* (bug 43137) Don't return the sha1 of revisions through the API if the content is
+  revision-deleted
 
 === Languages updated in 1.21 ===
 
