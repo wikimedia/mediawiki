@@ -2768,7 +2768,7 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $2 is the number of hours for which the changes are shown,
 * $3 is a date alone,
 * $4 is a time alone.',
-'wlshowlast' => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is '{{int:watchlistall2}}' ([[Mediawiki:watchlistall2/{{SUBPAGENAME}}]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
+'wlshowlast' => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours and $2 gives a choice of different numbers of days. Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
 'watchlist-options' => 'Legend of the fieldset of [[Special:Watchlist]]',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -4430,9 +4430,6 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exactly as it is.',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'Appears on [[Special:Watchlist]]. It is variable $3 in the text message [[Mediawiki:Wlshowlast]].
-
-{{Identical|All}}',
 'namespacesall' => 'In special page [[Special:WhatLinksHere]]. Drop-down box option for namespace.
 
 {{Identical|All}}',

@@ -2873,7 +2873,7 @@ Future changes to this page and its associated talk page will be listed there, a
 'watchlistcontains'    => 'Your watchlist contains $1 {{PLURAL:$1|page|pages}}.',
 'iteminvalidname'      => "Problem with item '$1', invalid name...",
 'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
-'wlshowlast'           => 'Show last $1 hours $2 days $3',
+'wlshowlast'           => 'Show last $1 hours $2 days',
 'watchlist-options'    => 'Watchlist options',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -4412,7 +4412,6 @@ $8', # only translate this message to other languages if you have to change it
 'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'all',
 'namespacesall' => 'all',
 'monthsall'     => 'all',
 'limitall'      => 'all',
