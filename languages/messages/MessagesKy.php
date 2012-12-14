@@ -35,11 +35,11 @@ $messages = array(
 'tog-underline' => 'Шилтемелердин алдын сызуу:',
 'tog-justify' => 'Тексти барактын жазысы боюнча түздөө',
 'tog-hideminor' => 'Соңку өзгөрүүлөрдө, майда өзгөрүүлөрдү жашыруу',
-'tog-usenewrc' => 'Акыркы өзгөрүүлөрдүн жакшыртылган тизмесин колдонуу (JavaScript талап кылынат)',
+'tog-usenewrc' => 'Акыркы өзгөрүүлөрдөгү жана көзөмөл тизмедеги өзгөрүүлөрдү топтоо (JavaScript талап кылынат)',
 'tog-numberheadings' => 'Башсаптарды автоматтык түрдө номурлоо',
 'tog-showtoolbar' => 'Оңдоо учурунда аспаптар тактасын көрсөтүү (JavaScript талап кылынат)',
 'tog-editondblclick' => 'Эки басып баракты оңдоо (JavaScript талап кылынат)',
-'tog-editsection' => 'Ар бир секция үчүн «оңдоо» шилтемеси',
+'tog-editsection' => 'Ар бир секция үчүн «оңдоо» шилтемесин көрсөтүү',
 'tog-oldsig' => 'Кезектеги кол:',
 'tog-showhiddencats' => 'Жашырылган категорияларды көрсөтүү',
 
@@ -129,7 +129,7 @@ $messages = array(
 'moredotdotdot' => 'Уландысы...',
 'mypage' => 'Барак',
 'mytalk' => 'Талкуулоо',
-'anontalk' => 'Бул IP дарек үчүн талкуу',
+'anontalk' => 'Бул IP дарек үчүн талкуулоо',
 'navigation' => 'Навигация',
 'and' => '&#32;жана',
 
@@ -146,7 +146,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Тема кошумчалоо',
 'vector-action-delete' => 'Өчүрүү',
-'vector-action-move' => 'Аталышын өзгөртуу',
+'vector-action-move' => 'Атын өзгөртүү',
 'vector-action-protect' => 'Коргоо',
 'vector-action-undelete' => 'Калыбына келтирүү',
 'vector-action-unprotect' => 'Коргоону өзгөртүү',
@@ -214,7 +214,7 @@ $messages = array(
 'pool-errorunknown' => 'Белгисиз ката',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '{{SITENAME}} тууралуу',
+'aboutsite' => '{{SITENAME}} жөнүндө',
 'aboutpage' => 'Project:тууралуу',
 'copyrightpage' => '{{ns:project}}:Автордук укуктар',
 'currentevents' => 'Учурдагы окуялар',
@@ -235,14 +235,15 @@ $messages = array(
 'badaccess' => 'Кирүү катасы',
 
 'ok' => 'OK',
-'retrievedfrom' => '"$1" булагындан алынды',
+'retrievedfrom' => '"$1" булагынан алынды',
 'youhavenewmessages' => 'Сизге $1 ($2) бар.',
-'newmessageslink' => 'жаңы билдирүүлөр',
+'newmessageslink' => 'жаңы билдирмелер',
 'newmessagesdifflink' => 'соңку өзгөрүү',
-'youhavenewmessagesmulti' => 'Сизге $1 жаңы кат бар.',
+'newmessagesdifflinkplural' => 'соңку {{PLURAL:$1|өзгөртүү|өзгөртүүлөр}}',
+'youhavenewmessagesmulti' => 'Сизге $1 жаңы кат бар',
 'editsection' => 'оңдоо',
 'editold' => 'оңдоо',
-'viewsourceold' => 'байкоо',
+'viewsourceold' => 'баштапкы кодун көрүү',
 'editlink' => 'оңдоо',
 'viewsourcelink' => 'Байкоо',
 'editsectionhint' => '$1 бөлүмүн оңдоо',
@@ -250,7 +251,7 @@ $messages = array(
 'showtoc' => 'көрсөтүү',
 'hidetoc' => 'Жашыруу',
 'collapsible-collapse' => 'Түрүү',
-'collapsible-expand' => 'Жаюу',
+'collapsible-expand' => 'жаюу',
 'viewdeleted' => 'Көрүү $1?',
 'site-rss-feed' => '$1 RSS тилкеси',
 'site-atom-feed' => '$1 Atom агымы',
@@ -272,12 +273,14 @@ $messages = array(
 # General errors
 'error' => 'Ката',
 'databaseerror' => 'Маалымат базасынын катасы',
+'readonly' => 'Маалымат базасы камаланган',
 'missing-article' => 'Табылууга тийиш «$1» $2 деп аталган баракта текст маалыматтар базасында табылган жок.
 
 Бул сыяктуу абал өчүрүлгөн барактын өзгөрүүлөрдүн тарыхына эски шилтеме менен өткөндө учурайт.
 
 Эгерде башка себеби бар болсо, анда Сиз программалык жабдууда ката таптыңыз. Кичи пейилдикке, ушул URL көрсөтүп [[Special:ListUsers/sysop|администраторлордун]] бирине кабарлап коюңуз.',
 'missingarticle-rev' => '(версия#: $1)',
+'missingarticle-diff' => '(айырмачылык: $1, $2)',
 'internalerror' => 'Ички ката',
 'internalerror_info' => 'Ички ката: $1',
 'fileappenderrorread' => 'Аягына кошуу үчүн «$1» файлы ачылбады.',
@@ -385,6 +388,7 @@ $messages = array(
 
 # Edit pages
 'summary' => 'Кыска түшүндүрүү:',
+'subject' => 'Тема/баш аты:',
 'minoredit' => 'Майда оңдоо',
 'watchthis' => 'Бул баракты көзөмөлдөө',
 'savearticle' => 'Баракты сактоо',
@@ -411,8 +415,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз],
 же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз]'''</span>.",
 'noarticletext-nopermission' => 'Азыр бул баракта текст жок.
-Сиз башка барактардан [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты издөө]] салып,
-же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз]</span>.',
+Сиз [[Special:Search/{{PAGENAME}}|бул ат жөнүндө эскертүүлөрдү]] башка барактардан таба аласыз, же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү журналдардын жазууларын таба аласыз]</span>. Бул баракты жаратууга укуктарыңыз жок.',
 'userpage-userdoesnotexist' => '"$1" Мындай колдонуучу катталган эмес. Ушул баракты түзүүнү же оңдогонду каалганыңыз анык болсун',
 'updated' => '(Жаңыртылды)',
 'note' => "'''Эскертүү:'''",
@@ -649,8 +652,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Rights
 'right-edit' => 'Барактарды оңдоо',
-'right-move' => 'Барактарды ташуу',
-'right-movefile' => 'Файлдарды ташуу',
+'right-move' => 'барактардын атын өзгөртүү',
+'right-movefile' => 'файлдардын атын өзгөртүү',
 'right-upload' => 'Файлдарды жүктөө',
 'right-delete' => 'Барактарды өчүрүү',
 'right-browsearchive' => 'Өчүрүлгөн барактарды издөө',
@@ -827,7 +830,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'newpages-username' => 'Колдонуучу аты:',
 'ancientpages' => 'Эң эски барактар',
 'move' => 'Аталышын өзгөртүү',
-'movethispage' => 'Бул баракты ташуу',
+'movethispage' => 'Бул барактын атын өзгөртүү',
 'pager-newer-n' => '{{PLURAL:$1|жаңыраак 1|жаңыраак $1}}',
 'pager-older-n' => '{{PLURAL:$1|эскирээк 1|эскирээк $1}}',
 
@@ -920,7 +923,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Restrictions (nouns)
 'restriction-edit' => 'Оңдоо',
-'restriction-move' => 'Ташуу',
+'restriction-move' => 'Атын өзгөртүү',
 'restriction-create' => 'Жаратуу',
 'restriction-upload' => 'Жүктөө',
 
@@ -938,7 +941,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'blanknamespace' => '(Негизги)',
 
 # Contributions
-'contributions' => 'Колдонуучунун салымдары',
+'contributions' => '{{GENDER:$1|Катышуучунун}} салымдары',
 'contributions-title' => '$1 үчүн колдонуучунун салымдары',
 'mycontris' => 'Салымдар',
 'contribsub2' => '$1 үчүн ($2)',
@@ -971,7 +974,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'whatlinkshere-hideredirs' => 'Багыттоолорду $1',
 'whatlinkshere-hidetrans' => '$1 кошуулары',
 'whatlinkshere-hidelinks' => 'Шилтемелерди $1',
-'whatlinkshere-hideimages' => 'Сүрөт шилтемелерин $1',
+'whatlinkshere-hideimages' => '$1 файл шилтемелери',
 'whatlinkshere-filters' => 'Фильтрлер',
 
 # Block/unblock
@@ -1147,15 +1150,31 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'exif-keywords' => 'Ачкыч сөздөр',
 'exif-source' => 'Булак',
 'exif-languagecode' => 'Тил',
+'exif-pngfilecomment' => 'PNG-файл үчүн эскертүү',
+'exif-disclaimer' => 'Жоопкерчиликтен баш тартуу',
+'exif-giffilecomment' => 'GIF-файл үчүн эскертүү',
+'exif-intellectualgenre' => 'Объекттин түрү',
+'exif-subjectnewscode' => 'Теманын коду',
+
+# EXIF attributes
+'exif-compression-1' => 'Кыстырылбаган',
+
+'exif-copyrighted-false' => 'Коомдук мүлк',
+
+'exif-unknowndate' => 'Белгисиз дата',
+
+'exif-exposureprogram-1' => 'Кол менен',
 
 'exif-subjectdistance-value' => '$1 метр',
 
 'exif-meteringmode-0' => 'Белгисиз',
+'exif-meteringmode-1' => 'Орточо',
 'exif-meteringmode-255' => 'Башка',
 
 'exif-lightsource-0' => 'Белгисиз',
 'exif-lightsource-4' => 'Жарк',
 'exif-lightsource-11' => 'Көлөкө',
+'exif-lightsource-255' => 'Жарыктын башка булагы',
 
 # Flash modes
 'exif-flash-mode-3' => 'автоматтык режим',
@@ -1239,6 +1258,9 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Live preview
 'livepreview-loading' => 'Жүктөө...',
 
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Жазуулар:',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Тийиштүү өзгөрүүлөрдү көрсөтүү',
 'watchlisttools-edit' => 'Көзөмөл тизмесин кароо жана оңдоо',
@@ -1249,6 +1271,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Special:Version
 'version' => 'Версия',
+'version-extensions' => 'Орнотулган кеңейтүүлөр',
+'version-specialpages' => 'Атайын барактар',
 'version-variables' => 'Өзгөрмөлөр',
 'version-other' => 'Башка',
 'version-version' => '(Версия $1)',
@@ -1263,9 +1287,15 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'filepath-page' => 'Файл:',
 'filepath-submit' => 'Өтүү',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Файл аты:',
+'fileduplicatesearch-submit' => 'Издөө',
+
 # Special:SpecialPages
 'specialpages' => 'Атайын барактар',
+'specialpages-group-login' => 'Кирүү / Каттоо',
 'specialpages-group-pagetools' => 'Барак аспаптары',
+'specialpages-group-spam' => 'Спам үчүн аспаптар',
 
 # Special:BlankPage
 'blankpage' => 'Бош барак',
@@ -1284,26 +1314,57 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'tag-filter' => '[[Special:Tags|Белги]] фильтри:',
 'tag-filter-submit' => 'Фильтрдөө',
 'tags-title' => 'Белгилер',
+'tags-tag' => 'Белгинин аты',
 'tags-edit' => 'оңдоо',
 
 # Special:ComparePages
+'comparepages' => 'Барактарды салыштыруу',
+'compare-page1' => 'Биринчи барак',
+'compare-page2' => 'Экинчи барак',
+'compare-rev1' => 'Биринчи версия',
+'compare-rev2' => 'Экинчи версия',
 'compare-submit' => 'Салыштыруу',
+
+# Database error messages
+'dberr-header' => 'Бул уикиде көйгөйлөр бар болуп жатат',
 
 # HTML forms
 'htmlform-submit' => 'Жөнөтүү',
+'htmlform-reset' => 'Өзгөртүүлөрдү жокко чыгаруу',
 'htmlform-selectorother-other' => 'Башка',
+
+# New logging system
+'revdelete-content-hid' => 'мазмун жашырылган',
+'revdelete-uname-hid' => 'колдонуучу аты жашырылган',
+'revdelete-unrestricted' => 'администраторлор үчүн чектөөлөр алынды',
 
 # Feedback
 'feedback-subject' => 'Тема:',
 'feedback-message' => 'Билдирме:',
 'feedback-cancel' => 'Жокко чыгаруу',
+'feedback-submit' => 'Пикир жөнөтүү',
+'feedback-error2' => 'Ката: Оңдоо оңунан чыккан жок',
 'feedback-close' => 'Даяр',
+'feedback-bugnew' => 'Мен текшердим. Жаңы ката жөнүндө маалымдоо',
 
 # Search suggestions
 'searchsuggest-search' => 'Издөө',
+'searchsuggest-containing' => 'кармагандар...',
 
 # API errors
 'api-error-unknown-code' => 'Белгисиз ката: "$1".',
+'api-error-unknown-warning' => 'Белгисиз эскертүү: "$1".',
 'api-error-unknownerror' => 'Белгисиз ката: «$1».',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|секунда}}',
+'duration-minutes' => '$1 {{PLURAL:$1|мүнөт}}',
+'duration-hours' => '$1 {{PLURAL:$1|саат}}',
+'duration-days' => '$1 {{PLURAL:$1|күн}}',
+'duration-weeks' => '$1 {{PLURAL:$1|жума}}',
+'duration-years' => '$1 {{PLURAL:$1|жыл}}',
+'duration-decades' => '$1 {{PLURAL:$1|оң жылдык мөөнөт}}',
+'duration-centuries' => '$1 {{PLURAL:$1|кылым}}',
+'duration-millennia' => '$1 {{PLURAL:$1|миң жылдык мөөнөт}}',
 
 );

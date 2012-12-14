@@ -3451,8 +3451,8 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|secondo|secondi}}',
 'duration-minutes' => '$1 {{PLURAL:$1|minuto|minuti}}',
-'duration-hours' => '($1 {{PLURAL:$1|ora|ore}})',
-'duration-days' => '($1 {{PLURAL:$1|zorno|zorni}})',
+'duration-hours' => '$1 {{PLURAL:$1|ora|ore}}',
+'duration-days' => '$1 {{PLURAL:$1|zorno|zorni}}',
 'duration-weeks' => '$1 {{PLURAL:$1|stimana|stimane}}',
 'duration-years' => '$1 {{PLURAL:$1|ano|ani}}',
 'duration-decades' => '$1 {{PLURAL:$1|decenio|deceni}}',

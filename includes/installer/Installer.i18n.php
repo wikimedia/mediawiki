@@ -10199,7 +10199,7 @@ $3
 == はじめましょう ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定の一覧]
 * [//www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki よくある質問と回答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiリリース情報メーリングリスト]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiリリース情報メーリングリスト]', # Fuzzy
 );
 
 /** Jamaican Creole English (Patois)
@@ -13957,7 +13957,7 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
 * [//www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]', # Fuzzy
 );
 
 /** Norwegian Nynorsk (norsk (nynorsk)‎)

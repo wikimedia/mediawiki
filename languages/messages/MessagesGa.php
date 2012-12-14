@@ -656,7 +656,8 @@ níor sábháladh é go fóill!'''",
 Cuimhnigh go n-úsáideann leathanaigh shaincheaptha .css agus .js teideal i gcás íochtar, m.sh. {{ns:user}}:Foo/vector.css i leapa {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Leasaithe)',
 'note' => "'''Tabhair faoi deara:'''",
-'previewnote' => "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo, agus nach sábháladh fós é!'''",
+'previewnote' => "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo.'''
+Níl do chuid athruithe shábháilte fós!",
 'previewconflict' => 'San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca
 thuas mar a taispeáinfear é má sábháilfear é.',
 'editing' => 'Ag athrú $1',
@@ -767,7 +768,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'lineno' => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 'editundo' => 'cealaigh',
-'diff-multi' => '({{PLURAL:$1|Leasú idirmheánach amháin|$1 leasú idirmheánach}} nach thaispeántar.)',
+'diff-multi' => '({{PLURAL:$1|Leasú idirmheánach amháin|$1 leasú idirmheánach}} le {{PLURAL:$2|úsáideoir amháin|$2 úsáideoirí}} nach thaispeántar.)',
 
 # Search results
 'searchresults' => 'Torthaí an chuardaigh',
@@ -1271,6 +1272,7 @@ Beidh do seoladh ríomhphoist a d\'iontráil tú i [[Special:Preferences|do chui
 # Watchlist
 'watchlist' => 'Mo liosta faire',
 'mywatchlist' => 'Liosta faire',
+'watchlistfor2' => 'Do $1 ($2)',
 'nowatchlist' => 'Níl aon rud ar do liosta faire.',
 'watchlistanontext' => "$1, le d'thoil, chun míreanna ar do liosta faire a fheiceáil ná a athrú.",
 'watchnologin' => 'Níl tú logáilte isteach',
@@ -1525,7 +1527,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 IP nó ainm úsáideora a raibh faoi chosc roimhe seo.',
 'ipusubmit' => 'Bain an chosc seo',
 'unblocked' => 'Díchoisceadh [[User:$1|$1]]',
-'ipblocklist' => 'Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe',
+'ipblocklist' => 'Úsáideoirí atá coiscthe',
 'ipblocklist-legend' => 'Aimsigh úsáideoir coiscthe',
 'ipblocklist-submit' => 'Cuardaigh',
 'infiniteblock' => 'gan teorainn',

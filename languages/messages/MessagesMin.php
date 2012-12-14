@@ -387,12 +387,13 @@ Indak ado keterangan.',
 'viewsource-title' => 'Caliak sumber untuak $1',
 'actionthrottled' => 'Tindakan dibatasi',
 'actionthrottledtext' => 'Anda dibatasi untuak malakuan tindakan iko talalu banyak dalam waktu singkek. Sila mancubo laik satalah bara menit.',
-'protectedpagetext' => 'Laman iko alah dikunci untuak manghindari panyuntiangan.',
+'protectedpagetext' => 'Laman ko alah dikunci untuak manghindari panyuntiangan.',
 'viewsourcetext' => 'Sanak dapek malihek atau manyalin sumber laman iko:',
 'viewyourtext' => 'Sanak bisa mancaliak dan mangopi sumber untuak "editan sanak" ka halaman iko',
 'protectedinterface' => 'Laman iko barisi teks antarmuko untuak digunoan oleh parangkaik lunak di wiki iko sajo, dan alah dikunci untuak manghindari kasalahan. 
 Untuak manambah atau mangubah tarjemahan di sadonyo wiki, tolong digunoan [//translatewiki.net/ translatewiki.net], yaitu proyek lokalisasi dari MediaWiki.',
-'editinginterface' => "'''Paringatan:''' Sanak manyuntiang suatu laman nan digunoan untuak manyediakan teks antarmuko untuak parangkaik lunak situs iko. Parubahan teks iko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
+'editinginterface' => "'''Paringatan:''' Sanak manyuntiang laman nan digunoan untuak manyadiokan teks antarmuko untuak parangkaik lunak.
+Parubahan teks ko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
 Untuak tarjamahan, harap gunokan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
 'sqlhidden' => '(Pamintaan SQL disuruakkan)',
 'cascadeprotected' => 'Laman iko alah dilindungi dari panyuntiangan karano disartokan di {{PLURAL:$1|laman|laman-laman}} barikuik nan alah dilindungi jo opsi "runtun":
@@ -447,8 +448,8 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'createaccountmail' => 'malalui surel',
 'createaccountreason' => 'Alasan:',
 'badretype' => 'Kato sandi nan Sanak masuakkan salah.',
-'userexists' => 'Namo pangguna nan Sanak piliah alah dipakai oleh urang lain.
-Sila piliah namo nan lain.',
+'userexists' => 'Namo pangguno nan dipiliah alah tapakai.
+Piliah namo nan lain.',
 'loginerror' => 'Kasalahan masuak log',
 'createaccounterror' => 'Indak dapek mambuek akun: $1',
 'nocookiesnew' => 'Akun pangguno alah dibuek, tapi Sanak alun masuak log.
@@ -1088,7 +1089,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'blanknamespace' => '(Utamo)',
 
 # Contributions
-'contributions' => 'Jariah pangguno',
+'contributions' => '{{GENDER:$1|User}} kontribusi',
 'contributions-title' => 'Jariah pangguno untuak $1',
 'mycontris' => 'Jariah denai',
 'contribsub2' => 'Untuak $1 ($2)',

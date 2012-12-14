@@ -3681,8 +3681,8 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 Ës sit a l'ha dle dificoltà técniche.",
 'dberr-again' => "Ch'a speta chèiche minute e ch'a preuva torna a carié.",
 'dberr-info' => '(Conession al servent ëd base ëd dàit impossìbil: $1)',
-'dberr-usegoogle' => 'It peule prové a serché con Google ant ël mentre.',
-'dberr-outofdate' => 'Nòta che la soa indicisassion dij nòst contnù a podrìa nen esse agiornà.',
+'dberr-usegoogle' => 'Antratant a peul prové a sërché con Google.',
+'dberr-outofdate' => "Ch'a ten-a da ment che soe indesassion dij nòstri contnù a podrìo esse nen agiornà.",
 'dberr-cachederror' => 'Sta sì a l\'ìé na còpia an "cache" ëd la pàgina ciamà, e a peul esse pa agiornà.',
 
 # HTML forms
