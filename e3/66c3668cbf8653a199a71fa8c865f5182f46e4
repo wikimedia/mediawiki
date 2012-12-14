@@ -1,0 +1,8 @@
+Change-Id: Ie366c3668cbf8653a199a71fa8c865f5182f46e4
+Code-Review+2: Krinkle <ttijhof@wikimedia.org>
+Verified+1: Krinkle <ttijhof@wikimedia.org>
+Submitted-by: Krinkle <ttijhof@wikimedia.org>
+Submitted-at: Fri, 14 Dec 2012 21:02:17 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/38791
+Project: mediawiki/core
+Branch: refs/heads/master
