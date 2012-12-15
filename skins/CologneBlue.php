@@ -71,8 +71,6 @@ class CologneBlueTemplate extends BaseTemplate {
 	/**
 	 * Language/charset variant links for classic-style skins
 	 * @return string
-	 *
-	 * @fixed
 	 */
 	function variantLinks() {
 		$s = array();
@@ -86,7 +84,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
-	// @fixed
 	function otherLanguages() {
 		global $wgHideInterlanguageLinks;
 		if ( $wgHideInterlanguageLinks ) {
@@ -110,7 +107,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			. $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
-	// @fixed
 	function pageTitleLinks() {
 		$s = array();
 		$footlinks = $this->getFooterLinks();
@@ -130,7 +126,6 @@ class CologneBlueTemplate extends BaseTemplate {
 	 * @param $message string Key of the message to use in place of standard text
 	 *
 	 * @return string
-	 * @fixed
 	 */
 	function processBottomLink( $key, $navlink, $message=null ) {
 		if ( !$navlink ) {
@@ -145,7 +140,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->makeListItem( $key, $this->processNavlinkForDocument( $navlink ), array( 'tag' => 'span' ) );
 	}
 
-	// @fixed
 	function bottomLinks() {
 		$toolbox = $this->getToolbox();
 		$content_nav = $this->data['content_navigation'];
@@ -197,7 +191,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		return implode( array_filter( $lines ), "<br />\n" ) . "<br />\n";
 	}
 
-	// @fixed
 	function talkLink() {
 		$title = $this->getSkin()->getTitle();
 
@@ -271,8 +264,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	/**
 	 * @return string
-	 *
-	 * @fixed
 	 */
 	function beforeContent() {
 		ob_start();
@@ -320,8 +311,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	/**
 	 * @return string
-	 *
-	 * @fixed
 	 */
 	function afterContent() {
 		ob_start();
@@ -368,8 +357,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	/**
 	 * @return string
-	 *
-	 * @fixed
 	 */
 	function sysLinks() {
 		$s = array(
@@ -403,8 +390,6 @@ class CologneBlueTemplate extends BaseTemplate {
 	 *
 	 * @param $bar sidebar data
 	 * @return array modified sidebar data
-	 *
-	 * @fixed
 	 */
 	function sidebarAdditions( $bar ) {
 		// "This page" and "Edit" menus
@@ -449,8 +434,6 @@ class CologneBlueTemplate extends BaseTemplate {
 	 * @access private
 	 *
 	 * @return string
-	 *
-	 * @fixed
 	 */
 	function quickBar() {
 		// Massage the sidebar. We want to:
@@ -543,8 +526,6 @@ class CologneBlueTemplate extends BaseTemplate {
 	/**
 	 * @param $label string
 	 * @return string
-	 *
-	 * @fixed
 	 */
 	function searchForm( $which ) {
 		global $wgUseTwoButtonsSearchForm;
