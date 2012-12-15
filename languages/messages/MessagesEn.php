@@ -43,7 +43,7 @@ $digitTransformTable = null;
 $separatorTransformTable = null;
 
 /**
- * Extra user preferences which will be shown in Special:Preferences as
+ * Extra user preferences, which will be shown in Special:Preferences as
  * checkboxes. Extra settings in derived languages will automatically be
  * appended to the array of the fallback languages.
  */
@@ -115,7 +115,7 @@ $namespaceGenderAliases = array(
 $namespaceGenderAliases = array();
 
 /**
- * A list of date format preference keys which can be selected in user
+ * A list of date format preference keys, which can be selected in user
  * preferences. New preference keys can be added, provided they are supported
  * by the language class's timeanddate(). Only the 5 keys listed below are
  * supported by the wikitext converter (parser/DateFormatter.php).
@@ -498,7 +498,7 @@ $imageFiles = array(
 
 /**
  * A list of messages to preload for each request.
- * We add messages here which are needed for a typical anonymous parser cache hit.
+ * Here we add messages that are needed for a typical anonymous parser cache hit.
  */
 $preloadedMessages = array(
 	'aboutpage',
@@ -1020,7 +1020,7 @@ It may have already been deleted by someone else.',
 It gave no explanation.',
 'badtitle'                      => 'Bad title',
 'badtitletext'                  => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
-It may contain one or more characters which cannot be used in titles.',
+It may contain one or more characters that cannot be used in titles.',
 'perfcached'                    => 'The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts'                  => 'The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates'          => 'Updates for this page are currently disabled.
@@ -1038,7 +1038,7 @@ Please try again in a few minutes.',
 'viewyourtext'                  => "You can view and copy the source of '''your edits''' to this page:",
 'protectedinterface'            => 'This page provides interface text for the software on this wiki, and is protected to prevent abuse.
 To add or change translations for all wikis, please use [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.',
-'editinginterface'              => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+'editinginterface'              => "'''Warning:''' You are editing a page that is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users on this wiki.
 To add or change translations for all wikis, please use [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'                     => '(SQL query hidden)',
@@ -1503,7 +1503,7 @@ It should have less than $2 {{PLURAL:$2|call|calls}}, there {{PLURAL:$1|is now $
 'post-expand-template-inclusion-warning'  => "'''Warning:''' Template include size is too large.
 Some templates will not be included.",
 'post-expand-template-inclusion-category' => 'Pages where template include size is exceeded',
-'post-expand-template-argument-warning'   => "'''Warning:''' This page contains at least one template argument which has a too large expansion size.
+'post-expand-template-argument-warning'   => "'''Warning:''' This page contains at least one template argument that has a too large expansion size.
 These arguments have been omitted.",
 'post-expand-template-argument-category'  => 'Pages containing omitted template arguments',
 'parser-template-loop-warning'            => 'Template loop detected: [[$1]]',
@@ -1901,7 +1901,7 @@ This cannot be undone.',
 'yourvariant'                   => 'Content language variant:',
 'prefs-help-variant'            => 'Your preferred variant or orthography to display the content pages of this wiki in.',
 'yournick'                      => 'New signature:',
-'prefs-help-signature'          => 'Comments on talk pages should be signed with "<nowiki>~~~~</nowiki>" which will be converted into your signature and a timestamp.',
+'prefs-help-signature'          => 'Comments on talk pages should be signed with "<nowiki>~~~~</nowiki>", which will be converted into your signature and a timestamp.',
 'badsig'                        => 'Invalid raw signature.
 Check HTML tags.',
 'badsiglength'                  => 'Your signature is too long.
@@ -2257,7 +2257,7 @@ Please check the file_uploads setting.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
 'uploadvirus'                 => 'The file contains a virus!
 Details: $1',
-'uploadjava'                  => 'The file is a ZIP file which contains a Java .class file.
+'uploadjava'                  => 'The file is a ZIP file that contains a Java .class file.
 Uploading Java files is not allowed because they can cause security restrictions to be bypassed.',
 'upload-source'               => 'Source file',
 'sourcefilename'              => 'Source filename:',
@@ -2356,12 +2356,12 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'zip-wrong-format'    => 'The specified file was not a ZIP file.',
 'zip-bad'             => 'The file is a corrupt or otherwise unreadable ZIP file.
 It cannot be properly checked for security.',
-'zip-unsupported'     => 'The file is a ZIP file which uses ZIP features not supported by MediaWiki.
+'zip-unsupported'     => 'The file is a ZIP file that uses ZIP features not supported by MediaWiki.
 It cannot be properly checked for security.',
 
 # Special:UploadStash
 'uploadstash'          => 'Upload stash',
-'uploadstash-summary'  => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
+'uploadstash-summary'  => 'This page provides access to files that are uploaded or in the process of uploading, but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
 'uploadstash-clear'    => 'Clear stashed files',
 'uploadstash-nofiles'  => 'You have no stashed files.',
 'uploadstash-badtoken' => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
@@ -2522,7 +2522,7 @@ Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 # Unused templates
 'unusedtemplates'         => 'Unused templates',
 'unusedtemplates-summary' => '', # do not translate or duplicate this message to other languages
-'unusedtemplatestext'     => 'This page lists all pages in the {{ns:template}} namespace which are not included in another page.
+'unusedtemplatestext'     => 'This page lists all pages in the {{ns:template}} namespace that are not included in another page.
 Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh'      => 'other links',
 
@@ -2563,12 +2563,12 @@ Remember to check for other links to the templates before deleting them.',
 'disambiguationspage'     => 'Template:disambig',
 'disambiguations-text'    => "The following pages contain at least one link to a '''disambiguation page'''.
 They may have to link to a more appropriate page instead.<br />
-A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]].",
+A page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Double redirects',
 'doubleredirects-summary'           => '', # do not translate or duplicate this message to other languages
-'doubleredirectstext'               => 'This page lists pages which redirect to other redirect pages.
-Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually the "real" target page, which the first redirect should point to.
+'doubleredirectstext'               => 'This page lists pages that redirect to other redirect pages.
+Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually the "real" target page to which the first redirect should point.
 <del>Crossed out</del> entries have been solved.',
 'double-redirect-fixed-move'        => '[[$1]] has been moved.
 It now redirects to [[$2]].',
@@ -2727,7 +2727,7 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 'allpagessubmit'          => 'Go',
 'allpagesprefix'          => 'Display pages with prefix:',
 'allpagesbadtitle'        => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
-It may contain one or more characters which cannot be used in titles.',
+It may contain one or more characters that cannot be used in titles.',
 'allpages-bad-ns'         => '{{SITENAME}} does not have namespace "$1".',
 'allpages-hide-redirects' => 'Hide redirects',
 
@@ -2867,7 +2867,7 @@ Future changes to this page and its associated talk page will be listed there.",
 'watchnochange'        => 'None of your watched items were edited in the time period displayed.',
 'watchlist-details'    => '{{PLURAL:$1|$1 page|$1 pages}} on your watchlist, not counting talk pages.',
 'wlheader-enotif'      => '* E-mail notification is enabled.',
-'wlheader-showupdated' => "* Pages which have been changed since you last visited them are shown in '''bold'''",
+'wlheader-showupdated' => "* Pages that have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'   => 'checking recent edits for watched pages',
 'watchmethod-list'     => 'checking watched pages for recent edits',
 'watchlistcontains'    => 'Your watchlist contains $1 {{PLURAL:$1|page|pages}}.',
