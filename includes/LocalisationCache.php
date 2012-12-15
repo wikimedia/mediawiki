@@ -566,6 +566,8 @@ class LocalisationCache {
 	 * exists, the data array is returned, otherwise false is returned.
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
+		global $IP;
+
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
 			return false;
@@ -579,8 +581,9 @@ class LocalisationCache {
 		# And for PHP
 		$data['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
 
-		$deps['plurals'] = new FileDependency( __DIR__ . "/../languages/data/plurals.xml" );
-		$deps['plurals-mw'] = new FileDependency( __DIR__ . "/../languages/data/plurals-mediawiki.xml" );
+		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
+		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
+
 		return $data;
 	}
 
