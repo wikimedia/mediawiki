@@ -1080,6 +1080,8 @@ Chés eutes cans is s'ront muchés pèr défeut.
 'tag-filter' => 'Filtrer chés [[Special:Tags|balises]] :',
 
 # Special:ComparePages
+'comparepages' => 'Compérer dés paches',
+'compare-selector' => 'Compérer chés vèrsions dés paches',
 'compare-page1' => 'Pache 1',
 'compare-page2' => 'Pache 2',
 'compare-rev1' => 'Canjemint 1',

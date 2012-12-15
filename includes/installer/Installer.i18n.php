@@ -4157,7 +4157,8 @@ Sobald alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''. Wi
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Lokalisiere MediaWiki für deine Sprache]',
 );
 
 /** German (formal address) (Deutsch (Sie-Form)‎)
@@ -4840,12 +4841,13 @@ Cuando lo haya hecho, usted puede '''[$2  entrar en su wiki]'''.",
 	'config-help' => 'Ayuda',
 	'config-nofile' => 'El archivo "$1" no se pudo encontrar. ¿Se ha eliminado?',
 	'mainpagetext' => "'''MediaWiki ha sido instalado con éxito.'''",
-	'mainpagedocfooter' => 'Consulta la [//meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
+	'mainpagedocfooter' => 'Consulta la [//meta.wikimedia.org/wiki/Ayuda:Guía del usuario de contenidos] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
 * [//www.mediawiki.org/wiki/Manual:FAQ/es FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Regionalizar MediaWiki para tu idioma]',
 );
 
 /** español (formal) (español (formal))
@@ -10193,13 +10195,15 @@ $3
 それを完了すれば、'''[$2 ウィキに入る]'''ことができます。",
 	'config-download-localsettings' => 'LocalSettings.php をダウンロード',
 	'config-help' => 'ヘルプ',
+	'config-nofile' => 'ファイル「$1」が見つかりませんでした。削除された可能性があります。',
 	'mainpagetext' => "'''MediaWiki のインストールに成功しました。'''",
 	'mainpagedocfooter' => 'ウィキソフトウェアの使い方に関する情報は[//meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。
 
 == はじめましょう ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定の一覧]
 * [//www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki よくある質問と回答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiリリース情報メーリングリスト]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]
+* [//www.mediawiki.org/wiki/Localisation/ja MediaWiki のあなたの言語へのローカライズ]',
 );
 
 /** Jamaican Creole English (Patois)
@@ -12585,7 +12589,8 @@ $3
 ==Од каде да почнете==
 * [//meta.wikimedia.org/wiki/Manual:Configuration_settings Список на нагодувања]
 * [//meta.wikimedia.org/wiki/Manual:FAQ ЧПП (често поставувани прашања) за МедијаВики].
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Поштенски список на МедијаВики за нови верзии]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Поштенски список на МедијаВики за нови верзии]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Локализирајте го МедијаВики на вашиот јазик]',
 );
 
 /** Malayalam (മലയാളം)

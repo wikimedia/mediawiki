@@ -3421,7 +3421,7 @@ See also:
 * $1 is a page name.
 See also:
 * {{msg-mw|import-error-edit}}',
-'import-error-unserialize'   => 'Import error message displayed when a revision could not be unserialized.
+'import-error-unserialize' => 'Import error message displayed when a revision could not be unserialized.
 This may happen if the content got corrupted or the serialization format is mis-reported. Parameters:
 * $1 is the name of the page the offending revision belongs to.
 * $2 is the ID of the offending revision, as reported in the dump that is being imported.

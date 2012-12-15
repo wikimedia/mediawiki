@@ -40,6 +40,7 @@ $messages = array(
 'tog-showtoolbar' => 'Оңдоо учурунда аспаптар тактасын көрсөтүү (JavaScript талап кылынат)',
 'tog-editondblclick' => 'Эки басып баракты оңдоо (JavaScript талап кылынат)',
 'tog-editsection' => 'Ар бир секция үчүн «оңдоо» шилтемесин көрсөтүү',
+'tog-rememberpassword' => 'Бул браузерден менин эсеп жазуумду (эң көп $1 {{PLURAL:$1|күн}}) эске сактоо',
 'tog-oldsig' => 'Кезектеги кол:',
 'tog-showhiddencats' => 'Жашырылган категорияларды көрсөтүү',
 
