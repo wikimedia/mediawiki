@@ -252,8 +252,16 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
+		try {
+			$dbw = wfGetDB( DB_MASTER );
+			return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
+		} catch ( MWContentSerializationException $ex ) {
+			$this->notice( 'import-error-unserialize',
+				$revision->getTitle()->getPrefixedText(),
+				$revision->getID(),
+				$revision->getModel(),
+				$revision->getFormat() );
+		}
 	}
 
 	/**

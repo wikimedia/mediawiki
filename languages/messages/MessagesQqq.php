@@ -3421,6 +3421,12 @@ See also:
 * $1 is a page name.
 See also:
 * {{msg-mw|import-error-edit}}',
+'import-error-unserialize'   => 'Import error message displayed when a revision could not be unserialized.
+This may happen if the content got corrupted or the serialization format is mis-reported. Parameters:
+* $1 is the name of the page the offending revision belongs to.
+* $2 is the ID of the offending revision, as reported in the dump that is being imported.
+* $3 is the content model reported for the offending revision in the dump that is being imported.
+* $4 is the serialization format reported for the offending revision in the dump that is being imported.',
 'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
 'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
 'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages. Parameters:
