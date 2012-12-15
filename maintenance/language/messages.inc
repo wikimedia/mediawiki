@@ -2458,6 +2458,7 @@ $wgMessageStructure = array(
 		'import-error-interwiki',
 		'import-error-special',
 		'import-error-invalid',
+		'import-error-unserialize',
 		'import-options-wrong',
 		'import-rootpage-invalid',
 		'import-rootpage-nosubpage',
