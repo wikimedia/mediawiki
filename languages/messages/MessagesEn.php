@@ -1094,7 +1094,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'gotaccount'                 => 'Already have an account? $1.',
 'gotaccountlink'             => 'Log in',
 'userlogin-resetlink'        => 'Forgotten your login details?',
-'createaccountmail'          => 'By e-mail',
+'createaccountmail'          => 'Use a temporary random password and send it to the e-mail address specified below',
 'createaccountreason'        => 'Reason:',
 'badretype'                  => 'The passwords you entered do not match.',
 'userexists'                 => 'Username entered already in use.
