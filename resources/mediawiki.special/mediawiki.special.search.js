@@ -1,8 +1,8 @@
-/*
+/**
  * JavaScript for Special:Search
  */
-( function ( $, mw ) {
-	$( function () {
+( function ( mw, $ ) {
+	$( document ).ready( function () {
 		var $checkboxes, $headerLinks;
 
 		// Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
@@ -50,4 +50,4 @@
 
 	} );
 
-}( jQuery, mediaWiki ) );
+}( mediaWiki, jQuery ) );
