@@ -1,4 +1,4 @@
-/*
+/**
  * JavaScript for Special:Preferences
  */
 jQuery( document ).ready( function ( $ ) {
@@ -8,20 +8,19 @@ jQuery( document ).ready( function ( $ ) {
 
 	$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 
-		$preftoc = $('<ul id="preftoc"></ul>'),
-		$preferences = $( '#preferences' )
-			.addClass( 'jsprefs' )
-			.before( $preftoc ),
-		$fieldsets = $preferences.children( 'fieldset' )
-			.hide()
-			.addClass( 'prefsection' ),
-		$legends = $fieldsets
-			.children( 'legend' )
-			.addClass( 'mainLegend' );
+	$preftoc = $('<ul id="preftoc"></ul>');
+	$preferences = $( '#preferences' )
+		.addClass( 'jsprefs' )
+		.before( $preftoc );
+	$fieldsets = $preferences.children( 'fieldset' )
+		.hide()
+		.addClass( 'prefsection' );
+	$legends = $fieldsets
+		.children( 'legend' )
+		.addClass( 'mainLegend' );
 
 	/**
-	 * It uses document.getElementById for security reasons (html injections in
-	 * jQuery()).
+	 * It uses document.getElementById for security reasons (HTML injections in $()).
 	 *
 	 * @param String name: the name of a tab without the prefix ("mw-prefsection-")
 	 * @param String mode: [optional] A hash will be set according to the current
