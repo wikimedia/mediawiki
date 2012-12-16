@@ -4,19 +4,61 @@
 jQuery( document ).ready( function ( $ ) {
 	var	$historyCompareForm = $( '#mw-history-compare' ),
 		$historySubmitter,
-		$lis = $( '#pagehistory > li' );
+		$lis = $( '#pagehistory > li' ),
+		$compareLinks;
+
+	/**
+	 * @param $oldidRadio oldid radio
+	 * @param $diffRadio diff radio
+	 *
+	 * @return revision diff compare button
+	 */
+	function getDiffUrl( $oldidRadio, $diffRadio ) {
+		return mw.config.get( 'wgServer' ) + mw.config.get( 'wgScript' ) + '?title=' + mw.config.get( 'wgPageName' ) + '&diff=' + $diffRadio.val() + '&oldid=' + $oldidRadio.val();
+	}
+
+	/**
+	 * Converts revision comparison button to link that uses button styles
+	 *
+	 * @return new links
+	 */
+	function convertToLinks() {
+		var $oldidRadio = $( '[name="oldid"]:checked', $historyCompareForm );
+		var $diffRadio = $( '[name="diff"]:checked', $historyCompareForm );
+
+		var $compareButtons = $( '.mw-history-compareselectedversions-button', $historyCompareForm );
+
+		var $compareLink;
+		if ( $oldidRadio.length !== 0 && $diffRadio.length !== 0 ) {
+			$compareLink = $( '<a>' )
+				.attr( {
+					href: getDiffUrl( $oldidRadio, $diffRadio ),
+					'class': 'mw-history-compareselectedversions-button'
+				} )
+				.button( {
+					label: $compareButtons.val()
+				} );
+			$compareButtons.replaceWith( function() {
+				return $compareLink.clone();
+			} );
+		}
+
+		return $( '.mw-history-compareselectedversions-button', $historyCompareForm );
+	}
 
 	/**
 	 * @context {Element} input
 	 * @param e {jQuery.Event}
 	 */
-	function updateDiffRadios() {
+	function updateDiffElements() {
 		var diffLi = false, // the li where the diff radio is checked
 			oldLi = false; // the li where the oldid radio is checked
 
 		if ( !$lis.length ) {
 			return true;
 		}
+
+		var $checkedOldidRadio = null, $checkedDiffRadio = null;
 
 		$lis
 		.removeClass( 'selected' )
@@ -33,12 +75,14 @@ jQuery( document ).ready( function ( $ ) {
 			if ( $oldidRadio.prop( 'checked' ) ) {
 				oldLi = true;
 				$li.addClass( 'selected' );
+				$checkedOldidRadio = $oldidRadio;
 				$oldidRadio.css( 'visibility', 'visible' );
 				$diffRadio.css( 'visibility', 'hidden' );
 
 			} else if ( $diffRadio.prop( 'checked' ) ) {
 				diffLi = true;
 				$li.addClass( 'selected' );
+				$checkedDiffRadio = $diffRadio;
 				$oldidRadio.css( 'visibility', 'hidden' );
 				$diffRadio.css( 'visibility', 'visible' );
 
@@ -62,13 +106,20 @@ jQuery( document ).ready( function ( $ ) {
 			}
 		});
 
+		if ( $checkedOldidRadio !== null && $checkedDiffRadio.length !== null ) {
+			$compareLinks.attr( 'href', getDiffUrl( $checkedOldidRadio, $checkedDiffRadio ) );
+		}
+
 		return true;
 	}
 
-	$lis.find( 'input[name="diff"], input[name="oldid"]' ).click( updateDiffRadios );
+	$lis.find( 'input[name="diff"], input[name="oldid"]' ).click( updateDiffElements );
+
+	// Convert buttons to links
+	$compareLinks = convertToLinks();
 
 	// Set initial state
-	updateDiffRadios();
+	updateDiffElements();
 
 
 	// Prettify url output for HistoryAction submissions,
