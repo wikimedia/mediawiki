@@ -95,9 +95,9 @@ class LoginForm extends SpecialPage {
 		$this->mReason = $request->getText( 'wpReason' );
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
 		$this->mPosted = $request->wasPosted();
-		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
 		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
 									&& $wgEnableEmail;
+		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' ) && !$this->mCreateaccountMail;
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
@@ -1044,6 +1044,7 @@ class LoginForm extends SpecialPage {
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 			$linkmsg = 'gotaccount';
+			$this->getOutput()->addModules( 'mediawiki.special.userlogin.signup' );
 		} else {
 			$template = new UserloginTemplate();
 			$q = 'action=submitlogin&type=login';
@@ -1083,6 +1084,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'name', $this->mUsername );
 		$template->set( 'password', $this->mPassword );
 		$template->set( 'retype', $this->mRetype );
+		$template->set( 'createemailset', $this->mCreateaccountMail );
 		$template->set( 'email', $this->mEmail );
 		$template->set( 'realname', $this->mRealName );
 		$template->set( 'domain', $this->mDomain );

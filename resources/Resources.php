@@ -912,6 +912,9 @@ return array(
 		),
 		'dependencies' => array( 'mediawiki.libs.jpegmeta', 'mediawiki.util' ),
 	),
+	'mediawiki.special.userlogin.signup' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.userLogin.signup.js',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
