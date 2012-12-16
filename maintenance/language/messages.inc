@@ -672,7 +672,6 @@ $wgMessageStructure = array(
 		'hiddencategories',
 		'edittools',
 		'edittools-upload',
-		'nocreatetitle',
 		'nocreatetext',
 		'nocreate-loggedin',
 		'sectioneditnotsupported-title',
