@@ -818,7 +818,6 @@ Como información adicional s'amuestra contino a zaguera dentrada en o rechistro
 'hiddencategories' => 'Ista pachina fa parte de {{PLURAL:$1|1 categoría amagata|$1 categorías amagatas}}:',
 'edittools' => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'edittools-upload' => '-',
-'nocreatetitle' => "S'ha restrinchito a creyación de pachinas",
 'nocreatetext' => '{{SITENAME}} ha restrinchito a creyación de nuevas pachinas. Puede tornar enta zaga y editar una pachina ya existent, [[Special:UserLogin|identificarse u creyar una cuenta]].',
 'nocreate-loggedin' => 'No tiene premiso ta creyar nuevas pachinas.',
 'sectioneditnotsupported-title' => 'A edición por seccions no ye suportada',

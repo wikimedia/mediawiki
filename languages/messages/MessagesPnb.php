@@ -735,7 +735,6 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'template-protected' => '(بچایا گیا)',
 'template-semiprotected' => '(کج بچایا ہویا)',
 'hiddencategories' => 'اے صفہ {{PLURAL:$1|1 چھپی گٹھ|$1 چپھی گٹھیاں}} دا رکن اے:',
-'nocreatetitle' => 'صفحہ بنانے دی حد اے',
 'nocreatetext' => '{{SITENAME}} نے نۓ صفحے بنانے تے پابندی لائی اے۔<br />
 تسی واپس جا کے پہلاں توں موجود صفحیاں تے لکھ سکدے او یا فیر [[Special:UserLogin|اندر آؤ یا نواں کھاتہ کھولو۔]]',
 'nocreate-loggedin' => 'توانوں نواں صفحہ بنانے دی اجازت نئیں۔',

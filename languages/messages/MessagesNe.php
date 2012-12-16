@@ -788,7 +788,6 @@ $2
 'hiddencategories' => 'यो पृष्ठ निम्न {{PLURAL:$1|1 लुकाइएको श्रेणी|$1 लुकाइएका श्रेणीहरु}}को सदस्य हो :',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'edittools-upload' => '-',
-'nocreatetitle' => 'पृष्ठ सृजना सीमित गरिएको',
 'nocreatetext' => '{{SITENAME}} ले नयाँ पृष्ठ सृजना गर्न सक्ने क्षमतामा रोक लगाएको छ।
 तपाईँ पछाडि जानु भइ रहिआएको पृष्ठ सम्पादन गर्नसक्नुहुन्छ , अथवा [[Special:UserLogin|प्रवेश गर्नुहोस या नयाँ खाता सृजना गर्नुहोस् ]]।',
 'nocreate-loggedin' => 'नयाँ पृष्ठ सृजनागर्नको लागि तपाईँलाई अनुमति छैन ।',

@@ -644,7 +644,6 @@ Nasaad ka liwat nga imo ini kalugaringon nga ginsurat, o ginkopya nimo ini tikan
 'template-protected' => '(pinaliporan)',
 'template-semiprotected' => '(katunga nga pinasaliporan)',
 'hiddencategories' => 'Ini nga pakli in api han {{PLURAL:$1|1 nakatago nga kaarangay|$1 nakatago nga kaarangay}}:',
-'nocreatetitle' => 'Limitado an pahimo hin pakli',
 'nocreate-loggedin' => 'Diri ka gintutugotan paghimo hin mga bag-o nga pakli.',
 'sectioneditnotsupported-title' => 'Diri suportado han pagliwat han seksyon',
 'sectioneditnotsupported-text' => 'Diri suportado an pagliwat han seksyon ha dinhi nga pakli.',

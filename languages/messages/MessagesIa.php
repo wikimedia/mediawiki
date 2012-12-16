@@ -916,7 +916,6 @@ Le administrator qui lo blocava dava iste explication: $1",
 'template-semiprotected' => '(semi-protegite)',
 'hiddencategories' => 'Iste pagina es membro de {{PLURAL:$1|1 categoria|$1 categorias}} celate:',
 'edittools' => '<!-- Iste texto se monstrara sub le formularios de modificar articulos e de incargar files. -->',
-'nocreatetitle' => 'Creation de paginas limitate',
 'nocreatetext' => '{{SITENAME}} ha restringite le possibilitate de crear nove paginas.
 Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|aperir un session, o crear un conto]].',
 'nocreate-loggedin' => 'Tu non ha le permission de crear nove paginas.',

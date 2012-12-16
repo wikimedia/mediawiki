@@ -1048,7 +1048,6 @@ Loge peniye cor de este:",
 'hiddencategories' => 'Ena per de {{PLURAL:$1|1 kategoriyo nımıte|$1 kategoriyê nımıtey}} muhtewa benê:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'edittools-upload' => '-',
-'nocreatetitle' => 'Vıraştışê pele mehcuro',
 'nocreatetext' => '{{SITENAME}}, Pelê neweyi vıraştış re destur çino.
 şıma eşkeni tepiya şêri u eke şıma qayd biyaye yê [[Special:UserLogin|şıma eşkeni hesab akeri]], eke niye [[Special:UserLogin|şıma eşkeni qayd bıbiy]].',
 'nocreate-loggedin' => 'İcaze şıma çino şıma pelo newe akeri.',

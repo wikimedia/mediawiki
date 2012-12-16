@@ -788,7 +788,7 @@ Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='p
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu'à ce que vous effaciez le cache de votre navigateur.",
 'welcomeuser' => 'Bienvenue, $1&nbsp;!',
 'welcomecreation-msg' => "Votre compte a été créé.
-N'oubliez pas de modifier vos [[Special:Preferences|{{SITENAME}} préférences]].",
+N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAME}}]].",
 'yourname' => "Nom d'utilisateur :",
 'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
@@ -1039,8 +1039,8 @@ Cela survient en général en suivant un lien historique obsolète vers une page
 Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'userpage-userdoesnotexist' => "Le compte utilisateur « <nowiki>$1</nowiki> » n'est pas enregistré. Veuillez vérifier que vous voulez créer cette page.",
 'userpage-userdoesnotexist-view' => "Le compte utilisateur « $1 » n'est pas enregistré.",
-'blocked-notice-logextract' => "Cet utilisateur est actuellement bloqué.
-La dernière entrée du registre des blocages est indiquée ci-dessous à titre d'information :",
+'blocked-notice-logextract' => 'Cet utilisateur est actuellement bloqué.
+La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
 'clearyourcache' => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 * '''Firefox / Safari :''' Maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac) ;
 * '''Google Chrome :''' Appuyez sur ''Ctrl-Maj-R'' (''⌘-Shift-R'' sur un Mac) ;
@@ -1115,7 +1115,6 @@ La dernière entrée du journal est affichée ci-dessous pour référence :",
 'template-semiprotected' => '(semi-protégé)',
 'hiddencategories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} dont cette page fait partie :',
 'edittools' => '<!-- Tout texte entré ici sera affiché sous les boîtes de modification ou les formulaires de téléversement de fichier. -->',
-'nocreatetitle' => 'Création de page limitée',
 'nocreatetext' => '{{SITENAME}} a restreint la possibilité de créer de nouvelles pages.
 Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Special:UserLogin|vous connecter ou créer un compte]].',
 'nocreate-loggedin' => "Vous n'avez pas la permission de créer de nouvelles pages.",
@@ -1680,7 +1679,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'action-upload' => 'importer ce fichier',
 'action-reupload' => 'écraser ce fichier existant',
 'action-reupload-shared' => 'outrepasser localement ce fichier présent sur un dépôt partagé',
-'action-upload_by_url' => "importer ce fichier à partir d'une adresse URL",
+'action-upload_by_url' => 'importer ce fichier à partir d’une adresse URL',
 'action-writeapi' => "utiliser l‘API d'écriture",
 'action-delete' => 'supprimer cette page',
 'action-deleterevision' => 'supprimer cette version',
@@ -1859,7 +1858,7 @@ Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent contou
 'upload-options' => "Options d'import de fichiers",
 'watchthisupload' => 'Suivre ce fichier',
 'filewasdeleted' => "Un fichier avec ce nom a déjà été importé, puis supprimé.
-Vous devriez vérifier $1 avant de l'importer à nouveau.",
+Vous devriez vérifier le $1 avant de l'importer à nouveau.",
 'filename-bad-prefix' => "Le nom du fichier commence par '''« $1 »''' qui est typiquement un nom attribué automatiquement par les appareils photo numériques.
 Veuillez choisir un nom de fichier descriptif.",
 'filename-prefix-blacklist' => ' #<!-- laisser cette ligne telle quelle --><pre>
@@ -2384,7 +2383,8 @@ L'adresse électronique que vous avez indiquée dans [[Special:Preferences|vos p
 'watchnologin' => 'Non connecté',
 'watchnologintext' => 'Vous devez être [[Special:UserLogin|identifié]] pour modifier votre liste de suivi.',
 'addwatch' => 'Ajouter à la liste de suivi',
-'addedwatchtext' => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées. La page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour en faciliter le repérage.",
+'addedwatchtext' => 'La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
+Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées.',
 'removewatch' => 'Supprimer de la liste de suivi',
 'removedwatchtext' => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch' => 'Suivre',
@@ -2776,9 +2776,9 @@ Le motif fourni pour le blocage de $1 est : « $2 ».',
 'blocklog-showsuppresslog' => 'Cet utilisateur a été bloqué et caché précédemment. Le journal des suppressions est disponible ci-dessous :',
 'blocklogentry' => 'a bloqué [[$1]] ; expiration : $2 $3',
 'reblock-logentry' => 'a modifié les paramètres du blocage de [[$1]] avec une expiration au $2 $3',
-'blocklogtext' => "Ceci est le journal des actions de blocages et déblocages d'utilisateurs.
+'blocklogtext' => 'Ceci est le journal des actions de blocages et déblocages d’utilisateurs.
 Les adresses IP automatiquement bloquées ne sont pas listées.
-Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissements et blocages effectivement en cours.",
+Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissements et blocages effectivement en cours.',
 'unblocklogentry' => 'a débloqué $1',
 'block-log-flags-anononly' => 'utilisateurs anonymes seulement',
 'block-log-flags-nocreate' => 'création de compte interdite',

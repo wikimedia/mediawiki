@@ -1050,7 +1050,6 @@ Ostatni wpis z rejestru jest pokazany poniżej.",
 'template-semiprotected' => '(częściowo zabezpieczony)',
 'hiddencategories' => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
 'edittools' => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
-'nocreatetitle' => 'Ograniczono możliwość tworzenia nowych stron',
 'nocreatetext' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
 Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować się lub utworzyć konto]].',
 'nocreate-loggedin' => 'Nie masz uprawnień do tworzenia nowych stron.',
@@ -2329,8 +2328,8 @@ Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferenc
 'watchnologin' => 'Nie jesteś zalogowany',
 'watchnologintext' => 'Musisz się [[Special:UserLogin|zalogować]] przed modyfikacją listy obserwowanych stron.',
 'addwatch' => 'Dodaj do listy obserwowanych',
-'addedwatchtext' => "Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
-Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na tej liście. Dodatkowo nazwa strony zostanie '''wytłuszczona''' na [[Special:RecentChanges|liście ostatnich zmian]], aby ułatwić Ci zauważenie faktu zmiany.",
+'addedwatchtext' => 'Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
+Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na tej liście.',
 'removewatch' => 'Usuń z listy obserwowanych',
 'removedwatchtext' => 'Strona „[[:$1]]” została usunięta z Twojej [[Special:Watchlist|listy obserwowanych]].',
 'watch' => 'Obserwuj',

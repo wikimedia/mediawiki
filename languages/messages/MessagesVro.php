@@ -646,7 +646,6 @@ Ku klõpsahtat nuppi \"{{int:savearticle}}\", sis pästetäs '''õnnõ''' ülemb
 'template-protected' => '(ärqkaidsõt)',
 'template-semiprotected' => '(ärqkaidsõduq nimeldä ja vahtsõq pruukjaq)',
 'hiddencategories' => 'Seo leht kuulus {{PLURAL:$1|1 käkitühe katõgooriahe|$1 käkitühe katõgooriahe}}:',
-'nocreatetitle' => 'Lehekülgi luuminõ piiret',
 'nocreatetext' => '{{SITENAME}} lupa-i luvvaq vahtsit lehti.
 Võit toimõndaq olõmanolõvit lehti vai [[Special:UserLogin|minnäq nimega sisse]].',
 'nocreate-loggedin' => 'Sul olõ-i lupa luvvaq vahtsit {{SITENAME}} lehti.',

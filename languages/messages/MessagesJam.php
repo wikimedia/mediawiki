@@ -664,7 +664,6 @@ Yu de pramis wi alzwel se a yu rait dis yuself, ar kapi'i frahn a poblik domien 
 'template-protected' => '(protek)',
 'template-semiprotected' => '(semi-protek)',
 'hiddencategories' => 'Dis piej a memb a {{PLURAL:$1|1 idn kiatigari|$1 idn kiatigari}}:',
-'nocreatetitle' => 'Piej krieshan limit',
 'permissionserrors' => 'Permishan herro',
 'permissionserrorstext-withaction' => 'Yu no ab no poermishan fi $2, fi di falarin {{PLURAL:$1|riizn|riizndem}}:',
 'edit-conflict' => 'Hedit kanflik: $1',

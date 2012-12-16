@@ -733,7 +733,6 @@ Administruesi që e ka mshelë e ka dhânë këtë shpjegim: $1",
 'template-protected' => '(e mbrojtme)',
 'template-semiprotected' => '(gjysë-mbrojtun)',
 'hiddencategories' => 'Kjo faqe bân pjesë në {{PLURAL:$1|1 kategori të msheftë|$1 kategori të mshefta}}:',
-'nocreatetitle' => 'Krijimi i faqeve âsht i kufizuem.',
 'nocreatetext' => '{{SITENAME}} ka kufizue mundësinë e krijimit të faqeve të reja.
 Mundeni me u kthy mbrapa edhe me redaktue faqen ekzistuese, apo [[Special:UserLogin|me u kyçë a me krijue nji llogari]].',
 'nocreate-loggedin' => 'Nuk keni tagër me krijue faqe të reja.',

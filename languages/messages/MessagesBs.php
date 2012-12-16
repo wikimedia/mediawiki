@@ -1031,7 +1031,6 @@ Posljednja stavka zapisnika je prikazana ispod kao referenca:",
 'template-semiprotected' => '(polu-zaštićeno)',
 'hiddencategories' => 'Ova stranica pripada u {{PLURAL:$1|$1 skrivenu kategoriju|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
 'edittools' => '<!-- Ovaj tekst će biti prikazan ispod formi za uređivanje i postavljanje. -->',
-'nocreatetitle' => 'Pravljenje stranica ograničeno',
 'nocreatetext' => 'Na {{SITENAME}} je zabranjeno postavljanje novih stranica.
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti korisnički račun]].',
 'nocreate-loggedin' => 'Nemate dopuštenje da kreirate nove stranice.',

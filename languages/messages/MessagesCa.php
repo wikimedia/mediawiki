@@ -929,7 +929,6 @@ A continuació es mostra la darrera entrada del registre com a referència:",
 'template-semiprotected' => '(semiprotegida)',
 'hiddencategories' => 'Aquesta pàgina forma part de {{PLURAL:$1|la següent categoria oculta|les següents categories ocultes}}:',
 'edittools' => "<!-- Es mostrarà als formularis d'edició i de càrrega el text que hi haja després d'aquesta línia. -->",
-'nocreatetitle' => "S'ha limitat la creació de pàgines",
 'nocreatetext' => "El projecte {{SITENAME}} ha restringit la possibilitat de crear noves pàgines.
 Podeu modificar les planes ja existents o bé [[Special:UserLogin|entrar en un compte d'usuari]].",
 'nocreate-loggedin' => 'No teniu permisos per a crear pàgines noves.',

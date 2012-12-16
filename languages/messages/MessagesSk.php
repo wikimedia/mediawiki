@@ -1030,7 +1030,6 @@ Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
 'template-semiprotected' => '(čiastočne zamknutá)',
 'hiddencategories' => 'Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:',
 'edittools' => '<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->',
-'nocreatetitle' => 'Tvorba nových stránok bola obmedzená',
 'nocreatetext' => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:UserLogin|sa prihlásiť alebo vytvoriť účet]].',
 'nocreate-loggedin' => 'Nemáte povolenie vytvárať nové stránky.',

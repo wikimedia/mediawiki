@@ -1027,7 +1027,6 @@ Allpool on toodud uusim logisissekanne:",
 'template-protected' => '(kaitstud)',
 'template-semiprotected' => '(osaliselt kaitstud)',
 'hiddencategories' => 'See lehekülg kuulub {{PLURAL:$1|1 peidetud kategooriasse|$1 peidetud kategooriasse}}:',
-'nocreatetitle' => 'Lehekülje loomine piiratud',
 'nocreatetext' => 'Lehekülje loomise õigus on {{GRAMMAR:inessive|{{SITENAME}}}} piiratud.
 Võid pöörduda tagasi ja toimetada olemasolevat lehekülge või [[Special:UserLogin|sisse logida või uue konto luua]].',
 'nocreate-loggedin' => 'Sul ei ole luba luua uusi lehekülgi.',

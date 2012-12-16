@@ -667,7 +667,6 @@ Entri cathetan pungkasan disadiakna nang ngisor kanggo referensi:",
 'template-protected' => '(direksa)',
 'template-semiprotected' => '(semi-pangreksan)',
 'hiddencategories' => 'Kaca kiye kuwe anggota sekang {{PLURAL:$1|1 kategori sing diumpetna|$1 kategori-kategori sing diumpetna}}:',
-'nocreatetitle' => 'Panggawéan kaca anyar diwatesi',
 'nocreatetext' => '{{SITENAME}} wis mbatesi panggawean kaca anyar.
 Rika teyeng mbalik lan nyunting kaca sing wis ana, utawa [[Special:UserLogin|mlebu utawa gawe akun]]',
 'nocreate-loggedin' => 'Rika ora duwe hak akses nggo gawe kaca anyar.',

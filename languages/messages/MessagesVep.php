@@ -731,7 +731,6 @@ Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
 'template-semiprotected' => '(kaitud anonimoišpäi da uziš kävutajišpäi)',
 'hiddencategories' => "Nece lehtpol' om {{PLURAL:$1|1 peittud kategorijaspäi|$1 peittud kategorijoišpäi}}:",
 'edittools' => '<!-- Tänna sijatud tekst ozutadas redaktiruindan da jügutoitandan formiden al. -->',
-'nocreatetitle' => 'Lehtpoliden sädand om kaidetud',
 'nocreatetext' => "{{SITENAME}}-saitas uziden lehtpoliden sädand om kaidetud.
 Tö voit pörttas tagaze i redaktiruida toine lehtpol', vai [[Special:UserLogin|kirjutagatoiš sistemha, vai säkat registracii]].",
 'nocreate-loggedin' => 'Teile ei sa säta uzid lehtpolid.',

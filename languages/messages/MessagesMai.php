@@ -749,7 +749,6 @@ $2
 'template-semiprotected' => '(अर्ध-रक्षित)',
 'hiddencategories' => 'ई पन्ना सदस्य अछि {{PLURAL:$1|1 नुकाएल संवर्ग|$1 नुकाएल संवर्ग सभ}}:',
 'edittools-upload' => '-',
-'nocreatetitle' => 'पन्ना निर्माण सीमित',
 'nocreatetext' => '{{अन्तर्जाल}} नव पन्ना निर्माणक क्षमताकेँ सीमित कऽ देने अछि।
 अहाँ आपस जा सकै छी आ कोनो पन्नाकेँ सम्पादित कऽ सकै छी, वा [[Special:UserLogin|log in or create an account]]',
 'nocreate-loggedin' => 'अहाँकेँ नव पन्ना बनेबाक अधिकार नै अछि।',

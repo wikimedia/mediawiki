@@ -719,7 +719,6 @@ Pēdējais reģistra ieraksts ir apskatāms zemāk:",
 'template-protected' => '(aizsargāta)',
 'template-semiprotected' => '(daļēji aizsargāta)',
 'hiddencategories' => 'Šī lapa ietilpst {{PLURAL:$1|1 slēptajā kategorijā|$1 slēptajās kategorijās}}:',
-'nocreatetitle' => 'Lapu veidošana ierobežota',
 'nocreatetext' => '{{grammar:lokatīvs|{{SITENAME}}}} ir atslēgta iespēja izveidot jauinas lapas.
 Tu vari atgriezties atpakaļ un izmainīt esošu lapu, vai arī [[Special:UserLogin|ielogoties, vai izveidot kontu]].',
 'nocreate-loggedin' => 'Tev nav atļaujas veidot jaunas lapas.',

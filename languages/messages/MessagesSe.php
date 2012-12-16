@@ -519,7 +519,6 @@ Don fertet dahkat du rievdadusaid dálá tekstii.
 'template-protected' => '(suodjáluvvon)',
 'template-semiprotected' => '(suodjáluvvon anonyma ja ođđa geavaheddjiin)',
 'edittools' => '<!-- Teaksta mii lea dás, čájehuvvo rievdadanskovi vuolábealde. -->',
-'nocreatetitle' => 'Siidduid álggaheapmi lea ráddjejuvvon',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Dovddaldaga ráhkadeapmi ii lihkosmuvvan',

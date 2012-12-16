@@ -624,7 +624,6 @@ Teksts ni mazzi būtwei enpeisātan.",
 'template-protected' => '(pakūnstan)',
 'template-semiprotected' => '(delīkiskai pakūnstan)',
 'hiddencategories' => 'Šin pāusan ast en {{PLURAL:$1|ainassei kliptan kategōrijan|$1 kliptan kategōrijan}}:',
-'nocreatetitle' => 'Kānkē di mazīngiskwan stesses segīsnan stēisan nāunan pāusan',
 'nocreatetext' => 'Nāunan pāusan teīksnas mazīngisku en {{SITENAME}} pastāi arāikintan.
 Tū mazzi redigītun ekzistīntins pāusans anga [[Special:UserLogin|enēitwei anga teīktun nāunan rekkenan]].',
 'nocreate-loggedin' => 'Tū ni turri preiwērpsenin, kāi teīklai nāunans pāusans.',

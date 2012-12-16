@@ -912,7 +912,6 @@ Enmont diwezhañ ar marilh a ziskouezer amañ a-is evel dave :",
 'template-semiprotected' => '(damwarezet)',
 'hiddencategories' => "{{PLURAL:$1|1 rummad kuzhet|$1 rummad kuzhet}} m'emañ rollet ar bajenn-mañ :",
 'edittools' => '<!-- Diskouezet e vo an destenn kinniget amañ dindan ar sternioù kemmañ ha kargañ. -->',
-'nocreatetitle' => "Strishaet eo bet ar c'hrouiñ pajennoù",
 'nocreatetext' => 'Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.
 Gallout a rit mont war-gil ha lakaat kemmañ ur bajenn zo anezhi dija, pe [[Special:UserLogin|en em enrollañ ha krouiñ ur gont]].',
 'nocreate-loggedin' => "N'oc'h ket aotreet da grouiñ pajennoù nevez.",

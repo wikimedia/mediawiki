@@ -553,7 +553,6 @@ Cun s'imbiu de custu scritu ses garantende, a responsabilidade tua, si su scritu
 'template-protected' => '(amparadu)',
 'template-semiprotected' => '(mesu-amparadu)',
 'hiddencategories' => 'Custa pàgina faghet parte de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
-'nocreatetitle' => 'Creatzione de pàginas limitada',
 'nocreate-loggedin' => 'Non tenes su permissu de creare pàginas noas.',
 'permissionserrors' => 'Faddina de permissos',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',

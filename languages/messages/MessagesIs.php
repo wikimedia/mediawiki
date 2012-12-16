@@ -976,7 +976,6 @@ Verndunarskrá síðunnar er gefin fyrir neðan til tilvísunar.",
 'template-protected' => '(vernduð)',
 'template-semiprotected' => '(hálfvernduð)',
 'hiddencategories' => 'Þessi síða er meðlimur í {{PLURAL:$1|1 földum flokki|$1 földum flokkum}}:',
-'nocreatetitle' => 'Síðugerð takmörkuð',
 'nocreatetext' => '{{SITENAME}} hefur takmarkað eiginleikann að gera nýjar síður.
 Þú getur farið til baka og breytt núverandi síðum, eða [[Special:UserLogin|skráð þið inn eða búið til aðgang]].',
 'nocreate-loggedin' => 'Þú hefur ekki leyfi til að skapa nýjar síður.',

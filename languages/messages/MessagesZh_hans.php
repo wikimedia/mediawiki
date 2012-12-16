@@ -1047,7 +1047,6 @@ $2
 'template-semiprotected' => '（半保护）',
 'hiddencategories' => '本页面属于$1个隐藏分类：',
 'edittools' => '<!-- 这里的文字将显示在编辑和上传表格下面。 -->',
-'nocreatetitle' => '创建页面受限',
 'nocreatetext' => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
 'nocreate-loggedin' => '你没有权限创建新页面。',
 'sectioneditnotsupported-title' => '段落编辑不支持',

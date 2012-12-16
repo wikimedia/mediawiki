@@ -849,7 +849,6 @@ An pinakahuring entrada sa talaan pinaghaya sa ibaba bilang reperensiya:",
 'template-semiprotected' => '(semi-protektado)',
 'hiddencategories' => 'Ining pahina sarong miyembro kan {{PLURAL:$1|1 pinagtagong kategorya|$1 pinagtagong mga kategorya}}:',
 'edittools' => '<!-- An teksto digdi mahihiling sa babâ kan mga pormang pighihirá asin pigkakarga. -->',
-'nocreatetitle' => 'Limitado an paggibo nin pahina',
 'nocreatetext' => '{{SITENAME}} pinagpupugol an kakayanan na magmukna nin baguhong mga pahina.
 Ika makakabalik asin magliwat kan eksistidong nang pahina, o [[Special:UserLogin|maglaog ka o magmukna nin sarong panindog]].',
 'nocreate-loggedin' => 'Ika mayo tabi nin permiso tanganing magmukna nin baguhong mga pahina.',

@@ -737,7 +737,6 @@ In  behearder hat de database blokkearre om de folgjende reden: $1",
 'hiddencategories' => 'Dizze side falt yn de folgjende ferburgen
 {{PLURAL:$1|kategory|kategoryen}}:',
 'edittools' => '<!-- Tekst hjir stiet ûnder bewurkingsfjilden en oanbringfjilden.  -->',
-'nocreatetitle' => 'It oanmeitsjen fan siden is beheind',
 'nocreatetext' => '{{SITENAME}} hat de mûglikheid beheind om nije siden te meitsjen.
 Jo kinne al besteande siden feroarje of jo kinne [[Special:UserLogin|jo oanmelde of in brûker oanmeitsje]].',
 'nocreate-loggedin' => 'Jo meie gjin nije siden meitsje',

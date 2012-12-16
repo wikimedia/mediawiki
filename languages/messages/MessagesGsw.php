@@ -868,7 +868,6 @@ As Referänz wird do dr letscht Logbuechyytrag aagee:",
 'template-semiprotected' => '(schrybgschitzt fir Benutzer, wo nit aagmäldet oder nei sin)',
 'hiddencategories' => 'Die Syte ghert zue {{PLURAL:$1|einere versteckte Kategori|$1 versteckte Kategorie}}:',
 'edittools' => '<!-- Dää Text wird unter em "Ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
-'nocreatetitle' => 'S Aalege vu neje Syte isch yygschränkt.',
 'nocreatetext' => "Uf {{SITENAME}} isch d Erstellig vo nöue Syten ygschränkt.
 Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|amälde]].",
 'nocreate-loggedin' => 'Du bisch nid berächtigt, neji Syte aazlege.',

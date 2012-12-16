@@ -757,7 +757,6 @@ Entri catatan tarakhir disadioan di bawah untuak referensi:",
 'template-protected' => '(dilinduangi)',
 'template-semiprotected' => '(semi-perlindungan)',
 'hiddencategories' => 'Laman ko marupokan kalompok dari {{PLURAL:$1|1 kategori tapandam|$1 kategori tapandam}}:',
-'nocreatetitle' => 'Pambuekan laman baharu dibatasi',
 'nocreatetext' => '{{SITENAME}} alah mambatasi pambuekan laman-laman baharu.
 Sanak dapek baliak dan manyuntiang laman nan alah ado, atau sila [[Special:UserLogin|masuak log atau mambuek akun]].',
 'nocreate-loggedin' => 'Sanak ndak mampunyoi hak akses untuak mambuek laman baharu.',

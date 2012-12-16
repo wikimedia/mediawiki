@@ -600,7 +600,6 @@ Maliari meng i-\"cut-n-paste\" ing sinulat mu king metung a text file, at i-save
 'template-protected' => '(protektadu)',
 'template-semiprotected' => '(maki dakeng protektadu)',
 'hiddencategories' => 'Kayabe ya ing bulung a ini king/karing {{PLURAL:$1|1 makasalikut a kategoriya|$1 makasalikut a kategoriya}}:',
-'nocreatetitle' => 'Maki angganan (limitadu) ing pamangawang bulung',
 'nocreatetext' => 'Lilimitan ning {{SITENAME}} ing pamangawa kareng bayung bulung.
 Malyari kang magbalik at mag-edit king bulung a atyu na, o makapag[[Special:UserLogin|log in ka at maglalang account]].',
 'nocreate-loggedin' => 'Ala kang paintulut a maglalang bayung bulung king {{SITENAME}}.',

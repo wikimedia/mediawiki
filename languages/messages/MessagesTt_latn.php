@@ -731,7 +731,6 @@ Asta küzätü köndälegendäge soñğı yazma birelgän:",
 'template-protected' => '(yaqlanğan)',
 'template-semiprotected' => '(öleşçä yaqlanğan)',
 'hiddencategories' => 'Bu bit $1 {{PLURAL:$1|yäşeren törkemgä}} kerä:',
-'nocreatetitle' => 'Bitlär tözü çiklängän',
 'nocreatetext' => '{{SITENAME}}: saytta yaña bitlär tözü çiklängän.
 Sez artqa qaytıp, tözelgän bitne üzgärtä alasız. [[Special:UserLogin|Kerergä yäisä terkälergä]] täğdim itelä.',
 'nocreate-loggedin' => 'Sezgä yaña bitlär tözü xoquqı birelmägän.',

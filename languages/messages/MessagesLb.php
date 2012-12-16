@@ -922,7 +922,6 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'template-semiprotected' => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories' => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
 'edittools' => '<!-- Dësen Text gëtt ënnert dem "Ännere"-Formulair esouwéi dem "Eropluede"-Formulair ugewisen. -->',
-'nocreatetitle' => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin' => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'sectioneditnotsupported-title' => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
@@ -3842,4 +3841,6 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'svg-long-error' => 'Ongëltegen SVG-Fichier: $1',
 );

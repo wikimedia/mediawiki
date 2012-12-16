@@ -1066,7 +1066,6 @@ Para referência, é apresentada abaixo a última entrada do registo:",
 'template-semiprotected' => '(semi-protegida)',
 'hiddencategories' => 'Esta página pertence a {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
 'edittools' => '<!-- O texto colocado aqui será mostrado abaixo dos formulários de edição e de envio de ficheiros. -->',
-'nocreatetitle' => 'A criação de páginas encontra-se limitada',
 'nocreatetext' => 'A {{SITENAME}} restringe a criação de páginas novas por utilizadores anónimos.
 Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|autenticar-se ou criar uma conta]].',
 'nocreate-loggedin' => 'Não possui permissão para criar novas páginas.',

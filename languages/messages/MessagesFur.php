@@ -574,7 +574,6 @@ L'aministradôr che al à blocât la base di dâts al à ufiert chest spiegazion
 'template-protected' => '(protezût)',
 'template-semiprotected' => '(semi-protezût)',
 'hiddencategories' => 'Cheste pagjine e je {{PLURAL:$1|intune categorie platade|in $1 categoriis platadis}}:',
-'nocreatetitle' => 'Creazion des pagjinis limitade',
 'nocreatetext' => '{{SITENAME}} al à limitât la pussibilitât di creâ gnovis pagjinis ai utents regjistrâts. Tu puedis tornâ indaûr e cambiâ une pagjine che e esist o se no [[Special:UserLogin|jentrâ o creâ une gnove identitât]].',
 'nocreate-loggedin' => 'No tu âs i permès che a coventin par creâ gnovis pagjinis.',
 'permissionserrors' => 'Erôr tai permès',

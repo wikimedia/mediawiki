@@ -752,7 +752,6 @@ Uun't logbuk stäänt muar diartu:",
 'template-protected' => '(seekert)',
 'template-semiprotected' => '(hualew-seekert)',
 'hiddencategories' => 'Jüdeer sid as lasmoot foon {{PLURAL:$1|1 ferstäägen kategorii|$1 ferstäägene kategoriie}}:',
-'nocreatetitle' => 'Det maagin faan nei sidjen as ei saner aanj mögelk.',
 'nocreatetext' => 'Aw {{SITENAME}} wörd dåt måågen foon naie side begränsed.
 Dü koost bestönjene side änre unti de [[Special:UserLogin|önjmälde unti mååg en account]].',
 'nocreate-loggedin' => 'Dü heest niinj beruchtiging, naie side tu måågen.',

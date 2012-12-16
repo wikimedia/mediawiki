@@ -811,7 +811,6 @@ Ti kinaudi a naikabil iti listaan ket naikabil dita baba tapno usaren a reperens
 'template-protected' => '(nasalakniban)',
 'template-semiprotected' => '(nasalakniban-bassit)',
 'hiddencategories' => 'Daytoy a panid ket kameng  {{PLURAL:$1|ti 1 a nailemmeng a kategoria|dagiti $1 a nailemmeng a kategoria}}:',
-'nocreatetitle' => 'Napatinggaan ti panagaramid iti panid',
 'nocreatetext' => 'Pinaritan ti {{SITENAME}} ti kabaelan a panagaramid iti kabarbaro a pampanid.
 Mabalinmo ti agsubli ken urnosen ti adda a panid, wenno [[Special:UserLogin|sumrek wenno agaramid ti pakabilangan]].',
 'nocreate-loggedin' => 'Awan ti pammalubosmo nga agpartuat kadagiti baro a panid.',

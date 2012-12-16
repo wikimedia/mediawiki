@@ -908,7 +908,6 @@ Naujausias įrašas žurnale yra pateiktas žemiau:",
 'template-semiprotected' => '(pusiau apsaugotas)',
 'hiddencategories' => 'Šis puslapis priklauso $1 {{PLURAL:$1|paslėptai kategorijai|paslėptoms kategorijoms|paslėptų kategorijų}}:',
 'edittools' => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
-'nocreatetitle' => 'Puslapių kūrimas apribotas',
 'nocreatetext' => '{{SITENAME}} apribojo galimybę kurti naujus puslapius.
 Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin|prisijungti arba sukurti paskyrą]].',
 'nocreate-loggedin' => 'Jūs neturite teisės kurti puslapius.',

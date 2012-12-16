@@ -1071,7 +1071,6 @@ La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
 'template-semiprotected' => '(mié-protègiê)',
 'hiddencategories' => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
 'edittools' => '<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben los formulèros de tèlèchargement de fichiér. -->',
-'nocreatetitle' => 'Crèacion de pâge limitâ',
 'nocreatetext' => '{{SITENAME}} at rètrent la possibilitât de fâre de pâges novèles.
 Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben vos [[Special:UserLogin|branchiér ou fâre un compto]].',
 'nocreate-loggedin' => 'Vos avéd pas la pèrmission de fâre de pâges novèles.',

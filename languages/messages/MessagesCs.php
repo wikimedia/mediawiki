@@ -1097,7 +1097,6 @@ Níže je pro přehled zobrazen nejnovější protokolovací záznam:",
 'template-semiprotected' => '(polozamčena)',
 'hiddencategories' => 'Tato stránka je zařazena {{PLURAL:$1|v jedné skryté kategorii|ve $1 skrytých kategoriích|v $1 skrytých kategoriích}}:',
 'edittools' => '<!-- Tento text bude zobrazen pod formuláři pro editaci stránek a načítání souborů. -->',
-'nocreatetitle' => 'Vytváření nových stránek je omezeno',
 'nocreatetext' => 'Na {{grammar:6sg|{{SITENAME}}}} je možnost vytváření nových stránek omezena.
 Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLogin|se přihlásit či se registrovat]].',
 'nocreate-loggedin' => 'Nemáte povoleno zakládat nové stránky.',

@@ -737,7 +737,6 @@ Uostatńy wpis z rejera je ńyżej.",
 'template-protected' => '(zawrzity uod sprowjańo)',
 'template-semiprotected' => '(tajlowo zawarte)',
 'hiddencategories' => 'Ta zajta je {{PLURAL:$1|w jednyj schrůńunyj katygoryji|we $1 schrůńunych katygoryjach}}:',
-'nocreatetitle' => 'Uograńičůno wćepywańy zajtůw',
 'nocreatetext' => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńy nowych zajtůw uograńičůno.
 Možeš sprowjać te co juž sům, abo [[Special:UserLogin|zalogować śe, abo zauožyć konto]].',
 'nocreate-loggedin' => 'Ńy moš uprowńyń do twořyńo nowych zajtůw.',

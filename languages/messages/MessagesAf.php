@@ -950,7 +950,6 @@ Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'template-semiprotected' => '(half-beskerm)',
 'hiddencategories' => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
 'edittools' => '<!-- Die teks hier sal onderaan wysiging- en oplaaivorms vertoon word. -->',
-'nocreatetitle' => 'Bladsy skepping beperk',
 'nocreatetext' => '{{SITENAME}} het die skep van nuwe bladsye beperk.
 U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of registreer]].',
 'nocreate-loggedin' => 'U het nie regte om nuwe blaaie te skep nie.',

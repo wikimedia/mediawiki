@@ -1034,7 +1034,6 @@ Posljednja stavka u evidenciji navedena je niže kao napomena:",
 'template-protected' => '(zaštićen)',
 'template-semiprotected' => '(djelomično zaštićen)',
 'hiddencategories' => 'Ova stranica je član {{PLURAL:$1|1 skrivene kategorija|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
-'nocreatetitle' => 'Otvaranje novih stranica ograničeno',
 'nocreatetext' => 'Na ovom je projektu ograničeno otvaranje novih stranica.
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti suradnički račun]].',
 'nocreate-loggedin' => 'Nemate ovlasti za stvaranje novih stranica.',
