@@ -708,6 +708,9 @@ return array(
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
+		'dependencies' => array(
+			'jquery.ui.button',
+		),
 		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.history.diff' => array(
