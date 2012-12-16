@@ -872,7 +872,6 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'template-protected' => '(proteto)',
 'template-semiprotected' => '(semiproteto)',
 'hiddencategories' => 'Sta pagina la xe drento a {{PLURAL:$1|na categoria sconta|$1 categorie sconte}}:',
-'nocreatetitle' => 'Creazion de le pagine limitada',
 'nocreatetext' => 'La possibilità de crear pagine nóve su {{SITENAME}} la xe stà limità ai soli utenti registrà. Se pol tornar indrìo e modificar na pagina esistente, opure [[Special:UserLogin|entrar o crear un nóvo acesso]].',
 'nocreate-loggedin' => 'No te ghè i permessi necessari a crear pagine nove.',
 'sectioneditnotsupported-title' => 'Modifica de sezion mia suportà',

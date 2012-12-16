@@ -501,7 +501,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'template-semiprotected' => '（pan-pó-fu）',
 'hiddencategories' => 'Liá-ya̍p he su̍k-yî $1-ke yún-chhòng fûn-lui ke sṳ̀n-yèn:',
 'edittools' => '<!-- Chhṳ́-chhu ke vùn-sṳ chiông-voi pûn hién-sṳ chhai yî-ha phiên-cho lâu song-chhòn péu-tân chûng. -->',
-'nocreatetitle' => 'Chhóng-kien vùn-chông su han-chṳ',
 'nocreatetext' => 'Chhṳ́ mióng-chham han-chṳ chhóng-chho sîn hong-mien ke kûng-yung. ngì khó-yî fán-fì pin phiên-cho yí-kîn yû ke hong-mien, fe̍t-chá [[Special:UserLogin|tên-liu̍k fe̍t-he chhóng-kien sîn chong-fu]].',
 'nocreate-loggedin' => 'Ngì chhai liá-ke wiki-tsûng hàn-mò hí-khó-khièn kien-li̍p sîn vùn-tsông.',
 'permissionserrors' => 'Khièn-han Tsho-ngu',

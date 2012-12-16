@@ -880,7 +880,6 @@ $1',
 'template-semiprotected' => '(半保護)',
 'hiddencategories' => '呢一版係屬於$1個隱藏類嘅成員:',
 'edittools' => '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
-'nocreatetitle' => '頁面建立被限制',
 'nocreatetext' => '{{SITENAME}}已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:UserLogin|登入或開個新戶口]]。',
 'nocreate-loggedin' => '你並無許可權去開新版。',

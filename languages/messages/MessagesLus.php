@@ -607,7 +607,6 @@ I ràwn tùrin siam danglamna chanchin ziaka kan dahţhat thạr ber a hnuaiah k
 'template-protected' => '(vènhim)',
 'template-semiprotected' => '(hual)',
 'hiddencategories' => 'He phêk hi {{PLURAL:$1| pawl thuhrûk 1|pawl thuhrûk $1}}-a tel a ni.',
-'nocreatetitle' => 'Phêk siam theih chin bithliah',
 'nocreate-loggedin' => 'Phêk thar siam phalna i nei lo.',
 'sectioneditnotsupported-title' => 'Hlawm siamţhat bing theih loh',
 'sectioneditnotsupported-text' => 'He phêkah hian hlawm siamţhat bing theih a ni lo.',

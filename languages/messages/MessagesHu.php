@@ -1047,7 +1047,6 @@ A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 'template-semiprotected' => '(félig védett)',
 'hiddencategories' => 'Ez a lap {{PLURAL:$1|egy|$1}} rejtett kategóriába tartozik:',
 'edittools' => '<!-- Ez a szöveg a szerkesztés és a feltöltés űrlap alatt lesz látható. -->',
-'nocreatetitle' => 'Az oldallétrehozás korlátozva van',
 'nocreatetext' => 'A(z) {{SITENAME}} wikin korlátozták az új oldalak létrehozásának lehetőségét.
 Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogin|bejelentkezhetsz vagy készíthetsz egy felhasználói fiókot]].',
 'nocreate-loggedin' => 'Nincs jogosultságod új lapokat létrehozni.',

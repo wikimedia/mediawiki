@@ -792,7 +792,6 @@ L'ultima endataziun dal log vegn mussada sco referenza:",
 'template-protected' => '(bloccà)',
 'template-semiprotected' => '(mez protegidas)',
 'hiddencategories' => 'Quest artitgel è commember da {{PLURAL:$1|1 categoria zuppentada|$1 categorias zuppentadas}}:',
-'nocreatetitle' => 'La creaziun da novas paginas è limitada',
 'nocreatetext' => "{{SITENAME}} ha restrinschì las pussaivladas da crear novas paginas.
 Ti pos ir anavos e modifitgar ina pagina existenta, u [[Special:UserLogin|t'annunziar u registrar]].",
 'nocreate-loggedin' => "Ti n'has betg la lubientscha da crear novas paginas.",

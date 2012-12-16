@@ -821,7 +821,6 @@ kuncén nu ngonci pangkalan data mikeun kajelasan : $1",
 'template-semiprotected' => '(semi-dikonci)',
 'hiddencategories' => 'Ieu kaca kaasup {{PLURAL:$1|1 kategori nyumput|$1 kategori nyumput}}:',
 'edittools' => '<!-- Téks di dieu bakal némbongan di handapeun formulir édit jeung muat.-->',
-'nocreatetitle' => 'Nyieun kaca kakara diwatesan',
 'nocreatetext' => '{{SITENAME}} nutup kabisa nyieun kaca anyar.
 Mangga édit artikel nu geus aya, atawa [[Special:UserLogin|asup log/daptar heula]].',
 'nocreate-loggedin' => 'Anjeun teu diwenangkeun pikeun nyieun kaca anyar.',

@@ -1075,7 +1075,6 @@ Son günlük girdisi referans amaçlı aşağıda verilmiştir:",
 'template-semiprotected' => '(yarı-korumada)',
 'hiddencategories' => 'Bu sayfa {{PLURAL:$1|1 gizli kategoriye|$1 gizli kategoriye}} mensuptur:',
 'edittools' => '<!-- Buradaki metin düzenleme ve yükleme formlarının altında gösterilecektir. -->',
-'nocreatetitle' => 'Sayfa oluşturulması sınırlandı',
 'nocreatetext' => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
 Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Special:UserLogin|oturum açabilir]], değilseniz [[Special:UserLogin|kayıt olabilirsiniz]].',
 'nocreate-loggedin' => 'Yeni sayfalar oluşturmaya yetkiniz yok.',

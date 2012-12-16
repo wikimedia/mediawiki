@@ -921,7 +921,6 @@ Keýin qoldanw üşin mätändi qýıp alıp jäne qoýıp, mätin faýlına saq
 'template-protected' => '(qorğalğan)',
 'template-semiprotected' => '(jartılaý qorğalğan)',
 'hiddencategories' => 'Bul bet $1 jasırın sanattıñ müşesi:',
-'nocreatetitle' => 'Betti bastaw şektelgen',
 'nocreatetext' => '{{SITENAME}} jobasında jaña bet bastawı şektelgen.
 Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{#special:Userlogin}}|kirwiñizge ne tirkelwiñizge]] boladı.',
 'nocreate-loggedin' => '{{SITENAME}} jobasında jaña bet bastaw ruqsatıñız joq.',

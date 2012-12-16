@@ -13962,7 +13962,8 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
 * [//www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]',
 );
 
 /** Norwegian Nynorsk (norsk (nynorsk)‎)

@@ -1068,7 +1068,6 @@ Poslednji zapis u dnevniku je prikazan ispod:",
 'hiddencategories' => 'Ova stranica je član {{PLURAL:$1|jedne skrivene kategorije|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
 'edittools' => '<!-- Ovaj tekst će biti prikazan ispod obrasca za uređivanje i otpremanje. -->',
 'edittools-upload' => '-',
-'nocreatetitle' => 'Pravljenje stranice je ograničeno',
 'nocreatetext' => 'Na ovom vikiju je ograničeno pravljenje novih stranica.
 Možete se vratiti i urediti postojeću stranicu, ili se [[Special:UserLogin|prijavite ili otvorite nalog]].',
 'nocreate-loggedin' => 'Nemate dozvolu da pravite nove stranice.',

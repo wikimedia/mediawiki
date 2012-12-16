@@ -704,7 +704,6 @@ Siz eyni zamanda söz verirsiniz ki, bu yazıları siz özünüz yazmısınız v
 'template-semiprotected' => '(yarım-mühafizə)',
 'hiddencategories' => 'Bu səhifə {{PLURAL:$1|1 gizli kateqoriyaya|$1 gizli kateqoriyaya}} aiddir:',
 'edittools-upload' => '-',
-'nocreatetitle' => 'Səhifə yaratma məhdudlaşdırılıb.',
 'nocreatetext' => '{{SITENAME}} saytında yeni səhifələrin yaradılması imkanları məhdudlaşdırılıb.
 Siz geri qayıdıb mövcud səhifəni və ya  [[Special:UserLogin|sistemə təqdim olunma və ya yeni hesab açmaq]] səhifəsini redaktə edə bilərsiniz.',
 'nocreate-loggedin' => 'Sizin yeni səhifələr yaratmaq üçün icazəniz yoxdur.',

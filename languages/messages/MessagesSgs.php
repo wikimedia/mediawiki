@@ -613,7 +613,6 @@ tudie negaliesėt ėšsauguotė sava pakeitėmu daba. Tamsta galėt nosėkopėjo
 'template-protected' => '(apsauguots)',
 'template-semiprotected' => '(posiau apsauguots)',
 'hiddencategories' => 'Tas poslapis prėklausa $1 {{PLURAL:$1|pakavuotā kateguorėjē|pakavuotoms kateguorėjėms|pakavuotu kateguorėju}}:',
-'nocreatetitle' => 'Poslapiu kūrims aprėbuots',
 'nocreatetext' => '{{SITENAME}} aprėbuojė galėmībe kortė naujus poslapius.
 Tamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:UserLogin|prėsėjongtė a sokortė paskīra]].',
 'permissionserrors' => 'Teisiu klaida',

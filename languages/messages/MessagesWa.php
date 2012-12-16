@@ -699,7 +699,6 @@ Li dierinne intrêye do djournå est håynêye chal pa dzo po referince:",
 'template-protected' => '(protedjî)',
 'template-semiprotected' => '(dimey-protedjî)',
 'hiddencategories' => "Cisse pådje ci est mimbe {{PLURAL:$1|d' ene categoreye catcheye|di $1 categoreyes catcheyes}}:",
-'nocreatetitle' => 'Ahivaedje di pådjes limité',
 'nocreatetext' => "{{SITENAME}} a limité l' possibilité d' ahiver des novelès pådjes.
 Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:UserLogin|vos elodjî ou ahiver on conte d' uzeu]].",
 'nocreate-loggedin' => "Vos n' avoz nén l' droet d' ahiver des novelès pådjes.",

@@ -651,7 +651,6 @@ Opslaene is nie meuhlijk.'''",
 'template-protected' => '(beveiligd)',
 'template-semiprotected' => '(semi-beveiligd)',
 'hiddencategories' => 'Deêze pagina val in de volhende verborhen {{PLURAL:$1|categorie|categorieën}}:',
-'nocreatetitle' => "'t Anmaeken van pagina's is beperkt",
 'nocreatetext' => "{{SITENAME}} ei de meuhlijkeid om nieuwe pagina's an te maeken beperkt.
 Je kan a bestaende pagina's wiezigen, of je kan [[Special:UserLogin|jen eihen anmelden of een gebruker  anmaeken]].",
 'nocreate-loggedin' => "Je kan hin nieuwe pagina's anmaeken.",

@@ -25,7 +25,7 @@ $fallback = 'de';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Links unterstreichen:',
-'tog-justify' => 'Text ois Blócksootz',
+'tog-justify' => 'Text ois Blocksotz',
 'tog-hideminor' => 'Kloane Änderrungen ausblenden',
 'tog-hidepatrolled' => 'Kontroilirde Änderrungen in dé „Létzten Änderrungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kóntróilirde Seiten auf da Listen „Neiche Seiten“ vaberng',
@@ -568,7 +568,6 @@ Zur Informazion foigt da aktuöie Logbuachaitrog:",
 'template-protected' => '(schreibgschitzt)',
 'template-semiprotected' => '(schreibgschitzt fia ned-ogmejdte Nutza)',
 'hiddencategories' => 'De Seitn is in {{PLURAL:$1|a vasteckde Kategorie|$1 vasteckde Kategorina}} eisortiad:',
-'nocreatetitle' => 'De Erstöiung vo naiche Saiten is aigschränkt.',
 'nocreate-loggedin' => "Du host koah Berechtigung, neiche Seiten z' erstön.",
 'permissionserrors' => 'Berechtigungsfeeler',
 'permissionserrorstext' => 'Du bist néd berechtigt, dé Akzión auszfyrn.  {{PLURAL:$1|Grund|Grynd}}:',

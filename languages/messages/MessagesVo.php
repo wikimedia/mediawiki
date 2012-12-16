@@ -719,7 +719,6 @@ Geban, kel efärmükon oni, egevon kodi at: $1",
 'template-protected' => '(pejelon)',
 'template-semiprotected' => '(dilo pejelon)',
 'hiddencategories' => 'Pad at duton lü {{PLURAL:$1|klad peklänedöl 1|klads peklänedöl $1}}:',
-'nocreatetitle' => 'Padijafam pemiedükon',
 'nocreatetext' => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
 Kanol redakön padi dabinöl, u [[Special:UserLogin|nunädön oli u jafön kali]].',
 'nocreate-loggedin' => 'No dalol jafön padis nulik.',

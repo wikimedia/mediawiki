@@ -986,7 +986,6 @@ L-aħħar daħla fir-reġistru hija disponibbli hawn taħt għar-referenza:",
 'template-semiprotected' => '(semi-protetta)',
 'hiddencategories' => "Din il-paġna hija membru ta' {{PLURAL:$1|1 kategorija moħbija|$1 kategoriji moħbija}}:",
 'edittools' => '<!-- Kliem hawnhekk jidher taħt l-formuli tal-modifika u postjar. -->',
-'nocreatetitle' => 'Il-ħolqien tal-paġna ġie miżmum',
 'nocreatetext' => "{{SITENAME}} limitat l-abbilitá tal-ħolqien ta' paġni ġodda.
 Tista' tmur lura u tagħmel modifiki ta' paġni eżistenti, inkella [[Special:UserLogin|idħol jew oħloq kont ġdid]].",
 'nocreate-loggedin' => "M'għandekx permess li toħloq paġni ġodda.",

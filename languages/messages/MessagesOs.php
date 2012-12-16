@@ -471,7 +471,7 @@ $1',
 'actionthrottled' => 'Архайд урæд æрцыд',
 'actionthrottledtext' => 'Спамы ныхмæ тохы тыххæй дæуæн нæй гæнæн аразын ацы архайд æвæрд лимитæй фылдæр гыццыл рæстæджы. Ды уыцы лимит сæххæст кодтай.
 Дæ хорзæхæй, бафæлвар нæуæгæй цалдæр минуты фæстæ.',
-'protectedpagetext' => 'Ацы фарс у ивынæй æхгæд.',
+'protectedpagetext' => 'Ацы фарс ивынæй æмæ æндæр митæй æхгæд у.',
 'viewsourcetext' => 'Ацы фарсы код фенæн æмæ халдих кæнæн ис:',
 'viewyourtext' => "Дæ бон у фенын æмæ скопи кæнын ацы фарсмæ '''цы ивдтытæ сарæзтай''', уыдон бындур текст :",
 'protectedinterface' => 'Ацы фарсы ис ацы викийы софты интерфейсæн текст æмæ у æхгæд, цæмæй йæ фехалæн ма уа.
@@ -666,6 +666,7 @@ $2
 'changeemail-oldemail' => 'Нырыккон e-mail адрис:',
 'changeemail-newemail' => 'Ног e-mail адрис:',
 'changeemail-none' => '(нæй)',
+'changeemail-password' => 'Дæ {{grammar:genitive|{{SITENAME}}}} пароль:',
 'changeemail-submit' => 'E-mail фæивын',
 'changeemail-cancel' => 'Ныууадзын',
 
@@ -840,6 +841,7 @@ $2
 'rev-delundel' => 'равдисын/айсын',
 'rev-showdeleted' => 'равдисын',
 'revisiondelete' => 'Фæлтæртæ схафын/рацаразын',
+'revdelete-show-file-submit' => 'О',
 'revdelete-radio-same' => '(ма баив)',
 'revdelete-radio-set' => 'О',
 'revdelete-radio-unset' => 'Нæ',
@@ -974,8 +976,26 @@ $2
 'prefs-help-email-others' => 'Дæ бон ма у равзарын цæмæй дæм иннæтæ бадзурой e-mail-æй, кæцымæ уыдзæн æрвитæн дæ фарс æмæ дæ ныхасы фарсыл.
 Дæ e-mail адрис афтæмæй нæ рабæрæг уыдзæнис.',
 'prefs-help-email-required' => 'Электронон посты адрис хъæуы.',
+'prefs-advancedediting' => 'Фылдæр фадæттæ',
+'prefs-advancedrc' => 'Фылдæр фадæттæ',
+'prefs-advancedrendering' => 'Фылдæр фадæттæ',
+'prefs-advancedsearchoptions' => 'Фылдæр фадæттæ',
+'prefs-advancedwatchlist' => 'Фылдæр фадæттæ',
+'prefs-displayrc' => 'Æвдисыны фадæттæ',
+'prefs-displaysearchoptions' => 'Æвдисыны фадæттæ',
+'prefs-displaywatchlist' => 'Æвдисыны фадæттæ',
+'prefs-diffs' => 'Иртасæнтæ',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'E-mail раст зыны',
+'email-address-validity-invalid' => 'Раст e-mail бацамон',
 
 # User rights
+'userrights' => 'Архайæджы барты армдарæн',
+'userrights-lookup-user' => 'Архайæджы къордтæ ивын',
+'userrights-user-editname' => 'Фæсномыг бацамон:',
+'editusergroup' => 'Архайæджы къордтæ фæивын',
+'userrights-reason' => 'Бындур:',
 'userrights-nodatabase' => 'Рарддон $1 нæй кæнæ бынæттон нæу.',
 
 # Groups
@@ -1058,6 +1078,7 @@ $3',
 'newsectionsummary' => '/* $1 */ ног хай',
 'rc-enhanced-expand' => 'Лæмбынæг информаци равдисын (домы JavaScript)',
 'rc-enhanced-hide' => 'Айсын лæмбынæг информаци',
+'rc-old-title' => 'фыццаг арæзт æрцыд куыд "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Баст ивдтытæ',
@@ -1307,6 +1328,7 @@ $3',
 # Undelete
 'undeletelink' => 'кæсын/рацаразын',
 'undeleteviewlink' => 'кæсын',
+'undelete-search-submit' => 'Агурын',
 
 # Namespace form on various pages
 'namespace' => 'Номдон:',
@@ -1363,6 +1385,7 @@ $3',
 'ipb-blocklist-contribs' => '{{grammar:genitive|$1}} бавæрд',
 'ipblocklist' => 'Хъодыгонд архайджытæ',
 'ipblocklist-legend' => 'Хъодыгонд архайæджы ацагур',
+'ipblocklist-submit' => 'Агурын',
 'ipblocklist-empty' => 'Хъодыгæндты номхыгъд афтид у.',
 'blocklink' => 'бахъоды кæн',
 'unblocklink' => 'хъоды айс',
@@ -1649,7 +1672,11 @@ $3',
 # Feedback
 'feedback-subject' => 'Сæр:',
 'feedback-message' => 'Фыстæг:',
+'feedback-cancel' => 'Ныууадзын',
 'feedback-close' => 'Æххæст',
+
+# Search suggestions
+'searchsuggest-search' => 'Агурын',
 
 # API errors
 'api-error-missingparam' => 'Мидæггаг рæдыд: Курдиаты параметртæ нæй.',

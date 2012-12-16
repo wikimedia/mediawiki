@@ -783,7 +783,6 @@ Aap ke jaankari ke khatir sab se nawaa suchi niche dewa gais hae:",
 'template-semiprotected' => '(aadha-surakchhit)',
 'hiddencategories' => 'Ii panna {{PLURAL:$1|1 hidden category|$1 hidden categories}} ke member hai:',
 'edittools' => '<!-- Hian ke text edit aur upload forms ke niche dekhai. -->',
-'nocreatetitle' => 'Panna ke banae pe rukawat hai',
 'nocreatetext' => '{{SITENAME}} me nawaa panna banae ke rukawat hai.
 Aap pichhe jaae ke, ek panna jon hai, ke sampadan kare sakta hai, nai to [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin' => 'Aap ke nawaa panna banaae ke ijaajat nai hai.',

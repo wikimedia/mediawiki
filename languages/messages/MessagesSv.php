@@ -1061,7 +1061,6 @@ Den senaste loggposten tillhandahålls nedan som referens:",
 'template-semiprotected' => '(delvis skyddad)',
 'hiddencategories' => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
 'edittools' => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
-'nocreatetitle' => 'Skapande av sidor begränsat',
 'nocreatetext' => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
 Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skapa ett användarkonto]].',
 'nocreate-loggedin' => 'Du har inte behörighet att skapa nya sidor.',

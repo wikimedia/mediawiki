@@ -523,7 +523,6 @@ Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsa
 'template-protected' => '(himoyalangan)',
 'template-semiprotected' => '(yarim-himoyalangan)',
 'hiddencategories' => 'Ushbu sahifa {{PLURAL:$1|1 yashirin turkum|$1 yashirin turkumlar}}ga kiradi:',
-'nocreatetitle' => 'Sahifalarni yaratish cheklangan',
 'nocreatetext' => 'Ushbu saytda yangi sahifalar yaratish taqiqlagan.
 Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga kirishingiz]] mumkin.',
 'nocreate-loggedin' => "Sizda yangi sahifalar yaratishga ruxsat yo'q.",

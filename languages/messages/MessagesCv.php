@@ -516,7 +516,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'templatesusedsection' => 'Ку пайра усă курнă шаблонсем:',
 'template-protected' => '(сыхланă)',
 'template-semiprotected' => '(пĕр пайне сыхланă)',
-'nocreatetitle' => 'Страницăсене хатĕрлессине чакарнă',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => 'Кунта эсир чылай ресурс ыйтакан функцисемпе нумай ĕçлекен страницăсене куратăр',

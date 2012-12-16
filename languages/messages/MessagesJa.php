@@ -755,8 +755,8 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'cascadeprotected' => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ|ページ群}}で読み込まれているため、編集できないように保護されています:
 $2',
 'namespaceprotected' => "'''$1'''名前空間にあるページを編集する権限がありません。",
-'customcssprotected' => 'このCSSページは他の利用者の個人設定を含むため、あなたには編集する権限がありません。',
-'customjsprotected' => 'このJavaScriptページは他の利用者の個人設定を含むため、あなたには編集する権限がありません。',
+'customcssprotected' => 'この CSS ページは他の利用者の個人設定を含んでいるため、あなたには編集する権限がありません。',
+'customjsprotected' => 'この JavaScript ページは他の利用者の個人設定を含んでいるため、あなたには編集する権限がありません。',
 'ns-specialprotected' => '特別ページは編集できません。',
 'titleprotected' => "[[User:$1|$1]]によりこのページ名を持つページの作成は保護されています。
 理由は「''$2''」です。",
@@ -951,9 +951,10 @@ $2
 'changeemail-header' => 'アカウントのメールアドレスを変更',
 'changeemail-text' => 'このフォームではメールアドレスを変更できます。この変更を確認するためにパスワードを入力する必要があります。',
 'changeemail-no-info' => 'このページに直接アクセスするためにはログインしている必要があります。',
-'changeemail-oldemail' => '現在のメールアドレス：',
-'changeemail-newemail' => '新しいメールアドレス：',
+'changeemail-oldemail' => '現在のメールアドレス:',
+'changeemail-newemail' => '新しいメールアドレス:',
 'changeemail-none' => '(なし)',
+'changeemail-password' => '{{SITENAME}}のパスワード:',
 'changeemail-submit' => 'メールアドレスを変更',
 'changeemail-cancel' => '中止',
 
@@ -1124,19 +1125,19 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 あなたの投稿を、他人が遠慮なく編集するのを望まない場合は、ここには投稿しないでください。<br />
 また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください（詳細は$1を参照）。
 '''著作権保護されている作品を、許諾なしに投稿してはいけません!'''",
-'longpageerror' => "'''エラー：投稿された文章は {{PLURAL:$1|$1 KB}} の長さがあります。これは投稿できる最大の長さ {{PLURAL:$2|$2 KB}} を超えています。'''
-この編集は保存できません。",
-'readonlywarning' => "'''警告：データベースがメンテナンスのためロックされており、現在は編集を保存できません。'''
+'longpageerror' => "'''エラー: 投稿された文章は {{PLURAL:$1|$1 KB}} の長さがあります。これは投稿できる最大の長さ {{PLURAL:$2|$2 KB}} を超えています。'''
+この編集内容は保存できません。",
+'readonlywarning' => "'''警告: データベースがメンテナンスのためロックされており、現在は編集内容を保存できません。'''
 必要であれば文章をカット&amp;ペーストしてテキストファイルとして保存し、後ほど保存をやり直してください。
 
-データベースをロックした管理者による説明は以下の通りです：$1",
-'protectedpagewarning' => "'''警告：このページは保護されているため、管理者権限を持つ利用者のみが編集できます。'''
-参考として以下に最後の記録を表示します：",
-'semiprotectedpagewarning' => "'''注意：'''このページは保護されているため、登録利用者のみが編集できます。
-参考として以下に最後の記録を表示します：",
-'cascadeprotectedwarning' => "'''警告：'''このページはカスケード保護されている以下の{{PLURAL:$1|ページ|ページ群}}から読み込まれているため、管理者権限を持つ利用者のみが編集できるように保護されています：",
-'titleprotectedwarning' => "'''警告：このページは保護されているため、作成には[[Special:ListGroupRights|特定の権限]]が必要です。'''
-参考として以下に最後の記録を表示します：",
+データベースをロックした管理者による説明は以下の通りです: $1",
+'protectedpagewarning' => "'''警告: このページは保護されているため、管理者権限を持つ利用者のみが編集できます。'''
+参考として以下に最後の記録を表示します:",
+'semiprotectedpagewarning' => "'''注意:''' このページは保護されているため、登録利用者のみが編集できます。
+参考として以下に最後の記録を表示します:",
+'cascadeprotectedwarning' => "'''警告:''' このページはカスケード保護されている以下の{{PLURAL:$1|ページ|ページ群}}から読み込まれているため、管理者権限を持つ利用者のみが編集できるように保護されています:",
+'titleprotectedwarning' => "'''警告: このページは保護されているため、作成には[[Special:ListGroupRights|特定の権限]]が必要です。'''
+参考として以下に最後の記録を表示します:",
 'templatesused' => 'このページで使用されている{{PLURAL:$1|テンプレート}}：',
 'templatesusedpreview' => 'このプレビューで使用されている{{PLURAL:$1|テンプレート}}：',
 'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}：',
@@ -1144,7 +1145,6 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'template-semiprotected' => '（半保護）',
 'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています：',
 'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
-'nocreatetitle' => 'ページの作成が制限されています',
 'nocreatetext' => '{{SITENAME}}ではページの新規作成を制限しています。
 元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウント作成]]をしてください。',
 'nocreate-loggedin' => '新しいページを作成する権限がありません。',
@@ -1900,8 +1900,8 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'uploadedimage' => '「[[$1]]」をアップロードしました',
 'overwroteimage' => '「[[$1]]」の新しい版をアップロードしました',
 'uploaddisabled' => 'アップロード機能は無効になっています。',
-'copyuploaddisabled' => 'URLからのアップロードは無効になっています。',
-'uploadfromurl-queued' => 'アップロードが、キューに追加されました。',
+'copyuploaddisabled' => 'URL からのアップロードは無効になっています。',
+'uploadfromurl-queued' => 'アップロードがキューに追加されました。',
 'uploaddisabledtext' => 'ファイルのアップロードは、無効になっています。',
 'php-uploaddisabledtext' => 'ファイルのアップロードがPHPで無効化されています。
 file_uploadsの設定を確認してください。',
@@ -2452,8 +2452,8 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'watchnologin' => 'ログインしていません',
 'watchnologintext' => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
 'addwatch' => 'ウォッチリストに追加',
-'addedwatchtext' => "ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]に追加しました。
-このページまたはそのトークページが変更されると、ウォッチリストに表示されます。また、[[Special:RecentChanges|最近の更新の一覧]]では'''太字'''で表示されます。",
+'addedwatchtext' => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]に追加しました。
+このページまたはそのトークページが変更されると、ウォッチリストに表示されます。',
 'removewatch' => 'ウォッチリストから除去',
 'removedwatchtext' => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から除去しました。',
 'watch' => 'ウォッチ',
@@ -2471,7 +2471,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'watchlistcontains' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています。',
 'iteminvalidname' => '項目「$1」には問題があります。名前が正しくありません...',
 'wlnote' => "$3 $4 までの{{PLURAL:$2|'''$2'''時間}}になされた{{PLURAL:$1|'''$1'''件の変更}}は以下の通りです。",
-'wlshowlast' => '次の期間で表示：$1時間、$2日間、$3',
+'wlshowlast' => '次の期間で表示: $1時間、$2日間、$3',
 'watchlist-options' => 'ウォッチリストのオプション',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -3067,14 +3067,14 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'import-interwiki-text' => '取り込むウィキとページ名を選択してください。
 版の日付と編集者名は保持されます。
 ウィキ間移動のすべての取り込み操作は[[Special:Log/import|取り込み記録]]に記録されます。',
-'import-interwiki-source' => '取り込み元のウィキ/ページ：',
+'import-interwiki-source' => '取り込み元のウィキ/ページ:',
 'import-interwiki-history' => 'このページのすべての版を複製する',
 'import-interwiki-templates' => 'すべてのテンプレートを含める',
 'import-interwiki-submit' => '取り込み',
 'import-interwiki-namespace' => '取り込み先の名前空間:',
 'import-interwiki-rootpage' => '取り込み先のルートページ (省略可能):',
-'import-upload-filename' => 'ファイル名：',
-'import-comment' => 'コメント：',
+'import-upload-filename' => 'ファイル名:',
+'import-comment' => 'コメント:',
 'importtext' => '元のウィキで[[Special:Export|書き出し機能]]を使用してファイルに書き出してください。
 それをコンピューターに保存した後、こちらへアップロードしてください。',
 'importstart' => 'ページを取り込み中...',

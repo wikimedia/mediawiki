@@ -781,7 +781,6 @@ L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'template-semiprotected' => '(mes-protet)',
 'hiddencategories' => 'Sta pàgina-sì a fa part ëd {{PLURAL:$1|na categorìa|$1 categorìe}} stërmà:',
 'edittools' => "<!-- Test ch'a së s-ciàira sot a ij mòduj ëd mòdifica e 'd càrich d'archivi. -->",
-'nocreatetitle' => 'Creassion ëd pàgine limità',
 'nocreatetext' => "Cost sit-sì a l'ha limità la possibilità ëd creé dle pàgine neuve.
 A peul torné andaré e modifiché na pàgina che a-i é già, ò pura [[Special:UserLogin|rintré ant ël sistema ò deurb-se un cont]].",
 'nocreate-loggedin' => "A l'ha pa ij përmess për creé dle pàgine neuve.",
@@ -3683,10 +3682,10 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'dberr-info' => '(Conession al servent ëd base ëd dàit impossìbil: $1)',
 'dberr-usegoogle' => 'Antratant a peul prové a sërché con Google.',
 'dberr-outofdate' => "Ch'a ten-a da ment che soe indesassion dij nòstri contnù a podrìo esse nen agiornà.",
-'dberr-cachederror' => 'Sta sì a l\'ìé na còpia an "cache" ëd la pàgina ciamà, e a peul esse pa agiornà.',
+'dberr-cachederror' => "Costa-sì a l'é na còpia an memòria local ëd la pàgina ciamà, e a peul esse nen agiornà.",
 
 # HTML forms
-'htmlform-invalid-input' => 'A-i son dij problema con cheidun dij tò input',
+'htmlform-invalid-input' => "A-i son dij problema con cheidun dij valor ch'a l'ha butà",
 'htmlform-select-badoption' => "Ël valor che it l'has spessificà a l'é n'opsion pa vàlida.",
 'htmlform-int-invalid' => "Ël valor ch'it l'has spessificà a l'é pa n'antregh.",
 'htmlform-float-invalid' => "Ël valor ch'it l'has spessificà a l'é pa un nùmer.",

@@ -869,7 +869,6 @@ De lèste logbookregel vólg hier:",
 'template-protected' => '(besjirmp)',
 'template-semiprotected' => '(semi-besjörmp)',
 'hiddencategories' => 'Dees pagina vélt in de volgende verborge {{PLURAL:$1|categorie|categorië}}:',
-'nocreatetitle' => "'t Aanmake van pagina's is beperk",
 'nocreatetext' => "{{SITENAME}} haet de mäögelikheid óm nuuj pagina's te make beperk.
 De kans al besjtaonde pagina's verangere, of de kans [[Special:UserLogin|dich aanmelde of 'n gebroekersaccount aanmake]].",
 'nocreate-loggedin' => "De höbs gein rechte óm nuuj pagina's te make.",

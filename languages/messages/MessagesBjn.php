@@ -872,7 +872,6 @@ Log masuk pauncitan disadiakan di bawah gasan rujukan:",
 'template-protected' => '(dilindungi)',
 'template-semiprotected' => '(semi-dilindungi)',
 'hiddencategories' => 'Tungkaran ini adalah angguta matan {{PLURAL:$1|1 tumbung tasungkup|$1 tumbung tasungkup}}:',
-'nocreatetitle' => 'Maulah tungkaran dibatasi',
 'nocreatetext' => '{{SITENAME}} lagi mambatasi kakawaan maulah tungkaran hanyar.
 Pian kawa babulik wan mambabak sabuah tungkaran nag ada, atawa [[Special:UserLogin|lbabuat log atawa baulah sabuah akun]]',
 'nocreate-loggedin' => 'Pian kada baisi ijin hagan maulah tungkaran-tungkaran hanyar.',

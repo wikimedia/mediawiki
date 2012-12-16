@@ -1066,7 +1066,6 @@ Entri catatan terakhir disediakan di bawah untuk referensi:",
 'template-semiprotected' => '(pelindungan semi)',
 'hiddencategories' => 'Halaman ini adalah anggota dari {{PLURAL:$1|1 kategori tersembunyi|$1 kategori tersembunyi}}:',
 'edittools' => '<!-- Teks di sini akan dimunculkan di bawah isian suntingan dan pemuatan.-->',
-'nocreatetitle' => 'Pembuatan halaman baru dibatasi',
 'nocreatetext' => '{{SITENAME}} telah membatasi pembuatan halaman-halaman baru.
 Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special:UserLogin|masuk log atau membuat akun]].',
 'nocreate-loggedin' => 'Anda tak memiliki hak akses untuk membuat halaman baru.',

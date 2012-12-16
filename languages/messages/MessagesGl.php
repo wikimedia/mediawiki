@@ -987,7 +987,6 @@ Velaquí está a última entrada no rexistro, por se quere consultala:",
 'template-semiprotected' => '(semiprotexido)',
 'hiddencategories' => 'Esta páxina forma parte {{PLURAL:$1|dunha categoría oculta|de $1 categorías ocultas}}:',
 'edittools' => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
-'nocreatetitle' => 'Limitada a creación de páxinas',
 'nocreatetext' => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
 Pode volver e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
 'nocreate-loggedin' => 'Non dispón dos permisos necesarios para crear páxinas novas.',

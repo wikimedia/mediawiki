@@ -361,7 +361,7 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Padrão do navegador',
+'underline-default' => 'Padrão do navegador/skin',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Estilo da fonte para a região de edição:',
@@ -689,11 +689,15 @@ Consulta: $2',
 'actionthrottled' => 'Ação controlada',
 'actionthrottledtext' => 'Como medida "anti-spam", você se encontra impedido de realizar esta operação muitas vezes em um curto espaço de tempo; você já excedeu esse limite.
 Tente novamente em alguns minutos.',
-'protectedpagetext' => 'Esta página foi protegida contra novas edições.',
+'protectedpagetext' => 'Esta página foi protegida contra novas edições ou ações relacionadas.',
 'viewsourcetext' => 'Você pode ver e copiar o código desta página:',
 'viewyourtext' => "Pode ver e copiar o código fonte '''das suas edições''' nesta página:",
-'protectedinterface' => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface' => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt-br translatewiki.net], um projeto destinado para a tradução do MediaWiki.",
+'protectedinterface' => 'Esta página fornece texto de interface ao software deste wiki, se encontrando protegida para prevenir abusos.
+
+Para adicionar ou alterar traduções em todos os wikis, utilize o [//translatewiki.net/ translatewiki.net], projeto de traduções do MediaWiki.',
+'editinginterface' => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software.
+Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários deste wiki.
+Para alterar ou adicionar traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt-br translatewiki.net], um projeto destinado para a tradução do MediaWiki.",
 'sqlhidden' => '(Consulta SQL em segundo-plano)',
 'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -1000,7 +1004,7 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'note' => "'''Nota:'''",
 'previewnote' => "'''Lembre-se de que isto é apenas uma previsão.'''
 Suas alterações ainda não foram salvas!",
-'continue-editing' => 'Continuar editando',
+'continue-editing' => 'Ir para a área de edição',
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'session_fail_preview' => "'''Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente.
@@ -1057,7 +1061,6 @@ A última entrada no histórico é fornecida abaixo como referência:",
 'template-semiprotected' => '(semi-protegida)',
 'hiddencategories' => 'Esta página pertence a {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
 'edittools' => '<!-- O texto aqui disponibilizado será exibido abaixo dos formulários de edição e de envio de arquivos. -->',
-'nocreatetitle' => 'A criação de páginas se encontra limitada',
 'nocreatetext' => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin|autentique-se ou crie uma conta]].',
 'nocreate-loggedin' => 'Você não possui permissão para criar novas páginas.',
@@ -1447,8 +1450,8 @@ Esta ação não pode ser desfeita.',
 'prefs-emailconfirm-label' => 'Confirmação do e-mail:',
 'prefs-textboxsize' => 'Tamanho da janela de edição',
 'youremail' => 'Seu e-mail:',
-'username' => 'Nome de usuário:',
-'uid' => 'Número de identificação:',
+'username' => 'Nome de {{GENDER:$1|usuário|usuária}}:',
+'uid' => 'ID de {{GENDER:$1|usuário|usuária}}:',
 'prefs-memberingroups' => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration' => 'Hora de registro:',
 'yourrealname' => 'Nome verdadeiro:',
@@ -1873,7 +1876,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em "$1".',
 'backend-fail-batchsize' => 'O servidor de armazenamento retornou um conjunto de $1 {{PLURAL:$1|operação|operações}} de arquivo, enquanto seu limite é de $2 {{PLURAL:$1|operação|operações}}.',
-'backend-fail-usable' => 'Não foi possível salvar o arquivo $1 devido a permissões insuficientes a diretórios ou repositórios inexistentes.',
+'backend-fail-usable' => 'Não foi possível ler ou salvar o arquivo $1 devido a permissões insuficientes a diretórios, ou a repositórios/diretórios inexistentes.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível se conectar ao banco de dados de registros do sistema de armazenamento "$1".',
@@ -2006,7 +2009,8 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 'uploadnewversion-linktext' => 'Enviar uma nova versão deste arquivo',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'um repositório compartilhado',
-'upload-disallowed-here' => 'Infelizmente você não pode substituir essa imagem.',
+'filepage.css' => '/* O CSS aqui inserido será incluído na página de descrição de arquivo local e de wikis externos */',
+'upload-disallowed-here' => 'Você não pode substituir este arquivo.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -2086,8 +2090,9 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 
 'disambiguations' => 'Páginas com links para páginas de desambiguação',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => 'As páginas a seguir ligam a "páginas de desambiguação" ao invés de aos tópicos adequados.<br />
-Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]',
+'disambiguations-text' => "As páginas a seguir possuem pelo menos um link para uma '''página de desambiguação'''.
+Talvez fosse melhor que possuissem links para uma página mais específica.</br>
+Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
@@ -2239,9 +2244,9 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'linksearch-pat' => 'Procurar padrão:',
 'linksearch-ns' => 'Espaço nominal:',
 'linksearch-ok' => 'Pesquisar',
-'linksearch-text' => 'É possível usar caracteres curinga, como "*.wikipedia.org".
-É necessário, pelo menos, um domínio de nível superior, por exemplo "*.org".<br />
-Protocolos suportados: <code>$1</code> (não adicionado nenhum desses em sua pesquisa).',
+'linksearch-text' => 'É possível usar caracteres coringa, como "*.wikipedia.org".
+Necessário no mínimo um domínio de nível superior, por exemplo "*.org".<br />
+Protocolos suportados: <code>$1</code> (o padrão é http://).',
 'linksearch-line' => '$2 possui links para $1',
 'linksearch-error' => "\"Caracteres mágicos\" (''wildcards'') só podem ser usados no início do endereço.",
 
@@ -2287,9 +2292,11 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 'mailnologin' => 'Nenhum endereço de envio',
 'mailnologintext' => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
 'emailuser' => 'Enviar-lhe um e-mail',
+'emailuser-title-target' => 'Enviar e-mail para {{GENDER:$1|este usuário|esta usuária}}',
+'emailuser-title-notarget' => 'Enviar e-mail',
 'emailpage' => 'Contactar usuário',
-'emailpagetext' => 'Você pode usar o formulário abaixo para enviar uma mensagem por correio eletrônico para este usuário.
-O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, então o destinatário poderá responder diretamente para você.',
+'emailpagetext' => 'Você pode usar o formulário a seguir para enviar um e-mail para {{GENDER:$1|este usuário|esta usuária}}.
+O endereço de e-mail que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, com o destinatário podendo responder diretamente para você.',
 'usermailererror' => 'Erro no email:',
 'defemailsubject' => 'E-mail do usuário "$1" da {{SITENAME}}',
 'usermaildisabled' => 'O e-mail do usuário foi desativado',
@@ -2327,8 +2334,8 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'watchnologin' => 'Não está autenticado',
 'watchnologintext' => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
 'addwatch' => 'Adicionar às páginas vigiadas',
-'addedwatchtext' => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
-Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, e a página aparecerá em '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que você possa encontrá-la com maior facilidade.",
+'addedwatchtext' => 'A página "[[:$1]]" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
+Futuras modificações em tal página e páginas de discussão relacionadas serão listadas lá.',
 'removewatch' => 'Remover das páginas vigiadas',
 'removedwatchtext' => 'A página "[[:$1]]" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].',
 'watch' => 'Vigiar',
@@ -2579,7 +2586,7 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribuições {{GENDER:{{BASEPAGENAME}}|do usuário|da usuária}}',
+'contributions' => 'Contribuições {{GENDER:$1|do usuário|da usuária}}',
 'contributions-title' => 'Contribuições {{GENDER:$1|do usuário|da usuária}} $1',
 'mycontris' => 'Contribuições',
 'contribsub2' => 'Para $1 ($2)',
@@ -2621,7 +2628,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'whatlinkshere-hideredirs' => '$1 redirecionamentos',
 'whatlinkshere-hidetrans' => '$1 transclusões',
 'whatlinkshere-hidelinks' => '$1 links',
-'whatlinkshere-hideimages' => '$1 links de imagens',
+'whatlinkshere-hideimages' => '$1 links para arquivos',
 'whatlinkshere-filters' => 'Filtros',
 
 # Block/unblock
@@ -2954,7 +2961,9 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'import-error-interwiki' => 'A página "$1" não pôde ser importada pois seu nome está reservado para um link interwik.',
 'import-error-special' => 'A página "$1" não pôde ser importada porque ela pertence a um espaço nominal especial que não suporta páginas.',
 'import-error-invalid' => 'A página "$1" não pôde ser importada por seu nome ser inválido.',
+'import-options-wrong' => '{{PLURAL:$2|Opção com erro|Opções com erros}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A página raiz dada é um título inválido.',
+'import-rootpage-nosubpage' => 'O espaço nominal $1 da página principal não permite subpáginas.',
 
 # Import log
 'importlogpage' => 'Registro de importações',
@@ -3088,11 +3097,13 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
+'pageinfo-not-current' => 'Desculpe-nos, não é possível fornecer esses dados para edições antigas.',
 'pageinfo-header-basic' => 'Informação básica',
 'pageinfo-header-edits' => 'Histórico de edições',
 'pageinfo-header-restrictions' => 'Proteção da página',
 'pageinfo-header-properties' => 'Propriedades da página',
 'pageinfo-display-title' => 'Exibir título',
+'pageinfo-default-sort' => 'Chave de ordenação padrão',
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-robot-policy' => 'Status do mecanismo de pesquisa',
@@ -3174,6 +3185,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'file-info-size-pages' => '$1 × $2 pixels, tamanho do arquivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
 'file-nohires' => 'Sem resolução maior disponível.',
 'svg-long-desc' => 'arquivo SVG, de $1 × $2 pixels, tamanho: $3',
+'svg-long-desc-animated' => 'arquivo SVG animado, de $1 × $2 pixels e de tamanho: $3',
 'show-big-image' => 'Resolução original',
 'show-big-image-preview' => 'Tamanho desta previsualização: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Outra resolução|Outras resoluções}}: $1.',
@@ -3183,6 +3195,8 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'file-info-png-looped' => 'cíclico',
 'file-info-png-repeat' => 'tocado $1 {{PLURAL:$1|vez|vezes}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|quadro|quadros}}',
+'file-no-thumb-animation' => "'''Nota: por limitações técnicas, as miniaturas deste arquivo não estarão animadas.'''",
+'file-no-thumb-animation-gif' => "'''Nota: por limitações técnicas, miniaturas de imagens GIF de alta resolução como esta, não estarão animadas.'''",
 
 # Special:NewFiles
 'newimages' => 'Galeria de novos arquivos',
@@ -3952,9 +3966,9 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sem um redirecionamento',
 'logentry-patrol-patrol' => '$1 marcou a revisão $4 da página $3 como patrulhada',
 'logentry-patrol-patrol-auto' => '$1 marcou automaticamente a revisão $4 da página $3 como patrulhada',
-'logentry-newusers-newusers' => '$1 criou uma conta de usuário',
-'logentry-newusers-create' => '$1 criou uma conta de usuário',
-'logentry-newusers-create2' => '$1 criou uma conta de usuário $3',
+'logentry-newusers-newusers' => 'A conta de usuário $1 foi criada',
+'logentry-newusers-create' => 'A conta de usuário $1 foi criada',
+'logentry-newusers-create2' => 'A conta de usuário $1 foi criada por $3',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
 'newuserlog-byemail' => 'senha enviada por correio-eletrônico',
 

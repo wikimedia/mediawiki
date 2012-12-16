@@ -573,7 +573,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'template-protected' => '(protektita)',
 'template-semiprotected' => '(mi-protektita)',
 'hiddencategories' => 'Ca pagino esas membro di {{PLURAL:$1|1 celita kategorio|$1 celita kategorii}}:',
-'nocreatetitle' => 'Kreado di pagini limitita',
 'permissionserrorstext-withaction' => 'Vu ne darfas $2, pro la {{PLURAL:$1|kauzo|kauzi}} sequanta:',
 'moveddeleted-notice' => 'Ca pagino efacesabas.
 La efaco-registraro e movo-registraro dil pagino provizesar sequante por refero.',

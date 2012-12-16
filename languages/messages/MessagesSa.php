@@ -1009,7 +1009,6 @@ $2
 'template-protected' => '(संरक्षितम्)',
 'template-semiprotected' => '(अर्धसंरक्षितम्)',
 'hiddencategories' => 'इदं पृष्ठं {{PLURAL:$1|1 निगूढे वर्गे |$1 निगूढेषु वर्गेषु}} अन्यतमं विद्यते :',
-'nocreatetitle' => 'पुटनिर्माणं नियतम् ।',
 'nocreatetext' => '{{SITENAME}} नूतनपुटनिर्माणस्य क्षमता नियता । वर्तमानापुटानां सम्पादनार्थं निर्गच्छतु । अथवा [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin' => 'नूतनपुटनिर्मार्थम् अनुमतिः नास्ति ।',
 'sectioneditnotsupported-title' => 'विभागसम्पादनं न पोषितम् ।',

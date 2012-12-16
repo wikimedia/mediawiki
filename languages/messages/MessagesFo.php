@@ -859,7 +859,6 @@ Tann seinasti posturin í loggfíluni er vístur niðanfyri fyri kelduávísing:
 'template-protected' => '(friðað)',
 'template-semiprotected' => '(lutvíst vardar)',
 'hiddencategories' => 'Henda síðan er í {{PLURAL:$1|1 fjaldum bólki|$1 fjaldum bólkum}}:',
-'nocreatetitle' => 'Upprættan av síðu er avmarkað',
 'nocreatetext' => '{{SITENAME}} hevur noktað fyri møguleikanum at upprætta nýggjar síður.
 Tú kanst fara aftur og rætta eina síðu sum longu er til, ella [[Special:UserLogin|rita teg inn ella få tær eina konto]].',
 'nocreate-loggedin' => 'Tú hevur ikki loyvi til at upprætta nýggjar síður.',
