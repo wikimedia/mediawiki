@@ -419,7 +419,9 @@ class FSFileBackend extends FileBackendStore {
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd );
 		} else { // immediate write
+			wfSuppressWarnings();
 			$ok = unlink( $source );
+			wfRestoreWarnings();
 			if ( !$ok ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
 				return $status;
