@@ -58,7 +58,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_details = isset( $prop['details'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
-		$hideLogs = LogEventsList::getExcludeClause( $db );
+		$hideLogs = LogEventsList::getExcludeClause( $db, 'user' );
 		if ( $hideLogs !== false ) {
 			$this->addWhere( $hideLogs );
 		}
@@ -367,8 +367,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
-		} else {
+		} elseif ( LogEventsList::getExcludeClause( $this->getDB(), 'user' ) === LogEventsList::getExcludeClause( $this->getDB(), 'public' ) ) { // Output can only contain public data.
 			return 'public';
+		} else {
+			return 'anon-public-user-private';
 		}
 	}
 
