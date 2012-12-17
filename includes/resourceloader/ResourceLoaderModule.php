@@ -58,6 +58,7 @@ abstract class ResourceLoaderModule {
 	/* Protected Members */
 
 	protected $name = null;
+	protected $targets = array( 'desktop' );
 
 	// In-object cache for file dependencies
 	protected $fileDeps = array();
@@ -291,12 +292,11 @@ abstract class ResourceLoaderModule {
 
 	/**
 	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
-	 * Default implementation hardcodes 'desktop'.
 	 *
 	 * @return array of strings
 	 */
 	public function getTargets() {
-		return array( 'desktop' );
+		return $this->targets;
 	}
 
 	/**
