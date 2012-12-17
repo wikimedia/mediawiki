@@ -133,7 +133,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					break;
 				}
 				if ( !is_null( $resultPageSet ) ) {
-					$titles[] = $file->getTitle();
+					$titles[] = $dupFile->getTitle();
 				} else {
 					$r = array(
 						'name' => $dupName,
