@@ -58,6 +58,7 @@ abstract class ResourceLoaderModule {
 	/* Protected Members */
 
 	protected $name = null;
+	protected $targets = array( 'desktop' );
 
 	// In-object cache for file dependencies
 	protected $fileDeps = array();
@@ -290,6 +291,15 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
+	 *
+	 * @return array of strings
+	 */
+	public function getTargets() {
+		return $this->targets;
+	}
+
+	/**
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
@@ -448,15 +458,5 @@ abstract class ResourceLoaderModule {
 			self::$jsParser = new JSParser();
 		}
 		return self::$jsParser;
-	}
-
-	/**
-	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
-	 * Default implementation hardcodes 'desktop'.
-	 *
-	 * @return array of strings
-	 */
-	public function getTargets() {
-		return array( 'desktop' );
 	}
 }
