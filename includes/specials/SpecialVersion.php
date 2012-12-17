@@ -775,15 +775,17 @@ class SpecialVersion extends SpecialPage {
 		return $repo->getHeadSHA1();
 	}
 
+
 	/**
 	 * Get the list of entry points and their URLs
 	 * @return string Wikitext
 	 */
 	public function getEntryPointInfo() {
 		global $wgArticlePath, $wgScriptPath;
+		$scriptPath = $wgScriptPath ? $wgScriptPath : "/";
 		$entryPoints = array(
 			'version-entrypoints-articlepath' => $wgArticlePath,
-			'version-entrypoints-scriptpath' => $wgScriptPath,
+			'version-entrypoints-scriptpath' => $scriptPath,
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),
 			'version-entrypoints-load-php' => wfScript( 'load' ),
