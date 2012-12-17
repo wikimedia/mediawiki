@@ -114,6 +114,7 @@ production.
   will require updates to your site's CSS or JS.
 * (bug 41342) jquery.suggestions should cancel any active (async) fetches
   before it triggers another fetch.
+* (bug 42184) $wgUploadSizeWarning missing second variable
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
