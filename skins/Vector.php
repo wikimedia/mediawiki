@@ -230,7 +230,7 @@ class VectorTemplate extends BaseTemplate {
 		<div id="mw-navigation">
 			<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 			<!-- header -->
-			<div id="mw-head" class="noprint">
+			<div id="mw-head">
 				<?php $this->renderNavigation( 'PERSONAL' ); ?>
 				<div id="left-navigation">
 					<?php $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); ?>
@@ -241,7 +241,7 @@ class VectorTemplate extends BaseTemplate {
 			</div>
 			<!-- /header -->
 			<!-- panel -->
-			<div id="mw-panel" class="noprint">
+			<div id="mw-panel">
 				<!-- logo -->
 					<div id="p-logo" role="banner"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a></div>
 				<!-- /logo -->
