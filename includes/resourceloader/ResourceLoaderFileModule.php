@@ -650,23 +650,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
-	 * but returns 1 instead.
-	 * @param $filename string File name
-	 * @return int UNIX timestamp, or 1 if the file doesn't exist
-	 */
-	protected static function safeFilemtime( $filename ) {
-		if ( file_exists( $filename ) ) {
-			return filemtime( $filename );
-		} else {
-			// We only ever map this function on an array if we're gonna call max() after,
-			// so return our standard minimum timestamps here. This is 1, not 0, because
-			// wfTimestamp(0) == NOW
-			return 1;
-		}
-	}
-
-	/**
 	 * Get whether CSS for this module should be flipped
 	 * @param $context ResourceLoaderContext
 	 * @return bool
