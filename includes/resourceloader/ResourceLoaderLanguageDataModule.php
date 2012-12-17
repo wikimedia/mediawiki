@@ -28,6 +28,7 @@
 class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 	protected $language;
+	protected $targets = array( 'desktop', 'mobile' );
 	/**
 	 * Get the grammar forms for the site content language.
 	 *
