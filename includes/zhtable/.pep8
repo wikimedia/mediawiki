@@ -1,0 +1,5 @@
+[pep8]
+; Ignore several checks:
+; E201: whitespace after '('
+; E202: whitespace before ')'
+ignore=E201,E202
