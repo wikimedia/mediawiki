@@ -176,7 +176,7 @@ class HistoryAction extends FormlessAction {
 			) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBKey() ) . "\n" .
 			Html::hidden( 'action', 'history' ) . "\n" .
-			Xml::dateMenu( $year, $month ) . '&#160;' .
+			Xml::dateMenu( ( $year == null ? date( "Y" ) : $year ), $month ) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
 			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
