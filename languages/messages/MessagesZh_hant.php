@@ -773,6 +773,7 @@ $2
 'changeemail-oldemail' => '當前電郵地址：',
 'changeemail-newemail' => '新電郵地址：',
 'changeemail-none' => '（無）',
+'changeemail-password' => '您的{{SITENAME}}密碼：',
 'changeemail-submit' => '更改電郵',
 'changeemail-cancel' => '取消',
 
@@ -2179,7 +2180,8 @@ Template:消除歧義',
 'watchnologintext' => '您必須先[[Special:UserLogin|登入]]
 才能更改您的監視列表',
 'addwatch' => '加至監視列表',
-'addedwatchtext' => "頁面「[[:$1]]」已經被加入到您的[[Special:Watchlist|監視清單]]中。將來有關此頁面及其討論頁的任何修改將會在那裡列出，而且還會在[[Special:RecentChanges|近期變動]]中以'''粗體'''形式列出以使起更容易識別。",
+'addedwatchtext' => '頁面「[[:$1]]」已加到您的[[Special:Watchlist|監視清單]]中。
+將來有關此頁面及其討論頁的任何修改將會在那裡列出。',
 'removewatch' => '停止監視',
 'removedwatchtext' => '[[:$1]]已經從[[Special:Watchlist|您的監視頁面]]中移除。',
 'watch' => '監視',

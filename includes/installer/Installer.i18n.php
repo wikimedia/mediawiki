@@ -5792,12 +5792,13 @@ Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
 	'config-help' => 'aide',
 	'config-nofile' => 'Le fichier « $1 » est introuvable. A-t-il été supprimé ?',
 	'mainpagetext' => "'''MediaWiki a été installé avec succès.'''",
-	'mainpagedocfooter' => 'Consultez le [//meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
+	'mainpagedocfooter' => 'Consultez le [//meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.
 
-== Démarrer avec MediaWiki ==
+== Pour démarrer ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
 * [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ sur MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]',
 );
 
 /** Cajun French (français cadien)
@@ -18383,6 +18384,7 @@ $messages['zea'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Anthony Fok
  * @author Hydra
  * @author Hzy980512
  * @author Liangent
@@ -18458,7 +18460,8 @@ $1',
 	'config-env-php-toolow' => '已安装PHP $1；但是，MediaWiki需要PHP $2或更高版本。',
 	'config-unicode-using-utf8' => '使用Brion Vibber的utf8_normalize.so实现Unicode正常化。',
 	'config-unicode-using-intl' => '使用[http://pecl.php.net/intl intl PECL扩展]实现Unicode正常化。',
-	'config-unicode-pure-php-warning' => "'''警告'''：[http://pecl.php.net/intl intl PECL扩展]无法处理Unicode正常化，故只能退而采用运行较慢的纯PHP实现的方法。如果您运行着一个高流量的站点，请参阅[//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode正常化]一文。",
+	'config-unicode-pure-php-warning' => "'''警告'''：因为尚未安装 [http://pecl.php.net/intl intl PECL 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。
+如果您运行着一个高流量的站点，请参阅 [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正常化]一文。",
 	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[//www.mediawiki.org/wiki/Unicode_normalization_considerations 升级]。",
 	'config-no-db' => '找不到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库：$1。
 
@@ -18823,10 +18826,11 @@ $3
 == 入门 ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki配置设置列表]
 * [//www.mediawiki.org/wiki/Manual:FAQ/zh-hans MediaWiki常见问题]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]', # Fuzzy
 );
 
 /** Traditional Chinese (中文（繁體）‎)
+ * @author Anthony Fok
  * @author Hzy980512
  * @author Liangent
  * @author Mark85296341
@@ -18894,11 +18898,11 @@ $1',
 * <doclink href=UpgradeDoc>升級</doclink>',
 	'config-env-good' => '環境檢查已經完成。您可以安裝MediaWiki。',
 	'config-env-bad' => '環境檢查已經完成。您不能安裝MediaWiki。',
-	'config-env-php' => 'PHP $1已安裝。',
-	'config-env-php-toolow' => '已安裝PHP $1；但是，MediaWiki需要PHP $2或更高版本。',
-	'config-unicode-using-utf8' => '使用Brion Vibber的utf8_normalize.so實現Unicode正常化。',
-	'config-unicode-using-intl' => '使用[http://pecl.php.net/intl intl PECL擴展]實現Unicode正常化。',
-	'config-unicode-pure-php-warning' => "'''警告'''：[http://pecl.php.net/intl intl PECL擴展]無法處理Unicode正常化，故只能退而採用運行較慢的純PHP實現的方法。如果您運行着一個高流量的站點，請參閱[//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode正常化]一文。",
+	'config-env-php' => 'PHP $1 已安裝。',
+	'config-env-php-toolow' => '已安裝 PHP $1；但是，MediaWiki 需要 PHP $2 或更高版本。',
+	'config-unicode-using-utf8' => '將使用 Brion Vibber 的 utf8_normalize.so 以實作 Unicode 正規化。',
+	'config-unicode-using-intl' => '將使用 [http://pecl.php.net/intl intl PECL 延伸函式庫]以實作 Unicode 正規化。',
+	'config-unicode-pure-php-warning' => "'''警告'''：因為尚未安裝 [http://pecl.php.net/intl intl PECL 延伸函式庫]以處理 Unicode 正規化，故只能退而採用較慢的純 PHP 實作。如果您運行着一個高流量的網站，請參閱 [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正規化]一文。",
 	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封裝器的已安裝版本使用了舊版本的[http://site.icu-project.org/ ICU項目]庫。如果您需要使用Unicode，請將其[//www.mediawiki.org/wiki/Unicode_normalization_considerations 升級]。",
 	'config-no-db' => '找不到合適的數據庫驅動！您需要為PHP安裝數據庫驅動。目前支持以下數據庫：$1。
 
@@ -19262,7 +19266,7 @@ $3
 == 入門 ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki配置設定清單]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki常見問題解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki發佈郵件清單]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki發佈郵件清單]', # Fuzzy
 );
 
 /** Chinese (Hong Kong) (‪中文（香港）‬)

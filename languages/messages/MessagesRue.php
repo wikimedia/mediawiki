@@ -683,6 +683,7 @@ $2
 'changeemail-oldemail' => 'Теперїшня імейлова адреса:',
 'changeemail-newemail' => 'Нова імейлова адреса:',
 'changeemail-none' => '(жадне)',
+'changeemail-password' => 'Ваше гесло на портал {{SITENAME}}:',
 'changeemail-submit' => 'Змінити імейл',
 'changeemail-cancel' => 'Сторно',
 

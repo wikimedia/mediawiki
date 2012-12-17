@@ -868,6 +868,7 @@ Parolă temporară: $2',
 'changeemail-oldemail' => 'Adresa de e-mail actuală:',
 'changeemail-newemail' => 'Noua adresă de e-mail:',
 'changeemail-none' => '(niciuna)',
+'changeemail-password' => 'Parola dumneavoastră la {{SITENAME}}:',
 'changeemail-submit' => 'Modifică adresa de e-mail',
 'changeemail-cancel' => 'Revocare',
 
@@ -2326,7 +2327,7 @@ Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|prefer
 'watchnologintext' => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addwatch' => 'Adăugă la lista de pagini urmărite',
 'addedwatchtext' => 'Pagina „[[:$1]]” a fost adăugată la lista dumneavoastră de [[Special:Watchlist|pagini urmărite]].
-Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo și, în plus, ele vor apărea cu <b>caractere îngroșate</b> în pagina cu [[Special:RecentChanges|schimbări recente]] pentru evidențiere.',
+Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo.',
 'removewatch' => 'Elimină din lista de pagini urmărite',
 'removedwatchtext' => 'Pagina „[[:$1]]” a fost eliminată din [[Special:Watchlist|lista de pagini urmărite]].',
 'watch' => 'Urmărire',

@@ -13,6 +13,7 @@
  * @author Asoxor
  * @author Baqeri
  * @author Behdarvandyani
+ * @author E THP
  * @author Ebraminio
  * @author Huji
  * @author Ibrahim
@@ -2347,7 +2348,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'allpages' => 'همهٔ صفحه‌ها',
 'alphaindexline' => '$1 تا $2',
 'nextpage' => 'صفحهٔ بعد ($1)',
-'prevpage' => 'صفحهٔ قبلی ($1)',
+'prevpage' => 'اؤنجه‌کی صحیفه ($1)',
 'allpagesfrom' => 'نمایش صفحه‌ها با شروع از:',
 'allpagesto' => 'نمایش صفحه‌ها با پایان در:',
 'allarticles' => 'همهٔ صفحه‌ها',

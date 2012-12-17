@@ -67,7 +67,7 @@ $messages = array(
 
 'underline-always' => 'Åltens',
 'underline-never' => 'uler',
-'underline-default' => 'oufhingi foon browser-önjstaling',
+'underline-default' => 'Komt üüb dan browser uun',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Schraftfamiili for di takst onj dåt beårbingswaning:',
@@ -152,8 +152,8 @@ $messages = array(
 'newwindow' => '(wårt önj en nai waning ääm mååged)',
 'cancel' => 'Oufbreege',
 'moredotdotdot' => 'Mör ...',
-'mypage' => 'Äine sid',
-'mytalk' => 'Äine diskusjoon',
+'mypage' => 'Sidj',
+'mytalk' => 'Diskusjuun',
 'anontalk' => 'Diskusjoonssid foon jüdeer IP',
 'navigation' => 'Navigasjoon',
 'and' => '&#32;än',
@@ -175,7 +175,7 @@ $messages = array(
 'vector-action-protect' => 'Sääkere',
 'vector-action-undelete' => 'Wi mååge',
 'vector-action-unprotect' => 'Frijeewe unti späre',
-'vector-simplesearch-preference' => 'Ütwidede säkforsliike aktiwiire (bloot vector)',
+'vector-simplesearch-preference' => 'Ianfacher sjüklist iinstel (bluas bi Vector)',
 'vector-view-create' => 'Mååge',
 'vector-view-edit' => 'Beårbe',
 'vector-view-history' => 'Dootäifärsjoone',
@@ -339,12 +339,12 @@ Dåt koon uk en fäägel önjjeewe önj e software, jü {{SITENAME}} brúkt.',
 # General errors
 'error' => 'Fäägel',
 'databaseerror' => 'Dootebånkfäägel',
-'dberrortext' => 'Deer as en dootebånk-fäägel aptrin.
-Di grün koon en programiirfäägel weese.
-Jü leest dootebånk ouffrååg wus:
-<blockquote><tt>$1</tt></blockquote>
-üt jü funksjoon „<tt>$2</tt>“.
-Jü dootebank mäldede di fäägel „<tt>$3: $4</tt>“.',
+'dberrortext' => 'Diar as wat skiaf gingen mä det dootenbeenk.
+Ferlicht as det software ei bi a rä.
+Det leetst uunfraag tu\'t dootenbeenk wiar:
+<blockquote><code>$1</code></blockquote>
+faan det funktsjuun "<code>$2</code>".
+Det dootenbeenk swaaret mä "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Dåt jäif en süntaksfäägel önj e dootebånk-ouffrååch.
 Jü leest dootebånkouffrååch wus  „$1“ üt e funksjoon „<tt>$2</tt>“.
 Jü dootebånk mälded jü fäägel: „<tt>$3: $4</tt>“.',
@@ -391,12 +391,13 @@ Ouffrååch: $2',
 'viewsource-title' => 'Code faan sidj $1 uunluke',
 'actionthrottled' => 'Aksjoonstål limitiird',
 'actionthrottledtext' => 'Dü hääst jüdeer aksjoon tu oofding bane en kort tidrüm ütfjard. Wees sü gödj än täiw en påår minuute än fersäk dåt et dan foon naien.',
-'protectedpagetext' => 'Jüdeer sid as for dåt beårben späred.',
+'protectedpagetext' => 'Detdiar sidj as seekert wurden, am dat diar näämen wat feranert.',
 'viewsourcetext' => 'Dü koost jü kwäle foon jüdeer sid bekiike än kopiire.',
 'viewyourtext' => "Dü könst di code faan '''din feranrang''' faan detdiar sidj uunluke an kopiare:",
-'protectedinterface' => 'Jüdeer sid önjthålt takst for ju brükerouerfläche foon e software än as späred, am masbrük tu ferhanern.',
+'protectedinterface' => 'Üüb detdiar sidj stäänt tekst för det software faan detheer wiki an as seekert wurden, am dat näämen diar wat feranert.
+Dü könst [//translatewiki.net/ translatewiki.net] faan MediaWiki brük, am auersaatangen för ale wiki projekten tu maagin.',
 'editinginterface' => "'''Paase üüb:''' Üüb detdiar sidj stäänt tekst, diar faan't MediaWiki software brükt woort. Wan dü diar wat feranerst, feranerst dü di skak faan't Nuurdfresk Wikipedia.
-Wan dü wat auersaat wel, maage det mä [//translatewiki.net/wiki/Main_Page?setlang=frr Translatewiki], det as det MediaWiki lokalisiarangsprojekt.",
+Wan dü wat auersaat wel, maage det mä [//translatewiki.net/ translatewiki.net], det as det MediaWiki lokalisiarangsprojekt.",
 'sqlhidden' => 'SCL-ouffrååg ferstäägen',
 'cascadeprotected' => 'Jüdeer sid as for beårbing spärd. Jü as önj {{PLURAL:$1|e füliende sid|da füliende side}}
 önjbünen, {{PLURAL:$1|jü|da}} madels e kaskaadespäropsjoon önj febading hüüljen {{PLURAL:$1|as|san}}:
@@ -667,9 +668,8 @@ Bast üt fersiien heer, klik di '''tubääg'''-klänkfläche foon dan browser.",
 'noarticletext' => 'Jüdeer sid önjhålt uugenblaklik nuch nån täkst.
 Dü koost dideere tiitel aw da ouder side [[Special:Search/{{PAGENAME}}|säke]],
 <span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] unti jüdeer sid [{{fullurl:{{FULLPAGENAME}}|action=edit}} beårbe]</span>.',
-'noarticletext-nopermission' => 'Jüdeer sid önjhålt uugenblaklik nuch nån täkst.
-Dü koost dideere tiitel aw da oudre side [[Special:Search/{{PAGENAME}}|säke]],
-unti<span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] </span>.',
+'noarticletext-nopermission' => 'Üüb detdiar sidj stäänt noch niks, oober dü mutst diar uk niks iinskriiw.
+Dü könst diar üüb ööder sidjen efter [[Special:Search/{{PAGENAME}}|sjük]] of a <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAME}}}} logbuken uunluke].</span>',
 'userpage-userdoesnotexist' => "Det brükerkonto ''$1'' as ei diar.
 Wel dü detdiar sidj würelk maage/bewerke?",
 'userpage-userdoesnotexist-view' => 'Benjüterkonto "$1" bestoont ai.',
@@ -679,7 +679,6 @@ For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 * '''Firefox / Safari:''' Hual ''Shift'' bi't aktualisiarin, of trak ''Strg an F5'' of ''Strg an R'' (''⌘an R'' üüb en Mac)
 * '''Google Chrome:''' Trak ''Strg an Shift an R'' (''⌘an Shift an R'' üüb en Mac)
 * '''Internet Explorer:''' Hual ''Strg'' bi't aktualisiarin, of trak ''Strg an F5''
-* '''Konqueror:''' Trak ''Aktualisiarin'' of trak ''F5''
 * '''Opera:''' ''Extras - Internetspuren löschen - Individuelle Auswahl - Den kompletten Cache löschen''",
 'usercssyoucanpreview' => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai CSS for dåt spiikern tu tästen.",
 'userjsyoucanpreview' => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai JavaScript for dåt spiikern tu tästen.",
@@ -696,7 +695,7 @@ For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 'note' => "'''Påås aw:'''",
 'previewnote' => "'''Heer könst dü sä, hü det sidj wurd skal.'''
 Det sidj as oober noch ei seekert!",
-'continue-editing' => 'Widjer bewerke',
+'continue-editing' => "Gung tu't fial för't bewerkin",
 'previewconflict' => 'Dideer forbekiik jeeft di inhålt foon dåt boowerst takstfälj wider. Sü wårt jü sid ütsiinj, wan dü nü spiikerst.',
 'session_fail_preview' => "'''Din werk küd ei ufseekert wurd, diar as wat skiaf gingen.'''
 Fersjük det man noch ans an trak do üüb ''Sid spiikre''.
@@ -925,7 +924,9 @@ Dü heest deeraw nåån tugraawe.',
 'revdelete-only-restricted' => "Bi't fersteegen faan di iindrach di $1, am a klook $2 as wat skiaf gingen: Dü könst di iindrach ei föör administratooren fersteeg, saner ööder iinstelangen tu feranrin.",
 'revdelete-reason-dropdown' => "*Grünjer för't striken san miast
 ** Copyright woort ei iinhäälen
-** Persöönelk informatsjuunen, diar näämen wat uungung",
+** Persöönelk informatsjuunen, diar näämen wat uungung
+** Brükernööm as ei tuläät
+** Fülk informatsjuunen",
 'revdelete-otherreason' => 'Ouderen/tubaikaamenden grün:',
 'revdelete-reasonotherlist' => 'Ouderen grün',
 'revdelete-edit-reasonlist' => 'Strikgrüne beårbe',
@@ -1052,7 +1053,7 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 
 # Preferences page
 'preferences' => 'Önjstalinge',
-'mypreferences' => 'Önjstalinge',
+'mypreferences' => 'Iinstelangen',
 'prefs-edits' => 'Taal faan feranrangen:',
 'prefsnologin' => 'Ai önjmälded',
 'prefsnologintext' => 'Dü skel <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} uunmeldet]</span> wees, am din iinstelangen tu feranrin.',
@@ -1113,7 +1114,7 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 'timezoneregion-indian' => 'Indik',
 'timezoneregion-pacific' => 'Pasiifik',
 'allowemail' => 'E-Mail foon oudere brükere tulätje',
-'prefs-searchoptions' => 'Säkmöölikhäide',
+'prefs-searchoptions' => 'Sjük',
 'prefs-namespaces' => 'Noomerüme',
 'defaultns' => 'Ouers säk önj jüheer noomerüme:',
 'default' => 'Forinstaling',
@@ -1126,9 +1127,9 @@ Do san jo ual iinstelangen wech.',
 'prefs-emailconfirm-label' => 'E-Mail gudkäänd:',
 'prefs-textboxsize' => "Grate faan't wönang tu bewerkin",
 'youremail' => 'E-mail:',
-'username' => 'Brükernoome:',
-'uid' => 'Brüker ID:',
-'prefs-memberingroups' => 'Lasmoot faan {{PLURAL:$1|brükerskööl|brükersköölen}}:',
+'username' => '{{GENDER:$1|Brükernööm}}:',
+'uid' => '{{GENDER:$1|Brükerkäänang}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Lasmoot}} faan {{PLURAL:$1|brükerskööl|brükersköölen}}:',
 'prefs-registration' => 'Uunmelde-tidj',
 'yourrealname' => 'Rocht nööm:',
 'yourlanguage' => 'Spräke:',
@@ -1422,14 +1423,10 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 
 # Watchlist
 'watchlist' => 'Eefterkiikliste',
-'mywatchlist' => 'Eefterkiikliste',
+'mywatchlist' => "Uun't uug behual",
 'watchlistfor2' => 'Foon $1 $2',
-'addedwatchtext' => 'Jü sid „[[:$1]]“ wörd tu din [[Special:Watchlist|eefterkiiklist]] tubaifäiged.
-
-Lääsere änringe bai jüdeer sid än jü deertuhiirende diskusjoonssid wårde deer listed än
-önj e ouersicht foon da [[Special:RecentChanges|leeste änringe]] önj fåtschraft deerstald.
-
-Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jüdeer sid aw „{{int:Unwatch}}“.',
+'addedwatchtext' => "Det sidj „[[:$1]]“ wel dü [[Special:Watchlist|uun't uug behual]].
+Feranerangen faan detdiar sidj wurd üüb detdiar list fäästhäälen.",
 'removedwatchtext' => 'Jü sid „[[:$1]]“ wörd foon din [[Special:Watchlist|eefterkiiklist]] wächhååld.',
 'watch' => 'Kiike eefter',
 'watchthispage' => 'Side eefterkiike',
@@ -1536,7 +1533,8 @@ Di tekst faan det stregen sidj fu bluas administratooren uunwiset.',
 'undeletedrevisions' => '{{PLURAL:$1|1 wersjuun|$1 wersjuunen}} weder iinsteld',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 wersjuun|$1 wersjuunen}} an {{PLURAL:$2|1 datei|$2 datein}} weder iinsteld',
 'undeletedfiles' => '{{PLURAL:$1|1 datei|$1 datein }} weder iinsteld',
-'cannotundelete' => 'Weder iinstelen hää ei loket; ferlicht hää hoker ööders det al weder iinsteld.',
+'cannotundelete' => 'Weder iinstelen hää ei loket:
+$1',
 'undeletedpage' => "'''„$1“''' as weder iinsteld wurden.
 Uun't [[Special:Log/delete|logbuk faan stregen sidjen]] stun a stregen an weder iinsteld sidjen.",
 'undelete-header' => "Luke uun't [[Special:Log/delete|logbuk för stregen sidjen]] efter stregen sidjen faan a leetst tidj.",
@@ -1561,9 +1559,9 @@ $1",
 'blanknamespace' => '(Side)',
 
 # Contributions
-'contributions' => 'Brükertujeefte',
+'contributions' => '{{GENDER:$1|Brüker}} bidracher',
 'contributions-title' => 'Brükertujeefte foon "$1"',
-'mycontris' => 'Äine tujeefte',
+'mycontris' => 'Bidracher',
 'contribsub2' => 'For $1 ($2)',
 'uctop' => '(aktuäl)',
 'month' => 'än moune:',
@@ -1594,7 +1592,7 @@ $1",
 'whatlinkshere-hideredirs' => 'Widerliidjinge $1',
 'whatlinkshere-hidetrans' => 'Forlåågenönjbininge $1',
 'whatlinkshere-hidelinks' => 'Links $1',
-'whatlinkshere-hideimages' => '$1 dåtäilinks',
+'whatlinkshere-hideimages' => 'Ferwisangen tu dateien $1',
 'whatlinkshere-filters' => 'Filtere',
 
 # Block/unblock

@@ -708,6 +708,7 @@ Nachylne gronidło: $2',
 'changeemail-oldemail' => 'Aktualna e-mailowa adresa:',
 'changeemail-newemail' => 'Nowa e-mailowa adresa:',
 'changeemail-none' => '(žedna)',
+'changeemail-password' => 'Twójo gronidło za {{GRAMMAR:akuzatiw|{{SITENAME}}}}',
 'changeemail-submit' => 'E-mailowu adresu změniś',
 'changeemail-cancel' => 'Pśetergnuś',
 
@@ -2126,8 +2127,8 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 'watchnologin' => 'Njepśizjawjony(a)',
 'watchnologintext' => 'Musyš [[Special:UserLogin|pśizjawjony]] byś, aby mógał swóju wobglědowańku wobźěłaś.',
 'addwatch' => 'K wobglědowańce dodaś',
-'addedwatchtext' => "Bok \"[[:\$1]]\" jo se k twójej [[Special:Watchlist|wobglědowańce]] dodał.
-Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju, a bok buźo se w [[Special:RecentChanges|lisćinje aktualnych změnow]] '''tucnje''' pokazaś, aby daju se lažčej namakaś.",
+'addedwatchtext' => 'Bok "[[:$1]]" jo se k twójej [[Special:Watchlist|wobglědowańce]] dodał.
+Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju.',
 'removewatch' => 'Z wobglědowańki wulašowaś',
 'removedwatchtext' => 'Bok "[[:$1]]" jo se z [[Special:Watchlist|twójeje wobglědowańki]] wulašowany.',
 'watch' => 'Wobglědowaś',
@@ -2739,6 +2740,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-error-interwiki' => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo za eksterne wótkazowanje (interwiki) wuměnjone.',
 'import-error-special' => 'Bok "$1" se njeimportěrujo, dokulaž słuša k wósebnemu mjenjowemu rumoju, kótaryž njedowólujo boki.',
 'import-error-invalid' => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo njepłaśiwe.',
+'import-error-unserialize' => 'Wersija $2 boka "$1" njedajo se wótserializěrowaś. Wersija jo se za wužywanje wopśimjeśowego $3 k wěsći dała, kótaryž jo ako $4 serializěrowany.',
 'import-options-wrong' => '{{PLURAL:$2|Wopacna opcija|Wopacnej opciji|Wopacne opcije|Wopacne opcije}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Pódany kórjenjowy bok jo njepłaśiwy.',
 'import-rootpage-nosubpage' => 'Mjenjowy rum "$1" kórjenjowego boka njedowólujo pódboki.',

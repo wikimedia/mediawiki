@@ -2269,7 +2269,8 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchnologin' => 'Et ole kirjautunut sisään',
 'watchnologintext' => 'Sinun pitää [[Special:UserLogin|kirjautua sisään]], jotta voisit käyttää tarkkailulistaasi.',
 'addwatch' => 'Lisää tarkkailulistalle',
-'addedwatchtext' => "Sivu '''[[:$1]]''' on lisätty [[Special:Watchlist|tarkkailulistallesi]]. Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä. Sivu on '''lihavoitu''' [[Special:RecentChanges|tuoreiden muutosten listassa]], jotta huomaisit sen helpommin. Jos haluat myöhemmin poistaa sivun tarkkailulistaltasi, napsauta linkkiä ''lopeta tarkkailu'' sivun reunassa.",
+'addedwatchtext' => "Sivu '''[[:$1]]''' on lisätty [[Special:Watchlist|tarkkailulistallesi]].
+Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä.",
 'removewatch' => 'Poista tarkkailulistalta',
 'removedwatchtext' => "Sivu '''[[:$1]]''' on poistettu [[Special:Watchlist|tarkkailulistaltasi]].",
 'watch' => 'Tarkkaile',

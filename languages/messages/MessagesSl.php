@@ -770,6 +770,7 @@ Začasno geslo: $2',
 'changeemail-oldemail' => 'Trenutni e-poštni naslov:',
 'changeemail-newemail' => 'Novi e-poštni naslov:',
 'changeemail-none' => '(noben)',
+'changeemail-password' => 'Vaše geslo na {{GRAMMAR:orodnik|{{SITENAME}}}}:',
 'changeemail-submit' => 'Spremeni e-naslov',
 'changeemail-cancel' => 'Prekliči',
 
@@ -2237,8 +2238,8 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'watchnologin' => 'Niste prijavljeni',
 'watchnologintext' => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
 'addwatch' => 'Dodaj na spisek nadzorov',
-'addedwatchtext' => "Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
-Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj, v [[Special:RecentChanges|seznamu zadnjih sprememb]] pa bodo za lažjo izbiro označene '''krepko'''.",
+'addedwatchtext' => 'Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
+Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj.',
 'removewatch' => 'Odstrani s spiska nadzorov',
 'removedwatchtext' => 'Stran »[[:$1]]« je bila odstranjena z vašega [[Special:Watchlist|spiska nadzorov]].',
 'watch' => 'Opazuj',

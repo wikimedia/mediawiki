@@ -43,6 +43,7 @@
  * @author Saper
  * @author Sovq
  * @author Sp5uhe
+ * @author Stanko
  * @author Stlmch
  * @author Stv
  * @author Szczepan1990
@@ -4021,12 +4022,12 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'sqlite-no-fts' => '$1 bez obsługi pełnotekstowego wyszukiwania',
 
 # New logging system
-'logentry-delete-delete' => '$1 usuwa stronę $3',
-'logentry-delete-restore' => '$1 odtwarza stronę $3',
-'logentry-delete-event' => '$1 zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
-'logentry-delete-revision' => '$1 zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-delete-event-legacy' => '$1 zmienia widoczność zdarzeń w rejestrze $3',
-'logentry-delete-revision-legacy' => '$1 zmienia widoczność wersji strony $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|usunął|usunęła}} stronę $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|odtworzył|odtworzyła}} stronę $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'logentry-suppress-delete' => '$1 ukrywa stronę $3',
 'logentry-suppress-event' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
 'logentry-suppress-revision' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
@@ -4040,10 +4041,10 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'revdelete-uname-unhid' => 'wycofano ukrycie nazwy użytkownika',
 'revdelete-restricted' => 'ograniczono widoczność dla administratorów',
 'revdelete-unrestricted' => 'wycofano ograniczenie widoczności dla administratorów',
-'logentry-move-move' => '$1 przenosi stronę $3 do $4',
-'logentry-move-move-noredirect' => '$1 przenosi stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
-'logentry-move-move_redir' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania',
-'logentry-move-move_redir-noredirect' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
+'logentry-move-move' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 do $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
 'logentry-patrol-patrol' => '$1 oznacza wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto' => '$1 automatycznie oznacza wersję $4 strony $3 jako sprawdzoną',
 'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',

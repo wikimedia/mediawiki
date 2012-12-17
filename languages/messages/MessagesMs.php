@@ -754,6 +754,7 @@ Kata laluan sementara: $2',
 'changeemail-oldemail' => 'Alamat e-mel sekarang:',
 'changeemail-newemail' => 'Alamat e-mel baru:',
 'changeemail-none' => '(tiada)',
+'changeemail-password' => 'Kata laluan anda di {{SITENAME}}:',
 'changeemail-submit' => 'Tukar E-mel',
 'changeemail-cancel' => 'Batalkan',
 
@@ -2198,12 +2199,8 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 'watchnologin' => 'Belum log masuk',
 'watchnologintext' => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
 'addwatch' => 'Tambahkan ke senarai pantau',
-'addedwatchtext' => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
-Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
-dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
-untuk memudahkan anda.
-
-Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
+'addedwatchtext' => 'Halaman "[[:$1]]" telah dimasukkan ke dalam [[Special:Watchlist|senarai pantau anda]].
+Perubahan-perubahan pada halaman ini dan halaman perbualannya pada masa akan datang akan tersenarai di dalam senarai itu.',
 'removewatch' => 'Buang dari senarai pantau',
 'removedwatchtext' => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch' => 'Pantau',

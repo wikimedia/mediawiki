@@ -856,6 +856,7 @@ Mật khẩu tạm: $2',
 'changeemail-oldemail' => 'Địa chỉ thư điện tử hiện tại:',
 'changeemail-newemail' => 'Địa chỉ thư điện tử mới:',
 'changeemail-none' => '(không có)',
+'changeemail-password' => 'Mật khẩu của bạn tại {{SITENAME}}:',
 'changeemail-submit' => 'Đổi địa chỉ',
 'changeemail-cancel' => 'Hủy bỏ',
 
@@ -2302,8 +2303,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'watchnologin' => 'Chưa đăng nhập',
 'watchnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addwatch' => 'Thêm vào danh sách theo dõi',
-'addedwatchtext' => "Trang “[[:$1]]” đã vào [[Special:Watchlist|danh sách theo dõi]] của bạn.
-Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê và '''tô đậm''' trong [[Special:RecentChanges|danh sách các “Thay đổi gần đây”]] để dễ nhận ra.",
+'addedwatchtext' => 'Trang “[[:$1]]” đã vào [[Special:Watchlist|danh sách theo dõi]] của bạn.
+Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê ở đấy.',
 'removewatch' => 'Gỡ khỏi danh sách theo dõi',
 'removedwatchtext' => 'Trang “[[:$1]]” đã được đưa ra khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.',
 'watch' => 'Theo dõi',
@@ -3152,7 +3153,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'markedaspatrollederrornotify' => 'Đánh dấu tuần tra bị thất bại.',
 
 # Patrol log
-'patrol-log-page' => 'Nhật ký tuần tra',
+'patrol-log-page' => 'Nhật trình tuần tra',
 'patrol-log-header' => 'Đây là nhật trình tuần tra phiên bản.',
 'log-show-hide-patrol' => '$1 nhật trình tuần tra',
 

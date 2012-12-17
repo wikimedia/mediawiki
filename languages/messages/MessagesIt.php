@@ -829,6 +829,7 @@ Password temporanea: $2',
 'changeemail-oldemail' => 'Indirizzo e-mail attuale:',
 'changeemail-newemail' => 'Nuovo indirizzo e-mail:',
 'changeemail-none' => '(nessuno)',
+'changeemail-password' => 'La password su {{SITENAME}}:',
 'changeemail-submit' => 'Modifica e-mail',
 'changeemail-cancel' => 'Annulla',
 
@@ -2246,9 +2247,8 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'watchnologin' => 'Accesso non effettuato',
 'watchnologintext' => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:UserLogin|accesso al sito]].",
 'addwatch' => 'Aggiungi agli osservati speciali',
-'addedwatchtext' => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
-D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
-il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile.",
+'addedwatchtext' => 'La pagina "[[:$1]]" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
+D\'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede.',
 'removewatch' => 'Rimuovi dagli osservati speciali',
 'removedwatchtext' => 'La pagina "[[:$1]]" è stata eliminata dalla [[Special:Watchlist|lista degli osservati speciali]].',
 'watch' => 'Segui',

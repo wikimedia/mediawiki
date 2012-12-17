@@ -2606,7 +2606,7 @@ $UNWATCHURL
 # Undelete
 'undelete' => '삭제된 문서 보기',
 'undeletepage' => '삭제된 문서를 보거나 되살리기',
-'undeletepagetitle' => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
+'undeletepagetitle' => "'''아래는 [[:$1|$1]]의 삭제된 판입니다'''.",
 'viewdeletedpage' => '삭제된 문서 보기',
 'undeletepagetext' => '다음 {{PLURAL:$1|문서는|문서 $1개는}} 삭제되었지만 아직 보관되어 있고 되살릴 수 있습니다.
 보관된 문서는 주기적으로 삭제될 것입니다.',

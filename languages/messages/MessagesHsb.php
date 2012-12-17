@@ -705,6 +705,7 @@ Nachwilne hesło: $2',
 'changeemail-oldemail' => 'Aktualna e-mejlowa adresa:',
 'changeemail-newemail' => 'Nowa e-mejlowa adresa:',
 'changeemail-none' => '(žana)',
+'changeemail-password' => 'Twoje hesło za {{GRAMMAR:akuzatiw|{{SITENAME}}}}',
 'changeemail-submit' => 'E-mejlowu adresu změnić',
 'changeemail-cancel' => 'Přetorhnyć',
 
@@ -2128,10 +2129,8 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 'watchnologin' => 'Njejsy přizjewjeny.',
 'watchnologintext' => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być, zo by swoje wobkedźbowanki změnić móhł.',
 'addwatch' => 'K wobkedźbowankam přidać',
-'addedwatchtext' => "Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.
-Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować a strona so '''w tučnym pismje''' w [[Special:RecentChanges|lisćinje aktualnych změnach]] zjewi, zo by so wosnadniło ju wubrać.
-
-Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na rajtark „njewobkedźbować” horjeka na tutej stronje.",
+'addedwatchtext' => 'Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.
+Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować.',
 'removewatch' => 'Z wobkedźbowankow wotstronić',
 'removedwatchtext' => 'Strona "[[:$1]]" bu z [[Special:Watchlist|twojich wobkedźbowankow]] wotstronjena.',
 'watch' => 'wobkedźbować',
@@ -2738,6 +2737,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-error-interwiki' => 'Strona "$1" so njeimportuje, dokelž jeje mjeno je za eksterne wotkazowanje (interwiki) wuměnjene.',
 'import-error-special' => 'Strona "$1" so njeimportuje, dokelž k wosebitemu mjenowemu rumej słuša, kotryž strony njedowola.',
 'import-error-invalid' => 'Strona "$1" so njeimportuje, dokelž jeje mjeno je njepłaćiwe.',
+'import-error-unserialize' => 'Wersija $2 strony "$1" njeda so wotserializować. Wersija je so zdźěliła za wužiwanje wobsahoweho modela $3, kotryž je jako $4 serializowany.',
 'import-options-wrong' => '{{PLURAL:$2|Wopačna opcija|Wopačnej opciji|Wopačne opcije|Wopačne opcije}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Podata korjenjowa strona je njepłaćiwa.',
 'import-rootpage-nosubpage' => 'Mjenowy rum "$1" korjenjoweje strony njedowola podstrony.',

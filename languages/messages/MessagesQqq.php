@@ -2170,8 +2170,8 @@ A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by 
 A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-releaselock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-db-bucket' => 'Parameters:
-* $1 is a bucket name.',
+'lockmanager-fail-db-bucket' => 'The databases store what is locked by who. Parameters:
+* $1 is a bucket name. Any string used as a lock name maps to a "bucket", which is a basically a set of 1 or more database servers that must agree that a lock can be acquired.',
 'lockmanager-fail-db-release' => 'Parameters:
 * $1 is a database name.',
 'lockmanager-fail-svr-release' => 'Parameters:
