@@ -483,6 +483,8 @@ $wgOptionalMessages = array(
 	'categoryviewer-pagedlinks',
 	'undelete-revisionrow',
 	'pageinfo-redirects-value',
+	'created', // @deprecated. Remove in MediaWiki 1.23.
+	'changed', // @deprecated. Remove in MediaWiki 1.23.
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

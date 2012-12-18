@@ -60,7 +60,7 @@ production.
   debug mode: wfMsg, wfMsgNoTrans, wfMsgForContent, wfMsgForContentNoTrans,
   wfMsgReal, wfMsgGetKey, wfMsgHtml, wfMsgWikiHtml, wfMsgExt, wfEmptyMsg. Use
   the Message class, or the global method wfMessage.
-* Added $wgEnableCanonicalServerLink, off by default. If enabled, a 
+* Added $wgEnableCanonicalServerLink, off by default. If enabled, a
   <link rel=canonical> tag is added to every page indicating the correct server
   to use.
 * Debug message emitted by wfDebugLog() will now be prefixed with the group
@@ -121,7 +121,9 @@ production.
 * (bug 14901) Email notification mistakes log action for new page creation.
   Enotif no longer sends "page has been created" notifications for some log
   actions. The following events now have a correct message: page creation,
-  deletion, move, restore (undeletion), change (edit).
+  deletion, move, restore (undeletion), change (edit). Parameter
+  $CHANGEDORCREATED is deprecated in 'enotif_body' and scheduled for removal in
+  MediaWiki 1.23.
 * (bug 457) In the sidebar of Vector, CologneBlue, Monobook, and Monobook-based
   skins, the heading levels have been changed from (variously per skin)
   <h4>, <h5> or <h6> to only <h3>s, with a <h2> hidden heading above them.
