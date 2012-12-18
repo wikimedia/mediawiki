@@ -257,6 +257,19 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Drop an index from an extension table
+	 *
+	 * @since 1.21
+	 *
+	 * @param $tableName string The table name
+	 * @param $indexName string The index name
+	 * @param $sqlPath string The path to the SQL change path
+	 */
+	public function dropExtensionIndex( $tableName, $indexName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropIndex', $tableName, $indexName, $sqlPath, true );
+	}
+
+	/**
 	 *
 	 * @since 1.20
 	 *
@@ -265,6 +278,21 @@ abstract class DatabaseUpdater {
 	 */
 	public function dropExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
+	}
+
+	/**
+	 * Rename an index on an extension table
+	 *
+	 * @since 1.21
+	 *
+	 * @param $tableName string The table name
+	 * @param $oldIndexName string The old index name
+	 * @param $newIndexName string The new index name
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist.
+	 * @param $sqlPath string The path to the SQL change path
+	 */
+	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName, $skipBothIndexExistWarning, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'renameIndex', $tableName, $oldIndexName, $newIndexName, $skipBothIndexExistWarning, $sqlPath, true );
 	}
 
 	/**
@@ -555,6 +583,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Applies a SQL patch
+	 *
 	 * @param $path String Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
 	 * @param $msg String Description of the patch
@@ -585,6 +614,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new table to the database
+	 *
 	 * @param $name String Name of the new table
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
@@ -601,6 +631,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new field to an existing table
+	 *
 	 * @param $table String Name of the table to modify
 	 * @param $field String Name of the new field
 	 * @param $patch String Path to the patch file
@@ -620,6 +651,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new index to an existing table
+	 *
 	 * @param $table String Name of the table to modify
 	 * @param $index String Name of the new index
 	 * @param $patch String Path to the patch file
@@ -660,7 +692,7 @@ abstract class DatabaseUpdater {
 	 * Drop an index from an existing table
 	 *
 	 * @param $table String: Name of the table to modify
-	 * @param $index String: Name of the old index
+	 * @param $index String: Name of the index
 	 * @param $patch String: Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
@@ -672,6 +704,43 @@ abstract class DatabaseUpdater {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
 		return true;
+	}
+
+	/**
+	 * Rename an index from an existing table
+	 *
+	 * @param $table String: Name of the table to modify
+	 * @param $oldIndex String: Old name of the index
+	 * @param $newIndex String: New name of the index
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist.
+	 * @param $patch String: Path to the patch file
+	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
+	 * @return Boolean false if this was skipped because schema changes are skipped
+	 */
+	protected function renameIndex( $table, $oldIndex, $newIndex, $skipBothIndexExistWarning = false, $patch, $fullpath = false ) {
+		// First requirement: the table must exist
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return false;
+		}
+
+		// Second requirement: the new index must be missing
+		if ( $this->db->indexExists( $table, $newIndex, __METHOD__ ) ) {
+			$this->output( "...index $newIndex already set on $table table.\n" );
+			if ( !$skipBothIndexExistWarning && $this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
+				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n            $oldIndex should be manually removed if not needed anymore.\n" );
+			}
+			return true;
+		}
+
+		// Third requirement: the old index must exist
+		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
+			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
+			return false;
+		}
+
+		// Requirements have been satisfied, patch can be applied
+		return $this->applyPatch( $patch, $fullpath, "Renaming index $oldIndex into $newIndex to table $table" );
 	}
 
 	/**
