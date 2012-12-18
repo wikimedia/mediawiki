@@ -2803,6 +2803,8 @@ Clicking on your choice changes the list of changes you see (without changing th
 * $1 is a link to a diff, shown as a plain link.',
 'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
 * $1 is the anonymous user name (i.e. an IP address).',
+'enotif_created' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_body}}.',
+'enotif_changed' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_body}}.',
 'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
 *$WATCHINGUSERNAME is the username of the user receiving the notification.
