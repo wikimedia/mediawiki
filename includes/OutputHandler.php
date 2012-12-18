@@ -156,7 +156,7 @@ function wfMangleFlashPolicy( $s ) {
  * @param $length int
  */
 function wfDoContentLength( $length ) {
-	if ( !headers_sent() && $_SERVER['SERVER_PROTOCOL'] == 'HTTP/1.0' ) {
+	if ( !headers_sent() && isset( $_SERVER['SERVER_PROTOCOL'] ) && $_SERVER['SERVER_PROTOCOL'] == 'HTTP/1.0' ) {
 		header( "Content-Length: $length" );
 	}
 }
