@@ -257,6 +257,19 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Drop an index from an extension table
+	 *
+	 * @since 1.21
+	 *
+	 * @param $tableName string The table name
+	 * @param $indexName string The index name
+	 * @param $sqlPath string The path to the SQL change path
+	 */
+	public function dropExtensionIndex( $tableName, $indexName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropIndex', $tableName, $indexName, $sqlPath, true );
+	}
+
+	/**
 	 *
 	 * @since 1.20
 	 *
@@ -266,6 +279,22 @@ abstract class DatabaseUpdater {
 	public function dropExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
 	}
+
+	/**
+	 * Rename an index on an extension table
+	 *
+	 * @since 1.21
+	 *
+	 * @param $tableName string The table name
+	 * @param $oldIndexName string The old index name
+	 * @param $newIndexName string The new index name
+	 * @param $sqlPath string The path to the SQL change path
+	 */
+	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropIndex', $tableName, $oldIndexName, $sqlPath, true );
+		$this->extensionUpdates[] = array( 'addIndex', $tableName, $newIndexName, $sqlPath, true );
+	}
+
 
 	/**
 	 *
