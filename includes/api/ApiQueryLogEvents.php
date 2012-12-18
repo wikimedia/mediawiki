@@ -267,9 +267,19 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				break;
 		}
 		if ( !is_null( $params ) ) {
-			$result->setIndexedTagName( $params, 'param' );
-			$result->setIndexedTagName_recursive( $params, 'param' );
-			$vals = array_merge( $vals, $params );
+			$logParams = array();
+			// Keys like "4::paramname" can't be used for output so we change them to "paramname"
+			foreach ( $params as $key => $value ) {
+				if ( strpos( $key, ':' ) === false ) {
+					$logParams[$key] = $value;
+					continue;
+				}
+				$logParam = explode( ':', $key, 3 );
+				$logParams[$logParam[2]] = $value;
+			}
+			$result->setIndexedTagName( $logParams, 'param' );
+			$result->setIndexedTagName_recursive( $logParams, 'param' );
+			$vals = array_merge( $vals, $logParams );
 		}
 		return $vals;
 	}
