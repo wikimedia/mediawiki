@@ -2919,6 +2919,8 @@ $UNWATCHURL
 
 Feedback and further assistance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created'                      => 'created', # only translate this message to other languages if you have to change it
+'changed'                      => 'changed', # only translate this message to other languages if you have to change it
 
 # Delete
 'deletepage'             => 'Delete page',
