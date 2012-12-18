@@ -683,7 +683,7 @@ class ApiUpload extends ApiBase {
 			'offset' => 'Offset of chunk in bytes',
 			'filesize' => 'Filesize of entire upload',
 
-			'async', 'Make potentially large file operations asynchronous when possible',
+			'async' => 'Make potentially large file operations asynchronous when possible',
 			'asyncdownload' => 'Make fetching a URL asynchronous',
 			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
 			'statuskey' => 'Fetch the upload status for this file key (upload by URL)',
