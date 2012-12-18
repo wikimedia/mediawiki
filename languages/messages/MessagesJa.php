@@ -1041,7 +1041,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'accmailtext' => "[[User talk:$1|$1]]のために無作為に生成したパスワードを、$2に送信しました。
 
 この新アカウントのパスワードは、ログインした際に''[[Special:ChangePassword|パスワード変更]]''ページで変更できます。",
-'newarticle' => '（新）',
+'newarticle' => '(新)',
 'newarticletext' => "まだ存在しないページへのリンクをたどりました。
 このページを新規作成するには、ページの内容を以下のボックスに記入してください (詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください)。
 誤ってこのページにたどり着いた場合には、ブラウザーの'''戻る'''ボタンで前のページに戻ってください。",
@@ -1071,17 +1071,17 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 * '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",
 'usercssyoucanpreview' => "'''ヒント:'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいCSSを試験できます。",
 'userjsyoucanpreview' => "'''ヒント:'''「{{int:showpreview}}」ボタンを使うと、保存前に新しいJavaScriptを試験できます。",
-'usercsspreview' => "'''利用者CSSをプレビューしています。'''
-'''まだ保存されていません！'''",
-'userjspreview' => "'''利用者JavaScriptを試験/プレビューしています。'''
-'''まだ保存されていません！'''",
+'usercsspreview' => "'''利用者CSSをプレビューしているだけに過ぎません。'''
+'''まだ保存されていません!'''",
+'userjspreview' => "'''利用者JavaScriptを試験/プレビューしているだけに過ぎません。'''
+'''まだ保存されていません!'''",
 'sitecsspreview' => "'''ここでは、CSSをプレビューしているだけに過ぎません。'''
-'''まだ保存されていません！'''",
+'''まだ保存されていません!'''",
 'sitejspreview' => "'''ここでは、JavaScriptをプレビューしているだけに過ぎません。'''
-'''まだ保存されていません！'''",
+'''まだ保存されていません!'''",
 'userinvalidcssjstitle' => "'''警告:'''「$1」という外装はありません。
 カスタム .css/.js ページではページ名を小文字にしてください。例: {{ns:user}}:Hoge/Vector.css ではなく {{ns:user}}:Hoge/vector.css",
-'updated' => '（更新）',
+'updated' => '(更新)',
 'note' => "'''お知らせ:'''",
 'previewnote' => "'''これはプレビューです。'''
 変更内容はまだ保存されていません!",
@@ -1141,8 +1141,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'templatesused' => 'このページで使用されている{{PLURAL:$1|テンプレート}}：',
 'templatesusedpreview' => 'このプレビューで使用されている{{PLURAL:$1|テンプレート}}：',
 'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}：',
-'template-protected' => '（保護）',
-'template-semiprotected' => '（半保護）',
+'template-protected' => '(保護)',
+'template-semiprotected' => '(半保護)',
 'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています：',
 'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetext' => '{{SITENAME}}ではページの新規作成を制限しています。
@@ -1383,13 +1383,13 @@ $1",
 'history-title' => '「$1」の変更履歴',
 'difference-title' => '$1：版間の差分',
 'difference-title-multipage' => '$1 と $2：ページ間の差分',
-'difference-multipage' => '（ページ間の差分）',
+'difference-multipage' => '(ページ間の差分)',
 'lineno' => '$1行：',
 'compareselectedversions' => '選択した版同士を比較',
 'showhideselectedversions' => '選択した版を表示/非表示',
 'editundo' => '取り消し',
-'diff-multi' => '（{{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
-'diff-multi-manyusers' => '（{{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
+'diff-multi' => '({{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
+'diff-multi-manyusers' => '({{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
 'difference-missing-revision' => '指定された{{PLURAL:$2|$2版}}の差分 ($1) が見つかりませんでした。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
@@ -1997,7 +1997,7 @@ $1',
 'lockmanager-fail-acquirelock' => '「$1」用のロックを取得できませんでした。',
 'lockmanager-fail-openlock' => '「$1」用のロックファイルを開くことができませんでした。',
 'lockmanager-fail-releaselock' => '「$1」用のロックを解放できませんでした。',
-'lockmanager-fail-db-bucket' => 'バケット $1 で十分な数のロックデータベースに接触できませんでした。',
+'lockmanager-fail-db-bucket' => 'バケツ $1 で十分な数のロックデータベースに接触できませんでした。',
 'lockmanager-fail-db-release' => 'データベース $1 上のロックを解放できませんでした。',
 'lockmanager-fail-svr-acquire' => 'サーバー $1 上でロックを取得できませんでした。',
 'lockmanager-fail-svr-release' => 'サーバー $1 上のロックを解放できませんでした。',
@@ -2062,8 +2062,8 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'license-header' => 'ライセンス',
 'nolicense' => '選択なし',
 'license-nopreview' => '(プレビューはありません)',
-'upload_source_url' => '（有効かつ一般に公開されているURL）',
-'upload_source_file' => '（あなたのコンピューター上のファイル）',
+'upload_source_url' => '(有効かつ一般に公開されているURL)',
+'upload_source_file' => '(あなたのコンピューター上のファイル)',
 
 # Special:ListFiles
 'listfiles-summary' => 'この特別ページでは、アップロードされたすべてのファイルを表示します。
@@ -2394,7 +2394,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'listgrouprights-group' => 'グループ',
 'listgrouprights-rights' => '権限',
 'listgrouprights-helppage' => 'Help:グループ権限',
-'listgrouprights-members' => '（該当者一覧）',
+'listgrouprights-members' => '(該当者一覧)',
 'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 (<code>$2</code>)</span>',
 'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 (<code>$2</code>)</span>',
 'listgrouprights-addgroup' => '{{PLURAL:$2|グループ}}を追加：$1',
@@ -3086,7 +3086,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'importcantopen' => '取り込みファイルが開けませんでした',
 'importbadinterwiki' => 'ウィキ間リンクが正しくありません',
 'importnotext' => '内容が空、または本文がありません',
-'importsuccess' => '取り込みが完了しました！',
+'importsuccess' => '取り込みが完了しました!',
 'importhistoryconflict' => '取り込み時にいくつかの版が競合しました（以前に同じページが取り込まれているかもしれません）',
 'importnosources' => 'ウィキ間移動の取り込み元が定義されていないため、履歴の直接アップロードは無効になっています。',
 'importnofile' => '取り込みファイルはアップロードされませんでした。',
@@ -3097,7 +3097,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'importuploaderrortemp' => '取り込みファイルのアップロードに失敗しました。
 一時フォルダーがありません。',
 'import-parse-failure' => 'XMLの取り込み構文解析に失敗しました',
-'import-noarticle' => '取り込むページがありません！',
+'import-noarticle' => '取り込むページがありません!',
 'import-nonewrevisions' => 'すべての版は以前に取り込み済みです。',
 'xml-error-string' => '$1、$2 行の $3 文字目 ($4バイト目): $5',
 'import-upload' => 'XMLデータをアップロード',
@@ -3376,7 +3376,7 @@ $1',
 'imagelisttext' => "以下は、'''$1'''{{PLURAL:$1|ファイル}}の$2で並べ替えた一覧です。",
 'newimages-summary' => 'この特別ページでは、最近アップロードされたファイルを表示します。',
 'newimages-legend' => '絞り込み',
-'newimages-label' => 'ファイル名（またはその一部）：',
+'newimages-label' => 'ファイル名 (またはその一部):',
 'showhidebots' => '(ボットを$1)',
 'noimages' => '表示できるものがありません。',
 'ilsubmit' => '検索',
@@ -3872,7 +3872,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => '外部アプリケーションを使用してこのファイルを編集',
-'edit-externally-help' => '（詳しくは[//www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください）',
+'edit-externally-help' => '(詳しくは[//www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'すべて',
@@ -4237,7 +4237,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'dberr-problems' => '申し訳ありません！
 このウェブサイトに技術的な問題が発生しています。',
 'dberr-again' => '数分間待った後、もう一度読み込んでください。',
-'dberr-info' => '（データベースサーバーに接続できませんでした：$1）',
+'dberr-info' => '(データベースサーバー $1 に接続できませんでした)',
 'dberr-usegoogle' => '元に戻るまで、Googleを利用して検索できます。',
 'dberr-outofdate' => 'それらが収集した内容は古い可能性があることに注意してください。',
 'dberr-cachederror' => 'これは要求されたページをキャッシュした複製であり、古くなっている可能性があります。',

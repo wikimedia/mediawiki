@@ -4909,7 +4909,8 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'dberr-header' => 'This message does not allow any wiki nor html markup.',
 'dberr-problems' => 'This message does not allow any wiki nor html markup.',
 'dberr-again' => 'This message does not allow any wiki nor html markup.',
-'dberr-info' => 'This message does not allow any wiki nor html markup.',
+'dberr-info' => 'This message does not allow any wiki nor html markup.
+* $1 - database server name',
 'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
 'dberr-outofdate' => "In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
 

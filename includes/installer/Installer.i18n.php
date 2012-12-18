@@ -10330,7 +10330,8 @@ $messages['ka'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources მედიავიკის ლოკალიზება თქვენ ენაზე]',
 );
 
 /** Kara-Kalpak (Qaraqalpaqsha)

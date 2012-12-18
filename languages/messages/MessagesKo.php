@@ -924,6 +924,7 @@ $2
 'changeemail-oldemail' => '현재 이메일 주소 :',
 'changeemail-newemail' => '새 이메일 주소:',
 'changeemail-none' => '(없음)',
+'changeemail-password' => '{{SITENAME}} 비밀번호:',
 'changeemail-submit' => '이메일 주소 바꾸기',
 'changeemail-cancel' => '취소',
 
@@ -2408,8 +2409,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchnologin' => '로그인하지 않음',
 'watchnologintext' => '주시문서 목록을 고치려면 [[Special:UserLogin|로그인]]해야 합니다.',
 'addwatch' => '주시문서 목록에 추가',
-'addedwatchtext' => "\"[[:\$1]]\" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
-앞으로 이 문서나 토론 문서가 바뀌면 [[Special:RecentChanges|최근 바뀜]]에서 알아보기 쉽게 '''굵은 글씨'''로 보일 것입니다.",
+'addedwatchtext' => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
+앞으로 이 문서나 관련된 토론 문서가 바뀌면 보일 것입니다.',
 'removewatch' => '주시문서 목록에서 제거',
 'removedwatchtext' => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에서 뺐습니다.',
 'watch' => '주시',
