@@ -66,6 +66,8 @@ production.
 * (bug 24620) Add types to LogFormatter.
 * jQuery JSON upgraded from 2.3 to 2.4.0.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
+* DatabaseUpdater class has two new methods to ease extensions schema changes:
+  dropExtensionIndex and renameExtensionIndex.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
