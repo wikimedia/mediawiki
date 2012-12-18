@@ -42,7 +42,20 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/* Abstract Protected Methods */
 
 	/**
+	 * Subclasses should return an associative array.
+	 * Keys should be the title of a page in the MediaWiki namespace.
+	 *
+	 * Values should be a nested array of options.  The supported keys are 'type' and
+	 * (CSS only) 'media'.
+	 *
+	 * For scripts, 'type' should be 'script'.
+	 *
+	 * For stylesheets, 'type' should be 'style'.
+	 * There is an optional media key, the value of which can be the
+	 * medium ('screen', 'print', etc.) of the stylesheet.
+	 *
 	 * @param $context ResourceLoaderContext
+	 * @return array
 	 */
 	abstract protected function getPages( ResourceLoaderContext $context );
 
