@@ -715,10 +715,12 @@ class EmailNotification {
 					->inContentLanguage()->text();
 			}
 			$keys['$OLDID']   = $this->oldid;
+			$keys['$CHANGEDORCREATED'] = wfMessage( 'changed' )->inContentLanguage()->text();
 		} else {
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID']   = '';
 			$keys['$NEWPAGE'] = '';
+			$keys['$CHANGEDORCREATED'] = wfMessage( 'created' )->inContentLanguage()->text();
 		}
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
@@ -746,11 +748,11 @@ class EmailNotification {
 
 		# Now build message's subject and body
 		$this->subject = wfMessage( 'enotif_subject_' . $this->pageStatus )->inContentLanguage()
-			->params( $pageTitle, $keys['$PAGEEDITOR'] )->escaped();
+			->params( $pageTitle, $keys['$PAGEEDITOR'] )->text();
 
 		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
 			->inContentLanguage()->params( $pageTitle, $keys['$PAGEEDITOR'], $pageTitleUrl )
-			->escaped();
+			->text();
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
 		$body = strtr( $body, $keys );

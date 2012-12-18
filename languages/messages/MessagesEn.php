@@ -2893,6 +2893,8 @@ Future changes to this page and its associated talk page will be listed there.',
 'enotif_lastvisited'           => 'See $1 for all changes since your last visit.',
 'enotif_lastdiff'              => 'See $1 to view this change.',
 'enotif_anon_editor'           => 'anonymous user $1',
+'created'                      => 'created',
+'changed'                      => 'changed',
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 $PAGEINTRO $NEWPAGE

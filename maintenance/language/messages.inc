@@ -1960,6 +1960,8 @@ $wgMessageStructure = array(
 		'enotif_lastdiff',
 		'enotif_anon_editor',
 		'enotif_body',
+		'created',
+		'changed',
 	),
 	'delete' => array(
 		'deletepage',
