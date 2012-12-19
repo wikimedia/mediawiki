@@ -10,6 +10,7 @@
  * @author Dark Eagle
  * @author FnTmLV
  * @author Geimeris
+ * @author Gleb Borisov
  * @author GreenZeb
  * @author Kaganer
  * @author Karlis
@@ -960,7 +961,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 
 # Preferences page
 'preferences' => 'Izvēles',
-'mypreferences' => 'Izvēles',
+'mypreferences' => 'Iestatījumi',
 'prefs-edits' => 'Izmaiņu skaits:',
 'prefsnologin' => 'Neesi iegājis',
 'prefsnologintext' => 'Tev jābūt <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} iegājušam]</span>, lai mainītu lietotāja izvēles.',

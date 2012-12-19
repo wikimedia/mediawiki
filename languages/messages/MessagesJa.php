@@ -2037,7 +2037,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization をご覧ください�
 このウィキは公開ウィキとして構成されています。
 最適なセキュリティのため、img_auth.phpを無効にしています。',
 'img-auth-noread' => '利用者は「$1」の読み取り権限を持っていません。',
-'img-auth-bad-query-string' => 'URLの中に無効なクエリー文字列があります。',
+'img-auth-bad-query-string' => 'URLの中に無効なクエリ文字列があります。',
 
 # HTTP errors
 'http-invalid-url' => '無効なURL：$1',

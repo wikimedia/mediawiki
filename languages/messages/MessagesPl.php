@@ -1605,9 +1605,9 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
 'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
 'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
-'logentry-rights-rights' => '$1 zmienił przynależność $3 do grup ($4 → $5)',
-'logentry-rights-rights-legacy' => '$1 zmienił przynależność $3 do grup',
-'logentry-rights-autopromote' => '$1 automatycznie zmienił przynależność ($4 → $5)',
+'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
+'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',
 'rightsnone' => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"

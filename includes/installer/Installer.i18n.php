@@ -9994,7 +9994,7 @@ chmod a+w $3</pre>',
 
 [$1 ウィキの使用を開始]することができます。',
 	'config-regenerate' => 'LocalSettings.phpを再生成→',
-	'config-show-table-status' => 'SHOW TABLE STATUSクエリーが失敗しました！',
+	'config-show-table-status' => 'SHOW TABLE STATUS クエリが失敗しました!',
 	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
 	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
 	'config-db-web-help' => 'ウィキの通常の操作の際に、ウェブ サーバーがデータベース サーバーに接続できるように、ユーザー名とパスワードを指定してください。',

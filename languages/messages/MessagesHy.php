@@ -1568,7 +1568,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'statistics-views-peredit' => 'Դիտումներ ամեն մի խմբագրման համար',
 'statistics-users' => 'Գրանցված [[Special:ListUsers|մասնակիցներ]]',
 'statistics-users-active' => 'Ակտիվ մասնակիցներ',
-'statistics-users-active-desc' => 'Մասնակիցներ, որոնք որևէ գործողություն են կատարել վերջին {{PLURAL:$1|օրվա|$1 օրվա}} ընթացքում',
+'statistics-users-active-desc' => 'Վերջին {{PLURAL:$1|օր|$1 օր}}ում որևէ գործողություն են կատարած մասնակիցներ',
 'statistics-mostpopular' => 'Ամենահաճախ դիտվող էջեր',
 
 'disambiguations' => 'Երկիմաստության փարատման էջեր',

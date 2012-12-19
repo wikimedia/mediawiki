@@ -3690,9 +3690,9 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'htmlform-int-invalid' => "Ël valor ch'a l'ha spessificà a l'é pa n'antregh.",
 'htmlform-float-invalid' => "Ël valor ch'a l'ha spessificà a l'é pa un nùmer.",
 'htmlform-int-toolow' => "Ël valor ch'a l'ha spessificà a l'é sota al mìnim ëd $1.",
-'htmlform-int-toohigh' => "Ël valor ch'it l'has spessificà a l'é dzora dël màssim ëd $1.",
+'htmlform-int-toohigh' => "Ël valor ch'a l'ha spessificà a l'é dzora al màssim ëd $1.",
 'htmlform-required' => 'A-i é dabzògn ëd cost valor',
-'htmlform-submit' => 'Spediss',
+'htmlform-submit' => 'Mandé',
 'htmlform-reset' => 'Scansela ij cambiament',
 'htmlform-selectorother-other' => 'Àutr',
 

@@ -472,6 +472,10 @@ $2',
 
 سىز نامسىز ھالەتتە {{SITENAME}} نى ئىشلىتەلەيسىز ياكى ئوخشاش ۋە ياكى ئوخشاش بولمىغان ئىشلەتكۈچى سالاھىيىتىدە <span class='plainlinks'>[$1 تىزىمغا كىر]</span>ەلەيسىز.
 دىققەت، بەزى بەتلەر توركۆرگۈنىڭ غەملىكى تازىلانمىغۇچە يەنىلا سىزنى تىزىمغا كىرگەن ھالەتتە كۆرسىتىشى مۇمكىن.",
+'welcomeuser' => '$1، خۇش كەپسىز!',
+'welcomecreation-msg' => 'ھېساباتىڭىز قۇرۇلدى.
+
+[[Special:Preferences|{{SITENAME}} تەڭشىكىڭىزنى تەڭشەشنى ئۇنتۇپ قالماڭ]].',
 'yourname' => 'ئىشلەتكۈچى ئاتى:',
 'yourpassword' => 'ئىم:',
 'yourpasswordagain' => 'ئاچقۇچنى قايتا بەسىڭ:',
@@ -859,6 +863,10 @@ $2
 'defaultmessagetext' => 'كۆڭۈلدىكى ئۇچۇر تېكستى',
 'content-failed-to-parse' => '$2 نى $1 گە ئانالىز قلش مەغلۇپ بولدى: $3',
 
+# Content models
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''ئاگاھلاندۇرۇش:''' بۇ بەت ناھايىتى كۆپ يۇقىرى سەرپىياتتىكى گىرامماتىكىلىق ئىقتىدارنى چاقىرغان.\\n
 \\n
@@ -1143,7 +1151,7 @@ $1",
 
 # Preferences page
 'preferences' => 'مايىللىق',
-'mypreferences' => 'مايىللىق تەڭشىكىم',
+'mypreferences' => 'مايىللىق',
 'prefs-edits' => 'تەھرىر سانى:',
 'prefsnologin' => 'تىزىمغا كىرمىدى',
 'prefsnologintext' => 'سىز ئالدى بىلەن <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} تىزىمغا كىر]</span>سىڭىز ئاندىن ئىشلەتكۈچى مايىللىقنى تەڭشىيەلەيسىز.',
@@ -1154,6 +1162,7 @@ $1",
 'prefs-beta' => 'سىناق ئىقتىدارلىرى',
 'prefs-datetime' => 'چېسلا ۋە ۋاقىت',
 'prefs-labs' => 'تەجرىبە ئىقتىدارلىرى',
+'prefs-user-pages' => 'ئىشلەتكۈچى بېتى',
 'prefs-personal' => 'ئىشلەتكۈچى سەپلىمە ھۆججىتى',
 'prefs-rc' => 'ئاخىرقى ئۆزگەرتىشلەر',
 'prefs-watchlist' => 'كۆزەت تىزىملىكى',
@@ -1303,10 +1312,10 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 
 'group-user-member' => '{{GENDER:$1|ئىشلەتكۈچى}}',
 'group-autoconfirmed-member' => 'ئۆزلۈكىدىن جەزملەنگەن ئىشلەتكۈچى',
-'group-bot-member' => 'ماشىنا ئادەم',
-'group-sysop-member' => 'باشقۇرغۇچى',
-'group-bureaucrat-member' => 'بيۇرۇكرات',
-'group-suppress-member' => 'نازارەتچى',
+'group-bot-member' => '{{GENDER:$1|ماشىنا ئادەم}}',
+'group-sysop-member' => '{{GENDER:$1|باشقۇرغۇچى}}',
+'group-bureaucrat-member' => '{{GENDER:$1|بيۇرۇكرات}}',
+'group-suppress-member' => '{{GENDER:$1|نازارەتچى}}',
 
 'grouppage-user' => '{{ns:project}}: ئىشلەتكۈچىلەر',
 'grouppage-autoconfirmed' => '{{ns:project}}:ئۆزلۈكىدىن جەزملەنگەن ئىشلەتكۈچىلەر',
@@ -1622,7 +1631,7 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'زىيارەت رەت قىلىندى',
-'img-auth-nopathinfo' => 'PATH_INFO يوقالغان.
+'img-auth-nopathinfo' => 'يوقالغان PATH_INFO.
 مۇلازىمىتىرىڭىز بۇ ئۇچۇرنى يوللاشنى تەڭشىمىگەن.
 ئۇ CGI ئاساسىدا بولغاچقا img_auth نى قوللىمايدۇ. تۆۋەندىكى ئادرېستىن كۆرۈڭ
 https://www.mediawiki.org/wiki/Manual:Image_Authorization',
@@ -1793,9 +1802,9 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'statistics-users-active-desc' => 'ئالدىنقى {{PLURAL:$1|كۈن|$1 كۈن}} دىكى مەشغۇلات قىلغان ئىشلەتكۈچىلەر',
 'statistics-mostpopular' => 'ئەڭ كۆپ كۆرۈلگەن بەتلەر',
 
-'disambiguations' => 'ئىككى بىسلىق بەتنى يوقىتىش',
+'disambiguations' => 'ئىككى بىسلىق بەتكە ئۇلانغلىكبەتلەر.',
 'disambiguationspage' => 'Template:ئىككى بىسلىق بەت',
-'disambiguations-text' => "تۆۋەندىكى بەت '''ئىككى بىسلىق بەت'''كە ئۇلانغان.
+'disambiguations-text' => "تۆۋەندىكى بەتلەر '''ئىككى بىسلىق بەت'''كە ئۇلانغان.
 ئەمما ئۇلار مۇۋاپىق ماۋزۇغا ئۇلىنىشى كېرەك ئىدى.<br />
 ئەگەر بىر بەت [[MediaWiki:Disambiguationspage]] غا ئۇلانغان بولسا ئىككى بىسلىق بەت دەپ قارىلىدۇ.",
 
@@ -1893,7 +1902,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 
 # Special:Log
 'specialloguserlabel' => 'ئىشلەتكۈچى:',
-'speciallogtitlelabel' => 'ماۋزۇ:',
+'speciallogtitlelabel' => 'ماۋزۇ(تىما ياكى ئىشلەتكۈچى）:',
 'log' => 'خاتىرە',
 'all-logs-page' => 'بارلىق ئاممىۋى خاتىرە',
 'alllogstext' => '{{SITENAME}} بارلىق ئىشلەتكىلى بولىدىغان خاتىرىنى ئۇنىۋېرسال كۆرسىتىدۇ.
@@ -1934,7 +1943,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'sp-deletedcontributions-contribs' => 'تۆھپە',
 
 # Special:LinkSearch
-'linksearch' => 'سىرتقى ئۇلانما',
+'linksearch' => 'سىرتقى ئۇلانما ئىزدەش',
 'linksearch-pat' => 'ئىزدەش شەكلى:',
 'linksearch-ns' => 'ئات بوشلۇقى:',
 'linksearch-ok' => 'ئىزدەش',

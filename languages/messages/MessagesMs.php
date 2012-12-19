@@ -1932,7 +1932,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 # Statistics
 'statistics' => 'Statistik',
-'statistics-header-pages' => 'Statistik laman',
+'statistics-header-pages' => 'Statistik halaman',
 'statistics-header-edits' => 'Statistik suntingan',
 'statistics-header-views' => 'Statistik pandangan',
 'statistics-header-users' => 'Statistik pengguna',
