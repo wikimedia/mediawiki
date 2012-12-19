@@ -64,7 +64,7 @@ $extensions = isset( $options['extensions'] )
 	: $wgFileExtensions;
 
 # Search the path provided for candidates for import
-$files = findFiles( $dir, $extensions );
+$files = findFiles( $dir, $extensions, isset( $options['search-recursively'] ) );
 
 # Initialise the user for this operation
 $user = isset( $options['user'] )
@@ -332,6 +332,7 @@ Options:
 --from=<name>           Ignore all files until the one with the given name. Useful for resuming
                         aborted imports. <name> should be the file's canonical database form.
 --skip-dupes            Skip images that were already uploaded under a different name (check SHA1)
+--search-recursively    Search recursively for files in subdirectories
 --sleep=<sec>           Sleep between files. Useful mostly for debugging.
 --user=<username>       Set username of uploader, default 'Maintenance script'
 --check-userblock       Check if the user got blocked during import.
