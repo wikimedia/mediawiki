@@ -18,13 +18,18 @@ var mw = ( function ( $, undefined ) {
 	 * Creates an object that can be read from or written to from prototype functions
 	 * that allow both single and multiple variables at once.
 	 *
-	 * @param global boolean Whether to store the values in the global window
-	 *  object or a exclusively in the object property 'values'.
-	 * @return Map
+	 * Optionally, values can be stored in the global window object rather than in a new
+	 * object (kind = true), or keys can be automatically prefixed to avoid colliding
+	 * with 'toString', 'watch', '__proto__', and similar members (kind = 'safe').
+	 *
+	 * The default is to store unprefixed keys in a new object (kind = false).
+	 *
+	 * @constructor
+	 * @param {mixed} kind One of true, false, or 'safe' (optional).
 	 */
-	function Map( global ) {
-		this.values = global === true ? window : {};
-		return this;
+	function Map( kind ) {
+		this.values = kind === true ? window : {};
+		this.prefix = kind === 'safe' ? '$' : '';
 	}
 
 	Map.prototype = {
@@ -54,6 +59,7 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			if ( typeof selection === 'string' ) {
+				selection = this.prefix + selection;
 				if ( this.values[selection] === undefined ) {
 					if ( fallback !== undefined ) {
 						return fallback;
@@ -83,12 +89,12 @@ var mw = ( function ( $, undefined ) {
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.values[s] = selection[s];
+					this.values[this.prefix + s] = selection[s];
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && value !== undefined ) {
-				this.values[selection] = value;
+				this.values[this.prefix + selection] = value;
 				return true;
 			}
 			return false;
@@ -105,13 +111,60 @@ var mw = ( function ( $, undefined ) {
 
 			if ( $.isArray( selection ) ) {
 				for ( s = 0; s < selection.length; s += 1 ) {
-					if ( this.values[selection[s]] === undefined ) {
+					if ( this.values[this.prefix + selection[s]] === undefined ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return this.values[selection] !== undefined;
+			return this.values[this.prefix + selection] !== undefined;
+		},
+
+		/**
+		 * Iterates over the key/value pairs, calling a function for each pair.
+		 *
+		 * The callback function should accept two arguments (key, value). If it returns false
+		 * at any time, iteration stops early, and consequently, this function returns false.
+		 *
+		 * @param {Function} callback Called for each key/value pair.
+		 * @return {boolean} Did the callback function allow iteration to complete?
+		 */
+		each: function( callback ) {
+			var key, value;
+
+			for ( key in this.values ) {
+				value = this.values[key];
+
+				// For consistency with .get(), ignore undefined values that are still set.
+				if ( value === undefined ) {
+					continue;
+				}
+
+				if ( callback( key.slice( this.prefix.length ), value ) === false ) {
+					return false;
+				}
+			}
+
+			return true;
+		},
+
+		/**
+		 * Remove one or more key/value pairs.
+		 * @param {mixed} selection The key or keys to remove
+		 * @return {boolean} Was removal of all pairs successful?
+		 */
+		unset: function( selection ) {
+			var i, result;
+
+			if ( $.isArray( selection ) ) {
+				result = true;
+				for ( i = 0; i < selection.length; i++ ) {
+					result = result && delete this.values[this.prefix + selection[i]];
+				}
+				return result;
+			}
+
+			return delete this.values[this.prefix + selection];
 		}
 	};
 
