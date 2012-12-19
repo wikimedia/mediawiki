@@ -14,8 +14,8 @@ QUnit.test( 'Initial check', 8, function ( assert ) {
 	assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
 });
 
-QUnit.test( 'mw.Map', 17, function ( assert ) {
-	var arry, conf, funky, globalConf, nummy, someValues;
+QUnit.test( 'mw.Map', 36, function ( assert ) {
+	var arry, conf, funky, globalConf, nummy, pCloned, pCount, pOrig, safeConf, safeConf2, someValues;
 
 	assert.ok( mw.Map, 'mw.Map defined' );
 
@@ -55,8 +55,12 @@ QUnit.test( 'mw.Map', 17, function ( assert ) {
 	assert.strictEqual( conf.exists( 'foo' ), true, 'Map.exists returns boolean true if a key exists' );
 	assert.strictEqual( conf.exists( 'notExist' ), false, 'Map.exists returns boolean false if a key does not exists' );
 
+	assert.strictEqual( conf.exists( ['foo', 'lorem'] ), true, 'Map.exists returns true if all keys exist' );
+	assert.strictEqual( conf.exists( ['foo', 'notExist'] ), false, 'Map.exists returns false if any key does not exist' );
+
 	// Interacting with globals and accessing the values object
 	assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
+	assert.strictEqual( conf.values.foo, 'bar', 'Map.values contains unprefixed keys by default' );
 
 	conf.set( 'globalMapChecker', 'Hi' );
 
@@ -66,6 +70,66 @@ QUnit.test( 'mw.Map', 17, function ( assert ) {
 	globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
 
 	assert.ok( 'anotherGlobalMapChecker' in window, 'new mw.Map( true ) did store its values in the global window object' );
+
+	// Safe Maps
+	safeConf = new mw.Map( 'safe' );
+
+	assert.strictEqual( safeConf.exists( 'toString' ), false, '"toString" does not exist in an empty safe Map' );
+	assert.strictEqual( safeConf.exists( '__proto__' ), false, '"__proto__" does not exist in an empty safe Map' );
+
+	safeConf.set( 'yetAnotherGlobalMapChecker', 'Hello' );
+	assert.ok( !( 'yetAnotherGlobalMapChecker' in window ), 'safe Maps do not store values in the global window object' );
+
+	safeConf.set( someValues );
+
+	assert.strictEqual( safeConf.exists( 'foo' ), true, 'Map.exists can return true for safe Maps (single value)' );
+	assert.strictEqual( safeConf.exists( 'notExist' ), false, 'Map.exists can return false for safe Maps (single value)' );
+	assert.strictEqual( safeConf.exists( ['foo', 'lorem'] ), true, 'Map.exists can return true for safe Maps (multiple values)' );
+	assert.strictEqual( safeConf.exists( ['foo', 'notExist'] ), false, 'Map.exists can return false for safe Maps (multiple values)' );
+
+	assert.strictEqual( safeConf.get( 'foo' ), 'bar', 'Map.get can return a single value from a safe Map' );
+	assert.deepEqual( safeConf.get( ['foo', 'lorem'] ), {
+		'foo': 'bar',
+		'lorem': 'ipsum'
+	}, 'Map.get can return multiple values from a safe Map' );
+
+	safeConf.set( '__proto__', 'type' );
+	assert.strictEqual( safeConf.get( '__proto__' ), 'type', 'safe Maps can store values for "__proto__"' );
+
+	safeConf.set( '__proto__', Object.prototype );
+	assert.strictEqual( safeConf.exists( 'toString' ), false, 'setting "__proto__" cannot render a safe Map unsafe' );
+
+	// .each()
+	pOrig = {
+		foo: 1,
+		bar: 2,
+		baz: 3
+	};
+	safeConf2 = new mw.Map( 'safe' );
+	safeConf2.set( pOrig );
+
+	pCount = 0;
+	pCloned = {};
+
+	assert.strictEqual( safeConf2.each( function( k, v ) {
+		pCount++;
+		pCloned[k] = v;
+	} ), true, '.each() returns true if every key/value pair was enumerated' );
+
+	assert.deepEqual( pCloned, pOrig, '.each() enumerates all key/value pairs' );
+	assert.strictEqual( pCount, 3, '.each() enumerates each key/value pair once' );
+
+	pCount = 0;
+
+	assert.strictEqual( safeConf2.each( function() {
+		pCount++;
+		if ( pCount === 2 ) {
+			return false;
+		}
+		return true;
+	} ), false, '.each() returns false if iteration stops early' );
+
+	assert.strictEqual( pCount, 2, '.each() stops iterating when callback returns false' );
 
 	// Whitelist this global variable for QUnit's 'noglobal' mode
 	if ( QUnit.config.noglobals ) {
