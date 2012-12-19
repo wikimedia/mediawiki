@@ -3012,9 +3012,9 @@ Here are the current settings for the page '''$1''':",
 'protect-cascadeon'                => "This page is currently protected because it is included in the following {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
 You can change this page's protection level, but it will not affect the cascading protection.",
 'protect-default'                  => 'Allow all users',
-'protect-fallback'                 => 'Require "$1" permission',
-'protect-level-autoconfirmed'      => 'Block new and unregistered users',
-'protect-level-sysop'              => 'Administrators only',
+'protect-fallback'                 => 'Allow only users with "$1" permission',
+'protect-level-autoconfirmed'      => 'Allow only autoconfirmed users',
+'protect-level-sysop'              => 'Allow only administrators',
 'protect-summary-desc'             => '[$1=$2] ($3)', # only translate this message to other languages if you have to change it
 'protect-summary-cascade'          => 'cascading',
 'protect-expiring'                 => 'expires $1 (UTC)',
