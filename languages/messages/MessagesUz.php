@@ -387,7 +387,7 @@ Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguning
 'userloginnocreate' => 'Kirish',
 'logout' => 'Chiqish',
 'userlogout' => 'Chiqish',
-'notloggedin' => "Siz tizimda o'zingizni tanitmadingiz",
+'notloggedin' => 'Siz tizimga kirmagansiz',
 'nologin' => "Hisobingiz yoʻqmi? '''$1'''.",
 'nologinlink' => 'Hisob yaratish',
 'createaccount' => 'Hisob yaratish',

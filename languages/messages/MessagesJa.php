@@ -2999,10 +2999,10 @@ $1 のブロックの理由は「''$2''」です。",
 'imageinvalidfilename' => '対象ファイル名が無効です',
 'fix-double-redirects' => 'このページへのリダイレクトがあればそのリダイレクトを修正',
 'move-leave-redirect' => '移動元に転送ページを作成する',
-'protectedpagemovewarning' => "'''警告：'''このページは保護されているため、管理者権限を持つ利用者のみが移動できます。
-参考として以下に最後の記録を表示します：",
-'semiprotectedpagemovewarning' => "'''注意：'''このページは保護されているため、登録利用者のみが移動できます。
-参考として以下に最後の記録を表示します：",
+'protectedpagemovewarning' => "'''警告:''' このページは保護されているため、管理者権限を持つ利用者のみが移動できます。
+参考として以下に最後の記録を表示します:",
+'semiprotectedpagemovewarning' => "'''注意:''' このページは保護されているため、登録利用者のみが移動できます。
+参考として以下に最後の記録を表示します:",
 'move-over-sharedrepo' => '== ファイルが存在します ==
 [[:$1]]は共有リポジトリ上に存在します。ファイルをこの名前に移動すると共有ファイルを上書きします。',
 'file-exists-sharedrepo' => '選ばれたファイル名は既に共有リポジトリ上で使用されています。
@@ -3359,6 +3359,7 @@ $1',
 'file-nohires' => '高解像度版はありません。',
 'svg-long-desc' => 'SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'svg-long-desc-animated' => 'アニメーション SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
+'svg-long-error' => '無効な SVG ファイル: $1',
 'show-big-image' => '高解像度での画像',
 'show-big-image-preview' => 'このプレビューのサイズ：$1。',
 'show-big-image-other' => 'その他の{{PLURAL:$2|解像度}}：$1。',
@@ -4362,6 +4363,4 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
-# Unknown messages
-'svg-long-error' => '無効な SVG ファイル: $1',
 );

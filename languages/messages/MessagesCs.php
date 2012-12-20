@@ -3224,6 +3224,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'file-nohires' => 'Větší rozlišení není k dispozici.',
 'svg-long-desc' => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
 'svg-long-desc-animated' => 'Animovaný soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
+'svg-long-error' => 'Neplatný soubor SVG: $1',
 'show-big-image' => 'Obrázek ve vyšším rozlišení',
 'show-big-image-preview' => 'Velikost tohoto náhledu: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Jiné|Jiná}} rozlišení: $1.',
@@ -4138,6 +4139,4 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'svg-long-error' => 'Neplatný soubor SVG: $1',
 );

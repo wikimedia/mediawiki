@@ -3337,6 +3337,7 @@ $1',
 'file-nohires' => 'Geen hogere resolutie beschikbaar.',
 'svg-long-desc' => 'SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
 'svg-long-desc-animated' => 'Bewegend SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
+'svg-long-error' => 'Ongeldig SVG-bestand: $1',
 'show-big-image' => 'Volledige resolutie',
 'show-big-image-preview' => 'Grootte van deze voorvertoning: $1.',
 'show-big-image-other' => 'Andere {{PLURAL:$2|resolutie|resoluties}}: $1.',
@@ -4217,6 +4218,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'svg-long-error' => 'Ongeldig SVG-bestand: $1',
 );

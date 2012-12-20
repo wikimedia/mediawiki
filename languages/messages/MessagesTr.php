@@ -3105,6 +3105,7 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'file-info-size-pages' => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4, $5 {{PLURAL:$5|sayfa|sayfa}}',
 'file-nohires' => 'Daha yüksek çözünürlük yok.',
 'svg-long-desc' => 'SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3',
+'svg-long-error' => 'Geçersiz SVG dosyası: $1',
 'show-big-image' => 'Tam çözünürlük',
 'show-big-image-preview' => 'Ön izleme boyutu: $1.',
 'show-big-image-other' => 'Diğer {{PLURAL:$2|çözünürlük|çözünürlükleri}}: $1.',
@@ -3957,6 +3958,4 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'duration-centuries' => '$1 {{PLURAL:$1|yüzyıl|yüzyıl}}',
 'duration-millennia' => '$1 {{PLURAL:$1|bin yıl|bin yıl}}',
 
-# Unknown messages
-'svg-long-error' => 'Geçersiz SVG dosyası: $1',
 );

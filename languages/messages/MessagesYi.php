@@ -2978,6 +2978,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 פיקסעלן, טעקע גרייס: $3, MIME טיפ: $4,  $5 {{PLURAL:$5|בלאט|בלעטער}}',
 'file-nohires' => 'נישטא מיט א העכערער רעזאלוציע.',
 'svg-long-desc' => 'טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3',
+'svg-long-error' => 'אומגילטיקע SVG טעקע: $1',
 'show-big-image' => 'בילד מיט דער גרעסטער רעזאלוציע',
 'show-big-image-preview' => 'גרייס פון דעם פארויסקוק: $1.',
 'show-big-image-other' => '{{PLURAL:$2|אנדער רעזאלוציע|אנדערע רעזאלוציעס}}: $1.',
@@ -3764,6 +3765,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
 'duration-millennia' => '$1 {{PLURAL:$1|יארטויזנט|יארטויזנטער}}',
 
-# Unknown messages
-'svg-long-error' => 'אומגילטיקע SVG טעקע: $1',
 );

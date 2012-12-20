@@ -20,6 +20,7 @@
  * @author Demmy
  * @author Evropi
  * @author Flyax
+ * @author FocalPoint
  * @author Geraki
  * @author Glavkos
  * @author Grondin
@@ -903,6 +904,7 @@ $2
 'changeemail-oldemail' => 'Τρέχουσα διεύθυνση ηλεκτρονικού ταχυδρομείου:',
 'changeemail-newemail' => 'Νέα διεύθυνση ηλεκτρονικού ταχυδρομείου:',
 'changeemail-none' => '(κανένα)',
+'changeemail-password' => 'Ο κωδικός πρόσβασής σας στο εγχείρημα {{SITENAME}}:',
 'changeemail-submit' => 'Αλλαγή διεύθυνσης ηλεκτρονικού ταχυδρομείου',
 'changeemail-cancel' => 'Ακύρωση',
 
@@ -3156,6 +3158,7 @@ $1',
 'file-nohires' => 'Δεν διατίθεται υψηλότερη ανάλυση.',
 'svg-long-desc' => "Αρχείο SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3",
 'svg-long-desc-animated' => 'Κινούμενο αρχείο SVG, ονομαστικό μέγεθος σε pixels: $1 × $2, μέγεθος αρχείου: $3',
+'svg-long-error' => 'Μη έγκυρο αρχείο SVG: $1',
 'show-big-image' => 'Πλήρης ανάλυση',
 'show-big-image-preview' => 'Μέγεθος αυτής της προεπισκόπησης: $1 .',
 'show-big-image-other' => 'Άλλες {{PLURAL:$2|ανάλυση|αναλύσεις}}: $1.',
@@ -3998,6 +4001,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|αιώνα|αιώνες}}',
 'duration-millennia' => '$1 {{PLURAL:$1|χιλιετία|χιλιετίες}}',
 
-# Unknown messages
-'svg-long-error' => 'Μη έγκυρο αρχείο SVG: $1',
 );

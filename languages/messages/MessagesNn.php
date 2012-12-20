@@ -3119,6 +3119,7 @@ $1',
 'file-nohires' => 'Høgare oppløysing er ikkje tilgjengeleg.',
 'svg-long-desc' => 'SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3',
 'svg-long-desc-animated' => 'Animert SVG-fil, standardoppløysing $1 × $2 pikslar, filstorleik: $3',
+'svg-long-error' => 'Ugild SVG-fil: $1',
 'show-big-image' => 'Full oppløysing',
 'show-big-image-preview' => 'Storleik på førehandsvising: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Anna oppløysing|Andre oppløysingar}}: $1.',
@@ -3971,6 +3972,4 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
-# Unknown messages
-'svg-long-error' => 'Ugild SVG-fil: $1',
 );

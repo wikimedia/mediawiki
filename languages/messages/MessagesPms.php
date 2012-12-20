@@ -2915,6 +2915,7 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'file-nohires' => 'Gnun-a risolussion pì bela disponìbil.',
 'svg-long-desc' => "archivi an forma SVG, amzure nominaj $1 × $2 pontin, amzura dl'archivi: $3",
 'svg-long-desc-animated' => "Archivi SVG animà, dimension $1 × $2 pontin, amzura dl'archivi: $3",
+'svg-long-error' => 'Archivi SVG nen bon: $1',
 'show-big-image' => 'Version a arzolussion pien-a',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Àutra arzolussion|Àutre arzolussion}}: $1.',
@@ -3693,7 +3694,7 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'htmlform-int-toohigh' => "Ël valor ch'a l'ha spessificà a l'é dzora al màssim ëd $1.",
 'htmlform-required' => 'A-i é dabzògn ëd cost valor',
 'htmlform-submit' => 'Mandé',
-'htmlform-reset' => 'Scansela ij cambiament',
+'htmlform-reset' => 'Gavé le modìfiche',
 'htmlform-selectorother-other' => 'Àutr',
 
 # SQLite database support
@@ -3703,7 +3704,7 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 # New logging system
 'logentry-delete-delete' => "$1 a l'ha scancelà la pàgina $3",
 'logentry-delete-restore' => "$1 a l'ha ripristinà la pàgina $3",
-'logentry-delete-event' => "$1 cangià la visibilità ëd {{PLURAL:$5|n'event dël registr|$5 event dël registr}} dzora $3: $4",
+'logentry-delete-event' => "$1 a l'ha modificà la visibilità ëd {{PLURAL:$5|n'event dël registr|$5 event dël registr}} dzora $3: $4",
 'logentry-delete-revision' => "$1 a l'ha modificà la visibilità ëd {{PLURAL:$5|na revision|$5 revision}} dzora la pàgina $3: $4",
 'logentry-delete-event-legacy' => "$1 cangià la visibilità dj'event dël registr dzora $3",
 'logentry-delete-revision-legacy' => "$1 a l'ha modificà la visibilità dle revision dzora la pàgina $3",
@@ -3804,6 +3805,4 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
-# Unknown messages
-'svg-long-error' => 'Archivi SVG nen bon: $1',
 );

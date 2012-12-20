@@ -3210,6 +3210,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'file-nohires' => 'Grafika w wyższej rozdzielczości nie jest dostępna.',
 'svg-long-desc' => 'Plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
 'svg-long-desc-animated' => 'Animowany plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
+'svg-long-error' => 'Nieprawidłowy plik SVG:$1',
 'show-big-image' => 'Pełna rozdzielczość',
 'show-big-image-preview' => 'Rozmiar podglądu – $1.',
 'show-big-image-other' => '{{PLURAL:$2|Inna rozdzielczość|Inne rozdzielczości}}: $1.',
@@ -4126,6 +4127,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
-'svg-long-error' => 'Nieprawidłowy plik SVG:$1',
 );

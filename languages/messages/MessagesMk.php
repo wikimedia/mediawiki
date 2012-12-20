@@ -3313,6 +3313,7 @@ $1',
 'file-nohires' => 'Не е достапна поголема резолуција.',
 'svg-long-desc' => 'SVG податотека, номинално $1 × $2 пиксели, големина: $3',
 'svg-long-desc-animated' => 'Анимирана SVG-податотека, номинално: $1 × $2 пиксели, големина: $3',
+'svg-long-error' => 'Неважечка SVG-податотека: $1',
 'show-big-image' => 'Вистинска големина',
 'show-big-image-preview' => 'Големина на овој преглед: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Друга резолуција|Други резолуции}}: $1.',
@@ -4329,6 +4330,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
-# Unknown messages
-'svg-long-error' => 'Неважечка SVG-податотека: $1',
 );

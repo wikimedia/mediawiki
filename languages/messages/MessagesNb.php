@@ -3190,6 +3190,7 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'file-nohires' => 'Ingen høyere oppløsning tilgjengelig.',
 'svg-long-desc' => 'SVG-fil, standardstørrelse $1 × $2 piksler, filstørrelse: $3',
 'svg-long-desc-animated' => 'Animert SVG-fil, standardstørrelse $1 × $2 piksler, filstørrelse: $3',
+'svg-long-error' => 'Ugyldig SVG-fil: $1',
 'show-big-image' => 'Full oppløsning',
 'show-big-image-preview' => 'Størrelse på denne forhåndsvisningen: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Annen oppløsning|Andre oppløsninger}}: $1.',
@@ -4069,6 +4070,4 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'svg-long-error' => 'Ugyldig SVG-fil: $1',
 );

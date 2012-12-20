@@ -3419,6 +3419,7 @@ $1',
 'file-nohires' => 'لا توجد دقة أعلى متوفرة.',
 'svg-long-desc' => 'ملف SVG، أبعاده $1 × $2 بكسل، حجم الملف: $3',
 'svg-long-desc-animated' => 'ملف SVG متحرك، بمقاسات  $1  ×  $2  بكسل، حجم الملف: $3',
+'svg-long-error' => 'ملف SVG غير صالح: $1',
 'show-big-image' => 'دقة كاملة',
 'show-big-image-preview' => 'حجم هذه المعاينة: $1.',
 'show-big-image-other' => '{{PLURAL:$2||البعد الآخر|البعدان الآخران|الأبعاد الأخرى}}: $1.',
@@ -4407,6 +4408,4 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
-# Unknown messages
-'svg-long-error' => 'ملف SVG غير صالح: $1',
 );

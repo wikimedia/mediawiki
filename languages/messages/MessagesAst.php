@@ -2999,6 +2999,7 @@ Al executalu pues comprometer el to sistema.",
 'file-nohires' => 'Nun ta disponible con mayor resolución.',
 'svg-long-desc' => 'ficheru SVG, $1 × $2 píxels nominales, tamañu de ficheru: $3',
 'svg-long-desc-animated' => 'Ficheru SVG animáu; nominalmente de $1 × $2 pixels; tamañu del ficheru: $3',
+'svg-long-error' => 'Ficheru SVG inválidu: $1',
 'show-big-image' => 'Resolución completa',
 'show-big-image-preview' => "Tamañu d'esta previsualización: $1.",
 'show-big-image-other' => '{{PLURAL:$2|Otra resolución|Otres resoluciones}}: $1.',
@@ -3865,6 +3866,4 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
-# Unknown messages
-'svg-long-error' => 'Ficheru SVG inválidu: $1',
 );

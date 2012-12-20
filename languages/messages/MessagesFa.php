@@ -3347,6 +3347,7 @@ $1',
 'file-nohires' => 'تفکیک‌پذیری بالاتری در دسترس نیست.',
 'svg-long-desc' => 'پروندهٔ اس‌وی‌جی، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
 'svg-long-desc-animated' => 'پروندهٔ اس‌وی‌جی متحرک، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
+'svg-long-error' => 'پرونده SVG غیرمجاز: $1',
 'show-big-image' => 'تصویر با تفکیک‌پذیری بالاتر',
 'show-big-image-preview' => 'اندازهٔ این پیش‌نمایش: $1.',
 'show-big-image-other' => '{{PLURAL:$2|کیفیت|کیفیت‌های}} دیگر: $1.',
@@ -4267,6 +4268,4 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
-# Unknown messages
-'svg-long-error' => 'پرونده SVG غیرمجاز: $1',
 );
