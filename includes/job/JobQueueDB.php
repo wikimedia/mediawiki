@@ -405,7 +405,7 @@ class JobQueueDB extends JobQueue {
 		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
 		// Callers should call batchInsert() and then this function so that if the insert
 		// fails, the de-duplication registration will be aborted. Since the insert is
-		// deferred till "transaction idle", do that same here, so that the ordering is
+		// deferred till "transaction idle", do the same here, so that the ordering is
 		// maintained. Having only the de-duplication registration succeed would cause
 		// jobs to become no-ops without any actual jobs that made them redundant.
 		$this->getMasterDB()->onTransactionIdle( function() use ( $params, $key ) {
