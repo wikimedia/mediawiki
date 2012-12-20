@@ -1985,7 +1985,7 @@ class Language {
 		$segments = array();
 
 		foreach ( $intervals as $intervalName => $intervalValue ) {
-			$message = new Message( 'duration-' . $intervalName, array( $intervalValue ) );
+			$message = wfMessage( 'duration-' . $intervalName )->numParams( $intervalValue );
 			$segments[] = $message->inLanguage( $this )->escaped();
 		}
 
