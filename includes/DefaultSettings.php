@@ -5162,6 +5162,8 @@ $wgUseTagFilter = true;
  * If set to an integer, pages that are watched by more users than this
  * threshold will not require the unwatchedpages permission to view the
  * number of watchers.
+ *
+ * @since 1.21
  */
 $wgUnwatchedPageThreshold = false;
 
