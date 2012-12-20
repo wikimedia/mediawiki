@@ -406,9 +406,6 @@
 [submodule "extensions/WebFonts"]
 	path = extensions/WebFonts
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WebFonts.git
-[submodule "extensions/wikidiff2"]
-	path = extensions/wikidiff2
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/wikidiff2.git
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiEditor.git
