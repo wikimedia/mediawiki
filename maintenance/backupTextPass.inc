@@ -294,7 +294,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function setTimeExceeded() {
-		$this->timeExceeded = True;
+		$this->timeExceeded = true;
 	}
 
 	function checkIfTimeExceeded() {

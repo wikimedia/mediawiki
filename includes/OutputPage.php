@@ -428,7 +428,7 @@ class OutputPage extends ContextSource {
 	 * @param $type string
 	 * @return Array
 	 */
-	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ){
+	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ) {
 		$resourceLoader = $this->getResourceLoader();
 		$filteredModules = array();
 		foreach( $modules as $val ){
@@ -1239,7 +1239,7 @@ class OutputPage extends ContextSource {
 	 * @param $type String ResourceLoaderModule TYPE_ constant
 	 * @return Int ResourceLoaderModule ORIGIN_ class constant
 	 */
-	public function getAllowedModules( $type ){
+	public function getAllowedModules( $type ) {
 		if( $type == ResourceLoaderModule::TYPE_COMBINED ){
 			return min( array_values( $this->mAllowedModules ) );
 		} else {
@@ -1254,7 +1254,7 @@ class OutputPage extends ContextSource {
 	 * @param  $type String ResourceLoaderModule TYPE_ constant
 	 * @param  $level Int ResourceLoaderModule class constant
 	 */
-	public function setAllowedModules( $type, $level ){
+	public function setAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = $level;
 	}
 
@@ -1263,7 +1263,7 @@ class OutputPage extends ContextSource {
 	 * @param  $type String
 	 * @param  $level Int ResourceLoaderModule class constant
 	 */
-	public function reduceAllowedModules( $type, $level ){
+	public function reduceAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = min( $this->getAllowedModules($type), $level );
 	}
 

@@ -38,7 +38,7 @@ class SkinCologneBlue extends SkinTemplate {
 	/**
 	 * @param $out OutputPage
 	 */
-	function setupSkinUserCss( OutputPage $out ){
+	function setupSkinUserCss( OutputPage $out ) {
 		$out->addModuleStyles( 'mediawiki.legacy.shared' );
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );

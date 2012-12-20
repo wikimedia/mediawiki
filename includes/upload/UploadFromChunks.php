@@ -161,7 +161,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @param $index
 	 * @return string
 	 */
-	function getVirtualChunkLocation( $index ){
+	function getVirtualChunkLocation( $index ) {
 		return $this->repo->getVirtualUrl( 'temp' ) .
 				'/' .
 				$this->repo->getHashPath(
@@ -206,7 +206,7 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Update the chunk db table with the current status:
 	 */
-	private function updateChunkStatus(){
+	private function updateChunkStatus() {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
 					$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
@@ -230,7 +230,7 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Get the chunk db state and populate update relevant local values
 	 */
-	private function getChunkStatus(){
+	private function getChunkStatus() {
 		// get Master db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
 		$dbw = $this->repo->getMasterDb();
@@ -256,7 +256,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * Get the current Chunk index
 	 * @return Integer index of the current chunk
 	 */
-	private function getChunkIndex(){
+	private function getChunkIndex() {
 		if( $this->mChunkIndex !== null ){
 			return $this->mChunkIndex;
 		}
@@ -267,7 +267,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * Gets the current offset in fromt the stashedupload table
 	 * @return Integer current byte offset of the chunk file set
 	 */
-	private function getOffset(){
+	private function getOffset() {
 		if ( $this->mOffset !== null ){
 			return $this->mOffset;
 		}
@@ -281,7 +281,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @throws UploadChunkFileException
 	 * @return FileRepoStatus
 	 */
-	private function outputChunk( $chunkPath ){
+	private function outputChunk( $chunkPath ) {
 		// Key is fileKey + chunk index
 		$fileKey = $this->getChunkFileKey();
 
@@ -306,7 +306,7 @@ class UploadFromChunks extends UploadFromFile {
 		return $storeStatus;
 	}
 
-	private function getChunkFileKey( $index = null ){
+	private function getChunkFileKey( $index = null ) {
 		if( $index === null ){
 			$index = $this->getChunkIndex();
 		}

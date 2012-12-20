@@ -47,7 +47,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 	 * Get the DB2 database extension name
 	 * @return string
 	 */
-	public function getName(){
+	public function getName() {
 		return 'ibm_db2';
 	}
 

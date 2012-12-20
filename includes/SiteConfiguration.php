@@ -183,7 +183,7 @@ class SiteConfiguration {
 	 * @param $params Array: array of parameters.
 	 * @return Mixed the value of the setting requested.
 	 */
-	protected function getSetting( $settingName, $wiki, /*array*/ $params ){
+	protected function getSetting( $settingName, $wiki, /*array*/ $params ) {
 		$retval = null;
 		if( array_key_exists( $settingName, $this->settings ) ) {
 			$thisSetting =& $this->settings[$settingName];
@@ -395,7 +395,7 @@ class SiteConfiguration {
 	 * @param $wiki String
 	 * @return array
 	 */
-	protected function getWikiParams( $wiki ){
+	protected function getWikiParams( $wiki ) {
 		static $default = array(
 			'suffix' => null,
 			'lang' => null,
@@ -434,7 +434,7 @@ class SiteConfiguration {
 	 * @param $wikiTags Array The tags assigned to the wiki.
 	 * @return array
 	 */
-	protected function mergeParams( $wiki, $suffix, /*array*/ $params, /*array*/ $wikiTags ){
+	protected function mergeParams( $wiki, $suffix, /*array*/ $params, /*array*/ $wikiTags ) {
 		$ret = $this->getWikiParams( $wiki );
 
 		if( is_null( $ret['suffix'] ) ) {

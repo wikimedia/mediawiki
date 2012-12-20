@@ -511,7 +511,7 @@ class Profiler {
 	/**
 	 * Log the whole profiling data into the database.
 	 */
-	public function logData(){
+	public function logData() {
 		global $wgProfilePerHost, $wgProfileToDatabase;
 
 		# Do not log anything if database is readonly (bug 5375)
