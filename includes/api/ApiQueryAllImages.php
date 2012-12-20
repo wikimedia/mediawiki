@@ -224,6 +224,20 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$titles = array();
 		$count = 0;
 		$result = $this->getResult();
+		$wSet = isset( $params['width'] );
+		$hSet = isset( $params['height'] );
+		if ( $wSet || $hSet ) {
+			$thumbParams = array();
+			if ( $wSet ) {
+				$thumbParams['width'] = $params['width'];
+			}
+			if ( $hSet ) {
+				$thumbParams['height'] = $params['height'];
+			}
+		} else {
+			$thumbParams = null;
+		}
+
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -237,8 +251,9 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			if ( is_null( $resultPageSet ) ) {
 				$file = $repo->newFileFromRow( $row );
+
 				$info = array_merge( array( 'name' => $row->img_name ),
-					ApiQueryImageInfo::getInfo( $file, $prop, $result ) );
+					ApiQueryImageInfo::getInfo( $file, $prop, $result, $thumbParams ) );
 				self::addTitleInfo( $info, $file->getTitle() );
 
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
@@ -324,6 +339,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
+			'width' => null,
+			'height' => null,
 		);
 	}
 
