@@ -58,8 +58,8 @@ define( 'DB_LAST', -3 );     # Whatever database was used last
 /**@}*/
 
 # Obsolete aliases
-define( 'DB_READ', -1 );
-define( 'DB_WRITE', -2 );
+define( 'DB_READ', DB_SLAVE );
+define( 'DB_WRITE', DB_MASTER );
 
 
 /**@{
