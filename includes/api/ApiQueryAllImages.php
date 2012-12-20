@@ -224,6 +224,17 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$titles = array();
 		$count = 0;
 		$result = $this->getResult();
+		if ( isset( $params['urlwidth'] ) ) {
+			$thumbParams = array();
+			$thumbParams['width'] = $params['urlwidth'];
+
+			if ( isset( $params['height'] ) ) {
+				$thumbParams['height'] = $params['urlheight'];
+			}
+		} else {
+			$thumbParams = null;
+		}
+
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -237,8 +248,9 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			if ( is_null( $resultPageSet ) ) {
 				$file = $repo->newFileFromRow( $row );
+
 				$info = array_merge( array( 'name' => $row->img_name ),
-					ApiQueryImageInfo::getInfo( $file, $prop, $result ) );
+					ApiQueryImageInfo::getInfo( $file, $prop, $result, $thumbParams ) );
 				self::addTitleInfo( $info, $file->getTitle() );
 
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
@@ -324,6 +336,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
+			'urlwidth' => null,
+			'urlheight' => null,
 		);
 	}
 
@@ -347,6 +361,9 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			'filterbots' => "How to filter files uploaded by bots. Can only be used with {$p}sort=timestamp. Cannot be used together with {$p}user",
 			'mime' => 'What MIME type to search for. e.g. image/jpeg. Disabled in Miser Mode',
 			'limit' => 'How many images in total to return',
+			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
+				'Only the current version of the image can be scaled' ),
+			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
 		);
 	}
 
