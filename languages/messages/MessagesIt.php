@@ -482,7 +482,7 @@ $messages = array(
 'viewhelppage' => 'Visualizza la pagina di aiuto',
 'categorypage' => 'Visualizza la categoria',
 'viewtalkpage' => 'Visualizza la pagina di discussione',
-'otherlanguages' => 'Altre lingue',
+'otherlanguages' => 'In altre lingue',
 'redirectedfrom' => '(Reindirizzamento da <b>$1</b>)',
 'redirectpagesub' => 'Pagina di reindirizzamento',
 'lastmodifiedat' => "Questa pagina è stata modificata per l'ultima volta il $1 alle $2.",
@@ -2859,6 +2859,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-error-interwiki' => 'La pagina "$1" non viene importata perché il suo nome è riservato per il collegamento esterno (interwiki).',
 'import-error-special' => 'La pagina "$1" non viene importata perché appartiene a un namespace speciale che non permette pagine.',
 'import-error-invalid' => 'La pagina "$1" non viene importata perché il suo nome non è valido.',
+'import-error-unserialize' => 'La versione $2 della pagina "$1" non può essere de-serializzata. La versione è stata segnalata per utilizzare il modello di contenuto $3 serializzato come $4.',
 'import-options-wrong' => '{{PLURAL:$2|Opzione sbagliata|Opzioni sbagliate}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La pagina principale fornita non è un titolo valido.',
 'import-rootpage-nosubpage' => 'Il namespace "$1" della pagina principale non permette di avere sottopagine.',
@@ -3093,6 +3094,7 @@ $1',
 'file-nohires' => 'Non sono disponibili versioni a risoluzione più elevata.',
 'svg-long-desc' => 'file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'svg-long-desc-animated' => 'file in formato SVG animato, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
+'svg-long-error' => 'File SVG non valido: $1',
 'show-big-image' => 'Versione ad alta risoluzione',
 'show-big-image-preview' => 'Dimensioni di questa anteprima: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Altra risoluzione|Altre risoluzioni}}: $1.',
@@ -3966,6 +3968,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'svg-long-error' => 'File SVG non valido: $1',
 );

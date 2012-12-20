@@ -2972,6 +2972,7 @@ Sa pagpapa-andar kaini, an saimong sistema mapupuwedeng makompromiso.",
 'file-nohires' => 'Mayong mas halangkáw na resolusyon.',
 'svg-long-desc' => 'file na SVG, haros $1 × $2 pixels, sokol kan file: $3',
 'svg-long-desc-animated' => 'Animatadong SVG na sagunson, nangangaranang $1 x $2 piksel, kadakulaan nin sagunson: $3',
+'svg-long-error' => 'Imbalidong SVG na sagunson: $1',
 'show-big-image' => 'Todong resolusyon',
 'show-big-image-preview' => 'Sukol kaining patanaw: $1.',
 'show-big-image-other' => 'Ibang {{PLURAL:$2|resolusyon|mga resoluyon}}: $1.',
@@ -3830,6 +3831,4 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|mga siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga millenyo}}',
 
-# Unknown messages
-'svg-long-error' => 'Imbalidong SVG na sagunson: $1',
 );

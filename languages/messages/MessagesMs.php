@@ -3059,6 +3059,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'file-nohires' => 'Tiada leraian lebih besar.',
 'svg-long-desc' => 'Fail SVG, ukuran dasar $1 × $2 piksel, saiz fail: $3',
 'svg-long-desc-animated' => 'Fail SVG animasi, ukuran dasar $1 × $2 piksel, saiz fail: $3',
+'svg-long-error' => 'Fail SVG tidak sah: $1',
 'show-big-image' => 'Leraian penuh',
 'show-big-image-preview' => 'Saiz pralihat ini: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Leraian|Leraian-leraian}} lain: $1.',
@@ -3926,6 +3927,4 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
-# Unknown messages
-'svg-long-error' => 'Fail SVG tidak sah: $1',
 );

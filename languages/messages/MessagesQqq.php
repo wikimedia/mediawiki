@@ -659,9 +659,9 @@ HTML markup cannot be used.
 
 # Main script and global functions
 'nosuchspecialpage' => 'The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]',
-'nospecialpagetext' => 'This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
-* The title of this error is the message {{msg-mw|nosuchspecialpage}}.
-* Link <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated.',
+'nospecialpagetext' => '{{doc-important|Link <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated.}}
+This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
+* The title of this error is the message {{msg-mw|nosuchspecialpage}}.',
 
 # General errors
 'error' => '{{Identical|Error}}',
@@ -786,7 +786,8 @@ See also {{msg-mw|protectedinterface}}.',
 
 It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
-'gotaccount' => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
+'gotaccount' => 'A message shown in the account creation form.
+* $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
@@ -3344,10 +3345,8 @@ This may be the case when [[mw:Manual:$wgContentHandlerUseDB|$wgContentHandlerUs
 * $2: The localized name of the content model used by the destination title:
 **{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}',
 'fix-double-redirects' => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
-'protectedpagemovewarning' => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
-{{Related|Semiprotectedpagewarning}}',
-'semiprotectedpagemovewarning' => 'Related message: [[MediaWiki:Semiprotectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
-{{Related|Semiprotectedpagewarning}}',
+'protectedpagemovewarning' => '{{Related|Semiprotectedpagewarning}}',
+'semiprotectedpagemovewarning' => '{{Related|Semiprotectedpagewarning}}',
 'move-over-sharedrepo' => 'Notice when a file with that filename already exists on a shared repository, such as Wikimedia Commons.',
 
 # Export
@@ -3745,6 +3744,8 @@ Start with a lowercase letter, unless the first word is “SVG”.',
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
+'svg-long-error' => 'Displayed for invalid SVG file metadata.
+* $1 is the error message.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
 'show-big-image-size' => '
@@ -4531,8 +4532,14 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 
 # Scary transclusion
 'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
-'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.',
-'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|scarytranscludefailed}}, but shows the HTTP error which was received.',
+'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.
+
+* {{msg-mw|Scarytranscludefailed}}
+* {{msg-mw|Scarytranscludefailed-httpstatus}}',
+'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|scarytranscludefailed}}, but shows the HTTP error which was received.
+
+* {{msg-mw|Scarytranscludefailed}}
+* {{msg-mw|Scarytranscludefailed-httpstatus}}',
 'scarytranscludetoolong' => 'The URL was too long.',
 
 'unit-pixel' => '{{optional}}',
@@ -5091,7 +5098,4 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
-# Unknown messages
-'svg-long-error' => 'Displayed for invalid SVG file metadata.
-* $1 is the error message.',
 );

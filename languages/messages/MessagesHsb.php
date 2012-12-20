@@ -2957,6 +2957,7 @@ $1',
 'file-nohires' => 'Za tutu dataju žane wyše rozeznaće njeje.',
 'svg-long-desc' => 'SVG-dataja, zakładna wulkosć: $1 × $2 pikselow, datajowa wulkosć: $3',
 'svg-long-desc-animated' => 'Animěrowana SVG-dataja, zakładnej wotměraj $1 × $2 pikselow, datajowa wulkosć: $3',
+'svg-long-error' => 'Njepłaćiwa SVG-dataja: $1',
 'show-big-image' => 'Wersija z wyšim rozeznaćom',
 'show-big-image-preview' => 'Wulkosć tutoho přehlada: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druhe rozeznaće|Druhej rozeznaći|Druhe rozeznaća|Druhe rozeznaća}}: $1.',
@@ -3806,6 +3807,4 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
-# Unknown messages
-'svg-long-error' => 'Njepłaćiwa SVG-dataja: $1',
 );

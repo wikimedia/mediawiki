@@ -3616,6 +3616,7 @@ $messages['da'] = array(
  * @author LWChris
  * @author Metalhead64
  * @author Purodha
+ * @author Rillke
  * @author The Evil IP address
  * @author Umherirrender
  */
@@ -3932,10 +3933,10 @@ Das hier angegebene Datenbankkonto muss daher bereits vorhanden sein.',
 	'config-mysql-engine' => 'Speicher-Engine:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-myisam-dep' => "'''Warnung:''' Es wurde MyISAM als Speicher-Engine für MySQL ausgewählt, die aus folgenden Gründen nicht die für den Einsatz mit MediaWiki empfohlene ist:
-* sie unterstützt aufgrund von Tabellensperrungen kaum die nebenläufige Ausführung von Aktionen
-* sie ist anfälliger für Datenprobleme
-* sie wird von MediaWiki nicht immer adäquat unterstützt
+	'config-mysql-myisam-dep' => "'''Warnung:''' Es wurde MyISAM als Speicher-Engine für MySQL ausgewählt, die aus folgenden Gründen nicht für den Einsatz mit MediaWiki empfohlen ist:
+* Sie unterstützt aufgrund von Tabellensperrungen kaum die nebenläufige Ausführung von Aktionen.
+* Sie ist anfälliger für Datenprobleme.
+* Sie wird von MediaWiki nicht immer adäquat unterstützt.
 
 Sofern die vorhandene MySQL-Installation die Speicher-Engine InnoDB unterstützt, wird deren Verwendung eindringlich empfohlen.
 Sofern sie sie nicht unterstützt, sollte eine entsprechende Aktualisierung nunmehr Erwägung gezogen werden.",
@@ -6618,7 +6619,8 @@ Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 == Primeiros pasos ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista das opcións de configuración]
 * [//www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes sobre MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo dos lanzamentos de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo dos lanzamentos de MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localice MediaWiki á súa lingua]',
 );
 
 /** Goan Konkani (Latin script) (Konknni)

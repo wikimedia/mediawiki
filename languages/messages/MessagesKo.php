@@ -3312,6 +3312,7 @@ $1',
 'file-nohires' => '최대 해상도입니다.',
 'svg-long-desc' => 'SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기: $3',
 'svg-long-desc-animated' => '애니메이션 SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기: $3',
+'svg-long-error' => '잘못된 SVG 파일: $1',
 'show-big-image' => '최대 해상도',
 'show-big-image-preview' => '미리 보기 크기: $1.',
 'show-big-image-other' => '다른 {{PLURAL:$2|해상도}}: $1.',
@@ -4190,6 +4191,4 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
-# Unknown messages
-'svg-long-error' => '잘못된 SVG 파일: $1',
 );

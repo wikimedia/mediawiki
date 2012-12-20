@@ -479,6 +479,7 @@ $messages = array(
 'namespaces' => 'Espaços nominais',
 'variants' => 'Variantes',
 
+'navigation-heading' => 'Menu de navegação',
 'errorpagetitle' => 'Erro',
 'returnto' => 'Retornar para $1.',
 'tagline' => 'De {{SITENAME}}',
@@ -725,6 +726,9 @@ O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 
 É possível continuar usando {{SITENAME}} anonimamente ou <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
+'welcomeuser' => 'Bem-vindo, $1!',
+'welcomecreation-msg' => 'A sua conta foi criada.
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências no wiki {{SITENAME}}]].',
 'yourname' => 'Nome de usuário:',
 'yourpassword' => 'Senha:',
 'yourpasswordagain' => 'Redigite sua senha',
@@ -879,6 +883,7 @@ Senha temporária: $2',
 'changeemail-oldemail' => 'Endereço de e-mail atual:',
 'changeemail-newemail' => 'Novo endereço de e-mail:',
 'changeemail-none' => '(nenhum)',
+'changeemail-password' => 'Sua senha para o wiki {{SITENAME}}:',
 'changeemail-submit' => 'Alterar e-mail',
 'changeemail-cancel' => 'Cancelar',
 
@@ -1085,6 +1090,15 @@ Ela parece ter sido eliminada.',
 'edit-already-exists' => 'Não foi possível criar uma nova página.
 Ela já existia.',
 'defaultmessagetext' => 'Texto da mensagem padrão',
+'content-failed-to-parse' => 'Falha ao analisar o conteúdo $2 para o modelo $1: $3',
+'invalid-content-data' => 'Dados de conteúdo inválidos',
+'content-not-allowed-here' => 'O conteúdo de tipo "$1" não é permitido na página [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitexto',
+'content-model-text' => 'texto simples',
+'content-model-javascript' => 'Javascript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Aviso: Esta página contém muitas chamadas a funções do analisador "parser".
@@ -1452,7 +1466,7 @@ Esta ação não pode ser desfeita.',
 'youremail' => 'Seu e-mail:',
 'username' => 'Nome de {{GENDER:$1|usuário|usuária}}:',
 'uid' => 'ID de {{GENDER:$1|usuário|usuária}}:',
-'prefs-memberingroups' => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Membro}} {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration' => 'Hora de registro:',
 'yourrealname' => 'Nome verdadeiro:',
 'yourlanguage' => 'Língua:',
@@ -1607,6 +1621,8 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'rightslogentry' => 'alterou os grupos de privilégios {{GENDER:$1|do usuário|da usuária|de usuário para}} $1 (de $2 para $3)',
 'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
 'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
+'logentry-rights-rights-legacy' => '$1 alterou os grupos de $3',
+'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
 'rightsnone' => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1860,6 +1876,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-notsame' => 'Já existe um arquivo não idêntico em $1 .',
 'backend-fail-invalidpath' => '$1 não é um caminho válido de armazenamento.',
 'backend-fail-delete' => 'Não foi possível excluir o arquivo $1.',
+'backend-fail-describe' => 'Não foi possível alterar os metadados do arquivo "$1".',
 'backend-fail-alreadyexists' => 'O arquivo $1 já existe.',
 'backend-fail-store' => 'Não foi possível armazenar o arquivo $1 em $2.',
 'backend-fail-copy' => 'Não foi possível copiar o arquivo $1 para $2.',
@@ -2850,6 +2867,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 'immobile-target-namespace-iw' => 'Uma ligação interwiki não é um destino válido para uma movimentação de página.',
 'immobile-source-page' => 'Esta página não pode ser movida.',
 'immobile-target-page' => 'Não é possível mover para esse título de destino.',
+'bad-target-model' => 'O destino especificado usa um modelo de conteúdo diferente. Não é possível converter $1 para $2.',
 'imagenocrossnamespace' => 'Não é possível mover imagem para espaço nominal que não de imagens',
 'nonfile-cannot-move-to-file' => 'Não é possível mover não arquivos para espaço nominal de arquivos',
 'imagetypemismatch' => 'A extensão do novo arquivo não corresponde ao seu tipo',
@@ -3107,6 +3125,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-default-sort' => 'Chave de ordenação padrão',
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
+'pageinfo-language' => 'Idioma do conteúdo da página',
 'pageinfo-robot-policy' => 'Status do mecanismo de pesquisa',
 'pageinfo-robot-index' => 'Indexável',
 'pageinfo-robot-noindex' => 'Não indexável',
@@ -3133,6 +3152,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-contentpage-yes' => 'Sim',
 'pageinfo-protect-cascading' => 'Proteção em cascata ativada',
 'pageinfo-protect-cascading-yes' => 'Sim',
+'pageinfo-protect-cascading-from' => 'Proteções herdadas de',
 
 # Skin names
 'skinname-standard' => 'Clássico',
@@ -3154,6 +3174,8 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'markedaspatrollederror' => 'Não é possível marcar como verificado',
 'markedaspatrollederrortext' => 'Você precisa de especificar uma revisão para poder marcar como verificado.',
 'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
+'markedaspatrollednotify' => 'Esta alteração em $1 foi marcada como patrulhada.',
+'markedaspatrollederrornotify' => 'Falha ao marcar como patrulhada.',
 
 # Patrol log
 'patrol-log-page' => 'Registro de edições patrulhadas',
@@ -3187,6 +3209,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'file-nohires' => 'Sem resolução maior disponível.',
 'svg-long-desc' => 'arquivo SVG, de $1 × $2 pixels, tamanho: $3',
 'svg-long-desc-animated' => 'arquivo SVG animado, de $1 × $2 pixels e de tamanho: $3',
+'svg-long-error' => 'Arquivo SVG inválido: $1',
 'show-big-image' => 'Resolução original',
 'show-big-image-preview' => 'Tamanho desta previsualização: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Outra resolução|Outras resoluções}}: $1.',
@@ -3217,6 +3240,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'hours' => '{{PLURAL:$1|uma hora|$1 horas}}',
 'days' => '{{PLURAL:$1|um dia|$1 dias}}',
 'ago' => '$1 atrás',
+'just-now' => 'agora mesmo',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -3719,6 +3743,7 @@ Este código de confirmação irá expirar em $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[A transclusão de páginas de outros wikis encontra-se desabilitada]',
 'scarytranscludefailed' => '[Não foi possível obter a predefinição a partir de $1]',
+'scarytranscludefailed-httpstatus' => '[Não foi possível obter a predefinição a partir de $1: erro HTTP $2]',
 'scarytranscludetoolong' => '[URL longa demais]',
 
 # Delete conflict
@@ -3829,6 +3854,7 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-license' => 'Licença',
 'version-poweredby-credits' => "Este é um wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
+'version-credits-summary' => 'Gostaríamos de agradecer às seguintes pessoas por suas contribuições no [[Special:Version|MediaWiki]]',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 
 O MediaWiki é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; inclusive, sem a garantia implícita da POSSIBILIDADE DE SER COMERCIALIZADO ou de ADEQUAÇÂO PARA QUALQUER FINALIDADE ESPECÍFICA. Consulte a licença GNU General Public License para mais detalhes.

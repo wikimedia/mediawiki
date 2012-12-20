@@ -3065,6 +3065,7 @@ $1',
 'file-nohires' => 'უფრო მაღალი გარჩევადობა არ არის შესაძლებელი.',
 'svg-long-desc' => 'ფაილი SVG, ნომინალურად $1 × $2 პიქსელი, ფაილის ზომა: $3',
 'svg-long-desc-animated' => 'ანიმირებული SVG ფაილი, ნომინალური $1 × $2 პიქსელი, ფაილის ზომა: $3',
+'svg-long-error' => 'არასწორი SVG ფაილი: $1',
 'show-big-image' => 'სრული გარჩევადობა',
 'show-big-image-preview' => 'ზომა წინასწარი გადახედვისას: $1.',
 'show-big-image-other' => 'სხვა {{PLURAL:$2|გაფართოება|გაფართოება}}: $1.',
@@ -4001,6 +4002,4 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'duration-centuries' => '$1 {{PLURAL:$1|საუკუნე|საუკუნე}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ათასწლეული|ათასწლეული}}',
 
-# Unknown messages
-'svg-long-error' => 'არასწორი SVG ფაილი: $1',
 );

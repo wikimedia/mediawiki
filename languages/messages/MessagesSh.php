@@ -3101,6 +3101,7 @@ Njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'file-nohires' => 'Veća rezolucija nije dostupna.',
 'svg-long-desc' => 'SVG fajl, nominalno $1 × $2 piksela, veličina fajla: $3',
 'svg-long-desc-animated' => 'Animirana SVG datoteka, nominalno: $1 × $2 piksela, veličina: $3',
+'svg-long-error' => 'Nevaljana SVG datoteka: $1',
 'show-big-image' => 'Puna rezolucija',
 'show-big-image-preview' => 'Veličina ovog prikaza: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druga rezolucija|Druge rezolucije}}: $1.',
@@ -3962,6 +3963,4 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'duration-centuries' => '$1 {{PLURAL:$1|vijek|vijekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma}}',
 
-# Unknown messages
-'svg-long-error' => 'Nevaljana SVG datoteka: $1',
 );

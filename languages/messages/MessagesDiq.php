@@ -3696,6 +3696,7 @@ Gurênayışê nae de, beno ke sistemê şıma zerar bıvêno.",
 'file-nohires' => 'Deha berz agozney cı çıniyo',
 'svg-long-desc' => 'Dosyay SVG, zek vanê $1 × $2 piksela, ebatê dosya: $3',
 'svg-long-desc-animated' => 'SVG dosya, nominalin $1 × $2 piksela, ebatê dosya: $3',
+'svg-long-error' => "Nêmeqbul dosyaya SVG'i: $1",
 'show-big-image' => 'Tam agoznayen',
 'show-big-image-preview' => "Verqayd dergiya: $1'i.",
 'show-big-image-other' => 'Zewmi{{PLURAL:$2|Vılêşnayış|Vılêşnayışê}}: $1.',
@@ -4753,6 +4754,4 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
-# Unknown messages
-'svg-long-error' => "Nêmeqbul dosyaya SVG'i: $1",
 );

@@ -2445,7 +2445,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'enotif_subject_moved' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} verschoben',
 'enotif_subject_restored' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} wiederhergestellt',
 'enotif_subject_changed' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} geändert',
-'enotif_body_intro_deleted' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} gelöscht. Siehe $3 für deren aktuelle Version.',
+'enotif_body_intro_deleted' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} gelöscht. Siehe $3.',
 'enotif_body_intro_created' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} erstellt. Siehe $3 für deren aktuelle Version.',
 'enotif_body_intro_moved' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} verschoben. Siehe $3 für deren aktuelle Version.',
 'enotif_body_intro_restored' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} wiederhergestellt. Siehe $3 für deren aktuelle Version.',
@@ -3281,6 +3281,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-nohires' => 'Keine höhere Auflösung vorhanden.',
 'svg-long-desc' => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
 'svg-long-desc-animated' => 'Animierte SVG-Datei, Basisgröße $1 × $2 Pixel, Dateigröße: $3',
+'svg-long-error' => 'Ungültige SVG-Datei: $1',
 'show-big-image' => 'Volle Auflösung',
 'show-big-image-preview' => 'Größe dieser Vorschau: $1.',
 'show-big-image-other' => 'Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.',
@@ -4157,6 +4158,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'svg-long-error' => 'Ungültige SVG-Datei: $1',
 );

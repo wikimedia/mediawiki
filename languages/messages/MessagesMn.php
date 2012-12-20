@@ -2786,6 +2786,7 @@ $1',
 'file-info-size' => '$1 × $2 пиксел, файлын хэмжээ: $3, MIME төрөл: $4',
 'file-nohires' => 'Илүү чанартай хувилбар байхгүй байна.',
 'svg-long-desc' => 'SVG файл, $1 × $2 пиксэл, файлын хэмжээ: $3',
+'svg-long-error' => '$1 : Буруу SVG файл',
 'show-big-image' => 'Хамгийн сайн чанартай хувилбар',
 'show-big-image-preview' => 'Үзлэгийн хэмжээ : $1',
 'show-big-image-other' => 'Бусад {{PLURAL:$2|зургын нягтрал|зургын нягтрал}}: $1.',
@@ -3467,6 +3468,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|зуун|зуун}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мянган|мянган}}',
 
-# Unknown messages
-'svg-long-error' => '$1 : Буруу SVG файл',
 );

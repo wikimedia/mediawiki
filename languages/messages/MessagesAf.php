@@ -3047,6 +3047,7 @@ $1',
 'file-nohires' => 'Geen hoër resolusie is beskikbaar nie.',
 'svg-long-desc' => 'SVG-lêer, normaalweg $1 × $2 piksels, lêergrootte: $3',
 'svg-long-desc-animated' => 'Geanimeerde SVG-lêer, normaalweg $1 × $2 piksels, lêergrootte: $3',
+'svg-long-error' => 'Ongeldige SVG-lêer: $1',
 'show-big-image' => 'Volle resolusie',
 'show-big-image-preview' => 'Grootte van hierdie voorskou: $1.',
 'show-big-image-other' => 'Ander {{PLURAL:$2|resolusie|resolusies}}: $1.',
@@ -3904,6 +3905,4 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'svg-long-error' => 'Ongeldige SVG-lêer: $1',
 );

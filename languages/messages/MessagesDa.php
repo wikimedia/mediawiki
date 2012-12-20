@@ -3027,6 +3027,7 @@ Du kan beskadige dit system hvis du udfører den.",
 'file-nohires' => 'Ingen højere opløsning fundet.',
 'svg-long-desc' => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
 'svg-long-desc-animated' => 'Animeret SVG-fil, basisstørrelse $1 × $2 punkter, filstørrelse: $3',
+'svg-long-error' => 'Ugyldig SVG-fil: $1',
 'show-big-image' => 'Version i større opløsning',
 'show-big-image-preview' => 'Størrelse af denne forhåndsvisning: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Anden opløsning|Andre opløsninger}}: $1.',
@@ -3875,6 +3876,4 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
-# Unknown messages
-'svg-long-error' => 'Ugyldig SVG-fil: $1',
 );

@@ -3075,6 +3075,7 @@ $1',
 'file-nohires' => 'ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।',
 'svg-long-desc' => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
 'svg-long-desc-animated' => 'এনিমেটেড SVG ফাইল, সাধাৰণতে $1 × $2 পিক্সেল, ফাইলৰ আকাৰ: $3',
+'svg-long-error' => 'অবৈধ SVG ফাইল: $1',
 'show-big-image' => "সম্পূৰ্ণ ৰিজ'লিউশ্যন",
 'show-big-image-preview' => 'এই খচৰাৰ আকাৰ: $1.',
 'show-big-image-other' => "আন {{PLURAL:$2|ৰিজ'লিউশ্যন|ৰিজ'লিউশ্যনসমূহ}}: $1।",
@@ -3940,6 +3941,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
 
-# Unknown messages
-'svg-long-error' => 'অবৈধ SVG ফাইল: $1',
 );

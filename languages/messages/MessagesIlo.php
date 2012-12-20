@@ -2947,6 +2947,7 @@ No usarem daytoy, baka makompromiso ti sistema.",
 'file-nohires' => 'Awan ti mabalin a nangatngato a resolusion.',
 'svg-long-desc' => 'SVG a papeles, babassit ngem $1 × $2 pixels, kadakkel ti papeles: $3',
 'svg-long-desc-animated' => 'Naanimado nga SVG a papeles, babassit ngem  $1 × $2 pixels, kadakkel ti papeles: $3',
+'svg-long-error' => 'Saan nga umisu a papeles ti SVG: $1',
 'show-big-image' => 'Sibubukel a resolusion',
 'show-big-image-preview' => 'Kadakkel na daytoy a pagpadas: $1.',
 'show-big-image-other' => 'Sabali  {{PLURAL:$2|a resolusion|kadagiti resolusion}}: $1.',
@@ -3803,6 +3804,4 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
-# Unknown messages
-'svg-long-error' => 'Saan nga umisu a papeles ti SVG: $1',
 );

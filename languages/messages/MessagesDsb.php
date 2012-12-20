@@ -2960,6 +2960,7 @@ $1',
 'file-nohires' => 'Wuše wótgranicowanje njeeksistěrujo.',
 'svg-long-desc' => 'dataja SVG, nominalnje: $1 × $2 piksele, wjelikosć dataje: $3',
 'svg-long-desc-animated' => 'Animěrowana SVG-dataja, zakładnej wótměra $1 × $2 pikselow, datajowa wjelikosć: $3',
+'svg-long-error' => 'Njepłaśiwa SVG-dataja: $1',
 'show-big-image' => 'Połne optiske wótgranicowanje.',
 'show-big-image-preview' => 'Wjelikosć toś togo pśeglěda: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druge rozeznaśe||Drugej rozeznaśi|Druge rozeznaśa|Druge rozeznaśa}}: $1.',
@@ -3815,6 +3816,4 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
-# Unknown messages
-'svg-long-error' => 'Njepłaśiwa SVG-dataja: $1',
 );

@@ -3207,6 +3207,7 @@ $1',
 'file-nohires' => 'Nenia pli granda distingivo havebla.',
 'svg-long-desc' => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'svg-long-desc-animated' => 'Animata SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
+'svg-long-error' => 'Malvalida SVG-dosiero: $1',
 'show-big-image' => 'Plena distingivo',
 'show-big-image-preview' => 'Grandeco de ĉi antaŭvido: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Alia distingivo|Aliaj distingivoj}}: $1.',
@@ -4119,6 +4120,4 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
-# Unknown messages
-'svg-long-error' => 'Malvalida SVG-dosiero: $1',
 );
