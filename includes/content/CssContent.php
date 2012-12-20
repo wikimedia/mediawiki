@@ -1,5 +1,7 @@
 <?php
 /**
+ * Content object for CSS pages.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,6 +23,12 @@
  * @ingroup Content
  *
  * @author Daniel Kinzler
+ */
+
+/**
+ * Content object for CSS pages.
+ *
+ * @ingroup Content
  */
 class CssContent extends TextContent {
 	public function __construct( $text ) {
