@@ -69,7 +69,7 @@ class Block {
 			$timestamp = wfTimestampNow();
 		}
 
-		if( count( func_get_args() ) > 0 ){
+		if( count( func_get_args() ) > 0 ) {
 			# Soon... :D
 			# wfDeprecated( __METHOD__ . " with arguments" );
 		}
@@ -418,7 +418,7 @@ class Block {
 	 * @param  $row ResultWrapper row from the ipblocks table
 	 * @return Block
 	 */
-	public static function newFromRow( $row ){
+	public static function newFromRow( $row ) {
 		$block = new Block;
 		$block->initFromRow( $row );
 		return $block;
@@ -510,7 +510,7 @@ class Block {
 	 * @param $db DatabaseBase
 	 * @return Array
 	 */
-	protected function getDatabaseArray( $db = null ){
+	protected function getDatabaseArray( $db = null ) {
 		if( !$db ){
 			$db = wfGetDB( DB_SLAVE );
 		}
@@ -1169,7 +1169,7 @@ class Block {
 	 * Set the target for this block, and update $this->type accordingly
 	 * @param $target Mixed
 	 */
-	public function setTarget( $target ){
+	public function setTarget( $target ) {
 		list( $this->target, $this->type ) = self::parseTarget( $target );
 	}
 
@@ -1177,7 +1177,7 @@ class Block {
 	 * Get the user who implemented this block
 	 * @return User|string Local User object or string for a foreign user
 	 */
-	public function getBlocker(){
+	public function getBlocker() {
 		return $this->blocker;
 	}
 
@@ -1185,7 +1185,7 @@ class Block {
 	 * Set the user who implemented (or will implement) this block
 	 * @param $user User|string Local User object or username string for foriegn users
 	 */
-	public function setBlocker( $user ){
+	public function setBlocker( $user ) {
 		$this->blocker = $user;
 	}
 }

@@ -29,11 +29,11 @@ class DeleteAction extends FormlessAction {
 		return 'delete';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 
 		$this->page->delete();
 

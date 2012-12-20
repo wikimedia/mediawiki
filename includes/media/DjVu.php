@@ -322,7 +322,7 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
-	function getPageText( $image, $page ){
+	function getPageText( $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {
 			return false;

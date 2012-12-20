@@ -577,7 +577,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function getWasModified(){
+	function getWasModified() {
 		return $this->mModified;
 	}
 
@@ -594,7 +594,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function replaceMultiple( $magicarr, $subject, &$result ){
+	function replaceMultiple( $magicarr, $subject, &$result ) {
 		$search = array();
 		$replace = array();
 		foreach( $magicarr as $id => $replacement ){
