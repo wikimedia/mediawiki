@@ -2781,6 +2781,7 @@ $wgMessageStructure = array(
 		'file-nohires',
 		'svg-long-desc',
 		'svg-long-desc-animated',
+		'svg-long-error',
 		'show-big-image',
 		'show-big-image-preview',
 		'show-big-image-other',
