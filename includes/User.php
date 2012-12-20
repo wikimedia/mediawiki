@@ -4198,7 +4198,6 @@ class User {
 		}
 
 		$this->mOptionsLoaded = true;
-
 		wfRunHooks( 'UserLoadOptions', array( $this, &$this->mOptions ) );
 	}
 
