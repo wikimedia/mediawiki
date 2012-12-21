@@ -45,7 +45,7 @@ class ApiFeedContributions extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		global $wgFeed, $wgFeedClasses, $wgSitename, $wgLanguageCode;
+		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgLanguageCode;
 
 		if( !$wgFeed ) {
 			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
@@ -84,6 +84,10 @@ class ApiFeedContributions extends ApiBase {
 			'topOnly' => $params['toponly'],
 			'showSizeDiff' => $params['showsizediff'],
 		) );
+
+		if ( $pager->getLimit() > $wgFeedLimit ) {
+			$pager->setLimit( $wgFeedLimit );
+		}
 
 		$feedItems = array();
 		if( $pager->getNumRows() > 0 ) {

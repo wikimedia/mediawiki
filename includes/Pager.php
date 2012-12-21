@@ -255,6 +255,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * Get the current limit
+	 *
+	 * @return int
+	 */
+	function getLimit() {
+		return $this->mLimit;
+	}
+
+	/**
 	 * Set whether a row matching exactly the offset should be also included
 	 * in the result or not. By default this is not the case, but when the
 	 * offset is user-supplied this might be wanted.
