@@ -226,6 +226,18 @@ table.small { font-size: 100% }
 	background-color:#f9f9f9;
 	padding:5px;
 	font-size: 95%;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 7px;
+}
+/* CSS backwards-compatibility: remove additional paddings */
+table#toc td, table.toc td {
+	padding: 0;
+}
+table#toc, table.toc {
+	border-collapse: collapse;
 }
 #toc ul { margin: 0 2em; }
 #toc .toctoggle { font-size: 94%; }

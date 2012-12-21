@@ -76,6 +76,7 @@
 
 		assert.strictEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
 
+<<<<<<< HEAD
 		tocHtml = '<table id="toc" class="toc"><tr><td>' +
 			'<div id="toctitle">' +
 			'<h2>Contents</h2>' +
@@ -85,6 +86,18 @@
 			'</td></tr></table>';
 		$( tocHtml ).appendTo( '#qunit-fixture' ),
 			$toggleLink = $( '#togglelink' );
+=======
+		tocHtml =
+			'<div id="toc" class="toc">' +
+				'<div id="toctitle">' +
+					'<h2>Contents</h2>' +
+					'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
+				'</div>' +
+				'<ul><li></li></ul>' +
+			'</div>';
+		$(tocHtml).appendTo( '#qunit-fixture' ),
+		$toggleLink = $( '#togglelink' );
+>>>>>>> (bug 658) don't use a <table> for the TOC
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
 
