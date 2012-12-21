@@ -546,6 +546,23 @@ img.thumbborder {
 	border-spacing: 0;
 	background-color: #f0f0f0;
 	border: solid 1px #bbbbbb;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 7px;
+}
+
+/* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
+table#toc,
+table.toc {
+	border-collapse: collapse;
+}
+
+/* Remove additional paddings inside table-cells that are not present in <div>s */
+table#toc td,
+table.toc td {
+	padding: 0;
 }
 
 #toc tr, #toc td {
