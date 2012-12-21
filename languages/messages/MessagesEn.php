@@ -2049,15 +2049,13 @@ Your e-mail address is not revealed when other users contact you.',
 'right-sendemail'             => 'Send e-mail to other users',
 'right-passwordreset'         => 'View password reset e-mails',
 
+# Special:Log/newusers
+'newuserlogpage'     => 'User creation log',
+'newuserlogpagetext' => 'This is a log of user creations.',
+
 # User rights log
-'rightslog'                     => 'User rights log',
-'rightslogtext'                 => 'This is a log of changes to user rights.',
-'rightslogentry'                => 'changed group membership for $1 from $2 to $3',
-'rightslogentry-autopromote'    => 'was automatically promoted from $2 to $3',
-'logentry-rights-rights'        => '$1 changed group membership for $3 from $4 to $5',
-'logentry-rights-rights-legacy' => '$1 changed group membership for $3',
-'logentry-rights-autopromote'   => '$1 was automatically promoted from $4 to $5',
-'rightsnone'                    => '(none)',
+'rightslog'     => 'User rights log',
+'rightslogtext' => 'This is a log of changes to user rights.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'read this page',
@@ -2779,10 +2777,6 @@ Supported protocols: <code>$1</code> (defaults to http:// if no protocol is spec
 'activeusers-hidebots'   => 'Hide bots',
 'activeusers-hidesysops' => 'Hide administrators',
 'activeusers-noresult'   => 'No users found.',
-
-# Special:Log/newusers
-'newuserlogpage'     => 'User creation log',
-'newuserlogpagetext' => 'This is a log of user creations.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'User group rights',
@@ -4880,6 +4874,10 @@ This site is experiencing technical difficulties.',
 'logentry-newusers-create2'           => 'User account $3 was created by $1',
 'logentry-newusers-autocreate'        => 'User account $1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
+'logentry-rights-rights'              => '$1 changed group membership for $3 from $4 to $5',
+'logentry-rights-rights-legacy'       => '$1 changed group membership for $3',
+'logentry-rights-autopromote'         => '$1 was automatically promoted from $4 to $5',
+'rightsnone'                          => '(none)',
 
 # For IRC, see bug 34508. Do not change
 'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
@@ -4903,6 +4901,8 @@ This site is experiencing technical difficulties.',
 'newuserlog-create-entry'     => 'New user account', # do not translate or duplicate this message to other languages
 'newuserlog-create2-entry'    => 'created new account $1', # do not translate or duplicate this message to other languages
 'newuserlog-autocreate-entry' => 'Account created automatically', # do not translate or duplicate this message to other languages
+'rightslogentry'              => 'changed group membership for $1 from $2 to $3',
+'rightslogentry-autopromote'  => 'was automatically promoted from $2 to $3',
 
 # Feedback
 'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
