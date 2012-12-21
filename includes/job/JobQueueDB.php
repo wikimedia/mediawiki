@@ -231,6 +231,7 @@ class JobQueueDB extends JobQueue {
 			$job->id = $row->job_id; // XXX: work around broken subclasses
 			// Flag this job as an old duplicate based on its "root" job...
 			if ( $this->isRootJobOldDuplicate( $job ) ) {
+				wfIncrStats( 'job-duplicate' );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
 			break; // done
