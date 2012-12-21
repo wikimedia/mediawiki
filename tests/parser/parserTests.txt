@@ -10988,6 +10988,20 @@ China
 !! end
 
 !! test
+Recursive conversion of alt and title attrs shouldn't clear converter state
+!! options
+language=zh variant=zh-cn showtitle
+!! input
+-{H|zh-cn:Exclamation;zh-tw:exclamation;}-
+Should be stripped-{T|zh-cn:China;zh-tw:Taiwan}-<span title="exclamation">!</span>
+!! result
+China
+<p>
+Should be stripped<span title="Exclamation">!</span>
+</p>
+!! end
+
+!! test
 Bug 24072: more test on conversion rule for title
 !! options
 language=zh variant=zh-tw showtitle
