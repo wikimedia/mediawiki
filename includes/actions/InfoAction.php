@@ -172,7 +172,11 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
-		$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $this->page->getRevision()->getId() );
+		if ( $id ) {
+			$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $this->page->getRevision()->getId() );
+		} else {
+			$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText() );
+		}
 		$pageCounts = $wgMemc->get( $memcKey );
 		if ( $pageCounts === false ) {
 			// Get page information that would be too "expensive" to retrieve by normal means
