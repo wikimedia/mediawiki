@@ -290,6 +290,8 @@ div.tocindent {
 	text-align: left;
 	border-top: solid 1px black;
 	border-bottom: solid 1px black;
+	float: left;
+	clear: both;
 }
 
 /* @noflip */div.floatright, table.floatright {

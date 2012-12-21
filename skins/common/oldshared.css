@@ -130,6 +130,8 @@ img { border: none; }
 	padding: 5px;
 	font-size: 95%;
 	text-align: center;
+	float: left;
+	clear: both;
 }
 #toc h2,
 .toc h2 {

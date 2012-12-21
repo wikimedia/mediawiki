@@ -555,6 +555,8 @@ img.thumbborder {
 	border-spacing: 0;
 	background-color: #f0f0f0;
 	border: solid 1px #bbbbbb;
+	float: left;
+	clear: both;
 }
 
 #toc tr, #toc td {
