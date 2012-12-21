@@ -290,6 +290,20 @@ div.tocindent {
 	text-align: left;
 	border-top: solid 1px black;
 	border-bottom: solid 1px black;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 7px;
+}
+
+/* CSS backwards-compatibility: remove additional paddings */
+table#toc td, table.toc td {
+	padding: 0;
+}
+
+table#toc, table.toc {
+	border-collapse: collapse;
 }
 
 /* @noflip */div.floatright, table.floatright {
