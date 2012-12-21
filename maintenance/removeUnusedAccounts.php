@@ -77,6 +77,8 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "\nDeleting inactive accounts..." );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
+			$dbw->delete( 'logging', array( 'log_user' => $del ), __METHOD__ );
+			$dbw->delete( 'recentchanges', array( 'rc_user' => $del ), __METHOD__ );
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
 			$users = $dbw->selectField( 'user', 'COUNT(*)', array(), __METHOD__ );
@@ -97,7 +99,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	 */
 	private function isInactiveAccount( $id, $master = false ) {
 		$dbo = wfGetDB( $master ? DB_MASTER : DB_SLAVE );
-		$checks = array( 'revision' => 'rev', 'archive' => 'ar', 'logging' => 'log',
+		$checks = array( 'revision' => 'rev', 'archive' => 'ar',
 						 'image' => 'img', 'oldimage' => 'oi', 'filearchive' => 'fa' );
 		$count = 0;
 
@@ -106,6 +108,10 @@ class RemoveUnusedAccounts extends Maintenance {
 			$conds = array( $fprefix . '_user' => $id );
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}
+
+		$conds = array( 'log_user' => $id, "log_type != 'newusers'" );
+		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds, __METHOD__ );
+
 		$dbo->commit( __METHOD__ );
 
 		return $count == 0;
