@@ -4065,6 +4065,40 @@ Nested lists 8 (multiple nesting transitions)
 !! end
 
 !! test
+Unbalanced closing block tags break a list
+(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+disabled
+!! input
+<div>
+*a</div><div>
+*b</div>
+!! result
+<div>
+<ul><li>a
+</li></ul></div><div>
+<ul><li>b
+</li></ul></div>
+!! end
+
+!! test
+Unbalanced closing non-block tags don't break a list
+(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+disabled
+!! input
+<span>
+*a</span><span>
+*b</span>
+!! result
+<p><span></span>
+</p>
+<ul><li>a<span></span>
+</li><li>b
+</li></ul>
+!! end
+
+!! test
 List items are not parsed correctly following a <pre> block (bug 785)
 !! input
 * <pre>foo</pre>
