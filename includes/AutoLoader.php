@@ -216,6 +216,7 @@ $wgAutoloadLocalClasses = array(
 	'Sanitizer' => 'includes/Sanitizer.php',
 	'DataUpdate' => 'includes/DataUpdate.php',
 	'SqlDataUpdate' => 'includes/SqlDataUpdate.php',
+	'ScopedCallback' => 'includes/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/ScopedPHPTimeout.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
 	'SiteStats' => 'includes/SiteStats.php',

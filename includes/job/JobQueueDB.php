@@ -33,6 +33,21 @@ class JobQueueDB extends JobQueue {
 	const MAX_ATTEMPTS   = 3; // integer; number of times to try a job
 	const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
 
+	protected $cluster = false; // string; name of an external DB cluster
+
+	/**
+	 * Additional parameters include:
+	 *   - cluster : The name of an external cluster registered via LBFactory.
+	 *               If not specified, the primary DB cluster for the wiki will be used.
+	 *               This can be overridden with a custom cluster so that DB handles will
+	 *               be retrieved via LBFactory::getExternalLB() and getConnection().
+	 * @param $params array
+	 */
+	protected function __construct( array $params ) {
+		parent::__construct( $params );
+		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : false;
+	}
+
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool
@@ -49,7 +64,8 @@ class JobQueueDB extends JobQueue {
 			return false;
 		}
 
-		$found = $this->getSlaveDB()->selectField( // unclaimed job
+		list( $dbr, $scope ) = $this->getSlaveDB();
+		$found = $dbr->selectField( // unclaimed job
 			'job', '1', array( 'job_cmd' => $this->type, 'job_token' => '' ), __METHOD__
 		);
 		$wgMemc->add( $key, $found ? 'false' : 'true', self::CACHE_TTL );
@@ -66,7 +82,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
 		if ( count( $jobs ) ) {
-			$dbw = $this->getMasterDB();
+			list( $dbw, $scope ) = $this->getMasterDB();
 
 			$rowSet = array(); // (sha1 => job) map for jobs that are de-duplicated
 			$rowList = array(); // list of jobs for jobs that are are not de-duplicated
@@ -143,7 +159,7 @@ class JobQueueDB extends JobQueue {
 			return false; // queue is empty
 		}
 
-		$dbw = $this->getMasterDB();
+		list( $dbw, $scope ) = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
 		$uuid = wfRandomString( 32 ); // pop attempt
@@ -199,7 +215,7 @@ class JobQueueDB extends JobQueue {
 	 * @return Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
-		$dbw  = $this->getMasterDB();
+		list( $dbw, $scope ) = $this->getMasterDB();
 		$ineq = $gte ? '>=' : '<=';
 
 		$row = false; // the row acquired
@@ -245,7 +261,7 @@ class JobQueueDB extends JobQueue {
 	 * @return Row|false
 	 */
 	protected function claimOldest( $uuid ) {
-		$dbw  = $this->getMasterDB();
+		list( $dbw, $scope ) = $this->getMasterDB();
 
 		$row = false; // the row acquired
 		do {
@@ -306,7 +322,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function recycleStaleJobs() {
 		$now   = time();
-		$dbw   = $this->getMasterDB();
+		list( $dbw, $scope ) = $this->getMasterDB();
 		$count = 0; // affected rows
 
 		if ( !$dbw->lock( "jobqueue-recycle-{$this->type}", __METHOD__, 1 ) ) {
@@ -379,7 +395,7 @@ class JobQueueDB extends JobQueue {
 			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
 		}
 
-		$dbw = $this->getMasterDB();
+		list( $dbw, $scope ) = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
 		// Delete a row with a single DELETE without holding row locks over RTTs...
@@ -408,7 +424,8 @@ class JobQueueDB extends JobQueue {
 		// deferred till "transaction idle", do the same here, so that the ordering is
 		// maintained. Having only the de-duplication registration succeed would cause
 		// jobs to become no-ops without any actual jobs that made them redundant.
-		$this->getMasterDB()->onTransactionIdle( function() use ( $params, $key ) {
+		list( $dbw, $scope ) = $this->getMasterDB();
+		$dbw->onTransactionIdle( function() use ( $params, $key ) {
 			global $wgMemc;
 
 			$timestamp = $wgMemc->get( $key ); // current last timestamp of this job
@@ -456,17 +473,34 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return Array (DatabaseBase, ScopedCallback)
 	 */
 	protected function getSlaveDB() {
-		return wfGetDB( DB_SLAVE, array(), $this->wiki );
+		return $this->getDB( DB_SLAVE );
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return Array (DatabaseBase, ScopedCallback)
 	 */
 	protected function getMasterDB() {
-		return wfGetDB( DB_MASTER, array(), $this->wiki );
+		return $this->getDB( DB_MASTER );
+	}
+
+	/**
+	 * @param $index integer (DB_SLAVE/DB_MASTER)
+	 * @return Array (DatabaseBase, ScopedCallback)
+	 */
+	protected function getDB( $index ) {
+		$lb = ( $this->cluster !== false )
+			? wfGetLBFactory()->getExternalLB( $this->cluster, $this->wiki )
+			: wfGetLB( $this->wiki );
+		$conn = $lb->getConnection( $index );
+		return array(
+			$conn,
+			new ScopedCallback( function() use ( $lb, $conn ) {
+				$lb->reuseConnection( $conn );
+			} )
+		);
 	}
 
 	/**
@@ -474,7 +508,7 @@ class JobQueueDB extends JobQueue {
 	 * @return array
 	 */
 	protected function insertFields( Job $job ) {
-		$dbw = $this->getMasterDB();
+		list( $dbw, $scope ) = $this->getMasterDB();
 		return array(
 			// Fields that describe the nature of the job
 			'job_cmd'       => $job->getType(),
