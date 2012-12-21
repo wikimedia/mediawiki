@@ -1666,10 +1666,10 @@ class Linker {
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return
-		   '<table id="toc" class="toc"><tr><td>'
+		   '<div id="toc" class="toc">'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
 		 . $toc
-		 . "</ul>\n</td></tr></table>\n";
+		 . "</ul>\n</div>\n";
 	}
 
 	/**

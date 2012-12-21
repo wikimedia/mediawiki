@@ -226,6 +226,10 @@ table.small { font-size: 100% }
 	background-color:#f9f9f9;
 	padding:5px;
 	font-size: 95%;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
 }
 #toc ul { margin: 0 2em; }
 #toc .toctoggle { font-size: 94%; }

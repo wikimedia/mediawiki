@@ -130,6 +130,10 @@ img { border: none; }
 	padding: 5px;
 	font-size: 95%;
 	text-align: center;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
 }
 #toc h2,
 .toc h2 {

@@ -555,6 +555,10 @@ img.thumbborder {
 	border-spacing: 0;
 	background-color: #f0f0f0;
 	border: solid 1px #bbbbbb;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
 }
 
 #toc tr, #toc td {
