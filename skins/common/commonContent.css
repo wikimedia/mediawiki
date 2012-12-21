@@ -14,6 +14,36 @@
 	padding: 5px;
 	font-size: 95%;
 }
+
+/**
+ * We want to display the ToC element with intrinsic width. There are a few good
+ * old ways of making it this way, including floating it or making it a table.
+ * Both are clearly suboptimal.
+ *
+ * Thus we use display: inline-block. It is treated as an inline element with
+ * regard to text flow, but this isn't an issue here as the ToC is always
+ * sandwiched between other block-level elements.
+ */
+#toc,
+.toc {
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 7px;
+}
+
+/* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
+table#toc,
+table.toc {
+	border-collapse: collapse;
+}
+/* Remove additional paddings inside table-cells that are not present in <div>s */
+table#toc td,
+table.toc td {
+	padding: 0;
+}
+
 #toc h2,
 .toc h2 {
 	display: inline;

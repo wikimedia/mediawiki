@@ -162,6 +162,11 @@ production.
 * (bug 41281) Fixed ugly output if file size could not be extracted for multi-page media.
 * (bug 50315) list=logevents API module will now output log entries by anonymous users.
 * (bug 38911) Handle headers with rowspan in jquery.tablesorter
+* (bug 658) Converted the table of contents on wiki pages from <table> to <div>
+  and adjusted skin CSS accordingly. The CSS was carefully crafted to be
+  backwards-compatible in all reasonable cases (uses of the __TOC__ magic word,
+  the #toc CSS id and the .toc CSS class). However, particularly bad abuse of
+  the id or the class can possibly break.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
