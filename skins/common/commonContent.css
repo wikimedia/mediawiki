@@ -14,6 +14,49 @@
 	padding: 5px;
 	font-size: 95%;
 }
+
+/**
+ * This needs two words of explanation.
+ *
+ * We want to display the ToC as if it was a block-level element, but we don't
+ * want it to stretch the entire page width. This is incidentally exactly how HTML
+ * tables work, except it's not really a table, but a list with a heading.
+ *
+ * We could simply use display: table to do it The Right Way, but unfortunately not
+ * all browsers support it (yet), and those that do often have some minor issues.
+ * It's also bad form to use display: table with no elements with a display: table-row
+ * and display:table-cell inside (and this would be the case unless we added some
+ * especially for this). We could live with this, but there happens to be a second way.
+ *
+ * We can instead use display: inline-block. This has the same non-stretching behavior
+ * as display: table, but is treated as an inline element with regard to text flow.
+ * This isn't an issue because a ToC is always sandwiched between a <p> and a heading in
+ * normal circumstances, and wrapped in a block-level element or similarly sandwiched
+ * in "creative" wikitext (e.g. ToCs floated to the side or manual ToC-style link lists).
+ *
+ * There is only one issue left: IE 6 & 7 and Firefox 2 don't support inline-block.
+ * For Firefox we just have to use the prefixed version; for IE, we use display: inline
+ * with the star hack and enforce hasLayout using zoom: 1 to cause the very same behavior.
+ *
+ * Sometime in mysterious future, all this can just be replaced with a display: table.
+ */
+#toc,
+.toc {
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 7px;
+}
+
+/* CSS backwards-compatibility: remove additional paddings */
+table#toc td, table.toc td {
+	padding: 0;
+}
+table#toc, table.toc {
+	border-collapse: collapse;
+}
+
 #toc h2,
 .toc h2 {
 	display: inline;
