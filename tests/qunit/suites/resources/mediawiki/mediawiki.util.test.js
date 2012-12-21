@@ -84,13 +84,13 @@
 
 		assert.strictEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
 
-		tocHtml = '<table id="toc" class="toc"><tr><td>' +
+		tocHtml = '<div id="toc" class="toc">' +
 			'<div id="toctitle">' +
 			'<h2>Contents</h2>' +
 			'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
 			'</div>' +
 			'<ul><li></li></ul>' +
-			'</td></tr></table>';
+			'</div>';
 		$( tocHtml ).appendTo( '#qunit-fixture' ),
 			$toggleLink = $( '#togglelink' );
 
