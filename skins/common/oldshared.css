@@ -130,6 +130,18 @@ img { border: none; }
 	padding: 5px;
 	font-size: 95%;
 	text-align: center;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 7px;
+}
+/* CSS backwards-compatibility: remove additional paddings */
+table#toc td, table.toc td {
+	padding: 0;
+}
+table#toc, table.toc {
+	border-collapse: collapse;
 }
 #toc h2,
 .toc h2 {
