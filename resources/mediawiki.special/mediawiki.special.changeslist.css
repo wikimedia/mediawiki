@@ -31,22 +31,22 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	float: none;
 }
 
-/* If JS is disabled, the arrow shouldn't be shown */
-.client-nojs .mw-enhancedchanges-arrow.mw-collapsible-toggle {
+/* If JS is disabled, the arrows or the placeholder space shouldn't be shown */
+.client-nojs .mw-enhancedchanges-arrow-space {
 	display: none;
 }
 
-.mw-enhancedchanges-arrow {
+.mw-enhancedchanges-arrow-space {
 	display: inline-block;
 	*display: inline; /* IE7 and below */
 	zoom: 1;
 	width: 15px;
 	height: 15px;
-	cursor: pointer;
 }
 
-.mw-enhancedchanges-arrow.mw-enhancedchanges-arrow-space {
-	background: none;
+/* let it looks, like it is clickable */
+.mw-enhancedchanges-arrow.mw-collapsible-toggle {
+	cursor: pointer;
 }
 
 .mw-enhancedchanges-arrow.mw-collapsible-toggle-collapsed {
