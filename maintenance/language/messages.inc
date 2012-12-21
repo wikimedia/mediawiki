@@ -1188,15 +1188,13 @@ $wgMessageStructure = array(
 		'right-sendemail',
 		'right-passwordreset',
 	),
+	'newuserlog' => array(
+		'newuserlogpage',
+		'newuserlogpagetext',
+	),
 	'rightslog' => array(
 		'rightslog',
 		'rightslogtext',
-		'rightslogentry',
-		'rightslogentry-autopromote',
-		'logentry-rights-rights',
-		'logentry-rights-rights-legacy',
-		'logentry-rights-autopromote',
-		'rightsnone',
 	),
 	'action' => array(
 		'action-read',
@@ -1847,10 +1845,6 @@ $wgMessageStructure = array(
 		'activeusers-hidesysops',
 		'activeusers-submit',
 		'activeusers-noresult',
-	),
-	'newuserlog' => array(
-		'newuserlogpage',
-		'newuserlogpagetext',
 	),
 	'listgrouprights' => array(
 		'listgrouprights',
@@ -3732,6 +3726,10 @@ $wgMessageStructure = array(
 		'logentry-newusers-create2',
 		'logentry-newusers-autocreate',
 		'newuserlog-byemail',
+		'logentry-rights-rights',
+		'logentry-rights-rights-legacy',
+		'logentry-rights-autopromote',
+		'rightsnone',
 	),
 	'logging-irc' => array(
 		'revdelete-logentry',
@@ -3760,6 +3758,8 @@ $wgMessageStructure = array(
 		'deletedarticle',
 		// 'uploadedimage',
 		// 'overwroteimage',
+		'rightslogentry',
+		'rightslogentry-autopromote',
 	),
 	'feedback' => array(
 		'feedback-bugornote',

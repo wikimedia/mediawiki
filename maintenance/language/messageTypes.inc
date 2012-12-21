@@ -218,6 +218,8 @@ $wgIgnoredMessages = array(
 	'newuserlog-create-entry',
 	'newuserlog-create2-entry',
 	'newuserlog-autocreate-entry',
+	'rightslogentry',
+	'rightslogentry-autopromote',
 	'suppressedarticle',
 	'deletedarticle',
 	// 'uploadedimage',
