@@ -153,6 +153,11 @@ production.
   warning will instead be issued if 'title' is non-default, unless no props are
   requested.
 * Special:Recentchangeslinked will now include upload log entries
+* (bug 658) use a <div> instead of a <table> for the table of contents on wiki
+  pages, adjust CSS accordingly. The CSS was carefully crafted to be
+  backwards-compatible in all reasonable cases (for uses of the __TOC__ magic
+  word as well as uses of the #toc CSS id or the .toc CSS class); however,
+  particularly bad abuse of the id or the class can possibly break.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
