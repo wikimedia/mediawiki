@@ -8158,7 +8158,7 @@ Section headings with TOC
 Some text
 ===Another headline===
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -8179,7 +8179,7 @@ Some text
 </ul>
 </li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Headline_1">Headline 1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span></h2>
 <h3><span class="mw-headline" id="Subheadline_1">Subheadline 1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</span></h3>
 <h5><span class="mw-headline" id="Skipping_a_level">Skipping a level</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</span></h5>
@@ -8206,7 +8206,7 @@ Handling of sections up to level 6 and beyond
 ========= Level 9 Heading=========
 ========== Level 10 Heading==========
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
 <ul>
@@ -8234,7 +8234,7 @@ Handling of sections up to level 6 and beyond
 </ul>
 </li>
 </ul>
-</td></tr></table>
+</div>
 <h1><span class="mw-headline" id="Level_1_Heading">Level 1 Heading</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</span></h1>
 <h2><span class="mw-headline" id="Level_2_Heading">Level 2 Heading</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</span></h2>
 <h3><span class="mw-headline" id="Level_3_Heading">Level 3 Heading</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</span></h3>
@@ -8258,7 +8258,7 @@ TOC regression (bug 9764)
 == title 2 ==
 === title 2.1 ===
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -8276,7 +8276,7 @@ TOC regression (bug 9764)
 </ul>
 </li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="title_1">title 1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span></h2>
 <h3><span class="mw-headline" id="title_1.1">title 1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span></h3>
 <h4><span class="mw-headline" id="title_1.1.1">title 1.1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span></h4>
@@ -8298,7 +8298,7 @@ wgMaxTocLevel=3
 == title 2 ==
 === title 2.1 ===
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -8312,7 +8312,7 @@ wgMaxTocLevel=3
 </ul>
 </li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="title_1">title 1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span></h2>
 <h3><span class="mw-headline" id="title_1.1">title 1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span></h3>
 <h4><span class="mw-headline" id="title_1.1.1">title 1.1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span></h4>
@@ -8333,7 +8333,7 @@ wgMaxTocLevel=3
 ====Section 1.1.1.1====
 ==Section 2==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a>
 <ul>
@@ -8342,7 +8342,7 @@ wgMaxTocLevel=3
 </li>
 <li class="toclevel-1 tocsection-5"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span></h2>
 <h3><span class="mw-headline" id="Section_1.1">Section 1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 1.1">edit</a>]</span></h3>
 <h4><span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a>]</span></h4>
@@ -8425,7 +8425,7 @@ __TOC__
 === title 1.1 ===
 == title 2 ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -8434,7 +8434,7 @@ __TOC__
 </li>
 <li class="toclevel-1 tocsection-3"><a href="#title_2"><span class="tocnumber">2</span> <span class="toctext">title 2</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="title_1">title 1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span></h2>
 <h3><span class="mw-headline" id="title_1.1">title 1.1</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span></h3>
 <h2><span class="mw-headline" id="title_2">title 2</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span></h2>
@@ -8489,7 +8489,7 @@ section 5
 !! result
 <p>The tooltips shall not show entities to the user (ie. be double escaped)
 </p>
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#text_.3E_text"><span class="tocnumber">1</span> <span class="toctext">text &gt; text</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#text_.3C_text"><span class="tocnumber">2</span> <span class="toctext">text &lt; text</span></a></li>
@@ -8497,7 +8497,7 @@ section 5
 <li class="toclevel-1 tocsection-4"><a href="#text_.27_text"><span class="tocnumber">4</span> <span class="toctext">text ' text</span></a></li>
 <li class="toclevel-1 tocsection-5"><a href="#text_.22_text"><span class="tocnumber">5</span> <span class="toctext">text " text</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="text_.3E_text">text &gt; text</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: text > text">edit</a>]</span></h2>
 <p>section 1
 </p>
@@ -8524,14 +8524,14 @@ Headers with excess '=' characters
 =''italic'' heading==
 ==''italic'' heading=
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#foo.3D"><span class="tocnumber">1</span> <span class="toctext">foo=</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.3Dfoo"><span class="tocnumber">2</span> <span class="toctext">=foo</span></a></li>
 <li class="toclevel-1 tocsection-3"><a href="#italic_heading.3D"><span class="tocnumber">3</span> <span class="toctext"><i>italic</i> heading=</span></a></li>
 <li class="toclevel-1 tocsection-4"><a href="#.3Ditalic_heading"><span class="tocnumber">4</span> <span class="toctext">=<i>italic</i> heading</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h1><span class="mw-headline" id="foo.3D">foo=</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: foo=">edit</a>]</span></h1>
 <h1><span class="mw-headline" id=".3Dfoo">=foo</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: =foo">edit</a>]</span></h1>
 <h1><span class="mw-headline" id="italic_heading.3D"><i>italic</i> heading=</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: italic heading=">edit</a>]</span></h1>
@@ -8553,7 +8553,7 @@ HTML headers vs TOC (bug 23393)
 == Header 2.2 ==
 __NOEDITSECTION__
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1"><a href="#Header_1"><span class="tocnumber">1</span> <span class="toctext">Header 1</span></a>
 <ul>
@@ -8568,7 +8568,7 @@ __NOEDITSECTION__
 </ul>
 </li>
 </ul>
-</td></tr></table>
+</div>
 <h1><span class="mw-headline" id="Header_1">Header 1</span></h1>
 <h2><span class="mw-headline" id="Header_1.1">Header 1.1</span></h2>
 <h2><span class="mw-headline" id="Header_1.2">Header 1.2</span></h2>
@@ -9862,11 +9862,11 @@ Fuzz testing: Parser14
 http://__TOC__
 !! result
 <h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a>]</span></h2>
-http://<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+http://<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 
 !! end
 
@@ -11688,7 +11688,7 @@ Out-of-order TOC heading levels
 =====5=====
 ==2==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#2"><span class="tocnumber">1</span> <span class="toctext">2</span></a>
 <ul>
@@ -11703,7 +11703,7 @@ Out-of-order TOC heading levels
 </ul>
 </li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="2">2</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span></h2>
 <h6><span class="mw-headline" id="6">6</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span></h6>
 <h3><span class="mw-headline" id="3">3</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span></h3>
@@ -13247,11 +13247,11 @@ title=[[Main Page]]
 __TOC__
 == ''Lost'' episodes ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Lost_episodes"><i>Lost</i> episodes</span><span class="mw-editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Lost episodes">edit</a>]</span></h2>
 
 !! end
@@ -13264,11 +13264,11 @@ title=[[Main Page]]
 __TOC__
 == '''should be bold''' then normal text ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="should_be_bold_then_normal_text"><b>should be bold</b> then normal text</span><span class="mw-editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: should be bold then normal text">edit</a>]</span></h2>
 
 !! end
@@ -13281,11 +13281,11 @@ title=[[Main Page]]
 __TOC__
 == Image [[Image:foobar.jpg]] ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Image"><span class="tocnumber">1</span> <span class="toctext">Image</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Image">Image <a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></span><span class="mw-editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a>]</span></h2>
 
 !! end
@@ -13298,11 +13298,11 @@ title=[[Main Page]]
 __TOC__
 == <blockquote>Quote</blockquote> ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a>]</span></h2>
 
 !! end
@@ -13317,11 +13317,11 @@ __TOC__
 <small>Hanc marginis exiguitas non caperet.</small>
 QED
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Proof:_2_.3C_3"><span class="tocnumber">1</span> <span class="toctext">Proof: 2 &lt; 3</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Proof:_2_.3C_3">Proof: 2 &lt; 3</span><span class="mw-editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Proof: 2 &lt; 3">edit</a>]</span></h2>
 <p><small>Hanc marginis exiguitas non caperet.</small>
 QED
@@ -13336,12 +13336,12 @@ __TOC__
 
 == <i>Foo</i> <blockquote>Bar</blockquote> ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a>]</span></h2>
 <h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a>]</span></h2>
 
@@ -13355,12 +13355,12 @@ __TOC__
 
 == <sup class="a > b">Evilbye</sup> ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Hello"><span class="tocnumber">1</span> <span class="toctext"><sup>Hello</sup></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#b.22.3EEvilbye"><span class="tocnumber">2</span> <span class="toctext"><sup> b"&gt;Evilbye</sup></span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="Hello"><sup class="in-h2">Hello</sup></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a>]</span></h2>
 <h2><span class="mw-headline" id="b.22.3EEvilbye"><sup> b"&gt;Evilbye</sup></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;>Evilbye">edit</a>]</span></h2>
 
@@ -13380,7 +13380,7 @@ __TOC__
 
 == <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> ==
 !! result
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
@@ -13388,7 +13388,7 @@ __TOC__
 <li class="toclevel-1 tocsection-4"><a href="#All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">4</span> <span class="toctext"><span>All attributes on these span tags must be deleted from the TOC</span></span></a></li>
 <li class="toclevel-1 tocsection-5"><a href="#Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">5</span> <span class="toctext"><span dir="ltr">Attributes after dir on these span tags must be deleted from the TOC</span></span></a></li>
 </ul>
-</td></tr></table>
+</div>
 <h2><span class="mw-headline" id="C.2B.2B"><span dir="ltr">C++</span></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: C++">edit</a>]</span></h2>
 <h2><span class="mw-headline" id=".D7.96.D7.91.D7.A0.D7.92.21"><span dir="rtl">זבנג!</span></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: זבנג!">edit</a>]</span></h2>
 <h2><span class="mw-headline" id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: The attributes on these span tags must be deleted from the TOC">edit</a>]</span></h2>
