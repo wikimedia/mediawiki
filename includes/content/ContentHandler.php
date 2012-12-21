@@ -1,28 +1,6 @@
 <?php
-
 /**
- * Exception representing a failure to serialize or unserialize a content object.
- */
-class MWContentSerializationException extends MWException {
-
-}
-
-/**
- * A content handler knows how do deal with a specific type of content on a wiki
- * page. Content is stored in the database in a serialized form (using a
- * serialization format a.k.a. MIME type) and is unserialized into its native
- * PHP representation (the content model), which is wrapped in an instance of
- * the appropriate subclass of Content.
- *
- * ContentHandler instances are stateless singletons that serve, among other
- * things, as a factory for Content objects. Generally, there is one subclass
- * of ContentHandler and one subclass of Content for every type of content model.
- *
- * Some content types have a flat model, that is, their native representation
- * is the same as their serialized form. Examples would be JavaScript and CSS
- * code. As of now, this also applies to wikitext (MediaWiki's default content
- * type), but wikitext content may be represented by a DOM or AST structure in
- * the future.
+ * Base class for content handling.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,6 +23,35 @@ class MWContentSerializationException extends MWException {
  * @ingroup Content
  *
  * @author Daniel Kinzler
+ */
+
+/**
+ * Exception representing a failure to serialize or unserialize a content object.
+ *
+ * @ingroup Content
+ */
+class MWContentSerializationException extends MWException {
+
+}
+
+/**
+ * A content handler knows how do deal with a specific type of content on a wiki
+ * page. Content is stored in the database in a serialized form (using a
+ * serialization format a.k.a. MIME type) and is unserialized into its native
+ * PHP representation (the content model), which is wrapped in an instance of
+ * the appropriate subclass of Content.
+ *
+ * ContentHandler instances are stateless singletons that serve, among other
+ * things, as a factory for Content objects. Generally, there is one subclass
+ * of ContentHandler and one subclass of Content for every type of content model.
+ *
+ * Some content types have a flat model, that is, their native representation
+ * is the same as their serialized form. Examples would be JavaScript and CSS
+ * code. As of now, this also applies to wikitext (MediaWiki's default content
+ * type), but wikitext content may be represented by a DOM or AST structure in
+ * the future.
+ *
+ * @ingroup Content
  */
 abstract class ContentHandler {
 
