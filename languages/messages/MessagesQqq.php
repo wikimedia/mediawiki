@@ -2789,15 +2789,37 @@ Clicking on your choice changes the list of changes you see (without changing th
 
 'enotif_reset' => "This should be translated as \"Mark all pages '''as''' visited\".",
 'enotif_impersonal_salutation' => 'Used for impersonal e-mail notifications, suitable for bulk mailing.',
-'enotif_subject_deleted' => 'Email notification subject for deleted pages, $1 is page title, $2 is page editor.',
-'enotif_subject_created' => 'Email notification subject for new pages, $1 is page title, $2 is page editor.',
-'enotif_subject_moved' => 'Email notification subject for pages that get moved, $1 is page title, $2 is page editor.',
-'enotif_subject_restored' => 'Email notification subject for pages that get restored, $1 is page title, $2 is page editor.',
-'enotif_subject_changed' => 'Email notification subject for pages that get changed, $1 is page title, $2 is page editor.',
-'enotif_body_intro_deleted' => 'Email notification body intro text for deleted pages, $1 is the page title, $2 is the page editor, $3 is page url.',
-'enotif_body_intro_created' => 'Email notification body intro text for new pages, $1 is the page title, $2 is the page editor, $3 is page url.',
-'enotif_body_intro_moved' => 'Email notification body intro for pages that get moved, $1 is the page title, $2 is the page editor, $3 is page url.',
-'enotif_body_intro_restored' => 'Email notification body intro for pages that get restored, $1 is the page title, $2 is the page editor, $3 is page url.',
+'enotif_subject_deleted' => 'Email notification subject for deleted pages,
+* $1 - page title
+* $2 - page editor',
+'enotif_subject_created' => 'Email notification subject for new pages,
+* $1 - page title
+* $2 - page editor',
+'enotif_subject_moved' => 'Email notification subject for pages that get moved,
+* $1 - page title
+* $2 - page editor',
+'enotif_subject_restored' => 'Email notification subject for pages that get restored,
+* $1 - page title
+* $2 - page editor',
+'enotif_subject_changed' => 'Email notification subject for pages that get changed.
+* $1 - page title
+* $2 - page editor',
+'enotif_body_intro_deleted' => 'Email notification body intro text for deleted pages.
+* $1 - the page title
+* $2 - the page editor
+* $3 - page URL',
+'enotif_body_intro_created' => 'Email notification body intro text for new pages.
+* $1 - the page title
+* $2 - the page editor
+* $3 - page URL',
+'enotif_body_intro_moved' => 'Email notification body intro for pages that get moved.
+* $1 - the page title
+* $2 - the page editor
+* $3 - page URL',
+'enotif_body_intro_restored' => 'Email notification body intro for pages that get restored.
+* $1 - the page title
+* $2 - the page editor
+* $3 - page URL',
 'enotif_body_intro_changed' => 'Email notification body intro for pages that get changed, $1 is the page title, $2 is the page editor, $3 is page url.',
 'enotif_lastvisited' => '$1 is a URL address.',
 'enotif_lastdiff' => 'E-mail notification text to the latest page differences. Parameters:
@@ -4629,7 +4651,7 @@ Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×100
 'livepreview-loading' => '{{Identical|Loading}}',
 
 # Watchlist editor
-'watchlistedit-numitems' => 'Message on [[Special:EditWatchlist]]. This is paired with the message {{Msg-mw|Watchlistedit-noitems}} which appears instead of Watchlistedit-numitems when $1 is 0.',
+'watchlistedit-numitems' => 'Message on [[Special:EditWatchlist]]. This is paired with the message {{Msg-mw|Watchlistedit-noitems}} which appears instead of this message when $1 is 0.',
 'watchlistedit-noitems' => "Message on [[Special:EditWatchlist]], which only appears when a user's watchlist is empty.",
 'watchlistedit-normal-title' => 'Title of [[Special:Watchlist/edit|special page]].',
 'watchlistedit-normal-legend' => 'Heading of dialogue box on [[Special:Watchlist/edit]]',

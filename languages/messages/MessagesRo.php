@@ -2361,7 +2361,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'enotif_subject_moved' => 'Pagina $1 de la {{SITENAME}} a fost redenumită de către {{gender:$2|$2}}',
 'enotif_subject_restored' => 'Pagina $1 de la {{SITENAME}} a fost restaurată de către {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Pagina $1 de la {{SITENAME}} a fost modificată de către {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'Pagina $1 de la {{SITENAME}} a fost ștearsă la $PAGEEDITDATE de către {{gender:$2|$2}}; vedeți $3 pentru versiunea actuală.',
+'enotif_body_intro_deleted' => 'Pagina $1 de la {{SITENAME}} a fost ștearsă la $PAGEEDITDATE de către {{gender:$2|$2}}; vedeți $3.',
 'enotif_body_intro_created' => 'Pagina $1 de la {{SITENAME}} a fost creată la $PAGEEDITDATE de către {{gender:$2|$2}}; vedeți $3 pentru versiunea actuală.',
 'enotif_body_intro_moved' => 'Pagina $1 de la {{SITENAME}} a fost redenumită la $PAGEEDITDATE de către {{gender:$2|$2}}; vedeți $3 pentru versiunea actuală.',
 'enotif_body_intro_restored' => 'Pagina $1 de la {{SITENAME}} a fost restaurată la $PAGEEDITDATE de către {{gender:$2|$2}}; vedeți $3 pentru versiunea actuală.',

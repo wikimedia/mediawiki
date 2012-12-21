@@ -762,7 +762,7 @@ $2',
 理由は「''$2''」です。",
 'filereadonlyerror' => 'ファイルリポジトリ「$2」が読み取り専用の状態にあるため、ファイル「$1」を変更できません。
 
-読み取り専用に設定した管理者からの説明：「$3」',
+読み取り専用に設定した管理者からの説明:「$3」',
 'invalidtitle-knownnamespace' => '名前空間名「$2」と名前「$3」の組み合わせはページ名として無効です',
 'invalidtitle-unknownnamespace' => '不明な名前空間番号 $1 と名前「$2」の組み合わせはページ名として無効です',
 'exception-nologin' => 'ログインしていません',
@@ -979,7 +979,7 @@ $2
 'hr_tip' => '水平線を挿入（利用は控えめに）',
 
 # Edit pages
-'summary' => '編集内容の要約：',
+'summary' => '編集内容の要約:',
 'subject' => '題名/見出し：',
 'minoredit' => 'これは細部の編集です',
 'watchthis' => 'このページをウォッチ',
@@ -2487,7 +2487,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'enotif_subject_moved' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が移動しました',
 'enotif_subject_restored' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が復元しました',
 'enotif_subject_changed' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が変更しました',
-'enotif_body_intro_deleted' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって削除されました。現在の版は$3で閲覧できます。',
+'enotif_body_intro_deleted' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって削除されました。$3をご覧ください。',
 'enotif_body_intro_created' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって作成されました。現在の版は$3で閲覧できます。',
 'enotif_body_intro_moved' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって移動されました。現在の版は$3で閲覧できます。',
 'enotif_body_intro_restored' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって復元されました。現在の版は$3で閲覧できます。',
@@ -2497,9 +2497,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'enotif_anon_editor' => '匿名利用者「$1」',
 'enotif_body' => '$WATCHINGUSERNAMEさん
 
-{{SITENAME}}のページ「$PAGETITLE」が$PAGEEDITDATEに、$PAGEEDITORによって$CHANGEDORCREATEDされました。現在の版を見るには $PAGETITLE_URL をご覧ください。
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 編集内容の要約：$PAGESUMMARY（$PAGEMINOREDIT）
 
@@ -2507,8 +2505,7 @@ $NEWPAGE
 メール：$PAGEEDITOR_EMAIL
 ウィキ：$PAGEEDITOR_WIKI
 
-このページを訪れない限り、これ以上の変更に対する通知は送信されません。
-ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
+このページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
 
                          {{SITENAME}}通知システム
 
@@ -2528,9 +2525,9 @@ $UNWATCHURL
 # Delete
 'deletepage' => 'ページを削除',
 'confirm' => '確認',
-'excontent' => '内容：「$1」',
-'excontentauthor' => '内容：「$1」（投稿者は「[[Special:Contributions/$2|$2]]」のみ）',
-'exbeforeblank' => '白紙化前の内容：「$1」',
+'excontent' => '内容:「$1」',
+'excontentauthor' => '内容:「$1」(投稿者は「[[Special:Contributions/$2|$2]]」のみ)',
+'exbeforeblank' => '白紙化前の内容:「$1」',
 'exblank' => '白紙ページ',
 'delete-confirm' => '「$1」を削除',
 'delete-legend' => '削除',
@@ -2572,7 +2569,7 @@ $UNWATCHURL
 他の利用者が既に編集または巻き戻しを行ったためです。
 
 このページの最後の編集は[[User:$3|$3]]（[[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）によるものです。',
-'editcomment' => "編集内容の要約：「''$1''」",
+'editcomment' => "編集内容の要約:「''$1''」",
 'revertpage' => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
 'revertpage-nouser' => '（利用者名削除）による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
 'rollback-success' => '$1による編集を差し戻しました。
@@ -4006,7 +4003,7 @@ $5
 'autosumm-blank' => 'ページの白紙化',
 'autosumm-replace' => '内容を「$1」で置換',
 'autoredircomment' => '[[$1]]への転送ページ',
-'autosumm-new' => 'ページの作成：「$1」',
+'autosumm-new' => 'ページの作成:「$1」',
 
 # Size units
 'size-bytes' => '$1バイト',
@@ -4032,26 +4029,26 @@ $5
 'lag-warn-high' => 'データベースサーバー遅延のため、この一覧には、$1 {{PLURAL:$1|秒}}より前の変更が表示されていない可能性があります。',
 
 # Watchlist editor
-'watchlistedit-numitems' => 'ウォッチリストには {{PLURAL:$1|$1 件のページ}}が登録されています（トークページを除く）。',
+'watchlistedit-numitems' => 'ウォッチリストには {{PLURAL:$1|$1 件のページ}}が登録されています (トークページを除く)。',
 'watchlistedit-noitems' => 'ウォッチリストにはどのページも登録されていません。',
 'watchlistedit-normal-title' => 'ウォッチリストの編集',
-'watchlistedit-normal-legend' => 'ウォッチリストからページ名を除去',
+'watchlistedit-normal-legend' => 'ウォッチリストからページを除去',
 'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名を以下に表示しています。
 ページを除去するには、隣のボックスにチェックを入れて「{{int:watchlistedit-normal-submit}}」をクリックしてください。
 また、[[Special:EditWatchlist/raw|ウォッチリストをテキストで編集]]も使用できます。',
 'watchlistedit-normal-submit' => 'ページを除去',
-'watchlistedit-normal-done' => 'ウォッチリストから {{PLURAL:$1|$1 件のページ}}を削除しました：',
+'watchlistedit-normal-done' => 'ウォッチリストから {{PLURAL:$1|$1 件のページ}}を除去しました:',
 'watchlistedit-raw-title' => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-legend' => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-explain' => '以下に、ウォッチリストに含まれるページ名を列挙しています。この一覧で追加や除去ができます。
 1行に1ページ名です。
 完了したら、「{{int:Watchlistedit-raw-submit}}」をクリックしてください。
 [[Special:EditWatchlist|標準の編集ページ]]も使用できます。',
-'watchlistedit-raw-titles' => 'ページ名：',
+'watchlistedit-raw-titles' => 'ページ名:',
 'watchlistedit-raw-submit' => 'ウォッチリストを更新',
 'watchlistedit-raw-done' => 'ウォッチリストを更新しました。',
-'watchlistedit-raw-added' => '{{PLURAL:$1|$1 ページ}}を追加しました：',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|$1 ページ}}を除去しました：',
+'watchlistedit-raw-added' => '{{PLURAL:$1|$1 ページ}}を追加しました:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|$1 ページ}}を除去しました:',
 
 # Watchlist editing tools
 'watchlisttools-view' => '関連する変更を閲覧',
@@ -4345,10 +4342,10 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-stashfailed' => '内部エラー：サーバーは一時ファイルを格納できませんでした。',
 'api-error-timeout' => 'サーバーが決められた時間内に応答しませんでした。',
 'api-error-unclassified' => '不明なエラーが発生しました。',
-'api-error-unknown-code' => '不明なエラー：「$1」',
+'api-error-unknown-code' => '不明なエラー:「$1」',
 'api-error-unknown-error' => '内部エラー：ファイルのアップロードの途中で問題が発生しました。',
-'api-error-unknown-warning' => '不明な警告：「$1」',
-'api-error-unknownerror' => '不明なエラー：「$1」',
+'api-error-unknown-warning' => '不明な警告:「$1」',
+'api-error-unknownerror' => '不明なエラー:「$1」',
 'api-error-uploaddisabled' => 'このウィキではアップロードは無効になっています。',
 'api-error-verification-error' => 'このファイルは壊れているか、間違った拡張子になっています。',
 

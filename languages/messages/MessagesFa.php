@@ -15,6 +15,7 @@
  * @author Behdarvandyani
  * @author E THP
  * @author Ebraminio
+ * @author Goudarz
  * @author Huji
  * @author Ibrahim
  * @author Ladsgroup
@@ -1009,6 +1010,7 @@ $2
 'changeemail-oldemail' => 'نشانی رایانامهٔ کنونی:',
 'changeemail-newemail' => 'نشانی رایانامهٔ جدید:',
 'changeemail-none' => '(هیچ)',
+'changeemail-password' => ' {{SITENAME}} رمز عبور شما:',
 'changeemail-submit' => 'تغییر رایانامه',
 'changeemail-cancel' => 'انصراف',
 

@@ -2071,7 +2071,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'enotif_subject_moved' => '{{SITENAME}} $1 صحیفه‌سی، {{gender:$2|$2}} ایله آدی دَییشیلیب‌دیر',
 'enotif_subject_restored' => '{{SITENAME}} $1 صحیفه‌سی، {{gender:$2|$2}} ایله قایتاریلیب‌دیر',
 'enotif_subject_changed' => '{{SITENAME}} $1 صحیفه‌سی، {{gender:$2|$2}} ایله دَییشیلیب‌دیر',
-'enotif_body_intro_deleted' => '{{SITENAME}} صحیفه‌‌$1-ای {{gender:$2|$2}} $PAGEEDITDATE-سینده سیلینمیشدیر، جاری يئنیدن باخما اوچون $3-ای گؤر.',
+'enotif_body_intro_deleted' => '{{SITENAME}} صحیفه‌‌ $1-ی $PAGEEDITDATE تاریخیمده {{gender:$2|$2}} طرفیندن سیلینمیشدیر، $3-ی گؤرون.',
 'enotif_body_intro_created' => '{{SITENAME}} صحیفه‌‌$1-ای {{gender:$2|$2}} $PAGEEDITDATE-سینده سیلینمیشدیر، جاری يئنیدن باخما اوچون $3-ای گؤر.',
 'enotif_body_intro_moved' => '{{SITENAME}} صحیفه‌‌$1-ای {{gender:$2|$2}} $PAGEEDITDATE-سینده حرکت ائتدیریلن ، جاری يئنیدن باخما اوچون $3-ای گؤر.',
 'enotif_body_intro_restored' => '{{SITENAME}} $1 صحیفه‌سی، {{gender:$2|$2}} ایله $PAGEEDITDATE-ده قایتاریلیب‌دیر، سون نوسخه اوچون $3-ه باخین.',

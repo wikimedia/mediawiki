@@ -789,10 +789,10 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
-'passwordreset-text' => 'Completa questo modulo per ricevere i dettagli del tuo account via e-mail.',
+'passwordreset-text' => 'Compila questo modulo per ricevere i dettagli del tuo account via e-mail.',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
-'passwordreset-pretext' => '{{PLURAL:$1||Immetti una delle porzioni di dati qui sotto}}',
+'passwordreset-pretext' => '{{PLURAL:$1||Immetti uno dei dati richiesti qui sotto}}',
 'passwordreset-username' => 'Nome utente:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Visualizzare il contenuto del messaggio e-mail?',

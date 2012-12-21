@@ -18,6 +18,7 @@
  * @author Jens Liebenau
  * @author Kaganer
  * @author Karika
+ * @author KuboF
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -719,12 +720,12 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 'virus-unknownscanner' => 'nekonata kontraŭviruso:',
 
 # Login and logout pages
-'logouttext' => "'''Vi nun estas elsalutita.'''
+'logouttext' => "'''Vi nun estas elsalutinta.'''
 
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
-Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
+Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estus ensalutinta, ĝis vi refreŝigos kaŝmemoron de via retumilo.",
 'welcomeuser' => 'Bonvenon, $1!',
-'welcomecreation-msg' => 'Vian konton kreis.
+'welcomecreation-msg' => 'Via konto estas kreita.
 Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'yourname' => 'Salutnomo:',
 'yourpassword' => 'Pasvorto:',
@@ -884,6 +885,7 @@ Provizora pasvorto: $2',
 'changeemail-oldemail' => 'Aktuala retpoŝtadreso:',
 'changeemail-newemail' => 'Nova retpoŝtadreso:',
 'changeemail-none' => '(nenio)',
+'changeemail-password' => 'Via {{SITENAME}}-ensalutado:',
 'changeemail-submit' => 'Ŝanĝi retpoŝtadreson',
 'changeemail-cancel' => 'Nuligi',
 
@@ -1462,9 +1464,9 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-emailconfirm-label' => 'Retpoŝta konfirmado:',
 'prefs-textboxsize' => 'Grandeco de redakta fenestro',
 'youremail' => 'Retadreso:',
-'username' => 'Salutnomo:',
-'uid' => 'Uzant-ID:',
-'prefs-memberingroups' => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
+'username' => '{{GENDER:$1|Salutnomo}}:',
+'uid' => '{{GENDER:$1|Uzanto}}-identaĵo:',
+'prefs-memberingroups' => '{{GENDER:$2|Ano}} de {{PLURAL:$1|grupo|grupoj}}:',
 'prefs-registration' => 'Tempo de registrado:',
 'yourrealname' => 'Vera nomo:',
 'yourlanguage' => 'Lingvo',
@@ -2323,7 +2325,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watchnologin' => 'Ne ensalutinta',
 'watchnologintext' => 'Nepras [[Special:UserLogin|ensaluti]] por ŝanĝi vian atentaron.',
 'addwatch' => 'Aldoniĝi al atentaro',
-'addedwatchtext' => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:RecentChanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
+'addedwatchtext' => 'La paĝo "[[:$1]]" aldoniĝis al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu paĝo kaj de ĝia rilata diskutpaĝo aperos tie.',
 'removewatch' => 'Forigi el atentaro',
 'removedwatchtext' => 'La paĝo "[[:$1]]" estas forigita el via [[Special:Watchlist|atentaro]].',
 'watch' => 'Atenti',
@@ -2357,7 +2359,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_subject_moved' => 'La paĝon $1 de {{SITENAME}} movis {{gender:$2|$2}}',
 'enotif_subject_restored' => 'La paĝon $1 de {{SITENAME}} remetis {{gender:$2|$2}}',
 'enotif_subject_changed' => 'La paĝon $1 de {{SITENAME}} ŝanĝis {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'La paĝon $1 de {{SITENAME}} forigis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
+'enotif_body_intro_deleted' => 'La paĝon $1 de {{SITENAME}} forigis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3.',
 'enotif_body_intro_created' => 'La paĝon $1 de {{SITENAME}} kreis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
 'enotif_body_intro_moved' => 'La paĝon $1 de {{SITENAME}} movis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
 'enotif_body_intro_restored' => 'La paĝon $1 de {{SITENAME}} remetis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
@@ -2961,6 +2963,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-error-interwiki' => 'Paĝo "$1" ne estis importita pro sia nomo estas deklarita por ekstera ligado (intervikia).',
 'import-error-special' => 'Paĝo "$1" ne estas importata, ĉar ĝi apartenas al speciala nomspaco, kiu ne permesas paĝojn.',
 'import-error-invalid' => 'Paĝo "$1" ne estas importata, ĉar ĝia nomo estas malvalida.',
+'import-error-unserialize' => 'La revizio n-ro $2 de la paĝo nomata "$1" ne povis senseriiĝi. La revizio raportiĝis uzi enhavmodelon n-ro $3, kiu seriiĝis kiel n-ro $4.',
 'import-options-wrong' => '{{PLURAL:$2|Erara elekto|Eraraj elektoj}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La provizita paĝo havas nevalidan titolon.',
 'import-rootpage-nosubpage' => 'La nomspaco "$1" de la radikopaĝo ne permesas subpaĝoj.',

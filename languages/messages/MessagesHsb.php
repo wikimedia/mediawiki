@@ -2164,7 +2164,7 @@ Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam
 'enotif_subject_moved' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} přesunyła',
 'enotif_subject_restored' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} wobnowiła',
 'enotif_subject_changed' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so wot {{GENDER:$2|$2}} změniła',
-'enotif_body_intro_deleted' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$1|$2}} zhašała, hlej $3 za aktualnu wersiju',
+'enotif_body_intro_deleted' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$1|$2}} zhašała, hlej $3.',
 'enotif_body_intro_created' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} wutworiła, hlej $3 za aktualnu wersiju',
 'enotif_body_intro_moved' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} přesunyła, hlej $3 za aktualnu wersiju',
 'enotif_body_intro_restored' => 'Strona {{GRAMMAR:genitiw|{{SITENAME}}}} $1 je so na $PAGEEDITDATE wot {{GENDER:$2|$2}} wobnowiła, hlej $3 za aktualnu wersiju',

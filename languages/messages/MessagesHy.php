@@ -955,7 +955,39 @@ $2',
 'template-protected' => '(պաշտպանված)',
 'template-semiprotected' => '(կիսապաշտպանված)',
 'hiddencategories' => 'Այս էջը պատկանում է հետևյալ {{PLURAL:$1|1 թաքնված կատեգորիային|$1 թաքնված կատեգորիաներին}}.',
-'edittools' => '<!-- Այստեղ տեղադրված տեքստը կցուցադրվի խմբագրման և բեռնման ձևերի տակ։ -->',
+'edittools' => '<!-- Այստեղ տեղադրված տեքստը կցուցադրվի խմբագրման և բեռնման ձևերի տակ։ -->
+<div id="Հատուկ նիշ:" class="toccolours specialchars" style="margin-top:.5em; padding: .3em .5em; font-size: 100%; color:#aaa; text-align:left;" title="{{int:bw-edittools-tooltip}}">
+<p class="specialbasic" id="Standard">
+\'\'\'{{int:bw-edittools-lead-in}}\'\'\' 
+<charinsert>Á á É é Í í Ó ó Ú ú Ý ý</charinsert> –
+<charinsert>À à È è Ì ì Ò ò Ù ù </charinsert> –
+<charinsert>Â â Ê ê Î î Ô ô Û û </charinsert> –
+<charinsert>Ä ä Ë ë Ï ï Ö ö Ü ü Ÿ ÿ</charinsert> –
+<charinsert>Æ æ Ø ø Œ œ ẞ ß </charinsert> –
+<charinsert>Å å Ů ů </charinsert> –
+<charinsert>Ã ã Ẽ ẽ ɛ̃ Ĩ ĩ Ñ ñ Õ õ ɔ̃ Ũ ũ </charinsert> –
+<charinsert>Ð ð Þ þ </charinsert> –
+<charinsert>Ç ç Ģ ģ Ķ ķ Ļ ļ Ņ ņ Ŗ ŗ Ş ş Ţ ţ </charinsert> –
+<charinsert>Ć ć Ĺ ĺ Ń ń Ŕ ŕ Ś ś Ý ý Ź ź </charinsert> –
+<charinsert>Č č Ď ď Ľ ľ Ň ň Ř ř Š š Ť ť Ž ž </charinsert> –
+<charinsert>Ǎ ǎ Ě ě Ǐ ǐ Ǒ ǒ Ǔ ǔ </charinsert> –
+<charinsert>Ā ā Ē ē Ī ī Ō ō Ū ū </charinsert> –
+<charinsert>ǖ ǘ ǚ ǜ </charinsert> –
+<charinsert>Ĉ ĉ Ĝ ĝ Ĥ ĥ Ĵ ĵ Ŝ ŝ Ŵ ŵ Ŷ ŷ </charinsert> –
+<charinsert>Ă ă Ğ ğ Ŭ ŭ </charinsert> –
+<charinsert>Ċ ċ Ė ė Ġ ġ Għ għ İ ı Ż ż </charinsert> –
+<charinsert>Ą ą Ę ę Į į Ų ų </charinsert> –
+<charinsert>Ő ő Ű ű </charinsert> –
+<charinsert>Đ đ Ħ ħ Ł ł Ŀ ŀ </charinsert> –
+<charinsert>Ɖ ɖ Ɛ ɛ Ƒ ƒ Ɣ ɣ Ŋ ŋ Ɔ ɔ Ʋ ʋ </charinsert> -
+<charinsert>Ə ə </charinsert> –
+<charinsert>– — ’</charinsert> –
+<charinsert>~ | ° ¹ ² ³ ¼ ½ ¾ € $ ¥ £ † × ← → ↔ ↑ ± ≠ © ® ™ ‰ «+» ‹+› „+“ „+” ‚+‘ ¡ ¿ …</charinsert> –
+<charinsert>&amp;nbsp; &nbsp; [[Category:+]] #REDIRECT[[+]] {{msg-mw|+|notext=1}}  ~~~~</charinsert>
+<charinsert>ڈ ڑ ٹ </charinsert>
+<charinsert>ټ څ ځ ډ ړ ږ ښ ګ ڼ ؤ ي ې ۍ ئ </charinsert>
+<charinsert>{{{+}}} {{+}} {{subst:+}} <noinclude>+</noinclude></charinsert>
+</p></div>',
 'nocreatetext' => '{{SITENAME}} կայքում էջերի ստեղծման հնարավորությունը սահմանափակված է։
 Դուք կարող եք վերադառնալ և խմբագրել գոյություն ունեցող էջ կամ էլ [[Special:UserLogin|գրանցվել կամ մտնել համակարգ]]։',
 'nocreate-loggedin' => 'Դուք չունեք նոր էջեր ստեղծելու թույլտվություն։',

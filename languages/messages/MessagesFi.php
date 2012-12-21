@@ -422,9 +422,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Luokka|Luokat}}',
-'category_header' => 'Luokan $1 sivut',
+'category_header' => 'Sivut, jotka ovat luokassa $1',
 'subcategories' => 'Alaluokat',
-'category-media-header' => 'Luokan $1 tiedostot',
+'category-media-header' => 'Tiedostot, jotka ovat luokassa $1',
 'category-empty' => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
 'hidden-categories' => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
 'hidden-category-category' => 'Piilotetut luokat',

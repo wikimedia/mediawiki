@@ -974,7 +974,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userinvalidcssjstitle' => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
-'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
+'previewnote' => "'''Hugs at dette berre er ei førehandsvising.'''
 Endringane dine er ikkje lagra enno!",
 'continue-editing' => 'Gå til endringsområdet',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
@@ -1867,7 +1867,7 @@ Ho kan ikkje tryggingskontrollerast godt nok.',
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
 'img-auth-nopathinfo' => 'PATH_INFO saknar.
-Filtenaren din er ikkje sett opp for å gjeva denne informasjonen.
+Filtenaren din er ikkje sett opp for å gje denne informasjonen.
 Han kan vera CGI-basert og ikkje stø img_auth.
 Sjå https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
@@ -1963,7 +1963,7 @@ Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
 'upload-disallowed-here' => 'Du kan ikkje overskriva denne fila.',
 
 # File reversion
-'filerevert' => 'Rulla attende $1',
+'filerevert' => 'Rull attende $1',
 'filerevert-legend' => 'Rull attende fila',
 'filerevert-intro' => "Du rullar attende '''[[Media:$1|$1]]''' til [$4 versjonen frå $3, $2].",
 'filerevert-comment' => 'Årsak:',
@@ -2280,9 +2280,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'watchnologin' => 'Ikkje innlogga',
 'watchnologintext' => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
 'addwatch' => '↓Legg til i overvakingslista',
-'addedwatchtext' => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
-
-Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
+'addedwatchtext' => 'Sida «[[:$1]]» er lagd til i [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av henne og den tilhøyrande diskusjonssida hennar vil bli oppførde der.',
 'removewatch' => 'Fjerna frå overvakingslista',
 'removedwatchtext' => 'Sida «[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]].',
 'watch' => 'Overvak',
@@ -2330,7 +2328,7 @@ $PAGEINTRO $NEWPAGE
 
 Endringssamandraget var: $PAGESUMMARY $PAGEMINOREDIT
 
-Kontakta brukaren:
+Kontakt brukaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
@@ -2382,10 +2380,10 @@ Attendemelding og hjelp:
 
 # Rollback
 'rollback' => 'Rull attende endringar',
-'rollback_short' => 'Rulla attende',
-'rollbacklink' => 'rulla attende',
-'rollbacklinkcount' => 'rulla attende {{PLURAL:$1|éi endring|$1 endringar}}',
-'rollbacklinkcount-morethan' => 'rulla attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}',
+'rollback_short' => 'Rull attende',
+'rollbacklink' => 'rull attende',
+'rollbacklinkcount' => 'rull attende {{PLURAL:$1|éi endring|$1 endringar}}',
+'rollbacklinkcount-morethan' => 'rull attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}',
 'rollbackfailed' => 'Kunne ikkje rulle attende',
 'cantrollback' => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
 'alreadyrolled' => 'Kan ikkje rulla attende den siste endringa på [[:$1]] gjord av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) av di nokon andre alt har endra eller attenderulla sida.
@@ -3027,7 +3025,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-not-current' => 'Orsak, det er umogeleg å gjeva denne informasjonen for gamle versjonar.',
+'pageinfo-not-current' => 'Diverre er det umogeleg å gje ut denne informasjonen for gamle versjonar.',
 'pageinfo-header-basic' => 'Grunnleggjande informasjon',
 'pageinfo-header-edits' => 'Endringshistorikk',
 'pageinfo-header-restrictions' => 'Sidevern',

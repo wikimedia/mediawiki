@@ -2162,7 +2162,7 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 'enotif_subject_moved' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} pśesunuł',
 'enotif_subject_restored' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} wótnowił',
 'enotif_subject_changed' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se wót {{GENDER:$2|$2}} změnił',
-'enotif_body_intro_deleted' => 'Bok{{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$1|$2}} wulašował, glědaj $3 za aktualnu wersiju.',
+'enotif_body_intro_deleted' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$1|$2}} wulašował, glědaj $3.',
 'enotif_body_intro_created' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$2|$2}} napórał, glědaj $3 za aktualnu wersiju.',
 'enotif_body_intro_moved' => 'Bok{{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$1|$2}} pśesunuł, glědaj $3 za aktualnu wersiju.',
 'enotif_body_intro_restored' => 'Bok {{GRAMMAR:genitiw|{{SITENAME}}}} $1 jo se na $PAGEEDITDATE wót {{GENDER:$2|$2}} wótnowił, glědaj $3 za aktualnu wersiju.',

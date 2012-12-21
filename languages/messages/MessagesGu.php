@@ -531,7 +531,7 @@ Query: $2',
 'viewsource-title' => '$1 માટે સ્રોત જુઓ',
 'actionthrottled' => 'અકાળે અટાકાવી દીધેલી ક્રિયા',
 'actionthrottledtext' => 'સ્પામ નિયંત્રણ તકેદારી રૂપે આ ક્રિયા અમુક મર્યાદામાં જ કરી શકો છો, અને તમે તે મર્યાદા વટાવી દીધી છે. કૃપા કરી થોડાક સમય પછી ફરી પ્રયત્ન કરો.',
-'protectedpagetext' => 'ફેરફારો થતાં રોકવા માટે આ પાનું સુરક્ષિત કરવામાં આવ્યું છે.',
+'protectedpagetext' => 'ફેરફારો કે એવું કંઈ પણ થતું રોકવા માટે આ પાનું સુરક્ષિત કરવામાં આવ્યું છે.',
 'viewsourcetext' => 'આપ આ પાનાનો મૂળ સ્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
 'viewyourtext' => "આપ આ પાનાનાં '''આપનાં સંપાદનો'''નો મૂળ સ્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:",
 'protectedinterface' => 'આ પાનું સોફ્ટવેર માટે ઇન્ટરફેઇસ ટેક્સટ આપે છે, અને તેને દુરુપયોગ રોકવા માટે સ્થગિત કર્યું છે.
@@ -866,7 +866,7 @@ $2
 આ પાનાને ખરાબ થતો અટકાવવા આ ફેરફાર રદ્દ કરાયો છે. 
 જ્યારે તમે વેબ આધારિત  અજ્ઞાત પ્રોક્સી વાપરતા હોવ ત્યારે આવું બની શકે છે.",
 'edit_form_incomplete' => "'''ફેરફાર પત્રનો અમુક ભાગ સર્વર સુધી ન પહોંચ્યો; ખાત્રી કરો કે તમે કરેલા ફેરફાર બરાબર છે અને ફરી પ્રયત્ન કરો.'''",
-'editing' => '$1નો ફેરફાર કરી રહ્યા છે',
+'editing' => '$1નો ફેરફાર કરી રહ્યા છો.',
 'creating' => '$1 બનાવી રહ્યા છો',
 'editingsection' => '$1 (પરિચ્છેદ)નો ફેરફાર કરી રહ્યા છો',
 'editingcomment' => '$1 (પરિચ્છેદ)નો ફેરફાર કરી રહ્યા છો',
@@ -880,8 +880,8 @@ $2
 'storedversion' => 'રક્ષિત પુનરાવર્તન',
 'nonunicodebrowser' => "'''ચેતવણી: તમારું બ્રાઉઝર યુનિકોડ ઉકેલવા સક્ષમ નથી.'''
 અહીં તમે સુરક્ષિત રીતે ફેરફારો નહીં કરી શકો: ASCII સિવાયના અક્ષરો સંપાદન ચોકઠામાં હેક્સાડેસિમલ સ્વરૂપે દેખાશે.",
-'editingold' => "'''ચેતવણી: તમે કાલાતિત ફેરફારો ને બદલી રહ્યાં છો.'''
-જો તમે તેને સાચવશો , વચમાં થયેલ ફેરફારો સાચવી ન શકાય.",
+'editingold' => "'''ચેતવણી: તમે આ પાનાની ખૂબ જૂની આવૃત્તિમાં ફેરફાર કરી રહ્યાં છો.'''
+જો તમે તેને સાચવશો તો, તે આવૃત્તિ પછી થયેલા બધા ફેરફારો નાબુદ થઈ જશે.",
 'yourdiff' => 'ભેદ',
 'copyrightwarning' => "મહેરબાની કરીને એ વાતની નોંધ લેશો કે {{SITENAME}}માં કરેલું બધુંજ યોગદાન $2 હેઠળ પ્રકાશિત કરેલું માનવામાં આવે છે (વધુ માહિતિ માટે $1 જુઓ).
 જો આપ ના ચાહતા હોવ કે તમારા યોગદાનમાં અન્ય કોઇ વ્યક્તિ બેધડક પણે ફેરફાર કરે અને તેને પુનઃપ્રકાશિત કરે, તો અહીં યોગદાન કરશો નહી.<br />
@@ -1222,7 +1222,7 @@ $1",
 
 # Preferences page
 'preferences' => 'પસંદ',
-'mypreferences' => 'મારી પસંદ',
+'mypreferences' => 'પસંદ',
 'prefs-edits' => 'સંપાદનોની સંખ્યા',
 'prefsnologin' => 'પ્રવેશ કરેલ નથી',
 'prefsnologintext' => 'સભ્યના અધિકારો બદલવા તમે <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> પ્રવેશ કરેલો હોવો જોઈએ',
@@ -1298,9 +1298,9 @@ $1",
 'prefs-emailconfirm-label' => 'ઇ-મેલ પુષ્ટી',
 'prefs-textboxsize' => 'ફેરફાર ફલકનું માપ',
 'youremail' => 'ઇ-મેઇલ:',
-'username' => 'સભ્ય નામ:',
-'uid' => 'સભ્ય નામ',
-'prefs-memberingroups' => '{{PLURAL:$1|સમુહ|સમુહો}}ના સભ્ય:',
+'username' => '{{GENDER:$1|સભ્ય નામ}}:',
+'uid' => '{{GENDER:$1|સભ્ય}} ઓળખ:',
+'prefs-memberingroups' => '{{PLURAL:$1|સમુહ|સમુહો}}ના {{GENDER:$2|સભ્ય}}:',
 'prefs-registration' => 'નોંધણી સમય',
 'yourrealname' => 'સાચું નામ:',
 'yourlanguage' => 'ભાષા',
@@ -2114,8 +2114,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'emailuser' => 'સભ્યને ઇ-મેલ કરો',
 'emailuser-title-notarget' => 'ઇ-મેલ વપરાશકર્તા',
 'emailpage' => 'ઈ-મેલ સભ્ય',
-'emailpagetext' => 'તમે નીચે દર્શાવેલ ફોર્મ વાપરી ઇ-મેલ મોકલી શકો છો.
-તમે તમારી માહિતીમાં [[Special:Preferences|your user preferences]] જે ઇ-મેલ લખ્યો હશે  તે દ્વારા ના નામ હેઠળ દેખાશે, જેથી ઇ-મેલ મેળવનાર તમને સંદેશાનો જવાબ આપી શકશે.',
+'emailpagetext' => 'તમે નીચે દર્શાવેલ ફોર્મ વાપરી આ {{GENDER:$1|સભ્ય}}ને ઇ-મેલ મોકલી શકો છો.
+તમે [[Special:Preferences|તમારી પસંદમાં]] જે ઇ-મેલ લખ્યો હશે તે "દ્વારા"ના નામ હેઠળ દેખાશે, જેથી ઇ-મેલ મેળવનાર તમને સંદેશાનો જવાબ આપી શકશે.',
 'usermailererror' => 'મેલ વસ્તુ પાઠવવામાં ત્રુટિ',
 'defemailsubject' => '{{SITENAME}} સભ્ય $1 તરફથી ઈ-મેલ',
 'usermaildisabled' => 'સભ્યનો ઈ-મેલ નિષ્ક્રિય કરાયો',
@@ -2183,21 +2183,20 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'enotif_mailer' => '{{SITENAME}} સૂચના ઈ-મેલ પાઠક',
 'enotif_reset' => 'બધા પાનાને મુલાકાત લેવાયેલા અંકિત કરો',
 'enotif_impersonal_salutation' => '{{SITENAME}} સભ્ય',
+'enotif_subject_changed' => '{{SITENAME}} પૃષ્ઠ $1માં {{gender:$2|$2}}એ ફેરફાર કર્યો છે',
+'enotif_body_intro_changed' => 'The {{SITENAME}} પૃષ્ઠ $1ને {{gender:$2|$2}}એ $PAGEEDITDATEના રોજ બદલ્યું છે, હાલની આવૃત્તિ માટે જુઓ: $3.',
 'enotif_lastvisited' => 'તમારી પાછલી મુલાકાત પછી થયેલા બધા ફેરફારો માટે $1 જુઓ',
 'enotif_lastdiff' => 'આ ફેરફાર જોવા $1 જુઓ',
 'enotif_anon_editor' => 'અનામિ સભ્ય $1',
 'enotif_body' => 'પ્રિય $WATCHINGUSERNAME,
 
-
-{{SITENAME}}નું પાનું $PAGETITLE સભ્ય $PAGEEDITORએ $PAGEEDITDATEના રોજ $CHANGEDORCREATED છે, હાલની આવૃત્તિ માટે $PAGETITLE_URL જુઓ.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 ફેરફારોનો સારાંશ: $PAGESUMMARY $PAGEMINOREDIT
 
 સંપાદકનો સંપર્ક :
-mail: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+ઇ-મેલ: $PAGEEDITOR_EMAIL
+વિકિ: $PAGEEDITOR_WIKI
 
 જ્યાં સુધી તમે આ પાનાની મુલાકાત નહી લો ત્યાં સુધી તેમાં ભવિષ્યમાં થનાર કોઇ પણ ફેરફારની સૂચના તમને મળશે નહિ.
 તમે તમારી ધ્યાન સૂચિમાં તમે જોયેલા પાના સંબંધી સૂચનાને લાગતા વિલપોમાં ફેરફાર કરી શકો છો.
@@ -2409,9 +2408,9 @@ $1',
 'blanknamespace' => '(મુખ્ય)',
 
 # Contributions
-'contributions' => 'સભ્યનું યોગદાન',
+'contributions' => '{{GENDER:$1|સભ્ય}}નું યોગદાન',
 'contributions-title' => 'સભ્ય $1નું યોગદાન',
-'mycontris' => 'મારૂં યોગદાન',
+'mycontris' => 'યોગદાન',
 'contribsub2' => '$1 માટે ($2)',
 'nocontribs' => 'આ પરિમાણને મળતી પરિણામ નથી મળ્યાં',
 'uctop' => '(છેક ઉપર)',
@@ -2452,7 +2451,7 @@ $1',
 'whatlinkshere-hideredirs' => 'અન્યત્ર વાળેલાં પાનાં $1',
 'whatlinkshere-hidetrans' => '$1 આરપાર સમાવેશનો',
 'whatlinkshere-hidelinks' => 'કડીઓ $1',
-'whatlinkshere-hideimages' => '$1 ચિત્ર કડીઓ',
+'whatlinkshere-hideimages' => '$1 ફાઇલની કડીઓ',
 'whatlinkshere-filters' => 'ચાળણી',
 
 # Block/unblock
@@ -2924,8 +2923,13 @@ $1',
 'pageinfo-length' => 'પૃષ્ઠની લંબાઇ (બાઇટમાં)',
 'pageinfo-views' => 'જોનારાની સંખ્યા',
 'pageinfo-watchers' => 'પાના નીરીક્ષકોની સંખ્યા',
+'pageinfo-firstuser' => 'પૃષ્ઠ સર્જક',
+'pageinfo-firsttime' => 'પૃષ્ઠ સર્જનની તારીખ',
+'pageinfo-lastuser' => 'છેલ્લો ફેરફાર કરનાર',
+'pageinfo-lasttime' => 'છેલ્લા ફેરફારની તારીખ',
 'pageinfo-edits' => 'કુલ સંપાદનોની સંખ્યા',
 'pageinfo-authors' => 'ક્ષેત્રના લેખકોની કુલ સંખ્યા',
+'pageinfo-recent-edits' => 'તાજા ફેરફારોની સંખ્યા (છેલ્લા $1 દરમ્યાન)',
 'pageinfo-toolboxlink' => 'પૃષ્ઠમાહિતી',
 'pageinfo-redirectsto-info' => 'માહિતી',
 'pageinfo-contentpage-yes' => 'હા',
