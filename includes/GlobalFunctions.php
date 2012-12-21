@@ -1242,10 +1242,10 @@ function wfIncrStats( $key, $count = 1 ) {
 	$count = intval( $count );
 
 	if( $wgStatsMethod == 'udp' ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
 		static $socket;
 
-		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
+		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : wfWikiID();
 
 		if ( !$socket ) {
 			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
