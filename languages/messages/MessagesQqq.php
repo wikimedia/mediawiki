@@ -1173,6 +1173,9 @@ See also:
 'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
+'createacct-join-loggedin' => 'Subheading of vertical-layout create account form, slightly modified from {{msg-mw|createacct-join}} to be appropriate for logged-in users.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-emailrequired' => 'Label in vertical-layout create account form for email field when it is required.
 
 See also:
@@ -2641,6 +2644,8 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-help-gender' => 'Used as additional description for {{msg-mw|yourgender}} field in [[Special:Preferences]], section {{msg-mw|prefs-info}}.',
 'email' => '{{Identical|E-mail}}',
 'prefs-help-realname' => 'In user preferences.
+{{Identical|Real name attribution}}',
+'createacct-realname-tip-loggedin' => 'Used on the account creation form when creating another user\'s account. Similar to {{mw-msg|prefs-help-realname}}.
 {{Identical|Real name attribution}}',
 'prefs-help-email' => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
 

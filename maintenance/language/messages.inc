@@ -482,6 +482,7 @@ $wgMessageStructure = array(
 		'helplogin-url',
 		'userlogin-helplink',
 		'createacct-join',
+		'createacct-join-loggedin',
 		'createacct-emailrequired',
 		'createacct-emailoptional',
 		'createacct-email-ph',
@@ -1100,6 +1101,7 @@ $wgMessageStructure = array(
 		'prefs-help-gender',
 		'email',
 		'prefs-help-realname',
+		'createacct-realname-tip-loggedin',
 
 		# 3 messages depending upon $wgEmailConfirmToEdit and $wgEnableUserEmail
 		'prefs-help-email',

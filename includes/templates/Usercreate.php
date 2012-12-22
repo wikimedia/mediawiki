@@ -56,7 +56,7 @@ class UsercreateTemplate extends BaseTemplate {
 	}
 	?>
 <div id="userloginForm">
-<h2 class="createaccount-join"><?php $this->msg( 'createacct-join' ); ?></h2>
+<h2 class="createaccount-join"><?php $this->msg( $this->data['ownaccount'] ? 'createacct-join-loggedin' : 'createacct-join' ); ?></h2>
 <form name="userlogin2" id="userlogin2" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
 	<section class="mw-form-header">
 		<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
@@ -167,7 +167,7 @@ class UsercreateTemplate extends BaseTemplate {
 					tabindex="7"
 					value="<?php $this->text( 'realname' ); ?>" size='20' />
 				<div class="prefsectiontip">
-					<?php $this->msgWiki( 'prefs-help-realname' ); ?>
+					<?php $this->msgWiki( $this->data['ownaccount'] ? 'createacct-realname-tip-loggedin' : 'prefs-help-realname' ); ?>
 				</div>
 			</div>
 		<?php }
