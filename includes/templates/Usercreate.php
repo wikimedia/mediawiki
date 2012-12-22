@@ -143,12 +143,17 @@ class UsercreateTemplate extends QuickTemplate {
 		) ); ?>
 					<div class="prefsectiontip">
 						<?php  // duplicated in Preferences.php profilePreferences()
+							global $wgUser;
 							if( $this->data['emailrequired'] ) {
 								$this->msgWiki('prefs-help-email-required');
+							} elseif ( $wgUser->isLoggedIn() )  {
+								$this->msgWiki( 'prefs-help-email-create2' );
 							} else {
 								$this->msgWiki('prefs-help-email');
 							}
-							if( $this->data['emailothers'] ) {
+							if ( $this->data['emailothers'] && $wgUser->isLoggedIn() ) {
+								$this->msgWiki( 'prefs-help-email-others-create2' );
+							} elseif ( $this->data['emailothers'] ) {
 								$this->msgWiki('prefs-help-email-others');
 							} ?>
 					</div>
@@ -163,7 +168,11 @@ class UsercreateTemplate extends QuickTemplate {
 							tabindex="7"
 							value="<?php $this->text('realname') ?>" size='20' />
 						<div class="prefsectiontip">
-							<?php $this->msgWiki('prefs-help-realname'); ?>
+							<?php global $wgUser; if ( $wgUser->isLoggedIn() ) {
+								$this->msgWiki('prefs-help-realname-create2');
+							} else {
+								$this->msgWiki('prefs-help-realname');
+							} ?>
 						</div>
 					</td>
 			<?php } ?>
