@@ -49,7 +49,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$args = array_merge( array( $params, 'entirewatchlist' ), array_keys( $pageSet->getAllowedParams() ) );
 		call_user_func_array( array( $this, 'requireOnlyOneParameter' ), $args );
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER, 'api' );
 
 		$timestamp = null;
 		if ( isset( $params['timestamp'] ) ) {
