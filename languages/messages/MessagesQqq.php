@@ -2675,6 +2675,8 @@ Used in [[Special:Preferences]]. Parameters are:
 'email' => '{{Identical|E-mail}}',
 'prefs-help-realname' => 'In user preferences.
 {{Identical|Real name attribution}}',
+'createacct-another-realname-tip' => 'Used on the account creation form when creating another user\'s account. Similar to {{mw-msg|prefs-help-realname}}.
+{{Identical|Real name attribution}}',
 'prefs-help-email' => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
 
 See also:

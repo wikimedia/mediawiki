@@ -1978,6 +1978,8 @@ This information will be public.',
 'email'                         => 'Email',
 'prefs-help-realname'           => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
+'createacct-another-realname-tip' => 'Real name is optional.
+If you choose to provide it, this will be used for giving the user attribution for their work.',
 'prefs-help-email'              => 'Email address is optional, but is needed for password resets, should you forget your password.',
 'prefs-help-email-others'       => 'You can also choose to let others contact you by email through a link on your user or talk page.
 Your email address is not revealed when other users contact you.',

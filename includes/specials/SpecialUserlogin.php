@@ -1209,14 +1209,16 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @private
+	 * Whether the login/create account form should display a link to the
+	 * other form (in addition to whatever the skin provides).
 	 *
 	 * @param $user User
-	 *
-	 * @return Boolean
+	 * @return bool
 	 */
-	function showCreateOrLoginLink( &$user ) {
-		if ( $this->mType == 'signup' ) {
+	private function showCreateOrLoginLink( &$user ) {
+		if ( $user->isLoggedIn() ) {
+			return false;
+		} elseif ( $this->mType == 'signup' ) {
 			return true;
 		} elseif ( $user->isAllowed( 'createaccount' ) ) {
 			return true;
