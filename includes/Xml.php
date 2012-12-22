@@ -682,22 +682,11 @@ class Xml {
 	 * @return string
 	 */
 	public static function encodeJsCall( $name, $args ) {
-		$s = "$name(";
-		$first = true;
-
-		foreach ( $args as $arg ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				$s .= ', ';
-			}
-
-			$s .= Xml::encodeJsVar( $arg );
+		foreach ( $args as &$arg ) {
+			$arg = Xml::encodeJsVar( $arg );
 		}
 
-		$s .= ");\n";
-
-		return $s;
+		return "$name(" . implode( ', ', $arg ) . ");\n";
 	}
 
 	/**
