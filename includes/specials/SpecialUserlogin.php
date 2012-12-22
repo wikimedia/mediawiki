@@ -1152,6 +1152,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickHTTPS', $this->mStickHTTPS );
+		$template->set( 'ownaccount', $this->getUser()->isLoggedIn() );
 
 		if ( $this->mType === 'signup' && $user->isLoggedIn() ) {
 			$template->set( 'createAnother', true );
@@ -1209,14 +1210,16 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @private
+	 * Whether the login/create account form should display a link to the
+	 * other form (in addition to whatever the skin provides).
 	 *
 	 * @param $user User
-	 *
-	 * @return Boolean
+	 * @return bool
 	 */
-	function showCreateOrLoginLink( &$user ) {
-		if ( $this->mType == 'signup' ) {
+	private function showCreateOrLoginLink( &$user ) {
+		if ( $user->isLoggedIn() ) {
+			return false;
+		} elseif ( $this->mType == 'signup' ) {
 			return true;
 		} elseif ( $user->isAllowed( 'createaccount' ) ) {
 			return true;
