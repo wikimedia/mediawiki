@@ -613,6 +613,7 @@ $2',
 'remembermypassword' => 'මාගේ පිවිසීම මෙම ගවේෂක මතකයෙහි (උපරිම ලෙස {{PLURAL:$1|දින|දින}}) $1 ක් මතක තබාගන්න',
 'securelogin-stick-https' => 'ඇතුල්වීමෙන් පසුවද HTTPS හරහා සම්බන්ධ වන්න',
 'yourdomainname' => 'ඔබගේ වසම:',
+'password-change-forbidden' => 'ඔබට මෙම විකියෙහි මුරපද වෙනස් කල නොහැක.',
 'externaldberror' => 'එක්කෝ සත්‍යාවත් දත්ත-ගබඩා දෝෂයක් පැවතුනි නැතිනම් ඔබගේ බාහිර ගිණුම යාවත්කාලීන කිරීමට ඔබ හට අවසර දී නොමැත.',
 'login' => 'පිවිසෙන්න',
 'nav-login-createaccount' => 'පිවිසෙන්න / නව ගිණුමක් තනන්න',
@@ -756,6 +757,7 @@ $2
 'changeemail-oldemail' => 'වත්මන් විද්‍යුත් තැපැල් ලිපිනය:',
 'changeemail-newemail' => 'නව විද්‍යුත් තැපැල් ලිපිනය:',
 'changeemail-none' => '(කිසිවක් නොමැත)',
+'changeemail-password' => 'ඔබේ {{SITENAME}} මුරපදය:',
 'changeemail-submit' => 'විද්‍යුත් තැපෑල  වෙනස් කරන්න',
 'changeemail-cancel' => 'අවලංගු කරන්න',
 
@@ -962,6 +964,14 @@ $2
 'edit-no-change' => 'පෙළට කිසිදු වෙනසක් සිදු නොකල  බැවින් ඔබගේ සංස්කරණය නොසලකාහරින ලදි.',
 'edit-already-exists' => 'නව පිටුවක් තැනිය නොහැකි විය.
 එය දැනටමත් පවතියි.',
+'defaultmessagetext' => 'සාමාන්‍ය පණිවුඩ පෙළ',
+'invalid-content-data' => 'වලංගු නොවන අන්තර්ගත දත්ත',
+
+# Content models
+'content-model-wikitext' => 'විකිපෙළ',
+'content-model-text' => 'සාමාන්‍ය පෙළ',
+'content-model-javascript' => 'ජාවාස්ක්‍රිප්ට්',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'අවවාදයයි: මෙම පිටුවෙහි අධිවැය ව්‍යාකරණ විග්‍රහ ශ්‍රිත කැඳවුම් (expensive parser function calls) පමණට වඩා ඇත.
@@ -1252,6 +1262,7 @@ $1",
 'prefs-beta' => 'බීටා අනුවාදයේ ලක්ෂණ',
 'prefs-datetime' => 'දිනය සහ වේලාව',
 'prefs-labs' => 'Labs features',
+'prefs-user-pages' => 'පරිශීලක පිටු',
 'prefs-personal' => 'පරිශීලක පැතිකඩ',
 'prefs-rc' => '‍නව වෙනස්වීම්',
 'prefs-watchlist' => 'මුර-ලැයිස්තුව',
@@ -2972,6 +2983,9 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'pageinfo-recent-authors' => 'මෑත ප්‍රභින්න කර්තෘවරුන් සංඛ්‍යාව',
 'pageinfo-magic-words' => 'මැජික් {{PLURAL:$1|වචනය|වචන}} ($1)',
 'pageinfo-toolboxlink' => 'පිටු තොරතුරු',
+'pageinfo-redirectsto-info' => 'තොරතුරු',
+'pageinfo-contentpage-yes' => 'ඔව්',
+'pageinfo-protect-cascading-yes' => 'ඔව්',
 
 # Patrolling
 'markaspatrolleddiff' => 'පරික්ෂාකර බැලූ ලෙස සලකුණු කරන්න',
@@ -3047,6 +3061,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 පැය|$1 පැය}}',
 'days' => '{{PLURAL:$1|$1 දවස|$1 දවස්}}',
 'ago' => '$1 පෙර',
+'just-now' => 'මේ දැන්',
 
 # Bad image list
 'bad_image_list' => 'ආකෘතිය පහත පරිදි වේ:

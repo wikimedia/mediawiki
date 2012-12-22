@@ -2314,7 +2314,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'enotif_subject_moved' => '{{SITENAME}}-sida $1 har vorte flytta av {{gender:$2|$2}}',
 'enotif_subject_restored' => '{{SITENAME}}-sida $1 har vorte attoppretta av {{gender:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}}-sida $1 har vorte endra av {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => '{{SITENAME}}-sida $1 vart sletta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
+'enotif_body_intro_deleted' => '{{SITENAME}}-sida $1 vart sletta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3.',
 'enotif_body_intro_created' => '{{SITENAME}}-sida $1 vart oppretta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
 'enotif_body_intro_moved' => '{{SITENAME}}-sida $1 vart flytt $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',
 'enotif_body_intro_restored' => '{{SITENAME}}-sida $1 vart attoppretta $PAGEEDITDATE av {{gender:$2|$2}}, sjå $3 for den gjeldande versjonen.',

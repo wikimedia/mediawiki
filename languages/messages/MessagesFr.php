@@ -2419,7 +2419,7 @@ Les prochaines modifications de cette page et de la page de discussion associée
 'enotif_subject_moved' => 'La page $1 sur {{SITENAME}} a été renommée par {{GENDER:$2|$2}}',
 'enotif_subject_restored' => 'La page $1 sur {{SITENAME}} a été restaurée par {{GENDER:$2|$2}}',
 'enotif_subject_changed' => 'La page $1 sur {{SITENAME}} a été modifiée par {{GENDER:$2|$2}}',
-'enotif_body_intro_deleted' => 'La page $1 sur {{SITENAME}} a été effacée le $PAGEEDITDATE par {{GENDER:$2|$2}}, voir $3 pour la révision actuelle.',
+'enotif_body_intro_deleted' => 'La page $1 sur {{SITENAME}} a été effacée le $PAGEEDITDATE par {{gender:$2|$2}}, voir $3 pour la révision actuelle.',
 'enotif_body_intro_created' => 'La page $1 sur {{SITENAME}} a été créée le $PAGEEDITDATE par {{GENDER:$2|$2}}, voir $3 pour la révision actuelle.',
 'enotif_body_intro_moved' => 'La page $1 sur {{SITENAME}} a été renommée le $PAGEEDITDATE par {{GENDER:$2|$2}}, voir $3 pour la révision actuelle.',
 'enotif_body_intro_restored' => 'La page $1 sur {{SITENAME}} a été restaurée le $PAGEEDITDATE par {{GENDER:$2|$2}}, voir $3 pour la révision actuelle.',
@@ -2901,7 +2901,7 @@ Veuillez en choisir un autre.",
 La page de destination « [[:$1]] » existe déjà.
 Êtes-vous certain{{GENDER:||e|}} de vouloir la supprimer pour permettre ce renommage ?',
 'delete_and_move_confirm' => 'Oui, supprimer la page de destination',
-'delete_and_move_reason' => 'Page supprimée pour permettre le renommage depuis "[[$1]]"',
+'delete_and_move_reason' => 'Page supprimée pour permettre le renommage depuis « [[$1]] »',
 'selfmove' => "Les titres d'origine et de destination sont les mêmes ;
 impossible de renommer une page sur elle-même.",
 'immobile-source-namespace' => "Vous ne pouvez pas renommer les pages dans l'espace de noms « $1 »",

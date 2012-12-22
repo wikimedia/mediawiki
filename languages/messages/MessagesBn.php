@@ -476,6 +476,7 @@ $2',
 
 এ পরিস্থিতিতে আপনি বেনামে {{SITENAME}} ব্যবহার করতে পারেন, কিংবা একই বা পৃথক নামে <span class='plainlinks'>[$1 আবার প্রবেশ করতে]</span> পারেন।
 লক্ষ্য করুন যে, এর কোন কোন পাতা এখনও এমনভাবে দেখাতে পারে যাতে মনে হবে আপনি আগের অবস্থাতেই আছেন। এক্ষেত্রে আপনাকে আপনার ব্রাওজারের ক্যাশ পরিষ্কার (clear browser cache) করে নিতে হবে।",
+'welcomeuser' => 'স্বাগতম, $1!',
 'yourname' => 'ব্যবহারকারী নাম:',
 'yourpassword' => 'শব্দচাবি:',
 'yourpasswordagain' => 'শব্দচাবিটি (password) আবার লিখুন',
@@ -628,6 +629,7 @@ $2
 'changeemail-oldemail' => 'বর্তমান ই-মেইল ঠিকানা:',
 'changeemail-newemail' => 'নতুন ই-মেইল ঠিকানা:',
 'changeemail-none' => '(কিছু নাই)',
+'changeemail-password' => 'আপনার {{SITENAME}} শব্দচাবি:',
 'changeemail-submit' => 'ই-মেইল পরিবর্তন',
 'changeemail-cancel' => 'বাতিল',
 

@@ -20,6 +20,7 @@
  * @author Nullzero
  * @author Octahedron80
  * @author Passawuth
+ * @author TMo3289
  * @author Woraponboonkerd
  * @author לערי ריינהארט
  * @author จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae
@@ -1736,6 +1737,7 @@ $1',
 ดูเพิ่มได้ที่[[Special:WhatLinksHere/$2|รายชื่อเต็ม]]',
 'nolinkstoimage' => 'ไม่มีหน้าที่ลิงก์มาไฟล์นี้',
 'morelinkstoimage' => 'ดู[[Special:WhatLinksHere/$1|หน้าที่ลิงก์]]มายังไฟล์นี้เพิ่มเติม',
+'linkstoimage-redirect' => '$1 (แฟ้มเปลี่ยนทาง) $2',
 'duplicatesoffile' => '$1 ไฟล์ต่อไปนี้ เป็นไฟล์เดียวกับไฟล์นี้ ([[Special:FileDuplicateSearch/$2|รายละเอียดเพิ่ม]]):',
 'sharedupload' => 'ไฟล์นี้มาจาก $1 และอาจมีการใช้ในโครงการอื่น',
 'sharedupload-desc-there' => 'ไฟล์นี้มาจาก $1 และอาจถูกใช้บนโครงการอื่น ๆ

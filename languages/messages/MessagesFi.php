@@ -861,6 +861,7 @@ Väliaikainen salasana: $2',
 'changeemail-oldemail' => 'Nykyinen sähköpostiosoite',
 'changeemail-newemail' => 'Uusi sähköpostiosoite',
 'changeemail-none' => '(ei asetettu)',
+'changeemail-password' => 'Salasanasi sivustolla {{SITENAME}}',
 'changeemail-submit' => 'Muuta sähköpostiosoite',
 'changeemail-cancel' => 'Peruuta',
 

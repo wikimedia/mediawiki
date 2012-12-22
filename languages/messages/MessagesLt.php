@@ -737,6 +737,7 @@ Laikinas slaptažodis: $2',
 'changeemail-oldemail' => 'Dabartinis el. pašto adresas:',
 'changeemail-newemail' => 'Naujas el. pašto adresas:',
 'changeemail-none' => '(nėra)',
+'changeemail-password' => 'Jūsų {{SITENAME}} slaptažodis:',
 'changeemail-submit' => 'Keisti el. pašto adresą',
 'changeemail-cancel' => 'Atšaukti',
 
@@ -932,6 +933,12 @@ Greičiausiai jis yra ištrintas.',
 'edit-already-exists' => 'Negalima sukurti naujo puslapio.
 Jis jau egzistuoja.',
 'defaultmessagetext' => 'Numatytasis pranešimo tekstas',
+
+# Content models
+'content-model-wikitext' => 'wikitekstas',
+'content-model-text' => 'paprastasis tekstas',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Įspėjimas: Šiame puslapyje yra per daug užtrunkančių analizatoriaus funkcijų šaukinių.
@@ -1670,6 +1677,7 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'backend-fail-notsame' => 'Jau egzistuoja neidentiškas failas $1.',
 'backend-fail-invalidpath' => '$1 yra neteisinga saugojimo nuoroda.',
 'backend-fail-delete' => 'Negalima panaikinti failo $1.',
+'backend-fail-describe' => 'Nepavyko pakeisti failo metaduomenis "$1".',
 'backend-fail-alreadyexists' => 'Failas $1 jau egzistuoja.',
 'backend-fail-store' => 'Negalima išsaugoti failo $1 kaip $2.',
 'backend-fail-copy' => 'Negalima nukopijuoti failo $1 į $2.',
@@ -2084,6 +2092,7 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'mailnologin' => 'Nėra adreso',
 'mailnologintext' => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser' => 'Rašyti laišką šiam naudotojui',
+'emailuser-title-notarget' => 'El. pašto vartotojas',
 'emailpage' => 'Siųsti el. laišką naudotojui',
 'emailpagetext' => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
 El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustatymuose]], bus rodomas kaip el. pašto siuntėjo adresas, tam, kad gavėjas galėtų jums iškart atsakyti.',
@@ -2975,6 +2984,7 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'file-info-size-pages' => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4, $5 {{PLURAL:$5|page|pages}}',
 'file-nohires' => 'Geresnė raiška negalima.',
 'svg-long-desc' => 'SVG failas, formaliai $1 × $2 taškų, failo dydis: $3',
+'svg-long-error' => 'Neleistinas SVG failas: $1',
 'show-big-image' => 'Pilna raiška',
 'show-big-image-preview' => 'Sumažintos iliustracijos dydis: $1 .',
 'show-big-image-other' => '{{PLURAL:$2|Kita rezoliucija|Kitos $2 rezoliucijos|Kitų $2 rezoliucijų}}: $1 .',
@@ -3003,6 +3013,7 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'hours' => '{{PLURAL:$1|$1 valandą|$1 valandas|$1 valandų}}',
 'days' => '{{PLURAL:$1|$1 dieną|$1 dienas|$1 dienų}}',
 'ago' => 'prieš $1',
+'just-now' => 'tik dabar',
 
 # Bad image list
 'bad_image_list' => 'Formatas yra toks:

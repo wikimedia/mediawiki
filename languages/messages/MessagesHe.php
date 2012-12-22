@@ -12,6 +12,7 @@
  * @author Drorsnir
  * @author Hoo
  * @author Ijon
+ * @author Inkbug
  * @author Ofekalef
  * @author Ofrahod
  * @author Rotem Dan (July 2003)
@@ -2425,7 +2426,7 @@ $1',
 'enotif_subject_moved' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} הועבר על ידי {{gender:$2|$2}}',
 'enotif_subject_restored' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שוחזר על ידי {{gender:$2|$2}}',
 'enotif_subject_changed' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שונה על ידי {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נמחק ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
+'enotif_body_intro_deleted' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נמחק ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3.',
 'enotif_body_intro_created' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נוצר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
 'enotif_body_intro_moved' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} הועבר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
 'enotif_body_intro_restored' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שוחזר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',

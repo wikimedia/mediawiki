@@ -39,6 +39,7 @@
  * @author McDutchie
  * @author Melos
  * @author Minerva Titani
+ * @author Muxator
  * @author Nemo bis
  * @author Nick1915
  * @author Ninniuz
@@ -54,6 +55,7 @@
  * @author Rippitippi
  * @author S.Örvarr.S
  * @author SabineCretella
+ * @author Sannita
  * @author Stefano-c
  * @author Tonyfroio
  * @author Trixt
@@ -322,9 +324,9 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => 'Stile del carattere nella casella di modifica:',
 'editfont-default' => 'Predefinito del browser',
-'editfont-monospace' => 'Font monospazio',
-'editfont-sansserif' => 'Font sans-serif',
-'editfont-serif' => 'Font serif',
+'editfont-monospace' => 'Carattere a larghezza fissa',
+'editfont-sansserif' => 'Carattere sans-serif',
+'editfont-serif' => 'Carattere serif',
 
 # Dates
 'sunday' => 'domenica',
@@ -2282,7 +2284,7 @@ D\'ora in poi, le modifiche apportate alla pagina e alla sua discussione verrann
 'enotif_subject_moved' => 'La pagina $1 di {{SITENAME}} è stata spostata da {{gender:$2|$2}}',
 'enotif_subject_restored' => 'La pagina $1 di {{SITENAME}} è stata ripristinata da {{gender:$2|$2}}',
 'enotif_subject_changed' => 'La pagina $1 di {{SITENAME}} è stata modificata da {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'La pagina $1 di {{SITENAME}} è stata cancellata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
+'enotif_body_intro_deleted' => 'La pagina $1 di {{SITENAME}} è stata cancellata da {{gender:$2|$2}} il $PAGEEDITDATE (vedi $3 per la versione attuale).',
 'enotif_body_intro_created' => 'La pagina $1 di {{SITENAME}} è stata creata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
 'enotif_body_intro_moved' => 'La pagina $1 di {{SITENAME}} è stata spostata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
 'enotif_body_intro_restored' => 'La pagina $1 di {{SITENAME}} è stata ripristinata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',

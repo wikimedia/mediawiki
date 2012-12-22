@@ -576,7 +576,7 @@ $messages = array(
 'jumpto' => 'Ga naar:',
 'jumptonavigation' => 'navigatie',
 'jumptosearch' => 'zoeken',
-'view-pool-error' => 'Sorry, de servers zijn op het moment overbelast.
+'view-pool-error' => 'De servers zijn op het moment helaas overbelast.
 Te veel gebruikers proberen deze pagina te bekijken.
 Wacht alstublieft even voordat u opnieuw toegang probeert te krijgen tot deze pagina.
 
@@ -816,7 +816,7 @@ Gebruikersnamen zijn hoofdlettergevoelig.
 Controleer de schrijfwijze of [[Special:UserLogin/signup|maak een nieuwe gebruiker aan]].',
 'nosuchusershort' => 'De gebruiker "$1" bestaat niet.
 Controleer de schrijfwijze.',
-'nouserspecified' => 'U dient een gebruikersnaam op te geven.',
+'nouserspecified' => 'Geef een gebruikersnaam op.',
 'login-userblocked' => 'Deze gebruiker is geblokkeerd.
 Aanmelden is niet mogelijk.',
 'wrongpassword' => 'Het ingegeven wachtwoord is onjuist.
@@ -2471,7 +2471,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'enotif_subject_moved' => '{{SITENAME}}: pagina $1 is hernoemd door {{GENDER:$2|$2}}',
 'enotif_subject_restored' => '{{SITENAME}}: pagina $1 is teruggeplaatst door {{GENDER:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}}: pagina $1 is bewerkt door {{GENDER:$2|$2}}',
-'enotif_body_intro_deleted' => 'De pagina $1 op {{SITENAME}} is verwijderd door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
+'enotif_body_intro_deleted' => 'De pagina $1 op {{SITENAME}} is verwijderd door {{gender:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
 'enotif_body_intro_created' => 'De pagina $1 op {{SITENAME}} is aangemaakt door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
 'enotif_body_intro_moved' => 'De pagina $1 op {{SITENAME}} is hernoemd door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',
 'enotif_body_intro_restored' => 'De pagina $1 op {{SITENAME}} is teruggeplaatst door {{GENDER:$2|$2}} op $PAGEEDITDATE. Zie $3 voor de huidige versie.',

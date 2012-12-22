@@ -2386,7 +2386,7 @@ Futuras modificações em tal página e páginas de discussão relacionadas ser�
 'enotif_subject_moved' => 'A página $1 da {{SITENAME}} foi movida por {{gender:$2|$2}}',
 'enotif_subject_restored' => 'A página $1 da {{SITENAME}} foi restaurada por {{gender:$2|$2}}',
 'enotif_subject_changed' => 'A página $1 da {{SITENAME}} foi alterada por {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'A página $1 da {{SITENAME}} foi eliminada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
+'enotif_body_intro_deleted' => 'A página $1 do wiki {{SITENAME}} foi eliminada em $PAGEEDITDATE por {{gender:$2|$2}}. Veja $3.',
 'enotif_body_intro_created' => 'A página $1 da {{SITENAME}} foi criada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
 'enotif_body_intro_moved' => 'A página $1 da {{SITENAME}} foi movida em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',
 'enotif_body_intro_restored' => 'A página $1 da {{SITENAME}} foi restaurada em $PAGEEDITDATE por {{gender:$2|$2}}, acesse $3 para ver a versão atual.',

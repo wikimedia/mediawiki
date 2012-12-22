@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aapkamanoj
  * @author Abhishrut
  * @author Akansha
  * @author Aksi great
@@ -345,6 +346,7 @@ $messages = array(
 'namespaces' => 'नामस्थान',
 'variants' => 'संस्करण',
 
+'navigation-heading' => 'दिक्चालन सूची',
 'errorpagetitle' => 'त्रुटि',
 'returnto' => '$1 को लौटें।',
 'tagline' => '{{SITENAME}} से',

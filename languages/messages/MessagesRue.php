@@ -2100,8 +2100,8 @@ $1',
 'watchnologin' => 'Не сьте приголошеный(а)',
 'watchnologintext' => 'Про слїдованя сторінок ся мусите [[Special:UserLogin|приголосити]].',
 'addwatch' => 'Придати до списку слїдованых сторінок',
-'addedwatchtext' => "Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|списку слїдованых]].
-Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім списку, а тыж будуть выдїлены '''тучнї''' на сторінцї із [[Special:RecentChanges|списком послїднїх змін]], жебы їх было легше вшимнути.",
+'addedwatchtext' => 'Сторінка «[[:$1]]» была придана до вашого [[Special:Watchlist|списку слїдованых]].
+Будучі зміны той статї і з нёв повязаной сторінков діскузії будуть зображены у тім списку.',
 'removewatch' => 'Вымазати зо списку слїдованых сторінок',
 'removedwatchtext' => 'Сторінка «[[:$1]]» вымазана з вашого [[Special:Watchlist|списку слїдованых сторінок]].',
 'watch' => 'Слїдовати',
@@ -2135,7 +2135,7 @@ $1',
 'enotif_subject_moved' => '$2 {{gender:$2|переменовав|переменовала}} сторінку $1 на {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_restored' => '$2 {{gender:$2|обновив|обновила}} сторінку $1 на {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_changed' => '$2 {{gender:$2|змінив|змінила}} сторінку $1 на {{grammar:6sg|{{SITENAME}}}}',
-'enotif_body_intro_deleted' => 'В $PAGEEDITDATE {{gender:$2|змазав|змазала}} $2 на {{grammar:6sg|{{SITENAME}}}} сторінку $1, посмотьте актуалну верзію на $3 .',
+'enotif_body_intro_deleted' => 'В $PAGEEDITDATE {{gender:$2|змазав|змазала}} $2 на {{grammar:6sg|{{SITENAME}}}} сторінку $1,посмотьте $3 .',
 'enotif_body_intro_created' => 'В $PAGEEDITDATE {{gender:$2|створив|створила}} $2 на {{grammar:6sg|{{SITENAME}}}} сторінку $1, посмотьте актуалну верзію на $3 .',
 'enotif_body_intro_moved' => 'В $PAGEEDITDATE {{gender:$2|переменовав|переменовала}} $2 на {{grammar:6sg|{{SITENAME}}}} сторінку $1, посмотьте актуалну верзію на $3 .',
 'enotif_body_intro_restored' => 'В $PAGEEDITDATE {{gender:$2|обновив|обновила}} $2 на {{grammar:6sg|{{SITENAME}}}} сторінку $1, посмотьте актуалну верзію на $3 .',
@@ -2725,6 +2725,7 @@ $1',
 'import-error-interwiki' => 'Сторінка „$1“ ся не імпортує, бо єй назва є зарезервована про вонкашнї лінкы (interwiki).',
 'import-error-special' => 'Сторінка „$1“ ся не імпортує, бо належыть до шпеціалного простору назв, до котрого сторінкы не належать.',
 'import-error-invalid' => 'Сторінка „$1“ ся не імпортує, бо єй назва неприпустна.',
+'import-error-unserialize' => 'Не вдало ся десеріалізовати ревізію $2 сторінкы „$1“. Ревізія хотїла хосновати модел обсягу $3 серіалоізованый як $4.',
 'import-options-wrong' => '{{PLURAL:$2|Неправильна опція|Неправильны опції}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Вказана некоректна назва корїнёвой сторінкы',
 'import-rootpage-nosubpage' => 'В просторї назв вказаной корїнёвой сторінкы «$1» не дозволены підсторінкы',
@@ -2926,6 +2927,8 @@ $1',
 'file-info-size-pages' => '$1 × $2 пікселів, великость файлу: $3, MIME тіп: $4, $5 {{PLURAL:$5|сторінка|сторінкы|сторінок}}',
 'file-nohires' => 'Не є верзія з векшым розлишінём.',
 'svg-long-desc' => 'SVG-файл, номінално $1 × $2 пікселів, розмір файлу: $3',
+'svg-long-desc-animated' => 'Анімованый SVG-файл, номінално $1 × $2 пікселів, розмір файлу: $3',
+'svg-long-error' => 'Неправильный файл SVG: $1',
 'show-big-image' => 'Повне розлишіня',
 'show-big-image-preview' => 'Розмір того нагляду: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Інше|іншы}} розлишіня: $1.',
@@ -2935,6 +2938,8 @@ $1',
 'file-info-png-looped' => 'в слючцї',
 'file-info-png-repeat' => 'повторяне  $1{{PLURAL:$1|раз|разы}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|снимок|снимкы|снимків}}',
+'file-no-thumb-animation' => "'''Позначка. Через технічны обмеджіня, мініатуры того файлу не будуть анімованы.'''",
+'file-no-thumb-animation-gif' => "'''Позначка. Через технічны обмеджіня, мініатуры образчіків GIF высокого розлишіня, як є гевто, ся не анімують.'''",
 
 # Special:NewFiles
 'newimages' => 'Ґалерія новых файлів',
@@ -3447,6 +3452,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Вкладаня шаблон міджі вікі є выпнуте]',
 'scarytranscludefailed' => '[Не вдало ся натягнути шаблону про $1]',
+'scarytranscludefailed-httpstatus' => '[Не вдало ся наладовати шаблону про $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL дуже довгый]',
 
 # Delete conflict
@@ -3556,6 +3562,7 @@ $5
 'version-license' => 'Ліценція',
 'version-poweredby-credits' => "Тота вікі біжыть на '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'іншы',
+'version-credits-summary' => 'Слїдуючім людям бы сьме радо подяковали за їх приспівкы [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki є слободный софтвер; можете го шырити або управляти в згодї з условіями GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (як уважыте) будьяка пізнїша верзія.
 
 MediaWiki є дістрібуована в надїї, же буде хосновна, але БЕЗ БУДЬЯКОЙ ЗАРУКЫ; не давають ся ани зарукы ПРОДАЙНОСТИ або ВАЛУШНОСТИ ПРО СТАНОВЛЕНЫЙ ЦІЛЬ. Детайлы ся дочітате в текстї  GNU General Public License.

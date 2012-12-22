@@ -216,6 +216,7 @@ $messages = array(
 'namespaces' => 'Vārdtelpas',
 'variants' => 'Varianti',
 
+'navigation-heading' => 'Navigācijas izvēlne',
 'errorpagetitle' => 'Kļūda',
 'returnto' => 'Atgriezties: $1.',
 'tagline' => "No ''{{grammar:ģenitīvs|{{SITENAME}}}}''",
@@ -744,6 +745,11 @@ Izskatās, ka lapa ir dzēsta.',
 'edit-already-exists' => 'Nevar izveidot jaunu lapu.
 Tā jau eksistē.',
 'defaultmessagetext' => 'Noklusētais ziņojuma teksts',
+'invalid-content-data' => 'Nederīgi satura dati',
+
+# Content models
+'content-model-javascript' => 'JavaScript kods',
+'content-model-css' => 'CSS stils',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => 'Lapas ar pārāk daudz laikietilpīgiem apstrādes funkciju izsaukumiem',
@@ -1023,7 +1029,7 @@ Ja vēlies, tu vari izmantot šo nejauši uzģenerēto kodu: $1',
 'timezoneregion-indian' => 'Indijas okeāns',
 'timezoneregion-pacific' => 'Klusais okeāns',
 'allowemail' => 'Atļaut saņemt e-pastus no citiem lietotājiem',
-'prefs-searchoptions' => 'Meklēšanas opcijas',
+'prefs-searchoptions' => 'Meklēšana',
 'prefs-namespaces' => 'Vārdtelpas',
 'defaultns' => 'Meklēt šajās palīglapās pēc noklusējuma:',
 'default' => 'pēc noklusējuma',
@@ -1433,6 +1439,7 @@ Skatīt https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nofile' => 'Fails "$1" nepastāv.',
 'img-auth-isdir' => 'Jūs mēģinājāt piekļūt direktorijai "$1".
 Atļauta ir tikai failu piekļuve.',
+'img-auth-streaming' => 'Straumē "$1".',
 
 # HTTP errors
 'http-invalid-url' => 'Nederīgs URL: $1',
@@ -2256,6 +2263,7 @@ Pēdējais reģistra ieraksts ir apskatāms zemāk:",
 Lai eksportētu lapas, šajā laukā ievadi to nosaukumus, katrā rindiņā pa vienam, un izvēlies vai gribi tikai pašreizējo versiju ar informāciju par pēdējo izmaiņu, vai arī pašreizējo versiju kopā ar visām vecajām versijām un hronoloģiju
 
 Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] lapai "[[{{MediaWiki:Mainpage}}]]".',
+'exportall' => 'Eksportēt visas lapas',
 'exportcuronly' => 'Iekļaut tikai esošo versiju (bez pilnās hronoloģijas)',
 'exportnohistory' => "----
 '''Piezīme:''' Lapu eksportēšana kopā ar visu hronoloģiju šobrīd ir atslēgta, jo tas bremzē serveri.",
@@ -2340,6 +2348,10 @@ Lūdzu, mēģiniet vēlreiz.',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|versija|versijas}}',
 'import-logentry-interwiki' => 'starpvikizēts $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versija|versijas}} no $2',
+
+# JavaScriptTest
+'javascripttest' => 'JavaScript testēšana',
+'javascripttest-title' => 'Darbina $1 testus',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Tava lietotāja lapa',
@@ -2435,10 +2447,15 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 # Info page
 'pageinfo-title' => 'Informācija par "$1"',
 'pageinfo-header-edits' => 'Labojumi',
+'pageinfo-header-restrictions' => 'Lapas aizsardzība',
+'pageinfo-article-id' => 'Lapas ID',
 'pageinfo-views' => 'Skatījumu skaits',
 'pageinfo-watchers' => 'Uzraudzītāju skaits',
+'pageinfo-lastuser' => 'Pēdējais labotājs',
 'pageinfo-edits' => 'Izmaiņu skaits',
 'pageinfo-authors' => 'Atsevišķu autoru skaits',
+'pageinfo-contentpage-yes' => 'Jā',
+'pageinfo-protect-cascading-yes' => 'Jā',
 
 # Patrolling
 'markaspatrolleddiff' => 'Atzīmēt kā pārbaudītu',
@@ -2479,6 +2496,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4, $5 {{PLURAL:$5|lapa|lapas}}',
 'file-nohires' => 'Augstāka izšķirtspēja nav pieejama.',
 'svg-long-desc' => 'SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3',
+'svg-long-error' => 'Nederīgs SVG fails: $1',
 'show-big-image' => 'Pilnā izmērā',
 'show-big-image-preview' => 'Šī priekšskata izmērs: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Cits izmērs|Citi izmēri}}: $1.',

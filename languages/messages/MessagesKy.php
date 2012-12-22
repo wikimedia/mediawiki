@@ -181,6 +181,7 @@ $messages = array(
 'create-this-page' => 'Бул баракты түзүү',
 'delete' => 'Өчүрүү',
 'deletethispage' => 'Бул баракты өчүрүү',
+'viewdeleted_short' => '{{PLURAL:$1|өчүрүлгөн оңдоону}} көрүү',
 'protect' => 'Коргоо',
 'protect_change' => 'өзгөртүү',
 'protectthispage' => 'Бул баракты коргоо',
@@ -202,7 +203,7 @@ $messages = array(
 'templatepage' => 'Калыптын барагын кароо',
 'viewhelppage' => 'Жардам барагы',
 'categorypage' => 'Категория барагын көрсөтүү',
-'viewtalkpage' => 'Талкууну кароо',
+'viewtalkpage' => 'Талкуулоону кароо',
 'otherlanguages' => 'Башка тилдерде',
 'redirectedfrom' => '($1 барагындан багытталды)',
 'redirectpagesub' => 'Айдама барак',
@@ -210,28 +211,28 @@ $messages = array(
 'viewcount' => 'Бул барак {{PLURAL:$1|$1|$1}} жолу ачылды.',
 'protectedpage' => 'Корголгон барак',
 'jumpto' => 'Өтүү:',
-'jumptonavigation' => 'багыттоо',
+'jumptonavigation' => 'навигация',
 'jumptosearch' => 'издөө',
 'pool-errorunknown' => 'Белгисиз ката',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => '{{SITENAME}} жөнүндө',
-'aboutpage' => 'Project:тууралуу',
+'aboutpage' => 'Project:Сайт жөнүндө',
 'copyrightpage' => '{{ns:project}}:Автордук укуктар',
 'currentevents' => 'Учурдагы окуялар',
 'currentevents-url' => 'Project:Учурдагы окуялар',
 'disclaimers' => 'Жоопкерчиликтен баш тартуу',
 'disclaimerpage' => 'Project:Жалпы жоопкерчиликтен баш тартуу',
-'edithelp' => 'Оңдоого жардам',
-'edithelppage' => 'Help:Оңдоо',
+'edithelp' => 'Редакторлоо боюнча жардам',
+'edithelppage' => 'Help:Редакторлоо',
 'helppage' => 'Help:Мазмун',
 'mainpage' => 'Башбарак',
 'mainpage-description' => 'Башбарак',
 'policy-url' => 'Project:Эрежелер',
-'portal' => 'Жамаат порталы',
-'portal-url' => 'Project:Жамаат порталы',
-'privacy' => 'Маалыматты купуя сактоо саясаты',
-'privacypage' => 'Project:Маалыматты купуя сактоо саясаты',
+'portal' => 'Коомдоштук порталы',
+'portal-url' => 'Project:Коомдоштук порталы',
+'privacy' => 'Жашырындуулук саясаты',
+'privacypage' => 'Project:Жашырындуулук саясаты',
 
 'badaccess' => 'Кирүү катасы',
 
@@ -261,7 +262,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Макала',
-'nstab-user' => 'Колдонуучунун барагы',
+'nstab-user' => 'Катышуучунун барагы',
 'nstab-media' => 'Мультимедиа',
 'nstab-special' => 'Атайын барак',
 'nstab-project' => 'Долбоордун барагы',
@@ -308,7 +309,7 @@ $messages = array(
 
 # Login and logout pages
 'welcomeuser' => 'Кош келиңиз, $1!',
-'yourname' => 'Колдонуучу аты',
+'yourname' => 'Катышуучу аты:',
 'yourpassword' => 'Сырсөз',
 'yourpasswordagain' => 'Сырсөздү кайра жазыңыз',
 'remembermypassword' => 'Бул браузерде каттоо маалыматтарымды эске тут (эң көп $1 {{PLURAL:$1|күн|күн}})',
@@ -330,8 +331,9 @@ $messages = array(
 'createaccountmail' => 'Электрондук дарек боюнча',
 'createaccountreason' => 'Себеби:',
 'badretype' => 'Сиз киргизген сырсөздөр дал келишпейт',
-'userexists' => 'Сиз тандаган колдонуучунун аты бош эмес.',
-'loginerror' => 'Колдонуучуну таанууда ката кетти',
+'userexists' => 'Сиз киргизген катышуучу аты бош эмес.
+Башка атты тандаңыз.',
+'loginerror' => 'Кирүү катасы',
 'createaccounterror' => '$1 эсебин түзүү мүмкүн эмес',
 'loginsuccesstitle' => 'Сиз ийгиликтүү кирдиңиз',
 'wrongpassword' => 'Ката сырсөз киргизилди. Кайтадан аракет кылып көрүңүз.',
@@ -355,10 +357,10 @@ $messages = array(
 # Special:PasswordReset
 'passwordreset' => 'Сырсөздү түшүрүү',
 'passwordreset-legend' => 'Сырсөздү түшүрүү',
-'passwordreset-username' => 'Колдонуучу аты:',
+'passwordreset-username' => 'Катышуучу аты:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-email' => 'E-mail дарек:',
-'passwordreset-emailelement' => 'Колдонуучу аты: $1
+'passwordreset-emailelement' => 'Катышуучу аты: $1
 Убактылуу сырсөз: $2',
 
 # Special:ChangeEmail
@@ -403,7 +405,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'blockedtext' => 'Сиздин колдонуучу атыңыз же IP дарегиңиз тосмолонгон',
 'blockednoreason' => 'себеби көрсөтүлгөн жок',
 'nosuchsectiontitle' => 'Бөлүктүү табууга мүмкүн эмес',
-'loginreqtitle' => 'Колдонуучунун аты талап кылынат',
+'loginreqtitle' => 'Авторизация талап кылынат',
 'loginreqlink' => 'Кирүү',
 'accmailtitle' => 'Сырсөз жөнөтүлдү.',
 'accmailtext' => ' [[User talk:$1|$1]] үчүн сырсөз $2 ге жөнөтүлдү.',
@@ -417,7 +419,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 же '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} ошондой аталыш менен барак ача аласыз]'''</span>.",
 'noarticletext-nopermission' => 'Азыр бул баракта текст жок.
 Сиз [[Special:Search/{{PAGENAME}}|бул ат жөнүндө эскертүүлөрдү]] башка барактардан таба аласыз, же <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү журналдардын жазууларын таба аласыз]</span>. Бул баракты жаратууга укуктарыңыз жок.',
-'userpage-userdoesnotexist' => '"$1" Мындай колдонуучу катталган эмес. Ушул баракты түзүүнү же оңдогонду каалганыңыз анык болсун',
+'userpage-userdoesnotexist' => '"$1" Мындай катышуучу катталган эмес. Ушул баракты түзүүнү же оңдогонду каалганыңыз анык болсун',
 'updated' => '(Жаңыртылды)',
 'note' => "'''Эскертүү:'''",
 'previewnote' => "'''Бул алдын ала көрүнүшү гана болгонун эсиңизге алыңыз.'''
@@ -519,7 +521,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'lineno' => '$1 -сап:',
 'compareselectedversions' => 'Тандалган версияларды салыштыруу',
 'editundo' => 'жокко чыгаруу',
-'diff-multi' => '({{PLURAL:$2|колдонуучу|$2 колдонуучу}} тарабынан жасалган {{PLURAL:$1|аралык версия|$1 аралык версия}} көрсөтүлгөн жок)',
+'diff-multi' => '({{PLURAL:$2|катышуучу}} тарабынан жасалган {{PLURAL:$1|аралык версия}} көрсөтүлгөн жок)',
 
 # Search results
 'searchresults' => 'Издөө жыйынтыктары',
@@ -559,6 +561,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'powersearch' => 'Кеңейтилген издөө',
 'powersearch-legend' => 'Кеңейтилген издөө',
 'powersearch-field' => 'Издөө',
+'powersearch-togglelabel' => 'Белги салуу:',
 'powersearch-toggleall' => 'Баары',
 'powersearch-togglenone' => 'Эчтеке',
 'search-external' => 'Тышкы издөө',
@@ -566,22 +569,30 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Quickbar
 'qbsettings' => 'Навигация панели',
 'qbsettings-none' => 'Көрсөтпөө',
+'qbsettings-fixedleft' => 'Жылбаган сол',
+'qbsettings-fixedright' => 'Жылбаган оң',
+'qbsettings-floatingleft' => 'Оома сол',
+'qbsettings-floatingright' => 'Оома оң',
 
 # Preferences page
 'preferences' => 'Ырастоолор',
 'mypreferences' => 'Ырастоолор',
 'prefs-edits' => 'Өзгөртүүлөрдүн саны',
 'changepassword' => 'Сырсөздү өзгөртүү',
+'prefs-skin' => 'Тема',
 'skin-preview' => 'Алдын ала көрүү',
+'datedefault' => 'Жарыяланбасча',
 'prefs-beta' => 'Бета-мүмкүнчүлүктөр',
 'prefs-datetime' => 'Дата жана убакыт',
 'prefs-user-pages' => 'Катышуучунун барактары',
+'prefs-personal' => 'Катышуучунун профили',
 'prefs-rc' => 'Соңку өзгөрүүлөр',
 'prefs-watchlist' => 'Байкоо тизмеси',
 'prefs-resetpass' => 'Сырсөздү өзгөртүү',
 'prefs-email' => 'Электрондук почтанын параметрлери',
+'prefs-rendering' => 'Сырткы көрүнүш',
 'saveprefs' => 'Сактоо',
-'prefs-editing' => 'Редактирлоо',
+'prefs-editing' => 'Редакторлоо',
 'rows' => 'Сап:',
 'columns' => 'Тилке:',
 'searchresultshead' => 'Издөө',
@@ -603,9 +614,10 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'prefs-searchoptions' => 'Издөө',
 'default' => 'жарыяланбасча',
 'prefs-files' => 'Файлдар',
+'prefs-custom-css' => 'Өз CSS',
 'youremail' => 'Электрондук дарек:',
-'username' => 'Катышуучунун аты:',
-'uid' => 'Колдонуучунун ID си:',
+'username' => '{{GENDER:$1|Катышуучу аты}}:',
+'uid' => '{{GENDER:$1|Катышуучунун}} коду:',
 'yourrealname' => 'Анык атыңыз:',
 'yourlanguage' => 'Тил:',
 'yourvariant' => 'Мазмундун тил варианты:',
@@ -615,7 +627,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'gender-female' => 'Аял',
 'email' => 'Электрондук дарек',
 'prefs-help-email' => 'Электрондук дарек милдетүү эмес, бирок сырсөздү унутуп калсаңыз ал сырсөздү жиберүүгө керек.',
-'prefs-help-email-others' => 'Ошондой эле башкалар сиз менен колдонуучу же талкуу барактарыңыздагы шилтеме аркылуу байланыш түзүүгө уруксат берүүнү тандай аласыз.
+'prefs-help-email-others' => 'Ошондой эле башкалар сиз менен катышуучу же талкуулоо барактарыңыздагы шилтеме аркылуу байланыш түзүүгө уруксат берүүнү тандай аласыз.
 Электрондук дарегиңиз башка кодонуучуларга байланыш түзгөндө көрүнбөйт.',
 'prefs-info' => 'Негизги маалыматтары',
 'prefs-i18n' => 'Интернационализация',
@@ -690,8 +702,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'rclistfrom' => '$1 күнүнөн баштап жаңы өзгөртүүлөрдү көрсөтүү',
 'rcshowhideminor' => 'Майда оңдоолорду $1',
 'rcshowhidebots' => 'ботторду $1',
-'rcshowhideliu' => '$1 катталган колдонуучу',
-'rcshowhideanons' => 'Жашыруун колдонуучулар $1',
+'rcshowhideliu' => '$1 катталган катышуучу',
+'rcshowhideanons' => '$1 жашыруун катышуучу',
 'rcshowhidepatr' => 'Көзөмөл алдындагы оңдоолорду $1',
 'rcshowhidemine' => 'Оңдоолорумду $1',
 'rclinks' => 'Соңку $2 күндө жасалган акыркы $1 өзгөртүүлөрдү көрсөтүү<br />$3',
@@ -824,10 +836,10 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'popularpages' => 'Популярдуу барактар',
 'prefixindex' => 'Префикс менен бардык барактар',
 'shortpages' => 'Кыска макалалар',
-'listusers' => 'Колдонуучулар тизмеси',
+'listusers' => 'Катышуучулар тизмеси',
 'usercreated' => "$1 күнү $2'да {{GENDER:$3|катталды}}.",
 'newpages' => 'Жаңы барактар',
-'newpages-username' => 'Колдонуучу аты:',
+'newpages-username' => 'Катышуучу аты:',
 'ancientpages' => 'Эң эски барактар',
 'move' => 'Аталышын өзгөртүү',
 'movethispage' => 'Бул барактын атын өзгөртүү',
@@ -864,25 +876,27 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Special:ListUsers
 'listusers-submit' => 'Көрсөтүү',
-'listusers-noresult' => 'Колдонуучу табылган жок.',
+'listusers-noresult' => 'Катышуучу табылган жок.',
 'listusers-blocked' => '(блоктолду)',
 
 # Special:ActiveUsers
-'activeusers' => 'Активдүү колдонуучулардын тизмеси',
+'activeusers' => 'Активдүү катышуучулардын тизмеси',
 'activeusers-hidebots' => 'Ботторду жашыруу',
-'activeusers-noresult' => 'Колдонуучулар табылган жок.',
+'activeusers-hidesysops' => 'Администраторлорду жашыруу',
+'activeusers-noresult' => 'Катышуучулар табылган жок.',
 
 # Special:Log/newusers
-'newuserlogpage' => 'Жаңы колдонуучулардын тизмеси',
+'newuserlogpage' => 'Катышуучулардын каттоо журналы',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Топ',
-'listgrouprights-rights' => 'Укутар',
+'listgrouprights-rights' => 'Укуктар',
+'listgrouprights-helppage' => 'Help:Топтордун укуктары',
 'listgrouprights-members' => '(мүчөлөрдүн тизмеси)',
 
 # E-mail user
-'emailuser' => 'Бул колдонуучуга кат жиберүү',
-'emailusername' => 'Колдонуучу аты:',
+'emailuser' => 'Бул катышуучуга кат жиберүү',
+'emailusername' => 'Катышуучу аты:',
 'emailusernamesubmit' => 'Жөнөтүү',
 'emailfrom' => '- дан',
 'emailto' => 'Кимге:',
@@ -934,6 +948,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'undeletereset' => 'Түшүрүү',
 'undeletecomment' => 'Себеп:',
 'undelete-search-submit' => 'Издөө',
+'undelete-show-file-submit' => 'Ооба',
 
 # Namespace form on various pages
 'namespace' => 'Аталыштар мейкиндиги:',
@@ -942,14 +957,14 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # Contributions
 'contributions' => '{{GENDER:$1|Катышуучунун}} салымдары',
-'contributions-title' => '$1 үчүн колдонуучунун салымдары',
+'contributions-title' => '$1 үчүн катышуучунун салымдары',
 'mycontris' => 'Салымдар',
 'contribsub2' => '$1 үчүн ($2)',
 'uctop' => '(соңку)',
 'month' => 'Айынан (же андан мурун):',
 'year' => 'Жылынан (жана андан мурун):',
 
-'sp-contributions-newbies' => 'Жаңы колдонуучулардын гана салымдарын көрсөт',
+'sp-contributions-newbies' => 'Жаңы эсеп жазуулардын гана салымдарын көрсөтүү',
 'sp-contributions-blocklog' => 'тосмолоолордун журналы',
 'sp-contributions-uploads' => 'жүктөөлөр',
 'sp-contributions-logs' => 'журналдар',
@@ -982,7 +997,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'blockip' => 'Катышуучуну блокко салуу',
 'blockip-title' => 'Катышуучуну блокко салуу',
 'blockip-legend' => 'Катышуучуну блокко салуу',
-'ipadressorusername' => 'IP дарек же колдонуучу аты:',
+'ipadressorusername' => 'IP-дарек же катышуучу аты:',
 'ipbreason' => 'Себеп:',
 'ipbreasonotherlist' => 'Башка себеп',
 'ipbother' => 'Башка убакыт:',
@@ -1066,8 +1081,8 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'tooltip-t-whatlinkshere' => 'Ушул жерге шилтемеси бар бардык уики барактардын тизмеси',
 'tooltip-t-recentchangeslinked' => 'Бул барактан шилтеме берилген барактардагы соңку өзгөрүүлөр',
 'tooltip-feed-atom' => 'Бул барак үчүн Atom агымы',
-'tooltip-t-contributions' => 'Бул колдонуучунун салымдарынын тизмеси',
-'tooltip-t-emailuser' => 'Бул колдонуучуга кат жиберүү',
+'tooltip-t-contributions' => 'Бул катышуучунун салымдарынын тизмеси',
+'tooltip-t-emailuser' => 'Бул катышуучуга кат жиберүү',
 'tooltip-t-upload' => 'Файлдарды жүктөө',
 'tooltip-t-specialpages' => 'Бардык атайын барактардын тизмеси',
 'tooltip-t-print' => 'Бул барактын басып чыгарууга ылайыктуу түрү',
@@ -1335,7 +1350,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 # New logging system
 'revdelete-content-hid' => 'мазмун жашырылган',
-'revdelete-uname-hid' => 'колдонуучу аты жашырылган',
+'revdelete-uname-hid' => 'катышуучу аты жашырылган',
 'revdelete-unrestricted' => 'администраторлор үчүн чектөөлөр алынды',
 
 # Feedback

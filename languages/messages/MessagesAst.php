@@ -471,7 +471,7 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 
 Pues siguir usando {{SITENAME}} de forma anónima, o pues <span class='plainlinks'>[$1 volver entrar]</span> como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
-'welcomeuser' => '¡Afayati, $1!',
+'welcomeuser' => '¡Bienllegáu, $1!',
 'welcomecreation-msg' => "Creóse la to cuenta.
 Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
 'yourname' => "Nome d'usuariu:",
@@ -2151,7 +2151,7 @@ Los futuro cambeos nesta páxina y na so páxina d\'alderique asociada apaecerá
 'enotif_subject_moved' => '{{GENDER:$2|$2}} treslladó la páxina «$1» de {{SITENAME}}',
 'enotif_subject_restored' => '{{GENDER:$2|$2}} restauró la páxina «$1» de {{SITENAME}}',
 'enotif_subject_changed' => '{{GENDER:$2|$2}} camudó la páxina «$1» de {{SITENAME}}',
-'enotif_body_intro_deleted' => '{{GENDER:$2|$2}} desanició la páxina «$1» de {{SITENAME}} el $PAGEEDITDATE, consulta $3 pa ver la revisión actual.',
+'enotif_body_intro_deleted' => '{{GENDER:$2|$2}} desanició la páxina «$1» de {{SITENAME}} el $PAGEEDITDATE, consulta $3.',
 'enotif_body_intro_created' => '{{GENDER:$2|$2}} creó la páxina «$1» de {{SITENAME}} el $PAGEEDITDATE, consulta $3 pa ver la revisión actual.',
 'enotif_body_intro_moved' => '{{GENDER:$2|$2}} treslladó la páxina «$1» de {{SITENAME}} el $PAGEEDITDATE, consulta $3 pa ver la revisión actual.',
 'enotif_body_intro_restored' => '{{GENDER:$2|$2}} restauró la páxina «$1» de {{SITENAME}} el $PAGEEDITDATE, consulta $3 pa ver la revisión actual.',

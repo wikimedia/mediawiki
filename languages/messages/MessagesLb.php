@@ -2156,9 +2156,8 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 'watchnologin' => 'Net ageloggt',
 'watchnologintext' => "Dir musst [[Special:UserLogin|ugemellt]] sinn, fir Är Iwwerwaachungslëscht z'änneren.",
 'addwatch' => "Op d'Iwwerwaachungslëscht derbäisetzen",
-'addedwatchtext' => "D'Säit \"[[:\$1]]\" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit ginn hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:RecentChanges|rezenten Ännerungen]] aus, fir se méi séier erëmzefannen.
-
-Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
+'addedwatchtext' => 'D\'Säit "[[:$1]]" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat.
+All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit ginn hei opgelëscht.',
 'removewatch' => 'Vun der Iwwerwaachungslëscht erofhuelen',
 'removedwatchtext' => 'D\'Säit "[[:$1]]" gouf vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] erofgeholl.',
 'watch' => 'Iwwerwaachen',
@@ -2192,7 +2191,7 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_subject_moved' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geréckelt",
 'enotif_subject_restored' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} restauréiert",
 'enotif_subject_changed' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geännert",
-'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3 fir déi aktuell Versioun.',
+'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3.',
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',
@@ -2954,7 +2953,9 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-redirectsto-info' => 'Informatioun',
 'pageinfo-contentpage' => 'Als Säit mat Inhalt gezielt',
 'pageinfo-contentpage-yes' => 'Jo',
+'pageinfo-protect-cascading' => 'Säite mat Kaskadespär vun hei aus',
 'pageinfo-protect-cascading-yes' => 'Jo',
+'pageinfo-protect-cascading-from' => 'Säite mat Kaskadespär vu(n)',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

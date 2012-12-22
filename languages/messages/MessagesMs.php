@@ -2234,7 +2234,7 @@ Perubahan-perubahan pada halaman ini dan halaman perbualannya pada masa akan dat
 'enotif_subject_moved' => 'Halaman $1 di {{SITENAME}} telah dipindahkan oleh {{gender:$2|$2}}',
 'enotif_subject_restored' => 'Halaman $1 di {{SITENAME}} telah dipulihkan oleh {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Halaman $1 di {{SITENAME}} telah disunting oleh {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
+'enotif_body_intro_deleted' => 'Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3.',
 'enotif_body_intro_created' => 'Halaman $1 di {{SITENAME}} telah diwujudkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
 'enotif_body_intro_moved' => 'Halaman $1 di {{SITENAME}} telah dipindahkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
 'enotif_body_intro_restored' => 'Halaman $1 di {{SITENAME}} telah dipulihkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',

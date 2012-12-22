@@ -249,6 +249,7 @@ $messages = array(
 
 மாற்றுருவங்கள்',
 
+'navigation-heading' => 'வழிசெலுத்தல் பட்டி',
 'errorpagetitle' => 'தவறு',
 'returnto' => '$1 பக்கத்துக்குத் திரும்பு.',
 'tagline' => '{{SITENAME}} இருந்து',
@@ -346,6 +347,7 @@ $1',
 'newmessageslink' => 'புதிய செய்திகள்',
 'newmessagesdifflink' => 'கடைசி மாற்றம்',
 'youhavenewmessagesfromusers' => 'உங்களுக்கு $1 {{PLURAL:$3|வேறொரு பயனரிடம்|$3 பயனர்களிடம்}} இருந்து உள்ளது ($2).',
+'youhavenewmessagesmanyusers' => 'உங்களுக்கு பல பயனர்களிடமிருந்து $1 பதிய செய்திகள்  உள்ளன ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|ஒரு புதிய செய்தி|புதிய செய்திகள்}}',
 'newmessagesdifflinkplural' => 'கடைசி {{PLURAL:$1|மாற்றம்|மாற்றங்கள்}}',
 'youhavenewmessagesmulti' => '$1 இல் உங்களுக்கு புதிய செய்திகள் காத்திருக்கின்றன',
@@ -630,6 +632,7 @@ $2
 'changeemail-oldemail' => 'தற்பொழுதுள்ள மின்னஞ்சல் முகவரி:',
 'changeemail-newemail' => 'புதிய மின்னஞ்சல் முகவரி:',
 'changeemail-none' => '(எதுவுமில்லை)',
+'changeemail-password' => 'உங்கள் {{SITENAME}} கடவுச்சொல்:',
 'changeemail-submit' => 'மின்னஞ்சலை மாற்று',
 'changeemail-cancel' => 'விட்டுவிடு',
 
@@ -817,10 +820,14 @@ $1 எனும் பயனரையோ வேறு [[{{MediaWiki:Grouppage-sy
 'edit-already-exists' => 'புதிய பக்கமொன்றை உருவாக்க முடியாது.
 இப்பக்கம் ஏற்கனவே உள்ளது.',
 'defaultmessagetext' => 'இயல்பிருப்பு தகவல் உரை',
+'invalid-content-data' => 'செல்லாத உள்ளடக்கத் தரவு',
+'content-not-allowed-here' => '"$1" உள்ளடக்கம் [[$2]] பக்கத்தில் அனுமதிக்கப்படவில்லை.',
 
 # Content models
 'content-model-wikitext' => 'விக்கிஉரை',
+'content-model-text' => 'எளிய உரை',
 'content-model-javascript' => 'ஜாவா ஸ்கிரிப்ட்',
+'content-model-css' => 'சிஎஸ்எஸ்',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'எச்சரிக்கை: இப்பக்கம் அதிகளவு இலக்கணப் பாகுபடுத்திச் சார்புகளைக் கொண்டுள்ளது.
@@ -1180,7 +1187,7 @@ $1",
 'prefs-emailconfirm-label' => 'மின்னஞ்சலை உறுதிசெய்தல்:',
 'prefs-textboxsize' => 'தொகுக்கும் சாளரத்தின் அளவு',
 'youremail' => 'மின்னஞ்சல்:',
-'username' => 'பயனர் பெயர்:',
+'username' => '{{GENDER:$1|பயனர் பெயர்}}:',
 'uid' => 'பயனர்:',
 'prefs-memberingroups' => 'பின்வரும் {{PLURAL:$1|குழு|குழுக்களில்}} உறுப்பினர்:',
 'prefs-registration' => 'பதிவு செய்யும் நேரம்:',

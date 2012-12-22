@@ -1951,7 +1951,7 @@ $1',
 'listusersfrom' => 'نیشاندانی بەکارھێنەران بە دست پێکردن لە:',
 'listusers-submit' => 'نیشانیبدە',
 'listusers-noresult' => 'ھیچ بەکارھێنەرێک نەدۆزرایەوە.',
-'listusers-blocked' => '(بەربەست‌کراو)',
+'listusers-blocked' => '(بەربەست کراوە)',
 
 # Special:ActiveUsers
 'activeusers' => 'لیستی بەکارھێنەرە چالاکەکان',

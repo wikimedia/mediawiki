@@ -1009,6 +1009,12 @@ Jidher li din ġiet imħassra.',
 'edit-already-exists' => 'Ma tistax tinħoloq din il-paġna.
 Din teżisti diġà.',
 
+# Content models
+'content-model-wikitext' => 'test tal-wiki',
+'content-model-text' => 'test normali',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Twissija:''' Din il-paġna għandha ħafna sejħiet għall-funzjonijiet parser.
 
@@ -1283,7 +1289,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 
 # Preferences page
 'preferences' => 'Preferenzi',
-'mypreferences' => 'preferenzi',
+'mypreferences' => 'Preferenzi',
 'prefs-edits' => "Numru ta' modifiki:",
 'prefsnologin' => 'Għadek ma dħaltx ġewwa',
 'prefsnologintext' => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kont]</span>.',
@@ -1345,7 +1351,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'timezoneregion-indian' => 'Oċean Indjan',
 'timezoneregion-pacific' => 'Oċean Paċifiku',
 'allowemail' => 'Ħalli li jaslulek ittri-e mingħand utenti oħrajn',
-'prefs-searchoptions' => 'Preferenzi għat-tfittxija',
+'prefs-searchoptions' => 'Fittex',
 'prefs-namespaces' => 'Namespace',
 'defaultns' => "Fil-każ kuntrarju, fittex f'dawn l-ispazji tal-isem:",
 'default' => 'predefinit',
@@ -1357,9 +1363,9 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'prefs-emailconfirm-label' => 'Konferma tal-ittra-e:',
 'prefs-textboxsize' => 'Daqs tat-tieqa tal-modifika',
 'youremail' => 'E-mail:',
-'username' => 'Isem tal-utent:',
-'uid' => 'L-ID tal-utent:',
-'prefs-memberingroups' => 'Membru tal-{{PLURAL:$1|grupp|gruppi}}:',
+'username' => '{{GENDER:$1|Isem tal-utent}}:',
+'uid' => '{{GENDER:$1|ID tal-utent}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Membru}} tal-{{PLURAL:$1|grupp|gruppi}}:',
 'prefs-memberingroups-type' => '$1',
 'prefs-registration' => "Ħin ta' reġistrazzjoni:",
 'yourrealname' => 'Isem proprju:',
@@ -1513,6 +1519,8 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'rightslogentry' => "biddel is-sħubija ta' $1 minn $2 għal $3",
 'rightslogentry-autopromote' => 'ġie awtomatikament promoss minn $2 għal $3',
 'logentry-rights-rights' => "$1 biddel is-sħubija ta' $3 minn $4 għal $5",
+'logentry-rights-rights-legacy' => "$1 biddel is-sħubija fil-gruppi ta' $3",
+'logentry-rights-autopromote' => '$1 ġie awtomatikament promoss minn $4 għal $5',
 'rightsnone' => '(xejn)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1585,6 +1593,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'newsectionsummary' => '/* $1 */ sezzjoni ġdida',
 'rc-enhanced-expand' => 'Uri d-dettalji (hemm bżonn tal-JavaScript)',
 'rc-enhanced-hide' => 'Aħbi d-dettalji',
+'rc-old-title' => 'oriġinarjament maħluqa bħala "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Tibdil relatat',

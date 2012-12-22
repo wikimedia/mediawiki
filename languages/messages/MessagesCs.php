@@ -2395,7 +2395,7 @@ Ve [[Special:Watchlist|sledovaných stránkách]] se tak budou objevovat budouc�
 'enotif_subject_moved' => '$2 {{gender:$2|přesunul|přesunula}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_restored' => '$2 {{gender:$2|obnovil|obnovila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_changed' => '$2 {{gender:$2|změnil|změnila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
-'enotif_body_intro_deleted' => 'V $PAGEEDITDATE {{gender:$2|smazal|smazala}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
+'enotif_body_intro_deleted' => '$2 {{gender:$2|smazal|smazala}} $PAGEEDITDATE na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte $3.',
 'enotif_body_intro_created' => 'V $PAGEEDITDATE {{gender:$2|založil|založila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
 'enotif_body_intro_moved' => 'V $PAGEEDITDATE {{gender:$2|přesunul|přesunula}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
 'enotif_body_intro_restored' => 'V $PAGEEDITDATE {{gender:$2|obnovil|obnovila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
