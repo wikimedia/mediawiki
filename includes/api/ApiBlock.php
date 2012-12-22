@@ -55,6 +55,7 @@ class ApiBlock extends ApiBase {
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantblock' );
 		}
+
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
@@ -62,6 +63,13 @@ class ApiBlock extends ApiBase {
 				$this->dieUsageMsg( array( $status ) );
 			}
 		}
+
+		$target = User::newFromName( $params['user'], 'usable' );
+		// Bug 38633 - if the target is a user (not an IP address), but it doesn't exist, error.
+		if ( $target instanceof User && $target->isAnon() ) {
+			$this->dieUsageMsg( array( 'nosuchuser', $params['user'] ) );
+		}
+
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( 'canthide' );
 		}
