@@ -1046,8 +1046,10 @@ class LoginForm extends SpecialPage {
 			$template = new UsercreateTemplate();
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
-			$linkmsg = 'gotaccount';
 			$this->getOutput()->addModules( 'mediawiki.special.userlogin.signup' );
+			if ( !$this->getUser()->isLoggedIn() ) {
+				$linkmsg = 'gotaccount';
+			}
 		} else {
 			$template = new UserloginTemplate();
 			$q = 'action=submitlogin&type=login';
@@ -1066,7 +1068,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Don't show a "create account" link if the user can't
-		if( $this->showCreateOrLoginLink( $user ) ) {
+		if( $this->showCreateOrLoginLink( $user ) && isset( $linkmsg ) ) {
 			# Pass any language selection on to the mode switch link
 			if( $wgLoginLanguageSelector && $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
@@ -1108,7 +1110,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'resetlink', $resetLink );
-		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
+		$template->set( 'canremember', ( $wgCookieExpiration > 0 && !$this->getUser()->isLoggedIn() ) );
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
