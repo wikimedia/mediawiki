@@ -306,6 +306,10 @@ class Services_JSON
 			$mid = ',';
 		}
 
+		if ( $var instanceof XmlJsCode ) {
+			return $var->value;
+		}
+
 		switch (gettype($var)) {
 			case 'boolean':
 				return $var ? 'true' : 'false';

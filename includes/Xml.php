@@ -622,51 +622,15 @@ class Xml {
 
 	/**
 	 * Encode a variable of unknown type to JavaScript.
-	 * Arrays are converted to JS arrays, objects are converted to JS associative
-	 * arrays (objects). So cast your PHP associative arrays to objects before
-	 * passing them to here.
 	 *
 	 * @param $value
+	 * @see FormatJson::encode
 	 *
 	 * @return string
 	 */
 	public static function encodeJsVar( $value ) {
-		if ( is_bool( $value ) ) {
-			$s = $value ? 'true' : 'false';
-		} elseif ( is_null( $value ) ) {
-			$s = 'null';
-		} elseif ( is_int( $value ) || is_float( $value ) ) {
-			$s = strval($value);
-		} elseif ( is_array( $value ) && // Make sure it's not associative.
-					array_keys($value) === range( 0, count($value) - 1 ) ||
-					count($value) == 0
-				) {
-			$s = '[';
-			foreach ( $value as $elt ) {
-				if ( $s != '[' ) {
-					$s .= ',';
-				}
-				$s .= self::encodeJsVar( $elt );
-			}
-			$s .= ']';
-		} elseif ( $value instanceof XmlJsCode ) {
-			$s = $value->value;
-		} elseif ( is_object( $value ) || is_array( $value ) ) {
-			// Objects and associative arrays
-			$s = '{';
-			foreach ( (array)$value as $name => $elt ) {
-				if ( $s != '{' ) {
-					$s .= ',';
-				}
-
-				$s .= '"' . self::escapeJsString( $name ) . '":' .
-					self::encodeJsVar( $elt );
-			}
-			$s .= '}';
-		} else {
-			$s = '"' . self::escapeJsString( $value ) . '"';
-		}
-		return $s;
+		$json = new Services_JSON();
+		return $json->encode( $value );
 	}
 
 	/**
