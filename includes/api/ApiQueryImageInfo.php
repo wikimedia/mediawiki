@@ -79,14 +79,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			} else {
 				$images = RepoGroup::singleton()->findFiles( $titles );
 			}
+			$resolveRedirects = $this->getPageSet()->isResolvingRedirects();
 			foreach ( $images as $img ) {
 				// Skip redirects
-				if ( $img->getOriginalTitle()->isRedirect() ) {
+				if ( $img->getOriginalTitle()->isRedirect() && !$resolveRedirects ) {
 					continue;
 				}
 
 				$start = $skip ? $fromTimestamp : $params['start'];
-				$pageId = $pageIds[NS_FILE][ $img->getOriginalTitle()->getDBkey() ];
+				$pageId = $pageIds[NS_FILE][ $img->getTitle()->getDBkey() ];
 
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
