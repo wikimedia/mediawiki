@@ -175,7 +175,7 @@ class UsercreateTemplate extends BaseTemplate {
 					tabindex="7"
 					value="<?php $this->text( 'realname' ); ?>" size='20' />
 				<div class="prefsectiontip">
-					<?php $this->msgWiki( 'prefs-help-realname' ); ?>
+					<?php $this->msgWiki( $this->data['createAnother'] ? 'createacct-another-realname-tip' : 'prefs-help-realname' ); ?>
 				</div>
 			</div>
 		<?php }
