@@ -338,26 +338,41 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Page protection
-		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
-			$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
-
-			if ( $protectionLevel == '' ) {
-				// Allow all users
-				$message = $this->msg( 'protect-default' )->escaped();
+		if ( $title->getNamespace() == NS_MEDIAWIKI ) { // Interface pages are auto-protected
+			if ( $this->page->exists() ) {
+				$pageInfo['header-restrictions'][] = array(
+					$this->msg( "restriction-edit" ), $this->msg( "protect-level-editinterface" )->escaped()
+				);
+				$pageInfo['header-restrictions'][] = array(
+					$this->msg( "restriction-move" ), $this->msg( "protect-level-editinterface" )->escaped()
+				);
 			} else {
-				// Administrators only
-				$message = $this->msg( "protect-level-$protectionLevel" );
-				if ( $message->isDisabled() ) {
-					// Require "$1" permission
-					$message = $this->msg( "protect-fallback", $protectionLevel )->parse();
-				} else {
-					$message = $message->escaped();
-				}
+				$pageInfo['header-restrictions'][] = array(
+					$this->msg( "restriction-create" ), $this->msg( "protect-level-editinterface" )->escaped()
+				);
 			}
+		} else {
+			foreach ( $title->getRestrictionTypes() as $restrictionType ) {
+				$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
 
-			$pageInfo['header-restrictions'][] = array(
-				$this->msg( "restriction-$restrictionType" ), $message
-			);
+				if ( $protectionLevel == '' ) {
+					// Allow all users
+					$message = $this->msg( 'protect-default' )->escaped();
+				} else {
+					// Administrators only
+					$message = $this->msg( "protect-level-$protectionLevel" );
+					if ( $message->isDisabled() ) {
+						// Require "$1" permission
+						$message = $this->msg( "protect-fallback", $protectionLevel )->parse();
+					} else {
+						$message = $message->escaped();
+					}
+				}
+
+				$pageInfo['header-restrictions'][] = array(
+					$this->msg( "restriction-$restrictionType" ), $message
+				);
+			}
 		}
 
 		if ( !$this->page->exists() ) {
