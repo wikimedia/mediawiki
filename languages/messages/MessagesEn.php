@@ -1257,6 +1257,8 @@ Please wait before trying again.',
 * {{#language:it}}|it
 * {{#language:nl}}|nl', # do not translate or duplicate this message to other languages
 'suspicious-userlogout'           => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
+'createacct-another-realname-tip' => 'Real name is optional.
+If you choose to provide it, this will be used for giving the user attribution for their work.',
 
 # Email sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages

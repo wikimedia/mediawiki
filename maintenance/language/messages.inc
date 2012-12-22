@@ -564,6 +564,7 @@ $wgMessageStructure = array(
 		'loginlanguagelabel',
 		'loginlanguagelinks',
 		'suspicious-userlogout',
+		'createacct-another-realname-tip',
 	),
 	'mail' => array(
 		'pear-mail-error',

@@ -1370,6 +1370,8 @@ See also:
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. $1 is a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
 {{Identical|Language}}',
 'suspicious-userlogout' => 'Used when the logout request looks suspicious, in Special:UserLogout.',
+'createacct-another-realname-tip' => 'Used on the account creation form when creating another user\'s account. Similar to {{mw-msg|prefs-help-realname}}.
+{{Identical|Real name attribution}}',
 
 # Email sending
 'php-mail-error-unknown' => 'Used as error message when <code>mail()</code> returned empty error message.',
