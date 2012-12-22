@@ -55,6 +55,7 @@ class ApiBlock extends ApiBase {
 		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantblock' );
 		}
+
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
@@ -62,6 +63,12 @@ class ApiBlock extends ApiBase {
 				$this->dieUsageMsg( array( $status ) );
 			}
 		}
+
+		$target = User::newFromName( $params['user'] );
+		if ( $target instanceof User && $target->getId() == 0 ) {
+			$this->dieUsageMsg( array( 'nosuchuser', $params['user'] ) );
+		}
+
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( 'canthide' );
 		}
