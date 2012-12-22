@@ -2952,6 +2952,9 @@ See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-level-sysop' => 'Used as protect level.
 
 See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
+'protect-level-editinterface' => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
 
 Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
