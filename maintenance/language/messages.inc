@@ -1094,10 +1094,13 @@ $wgMessageStructure = array(
 		'prefs-help-gender',
 		'email',
 		'prefs-help-realname',
+		'usercreate-realname-create2-tip',
 
-		# 3 messages depending upon $wgEmailConfirmToEdit and $wgEnableUserEmail
+		# 5 messages depending upon $wgEmailConfirmToEdit and $wgEnableUserEmail
 		'prefs-help-email',
+		'usercreate-email-create2-tip',
 		'prefs-help-email-others',
+		'usercreate-email-others-create2-tip',
 		'prefs-help-email-required',
 
 		'prefs-info',

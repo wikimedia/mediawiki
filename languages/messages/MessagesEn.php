@@ -1954,9 +1954,14 @@ This information will be public.',
 'email'                         => 'Email',
 'prefs-help-realname'           => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
+'usercreate-realname-create2-tip'   => 'Real name is optional.
+If provided, this will be used for giving attribution for the user\'s work.',
 'prefs-help-email'              => 'Email address is optional, but is needed for password resets, should you forget your password.',
+'usercreate-email-create2-tip'      => 'Email address is optional, but is needed for password resets, should the user forget their password.',
 'prefs-help-email-others'       => 'You can also choose to let others contact you by email through a link on your user or talk page.
 Your email address is not revealed when other users contact you.',
+'usercreate-email-others-create2-tip'       => 'The user can also choose to let others contact them by email through a link on their user or talk page.
+Their email address is not revealed when other users contact them.',
 'prefs-help-email-required'     => 'Email address is required.',
 'prefs-info'                    => 'Basic information',
 'prefs-i18n'                    => 'Internationalisation',

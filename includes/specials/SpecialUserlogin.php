@@ -1164,11 +1164,12 @@ class LoginForm extends SpecialPage {
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'resetlink', $resetLink );
-		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
+		$template->set( 'canremember', ( $wgCookieExpiration > 0 && !$this->getUser()->isLoggedIn() ) );
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $user->getOption( 'rememberpassword' ) || $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickHTTPS', $this->mStickHTTPS );
+		$template->set( 'ownaccount', $this->getUser()->isLoggedIn() );
 
 		if ( $this->mType == 'signup' ) {
 			if ( !self::getCreateaccountToken() ) {
@@ -1227,7 +1228,9 @@ class LoginForm extends SpecialPage {
 	 * @return Boolean
 	 */
 	function showCreateOrLoginLink( &$user ) {
-		if ( $this->mType == 'signup' ) {
+		if ( $user->isLoggedIn() ) {
+			return false;
+		} elseif ( $this->mType == 'signup' ) {
 			return true;
 		} elseif ( $user->isAllowed( 'createaccount' ) ) {
 			return true;

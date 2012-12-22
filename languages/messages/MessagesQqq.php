@@ -2574,6 +2574,7 @@ See also:
 * {{msg-mw|prefs-help-email-others|help}}
 * {{msg-mw|prefs-changeemail|link title}}
 * {{msg-mw|prefs-setemail|link title}}',
+'usercreate-email-create2-tip' => 'Shown as explanation text on [[Special:UserLogin/signup]] when logged in (creating another user\'s account).',
 'prefs-help-email-others' => 'This text is shown on account creation, below the description of the e-mail address field (which is optional).
 
 See also:
@@ -2581,6 +2582,10 @@ See also:
 * {{msg-mw|prefs-help-email|help}}
 * {{msg-mw|prefs-changeemail|link title}}
 * {{msg-mw|prefs-setemail|link title}}',
+'usercreate-email-others-create2-tip' => 'This text is shown on account creation when the creator is logged in, below the description of the email address field (which is optional).
+
+See also:
+* {{msg-mw|prefs-help-email-others|help}}',
 'prefs-help-email-required' => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
 
 See also:
@@ -2588,6 +2593,8 @@ See also:
 * {{msg-mw|prefs-help-email-others|help}}
 * {{msg-mw|prefs-changeemail|link title}}
 * {{msg-mw|prefs-setemail|link title}}',
+'usercreate-realname-create2-tip' => 'Used in [[Special:UserLogin/signup]] when logged in (creating another user)
+{{Identical|Real name attribution}}',
 'prefs-info' => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.
 {{Identical|Basic information}}",
 'prefs-i18n' => 'Field set legend for user preferences regarding the interface language',

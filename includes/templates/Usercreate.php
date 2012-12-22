@@ -159,14 +159,22 @@ class UsercreateTemplate extends QuickTemplate {
 			'size' => '20'
 		) ); ?>
 					<div class="prefsectiontip">
-						<?php  // duplicated in Preferences.php profilePreferences()
-							if ( $this->data['emailrequired'] ) {
-								$this->msgWiki( 'prefs-help-email-required' );
+						<?php  // Display relevant information about email
+							if ( $this->data['ownaccount'] ) {
+								$this->msgWiki( 'usercreate-email-create2-tip' );
+								if ( $this->data['emailothers'] ) {
+									$this->msgWiki( 'usercreate-email-others-create2-tip' );
+								}
 							} else {
-								$this->msgWiki( 'prefs-help-email' );
-							}
-							if ( $this->data['emailothers'] ) {
-								$this->msgWiki( 'prefs-help-email-others' );
+								// Messages also used in Preferences.php's profilePreferences()
+								if ( $this->data['emailrequired'] ) {
+									$this->msgWiki( 'prefs-help-email-required' );
+								} else {
+									$this->msgWiki( 'prefs-help-email' );
+								}
+								if ( $this->data['emailothers'] ) {
+									$this->msgWiki( 'prefs-help-email-others' );
+								}
 							} ?>
 					</div>
 				</td>
@@ -183,7 +191,11 @@ class UsercreateTemplate extends QuickTemplate {
 							tabindex="7"
 							value="<?php $this->text( 'realname' ); ?>" size='20' />
 						<div class="prefsectiontip">
-							<?php $this->msgWiki( 'prefs-help-realname' ); ?>
+							<?php if ( $this->data['ownaccount'] ) {
+								$this->msgWiki( 'usercreate-realname-create2-tip' );
+							} else {
+								$this->msgWiki( 'prefs-help-realname' );
+							} ?>
 						</div>
 					</td>
 <?php
