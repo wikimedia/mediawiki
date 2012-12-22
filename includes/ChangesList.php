@@ -286,6 +286,10 @@ class ChangesList extends ContextSource {
 		}
 	}
 
+	/**
+	 * @param $s string HTML to update
+	 * @param $rc_timestamp mixed
+	 */
 	public function insertDateHeader( &$s, $rc_timestamp ) {
 		# Make date header if necessary
 		$date = $this->getLanguage()->userDate( $rc_timestamp, $this->getUser() );
@@ -299,6 +303,11 @@ class ChangesList extends ContextSource {
 		}
 	}
 
+	/**
+	 * @param $s string HTML to update
+	 * @param $title Title
+	 * @param $logtype string
+	 */
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->escaped();
@@ -306,7 +315,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * @param $s string HTML to update
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 */
@@ -349,7 +358,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * @param $s string HTML to update
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 * @param $watched
@@ -384,7 +393,11 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Get the timestamp from $rc formatted with current user's settings
+	 * and a separator
+	 *
 	 * @param $rc RecentChange
+	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
 		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
@@ -392,7 +405,9 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * Insert time timestamp string from $rc into $s
+	 *
+	 * @param $s string HTML to update
 	 * @param $rc RecentChange
 	 */
 	public function insertTimestamp( &$s, $rc ) {
