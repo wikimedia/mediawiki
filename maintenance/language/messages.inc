@@ -1939,7 +1939,9 @@ $wgMessageStructure = array(
 		'listgrouprights-removegroup-self',
 		'listgrouprights-addgroup-self-all',
 		'listgrouprights-removegroup-self-all',
-
+		'listgrouprights-namespaceprotection-header',
+		'listgrouprights-namespaceprotection-namespace',
+		'listgrouprights-namespaceprotection-restrictedto',
 	),
 	'emailuser' => array(
 		'mailnologin',
