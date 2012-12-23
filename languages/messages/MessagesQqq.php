@@ -2691,6 +2691,9 @@ See also {{msg-mw|listgrouprights-addgroup-all}}.',
 'listgrouprights-removegroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
+'listgrouprights-namespaceprotection-header' => 'Shown on [[Special:ListGroupRights]] as the header for the namespace protection table.',
+'listgrouprights-namespaceprotection-namespace' => 'Shown on [[Special:ListGroupRights]] as the namespace column header for the namespace protection table.',
+'listgrouprights-namespaceprotection-restrictedto' => 'Shown on [[Special:ListGroupRights]] as the restricted to column header for the namespace protection table.',
 
 # E-mail user
 'emailuser' => 'Link in the sidebar to send an e-mail to a user.',

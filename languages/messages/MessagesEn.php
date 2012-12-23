@@ -2804,6 +2804,9 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-removegroup-self'     => 'Remove {{PLURAL:$2|group|groups}} from own account: $1',
 'listgrouprights-addgroup-self-all'    => 'Add all groups to own account',
 'listgrouprights-removegroup-self-all' => 'Remove all groups from own account',
+'listgrouprights-namespaceprotection-header' => 'Namespace protection',
+'listgrouprights-namespaceprotection-namespace' => 'Namespace',
+'listgrouprights-namespaceprotection-restrictedto' => 'Restricted to',
 
 # E-mail user
 'mailnologin'              => 'No send address',
