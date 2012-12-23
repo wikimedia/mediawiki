@@ -1082,7 +1082,7 @@ $1',
 'notargettitle' => 'ܕܠܐ ܢܘܦܐ',
 'nopagetitle' => 'ܠܝܬ ܗܟܘܬ ܦܐܬܐ ܕܢܘܦܐ',
 'pager-newer-n' => '{{PLURAL:$1|1 1 ܚܕܬܐ|$1 ܚܕ̈ܬܐ}}',
-'pager-older-n' => '{{PLURAL:$1|ܥܬܝܩܐ 1|ܥܬܝܩ̈ܐ $1}}',
+'pager-older-n' => '{{PLURAL:$1|1 ܥܬܝܩܐ|$1 ܥܬܝܩ̈ܐ}}',
 'suppress' => 'ܚܝܘܪܐ',
 
 # Book sources

@@ -162,7 +162,7 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'تاپ',
 'qbbrowse' => 'گؤزدن گئچید',
-'qbedit' => 'دَيیشدیر',
+'qbedit' => 'دَییشدیر',
 'qbpageoptions' => 'بو صحیفه‌‌',
 'qbmyoptions' => 'منیم صحیفه‌‌لریم',
 'qbspecialpages' => 'اؤزل صحیفه‌لر',
@@ -233,7 +233,7 @@ $messages = array(
 'viewhelppage' => 'یاردیم صحیفه‌سینه باخین',
 'categorypage' => 'بؤلمه صحیفه‌‌سینی گؤستر',
 'viewtalkpage' => 'دانیشیغا باخین',
-'otherlanguages' => 'آیری دیللرده',
+'otherlanguages' => 'آیری دیل‌لرده',
 'redirectedfrom' => '($1 صحیفه‌‌سیندن يؤنلن‌دیریلمیش‌دیر)',
 'redirectpagesub' => 'یوللاندیرما صحیفه‌سی',
 'lastmodifiedat' => 'بو صحیفه‌‌ سون دفعه‌‌ $1، $2 چاغیندا دَییشیلیب‌دیر.',
@@ -2214,7 +2214,7 @@ $نئwپاگئ
 'pagesize' => '(بایت)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'دَيیشدیر',
+'restriction-edit' => 'دَییشدیر',
 'restriction-move' => 'آدینی دَییشدیر',
 'restriction-create' => 'یارات',
 'restriction-upload' => 'یوکله',
@@ -2243,7 +2243,7 @@ $نئwپاگئ
 'undeleterevision-missing' => 'اعتبارسیز و یا ایتکین نوسخه.
 نوسخه تمیر و یا آرخیو‌دن سیلینمیش اولا بیلر یا دا صاحب اولدوغونوز علاقه اشتباه دیر.',
 'undelete-nodiff' => 'اولکی دَییشمه تاپیلمادی.',
-'undeletebtn' => 'برپا ائت',
+'undeletebtn' => 'قایتار',
 'undeletelink' => 'باخ/قایتار',
 'undeleteviewlink' => 'باخ',
 'undeletereset' => 'قور',

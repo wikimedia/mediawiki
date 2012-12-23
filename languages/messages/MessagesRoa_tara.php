@@ -10,6 +10,7 @@
  * @author Joetaras
  * @author Kaganer
  * @author McDutchie
+ * @author Reder
  */
 
 $specialPageAliases = array(
@@ -195,6 +196,7 @@ $messages = array(
 'namespaces' => 'Namespace',
 'variants' => 'Variande',
 
+'navigation-heading' => 'Menu de navegazione',
 'errorpagetitle' => 'Errore',
 'returnto' => 'Tuerne a $1.',
 'tagline' => 'Da {{SITENAME}}',
@@ -447,6 +449,9 @@ L\'amministratore ca l\'ha bloccate dèje sta spiegazione: "$3".',
 
 Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè <span class='plainlinks'>[$1 collegarte 'n'otra vote]</span> cumme 'u stesse utende o cumme 'n'otre utende.
 Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
+'welcomeuser' => 'Bovègne, $1!',
+'welcomecreation-msg' => "'U cunde tue ha state ccrejete.
+No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
 'yourname' => 'Nome utende:',
 'yourpassword' => 'Passuord:',
 'yourpasswordagain' => "Scrive 'a passuord notra vote:",
@@ -610,6 +615,7 @@ Passuord temboranèe: $2',
 'changeemail-oldemail' => 'Indirizze e-mail de mò:',
 'changeemail-newemail' => 'Indirizze e-mail nuève:',
 'changeemail-none' => '(ninde)',
+'changeemail-password' => "'A passuord tue de {{SITENAME}}:",
 'changeemail-submit' => 'Cange e-mail',
 'changeemail-cancel' => 'Annulle',
 
@@ -826,6 +832,7 @@ Pare proprie ca l'onne scangellete.",
 'defaultmessagetext' => 'Messàgge de teste de base',
 
 # Content models
+'content-model-wikitext' => 'Uicchiteste',
 'content-model-text' => 'teste semblice',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
@@ -1360,6 +1367,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'rightslogtext' => "Quiste jè 'n'archivije pe le cangiaminde de le deritte de l'utinde.",
 'rightslogentry' => "membre d'u gruppe cangete pe $1 da $2 a $3",
 'rightslogentry-autopromote' => 'ha state promosse automaticamende da $2 a $3',
+'logentry-rights-rights' => "membre d'u gruppe cangete pe $1 da $2 a $3",
 'rightsnone' => '(ninde)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2125,6 +2133,16 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_mailer' => '{{SITENAME}} Notificatore de email',
 'enotif_reset' => 'Signe tutte le pàggene cumme visitete',
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
+'enotif_subject_deleted' => "'A pàgene $1 de {{SITENAME}} ha state scangellate da {{gender:$2|$2}}",
+'enotif_subject_created' => "'A pàgene $1 de {{SITENAME}} ha state crejete da {{gender:$2|$2}}",
+'enotif_subject_moved' => "'A pàgene $1 de {{SITENAME}} ha state spustate da {{gender:$2|$2}}",
+'enotif_subject_restored' => "'A pàgene $1 de {{SITENAME}} ha state repristenate da {{gender:$2|$2}}",
+'enotif_subject_changed' => "'A pàgene $1 de {{SITENAME}} ha state cangiate da {{gender:$2|$2}}",
+'enotif_body_intro_deleted' => '\'A pàgene $1 de {{SITENAME}} ha state scangellate suse a $PAGEEDITDATE da {{gender:$2|$2}}, vide $3.',
+'enotif_body_intro_created' => '\'A pàgene $1 de {{SITENAME}} ha state crejete suse a $PAGEEDITDATE da {{gender:$2|$2}}, vide $3 p\'a revisione corrende.',
+'enotif_body_intro_moved' => '\'A pàgene $1 de {{SITENAME}} ha state spustate suse a $PAGEEDITDATE da {{gender:$2|$2}}, vide $3 p\'a revisione corrende.',
+'enotif_body_intro_restored' => '\'A pàgene $1 de {{SITENAME}} ha state repristenate suse a $PAGEEDITDATE da {{gender:$2|$2}}, vide $3 p\'a revisione corrende.',
+'enotif_body_intro_changed' => '\'A pàgene $1 de {{SITENAME}} ha state cangiate suse a $PAGEEDITDATE da {{gender:$2|$2}}, vide $3 p\'a revisione corrende.',
 'enotif_lastvisited' => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff' => 'Vide $1 pe vedè stu cangiamende.',
 'enotif_anon_editor' => 'Utende anonime $1',
@@ -2908,6 +2926,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-default-sort' => 'Chiave de ordenamende de base',
 'pageinfo-length' => "Lunghezze d'a pàgene (in byte)",
 'pageinfo-article-id' => "ID d'a pàgene",
+'pageinfo-language' => "Lènga d'a pàgene de condenute",
 'pageinfo-robot-policy' => "State d'u motore de ricerche",
 'pageinfo-robot-index' => 'Indicizzabbele',
 'pageinfo-robot-noindex' => 'None indicizzabbele',
@@ -2928,6 +2947,9 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorije|Categorije}} scunnute ($1)',
 'pageinfo-templates' => 'Esclude {{PLURAL:$1|template|template}} ($1)',
+'pageinfo-toolboxlink' => "'Mbormaziune d'a pagene",
+'pageinfo-redirectsto' => 'Reinderizze a',
+'pageinfo-redirectsto-info' => "'Mbormazione",
 'pageinfo-contentpage-yes' => 'Sine',
 'pageinfo-protect-cascading-yes' => 'Sine',
 
@@ -2986,6 +3008,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'file-nohires' => "Manghe 'a risoluzione ierta.",
 'svg-long-desc' => "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
 'svg-long-desc-animated' => "File SVG animate, nominalmende sonde $1 × $2 pixel, dimenzione d'u file: $3",
+'svg-long-error' => 'File SVG invalide: $1',
 'show-big-image' => 'Risoluzione chiena chiena',
 'show-big-image-preview' => 'Dimenziune de sta andeprime: $1.',
 'show-big-image-other' => 'Otre {{PLURAL:$2|resoluzione|resoluziune}}: $1.',
@@ -3021,6 +3044,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'hours' => '{{PLURAL: $1|$1ore|$1 ore}}',
 'days' => '{{PLURAL: $1|$1 sciurne|$1 sciurne}}',
 'ago' => '$1 fà',
+'just-now' => 'mò mò',
 
 # Bad image list
 'bad_image_list' => "'U formete jè 'u seguende:

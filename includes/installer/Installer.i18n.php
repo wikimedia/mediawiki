@@ -4865,8 +4865,11 @@ $messages['es-formal'] = array(
 
 /** Estonian (eesti)
  * @author Avjoska
+ * @author Pikne
  */
 $messages['et'] = array(
+	'config-your-language' => 'Oma keel:',
+	'config-wiki-language' => 'Viki keel:',
 	'config-back' => '← Tagasi',
 	'config-continue' => 'Jätka →',
 	'config-page-language' => 'Keel',
@@ -4875,10 +4878,11 @@ $messages['et'] = array(
 	'config-page-options' => 'Seaded',
 	'config-page-install' => 'Paigaldamine',
 	'config-page-complete' => 'Valmis!',
+	'config-page-copying' => 'Kopeerimine',
 	'config-db-name' => 'Andmebaasi nimi:',
 	'config-db-username' => 'Andmebaasi kasutajanimi:',
 	'config-db-password' => 'Andmebaasi parool:',
-	'config-site-name' => 'Wiki nimi:',
+	'config-site-name' => 'Viki nimi:',
 	'config-site-name-blank' => 'Sisestage lehekülje nimi.',
 	'config-project-namespace' => 'Projekti nimeruum:',
 	'config-ns-generic' => 'Projekt',
@@ -4888,12 +4892,17 @@ $messages['et'] = array(
 	'config-admin-password-mismatch' => 'Sisestatud kaks parooli ei lange kokku.',
 	'config-admin-email' => 'E-posti aadress:',
 	'config-optional-continue' => 'Küsi minult veel küsimusi.',
-	'config-email-settings' => 'E-posti seaded',
+	'config-email-settings' => 'E-posti sätted',
 	'config-install-step-done' => 'valmis',
 	'config-install-step-failed' => 'ebaõnnestus',
 	'mainpagetext' => "'''MediaWiki tarkvara on edukalt paigaldatud.'''",
-	'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
-ning [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].', # Fuzzy
+	'mainpagedocfooter' => 'Vikitarkvara kasutamise kohta leiad lisateavet [//meta.wikimedia.org/wiki/Help:Contents juhendist].
+
+== Alustamine ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Häälestussätete loend]
+* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki KKK]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki versiooniuuenduste postiloend]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources MediaWiki lokaliseerimine]',
 );
 
 /** Basque (euskara)
@@ -9628,6 +9637,7 @@ Da cambiare solamente se si è sicuri di averne bisogno.',
 	'config-header-oracle' => 'Impostazioni Oracle',
 	'config-header-ibm_db2' => 'Impostazioni IBM DB2',
 	'config-invalid-db-type' => 'Tipo di database non valido',
+	'config-missing-db-name' => 'È necessario immettere un valore per "Nome del database"',
 	'config-db-web-account' => "Account del database per l'accesso web",
 	'config-db-web-create' => "Crea l'account se non esiste già",
 	'config-mysql-engine' => 'Storage engine:',
@@ -9720,7 +9730,7 @@ I seguenti collegamenti sono in lingua inglese:
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
 * [//www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]", # Fuzzy
 );
 
 /** Japanese (日本語)
@@ -11904,8 +11914,65 @@ $messages['lo'] = array(
 );
 
 /** Lithuanian (lietuvių)
+ * @author Eitvys200
  */
 $messages['lt'] = array(
+	'config-information' => 'Informacija',
+	'config-your-language' => 'Jūsų kalba:',
+	'config-wiki-language' => 'Viki kalba:',
+	'config-back' => '← Atgal',
+	'config-continue' => 'Toliau →',
+	'config-page-language' => 'Kalba',
+	'config-page-welcome' => 'Sveiki atvykę į MediaWiki!',
+	'config-page-name' => 'Vardas',
+	'config-page-options' => 'Parinktys',
+	'config-page-install' => 'Įdiegti',
+	'config-page-complete' => 'Baigta!',
+	'config-page-restart' => 'Iš naujo paleiskite diegimą',
+	'config-page-readme' => 'Perskaityk manę',
+	'config-page-copying' => 'Kopijuojama',
+	'config-page-upgradedoc' => 'Atnaujinama',
+	'config-restart' => 'Taip, paleiskite jį iš naujo',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-type-ibm_db2' => 'IBM DB2',
+	'config-header-mysql' => 'MySQL nustatymai',
+	'config-header-postgres' => 'PostgreSQL nustatymai',
+	'config-header-sqlite' => 'SQLite nustatymai',
+	'config-header-oracle' => 'Oracle nustatymai',
+	'config-header-ibm_db2' => 'IBM DB2 nustatymai',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'Viki pavadinimas:',
+	'config-site-name-blank' => 'Įveskite svetainės pavadinimą.',
+	'config-project-namespace' => 'Projekto pavadinimas:',
+	'config-ns-generic' => 'Projektas',
+	'config-ns-site-name' => 'Toks pat kaip viki pavadinimas: $1',
+	'config-admin-box' => 'Administratoriaus paskyra',
+	'config-admin-name' => 'Jūsų vardas:',
+	'config-admin-password' => 'Slaptažodis:',
+	'config-admin-password-confirm' => 'Slaptažodis dar kartą:',
+	'config-admin-name-blank' => 'Įveskite administratoriaus vartotojo vardą.',
+	'config-admin-password-blank' => 'Įvesti administratoriaus paskyros slaptažodį.',
+	'config-admin-password-same' => 'Slaptažodis turi būti ne toks pat, kaip vartotojo vardas.',
+	'config-admin-password-mismatch' => 'Įvesti slaptažodžiai nesutampa.',
+	'config-admin-email' => 'El. pašto adresas:',
+	'config-optional-continue' => 'Paklausti daugiau klausimų.',
+	'config-optional-skip' => 'Man jau nuobodu, tiesiog įdiekite viki.',
+	'config-profile' => 'Vartotojo teisių paskyra:',
+	'config-profile-wiki' => 'Tradicinė viki',
+	'config-profile-private' => 'Privati viki',
+	'config-license-pd' => 'Viešas Domenas',
+	'config-email-settings' => 'El. pašto nustatymai',
+	'config-upload-enable' => 'Įgalinti failų įkėlimus',
+	'config-logo' => 'Logotipo URL:',
+	'config-cc-again' => 'Pasirinkti dar kartą...',
+	'config-extensions' => 'Plėtiniai',
+	'config-install-step-done' => 'atlikta',
+	'config-install-step-failed' => 'nepavyko',
+	'config-install-schema' => 'Kuriama schema',
+	'config-install-keys' => 'Generuojami slapti raktai',
+	'config-help' => 'pagalba',
 	'mainpagetext' => "'''MediaWiki sėkmingai įdiegta.'''",
 	'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [//meta.wikimedia.org/wiki/Help:Contents žinyne].
 
@@ -11913,7 +11980,7 @@ $messages['lt'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]', # Fuzzy
 );
 
 /** Latvian (latviešu)
@@ -12879,13 +12946,70 @@ $messages['mt'] = array(
 	'config-page-restart' => "Erġa' ibda l-installazzjoni",
 	'config-page-readme' => 'Aqrani',
 	'config-page-releasenotes' => 'Noti tal-verżjoni',
+	'config-page-existingwiki' => 'Wiki eżistenti',
+	'config-restart' => "Iva, erġa' ibda",
+	'config-env-php' => 'PHP $1 huwa installat.',
+	'config-db-username' => 'Isem tal-utent tad-databażi:',
+	'config-db-password' => 'Password tad-databażi:',
+	'config-db-port' => 'Port tad-databażi:',
+	'config-db-schema' => 'Skema għal MediaWiki:',
+	'config-db-web-create' => 'Oħloq il-kont jekk għadu ma jeżistix',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-charset' => "Sett ta' karattri tad-databażi:",
+	'config-mysql-binary' => 'Binarju',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'Isem tal-wiki:',
+	'config-site-name-help' => "Dan se jidher fil-barra tat-titlu tal-browżer u f'diversi postijiet oħra.",
+	'config-site-name-blank' => 'Daħħal isem tas-sit.',
+	'config-project-namespace' => 'Spazju tal-isem tal-proġett:',
+	'config-ns-generic' => 'Proġett',
+	'config-ns-site-name' => 'L-istess bħall-isem tal-wiki: $1',
+	'config-ns-other' => 'Oħrajn (speċifika)',
+	'config-ns-other-default' => 'MyWiki',
+	'config-ns-invalid' => 'L-ispazju speċifikat "<nowiki>$1</nowiki>" huwa ħażin.
+Speċifika spazju tal-isem tal-proġett differenti.',
+	'config-ns-conflict' => 'L-ispazju speċifikat "<nowiki>$1</nowiki>" joħloq kunflitt ma\' spazju tal-isem ieħor tal-MediaWiki.
+Speċifika spazju tal-isem tal-proġett differenti.',
+	'config-admin-box' => 'Kont tal-amministratur',
+	'config-admin-name' => 'Ismek:',
+	'config-admin-password' => 'Password:',
+	'config-admin-password-confirm' => "Erġa' daħħal il-password:",
+	'config-admin-help' => 'Daħħal l-isem tal-utent preferit hawnhekk, per eżempju "Joe Borg".
+Dan huwa l-isem li se tuża\' kull darba li tidħol fil-wiki.',
+	'config-admin-name-blank' => 'Daħħal isem tal-utent għall-amministratur.',
+	'config-admin-name-invalid' => 'L-isem tal-utent speċifikat "<nowiki>$1</nowiki>" huwa ħażin.
+Speċifika isem tal-utent differenti.',
+	'config-admin-password-blank' => 'Daħħal password għall-kont tal-amministratur.',
+	'config-admin-password-same' => 'Il-password ma tistax tkun l-istess bħall-isem tal-utent.',
+	'config-admin-password-mismatch' => 'Il-passwords li daħħalt ma jaqblux.',
+	'config-admin-email' => 'Indirizz elettroniku:',
+	'config-admin-error-bademail' => 'Daħħalt indirizz elettroniku ħażin.',
+	'config-almost-done' => "Kważi lest!
+Jekk trid tista' taqbeż il-parti li jmiss tal-konfigurazzjoni u sempliċiment tinstalla l-wiki.",
+	'config-optional-continue' => 'Staqsini aktar mistoqsijiet.',
+	'config-optional-skip' => 'Xbajt diġà, installa l-wiki.',
+	'config-profile-wiki' => 'Wiki tradizzjonali',
+	'config-profile-no-anon' => 'Huwa obbligatorju l-ħolqien tal-kont',
+	'config-profile-fishbowl' => 'Edituri awtorizzati biss',
+	'config-profile-private' => 'Wiki privata',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
+	'config-license-cc-by' => 'Creative Commons Attribution',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-cc-0' => 'Creative Commons Zero (dominju pubbliku)',
+	'config-license-pd' => 'Dominju pubbliku',
+	'config-license-cc-choose' => 'Agħżel waħda mil-liċenzji tal-Creative Commons',
+	'config-upload-deleted' => 'Direttorju għall-fajls imħassra:',
+	'config-upload-deleted-help' => "Agħżel direttorju fejn iżżomm fajls imħassra.
+Idealment, dan m'għandux ikun aċċessibbli mill-web.",
+	'config-logo' => 'URL tal-logo:',
 	'mainpagetext' => "'''MediaWiki ġie installat b'suċċess.'''",
 	'mainpagedocfooter' => "Ikkonsulta l-[//meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
 
 == Biex tibda ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista ta' preferenzi għall-konfigurazzjoni]
 * [//www.mediawiki.org/wiki/Manual:FAQ Mistoqsijiet rikorrenti fuq il-MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Il-lista tal-posta tħabbar 'l MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Il-lista tal-posta tħabbar 'l MediaWiki]", # Fuzzy
 );
 
 /** Burmese (မြန်မာဘာသာ)
@@ -13949,7 +14073,7 @@ MediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een a
 	'config-install-user-missing-create' => 'De opgegeven gebruiker "$1" bestaat niet.
 Klik op "registreren" onderaan als u de gebruiker wilt aanmaken.',
 	'config-install-tables' => 'Tabellen aanmaken',
-	'config-install-tables-exist' => "'''Waarschuwing''': de MediaWiki-tabellen lijken al te bestaan.
+	'config-install-tables-exist' => "'''Waarschuwing''': de MediaWikitabellen lijken al te bestaan.
 Het aanmaken wordt overgeslagen.",
 	'config-install-tables-failed' => "'''Fout''': het aanmaken van een tabel is mislukt met de volgende foutmelding: $1",
 	'config-install-interwiki' => 'Bezig met het vullen van de interwikitabel',
@@ -15982,10 +16106,10 @@ Totuși, MediaWiki necesită PHP $2 sau mai nou.',
 	'config-license-cc-0' => 'Creative Commons Zero (domeniu public)',
 	'config-license-gfdl' => 'Licența GNU pentru Documentare Liberă 1.3 sau ulterioară',
 	'config-license-pd' => 'Domeniu public',
-	'config-license-cc-choose' => 'Selectați o licență personalizată Creative Commons',
+	'config-license-cc-choose' => 'Alegeți o licență Creative Commons personalizată',
 	'config-email-settings' => 'Setări pentru e-mail',
 	'config-upload-deleted' => 'Director pentru fișierele șterse:',
-	'config-logo' => 'Adresa web a siglei:',
+	'config-logo' => 'Adresa URL a siglei:',
 	'config-cc-again' => 'Alegeți din nou...',
 	'config-advanced-settings' => 'Configurare avansată',
 	'config-cache-options' => 'Parametrii pentru stocarea temporară a obiectelor:',
@@ -16720,7 +16844,10 @@ $messages['si'] = array(
 	'config-page-readme' => 'මාව කියවන්න',
 	'config-page-releasenotes' => 'නිකුතු සටහන්',
 	'config-page-copying' => 'පිටපත් කරමින්',
+	'config-page-upgradedoc' => 'උසස් කරමින්',
+	'config-page-existingwiki' => 'පවත්නා විකිය',
 	'config-db-name' => 'දත්ත සංචිතයේ නම:',
+	'config-db-install-account' => 'ස්ථාපනය සඳහා පරිශීලක ගිණුම',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-db-port' => 'දත්ත සංචිතයේ කවුළුව:',
 	'config-type-ibm_db2' => 'IBM DB2',
@@ -16733,9 +16860,11 @@ $messages['si'] = array(
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'ද්විමය',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'විකියෙහි නම:',
 	'config-site-name-blank' => 'අඩවි නාමයක් යොදන්න.',
 	'config-project-namespace' => 'ව්‍යාපෘතියේ නාමඅවකාශය:',
 	'config-ns-generic' => 'ව්‍යාපෘතිය',
+	'config-ns-site-name' => 'විකියෙහි නම ලෙසම: $1',
 	'config-ns-other' => 'වෙනත් (විශේෂණය කරන්න)',
 	'config-ns-other-default' => 'මගේවිකිය',
 	'config-admin-box' => 'පරිපාලක ගිණුම',
@@ -16743,15 +16872,21 @@ $messages['si'] = array(
 	'config-admin-password' => 'මුරපදය:',
 	'config-admin-password-confirm' => 'මුරපදය නැවතත්:',
 	'config-admin-email' => 'විද්‍යුත්-තැපැල් ලිපිනය:',
+	'config-optional-continue' => 'මගෙන් තව ප්‍රශ්ණ අහන්න.',
 	'config-profile-wiki' => 'සාම්ප්‍රදායික විකිය',
 	'config-profile-no-anon' => 'ගිණුම් තැනීම අවශ්‍යයි',
 	'config-profile-private' => 'පුද්ගලික විකිය',
+	'config-license' => 'කතුහිමිකම සහ බලපත්‍රය:',
 	'config-license-pd' => 'පොදු වසම',
 	'config-email-settings' => 'විද්‍යුත්-තැපැල් සැකසුම්',
+	'config-upload-enable' => 'ගොනු උඩුගත කිරීම් සක්‍රිය කරන්න',
 	'config-upload-deleted' => 'මැකූ ගොනු සඳහා නාමාවලිය:',
+	'config-cc-again' => 'නැවත ඇහිඳගන්න...',
+	'config-advanced-settings' => 'උසස් වින්‍යාසගතකෙරුම',
 	'config-extensions' => 'විස්තීර්ණ',
 	'config-install-step-done' => 'සිදුකලා',
 	'config-install-step-failed' => 'අසාර්ථකයි',
+	'config-install-database' => 'දත්ත සංචිතය සකසමින්',
 	'config-install-tables' => 'වගු තනමින්',
 	'config-help' => 'උදව්',
 	'mainpagetext' => "'''මීඩියාවිකි සාර්ථක ලෙස ස්ථාපනය කරන ලදි.'''",
@@ -16760,7 +16895,7 @@ $messages['si'] = array(
 == ඇරඹුම ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings වින්‍යාස සැකසුම්]
 * [//www.mediawiki.org/wiki/Manual:FAQ මීඩියාවිකි නිති-විමසන-පැන]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මීඩියාවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මීඩියාවිකි නිකුතුව තැපැල් ලැයිස්තුව]', # Fuzzy
 );
 
 /** Slovak (slovenčina)

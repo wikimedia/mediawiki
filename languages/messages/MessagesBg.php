@@ -2908,6 +2908,7 @@ $1',
 'markedaspatrollederror' => 'Не е възможно да се отбележи като проверена',
 'markedaspatrollederrortext' => 'Необходимо е да се посочи редакция, която да бъде отбелязана като проверена.',
 'markedaspatrollederror-noautopatrol' => 'Не е разрешено да маркирате своите редакции като проверени.',
+'markedaspatrollednotify' => 'Тази промяна на $1 беше отбелязана като патрулирана.',
 
 # Patrol log
 'patrol-log-page' => 'Дневник на патрула',

@@ -1623,7 +1623,7 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-info' => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-i18n' => 'Field set legend for user preferences regarding the interface language',
 'prefs-signature' => '{{Identical|Signature}}',
-'prefs-dateformat' => 'Used in [[Special:Preferences]], tab "Date and time".',
+'prefs-dateformat' => 'Used in [[Special:Preferences#mw-prefsection-datetime|Special:Preferences]], tab "Date and time".',
 'prefs-timeoffset' => 'Used in [[Special:Preferences]], tab "Date and time".',
 'prefs-advancedediting' => 'Used in [[Special:Preferences]], tab "Editing".
 {{Identical|Advanced options}}',
