@@ -810,7 +810,7 @@ function wfParseUrl( $url ) {
 		$bits['host'] = '';
 
 		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
-		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
+		if ( isset( $bits['path'] ) && substr( $bits['path'], 0, 1 ) !== '/' ) {
 			$bits['path'] = '/' . $bits['path'];
 		}
 	}
