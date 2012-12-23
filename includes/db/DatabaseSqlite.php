@@ -788,6 +788,9 @@ class DatabaseSqlite extends DatabaseBase {
 			$s = preg_replace( '/\(\d+\)/', '', $s );
 			// No FULLTEXT
 			$s = preg_replace( '/\bfulltext\b/i', '', $s );
+		} elseif ( preg_match( '/^\s*DROP INDEX/i', $s ) ) {
+			// DROP INDEX is database-wide, not table-specific, so no ON <table> clause.
+			$s = preg_replace( '/\sON\s+[^\s]*/i', '', $s );
 		}
 		return $s;
 	}
