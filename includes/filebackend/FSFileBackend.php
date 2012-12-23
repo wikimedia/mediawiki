@@ -251,7 +251,9 @@ class FSFileBackend extends FileBackendStore {
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Store', $cmd, $dest );
 		} else { // immediate write
+			wfSuppressWarnings();
 			$ok = copy( $params['src'], $dest );
+			wfRestoreWarnings();
 			// In some cases (at least over NFS), copy() returns true when it fails
 			if ( !$ok || ( filesize( $params['src'] ) !== filesize( $dest ) ) ) {
 				if ( $ok ) { // PHP bug
