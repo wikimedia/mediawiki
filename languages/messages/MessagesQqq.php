@@ -5212,6 +5212,9 @@ See also:
 {{Related|Listgrouprights}}',
 'listgrouprights-removegroup-self-all' => 'Used on [[Special:ListGroupRights]].
 {{Related|Listgrouprights}}',
+'listgrouprights-namespaceprotection-header' => 'Shown on [[Special:ListGroupRights]] as the header for the namespace protection table.',
+'listgrouprights-namespaceprotection-namespace' => 'Shown on [[Special:ListGroupRights]] as the namespace column header for the namespace protection table.',
+'listgrouprights-namespaceprotection-restrictedto' => 'Shown on [[Special:ListGroupRights]] as the restricted to column header for the namespace protection table.',
 
 # Email user
 'mailnologin' => 'Used in [[Special:EmailUser]].
