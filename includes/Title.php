@@ -2361,7 +2361,8 @@ class Title {
 		$expiry = array( 'create' => $expiry );
 
 		$page = WikiPage::factory( $this );
-		$status = $page->doUpdateRestrictions( $limit, $expiry, false, $reason, $wgUser );
+		$cascade = false;
+		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $wgUser );
 
 		return $status->isOK();
 	}
