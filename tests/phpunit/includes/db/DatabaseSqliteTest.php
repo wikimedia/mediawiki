@@ -372,4 +372,12 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		ksort( $indexes );
 		return $indexes;
 	}
+	
+	function testCaseInsensitiveLike() {
+		// TODO: Test this for all databases
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$res = $db->query( 'SELECT "a" LIKE "A" AS a' );
+		$row = $res->fetchRow();
+		$this->assertFalse( (bool)$row['a'] );
+	}
 }
