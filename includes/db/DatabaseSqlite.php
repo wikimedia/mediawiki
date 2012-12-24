@@ -127,6 +127,8 @@ class DatabaseSqlite extends DatabaseBase {
 		# set error codes only, don't raise exceptions
 		if ( $this->mOpened ) {
 			$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+			# Enforce LIKE to be case sensitive, just like MySQL
+			$this->query( 'PRAGMA case_sensitive_like = 1' );
 			return true;
 		}
 	}
