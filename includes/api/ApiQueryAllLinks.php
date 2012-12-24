@@ -98,12 +98,16 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$from = ( is_null( $params['from'] ) ? null : 
+				$this->titlePartToKey( $params['from'], $params['namespace'] ) );
+		$to = ( is_null( $params['to'] ) ? null : 
+				$this->titlePartToKey( $params['to'], $params['namespace'] ) );
 		$this->addWhereRange( 'pl_title', 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'pl_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'pl_title' . $db->buildLike( 
+					$this->titlePartToKey( $params['prefix'], $params['namespace'] ), 
+					$db->anyString() ) );
 		}
 
 		$this->addFields( 'pl_title' );
