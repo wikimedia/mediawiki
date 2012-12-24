@@ -141,6 +141,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::resolveContainerPath()
+	 * @param $container string
+	 * @param $relStoragePath string
 	 * @return null
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
@@ -154,6 +156,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::isPathUsableInternal()
+	 * @param $storagePath string
 	 * @return bool
 	 */
 	public function isPathUsableInternal( $storagePath ) {
@@ -193,6 +196,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCreateInternal()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doCreateInternal( array $params ) {
@@ -272,6 +276,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doStoreInternal()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doStoreInternal( array $params ) {
@@ -367,6 +372,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCopyInternal()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doCopyInternal( array $params ) {
@@ -437,6 +443,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doMoveInternal()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doMoveInternal( array $params ) {
@@ -510,6 +517,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doDeleteInternal()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doDeleteInternal( array $params ) {
@@ -564,6 +572,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doDescribeInternal()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doDescribeInternal( array $params ) {
@@ -605,6 +614,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doPrepareInternal()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
@@ -612,7 +624,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (a) Check if container already exists
 		try {
-			$contObj = $this->getContainer( $fullCont );
+			$this->getContainer( $fullCont );
 			// NoSuchContainerException not thrown: container must exist
 			return $status; // already exists
 		} catch ( NoSuchContainerException $e ) {
@@ -647,6 +659,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doSecureInternal()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
@@ -682,6 +697,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doPublishInternal()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doPublishInternal( $fullCont, $dir, array $params ) {
@@ -722,6 +740,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCleanInternal()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
@@ -761,6 +782,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doFileExists()
+	 * @param $params array
 	 * @return array|bool|null
 	 */
 	protected function doGetFileStat( array $params ) {
@@ -805,7 +827,7 @@ class SwiftFileBackend extends FileBackendStore {
 		wfProfileIn( __METHOD__ );
 		trigger_error( "$path was not stored with SHA-1 metadata.", E_USER_WARNING );
 		$status = Status::newGood();
-		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
+		$this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
 			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1 ) );
 			if ( $tmpFile ) {
@@ -826,6 +848,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doGetFileContentsMulti()
+	 * @param $params array
 	 * @return Array
 	 */
 	protected function doGetFileContentsMulti( array $params ) {
@@ -847,8 +870,6 @@ class SwiftFileBackend extends FileBackendStore {
 				try {
 					$sContObj = $this->getContainer( $srcCont );
 					$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-					// Get source file extension
-					$ext = FileBackend::extensionFromPath( $path );
 					// Create a new temporary memory file...
 					$handle = fopen( 'php://temp', 'wb' );
 					if ( $handle ) {
@@ -900,6 +921,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doDirectoryExists()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return bool|null
 	 */
 	protected function doDirectoryExists( $fullCont, $dir, array $params ) {
@@ -919,6 +943,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getDirectoryListInternal()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return SwiftFileBackendDirList
 	 */
 	public function getDirectoryListInternal( $fullCont, $dir, array $params ) {
@@ -927,6 +954,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
+	 * @param $fullCont string
+	 * @param $dir string
+	 * @param $params array
 	 * @return SwiftFileBackendFileList
 	 */
 	public function getFileListInternal( $fullCont, $dir, array $params ) {
@@ -1002,6 +1032,10 @@ class SwiftFileBackend extends FileBackendStore {
 		return $dirs;
 	}
 
+	/**
+	 * @param $path string
+	 * @return bool|string
+	 */
 	protected function getParentDir( $path ) {
 		return ( strpos( $path, '/' ) !== false ) ? dirname( $path ) : false;
 	}
@@ -1056,7 +1090,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doGetFileSha1base36()
-	 * @return bool
+	 * @param $params array
+	 * @return bool|string
 	 */
 	protected function doGetFileSha1base36( array $params ) {
 		$stat = $this->getFileStat( $params );
@@ -1069,6 +1104,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doStreamFile()
+	 * @param $params array
 	 * @return Status
 	 */
 	protected function doStreamFile( array $params ) {
@@ -1104,6 +1140,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doGetLocalCopyMulti()
+	 * @param $params array
 	 * @return null|TempFSFile
 	 */
 	protected function doGetLocalCopyMulti( array $params ) {
@@ -1177,6 +1214,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileHttpUrl()
+	 * @param $params array
 	 * @return string|null
 	 */
 	public function getFileHttpUrl( array $params ) {
@@ -1223,6 +1261,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doExecuteOpHandlesInternal()
+	 * @param $fileOpHandles array
 	 * @return Array List of corresponding Status objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
@@ -1445,7 +1484,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doPrimeContainerCache()
-	 * @return void
+	 * @param $containerInfo array
 	 */
 	protected function doPrimeContainerCache( array $containerInfo ) {
 		try {
@@ -1501,6 +1540,12 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var Array */
 	public $affectedObjects = array();
 
+	/**
+	 * @param $backend
+	 * @param $params array
+	 * @param $call
+	 * @param $cfOp CF_Async_Op
+	 */
 	public function __construct( $backend, array $params, $call, CF_Async_Op $cfOp ) {
 		$this->backend = $backend;
 		$this->params = $params;
@@ -1650,6 +1695,11 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
+	 * @param $container string
+	 * @param $dir string
+	 * @param $after string|null
+	 * @param $limit int
+	 * @param $params array
 	 * @return Array|null
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
