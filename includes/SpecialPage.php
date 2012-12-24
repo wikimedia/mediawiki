@@ -859,6 +859,8 @@ class SpecialPage {
  */
 abstract class FormSpecialPage extends SpecialPage {
 
+	protected $messagePrefix = '';
+
 	/**
 	 * Get an HTMLForm descriptor array
 	 * @return Array
@@ -885,7 +887,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
 
-		$form = new HTMLForm( $this->fields, $this->getContext() );
+		$form = new HTMLForm( $this->fields, $this->getContext(), $this->messagePrefix );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 		$form->setWrapperLegend( $this->msg( strtolower( $this->getName() ) . '-legend' ) );
 		$form->addHeaderText(
@@ -934,6 +936,20 @@ abstract class FormSpecialPage extends SpecialPage {
 		$form = $this->getForm();
 		if ( $form->show() ) {
 			$this->onSuccess();
+		}
+	}
+
+	/**
+	 * Set message prefix for HTMLForm
+	 *
+	 * @param $prefix string
+	 */
+	public function setMessagePrefix( $prefix ) {
+		if ( is_string( $prefix ) ) {
+			$this->messagePrefix = $prefix;
+		} else {
+			$type = is_object( $prefix ) ? get_class( $prefix ) : gettype( $prefix );
+			wfDebug( __METHOD__ . " prefix parameter must be a string and not $type.\n" );
 		}
 	}
 
