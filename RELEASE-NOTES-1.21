@@ -118,6 +118,10 @@ production.
 * (bug 41342) jquery.suggestions should cancel any active (async) fetches
   before it triggers another fetch.
 * (bug 42184) $wgUploadSizeWarning missing second variable
+* (bug 34581) removeUnusedAccounts.php maintenance script now ignores new users
+  log when determining whether users made changes
+* (bug 43379) History page no longer shows "0" as page size if revision length
+  is unavailable
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
