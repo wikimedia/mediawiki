@@ -411,12 +411,12 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $title string Page title with spaces
 	 * @return string Page title with underscores
 	 */
-	public function titleToKey( $title ) {
+	public function titleToKey( $title, $defaultNamespace = NS_MAIN ) {
 		// Don't throw an error if we got an empty string
 		if ( trim( $title ) == '' ) {
 			return '';
 		}
-		$t = Title::newFromText( $title );
+		$t = Title::newFromText( $title, $defaultNamespace );
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 		}
@@ -446,8 +446,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $titlePart string Title part with spaces
 	 * @return string Title part with underscores
 	 */
-	public function titlePartToKey( $titlePart ) {
-		return substr( $this->titleToKey( $titlePart . 'x' ), 0, - 1 );
+	public function titlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
+		return substr( $this->titleToKey( $titlePart . 'x', $defaultNamespace ), 0, - 1 );
 	}
 
 	/**
