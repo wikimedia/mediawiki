@@ -100,7 +100,7 @@ production.
   needed.
 * (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
   actually sorted.
-* (bug 2865)  User interface HTML elements don't use lang attribute
+* (bug 2865)  User interface HTML elements don't use lang attribute.
   (completed the fix by adding the lang attribute to firstHeading).
 * (bug 42173) Removed namespace prefixes on Special:UncategorizedCategories.
 * (bug 36053) Log in "returnto" feature forgets query parameters if no
@@ -117,7 +117,11 @@ production.
   will require updates to your site's CSS or JS.
 * (bug 41342) jquery.suggestions should cancel any active (async) fetches
   before it triggers another fetch.
-* (bug 42184) $wgUploadSizeWarning missing second variable
+* (bug 42184) $wgUploadSizeWarning missing second variable.
+* (bug 34581) removeUnusedAccounts.php maintenance script now ignores newuser
+  log when determining whether an account is used.
+* (bug 43379) Gracefully fail if rev_len is unavailable for a revision on the
+  History page.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
@@ -131,7 +135,7 @@ production.
   does not exist.
 * (bug 27202) Add timestamp sort to list=allimages.
 * (bug 43137) Don't return the sha1 of revisions through the API if the content is
-  revision-deleted
+  revision-deleted.
 * ApiQueryImageInfo now also returns imageinfo for redirects.
 
 === Languages updated in 1.21 ===
