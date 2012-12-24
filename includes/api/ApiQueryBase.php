@@ -411,12 +411,12 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $title string Page title with spaces
 	 * @return string Page title with underscores
 	 */
-	public function titleToKey( $title, $defaultNamespace = NS_MAIN ) {
+	public function titleToKey( $title ) {
 		// Don't throw an error if we got an empty string
 		if ( trim( $title ) == '' ) {
 			return '';
 		}
-		$t = Title::newFromText( $title, $defaultNamespace );
+		$t = Title::newFromText( $title );
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 		}
@@ -442,12 +442,20 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * An alternative to titleToKey() that doesn't trim trailing spaces
+	 * An alternative to titleToKey() that doesn't trim trailing spaces, and
+	 * does not mangle the input if starts with something that looks like a 
+	 * namespace. It is advisable to pass the namespace parameter in order to
+	 * handle per-namespace capitalization settings.
 	 * @param $titlePart string Title part with spaces
+	 * @param $defaultNamespace int Namespace to assume
 	 * @return string Title part with underscores
 	 */
 	public function titlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
-		return substr( $this->titleToKey( $titlePart . 'x', $defaultNamespace ), 0, - 1 );
+		$t = Title::makeTitleSafe( $defaultNamespace, $titlePart . 'x' );
+		if ( !$t ) {
+			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+		}
+		return substr( $t->getDbKey(), 0, -1 );
 	}
 
 	/**

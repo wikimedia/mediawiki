@@ -19,7 +19,7 @@ class ApiQueryAllPagesTest extends ApiTestCase {
 				'action' => 'query',
 				'list' => 'allpages',
 				'apnamespace' => NS_CATEGORY,
-				'apprefix' => 'Template:x' ) );
+				'apprefix' => 'Template:' ) );
 		
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allpages', $result[0]['query'] );

@@ -147,7 +147,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereRange( 'ar_title', $dir, $from, $to );
 
 			if ( isset( $params['prefix'] ) ) {
-				$this->addWhere( 'ar_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+				$this->addWhere( 'ar_title' . $db->buildLike( 
+						$this->titlePartToKey( $params['prefix'], $params['namespace'] ), 
+						$db->anyString() ) );
 			}
 		}
 
