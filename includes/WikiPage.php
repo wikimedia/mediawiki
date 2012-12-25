@@ -3235,6 +3235,34 @@ class WikiPage extends Page implements IDBAccessObject {
 		return $updates;
 	}
 
+	/**
+	 * Get the value of a page property
+	 * @param $name string Name of the page property
+	 * @return string|false The value of the page property or false if it isn't set
+	 */
+	public function getProperty( $name ) {
+		global $wgMemc;
+		$pageId = $this->getId();
+		$propValue = $wgMemc->get( wfMemcKey( 'page-property', $pageId, $name ) );
+		if ( !$propValue ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow(
+				array( 'page_props' ),
+				'pp_value',
+				array(
+					'pp_page' => $pageId,
+					'pp_propname' => $name
+				),
+				__METHOD__
+			);
+			if ( $row ) {
+				$propValue = $row->pp_value;
+				$wgMemc->set( wfMemcKey( 'page-property', $pageId, $name ), $propValue );
+			}
+		}
+		return $propValue;
+	}
+
 }
 
 class PoolWorkArticleView extends PoolCounterWork {

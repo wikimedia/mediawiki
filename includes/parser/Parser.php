@@ -3986,9 +3986,9 @@ class Parser {
 			$this->addTrackingCategory( 'index-category' );
 		}
 
-		# Cache all double underscores in the database
+		# Store all double underscores as page properties in the database
 		foreach ( $this->mDoubleUnderscores as $key => $val ) {
-			$this->mOutput->setProperty( $key, '' );
+			$this->mOutput->setProperty( $key, true );
 		}
 
 		wfProfileOut( __METHOD__ );
