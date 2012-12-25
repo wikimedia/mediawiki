@@ -1075,6 +1075,10 @@ $query: query options passed to Title::getCanonicalURL()
 $title: Title object that we need to get a sortkey for
 &$sortkey: Sortkey to use.
 
+'GetDoubleUnderscoreIDs': modify the list of behavior switch (double underscore)
+magic words. Called by MagicWord.
+&$doubleUnderscoreIDs: array of strings
+
 'GetFullURL': modify fully-qualified URLs used in redirects/export/offsite data
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
