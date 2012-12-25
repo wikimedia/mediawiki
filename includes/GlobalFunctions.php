@@ -3200,7 +3200,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
 		$input == '' ) {
 		return false;
 	}
-	$digitChars = ( $lowercase ) ? '0123456789abcdefghijklmnopqrstuvwxyz' : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$digitChars = '0123456789abcdefghijklmnopqrstuvwxyz';
 	$inDigits = array();
 	$outChars = '';
 
@@ -3254,6 +3254,10 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
 
 	while( strlen( $outChars ) < $pad ) {
 		$outChars .= '0';
+	}
+
+	if ( !$lowercase ) {
+		$outChars = strtoupper( $outChars );
 	}
 
 	return strrev( $outChars );
