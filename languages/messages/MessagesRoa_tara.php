@@ -75,7 +75,7 @@ $messages = array(
 
 'underline-always' => 'Sembre',
 'underline-never' => 'Maje',
-'underline-default' => "Valore de default d'u browser",
+'underline-default' => "Valore de default d'u browser o scheme",
 
 # Font style option in Special:Preferences
 'editfont-style' => "Stile d'u carattere jndr'à l'area de le cangiaminde:",
@@ -186,7 +186,7 @@ $messages = array(
 'vector-action-protect' => 'Protegge',
 'vector-action-undelete' => 'Repristine',
 'vector-action-unprotect' => "Cange 'a protezione",
-'vector-simplesearch-preference' => "Abbilete le suggereminde d'a ricerche avanzate (Sulamende pe le scheme a vettore)",
+'vector-simplesearch-preference' => "Abbilite 'a barre de ricerche semblificate (Sulamende pe le scheme a vettore)",
 'vector-view-create' => 'Ccreje',
 'vector-view-edit' => 'Cange',
 'vector-view-history' => "Vide 'u cunde",
@@ -414,14 +414,14 @@ Query: $2",
 'actionthrottled' => 'Azione inderrotte',
 'actionthrottledtext' => "Cumme 'na mesure andi-spam, tu è state limitete da fà st'azione troppe vote jndr'à 'nu timbe piccinne e tu è subranete stu limite.
 Pe piacere prueve cchiù tarde.",
-'protectedpagetext' => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
+'protectedpagetext' => 'Sta pàgene ha state prutette pe no fa fà cangiaminde o otre aziune a uecchje.',
 'viewsourcetext' => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'viewyourtext' => "Tu puè vedè e copià 'a sorgende de '''le cangiaminde tune''' a sta pàgene:",
 'protectedinterface' => "Sta pàgene dèje 'nu teste de l'inderfacce pu software de sta uicchi, e jè prutette pe prevenìe l'abbuse.
 Pe aggiungere o cangià le traduziune pe tutte le uicchi, pe piacere ause [//translatewiki.net/ translatewiki.net], 'u proggette de localizzazzione de MediaUicchi.",
-'editinginterface' => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà 'n'inderfacce de teste p'u software.
-Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde.
-Pe traduziune, pe piacere vide ce ause [//translatewiki.net/wiki/Main_Page?setlang=roa-tara translatewiki.net], 'u pruggette de localizzazione de MediaUicchi.",
+'editinginterface' => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausate pe dà 'n'inderfacce de teste p'u software.
+Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde de sta Uicchi.
+Pe aggiungere o cangià le traduziune, pe piacere vide ce ause [//translatewiki.net/ translatewiki.net], 'u pruggette de localizzazione de MediaUicchi.",
 'sqlhidden' => '(query SQL ascunnute)',
 'cascadeprotected' => 'Sta pàgene ha state prutette da le cangiaminde, purcè jè ingluse jndr\'à {{PLURAL:$1|seguende pàgene, ca jè|le seguende pàggene, ca sonde}} prutette cu l\'opzione "a caschete":
 $2',
@@ -746,7 +746,7 @@ Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le tit
 'note' => "'''Vide Bbuene:'''",
 'previewnote' => "'''Arrecuerdete queste è sole 'n'andeprime.'''
 le cangiaminde non g'onne state angore reggistrate!",
-'continue-editing' => "Condinue 'u cangiamende",
+'continue-editing' => "Veje jndr'à l'arèe de le cangiaminde",
 'previewconflict' => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
 'session_fail_preview' => "'''Ne dispiace! Non ge putime processà 'u cangiamende tue purcè s'a perse 'a sessione de le date.
 Pe piacere pruève 'n'otra vote.
@@ -830,6 +830,7 @@ Pare proprie ca l'onne scangellete.",
 'edit-no-change' => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
 'edit-already-exists' => "Non ge puè ccrejà 'na pàgene nove purcè esiste già!",
 'defaultmessagetext' => 'Messàgge de teste de base',
+'invalid-content-data' => "Condenute d'u date invalide",
 
 # Content models
 'content-model-wikitext' => 'Uicchiteste',
@@ -1207,9 +1208,9 @@ Quiste non ge pò essere annullate.",
 'prefs-emailconfirm-label' => "Conferme de l'e-mail:",
 'prefs-textboxsize' => "Dimenzione d'a finestre de le cangiaminde",
 'youremail' => 'Poste:',
-'username' => "Nome de l'utende:",
-'uid' => 'ID Utende:',
-'prefs-memberingroups' => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
+'username' => "{{GENDER:$1|Nome de l'utende}}:",
+'uid' => '{{GENDER:$1|ID Utende}}:',
+'prefs-memberingroups' => "{{GENDER:$2|Membre}} {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
 'prefs-memberingroups-type' => '$1',
 'prefs-registration' => 'Orarie de reggistrazzione:',
 'prefs-registration-date-time' => '$1',
@@ -1367,7 +1368,8 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'rightslogtext' => "Quiste jè 'n'archivije pe le cangiaminde de le deritte de l'utinde.",
 'rightslogentry' => "membre d'u gruppe cangete pe $1 da $2 a $3",
 'rightslogentry-autopromote' => 'ha state promosse automaticamende da $2 a $3',
-'logentry-rights-rights' => "membre d'u gruppe cangete pe $1 da $2 a $3",
+'logentry-rights-rights' => "$1 membre d'u gruppe cangiate pe $3 da $4 a $5",
+'logentry-rights-rights-legacy' => "$1 ave cangiate 'u membre d'u gruppe pe $3",
 'rightsnone' => '(ninde)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1618,6 +1620,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-notsame' => "'Nu file non-indendiche esiste già cumme $1.",
 'backend-fail-invalidpath' => "$1 non g'è 'nu percorse de memorizzazzione valide.",
 'backend-fail-delete' => 'Non ge pozze scangellà \'u file "$1".',
+'backend-fail-describe' => 'Non ge pozze cangià le metadata pu file "$1".',
 'backend-fail-alreadyexists' => "'U file $1 già esiste.",
 'backend-fail-store' => "Non ge pozze reggistrà 'u file $1 sus a $2.",
 'backend-fail-copy' => "Non ge pozze cupià 'u file $1 jndr'à $2.",
@@ -2012,7 +2015,7 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'linksearch-ok' => 'Cirche',
 'linksearch-text' => 'Le wildcard cumme a "*.wikipedia.org" ponne essere ausate.<br />
 Onne abbesogne almede de \'nu dominie de levèlle ierte, pe esembie "*.org". <br />
-Protocolle supportate: <code>$1</code> (no sce aggiungenne nisciune de chiste jndr\'à recerca toje).',
+Protocolle supportate: <code>$1</code> (\'u valore de base jè http:// ce \'u protocolle non g\'è specificate).',
 'linksearch-line' => '$1 jè pundete da $2',
 'linksearch-error' => "Le wildcard ponne essere ausate sulamende a l'inzie de l'hostname.",
 
@@ -2063,8 +2066,8 @@ Ponne stà [[{{MediaWiki:Listgrouprights-helppage}}|'mbormaziune de cchiù]] sus
 'emailuser-title-target' => "Manne n'email a quiste {{GENDER:$1|utende}}",
 'emailuser-title-notarget' => "E-mail de l'utende",
 'emailpage' => "E-mail de l'utende",
-'emailpagetext' => "Tu puè ausà 'a schermate aqquà sotte pe mannà 'n'email a stu utende.
-L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze tue]] iesse jndr'à 'u cambe \"Da\" de l'e-mail, accussìa ce riceve 'a mail sape a ce addà responnere.",
+'emailpagetext' => "Tu puè ausà 'a schermate aqquà sotte pe mannà 'n'email a stu {{GENDER:\$1|utende}}.
+L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze tune]] iesse jndr'à 'u cambe \"Da\" de l'e-mail, accussì ce riceve 'a mail sape a ce addà responnere.",
 'usermailererror' => "L'oggette ''Mail'' ha returnete 'n'errore:",
 'defemailsubject' => 'e-mail de {{SITENAME}} da l\'utende "$1"',
 'usermaildisabled' => "L'e-mail de l'utende è disabbilitate",
@@ -2950,8 +2953,11 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-toolboxlink' => "'Mbormaziune d'a pagene",
 'pageinfo-redirectsto' => 'Reinderizze a',
 'pageinfo-redirectsto-info' => "'Mbormazione",
+'pageinfo-contentpage' => "Cundate cumme 'na vôsce",
 'pageinfo-contentpage-yes' => 'Sine',
+'pageinfo-protect-cascading' => 'Protezziune vonne a cascate da aqquà',
 'pageinfo-protect-cascading-yes' => 'Sine',
+'pageinfo-protect-cascading-from' => 'Le protezziune sò a cascate da',
 
 # Skin names
 'skinname-standard' => 'Classeche',
@@ -2974,6 +2980,8 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'markedaspatrollederror' => 'Non ge se pò signà cumme condrollate',
 'markedaspatrollederrortext' => "Tu è abbesogne de specificà 'na revisione da signà cumme condrollate.",
 'markedaspatrollederror-noautopatrol' => 'Tu non ge puè signà le cangiaminde tue cumme condrollate.',
+'markedaspatrollednotify' => 'Stu cangiamende a $1 ha state signate cumme condrollate.',
+'markedaspatrollederrornotify' => 'Signate cumme condrollate fallite.',
 
 # Patrol log
 'patrol-log-page' => 'Archivije de le condrolle',
@@ -3639,6 +3647,7 @@ Stu codece de conferme scade 'u \$4.",
 # Scary transclusion
 'scarytranscludedisabled' => "[Collegaminde 'mbrà InterUicchi disabbilitate]",
 'scarytranscludefailed' => "[L'analisi d'u template ha fallite pe $1]",
+'scarytranscludefailed-httpstatus' => "[Analise d'u template fallite pe $1: HTTP $2]",
 'scarytranscludetoolong' => '[URL jè troppe longhe]',
 
 # Delete conflict
@@ -3987,7 +3996,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-patrol-patrol-auto' => '$1 automaticamende revisione marcate $4 de pàgene condrollate $3',
 'logentry-newusers-newusers' => "'U cunde utende $1 ha state ccrejate",
 'logentry-newusers-create' => "'U cunde utende $1 ha state ccrejate",
-'logentry-newusers-create2' => "$1 ccrejate 'nu cunde utende $3",
+'logentry-newusers-create2' => "$1 {{GENDER:$2|ccrejate}} {{GENDER:$4|'nu cunde utende}} $3",
 'logentry-newusers-autocreate' => "'U cunde utende $1 ha state ccrejate automaticamende",
 'newuserlog-byemail' => 'password mannete pe e-mail',
 

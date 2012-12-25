@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abdulla
+ * @author Akmalzhon
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Casual
  * @author CoderSI
@@ -473,6 +474,7 @@ Vaqtinchalik maxfiy so'z: $2",
 'showlivepreview' => "Tezkor ko'rib chiqish",
 'showdiff' => 'O‘zgarishlarni ko‘rsatish',
 'anoneditwarning' => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
+'missingcommenttext' => 'Iltimos sharh qoldiring.',
 'summary-preview' => "Tavsif shunday bo'ladi:",
 'subject-preview' => "Sarlavha shunday bo'ladi:",
 'blockedtitle' => 'Foydalanuvchi chetlashtirildi',
@@ -489,7 +491,9 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bularni ilova qilishingiz mumkin.",
 'blockednoreason' => "sabab ko'rsatilmadi",
 'whitelistedittext' => "Siz sahifalarni o'zgartirish uchun $1.",
-'nosuchsectiontitle' => "Bo'imni topishning iloji yo'q",
+'nosuchsectiontitle' => "Bo'limni topishning iloji yo'q",
+'nosuchsectiontext' => "Siz mavjud bo'lmagan bo'limni sharhlamoqchi bo'ldingiz.
+Siz sharhlamoqchi bo'lgan bo'lim o'chirilgan yoki boshqa sarlavhaga jildirilgan bo'lishi mumkin.",
 'loginreqtitle' => 'Shaxsiyatni aniqlash talab etiladi',
 'loginreqlink' => 'Kirish',
 'loginreqpagetext' => "Boshqa sahifalarni ko'rish uchun $1",
@@ -515,7 +519,7 @@ Agar yozganlaringiz keyinchalik tahrir qilinishi va qayta tarqatilishiga rozi bo
 Siz shuningdek bu yozganlaringiz sizniki yoki erkin litsenziya ostida ekanligini va'da qilmoqdasiz.
 '''MUALLIFLIK HUQUQLARI BILAN HIMOYALANGAN ISHLARNI ZINHOR BERUXSAT YUBORMANG!'''",
 'copyrightwarning2' => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
-Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar ushun $1 sahifasiga murojaat qiling).
+Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar uchun $1 sahifasiga murojaat qiling).
 '''MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!'''",
 'templatesused' => 'Ushbu sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:',
 'templatesusedpreview' => "Ushbu ko'rib chiqilayotgan sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
@@ -795,6 +799,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'prefs-diffs' => 'Versiyalar farqi',
 
 # User rights
+'editusergroup' => 'Foydalanuvchi guruxlarni taxrirlash',
 'userrights-groupsmember' => 'Aʼzolik:',
 'userrights-groupsmember-auto' => "Noaniq a'zo",
 'userrights-reason' => 'Sabab:',

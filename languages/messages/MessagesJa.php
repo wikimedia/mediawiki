@@ -695,7 +695,7 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 「$1」
 （関数「$2」内）。
 データベースはエラー「$3：$4」を返しました',
-'laggedslavemode' => "'''警告：'''ページに最新の編集が反映されていない可能性があります。",
+'laggedslavemode' => "'''警告:''' ページに最新の編集が反映されていない可能性があります。",
 'readonly' => 'データベースがロックされています',
 'enterlockreason' => 'ロックの理由とロック解除の予定を入力してください',
 'readonlytext' => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらくデータベースの定期メンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
@@ -809,7 +809,7 @@ $2',
 'userexists' => '入力された利用者名は既に使用されています。
 他の名前を選んでください。',
 'loginerror' => 'ログインのエラー',
-'createaccounterror' => 'アカウントを作成できませんでした： $1',
+'createaccounterror' => 'アカウントを作成できませんでした: $1',
 'nocookiesnew' => '利用者アカウントは作成されましたが、ログインしていません。
 {{SITENAME}}では利用者のログインに Cookie を使用します。
 ご使用のブラウザーでは Cookie が無効になっています。
@@ -896,7 +896,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'newpassword' => '新しいパスワード:',
 'retypenew' => '新しいパスワードを再入力:',
 'resetpass_submit' => '再設定してログイン',
-'resetpass_success' => 'パスワードの変更に成功しました!
+'resetpass_success' => 'パスワードを変更しました!
 ログインしています...',
 'resetpass_forbidden' => 'パスワードは変更できません',
 'resetpass-no-info' => 'このページに直接アクセスするためにはログインしている必要があります。',
@@ -988,13 +988,13 @@ $2
 'showpreview' => 'プレビューを表示',
 'showlivepreview' => 'ライブプレビュー',
 'showdiff' => '差分を表示',
-'anoneditwarning' => "'''警告：'''ログインしていません。
+'anoneditwarning' => "'''警告:''' ログインしていません。
 編集すると、IPアドレスがこのページの編集履歴に記録されます。",
 'anonpreviewwarning' => "''ログインしていません。投稿を保存すると、ご使用中のIPアドレスがこのページの履歴に記録されます。''",
-'missingsummary' => "'''注意：'''要約欄が空欄です。
-「{{int:savearticle}}」をもう一度クリックすると、編集は要約なしで保存されます。",
+'missingsummary' => "'''注意:''' 編集内容の要約が空欄です。
+「{{int:savearticle}}」をもう一度クリックすると、編集内容は要約なしで保存されます。",
 'missingcommenttext' => '以下にコメントを入力してください。',
-'missingcommentheader' => "'''注意：'''このコメントに対する題名/見出しが空欄です。
+'missingcommentheader' => "'''注意:''' このコメントに対する題名/見出しが空欄です。
 「{{int:savearticle}}」ボタンをもう一度押すと、空のまま編集が保存されます。",
 'summary-preview' => '要約のプレビュー：',
 'subject-preview' => '題名/見出しのプレビュー：',
@@ -1167,7 +1167,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'edit-conflict' => '編集が競合。',
 'edit-no-change' => '文章が変更されていないため、編集は無視されました。',
 'edit-already-exists' => '新しいページを作成できませんでした。
-そのページは既に存在しています。',
+そのページは既に存在します。',
 'defaultmessagetext' => '既定のメッセージ文',
 'content-failed-to-parse' => '$2 の本文を$1モデルとして構文解析できませんでした: $3',
 'invalid-content-data' => '本文データが無効です',
@@ -1280,7 +1280,7 @@ $3が示した理由：''$2''",
 'rev-showdeleted' => '表示',
 'revisiondelete' => '版の削除と復元',
 'revdelete-nooldid-title' => '無効な対象版',
-'revdelete-nooldid-text' => 'この操作の対象となる版を指定していないか、指定した版が存在していないか、あるいは最新版を非表示しようとしています。',
+'revdelete-nooldid-text' => 'この操作の対象となる版を指定していないか、指定した版が存在しないか、または最新版を非表示にしようとしています。',
 'revdelete-nologtype-title' => '記録の種類を指定していません',
 'revdelete-nologtype-text' => 'この操作を実行する記録の種類を指定していません。',
 'revdelete-nologid-title' => '無効な記録項目',
@@ -1288,8 +1288,8 @@ $3が示した理由：''$2''",
 'revdelete-no-file' => '指定されたファイルは存在しません。',
 'revdelete-show-file-confirm' => '本当にファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を閲覧しますか？',
 'revdelete-show-file-submit' => 'はい',
-'revdelete-selected' => "'''[[:$1]] の{{PLURAL:$2|選択された版}}：'''",
-'logdelete-selected' => "'''{{PLURAL:$1|選択された記録項目}}：'''",
+'revdelete-selected' => "'''[[:$1]] の{{PLURAL:$2|選択された版}}:'''",
+'logdelete-selected' => "'''{{PLURAL:$1|選択された記録項目}}:'''",
 'revdelete-text' => "'''削除された版や記録項目は引き続きページの履歴や記録に表示されますが、一般利用者はその内容の一部を取得できなくなります。'''
 追加の制限がかけられない限り、{{SITENAME}}の他の管理者は同じインターフェイスを使って非表示の内容の取得や復元ができます。",
 'revdelete-confirm' => 'この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。',
@@ -1312,7 +1312,7 @@ $3が示した理由：''$2''",
 'revdelete-log' => '理由：',
 'revdelete-submit' => '選択された{{PLURAL:$1|版}}に適用',
 'revdelete-success' => "'''版の閲覧レベルを更新しました。'''",
-'revdelete-failure' => "'''版の閲覧レベルを更新できませんでした：'''
+'revdelete-failure' => "'''版の閲覧レベルを更新できませんでした:'''
 $1",
 'logdelete-success' => "'''記録の閲覧レベルを変更しました。'''",
 'logdelete-failure' => "'''記録の閲覧レベルを設定できませんでした。'''
@@ -1329,7 +1329,7 @@ $1",
 'revdelete-modify-no-access' => '$1$2の項目の修正に失敗しました：この項目には「制限付き」の印が付いています。
 アクセス権限がありません。',
 'revdelete-modify-missing' => '版 ID $1 の項目の変更に失敗しました: データベース内にありません!',
-'revdelete-no-change' => "'''警告：''' $1$2の項目には要求された閲覧レベルが既に設定されています。",
+'revdelete-no-change' => "'''警告:''' $1$2の項目には要求された閲覧レベルが既に設定されています。",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
 記録を確認してください。',
 'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
@@ -1906,8 +1906,8 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'php-uploaddisabledtext' => 'ファイルのアップロードがPHPで無効化されています。
 file_uploadsの設定を確認してください。',
 'uploadscripted' => 'このファイルは、ウェブブラウザーが誤って解釈してしまうおそれがあるHTMLまたはスクリプトコードを含んでいます。',
-'uploadvirus' => 'このファイルにはウイルスが含まれています！
-詳細：$1',
+'uploadvirus' => 'このファイルはウイルスを含んでいます!
+詳細: $1',
 'uploadjava' => 'このファイルは、Javaの.classファイルを含むZIPファイルです。
 セキュリティの制限を回避されるおそれがあるため、Javaファイルのアップロードは許可されていません。',
 'upload-source' => 'アップロード元ファイル',
@@ -2012,7 +2012,7 @@ $1',
 
 # Special:UploadStash
 'uploadstash' => '未公開アップロード',
-'uploadstash-summary' => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルを表示します。これらのファイルは、アップロードした利用者以外閲覧できません。',
+'uploadstash-summary' => 'このページでは、アップロード済みまたはアップロード中の、ウィキ上でまだ公開されていないファイルを表示します。これらのファイルは、アップロードした利用者以外閲覧できません。',
 'uploadstash-clear' => '未公開ファイルを消去',
 'uploadstash-nofiles' => '未公開ファイルはありません。',
 'uploadstash-badtoken' => '操作を実行できませんでした。編集するための認証の期限切れが原因である可能性があります。再度試してください。',
@@ -2066,8 +2066,8 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'upload_source_file' => '(あなたのコンピューター上のファイル)',
 
 # Special:ListFiles
-'listfiles-summary' => 'この特別ページでは、アップロードされたすべてのファイルを表示します。
-利用者によりフィルタ処理された場合、その利用者がアップロードした最新バージョンのファイルのみが表示されます。',
+'listfiles-summary' => 'この特別ページでは、アップロードされたファイルをすべて表示します。
+利用者で絞り込んだ場合は、その利用者がアップロードした最新版のファイルのみが表示されます。',
 'listfiles_search_for' => 'メディア名で検索：',
 'imgfile' => 'ファイル',
 'listfiles' => 'ファイル一覧',
@@ -2331,7 +2331,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'allpagesnext' => '次へ',
 'allpagessubmit' => '表示',
 'allpagesprefix' => '次の文字列から始まるページを表示：',
-'allpagesbadtitle' => '指定したページ名は無効か、言語間またはウィキ間接頭辞を含んでいます。
+'allpagesbadtitle' => '指定したページ名は無効か、言語間またはインターウィキ接頭辞を含んでいます。
 ページ名に使用できない文字が1つ以上含まれている可能性があります。',
 'allpages-bad-ns' => '{{SITENAME}}に「$1」という名前空間はありません。',
 'allpages-hide-redirects' => 'リダイレクトを隠す',
@@ -2902,7 +2902,7 @@ $1 のブロックの理由は「''$2''」です。",
 'lockbtn' => 'データベースをロック',
 'unlockbtn' => 'データベースのロックを解除',
 'locknoconfirm' => '確認ボックスにチェックが入っていません。',
-'lockdbsuccesssub' => 'データベースのロックに成功しました',
+'lockdbsuccesssub' => 'データベースをロックしました',
 'unlockdbsuccesssub' => 'データベースのロックを除去しました',
 'lockdbsuccesstext' => 'データベースをロックしました。<br />
 メンテナンスが完了したら、忘れずに[[Special:UnlockDB|ロックを除去]]してください。',
@@ -2978,8 +2978,8 @@ $1 のブロックの理由は「''$2''」です。",
 'revertmove' => '差し戻し',
 'delete_and_move' => '削除して移動',
 'delete_and_move_text' => '== 削除が必要です ==
-移動先「[[:$1]]」は既に存在しています。
-移動のためにこのページを削除しますか？',
+移動先「[[:$1]]」は既に存在します。
+移動のためにこのページを削除しますか?',
 'delete_and_move_confirm' => 'はい、ページを削除します',
 'delete_and_move_reason' => '「[[$1]]」からの移動のために削除',
 'selfmove' => '移動元と移動先のページ名が同じです。
@@ -3407,8 +3407,8 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-hans' => '中国語（簡体）',
-'variantname-zh-hant' => '中国語（繁体）',
+'variantname-zh-hans' => '中国語 (簡体)',
+'variantname-zh-hant' => '中国語 (繁体)',
 'variantname-zh-cn' => '中国簡体',
 'variantname-zh-tw' => '台湾正体',
 'variantname-zh-hk' => '香港正体',
@@ -3418,8 +3418,8 @@ Variants for Chinese language
 'variantname-zh' => '中国語',
 
 # Variants for Gan language
-'variantname-gan-hans' => 'カン語（簡体）',
-'variantname-gan-hant' => 'カン語（繁体）',
+'variantname-gan-hans' => 'カン語 (簡体)',
+'variantname-gan-hant' => 'カン語 (繁体)',
 'variantname-gan' => 'カン語',
 
 # Variants for Serbian language
@@ -3955,7 +3955,7 @@ $5
 'scarytranscludetoolong' => '[URLが長すぎます]',
 
 # Delete conflict
-'deletedwhileediting' => "'''警告：'''このページが、編集開始後に削除されました！",
+'deletedwhileediting' => "'''警告''': このページが、編集開始後に削除されました!",
 'confirmrecreate' => "[[User:$1|$1]]（[[User talk:$1|トーク]]）が、このページの編集開始後に、このページを、次の理由で削除しました。
 : ''$2''
 本当にこのままこのページを再作成していいか確認してください。",
@@ -4019,7 +4019,7 @@ $5
 # Live preview
 'livepreview-loading' => '読み込み中...',
 'livepreview-ready' => '読み込み中...完了!',
-'livepreview-failed' => 'ライブプレビューが失敗しました！
+'livepreview-failed' => 'ライブプレビューが失敗しました!
 通常のプレビューを試してください。',
 'livepreview-error' => '接続に失敗しました：$1「$2」。
 通常のプレビューを試してください。',
@@ -4232,7 +4232,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Database error messages
 'dberr-header' => 'このウィキには問題があります',
-'dberr-problems' => '申し訳ありません！
+'dberr-problems' => '申し訳ありません!
 このウェブサイトに技術的な問題が発生しています。',
 'dberr-again' => '数分間待った後、もう一度読み込んでください。',
 'dberr-info' => '(データベースサーバー $1 に接続できませんでした)',

@@ -2884,6 +2884,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'import-error-interwiki' => 'Sida «$1» vart ikkje importert sidan namnet hennar er reservert for ekstern lenking (interwiki).',
 'import-error-special' => 'Sida «$1» vart ikkje importert sidan ho høyrer til eit spesialnamnerom som ikkje tillèt sider.',
 'import-error-invalid' => 'Sida «$1» vart ikkje importert sidan namnet er ugildt.',
+'import-error-unserialize' => 'Versjonen $2 av sida «$1» kunne ikkje avserialiserast. Versjonen var rapportert å nytta innhaldsmodellen $3 serialisert som $4.',
 'import-options-wrong' => '{{PLURAL:$2|Galt val|Gale val}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Den oppgjevne rotsida er ein ugild tittel',
 'import-rootpage-nosubpage' => 'Namnerommet «$1» til rotsida tillèt ikkje undersider.',

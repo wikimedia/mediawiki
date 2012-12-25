@@ -764,6 +764,10 @@ $2
 кæнæ [{{fullurl:{{FULLPAGENAME}}|action=edit}} скæнын ацы фарс]</span>.',
 'noarticletext-nopermission' => 'Ацы фарсы нырмæ текст нæй.
 Дæ бон у [[Special:Search/{{PAGENAME}}|бацагурын ацы фарсы ном]] æндæр фæрсты, кæнæ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын йæ кой логты]</span>, фæлæ дын йæ саразыны бар нæй.',
+'missing-revision' => '"{{grammar:genitive|{{PAGENAME}}}}" фарсæн $1-æм фæлтæр нæй.
+
+Ай арæх æрцæуы, исчи хафт фарсы зæронд историйы æрвитæны фæдыл куы ацæуы.
+Фылдæр гæнæн ис базонын [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} хафыны логы].',
 'userpage-userdoesnotexist-view' => 'Архайæджы аккаунт "$1" регистрацигонд нæу.',
 'updated' => '(Ноггонд)',
 'note' => "'''Фиппаинаг:'''",

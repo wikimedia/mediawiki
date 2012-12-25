@@ -540,6 +540,8 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'userrights-groupsmember' => 'Mimbe éd:',
 
 # Groups
+'group-user' => 'Uzeus',
+'group-autoconfirmed' => 'Uzeus inrégistrés',
 'group-sysop' => 'Aménistrateus',
 'group-bureaucrat' => 'Buroécrates',
 
@@ -650,6 +652,9 @@ Vir apré ([$2 pache]).",
 # MIME search
 'mimesearch' => 'Tracher pèr type éd contenu MIME',
 
+# Unwatched pages
+'unwatchedpages' => 'Paches poin suivies',
+
 # List redirects
 'listredirects' => 'Lisse des érdiréccions',
 
@@ -661,6 +666,7 @@ Vir apré ([$2 pache]).",
 
 # Statistics
 'statistics' => 'Éstatistikes',
+'statistics-users' => '[[Special:ListUsers|Uzeus]] inrégistrés',
 
 'disambiguations' => 'Paches aveuc des loïens vers des paches du meume nom',
 'disambiguationspage' => 'Template:Omonymie',
@@ -724,6 +730,10 @@ Vir apré ([$2 pache]).",
 
 # Special:Categories
 'categories' => 'Lisse des catégories',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Contérbuchons abolies',
+'deletedcontributions-title' => 'Contérbuchons abolies',
 
 # Special:LinkSearch
 'linksearch' => 'Loïens éstérieurs',
@@ -825,6 +835,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 
 'sp-contributions-newbies' => 'Montrer chés contérbuchons éd chés nouvieus conptes seulemint',
 'sp-contributions-blocklog' => 'jornal éd chés blotcåjhes',
+'sp-contributions-deleted' => 'Contérbuchons abolies',
 'sp-contributions-uploads' => "téléquértch'mints",
 'sp-contributions-logs' => 'Gasètes',
 'sp-contributions-talk' => 'Dviser',
@@ -853,6 +864,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'whatlinkshere-filters' => 'Filtes',
 
 # Block/unblock
+'block' => "Blotcher l'uzeu",
 'blockip' => "Blotcher l'uzeu",
 'blockip-title' => "Blotcher l'uzeu",
 'blockip-legend' => "Blotcher l'uzeu",

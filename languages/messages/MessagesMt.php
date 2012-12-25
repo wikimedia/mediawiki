@@ -1978,7 +1978,7 @@ Daħliet <del>maqtugħa</del> saritilhom it-tiswija.',
 'fewestrevisions' => 'Paġni bl-inqas reviżjonijiet',
 
 # Miscellaneous special pages
-'nbytes' => '{{PLURAL:$1|byte|$1  bytes}}',
+'nbytes' => '{{PLURAL:$1|byte|$1 bytes}}',
 'ncategories' => '{{PLURAL:$1|kategorija|$1 kategoriji}}',
 'ninterwikis' => '{{PLURAL:$1|interwiki waħda|$1 interwikis}}',
 'nlinks' => '{{PLURAL:$1|link|$1 links}}',

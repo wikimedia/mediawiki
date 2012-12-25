@@ -3064,7 +3064,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-magic-words' => '{{PLURAL:$1|Võlusõna|Võlusõnad}} ($1)',
 'pageinfo-hidden-categories' => 'Peidetud {{PLURAL:$1|kategooria|kategooriad}} ($1)',
 'pageinfo-templates' => 'Kasutatud {{PLURAL:$1|mall|mallid}} ($1)',
-'pageinfo-toolboxlink' => 'Lehekülje informatsioon',
+'pageinfo-toolboxlink' => 'Lehekülje andmed',
 'pageinfo-redirectsto' => 'Ümber suunatud leheküljele',
 'pageinfo-redirectsto-info' => 'teave',
 'pageinfo-contentpage' => 'Arvestatakse sisuleheküljena',

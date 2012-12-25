@@ -1117,19 +1117,19 @@ Beberapa templat akan diabaikan.',
 'parser-template-loop-warning' => 'Hubungan berulang templat terdeteksi: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Limit kedalaman hubungan berulang templat terlampaui ($1)',
 'language-converter-depth-warning' => 'Batas kedalaman pengonversi bahasa terlampaui ($1)',
-'node-count-exceeded-category' => 'Pages where node-count is exceeded',
+'node-count-exceeded-category' => 'Halaman dimana hitungan-node terlampaui',
 'node-count-exceeded-warning' => 'Page exceeded the node-count',
 'expansion-depth-exceeded-category' => 'Pages where expansion depth is exceeded',
 'expansion-depth-exceeded-warning' => 'Page exceeded the expansion depth',
 'parser-unstrip-loop-warning' => 'Unstrip loop detected',
 'parser-unstrip-recursion-limit' => 'Unstrip recursion limit exceeded ($1)',
-'converter-manual-rule-error' => 'Kesalahan terdeteksi di aturan konversi bahasa manual',
+'converter-manual-rule-error' => 'Kesalahan terdeteksi di aturan manual konversi bahasa',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
 'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
 'undo-norev' => 'Suntingan ini tidak dapat dibatalkan karena halaman tidak ditemukan atau telah dihapuskan.',
-'undo-summary' => '←Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Bicara]])',
+'undo-summary' => 'Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[Pembicaraan pengguna:$2|bicara]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',

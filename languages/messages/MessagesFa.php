@@ -13,6 +13,7 @@
  * @author Asoxor
  * @author Baqeri
  * @author Behdarvandyani
+ * @author Dalba
  * @author E THP
  * @author Ebraminio
  * @author Goudarz
@@ -3131,6 +3132,7 @@ $1',
 'import-error-interwiki' => 'صفحه «$1» وارد نشد. چون نام آن برای پیوند خارجی (interwiki) رزرو شده‌است.',
 'import-error-special' => 'صفحه «$1» درون‌ریزی نشد، چرا که متعلق به فضای نام غیرمجاز است.',
 'import-error-invalid' => 'صفحه "$1" به دلیل نامعتبر بودن نامش وارد نمی‌شود.',
+'import-error-unserialize' => 'امکان خارج کردن نسخهٔ $2 از صفحهٔ «$1» از حالت سریال‌شده وجود نداشت. گزارش شد که نسخه از مدل محتوای $3 استفاده می‌کند که به صورت $4 سریال شده‌است.',
 'import-options-wrong' => '{{PLURAL:$2|جزئیات|جزئیات}} اشتباه: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'با توجه به ریشه صفحه عنوان نامعتبر است.',
 'import-rootpage-nosubpage' => 'فضای نام  "$1" صفحهٔ مبنا اجازهٔ زیرصفحه نمی‌دهد.',

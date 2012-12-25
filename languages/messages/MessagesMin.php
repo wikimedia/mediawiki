@@ -408,6 +408,7 @@ Alasan nan diberikan adolah ''$2''.",
 
 Pangurus nan manguncinyo manawarkan penjelasan: "$3"',
 'invalidtitle-knownnamespace' => '↓Judul nan indak sah jo ruangnamo "$2" dan teks "$3"',
+'invalidtitle-unknownnamespace' => 'Judul nan tak sah jo nomor ruang namo indak diketahui $1 dan teks "$2"',
 'exception-nologin' => 'Indak log masuak',
 'exception-nologin-text' => 'Halaman ko hanyo bisa disuntiang dek pangguno badaftar.',
 
@@ -571,6 +572,7 @@ ingin maubahnyo, Sanak dapek maabaikan pasan iko dan taruih manggunokan sandi la
 Sandi samantaro: $2',
 'passwordreset-emailsent' => 'Surel pangingek alah dikiriman.',
 'passwordreset-emailsent-capture' => 'E-mail paringatan alah dikirim, nan tacaliak di bawah ko.',
+'passwordreset-emailerror-capture' => 'Surel pangingek, nan ditampilkan di bawah, alah dibuek, tapi pengirimannyo gagal ka pangguno: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Tuka alamat e-mail.',
@@ -580,6 +582,7 @@ Sandi samantaro: $2',
 'changeemail-oldemail' => 'Alamat e-mail kini:',
 'changeemail-newemail' => 'Alamat e-mail baharu:',
 'changeemail-none' => '(indak ado)',
+'changeemail-password' => 'Sandi {{SITENAME}} Sanak:',
 'changeemail-submit' => 'Ganti e-mail.',
 'changeemail-cancel' => 'Batalkan',
 
@@ -683,10 +686,11 @@ Rinciannyo dapek dicaliak di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'userpage-userdoesnotexist-view' => 'Pangguno "$1" indak tadafta.',
 'blocked-notice-logextract' => 'Pangguno iko sadang diblokir.
 Entri log pamblokiran tabaharu iko disadioan di bawah iko untuak referensi:',
-'clearyourcache' => "'''Catatan:''' Sasudah manyimpan preferensi, Sanak mungkin paralu mambarasiahan singgahan panjalajah web Sanak untuak mancaliak parubahan. '''Mozilla / Firefox / Safari:''' takan ''Ctrl-R'' (''Cmd-R'' pado Mac);
-'''Konqueror:''': takan ''F5'';
-'''Opera''' barasiahan singgahan malalui menu ''Tools → Preferences'';
-'''Internet Explorer:''' takan ''Ctrl-F5''.",
+'clearyourcache' => "'''Catatan:''' Sasudah menyimpan, Sanak mungkin harus meminteh singgahan paramban Sanak untuak maliek parubahan.
+* '''Firefox / Safari:''' Tahan ''Shift'' sambia mangklik ''Reload'', atau takan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
+* '''Google Chrome:''' Takan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
+* '''Internet Explorer:''' Tahan ''Ctrl'' sambia mangklik ''Refresh'', atau takan ''Ctrl-F5''
+* '''Opera:''' Barasiahkan tembolok di ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Tips:''' Gunoan tombol \"{{int:showpreview}}\" untuak mauji CSS baharu Sanak sabalun manyimpannyo.",
 'userjsyoucanpreview' => "'''Tips:''' Gunoan tombol \"{{int:showpreview}}\" untuak mauji JS baharu Sanak sabalun manyimpannyo.",
 'usercsspreview' => "'''Ingeklah bahawa Sanak sadang manampilan pratayang dari CSS Sanak.
@@ -717,7 +721,7 @@ Suntiangan tasabuik ditolak untuak mancegah kasalahan pado teks laman.
 Hal iko kadang tajadi jikok Sanak manggunokan layanan proxy anonim babasis web nan bamasalah.",
 'edit_form_incomplete' => "'''Babarapo bagian dari formulir suntiangan indak mancapai server; pariso baliak apokah suntiangan Sanak tatap utuah dan cubo lai.'''",
 'editing' => 'Manyuntiang $1',
-'creating' => 'Mambuek $!',
+'creating' => 'Mambuek $1',
 'editingsection' => 'Suntiang $1 (bagian)',
 'editingcomment' => 'Manyuntiang $1 (bahagian baharu)',
 'editconflict' => 'Konflik panyuntiangan: $1',
@@ -739,7 +743,7 @@ Jiko awak indak ingin apo nan ditulis tu disuntiang dan disebarkan, jan dikirim 
 Awak juo mesti bajanji bahwa itu adolah hasil karya awak surang, atau disalin dari sumber milik basamo atau sumber bebas lainnyo.
 '''Jan dikirim karya punyo hak cipta tanpa izin!'''",
 'copyrightwarning2' => "Parhatikan bahawa sadoalah kontribusi terhadap {{SITENAME}} dapek disuntiang, diubah, atau dihapuih oleh panyumbang lainnyo. Jikok Sanak indak ingin tulisan Sanak disuntiang urang lain, jan kiriman ka siko.<br />Sanak jua bajanji bahawa iko adolah hasil karyo Sanak surang, atau disalin dari sumber miliak umum atau sumber bebas nan lain (liek $1 untuak informasi labiah lanjuik). '''JAN KIRIMAN KARYO NAN DILINDUNGI HAK CIPTA TANPA IJIN!'''",
-'longpageerror' => "'''KASALAHAN: Teks nan Sanak kiriman sagadang $1 kilobita, nan barati labiah gadang dari jumlah maksimum $2 kilobita. Teks indak dapek disimpan.'''",
+'longpageerror' => "'''KASALAHAN: Teks nan Sanak kiriman sagadang {{PLURAL:$1|kilobita|$1 kilobita}}, nan barati labiah gadang dari jumlah maksimum {{PLURAL:$2|kilobita|$2 kilobita}}. Teks indak dapek disimpan.'''",
 'readonlywarning' => "'''PARINGATAN: Basis data sadang dikunci karano pamaliharaan, sahinggo saat iko Sanak indak dapek manyimpan hasil suntiangan Sanak.
 Sanak mungkin paralu manyalin teks suntiangan Sanak iko dan manyimpannyo ka sabuah berkas teks dan mamuekannyo baliak sausai pamaliharaan usai.'''
 
@@ -772,6 +776,8 @@ Barikuik adolah log panghapuihan dan pamindahan dari laman iko:",
 'moveddeleted-notice' => 'Laman iko alah dihapuih.
 Sabagai referensi, barikuik adolah log panghapusan dan pamindahan laman iko.',
 'log-fulllog' => 'Liek saluruah log',
+'edit-hook-aborted' => 'Suntiangan dibatalan samo kait parser
+tanpa ado katarangan.',
 'edit-gone-missing' => 'Indak bisa mamperbarui halaman.
 Mungkin alah dihapuih.',
 'edit-conflict' => 'Konflik suntingan.',
@@ -779,7 +785,9 @@ Mungkin alah dihapuih.',
 'edit-already-exists' => 'Indak bisa mambuek halaman baru.
 Alah ado.',
 'defaultmessagetext' => 'Teks pasan default.',
+'content-failed-to-parse' => 'Gagal manjabarkan konten $2 untuak model $1: $3',
 'invalid-content-data' => 'Data kanduangan indak valid.',
+'content-not-allowed-here' => 'Konten "$1" indak diizinan di laman [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'Teks wiki',
@@ -788,12 +796,31 @@ Alah ado.',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
+'expensive-parserfunction-warning' => "'''Warning:''' Laman ko manganduang talalu banyak panggilan fungsi parser.
+
+Seharusnyo kurang dari $2 {{PLURAL:$2|panggilan|$2 panggilan}}, tapi {{PLURAL:$1|kini ado $1 panggilan|kini ko ado $1 panggilan}}.",
+'expensive-parserfunction-category' => 'Laman nan talalu banyak panggilan fungsi parser',
 'post-expand-template-inclusion-warning' => "'''Peringatan:''' Ukuran templat talalu gadang.
 Babarapo templat akan diabaikan.",
 'post-expand-template-inclusion-category' => 'Laman nan ukurannyo templatnyo malabiahi bateh',
 'post-expand-template-argument-warning' => 'Peringatan: Laman ko barisi satidaknyo ciek uraian templat na baukuran ekspansi nan talalu gadang. 
 Uraian-uraian tu alah diabaikan.',
 'post-expand-template-argument-category' => 'Laman nan barisi uraian template nan diabaikan',
+'parser-template-loop-warning' => 'Hubungan barulang templat tadeteksi: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limit kadalaman hubungan barulang templat lah talampau ($1)',
+'language-converter-depth-warning' => 'Bateh kadalaman pangonversi bahaso lah talampau ($1)',
+'node-count-exceeded-category' => 'Laman dimano hitungan-node talampaui',
+'node-count-exceeded-warning' => 'Laman hitungan-node lah talampau',
+'expansion-depth-exceeded-category' => 'Laman dima kadalaman ekspansi lah talampau',
+'expansion-depth-exceeded-warning' => 'Laman kadalaman ekspansi lah talampau',
+'converter-manual-rule-error' => 'Kasalahan tadeteksi di aturan manual konversi bahaso',
+
+# "Undo" feature
+'undo-success' => 'Suntiangan iko dapek dibatalan. 
+Tolong cek pabandiangan di bawah untuak mayakinkan bahwa bana itu nan Sanak ingin buek, lalu simpan parubahan tasabuik untuak manyalasaikan pambatalan suntiangan.',
+'undo-failure' => 'Suntiangan ko indak dapek dibatalan dek konflik panyuntiangan antaro.',
+'undo-norev' => 'Suntiangan ko indak dapek dibatalan dek laman indak ditamukan atau lah dihapuih.',
+'undo-summary' => 'Mambatalan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
 
 # History pages
 'viewpagelogs' => 'Lihek log untuak laman ko',

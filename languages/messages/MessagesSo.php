@@ -655,6 +655,7 @@ Tirtiraha iyo wareejinta gudagalaha boggaan waxaad ka arki kartaa hoostaan.',
 'post-expand-template-inclusion-warning' => "'''Digniin:''' Aad oo u weyn yahay tusmo'da aad ku dartay.
 Tusmooyinka qaar lagumo dari doono.",
 'post-expand-template-inclusion-category' => "Boggaga ku xad gudbay weyninka tusmo'da",
+'post-expand-template-argument-warning' => "'''Digniin:'''Boggaan waxaa ku jira ugu yaraan hal iyo wixii ka badan oo template ah, waxaana ku xiran kuwa kale.",
 
 # "Undo" feature
 'undo-summary' => 'Noqay bedelaadka $1 ee sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|hadal]])',

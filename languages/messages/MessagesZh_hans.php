@@ -9,6 +9,7 @@
  *
  * @author Alebcay
  * @author Anakmalaysia
+ * @author Arlin
  * @author Bencmq
  * @author Biŋhai
  * @author Breawycker
@@ -3972,7 +3973,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-missingparam' => '内部错误：请求中缺少参数。',
 'api-error-missingresult' => '内部错误：无法确定是否复制成功。',
 'api-error-mustbeloggedin' => '您必须登录后再上传文件。',
-'api-error-mustbeposted' => '该软件存在故障，它没有使用正确的HTTP方法。',
+'api-error-mustbeposted' => '内部错误：请求需要HTTP POST',
 'api-error-noimageinfo' => '上传成功，但服务器没有给我们任何该文件的信息。',
 'api-error-nomodule' => '内部错误：缺少上传模块集。',
 'api-error-ok-but-empty' => '内部错误：服务器没有响应。',
