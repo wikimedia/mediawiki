@@ -4951,6 +4951,8 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 * stub threshold (appearance tab)
 
 {{Identical|Other}}',
+'htmlform-no' => 'Used in form, such as with radio buttons, for generic yes / no questions',
+'htmlform-yes' => 'Used in form, such as with radio buttons, for generic yes / no questions',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
