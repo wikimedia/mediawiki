@@ -181,6 +181,12 @@ production.
 * (bug 35885) Removed version parameter and all getVersion() methods.
 * action=options now takes a "resetkinds" option, which allows only resetting
   certain types of preferences when the "reset" option is set.
+* (bug 36751) ApiQueryImageInfo now returns imageinfo for the redirect target
+  when queried with &redirects=.
+* (bug 31849) ApiQueryImageInfo no longer gets confused when asked for info on
+  a redirect and its target.
+* (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
+  redirects.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
