@@ -156,6 +156,12 @@ production.
 * BREAKING CHANGE: list=logevents output format changed for details of some log
   types. Specifically, details that were formerly reported under a key like
   "4::foo" will now be reported under a key of simply "foo".
+* (bug 36751) ApiQueryImageInfo now returns imageinfo for the redirect target
+  when queried with &redirects=.
+* (bug 31849) ApiQueryImageInfo no longer gets confused when asked for info on
+  a redirect and its target.
+* (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
+  redirects.
 
 === Languages updated in 1.21 ===
 
