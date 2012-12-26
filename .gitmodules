@@ -442,3 +442,6 @@
 [submodule "extensions/GettingStarted"]
 	path = extensions/GettingStarted
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GettingStarted.git
+[submodule "extensions/PageImages"]
+	path = extensions/PageImages
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PageImages.git
