@@ -530,12 +530,14 @@ CREATE TABLE job (
   job_timestamp       TIMESTAMPTZ,
   job_params          TEXT      NOT NULL,
   job_random          INTEGER   NOT NULL DEFAULT 0,
+  job_attempts        INTEGER   NOT NULL DEFAULT 0,
   job_token           TEXT      NOT NULL DEFAULT '',
   job_token_timestamp TIMESTAMPTZ,
   job_sha1            TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX job_sha1 ON job (job_sha1);
 CREATE INDEX job_cmd_token ON job (job_cmd, job_token, job_random);
+CREATE INDEX job_cmd_token_id ON job (job_cmd, job_token, job_id);
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 CREATE INDEX job_timestamp_idx ON job (job_timestamp);
 
