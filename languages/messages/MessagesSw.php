@@ -885,6 +885,9 @@ Inaonekana kwamba ukurasa umefutwa.',
 Ukurasa wa jina hilo unapatikana tayari.',
 'defaultmessagetext' => 'Ujumbe uliopo',
 
+# Content models
+'content-model-javascript' => 'HatiJava',
+
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Ilani:''' Kigezo kinajumlisha ukubwa uliozidi mno.
 Baadhi ya vigezo havitaweza kuingizwa.",
@@ -1945,6 +1948,8 @@ Labda patakuwa na [[{{MediaWiki:Listgrouprights-helppage}}|maelezo mengine]] kuh
 'mailnologin' => 'Hakuna anwani wa kutuma',
 'mailnologintext' => 'Ukitaka kutuma barua pepe kwa watumiaji wengine inabidi uwe [[Special:UserLogin|umeshaingia kwenye akaunti yako]] na pia uwe na anwani ya barua pepe sahihi pale [[Special:Preferences|mapendekezo yako]].',
 'emailuser' => 'Mtumie mtumiaji huyu barua pepe',
+'emailuser-title-target' => 'Tumia barua pepe {{GENDER:$1|user}}',
+'emailuser-title-notarget' => 'Kumtumia mtumiaji barua pepe',
 'emailpage' => 'Kumtumia mtumiaji barua pepe',
 'emailpagetext' => 'Utumie fomu iliopo chini ili kutuma barua pepe kwa mtumiaji huyu.
 Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yako]] itaandikwa kwenye sanduku la anwani "Kutoka kwa" katika barua pepe, ili mtu atakayeipokea aweze kukujibu moja kwa moja.',
@@ -2177,6 +2182,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'cannotundelete' => 'Kurudisha ukurasa imeshindikana;
 huenda ikawa mtu mwingine ameurudisha tayari.',
 'undelete-header' => 'Tazama [[Special:Log/delete|kumbukumbu za ufutaji]] ili kujua kurasa zipi zilizofutwa hivi karibuni.',
+'undelete-search-title' => 'Tafuta kwenye kurasa zilizofutwa',
 'undelete-search-box' => 'Tafuta kwenye kurasa zilizofutwa',
 'undelete-search-prefix' => 'Onyesha kurasa kuanzia na:',
 'undelete-search-submit' => 'Tafuta',

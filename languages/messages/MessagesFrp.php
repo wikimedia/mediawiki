@@ -951,7 +951,7 @@ La rêson balyêye est ''$2''.
 Vos vos pouede veriér vers $1 ou ben un ôtr’[[{{MediaWiki:Grouppage-sysop}}|administrator]] por nen discutar.
 Vos pouede pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens qu’un’adrèce èlèctronica valida est spècifiâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 Voutron adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
-Volyéd encllure tôs los dètalys ce-dessus dedens quinta que seye demanda que vos faréd.",
+Volyéd encllure tôs los dètalys ce-dessus dedens sé-quinta demanda que vos faréd.",
 'autoblockedtext' => "Voutron adrèce IP est étâye blocâye ôtomaticament perce qu’el est étâye empleyêye per un ôtr’utilisator, lui-mémo blocâ per $1.
 La rêson balyêye est :
 
@@ -1148,7 +1148,7 @@ Aprés èxtension, ceti arêt balyê un rèsultat trop long, il at vêr pas ét�
 Volyéd controlar los changements ce-desot, et pués sôvar s’o est franc cen que vos voléd fâre.',
 'undo-failure' => 'Cél changement pôt pas étre dèfêt : cen rentrerêt en conflit avouéc los changements entèrmèdièros.',
 'undo-norev' => 'Lo changement at pas possu étre dèfêt perce qu’il est pas ègzistent ou ben qu’il at étâ suprimâ.',
-'undo-summary' => 'Anulacion des changements $1 a [[Special:Contributions/$2|$2]] ([[User talk:$2|Discutar]])',
+'undo-summary' => 'Anulacion du changement $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vos pouede pas fâre un compto.',
@@ -1919,6 +1919,11 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'backend-fail-internal' => 'Na fôta encognua est arrevâye dedens lo sistèmo de stocâjo « $1 ».',
 'backend-fail-contenttype' => 'Empossiblo de dètèrmenar lo tipo de contegnu du fichiér a stocar en « $1 ».',
 'backend-fail-batchsize' => 'Lo sistèmo de stocâjo at balyê na pârt de $1 {{PLURAL:$1|opèracion|opèracions}} de fichiér ; la limita est $2 {{PLURAL:$2|opèracion|opèracions}}.',
+'backend-fail-usable' => 'Empossiblo de liére ou ben d’ècrire lo fichiér « $1 » a côsa de pèrmissions ensufisentes ou ben de rèpèrtouèros / conteniors manquents.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Empossiblo de sè branchiér a la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
+'filejournal-fail-dbquery' => 'Empossiblo de betar a jorn la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
 
 # Lock manager
 'lockmanager-notlocked' => 'Empossiblo de dèvèrrolyér « $1 » ; el est pas vèrrolyê.',
@@ -1929,7 +1934,8 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'lockmanager-fail-releaselock' => 'Empossiblo de relâchiér lo vèrroly por « $1 ».',
 'lockmanager-fail-db-bucket' => 'Empossiblo de sè veriér vers prod de bâses de balyês de vèrrolyâjo dedens lo godèt $1.',
 'lockmanager-fail-db-release' => 'Empossiblo de relâchiér los vèrrolys sur la bâsa de balyês $1.',
-'lockmanager-fail-svr-release' => 'Empossiblo de relâchiér los vèrrolys sur lo sèrvor $1.',
+'lockmanager-fail-svr-acquire' => 'Empossiblo d’avêr des vèrrolys sur lo sèrvior $1.',
+'lockmanager-fail-svr-release' => 'Empossiblo de relâchiér los vèrrolys sur lo sèrvior $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Una èrror est arrevâ pendent l’uvèrtura du fichiér ZIP por contrôlo.',
@@ -2153,6 +2159,7 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 # Miscellaneous special pages
 'nbytes' => '$1 octèt{{PLURAL:$1||s}}',
 'ncategories' => '$1 catègorie{{PLURAL:$1||s}}',
+'ninterwikis' => '$1 {{PLURAL:$1|lim entèrvouiqui|lims entèrvouiquis}}',
 'nlinks' => '$1 lim{{PLURAL:$1||s}}',
 'nmembers' => '$1 membro{{PLURAL:$1||s}}',
 'nrevisions' => '$1 vèrsion{{PLURAL:$1||s}}',
@@ -2181,6 +2188,7 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 'mostlinkedtemplates' => 'Modèlos los ples utilisâs',
 'mostcategories' => 'Pâges qu’utilisont lo més de catègories',
 'mostimages' => 'Fichiérs los ples utilisâs',
+'mostinterwikis' => 'Pâges avouéc lo més de lims entèrvouiquis',
 'mostrevisions' => 'Pâges les ples changiês',
 'prefixindex' => 'Totes les pâges que començont per...',
 'prefixindex-namespace' => 'Totes les pâges avouéc prèfixo (èspâço de noms $1)',
@@ -2326,9 +2334,11 @@ Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] su
 'mailnologin' => 'Gins d’adrèce d’èxpèdior',
 'mailnologintext' => 'Vos dête étre [[Special:UserLogin|branchiê]] et avêr endicâ una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]] por povêr mandar des mèssâjos a d’ôtros usanciérs.',
 'emailuser' => 'Lui mandar un mèssâjo',
-'emailpage' => 'Mandar un mèssâjo a l’usanciér',
-'emailpagetext' => 'Vos pouede utilisar lo formulèro ce-desot por mandar un mèssâjo a ceti usanciér.
-L’adrèce èlèctronica que vos éd buchiê dens voutres [[Special:Preferences|prèferences]] aparètrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.',
+'emailuser-title-target' => 'Mandar un mèssâjo a cet’utilisat{{GENDER:$1|or|rice}}',
+'emailuser-title-notarget' => 'Mandar un mèssâjo a l’utilisator',
+'emailpage' => 'Mandar un mèssâjo a l’utilisator',
+'emailpagetext' => 'Vos pouede empleyér lo formulèro ce-desot por mandar un mèssâjo a cet’utilisat{{GENDER:$1|or|rice}}.
+L’adrèce èlèctronica que vos éd buchiêye dens voutres [[Special:Preferences|prèferences]] aparètrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.',
 'usermailererror' => 'Èrror dens lo sujèt du mèssâjo :',
 'defemailsubject' => 'Mèssâjo de {{SITENAME}} de l’usanciér « $1 »',
 'usermaildisabled' => 'L’èxpèdicion de mèssâjos entre-mié usanciérs est dèsactivâ',
@@ -2367,8 +2377,8 @@ L’adrèce èlèctronica que vos éd buchiê dens voutres [[Special:Preferences
 'watchnologin' => 'Pas branchiê',
 'watchnologintext' => 'Vos dête étre [[Special:UserLogin|branchiê]] por changiér voutra lista de survelyence.',
 'addwatch' => 'Apondre a la lista de survelyence',
-'addedwatchtext' => "La pâge « [[:$1]] » at étâ apondua a voutra [[Special:Watchlist|lista de survelyence]].
-Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront listâs et la pâge aparètrat '''en grâs''' dedens la [[Special:RecentChanges|lista des dèrriérs changements]] por étre repèrâ ples facilament.",
+'addedwatchtext' => 'La pâge « [[:$1]] » est étâye apondua a voutra [[Special:Watchlist|lista de survelyence]].
+Los changements que vegnont de ceta pâge et de la sina pâge de discussion y seront listâs.',
 'removewatch' => 'Enlevar de la lista de survelyence',
 'removedwatchtext' => 'La pâge « [[:$1]] » at étâ enlevâ de voutra [[Special:Watchlist|lista de survelyence]].',
 'watch' => 'Siuvre',
@@ -2397,6 +2407,16 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'enotif_mailer' => 'Sistèmo de notificacion per mèssageria èlèctronica de {{SITENAME}}',
 'enotif_reset' => 'Marcar totes les pâges coment visitâs',
 'enotif_impersonal_salutation' => 'Usanciér de {{SITENAME}}',
+'enotif_subject_deleted' => 'La pâge $1 dessus {{SITENAME}} est étâye suprimâye per {{GENDER:$2|$2}}',
+'enotif_subject_created' => 'La pâge $1 dessus {{SITENAME}} est étâye fêta per {{GENDER:$2|$2}}',
+'enotif_subject_moved' => 'La pâge $1 dessus {{SITENAME}} est étâye renomâye per {{GENDER:$2|$2}}',
+'enotif_subject_restored' => 'La pâge $1 dessus {{SITENAME}} est étâye refêta per {{GENDER:$2|$2}}',
+'enotif_subject_changed' => 'La pâge $1 dessus {{SITENAME}} est étâye changiêye per {{GENDER:$2|$2}}',
+'enotif_body_intro_deleted' => 'La pâge $1 dessus {{SITENAME}} est étâye suprimâye lo $PAGEEDITDATE per {{GENDER:$2|$2}}, vêde $3.',
+'enotif_body_intro_created' => 'La pâge $1 dessus {{SITENAME}} est étâye fêta lo $PAGEEDITDATE per {{GENDER:$2|$2}}, vêde $3 por la vèrsion d’ora.',
+'enotif_body_intro_moved' => 'La pâge $1 dessus {{SITENAME}} est étâye renomâye lo $PAGEEDITDATE per {{GENDER:$2|$2}}, vêde $3 por la vèrsion d’ora.',
+'enotif_body_intro_restored' => 'La pâge $1 dessus {{SITENAME}} est étâye refêta lo $PAGEEDITDATE per {{GENDER:$2|$2}}, vêde $3 por la vèrsion d’ora.',
+'enotif_body_intro_changed' => 'La pâge $1 dessus {{SITENAME}} est étâye changiêye lo $PAGEEDITDATE per {{GENDER:$2|$2}}, vêde $3 por la vèrsion d’ora.',
 'enotif_lastvisited' => 'Vêde $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff' => 'Vêde $1 por vêre cél changement.',
 'enotif_anon_editor' => 'usanciér pas encartâ $1',
@@ -2588,8 +2608,8 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeletedrevisions' => '$1 {{PLURAL:$1|vèrsion refêta|vèrsions refêtes}}',
 'undeletedrevisions-files' => '$1 vèrsion{{PLURAL:$1||s}} et $2 fichiér{{PLURAL:$2||s}} refêts',
 'undeletedfiles' => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
-'cannotundelete' => 'La rèstoracion at pas reussia ;
-un ôtro usanciér at probâblament ja refêt la pâge.',
+'cannotundelete' => 'Falyita de la rèstoracion :
+$1',
 'undeletedpage' => "'''La pâge $1 at étâ refêta.'''
 
 Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les novèles suprèssions et de les novèles rèstoracions.",
@@ -2621,7 +2641,7 @@ $1',
 'blanknamespace' => '(Principâl)',
 
 # Contributions
-'contributions' => 'Contribucions a l’usanciér',
+'contributions' => 'Contribucions de l’utilisat{{GENDER:$1|or|rice}}',
 'contributions-title' => 'Lista de les contribucions a l’usanciér $1',
 'mycontris' => 'Contribucions',
 'contribsub2' => 'Por $1 ($2)',
@@ -2980,6 +3000,7 @@ Totes les accions d’importacion entèrvouiqui sont consignês dens lo [[Specia
 'import-interwiki-templates' => 'Encllure tôs los modèlos',
 'import-interwiki-submit' => 'Importar',
 'import-interwiki-namespace' => 'Èspâço de noms de dèstinacion :',
+'import-interwiki-rootpage' => 'Pâge racena de dèstinacion (u chouèx) :',
 'import-upload-filename' => 'Nom du fichiér :',
 'import-comment' => 'Comentèro :',
 'importtext' => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent son [[Special:Export|outil d’èxportacion]].
@@ -3013,6 +3034,7 @@ Volyéd tornar èprovar.',
 'import-invalid-interwiki' => 'Empossiblo d’importar dês lo vouiqui spècefiâ.',
 'import-error-edit' => 'La pâge « $1 » est pas importâ perce que vos éte pas ôtorisâ a la changiér.',
 'import-error-create' => 'La pâge « $1 » est pas importâ perce que vos éte pas ôtorisâ a la fâre.',
+'import-options-wrong' => '{{PLURAL:$2|Crouyo chouèx|Crouyos chouèx}} : <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => 'Jornal de les importacions',
@@ -3162,11 +3184,40 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 
 # Info page
 'pageinfo-title' => 'Enformacions por « $1 »',
+'pageinfo-header-basic' => 'Enformacions de bâsa',
 'pageinfo-header-edits' => 'Historico des changements',
+'pageinfo-header-restrictions' => 'Protèccion de la pâge',
+'pageinfo-header-properties' => 'Propriètâts de la pâge',
+'pageinfo-display-title' => 'Titro montrâ',
+'pageinfo-default-sort' => 'Cllâf de tri per dèfôt',
+'pageinfo-length' => 'Talye de la pâge (en octèts)',
+'pageinfo-article-id' => 'Numerô de la pâge',
+'pageinfo-language' => 'Lengoua du contegnu de la pâge',
+'pageinfo-robot-policy' => 'Statut de motor de rechèrche',
+'pageinfo-robot-index' => 'Endèxâblo',
+'pageinfo-robot-noindex' => 'Pas endèxâblo',
 'pageinfo-views' => 'Nombro de visualisacions',
 'pageinfo-watchers' => 'Nombro de contributors qu’ont la pâge dedens lor lista de survelyence',
+'pageinfo-redirects-name' => 'Redirèccions de vers ceta pâge',
+'pageinfo-subpages-name' => 'Sot-pâges de ceta pâge',
+'pageinfo-subpages-value' => '$1 ($2 redirèccion{{PLURAL:$2||s}} ; $3 nan-redirèccion{{PLURAL:$3||s}})',
+'pageinfo-firstuser' => 'Crèator de la pâge',
+'pageinfo-firsttime' => 'Dâta de crèacion de la pâge',
+'pageinfo-lastuser' => 'Dèrriér contributor',
+'pageinfo-lasttime' => 'Dâta du dèrriér changement',
 'pageinfo-edits' => 'Soma totâla de changements',
 'pageinfo-authors' => 'Soma totâla d’ôtors difèrents',
+'pageinfo-recent-edits' => 'Nombro de novéls changements (dedens los $1 passâs)',
+'pageinfo-recent-authors' => 'Nombro de novéls ôtors difèrents',
+'pageinfo-magic-words' => '{{PLURAL:$1|Mot magico|Mots magicos}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Catègorie cachiêye|Catègories cachiêyes}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Modèlo encllu|Modèlos encllus}} ($1)',
+'pageinfo-toolboxlink' => 'Enformacions sur la pâge',
+'pageinfo-redirectsto' => 'Redirige vers',
+'pageinfo-redirectsto-info' => 'enfô',
+'pageinfo-contentpage' => 'Comptâ coment pâge de contegnu',
+'pageinfo-contentpage-yes' => 'Ouè',
+'pageinfo-protect-cascading-yes' => 'Ouè',
 
 # Skin names
 'skinname-standard' => 'Estandârd',
@@ -3221,6 +3272,7 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 'file-info-size-pages' => '$1 × $2 pixèls, talye du fichiér : $3, tipo MIME : $4, $5 pâge{{PLURAL:$5||s}}',
 'file-nohires' => 'Gins de rèsolucion ples hôta disponibla.',
 'svg-long-desc' => 'Fichiér SVG, rèsolucion de $1 × $2 pixèls, talye : $3',
+'svg-long-error' => 'Fichiér SVG envalido : $1',
 'show-big-image' => 'Émâge en rèsolucion ples hôta',
 'show-big-image-preview' => 'Talye de ceti apèrçu : $1.',
 'show-big-image-other' => '{{PLURAL:$2|Ôtra rèsolucion|Ôtres rèsolucions}} : $1.',
@@ -3250,6 +3302,7 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 'hours' => '$1 hor{{PLURAL:$1|a|es}}',
 'days' => '$1 jorn{{PLURAL:$1||s}}',
 'ago' => 'cen fât $1',
+'just-now' => 'drêt-ora',
 
 # Bad image list
 'bad_image_list' => 'Lo format est ceti :
@@ -4079,9 +4132,9 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-move-move_redir-noredirect' => '$1 at dèplaciê la pâge $3 vers $4 en ècrasent sa redirèccion sen lèssiér una redirèccion',
 'logentry-patrol-patrol' => '$1 at marcâ la vèrsion $4 de la pâge $3 coment survelyê',
 'logentry-patrol-patrol-auto' => '$1 at marcâ ôtomaticament la vèrsion $4 de la pâge $3 coment survelyê',
-'logentry-newusers-newusers' => '$1 at fêt un compto usanciér',
-'logentry-newusers-create' => '$1 at fêt un compto usanciér',
-'logentry-newusers-create2' => '$1 at fêt un compto usanciér $3',
+'logentry-newusers-newusers' => 'Lo compto utilisator $1 est étâ fêt',
+'logentry-newusers-create' => 'Lo compto utilisator $1 est étâ fêt',
+'logentry-newusers-create2' => 'Lo compto utilisator $3 est étâ fêt per $1',
 'logentry-newusers-autocreate' => 'Lo compto $1 at étâ fêt ôtomaticament',
 'newuserlog-byemail' => 'contresegno mandâ per mèssageria èlèctronica',
 

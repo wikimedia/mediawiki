@@ -3298,7 +3298,7 @@ $5
 # action=purge
 'confirm_purge_button' => 'సరే',
 'confirm-purge-top' => 'ఈ పేజీ యొక్క పాత కాపీని తొలగించమంటారా?',
-'confirm-purge-bottom' => 'పేజీ తాడనతో కోశం ఖాళీ అయి, ఇట్టీవలి కూర్పును కనబడేలా చేస్తుంది.',
+'confirm-purge-bottom' => 'సత్వరనిల్వ(cache)లోపేజీ నిర్మూలించితే, ఇటీవలి కూర్పు కనబడుతుంది.',
 
 # action=watch/unwatch
 'confirm-watch-button' => 'సరే',

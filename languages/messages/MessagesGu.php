@@ -198,7 +198,7 @@ $messages = array(
 
 'underline-always' => 'હંમેશાં',
 'underline-never' => 'કદી નહિ',
-'underline-default' => 'બ્રાઉઝરના સેટીંગ્સ પ્રમાણે',
+'underline-default' => 'પૂર્વ નિર્ધારિત સ્કિન કે બ્રાઉઝર',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'ક્ષેત્ર લિપિ શૈલીનું સંપાદન:',
@@ -3600,7 +3600,7 @@ $5
 'version-mediahandlers' => 'દ્રશ્યશ્રાવ્ય માધ્યમના ધારક',
 'version-hooks' => 'ખૂંટા',
 'version-extension-functions' => 'વિસ્તારક કાર્ય',
-'version-parser-extensiontags' => 'પદચ્ચેદ વિસ્તારક નાકા',
+'version-parser-extensiontags' => 'પૃથક્કરણ વિસ્તારક ટૅગ્સ',
 'version-parser-function-hooks' => 'પદચ્છેદ કાર્ય ખૂંટા',
 'version-hook-name' => 'ખૂંટાનું નામ્',
 'version-hook-subscribedby' => 'દ્વ્રારા લાભાન્વીત',
@@ -3671,14 +3671,14 @@ $5
 
 # Special:Tags
 'tags' => 'વૈધ ફેરફાર પાના',
-'tag-filter' => '[[Special:Tags|Tag]] ચાળણી',
+'tag-filter' => '[[Special:Tags|ટૅગ]] ચાળણી',
 'tag-filter-submit' => 'ચાળણી',
-'tags-title' => 'નાકા',
-'tags-intro' => 'આ પાના પર સોફ્ટવેર દ્વારા અંકિત ફેરફારના ચિન્હો અને તેમનો અર્થ બતાવે છે.',
-'tags-tag' => 'નાકાનું નામ',
-'tags-display-header' => 'ફેરફારની યાદિમાં અવતરણ',
+'tags-title' => 'ટૅગ્સ',
+'tags-intro' => 'આ પાના પર સૉફ્ટવૅર દ્વારા, સંપાદનને ચિહ્નિત કરાયેલાં ટૅગ્સની યાદી અને તેનાં અર્થ છે.',
+'tags-tag' => 'ટૅગનું નામ',
+'tags-display-header' => 'ફેરફારની યાદિઓમાં દેખાવ',
 'tags-description-header' => 'અર્થનું પૂર્ણ વિવરણ',
-'tags-hitcount-header' => 'અંકિત ફેરફાર',
+'tags-hitcount-header' => 'અંકિત ફેરફારો',
 'tags-edit' => 'ફેરફાર કરો',
 'tags-hitcount' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 

@@ -756,7 +756,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
 'createaccountmail' => 'med e-post',
 'createaccountreason' => 'Orsak:',
-'badretype' => 'De lösenord du uppgett överenstämmer inte med varandra.',
+'badretype' => 'De lösenord du uppgett överensstämmer inte med varandra.',
 'userexists' => 'Det valda användarnamnet används redan.
 Var god välj ett annat namn.',
 'loginerror' => 'Inloggningsproblem',

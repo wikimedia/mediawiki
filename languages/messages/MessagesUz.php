@@ -278,8 +278,8 @@ $messages = array(
 'policy-url' => 'Project:Qoida',
 'portal' => 'Jamoa portali',
 'portal-url' => 'Project:Jamoa portali',
-'privacy' => 'Konfidensiallik siyosati',
-'privacypage' => 'Project:Konfidensiallik siyosati',
+'privacy' => 'Maxfiylik siyosati',
+'privacypage' => 'Project:Maxfiylik siyosati',
 
 'badaccess' => 'Ruxsatlilik xatosi',
 'badaccess-group0' => "Siz so'ralgan amallarni bajara olmaysiz",

@@ -685,7 +685,7 @@ Lekérdezés: $2',
 'viewsource-title' => '$1 forrásának megtekintése',
 'actionthrottled' => 'Művelet megszakítva',
 'actionthrottledtext' => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
-'protectedpagetext' => 'Ez egy védett lap, nem szerkeszthető.',
+'protectedpagetext' => 'Ez egy védett lap, így nem végezhető rajta szerkesztés és más tevékenység',
 'viewsourcetext' => 'Megtekintheted és másolhatod a lap forrását:',
 'viewyourtext' => "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 'protectedinterface' => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
@@ -718,6 +718,8 @@ A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
 Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy <span class='plainlinks'>[$1 ismét bejelentkezhetsz]</span> ugyanezzel, vagy egy másik névvel.
 Lehetséges, hogy néhány oldalon továbbra is azt látod, be vagy jelentkezve, mindaddig, amíg nem üríted a böngésződ gyorsítótárát.",
 'welcomeuser' => 'Üdvözlünk, $1!',
+'welcomecreation-msg' => 'A felhasználói fiókod elkészült.
+Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaidat]].',
 'yourname' => 'Szerkesztőneved:',
 'yourpassword' => 'Jelszavad:',
 'yourpasswordagain' => 'Jelszavad ismét:',
@@ -2316,15 +2318,21 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'enotif_mailer' => '{{SITENAME}} Értesítéspostázó',
 'enotif_reset' => 'Az összes lap megjelölése felkeresettként',
 'enotif_impersonal_salutation' => '{{SITENAME}} felhasználó',
+'enotif_subject_deleted' => '$2 törölte a $1 {{SITENAME}} oldalt.',
+'enotif_subject_moved' => '$2 átmozgatta a $1 {{SITENAME}} oldalt.',
+'enotif_subject_restored' => '$2 visszaállította a $1 {{SITENAME}} oldalt.',
+'enotif_subject_changed' => '$2 megváltoztatta a $1 {{SITENAME}} oldalt.',
+'enotif_body_intro_deleted' => '$2 törölte a $1 {{SITENAME}} oldalt $PAGEEDITDATE-kor, lásd $3.',
+'enotif_body_intro_created' => '$2 létrehozta a $1 {{SITENAME}} oldalt $PAGEEDITDATE-kor, lásd az aktuális verziót itt: $3.',
+'enotif_body_intro_moved' => '$2 átmozgatta a $1 {{SITENAME}} oldalt $PAGEEDITDATE-kor, lásd az aktuális verziót itt: $3.',
+'enotif_body_intro_restored' => '$2 visszaállította a $1 {{SITENAME}} oldalt $PAGEEDITDATE-kor, lásd az aktuális verziót itt: $3.',
+'enotif_body_intro_changed' => '$2 megváltoztatta a $1 {{SITENAME}} oldalt $PAGEEDITDATE-kor, lásd az aktuális verziót itt: $3.',
 'enotif_lastvisited' => 'Lásd a $1 lapot az utolsó látogatásod óta történt változtatásokért.',
 'enotif_lastdiff' => 'Lásd a $1 lapot ezen változtatás megtekintéséhez.',
 'enotif_anon_editor' => '$1 névtelen felhasználó',
 'enotif_body' => 'Kedves $WATCHINGUSERNAME!
 
-
-$PAGEEDITOR $PAGEEDITDATE-kor $CHANGEDORCREATED a(z) $PAGETITLE című lapot a(z) {{SITENAME}} wikin; a jelenlegi verziót a $PAGETITLE_URL webcímen találod.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 A szerkesztési összefoglaló a következő volt: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2803,6 +2811,7 @@ Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik.  Ha az
 'immobile-target-namespace-iw' => 'Wikiközi hivatkozás nem lehet a lap új neve.',
 'immobile-source-page' => 'Ez a lap nem nevezhető át.',
 'immobile-target-page' => 'A lap nem helyezhető át a megadott címre.',
+'bad-target-model' => 'A kívánt célhely eltérő tartalom modellt használ. Nem lehet $1 modellről $2 modellre konvertálni.',
 'imagenocrossnamespace' => 'A fájlok nem helyezhetőek át más névtérbe',
 'nonfile-cannot-move-to-file' => 'Nem fájlok nem nevezhetők át fájlnévtérbe',
 'imagetypemismatch' => 'Az új kiterjesztés nem egyezik meg a fájl típusával',

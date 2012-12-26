@@ -291,7 +291,7 @@ This option means "underline links as in your user skin or your browser", there 
 {{Identical|December}}',
 'jan' => 'Abbreviation of January, the first month of the Gregorian calendar',
 'feb' => 'Abbreviation of February, the second month of the Gregorian calendar',
-'mar' => 'Abbreviation of March, the thrird month of the Gregorian calendar',
+'mar' => 'Abbreviation of March, the third month of the Gregorian calendar',
 'apr' => 'Abbreviation of April, the fourth month of the Gregorian calendar',
 'may' => 'Abbreviation of May, the fifth month of the Gregorian calendar',
 'jun' => 'Abbreviation of June, the sixth month of the Gregorian calendar',
@@ -369,6 +369,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
 {{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
+'faq' => "FAQ is short for ''frequently asked questions''.",
 'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
 
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
@@ -501,6 +502,7 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'jumptosearch' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
 
 {{Identical|Search}}',
+'view-pool-error' => 'Error message. $1 is probably unused.',
 'pool-timeout' => "Part of {{msg-mw|view-pool-error}}.
 
 For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_science%29 wikipedia].",
@@ -617,6 +619,7 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 'restorelink' => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see
 View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or
 ''View or restore n deleted edits?''",
+'feed-invalid' => 'Result of check whether feed type is valid or not.',
 'feed-unavailable' => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
 'site-rss-feed' => "Used in the HTML header of a wiki's RSS feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
@@ -641,6 +644,7 @@ HTML markup cannot be used.
 'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
 
 {{Identical|User page}}',
+'nstab-media' => 'The name for the tab of the media namespace. Example: [[Media:Example]]',
 'nstab-special' => 'The name for the tab of the special namespace. Example: [[Special:Version]]',
 'nstab-project' => 'The name for the tab of the project namespace. Example: [[Project:Example]]',
 'nstab-image' => 'The name for the tab of the image namespace. Example: [[Image:Example]]
@@ -658,6 +662,11 @@ HTML markup cannot be used.
 {{Identical|Category}}',
 
 # Main script and global functions
+'nosuchaction' => 'The title of the error you get when trying to open a page with invalid "action" parameter. The text of the warning is the message {{msg-mw|nosuchactiontext}}.
+
+See example [//translatewiki.net/wiki/Main_page?action=x action=x].',
+'nosuchactiontext' => 'This error is shown when trying to open a page with invalid "action" parameter, e.g. [//translatewiki.net/wiki/Main_page?action=x action=x].
+* The title of this error is the message {{msg-mw|nosuchaction}}.',
 'nosuchspecialpage' => 'The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]',
 'nospecialpagetext' => '{{doc-important|Link <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated.}}
 This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
@@ -665,6 +674,9 @@ This error is shown when trying to open a special page which does not exist, e.g
 
 # General errors
 'error' => '{{Identical|Error}}',
+'databaseerror' => 'Used as title of error message (one of the following messages):
+* {{msg-mw|Dberrortext}}
+* {{msg-mw|Dberrortextcl}}',
 'dberrortext' => 'Parameters:
 * $1 - The last SQL command/query
 * $2 - SQL function name
@@ -675,7 +687,9 @@ This error is shown when trying to open a special page which does not exist, e.g
 * $2 - SQL function name
 * $3 - Error number
 * $4 - Error description',
+'readonly' => 'Used as title of error message when database is locked.',
 'enterlockreason' => 'For developers when locking the database',
+'readonlytext' => 'Used as error message when the database is locked.',
 'missing-article' => "This message is shown when a revision does not exist, either as permalink or as diff. Examples:
 
 # [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Permalink with invalid revision#]
@@ -699,9 +713,29 @@ This error is shown when trying to open a special page which does not exist, e.g
 [http://translatewiki.net/w/i.php?title=Translating:Tasks&diff=372398&oldid=371789000 Click here] to see an example of such an error message.',
 'readonly_lag' => 'Error message displayed when the database is locked.',
 'internalerror' => '{{Identical|Internal error}}',
+'internalerror_info' => '* $1 - error message',
 'fileappenderrorread' => '"Append" is a computer procedure, explained on [http://en.wikipedia.org/wiki/Append Wikipedia].
 
 $1 is a filename, I think.',
+'fileappenderror' => 'Parameters:
+* $1 - file name
+* $2 - file name',
+'filecopyerror' => 'Parameters:
+* $1 - source file name
+* $2 - destination file name',
+'filerenameerror' => 'Parameters:
+* $1 - old file name
+* $2 - new file name',
+'filedeleteerror' => '* $1 - file name',
+'directorycreateerror' => '* $1 - directory name',
+'filenotfound' => '* $1 - file name',
+'fileexistserror' => '* $1 - file name',
+'unexpected' => 'This message indicates the value $2 is unexpected for $1. Parameters:
+* $1 - name
+* $2 - value',
+'badarticleerror' => 'Used as error message in moving page.',
+'cannotdelete' => 'Error message in deleting. Parameters:
+* $1 - page name or file name',
 'cannotdelete-title' => 'Title of error page when the user cannot delete a page
 * $1 is the page name',
 'delete-hook-aborted' => 'Error message shown when an extension hook prevents a page deletion, but does not provide an error message.',
@@ -721,6 +755,7 @@ $1 is a filename, I think.',
 'viewsource-title' => 'Page title shown when trying to edit a protected page.
 * $1 is the name of the page',
 'actionthrottled' => 'This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.',
+'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
 'protectedpagetext' => 'This message is displayed when trying to edit a page you can\'t edit because it has been protected.
 
 * $1: the protection type, e.g. "protect" for fully protected pages',
@@ -732,8 +767,19 @@ See also {{msg-mw|editinginterface}}.',
 'editinginterface' => 'A message shown when editing pages in the namespace MediaWiki:.
 
 See also {{msg-mw|protectedinterface}}.',
+'sqlhidden' => 'This message indicates the SQL is hidden for security reasons.',
+'cascadeprotected' => 'Parameters:
+* $1 - number of cascade-protected pages, used for PLURAL
+* $2 - list of cascade-protected pages',
+'namespaceprotected' => '* $1 - namespace name',
+'customcssprotected' => 'Used as error message.',
+'customjsprotected' => 'Used as error message.',
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
+'filereadonlyerror' => 'Parameters:
+* $1 - file name
+* $2 - file repository name
+* $3 - reason',
 'invalidtitle-knownnamespace' => 'Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.
 * $1 is the namespace number
 * $2 is the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace
@@ -743,6 +789,12 @@ See also {{msg-mw|protectedinterface}}.',
 * $2 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
 'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
 'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
+
+# Virus scanner
+'virus-badscanner' => 'Used as error message.',
+'virus-scanfailed' => 'Used as error message. "scan" stands for "virus scan". Parameters:
+* $1 - exit code of virus scanner',
+'virus-unknownscanner' => 'Used as error message. This message is followed by the virus scanner name.',
 
 # Login and logout pages
 'logouttext' => 'Log out message
@@ -761,6 +813,8 @@ See also {{msg-mw|protectedinterface}}.',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
+'securelogin-stick-https' => 'Used as label for checkbox.',
+'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
 'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
@@ -794,6 +848,9 @@ It is also used on the top of the page for logged out users, where it appears ne
 'userlogin-resetlink' => 'Used on the login page.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
+'badretype' => 'Used as error message when the new password and its retype do not match.',
+'userexists' => 'Used as error message in creating a user account.',
+'loginerror' => 'Used as title of error message.',
 'createaccounterror' => 'Parameters:
 * $1 is an error message',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
@@ -803,13 +860,16 @@ It is also used on the top of the page for logged out users, where it appears ne
 This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).
 
 Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
+'noname' => 'Error message.',
 'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
 'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
 'nosuchuser' => 'Displayed when trying to log in with an unexisting username. When you are not allowed to create an account, the message {{msg|nosuchusershort}} is displayed.',
 'nosuchusershort' => "Displayed when trying to log in with a non-existant username. This message is only shown when you can't create an account, otherwise the message {{msg|nosuchusershort}} is displayed.",
+'nouserspecified' => 'Used as error message when username to fetch is not specified.',
 'login-userblocked' => 'This message supports GENDER, username is available in $1.',
+'wrongpassword' => 'Used as error message when the provided password is wrong.',
 'wrongpasswordempty' => 'Error message displayed when entering a blank password',
 'passwordtooshort' => 'This message is shown at
 
@@ -817,6 +877,7 @@ Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 * [[Special:CreateAccount]]
 
 $1 is the minimum number of characters in the password.',
+'password-name-match' => 'Used as error message when password validity check failed.',
 'password-login-forbidden' => 'Error message shown when the user has tried to log in using one of the special username/password combinations used for MediaWiki testing. (See [[mwr:75589]], [[mwr:75605]].)',
 'mailmypassword' => 'Shown at [[Special:UserLogin]]',
 'passwordremindertitle' => 'Title of e-mail which contains temporary password',
@@ -830,6 +891,7 @@ $1 is the minimum number of characters in the password.',
 
 Parameters:
 * $1 is a user name. This parameter can be used with GENDER.',
+'noemailcreate' => 'Error message.',
 'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
@@ -1126,6 +1188,8 @@ See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunction
 'post-expand-template-inclusion-warning' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
 When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
+'parser-template-loop-warning' => '* $1 - page title',
+'parser-template-recursion-depth-warning' => '* $1 - limit value of recursion depth',
 'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax
 
 * <tt>$1</tt> is the value of the depth limit',
@@ -1517,6 +1581,9 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'skin-preview' => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
+'datedefault' => 'Used as checkbox label in [[Special:Preferences#mw-prefsection-datetime|user preferences]], {{msg-mw|prefs-datetime}} tab.
+
+This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).',
 'prefs-beta' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are in beta but mostly suitable for general use",
 'prefs-datetime' => '{{Identical|Date}}',
 'prefs-labs' => "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
@@ -1536,6 +1603,8 @@ This is a search result (and I guess search engine) dependent messages. I do not
 
 {{Identical|Change password}}',
 'prefs-changeemail' => 'Link on [[Special:Preferences]] to [[Special:ChangeEmail]].',
+'prefs-setemail' => 'Used as link title in [[Special:Preferences]], if the user has not set E-mail address yet.',
+'prefs-email' => 'Used as section name in [[Special:Preferences]].',
 'prefs-rendering' => 'Title of tab in [[Special:Preferences]].',
 'saveprefs' => 'Button for saving changes in the preferences page.
 
@@ -1559,11 +1628,124 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'prefs-help-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
 'savedprefs' => 'This message appears after saving changes to your user preferences.',
 'timezonelegend' => '{{Identical|Time zone}}',
+'localtime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
 'timezoneuseserverdefault' => '[[Special:Preferences]] > Date and time > Time zone
 
 This option lets your time zone setting use the one that is used on the wiki (often UTC).',
+'timezoneuseoffset' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.',
 'timezoneoffset' => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
+'servertime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
 'guesstimezone' => 'Option to fill in the timezone from the browser setting',
+'timezoneregion-africa' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-america' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-antarctica' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-arctic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-asia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-atlantic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-australia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-europe' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-indian' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-pacific' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
+* {{msg-mw|Timezoneregion-africa}}
+* {{msg-mw|Timezoneregion-america}}
+* {{msg-mw|Timezoneregion-antarctica}}
+* {{msg-mw|Timezoneregion-arctic}}
+* {{msg-mw|Timezoneregion-asia}}
+* {{msg-mw|Timezoneregion-atlantic}}
+* {{msg-mw|Timezoneregion-australia}}
+* {{msg-mw|Timezoneregion-europe}}
+* {{msg-mw|Timezoneregion-indian}}
+* {{msg-mw|Timezoneregion-pacific}}',
 'allowemail' => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions' => '{{Identical|Search options}}',
 'prefs-namespaces' => "{{Identical|Namespaces}}
@@ -1573,6 +1755,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'prefs-files' => 'Title of a tab in [[Special:Preferences]].',
 'prefs-custom-css' => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-custom-js' => 'visible on [[Special:Preferences]] -[Skins].',
+'prefs-common-css-js' => 'Used as label in [[Special:Preferences#mw-prefsection-rendering|preferences]], tab "Appearance", section "Skin".',
 'prefs-reset-intro' => 'Used in [[Special:Preferences/reset]].',
 'prefs-emailconfirm-label' => 'Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-textboxsize' => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
@@ -1615,6 +1798,7 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Male}}',
 'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
 {{Identical|Female}}',
+'prefs-help-gender' => 'Used as additional description for {{msg-mw|yourgender}} field in [[Special:Preferences]], section {{msg-mw|prefs-info}}.',
 'email' => '{{Identical|E-mail}}',
 'prefs-help-realname' => 'In user preferences.
 {{Identical|Real name attribution}}',
@@ -1650,6 +1834,10 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 * {{msg-mw|Prefs-watchlist-days}}
 * {{msg-mw|Prefs-watchlist-edits}}',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.',
+'email-address-validity-invalid' => 'Used as warning for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is invalid.',
 
 # User rights
 'userrights' => 'Page title of [[Special:UserRights]].',
@@ -1943,6 +2131,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 {{Identical|Recent changes}}',
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
 'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
+'recentchanges-feed-description' => 'Used in feed of RecentChanges. See example [http://translatewiki.net/w/i.php?title=Special:RecentChanges&feed=atom feed].',
 'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-minor' => 'Tooltip for {{msg-mw|minoreditletter}}',
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
@@ -1993,6 +2182,8 @@ List elements are separated by {{msg-mw|pipe-separator}} each. Each list element
 'unpatrolledletter' => '{{optional}}
 
 Used in {{msg-mw|Recentchanges-label-legend}}, meaning "unpatrolled".',
+'number_of_watching_users_pageview' => 'Used if <code>$wgPageShowWatchingUsers</code> is true.
+* $1 - number of watching user(s)',
 'rc_categories' => "Probably to do with 'recent changes' special page, either in a particular skin, or for a particular user group.
 
 I guess that this should appear before an input box where you can specify that recent changes should be shown for pages belonging to certain categories only. You name the categories in the input box, and separate them by a pipe character. If this is right, then you should be able to use 'restrict' instead of 'limit', or even 'show pages in the following categories only'.",
@@ -3169,6 +3360,8 @@ See also:
 'whatlinkshere-filters' => '{{Identical|Filter}}',
 
 # Block/unblock
+'autoblockid' => 'Used as name of autoblock, instead of autoblocked IPs. Parameters:
+* $1 - autoblock ID',
 'block' => 'Name of the special page on [[Special:SpecialPages]]',
 'unblock' => 'Name of the special page on [[Special:SpecialPages]]',
 'blockip' => 'The title of the special page [[Special:BlockIP]].
@@ -4514,9 +4707,12 @@ This message is variable $3 in the message {{msg-mw|Wlshowlast}}.
 'confirmemail_sendfailed' => 'Failure message to do with [[Special:ConfirmEmail]].
 
 $1 is a message from the e-mail delivery system.',
+'confirmemail_invalid' => 'Error message on [[Special:ConfirmEmail]] on error of confirmation.',
 'confirmemail_needlogin' => 'Used on [[Special:ConfirmEmail]] when you are logged out.
 * $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+'confirmemail_success' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
 'confirmemail_loggedin' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
+'confirmemail_error' => 'Error message on [[Special:ConfirmEmail]]',
 'confirmemail_subject' => 'Text in subject box of e-mail sent to user during e-mail address confirmation
 {{Identical|SITENAME e-mail address confirmation}}',
 'confirmemail_body' => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
@@ -4799,7 +4995,7 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 # Core parser functions
 'unknown_extension_tag' => '* Description: This is an error shown when you use an unknown extension tag name. This feature allows tags like <tt><nowiki><pre></nowiki></tt> to be called with a parser like <tt><nowiki>{{#tag:pre}}</nowiki></tt>.
 * Parameter $1: This is the unknown extension tag name.',
-'duplicate-defaultsort' => 'Definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
+'duplicate-defaultsort' => 'See definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
 
 # Special:Version
 'version' => 'Name of special page displayed in [[Special:SpecialPages]]
@@ -4875,6 +5071,8 @@ $1 is the name of the requested file.',
 
 * $1 is the name of the requested file.
 * $2 is the number of identical duplicates of the requested file',
+'fileduplicatesearch-noresults' => 'Parameters:
+* $1 - file name',
 
 # Special:SpecialPages
 'specialpages' => 'Display name of link to [[Special:SpecialPages]] shown on all pages in the toolbox, as well as the page title and header of [[Special:SpecialPages]].
@@ -4899,7 +5097,7 @@ $1 is the name of the requested file.',
 # External image whitelist
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.
 
-Definition of [http://en.wikipedia.org/wiki/Regular_expression regular expression] on Wikipedia.",
+See definition of [http://en.wikipedia.org/wiki/Regular_expression regular expression] on Wikipedia.",
 
 # Special:Tags
 'tags' => "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].
@@ -5033,6 +5231,8 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-patrol-patrol-auto' => '{{Logentry}}
 * $4 is a formatted revision number, maybe linked to the diff.
 "Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
+'logentry-newusers-newusers' => 'Parameters:
+* $1 - user name',
 'logentry-newusers-create' => '{{Logentry}}
 
 $4 is the gender of the target user.',

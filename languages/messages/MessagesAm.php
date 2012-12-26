@@ -96,6 +96,9 @@ $messages = array(
 'underline-never' => 'ሁሌም አይሁን',
 'underline-default' => 'የቃኝ ቀዳሚ ባህሪዎች',
 
+# Font style option in Special:Preferences
+'editfont-default' => 'የቃኝ ቀዳሚ ባህሪዎች',
+
 # Dates
 'sunday' => 'እሑድ',
 'monday' => 'ሰኞ',
@@ -199,6 +202,7 @@ $messages = array(
 'vector-view-history' => 'ታሪኩን አሳይ',
 'vector-view-view' => 'ለማንበብ',
 'vector-view-viewsource' => 'ጥሬ ኮድ ለመመልከት',
+'namespaces' => 'ክፍለ-ዊኪዎች',
 
 'errorpagetitle' => 'ስህተት',
 'returnto' => '(ወደ $1 ለመመለስ)',
@@ -214,6 +218,7 @@ $messages = array(
 'printableversion' => 'ለህትመት የተዘጋጀ',
 'permalink' => 'ቋሚ መያያዣ',
 'print' => 'ይታተም',
+'view' => 'ለመመልከት',
 'edit' => 'አርም',
 'create' => 'ለመፍጠር',
 'editthispage' => 'ይህን ገጽ አርም',
@@ -221,6 +226,7 @@ $messages = array(
 'delete' => 'ይጥፋ',
 'deletethispage' => 'ይህን ገጽ ሰርዝ',
 'undelete_short' => '{{PLURAL:$1|አንድ ዕትም|$1 ዕትሞች}} ለመመልስ',
+'viewdeleted_short' => '{{PLURAL:$1|የጠፋውን ዕትም|$1 የጠፉትን ዕትሞች}} ለመመልከት',
 'protect' => 'ጠብቅ',
 'protect_change' => 'የመቆለፍ ደረጃን ለመለወጥ',
 'protectthispage' => 'ይህን ገጽ ለመቆለፍ',
@@ -257,6 +263,7 @@ $messages = array(
 ስለዚህ እባክዎን ትንሽ ቆይተው በድጋሚ ይዎክሩ።
 
 $1',
+'pool-errorunknown' => 'የማይታወቅ ስኅተት',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'ስለ {{SITENAME}}',
@@ -290,6 +297,7 @@ $1',
 'youhavenewmessages' => '$1 አሉዎት ($2)።',
 'newmessageslink' => 'አዲስ መልእክቶች',
 'newmessagesdifflink' => 'የመጨረሻ ለውጥ',
+'newmessagesdifflinkplural' => 'መጨረሻ {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'youhavenewmessagesmulti' => 'በ$1 አዲስ መልእክቶች አሉዎት',
 'editsection' => 'አርም',
 'editold' => 'አርም',
@@ -358,6 +366,8 @@ $1',
 'formerror' => 'ስኅተት፦ ማመልከቻ ለማቅረብ አልተቻለም',
 'badarticleerror' => 'ይህ ተግባር በዚሁ ገጽ ላይ ሊደረግ አይቻልም።',
 'cannotdelete' => 'የተወሰነው ገጽ ወይም ፋይል ለማጥፋት አልተቻለም። (ምናልባት በሌላ ሰው እጅ ገና ጠፍቷል።)',
+'delete-hook-aborted' => 'መጥፋቱ በሜንጦ ተቋረጠ።
+ምንም ምክንያት አልሰጠም።',
 'badtitle' => 'መጥፎ አርዕስት',
 'badtitletext' => 'የፈለጉት አርዕስት ልክ አልነበረም። ምናልባት ለአርዕስት የማይሆን የፊደል ምልክት አለበት።',
 'perfcached' => 'ማስታወቂያ፡ ይህ መረጃ በየጊዜ የሚታደስ ስለሆነ ዘመናዊ ሳይሆን የቆየ ሊሆን ይችላል። A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
@@ -379,6 +389,7 @@ $2",
 'namespaceprotected' => "በ'''$1''' ክፍለ-ዊኪ ያሉትን ገጾች ለማዘጋጀት ፈቃድ የለዎም።",
 'ns-specialprotected' => 'ልዩ ገጾችን ማረም አይፈቀድም።',
 'titleprotected' => "ይህ አርዕስት እንዳይፈጠር በ[[User:$1|$1]] ተጠብቋል። የተሰጠው ምክንያት ''$2'' ነው።",
+'exception-nologin' => 'ገና አልገቡም',
 
 # Virus scanner
 'virus-unknownscanner' => 'ያልታወቀ antivirus:',
@@ -398,6 +409,7 @@ $2",
 'nav-login-createaccount' => 'መግቢያ',
 'loginprompt' => '(You must have cookies enabled to log in to {{SITENAME}}.)',
 'userlogin' => 'ግባ / ተመዝገብ',
+'userloginnocreate' => 'ለመግባት',
 'logout' => 'ከብዕር ስምዎ ለመውጣት',
 'userlogout' => 'መውጫ',
 'notloggedin' => 'አልገቡም',
@@ -407,6 +419,7 @@ $2",
 'gotaccount' => "(አባልነት አሁን ካለዎ፥ '''$1''' ይግቡ)",
 'gotaccountlink' => 'በዚህ',
 'createaccountmail' => 'በኢ-ሜል',
+'createaccountreason' => 'ምክንያት:',
 'badretype' => 'የጻፉት መግቢያ ቃሎች አይስማሙም።',
 'userexists' => 'ይህ ብዕር ስም አሁን ይኖራል። እባክዎ፣ ሌላ ብዕር ስም ይምረጡ።',
 'loginerror' => 'የመግባት ስኅተት',
@@ -465,6 +478,16 @@ $2",
 'resetpass-wrong-oldpass' => 'ጊዜያዊው ወይም ያሁኑኑ መግቢያ ቃል አይስማማም።
 ምናልባት መግቢያ ቃልዎን መቀይሩ ተከናወነ፣ ወይም አዲስ ጊዜያዊ መግቢያ ቃልን ጠየቁ።',
 'resetpass-temp-password' => 'ኅላፊ (ጊዜያዊ) መግቢያ ቃል፦',
+
+# Special:PasswordReset
+'passwordreset-username' => 'የብዕር ስም:',
+'passwordreset-email' => 'የኢ-ሜል አድራሻ:',
+
+# Special:ChangeEmail
+'changeemail-no-info' => 'ይህንን ገጽ በቀጥታ ለማግኘት አስቀድሞ መግባት ያስፈልጋል።',
+'changeemail-newemail' => 'አዲስ ኢ-ሜል አድራሻ፦',
+'changeemail-none' => '(የለም)',
+'changeemail-cancel' => 'ይቅር',
 
 # Edit page toolbar
 'bold_sample' => 'ጉልህ ፊደላት',
@@ -539,6 +562,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 ወደዚህ በስሕተት ከሆነ የመጡት፣ የቃኝውን «Back» ቁልፍ ይጫኑ።',
 'anontalkpagetext' => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:UserLogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
 'noarticletext' => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ጽሑፍ የለም፤ ነገር ግን በሌሎች ገጾች ላይ [[Special:Search/{{PAGENAME}}|ይህን አርዕስት መፈለግ]]፣ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ከርዕሱ ጋር የተዛመዱ መዝገቦችን መፈልግ]፣ ወይም [{{fullurl:{{FULLPAGENAME}}|action=edit}} አዲስ ገፅ ሊያዘጋጁ] ይችላሉ</span>።',
+'noarticletext-nopermission' => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ጽሑፍ የለም፤ በሌሎች ገጾች ላይ [[Special:Search/{{PAGENAME}}|ይህን አርዕስት መፈለግ]]፣ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ከርዕሱ ጋር የተዛመዱ መዝገቦችን መፈልግ]፣ ይችላሉ። ነገር ግን ይህን ገጽ ለመፍጠር ፈቃድ የለዎም።።',
 'userpage-userdoesnotexist' => 'የብዕር ስም «<nowiki>$1</nowiki>» አልተመዘገበም። እባክዎ ይህን ገጽ ለመፍጠር/ ለማስተካከል የፈለጉ እንደ ሆነ ያረጋግጡ።',
 'usercssyoucanpreview' => "'''ምክር፦''' ሳይቆጠብ አዲስ CSSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
 'userjsyoucanpreview' => "'''ምክር፦''' ሳይቆጠብ አዲስ JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",

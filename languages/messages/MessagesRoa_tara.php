@@ -830,7 +830,9 @@ Pare proprie ca l'onne scangellete.",
 'edit-no-change' => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
 'edit-already-exists' => "Non ge puè ccrejà 'na pàgene nove purcè esiste già!",
 'defaultmessagetext' => 'Messàgge de teste de base',
+'content-failed-to-parse' => "L'analise d'u condenute $2 pu modelle $1 ha fallite: $3",
 'invalid-content-data' => "Condenute d'u date invalide",
+'content-not-allowed-here' => '"$1" condenute non g\'è permesse sus \'a pàgene [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'Uicchiteste',
@@ -1370,6 +1372,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'rightslogentry-autopromote' => 'ha state promosse automaticamende da $2 a $3',
 'logentry-rights-rights' => "$1 membre d'u gruppe cangiate pe $3 da $4 a $5",
 'logentry-rights-rights-legacy' => "$1 ave cangiate 'u membre d'u gruppe pe $3",
+'logentry-rights-autopromote' => '$1 ha state promosse automaticamende da $4 a $5',
 'rightsnone' => '(ninde)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2106,8 +2109,8 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'watchnologin' => 'Non ge sinde colleghete',
 'watchnologintext' => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
 'addwatch' => "Mitte jndr'à le pàggene condrollate",
-'addedwatchtext' => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
-Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
+'addedwatchtext' => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollate]].
+Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà.",
 'removewatch' => 'Live da le pàggene condrollate',
 'removedwatchtext' => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
 'watch' => 'Condrolle',
@@ -2149,36 +2152,33 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_lastvisited' => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff' => 'Vide $1 pe vedè stu cangiamende.',
 'enotif_anon_editor' => 'Utende anonime $1',
-'enotif_body' => 'Care $WATCHINGUSERNAME,
+'enotif_body' => "Care \$WATCHINGUSERNAME,
 
+\$PAGEINTRO \$NEWPAGE
 
-\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa revisione corrende.
+Riepileghe de le cangiaminde: \$PAGESUMMARY \$PAGEMINOREDIT
 
-$NEWPAGE
+Condatte l'editore:
+mail: \$PAGEEDITOR_EMAIL
+uicchi: \$PAGEEDITOR_WIKI
 
-Riepileghe de le cangiaminde: $PAGESUMMARY $PAGEMINOREDIT
+Non ge stonne otre notifiche ce tu face otre attivitate senze ca tu visite sta pàgene.
+Tu puè pure azzerà 'a spunde de le notifiche pe tutte le pàggene condrollate jndr'à lista toje.
 
-Condatte l\'editore:
-mail: $PAGEEDITOR_EMAIL
-uicchi: $PAGEEDITOR_WIKI
-
-Non ge stonne otre notifiche ce tu face otre cangiaminde senza ca tu visite sta pàgene.
-Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollate jndr\'à lista toje.
-
-             Statte Bbuene, \'u sisteme de notificaziune de {{SITENAME}}
+             Statte Bbuene, 'u sisteme de notificaziune de {{SITENAME}}
 
 --
-Pe cangià le \'mbostaziune de notifeche de l\'email toje, vè vide
+Pe cangià le 'mbostaziune de notifeche de l'email toje, vè vide
 {{canonicalurl:{{#special:Preferences}}}}
 
-Pe cangià le \'mbostaziune de l\'elenghe de le pàggene condrollate tune, vè vide
+Pe cangià le 'mbostaziune de l'elenghe de le pàggene condrollate tune, vè vide
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Pe scangellà \'a pàgene da \'a liste de le pàggene condrollate, vè vide
-$UNWATCHURL
+Pe scangellà 'a pàgene da 'a liste de le pàggene condrollate, vè vide
+\$UNWATCHURL
 
 Segnalaziune e otre assistenze:
-{{canonicalurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}",
 
 # Delete
 'deletepage' => "Scangille 'a pàgene",
@@ -2651,6 +2651,7 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-target-namespace-iw' => "'U collegamende InderUicchi non ge tène 'na destinaziona valide purcè 'a pàgene ha state spustate.",
 'immobile-source-page' => 'Sta pàgene non ge se pò spustà.',
 'immobile-target-page' => 'Non ge puè spustà sus a stu titele de destinazione.',
+'bad-target-model' => "'A destinazione desiderate ause 'nu modelle de le condenute diverse. Non ge se pò convertì da $1 a $2.",
 'imagenocrossnamespace' => "Non ge pozze spustà 'nu file jndr'à 'nu namespace senza file",
 'nonfile-cannot-move-to-file' => "Non ge pozze spustà 'nu file jndr'à 'nu namespace senza file",
 'imagetypemismatch' => "L'estenziona nove d'u file non ge se accocchie cu 'u tipe sue",
@@ -2766,6 +2767,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-error-interwiki' => 'Pagene "$1" non g\'ha state \'mbortate purcé \'u nome sue jè riservate pe collegaminde esterne (interuicchi).',
 'import-error-special' => "'A pagena \"\$1\" non g'ha state 'mbortate purcé apponde a 'nu namespace speciale ca non g'è permesse a le pàggene normale.",
 'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
+'import-error-unserialize' => '\'A revisione $2 d\'a pàgene "$1" non ge pò essere deserializzate. \'A revisione ha state reportate pe ausà \'u modelle d\'u condenute $3 serializzate cumme $4.',
 'import-options-wrong' => '{{PLURAL:$2|opzione|opziune}} sbagliate: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => "'A pàgene radice date tène 'nu titole invalide.",
 'import-rootpage-nosubpage' => 'Namespace "$1" d\'a pàgene prengepàle non ge permette le sottopàggene.',
@@ -2921,6 +2923,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 
 # Info page
 'pageinfo-title' => '\'Mbormaziune pe "$1"',
+'pageinfo-not-current' => "Ne despiace, non g'è possibbile pigghià sta 'mbormazione pe le versiune vecchie.",
 'pageinfo-header-basic' => "'Mbormaziune 'nderra-'nderre",
 'pageinfo-header-edits' => 'Cunde de le cangiaminde',
 'pageinfo-header-restrictions' => "Protezione d'a pàgene",
@@ -3855,6 +3858,7 @@ Tu puè pure [[Special:EditWatchlist|ausà 'u cangiatore standàrd]].",
 'version-license' => 'Licenze',
 'version-poweredby-credits' => "Sta Uicchi jè fatte da '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otre',
+'version-credits-summary' => 'Nuje vulesseme acchià le persone seguende pe le lore condrebbute a [[Special:Version|MediaUicchi]].',
 'version-license-info' => "MediaUicchi jè 'nu softuare libbere, tu 'u puè redestribbuì  e/o cangiarle sotte le termine d'a GNU (Licenze Pubbleche Generale) cumme pubblecate da 'a Free Software Foundation; endrambe le versiune 2 d'a Licenze, o (a scelta toje) 'le versiune cchiù nnove.
 
 Mediauicchi jè destribbuite cu 'a speranze ca jè utile, ma SENZE NISCIUNA GARANZIE; senze nemmanghe 'a garanzie imblicite de COMMERCIABBELETÀ o IDONIETÀ PE 'NU SCOPE PARTICOLARE. Vatte a vide 'a GNU (Licenze Pubbleche Generale) pe cchiù 'mbormaziune.
