@@ -110,8 +110,8 @@ class ForeignAPIRepo extends FileRepo {
 	function fileExistsBatch( array $files ) {
 		$results = array();
 		foreach ( $files as $k => $f ) {
-			if ( isset( $this->mFileExists[$k] ) ) {
-				$results[$k] = true;
+			if ( isset( $this->mFileExists[$f] ) ) {
+				$results[$k] = $this->mFileExists[$f];
 				unset( $files[$k] );
 			} elseif ( self::isVirtualUrl( $f ) ) {
 				# @todo FIXME: We need to be able to handle virtual
@@ -129,10 +129,26 @@ class ForeignAPIRepo extends FileRepo {
 		$data = $this->fetchImageQuery( array( 'titles' => implode( $files, '|' ),
 											'prop' => 'imageinfo' ) );
 		if ( isset( $data['query']['pages'] ) ) {
-			$i = 0;
+			# First, get results from the query. Note we only care whether the image exists,
+			# not whether it has a description page.
+			foreach ( $data['query']['pages'] as $p ) {
+				$this->mFileExists[$p['title']] = ( $p['imagerepository'] !== '' );
+			}
+			# Second, copy the results to any redirects that were queried
+			if ( isset( $data['query']['redirects'] ) ) {
+				foreach ( $data['query']['redirects'] as $r ) {
+					$this->mFileExists[$r['from']] = $this->mFileExists[$r['to']];
+				}
+			}
+			# Third, copy the results to any non-normalized titles that were queried
+			if ( isset( $data['query']['normalized'] ) ) {
+				foreach ( $data['query']['normalized'] as $n ) {
+					$this->mFileExists[$n['from']] = $this->mFileExists[$n['to']];
+				}
+			}
+			# Finally, copy the results to the output
 			foreach ( $files as $key => $file ) {
-				$results[$key] = $this->mFileExists[$key] = !isset( $data['query']['pages'][$i]['missing'] );
-				$i++;
+				$results[$key] = $this->mFileExists[$file];
 			}
 		}
 		return $results;
