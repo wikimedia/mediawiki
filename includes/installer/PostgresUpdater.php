@@ -155,6 +155,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'uploadstash',   'us_chunk_inx',         "INTEGER NULL" ),
 			array( 'addPgField', 'job',           'job_timestamp',        "TIMESTAMPTZ" ),
 			array( 'addPgField', 'job',           'job_random',           "INTEGER NOT NULL DEFAULT 0" ),
+			array( 'addPgField', 'job',           'job_attempts',         "INTEGER NOT NULL DEFAULT 0" ),
 			array( 'addPgField', 'job',           'job_token',            "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'job',           'job_token_timestamp',  "TIMESTAMPTZ" ),
 			array( 'addPgField', 'job',           'job_sha1',             "TEXT NOT NULL DEFAULT ''" ),
@@ -233,6 +234,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'job',           'job_timestamp_idx',      '(job_timestamp)' ),
 			array( 'addPgIndex', 'job',           'job_sha1',               '(job_sha1)' ),
 			array( 'addPgIndex', 'job',           'job_cmd_token',          '(job_cmd, job_token, job_random)' ),
+			array( 'addPgIndex', 'job',           'job_cmd_token_id',       '(job_cmd, job_token, job_id)' ),
 			array( 'addPgIndex', 'filearchive',   'fa_sha1',                '(fa_sha1)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(
