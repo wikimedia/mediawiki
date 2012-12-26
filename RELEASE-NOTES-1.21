@@ -178,6 +178,12 @@ production.
 * BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
   for all query modules.
 * ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
+* (bug 36751) ApiQueryImageInfo now returns imageinfo for the redirect target
+  when queried with &redirects=.
+* (bug 31849) ApiQueryImageInfo no longer gets confused when asked for info on
+  a redirect and its target.
+* (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
+  redirects.
 
 === Languages updated in 1.21 ===
 
