@@ -137,7 +137,10 @@ production.
 * (bug 27202) Add timestamp sort to list=allimages.
 * (bug 43137) Don't return the sha1 of revisions through the API if the content is
   revision-deleted.
-* ApiQueryImageInfo now also returns imageinfo for redirects.
+* (bug 36751) ApiQueryImageInfo now returns imageinfo for the redirect target
+  when queried with &redirects=.
+* (bug 31849) ApiQueryImageInfo no longer gets confused when asked for info on
+  a redirect and its target.
 
 === Languages updated in 1.21 ===
 
