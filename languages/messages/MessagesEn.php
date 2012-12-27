@@ -2760,7 +2760,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-ok'      => 'Search',
 'linksearch-text'    => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
-Supported protocols: <code>$1</code> (defaults to http:// if no protocol is specified).',
+Supported {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http:// if no protocol is specified).',
 'linksearch-line'    => '$1 is linked from $2',
 'linksearch-error'   => 'Wildcards may appear only at the start of the hostname.',
 
