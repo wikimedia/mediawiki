@@ -201,7 +201,7 @@ class SpecialImport extends SpecialPage {
 						Xml::label( $this->msg( 'import-upload-filename' )->text(), 'xmlimport' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'xmlimport', 50, '', array( 'id' => 'xmlimport', 'type' => 'file' ) ) . ' ' .
+						Html::input( 'xmlimport', '', 'file', array( 'id' => 'xmlimport' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
