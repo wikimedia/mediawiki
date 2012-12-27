@@ -980,7 +980,8 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
 지금 당신의 IP 주소는 $3이고, 차단 ID는 #$5입니다.
 문의할 때에 이 정보를 같이 알려주세요.",
-'autoblockedtext' => "당신의 IP 주소는 $1이 차단한 사용자가 사용했던 IP이기 때문에 자동으로 차단되었습니다. 차단된 이유는 다음과 같습니다:
+'autoblockedtext' => '당신의 IP 주소는 $1 사용자가 차단한 사용자가 사용했던 IP이기 때문에 자동으로 차단되었습니다.
+차단된 이유는 다음과 같습니다:
 
 :$2
 
@@ -990,10 +991,10 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 
 $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.
 
-[[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
+[[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 "이메일 보내기" 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
 
-당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다.
-문의할 때에 이 정보를 같이 알려주세요.",
+현재 IP 주소는 $3이고, 차단 ID는 #$5입니다.
+문의할 때에 이 정보를 같이 알려주세요.',
 'blockednoreason' => '이유를 입력하지 않음',
 'whitelistedittext' => '문서를 편집하려면 $1해야 합니다.',
 'confirmedittext' => '문서를 고치려면 이메일 인증 절차가 필요합니다.
@@ -4007,8 +4008,8 @@ $5
 # Special:SpecialPages
 'specialpages' => '특수 문서 목록',
 'specialpages-note' => '----
-* 일반 특수 문서.
-* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
+* 일반 특수 문서입니다.
+* <span class="mw-specialpagerestricted">제한된 특수 문서입니다.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other' => '다른 특수 문서',
 'specialpages-group-login' => '로그인 / 계정 만들기',

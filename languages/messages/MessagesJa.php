@@ -3331,7 +3331,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 # Image deletion
 'deletedrevision' => '古い版 $1 を削除しました',
 'filedeleteerror-short' => 'ファイルの削除エラー: $1',
-'filedeleteerror-long' => 'ファイルの削除中にエラーが発生しました：
+'filedeleteerror-long' => 'ファイルの削除中にエラーが発生しました:
 
 $1',
 'filedelete-missing' => 'ファイル「$1」は存在しないため、削除できません。',
@@ -3956,10 +3956,10 @@ $5
 
 # Delete conflict
 'deletedwhileediting' => "'''警告''': このページが、編集開始後に削除されました!",
-'confirmrecreate' => "[[User:$1|$1]]（[[User talk:$1|トーク]]）が、このページの編集開始後に、このページを、次の理由で削除しました。
+'confirmrecreate' => "あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを以下の理由で削除しました:
 : ''$2''
 本当にこのままこのページを再作成していいか確認してください。",
-'confirmrecreate-noreason' => 'あなたの編集を開始した後、このページを[[User:$1|$1]] ([[User talk:$1|トーク]])が削除しました。本当にこのページを再作成していいかご確認ください。',
+'confirmrecreate-noreason' => 'あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを削除しました。本当にこのページを再作成していいかご確認ください。',
 'recreate' => '再作成する',
 
 # action=purge

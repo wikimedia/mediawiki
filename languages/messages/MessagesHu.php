@@ -1096,7 +1096,10 @@ Néhány sablon nem fog megjelenni.',
 'parser-template-loop-warning' => 'Végtelen ciklus a következő sablonban: [[$1]]',
 'parser-template-recursion-depth-warning' => 'A sablon rekurzív beillesztésének mélysége átlépte a határérékét ($1)',
 'language-converter-depth-warning' => 'A nyelvátalakító rekurzióinak száma túllépve ($1)',
+'node-count-exceeded-category' => 'Lapok, ahogy a csomópont szám túl nagy',
+'node-count-exceeded-warning' => 'Az oldal meghaladta a csomópont számot',
 'expansion-depth-exceeded-category' => 'Lapok, melyeken a sablonok kibontása meghaladja a megengedett szintet',
+'expansion-depth-exceeded-warning' => 'A lap meghaladta az engedélyezett kiterjesztési mélységet',
 'parser-unstrip-loop-warning' => 'Unstrip hurok észlelve',
 'parser-unstrip-recursion-limit' => 'Túl mély unstrip rekurzió: $1',
 'converter-manual-rule-error' => 'Hiba van a kézi nyelvi konverziós szabályban',
@@ -1587,6 +1590,9 @@ A műveletet nem lehet visszavonni.',
 'rightslogtext' => 'Ez a rendszernapló a felhasználó jogosultságok változásait mutatja.',
 'rightslogentry' => 'megváltoztatta $1 szerkesztő felhasználó jogait (régi: $2; új: $3)',
 'rightslogentry-autopromote' => 'automatikusan $2 helyett $3 jogokat kapott',
+'logentry-rights-rights' => '$1 megváltoztatta $3 csoport tagságát erről: $4 erre: $5',
+'logentry-rights-rights-legacy' => '$1 megváltoztatta $3 csoport tagságát',
+'logentry-rights-autopromote' => '$1 automatikusan előléptetve erről: $4 erre: $5',
 'rightsnone' => '(semmi)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1816,6 +1822,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
 'upload-unknown-size' => 'Ismeretlen méretű',
 'upload-http-error' => 'HTTP-hiba történt: $1',
+'upload-copy-upload-invalid-domain' => 'Másolás nem engedélyezett ebből a tartományból.',
 
 # File backend
 'backend-fail-stream' => 'Nem sikerült sugározni ezt a fájlt: $1.',
@@ -1825,6 +1832,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-notsame' => 'Egy nem azonos fájl már létezik $1 néven.',
 'backend-fail-invalidpath' => '$1 nem érvényes tárolási útvonal.',
 'backend-fail-delete' => 'Nem sikerült törölni ezt a fájlt: $1 .',
+'backend-fail-describe' => 'Nem lehet megváltoztatna a "$1" fájl metaadatát.',
 'backend-fail-alreadyexists' => 'Ez a fájl már létezik: $1 .',
 'backend-fail-store' => 'Nem sikerült a(z) $1 fájl tárolása $2 helyen.',
 'backend-fail-copy' => 'Nem sikerült a(z) $1 fájl másolása $2 helyre.',
@@ -1841,6 +1849,10 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-internal' => 'Ismeretlen hiba keletkezett a(z) „$1” tárolórendszerben.',
 'backend-fail-contenttype' => 'Nem lehetett a fájl típusát meghatározni a „$1” helyen történő tároláshoz.',
 'backend-fail-batchsize' => 'A tárolórendszer {{PLURAL:$1|1|$1}} fájlműveletet tartalmazó parancsfájlt kapott; legfeljebb {{PLURAL:$2|1|$2}} műveletből állót kaphat.',
+'backend-fail-usable' => 'Nem lehet olvasni vagy írni a "$1" fájlt, jogosultság hiánya, vagy hiányzó könyvtár/konténer miatt.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Nem sikerült csatlakozni a napló adatbázis "$1 " háttér tárolójához.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
@@ -1851,6 +1863,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'lockmanager-fail-releaselock' => 'Nem sikerült a(z) „$1” fájl zárolásának feloldása.',
 'lockmanager-fail-db-bucket' => 'Nem sikerült kapcsolatot létesíteni elég adatbázis zároláshoz a $1 vödörben.',
 'lockmanager-fail-db-release' => 'Nem lehet a $1 adatbázis zárolását feloldani.',
+'lockmanager-fail-svr-acquire' => 'Nem sikerült zárolást igényelni a $1 szerveren.',
 'lockmanager-fail-svr-release' => 'Nem lehet a(z) $1 szerver zárolását feloldani.',
 
 # ZipDirectoryReader
@@ -2249,7 +2262,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'emailuser-title-target' => 'E-mail küldése ennek a felhasználónak: $1',
 'emailuser-title-notarget' => 'E-mail küldése a felhasználónak',
 'emailpage' => 'E-mail küldése',
-'emailpagetext' => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'emailpagetext' => '{{GENDER:$1|user}} nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.',
 'usermailererror' => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject' => '{{SITENAME}} e-mail a következő felhasználótól: „$1”',
@@ -3080,6 +3093,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 
 # Info page
 'pageinfo-title' => 'Információk a(z) „$1” lapról',
+'pageinfo-not-current' => 'Sajnáljuk, de lehetetlen információt nyújtani a régi verziókhoz.',
 'pageinfo-header-basic' => 'Alapinformációk',
 'pageinfo-header-edits' => 'Szerkesztések története',
 'pageinfo-header-restrictions' => 'Lapvédelem',

@@ -482,7 +482,7 @@ $1',
 'portal' => 'Samfélagsgátt',
 'portal-url' => 'Project:Samfélagsgátt',
 'privacy' => 'Meðferð persónuupplýsinga',
-'privacypage' => 'Project:Stefnumál um friðhelgi',
+'privacypage' => 'Project:Meðferð persónuupplýsinga',
 
 'badaccess' => 'Aðgangsvilla',
 'badaccess-group0' => 'Þú hefur ekki leyfi til að framkvæma þá aðgerð sem þú baðst um.',

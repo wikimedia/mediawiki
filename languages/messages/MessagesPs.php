@@ -1377,6 +1377,7 @@ $1',
 'filepage-nofile-link' => 'په دې نوم کومه دوتنه نشته، خو تاسې يې [$1 پورته کولی شی].',
 'uploadnewversion-linktext' => 'د همدغې دوتنې نوې بڼه پورته کول',
 'shared-repo-from' => 'د $1 لخوا',
+'upload-disallowed-here' => 'تاسې د دې دوتنې دپاسه نشی ليکلی.',
 
 # File reversion
 'filerevert-comment' => 'سبب:',
@@ -1396,6 +1397,7 @@ $1',
 ** د رښتو نه غاړه غړونه
 ** کټ مټ دوه ګونې دوتنه',
 'filedelete-edit-reasonlist' => 'د ړنګولو سببونه سمول',
+'filedelete-maintenance-title' => 'دوتنه نه شي ړنګېدی',
 
 # MIME search
 'mimesearch' => 'MIME پلټنه',
@@ -1432,6 +1434,7 @@ $1',
 'statistics-edits' => 'د {{SITENAME}} د جوړېدو راهيسې د مخونو سمون',
 'statistics-edits-average' => 'پر يوه مخ د سمون منځوۍ کچه',
 'statistics-views-total' => 'ټولټال کتنې',
+'statistics-views-peredit' => 'د هر سمون په سر کتنې',
 'statistics-users' => 'ثبت شوي [[Special:ListUsers|کارنان]]',
 'statistics-users-active' => 'فعاله کارنان',
 'statistics-users-active-desc' => 'هغه کارنان چې په {{PLURAL:$1|وروستۍ ورځ|وروستيو $1 ورځو}} کې فعاله ونډه لرلې',
@@ -1539,6 +1542,9 @@ $1',
 'allpages-bad-ns' => '{{SITENAME}} د "$1" په نامه هېڅ کوم نوم-تشيال نه لري.',
 'allpages-hide-redirects' => 'مخ ګرځونې پټول',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'تر ټولو تازه کتل.',
+
 # Special:Categories
 'categories' => 'وېشنيزې',
 'categoriespagetext' => 'دا لاندينۍ {{PLURAL:$1|وېشنيزه|وېشنيزې}} مخونه يا رسنيزې دوتنې لري.
@@ -1634,11 +1640,9 @@ $1',
 'watchnologin' => 'غونډال کې نه ياست ننوتي.',
 'watchnologintext' => 'ددې لپاره چې خپل کتنلړ کې بدلون راولی نو تاسو ته پکار ده چې لومړی غونډال کې [[Special:UserLogin|ورننوځۍ]].',
 'addwatch' => 'کتنلړ کې ورګډول',
-'addedwatchtext' => "د \"[[:\$1]]\" په نوم يو مخ ستاسې [[Special:Watchlist|کتنلړ]] کې ورګډ شو.
-په راتلونکې کې چې په دغه مخ او د ده د خبرواترو مخ کې کوم بدلونونه راځي نو هغه به ستاسې کتنلړ کې ښکاره شي،
-او په همدې توګه هغه مخونه به د [[Special:RecentChanges|وروستي بدلونونو]] په لړليک کې په '''روڼ''' ليک ښکاري ترڅو په اسانۍ سره څوک وپوهېږي چې په کوم کوم مخونو کې بدلونونه ترسره شوي.
-
-که چېرته تاسې بيا وروسته غواړۍ چې کوم مخ د خپل کتنلړ نه ليرې کړۍ، نو په \"نه کتل\" تڼۍ باندې ټک ورکړۍ.",
+'addedwatchtext' => 'د "[[:$1]]" په نوم يو مخ ستاسې [[Special:Watchlist|کتنلړ]] کې ورګډ شو.
+په راتلونکې کې چې په دغه مخ او د دې د خبرواترو مخ کې کوم بدلونونه راځي نو هغه به ستاسې کتنلړ کې ښکاري.',
+'removewatch' => 'له کتنلړ نه غورځول',
 'removedwatchtext' => 'د "[[:$1]]" مخ [[Special:Watchlist|ستاسې کتنلړ]] نه لرې شو.',
 'watch' => 'کتل',
 'watchthispage' => 'همدا مخ کتل',

@@ -2223,7 +2223,7 @@ Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichié
 'nopagetext' => 'La pâge ciba que vos éd spècefiâ ègziste pas.',
 'pager-newer-n' => '{{PLURAL:$1|ples novèla|$1 ples novèles}}',
 'pager-older-n' => '{{PLURAL:$1|ples vielye|$1 ples vielyes}}',
-'suppress' => 'Supèrvisar',
+'suppress' => 'Ôtar',
 'querypage-disabled' => 'Ceta pâge spèciâla est dèsactivâ por des rêsons de capacitât.',
 
 # Book sources

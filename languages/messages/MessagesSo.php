@@ -620,10 +620,10 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 ''Sababtoo ah {{SITENAME}}han wuxuu leeyahay HTML ceyriin ah, horfiirintiisa waxaa loo qariyey si looga hortago weerar ka yimaada JavaScriptga.''
 
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
-'editing' => 'Waxaa badaloosaa $1',
+'editing' => 'Waxaad badalaysaa $1',
 'creating' => 'Sameynaa $1',
-'editingsection' => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
-'editingcomment' => 'Waxaa wax ka badaloosaa $1 (qeyb yar)',
+'editingsection' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
+'editingcomment' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
 'editconflict' => 'Isku dhac badalaadka: $1',
 'yourtext' => 'Qoraalkaaga',
 'editingold' => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
@@ -1407,6 +1407,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 # HTML forms
 'htmlform-reset' => 'Ka noqo wax bedelka',
 'htmlform-selectorother-other' => 'kuwa kale',
+
+# Feedback
+'feedback-message' => 'Fariinta:',
 
 # Search suggestions
 'searchsuggest-search' => 'Raadi',

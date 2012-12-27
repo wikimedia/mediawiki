@@ -2592,12 +2592,21 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 'importnopages' => 'Kò sí àwọn ojúewé kankan láti kówọlé.',
 'imported-log-entries' => '{{PLURAL:$1|Ìtìbọ̀ àkọọ́lẹ̀|Ìtìbọ̀ àwọn àkọọ́lẹ̀}} $1 jẹ́ kíkọ́wọlé.',
 'importfailed' => 'Ìkówọlé kùnà: <nowiki>$1</nowiki>',
+'importunknownsource' => 'Irú orísun ìkówọlé àìmọ̀',
 'importcantopen' => 'Kò le sí fáìlì ìkówọlé',
 'importbadinterwiki' => 'Ìjápọ̀ interwiki búburú',
 'importnotext' => 'Òfo tàbí kòsí ìkọ',
 'importsuccess' => 'Ìkówọlé ti parí!',
+'importnofile' => 'Fáìlì àkówọlé kankan kò jẹ́ rírùsókè.',
+'importuploaderrorsize' => 'Ìrùsókè fáìlì àkówọlé kùnà.
+Fáìlì náà tóbi ju bó ṣe yẹ lọ.',
+'importuploaderrorpartial' => 'Ìrùsókè fáìlì àkówọlé kùnà.
+Fáìlì náà jẹ́ rírùsóké ní àbọ̀.',
+'importuploaderrortemp' => 'Ìrùsókè fáìlì àkówọlé kùnà.
+Àpò ìgbàdíẹ̀ fun kò sí.',
 'import-parse-failure' => 'Ìkùnà ìtúwò ìkówọlé XML',
 'import-noarticle' => 'Kò sí ojúewé kankan láti kówọlé!',
+'import-nonewrevisions' => 'Gbogbo àtúnyẹ̀wò ti jẹ́ kíkówọlé tẹ́lẹ̀.',
 'xml-error-string' => '$1 lórí ìlà $2, orí ìnàró $3 (byte $4): $5',
 'import-upload' => 'Ìrùsókè àwọn dátà XML',
 'import-token-mismatch' => 'Ìkùnà àwọn dátà ìgbàyí. 

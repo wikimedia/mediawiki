@@ -482,6 +482,13 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".
 {{Identical|View}}',
 'toolbox' => 'The title of the toolbox below the search menu.',
+'userpage' => 'Used as link text in Talk page of user page.',
+'projectpage' => 'Used as link text in Talk page of project page.',
+'imagepage' => 'Used as link text in Talk page of file page.',
+'mediawikipage' => 'Used as link text in Talk page of MediaWiki message page.',
+'templatepage' => 'Used as link text in Talk page of template page.',
+'viewhelppage' => 'Used as link text in Talk page of help page.',
+'categorypage' => 'Used as link text in Talk page of category page.',
 'viewtalkpage' => 'Used in Standard (a.k.a. Classic) skin as a link to talk page for all namespaces, in edit or history mode.',
 'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.
 {{Identical|Otherlanguages}}',
@@ -495,6 +502,11 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 * $2: time
 
 See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
+'viewcount' => 'Used as page-view counter.',
+'protectedpage' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
+
+*{{msg-mw|protectedpage}}
+*{{msg-mw|protectedpagetext}}",
 'jumpto' => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].',
 'jumptonavigation' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
 
@@ -522,6 +534,7 @@ For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_sci
 'aboutpage' => 'Used as the target of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. Therefore the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]]  ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.
 
 {{doc-important|Do not translate "Project:" part, for this is the namespace prefix.}}',
+'copyright' => '* $1 - license name',
 'copyrightpage' => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}
 
 {{Identical|Copyright}}',
@@ -749,6 +762,7 @@ $1 is a filename, I think.',
 * $3 is a time (optional)
 * $4 is the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
+'wrong_wfQuery_params' => 'Used as error message.',
 'viewsource' => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
 
 {{Identical|View source}}',
@@ -756,9 +770,10 @@ $1 is a filename, I think.',
 * $1 is the name of the page',
 'actionthrottled' => 'This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.',
 'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
-'protectedpagetext' => 'This message is displayed when trying to edit a page you can\'t edit because it has been protected.
+'protectedpagetext' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
-* $1: the protection type, e.g. "protect" for fully protected pages',
+*{{msg-mw|protectedpage}}
+*{{msg-mw|protectedpagetext}}",
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'viewyourtext' => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
 'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.
@@ -892,7 +907,10 @@ $1 is the minimum number of characters in the password.',
 Parameters:
 * $1 is a user name. This parameter can be used with GENDER.',
 'noemailcreate' => 'Error message.',
+'blocked-mailpassword' => 'Used as error message in password recovery.',
 'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
+'mailerror' => 'Used as error message in sending confirmation mail to user. Parameters:
+* $1 - new mail address',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
 'emailauthenticated' => 'In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].
@@ -918,6 +936,7 @@ Parameters:
 {{Identical|Language}}',
 
 # E-mail sending
+'php-mail-error-unknown' => 'Used as error message when <code>mail()</code> returned empty error message.',
 'user-mail-no-addy' => 'This is the error message in case an e-mail could not be sent because there was no e-mail address to send it to.',
 
 # Change password dialog
@@ -932,6 +951,7 @@ Parameters:
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
+'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
 
 {{Identical|Change password}}',
@@ -946,6 +966,7 @@ Used on [[Special:ResetPass]]',
 {{Identical|Reset password}}',
 'passwordreset-text' => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend' => '{{Identical|Reset password}}',
+'passwordreset-disabled' => 'Used as error message in changing password.',
 'passwordreset-pretext' => 'These instructions are shown on the password reset dialogue, which can, in principle, take the user\'s email address as well as, or instead of, their username. This text displays above one or more fields, at least one of which needs to be completed, and the message does not know which routes are available, so it needs to refer to some vague noun rather than specifically "username".
 "One of the pieces of data" means "an info"/"a datum" (probably to be translatea with a singular noun in your language if available). Parameters:
 * $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',
@@ -954,6 +975,7 @@ Used on [[Special:ResetPass]]',
 'passwordreset-capture' => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
 'passwordreset-capture-help' => 'Longer explanatory message for the capture checkbox label.',
 'passwordreset-email' => '{{Identical|E-mail address}}',
+'passwordreset-emailtitle' => 'Used as subject (title) of E-mail.',
 'passwordreset-emailtext-ip' => 'Be consistent with {{msg-mw|Passwordreset-emailtext-user|notext=y}}.
 
 Parameters:
@@ -1041,8 +1063,13 @@ Used in text generated by Picture button in toolbar.',
 'showpreview' => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
 'showlivepreview' => 'An edit preview without needing to reload the edit form.',
 'showdiff' => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
-'anoneditwarning' => 'Shown when editing a page anonymously.',
-'anonpreviewwarning' => 'See also {{msg-mw|Anoneditwarning}}',
+'anoneditwarning' => 'Shown when editing a page anonymously.
+See also:
+* {{msg-mw|Anoneditwarning}}
+* {{msg-mw|Anonpreviewwarning}}',
+'anonpreviewwarning' => 'See also:
+* {{msg-mw|Anoneditwarning}}
+* {{msg-mw|Anonpreviewwarning}}',
 'missingsummary' => 'The text "edit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
 'missingcommenttext' => 'This message is shown, when the textbox by a new-section is empty.',
@@ -1050,6 +1077,9 @@ The text "Save" is in {{msg-mw|savearticle}}.',
 'summary-preview' => 'Preview of the edit summary, shown under the edit summary itself.
 Should match: {{msg-mw|summary}}.',
 'subject-preview' => 'Should match {{msg-mw|subject}}',
+'blockedtitle' => 'Used as title displayed for blocked users. The corresponding message body is one of the following messages:
+* {{msg-mw|Blockedtext|notext=1}}
+* {{msg-mw|Autoblockedtext|notext=1}}',
 'blockedtext' => 'Text displayed to blocked users.
 
 Parameters:
@@ -1072,9 +1102,16 @@ Parameters:
 * <tt>$6</tt> is the expiry of the block
 * <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
 * <tt>$8</tt> is the timestamp when the block started',
-'blockednoreason' => '{{Identical|No reason given}}',
+'blockednoreason' => 'Substituted with <code>$2</code> in the following message if the reason is not given:
+* {{msg-mw|cantcreateaccount-text}}.
+{{Identical|No reason given}}',
 'whitelistedittext' => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+'confirmedittext' => 'Used as error message.',
+'nosuchsectiontitle' => 'Used as error message when the user has attempted to edit a nonexistent section.',
 'nosuchsectiontext' => 'This message is displayed when a user tries to edit a section that does not exist.',
+'loginreqtitle' => 'Used as title of error message. See also:
+* {{msg-mw|loginreqtitle}}
+* {{msg-mw|permissionserrors}}',
 'loginreqlink' => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
 
 {{Identical|Log in}}',
@@ -1109,22 +1146,44 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Perm
 'userjspreview' => 'Text displayed on preview of every user .js subpage',
 'sitecsspreview' => 'Text displayed on preview of .css pages in MediaWiki namespace',
 'sitejspreview' => 'Text displayed on preview of .js pages in MediaWiki namespace',
+'userinvalidcssjstitle' => '* $1 - skin name',
 'updated' => '{{Identical|Updated}}',
 'previewnote' => 'Note displayed when clicking on Show preview',
 'continue-editing' => 'A link to the beginning of the editing textarea on the same page. Displayed after {{msg-mw|previewnote}}.',
+'previewconflict' => 'Used in Preview page.',
+'session_fail_preview' => 'Used as error message in Preview page.',
+'session_fail_preview_html' => 'Used as error message in Preview page.',
 'editing' => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'creating' => "Shown as page title when creating a page. Parameters:
 * \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
-'editingsection' => 'The variable $1 is the page name.  This message displays at the top of the page when a user is editing a page section.',
+'editingsection' => 'This message displays at the top of the page when a user is editing a page section. Parameters:
+* $1 - page name
+See also:
+* {{msg-mw|Editingsection}}
+* {{msg-mw|Editingcomment}}',
+'editingcomment' => 'This message displays at the top of the page when a user is creating a new section. Parameters:
+* $1 - page name
+See also:
+* {{msg-mw|Editingsection}}
+* {{msg-mw|Editingcomment}}',
+'editconflict' => 'Used as title of error message. Parameters:
+* $1 - page title',
 'explainconflict' => 'Appears at the top of a page when there is an edit conflict.',
+'yourtext' => 'Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.
+
+Also used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-mw|storedversion}}.',
 'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
 'yourdiff' => '',
 'copyrightwarning' => 'Copyright warning displayed under the edit box in editor
-*$1 - ...
-*$2 - ...',
+*$1 - link
+*$2 - license name',
+'copyrightwarning2' => 'Copyright warning displayed under the edit box in editor
+*$1 - license name',
 'longpageerror' => 'Warning displayed when trying to save a text larger than the maximum size allowed',
+'readonlywarning' => '* $1 - reason',
 'protectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
 'semiprotectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
+'cascadeprotectedwarning' => '* $1 - number of pages',
 'titleprotectedwarning' => 'Warning message above the edit form when editing a page that has been protected aginst creation.',
 'templatesused' => 'Displayed below the page when editing it. It indicates a list of templates which are used on that page.',
 'templatesusedpreview' => 'Used in editor when displaying a preview.',
@@ -1138,12 +1197,20 @@ This text will be shown below edit and upload forms. It can be used to offer spe
 This text will be shown below upload forms. It will default to the contents of edittools.',
 'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
-'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
+'permissionserrors' => 'Used as title of error message. See also:
+* {{msg-mw|loginreqtitle}}
+* {{msg-mw|permissionserrors}}',
+'permissionserrorstext' => "This message is \"without action\" version of {{msg-mw|Permissionserrorstext-withaction}}.
+* \$1 is the number of reasons that were found why ''the action'' cannot be performed.",
+'permissionserrorstext-withaction' => 'This message is "with action" version of {{msg-mw|Permissionserrorstext}}.
+
+* $1 is the number of reasons that were found why the action cannot be performed.
 * $2 is one of the action-* messages (for example {{msg|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation.
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
+'log-fulllog' => 'Used as link text.',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
 'content-failed-to-parse' => "Error message indicating that the page's content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.
@@ -1229,8 +1296,21 @@ This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>.
 {{Identical|Undo}}',
 'undo-summary' => 'Edit summary for an undo action.{{Identical|Undo}}',
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Used as title of the error message {{msg-mw|Cantcreateaccount-text}}.',
+'cantcreateaccount-text' => 'Used as error message, with the title {{msg-mw|cantcreateaccounttitle}}.
+* $1 - target IP address
+* $2 - reason or {{msg-mw|blockednoreason}}
+* $3 - username',
+
 # History pages
 'viewpagelogs' => 'Link displayed in history of pages',
+'nohistory' => 'Message shown when there are no history to list. See [{{canonicalurl:x|action=history}} example history].
+----
+Also used as title of error message when the feed is empty. See [{{canonicalurl:x|action=history&feed=atom}} example feed].
+
+See the error message:
+* {{msg-mw|history-feed-empty}}',
 'currentrev' => '{{Identical|Current revision}}',
 'currentrev-asof' => 'Used on a difference page when comparing the current versions of a page with each other. See {{msg-mw|Revisionasof}} for the message for non-current version.
 * $1 is a date and time
@@ -1268,26 +1348,77 @@ This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>.
 Used in History and [[Special:Contributions]].',
 'histfirst' => 'Used in page history.',
 'histlast' => 'Used in page history.',
+'historysize' => '* $1 - byte count',
 'historyempty' => 'Text in page history for empty page revisions
 
 {{Identical|Empty}}',
 
 # Revision feed
+'history-feed-title' => 'Used as title of the RSS/Atom feed for a page history. See [{{canonicalurl:Main_Page|feed=atom&action=history}} example].',
+'history-feed-description' => 'Used as subtitle (description) of the RSS/Atom feed for a page history. See [{{canonicalurl:Main_Page|feed=atom&action=history}} example].',
 'history-feed-item-nocomment' => "Title for each revision when viewing the RSS/Atom feed for a page history:
 * '''$1''' - user name,
 * '''$2''' - date/time,
 * '''$3''' - date,
 * '''$4''' - time.",
+'history-feed-empty' => 'Used as summary of the RSS/Atom feed for a page history when the feed is empty.
+See [{{canonicalurl:x|feed=atom&action=history}} example].',
 
 # Revision deletion
 'rev-deleted-comment' => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
 *{{msg-mw|revdelete-hide-comment}}',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
-'rev-deleted-text-unhide' => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
-* $1 is a HTML link to the diff',
+'rev-deleted-text-permission' => 'See also:
+* {{msg-mw|Rev-deleted-text-permission}}
+* {{msg-mw|Rev-deleted-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-view}}',
+'rev-deleted-text-unhide' => '* $1 - a HTML link to the revision
+See also:
+* {{msg-mw|Rev-deleted-text-permission}}
+* {{msg-mw|Rev-deleted-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-view}}',
+'rev-suppressed-text-unhide' => '* $1 - a HTML link to the revision
+See also:
+* {{msg-mw|Rev-deleted-text-permission}}
+* {{msg-mw|Rev-deleted-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-view}}',
 'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
-'rev-suppressed-unhide-diff' => 'This message is very similar to {{msg-mw|rev-deleted-unhide-diff}} and to {{msg-mw|rev-suppressed-text-unhide}}. Parameters:
-* $1 is a HTML link to the diff',
+'rev-suppressed-text-view' => 'See also:
+* {{msg-mw|Rev-deleted-text-permission}}
+* {{msg-mw|Rev-deleted-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-unhide}}
+* {{msg-mw|Rev-suppressed-text-view}}',
+'rev-deleted-no-diff' => 'See also:
+* {{msg-mw|Rev-deleted-no-diff}}
+* {{msg-mw|Rev-suppressed-no-diff}}',
+'rev-suppressed-no-diff' => 'See also:
+* {{msg-mw|Rev-deleted-no-diff}}
+* {{msg-mw|Rev-suppressed-no-diff}}',
+'rev-deleted-unhide-diff' => '* $1 - a HTML link to the diff
+See also:
+* {{msg-mw|Rev-suppressed-unhide-diff}}
+* {{msg-mw|Rev-deleted-unhide-diff}}
+* {{msg-mw|Rev-suppressed-diff-view}}
+* {{msg-mw|Rev-deleted-diff-view}}',
+'rev-suppressed-unhide-diff' => '* $1 - a HTML link to the diff
+See also:
+* {{msg-mw|Rev-suppressed-unhide-diff}}
+* {{msg-mw|Rev-deleted-unhide-diff}}
+* {{msg-mw|Rev-suppressed-diff-view}}
+* {{msg-mw|Rev-deleted-diff-view}}',
+'rev-deleted-diff-view' => 'See also:
+* {{msg-mw|Rev-suppressed-unhide-diff}}
+* {{msg-mw|Rev-deleted-unhide-diff}}
+* {{msg-mw|Rev-suppressed-diff-view}}
+* {{msg-mw|Rev-deleted-diff-view}}',
+'rev-suppressed-diff-view' => 'See also:
+* {{msg-mw|Rev-suppressed-unhide-diff}}
+* {{msg-mw|Rev-deleted-unhide-diff}}
+* {{msg-mw|Rev-suppressed-diff-view}}
+* {{msg-mw|Rev-deleted-diff-view}}',
 'rev-delundel' => 'Link in page history for oversight (see also {{msg-mw|rev-showdeleted}})',
 'rev-showdeleted' => 'Link in page history for oversight (see also {{msg-mw|rev-delundel}})
 {{Identical|Show}}',
@@ -2532,7 +2663,14 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 {{Identical|Revert}}',
 
 # File deletion
+'filedelete' => 'Used as page title. Parameters:
+* $1 - file title
+See also:
+* {{msg-mw|Filedelete-intro}}',
 'filedelete-legend' => '{{Identical|Delete}}',
+'filedelete-intro' => 'Used as introduction for FileDelete form.
+See also:
+* {{msg-mw|Filedelete|page title}}',
 'filedelete-intro-old' => 'Message displayed when you try to delete a version of a file.
 * $1 is the name of the media
 * $2 is a date
@@ -3533,6 +3671,14 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'movetalk' => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
 'move-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
 'move-talk-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.',
+'movepage-page-exists' => 'Used as error message when moving page.
+* $1 - page title',
+'movepage-page-moved' => 'Used as success message when moving page.
+* $1 - old page title
+* $2 - new page title',
+'movepage-page-unmoved' => 'Used as error message when moving page.
+* $1 - old page title
+* $2 - new page title',
 'movepage-max-pages' => 'PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.',
 'movelogpage' => '{{doc-logpage}}
 Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
@@ -3919,6 +4065,15 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'patrol-log-header' => 'Text that appears above the log entries on the [[Special:log|patrol log]].',
 'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
 
+# Image deletion
+'deletedrevision' => '* $1 - archive name of old image',
+'filedeleteerror-short' => 'Used as error message. See also:
+* {{msg-mw|Filedeleteerror-short}}
+* {{msg-mw|Filedeleteerror-long}}',
+'filedeleteerror-long' => 'Used as error message. See also:
+* {{msg-mw|Filedeleteerror-short}}
+* {{msg-mw|Filedeleteerror-long}}',
+
 # Browsing diffs
 'previousdiff' => 'Used when viewing the difference between edits. See also {{msg|nextdiff}}.',
 'nextdiff' => 'Used when viewing the difference between edits. See also {{msg|previousdiff}}.',
@@ -3962,6 +4117,7 @@ Start with a lowercase letter, unless the first word is “SVG”.',
 'svg-long-error' => 'Displayed for invalid SVG file metadata.
 * $1 is the error message.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image-preview' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-other}}.',
 'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
 'show-big-image-size' => '
 Parameters:
@@ -4760,14 +4916,32 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 * {{msg-mw|Scarytranscludefailed-httpstatus}}',
 'scarytranscludetoolong' => 'The URL was too long.',
 
+# Delete conflict
+'confirmrecreate' => '* $1 - username
+* $2 - reason
+See also:
+* {{msg-mw|Confirmrecreate}}
+* {{msg-mw|Confirmrecreate-noreason}}',
+'confirmrecreate-noreason' => '* $1 - username
+See also:
+* {{msg-mw|Confirmrecreate}}
+* {{msg-mw|Confirmrecreate-noreason}}',
+
 'unit-pixel' => '{{optional}}',
 
 # action=purge
-'confirm_purge_button' => '{{Identical|OK}}',
+'confirm_purge_button' => 'Used as Submit button text.
+{{Identical|OK}}',
+'confirm-purge-top' => 'Used as confirmation message.',
+'confirm-purge-bottom' => 'Additional description for Purge form.',
 
 # action=watch/unwatch
-'confirm-watch-button' => '{{Identical|OK}}',
-'confirm-unwatch-button' => '{{Identical|OK}}',
+'confirm-watch-button' => 'Used as Submit button text.
+{{Identical|OK}}',
+'confirm-watch-top' => 'Used as confirmation message.',
+'confirm-unwatch-button' => 'Used as Submit button text.
+{{Identical|OK}}',
+'confirm-unwatch-top' => 'Used as confirmation message.',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '{{optional}}',
@@ -4787,13 +4961,26 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',
 'imgmultipagenext' => '{{Identical|Next page}}',
-'imgmultigo' => '{{Identical|Go}}',
+'imgmultigo' => 'Used as label for submit button.
+{{Identical|Go}}',
 
 # Table pager
-'ascending_abbrev' => 'Abbreviation of Ascending power',
-'table_pager_next' => '{{Identical|Next page}}',
-'table_pager_prev' => '{{Identical|Previous page}}',
+'ascending_abbrev' => 'Abbreviation of ascending order.
+See also:
+* {{msg-mw|Ascending abbrev}}
+* {{msg-mw|Descending abbrev}}',
+'descending_abbrev' => 'Abbreviation of descending order.
+See also:
+* {{msg-mw|Ascending abbrev}}
+* {{msg-mw|Descending abbrev}}',
+'table_pager_next' => 'Used as image button text of pager. See [[Support|example]] (the bottom of the page).
+{{Identical|Next page}}',
+'table_pager_prev' => 'Used as image button text of pager. See [[Support|example]] (the bottom of the page).
+{{Identical|Previous page}}',
+'table_pager_first' => 'Used as image button text of pager. See [[Support|example]] (the bottom of the page).',
+'table_pager_last' => 'Used as image button text of pager. See [[Support|example]] (the bottom of the page).',
 'table_pager_limit' => "Do not use PLURAL in this message, because ''$1'' is not the actual number. ''$1'' is a limit selector drop-down list.",
+'table_pager_limit_label' => 'Used as label for input field.',
 'table_pager_limit_submit' => '{{Identical|Go}}',
 'table_pager_empty' => 'Used in a table pager when there are no results (e.g. when there are no images in the table on [[Special:ImageList]]).',
 
@@ -4845,6 +5032,14 @@ Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×100
 
 # Live preview
 'livepreview-loading' => '{{Identical|Loading}}',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Used as warning about slave lag. See also:
+* {{msg-mw|Lag-warn-normal}}
+* {{msg-mw|Lag-warn-high}}',
+'lag-warn-high' => 'Used as warning about slave lag. See also:
+* {{msg-mw|Lag-warn-normal}}
+* {{msg-mw|Lag-warn-high}}',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Message on [[Special:EditWatchlist]]. This is paired with the message {{Msg-mw|Watchlistedit-noitems}} which appears instead of this message when $1 is 0.',
@@ -5007,6 +5202,8 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 {{Identical|Special pages}}',
 'version-parserhooks' => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
 'version-variables' => '{{Identical|Variable}}',
+'version-antispam' => 'Part of [[Special:Version]].
+This message is followed by the list of SPAM prevention extensions.',
 'version-skins' => '{{Identical|Skin}}',
 'version-api' => '{{optional}}',
 'version-other' => '{{Identical|Other}}',
@@ -5014,6 +5211,8 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 There are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.',
 'version-hooks' => 'Shown in [[Special:Version]]',
 'version-extension-functions' => 'Shown in [[Special:Version]]',
+'version-parser-extensiontags' => 'Part of [[Special:Version]].
+This message is followed by the list of parser extension tags like <code><nowiki><charinsert></nowiki></code>, <code><nowiki><coordinates></nowiki></code>, etc.',
 'version-parser-function-hooks' => 'Shown in [[Special:Version]]',
 'version-hook-name' => 'Shown in [[Special:Version]]',
 'version-hook-subscribedby' => 'Shown in [[Special:Version]]',
@@ -5030,6 +5229,8 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-poweredby-others' => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
 'version-credits-summary' => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
+'version-software' => 'Message shown on [[Special:Version]].
+This message is followed by the list of installed software (MediaWiki, PHP and MySQL).',
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
@@ -5090,6 +5291,7 @@ $1 is the name of the requested file.',
 'specialpages-group-pagetools' => 'Title of the special pages group containing special pages like [[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc.',
 'specialpages-group-wiki' => 'Title of the special pages group, containing special pages like [[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc.',
 'specialpages-group-redirects' => 'Title of the special pages group, containing special pages that redirect to another location, like [[Special:Randompage]], [[Special:Mypage]], [[Special:Mytalk]], etc.',
+'specialpages-group-spam' => 'Title of the special pages group, containing special pages like (...), etc.',
 
 # Special:BlankPage
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
@@ -5131,6 +5333,9 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'compare-rev2' => 'Label for the field of the 2nd revision in the comparison for [[Special:ComparePages]]
 {{Identical|Revision}}',
 'compare-submit' => 'Submit button on [[Special:ComparePages]]',
+'compare-invalid-title' => 'Used as error message in [[Special:ComparePages]].',
+'compare-title-not-exists' => 'Used as error message in [[Special:ComparePages]].',
+'compare-revision-not-exists' => 'Used as error message in [[Special:ComparePages]].',
 
 # Database error messages
 'dberr-header' => 'This message does not allow any wiki nor html markup.',
@@ -5140,8 +5345,12 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 * $1 - database server name',
 'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
 'dberr-outofdate' => "In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
+'dberr-cachederror' => 'Used as error message at the bottom of the page.',
 
 # HTML forms
+'htmlform-float-invalid' => '"number" stands for "float" (integer and decimal fraction).',
+'htmlform-int-toolow' => '* $1 - minimum value',
+'htmlform-int-toohigh' => '* $1 - maximum value',
 'htmlform-submit' => '{{Identical|Submit}}',
 'htmlform-reset' => '{{Identical|Undo}}',
 'htmlform-selectorother-other' => 'Used in drop-down boxes in [[Special:Preferences]] as follows:
@@ -5317,6 +5526,8 @@ $4 is the gender of the target user.',
 'api-error-unknown-error' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unknown-warning' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 is an unknown warning.',
+'api-error-unknownerror' => 'API error message that can be used for client side localisation of API errors. Parameters:
+* $1 is an unknown error message.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 

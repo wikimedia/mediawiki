@@ -101,7 +101,7 @@ $messages = array(
 # Vector skin
 'vector-action-delete' => 'Lesche',
 'vector-action-move' => 'Verschiewe',
-'vector-action-protect' => 'Schitze',
+'vector-action-protect' => 'Schidze',
 'vector-view-edit' => 'Bearwaide',
 'vector-view-history' => 'Dadaigschischd',
 'vector-view-view' => 'Lese',
@@ -241,7 +241,7 @@ S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid 
 # Edit pages
 'summary' => 'Zammefassung:',
 'subject' => 'Betreff:',
-'minoredit' => 'Des ischt e klänni Bearwaidung',
+'minoredit' => 'Des isch e klänni Bearwaidung',
 'watchthis' => 'Die Said beowachde',
 'savearticle' => 'Said schbeichere',
 'preview' => 'Voaschau',
