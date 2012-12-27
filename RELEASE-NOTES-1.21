@@ -118,6 +118,7 @@ production.
 * (bug 41342) jquery.suggestions should cancel any active (async) fetches
   before it triggers another fetch.
 * (bug 42184) $wgUploadSizeWarning missing second variable
+* Special:Contributions will display changes that don't have a parent id
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
