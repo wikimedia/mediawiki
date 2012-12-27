@@ -170,7 +170,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         // Scripts to include in the startup module
 	 *         'loaderScripts' => [file path string or array of file path strings],
 	 *         // Modules which must be loaded before this module
-	 *         'dependencies' => [modile name string or array of module name strings],
+	 *         'dependencies' => [module name string or array of module name strings],
 	 *         // Styles to always load
 	 *         'styles' => [file path string or array of file path strings],
 	 *         // Styles to include in specific skin contexts
