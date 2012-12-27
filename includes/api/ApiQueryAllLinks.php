@@ -183,7 +183,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				)
 			),
 			'namespace' => array(
-				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_DFLT => NS_MAIN,
 				ApiBase::PARAM_TYPE => 'namespace'
 			),
 			'limit' => array(
