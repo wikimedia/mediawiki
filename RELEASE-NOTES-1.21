@@ -125,6 +125,8 @@ production.
   History page.
 * (bug 42949) API no longer assumes all exceptions are MWException.
 * (bug 41733) Hide "New user message" (.usermessage) element from printable view.
+* (bug 39062) Special:Contributions will display changes that don't have
+  a parent id instead of just an empty bullet item.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
