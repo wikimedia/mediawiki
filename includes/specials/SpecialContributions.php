@@ -827,7 +827,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		 */
 		wfSuppressWarnings();
 		$rev = new Revision( $row );
-		$validRevision = $rev->getParentId() !== null;
+		$validRevision = (bool) $rev->getId();
 		wfRestoreWarnings();
 
 		if ( $validRevision ) {
@@ -947,7 +947,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
 
 		$classes = implode( ' ', $classes );
-		$ret = "<li class=\"$classes\">$ret</li>\n";
+		if ( $classes === '' && $ret === '' ) {
+			wfDebug( 'Dropping Special:Contribution row that could not be formatted' );
+			$ret = "<!-- Could not format Special:Contribution row. -->\n";
+		} else {
+			$ret = "<li class=\"$classes\">$ret</li>\n";
+		}
 
 		wfProfileOut( __METHOD__ );
 		return $ret;

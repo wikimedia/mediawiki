@@ -123,6 +123,7 @@ production.
   log when determining whether an account is used.
 * (bug 43379) Gracefully fail if rev_len is unavailable for a revision on the
   History page.
+* Special:Contributions will display changes that don't have a parent id
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
