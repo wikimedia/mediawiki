@@ -313,6 +313,11 @@ input#wpSummary {
 	padding-left: 0.25em;
 	border-left: none;
 }
+
+/* (bug 5346) make category redirects italic */
+.catlinks li a.mw-redirect {
+	font-style: italic;
+}
 /**
  * Hidden categories
  */
