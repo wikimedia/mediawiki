@@ -1482,7 +1482,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( array( 'href', 'class', 'text' ) as $k ) {
+			foreach ( array( 'href', 'class', 'text', 'title' ) as $k ) {
 				if ( isset( $plink[$k] ) )
 					$ptool['links'][0][$k] = $plink[$k];
 			}
