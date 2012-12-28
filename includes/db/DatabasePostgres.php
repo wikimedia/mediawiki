@@ -732,7 +732,7 @@ __INDEXATTR__;
 			return true;
 		}
 
-		$table = $this->tableName( $table );
+		$tableName = $this->tableName( $table );
 		if (! isset( $this->numeric_version ) ) {
 			$this->getServerVersion();
 		}
@@ -759,7 +759,7 @@ __INDEXATTR__;
 			$numrowsinserted = 0;
 		}
 
-		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
+		$sql = "INSERT INTO $tableName (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
 			if ( $this->numeric_version >= 8.2 && !$savepoint ) {
@@ -809,8 +809,23 @@ __INDEXATTR__;
 				$savepoint->savepoint();
 			}
 
+			$returning = false;
+			if( array_key_exists( 'returning', $options )
+				&& $this->fieldExists( $this->tableName( $table, 'raw' ), $options['returning'] ) ) {
+					$returning = $options['returning'];
+			}
+
 			$sql .= '(' . $this->makeList( $args ) . ')';
-			$res = (bool)$this->query( $sql, $fname, $savepoint );
+
+			if ( $returning !== false ) {
+				$sql .= ' RETURNING ' . $returning;
+				$res = (bool) $this->query( $sql, $fname, $savepoint );
+				$row = $this->fetchObject( $this->mLastResult );
+				$this->mInsertId = $row->site_id;
+			} else {
+				$res = (bool)$this->query( $sql, $fname, $savepoint );
+			}
+
 			if ( $savepoint ) {
 				$bar = pg_last_error();
 				if ( $bar != false ) {
