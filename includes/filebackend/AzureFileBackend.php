@@ -83,9 +83,9 @@ class AzureFileBackend extends FileBackendStore
 		}
 
 		// (a) Check the destination object
-		if ( empty( $params['overwrite'] )
+		if ( empty( $params['overwrite'] ) )
 		{
-			if ( $this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) )
+			if ( $this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
 			{
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
@@ -121,9 +121,9 @@ class AzureFileBackend extends FileBackendStore
 		}
 
 		// (a) Check if the destination object already exists
-		if ( empty( $params['overwrite'] )
+		if ( empty( $params['overwrite'] ) )
 		{
-			if ( $this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) )
+			if ( $this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
 			{
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
@@ -166,9 +166,9 @@ class AzureFileBackend extends FileBackendStore
 		}
 
 		// (a) Check if the destination object already exists
-		if ( empty( $params['overwrite'] )
+		if ( empty( $params['overwrite'] ) )
 		{
-			if ( $this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) )
+			if ( $this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
 			{
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
