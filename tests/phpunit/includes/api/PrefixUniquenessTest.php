@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Checks that all API query modules, core and extensions, have unique prefixes
+ * Checks that all API query modules, core and extensions, have unique prefixes.
+ *
  * @group API
  */
 class PrefixUniquenessTest extends MediaWikiTestCase {
