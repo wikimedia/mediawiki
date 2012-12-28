@@ -125,6 +125,7 @@ production.
   History page.
 
 === API changes in 1.21 ===
+* API version support, see below
 * prop=revisions can now report the contentmodel and contentformat.
   See docs/contenthandler.txt.
 * action=edit and action=parse now support contentmodel and contentformat
@@ -138,6 +139,14 @@ production.
 * (bug 43137) Don't return the sha1 of revisions through the API if the content is
   revision-deleted.
 * ApiQueryImageInfo now also returns imageinfo for redirects.
+
+=== API versioning support ===
+* ApiModuleManager handles all submodules, versioning, and instantiation
+* ApiBase supports submodules, getModuleVersion(), getVersionedModuleName()
+* Query stores prop/list/meta as versioned submodules
+* Obsolete modules will be reported in warnings
+* action=help suports submodules (modules=query+value), querymodules obsolete
+* Made many internal functions obsolete
 
 === Languages updated in 1.21 ===
 
@@ -155,6 +164,7 @@ changes to languages because of Bugzilla reports.
 === Other changes in 1.21 ===
 
 == Compatibility ==
+
 
 MediaWiki 1.21 requires PHP 5.3.2 or later.
 
