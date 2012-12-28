@@ -25,7 +25,7 @@
  *
  * @ingroup API
  */
-class ApiQueryStashImageInfo extends ApiQueryImageInfo {
+class ApiQueryStashImageInfo extends ApiQueryImageInfoBase {
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'sii' );

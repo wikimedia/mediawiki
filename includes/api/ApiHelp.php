@@ -47,19 +47,17 @@ class ApiHelp extends ApiBase {
 		}
 
 		$this->getMain()->setHelp();
-
+		$subs = $this->getMain()->getSubModules();
 		$result = $this->getResult();
 		$queryObj = new ApiQuery( $this->getMain(), 'query' );
 		$r = array();
 		if ( is_array( $params['modules'] ) ) {
-			$modArr = $this->getMain()->getModules();
-
 			foreach ( $params['modules'] as $m ) {
-				if ( !isset( $modArr[$m] ) ) {
+				if ( !$subs->isDefined( $m, 'action' ) ) {
 					$r[] = array( 'name' => $m, 'missing' => '' );
 					continue;
 				}
-				$module = new $modArr[$m]( $this->getMain(), $m );
+				$module = $subs->instantiateModule( $m );
 
 				$r[] = $this->buildModuleHelp( $module, 'action' );
 			}
