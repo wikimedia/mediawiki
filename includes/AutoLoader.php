@@ -580,6 +580,10 @@ $wgAutoloadLocalClasses = array(
 	'CreateFileOp' => 'includes/filebackend/FileOp.php',
 	'DescribeFileOp' => 'includes/filebackend/FileOp.php',
 	'NullFileOp' => 'includes/filebackend/FileOp.php',
+	'AzureFileBackend' => 'includes/filebackend/AzureFileBackend.php',
+	'AzureFileBackendList' => 'includes/filebackend/AzureFileBackend.php',
+	'AzureFileBackendDirList' => 'includes/filebackend/AzureFileBackend.php',
+	'AzureFileBackendFileList' => 'includes/filebackend/AzureFileBackend.php',
 
 	# includes/filerepo
 	'FileRepo' => 'includes/filerepo/FileRepo.php',
