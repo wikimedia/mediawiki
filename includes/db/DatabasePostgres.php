@@ -1222,6 +1222,24 @@ __INDEXATTR__;
 		return $this->relationExists( $sequence, 'S', $schema );
 	}
 
+	/**
+	 * Determines whether a field exists in a table
+	 *
+	 * @param $table String: table name
+	 * @param $field String: filed to check on that table
+	 * @param $fname String: calling function name (optional)
+	 * @return Boolean: whether $table has filed $field
+	 */
+	public function fieldExists( $table, $field, $fname = 'DatabasePostgres::fieldExists' ) {
+		$res = $this->selectField( '"information_schema"."columns"', 'column_name',
+			array(
+				'table_name' => $table,
+				'column_name' => $field
+			)
+		);
+		return (bool)$res;
+	}
+
 	function triggerExists( $table, $trigger ) {
 		$q = <<<SQL
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
