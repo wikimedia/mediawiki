@@ -66,7 +66,7 @@ abstract class ApiBase extends ContextSource {
 	const LIMIT_SML1 = 50; // Slow query, std user limit
 	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
 
-	private $mMainModule, $mModuleName, $mModulePrefix;
+	private $mMainModule, $mModuleName, $mModulePrefix, $mModuleVersion;
 	private $mParamCache = array();
 
 	/**
@@ -74,11 +74,13 @@ abstract class ApiBase extends ContextSource {
 	 * @param $mainModule ApiMain object
 	 * @param $moduleName string Name of this module
 	 * @param $modulePrefix string Prefix to use for parameter names
+	 * @param $moduleVersion integer Version of this module, or 0 for default
 	 */
-	public function __construct( $mainModule, $moduleName, $modulePrefix = '' ) {
+	public function __construct( $mainModule, $moduleName, $modulePrefix = '', $moduleVersion = 0 ) {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
 		$this->mModulePrefix = $modulePrefix;
+		$this->mModuleVersion = $moduleVersion;
 
 		if ( !$this->isMain() ) {
 			$this->setContext( $mainModule->getContext() );
@@ -116,11 +118,48 @@ abstract class ApiBase extends ContextSource {
 	public abstract function getVersion();
 
 	/**
+	 * Get integer version of the module being executed by this instance
+	 * @return int
+	 */
+	public function getModuleVersion() {
+		return $this->mModuleVersion;
+	}
+
+	/**
+	 * Set integer module version for this instance (used internally).
+	 * @param int $version
+	 */
+	public function setModuleVersion( $version ) {
+		if ( $this->mModuleVersion !== 0 && $this->mModuleVersion !== $version ) {
+			$this->dieDebug( __METHOD__, 'Version number already initialized' );
+		}
+		$this->mModuleVersion = $version;
+	}
+
+	/**
 	 * Get the name of the module being executed by this instance
 	 * @return string
 	 */
 	public function getModuleName() {
 		return $this->mModuleName;
+	}
+
+	/**
+	 * Get the name with version of the module being executed by this instance.
+	 * It will be the same as getModuleName() if the version is 0
+	 * @return string
+	 */
+	public function getVersionedModuleName() {
+		return $this->mModuleName .
+			($this->mModuleVersion === 0 ? '' : $this->mModuleVersion );
+	}
+
+	/**
+	 * Get the module manager, or null if this module has no sub-modules
+	 * @return ApiModuleManager
+	 */
+	public function getSubModules() {
+		return null;
 	}
 
 	/**
@@ -254,6 +293,8 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msg = $lnPrfx . implode( $lnPrfx, $msg ) . "\n";
 
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, false, $this->getHelpUrls() );
+
 			if ( $this->isReadMode() ) {
 				$msg .= "\nThis module requires read rights";
 			}
@@ -298,8 +339,6 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 
-			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
-
 			if ( $this->getMain()->getShowVersions() ) {
 				$versions = $this->getVersion();
 				$pattern = '/(\$.*) ([0-9a-z_]+\.php) (.*\$)/i';
@@ -340,13 +379,15 @@ abstract class ApiBase extends ContextSource {
 			return '';
 		}
 		if ( !is_array( $input ) ) {
-			$input = array(
-				$input
-			);
+			$input = array( $input );
 		}
 
 		if ( count( $input ) > 0 ) {
-			$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			if ( $title ) {
+				$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			} else {
+				$msg = '  ';
+			}
 			$msg .= implode( $prefix, $input ) . "\n";
 			return $msg;
 		}
