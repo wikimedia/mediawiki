@@ -261,6 +261,11 @@ abstract class ORMRow implements IORMRow {
 			if ( array_key_exists( $name, $this->fields ) ) {
 				$value = $this->fields[$name];
 
+				// Skip null id fields so that the DBMS can set the default.
+				if ( $name === 'id' && is_null ( $value ) ) {
+					continue;
+				}
+
 				switch ( $type ) {
 					case 'array':
 						$value = (array)$value;
