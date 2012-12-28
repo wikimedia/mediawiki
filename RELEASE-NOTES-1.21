@@ -138,6 +138,11 @@ production.
 * (bug 43137) Don't return the sha1 of revisions through the API if the content is
   revision-deleted.
 * ApiQueryImageInfo now also returns imageinfo for redirects.
+* list=alltransclusions added to enumerate every instance of page embedding
+* list=alllinks & alltransclusions now allow both 'from' and 'continue' in
+  the same query. When both are present, 'from' is simply ignored.
+* list=alllinks & alltransclusions now allow 'unique' in generators, to yield
+  a list of all link/template target pages instead of source pages.
 
 === Languages updated in 1.21 ===
 
