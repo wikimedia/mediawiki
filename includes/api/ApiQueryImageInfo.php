@@ -29,14 +29,20 @@
  *
  * @ingroup API
  */
-class ApiQueryImageInfo extends ApiQueryBase {
+class ApiQueryImageInfo extends ApiQueryImageInfoBase {
+	public function __construct( $query, $moduleName ) {
+		parent::__construct( $query, $moduleName, 'ii' );
+	}
+}
 
-	public function __construct( $query, $moduleName, $prefix = 'ii' ) {
-		// We allow a subclass to override the prefix, to create a related API module.
-		// Some other parts of MediaWiki construct this with a null $prefix, which used to be ignored when this only took two arguments
-		if ( is_null( $prefix ) ) {
-			$prefix = 'ii';
-		}
+/**
+ * A query action to get image information and upload history.
+ *
+ * @ingroup API
+ */
+abstract class ApiQueryImageInfoBase extends ApiQueryBase {
+
+	public function __construct( $query, $moduleName, $prefix ) {
 		parent::__construct( $query, $moduleName, $prefix );
 	}
 
