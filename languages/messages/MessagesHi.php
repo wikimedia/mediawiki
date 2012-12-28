@@ -501,11 +501,11 @@ $1',
 'error' => 'त्रुटि',
 'databaseerror' => 'डाटाबेस त्रुटि',
 'dberrortext' => 'डाटाबेस प्रश्न वाक्यरचना में त्रुटि मिली है।
-संभव है कि यह सॉफ़्टवेयर में त्रुटि की वजह से हो।
+संभव है कि यह सॉफ़्टवेयर में त्रुटि की वजह से हो।
 पिछला डाटाबेस प्रश्न था:
-<blockquote><tt>$1</tt></blockquote>
- "<tt>$2</tt>" कार्य समूह से।
-डाटाबेस की त्रुटि थी "<tt>$3: $4</tt>"।',
+<blockquote><code>$1</code></blockquote>
+ "<code>$2</code>" कार्य समूह से।
+डाटाबेस की त्रुटि थी "<samp>$3: $4</samp>"।',
 'dberrortextcl' => 'डाटाबेस प्रश्न की वाक्यरचना में त्रुटि मिली।
 डाटाबेस में पिछला प्रश्न था:
 "$1"
@@ -2943,6 +2943,15 @@ $1 को बाध्य करने का कारण है: "$2"',
 'pageinfo-watchers' => 'पर नजर रखने वालों की संख्या',
 'pageinfo-edits' => 'संपादन की संख्या',
 'pageinfo-authors' => 'अलग लेखकों की संख्या',
+'pageinfo-recent-edits' => 'हाल में हुए सम्पादनों की संख्या (पिछ्ले $1 में)',
+'pageinfo-magic-words' => 'जादुई {{PLURAL:$1|शब्द}} ($1)',
+'pageinfo-hidden-categories' => 'छुपी {{PLURAL:$1|श्रेणी|श्रेणियाँ}} ($1)',
+'pageinfo-templates' => 'प्रयुक्त {{PLURAL:$1|साँचा|साँचे}} ($1)',
+'pageinfo-toolboxlink' => 'इस पृष्ठ पर जानकारी',
+'pageinfo-redirectsto' => 'पुनर्निर्देशन लक्ष्य',
+'pageinfo-redirectsto-info' => 'जानकारी',
+'pageinfo-contentpage-yes' => 'हाँ',
+'pageinfo-protect-cascading-yes' => 'हाँ',
 
 # Patrolling
 'markaspatrolleddiff' => 'देख लिया ऐसा मार्क करें',
@@ -2954,6 +2963,8 @@ $1 को बाध्य करने का कारण है: "$2"',
 'markedaspatrollederror' => 'देख लिया ऐसा मार्क नहीं कर पायें',
 'markedaspatrollederrortext' => 'नजर रखने के लिये आपको एक अवतरणको चुनना होगा।',
 'markedaspatrollederror-noautopatrol' => 'आप खुद अपने बदलावोंपर नजर नहीं रख सकतें हैं।',
+'markedaspatrollednotify' => '$1 पृष्ठ में किया गया ये बदलाव जाँचा हुआ चिन्हित कर दिया गया है।',
+'markedaspatrollederrornotify' => 'जाँचा हुआ चिन्हित करना असफल रहा।',
 
 # Patrol log
 'patrol-log-page' => 'नजर रखनेकी सूची',

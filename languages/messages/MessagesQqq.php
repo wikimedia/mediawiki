@@ -907,8 +907,11 @@ $1 is the minimum number of characters in the password.',
 Parameters:
 * $1 is a user name. This parameter can be used with GENDER.',
 'noemailcreate' => 'Error message.',
+'passwordsent' => '* $1 - username',
 'blocked-mailpassword' => 'Used as error message in password recovery.',
 'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
+'throttled-mailpassword' => 'Used in [[Special:PasswordReset]].
+* $1 - password reminder resend time (in hours)',
 'mailerror' => 'Used as error message in sending confirmation mail to user. Parameters:
 * $1 - new mail address',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
@@ -924,6 +927,16 @@ Parameters:
 'invalidemailaddress' => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'cannotchangeemail' => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
 'emaildisabled' => 'Error message shown when user tries to set an e-mail address but e-mail features are disabled.',
+'accountcreated' => 'Used as page title in [[Special:UserLogin]].
+
+See also:
+* {{msg-mw|Accountcreated|title}}
+* {{msg-mw|Accountcreatedtext|message}}',
+'accountcreatedtext' => 'Used in [[Special:UserLogin]]. Parameters:
+* $1 - username
+See also:
+* {{msg-mw|Accountcreated|title}}
+* {{msg-mw|Accountcreatedtext|message}}',
 'createaccount-title' => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text' => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
 
@@ -943,6 +956,7 @@ Parameters:
 'resetpass' => 'The caption of [[Special:ChangePassword]]
 
 {{Identical|Change password}}',
+'resetpass_announce' => 'Used in [[Special:UserLogin]].',
 'resetpass_text' => '{{optional}}',
 'resetpass_header' => 'Header on box on special page [[Special:ChangePassword]].
 
@@ -951,7 +965,9 @@ Parameters:
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
+'resetpass_success' => 'Used in [[Special:ChangePassword]].',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
+'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
 
 {{Identical|Change password}}',
@@ -993,8 +1009,24 @@ Parameters:
 'passwordreset-emailelement' => "This is a body of a reminder email to allow them into the system with a new password. Parameters:
 * $1 will be the user's login name. This parameter can be used for GENDER.
 * $2 will be the temporary password given by the system.",
-'passwordreset-emailerror-capture' => 'Error message displayed when sending an e-mail fails. Parameters:
-* $1 is the name of a user who was supposed to get the e-mail.',
+'passwordreset-emailsent' => 'Used in [[Special:PasswordReset]].
+
+See also:
+* {{msg-mw|Passwordreset-emailsent}}
+* {{msg-mw|Passwordreset-emailsent-capture}}
+* {{msg-mw|Passwordreset-emailerror-capture}}',
+'passwordreset-emailsent-capture' => 'Used in [[Special:PasswordReset]].
+
+See also:
+* {{msg-mw|Passwordreset-emailsent}}
+* {{msg-mw|Passwordreset-emailsent-capture}}
+* {{msg-mw|Passwordreset-emailerror-capture}}',
+'passwordreset-emailerror-capture' => 'Error message displayed in [[Special:PasswordReset]] when sending an e-mail fails. Parameters:
+* $1 - the name of a user who was supposed to get the e-mail
+See also:
+* {{msg-mw|Passwordreset-emailsent}}
+* {{msg-mw|Passwordreset-emailsent-capture}}
+* {{msg-mw|Passwordreset-emailerror-capture}}',
 
 # Special:ChangeEmail
 'changeemail' => 'Title of [[Special:ChangeEmail|special page]].',
@@ -1151,8 +1183,25 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Perm
 'previewnote' => 'Note displayed when clicking on Show preview',
 'continue-editing' => 'A link to the beginning of the editing textarea on the same page. Displayed after {{msg-mw|previewnote}}.',
 'previewconflict' => 'Used in Preview page.',
-'session_fail_preview' => 'Used as error message in Preview page.',
+'session_fail_preview' => 'Error message in Preview page.
+
+See also:
+* {{msg-mw|Token suffix mismatch}}
+* {{msg-mw|Session fail preview}}
+* {{msg-mw|Edit form incomplete}}',
 'session_fail_preview_html' => 'Used as error message in Preview page.',
+'token_suffix_mismatch' => 'Error message in Preview page.
+
+See also:
+* {{msg-mw|Token suffix mismatch}}
+* {{msg-mw|Session fail preview}}
+* {{msg-mw|Edit form incomplete}}',
+'edit_form_incomplete' => 'Error message in Preview page.
+
+See also:
+* {{msg-mw|Token suffix mismatch}}
+* {{msg-mw|Session fail preview}}
+* {{msg-mw|Edit form incomplete}}',
 'editing' => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'creating' => "Shown as page title when creating a page. Parameters:
 * \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
@@ -1173,6 +1222,8 @@ See also:
 
 Also used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-mw|storedversion}}.',
 'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
+'nonunicodebrowser' => 'Used as warning when editing page.',
+'editingold' => 'Used as warning when editing page.',
 'yourdiff' => '',
 'copyrightwarning' => 'Copyright warning displayed under the edit box in editor
 *$1 - link
@@ -1195,6 +1246,16 @@ Also used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-
 This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
 'edittools-upload' => '{{optional}}
 This text will be shown below upload forms. It will default to the contents of edittools.',
+'nocreatetext' => 'Used as error message.
+
+See also:
+* {{msg-mw|Nocreatetext}}
+* {{msg-mw|Nocreate-loggedin}}',
+'nocreate-loggedin' => 'Used as error message.
+
+See also:
+* {{msg-mw|Nocreatetext}}
+* {{msg-mw|Nocreate-loggedin}}',
 'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrors' => 'Used as title of error message. See also:
@@ -1211,7 +1272,46 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'log-fulllog' => 'Used as link text.',
-'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
+'edit-hook-aborted' => 'Used as error message.
+
+See also:
+* {{msg-mw|edit-hook-aborted}}
+* {{msg-mw|edit-gone-missing}}
+* {{msg-mw|edit-conflict}}
+* {{msg-mw|edit-no-change}}
+* {{msg-mw|edit-already-exists}}',
+'edit-gone-missing' => 'Used as error message.
+
+See also:
+* {{msg-mw|edit-hook-aborted}}
+* {{msg-mw|edit-gone-missing}}
+* {{msg-mw|edit-conflict}}
+* {{msg-mw|edit-no-change}}
+* {{msg-mw|edit-already-exists}}',
+'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.
+
+See also:
+* {{msg-mw|edit-hook-aborted}}
+* {{msg-mw|edit-gone-missing}}
+* {{msg-mw|edit-conflict}}
+* {{msg-mw|edit-no-change}}
+* {{msg-mw|edit-already-exists}}",
+'edit-no-change' => 'Used as error message.
+
+See also:
+* {{msg-mw|edit-hook-aborted}}
+* {{msg-mw|edit-gone-missing}}
+* {{msg-mw|edit-conflict}}
+* {{msg-mw|edit-no-change}}
+* {{msg-mw|edit-already-exists}}',
+'edit-already-exists' => 'Used as error message.
+
+See also:
+* {{msg-mw|edit-hook-aborted}}
+* {{msg-mw|edit-gone-missing}}
+* {{msg-mw|edit-conflict}}
+* {{msg-mw|edit-no-change}}
+* {{msg-mw|edit-already-exists}}',
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
 'content-failed-to-parse' => "Error message indicating that the page's content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.
 *$1 – content model ({{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}})
@@ -1246,15 +1346,40 @@ This message is substituted in:
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
-
 * $1 is the current number of parser function calls.
 * $2 is the allowed number of parser function calls.
+See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunctionLimit in the MediaWiki manual]].
 
-See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunctionLimit in the MediaWiki manual]].',
-'expensive-parserfunction-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.',
-'post-expand-template-inclusion-warning' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
+See also:
+* {{msg-mw|Expensive-parserfunction-warning}}
+* {{msg-mw|Expensive-parserfunction-category}}',
+'expensive-parserfunction-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.
+
+See also:
+* {{msg-mw|Expensive-parserfunction-warning}}
+* {{msg-mw|Expensive-parserfunction-category}}',
+'post-expand-template-inclusion-warning' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.
+
+
+See also:
+* {{msg-mw|Post-expand-template-inclusion-warning}}
+* {{msg-mw|Post-expand-template-inclusion-category}}',
 'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
-When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
+When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.
+
+See also:
+* {{msg-mw|Post-expand-template-inclusion-warning}}
+* {{msg-mw|Post-expand-template-inclusion-category}}',
+'post-expand-template-argument-warning' => 'Used as warning in parser limitation.
+
+See also:
+* {{msg-mw|Post-expand-template-argument-warning}}
+* {{msg-mw|Post-expand-template-argument-category}}',
+'post-expand-template-argument-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain omitted template arguments.
+
+See also:
+* {{msg-mw|Post-expand-template-argument-warning}}
+* {{msg-mw|Post-expand-template-argument-category}}',
 'parser-template-loop-warning' => '* $1 - page title',
 'parser-template-recursion-depth-warning' => '* $1 - limit value of recursion depth',
 'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax
@@ -1328,6 +1453,12 @@ See the error message:
 * (optional) $4: date of revision
 * (optional) $5: time of revision
 * (optional) $6: author of revision, for GENDER use',
+'previousrevision' => 'See also:
+* {{msg-mw|Previousrevision}}
+* {{msg-mw|Nextrevision}}',
+'nextrevision' => 'See also:
+* {{msg-mw|Previousrevision}}
+* {{msg-mw|Nextrevision}}',
 'currentrevisionlink' => '{{Identical|Current revision}}',
 'cur' => 'Link in page history',
 'next' => 'Link in page history
@@ -1346,8 +1477,12 @@ See the error message:
 'history-show-deleted' => 'CheckBox to show only per [[mw:Manual:RevisionDelete|RevisonDelete]] deleted versions.
 
 Used in History and [[Special:Contributions]].',
-'histfirst' => 'Used in page history.',
-'histlast' => 'Used in page history.',
+'histfirst' => 'This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].
+
+It is followed by the message {{msg-mw|Viewprevnext}}.',
+'histlast' => 'This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].
+
+It is followed by the message {{msg-mw|Viewprevnext}}.',
 'historysize' => '* $1 - byte count',
 'historyempty' => 'Text in page history for empty page revisions
 
@@ -1532,6 +1667,17 @@ Title of the suppression log. Shown in the drop down menu at [[Special:log]] and
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # History merging
+'mergehistory-merge' => 'Used in [[Special:MergeHistory]].
+* $1 - target page title
+* $2 - destination page title',
+'mergehistory-success' => 'Used in [[Special:MergeHistory]].
+* $1 - target page title
+* $2 - destination page title
+* $3 - number of revisions which succeeded to merge',
+'mergehistory-no-source' => 'Used in [[Special:MergeHistory].
+* $1 - source page title',
+'mergehistory-no-destination' => 'Used in [[Special:MergeHistory]].
+* $1 - destination page title',
 'mergehistory-autocomment' => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.
 
 *Parameter $1 is the name of the redirect page which is created
@@ -1612,6 +1758,13 @@ $1 is the number of items shown per page. It is not used when $1 is zero; not su
 [[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-next}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
 {{Identical|Next $1}}",
+'prevn-title' => '* $1 - number of search results
+See also:
+* {{msg-mw|Viewprevnext}}',
+'nextn-title' => '* $1 - number of search results
+See also:
+* {{msg-mw|Viewprevnext}}',
+'shown-title' => '* $1 - number of search results',
 'viewprevnext' => 'This is part of the navigation message on the top and bottom of Special pages which are lists of things, e.g. the User\'s contributions page (in date order) or the list of all categories (in alphabetical order). ($1) and ($2) are either {{msg-mw|Pager-older-n}} and {{msg-mw|Pager-newer-n}} (for date order) or {{msg-mw|Prevn}} and {{msg-mw|Nextn}} (for alphabetical order).
 
 It is also used by [[Special:WhatLinksHere|Whatlinkshere]] pages, where ($1) and ($2) are {{msg-mw|Whatlinkshere-prev}} and {{msg-mw|Whatlinkshere-next}}.
@@ -1625,6 +1778,9 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchhelp-url' => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
 {{doc-important|Do not change the "<tt>Help:</tt>" part.}}',
+'searchmenu-prefix' => '{{doc-important|Do not translate "Special:PrefixIndex"}}
+Parameters:
+* $1 - prefix string',
 'searchprofile-articles' => "A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
 A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
@@ -1632,17 +1788,59 @@ A 'content page' is a page that forms part of the purpose of the wiki. It includ
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'searchprofile-project' => 'An option in the [[Special:Search]] page.',
-'searchprofile-images' => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-everything' => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-advanced' => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:Search] page.
+'searchprofile-project' => 'Used as an option in [[Special:Search]].
 
+See also:
+* {{msg-mw|Searchprofile-project|message}}
+* {{msg-mw|Searchprofile-project-tooltip|tooltip}}',
+'searchprofile-images' => 'An option in the [[Special:Search]].
+
+See also:
+* {{msg-mw|Searchprofile-images|message}}
+* {{msg-mw|Searchprofile-images-tooltip|tooltip}}',
+'searchprofile-everything' => 'Used as an option in [[Special:Search]].
+
+See also:
+* {{msg-mw|Searchprofile-everything|message}}
+* {{msg-mw|Searchprofile-everything-tooltip|tooltip}}',
+'searchprofile-advanced' => 'Used as an option in [[Special:Search]].
+
+See also:
+* {{msg-mw|Searchprofile-advanced|message}}
+* {{msg-mw|Searchprofile-advanced-tooltip|tooltip}}
 {{Identical|Advanced}}',
-'searchprofile-articles-tooltip' => '$1 is list of namespaces. {{Identical|Search in $1}}',
-'searchprofile-project-tooltip' => '$1 is list of namespaces. {{Identical|Search in $1}}',
+'searchprofile-articles-tooltip' => 'Used as tooltip for the option {{msg-mw|Searchprofile-articles}} in [[Special:Search]].
+* $1 - list of namespaces
+See also:
+* {{msg-mw|Searchprofile-articles|message}}
+* {{msg-mw|Searchprofile-articles-tooltip|tooltip}}
+{{Identical|Search in $1}}',
+'searchprofile-project-tooltip' => 'Used as tooltip for the option {{msg-mw|Searchprofile-project}} in [[Special:Search]].
+* $1 - list of namespaces
+See also:
+* {{msg-mw|Searchprofile-project|message}}
+* {{msg-mw|Searchprofile-project-tooltip|tooltip}}
+{{Identical|Search in $1}}',
+'searchprofile-images-tooltip' => 'Used as tooltip for the option {{msg-mw|Searchprofile-images}} in the [[Special:Search]].
+See also:
+* {{msg-mw|Searchprofile-images|message}}
+* {{msg-mw|Searchprofile-images-tooltip|tooltip}}',
+'searchprofile-everything-tooltip' => 'Used as tooltip for the option {{msg-mw|Searchprofile-everything}} in [[Special:Search]].
+
+See also:
+* {{msg-mw|Searchprofile-everything|message}}
+* {{msg-mw|Searchprofile-everything-tooltip|tooltip}}',
+'searchprofile-advanced-tooltip' => 'Used as tooltip for the option {{msg-mw|Searchprofile-advanced}} in [[Special:Search]].
+
+See also:
+* {{msg-mw|Searchprofile-advanced|message}}
+* {{msg-mw|Searchprofile-advanced-tooltip|tooltip}}',
 'search-result-size' => 'Shown per line of a [[Special:Search|search result]]
 * $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
 * $2 is the sum of all words in this page.',
+'search-result-category-size' => '* $1 - number of members in this category. $1 is equal to $2+$3.
+* $2 - number of subcategories
+* $3 - number of files',
 'search-result-score' => 'Shown per line of a [[Special:Search|search result]].
 
 $1 is the relevance of this result in per cent.
@@ -1650,6 +1848,8 @@ $1 is the relevance of this result in per cent.
 {{Identical|Relevance: $1%}}',
 'search-redirect' => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
 'search-section' => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
+'search-suggest' => 'Used for "Did you mean" suggestions:
+* $1 - suggested link',
 'search-interwiki-default' => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-interwiki-more' => '{{Identical|More}}',
 'search-relatedarticle' => '{{Identical|Related}}
@@ -1661,11 +1861,17 @@ This is a search result (and I guess search engine) dependent messages. I do not
 
 This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
 'searchall' => '{{Identical|All}}',
-'showingresults' => "This message is used on some special pages such as 'Wanted categories'.
+'showingresults' => 'This message is used on some special pages such as [[Special:WantedCategories]].
 *$1 is the total number of results in the batch shown.
-*$2 is the number of the first item listed.",
-'showingresultsnum' => '*$3 is the number of results on the page.
-*$2 is the first number in the batch of results.',
+*$2 is the number of the first item listed.
+See also:
+* {{msg-mw|Showingresults}}
+* {{msg-mw|Showingresultsnum}}',
+'showingresultsnum' => '* $2 - the first number in the batch of results
+* $3 - the number of results on the page
+See also:
+* {{msg-mw|Showingresults}}
+* {{msg-mw|Showingresultsnum}}',
 'showingresultsheader' => 'Used in search results of [[Special:Search]].',
 'nonefound' => 'This message appears on the search results page if no results are found.
 {{doc-important|Do not translate "all:".}}',
@@ -1705,6 +1911,7 @@ This is a search result (and I guess search engine) dependent messages. I do not
 {{Identical|My preferences}}',
 'prefs-edits' => 'In user preferences.',
 'prefsnologin' => '{{Identical|Not logged in}}',
+'prefsnologintext' => '* $1 - URI for "returnto" argument',
 'changepassword' => "Section heading on [[Special:Preferences]], tab 'User profile'.
 {{Identical|Change password}}",
 'prefs-skin' => 'Used in user preferences.
@@ -2342,6 +2549,8 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 
 {{Identical|Upload file}}',
 'uploadnologin' => '{{Identical|Not logged in}}',
+'upload_directory_missing' => '* $1 - directory name',
+'upload_directory_read_only' => '* $1 - directory name',
 'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave them untranslated!}}
 Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted' => 'Used in [[Special:Upload]].',
@@ -2357,10 +2566,13 @@ Page title of [[Special:Log/upload]].',
 
 {{Identical|Source}}',
 'ignorewarnings' => 'In [[Special:Upload]]',
+'illegalfilename' => '* $1 - filename',
 'filename-toolong' => 'Error message when uploading a file with a filename longer than the hardcoded limit of 240 bytes. This limit will never change and is hardcoded in the message',
+'badfilename' => '* $1 - filename',
 'filetype-mime-mismatch' => 'Upload error. Parameters:
 * $1 is the extension of the uploaded file
 * $2 is the MIME type of the uploaded file',
+'filetype-badmime' => '* $1 - string representing the MIME type',
 'filetype-bad-ie-mime' => '$1 will contain a mime type like <tt>image/jpeg</tt> or <tt>application/zip</tt>',
 'filetype-unwanted-type' => "* $1 is the extension of the file which cannot be uploaded
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
@@ -2383,6 +2595,13 @@ Shown on [[Special:Upload]], $1 is link to the page. This message is displayed i
 'fileexists-forbidden' => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}",
 'fileexists-shared-forbidden' => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}
 Error message at [[Special:Upload]]",
+'file-exists-duplicate' => 'Used as warning in [[Special:Upload]].
+This message is followed by the gallery of the duplicate files.
+
+Parameters:
+* $1 - number of duplicate files',
+'file-deleted-duplicate' => 'Used in [[Special:Upload]. Parameters:
+* $1 - page title of the file',
 'savefile' => 'When uploading a file',
 'uploadedimage' => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
 'overwroteimage' => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
@@ -2403,6 +2622,16 @@ $1 is the value in KB/MB/GB',
 'filewasdeleted' => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
 Parameters:
 * $1 is a link to the deletion log, with the text from {{msg|deletionlog}}.',
+'filename-bad-prefix' => "Used as warning in [[Special:Upload]]. Parameters:
+* $1 - prefix
+See also:
+* {{msg-mw|fileexists}}
+* {{msg-mw|filepageexists}}
+* {{msg-mw|fileexists-extension}}
+* {{msg-mw|fileexists-thumbnail-yes',}}
+* {{msg-mw|file-thumbnail-no}}
+* {{msg-mw|filename-bad-prefix}}
+* {{msg-mw|filewasdeleted}}",
 'filename-prefix-blacklist' => "{{optional}}
 Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 'upload-success-msg' => '* $1 - the local file name after uploading
@@ -2454,6 +2683,8 @@ Extensions making use of it:
 * $1 is a filename.',
 'backend-fail-create' => 'Parameters:
 * $1 is a filename.',
+'backend-fail-maxsize' => '* $1 - destination storage path
+* $2 - max file size (in bytes)',
 'backend-fail-readonly' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-synced' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-connect' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
@@ -2497,6 +2728,7 @@ A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by 
 * $1 is a bucket name. Any string used as a lock name maps to a "bucket", which is a basically a set of 1 or more database servers that must agree that a lock can be acquired.',
 'lockmanager-fail-db-release' => 'Parameters:
 * $1 is a database name.',
+'lockmanager-fail-svr-acquire' => '* $1 - server',
 'lockmanager-fail-svr-release' => 'Parameters:
 * $1 is a server name.',
 
@@ -2523,6 +2755,7 @@ Used on [[Special:UploadWizard]].',
 'img-auth-noread' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: User does not have access to read file, $1 is the file',
 
 # HTTP errors
+'http-invalid-url' => '* $1 - URL',
 'http-invalid-scheme' => 'The message appears in the Mediawiki code as follows:
 
  if ( $this->parsedUrl[\'scheme\'] != \'http\' ) {
@@ -2532,6 +2765,11 @@ Used on [[Special:UploadWizard]].',
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
+'http-curl-error' => 'Used as curl error message when the error is other than known messages.
+* $1 - error code; not URL
+Known messages are:
+* {{msg-mw|http-host-unreachable}}
+* {{msg-mw|http-timed-out}}',
 'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
 
 'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
@@ -2602,6 +2840,9 @@ Example: [[:Image:Addon-icn.png]]',
 * $1: limit. At the moment hardcoded at 100
 * $2: filename',
 'nolinkstoimage' => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
+'morelinkstoimage' => '{{doc-important|Do not translate "Special:WhatLinksHere"}}
+Parameters:
+* $1 - page title',
 'linkstoimage-redirect' => 'Item in the "the following pages link to this file" section on a file page if the item is a redirect.
 * $1: an HTML link to the file
 * $2: the list of files that link to the redirect (may be empty)',
@@ -2680,10 +2921,13 @@ See also:
 'filedelete-submit' => 'Delete button when deleting a file for admins
 
 {{Identical|Delete}}',
+'filedelete-success' => '* $1 - filename',
 'filedelete-success-old' => 'Message displayed when you succeed in deleting a version of a file.
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour',
+'filedelete-nofile' => '* $1 - filename',
+'filedelete-nofile-old' => '* $1 - filename',
 'filedelete-otherreason' => 'Message used when deleting a file. This is the description field for "Other/additional reason" for deletion.
 
 {{Identical|Other/additional reason}}',
@@ -2717,9 +2961,12 @@ See also:
 'randompage' => 'Name of special page displayed in [[Special:SpecialPages]].
 
 {{Identical|Random page}}',
+'randompage-nopages' => '* $1 - list of namespaces
+* $2 - number of namespaces',
 
 # Random redirect
 'randomredirect' => 'Name of special page displayed in [[Special:SpecialPages]].',
+'randomredirect-nopages' => '* $1 - namespace name',
 
 # Statistics
 'statistics' => 'Name of special page displayed in [[Special:SpecialPages]].
@@ -2914,6 +3161,7 @@ Title of [[Special:Log]].',
 
 {{Identical|Go}}',
 'allpagesprefix' => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
+'allpages-bad-ns' => '* $1 - namespace name',
 'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].',
 
 # SpecialCachedPage
@@ -2970,6 +3218,8 @@ You can apparently use 'URL' instead of 'hostname'.",
 
 # Special:ActiveUsers
 'activeusers' => 'Title of [[Special:ActiveUsers]]',
+'activeusers-intro' => 'Used as introduction in [[Special:ActiveUsers]]. Parameters:
+* $1 - number of days (<code>$wgActiveUserDays</code>)',
 'activeusers-count' => "Used in [[Special:ActiveUsers]] to show the active user's recent edit count in brackets ([]).
 * $1 is the number of recent edits
 * $2 is the user's name for use with GENDER (optional)
@@ -3098,6 +3348,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Content page}}",
 'watchlist-details' => 'Message on [[Special:Watchlist]]. This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
+'watchlistcontains' => '* $1 - number of pages in your watchlist',
 'wlnote' => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
@@ -3216,6 +3467,14 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]]. See also {{msg|Ipb-edit-dropdown}} and {{msg|Protect-edit-reasonlist}}.
 
 {{Identical|Edit delete reasons}}',
+'delete-toobig' => '* $1 - the upper limit of number of revisions
+See also:
+* {{msg-mw|Delete-toobig}}
+* {{msg-mw|Delete-warning-toobig}}',
+'delete-warning-toobig' => '* $1 - the upper limit of number of revisions
+See also:
+* {{msg-mw|Delete-toobig}}
+* {{msg-mw|Delete-warning-toobig}}',
 
 # Rollback
 'rollback' => '{{Identical|Rollback}}',
@@ -3258,6 +3517,7 @@ Title of [[Special:Log/protect]].',
 'protectlogtext' => 'Text in [[Special:Log/protect]].',
 'protectedarticle' => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
 'modifiedarticleprotection' => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
+'unprotectedarticle' => 'Used as action in the log.',
 'movedarticleprotection' => 'This is a log entry. It appears in the log if a protected page is renamed.
 
 Example:
@@ -3273,6 +3533,11 @@ Example:
 'protect-unchain-permissions' => 'This message is a label for a checkbox displayed in the "protect" form just below the first selector (generally the "edit" protection). If the checkbox is checked (default) other selectors will be locked and have the same value as the first selector, otherwise other selectors are editable by the user.
 This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
+'protect-locked-blocked' => '* $1 - page title',
+'protect-locked-dblock' => '* $1 - page title',
+'protect-locked-access' => '* $1 - page title',
+'protect-cascadeon' => 'Used in Protection form.
+* $1 - number of cascade source pages',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
 'protect-level-autoconfirmed' => 'Used as protect level.
@@ -3355,10 +3620,15 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 
 {{Identical|View deleted pages}}',
 'undeletepage' => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
+'undeletepagetitle' => 'Used as introduction in [[Special:Undelete]]. Parameters:
+* $1 - page title',
 'viewdeletedpage' => 'Title of the [[Special:Undelete]].
 
 {{Identical|View deleted pages}}',
+'undeletepagetext' => '* $1 - number of pages',
+'undelete-fieldset-title' => 'Used as the title of the fieldset.',
 'undeleteextrahelp' => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), The ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
+'undeleterevisions' => '* $1 - number of revisions',
 'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
 
 * $1: deleted page name
@@ -3379,11 +3649,26 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 {{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',
 'undeletecomment' => '{{Identical|Reason}}',
+'undeletedrevisions' => '* $1 - number of revisions',
+'undeletedrevisions-files' => '* $1 - number of revisions
+* $2 - number of files',
+'undeletedfiles' => '* $1 - number of files',
 'cannotundelete' => 'Message shown when undeletion failed for some reason.
 * <code>$1</code> is the combined wikitext of messages for all errors that caused the failure.',
+'undeletedpage' => '* $1 - page title',
 'undelete-search-title' => 'Page title when showing the search form in Special:Undelete',
 'undelete-search-submit' => '{{Identical|Search}}',
+'undelete-filename-mismatch' => '* $1 - date and time',
+'undelete-bad-store-key' => '* $1 - date and time',
+'undelete-cleanup-error' => '* $1 - file path',
+'undelete-missing-filearchive' => '* $1 - ID',
 'undelete-error' => 'Page title when a page could not be undeleted',
+'undelete-error-short' => 'Used as error message. See also:
+* {{msg-mw|Undelete-error-short}}
+* {{msg-mw|Undelete-error-long}}',
+'undelete-error-long' => 'Used as error message. See also:
+* {{msg-mw|Undelete-error-short}}
+* {{msg-mw|Undelete-error-long}}',
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
 * <code>$2</code> is the date of the displayed revision.
@@ -3457,10 +3742,12 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'whatlinkshere' => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
 'whatlinkshere-title' => "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
 'whatlinkshere-page' => '{{Identical|Page}}',
-'linkshere' => "This message is the header line of the [[Special:WhatLinksHere/$1]] page generated by clicking 'What links here' in the sidebar toolbox. It is followed by a navigation bar built using {{msg-mw|Viewprevnext}}.",
+'linkshere' => "This message is the header line of the [[Special:WhatLinksHere/$1]] page generated by clicking 'What links here' in the sidebar toolbox. It is followed by a navigation bar built using {{msg-mw|Viewprevnext}}. Parameters:
+* $1 - page title",
 'nolinkshere' => 'This appears on Whatlinkshere pages which are empty.
 
 Parameter $1 is a page title.',
+'nolinkshere-ns' => '* $1 - page title',
 'isredirect' => 'Displayed in Special:WhatLinksHere (see [{{fullurl:Special:WhatLinksHere/Project:Translator|hidelinks=1}} Special:WhatLinksHere/Project:Translator] for example).
 
 {{Identical|Redirect page}}',
@@ -3532,13 +3819,32 @@ Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/
 'badipaddress' => 'An error message shown when one entered an invalid IP address in blocking page.',
 'blockipsuccesstext' => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
 'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
+'ipb-unblock-addr' => 'Used in [[Special:Block]].
+* $1 - target username',
+'ipb-blocklist-contribs' => 'Used in [[Special:Block]].
+* $1 - target username',
 'ipusubmit' => 'Used as button text on Special:BlockList?action=unblock. To see the message:
 * Go to [[Special:BlockList]]
 * Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
 * It is now the button below the form',
-'unblocked' => 'Do not translate the namespace "User:".  $1 - the IP address or username that was unblocked.',
+'unblocked' => '{{doc-important|Do not translate the namespace "User:".}}
+* $1 - the IP address or username that was unblocked
+See also:
+* {{msg-mw|Unblocked}}
+* {{msg-mw|Unblocked-range}}
+* {{msg-mw|Unblocked-id}}',
 'unblocked-range' => 'Shown when successfully lifting a rangeblock, so do not link to contributions.
-* $1 - the range that was unblocked.',
+* $1 - the range that was unblocked.
+See also:
+* {{msg-mw|Unblocked}}
+* {{msg-mw|Unblocked-range}}
+* {{msg-mw|Unblocked-id}}',
+'unblocked-id' => 'Used in [[Special:Unblock]].
+* $1 - autoblock ID
+See also:
+* {{msg-mw|Unblocked}}
+* {{msg-mw|Unblocked-range}}
+* {{msg-mw|Unblocked-id}}',
 'ipblocklist' => 'Title of [[Special:Ipblocklist]].',
 'blocklist-rangeblocks' => 'For an explanation of "range blocks", see http://www.mediawiki.org/wiki/Help:Range_blocks',
 'blocklist-timestamp' => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].
@@ -3582,6 +3888,9 @@ Usage:
 'emaillink' => 'Used as display name for a link to send an e-mail to a user in the user tool links. Example: "(Talk | contribs | block | send e-mail)".
 
 {{Identical|E-mail}}',
+'autoblocker' => 'Used in [[Special:Block]].
+* $1 - target username
+* $2 - reason',
 'blocklogpage' => "{{doc-logpage}}
 
 The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[Special:Log]] pages and in the action links of Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
@@ -3610,9 +3919,17 @@ See also {{msg-mw|Blocklistline}}.',
 'block-log-flags-nousertalk' => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
 'ipb_expiry_temp' => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
+'ipb-needreblock' => 'Used in [[Special:Block]].
+* $1 - target username',
 'ipb-otherblocks-header' => '[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]
 Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
 'unblock-hideuser' => '{{doc-singularthey}}',
+'ipb_cant_unblock' => '* $1 - block ID',
+'ipb_blocked_as_range' => 'Used when unblock of a single IP fails. Parameters:
+* $1 - IP address
+* $2 - IP range',
+'ip_range_toolarge' => 'Used in [[Special:Block]].
+* $1 - a number from 0 to 32 for IPv4 (from 0 to 128 for IPv6); a part of CIDR (Classless Inter-Domain Routing) notation.',
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'proxyblocksuccess' => '{{Identical|Done}}',
 'sorbs' => '{{optional}}',
@@ -3686,7 +4003,19 @@ Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown
 'movesubpage' => "This is a section header on [[Special:MovePage]], below is a list of subpages.
 Parameters:
 *'''$1''' = number of subpages
-<!--{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}-->",
+See also:
+* {{msg-mw|movesubpage|section header}}
+* {{msg-mw|movenosubpage|without subpage}}
+* {{msg-mw|movesubpagetext|with subpages}}",
+'movesubpagetext' => '* $1 - number of subpages
+See also:
+* {{msg-mw|movesubpage|section header}}
+* {{msg-mw|movenosubpage|without subpage}}
+* {{msg-mw|movesubpagetext|with subpages}}',
+'movenosubpage' => 'See also:
+* {{msg-mw|movesubpage|section header}}
+* {{msg-mw|movenosubpage|without subpage}}
+* {{msg-mw|movesubpagetext|with subpages}}',
 'movereason' => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
 
 {{Identical|Reason}}',
@@ -3696,9 +4025,31 @@ Parameters:
 'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
 'delete_and_move_reason' => 'Shown as reason in content language in the deletion log. Parameter:
 * $1: The page name for which this page was deleted.',
+'immobile-source-namespace' => '* $1 - source namespace name
+See also:
+* {{msg-mw|Immobile-source-namespace}}
+* {{msg-mw|Immobile-source-page}}
+* {{msg-mw|Immobile-target-namespace}}
+* {{msg-mw|Immobile-target-page}}',
+'immobile-target-namespace' => '* $1 - destination namespace name
+See also:
+* {{msg-mw|Immobile-source-namespace}}
+* {{msg-mw|Immobile-source-page}}
+* {{msg-mw|Immobile-target-namespace}}
+* {{msg-mw|Immobile-target-page}}',
 'immobile-target-namespace-iw' => "This message appears when attempting to move a page, if a person has typed an interwiki link as a namespace prefix in the input box labelled 'To new title'.  The special page 'Movepage' cannot be used to move a page to another wiki.
 
 'Destination' can be used instead of 'target' in this message.",
+'immobile-source-page' => 'See also:
+* {{msg-mw|Immobile-source-namespace}}
+* {{msg-mw|Immobile-source-page}}
+* {{msg-mw|Immobile-target-namespace}}
+* {{msg-mw|Immobile-target-page}}',
+'immobile-target-page' => 'See also:
+* {{msg-mw|Immobile-source-namespace}}
+* {{msg-mw|Immobile-source-page}}
+* {{msg-mw|Immobile-target-namespace}}
+* {{msg-mw|Immobile-target-page}}',
 'bad-target-model' => 'This message is shown when attempting to move a page, but the move would change the page\'s content model.
 This may be the case when [[mw:Manual:$wgContentHandlerUseDB|$wgContentHandlerUseDB]] is set to false, because then a page\'s content model is derived from the page\'s title.
 * $1: The localized name of the original page\'s content model:
@@ -3767,6 +4118,9 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 'import-interwiki-submit' => '{{Identical|Import}}',
 'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
 'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
+'import-revision-count' => '* $1 - number of revisions, success count',
+'imported-log-entries' => '* $1 - number of log items',
+'importfailed' => '* $1 - import source',
 'xml-error-string' => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
 :$3: columm number
@@ -3786,6 +4140,9 @@ See also:
 * $1 is a page name.
 See also:
 * {{msg-mw|import-error-edit}}',
+'import-error-interwiki' => '* $1 - page title',
+'import-error-special' => '* $1 - page title',
+'import-error-invalid' => '* $1 - page title',
 'import-error-unserialize' => 'Import error message displayed when a revision could not be unserialized.
 This may happen if the content got corrupted or the serialization format is mis-reported. Parameters:
 * $1 is the name of the page the offending revision belongs to.
@@ -3802,6 +4159,10 @@ This may happen if the content got corrupted or the serialization format is mis-
 'importlogpagetext' => 'This text appears at the top of the [//translatewiki.net/w/i.php?title=Special:Log&type=import import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
+'import-logentry-upload-detail' => '* $1 - number of revisions, success count',
+'import-logentry-interwiki' => 'Used as action listed in the log.',
+'import-logentry-interwiki-detail' => '* $1 - number of revisions, success count
+* $2 - interwiki name',
 
 # JavaScriptTest
 'javascripttest' => 'Title of [[Special:JavaScriptTest|the special page]]',
@@ -3977,6 +4338,8 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'nocredits' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 
 # Spam protection
+'spamprotectionmatch' => 'Used when the user\'s edit contains spam.
+* $1 - matching "spam filter"',
 'spam_reverting' => 'Edit summary for spam cleanup script. Used when a page is reverted because all later revisions contained a particular link. Parameters:
 * $1 is a spammed domain name.',
 'spam_blanking' => 'Edit summary for spam cleanup script. Used when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to. Parameters:
@@ -4073,6 +4436,9 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'filedeleteerror-long' => 'Used as error message. See also:
 * {{msg-mw|Filedeleteerror-short}}
 * {{msg-mw|Filedeleteerror-long}}',
+'filedelete-missing' => '* $1 - filename',
+'filedelete-current-unregistered' => '* $1 - filename',
+'filedelete-archive-read-only' => '* $1 - directory name',
 
 # Browsing diffs
 'previousdiff' => 'Used when viewing the difference between edits. See also {{msg|nextdiff}}.',
@@ -4768,6 +5134,18 @@ Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_phot
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.',
 'exif-gpslongitude-w' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'Used as GPS Altitude in Exif data. Parameters:
+* $1 - altitude above sea level (in meters)
+See also:
+* {{msg-mw|Exif-gpsaltitude-above-sealevel}}
+* {{msg-mw|Exif-gpsaltitude-below-sealevel}}',
+'exif-gpsaltitude-below-sealevel' => 'Used as GPS Altitude in Exif data. Parameters:
+* $1 - altitude below sea level (in meters)
+See also:
+* {{msg-mw|Exif-gpsaltitude-above-sealevel}}
+* {{msg-mw|Exif-gpsaltitude-below-sealevel}}',
 
 'exif-gpsmeasuremode-2' => 'Only latitude and longitude recorded, no altitude.',
 'exif-gpsmeasuremode-3' => 'Latitude, longitude, and altitude recorded.',
@@ -5530,5 +5908,88 @@ $4 is the gender of the target user.',
 * $1 is an unknown error message.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
+
+# Durations
+'duration-seconds' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-minutes' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-hours' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-days' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-weeks' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-years' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-decades' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-centuries' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
+'duration-millennia' => '* {{msg-mw|Duration-seconds}}
+* {{msg-mw|Duration-minutes}}
+* {{msg-mw|Duration-hours}}
+* {{msg-mw|Duration-days}}
+* {{msg-mw|Duration-weeks}}
+* {{msg-mw|Duration-years}}
+* {{msg-mw|Duration-decades}}
+* {{msg-mw|Duration-centuries}}
+* {{msg-mw|Duration-millennia}}',
 
 );

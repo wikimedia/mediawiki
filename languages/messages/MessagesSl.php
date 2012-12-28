@@ -2150,7 +2150,7 @@ Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'linksearch-ok' => 'Išči',
 'linksearch-text' => 'Uporabljate lahko nadomestne znake, kot je »*.wikipedia.org«.
 Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
-Podprti protokoli: <code>$1</code> (če protokol ni določen, se privzame http://).',
+{{PLURAL:$2|Podprt protokol|Podprta protokola|Podprti protokoli}}: <code>$1</code> (če protokol ni določen, se privzame http://).',
 'linksearch-line' => '$1 povezano iz $2',
 'linksearch-error' => 'Jokerji se lahko pojavijo le na začetku gostiteljskega imena.',
 

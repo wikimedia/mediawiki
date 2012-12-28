@@ -2089,7 +2089,7 @@ Template:消除歧義',
 'linksearch-ns' => '名字空間：',
 'linksearch-ok' => '搜尋',
 'linksearch-text' => '可使用通配符，如“*.wikipedia.org”。至少需要一個頂級域名，例如“*.org”。<br />
-支持的協議：<code>$1</code>（若沒有指定協議，預設為http://）。',
+支持的{{PLURAL:$2|協議|協議}}：<code>$1</code>（若沒有指定協議，預設為http://）。',
 'linksearch-line' => '$1 連自 $2',
 'linksearch-error' => '萬用字元僅可在主機名稱的開頭使用。',
 

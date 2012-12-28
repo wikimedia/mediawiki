@@ -621,7 +621,7 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
 'editing' => 'Waxaad badalaysaa $1',
-'creating' => 'Sameynaa $1',
+'creating' => 'Sameyta $1',
 'editingsection' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
 'editingcomment' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
 'editconflict' => 'Isku dhac badalaadka: $1',
@@ -758,6 +758,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-relatedarticle' => 'La xiriiro',
 'searchrelated' => 'La xiriiro',
 'searchall' => 'Dhamaan',
+'showingresults' => "Waxaa hoos laga heley{{PLURAL:$1|'''1''' natiijo|'''$1''' natiijooyin}} ka biloow #'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Natiijada  '''$1''' ee '''$3'''|Natiijooyinka '''$1 - $2'''  oo ah  '''$3'''}} ee '''$4'''",
 'search-nonefound' => 'Wax natiijo oo ka soo baxay ma jirto wixii aad raadisay',
 'powersearch' => 'Sidii aad wax uugu raadin laheed',
@@ -1124,7 +1125,10 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 
 # Protect
 'protectlogpage' => 'Difaacida gudagalaheeda',
+'protectlogtext' => 'Hoos waxaa ku qoran isbedelada ilaaliya bogagga.
+eeg [[Special:ProtectedPages|Liiska bogagga dhowrsoon]] liiska bogagga howlaha dhowrista ee hadda.',
 'protectedarticle' => 'la difaacay "[[$1]]"',
+'modifiedarticleprotection' => 'Ka badal heerka difaacida "[[$1]]"',
 'protect-title' => 'Ka badal heerka difaacida   "$1"',
 'prot_1movedto2' => '[[$1]] waxaa loo wareejiyey [[$2]]',
 'protect-legend' => 'Xaqiiji difaacida',
@@ -1311,6 +1315,7 @@ Waxaa fiiri kartaa cadaadkiisa',
 'tooltip-watch' => 'Boggaan ku dar liiskaaga waardiyaha',
 'tooltip-rollback' => '"Dib u soo celi" wuxuu dib boggaan ugu soo celinaa qofkii ugu danbeeyay wixii oo ku darsaday hal riix kaliya',
 'tooltip-undo' => '"Ka noqo" wuxuu dib u noqaa badalkaan wuxuuna furaa badalkii ka horeey.Wuxuu kuu fasaxaa in aad ku dartid sababta.',
+'tooltip-preferences-save' => 'Kaydi isbedelada',
 'tooltip-summary' => 'ku qor qoraal kooban',
 
 # Attribution

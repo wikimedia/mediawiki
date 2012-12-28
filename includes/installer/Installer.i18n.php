@@ -16334,6 +16334,10 @@ $messages['roa-tara'] = array(
 	'config-charset-mysql4' => 'MySQL 4.0 backwards-compatible UTF-8',
 	'config-install-step-done' => 'fatte',
 	'config-install-step-failed' => 'fallite',
+	'config-install-extensions' => "'Ngludenne le estenziune",
+	'config-install-database' => "Stoche a 'mboste l'archivije",
+	'config-install-schema' => "Stoche a creje 'u scheme",
+	'config-install-pg-schema-not-exist' => "'U scheme PostgreSQL non g'esiste.",
 	'config-help' => 'ajute',
 	'mainpagetext' => "'''MediaUicchi ha state 'nstallete.'''",
 	'mainpagedocfooter' => "Vè vide [//meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
@@ -16341,7 +16345,8 @@ $messages['roa-tara'] = array(
 == Pe accumenzà ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste pe le configuraziune]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Elenghe d'a poste de MediaUicchi]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localizzazzione de MediaUicchi pa lènga toje]",
 );
 
 /** Russian (русский)

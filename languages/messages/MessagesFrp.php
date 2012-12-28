@@ -1266,9 +1266,9 @@ $1",
 'deletedhist' => 'Historico suprimâ',
 'revdelete-hide-current' => 'Èrror pendent la suprèssion de l’èlèment datâ du $1 a $2 : o est la vèrsion d’ora.
 Pôt pas étre suprimâ.',
-'revdelete-show-no-access' => 'Èrror pendent la visualisacion de l’èlèment datâ du $1 a $2 : il est marcâ coment « rètrent ».
+'revdelete-show-no-access' => 'Fôta pendent la visualisacion de la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
 Vos y avéd pas accès.',
-'revdelete-modify-no-access' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : il est marcâ coment « rètrent ».
+'revdelete-modify-no-access' => 'Fôta pendent lo changement de la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
 Vos y avéd pas accès.',
 'revdelete-modify-missing' => 'Èrror pendent lo changement de l’èlèment avouéc lo numerô $1 : il est manquent dens la bâsa de balyês !',
 'revdelete-no-change' => "'''Atencion :''' l’èlèment datâ du $1 a $2 at ja los paramètres de visibilitât demandâs.",
@@ -1287,8 +1287,8 @@ Volyéd controlar los jornals.',
 
 # Suppression log
 'suppressionlog' => 'Jornal de les suprèssions',
-'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
-Vêde la [[Special:BlockList|lista des blocâjos]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+'suppressionlogtext' => 'Vê-que na lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
+Vêde la [[Special:BlockList|lista des blocâjos]] por la lista des banissements et des blocâjos que sont ora actifs.',
 
 # History merging
 'mergehistory' => 'Fusionar los historicos de les pâges',
@@ -2422,33 +2422,29 @@ Los changements que vegnont de ceta pâge et de la sina pâge de discussion y se
 'enotif_anon_editor' => 'usanciér pas encartâ $1',
 'enotif_body' => 'Chier(a) $WATCHINGUSERNAME,
 
+$PAGEINTRO $NEWPAGE
 
-la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATE per « $PAGEEDITOR », vêde $PAGETITLE_URL por vêre la vèrsion d’ora.
+Rèsumâ du contributor : $PAGESUMMARY $PAGEMINOREDIT
 
-$NEWPAGE
-
-Rèsumâ u contributor : $PAGESUMMARY $PAGEMINOREDIT
-
-Veriéd-vos vers cél contributor :
+Veriéd-vos vers lo contributor :
 mèl. : $PAGEEDITOR_EMAIL
 vouiqui : $PAGEEDITOR_WIKI
 
-Y arat pas d’ôtres notificacions en câs de changements a vegnir, a muens que vos visitâd cela pâge.
-Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes les pâges de voutra lista de survelyence.
+Y arat gins d’ôtra notificacion en câs de changements a vegnir, a muens que vos visitâd cela pâge. Vos pouede asse-ben tornar inicialisar los segnalements de notificacion por totes les pâges de voutra lista de survelyence.
 
-             Voutron sistèmo de notificacion de {{SITENAME}}
+Voutron sistèmo de notificacion de {{SITENAME}}
 
 --
-Por changiér los paramètres de notificacion per mèssageria èlèctronica, visitâd
+Por changiér la configuracion de notificacion per mèssageria èlèctronica, visitâd
 {{canonicalurl:{{#special:Preferences}}}}
 
-Por changiér los paramètres de voutra lista de survelyence, visitâd
+Por changiér la configuracion de voutra lista de survelyence, visitâd
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Por suprimar la pâge de voutra lista de survelyence, visitâd
 $UNWATCHURL
 
-Retôrn et assistance :
+Avis et assistance de ples :
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2512,8 +2508,8 @@ Volyéd clicar dessus « Devant », rechargiér la pâge de yô que vos vegnéd,
 
 # Protect
 'protectlogpage' => 'Jornal de les protèccions',
-'protectlogtext' => 'Vê-que una lista des changements de protèccion de les pâges.
-Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por la lista de les protèccions que sont ora opèracionèles.',
+'protectlogtext' => 'Vê-que na lista des changements de protèccion de les pâges.
+Vêde la [[Special:ProtectedPages|lista de les pâges protègiêyes]] por la lista de les protèccions que sont ora actives.',
 'protectedarticle' => 'at protègiê « [[$1]] »',
 'modifiedarticleprotection' => 'at changiê lo nivél de protèccion de « [[$1]] »',
 'unprotectedarticle' => 'at enlevâ la protèccion de « [[$1]] »',
@@ -2779,9 +2775,9 @@ Lo jornal des blocâjos est disponiblo ce-desot :',
 Lo jornal de les suprèssions est disponiblo ce-desot :',
 'blocklogentry' => 'at blocâ [[$1]] ; èxpiracion : $2 $3',
 'reblock-logentry' => 'at changiê los paramètres du blocâjo a [[$1]] avouéc una èxpiracion u $2 $3',
-'blocklogtext' => 'O est lo jornal des blocâjos et des dèblocâjos ux usanciérs.
-Les adrèces IP blocâs ôtomaticament sont pas listâs.
-Vêde la [[Special:BlockList|lista des blocâjos]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+'blocklogtext' => 'O est lo jornal de les accions de blocâjo et dèblocâjo d’utilisators.
+Les adrèces IP blocâyes ôtomaticament sont pas listâyes.
+Vêde la [[Special:BlockList|lista des blocâjos]] por la lista des banissements et des blocâjos que sont ora actifs.',
 'unblocklogentry' => 'at dèblocâ $1',
 'block-log-flags-anononly' => 'solament los usanciérs pas encartâs',
 'block-log-flags-nocreate' => 'crèacion de compto dèfendua',
@@ -3233,11 +3229,11 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 # Patrolling
 'markaspatrolleddiff' => 'Marcar coment survelyê',
 'markaspatrolledtext' => 'Marcar ceta pâge coment survelyê',
-'markedaspatrolled' => 'Marcâ coment survelyê',
-'markedaspatrolledtext' => 'La vèrsion chouèsia de [[:$1]] at étâ marcâ coment survelyê.',
+'markedaspatrolled' => 'Marcâye coment survelyêye',
+'markedaspatrolledtext' => 'La vèrsion chouèsia de [[:$1]] est étâye marcâye coment survelyêye.',
 'rcpatroldisabled' => 'La fonccion de survelyence des dèrriérs changements est pas activâ.',
 'rcpatroldisabledtext' => 'La fonccionalitât de survelyence des dèrriérs changements est pas activâ.',
-'markedaspatrollederror' => 'Pôt pas étre marcâ coment survelyê.',
+'markedaspatrollederror' => 'Pôt pas étre marcâye coment survelyêye',
 'markedaspatrollederrortext' => 'Vos dête chouèsir una vèrsion por la povêr marcar coment survelyê.',
 'markedaspatrollederror-noautopatrol' => 'Vos avéd pas lo drêt de marcar voutros prôpros changements coment survelyês.',
 
@@ -4130,8 +4126,8 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-move-move-noredirect' => '$1 at dèplaciê la pâge $3 vers $4 sen lèssiér una redirèccion',
 'logentry-move-move_redir' => '$1 at dèplaciê la pâge $3 vers $4 en ècrasent sa redirèccion',
 'logentry-move-move_redir-noredirect' => '$1 at dèplaciê la pâge $3 vers $4 en ècrasent sa redirèccion sen lèssiér una redirèccion',
-'logentry-patrol-patrol' => '$1 at marcâ la vèrsion $4 de la pâge $3 coment survelyê',
-'logentry-patrol-patrol-auto' => '$1 at marcâ ôtomaticament la vèrsion $4 de la pâge $3 coment survelyê',
+'logentry-patrol-patrol' => '$1 at marcâ la vèrsion $4 de la pâge $3 coment controlâye',
+'logentry-patrol-patrol-auto' => '$1 at marcâ ôtomaticament la vèrsion $4 de la pâge $3 coment controlâye',
 'logentry-newusers-newusers' => 'Lo compto utilisator $1 est étâ fêt',
 'logentry-newusers-create' => 'Lo compto utilisator $1 est étâ fêt',
 'logentry-newusers-create2' => 'Lo compto utilisator $3 est étâ fêt per $1',

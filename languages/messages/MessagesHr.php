@@ -1797,6 +1797,15 @@ Ako se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].',
 'backend-fail-create' => 'Ne mogu stvoriti ili pisati u datoteku $1.',
 'backend-fail-readonly' => 'Baza ili datotečni sustav "$1" trenutačno nije dostupan za pisanje. Razlog je: "\'\'$2\'\'"',
 'backend-fail-synced' => 'Datoteka "$1" nije identična inačici u internom skladištu',
+'backend-fail-connect' => 'Ne mogu se spojiti na spremište poslužitelja "$1“.',
+'backend-fail-internal' => 'Došlo je do nepoznate pogrješke u spremištu poslužitelja "$1".',
+'backend-fail-contenttype' => 'Nije moguće utvrditi tip datoteke koju treba spremiti u "$1".',
+'backend-fail-batchsize' => 'Spremištu poslužitelja upućen je zahtjev od $1 {{PLURAL:$1|datotečne operacije|datotečne operacije|datotečnih operacija}}; ograničenje je $2 {{PLURAL:$2|datotečne operacija|datotečne operacije|datotečnih operacija}}.',
+
+# Lock manager
+'lockmanager-notlocked' => 'Ne mogu otključati "$1"; nije zaključan.',
+'lockmanager-fail-closelock' => "Ne mogu zatvoriti ''lock'' datoteku za \"\$1\".",
+'lockmanager-fail-deletelock' => "Ne mogu obrisati ''lock'' datoteku  za \"\$1\".",
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Došlo je do pogreške pri otvaranju datoteke za ZIP provjeru.',
@@ -2865,6 +2874,9 @@ Snimite je na svoje računalo i postavite je ovdje.',
 
 # JavaScriptTest
 'javascripttest' => 'Testiranje JavaScripta',
+'javascripttest-title' => 'Izvršavaju se $1 testovi',
+'javascripttest-pagetext-unknownframework' => 'Nepoznata testna okolina "$1".',
+'javascripttest-pagetext-frameworks' => 'Molimo izaberite jednu od sljedećih testnih okolina: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Moja suradnička stranica',
@@ -3917,6 +3929,7 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-copyuploaddisabled' => 'Postavljanje datoteka putem URL-a nije omogućeno na ovom projektu.',
 'api-error-duplicate' => '{{PLURAL:$1|Postoji [$2 druga datoteka]|Postoje $1 [$2 druge datoteke]|Postoji $1 [$2 drugih datoteka]}} istog sadržaja.',
 'api-error-empty-file' => 'Datoteka koju ste poslali je prazna.',
+'api-error-emptypage' => 'Stvaranje praznih novih stranica nije dopušteno.',
 'api-error-fetchfileerror' => 'Pojavio se neki problem pri dobivanju podataka o datoteci.',
 'api-error-file-too-large' => 'Datoteka koju ste poslali bila je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
@@ -3932,10 +3945,12 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-missingresult' => 'Nismo mogli utvrditi je li kopiranje uspjelo.',
 'api-error-mustbeloggedin' => 'Niste pravilno prijavljeni.',
 'api-error-mustbeposted' => 'Postoji pogreška u ovom softveru; ne rabi ispravnu HTTP metodu.',
+'api-error-noimageinfo' => 'Postavljanje je uspjelo, ali poslužitelj nije vratio nikakvu informaciju o datoteci.',
 'api-error-nomodule' => 'Interna pogreška: Nije postavljen modul za postavljanje.',
 'api-error-ok-but-empty' => 'Interna pogreška: Nema odgovora od poslužitelja.',
 'api-error-overwrite' => 'Postavljanje preko postojeće datoteke nije dopušteno.',
 'api-error-stashfailed' => 'Wikiprojekt nije mogao spremiti datoteku.',
+'api-error-timeout' => 'Poslužitelj nije odgovorio unutar očekivanog vrjemena.',
 'api-error-unclassified' => 'Dogodila se nepoznata pogreška.',
 'api-error-unknown-code' => 'Nepoznata pogreška: "$1"',
 'api-error-unknown-error' => 'Dogodila se pogrješka pri pokušaju postavljanja vaše datoteke.',

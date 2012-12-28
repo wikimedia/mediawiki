@@ -944,7 +944,7 @@ $2
 仮パスワード：$2',
 'passwordreset-emailsent' => '確認メールをお送りしました。',
 'passwordreset-emailsent-capture' => '下記の内容の、確認メールをお送りしました。',
-'passwordreset-emailerror-capture' => '下記の内容の確認メールを生成しましたが、利用者への送信に失敗しました：$1',
+'passwordreset-emailerror-capture' => '以下の内容の確認メールを生成しましたが、利用者への送信に失敗しました: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'メールアドレスの変更',
@@ -1169,7 +1169,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'edit-already-exists' => '新しいページを作成できませんでした。
 そのページは既に存在します。',
 'defaultmessagetext' => '既定のメッセージ文',
-'content-failed-to-parse' => '$2 の本文を$1モデルとして構文解析できませんでした: $3',
+'content-failed-to-parse' => '$2のコンテンツを$1モデルとして構文解析できませんでした: $3',
 'invalid-content-data' => '本文データが無効です',
 'content-not-allowed-here' => 'ページ [[$2]] では、「$1」コンテンツは許可されていません',
 
@@ -1408,8 +1408,8 @@ $1",
 'notextmatches' => 'どのページ本文とも一致しませんでした',
 'prevn' => '前の$1件',
 'nextn' => '次の$1件',
-'prevn-title' => '前の{{PLURAL:$1|$1結果}}',
-'nextn-title' => '次の{{PLURAL:$1|$1結果}}',
+'prevn-title' => '前の{{PLURAL:$1|$1件}}',
+'nextn-title' => '次の{{PLURAL:$1|$1件}}',
 'shown-title' => 'ページあたり{{PLURAL:$1|$1件の結果}}を表示',
 'viewprevnext' => '($1{{int:pipe-separator}}$2) ($3 件) を表示',
 'searchmenu-legend' => '検索オプション',
@@ -1870,13 +1870,13 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'windows-nonascii-filename' => 'このwikiではファイル名に特殊文字を使用できません。',
 'fileexists' => 'この名前のファイルは既に存在します。置き換えていいかどうか確信が持てない場合は、<strong>[[:$1]]</strong>を確認してください。
 [[$1|thumb]]',
-'filepageexists' => 'このファイルのための説明ページは既に<strong>[[:$1]]</strong>に作成されていますが、現在、ファイルが存在していません。
+'filepageexists' => 'このファイルのための説明ページは既に<strong>[[:$1]]</strong>に作成されていますが、現在、ファイルが存在しません。
 入力した概要は説明ページに反映されません。
 新しい概要を表示させるには、説明ページを手動で編集する必要があります。
 [[$1|thumb]]',
-'fileexists-extension' => '類似した名前のファイルが既に存在しています：[[$2|thumb]]
+'fileexists-extension' => '類似した名前のファイルが既に存在します: [[$2|thumb]]
 * アップロード中のファイルの名前：<strong>[[:$1]]</strong>
-* 既存ファイルの名前：<strong>[[:$2]]</strong>
+* 既存ファイルの名前: <strong>[[:$2]]</strong>
 違う名前を選択してください。',
 'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの''（サムネイル）''のようです。
 [[$1|thumb]]
@@ -2045,7 +2045,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization をご覧ください�
 'http-request-error' => '不明なエラーによりHTTPリクエストに失敗しました。',
 'http-read-error' => 'HTTP読み込みエラー。',
 'http-timed-out' => 'HTTP要求がタイムアウトしました。',
-'http-curl-error' => '取得に失敗したURL：$1',
+'http-curl-error' => 'URLからの取得に失敗しました: $1',
 'http-host-unreachable' => 'URLに到達できません。',
 'http-bad-status' => 'HTTP要求中に問題が発生しました：$1$2',
 
@@ -2362,7 +2362,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'linksearch-ok' => '検索',
 'linksearch-text' => '「*.wikipedia.org」のようにワイルドカードを使用できます。
 少なくとも「*.org」のようなトップレベルドメインが必要です。<br />
-対応プロトコル: <code>$1</code> (プロトコルを省略した場合の既定値は http:// )。',
+対応{{PLURAL:$2|プロトコル}}: <code>$1</code> (プロトコルを省略した場合の既定値は http:// )。',
 'linksearch-line' => '$1 が $2 からリンクされています',
 'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
 
@@ -2810,7 +2810,7 @@ $1',
 'ipusubmit' => 'このブロックを解除',
 'unblocked' => '[[User:$1|$1]]のブロックを解除しました',
 'unblocked-range' => '$1のブロックを解除しました',
-'unblocked-id' => 'ブロック$1は除去されました',
+'unblocked-id' => 'ブロック$1を除去しました',
 'blocklist' => 'ブロックされている利用者',
 'ipblocklist' => 'ブロックされている利用者',
 'ipblocklist-legend' => 'ブロックされている利用者を検索',
@@ -2988,7 +2988,7 @@ $1 のブロックの理由は「''$2''」です。",
 'immobile-target-namespace' => '「$1」名前空間にはページを移動できません',
 'immobile-target-namespace-iw' => 'ウィキ間リンクは、ページの移動先には指定できません。',
 'immobile-source-page' => 'このページは移動できません。',
-'immobile-target-page' => '移動先ページ名に移動させることができません。',
+'immobile-target-page' => '指定したページ名には移動できません。',
 'bad-target-model' => '指定した移動先では、異なるコンテンツ モデルを使用しています。$1から$2には変換できません。',
 'imagenocrossnamespace' => 'ファイルを、ファイル名前空間以外に移動させることはできません',
 'nonfile-cannot-move-to-file' => 'ファイルではないものを、ファイル名前空間に移動させることはできません',

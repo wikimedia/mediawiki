@@ -1345,6 +1345,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'rightslogentry-autopromote' => 'ke apne se $2 se $3 ke promotion dewa gais',
 'logentry-rights-rights' => '$1 $3 ke group ke membership ke $4 se badal ke $5 kar dia hae',
 'logentry-rights-rights-legacy' => '$1 $3 ke group membership ke badal dia hae',
+'logentry-rights-autopromote' => '$1 ke apne se $2 se $3 ke promotion dewa gais',
 'rightsnone' => '(koi nai hai)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2480,6 +2481,7 @@ Abhi ke rukawat ke dekhe ke khatir meharbani kar ke [[Special:BlockList|block li
 'ipb-needreblock' => '$1 ke rok dewa gais hai.
 Ka aapp ii settings ke badle mangtaa hai?',
 'ipb-otherblocks-header' => 'Duusra {{PLURAL:$1|block|blocks}}',
+'unblock-hideuser' => 'Aap ii sadasya ke unblock nai kare saktaa hae, kaaheki iske naam ke lukae dewa gais gae.',
 'ipb_cant_unblock' => 'Error: Roke waala ID $1 nai milaa.
 Saait iske pahile khol dewa gais hoi.',
 'ipb_blocked_as_range' => 'Error: Ii IP $1 ke directly nai block karaa gais hai aur ii kaaran se iske unblock nai karaa jaawe sake hai.
@@ -2521,6 +2523,7 @@ Yaad kar ke [[Special:UnlockDB|lock ke hatae dena]] maintenance khalaas kare ke 
 'lockfilenotwritable' => 'Database lock file me likha nai jaawe sake hai.
 Database ke khole nai to band kare ke khatir, iske web server se likhe ke laayek hoe ke chaahi',
 'databasenotlocked' => 'Database band nai hai.',
+'lockedbyandtime' => '(se {{GENDER:$1|$1}} pe $2 hian $3)',
 
 # Move page
 'move-page' => '$1 ke naam badlo',
@@ -2591,7 +2594,7 @@ Meharbani kar ke duusra naam choose karo.',
 Destination panna "[[:$1]]" abhi hai.
 Ka aap mangta hai ki iske mitae dewa jaae, jisse ki ii naam se duusra paana ke save karaa jaae sake?',
 'delete_and_move_confirm' => 'Haan, panna ke mitao',
-'delete_and_move_reason' => 'Naam badle ke khatir mitao',
+'delete_and_move_reason' => '"[[$1]]" se move kare ke khatir isk mitaya',
 'selfmove' => 'Source aur destination title ke naam ekke hai;
 panna ke wahi ke uppar nai save karaa jaae sake hai.',
 'immobile-source-namespace' => 'Namespace "$1" me panna ke naam nai badle sakta hai',
@@ -2599,6 +2602,7 @@ panna ke wahi ke uppar nai save karaa jaae sake hai.',
 'immobile-target-namespace-iw' => 'Interwiki link panna ke hatae ke valid target nai hai.',
 'immobile-source-page' => 'Ii panna ke naam nai badla jaawe sake hai.',
 'immobile-target-page' => 'Uu jagah pe nai move kare sakta hai.',
+'bad-target-model' => 'Maange waala destination, different content model ke use kare hae. $1 se $2 convert nai kare saktaa hae',
 'imagenocrossnamespace' => 'File ke non-file namespace me hatae ke nai kare sakta hai',
 'nonfile-cannot-move-to-file' => 'Ek chij jon ki file nai hae ke file waala jagha pe nai kare sakta hae',
 'imagetypemismatch' => 'Nawaa file extension uske type se nai match kare hai.',
@@ -2622,9 +2626,11 @@ Iske duusra wiki me MediaWiki [[Special:Import|import panna]] se import karaa ja
 Panna ke export kare ke khatir titles ke niche ke text box me likho, ek line pe ek title, aur ii select karo ki aap abhi ke version ke saathe purana version mangtaa hai, panna ke itihaas ke saathe, nai to abhi ke version jisme last badlao ke jankari hai.
 
 Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] panna ke khatir "[[{{MediaWiki:Mainpage}}]]".',
+'exportall' => 'Sab panna ke export karo',
 'exportcuronly' => 'Khaali abhi ke badlao ke export karo, puura itihass nai',
 'exportnohistory' => "----
 '''Dhyan rakhna:''' Ii form se panna ke puura itihass ke export kare pe rok lagae dewa gais hai due to performance ke kaaran.",
+'exportlistauthors' => 'Har ek panna me yogdaan de waala ke naam ke bhi include karo',
 'export-submit' => 'Export karo',
 'export-addcattext' => 'Ii vibhag me se panna jorro:',
 'export-addcat' => 'Jorro',
@@ -2657,6 +2663,8 @@ Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani 
 'thumbnail_error' => 'Thumbnail banae me galti hoe gais: $1',
 'djvu_page_error' => 'DjVu panna range me nai hae',
 'djvu_no_xml' => ' DjVu file ke XML ke nai paawe sakaa hae',
+'thumbnail-temp-create' => 'Temporary thumbnail file ke nai banae sakaa hae',
+'thumbnail-dest-create' => 'Destination ke thumbnail ke bajae nai sakaa hae',
 'thumbnail_invalid_params' => 'Thumbnail ke parameter valid nai hae',
 'thumbnail_dest_directory' => 'Destination directory ke nai banaawe sakaa hae',
 'thumbnail_image-type' => 'Ii rakam ke chapa ke support nai karaa jaawe hai',
@@ -2674,6 +2682,7 @@ Sab transwiki import actions ke [[Special:Log/import|import log]] pe log karaa j
 'import-interwiki-templates' => 'Sab template ke include karo',
 'import-interwiki-submit' => 'Import karo',
 'import-interwiki-namespace' => 'Manzil waala namespace:',
+'import-interwiki-rootpage' => 'Destination root panna (optional):',
 'import-upload-filename' => 'File ke naam:',
 'import-comment' => 'Aapan bichar do:',
 'importtext' => 'Meharbani kar ke file ke [[Special:Export|export utility]] use kar ke source wiki me se export karo.
@@ -2705,6 +2714,15 @@ Ek temporary file nai hai.',
 'import-token-mismatch' => 'Loss of session data.
 Meharbani kar ke, fir se kosis karo.',
 'import-invalid-interwiki' => 'Naam dewa gais wiki se import nai kare saktaa hai.',
+'import-error-edit' => 'Panna "$1" ke import nai kara gais kaahe ki aap ke badle ke adhikar nai hae.',
+'import-error-create' => 'Panna "$1" ke import nai kara gais kaahe ki aap ke panna banae ke adhikar nai hae.',
+'import-error-interwiki' => 'Panna "$1" ke import nai kara gais kaahe ki ii panna ke external linking (interwiki) ke khatir reserve karaa gais hae.',
+'import-error-special' => 'Panna "$1" ke import nai karaa gais hae kaaheki ii ek khaas namespace hae jisme panna nai banawa jaae sake hae.',
+'import-error-invalid' => 'Panna "$1" ke import nai karaa gais hae kaaheki iske naam kharaab hae.',
+'import-error-unserialize' => 'Panna "$1" ke $2 badlao ke unserialize kare nai sakaa hae. Ii badlao me content model $3 serialized as $4 ke kaam me lawa gais hae.',
+'import-options-wrong' => 'Galat {{PLURAL:$2|option|options}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Derwa gais root panna ek kharaab title hae',
+'import-rootpage-nosubpage' => 'Root panna ke namespace "$1" sub panna ke nai allow kare hae.',
 
 # Import log
 'importlogpage' => 'Suchi ke import karo',
@@ -2713,6 +2731,16 @@ Meharbani kar ke, fir se kosis karo.',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|badlao|badlao}}',
 'import-logentry-interwiki' => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|badlao|badlao}} $2 se',
+
+# JavaScriptTest
+'javascripttest' => 'JavaScript ke testing',
+'javascripttest-title' => '$1 tests ke chaalu karaa jaae hae',
+'javascripttest-pagetext-noframework' => 'Ii panna ke JavaScript test ke kare ke khatir reserve karaa gais hae.',
+'javascripttest-pagetext-unknownframework' => 'Anjaan testing framework "$1".',
+'javascripttest-pagetext-frameworks' => 'Meharbaani kar ke ek testing framework ke chuno: $1',
+'javascripttest-pagetext-skins' => 'Test kare ke khatir ek chamrraa ke chuno:',
+'javascripttest-qunit-intro' => 'mediawiki.org me [$1 testing documentation] ke dekho.',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit test suite',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Aap ke sadasya panna',
@@ -2774,6 +2802,8 @@ Meharbani kar ke, fir se kosis karo.',
 'tooltip-diff' => 'Dekhao ki aap kon chij badlaa hae',
 'tooltip-compareselectedversions' => 'Ii panna ke dui chuna gais version ke antar dekho.',
 'tooltip-watch' => 'Ii panna ke aapan dhyan suchi me jorro',
+'tooltip-watchlistedit-normal-submit' => 'Title ke hatao',
+'tooltip-watchlistedit-raw-submit' => 'Dhyan suchi ke update karo',
 'tooltip-recreate' => 'Ii panna ke pahile mitaae pe bhi iske fir se banao',
 'tooltip-upload' => 'Upload suruu karo',
 'tooltip-rollback' => '"Rollback" ii panna ke badlao ke isse pahile waala badlao pe, ek click me, kar dewe hai',
@@ -2805,9 +2835,44 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'spambot_username' => 'MediaWiki spam ke safai',
 'spam_reverting' => 'Pahile waala badalo, jisme $1 se link nai hai, pe karaa jaawe hai',
 'spam_blanking' => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
+'spam_deleting' => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
 
 # Info page
-'pageinfo-edits' => 'Etna badlao rahaa',
+'pageinfo-title' => '"$1" ke khatir jaankari',
+'pageinfo-not-current' => 'Maaf karna, lekin purana badlao ke baare me ii jaankari nai de saktaa hae.',
+'pageinfo-header-basic' => 'Basic jaankari',
+'pageinfo-header-edits' => 'Itihaas ke badlo',
+'pageinfo-header-restrictions' => 'Panna ke protection',
+'pageinfo-header-properties' => 'Panna ke property',
+'pageinfo-display-title' => 'Title ke dekhao',
+'pageinfo-default-sort' => 'Default sort key',
+'pageinfo-length' => 'Panna ke lambai (bytes me)',
+'pageinfo-article-id' => 'Panna ke ID',
+'pageinfo-language' => 'Panna ke bhasa',
+'pageinfo-robot-policy' => 'Search engine ke status',
+'pageinfo-robot-index' => 'Indexable',
+'pageinfo-robot-noindex' => 'Indexable nai hae',
+'pageinfo-views' => 'Ketna dafe dekha gais hae',
+'pageinfo-watchers' => 'Ketnaa jane panna ke dekhe hae',
+'pageinfo-redirects-name' => 'Ii panna pe redirect karo',
+'pageinfo-subpages-name' => 'Ii panna ke subpage',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})',
+'pageinfo-firstuser' => 'Panna ke suruu kare waala',
+'pageinfo-firsttime' => 'Panna kon tarik ke banawa gais',
+'pageinfo-lastuser' => 'Pichhla badle waala',
+'pageinfo-lasttime' => 'Pichhla tarik jab ki isme badlao karaa gais ghae',
+'pageinfo-edits' => 'Badlao ke kul jorr',
+'pageinfo-authors' => 'Badlao kare waala ke kul jorr',
+'pageinfo-recent-edits' => 'Haali ke badlao ke jorr (pichhle $1 me)',
+'pageinfo-recent-authors' => 'Abhi haali badle waala ne number',
+'pageinfo-magic-words' => 'Magic {{PLURAL:$1|sabd}} ($1)',
+'pageinfo-hidden-categories' => 'Lukawa gais {{PLURAL:$1|category|categories}} ($1)',
+'pageinfo-templates' => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
+'pageinfo-toolboxlink' => 'Panna ke jaankari',
+'pageinfo-redirectsto' => 'Redirects to',
+'pageinfo-redirectsto-info' => 'jaankari',
+'pageinfo-contentpage-yes' => 'Haan',
+'pageinfo-protect-cascading-yes' => 'Haan',
 
 # Patrolling
 'markaspatrolleddiff' => 'Mark karo ke pahraa dewa jaawe hai',
@@ -2850,6 +2915,7 @@ Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'file-info-size' => '$1 × $2 pixel, file ke size: $3, MIME type: $4',
 'file-nohires' => 'Aur achchha resolution nai hai.',
 'svg-long-desc' => 'SVG file, naam kare ke khatir  $1 × $2 pixels, file size: $3',
+'svg-long-desc-animated' => 'Animated SVG file, naam kare ke khatir  $1 × $2 pixels, file size: $3',
 'show-big-image' => 'Puura resolution',
 'file-info-gif-looped' => 'Ghuum ghumae ke wahii jagha pe aawe hae',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
@@ -2868,6 +2934,9 @@ Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'ilsubmit' => 'Khojo',
 'bydate' => 'tarik se',
 'sp-newimages-showfrom' => ' $2, $1 se suruu kar ke nawaa file ke dekhao',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'just-now' => 'ekdam abhi',
 
 # Bad image list
 'bad_image_list' => 'Format ii rakam hai:
@@ -2966,6 +3035,11 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-gpsdestdistance' => 'Manjil se duuri',
 'exif-gpsareainformation' => 'GPS ilaka ke naam',
 'exif-gpsdatestamp' => 'GPS ke taarik',
+'exif-languagecode' => 'Bhasa',
+'exif-iimcategory' => 'Vibhag',
+'exif-copyrighted' => 'Copyright ke haalat:',
+'exif-copyrightowner' => 'Copyright ke adhikar rakkhe waala',
+'exif-usageterms' => 'Use kare ke shart',
 
 'exif-orientation-2' => 'Baraabar ultawa gais hae',
 'exif-orientation-3' => '180° ghumawa gais hae',

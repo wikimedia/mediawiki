@@ -3845,9 +3845,9 @@ $5
 'version-software' => 'ഇൻസ്റ്റോൾ ചെയ്ത സോഫ്റ്റ്‌വെയർ',
 'version-software-product' => 'സോഫ്റ്റ്‌വെയർ ഉല്പ്പന്നം',
 'version-software-version' => 'വിവരണം',
-'version-entrypoints' => 'പ്രവേശന നില യൂ.ആർ.എല്ലുകൾ',
-'version-entrypoints-header-entrypoint' => 'പ്രവേശന നില',
-'version-entrypoints-header-url' => 'യൂ.ആർ.എൽ.',
+'version-entrypoints' => 'പ്രവേശനസ്ഥാന യു.ആർ.എല്ലുകൾ',
+'version-entrypoints-header-entrypoint' => 'പ്രവേശനസ്ഥാനം',
+'version-entrypoints-header-url' => 'യു.ആർ.എൽ.',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath ലേഖന പഥം]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath സ്ക്രിപ്റ്റ് പഥം]',
 
