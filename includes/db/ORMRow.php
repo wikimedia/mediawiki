@@ -395,6 +395,8 @@ abstract class ORMRow implements IORMRow {
 	protected function insert( $functionName = null, array $options = null ) {
 		$dbw = $this->table->getWriteDbConnection();
 
+		$options['returning'] = $this->table->getPrefixedField( 'id' );
+
 		$success = $dbw->insert(
 			$this->table->getName(),
 			$this->getWriteValues(),
