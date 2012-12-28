@@ -493,13 +493,13 @@ class Revision implements IDBAccessObject {
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
 
-			if( !isset( $row->rev_parent_id ) ) {
-				$this->mParentId = is_null( $row->rev_parent_id ) ? null : 0;
+			if ( !isset( $row->rev_parent_id ) ) {
+				$this->mParentId = null;
 			} else {
 				$this->mParentId  = intval( $row->rev_parent_id );
 			}
 
-			if( !isset( $row->rev_len ) || is_null( $row->rev_len ) ) {
+			if ( !isset( $row->rev_len ) ) {
 				$this->mSize = null;
 			} else {
 				$this->mSize = intval( $row->rev_len );
