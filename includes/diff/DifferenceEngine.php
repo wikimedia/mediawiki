@@ -431,10 +431,14 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected function markPatrolledLink() {
 		global $wgUseRCPatrol;
+		$cache = wfGetMainCache();
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
-			if ( $wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) ) {
+			if (
+				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) &&
+				$cache->get( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ) ) !== true
+			) {
 				// If we've been given an explicit change identifier, use it; saves time
 				if ( $this->mRcidMarkPatrolled ) {
 					$rcid = $this->mRcidMarkPatrolled;
@@ -480,6 +484,7 @@ class DifferenceEngine extends ContextSource {
 						)
 					) . ']</span>';
 				} else {
+					$cache->set( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ), true );
 					$this->mMarkPatrolledLink = '';
 				}
 			} else {
