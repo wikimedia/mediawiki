@@ -48,7 +48,6 @@ class DifferenceEngine extends ContextSource {
 	 * @var Title
 	 */
 	var $mOldPage, $mNewPage;
-	var $mRcidMarkPatrolled;
 
 	/**
 	 * @var Revision
@@ -80,8 +79,8 @@ class DifferenceEngine extends ContextSource {
 	 * Constructor
 	 * @param $context IContextSource context to use, anything else will be ignored
 	 * @param $old Integer old ID we want to show and diff with.
-	 * @param string $new either 'prev' or 'next'.
-	 * @param $rcid Integer ??? FIXME (default 0)
+	 * @param $new String either 'prev' or 'next'.
+	 * @param $rcid Integer Deprecated, no longer used!
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
@@ -96,7 +95,6 @@ class DifferenceEngine extends ContextSource {
 
 		$this->mOldid = $old;
 		$this->mNewid = $new;
-		$this->mRcidMarkPatrolled = intval( $rcid );  # force it to be an integer
 		$this->mRefreshCache = $refreshCache;
 		$this->unhide = $unhide;
 	}
@@ -412,38 +410,39 @@ class DifferenceEngine extends ContextSource {
 	 * @return String
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol;
+		global $wgUseRCPatrol, $wgRCMaxAge;
+		$cache = wfGetMainCache();
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
-			if ( $wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) ) {
-				// If we've been given an explicit change identifier, use it; saves time
-				if ( $this->mRcidMarkPatrolled ) {
-					$rcid = $this->mRcidMarkPatrolled;
-					$rc = RecentChange::newFromId( $rcid );
-					// Already patrolled?
-					$rcid = is_object( $rc ) && !$rc->getAttribute( 'rc_patrolled' ) ? $rcid : 0;
+			if (
+				// Is patrolling enabled and the user allowed to?
+				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) &&
+				// Only do this if the revision isn't more than 6 hours older
+				// than the Max RC age (6h because the RC might not be cleaned out regularly)
+				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 ) &&
+				// Maybe the result is cached
+				!$cache->get( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ) )
+			) {
+				// Look for an unpatrolled change corresponding to this diff
+
+				$db = wfGetDB( DB_SLAVE );
+				$change = RecentChange::newFromConds(
+					array(
+						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
+						'rc_this_oldid' => $this->mNewid,
+						'rc_last_oldid' => $this->mOldid,
+						'rc_patrolled' => 0
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_timestamp' )
+				);
+
+				if ( $change ) {
+					$rcid = $change->getAttribute( 'rc_id' );
 				} else {
-					// Look for an unpatrolled change corresponding to this diff
-					$db = wfGetDB( DB_SLAVE );
-					$change = RecentChange::newFromConds(
-						array(
-						// Redundant user,timestamp condition so we can use the existing index
-							'rc_user_text' => $this->mNewRev->getRawUserText(),
-							'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
-							'rc_this_oldid' => $this->mNewid,
-							'rc_last_oldid' => $this->mOldid,
-							'rc_patrolled' => 0
-						),
-						__METHOD__
-					);
-					if ( $change instanceof RecentChange ) {
-						$rcid = $change->mAttribs['rc_id'];
-						$this->mRcidMarkPatrolled = $rcid;
-					} else {
-						// None found
-						$rcid = 0;
-					}
+					// None found
+					$rcid = 0;
 				}
 				// Build the link
 				if ( $rcid ) {
@@ -462,6 +461,7 @@ class DifferenceEngine extends ContextSource {
 						)
 					) . ']</span>';
 				} else {
+					$cache->set( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ), '1', $wgRCMaxAge );
 					$this->mMarkPatrolledLink = '';
 				}
 			} else {

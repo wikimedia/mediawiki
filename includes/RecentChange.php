@@ -122,11 +122,12 @@ class RecentChange {
 	 *
 	 * @param array $conds of conditions
 	 * @param $fname Mixed: override the method name in profiling/logs
+	 * @param $options Array Query options
 	 * @return RecentChange
 	 */
-	public static function newFromConds( $conds, $fname = __METHOD__ ) {
+	public static function newFromConds( $conds, $fname = __METHOD__, $options = array() ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'recentchanges', self::selectFields(), $conds, $fname );
+		$row = $dbr->selectRow( 'recentchanges', self::selectFields(), $conds, $fname, $options );
 		if ( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {
@@ -409,6 +410,9 @@ class RecentChange {
 			),
 			__METHOD__
 		);
+		// Invalidate the page cache after the page has been patrolled
+		// to make sure that the Patrol link isn't visible any longer!
+		$this->getTitle()->invalidateCache();
 		return $dbw->affectedRows();
 	}
 
@@ -861,5 +865,19 @@ class RecentChange {
 			}
 		}
 		return $ip;
+	}
+
+	/**
+	 * Check whether the given timestamp is new enough to have a RC row with a given tolerance
+	 * as the recentchanges table might not be cleared out regularly (so older entries might exist)
+	 * or rows which will be deleted soon shouldn't be included.
+	 *
+	 * @param $timestamp mixed MWTimestamp compatible timestamp
+	 * @param $tolerance integer Tolerance in seconds
+	 * @return bool
+	 */
+	public static function isInRCLifespan( $timestamp, $tolerance = 0 ) {
+		global $wgRCMaxAge;
+		return wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $wgRCMaxAge;
 	}
 }

@@ -334,10 +334,6 @@ class ChangesList extends ContextSource {
 				'oldid' => $rc->mAttribs['rc_last_oldid']
 			);
 
-			if ( $unpatrolled ) {
-				$query['rcid'] = $rc->mAttribs['rc_id'];
-			};
-
 			$diffLink = Linker::linkKnown(
 				$rc->getTitle(),
 				$this->message['diff'],
@@ -369,10 +365,6 @@ class ChangesList extends ContextSource {
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
 		$params = array();
-
-		if ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW ) {
-			$params['rcid'] = $rc->mAttribs['rc_id'];
-		}
 
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
@@ -752,8 +744,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 		// New unpatrolled pages
 		} elseif ( $rc->unpatrolled && $type == RC_NEW ) {
-			$clink = Linker::linkKnown( $rc->getTitle(), null, array(),
-				array( 'rcid' => $rc->mAttribs['rc_id'] ) );
+			$clink = Linker::linkKnown( $rc->getTitle() );
 		// Log entries
 		} elseif ( $type == RC_LOG ) {
 			if ( $logType ) {
@@ -789,14 +780,9 @@ class EnhancedChangesList extends ChangesList {
 		# called too many times (50% of CPU time on RecentChanges!).
 		$thisOldid = $rc->mAttribs['rc_this_oldid'];
 		$lastOldid = $rc->mAttribs['rc_last_oldid'];
-		if ( $rc->unpatrolled ) {
-			$rcIdQuery = array( 'rcid' => $rc->mAttribs['rc_id'] );
-		} else {
-			$rcIdQuery = array();
-		}
+
 		$querycur = $curIdEq + array( 'diff' => '0', 'oldid' => $thisOldid );
-		$querydiff = $curIdEq + array( 'diff' => $thisOldid, 'oldid' =>
-			$lastOldid ) + $rcIdQuery;
+		$querydiff = $curIdEq + array( 'diff' => $thisOldid, 'oldid' => $lastOldid );
 
 		if ( !$showdifflinks ) {
 			$curLink = $this->message['cur'];
@@ -823,7 +809,7 @@ class EnhancedChangesList extends ChangesList {
 			$lastLink = $this->message['last'];
 		} else {
 			$lastLink = Linker::linkKnown( $rc->getTitle(), $this->message['last'],
-				array(), $curIdEq + array( 'diff' => $thisOldid, 'oldid' => $lastOldid ) + $rcIdQuery );
+				array(), $curIdEq + array( 'diff' => $thisOldid, 'oldid' => $lastOldid ) );
 		}
 
 		# Make user links
@@ -1088,9 +1074,6 @@ class EnhancedChangesList extends ChangesList {
 			} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
 			} else {
-				if ( $rcObj->unpatrolled && $type == RC_NEW ) {
-					$params['rcid'] = $rcObj->mAttribs['rc_id'];
-				}
 
 				$link = Linker::linkKnown(
 						$rcObj->getTitle(),
