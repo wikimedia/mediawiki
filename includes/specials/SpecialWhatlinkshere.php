@@ -188,15 +188,34 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
-			if ( 0 == $level ) {
+			if ( $level == 0 ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
 				// Show filters only if there are links
 				if( $hidelinks || $hidetrans || $hideredirs || $hideimages )
 					$out->addHTML( $this->getFilterPanel() );
 
-				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
-				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+				if( $from ){
+					$options = $this->opts->getChangedValues();
+					unset( $options['target'] );
+					if( $back ) {
+						// Salvage previous listing back. Per bug #43509, we can only rescue one
+						// page of listings before the 'prev' link breaks.
+						$errMsg = is_int( $namespace ) ? 'nomorelinkshere-ns' : 'nomorelinkshere';
+						$errMsgLink = 'nomorelinkshere-link';
+						$options['from'] = $back;
+						unset( $options['back'] );
+					} else {
+						$errMsg = is_int( $namespace ) ? 'nomorelinkshere-ns-lost' : 'nomorelinkshere-lost';
+						$errMsgLink = 'nomorelinkshere-lost-link';
+						unset( $options['from'] );
+					}
+					$link = $this->makeSelfLink( wfMessage( $errMsgLink )->text(), $options );
+					$out->addHTML( $this->msg( $errMsg, $this->target->getPrefixedText() )->rawParams( $link )->parseAsBlock() );
+				} else {
+					$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+				}
 			}
 			return;
 		}
