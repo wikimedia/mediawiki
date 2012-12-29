@@ -2215,7 +2215,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'linksearch-pat' => 'Mẫu liên kết:',
 'linksearch-ns' => 'Không gian tên:',
 'linksearch-ok' => 'Tìm kiếm',
-'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <code>$1</code>; mặc định là <code>http://</code> nếu không định rõ giao thức trong truy vấn.",
+'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />{{PLURAL:$2|Giao thức|Các giao thức}} này được hỗ trợ: <code>$1</code>; mặc định là <code>http://</code> nếu không định rõ giao thức trong truy vấn.",
 'linksearch-line' => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 

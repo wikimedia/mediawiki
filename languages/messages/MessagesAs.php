@@ -1499,7 +1499,7 @@ $1",
 'rightslogentry-autopromote' => '$2ৰ পৰা $3লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত হ’ল',
 'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
 'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
-'logentry-rights-autopromote' => '$1ৰ পৰা  $2ৰ পৰা $3লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত হ’ল',
+'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',
 'rightsnone' => '(নাই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2129,7 +2129,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'linksearch-ok' => 'অনুসন্ধান',
 'linksearch-text' => "ৱাইল্ডকাৰ্ডসমূহ যেনে \"*.wikipedia.org\" ব্যৱহাৰ কৰিব পাৰি।
 অন্তত এটা উচ্চ-স্তৰৰ ডমেইনৰ প্ৰয়োজন, উদাহৰণস্বৰূপ \"*.org\"। <br />
-সমৰ্থিত প্ৰ'ট'ক'লসমূহ: <code>\$1</code> (কোনো প্ৰ'ট'ক'ল নিৰ্দিষ্ট নকৰিলে http:// সূচাব)।",
+সমৰ্থিত {{PLURAL:\$2|প্ৰ'ট'ক'ল|প্ৰ'ট'ক'লসমূহ}} : <code>\$1</code> (কোনো প্ৰ'ট'ক'ল নিৰ্দিষ্ট নকৰিলে http:// সূচাব)।",
 'linksearch-line' => '$2 পৰা $1 সংযোগ কৰা হৈছে',
 'linksearch-error' => "ৱাইল্ডকাৰ্ড কেৱল হ'ষ্টনামৰ আৰম্ভণিতহে দেখা যাব ।",
 
@@ -2217,8 +2217,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'watchnologin' => 'প্ৰৱেশ কৰা নাই',
 'watchnologintext' => 'নিৰীক্ষণ তালিকা পৰিৱৰ্তন কৰিবলৈ আপুনি আগতে [[Special:UserLogin|প্ৰৱেশ]] কৰিব লাগিব ।',
 'addwatch' => 'লক্ষ্য-তালিকাত অন্তৰ্ভুক্ত কৰক',
-'addedwatchtext' => "আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] \"[[:\$1]]\" অন্তৰ্ভুক্ত কৰা হ'ল।
-ভৱিষ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সাম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাখন '''গাঢ়''' আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে।",
+'addedwatchtext' => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] "[[:$1]]" পৃষ্ঠাখন অন্তৰ্ভুক্ত কৰা হ\'ল।
+ভৱিষ্যতে এই পৃষ্ঠা বা ইয়াৰ আলোচনা পৃষ্ঠাত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব।',
 'removewatch' => 'লক্ষ্য-তালিকাৰ পৰা আঁতৰাওক',
 'removedwatchtext' => '"[[:$1]]" পৃষ্ঠাখন [[Special:Watchlist|আপোনাৰ লক্ষ্য-তালিকা]]ৰ পৰা আতৰোৱা হৈছে ।',
 'watch' => 'চকু ৰাখক',
@@ -2252,7 +2252,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'enotif_subject_moved' => '{{SITENAME}} পৃষ্ঠা  $1 {{gender:$2|$2}}ৰ দ্বাৰা স্থানান্তৰ সৃষ্টি কৰা',
 'enotif_subject_restored' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা পুনৰ স্থাপন কৰা',
 'enotif_subject_changed' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা সলনি কৰা হ’ল',
-'enotif_body_intro_deleted' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা বিলোপ কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
+'enotif_body_intro_deleted' => '{{SITENAME}}ৰ পৃষ্ঠা $1ক $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা বিলোপ কৰা হৈছিল। $3 চাওক।',
 'enotif_body_intro_created' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা সৃষ্টি কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
 'enotif_body_intro_moved' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা স্থানান্তৰ কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
 'enotif_body_intro_restored' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা পুনৰ স্থাপন কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',

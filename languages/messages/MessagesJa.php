@@ -1284,7 +1284,7 @@ $3が示した理由：''$2''",
 'revdelete-nologtype-title' => '記録の種類を指定していません',
 'revdelete-nologtype-text' => 'この操作を実行する記録の種類を指定していません。',
 'revdelete-nologid-title' => '無効な記録項目',
-'revdelete-nologid-text' => 'この操作の対象となる記録項目を指定していないか、あるいは指定した項目が存在しません。',
+'revdelete-nologid-text' => 'この操作の対象となる記録項目を指定していないか、または指定した項目が存在しません。',
 'revdelete-no-file' => '指定されたファイルは存在しません。',
 'revdelete-show-file-confirm' => '本当にファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を閲覧しますか？',
 'revdelete-show-file-submit' => 'はい',
@@ -1849,7 +1849,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 推奨される{{PLURAL:$3|ファイル形式}}は $2 です。",
 'filetype-banned-type' => "'''「.$1」''' は許可されていないファイル形式です{{PLURAL:$4|}}。
 許可されているファイル形式{{PLURAL:$3|}}は$2です。",
-'filetype-missing' => 'ファイルに、「.jpg」のような拡張子がありません。',
+'filetype-missing' => 'ファイル名に「.jpg」のような拡張子がありません。',
 'empty-file' => '送信されたファイルは空でした。',
 'file-too-large' => '送信されたファイルは大きすぎます。',
 'filename-tooshort' => 'ファイル名が短すぎます。',
@@ -1867,7 +1867,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'emptyfile' => 'アップロードしたファイルは内容が空のようです。
 ファイル名の指定が間違っている可能性があります。
 本当にこのファイルをアップロードしたいのか、確認してください。',
-'windows-nonascii-filename' => 'このwikiではファイル名に特殊文字を使用できません。',
+'windows-nonascii-filename' => 'このウィキではファイル名に特殊文字を使用できません。',
 'fileexists' => 'この名前のファイルは既に存在します。置き換えていいかどうか確信が持てない場合は、<strong>[[:$1]]</strong>を確認してください。
 [[$1|thumb]]',
 'filepageexists' => 'このファイルのための説明ページは既に<strong>[[:$1]]</strong>に作成されていますが、現在、ファイルが存在しません。
@@ -1937,9 +1937,9 @@ MGP # ペンタックス
 PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
 'upload-success-subj' => 'アップロード成功',
-'upload-success-msg' => '[$2] からアップロードしました。こちらで利用できます：[[:{{ns:file}}:$1]]',
-'upload-failure-subj' => 'アップロードで発生した問題',
-'upload-failure-msg' => '[$2]からのアップロード中に問題が発生しました：
+'upload-success-msg' => '[$2] からアップロードしました。こちらで利用できます: [[:{{ns:file}}:$1]]',
+'upload-failure-subj' => 'アップロード失敗',
+'upload-failure-msg' => '[$2] からアップロードする際に問題が発生しました:
 
 $1',
 'upload-warning-subj' => 'アップロードの警告',
@@ -2686,7 +2686,7 @@ $1',
 最近の削除と復元の記録については[[Special:Log/delete|削除記録]]を参照してください。",
 'undelete-header' => '最近削除されたページは[[Special:Log/delete|削除記録]]で確認できます。',
 'undelete-search-title' => '削除されたページの検索',
-'undelete-search-box' => '削除されたページを検索',
+'undelete-search-box' => '削除されたページの検索',
 'undelete-search-prefix' => '表示を開始するページ名:',
 'undelete-search-submit' => '検索',
 'undelete-no-results' => '削除の保存版に、一致するページが見つかりませんでした。',

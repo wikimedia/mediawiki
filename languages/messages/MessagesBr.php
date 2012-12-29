@@ -3830,9 +3830,9 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-move-move_redir-noredirect' => 'kaset ar bajenn $3 da $4 gant $1 dreist un adkas hep lezel un adkas',
 'logentry-patrol-patrol' => 'Merket eo bet an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
 'logentry-patrol-patrol-auto' => 'Merket eo bet ent emgefre an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
-'logentry-newusers-newusers' => 'Ar gont implijer $1 oa bet krouet',
-'logentry-newusers-create' => 'Ar gont implijer $1 oa bet krouet',
-'logentry-newusers-create2' => 'Ar gont implijer $3 oa bet krouet gant $1',
+'logentry-newusers-newusers' => 'Krouet eo bet ar gont implijer $1',
+'logentry-newusers-create' => 'Krouet eo bet ar gont implijer $1',
+'logentry-newusers-create2' => 'Gant $1 eo bet krouet ar gont implijer $3',
 'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
 'newuserlog-byemail' => 'ger-tremen kaset dre bostel',
 

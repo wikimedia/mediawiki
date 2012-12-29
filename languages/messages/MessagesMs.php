@@ -2108,7 +2108,7 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ok' => 'Cari',
 'linksearch-text' => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
 Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
-Protokol yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol dinyatakan).',
+{{PLURAL:$2|Protokol|Protokol-protokol}} yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol dinyatakan).',
 'linksearch-line' => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 

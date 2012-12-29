@@ -1251,10 +1251,18 @@ Deleng [[Special:NewFiles|galeri berkas anyar]] nggo tampilan visual.',
 'license' => 'Jenis lisènsi:',
 'license-header' => 'Jinis lisènsi',
 
+# Special:ListFiles
+'listfiles_date' => 'Tanggal',
+'listfiles_name' => 'Jeneng',
+'listfiles_user' => 'Panganggo',
+'listfiles_count' => 'Versi',
+
 # File description page
 'file-anchor-link' => 'Berkas',
 'filehist' => 'Sajarah kaca',
 'filehist-help' => 'Klik nang tanggal/wektu kanggo ndeleng berkas kiye nang wektu kuwe mau.',
+'filehist-deleteall' => 'busek kabeh',
+'filehist-deleteone' => 'busek',
 'filehist-revert' => 'balekna',
 'filehist-current' => 'Sekiye',
 'filehist-datetime' => 'Tanggal/Wektu',
@@ -1445,10 +1453,24 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 
 # E-mail user
 'emailuser' => 'Kirim imel maring panganggo kiye',
+'emailtarget' => 'Lebokna jeneng panganggo utawa panampa',
+'emailusername' => 'Jeneng panganggo:',
+'emailusernamesubmit' => 'Kirimna',
+'email-legend' => 'Kirim imel ming panganggo {{SITENAME}} liyane',
+'emailfrom' => 'Sekang:',
+'emailto' => 'Nggo:',
+'emailsubject' => 'Subyek:',
+'emailmessage' => 'Pesen:',
+'emailsend' => 'Kirim',
+'emailccme' => 'Kirimna salinan pesenku mau ming imele inyong.',
+'emailccsubject' => 'Salinan pesene Rika kanggo $1: $2',
+'emailsent' => 'Imel wis dikirim',
+'emailsenttext' => 'Pesen imele Rika wis dikirim.',
+'emailuserfooter' => 'Layang kiye dikirimna sekang $1 ming $2 nggunakna fungsi "Layangpanganggo" nang {{SITENAME}}.',
 
 # Watchlist
 'watchlist' => 'Daftar pangawasane inyong',
-'mywatchlist' => 'Daftar pangawasane inyong',
+'mywatchlist' => 'Daptar pangawasane inyong',
 'watchlistfor2' => 'Kanggo $1 $2',
 'watch' => 'Pantau',
 'unwatch' => 'Batalna pantauan',

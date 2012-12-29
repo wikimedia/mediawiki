@@ -520,6 +520,7 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 # Preferences page
 'preferences' => 'Préférinches',
 'mypreferences' => 'Mes préférinches',
+'changepassword' => "Canger ch'mot d'passe",
 'timezoneregion-europe' => 'Urope',
 'youremail' => 'Imèle:',
 'username' => "Nom d'uzeu:",
@@ -816,6 +817,8 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'restriction-level' => 'Nivieu éd réstricchon:',
 
 # Undelete
+'undelete' => 'Vir chés paches abolies',
+'viewdeletedpage' => 'Vir chés paches abolies',
 'undeletelink' => 'vir/érfoaire',
 'undeleteviewlink' => 'Vir',
 
