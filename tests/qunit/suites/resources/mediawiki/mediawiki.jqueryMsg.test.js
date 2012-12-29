@@ -154,4 +154,35 @@ QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, fun
 	} );
 });
 
+QUnit.test( 'Links', 3, function ( assert ) {
+	var parser = mw.jqueryMsg.getMessageFunction();
+
+	/*
+	 The below three are all identical to or based on real messages.  For disambiguations-text,
+	 the bold was removed because it is not yet implemented.
+	*/
+
+	mw.messages.set( 'statistics-users', '注册[[Special:ListUsers|用户]]' );
+
+	assert.equal(
+		parser( 'statistics-users' ),
+		'注册<a href="' + mw.util.wikiGetlink( 'Special:ListUsers' ) + '">用户</a>',
+		'Piped wikilink'
+	);
+
+	mw.messages.set( 'disambiguations-text', 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.<br />\nA page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].' );
+	assert.equal(
+		parser( 'disambiguations-text' ),
+		'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.<br>\nA page is treated as a disambiguation page if it uses a template that is linked from <a href="' + mw.util.wikiGetlink( 'MediaWiki:Disambiguationspage' ) + '">MediaWiki:Disambiguationspage</a>.',
+		'Wikilink without pipe'
+	);
+
+	mw.messages.set( 'version-entrypoints-index-php', '[https://www.mediawiki.org/wiki/Manual:index.php index.php]' );
+	assert.equal(
+		parser( 'version-entrypoints-index-php' ),
+		'<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>',
+		'External link'
+	);
+});
+
 }( mediaWiki, jQuery ) );
