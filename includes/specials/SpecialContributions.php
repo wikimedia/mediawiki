@@ -946,12 +946,11 @@ class ContribsPager extends ReverseChronologicalPager {
 		// Let extensions add data
 		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
 
-		$classes = implode( ' ', $classes );
-		if ( $classes === '' && $ret === '' ) {
+		if ( $classes === array() && $ret === '' ) {
 			wfDebug( 'Dropping Special:Contribution row that could not be formatted' );
 			$ret = "<!-- Could not format Special:Contribution row. -->\n";
 		} else {
-			$ret = "<li class=\"$classes\">$ret</li>\n";
+			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
 		}
 
 		wfProfileOut( __METHOD__ );
