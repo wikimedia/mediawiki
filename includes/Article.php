@@ -1053,8 +1053,77 @@ class Article extends Page {
 		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
+		if ( !$user->useNPPatrol() ) {
+			// Patrolling is fully disabled or the user isn't allowed to
 			return;
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		if ( !$rcid ) {
+			if ( $user->useRCPatrol() ) {
+				// Conditions to potentially patrol the current revision
+
+				// We make use of a little index trick over here:
+				// First we get the timestamp of the last revision and then
+				// we look up the RC row by that as the timestamp is indexed
+				// and usually very few rows exist for one timestamp
+				// (While several thousand can exists for a single page)
+				if ( !$this->mRevision ) {
+					$this->mRevision = Revision::newFromId( $this->getRevIdFetched() );
+				}
+
+				global $wgRCMaxAge;
+				if ( wfTimestamp( TS_UNIX, $this->mRevision->getTimestamp() ) < time() - $wgRCMaxAge ) {
+					// The revision is older than the Max RC age, no need to
+					// torture the DB any further
+					wfProfileOut( __METHOD__ );
+					return;
+				}
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_this_oldid' => $this->getRevIdFetched(),
+						'rc_timestamp' => $this->mRevision->getTimestamp()
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_timestamp' )
+				);
+			} else {
+				// RC patrol is disabled so we have to patrol the first
+				// revision (new page patrol) in case it's in the RC table
+				// The check whether this is a page creation or just the oldest
+				// revision known happens below
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_title' => $this->getTitle()->getDBkey(),
+						'rc_namespace' => $this->getTitle()->getNamespace()
+					),
+					__METHOD__,
+					array( 'ORDER BY' => 'rc_timestamp ASC' )
+				);
+			}
+		} elseif ( is_numeric( $rcid ) ) {
+			$rc = RecentChange::newFromId( $rcid );
+		} else {
+			// We got an unexpected value (not numerical) as rc_id
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		if ( !is_object( $rc ) || $rc->getAttribute( 'rc_patrolled' ) ) {
+			// No RC entry around or already patrolled
+			return;
+		}
+
+		if ( !$user->useRCPatrol() && !$rc->getAttribute( 'rc_type' ) == RC_NEW ) {
+			// RC patrolling is disabled and this isn't a new page
+			return;
+		}
+
+		if ( !$rcid ) {
+			$rcid = $rc->getAttribute( 'rc_id' );
 		}
 
 		$token = $user->getEditToken( $rcid );
