@@ -594,10 +594,47 @@
 
 		/**
 		 * Transform wiki-link
-		 * TODO unimplemented
+		 *
+		 * TODO:
+		 * It only handles basic cases, either no pipe, a pipe with an explicit
+		 * anchor.
+		 *
+		 * It does not attempt to handle features like the pipe trick.
+		 * However, the pipe trick should usually not be present in wikitext retrieved
+		 * from the server, since the replacement is done at save time.
+		 * It may, though, if the wikitext appears in extension-controlled content.
+		 *
 		 * @param nodes
 		 */
-		wlink: function () {
+		wlink: function ( nodes ) {
+			if ( nodes.length !== 1 ) {
+				return 'unimplemented due to unxpected node count in link';
+			}
+
+			var splitLink = nodes[0].split('|'), page, anchor, url;
+
+			if ( splitLink.length === 1 || splitLink.length === 2 ) {
+				page = splitLink[0];
+				url = mw.util.wikiGetlink(page);
+
+				// [[Some Page]] or [[Namespace:Some Page]]
+				if ( splitLink.length === 1 ) {
+					anchor = page;
+				}
+				/*
+				 * [[Some Page|anchor text]] or
+				 * [[Namespace:Some Page|anchor]
+				 */
+				else {
+					anchor = splitLink[1];
+					if ( anchor === '' ) {
+						return 'pipe trick is unimplemented';
+					}
+				}
+
+				return $('<a />').attr('href', url).text(anchor);
+			}
+
 			return 'unimplemented';
 		},
 
