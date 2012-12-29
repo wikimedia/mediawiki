@@ -416,7 +416,7 @@ pe titlul secțiunii (JavaScript)',
 'category-empty' => "''Această categorie nu conține articole sau fișiere media.''",
 'hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}}',
 'hidden-category-category' => 'Categorii ascunse',
-'category-subcat-count' => '{{PLURAL:$2|Această categorie conține doar următoarea subcategorie.|Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}, dintr-un total de $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Această categorie conține doar următoarea subcategorie.|Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii|următoarele $1 de subcategorii}}, dintr-un total de $2.}}',
 'category-subcat-count-limited' => 'Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}.',
 'category-article-count' => '{{PLURAL:$2|Această categorie conține doar următoarea pagină.|{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în această categorie, dintr-un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în categoria curentă.',
@@ -2238,7 +2238,7 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-ok' => 'Caută',
 'linksearch-text' => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
 Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
-Protocoale suportate: <code>$1</code> (se trece implicit la http:// dacă nu este specificat niciun protocol).',
+{{PLURAL:$2|Protocol suportat|Protocoale suportate}}: <code>$1</code> (se trece implicit la http:// dacă nu este specificat niciun protocol).',
 'linksearch-line' => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 

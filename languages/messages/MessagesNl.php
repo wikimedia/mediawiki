@@ -2348,7 +2348,7 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'linksearch-ok' => 'Zoeken',
 'linksearch-text' => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.
 Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
-Ondersteunde protocollen: <code>$1</code> (wordt "http://"als er geen protocol wordt opgegeven).',
+{{PLURAL:$2|Ondersteund protocol|Ondersteunde protocollen}}: <code>$1</code> (wordt "http://"als er geen protocol wordt opgegeven).',
 'linksearch-line' => '$1 heeft een verwijzing in $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 

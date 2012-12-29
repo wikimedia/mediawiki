@@ -2159,9 +2159,9 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'linksearch-pat' => 'Pattern di ricerca:',
 'linksearch-ns' => 'Namespace:',
 'linksearch-ok' => 'Cerca',
-'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".<br />
+'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".
 È necessario almeno un dominio di primo livello, ad esempio "*.org".<br />
-Protocolli supportati: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).',
+{{PLURAL:$2|Protocollo supportato|Protocolli supportati}}: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).',
 'linksearch-line' => '$1 presente nella pagina $2',
 'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 

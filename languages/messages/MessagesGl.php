@@ -2183,8 +2183,8 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ns' => 'Espazo de nomes:',
 'linksearch-ok' => 'Procurar',
 'linksearch-text' => 'Pódense usar caracteres comodín como "*.wikipedia.org".
-Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (úsase http:// como predeterminado se non se especifica ningún protocolo).',
+Cómpre, polo menos, un dominio de nivel superior; por exemplo, "*.org".<br />
+{{PLURAL:$2|Protocolo soportado|Protocolos soportados}}: <code>$1</code> (úsase http:// como predeterminado se non se especifica ningún protocolo).',
 'linksearch-line' => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 

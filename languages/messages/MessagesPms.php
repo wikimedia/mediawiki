@@ -3756,9 +3756,9 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'searchsuggest-containing' => 'contenent ...',
 
 # API errors
-'api-error-badaccess-groups' => "Chiel a peul pa carié d'archivi su sta wiki.",
+'api-error-badaccess-groups' => "Chiel a peul pa carié d'archivi su costa wiki.",
 'api-error-badtoken' => 'Eror antern: sìmbol pa bon.',
-'api-error-copyuploaddisabled' => "Ël càrigh a travers ëd n'anliura a l'é disabilità su cost sërvent.",
+'api-error-copyuploaddisabled' => 'Le carie a travers ëd liure a son disabilità ansima a cost servent.',
 'api-error-duplicate' => "A-i {{PLURAL:$1|é [$2 n'àutr archivi]|son [$2 d'àutr archivi]}} già an sël sit col ël midem contnù",
 'api-error-duplicate-archive' => "A-i {{PLURAL:$1|era [$2 n'àutr archivi]|ero [$2 àutri archivi]}} già an sël sit con ël midem contnù, ma {{PLURAL:$1|a l'é stàit|a son stàit}} ëscancelà.",
 'api-error-duplicate-archive-popup-title' => "Dupliché {{PLURAL:$1|l'archivi|j'archivi}} ch'a son già stàit ëscancelà",

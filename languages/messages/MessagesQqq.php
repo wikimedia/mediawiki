@@ -584,7 +584,9 @@ Appears in subtitle
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
 'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
-'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
+'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page.
+
+Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
@@ -1502,6 +1504,12 @@ See [{{canonicalurl:x|feed=atom&action=history}} example].',
 # Revision deletion
 'rev-deleted-comment' => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
 *{{msg-mw|revdelete-hide-comment}}',
+'rev-deleted-user' => 'See also:
+* {{msg-mw|Rev-deleted-user}}
+* {{msg-mw|Rev-deleted-event}}',
+'rev-deleted-event' => 'See also:
+* {{msg-mw|Rev-deleted-user}}
+* {{msg-mw|Rev-deleted-event}}',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
 'rev-deleted-text-permission' => 'See also:
 * {{msg-mw|Rev-deleted-text-permission}}
@@ -1561,6 +1569,18 @@ See also:
 It is the page title of [[Special:RevisionDelete]].',
 'revdelete-nooldid-title' => '{{RevisionDelete}}',
 'revdelete-nooldid-text' => '{{RevisionDelete}}',
+'revdelete-nologtype-title' => 'See also:
+* {{msg-mw|Revdelete-nologtype-title}}
+* {{msg-mw|Revdelete-nologtype-text}}',
+'revdelete-nologtype-text' => 'See also:
+* {{msg-mw|Revdelete-nologtype-title}}
+* {{msg-mw|Revdelete-nologtype-text}}',
+'revdelete-nologid-title' => 'See also:
+* {{msg-mw|Revdelete-nologid-title}}
+* {{msg-mw|Revdelete-nologid-text}}',
+'revdelete-nologid-text' => 'See also:
+* {{msg-mw|Revdelete-nologid-title}}
+* {{msg-mw|Revdelete-nologid-text}}',
 'revdelete-show-file-confirm' => 'A confirmation message shown on Special:Revisiondelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 
 * <code>$1</code> is a file name
@@ -1667,17 +1687,89 @@ Title of the suppression log. Shown in the drop down menu at [[Special:log]] and
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # History merging
+'mergehistory-header' => 'Used as header for Merge form in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-header}}
+* {{msg-mw|mergehistory-box}}
+* {{msg-mw|mergehistory-from}}
+* {{msg-mw|mergehistory-into}}
+* {{msg-mw|mergehistory-go}}',
+'mergehistory-box' => 'Used as the legend for the Merge form in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-header}}
+* {{msg-mw|mergehistory-box}}
+* {{msg-mw|mergehistory-from}}
+* {{msg-mw|mergehistory-into}}
+* {{msg-mw|mergehistory-go}}',
+'mergehistory-from' => 'Used as label for the Merge form in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-header}}
+* {{msg-mw|mergehistory-box}}
+* {{msg-mw|mergehistory-from}}
+* {{msg-mw|mergehistory-into}}
+* {{msg-mw|mergehistory-go}}',
+'mergehistory-into' => 'Used as label for the Merge form in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-header}}
+* {{msg-mw|mergehistory-box}}
+* {{msg-mw|mergehistory-from}}
+* {{msg-mw|mergehistory-into}}
+* {{msg-mw|mergehistory-go}}',
+'mergehistory-list' => 'Used as section header in [[Special:MergeHistory]].',
 'mergehistory-merge' => 'Used in [[Special:MergeHistory]].
 * $1 - target page title
 * $2 - destination page title',
+'mergehistory-go' => 'Used as the label for Submit button in the Merge form, in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-header}}
+* {{msg-mw|mergehistory-box}}
+* {{msg-mw|mergehistory-from}}
+* {{msg-mw|mergehistory-into}}
+* {{msg-mw|mergehistory-go}}',
+'mergehistory-submit' => 'Used as label for Submit button in [[Special:MergeHistory]].',
+'mergehistory-empty' => 'Used in [[Special:MergeHistory]].',
 'mergehistory-success' => 'Used in [[Special:MergeHistory]].
 * $1 - target page title
 * $2 - destination page title
 * $3 - number of revisions which succeeded to merge',
-'mergehistory-no-source' => 'Used in [[Special:MergeHistory].
-* $1 - source page title',
-'mergehistory-no-destination' => 'Used in [[Special:MergeHistory]].
-* $1 - destination page title',
+'mergehistory-fail' => 'Used as error message in [[Special:MergeHistory]].',
+'mergehistory-no-source' => 'Used as error message in [[Special:MergeHistory]].
+* $1 - source page title
+See also:
+* {{msg-mw|mergehistory-invalid-source}}
+* {{msg-mw|mergehistory-no-source}}
+* {{msg-mw|mergehistory-invalid-destination}}
+* {{msg-mw|mergehistory-no-destination}}
+* {{msg-mw|mergehistory-same-destination}}',
+'mergehistory-no-destination' => 'Used as error message in [[Special:MergeHistory]].
+* $1 - destination page title
+See also:
+* {{msg-mw|mergehistory-invalid-source}}
+* {{msg-mw|mergehistory-no-source}}
+* {{msg-mw|mergehistory-invalid-destination}}
+* {{msg-mw|mergehistory-no-destination}}
+* {{msg-mw|mergehistory-same-destination}}',
+'mergehistory-invalid-source' => 'Used as error message in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-invalid-source}}
+* {{msg-mw|mergehistory-no-source}}
+* {{msg-mw|mergehistory-invalid-destination}}
+* {{msg-mw|mergehistory-no-destination}}
+* {{msg-mw|mergehistory-same-destination}}',
+'mergehistory-invalid-destination' => 'Used as error message in [[Special:MergeHistory]].
+
+See also:
+* {{msg-mw|mergehistory-invalid-source}}
+* {{msg-mw|mergehistory-no-source}}
+* {{msg-mw|mergehistory-invalid-destination}}
+* {{msg-mw|mergehistory-no-destination}}
+* {{msg-mw|mergehistory-same-destination}}',
 'mergehistory-autocomment' => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.
 
 *Parameter $1 is the name of the redirect page which is created
@@ -1687,7 +1779,14 @@ Title of the suppression log. Shown in the drop down menu at [[Special:log]] and
 *Parameter $1 is the name of the redirect page which is created
 *Parameter $2 is the target of the redirect
 *Parameter $3 is a log comment for the merge',
-'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination',
+'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination
+
+See also:
+* {{msg-mw|mergehistory-invalid-source}}
+* {{msg-mw|mergehistory-no-source}}
+* {{msg-mw|mergehistory-invalid-destination}}
+* {{msg-mw|mergehistory-no-destination}}
+* {{msg-mw|mergehistory-same-destination}}',
 'mergehistory-reason' => '{{Identical|Reason}}',
 'mergehistory-revisionrow' => 'A revision row in the merge history page. Parameters:
 * $1 is a radio button to indicate a merge point,
@@ -1709,6 +1808,7 @@ This is the name of a log of merge actions done on [[Special:MergeHistory]]. Thi
 The log and its associated special page 'MergeHistory' is not enabled by default.
 
 Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.",
+'revertmerge' => 'Used as link text',
 'mergelogpagetext' => 'Description of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=merge&user=&page=&year=&month=-1 merge log], on the log. The associated [[Special:MergeHistory|Merge]] special page is not enabled by default.',
 
 # Diffs
@@ -2530,6 +2630,12 @@ I guess that this should appear before an input box where you can specify that r
 Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'rc-change-size-new' => 'Tooltip when hovering a change list diff size. The tooltip shows the resulting new size in bytes.',
 'newsectionsummary' => 'Default summary when adding a new section to a page.',
+'rc-enhanced-expand' => 'See also:
+* {{msg-mw|Rc-enhanced-expand}}
+* {{msg-mw|Rc-enhanced-hide}}',
+'rc-enhanced-hide' => 'See also:
+* {{msg-mw|Rc-enhanced-expand}}
+* {{msg-mw|Rc-enhanced-hide}}',
 'rc-old-title' => 'Text that shows the original title of a page, $1 is the original title text',
 
 # Recent changes linked
@@ -2567,7 +2673,20 @@ Page title of [[Special:Log/upload]].',
 {{Identical|Source}}',
 'ignorewarnings' => 'In [[Special:Upload]]',
 'illegalfilename' => '* $1 - filename',
-'filename-toolong' => 'Error message when uploading a file with a filename longer than the hardcoded limit of 240 bytes. This limit will never change and is hardcoded in the message',
+'filename-toolong' => 'Error message when uploading a file with a filename longer than the hard-coded limit of 240 bytes. This limit will never change and is hard-coded in the message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
 'badfilename' => '* $1 - filename',
 'filetype-mime-mismatch' => 'Upload error. Parameters:
 * $1 is the extension of the uploaded file
@@ -2581,11 +2700,149 @@ Page title of [[Special:Log/upload]].',
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
 * $3 is the number of allowed file formats (to be used for the PLURAL function)
 * $4 is the number of extensions that could not be uploaded (to be used for the PLURAL function)",
-'filetype-missing' => 'Error when uploading a file with no extension',
-'verification-error' => 'Error message shown when an uploaded file contents does not pass verification, i.e. the file is corrupted, it is not the type it claims to be etc.',
+'filetype-missing' => 'Error when uploading a file with no extension
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'empty-file' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'file-too-large' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'filename-tooshort' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'filetype-banned' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'verification-error' => 'Error message shown when an uploaded file contents does not pass verification, i.e. the file is corrupted, it is not the type it claims to be etc.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'hookaborted' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'illegal-filename' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
+'overwrite' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
 'large-file' => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',
 'largefileserver' => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile' => 'Error message when trying to upload an empty file',
+'windows-nonascii-filename' => 'Used as error message.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}',
 'fileexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
 'filepageexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
 Shown on [[Special:Upload]], $1 is link to the page. This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.",
@@ -2602,6 +2859,8 @@ Parameters:
 * $1 - number of duplicate files',
 'file-deleted-duplicate' => 'Used in [[Special:Upload]. Parameters:
 * $1 - page title of the file',
+'uploadwarning' => 'Used as section header in [[Special:Upload]].',
+'uploadwarning-text' => 'Used in [[Special:Upload]].',
 'savefile' => 'When uploading a file',
 'uploadedimage' => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
 'overwroteimage' => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
@@ -2634,12 +2893,49 @@ See also:
 * {{msg-mw|filewasdeleted}}",
 'filename-prefix-blacklist' => "{{optional}}
 Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
-'upload-success-msg' => '* $1 - the local file name after uploading
-* $2 - the URL the file was uploaded from, when using upload-by-url',
-'upload-failure-msg' => '* $1 - the specific error message
-* $2 - the URL the file tried to upload from, when using upload-by-url.',
-'upload-warning-msg' => '* $1 is the URL the file was uploaded from, when using upload-by-url
-* $2 is the session key for the upload',
+'upload-success-subj' => 'Used as message subject which is posted on the user talk page.
+
+See also:
+* {{msg-mw|upload-success-subj|subject}}
+* {{msg-mw|upload-success-msg|message}}
+* {{msg-mw|upload-failure-subj|subject}}
+* {{msg-mw|upload-failure-msg|message}}',
+'upload-success-msg' => 'Used as message body which is posted on the user talk page. Parameters:
+* $1 - the local file name after uploading
+* $2 - the URL the file was uploaded from, when using upload-by-url
+See also:
+* {{msg-mw|upload-success-subj|subject}}
+* {{msg-mw|upload-success-msg|message}}
+* {{msg-mw|upload-failure-subj|subject}}
+* {{msg-mw|upload-failure-msg|message}}',
+'upload-failure-subj' => 'Used as message subject which is posted on the user talk page.
+
+I think this message should be translated as opposed to {{msg-mw|upload-success-subj}}.
+
+See also:
+* {{msg-mw|upload-success-subj|subject}}
+* {{msg-mw|upload-success-msg|message}}
+* {{msg-mw|upload-failure-subj|subject}}
+* {{msg-mw|upload-failure-msg|message}}',
+'upload-failure-msg' => 'Used as message body which is posted on the user talk page. Parameters:
+* $1 - the specific error message
+* $2 - the URL the file tried to upload from, when using upload-by-url.
+See also:
+* {{msg-mw|upload-success-subj|subject}}
+* {{msg-mw|upload-success-msg|message}}
+* {{msg-mw|upload-failure-subj|subject}}
+* {{msg-mw|upload-failure-msg|message}}',
+'upload-warning-subj' => 'Used as warning subject which is posted on the user talk page.
+
+See also:
+* {{msg-mw|upload-warning-subj|subject}}
+* {{msg-mw|upload-warning-msg|message}}',
+'upload-warning-msg' => 'Used as warning body which is posted on the user talk page. Parameters:
+* $1 is the URL the file was uploaded from, when using upload-by-url
+* $2 is the session key for the upload
+See also:
+* {{msg-mw|upload-warning-subj|subject}}
+* {{msg-mw|upload-warning-msg|message}}',
 
 'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
 'upload-file-error' => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].
@@ -2679,8 +2975,34 @@ Extensions making use of it:
 'backend-fail-move' => 'Parameters:
 * $1 is a file path
 * $2 is a file path.',
-'backend-fail-read' => 'Parameters:
-* $1 is a filename.',
+'backend-fail-opentemp' => 'Used as error message.
+
+See also:
+* {{msg-mw|Backend-fail-opentemp}}
+* {{msg-mw|Backend-fail-writetemp}}
+* {{msg-mw|Backend-fail-closetemp}}
+* {{msg-mw|Backend-fail-read}}',
+'backend-fail-writetemp' => 'Used as error message.
+
+See also:
+* {{msg-mw|Backend-fail-opentemp}}
+* {{msg-mw|Backend-fail-writetemp}}
+* {{msg-mw|Backend-fail-closetemp}}
+* {{msg-mw|Backend-fail-read}}',
+'backend-fail-closetemp' => 'Used as error message.
+
+See also:
+* {{msg-mw|Backend-fail-opentemp}}
+* {{msg-mw|Backend-fail-writetemp}}
+* {{msg-mw|Backend-fail-closetemp}}
+* {{msg-mw|Backend-fail-read}}',
+'backend-fail-read' => 'Used as error message. Parameters:
+* $1 - filename
+See also:
+* {{msg-mw|Backend-fail-opentemp}}
+* {{msg-mw|Backend-fail-writetemp}}
+* {{msg-mw|Backend-fail-closetemp}}
+* {{msg-mw|Backend-fail-read}}',
 'backend-fail-create' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-maxsize' => '* $1 - destination storage path
@@ -2736,6 +3058,13 @@ A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by 
 'zip-unsupported' => "Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.",
 
 # Special:UploadStash
+'uploadstash' => 'Used as page title in [[Special:UploadStash]].',
+'uploadstash-summary' => 'Used as summary in [[Special:UploadStash]].',
+'uploadstash-clear' => 'Used as Submit button text in [[Special:UploadStash]].',
+'uploadstash-nofiles' => 'Used in [[Special:UploadStash]]; used when no files available in stash.',
+'uploadstash-badtoken' => 'Used as error message in [[Special:UploadStash]].',
+'uploadstash-errclear' => 'Used as error message in [[Special:UploadStash]].',
+'uploadstash-refresh' => 'Used as link text in [[Special:UploadStash]].',
 'invalid-chunk-offset' => 'Error that can happen if chunks get uploaded out of order.
 As a result of this error, clients can continue from an offset provided or restart the upload.
 Used on [[Special:UploadWizard]].',
@@ -2765,12 +3094,54 @@ Used on [[Special:UploadWizard]].',
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
 
 If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.',
+'http-request-error' => 'Used as error message when executing HTTP request.
+
+See also:
+* {{msg-mw|Http-request-error}}
+* {{msg-mw|Http-read-error}}
+* {{msg-mw|Http-host-unreachable|6}}
+* {{msg-mw|Http-timed-out|28}}',
+'http-read-error' => 'Used as error message when executing HTTP request.
+
+See also:
+* {{msg-mw|Http-request-error}}
+* {{msg-mw|Http-read-error}}
+* {{msg-mw|Http-host-unreachable|6}}
+* {{msg-mw|Http-timed-out|28}}',
+'http-timed-out' => 'Used as error message when executing HTTP request.
+
+See also:
+* {{msg-mw|Http-request-error}}
+* {{msg-mw|Http-read-error}}
+* {{msg-mw|Http-host-unreachable|6}}
+* {{msg-mw|Http-timed-out|28}}',
 'http-curl-error' => 'Used as curl error message when the error is other than known messages.
 * $1 - error code; not URL
 Known messages are:
 * {{msg-mw|http-host-unreachable}}
 * {{msg-mw|http-timed-out}}',
+'http-host-unreachable' => 'Used as error message when executing HTTP request.
+
+See also:
+* {{msg-mw|Http-request-error}}
+* {{msg-mw|Http-read-error}}
+* {{msg-mw|Http-host-unreachable|6}}
+* {{msg-mw|Http-timed-out|28}}',
 'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'See also:
+* {{msg-mw|Upload-curl-error6|title}}
+* {{msg-mw|Upload-curl-error6-text|body}}',
+'upload-curl-error6-text' => 'See also:
+* {{msg-mw|Upload-curl-error6|title}}
+* {{msg-mw|Upload-curl-error6-text|body}}',
+'upload-curl-error28' => 'See also:
+* {{msg-mw|Upload-curl-error28|title}}
+* {{msg-mw|Upload-curl-error28-text|body}}',
+'upload-curl-error28-text' => 'See also:
+* {{msg-mw|Upload-curl-error28|title}}
+* {{msg-mw|Upload-curl-error28-text|body}}',
 
 'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense' => '{{Identical|None selected}}',
@@ -3629,6 +4000,24 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 'undelete-fieldset-title' => 'Used as the title of the fieldset.',
 'undeleteextrahelp' => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), The ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
 'undeleterevisions' => '* $1 - number of revisions',
+'undeletehistory' => 'Used in [[Special:Undelete]].
+
+See also:
+* {{msg-mw|Undeletehistory}}
+* {{msg-mw|Undeleterevdel}}
+* {{msg-mw|Undeletehistorynoadmin}}',
+'undeleterevdel' => 'Used in [[Special:Undelete]].
+
+See also:
+* {{msg-mw|Undeletehistory}}
+* {{msg-mw|Undeleterevdel}}
+* {{msg-mw|Undeletehistorynoadmin}}',
+'undeletehistorynoadmin' => 'Used in [[Special:Undelete]].
+
+See also:
+* {{msg-mw|Undeletehistory}}
+* {{msg-mw|Undeleterevdel}}
+* {{msg-mw|Undeletehistorynoadmin}}',
 'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
 
 * $1: deleted page name
@@ -3637,6 +4026,7 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 * $5: time of the revision
 
 \'\'Example:\'\' Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
+'undelete-nodiff' => 'Used in [[Special:Undelete]].',
 'undeletebtn' => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
 
 {{Identical|Restore}}',
@@ -3649,15 +4039,59 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 {{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',
 'undeletecomment' => '{{Identical|Reason}}',
-'undeletedrevisions' => '* $1 - number of revisions',
-'undeletedrevisions-files' => '* $1 - number of revisions
-* $2 - number of files',
-'undeletedfiles' => '* $1 - number of files',
+'undeletedrevisions' => 'Used as reason in the log entry. Parameters:
+* $1 - number of revisions
+See also:
+* {{msg-mw|Undeletedrevisions-files}}
+* {{msg-mw|Undeletedrevisions}}
+* {{msg-mw|Undeletedfiles}}',
+'undeletedrevisions-files' => 'Used as reason in the log entry. Parameters:
+* $1 - number of revisions
+* $2 - number of files
+See also:
+* {{msg-mw|Undeletedrevisions-files}}
+* {{msg-mw|Undeletedrevisions}}
+* {{msg-mw|Undeletedfiles}}',
+'undeletedfiles' => 'Used as reason in the log entry. Parameters:
+* $1 - number of files
+See also:
+* {{msg-mw|Undeletedrevisions-files}}
+* {{msg-mw|Undeletedrevisions}}
+* {{msg-mw|Undeletedfiles}}',
 'cannotundelete' => 'Message shown when undeletion failed for some reason.
 * <code>$1</code> is the combined wikitext of messages for all errors that caused the failure.',
 'undeletedpage' => '* $1 - page title',
-'undelete-search-title' => 'Page title when showing the search form in Special:Undelete',
-'undelete-search-submit' => '{{Identical|Search}}',
+'undelete-header' => 'Used in [[Special:Undelete]].',
+'undelete-search-title' => 'Page title when showing the search form in [[Special:Undelete]].
+
+See also:
+* {{msg-mw|undelete-search-title}}
+* {{msg-mw|undelete-search-box}}
+* {{msg-mw|undelete-search-prefix}}
+* {{msg-mw|undelete-search-submit}}',
+'undelete-search-box' => 'Used as legend for the Search form in [[Special:Undelete]].
+
+See also:
+* {{msg-mw|undelete-search-title}}
+* {{msg-mw|undelete-search-box}}
+* {{msg-mw|undelete-search-prefix}}
+* {{msg-mw|undelete-search-submit}}',
+'undelete-search-prefix' => 'Used as label for the input box in [[Special:Undelete]].
+
+See also:
+* {{msg-mw|undelete-search-title}}
+* {{msg-mw|undelete-search-box}}
+* {{msg-mw|undelete-search-prefix}}
+* {{msg-mw|undelete-search-submit}}',
+'undelete-search-submit' => 'Used as Submit button text in Search form on [[Special:Undelete]].
+
+See also:
+* {{msg-mw|undelete-search-title}}
+* {{msg-mw|undelete-search-box}}
+* {{msg-mw|undelete-search-prefix}}
+* {{msg-mw|undelete-search-submit}}
+{{Identical|Search}}',
+'undelete-no-results' => 'Used as Search result in [[Special:Undelete]].',
 'undelete-filename-mismatch' => '* $1 - date and time',
 'undelete-bad-store-key' => '* $1 - date and time',
 'undelete-cleanup-error' => '* $1 - file path',

@@ -279,6 +279,7 @@ fiiri [[Special:Version|nooca bogga]].',
 'youhavenewmessagesfromusers' => 'Waxay $1 kaaga timid {{PLURAL:$3|adeegsade kale|$3 adeegsade}} ($2).',
 'youhavenewmessagesmanyusers' => 'Waxay ka $1 timid adeegsade yaal farabadan ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|Waa fariin cusub|fariin cusub}}',
+'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|bedelkii ugu dambeeyey|bedeladii ugu dambeeyey}}',
 'youhavenewmessagesmulti' => '$1 waxaa kuu yaalo fariimo cusub',
 'editsection' => 'Wax ka bedel',
 'editold' => 'Wax ka bedel',
@@ -724,7 +725,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'editundo' => 'ka noqo',
 
 # Search results
-'searchresults' => 'Raadi natiijooyinka',
+'searchresults' => 'Natiijada raadinta (Baaris)',
 'searchresults-title' => 'Raadi natiijoojika "$1"',
 'searchsubtitle' => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan boggaga ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan boggaga la xiriiro "$1"]])',
 'searchsubtitleinvalid' => "Waxaa raadisay '''$1'''",
