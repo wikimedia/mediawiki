@@ -431,10 +431,19 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected function markPatrolledLink() {
 		global $wgUseRCPatrol;
+		$cache = wfGetMainCache();
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
-			if ( $wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) ) {
+			if (
+				// Is patrolling enabled and the user allowed to?
+				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) &&
+				// Only do this if the revision isn't more than 6 hours older
+				// than the Max RC age (6h because the RC might not be cleaned out regularly)
+				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 ) &&
+				// Maybe the result is cached
+				$cache->get( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ) ) !== true
+			) {
 				// If we've been given an explicit change identifier, use it; saves time
 				if ( $this->mRcidMarkPatrolled ) {
 					$rcid = $this->mRcidMarkPatrolled;
@@ -443,6 +452,7 @@ class DifferenceEngine extends ContextSource {
 					$rcid = is_object( $rc ) && !$rc->getAttribute( 'rc_patrolled' ) ? $rcid : 0;
 				} else {
 					// Look for an unpatrolled change corresponding to this diff
+
 					$db = wfGetDB( DB_SLAVE );
 					$change = RecentChange::newFromConds(
 						array(
@@ -480,6 +490,7 @@ class DifferenceEngine extends ContextSource {
 						)
 					) . ']</span>';
 				} else {
+					$cache->set( wfMemcKey( 'NotPatrollableRevId', $this->mNewid ), true );
 					$this->mMarkPatrolledLink = '';
 				}
 			} else {
