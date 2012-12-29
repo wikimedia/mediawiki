@@ -231,6 +231,10 @@ class BackupDumperPageTest extends DumpTestCase {
 	}
 
 	function testCurrentStubGzip () {
+		if ( $this->markTestSkippedIfMissingGzip() ) {
+			return;
+		}
+
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 		$dumper = new BackupDumper( array ( "--output=gzip:" . $fname ) );
@@ -283,6 +287,10 @@ class BackupDumperPageTest extends DumpTestCase {
 		// We reproduce such a setup with our mini fixture, although we omit
 		// chunks, and all the other gimmicks of xmldumps-backup.
 		//
+		if ( $this->markTestSkippedIfMissingGzip() ) {
+			return;
+		}
+
 		$fnameMetaHistory = $this->getNewTempFile();
 		$fnameMetaCurrent = $this->getNewTempFile();
 		$fnameArticles = $this->getNewTempFile();

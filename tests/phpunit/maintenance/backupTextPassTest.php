@@ -417,6 +417,9 @@ class TextPassDumperTest extends DumpTestCase {
 	 * @group large
 	 */
 	function testCheckpointGzip() {
+		if ( $this->markTestSkippedIfMissingGzip() ) {
+			return;
+		}
 		$this->checkpointHelper( "gzip" );
 	}
 

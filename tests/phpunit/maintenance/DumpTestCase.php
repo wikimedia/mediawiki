@@ -26,6 +26,14 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	protected $xml = null;
 
 	/**
+	 * Holds the variable that indicates whether a gzip binary is available in
+	 * PATH and tested to be working
+	 *
+	 * @var bool|null
+	 */
+	protected $isGzipMissing = null;
+
+	/**
 	 * Adds a revision to a page, while returning the resuting revision's id
 	 *
 	 * @param $page WikiPage: page to add the revision to
@@ -65,6 +73,38 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$contents = gzinflate( substr( $gzipped_contents, 10, -8 ) );
 		$this->assertEquals( strlen( $contents ),
 			file_put_contents( $fname, $contents ), "# bytes written" );
+	}
+
+	/**
+	 * Tests if a gzip binary is available in the PATH by invoking it to
+	 * compress a zero-byte file.
+	 *
+	 * @return boolean
+	 */
+	function isMissingGzip() {
+		if ( is_null( $this->isGzipMissing ) ) {
+			$tmpFile = $this->getNewTempFile();
+			$stdErrFile = $this->getNewTempFile();
+			wfShellExec( 'gzip -c - >' . wfEscapeShellArg( $tmpFile ) .
+						 '2>' . $stdErrFile );
+			$this->isGzipMissing = filesize( $tmpFile ) == 0;
+		}
+
+		return $this->isGzipMissing;
+	}
+
+	/**
+	 * Tests for gzip availability and marks the current test skipped if not 
+	 * available
+	 * 
+	 * @return boolean True if gzip is missing
+	 */
+	function markTestSkippedIfMissingGzip() {
+		if ( $this->isMissingGzip() ) {
+			$this->markTestSkipped( 'Missing gzip binary in PATH' );
+			return true;
+		}
+		return false;
 	}
 
 	/**
