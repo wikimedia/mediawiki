@@ -1053,8 +1053,35 @@ class Article extends Page {
 		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
+		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
 			return;
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		if ( !$rcid ) {
+			$rc = RecentChange::newFromConds(
+				array(				
+					'rc_this_oldid' => $this->getRevIdFetched(),
+					'rc_namespace' => $this->getTitle()->getNamespace(),
+					'rc_title' => $this->getTitle()->getDBkey()
+				),
+				__METHOD__,
+				array( 'USE INDEX' => 'rc_namespace_title' )
+			);
+		} elseif ( is_numeric( $rcid ) ) {
+			$rc = RecentChange::newFromId( $rcid );
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		// Already patrolled?
+		if ( !is_object( $rc ) || $rc->getAttribute( 'rc_patrolled' ) ) {
+			return;
+		}
+
+		if ( !$rcid ) {
+			$rcid = $rc->getAttribute( 'rc_id' );
 		}
 
 		$token = $user->getEditToken( $rcid );
