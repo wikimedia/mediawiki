@@ -164,7 +164,7 @@
 				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, backslash, anyCharacter,
 				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
 				whitespace, dollar, digits,
-				openExtlink, closeExtlink, openLink, closeLink, templateName, pipe, colon,
+				openExtlink, closeExtlink, wikilinkPage, wikilinkContents, openLink, closeLink, templateName, pipe, colon,
 				templateContents, openTemplate, closeTemplate,
 				nonWhitespaceExpression, paramExpression, expression, result;
 
@@ -304,6 +304,14 @@
 				 var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
 				 return result === null ? null : result.join('');
 			}
+
+			// Used for wikilink page names.  Like literalWithoutBar, but
+			// without allowing escapes.
+			function unescapedLiteralWithoutBar() {
+				var result = nOrMore( 1, regularLiteralWithoutBar )();
+				return result === null ? null : result.join('');
+			}
+
 			function literal() {
 				 var result = nOrMore( 1, escapedOrRegularLiteral )();
 				 return result === null ? null : result.join('');
@@ -357,16 +365,48 @@
 			}
 			openLink = makeStringParser( '[[' );
 			closeLink = makeStringParser( ']]' );
+			pipe = makeStringParser( '|' );
+
+			function template() {
+				var result = sequence( [
+					openTemplate,
+					templateContents,
+					closeTemplate
+				] );
+				return result === null ? null : result[1];
+			}
+
+			wikilinkPage = choice( [
+				unescapedLiteralWithoutBar,
+				template
+			] );
+
+			function pipedWikilink() {
+				var result = sequence( [
+					wikilinkPage,
+					pipe,
+					expression
+				] );
+				return result === null ? null : [ result[0], result[2] ];
+			}
+
+			wikilinkContents = choice( [
+				pipedWikilink,
+				wikilinkPage // unpiped link
+			] );
+
 			function link() {
-				var result, parsedResult;
+				var result, parsedResult, parsedLinkContents;
 				result = null;
+
 				parsedResult = sequence( [
 					openLink,
-					expression,
+					wikilinkContents,
 					closeLink
 				] );
 				if ( parsedResult !== null ) {
-					 result = [ 'WLINK', parsedResult[1] ];
+					parsedLinkContents = parsedResult[1];
+					result = [ 'WLINK' ].concat( parsedLinkContents );
 				}
 				return result;
 			}
@@ -389,7 +429,7 @@
 				// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
 				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
 			}
-			pipe = makeStringParser( '|' );
+
 			function templateWithReplacement() {
 				var result = sequence( [
 					templateName,
@@ -430,14 +470,6 @@
 			] );
 			openTemplate = makeStringParser('{{');
 			closeTemplate = makeStringParser('}}');
-			function template() {
-				var result = sequence( [
-					openTemplate,
-					templateContents,
-					closeTemplate
-				] );
-				return result === null ? null : result[1];
-			}
 			nonWhitespaceExpression = choice( [
 				template,
 				link,
@@ -454,6 +486,7 @@
 				replacement,
 				literalWithoutBar
 			] );
+
 			expression = choice( [
 				template,
 				link,
@@ -462,6 +495,7 @@
 				replacement,
 				literal
 			] );
+
 			function start() {
 				var result = nOrMore( 0, expression )();
 				if ( result === null ) {
@@ -594,11 +628,41 @@
 
 		/**
 		 * Transform wiki-link
-		 * TODO unimplemented
+		 *
+		 * TODO:
+		 * It only handles basic cases, either no pipe, or a pipe with an explicit
+		 * anchor.
+		 *
+		 * It does not attempt to handle features like the pipe trick.
+		 * However, the pipe trick should usually not be present in wikitext retrieved
+		 * from the server, since the replacement is done at save time.
+		 * It may, though, if the wikitext appears in extension-controlled content.
+		 *
 		 * @param nodes
 		 */
-		wlink: function () {
-			return 'unimplemented';
+		wlink: function ( nodes ) {
+			var page, anchor, url;
+
+			page = nodes[0];
+			url = mw.util.wikiGetlink( page );
+
+			// [[Some Page]] or [[Namespace:Some Page]]
+			if ( nodes.length === 1 ) {
+				anchor = page;
+			}
+
+			/*
+			 * [[Some Page|anchor text]] or
+			 * [[Namespace:Some Page|anchor]
+			 */
+			else {
+				anchor = nodes[1];
+			}
+
+			return $( '<a />' ).attr( {
+				title: page,
+				href: url
+			} ).text( anchor );
 		},
 
 		/**
@@ -695,6 +759,16 @@
 			var form = nodes[0],
 				word = nodes[1];
 			return word && form && this.language.convertGrammar( word, form );
+		},
+
+		/**
+		 * Tranform parsed structure into a int: (interface language) message include
+		 * Invoked by putting {{MediaWiki:othermessage}} into a message
+		 * @param {Array} of nodes
+		 * @return {string} Other message
+		 */
+		int: function ( nodes ) {
+			return mw.jqueryMsg.getMessageFunction()( nodes[0].toLowerCase() );
 		}
 	};
 	// Deprecated! don't rely on gM existing.
@@ -711,7 +785,7 @@
 		// Caching is somewhat problematic, because we do need different message functions for different maps, so
 		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
 		// Do not use mw.jqueryMsg unless required
-		if ( this.map.get( this.key ).indexOf( '{{' ) < 0 ) {
+		if ( !/\{\{|\[/.test(this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
