@@ -37,6 +37,7 @@ templateParam
 templateName
   = tn:[A-Za-z_]+ { return tn.join('').toUpperCase() }
 
+/* TODO: Update to reflect separate piped and unpiped handling */
 link
   = "[[" w:expression "]]" { return [ 'WLINK', w ]; }
 
