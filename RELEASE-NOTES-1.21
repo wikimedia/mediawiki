@@ -145,6 +145,9 @@ production.
   the same query. When both are present, 'from' is simply ignored.
 * list=alllinks & alltransclusions now allow 'unique' in generators, to yield
   a list of all link/template target pages instead of source pages.
+* ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
+* Query stores prop/list/meta as submodules
+* action=help suports generalized submodules (modules=query+value), querymodules obsolete
 
 === Languages updated in 1.21 ===
 
