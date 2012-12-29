@@ -1032,8 +1032,7 @@ class Article extends Page {
 			$this->getContext()->getOutput()->addWikiMsg( 'anontalkpagetext' );
 		}
 
-		# If we have been passed an &rcid= parameter, we want to give the user a
-		# chance to mark this new article as patrolled.
+		// Show a footer allowing the user to patrol the shown revision or page if possible
 		$this->showPatrolFooter();
 
 		wfRunHooks( 'ArticleViewFooter', array( $this ) );
@@ -1048,13 +1047,108 @@ class Article extends Page {
 	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
 	 */
 	public function showPatrolFooter() {
+		global $wgUseRCPatrol, $wgUseNPPatrol;
+
 		$request = $this->getContext()->getRequest();
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
+		$cache = wfGetMainCache();
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
+		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || ( !$wgUseNPPatrol && !$wgUseRCPatrol ) ) {
+			// Patrolling is fully disabled or the user isn't allowed to
 			return;
+		}
+
+		// Bug 36641: When a deleted or unknown oldid is requested without &title in the URI MediaWiki sets the context
+		// to the main page which can lead to an error page with a useless patrol link on it being shown
+		if( $request->getVal( 'oldid' ) && !$request->getVal( 'title' ) && $this->getRevIdFetched() != $request->getVal( 'oldid' ) ) {
+			return;
+		}
+
+		// Check for cached results
+		if (
+			( $wgUseRCPatrol && $cache->get( wfMemcKey( 'NotPatrollableRevId', $this->getRevIdFetched() ) ) === true ) ||
+			( $wgUseNPPatrol && $cache->get( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ) ) === true )
+		) {
+			return;
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		if ( !$rcid ) {
+			if ( $wgUseRCPatrol ) {
+				// Conditions to potentially patrol the current revision
+
+				// We make use of a little index trick over here:
+				// First we get the timestamp of the last revision and then
+				// we look up the RC row by that as the timestamp is indexed
+				// and usually very few rows exist for one timestamp
+				// (While several thousand can exists for a single page)
+				if ( !$this->mRevision instanceof Revision ) {
+					$this->mRevision = Revision::newFromId( $this->getRevIdFetched() );
+				}
+
+				if ( !$this->mRevision instanceof Revision || !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )  ) {
+					// The revision is more than 6 hours older than the Max RC age
+					// no need to torture the DB any further (6h because the RC might not be cleaned out regularly)
+					wfProfileOut( __METHOD__ );
+					return;
+				}
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_this_oldid' => $this->getRevIdFetched(),
+						'rc_user_text'  => $this->mRevision->getRawUserText(),
+						'rc_timestamp'  => $this->mRevision->getTimestamp(),
+						'rc_patrolled'  => 0
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_user_text' )
+				);
+			} else {
+				// RC patrol is disabled so we have to patrol the first
+				// revision (new page patrol) in case it's in the RC table.
+				// We only query the first revision here without any further
+				// conditions for performance reasons.
+				// The check whether this is a page creation or just the oldest
+				// revision known happens below
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_title' => $this->getTitle()->getDBkey(),
+						'rc_namespace' => $this->getTitle()->getNamespace()
+					),
+					__METHOD__,
+					array( 'ORDER BY' => 'rc_timestamp ASC' )
+				);
+			}
+		} elseif ( is_numeric( $rcid ) ) {
+			$rc = RecentChange::newFromId( $rcid );
+		} else {
+			// We got an unexpected value (not numerical) as rc_id
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		if (
+			!is_object( $rc ) || $rc->getAttribute( 'rc_patrolled' ) || $rc->getAttribute( 'rc_cur_id' ) != $this->getTitle()->getArticleID()
+			// No RC entry around, already patrolled or not belonging to this page id
+			|| ( !$wgUseRCPatrol && !$rc->getAttribute( 'rc_type' ) == RC_NEW )
+			// RC patrolling is disabled and this isn't a new page
+		) {
+			// Cache the information we gathered above in case we can't patrol
+			// Don't cache in case we can patrol as this could change
+			if( $wgUseRCPatrol ) {
+				$cache->set( wfMemcKey( 'NotPatrollableRevId', $this->getRevIdFetched() ), true );
+			} else {
+				$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), true );
+			}
+			return;
+		}
+
+		if ( !$rcid ) {
+			$rcid = $rc->getAttribute( 'rc_id' );
 		}
 
 		$token = $user->getEditToken( $rcid );
