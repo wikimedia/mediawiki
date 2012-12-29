@@ -1036,8 +1036,7 @@ class Article implements Page {
 			$this->getContext()->getOutput()->addWikiMsg( 'anontalkpagetext' );
 		}
 
-		# If we have been passed an &rcid= parameter, we want to give the user a
-		# chance to mark this new article as patrolled.
+		// Show a footer allowing the user to patrol the shown revision or page if possible
 		$this->showPatrolFooter();
 
 		wfRunHooks( 'ArticleViewFooter', array( $this ) );
@@ -1052,14 +1051,117 @@ class Article implements Page {
 	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
 	 */
 	public function showPatrolFooter() {
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRCMaxAge;
+
 		$request = $this->getContext()->getRequest();
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
-		$rcid = $request->getVal( 'rcid' );
+		$cache = wfGetMainCache();
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
+		// Conditions to potentially patrol the current revision
+		// patrolPage is set in case we want to patrol the first
+		// revision and not the current one (set in Special:NewPages)
+		$useRCPatrol = $wgUseRCPatrol && !$request->getBool( 'patrolpage' );
+
+		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || ( !$wgUseNPPatrol && !$wgUseRCPatrol ) ) {
+			// Patrolling is fully disabled or the user isn't allowed to
 			return;
 		}
+
+		wfProfileIn( __METHOD__ );
+
+		if ( $useRCPatrol ) {
+			// Check for cached results
+			if ( $cache->get( wfMemcKey( 'NotPatrollableRevId', $this->getRevIdFetched() ) ) ) {
+				wfProfileOut( __METHOD__ );
+				return;
+			}
+
+			// We make use of a little index trick over here:
+			// First we get the timestamp of the last revision and then
+			// we look up the RC row by that as the timestamp is indexed
+			// and usually very few rows exist for one timestamp
+			// (While several thousand can exists for a single page)
+			if ( !$this->mRevision instanceof Revision ) {
+				$this->mRevision = Revision::newFromId( $this->getRevIdFetched() );
+			}
+
+			if ( !$this->mRevision instanceof Revision || !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )  ) {
+				// The revision is more than 6 hours older than the Max RC age
+				// no need to torture the DB any further (6h because the RC might not be cleaned out regularly)
+				wfProfileOut( __METHOD__ );
+				return;
+			}
+			$rc = RecentChange::newFromConds(
+				array(
+					'rc_this_oldid' => $this->getRevIdFetched(),
+					'rc_timestamp' => $this->mRevision->getTimestamp(),
+					'rc_cur_id' => $this->getTitle()->getArticleID(),
+					'rc_patrolled' => 0
+				),
+				__METHOD__,
+				array( 'USE INDEX' => 'rc_timestamp' )
+			);
+		} else {
+			// RC patrol is disabled so we have to patrol the first
+			// revision (new page patrol) in case it's in the RC table.
+			// To achieve this we get the timestamp of the oldest revison
+			// the revision table holds for the given page. Then we look
+			// whether it's within the RC lifespan and if it is, we try
+			// to get the recentchanges row belonging to that entry
+			// (with rc_new = 1).
+
+			// Check for cached results
+			if ( $cache->get( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ) ) ) {
+				wfProfileOut( __METHOD__ );
+				return;
+			}
+
+			$dbr = wfGetDB( DB_SLAVE );
+			$oldestRevisionTimestamp = $dbr->selectField(
+				'revision',
+				'MIN( rev_timestamp )',
+				array( 'rev_page' => $this->getTitle()->getArticleID() ),
+				__METHOD__
+			);
+
+			if ( !$oldestRevisionTimestamp || !RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 ) ) {
+				// We either didn't find the oldest revision for the given page
+				// or it's to old for the RC table (with 6h tolerance)
+				wfProfileOut( __METHOD__ );
+				return;
+			}
+
+			$rc = RecentChange::newFromConds(
+				array(
+					'rc_new' => 1,
+					'rc_timestamp' => $oldestRevisionTimestamp,
+					'rc_namespace' => $this->getTitle()->getNamespace(),
+					'rc_cur_id' => $this->getTitle()->getArticleID(),
+					'rc_patrolled' => 0
+				),
+				__METHOD__,
+				array( 'USE INDEX' => 'new_name_timestamp' )
+			);
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		if ( !$rc ) {
+			// No RC entry around
+
+			// Cache the information we gathered above in case we can't patrol
+			// Don't cache in case we can patrol as this could change
+			if( $useRCPatrol ) {
+				$cache->set( wfMemcKey( 'NotPatrollableRevId', $this->getRevIdFetched() ), '1', $wgRCMaxAge );
+			} else {
+				$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1', $wgRCMaxAge );
+			}
+
+			return;
+		}
+
+		$rcid = $rc->getAttribute( 'rc_id' );
 
 		$token = $user->getEditToken( $rcid );
 
