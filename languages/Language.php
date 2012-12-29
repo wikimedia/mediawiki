@@ -160,10 +160,10 @@ class Language {
 	 * @var array
 	 */
 	static public $durationIntervals = array(
-		'millennia' => 31557600000,
-		'centuries' => 3155760000,
-		'decades' => 315576000,
-		'years' => 31557600, // 86400 * 365.25
+		'millennia' => 31556952000,
+		'centuries' => 3155695200,
+		'decades' => 315569520,
+		'years' => 31556952, // 86400 * ( 365 + ( 24 * 3 + 25 ) / 400 )
 		'weeks' => 604800,
 		'days' => 86400,
 		'hours' => 3600,
