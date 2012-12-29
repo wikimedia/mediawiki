@@ -35,15 +35,20 @@ class SpecialCategories extends SpecialPage {
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 
-		$from = $this->getRequest()->getText( 'from', $par );
+		$offset = $this->getRequest()->getText( 'offset' );
+		if ( ! $offset ) {
+			// 'from' param is deprecated as of 1.21 but still recognized
+			// for backwards compatibility, if the offset param is missing
+			$offset = $this->getRequest()->getText( 'from', $par );
+		}
 
-		$cap = new CategoryPager( $this->getContext(), $from );
+		$cap = new CategoryPager( $this->getContext(), $offset );
 		$cap->doQuery();
 
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
 			$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
-			$cap->getStartForm( $from ) .
+			$cap->getStartForm( $offset, $this->getTitle() ) .
 			$cap->getNavigationBar() .
 			'<ul>' . $cap->getBody() . '</ul>' .
 			$cap->getNavigationBar() .
@@ -59,12 +64,12 @@ class SpecialCategories extends SpecialPage {
  * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
-	function __construct( IContextSource $context, $from ) {
+	function __construct( IContextSource $context, $offset ) {
 		parent::__construct( $context );
-		$from = str_replace( ' ', '_', $from );
-		if( $from !== '' ) {
-			$from = Title::capitalize( $from, NS_CATEGORY );
-			$this->setOffset( $from );
+		$offset = str_replace( ' ', '_', $offset );
+		if( $offset !== '' ) {
+			$offset = Title::capitalize( $offset, NS_CATEGORY );
+			$this->setOffset( $offset );
 			$this->setIncludeOffset( true );
 		}
 	}
@@ -83,11 +88,6 @@ class CategoryPager extends AlphabeticPager {
 		return 'cat_title';
 	}
 
-	function getDefaultQuery() {
-		parent::getDefaultQuery();
-		unset( $this->mDefaultQuery['from'] );
-		return $this->mDefaultQuery;
-	}
 #	protected function getOrderTypeMessages() {
 #		return array( 'abc' => 'special-categories-sort-abc',
 #			'count' => 'special-categories-sort-count' );
@@ -119,15 +119,15 @@ class CategoryPager extends AlphabeticPager {
 		return Xml::tags( 'li', null, $this->getLanguage()->specialList( $titleText, $count ) ) . "\n";
 	}
 
-	public function getStartForm( $from ) {
+	public function getStartForm( $offset, $title ) {
 		global $wgScript;
 
 		return
 			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+				Html::hidden( 'title', $title->getPrefixedText() ) .
 				Xml::fieldset( $this->msg( 'categories' )->text(),
 					Xml::inputLabel( $this->msg( 'categoriesfrom' )->text(),
-						'from', 'from', 20, $from ) .
+						'offset', 'offset', 20, $from ) .
 					' ' .
 					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) ) );
 	}
