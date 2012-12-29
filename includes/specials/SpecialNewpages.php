@@ -323,7 +323,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$query = array( 'redirect' => 'no' );
 
 		if( $this->patrollable( $result ) ) {
-			$query['rcid'] = $result->rc_id;
+			// Tell Article.php that we want to patrol the first revision
+			// and not the current one. Has effect if both recentchages and new page
+			// patrolling are enabled, we set it everytime for link consistency though.
+			$query['patrolpage'] = 'true';
 		}
 
 		// Linker::linkKnown() uses 'known' and 'noclasses' options. This breaks the colouration for stubs.
