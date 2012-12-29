@@ -1053,8 +1053,44 @@ class Article extends Page {
 		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
+		if ( !$user->useNPPatrol() ) {
+			// Patrolling is fully disabled or the user isn't allowed to
 			return;
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		if ( !$rcid ) {
+			$rc = RecentChange::newFromConds(
+				array(
+					'rc_this_oldid' => $this->getRevIdFetched(),
+					'rc_namespace' => $this->getTitle()->getNamespace(),
+					'rc_title' => $this->getTitle()->getDBkey()
+				),
+				__METHOD__,
+				array( 'USE INDEX' => 'rc_namespace_title' )
+			);
+		} elseif ( is_numeric( $rcid ) ) {
+			$rc = RecentChange::newFromId( $rcid );
+		} else {
+			// We got an unexpected value (not numerical) as rc_id
+			return;
+		}
+
+		if ( !is_object( $rc ) || $rc->getAttribute( 'rc_patrolled' ) ) {
+			// No RC entry around or already patrolled
+			return;
+		}
+
+		if ( !$user->useRCPatrol() && !$rc->getAttribute( 'rc_type' ) == RC_NEW ) {
+			// RC patrolling is disabled and this isn't a new page
+			return;
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		if ( !$rcid ) {
+			$rcid = $rc->getAttribute( 'rc_id' );
 		}
 
 		$token = $user->getEditToken( $rcid );
