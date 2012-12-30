@@ -58,8 +58,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'limit', $wgQueryPageDefaultLimit );
-		$opts->add( 'from', 0 );
-		$opts->add( 'back', 0 );
+		$opts->add( 'offset', 0 );
+		$opts->add( 'dir', 'next' );
 		$opts->add( 'hideredirs', false );
 		$opts->add( 'hidetrans', false );
 		$opts->add( 'hidelinks', false );
@@ -90,17 +90,17 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$out->addBacklinkSubtitle( $this->target );
 
 		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
-			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );
+			$opts->getValue( 'offset' ), $opts->getValue( 'dir' ) );
 	}
 
 	/**
 	 * @param $level int     Recursion level
 	 * @param $target Title   Target title
 	 * @param $limit int     Number of entries to display
-	 * @param $from Title   Display from this article ID
-	 * @param $back Title   Display from this article ID at backwards scrolling
+	 * @param $offset int   Display from this article ID
+	 * @param $dir string   Direction (prev or next)
 	 */
-	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
+	function showIndirectLinks( $level, $target, $limit, $offset = 0, $dir = 'next' ) {
 		global $wgMaxRedirectLinksRetrieved;
 		$out = $this->getOutput();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -143,10 +143,16 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$ilConds['page_namespace'] = $namespace;
 		}
 
-		if ( $from ) {
-			$tlConds[] = "tl_from >= $from";
-			$plConds[] = "pl_from >= $from";
-			$ilConds[] = "il_from >= $from";
+		if ( $offset ) {
+			if ( $dir == 'prev' ) {
+				$tlConds[] = "tl_from < $offset";
+				$plConds[] = "pl_from < $offset";
+				$ilConds[] = "il_from < $offset";
+			} else {
+				$tlConds[] = "tl_from >= $offset";
+				$plConds[] = "pl_from >= $offset";
+				$ilConds[] = "il_from >= $offset";
+			}
 		}
 
 		// Read an extra row as an at-end check
@@ -167,25 +173,28 @@ class SpecialWhatLinksHere extends SpecialPage {
 		)));
 
 		if( $fetchlinks ) {
-			$options['ORDER BY'] = 'pl_from';
+			$options['ORDER BY'] = array( 'pl_from' );
 			$plRes = $dbr->select( array( 'pagelinks', 'page', 'redirect' ), $fields,
 				$plConds, __METHOD__, $options,
 				$joinConds);
 		}
 
 		if( !$hidetrans ) {
-			$options['ORDER BY'] = 'tl_from';
+			$options['ORDER BY'] = array( 'tl_from' );
 			$tlRes = $dbr->select( array( 'templatelinks', 'page', 'redirect' ), $fields,
 				$tlConds, __METHOD__, $options,
 				$joinConds);
 		}
 
 		if( !$hideimages ) {
-			$options['ORDER BY'] = 'il_from';
+			$options['ORDER BY'] = array( 'il_from' );
 			$ilRes = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
 				$ilConds, __METHOD__, $options,
 				$joinConds);
 		}
+
+		$order = ( $dir == 'prev' ) ? 'DESC' : 'ASC';
+		$options['ORDER BY'][] = "page_id $order";
 
 		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
 			if ( 0 == $level ) {
@@ -235,22 +244,36 @@ class SpecialWhatLinksHere extends SpecialPage {
 		// Work out the start and end IDs, for prev/next links
 		if ( $numRows > $limit ) {
 			// More rows available after these ones
-			// Get the ID from the last row in the result set
-			$nextId = $rows[$limit]->page_id;
-			// Remove undisplayed rows
-			$rows = array_slice( $rows, 0, $limit );
+			if( $dir == 'prev' ) {
+				$nextOffset = $offset;
+				// Get the ID from the first row in the result set
+				$currentOffset = $rows[1]->page_id;
+				// Remove undisplayed rows
+				$rows = array_slice( $rows, 1, $limit );
+			} else {
+				$currentOffset = $offset;
+				// Get the ID from the last row in the result set
+				$nextOffset = $rows[$limit]->page_id;
+				// Remove undisplayed rows
+				$rows = array_slice( $rows, 0, $limit );
+			}
 		} else {
 			// No more rows after
-			$nextId = false;
+			if( $dir == 'prev' ) {
+				$currentOffset = false;
+				$nextOffset = $offset;
+			} else {
+				$currentOffset = $offset;
+				$nextOffset = false;
+			}
 		}
-		$prevId = $from;
 
 		if ( $level == 0 ) {
 			$out->addHTML( $this->whatlinkshereForm() );
 			$out->addHTML( $this->getFilterPanel() );
 			$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
-			$prevnext = $this->getPrevNext( $prevId, $nextId );
+			$prevnext = $this->getPrevNext( $currentOffset, $nextOffset, $dir );
 			$out->addHTML( $prevnext );
 		}
 
@@ -354,7 +377,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		);
 	}
 
-	function getPrevNext( $prevId, $nextId ) {
+	function getPrevNext( $currentOffset, $nextOffset, $direction ) {
 		$currentLimit = $this->opts->getValue( 'limit' );
 		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->escaped();
 		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->escaped();
@@ -362,12 +385,15 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$changed = $this->opts->getChangedValues();
 		unset($changed['target']); // Already in the request title
 
-		if ( 0 != $prevId ) {
-			$overrides = array( 'from' => $this->opts->getValue( 'back' ) );
+		if ( $currentOffset != 0 ) {
+			$overrides = array( 'offset' => $currentOffset, 'dir' => 'prev' );
 			$prev = $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) );
 		}
-		if ( 0 != $nextId ) {
-			$overrides = array( 'from' => $nextId, 'back' => $prevId );
+		if ( $nextOffset != 0 ) {
+			$overrides = array( 'offset' => $nextOffset, 'dir' => null );
+			$next = $this->makeSelfLink( $next, array_merge( $changed, $overrides ) );
+		} elseif ( $direction == 'prev' && $currentOffset ) {
+			$overrides = array( 'offset' => $currentOffset, 'dir' => null );
 			$next = $this->makeSelfLink( $next, array_merge( $changed, $overrides ) );
 		}
 
@@ -390,7 +416,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
 		// Reset these for new requests
-		$this->opts->consumeValues( array( 'back', 'from' ) );
+		$this->opts->consumeValues( array( 'dir', 'offset' ) );
 
 		$target = $this->target ? $this->target->getPrefixedText() : '';
 		$namespace = $this->opts->consumeValue( 'namespace' );
