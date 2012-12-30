@@ -60,6 +60,8 @@ html > body .suggestions {
 	color: black;
 	font-style: italic;
 	text-align: left;
+	list-style: none;
+	margin: 0;
 }
 
 .suggestions-special .special-hover {
