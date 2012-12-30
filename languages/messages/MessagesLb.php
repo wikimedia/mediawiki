@@ -742,6 +742,7 @@ Temporärt Passwuert: $2',
 'changeemail-oldemail' => 'Aktuell Mailadress:',
 'changeemail-newemail' => 'Nei Mailadress:',
 'changeemail-none' => '(keng)',
+'changeemail-password' => 'Ärt {{SITENAME}}-Passwuert:',
 'changeemail-submit' => 'Mailadress änneren',
 'changeemail-cancel' => 'Ofbriechen',
 
@@ -2068,7 +2069,7 @@ Kuckt och [[Special:WantedCategories|Gewënscht Kategorien]].',
 'linksearch-ok' => 'Sichen',
 'linksearch-text' => '"Wildcards" wéi zum Beispill "*.example.com" kënne benotzt ginn.
 Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
-Ënnerstëtzte Protekoller: <code>$1</code> (http:// gëtt benotzt wann näischt spezifizéiert gëtt).',
+Ënnerstëtzte {{PLURAL:$2|Protokoll|Protekoller}}: <code>$1</code> (http:// gëtt benotzt wann näischt spezifizéiert gëtt).',
 'linksearch-line' => '$1 verlinkt vun $2',
 'linksearch-error' => 'Wildcards (*,?) kënnen nëmmen am Ufank vum Host-Numm benotzt ginn.',
 

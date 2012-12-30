@@ -11,6 +11,7 @@
  * @author Airon90
  * @author Amikeco
  * @author Amire80
+ * @author Anakmalaysia
  * @author ArnoLagrange
  * @author Blahma
  * @author Castelobranco
@@ -2237,7 +2238,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'linksearch-ns' => 'Nomspaco:',
 'linksearch-ok' => 'Serĉi',
 'linksearch-text' => 'Regulesprimoj kiel "*.wikipedia.org" povas esti uzataj. Nepre havi almenaŭ plej altan domajnon, ekz-e "*.org".<br />
-Subtenataj protokoloj: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
+Subtenataj {{PLURAL:$2|protokolo|protokoloj}}:: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
 'linksearch-line' => '$1 ligita de $2',
 'linksearch-error' => 'Regulesprimoj povas aperi nur ĉe la komenco de la retnoda nomo.',
 

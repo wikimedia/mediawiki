@@ -366,6 +366,9 @@ Waxaa ku jiri kara xuruufo aanan loo isticmaalikarin cinwaan ahaan.',
 fadlan waxyar kadib ku soo noqo.',
 'protectedpagetext' => 'Boggaan  waala difaacay si aan wax looga bedelin.',
 'viewsourcetext' => 'Waad fiirin kartaa waana koobi gareen kartaa xogta boggaan:',
+'editinginterface' => "'''Digniin:''' Waxaad guda gashay inaad badesho bogga lawada arkayo wajiga hore ee qoraalka softwareka.
+Waxa uu saamayn ku yeelan doonaa boggaan habka uu wax u arko adeegsadaha iyo dhanaab adeegsadayaasha ee wikgaan.
+Si aad wax ugu kordhiso ama aad uga dhinto turjumaadda mashaariicda wikiga , fadlan adeegso [//translatewiki.net/ translatewiki.net], mashruuca gaarka ah ee MediaWiki.",
 'cascadeprotected' => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah wuxuu ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskadka ah" dooqyada woo u furanyahay:
 $2',
 'namespaceprotected' => "Ma laguu ogolo in aad wax ka bedesho maqaalada ku jirto '''$1''' xarun magaceedka.",

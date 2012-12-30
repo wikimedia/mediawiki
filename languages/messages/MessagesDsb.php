@@ -2040,7 +2040,7 @@ Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'linksearch-ok' => 'Pytaś',
 'linksearch-text' => 'Jo móžno zastupne znamuška kaž "*.wikipedia.org" wužywaś. 
 Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
-Pódpěrane protokole: <code>$1</code> (standard jo http://, jolic žeden protokol njejo pódany).',
+{{PLURAL:$2|Pódpěrany protokol|Pódpěranej protokola|Pódpěrane protokole}}: <code>$1</code> (standard jo http://, jolic žeden protokol njejo pódany).',
 'linksearch-line' => '$1 wótkazany z $2',
 'linksearch-error' => 'Zasupne znamješko daju se jano na zachopjeńku URL wužywaś.',
 

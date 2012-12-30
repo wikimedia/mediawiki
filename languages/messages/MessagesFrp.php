@@ -314,28 +314,28 @@ $messages = array(
 'tog-hideminor' => 'Cachiér los petiôts changements dedens los dèrriérs changements',
 'tog-hidepatrolled' => 'Cachiér los changements survelyês dedens los dèrriérs changements',
 'tog-newpageshidepatrolled' => 'Cachiér les pâges survelyêyes entre-mié la lista de les pâges novèles',
-'tog-extendwatchlist' => 'Ètendre la lista de survelyence por fâre vêre tôs los changements et pas solament los ples novéls',
+'tog-extendwatchlist' => 'Ètendre la lista de survelyence por montrar tôs los changements et pas ren que los ples novéls',
 'tog-usenewrc' => 'Rassemblar los changements per pâge dedens los dèrriérs changements et la lista de survelyence (at fôta de JavaScript)',
 'tog-numberheadings' => 'Numerotar ôtomaticament los titros de sèccion',
-'tog-showtoolbar' => 'Fâre vêre la bârra d’outils de changement (at fôta de JavaScript)',
+'tog-showtoolbar' => 'Montrar la bârra d’outils de changement (at fôta de JavaScript)',
 'tog-editondblclick' => 'Changiér des pâges sur doblo-clic (at fôta de JavaScript)',
 'tog-editsection' => 'Activar lo changement de sèccions avouéc los lims « [changiér] »',
 'tog-editsectiononrightclick' => 'Activar lo changement de sèccions per clic drêt sur lors titros (at fôta de JavaScript)',
-'tog-showtoc' => 'Fâre vêre la trâbla de les matiéres (por les pâges qu’ont més de 3 sèccions)',
+'tog-showtoc' => 'Montrar la trâbla de les matiéres (por les pâges qu’ont més de 3 sèccions)',
 'tog-rememberpassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'tog-watchcreations' => 'Apondre les pâges que fé et pués los fichiérs que tèlècharjo a ma lista de survelyence',
 'tog-watchdefault' => 'Apondre les pâges et los fichiérs que chanjo a ma lista de survelyence',
 'tog-watchmoves' => 'Apondre les pâges et los fichiérs que renomo a ma lista de survelyence',
 'tog-watchdeletion' => 'Apondre les pâges et los fichiérs que suprimo a ma lista de survelyence',
 'tog-minordefault' => 'Marcar per dèfôt tôs los changements coment petiôts',
-'tog-previewontop' => 'Fâre vêre la prèvisualisacion d’amont la zona de changement',
-'tog-previewonfirst' => 'Fâre vêre la prèvisualisacion pendent lo premiér changement',
+'tog-previewontop' => 'Montrar la prèvisualisacion d’amont la zona de changement',
+'tog-previewonfirst' => 'Montrar la prèvisualisacion pendent lo premiér changement',
 'tog-nocache' => 'Dèsactivar lo cacho de les pâges per lo navigator',
 'tog-enotifwatchlistpages' => 'Mè mandar un mèssâjo quand na pâge ou ben un fichiér de ma lista de survelyence est changiê(ye)',
 'tog-enotifusertalkpages' => 'Mè mandar un mèssâjo quand ma pâge de discussion est changiêye',
 'tog-enotifminoredits' => 'Mè mandar un mèssâjo mémo en câs de petiôts changements de les pâges et des fichiérs',
-'tog-enotifrevealaddr' => 'Fâre vêre mon adrèce èlèctronica dens los mèssâjos de notificacion',
-'tog-shownumberswatching' => 'Fâre vêre lo nombro d’utilisators que siuvont na pâge',
+'tog-enotifrevealaddr' => 'Rèvèlar mon adrèce èlèctronica dedens los mèssâjos de notificacion',
+'tog-shownumberswatching' => 'Montrar lo nombro d’utilisators que siuvont na pâge',
 'tog-oldsig' => 'Signatura ègzistenta :',
 'tog-fancysig' => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
 'tog-externaleditor' => 'Empleyér per dèfôt un changior de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
@@ -350,7 +350,7 @@ $messages = array(
 'tog-watchlisthideanons' => 'Cachiér los changements fêts per des utilisators anonimos dedens la lista de survelyence',
 'tog-watchlisthidepatrolled' => 'Cachiér los changements survelyês dedens la lista de survelyence',
 'tog-ccmeonemails' => 'Mè mandar na copia des mèssâjos que mando ux ôtros utilisators',
-'tog-diffonly' => 'Pas fâre vêre lo contegnu de les pâges desot los difs',
+'tog-diffonly' => 'Pas montrar lo contegnu de les pâges desot los difs',
 'tog-showhiddencats' => 'Fâre vêre les catègories cachiêyes',
 'tog-noconvertlink' => 'Dèsactivar la convèrsion des titros des lims',
 'tog-norollbackdiff' => 'Pas fâre vêre lo dif pendent na rèvocacion',
@@ -470,7 +470,7 @@ $messages = array(
 'vector-view-edit' => 'Changiér',
 'vector-view-history' => 'Fâre vêre l’historico',
 'vector-view-view' => 'Liére',
-'vector-view-viewsource' => 'Fâre vêre lo tèxto sôrsa',
+'vector-view-viewsource' => 'Vêre lo tèxto sôrsa',
 'actions' => 'Accions',
 'namespaces' => 'Èspâços de noms',
 'variants' => 'Variantes',
@@ -580,17 +580,17 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls sur $1',
 'editsection' => 'changiér',
 'editold' => 'changiér',
-'viewsourceold' => 'fâre vêre lo tèxto sôrsa',
+'viewsourceold' => 'vêre lo tèxto sôrsa',
 'editlink' => 'changiér',
-'viewsourcelink' => 'fâre vêre lo tèxto sôrsa',
+'viewsourcelink' => 'vêre lo tèxto sôrsa',
 'editsectionhint' => 'Changiér la sèccion : $1',
 'toc' => 'Somèro',
-'showtoc' => 'fâre vêre',
+'showtoc' => 'montrar',
 'hidetoc' => 'cachiér',
 'collapsible-collapse' => 'repleyér',
 'collapsible-expand' => 'dèpleyér',
-'thisisdeleted' => 'Voléd-vos fâre vêre ou ben refâre $1 ?',
-'viewdeleted' => 'Fâre vêre $1 ?',
+'thisisdeleted' => 'Voléd-vos vêre ou ben refâre $1 ?',
+'viewdeleted' => 'Vêre $1 ?',
 'restorelink' => '{{PLURAL:$1|yon changement suprimâ|$1 changements suprimâs}}',
 'feedlinks' => 'Flux :',
 'feed-invalid' => 'Tipo d’abonement du flux envalido.',
@@ -682,7 +682,7 @@ Les donâs ique seront pas betâyes a jorn.',
 'wrong_wfQuery_params' => 'Paramètros fôx dessus wfQuery()<br />
 Fonccion : $1<br />
 Demanda : $2',
-'viewsource' => 'Fâre vêre lo tèxto sôrsa',
+'viewsource' => 'Vêre lo tèxto sôrsa',
 'viewsource-title' => 'Vêre lo tèxto sôrsa de $1',
 'actionthrottled' => 'Accion limitâye',
 'actionthrottledtext' => 'Por combatre lo spame, l’usâjo de cel’accion est limitâ a doux-três côps dens un moment prod côrt. S’acomplét que vos éd dèpassâ ceta limita.
@@ -722,9 +722,9 @@ L’administrator que l’at vèrrolyê at balyê cet’èxplicacion : « $3 ».
 
 Vos pouede continuar a empleyér {{SITENAME}} de façon anonima ou ben <span class='plainlinks'>[$1 vos tornar branchiér]</span> desot lo mémo nom ou un ôtro.
 Notâd qu’y at des pâges que pôvont étre oncor fêtes vêre coment se vos érâd adés branchiê{{GENDER:||ye|(ye)}}, tant que vos èfaciéd lo cacho de voutron navigator.",
-'welcomeuser' => 'Benvegnua, $1&nbsp;!',
+'welcomeuser' => 'Benvegnua, $1 !',
 'welcomecreation-msg' => 'Voutron compto est étâ fêt.
-Oubliâd pas de changiér voutres [[Special:Preferences|prèferences por {{SITENAME}}]].',
+Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SITENAME}}]].',
 'yourname' => 'Nom d’utilisator :',
 'yourpassword' => 'Contresegno :',
 'yourpasswordagain' => 'Confirmâd lo contresegno :',
@@ -925,9 +925,9 @@ Contresegno temporèro : $2',
 'watchthis' => 'Siuvre ceta pâge',
 'savearticle' => 'Sôvar la pâge',
 'preview' => 'Prèvisualisacion',
-'showpreview' => 'Fâre vêre na prèvisualisacion',
+'showpreview' => 'Montrar na prèvisualisacion',
 'showlivepreview' => 'Apèrçu rapido',
-'showdiff' => 'Fâre vêre los changements',
+'showdiff' => 'Montrar los changements',
 'anoneditwarning' => "'''Atencion :''' vos éte pas branchiê(ye).
 Voutron adrèce IP serat encartâye dedens l’historico des changements de ceta pâge.",
 'anonpreviewwarning' => "''Vos éte pas branchiê(ye). Sôvar encarterat voutron adrèce IP dedens l’historico des changements de ceta pâge.''",
@@ -1193,20 +1193,20 @@ Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâg
 'rev-deleted-user' => '(nom d’usanciér suprimâ)',
 'rev-deleted-event' => '(entrâ suprimâ)',
 'rev-deleted-user-contribs' => '[nom d’usanciér ou ben adrèce IP suprimâ - changement cachiê sur les contribucions]',
-'rev-deleted-text-permission' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-deleted-text-permission' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
+Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
 'rev-suppressed-text-unhide' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
-'rev-deleted-text-view' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-suppressed-text-view' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-no-diff' => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-deleted-text-view' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
+Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-suppressed-text-view' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
+Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-deleted-no-diff' => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions est étâye '''suprimâye'''.
+Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-no-diff' => "Vos pouede pas vêre ceta difèrence perce que yona de les vèrsions at étâ '''suprimâ'''.",
 'rev-deleted-unhide-diff' => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
@@ -1214,12 +1214,12 @@ Vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-suppressed-unhide-diff' => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
-'rev-deleted-diff-view' => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-suppressed-diff-view' => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-delundel' => 'fâre vêre / cachiér',
-'rev-showdeleted' => 'fâre vêre',
+'rev-deleted-diff-view' => "Yona de les vèrsions de ceti dif est étâye '''suprimâye'''.
+Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-suppressed-diff-view' => "Yona de les vèrsions de ceti dif est étâye '''suprimâye'''.
+Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-delundel' => 'montrar / cachiér',
+'rev-showdeleted' => 'montrar',
 'revisiondelete' => 'Suprimar / refâre des vèrsions',
 'revdelete-nooldid-title' => 'Vèrsion ciba envalida',
 'revdelete-nooldid-text' => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
@@ -1353,7 +1353,7 @@ Vos pouede trovar més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|
 'prevn-title' => '$1 rèsultat{{PLURAL:$1||s}} devant',
 'nextn-title' => '$1 rèsultat{{PLURAL:$1||s}} aprés',
 'shown-title' => 'Fâre vêre $1 rèsultat{{PLURAL:$1||s}} per pâge',
-'viewprevnext' => 'Vêre ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext' => 'Vêre ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Chouèx de rechèrche',
 'searchmenu-exists' => "'''Y at na pâge apelâye « [[:$1]] » sur ceti vouiqui.'''",
 'searchmenu-new' => "'''Fâre la pâge « [[:$1|$1]] » sur ceti vouiqui !'''",
@@ -1428,9 +1428,9 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-personal' => 'Enformacions a sè',
 'prefs-rc' => 'Dèrriérs changements',
 'prefs-watchlist' => 'Lista de survelyence',
-'prefs-watchlist-days' => 'Nombro de jorns a fâre vêre dens la lista de survelyence :',
+'prefs-watchlist-days' => 'Nombro de jorns a montrar dedens la lista de survelyence :',
 'prefs-watchlist-days-max' => '$1 jorn{{PLURAL:$1||s}} u més',
-'prefs-watchlist-edits' => 'Nombro de changements a fâre vêre dens la lista de survelyence ètendua :',
+'prefs-watchlist-edits' => 'Nombro maximon de changements a montrar dedens la lista de survelyence ètendua :',
 'prefs-watchlist-edits-max' => 'Nombro lo ples grant : 1000',
 'prefs-watchlist-token' => 'Jeton por la lista de survelyence :',
 'prefs-misc' => 'Prèferences de totes sôrtes',
@@ -1450,9 +1450,9 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'resultsperpage' => 'Nombro de rèponses per pâge :',
 'stub-threshold' => 'Limita d’amont por los <a href="#" class="stub">lims de vers los començons</a> (octèts) :',
 'stub-threshold-disabled' => 'Dèsactivâ',
-'recentchangesdays' => 'Nombro de jorns a fâre vêre dens los dèrriérs changements :',
+'recentchangesdays' => 'Nombro de jorns a montrar dedens los dèrriérs changements :',
 'recentchangesdays-max' => '$1 jorn{{PLURAL:$1||s}} u més',
-'recentchangescount' => 'Nombro de changements a fâre vêre per dèfôt :',
+'recentchangescount' => 'Nombro de changements a montrar per dèfôt :',
 'prefs-help-recentchangescount' => 'Cen encllut los dèrriérs changements, los historicos de les pâges et los jornals.',
 'prefs-help-watchlist-token' => 'En remplent cen avouéc una valor secrèta farat un flux RSS por voutra lista de survelyence.
 Tota pèrsona que cognêt cél jeton porrat liére voutra lista de survelyence, chouèsésséd vêr una valor sècurisâ.
@@ -1700,18 +1700,18 @@ Ceta enformacion serat publica.',
 'recentchanges-label-unpatrolled' => 'Ceti changement at p’oncor étâ survelyê.',
 'rcnote' => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|lo jorn passâ|los '''$2''' jorns passâs}} tant qu’a $5 lo $4.",
 'rcnotefrom' => "Vê-que los changements fêts dês lo '''$2''' ('''$1''' u més).",
-'rclistfrom' => 'Fâre vêre los novéls changements dês lo $1.',
+'rclistfrom' => 'Montrar los novéls changements dês lo $1',
 'rcshowhideminor' => '$1 los petiôts changements',
 'rcshowhidebots' => '$1 los bots',
 'rcshowhideliu' => '$1 los usanciérs encartâs',
-'rcshowhideanons' => '$1 los usanciérs pas encartâs',
+'rcshowhideanons' => '$1 los utilisators anonimos',
 'rcshowhidepatr' => '$1 los changements survelyês',
 'rcshowhidemine' => '$1 mos changements',
-'rclinks' => 'Fâre vêre los $1 dèrriérs changements fêts pendent los $2 jorns passâs ;<br />$3.',
+'rclinks' => 'Montrar los $1 dèrriérs changements fêts pendent los $2 jorns passâs<br />$3',
 'diff' => 'dif',
 'hist' => 'hist',
 'hide' => 'cachiér',
-'show' => 'fâre vêre',
+'show' => 'Montrar',
 'minoreditletter' => 'p',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
@@ -1720,7 +1720,7 @@ Ceta enformacion serat publica.',
 'rc_categories_any' => 'Totes',
 'rc-change-size-new' => '$1 octèt{{PLURAL:$1||s}} aprés changement',
 'newsectionsummary' => '/* $1 */ novèla sèccion',
-'rc-enhanced-expand' => 'Vêde los dètalys (at fôta de JavaScript)',
+'rc-enhanced-expand' => 'Montrar los dètalys (at fôta de JavaScript)',
 'rc-enhanced-hide' => 'Cachiér los dètalys',
 'rc-old-title' => 'fêt avouéc lo titro « $1 »',
 
@@ -1748,14 +1748,13 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 'upload-recreate-warning' => "'''Atencion : un fichiér avouéc cél nom at étâ suprimâ ou ben dèplaciê.'''
 
 Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
-'uploadtext' => "Utilisâd ceti formulèro por tèlèchargiér des fichiérs sur lo sèrvor.
-Por vêre ou rechèrchiér des émâges mandâs dês devant, vêde la [[Special:FileList|lista de les émâges]].
-Los tèlèchargements sont asse-ben encartâs dens lo [[Special:Log/upload|jornal des tèlèchargements]], et les suprèssions dens lo [[Special:Log/delete|jornal de les suprèssions]].
+'uploadtext' => "Empleyéd lo formulèro ce-desot por tèlèchargiér des fichiérs.
+Por vêre ou ben rechèrchiér des fichiérs tèlèchargiês dês devant, vêde la [[Special:FileList|lista des fichiérs tèlèchargiês]]. Los tèlèchargements sont asse-ben encartâs dedens lo [[Special:Log/upload|jornal des tèlèchargements]], et pués les suprèssions dedens lo [[Special:Log/delete|jornal de les suprèssions]].
 
-Por encllure un fichiér dens una pâge, utilisâd un lim de la fôrma :
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.jpg]]</nowiki></code>''' por fâre vêre lo fichiér en plêna rèsolucion (dens lo câs d’una émâge) ;
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.png|200px|thumb|left|tèxto dèscriptif]]</nowiki></code>''' por utilisar una figura de 200 pixèls de lârjo dens una bouèta a gôche avouéc « tèxto dèscriptif » coment dèscripcion ;
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichiér.ogg]]</nowiki></code>''' por liyér tot drêt vers lo fichiér sen lo fâre vêre.",
+Por entrebetar un fichiér dedens na pâge, empleyéd un lim de yona de cetes fôrmes :
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.jpg]]</nowiki></code>''' por empleyér la vèrsion en plêna largior du fichiér
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.png|200px|thumb|left|tèxto dèscriptif]]</nowiki></code>''' por empleyér na figura de 200 pixèls de lârjo dedens na bouèta a gôche avouéc « tèxto dèscriptif » coment dèscripcion
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichiér.ogg]]</nowiki></code>''' por liyér tot drêt vers lo fichiér sen lo fâre vêre",
 'upload-permitted' => 'Formats de fichiérs ôtorisâs : $1.',
 'upload-preferred' => 'Formats de fichiérs prèferâs : $1.',
 'upload-prohibited' => 'Formats de fichiérs dèfendus : $1.',
@@ -2017,7 +2016,7 @@ Quand el est filtrâ per usanciér, solament los fichiérs que la vèrsion la pl
 # File description page
 'file-anchor-link' => 'Fichiér',
 'filehist' => 'Historico du fichiér',
-'filehist-help' => 'Clicar sur una dâta et hora por vêre lo fichiér coment il ére a cél moment.',
+'filehist-help' => 'Clicar sur na dâta et hora por vêre lo fichiér coment il ére a cél moment.',
 'filehist-deleteall' => 'suprimar tot',
 'filehist-deleteone' => 'suprimar',
 'filehist-revert' => 'rètablir',
@@ -2097,8 +2096,8 @@ Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <code>image/jpeg</code
 
 # Unused templates
 'unusedtemplates' => 'Modèlos inutilisâs',
-'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de noms « {{ns:template}} » que sont pas encllues dens gins d’ôtra pâge.
-Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos devant que los suprimar.',
+'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de noms « {{ns:template}} » que sont pas entrebetâyes dedens niona ôtra pâge.
+Oubliâd pas de controlar s’y at gins d’ôtro lim de vers los modèlos devant que los suprimar.',
 'unusedtemplateswlh' => 'ôtros lims',
 
 # Random page
@@ -2152,7 +2151,7 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 'withoutinterwiki' => 'Pâges sen lims entèrlengoues',
 'withoutinterwiki-summary' => 'Cetes pâges ont gins de lim de vers d’ôtres lengoues :',
 'withoutinterwiki-legend' => 'Prèfixo',
-'withoutinterwiki-submit' => 'Fâre vêre',
+'withoutinterwiki-submit' => 'Montrar',
 
 'fewestrevisions' => 'Pâges les muens changiês',
 
@@ -2293,8 +2292,8 @@ Protocolos recognus : <code>$1</code> (apondéd gins de cetos dedens voutra rech
 'linksearch-error' => 'Los caractèros j·oquères pôvont étre utilisâs ren qu’u comencement du nom de domêno de l’hôto.',
 
 # Special:ListUsers
-'listusersfrom' => 'Fâre vêre los usanciérs dês :',
-'listusers-submit' => 'Listar',
+'listusersfrom' => 'Fâre vêre los utilisators dês :',
+'listusers-submit' => 'Montrar',
 'listusers-noresult' => 'Gins d’usanciér trovâ.',
 'listusers-blocked' => '(blocâ)',
 
@@ -2302,7 +2301,7 @@ Protocolos recognus : <code>$1</code> (apondéd gins de cetos dedens voutra rech
 'activeusers' => 'Lista ux usanciérs actifs',
 'activeusers-intro' => 'O est una lista ux usanciérs qu’ont ègzèrciê una activitât quinta que seye pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}.',
 'activeusers-count' => '$1 {{PLURAL:$1|novél changement|novéls changements}} dens {{PLURAL:$3|lo jorn passâ|los $3 jorns passâs}}',
-'activeusers-from' => 'Fâre vêre los usanciérs dês :',
+'activeusers-from' => 'Fâre vêre los utilisators dês :',
 'activeusers-hidebots' => 'Cachiér los bots',
 'activeusers-hidesysops' => 'Cachiér los administrators',
 'activeusers-noresult' => 'Gins d’usanciér trovâ.',
@@ -2373,7 +2372,7 @@ L’adrèce èlèctronica que vos éd buchiêye dens voutres [[Special:Preferenc
 'mywatchlist' => 'Lista de survelyence',
 'watchlistfor2' => 'Por $1 $2',
 'nowatchlist' => 'Voutra lista de survelyence contint gins d’èlèment.',
-'watchlistanontext' => 'Vos volyéd $1 por fâre vêre ou changiér los èlèments de voutra lista de survelyence.',
+'watchlistanontext' => 'Vos volyéd $1 por vêre ou ben changiér les piéces de voutra lista de survelyence.',
 'watchnologin' => 'Pas branchiê',
 'watchnologintext' => 'Vos dête étre [[Special:UserLogin|branchiê]] por changiér voutra lista de survelyence.',
 'addwatch' => 'Apondre a la lista de survelyence',
@@ -2396,7 +2395,7 @@ Los changements que vegnont de ceta pâge et de la sina pâge de discussion y se
 'watchlistcontains' => 'Voutra lista de survelyence contint $1 pâge{{PLURAL:$1||s}}.',
 'iteminvalidname' => 'Problèmo avouéc l’èlèment « $1 » : lo nom est envalido.',
 'wlnote' => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|l’hora passâ|les '''$2''' hores passâs}}, dês $3, $4.",
-'wlshowlast' => 'Fâre vêre les $1 hores passâs, los $2 jorns passâs ou ben $3 ;',
+'wlshowlast' => 'Montrar les $1 hores passâyes, los $2 jorns passâs ou ben $3',
 'watchlist-options' => 'Chouèx de la lista de survelyence',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2419,7 +2418,7 @@ Los changements que vegnont de ceta pâge et de la sina pâge de discussion y se
 'enotif_body_intro_changed' => 'La pâge $1 dessus {{SITENAME}} est étâye changiêye lo $PAGEEDITDATE per {{GENDER:$2|$2}}, vêde $3 por la vèrsion d’ora.',
 'enotif_lastvisited' => 'Vêde $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff' => 'Vêde $1 por vêre cél changement.',
-'enotif_anon_editor' => 'usanciér pas encartâ $1',
+'enotif_anon_editor' => 'utilisator anonimo $1',
 'enotif_body' => 'Chier(a) $WATCHINGUSERNAME,
 
 $PAGEINTRO $NEWPAGE
@@ -2574,10 +2573,10 @@ Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte 
 'restriction-level-all' => 'Tôs los nivéls',
 
 # Undelete
-'undelete' => 'Vêre les pâges suprimâs',
-'undeletepage' => 'Vêre et refâre des pâges suprimâs',
+'undelete' => 'Vêre les pâges suprimâyes',
+'undeletepage' => 'Vêre et refâre des pâges suprimâyes',
 'undeletepagetitle' => "'''Ceta lista contint des vèrsions suprimâs de [[:$1|$1]].'''",
-'viewdeletedpage' => 'Vêre les pâges suprimâs',
+'viewdeletedpage' => 'Vêre les pâges suprimâyes',
 'undeletepagetext' => '{{PLURAL:$1|Ceta pâge at étâ suprimâ et sè trove|Cetes pâges ont étâ suprimâs et sè trovont}} dens les arch·ives, de yô que pô{{PLURAL:$1||von}}t adés étre refêt{{PLURAL:$1|a|es}}.
 Les arch·ives pôvont étre èfaciês règuliérement.',
 'undelete-fieldset-title' => 'Refâre les vèrsions',
@@ -2606,10 +2605,10 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeletedfiles' => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
 'cannotundelete' => 'Falyita de la rèstoracion :
 $1',
-'undeletedpage' => "'''La pâge $1 at étâ refêta.'''
+'undeletedpage' => "'''La pâge $1 est étâye refêta.'''
 
-Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les novèles suprèssions et de les novèles rèstoracions.",
-'undelete-header' => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les pâges suprimâs dèrriérement.',
+Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr la lista de les novèles suprèssions et rèstoracions.",
+'undelete-header' => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr la lista de les pâges suprimâyes dèrriérement.',
 'undelete-search-title' => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-box' => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-prefix' => 'Montrar les pâges que començont per :',
@@ -2646,7 +2645,7 @@ $1',
 'month' => 'Dês lo mês (et devant) :',
 'year' => 'Dês l’an (et devant) :',
 
-'sp-contributions-newbies' => 'Fâre vêre ren que les contribucions ux novéls usanciérs',
+'sp-contributions-newbies' => 'Montrar ren que les contribucions des novéls utilisators',
 'sp-contributions-newbies-sub' => 'Permié los comptos novéls',
 'sp-contributions-newbies-title' => 'Contribucions d’usanciérs permié los comptos novéls',
 'sp-contributions-blocklog' => 'jornal des blocâjos',
@@ -2830,7 +2829,7 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 'locknoconfirm' => 'Vos éd pas pouentâ la câsa de confirmacion.',
 'lockdbsuccesssub' => 'Vèrrolyâjo de la bâsa de balyês reussi',
 'unlockdbsuccesssub' => 'Vèrrolyâjo de la bâsa de balyês enlevâ',
-'lockdbsuccesstext' => 'La bâsa de balyês at étâ vèrrolyê.<br />
+'lockdbsuccesstext' => 'La bâsa de donâs est étâye vèrrolyêye.<br />
 Oubliâd pas de [[Special:UnlockDB|la dèvèrrolyér]] quand vos aréd chavonâ voutra opèracion de mantegnence.',
 'unlockdbsuccesstext' => 'La bâsa de balyês at étâ dèvèrrolyê.',
 'lockfilenotwritable' => 'Lo fichiér de vèrrolyâjo de la bâsa de balyês est pas enscriptiblo.
@@ -3061,8 +3060,8 @@ Volyéd tornar èprovar.',
 'tooltip-ca-edit' => 'Vos pouede changiér ceta pâge.
 Volyéd utilisar lo boton de prèvisualisacion devant que sôvar.',
 'tooltip-ca-addsection' => 'Comenciér una novèla sèccion',
-'tooltip-ca-viewsource' => 'Ceta pâge est protègiê.
-Portant, vos en pouede vêre lo tèxto sôrsa.',
+'tooltip-ca-viewsource' => 'Ceta pâge est protègiêye.
+Portant vos en pouede vêre lo sin tèxto sôrsa',
 'tooltip-ca-history' => 'Les vèrsions passâs de ceta pâge (avouéc lors contributors)',
 'tooltip-ca-protect' => 'Protègiér ceta pâge',
 'tooltip-ca-unprotect' => 'Changiér la protèccion de ceta pâge',
@@ -3080,21 +3079,21 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-n-portal' => 'Sur lo projèt, cen que vos pouede fâre, yô que trovar les chouses',
 'tooltip-n-currentevents' => 'Trovar les enformacions de fond sur les dèrriéres novèles',
 'tooltip-n-recentchanges' => 'Lista des dèrriérs changements sur lo vouiqui',
-'tooltip-n-randompage' => 'Fâre vêre una pâge a l’hasârd',
+'tooltip-n-randompage' => 'Fâre vêre na pâge a l’hasârd',
 'tooltip-n-help' => 'Éde',
 'tooltip-t-whatlinkshere' => 'Lista de les pâges liyês a ceta',
 'tooltip-t-recentchangeslinked' => 'Lista des dèrriérs changements de les pâges liyês a ceta',
 'tooltip-feed-rss' => 'Flux RSS por ceta pâge',
 'tooltip-feed-atom' => 'Flux Atom por ceta pâge',
-'tooltip-t-contributions' => 'Vêre la lista de les contribucions a ceti usanciér',
+'tooltip-t-contributions' => 'Vêre la lista de les contribucions de cet’utilisator',
 'tooltip-t-emailuser' => 'Mandar un mèssâjo a ceti usanciér',
 'tooltip-t-upload' => 'Tèlèchargiér des fichiérs',
 'tooltip-t-specialpages' => 'Lista de totes les pâges spèciâles',
 'tooltip-t-print' => 'Vèrsion emprimâbla de ceta pâge',
 'tooltip-t-permalink' => 'Lim fixo de vers ceta vèrsion de la pâge',
 'tooltip-ca-nstab-main' => 'Vêre la pâge de contegnu',
-'tooltip-ca-nstab-user' => 'Vêre la pâge usanciér',
-'tooltip-ca-nstab-media' => 'Vêre la pâge de mèdia',
+'tooltip-ca-nstab-user' => 'Vêre la pâge utilisator',
+'tooltip-ca-nstab-media' => 'Vêre la pâge du fichiér mèdia',
 'tooltip-ca-nstab-special' => 'O est una pâge spèciâla, vos la pouede pas changiér.',
 'tooltip-ca-nstab-project' => 'Vêre la pâge du projèt',
 'tooltip-ca-nstab-image' => 'Vêre la pâge du fichiér',
@@ -3105,7 +3104,7 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-minoredit' => 'Marcar mos changements coment petiôts',
 'tooltip-save' => 'Sôvar voutros changements',
 'tooltip-preview' => 'Volyéd prèvisualisar voutros changements devant que los sôvar !',
-'tooltip-diff' => 'Pèrmèt de fâre vêre los changements que vos éd fêts.',
+'tooltip-diff' => 'Pèrmèt de montrar los changements que vos éd fêts',
 'tooltip-compareselectedversions' => 'Fâre ressortir les difèrences entre doves vèrsions de ceta pâge',
 'tooltip-watch' => 'Apondre ceta pâge a voutra lista de survelyence',
 'tooltip-watchlistedit-normal-submit' => 'Enlevar los titros',
@@ -3286,10 +3285,10 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 'newimages-legend' => 'Nom du fichiér',
 'newimages-label' => 'Nom du fichiér (ou ben una partia de ceti) :',
 'showhidebots' => '($1 los bots)',
-'noimages' => 'Gins d’émâge a fâre vêre.',
+'noimages' => 'Gins de fichiér a fâre vêre.',
 'ilsubmit' => 'Rechèrchiér',
 'bydate' => 'per dâta',
-'sp-newimages-showfrom' => 'Fâre vêre los novéls fichiérs dês lo $1 a $2',
+'sp-newimages-showfrom' => 'Montrar los novéls fichiérs dês lo $1 a $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'days-abbrev' => '$1j',
@@ -3311,8 +3310,8 @@ Los ôtros lims sur la méma legne sont considèrâs coment des èxcèpcions, pe
 'metadata' => 'Mètabalyês',
 'metadata-help' => 'Ceti fichiér contint des enformacions de ples, probâblament apondues per l’aparèly-fotô numerico ou ben lo scanor utilisâ por lo fâre.
 Se lo fichiér at étâ changiê dês son ètat originâl, quârques dètalys pôvont pas reflètar a chavon l’émâge changiê.',
-'metadata-expand' => 'Fâre vêre les enformacions dètalyês',
-'metadata-collapse' => 'Cachiér les enformacions dètalyês',
+'metadata-expand' => 'Montrar los dètalys ètendus',
+'metadata-collapse' => 'Cachiér los dètalys ètendus',
 'metadata-fields' => 'Los champs de mètabalyês d’émâge listâs dens ceti mèssâjo seront encllus dens la pâge de dèscripcion de l’émâge quand la trâbla de mètabalyês serat rèduita.
 Los ôtros champs seront cachiês per dèfôt.
 * make
@@ -4073,7 +4072,7 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'compare-rev1' => 'Vèrsion 1',
 'compare-rev2' => 'Vèrsion 2',
 'compare-submit' => 'Comparar',
-'compare-invalid-title' => 'Lo titro que vos éd spècefiâ est fôx.',
+'compare-invalid-title' => 'Lo titro que vos éd spècifiâ est envalido.',
 'compare-title-not-exists' => 'Lo titro que vos éd spècefiâ ègziste pas.',
 'compare-revision-not-exists' => 'La vèrsion que vos éd spècefiâ ègziste pas.',
 

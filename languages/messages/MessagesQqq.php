@@ -348,10 +348,20 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
 'mypage' => "A text for the link to the user's user page in the links at the top of the page.",
-'mytalk' => 'In the personal urls page section - right upper corner.
+'mytalk' => 'In the personal URLs page section - right upper corner.
 
-Used as link title in "Personal tools" toolbar.',
-'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
+Used as link title in your personal toolbox.
+
+See also:
+* {{msg-mw|Mytalk}}
+* {{msg-mw|Accesskey-pt-mytalk}}
+* {{msg-mw|Tooltip-pt-mytalk}}',
+'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.
+
+See also:
+* {{msg-mw|Anontalk}}
+* {{msg-mw|Accesskey-pt-anontalk}}
+* {{msg-mw|Tooltip-pt-anontalk}}',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 
 {{Identical|Navigation}}',
@@ -414,16 +424,28 @@ This can also appear in the credits page if the credits feature is enabled,for e
 
 See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki:Edithelp/{{SUBPAGENAME}}|{{int:edithelp}}]].
 
+See also:
+* {{msg-mw|Help}}
+* {{msg-mw|Accesskey-n-help}}
+* {{msg-mw|Tooltip-n-help}}
 {{Identical|Help}}',
 'search' => 'Noun. Text of menu section shown on every page of the wiki above the search form.
 
 Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 
+See also:
+* {{msg-mw|Search}}
+* {{msg-mw|Accesskey-search}}
+* {{msg-mw|Tooltip-search}}
 {{Identical|Search}}',
 'searchbutton' => 'The button you can see in the sidebar, below the search input box. The "Go" button is [[MediaWiki:Searcharticle/{{SUBPAGENAME}}]].
 
 {{Identical|Search}}',
-'go' => '{{Identical|Go}}',
+'go' => 'See also:
+* {{msg-mw|Go}}
+* {{msg-mw|Accesskey-search-go}}
+* {{msg-mw|Tooltip-search-go}}
+{{Identical|Go}}',
 'searcharticle' => 'Button description in the search menu displayed on every page. The "Search" button is [[MediaWiki:Searchbutton/{{SUBPAGENAME}}]].
 
 {{Identical|Go}}',
@@ -431,14 +453,28 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 
 {{Identical|History}}',
 'updatedmarker' => 'Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it. This feature is used if [[mw:Manual:$wgShowUpdatedMarker|$wgShowUpdatedMarker]] is enabled.',
-'printableversion' => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
-'permalink' => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
+'printableversion' => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].
+
+See also:
+* {{msg-mw|Printableversion}}
+* {{msg-mw|Accesskey-t-print}}
+* {{msg-mw|Tooltip-t-print}}',
+'permalink' => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]
+
+See also:
+* {{msg-mw|Permalink}}
+* {{msg-mw|Accesskey-t-permalink}}
+* {{msg-mw|Tooltip-t-permalink}}',
 'print' => '{{Identical|Print}}',
 'view' => 'The default text of the "View" or "Read" (Vector) views tab which represents the basic view for the page. Should be in the infinitive mood.
 
 {{Identical|View}}',
-'edit' => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
+'edit' => 'The text of the tab going to the edit form. When the page is protected, you will see {{msg-mw|Viewsource}}. Should be in the infinitive mood.
 
+See also:
+* {{msg-mw|Edit}}
+* {{msg-mw|Accesskey-ca-edit}}
+* {{msg-mw|Tooltip-ca-edit}}
 {{Identical|Edit}}',
 'create' => 'The text on the tab of the edit form on unexisting pages starts editing them.
 
@@ -448,6 +484,10 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 {{Identical|Createpage}}',
 'delete' => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
 
+See also:
+* {{msg-mw|Delete}}
+* {{msg-mw|Accesskey-ca-delete}}
+* {{msg-mw|Tooltip-ca-delete}}
 {{Identical|Delete}}',
 'deletethispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
 {{Identical|Delete this page}}',
@@ -455,6 +495,10 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.',
 'protect' => 'Name of protect tab displayed for admins. Should be in the infinitive mood.
 
+See also:
+* {{msg-mw|Protect}}
+* {{msg-mw|Accesskey-ca-protect}}
+* {{msg-mw|Tooltip-ca-protect}}
 {{Identical|Protect}}',
 'protect_change' => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).
 {{Identical|Change}}',
@@ -462,6 +506,10 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 {{Identical|Protect this page}}',
 'unprotect' => 'Name of unprotect tab displayed for admins
 
+See also:
+* {{msg-mw|Unprotect}}
+* {{msg-mw|Accesskey-ca-unprotect}}
+* {{msg-mw|Tooltip-ca-unprotect}}
 {{Identical|Unprotect}}',
 'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the anchor text for the link to unprotect the page in admin view.
 {{Identical|Unprotect this page}}',
@@ -474,15 +522,19 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'articlepage' => "'Content page' is used for NS_MAIN and any other non-standard namespace and this message is only used in skins Nostalgia, Cologneblue and Standard in the bottomLinks part.
 
 {{Identical|Content page}}",
-'talk' => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
+'talk' => 'Used as display name for the tab to all {{msg-mw|Talk}} pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
 
+See also:
+* {{msg-mw|Talk}}
+* {{msg-mw|Accesskey-ca-talk}}
+* {{msg-mw|Tooltip-ca-talk}}
 {{Identical|Discussion}}',
 'views' => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].
 
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".
 {{Identical|View}}',
 'toolbox' => 'The title of the toolbox below the search menu.',
-'userpage' => 'Used as link text in Talk page of user page.',
+'userpage' => '',
 'projectpage' => 'Used as link text in Talk page of project page.',
 'imagepage' => 'Used as link text in Talk page of file page.',
 'mediawikipage' => 'Used as link text in Talk page of MediaWiki message page.',
@@ -538,7 +590,13 @@ For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_sci
 'copyrightpage' => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}
 
 {{Identical|Copyright}}',
-'currentevents' => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
+'currentevents' => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.
+
+See also:
+* {{msg-mw|Currentevents}}
+* {{msg-mw|Currentevents-url}}
+* {{msg-mw|Accesskey-n-currentevents}}
+* {{msg-mw|Tooltip-n-currentevents}}',
 'currentevents-url' => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
 {{doc-important|Do not translate the \"<tt>Project:</tt>\" part.}}",
 'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
@@ -552,13 +610,34 @@ For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_sci
 {{Identical|HelpContent}}',
 'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
 
+See also:
+* {{msg-mw|Mainpage}}
+* {{msg-mw|Accesskey-n-mainpage}}
+* {{msg-mw|Tooltip-n-mainpage}}
 {{Identical|Main page}}',
-'mainpage-description' => 'The same as {{msg|mainpage|pl=yes}}, used as link text on [[MediaWiki:Sidebar]]. This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.',
+'mainpage-description' => 'The same as {{msg|mainpage|pl=yes}}, used as link text on [[MediaWiki:Sidebar]]. This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.
+
+See also:
+* {{msg-mw|Mainpage-description}}
+* {{msg-mw|Accesskey-n-mainpage-description}}
+* {{msg-mw|Tooltip-n-mainpage-description}}',
 'policy-url' => 'Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
-'portal' => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.",
+'portal' => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.
+
+See also:
+* {{msg-mw|Portal}}
+* {{msg-mw|Portal-url}}
+* {{msg-mw|Accesskey-n-portal}}
+* {{msg-mw|Tooltip-n-portal}}",
 'portal-url' => 'Description: The URL of the community portal. This is shown in the sidebar by default (removed on translatewiki.net).
-{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
+{{doc-important|Do not change the "<tt>Project:</tt>" part.}}
+
+See also:
+* {{msg-mw|Portal}}
+* {{msg-mw|Portal-url}}
+* {{msg-mw|Accesskey-n-portal}}
+* {{msg-mw|Tooltip-n-portal}}',
 'privacy' => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].',
 'privacypage' => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
@@ -646,8 +725,16 @@ HTML markup cannot be used.
 {{Identical|S1 RSS/Atom feed}}",
 'page-rss-feed' => '{{Identical|S1 RSS/Atom feed}}',
 'page-atom-feed' => '{{Identical|S1 RSS/Atom feed}}',
-'feed-atom' => '{{optional}}',
-'feed-rss' => '{{optional}}',
+'feed-atom' => '{{optional}}
+See also:
+* {{msg-mw|Feed-atom}}
+* {{msg-mw|Accesskey-feed-atom}}
+* {{msg-mw|Tooltip-feed-atom}}',
+'feed-rss' => '{{optional}}
+See also:
+* {{msg-mw|Feed-rss}}
+* {{msg-mw|Accesskey-feed-rss}}
+* {{msg-mw|Tooltip-feed-rss}}',
 'red-link-title' => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 'sort-descending' => 'JavaScript message. Used by sortable table script.',
 'sort-ascending' => 'JavaScript message. Used by sortable table script.',
@@ -655,25 +742,68 @@ HTML markup cannot be used.
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'The name for the tab of the main namespace. Example: [[Example]]
 
+See also:
+* {{msg-mw|Nstab-main}}
+* {{msg-mw|Accesskey-ca-nstab-main}}
+* {{msg-mw|Tooltip-ca-nstab-main}}
 {{Identical|Page}}',
 'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
 
+See also:
+* {{msg-mw|Nstab-user}}
+* {{msg-mw|Accesskey-ca-nstab-user}}
+* {{msg-mw|Tooltip-ca-nstab-user}}
 {{Identical|User page}}',
-'nstab-media' => 'The name for the tab of the media namespace. Example: [[Media:Example]]',
-'nstab-special' => 'The name for the tab of the special namespace. Example: [[Special:Version]]',
-'nstab-project' => 'The name for the tab of the project namespace. Example: [[Project:Example]]',
-'nstab-image' => 'The name for the tab of the image namespace. Example: [[Image:Example]]
+'nstab-media' => 'The name for the tab of the media namespace. Example: [[Media:Example]]
 
+See also:
+* {{msg-mw|Nstab-media}}
+* {{msg-mw|Accesskey-ca-nstab-media}}
+* {{msg-mw|Tooltip-ca-nstab-media}}',
+'nstab-special' => 'The name for the tab of the special namespace. Example: [[Special:Version]]
+
+See also:
+* {{msg-mw|Nstab-special}}
+* {{msg-mw|Tooltip-ca-nstab-special}}',
+'nstab-project' => 'The name for the tab of the project namespace. Example: [[Project:Example]]
+
+See also:
+* {{msg-mw|Nstab-project}}
+* {{msg-mw|Accesskey-ca-nstab-project}}
+* {{msg-mw|Tooltip-ca-nstab-project}}',
+'nstab-image' => 'The name for the tab of the File namespace. Example: [[Image:Example]]
+
+See also:
+* {{msg-mw|Nstab-image}}
+* {{msg-mw|Accesskey-ca-nstab-image}}
+* {{msg-mw|Tooltip-ca-nstab-image}}
 {{Identical|File}}',
 'nstab-mediawiki' => 'The name for the tab of the MediaWiki namespace. Example: [[MediaWiki:Example]]
 
+See also:
+* {{msg-mw|Nstab-mediawiki}}
+* {{msg-mw|Accesskey-ca-nstab-mediawiki}}
+* {{msg-mw|Tooltip-ca-nstab-mediawiki}}
 {{Identical|Message}}',
 'nstab-template' => 'The name for the tab of the template namespace. Example: [[Template:Example]]
 
+See also:
+* {{msg-mw|Nstab-template}}
+* {{msg-mw|Accesskey-ca-nstab-template}}
+* {{msg-mw|Tooltip-ca-nstab-template}}
 {{Identical|Template}}',
-'nstab-help' => 'The name for the tab of the help namespace. Example: [[Help:Rollback]]',
+'nstab-help' => 'The name for the tab of the help namespace. Example: [[Help:Rollback]]
+
+See also:
+* {{msg-mw|Nstab-help}}
+* {{msg-mw|Accesskey-ca-nstab-help}}
+* {{msg-mw|Tooltip-ca-nstab-help}}',
 'nstab-category' => 'The name for the tab of the category namespace. Example: [[:Category:Example]]
 
+See also:
+* {{msg-mw|Nstab-category}}
+* {{msg-mw|Accesskey-ca-nstab-category}}
+* {{msg-mw|Tooltip-ca-nstab-category}}
 {{Identical|Category}}',
 
 # Main script and global functions
@@ -765,8 +895,12 @@ $1 is a filename, I think.',
 * $4 is the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
 'wrong_wfQuery_params' => 'Used as error message.',
-'viewsource' => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
+'viewsource' => 'The text displayed in place of the {{msg-mw|Edit}} tab when the user has no permission to edit the page.
 
+See also:
+* {{msg-mw|Viewsource}}
+* {{msg-mw|Accesskey-ca-viewsource}}
+* {{msg-mw|Tooltip-ca-viewsource}}
 {{Identical|View source}}',
 'viewsource-title' => 'Page title shown when trying to edit a protected page.
 * $1 is the name of the page',
@@ -836,6 +970,10 @@ See also {{msg-mw|protectedinterface}}.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
 'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
 
+See also:
+* {{msg-mw|Login}}
+* {{msg-mw|Accesskey-pt-anonlogin}}
+* {{msg-mw|Tooltip-pt-anonlogin}}
 {{Identical|Log in}}",
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.
 {{identical|Log in / create account}}",
@@ -845,7 +983,13 @@ See also {{msg-mw|protectedinterface}}.',
 'userloginnocreate' => 'A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account.
 
 {{Identical|Log in}}',
-'logout' => '{{Identical|Log out}}',
+'logout' => 'Used as link text in your personal toolbox (upper right side).
+
+See also:
+* {{msg-mw|Logout}}
+* {{msg-mw|Accesskey-pt-logout}}
+* {{msg-mw|Tooltip-pt-logout}}
+{{Identical|Log out}}',
 'userlogout' => '{{Identical|Log out}}',
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
@@ -1085,18 +1229,46 @@ Used in text generated by Picture button in toolbar.',
 # Edit pages
 'summary' => 'The Summary text beside the edit summary field
 
+See also:
+* {{msg-mw|Summary}}
+* {{msg-mw|Accesskey-summary}}
+* {{msg-mw|Tooltip-summary}}
 {{Identical|Summary}}',
-'minoredit' => 'Text above Save page button in editor',
-'watchthis' => 'Text of checkbox above "Show preview" button in editor.
+'minoredit' => 'Text above Save page button in editor
 
+See also:
+* {{msg-mw|Minoredit}}
+* {{msg-mw|Accesskey-minoredit}}
+* {{msg-mw|Tooltip-minoredit}}',
+'watchthis' => 'Text of checkbox above {{msg-mw|Showpreview}} button in editor.
+
+See also:
+* {{msg-mw|Watchthis}}
+* {{msg-mw|Accesskey-watch}}
+* {{msg-mw|Tooltip-watch}}
 {{Identical|Watch this page}}',
-'savearticle' => 'Text on the Save page button. See also {{msg|showpreview}} and {{msg|showdiff}} for the other buttons.',
+'savearticle' => 'Text on the Save page button. See also {{msg|showpreview}} and {{msg|showdiff}} for the other buttons.
+
+See also:
+* {{msg-mw|Savearticle}}
+* {{msg-mw|Accesskey-save}}
+* {{msg-mw|Tooltip-save}}',
 'preview' => 'The title of the Preview page shown after clicking the "Show preview" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.
 
 {{Identical|Preview}}',
-'showpreview' => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
+'showpreview' => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.
+
+See also:
+* {{msg-mw|Showpreview}}
+* {{msg-mw|Accesskey-preview}}
+* {{msg-mw|Tooltip-preview}}',
 'showlivepreview' => 'An edit preview without needing to reload the edit form.',
-'showdiff' => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
+'showdiff' => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.
+
+See also:
+* {{msg-mw|Showdiff}}
+* {{msg-mw|Accesskey-diff}}
+* {{msg-mw|Tooltip-diff}}',
 'anoneditwarning' => 'Shown when editing a page anonymously.
 See also:
 * {{msg-mw|Anoneditwarning}}
@@ -1597,7 +1769,18 @@ It is the page title of [[Special:RevisionDelete]].',
 'revdelete-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-suppress}}
+* {{msg-mw|Revdelete-suppress-text}}
+* {{msg-mw|Revdelete-confirm}}',
+'revdelete-suppress-text' => 'Used as usage text in [[Special:RevisionDelete]].
+
+See also:
+* {{msg-mw|Revdelete-suppress}}
+* {{msg-mw|Revdelete-suppress-text}}
+* {{msg-mw|Revdelete-confirm}}',
 'revdelete-legend' => '{{RevisionDelete}}
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-hide-text' => 'Option for oversight. This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -1622,7 +1805,12 @@ There are three radio buttons in each row, and the captions above each column re
 There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.
 
 {{Identical|No}}',
-'revdelete-suppress' => 'Option for oversight',
+'revdelete-suppress' => 'Option for oversight; used in [[Special:RevisionDelete]].
+
+See also:
+* {{msg-mw|Revdelete-suppress}}
+* {{msg-mw|Revdelete-suppress-text}}
+* {{msg-mw|Revdelete-confirm}}',
 'revdelete-unsuppress' => '{{RevisionDelete}}',
 'revdelete-log' => '{{Identical|Reason}}
 Log comment text for oversight. {{RevisionDelete}}
@@ -1818,7 +2006,12 @@ Please note that the parameters in a log entry will appear in the log only in th
 'difference-multipage' => 'Displayed under the title when viewing the difference between two or more pages.
 See also {{msg-mw|difference}}.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
-'compareselectedversions' => 'Used as button in history pages.',
+'compareselectedversions' => 'Used as button in history pages.
+
+See also:
+* {{msg-mw|Compareselectedversions}}
+* {{msg-mw|Accesskey-compareselectedversions}}
+* {{msg-mw|Tooltip-compareselectedversions}}',
 'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.',
 'editundo' => 'Undo link when viewing diffs
 {{Identical|Undo}}
@@ -2008,6 +2201,10 @@ See also:
 {{Identical|Preferences}}',
 'mypreferences' => 'Action link label that leads to Special:Preferences; appears in the top menu (e.g. "Username Talk Preferences Watchlist Contributions Log out").
 
+See also:
+* {{msg-mw|Mypreferences}}
+* {{msg-mw|Accesskey-pt-preferences}}
+* {{msg-mw|Tooltip-pt-preferences}}
 {{Identical|My preferences}}',
 'prefs-edits' => 'In user preferences.',
 'prefsnologin' => '{{Identical|Not logged in}}',
@@ -2046,6 +2243,10 @@ This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).
 'prefs-rendering' => 'Title of tab in [[Special:Preferences]].',
 'saveprefs' => 'Button for saving changes in the preferences page.
 
+See also:
+* {{msg-mw|Saveprefs}}
+* {{msg-mw|Accesskey-preferences-save}}
+* {{msg-mw|Tooltip-preferences-save}}
 {{Identical|Save}}',
 'resetprefs' => 'Button for resetting changes in the preferences page.',
 'restoreprefs' => 'Used in [[Special:Preferences]]',
@@ -2566,6 +2767,10 @@ This action allows editing of all of the "user rights", not just the rights of t
 'nchanges' => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
 'recentchanges' => 'The text of the link in sidebar going to the special page [[Special:RecentChanges]]. Also the page title of that special page.
 
+See also:
+* {{msg-mw|Recentchanges}}
+* {{msg-mw|Accesskey-n-recentchanges}}
+* {{msg-mw|Tooltip-n-recentchanges}}
 {{Identical|Recent changes}}',
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
 'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
@@ -2639,7 +2844,12 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'rc-old-title' => 'Text that shows the original title of a page, $1 is the original title text',
 
 # Recent changes linked
-'recentchangeslinked' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
+'recentchangeslinked' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].
+
+See also:
+* {{msg-mw|Recentchangeslinked}}
+* {{msg-mw|Accesskey-t-recentchangeslinked}}
+* {{msg-mw|Tooltip-t-recentchangeslinked}}',
 'recentchangeslinked-feed' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-toolbox' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-title' => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes are shown.',
@@ -2650,9 +2860,17 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 # Upload
 'upload' => 'Display name for link to [[Special:Upload]] for uploading files to the wiki.
 
+See also:
+* {{msg-mw|Upload}}
+* {{msg-mw|Accesskey-t-upload}}
+* {{msg-mw|Tooltip-t-upload}}
 {{Identical|Upload file}}',
 'uploadbtn' => 'Button name in [[Special:Upload]].
 
+See also:
+* {{msg-mw|Uploadbtn}}
+* {{msg-mw|Accesskey-upload}}
+* {{msg-mw|Tooltip-upload}}
 {{Identical|Upload file}}',
 'uploadnologin' => '{{Identical|Not logged in}}',
 'upload_directory_missing' => '* $1 - directory name',
@@ -2937,15 +3155,32 @@ See also:
 * {{msg-mw|upload-warning-subj|subject}}
 * {{msg-mw|upload-warning-msg|message}}',
 
-'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
+'upload-proto-error' => 'See also:
+* {{msg-mw|Upload-proto-error|title}}
+* {{msg-mw|Upload-proto-error-text|text}}',
+'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].
+
+See also:
+* {{msg-mw|Upload-proto-error|title}}
+* {{msg-mw|Upload-proto-error-text|text}}',
 'upload-file-error' => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].
 
 Extensions making use of it:
 *ImportFreeImages
 *SemanticForms
-
-
+See also:
+* {{msg-mw|Upload-file-error|title}}
+* {{msg-mw|Upload-file-error-text|text}}
 {{Identical|Internal error}}',
+'upload-file-error-text' => 'See also:
+* {{msg-mw|Upload-file-error|title}}
+* {{msg-mw|Upload-file-error-text|text}}',
+'upload-misc-error' => 'See also:
+* {{msg-mw|Upload-misc-error|title}}
+* {{msg-mw|Upload-misc-error-text|text}}',
+'upload-misc-error-text' => 'See also:
+* {{msg-mw|Upload-misc-error|title}}
+* {{msg-mw|Upload-misc-error-text|text}}',
 'upload-copy-upload-invalid-domain' => 'Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).',
 
 # File backend
@@ -3055,7 +3290,36 @@ A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by 
 * $1 is a server name.',
 
 # ZipDirectoryReader
-'zip-unsupported' => "Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.",
+'zip-file-open-error' => 'Used as ZIP error message.
+
+See also:
+* {{msg-mw|Zip-file-open-error}}
+* {{msg-mw|Zip-wrong-format}}
+* {{msg-mw|Zip-bad}}
+* {{msg-mw|Zip-unsupported}}',
+'zip-wrong-format' => 'Used as ZIP error message.
+
+See also:
+* {{msg-mw|Zip-file-open-error}}
+* {{msg-mw|Zip-wrong-format}}
+* {{msg-mw|Zip-bad}}
+* {{msg-mw|Zip-unsupported}}',
+'zip-bad' => 'Used as ZIP error message.
+
+See also:
+* {{msg-mw|Zip-file-open-error}}
+* {{msg-mw|Zip-wrong-format}}
+* {{msg-mw|Zip-bad}}
+* {{msg-mw|Zip-unsupported}}',
+'zip-unsupported' => "Used as ZIP error message.
+
+Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.
+
+See also:
+* {{msg-mw|Zip-file-open-error}}
+* {{msg-mw|Zip-wrong-format}}
+* {{msg-mw|Zip-bad}}
+* {{msg-mw|Zip-unsupported}}",
 
 # Special:UploadStash
 'uploadstash' => 'Used as page title in [[Special:UploadStash]].',
@@ -3331,6 +3595,10 @@ See also:
 # Random page
 'randompage' => 'Name of special page displayed in [[Special:SpecialPages]].
 
+See also:
+* {{msg-mw|Randompage}}
+* {{msg-mw|Accesskey-n-randompage}}
+* {{msg-mw|Tooltip-n-randompage}}
 {{Identical|Random page}}',
 'randompage-nopages' => '* $1 - list of namespaces
 * $2 - number of namespaces',
@@ -3466,27 +3734,60 @@ $1 is a page title",
 'ancientpages' => 'The page title of [[Special:Ancientpages]]. [[mw:Manual:Interface/Special pages title|mw manual]]',
 'move' => 'Name of Move tab. Should be in the imperative mood.
 
+See also:
+* {{msg-mw|Move}}
+* {{msg-mw|Accesskey-ca-move}}
+* {{msg-mw|Tooltip-ca-move}}
 {{Identical|Move}}',
 'movethispage' => '{{Identical|Move this page}}',
 'unusedimagestext' => 'Header message of [[Special:UnusedFiles]]',
+'notargettitle' => 'Used as title of error message.
+
+See also:
+* {{msg-mw|Notargettitle|title}}
+* {{msg-mw|Notargettext|text}}',
+'notargettext' => 'Used as error message in [[Special:MovePage]].
+
+See also:
+* {{msg-mw|Notargettitle|title}}
+* {{msg-mw|Notargettext|text}}',
 'nopagetitle' => 'Used as title of [[Special:MovePage]], when the oldtitle does not exist.
 
-The text is {{msg-mw|nopagetext}}.',
+The text is {{msg-mw|nopagetext}}.
+
+See also:
+* {{msg-mw|Nopagetitle|title}}
+* {{msg-mw|Nopagetext|text}}',
 'nopagetext' => 'Used as text on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].
 
-The title is {{msg-mw|nopagetitle}}.',
+The title is {{msg-mw|nopagetitle}}.
+
+See also:
+* {{msg-mw|Nopagetitle|title}}
+* {{msg-mw|Nopagetext|text}}',
 'pager-newer-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 'pager-older-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 'suppress' => '{{Identical|Oversight}}',
 'querypage-disabled' => "On special pages that use expensive database queries but are not cacheable, this message is displayed when 'miser mode' is on (i.e. no expensive queries allowed).",
 
 # Book sources
-'booksources' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'booksources' => 'Name of special page displayed in [[Special:SpecialPages]]
+
+See also:
+* {{msg-mw|Booksources|title}}
+* {{msg-mw|Booksources-text|text}}',
 'booksources-search-legend' => 'Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.',
 'booksources-isbn' => '{{optional}}',
 'booksources-go' => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',
+'booksources-text' => 'Used in [[Special:BookSources/1]].
+
+This message is followed by a list of links to other sites.
+
+See also:
+* {{msg-mw|Booksources|title}}
+* {{msg-mw|Booksources-text|text}}',
 'booksources-invalid-isbn' => 'This message is displayed after an invalid ISBN is entered on [[Special:Booksources]].',
 
 # Special:Log
@@ -3631,19 +3932,42 @@ See also {{msg|listgrouprights-removegroup}}.',
 See also {{msg|listgrouprights-addgroup}}.',
 'listgrouprights-addgroup-all' => 'Used on [[Special:ListGroupRights]].
 
-See also {{msg-mw|listgrouprights-removegroup-all}}.',
+See also:
+* {{msg-mw|Listgrouprights-addgroup-all}}
+* {{msg-mw|Listgrouprights-removegroup-all}}
+* {{msg-mw|Listgrouprights-addgroup-self-all}}
+* {{msg-mw|Listgrouprights-removegroup-self-all}}',
 'listgrouprights-removegroup-all' => 'Used on [[Special:ListGroupRights]].
 
-See also {{msg-mw|listgrouprights-addgroup-all}}.',
+See also:
+* {{msg-mw|Listgrouprights-addgroup-all}}
+* {{msg-mw|Listgrouprights-removegroup-all}}
+* {{msg-mw|Listgrouprights-addgroup-self-all}}
+* {{msg-mw|Listgrouprights-removegroup-self-all}}',
 'listgrouprights-addgroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
 'listgrouprights-removegroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
+'listgrouprights-addgroup-self-all' => 'See also:
+* {{msg-mw|Listgrouprights-addgroup-all}}
+* {{msg-mw|Listgrouprights-removegroup-all}}
+* {{msg-mw|Listgrouprights-addgroup-self-all}}
+* {{msg-mw|Listgrouprights-removegroup-self-all}}',
+'listgrouprights-removegroup-self-all' => 'See also:
+* {{msg-mw|Listgrouprights-addgroup-all}}
+* {{msg-mw|Listgrouprights-removegroup-all}}
+* {{msg-mw|Listgrouprights-addgroup-self-all}}
+* {{msg-mw|Listgrouprights-removegroup-self-all}}',
 
 # E-mail user
-'emailuser' => 'Link in the sidebar to send an e-mail to a user.',
+'emailuser' => 'Link in the sidebar to send an e-mail to a user.
+
+See also:
+* {{msg-mw|Emailuser}}
+* {{msg-mw|Accesskey-t-emailuser}}
+* {{msg-mw|Tooltip-t-emailuser}}',
 'emailuser-title-target' => 'Title of [[Special:EmailUser|special page]] when a user was given to e-mail. Parameters:
 * $1 is a plain text username, used for GENDER.',
 'emailuser-title-notarget' => 'Title of [[Special:EmailUser|special page]] when no user given to e-mail yet',
@@ -3697,6 +4021,10 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 'watchlist' => '{{Identical|My watchlist}}',
 'mywatchlist' => 'Link at the upper right corner of the screen.
 
+See also:
+* {{msg-mw|Mywatchlist}}
+* {{msg-mw|Accesskey-pt-watchlist}}
+* {{msg-mw|Tooltip-pt-watchlist}}
 {{Identical|My watchlist}}',
 'watchlistfor2' => 'Subtitle on [[Special:Watchlist]].
 
@@ -3709,9 +4037,19 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 'addwatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.',
 'addedwatchtext' => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
 'removedwatchtext' => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
-'watch' => 'Name of the Watch tab. Should be in the imperative mood.',
+'watch' => 'Name of the Watch tab. Should be in the imperative mood.
+
+See also:
+* {{msg-mw|Watch}}
+* {{msg-mw|Accesskey-ca-watch}}
+* {{msg-mw|Tooltip-ca-watch}}',
 'watchthispage' => '{{Identical|Watch this page}}',
-'unwatch' => 'Label of "Unwatch" tab.',
+'unwatch' => 'Label of "Unwatch" tab.
+
+See also:
+* {{msg-mw|Unwatch}}
+* {{msg-mw|Accesskey-ca-unwatch}}
+* {{msg-mw|Tooltip-ca-unwatch}}',
 'notanarticle' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
@@ -3719,6 +4057,12 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Content page}}",
 'watchlist-details' => 'Message on [[Special:Watchlist]]. This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
+'watchmethod-recent' => 'See also:
+* {{msg-mw|Watchmethod-recent}}
+* {{msg-mw|Watchmethod-list}}',
+'watchmethod-list' => 'See also:
+* {{msg-mw|Watchmethod-recent}}
+* {{msg-mw|Watchmethod-list}}',
 'watchlistcontains' => '* $1 - number of pages in your watchlist',
 'wlnote' => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
@@ -3989,6 +4333,10 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 # Undelete
 'undelete' => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
 
+See also:
+* {{msg-mw|Undelete}}
+* {{msg-mw|Accesskey-ca-undelete}}
+* {{msg-mw|Tooltip-ca-undelete}}
 {{Identical|View deleted pages}}',
 'undeletepage' => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
 'undeletepagetitle' => 'Used as introduction in [[Special:Undelete]]. Parameters:
@@ -4135,11 +4483,21 @@ This message has a tooltip {{msg-mw|tooltip-namespace association}}',
 'blanknamespace' => 'Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.',
 
 # Contributions
-'contributions' => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.",
+'contributions' => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.
+
+See also:
+* {{msg-mw|Contributions}}
+* {{msg-mw|Accesskey-t-contributions}}
+* {{msg-mw|Tooltip-t-contributions}}",
 'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.
 
 {{Gender}}',
-'mycontris' => 'In the personal urls page section - right upper corner.',
+'mycontris' => 'In the personal urls page section - right upper corner.
+
+See also:
+* {{msg-mw|Mycontris}}
+* {{msg-mw|Accesskey-pt-mycontris}}
+* {{msg-mw|Tooltip-pt-mycontris}}',
 'contribsub2' => 'Contributions for "user" (links)',
 'nocontribs' => 'Optional parameter: $1 is the user name',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
@@ -4173,7 +4531,12 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'sp-contributions-explain' => '{{optional}}',
 
 # What links here
-'whatlinkshere' => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
+'whatlinkshere' => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].
+
+See also:
+* {{msg-mw|Whatlinkshere}}
+* {{msg-mw|Accesskey-t-whatlinkshere}}
+* {{msg-mw|Tooltip-t-whatlinkshere}}',
 'whatlinkshere-title' => "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
 'whatlinkshere-page' => '{{Identical|Page}}',
 'linkshere' => "This message is the header line of the [[Special:WhatLinksHere/$1]] page generated by clicking 'What links here' in the sidebar toolbox. It is followed by a navigation bar built using {{msg-mw|Viewprevnext}}. Parameters:
@@ -4280,7 +4643,41 @@ See also:
 * {{msg-mw|Unblocked-range}}
 * {{msg-mw|Unblocked-id}}',
 'ipblocklist' => 'Title of [[Special:Ipblocklist]].',
-'blocklist-rangeblocks' => 'For an explanation of "range blocks", see http://www.mediawiki.org/wiki/Help:Range_blocks',
+'ipblocklist-legend' => 'Used as legend of the form in [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Ipblocklist-legend}}
+* {{msg-mw|Ipblocklist-submit}}',
+'blocklist-userblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Blocklist-userblocks}}
+* {{msg-mw|Blocklist-tempblocks}}
+* {{msg-mw|Blocklist-addressblocks}}
+* {{msg-mw|Blocklist-rangeblocks}}',
+'blocklist-tempblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Blocklist-userblocks}}
+* {{msg-mw|Blocklist-tempblocks}}
+* {{msg-mw|Blocklist-addressblocks}}
+* {{msg-mw|Blocklist-rangeblocks}}',
+'blocklist-addressblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Blocklist-userblocks}}
+* {{msg-mw|Blocklist-tempblocks}}
+* {{msg-mw|Blocklist-addressblocks}}
+* {{msg-mw|Blocklist-rangeblocks}}',
+'blocklist-rangeblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
+
+For an explanation of "range blocks", see http://www.mediawiki.org/wiki/Help:Range_blocks
+
+See also:
+* {{msg-mw|Blocklist-userblocks}}
+* {{msg-mw|Blocklist-tempblocks}}
+* {{msg-mw|Blocklist-addressblocks}}
+* {{msg-mw|Blocklist-rangeblocks}}',
 'blocklist-timestamp' => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].
 {{Identical|Timestamp}}',
 'blocklist-target' => 'The table header for the column containing the block targets, that is user names or IP-addresses linked to their respective user pages, in the table on the page [[Special:BlockList]].',
@@ -4290,7 +4687,12 @@ See also:
 'blocklist-reason' => 'This is a column header in the table on the page [[Special:BlockList]].
 
 {{Identical|Reason}}',
-'ipblocklist-submit' => '{{Identical|Search}}',
+'ipblocklist-submit' => 'Used as Submit button text in the form on [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Ipblocklist-legend}}
+* {{msg-mw|Ipblocklist-submit}}
+{{Identical|Search}}',
 'ipblocklist-localblock' => '[[File:Special IPBlockList new.png|thumb|Example]]
 Used on [[Special:IPBlockList]] as header when global blocks exists too.',
 'ipblocklist-otherblocks' => '[[File:Special IPBlockList new.png|thumb|Example]]
@@ -4346,11 +4748,88 @@ See also {{msg-mw|Blocklistline}}.',
 'blocklogtext' => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
-'block-log-flags-noautoblock' => '{{Identical|Autoblock disabled}}',
+'block-log-flags-anononly' => 'Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}',
+'block-log-flags-nocreate' => 'Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}',
+'block-log-flags-noautoblock' => 'Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}
+{{Identical|Autoblock disabled}}',
 'block-log-flags-noemail' => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
+Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}
 {{Identical|E-mail blocked}}",
-'block-log-flags-nousertalk' => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
+'block-log-flags-nousertalk' => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.
+
+Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}',
+'block-log-flags-angry-autoblock' => 'Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}',
+'block-log-flags-hiddenname' => 'Used as a block log flag in [[Special:Block]].
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+* {{msg-mw|Block-log-flags-nocreate}}
+* {{msg-mw|Block-log-flags-noautoblock}}
+* {{msg-mw|Block-log-flags-noemail}}
+* {{msg-mw|Block-log-flags-nousertalk}}
+* {{msg-mw|Block-log-flags-angry-autoblock}}
+* {{msg-mw|Block-log-flags-hiddenname}}',
+'range_block_disabled' => 'Used as error message in [[Special:Block]].
+
+See also:
+* {{msg-mw|Range block disabled}}
+* {{msg-mw|Ip range invalid}}
+* {{msg-mw|Ip range toolarge}}',
 'ipb_expiry_temp' => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
 'ipb-needreblock' => 'Used in [[Special:Block]].
@@ -4362,11 +4841,29 @@ Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking o
 'ipb_blocked_as_range' => 'Used when unblock of a single IP fails. Parameters:
 * $1 - IP address
 * $2 - IP range',
-'ip_range_toolarge' => 'Used in [[Special:Block]].
-* $1 - a number from 0 to 32 for IPv4 (from 0 to 128 for IPv6); a part of CIDR (Classless Inter-Domain Routing) notation.',
+'ip_range_invalid' => 'Used as error message in [[Special:Block]].
+
+See also:
+* {{msg-mw|Range block disabled}}
+* {{msg-mw|Ip range invalid}}
+* {{msg-mw|Ip range toolarge}}',
+'ip_range_toolarge' => 'Used as error message in [[Special:Block]]. Parameters:
+* $1 - a number from 0 to 32 for IPv4 (from 0 to 128 for IPv6); a part of CIDR (Classless Inter-Domain Routing) notation.
+See also:
+* {{msg-mw|Range block disabled}}
+* {{msg-mw|Ip range invalid}}
+* {{msg-mw|Ip range toolarge}}',
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'proxyblocksuccess' => '{{Identical|Done}}',
 'sorbs' => '{{optional}}',
+'sorbsreason' => 'See also:
+* {{msg-mw|Sorbsreason}}
+* {{msg-mw|Sorbs create account_reason}}',
+'sorbs_create_account_reason' => 'Used in [[Special:UserLogin]] when creating an account.
+
+See also:
+* {{msg-mw|Sorbsreason}}
+* {{msg-mw|Sorbs create account_reason}}',
 'cant-see-hidden-user' => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
 'ipbblocked' => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
 'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
@@ -4374,17 +4871,92 @@ Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking o
 # Developer tools
 'lockdb' => 'The title of the special page [[Special:LockDB]].
 
+Also used as the title of the error message {{msg-mw|Databasenotlocked}} in [[Special:UnlockDB]].
+
+See also:
+* {{msg-mw|Lockdb}}
+* {{msg-mw|Unlockdb}}
+* {{msg-mw|Lockfilenotwritable|error in Special:LockDB}}
+* {{msg-mw|Databasenotlocked|error in Special:UnlockDB}}
 {{Identical|Lock database}}',
 'unlockdb' => 'The title of the special page [[Special:UnlockDB]].
 
 {{Identical|Unlock database}}',
+'lockdbtext' => 'Used in the Lock form on [[Special:LockDB]].
+
+See also:
+* {{msg-mw|Lockbtn}}
+* {{msg-mw|Unlockbtn}}
+* {{msg-mw|Lockdbtext}}
+* {{msg-mw|Unlockdbtext}}',
+'unlockdbtext' => 'Used in the Unlock form on [[Special:UnlockDB]].
+
+See also:
+* {{msg-mw|Lockbtn}}
+* {{msg-mw|Unlockbtn}}
+* {{msg-mw|Lockdbtext}}
+* {{msg-mw|Unlockdbtext}}',
+'lockconfirm' => 'Used as label for checkbox in the form on [[Special:LockDB]].
+
+See also:
+* {{msg-mw|Lockconfirm}}
+* {{msg-mw|Unlockconfirm}}',
+'unlockconfirm' => 'Used as label for checkbox in the form on [[Special:UnlockDB]].
+
+See also:
+* {{msg-mw|Lockconfirm}}
+* {{msg-mw|Unlockconfirm}}',
 'lockbtn' => 'The submit button on the special page [[Special:LockDB]].
 
+See also:
+* {{msg-mw|Lockbtn}}
+* {{msg-mw|Unlockbtn}}
+* {{msg-mw|Lockdbtext}}
+* {{msg-mw|Unlockdbtext}}
 {{Identical|Lock database}}',
 'unlockbtn' => 'The submit button on the special page [[Special:UnlockDB]].
 
+See also:
+* {{msg-mw|Lockbtn}}
+* {{msg-mw|Unlockbtn}}
+* {{msg-mw|Lockdbtext}}
+* {{msg-mw|Unlockdbtext}}
 {{Identical|Unlock database}}',
+'lockdbsuccesssub' => 'Used as subtitle in [[Special:LockDB]].
+
+See also:
+* {{msg-mw|Lockdbsuccesssub|subtitle}}
+* {{msg-mw|Lockdbsuccesstext|text}}
+* {{msg-mw|Unlockdbsuccesssub|subtitle}}
+* {{msg-mw|Unlockdbsuccesstext|text}}',
+'unlockdbsuccesssub' => 'Used as subtitle in [[Special:UnlockDB]].
+
+See also:
+* {{msg-mw|Lockdbsuccesssub|subtitle}}
+* {{msg-mw|Lockdbsuccesstext|text}}
+* {{msg-mw|Unlockdbsuccesssub|subtitle}}
+* {{msg-mw|Unlockdbsuccesstext|text}}',
+'lockdbsuccesstext' => 'Used as message text in [[Special:LockDB]].
+
+See also:
+* {{msg-mw|Lockdbsuccesssub|subtitle}}
+* {{msg-mw|Lockdbsuccesstext|text}}
+* {{msg-mw|Unlockdbsuccesssub|subtitle}}
+* {{msg-mw|Unlockdbsuccesstext|text}}',
+'unlockdbsuccesstext' => 'Used as message text in [[Special:UnlockDB]].
+
+See also:
+* {{msg-mw|Lockdbsuccesssub|subtitle}}
+* {{msg-mw|Lockdbsuccesstext|text}}
+* {{msg-mw|Unlockdbsuccesssub|subtitle}}
+* {{msg-mw|Unlockdbsuccesstext|text}}',
 'lockfilenotwritable' => "'No longer needed' on wikipedia.",
+'databasenotlocked' => 'Used as error message in [[Special:UnlockDB]].
+The title of this error message is {{msg-mw|Lockdb}}.
+
+See also:
+* {{msg-mw|Lockdb|title}}
+* {{msg-mw|Databasenotlocked|message}}',
 'lockedbyandtime' => 'Used as part of the message when a database is locked through [[Special:LockDB]]. Parameters:
 * $1 is the user that locked the database.
 * $2 is the date on which the lock was made
@@ -4406,7 +4978,41 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 
 {{Identical|Move page}}',
 'movenologin' => '{{Identical|Not logged in}}',
-'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
+'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.
+
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}",
+'movenotallowed' => 'Used as error message.
+
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}',
+'movenotallowedfile' => 'Used as error message.
+
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}',
+'cant-move-user-page' => 'Used as error message.
+
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}',
+'cant-move-to-user-page' => 'Used as error message.
+
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}',
 'newtitle' => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
 'move-watch' => 'The text of the checkbox to watch the pages you are moving from and to. If checked, both the destination page and the original page will be added to the watchlist, even if you decide not to leave a redirect behind.',
 'movepagebtn' => "Button label on the special 'Move page'.
@@ -4490,6 +5096,16 @@ This may be the case when [[mw:Manual:$wgContentHandlerUseDB|$wgContentHandlerUs
 **{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
 * $2: The localized name of the content model used by the destination title:
 **{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}',
+'imagenocrossnamespace' => 'Used as error message.
+
+See also:
+* {{msg-mw|Imagenocrossnamespace}}
+* {{msg-mw|Nonfile-cannot-move-to-file}}',
+'nonfile-cannot-move-to-file' => 'Used as error message.
+
+See also:
+* {{msg-mw|Imagenocrossnamespace}}
+* {{msg-mw|Nonfile-cannot-move-to-file}}',
 'fix-double-redirects' => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
 'protectedpagemovewarning' => '{{Related|Semiprotectedpagewarning}}',
 'semiprotectedpagemovewarning' => '{{Related|Semiprotectedpagewarning}}',
@@ -4538,8 +5154,58 @@ This may be the case when [[mw:Manual:$wgContentHandlerUseDB|$wgContentHandlerUs
 # Thumbnails
 'thumbnail-more' => '[[Image:Yes.png|thumb|This:]]
 Tooltip shown when hovering over a little sign of a thumb image, to go to the image page (where it is bigger). For example, see the image at the right:',
-'thumbnail_error' => 'Message shown in a thumbnail frame when creation of the thumbnail fails.
-* $1 is the reason',
+'thumbnail_error' => 'Message shown in a thumbnail frame when creation of the thumbnail fails. Parameters:
+* $1 - the reason
+The reason $1 is one of the following messages:
+* {{msg-mw|Thumbnail-dest-create}}
+* {{msg-mw|Thumbnail dest directory}}
+* {{msg-mw|Thumbnai invalid params}}
+* {{msg-mw|Djvu no xml}}
+* {{msg-mw|Djvu page error}}
+* {{msg-mw|Svg-long-error}}
+* other custom string',
+'djvu_page_error' => 'Used as error message.
+
+See also:
+* {{msg-mw|Thumbnail error}}
+* {{msg-mw|Djvu no xml}}
+* {{msg-mw|Djvu page error}}',
+'djvu_no_xml' => 'Used as error message.
+
+See also:
+* {{msg-mw|Thumbnail error}}
+* {{msg-mw|Djvu no xml}}
+* {{msg-mw|Djvu page error}}',
+'thumbnail-temp-create' => 'Used as thumbnail error message.
+
+See also:
+* {{msg-mw|Thumbnail-temp-create}}
+* {{msg-mw|Thumbnail-dest-create}}
+* {{msg-mw|Thumbnail invalid params}}
+* {{msg-mw|Thumbnail dest directory}}',
+'thumbnail-dest-create' => 'Used as thumbnail error message.
+
+See also:
+* {{msg-mw|Thumbnail error}}
+* {{msg-mw|Thumbnail-temp-create}}
+* {{msg-mw|Thumbnail-dest-create}}
+* {{msg-mw|Thumbnail invalid params}}
+* {{msg-mw|Thumbnail dest directory}}',
+'thumbnail_invalid_params' => 'Used as thumbnail error message.
+
+See also:
+* {{msg-mw|Thumbnail-temp-create}}
+* {{msg-mw|Thumbnail-dest-create}}
+* {{msg-mw|Thumbnail invalid params}}
+* {{msg-mw|Thumbnail dest directory}}',
+'thumbnail_dest_directory' => 'Used as thumbnail error message.
+
+See also:
+* {{msg-mw|Thumbnail error}}
+* {{msg-mw|Thumbnail-temp-create}}
+* {{msg-mw|Thumbnail-dest-create}}
+* {{msg-mw|Thumbnail invalid params}}
+* {{msg-mw|Thumbnail dest directory}}',
 'thumbnail_image-type' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}',
 'thumbnail_gd-library' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
 *$1 is a function name of the GD library',
@@ -4548,13 +5214,134 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 
 # Special:Import
 'import' => 'The title of the special page [[Special:Import]];',
-'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.',
-'import-interwiki-submit' => '{{Identical|Import}}',
-'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
+'importinterwiki' => 'Used as legend for the Import form in [[Special:Import]].',
+'import-interwiki-text' => 'Used as summary for the Import form in [[Special:Import]].',
+'import-interwiki-source' => 'Used as label for input box in [[Special:Import]].',
+'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.
+
+See also:
+* {{msg-mw|Import-interwiki-history}}
+* {{msg-mw|Import-interwiki-templates}}
+* {{msg-mw|Import-interwiki-namespace}}
+* {{msg-mw|Import-comment}}
+* {{msg-mw|Import-interwiki-rootpage}}
+* {{msg-mw|Import-interwiki-submit}}',
+'import-interwiki-templates' => 'Used as label for the checkbox in [[Special:Import]].
+
+See also:
+* {{msg-mw|Import-interwiki-history}}
+* {{msg-mw|Import-interwiki-templates}}
+* {{msg-mw|Import-interwiki-namespace}}
+* {{msg-mw|Import-comment}}
+* {{msg-mw|Import-interwiki-rootpage}}
+* {{msg-mw|Import-interwiki-submit}}',
+'import-interwiki-submit' => 'Used as Submit button text in [[Special:Import]].
+
+See also:
+* {{msg-mw|Import-interwiki-history}}
+* {{msg-mw|Import-interwiki-templates}}
+* {{msg-mw|Import-interwiki-namespace}}
+* {{msg-mw|Import-comment}}
+* {{msg-mw|Import-interwiki-rootpage}}
+* {{msg-mw|Import-interwiki-submit}}
+{{Identical|Import}}',
+'import-interwiki-namespace' => 'Used as label in Import form on [[Special:Import]].
+
+See also:
+* {{msg-mw|Import-interwiki-history}}
+* {{msg-mw|Import-interwiki-templates}}
+* {{msg-mw|Import-interwiki-namespace}}
+* {{msg-mw|Import-comment}}
+* {{msg-mw|Import-interwiki-rootpage}}
+* {{msg-mw|Import-interwiki-submit}}',
+'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label.
+
+See also:
+* {{msg-mw|Import-interwiki-history}}
+* {{msg-mw|Import-interwiki-templates}}
+* {{msg-mw|Import-interwiki-namespace}}
+* {{msg-mw|Import-comment}}
+* {{msg-mw|Import-interwiki-rootpage}}
+* {{msg-mw|Import-interwiki-submit}}',
 'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
+'import-comment' => 'Used as label for input box in [[Special:Import]].
+
+See also:
+* {{msg-mw|Import-interwiki-history}}
+* {{msg-mw|Import-interwiki-templates}}
+* {{msg-mw|Import-interwiki-namespace}}
+* {{msg-mw|Import-comment}}
+* {{msg-mw|Import-interwiki-rootpage}}
+* {{msg-mw|Import-interwiki-submit}}',
+'importtext' => 'Used in the Import form on [[Special:Import]].',
+'importstart' => 'Used in [[Special:Import]].
+
+See also:
+* {{msg-mw|Importstart}}
+* {{msg-mw|Importsuccess}}
+* {{msg-mw|Importfailed}}',
 'import-revision-count' => '* $1 - number of revisions, success count',
+'importnopages' => 'Used as error message in [[Special:Import]].',
 'imported-log-entries' => '* $1 - number of log items',
-'importfailed' => '* $1 - import source',
+'importfailed' => 'Used as error message in [[Special:Import]]. Parameters:
+* $1 - import source
+See also:
+* {{msg-mw|Importstart}}
+* {{msg-mw|Importsuccess}}
+* {{msg-mw|Importfailed}}',
+'importunknownsource' => 'Used as error message in [[Special:Import]].
+
+See also:
+* {{msg-mw|import-token-mismatch}}
+* {{msg-mw|import-invalid-interwiki}}
+* {{msg-mw|Importunknownsource}}',
+'importcantopen' => 'Used as error message when importing from file or from URL.',
+'importbadinterwiki' => 'Used as error message when importing from interwiki.
+
+See also:
+* {{msg-mw|Import-noarticle}}
+* {{msg-mw|Importbadinterwiki}}',
+'importsuccess' => 'Used in [[Special:Import]].
+
+See also:
+* {{msg-mw|Importstart}}
+* {{msg-mw|Importsuccess}}
+* {{msg-mw|Importfailed}}',
+'importnosources' => 'Used in [[Special:Import]] instead of the Import form.',
+'importnofile' => 'Used as error message when importing from file.
+
+See also:
+* {{msg-mw|importnofile}}
+* {{msg-mw|importuploaderrorsize}}
+* {{msg-mw|importuploaderrorpartial}}
+* {{msg-mw|importuploaderrortemp}}',
+'importuploaderrorsize' => 'Used as error message when importing from file.
+
+See also:
+* {{msg-mw|importnofile}}
+* {{msg-mw|importuploaderrorsize}}
+* {{msg-mw|importuploaderrorpartial}}
+* {{msg-mw|importuploaderrortemp}}',
+'importuploaderrorpartial' => 'Used as error message when importing from file.
+
+See also:
+* {{msg-mw|importnofile}}
+* {{msg-mw|importuploaderrorsize}}
+* {{msg-mw|importuploaderrorpartial}}
+* {{msg-mw|importuploaderrortemp}}',
+'importuploaderrortemp' => 'Used as error message when importing from file.
+
+See also:
+* {{msg-mw|importnofile}}
+* {{msg-mw|importuploaderrorsize}}
+* {{msg-mw|importuploaderrorpartial}}
+* {{msg-mw|importuploaderrortemp}}',
+'import-noarticle' => 'Used as error message when importing from interwiki.
+
+See also:
+* {{msg-mw|Import-noarticle}}
+* {{msg-mw|Importbadinterwiki}}',
+'import-nonewrevisions' => 'Used in [[Special:Import]].',
 'xml-error-string' => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
 :$3: columm number
@@ -4566,6 +5353,18 @@ Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki 
 'import-upload' => 'Used on [[Special:Import]].
 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
+'import-token-mismatch' => 'Used as error message in [[Special:Import]].
+
+See also:
+* {{msg-mw|import-token-mismatch}}
+* {{msg-mw|import-invalid-interwiki}}
+* {{msg-mw|Importunknownsource}}',
+'import-invalid-interwiki' => 'Used as error message in [[Special:Import]].
+
+See also:
+* {{msg-mw|import-token-mismatch}}
+* {{msg-mw|import-invalid-interwiki}}
+* {{msg-mw|Importunknownsource}}',
 'import-error-edit' => 'Import error message displayed when importing user has no edit rights for a page. Parameters:
 * $1 is a page name.
 See also:
@@ -4599,89 +5398,426 @@ This may happen if the content got corrupted or the serialization format is mis-
 * $2 - interwiki name',
 
 # JavaScriptTest
-'javascripttest' => 'Title of [[Special:JavaScriptTest|the special page]]',
+'javascripttest' => 'Title of the special page [[Special:JavaScriptTest]].
+
+See also:
+* {{msg-mw|Javascripttest|title}}
+* {{msg-mw|Javascripttest-pagetext-noframework|summary}}
+* {{msg-mw|Javascripttest-pagetext-unknownframework|error message}}',
 'javascripttest-title' => 'Title of the special page when running a test suite. Parameters:
 * $1 is the name of the framework, for example QUnit.',
-'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',
+'javascripttest-pagetext-noframework' => 'Used as summary when no framework specified.
+
+See also:
+* {{msg-mw|Javascripttest|title}}
+* {{msg-mw|Javascripttest-pagetext-noframework|summary}}
+* {{msg-mw|Javascripttest-pagetext-unknownframework|error message}}',
+'javascripttest-pagetext-unknownframework' => 'Error message when given framework ID is not found. Parameters:
+* $1 - the ID of the framework
+See also:
+* {{msg-mw|Javascripttest|title}}
+* {{msg-mw|Javascripttest-pagetext-noframework|summary}}
+* {{msg-mw|Javascripttest-pagetext-unknownframework|error message}}',
 'javascripttest-pagetext-frameworks' => '$1 is the id of the framework.',
+'javascripttest-pagetext-skins' => 'Used as label in [[Special:JavaScriptTest]].',
 'javascripttest-qunit-intro' => '$1 is the configured url to the documentation.',
 'javascripttest-qunit-heading' => '{{Optional}}',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
-'tooltip-pt-mytalk' => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',
+'tooltip-pt-userpage' => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.
+
+See also:
+<!--* username-->
+* {{msg-mw|Accesskey-pt-userpage}}
+* {{msg-mw|Tooltip-pt-userpage}}',
+'tooltip-pt-mytalk' => 'Tooltip shown when hovering over the {{msg-mw|Mytalk}} link in your personal toolbox (upper right side).
+
+See also:
+* {{msg-mw|Mytalk}}
+* {{msg-mw|Accesskey-pt-mytalk}}
+* {{msg-mw|Tooltip-pt-mytalk}}',
+'tooltip-pt-anontalk' => 'Used as tooltip for link {{msg-mw|Anontalk}}.
+
+See also:
+* {{msg-mw|Anontalk}}
+* {{msg-mw|Accesskey-pt-anontalk}}
+* {{msg-mw|Tooltip-pt-anontalk}}',
 'tooltip-pt-preferences' => 'Tooltip shown when hovering over the {{msg-mw|Mypreferences}} link in your personal toolbox (upper right side).
 
+See also:
+* {{msg-mw|Mypreferences}}
+* {{msg-mw|Accesskey-pt-preferences}}
+* {{msg-mw|Tooltip-pt-preferences}}
 {{Identical|My preferences}}',
-'tooltip-pt-watchlist' => 'Tooltip shown when hovering over the "my watchlist" link in your personal toolbox (upper right side).',
-'tooltip-pt-mycontris' => 'Tooltip shown when hovering over the "my contributions" link in your personal toolbox (upper right side).',
-'tooltip-pt-login' => "Tooltip shown when hovering over the link 'Log in / create account' in the upper right corner show on all pages while not logged in.",
-'tooltip-pt-logout' => 'Tooltip shown when hovering over the "Log out" link in your personal toolbox (upper right side).
+'tooltip-pt-watchlist' => 'Tooltip shown when hovering over the {{msg-mw|Mywatchlist}} link in your personal toolbox (upper right side).
 
+See also:
+* {{msg-mw|Mywatchlist}}
+* {{msg-mw|Accesskey-pt-watchlist}}
+* {{msg-mw|Tooltip-pt-watchlist}}',
+'tooltip-pt-mycontris' => 'Tooltip shown when hovering over the {{msg-mw|Mycontris}} link in your personal toolbox (upper right side).
+
+See also:
+* {{msg-mw|Mycontris}}
+* {{msg-mw|Accesskey-pt-mycontris}}
+* {{msg-mw|Tooltip-pt-mycontris}}',
+'tooltip-pt-login' => "Tooltip shown when hovering over the link 'Log in / create account' in the upper right corner show on all pages while not logged in.",
+'tooltip-pt-anonlogin' => 'Used as tooltip for link {{msg-mw|Login}} in your personal toolbox (upper right side).
+
+See also:
+* {{msg-mw|Login}}
+* {{msg-mw|Accesskey-pt-anonlogin}}
+* {{msg-mw|Tooltip-pt-anonlogin}}',
+'tooltip-pt-logout' => 'Tooltip shown when hovering over the {{msg-mw|Logout}} link in your personal toolbox (upper right side).
+
+See also:
+* {{msg-mw|Logout}}
+* {{msg-mw|Accesskey-pt-logout}}
+* {{msg-mw|Tooltip-pt-logout}}
 {{Identical|Log out}}',
-'tooltip-ca-talk' => "Tooltip shown when hovering over the \"[[MediaWiki:Talk/{{SUBPAGENAME}}|{{int:talk}}]]\" tab.
+'tooltip-ca-talk' => "Tooltip shown when hovering over the {{msg-mw|Talk}} tab.
 
 A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For a technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
+See also:
+* {{msg-mw|Talk}}
+* {{msg-mw|Accesskey-ca-talk}}
+* {{msg-mw|Tooltip-ca-talk}}
 {{Identical|Content page}}",
-'tooltip-ca-edit' => 'The tooltip when hovering over the "[[MediaWiki:Edit/{{SUBPAGENAME}}|{{int:edit}}]]" tab.',
-'tooltip-ca-addsection' => 'Tooltip shown when hovering over the "addsection" tab (shown on talk pages).',
-'tooltip-ca-viewsource' => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.',
-'tooltip-ca-protect' => '{{Identical|Protect this page}}',
-'tooltip-ca-unprotect' => '{{Identical|Unprotect this page}}',
-'tooltip-ca-delete' => 'Tooltip shown when hovering over the "[[MediaWiki:Delete/{{SUBPAGENAME}}|{{int:delete}}]]" tab.
+'tooltip-ca-edit' => 'The tooltip when hovering over the {{msg-mw|Edit}} tab.
 
+See also:
+* {{msg-mw|Edit}}
+* {{msg-mw|Accesskey-ca-edit}}
+* {{msg-mw|Tooltip-ca-edit}}',
+'tooltip-ca-addsection' => 'Tooltip shown when hovering over the "addsection" tab (shown on talk pages).
+
+See also:
+* {{msg-mw|Addsection}}
+* {{msg-mw|Accesskey-ca-addsection}}
+* {{msg-mw|Tooltip-ca-addsection}}',
+'tooltip-ca-viewsource' => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.
+
+See also:
+* {{msg-mw|Viewsource}}
+* {{msg-mw|Accesskey-ca-viewsource}}
+* {{msg-mw|Tooltip-ca-viewsource}}',
+'tooltip-ca-protect' => 'Used as tooltip for {{msg-mw|Protect}}.
+
+See also:
+* {{msg-mw|Protect}}
+* {{msg-mw|Accesskey-ca-protect}}
+* {{msg-mw|Tooltip-ca-protect}}
+{{Identical|Protect this page}}',
+'tooltip-ca-unprotect' => 'Used as tooltip for {{msg-mw|Unprotect}}.
+
+See also:
+* {{msg-mw|Unprotect}}
+* {{msg-mw|Accesskey-ca-unprotect}}
+* {{msg-mw|Tooltip-ca-unprotect}}
+{{Identical|Unprotect this page}}',
+'tooltip-ca-delete' => 'Tooltip shown when hovering over the {{msg-mw|Delete}} tab.
+
+See also:
+* {{msg-mw|Delete}}
+* {{msg-mw|Accesskey-ca-delete}}
+* {{msg-mw|Tooltip-ca-delete}}
 {{Identical|Delete this page}}',
-'tooltip-ca-move' => '{{Identical|Move this page}}',
-'tooltip-ca-watch' => '{{Identical|Add this page to your watchlist}}',
-'tooltip-ca-unwatch' => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.',
-'tooltip-search' => 'The tooltip when hovering over the search menu.',
-'tooltip-search-go' => 'This is the text of the tooltip displayed when hovering the mouse over the “{{msg-mw|Go}}” button next to the search box.',
-'tooltip-search-fulltext' => 'This is the text of the tooltip displayed when hovering the mouse over the “{{msg-mw|Search}}” button under the search box.',
+'tooltip-ca-undelete' => 'Used as tooltip for {{msg-mw|Undelete}}.
+
+See also:
+* {{msg-mw|Undelete}}
+* {{msg-mw|Accesskey-ca-undelete}}
+* {{msg-mw|Tooltip-ca-undelete}}',
+'tooltip-ca-move' => 'See also:
+* {{msg-mw|Move}}
+* {{msg-mw|Accesskey-ca-move}}
+* {{msg-mw|Tooltip-ca-move}}
+{{Identical|Move this page}}',
+'tooltip-ca-watch' => 'See also:
+* {{msg-mw|Watch}}
+* {{msg-mw|Accesskey-ca-watch}}
+* {{msg-mw|Tooltip-ca-watch}}
+{{Identical|Add this page to your watchlist}}',
+'tooltip-ca-unwatch' => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.
+
+See also:
+* {{msg-mw|Unwatch}}
+* {{msg-mw|Accesskey-ca-unwatch}}
+* {{msg-mw|Tooltip-ca-unwatch}}',
+'tooltip-search' => 'The tooltip when hovering over the search menu.
+
+See also:
+* {{msg-mw|Search}}
+* {{msg-mw|Accesskey-search}}
+* {{msg-mw|Tooltip-search}}',
+'tooltip-search-go' => 'This is the text of the tooltip displayed when hovering the mouse over the {{msg-mw|Go}} button next to the search box.
+
+See also:
+* {{msg-mw|Go}}
+* {{msg-mw|Accesskey-search-go}}
+* {{msg-mw|Tooltip-search-go}}',
+'tooltip-search-fulltext' => 'This is the text of the tooltip displayed when hovering the mouse over the {{msg-mw|Search}} button under the search box.
+
+See also:
+* {{msg-mw|Search}}
+* {{msg-mw|Accesskey-search-fulltext}}
+* {{msg-mw|Tooltip-search-fulltext}}',
 'tooltip-p-logo' => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].
+
+See also:
+* {{msg-mw|Accesskey-p-logo}}
+* {{msg-mw|Tooltip-p-logo}}
 {{Identical|Visit the main page}}',
 'tooltip-n-mainpage' => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].
+
+See also:
+* {{msg-mw|Mainpage}}
+* {{msg-mw|Accesskey-n-mainpage}}
+* {{msg-mw|Tooltip-n-mainpage}}
 {{Identical|Visit the main page}}',
-'tooltip-n-mainpage-description' => '{{Identical|Visit the main page}}',
-'tooltip-n-portal' => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
-'tooltip-n-currentevents' => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',
-'tooltip-n-recentchanges' => 'The tooltip when hovering over the "[[MediaWiki:Recentchanges/{{SUBPAGENAME}}|{{int:recentchanges}}]]" link in the sidebar going to the special page [[Special:RecentChanges]].',
-'tooltip-n-randompage' => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.",
-'tooltip-n-help' => "Tooltip shown when hovering over the link 'help' shown in the side bar menu on all pages.",
-'tooltip-t-whatlinkshere' => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.',
-'tooltip-t-contributions' => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.',
-'tooltip-t-emailuser' => 'Tooltip shown when hovering over the {{msg|emailuser}} link in the toolbox (sidebar, below).',
-'tooltip-t-upload' => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.',
-'tooltip-t-specialpages' => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.',
-'tooltip-ca-nstab-main' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+'tooltip-n-mainpage-description' => 'See also:
+* {{msg-mw|Mainpage-description}}
+* {{msg-mw|Accesskey-n-mainpage-description}}
+* {{msg-mw|Tooltip-n-mainpage-description}}
+{{Identical|Visit the main page}}',
+'tooltip-n-portal' => 'Tooltip shown when hovering over the link to {{msg-mw|Portal}} shown in the side bar menu on all pages.
 
-Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
+See also:
+* {{msg-mw|Portal}}
+* {{msg-mw|Portal-url}}
+* {{msg-mw|Accesskey-n-portal}}
+* {{msg-mw|Tooltip-n-portal}}',
+'tooltip-n-currentevents' => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.
 
-{{Identical|Content page}}",
+See also:
+* {{msg-mw|Currentevents}}
+* {{msg-mw|Currentevents-url}}
+* {{msg-mw|Accesskey-n-currentevents}}
+* {{msg-mw|Tooltip-n-currentevents}}',
+'tooltip-n-recentchanges' => 'The tooltip when hovering over the {{msg-mw|Recehtchanges}} link in the sidebar going to the special page [[Special:RecentChanges]].
+
+See also:
+* {{msg-mw|Recentchanges}}
+* {{msg-mw|Accesskey-n-recentchanges}}
+* {{msg-mw|Tooltip-n-recentchanges}}',
+'tooltip-n-randompage' => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.
+
+See also:
+* {{msg-mw|Randompage}}
+* {{msg-mw|Accesskey-n-randompage}}
+* {{msg-mw|Tooltip-n-randompage}}",
+'tooltip-n-help' => "Tooltip shown when hovering over the link 'help' shown in the side bar menu on all pages.
+
+See also:
+* {{msg-mw|Help}}
+* {{msg-mw|Accesskey-n-help}}
+* {{msg-mw|Tooltip-n-help}}",
+'tooltip-t-whatlinkshere' => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.
+
+See also:
+* {{msg-mw|Whatlinkshere}}
+* {{msg-mw|Accesskey-t-whatlinkshere}}
+* {{msg-mw|Tooltip-t-whatlinkshere}}',
+'tooltip-t-recentchangeslinked' => 'Used as tooltip for the link {{msg-mw|Recentchangeslinked}}.
+
+See also:
+* {{msg-mw|Recentchangeslinked}}
+* {{msg-mw|Accesskey-t-recentchangeslinked}}
+* {{msg-mw|Tooltip-t-recentchangeslinked}}',
+'tooltip-feed-rss' => 'Used as tooltip for RSS feed link.
+
+See also:
+* {{msg-mw|Feed-rss}}
+* {{msg-mw|Accesskey-feed-rss}}
+* {{msg-mw|Tooltip-feed-rss}}',
+'tooltip-feed-atom' => 'Used as tooltip for Atom feed link.
+
+See also:
+* {{msg-mw|Feed-atom}}
+* {{msg-mw|Accesskey-feed-atom}}
+* {{msg-mw|Tooltip-feed-atom}}',
+'tooltip-t-contributions' => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.
+
+See also:
+* {{msg-mw|Contributions}}
+* {{msg-mw|Accesskey-t-contributions}}
+* {{msg-mw|Tooltip-t-contributions}}',
+'tooltip-t-emailuser' => 'Tooltip shown when hovering over the {{msg|emailuser}} link in the toolbox (sidebar, below).
+
+See also:
+* {{msg-mw|Emailuser}}
+* {{msg-mw|Accesskey-t-emailuser}}
+* {{msg-mw|Tooltip-t-emailuser}}',
+'tooltip-t-upload' => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.
+
+See also:
+* {{msg-mw|Upload}}
+* {{msg-mw|Accesskey-t-upload}}
+* {{msg-mw|Tooltip-t-upload}}',
+'tooltip-t-specialpages' => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.
+
+See also:
+* {{msg-mw|Specialpages}}
+* {{msg-mw|Accesskey-t-specialpages}}
+* {{msg-mw|Tooltip-t-specialpages}}',
+'tooltip-t-print' => 'Tooltip shown when hovering over the link to printable version shown in the side bar menu on all pages.
+
+See also:
+* {{msg-mw|Printableversion}}
+* {{msg-mw|Accesskey-t-print}}
+* {{msg-mw|Tooltip-t-print}}',
+'tooltip-t-permalink' => 'Tooltip shown when hovering over the link to permanent link shown in the side bar menu on all pages.
+
+See also:
+* {{msg-mw|Permalink}}
+* {{msg-mw|Accesskey-t-permalink}}
+* {{msg-mw|Tooltip-t-permalink}}',
+'tooltip-ca-nstab-main' => 'A "content page" is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons "content pages" include pages in the file and category namespaces. On Wikinews "content pages" include pages in the Portal namespace. For technical definition of "content namespaces" see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+
+Possible alternatives to the word \'content\' are \'subject matter\' or \'wiki subject\' or \'wiki purpose\'.
+
+See also:
+* {{msg-mw|Nstab-main}}
+* {{msg-mw|Accesskey-ca-nstab-main}}
+* {{msg-mw|Tooltip-ca-nstab-main}}
+{{Identical|Content page}}',
 'tooltip-ca-nstab-user' => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).
 
-No GENDER-Support for performance reason.',
-'tooltip-ca-nstab-image' => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
-'tooltip-ca-nstab-template' => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
-'tooltip-ca-nstab-help' => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
-'tooltip-ca-nstab-category' => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.',
-'tooltip-minoredit' => 'Tooltip shown when hovering over the "{{msg-mw|Minoredit}}" link below the edit form.',
-'tooltip-save' => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
-'tooltip-preview' => 'Tooltip shown when hovering over the "Show preview" button.
+No GENDER-Support for performance reason.
 
-If the length of the translated message is over 60 characters (including spaces) then the end of the message will be cut off when using Firefox 2.0.0.7 browser, Linux operating system and the Monobook skin.',
-'tooltip-diff' => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
-'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
-'tooltip-watch' => '{{Identical|Add this page to your watchlist}}',
-'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).',
-'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
+See also:
+* {{msg-mw|Nstab-user}}
+* {{msg-mw|Accesskey-ca-nstab-user}}
+* {{msg-mw|Tooltip-ca-nstab-user}}',
+'tooltip-ca-nstab-media' => 'Used as tooltip for tab of Media namespace.
+
+See also:
+* {{msg-mw|Nstab-media}}
+* {{msg-mw|Accesskey-ca-nstab-media}}
+* {{msg-mw|Tooltip-ca-nstab-media}}',
+'tooltip-ca-nstab-special' => 'Used as tooltip for tab of Special namespace.
+
+See also:
+* {{msg-mw|Nstab-special}}
+* {{msg-mw|Tooltip-ca-nstab-special}}',
+'tooltip-ca-nstab-project' => 'Used as tooltip for tab of Project namespace.
+
+See also:
+* {{msg-mw|Nstab-project}}
+* {{msg-mw|Accesskey-ca-nstab-project}}
+* {{msg-mw|Tooltip-ca-nstab-project}}',
+'tooltip-ca-nstab-image' => 'Tooltip shown when hovering over {{msg|nstab-image}} (File namespace tab).
+
+See also:
+* {{msg-mw|Nstab-image}}
+* {{msg-mw|Accesskey-ca-nstab-image}}
+* {{msg-mw|Tooltip-ca-nstab-image}}',
+'tooltip-ca-nstab-mediawiki' => 'Used as tooltip for tab of MediaWiki namespace.
+
+See also:
+* {{msg-mw|Nstab-mediawiki}}
+* {{msg-mw|Accesskey-ca-nstab-mediawiki}}
+* {{msg-mw|Tooltip-ca-nstab-mediawiki}}',
+'tooltip-ca-nstab-template' => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.
+
+See also:
+* {{msg-mw|Nstab-template}}
+* {{msg-mw|Accesskey-ca-nstab-template}}
+* {{msg-mw|Tooltip-ca-nstab-template}}',
+'tooltip-ca-nstab-help' => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.
+
+See also:
+* {{msg-mw|Nstab-help}}
+* {{msg-mw|Accesskey-ca-nstab-help}}
+* {{msg-mw|Tooltip-ca-nstab-help}}',
+'tooltip-ca-nstab-category' => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.
+
+See also:
+* {{msg-mw|Nstab-category}}
+* {{msg-mw|Accesskey-ca-nstab-category}}
+* {{msg-mw|Tooltip-ca-nstab-category}}',
+'tooltip-minoredit' => 'Tooltip shown when hovering over the "{{msg-mw|Minoredit}}" link below the edit form.
+
+See also:
+* {{msg-mw|Minoredit}}
+* {{msg-mw|Accesskey-minoredit}}
+* {{msg-mw|Tooltip-minoredit}}',
+'tooltip-save' => 'This is the text that appears when you hover the mouse over {{msg-mw|Savearticle}} button on the edit page.
+
+See also:
+* {{msg-mw|Savearticle}}
+* {{msg-mw|Accesskey-save}}
+* {{msg-mw|Tooltip-save}}',
+'tooltip-preview' => 'Tooltip shown when hovering over {{msg-mw|Showpreview}} button.
+
+If the length of the translated message is over 60 characters (including spaces) then the end of the message will be cut off when using Firefox 2.0.0.7 browser, Linux operating system and the Monobook skin.
+
+See also:
+* {{msg-mw|Showpreview}}
+* {{msg-mw|Accesskey-preview}}
+* {{msg-mw|Tooltip-preview}}',
+'tooltip-diff' => 'This is the text (tooltip) that appears when you hover the mouse over {{msg-mw|Showdiff}} button on the edit page.
+
+See also:
+* {{msg-mw|Showdiff}}
+* {{msg-mw|Accesskey-diff}}
+* {{msg-mw|Tooltip-diff}}',
+'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).
+
+See also:
+* {{msg-mw|Compareselectedversions}}
+* {{msg-mw|Accesskey-compareselectedversions}}
+* {{msg-mw|Tooltip-compareselectedversions}}',
+'tooltip-watch' => 'Used as tooltip for checkbox in Editor page.
+
+See also:
+* {{msg-mw|Watchthis}}
+* {{msg-mw|Accesskey-watch}}
+* {{msg-mw|Tooltip-watch}}
+{{Identical|Add this page to your watchlist}}',
+'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).
+
+See also:
+* {{msg-mw|Watchlistedit-normal-submit}}
+* {{msg-mw|Accesskey-watchlistedit-normal-submit}}
+* {{msg-mw|Tooltip-watchlistedit-normal-submit}}',
+'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).
+
+See also:
+* {{msg-mw|Watchlistedit-raw-submit}}
+* {{msg-mw|Accesskey-watchlistedit-raw-submit}}
+* {{msg-mw|Tooltip-watchlistedit-raw-submit}}',
+'tooltip-recreate' => 'Used as tooltip for Recreate link.
+
+See also:
+* {{msg-mw|Recreate}}
+* {{msg-mw|Tooltip-recreate}}',
+'tooltip-upload' => 'Used as tooltip for Upload button.
+
+See also:
+* {{msg-mw|Uploadbtn}}
+* {{msg-mw|Accesskey-upload}}
+* {{msg-mw|Tooltip-upload}}',
 'tooltip-rollback' => 'Tooltip of the rollback link on the history page and the diff view {{msg-mw|rollbacklinkcount}}
 {{Identical|Rollback}}
 {{Identical|Revert}}',
 'tooltip-undo' => 'Tooltip of the undo link on the history page and the diff view {{msg-mw|editundo}}
 {{Identical|Undo}}{{Identical|Revert}}',
+'tooltip-preferences-save' => 'Used as tooltip for Save button.
+
+See also:
+* {{msg-mw|Saveprefs}}
+* {{msg-mw|Accesskey-preferences-save}}
+* {{msg-mw|Tooltip-preferences-save}}',
+'tooltip-summary' => 'Used as tooltip for Summary input box in Editor page.
+
+See also:
+* {{msg-mw|Summary}}
+* {{msg-mw|Accesskey-summary}}
+* {{msg-mw|Tooltip-summary}}',
 
 # Stylesheets
 'common.css' => '{{optional}}
@@ -4772,8 +5908,30 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'nocredits' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 
 # Spam protection
+'spamprotectiontitle' => 'Used as page title when the edit contains spam.
+
+See also:
+* {{msg-mw|Spamprotectiontitle|title}}
+* {{msg-mw|Spamprotectiontext|text}}
+* {{msg-mw|Spamprotectionmatch|if matched}}
+* {{msg-mw|Yourdiff}}
+* {{msg-mw|Yourtext}}',
+'spamprotectiontext' => 'Used when the edit contains spam.
+
+See also:
+* {{msg-mw|Spamprotectiontitle|title}}
+* {{msg-mw|Spamprotectiontext|text}}
+* {{msg-mw|Spamprotectionmatch|if matched}}
+* {{msg-mw|Yourdiff}}
+* {{msg-mw|Yourtext}}',
 'spamprotectionmatch' => 'Used when the user\'s edit contains spam.
-* $1 - matching "spam filter"',
+* $1 - matching "spam filter"
+See also:
+* {{msg-mw|Spamprotectiontitle|title}}
+* {{msg-mw|Spamprotectiontext|text}}
+* {{msg-mw|Spamprotectionmatch|if matched}}
+* {{msg-mw|Yourdiff}}
+* {{msg-mw|Yourtext}}',
 'spam_reverting' => 'Edit summary for spam cleanup script. Used when a page is reverted because all later revisions contained a particular link. Parameters:
 * $1 is a spammed domain name.',
 'spam_blanking' => 'Edit summary for spam cleanup script. Used when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to. Parameters:
@@ -4853,7 +6011,41 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'skinname-vector' => '{{optional}}',
 
 # Patrolling
+'markaspatrolleddiff' => 'See also:
+* {{msg-mw|Markaspatrolleddiff}}
+* {{msg-mw|Markaspatrolledtext}}',
+'markaspatrolledtext' => 'See also:
+* {{msg-mw|Markaspatrolleddiff}}
+* {{msg-mw|Markaspatrolledtext}}',
 'markedaspatrolledtext' => '{{Identical|Markedaspatrolled}}',
+'rcpatroldisabled' => 'Used as title of error message when marking RecentChange as patrolled.
+
+See also:
+* {{msg-mw|Rcpatroldisabled|title}}
+* {{msg-mw|Rcpatroldisabledtext|text}}
+* {{msg-mw|Markedaspatrollederror-noautopatrol}}',
+'rcpatroldisabledtext' => 'Used as error message when marking RecentChange as patrolled.
+
+See also:
+* {{msg-mw|Rcpatroldisabled|title}}
+* {{msg-mw|Rcpatroldisabledtext|text}}
+* {{msg-mw|Markedaspatrollederror-noautopatrol}}',
+'markedaspatrollederror' => 'Used as title of error message.
+
+See also:
+* {{msg-mw|Markedaspatrollederror|title}}
+* {{msg-mw|Markedaspatrollederrortext|text}}',
+'markedaspatrollederrortext' => 'Used as error message.
+
+See also:
+* {{msg-mw|Markedaspatrollederror|title}}
+* {{msg-mw|Markedaspatrollederrortext|text}}',
+'markedaspatrollederror-noautopatrol' => 'Used as error message when marking RecentChange as patrolled.
+
+See also:
+* {{msg-mw|Rcpatroldisabled|title}}
+* {{msg-mw|Rcpatroldisabledtext|text}}
+* {{msg-mw|Markedaspatrollederror-noautopatrol}}',
 'markedaspatrollednotify' => 'Notification shown after a change has been marked as patrolled, $1 is the page title',
 'markedaspatrollederrornotify' => 'Notification shown after marking a change as patrolled failed',
 
@@ -4914,8 +6106,10 @@ Start with a lowercase letter, unless the first word is “SVG”.',
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
-'svg-long-error' => 'Displayed for invalid SVG file metadata.
-* $1 is the error message.',
+'svg-long-error' => 'Displayed for invalid SVG file metadata. Parameters:
+* $1 - the error message
+See also:
+* {{msg-mw|Thumbnail error}}',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-preview' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-other}}.',
 'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
@@ -5120,15 +6314,43 @@ Similar to "metadata-langitem" but for the case where a multilingual property ha
 'exif-bitspersample' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-compression' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-This field labels what the compression of the image is. It is commonly seen in Tiff images. It uses messages like {{msg-mw|exif-compression-1}} for the value. http://en.wikipedia.org/wiki/TIFF#TIFF_Compression_Tag has information about this field.',
+This field labels what the compression of the image is. It is commonly seen in Tiff images. It uses messages like {{msg-mw|exif-compression-1}} for the value. http://en.wikipedia.org/wiki/TIFF#TIFF_Compression_Tag has information about this field.
+
+See also:
+* {{msg-mw|Exif-compression}}
+* {{msg-mw|Exif-compression-1}}
+* {{msg-mw|Exif-compression-2}}
+* {{msg-mw|Exif-compression-3}}
+* {{msg-mw|Exif-compression-4}}',
 'exif-photometricinterpretation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-orientation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-For specific information on the orientation tag, see http://sylvana.net/jpegcrop/exif_orientation.html',
+For specific information on the orientation tag, see http://sylvana.net/jpegcrop/exif_orientation.html
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
 'exif-samplesperpixel' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-planarconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-planarconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+
+See also:
+* {{msg-mw|Exif-planarconfiguration}}
+* {{msg-mw|Exif-planarconfiguration-1}}
+* {{msg-mw|Exif-planarconfiguration-2}}',
 'exif-ycbcrsubsampling' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-ycbcrpositioning' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-ycbcrpositioning' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+
+See also:
+* {{msg-mw|Exif-ycbcrpositioning}}
+* {{msg-mw|Exif-ycbcrpositioning-1}}
+* {{msg-mw|Exif-ycbcrpositioning-2}}',
 'exif-xresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This is the horizontal resolution in either dots/inch or dots/cm.',
@@ -5187,10 +6409,25 @@ Version of exif standard photo uses. Typically this is 2.22',
 Version of flashpix used. Flashpix is a format used for storing some types of metadata in image. It is not as commonly used as EXIF, and mediawiki currently cannot read Flashpix data.',
 'exif-colorspace' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-The colorspace of the photo. This tells the computer how to make the colours in the photo be more true to the original photo. Typical values for this are sRGB or uncalibrated. This only gives information on colour information given in the exif-colorspace property. However, colour information is often stored elsewhere in the photo.',
+The colorspace of the photo. This tells the computer how to make the colours in the photo be more true to the original photo. Typical values for this are sRGB or uncalibrated. This only gives information on colour information given in the exif-colorspace property. However, colour information is often stored elsewhere in the photo.
+
+See also:
+* {{msg-mw|Exif-colorspace}}
+* {{msg-mw|Exif-colorspace-1|optional}}
+* {{msg-mw|Exif-colorspace-65535}}',
 'exif-componentsconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.',
+This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.
+
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
 'exif-compressedbitsperpixel' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-pixelxdimension' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
@@ -5233,7 +6470,19 @@ Exif is a format for storing metadata in image files. See this [http://en.wikipe
 *f is the abbreviation used in English for 'f-number'.",
 'exif-exposureprogram' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-How the camera figured out what exposure to use. (If it was manually set, if its optimizing for fast shutter speed, etc).',
+How the camera figured out what exposure to use. (If it was manually set, if its optimizing for fast shutter speed, etc).
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}',
 'exif-spectralsensitivity' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How sensitive each channel (colour) of the photo is to light. This tag is almost never used.',
@@ -5262,12 +6511,27 @@ The 'land' in a camera refers possibly to the inner surface of the barrel of the
 The subject of a photograph is the person or thing on which the camera focuses. 'Subject distance' is the distance to the subject given in meters.",
 'exif-meteringmode' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See [http://en.wikipedia.org/wiki/Metering_mode Wikipedia article] on metering mode.',
-'exif-lightsource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+See [http://en.wikipedia.org/wiki/Metering_mode Wikipedia article] on metering mode.
+
+See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}',
+'exif-lightsource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+{{Related|Exif-lightsource}}',
 'exif-flash' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See this [http://en.wikipedia.org/wiki/Flash_(photography) Wikipedia article] for an explanation of the term.
 
+See also:
+* {{msg-mw|Exif-flash}}
+* {{msg-mw|Exif-flash-fired-0}}
+* {{msg-mw|Exif-flash-fired-1}}
 {{Identical|Flash}}',
 'exif-focallength' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
@@ -5287,52 +6551,224 @@ How bright the flash is in beam candle power seconds.',
 
 Indicates the number of pixels in the image width (X) direction per FocalPlaneResolutionUnit on the camera focal plane.',
 'exif-focalplaneyresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-focalplaneresolutionunit' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-focalplaneresolutionunit' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+
+See also:
+* {{msg-mw|Exif-focalplaneresolutionunit}}
+* {{msg-mw|Exif-focalplaneresolutionunit-2}}',
 'exif-subjectlocation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Same as {{msg-mw|exif-subjectarea}} but only ever has two numbers as a value.',
 'exif-exposureindex' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-sensingmethod' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-sensingmethod' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+
+See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}',
 'exif-filesource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Determines if the image was recorded by a digital camera adhering to DSC standard (which is almost all digital cameras).',
 'exif-scenetype' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-If the image is directly photographed (taken by a digital camera).',
+If the image is directly photographed (taken by a digital camera).
+
+See also:
+* {{msg-mw|Exif-scenetype}}
+* {{msg-mw|Exif-scenetype-1}}',
 'exif-customrendered' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Image_processing image processing].',
+See also Wikipedia on [http://en.wikipedia.org/wiki/Image_processing image processing].
+
+See also:
+* {{msg-mw|Exif-customrendered}}
+* {{msg-mw|Exif-customrendered-0}}
+* {{msg-mw|Exif-customrendered-1}}',
 'exif-exposuremode' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Exposure_(photography) exposure in photography]. This tag shows if the photo's exposure was manually set or automatically determined.",
+See also Wikipedia on [http://en.wikipedia.org/wiki/Exposure_(photography) exposure in photography]. This tag shows if the photo's exposure was manually set or automatically determined.
+
+See also:
+* {{msg-mw|Exif-exposuremode}}
+* {{msg-mw|Exif-exposuremode-0}}
+* {{msg-mw|Exif-exposuremode-1}}
+* {{msg-mw|Exif-exposuremode-2}}",
 'exif-whitebalance' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Color_balance color balance].',
+See also Wikipedia on [http://en.wikipedia.org/wiki/Color_balance color balance].
+
+See also:
+* {{msg-mw|Exif-whitebalance}}
+* {{msg-mw|Exif-whitebalance-0}}
+* {{msg-mw|Exif-whitebalance-1}}',
 'exif-digitalzoomratio' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also Wikipedia on [http://en.wikipedia.org/wiki/Digital_zoom digital zoom].',
 'exif-focallengthin35mmfilm' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography focal length].',
+'exif-scenecapturetype' => 'See also:
+* {{msg-mw|Exif-scenecapturetype}}
+* {{msg-mw|Exif-scenecapturetype-0}}
+* {{msg-mw|Exif-scenecapturetype-1}}
+* {{msg-mw|Exif-scenecapturetype-2}}
+* {{msg-mw|Exif-scenecapturetype-3}}',
+'exif-gaincontrol' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
+
+See also:
+* {{msg-mw|Exif-gaincontrol}}
+* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
+* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
+* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
+* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
+* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+'exif-contrast' => 'See also:
+* {{msg-mw|Exif-contrast}}
+* {{msg-mw|Exif-contrast-0}}
+* {{msg-mw|Exif-contrast-1}}
+* {{msg-mw|Exif-contrast-2}}',
+'exif-saturation' => 'See also:
+* {{msg-mw|Exif-saturation}}
+* {{msg-mw|Exif-saturation-0}}
+* {{msg-mw|Exif-saturation-1}}
+* {{msg-mw|Exif-saturation-2}}',
+'exif-sharpness' => 'See also:
+* {{msg-mw|Exif-sharpness}}
+* {{msg-mw|Exif-sharpness-0}}
+* {{msg-mw|Exif-sharpness-1}}
+* {{msg-mw|Exif-sharpness-2}}',
+'exif-subjectdistancerange' => 'See also:
+* {{msg-mw|Exif-subjectdistancerange}}
+* {{msg-mw|Exif-subjectdistancerange-0}}
+* {{msg-mw|Exif-subjectdistancerange-1}}
+* {{msg-mw|Exif-subjectdistancerange-2}}
+* {{msg-mw|Exif-subjectdistancerange-3}}',
 'exif-imageuniqueid' => 'A unique identifier for the image in the form of a 128-bit hexadecimal string. See http://www.exif.org/Exif2-2.PDF for details on exif properties.',
 'exif-gpsversionid' => 'Version of the GPS IFD used to store location information. This is usually 2.2.0.0',
-'exif-gpslatituderef' => 'In older versions of mediawiki this referred to if the latitude was North or South. This is no longer used in modern versions of mediawiki except for when using a foreign image repository that is using an older version of mediawiki since the information is now contained in {{msg-mw|exif-gpslatitude}}.',
-'exif-gpslatitude' => 'The latitude of the location from where the picture was taken from.',
-'exif-gpslongituderef' => 'Same as {{msg-mw|exif-gpslatituderef}} but for longitude.',
+'exif-gpslatituderef' => 'In older versions of mediawiki this referred to if the latitude was North or South. This is no longer used in modern versions of mediawiki except for when using a foreign image repository that is using an older version of mediawiki since the information is now contained in {{msg-mw|exif-gpslatitude}}.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}
+See also:
+* {{msg-mw|Exif-gpsdestlatituderef}}
+* {{msg-mw|Exif-gpsdestlongituderef}}
+* {{msg-mw|Exif-gpslatituderef}}
+* {{msg-mw|Exif-gpslongituderef}}',
+'exif-gpslatitude' => 'The latitude of the location from where the picture was taken from.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}',
+'exif-gpslongituderef' => 'Same as {{msg-mw|exif-gpslatituderef}} but for longitude.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}
+See also:
+* {{msg-mw|Exif-gpsdestlatituderef}}
+* {{msg-mw|Exif-gpsdestlongituderef}}
+* {{msg-mw|Exif-gpslatituderef}}
+* {{msg-mw|Exif-gpslongituderef}}',
 'exif-gpslongitude' => 'The longitude of the location from where the picture was taken from.
 
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}
 {{Identical|Longitude}}',
 'exif-gpsaltituderef' => 'No longer used except for when using foreign image repository with old version of mediawiki. 0 for above sea level, 1 for below sea level.',
 'exif-gpsaltitude' => 'Altitude in meters that the image was taken at.',
 'exif-gpstimestamp' => 'Time (does not include date) that GPS measurement was taken, in UTC. Since often this is at the same time as photo was taken, this is sometimes more reliable than {{msg-mw|exif-datetimeoriginal}}.',
-'exif-gpsmeasuremode' => 'Is the measurement 2D (latitude and longitude) or 3D (latitude, longitude, and altitude).',
-'exif-gpsdop' => 'How accurate the GPS information is. See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
+'exif-gpsstatus' => 'See also:
+* {{msg-mw|Exif-gpsstatus}}
+* {{msg-mw|Exif-gpsstatus-a}}
+* {{msg-mw|Exif-gpsstatus-v}}',
+'exif-gpsmeasuremode' => 'Is the measurement 2D (latitude and longitude) or 3D (latitude, longitude, and altitude).
+
+See also:
+* {{msg-mw|Exif-gpsmeasuremode}}
+* {{msg-mw|Exif-gpsmeasuremode-2}}
+* {{msg-mw|Exif-gpsmeasuremode-3}}',
+'exif-gpsdop' => 'How accurate the GPS information is. See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+
+See also:
+* {{msg-mw|Exif-gpsdop}}
+* {{msg-mw|Exif-gpsdop-excellent}}
+* {{msg-mw|Exif-gpsdop-good}}
+* {{msg-mw|Exif-gpsdop-moderate}}
+* {{msg-mw|Exif-gpsdop-fair}}
+* {{msg-mw|Exif-gpsdop-poor}}',
+'exif-gpsspeedref' => 'See also:
+* {{msg-mw|Exif-gpsspeed}}
+* {{msg-mw|Exif-gpsspeedref}}
+* {{msg-mw|Exif-gpsspeed-k}}
+* {{msg-mw|Exif-gpsspeed-m}}
+* {{msg-mw|Exif-gpsspeed-n}}',
+'exif-gpsspeed' => 'See also:
+* {{msg-mw|Exif-gpsspeed}}
+* {{msg-mw|Exif-gpsspeedref}}
+* {{msg-mw|Exif-gpsspeed-k}}
+* {{msg-mw|Exif-gpsspeed-m}}
+* {{msg-mw|Exif-gpsspeed-n}}',
+'exif-gpsdestlatituderef' => 'See also:
+* {{msg-mw|Exif-gpsdestlatituderef}}
+* {{msg-mw|Exif-gpsdestlongituderef}}
+* {{msg-mw|Exif-gpslatituderef}}
+* {{msg-mw|Exif-gpslongituderef}}',
 'exif-gpsdestlatitude' => 'The latitude of the location shown in the picture, if it is different from latitude of the camera location. See {{msg-mw|exif-gpslatitude}}.
 
 {{Identical|Latitude}}',
+'exif-gpsdestlongituderef' => 'See also:
+* {{msg-mw|Exif-gpsdestlatituderef}}
+* {{msg-mw|Exif-gpsdestlongituderef}}
+* {{msg-mw|Exif-gpslatituderef}}
+* {{msg-mw|Exif-gpslongituderef}}',
 'exif-gpsdestlongitude' => 'The longitude of the location shown in the picture, if it is different from longitude of the camera location. See {{msg-mw|exif-gpslongitude}}.
 
 {{Identical|Longitude}}',
+'exif-gpsdestdistanceref' => 'I think "reference" stands for "unit". See {{msg-mw|Exif-gpsspeedref}}
+
+See also:
+* {{msg-mw|Exif-gpsdestdistance}}
+* {{msg-mw|Exif-gpsdestdistanceref}}
+* {{msg-mw|Exif-gpsdestdistance-k}}
+* {{msg-mw|Exif-gpsdestdistance-m}}
+* {{msg-mw|Exif-gpsdestdistance-n}}',
+'exif-gpsdestdistance' => 'See also:
+* {{msg-mw|Exif-gpsdestdistance}}
+* {{msg-mw|Exif-gpsdestdistanceref}}
+* {{msg-mw|Exif-gpsdestdistance-k}}
+* {{msg-mw|Exif-gpsdestdistance-m}}
+* {{msg-mw|Exif-gpsdestdistance-n}}',
 'exif-gpsdatestamp' => 'Date (does not generally include time unless recorded in XMP) that GPS measurement was taken, in UTC. Since often this is at the same date as photo was taken, this is sometimes more reliable than {{msg-mw|exif-datetimeoriginal}}.',
 'exif-coordinate-format' => '{{optional}} For formatting GPS latitude coordinates. $1 is degrees, $2 is minutes, $3 is seconds (up to two decimal places), $4 is direction (N, S, W, or E), $5 is coordinate as a single positive or negative real number.',
 'exif-jpegfilecomment' => 'This is not a true exif tag, but the contents of the JPEG COM segment. This often contains a file source, but can potentially contain any comment about the file. This is similar to {{msg-mw|exif-usercomment}}, {{msg-mw|exif-pngfilecomment}}, and {{msg-mw|exif-giffilecomment}}.',
@@ -5368,11 +6804,24 @@ Who gave us the image. This might be different from the creator of the image. Th
 This is who originally owned the image (a person, stock photo agency, etc). This does not refer to the image this image is based on.
 {{Identical|Source}}',
 'exif-editstatus' => 'Editorial status of image. This is more intended for use with people making news papers. This denotes whether the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
-'exif-urgency' => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.',
+'exif-urgency' => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.
+
+See also:
+* {{msg-mw|Exif-urgency}}
+* {{msg-mw|Exif-urgency-normal}}
+* {{msg-mw|Exif-urgency-low}}
+* {{msg-mw|Exif-urgency-high}}
+* {{msg-mw|Exif-urgency-other}}',
 'exif-fixtureidentifier' => 'Fixture name. Identifies frequently occuring object data, for example a regular column in a news paper.',
 'exif-locationdest' => 'Full printable name of location.',
 'exif-locationdestcode' => 'Code of location depicted. Typically this is an ISO country code, but the IPTC-iim standard also defines other codes like XSP for outer space. See appendix D (and tag 2:100) of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
-'exif-objectcycle' => 'Time of day that media is intended for. Either morning only, evening only, or all day. Typically only used for news related things that might only be broadcast at a specific time of day. See {{msg-mw|exif-objectcycle-a}}, {{msg-mw|exif-objectcycle-p}} and {{msg-mw|exif-objectcycle-b}} for the values that this message labels.',
+'exif-objectcycle' => 'Time of day that media is intended for. Either morning only, evening only, or all day. Typically only used for news related things that might only be broadcast at a specific time of day.
+
+See also:
+* {{msg-mw|Exif-objectcycle}}
+* {{msg-mw|Exif-objectcycle-a}}
+* {{msg-mw|Exif-objectcycle-p}}
+* {{msg-mw|Exif-objectcycle-b}}',
 'exif-contact' => 'Contact information of the person responsible for the image.',
 'exif-writer' => 'The person who wrote the caption of the image. See Description Writer on page 18 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-languagecode' => "Language of image/media.
@@ -5407,10 +6856,16 @@ This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/
 'exif-morepermissionsurl' => 'A url where you can "buy" (or otherwise negotiate) to get more rights for the image.',
 'exif-attributionurl' => "A url that you're supposed to use when re-using the image.",
 'exif-preferredattributionname' => 'The preferred name to give credit to when re-using this image.',
+'exif-pngfilecomment' => 'See also:
+* {{msg-mw|Exif-pngfilecomment}}
+* {{msg-mw|Exif-giffilecomment}}',
 'exif-disclaimer' => 'Disclaimer for the image.',
 'exif-contentwarning' => 'Content warning for the image. For example if the image/media contains violent, sexual or otherwise offensive content.
 
 This comes from the png warning textual chunk. See http://www.w3.org/TR/PNG/#11keywords',
+'exif-giffilecomment' => 'See also:
+* {{msg-mw|Exif-pngfilecomment}}
+* {{msg-mw|Exif-giffilecomment}}',
 'exif-intellectualgenre' => 'The "intellectual genre" of the image/media item. This typically means the type of item it is, ignoring the actual content of the item. See http://cv.iptc.org/newscodes/genre/ for some examples of the types of values this field might have.',
 'exif-subjectnewscode' => 'A (or multiple) codes describing the content of the image/media. The code is an 8 digit number representing some sort of category. The code is hierarchical , with the first two digits being a broad category (this broad category is shown to the user. See {{msg-mw|exif-subjectnewscode-value}} for how the value this field labels is shown to user). See http://cv.iptc.org/newscodes/subjectcode for the full list of codes.',
 'exif-scenecode' => 'IPTC (numeric) scene code. Contains information on what type of scene it is (like panoramic scene, close-up, etc). See http://cv.iptc.org/newscodes/scene/',
@@ -5437,6 +6892,30 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
 
 # EXIF attributes
+'exif-compression-1' => 'See also:
+* {{msg-mw|Exif-compression}}
+* {{msg-mw|Exif-compression-1}}
+* {{msg-mw|Exif-compression-2}}
+* {{msg-mw|Exif-compression-3}}
+* {{msg-mw|Exif-compression-4}}',
+'exif-compression-2' => 'See also:
+* {{msg-mw|Exif-compression}}
+* {{msg-mw|Exif-compression-1}}
+* {{msg-mw|Exif-compression-2}}
+* {{msg-mw|Exif-compression-3}}
+* {{msg-mw|Exif-compression-4}}',
+'exif-compression-3' => 'See also:
+* {{msg-mw|Exif-compression}}
+* {{msg-mw|Exif-compression-1}}
+* {{msg-mw|Exif-compression-2}}
+* {{msg-mw|Exif-compression-3}}
+* {{msg-mw|Exif-compression-4}}',
+'exif-compression-4' => 'See also:
+* {{msg-mw|Exif-compression}}
+* {{msg-mw|Exif-compression-1}}
+* {{msg-mw|Exif-compression-2}}
+* {{msg-mw|Exif-compression-3}}
+* {{msg-mw|Exif-compression-4}}',
 'exif-compression-5' => '{{optional}}
 Lempel-Ziv & Welch algorithm',
 'exif-compression-6' => '{{optional}}',
@@ -5453,121 +6932,787 @@ Lempel-Ziv & Welch algorithm',
 'exif-photometricinterpretation-6' => '{{optional}}',
 
 'exif-orientation-1' => '{{Identical|Normal}}
-0th row: top; 0th column: left',
-'exif-orientation-2' => '0th row: top; 0th column: right',
-'exif-orientation-3' => '0th row: bottom; 0th column: right',
-'exif-orientation-4' => '0th row: bottom; 0th column: left',
+0th row: top; 0th column: left
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
+'exif-orientation-2' => '0th row: top; 0th column: right
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
+'exif-orientation-3' => '0th row: bottom; 0th column: right
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
+'exif-orientation-4' => '0th row: bottom; 0th column: left
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
 'exif-orientation-5' => '0th row: left; 0th column: top
 
-CCW is an abbreviation for counter-clockwise',
+CCW is an abbreviation for counter-clockwise
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
 'exif-orientation-6' => '0th row: right; 0th column: top
 
-CCW is an abbreviation for counter-clockwise.',
+CCW is an abbreviation for counter-clockwise.
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
 'exif-orientation-7' => '0th row: right; 0th column: bottom
 
-CW is an abbreviation for clockwise',
+CW is an abbreviation for clockwise
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
 'exif-orientation-8' => '0th row: left; 0th column: bottom
 
-CW is an abbreviation for clockwise.',
+CW is an abbreviation for clockwise.
+
+See also:
+* {{msg-mw|Exif-orientation}}
+* {{msg-mw|Exif-orientation-1}}
+* {{msg-mw|Exif-orientation-2}}
+* {{msg-mw|Exif-orientation-3}}
+* {{msg-mw|Exif-orientation-4}}
+* {{msg-mw|Exif-orientation-5}}
+* {{msg-mw|Exif-orientation-6}}
+* {{msg-mw|Exif-orientation-7}}
+* {{msg-mw|Exif-orientation-8}}',
+
+'exif-planarconfiguration-1' => 'See also:
+* {{msg-mw|Exif-planarconfiguration}}
+* {{msg-mw|Exif-planarconfiguration-1}}
+* {{msg-mw|Exif-planarconfiguration-2}}',
+'exif-planarconfiguration-2' => 'See also:
+* {{msg-mw|Exif-planarconfiguration}}
+* {{msg-mw|Exif-planarconfiguration-1}}
+* {{msg-mw|Exif-planarconfiguration-2}}',
 
 'exif-xyresolution-i' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per inch. $1 is the number of dots/in.',
 'exif-xyresolution-c' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per centimetre. $1 is the number of dots/cm.',
 
-'exif-colorspace-1' => '{{Optional}} If it uses the standard sRGB colour space.',
-'exif-colorspace-65535' => 'The photograph is not colour calibrated.',
+'exif-colorspace-1' => '{{Optional}}
+If it uses the standard sRGB colour space.
 
-'exif-componentsconfiguration-1' => '{{optional}}',
-'exif-componentsconfiguration-2' => '{{optional}}',
-'exif-componentsconfiguration-3' => '{{optional}}',
-'exif-componentsconfiguration-4' => '{{optional}}',
-'exif-componentsconfiguration-5' => '{{optional}}',
-'exif-componentsconfiguration-6' => '{{optional}}',
+See also:
+* {{msg-mw|Exif-colorspace}}
+* {{msg-mw|Exif-colorspace-1|optional}}
+* {{msg-mw|Exif-colorspace-65535}}',
+'exif-colorspace-65535' => 'The photograph is not colour calibrated.
 
-'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
-'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Aperture_priority aperture priority].',
-'exif-exposureprogram-4' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Shutter_priority shutter priority].',
-'exif-exposureprogram-5' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
-'exif-exposureprogram-6' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
-'exif-exposureprogram-7' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
-'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
+See also:
+* {{msg-mw|Exif-colorspace}}
+* {{msg-mw|Exif-colorspace-1|optional}}
+* {{msg-mw|Exif-colorspace-65535}}',
+
+'exif-componentsconfiguration-0' => 'See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-1' => '{{optional}}
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-2' => '{{optional}}
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-3' => '{{optional}}
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-4' => '{{optional}}
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-5' => '{{optional}}
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-6' => '{{optional}}
+See also:
+* {{msg-mw|Exif-componentsconfiguration}}
+* {{msg-mw|Exif-componentsconfiguration-0}}
+* {{msg-mw|Exif-componentsconfiguration-1|optional}}
+* {{msg-mw|Exif-componentsconfiguration-2|optional}}
+* {{msg-mw|Exif-componentsconfiguration-3|optional}}
+* {{msg-mw|Exif-componentsconfiguration-4|optional}}
+* {{msg-mw|Exif-componentsconfiguration-5|optional}}
+* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+
+'exif-exposureprogram-0' => 'See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}',
+'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}",
+'exif-exposureprogram-2' => 'See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}',
+'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Aperture_priority aperture priority].
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}',
+'exif-exposureprogram-4' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Shutter_priority shutter priority].
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}',
+'exif-exposureprogram-5' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}",
+'exif-exposureprogram-6' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}",
+'exif-exposureprogram-7' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}",
+'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+
+See also:
+* {{msg-mw|Exif-exposureprogram}}
+* {{msg-mw|Exif-exposureprogram-0}}
+* {{msg-mw|Exif-exposureprogram-1}}
+* {{msg-mw|Exif-exposureprogram-2}}
+* {{msg-mw|Exif-exposureprogram-3}}
+* {{msg-mw|Exif-exposureprogram-4}}
+* {{msg-mw|Exif-exposureprogram-5}}
+* {{msg-mw|Exif-exposureprogram-6}}
+* {{msg-mw|Exif-exposureprogram-7}}
+* {{msg-mw|Exif-exposureprogram-8}}",
 
 'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
 
-'exif-meteringmode-0' => '{{Identical|Unknown}}',
-'exif-meteringmode-1' => '{{Identical|Average}}',
+'exif-meteringmode-0' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}
+{{Identical|Unknown}}',
+'exif-meteringmode-1' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}
+{{Identical|Average}}',
+'exif-meteringmode-2' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}',
+'exif-meteringmode-3' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}',
+'exif-meteringmode-4' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}',
+'exif-meteringmode-5' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}',
+'exif-meteringmode-6' => 'See also:
+* {{msg-mw|Exif-meteringmode}}
+* {{msg-mw|Exif-meteringmode-0}}
+* {{msg-mw|Exif-meteringmode-1}}
+* {{msg-mw|Exif-meteringmode-2}}
+* {{msg-mw|Exif-meteringmode-3}}
+* {{msg-mw|Exif-meteringmode-4}}
+* {{msg-mw|Exif-meteringmode-5}}
+* {{msg-mw|Exif-meteringmode-6}}',
 'exif-meteringmode-255' => '{{Identical|Other}}',
 
-'exif-lightsource-0' => '{{Identical|Unknown}}',
-'exif-lightsource-4' => '{{Identical|Flash}}',
-'exif-lightsource-20' => '{{optional}}',
-'exif-lightsource-21' => '{{optional}}',
-'exif-lightsource-22' => '{{optional}}',
-'exif-lightsource-23' => '{{optional}}',
+'exif-lightsource-0' => '{{Identical|Unknown}}
+{{Related|Exif-lightsource}}',
+'exif-lightsource-1' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-2' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-3' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-4' => '{{Identical|Flash}}
+{{Related|Exif-lightsource}}',
+'exif-lightsource-9' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-10' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-11' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-12' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-13' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-14' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-15' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-17' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-18' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-19' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-20' => '{{optional}}
+{{Related|Exif-lightsource}}',
+'exif-lightsource-21' => '{{optional}}
+{{Related|Exif-lightsource}}',
+'exif-lightsource-22' => '{{optional}}
+{{Related|Exif-lightsource}}',
+'exif-lightsource-23' => '{{optional}}
+{{Related|Exif-lightsource}}',
+'exif-lightsource-24' => '{{Related|Exif-lightsource}}',
+'exif-lightsource-255' => '{{Related|Exif-lightsource}}',
 
 # Flash modes
+'exif-flash-fired-0' => 'See also:
+* {{msg-mw|Exif-flash}}
+* {{msg-mw|Exif-flash-fired-0}}
+* {{msg-mw|Exif-flash-fired-1}}',
+'exif-flash-fired-1' => 'See also:
+* {{msg-mw|Exif-flash}}
+* {{msg-mw|Exif-flash-fired-0}}
+* {{msg-mw|Exif-flash-fired-1}}',
 'exif-flash-return-0' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-"Strobe" and "flash" mean the same here.',
+"Strobe" and "flash" mean the same here.
+
+See also:
+* {{msg-mw|Exif-flash-return-0}}
+* {{msg-mw|Exif-flash-return-2}}
+* {{msg-mw|Exif-flash-return-3}}',
 'exif-flash-return-2' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-"Strobe" and "flash" mean the same here.',
+"Strobe" and "flash" mean the same here.
+
+See also:
+* {{msg-mw|Exif-flash-return-0}}
+* {{msg-mw|Exif-flash-return-2}}
+* {{msg-mw|Exif-flash-return-3}}',
 'exif-flash-return-3' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-"Strobe" and "flash" mean the same here.',
-'exif-flash-mode-1' => 'This is when you have chosen that your camera must use a flash for this picture.',
-'exif-flash-mode-2' => "This is when you have chosen that your camera must ''not'' use a flash for this picture.",
+"Strobe" and "flash" mean the same here.
+
+See also:
+* {{msg-mw|Exif-flash-return-0}}
+* {{msg-mw|Exif-flash-return-2}}
+* {{msg-mw|Exif-flash-return-3}}',
+'exif-flash-mode-1' => 'This is when you have chosen that your camera must use a flash for this picture.
+
+See also:
+* {{msg-mw|Exif-flash-mode-1}}
+* {{msg-mw|Exif-flash-mode-2}}
+* {{msg-mw|Exif-flash-mode-3}}',
+'exif-flash-mode-2' => "This is when you have chosen that your camera must ''not'' use a flash for this picture.
+
+See also:
+* {{msg-mw|Exif-flash-mode-1}}
+* {{msg-mw|Exif-flash-mode-2}}
+* {{msg-mw|Exif-flash-mode-3}}",
+'exif-flash-mode-3' => 'See also:
+* {{msg-mw|Exif-flash-mode-1}}
+* {{msg-mw|Exif-flash-mode-2}}
+* {{msg-mw|Exif-flash-mode-3}}',
 'exif-flash-function-1' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 
-'exif-sensingmethod-5' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
-'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
+'exif-focalplaneresolutionunit-2' => 'See also:
+* {{msg-mw|Exif-focalplaneresolutionunit}}
+* {{msg-mw|Exif-focalplaneresolutionunit-2}}',
+
+'exif-sensingmethod-1' => 'See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}',
+'exif-sensingmethod-2' => 'See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}',
+'exif-sensingmethod-3' => 'See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}',
+'exif-sensingmethod-4' => 'See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}',
+'exif-sensingmethod-5' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).
+
+See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}",
+'exif-sensingmethod-7' => 'See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}',
+'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).
+
+See also:
+* {{msg-mw|Exif-sensingmethod}}
+* {{msg-mw|Exif-sensingmethod-1}}
+* {{msg-mw|Exif-sensingmethod-2}}
+* {{msg-mw|Exif-sensingmethod-3}}
+* {{msg-mw|Exif-sensingmethod-4}}
+* {{msg-mw|Exif-sensingmethod-5}}
+* {{msg-mw|Exif-sensingmethod-7}}
+* {{msg-mw|Exif-sensingmethod-8}}",
 
 'exif-filesource-3' => '{{optional}}',
 
-'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [http://en.wikipedia.org/wiki/Bracketing#Exposure_bracketing bracketing] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.",
+'exif-scenetype-1' => 'See also:
+* {{msg-mw|Exif-scenetype}}
+* {{msg-mw|Exif-scenetype-1}}',
 
-'exif-scenecapturetype-0' => '{{Identical|Standard}}',
+'exif-customrendered-0' => 'See also:
+* {{msg-mw|Exif-customrendered}}
+* {{msg-mw|Exif-customrendered-0}}
+* {{msg-mw|Exif-customrendered-1}}',
+'exif-customrendered-1' => 'See also:
+* {{msg-mw|Exif-customrendered}}
+* {{msg-mw|Exif-customrendered-0}}
+* {{msg-mw|Exif-customrendered-1}}',
+
+'exif-exposuremode-0' => 'See also:
+* {{msg-mw|Exif-exposuremode}}
+* {{msg-mw|Exif-exposuremode-0}}
+* {{msg-mw|Exif-exposuremode-1}}
+* {{msg-mw|Exif-exposuremode-2}}',
+'exif-exposuremode-1' => 'See also:
+* {{msg-mw|Exif-exposuremode}}
+* {{msg-mw|Exif-exposuremode-0}}
+* {{msg-mw|Exif-exposuremode-1}}
+* {{msg-mw|Exif-exposuremode-2}}',
+'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [http://en.wikipedia.org/wiki/Bracketing#Exposure_bracketing bracketing] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.
+
+See also:
+* {{msg-mw|Exif-exposuremode}}
+* {{msg-mw|Exif-exposuremode-0}}
+* {{msg-mw|Exif-exposuremode-1}}
+* {{msg-mw|Exif-exposuremode-2}}",
+
+'exif-whitebalance-0' => 'See also:
+* {{msg-mw|Exif-whitebalance}}
+* {{msg-mw|Exif-whitebalance-0}}
+* {{msg-mw|Exif-whitebalance-1}}',
+'exif-whitebalance-1' => 'See also:
+* {{msg-mw|Exif-whitebalance}}
+* {{msg-mw|Exif-whitebalance-0}}
+* {{msg-mw|Exif-whitebalance-1}}',
+
+'exif-scenecapturetype-0' => 'See also:
+* {{msg-mw|Exif-scenecapturetype}}
+* {{msg-mw|Exif-scenecapturetype-0}}
+* {{msg-mw|Exif-scenecapturetype-1}}
+* {{msg-mw|Exif-scenecapturetype-2}}
+* {{msg-mw|Exif-scenecapturetype-3}}
+{{Identical|Standard}}',
+'exif-scenecapturetype-1' => 'See also:
+* {{msg-mw|Exif-scenecapturetype}}
+* {{msg-mw|Exif-scenecapturetype-0}}
+* {{msg-mw|Exif-scenecapturetype-1}}
+* {{msg-mw|Exif-scenecapturetype-2}}
+* {{msg-mw|Exif-scenecapturetype-3}}',
+'exif-scenecapturetype-2' => 'See also:
+* {{msg-mw|Exif-scenecapturetype}}
+* {{msg-mw|Exif-scenecapturetype-0}}
+* {{msg-mw|Exif-scenecapturetype-1}}
+* {{msg-mw|Exif-scenecapturetype-2}}
+* {{msg-mw|Exif-scenecapturetype-3}}',
+'exif-scenecapturetype-3' => 'See also:
+* {{msg-mw|Exif-scenecapturetype}}
+* {{msg-mw|Exif-scenecapturetype-0}}
+* {{msg-mw|Exif-scenecapturetype-1}}
+* {{msg-mw|Exif-scenecapturetype-2}}
+* {{msg-mw|Exif-scenecapturetype-3}}',
 
 'exif-gaincontrol-0' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
 
-:0: None: no gain at all
-:1: Low gain up: some more brightness
-:2: High gain up: much more brightness
-:3: Low gain down: some less brightness (seems to be uncommon in photography)
-:4: High gain down: much less brightness (seems to be uncommon in photography)
-
+See also:
+* {{msg-mw|Exif-gaincontrol}}
+* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
+* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
+* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
+* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
+* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)
 {{Identical|None}}',
-'exif-gaincontrol-1' => '{{:MediaWiki:Exif-gaincontrol-0/qqq}}',
-'exif-gaincontrol-2' => '{{:MediaWiki:Exif-gaincontrol-0/qqq}}',
-'exif-gaincontrol-3' => '{{:MediaWiki:Exif-gaincontrol-0/qqq}}',
-'exif-gaincontrol-4' => '{{:MediaWiki:Exif-gaincontrol-0/qqq}}',
+'exif-gaincontrol-1' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
 
-'exif-contrast-0' => '{{Identical|Normal}}',
-'exif-contrast-1' => '{{Identical|Soft}}',
-'exif-contrast-2' => '{{Identical|Hard}}',
+See also:
+* {{msg-mw|Exif-gaincontrol}}
+* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
+* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
+* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
+* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
+* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+'exif-gaincontrol-2' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
 
-'exif-saturation-0' => '{{Identical|Normal}}',
-'exif-saturation-2' => 'Color saturation in picture EXIF data',
+See also:
+* {{msg-mw|Exif-gaincontrol}}
+* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
+* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
+* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
+* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
+* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+'exif-gaincontrol-3' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
 
-'exif-sharpness-0' => '{{Identical|Normal}}',
-'exif-sharpness-1' => '{{Identical|Soft}}',
-'exif-sharpness-2' => '{{Identical|Hard}}',
+See also:
+* {{msg-mw|Exif-gaincontrol}}
+* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
+* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
+* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
+* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
+* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+'exif-gaincontrol-4' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
 
-'exif-subjectdistancerange-0' => '{{Identical|Unknown}}',
-'exif-subjectdistancerange-1' => 'See also:
+See also:
+* {{msg-mw|Exif-gaincontrol}}
+* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
+* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
+* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
+* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
+* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+
+'exif-contrast-0' => 'See also:
+* {{msg-mw|Exif-contrast}}
+* {{msg-mw|Exif-contrast-0}}
+* {{msg-mw|Exif-contrast-1}}
+* {{msg-mw|Exif-contrast-2}}
+{{Identical|Normal}}',
+'exif-contrast-1' => 'See also:
+* {{msg-mw|Exif-contrast}}
+* {{msg-mw|Exif-contrast-0}}
+* {{msg-mw|Exif-contrast-1}}
+* {{msg-mw|Exif-contrast-2}}
+{{Identical|Soft}}',
+'exif-contrast-2' => 'See also:
+* {{msg-mw|Exif-contrast}}
+* {{msg-mw|Exif-contrast-0}}
+* {{msg-mw|Exif-contrast-1}}
+* {{msg-mw|Exif-contrast-2}}
+{{Identical|Hard}}',
+
+'exif-saturation-0' => 'See also:
+* {{msg-mw|Exif-saturation}}
+* {{msg-mw|Exif-saturation-0}}
+* {{msg-mw|Exif-saturation-1}}
+* {{msg-mw|Exif-saturation-2}}
+{{Identical|Normal}}',
+'exif-saturation-1' => 'See also:
+* {{msg-mw|Exif-saturation}}
+* {{msg-mw|Exif-saturation-0}}
+* {{msg-mw|Exif-saturation-1}}
+* {{msg-mw|Exif-saturation-2}}',
+'exif-saturation-2' => 'Color saturation in picture EXIF data
+
+See also:
+* {{msg-mw|Exif-saturation}}
+* {{msg-mw|Exif-saturation-0}}
+* {{msg-mw|Exif-saturation-1}}
+* {{msg-mw|Exif-saturation-2}}',
+
+'exif-sharpness-0' => 'See also:
+* {{msg-mw|Exif-sharpness}}
+* {{msg-mw|Exif-sharpness-0}}
+* {{msg-mw|Exif-sharpness-1}}
+* {{msg-mw|Exif-sharpness-2}}
+{{Identical|Normal}}',
+'exif-sharpness-1' => 'See also:
+* {{msg-mw|Exif-sharpness}}
+* {{msg-mw|Exif-sharpness-0}}
+* {{msg-mw|Exif-sharpness-1}}
+* {{msg-mw|Exif-sharpness-2}}
+{{Identical|Soft}}',
+'exif-sharpness-2' => 'See also:
+* {{msg-mw|Exif-sharpness}}
+* {{msg-mw|Exif-sharpness-0}}
+* {{msg-mw|Exif-sharpness-1}}
+* {{msg-mw|Exif-sharpness-2}}
+{{Identical|Hard}}',
+
+'exif-subjectdistancerange-0' => 'See also:
+* {{msg-mw|Exif-subjectdistancerange}}
+* {{msg-mw|Exif-subjectdistancerange-0}}
+* {{msg-mw|Exif-subjectdistancerange-1}}
+* {{msg-mw|Exif-subjectdistancerange-2}}
+* {{msg-mw|Exif-subjectdistancerange-3}}
+{{Identical|Unknown}}',
+'exif-subjectdistancerange-1' => 'Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].
+
+See also:
 * {{msg|Exif-subjectdistancerange-0}}
 * {{msg|Exif-subjectdistancerange-1}}
 * {{msg|Exif-subjectdistancerange-2}}
-* {{msg|Exif-subjectdistancerange-3}}
-
-Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].',
+* {{msg|Exif-subjectdistancerange-3}}',
+'exif-subjectdistancerange-2' => 'See also:
+* {{msg-mw|Exif-subjectdistancerange}}
+* {{msg-mw|Exif-subjectdistancerange-0}}
+* {{msg-mw|Exif-subjectdistancerange-1}}
+* {{msg-mw|Exif-subjectdistancerange-2}}
+* {{msg-mw|Exif-subjectdistancerange-3}}',
+'exif-subjectdistancerange-3' => 'See also:
+* {{msg-mw|Exif-subjectdistancerange}}
+* {{msg-mw|Exif-subjectdistancerange-0}}
+* {{msg-mw|Exif-subjectdistancerange-1}}
+* {{msg-mw|Exif-subjectdistancerange-2}}
+* {{msg-mw|Exif-subjectdistancerange-3}}',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.',
-'exif-gpslatitude-s' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.',
+'exif-gpslatitude-n' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}',
+'exif-gpslatitude-s' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}',
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.',
-'exif-gpslongitude-w' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.',
+'exif-gpslongitude-e' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}',
+'exif-gpslongitude-w' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
+
+See also:
+* {{msg-mw|Exif-gpslatitude}}
+* {{msg-mw|Exif-gpslatituderef}}
+** {{msg-mw|Exif-gpslatitude-n}}
+** {{msg-mw|Exif-gpslatitude-s}}
+* {{msg-mw|Exif-gpslongitude}}
+* {{msg-mw|Exif-gpslongituderef}}
+** {{msg-mw|Exif-gpslongitude-e}}
+** {{msg-mw|Exif-gpslongitude-w}}',
 
 # Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => 'Used as GPS Altitude in Exif data. Parameters:
@@ -5581,25 +7726,159 @@ See also:
 * {{msg-mw|Exif-gpsaltitude-above-sealevel}}
 * {{msg-mw|Exif-gpsaltitude-below-sealevel}}',
 
-'exif-gpsmeasuremode-2' => 'Only latitude and longitude recorded, no altitude.',
-'exif-gpsmeasuremode-3' => 'Latitude, longitude, and altitude recorded.',
+'exif-gpsstatus-a' => 'See also:
+* {{msg-mw|Exif-gpsstatus}}
+* {{msg-mw|Exif-gpsstatus-a}}
+* {{msg-mw|Exif-gpsstatus-v}}',
+'exif-gpsstatus-v' => 'See also:
+* {{msg-mw|Exif-gpsstatus}}
+* {{msg-mw|Exif-gpsstatus-a}}
+* {{msg-mw|Exif-gpsstatus-v}}',
+
+'exif-gpsmeasuremode-2' => 'Only latitude and longitude recorded, no altitude.
+
+See also:
+* {{msg-mw|Exif-gpsmeasuremode}}
+* {{msg-mw|Exif-gpsmeasuremode-2}}
+* {{msg-mw|Exif-gpsmeasuremode-3}}',
+'exif-gpsmeasuremode-3' => 'Latitude, longitude, and altitude recorded.
+
+See also:
+* {{msg-mw|Exif-gpsmeasuremode}}
+* {{msg-mw|Exif-gpsmeasuremode-2}}
+* {{msg-mw|Exif-gpsmeasuremode-3}}',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.",
+'exif-gpsspeed-k' => 'See also:
+* {{msg-mw|Exif-gpsspeed}}
+* {{msg-mw|Exif-gpsspeedref}}
+* {{msg-mw|Exif-gpsspeed-k}}
+* {{msg-mw|Exif-gpsspeed-m}}
+* {{msg-mw|Exif-gpsspeed-n}}',
+'exif-gpsspeed-m' => 'See also:
+* {{msg-mw|Exif-gpsspeed}}
+* {{msg-mw|Exif-gpsspeedref}}
+* {{msg-mw|Exif-gpsspeed-k}}
+* {{msg-mw|Exif-gpsspeed-m}}
+* {{msg-mw|Exif-gpsspeed-n}}',
+'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.
 
-'exif-gpsdop-excellent' => '$1 is the actual HDOP/PDOP value (less than or equal to 2 for excellent). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
-'exif-gpsdop-good' => '$1 is the actual HDOP/PDOP value (2-5 for good). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
-'exif-gpsdop-moderate' => '$1 is the actual HDOP/PDOP value (5-10 for moderate). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
-'exif-gpsdop-fair' => '$1 is the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
-'exif-gpsdop-poor' => '$1 is the actual HDOP/PDOP value (greater than 20 for poor). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
+See also:
+* {{msg-mw|Exif-gpsspeed}}
+* {{msg-mw|Exif-gpsspeedref}}
+* {{msg-mw|Exif-gpsspeed-k}}
+* {{msg-mw|Exif-gpsspeed-m}}
+* {{msg-mw|Exif-gpsspeed-n}}",
 
-'exif-objectcycle-a' => 'Morning only (a is for AM). See also {{msg-mw|Exif-objectcycle}}.',
-'exif-objectcycle-p' => 'Evening only (p is for PM). See also {{msg-mw|Exif-objectcycle}}.',
-'exif-objectcycle-b' => 'Both morning and evening (b is for both). See also {{msg-mw|Exif-objectcycle}}.',
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'See also:
+* {{msg-mw|Exif-gpsdestdistance}}
+* {{msg-mw|Exif-gpsdestdistanceref}}
+* {{msg-mw|Exif-gpsdestdistance-k}}
+* {{msg-mw|Exif-gpsdestdistance-m}}
+* {{msg-mw|Exif-gpsdestdistance-n}}',
+'exif-gpsdestdistance-m' => 'See also:
+* {{msg-mw|Exif-gpsdestdistance}}
+* {{msg-mw|Exif-gpsdestdistanceref}}
+* {{msg-mw|Exif-gpsdestdistance-k}}
+* {{msg-mw|Exif-gpsdestdistance-m}}
+* {{msg-mw|Exif-gpsdestdistance-n}}',
+'exif-gpsdestdistance-n' => 'See also:
+* {{msg-mw|Exif-gpsdestdistance}}
+* {{msg-mw|Exif-gpsdestdistanceref}}
+* {{msg-mw|Exif-gpsdestdistance-k}}
+* {{msg-mw|Exif-gpsdestdistance-m}}
+* {{msg-mw|Exif-gpsdestdistance-n}}',
 
-'exif-ycbcrpositioning-1' => 'If the Chrominance samples are centered with respect to the Luminance samples.',
+'exif-gpsdop-excellent' => '$1 is the actual HDOP/PDOP value (less than or equal to 2 for excellent). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+
+See also:
+* {{msg-mw|Exif-gpsdop}}
+* {{msg-mw|Exif-gpsdop-excellent}}
+* {{msg-mw|Exif-gpsdop-good}}
+* {{msg-mw|Exif-gpsdop-moderate}}
+* {{msg-mw|Exif-gpsdop-fair}}
+* {{msg-mw|Exif-gpsdop-poor}}',
+'exif-gpsdop-good' => '$1 is the actual HDOP/PDOP value (2-5 for good). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+
+See also:
+* {{msg-mw|Exif-gpsdop}}
+* {{msg-mw|Exif-gpsdop-excellent}}
+* {{msg-mw|Exif-gpsdop-good}}
+* {{msg-mw|Exif-gpsdop-moderate}}
+* {{msg-mw|Exif-gpsdop-fair}}
+* {{msg-mw|Exif-gpsdop-poor}}',
+'exif-gpsdop-moderate' => '$1 is the actual HDOP/PDOP value (5-10 for moderate). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+
+See also:
+* {{msg-mw|Exif-gpsdop}}
+* {{msg-mw|Exif-gpsdop-excellent}}
+* {{msg-mw|Exif-gpsdop-good}}
+* {{msg-mw|Exif-gpsdop-moderate}}
+* {{msg-mw|Exif-gpsdop-fair}}
+* {{msg-mw|Exif-gpsdop-poor}}',
+'exif-gpsdop-fair' => '$1 is the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+
+See also:
+* {{msg-mw|Exif-gpsdop}}
+* {{msg-mw|Exif-gpsdop-excellent}}
+* {{msg-mw|Exif-gpsdop-good}}
+* {{msg-mw|Exif-gpsdop-moderate}}
+* {{msg-mw|Exif-gpsdop-fair}}
+* {{msg-mw|Exif-gpsdop-poor}}',
+'exif-gpsdop-poor' => '$1 is the actual HDOP/PDOP value (greater than 20 for poor). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+
+See also:
+* {{msg-mw|Exif-gpsdop}}
+* {{msg-mw|Exif-gpsdop-excellent}}
+* {{msg-mw|Exif-gpsdop-good}}
+* {{msg-mw|Exif-gpsdop-moderate}}
+* {{msg-mw|Exif-gpsdop-fair}}
+* {{msg-mw|Exif-gpsdop-poor}}',
+
+'exif-objectcycle-a' => 'Morning only (a is for AM).
+
+See also:
+* {{msg-mw|Exif-objectcycle}}
+* {{msg-mw|Exif-objectcycle-a}}
+* {{msg-mw|Exif-objectcycle-p}}
+* {{msg-mw|Exif-objectcycle-b}}',
+'exif-objectcycle-p' => 'Evening only (p is for PM).
+
+See also:
+* {{msg-mw|Exif-objectcycle}}
+* {{msg-mw|Exif-objectcycle-a}}
+* {{msg-mw|Exif-objectcycle-p}}
+* {{msg-mw|Exif-objectcycle-b}}',
+'exif-objectcycle-b' => 'Both morning and evening (b is for both).
+
+See also:
+* {{msg-mw|Exif-objectcycle}}
+* {{msg-mw|Exif-objectcycle-a}}
+* {{msg-mw|Exif-objectcycle-p}}
+* {{msg-mw|Exif-objectcycle-b}}',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'See also:
+* {{msg-mw|Exif-gpsdirection-t}}
+* {{msg-mw|Exif-gpsdirection-m}}',
+'exif-gpsdirection-m' => 'See also:
+* {{msg-mw|Exif-gpsdirection-t}}
+* {{msg-mw|Exif-gpsdirection-m}}',
+
+'exif-ycbcrpositioning-1' => 'If the Chrominance samples are centered with respect to the Luminance samples.
+
+See also:
+* {{msg-mw|Exif-ycbcrpositioning}}
+* {{msg-mw|Exif-ycbcrpositioning-1}}
+* {{msg-mw|Exif-ycbcrpositioning-2}}',
 'exif-ycbcrpositioning-2' => 'If the Chrominance samples are on top of to the Luminance samples.
-See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html',
+See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
+
+See also:
+* {{msg-mw|Exif-ycbcrpositioning}}
+* {{msg-mw|Exif-ycbcrpositioning-1}}
+* {{msg-mw|Exif-ycbcrpositioning-2}}',
 
 'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.',
 'exif-dc-coverage' => '"The extent or scope of the resource" see dc:coverage in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
@@ -5639,10 +7918,38 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 'exif-iimcategory-war' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-wea' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 
-'exif-urgency-normal' => '$1 is numeric priority (aka 5 for normal)',
-'exif-urgency-low' => '$1 is numeric priority (6-8 for low)',
-'exif-urgency-high' => '$1 is numeric priority (1-4 for high)',
-'exif-urgency-other' => '$1 is numeric priority. Most specs define 0 and 9 to either be reserved or not allowed. However the exiftool documentation defines 0 to be reserved and 9 to be user-defined priority.',
+'exif-urgency-normal' => 'Parameters:
+* $1 - numeric priority (aka 5 for normal)
+See also:
+* {{msg-mw|Exif-urgency}}
+* {{msg-mw|Exif-urgency-normal}}
+* {{msg-mw|Exif-urgency-low}}
+* {{msg-mw|Exif-urgency-high}}
+* {{msg-mw|Exif-urgency-other}}',
+'exif-urgency-low' => 'Parameters:
+* $1 - numeric priority (6-8 for low)
+See also:
+* {{msg-mw|Exif-urgency}}
+* {{msg-mw|Exif-urgency-normal}}
+* {{msg-mw|Exif-urgency-low}}
+* {{msg-mw|Exif-urgency-high}}
+* {{msg-mw|Exif-urgency-other}}',
+'exif-urgency-high' => 'Parameters:
+* $1 - numeric priority (1-4 for high)
+See also:
+* {{msg-mw|Exif-urgency}}
+* {{msg-mw|Exif-urgency-normal}}
+* {{msg-mw|Exif-urgency-low}}
+* {{msg-mw|Exif-urgency-high}}
+* {{msg-mw|Exif-urgency-other}}',
+'exif-urgency-other' => 'Parameters:
+* $1 - numeric priority. Most specs define 0 and 9 to either be reserved or not allowed. However the exiftool documentation defines 0 to be reserved and 9 to be user-defined priority.
+See also:
+* {{msg-mw|Exif-urgency}}
+* {{msg-mw|Exif-urgency-normal}}
+* {{msg-mw|Exif-urgency-low}}
+* {{msg-mw|Exif-urgency-high}}
+* {{msg-mw|Exif-urgency-other}}',
 
 # External editor support
 'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
@@ -5738,6 +8045,11 @@ See also:
 See also:
 * {{msg-mw|Confirmrecreate}}
 * {{msg-mw|Confirmrecreate-noreason}}',
+'recreate' => 'Used as link text.
+
+See also:
+* {{msg-mw|Recreate}}
+* {{msg-mw|Tooltip-recreate}}',
 
 'unit-pixel' => '{{optional}}',
 
@@ -5844,6 +8156,17 @@ Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×100
 
 # Live preview
 'livepreview-loading' => '{{Identical|Loading}}',
+'livepreview-failed' => 'Used as error message.
+
+See also:
+* {{msg-mw|Livepreview-failed}}
+* {{msg-mw|Livepreview-error}}',
+'livepreview-error' => 'Used as error message. Parameters:
+* $1 - ...
+* $2 - ...
+See also:
+* {{msg-mw|Livepreview-failed}}
+* {{msg-mw|Livepreview-error}}',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Used as warning about slave lag. See also:
@@ -5860,7 +8183,12 @@ Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×100
 'watchlistedit-normal-legend' => 'Heading of dialogue box on [[Special:Watchlist/edit]]',
 'watchlistedit-normal-explain' => 'An introduction/explanation about the [[Special:Watchlist/edit|normal edit watchlist function]].
 Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
-'watchlistedit-normal-submit' => 'Text of submit button on [[Special:Watchlist/edit]].',
+'watchlistedit-normal-submit' => 'Text of submit button on [[Special:Watchlist/edit]].
+
+See also:
+* {{msg-mw|Watchlistedit-normal-submit}}
+* {{msg-mw|Accesskey-watchlistedit-normal-submit}}
+* {{msg-mw|Tooltip-watchlistedit-normal-submit}}',
 'watchlistedit-normal-done' => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.',
 'watchlistedit-raw-title' => 'Title of [[Special:Watchlist/raw|Special page]].
 
@@ -5870,7 +8198,12 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 {{Identical|Edit raw watchlist}}',
 'watchlistedit-raw-explain' => 'An introduction/explanation about the [[Special:Watchlist/raw|raw edit watchlist function]].',
 'watchlistedit-raw-titles' => 'Text above edit box containing items being watched on [[Special:Watchlist/raw]].',
-'watchlistedit-raw-submit' => 'Text of submit button on [[Special:Watchlist/raw]].',
+'watchlistedit-raw-submit' => 'Text of submit button on [[Special:Watchlist/raw]].
+
+See also:
+* {{msg-mw|Watchlistedit-raw-submit}}
+* {{msg-mw|Accesskey-watchlistedit-raw-submit}}
+* {{msg-mw|Tooltip-watchlistedit-raw-submit}}',
 'watchlistedit-raw-done' => 'A message which appears after the raw watchlist has been updated using [[Special:Watchlist/raw]].',
 'watchlistedit-raw-added' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is added to the raw watchlist.',
 'watchlistedit-raw-removed' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is deleted from the raw watchlist.',
@@ -6090,6 +8423,10 @@ $1 is the name of the requested file.',
 # Special:SpecialPages
 'specialpages' => 'Display name of link to [[Special:SpecialPages]] shown on all pages in the toolbox, as well as the page title and header of [[Special:SpecialPages]].
 
+See also:
+* {{msg-mw|Specialpages}}
+* {{msg-mw|Accesskey-t-specialpages}}
+* {{msg-mw|Tooltip-t-specialpages}}
 {{Identical|Special pages}}',
 'specialpages-note' => 'Footer note for the [[Special:SpecialPages]] page',
 'specialpages-group-maintenance' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',

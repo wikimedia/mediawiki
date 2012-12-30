@@ -2103,7 +2103,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-ok' => 'Søg',
 'linksearch-text' => 'Wildcards som "*.wikipedia.org" kan benyttes.
 Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
-Understøttede protokoller: <code>$1</code> (bruger automatisk http:// hvis der ikke er angivet nogen protokol).',
+{{PLURAL:$2|Understøttet protokol|Understøttede protokoller}}: <code>$1</code> (bruger automatisk http:// hvis der ikke er angivet nogen protokol).',
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 

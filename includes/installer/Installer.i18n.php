@@ -10824,10 +10824,10 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 
 제공하는 디렉토리는 설치하는 동안 웹 서버에 의해 쓸 수 있어야 합니다.
 
-PHP 파일이 있는 곳을 우리가 이를 맡길 수 없는 이유는 웹을 통해 접근할 수 없다는 것입니다.
+PHP 파일이 있는 곳을 우리가 맡길 수 없는 이유는 웹을 통해 접근할 수 없다는 것입니다.
 
 설치 마법사가 이과 함께 .htaccess 파일을 만들지만 거기서 실패하면 누군가는 원본 데이터베이스에 접근하는 데 실패합니다.
-원시 사용자 데이터(이메일 주소, 암호 해시) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
+원본 사용자 데이터(이메일 주소, 암호 해시) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
 
 <code>/var/lib/mediawiki/yourwiki</code>와 같이 모두 다른 곳에서 데이터베이스를 넣어보도록 하세요.',
 	'config-oracle-def-ts' => '기본 테이블공간:',
@@ -11144,13 +11144,14 @@ $3
 	'config-help' => '도움말',
 	'config-nofile' => '"$1" 파일을 찾을 수 없습니다. 이미 삭제되었나요?',
 	'mainpagetext' => "'''미디어위키가 성공적으로 설치되었습니다.'''",
-	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
+	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.
 
 == 시작하기 ==
 
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기]
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기 목록]
 * [//www.mediawiki.org/wiki/Manual:FAQ 미디어위키 FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources 내 언어로 미디어위키 지역화]',
 );
 
 /** Karachay-Balkar (къарачай-малкъар)
@@ -15094,15 +15095,15 @@ Instalassion abortìa.",
 	'config-using-uri' => "Utilisassion ëd l'anliura ëd servent «<nowiki>$1$2</nowiki>».",
 	'config-uploads-not-safe' => "'''Avis:''' Sò dossié stàndard për carié <code>$1</code> a l'é vulneràbil a l'esecussion ëd qualsëssìa senari.
 Bele che MediaWiki a contròla j'aspet ëd sicurëssa ëd tùit j'archivi carià, a l'é motobin arcomandà ëd [//www.mediawiki.org/wiki/Manual:Security#Upload_security saré ës përtus ëd sicurëssa] prima d'abilité ij cariament.",
-	'config-no-cli-uploads-check' => "'''Avis:''' Toa cartela predefinìa për cariagi (<code>$1</code>) a l'é pa controlà për vulnerabilità
-për esecussion dë script arbitrari an mente dl'istalassion ëd CLI.",
-	'config-brokenlibxml' => "Tò sistem a l'ha na combinassion ëd vërsion PHP e libxml2 che a l'é bacà e a peul causé la corussion ëd dat stërmà an MediaWiki e àutre aplicassion web.
-Agiorna a PHP 5.2.9 o pi neuv e libxml2 2.7.3 o pi neuv ([//bugs.php.net/bug.php?id=45996 bug filed with PHP]).
+	'config-no-cli-uploads-check' => "'''Avis:''' Toa cartela predefinìa për j-amportassion (<code>$1</code>) a l'é nen controlà a propòsit ëd la vulnerabilità
+d'esecussion ëd senari arbitrari durant l'istalassion CLI.",
+	'config-brokenlibxml' => "Sò sistema a l'ha na combinassion ëd version PHP e libxml2 che a l'ha dij bigat e a peul provoché la corussion ëd dat ëstërmà an MediaWiki e d'àutre aplicassion për l'aragnà.
+Ch'a agiorna a PHP 5.2.9 o pi neuv e libxml2 2.7.3 o pi neuv ([//bugs.php.net/bug.php?id=45996 bug filed with PHP]).
 Istalassion abortìa.",
-	'config-using531' => "MediaWiki a peul pa esse dovrà con PHP $1 a motiv d'un bug comprendent paràmetr d'arferiment a <code>__call()</code>.
-Agiorna a PHP 5.3.2 o pi neuv, o torna andré a PHP 5.3.0 për arzòlve sòn-sì.
+	'config-using531' => "MediaWiki a peul pa esse dovrà con PHP $1 a motiv d'un bigat ch'a ìmplica ij paràmetr d'arferiment a <code>__call()</code>.
+Ch'a agiorna a PHP 5.3.2 o pi neuv, o ch'a torna andré a PHP 5.3.0 për arzòlve ës problema.
 Istalassion abortìa.",
-	'config-suhosin-max-value-length' => 'Suhosin a l\'é instalà e a lìmita la lunghëssa dël paràmetr GET a $1 byte. ël component ResourceLoader ëd MediaWiki a travajerà d\'antorn a sto lìmit, ma lòn a degraderà le prestassion. Se possìbil dël tut, it dovrìe amposté suhosin.get.max_value_lenght a 1024 o pi àut an php.ini, e amposté $wgResourceLoaderMaxQueryLength al midem valor an LocalSettings.php .',
+	'config-suhosin-max-value-length' => 'Suhosin a l\'é instalà e a lìmita la longheur dël paràmetr GET a $1 byte. Ël component ResourceLoader ëd MediaWiki a travajerà an rispetand ës lìmit, ma sòn a degraderà le prestassion. Se possìbil, a dovrìa amposté suhosin.get.max_value_lenght a 1024 o pi àut an php.ini, e amposté $wgResourceLoaderMaxQueryLength al midem valor an LocalSettings.php .',
 	'config-db-type' => 'Sòrt ëd base ëd dàit:',
 	'config-db-host' => 'Ospitant ëd la base ëd dàit:',
 	'config-db-host-help' => "Se sò servent ëd base ëd dàit a l'é su un servent diferent, ch'a anserissa ambelessì ël nòm dl'ospitant o l'adrëssa IP.
@@ -15121,20 +15122,20 @@ A dovrìa conten-e gnun ëspassi.
 
 S'a deuvra n'ospitalità partagià, sò fornidor ëd l'ospitalità a-j darà un nòm ëd base ëd dàit specìfich da dovré o a lassrà ch'a lo crea via un panel ëd contròl.",
 	'config-db-name-oracle' => 'Schema dla base ëd dàit:',
-	'config-db-account-oracle-warn' => "A-i é tre senari apogià për istalé Oracle o ël database ëd backend:
+	'config-db-account-oracle-warn' => "A-i é tre possibilità mantnùe për istalé Oracle tanme terminal ëd base ëd dàit:
 
-S'it veule creé un cont ëd database com part dël process d'istalassion, për piasì dà un cont con privilegi SYSDBA com cont ëd database për l'istalassion e specìfica le credensiaj vorsùe për ël cont acedù da Ragnà, dësnò it peule ëdcò creé ël cont acedù da Ragnà manualment e mach dé col cont (se a l'ha ij përmess ciamà për creé j'oget dlë schema) o dé doi cont diferent, un con privilegi ëd creé e un limità për acess da Ragnà.
+S'a veul creé un cont ëd base ëd dàit com part dël process d'istalassion, për piasì ch'a fornissa un cont con ël ròl SYSDBA com cont ëd base ëd dàit për l'istalassion e ch'a specìfica le credensiaj vorsùe për ël cont d'acess an sl'aragnà, dësnò a peul ëdcò creé ël cont d'acess an sl'aragnà manualment e mach fornì col cont (se a l'ha ij përmess necessari për creé j'oget dë schema) o fornì doi cont diferent, un con ij privilegi ëd creé e un limità për l'acess an sla Ragnà.
 
-Jë script për creé un cont con ij privilegi ciamà a peul esse trovà ant la cartela \"maintenance/oracle\" dë sta istalassion. Ten a ment che dovrand un cont limità a disabiliterà tute le funsion ëd manutension con ël cont predefinì.",
+Ij senari për creé un cont con ij privilegi necessari a peul esse trovà ant la cartela «manutension/oracol/» ëd costa istalassion. Ch'a ten-a da ment che dovrand un cont limità a disabiliterà tute le funsion ëd manutension con ël cont predefinì.",
 	'config-db-install-account' => "Cont d'utent për l'instalassion.",
 	'config-db-username' => "Nòm d'utent dla base ëd dàit:",
 	'config-db-password' => 'Ciav dla base ëd dàit:',
-	'config-db-password-empty' => "Për piasì anseriss na ciav për ël neuv utent ëd database: $1.
-Con tut ch'a sia possìbil creé utent sensa ciav, a l'é pa sigur.",
-	'config-db-install-username' => "Anseriss ël nòm utent che a sarà dovrà për coleghesse al database an mente dël process d'istalassion.
-Cost a l'é ël nòm utent dël cont MediaWiki; cost a l'é ël nòm utent për tò database.",
-	'config-db-install-password' => "Anseriss la ciav che a sarà dovrà për coleghesse al database an mente dël process d'istalassion.
-Cost a l'é pa la ciav dël cont MediaWiki; cost a l'é la ciav për tò database.",
+	'config-db-password-empty' => "Për piasì, ch'a anserissa na ciav për ël neuv utent ëd base ëd dàit: $1.
+Con tut ch'a sia possìbil creé d'utent sensa ciav, a l'é pa na ròba sigura.",
+	'config-db-install-username' => "Ch'a nserissa lë stranòm che a sarà dovrà për coleghesse a la base ëd dàit durant ël process d'istalassion.
+Cost-sì a l'é nen lë stranòm dël cont MediaWiki; a l'é lë stranòm për soa base ëd dàit.",
+	'config-db-install-password' => "Ch'a anserissa la ciav che a sarà dovrà për coleghesse a la base ëd dàit durant ël process d'istalassion.
+Costa-sì a l'é nen la ciav dël cont MediaWiki; a l'é la ciav për soa base ëd dàit.",
 	'config-db-install-help' => "Ch'a anserissa lë stranòm d'utent e la ciav che a saran dovrà për coleghesse a la base ëd dàit durant ël process d'instalassion.",
 	'config-db-account-lock' => "Dovré ij midem stranòm d'utent e ciav durant j'operassion normaj",
 	'config-db-wiki-account' => "Cont d'utent për j'operassion normaj",
@@ -15159,7 +15160,7 @@ An '''manera UTF-8''', MySQL a arconòss an che ansema ëd caràter a son ij sò
 	'config-db-schema' => 'Schema për MediaWiki',
 	'config-db-schema-help' => "Lë schema sì-sota a l'é ëd sòlit giust.
 Ch'a lo cangia mach s'a sa ch'a n'ha da manca.",
-	'config-pg-test-error' => "As peul pa coleghesse al database '''$1'''; $2",
+	'config-pg-test-error' => "Impossìbil coleghesse a la base ëd dàit '''$1'''; $2",
 	'config-sqlite-dir' => 'Dossié dij dat SQLite:',
 	'config-sqlite-dir-help' => "SQLite a memorisa tùit ij dat ant n'archivi ùnich.
 
@@ -15180,10 +15181,10 @@ $1
 
 S'a vëd pa listà sì-sota ël sistema ëd base ëd dàit ch'a preuva a dovré, antlora va andaré a j'istrussion dl'anliura sì-dzora për abilité ël manteniment.",
 	'config-support-mysql' => "* $1 e l'é l'obietiv primari për MediaWiki e a l'é mej mantnù ([http://www.php.net/manual/en/mysql.installation.php com compilé PHP con ël manteniment MySQL])",
-	'config-support-postgres' => "* $1 e l'é un sistema ëd base ëd dàit popolar a sorgiss duverta com alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php com compilé PHP con ël manteniment ëd PostgreSQL]). A peul ess-ie quaich bug pi cit present, e a l'é pa arcomandà ëd dovrelo an ambient ëd produssion.",
+	'config-support-postgres' => "* $1 e l'é un sistema ëd base ëd dàit popolar a sorgiss duverta com alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php com compilé PHP con ël manteniment ëd PostgreSQL]). A peulo ess-ie chèich cit bigat, e a l'é nen arcomandà ëd dovrelo an n'ambient ëd produssion.",
 	'config-support-sqlite' => "* $1 e l'é un sistema ëd base ëd dàit leger che a l'é motobin bin mantnù ([http://www.php.net/manual/en/pdo.installation.php com compilé PHP con ël manteniment ëd SQLite], a deuvra PDO)",
 	'config-support-oracle' => "* $1 a l'é na base ëd dàit comersial për j'amprèise. ([http://www.php.net/manual/en/oci8.installation.php Com compilé PHP con ël manteniment OCI8])",
-	'config-support-ibm_db2' => "* $1 a l'é un database asiendal comercial.",
+	'config-support-ibm_db2' => "* $1 a l'é na base ëd dàit d'asiendal comersial.",
 	'config-header-mysql' => 'Ampostassion MySQL',
 	'config-header-postgres' => 'Ampostassion PostgreSQL',
 	'config-header-sqlite' => 'Ampostassion SQLite',
@@ -16955,7 +16956,8 @@ $3
 == Некоторые полезные ресурсы ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Список возможных настроек];
 * [//www.mediawiki.org/wiki/Manual:FAQ Часто задаваемые вопросы и ответы по MediaWiki];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Перевод MediaWiki на свой язык]',
 );
 
 /** Rusyn (русиньскый)
@@ -17075,6 +17077,8 @@ $messages['shi'] = array(
  * @author පසිඳු කාවින්ද
  */
 $messages['si'] = array(
+	'config-desc' => 'මාධ්‍යවිකි සඳහා වූ ස්ථාපකය',
+	'config-title' => 'මාධ්‍යවිකි $1 ස්ථාපනය',
 	'config-information' => 'තොරතුරු',
 	'config-localsettings-key' => 'උසස්කිරීම් යතුර:',
 	'config-localsettings-badkey' => 'ඔබ ඉදිරිපත් කෙරූ යතුර වැරදිය.',
@@ -17107,6 +17111,8 @@ $messages['si'] = array(
 	'config-db-install-account' => 'ස්ථාපනය සඳහා පරිශීලක ගිණුම',
 	'config-db-username' => 'දත්ත සංචිතයේ පරිශීලක නාමය:',
 	'config-db-password' => 'දත්ත සංචිතයේ මුරපදය:',
+	'config-db-wiki-account' => 'සාමාන්‍ය ක්‍රියාකාරිත්වය සඳහා පරිශීලක ගිණුම',
+	'config-db-prefix' => 'දත්ත සංචිත වගු උපසර්ගය:',
 	'config-db-charset' => 'දත්ත සංචිත අක්ෂර කට්ටලය',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 ද්විමය',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
@@ -17121,6 +17127,9 @@ $messages['si'] = array(
 	'config-header-sqlite' => 'SQLite සැකසුම්',
 	'config-header-oracle' => 'ඔරකල් සැකසුම්',
 	'config-header-ibm_db2' => 'IBM DB2 සැකසුම්',
+	'config-invalid-db-type' => 'වලංගු නොවන දත්ත සංචිත වර්ගය',
+	'config-db-web-account' => 'ජාල ප්‍රවේශනය සඳහා දත්ත සංචිත ගිණුම',
+	'config-mysql-engine' => 'ආචයන එන්ජිම:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'ද්විමය',
@@ -17136,6 +17145,8 @@ $messages['si'] = array(
 	'config-admin-name' => 'ඔබේ නම:',
 	'config-admin-password' => 'මුරපදය:',
 	'config-admin-password-confirm' => 'මුරපදය නැවතත්:',
+	'config-admin-name-blank' => 'පරිපාලක පරිශීලක නාමය යොදන්න.',
+	'config-admin-password-blank' => 'පරිපාලක ගිණුම සඳහා මුරපදය යොදන්න.',
 	'config-admin-email' => 'විද්‍යුත්-තැපැල් ලිපිනය:',
 	'config-optional-continue' => 'මගෙන් තව ප්‍රශ්ණ අහන්න.',
 	'config-profile' => 'පරිශීලක හිමිකම් පැතිකඩ:',

@@ -2017,8 +2017,8 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'linksearch-ns' => 'Neimspeise:',
 'linksearch-ok' => 'Cirche',
 'linksearch-text' => 'Le wildcard cumme a "*.wikipedia.org" ponne essere ausate.<br />
-Onne abbesogne almede de \'nu dominie de levèlle ierte, pe esembie "*.org". <br />
-Protocolle supportate: <code>$1</code> (\'u valore de base jè http:// ce \'u protocolle non g\'è specificate).',
+Onne abbesogne almene de \'nu dominie de levèlle ierte, pe esembie "*.org". <br />
+{{PLURAL:$2|Protocolle}} supportate: <code>$1</code> (\'u valore de base jè http:// ce \'u protocolle non g\'è specificate).',
 'linksearch-line' => '$1 jè pundete da $2',
 'linksearch-error' => "Le wildcard ponne essere ausate sulamende a l'inzie de l'hostname.",
 

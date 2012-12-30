@@ -500,9 +500,9 @@ Siz sharhlamoqchi bo'lgan bo'lim o'chirilgan yoki boshqa sarlavhaga jildirilgan 
 'accmailtitle' => "Mahfiy so'z jo'natildi.",
 'newarticle' => '(Yangi)',
 'newarticletext' => "Bu sahifa hali mavjud emas.
-Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qo'shimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] ko'ring).
-Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
-'noarticletext' => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tegishli loglarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
+Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qoʻshimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] koʻring).
+Agar bu sahifaga xatolik sabab kelib qolgan boʻlsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
+'noarticletext' => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tegishli qaydlarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
 'clearyourcache' => "'''Eslatma.''' Saqlaganingizdan so'ng o'zgarishlarni ko'rish uchun siz o'z brauzeringiz keshini tozalashingizga to'gri kelishi mumkin.
 * '''Firefox / Safari:''' ''Shift'' tugmasini bosgan holda, ''Yangilash'' unsurlar darchasini bosing, yoki ''Ctrl-F5'' yoki ''Ctrl-R'' (Macda ''⌘-R'') ni bosing
 * '''Google Chrome:''' ''Ctrl-Shift-R'' (Macda ''⌘-Shift-R'') ni bosing
@@ -511,6 +511,7 @@ Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' t
 'updated' => '(Yangilandi)',
 'note' => "'''Izoh:'''",
 'previewnote' => "'''Bu shunchaki ko‘rib chiqish. O‘zgartirishlar hali saqlangani yo‘q!'''",
+'continue-editing' => 'tahrirlashni davom ettirish',
 'editing' => '$1 tahrirlanmoqda',
 'creating' => '«$1» sahifasini yaratish',
 'editingsection' => '$1 (boʻlim) tahrirlanmoqda',
@@ -538,8 +539,8 @@ Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga k
 
 Bu sahifani yaratishda davom etishdan avval uning nega avval yoʻqotilgani bilan qiziqib koʻring.
 Qulaylik uchun quyida yoʻqotilish qaydlari keltirilgan:",
-'moveddeleted-notice' => "Bu sahifa o'chirilgan.
-Ma'lumot uchun quyida o'chirishlar va qayta nomlashlar bo'yicha jurnallardan mos yozuvlar keltirilgan.",
+'moveddeleted-notice' => 'Bu sahifa oʻchirilgan.
+Maʼlumot uchun quyida oʻchirish va qayta nomlash jurnallaridan mos yozuvlar keltirilgan.',
 'log-fulllog' => "Qaydlarni to'liq ko'rish",
 'edit-conflict' => "Tashrirlash to'qnashuvi.",
 'defaultmessagetext' => "Boshlang'ich matn",
@@ -671,7 +672,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'search-relatedarticle' => "Bog'liq",
 'mwsuggest-disable' => "AJAX-takliflarini o'chirish",
 'searcheverything-enable' => 'Barcha nomfazolarda qidir',
-'searchrelated' => "bog'langan",
+'searchrelated' => 'bogʻlangan',
 'searchall' => 'barchasi',
 'showingresults' => "Quyida №'''$2'''dan boshlab '''$1''' ta {{PLURAL:$1|natija}} ko'rsatildi.",
 'showingresultsnum' => "Quyida №'''$2'''dan boshlab '''$1''' ta {{PLURAL:$1|natija}} ko'rsatildi.",
@@ -846,7 +847,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 
 # Recent changes
 'nchanges' => "$1 {{PLURAL:$1|o'zgarish|o'zgarishlar}}",
-'recentchanges' => 'Yangi o‘zgartirishlar',
+'recentchanges' => 'Yangi oʻzgarishlar',
 'recentchanges-legend' => 'Yangi tahrirlar moslamalari',
 'recentchanges-summary' => "Bu sahifada siz oxirgi o'zgartirishlarni ko'rishingiz mumkin.",
 'recentchanges-feed-description' => "Vikida mazkur oqimdagi oxirgi o'zgarishlarni kuzatish",
@@ -1260,9 +1261,9 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'sp-contributions-newbies' => 'Faqatgina yangi foydalanuvchilarning hissalarini koʻrsat',
 'sp-contributions-newbies-sub' => 'Yangi hisob yozuvlaridan',
 'sp-contributions-newbies-title' => 'Yangi hisob yozuvlarining hissalari',
-'sp-contributions-blocklog' => 'Chetlashtirish qaydlari',
+'sp-contributions-blocklog' => 'chetlatishlar',
 'sp-contributions-deleted' => "o'chirilgan tahrirlar",
-'sp-contributions-uploads' => 'yuklanmalar',
+'sp-contributions-uploads' => 'yuklamalar',
 'sp-contributions-logs' => 'qaydlar',
 'sp-contributions-talk' => 'munozara',
 'sp-contributions-userrights' => 'foydalanuvchining huquqlarini boshqarish',
@@ -1321,7 +1322,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'unblocked' => '[[User:$1|$1]]dan to‘siq olib tashlandi',
 'unblocked-range' => '$1dan to‘siq olib tashlandi',
 'blocklist' => 'Chetlashtirilgan foydalanuvchilar',
-'ipblocklist' => 'Chetlashtirilgan IP manzillari va foydalanuvchilar',
+'ipblocklist' => 'Chetlashtirilgan foydalanuvchilar',
 'blocklist-timestamp' => 'Sana/vaqt',
 'blocklist-target' => 'Maqsad',
 'blocklist-expiry' => 'Tugaydi',
@@ -1344,7 +1345,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'change-blocklink' => "Muhosarani (to'siqni) o'zgartirmoq",
 'contribslink' => 'hissa',
 'emaillink' => 'e-maktub jo‘natish',
-'blocklogpage' => 'Chetlashtirish qaydlari',
+'blocklogpage' => 'Chetlatish qaydlari',
 'blocklogentry' => '$2 davrga [[$1]]ni chetlashtirdi $3',
 'block-log-flags-nocreate' => 'hisob ochish toʻxtatilgan',
 'block-log-flags-nousertalk' => "o'zining munozara sahifasini tahrirlay olmaydi",
@@ -1386,7 +1387,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 # Namespace 8 related
 'allmessages' => 'Tizim xabarlari',
 'allmessagesname' => 'Nomi',
-'allmessagesdefault' => "Boshlang'ich matn",
+'allmessagesdefault' => 'Boshlangʻich matn',
 'allmessagescurrent' => 'Joriy xabar matni',
 'allmessages-filter-all' => 'Barcha',
 'allmessages-language' => 'Til:',
@@ -1414,7 +1415,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'tooltip-ca-talk' => 'Sahifa matni borasida munozara',
 'tooltip-ca-edit' => "Siz bu sahifani tahrirlashingiz mumkin. Iltimos, saqlashdan oldim ko'rib chiqish tugmasidan foydalaning.",
 'tooltip-ca-addsection' => 'Yangi boʻlim ochish',
-'tooltip-ca-viewsource' => "Bu sahifa himoyalangan. Siz uning manbasini ko'rishingiz mumkin.",
+'tooltip-ca-viewsource' => 'Bu sahifa himoyalangan. Siz uning manbasini koʻrishingiz mumkin.',
 'tooltip-ca-history' => 'Bu sahifaning oldingi versiyalari.',
 'tooltip-ca-protect' => 'Bu sahifani himoyalash',
 'tooltip-ca-unprotect' => "Ushbu sahifaning himoyasini o'zgaritish",
