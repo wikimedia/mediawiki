@@ -38,20 +38,28 @@ html > body .suggestions {
 	margin: 0;
 }
 
-.suggestions-result {
+.suggestions-result a {
 	color: black;
-	margin: 0;
+	display: block;
 	line-height: 1.5em;
 	padding: 0.01em 0.25em;
+	width: 100%;
 	text-align: left;
 }
 
-.suggestions-result-current {
-	background-color: #4C59A6;
-	color: white;
+.suggestions-result {
+	margin: 0;
 }
 
-.suggestions-special .special-label {
+.suggestions-result-current,
+.suggestions-result-current a {
+	background-color: #4C59A6;
+	color: white;
+	text-decoration: none;
+}
+
+.suggestions-special .special-label,
+.suggestions-special .special-label a{
 	color: gray;
 	text-align: left;
 }
@@ -69,7 +77,7 @@ html > body .suggestions {
 }
 
 .suggestions-result-current .special-label,
-.suggestions-result-current .special-query {
+.suggestions-result-current .special-query{
 	color: white;
 }
 

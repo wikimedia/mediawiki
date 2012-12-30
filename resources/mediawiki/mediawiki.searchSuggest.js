@@ -134,8 +134,11 @@
 								$( '<ul>' )
 									.addClass( 'special-query' )
 									.append( $( '<li>' )
-										.text( query )
-										.autoEllipsis()
+										.append( $( '<a>' )
+											.attr( 'href', '#' )
+											.text( query )
+											.autoEllipsis()
+										)
 									)
 							)
 							.show();

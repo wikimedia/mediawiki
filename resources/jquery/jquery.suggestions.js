@@ -250,9 +250,13 @@ $.suggestions = {
 								if( context.config.highlightInput ) {
 									matchedText = context.data.prevText;
 								}
-								$result.append( $( '<span>' )
-										.css( 'whiteSpace', 'nowrap' )
-										.text( text )
+								$result
+									.append( $( '<a>' )
+										.attr( 'href', '#' )
+										.append( $( '<span>' )
+											.css( 'whiteSpace', 'nowrap' )
+											.text( text )
+										)
 									);
 
 								// Widen results box if needed
@@ -262,7 +266,7 @@ $.suggestions = {
 									// factor in any padding, margin, or border space on the parent
 									expWidth = $span.outerWidth() + ( context.data.$container.width() - $span.parent().width());
 								}
-								$autoEllipseMe = $autoEllipseMe.add( $result );
+								$autoEllipseMe = $autoEllipseMe.add( $result.children( 'a' ) );
 							}
 						}
 						// Apply new width for results box, if any
