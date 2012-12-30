@@ -229,7 +229,7 @@ $.suggestions = {
 						for ( i = 0; i < context.config.suggestions.length; i++ ) {
 							/*jshint loopfunc:true */
 							text = context.config.suggestions[i];
-							$result = $( '<div>' )
+							$result = $( '<li>' )
 								.addClass( 'suggestions-result' )
 								.attr( 'rel', i )
 								.data( 'text', context.config.suggestions[i] )
@@ -237,7 +237,7 @@ $.suggestions = {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
 										context,
-										$(this).closest( '.suggestions-results div' ),
+										$(this).closest( '.suggestions-result' ),
 										false
 									);
 								} )
@@ -314,14 +314,14 @@ $.suggestions = {
 						if ( context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 							result = context.data.$container.find( '.suggestions-special' );
 						} else {
-							result = context.data.$container.find( '.suggestions-results div:last' );
+							result = context.data.$container.find( '.suggestions-result' ).last();
 						}
 					}
 				}
 			} else if ( result === 'next' ) {
 				if ( selected.length === 0 ) {
 					// No item selected, go to the first one
-					result = context.data.$container.find( '.suggestions-results div:first' );
+					result = context.data.$container.find( '.suggestions-result' ).first();
 					if ( result.length === 0 && context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 						// No suggestion exists, go to the special one directly
 						result = context.data.$container.find( '.suggestions-special' );
@@ -498,15 +498,15 @@ $.fn.suggestions = function () {
 				.css( 'display', 'none' )
 				.addClass( 'suggestions' )
 				.append(
-					$( '<div>' ).addClass( 'suggestions-results' )
-						// Can't use click() because the container div is hidden when the
+					$( '<ul>' ).addClass( 'suggestions-results' )
+						// Can't use click() because the container ul is hidden when the
 						// textbox loses focus. Instead, listen for a mousedown followed
-						// by a mouseup on the same div.
+						// by a mouseup on the same ul.
 						.mousedown( function ( e ) {
-							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results div' );
+							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-result' );
 						} )
 						.mouseup( function ( e ) {
-							var $result = $( e.target ).closest( '.suggestions-results div' ),
+							var $result = $( e.target ).closest( '.suggestions-result' ),
 								$other = context.data.mouseDownOn;
 
 							context.data.mouseDownOn = $( [] );
