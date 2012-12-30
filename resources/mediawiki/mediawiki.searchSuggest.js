@@ -92,10 +92,12 @@
 						$( '<div>' )
 							.addClass( 'special-label' )
 							.text( mw.msg( 'searchsuggest-containing' ) ),
-						$( '<div>' )
+						$( '<ul>' )
 							.addClass( 'special-query' )
-							.text( query )
-							.autoEllipsis()
+							.append( $( '<li>' )
+								.text( query )
+								.autoEllipsis()
+							)
 					)
 					.show();
 			} else {
