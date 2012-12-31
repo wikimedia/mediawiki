@@ -1637,6 +1637,13 @@ $wgMessageStructure = array(
 		'disambiguationspage',
 		'disambiguations-text',
 	),
+	'pageswithprop' => array(
+		'pageswithprop',
+		'pageswithprop-summary',
+		'pageswithprop-text',
+		'pageswithprop-prop',
+		'pageswithprop-ok',
+	),
 	'doubleredirects' => array(
 		'doubleredirects',
 		'doubleredirects-summary',
