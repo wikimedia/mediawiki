@@ -1392,7 +1392,10 @@ SQL;
 		}
 
 		if ( isset( $options['HAVING'] ) ) {
-			$preLimitTail .= " HAVING {$options['HAVING']}";
+			$having = is_array( $options['HAVING'] )
+				? $this->makeList( $options['HAVING'], LIST_AND )
+				: $options['HAVING'];
+			$preLimitTail .= " HAVING {$having}";
 		}
 
 		if ( isset( $options['ORDER BY'] ) ) {
