@@ -164,7 +164,7 @@
 				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, backslash, anyCharacter,
 				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
 				whitespace, dollar, digits,
-				openExtlink, closeExtlink, openLink, closeLink, templateName, pipe, colon,
+				openExtlink, closeExtlink, wikilinkPage, wikilinkContents, openLink, closeLink, templateName, pipe, colon,
 				templateContents, openTemplate, closeTemplate,
 				nonWhitespaceExpression, paramExpression, expression, result;
 
@@ -304,6 +304,14 @@
 				 var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
 				 return result === null ? null : result.join('');
 			}
+
+			// Used for wikilink page names.  Like literalWithoutBar, but
+			// without allowing escapes.
+			function unescapedLiteralWithoutBar() {
+				var result = nOrMore( 1, regularLiteralWithoutBar )();
+				return result === null ? null : result.join('');
+			}
+
 			function literal() {
 				 var result = nOrMore( 1, escapedOrRegularLiteral )();
 				 return result === null ? null : result.join('');
@@ -357,16 +365,48 @@
 			}
 			openLink = makeStringParser( '[[' );
 			closeLink = makeStringParser( ']]' );
+			pipe = makeStringParser( '|' );
+
+			function template() {
+				var result = sequence( [
+					openTemplate,
+					templateContents,
+					closeTemplate
+				] );
+				return result === null ? null : result[1];
+			}
+
+			wikilinkPage = choice( [
+				unescapedLiteralWithoutBar,
+				template
+			] );
+
+			function pipedWikilink() {
+				var result = sequence( [
+					wikilinkPage,
+					pipe,
+					expression
+				] );
+				return result === null ? null : [ result[0], result[2] ];
+			}
+
+			wikilinkContents = choice( [
+				pipedWikilink,
+				wikilinkPage // unpiped link
+			] );
+
 			function link() {
-				var result, parsedResult;
+				var result, parsedResult, parsedLinkContents;
 				result = null;
+
 				parsedResult = sequence( [
 					openLink,
-					expression,
+					wikilinkContents,
 					closeLink
 				] );
 				if ( parsedResult !== null ) {
-					 result = [ 'WLINK', parsedResult[1] ];
+					parsedLinkContents = parsedResult[1];
+					result = [ 'WLINK' ].concat( parsedLinkContents );
 				}
 				return result;
 			}
@@ -389,7 +429,7 @@
 				// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
 				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
 			}
-			pipe = makeStringParser( '|' );
+
 			function templateWithReplacement() {
 				var result = sequence( [
 					templateName,
@@ -430,14 +470,6 @@
 			] );
 			openTemplate = makeStringParser('{{');
 			closeTemplate = makeStringParser('}}');
-			function template() {
-				var result = sequence( [
-					openTemplate,
-					templateContents,
-					closeTemplate
-				] );
-				return result === null ? null : result[1];
-			}
 			nonWhitespaceExpression = choice( [
 				template,
 				link,
@@ -454,6 +486,7 @@
 				replacement,
 				literalWithoutBar
 			] );
+
 			expression = choice( [
 				template,
 				link,
@@ -462,6 +495,7 @@
 				replacement,
 				literal
 			] );
+
 			function start() {
 				var result = nOrMore( 0, expression )();
 				if ( result === null ) {
@@ -607,35 +641,32 @@
 		 * @param nodes
 		 */
 		wlink: function ( nodes ) {
-			if ( nodes.length !== 1 ) {
+			if ( nodes.length !== 1 && nodes.length !== 2 ) {
 				return 'unimplemented due to unxpected node count in link';
 			}
 
-			var splitLink = nodes[0].split( '|' ), page, anchor, url;
+			var page, anchor, url;
 
-			if ( splitLink.length === 1 || splitLink.length === 2 ) {
-				page = splitLink[0];
-				url = mw.util.wikiGetlink( page );
+			page = nodes[0];
+			url = mw.util.wikiGetlink( page );
 
-				// [[Some Page]] or [[Namespace:Some Page]]
-				if ( splitLink.length === 1 ) {
-					anchor = page;
-				}
-				/*
-				 * [[Some Page|anchor text]] or
-				 * [[Namespace:Some Page|anchor]
-				 */
-				else {
-					anchor = splitLink[1];
-					if ( anchor === '' ) {
-						return 'pipe trick is unimplemented';
-					}
-				}
-
-				return $( '<a />' ).attr( 'href', url ).text( anchor );
+			// [[Some Page]] or [[Namespace:Some Page]]
+			if ( nodes.length === 1 ) {
+				anchor = page;
 			}
 
-			return 'unimplemented';
+			/*
+			 * [[Some Page|anchor text]] or
+			 * [[Namespace:Some Page|anchor]
+			 */
+			else {
+				anchor = nodes[1];
+				if ( anchor === '' ) {
+					return 'pipe trick is unimplemented';
+				}
+			}
+
+			return $( '<a />' ).attr( 'href', url ).text( anchor );
 		},
 
 		/**
@@ -732,6 +763,16 @@
 			var form = nodes[0],
 				word = nodes[1];
 			return word && form && this.language.convertGrammar( word, form );
+		},
+
+		/**
+		 * Tranform parsed structure into a MediaWiki transclusion.
+		 * Invoked by putting {{MediaWiki:othermessage}} into a message
+		 * @param {Array} of nodes
+		 * @return {string} Other message
+		 */
+		mediawiki: function ( nodes ) {
+			return mw.msg( nodes[0].toLowerCase() );
 		}
 	};
 	// Deprecated! don't rely on gM existing.
