@@ -181,6 +181,7 @@ $wgIgnoredMessages = array(
 	'deadendpages-summary',
 	'protectedpages-summary',
 	'disambiguations-summary',
+	'pageswithprop-summary',
 	'doubleredirects-summary',
 	'lonelypages-summary',
 	'unusedtemplates-summary',
