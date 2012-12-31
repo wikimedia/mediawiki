@@ -148,6 +148,7 @@ production.
   the same query. When both are present, 'from' is simply ignored.
 * list=alllinks & alltransclusions now allow 'unique' in generators, to yield
   a list of all link/template target pages instead of source pages.
+* (bug 43251) prop=pageprops&ppprop= now accepts multiple props to query.
 
 === Languages updated in 1.21 ===
 
