@@ -342,6 +342,7 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 		if ( count( $insertions ) ) {
 			$this->mDb->insert( $table, $insertions, __METHOD__, 'IGNORE' );
+			wfRunHooks( 'LinksUpdateAfterInsert', array( &$this, $table, $insertions ) );
 		}
 	}
 
