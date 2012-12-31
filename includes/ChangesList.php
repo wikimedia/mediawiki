@@ -616,7 +616,8 @@ class OldChangesList extends ChangesList {
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
-		$classes[] = $watched ? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
+		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
+			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
 		// Moved pages (very very old, not supported anymore)
 		if ( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
@@ -878,7 +879,8 @@ class EnhancedChangesList extends ChangesList {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns'
 					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
-		$classes[] = $block[0]->watched ? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
+		$classes[] = $block[0]->watched && $block[0]->mAttribs['rc_timestamp'] >= $block[0]->watched
+			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
@@ -1059,7 +1061,10 @@ class EnhancedChangesList extends ChangesList {
 			$classes = array();
 			$type = $rcObj->mAttribs['rc_type'];
 
-			$r .= '<tr><td></td><td class="mw-enhanced-rc">';
+			$trClass = $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
+				? ' class="mw-enhanced-watched"' : '';
+
+			$r .= '<tr' . $trClass . '><td></td><td class="mw-enhanced-rc">';
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $type == RC_NEW,
 				'minor' => $rcObj->mAttribs['rc_minor'],
@@ -1200,7 +1205,8 @@ class EnhancedChangesList extends ChangesList {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
 					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
-		$classes[] = $rcObj->watched ? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
+		$classes[] = $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
+			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 

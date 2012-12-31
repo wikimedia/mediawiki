@@ -59,6 +59,7 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	background: url(images/arrow-expanded.png) no-repeat left center;
 }
 
-.mw-changeslist-line-watched .mw-title {
+.mw-changeslist-line-watched .mw-title,
+.mw-enhanced-watched .mw-enhanced-rc-time {
 	font-weight: bold;
 }
