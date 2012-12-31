@@ -212,6 +212,7 @@ production.
   iicontinue).
 * Add supports for all pageset capabilities - generators, redirects, converttitles to
   action=purge and action=setnotificationtimestamp.
+* (bug 43251) prop=pageprops&ppprop= now accepts multiple props to query.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.

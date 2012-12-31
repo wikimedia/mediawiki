@@ -60,7 +60,10 @@ class ApiQueryPageProps extends ApiQueryBase {
 		}
 
 		# Force a sort order to ensure that properties are grouped by page
-		$this->addOption( 'ORDER BY', 'pp_page' );
+		# But only if pp_page is not constant in the WHERE clause.
+		if ( count( $pages ) > 1 ) {
+			$this->addOption( 'ORDER BY', 'pp_page' );
+		}
 
 		$res = $this->select( __METHOD__ );
 		$currentPage = 0; # Id of the page currently processed
@@ -122,14 +125,16 @@ class ApiQueryPageProps extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'continue' => null,
-			'prop' => null,
+			'prop' => array(
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
 			'continue' => 'When more results are available, use this to continue',
-			'prop' => 'Page prop to look on the page for. Useful for checking whether a certain page uses a certain page prop.'
+			'prop' => 'Only list these props. Useful for checking whether a certain page uses a certain page prop',
 		);
 	}
 
