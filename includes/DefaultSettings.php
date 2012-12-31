@@ -2363,7 +2363,7 @@ $wgDisableLangConversion = false;
 /** Whether to enable language variant conversion for links. */
 $wgDisableTitleConversion = false;
 
-/** Whether to enable cononical language links in meta data. */
+/** Whether to enable canonical language links in meta data. */
 $wgCanonicalLanguageLinks = true;
 
 /** Default variant code, if false, the default will be the language code */
@@ -2831,6 +2831,14 @@ $wgSend404Code = true;
  * @since 1.20
  */
 $wgShowRollbackEditCount = 10;
+
+/**
+ * Output a <link rel="canonical"> tag on every page indicating the canonical
+ * server which should be used, i.e. $wgServer or $wgCanonicalServer. Since 
+ * detection of the current server is unreliable, the link is sent
+ * unconditionally.
+ */
+$wgEnableCanonicalServerLink = false;
 
 /** @} */ # End of output format settings }
 
