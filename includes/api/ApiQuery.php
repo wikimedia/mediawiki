@@ -80,6 +80,8 @@ class ApiQuery extends ApiBase {
 		'iwbacklinks' => 'ApiQueryIWBacklinks',
 		'langbacklinks' => 'ApiQueryLangBacklinks',
 		'logevents' => 'ApiQueryLogEvents',
+		'pageswithprop' => 'ApiQueryPagesWithProp',
+		'pagepropnames' => 'ApiQueryPagePropNames',
 		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 		'random' => 'ApiQueryRandom',

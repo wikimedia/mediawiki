@@ -80,6 +80,7 @@ class SpecialPageFactory {
 		'Categories'                => 'SpecialCategories',
 		'Disambiguations'           => 'DisambiguationsPage',
 		'Listredirects'             => 'ListredirectsPage',
+		'PagesWithProp'             => 'SpecialPagesWithProp',
 
 		// Login/create account
 		'Userlogin'                 => 'LoginForm',
