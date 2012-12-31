@@ -57,6 +57,9 @@ production.
   debug mode: wfMsg, wfMsgNoTrans, wfMsgForContent, wfMsgForContentNoTrans,
   wfMsgReal, wfMsgGetKey, wfMsgHtml, wfMsgWikiHtml, wfMsgExt, wfEmptyMsg. Use
   the Message class, or the global method wfMessage.
+* Added $wgEnableCanonicalServerLink, off by default. If enabled, a 
+  <link rel=canonical> tag is added to every page indicating the correct server
+  to use.
 * Debug message emitted by wfDebugLog() will now be prefixed with the group
   name when its logged to the default log file. That is the case whenever the
   group has no key in wgDebugLogGroups, that will help triage the default log.
