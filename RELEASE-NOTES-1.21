@@ -85,6 +85,7 @@ production.
   a security fix (bug 42202).
 * Added the ability to limit the wall clock time used by shell processes, 
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
+* Added Special:PagesWithProp, which lists pages using a particular page property.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -179,6 +180,10 @@ production.
   for all query modules.
 * ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
 * (bug 35885) Removed version parameter and all getVersion() methods.
+* Added an API query module list=pageswithprop, which lists pages using a
+  particular page property.
+* Added an API query module list=pagepropnames, which lists all page prop names
+  currently in use on the wiki.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
