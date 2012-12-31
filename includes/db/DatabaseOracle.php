@@ -1167,14 +1167,30 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( isset( $options['GROUP BY'] ) ) {
-			$preLimitTail .= " GROUP BY {$options['GROUP BY']}";
-		}
-		if ( isset( $options['ORDER BY'] ) ) {
-			$preLimitTail .= " ORDER BY {$options['ORDER BY']}";
+			$gb = is_array( $options['GROUP BY'] )
+				? implode( ',', $options['GROUP BY'] )
+				: $options['GROUP BY'];
+			$preLimitTail .= " GROUP BY {$gb}";
 		}
 
-		# if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $tailOpts .= ' FOR UPDATE';
-		# if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $tailOpts .= ' LOCK IN SHARE MODE';
+		if ( isset( $options['HAVING'] ) ) {
+			$having = is_array( $options['HAVING'] )
+				? $this->makeList( $options['HAVING'], LIST_AND )
+				: $options['HAVING'];
+			$preLimitTail .= " HAVING {$having}";
+		}
+
+		if ( isset( $options['ORDER BY'] ) ) {
+			$ob = is_array( $options['ORDER BY'] )
+				? implode( ',', $options['ORDER BY'] )
+				: $options['ORDER BY'];
+			$preLimitTail .= " ORDER BY {$ob}";
+		}
+
+		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
+			$postLimitTail .= ' FOR UPDATE';
+		}
+
 		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
 			$startOpts .= 'DISTINCT';
 		}
@@ -1187,7 +1203,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
-
+	
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		if ( is_array($conds) ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );

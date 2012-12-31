@@ -361,7 +361,8 @@ CREATE TABLE &mw_prefix.filearchive (
   fa_user               NUMBER          DEFAULT 0 NOT NULL,
   fa_user_text          VARCHAR2(255)         NOT NULL,
   fa_timestamp          TIMESTAMP(6) WITH TIME ZONE,
-  fa_deleted            NUMBER      DEFAULT 0 NOT NULL
+  fa_deleted            NUMBER      DEFAULT 0 NOT NULL,
+  fa_sha1		VARCHAR2(32)
 );
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_pk PRIMARY KEY (fa_id);
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_fk1 FOREIGN KEY (fa_deleted_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
@@ -370,6 +371,7 @@ CREATE INDEX &mw_prefix.filearchive_i01 ON &mw_prefix.filearchive (fa_name, fa_t
 CREATE INDEX &mw_prefix.filearchive_i02 ON &mw_prefix.filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX &mw_prefix.filearchive_i03 ON &mw_prefix.filearchive (fa_deleted_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i04 ON &mw_prefix.filearchive (fa_user_text,fa_timestamp);
+CREATE INDEX &mw_prefix.filearchive_i05 ON &mw_prefix.filearchive (fa_sha1);
 
 CREATE SEQUENCE uploadstash_us_id_seq;
 CREATE TABLE &mw_prefix.uploadstash (
@@ -388,7 +390,8 @@ CREATE TABLE &mw_prefix.uploadstash (
   us_media_type         VARCHAR2(32) DEFAULT NULL,
 	us_image_width				NUMBER,
 	us_image_height				NUMBER,
-	us_image_bits					NUMBER
+	us_image_bits					NUMBER,
+  us_props BLOB
 );
 ALTER TABLE &mw_prefix.uploadstash ADD CONSTRAINT &mw_prefix.uploadstash_pk PRIMARY KEY (us_id);
 ALTER TABLE &mw_prefix.uploadstash ADD CONSTRAINT &mw_prefix.uploadstash_fk1 FOREIGN KEY (us_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
@@ -527,10 +530,18 @@ CREATE TABLE &mw_prefix.job (
   job_title      VARCHAR2(255)      NOT NULL,
   job_timestamp	 TIMESTAMP(6) WITH TIME ZONE NULL,
   job_params     CLOB      NOT NULL
+  job_random NUMBER NOT NULL default 0,
+  job_token VARCHAR2(32),
+  job_token_timestamp TIMESTAMP(6) WITH TIME ZONE,
+  job_sha1 VARCHAR2(32),
+  job_attempts NUMBER NOT NULL default 0
 );
 ALTER TABLE &mw_prefix.job ADD CONSTRAINT &mw_prefix.job_pk PRIMARY KEY (job_id);
 CREATE INDEX &mw_prefix.job_i01 ON &mw_prefix.job (job_cmd, job_namespace, job_title);
 CREATE INDEX &mw_prefix.job_i02 ON &mw_prefix.job (job_timestamp);
+CREATE INDEX &mw_prefix.job_i03 ON &mw_prefix.job (job_sha1);
+CREATE INDEX &mw_prefix.job_i04 ON &mw_prefix.job (job_cmd,job_token,job_random);
+CREATE INDEX &mw_prefix.job_i05 ON &mw_prefix.job (job_attempts);
 
 CREATE TABLE &mw_prefix.querycache_info (
   qci_type       VARCHAR2(32) NOT NULL,
@@ -669,6 +680,39 @@ CREATE TABLE &mw_prefix.module_deps (
   md_deps BLOB NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.module_deps_u01 ON &mw_prefix.module_deps (md_module, md_skin);
+
+CREATE SEQUENCE sites_site_id_seq MINVALUE 0 START WITH 0;
+CREATE TABLE &mw_prefix.sites (
+  site_id NUMBER NOT NULL,
+  site_global_key VARCHAR2(32) NOT NULL,
+  site_type VARCHAR2(32) NOT NULL,
+  site_group VARCHAR2(32) NOT NULL,
+  site_source VARCHAR2(32) NOT NULL,
+  site_language VARCHAR2(32) NOT NULL,
+  site_protocol VARCHAR2(32) NOT NULL,
+  site_domain VARCHAR2(255) NOT NULL,
+  site_data BLOB NOT NULL,
+  site_forward NUMBER(1) NOT NULL,
+  site_config BLOB NOT NULL
+);
+ALTER TABLE &mw_prefix.sites ADD CONSTRAINT &mw_prefix.sites_pk PRIMARY KEY (site_id);
+CREATE UNIQUE INDEX &mw_prefix.sites_u01 ON &mw_prefix.sites (site_global_key);
+CREATE INDEX &mw_prefix.sites_i01 ON &mw_prefix.sites (site_type);
+CREATE INDEX &mw_prefix.sites_i02 ON &mw_prefix.sites (site_group);
+CREATE INDEX &mw_prefix.sites_i03 ON &mw_prefix.sites (site_source);
+CREATE INDEX &mw_prefix.sites_i04 ON &mw_prefix.sites (site_language);
+CREATE INDEX &mw_prefix.sites_i05 ON &mw_prefix.sites (site_protocol);
+CREATE INDEX &mw_prefix.sites_i06 ON &mw_prefix.sites (site_domain);
+CREATE INDEX &mw_prefix.sites_i07 ON &mw_prefix.sites (site_forward);
+
+CREATE TABLE &mw_prefix.site_identifiers (
+  si_site NUMBER NOT NULL,
+  si_type VARCHAR2(32) NOT NULL,
+  si_key VARCHAR2(32) NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.site_identifiers_u01 ON &mw_prefix.sites (si_type, si_key);
+CREATE INDEX &mw_prefix.site_identifiers_i01 ON &mw_prefix.site_identifiers (si_site);
+CREATE INDEX &mw_prefix.site_identifiers_i02 ON &mw_prefix.site_identifiers (si_key);
 
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (

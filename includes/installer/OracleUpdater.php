@@ -79,6 +79,11 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 			array( 'dropField', 'site_stats', 'ss_admins',  'patch-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
+			array( 'addTable', 'sites',                            'patch-sites.sql' ),
+			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
+			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
+			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
+			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
@@ -225,7 +230,7 @@ class OracleUpdater extends DatabaseUpdater {
 	/**
 	 * Overload: because of the DDL_MODE tablename escaping is a bit dodgy
 	 */
-	protected function purgeCache() {
+	public function purgeCache() {
 		# We can't guarantee that the user will be able to use TRUNCATE,
 		# but we know that DELETE is available to us
 		$this->output( "Purging caches..." );
