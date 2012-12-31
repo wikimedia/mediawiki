@@ -3789,6 +3789,12 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 * '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
 
+'pageswithprop'         => 'Title for [[Special:PagesWithProp]]',
+'pageswithprop-legend'  => 'Legend for the input form on [[Special:PagesWithProp]]',
+'pageswithprop-text'    => 'Introductory text for the input form on [[Special:PagesWithProp]]',
+'pageswithprop-prop'    => 'Label for the property name input field on [[Special:PagesWithProp]]',
+'pageswithprop-submit'  => 'Label for the submit button on [[Special:PagesWithProp]]',
+
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
 'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after a page move. See also {{msg|fix-double-redirects}}.',
