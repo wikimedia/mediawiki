@@ -1381,13 +1381,22 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		}
 
 		if ( isset( $options['GROUP BY'] ) ) {
-			$preLimitTail .= " GROUP BY {$options['GROUP BY']}";
+			$gb = is_array( $options['GROUP BY'] )
+				? implode( ',', $options['GROUP BY'] )
+				: $options['GROUP BY'];
+			$preLimitTail .= " GROUP BY {$gb}";
 		}
 		if ( isset( $options['HAVING'] ) ) {
-			$preLimitTail .= " HAVING {$options['HAVING']}";
+			$having = is_array( $options['HAVING'] )
+				? $this->makeList( $options['HAVING'], LIST_AND )
+				: $options['HAVING'];
+			$preLimitTail .= " HAVING {$having}";
 		}
 		if ( isset( $options['ORDER BY'] ) ) {
-			$preLimitTail .= " ORDER BY {$options['ORDER BY']}";
+			$ob = is_array( $options['ORDER BY'] )
+				? implode( ',', $options['ORDER BY'] )
+				: $options['ORDER BY'];
+			$preLimitTail .= " ORDER BY {$ob}";
 		}
 
 		if ( isset( $noKeyOptions['DISTINCT'] )
