@@ -1311,7 +1311,12 @@ Parameters:
 'blockednoreason' => 'Substituted with <code>$2</code> in the following message if the reason is not given:
 * {{msg-mw|cantcreateaccount-text}}.
 {{Identical|No reason given}}',
-'whitelistedittext' => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+'whitelistedittext' => 'Used as error message. Parameters:
+* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description
+See also:
+* {{msg-mw|Nocreatetext}}
+* {{msg-mw|Uploadnologintext}}
+* {{msg-mw|Loginreqpagetext}}',
 'confirmedittext' => 'Used as error message.',
 'nosuchsectiontitle' => 'Used as error message when the user has attempted to edit a nonexistent section.',
 'nosuchsectiontext' => 'This message is displayed when a user tries to edit a section that does not exist.',
@@ -1322,7 +1327,11 @@ Parameters:
 
 {{Identical|Log in}}',
 'loginreqpagetext' => 'This message is displayed if an anonymous reader attempts to access a page which is only available to logged-in users.
-* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description
+See also:
+* {{msg-mw|Whitelistedittext}}
+* {{msg-mw|Nocreatetext}}
+* {{msg-mw|Uploadnologintext}}',
 'accmailtitle' => 'Page title when temporary password was sent to a user via email.',
 'accmailtext' => "The message shown when a temporary password has been sent to the user's email address.
 
@@ -1423,13 +1432,14 @@ This text will be shown below upload forms. It will default to the contents of e
 'nocreatetext' => 'Used as error message.
 
 See also:
-* {{msg-mw|Nocreatetext}}
-* {{msg-mw|Nocreate-loggedin}}',
+* {{msg-mw|Nocreate-loggedin}}
+* {{msg-mw|Whitelistedittext}}
+* {{msg-mw|Uploadnologintext}}
+* {{msg-mw|Loginreqpagetext}}',
 'nocreate-loggedin' => 'Used as error message.
 
 See also:
-* {{msg-mw|Nocreatetext}}
-* {{msg-mw|Nocreate-loggedin}}',
+* {{msg-mw|Nocreatetext}}',
 'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrors' => 'Used as title of error message. See also:
@@ -1753,6 +1763,7 @@ It is the page title of [[Special:RevisionDelete]].',
 'revdelete-nologid-text' => 'See also:
 * {{msg-mw|Revdelete-nologid-title}}
 * {{msg-mw|Revdelete-nologid-text}}',
+'revdelete-no-file' => 'Used as error message in [[Special:RevisionDelete]].',
 'revdelete-show-file-confirm' => 'A confirmation message shown on Special:Revisiondelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 
 * <code>$1</code> is a file name
@@ -1782,7 +1793,15 @@ See also:
 * {{msg-mw|Revdelete-suppress-text}}
 * {{msg-mw|Revdelete-confirm}}',
 'revdelete-legend' => '{{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+Used as legend for the form.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-log|label for dropdown}}
+* {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
+* {{msg-mw|Revdelete-reasonotherlist|item in dropdown}}
+* {{msg-mw|Revdelete-otherreason|label for input box}}
+* {{msg-mw|Revdelete-submit|submit button}}',
 'revdelete-hide-text' => 'Option for oversight. This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'revdelete-hide-image' => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
@@ -1813,11 +1832,26 @@ See also:
 * {{msg-mw|Revdelete-confirm}}',
 'revdelete-unsuppress' => '{{RevisionDelete}}',
 'revdelete-log' => '{{Identical|Reason}}
-Log comment text for oversight. {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|thumb|331px||Screenshot of the interface]]',
+{{RevisionDelete}}
+Used as log comment text for oversight.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-legend|legend for the form}}
+* {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
+* {{msg-mw|Revdelete-reasonotherlist|item in dropdown}}
+* {{msg-mw|Revdelete-otherreason|label for input box}}
+* {{msg-mw|Revdelete-submit|submit button}}',
 'revdelete-submit' => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-legend|legend for the form}}
+* {{msg-mw|Revdelete-log|label for dropdown}}
+* {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
+* {{msg-mw|Revdelete-reasonotherlist|item in dropdown}}
+* {{msg-mw|Revdelete-otherreason|label for input box}}',
 'revdelete-success' => "{{RevisionDelete}}
 
 Possible alternative text - 'Restrictions on the revision visibility were successfully changed.'",
@@ -1858,15 +1892,42 @@ Parameters:
 Parameters:
 *$1 - date
 *$2 - time',
+'revdelete-reason-dropdown' => '{{RevisionDelete}}
+Used as item list for dropdown.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-legend|legend for the form}}
+* {{msg-mw|Revdelete-log|label for dropdown}}
+* {{msg-mw|Revdelete-reasonotherlist|item in dropdown}}
+* {{msg-mw|Revdelete-otherreason|label for input box}}
+* {{msg-mw|Revdelete-submit|submit button}}',
 'revdelete-otherreason' => '{{Identical|Other/additional reason}}
 {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+Used as label for input box.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-legend|legend for the form}}
+* {{msg-mw|Revdelete-log|label for dropdown}}
+* {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
+* {{msg-mw|Revdelete-reasonotherlist|item in dropdown}}
+* {{msg-mw|Revdelete-submit|submit button}}',
 'revdelete-reasonotherlist' => '{{Identical|Other reason}}
 {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+Used as an item in dropdown.
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+
+See also:
+* {{msg-mw|Revdelete-legend|legend for the form}}
+* {{msg-mw|Revdelete-log|label for dropdown}}
+* {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
+* {{msg-mw|Revdelete-otherreason|label for input box}}
+* {{msg-mw|Revdelete-submit|submit button}}',
 'revdelete-edit-reasonlist' => '{{Identical|Edit delete reasons}}
 {{RevisionDelete}}
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-offender' => 'Used as label for input box in the form.',
 
 # Suppression log
 'suppressionlog' => '{{doc-logpage}}
@@ -2237,8 +2298,20 @@ This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).
 'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
 
 {{Identical|Change password}}',
-'prefs-changeemail' => 'Link on [[Special:Preferences]] to [[Special:ChangeEmail]].',
-'prefs-setemail' => 'Used as link title in [[Special:Preferences]], if the user has not set E-mail address yet.',
+'prefs-changeemail' => 'Link on [[Special:Preferences]] to [[Special:ChangeEmail]].
+
+See also:
+* {{msg-mw|prefs-help-email-required|help}}
+* {{msg-mw|prefs-help-email|help}}
+* {{msg-mw|prefs-help-email-others|help}}
+* {{msg-mw|prefs-setemail|link title}}',
+'prefs-setemail' => 'Used as link title in [[Special:Preferences]], if the user has not set E-mail address yet.
+
+See also:
+* {{msg-mw|prefs-help-email-required|help}}
+* {{msg-mw|prefs-help-email|help}}
+* {{msg-mw|prefs-help-email-others|help}}
+* {{msg-mw|prefs-changeemail|link title}}',
 'prefs-email' => 'Used as section name in [[Special:Preferences]].',
 'prefs-rendering' => 'Title of tab in [[Special:Preferences]].',
 'saveprefs' => 'Button for saving changes in the preferences page.
@@ -2441,8 +2514,27 @@ Used in [[Special:Preferences]]. Parameters are:
 'email' => '{{Identical|E-mail}}',
 'prefs-help-realname' => 'In user preferences.
 {{Identical|Real name attribution}}',
-'prefs-help-email' => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'prefs-help-email-others' => 'This text is shown on account creation, below the description of the e-mail address field (which is optional).',
+'prefs-help-email' => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
+
+See also:
+* {{msg-mw|prefs-help-email-required|help}}
+* {{msg-mw|prefs-help-email-others|help}}
+* {{msg-mw|prefs-changeemail|link title}}
+* {{msg-mw|prefs-setemail|link title}}',
+'prefs-help-email-others' => 'This text is shown on account creation, below the description of the e-mail address field (which is optional).
+
+See also:
+* {{msg-mw|prefs-help-email-required|help}}
+* {{msg-mw|prefs-help-email|help}}
+* {{msg-mw|prefs-changeemail|link title}}
+* {{msg-mw|prefs-setemail|link title}}',
+'prefs-help-email-required' => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
+
+See also:
+* {{msg-mw|prefs-help-email|help}}
+* {{msg-mw|prefs-help-email-others|help}}
+* {{msg-mw|prefs-changeemail|link title}}
+* {{msg-mw|prefs-setemail|link title}}',
 'prefs-info' => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-i18n' => 'Field set legend for user preferences regarding the interface language',
 'prefs-signature' => '{{Identical|Signature}}',
@@ -2830,6 +2922,8 @@ Used in {{msg-mw|Recentchanges-label-legend}}, meaning "unpatrolled".',
 'rc_categories' => "Probably to do with 'recent changes' special page, either in a particular skin, or for a particular user group.
 
 I guess that this should appear before an input box where you can specify that recent changes should be shown for pages belonging to certain categories only. You name the categories in the input box, and separate them by a pipe character. If this is right, then you should be able to use 'restrict' instead of 'limit', or even 'show pages in the following categories only'.",
+'rc_categories_any' => 'Used in the CategoryFilter form on [[Special:RecentChanges]], if <code>$wgAllowCategorizedRecentChanges</code> is true.
+{{Identical|Any}}',
 'rc-change-size' => '{{optional}}
 
 Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
@@ -2872,9 +2966,25 @@ See also:
 * {{msg-mw|Accesskey-upload}}
 * {{msg-mw|Tooltip-upload}}
 {{Identical|Upload file}}',
-'uploadnologin' => '{{Identical|Not logged in}}',
+'upload-tryagain' => 'Used as Submit text in [[Special:Upload]].
+
+See also:
+* {{msg-mw|Uploaderror|section header}}',
+'uploadnologin' => 'Used as title of the error message {{msg-mw|Uploadnologintext}}.
+{{Identical|Not logged in}}',
+'uploadnologintext' => 'Used as error message. The title for this message is {{msg-mw|Uploadnologin}}.
+
+See also:
+* {{msg-mw|Whitelistedittext}}
+* {{msg-mw|Nocreatetext}}
+* {{msg-mw|Loginreqpagetext}}',
 'upload_directory_missing' => '* $1 - directory name',
 'upload_directory_read_only' => '* $1 - directory name',
+'uploaderror' => 'Used as section header in [[Special:Upload]].
+
+See also:
+* {{msg-mw|upload-tryagain|Submit text}}',
+'upload-recreate-warning' => 'Used as warning in [[Special:Upload]].',
 'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave them untranslated!}}
 Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted' => 'Used in [[Special:Upload]].',
@@ -2882,6 +2992,7 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'upload-prohibited' => 'Used in [[Special:Upload]].',
 'uploadlogpage' => '{{doc-logpage}}
 Page title of [[Special:Log/upload]].',
+'uploadlogpagetext' => 'Appears on top of [[Special:Log/upload]].',
 'filename' => '{{Identical|Filename}}',
 'filedesc' => '{{Identical|Summary}}',
 'fileuploadsummary' => '{{Identical|Summary}}',
@@ -3044,6 +3155,18 @@ See also:
 * {{msg-mw|hookaborted}}
 * {{msg-mw|windows-nonascii-filename}}
 * {{msg-mw|filename-toolong}}',
+'tmp-create-error' => 'Used as error message in UploadFromURL feature.
+
+See also:
+* {{msg-mw|http-invalid-url}}
+* {{msg-mw|upload-copy-upload-invalid-domain}}
+* {{msg-mw|tmp-write-error}}',
+'tmp-write-error' => 'Used as error message in UploadFromURL feature.
+
+See also:
+* {{msg-mw|http-invalid-url}}
+* {{msg-mw|upload-copy-upload-invalid-domain}}
+* {{msg-mw|tmp-create-error}}',
 'large-file' => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',
 'largefileserver' => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile' => 'Error message when trying to upload an empty file',
@@ -3082,17 +3205,38 @@ Parameters:
 'savefile' => 'When uploading a file',
 'uploadedimage' => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
 'overwroteimage' => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
-'uploaddisabled' => 'Title of the Special:Upload page when upload is disabled.',
+'uploaddisabled' => 'Title of the Special:Upload page when upload is disabled.
+
+See also:
+* {{msg-mw|Copyuploaddisabled}}',
+'copyuploaddisabled' => 'See also:
+* {{msg-mw|Uploaddisabled}}',
 'uploaddisabledtext' => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
 'php-uploaddisabledtext' => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
 'uploadvirus' => 'Note displayed when uploaded file contains a virus',
 'upload-source' => 'Caption above a section of the [[Special:Upload]] page',
-'sourcefilename' => 'In [[Special:Upload]]',
-'sourceurl' => 'Caption for the upload-by-url feature at [[Special:Upload]]',
+'sourcefilename' => 'Used in [[Special:Upload]].
+
+See also:
+* {{msg-mw|Sourceurl|label}}
+* {{msg-mw|Upload source file}}
+* {{msg-mw|Upload source url}}
+* {{msg-mw|Upload-maxfilesize}}',
+'sourceurl' => 'Caption for the upload-by-url feature at [[Special:Upload]]
+
+See also:
+* {{msg-mw|Sourcefilename|label}}
+* {{msg-mw|Upload source file}}
+* {{msg-mw|Upload source url}}
+* {{msg-mw|Upload-maxfilesize}}',
 'destfilename' => 'In [[Special:Upload]]',
 'upload-maxfilesize' => 'Shows at [[Special:Upload]] the maximum file size that can be uploaded.
-
-$1 is the value in KB/MB/GB',
+* $1 - the value in KB/MB/GB
+See also:
+* {{msg-mw|Sourcefilename|label}}
+* {{msg-mw|Sourceurl|label}}
+* {{msg-mw|Upload source file}}
+* {{msg-mw|Upload source url}}',
 'upload-description' => 'Caption above a section of the [[Special:Upload]] page',
 'upload-options' => 'Caption above a section of the [[Special:Upload]] page',
 'watchthisupload' => 'In [[Special:Upload]]',
@@ -3181,7 +3325,12 @@ See also:
 'upload-misc-error-text' => 'See also:
 * {{msg-mw|Upload-misc-error|title}}
 * {{msg-mw|Upload-misc-error-text|text}}',
-'upload-copy-upload-invalid-domain' => 'Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).',
+'upload-copy-upload-invalid-domain' => 'Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).
+
+See also:
+* {{msg-mw|http-invalid-url}}
+* {{msg-mw|tmp-create-error}}
+* {{msg-mw|tmp-write-error}}',
 
 # File backend
 'backend-fail-stream' => 'Parameters:
@@ -3410,6 +3559,20 @@ See also:
 'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense' => '{{Identical|None selected}}',
 'license-nopreview' => 'Error message when a certain license does not exist',
+'upload_source_url' => 'Used in [[Special:Upload]].
+
+See also:
+* {{msg-mw|Sourcefilename|label}}
+* {{msg-mw|Sourceurl|label}}
+* {{msg-mw|Upload source file}}
+* {{msg-mw|Upload-maxfilesize}}',
+'upload_source_file' => 'Used in [[Special:Upload]].
+
+See also:
+* {{msg-mw|Sourcefilename|label}}
+* {{msg-mw|Sourceurl|label}}
+* {{msg-mw|Upload source url}}
+* {{msg-mw|Upload-maxfilesize}}',
 
 # Special:ListFiles
 'listfiles-summary' => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
@@ -3896,7 +4059,26 @@ You can apparently use 'URL' instead of 'hostname'.",
 * $1 is the number of recent edits
 * $2 is the user's name for use with GENDER (optional)
 * $3 is the maximum number of days of the RecentChangesList",
-'activeusers-from' => 'identical with {{msg-mw|listusersfrom}}',
+'activeusers-from' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
+
+identical with {{msg-mw|listusersfrom}}
+
+See also:
+* {{msg-mw|activeusers|legend for the form}}
+* {{msg-mw|activeusers-hidebots|label for checkbox}}
+* {{msg-mw|activeusers-hidesysops|label for checkbox}}',
+'activeusers-hidebots' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
+
+See also:
+* {{msg-mw|activeusers|legend for the form}}
+* {{msg-mw|activeusers-from|label for input box}}
+* {{msg-mw|activeusers-hidesysops|label for checkbox}}',
+'activeusers-hidesysops' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
+
+See also:
+* {{msg-mw|activeusers|legend for the form}}
+* {{msg-mw|activeusers-from|label for input box}}
+* {{msg-mw|activeusers-hidebots|label for checkbox}}',
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
 # Special:Log/newusers
@@ -3962,6 +4144,12 @@ See also:
 * {{msg-mw|Listgrouprights-removegroup-self-all}}',
 
 # E-mail user
+'mailnologin' => 'Used in [[Special:EmailUser]].
+
+Used as title of the error message {{msg-mw|Mailnologintext}}.',
+'mailnologintext' => 'Used as error message in [[Special:EmailUser]].
+
+The title of this error message is {{msg-mw|Mailnologin}}.',
 'emailuser' => 'Link in the sidebar to send an e-mail to a user.
 
 See also:
@@ -3978,6 +4166,9 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'defemailsubject' => 'The default subject of EmailUser emails. Parameters:
 * $1 is the username of the user sending the email and can be used for GENDER.',
 'usermaildisabled' => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
+'usermaildisabledtext' => 'Used as error message in [[Special:EmailUser]].
+
+The title for this error message is {{msg-mw|Usermaildisabled}}.',
 'noemailtitle' => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
 'noemailtext' => 'The text of the message that appears in [[Special:EmailUser]] after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user because he has not specified or not confirmed an e-mail address.',
 'nowikiemailtext' => 'This is an error message used in [[Special:Emailuser]] when called with a target user not consenting to be an e-mail recipient.',
@@ -4226,6 +4417,12 @@ In other cases the message {{msg-mw|revertpage}} is used.',
 {{Identical|Revert}}
 {{Identical|Rollback}}',
 
+# Edit tokens
+'sessionfailure-title' => 'Used as title of the error message {{msg-mw|Sessionfailure}}.',
+'sessionfailure' => 'Used as error message.
+
+The title for this error message is {{msg-mw|Sessionfailure-title}}.',
+
 # Protect
 'protectlogpage' => '{{doc-logpage}}
 Title of [[Special:Log/protect]].',
@@ -4245,6 +4442,14 @@ Example:
 'protect-legend' => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment' => '{{Identical|Reason}}',
 'protectexpiry' => '{{Identical|Expires}}',
+'protect_expiry_invalid' => 'Used as error message about the Protection Form.
+
+See also:
+* {{msg-mw|Protect expiry old}}',
+'protect_expiry_old' => 'Used as error message about the Protection Form.
+
+See also:
+* {{msg-mw|Protect expiry invalid}}',
 'protect-unchain-permissions' => 'This message is a label for a checkbox displayed in the "protect" form just below the first selector (generally the "edit" protection). If the checkbox is checked (default) other selectors will be locked and have the same value as the first selector, otherwise other selectors are editable by the user.
 This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
@@ -4509,15 +4714,85 @@ See also:
 'sp-contributions-newbies-title' => 'The page title in your browser bar, but not the page title. See also {{msg|sp-contributions-newbies-sub}}.',
 'sp-contributions-blocklog' => 'Used as a display name for a link to the block log on for example [[Special:Contributions/Mediawiki default]]
 
+Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|Change-blocklink}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Blocklink}}
+* {{msg-mw|Sp-contributions-uploads}}
+* {{msg-mw|Sp-contributions-logs}}
+* {{msg-mw|Sp-contributions-deleted}}
+* {{msg-mw|Sp-contributions-userrights}}
 {{Identical|Block log}}',
-'sp-contributions-deleted' => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.",
-'sp-contributions-uploads' => '{{Identical|Upload}}',
-'sp-contributions-logs' => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
+'sp-contributions-deleted' => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.
+
+Used as link title in [[Special:Contributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|Change-blocklink}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Blocklink}}
+* {{msg-mw|Sp-contributions-blocklog}}
+* {{msg-mw|Sp-contributions-uploads}}
+* {{msg-mw|Sp-contributions-logs}}
+* {{msg-mw|Sp-contributions-userrights}}",
+'sp-contributions-uploads' => 'Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|Change-blocklink}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Blocklink}}
+* {{msg-mw|Sp-contributions-blocklog}}
+* {{msg-mw|Sp-contributions-logs}}
+* {{msg-mw|Sp-contributions-deleted}}
+* {{msg-mw|Sp-contributions-userrights}}
+{{Identical|Upload}}',
+'sp-contributions-logs' => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
+
+Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|Change-blocklink}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Blocklink}}
+* {{msg-mw|Sp-contributions-blocklog}}
+* {{msg-mw|Sp-contributions-uploads}}
+* {{msg-mw|Sp-contributions-deleted}}
+* {{msg-mw|Sp-contributions-userrights}}",
 'sp-contributions-talk' => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
 The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
 ( talk | block log | logs | deleted contributions | rights management )
+
+Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|change-blocklink}}
+* {{msg-mw|unblocklink}}
+* {{msg-mw|blocklink}}
+* {{msg-mw|sp-contributions-blocklog}}
+* {{msg-mw|sp-contributions-uploads}}
+* {{msg-mw|sp-contributions-logs}}
+* {{msg-mw|sp-contributions-deleted}}
+* {{msg-mw|sp-contributions-userrights}}
 {{Identical|Talk}}",
-'sp-contributions-userrights' => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
+'sp-contributions-userrights' => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.
+
+Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|Change-blocklink}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Blocklink}}
+* {{msg-mw|Sp-contributions-blocklog}}
+* {{msg-mw|Sp-contributions-uploads}}
+* {{msg-mw|Sp-contributions-logs}}
+* {{msg-mw|Sp-contributions-deleted}}",
 'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users. Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)
 Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
@@ -4599,6 +4874,9 @@ See also:
 
 {{Identical|Reason}}',
 'ipbreasonotherlist' => '{{Identical|Other reason}}',
+'ipbreason-dropdown' => 'Used as item list for dropdown on [[Special:Block]].
+
+The label for this dropdown is {{msg-mw|Ipbreason}}.',
 'ipbcreateaccount' => '{{Identical|Prevent account creation}}',
 'ipbemailban' => '{{Identical|Prevent user from sending e-mail}}',
 'ipbenableautoblock' => '{{Identical|Automatically block ...}}',
@@ -4620,6 +4898,8 @@ Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/
 * $1 - target username',
 'ipb-blocklist-contribs' => 'Used in [[Special:Block]].
 * $1 - target username',
+'unblockip' => 'Used as legend for the form in [[Special:Unblock]].',
+'unblockiptext' => 'Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].',
 'ipusubmit' => 'Used as button text on Special:BlockList?action=unblock. To see the message:
 * Go to [[Special:BlockList]]
 * Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
@@ -4718,8 +4998,43 @@ Usage:
 'emailblock' => '{{Identical|E-mail blocked}}',
 'blocklist-nousertalk' => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
 'ipblocklist-empty' => 'Shown on page [[Special:Blocklist]], if no blocks are to be shown.',
-'blocklink' => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
-'change-blocklink' => 'Used to name the link on Special:Log',
+'blocklink' => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".
+
+Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|Change-blocklink}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Sp-contributions-blocklog}}
+* {{msg-mw|Sp-contributions-uploads}}
+* {{msg-mw|Sp-contributions-logs}}
+* {{msg-mw|Sp-contributions-deleted}}
+* {{msg-mw|Sp-contributions-userrights}}",
+'unblocklink' => 'Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|change-blocklink}}
+* {{msg-mw|blocklink}}
+* {{msg-mw|sp-contributions-blocklog}}
+* {{msg-mw|sp-contributions-uploads}}
+* {{msg-mw|sp-contributions-logs}}
+* {{msg-mw|sp-contributions-deleted}}
+* {{msg-mw|sp-contributions-userrights}}',
+'change-blocklink' => 'Used to name the link on Special:Log.
+
+Also used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
+
+See also:
+* {{msg-mw|Sp-contributions-talk}}
+* {{msg-mw|unblocklink}}
+* {{msg-mw|blocklink}}
+* {{msg-mw|sp-contributions-blocklog}}
+* {{msg-mw|sp-contributions-uploads}}
+* {{msg-mw|sp-contributions-logs}}
+* {{msg-mw|sp-contributions-deleted}}
+* {{msg-mw|sp-contributions-userrights}}',
 'contribslink' => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
 'emaillink' => 'Used as display name for a link to send an e-mail to a user in the user tool links. Example: "(Talk | contribs | block | send e-mail)".
 
@@ -4966,6 +5281,16 @@ See also:
 'move-page' => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
 'move-page-legend' => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
+See also:
+* {{msg-mw|movearticle|label for old title}}
+* {{msg-mw|newtitle|label for new title}}
+* {{msg-mw|movereason|label for textarea}}
+* {{msg-mw|movetalk|label for checkbox}}
+* {{msg-mw|move-leave-redirect|label for checkbox}}
+* {{msg-mw|fix-double-redirects|label for checkbox}}
+* {{msg-mw|move-subpages|label for checkbox}}
+* {{msg-mw|move-talk-subpages|label for checkbox}}
+* {{msg-mw|move-watch|label for checkbox}}
 {{Identical|Move page}}',
 'movepagetext' => 'Introduction shown when moving a page ([[Special:MovePage]]).
 
@@ -4974,8 +5299,18 @@ Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}
 See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'movepagetext-noredirectfixer' => 'A variant of {{msg-mw|Movepagetext|notext=1}} displayed when the automatic redirect fixer is not enabled.',
 'movepagetalktext' => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
-'movearticle' => 'The text before the name of the page that you are moving. Can be translated as "Page that is going to be moved"
+'movearticle' => 'The text before the name of the page that you are moving. Can be translated as "Page that is going to be moved". Used in [[Special:MovePage]].
 
+See also:
+* {{msg-mw|move-page-legend|legend for the form}}
+* {{msg-mw|newtitle|label for new title}}
+* {{msg-mw|movereason|label for textarea}}
+* {{msg-mw|movetalk|label for checkbox}}
+* {{msg-mw|move-leave-redirect|label for checkbox}}
+* {{msg-mw|fix-double-redirects|label for checkbox}}
+* {{msg-mw|move-subpages|label for checkbox}}
+* {{msg-mw|move-talk-subpages|label for checkbox}}
+* {{msg-mw|move-watch|label for checkbox}}
 {{Identical|Move page}}',
 'movenologin' => '{{Identical|Not logged in}}',
 'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.
@@ -5013,8 +5348,30 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
-'newtitle' => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
-'move-watch' => 'The text of the checkbox to watch the pages you are moving from and to. If checked, both the destination page and the original page will be added to the watchlist, even if you decide not to leave a redirect behind.',
+'newtitle' => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.
+
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Movereason|label for textarea}}
+* {{msg-mw|Movetalk|label for checkbox}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Fix-double-redirects|label for checkbox}}
+* {{msg-mw|Move-subpages|label for checkbox}}
+* {{msg-mw|Move-talk-subpages|label for checkbox}}
+* {{msg-mw|Move-watch|label for checkbox}}',
+'move-watch' => 'The text of the checkbox to watch the pages you are moving from and to. If checked, both the destination page and the original page will be added to the watchlist, even if you decide not to leave a redirect behind.
+
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Newtitle|label for new title}}
+* {{msg-mw|Movereason|label for textarea}}
+* {{msg-mw|Movetalk|label for checkbox}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Fix-double-redirects|label for checkbox}}
+* {{msg-mw|Move-subpages|label for checkbox}}
+* {{msg-mw|Move-talk-subpages|label for checkbox}}',
 'movepagebtn' => "Button label on the special 'Move page'.
 
 {{Identical|Move page}}",
@@ -5025,9 +5382,42 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 * $3 (optional) is the source page name without a link
 * $4 (optional) is the target page name without a link',
 'movepage-moved-noredirect' => 'The message is shown after pagemove if checkbox "{{int:move-leave-redirect}}" was unselected before moving.',
-'movetalk' => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
-'move-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
-'move-talk-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.',
+'movetalk' => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty. Used in [[Special:MovePage]].
+
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Newtitle|label for new title}}
+* {{msg-mw|Movereason|label for textarea}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Fix-double-redirects|label for checkbox}}
+* {{msg-mw|Move-subpages|label for checkbox}}
+* {{msg-mw|Move-talk-subpages|label for checkbox}}
+* {{msg-mw|Move-watch|label for checkbox}}',
+'move-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.
+
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Newtitle|label for new title}}
+* {{msg-mw|Movereason|label for textarea}}
+* {{msg-mw|Movetalk|label for checkbox}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Fix-double-redirects|label for checkbox}}
+* {{msg-mw|Move-talk-subpages|label for checkbox}}
+* {{msg-mw|Move-watch|label for checkbox}}',
+'move-talk-subpages' => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.
+
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Newtitle|label for new title}}
+* {{msg-mw|Movereason|label for textarea}}
+* {{msg-mw|Movetalk|label for checkbox}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Fix-double-redirects|label for checkbox}}
+* {{msg-mw|Move-subpages|label for checkbox}}
+* {{msg-mw|Move-watch|label for checkbox}}',
 'movepage-page-exists' => 'Used as error message when moving page.
 * $1 - page title',
 'movepage-page-moved' => 'Used as success message when moving page.
@@ -5058,6 +5448,16 @@ See also:
 * {{msg-mw|movesubpagetext|with subpages}}',
 'movereason' => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
 
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Newtitle|label for new title}}
+* {{msg-mw|Movetalk|label for checkbox}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Fix-double-redirects|label for checkbox}}
+* {{msg-mw|Move-subpages|label for checkbox}}
+* {{msg-mw|Move-talk-subpages|label for checkbox}}
+* {{msg-mw|Move-watch|label for checkbox}}
 {{Identical|Reason}}',
 'revertmove' => '{{Identical|Revert}}',
 'delete_and_move' => 'Button text on the move page when the target page already exists.',
@@ -5106,7 +5506,40 @@ See also:
 See also:
 * {{msg-mw|Imagenocrossnamespace}}
 * {{msg-mw|Nonfile-cannot-move-to-file}}',
-'fix-double-redirects' => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
+'imagetypemismatch' => 'Used as error message.
+
+See also:
+* {{msg-mw|imageinvalidfilename}}
+* {{msg-mw|imagenocrossnamespace}}',
+'imageinvalidfilename' => 'Used as error message.
+
+See also:
+* {{msg-mw|imagetypemismatch}}
+* {{msg-mw|imagenocrossnamespace}}',
+'fix-double-redirects' => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title. Used in [[Special:MovePage]].
+
+See also:
+* {{msg-mw|Move-page-legend|legend for the form}}
+* {{msg-mw|Movearticle|label for old title}}
+* {{msg-mw|Newtitle|label for new title}}
+* {{msg-mw|Movereason|label for textarea}}
+* {{msg-mw|Movetalk|label for checkbox}}
+* {{msg-mw|Move-leave-redirect|label for checkbox}}
+* {{msg-mw|Move-subpages|label for checkbox}}
+* {{msg-mw|Move-talk-subpages|label for checkbox}}
+* {{msg-mw|Move-watch|label for checkbox}}',
+'move-leave-redirect' => 'Used as label for checkbox in the Move Pages form on [[Special:MovePage]].
+
+See also:
+* {{msg-mw|move-page-legend|legend for the form}}
+* {{msg-mw|movearticle|label for old title}}
+* {{msg-mw|newtitle|label for new title}}
+* {{msg-mw|movereason|label for textarea}}
+* {{msg-mw|movetalk|label for checkbox}}
+* {{msg-mw|fix-double-redirects|label for checkbox}}
+* {{msg-mw|move-subpages|label for checkbox}}
+* {{msg-mw|move-talk-subpages|label for checkbox}}
+* {{msg-mw|move-watch|label for checkbox}}',
 'protectedpagemovewarning' => '{{Related|Semiprotectedpagewarning}}',
 'semiprotectedpagemovewarning' => '{{Related|Semiprotectedpagewarning}}',
 'move-over-sharedrepo' => 'Notice when a file with that filename already exists on a shared repository, such as Wikimedia Commons.',
@@ -5116,13 +5549,34 @@ See also:
 'exporttext' => 'Main text on [[Special:Export]]. Leave the line <tt><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></tt> exactly as it is!',
 'exportall' => 'A label of checkbox option in [[Special:Export]]',
 'exportcuronly' => 'A label of checkbox option in [[Special:Export]]',
+'exportnohistory' => 'Used in [[Special:Export]].',
+'exportlistauthors' => 'Used as label for checkbox in the form on [[Special:Export]].
+
+See also:
+* {{msg-mw|Export-download}}',
 'export-submit' => 'Button name in [[Special:Export]].
 
 {{Identical|Export}}',
-'export-addcat' => '{{Identical|Add}}',
-'export-addnstext' => 'Message {{msg-mw|configure-setting-wgExportFromNamespaces}} refers to this one.',
+'export-addcattext' => 'Used as label for "category name" input box in the form on [[Special:Export]].
+
+Submit button text of this form is {{msg-mw|Export-addcat}}.
+
+See also:
+* {{msg-mw|Export-addnstext}}',
+'export-addcat' => 'Used as label for input box in the form on [[Special:Export]].
+
+See also:
+* {{msg-mw|Export-addcattext|label for input box}}
+{{Identical|Add}}',
+'export-addnstext' => 'Message {{msg-mw|configure-setting-wgExportFromNamespaces}} refers to this one.
+
+See also:
+* {{msg-mw|Export-addcattext}}',
 'export-addns' => '{{Identical|Add}}',
-'export-download' => 'A label of checkbox option in [[Special:Export]]',
+'export-download' => 'A label of checkbox option in [[Special:Export]]
+
+See also:
+* {{msg-mw|Exportlistauthors}}',
 'export-templates' => 'A label of checkbox option in [[Special:Export]]',
 'export-pagelinks' => 'This is an input in [[Special:Export]]',
 
@@ -8497,9 +8951,66 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'dberr-cachederror' => 'Used as error message at the bottom of the page.',
 
 # HTML forms
-'htmlform-float-invalid' => '"number" stands for "float" (integer and decimal fraction).',
-'htmlform-int-toolow' => '* $1 - minimum value',
-'htmlform-int-toohigh' => '* $1 - maximum value',
+'htmlform-invalid-input' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-float-invalid}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-select-badoption}}',
+'htmlform-select-badoption' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-float-invalid}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}',
+'htmlform-int-invalid' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-float-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-select-badoption}}',
+'htmlform-float-invalid' => 'Used as error message in HTML forms.
+
+"number" stands for "float" (integer and decimal fraction).
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-select-badoption}}',
+'htmlform-int-toolow' => 'Used as error message in HTML forms. Parameters:
+* $1 - minimum value
+See also:
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-float-invalid}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-select-badoption}}',
+'htmlform-int-toohigh' => 'Used as error message in HTML forms. Parameters:
+* $1 - maximum value
+See also:
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-float-invalid}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-select-badoption}}',
+'htmlform-required' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-float-invalid}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-select-badoption}}',
 'htmlform-submit' => '{{Identical|Submit}}',
 'htmlform-reset' => '{{Identical|Undo}}',
 'htmlform-selectorother-other' => 'Used in drop-down boxes in [[Special:Preferences]] as follows:

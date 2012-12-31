@@ -149,7 +149,7 @@ $messages = array(
 'cancel' => 'Ora Sida',
 'moredotdotdot' => 'Liyané...',
 'mypage' => 'Kaca inyong',
-'mytalk' => 'Catetan inyong',
+'mytalk' => 'Dopokan',
 'anontalk' => 'Dhiskusi IP kiye',
 'navigation' => 'pandhu arah',
 'and' => '&#32;lan',
@@ -624,7 +624,7 @@ Rika teyeng [[Special:Search/{{PAGENAME}}|nggoleti judul kaca kiye]] nang kaca-k
 utawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} nyunting kaca kiye]</span>.',
 'noarticletext-nopermission' => 'Sekiye ora ana teks nang kaca kiye.
 Rika teyeng [[Special:Search/{{PAGENAME}}|nggoleti judul kaca kiye]] nang kaca-kaca liyane,
-utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} goleti log sing ana gandengane]</span>.',
+utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} goleti log sing ana gandengane]</span>, ningen Rika ora olih nggawe kaca kiye.',
 'userpage-userdoesnotexist' => "Akun panganggo ''<nowiki>$1</nowiki>'' ora kedaftar.
 Monggo dipriksa angger Rika kepengin gawe/nyunting kaca kiye.",
 'userpage-userdoesnotexist-view' => 'Panganggo "$1" ora kedaftar.',
@@ -830,7 +830,7 @@ Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 'mergelogpagetext' => 'Nang ngisor kiye isine daftar panggabungan sajarah kaca maring kaca liyane.',
 
 # Diffs
-'history-title' => 'Sajarah revisi sekang "$1"',
+'history-title' => 'Riwayat revisi sekang "$1"',
 'difference-multipage' => '(Prabedan antarkaca)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingna revisi kapilih',
@@ -915,7 +915,7 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 
 # Preferences page
 'preferences' => 'Preferensi',
-'mypreferences' => 'Preferensine Inyong',
+'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Durung mlebu log',
 'prefsnologintext' => 'Rika kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}| mlebu log disit]</span> kanggo ngowahi préferènsine Rika.',
@@ -1571,9 +1571,9 @@ Rika teyeng ngowaih tingkat pangreksan nggo kaca kiye, ningen perkara iku ora aw
 'blanknamespace' => '(Utama)',
 
 # Contributions
-'contributions' => 'Tulisan anggota',
+'contributions' => 'Kontribusi {{GENDER:$1|panganggo}}',
 'contributions-title' => 'Kontribusi panganggo kanggo $1',
-'mycontris' => 'Tulisan inyong',
+'mycontris' => 'Kontribusi',
 'contribsub2' => 'Kanggo $1 ($2)',
 'uctop' => ' (dhuwur)',
 'month' => 'Sekang sasi (lan sadurungé):',

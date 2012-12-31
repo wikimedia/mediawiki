@@ -1830,8 +1830,8 @@ Si le fichier vérifié est la même image avec la taille initiale, il n'y a pas
 'file-thumbnail-no' => "Le nom du fichier commence par <strong>$1</strong>.
 Il est possible qu'il s'agisse d'une version réduite ''(vignette)''.
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez modifier son nom.",
-'fileexists-forbidden' => "Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
-Si vous voulez toujours importer votre fichier, merci de retourner en arrière et d'utiliser un nouveau nom. [[File:$1|thumb|center|$1]]",
+'fileexists-forbidden' => 'Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
+Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant ce nom existe déjà dans le dépôt de fichiers partagé.
 Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
@@ -2296,7 +2296,7 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-ok' => 'Rechercher',
 'linksearch-text' => "Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.
 Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />
-Protocoles reconnus : <code>$1</code> (http:// par défaut si aucun protocole n'est indiqué).",
+{{PLURAL:$2|Protocole reconnu|Protocoles reconnus}}: <code>$1</code> (http:// par défaut si aucun protocole n'est indiqué).",
 'linksearch-line' => '$1 est lié depuis $2',
 'linksearch-error' => "Les caractères jokers ne peuvent être utilisés qu'au début du nom de domaine de l'hôte.",
 
@@ -2874,7 +2874,7 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'move-watch' => 'Suivre les pages originale et nouvelle',
 'movepagebtn' => 'Renommer la page',
 'pagemovedsub' => 'Renommage réussi',
-'movepage-moved' => "'''« $1 »''' a été renommé '''« $2 »'''",
+'movepage-moved' => "'''« $1 » a été renommée en « $2 »'''",
 'movepage-moved-redirect' => "Une redirection depuis l'ancien nom a été créée.",
 'movepage-moved-noredirect' => "La création d'une redirection depuis l'ancien nom a été annulée.",
 'articleexists' => "Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n'est pas correct.

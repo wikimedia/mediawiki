@@ -78,6 +78,7 @@
  * @author Spacebirdy
  * @author Technorum
  * @author The Evil IP address
+ * @author TheBITLINK
  * @author Titoxd
  * @author Toniher
  * @author Translationista
@@ -575,7 +576,7 @@ $messages = array(
 'viewtalkpage' => 'Ver discusión',
 'otherlanguages' => 'Otros idiomas',
 'redirectedfrom' => '(Redirigido desde «$1»)',
-'redirectpagesub' => 'Página redirigida',
+'redirectpagesub' => 'Página de redirección',
 'lastmodifiedat' => 'Esta página fue modificada por última vez el $1, a las $2.',
 'viewcount' => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
 'protectedpage' => 'Página protegida',
@@ -615,7 +616,7 @@ $1',
 'badaccess-group0' => 'No estás autorizado a ejecutar la acción solicitada.',
 'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos}}: $1.',
 
-'versionrequired' => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
+'versionrequired' => 'Se requiere la versión $1 de MediaWiki.',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consultar [[Special:Version|la página de versión]]',
 
 'ok' => 'Aceptar',
@@ -2295,7 +2296,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
 Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (si no se especifica ninguno, el protocolo por defecto es http://).',
+{{PLURAL:$2|Protocolo|Protocolos}} soportados: <code>$1</code> (si no se especifica ninguno, el protocolo por defecto es http://).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2417,7 +2418,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'enotif_subject_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada por {{GENDER:$2|$2}}',
 'enotif_subject_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada por {{GENDER:$2|$2}}',
 'enotif_subject_changed' => 'La página $1 de {{SITENAME}} ha sido cambiada por {{GENDER:$2|$2}}',
-'enotif_body_intro_deleted' => 'La página $1 de {{SITENAME}} ha sido borrada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
+'enotif_body_intro_deleted' => 'La página $1 de {{SITENAME}} ha sido borrada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3.',
 'enotif_body_intro_created' => 'La página $1 de {{SITENAME}} ha sido creada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
 'enotif_body_intro_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
 'enotif_body_intro_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
@@ -3107,16 +3108,16 @@ Permite añadir una razón al resumen de edición.',
 'tooltip-summary' => 'Introduce un breve resumen',
 
 # Stylesheets
-'common.css' => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
-'standard.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
-'nostalgia.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
-'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
-'monobook.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MonoBook */',
-'myskin.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
-'chick.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
-'simple.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
-'modern.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
-'vector.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
+'common.css' => '/* El CSS colocado en esta página sera aplicado a todas las pieles (skins) */',
+'standard.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Standard" */',
+'nostalgia.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Nostalgia" */',
+'cologneblue.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Cologne Blue" */',
+'monobook.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MonoBook" */',
+'myskin.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MySkin" */',
+'chick.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel ""Chick" */',
+'simple.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Simple" */',
+'modern.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Modern" */',
+'vector.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Vector" */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
 'handheld.css' => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
 'noscript.css' => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',

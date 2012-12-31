@@ -207,8 +207,8 @@ $messages = array(
 'newwindow' => '(o na mepo na onyonyo ohúrù)',
 'cancel' => 'Kàchá',
 'moredotdotdot' => 'Ozókwá...',
-'mypage' => 'Ihüm',
-'mytalk' => 'Okwum',
+'mypage' => 'Ihü',
+'mytalk' => 'Okwu',
 'anontalk' => 'Owu màkà IP nká',
 'navigation' => 'Otú Uzọr',
 'and' => '&#32;ná',
@@ -505,6 +505,10 @@ I na á banye...',
 'passwordreset-emailelement' => "Áhà Ọ'banife: $1
 Passwod nke gi gbanwe: $2",
 
+# Special:ChangeEmail
+'changeemail-none' => '(efù)',
+'changeemail-cancel' => 'Kàchá',
+
 # Edit page toolbar
 'bold_sample' => 'Mkpúrù èdè íke',
 'bold_tip' => 'Mkpúrù èdè íke',
@@ -605,6 +609,9 @@ Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 'edit-no-change' => 'Ha túfùghị orü gi ónú, màkà ọ díghì ihe gbanwere na edemede.',
 'edit-already-exists' => 'Ènwéghịkị ké ihü nke ọhúrù.
 Ọ di kwa.',
+
+# Content models
+'content-model-wikitext' => 'wikitext',
 
 # Parser/template warnings
 'parser-template-loop-warning' => 'Etemete àtụ dị: [[$1]]',
@@ -759,6 +766,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'skin-preview' => 'Lètú',
 'datedefault' => 'Otú é shị na dose ihe efù',
 'prefs-datetime' => 'Ubochi na ogẹ',
+'prefs-user-pages' => "Ihü ọ'bànifé",
 'prefs-personal' => "Nkówá ọ'bànifé",
 'prefs-rc' => 'Mgbánwè ógè nso',
 'prefs-watchlist' => 'Ndétụnlé',
@@ -812,7 +820,8 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 
 # User rights
 'userrights-user-editname' => "Tìnyé áhà ọ'bànifé:",
-'editusergroup' => "Rüwá ọtú nke ọ'bànifé",
+'editusergroup' => "Mèzí ọtú nke ọ'bànifé",
+'userrights-editusergroup' => "Mèzí ọtú nke ọ'bànifé",
 'saveusergroups' => "Domá ọtú nke ọ'bànifé",
 'userrights-groupsmember' => 'Onye ọtú nke:',
 'userrights-reason' => 'Mgbághapụtà:',
@@ -935,6 +944,7 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 # Special:ListFiles
 'imgfile' => 'usòrò',
 'listfiles' => 'Ndétu usòrò',
+'listfiles_thumb' => 'Nvọáká',
 'listfiles_date' => 'Ǹgụ́ụ̀bọ̀chị̀',
 'listfiles_name' => 'Áhà',
 'listfiles_user' => "Ọ'bànifé",
@@ -951,8 +961,9 @@ Ihü nọr na [[Special:Watchlist|ndétu ihe Í ne lé]] di na mkpụrụ edemed
 'filehist-revert' => 'gbanwe lá àzú',
 'filehist-current' => 'nka',
 'filehist-datetime' => 'Afọ/Ogẹ',
-'filehist-thumb' => 'Nvóáká',
+'filehist-thumb' => 'Nvọáká',
 'filehist-thumbtext' => 'NvóÁká màkà otù ȯ dị nà $1',
+'filehist-nothumb' => 'Nvọáká adịghị',
 'filehist-user' => "Ọ'bànifé",
 'filehist-dimensions' => 'Ógólógó na asaá',
 'filehist-filesize' => 'Ívù usòrò',
@@ -1148,6 +1159,7 @@ Ihe gi gbanwe na ógè gi bya nà ihüá na ihü okwu ya gi di ndétu ngáhù, n
 'confirmdeletetext' => 'Í gálá Í gbákashiá ihü na ákíkó mbu ya.
 Biko sí nà ọ bụ ihe Í chọrọ, na Í mà ihe gi mè, na Í nè me ya kà yá na [[{{MediaWiki:Policy-url}}|òtù há nè mé ihe]] di óma.',
 'actioncomplete' => 'Ọ méchá',
+'actionfailed' => 'Òmùmẹ́ à daala',
 'deletedtext' => '"$1" à gbákáshíálá.
 Lé $2 màkà okwu gbásárá ihe ọ gbakashiri màkà.',
 'dellogpage' => 'Ntínyé ngbákashị',
@@ -1179,6 +1191,8 @@ Ngá bu ihe hé mèkwàrà nà ihü '''$1''':",
 'protect-level-sysop' => 'Ndi íshí nani',
 'protect-summary-cascade' => 'mgbàwéré',
 'protect-expiring' => 'nà gbá ókà na $1 (UTC)',
+'protect-expiring-local' => 'gbáọ́kà na $1',
+'protect-expiry-indefinite' => 'àghọ́ta',
 'protect-cascade' => 'Ihü ha cẹdolu di na ime ihüá (ncẹdolu mgbàwéré)',
 'protect-cantedit' => 'Ì nwéghịkí gbanwe ncẹdolu ihü á, màkà Ì nwéghị ọdà Í rü ya.',
 'protect-othertime' => 'Ógẹ ozor',
@@ -1253,9 +1267,10 @@ Ngá bu ihe hé mèkwàrà nà ihü '''$1''':",
 'whatlinkshere-filters' => 'Nzàtà',
 
 # Block/unblock
-'blockip' => "Kwàchí ọ'bànifé",
-'blockip-title' => "Kwàchí ọ'bànifé",
-'blockip-legend' => "Kwàchí ọ'bànifé",
+'block' => "Gbàchí ọ'bànifé",
+'blockip' => "Gbàchí ọ'bànifé",
+'blockip-title' => "Gbàchí ọ'bànifé",
+'blockip-legend' => "Gbàchí ọ'bànifé",
 'ipadressorusername' => "IP mà ọ bu áhà ọ'bànifé:",
 'ipbexpiry' => 'Gbá okà:',
 'ipbreason' => 'Mgbághapụtà:',
@@ -1264,13 +1279,16 @@ Ngá bu ihe hé mèkwàrà nà ihü '''$1''':",
 'ipbother' => 'Ógẹ ozor',
 'ipboptions' => 'àmànì 2:2 hours,chi 1:1 day,chi 3:3 days,izù 1:1 week,izù 2:2 weeks,önwa1:1 month,önwa 3:3 months,önwa 6:6 months,afọr 1:1 year,ógè énwéghị ùbe:infinite',
 'ipbotheroption' => 'nke ozor',
+'ipb-confirm' => 'Kwé mgbáchí',
 'ipb-unblock-addr' => 'Ákwàchịrị $1',
 'ipb-unblock' => "Ákwàchịrị áhà ọ'bànifé ma IP",
 'unblockip' => "Ákwàchịrị ọ'bànifé",
 'unblocked' => 'há kwàchịrị [[User:$1|$1]]',
 'ipblocklist' => "Ọ'bànifé kwáchírí",
+'blocklist-target' => 'Ẹ́té',
+'blocklist-expiry' => 'Gbá ọ́kà',
 'ipblocklist-submit' => 'Chọwa',
-'infiniteblock' => 'etemete',
+'infiniteblock' => 'ébìébì ùdìdì',
 'anononlyblock' => 'anon. náni',
 'emailblock' => 'ha kwàchịrị e-mail',
 'blocklink' => 'mèché',

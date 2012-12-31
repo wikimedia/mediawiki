@@ -258,8 +258,8 @@ $1',
 'mainpage' => 'Bogga Hore',
 'mainpage-description' => 'Bogga Hore',
 'policy-url' => 'Project: Xeerka',
-'portal' => 'Bortaalka jaaliyada',
-'portal-url' => 'Project:Bortaalka jaaliyada',
+'portal' => 'Albaabka Bulshada',
+'portal-url' => 'Project:Albaabka bulshada',
 'privacy' => 'Xeerka Wiki',
 'privacypage' => 'Project:Xeerka Wiki',
 
@@ -1160,6 +1160,7 @@ eeg [[Special:ProtectedPages|Liiska bogagga dhowrsoon]] liiska bogagga howlaha d
 # Undelete
 'undelete' => "Fiiri boggaga la'tirtiray",
 'undeletepage' => "Fiiri dibna u sooceli boggaga la'tirtiray",
+'undeletepagetitle' => "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray[[:$1|$1]]'''.",
 'viewdeletedpage' => "Fiiri boggaga la'tirtiray",
 'undeletebtn' => 'Sooceli',
 'undeletelink' => 'fiiri/mar kale sameey',

@@ -4272,6 +4272,7 @@ $messages['dtp'] = array(
 );
 
 /** Greek (Ελληνικά)
+ * @author Glavkos
  * @author ZaDiak
  */
 $messages['el'] = array(
@@ -4323,7 +4324,7 @@ $messages['el'] = array(
 	'config-profile-private' => 'Ιδιωτικό βίκι',
 	'config-email-settings' => 'Ρυθμίσεις ηλεκτρονικού ταχυδρομείου',
 	'config-upload-settings' => 'Φορτώσεις εικόνων και άλλων αρχείων',
-	'config-upload-enable' => 'Ενεργοποιήστε την αποστολή αρχείων',
+	'config-upload-enable' => 'Ενεργοποιήστε την επιφόρτωση αρχείων',
 	'config-logo' => 'Διεύθυνση URL λογότυπου:',
 	'config-cc-again' => 'Επιλέξτε ξανά...',
 	'config-extensions' => 'Επεκτάσεις',
@@ -10741,11 +10742,11 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 [http://modsecurity.org/documentation/ mod_security] 문서를 참고하거나 임의의 오류가 발생할 경우 호스트의 지원 요청에 문의하십시오.",
 	'config-diff3-bad' => 'GNU diff3를 찾을 수 없습니다.',
 	'config-imagemagick' => 'ImageMagick를 찾았습니다: <code>$1</code>.
-올리기를 활성화할 경우 그림 섬네일이 활성화될 것입니다.',
+올리기를 활성화할 경우 그림 섬네일이 활성화됩니다.',
 	'config-gd' => '내장된 GD 그래픽 라이브러리를 찾았습니다.
-올리기를 활성화할 경우 그림 섬네일이 활성화될 것입니다.',
+올리기를 활성화할 경우 그림 섬네일이 활성화됩니다.',
 	'config-no-scaling' => 'GD 라이브러리나 ImageMagick를 찾을 수 없습니다.
-그림 섬네일이 비활성화될 것입니다.',
+그림 섬네일이 비활성화됩니다.',
 	'config-no-uri' => "'''오류:''' 현재 URI를 확인할 수 없습니다.
 설치가 중단되었습니다.",
 	'config-no-cli-uri' => "'''경고''': 기본값을 사용하여 --scriptpath를 지정하지 않았습니다: <code>$1</code>.",
@@ -13936,7 +13937,7 @@ De map die u opgeeft moet beschrijfbaar zijn voor de webserver tijdens de instal
 Deze mag '''niet toegankelijk''' zijn via het web en het bestand mag dus niet tussen de PHP-bestanden staan.
 
 Het installatieprogramma schrijft het bestand <code>.htaccess</code> weg met het databasebestand, maar als dat niet werkt kan iemand zich toegang tot het ruwe databasebestand verschaffen.
-Ook de gebruikersgegevens (e-mailsdressen, wachtwoordhashes) en verwijderde versies en overige gegevens met beperkte toegang via MediaWiki zijn dan onbeschermd.
+Ook de gebruikersgegevens (e-mailadressen, wachtwoordhashes) en verwijderde versies en overige gegevens met beperkte toegang via MediaWiki zijn dan onbeschermd.
 
 Overweeg om de database op een totaal andere plaats neer te zetten, bijvoorbeeld in <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts' => 'Standaard tablespace:',
@@ -14023,7 +14024,7 @@ Als u uw <code>LocalSettings.php</code> opnieuw wilt aanmaken, klik dan op de kn
 Dit is '''niet aan te raden''' tenzij u problemen hebt met uw wiki.",
 	'config-upgrade-done-no-regenerate' => 'Het bijwerken is afgerond.
 
-U kunt u [$1 uw wiki gebruiken].',
+U kunt nu [$1 uw wiki gebruiken].',
 	'config-regenerate' => 'LocalSettings.php opnieuw aanmaken →',
 	'config-show-table-status' => 'Het uitvoeren van SHOW TABLE STATUS is mislukt!',
 	'config-unknown-collation' => "'''Waarschuwing:''' de database gebruikt een collatie die niet wordt herkend.",
@@ -14036,7 +14037,7 @@ De gebruiker die u hier opgeeft moet al bestaan.',
 	'config-mysql-engine' => 'Opslagmethode:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-myisam-dep' => "'''Waarschuwing''': U hebt MyISAM geselecteerd als opslagengine voor MySQL. Dit is niet aan te raden voor MediaWiki omdat:
+	'config-mysql-myisam-dep' => "'''Waarschuwing''': u hebt MyISAM geselecteerd als opslagengine voor MySQL. Dit is niet aan te raden voor MediaWiki omdat:
 * het nauwelijks ondersteuning biedt voor gebruik door meerdere gebruikers tegelijkertijd door het locken van tabellen;
 * het meer vatbaar is voor corruptie dan andere engines;
 * de code van MediaWiki niet alstijd omgaat met MyISAM zoals dat zou moeten.
@@ -14051,7 +14052,7 @@ MyISAM-databases raken vaker corrupt dan InnoDB-databases.",
 	'config-mysql-binary' => 'Binair',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-mysql-charset-help' => "In '''binaire modus''' slaat MediaWiki tekst in UTF-8 op in binaire databasevelden.
-Dit is efficiënter dan de UTF-8-modus van MySQL en stelt u in staat de volledige reeks Unicode-tekens te gebruiken.
+Dit is efficiënter dan de UTF-8-modus van MySQL en stelt u in staat de volledige reeks Unicodetekens te gebruiken.
 
 In '''UTF-8-modus''' kent MySQL de tekenset van uw gegevens en kan de databaseserver ze juist weergeven en converteren.
 Het is dat niet mogelijk tekens op te slaan die de \"[//nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
@@ -14092,7 +14093,7 @@ Kies een andere gebruikersnaam.',
 	'config-subscribe-help' => 'Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.
 Abonneer uzelf erop en werk uw MediaWiki-installatie bij als er nieuwe versies uitkomen.',
 	'config-subscribe-noemail' => 'U hebt geprobeerd zich te abonneren op de mailinglijst voor release-aankondigingen zonder een e-mailadres op te geven.
-Geef een e-mailadres op als u zich wil abonneren op de mailinglijst.',
+Geef een e-mailadres op als u zich wilt abonneren op de mailinglijst.',
 	'config-almost-done' => 'U bent bijna klaar!
 Als u wilt kunt u de overige instellingen overslaan en de wiki nu installeren.',
 	'config-optional-continue' => 'Stel me meer vragen.',
@@ -14251,7 +14252,7 @@ Dit bevat al uw instellingen.
 U moet het bestand downloaden en in de hoofdmap van uw wiki-installatie plaatsten; in dezelfde map als index.php.
 De download moet u automatisch zijn aangeboden.
 
-Als de download niet is aangeboden of als u de download hebt geannuleerd, dan kunt u de download opnieuw starten door op de onderstaande verwijzing te klikken:
+Als de download niet is aangeboden of als u de download hebt geannuleerd, dan kunt u de download opnieuw starten door op de onderstaande koppeling te klikken:
 
 $3
 
@@ -14270,6 +14271,252 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
 * [//www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]
 * [//www.mediawiki.org/wiki/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]',
+);
+
+/** Nederlands (informeel)‎ (Nederlands (informeel)‎)
+ * @author Siebrand
+ */
+$messages['nl-informal'] = array(
+	'config-localsettings-badkey' => 'De sleutel die je hebt opgegeven is onjuist',
+	'config-upgrade-key-missing' => 'Er is een bestaande installatie van MediaWiki aangetroffen.
+Plaats de volgende regel onderaan je LocalSettings.php om deze installatie bij te werken:
+
+$1',
+	'config-session-expired' => 'Je sessiegegevens zijn verlopen.
+Sessies zijn ingesteld om een levensduur van $1 te hebben.
+Je kunt deze wijzigen via de instelling <code>session.gc_maxlifetime</code> in php.ini.
+Begin het installatieproces opnieuw.',
+	'config-no-session' => 'Je sessiegegevens zijn verloren gegaan.
+Controleer je php.ini en zorg dat er een juiste map is ingesteld voor <code>session.save_path</code>.',
+	'config-your-language' => 'Jouw taal:',
+	'config-help-restart' => 'Wil je alle opgeslagen gegevens die je hebt ingevoerd wissen en het installatieproces opnieuw starten?',
+	'config-welcome' => '=== Controle omgeving ===
+Er worden een aantal basiscontroles uitgevoerd met als doel vast te stellen of deze omgeving geschikt is voor een installatie van MediaWiki.
+Als je hulp nodig hebt bij de installatie, lever deze gegevens dan ook aan.',
+	'config-copyright' => "=== Auteursrechten en voorwaarden ===
+
+$1
+
+Dit programma is vrije software. Je mag het verder verspreiden en/of aanpassen in overeenstemming met de voorwaarden van de GNU General Public License zoals uitgegeven door de Free Software Foundation; ofwel versie 2 van de Licentie of - naar eigen keuze - enige latere versie.
+
+Dit programma wordt verspreid in de hoop dat het nuttig is, maar '''zonder enige garantie''', zelfs zonder de impliciete garantie van '''verkoopbaarheid''' of '''geschiktheid voor een bepaald doel'''.
+Zie de GNU General Public License voor meer informatie.
+
+Samen met dit programma hoor je een <doclink href=Copying>exemplaar van de GNU General Public License</doclink> ontvangen te hebben; zo niet, schrijf dan aan de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, Verenigde Staten. Of [http://www.gnu.org/copyleft/gpl.html lees de licentie online].",
+	'config-env-good' => 'De omgeving is gecontroleerd.
+Je kunt MediaWiki installeren.',
+	'config-env-bad' => 'De omgeving is gecontroleerd.
+Je kunt MediaWiki niet installeren.',
+	'config-unicode-pure-php-warning' => "'''Waarschuwing''': de [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicodenormalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.
+Als je MediaWiki voor een website met veel verkeer installeert, lees je dan in over [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicodenormalisatie].",
+	'config-unicode-update-warning' => "'''Waarschuwing''': de geïnstalleerde versie van de Unicodenormalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].
+Je moet [//www.mediawiki.org/wiki/Unicode_normalization_considerations bijwerken] als Unicode voor jou van belang is.",
+	'config-no-db' => 'Het was niet mogelijk een geschikte databasedriver te vinden voor PHP.
+Je moet een databasedriver installeren voor PHP.
+De volgende databases worden ondersteund: $1.
+
+Als je op een gedeelde omgeving zit, vraag dan aan je hostingprovider een geschikte databasedriver te installeren.
+Als je PHP zelf hebt gecompileerd, wijzig dan je instellingen zodat een databasedriver wordt geactiveerd, bijvoorbeeld via <code>./configure --with-mysql</code>.
+Als je PHP hebt geïnstalleerd via een Debian- of Ubuntu-package, installeer dan ook de module php5-mysql.',
+	'config-outdated-sqlite' => "''' Waarschuwing:''' je gebruikt SQLite $1. SQLite is niet beschikbaar omdat de minimaal vereiste versie $2 is.",
+	'config-register-globals' => "'''Waarschuwing: de PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''
+'''Schakel deze uit als dat mogelijk is.'''
+MediaWiki kan ermee werken, maar je server is dan meer kwetsbaar voor beveiligingslekken.",
+	'config-magic-quotes-runtime' => "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] is actief!'''
+Deze instelling zorgt voor gegevenscorruptie.
+Je kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
+	'config-magic-quotes-sybase' => "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] is actief!'''
+Deze instelling zorgt voor gegevenscorruptie.
+Je kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
+	'config-mbstring' => "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is actief!'''
+Deze instelling zorgt voor gegevenscorruptie.
+Je kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
+	'config-ze1' => "'''Onherstelbare fout: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] is actief!'''
+Deze instelling zorgt voor grote problemen in MediaWiki.
+Je kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
+	'config-xml-bad' => 'De XML-module van PHP ontbreekt.
+MediaWiki heeft de functies van deze module nodig en werkt niet zonder deze module.
+Als je gebruik maakt van Mandrake, installeer dan het package php-xml.',
+	'config-mod-security' => "'''Waarschuwing:''' je webserver heeft de module [http://modsecurity.org/ mod_security] ingeschakeld. Als deze onjuist is ingesteld, kan dit problemen geven in combinatie met MediaWiki of andere software die gebruikers in staat stelt willekeurige inhoud te posten.
+Lees de [http://modsecurity.org/documentation/ documentatie over mod_security] of neem contact op met de helpdesk van je provider als je tegen problemen aanloopt.",
+	'config-imagemagick' => 'ImageMagick aangetroffen: <code>$1</code>.
+Het aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als je uploaden inschakelt.',
+	'config-gd' => 'Ingebouwde GD grafische bibliotheek aangetroffen.
+Het aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als je uploaden inschakelt.',
+	'config-uploads-not-safe' => "'''Waarschuwing:''' je uploadmap <code>$1</code> kan gebruikt worden voor het arbitrair uitvoeren van scripts.
+Hoewel MediaWiki alle toegevoegde bestanden controleert op bedreigingen, is het zeer aan te bevelen het [//www.mediawiki.org/wiki/Manual:Security#Upload_security beveiligingslek te verhelpen] alvorens uploads in te schakelen.",
+	'config-no-cli-uploads-check' => "''Waarschuwing:'' je standaardmap voor uploads (<code>$1</code>) wordt niet gecontroleerd op kwetsbaarheden voor het uitvoeren van willekeurige scripts gedurende de CLI-installatie.",
+	'config-brokenlibxml' => 'Je systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.
+Upgrade naar PHP 5.2.9 of hoger en libxml2 2.7.3 of hoger([//bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).
+De installatie wordt afgebroken.',
+	'config-db-host-help' => 'Als je databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.
+
+Als je gebruik maakt van gedeelde webhosting, hoort je provider je de juiste hostnaam te hebben verstrekt.
+
+Als je MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt "localhost" mogelijk niet als servernaam.
+Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP-adres.
+
+Als je PostgreSQL gebruikt, laat dit veld dan leeg om via een Unix-socket te verbinden.',
+	'config-db-host-oracle-help' => 'Voer een geldige [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name] in; een tnsnames.ora-bestand moet zichtbaar zijn voor deze installatie.<br />Als je gebruik maakt van clientlibraries 10g of een latere versie, kan je ook gebruik maken van de naamgevingsmethode [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
+	'config-db-name-help' => 'Kies een naam die je wiki identificeert.
+Er mogen geen spaties gebruikt worden.
+Als je gebruik maakt van gedeelde webhosting, dan hoort je provider ofwel jou een te gebruiken databasenaam gegeven te hebben, of je aangegeven te hebben hoe je databases kunt aanmaken.',
+	'config-db-account-oracle-warn' => 'Er zijn drie ondersteunde scenario\'s voor het installeren van Oracle als databasebackend:
+
+Als je een databasegebruiker wilt aanmaken als onderdeel van het installatieproces, geef dan de gegevens op van een databasegebruiker in met de rol SYSDBA voor de installatie en voer de gewenste aanmeldgegevens in voor de gebruiker met webtoegang. Je kunt ook de gebruiker met webtoegang handmatig aanmaken en alleen van die gebruiker de aanmeldgegevens opgeven als deze de vereiste rechten heeft om schemaobjecten aan te maken. Als laatste is het mogelijk om aanmeldgegevens van twee verschillende gebruikers op te geven; een met de rechten om schemaobjecten aan te maken, en een met alleen webtoegang.
+
+Een script voor het aanmaken van een gebruiker met de vereiste rechten is te vinden in de map "maintenance/oracle/" van deze installatie. Onthoud dat het gebruiken van een gebruiker met beperkte rechten alle mogelijkheden om beheerscripts uit te voeren met de standaard gebruiker onmogelijk maakt.',
+	'config-db-prefix-help' => "Als je een database moet gebruiken voor meerdere wiki's, of voor MediaWiki en een andere applicatie, dan kan je ervoor kiezen om een voorvoegsel toe te voegen aan de tabelnamen om conflicten te voorkomen.
+Gebruik geen spaties.
+
+Dit veld wordt meestal leeg gelaten.",
+	'config-charset-help' => "'''Waarschuwing:''' als je '''achterwaarts compatibel met UTF-8''' gebruikt met MySQL 4.1+ en een back-up van de database maakt met <code>mysqldump</code>, dan kunnen alle niet-ASCII-tekens in je back-ups onherstelbaar beschadigd raken.
+
+In '''binaire modus''' slaat MediaWiki tekst in UTF-8 op in binaire databasevelden.
+Dit is efficiënter dan de UTF-8-modus van MySQL en stelt je in staat de volledige reeks Unicode-tekens te gebruiken.
+In '''UTF-8-modus''' kent MySQL de tekenset van je gegevens en kan de databaseserver ze juist weergeven en converteren.
+Het is dan niet mogelijk tekens op te slaan die de \"[//nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
+	'config-mysql-old' => 'Je moet MySQL $1 of later gebruiken.
+Jij gebruikt $2.',
+	'config-db-schema-help' => 'Dit schema klopt meestal.
+Wijzig het alleen als je weet dat dit nodig is.',
+	'config-sqlite-dir-help' => "SQLite slaat alle gegevens op in een enkel bestand.
+
+De map die je opgeeft moet beschrijfbaar zijn voor de webserver tijdens de installatie.
+
+Deze mag '''niet toegankelijk''' zijn via het web en het bestand mag dus niet tussen de PHP-bestanden staan.
+
+Het installatieprogramma schrijft het bestand <code>.htaccess</code> weg met het databasebestand, maar als dat niet werkt kan iemand zich toegang tot het ruwe databasebestand verschaffen.
+Ook de gebruikersgegevens (e-mailadressen, wachtwoordhashes) en verwijderde versies en overige gegevens met beperkte toegang via MediaWiki zijn dan onbeschermd.
+
+Overweeg om de database op een totaal andere plaats neer te zetten, bijvoorbeeld in <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-support-info' => 'MediaWiki ondersteunt de volgende databasesystemen:
+
+$1
+
+Als je het databasesysteem dat je wilt gebruiken niet in de lijst terugvindt, volg dan de handleiding waarnaar hierboven wordt verwezen om ondersteuning toe te voegen.',
+	'config-missing-db-name' => 'Je moet een waarde ingeven voor "Databasenaam"',
+	'config-missing-db-host' => 'Je moet een waarde invoeren voor "Databaseserver"',
+	'config-missing-db-server-oracle' => 'Je moet een waarde voor "Database-TNS" ingeven',
+	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.
+Jij gebruikt $2.',
+	'config-sqlite-name-help' => 'Kies een naam die je wiki identificeert.
+Gebruik geen spaties of koppeltekens.
+Deze naam wordt gebruikt voor het gegevensbestand van SQLite.',
+	'config-upgrade-done' => "Het bijwerken is afgerond.
+
+Je kunt [$1 je wiki nu gebruiken].
+
+Als je je <code>LocalSettings.php</code> opnieuw wilt aanmaken, klik dan op de knop hieronder.
+Dit is '''niet aan te raden''' tenzij je problemen hebt met je wiki.",
+	'config-upgrade-done-no-regenerate' => 'Het bijwerken is afgerond.
+
+Je kunt nu [$1 je wiki gebruiken].',
+	'config-db-web-no-create-privs' => 'De gebruiker die je hebt opgegeven voor de installatie heeft niet voldoende rechten om een gebruiker aan te maken.
+De gebruiker die je hier opgeeft moet al bestaan.',
+	'config-mysql-myisam-dep' => "'''Waarschuwing''': je hebt MyISAM geselecteerd als opslagengine voor MySQL. Dit is niet aan te raden voor MediaWiki omdat:
+* het nauwelijks ondersteuning biedt voor gebruik door meerdere gebruikers tegelijkertijd door het locken van tabellen;
+* het meer vatbaar is voor corruptie dan andere engines;
+* de code van MediaWiki niet alstijd omgaat met MyISAM zoals dat zou moeten.
+
+Als je installatie van MySQL InnoDB ondersteunt, gebruik dat dan vooral.
+Als je installatie van MySQL geen ondersteuning heeft voor InnoDB, denk dan na over upgraden.",
+	'config-mysql-charset-help' => "In '''binaire modus''' slaat MediaWiki tekst in UTF-8 op in binaire databasevelden.
+Dit is efficiënter dan de UTF-8-modus van MySQL en stelt je in staat de volledige reeks Unicodetekens te gebruiken.
+
+In '''UTF-8-modus''' kent MySQL de tekenset van je gegevens en kan de databaseserver ze juist weergeven en converteren.
+Het is dat niet mogelijk tekens op te slaan die de \"[//nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
+	'config-ibm_db2-low-db-pagesize' => "Je DB2-database heeft een standaard tablespace met een onvoldoende grote pagesize. De pagesize moet tenminste '''32K''' zijn.",
+	'config-project-namespace-help' => "In het kielzog van Wikipedia beheren veel wiki's hun beleidspagina's apart van hun inhoudelijke pagina's in een \"'''projectnaamruimte'''\".
+Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat je hier kunt aangeven.
+Dit voorvoegsel wordt meestal afgeleid van de naam van de wiki, maar het kan geen bijzondere tekens bevatten als \"#\" of \":\".",
+	'config-admin-name' => 'Je naam:',
+	'config-admin-password-mismatch' => 'De twee door jou ingevoerde wachtwoorden komen niet overeen.',
+	'config-admin-email-help' => "Voer hier een e-mailadres in om e-mail te kunnen ontvangen van andere gebruikers op de wiki, je wachtwoord opnieuw in te kunnen stellen en op de hoogte te worden gehouden van wijzigingen van pagina's op uw volglijst. Je kunt het veld leeg laten.",
+	'config-admin-error-bademail' => 'Je hebt een ongeldig e-mailadres opgegeven',
+	'config-subscribe-help' => 'Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.
+Abonneer jezelf erop en werk je MediaWiki-installatie bij als er nieuwe versies uitkomen.',
+	'config-subscribe-noemail' => 'Je hebt geprobeerd je te abonneren op de mailinglijst voor release-aankondigingen zonder een e-mailadres op te geven.
+Geef een e-mailadres op als je je wilt abonneren op de mailinglijst.',
+	'config-almost-done' => 'Je bent bijna klaar!
+Als je wilt kan je de overige instellingen overslaan en de wiki nu installeren.',
+	'config-profile-help' => "Wiki's werken het beste als ze door zoveel mogelijk gebruikers worden bewerkt.
+In MediaWiki is het eenvoudig om de recente wijzigingen te controleren en eventuele foutieve of kwaadwillende bewerkingen terug te draaien.
+
+Daarnaast vinden velen MediaWiki goed inzetbaar in vele andere rollen, en soms is het niet handig om helemaal \"op de wikimanier\" te werken.
+Daarom biedt dit installatieprogramma je de volgende keuzes voor de basisinstelling van gebruikersvrijheden:
+
+Een '''{{int:config-profile-wiki}}''' staat iedereen toe te bewerken, zonder zelfs aan te melden.
+Een wiki met '''{{int:config-profile-no-anon}}\" biedt extra verantwoordelijkheid, maar kan afschrikken toevallige gebruikers afschrikken.
+
+Het scenario '''{{int:config-profile-fishbowl}}''' laat gebruikers waarvoor dat is ingesteld bewerkt, maar andere gebruikers kunnen alleen pagina's bekijken, inclusief de bewerkingsgeschiedenis.
+In een '''{{int:config-profile-private}}''' kunnen alleen goedgekeurde gebruikers pagina's bekijken en bewerken.
+
+Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].",
+	'config-license-help' => "In veel openbare wiki's zijn alle bijdragen beschikbaar onder een [http://freedomdefined.org/Definition vrije licentie].
+Dit helpt bij het creëren van een gevoel van gemeenschappelijk eigendom en stimuleert bijdragen op lange termijn.
+Dit is over het algemeen niet nodig is voor een particuliere of zakelijke wiki.
+
+Als je teksten uit Wikipedia wilt kunnen gebruiken en je wilt het mogelijk maken teksten uit je wiki naar Wikipedia te kopiëren, kies dan de licentie '''Creative Commons Naamsvermelding-Gelijk delen'''.
+
+De GNU Free Documentation License is de oude licentie voor inhoud uit Wikipedia.
+Dit is nog steeds een geldige licentie, maar deze licentie is lastig te begrijpen.
+Het is ook lastig inhoud te hergebruiken onder de GFDL.",
+	'config-enable-email-help' => 'Als je wilt dat e-mailen mogelijk is, dan moeten de [http://www.php.net/manual/en/mail.configuration.php e-mailinstellingen van PHP] correct zijn.
+Als je niet wilt dat e-mailen mogelijk is, dan kan je de instellingen hier uitschakelen.',
+	'config-upload-help' => "Het toestaan van het uploaden van bestanden stelt je server mogelijk bloot aan beveiligingsrisico's.
+Er is meer [//www.mediawiki.org/wiki/Manual:Security informatie over beveiliging] beschikbaar in de handleiding.
+
+Om het bestandsuploads mogelijk te maken kan je de rechten op de submap <code>images</code> onder de hoofdmap van MediaWiki aanpassen, zodat de webserver erin kan schrijven.
+Daarmee wordt deze functie ingeschakeld.",
+	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels boven het menu.
+Upload een afbeelding met de juiste afmetingen en voer de URL hier in.
+
+Als je geen logo wilt gebruiken, kan je dit veld leeg laten.',
+	'config-cc-not-chosen' => 'Kies alsjeblieft de Creative Commonslicentie die je wilt gebruiken en klik op "doorgaan".',
+	'config-memcache-needservers' => 'Je hebt Memcached geselecteerd als je cache, maar je hebt geen servers opgegeven.',
+	'config-memcache-badip' => 'Je hebt een ongeldig IP-adres ingevoerd voor Memcached: $1.',
+	'config-memcache-noport' => 'Je hebt geen poort opgegeven voor de Memcachedserver: $1.
+De standaardpoort is 11211.',
+	'config-extensions-help' => 'De bovenstaande uitbreidingen zijn aangetroffen in de map <code>./extensions</code>.
+
+Mogelijk moet je aanvullende instellingen maken, maar je kunt deze uitbreidingen nu inschakelen.',
+	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof je MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
+Ga alsjeblieft door naar de volgende pagina.",
+	'config-install-begin' => 'Als je nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
+Als je nog wijzigingen wilt maken, klik dan op "Terug".',
+	'config-pg-no-plpgsql' => 'Je moet de taal PL/pgSQL installeren in de database $1',
+	'config-pg-no-create-privs' => 'De gebruiker die je hebt opgegeven door de installatie heeft niet voldoende rechten om een gebruiker aan te maken.',
+	'config-pg-not-in-role' => 'De gebruiker die je hebt opgegeven voor de webgebruiker bestaat al.
+De gebruiker die je hebt opgegeven voor installatie is geen superuser en geen lid van de rol van de webgebruiker, en kan het dus geen objecten aanmaken die van de webgebruiker zijn.
+
+MediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een andere webgebruikersnaam op, of klik op "terug" en geef een gebruiker op die voldoende installatierechten heeft.',
+	'config-install-user-missing-create' => 'De opgegeven gebruiker "$1" bestaat niet.
+Klik op "registreren" onderaan als je de gebruiker wilt aanmaken.',
+	'config-install-done' => "'''Gefeliciteerd!'''
+Je hebt MediaWiki met geïnstalleerd.
+
+Het installatieprogramma heeft het bestand <code>LocalSettings.php</code> aangemaakt.
+Dit bevat al je instellingen.
+
+Je moet het bestand downloaden en in de hoofdmap van uw wikiinstallatie plaatsten; in dezelfde map als index.php.
+De download moet je automatisch zijn aangeboden.
+
+Als de download niet is aangeboden of als je de download hebt geannuleerd, dan kan je de download opnieuw starten door op de onderstaande koppeling te klikken:
+
+$3
+
+'''Let op''': als je dit niet nu doet, dan het is bestand als u later de installatieprocedure afsluit zonder het bestand te downloaden niet meer beschikbaar.
+
+Na het plaatsen van het bestand met instellingen kan je '''[$2 je wiki betreden]'''.",
+	'mainpagedocfooter' => 'Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
+
+== Meer hulp over MediaWiki ==
+
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
+* [//www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Maak MediaWiki beschikbaar in jouw taal]',
 );
 
 /** Norwegian Nynorsk (norsk (nynorsk)‎)
@@ -16311,6 +16558,9 @@ Verificați gazda, numele de utilizator și parola și reîncercați.',
 
 Acum puteți [$1 începe să vă folosiți wikiul].',
 	'config-regenerate' => 'Regenerare LocalSettings.php →',
+	'config-unknown-collation' => 'AVERTISMENT: Baza de date folosește o colaționare nerecunoscută.',
+	'config-db-web-account' => 'Contul bazei de date pentru accesul web.',
+	'config-db-web-create' => 'Creați contul dacă nu există deja',
 	'config-mysql-engine' => 'Motor de stocare:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -16333,6 +16583,8 @@ Acum puteți [$1 începe să vă folosiți wikiul].',
 	'config-admin-password-mismatch' => 'Cele două parole introduse nu corespund.',
 	'config-admin-email' => 'Adresa de e-mail:',
 	'config-admin-error-bademail' => 'Ați introdus o adresă de e-mail incorectă.',
+	'config-almost-done' => 'Sunteți aproape gata!
+Puteți sări peste configurarea rămasă și să instalați wikiul chiar acum.',
 	'config-optional-continue' => 'Adresează-mi mai multe întrebări.',
 	'config-optional-skip' => 'Sunt deja plictisit, doar instalează wikiul.',
 	'config-profile' => 'Profilul drepturilor de utilizator:',
@@ -16350,6 +16602,7 @@ Acum puteți [$1 începe să vă folosiți wikiul].',
 	'config-license-pd' => 'Domeniu public',
 	'config-license-cc-choose' => 'Alegeți o licență Creative Commons personalizată',
 	'config-email-settings' => 'Setări pentru e-mail',
+	'config-email-usertalk' => 'Activați notificările pentru pagina de discuții a utilizatorului',
 	'config-upload-deleted' => 'Director pentru fișierele șterse:',
 	'config-logo' => 'Adresa URL a siglei:',
 	'config-cc-again' => 'Alegeți din nou...',
@@ -16370,6 +16623,7 @@ Acum puteți [$1 începe să vă folosiți wikiul].',
 	'config-install-stats' => 'Se inițializează statisticile',
 	'config-install-keys' => 'Se generează cheile secrete',
 	'config-install-sysop' => 'Se creează contul de administrator',
+	'config-install-mainpage-failed' => 'Nu s-a putut insera pagina principală: $1',
 	'config-download-localsettings' => 'Descarcă LocalSettings.php',
 	'config-help' => 'ajutor',
 	'mainpagetext' => "'''Programul Wiki a fost instalat cu succes.'''",
