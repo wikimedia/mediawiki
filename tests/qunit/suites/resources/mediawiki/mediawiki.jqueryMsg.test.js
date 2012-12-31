@@ -185,4 +185,27 @@ QUnit.test( 'Links', 3, function ( assert ) {
 	);
 });
 
+QUnit.test( 'Transclusion', 2, function ( assert ) {
+	var parser = mw.jqueryMsg.getMessageFunction();
+
+	mw.messages.set( 'helppage', 'Help:Contents' );
+	mw.messages.set( 'newarticletext', 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info). If you are here by mistake, click your browser\'s back button.' );
+
+	assert.equal(
+		parser(	'newarticletext' ),
+		'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the <a href="' +
+			mw.util.wikiGetlink( mw.msg( 'helppage' ) ) +
+			'">help page</a> for more info). If you are here by mistake, click your browser\'s back button.',
+		'Link with nested message'
+	);
+
+	mw.messages.set( 'portal-url', 'Project:Community portal' );
+	mw.messages.set( 'see-portal-url', '{{MediaWiki:portal-url}} is an important community page.' );
+	assert.equal(
+		parser( 'see-portal-url' ),
+		'Project:Community portal is an important community page.',
+		'Nested message'
+	);
+});
+
 }( mediaWiki, jQuery ) );
