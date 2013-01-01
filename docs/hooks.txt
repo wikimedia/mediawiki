@@ -2553,4 +2553,4 @@ $text: The revision text.
 	metadata tags returned (each tag is either a value, or an array of values).
 
 More hooks might be available but undocumented, you can execute
-./maintenance/findhooks.php to find hidden one.
+'php maintenance/findHooks.php' to find hidden one.
