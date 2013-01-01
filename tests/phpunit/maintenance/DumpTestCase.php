@@ -25,6 +25,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $xml = null;
 
+
 	/**
 	 * Adds a revision to a page, while returning the resuting revision's id
 	 *
@@ -65,6 +66,30 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$contents = gzinflate( substr( $gzipped_contents, 10, -8 ) );
 		$this->assertEquals( strlen( $contents ),
 			file_put_contents( $fname, $contents ), "# bytes written" );
+	}
+
+	/**
+	 * Tests if a gzip binary is available in the PATH by invoking it to
+	 * compress a zero-byte file.
+	 *
+	 * @return boolean
+	 */
+	function isMissingGzip() {
+		$tmpFile = $this->getNewTempFile();
+		$stdErrFile = $this->getNewTempFile();
+		wfShellExec( 'gzip -c - >' . wfEscapeShellArg( $tmpFile ) . '2>' . $stdErrFile );
+		return filesize( $tmpFile ) == 0;
+	}
+
+	/**
+	 * Tests for gzip availability and marks the current test skipped if not
+	 * available. PHPUnit throws an exception in that case, so this function
+	 * does not return if gzip is missing.
+	 */
+	function markTestSkippedIfMissingGzip() {
+		if ( $this->isMissingGzip() ) {
+			$this->markTestSkipped( 'Missing gzip binary in PATH' );
+		}
 	}
 
 	/**

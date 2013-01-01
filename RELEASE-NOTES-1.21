@@ -128,6 +128,7 @@ production.
 * (bug 39062) Special:Contributions will display changes that don't have
   a parent id instead of just an empty bullet item.
 * wfMerge() now works if $wgDiff3 contains spaces
+* Dump unit tests no longer fail if gzip is not available.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
