@@ -87,7 +87,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 
 				$start = $skip ? $fromTimestamp : $params['start'];
-				$pageId = $pageIds[NS_FILE][ $img->getTitle()->getDBkey() ];
+				$pageId = $pageIds[NS_FILE][$img->getTitle()->getDBkey()];
 
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),

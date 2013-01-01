@@ -70,7 +70,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'user' => array( 'JOIN',
 				'user_id=log_user' ),
 			'page' => array( 'LEFT JOIN',
-				array(	'log_namespace=page_namespace',
+				array( 'log_namespace=page_namespace',
 					'log_title=page_title' ) ) ) );
 		$index = array( 'logging' => 'times' ); // default, may change
 
@@ -209,15 +209,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$noredirKey = '5::noredir';
 				}
 
-				if ( isset( $params[ $targetKey ] ) ) {
-					$title = Title::newFromText( $params[ $targetKey ] );
+				if ( isset( $params[$targetKey] ) ) {
+					$title = Title::newFromText( $params[$targetKey] );
 					if ( $title ) {
 						$vals2 = array();
 						ApiQueryBase::addTitleInfo( $vals2, $title, 'new_' );
 						$vals[$type] = $vals2;
 					}
 				}
-				if ( isset( $params[ $noredirKey ] ) && $params[ $noredirKey ] ) {
+				if ( isset( $params[$noredirKey] ) && $params[$noredirKey] ) {
 					$vals[$type]['suppressedredirect'] = '';
 				}
 				$params = null;
