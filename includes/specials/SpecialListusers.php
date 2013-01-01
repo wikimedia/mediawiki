@@ -218,7 +218,12 @@ class UsersPager extends AlphabeticPager {
 
 		# Username field
 		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
-			Xml::input( 'username', 20, $this->requestedUser, array( 'id' => 'offset' ) ) . ' ';
+			Xml::input(
+				'username',
+				20,
+				$this->requestedUser,
+				array( 'id' => 'offset' ) + ( $this->requestedUser ? array() : array( 'autofocus' => '' ) )
+			) . ' ';
 
 		# Group drop-down list
 		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
