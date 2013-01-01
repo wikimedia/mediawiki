@@ -610,7 +610,7 @@ class EditPage {
 				// modified by subclasses
 				wfProfileIn( get_class( $this ) . "::importContentFormData" );
 				$textbox1 = $this->importContentFormData( $request );
-				if ( isset( $textbox1 ) ) {
+				if ( $textbox1 !== null ) {
 					$this->textbox1 = $textbox1;
 				}
 
