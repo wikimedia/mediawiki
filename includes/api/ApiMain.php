@@ -130,8 +130,9 @@ class ApiMain extends ApiBase {
 	 */
 	private $mPrinter;
 
-	private $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mAction, $mShowVersions, $mEnableWrite;
+	private $mModuleMgr, $mResult;
+	private $mAction;
+	private $mShowVersions, $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	private $mCacheMode = 'private';
@@ -179,12 +180,11 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		global $wgAPIModules; // extension modules
-		$this->mModules = $wgAPIModules + self::$Modules;
-
-		$this->mModuleNames = array_keys( $this->mModules );
-		$this->mFormats = self::$Formats;
-		$this->mFormatNames = array_keys( $this->mFormats );
+		global $wgAPIModules;
+		$this->mModuleMgr = new ApiModuleManager( $this );
+		$this->mModuleMgr->addModules( self::$Modules, 'action' );
+		$this->mModuleMgr->addModules( $wgAPIModules, 'action' );
+		$this->mModuleMgr->addModules( self::$Formats, 'format' );
 
 		$this->mResult = new ApiResult( $this );
 		$this->mShowVersions = false;
@@ -332,10 +332,11 @@ class ApiMain extends ApiBase {
 	 * @return ApiFormatBase
 	 */
 	public function createPrinterByName( $format ) {
-		if ( !isset( $this->mFormats[$format] ) ) {
+		$printer = $this->mModuleMgr->instantiateModule( $format, 'format' );
+		if ( is_null( $printer ) ) {
 			$this->dieUsage( "Unrecognized format: {$format}", 'unknown_format' );
 		}
-		return new $this->mFormats[$format] ( $this, $format );
+		return $printer;
 	}
 
 	/**
@@ -604,7 +605,7 @@ class ApiMain extends ApiBase {
 		if ( !isset ( $this->mPrinter ) ) {
 			// The printer has not been created yet. Try to manually get formatter value.
 			$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
-			if ( !in_array( $value, $this->mFormatNames ) ) {
+			if ( !$this->mModuleMgr->isDefined( $value, 'format' ) ) {
 				$value = self::API_DEFAULT_FORMAT;
 			}
 
@@ -696,8 +697,11 @@ class ApiMain extends ApiBase {
 	 */
 	protected function setupModule() {
 		// Instantiate the module requested by the user
-		$module = new $this->mModules[$this->mAction] ( $this, $this->mAction );
-		$this->mModule = $module;
+		$module = $this->mModuleMgr->instantiateModule( $this->mAction, 'action' );
+		if ( is_null( $module ) ) {
+			$this->dieUsage( 'The API requires a valid action parameter', 'unknown_action' );
+		}
+
 
 		$moduleParams = $module->extractRequestParams();
 
@@ -875,7 +879,7 @@ class ApiMain extends ApiBase {
 		if ( !$table ) {
 			$chars = ';@$!*(),/:';
 			for ( $i = 0; $i < strlen( $chars ); $i++ ) {
-				$table[ rawurlencode( $chars[$i] ) ] = $chars[$i];
+				$table[rawurlencode( $chars[$i] )] = $chars[$i];
 			}
 		}
 		return strtr( rawurlencode( $s ), $table );
@@ -961,11 +965,11 @@ class ApiMain extends ApiBase {
 		return array(
 			'format' => array(
 				ApiBase::PARAM_DFLT => ApiMain::API_DEFAULT_FORMAT,
-				ApiBase::PARAM_TYPE => $this->mFormatNames
+				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'format' )
 			),
 			'action' => array(
 				ApiBase::PARAM_DFLT => 'help',
-				ApiBase::PARAM_TYPE => $this->mModuleNames
+				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'action' )
 			),
 			'version' => false,
 			'maxlag'  => array(
@@ -1084,7 +1088,7 @@ class ApiMain extends ApiBase {
 			'    Victor Vasiliev - vasilvv at gee mail dot com',
 			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Sam Reed - sam @ reedyboy . net',
-			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead developer Sep 2006-Sep 2007)',
+			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead developer Sep 2006-Sep 2007, 2012)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
 			'or file a bug report at https://bugzilla.wikimedia.org/'
@@ -1136,9 +1140,11 @@ class ApiMain extends ApiBase {
 
 		$astriks = str_repeat( '*** ', 14 );
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
-		foreach ( array_keys( $this->mModules ) as $moduleName ) {
-			$module = new $this->mModules[$moduleName] ( $this, $moduleName );
+
+		foreach ( $this->mModuleMgr->getNames( 'action' ) as $name ) {
+			$module = $this->mModuleMgr->instantiateModule( $name );
 			$msg .= self::makeHelpMsgHeader( $module, 'action' );
+
 			$msg2 = $module->makeHelpMsg();
 			if ( $msg2 !== false ) {
 				$msg .= $msg2;
@@ -1149,14 +1155,13 @@ class ApiMain extends ApiBase {
 		$msg .= "\n$astriks Permissions $astriks\n\n";
 		foreach ( self::$mRights as $right => $rightMsg ) {
 			$groups = User::getGroupsWithPermission( $right );
-			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg[ 'msg' ], $rightMsg[ 'params' ] ) .
+			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg['msg'], $rightMsg['params'] ) .
 						"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
-
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
-		foreach ( array_keys( $this->mFormats ) as $formatName ) {
-			$module = $this->createPrinterByName( $formatName );
+		foreach ( $this->mModuleMgr->getNames( 'format' ) as $name ) {
+			$module = $this->mModuleMgr->instantiateModule( $name );
 			$msg .= self::makeHelpMsgHeader( $module, 'format' );
 			$msg2 = $module->makeHelpMsg();
 			if ( $msg2 !== false ) {
@@ -1223,44 +1228,56 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * Overrides to return this instance's module manager.
+	 * @return ApiModuleManager
+	 */
+	public function getModuleMgr() {
+		return $this->mModuleMgr;
+	}
+
+	/**
 	 * Add or overwrite a module in this ApiMain instance. Intended for use by extending
 	 * classes who wish to add their own modules to their lexicon or override the
 	 * behavior of inherent ones.
 	 *
-	 * @param $mdlName String The identifier for this module.
-	 * @param $mdlClass String The class where this module is implemented.
+	 * @deprecated since 1.21, Use getModuleMgr()->addModule() instead.
+	 * @param $name string The identifier for this module.
+	 * @param $class ApiBase The class where this module is implemented.
 	 */
-	protected function addModule( $mdlName, $mdlClass ) {
-		$this->mModules[$mdlName] = $mdlClass;
+	protected function addModule( $name, $class ) {
+		$this->getModuleMgr()->addModule( $name, 'action', $class );
 	}
 
 	/**
 	 * Add or overwrite an output format for this ApiMain. Intended for use by extending
 	 * classes who wish to add to or modify current formatters.
 	 *
-	 * @param $fmtName string The identifier for this format.
-	 * @param $fmtClass ApiFormatBase The class implementing this format.
+	 * @deprecated since 1.21, Use getModuleMgr()->addModule() instead.
+	 * @param $name string The identifier for this format.
+	 * @param $class ApiFormatBase The class implementing this format.
 	 */
-	protected function addFormat( $fmtName, $fmtClass ) {
-		$this->mFormats[$fmtName] = $fmtClass;
+	protected function addFormat( $name, $class ) {
+		$this->getModuleMgr->addModule( $name, 'format', $class );
 	}
 
 	/**
 	 * Get the array mapping module names to class names
+	 * @deprecated since 1.21, Use getModuleMgr()'s methods instead.
 	 * @return array
 	 */
 	function getModules() {
-		return $this->mModules;
+		return $this->getModuleMgr()->getNamesWithClasses( 'action' );
 	}
 
 	/**
 	 * Returns the list of supported formats in form ( 'format' => 'ClassName' )
 	 *
 	 * @since 1.18
+	 * @deprecated since 1.21, Use getModuleMgr()'s methods instead.
 	 * @return array
 	 */
 	public function getFormats() {
-		return $this->mFormats;
+		return $this->getModuleMgr()->getNamesWithClasses( 'format' );
 	}
 }
 

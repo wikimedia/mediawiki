@@ -123,6 +123,16 @@ abstract class ApiBase extends ContextSource {
 		return $this->mModuleName;
 	}
 
+
+	/**
+	 * Get the module manager, or null if this module has no sub-modules
+	 * @since 1.21
+	 * @return ApiModuleManager
+	 */
+	public function getModuleMgr() {
+		return null;
+	}
+
 	/**
 	 * Get parameter prefix (usually two letters or an empty string).
 	 * @return string
@@ -254,6 +264,8 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msg = $lnPrfx . implode( $lnPrfx, $msg ) . "\n";
 
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, false, $this->getHelpUrls() );
+
 			if ( $this->isReadMode() ) {
 				$msg .= "\nThis module requires read rights";
 			}
@@ -298,8 +310,6 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 
-			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
-
 			if ( $this->getMain()->getShowVersions() ) {
 				$versions = $this->getVersion();
 				$pattern = '/(\$.*) ([0-9a-z_]+\.php) (.*\$)/i';
@@ -340,13 +350,15 @@ abstract class ApiBase extends ContextSource {
 			return '';
 		}
 		if ( !is_array( $input ) ) {
-			$input = array(
-				$input
-			);
+			$input = array( $input );
 		}
 
 		if ( count( $input ) > 0 ) {
-			$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			if ( $title ) {
+				$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			} else {
+				$msg = '  ';
+			}
 			$msg .= implode( $prefix, $input ) . "\n";
 			return $msg;
 		}
