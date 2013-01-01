@@ -338,4 +338,8 @@ class SpecialListUsers extends IncludableSpecialPage {
 
 		$this->getOutput()->addHTML( $s );
 	}
+
+	public function getGroupName() {
+		return 'users';
+	}
 }

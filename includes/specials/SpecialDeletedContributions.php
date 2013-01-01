@@ -249,6 +249,10 @@ class DeletedContribsPager extends IndexPager {
 	public function getDatabase() {
 		return $this->mDb;
 	}
+
+	public function getGroupName() {
+		return 'users';
+	}
 }
 
 class DeletedContributionsPage extends SpecialPage {

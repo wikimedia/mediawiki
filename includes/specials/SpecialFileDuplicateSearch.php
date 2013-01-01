@@ -215,4 +215,8 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		return "$plink . . $user . . $time";
 	}
+
+	public function getGroupName() {
+		return 'media';
+	}
 }

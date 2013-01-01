@@ -158,4 +158,8 @@ class DisambiguationsPage extends QueryPage {
 
 		return "$from $edit $arr $to";
 	}
+
+	public function getGroupName() {
+		return 'pages';
+	}
 }

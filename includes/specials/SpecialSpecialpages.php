@@ -62,7 +62,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$groups = array();
 		foreach ( $pages as $page ) {
 			if ( $page->isListed() ) {
-				$group = SpecialPageFactory::getGroup( $page );
+				$group = $page->getFinalGroupName();
 				if( !isset( $groups[$group] ) ) {
 					$groups[$group] = array();
 				}

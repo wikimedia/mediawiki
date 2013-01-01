@@ -337,4 +337,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return $status;
 		}
 	}
+
+	public function getGroupName() {
+		return 'users';
+	}
 }
