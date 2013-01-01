@@ -134,6 +134,7 @@ class SpecialBlock extends FormSpecialPage {
 				'tabindex' => '1',
 				'id' => 'mw-bi-target',
 				'size' => '45',
+				'autofocus',
 				'required' => true,
 				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
 			),
