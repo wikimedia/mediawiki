@@ -2248,7 +2248,7 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-ok' => 'Sök',
 'linksearch-text' => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
 Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
-Protokoll som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).',
+{{PLURAL:$2|Protokollet|Protokollen}} som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).',
 'linksearch-line' => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 

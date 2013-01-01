@@ -980,7 +980,7 @@ $2
 
 # Edit pages
 'summary' => '編集内容の要約:',
-'subject' => '題名/見出し：',
+'subject' => '題名/見出し:',
 'minoredit' => 'これは細部の編集です',
 'watchthis' => 'このページをウォッチ',
 'savearticle' => 'ページを保存',
@@ -3894,7 +3894,7 @@ Variants for Chinese language
 'confirmemail_sendfailed' => '{{SITENAME}}は確認メールを送信できませんでした。
 メールアドレスが無効な文字を含んでいないかご確認ください。
 
-メールサーバーからの返答：$1',
+メールサーバーからの返答: $1',
 'confirmemail_invalid' => '確認用コードが正しくありません。
 このコードの有効期限が切れている可能性があります。',
 'confirmemail_needlogin' => 'メールアドレスを確認するために$1が必要です。',
@@ -3964,7 +3964,7 @@ $5
 
 # action=purge
 'confirm_purge_button' => 'OK',
-'confirm-purge-top' => 'このページのキャッシュを破棄しますか？',
+'confirm-purge-top' => 'このページのキャッシュを破棄しますか?',
 'confirm-purge-bottom' => 'ページをパージすると、キャッシュが破棄され、強制的に最新版が表示されます。',
 
 # action=watch/unwatch
@@ -3985,7 +3985,7 @@ $5
 'imgmultipageprev' => '&larr;前ページ',
 'imgmultipagenext' => '次ページ&rarr;',
 'imgmultigo' => '表示',
-'imgmultigoto' => '$1へ行く',
+'imgmultigoto' => 'ページ$1に移動',
 
 # Table pager
 'ascending_abbrev' => '昇順',
@@ -4286,7 +4286,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'logentry-newusers-create' => '利用者アカウント $1 が作成されました',
 'logentry-newusers-create2' => '利用者アカウント $3 が $1 により作成されました',
 'logentry-newusers-autocreate' => '利用者アカウント $1 が自動的に作成されました',
-'newuserlog-byemail' => 'パスワードをメールでお送りしました',
+'newuserlog-byemail' => 'パスワードをメールで送信しました',
 
 # Feedback
 'feedback-bugornote' => '技術的な問題の詳細を説明する準備ができている場合は、[$1 バグ報告]をお願いします。

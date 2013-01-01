@@ -2411,7 +2411,7 @@ $1',
 'blanknamespace' => '(Aðalnafnrýmið)',
 
 # Contributions
-'contributions' => 'Framlög notanda',
+'contributions' => 'Framlög {{GENDER:$1|notanda}}',
 'contributions-title' => 'Framlög notanda $1',
 'mycontris' => 'Framlög',
 'contribsub2' => 'Eftir $1 ($2)',

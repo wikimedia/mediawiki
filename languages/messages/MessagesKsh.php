@@ -2314,9 +2314,7 @@ eins vun all däm op eimol.',
 'linksearch-pat' => 'Sök noh:',
 'linksearch-ns' => 'Appachtemang:',
 'linksearch-ok' => 'Söhke',
-'linksearch-text' => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren änthallde sin.
-
-Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
+'linksearch-text' => 'Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Naame, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
 
 De Brauserprotokolle, di mer beim Söke aanjäjovve kann, sin: <code>$1</code>, un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
 'linksearch-line' => '„$2“ hät ene Link op $1',
@@ -2413,11 +2411,11 @@ Alles klor?',
 'watchnologin' => 'Nit enjelogg',
 'watchnologintext' => 'Öm Ding Oppassliss ze ändere, mööts de ald [[Special:UserLogin|enjelogg]] sin.',
 'addwatch' => 'En de Oppassliss don',
-'addedwatchtext' => "Die Sigg „[[:$1]]“ es jetz en Ding [[Special:Watchlist|Oppassliss]].
+'addedwatchtext' => "Die Sigg „[[:$1]]“ es jetz en Dinge [[Special:Watchlist|Oppaßleß]].
 Av jetz, wann die Sigg verändert weed, oder ehr Klaafsigg, dann weed dat en de
 Oppassliss jezeich. Dä Endrach för die Sigg kütt en  '''Fettschreff''' en de
-„[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fings.
-Wann de dä widder loss wääde wells us Dinger Oppassliss,
+„[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fengs.
+Wann de dä widder loss wääde wells us Dinger Oppaßleß,
 dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'removewatch' => 'Us de Oppassliss nämme',
 'removedwatchtext' => 'Die Sigg „[[:$1]]“ es jetz us de [[Special:Watchlist|Oppassliss]] erusjenomme.',

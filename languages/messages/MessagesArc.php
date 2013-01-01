@@ -1008,11 +1008,20 @@ $1',
 
 # Statistics
 'statistics' => 'ܚܒܝܫܘܬ ܡܢܝܢܐ',
+'statistics-header-pages' => 'ܚܒܝܫܘܬ ܡܢܝܢ̈ܐ ܕܦܐܬܐ',
+'statistics-header-edits' => 'ܚܒܝܫܘܬ ܡܢܝܢܐ ܕܫܘܚܠܦ̈ܐ',
+'statistics-header-views' => 'ܚܒܝܫܘܬ ܡܢܝܢܐ ܕܚܙܝܐ',
+'statistics-header-users' => 'ܚܒܝܫܘܬ ܡܢܝܢܐ ܕܡܦܠܚܢܐ',
 'statistics-header-hooks' => 'ܚܒܝܫܘܬ ܡܢܝܢܐ ܐܚܪܢܐ',
+'statistics-articles' => 'ܦܐܬܬ̈ܐ ܕܚܒܝܫܬ̈ܐ',
 'statistics-pages' => 'ܦܐܬܬ̈ܐ',
+'statistics-edits' => 'ܫܘܚܠܦ̈ܐ ܕܦܐܬܬ̈ܐ ܡܢ ܫܘܪܝܐ ܕ {{SITENAME}}',
+'statistics-edits-average' => 'ܡܨܥܐ ܕܫܘܚܠܦ̈ܐ ܠܟܠ ܦܐܬܐ',
+'statistics-views-total' => 'ܣܘܝܟܐ ܕܚܙܝܐ',
 'statistics-views-peredit' => 'ܚܘܘܝ̈ܐ ܠܟܠ ܫܘܚܠܦܐ',
 'statistics-users' => '[[Special:ListUsers|ܡܦܠܚܢ̈ܐ]] ܡܣܓܠ̈ܐ',
 'statistics-users-active' => 'ܡܦܠܚܢ̈ܐ ܙܪ̄ܝܙܐ',
+'statistics-mostpopular' => 'ܦܐܬܬ̈ܐ ܚܙܝ̈ܐ ܝܬܝܪ ܡܢ ܟܠ',
 
 'disambiguations' => 'ܦܐܬܬ̈ܐ ܐܣܝܪ̈ܬܐ ܒܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
 'disambiguationspage' => 'Template:ܬܘܚܡܐ ܐܚܪܢܐ',
@@ -1301,6 +1310,7 @@ $1',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 ܬܢܝܬܐ|$1 ܬܢܝܬ̈ܐ}} and {{PLURAL:$2|1 ܠܦܦܐ|$2 ܠܦܦܐ}} ܐܦܢܝܬ',
 'undeletedfiles' => '{{PLURAL:$1|1 ܠܦܦܐ|$1 ܠܦܦ̈ܐ}} ܐܦܢܝܬ',
 'undelete-header' => 'ܚܙܝ [[Special:Log/delete|ܣܓܠܐ ܕܫܝܦܐ]] ܠܚܙܝܐ ܕܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ ܚܕ̈ܬܬܐ.',
+'undelete-search-title' => 'ܒܨܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',
 'undelete-search-box' => 'ܒܨܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',
 'undelete-search-prefix' => 'ܚܘܝ ܦܐܬܬ̈ܐ ܫܪܝܢ ܒ:',
 'undelete-search-submit' => 'ܒܨܝ',
@@ -1384,6 +1394,7 @@ $1',
 'blocklist' => 'ܡܦܠܚܢ̈ܐ ܡܚܪ̈ܡܐ',
 'ipblocklist' => 'ܡܦܠܚܢ̈ܐ ܡܚܪ̈ܡܐ',
 'ipblocklist-legend' => 'ܐܫܟܚ ܡܦܠܚܢܐ ܡܚܪܡܐ',
+'blocklist-reason' => 'ܥܠܬܐ',
 'ipblocklist-submit' => 'ܒܨܝ',
 'ipblocklist-localblock' => 'ܚܪܡܐ ܕܘܟܬܢܝܐ',
 'infiniteblock' => 'ܠܥܠܡ',
@@ -1535,6 +1546,8 @@ Do you want to change the settings?',
 'pageinfo-recent-edits' => 'ܡܢܝܢܐ ܕܫܘܚܠܦ̈ܐ ܐܚܪ̈ܝܐ (ܒ {{PLURAL:$1||ܚܕ ܝܘܡܐ|$1 ܝܘܡܬ̈ܐ}})',
 'pageinfo-recent-authors' => 'ܡܢܝܢܐ ܕܡܫܚܠܦܢ̈ܐ ܡܫܚܠܦ̈ܐ ܐܚܪ̈ܝܐ',
 'pageinfo-toolboxlink' => 'ܝܕ̈ܥܬܐ ܥܠ ܦܐܬܐ',
+'pageinfo-contentpage-yes' => 'ܐܝܢ',
+'pageinfo-protect-cascading-yes' => 'ܐܝܢ',
 
 # Image deletion
 'filedeleteerror-short' => 'ܦܘܕܐ ܒܫܝܦܐ ܕܠܦܦܐ: $1',
@@ -1548,9 +1561,14 @@ $1',
 
 # Media information
 'thumbsize' => 'ܥܓܪܐ ܕܨܘܪܬܐ ܙܥܘܪܬܐ:',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|ܦܐܬܐ|ܦܐܬܬ̈ܐ}}',
 'file-info' => 'ܥܓܪܐ ܕܠܦܦܐ: $1, MIME ܐܕܫܐ: $2',
+'file-info-size' => '$1 × $2 ܦܩܣܠ، ܥܓܪܐ ܕܠܦܦܐ: $3، ܐܕܫܐ ܕ MIME: $4',
+'file-info-size-pages' => '$1 × $2 ܦܩܣܠ, ܥܓܪܐ ܕܠܦܦܐ: $3, ܐܕܫܐ ܕ MIME: $4, $5 {{PLURAL:$5|ܦܐܬܐ|ܦܐܬܬ̈ܐ}}',
 'file-nohires' => 'ܠܝܬ ܢܩܕܘܬܐ ܝܬܝܪ ܡܢ ܗܢܐ.',
 'show-big-image' => 'ܢܩܕܘܬܐ ܓܡܝܪܬܐ',
+'show-big-image-preview' => 'ܥܓܪܐ ܕܓܠܚܐ: $1.',
+'show-big-image-size' => '$1 × $2 ܦܩܣܠ',
 
 # Special:NewFiles
 'newimages' => 'ܒܝܬ ܓܠܚܐ ܕܠܦܦ̈ܐ ܚܕܬ̈ܐ',
@@ -1560,9 +1578,19 @@ $1',
 'noimages' => 'ܠܝܬ ܡܕܡ ܠܚܙܝܐ.',
 'ilsubmit' => 'ܒܨܝ',
 'bydate' => 'ܒܣܝܩܘܡܐ',
+'sp-newimages-showfrom' => 'ܚܘܝ ܠܦܦ̈ܐ ܚܕ̈ܬܐ ܕܫܪܝ ܡܢ $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 ܪܦܦܐ|$1 ܪ̈ܦܦܐ}}',
+'minutes' => '{{PLURAL:$1|$1 ܩܛܝܢܬܐ|$1 ܩܛܝܢܬ̈ܐ}}',
+'hours' => '{{PLURAL:$1|$1 ܫܥܬܐ|$1 ܫܥܬ̈ܐ}}',
+'days' => '{{PLURAL:$1|$1 ܝܘܡܐ|$1 ܝܘܡܬ̈ܐ}}',
+'ago' => 'ܩܕܡ $1',
 
 # Metadata
 'metadata' => 'ܓܠܝܬ̈ܐ ܕܡܝܛܐ',
+'metadata-expand' => 'ܚܘܝ ܐܪ̈ܝܟܬܐ ܪ̈ܘܝܚܬܐ',
+'metadata-collapse' => 'ܛܫܝ ܐܪ̈ܝܟܬܐ ܪ̈ܘܝܚܬܐ',
 
 # EXIF tags
 'exif-imagewidth' => 'ܦܬܘܐ',
@@ -1702,6 +1730,7 @@ $1',
 'fileduplicatesearch-legend' => 'ܒܨܝܐ ܥܠ ܥܘܦܦܐ',
 'fileduplicatesearch-filename' => 'ܫܡܐ ܕܠܦܦܐ:',
 'fileduplicatesearch-submit' => 'ܒܨܝ',
+'fileduplicatesearch-info' => '$1 × $2 ܦܩܣܠ<br /> ܥܓܪܐ ܕܠܦܦܐ: $3<br /> ܐܕܫܐ ܕ MIME: $4',
 
 # Special:SpecialPages
 'specialpages' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ',

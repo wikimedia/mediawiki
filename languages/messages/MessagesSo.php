@@ -730,7 +730,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 # Search results
 'searchresults' => 'Natiijada raadinta (Baaris)',
 'searchresults-title' => 'Raadi natiijoojika "$1"',
-'searchsubtitle' => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan boggaga ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan boggaga la xiriiro "$1"]])',
+'searchsubtitle' => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan bogaaga ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan bogagga la xiriiro "$1"]])',
 'searchsubtitleinvalid' => "Waxaa raadisay '''$1'''",
 'prevn' => 'Ka horeeya {{PLURAL:$1|$1}}',
 'nextn' => 'Ku xiga {{PLURAL:$1|$1}}',
@@ -1005,7 +1005,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'lonelypages' => 'Boggaga agoonta ah',
 'uncategorizedpages' => 'Maqaalada aan la aruurin',
 'popularpages' => 'Boggaga caanka ah',
-'prefixindex' => 'Dhamaan boggaga leh qoraalka hore',
+'prefixindex' => 'Dhamaan bogagga leh qoraalka hore',
 'shortpages' => 'Boggaga gaaban',
 'longpages' => 'Boggaga dhaadheer',
 'deadendpages' => 'Boggaga aanan la daba joogin',
@@ -1028,14 +1028,14 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'log' => 'Guda galayaasha',
 
 # Special:AllPages
-'allpages' => 'Dhamaan boggaga',
+'allpages' => 'Dhamaan bogagga',
 'alphaindexline' => '$1 ilaa $2',
 'nextpage' => 'Bogga ku xiga ($1)',
 'prevpage' => 'Bogga ka horeeyo ($1)',
 'allpagesfrom' => 'Soosaar boggaga ka bilaawda:',
-'allarticles' => 'Dhamaan boggaga',
-'allinnamespace' => 'Dhamaan boggaga ($1 namespace)',
-'allnotinnamespace' => 'Dhamaan boggaga (aan ku jirin xarun magaceedka $1)',
+'allarticles' => 'Dhamaan bogagga',
+'allinnamespace' => 'Dhamaan bogagga ($1 namespace)',
+'allnotinnamespace' => 'Dhamaan bogagga (aan ku jirin xarun magaceedka $1)',
 'allpagesprev' => 'ka hore',
 'allpagesnext' => 'Ku xiga',
 'allpagessubmit' => 'Soco',
@@ -1405,7 +1405,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'fileduplicatesearch-submit' => 'Raadi',
 
 # Special:SpecialPages
-'specialpages' => 'bogaga khaaska ah',
+'specialpages' => 'bogagga khaaska ah',
 'specialpages-group-pages' => 'liiska maqaalada',
 
 # Special:BlankPage

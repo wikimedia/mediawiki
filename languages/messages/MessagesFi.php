@@ -1910,7 +1910,7 @@ Jos suodatusperusteena käytetään käyttäjää, tuloksissa näytetään vain 
 # File description page
 'file-anchor-link' => 'Tiedosto',
 'filehist' => 'Tiedoston historia',
-'filehist-help' => 'Päiväystä napsauttamalla näet millainen tiedosto oli kyseisellä hetkellä.',
+'filehist-help' => 'Päiväystä napsauttamalla näet, millainen tiedosto oli kyseisellä hetkellä.',
 'filehist-deleteall' => 'poista kaikki',
 'filehist-deleteone' => 'poista tämä',
 'filehist-revert' => 'palauta',

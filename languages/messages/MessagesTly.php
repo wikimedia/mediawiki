@@ -394,7 +394,7 @@ $messages = array(
 'nstab-project' => 'Нахшә бәрәдә',
 'nstab-image' => 'Фајл',
 'nstab-template' => 'Ғәлиб',
-'nstab-category' => 'Категоријә',
+'nstab-category' => 'Тиспир',
 
 # General errors
 'error' => 'Сәһв',
