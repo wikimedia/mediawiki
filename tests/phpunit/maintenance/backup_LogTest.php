@@ -172,6 +172,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	function testXmlDumpsBackupUseCaseLogging() {
 		global $wgContLang;
 
+		$this->markTestSkippedIfMissingGzip();
+
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 		$dumper = new BackupDumper( array ( "--output=gzip:" . $fname,
