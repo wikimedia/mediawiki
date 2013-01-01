@@ -332,6 +332,9 @@ class User {
 				$this->$name = $data[$name];
 			}
 		}
+
+		$this->mLoadedItems = true;
+
 		return true;
 	}
 
