@@ -952,7 +952,7 @@ class EnhancedChangesList extends ChangesList {
 				implode( $this->message['semicolon-separator'], $users )
 			)->escaped() . '</span>';
 
-		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow"></span>';
+		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		$r .= "<td>$tl</td>";
 
 		# Main line
@@ -1206,7 +1206,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
+		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
 		if( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces
