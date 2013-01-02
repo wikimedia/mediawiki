@@ -177,7 +177,11 @@ class Language {
 	 * @return Language
 	 */
 	static function factory( $code ) {
-		global $wgLangObjCacheSize;
+		global $wgDummyLanguageCodes, $wgLangObjCacheSize;
+
+		if ( isset( $wgDummyLanguageCodes[$code] ) ) {
+			$code = $wgDummyLanguageCodes[$code];
+		}
 
 		// get the language object to process
 		$langObj = isset( self::$mLangObjCache[$code] )

@@ -42,5 +42,9 @@
 		<pluralRules locales="fa hu ja vi">
 			<pluralRule count="one">n is 1</pluralRule>
 		</pluralRules>
+		<!-- Copied from "bh" -->
+		<pluralRules locales="bho">
+			<pluralRule count="one">n in 0..1</pluralRule>
+		</pluralRules>
 	</plurals>
 </supplementalData>
