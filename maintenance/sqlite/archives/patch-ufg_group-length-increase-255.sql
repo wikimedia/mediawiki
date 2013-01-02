@@ -1,11 +1,11 @@
-CREATE TABLE /*_*/user_former_groups_tmp (
-  ug_user int unsigned NOT NULL default 0,
-  ug_group varbinary(32) NOT NULL default ''
+ CREATE TABLE /*_*/user_former_groups_tmp (
+  ufg_user int unsigned NOT NULL default 0,
+  ufg_group varbinary(255) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 INSERT INTO /*_*/user_former_groups_tmp
-	SELECT ug_user, ug_group
-		FROM /*_*/user_groups;
+	SELECT ufg_user, ufg_group
+		FROM /*_*/user_former_groups;
 
 DROP TABLE /*_*/user_former_groups;
 
