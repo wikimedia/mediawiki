@@ -5,8 +5,8 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/LanguageBh.php */
-class LanguageBhTest extends LanguageClassesTestCase {
+/** Tests for MediaWiki languages/LanguageBho.php */
+class LanguageBhoTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
