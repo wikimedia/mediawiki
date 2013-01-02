@@ -148,6 +148,9 @@ production.
   the same query. When both are present, 'from' is simply ignored.
 * list=alllinks & alltransclusions now allow 'unique' in generators, to yield
   a list of all link/template target pages instead of source pages.
+* BREAKING CHANGE: list=logevents output format changed for details of some log
+  types. Specifically, details that were formerly reported under a key like
+  "4::foo" will now be reported under a key of simply "foo".
 
 === Languages updated in 1.21 ===
 
