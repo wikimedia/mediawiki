@@ -27,6 +27,24 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteArray extends GenericArrayObject implements SiteList {
+	/**
+	 * Update this version number when the SiteArray format
+	 * changes in an incompatible way
+	 *
+	 * @since 1.21
+	 *
+	 * @var integer
+	 */
+	const CACHE_VERSION = 1;
+
+	/**
+	 * Version number of the SiteArray format of the currently used object
+	 *
+	 * @since 1.21
+	 *
+	 * @var integer
+	 */
+	public $cacheVersion = self::CACHE_VERSION;
 
 	/**
 	 * Internal site identifiers pointing to their sites offset value.
@@ -213,6 +231,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 		return array_merge(
 			parent::getSerializationData(),
 			array(
+				'cacheVersion' => self::CACHE_VERSION,
 				'internalIds' => $this->byInternalId,
 				'globalIds' => $this->byGlobalId,
 			)
@@ -231,6 +250,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	public function unserialize( $serialization ) {
 		$serializationData = parent::unserialize( $serialization );
 
+		$this->cacheVersion = $serializationData['cacheVersion'];
 		$this->byInternalId = $serializationData['internalIds'];
 		$this->byGlobalId = $serializationData['globalIds'];
 

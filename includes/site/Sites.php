@@ -99,10 +99,9 @@ class Sites {
 				$cache = wfGetMainCache();
 				$sites = $cache->get( wfMemcKey( 'SiteList' ) );
 
-				if ( is_object( $sites ) ) {
+				if ( is_object( $sites ) && isset( $sites->cacheVersion ) && $sites->cacheVersion === SiteArray::CACHE_VERSION ) {
 					$this->sites = $sites;
-				}
-				else {
+				} else {
 					$this->loadSites();
 				}
 			}
