@@ -613,7 +613,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public function getContent( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getContent( $audience );
+			return $this->mLastRevision->getContent( $audience, $user );
 		}
 		return null;
 	}
