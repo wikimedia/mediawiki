@@ -593,6 +593,10 @@ $wgAutoloadLocalClasses = array(
 	'CreateFileOp' => 'includes/filebackend/FileOp.php',
 	'DescribeFileOp' => 'includes/filebackend/FileOp.php',
 	'NullFileOp' => 'includes/filebackend/FileOp.php',
+	'S3FileBackend' => 'includes/filebackend/S3FileBackend.php',
+	'S3FileBackendList' => 'includes/filebackend/S3FileBackend.php',
+	'S3FileBackendDirList' => 'includes/filebackend/S3FileBackend.php',
+	'S3FileBackendFileList' => 'includes/filebackend/S3FileBackend.php',
 
 	# includes/filerepo
 	'FileRepo' => 'includes/filerepo/FileRepo.php',
