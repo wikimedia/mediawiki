@@ -27,6 +27,15 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteArray extends GenericArrayObject implements SiteList {
+	/**
+	 * Update this version number when the SiteArray format
+	 * changes in an incompatible way
+	 *
+	 * @since 1.21
+	 *
+	 * @var integer
+	 */
+	public static $cacheVersion = 1;
 
 	/**
 	 * Internal site identifiers pointing to their sites offset value.
