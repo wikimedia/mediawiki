@@ -1,6 +1,6 @@
 CREATE TABLE /*_*/user_former_groups_tmp (
   ug_user int unsigned NOT NULL default 0,
-  ug_group varbinary(32) NOT NULL default ''
+  ug_group varbinary(255) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 INSERT INTO /*_*/user_former_groups_tmp
