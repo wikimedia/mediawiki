@@ -63,6 +63,8 @@ abstract class JobQueue {
 	 *   claimTTL : If supported, the queue will recycle jobs that have been popped
 	 *              but not acknowledged as completed after this many seconds.
 	 *
+	 * Queue classes should throw an exception if they do not support the options given.
+	 *
 	 * @param $params array
 	 * @return JobQueue
 	 * @throws MWException
@@ -157,7 +159,9 @@ abstract class JobQueue {
 	abstract protected function doPop();
 
 	/**
-	 * Acknowledge that a job was completed
+	 * Acknowledge that a job was completed.
+	 *
+	 * This does nothing for certain queue classes or if "claimTTL" is not set.
 	 *
 	 * @param $job Job
 	 * @throws MWException
@@ -204,6 +208,8 @@ abstract class JobQueue {
 	 * Essentially, the new batch of jobs belong to a new "root job" and the older ones to a
 	 * previous "root job" for the same task of "update links of pages that use template X".
 	 *
+	 * This does nothing for certain queue classes.
+	 *
 	 * @param $job Job
 	 * @throws MWException
 	 * @return bool
@@ -228,7 +234,9 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Wait for any slaves or backup servers to catch up
+	 * Wait for any slaves or backup servers to catch up.
+	 *
+	 * This does nothing for certain queue classes.
 	 *
 	 * @return void
 	 */
