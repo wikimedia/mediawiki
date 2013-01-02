@@ -65,23 +65,23 @@ $messages = array(
 'tog-editsectiononrightclick' => "Atvērt sadaļas rediģēšanas lapu, uzklikšķinot ar labo peles pogu uz sadaļas virsraksta (izmanto ''JavaScript'')",
 'tog-showtoc' => 'Parādīt satura rādītāju (lapām, kurās ir vairāk par 3 virsrakstiem)',
 'tog-rememberpassword' => 'Atcerēties manu lietotājvārdu pēc pārlūka aizvēršanas (ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}).',
-'tog-watchcreations' => 'Pievienot manis radītās lapas uzraugāmo lapu sarakstam',
-'tog-watchdefault' => 'Pievienot manis izmainītās lapas uzraugāmo lapu sarakstam',
-'tog-watchmoves' => 'Pievienot manis pārvietotās lapas uzraugāmo lapu sarakstam',
-'tog-watchdeletion' => 'Pievienot manis izdzēstās lapas uzraugāmo lapu sarakstam',
+'tog-watchcreations' => 'Pievienot manis radītās lapas un manis augšuplādētos failus uzraugāmo lapu sarakstam',
+'tog-watchdefault' => 'Pievienot manis izmainītās lapas un failus uzraugāmo lapu sarakstam',
+'tog-watchmoves' => 'Pievienot manis pārvietotās lapas un failus uzraugāmo lapu sarakstam',
+'tog-watchdeletion' => 'Pievienot manis izdzēstās lapas un failus uzraugāmo lapu sarakstam',
 'tog-minordefault' => 'Atzīmēt visus labojumus jau sākotnēji par maznozīmīgiem',
 'tog-previewontop' => 'Parādīt priekšskatījumu virs rediģēšanas lauka, nevis zem',
 'tog-previewonfirst' => 'Parādīt priekšskatījumu jau uzsākot rediģēšanu',
 'tog-nocache' => 'Atslēgt pārlūka lapu saglabāšanu kešatmiņā',
-'tog-enotifwatchlistpages' => 'Paziņot pa e-pastu par uzraugāmo rakstu sarakstā esošo rakstu izmaiņām',
+'tog-enotifwatchlistpages' => 'Paziņot pa e-pastu par izmaiņām uzraugāmo rakstu sarakstā esošos rakstos un failos',
 'tog-enotifusertalkpages' => 'Paziņot pa e-pastu par izmaiņām manā diskusiju lapā',
-'tog-enotifminoredits' => 'Paziņot pa e-pastu arī par maznozīmīgiem rakstu labojumiem',
+'tog-enotifminoredits' => 'Paziņot pa e-pastu arī par maznozīmīgiem labojumiem rakstos un failos',
 'tog-enotifrevealaddr' => 'Atklāt manu e-pasta adresi paziņojumu vēstulēs',
 'tog-shownumberswatching' => 'Rādīt uzraudzītāju skaitu',
 'tog-oldsig' => 'Pašreizējais paraksts:',
 'tog-fancysig' => 'Vienkāršs paraksts (bez automātiskās saites)',
-'tog-externaleditor' => 'Pēc noklusējuma izmantot ārēju programmu lapu izmainīšanai (tikai pieredzējušiem lietotājiem, nepieciešami speciāli uzstādījumi tavā datorā (lai tas darbotos))',
-'tog-externaldiff' => 'Pēc noklusējuma izmantot ārēju programmu izmaiņu parādīšanai (tikai pieredzējušiem lietotājiem, nepieciešami speciāli uzstādījumi tavā datorā (lai tas darbotos))',
+'tog-externaleditor' => 'Pēc noklusējuma izmantot ārēju programmu lapu izmainīšanai (tikai pieredzējušiem lietotājiem, lai darbotos nepieciešami speciāli uzstādījumi tavā datorā sk. [//www.mediawiki.org/wiki/Manual:External_editor šeit])',
+'tog-externaldiff' => 'Pēc noklusējuma izmantot ārēju programmu izmaiņu parādīšanai (tikai pieredzējušiem lietotājiem, lai darbotos nepieciešami speciāli uzstādījumi tavā datorā sk. [//www.mediawiki.org/wiki/Manual:External_editor šeit])',
 'tog-showjumplinks' => 'Rādīt pārlēkšanas saites',
 'tog-uselivepreview' => "Lietot tūlītējo priekšskatījumu (izmanto ''JavaScript''; eksperimentāla iespēja)",
 'tog-forceeditsummary' => 'Atgādināt man, ja kopsavilkuma ailīte ir tukša',
@@ -98,7 +98,7 @@ $messages = array(
 
 'underline-always' => 'vienmēr',
 'underline-never' => 'nekad',
-'underline-default' => 'kā pārlūkā',
+'underline-default' => 'kā pārlūkā vai apdarē',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Fonta veids rediģēšanas laukā:',
@@ -206,7 +206,7 @@ $messages = array(
 'vector-action-protect' => 'Aizsargāt',
 'vector-action-undelete' => 'Atjaunot',
 'vector-action-unprotect' => 'Mainīt aizsardzību',
-'vector-simplesearch-preference' => 'Ieslēgt uzlabotās meklēšanas piedāvājumus (tikai Vector apdarē)',
+'vector-simplesearch-preference' => 'Ieslēgt vienkāršoto meklēšanas joslu (tikai Vector apdarē)',
 'vector-view-create' => 'Izveidot',
 'vector-view-edit' => 'Labot',
 'vector-view-history' => 'Hronoloģija',
@@ -366,9 +366,9 @@ Derīgo īpašo lapu saraksts atrodas te: [[Special:SpecialPages|{{int:specialpa
 'dberrortext' => 'Konstatēta sintakses kļūda datubāzes pieprasījumā.
 Iespējams, tā radusies dēļ kļūdas programmatūrā.
 Pēdējais datubāzes pieprasījums bija:
-<blockquote><tt>$1</tt></blockquote>
-no funkcijas "<tt>$2</tt>".
-Datubāzes atgrieztais kļūdas paziņojums: "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+no funkcijas "<code>$2</code>".
+Datubāzes atgrieztais kļūdas paziņojums: "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Datubāzes vaicājumā pieļauta sintakses kļūda.
 Pēdējais priekšraksts:
 "$1"
@@ -412,7 +412,7 @@ Funkcija: $1<br />
 Vaicājums: $2',
 'viewsource' => 'Aplūkot kodu',
 'actionthrottled' => 'Darbība netika atļauta',
-'protectedpagetext' => 'Šī lapa ir aizsargāta lai novērstu tās izmainīšanu.',
+'protectedpagetext' => 'Šī lapa ir aizsargāta lai novērstu tās izmainīšanu vai citas darbības.',
 'viewsourcetext' => 'Tu vari apskatīties un nokopēt šīs lapas vikitekstu:',
 'protectedinterface' => 'Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.',
 'editinginterface' => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kas ir MediaWiki lokalizēšanas projekts.",

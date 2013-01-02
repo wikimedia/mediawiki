@@ -2186,6 +2186,16 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 
 'enotif_reset' => 'Merkja allar síður sem skoðaðar',
 'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
+'enotif_subject_deleted' => '$1 á {{SITENAME}} hefur verið eytt af {{gender:$2|$2}}',
+'enotif_subject_created' => '$1 á {{SITENAME}} hefur verið búin til af {{gender:$2|$2}}',
+'enotif_subject_moved' => '$1 á {{SITENAME}} hefur verið færð af {{gender:$2|$2}}',
+'enotif_subject_restored' => '$1 á {{SITENAME}} hefur verið endurvakin af {{gender:$2|$2}}',
+'enotif_subject_changed' => '$1 á {{SITENAME}} hefur verið breytt af {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið eytt $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_created' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið búin til $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_moved' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið færð $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_restored' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið endurvakin $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_changed' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið breytt $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
 'enotif_lastvisited' => 'Heimsóttu eftirfarandi tengil til að sjá allar breytingar síðan 
 þú heimsóttir síðuna síðast:
   $1',
@@ -2194,15 +2204,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_anon_editor' => 'ónefndum notanda $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Síðan „$PAGETITLE” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
-$PAGEEDITOR. Breytingarágripið var:
-
-   $PAGESUMMARY
-
-Þetta er tengill á síðuna:
-
-   $PAGETITLE_URL
-
+$PAGEINTRO
 $NEWPAGE
 
 Til þess að hafa samband við $PAGEEDITOR, smelltu á:

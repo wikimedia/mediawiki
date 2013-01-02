@@ -158,7 +158,8 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-editondblclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click. {{Gender}}",
 'tog-editsection' => "[[Special:Preferences]], tab 'Edit'. Offers user to add links in sub headings for editing sections. {{Gender}}",
 'tog-editsectiononrightclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title. {{Gender}}",
-'tog-showtoc' => "[[Special:Preferences]], tab 'Misc'. Offers user to show a table of contents automatically if a page has more than three headings. {{Gender}}",
+'tog-showtoc' => "[[Special:Preferences]], tab 'Misc'.
+Offers user to show a table of contents automatically if a page has more than 3 headings (= 4 or more headings).",
 'tog-rememberpassword' => "{{Identical|Remember my login on this computer}}[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.  {{Gender}} Parameters:
 * $1 is the number of days the login details are remembered.",
 'tog-watchcreations' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist. {{Gender}}",
@@ -518,6 +519,7 @@ See also:
 'talkpagelinktext' => 'Used as name of links going to talk page in some places, like in [[Special:RecentChanges]], [[Special:Allmessages]], [[Special:Logs]], and [[Special:Watchlist/edit]].
 
 {{Identical|Talk}}',
+'specialpage' => '{{Identical|Special pages}}',
 'personaltools' => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].',
 'articlepage' => "'Content page' is used for NS_MAIN and any other non-standard namespace and this message is only used in skins Nostalgia, Cologneblue and Standard in the bottomLinks part.
 
@@ -764,7 +766,8 @@ See also:
 
 See also:
 * {{msg-mw|Nstab-special}}
-* {{msg-mw|Tooltip-ca-nstab-special}}',
+* {{msg-mw|Tooltip-ca-nstab-special}}
+{{Identical|Special pages}}',
 'nstab-project' => 'The name for the tab of the project namespace. Example: [[Project:Example]]
 
 See also:
@@ -879,7 +882,11 @@ $1 is a filename, I think.',
 'unexpected' => 'This message indicates the value $2 is unexpected for $1. Parameters:
 * $1 - name
 * $2 - value',
-'badarticleerror' => 'Used as error message in moving page.',
+'badarticleerror' => 'Used as error message in moving page.
+
+See also:
+* {{msg-mw|Articleexists}}
+* {{msg-mw|Bad-target-model}}',
 'cannotdelete' => 'Error message in deleting. Parameters:
 * $1 - page name or file name',
 'cannotdelete-title' => 'Title of error page when the user cannot delete a page
@@ -2357,6 +2364,7 @@ See also:
 'restoreprefs' => 'Used in [[Special:Preferences]]',
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
 When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.',
+'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',
 'rows' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'searchresultshead' => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
@@ -3076,7 +3084,7 @@ See also:
 * {{msg-mw|verification-error}}
 * {{msg-mw|hookaborted}}
 * {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
+* {{msg-mw|unknown-error}}',
 'badfilename' => '* $1 - filename',
 'filetype-mime-mismatch' => 'Upload error. Parameters:
 * $1 is the extension of the uploaded file
@@ -3090,7 +3098,91 @@ See also:
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
 * $3 is the number of allowed file formats (to be used for the PLURAL function)
 * $4 is the number of extensions that could not be uploaded (to be used for the PLURAL function)",
-'filetype-missing' => 'Error when uploading a file with no extension
+'filetype-missing' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'empty-file' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'file-too-large' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'filename-tooshort' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'filetype-banned' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'verification-error' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|illegal-filename}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|hookaborted}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'hookaborted' => 'Used as error message when uploading a file.
 
 See also:
 * {{msg-mw|empty-file}}
@@ -3101,10 +3193,24 @@ See also:
 * {{msg-mw|illegal-filename}}
 * {{msg-mw|overwrite}}
 * {{msg-mw|verification-error}}
+* {{msg-mw|windows-nonascii-filename}}
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'illegal-filename' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|empty-file}}
+* {{msg-mw|file-too-large}}
+* {{msg-mw|filetype-missing}}
+* {{msg-mw|filetype-banned}}
+* {{msg-mw|filename-tooshort}}
+* {{msg-mw|overwrite}}
+* {{msg-mw|verification-error}}
 * {{msg-mw|hookaborted}}
 * {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'empty-file' => 'Used as error message.
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'overwrite' => 'Used as error message when uploading a file.
 
 See also:
 * {{msg-mw|empty-file}}
@@ -3113,96 +3219,12 @@ See also:
 * {{msg-mw|filetype-banned}}
 * {{msg-mw|filename-tooshort}}
 * {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
 * {{msg-mw|verification-error}}
 * {{msg-mw|hookaborted}}
 * {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'file-too-large' => 'Used as error message.
-
-See also:
-* {{msg-mw|empty-file}}
-* {{msg-mw|file-too-large}}
-* {{msg-mw|filetype-missing}}
-* {{msg-mw|filetype-banned}}
-* {{msg-mw|filename-tooshort}}
-* {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
-* {{msg-mw|verification-error}}
-* {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'filename-tooshort' => 'Used as error message.
-
-See also:
-* {{msg-mw|empty-file}}
-* {{msg-mw|file-too-large}}
-* {{msg-mw|filetype-missing}}
-* {{msg-mw|filetype-banned}}
-* {{msg-mw|filename-tooshort}}
-* {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
-* {{msg-mw|verification-error}}
-* {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'filetype-banned' => 'Used as error message.
-
-See also:
-* {{msg-mw|empty-file}}
-* {{msg-mw|file-too-large}}
-* {{msg-mw|filetype-missing}}
-* {{msg-mw|filetype-banned}}
-* {{msg-mw|filename-tooshort}}
-* {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
-* {{msg-mw|verification-error}}
-* {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'verification-error' => 'Error message shown when an uploaded file contents does not pass verification, i.e. the file is corrupted, it is not the type it claims to be etc.
-
-See also:
-* {{msg-mw|empty-file}}
-* {{msg-mw|file-too-large}}
-* {{msg-mw|filetype-missing}}
-* {{msg-mw|filetype-banned}}
-* {{msg-mw|filename-tooshort}}
-* {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
-* {{msg-mw|verification-error}}
-* {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'hookaborted' => 'Used as error message.
-
-See also:
-* {{msg-mw|empty-file}}
-* {{msg-mw|file-too-large}}
-* {{msg-mw|filetype-missing}}
-* {{msg-mw|filetype-banned}}
-* {{msg-mw|filename-tooshort}}
-* {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
-* {{msg-mw|verification-error}}
-* {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'illegal-filename' => 'Used as error message.
-
-See also:
-* {{msg-mw|empty-file}}
-* {{msg-mw|file-too-large}}
-* {{msg-mw|filetype-missing}}
-* {{msg-mw|filetype-banned}}
-* {{msg-mw|filename-tooshort}}
-* {{msg-mw|illegal-filename}}
-* {{msg-mw|overwrite}}
-* {{msg-mw|verification-error}}
-* {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
-'overwrite' => 'Used as error message.
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
+'unknown-error' => 'Used as error message when uploading a file and the error is unknown.
 
 See also:
 * {{msg-mw|empty-file}}
@@ -3231,7 +3253,7 @@ See also:
 'large-file' => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',
 'largefileserver' => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile' => 'Error message when trying to upload an empty file',
-'windows-nonascii-filename' => 'Used as error message.
+'windows-nonascii-filename' => 'Used as error message when uploading a file.
 
 See also:
 * {{msg-mw|empty-file}}
@@ -3243,8 +3265,8 @@ See also:
 * {{msg-mw|overwrite}}
 * {{msg-mw|verification-error}}
 * {{msg-mw|hookaborted}}
-* {{msg-mw|windows-nonascii-filename}}
-* {{msg-mw|filename-toolong}}',
+* {{msg-mw|filename-toolong}}
+* {{msg-mw|unknown-error}}',
 'fileexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
 'filepageexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
 Shown on [[Special:Upload]], $1 is link to the page. This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.",
@@ -3274,7 +3296,24 @@ See also:
 * {{msg-mw|Uploaddisabled}}',
 'uploaddisabledtext' => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
 'php-uploaddisabledtext' => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
-'uploadvirus' => 'Note displayed when uploaded file contains a virus',
+'uploadscripted' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|zip-wrong-format}}
+* {{msg-mw|uploadjava}}
+* {{msg-mw|uploadvirus}}',
+'uploadvirus' => 'Error message displayed when uploaded file contains a virus
+
+See also:
+* {{msg-mw|uploadscripted}}
+* {{msg-mw|zip-wrong-format}}
+* {{msg-mw|uploadjava}}',
+'uploadjava' => 'Used as error message when uploading a file.
+
+See also:
+* {{msg-mw|uploadscripted}}
+* {{msg-mw|zip-wrong-format}}
+* {{msg-mw|uploadvirus}}',
 'upload-source' => 'Caption above a section of the [[Special:Upload]] page',
 'sourcefilename' => 'Used in [[Special:Upload]].
 
@@ -3386,6 +3425,7 @@ See also:
 'upload-misc-error-text' => 'See also:
 * {{msg-mw|Upload-misc-error|title}}
 * {{msg-mw|Upload-misc-error-text|text}}',
+'upload-http-error' => '* $1 - error message',
 'upload-copy-upload-invalid-domain' => 'Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).
 
 See also:
@@ -3719,13 +3759,33 @@ Parameters:
 
 * $1 is the name of the shared repository. On Wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.
 
-{{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
-'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
-'sharedupload-desc-here' => ':See also: {{msg-mw|Sharedupload}}',
-'sharedupload-desc-edit' => ':See also: {{msg-mw|Sharedupload-desc-here}}
-:See also: {{msg-mw|Sharedupload-desc-create}}',
-'sharedupload-desc-create' => ':See also: {{msg-mw|Sharedupload-desc-here}}
-:See also: {{msg-mw|Sharedupload-desc-edit}}',
+{{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}
+
+See also:
+* {{msg-mw|Sharedupload-desc-there}}
+* {{msg-mw|Sharedupload-desc-here}}
+* {{msg-mw|Sharedupload-desc-edit}}
+* {{msg-mw|Sharedupload-desc-create}}',
+'sharedupload-desc-there' => 'See also:
+* {{msg-mw|Sharedupload}}
+* {{msg-mw|Sharedupload-desc-here}}
+* {{msg-mw|Sharedupload-desc-edit}}
+* {{msg-mw|Sharedupload-desc-create}}',
+'sharedupload-desc-here' => 'See also:
+* {{msg-mw|Sharedupload}}
+* {{msg-mw|Sharedupload-desc-there}}
+* {{msg-mw|Sharedupload-desc-edit}}
+* {{msg-mw|Sharedupload-desc-create}}',
+'sharedupload-desc-edit' => 'See also:
+* {{msg-mw|Sharedupload}}
+* {{msg-mw|Sharedupload-desc-there}}
+* {{msg-mw|Sharedupload-desc-here}}
+* {{msg-mw|Sharedupload-desc-create}}',
+'sharedupload-desc-create' => 'See also:
+* {{msg-mw|Sharedupload}}
+* {{msg-mw|Sharedupload-desc-there}}
+* {{msg-mw|Sharedupload-desc-here}}
+* {{msg-mw|Sharedupload-desc-edit}}',
 'filepage-nofile' => "This message appears when visiting a File page for which there's no file, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})
 
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
@@ -3807,8 +3867,17 @@ See also:
 'filedelete-maintenance-title' => 'Title of the error page when $wgUploadMaintenance is set to true.',
 
 # MIME search
-'mimesearch' => 'Title of [[Special:MIMESearch]].',
+'mimesearch' => 'Title of [[Special:MIMESearch]]. Also used as legend of the form.
+
+See also:
+* {{msg-mw|Mimetype|label for input box}}
+* {{msg-mw|Ilsubmit|Submit button text}}',
 'mimesearch-summary' => 'Text for [[Special:MIMESearch]]',
+'mimetype' => 'Used as label for input box in the MIMESearch form on [[Special:MIMESearch]].
+
+See also:
+* {{msg-mw|Mimesearch|page title}}
+* {{msg-mw|Ilsubmit|Submit button text}}',
 'download' => 'Direct download link in each line returned by [[Special:MIMESearch]]. Points to the actual file, rather than the image description page.
 {{Identical|Download}}',
 
@@ -4301,19 +4370,48 @@ See also:
 * {{msg-mw|Watch}}
 * {{msg-mw|Accesskey-ca-watch}}
 * {{msg-mw|Tooltip-ca-watch}}',
-'watchthispage' => '{{Identical|Watch this page}}',
+'watchthispage' => 'Used as link text.
+
+See also:
+* {{msg-mw|Unwatchthispage|link text}}
+* {{msg-mw|Notanarticle|error message}}
+{{Identical|Watch this page}}',
 'unwatch' => 'Label of "Unwatch" tab.
 
 See also:
 * {{msg-mw|Unwatch}}
 * {{msg-mw|Accesskey-ca-unwatch}}
 * {{msg-mw|Tooltip-ca-unwatch}}',
+'unwatchthispage' => 'Used as link text.
+
+See also:
+* {{msg-mw|Unatchthispage|link text}}
+* {{msg-mw|Watchthispage|link text}}
+* {{msg-mw|Notanarticle|error message}}',
 'notanarticle' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'watchlist-details' => 'Message on [[Special:Watchlist]]. This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.',
+'notvisiblerev' => 'Used as error message when rolling back.
+
+See also:
+* {{msg-mw|Cantrollback}}',
+'watchnochange' => 'Used in [[Special:Watchlist]] if there is nothing to show.',
+'watchlist-details' => 'Message on [[Special:Watchlist]]. Parameters:
+* $1 - number of pages in your watchlist
+This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.
+
+See also:
+* {{msg-mw|Watchlist-options|fieldset}}
+* {{msg-mw|Wlheader-enotif|watchlist header}}
+* {{msg-mw|enotif reset|Submit button text}}',
+'wlheader-enotif' => 'Used in [[Special:Watchlist]].
+
+See also:
+* {{msg-mw|Watchlist-options|fieldset}}
+* {{msg-mw|Watchlist-details|watchlist header}}
+* {{msg-mw|enotif reset|Submit button text}}',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
 'watchmethod-recent' => 'See also:
 * {{msg-mw|Watchmethod-recent}}
@@ -4333,14 +4431,26 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $2 - a choice of different numbers of days ("1 | 3 | 7")
 * $3 - {{msg-mw|watchlistall2}}
 Clicking on your choice changes the list of changes you see (without changing the default in my preferences).',
-'watchlist-options' => 'Legend of the fieldset of [[Special:Watchlist]]',
+'watchlist-options' => 'Legend of the fieldset of [[Special:Watchlist]]
+
+See also:
+* {{msg-mw|Watchlist-details|watchlist header}}
+* {{msg-mw|Wlheader-enotif|watchlist header}}
+* {{msg-mw|enotif reset|Submit button text}}',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
 'watcherrortext' => 'When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed. See also {{msg|addedwatchtext}}. and {{msg|addedwatchtext}}. This message is used raw and should not contain wikitext.',
 
-'enotif_reset' => "This should be translated as \"Mark all pages '''as''' visited\".",
+'enotif_reset' => "Used in [[Special:Watchlist]].
+
+This should be translated as \"Mark all pages '''as''' visited\".
+
+See also:
+* {{msg-mw|Watchlist-options|fieldset}}
+* {{msg-mw|Watchlist-details|watchlist header}}
+* {{msg-mw|Wlheader-enotif|watchlist header}}",
 'enotif_impersonal_salutation' => 'Used for impersonal e-mail notifications, suitable for bulk mailing.',
 'enotif_subject_deleted' => 'Email notification subject for deleted pages,
 * $1 - page title
@@ -4417,7 +4527,14 @@ $1 = the name of the page',
 'historywarning' => 'Warning when about to delete a page that has history.
 $1 is the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count.',
 'confirmdeletetext' => 'Introduction shown when deleting a page.',
-'actioncomplete' => 'Used in several situations, for example when a page has been deleted.',
+'actioncomplete' => 'Used in several situations, for example when a page has been deleted.
+
+See also:
+* {{msg-mw|Actionfailed|page title}}',
+'actionfailed' => 'Used as page title when the submit operation failed, in [[Special:RevisionDelete]].
+
+See also:
+* {{msg-mw|Actioncomplete|page title}}',
 'deletedtext' => 'Parameters:
 * $1 is a page that was deleted
 * $2 is {{msg-mw|deletionlog}}',
@@ -4463,7 +4580,11 @@ The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}',
 
 When the number of edits rolled back is smaller than [[mw:Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.',
 'rollbackfailed' => '{{Identical|Rollback}}',
-'cantrollback' => '{{Identical|Revert}}
+'cantrollback' => 'Used as error message when rolling back.
+
+See also:
+* {{msg-mw|Notvisiblerev}}
+{{Identical|Revert}}
 {{Identical|Rollback}}',
 'alreadyrolled' => "Appear when there's rollback and/or edit collision.
 * $1: the page to be rollbacked
@@ -4584,6 +4705,7 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 'restriction-create' => 'Used on [[Special:ProtectedPages]]. An option in a drop-down box. See the help pages on [//www.mediawiki.org/wiki/Project:Protected_titles MediaWiki] and [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.
 
 {{Identical|Create}}',
+'restriction-upload' => '{{Identical|Upload}}',
 
 # Restriction levels
 'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
@@ -4944,9 +5066,33 @@ See also:
 'ipbreason-dropdown' => 'Used as item list for dropdown on [[Special:Block]].
 
 The label for this dropdown is {{msg-mw|Ipbreason}}.',
+'ipb-hardblock' => 'This is the label for a checkbox in the user block form on [[Special:Block]].
+
+See also:
+* {{msg-mw|ipbemailban}}
+* {{msg-mw|ipb-disableusertalk}}
+* {{msg-mw|ipbenableautoblock}}
+* {{msg-mw|ipbhidename}}
+* {{msg-mw|ipbwatchuser}}',
 'ipbcreateaccount' => '{{Identical|Prevent account creation}}',
-'ipbemailban' => '{{Identical|Prevent user from sending e-mail}}',
-'ipbenableautoblock' => '{{Identical|Automatically block ...}}',
+'ipbemailban' => 'Used as label for checkbox in [[Special:Block]].
+
+See also:
+* {{msg-mw|ipb-disableusertalk}}
+* {{msg-mw|ipbenableautoblock}}
+* {{msg-mw|ipbhidename}}
+* {{msg-mw|ipbwatchuser}}
+* {{msg-mw|ipb-hardblock}}
+{{Identical|Prevent user from sending e-mail}}',
+'ipbenableautoblock' => 'Used as label for checkbox in [[Special:Block]].
+
+See also:
+* {{msg-mw|ipbemailban}}
+* {{msg-mw|ipb-disableusertalk}}
+* {{msg-mw|ipbhidename}}
+* {{msg-mw|ipbwatchuser}}
+* {{msg-mw|ipb-hardblock}}
+{{Identical|Automatically block ...}}',
 'ipbsubmit' => '{{Identical|Block this user}}',
 'ipbother' => '{{Identical|Other time}}',
 'ipboptions' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
@@ -4954,12 +5100,43 @@ The label for this dropdown is {{msg-mw|Ipbreason}}.',
 Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.",
 'ipbotheroption' => '{{Identical|Other}}',
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
-'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
-'ipbwatchuser' => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
-'ipb-disableusertalk' => '{{doc-singularthey}}',
+'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].
+
+See also:
+* {{msg-mw|ipbemailban}}
+* {{msg-mw|ipb-disableusertalk}}
+* {{msg-mw|ipbenableautoblock}}
+* {{msg-mw|ipbwatchuser}}
+* {{msg-mw|ipb-hardblock}}',
+'ipbwatchuser' => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user
+
+See also:
+* {{msg-mw|ipbemailban}}
+* {{msg-mw|ipb-disableusertalk}}
+* {{msg-mw|ipbenableautoblock}}
+* {{msg-mw|ipbhidename}}
+* {{msg-mw|ipb-hardblock}}',
+'ipb-disableusertalk' => '{{doc-singularthey}}
+Used as label for checkbox in [[Special:Block]].
+
+See also:
+* {{msg-mw|ipbemailban}}
+* {{msg-mw|ipbenableautoblock}}
+* {{msg-mw|ipbhidename}}
+* {{msg-mw|ipbwatchuser}}
+* {{msg-mw|ipb-hardblock}}',
 'ipb-change-block' => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
+'ipb-confirm' => 'Used as hidden field in the form on [[Special:Block]].',
 'badipaddress' => 'An error message shown when one entered an invalid IP address in blocking page.',
-'blockipsuccesstext' => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
+'blockipsuccesssub' => 'Used as page title in [[Special:Block]].
+
+This message is the subject for the following message:
+* {{msg-mw|Blockipsuccesstext}}',
+'blockipsuccesstext' => 'Used in [[Special:Block]].
+The title (subject) for this message is {{msg-mw|Blockipsuccesssub}}.
+
+Parameters:
+* $1 - username, can be used for GENDER',
 'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
 'ipb-unblock-addr' => 'Used in [[Special:Block]].
 * $1 - target username',
@@ -5049,6 +5226,16 @@ Used on [[Special:IPBlockList]] as header for other blocks, i.e. from GlobalBloc
 <blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
 *See also {{msg-mw|Expiringblock}}
 
+Part of the log entry of user block in [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Anononlyblock}}
+* {{msg-mw|Createaccountblock}}
+* {{msg-mw|Noautoblockblock}}
+* {{msg-mw|Emailblock}}
+* {{msg-mw|Blocklist-nousertalk}}
+* {{msg-mw|Unblocklink}}
+* {{msg-mw|Change-blocklink}}
 {{Identical|Infinite}}",
 'expiringblock' => 'Parameters:
 * $1 is a date
@@ -5058,12 +5245,32 @@ Usage:
 * Substituted as $4 in in {{msg-mw|Blocklistline|notext=1}}
 * Substituted as $4 in  in {{msg-mw|Globalblocking-blocked|notext=1}}
 * See also {{msg-mw|Infiniteblock}}',
-'anononlyblock' => 'Part of the log entry of user block.
+'anononlyblock' => 'Part of the log entry of user block in [[Special:BlockList]].
 
+"anon." stands for "anonymous".
+
+See also:
+* {{msg-mw|Block-log-flags-anononly}}
+{{Related|Blocklist}}
 {{Identical|Anon only}}',
-'noautoblockblock' => '{{Identical|Autoblock disabled}}',
-'emailblock' => '{{Identical|E-mail blocked}}',
-'blocklist-nousertalk' => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
+'noautoblockblock' => 'Part of the log entry of user block in [[Special:BlockList]].
+{{Related|Blocklist}}
+{{Identical|Autoblock disabled}}',
+'createaccountblock' => 'Part of the log entry of user block in [[Special:BlockList]].
+
+See also:
+* {{msg-mw|Block-log-flags-nocreate}}
+{{Related|Blocklist}}',
+'emailblock' => 'Part of the log entry of user block in [[Special:BlockList]].
+{{Related|Blocklist}}
+{{Identical|E-mail blocked}}',
+'blocklist-nousertalk' => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged.
+
+See also {{msg-mw|Block-log-flags-nousertalk}}.
+
+Part of the log entry of user block in [[Special:BlockList]].
+
+{{Related|Blocklist}}',
 'ipblocklist-empty' => 'Shown on page [[Special:Blocklist]], if no blocks are to be shown.',
 'blocklink' => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".
 
@@ -5130,82 +5337,31 @@ See also {{msg-mw|Blocklistline}}.',
 'blocklogtext' => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
-'block-log-flags-anononly' => 'Used as a block log flag in [[Special:Block]].
+'block-log-flags-anononly' => 'Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]].
 
 See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}',
-'block-log-flags-nocreate' => 'Used as a block log flag in [[Special:Block]].
+* {{msg-mw|Anononlyblock}}
+{{Related|Block-log-flags}}',
+'block-log-flags-nocreate' => 'Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]].
 
 See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}',
-'block-log-flags-noautoblock' => 'Used as a block log flag in [[Special:Block]].
-
-See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}
+* {{msg-mw|Createaccountblock}}
+{{Related|Block-log-flags}}',
+'block-log-flags-noautoblock' => 'Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]].
+{{Related|Block-log-flags}}
 {{Identical|Autoblock disabled}}',
-'block-log-flags-noemail' => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
-
-Used as a block log flag in [[Special:Block]].
-
-See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}
+'block-log-flags-noemail' => "Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]], to note that a user cannot use the 'email another user' option.
+{{Related|Block-log-flags}}
 {{Identical|E-mail blocked}}",
-'block-log-flags-nousertalk' => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.
+'block-log-flags-nousertalk' => 'Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]], when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged.
 
-Used as a block log flag in [[Special:Block]].
+See also {{msg-mw|Blocklist-nousertalk}}.
+{{Related|Block-log-flags}}',
+'block-log-flags-angry-autoblock' => 'Used as a block log flag in [[Special:Log/block]].
+{{Related|Block-log-flags}}',
+'block-log-flags-hiddenname' => 'Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]].
 
-See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}',
-'block-log-flags-angry-autoblock' => 'Used as a block log flag in [[Special:Block]].
-
-See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}',
-'block-log-flags-hiddenname' => 'Used as a block log flag in [[Special:Block]].
-
-See also:
-* {{msg-mw|Block-log-flags-anononly}}
-* {{msg-mw|Block-log-flags-nocreate}}
-* {{msg-mw|Block-log-flags-noautoblock}}
-* {{msg-mw|Block-log-flags-noemail}}
-* {{msg-mw|Block-log-flags-nousertalk}}
-* {{msg-mw|Block-log-flags-angry-autoblock}}
-* {{msg-mw|Block-log-flags-hiddenname}}',
+{{Related|Block-log-flags}}',
 'range_block_disabled' => 'Used as error message in [[Special:Block]].
 
 See also:
@@ -5236,7 +5392,31 @@ See also:
 * {{msg-mw|Ip range invalid}}
 * {{msg-mw|Ip range toolarge}}',
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
-'proxyblocksuccess' => '{{Identical|Done}}',
+'proxyblocker' => 'Used in [[Special:BlockMe]].
+
+See also:
+* {{msg-mw|proxyblocker-disabled}}
+* {{msg-mw|proxyblockreason}}
+* {{msg-mw|proxyblocksuccess}}',
+'proxyblocker-disabled' => 'Used in [[Special:BlockMe]].
+
+See also:
+* {{msg-mw|proxyblocker}}
+* {{msg-mw|proxyblockreason}}
+* {{msg-mw|proxyblocksuccess}}',
+'proxyblockreason' => 'Used as explanation of the reason in [[Special:BlockMe]].
+
+See also:
+* {{msg-mw|proxyblocker-disabled}}
+* {{msg-mw|proxyblocker}}
+* {{msg-mw|proxyblocksuccess}}',
+'proxyblocksuccess' => 'Used in [[Special:BlockMe]].
+
+See also:
+* {{msg-mw|proxyblocker-disabled}}
+* {{msg-mw|proxyblocker}}
+* {{msg-mw|proxyblockreason}}
+{{Identical|Done}}',
 'sorbs' => '{{optional}}',
 'sorbsreason' => 'See also:
 * {{msg-mw|Sorbsreason}}
@@ -5304,6 +5484,7 @@ See also:
 * {{msg-mw|Lockdbtext}}
 * {{msg-mw|Unlockdbtext}}
 {{Identical|Unlock database}}',
+'locknoconfirm' => 'Used as error message in [[Special:LockDB]] and in [[Special:UnlockDB]].',
 'lockdbsuccesssub' => 'Used as subtitle in [[Special:LockDB]].
 
 See also:
@@ -5379,6 +5560,7 @@ See also:
 * {{msg-mw|move-talk-subpages|label for checkbox}}
 * {{msg-mw|move-watch|label for checkbox}}
 {{Identical|Move page}}',
+'moveuserpage-warning' => 'Used as warning in [[Special:MovePage]], when moving a user page.',
 'movenologin' => '{{Identical|Not logged in}}',
 'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.
 
@@ -5459,6 +5641,12 @@ See also:
 See also:
 * {{msg-mw|Movepage-moved}}
 * {{msg-mw|Movepage-moved-redirect}}',
+'articleexists' => 'Used as error message when moving a page.
+
+See also:
+* {{msg-mw|Badarticleerror}}
+* {{msg-mw|Bad-target-model}}',
+'cantmove-titleprotected' => 'Used as error message when moving a page.',
 'movetalk' => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty. Used in [[Special:MovePage]].
 
 See also:
@@ -6709,7 +6897,12 @@ For example of message in use see [[:File:Mouse10.gif]].',
 
 {{Identical|$1 bots}}',
 'noimages' => "This is shown on the special page [[Special:NewImages]], when there aren't any recently uploaded files.",
-'ilsubmit' => '{{Identical|Search}}',
+'ilsubmit' => 'Used as label for input box in the MIMESearch form on [[Special:MIMESearch]].
+
+See also:
+* {{msg-mw|Mimesearch|page title}}
+* {{msg-mw|Mimetype|label for input box}}
+{{Identical|Search}}',
 'bydate' => '{{Identical|Date}}',
 'sp-newimages-showfrom' => "This is a link on [[Special:NewImages]] which takes you to a gallery of the newest files.
 * $1 is a date (example: ''19 March 2008'')
@@ -7307,6 +7500,30 @@ See also:
 * {{msg-mw|Exif-gpsspeed-k}}
 * {{msg-mw|Exif-gpsspeed-m}}
 * {{msg-mw|Exif-gpsspeed-n}}',
+'exif-gpstrackref' => 'See also:
+* {{msg-mw|Exif-gpstrack}}
+* {{msg-mw|Exif-gpsimgdirection}}
+* {{msg-mw|Exif-gpsimgdirectionref}}
+* {{msg-mw|Exif-gpsdestbearing}}
+* {{msg-mw|Exif-gpsdestbearingref}}',
+'exif-gpstrack' => 'See also:
+* {{msg-mw|Exif-gpstrackref}}
+* {{msg-mw|Exif-gpsimgdirection}}
+* {{msg-mw|Exif-gpsimgdirectionref}}
+* {{msg-mw|Exif-gpsdestbearing}}
+* {{msg-mw|Exif-gpsdestbearingref}}',
+'exif-gpsimgdirectionref' => 'See also:
+* {{msg-mw|Exif-gpstrack}}
+* {{msg-mw|Exif-gpstrackref}}
+* {{msg-mw|Exif-gpsimgdirection}}
+* {{msg-mw|Exif-gpsdestbearing}}
+* {{msg-mw|Exif-gpsdestbearingref}}',
+'exif-gpsimgdirection' => 'See also:
+* {{msg-mw|Exif-gpstrack}}
+* {{msg-mw|Exif-gpstrackref}}
+* {{msg-mw|Exif-gpsimgdirectionref}}
+* {{msg-mw|Exif-gpsdestbearing}}
+* {{msg-mw|Exif-gpsdestbearingref}}',
 'exif-gpsdestlatituderef' => 'See also:
 * {{msg-mw|Exif-gpsdestlatituderef}}
 * {{msg-mw|Exif-gpsdestlongituderef}}
@@ -7323,6 +7540,18 @@ See also:
 'exif-gpsdestlongitude' => 'The longitude of the location shown in the picture, if it is different from longitude of the camera location. See {{msg-mw|exif-gpslongitude}}.
 
 {{Identical|Longitude}}',
+'exif-gpsdestbearingref' => 'See also:
+* {{msg-mw|Exif-gpstrack}}
+* {{msg-mw|Exif-gpstrackref}}
+* {{msg-mw|Exif-gpsimgdirection}}
+* {{msg-mw|Exif-gpsimgdirectionref}}
+* {{msg-mw|Exif-gpsdestbearing}}',
+'exif-gpsdestbearing' => 'See also:
+* {{msg-mw|Exif-gpstrack}}
+* {{msg-mw|Exif-gpstrackref}}
+* {{msg-mw|Exif-gpsimgdirection}}
+* {{msg-mw|Exif-gpsimgdirectionref}}
+* {{msg-mw|Exif-gpsdestbearingref}}',
 'exif-gpsdestdistanceref' => 'I think "reference" stands for "unit". See {{msg-mw|Exif-gpsspeedref}}
 
 See also:

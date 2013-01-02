@@ -115,7 +115,7 @@ $messages = array(
 'searchbutton' => 'Suche',
 'go' => 'Adiggel',
 'searcharticle' => 'Suche',
-'history' => 'Gschicht vun de Said',
+'history' => 'Gschichd vun de Said',
 'history_short' => 'Versione',
 'printableversion' => 'Druck-Aasicht',
 'permalink' => 'Permanentlink',
@@ -206,7 +206,7 @@ Bidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebb d URL dezu aa.
 'badtitle' => 'Schleschde Didl',
 'badtitletext' => 'De Titel vun de aageforderte Said isch nid giltich, leer, odder e nid giltiche Link vun eme annere Wiki.
 S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid gebraucht werre därfe.',
-'viewsource' => 'Quelltekschd betrachde',
+'viewsource' => 'Quelltegschd bedrachde',
 
 # Login and logout pages
 'yourname' => 'Benutzername:',
@@ -248,13 +248,13 @@ S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid 
 'showpreview' => 'Vorschau zaische',
 'showlivepreview' => 'Live-Vorschau',
 'showdiff' => 'Ännerunge zaische',
-'anoneditwarning' => "'''Warnung:''' Du bischt nit aagemeldt. Dai IP-Adress werd in de Gschicht vun dem Artikel gspaichert.",
+'anoneditwarning' => "'''Warnung:''' Du bischt nit aagemeldt. Dai IP-Adress werd in de Gschichd vum Artikel gspaichert.",
 'summary-preview' => 'Zammefassung:',
 'newarticle' => '(Nai)',
 'newarticletext' => "Du bisch eme Link nogange zu re Said, wu s no gar nit gebbt.
 Zum die Said aaleche, kannscht do in dem Käschtel unne aafange mid schraiwe (guck[[{{MediaWiki:Helppage}}|Hilfe]] fer meh Informatione).
 Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
-'noarticletext' => 'Uff derre Said gebbt\'s noch kää Text. Du kannscht uff annere Saide [[Special:Search/{{PAGENAME}}|den Aitrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
+'noarticletext' => 'Uff derre Said gebbt\'s noch kää Text. Du kannschd uff annere Saide [[Special:Search/{{PAGENAME}}|de Aidrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
 orrer [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said bearwaide]</span>.',
 'previewnote' => "'''Deng'g droa, dass des numme e Vorschau isch.'''
 Doi Ännerunge sinn no nid gschbaichert worre!",
@@ -279,7 +279,7 @@ De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 'viewpagelogs' => 'Lochbicher fer die Said aagucke',
 'currentrev-asof' => 'Aktuelle Version vun $1',
 'revisionasof' => 'Version vun $1',
-'previousrevision' => '← Ältere Versione',
+'previousrevision' => '← Äldere Versione',
 'nextrevision' => 'Naier Version →',
 'currentrevisionlink' => 'Aktuell Version',
 'cur' => 'jetzert',
@@ -288,7 +288,7 @@ De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 'histlegend' => "Du kannscht zwää Versione auswähle un verglaiche.<br />
 Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 '''({{int:last}})''' = Unnerschied zu de voriche Version, '''{{int:minoreditletter}}''' = klenni Ännerung.",
-'history-fieldset-title' => 'In de Versionsgschicht suche',
+'history-fieldset-title' => 'In de Versionsgschichd gugge',
 'histfirst' => 'Ältschte',
 'histlast' => 'Naischte',
 
@@ -328,6 +328,10 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'nextn-title' => 'Negschdi $1 {{PLURAL:$1|result|Ergewnis}}',
 'viewprevnext' => 'Gugg ($1 {{int:pipe-separator}} $2) ($3)',
 'searchprofile-everything' => 'Alles',
+'searchprofile-articles-tooltip' => 'In $1 gugge',
+'searchprofile-project-tooltip' => 'In $1 gugge',
+'searchprofile-images-tooltip' => 'Gugg noch Bilder',
+'searchprofile-advanced-tooltip' => 'Gugg in onare Nomensraim',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Word|$2 Wärder}})',
 'search-redirect' => '(Wairerlaitung $1)',
 'search-section' => '(Abschnitt $1)',
@@ -352,6 +356,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'saveprefs' => 'Oischdellunge schbeichere',
 'resetprefs' => 'Oischdellunge verwerfe',
 'guesstimezone' => 'Aus em Browser iwwernemme',
+'yourrealname' => 'Birscherlischer Nome:',
 'gender-unknown' => 'Ghoim gkalde',
 
 # Groups
@@ -489,10 +494,10 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'newuserlogpage' => 'Naiaameldungs-Logbuch',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(Mitgliederlischd)',
+'listgrouprights-members' => '(Midgliederlischd)',
 
 # E-mail user
-'emailuser' => 'E-Mail on den Benutzer',
+'emailuser' => 'E-Mail on de Benutzer',
 'emailsend' => 'Abschigge',
 
 # Watchlist
@@ -693,7 +698,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-ca-unwatch' => 'Die Said aus Dainer Beowachdunschlischde rausnemme',
 'tooltip-search' => 'Durchsuch {{SITENAME}}',
 'tooltip-search-go' => 'Geh zu ere Said mid genää dem Namme, wenn s se gebbt',
-'tooltip-search-fulltext' => 'Such in de Said nochm Tegschd',
+'tooltip-search-fulltext' => 'Gugg in de Said nochm Tegschd',
 'tooltip-p-logo' => 'Haubdsaid',
 'tooltip-n-mainpage' => 'Uff d Hääptsaid geh',
 'tooltip-n-mainpage-description' => 'Haubdsaid aagucke',

@@ -28,6 +28,7 @@
  * @author Enzoreg
  * @author Erkethan
  * @author Esbardu
+ * @author Fabrice Ferrer
  * @author Fryed-peach
  * @author Geoleplubo
  * @author Giro720
@@ -2309,7 +2310,7 @@ Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org 
 # Special:ActiveUsers
 'activeusers' => 'Liste des utilisateurs actifs',
 'activeusers-intro' => 'Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|modification récente|modifications récentes}} dans {{PLURAL:$3|le dernier jour|les $3 derniers jours}}',
+'activeusers-count' => '$1 {{PLURAL:$1|modification|modifications}} dans {{PLURAL:$3|le dernier jour|les $3 derniers jours}}',
 'activeusers-from' => 'Afficher les utilisateurs depuis :',
 'activeusers-hidebots' => 'Masquer les robots',
 'activeusers-hidesysops' => 'Masquer les administrateurs',

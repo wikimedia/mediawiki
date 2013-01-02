@@ -15436,10 +15436,10 @@ S'a vëd pa listà sì-sota ël sistema ëd base ëd dàit ch'a preuva a dovré,
 	'config-header-postgres' => 'Ampostassion PostgreSQL',
 	'config-header-sqlite' => 'Ampostassion SQLite',
 	'config-header-oracle' => 'Ampostassion Oracle',
-	'config-header-ibm_db2' => 'Ampostassion ëd IBM DB2',
+	'config-header-ibm_db2' => "Ampostassion d'IBM DB2",
 	'config-invalid-db-type' => 'Sòrt ëd ëd base ëd dàit pa bon-a',
 	'config-missing-db-name' => 'A dev buteje un valor për "Nòm ëd la base ëd dàit"',
-	'config-missing-db-host' => 'A dev buteje un valor për "Ospit ëd la base ëd dàit"',
+	'config-missing-db-host' => 'A dev buteje un valor për "l\'òspit ëd la base ëd dàit"',
 	'config-missing-db-server-oracle' => 'A dev buteje un valor për "TNS ëd la base ëd dat"',
 	'config-invalid-db-server-oracle' => 'TNS ëd la base ëd dat pa bon "$1".
 Dovré mach dle litre ASCII (a-z, A-Z), nùmer (0-9), sotlignadure (_) e pontin (.).',
@@ -15452,7 +15452,7 @@ Dovré mach litre ASCII (a-z, A-Z), nùmer (0-9), sotlignadure (_) e tratin (-).
 Controla l'ospitant, lë stranòm d'utent e la ciav sì-sota e prové torna.",
 	'config-invalid-schema' => 'Schema pa bon për MediaWiki "$1".
 Dovré mach litre ASCII (a-z, A-Z), nùmer (0-9) e sotlignadure (_).',
-	'config-db-sys-create-oracle' => "L'istalador a apògia mach ëd dovré un cont SYSDBA për creé un cont neuv.",
+	'config-db-sys-create-oracle' => "L'istalador a arconòss mach ij cont SYSDBA durant la creassion d'un cont neuv.",
 	'config-db-sys-user-exists-oracle' => 'Ël cont utent "$1" a esist già. SYSDBA a peul mach esse dovrà për creé un cont neuv!',
 	'config-postgres-old' => "A-i é da manca ëd PostgreSQL $1 o pi recent, chiel a l'ha $2.",
 	'config-sqlite-name-help' => "Serne un nòm ch'a identìfica soa wiki.
@@ -15508,13 +15508,13 @@ It peule adess [$1 ancaminé a dovré toa wiki].',
 	'config-mysql-engine' => 'Motor ëd memorisassion:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-myisam-dep' => "'''Avis''': It l'has selessionà MyISAM com motor ëd memorisassion për MySQL, che a l'é pa arcomandà për dovré con MediaWiki, përchè:
-* a apògia pen-e la concorensa dovùa a contèise ëd tabele
-* a l'é pi fàcil a la corussion che àutr motor
+	'config-mysql-myisam-dep' => "'''Avis''': A l'ha selessionà MyISAM com motor ëd memorisassion për MySQL, che a l'é pa arcomandà da dovré con MediaWiki, përchè:
+* a sopòrta a pen-a la contemporanità për via ëd saradure ëd tàula
+* a l'é pi soget a la corussion che j'àutri motor
 * ël còdes bas ëd MediaWiki pa sempe a gestiss MyISAM com a dovrìa
 
-Se toa istalassion MySQL a apògia InnoDB, a l'é fortement arcomandà ch'it serne col-lì anvece.
-Se toa istalassion MySQL a apògia pa InnoDB, a peul esse ch'a sia ël moment për n'agiornament.",
+Se soa istalassion MySQL a manten InnoDB, a l'é fortement arcomandà ch'a serna pitòst col-lì.
+Se soa istalassion MySQL a manten nen InnoDB, a peul esse ch'a sia ël moment ëd n'agiornament.",
 	'config-mysql-engine-help' => "'''InnoDB''' a l'é scasi sempe la mej opsion, da già ch'a l'ha un bon manteniment dla concorensa.
 
 '''MyISAM''' a peul esse pi lest an instalassion për n'utent sol o mach an letura.
@@ -15526,7 +15526,7 @@ La base ëd dàit MyISAM a tira a corompse pi 'd soens che la base ëd dàit Inn
 Sòn a l'é pi eficient che la manera UTF-8 ëd MySQL, e a-j përmët ëd dovré l'ansema antregh ëd caràter Unicode.
 
 An '''manera UTF-8''', MySQL a conossrà an che ansem ëd caràter a son ij sò dat, e a peul presenteje e convertije apropriatament, ma a-j lassa pa memorisé ij caràter ëdzora al [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes pian multilenghìstich ëd base].",
-	'config-ibm_db2-low-db-pagesize' => "Tò database DB2 a l'ha në spassi ëd tabele predefinì con na dimension ëd pagina pa bastansa. La dimension ëd pagina a deuv esse '''32K''' o pi gròssa.",
+	'config-ibm_db2-low-db-pagesize' => "Soa base ëd dàit DB2 a l'ha në spassi d'ambaronament predefinì con na dimension ëd pàgina insuficent. La dimension ëd pàgina a dev esse '''32K''' o pi gròssa.",
 	'config-site-name' => 'Nòm ëd la wiki:',
 	'config-site-name-help' => "Sòn a comparirà ant la bara dël tìtol dël navigador e an vàire d'àutri pòst.",
 	'config-site-name-blank' => "Ch'a buta un nòm ëd sit.",
@@ -15555,15 +15555,15 @@ Specìfica un nòm utent diferent.',
 	'config-admin-password-same' => "La ciav a dev nen esse l'istessa ëd lë stranòm d'utent.",
 	'config-admin-password-mismatch' => "Le doe ciav che a l'ha scrivù a son diferente antra 'd lor.",
 	'config-admin-email' => 'Adrëssa ëd pòsta eletrònica:',
-	'config-admin-email-help' => "Ch'a anserissa ambelessì n'adrëssa ëd pòsta eletrònica për përmëtt-je d'arsèive ëd mëssagi da d'àutri utent an sla wiki, riamposté soa ciav, e esse anformà ëd camgiament a le pàgine ch'a ten sot-euj. It peule lassé sto camp veuid.",
+	'config-admin-email-help' => "Ch'a anserissa ambelessì n'adrëssa ëd pòsta eletrònica për përmëtt-je d'arsèive ëd mëssagi da d'àutri utent an sla wiki, riamposté soa ciav, e esse anformà dle modìfiche a le pàgine ch'a ten sot-euj. A peule lassé ës camp veuid.",
 	'config-admin-error-user' => 'Eror antern an creand n\'aministrator con lë stranòm "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Eror antern an ampostand na ciav për l\'admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
-	'config-admin-error-bademail' => "It l'has anserì n'adrëssa ëd corel pa bon-a.",
+	'config-admin-error-bademail' => "A l'ha butà n'adrëssa ëd pòsta eletrònica pa bon-a.",
 	'config-subscribe' => "Ch'a sot-scriva la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista ëd discussion ëd j'anonsi ëd publicassion].",
 	'config-subscribe-help' => "Costa a l'é na lista ëd discussion a bass tràfich dovrà për j'anonsi ëd publicassion, comprèis d'amportant anonsi ëd sicurëssa.
 A dovrìa sot-ëscrivla e agiorné soa instalassion mediaWiki quand che ëd version neuve a rivo.",
-	'config-subscribe-noemail' => "It l'has provà a sot-scrive la lista ëd pòsta dle neuve ëd release sensa dé n'adrëssa ëd corel.
-Për piasì dà n'adrëssa ëd corel s'it veule sot-scrive la lista ëd pòsta.",
+	'config-subscribe-noemail' => "A l'ha provà a abonesse a la lista ëd difusion dij comunicà sensa dé n'adrëssa ëd pòsta eletrònica.
+Për piasì, ch'a fornissa n'adrëssa ëd pòsta eletrònica s'a veul abonesse a la lista ëd pòsta.",
 	'config-almost-done' => "A l'ha bele che fàit!
 A peul adess sauté la configurassion rimanenta e instalé dlongh la wiki.",
 	'config-optional-continue' => "Ciameme d'àutre chestion.",
@@ -15601,8 +15601,8 @@ A l'é generalment nen necessari për na wiki privà o d'asienda.
 S'a veul podèj dovré dij test da Wikipedia, e a veul che Wikipedia a aceta dij test copià da soa wiki, a dovrìa serne '''Creative Commons Attribution Share Alike'''.
 
 Wikipedia prima a dovrava la GNU Free Documentation License.
-La GDFL a l'é anco' na licensa bon-a, ma a l'é mal da capì.
-A l'é ëdcò mal fé riutilisé dël contnù lisensià sota la GDFL.",
+La GDFL a l'é anco' na licensa bon-a, ma a l'é malfé da capila.
+A l'é ëdcò mal fé riutilisé dël contnù licensià sota la GDFL.",
 	'config-email-settings' => 'Ampostassion ëd pòsta eletrònica',
 	'config-enable-email' => 'Abilité ij mëssagi ëd pòsta eletrònica an surtìa',
 	'config-enable-email-help' => "S'a veul che la pòsta eletrònica a marcia, j'[http://www.php.net/manual/en/mail.configuration.php ampostassion ëd pòsta eletrònica PHP] a devo esse configurà për da bin.
@@ -15632,7 +15632,7 @@ Peui ch'a abìlita costa opsion.",
 	'config-upload-deleted-help' => "ch'a serna un dossié andova goerné j'archivi scancelà.
 Idealment, sòn a dovrìa pa esse acessìbil an sl'aragnà.",
 	'config-logo' => 'Anliura dla marca:',
-	'config-logo-help' => "La pel dë stàndard ëd MediaWiki a comprend lë spassi për na marca ëd 135x160 pontin sota ël menù dla bara lateral.
+	'config-logo-help' => "La pel dë stàndard ëd MediaWiki a comprend lë spassi për na marca ëd 135x160 pontin dzora la lista dla bara lateral.
 Ch'a dëscaria na figura ëd la dimension aproprià, e ch'a anserissa l'anliura ambelessì.
 
 S'a veul gnun-e marche, ch'a lassa ës camp bianch.",
@@ -15654,32 +15654,32 @@ Ij sit da mesan a gròss a son motobin ancoragià a abilité sòn, e ij sit cit 
 	'config-cache-memcached' => "Dovré Memcached (a ciama n'ampostassion e na configurassion adissionaj)",
 	'config-memcached-servers' => 'Servent Memcached:',
 	'config-memcached-help' => "Lista d'adrësse IP da dovré për Memcached.
-A dovrìa specifiché un-a për lina e specifiché la pòrta da dovré. Për esempi:
+A dovrìa specifichene un-a për linia e specifiché la pòrta da dovré. Për esempi:
 127.0.0.1:11211
 192.168.1.25:11211",
-	'config-memcache-needservers' => "It l'has selessionà Memcached com toa sòrt ëd cache ma it l'has pa specificà minca sërvent.",
+	'config-memcache-needservers' => "A l'ha selessionà Memcached com soa sòrt ëd memorisassion local ma a l'ha specificà gnun servent.",
 	'config-memcache-badip' => "It l'ha anserì n'adrëssa IP pa bon-a për Memcached: $1.",
-	'config-memcache-noport' => "It l'has pa specificà na pòrta da dovré për ël sërvent Memcached: $1.
-S'it conòsse pa la pòrta, la predefinìa a l'é 11211.",
-	'config-memcache-badport' => 'Ij nùmer ëd pòrta Memcached a dovrìo esse tra $1 e $2.',
+	'config-memcache-noport' => "A l'ha pa specificà na pòrta da dovré për ël servent Memcached: $1.
+S'a conòsse nen la pòrta, cola predefinìa a l'é 11211.",
+	'config-memcache-badport' => 'Ij nùmer ëd pòrta ëd Memcached a dovrìo esse tra $1 e $2.',
 	'config-extensions' => 'Estension',
 	'config-extensions-help' => "J'estension listà dì-sota a son ëstàite trovà ant sò dossié <code>./extensions</code>.
 
 A peulo avèj da manca ëd configurassion adissionaj, ma a peul abiliteje adess",
 	'config-install-alreadydone' => "'''Avis''' A smija ch'a l'abie già instalà MediaWiki e ch'a preuva a instalelo torna.
 Për piasì, ch'a vada a la pàgina ch'a-i ven.",
-	'config-install-begin' => "An sgnacand \"{{int:config-continue}}\", it ancamineras l'istalassion ëd MediaWiki.
-S'it veule anco' f dij cambi, sgnaca andré.",
+	'config-install-begin' => "An sgnacand \"{{int:config-continue}}\", a anandiërà l'istalassion ëd MediaWiki.
+S'a veul anco' fé dle modìfiche, ch'A sgnaca su andré.",
 	'config-install-step-done' => 'fàit',
 	'config-install-step-failed' => 'falì',
 	'config-install-extensions' => "Comprende j'estension",
 	'config-install-database' => 'Creassion ëd la base ëd dàit',
-	'config-install-schema' => 'Creé schema',
+	'config-install-schema' => 'Creassion dë schema',
 	'config-install-pg-schema-not-exist' => 'Lë schema postgreSQL a esist pa.',
 	'config-install-pg-schema-failed' => 'Creassion dle tàule falìa.
 Sigurte che l\'utent "$1" a peussa scrive lë schema "$2".',
 	'config-install-pg-commit' => 'Salvé ij cambi.',
-	'config-install-pg-plpgsql' => 'Controlé ël lenguagi PL/pgSQL',
+	'config-install-pg-plpgsql' => 'Contròl dël langagi PL/pgSQL',
 	'config-pg-no-plpgsql' => 'It deuve istalé ël lenguagi PL/pgSQL ant ël database $1',
 	'config-pg-no-create-privs' => "Ël cont ch'it l'has specificà për l'istalassion a l'ha pa basta privilegi për creé un cont.",
 	'config-pg-not-in-role' => "Ël cont ch'it l'has specificà për l'utent ëd la ragnà a esist già.

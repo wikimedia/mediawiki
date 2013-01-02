@@ -1026,7 +1026,7 @@ Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js emplèyont des
 'previewnote' => "'''Rapelâd-vos qu’o est ren qu’una prèvisualisacion.'''
 Voutros changements sont p’oncor étâs encartâs !",
 'continue-editing' => 'Alar a la zona de changement',
-'previewconflict' => 'Ceta prèvisualisacion fât vêre lo tèxto de la zona de changement de d’amont coment aparètrat se vos chouèsésséd de l’encartar.',
+'previewconflict' => 'Ceta prèvisualisacion fât vêre lo tèxto de la zona de changement de d’amont coment aparêtrat se vos chouèsésséd de l’encartar.',
 'session_fail_preview' => "'''Dèconsolâ ! Nos povens pas encartar voutron changement a côsa d’una pèrta d’enformacions sur voutra sèance.'''
 Volyéd tornar èprovar.
 Se cen tôrne pas reussir, vos volyéd [[Special:UserLogout|dèbranchiér]] et pués vos tornar branchiér.",
@@ -1045,47 +1045,45 @@ Des côps ceti problèmo arreve quand vos empleyéd un sèrviço de proxi Vouèb
 'editingsection' => 'Changement de $1 (sèccion)',
 'editingcomment' => 'Changement de $1 (novèla sèccion)',
 'editconflict' => 'Conflit de changement : $1',
-'explainconflict' => "Ceta pâge at étâ sôvâ aprés que vos vos éte betâ a la changiér.
-La bouèta d’èdicion de d’amont contint lo tèxto coment il est encartâ ora dens la bâsa de balyês.
-Voutros changements aparèssont dens la bouèta d’èdicion de desot.
-Vos voléd devêr fusionar voutros changements dens lo tèxto ègzistent.
-'''Solament''' lo tèxto de la bouèta de d’amont serat sôvâ quand vos cliqueréd dessus « {{int:savearticle}} ».",
+'explainconflict' => "Quârqu’un d’ôtro at changiê ceta pâge aprés que vos vos seyâd betâ a la changiér.
+La zona de changement de d’amont contint lo tèxto de la pâge coment ègziste orendrêt.
+Voutros changements aparèssont dedens la zona de changement de desot.
+Vos voléd devêr fusionar voutros changements dedens lo tèxto ègzistent.
+'''Solament''' lo tèxto de la zona de changement de d’amont serat encartâ se vos clicâd dessus « {{int:savearticle}} ».",
 'yourtext' => 'Voutron tèxto',
-'storedversion' => 'Vèrsion encartâ',
-'nonunicodebrowser' => "'''ATENCION : voutron navigator recognêt pas l’Unicode.'''
-Una solucion de rechanjo at étâ trovâ por vos pèrmetre de changiér en tota suretât una pâge : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion coment codes hèxadècimâls.
-Vos devriâd utilisar un navigator ples novél.",
-'editingold' => "'''ATENCION : vos éte aprés changiér una vielye vèrsion de cela pâge.'''
-Se vos la sôvâd, tôs los changements fêts dês ceta vèrsion seront pèrdues.",
+'storedversion' => 'Vèrsion encartâye',
+'nonunicodebrowser' => "'''Atencion : voutron navigator recognêt pas l’Unicode.'''
+Na solucion de rechanjo est étâye trovâye por vos pèrmetre de changiér en tota suretât na pâge : los caractèros nan-ASCII aparêtront dedens la zona de changement por codes hègzadècimâls.",
+'editingold' => "'''Atencion : vos éte aprés changiér na vèrsion dèpassâye de cela pâge.'''
+Se vos l’encartâd, tôs los changements fêts dês ceta vèrsion seront pèrdus.",
 'yourdiff' => 'Difèrences',
-'copyrightwarning' => "Volyéd notar que totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys).
-Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra.
-'''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'copyrightwarning2' => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben enlevâs per d’ôtros usanciérs.
-Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra (vêde $1 por més de dètalys).
-'''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'longpageerror' => "'''ÈRROR : lo tèxto que vos éd somês fât {{PLURAL:$1|yon Kio|$1 Kio}}, cen que dèpâsse la limita fixâ a {{PLURAL:$2|yon Kio|$2 Kio}}.'''
-Lo tèxto pôt pas étre sôvâ.",
-'readonlywarning' => "'''Atencion : la bâsa de balyês at étâ vèrrolyê por mantegnence, vos porréd vêr pas sôvar voutros changements d’abôrd.'''
-Vos pouede copiyér lo tèxto dens un fichiér tèxto et pués lo sôvar por ples târd.
+'copyrightwarning' => "Volyéd notar que totes les contribucions a {{SITENAME}} sont considèrâyes coment publeyêes desot los tèrmos de la $2 (vêde $1 por més de dètalys).
+Se vos voléd pas que voutros ècrits seyont changiês sen pouent de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico ou ben d’un’ôtra ressôrsa libra.
+'''Empleyéd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
+'copyrightwarning2' => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiêes ou ben enlevâyes per d’ôtros contributors.
+Se vos voléd pas que voutros ècrits seyont changiês sen pouent de rèstriccion, adonc los volyéd pas sometre ique.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico ou ben d’un’ôtra ressôrsa libra (vêde $1 por més de dètalys).
+'''Empleyéd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
+'longpageerror' => "'''Fôta : lo tèxto que vos éd somês fât {{PLURAL:$1|yon Kio|$1 Kio}}, cen que dèpâsse la limita fixâye a {{PLURAL:$2|yon Kio|$2 Kio}}.'''
+Pôt pas étre encartâ.",
+'readonlywarning' => "'''Atencion : la bâsa de donâs est étâye vèrrolyêe por mantegnence, vos porréd vêr pas encartar voutros changements d’abôrd.'''
+Vos pouede copiyér lo tèxto dedens un fichiér tèxto et pués l’encartar por ples târd.
 
-L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1",
-'protectedpagewarning' => "'''ATENCION : ceta pâge at étâ protègiê de façon que solament los usanciérs qu’ont lo statut d’administrator la pouessont changiér.'''
-La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
-'semiprotectedpagewarning' => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los usanciérs encartâs la pouessont changiér.
-La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
-'cascadeprotectedwarning' => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los usanciérs qu’ont lo statut d’administrator la pouessont changiér.
-Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|ceta pâge protègiê|cetes pâges protègiês}} avouéc la « protèccion en cascâda » activâ :",
-'titleprotectedwarning' => "'''ATENCION : ceta pâge at étâ protègiê de façon que des [[Special:ListGroupRights|drêts spèceficos]] sont nècèssèros por la povêr fâre.'''
-La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
-'templatesused' => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} per ceta pâge :',
-'templatesusedpreview' => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta prèvisualisacion :',
-'templatesusedsection' => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta sèccion :',
+L’administrator qu’at vèrrolyê la bâsa de donâs at balyê cet’èxplicacion : $1",
+'protectedpagewarning' => "'''Atencion : ceta pâge est étâye protègiêe de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér.'''
+La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
+'semiprotectedpagewarning' => "'''Nota :''' ceta pâge est étâye protègiêe de façon que solament los utilisators encartâs la pouessont changiér.
+La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
+'cascadeprotectedwarning' => "'''Atencion :''' cela pâge-que est étâye protègiêe de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér, perce qu’el est entrebetâye dedens {{PLURAL:$1|ceta pâge protègiêe|cetes pâges protègiêes}} avouéc la « protèccion en cascâda » activâye :",
+'titleprotectedwarning' => "'''Atencion : ceta pâge est étâye protègiêe de façon que des [[Special:ListGroupRights|drêts spècificos]] sont nècèssèros por la povêr fâre.'''
+La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
+'templatesused' => '{{PLURAL:$1|Modèlo empleyê|Modèlos empleyês}} per ceta pâge :',
+'templatesusedpreview' => '{{PLURAL:$1|Modèlo empleyê|Modèlos empleyês}} dedens ceta prèvisualisacion :',
+'templatesusedsection' => '{{PLURAL:$1|Modèlo empleyê|Modèlos empleyês}} dedens ceta sèccion :',
 'template-protected' => '(protègiê)',
 'template-semiprotected' => '(mié-protègiê)',
-'hiddencategories' => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
+'hiddencategories' => '{{PLURAL:$1|Catègorie cachiêe|Catègories cachiêes}} que ceta pâge est avouéc :',
 'edittools' => '<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben los formulèros de tèlèchargement de fichiér. -->',
 'nocreatetext' => '{{SITENAME}} at rètrent la possibilitât de fâre de pâges novèles.
 Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben vos [[Special:UserLogin|branchiér ou fâre un compto]].',
