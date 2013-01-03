@@ -235,6 +235,7 @@ class User {
 	private $mWatchedItems = array();
 
 	static $idCacheByName = array();
+	static $idCacheByEmail = array();
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -245,6 +246,7 @@ class User {
 	 * @see newFromConfirmationCode()
 	 * @see newFromSession()
 	 * @see newFromRow()
+	 * @see newFromEmail()
 	 */
 	function __construct() {
 		$this->clearInstanceCache( 'defaults' );
@@ -291,6 +293,14 @@ class User {
 					$this->loadDefaults();
 				}
 				wfRunHooks( 'UserLoadAfterLoadFromSession', array( $this ) );
+				break;
+			case 'email':
+				$this->mId = self::idFromEmail( $this->mEmail );
+				if (!$this->mId ) {
+					$this->loadDefaults();
+				} else {
+					$this->loadFromId();
+				}
 				break;
 			default:
 				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
@@ -467,6 +477,20 @@ class User {
 		return $user;
 	}
 
+	/**
+	 * Static factory method for creation from a given user email.
+	 *
+	 * @param $email String Valid user email
+	 * @return User The corresponding User object
+	 */
+	public static function newFromEmail( $email ) {
+		$u = new User;
+		$u->mEmail = $email;
+		$u->mFrom = 'email';
+		$u->setItemLoaded( 'email' );
+		return $u;
+	}
+
 	//@}
 
 	/**
@@ -528,6 +552,35 @@ class User {
 	public static function resetIdByNameCache() {
 		self::$idCacheByName = array();
 	}
+
+	/**
+	 * Get database id given a user email
+	 * @param $name String User email
+	 * @return Int|Null The corresponding user's ID, or null if user is nonexistent
+	 */
+	public static function idFromEmail( $email ) {
+		if ( isset( self::$idCacheByEmail[$email] ) ) {
+			return self::$idCacheByEmail[$email];
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$s = $dbr->selectRow( 'user', array( 'user_id' ), array( 'user_email' => $email ), __METHOD__ );
+
+		if ( $s === false ) {
+			$result = null;
+		} else {
+			$result = $s->user_id;
+		}
+
+		self::$idCacheByEmail[$name] = $result;
+
+		if ( count( self::$idCacheByEmail ) > 1000 ) {
+			self::$idCacheByEmail = array();
+		}
+
+		return $result;
+	}
+
 
 	/**
 	 * Does the string match an anonymous IPv4 address?

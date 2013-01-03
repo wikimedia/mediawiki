@@ -966,6 +966,7 @@ See also {{msg-mw|protectedinterface}}.',
 * $1 is an URL to [[Special:Userlogin]] containing returnto and returntoquery parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]]',
 'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user. Replaces welcomecreation in 1.21wmf5,see [[bugzilla:42215]]',
+'yournameoremail' => 'Name or Email',
 'yourname' => "In user preferences
 
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.
@@ -1040,8 +1041,8 @@ Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
-'nosuchuser' => 'Displayed when trying to log in with an unexisting username. When you are not allowed to create an account, the message {{msg|nosuchusershort}} is displayed.',
-'nosuchusershort' => "Displayed when trying to log in with a non-existant username. This message is only shown when you can't create an account, otherwise the message {{msg|nosuchusershort}} is displayed.",
+'nosuchuser' => 'Displayed when trying to log in with an unexisting username or email. When you are not allowed to create an account, the message {{msg|nosuchusershort}} is displayed.',
+'nosuchusershort' => "Displayed when trying to log in with a non-existant username or email. This message is only shown when you can't create an account, otherwise the message {{msg|nosuchusershort}} is displayed.",
 'nouserspecified' => 'Used as error message when username to fetch is not specified.',
 'login-userblocked' => 'This message supports GENDER, username is available in $1.',
 'wrongpassword' => 'Used as error message when the provided password is wrong.',
