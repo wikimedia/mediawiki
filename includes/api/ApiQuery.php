@@ -4,7 +4,7 @@
  *
  * Created on Sep 7, 2006
  *
- * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
+ * Copyright © 2006,2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,9 @@
  * @ingroup API
  */
 class ApiQuery extends ApiBase {
+
+	const BadContinueMsg =
+		'Invalid continue parameter. All original request parameters must be merged with the query-continue values returned by the previous query';
 
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
 
@@ -283,45 +286,71 @@ class ApiQuery extends ApiBase {
 	 *    and minimize DB calls.
 	 * #4 Output all normalization and redirect resolution information
 	 * #5 Execute all requested modules
+	 *
+	 * In the 'smart continue' mode, all 'continue' values are set in such a way
+	 * as to minimize client logic needed to optimally iterate over the resultset.
+	 * Assuming the client has the param=>value dict with the original request
+	 * parameters, client will only need to perform this operation in their language:
+	 *   $request = array_merge( $request, $result['query-continue'] );
+	 * before the next api call. The client should not be making any additional
+	 * request parameter modifications. The query is complete when the result has
+	 * no query-continue section.
+	 *
+	 *
+	 * Smart-continue Implementation Summary:
+	 * - continue= param lists all currently enumerating submodules
+	 * - Without generator, treat each submodule iteration independently, and if one of
+	 * them finishes before others, remove it from the 'continue=' parameter, thus
+	 * skipping its execution in the next calls.
+	 * - With generator, do not advance generator until all prop= submodules have
+	 * finished, than advance generator once, reset all prop= parameters to original
+	 * state (of the first request), and repeat. Non prop= submodules are treated
+	 * independently just like there is no generator.
+	 *
 	 */
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		$this->redirects = $this->params['redirects'];
 		$this->convertTitles = $this->params['converttitles'];
 		$this->iwUrl = $this->params['iwurl'];
+		$this->mUseContinue = isset( $this->params['continue'] );
+		$this->mUseGenerator = isset( $this->params['generator'] );
 
 		// Create PageSet
 		$this->mPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
 
 		// Instantiate requested modules
-		$modules = array();
-		$this->instantiateModules( $modules, 'prop', $this->mQueryPropModules );
-		$this->instantiateModules( $modules, 'list', $this->mQueryListModules );
-		$this->instantiateModules( $modules, 'meta', $this->mQueryMetaModules );
+		$this->instantiateModules( 'prop', $this->mQueryPropModules );
+		$this->instantiateModules( 'list', $this->mQueryListModules );
+		$this->instantiateModules( 'meta', $this->mQueryMetaModules );
 
 		$cacheMode = 'public';
 
+		if ( $this->mUseContinue ) {
+			$continue = $this->prepareSmartContinue( $this->params['continue'] );
+		}
+
 		// If given, execute generator to substitute user supplied data with generated data.
-		if ( isset( $this->params['generator'] ) ) {
-			$generator = $this->newGenerator( $this->params['generator'] );
+		if ( $this->mUseGenerator ) {
+			$genName = $this->params['generator'];
+			$generator = $this->newGenerator( $genName );
 			$params = $generator->extractRequestParams();
-			$cacheMode = $this->mergeCacheMode( $cacheMode,
-				$generator->getCacheMode( $params ) );
-			$this->executeGeneratorModule( $generator, $modules );
+			if ( !$this->mUseContinue || !$this->mSkipGenerator ) {
+				$cacheMode = $this->mergeCacheMode( $cacheMode, $generator->getCacheMode( $params ) );
+				$this->executeGeneratorModule( $generator );
+			} // else we are done with generator+properties, complete other things like lists and meta.
 		} else {
 			// Append custom fields and populate page/revision information
-			$this->addCustomFldsToPageSet( $modules, $this->mPageSet );
+			$this->addCustomFldsToPageSet( $this->mPageSet );
 			$this->mPageSet->execute();
+			$generator = null;
 		}
 
 		// Record page information (title, namespace, if exists, etc)
 		$this->outputGeneralPageInfo();
 
-		// Execute all requested modules.
-		/**
-		 * @var $module ApiQueryBase
-		 */
-		foreach ( $modules as $module ) {
+		// Execute all requested modules
+		foreach ( $this->mActiveModules as $module ) {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
@@ -331,8 +360,323 @@ class ApiQuery extends ApiBase {
 			$module->profileOut();
 		}
 
+		if ( $this->mUseContinue ) {
+			$this->finishSmartContinue( $continue, $generator );
+		}
+
 		// Set the cache mode
 		$this->getMain()->setCacheMode( $cacheMode );
+	}
+
+	/**
+	 * List of all module instances created for this request
+	 * @var array
+	 */
+	private $mActiveModules = array();
+
+	/**
+	 * All modules with their parameters that have completed for the currently
+	 * generated pageset. Will be used to resume on the next pageset.
+	 * @var array moduleName=>array(params)
+	 */
+	private $mIgnoredProps = array();
+
+	/**
+	 * True if the request includes 'continue' parameter.
+	 * @var boolean
+	 */
+	private $mUseContinue = false;
+
+	/**
+	 * True if the request includes 'generator' parameter.
+	 * @var boolean
+	 */
+	private $mUseGenerator = false;
+
+	/**
+	 * True if there is no generator or if generator has finished.
+	 * @var boolean
+	 */
+	private $mSkipGenerator = false;
+
+	/**
+	 * In generator + smart continue mode, will hold generator's 'continue' values
+	 * until they are ready to be added to the result.
+	 * @var array
+	 */
+	private $mGeneratorContinue = null;
+
+	/**
+	 * Parse 'continue' parameter, filter modules list, reset properties request values
+	 *
+	 * Smart-Continue Implementation Details:
+	 *
+	 * An empty 'continue' specifies the first call
+	 *
+	 * After initial call, continue parameter contains the '||' separated list
+	 * of all unfinished submodules except generator. All submodules are always
+	 * instantiated and their extractRequestParams() called to avoid warnings,
+	 * but only those on this list are actually executed: 'continue=prop1||prop2||list1'
+	 *
+	 * In generator mode, the generator and prop= submodules get additional handling.
+	 * The prop values in the 'continue' string become '|' separated list of values:
+	 *   'continue=  prop1|prm1-1 || prop2|prm2-1|prm2-2 || list1'
+	 *
+	 * If any of the prop submodules call base::setContinueEnumParameter(),
+	 * none of the generator's query-continue values are added to the result.
+	 * Without them, the next client call will contain the same generator parameters
+	 * as in the current call, producing the same result from the generator.
+	 *
+	 * When processing a generated pageset, some prop submodules may finish before
+	 * others, and will need to suspend until the rest of the props finish. An early
+	 * finished prop changes is preceded with an empty value in 'continue':
+	 *    'continue= ... || |prop2|prm2-1|prm2-2 || ... ' (spaces added for clarity)
+	 *
+	 * Once all props are done, the generator continuations are added to the result,
+	 * and all prop submodules must need to be restarted with the original parameters
+	 * and without any prop-continues. To allow for prop restarts, we need to track
+	 * any parameters added or changed by the prop submodule in the 'query-continue' section.
+	 *
+	 * If, after the prop's execution, a new 'param=value' is added to
+	 * query-continue, the prop's value in the 'continue' parameter changes to
+	 * 'continue=...||prop1|param||...',  which means that on restart this param has to
+	 * be removed from the request's parameter list.
+	 *
+	 * If, instead, the prop changes an existing parameter to a new value, in addition
+	 * to adding 'param' to the 'continue', a new parameter is added to the query-continue
+	 * section: '__param=originalvalue' so that it can be later restored on reset.
+	 *
+	 * If all props are done, the next call must unset all parameters added by previous
+	 * continue iterations, and restore the changed ones. All changed are simply re-added
+	 * to the 'continue' section from the saved '__param' parameters. The notification of
+	 * unsetting is done by changing 'continue=... || prop1|*prm1|*prm2 ||'.
+	 *
+	 * If the generator and all properties finish before other list or meta modules,
+	 * the continue string will start with an empty element: 'continue=||list1||meta1||...'
+	 *
+	 * In the very special case of ApiQueryRandom generator which always creates a
+	 * different pagesets, override getGeneratorPageRepeatValue() to adjust 'g__continue'.
+	 *
+	 * @param string $cont user 'continue' string parameter
+	 */
+	private function prepareSmartContinue( $cont ) {
+		if ( $cont === '' ) {
+			// Very first run, initialize continue to be array( 'modulename' => null )
+			$cont = array_map( function( $v ) { return $v->getModuleName(); }, $this->mActiveModules );
+			$continue = array_flip( $cont );
+			array_walk( $continue, function( &$v, $k ) { $v = array(); } );
+			$this->mSkipGenerator = !$this->mUseGenerator;
+			return $continue;
+		}
+
+		// break 'continue' param into 'module'=>'values' array
+		$cont = explode( '||', $cont );
+		$this->mSkipGenerator = ( $cont[0] === '' ); // true=no more generator
+		$this->mUnsetParameters = array();
+		if ( $this->mSkipGenerator ) {
+			array_shift( $cont ); // remove empty first element
+		} elseif ( !$this->mUseGenerator ) {
+			// Error: There is no generator, how can we not skip it
+			$this->dieUsage( self::BadContinueMsg, "badcontinue" );
+		}
+
+		// Each string is in format 'module|val1|val2'. Put into ignore if starts with '|'.
+		// Populate $continue and $this->mIgnoredProps with 'module' => 'val1|val2'
+		// mPropResetVals is an array of paramName => original_request_value or null if added by continue
+		$this->mPropResetVals = array();
+		$continue = array();
+		$unsetParams = false;
+		foreach ( $cont as $str ) {
+			$vals = explode( '|', $str );
+			$ignoreProp = ( $vals[0] === '' );
+			if ( $ignoreProp ) {
+				array_shift( $vals );
+				if ( empty( $vals ) ) {
+					$this->dieUsage( self::BadContinueMsg, "badcontinue" );
+				}
+			}
+			$name = array_shift( $vals );
+			if ( isset( $continue[ $name ] ) || isset( $this->mIgnoredProps[ $name ] ) ) {
+				$this->dieUsage( self::BadContinueMsg, "badcontinue" );
+			}
+			if ( $ignoreProp ) {
+				$this->mIgnoredProps[ $name ] = $vals;
+			} else {
+				$continue[ $name ] = $vals;
+			}
+			foreach ( $vals as $v ) {
+				if ( $v[0] === '*' ) {
+					// if param name begins with '*' - original request did not have this param,
+					// continue added it, and now we need to remove it from request to simulate prop restart
+					if ( !is_null( $this->getRequest()->getVal( $v ) ) ) {
+						// unsetting property shouldn't have a saved value
+						$this->dieUsage( self::BadContinueMsg, "badcontinue" );
+					}
+					$this->getRequest()->unsetVal( substr( $v, 1 ) );
+					$this->mPropResetVals[ $v ] = null;
+				} else {
+					// if original param was changed by continue, find the original value, otherwise null
+					$this->mPropResetVals[ $v ] = $this->getMain()->getVal( '__' . $v );
+				}
+			}
+		}
+
+		// Filter modules to only the ones in $continue
+		$this->mActiveModules = array_filter( $this->mActiveModules,
+				function ( $m ) use ( $continue ) { return isset( $continue[ $m->getModuleName() ] ); } );
+		if ( empty( $this->mActiveModules ) ) {
+			$this->dieUsage( self::BadContinueMsg, "badcontinue" );
+		}
+
+		return $continue;
+	}
+
+	/**
+	 * Do post-execution correction of the 'query-continue' section.
+	 * @see self::prepareSmartContinue() for detailed description.
+	 * @param array $continue parsed continue parameter
+	 * @param ApiQueryGenatorBase|null $generator generator instance
+	 */
+	private function finishSmartContinue( $continue, $generator ) {
+		// Reformat query-continue result section
+		$result = $this->getResult();
+		$queryContinue = $result->getData();
+		if ( isset( $queryContinue[ 'query-continue' ] ) ) {
+			$queryContinue = $queryContinue[ 'query-continue' ];
+			$result->unsetValue( null, 'query-continue' );
+		} elseif ( !is_null( $this->mGeneratorContinue ) ) {
+			$queryContinue = array();
+		} else {
+			// no more 'continue's, we are done!
+			return;
+		}
+
+		$newContinue = array();
+		$newQueryContinue = array();
+		$doneContinues = array_diff_key( $continue, $queryContinue ); // which continues are not in qc
+		$continue = array_intersect_key( $continue, $queryContinue ); // still working on these
+
+		if ( !$this->mSkipGenerator ) {
+			// Still using generator
+			// Store finished prop continues for later restart
+			$this->mIgnoredProps = $this->mIgnoredProps + array_intersect_key( $doneContinues, $this->mQueryPropModules );
+
+			$propsLeft = false;
+			foreach ( $queryContinue as $moduleName => $moduleQc ) {
+				if ( !isset( $this->mQueryPropModules[ $moduleName ] ) ) {
+					continue; // not a prop, not interested
+				}
+				$propsLeft = true;
+				$cont = &$continue[ $moduleName ];
+				foreach ( $moduleQc as $paramName => $paramValue ) {
+					if ( !in_array( $paramName, $cont ) ) {
+						$pos = array_search( '*' . $paramName, $cont );
+						if ( $pos !== false ) {
+							// We were reseting parameter, now it is being supplied by continue. remove '*'
+							$cont[$pos] = $paramName;
+						} else {
+							// New query-continue param for this property
+							$cont[] = $paramName;
+							$reqValue = $this->getRequest()->getVal( $paramName );
+							if ( !is_null( $reqValue ) ) {
+								// This parameter was part of the original user request, save it
+								$newQueryContinue[ '__' . $paramName ] = $reqValue;
+							}
+						}
+					}
+				}
+				unset( $cont );
+			}
+			if ( !$propsLeft ) {
+				if ( is_null( $this->mGeneratorContinue ) ) {
+					$newContinue[] = ''; // Done with the generator
+				} else {
+					// Done with generated pageset, reset props' arguments & let generator continue
+					$continue = array_merge( $continue, $this->mIgnoredProps );
+					$this->mIgnoredProps = array();
+					$newQueryContinue += $this->mGeneratorContinue;
+
+					// reseting prop= request by reseting changed params to initial value, and marking new parameters for deletion
+					foreach ( $continue as $moduleName => $vals) {
+						if ( isset( $this->mQueryPropModules[ $moduleName ] ) ) {
+							foreach ( $vals as &$paramName ) {
+								$paramValue = $this->mPropResetVals[ $paramName ];
+								if ( !is_null( $paramValue ) ) {
+									$newQueryContinue[ $paramName ] = $paramValue;
+								} elseif ( $paramName[0] !== '*' ) {
+									$paramName = '*' . $paramName;
+								} // else we are already unsetting this param
+							}
+						}
+					}
+				}
+			} else {
+				// continue the currently generated page, ignoring all generator's continues
+				// in case the generator is aware of smart continue, it can change its value
+				// generator must be using only one value to continue
+				if ( count( $this->mGeneratorContinue ) == 1 ) {
+					$genRpt = $generator->getGeneratorPageRepeatValue();
+					if ( !is_null( $genRpt ) ) {
+						$newQueryContinue[ key( $this->mGeneratorContinue ) ] = $genRpt;
+					}
+				}
+
+			}
+		} else {
+			$newContinue[] = ''; // Done with the generator
+		}
+
+		// Form continue settings
+		foreach ( $continue as $moduleName => $paramValue ) {
+			$newContinue[] = self::keyValueToValues( false, $moduleName, $paramValue );
+		}
+		foreach ( $this->mIgnoredProps as $moduleName => $paramValue ) {
+			$newContinue[] = self::keyValueToValues( true, $moduleName, $paramValue );
+		}
+		$newQueryContinue['continue'] = implode( '||', $newContinue );
+
+		// Merge all query continues into one array
+		foreach ( $queryContinue as $moduleName => $paramValue ) {
+			$newQueryContinue += $paramValue;
+		}
+		$this->getResult()->addValue( null, 'query-continue', $newQueryContinue );
+	}
+
+	/**
+	 * Helper function to generate 'continue' value for one module
+	 * @param boolean $insertEmpty prepend empty first element
+	 * @param string $moduleName prepend the name of the module
+	 * @param array $values the rest of values to implode
+	 * @return string resulting '|'-separated string
+	 */
+	private static function keyValueToValues( $insertEmpty, $moduleName, $values ) {
+		array_unshift( $values, $moduleName );
+		if ( $insertEmpty ) {
+			array_unshift( $values, '' );
+		}
+		return implode( '|', $values );
+	}
+
+	/**
+	 * True if the client requested smart query continuation
+	 * @return boolean
+	 */
+	public function useSmartContinue() {
+		return $this->mUseContinue;
+	}
+
+	/**
+	 * This method is called by the generator base when generator in the smart-continue
+	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
+	 * until the post-processing when it is known if the generation should continue or repeat.
+	 * @param string $paramName
+	 * @param mixed $paramValue
+	 */
+	public function setGeneratorContinue( $paramName, $paramValue ) {
+		if ( is_null( $this->mGeneratorContinue ) ) {
+			$this->mGeneratorContinue = array();
+		}
+		$this->mGeneratorContinue[ $paramName ] = $paramValue;
 	}
 
 	/**
@@ -361,29 +705,28 @@ class ApiQuery extends ApiBase {
 	 * Query modules may optimize data requests through the $this->getPageSet() object
 	 * by adding extra fields from the page table.
 	 * This function will gather all the extra request fields from the modules.
-	 * @param $modules array of module objects
 	 * @param $pageSet ApiPageSet
 	 */
-	private function addCustomFldsToPageSet( $modules, $pageSet ) {
+	private function addCustomFldsToPageSet( $pageSet ) {
 		// Query all requested modules.
 		/**
 		 * @var $module ApiQueryBase
 		 */
-		foreach ( $modules as $module ) {
+		foreach ( $this->mActiveModules as $module ) {
 			$module->requestExtraData( $pageSet );
 		}
 	}
 
 	/**
 	 * Create instances of all modules requested by the client
-	 * @param $modules Array to append instantiated modules to
 	 * @param $param string Parameter name to read modules from
 	 * @param $moduleList Array array(modulename => classname)
 	 */
-	private function instantiateModules( &$modules, $param, $moduleList ) {
+	private function instantiateModules( $param, $moduleList ) {
 		if ( isset( $this->params[$param] ) ) {
 			foreach ( $this->params[$param] as $moduleName ) {
-				$modules[] = new $moduleList[$moduleName] ( $this, $moduleName );
+				$instance = new $moduleList[$moduleName] ( $this, $moduleName );
+				$this->mActiveModules[] = $instance;
 			}
 		}
 	}
@@ -614,15 +957,14 @@ class ApiQuery extends ApiBase {
 	 * For generator mode, execute generator, and use its output as new
 	 * ApiPageSet
 	 * @param $generator ApiQueryGeneratorBase Generator Module
-	 * @param $modules array of module objects
 	 */
-	protected function executeGeneratorModule( $generator, $modules ) {
+	private function executeGeneratorModule( $generator ) {
 		// Generator results
 		$resultPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
 
 		// Add any additional fields modules may need
 		$generator->requestExtraData( $this->mPageSet );
-		$this->addCustomFldsToPageSet( $modules, $resultPageSet );
+		$this->addCustomFldsToPageSet( $resultPageSet );
 
 		// Populate page information with the original user input
 		$this->mPageSet->execute();
@@ -661,6 +1003,7 @@ class ApiQuery extends ApiBase {
 			'export' => false,
 			'exportnowrap' => false,
 			'iwurl' => false,
+			'continue' => null,
 		);
 	}
 
@@ -745,6 +1088,7 @@ class ApiQuery extends ApiBase {
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
 			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
+			'continue' => '(Recommended) When present, ensures that all xxcontinue=xxx can be merged together without omitting data',
 		);
 	}
 
@@ -758,14 +1102,18 @@ class ApiQuery extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
+			array(
+					'code' => 'badgenerator',
+					'info' => 'Module $generatorName cannot be used as a generator',
+					'badcontinue' => self::BadContinueMsg,
+				),
 		) );
 	}
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment',
-			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions',
+			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment&continue',
+			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions&continue',
 		);
 	}
 
