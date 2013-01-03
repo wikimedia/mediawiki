@@ -108,7 +108,20 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		$this->pageIDs = array();
 
-		$this->prepareQuery( wfRandom(), $params['limit'], $params['namespace'], $resultPageSet, $params['redirect'] );
+		$continueStr = $params['continue'];
+		if ( !is_null( $continueStr ) ) {
+			$tmp = floatval( $continueStr ); // SECURITY CHECK: IS THIS SAFE?
+			if ( $tmp <= 0 || $tmp >= 1 || $continueStr !== strval( $tmp ) ) {
+				$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
+			}
+		} else {
+			$tmp = wfRandom();
+			if ( $tmp <= 0 || $tmp >= 1 ) {
+				ApiBase::dieDebug( __METHOD__, "Generated random number is not between 0<x<1: $tmp" );
+			}
+		}
+		$this->randomValue = $tmp;
+		$this->prepareQuery( $this->randomValue, $params['limit'], $params['namespace'], $resultPageSet, $params['redirect'] );
 		$count = $this->runQuery( $resultPageSet );
 		if ( $count < $params['limit'] ) {
 			/* We got too few pages, we probably picked a high value
@@ -122,6 +135,10 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
 		}
+	}
+
+	public function getGeneratorPageRepeatValue() {
+		return strval( $this->randomValue );
 	}
 
 	private function extractRowInfo( $row ) {
@@ -150,6 +167,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => 20
 			),
 			'redirect' => false,
+			'continue' => null,
 		);
 	}
 
@@ -157,7 +175,8 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		return array(
 			'namespace' => 'Return pages in these namespaces only',
 			'limit' => 'Limit how many random pages will be returned',
-			'redirect' => 'Load a random redirect instead of a random page'
+			'redirect' => 'Load a random redirect instead of a random page',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
