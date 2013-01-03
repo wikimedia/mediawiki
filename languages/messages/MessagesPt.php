@@ -1806,7 +1806,7 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 'uploadwarning-text' => 'Modifique a descrição do ficheiro abaixo e tente novamente, por favor.',
 'savefile' => 'Gravar ficheiro',
 'uploadedimage' => 'carregou "[[$1]]"',
-'overwroteimage' => 'foi enviada uma nova versão de "[[$1]]"',
+'overwroteimage' => 'enviou uma nova versão de "[[$1]]"',
 'uploaddisabled' => 'Carregamentos impossibilitados',
 'copyuploaddisabled' => 'Upload por URL impossibilitado.',
 'uploadfromurl-queued' => 'O seu upload foi adicionado à fila.',

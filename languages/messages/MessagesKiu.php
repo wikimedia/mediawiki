@@ -1252,7 +1252,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'blanknamespace' => '(Ser)',
 
 # Contributions
-'contributions' => 'İştırakê karberi',
+'contributions' => 'İştıraqê {{GENDER:$1|karber}}i',
 'contributions-title' => '$1 de iştırakê karberi',
 'mycontris' => 'İştıraqi',
 'contribsub2' => 'Serba $1 ($2)',

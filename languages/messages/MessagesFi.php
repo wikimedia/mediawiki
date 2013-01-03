@@ -2183,9 +2183,9 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'linksearch-pat' => 'Osoite',
 'linksearch-ns' => 'Nimiavaruus',
 'linksearch-ok' => 'Etsi',
-'linksearch-text' => 'Tähteä (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
-Vähintään ylätason verkkotunnus, esimerkiksi "*.org", tarvitaan.<br />
-Tuetut protokollat: <code>$1</code> (oletuksena on <code>http://</code>, jos protokollaa ei määritetä).',
+'linksearch-text' => 'Jokerimerkkejä, kuten "*.wikipedia.org", voidaan käyttää.
+Vaaditaan vähintään ylätason verkkotunnus, esimerkiksi "*.org".<br />
+{{PLURAL:$2|Tuettu protokolla|Tuetut protokollat}}: <code>$1</code> (oletuksena on <code>http://</code>, jos protokollaa ei määritetä).',
 'linksearch-line' => '$1 on linkitetty sivulta $2',
 'linksearch-error' => 'Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.',
 

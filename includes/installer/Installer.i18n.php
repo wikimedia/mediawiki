@@ -15680,19 +15680,19 @@ S'a veul anco' fé dle modìfiche, ch'A sgnaca su andré.",
 Sigurte che l\'utent "$1" a peussa scrive lë schema "$2".',
 	'config-install-pg-commit' => 'Salvé ij cambi.',
 	'config-install-pg-plpgsql' => 'Contròl dël langagi PL/pgSQL',
-	'config-pg-no-plpgsql' => 'It deuve istalé ël lenguagi PL/pgSQL ant ël database $1',
-	'config-pg-no-create-privs' => "Ël cont ch'it l'has specificà për l'istalassion a l'ha pa basta privilegi për creé un cont.",
-	'config-pg-not-in-role' => "Ël cont ch'it l'has specificà për l'utent ëd la ragnà a esist già.
-Ël cont ch'it l'has specificà për l'istalassion a l'é pa un superutent e a l'é pa un mémber dla partìa dj'utent dla Ragnà, parèj as peulo pa creesse oget possedù da l'utent dla Ragnà.
+	'config-pg-no-plpgsql' => 'A dev istalé ël langage PL/pgSQL ant la base ëd dàit $1',
+	'config-pg-no-create-privs' => "Ël cont ch'a l'ha specificà për l'istalassion a l'ha pa basta 'd privilegi për creé un cont.",
+	'config-pg-not-in-role' => "Ël cont ch'a l'ha specificà për l'utent ëd la ragnà a esist già.
+Ël cont ch'a l'has specificà për l'istalassion a l'é pa un superutent e a l'é pa un mémber dla partìa dj'utent dla Ragnà, parèj a peul pa creé dj'oget ch'a apartenent a l'utent dla Ragnà.
 
-MediaWiki al moment a veul che le tabele a sia possedùe da l'utent dla Ragnà. Për piasì specìfica n'àutr nòm dël cont dla Ragnà, o sgnaca \"andré\" e specìfica n'utent d'istalassion possibilment privilegià.",
+MediaWiki al moment a ciama che le tàule a sia possedùe da n'utent dla Ragnà. Për piasì, ch'a specìfica n'àutr nòm ëd cont dla Ragnà, o ch'a sgnaca ansima a \"andré\" e ch'a specìfica n'utent ch'a l'ha ij privilegi ch'a basto për l'anstalassion.",
 	'config-install-user' => "Creassion ëd n'utent ëd la base ëd dàit",
 	'config-install-user-alreadyexists' => 'L\'utent "$1" a esist già',
-	'config-install-user-create-failed' => 'Creé l\'utent "$1" a l\'ha falì: $2',
+	'config-install-user-create-failed' => "Faliment ant la creassion ëd l'utent «$1»: $2",
 	'config-install-user-grant-failed' => 'Falì a dé ij përmess a l\'utent "$1": $2',
 	'config-install-user-missing' => 'L\'utent specificà "$1" a esist pa.',
-	'config-install-user-missing-create' => 'L\'utent specificà "$1" a esist pa.
-Për piasì sgnaca la casela "crea cont" sota s\'it veule creelo.',
+	'config-install-user-missing-create' => "L'utent specificà «$1» a esist pa.
+Për piasì, ch'a selession-a la casela «cont da creé» sì-sota s'a veul creelo.",
 	'config-install-tables' => 'Creassion dle tàule',
 	'config-install-tables-exist' => "'''Avis''': A smija che le tàule ëd mediaWiki a esisto già.
 Sauté la creassion.",
@@ -15701,15 +15701,15 @@ Sauté la creassion.",
 	'config-install-interwiki-list' => "As peul pa trovesse l'archivi <code>interwiki.list</code>.",
 	'config-install-interwiki-exists' => "'''Avis''': La tàula interwiki a smija ch'a l'abia già dj'element.
 Për stàndard, la lista a sarà sautà.",
-	'config-install-stats' => 'Inissialisé statìstiche',
+	'config-install-stats' => 'Inissialisassion dle statìstiche',
 	'config-install-keys' => 'Generassion ëd le ciav segrete',
-	'config-insecure-keys' => "'''Avis:''' {{PLURAL:$2|Na ciav sigura|Ciav sigure}} ($1) generà an mente dl'istalassion {{PLURAL:$2|a l'é|a son}} pa completament sigure. Considera ëd cangé{{PLURAL:$2|la|je}} manualment.",
+	'config-insecure-keys' => "'''Avis:''' {{PLURAL:$2|Na ciav sigura|Dle ciav sigure}} ($1) generà durant l'istalassion {{PLURAL:$2|a l'é|a son}} pa completament sigure. Ch'a consìdera ëd modifiche{{PLURAL:$2|la|je}} manualment.",
 	'config-install-sysop' => "Creassion dël cont ëd l'utent aministrator",
 	'config-install-subscribe-fail' => 'As peul pa sot-scrivse mediawiki-announce: $1',
 	'config-install-subscribe-notpossible' => "cURL a l'é pa istalà e allow_url_fopen a l'é pa disponìbil.",
-	'config-install-mainpage' => 'Creassion pagina prinsipal con contnù predefinì',
-	'config-install-extension-tables' => 'Creassion tabele për estension abilità',
-	'config-install-mainpage-failed' => 'As peul pa inserisse la pagina prinsipal: $1',
+	'config-install-mainpage' => 'Creassion ëd la pàgina prinsipal con un contnù predefinì',
+	'config-install-extension-tables' => "Creassion ëd tàule për j'estension abilità",
+	'config-install-mainpage-failed' => 'As peul pa inserisse la pàgina prinsipal: $1',
 	'config-install-done' => "'''Congratulassion!'''
 A l'ha instalà për da bin mediaWiki.
 

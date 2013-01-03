@@ -2088,8 +2088,8 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'linksearch-ns' => 'Espai de noms:',
 'linksearch-ok' => 'Cerca',
 'linksearch-text' => 'Es poden utilitzar caràcters comodí com "*.wikipedia.org".
-Necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
-Protocols admesos: <code>$1</code> (http:// per defecte si no se n\'especifica cap).',
+Es necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
+{{PLURAL:$2|Protocol admès|Protocols admesos}}: <code>$1</code> (http:// per defecte si no se n\'especifica cap).',
 'linksearch-line' => '$1 enllaçat a $2',
 'linksearch-error' => "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
 

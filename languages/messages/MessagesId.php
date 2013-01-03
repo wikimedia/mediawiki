@@ -26,6 +26,7 @@
  * @author Mahali syarifuddin
  * @author McDutchie
  * @author Meursault2004
+ * @author Naval Scene
  * @author Remember the dot
  * @author Rex
  * @author Urhixidur
@@ -2563,7 +2564,7 @@ $1',
 'namespace' => 'Ruang nama:',
 'invert' => 'Balikkan pilihan',
 'tooltip-invert' => 'Centang kotak ini untuk menyembunyikan perubahan halaman dalam ruang nama yang dipilih (dan ruang nama terkait jika dicentang)',
-'namespace_association' => 'Ruang nama terkait',
+'namespace_association' => 'Ruangnamo takaik',
 'tooltip-namespace_association' => 'Centang halaman ini untuk menyertakan ruang nama pembicaraan atau subjek yang terkait dengan ruang nama terpilih',
 'blanknamespace' => '(Utama)',
 

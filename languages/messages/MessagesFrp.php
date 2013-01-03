@@ -1086,27 +1086,27 @@ La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
 'hiddencategories' => '{{PLURAL:$1|Catègorie cachiêe|Catègories cachiêes}} que ceta pâge est avouéc :',
 'edittools' => '<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben los formulèros de tèlèchargement de fichiér. -->',
 'nocreatetext' => '{{SITENAME}} at rètrent la possibilitât de fâre de pâges novèles.
-Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben vos [[Special:UserLogin|branchiér ou fâre un compto]].',
+Vos pouede tornar arriér et pués changiér na pâge ègzistenta ou ben [[Special:UserLogin|vos branchiér ou fâre un compto]].',
 'nocreate-loggedin' => 'Vos avéd pas la pèrmission de fâre de pâges novèles.',
 'sectioneditnotsupported-title' => 'Changement de sèccion pas recognu',
 'sectioneditnotsupported-text' => 'Lo changement d’una sèccion est pas recognu dens cela pâge.',
-'permissionserrors' => 'Èrror de pèrmissions',
-'permissionserrorstext' => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
-'permissionserrorstext-withaction' => 'Vos éte pas ôtorisâ a $2, por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
-'recreate-moveddeleted-warn' => "'''Atencion : vos éte aprés refâre una pâge qu’at étâ suprimâ dês devant.'''
+'permissionserrors' => 'Fôta de pèrmissions',
+'permissionserrorstext' => 'Vos avéd pas la pèrmission de fâre l’accion demandâye por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
+'permissionserrorstext-withaction' => 'Vos avéd pas la pèrmission de $2 por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
+'recreate-moveddeleted-warn' => "'''Atencion : vos éte aprés refâre na pâge qu’est étâye suprimâye dês devant.'''
 
 Demandâd-vos se fôt franc continuar son changement.
-Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
-'moveddeleted-notice' => 'Ceta pâge at étâ suprimâ.
-Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot coment refèrence.',
+Por comoditât, lo jornal de les suprèssions et des changements de nom de cela pâge est montrâ ce-desot :",
+'moveddeleted-notice' => 'Ceta pâge est étâye suprimâye.
+Por refèrence, lo jornal de les suprèssions et des changements de nom est montrâ ce-desot.',
 'log-fulllog' => 'Vêre lo jornal complèt',
 'edit-hook-aborted' => 'Changement anulâ per n’èxtension.
-Niona èxplicacion est étâye balyêye.',
-'edit-gone-missing' => 'La pâge at pas possu étre betâ a jorn.
-Semble qu’el èye étâ suprimâ.',
+Niona èxplicacion est étâye balyêe.',
+'edit-gone-missing' => 'Empossiblo de betar a jorn la pâge.
+Semble que seye étâye suprimâye.',
 'edit-conflict' => 'Conflit de changement.',
-'edit-no-change' => 'Voutron changement at étâ ignorâ perce que nion changement at étâ fêt u tèxto.',
-'edit-already-exists' => 'La pâge novèla at pas possu étre fêta.
+'edit-no-change' => 'Voutron changement est étâ ignorâ perce que nion changement est étâ fêt u tèxto.',
+'edit-already-exists' => 'Empossiblo de fâre na pâge novèla.
 Ègziste ja.',
 'defaultmessagetext' => 'Mèssâjo per dèfôt',
 'content-failed-to-parse' => 'Falyita de l’analisa du contegnu de $2 por lo modèlo $1 : $3',
@@ -1120,23 +1120,23 @@ Semble qu’el èye étâ suprimâ.',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'expensive-parserfunction-warning' => 'Atencion : ceta pâge contint trop d’apèls que revegnont chiers de fonccions du parsor.
+'expensive-parserfunction-warning' => "'''Atencion :''' cela pâge contint trop d’apèls a des fonccions du parsor que revegnont chieres.
 
-Y devrêt avêr muens de $2 apèl{{PLURAL:$2||s}}, pendent qu’y en at ora $1.',
-'expensive-parserfunction-category' => 'Pâges avouéc trop d’apèls que revegnont chiers de fonccions du parsor',
-'post-expand-template-inclusion-warning' => 'Atencion : ceta pâge contint trop d’encllusions de modèlos.
-Quârques encllusions seront pas fêtes.',
-'post-expand-template-inclusion-category' => 'Pâges que contegnont trop d’encllusions de modèlos',
-'post-expand-template-argument-warning' => 'Atencion : ceta pâge contint u muens yon paramètre de modèlo que l’encllusion est rendua empossibla.
-Aprés èxtension, ceti arêt balyê un rèsultat trop long, il at vêr pas étâ encllu.',
-'post-expand-template-argument-category' => 'Pâges que contegnont u muens yon paramètre de modèlo pas encllu',
+Y devrêt avêr muens de $2 apèl{{PLURAL:$2||s}}, pendent qu’y en at ora $1.",
+'expensive-parserfunction-category' => 'Pâges avouéc trop d’apèls a des fonccions du parsor que revegnont chieres',
+'post-expand-template-inclusion-warning' => "'''Atencion :''' la talye des modèlos entrebetâs est trop grôssa.
+Quârques modèlos seront pas entrebetâs.",
+'post-expand-template-inclusion-category' => 'Pâges yô que la talye des modèlos entrebetâs est dèpassâye',
+'post-expand-template-argument-warning' => "'''Atencion :''' cela pâge contint u muens yon argument de modèlo qu’at na talye d’èxpension trop grôssa.
+Celos arguments sont pas étâs betâs.",
+'post-expand-template-argument-category' => 'Pâges que contegnont des arguments de modèlo pas betâs',
 'parser-template-loop-warning' => 'Modèlo en boclla dècelâ : [[$1]]',
-'parser-template-recursion-depth-warning' => 'Limita de provondior des apèls de modèlos dèpassâ ($1)',
-'language-converter-depth-warning' => 'Limita de provondior du convèrtissor de lengoua dèpassâ ($1)',
+'parser-template-recursion-depth-warning' => 'Limita de provondior des apèls de modèlos dèpassâye ($1)',
+'language-converter-depth-warning' => 'Limita de provondior du convèrtissor de lengoua dèpassâye ($1)',
 'node-count-exceeded-category' => 'Pâges yô que lo nombro de nuods est dèpassâ',
-'node-count-exceeded-warning' => 'Pâge dèpassent lo nombro de nuods',
+'node-count-exceeded-warning' => 'Pâge que dèpâsse lo nombro de nuods',
 'expansion-depth-exceeded-category' => 'Pâges yô que la provondior d’èxpension est dèpassâye',
-'expansion-depth-exceeded-warning' => 'Pâge dèpassent la provondior d’èxpension',
+'expansion-depth-exceeded-warning' => 'Pâge que dèpâsse la provondior d’èxpension',
 'parser-unstrip-loop-warning' => 'Boclla pas dèmontâbla dècelâye',
 'parser-unstrip-recursion-limit' => 'Limita de rècursion pas dèmontâbla dèpassâye ($1)',
 'converter-manual-rule-error' => 'Fôta dècelâye dens la règlla de convèrsion manuèla de lengoua',
