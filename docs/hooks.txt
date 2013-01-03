@@ -1349,8 +1349,14 @@ $linkType: The external link type
 actual update
 &$linksUpdate: the LinksUpdate object
 
-'LinksUpdateComplete': At the end of LinksUpdate::doUpdate() when updating has
-completed
+'LinksUpdateAfterInsert': At the end of LinksUpdate::incrTableUpdate() after
+each link table insert.  For example, pagelinks, imagelinks, externallinks.
+$linksUpdate: LinksUpdate object
+$table: the table to insert links to
+$insertions: an arry of links to insert
+
+'LinksUpdateComplete': At the end of LinksUpdate::doUpdate() when updating,
+including delete and insert, has completed for all link tables
 &$linksUpdate: the LinksUpdate object
 
 'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
