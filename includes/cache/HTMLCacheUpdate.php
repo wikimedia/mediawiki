@@ -46,6 +46,8 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	}
 
 	public function doUpdate() {
+		global $wgMaxBacklinksInvalidate;
+
 		wfProfileIn( __METHOD__ );
 
 		$job = new HTMLCacheUpdateJob(
@@ -58,7 +60,9 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		);
 
 		$count = $this->mTitle->getBacklinkCache()->getNumLinks( $this->mTable, 200 );
-		if ( $count >= 200 ) { // many backlinks
+		if ( $wgMaxBacklinksInvalidate !== false && $count > $wgMaxBacklinksInvalidate ) {
+			wfDebug( "Skipped HTML cache invalidation of {$this->mTitle->getPrefixedText}." );
+		} elseif ( $count >= 200 ) { // many backlinks
 			JobQueueGroup::singleton()->push( $job );
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		} else { // few backlinks ($count might be off even if 0)

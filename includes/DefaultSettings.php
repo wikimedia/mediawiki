@@ -6170,6 +6170,15 @@ $wgUpdateRowsPerJob = 500;
  */
 $wgUpdateRowsPerQuery = 100;
 
+/**
+ * Do not purge all the pages that use a page when it is edited
+ * if there are more than this many such pages. This is used to
+ * avoid invalidating a large portion of the squid/parser cache.
+ *
+ * This setting should factor in any squid/parser cache expiry settings.
+ */
+$wgMaxBacklinksInvalidate = false;
+
 /** @} */ # End job queue }
 
 /************************************************************************//**
