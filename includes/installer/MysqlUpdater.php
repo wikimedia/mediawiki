@@ -240,6 +240,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @param $patchFile String: path to the patch to correct the field
 	 */
 	protected function checkBin( $table, $field, $patchFile ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		$tableName = $this->db->tableName( $table );
 		$res = $this->db->query( "SELECT $field FROM $tableName LIMIT 0", __METHOD__ );
 		$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
@@ -260,6 +264,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @return Boolean
 	 */
 	protected function indexHasField( $table, $index, $field ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
 		if ( $info ) {
 			foreach ( $info as $row ) {
@@ -278,6 +286,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	 */
 	protected function doInterwikiUpdate() {
 		global $IP;
+
+		if ( !$this->doTable( 'interwiki' ) ) {
+			return true;
+		}
 
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
 			$this->output( "...already have interwiki table\n" );
@@ -567,6 +579,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserUniqueUpdate() {
+		if ( !$this->doTable( 'user' ) ) {
+			return true;
+		}
+
 		$duper = new UserDupes( $this->db, array( $this, 'output' ) );
 		if ( $duper->hasUniqueIndex() ) {
 			$this->output( "...already have unique user_name index.\n" );
@@ -580,6 +596,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserGroupsUpdate() {
+		if ( !$this->doTable( 'user_groups' ) ) {
+			return true;
+		}
+
 		if ( $this->db->tableExists( 'user_groups', __METHOD__ ) ) {
 			$info = $this->db->fieldInfo( 'user_groups', 'ug_group' );
 			if ( $info->type() == 'int' ) {
@@ -779,12 +799,21 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doEnableProfiling() {
 		global $wgProfileToDatabase;
+
+		if ( !$this->doTable( 'profiling' ) ) {
+			return true;
+		}
+
 		if ( $wgProfileToDatabase === true && ! $this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
 		}
 	}
 
 	protected function doMaybeProfilingMemoryUpdate() {
+		if ( !$this->doTable( 'profiling' ) ) {
+			return true;
+		}
+
 		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			return true;
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
@@ -856,6 +885,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserNewTalkTimestampNotNull() {
+		if ( !$this->doTable( 'user_newtalk' ) ) {
+			return true;
+		}
+
 		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
 		if ( $info === false ) {
 			return;
