@@ -601,8 +601,8 @@ class InfoAction extends FormlessAction {
 			'revision',
 			'COUNT(rev_page)',
 			array(
-				'rev_page' => $id ,
-				"rev_timestamp >= $threshold"
+				'rev_page' => $id,
+				"rev_timestamp >= " . $dbr->addQuotes( $threshold )
 			),
 			__METHOD__
 		);
@@ -614,7 +614,7 @@ class InfoAction extends FormlessAction {
 			'COUNT(DISTINCT rev_user_text)',
 			array(
 				'rev_page' => $id,
-				"rev_timestamp >= $threshold"
+				"rev_timestamp >= " . $dbr->addQuotes( $threshold )
 			),
 			__METHOD__
 		);
