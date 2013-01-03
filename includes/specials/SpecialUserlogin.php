@@ -545,11 +545,16 @@ class LoginForm extends SpecialPage {
 
 		$isAutoCreated = false;
 		if ( $u->getID() == 0 ) {
-			$status = $this->attemptAutoCreate( $u );
-			if ( $status !== self::SUCCESS ) {
-				return $status;
+			$tu = User::newFromEmail( $this->mUsername );
+			if ( $tu->getID() == 0) {
+				$status = $this->attemptAutoCreate( $u );
+				if ( $status !== self::SUCCESS ) {
+					return $status;
+				} else {
+					$isAutoCreated = true;
+				}
 			} else {
-				$isAutoCreated = true;
+				$u = $tu;
 			}
 		} else {
 			global $wgExternalAuthType, $wgAutocreatePolicy;
