@@ -1219,6 +1219,55 @@ class EditPage {
 	}
 
 	/**
+	 * Run hooks that can filter edits just before they get saved.
+	 *
+	 * @param Content $content
+	 * @param Status  $status
+	 *
+	 * @return bool
+	 */
+	protected function runPostMergeFilters( Content $content, Status $status ) {
+		global $wgUser;
+
+		// Run old style post-section-merge edit filter
+		if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged',
+			array( $this, $content, &$this->hookError, $this->summary ) ) ) {
+
+			# Error messages etc. could be handled within the hook...
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR;
+			return false;
+		} elseif ( $this->hookError != '' ) {
+			# ...or the hook could be expecting us to produce an error
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return false;
+		}
+
+		// Run new style post-section-merge edit filter
+		if ( !wfRunHooks( 'EditFilterMergedContent',
+			array( $this->mArticle->getContext(), $content, $status, $this->summary,
+				$wgUser, $this->minoredit ) ) ) {
+
+			# Error messages etc. could be handled within the hook...
+			// XXX: $status->value may already be something informative...
+			$this->hookError = $status->getWikiText();
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR;
+			return false;
+		} elseif ( !$status->isOK() ) {
+			# ...or the hook could be expecting us to produce an error
+			// FIXME this sucks, we should just use the Status object throughout
+			$this->hookError = $status->getWikiText();
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Attempt submission (no UI)
 	 *
 	 * @param $result
@@ -1386,17 +1435,7 @@ class EditPage {
 				return $status;
 			}
 
-			// Run post-section-merge edit filter
-			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
-				# Error messages etc. could be handled within the hook...
-				$status->fatal( 'hookaborted' );
-				$status->value = self::AS_HOOK_ERROR;
-				wfProfileOut( __METHOD__ );
-				return $status;
-			} elseif ( $this->hookError != '' ) {
-				# ...or the hook could be expecting us to produce an error
-				$status->fatal( 'hookaborted' );
-				$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			if ( !$this->runPostMergeFilters( $textbox_content, $status ) ) {
 				wfProfileOut( __METHOD__ );
 				return $status;
 			}
@@ -1510,20 +1549,7 @@ class EditPage {
 				return $status;
 			}
 
-			// Run post-section-merge edit filter
-			$hook_args = array( $this, $content, &$this->hookError, $this->summary );
-
-			if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged', $hook_args )
-				|| !wfRunHooks( 'EditFilterMergedContent', $hook_args ) ) {
-				# Error messages etc. could be handled within the hook...
-				$status->fatal( 'hookaborted' );
-				$status->value = self::AS_HOOK_ERROR;
-				wfProfileOut( __METHOD__ );
-				return $status;
-			} elseif ( $this->hookError != '' ) {
-				# ...or the hook could be expecting us to produce an error
-				$status->fatal( 'hookaborted' );
-				$status->value = self::AS_HOOK_ERROR_EXPECTED;
+			if ( !$this->runPostMergeFilters( $content, $status ) ) {
 				wfProfileOut( __METHOD__ );
 				return $status;
 			}
