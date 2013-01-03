@@ -52,7 +52,7 @@ class UserloginTemplate extends QuickTemplate {
 	<?php if( $this->haveData( 'languages' ) ) { ?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php } ?>
 	<table>
 		<tr>
-			<td class="mw-label"><label for='wpName1'><?php $this->msg('yourname') ?></label></td>
+			<td class="mw-label"><label for='wpName1'><?php $this->msg('yournameoremail') ?></label></td>
 			<td class="mw-input">
 				<?php
 			echo Html::input( 'wpName', $this->data['name'], 'text', array(
