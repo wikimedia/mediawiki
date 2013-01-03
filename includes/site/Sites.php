@@ -97,10 +97,10 @@ class Sites {
 		if ( $source === 'cache' ) {
 			if ( $this->sites === null ) {
 				$cache = wfGetMainCache();
-				$sites = $cache->get( wfMemcKey( 'SiteList' ) );
+				$sites = $cache->get( wfMemcKey( 'serialized-SiteList' ) );
 
-				if ( is_object( $sites ) ) {
-					$this->sites = $sites;
+				if ( is_string( $sites ) ) {
+					$this->sites = unserialize( $sites );
 				}
 				else {
 					$this->loadSites();
@@ -170,7 +170,7 @@ class Sites {
 		}
 
 		$cache = wfGetMainCache();
-		$cache->set( wfMemcKey( 'SiteList' ), $this->sites );
+		$cache->set( wfMemcKey( 'serialized-SiteList' ), serialize( $this->sites ) );
 	}
 
 	/**
