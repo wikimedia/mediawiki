@@ -1877,6 +1877,8 @@ $title : Current Title object being displayed in search results.
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr : Array of namespaces ($nsId => $name) which will be used.
 
+'SeleniumSettings': Undocumented.
+
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
 'ShowMissingArticle': Called when generating the output for a non-existent page
@@ -1993,6 +1995,8 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 &$query: Query string to add to link.
 &$text: Link text.
 &$result: Complete assoc. array if you want to return true.
+
+'SkinTemplateTabs': Undocumented.
 
 'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have
 been rendered (useful for adding more)
