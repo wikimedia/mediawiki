@@ -130,6 +130,8 @@ production.
 * wfMerge() now works if $wgDiff3 contains spaces
 
 === API changes in 1.21 ===
+* action=query now supports 'continue' parameter that greatly simplifies query
+  results iteration from multiple api calls. See docs/api-query-continue.txt
 * prop=revisions can now report the contentmodel and contentformat.
   See docs/contenthandler.txt.
 * action=edit and action=parse now support contentmodel and contentformat
