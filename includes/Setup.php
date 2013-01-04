@@ -444,6 +444,16 @@ if ( !$wgHTCPMulticastRouting && $wgHTCPMulticastAddress ) {
 	);
 }
 
+# Only filter patrol logs if patrolling is enabled, but still be
+# able to override (bug 42246)
+if ( array_key_exists( 'patrol', $wgFilterLogTypes ) && is_null( $wgFilterLogTypes['patrol'] ) ) {
+	if ( $wgUseRCPatrol || $wgUseNPPatrol ) {
+		$wgFilterLogTypes['patrol'] = true;
+	} else {
+		unset( $wgFilterLogTypes['patrol'] );
+	}
+}
+
 wfProfileIn( $fname . '-misc1' );
 
 # Raise the memory limit if it's too low
