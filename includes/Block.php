@@ -1066,12 +1066,13 @@ class Block {
 	}
 
 	/**
-	 * From an existing Block, get the target and the type of target.  Note that it is
-	 * always safe to treat the target as a string; for User objects this will return
-	 * User::__toString() which in turn gives User::getName().
+	 * From an existing Block, get the target and the type of target.
+	 * Note that, except for null, it is always safe to treat the target
+	 * as a string; for User objects this will return User::__toString()
+	 * which in turn gives User::getName().
 	 *
-	 * @param $target String|Int|User
-	 * @return array( User|String, Block::TYPE_ constant )
+	 * @param $target String|Int|User|null
+	 * @return array( User|String|null, Block::TYPE_ constant|null )
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
