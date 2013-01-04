@@ -1353,15 +1353,13 @@ Tia adressa dad e-mail na vegn betg mussada sche auters utilisaders ta contactes
 'right-sendemail' => 'Trametter e-mails ad auters utilisaders',
 'right-passwordreset' => "Vesair l'e-mail per redefinir pleds-clav",
 
+# Special:Log/newusers
+'newuserlogpage' => "Log d'utilisaders creads",
+'newuserlogpagetext' => "Quai è il log dals contos d'utilisader ch'èn vegnids creads.",
+
 # User rights log
 'rightslog' => "Log dals dretgs d'utilisader",
 'rightslogtext' => "Quai è il log da las midadas en ils dretgs d'utilisaders.",
-'rightslogentry' => 'midar la commembranza da $1 davent da $2 a $3',
-'rightslogentry-autopromote' => 'è vegnì promovì automaticamain da $2 $3',
-'logentry-rights-rights' => '$1 ha midà la commembranza da gruppas per $3 da $4 a $5',
-'logentry-rights-rights-legacy' => '$1 ha midà la commembranza da gruppas per $3',
-'logentry-rights-autopromote' => '$1 è vegnì promovì automaticamain da $4 a $5',
-'rightsnone' => '(nagins)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leger questa pagina',
@@ -2005,10 +2003,6 @@ Dovra almain ina top-level domain, per exempel "*.org".<br />
 'activeusers-hidebots' => 'Zuppentar bots',
 'activeusers-hidesysops' => 'Zuppentar administraturs',
 'activeusers-noresult' => 'Chattà nagins utilisaders.',
-
-# Special:Log/newusers
-'newuserlogpage' => "Log d'utilisaders creads",
-'newuserlogpagetext' => "Quai è il log dals contos d'utilisader ch'èn vegnids creads.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Dretgs da las gruppas d'utilisaders",
@@ -3731,6 +3725,10 @@ Questa pagina ha actualmain difficultads tecnicas.',
 'logentry-newusers-create2' => 'Il conto $3 è vegnì creà da $1',
 'logentry-newusers-autocreate' => 'Il conto $1 è vegnì creà automaticamain',
 'newuserlog-byemail' => 'tramess il pled-clav per e-mail',
+'logentry-rights-rights' => '$1 ha midà la commembranza da gruppas per $3 da $4 a $5',
+'logentry-rights-rights-legacy' => '$1 ha midà la commembranza da gruppas per $3',
+'logentry-rights-autopromote' => '$1 è vegnì promovì automaticamain da $4 a $5',
+'rightsnone' => '(nagins)',
 
 # Feedback
 'feedback-bugornote' => 'Sche ti vuls descriver detagliadamain in problem techic, lura [$1 rapporta in bug].

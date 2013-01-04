@@ -1401,15 +1401,13 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'right-sendemail' => 'Magpadara nin e-koreo sa ibang mga paragamit',
 'right-passwordreset' => 'Tanawon an e-koreo kan pagbabago nin sekretong panlaog',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Paragamit na talaan nin pagmukna',
+'newuserlogpagetext' => 'Ini an talaan kan mga pagmukna nin paragamit.',
+
 # User rights log
 'rightslog' => 'Usip nin derechos nin paragamit',
 'rightslogtext' => 'Ini an historial kan mga pagbabâgo sa mga derecho nin parágamit.',
-'rightslogentry' => 'Rinibayab an pagkamyembro ni $1 sa $2 sagkod sa $3',
-'rightslogentry-autopromote' => 'dati na awtomatikong pinagpalangkaw gikan sa $2 sagkod $3',
-'logentry-rights-rights' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3 gikan sa $4 pasiring sa $5',
-'logentry-rights-rights-legacy' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3',
-'logentry-rights-autopromote' => '$1 awtomatikong pinagpalangkaw gikan sa $4 pasiring sa $5',
-'rightsnone' => '(mayô)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaha ining pahina',
@@ -2044,10 +2042,6 @@ Suportadong mga panundan: <code>$1</code> (defaults to http:// kun mayo nin panu
 'activeusers-hidebots' => 'Itago an mga panalnga',
 'activeusers-hidesysops' => 'Itago an mga administrador',
 'activeusers-noresult' => 'Mayong mga paragamit na nanagboan.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Paragamit na talaan nin pagmukna',
-'newuserlogpagetext' => 'Ini an talaan kan mga pagmukna nin paragamit.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Mga karapatan kan grupo nin paragamit',
@@ -3758,6 +3752,10 @@ Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
 'logentry-newusers-create2' => 'An paragamit na panindog $3 pinagmukna na ni $1',
 'logentry-newusers-autocreate' => 'An paragamit na panindog $1 awtomatikong pinagmukna na',
 'newuserlog-byemail' => 'an pasa-taramon ipinadara na sa paagi kan e-surat',
+'logentry-rights-rights' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3 gikan sa $4 pasiring sa $5',
+'logentry-rights-rights-legacy' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3',
+'logentry-rights-autopromote' => '$1 awtomatikong pinagpalangkaw gikan sa $4 pasiring sa $5',
+'rightsnone' => '(mayô)',
 
 # Feedback
 'feedback-bugornote' => 'Kun ika andam na iladawan an sarong teknikal na problema na igwang detalye tabi [$1 ipaaram an kuto].

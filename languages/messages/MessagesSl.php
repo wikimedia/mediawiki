@@ -1502,15 +1502,13 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-sendemail' => 'Pošiljanje e-pošte drugim uporabnikom',
 'right-passwordreset' => 'Ogled e-pošt ponastavitve gesel',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Dnevnik registracij uporabnikov',
+'newuserlogpagetext' => 'Prikazan je dnevnik nedavnih registracij novih uporabnikov.',
+
 # User rights log
 'rightslog' => 'Dnevnik uporabniških pravic',
 'rightslogtext' => 'Prikazan je dnevnik sprememb uporabniških pravic.',
-'rightslogentry' => 'je spremenil(-a) pravice uporabnika $1 iz $2 v $3',
-'rightslogentry-autopromote' => 'je bil(-a) samodejno povišan(-a) z $2 na $3',
-'logentry-rights-rights' => '$1 je spremenil(-a) članstvo skupine $3 z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 je spremenil(-a) članstvo skupine $3',
-'logentry-rights-autopromote' => '$1 je bil(-a) samodejno povišan(-a) z $4 na $5',
-'rightsnone' => '(nobeno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'branje te strani',
@@ -2168,10 +2166,6 @@ Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
 'activeusers-hidebots' => 'Skrij bote',
 'activeusers-hidesysops' => 'Skrij administratorje',
 'activeusers-noresult' => 'Noben uporabnik ni bil najden.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Dnevnik registracij uporabnikov',
-'newuserlogpagetext' => 'Prikazan je dnevnik nedavnih registracij novih uporabnikov.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Pravice uporabniških skupin',
@@ -3127,6 +3121,8 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'minutes' => '$1 {{PLURAL:$1|minuta|minuti|minute|minut}}',
 'hours' => '$1 {{PLURAL:$1|ura|uri|ure|ur}}',
 'days' => '$1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
+'months' => '$1 {{PLURAL:$1|mesec|meseca|mesece|mesecev}}',
+'years' => '$1 {{PLURAL:$1|leto|leti|leta|let}}',
 'ago' => 'pred $1',
 'just-now' => 'pravkar',
 
@@ -3892,6 +3888,10 @@ Ta stran se sooča s tehničnimi težavami.',
 'logentry-newusers-create2' => '$1 je ustvaril(-a) uporabniški račun $3',
 'logentry-newusers-autocreate' => 'Račun $1 je bil samodejno ustvarjen',
 'newuserlog-byemail' => 'geslo je bilo poslano po e-pošti',
+'logentry-rights-rights' => '$1 je spremenil(-a) članstvo skupine $3 z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 je spremenil(-a) članstvo skupine $3',
+'logentry-rights-autopromote' => '$1 je bil(-a) samodejno povišan(-a) z $4 na $5',
+'rightsnone' => '(nobeno)',
 
 # Feedback
 'feedback-bugornote' => 'Če ste pripravljeni podrobno opisati tehnično težavo, vložite [$1 poročilo o hrošču].

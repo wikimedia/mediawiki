@@ -551,6 +551,9 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 
 'grouppage-sysop' => '{{ns:project}}:Aménistrateus',
 
+# Special:Log/newusers
+'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
+
 # User rights log
 'rightslog' => "Jornal d'chés droés dechl uzeu",
 
@@ -742,9 +745,6 @@ Vir apré ([$2 pache]).",
 
 # Special:ActiveUsers
 'activeusers' => 'Lisse des ouvreus uzeus',
-
-# Special:Log/newusers
-'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
 
 # Special:ListGroupRights
 'listgrouprights-summary' => "L'pache-lo ch'est ène lisse d'chés groupes d'uzeus définis édseur ech wiki aveuc chés drouots d'intrèe achuchonnés.<br />I put y avoèr ichi d'eutes [[MediaWiki:Listgrouprights-helppage|informacions]] édseur chés drouots individuèls. ([[{{MediaWiki:Listgrouprights-helppage}}|vir]])",

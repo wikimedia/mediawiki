@@ -1721,15 +1721,13 @@ $1",
 'right-sendemail' => 'слање е-порука другим корисницима',
 'right-passwordreset' => 'прегледање порука за обнављање лозинке',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Дневник нових корисника',
+'newuserlogpagetext' => 'Ово је историја нових корисника.',
+
 # User rights log
 'rightslog' => 'Дневник корисничких права',
 'rightslogtext' => 'Ово је дневник измена корисничких права.',
-'rightslogentry' => '{{GENDER:|је променио|је променила|је променио}} права за члана $1 из $2 у $3',
-'rightslogentry-autopromote' => 'је унапређен из $2 у $3',
-'logentry-rights-rights' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3 из $4 у $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3',
-'logentry-rights-autopromote' => '$1 је аутоматски {{GENDER:$1|унапређен|унапређена|унапређен}} из $4 у $5',
-'rightsnone' => '(ништа)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'читање ове странице',
@@ -2395,10 +2393,6 @@ $1',
 'activeusers-hidebots' => 'Сакриј ботове',
 'activeusers-hidesysops' => 'Сакриј администраторе',
 'activeusers-noresult' => 'Корисник није пронађен.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Дневник нових корисника',
-'newuserlogpagetext' => 'Ово је историја нових корисника.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Права корисничких група',
@@ -4338,6 +4332,10 @@ $5
 'logentry-newusers-create2' => '$1 {{GENDER:|је отворио|је отворила|је отворио}} кориснички налог $3',
 'logentry-newusers-autocreate' => 'Налог $1 је самостално отворен',
 'newuserlog-byemail' => 'лозинка је послата е-поштом',
+'logentry-rights-rights' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3 из $4 у $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3',
+'logentry-rights-autopromote' => '$1 је аутоматски {{GENDER:$1|унапређен|унапређена|унапређен}} из $4 у $5',
+'rightsnone' => '(ништа)',
 
 # Feedback
 'feedback-bugornote' => 'Ако сте спремни да детаљно опишете технички проблем, онда [$1 пријавите грешку].

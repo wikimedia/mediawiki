@@ -1458,13 +1458,13 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-sendemail' => 'Anere Benotzer E-Maile schécken',
 'right-passwordreset' => 'Maile vum Zrécksetze vum Passwuert weisen',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logbuch vun den neien Umeldungen',
+'newuserlogpagetext' => "Dëst ass d'Lescht vun de Benotzernimm déi ugeluecht goufen.",
+
 # User rights log
 'rightslog' => 'Logbuch vun de Benotzerrechter',
 'rightslogtext' => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
-'rightslogentry' => "huet d'Benotzerrechter vum $1 vun $2 op $3 geännert.",
-'rightslogentry-autopromote' => 'gouf automatesch aus dem Grupp $2 an de Grupp $3 gesat',
-'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
-'rightsnone' => '(keen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'dës Säit ze liesen',
@@ -2087,10 +2087,6 @@ Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
 'activeusers-hidebots' => 'Botte verstoppen',
 'activeusers-hidesysops' => 'Administrateure verstoppen',
 'activeusers-noresult' => 'Keng Benotzer fonnt.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logbuch vun den neien Umeldungen',
-'newuserlogpagetext' => "Dëst ass d'Lescht vun de Benotzernimm déi ugeluecht goufen.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechter vun de Benotzergruppen',
@@ -3771,6 +3767,8 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch ugeluecht',
 'newuserlog-byemail' => "d'Passwuert gouf per E-Mail geschéckt",
+'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
+'rightsnone' => '(keen)',
 
 # Feedback
 'feedback-bugornote' => 'Wann Dir bereet sidd fir en technesche Problem am Detail ze beschreiwen da [$1 mellt w.e.g. e Feeler (Bug)].

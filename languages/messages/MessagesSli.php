@@ -956,9 +956,12 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'right-siteadmin' => 'Datenbank sperra und entsperra',
 'right-sendemail' => 'E-Mails oa andere Nutzer senda',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Neuoameldungs-Logbuch',
+'newuserlogpagetext' => 'Dies ies a Logbuch fier neu erstellte Nutzerkonten.',
+
 # User rights log
 'rightslogtext' => 'Dies ies doas Logbuch dar Änderunga dar Nutzerrechte.',
-'rightslogentry' => 'änderte de Nutzerrechte fier „$1“ vu „$2“ uff „$3“',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'de Seite zu lasa',
@@ -1358,10 +1361,6 @@ Siehe au de Liste der [[Special:WantedCategories|gewinschta Kategorien]].',
 
 # Special:ActiveUsers
 'activeusers-noresult' => 'Kenne Benutzer gefunda.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Neuoameldungs-Logbuch',
-'newuserlogpagetext' => 'Dies ies a Logbuch fier neu erstellte Nutzerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Nutzergruppen-Rechte',

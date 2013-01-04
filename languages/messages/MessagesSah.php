@@ -1341,12 +1341,13 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'right-sendemail' => 'Атын кыттааччыларга эл. почтаны ыытарга',
 'right-passwordreset' => 'Киирии тылы почта нөҥүө уларытыыны көрүү',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Кыттааччылары бэлиэтиир сурунаал',
+'newuserlogpagetext' => 'Соторутааҕыта бэлиэтэммит кыттааччылар.',
+
 # User rights log
 'rightslog' => 'Кыттаачы бырааптарын сурунаала',
 'rightslogtext' => 'Бу кыттааччы бырааптарын уларыйыытын көрдөрөр сурунаал.',
-'rightslogentry' => '$1 кыттаачы киирэр бырааба $2-тан $3 уларыйда',
-'rightslogentry-autopromote' => 'мантан $2 аптамаатынан манна $3 көспүт',
-'rightsnone' => '(суох)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'бу сирэйи ааҕыы',
@@ -1989,10 +1990,6 @@ $1',
 'activeusers-hidebots' => 'Руобаттары көрдөрүмэ',
 'activeusers-hidesysops' => 'Дьаһабыллары көрдөрүмэ',
 'activeusers-noresult' => 'Кыттааччылар көстүбэтилэр.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Кыттааччылары бэлиэтиир сурунаал',
-'newuserlogpagetext' => 'Соторутааҕыта бэлиэтэммит кыттааччылар.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Кыттааччылар бөлөхтөрүн бырааптара',
@@ -3679,6 +3676,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'logentry-newusers-create2' => '$3 кыттааччыны $1 бэлиэтээбит',
 'logentry-newusers-autocreate' => 'Маннык аат $1 аптамаатынан бэлиэтэнилиннэ',
 'newuserlog-byemail' => 'киирии тыл эл. почтаннан ыытылынна',
+'rightsnone' => '(суох)',
 
 # Feedback
 'feedback-bugornote' => 'Туох кыһалҕаны көрсүбүккүн сиһилии суруйар кыахтаах буоллаххына, бука диэн [$1 алҕас туһунан биллэр].

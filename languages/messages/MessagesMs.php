@@ -1479,15 +1479,13 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-sendemail' => 'Mengirim e-mel kepada pengguna-pengguna lain',
 'right-passwordreset' => 'Lihat e-mel set semula kata laluan',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log akaun baru',
+'newuserlogpagetext' => 'Yang berikut ialah log penciptaan pengguna.',
+
 # User rights log
 'rightslog' => 'Log hak pengguna',
 'rightslogtext' => 'Ini ialah log perubahan terhadap hak pengguna.',
-'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
-'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
-'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
-'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
-'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',
-'rightsnone' => '(tiada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'membaca laman ini',
@@ -2126,10 +2124,6 @@ Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
 'activeusers-hidebots' => 'Sorokkan bot',
 'activeusers-hidesysops' => 'Sorokkan pentadbir',
 'activeusers-noresult' => 'Tiada pengguna dijumpai.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log akaun baru',
-'newuserlogpagetext' => 'Yang berikut ialah log penciptaan pengguna.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Hak kumpulan pengguna',
@@ -3092,6 +3086,8 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'minutes' => '$1 minit',
 'hours' => '$1 jam',
 'days' => '$1 hari',
+'months' => '$1 bulan',
+'years' => '$1 tahun',
 'ago' => '$1 yang lalu',
 'just-now' => 'tadi',
 
@@ -3854,6 +3850,10 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-newusers-create2' => 'Akaun pengguna $3 dibuka oleh $1',
 'logentry-newusers-autocreate' => 'Akaun $1 dibuka secara automatik',
 'newuserlog-byemail' => 'kata laluan dihantar melalui e-mel',
+'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
+'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
+'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',
+'rightsnone' => '(tiada)',
 
 # Feedback
 'feedback-bugornote' => 'Jika anda bersedia untuk menerangkan masalah teknikal secara terperinci, sila [$1 laporkan pepijat]. 

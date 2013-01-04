@@ -1180,11 +1180,13 @@ $1',
 'right-userrights-interwiki' => 'Sprowjej uprawńyńo užytkowńikůw na zajtach inkšych Wiki',
 'right-siteadmin' => 'Zawjerańy i uodmykańy bazy danych',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nowe użytkowniki',
+'newuserlogpagetext' => 'To je rejer uostatńo utworzůnych kůnt użytkowńikůw',
+
 # User rights log
 'rightslog' => 'Uprawńyńa',
 'rightslogtext' => 'Rejer půmjyńań uprawńyń užytkowńikůw.',
-'rightslogentry' => 'půmjyńiu/a uprawńyńo užytkowńika $1 ($2 → $3)',
-'rightsnone' => 'podstawowo',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'přeglůndańo tyj zajty',
@@ -1626,10 +1628,6 @@ Uobsůgiwane protokoły: <code>$1</code>',
 'activeusers-hidebots' => 'Schrůń boty',
 'activeusers-hidesysops' => 'Schrůń adminy',
 'activeusers-noresult' => 'Ńy sům używacze.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nowe użytkowniki',
-'newuserlogpagetext' => 'To je rejer uostatńo utworzůnych kůnt użytkowńikůw',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawńyńo grup użytkowńikůw',
@@ -2843,5 +2841,6 @@ Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 'revdelete-restricted' => 'naštaluj uograničyńo do administratorůw',
 'revdelete-unrestricted' => 'wycofej uograničyńo do administratorůw',
 'newuserlog-byemail' => 'hasło uostało wysłane e-brifym',
+'rightsnone' => 'podstawowo',
 
 );

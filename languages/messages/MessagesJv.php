@@ -1279,12 +1279,13 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'right-sendemail' => 'Ngirim layang listrik (e-mail) menyang panganggo liya',
 'right-passwordreset' => 'Delok layang èlèktronik panyetèlulangan tembung sandhi',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log panganggo anyar',
+'newuserlogpagetext' => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
+
 # User rights log
 'rightslog' => 'Log pangowahan hak aksès',
 'rightslogtext' => 'Ing ngisor iki kapacak log pangowahan marang hak-hak panganggo.',
-'rightslogentry' => 'ngganti kaanggotan kelompok kanggo $1 saka $2 dadi $3',
-'rightslogentry-autopromote' => 'otomatis ditawakaké saka $2 nèng $3',
-'rightsnone' => '(ora ana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'maca kaca iki',
@@ -1898,10 +1899,6 @@ Deleng uga [[Special:WantedCategories|kategori sing diperlokaké]].',
 'activeusers-hidebots' => 'Delikna bot',
 'activeusers-hidesysops' => 'Delikna pangurus',
 'activeusers-noresult' => 'Panganggo ora ditemokaké.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log panganggo anyar',
-'newuserlogpagetext' => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Hak-hak grup panganggo',
@@ -3479,6 +3476,7 @@ Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka lan
 'logentry-newusers-create2' => 'Akun panganggo $3 digawé déning $1',
 'logentry-newusers-autocreate' => 'Akun $1 digawé otomatis',
 'newuserlog-byemail' => 'tembung sandhi wis dikirim liwat e-mail',
+'rightsnone' => '(ora ana)',
 
 # Feedback
 'feedback-bugornote' => 'Yèn Sampéyan siap njelasaké masalah tèhnis kanthi rinci mangga [$1 laporaké bug].

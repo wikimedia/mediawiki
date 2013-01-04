@@ -1523,15 +1523,13 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'right-sendemail' => 'Slanje e-maila drugim korisnicima',
 'right-passwordreset' => 'Pregled e-maila za obnavljanje lozinke',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registar novih korisnika',
+'newuserlogpagetext' => 'Ovo je evidencija registracije novih korisnika.',
+
 # User rights log
 'rightslog' => 'Registar korisničkih prava',
 'rightslogtext' => 'Ovo je evidencija izmjene korisničkih prava.',
-'rightslogentry' => 'promjena članstva u grupi za $1 sa $2 na $3',
-'rightslogentry-autopromote' => 'je automatski unaprijeđen iz $2 u $3',
-'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3',
-'logentry-rights-autopromote' => '$1 je automatski {{GENDER:$1|unaprijeđen|unaprijeđena|unaprijeđen}} iz $4 u $5',
-'rightsnone' => '(nema)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'čitanje ove stranice',
@@ -2174,10 +2172,6 @@ Podržani protokoli: <tt>$1</tt> (zadaje http:// ako ne navedete protokol).',
 'activeusers-hidebots' => 'Sakrij botove',
 'activeusers-hidesysops' => 'Sakrij administratore',
 'activeusers-noresult' => 'Nije pronađen korisnik.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Registar novih korisnika',
-'newuserlogpagetext' => 'Ovo je evidencija registracije novih korisnika.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
@@ -3890,6 +3884,10 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-newusers-create2' => 'Korisnički račun $3 {{GENDER:|je napravio|je napravila|je napravio}} $1',
 'logentry-newusers-autocreate' => 'Račun $1 je samostalno otvoren',
 'newuserlog-byemail' => 'lozinka je poslana putem e-maila',
+'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3',
+'logentry-rights-autopromote' => '$1 je automatski {{GENDER:$1|unaprijeđen|unaprijeđena|unaprijeđen}} iz $4 u $5',
+'rightsnone' => '(nema)',
 
 # Feedback
 'feedback-bugornote' => 'Ako ste spremni da detaljno opišete tehnički problem, onda [$1 prijavite grešku].

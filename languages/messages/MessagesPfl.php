@@ -163,20 +163,21 @@ $messages = array(
 'privacy' => 'Dadeschuds',
 'privacypage' => 'Project:Daadeschutz',
 
-'badaccess' => 'Kää ausraichende Recht',
+'badaccess' => 'Kää ausraichende Reschd',
 
 'retrievedfrom' => 'Vun "$1"',
 'youhavenewmessages' => 'Du hoscht $1 ($2).',
-'newmessageslink' => 'naie Nochrichte',
-'newmessagesdifflink' => 'letschte Ännerung',
+'newmessageslink' => 'naie Nochrischde',
+'newmessagesdifflink' => 'ledschde Ännerung',
 'editsection' => 'bearwaide',
 'editold' => 'bearwaide',
+'viewsourceold' => 'Quelltegschd ogugge',
 'editlink' => 'bearwaide',
-'viewsourcelink' => 'Quell aagucke',
+'viewsourcelink' => 'Quell aagugge',
 'editsectionhint' => 'Abschnidd ännere: $1',
 'toc' => 'Inhald',
-'showtoc' => 'zaiche',
-'hidetoc' => 'versteggeln',
+'showtoc' => 'zaische',
+'hidetoc' => 'versteggle',
 'site-rss-feed' => '$1 RSS Feed',
 'site-atom-feed' => '$1 Atom Feed',
 'page-rss-feed' => '"$1" RSS Feed',
@@ -261,6 +262,7 @@ Doi Ännerunge sinn no nid gschbaichert worre!",
 'editing' => 'Am $1 bearwaide',
 'editingsection' => '$1 bearwaide (Abschnitt)',
 'yourtext' => 'Doin Tegschd',
+'storedversion' => 'Gschbaischerdi Version',
 'yourdiff' => 'Unaschied',
 'copyrightwarning' => "Bitte gebb acht, dass alle Baidräch zu {{SITENAME}} unner $2 vereffentlicht werre (guck $1 fer mehr Details).
 Wenn du nit willhsct, dass deswu du gschriwwe hoscht, gänneret un kopiert werre kann, dann duu s do nit naischraiwe.<br />
@@ -276,21 +278,22 @@ du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effe
 De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 
 # History pages
-'viewpagelogs' => 'Lochbicher fer die Said aagucke',
-'currentrev-asof' => 'Aktuelle Version vun $1',
+'viewpagelogs' => 'Lochbischer fer die Said aagucke',
+'currentrev' => 'Ledschdi Änarung',
+'currentrev-asof' => 'Agduell Version vun $1',
 'revisionasof' => 'Version vun $1',
 'previousrevision' => '← Äldere Versione',
-'nextrevision' => 'Naier Version →',
-'currentrevisionlink' => 'Aktuell Version',
+'nextrevision' => 'Naiere Versione →',
+'currentrevisionlink' => 'Agduell Version',
 'cur' => 'jetzert',
-'next' => 'Negschte',
+'next' => 'Negschde',
 'last' => 'vorich',
 'histlegend' => "Du kannscht zwää Versione auswähle un verglaiche.<br />
 Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 '''({{int:last}})''' = Unnerschied zu de voriche Version, '''{{int:minoreditletter}}''' = klenni Ännerung.",
 'history-fieldset-title' => 'In de Versionsgschichd gugge',
-'histfirst' => 'Ältschte',
-'histlast' => 'Naischte',
+'histfirst' => 'Ältschde',
+'histlast' => 'Naischde',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 om $2',
@@ -300,7 +303,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-radio-set' => 'Ja',
 'revdelete-radio-unset' => 'Nä',
-'revdelete-submit' => 'Uff die aussgewählt {{PLURAL:$1|Version|Versione}} owende',
+'revdelete-submit' => 'Uff die gewehld {{PLURAL:$1|Version|Versione}} owende',
 'revdel-restore' => 'Sischdbakaid ännere',
 'revdel-restore-deleted' => 'gleschdi Änarunge',
 'revdel-restore-visible' => 'sischdbari Änarunge',
@@ -372,9 +375,11 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 
 'grouppage-sysop' => '{{ns:project}}:Adminischtratore',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Naiaameldungs-Logbuch',
+
 # User rights log
 'rightslog' => 'Benutzerrecht-Logbuch',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'die Said bearwaide',
@@ -428,6 +433,9 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'lockmanager-fail-acquirelock' => '„$1“ komma ned schberre.',
 'lockmanager-fail-openlock' => 'Die gschberd Dadai „$1“ komma ned uffmache.',
 'lockmanager-fail-releaselock' => '„$1“ konn ned fraigewe werre.',
+
+# Special:ListFiles
+'listfiles_count' => 'Versione',
 
 # File description page
 'file-anchor-link' => 'Datei',
@@ -489,9 +497,6 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 
 # Special:LinkSearch
 'linksearch' => 'Externe Links',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Naiaameldungs-Logbuch',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Midgliederlischd)',
@@ -798,6 +803,9 @@ Annere Medadaade sinn noamalawais verschdegld.
 
 # Special:Tags
 'tags-edit' => 'bearwaide',
+
+# New logging system
+'rightsnone' => '(-)',
 
 # Feedback
 'feedback-close' => 'Erledischd',

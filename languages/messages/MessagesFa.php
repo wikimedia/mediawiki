@@ -1753,15 +1753,13 @@ $1",
 'right-sendemail' => 'ارسال رایانامه به دیگر کاربران',
 'right-passwordreset' => 'مشاهدهٔ نامه‌های تنظیم مجدد گذرواژه',
 
+# Special:Log/newusers
+'newuserlogpage' => 'سیاههٔ ایجاد کاربر',
+'newuserlogpagetext' => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
+
 # User rights log
 'rightslog' => 'سیاههٔ اختیارات کاربر',
 'rightslogtext' => 'این سیاههٔ تغییرات اختیارات کاربر است.',
-'rightslogentry' => 'عضویت $1 را از گروه $2 به $3 تغییر داد',
-'rightslogentry-autopromote' => 'به طور خودکار از $2 به $3 ارتقا یافت',
-'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
-'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
-'logentry-rights-autopromote' => '$1 به طور خودکار از $4 به $5 ارتقا یافت',
-'rightsnone' => '(هیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'خواندن این صفحه',
@@ -2409,10 +2407,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'activeusers-hidebots' => 'نهفتن ربات‌ها',
 'activeusers-hidesysops' => 'نهفتن مدیران',
 'activeusers-noresult' => 'کاربری پیدا نشد.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'سیاههٔ ایجاد کاربر',
-'newuserlogpagetext' => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'اختیارات گروه‌های کاربری',
@@ -4200,6 +4194,10 @@ $5
 'logentry-newusers-create2' => 'حساب کاربری $3 توسط $1 ایجاد شد',
 'logentry-newusers-autocreate' => 'حساب $1  به شکل خودکار ساخته شد',
 'newuserlog-byemail' => 'گذرواژه بوسیله رایانامه ارسال شد',
+'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
+'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
+'logentry-rights-autopromote' => '$1 به طور خودکار از $4 به $5 ارتقا یافت',
+'rightsnone' => '(هیچ)',
 
 # Feedback
 'feedback-bugornote' => 'اگر آماده‌اید تا مشکلی فنی را با جزئیاتش شرح دهید لطفاً [$1 یک ایراد گزارش دهید]. در غیر این صورت می‌توانید از فرم سادهٔ زیر استفاده کنید. نظر شما به همراه نام کاربری و مرورگرتان به صفحهٔ «[$2 $3]» افزوده خواهد شد.',

@@ -1570,15 +1570,13 @@ Dette kan ikkje tilbakestillast.',
 'right-sendemail' => 'Senda e-post til andre brukarar',
 'right-passwordreset' => 'Sjå e-postar for passord som er stilte attende',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Brukaropprettingslogg',
+'newuserlogpagetext' => 'Dette er ein logg over oppretta brukarkontoar.',
+
 # User rights log
 'rightslog' => 'Brukartilgangslogg',
 'rightslogtext' => 'Dette er ein logg over endringar av brukartilgang.',
-'rightslogentry' => 'endra brukartilgangen til $1 frå $2 til $3',
-'rightslogentry-autopromote' => '↓vart automatisk forfremja frå $2 til $3',
-'logentry-rights-rights' => '$1 endra gruppemedlemskap for $3 frå $4 til $5',
-'logentry-rights-rights-legacy' => '$1 endra gruppemedlemskap for $3',
-'logentry-rights-autopromote' => '$1 vart automatisk forfremja frå $4 til $5',
-'rightsnone' => '(ingen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'sjå denne sida',
@@ -2211,10 +2209,6 @@ Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
 'activeusers-hidebots' => 'Skjul botar',
 'activeusers-hidesysops' => 'Skjul administratorar',
 'activeusers-noresult' => 'Ingen brukarar funne.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Brukaropprettingslogg',
-'newuserlogpagetext' => 'Dette er ein logg over oppretta brukarkontoar.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rettar for brukargrupper',
@@ -3898,6 +3892,10 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'logentry-newusers-create2' => 'Brukarkontoen $3 vart oppretta av $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
 'newuserlog-byemail' => 'passordet er sendt på e-post',
+'logentry-rights-rights' => '$1 endra gruppemedlemskap for $3 frå $4 til $5',
+'logentry-rights-rights-legacy' => '$1 endra gruppemedlemskap for $3',
+'logentry-rights-autopromote' => '$1 vart automatisk forfremja frå $4 til $5',
+'rightsnone' => '(ingen)',
 
 # Feedback
 'feedback-bugornote' => 'Er du klar til å skildra ein teknisk vanske i detalj, gjer vel å [$1 rapportera inn ein feil].

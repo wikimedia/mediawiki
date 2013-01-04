@@ -1623,15 +1623,13 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-sendemail' => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
 'right-passwordreset' => 'De <i lang="en">e-mails</i> vum Paßwoot neu Säze aanloore',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboch för neu Metmaachere',
+'newuserlogpagetext' => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
+
 # User rights log
 'rightslog' => 'Logboch för Änderunge aan Metmaacher-Räächde',
 'rightslogtext' => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver Metmaacher, Wiki-Köbesse, Bürrokrade, Stewards, un esu, kanns De nohlese, wat domet es.',
-'rightslogentry' => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt.',
-'rightslogentry-autopromote' => 'wood automattesch vun $2 zohm $3 jemaat.',
-'logentry-rights-rights' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} „$1“ hät däm Metmaacher „$3“ sing Jroppe-Räächde vun „$4“ op „$5“ ömjestallt.',
-'logentry-rights-rights-legacy' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 hät däm Metmaacher $3 sing Räääschte-Jroppe verändert.',
-'logentry-rights-autopromote' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 wood automattesch vum $4 zom $5 jemaat.',
-'rightsnone' => '(nix)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'di Sigg ze lesse',
@@ -2334,10 +2332,6 @@ De Brauserprotokolle, di mer beim Söke aanjäjovve kann, sin: <code>$1</code>, 
 'activeusers-hidebots' => 'De Bots fott lohße',
 'activeusers-hidesysops' => 'De Wiki_Köbesse fott lohße',
 'activeusers-noresult' => 'Kein Metmaacher jefonge.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logboch för neu Metmaachere',
-'newuserlogpagetext' => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Metmaacher-Jruppe-Rääschte',
@@ -4181,6 +4175,10 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'logentry-newusers-create2' => 'Dä $1 hät dä $3 als ene neue Metmaacher aanjelaat.',
 'logentry-newusers-autocreate' => 'Dä $1 wood automattesch als Metmaacher aanjelaat.',
 'newuserlog-byemail' => 'dat Passwood wood med de e-mail loßjescheck',
+'logentry-rights-rights' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} „$1“ hät däm Metmaacher „$3“ sing Jroppe-Räächde vun „$4“ op „$5“ ömjestallt.',
+'logentry-rights-rights-legacy' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 hät däm Metmaacher $3 sing Räääschte-Jroppe verändert.',
+'logentry-rights-autopromote' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 wood automattesch vum $4 zom $5 jemaat.',
+'rightsnone' => '(nix)',
 
 # Feedback
 'feedback-bugornote' => 'Wann de em Bejreff bes, övver e täschesch Probleem ze schrieve, bes esu jood un donn dat als en [$1 Fählermäldong].

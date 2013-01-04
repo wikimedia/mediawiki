@@ -1517,15 +1517,13 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'right-sendemail' => 'Jibgħat ittri-e lil utenti oħra',
 'right-passwordreset' => 'Jara l-messaġġi tal-impostazzjoni mill-ġdid tal-password',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Utenti ġodda',
+'newuserlogpagetext' => "Dan hu reġistru tal-kreazzjoni ta' kontijiet ġodda.",
+
 # User rights log
 'rightslog' => 'Drittijiet tal-utenti',
 'rightslogtext' => "Dan huwa r-reġistru tal-modifiki ta' drittijiet tal-utenti.",
-'rightslogentry' => "biddel is-sħubija ta' $1 minn $2 għal $3",
-'rightslogentry-autopromote' => 'ġie awtomatikament promoss minn $2 għal $3',
-'logentry-rights-rights' => "$1 biddel is-sħubija ta' $3 minn $4 għal $5",
-'logentry-rights-rights-legacy' => "$1 biddel is-sħubija fil-gruppi ta' $3",
-'logentry-rights-autopromote' => '$1 ġie awtomatikament promoss minn $4 għal $5',
-'rightsnone' => '(xejn)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'aqra din il-paġna',
@@ -2126,10 +2124,6 @@ Protokolli aċċettati: <code>$1</code> (jekk ma jiġi speċifikat l-ebda protok
 'activeusers-hidebots' => 'Aħbi l-bots',
 'activeusers-hidesysops' => 'Aħbi amministraturi',
 'activeusers-noresult' => 'L-ebda utent ma nstab.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Utenti ġodda',
-'newuserlogpagetext' => "Dan hu reġistru tal-kreazzjoni ta' kontijiet ġodda.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Drittijiet tal-grupp tal-utenti',
@@ -3810,6 +3804,10 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'logentry-newusers-create2' => 'Il-kont $3 ġie maħluq minn $1',
 'logentry-newusers-autocreate' => 'Il-kont $1 ġie maħluq awtomatikament',
 'newuserlog-byemail' => "il-password intbagħtet permezz ta' posta elettronika",
+'logentry-rights-rights' => "$1 biddel is-sħubija ta' $3 minn $4 għal $5",
+'logentry-rights-rights-legacy' => "$1 biddel is-sħubija fil-gruppi ta' $3",
+'logentry-rights-autopromote' => '$1 ġie awtomatikament promoss minn $4 għal $5',
+'rightsnone' => '(xejn)',
 
 # Feedback
 'feedback-subject' => 'Suġġett:',

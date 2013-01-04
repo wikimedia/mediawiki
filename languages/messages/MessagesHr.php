@@ -1590,15 +1590,13 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-sendemail' => 'Slanje e-maila drugim korisnicima',
 'right-passwordreset' => 'Vidi poruku e-pošte o ponovnom postavljanju lozinke',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Evidencija novih suradnika',
+'newuserlogpagetext' => 'Ispod je popis nedavno otvorenih suradničkih imena.',
+
 # User rights log
 'rightslog' => 'Evidencija suradničkih prava',
 'rightslogtext' => 'Ovo je evidencija promjena suradničkih prava.',
-'rightslogentry' => 'promijenjena suradnička prava za $1 iz $2 u $3',
-'rightslogentry-autopromote' => 'je automatski unaprijeđen s $2 na $3',
-'logentry-rights-rights' => '$1 promijeni suradnička prava računa $3 iz $4 u $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|je promijenio|je promijenila|je promijenio}} članstvo grupe suradničkog računa $3',
-'logentry-rights-autopromote' => 'Suradničkom računu $1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5',
-'rightsnone' => '(suradnik)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'čitanje ove stranice',
@@ -2223,10 +2221,6 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 'activeusers-hidebots' => 'Sakrij botove',
 'activeusers-hidesysops' => 'Sakrij administratore',
 'activeusers-noresult' => 'Niti jedan suradnik nije nađen.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Evidencija novih suradnika',
-'newuserlogpagetext' => 'Ispod je popis nedavno otvorenih suradničkih imena.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prava suradničkih skupina',
@@ -3988,6 +3982,10 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'logentry-newusers-create2' => '$1 je  {{GENDER:$2|otvorio|otvorila}} suradnički račun $3',
 'logentry-newusers-autocreate' => 'Suradnički račun $1 je automatski stvoren',
 'newuserlog-byemail' => 'lozinka poslana e-poštom',
+'logentry-rights-rights' => '$1 promijeni suradnička prava računa $3 iz $4 u $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|je promijenio|je promijenila|je promijenio}} članstvo grupe suradničkog računa $3',
+'logentry-rights-autopromote' => 'Suradničkom računu $1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5',
+'rightsnone' => '(suradnik)',
 
 # Feedback
 'feedback-bugornote' => 'Ako ste spremni detaljno opisati tehnički problem molimo [$1 prijavite "bug"].

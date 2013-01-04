@@ -1661,15 +1661,13 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'right-sendemail' => 'Enviar un correo electrónico a otros usuarios',
 'right-passwordreset' => 'Ver os correos electrónicos de restablecimiento de contraseñas',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de creación de usuarios',
+'newuserlogpagetext' => 'Este es un registro de creación de usuarios.',
+
 # User rights log
 'rightslog' => 'Cambios de perfil de usuario',
 'rightslogtext' => 'Este es un registro de cambios en los permisos de usuarios.',
-'rightslogentry' => 'modificó los grupos a los que pertenece $1: de $2 a $3',
-'rightslogentry-autopromote' => 'fue promovido automáticamente desde $2 a $3',
-'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
-'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
-'rightsnone' => '(ninguno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leer esta página',
@@ -2314,10 +2312,6 @@ Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
 'activeusers-hidebots' => 'Ocultar robots',
 'activeusers-hidesysops' => 'Ocultar administradores',
 'activeusers-noresult' => 'No se encontraron usuarios.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de creación de usuarios',
-'newuserlogpagetext' => 'Este es un registro de creación de usuarios.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Permisos del grupo de usuarios',
@@ -4053,6 +4047,10 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'newuserlog-byemail' => 'contraseña enviada por correo electrónico',
+'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
+'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
+'rightsnone' => '(ninguno)',
 
 # Feedback
 'feedback-bugornote' => 'Si estás preparado para describir en detalle un problema técnico, [$1 informa de un bug] por favor.

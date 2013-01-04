@@ -1464,12 +1464,13 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'right-sendemail' => 'Magpadala ng e-liham sa ibang mga tagagamit',
 'right-passwordreset' => 'Tingnan ang mga e-liham ng muling pagtatakda ng hudyat',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Talaan ng paglikha ng tagagamit',
+'newuserlogpagetext' => 'Isa itong talaan ng mga paglikha ng tagagamit.',
+
 # User rights log
 'rightslog' => 'Tala ng mga karapatan ng tagagamit',
 'rightslogtext' => 'Isa itong tala ng mga pagbabago sa mga karapatan ng tagagamit.',
-'rightslogentry' => 'binago ang kasapiang pampangkat para kay $1 mula sa $2 patungong $3',
-'rightslogentry-autopromote' => 'ay kusang naitaas ang ranggo mula $2 upang maging $3',
-'rightsnone' => '(wala)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basahin itong pahina',
@@ -2118,10 +2119,6 @@ Sinusuportahang mga protokolo: <code>$1</code> (huwag idagdag ang anuman sa mga 
 'activeusers-hidebots' => 'Itago ang mga bots',
 'activeusers-hidesysops' => 'Itago ang mga tagapangasiwa',
 'activeusers-noresult' => 'Walang natagpuang mga tagagamit.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Talaan ng paglikha ng tagagamit',
-'newuserlogpagetext' => 'Isa itong talaan ng mga paglikha ng tagagamit.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Mga uri ng tagagamit',
@@ -4039,6 +4036,7 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 'logentry-newusers-create2' => 'Lumikha si $1 ng isang kuwenta ng tagagamit na $3',
 'logentry-newusers-autocreate' => 'Kusang nalikha ang akawnt na $1',
 'newuserlog-byemail' => 'Ipinadala ang hudyat sa pamamagitan ng e-liham',
+'rightsnone' => '(wala)',
 
 # Feedback
 'feedback-bugornote' => 'Kung handa ka nang detalyadong maglarawan ng isang suliraning teknikal mangyaring [$1 iulat ang sira].

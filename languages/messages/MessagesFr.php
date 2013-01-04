@@ -1657,15 +1657,13 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'right-sendemail' => 'Envoyer un courriel aux autres utilisateurs',
 'right-passwordreset' => 'Voir les courriels de réinitialisation des mots de passe',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Journal des créations de comptes utilisateur',
+'newuserlogpagetext' => "Cette page affiche l'historique des créations de comptes utilisateur.",
+
 # User rights log
 'rightslog' => "Journal des modifications de droits d'utilisateurs",
 'rightslogtext' => "Voici l'historique des modifications des droits des utilisateurs.",
-'rightslogentry' => "a modifié les droits de l'utilisateur « $1 » de $2 à $3",
-'rightslogentry-autopromote' => 'a été automatiquement promu de $2 à $3',
-'logentry-rights-rights' => "$1 a modifié l'appartenance au groupe pour $3 de $4 à $5",
-'logentry-rights-rights-legacy' => "$1 a modifié l'appartenance au groupe pour $3",
-'logentry-rights-autopromote' => '$1 a été promu automatiquement de $4 à $5',
-'rightsnone' => '(aucun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lire cette page',
@@ -2315,10 +2313,6 @@ Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org 
 'activeusers-hidebots' => 'Masquer les robots',
 'activeusers-hidesysops' => 'Masquer les administrateurs',
 'activeusers-noresult' => 'Aucun utilisateur trouvé.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Journal des créations de comptes utilisateur',
-'newuserlogpagetext' => "Cette page affiche l'historique des créations de comptes utilisateur.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Droits des groupes d'utilisateurs",
@@ -3305,6 +3299,8 @@ Si vous l'exécutez, votre système peut être compromis.",
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours' => '{{PLURAL:$1|$1 heure|$1 heures}}',
 'days' => '{{PLURAL:$1|$1 jour|$1 jours}}',
+'months' => '{{PLURAL:$1|$1 mois}}',
+'years' => '{{PLURAL:$1|$1 an|$1 ans}}',
 'ago' => 'Il y a $1',
 'just-now' => "à l'instant",
 
@@ -4135,6 +4131,10 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-newusers-create2' => 'Le compte utilisateur $3 a été créé par $1',
 'logentry-newusers-autocreate' => 'Le compte $1 a été créé automatiquement',
 'newuserlog-byemail' => 'mot de passe envoyé par courriel',
+'logentry-rights-rights' => "$1 a modifié l'appartenance au groupe pour $3 de $4 à $5",
+'logentry-rights-rights-legacy' => "$1 a modifié l'appartenance au groupe pour $3",
+'logentry-rights-autopromote' => '$1 a été promu automatiquement de $4 à $5',
+'rightsnone' => '(aucun)',
 
 # Feedback
 'feedback-bugornote' => 'Si vous êtes prêt à décrire un problème technique en détail, veuillez [$1 signaler un bogue].

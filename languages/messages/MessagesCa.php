@@ -1476,15 +1476,13 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-sendemail' => 'Enviar missatges de correu electrònic a altres usuaris',
 'right-passwordreset' => 'Veure les soŀlicituds de restabliment de contrasenya per correu electrònic',
 
+# Special:Log/newusers
+'newuserlogpage' => "Registre de creació de l'usuari",
+'newuserlogpagetext' => 'Aquest és un registre de creació de nous usuaris.',
+
 # User rights log
 'rightslog' => "Registre dels permisos d'usuari",
 'rightslogtext' => "Aquest és un registre de canvis dels permisos d'usuari.",
-'rightslogentry' => 'ha modificat els drets de $1 del grup $2 a $3',
-'rightslogentry-autopromote' => 'ha estat promogut automàticament de $2 a $3',
-'logentry-rights-rights' => '$1 ha canviat la pertinença de grups per $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 ha canviat la pertinença de grups per $3',
-'logentry-rights-autopromote' => '$1 ha estat promogut automàticament de $4 a $5',
-'rightsnone' => '(cap)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'llegir aquesta pàgina',
@@ -2107,10 +2105,6 @@ Es necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
 'activeusers-hidebots' => 'Amaga bots',
 'activeusers-hidesysops' => 'Amaga administradors',
 'activeusers-noresult' => "No s'han trobat usuaris.",
-
-# Special:Log/newusers
-'newuserlogpage' => "Registre de creació de l'usuari",
-'newuserlogpagetext' => 'Aquest és un registre de creació de nous usuaris.',
 
 # Special:ListGroupRights
 'listgrouprights' => "Drets dels grups d'usuaris",
@@ -3824,6 +3818,10 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'logentry-newusers-create2' => "$1 ha creat el compte d'usuari $3",
 'logentry-newusers-autocreate' => "El compte d'usuari $1 ha estat creat de manera automàtica",
 'newuserlog-byemail' => 'contrasenya enviada per correu electrònic',
+'logentry-rights-rights' => '$1 ha canviat la pertinença de grups per $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 ha canviat la pertinença de grups per $3',
+'logentry-rights-autopromote' => '$1 ha estat promogut automàticament de $4 a $5',
+'rightsnone' => '(cap)',
 
 # Feedback
 'feedback-bugornote' => "Si podeu descriure un problema tècnic en detall, [$1 informeu-ne].

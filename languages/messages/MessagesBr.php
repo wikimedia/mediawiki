@@ -1457,12 +1457,13 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-sendemail' => "Kas ur postel d'an implijerien all",
 'right-passwordreset' => 'Gwelet ar posteloù assevel gerioù-tremen',
 
+# Special:Log/newusers
+'newuserlogpage' => "Marilh ar c'hontoù krouet",
+'newuserlogpagetext' => "Marilh krouiñ ar c'hontoù implijer.",
+
 # User rights log
 'rightslog' => 'Marilh statud an implijerien',
 'rightslogtext' => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
-'rightslogentry' => '{{Gender:.|en|he}} deus cheñchet gwirioù an {{Gender:.|implijer|implijerez}}  $1 a oa $2 hag a zo bet lakaet da $3',
-'rightslogentry-autopromote' => 'zo bet anvet ent emgefre a $2 da $3',
-'rightsnone' => '(netra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lenn ar bajenn-mañ',
@@ -2106,10 +2107,6 @@ Protokoloù skoret : <code>$1</code> (defaults to http:// na lakait hini ebet eu
 'activeusers-hidebots' => 'Kuzhat ar robotoù',
 'activeusers-hidesysops' => 'Kuzhat ar verourien',
 'activeusers-noresult' => "N'eus bet kavet implijer ebet.",
-
-# Special:Log/newusers
-'newuserlogpage' => "Marilh ar c'hontoù krouet",
-'newuserlogpagetext' => "Marilh krouiñ ar c'hontoù implijer.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gwirioù ar strolladoù implijer',
@@ -3835,6 +3832,7 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-newusers-create2' => 'Gant $1 eo bet krouet ar gont implijer $3',
 'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
 'newuserlog-byemail' => 'ger-tremen kaset dre bostel',
+'rightsnone' => '(netra)',
 
 # Feedback
 'feedback-bugornote' => "Ma'z oc'h prest da zeskrivañ ur gudenn deknikel dre ar munud e c'hallit [\$1 kemenn un draen].

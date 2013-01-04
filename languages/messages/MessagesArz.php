@@ -1477,11 +1477,13 @@ $1",
 'right-sendemail' => 'يبعت إيميل لليوزرز التانيين',
 'right-passwordreset' => 'إعادة ضبط كلمة سر مستخدم([[Special:PasswordReset|صفحة خاصة]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'سجل اليوزرز الجداد',
+'newuserlogpagetext' => 'دا سجل لليوزرز الجداد',
+
 # User rights log
 'rightslog' => 'سجل صلاحيات اليوزرز',
 'rightslogtext' => 'ده سجل بالتغييرات ف صلاحيات اليوزرز .',
-'rightslogentry' => 'غير صلاحيات $1 من $2 ل $3',
-'rightsnone' => '(فاضى)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'قراية الصفحه دى',
@@ -2022,10 +2024,6 @@ PICT # misc.
 'activeusers-hidebots' => 'خبى البوتات',
 'activeusers-hidesysops' => 'خبى السيسوبات',
 'activeusers-noresult' => 'مالقيناش اى يوزر',
-
-# Special:Log/newusers
-'newuserlogpage' => 'سجل اليوزرز الجداد',
-'newuserlogpagetext' => 'دا سجل لليوزرز الجداد',
 
 # Special:ListGroupRights
 'listgrouprights' => 'حقوق مجموعات اليوزرز',
@@ -3476,6 +3474,7 @@ $5
 'revdelete-restricted' => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted' => 'شيل الضوابط من على السيسوبات',
 'newuserlog-byemail' => 'الباسورد اتبعتت بالايميل',
+'rightsnone' => '(فاضى)',
 
 # Search suggestions
 'searchsuggest-search' => 'تدوير',

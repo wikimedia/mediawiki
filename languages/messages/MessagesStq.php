@@ -1254,12 +1254,13 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-sendemail' => 'E-Mails an uur Benutsere seende',
 'right-passwordreset' => 'Paaswoud fon n Benutser touräächsätte ([[Special:PasswordReset|Spezioalsiede]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Näianmäldengs-Logbouk',
+'newuserlogpagetext' => 'Dit is dät Logbouk fon näi anmäldede Benutsere.',
+
 # User rights log
 'rightslog' => 'Gjuchte-Logbouk',
 'rightslogtext' => 'Dit is dät Logbouk fon do Annerengen fon do Benutsergjuchte.',
-'rightslogentry' => 'annerde ju Gruppentouheeregaid foar „$1“ fon „$2“ ap „$3“.',
-'rightslogentry-autopromote' => 'wuud automatisk fon „$2“ ätter „$3“ touoardend',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'disse Siede tou leesen',
@@ -1827,10 +1828,6 @@ Sjuch uk ju Lieste fon do [[Special:WantedCategories|wonskede Kategorien]].',
 'activeusers-hidebots' => 'Bots fersteete',
 'activeusers-hidesysops' => 'Administratore fersteete',
 'activeusers-noresult' => 'Neen Benutsere fuunen.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Näianmäldengs-Logbouk',
-'newuserlogpagetext' => 'Dit is dät Logbouk fon näi anmäldede Benutsere.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Benutsergruppen-Gjuchte',
@@ -3288,6 +3285,7 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 'revdelete-restricted' => 'Einskränkengen jäilde uk foar Administratore',
 'revdelete-unrestricted' => 'Ienskränkengen foar Administratore wächhoald',
 'newuserlog-byemail' => 'dät Paaswoud wuud uur E-Mail fersoand',
+'rightsnone' => '(-)',
 
 # Search suggestions
 'searchsuggest-search' => 'Säik',

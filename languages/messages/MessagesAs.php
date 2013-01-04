@@ -1492,15 +1492,13 @@ $1",
 'right-sendemail' => 'আন সদস্যলৈ ই-পত্ৰ ঠিকনা পঠিয়াওক',
 'right-passwordreset' => 'পাছৱৰ্ড ৰি-চেটৰ ই-মেইলসমূহ দেখুৱাওক',
 
+# Special:Log/newusers
+'newuserlogpage' => 'সদস্যৰ সৃষ্টি অভিলেখ',
+'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ।',
+
 # User rights log
 'rightslog' => 'সভ্যৰ অধিকাৰৰ লেখ',
 'rightslogtext' => 'সদস্য অধিকাৰৰ পৰিৱৰ্তনসমূহৰ ল’গ',
-'rightslogentry' => "$1-ৰ গোট সদস্যপদ $2-ৰ পৰা $3-লৈ সলনি কৰা হ'ল",
-'rightslogentry-autopromote' => '$2ৰ পৰা $3লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত হ’ল',
-'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
-'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
-'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',
-'rightsnone' => '(নাই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'এই পৃষ্ঠা পঢ়ক',
@@ -2147,10 +2145,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'activeusers-hidebots' => 'বট নেদেখুৱাব',
 'activeusers-hidesysops' => 'প্ৰশাসক নেদেখুৱাব',
 'activeusers-noresult' => "কোনো সদস্য পোৱা নগ'ল।",
-
-# Special:Log/newusers
-'newuserlogpage' => 'সদস্যৰ সৃষ্টি অভিলেখ',
-'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ।',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
@@ -3869,6 +3863,10 @@ $5
 'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰা হ'ল",
 'logentry-newusers-autocreate' => '$1’ৰ একাউণ্ট স্বয়ংক্ৰিয়ভাৱে সৃষ্টি কৰা হৈছিল',
 'newuserlog-byemail' => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
+'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
+'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
+'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',
+'rightsnone' => '(নাই)',
 
 # Feedback
 'feedback-bugornote' => 'যদি আপুনি এটা কাৰিকৰী সমস্যাৰ বিৱৰণ দিবলৈ প্ৰস্তুত, অনুগ্ৰহ কৰি [$1 এটা বাগ ৰিপ\'ৰ্ট কৰক]।

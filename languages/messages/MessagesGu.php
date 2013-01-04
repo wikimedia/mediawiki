@@ -1452,12 +1452,13 @@ HTML નાકું ચકાસો',
 'right-sendemail' => ' અન્ય સભ્યોને ઈ-મેલ મોકલો',
 'right-passwordreset' => 'પાસવર્ડ રીસેટ ઇ-મેઇલ્સ જુઓ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'નવા બનેલા સભ્યોનો લૉગ',
+'newuserlogpagetext' => 'આ સભ્યોની રચનાનો લોગ છે.',
+
 # User rights log
 'rightslog' => 'સભ્ય હક્ક માહિતિ પત્રક',
 'rightslogtext' => 'સભ્યના બદલાયેલ હક્કોની આ સંપાદન યાદિ છે .',
-'rightslogentry' => '$2 થી $3 સુધી $1 માટે બદલાયેલું સમૂહ સભ્યપદ',
-'rightslogentry-autopromote' => 'આપોઆપ $2 માં થી $3 માં બઢતી થઇ',
-'rightsnone' => '(કંઈ નહી)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'આ પાનું વાંચો.',
@@ -2086,10 +2087,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'activeusers-hidebots' => 'બોટને છુપાવો',
 'activeusers-hidesysops' => 'પ્રબંધકો છુપાવો',
 'activeusers-noresult' => 'કોઇ સક્રીય સભ્ય ન મળ્યો',
-
-# Special:Log/newusers
-'newuserlogpage' => 'નવા બનેલા સભ્યોનો લૉગ',
-'newuserlogpagetext' => 'આ સભ્યોની રચનાનો લોગ છે.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'સભ્ય જૂથ ના હક્કો',
@@ -3760,6 +3757,7 @@ $5
 'logentry-newusers-create2' => 'સભ્ય ખાતું $3 $1 વડે બનાવવામાં આવ્યું',
 'logentry-newusers-autocreate' => 'એકાઉન્ટ $1 બનાવનાર આપોઆપ',
 'newuserlog-byemail' => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
+'rightsnone' => '(કંઈ નહી)',
 
 # Feedback
 'feedback-bugornote' => 'જો તમે તકનીકી સમસ્યા વર્ણવવા માંગતા હોય તો  કૃપયા [$1 report a bug] એ બગ અહીં નોંધાવો.

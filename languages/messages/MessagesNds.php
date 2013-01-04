@@ -1341,11 +1341,13 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'right-siteadmin' => 'Datenbank sperren un wedder apen maken',
 'right-override-export-depth' => 'Exporteer Sieden, lenkt Sieden inslaten bet to en Deepd vun 5',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ne’e-Bruker-Logbook',
+'newuserlogpagetext' => 'Dit is dat Logbook för nee opstellte Brukerkonten.',
+
 # User rights log
 'rightslog' => 'Brukerrechten-Logbook',
 'rightslogtext' => 'In dit Logbook staht Ännern an de Brukerrechten.',
-'rightslogentry' => 'Grupp bi $1 vun $2 op $3 ännert.',
-'rightsnone' => '(kene)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'de Sied to lesen',
@@ -1805,10 +1807,6 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'activeusers-hidebots' => 'Bots nich wiesen',
 'activeusers-hidesysops' => 'Administraters nich wiesen',
 'activeusers-noresult' => 'Keen Brukers funnen.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Ne’e-Bruker-Logbook',
-'newuserlogpagetext' => 'Dit is dat Logbook för nee opstellte Brukerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Brukergruppen-Rechten',
@@ -3089,5 +3087,6 @@ Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 'revdelete-restricted' => 'Inschränkungen för Administraters instellt',
 'revdelete-unrestricted' => 'Inschränkungen för Administraters rutnahmen',
 'newuserlog-byemail' => 'Passwoord per E-Mail toschickt',
+'rightsnone' => '(kene)',
 
 );

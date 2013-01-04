@@ -1371,15 +1371,13 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'right-sendemail' => 'Fi e-mail ránṣẹ́ sí àwọn oníṣe míràn',
 'right-passwordreset' => 'Ìwo àwọn e-mail fún ìtúntò ọ̀rọ̀ìpamọ́',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Àkọsílẹ̀ ìdá oníṣe',
+'newuserlogpagetext' => 'Àkọọ́lẹ̀ àwọn ìdá oníṣe nì yí.',
+
 # User rights log
 'rightslog' => 'Àwọn ẹ̀tọ́ oníṣe',
 'rightslogtext' => 'Èyì ni àkọọ́lẹ̀ kan àwọn àtúnṣe sí àwọn ẹ̀tọ́ oníṣe.',
-'rightslogentry' => 'yí ẹgbẹ́ tí $1 wà kúrò láti $2 sí $3',
-'rightslogentry-autopromote' => 'jẹ́ gbígbéga láláraẹni láti $2 sí $3',
-'logentry-rights-rights' => '$1 yí ìjọ́mọ ẹgbẹ́ padà fún $3 láti $4 sí $5',
-'logentry-rights-rights-legacy' => '$1 yí ìjọ́mọ ẹgbẹ́ padà fún $3',
-'logentry-rights-autopromote' => '$1 jẹ́ gbígbéga nífúnraẹni láti $4 sí $5',
-'rightsnone' => '(kòsí)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'wo ojúewé yìí',
@@ -2026,10 +2024,6 @@ Orúkọ ibiàyè pọndandan, fún àpẹrẹ "*.org".<br />
 'activeusers-hidebots' => 'Ìbòmọ́lẹ̀ àwọn bọt',
 'activeusers-hidesysops' => 'Ìbòmọ́lẹ̀ àwọn olùmójútó',
 'activeusers-noresult' => 'Kò rí oníṣe kankan.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Àkọsílẹ̀ ìdá oníṣe',
-'newuserlogpagetext' => 'Àkọọ́lẹ̀ àwọn ìdá oníṣe nì yí.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Àwọn ẹ̀tọ́ ẹgbẹ́ oníṣe',
@@ -3561,6 +3555,10 @@ Ibiìtakùn yìí únkojú ìsòro ìṣìṣẹ́ẹ̀rọ.',
 'logentry-newusers-create2' => 'Àpamọ́ oníṣe $3 jẹ́ dídá látọwọ́ $1',
 'logentry-newusers-autocreate' => 'Àkópamọ́ $1 jẹ́ dídá fúnrarẹ̀',
 'newuserlog-byemail' => 'ọ̀rọ̀ìpamọ́ jẹ́ fífiránṣẹ́ pẹ̀lú e-mail',
+'logentry-rights-rights' => '$1 yí ìjọ́mọ ẹgbẹ́ padà fún $3 láti $4 sí $5',
+'logentry-rights-rights-legacy' => '$1 yí ìjọ́mọ ẹgbẹ́ padà fún $3',
+'logentry-rights-autopromote' => '$1 jẹ́ gbígbéga nífúnraẹni láti $4 sí $5',
+'rightsnone' => '(kòsí)',
 
 # Feedback
 'feedback-bugornote' => 'Tí ẹ bá ti ṣetán láti ṣàlàyé ìsòrò iṣẹ́ẹ̀rọ́ lẹ́ẹ̀kúnrẹ́rẹ́ ẹ jọ̀wọ́ [$1 ẹ sọ irú ìsòro náà]

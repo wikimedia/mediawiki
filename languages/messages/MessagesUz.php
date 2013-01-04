@@ -835,9 +835,12 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'right-read' => "Sahifalarni o'qish",
 'right-edit' => 'Sahifalarni tahrirlash',
 
+# Special:Log/newusers
+'newuserlogpage' => "Ishtirokchilarni ro'yxatga olish qaydlari",
+'newuserlogpagetext' => 'Yaqinda roʻyxatdan oʻtgan foydalanuvchilar roʻyxati',
+
 # User rights log
 'rightslog' => "Ishtirokchi huquqlari bo'yicha qaydlar",
-'rightslogentry' => "ishtirokchi $1ning guruhlardagi a'zoligini $2dan $3ga o'zgartirdi",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ushbu sahifani tahrirlash',
@@ -1047,10 +1050,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-hidebots' => 'Botlarni yashirish',
 'activeusers-hidesysops' => 'Maʼmurlarni yashirish',
 'activeusers-noresult' => 'Foydalanuvchilar topilmadi.',
-
-# Special:Log/newusers
-'newuserlogpage' => "Ishtirokchilarni ro'yxatga olish qaydlari",
-'newuserlogpagetext' => 'Yaqinda roʻyxatdan oʻtgan foydalanuvchilar roʻyxati',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Foydalanuvchilar guruhi huquqlari',
@@ -1476,6 +1475,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'pageinfo-watchers' => 'Sahifa kuzatuvchilari soni',
 'pageinfo-edits' => 'Jami tahrirlar soni',
 'pageinfo-toolboxlink' => 'Sahifa haqida maʼlumot',
+'pageinfo-redirectsto' => 'Qayta yoʻnaltirish',
 
 # Skin names
 'skinname-standard' => 'Klassik',

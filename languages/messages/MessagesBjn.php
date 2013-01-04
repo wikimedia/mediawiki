@@ -1401,12 +1401,13 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-sendemail' => 'Mangirim suril ka papamuruk lain',
 'right-passwordreset' => 'Tiringi setelan-pulang katasunduk suril',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log pamakai hanyar',
+'newuserlogpagetext' => 'Ngini adalah sabuah log paulahan pamuruk.',
+
 # User rights log
 'rightslog' => 'Log parubahan hak masuk',
 'rightslogtext' => 'Nangini adalah sabuah log paparubahan ka hahak pamuruk.',
-'rightslogentry' => 'Ubah galambang angguta gasan $1 matan $2 ka $3',
-'rightslogentry-autopromote' => 'sudah utumatis diangkat matan $2 ka $3',
-'rightsnone' => '(kadada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'baca tungkaran ini',
@@ -2030,10 +2031,6 @@ Protokol nang didukung: <code>$1</code> (jangan tambahakan dalam panggagaian Pia
 'activeusers-hidebots' => 'Sungkupakan bot',
 'activeusers-hidesysops' => 'Sungkupakan pambakal',
 'activeusers-noresult' => 'Kadada papamuruk tatamu.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log pamakai hanyar',
-'newuserlogpagetext' => 'Ngini adalah sabuah log paulahan pamuruk.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Galambang hak pamuruk',
@@ -3661,6 +3658,7 @@ Situs ngini mangalami kangalihan teknik.',
 'logentry-newusers-create2' => '$1 ma-ulah sabuting akun pamakai $3',
 'logentry-newusers-autocreate' => 'Akun $1 utumatis diulah',
 'newuserlog-byemail' => 'Katasunduk dikirimakan lung suril.',
+'rightsnone' => '(kadada)',
 
 # Feedback
 'feedback-bugornote' => 'Pabila Pian siap manjalasakan sabuah masalah taknik rinci muhun [lapurakan sabuah bug $1].

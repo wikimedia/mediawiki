@@ -1639,15 +1639,13 @@ Ceta enformacion serat publica.',
 'right-sendemail' => 'Mandar un mèssâjo ux ôtros usanciérs',
 'right-passwordreset' => 'Vêre los mèssâjos de remisa a zérô des contresegnos',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Jornal de les crèacions de comptos usanciér',
+'newuserlogpagetext' => 'O est un jornal de les crèacions de comptos usanciér.',
+
 # User rights log
 'rightslog' => 'Jornal des changements de statut d’usanciér',
 'rightslogtext' => 'Vê-que lo jornal des changements de statut d’usanciér.',
-'rightslogentry' => 'at changiê los drêts de l’utilisator « $1 » de $2 a $3',
-'rightslogentry-autopromote' => 'est étâ nomâ ôtomaticament de $2 a $3',
-'logentry-rights-rights' => '$1 at changiê l’apartegnence a la tropa por « $3 » de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 at changiê l’apartegnence a la tropa por « $3 »',
-'logentry-rights-autopromote' => '$1 est étâ nomâ ôtomaticament de $4 a $5',
-'rightsnone' => '(nion)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'liére cela pâge',
@@ -2303,10 +2301,6 @@ Protocolos recognus : <code>$1</code> (apondéd gins de cetos dedens voutra rech
 'activeusers-hidebots' => 'Cachiér los bots',
 'activeusers-hidesysops' => 'Cachiér los administrators',
 'activeusers-noresult' => 'Gins d’usanciér trovâ.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Jornal de les crèacions de comptos usanciér',
-'newuserlogpagetext' => 'O est un jornal de les crèacions de comptos usanciér.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Drêts a les tropes d’usanciérs',
@@ -4130,6 +4124,10 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-newusers-create2' => 'Lo compto utilisator $3 est étâ fêt per $1',
 'logentry-newusers-autocreate' => 'Lo compto $1 at étâ fêt ôtomaticament',
 'newuserlog-byemail' => 'contresegno mandâ per mèssageria èlèctronica',
+'logentry-rights-rights' => '$1 at changiê l’apartegnence a la tropa por « $3 » de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 at changiê l’apartegnence a la tropa por « $3 »',
+'logentry-rights-autopromote' => '$1 est étâ nomâ ôtomaticament de $4 a $5',
+'rightsnone' => '(nion)',
 
 # Feedback
 'feedback-bugornote' => 'Se vos éte prèst a dècrire un problèmo tècnico en dètaly, volyéd [$1 signalar una cofierie].

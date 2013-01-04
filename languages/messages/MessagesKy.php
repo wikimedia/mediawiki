@@ -872,8 +872,8 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'right-suppressionlog' => 'Жеке журналдарды көрүү',
 'right-userrights' => 'Бүт катышуучулардын укуктарын оңдоо',
 
-# User rights log
-'rightsnone' => '(жок)',
+# Special:Log/newusers
+'newuserlogpage' => 'Катышуучулардын каттоо журналы',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'бул баракты окуу',
@@ -1104,9 +1104,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'activeusers-hidebots' => 'Ботторду жашыруу',
 'activeusers-hidesysops' => 'Администраторлорду жашыруу',
 'activeusers-noresult' => 'Катышуучулар табылган жок.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Катышуучулардын каттоо журналы',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Топ',
@@ -1752,6 +1749,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'logentry-newusers-create2' => '$1 эсеп жазуусун жаратты',
 'logentry-newusers-autocreate' => 'Автоматтуу түрдө $1 эсеп жазуусу жаратылды',
 'newuserlog-byemail' => 'сырсөз эл. почта аркылуу жөнөтүлдү',
+'rightsnone' => '(жок)',
 
 # Feedback
 'feedback-subject' => 'Тема:',

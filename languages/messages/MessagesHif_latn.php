@@ -1338,15 +1338,13 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-sendemail' => 'Duusra sadasya ke lage e-mail bhejo',
 'right-passwordreset' => 'Password ke badle waala e-mail ke dekho',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Sadasya ke banae waala log',
+'newuserlogpagetext' => 'Ii sadasya ke banae waala log hai.',
+
 # User rights log
 'rightslog' => 'Sadasya adhikar suchi',
 'rightslogtext' => 'Ii sadasya ke adhikar ke badlao ke suchi hai.',
-'rightslogentry' => '$1 ke group ke membership ke $2 se $3 badal dia hai',
-'rightslogentry-autopromote' => 'ke apne se $2 se $3 ke promotion dewa gais',
-'logentry-rights-rights' => '$1 $3 ke group ke membership ke $4 se badal ke $5 kar dia hae',
-'logentry-rights-rights-legacy' => '$1 $3 ke group membership ke badal dia hae',
-'logentry-rights-autopromote' => '$1 ke apne se $2 se $3 ke promotion dewa gais',
-'rightsnone' => '(koi nai hai)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ii panna ke parrho',
@@ -1987,10 +1985,6 @@ Support karaa gais protocol: <code>$1</code> (defaults to http:// if no protocol
 'activeusers-hidebots' => 'Bots ke lukao',
 'activeusers-hidesysops' => 'Administrator log ke lukao',
 'activeusers-noresult' => 'koi sadasya ke pawa nai gais hai.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Sadasya ke banae waala log',
-'newuserlogpagetext' => 'Ii sadasya ke banae waala log hai.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Sadasya  ke group adhikar',
@@ -3244,6 +3238,10 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'revdelete-restricted' => 'sysops pe llabu restrictions',
 'revdelete-unrestricted' => 'sysops se hatawa gae rukawat',
 'newuserlog-byemail' => 'password ke e-mail se bheja gais hai',
+'logentry-rights-rights' => '$1 $3 ke group ke membership ke $4 se badal ke $5 kar dia hae',
+'logentry-rights-rights-legacy' => '$1 $3 ke group membership ke badal dia hae',
+'logentry-rights-autopromote' => '$1 ke apne se $2 se $3 ke promotion dewa gais',
+'rightsnone' => '(koi nai hai)',
 
 # Search suggestions
 'searchsuggest-search' => 'Khojo',

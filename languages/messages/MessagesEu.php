@@ -1336,11 +1336,13 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail' => 'Beste erabiltzaileei e-posta bidali',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Erabiltzaile erregistroa',
+'newuserlogpagetext' => 'Hau azken erabiltzaileen sorreren erregistroa da.',
+
 # User rights log
 'rightslog' => 'Erabiltzaile eskubideen erregistroa',
 'rightslogtext' => 'Erabiltzaile eskubideetan izandako aldaketen erregistroa da hau.',
-'rightslogentry' => '$1(r)en partaidetza aldatu da $2(e)tik $3(e)ra',
-'rightsnone' => '(bat ere ez)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'orrialde hau irakurri',
@@ -1866,10 +1868,6 @@ Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// h
 'activeusers-hidebots' => 'Ezkutatu bot-ak',
 'activeusers-hidesysops' => 'Ezkutatu administratzaileak',
 'activeusers-noresult' => 'Ez da lankiderik aurkitu.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Erabiltzaile erregistroa',
-'newuserlogpagetext' => 'Hau azken erabiltzaileen sorreren erregistroa da.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Erabiltzaile talde eskumenak',
@@ -3334,6 +3332,7 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'logentry-newusers-create' => '$1 wikilariak erabiltzaile kontu bat sortu du',
 'logentry-newusers-create2' => '$1 wikilariak $3 erabiltzaile kontu bat sortu du',
 'newuserlog-byemail' => 'pasahitza e-postaz bidali da',
+'rightsnone' => '(bat ere ez)',
 
 # Feedback
 'feedback-subject' => 'Gaia:',

@@ -1445,15 +1445,13 @@ teisės",
 'right-sendemail' => 'Siųsti el. laišką kitiems naudotojams',
 'right-passwordreset' => 'Peržiūrėti slaptažodžio pakeitimo e-mail laiškus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Prisiregistravę naudotojai',
+'newuserlogpagetext' => 'Tai naudotojų kūrimo sąrašas.',
+
 # User rights log
 'rightslog' => 'Naudotojų teisių pakeitimai',
 'rightslogtext' => 'Pateikiamas naudotojų teisių pakeitimų sąrašas.',
-'rightslogentry' => 'pakeista $1 grupės narystė iš $2 į $3',
-'rightslogentry-autopromote' => 'buvo automatiškai paaukštintas iš $2 į $3',
-'logentry-rights-rights' => '$1 pakeista narystė grupėje $3 iš $4 į $5',
-'logentry-rights-rights-legacy' => '$1 pakeista narystė grupėje $3',
-'logentry-rights-autopromote' => '$1 buvo automatiškai pervestas iš $4 į $5',
-'rightsnone' => '(jokių)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'skaityti šį puslapį',
@@ -2064,10 +2062,6 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'activeusers-hidebots' => 'Slėpti robotus',
 'activeusers-hidesysops' => 'Slėpti administratorius',
 'activeusers-noresult' => 'Nerasta jokių naudotojų.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Prisiregistravę naudotojai',
-'newuserlogpagetext' => 'Tai naudotojų kūrimo sąrašas.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Naudotojų grupių teisės',
@@ -3770,6 +3764,10 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'logentry-newusers-create2' => '$1 sukūrė naudotojo paskyrą $3',
 'logentry-newusers-autocreate' => 'Paskyra $1 buvo sukurta automatiškai',
 'newuserlog-byemail' => 'slaptažodis nusiųstas elektroniniu paštu',
+'logentry-rights-rights' => '$1 pakeista narystė grupėje $3 iš $4 į $5',
+'logentry-rights-rights-legacy' => '$1 pakeista narystė grupėje $3',
+'logentry-rights-autopromote' => '$1 buvo automatiškai pervestas iš $4 į $5',
+'rightsnone' => '(jokių)',
 
 # Feedback
 'feedback-bugornote' => 'Jei jūs esate pasirengę aprašyti techninę problemą išsamiau, [$1 praneškite apie programinę klaidą].

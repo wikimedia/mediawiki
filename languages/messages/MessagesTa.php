@@ -1340,12 +1340,13 @@ $1",
 'right-sendemail' => 'மற்ற பயனர்களுக்கு மின்னஞ்சல் அனுப்பு',
 'right-passwordreset' => 'கடவுச்சொல் மீட்டமை மின்னஞ்சல்களை காண்.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'பயனர் உருவாக்கம் பற்றிய குறிப்பு',
+'newuserlogpagetext' => 'இது பயனர் படைப்புகளின் பதிவு ஆகும்.',
+
 # User rights log
 'rightslog' => 'பயனர் உரிமைகள் பதிகை',
 'rightslogtext' => 'இது பயனர் உரிமைகள் தொடர்பான மாற்றங்களின் பதிகையாகும்.',
-'rightslogentry' => '$1 பயனருக்கான குழு உறுப்பியம் $2 குழுவிலிருந்து $3 குழுவிற்கு மாற்றப்பட்டது',
-'rightslogentry-autopromote' => '  $2  லிருந்து $3 க்கு தானாக உயர்ந்தது.',
-'rightsnone' => '(எதுவுமில்லை)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'இப் பக்கத்தை வாசிக்கவும்',
@@ -1939,10 +1940,6 @@ $1',
 'activeusers-hidebots' => 'தானியங்கிகளை மறை',
 'activeusers-hidesysops' => 'நிர்வாகிகளை மறை',
 'activeusers-noresult' => 'எந்தவொரு பயனர்களும் காணப்படவில்லை.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'பயனர் உருவாக்கம் பற்றிய குறிப்பு',
-'newuserlogpagetext' => 'இது பயனர் படைப்புகளின் பதிவு ஆகும்.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'பயனர் குழு உரிமைகள்',
@@ -3559,6 +3556,7 @@ $5
 'logentry-newusers-create2' => '$3 பயனர் கணக்கினை $1 உருவாக்கினார்',
 'logentry-newusers-autocreate' => 'கணக்கு  $1   தானாக    உருவாக்கப்பட்டது',
 'newuserlog-byemail' => 'மின்னஞ்சல் மூலம் கடவுச்சொல் அனுப்பப்பட்டுவிட்டது',
+'rightsnone' => '(எதுவுமில்லை)',
 
 # Feedback
 'feedback-bugornote' => 'நீங்கள் ஒரு தொழில்நுட்பக் கோளாறு குறித்து விரிவாக விளக்க தாயாராக இருந்தால் தயவுசெய்து [ $1  ஒரு bug பற்றி கூறு].

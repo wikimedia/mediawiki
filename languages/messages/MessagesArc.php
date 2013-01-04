@@ -827,9 +827,12 @@ $1',
 'right-mergehistory' => 'ܚܒܘܛ ܬܫܥܝܬܐ ܕܦܐܬܬ̈ܐ',
 'right-userrights' => 'ܫܚܠܦ ܟܠ ܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ܣܓܠܐ ܕܒܪܝܬܐ ܕܡܦܠܚܢܐ',
+'newuserlogpagetext' => 'ܗܢܘ ܣܓܠܐ ܕܒܪܝܐ ܕܡܦܠܚܢ̈ܐ',
+
 # User rights log
 'rightslog' => 'ܣܓܠܐ ܕܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
-'rightsnone' => '(ܠܐ ܡܕܡ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ܩܪܝ ܦܐܬܐ ܗܕܐ',
@@ -1158,10 +1161,6 @@ $1',
 'activeusers-hidebots' => 'ܛܫܝ ܒܘܬ̈ܐ (bots)',
 'activeusers-hidesysops' => 'ܛܫܝ ܡܕܒܪ̈ܢܐ',
 'activeusers-noresult' => 'ܠܐ ܐܫܬܟܚ ܡܦܠܚܢ̈ܐ ܐܢܫ̈ܝܢ.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ܣܓܠܐ ܕܒܪܝܬܐ ܕܡܦܠܚܢܐ',
-'newuserlogpagetext' => 'ܗܢܘ ܣܓܠܐ ܕܒܪܝܐ ܕܡܦܠܚܢ̈ܐ',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ܙܕ̈ܩܐ ܕܟܢܘܫܬܐ ܕܡܦܠܚܢ̈ܐ',
@@ -1783,6 +1782,7 @@ $1',
 'logentry-newusers-create2' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3 ܐܬܒܪܐ ܒܝܕ $1',
 'logentry-newusers-autocreate' => 'ܚܘܫܒܢܐ $1 ܐܬܒܪܝ ܝܬܐܝܬ',
 'newuserlog-byemail' => 'ܡܠܬܐ ܕܥܠܠܐ ܐܫܬܕܪܬ ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
+'rightsnone' => '(ܠܐ ܡܕܡ)',
 
 # Feedback
 'feedback-subject' => 'ܡܠܘܐܐ:',

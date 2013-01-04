@@ -1670,15 +1670,13 @@ $1",
 'right-sendemail' => 'Испраќање на е-пошта до други корисници',
 'right-passwordreset' => 'Преглед на пораки по е-пошта за промена на лозинка',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Дневник на регистрирања на корисници',
+'newuserlogpagetext' => 'Ова е дневник на регистрирани корисници.',
+
 # User rights log
 'rightslog' => 'Дневник на менувања на кориснички права',
 'rightslogtext' => 'Ова е дневник на промени на кориснички права.',
-'rightslogentry' => 'Променето членство во група за $1 од $2 во $3',
-'rightslogentry-autopromote' => 'е автоматски унапреден од $2 во $3',
-'logentry-rights-rights' => '$1 го смени групното членство за $3 од $4 во $5',
-'logentry-rights-rights-legacy' => '$1 го смени групното членство за $3',
-'logentry-rights-autopromote' => '$1 е автоматски унапреден од $4 во $5',
-'rightsnone' => '(нема)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'читање на оваа страница',
@@ -2338,10 +2336,6 @@ $1',
 'activeusers-hidebots' => 'Скриј ботови',
 'activeusers-hidesysops' => 'Скриј администратори',
 'activeusers-noresult' => 'Нема пронајдено корисници.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Дневник на регистрирања на корисници',
-'newuserlogpagetext' => 'Ова е дневник на регистрирани корисници.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Права на кориснички групи',
@@ -4257,6 +4251,10 @@ $5
 'logentry-newusers-create2' => 'Направена е корисничката сметка $3; создавач: $1',
 'logentry-newusers-autocreate' => 'Сметката $1 е создадена автоматски',
 'newuserlog-byemail' => 'испратена лозинка по е-пошта',
+'logentry-rights-rights' => '$1 го смени групното членство за $3 од $4 во $5',
+'logentry-rights-rights-legacy' => '$1 го смени групното членство за $3',
+'logentry-rights-autopromote' => '$1 е автоматски унапреден од $4 во $5',
+'rightsnone' => '(нема)',
 
 # Feedback
 'feedback-bugornote' => 'Ако сте спремни подробно да го опишете техничкиот проблем, тогаш [$1 пријавете грешка]. 

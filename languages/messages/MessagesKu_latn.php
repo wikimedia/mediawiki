@@ -1001,11 +1001,12 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'right-userrights' => 'Hemû mafên bikarhêner biguherîne',
 'right-sendemail' => 'Ji bikarhênerên di re e-name bişîne',
 
+# Special:Log/newusers
+'newuserlogpage' => 'çêkirina hesabê nû',
+
 # User rights log
 'rightslog' => 'guhertina mafê bikarhêneriyê',
 'rightslogtext' => 'Ev guhertineke ji bo mafên bikarhêneriyê ye.',
-'rightslogentry' => 'grûpa bikarhêneran ji bo $1 ji $2 guherande $3',
-'rightsnone' => '(tune)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'vê rûpelê bixwîne',
@@ -1352,9 +1353,6 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'activeusers-hidebots' => "Bot'an veşêre",
 'activeusers-hidesysops' => 'Rêveberan veşêre',
 'activeusers-noresult' => 'Tu bikarhêner nehate dîtin.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'çêkirina hesabê nû',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Mafên koma bikarhêner',
@@ -2142,6 +2140,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'logentry-newusers-newusers' => '$1 hesabekî bikarhêneriyê çêkir',
 'logentry-newusers-create' => '$1 hesabekî bikarhêneriyê çêkir',
 'newuserlog-byemail' => 'şîfre bi e-nameyê hate şandin',
+'rightsnone' => '(tune)',
 
 # Feedback
 'feedback-subject' => 'Mijar:',

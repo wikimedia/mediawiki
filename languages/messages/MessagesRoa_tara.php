@@ -1365,15 +1365,13 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'right-sendemail' => "Manne 'a mail a otre utinde",
 'right-passwordreset' => "Vide l'e-mail de azzeramende d'a passuord",
 
+# Special:Log/newusers
+'newuserlogpage' => 'Archivije de ccreazione de le utinde',
+'newuserlogpagetext' => "Quiste ète l'archivije de le creazziune de l'utinde.",
+
 # User rights log
 'rightslog' => "Archivie de le diritte de l'utende",
 'rightslogtext' => "Quiste jè 'n'archivije pe le cangiaminde de le deritte de l'utinde.",
-'rightslogentry' => "membre d'u gruppe cangete pe $1 da $2 a $3",
-'rightslogentry-autopromote' => 'ha state promosse automaticamende da $2 a $3',
-'logentry-rights-rights' => "$1 membre d'u gruppe cangiate pe $3 da $4 a $5",
-'logentry-rights-rights-legacy' => "$1 ave cangiate 'u membre d'u gruppe pe $3",
-'logentry-rights-autopromote' => '$1 ha state promosse automaticamende da $4 a $5',
-'rightsnone' => '(ninde)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ligge sta pàgene',
@@ -2036,10 +2034,6 @@ Onne abbesogne almene de \'nu dominie de levèlle ierte, pe esembie "*.org". <br
 'activeusers-hidebots' => 'Scunne le bot',
 'activeusers-hidesysops' => 'Scunne le amministrature',
 'activeusers-noresult' => 'Nisciune utende acchiate.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Archivije de ccreazione de le utinde',
-'newuserlogpagetext' => "Quiste ète l'archivije de le creazziune de l'utinde.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Deritte de le gruppe utinde',
@@ -3054,6 +3048,8 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minute}}',
 'hours' => '{{PLURAL: $1|$1ore|$1 ore}}',
 'days' => '{{PLURAL: $1|$1 sciurne|$1 sciurne}}',
+'months' => '{{PLURAL:$1|$1 mese|$1 mise}}',
+'years' => '{{PLURAL:$1|$1 anne}}',
 'ago' => '$1 fà',
 'just-now' => 'mò mò',
 
@@ -4003,6 +3999,10 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-newusers-create2' => "$1 {{GENDER:$2|ccrejate}} {{GENDER:$4|'nu cunde utende}} $3",
 'logentry-newusers-autocreate' => "'U cunde utende $1 ha state ccrejate automaticamende",
 'newuserlog-byemail' => 'password mannete pe e-mail',
+'logentry-rights-rights' => "$1 membre d'u gruppe cangiate pe $3 da $4 a $5",
+'logentry-rights-rights-legacy' => "$1 ave cangiate 'u membre d'u gruppe pe $3",
+'logentry-rights-autopromote' => '$1 ha state promosse automaticamende da $4 a $5',
+'rightsnone' => '(ninde)',
 
 # Feedback
 'feedback-bugornote' => "Ce tu si pronde a descrivere 'nu probbleme tecniche cu le dettaglie pe piacere [\$1 manne 'nu bug].

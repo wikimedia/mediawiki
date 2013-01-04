@@ -1433,15 +1433,13 @@ $1",
 'right-sendemail' => 'Башҡа ҡатнашыусыларға электрон почта аша хат ебәреү',
 'right-passwordreset' => 'Паролде яңыртыу хәбәрҙәрен ҡарау',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Яңы ҡулланыусы яҙмалары',
+'newuserlogpagetext' => 'Яңы теркәлгән ҡатнашыусылар яҙмалары журналы.',
+
 # User rights log
 'rightslog' => 'Ҡулланыусының хоҡуҡтары көндәлеге',
 'rightslogtext' => 'Был — ҡулланыусы хоҡуҡтары үҙгәрештәре яҙмалары журналы',
-'rightslogentry' => '$1 хоҡуҡтары $2 икән, $3 итеп үҙгертелде',
-'rightslogentry-autopromote' => '$2 автоматик рәүештә $3 ителде.',
-'logentry-rights-rights' => '$1 $3 ҡулланыусыһының төркөмдәрҙәге ағзалығын $4 икән, $5 тип үҙгәртте',
-'logentry-rights-rights-legacy' => '$1 $3 ҡулланыусыһының төркөм ағзалығын үҙгәртте',
-'logentry-rights-autopromote' => '$1 автоматик рәүештә $2 икән, $3 ителде.',
-'rightsnone' => '(юҡ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Был битте уҡыу',
@@ -2083,10 +2081,6 @@ $1',
 'activeusers-hidebots' => 'Боттарҙы йәшерергә',
 'activeusers-hidesysops' => 'Хәкимдәрҙе йәшерергә',
 'activeusers-noresult' => 'Ҡатнашыусылар табылманы',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Яңы ҡулланыусы яҙмалары',
-'newuserlogpagetext' => 'Яңы теркәлгән ҡатнашыусылар яҙмалары журналы.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Ҡатнашыусылар төркөмө хоҡуҡтары',
@@ -3801,6 +3795,10 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'logentry-newusers-create2' => '$3 ҡатнашыусыһының иҫәп яҙмаһы $1 тарафынан булдырылды',
 'logentry-newusers-autocreate' => 'Автоматик рәүештә $1 иҫәп яҙыуы яһалды',
 'newuserlog-byemail' => 'пароль электрон почта адресы аша ебәрелде',
+'logentry-rights-rights' => '$1 $3 ҡулланыусыһының төркөмдәрҙәге ағзалығын $4 икән, $5 тип үҙгәртте',
+'logentry-rights-rights-legacy' => '$1 $3 ҡулланыусыһының төркөм ағзалығын үҙгәртте',
+'logentry-rights-autopromote' => '$1 автоматик рәүештә $2 икән, $3 ителде.',
+'rightsnone' => '(юҡ)',
 
 # Feedback
 'feedback-bugornote' => 'Әгәр Һеҙ техник проблеманы ентекле рәүештә аңлатырға теләһәгеҙ, зинһар, [$1 хата тураһында белдерегеҙ].

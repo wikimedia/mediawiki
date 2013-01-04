@@ -1382,15 +1382,13 @@ Esta información sedrá pública.",
 'right-sendemail' => 'Unviar corréu a otros usuarios',
 'right-passwordreset' => 'Ver los correos de reestablecimientu de conseña',
 
+# Special:Log/newusers
+'newuserlogpage' => "Rexistru de creación d'usuarios",
+'newuserlogpagetext' => "Esti ye un rexistru de creación d'usuarios.",
+
 # User rights log
 'rightslog' => "Rexistru de perfil d'usuariu",
 'rightslogtext' => "Esti ye un rexistru de los cambeos de los perfiles d'usuariu.",
-'rightslogentry' => 'camudó la pertenencia de grupu del usuariu $1 dende $2 a $3',
-'rightslogentry-autopromote' => 'promocionó automáticamente de $2 a $3',
-'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
-'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
-'logentry-rights-autopromote' => '$1 promocionó automáticamente de $4 a $5',
-'rightsnone' => '(nengún)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lleer esta páxina',
@@ -2044,10 +2042,6 @@ Protocolos almitíos: <code>$1</code> (el predetermináu ye http:// si nun se co
 'activeusers-hidebots' => 'Anubrir bots',
 'activeusers-hidesysops' => 'Anubrir alministradores',
 'activeusers-noresult' => "Nun s'alcontraron usuarios.",
-
-# Special:Log/newusers
-'newuserlogpage' => "Rexistru de creación d'usuarios",
-'newuserlogpagetext' => "Esti ye un rexistru de creación d'usuarios.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Drechos de los grupos d'usuariu",
@@ -3793,6 +3787,10 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-newusers-create2' => "$1 creó la cuenta d'usuariu $3",
 'logentry-newusers-autocreate' => 'La cuenta $1 se creó automáticamente',
 'newuserlog-byemail' => 'conseña unviada per corréu electrónicu',
+'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
+'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
+'logentry-rights-autopromote' => '$1 promocionó automáticamente de $4 a $5',
+'rightsnone' => '(nengún)',
 
 # Feedback
 'feedback-bugornote' => 'Si tas preparáu pa describir un problema técnicu en detalle, [$1 informa del fallu].

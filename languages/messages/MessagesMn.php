@@ -1335,15 +1335,13 @@ $1 тэмдэгтээс богино байх ёстой.',
 'right-sendemail' => 'Бусад хэрэглэгчид руу и-мэйл явуулах',
 'right-passwordreset' => 'Цахим шуудангийн нууц үгийг сэргээн харах',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Хэрэглэгч үүсгэлтийн лог',
+'newuserlogpagetext' => 'Энэ нь хэрэглэгч үүсгэлтийн лог юм.',
+
 # User rights log
 'rightslog' => 'Хэрэглэгчдийн эрхийн лог',
 'rightslogtext' => 'Энэ бол хэрэглэгчдийн эрхэд учруулсан өөрчлөлтүүдийн лог юм.',
-'rightslogentry' => '$1-н бүлгийн гишүүнчлэлийг $2-с $3 болгож өөрчиллөө',
-'rightslogentry-autopromote' => '$2 -оос $3 -руу автоматаар шилжив',
-'logentry-rights-rights' => '$1 $3 дахь грүпийн гишүүнчлэлээ $4 ээс $5 руу шилжүүллээ',
-'logentry-rights-rights-legacy' => '$1 $3 дэхь грүпийн гишүүнчлэлээ сольсон',
-'logentry-rights-autopromote' => '$1 $4 аас $5 руу автоматаар дэвшигдлээ',
-'rightsnone' => '（байхгүй）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'энэ хуудсыг унших',
@@ -1971,10 +1969,6 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'activeusers-hidebots' => 'Ботуудыг нуух',
 'activeusers-hidesysops' => 'Администраторуудыг нуух',
 'activeusers-noresult' => 'Хэрэглэгч олдсонгүй.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Хэрэглэгч үүсгэлтийн лог',
-'newuserlogpagetext' => 'Энэ нь хэрэглэгч үүсгэлтийн лог юм.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Хэрэглэгчийн бүлгийн эрхүүд',
@@ -3489,6 +3483,10 @@ $5
 'revdelete-restricted' => 'системийн операторуудад тавигдсан хязгаарлалтууд',
 'revdelete-unrestricted' => 'системийн операторуудаас авч хаясан хязгаарлалтууд',
 'newuserlog-byemail' => 'мэйлээр явуулсан нууц үг',
+'logentry-rights-rights' => '$1 $3 дахь грүпийн гишүүнчлэлээ $4 ээс $5 руу шилжүүллээ',
+'logentry-rights-rights-legacy' => '$1 $3 дэхь грүпийн гишүүнчлэлээ сольсон',
+'logentry-rights-autopromote' => '$1 $4 аас $5 руу автоматаар дэвшигдлээ',
+'rightsnone' => '（байхгүй）',
 
 # Feedback
 'feedback-cancel' => 'Болих',

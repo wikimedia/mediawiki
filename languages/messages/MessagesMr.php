@@ -1524,12 +1524,13 @@ $1",
 'right-sendemail' => 'इतर सदस्यांना विपत्रे पाठवा',
 'right-passwordreset' => 'परवलीचा शब्द (पासवर्ड) पुन:स्थापित केल्याची इ मेल पहा.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'नवीन सदस्यांची नोंद',
+'newuserlogpagetext' => 'ही नवीन सदस्यांची नोंद यादी आहे.',
+
 # User rights log
 'rightslog' => 'सदस्य आधिकार नोंद',
 'rightslogtext' => 'ही सदस्य अधिकारांमध्ये झालेल्या बदलांची यादी आहे.',
-'rightslogentry' => '$1 चे ग्रुप सदस्यत्व $2 पासून $3 ला बदलण्यात आलेले आहे',
-'rightslogentry-autopromote' => '$2 ते $3 आपोआप नियुक्ती झाली.',
-'rightsnone' => '(काहीही नाही)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'हे पान वाचा',
@@ -2129,10 +2130,6 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'activeusers-hidebots' => 'सांगकामे लपवा',
 'activeusers-hidesysops' => 'प्रचालक लपवा',
 'activeusers-noresult' => 'एकही सदस्य सापडला नाही.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'नवीन सदस्यांची नोंद',
-'newuserlogpagetext' => 'ही नवीन सदस्यांची नोंद यादी आहे.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'सदस्य गट अधिकार',
@@ -3756,6 +3753,7 @@ $5
 'logentry-newusers-create2' => '$1  ने  सदस्य खाते $3  निर्मित केले  आहे.',
 'logentry-newusers-autocreate' => '$1  खाते स्वयमेव निर्मित झाले आहे.',
 'newuserlog-byemail' => 'परवलीचा शब्द ई-मेल मार्फत पाठविलेला आहे',
+'rightsnone' => '(काहीही नाही)',
 
 # Feedback
 'feedback-bugornote' => 'जर आपण तांत्रिक प्रश्न  विस्तृतपणे मांडण्यास तयार असाल तर कृपया ($1 गणकदोष वृतांत) पाठवा. नपेक्षा, खाली देण्यात आलेले सोपे आवेदनपत्र वापरा. आपली टिप्पणी "[ $3, $2]" या पानास आपले सदस्यनाव व आपण कोणता ब्राउजर वापरता यासह जोडण्यात येईल.',

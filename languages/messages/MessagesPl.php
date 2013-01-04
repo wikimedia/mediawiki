@@ -1600,15 +1600,13 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-sendemail' => 'Wysyłanie e‐maili do innych użytkowników',
 'right-passwordreset' => 'Sprawdzanie treści e‐maila o resetowaniu hasła',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nowi użytkownicy',
+'newuserlogpagetext' => 'To jest rejestr ostatnio utworzonych kont użytkowników',
+
 # User rights log
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
-'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
-'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',
-'rightsnone' => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'przeglądania tej strony',
@@ -2260,10 +2258,6 @@ Obsługiwane protokoły: <code>$1</code> (jeśli nie podano, domyślny to http:/
 'activeusers-hidebots' => 'Ukryj boty',
 'activeusers-hidesysops' => 'Ukryj administratorów',
 'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nowi użytkownicy',
-'newuserlogpagetext' => 'To jest rejestr ostatnio utworzonych kont użytkowników',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawnienia grup użytkowników',
@@ -4054,6 +4048,10 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
 'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
 'newuserlog-byemail' => 'hasło zostało wysłane e‐mailem',
+'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
+'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',
+'rightsnone' => 'brak',
 
 # Feedback
 'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny proszę [$1 zgłoś błąd].

@@ -1382,12 +1382,13 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'right-sendemail' => 'Anfon e-bost at ddefnyddwyr eraill',
 'right-passwordreset' => "Gweld e-byst sy'n ailosod cyfrinair",
 
+# Special:Log/newusers
+'newuserlogpage' => 'Lòg creu cyfrifon defnyddwyr newydd',
+'newuserlogpagetext' => "Dyma restr o'r defnyddwyr newydd sydd wedi ymuno â'r wici.",
+
 # User rights log
 'rightslog' => 'Lòg galluoedd defnyddiwr',
 'rightslogtext' => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
-'rightslogentry' => "wedi gosod $1 yn aelod o'r grŵp $3 (grŵp cynt $2)",
-'rightslogentry-autopromote' => "wedi ei ddyrchafu'n awtomatig o $2 i $3",
-'rightsnone' => '(dim)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'darllen y dudalen',
@@ -2021,10 +2022,6 @@ Protocoliau sy\'n cael eu cynnal: <code>$1</code> (yn neidio i http:// os na rod
 'activeusers-hidebots' => 'Cuddio botiau',
 'activeusers-hidesysops' => 'Cuddio gweinyddwyr',
 'activeusers-noresult' => "Dim defnyddwyr i'w cael.",
-
-# Special:Log/newusers
-'newuserlogpage' => 'Lòg creu cyfrifon defnyddwyr newydd',
-'newuserlogpagetext' => "Dyma restr o'r defnyddwyr newydd sydd wedi ymuno â'r wici.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Galluoedd grwpiau defnyddwyr',
@@ -3683,6 +3680,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-newusers-create2' => 'Dechreuwyd y cyfrif defnyddiwr $3 gan $1',
 'logentry-newusers-autocreate' => 'Crëwyd y cyfrif $1 yn awtomatig',
 'newuserlog-byemail' => 'anfonwyd y cyfrinair trwy e-bost',
+'rightsnone' => '(dim)',
 
 # Feedback
 'feedback-bugornote' => 'Os ydych yn barod i ddisgrifio problem technegol yn fanwl gallwch [$1 gyflwyno adroddiad am y bỳg]. Fel arall, gallwch ddefnyddio\'r ffurflen syml isod. Fe roddir eich sylwadau ar y dudalen "[$3 $2]", ynghyd â\'ch enw defnyddiwr ac enw\'r gweinydd sydd ar waith gennych.',

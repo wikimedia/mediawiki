@@ -1338,12 +1338,13 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-sendemail' => 'Ninviar un correu electronico a atros usuarios',
 'right-passwordreset' => 'Veyer os correus electronicos de restabimiento de claus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rechistro de nuevos usuarios',
+'newuserlogpagetext' => "Isto ye un rechistro de creyación d'usuarios.",
+
 # User rights log
 'rightslog' => "Rechistro de cambios en os dreitos d'os usuarios",
 'rightslogtext' => "Iste ye un rechistro d'os cambios en os dreitos d'os usuarios",
-'rightslogentry' => "ha cambiato os dreitos d'usuario de $1: de $2 a $3",
-'rightslogentry-autopromote' => "S'ha promovito automaticament dende $2 ta $3",
-'rightsnone' => '(garra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leyer ista pachina',
@@ -1955,10 +1956,6 @@ Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'activeusers-hidebots' => 'Amagar robots',
 'activeusers-hidesysops' => 'Amagar administradors',
 'activeusers-noresult' => "No s'han trobato usuarios.",
-
-# Special:Log/newusers
-'newuserlogpage' => 'Rechistro de nuevos usuarios',
-'newuserlogpagetext' => "Isto ye un rechistro de creyación d'usuarios.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Dreitos d'a colla d'usuarios",
@@ -3603,6 +3600,7 @@ As imachens s'amuestran en resolución completa, a resta de fichers fan encetar 
 'logentry-newusers-create2' => "$1 creyó una cuenta d'usuario $3",
 'logentry-newusers-autocreate' => "S'ha creyau automaticament a cuenta $1",
 'newuserlog-byemail' => 'Clau ninviata por correu electronico',
+'rightsnone' => '(garra)',
 
 # Feedback
 'feedback-bugornote' => "Si creye que puede describir en detalle un problema tecnico, [$1 informe d'un bug] por favor.

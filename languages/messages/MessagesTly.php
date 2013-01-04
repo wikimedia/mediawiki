@@ -649,6 +649,9 @@ $messages = array(
 # Groups
 'group-user' => 'Иштирокәкон',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Иштирокәкон ғеидијоти журнал',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Ым сәһифә сәрост кардеј',
 
@@ -773,9 +776,6 @@ $messages = array(
 
 # Special:LinkSearch
 'linksearch-line' => '$2-ку сәбон вардә бә $1',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Иштирокәкон ғеидијоти журнал',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(иштирокәкон сијоһи)',

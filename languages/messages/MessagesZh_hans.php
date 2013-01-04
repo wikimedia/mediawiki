@@ -1570,15 +1570,13 @@ $1",
 'right-sendemail' => '电邮联系其他用户',
 'right-passwordreset' => '查看密码重置电子邮件',
 
+# Special:Log/newusers
+'newuserlogpage' => '用户创建日志',
+'newuserlogpagetext' => '这是用户创建的日志。',
+
 # User rights log
 'rightslog' => '用户权限日志',
 'rightslogtext' => '这是用户权限更改的日志。',
-'rightslogentry' => '将$1的用户组由$2更改为$3',
-'rightslogentry-autopromote' => '被自动提升自$2至$3',
-'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',
-'logentry-rights-rights-legacy' => '$1更改$3的用户组',
-'logentry-rights-autopromote' => '$1的用户组已自动从$4改为$5',
-'rightsnone' => '（无）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '阅读本页',
@@ -2193,10 +2191,6 @@ $1',
 'activeusers-hidebots' => '隐藏机器人',
 'activeusers-hidesysops' => '隐藏管理员',
 'activeusers-noresult' => '找不到用户。',
-
-# Special:Log/newusers
-'newuserlogpage' => '用户创建日志',
-'newuserlogpagetext' => '这是用户创建的日志。',
 
 # Special:ListGroupRights
 'listgrouprights' => '用户组权限',
@@ -3927,6 +3921,10 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'logentry-newusers-create2' => '创建用户帐户 $3 由 $1',
 'logentry-newusers-autocreate' => '账户$1被自动创建',
 'newuserlog-byemail' => '密码已用电子邮件发送',
+'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',
+'logentry-rights-rights-legacy' => '$1更改$3的用户组',
+'logentry-rights-autopromote' => '$1的用户组已自动从$4改为$5',
+'rightsnone' => '（无）',
 
 # Feedback
 'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论将被添加至页面“[$3 $2]”，附有你的用户名和使用的浏览器。',

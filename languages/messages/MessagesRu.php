@@ -1709,15 +1709,13 @@ $1",
 'right-sendemail' => 'отправлять электронную почту другим участникам',
 'right-passwordreset' => 'просмотр электронных писем с изменением пароля',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Журнал регистрации участников',
+'newuserlogpagetext' => 'Список недавно зарегистрировавшихся участников',
+
 # User rights log
 'rightslog' => 'Журнал прав участника',
 'rightslogtext' => 'Это журнал изменений прав участника.',
-'rightslogentry' => 'изменил членство в группах для $1 с $2 на $3',
-'rightslogentry-autopromote' => 'был автоматически переведён из $2 в $3',
-'logentry-rights-rights' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3 с $4 на $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3',
-'logentry-rights-autopromote' => 'Учётная запись «$1» была автоматически переведена из $4 в $5',
-'rightsnone' => '(нет)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'чтение этой страницы',
@@ -2345,7 +2343,7 @@ $1',
 'linksearch-ok' => 'Найти',
 'linksearch-text' => 'Можно использовать подстановочные символы, например, <code>*.wikipedia.org</code>.
 Необходим по крайней мере домен верхнего уровня, например <code>*.org</code><br />
-Поддерживаемые протоколы: <code>$1</code> (по умолчанию подставляется http://, если протокол явно не задан).',
+Поддерживаемые {{PLURAL:$2|протокол|протоколы}}: <code>$1</code> (по умолчанию подставляется http://, если протокол явно не задан).',
 'linksearch-line' => 'Ссылка на $1 из $2',
 'linksearch-error' => 'Подстановочные символы могут использоваться только в начале адресов.',
 
@@ -2363,10 +2361,6 @@ $1',
 'activeusers-hidebots' => 'Скрыть ботов',
 'activeusers-hidesysops' => 'Скрыть администраторов',
 'activeusers-noresult' => 'Не найдено участников.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Журнал регистрации участников',
-'newuserlogpagetext' => 'Список недавно зарегистрировавшихся участников',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Права групп участников',
@@ -3355,6 +3349,8 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 минута|$1 минуты|$1 минут}}',
 'hours' => '{{PLURAL:$1|$1 час|$1 часа|$1 часов}}',
 'days' => '{{PLURAL:$1|$1 день|$1 дня|$1 дней}}',
+'months' => '{{PLURAL:$1|$1 месяц|$1 месяца|$1 месяцев}}',
+'years' => '{{PLURAL:$1|$1 год|$1 года|$1 лет}}',
 'ago' => '$1 назад',
 'just-now' => 'только что',
 
@@ -4194,6 +4190,10 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-newusers-create2' => '$1 {{GENDER:$2|создал|создала}} учётную запись для $3',
 'logentry-newusers-autocreate' => 'Автоматически создана учётная запись $1',
 'newuserlog-byemail' => 'пароль отправлен по эл. почте',
+'logentry-rights-rights' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3 с $4 на $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3',
+'logentry-rights-autopromote' => 'Учётная запись «$1» была автоматически переведена из $4 в $5',
+'rightsnone' => '(нет)',
 
 # Feedback
 'feedback-bugornote' => 'Если вы готовы подробно описать техническую проблему, пожалуйста, [$1 сообщите об ошибке].

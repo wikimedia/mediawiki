@@ -1237,11 +1237,13 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'right-override-export-depth' => 'Sahypalary, şol sanda çykgytly sahypalary 5-e çenli çuňlukda eksportirle',
 'right-sendemail' => 'Başga ulanyjylara e-poçta iber',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Täze ulanyjy gündeligi',
+'newuserlogpagetext' => 'Ulanyjy döretme gündeligi.',
+
 # User rights log
 'rightslog' => 'Ulanyjy hukuklarynyň gündeligi',
 'rightslogtext' => 'Ulanyjy hukuklaryndaky üýtgeşmeler gündeligi.',
-'rightslogentry' => '$1 üçin topar agzalygyny $2 toparyndan $3 toparyna üýtgetdi',
-'rightsnone' => '(hiç biri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'bu sahypany okamaga',
@@ -1786,10 +1788,6 @@ Goldanylýan protokollar: <code>$1</code>',
 'activeusers-hidebots' => 'Botlary gizle',
 'activeusers-hidesysops' => 'Administratorlary gizle',
 'activeusers-noresult' => 'Ulanyjy tapylmady.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Täze ulanyjy gündeligi',
-'newuserlogpagetext' => 'Ulanyjy döretme gündeligi.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Ulanyjy topary hukuklary',
@@ -3153,6 +3151,7 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'revdelete-restricted' => 'administratorlara goýlan çäklendirmeler',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
 'newuserlog-byemail' => 'parol e-poçta bilen iberildi',
+'rightsnone' => '(hiç biri)',
 
 # Search suggestions
 'searchsuggest-search' => 'Gözleg',

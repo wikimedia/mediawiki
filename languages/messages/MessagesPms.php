@@ -1333,15 +1333,13 @@ Costa anformassion a sarà pùblica.",
 'right-sendemail' => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
 'right-passwordreset' => 'Vëdde ij mëssagi ëd pòsta eletrònica ëd riampostassion dle ciav',
 
+# Special:Log/newusers
+'newuserlogpage' => "Registr dla creassion dj'utent",
+'newuserlogpagetext' => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
+
 # User rights log
 'rightslog' => "Argistr dij drit ëd j'utent",
 'rightslogtext' => "Costa a l'é na lista dij cambiament aj drit ëd j'utent.",
-'rightslogentry' => "a l'ha tramudà $1 da 'nt la partìa $2 a la partìa $3",
-'rightslogentry-autopromote' => "a l'é stàit automaticament promovù da $2 a $3",
-'logentry-rights-rights' => "$1 a l'ha tramudà l'apartenesa a la partìa për $3 da $4 a $5",
-'logentry-rights-rights-legacy' => "$1 a l'ha tramudà l'apartenensa a la partìa për $3",
-'logentry-rights-autopromote' => "$1 a l'é stàit automaticament promovù da $4 a $5",
-'rightsnone' => '(gnun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lese sta pàgina-sì',
@@ -1473,7 +1471,7 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 'filetype-unwanted-type' => "'''\".\$1\"''' a l'é na sòrt d'archivi ch'as pija nen ëd bon-a veuja.
 {{PLURAL:\$3|La sòrt preferìa a l'é|Le sòrt preferìe a son}} \$2.",
 'filetype-banned-type' => "'''\".\$1\"''' {{PLURAL:\$4|a l'é na sòrt d'archivi proibìa|a son ëd sòrt d'archivi proibìe}}.
-{{PLURAL:\$3|Sòrt d'archivi consentìa a l'é|Sòrt d'archivi consentìe a son}} \$2.",
+{{PLURAL:\$3|La sòrt d'archivi consentìa a l'é|Le sòrt d'archivi consentìe a son}} \$2.",
 'filetype-missing' => "A l'archivi a-j manca l'estension (pr'esempi \".jpg\").",
 'empty-file' => "L'archivi ch'a l'ha mandà a l'era veuid.",
 'file-too-large' => "L'archivi ch'a l'ha mandà a l'era tròp gròss.",
@@ -1991,10 +1989,6 @@ A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
 'activeusers-hidebots' => 'Stërmé ij trigomiro',
 'activeusers-hidesysops' => "Stërmé j'aministrator",
 'activeusers-noresult' => 'Pa gnun utent trovà.',
-
-# Special:Log/newusers
-'newuserlogpage' => "Registr dla creassion dj'utent",
-'newuserlogpagetext' => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Drit dël grup d'utent",
@@ -2947,6 +2941,8 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minute}}',
 'hours' => '{{PLURAL:$1|$1 ora|$1 ore}}',
 'days' => '{{PLURAL:$1|$1 di|$1 di}}',
+'months' => '{{PLURAL:$1|$1 mèis}}',
+'years' => '{{PLURAL:$1|$1 ann|$1 agn}}',
 'ago' => '$1 fa',
 'just-now' => 'pròpi adess',
 
@@ -3734,6 +3730,10 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'logentry-newusers-create2' => "Ël cont utent $3 a l'é stàit creà da $1",
 'logentry-newusers-autocreate' => "Ël cont $1 a l'é stàit creà an automàtich",
 'newuserlog-byemail' => 'ciav spedìa për pòsta eletrònica',
+'logentry-rights-rights' => "$1 a l'ha tramudà l'apartenesa a la partìa për $3 da $4 a $5",
+'logentry-rights-rights-legacy' => "$1 a l'ha tramudà l'apartenensa a la partìa për $3",
+'logentry-rights-autopromote' => "$1 a l'é stàit automaticament promovù da $4 a $5",
+'rightsnone' => '(gnun)',
 
 # Feedback
 'feedback-bugornote' => "S'a l'é pront a descrive un problema técnich an detaj, për piasì ch'a [$1 signala un bigat]. 
@@ -3774,9 +3774,9 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|a l'é na sòrt d'archivi proibìa|a son ëd sòrt d'archivi proibìe}}. {{PLURAL:$3|La sòrt d'archivi consentìa a l'é|Le sòrt d'archivi consentìe a son}} $2.",
 'api-error-filetype-missing' => "L'archivi a l'é sensa estension.",
 'api-error-hookaborted' => "La modìfica ch'a l'ha provà a fé a l'é stàita blocà dal gancio ëd n'estension.",
-'api-error-http' => 'Eror antern: as peul pa coleghesse al sërvent.',
+'api-error-http' => 'Eror antern: As peul pa coleghesse al servent.',
 'api-error-illegal-filename' => "Ël nòm dl'archivi a l'é nen consentì.",
-'api-error-internal-error' => "Eror antern: quaicòs a l'é andàit mal con ël tratament ëd tò cariagi an sla wiki.",
+'api-error-internal-error' => "Eror antern: Cheicòs a l'é andàit mal con ël tratament ëd soa amportassion an sla wiki.",
 'api-error-invalid-file-key' => 'Eror antern: archivi pa trovà ant la memòria a temp.',
 'api-error-missingparam' => "Eror antern: paràmetr mancant ant l'arcesta.",
 'api-error-missingresult' => "Eror antern: as peul pa determiné se la còpia a l'é andàita bin.",
