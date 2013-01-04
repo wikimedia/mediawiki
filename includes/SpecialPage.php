@@ -850,6 +850,56 @@ class SpecialPage {
 			$this->getOutput()->addFeedLink( $format, $url );
 		}
 	}
+
+	/**
+	 * Get the group that the special page belongs in on Special:SpecialPage
+	 * Use this method, instead of getGroupName to allow customization
+	 * of the group name from the wiki side
+	 *
+	 * @return string Group of this special page
+	 * @since 1.21
+	 */
+	public function getFinalGroupName() {
+		$name = $this->getName();
+		$group = '-';
+
+		// Allow overridding the group from the wiki side
+		$msg = wfMessage( 'specialpages-specialpagegroup-' . strtolower( $name ) );
+		if ( !$msg->isBlank() ) {
+			$group = $msg->text();
+		} else {
+			// Than use the group from this object
+			$group = $this->getGroupName();
+
+			// Group '-' is used as default to have the chance to determine,
+			// if the special pages overriddes this method,
+			// if not overridden, $wgSpecialPageGroups is checked for b/c
+			if ( $group === '-' && isset( $wgSpecialPageGroups[$name] ) ) {
+				$group = $wgSpecialPageGroups[$name];
+			}
+		}
+
+		// never give - back, change to 'other'
+		if ( $group === '-' ) {
+			$group = 'other';
+		}
+
+		return $group;
+	}
+
+	/**
+	 * Under which header this special page is listed in Special:SpecialPages
+	 * See messages 'specialpages-group-*' for valid names
+	 * This method defaults to group 'other'
+	 *
+	 * @return string
+	 * @since 1.21
+	 */
+	public function getGroupName() {
+		// '-' used here to determine, if this group is overridden or has a hardcoded 'other'
+		// Needed for b/c in getFinalGroupName
+		return '-';
+	}
 }
 
 /**

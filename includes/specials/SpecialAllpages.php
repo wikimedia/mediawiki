@@ -538,4 +538,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 			return null;
 		}
 	}
+
+	public function getGroupName() {
+		return 'pages';
+	}
 }
