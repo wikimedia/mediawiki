@@ -2350,7 +2350,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				)->inContentLanguage()->text()
 			);
 			if ( $reason ) {
-				$editComment .= ": $reason";
+				$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
 			if ( $protectDescription ) {
 				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
