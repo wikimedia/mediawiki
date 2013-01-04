@@ -6367,9 +6367,15 @@ $wgLogRestrictions = array(
  *
  * A message of the form log-show-hide-[type] should be added, and will be used
  * for the link text.
+ *
+ * Note: As a special case, setting 'patrol' to 'auto' will cause patrol
+ * logs to be hidden if new page or RC patrol is enabled. If NP/RC
+ * patrol is disabled, then it acts as if patrol had no entry
+ * in this array. This only works for patrol, and 'auto' should
+ * not be set for any other keys in this array.
  */
 $wgFilterLogTypes = array(
-	'patrol' => true
+	'patrol' => 'auto'
 );
 
 /**

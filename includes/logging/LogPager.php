@@ -86,20 +86,33 @@ class LogPager extends ReverseChronologicalPager {
 
 	// Call ONLY after calling $this->limitType() already!
 	public function getFilterParams() {
-		global $wgFilterLogTypes;
+		global $wgFilterLogTypes, $wgUseRCPatrol, $wgUseNPPatrol;
 		$filters = array();
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
 		foreach ( $wgFilterLogTypes as $type => $default ) {
-			// Avoid silly filtering
-			if ( $type !== 'patrol' || $this->getUser()->useNPPatrol() ) {
-				$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
-				$filters[$type] = $hide;
-				if ( $hide ) {
-					$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
+			/* FIXME: Should find a way to not have
+			 *  the "hide patrol log" if patrolling
+			 *  is disabled, but at the same time
+			 *  not suddenly flood special:log
+			 *  with patrolling entries if a wiki
+			 *  decides to disable patrolling.
+			 *  See bug 42246
+			 */
+
+			if ( $type === 'patrol' && $default === 'auto' ) {
+				if ( $wgUseRCPatrol || $wgUseNPPatrol ) {
+					$default = true;
+				} else {
+					continue;
 				}
 			}
+
+			$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
+			$filters[$type] = $hide;
+			if( $hide )
+				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
 		}
 
 		return $filters;
