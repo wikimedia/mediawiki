@@ -234,7 +234,9 @@ MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if you're going
 to add events to the MediaWiki code.
 
-'AbortAutoAccount': Return false to cancel automated local account creation, where normally authentication against an external auth plugin would be creating a local account.
+'AbortAutoAccount': Return false to cancel automated local account creation,
+where normally authentication against an external auth plugin would be creating
+a local account.
 $user: the User object about to be created (read-only, incomplete)
 &$abortMsg: out parameter: name of error message to be displayed to user
 
@@ -242,7 +244,7 @@ $user: the User object about to be created (read-only, incomplete)
 $autoblockip: The IP going to be autoblocked.
 $block: The block from which the autoblock is coming.
 
-'AbortDiffCache': Can be used to cancel the caching of a diff
+'AbortDiffCache': Can be used to cancel the caching of a diff.
 &$diffEngine: DifferenceEngine object
 
 'AbortEmailNotification': Can be used to cancel email notifications for an edit.
@@ -257,7 +259,7 @@ $password: the password being submitted, not yet checked for validity
           a machine API rather than the HTML user interface.
 &$msg: the message identifier for abort reason (new in 1.18, not available before 1.18)
 
-'AbortMove': allows to abort moving an article (title)
+'AbortMove': Allows to abort moving an article (title).
 $old: old title
 $nt: new title
 $user: user who is doing the move
@@ -268,27 +270,28 @@ $reason: the reason for the move (added in 1.13)
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: HTML to display on abort
 
-'ActionBeforeFormDisplay': before executing the HTMLForm object
+'ActionBeforeFormDisplay': Before executing the HTMLForm object.
 $name: name of the action
 &$form: HTMLForm object
 $article: Article object
 
-'ActionModifyFormFields': before creating an HTMLForm object for a page action;
-	allows to change the fields on the form that will be generated
+'ActionModifyFormFields': Before creating an HTMLForm object for a page action;
+Allows to change the fields on the form that will be generated.
 $name: name of the action
 &$fields: HTMLForm descriptor array
 $article: Article object
 
-'AddNewAccount': after a user account is created
+'AddNewAccount': After a user account is created.
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
-'AfterFinalPageOutput': At the end of OutputPage::output() but before
-final ob_end_flush() which will send the buffered output to the client.
-This allows for last-minute modification of the output within the buffer
-by using ob_get_clean().
+'AfterFinalPageOutput': At the end of OutputPage::output() but before final
+ob_end_flush() which will send the buffered output to the client. This allows
+for last-minute modification of the output within the buffer by using
+ob_get_clean().
+&$output: OutputPage object
 
-'AfterImportPage': When a page import is completed
+'AfterImportPage': When a page import is completed.
 $title: Title under which the revisions were imported
 $origTitle: Title provided by the XML file
 $revCount: Number of revisions in the XML file
@@ -304,166 +307,162 @@ $output: The OutputPage object where output() was called
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).
+&$output: OutputPage object
 
-'AlternateEdit': before checking if a user can edit a page and
-before showing the edit form ( EditPage::edit() ). This is triggered
-on &action=edit.
-$EditPage: the EditPage object
+'AlternateEdit': Before checking if a user can edit a page and before showing
+the edit form ( EditPage::edit() ). This is triggered on &action=edit.
+$editPage: the EditPage object
 
-'AlternateEditPreview': before generating the preview of the page when editing
+'AlternateEditPreview': Before generating the preview of the page when editing
 ( EditPage::getPreviewText() ).
-$EditPage: the EditPage object
+$editPage: the EditPage object
 &$content: the Content object for the text field from the edit page
 &$previewHTML: Text to be placed into the page for the preview
 &$parserOutput: the ParserOutput object for the preview
 return false and set $previewHTML and $parserOutput to output custom page
 preview HTML.
 
-'AlternateUserMailer': Called before mail is sent so that mail could
-be logged (or something else) instead of using PEAR or PHP's mail().
-Return false to skip the regular method of sending mail.  Return a
-string to return a php-mail-error message containing the error.
-Returning true will continue with sending email in the regular way.
+'AlternateUserMailer': Called before mail is sent so that mail could be logged
+(or something else) instead of using PEAR or PHP's mail(). Return false to skip
+the regular method of sending mail.  Return a string to return a php-mail-error
+message containing the error. Returning true will continue with sending email
+in the regular way.
 $headers: Associative array of headers for the email
 $to: MailAddress object or array
 $from: From address
 $subject: Subject of the email
 $body: Body of the message
 
-'APIAfterExecute': after calling the execute() method of an API module.
-Use this to extend core API modules.
+'APIAfterExecute': After calling the execute() method of an API module. Use
+this to extend core API modules.
 &$module: Module object
 
-'ApiCheckCanExecute': Called during ApiMain::checkCanExecute. Use to
-further authenticate and authorize API clients before executing the
-module. Return false and set a message to cancel the request.
+'ApiCheckCanExecute': Called during ApiMain::checkCanExecute. Use to further
+authenticate and authorize API clients before executing the module. Return
+false and set a message to cancel the request.
 $module: Module object
 $user: Current user
 &$message: API usage message to die with, as a message key or array
 as accepted by ApiBase::dieUsageMsg.
 
-'APIEditBeforeSave': before saving a page with api.php?action=edit,
-after processing request parameters. Return false to let the request
-fail, returning an error message or an <edit result="Failure"> tag
-if $resultArr was filled.
-$EditPage : the EditPage object
+'APIEditBeforeSave': Before saving a page with api.php?action=edit, after
+processing request parameters. Return false to let the request fail, returning
+an error message or an <edit result="Failure"> tag if $resultArr was filled.
+$editPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
 
-'APIGetAllowedParams': use this hook to modify a module's parameters.
+'APIGetAllowedParams': Use this hook to modify a module's parameters.
 &$module: ApiBase Module object
 &$params: Array of parameters
 
-'APIGetDescription': use this hook to modify a module's description
+'APIGetDescription': Use this hook to modify a module's description.
 &$module: ApiBase Module object
 &$desc: Array of descriptions
 
-'APIGetParamDescription': use this hook to modify a module's parameter
+'APIGetParamDescription': Use this hook to modify a module's parameter
 descriptions.
 &$module: ApiBase Module object
 &$desc: Array of parameter descriptions
 
-'APIGetResultProperties': use this hook to mofify the properties
-in a module's result.
+'APIGetResultProperties': Use this hook to mofify the propertiesin a module's
+result.
 &$module: ApiBase Module object
 &$properties: Array of properties
 
-'APIQueryAfterExecute': after calling the execute() method of an
+'APIQueryAfterExecute': After calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
 &$module: Module object
 
-'APIQueryGeneratorAfterExecute': after calling the executeGenerator()
-method of an action=query submodule. Use this to extend core API modules.
+'APIQueryGeneratorAfterExecute': After calling the executeGenerator() method of
+an action=query submodule. Use this to extend core API modules.
 &$module: Module object
 &$resultPageSet: ApiPageSet object
 
-'APIQueryInfoTokens': use this hook to add custom tokens to prop=info.
-Every token has an action, which will be used in the intoken parameter
-and in the output (actiontoken="..."), and a callback function which
-should return the token, or false if the user isn't allowed to obtain
-it. The prototype of the callback function is func($pageid, $title)
-where $pageid is the page ID of the page the token is requested for
-and $title is the associated Title object. In the hook, just add
-your callback to the $tokenFunctions array and return true (returning
-false makes no sense)
+'APIQueryInfoTokens': Use this hook to add custom tokens to prop=info. Every
+token has an action, which will be used in the intoken parameter and in the
+output (actiontoken="..."), and a callback function which should return the
+token, or false if the user isn't allowed to obtain it. The prototype of the
+callback function is func($pageid, $title), where $pageid is the page ID of the
+page the token is requested for and $title is the associated Title object. In
+the hook, just add your callback to the $tokenFunctions array and return true
+(returning false makes no sense).
 $tokenFunctions: array(action => callback)
 
-'APIQueryRevisionsTokens': use this hook to add custom tokens to prop=revisions.
-Every token has an action, which will be used in the rvtoken parameter
-and in the output (actiontoken="..."), and a callback function which
-should return the token, or false if the user isn't allowed to obtain
-it. The prototype of the callback function is func($pageid, $title, $rev)
-where $pageid is the page ID of the page associated to the revision the
-token is requested for, $title the associated Title object and $rev the
-associated Revision object. In the hook, just add your callback to the
-$tokenFunctions array and return true (returning false makes no sense)
+'APIQueryRevisionsTokens': Use this hook to add custom tokens to prop=revisions.
+Every token has an action, which will be used in the rvtoken parameter and in
+the output (actiontoken="..."), and a callback function which should return the
+token, or false if the user isn't allowed to obtain it. The prototype of the
+callback function is func($pageid, $title, $rev), where $pageid is the page ID
+of the page associated to the revision the token is requested for, $title the
+associated Title object and $rev the associated Revision object. In the hook,
+just add your callback to the $tokenFunctions array and return true (returning
+false makes no sense).
 $tokenFunctions: array(action => callback)
 
-'APIQueryRecentChangesTokens': use this hook to add custom tokens to
-list=recentchanges.
-Every token has an action, which will be used in the rctoken parameter
-and in the output (actiontoken="..."), and a callback function which
-should return the token, or false if the user isn't allowed to obtain
-it. The prototype of the callback function is func($pageid, $title, $rc)
-where $pageid is the page ID of the page associated to the revision the
-token is requested for, $title the associated Title object and $rc the
-associated RecentChange object. In the hook, just add your callback to the
-$tokenFunctions array and return true (returning false makes no sense)
+'APIQueryRecentChangesTokens': Use this hook to add custom tokens to
+list=recentchanges. Every token has an action, which will be used in the rctoken
+parameter and in the output (actiontoken="..."), and a callback function which
+should return the token, or false if the user isn't allowed to obtain it. The
+prototype of the callback function is func($pageid, $title, $rc), where $pageid
+is the page ID of the page associated to the revision the token is requested
+for, $title the associated Title object and $rc the associated RecentChange
+object. In the hook, just add your callback to the $tokenFunctions array and
+return true (returning false makes no sense).
 $tokenFunctions: array(action => callback)
 
-'APIQuerySiteInfoGeneralInfo': use this hook to add extra information to
-the sites general information.
+'APIQuerySiteInfoGeneralInfo': Use this hook to add extra information to the
+sites general information.
 $module: the current ApiQuerySiteInfo module
 &$results: array of results, add things here
 
-'APIQueryUsersTokens': use this hook to add custom token to list=users.
-Every token has an action, which will be used in the ustoken parameter
-and in the output (actiontoken="..."), and a callback function which
-should return the token, or false if the user isn't allowed to obtain
-it. The prototype of the callback function is func($user) where $user
-is the User object. In the hook, just add your callback to the
-$tokenFunctions array and return true (returning false makes no sense)
+'APIQueryUsersTokens': Use this hook to add custom token to list=users. Every
+token has an action, which will be used in the ustoken parameter and in the
+output (actiontoken="..."), and a callback function which should return the
+token, or false if the user isn't allowed to obtain it. The prototype of the
+callback function is func($user) where $user is the User object. In the hook,
+just add your callback to the $tokenFunctions array and return true (returning
+false makes no sense).
 $tokenFunctions: array(action => callback)
 
-'ApiMain::onException': Called by ApiMain::executeActionWithErrorHandling()
-when an exception is thrown during API action execution.
+'ApiMain::onException': Called by ApiMain::executeActionWithErrorHandling() when
+an exception is thrown during API action execution.
 $apiMain: Calling ApiMain instance.
 $e: Exception object.
 
-'ApiRsdServiceApis': Add or remove APIs from the RSD services list.
-Each service should have its own entry in the $apis array and have a
-unique name, passed as key for the array that represents the service data.
-In this data array, the key-value-pair identified by the apiLink key is
-required.
+'ApiRsdServiceApis': Add or remove APIs from the RSD services list. Each service
+should have its own entry in the $apis array and have a unique name, passed as
+key for the array that represents the service data. In this data array, the
+key-value-pair identified by the apiLink key is required.
 &$apis: array of services
 
-'ApiTokensGetTokenTypes': use this hook to extend action=tokens with new
-token types.
+'ApiTokensGetTokenTypes': Use this hook to extend action=tokens with new token
+types.
 &$tokenTypes: supported token types in format 'type' => callback function
 used to retrieve this type of tokens.
 
-'ArticleAfterFetchContent': after fetching content of an article from
-the database. DEPRECATED, use ArticleAfterFetchContentObject instead.
+'ArticleAfterFetchContent': After fetching content of an article from the
+database. DEPRECATED, use ArticleAfterFetchContentObject instead.
 $article: the article (object) being loaded from the database
 &$content: the content (string) of the article
 
-'ArticleAfterFetchContentObject': after fetching content of an article from
-the database
+'ArticleAfterFetchContentObject': After fetching content of an article from the
+database.
 $article: the article (object) being loaded from the database
 &$content: the content of the article, as a Content object
 
-'ArticleConfirmDelete': before writing the confirmation form for article
-	deletion
+'ArticleConfirmDelete': Before writing the confirmation form for article
+deletion.
 $article: the article (object) being deleted
-$output: the OutputPage object ($wgOut)
+$output: the OutputPage object
 &$reason: the reason (string) the article is being deleted
 
-'ArticleContentOnDiff': before showing the article content below a diff.
-Use this to change the content in this area or how it is loaded.
- $diffEngine: the DifferenceEngine
- $output: the OutputPage object ($wgOut)
+'ArticleContentOnDiff': Before showing the article content below a diff. Use
+this to change the content in this area or how it is loaded.
+$diffEngine: the DifferenceEngine
+$output: the OutputPage object
 
-'ArticleDelete': before an article is deleted
+'ArticleDelete': Before an article is deleted.
 $wikiPage: the WikiPage (object) being deleted
 $user: the user (object) deleting the article
 $reason: the reason (string) the article is being deleted
@@ -472,7 +471,7 @@ $error: if the deletion was prohibited, the (raw HTML) error message to display
 $status: Status object, modify this to throw an error. Overridden by $error
   (added in 1.20)
 
-'ArticleDeleteComplete': after an article is deleted
+'ArticleDeleteComplete': After an article is deleted.
 $wikiPage: the WikiPage that was deleted
 $user: the user that deleted the article
 $reason: the reason the article was deleted
@@ -480,27 +479,28 @@ $id: id of the article that was deleted
 $content: the Content of the deleted page
 $logEntry: the ManualLogEntry used to record the deletion
 
-'ArticleEditUpdateNewTalk': before updating user_newtalk when a user talk page
-was changed
+'ArticleEditUpdateNewTalk': Before updating user_newtalk when a user talk page
+was changed.
 $wikiPage: WikiPage (object) of the user talk page
 
-'ArticleEditUpdates': when edit updates (mainly link tracking) are made when an
-article has been changed
+'ArticleEditUpdates': When edit updates (mainly link tracking) are made when an
+article has been changed.
 $wikiPage: the WikiPage (object)
 $editInfo: data holder that includes the parser output ($editInfo->output) for
 that page after the change
 $changed: bool for if the page was changed
 
-'ArticleEditUpdatesDeleteFromRecentchanges': before deleting old entries from
-recentchanges table, return false to not delete old entries
+'ArticleEditUpdatesDeleteFromRecentchanges': Before deleting old entries from
+recentchanges table, return false to not delete old entries.
 $wikiPage: WikiPage (object) being modified
 
 'ArticleFromTitle': when creating an article object from a title object using
-Wiki::articleFromTitle()
-$title: title (object) used to create the article object
-$article: article (object) that will be returned
+Wiki::articleFromTitle().
+$title: Title (object) used to create the article object
+$article: Article (object) that will be returned
 
-'ArticleInsertComplete': After a new article is created. DEPRECATED, use PageContentInsertComplete
+'ArticleInsertComplete': After a new article is created. DEPRECATED, use
+PageContentInsertComplete.
 $wikiPage: WikiPage created
 $user: User creating the article
 $text: New content
@@ -511,55 +511,56 @@ $section: (No longer used)
 $flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
-'ArticleMergeComplete': after merging to article using Special:Mergehistory
+'ArticleMergeComplete': After merging to article using Special:Mergehistory.
 $targetTitle: target title (object)
 $destTitle: destination title (object)
 
-'ArticlePageDataAfter': after loading data of an article from the database
+'ArticlePageDataAfter': After loading data of an article from the database.
 $wikiPage: WikiPage (object) whose data were loaded
 $row: row (object) returned from the database server
 
-'ArticlePageDataBefore': before loading data of an article from the database
+'ArticlePageDataBefore': Before loading data of an article from the database.
 $wikiPage: WikiPage (object) that data will be loaded
 $fields: fileds (array) to load from the database
 
-'ArticlePrepareTextForEdit': called when preparing text to be saved
+'ArticlePrepareTextForEdit': Called when preparing text to be saved.
 $wikiPage: the WikiPage being saved
 $popts: parser options to be used for pre-save transformation
 
-'ArticleProtect': before an article is protected
+'ArticleProtect': Before an article is protected.
 $wikiPage: the WikiPage being protected
 $user: the user doing the protection
 $protect: boolean whether this is a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether this is for move only or not
 
-'ArticleProtectComplete': after an article is protected
+'ArticleProtectComplete': After an article is protected.
 $wikiPage: the WikiPage that was protected
 $user: the user who did the protection
 $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether it was for move only or not
 
-'ArticlePurge': before executing "&action=purge"
+'ArticlePurge': Before executing "&action=purge".
 $wikiPage: WikiPage (object) to purge
 
-'ArticleRevisionVisibilitySet': called when changing visibility of one or more
-revision of an article
-&$title: title object of the article
+'ArticleRevisionVisibilitySet': Called when changing visibility of one or more
+revisions of an article.
+&$title: Title object of the article
 
-'ArticleRevisionUndeleted': after an article revision is restored
+'ArticleRevisionUndeleted': After an article revision is restored.
 $title: the article title
 $revision: the revision
 $oldPageID: the page ID of the revision when archived (may be null)
 
-'ArticleRollbackComplete': after an article rollback is completed
+'ArticleRollbackComplete': After an article rollback is completed.
 $wikiPage: the WikiPage that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
-'ArticleSave': before an article is saved. DEPRECATED, use PageContentSave instead
+'ArticleSave': Before an article is saved. DEPRECATED, use PageContentSave
+instead.
 $wikiPage: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $text: the new article text
@@ -568,7 +569,8 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
-'ArticleSaveComplete': After an article has been updated. DEPRECATED, use PageContentSaveComplete instead.
+'ArticleSaveComplete': After an article has been updated. DEPRECATED, use
+PageContentSaveComplete instead.
 $wikiPage: WikiPage modified
 $user: User performing the modification
 $text: New content
@@ -581,10 +583,10 @@ $revision: New Revision of the article
 $status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 
-'ArticleUndelete': When one or more revisions of an article are restored
+'ArticleUndelete': When one or more revisions of an article are restored.
 $title: Title corresponding to the article restored
-$create: Whether or not the restoration caused the page to be created
-(i.e. it didn't exist before)
+$create: Whether or not the restoration caused the page to be created (i.e. it
+  didn't exist before).
 $comment: The comment associated with the undeletion.
 
 'ArticleUndeleteLogEntry': When a log entry is generated but not yet saved.
@@ -592,8 +594,8 @@ $pageArchive: the PageArchive object
 &$logEntry: ManualLogEntry object
 $user: User who is performing the log action
 
-'ArticleUpdateBeforeRedirect': After a page is updated (usually on save),
-before the user is redirected back to the page
+'ArticleUpdateBeforeRedirect': After a page is updated (usually on save), before
+the user is redirected back to the page.
 &$article: the article
 &$sectionanchor: The section anchor link (e.g. "#overview" )
 &$extraq: Extra query parameters which can be added via hooked functions
@@ -608,60 +610,61 @@ viewing.
 &$outputDone: whether the output for this page finished or not. Set to a ParserOutput
 object to both indicate that the output is done and what parser output was used.
 
-'ArticleViewRedirect': before setting "Redirected from ..." subtitle when
-follwed an redirect
+'ArticleViewRedirect': Before setting "Redirected from ..." subtitle when a
+redirect was followed.
 $article: target article (object)
 
-'ArticleViewCustom': allows to output the text of the article in a different format than wikitext.
-DEPRECATED, use ArticleContentViewCustom instead.
-Note that it is preferrable to implement proper handing for a custom data type using the ContentHandler facility.
+'ArticleViewCustom': Allows to output the text of the article in a different
+format than wikitext. DEPRECATED, use ArticleContentViewCustom instead. Note
+that it is preferrable to implement proper handing for a custom data type using
+the ContentHandler facility.
 $text: text of the page
 $title: title of the page
 $output: reference to $wgOut
 
-'ArticleContentViewCustom': allows to output the text of the article in a different format than wikitext.
-Note that it is preferrable to implement proper handing for a custom data type using the ContentHandler facility.
+'ArticleContentViewCustom': Allows to output the text of the article in a
+different format than wikitext. Note that it is preferrable to implement proper
+handing for a custom data type using the ContentHandler facility.
 $content: content of the page, as a Content object
 $title: title of the page
 $output: reference to $wgOut
 
 'AuthPluginAutoCreate': Called when creating a local account for an user logged
-in from an external authentication method
+in from an external authentication method.
 $user: User object created locally
 
-'AuthPluginSetup': update or replace authentication plugin object ($wgAuth)
+'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
 Gives a chance for an extension to set it programattically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
-'AutopromoteCondition': check autopromote condition for user.
+'AutopromoteCondition': Check autopromote condition for user.
 $type: condition type
 $args: arguments
 $user: user
 $result: result of checking autopromote condition
 
-'BacklinkCacheGetPrefix': allows to set prefix for a spefific link table
+'BacklinkCacheGetPrefix': Allows to set prefix for a spefific link table.
 $table: table name
 &$prefix: prefix
 
-'BacklinkCacheGetConditions': allows to set conditions for query when links to certain title
-are fetched
+'BacklinkCacheGetConditions': Allows to set conditions for query when links to
+certain title are fetched.
 $table: table name
 $title: title of the page to which backlinks are sought
 &$conds: query conditions
 
-'BadImage': When checking against the bad image list
+'BadImage': When checking against the bad image list. Change $bad and return
+false to override. If an image is "bad", it is not rendered inline in wiki
+pages or galleries in category pages.
 $name: Image name being checked
 &$bad: Whether or not the image is "bad"
 
-Change $bad and return false to override. If an image is "bad", it is not
-rendered inline in wiki pages or galleries in category pages.
-
-'BeforeDisplayNoArticleText': before displaying noarticletext or noarticletext-nopermission
-at Article::showMissingArticle()
-
+'BeforeDisplayNoArticleText': Before displaying message key "noarticletext" or
+"noarticletext-nopermission" at Article::showMissingArticle().
 $article: article object
 
-'BeforeInitialize': before anything is initialized in MediaWiki::performRequest()
+'BeforeInitialize': Before anything is initialized in
+MediaWiki::performRequest().
 &$title: Title being used for request
 $unused: null
 &$output: OutputPage object
@@ -669,7 +672,7 @@ $unused: null
 $request: WebRequest object
 $mediaWiki: Mediawiki object
 
-'BeforePageDisplay': Prior to outputting a page
+'BeforePageDisplay': Prior to outputting a page.
 &$out: OutputPage object
 &$skin: Skin object
 
@@ -680,27 +683,31 @@ $out: OutputPage object
 &$redirect: URL, modifiable
 &$code: HTTP code (eg '301' or '302'), modifiable
 
-'BeforeParserFetchFileAndTitle': before an image is rendered by Parser
+'BeforeParserFetchFileAndTitle': Before an image is rendered by Parser.
 $parser: Parser object
 $nt: the image title
 &$options: array of options to RepoGroup::findFile
 &$descQuery: query string to add to thumbnail URL
 
+FIXME: Where does the below sentence fit in?
 If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 
-'BeforeParserFetchTemplateAndtitle': before a template is fetched by Parser
+'BeforeParserFetchTemplateAndtitle': Before a template is fetched by Parser.
 $parser: Parser object
 $title: title of the template
 &$skip: skip this template and link it?
 &$id: the id of the revision being parsed
 
-'BeforeParserrenderImageGallery': before an image gallery is rendered by Parser
+'BeforeParserrenderImageGallery': Before an image gallery is rendered by Parser.
 &$parser: Parser object
 &$ig: ImageGallery object
 
-'BeforeWelcomeCreation': before the welcomecreation message is displayed to a newly created user
-&$welcome_creation_msg: MediaWiki message name to display on the welcome screen to a newly created user account
-&$injected_html: Any HTML to inject after the "logged in" message of a newly created user account
+'BeforeWelcomeCreation': Before the welcomecreation message is displayed to a
+newly created user.
+&$welcome_creation_msg: MediaWiki message name to display on the welcome screen
+  to a newly created user account.
+&$injected_html: Any HTML to inject after the "logged in" message of a newly
+  created user account
 
 'BitmapHandlerTransform': before a file is transformed, gives extension the
 possibility to transform it themselves
@@ -709,51 +716,57 @@ $image: File
 &$scalerParams: Array with scaler parameters
 &$mto: null, set to a MediaTransformOutput
 
-'BitmapHandlerCheckImageArea': by BitmapHandler::normaliseParams, after all normalizations have been performed, except for the $wgMaxImageArea check
+'BitmapHandlerCheckImageArea': By BitmapHandler::normaliseParams, after all
+normalizations have been performed, except for the $wgMaxImageArea check.
 $image: File
 &$params: Array of parameters
-&$checkImageAreaHookResult: null, set to true or false to override the $wgMaxImageArea check result
+&$checkImageAreaHookResult: null, set to true or false to override the
+  $wgMaxImageArea check result.
 
-'PerformRetroactiveAutoblock': called before a retroactive autoblock is applied to a user
+'PerformRetroactiveAutoblock': Called before a retroactive autoblock is applied
+to a user.
 $block: Block object (which is set to be autoblocking)
 &$blockIds: Array of block IDs of the autoblock
 
-'BlockIp': before an IP address or user is blocked
+'BlockIp': Before an IP address or user is blocked.
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
 
-'BlockIpComplete': after an IP address or user is blocked
+'BlockIpComplete': After an IP address or user is blocked.
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
-'BookInformation': Before information output on Special:Booksources
+'BookInformation': Before information output on Special:Booksources.
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
-'CanonicalNamespaces': For extensions adding their own namespaces or altering the defaults
+'CanonicalNamespaces': For extensions adding their own namespaces or altering
+the defaults.
 &$namespaces: Array of namespace numbers with corresponding canonical names
 
-'CategoryPageView': before viewing a categorypage in CategoryPage::view
+'CategoryPageView': Before viewing a categorypage in CategoryPage::view.
 $catpage: CategoryPage instance
 
-'ChangePasswordForm': For extensions that need to add a field to the ChangePassword form
-via the Preferences form
-&$extraFields: An array of arrays that hold fields like would be passed to the pretty function.
+'ChangePasswordForm': For extensions that need to add a field to the
+ChangePassword form via the Preferences form.
+&$extraFields: An array of arrays that hold fields like would be passed to the
+  pretty function.
 
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
 &$changesList: ChangesList instance.
 &$articlelink: HTML of link to article (already filled-in).
-&$s:           HTML of row that is being constructed.
-&$rc:          RecentChange instance.
-$unpatrolled:  Whether or not we are showing unpatrolled changes.
-$watched:      Whether or not the change is watched by the user.
+&$s: HTML of row that is being constructed.
+&$rc: RecentChange instance.
+$unpatrolled: Whether or not we are showing unpatrolled changes.
+$watched: Whether or not the change is watched by the user.
 
-'Collation::factory': Called if $wgCategoryCollation is an unknown collation
+'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
-&$collationObject: Null. Replace with a subclass of the Collation class that implements
-the collation given in $collationName.
+&$collationObject: Null. Replace with a subclass of the Collation class that
+  implements the collation given in $collationName.
 
-'ConfirmEmailComplete': Called after a user's email has been confirmed successfully
+'ConfirmEmailComplete': Called after a user's email has been confirmed
+successfully.
 $user: user (object) whose email is being confirmed
 
 'ContentHandlerDefaultModelFor': Called when the default content model is determiend
@@ -2559,4 +2572,4 @@ $text: The revision text.
 	metadata tags returned (each tag is either a value, or an array of values).
 
 More hooks might be available but undocumented, you can execute
-'php maintenance/findHooks.php' to find hidden one.
+'php maintenance/findHooks.php' to find hidden ones.
