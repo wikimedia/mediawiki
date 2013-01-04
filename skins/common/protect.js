@@ -13,31 +13,35 @@ window.ProtectionForm = {
 	 *     existingMatch        True if all the existing expiry times match
 	 */
 	'init': function( opts ) {
-		if( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) )
-			return false;
+		var box, boxbody, row, cell, check, label;
 
-		var box = document.getElementById( opts.tableId );
-		if( !box )
+		if( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) ) {
 			return false;
+		}
+
+		box = document.getElementById( opts.tableId );
+		if( !box ) {
+			return false;
+		}
 		
-		var boxbody = box.getElementsByTagName('tbody')[0];
-		var row = document.createElement( 'tr' );
+		boxbody = box.getElementsByTagName('tbody')[0];
+		row = document.createElement( 'tr' );
 		boxbody.insertBefore( row, boxbody.firstChild.nextSibling );
 
 		this.existingMatch = opts.existingMatch;
 
-		var cell = document.createElement( 'td' );
+		cell = document.createElement( 'td' );
 		row.appendChild( cell );
 		// If there is only one protection type, there is nothing to chain
 		if( opts.numTypes > 1 ) {
-			var check = document.createElement( 'input' );
+			check = document.createElement( 'input' );
 			check.id = 'mwProtectUnchained';
 			check.type = 'checkbox';
 			cell.appendChild( check );
 			addClickHandler( check, function() { ProtectionForm.onChainClick(); } );
 
 			cell.appendChild( document.createTextNode( ' ' ) );
-			var label = document.createElement( 'label' );
+			label = document.createElement( 'label' );
 			label.htmlFor = 'mwProtectUnchained';
 			label.appendChild( document.createTextNode( opts.labelText ) );
 			cell.appendChild( label );
@@ -57,15 +61,17 @@ window.ProtectionForm = {
 	 * Sets the disabled attribute on the cascade checkbox depending on the current selected levels
 	 */
 	'updateCascadeCheckbox': function() {
+		var lists, i, items, selected;
+
 		// For non-existent titles, there is no cascade option
 		if( !document.getElementById( 'mwProtect-cascade' ) ) {
 			return;
 		}
-		var lists = this.getLevelSelectors();
-		for( var i = 0; i < lists.length; i++ ) {
+		lists = this.getLevelSelectors();
+		for( i = 0; i < lists.length; i++ ) {
 			if( lists[i].selectedIndex > -1 ) {
-				var items = lists[i].getElementsByTagName( 'option' );
-				var selected = items[ lists[i].selectedIndex ].value;
+				items = lists[i].getElementsByTagName( 'option' );
+				selected = items[ lists[i].selectedIndex ].value;
 				if( !this.isCascadeableLevel(selected) ) {
 					document.getElementById( 'mwProtect-cascade' ).checked = false;
 					document.getElementById( 'mwProtect-cascade' ).disabled = true;
@@ -103,8 +109,9 @@ window.ProtectionForm = {
 	 * @param source Element Level selector that changed
 	 */
 	'updateLevels': function(source) {
-		if( !this.isUnchained() )
+		if( !this.isUnchained() ) {
 			this.setAllSelectors( source.selectedIndex );
+		}
 		this.updateCascadeCheckbox();
 	},
 
@@ -116,15 +123,18 @@ window.ProtectionForm = {
 	 */
 
 	'updateExpiry': function(source) {
+		var expiry, listId, list;
+
 		if( !this.isUnchained() ) {
-			var expiry = source.value;
+			expiry = source.value;
 			this.forEachExpiryInput(function(element) {
 				element.value = expiry;
 			});
 		}
-		var listId = source.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' );
-		var list = document.getElementById( listId );
-		if (list && list.value != 'othertime' ) {
+
+		listId = source.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' );
+		list = document.getElementById( listId );
+		if (list && list.value !== 'othertime' ) {
 			if ( this.isUnchained() ) {
 				list.value = 'othertime';
 			} else {
@@ -142,8 +152,10 @@ window.ProtectionForm = {
 	 * @param source Element expiry selector that changed
 	 */
 	'updateExpiryList': function(source) {
+		var expiry;
+
 		if( !this.isUnchained() ) {
-			var expiry = source.value;
+			expiry = source.value;
 			this.forEachExpirySelector(function(element) {
 				element.value = expiry;
 			});
@@ -171,15 +183,16 @@ window.ProtectionForm = {
 	 * Returns true if the named attribute in all objects in the given array are matching
 	 */
 	'matchAttribute' : function( objects, attrName ) {
-		var value = null;
+		var i, element,
+			value = null;
 
 		// Check levels
-		for ( var i = 0; i < objects.length; i++ ) {
-			var element = objects[i];
-			if ( value == null ) {
+		for ( i = 0; i < objects.length; i++ ) {
+			element = objects[i];
+			if ( value === null ) {
 				value = element[attrName];
 			} else {
-				if ( value != element[attrName] ) {
+				if ( value !== element[attrName] ) {
 					return false;
 				}
 			}
@@ -231,7 +244,7 @@ window.ProtectionForm = {
 	 */
 	'setAllSelectors': function(index) {
 		this.forEachLevelSelector(function(element) {
-			if (element.selectedIndex != index) {
+			if (element.selectedIndex !== index) {
 				element.selectedIndex = index;
 			}
 		});
@@ -243,8 +256,9 @@ window.ProtectionForm = {
 	 * @param func callable Callback function
 	 */
 	'forEachLevelSelector': function(func) {
-		var selectors = this.getLevelSelectors();
-		for (var i = 0; i < selectors.length; i++) {
+		var i,
+			selectors = this.getLevelSelectors();
+		for ( i = 0; i < selectors.length; i++ ) {
 			func(selectors[i]);
 		}
 	},
@@ -255,10 +269,12 @@ window.ProtectionForm = {
 	 * @return Array
 	 */
 	'getLevelSelectors': function() {
-		var all = document.getElementsByTagName("select");
-		var ours = [];
-		for (var i = 0; i < all.length; i++) {
-			var element = all[i];
+		var i, element,
+			all = document.getElementsByTagName("select" ),
+			ours = [];
+
+		for ( i = 0; i < all.length; i++ ) {
+			element = all[i];
 			if (element.id.match(/^mwProtect-level-/)) {
 				ours[ours.length] = element;
 			}
@@ -272,8 +288,10 @@ window.ProtectionForm = {
 	 * @param func callable Callback function
 	 */
 	'forEachExpiryInput': function(func) {
-		var inputs = this.getExpiryInputs();
-		for (var i = 0; i < inputs.length; i++) {
+		var i,
+			inputs = this.getExpiryInputs();
+
+		for ( i = 0; i < inputs.length; i++ ) {
 			func(inputs[i]);
 		}
 	},
@@ -284,10 +302,12 @@ window.ProtectionForm = {
 	 * @return Array
 	 */
 	'getExpiryInputs': function() {
-		var all = document.getElementsByTagName("input");
-		var ours = [];
-		for (var i = 0; i < all.length; i++) {
-			var element = all[i];
+		var i, element,
+			all = document.getElementsByTagName("input" ),
+			ours = [];
+
+		for ( i = 0; i < all.length; i++ ) {
+			element = all[i];
 			if (element.name.match(/^mwProtect-expiry-/)) {
 				ours[ours.length] = element;
 			}
@@ -300,8 +320,10 @@ window.ProtectionForm = {
 	 * @param func callable Callback function
 	 */
 	'forEachExpirySelector': function(func) {
-		var inputs = this.getExpirySelectors();
-		for (var i = 0; i < inputs.length; i++) {
+		var i,
+			inputs = this.getExpirySelectors();
+
+		for ( i = 0; i < inputs.length; i++ ) {
 			func(inputs[i]);
 		}
 	},
@@ -312,10 +334,12 @@ window.ProtectionForm = {
 	 * @return Array
 	 */
 	'getExpirySelectors': function() {
-		var all = document.getElementsByTagName("select");
-		var ours = [];
-		for (var i = 0; i < all.length; i++) {
-			var element = all[i];
+		var i, element,
+			all = document.getElementsByTagName("select" ),
+			ours = [];
+
+		for ( i = 0; i < all.length; i++ ) {
+			element = all[i];
 			if (element.id.match(/^mwProtectExpirySelection-/)) {
 				ours[ours.length] = element;
 			}
