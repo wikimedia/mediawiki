@@ -1838,9 +1838,9 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		# Only 'createaccount' and 'execute' can be performed on
+		# Only 'createaccount' and 'read' can be performed on
 		# special pages, which don't actually exist in the DB.
-		$specialOKActions = array( 'createaccount', 'execute', 'read' );
+		$specialOKActions = array( 'createaccount', 'read' );
 		if ( NS_SPECIAL == $this->mNamespace && !in_array( $action, $specialOKActions ) ) {
 			$errors[] = array( 'ns-specialprotected' );
 		}
