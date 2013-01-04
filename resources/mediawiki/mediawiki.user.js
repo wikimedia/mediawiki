@@ -61,7 +61,7 @@
 		 *
 		 * @return String: Random set of 32 alpha-numeric characters
 		 */
-		function generateId() {
+		this.generateRandomSessionId = function () {
 			var i, r,
 				id = '',
 				seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -70,7 +70,7 @@
 				id += seed.substring( r, r + 1 );
 			}
 			return id;
-		}
+		};
 
 		/**
 		 * Gets the current user's name.
@@ -115,7 +115,7 @@
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
 			if ( typeof sessionId === 'undefined' || sessionId === null ) {
-				sessionId = generateId();
+				sessionId = user.generateRandomSessionId();
 				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
 			}
 			return sessionId;
@@ -138,7 +138,7 @@
 			}
 			id = $.cookie( 'mediaWiki.user.id' );
 			if ( typeof id === 'undefined' || id === null ) {
-				id = generateId();
+				id = user.generateRandomSessionId();
 			}
 			// Set cookie if not set, or renew it if already set
 			$.cookie( 'mediaWiki.user.id', id, {
