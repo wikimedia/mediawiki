@@ -356,8 +356,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'ns-specialprotected' ) ),
 							 $this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
-							 $this->title->getUserPermissionsErrors( 'execute', $this->user ) );
 
 		$this->setTitle( NS_MAIN );
 		$this->setUserPerm( 'bogus' );
