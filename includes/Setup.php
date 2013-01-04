@@ -466,6 +466,16 @@ if ( $wgProfileOnly ) {
 	$wgDebugLogFile = '';
 }
 
+// Only filter patrol logs if patrolling is enabled, but still be
+// able to override (bug 42246)
+if ( array_key_exists( 'patrol', $wgFilterLogTypes ) && is_null( $wgFilterLogTypes['patrol'] ) ) {
+	if ( $wgUseRCPatrol || $wgUseNPPatrol ) {
+		$wgFilterLogTypes['patrol'] = true;
+	} else {
+		unset( $wgFilterLogTypes['patrol'] );
+	}
+}
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
