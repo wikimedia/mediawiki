@@ -232,7 +232,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @todo: currently only checks list of tables
 	 */
 	public function testUpgrades() {
-		global $IP, $wgVersion;
+		global $IP, $wgVersion, $wgProfileToDatabase;
 
 		// Versions tested
 		$versions = array(
@@ -251,6 +251,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		$currentDB = new DatabaseSqliteStandalone( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
+		if ( $wgProfileToDatabase ) {
+			$currentDB->sourceFile( "$IP/maintenance/sqlite/archives/patch-profiling.sql" );
+		}
 		$currentTables = $this->getTables( $currentDB );
 		sort( $currentTables );
 
