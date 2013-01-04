@@ -33,6 +33,7 @@ class SqlBagOStuff extends BagOStuff {
 	var $lb;
 
 	var $serverInfos;
+	var $serverNames;
 	var $numServers;
 	var $conns;
 	var $lastExpireAll = 0;
@@ -75,6 +76,10 @@ class SqlBagOStuff extends BagOStuff {
 		if ( isset( $params['servers'] ) ) {
 			$this->serverInfos = $params['servers'];
 			$this->numServers = count( $this->serverInfos );
+			$this->serverNames = array();
+			foreach ( $this->serverInfos as $i => $info ) {
+				$this->serverNames[$i] = isset( $info['host'] ) ? $info['host'] : "#$i";
+			}
 		} elseif ( isset( $params['server'] ) ) {
 			$this->serverInfos = array( $params['server'] );
 			$this->numServers = count( $this->serverInfos );
@@ -154,16 +159,21 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return Array: server index and table name
 	 */
 	protected function getTableByKey( $key ) {
-		$numTables = $this->shards * $this->numServers ;
-		if ( $numTables > 1 ) {
-			$hash = ( hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff ) % $numTables;
+		if ( $this->shards > 1 ) {
+			$hash = hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff;
 			$tableIndex = $hash % $this->shards;
-			$serverIndex = intval( round( ( $hash - $tableIndex ) / $this->shards ) );
-			$tableName = $this->getTableNameByShard( $tableIndex );
-			return array( $serverIndex, $tableName );
 		} else {
-			return array( 0, $this->tableName );
+			$tableIndex = 0;
 		}
+		if ( $this->numServers > 1 ) {
+			$sortedServers = $this->serverNames;
+			ArrayUtils::consistentHashSort( $sortedServers, $key );
+			reset( $sortedServers );
+			$serverIndex = key( $sortedServers );
+		} else {
+			$serverIndex = 0;
+		}
+		return array( $serverIndex, $this->getTableNameByShard( $tableIndex ) );
 	}
 
 	/**
