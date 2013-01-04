@@ -2062,7 +2062,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 				$dbw->delete(
 					'recentchanges',
-					array( "rc_timestamp < '$cutoff'" ),
+					array( 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ),
 					__METHOD__
 				);
 			}
