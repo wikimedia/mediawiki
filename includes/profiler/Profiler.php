@@ -589,4 +589,18 @@ class Profiler {
 			wfDebug( $s );
 		}
 	}
+
+	/**
+	 * Get the content type sent out to the client.
+	 * Used for profilers that output instead of store data.
+	 * @return string
+	 */
+	protected function getContentType() {
+		foreach ( headers_list() as $header ) {
+			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
+				return $m[1];
+			}
+		}
+		return null;
+	}
 }
