@@ -222,7 +222,7 @@ class HistoryAction extends FormlessAction {
 		}
 
 		if ( $offset ) {
-			$offsets = array( "rev_timestamp $oper '$offset'" );
+			$offsets = array( 'rev_timestamp $oper ' . $dbr->addQuotes( $dbr->timestamp( $offset ) ) );
 		} else {
 			$offsets = array();
 		}
@@ -231,7 +231,7 @@ class HistoryAction extends FormlessAction {
 
 		return $dbr->select( 'revision',
 			Revision::selectFields(),
-			array_merge( array( "rev_page=$page_id" ), $offsets ),
+			array_merge( array( 'rev_page' => $page_id ), $offsets ),
 			__METHOD__,
 			array( 'ORDER BY' => "rev_timestamp $dirs",
 				'USE INDEX' => 'page_timestamp', 'LIMIT' => $limit )
