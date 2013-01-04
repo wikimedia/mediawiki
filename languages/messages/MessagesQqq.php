@@ -6947,11 +6947,20 @@ See also {{msg-mw|Days-abbrev}}
 
 Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
+'months' => 'Full word for "months". $1 is the number of months.
+
+Part of variable $1 in {{msg-mw|Ago}}',
+'years' => 'Full word for "years". $1 is the number of years.
+
+Part of variable $1 in {{msg-mw|Ago}}',
 'ago' => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours", taken from these messages:
 *{{msg-mw|Seconds}}
 *{{msg-mw|Minutes}}
 *{{msg-mw|Hours}}
-*{{msg-mw|Days}}',
+*{{msg-mw|Days}}
+*{{msg-mw|Months}}
+*{{msg-mw|Years}}',
+
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Bad image list
