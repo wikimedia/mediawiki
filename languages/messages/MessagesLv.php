@@ -1183,11 +1183,13 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-sendemail' => 'Sūtīt e-pastu citiem lietotājiem',
 'right-passwordreset' => 'Apskatīt paroles atiestatīšanas e-pasta ziņojumus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Jauno lietotāju reģistrs',
+'newuserlogpagetext' => 'Jauno lietotājvārdu reģistrs.',
+
 # User rights log
 'rightslog' => 'Lietotāju tiesību reģistrs',
 'rightslogtext' => 'Šis ir lietotāju tiesību izmaiņu reģistrs.',
-'rightslogentry' => 'izmainīja $1 grupas no $2 uz $3',
-'rightsnone' => '(nav)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lasīt šo lapu',
@@ -1732,10 +1734,6 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'activeusers-hidebots' => 'Paslēpt botus',
 'activeusers-hidesysops' => 'Paslēpt administratorus',
 'activeusers-noresult' => 'Neviens lietotājs nav atrasts.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Jauno lietotāju reģistrs',
-'newuserlogpagetext' => 'Jauno lietotājvārdu reģistrs.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Lietotāju grupu tiesības',
@@ -3114,6 +3112,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'logentry-newusers-create2' => 'Lietotāja kontu $3 izveidoja $1',
 'logentry-newusers-autocreate' => 'Konts $1 tika izveidots automātiski',
 'newuserlog-byemail' => 'parole nosūtīta pa e-pastu',
+'rightsnone' => '(nav)',
 
 # Feedback
 'feedback-subject' => 'Temats:',

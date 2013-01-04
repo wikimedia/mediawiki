@@ -1589,15 +1589,13 @@ A műveletet nem lehet visszavonni.',
 'right-sendemail' => 'e-mail küldése más felhasználóknak',
 'right-passwordreset' => 'Jelszó visszaállítási emailek megtekintése',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Új szerkesztők naplója',
+'newuserlogpagetext' => 'Ez a napló az újonnan regisztrált szerkesztők listáját tartalmazza.',
+
 # User rights log
 'rightslog' => 'Szerkesztői jogosultságok naplója',
 'rightslogtext' => 'Ez a rendszernapló a felhasználó jogosultságok változásait mutatja.',
-'rightslogentry' => 'megváltoztatta $1 szerkesztő felhasználó jogait (régi: $2; új: $3)',
-'rightslogentry-autopromote' => 'automatikusan $2 helyett $3 jogokat kapott',
-'logentry-rights-rights' => '$1 megváltoztatta $3 csoport tagságát erről: $4 erre: $5',
-'logentry-rights-rights-legacy' => '$1 megváltoztatta $3 csoport tagságát',
-'logentry-rights-autopromote' => '$1 automatikusan előléptetve erről: $4 erre: $5',
-'rightsnone' => '(semmi)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lap olvasása',
@@ -2236,10 +2234,6 @@ Támogatott protokollok: <code>$1</code> (http:// az alapértelmezett, ha nincs 
 'activeusers-hidebots' => 'Botok elrejtése',
 'activeusers-hidesysops' => 'Adminisztrátorok elrejtése',
 'activeusers-noresult' => 'Nem található ilyen szerkesztő.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Új szerkesztők naplója',
-'newuserlogpagetext' => 'Ez a napló az újonnan regisztrált szerkesztők listáját tartalmazza.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Szerkesztői csoportok jogai',
@@ -3970,6 +3964,10 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-newusers-create2' => '$1 létrehozta $3 felhasználói fiókját',
 'logentry-newusers-autocreate' => '$1 fiók automatikusan létrehozva',
 'newuserlog-byemail' => 'a jelszót kiküldtük a megadott e-mail címre',
+'logentry-rights-rights' => '$1 megváltoztatta $3 csoport tagságát erről: $4 erre: $5',
+'logentry-rights-rights-legacy' => '$1 megváltoztatta $3 csoport tagságát',
+'logentry-rights-autopromote' => '$1 automatikusan előléptetve erről: $4 erre: $5',
+'rightsnone' => '(semmi)',
 
 # Feedback
 'feedback-bugornote' => 'Ha kész technikai problémát részletesen leírni, akkor kérjük [$1 jelents egy hibát]. Egyébként használd az alábbi űrlapot. A hozzászólásod a „[$3 $2]” laphoz kerül felvételre, a szerkesztő neveddel és böngésződ típusával együtt.',

@@ -1612,15 +1612,13 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'right-sendemail' => 'Send e-post til andre brukere',
 'right-passwordreset' => 'Vis e-poster over tilbakestilte passord',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Brukeropprettelseslogg',
+'newuserlogpagetext' => 'Dette er en logg over brukeropprettelser.',
+
 # User rights log
 'rightslog' => 'Brukerrettighetslogg',
 'rightslogtext' => 'Dette er en logg over endringer av brukerrettigheter.',
-'rightslogentry' => 'endret gruppe for $1 fra $2 til $3',
-'rightslogentry-autopromote' => 'ble automatisk forfremmet fra $2 til $3',
-'logentry-rights-rights' => '$1 endret gruppemedlemskap for $3 fra $4 til $5',
-'logentry-rights-rights-legacy' => '$1 endret gruppemedlemskap for $3',
-'logentry-rights-autopromote' => '$1 ble automatisk forfremmet fra $4 til $5',
-'rightsnone' => '(ingen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'se denne siden',
@@ -2261,10 +2259,6 @@ Støttede protokoller: <code>$1</code> (ikke legg til noen av disse i søket dit
 'activeusers-hidebots' => 'Skjul roboter',
 'activeusers-hidesysops' => 'Skjul administratorer',
 'activeusers-noresult' => 'Ingen brukere funnet.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Brukeropprettelseslogg',
-'newuserlogpagetext' => 'Dette er en logg over brukeropprettelser.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rettigheter for brukergrupper',
@@ -3997,6 +3991,10 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-newusers-create2' => 'Kontoen $3 ble opprettet av $1',
 'logentry-newusers-autocreate' => 'Konto $1 ble opprettet automatisk',
 'newuserlog-byemail' => 'passord sendt på e-post',
+'logentry-rights-rights' => '$1 endret gruppemedlemskap for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 endret gruppemedlemskap for $3',
+'logentry-rights-autopromote' => '$1 ble automatisk forfremmet fra $4 til $5',
+'rightsnone' => '(ingen)',
 
 # Feedback
 'feedback-bugornote' => 'Hvis du er klar til å sende inn en detaljert feilrapport, vennligst [$1 rapporter en feil].

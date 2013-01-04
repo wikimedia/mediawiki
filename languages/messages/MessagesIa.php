@@ -1471,15 +1471,13 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-sendemail' => 'Inviar e-mail a altere usatores',
 'right-passwordreset' => 'Vider le e-mails pro reinitialisar le contrasigno',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de creation de usatores',
+'newuserlogpagetext' => 'Isto es un registro de creation de usatores.',
+
 # User rights log
 'rightslog' => 'Registro de derectos de usator',
 'rightslogtext' => 'Isto es un registro de cambios in derectos de usator.',
-'rightslogentry' => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
-'rightslogentry-autopromote' => 'ha essite automaticamente promovite de $2 a $3',
-'logentry-rights-rights' => '$1 cambiava le appertinentia a gruppos pro $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 cambiava le appertinentia a gruppos pro $3',
-'logentry-rights-autopromote' => '$1 ha essite automaticamente promovite de $4 a $5',
-'rightsnone' => '(nulle)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leger iste pagina',
@@ -2137,10 +2135,6 @@ Protocollos supportate: <code>$1</code> (http:// es assumite si nulle protocollo
 'activeusers-hidebots' => 'Celar bots',
 'activeusers-hidesysops' => 'Celar administratores',
 'activeusers-noresult' => 'Nulle usator trovate.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de creation de usatores',
-'newuserlogpagetext' => 'Isto es un registro de creation de usatores.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Derectos del gruppos de usatores',
@@ -3891,6 +3885,10 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'logentry-newusers-create2' => 'Le conto de usator $3 ha essite create per $1',
 'logentry-newusers-autocreate' => 'Le conto $1 ha essite create automaticamente',
 'newuserlog-byemail' => 'contrasigno inviate per e-mail',
+'logentry-rights-rights' => '$1 cambiava le appertinentia a gruppos pro $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 cambiava le appertinentia a gruppos pro $3',
+'logentry-rights-autopromote' => '$1 ha essite automaticamente promovite de $4 a $5',
+'rightsnone' => '(nulle)',
 
 # Feedback
 'feedback-bugornote' => 'Si tu es preste a describer un problema technic in detalio, per favor [$1 reporta un falta].

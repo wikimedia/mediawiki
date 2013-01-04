@@ -1538,15 +1538,13 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'right-sendemail' => 'Invia e-mail ad altri utenti',
 'right-passwordreset' => 'Vede i messaggi di reimpostazione della password',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nuovi utenti',
+'newuserlogpagetext' => 'Di seguito sono elencate le utenze di nuova creazione.',
+
 # User rights log
 'rightslog' => 'Diritti degli utenti',
 'rightslogtext' => 'Di seguito sono elencate le modifiche ai diritti assegnati agli utenti.',
-'rightslogentry' => "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
-'rightslogentry-autopromote' => 'è stato/a automaticamente promosso/a da $2 a $3',
-'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
-'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",
-'logentry-rights-autopromote' => '$1 è stato/a automaticamente promosso/a da $4 a $5',
-'rightsnone' => '(nessuno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leggere questa pagina',
@@ -2180,10 +2178,6 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'activeusers-hidebots' => 'Nascondi i bot',
 'activeusers-hidesysops' => 'Nascondi gli amministratori',
 'activeusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nuovi utenti',
-'newuserlogpagetext' => 'Di seguito sono elencate le utenze di nuova creazione.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti del gruppo utente',
@@ -3899,6 +3893,10 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-newusers-create2' => "L'utenza $3 è stata creata da $1",
 'logentry-newusers-autocreate' => "L'utenza $1 è stata creata automaticamente",
 'newuserlog-byemail' => 'password inviata via mail',
+'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
+'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",
+'logentry-rights-autopromote' => '$1 è stato/a automaticamente promosso/a da $4 a $5',
+'rightsnone' => '(nessuno)',
 
 # Feedback
 'feedback-bugornote' => 'Se si è in grado di descrivere il problema tecnico riscontrato in maniera precisa, [$1 segnalate il bug]. In alternativa, si può usare il modulo semplificato sottostante. Il commento inserito sarà aggiunto alla pagina "[$3 $2]", insieme al proprio nome utente e al browser in uso.',

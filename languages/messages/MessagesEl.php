@@ -1414,7 +1414,7 @@ $1",
 'prefs-watchlist-token' => 'Σημείο λίστας παρακολούθησης:',
 'prefs-misc' => 'Διάφορες ρυθμίσεις',
 'prefs-resetpass' => 'Αλλαγή κωδικού',
-'prefs-changeemail' => 'Αλλαγή ηλεκτρονικού μηνύματος',
+'prefs-changeemail' => 'Αλλαγή διεύθυνσης ηλεκτρονικού ταχυδρομείου',
 'prefs-setemail' => 'Ορίστε μια διεύθυνση ηλεκτρονικού ταχυδρομείου',
 'prefs-email' => 'Επιλογές e-mail',
 'prefs-rendering' => 'Εμφάνιση',
@@ -1617,14 +1617,13 @@ $1",
 'right-sendemail' => 'Αποστολή ηλεκτρονικού μηνύματος σε άλλους χρήστες',
 'right-passwordreset' => 'Εμφάνιση email επαναφοράς κωδικού πρόσβασης',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Αρχείο δημιουργίας χρηστών',
+'newuserlogpagetext' => 'Αυτή είναι μια καταγραφή δημιουργίας χρηστών.',
+
 # User rights log
 'rightslog' => 'Αρχείο καταγραφών δικαιωμάτων χρηστών',
 'rightslogtext' => 'Καταγραφές των αλλαγών στα δικαιώματα χρηστών.',
-'rightslogentry' => 'η ιδιότητα μέλους ομάδας για τον/την $1 από $2 σε $3 άλλαξε',
-'rightslogentry-autopromote' => 'προωθήθηκε αυτόματα από $2 σε $3',
-'logentry-rights-rights-legacy' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας {{GENDER:$1|του|της}} $3',
-'logentry-rights-autopromote' => '$1 προωθήθηκε αυτόματα από το $4 στο $5',
-'rightsnone' => '(κανένα)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'να διαβάσετε αυτή τη σελίδα',
@@ -1883,6 +1882,8 @@ $1',
 # Lock manager
 'lockmanager-notlocked' => 'Δεν μπορέσατε να  ξεκλειδώσετε το " $1 ". Δεν είναι κλειδωμένο.',
 'lockmanager-fail-closelock' => 'Δεν μπόρεσε να κλείσει το κλειδωμένο αρχείο για "$1".',
+'lockmanager-fail-deletelock' => 'Δεν μπόρεσε να διαγράψει το αρχείο κλειδώματος για το "$1".',
+'lockmanager-fail-openlock' => 'Δεν μπόρεσε να ανοίξει το αρχείο κλειδώματος για το "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Παρουσιάστηκε σφάλμα κατά το άνοιγμα του αρχείου για ZIP ελέγχους.',
@@ -2249,10 +2250,6 @@ $1',
 'activeusers-hidebots' => 'Απόκρυψη bots',
 'activeusers-hidesysops' => 'Απόκρυψη διαχειριστών',
 'activeusers-noresult' => 'Δεν βρέθηκε χρήστης.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Αρχείο δημιουργίας χρηστών',
-'newuserlogpagetext' => 'Αυτή είναι μια καταγραφή δημιουργίας χρηστών.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Δικαιώματα ομάδων χρηστών',
@@ -3931,6 +3928,7 @@ $5
 'logentry-delete-restore' => 'Ο/η $1 αποκατέστησε τη σελίδα $3',
 'logentry-delete-event' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα σε {{PLURAL:$5|ένα γεγονός καταγραφής|$5 log events}} στο $3: $4',
 'logentry-delete-revision' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα {{PLURAL:$5|μιας έκδοσης|$5 εκδόσεων}} στη σελίδα $3: $4',
+'logentry-delete-event-legacy' => '$1 άλλαξαν ορατότητα της καταγραφής συμβάντων σε $3',
 'logentry-delete-revision-legacy' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την  ορατότητα των αναθεωρήσεων στη σελίδα $3',
 'logentry-suppress-delete' => '{{GENDER:$1|Ο|Η}} $1 διέγραψε τη σελίδα $3',
 'logentry-suppress-revision-legacy' => '$1 κρυφά άλλαξαν την  ορατότητα των αναθεωρήσεων στη σελίδα $3',
@@ -3953,6 +3951,9 @@ $5
 'logentry-newusers-create2' => 'Ο λογαριασμός χρήστη $3 δημιουργήθηκε από {{GENDER:$1|τον|την}} $1',
 'logentry-newusers-autocreate' => 'Ο λογαριασμός $1 δημιουργήθηκε αυτόματα',
 'newuserlog-byemail' => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
+'logentry-rights-rights-legacy' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας {{GENDER:$1|του|της}} $3',
+'logentry-rights-autopromote' => '$1 προωθήθηκε αυτόματα από το $4 στο $5',
+'rightsnone' => '(κανένα)',
 
 # Feedback
 'feedback-bugornote' => 'Εάν είστε έτοιμοι να περιγράψετε ένα τεχνικό πρόβλημα λεπτομερώς παρακαλώ [ $1  κάντε μια αναφορά σφάλματος].

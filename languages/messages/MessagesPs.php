@@ -1167,10 +1167,13 @@ $1',
 'right-userrights-interwiki' => 'په نورو ويکي ګانو د نورو کارنانو  کارن-رښتې سمول',
 'right-sendemail' => 'نورو کارنانو ته برېښليک لېږل',
 
+# Special:Log/newusers
+'newuserlogpage' => 'د کارن-نوم د جوړېدو يادښت',
+'newuserlogpagetext' => 'دا د کارن-نوم د جوړېدو يادښت دی',
+
 # User rights log
 'rightslog' => 'د کارن د رښتو يادښت',
 'rightslogtext' => 'دا د کارن رښتو د بدلونونو يو يادښت دی',
-'rightsnone' => '(هېڅ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'همدا مخ لوستل',
@@ -1582,10 +1585,6 @@ $1',
 'activeusers-hidebots' => 'روباټونه پټول',
 'activeusers-hidesysops' => 'پازوالان پټول',
 'activeusers-noresult' => 'کارن و نه موندل شو.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'د کارن-نوم د جوړېدو يادښت',
-'newuserlogpagetext' => 'دا د کارن-نوم د جوړېدو يادښت دی',
 
 # Special:ListGroupRights
 'listgrouprights' => 'د کارن ډلو رښتې',
@@ -2675,6 +2674,7 @@ $5
 'logentry-newusers-create' => 'د $1 کارن ګڼون جوړ شو',
 'logentry-newusers-autocreate' => 'د $1 ګڼون په اتوماتيک ډول جوړ شو',
 'newuserlog-byemail' => 'پټنوم مو برېښليک ته درولېږه',
+'rightsnone' => '(هېڅ)',
 
 # Feedback
 'feedback-subject' => 'سکالو:',

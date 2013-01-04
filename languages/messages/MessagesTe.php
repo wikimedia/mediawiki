@@ -1391,11 +1391,13 @@ $1",
 'right-sendemail' => 'ఇతర వాడుకరులకు ఈ-మెయిలు పంపించగలగడం',
 'right-passwordreset' => 'సంకేతపదాన్ని పునరుద్ధరించిన ఈ-మెయిళ్ళు',
 
+# Special:Log/newusers
+'newuserlogpage' => 'కొత్త వాడుకరుల చిట్టా',
+'newuserlogpagetext' => 'ఇది వాడుకరి నమోదుల చిట్టా.',
+
 # User rights log
 'rightslog' => 'వాడుకరుల హక్కుల మార్పుల చిట్టా',
 'rightslogtext' => 'ఇది వాడుకరుల హక్కులకు జరిగిన మార్పుల చిట్టా.',
-'rightslogentry' => '$1 గారి సభ్యత్వ గుంపును $2 నుండి $3 కి మార్చారు',
-'rightsnone' => '(ఏమీలేవు)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ఈ పేజీని చదవండి',
@@ -1967,10 +1969,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'activeusers-hidebots' => 'బాట్లను దాచు',
 'activeusers-hidesysops' => 'నిర్వాహకులను దాచు',
 'activeusers-noresult' => 'వాడుకరులెవరూ లేరు.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'కొత్త వాడుకరుల చిట్టా',
-'newuserlogpagetext' => 'ఇది వాడుకరి నమోదుల చిట్టా.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'వాడుకరి గుంపుల హక్కులు',
@@ -3522,6 +3520,7 @@ $5
 'logentry-newusers-create2' => '$1  వాడుకరి ఖాతా $3ను సృష్టించారు',
 'logentry-newusers-autocreate' => '$1 ఖాతాను ఆటోమెటిగ్గా సృష్టించారు',
 'newuserlog-byemail' => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
+'rightsnone' => '(ఏమీలేవు)',
 
 # Feedback
 'feedback-subject' => 'విషయం:',

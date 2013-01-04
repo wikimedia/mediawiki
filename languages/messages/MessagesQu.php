@@ -1511,12 +1511,13 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'right-sendemail' => 'Huk ruraqkunaman e-chaskita kachay',
 'right-passwordreset' => 'Yaykuna rima kutichina e-chaskikunata qhaway',
 
+# Special:Log/newusers
+'newuserlogpage' => "Rakiquna kamariy hallch'a",
+'newuserlogpagetext' => "Kayqa ruraqkunap rakiqunankunata kamariymanta hallch'am.",
+
 # User rights log
 'rightslog' => 'Ruraqpa hayñinkunap hukyasqankuna',
 'rightslogtext' => "Kayqa hayñi hukchasqa hallch'aymi.",
-'rightslogentry' => 'hukchan $1-pa hayñinkunata $2-manta $3-man',
-'rightslogentry-autopromote' => 'kikinmanta $2-manta $3-manmi ñawpanchisqa',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "kay p'anqata ñawiriy",
@@ -2127,10 +2128,6 @@ Q\'imichisqa tantari qillqa: <code>$1</code> (maskaspaykiqa kaykunamanta ama may
 'activeusers-hidebots' => 'Rurana antachakunata pakay',
 'activeusers-hidesysops' => 'Kamachiqkunata pakay',
 'activeusers-noresult' => 'Ruraqkunataqa manam tarinichu.',
-
-# Special:Log/newusers
-'newuserlogpage' => "Rakiquna kamariy hallch'a",
-'newuserlogpagetext' => "Kayqa ruraqkunap rakiqunankunata kamariymanta hallch'am.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Ruraq huñup hayñinkuna',
@@ -3753,6 +3750,7 @@ Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapus
 'logentry-newusers-create2' => '$1 sutiyuq ruraqqa rakiqunatam kamarin $3',
 'logentry-newusers-autocreate' => '$1 sutiyuq rakiqunaqa kikinmanta kamarisqam',
 'newuserlog-byemail' => 'e-chaskiwan kachasqa yaykuna rima',
+'rightsnone' => '(-)',
 
 # Feedback
 'feedback-bugornote' => "Allwiyapi sasachakuymanta imaymanachanta willayta munaspaykiqa, [\$1 pantasqamanta willay].

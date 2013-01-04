@@ -1401,15 +1401,13 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'right-sendemail' => 'باشقا ئىشلەتكۈچىگە ئېلخەت يوللا',
 'right-passwordreset' => 'پارول ئەسلىگە قايتۇرۇش ئېلخەت ئادرېس كۆرۈش.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ئىشلەتكۈچى قۇرغان خاتىرە',
+'newuserlogpagetext' => '(چەكلەنگەن)',
+
 # User rights log
 'rightslog' => 'ئىشلەتكۈچى ھوقۇق خاتىرىسى',
 'rightslogtext' => 'ئىشلەتكۈچى ھوقۇق خاتىرىسى',
-'rightslogentry' => 'گۇرۇپپا ئەزاسى $1  نىڭ ھوقۇقىنى $2 دىن $3 غا ئۆزگەرت',
-'rightslogentry-autopromote' => 'ئۆزلۈكىدىن $2 دىن $3 غا ئۆرلىدى',
-'logentry-rights-rights' => '$3 نىڭ ئىشلەتكۈچى گۇرۇپپىسىنى $4 دىن $5 غا $1 ئالماشتۇردى',
-'logentry-rights-rights-legacy' => '$3 نىڭ ئىشلەتكۈچى گۇرۇپپىسىنى $1 ئۆزگەرتتى',
-'logentry-rights-autopromote' => '$1 نىڭ ئىشلەتكۈچى گۇرۇپپىسى ئۆزلۈكىدىن $4 دىن $5 غا يۈكسەلدى',
-'rightsnone' => '(يوق)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'بۇ بەتنى ئوقۇ',
@@ -2056,10 +2054,6 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'activeusers-hidebots' => 'ماشىنا ئادەمنى يوشۇر',
 'activeusers-hidesysops' => 'باشقۇرغۇچىنى يوشۇر',
 'activeusers-noresult' => 'ئىشلەتكۈچى تېپىلمىدى.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ئىشلەتكۈچى قۇرغان خاتىرە',
-'newuserlogpagetext' => '(چەكلەنگەن)',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ئىشلەتكۈچى گۇرۇپپا ھوقۇقى',
@@ -3864,6 +3858,10 @@ MediaWiki ئىشلىتىش مەقسىتىنى ئاساس قىلىپ ئېلان �
 'logentry-newusers-create2' => 'ئىشلەتكۈچى ھېساباتى $3 نى $1 قۇردى',
 'logentry-newusers-autocreate' => 'ئىشلەتكۈچى $1 ئاپتوماتلىق قۇرۇلدى',
 'newuserlog-byemail' => 'ئىم ئىلخەتتە يوللاندى',
+'logentry-rights-rights' => '$3 نىڭ ئىشلەتكۈچى گۇرۇپپىسىنى $4 دىن $5 غا $1 ئالماشتۇردى',
+'logentry-rights-rights-legacy' => '$3 نىڭ ئىشلەتكۈچى گۇرۇپپىسىنى $1 ئۆزگەرتتى',
+'logentry-rights-autopromote' => '$1 نىڭ ئىشلەتكۈچى گۇرۇپپىسى ئۆزلۈكىدىن $4 دىن $5 غا يۈكسەلدى',
+'rightsnone' => '(يوق)',
 
 # Feedback
 'feedback-bugornote' => 'ئەگەر بىر تېخنىكىلىق مەسىلىنى تەپسىلىي بايان قىلىشقا تەييارلانماقچى بولسىڭىز، [$1 خاتالىق دوكلات]ى يوللاڭ. ياكى تۆۋەندىكى ئاددىي جەدۋەلنى ئىشلىتىڭ. ئىنكاسىڭىز "[$3 $2]" بەتكە قوشۇلىدۇ، ئىشلەتكۈچى ئاتىڭىز ۋە ئىشلەتكەن توركۆرگۈڭىز قوشۇپ قويۇلىدۇ.',

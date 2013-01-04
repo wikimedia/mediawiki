@@ -1705,15 +1705,13 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-sendemail' => '他の利用者にメールを送信',
 'right-passwordreset' => 'パスワード再設定メールを閲覧',
 
+# Special:Log/newusers
+'newuserlogpage' => 'アカウント作成記録',
+'newuserlogpagetext' => '以下はアカウント作成の記録です。',
+
 # User rights log
 'rightslog' => '利用者権限変更記録',
 'rightslogtext' => '以下は利用者権限の変更記録です。',
-'rightslogentry' => '$1 の所属グループを $2 から $3 に変更しました',
-'rightslogentry-autopromote' => '$2 から $3 に自動的に昇格しました',
-'logentry-rights-rights' => '$1 が $3 の所属グループを $4 から $5 に変更しました',
-'logentry-rights-rights-legacy' => '$1 が $3 の所属グループを変更しました',
-'logentry-rights-autopromote' => '$1 が $4 から $5 に自動的に昇格しました',
-'rightsnone' => '(なし)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'このページの閲覧',
@@ -2381,10 +2379,6 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'activeusers-hidesysops' => '管理者を隠す',
 'activeusers-noresult' => '利用者が見つかりませんでした。',
 
-# Special:Log/newusers
-'newuserlogpage' => 'アカウント作成記録',
-'newuserlogpagetext' => '以下はアカウント作成の記録です。',
-
 # Special:ListGroupRights
 'listgrouprights' => '利用者グループの権限',
 'listgrouprights-summary' => '以下は、このウィキに登録されている利用者グループと、それぞれに割り当てられている権限の一覧です。
@@ -2613,6 +2607,7 @@ $2による直前の版へ変更されました。',
 'protect-fallback' => '「$1」権限が必要',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
 'protect-level-sysop' => '管理者のみ',
+'protect-summary-desc' => '[$1=$2] ($3)',
 'protect-summary-cascade' => 'カスケード',
 'protect-expiring' => '$1(UTC)で自動的に解除',
 'protect-expiring-local' => '期限 $1',
@@ -3391,6 +3386,8 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 分}}',
 'hours' => '{{PLURAL:$1|$1 時間}}',
 'days' => '{{PLURAL:$1|$1 日}}',
+'months' => '{{PLURAL:$1|$1 か月}}',
+'years' => '{{PLURAL:$1|$1 年}}',
 'ago' => '$1前',
 'just-now' => 'ちょうど今',
 
@@ -4287,6 +4284,10 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'logentry-newusers-create2' => '利用者アカウント $3 が $1 により作成されました',
 'logentry-newusers-autocreate' => '利用者アカウント $1 が自動的に作成されました',
 'newuserlog-byemail' => 'パスワードをメールで送信しました',
+'logentry-rights-rights' => '$1 が $3 の所属グループを $4 から $5 に変更しました',
+'logentry-rights-rights-legacy' => '$1 が $3 の所属グループを変更しました',
+'logentry-rights-autopromote' => '$1 が $4 から $5 に自動的に昇格しました',
+'rightsnone' => '(なし)',
 
 # Feedback
 'feedback-bugornote' => '技術的な問題の詳細を説明する準備ができている場合は、[$1 バグ報告]をお願いします。

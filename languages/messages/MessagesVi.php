@@ -1582,15 +1582,13 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-sendemail' => 'Gửi thư điện tử cho thành viên khác',
 'right-passwordreset' => 'Xem các thư điện tử đặt lại mật khẩu',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nhật trình mở tài khoản',
+'newuserlogpagetext' => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
+
 # User rights log
 'rightslog' => 'Nhật trình cấp quyền thành viên',
 'rightslogtext' => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
-'rightslogentry' => 'đã đổi các nhóm liên kết của thành viên $1 từ $2 thành $3',
-'rightslogentry-autopromote' => 'được tự động phong cấp từ $2 đến $3',
-'logentry-rights-rights' => '$1 đã đổi các nhóm liên kết của $3 từ $4 đến $5',
-'logentry-rights-rights-legacy' => '$1 đã đổi các nhóm liên kết của $3',
-'logentry-rights-autopromote' => '$1 đã được tự động phong cấp từ $4 đến $5',
-'rightsnone' => '(không có)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'đọc trang này',
@@ -2233,10 +2231,6 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'activeusers-hidebots' => 'Ẩn robot',
 'activeusers-hidesysops' => 'Ẩn bảo quản viên',
 'activeusers-noresult' => 'Không thấy thành viên.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nhật trình mở tài khoản',
-'newuserlogpagetext' => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Nhóm thành viên',
@@ -4089,6 +4083,10 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'logentry-newusers-create2' => '$1 đã mở tài khoản người dùng $3',
 'logentry-newusers-autocreate' => 'Tài khoản $1 đã được mở tự động',
 'newuserlog-byemail' => 'gửi mật khẩu qua thư điện tử',
+'logentry-rights-rights' => '$1 đã đổi các nhóm liên kết của $3 từ $4 đến $5',
+'logentry-rights-rights-legacy' => '$1 đã đổi các nhóm liên kết của $3',
+'logentry-rights-autopromote' => '$1 đã được tự động phong cấp từ $4 đến $5',
+'rightsnone' => '(không có)',
 
 # Feedback
 'feedback-bugornote' => 'Nếu bạn đã sẵn sàng để miêu tả các chi tiết của một vấn đề kỹ thuật, xin vui lòng [$1 báo cáo lỗi].

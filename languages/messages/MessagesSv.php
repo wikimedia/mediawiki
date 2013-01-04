@@ -1613,15 +1613,13 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-sendemail' => 'Skicka e-post till andra användare',
 'right-passwordreset' => 'Visa e-postmeddelanden med lösenordsåterställning',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logg över nya användare',
+'newuserlogpagetext' => 'Detta är en logg över skapade användarkonton.',
+
 # User rights log
 'rightslog' => 'Användarrättighetslogg',
 'rightslogtext' => 'Detta är en logg över ändringar av användares rättigheter.',
-'rightslogentry' => 'ändrade grupptillhörighet för $1 från $2 till $3',
-'rightslogentry-autopromote' => 'befordrades automatiskt från $2 till $3',
-'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
-'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',
-'logentry-rights-autopromote' => '$1 befordrades automatiskt från $4 till $5',
-'rightsnone' => '(inga)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'läsa denna sida',
@@ -2266,10 +2264,6 @@ Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
 'activeusers-hidebots' => 'Göm botar',
 'activeusers-hidesysops' => 'Dölj administratörer',
 'activeusers-noresult' => 'Inga användare funna.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logg över nya användare',
-'newuserlogpagetext' => 'Detta är en logg över skapade användarkonton.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Behörigheter för användargrupper',
@@ -3252,6 +3246,8 @@ Om du kör den kan din dator skadas.",
 'minutes' => '{{PLURAL:$1|$1 minut|$1 minuter}}',
 'hours' => '{{PLURAL:$1|$1 timme|$1 timmar}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagar}}',
+'months' => '{{PLURAL:$1|$1 månad|$1 månader}}',
+'years' => '{{PLURAL:$1|$1 år}}',
 'ago' => '$1 sedan',
 'just-now' => 'precis nu',
 
@@ -4010,6 +4006,10 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
 'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
 'newuserlog-byemail' => 'lösenord skickat med e-post',
+'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
+'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',
+'logentry-rights-autopromote' => '$1 befordrades automatiskt från $4 till $5',
+'rightsnone' => '(inga)',
 
 # Feedback
 'feedback-bugornote' => 'Om du är redo att beskriva ett tekniskt problem detaljerat, var god [$1 rapporterar en bugg].

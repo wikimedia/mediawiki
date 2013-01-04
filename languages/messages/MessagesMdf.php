@@ -1225,11 +1225,13 @@ $3 макссь туфталсь - ''$2''",
 'right-userrights-interwiki' => 'Петнемс тиихнень видекснон иля викить лопасонза',
 'right-siteadmin' => 'Пякстамс эди панжемс датабазать',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Тиинь ушедоманзон лувомасна',
+'newuserlogpagetext' => 'Тя тиинь ушедоманзон лувомасна.',
+
 # User rights log
 'rightslog' => 'Тиить видексонза лувомась',
 'rightslogtext' => 'Тиить видексонзон полафнемасна лувомась.',
-'rightslogentry' => '$1-нь полгац полафтсь $2-ста $3-с',
-'rightsnone' => '(аш)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'тя лопать морафтома',
@@ -1669,10 +1671,6 @@ $3 макссь туфталсь - ''$2''",
 'listusersfrom' => 'Няфтемс тиихть ушедомс:',
 'listusers-submit' => 'Няфтемс',
 'listusers-noresult' => 'Тиихть исть мув.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Тиинь ушедоманзон лувомасна',
-'newuserlogpagetext' => 'Тя тиинь ушедоманзон лувомасна.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Тиихнень полгаснон видексонза',
@@ -2888,5 +2886,6 @@ $5
 'revdelete-restricted' => 'нолдаф тевс кардафксне системонь вятиксненди',
 'revdelete-unrestricted' => 'системонь вятиксненди кардафксне валхтфт',
 'newuserlog-byemail' => 'сувама валце кучф электрононь сёрмаса',
+'rightsnone' => '(аш)',
 
 );

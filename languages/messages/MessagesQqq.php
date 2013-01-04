@@ -2814,45 +2814,16 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-sendemail' => '{{doc-right|sendemail}}',
 'right-passwordreset' => '{{doc-right|passwordreset}}',
 
+# Special:Log/newusers
+'newuserlogpage' => '{{doc-logpage}}
+
+Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].',
+'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
+
 # User rights log
 'rightslog' => '{{doc-logpage}}
 In [[Special:Log]]',
 'rightslogtext' => 'Text in [[Special:Log/rights]].',
-'rightslogentry' => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a bureaucrat changes the user groups for a user.
-
-* Parameter $1 is the username
-* Parameters $2 and $3 are lists of user groups or {{msg-mw|Rightsnone}}
-
-The name of the bureaucrat who did this task appears before this message.
-
-Similar to {{msg-mw|Gur-rightslog-entry}}',
-'rightslogentry-autopromote' => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a user is automatically promoted to a user group.
-
-Parameters:
-* $2 is a comma separated list of old user groups or {{msg-mw|Rightsnone}}
-* $3 is a comma separated list of new user groups',
-'logentry-rights-rights' => '*$1 - username
-*$2 - (see below)
-*$3 - username
-*$4 - list of user groups or {{msg-mw|Rightsnone}}
-*$5 - list of user groups or {{msg-mw|Rightsnone}}
-----
-{{Logentry}}',
-'logentry-rights-rights-legacy' => '*$1 - username
-*$2 - (see below)
-*$3 - username
-----
-{{Logentry}}',
-'logentry-rights-autopromote' => '*$1 - username
-*$2 - (see below)
-*$3 - (see below)
-*$4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}
-*$5 - comma separated list of new user groups
-----
-{{Logentry}}',
-'rightsnone' => 'Default rights for registered users.
-
-{{Identical|None}}',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '{{Doc-action|read}}',
@@ -4217,12 +4188,6 @@ See also:
 * {{msg-mw|activeusers-hidebots|label for checkbox}}',
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
-# Special:Log/newusers
-'newuserlogpage' => '{{doc-logpage}}
-
-Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].',
-'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
-
 # Special:ListGroupRights
 'listgrouprights' => 'The name of the special page [[Special:ListGroupRights]].',
 'listgrouprights-summary' => 'The description used on [[Special:ListGroupRights]].',
@@ -4505,6 +4470,7 @@ See also:
 ***a newline
 ***{{msg-mw|enotif lastvisited}}
 *$PAGEEDITOR_EMAIL and $PAGEEDITOR_WIKI are links respectively to the e-mail user special page and user page for the user who performed the action.
+*$PAGEEDITOR is the username of the user who performed the action.
 
 The subject of the e-mail is one of the following messages:
 *{{msg-mw|enotif subject deleted}}
@@ -4654,16 +4620,16 @@ See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-level-sysop' => 'Used as protect level.
 
 See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
+'protect-summary-desc' => 'Used in edit summary for description of a protecting restriction.
+* $1 is action, taken from restriction-*
+* $2 is restriction, taken from protect-level-*
+* $3 is {{msg-mw|protect-expiring}} or {{msg-mw|protect-expiry-indefinite}}',
 'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
 
 Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
 See also:
 *{{msg-mw|Restriction-level-sysop}}
 *{{msg-mw|Restriction-level-autoconfirmed}}',
-'protect-summary-desc' => 'Used in edit summary for description of a protecting restriction.
-* $1 is action, taken from restriction-*
-* $2 is restriction, taken from protect-level-*
-* $3 is {{msg-mw|protect-expiring}} or {{msg-mw|protect-expiry-indefinite}}',
 'protect-expiring' => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
 * $1 is a date and time
 * $2 is a date (optional)
@@ -6964,7 +6930,6 @@ Part of variable $1 in {{msg-mw|Ago}}',
 *{{msg-mw|Days}}
 *{{msg-mw|Months}}
 *{{msg-mw|Years}}',
-
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Bad image list
@@ -9492,6 +9457,28 @@ $4 is the name of the target user.',
 
 $4 is the gender of the target user.',
 'newuserlog-byemail' => 'Used as reason in [[Special:Log/newusers]].',
+'logentry-rights-rights' => '*$1 - username
+*$2 - (see below)
+*$3 - username
+*$4 - list of user groups or {{msg-mw|Rightsnone}}
+*$5 - list of user groups or {{msg-mw|Rightsnone}}
+----
+{{Logentry}}',
+'logentry-rights-rights-legacy' => '*$1 - username
+*$2 - (see below)
+*$3 - username
+----
+{{Logentry}}',
+'logentry-rights-autopromote' => '*$1 - username
+*$2 - (see below)
+*$3 - (see below)
+*$4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}
+*$5 - comma separated list of new user groups
+----
+{{Logentry}}',
+'rightsnone' => 'Default rights for registered users.
+
+{{Identical|None}}',
 
 # Feedback
 'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback. We expect that people in a hurry will not read this.',

@@ -756,6 +756,9 @@ Dei Mail-Adress wead dabei ned ozoagt.',
 'right-edit' => 'Seiten beorweiten',
 'right-block' => 'Benutzer sperrn (Schreiwrecht)',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Neiomejdungs-Logbuach',
+
 # User rights log
 'rightslog' => 'Rechte-Logbiache',
 
@@ -1044,9 +1047,6 @@ Links as Naumensraim wern do néd afglistt.",
 # Special:ListUsers
 'listusers-submit' => 'Zoag',
 'listusers-noresult' => 'Koane Benutzer gfunden.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Neiomejdungs-Logbuach',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppmrechtt',

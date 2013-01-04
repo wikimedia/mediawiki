@@ -1303,11 +1303,13 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'right-userrights-interwiki' => 'باسقا ۇىيكىيلەردەگى قاتىسۋشىلاردىڭ قۇقىقتارىن وڭدەۋ',
 'right-siteadmin' => 'دەرەكقوردى قۇلىپتاۋ جانە قۇلىپتاۋىن ٴوشىرۋ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'تىركەلۋ جۋرنالى',
+'newuserlogpagetext' => 'بۇل قاتىسۋشى تىركەلگى جاساۋ جۋرنالى',
+
 # User rights log
 'rightslog' => 'قاتىسۋشى قۇقىقتارى جۋرنالى',
 'rightslogtext' => 'بۇل قاتىسۋشى قۇقىقتارىن وزگەرتۋ جۋرنالى.',
-'rightslogentry' => '$1 كىرگەن توپتارىن $2 دەگەننەن $3 دەگەنگە وزگەرتتى',
-'rightsnone' => '(ەشقانداي)',
 
 # Recent changes
 'nchanges' => '$1 وزگەرىس',
@@ -1681,10 +1683,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'مىنا قاتىسۋشىدان باستاپ كورسەتۋ:',
 'listusers-submit' => 'كورسەت',
 'listusers-noresult' => 'قاتىسۋشى تابىلعان جوق.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'تىركەلۋ جۋرنالى',
-'newuserlogpagetext' => 'بۇل قاتىسۋشى تىركەلگى جاساۋ جۋرنالى',
 
 # Special:ListGroupRights
 'listgrouprights' => 'قاتىسۋشى توبى قۇقىقتارى',
@@ -2896,5 +2894,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'اكىمشىلەرگە تىيىمدار قولدادى',
 'revdelete-unrestricted' => 'اكىمشىلەردەن تىيىمداردى الاستادى',
+'rightsnone' => '(ەشقانداي)',
 
 );

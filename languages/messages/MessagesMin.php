@@ -922,6 +922,9 @@ Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan mangh
 
 'grouppage-sysop' => '{{ns:project}}:Pengurus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log pangguno baru',
+
 # User rights log
 'rightslog' => 'Log parubahan hak akses',
 
@@ -1039,9 +1042,6 @@ Deskripsi dari [$2 laman deskripsi berkas] ditampilkan di bawah.',
 # Special:LinkSearch
 'linksearch' => 'Pranala lua',
 'linksearch-line' => '$1 tapauik dari $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log pangguno baru',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(senarai anggota)',

@@ -1415,15 +1415,13 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-sendemail' => 'Drugim wužywarjam e-mail pósłaś',
 'right-passwordreset' => 'E-maile za slědkstajanje gronidłow se woglědaś',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Protokol nowych wužywarjow',
+'newuserlogpagetext' => 'To jo protokol wó nowych wužywarskich kontow.',
+
 # User rights log
 'rightslog' => 'Protokol wužywarskich pšawow',
 'rightslogtext' => 'To jo protokol wužywarskich pšawow.',
-'rightslogentry' => 'Pśisłušnosć ku kupce jo se za „$1“ změniła wót „$2“ na „$3“.',
-'rightslogentry-autopromote' => 'jo se awtomatiski wót $2 do $3 změnił',
-'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 změnił',
-'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 změnił',
-'logentry-rights-autopromote' => '$1 jo se awtomatiski wót $4 do $5 pówušył',
-'rightsnone' => '(nic)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'toś ten bok cytaś',
@@ -2058,10 +2056,6 @@ Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
 'activeusers-hidebots' => 'Boty schowaś',
 'activeusers-hidesysops' => 'Administratorow schowaś',
 'activeusers-noresult' => 'Žedne wužywarje namakane.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Protokol nowych wužywarjow',
-'newuserlogpagetext' => 'To jo protokol wó nowych wužywarskich kontow.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Pšawa wužywarskeje kupki',
@@ -3743,6 +3737,10 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'logentry-newusers-create2' => '$1 jo załožył wužywarske konto $3',
 'logentry-newusers-autocreate' => 'Konto $1 jo se awtomatiski załožyło',
 'newuserlog-byemail' => 'Pótajne słowo bu pśez e-mail pósłane.',
+'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 změnił',
+'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 změnił',
+'logentry-rights-autopromote' => '$1 jo se awtomatiski wót $4 do $5 pówušył',
+'rightsnone' => '(nic)',
 
 # Feedback
 'feedback-bugornote' => 'Jolic sy zwólny, techniski problem nadrobnje wopisaś, [$1 daj pšosym zmólku k wěsći].

@@ -1570,12 +1570,13 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'right-sendemail' => 'Saata teistele kasutajatele e-kirju',
 'right-passwordreset' => 'Vaadata parooli lähtestamise e-kirju',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kasutaja loomise logi',
+'newuserlogpagetext' => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
+
 # User rights log
 'rightslog' => 'Kasutaja õiguste logi',
 'rightslogtext' => 'See on logi kasutajate õiguste muutuste kohta.',
-'rightslogentry' => 'andis kasutajale $1 järgmised õigused: $3; seni oli ta $2',
-'rightslogentry-autopromote' => 'sai automaatselt järgmised õigused: $3; seni oli ta $2',
-'rightsnone' => '(puudub)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'seda lehekülge lugeda',
@@ -2197,10 +2198,6 @@ Toetatud protokollid: <code>$1</code> (määramata protokolli korral vaikimisi h
 'activeusers-hidebots' => 'Peida robotid',
 'activeusers-hidesysops' => 'Peida administraatorid',
 'activeusers-noresult' => 'Kasutajaid ei leidunud.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kasutaja loomise logi',
-'newuserlogpagetext' => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Kasutajarühma õigused',
@@ -3878,6 +3875,7 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'logentry-newusers-create2' => '$1 lõi kasutajakonto $3',
 'logentry-newusers-autocreate' => 'Konto $1 loodi automaatselt',
 'newuserlog-byemail' => 'parool saadetud e-postiga',
+'rightsnone' => '(puudub)',
 
 # Feedback
 'feedback-bugornote' => 'Kui arvad, et oskad tehnilist probleemi üksikasjalikult kirjeldada, [$1 teata veast].

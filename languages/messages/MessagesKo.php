@@ -1668,15 +1668,13 @@ HTML 태그를 확인하세요.',
 'right-sendemail' => '다른 사용자에게 이메일 보내기',
 'right-passwordreset' => '비밀번호 재설정 이메일을 보기',
 
+# Special:Log/newusers
+'newuserlogpage' => '사용자 등록 기록',
+'newuserlogpagetext' => '사용자 등록 기록입니다.',
+
 # User rights log
 'rightslog' => '사용자 권한 기록',
 'rightslogtext' => '사용자 권한 조정 기록입니다.',
-'rightslogentry' => '사용자가 $1의 권한을 $2에서 $3으로 바꾸었습니다',
-'rightslogentry-autopromote' => '사용자의 권한이 자동적으로 $2에서 $3으로 바뀌었습니다.',
-'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 바꾸었습니다.',
-'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 바꾸었습니다.',
-'logentry-rights-autopromote' => '$1 사용자의 권한이 자동적으로 $4에서 $5으로 바뀌었습니다.',
-'rightsnone' => '(없음)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '이 문서를 읽기',
@@ -2339,10 +2337,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'activeusers-hidebots' => '봇을 숨기기',
 'activeusers-hidesysops' => '관리자를 숨기기',
 'activeusers-noresult' => '사용자가 없습니다.',
-
-# Special:Log/newusers
-'newuserlogpage' => '사용자 등록 기록',
-'newuserlogpagetext' => '사용자 등록 기록입니다.',
 
 # Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
@@ -3158,15 +3152,15 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Stylesheets
 'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
-'standard.css' => '/* 이 CSS 설정은 모든 스탠다드 스킨에 적용됩니다 */',
-'nostalgia.css' => '/* 이 CSS 설정은 모든 노스텔지아 스킨에 적용됩니다 */',
-'cologneblue.css' => '/* 이 CSS 설정은 모든 쾰른 블루 스킨에 적용됩니다 */',
-'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
-'myskin.css' => '/* 이 CSS 설정은 모든 마이스킨 스킨에 적용됩니다 */',
-'chick.css' => '/* 이 CSS 설정은 모든 치크 스킨에 적용됩니다 */',
-'simple.css' => '/* 이 CSS 설정은 모든 심플 스킨에 적용됩니다 */',
-'modern.css' => '/* 이 CSS 설정은 모든 모던 스킨에 적용됩니다 */',
-'vector.css' => '/* 이 CSS 설정은 모든 벡터 스킨에 적용됩니다 */',
+'standard.css' => '/* 이 CSS 설정은 스탠다드 스킨을 사용하는 사용자에게 적용됩니다 */',
+'nostalgia.css' => '/* 이 CSS 설정은 노스텔지아 스킨을 사용하는 사용자에게 적용됩니다 */',
+'cologneblue.css' => '/* 이 CSS 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
+'monobook.css' => '/* 이 CSS 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
+'myskin.css' => '/* 이 CSS 설정은 마이스킨 스킨을 사용하는 사용자에게 적용됩니다 */',
+'chick.css' => '/* 이 CSS 설정은 치크 스킨을 사용하는 사용자에게 적용됩니다 */',
+'simple.css' => '/* 이 CSS 설정은 심플 스킨을 사용하는 사용자에게 적용됩니다 */',
+'modern.css' => '/* 이 CSS 설정은 모던 스킨을 사용하는 사용자에게 적용됩니다 */',
+'vector.css' => '/* 이 CSS 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */',
 'print.css' => '/* 이 CSS 설정은 인쇄 출력 화면에 적용됩니다 */',
 'handheld.css' => '/* 이 CSS 설정은 $wgHandheldStyle에 설정한 스킨을 기반으로 한 휴대 기기에 적용됩니다 */',
 'noscript.css' => '/* 이 CSS 설정은 자바스크립트를 비활성화한 사용자에 적용됩니다 */',
@@ -4119,6 +4113,10 @@ $5
 'logentry-newusers-create2' => '$1 사용자가 $3 사용자 계정을 만들었습니다.',
 'logentry-newusers-autocreate' => '$1 사용자 계정을 자동적으로 만들었습니다.',
 'newuserlog-byemail' => '이메일로 보낸 비밀번호',
+'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 바꾸었습니다.',
+'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 바꾸었습니다.',
+'logentry-rights-autopromote' => '$1 사용자의 권한이 자동적으로 $4에서 $5으로 바뀌었습니다.',
+'rightsnone' => '(없음)',
 
 # Feedback
 'feedback-bugornote' => '기술적 문제를 구체적으로 설명할 준비가 되었다면 [$1 버그를 신고]해 주세요.

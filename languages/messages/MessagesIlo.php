@@ -1368,15 +1368,13 @@ Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak
 'right-sendemail' => 'Agpatulod ti e-surat kadagiti sabali nga agar-aramat',
 'right-passwordreset' => 'Kitaen dagiti e-surat ti naipasubli a kontrasenias',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Listaan dagiti naaramid nga agar-aramat',
+'newuserlogpagetext' => 'Listaan dagiti panakaramid ti agar-aramat.',
+
 # User rights log
 'rightslog' => 'Listaan dagiti karbengan ti agar-aramat',
 'rightslogtext' => 'Listaan daytoy kadagiti sinukatan a karbengan ti agar-aramat.',
-'rightslogentry' => 'sinukatan ti panagkameng iti bunggoy ti $1 manipud $2 iti $3',
-'rightslogentry-autopromote' => 'naautomatiko a naipangato a naggapo iti $2 idiay $3',
-'logentry-rights-rights' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3 manipud ti $4 iti $5',
-'logentry-rights-rights-legacy' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3',
-'logentry-rights-autopromote' => 'Ni $1 ket automatiko idi a naipangato manipud ti $4 iti $5',
-'rightsnone' => '(awan)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaen datoy a panid',
@@ -2021,10 +2019,6 @@ Dagiti nasuportaran a protokol: <code>$1</code> (naipakasigud ti http:// no awan
 'activeusers-hidebots' => 'Ilemmeng dagiti bot',
 'activeusers-hidesysops' => 'Ilemmeng dagiti administrador',
 'activeusers-noresult' => 'Awan ti nasarakan nga agar-aramat.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Listaan dagiti naaramid nga agar-aramat',
-'newuserlogpagetext' => 'Listaan dagiti panakaramid ti agar-aramat.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Dagiti karbengan ti bunggoy ti agar-aramat',
@@ -3731,6 +3725,10 @@ Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
 'logentry-newusers-create2' => 'Nagpartuat ni ti $3 a pakabilangan ti agar-aramat babaen ni $1',
 'logentry-newusers-autocreate' => 'Ti pakabilangan ni $1 ket automatiko a napartuat',
 'newuserlog-byemail' => 'naipatulod ti kontrasenias ti e-surat',
+'logentry-rights-rights' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3 manipud ti $4 iti $5',
+'logentry-rights-rights-legacy' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3',
+'logentry-rights-autopromote' => 'Ni $1 ket automatiko idi a naipangato manipud ti $4 iti $5',
+'rightsnone' => '(awan)',
 
 # Feedback
 'feedback-bugornote' => 'No agsagana kan nga agibaga ti teknikal a pakirut a naisalaysay pangngaasi nga [$1 ireporta ti kiteb].

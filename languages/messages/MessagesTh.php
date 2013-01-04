@@ -1422,11 +1422,13 @@ $1",
 'right-sendemail' => 'ส่งอีเมลหาผู้ใช้อื่น',
 'right-passwordreset' => 'เปลี่ยนรหัสผ่านของผู้ใช้ ([[Special:PasswordReset|หน้าพิเศษ]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ปูมการสร้างบัญชีผู้ใช้ใหม่',
+'newuserlogpagetext' => 'นี่คือปูมการสร้างบัญชีผู้ใช้',
+
 # User rights log
 'rightslog' => 'ปูมสิทธิผู้ใช้',
 'rightslogtext' => 'ส่วนนี้คือปูมการเปลี่ยนแปลงสิทธิผู้ใช้',
-'rightslogentry' => '$1 ถูกเปลี่ยนกลุ่มจาก $2 เป็น $3',
-'rightsnone' => '(ไม่มี)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'อ่านหน้านี้',
@@ -2000,10 +2002,6 @@ $1',
 'activeusers-hidebots' => 'ซ่อนบอต',
 'activeusers-hidesysops' => 'ซ่อนผู้ดูแลระบบ',
 'activeusers-noresult' => 'ไม่พบชื่อผู้ใช้',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ปูมการสร้างบัญชีผู้ใช้ใหม่',
-'newuserlogpagetext' => 'นี่คือปูมการสร้างบัญชีผู้ใช้',
 
 # Special:ListGroupRights
 'listgrouprights' => 'สิทธิของกลุ่มผู้ใช้',
@@ -3567,6 +3565,7 @@ $5
 'logentry-newusers-create2' => '$1 สร้างบัญชีผู้ใช้ $3',
 'logentry-newusers-autocreate' => 'บัญชี $1 ถูกสร้างขึ้นอัตโนมัติ',
 'newuserlog-byemail' => 'รหัสผ่านถูกส่งทางอีเมล',
+'rightsnone' => '(ไม่มี)',
 
 # Feedback
 'feedback-message' => 'ข้อความ:',

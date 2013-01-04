@@ -1022,11 +1022,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'right-userrights' => 'ያባላት ሁሉ መብቶች ለማስተካከል',
 'right-sendemail' => 'ወደ ሌላ አባል ኢ-ሜል ለመላክ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'የአባልነት መዝገብ (user log)',
+'newuserlogpagetext' => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
+
 # User rights log
 'rightslog' => 'የአባል መብቶች መዝገብ',
 'rightslogtext' => 'ይህ መዝገብ የአባል መብቶች ሲለወጡ ይዘረዝራል።',
-'rightslogentry' => 'የ$1 ማዕረግ ከ$2 ወደ $3 ለወጠ',
-'rightsnone' => '(የለም)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ይህን ገጽ ለማንበብ',
@@ -1479,10 +1481,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-hidebots' => 'ሎሌዎች ይደበቁ',
 'activeusers-hidesysops' => 'መጋቢዎች ይደበቁ',
 'activeusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
-
-# Special:Log/newusers
-'newuserlogpage' => 'የአባልነት መዝገብ (user log)',
-'newuserlogpagetext' => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
 
 # Special:ListGroupRights
 'listgrouprights' => 'የተጠቃሚ ስብስባ መብቶች',
@@ -2573,6 +2571,7 @@ $3
 # New logging system
 'logentry-delete-delete' => '$1 ገጹን $3 አጠፋ',
 'newuserlog-byemail' => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
+'rightsnone' => '(የለም)',
 
 # Feedback
 'feedback-cancel' => 'ይቅር',

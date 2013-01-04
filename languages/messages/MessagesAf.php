@@ -1499,12 +1499,13 @@ Die inligting is vir ander gebruikers sigbaar.',
 'right-sendemail' => 'Stuur e-pos aan ander gebruikers',
 'right-passwordreset' => 'Wys e-posse vir herstel van wagwoord',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboek van nuwe gebruikers',
+'newuserlogpagetext' => "Dit is 'n logboek van gebruikers wat onlangs ingeteken het.",
+
 # User rights log
 'rightslog' => 'Gebruikersregtelogboek',
 'rightslogtext' => 'Hier onder is die logboek van gebruikersregte wat verander is.',
-'rightslogentry' => 'wysig gebruikersregte vir $1 van $2 na $3',
-'rightslogentry-autopromote' => 'was outomaties bevorder van $2 na $3',
-'rightsnone' => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lees die bladsy',
@@ -2156,10 +2157,6 @@ Ondersteunde protokolle: <code>$1</code> (moenie hierdie in u soektog gebruik ni
 'activeusers-hidebots' => 'Versteek bots',
 'activeusers-hidesysops' => 'Versteek administrateurs',
 'activeusers-noresult' => 'Geen gebruikers gevind nie.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logboek van nuwe gebruikers',
-'newuserlogpagetext' => "Dit is 'n logboek van gebruikers wat onlangs ingeteken het.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gebruikersgroepregte',
@@ -3845,6 +3842,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'logentry-newusers-create2' => 'Gebruiker $3 is deur $1 geskep',
 'logentry-newusers-autocreate' => 'Die gebruiker $1 is outomaties geskep',
 'newuserlog-byemail' => 'wagwoord is per e-pos versend',
+'rightsnone' => '(geen)',
 
 # Feedback
 'feedback-bugornote' => 'As u reg is om \'n tegniese probleem in detail te beskryf, [$1 rapporteer \'n fout].

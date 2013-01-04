@@ -1471,15 +1471,13 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-sendemail' => 'Sende e-mail til andre brugere',
 'right-passwordreset' => 'Se emails til nulstilling af adgangskoder',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Brugeroprettelseslog',
+'newuserlogpagetext' => 'Dette er en log over de senest oprettede brugere.',
+
 # User rights log
 'rightslog' => 'Rettighedslog',
 'rightslogtext' => 'Dette er en log over ændringer i brugeres rettigheder.',
-'rightslogentry' => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
-'rightslogentry-autopromote' => 'blev automatisk forfremmet fra $2 til $3',
-'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
-'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
-'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'se denne side',
@@ -2121,10 +2119,6 @@ Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
 'activeusers-hidebots' => 'Skjul robotter',
 'activeusers-hidesysops' => 'Skjul administratorer',
 'activeusers-noresult' => 'Ingen brugere fundet.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Brugeroprettelseslog',
-'newuserlogpagetext' => 'Dette er en log over de senest oprettede brugere.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Brugergrupperettigheder',
@@ -3806,6 +3800,10 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
 'newuserlog-byemail' => 'kodeord tilsendt pr. e-mail',
+'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
+'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',
+'rightsnone' => '(-)',
 
 # Feedback
 'feedback-bugornote' => 'Hvis du er klar til at beskrive et teknisk problem i detaljer, bedes du [$1 rapportere en fejl].

@@ -1553,15 +1553,13 @@ $1",
 'right-sendemail' => 'адпраўка электронных лістоў іншым удзельнікам',
 'right-passwordreset' => 'прагляд электронных лістоў з ачысткай паролю',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Журнал стварэньня рахункаў',
+'newuserlogpagetext' => 'Гэта журнал стварэньня рахункаў удзельнікаў і ўдзельніц.',
+
 # User rights log
 'rightslog' => 'Журнал правоў удзельнікаў',
 'rightslogtext' => 'Гэта журнал зьменаў правоў удзельнікаў.',
-'rightslogentry' => 'зьменена прыналежнасьць $1 з групы $2 да $3',
-'rightslogentry-autopromote' => 'быў аўтаматычна падвышаны з $2 да $3',
-'logentry-rights-rights' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групы з $4 на $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групаў',
-'logentry-rights-autopromote' => '$1 {{GENDER:$1|быў аўтаматычна пераведзены|была аўтаматычна пераведзеная}} з групы $4 ў $5',
-'rightsnone' => '(няма)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'чытаньне гэтай старонкі',
@@ -2199,10 +2197,6 @@ $1',
 'activeusers-hidebots' => 'Схаваць робатаў',
 'activeusers-hidesysops' => 'Схаваць адміністратараў',
 'activeusers-noresult' => 'Удзельнікі ня знойдзеныя.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Журнал стварэньня рахункаў',
-'newuserlogpagetext' => 'Гэта журнал стварэньня рахункаў удзельнікаў і ўдзельніц.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Правы групаў удзельнікаў',
@@ -3926,6 +3920,10 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'logentry-newusers-create2' => '$1 стварыў рахунак $3',
 'logentry-newusers-autocreate' => 'Рахунак $1 быў створаны аўтаматычна',
 'newuserlog-byemail' => 'Пароль адасланы па электроннай пошце',
+'logentry-rights-rights' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групы з $4 на $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групаў',
+'logentry-rights-autopromote' => '$1 {{GENDER:$1|быў аўтаматычна пераведзены|была аўтаматычна пераведзеная}} з групы $4 ў $5',
+'rightsnone' => '(няма)',
 
 # Feedback
 'feedback-bugornote' => 'Калі Вы гатовы падрабязна апісаць тэхнічную праблему, калі ласка [$1 паведаміце пра памылку]. 

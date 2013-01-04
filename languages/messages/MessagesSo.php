@@ -852,8 +852,8 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'right-browsearchive' => 'Raadi maqaalada la tirtiray',
 'right-undelete' => 'Ha tirtirin bog',
 
-# User rights log
-'rightsnone' => '(waxna)',
+# Special:Log/newusers
+'newuserlogpage' => 'Gudagalaha Isticmaale sameeyay',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'akhri boggaan',
@@ -1056,9 +1056,6 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'listusers-submit' => "I'tus",
 'listusers-noresult' => 'Lama helin isticmaale.',
 'listusers-blocked' => '(waa la mamnuucay)',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Gudagalaha Isticmaale sameeyay',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Inta ka mid ah liiskooda)',
@@ -1417,6 +1414,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 # HTML forms
 'htmlform-reset' => 'Ka noqo wax bedelka',
 'htmlform-selectorother-other' => 'kuwa kale',
+
+# New logging system
+'rightsnone' => '(waxna)',
 
 # Feedback
 'feedback-message' => 'Fariinta:',

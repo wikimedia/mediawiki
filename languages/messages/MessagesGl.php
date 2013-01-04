@@ -1538,15 +1538,13 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-sendemail' => 'Enviar correos electrónicos a outros usuarios',
 'right-passwordreset' => 'Ver os correos electrónicos de restablecemento de contrasinais',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rexistro de creación de usuarios',
+'newuserlogpagetext' => 'Este é un rexistro de creación de contas de usuario.',
+
 # User rights log
 'rightslog' => 'Rexistro de dereitos de usuario',
 'rightslogtext' => 'Este é un rexistro dos cambios nos permisos de usuario.',
-'rightslogentry' => 'cambiou o grupo ao que pertence $1 de $2 a $3',
-'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
-'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
-'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
-'rightsnone' => '(ningún)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ler esta páxina',
@@ -2202,10 +2200,6 @@ Cómpre, polo menos, un dominio de nivel superior; por exemplo, "*.org".<br />
 'activeusers-hidebots' => 'Agochar os bots',
 'activeusers-hidesysops' => 'Agochar os administradores',
 'activeusers-noresult' => 'Non se atopou ningún usuario.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Rexistro de creación de usuarios',
-'newuserlogpagetext' => 'Este é un rexistro de creación de contas de usuario.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Dereitos dun usuario segundo o seu grupo',
@@ -3955,6 +3949,10 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-newusers-create2' => '$1 creou a conta de usuario $3',
 'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
 'newuserlog-byemail' => 'contrasinal enviado por correo electrónico',
+'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
+'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
+'rightsnone' => '(ningún)',
 
 # Feedback
 'feedback-bugornote' => 'Se está listo para describir un problema técnico en detalle, [$1 informe do erro].

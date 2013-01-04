@@ -1600,15 +1600,13 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-sendemail' => 'Trimite e-mail altor utilizatori',
 'right-passwordreset' => 'Vizualizează e-mailurile de reinițializare a parolelor',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Jurnal utilizatori noi',
+'newuserlogpagetext' => 'Acesta este jurnalul creărilor conturilor de utilizator.',
+
 # User rights log
 'rightslog' => 'Jurnal permisiuni de utilizator',
 'rightslogtext' => 'Acest jurnal cuprinde modificările permisiunilor utilizatorilor.',
-'rightslogentry' => 'a schimbat permisiunile pentru $1 de la $2 la $3',
-'rightslogentry-autopromote' => 'a fost promovat în mod automat de la $2 la $3',
-'logentry-rights-rights' => '$1 a schimbat apartenența la grup pentru $3 de la $4 la $5',
-'logentry-rights-rights-legacy' => '$1 a schimbat apartenența la grup pentru $3',
-'logentry-rights-autopromote' => '$1 a fost promovat în mod automat de la $4 la $5',
-'rightsnone' => '(niciunul)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'citiți această pagină',
@@ -2256,10 +2254,6 @@ Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
 'activeusers-hidebots' => 'Ascunde roboții',
 'activeusers-hidesysops' => 'Ascunde administratorii',
 'activeusers-noresult' => 'Niciun utilizator găsit.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Jurnal utilizatori noi',
-'newuserlogpagetext' => 'Acesta este jurnalul creărilor conturilor de utilizator.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Permisiuni grupuri de utilizatori',
@@ -3226,6 +3220,8 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'minutes' => '{{PLURAL:$1|un minut|$1 minute|$1 de minute}}',
 'hours' => '{{PLURAL:$1|o oră|$1 ore|$1 de ore}}',
 'days' => '{{PLURAL:$1|o zi|$1 zile|$1 de zile}}',
+'months' => '{{PLURAL:$1|$1 lună|$1 luni|$1 de luni}}',
+'years' => '{{PLURAL:$1|$1 an|$1 ani|$1 de ani}}',
 'ago' => '$1 în urmă',
 'just-now' => 'Chiar acum',
 
@@ -3976,6 +3972,10 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-newusers-create2' => 'Contul de utilizator $3 a fost creat de către $1',
 'logentry-newusers-autocreate' => 'Contul $1 a fost creat în mod automat',
 'newuserlog-byemail' => 'parola trimisă prin e-mail',
+'logentry-rights-rights' => '$1 a schimbat apartenența la grup pentru $3 de la $4 la $5',
+'logentry-rights-rights-legacy' => '$1 a schimbat apartenența la grup pentru $3',
+'logentry-rights-autopromote' => '$1 a fost promovat în mod automat de la $4 la $5',
+'rightsnone' => '(niciunul)',
 
 # Feedback
 'feedback-bugornote' => 'Dacă sunteți pregătit să descrieți o problemă tehnică în detaliu vă rugăm să [$1 raportați un bug].

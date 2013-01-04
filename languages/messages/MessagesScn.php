@@ -1231,11 +1231,13 @@ L'operazioni nun pò èssiri annullata.",
 'right-siteadmin' => 'Blocca a sblocca lu databasi',
 'right-override-export-depth' => 'Esporta pàggini cumpresi li pàggini culligati finu ô quintu liveddu',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Novi utenti',
+'newuserlogpagetext' => 'Di sècutu vènunu elincati li criazzioni di cunti novi (account).',
+
 # User rights log
 'rightslog' => "Dritti di l'utenti",
 'rightslogtext' => "Chistu è un log dî canciamenti a li dritti di l'utenti.",
-'rightslogentry' => "hà canciatu l'appartinenza di $1 dû gruppu $2 a lu gruppu $3",
-'rightsnone' => '(nuddu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lèggiri sta pàggina',
@@ -1714,10 +1716,6 @@ Protucolli suppurtati: <code>$1</code>',
 'activeusers-hidebots' => 'Bot ammucciati',
 'activeusers-hidesysops' => 'Amministratura ammucciati',
 'activeusers-noresult' => 'Nussun utenti truvatu.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Novi utenti',
-'newuserlogpagetext' => 'Di sècutu vènunu elincati li criazzioni di cunti novi (account).',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti dô gruppu utenti',
@@ -2977,6 +2975,7 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'logentry-move-move' => '$1 spustau la pàggina $3 a $4',
 'logentry-newusers-create' => '$1 criau na utenza',
 'newuserlog-byemail' => 'password mannata via mail',
+'rightsnone' => '(nuddu)',
 
 # Search suggestions
 'searchsuggest-search' => 'Ricerca',

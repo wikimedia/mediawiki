@@ -1040,11 +1040,13 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'right-override-export-depth' => 'Ekspōrtis pāusans ēmpiri sen pāusans prei kawīdans tenēi autenginna, ērgi gilluwan stēisan 5 autengīnsenin',
 'right-sendemail' => 'Tenginnais e-mailin kitēimans tērpautajans',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nāunai tērpautajai',
+'newuserlogpagetext' => 'Sta ast registerin stēisan nāunai teīkatan rekkenan stēisan tērpautajan',
+
 # User rights log
 'rightslog' => 'Registerin stēisan tērpautajan enwarīnsenin',
 'rightslogtext' => 'Sta ast registerin stēisan tērpautajan ewarīnsenin kitawīdinsnan.',
-'rightslogentry' => 'ast kitawīdinuns(si) $1 perlānksnan prei gruppins ($2 → $3)',
-'rightsnone' => '(nisātausna)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'skaitātun šin pāusan',
@@ -1524,10 +1526,6 @@ Ebšlūzitai prōtokulai: <code>$1</code>',
 'activeusers-hidebots' => 'Kliptinais bōtans',
 'activeusers-hidesysops' => 'Kliptinais perwaldītajans',
 'activeusers-noresult' => 'Ni aupalā di tērpautajans',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nāunai tērpautajai',
-'newuserlogpagetext' => 'Sta ast registerin stēisan nāunai teīkatan rekkenan stēisan tērpautajan',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Tērpautajan gruppin enwarīnsenei',
@@ -2708,5 +2706,6 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 'revdelete-restricted' => 'ensadinnais arāikinsenins per perwaldītajans',
 'revdelete-unrestricted' => 'āupausinais arāikinsenins per perwaldītajans',
 'newuserlog-byemail' => 'kliptaswīrds tengīntan pra e-mail',
+'rightsnone' => '(nisātausna)',
 
 );

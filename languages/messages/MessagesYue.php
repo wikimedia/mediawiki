@@ -1392,11 +1392,13 @@ $1",
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail' => '寄電郵畀其他用戶',
 
+# Special:Log/newusers
+'newuserlogpage' => '使用者開戶記錄',
+'newuserlogpagetext' => '呢個係一個使用者開戶嘅日誌',
+
 # User rights log
 'rightslog' => '用戶權限日誌',
 'rightslogtext' => '呢個係用戶權力嘅修改日誌。',
-'rightslogentry' => '已經將$1嘅組別從$2改到去$3',
-'rightsnone' => '(無)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '讀呢版',
@@ -1945,10 +1947,6 @@ Template:搞清楚',
 'activeusers-hidebots' => '隱藏機械人',
 'activeusers-hidesysops' => '隱藏管理員',
 'activeusers-noresult' => '搵唔到用戶。',
-
-# Special:Log/newusers
-'newuserlogpage' => '使用者開戶記錄',
-'newuserlogpagetext' => '呢個係一個使用者開戶嘅日誌',
 
 # Special:ListGroupRights
 'listgrouprights' => '用戶組權限',
@@ -3363,6 +3361,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 'revdelete-restricted' => '已經應用限制到操作員',
 'revdelete-unrestricted' => '已經拎走對於操作員嘅限制',
 'newuserlog-byemail' => '密碼已由電郵寄出',
+'rightsnone' => '(無)',
 
 # Search suggestions
 'searchsuggest-search' => '搵嘢',

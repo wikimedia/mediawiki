@@ -1312,15 +1312,13 @@ $1",
 'right-sendemail' => 'باشقا ایستیفاده‌چیلره ایمیل گؤندر',
 'right-passwordreset' => 'رمز یئنی‌له‌مه ایمیل‌لرینه باخ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ایستیفاده‌چی یارادیلما قئیدی',
+'newuserlogpagetext' => 'بو ایستیفاده‌چی یارادماق سیاهیسیدیر.',
+
 # User rights log
 'rightslog' => 'ایستیفاده‌چی حاقلاری سیاهی‌سی',
 'rightslogtext' => 'بو، ایستیفاده‌چی حاقلارینا اولان دَییشیکلیکلر سیاهی‌سی‌دیر.',
-'rightslogentry' => '$1-ین قروپ عوضولوغو، $2-دن $3-ه دَییشدیریلدی',
-'rightslogentry-autopromote' => 'اوتوماتیک اولاراق $2-دن $3-ه مقامی آرتیریلدی',
-'logentry-rights-rights' => '$1 $3-ین قروپ عوضولوگونو $4-دن $5-ه دَییشدیردی',
-'logentry-rights-rights-legacy' => '$1، $3-ین قروپ عوضولوگونو دَییشدیردی',
-'logentry-rights-autopromote' => '$1-ین مقامی اوتوماتیک $4-دن $5-ه آرتیریلدی',
-'rightsnone' => '(هئچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'بو صحیفه‌نی اوخو',
@@ -1949,7 +1947,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'linksearch-ok' => 'آختار',
 'linksearch-text' => '«*.wikipedia.org» کیمی نیشانلاری ایشلده بیلرسینیز.
 آزی بیر دنه «*.org» کیمی یوخاری دامنه لازیم‌دیر.<br />
-دستلکلنمیش پروتوکول‌لار: <code>$1</code> (بوش بیراخیلسا، http:// نظرده آلیناجاقدیر).',
+دستلکلنمیش {{PLURAL:$2|پروتوکول|پروتوکول‌لار}}: <code>$1</code> (بوش بیراخیلسا، http:// نظرده آلیناجاقدیر).',
 'linksearch-line' => '$1، $2-دن باغلانیب‌دیر',
 'linksearch-error' => 'نیشانلار یالنیز آدی اولینده گله بیلرلر.',
 
@@ -1967,10 +1965,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'activeusers-hidebots' => 'بوتلاری گیزلت',
 'activeusers-hidesysops' => 'ایداره‌چیلری گیزلت',
 'activeusers-noresult' => 'هئچ ایستیفاده‌چی تاپیلمادی.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ایستیفاده‌چی یارادیلما قئیدی',
-'newuserlogpagetext' => 'بو ایستیفاده‌چی یارادماق سیاهیسیدیر.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ایستیفاده‌چی قروپ حاقلاری',
@@ -2902,6 +2896,8 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 دقیقه}}',
 'hours' => '{{PLURAL:$1|$1 ساعت |$1 ساعت}}',
 'days' => '{{PLURAL:$1|$1 گون |$1 گون}}',
+'months' => '{{PLURAL:$1|$1}} آی',
+'years' => '{{PLURAL:$1|$1}} ایل',
 'ago' => '$1 اؤنجه',
 'just-now' => 'ایندی',
 
@@ -3654,6 +3650,10 @@ $5
 'logentry-newusers-create2' => 'بیر ایستیفاده‌چی $1 حسابی $3 یاراتدی',
 'logentry-newusers-autocreate' => '$1 حسابی اوتوماتیک یارادیلدی',
 'newuserlog-byemail' => 'رمز ایمیل ایله گؤندریلدی',
+'logentry-rights-rights' => '$1 $3-ین قروپ عوضولوگونو $4-دن $5-ه دَییشدیردی',
+'logentry-rights-rights-legacy' => '$1، $3-ین قروپ عوضولوگونو دَییشدیردی',
+'logentry-rights-autopromote' => '$1-ین مقامی اوتوماتیک $4-دن $5-ه آرتیریلدی',
+'rightsnone' => '(هئچ)',
 
 # Feedback
 'feedback-bugornote' => 'بیر تکنیکی خطانی شرح وئرمگه آماده اولساز، لوطفاً [$1 بیر باگ بیلدیرین].

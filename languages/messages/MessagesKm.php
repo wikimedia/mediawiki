@@ -1557,15 +1557,13 @@ $1",
 'right-sendemail' => 'ផ្ញើអ៊ីមែលទៅកាន់អ្នកប្រើដទៃ',
 'right-passwordreset' => 'មើលអ៊ីមែលសំរាប់កំណត់ពាក្យសំងាត់ឡើងវិញ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'កំណត់ហេតុនៃការបង្កើតគណនី',
+'newuserlogpagetext' => 'នេះជាកំណត់ហេតុនៃការបង្កើតអ្នកប្រើប្រាស់។',
+
 # User rights log
 'rightslog' => 'កំណត់ហេតុនៃការប្តូរសិទ្ធិអ្នកប្រើប្រាស់',
 'rightslogtext' => 'នេះ​ជា​កំណត់ហេតុនៃបំលាស់ប្ដូរចំពោះកាប្ដូរក្រុមសមាជិកភាព​របស់​អ្នកប្រើប្រាស់។',
-'rightslogentry' => 'បានប្ដូរក្រុមសមាជិកភាពសម្រាប់ $1 ពី $2 ទៅ $3',
-'rightslogentry-autopromote' => 'ត្រូវបានតំលើងតំណែងដោយស្វ័យប្រវត្តិពី $2 ទៅជា $3',
-'logentry-rights-rights' => '$1 បានផ្លាស់ប្ដូរសមាជិកភាពរបស់ $3 ពី $4 ទៅជា $5',
-'logentry-rights-rights-legacy' => '$1បានផ្លាស់ប្ដូរសមាជិកភាពរបស់ $3',
-'logentry-rights-autopromote' => '$1 ត្រូវបានតំលើងសមាជិកភាពពី $4 ជា $5',
-'rightsnone' => '(ទទេ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'អានទំព័រនេះ',
@@ -2174,10 +2172,6 @@ $1',
 'activeusers-hidebots' => 'លាក់រូបយន្ត',
 'activeusers-hidesysops' => 'លាក់អ្នកអភិបាល',
 'activeusers-noresult' => 'អ្នកប្រើប្រាស់​រកមិនឃើញ​។​',
-
-# Special:Log/newusers
-'newuserlogpage' => 'កំណត់ហេតុនៃការបង្កើតគណនី',
-'newuserlogpagetext' => 'នេះជាកំណត់ហេតុនៃការបង្កើតអ្នកប្រើប្រាស់។',
 
 # Special:ListGroupRights
 'listgrouprights' => 'សិទ្ធិនិងក្រុមអ្នកប្រើប្រាស់',
@@ -3649,6 +3643,10 @@ $5
 'logentry-newusers-create2' => ' $3 បានបង្កើតគណនីអ្នកប្រើប្រាស់ $1',
 'logentry-newusers-autocreate' => 'គណនី $1 ត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ',
 'newuserlog-byemail' => 'ពាក្យសំងាត់ត្រូវបានផ្ញើតាមអ៊ីមែល',
+'logentry-rights-rights' => '$1 បានផ្លាស់ប្ដូរសមាជិកភាពរបស់ $3 ពី $4 ទៅជា $5',
+'logentry-rights-rights-legacy' => '$1បានផ្លាស់ប្ដូរសមាជិកភាពរបស់ $3',
+'logentry-rights-autopromote' => '$1 ត្រូវបានតំលើងសមាជិកភាពពី $4 ជា $5',
+'rightsnone' => '(ទទេ)',
 
 # Feedback
 'feedback-subject' => 'កម្មវត្ថុ ៖',

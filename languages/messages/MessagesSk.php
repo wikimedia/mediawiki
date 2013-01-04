@@ -1575,15 +1575,13 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-sendemail' => 'Posielať e-mail ostatným používateľom',
 'right-passwordreset' => 'Prezeranie e-mailov pre znovunastavovanie hesla',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Záznam vytvorených používateľov',
+'newuserlogpagetext' => 'Toto je záznam naposledy vytvorených používateľských účtov.',
+
 # User rights log
 'rightslog' => 'Záznam používateľských práv',
 'rightslogtext' => 'Toto je záznam zmien práv používateľa.',
-'rightslogentry' => 'členstvo v skupine zmenené pre $1 z $2 na $3',
-'rightslogentry-autopromote' => 'bol automaticky povýšený z $2 na $3',
-'logentry-rights-rights' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách',
-'logentry-rights-autopromote' => '$1 {{GENDER:$2|bol automaticky povýšený|bola automaticky povýšená}} z $4 na $5',
-'rightsnone' => '(žiadne)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'čítať túto stránku',
@@ -2224,10 +2222,6 @@ Podporované protokoly: <code>$1</code> (ak protokol nie je uvedený, použije s
 'activeusers-hidebots' => 'Skryť robotov',
 'activeusers-hidesysops' => 'Skryť správcov',
 'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Záznam vytvorených používateľov',
-'newuserlogpagetext' => 'Toto je záznam naposledy vytvorených používateľských účtov.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Práva skupiny používateľov',
@@ -3964,6 +3958,10 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'logentry-newusers-create2' => '$1 vytvoril používateľský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky bol založený účet $1',
 'newuserlog-byemail' => 'heslo poslané emailom',
+'logentry-rights-rights' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|bol automaticky povýšený|bola automaticky povýšená}} z $4 na $5',
+'rightsnone' => '(žiadne)',
 
 # Feedback
 'feedback-bugornote' => 'Ak ste pripravený podrobne popísať technický problém, prosím pošlite [$1 hlásenie o chybe]. 

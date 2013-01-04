@@ -1040,8 +1040,8 @@ $2
 'right-delete' => 'Фæрстæ хафын',
 'right-bigdelete' => 'Стыр историимæ фæрстæ хафын',
 
-# User rights log
-'rightsnone' => '(нæй)',
+# Special:Log/newusers
+'newuserlogpage' => 'Архайджыты фæзындты лог',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ацы фарс кæсын',
@@ -1265,9 +1265,6 @@ $3',
 
 # Special:ListUsers
 'listusers-submit' => 'Равдисын',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Архайджыты фæзындты лог',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Къорд',
@@ -1698,6 +1695,7 @@ $3',
 # New logging system
 'logentry-delete-delete' => '$1 схафта фарс $3',
 'logentry-delete-restore' => '$1 рацарæзта фарс $3',
+'rightsnone' => '(нæй)',
 
 # Feedback
 'feedback-subject' => 'Сæр:',

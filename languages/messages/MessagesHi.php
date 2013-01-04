@@ -1461,12 +1461,13 @@ HTML टैग की जाँच करें।',
 'right-sendemail' => 'अन्य सदस्यों को ई-मेल भेजें',
 'right-passwordreset' => 'कूटशब्द रीसेट ई-मेल देखें',
 
+# Special:Log/newusers
+'newuserlogpage' => 'सदस्य खाता निर्माण लॉग',
+'newuserlogpagetext' => 'यह सदस्य खातों के निर्माण का लॉग है।',
+
 # User rights log
 'rightslog' => 'सदस्य अधिकार सूची',
 'rightslogtext' => 'यह सदस्य अधिकारों में हुए बदलावों की सूची है।',
-'rightslogentry' => '$1 की समूह सदस्यता $2 से $3 को बदली',
-'rightslogentry-autopromote' => 'स्वचालित रूप से $2 से $3 को पदोन्नत हुआ था',
-'rightsnone' => '(कोई नहीं)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'इस पृष्ठ को पढ़ने',
@@ -2111,10 +2112,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'activeusers-hidebots' => 'बॉट छुपाएँ',
 'activeusers-hidesysops' => 'प्रबंधक छुपाएँ',
 'activeusers-noresult' => 'कोई सदस्य नहीं मिले।',
-
-# Special:Log/newusers
-'newuserlogpage' => 'सदस्य खाता निर्माण लॉग',
-'newuserlogpagetext' => 'यह सदस्य खातों के निर्माण का लॉग है।',
 
 # Special:ListGroupRights
 'listgrouprights' => 'सदस्य समूह अधिकार',
@@ -3803,6 +3800,7 @@ $5
 'logentry-newusers-create2' => '$1 created a user account $3',
 'logentry-newusers-autocreate' => 'खाते $1 स्वचालित रूप से बनाया गया',
 'newuserlog-byemail' => 'कूटशब्द इ-मेल द्वारा भेजा गया हैं',
+'rightsnone' => '(कोई नहीं)',
 
 # Feedback
 'feedback-bugornote' => 'यदि आप किसी तकनीकी परेशानी को विस्तार से समझाने के लिये तैयार हैं तो कृपया [$1 बग फ़ाइल करें]।

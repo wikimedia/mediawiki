@@ -1615,15 +1615,13 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-sendemail' => 'Sendi retpoŝton al aliaj uzantoj',
 'right-passwordreset' => 'Vidi retpoŝtojn de pasvorta restarado.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Protokolo de uzanto-kreado',
+'newuserlogpagetext' => 'Jen protokolo de lastaj kreadoj de uzantoj.',
+
 # User rights log
 'rightslog' => 'Protokolo de uzanto-rajtoj',
 'rightslogtext' => 'Ĉi tio estas protokolo pri la ŝanĝoj de uzantorajtoj.',
-'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
-'rightslogentry-autopromote' => 'estis aŭtomate altrangigita de $2 al $3',
-'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
-'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
-'logentry-rights-autopromote' => '$1 estis aŭtomate altrangigita de $4 al $5',
-'rightsnone' => '(nenia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'legi ĉi tiun paĝon',
@@ -2256,10 +2254,6 @@ Subtenataj {{PLURAL:$2|protokolo|protokoloj}}:: <code>$1</code> (ne aldonu ĉi t
 'activeusers-hidebots' => 'kaŝi robotojn',
 'activeusers-hidesysops' => 'Kaŝi administrantojn',
 'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Protokolo de uzanto-kreado',
-'newuserlogpagetext' => 'Jen protokolo de lastaj kreadoj de uzantoj.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gruprajtoj de uzantoj',
@@ -4051,6 +4045,10 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'logentry-newusers-create2' => '$1 kreis uzanton $3',
 'logentry-newusers-autocreate' => 'Konto $1 estis kreita aŭtomate',
 'newuserlog-byemail' => 'pasvorto sendita retpoŝte',
+'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
+'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
+'logentry-rights-autopromote' => '$1 estis aŭtomate altrangigita de $4 al $5',
+'rightsnone' => '(nenia)',
 
 # Feedback
 'feedback-bugornote' => 'Se vi pretas priskribi teknikan problemon detale, bonvolu [$1 raporti cimon].

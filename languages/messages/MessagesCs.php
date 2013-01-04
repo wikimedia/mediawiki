@@ -1642,15 +1642,13 @@ Tuto operaci nelze vrátit zpět.',
 'right-sendemail' => 'Odesílání e-mailů ostatním uživatelům',
 'right-passwordreset' => 'Prohlížení e-mailů pro znovunastavení hesla',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kniha nových uživatelů',
+'newuserlogpagetext' => 'Toto je záznam nově zaregistrovaných uživatelů.',
+
 # User rights log
 'rightslog' => 'Kniha práv uživatelů',
 'rightslogtext' => 'Toto je záznam změn uživatelských práv.',
-'rightslogentry' => 'změnil pro $1 zařazení ve skupinách z $2 na $3',
-'rightslogentry-autopromote' => 'byl automaticky povýšen z $2 na $3',
-'logentry-rights-rights' => '$1 změnil členství $3 ve skupinách z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 změnil členství $3 ve skupinách',
-'logentry-rights-autopromote' => '$1 byl automaticky povýšen z $4 na $5',
-'rightsnone' => '(žádné)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'přečíst tuto stránku',
@@ -2289,10 +2287,6 @@ Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br
 'activeusers-hidebots' => 'Skrýt roboty',
 'activeusers-hidesysops' => 'Skrýt správce',
 'activeusers-noresult' => 'Nenalezen žádný uživatel.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kniha nových uživatelů',
-'newuserlogpagetext' => 'Toto je záznam nově zaregistrovaných uživatelů.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Práva skupin uživatelů',
@@ -4066,6 +4060,10 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-newusers-create2' => '$1 založil uživatelský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky byl založen účet $1',
 'newuserlog-byemail' => 'heslo zasláno e-mailem',
+'logentry-rights-rights' => '$1 změnil členství $3 ve skupinách z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 změnil členství $3 ve skupinách',
+'logentry-rights-autopromote' => '$1 byl automaticky povýšen z $4 na $5',
+'rightsnone' => '(žádné)',
 
 # Feedback
 'feedback-bugornote' => 'Pokud dokážete podrobně popsat technický problém, můžete [$1 nahlásit chybu].

@@ -1615,15 +1615,13 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-sendemail' => 'Enviar email a outros usuários',
 'right-passwordreset' => 'Ver todos os e-mails de reposição de senhas',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de criação de usuários',
+'newuserlogpagetext' => 'Este é um registro de novas contas de usuário',
+
 # User rights log
 'rightslog' => 'Registro de privilégios de usuário',
 'rightslogtext' => 'Este é um registro de mudanças nos privilégios de usuários.',
-'rightslogentry' => 'alterou os grupos de privilégios {{GENDER:$1|do usuário|da usuária|de usuário para}} $1 (de $2 para $3)',
-'rightslogentry-autopromote' => 'foi automaticamente promovido de $2 para $3',
-'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
-'logentry-rights-rights-legacy' => '$1 alterou os grupos de $3',
-'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
-'rightsnone' => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ler esta página',
@@ -2282,10 +2280,6 @@ Protocolos suportados: <code>$1</code> (o padrão é http://).',
 'activeusers-hidesysops' => 'Esconder administradores',
 'activeusers-noresult' => 'Nenhum usuário encontrado.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de criação de usuários',
-'newuserlogpagetext' => 'Este é um registro de novas contas de usuário',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Privilégios de grupo de usuários',
 'listgrouprights-summary' => 'O que segue é uma lista dos grupos de usuários definidos neste wiki, com os seus privilégios de acessos associados.
@@ -2394,7 +2388,7 @@ Futuras modificações em tal página e páginas de discussão relacionadas ser�
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor' => 'usuário anônimo $1',
-'enotif_body' => 'Caro(a) $WATCHINGUSERNAME,
+'enotif_body' => '{{GENDER:$WATCHINGUSERNAME|Caro|Cara|Caro(a)}},
 
 $PAGEINTRO $NEWPAGE
 
@@ -3998,6 +3992,10 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-newusers-create2' => 'A conta de usuário $1 foi criada por $3',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
 'newuserlog-byemail' => 'senha enviada por correio-eletrônico',
+'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
+'logentry-rights-rights-legacy' => '$1 alterou os grupos de $3',
+'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
+'rightsnone' => '(nenhum)',
 
 # Feedback
 'feedback-bugornote' => 'Se você está preparado para descrever detalhadamente um problema técnico, [$1 relate um bug].

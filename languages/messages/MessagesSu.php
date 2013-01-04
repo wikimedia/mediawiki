@@ -1309,12 +1309,13 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'right-siteadmin' => 'Ngonci jeung muka konci databés',
 'right-sendemail' => 'Kirim surélék ka pamaké séjén',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log akun anyar',
+'newuserlogpagetext' => 'Di handap ieu béréndélan log pamaké anyar.',
+
 # User rights log
 'rightslog' => 'Log hak pamaké',
 'rightslogtext' => 'Ieu mangrupa log parobahan hak-hak pamaké.',
-'rightslogentry' => 'ngarobah kaanggotaan grup pikeun $1 tina $2 jadi $3',
-'rightslogentry-autopromote' => 'geus sacara otomatis dipromosikeun ti $2 ka $3',
-'rightsnone' => '(euweuh)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'maca ieu kaca',
@@ -1814,10 +1815,6 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'activeusers-hidebots' => 'Sumputkeun bot',
 'activeusers-hidesysops' => 'Sumputkeun kuncén',
 'activeusers-noresult' => 'Teu kapendak.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log akun anyar',
-'newuserlogpagetext' => 'Di handap ieu béréndélan log pamaké anyar.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Hak-hak grup pamaké',
@@ -3044,6 +3041,7 @@ Coba ku sawangan normal.',
 'revdelete-restricted' => 'akses geus dibatesan ukur keur kuncén',
 'revdelete-unrestricted' => 'Watesan akses kuncén dihapuskeun',
 'newuserlog-byemail' => 'Sandi geus dikirim maké surélék.',
+'rightsnone' => '(euweuh)',
 
 # Feedback
 'feedback-subject' => 'Ngeunaan:',

@@ -1472,15 +1472,13 @@ $1",
 'right-sendemail' => '發電子郵件給其他用戶',
 'right-passwordreset' => '查看重置密碼郵件',
 
+# Special:Log/newusers
+'newuserlogpage' => '新進用戶名冊',
+'newuserlogpagetext' => '這是一個最近被創建用戶的新日誌',
+
 # User rights log
 'rightslog' => '用戶權限日誌',
 'rightslogtext' => '以下記錄了用戶權限的更改記錄。',
-'rightslogentry' => '將 $1 的權限從 $2 改為 $3',
-'rightslogentry-autopromote' => '自動由$2晉升至$3',
-'logentry-rights-rights' => '$1將$3的權限從$4改為$5',
-'logentry-rights-rights-legacy' => '$1更改$3的權限',
-'logentry-rights-autopromote' => '$1的權限自動從$4改為$5',
-'rightsnone' => '無',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '閱讀這個頁面',
@@ -2107,10 +2105,6 @@ Template:消除歧義',
 'activeusers-hidebots' => '隱藏機器人',
 'activeusers-hidesysops' => '隱藏管理員',
 'activeusers-noresult' => '找不到用戶。',
-
-# Special:Log/newusers
-'newuserlogpage' => '新進用戶名冊',
-'newuserlogpagetext' => '這是一個最近被創建用戶的新日誌',
 
 # Special:ListGroupRights
 'listgrouprights' => '用戶群組權限',
@@ -3083,6 +3077,8 @@ $1',
 'minutes' => '$1分鍾',
 'hours' => '$1小時',
 'days' => '$1天',
+'months' => '{{PLURAL:$1|$1個月|$1個月}}',
+'years' => '{{PLURAL:$1|$1年|$1年}}',
 'ago' => '$1前',
 'just-now' => '剛才',
 
@@ -3860,6 +3856,10 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'logentry-newusers-create2' => '用戶「$1」建立用戶「$3」',
 'logentry-newusers-autocreate' => '帳戶$1被自動創建',
 'newuserlog-byemail' => '密碼已由電子郵件寄出',
+'logentry-rights-rights' => '$1將$3的權限從$4改為$5',
+'logentry-rights-rights-legacy' => '$1更改$3的權限',
+'logentry-rights-autopromote' => '$1的權限自動從$4改為$5',
+'rightsnone' => '無',
 
 # Feedback
 'feedback-bugornote' => '如果您準備好了詳細描述一個技術問題，請[$1 報告一個bug]。或者，您可以使用下面的簡易表單。您的評論將被添加到頁面“[$3 $2]”，並帶有您的用戶名和使用的瀏覽器。',

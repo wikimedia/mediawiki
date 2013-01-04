@@ -1661,15 +1661,13 @@ $1",
 'right-sendemail' => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 'right-passwordreset' => 'צפייה בדואר אלקטרוני של איפוס סיסמה',
 
+# Special:Log/newusers
+'newuserlogpage' => 'יומן רישום משתמשים',
+'newuserlogpagetext' => 'זהו יומן המכיל הרשמות של משתמשים.',
+
 # User rights log
 'rightslog' => 'יומן תפקידים',
 'rightslogtext' => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של $1 מ$2 ל$3',
-'rightslogentry-autopromote' => 'קודם אוטומטית מ$2 ל$3',
-'logentry-rights-rights' => '$1 שינה את ההרשאות של $3 מ$4 ל$5',
-'logentry-rights-rights-legacy' => '$1 שינה את ההרשאות של $3',
-'logentry-rights-autopromote' => '$1 קודם אוטומטית מ$4 ל$5',
-'rightsnone' => '(כלום)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'לקרוא דף זה',
@@ -2321,10 +2319,6 @@ $1',
 'activeusers-hidebots' => 'הסתרת בוטים',
 'activeusers-hidesysops' => 'הסתרת מפעילי מערכת',
 'activeusers-noresult' => 'לא נמצאו משתמשים.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'יומן רישום משתמשים',
-'newuserlogpagetext' => 'זהו יומן המכיל הרשמות של משתמשים.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'רשימת הרשאות לקבוצה',
@@ -3307,6 +3301,8 @@ $1',
 'minutes' => '{{PLURAL:$1|דקה|$1 דקות}}',
 'hours' => '{{PLURAL:$1|שעה|שעתיים|$1 שעות}}',
 'days' => '{{PLURAL:$1|יום|יומיים|$1 ימים}}',
+'months' => '{{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
+'years' => '{{PLURAL:$1|שנה|שנתיים|$1 שנים}}',
 'ago' => 'לפני $1',
 'just-now' => 'לפני זמן קצר',
 
@@ -4124,6 +4120,10 @@ $5
 'logentry-newusers-create2' => 'חשבון המשתמש $3 נוצר על ידי $1',
 'logentry-newusers-autocreate' => 'חשבון המשתמש $1 נוצר אוטומטית',
 'newuserlog-byemail' => 'הסיסמה נשלחה בדוא"ל',
+'logentry-rights-rights' => '$1 שינה את ההרשאות של $3 מ$4 ל$5',
+'logentry-rights-rights-legacy' => '$1 שינה את ההרשאות של $3',
+'logentry-rights-autopromote' => '$1 קודם אוטומטית מ$4 ל$5',
+'rightsnone' => '(כלום)',
 
 # Feedback
 'feedback-bugornote' => 'אם אתם מוכנים לתאר בעיה טכנית בפרטים, אנא [$1 דווחו על באג].

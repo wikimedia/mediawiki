@@ -1024,9 +1024,12 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'right-siteadmin' => 'Датабазань сёлгомо ды панжомо',
 'right-passwordreset' => 'Ваномс теицянь салава валонь полавтома е-сёрмат',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Теицянь шкамодо-теемадо конёв',
+'newuserlogpagetext' => 'Те теицянь шкавксто журнал',
+
 # User rights log
 'rightslog' => 'Уськетеицянть видечинть кемекстома',
-'rightsnone' => '(арасть)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'те лопань ловномо',
@@ -1392,10 +1395,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'activeusers-hidebots' => 'Кекшемс ботатнень',
 'activeusers-hidesysops' => 'Кекшемс администратортнэнь',
 'activeusers-noresult' => 'Якинзэ-пакинзэ арасть',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Теицянь шкамодо-теемадо конёв',
-'newuserlogpagetext' => 'Те теицянь шкавксто журнал',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Теиця куронть видечинзэ',
@@ -2213,6 +2212,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # New logging system
 'newuserlog-byemail' => 'салава валот кучозь е-сёрмасо',
+'rightsnone' => '(арасть)',
 
 # Feedback
 'feedback-subject' => 'Мезде:',

@@ -1605,15 +1605,13 @@ $1",
 'right-sendemail' => 'മറ്റുപയോക്താക്കൾക്ക് ഇമെയിൽ അയയ്ക്കുക',
 'right-passwordreset' => 'രഹസ്യവാക്ക് പുനഃക്രമീകരിക്കാനുള്ള ഇമെയിലുകൾ കാണുക',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ഉപയോക്തൃ സൃഷ്ടിയുടെ രേഖ',
+'newuserlogpagetext' => 'പുതിയതായി അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ പട്ടിക താഴെ കാണാം.',
+
 # User rights log
 'rightslog' => 'ഉപയോക്തൃ അവകാശ രേഖ',
 'rightslogtext' => 'ഈ പ്രവർത്തനരേഖ ഉപയോക്തൃ അവകാശങ്ങൾക്കുണ്ടായ മാറ്റങ്ങളുടേതാണ്.',
-'rightslogentry' => '$1 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $2 എന്നതിൽ നിന്നു $3 എന്നതിലേക്കു മാറ്റിയിരിക്കുന്നു',
-'rightslogentry-autopromote' => '$2 എന്നതിൽ നിന്ന് $3 എന്നതിലേയ്ക്ക് സ്വയം ഉയർത്തിയിരിക്കുന്നു',
-'logentry-rights-rights' => '$3 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $1, $4 എന്നതിൽ നിന്നു $5 എന്നതിലേക്കു മാറ്റിയിരിക്കുന്നു',
-'logentry-rights-rights-legacy' => '$3 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $1 മാറ്റിയിരിക്കുന്നു',
-'logentry-rights-autopromote' => '$1 എന്ന ഉപയോക്താവ് $4 എന്നതിൽ നിന്നും $5 എന്നതിലേയ്ക്ക് സ്വയം ഉയർത്തിയിരിക്കുന്നു',
-'rightsnone' => '(ഒന്നുമില്ല)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ഈ താൾ വായിക്കുക',
@@ -2250,10 +2248,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'activeusers-hidesysops' => 'കാര്യനിർവാഹകരെ മറയ്ക്കുക',
 'activeusers-noresult' => 'ഉപയോക്താക്കളില്ല',
 
-# Special:Log/newusers
-'newuserlogpage' => 'ഉപയോക്തൃ സൃഷ്ടിയുടെ രേഖ',
-'newuserlogpagetext' => 'പുതിയതായി അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ പട്ടിക താഴെ കാണാം.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'ഉപയോക്തൃവിഭാഗത്തിന്റെ അവകാശങ്ങൾ',
 'listgrouprights-summary' => 'ഈ വിക്കിയിൽ നിർവ്വചിക്കപ്പെട്ടിരിക്കുന്ന ഉപയോക്തൃസംഘങ്ങളെയും, ആ സംഘങ്ങൾക്ക് പ്രാപ്തമായിട്ടുള്ള അവകാശങ്ങളേയും താഴെ കുറിച്ചിരിക്കുന്നു.
@@ -2353,7 +2347,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'enotif_subject_moved' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ {{gender:$2|$2}} മാറ്റിയിരിക്കുന്നു',
 'enotif_subject_restored' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ {{gender:$2|$2}} പുനഃസ്ഥാപിച്ചിരിക്കുന്നു',
 'enotif_subject_changed' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താളിൽ {{gender:$2|$2}} മാറ്റം വരുത്തിയിരിക്കുന്നു',
-'enotif_body_intro_deleted' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ $PAGEEDITDATE-നു {{gender:$2|$2}} മായ്ച്ചിരിക്കുന്നു, ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിനായി $3 കാണുക.',
+'enotif_body_intro_deleted' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ $PAGEEDITDATE-നു {{gender:$2|$2}} മായ്ച്ചിരിക്കുന്നു, $3 കാണുക.',
 'enotif_body_intro_created' => '{{SITENAME}} സംരംഭത്തിൽ $1 എന്ന താൾ $PAGEEDITDATE-നു {{gender:$2|$2}} സൃഷ്ടിച്ചിരിക്കുന്നു, ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിനായി $3 കാണുക.',
 'enotif_body_intro_moved' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ $PAGEEDITDATE-നു {{gender:$2|$2}} മാറ്റിയിരിക്കുന്നു, ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിനായി $3 കാണുക.',
 'enotif_body_intro_restored' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ $PAGEEDITDATE-നു {{gender:$2|$2}} പുനഃസ്ഥാപിച്ചിരിക്കുന്നു, ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിനായി $3 കാണുക.',
@@ -3984,6 +3978,10 @@ $5
 'logentry-newusers-create2' => '$3 എന്ന ഉപയോക്തൃ അംഗത്വം $1 സൃഷ്ടിച്ചിരിക്കുന്നു',
 'logentry-newusers-autocreate' => '$1 എന്ന അംഗത്വം സ്വയം സൃഷ്ടിക്കപ്പെട്ടിരിക്കുന്നു',
 'newuserlog-byemail' => 'രഹസ്യവാക്ക് ഇ-മെയിൽ വഴി അയച്ചിരിക്കുന്നു',
+'logentry-rights-rights' => '$3 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $1, $4 എന്നതിൽ നിന്നു $5 എന്നതിലേക്കു മാറ്റിയിരിക്കുന്നു',
+'logentry-rights-rights-legacy' => '$3 എന്ന ഉപയോക്താവിന്റെ സംഘ അംഗത്വം $1 മാറ്റിയിരിക്കുന്നു',
+'logentry-rights-autopromote' => '$1 എന്ന ഉപയോക്താവ് $4 എന്നതിൽ നിന്നും $5 എന്നതിലേയ്ക്ക് സ്വയം ഉയർത്തിയിരിക്കുന്നു',
+'rightsnone' => '(ഒന്നുമില്ല)',
 
 # Feedback
 'feedback-bugornote' => 'സാങ്കേതിക പ്രശ്നം എന്താണെന്ന് വിവരിച്ചെഴുതാൻ താങ്കൾ തയ്യാറാണെങ്കിൽ [$1 ബഗ് അറിയിക്കുക].

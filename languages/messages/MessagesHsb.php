@@ -1416,15 +1416,13 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-sendemail' => 'Druhim wužiwarjam e-mejl pósłać',
 'right-passwordreset' => 'E-mejlki za wróćostajenje hesłow sej wobhladać',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Protokol nowych wužiwarjow',
+'newuserlogpagetext' => 'To je protokol wutworjenja nowych wužiwarskich kontow.',
+
 # User rights log
 'rightslog' => 'Protokol zrjadowanja wužiwarskich prawow',
 'rightslogtext' => 'To je protokol změnow wužiwarskich prawow.',
-'rightslogentry' => 'změni skupinske čłonstwo za $1 z $2 do $3',
-'rightslogentry-autopromote' => 'je so awtomatisce wot $2 do $3 změnił',
-'logentry-rights-rights' => '$1 změni skupinske čłonstwo za $3 z $4 do $5',
-'logentry-rights-rights-legacy' => '$1 změni skupinske čłonstwo za $3',
-'logentry-rights-autopromote' => '$1 powyši so awtomatisce wot $4 do $5',
-'rightsnone' => '(ničo)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'tutu stronu čitać',
@@ -2060,10 +2058,6 @@ Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
 'activeusers-hidebots' => 'Boćiki schować',
 'activeusers-hidesysops' => 'Administratorow schować',
 'activeusers-noresult' => 'Žani wužiwarjo namakani.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Protokol nowych wužiwarjow',
-'newuserlogpagetext' => 'To je protokol wutworjenja nowych wužiwarskich kontow.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prawa wužiwarskeje skupiny',
@@ -3734,6 +3728,10 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'logentry-newusers-create2' => '$1 załoži wužiwarske konto $3',
 'logentry-newusers-autocreate' => 'Konto $1 je so awtomatisce załožiło',
 'newuserlog-byemail' => 'Hesło z e-mejlku pósłane',
+'logentry-rights-rights' => '$1 změni skupinske čłonstwo za $3 z $4 do $5',
+'logentry-rights-rights-legacy' => '$1 změni skupinske čłonstwo za $3',
+'logentry-rights-autopromote' => '$1 powyši so awtomatisce wot $4 do $5',
+'rightsnone' => '(ničo)',
 
 # Feedback
 'feedback-bugornote' => 'Jeli sy zwólniwy, techniski problem nadrobnje wopisać, [$1 zdźěl prošu zmylk].

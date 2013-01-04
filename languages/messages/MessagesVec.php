@@ -1401,12 +1401,13 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'right-sendemail' => 'Mandarghe e-mail a cheialtri utenti',
 'right-passwordreset' => 'Vedi i mesaji de rinpostasion de ła password',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Novi utenti',
+'newuserlogpagetext' => 'Sto qua el xè el registro dei novi utenti registrai.',
+
 # User rights log
 'rightslog' => 'Diriti de i utenti',
 'rightslogtext' => 'Sto qua el xe el registro de le modifiche ai diriti assegnà ai utenti.',
-'rightslogentry' => "gà modificà l'apartenenza de $1 dal grupo $2 al grupo $3",
-'rightslogentry-autopromote' => 'xe stà automategamente promoso/a da $2 a $3',
-'rightsnone' => '(nissun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lèxar sta pàxena',
@@ -1978,10 +1979,6 @@ Protocołi suportadi: <code>$1</code> (no sta xontare nesuno de sti cuà inte ł
 'activeusers-hidebots' => 'Scondi i bot',
 'activeusers-hidesysops' => 'Scondi i aministradori',
 'activeusers-noresult' => 'Nissun utente catà.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Novi utenti',
-'newuserlogpagetext' => 'Sto qua el xè el registro dei novi utenti registrai.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Diriti dei grupi utenti',
@@ -3436,6 +3433,7 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-newusers-create2' => '$1 ga creà na utensa $3',
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
 'newuserlog-byemail' => 'password spedìa par e-mail',
+'rightsnone' => '(nissun)',
 
 # Feedback
 'feedback-subject' => 'Ogeto:',

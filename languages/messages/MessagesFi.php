@@ -1565,14 +1565,13 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-sendemail' => 'Lähettää sähköpostia muille käyttäjille',
 'right-passwordreset' => 'Tarkastella salasanan alustusviestejä',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Uudet käyttäjät',
+'newuserlogpagetext' => 'Tämä on loki luoduista käyttäjätunnuksista.',
+
 # User rights log
 'rightslog' => 'Käyttöoikeusloki',
 'rightslogtext' => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
-'rightslogentry' => 'muutti käyttäjän $1 oikeudet ryhmistä $2 ryhmiin $3',
-'rightslogentry-autopromote' => 'muutettiin automaattisesti ryhmistä $2 ryhmiin $3',
-'logentry-rights-rights' => '$1 muutti käyttäjän $3 oikeudet ryhmistä $4 ryhmiin $5',
-'logentry-rights-autopromote' => '$1 ylennettiin automaattisesti ryhmistä $4 ryhmiin $5',
-'rightsnone' => '(ei oikeuksia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lukea tätä sivua',
@@ -2203,10 +2202,6 @@ Vaaditaan vähintään ylätason verkkotunnus, esimerkiksi "*.org".<br />
 'activeusers-hidebots' => 'Piilota botit',
 'activeusers-hidesysops' => 'Piilota ylläpitäjät',
 'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Uudet käyttäjät',
-'newuserlogpagetext' => 'Tämä on loki luoduista käyttäjätunnuksista.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Käyttäjäryhmien oikeudet',
@@ -3904,6 +3899,9 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'logentry-newusers-create2' => '$1 loi käyttäjätunnuksen $3',
 'logentry-newusers-autocreate' => 'Käyttäjätunnus $1 luotiin automaattisesti',
 'newuserlog-byemail' => 'salasana lähetetty sähköpostitse',
+'logentry-rights-rights' => '$1 muutti käyttäjän $3 oikeudet ryhmistä $4 ryhmiin $5',
+'logentry-rights-autopromote' => '$1 ylennettiin automaattisesti ryhmistä $4 ryhmiin $5',
+'rightsnone' => '(ei oikeuksia)',
 
 # Feedback
 'feedback-bugornote' => 'Jos voit kuvailla teknisen ongelman tarkasti – [$1 ilmoita ohjelmointivirheestä].

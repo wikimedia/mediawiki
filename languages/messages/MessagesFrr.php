@@ -1243,9 +1243,11 @@ Do san jo ual iinstelangen wech.',
 'right-browsearchive' => 'Sjük stregen sidjen',
 'right-sendemail' => 'E-mails tu oudere brükere schake',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nai-önjmäldings-logbök',
+
 # User rights log
 'rightslog' => 'Ruchte-logbök',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'jüdeer sid leese',
@@ -1411,9 +1413,6 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 'linksearch-ns' => 'Noomerüm:',
 'linksearch-ok' => 'Säk',
 'linksearch-line' => '$2 ferwiset üüb $1',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nai-önjmäldings-logbök',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lasmoote-list)',
@@ -1852,6 +1851,7 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'logentry-move-move-noredirect' => '$1 hää det sidj $3 efter $4 saner widjerfeerang fersköwen.',
 'logentry-move-move_redir' => '$1 hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen.',
 'logentry-move-move_redir-noredirect' => '$1 hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen saner salew en widjerfeerang uuntuleien.',
+'rightsnone' => '(-)',
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunden}}',

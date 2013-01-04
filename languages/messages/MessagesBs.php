@@ -1570,13 +1570,13 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-sendemail' => 'Slanje e-maila drugim korisnicima',
 'right-passwordreset' => 'Pogledaj e-mailove za obnavljanje šifre',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Zapis novih korisnika',
+'newuserlogpagetext' => 'Ovo je zapis o registraciji novih korisnika.',
+
 # User rights log
 'rightslog' => 'Zapisnik korisničkih prava',
 'rightslogtext' => 'Ovo je zapis promjena korisničkih prava.',
-'rightslogentry' => 'promjena članstva u grupi za $1 sa $2 na $3',
-'rightslogentry-autopromote' => 'je automatski unaprijeđen iz $2 u $3',
-'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
-'rightsnone' => '(nema)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'čitate ovu stranicu',
@@ -2188,10 +2188,6 @@ Podržani protokoli: <code>$1</code> (ne dodavajte bilo koji od ovih u vašu pre
 'activeusers-hidebots' => 'Sakrij botove',
 'activeusers-hidesysops' => 'Sakrij administratore',
 'activeusers-noresult' => 'Nije pronađen korisnik.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Zapis novih korisnika',
-'newuserlogpagetext' => 'Ovo je zapis o registraciji novih korisnika.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
@@ -3936,6 +3932,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-newusers-create2' => '$1 je napravio korisnički račun $3',
 'logentry-newusers-autocreate' => 'Korisnički račun $1 je automatski napravljen',
 'newuserlog-byemail' => 'šifra je poslana putem e-maila',
+'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
+'rightsnone' => '(nema)',
 
 # Feedback
 'feedback-bugornote' => 'Ako ste spremni detaljno opisati tehnički problem molimo [$1 prijavite "bug" (grešku)].

@@ -1616,15 +1616,13 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-sendemail' => 'Mengirim surel ke pengguna lain',
 'right-passwordreset' => 'Lihat surel pengaturulangan kata sandi',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log pengguna baru',
+'newuserlogpagetext' => 'Di bawah ini adalah log pendaftaran pengguna baru',
+
 # User rights log
 'rightslog' => 'Log perubahan hak akses',
 'rightslogtext' => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
-'rightslogentry' => 'mengganti keanggotaan kelompok untuk $1 dari $2 menjadi $3',
-'rightslogentry-autopromote' => 'secara otomatis dipromosikan dari $2 ke $3',
-'logentry-rights-rights' => '$1 mengubah keanggotaan grup $3 dari $4 menjadi $5',
-'logentry-rights-rights-legacy' => '$1 mengubah keanggotaan grup $3',
-'logentry-rights-autopromote' => '$1 secara otomatis dipromosikan dari $4 menjadi $5',
-'rightsnone' => '(tidak ada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'membaca halaman ini',
@@ -2251,10 +2249,6 @@ Protokol yang didukung: <code>$1</code> (menggunakan http:// bila protokol tidak
 'activeusers-hidebots' => 'Sembunyikan bot',
 'activeusers-hidesysops' => 'Sembunyikan pengurus',
 'activeusers-noresult' => 'Pengguna tidak ditemukan.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log pengguna baru',
-'newuserlogpagetext' => 'Di bawah ini adalah log pendaftaran pengguna baru',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Daftar kelompok pengguna',
@@ -3994,6 +3988,10 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'logentry-newusers-create2' => '$1 membuat akun pengguna $3',
 'logentry-newusers-autocreate' => 'Akun $1 dibuat secara otomatis',
 'newuserlog-byemail' => 'kata sandi dikirim melalui surel',
+'logentry-rights-rights' => '$1 mengubah keanggotaan grup $3 dari $4 menjadi $5',
+'logentry-rights-rights-legacy' => '$1 mengubah keanggotaan grup $3',
+'logentry-rights-autopromote' => '$1 secara otomatis dipromosikan dari $4 menjadi $5',
+'rightsnone' => '(tidak ada)',
 
 # Feedback
 'feedback-bugornote' => 'Jika Anda sudah siap untuk mendeskripsikan masalah teknis secara rinci silakan [$1 melaporkan bug].

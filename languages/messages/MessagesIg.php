@@ -857,9 +857,11 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'right-bigdelete' => 'Kàcha ihü nwéré ákíkó mbu dí ógólógó',
 'right-undelete' => 'Ágbakashia ótù ihü',
 
+# Special:Log/newusers
+'newuserlogpage' => "Ndétu nchétá ihe ọ'bànifé kèrè",
+
 # User rights log
 'rightslog' => "Ndetu échìchè íwú ọ'bànifé",
-'rightsnone' => '(efù)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'guwa ihüá',
@@ -1105,9 +1107,6 @@ Ubwa, o na ga [[$2]].',
 'activeusers-hidebots' => 'Zonari bot',
 'activeusers-hidesysops' => 'Zonari ndi íshí',
 'activeusers-noresult' => "Ọ hügị ọ'bànifé.",
-
-# Special:Log/newusers
-'newuserlogpage' => "Ndétu nchétá ihe ọ'bànifé kèrè",
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Ọtú',
@@ -1752,6 +1751,7 @@ Nke ozor gí zonari na áká onwe ha.
 
 # New logging system
 'revdelete-content-hid' => 'ihe zọ̀nàri',
+'rightsnone' => '(efù)',
 
 # Feedback
 'feedback-message' => 'Ozi:',

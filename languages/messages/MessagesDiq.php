@@ -1600,15 +1600,13 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-sendemail' => 'Karberanê binî ra e-mail bişirav',
 'right-passwordreset' => 'E-postayanê parola reset kerdışa vineno',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Cıkewtışê hesabvıraştışi',
+'newuserlogpagetext' => 'Ena log de viraştişê karberî esta.',
+
 # User rights log
 'rightslog' => 'Qeydê heqanê karberi',
 'rightslogtext' => 'Ena listeyê loganê ke heqqa karbaranî mucneno.',
-'rightslogentry' => 'eza biyayişê grupî $1 ra $2 rê $3î bivurne',
-'rightslogentry-autopromote' => '$2 otomatikmen gırdkerdışi ra kerd $3.',
-'logentry-rights-rights' => '$1 qandê $3 rê ezayina grube $4 ra $5 vuriye',
-'logentry-rights-rights-legacy' => '$1 qandê $3 rê ezayina grube vuriye',
-'logentry-rights-autopromote' => '$1 otomatikmen $4 ra terfi bi ra $5',
-'rightsnone' => '(çino)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ena pela wanayış',
@@ -2249,10 +2247,6 @@ Qeydeyê destegbiyayey: <code>$1</code> (qet yew qeydeyo hesabiyaye http:// ke n
 'activeusers-hidebots' => 'Botan bınımne',
 'activeusers-hidesysops' => 'İdarekerdoğan bınımne',
 'activeusers-noresult' => 'Karberi nêdiyayê.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Cıkewtışê hesabvıraştışi',
-'newuserlogpagetext' => 'Ena log de viraştişê karberî esta.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'heqê grubê karberi',
@@ -4682,6 +4676,10 @@ Ena sita dı newke xırabiya teknik esta.',
 'logentry-newusers-create2' => 'Hesabê karberi $1 terefê $3 ra vıraziya',
 'logentry-newusers-autocreate' => 'Hesabê $1 Otomatikmen vıraziya',
 'newuserlog-byemail' => 'pê e-mail ra paralo şiravt',
+'logentry-rights-rights' => '$1 qandê $3 rê ezayina grube $4 ra $5 vuriye',
+'logentry-rights-rights-legacy' => '$1 qandê $3 rê ezayina grube vuriye',
+'logentry-rights-autopromote' => '$1 otomatikmen $4 ra terfi bi ra $5',
+'rightsnone' => '(çino)',
 
 # Feedback
 'feedback-bugornote' => 'Jew mersela teferruato teknik esta şıma reca malumatê şıma hazıro se [ $1  jew xırab rapor] bıvinê.Zewbi zi, formê cerê xo rê şenê karfiyê. Vatışê xo pela da "[ $3  $2 ]", namey karber dê xoya piya u wasteriya karfiye.',

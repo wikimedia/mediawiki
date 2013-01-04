@@ -1689,15 +1689,13 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-sendemail' => 'E-Mails an andere Benutzer senden',
 'right-passwordreset' => 'Passwort eines Benutzers zurücksetzen und die dazu verschickte E-Mail einsehen',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Neuanmeldungs-Logbuch',
+'newuserlogpagetext' => 'Dies ist ein Logbuch der neu erstellten Benutzerkonten.',
+
 # User rights log
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
-'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ zu „$3“',
-'rightslogentry-autopromote' => 'wurde automatisch von „$2“ zu „$3“ zugeordnet',
-'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
-'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
-'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 zugeordnet',
-'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'die Seite zu lesen',
@@ -2339,10 +2337,6 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'activeusers-hidebots' => 'Bots ausblenden',
 'activeusers-hidesysops' => 'Administratoren ausblenden',
 'activeusers-noresult' => 'Keine Benutzer gefunden.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Neuanmeldungs-Logbuch',
-'newuserlogpagetext' => 'Dies ist ein Logbuch der neu erstellten Benutzerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppenrechte',
@@ -3311,6 +3305,8 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
 'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
+'months' => '{{PLURAL:$1|Ein Monat|$1 Monate}}',
+'years' => '{{PLURAL:$1|Ein Jahr|$1 Jahre}}',
 'ago' => 'vor $1',
 'just-now' => 'Gerade eben',
 
@@ -4085,6 +4081,10 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-newusers-create2' => 'Benutzerkonto $3 wurde von $1 erstellt',
 'logentry-newusers-autocreate' => 'Benutzerkonto $1 wurde automatisch erstellt',
 'newuserlog-byemail' => 'das Passwort wurde per E-Mail versandt',
+'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
+'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
+'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 zugeordnet',
+'rightsnone' => '(–)',
 
 # Feedback
 'feedback-bugornote' => 'Sofern du detailliert ein technisches Problem beschreiben möchtest, melde bitte [$1 einen Fehler].

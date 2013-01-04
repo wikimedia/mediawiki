@@ -744,7 +744,7 @@ $2
 'missingcommentheader' => "'''بیرهێنانەوە:''' بۆ ئەم بۆچوونەت سەردێڕ\\بابەت ڕاچاو نەکردووە.
 ئەگەر دیسان «{{int:savearticle}}» لێبدەی، دەستکاریەکەت بێ سەردێڕ یان بابەت پاشەکەوت دەبێ.",
 'summary-preview' => 'پێشبینینی کورتە:',
-'subject-preview' => 'پێشبینینی بابەت\\سەردێڕ :',
+'subject-preview' => 'پێشبینینی بابەت/سەردێڕ:',
 'blockedtitle' => 'به‌کار هینه‌ر له‌کار خراوه',
 'blockedtext' => "'''ناوی بەکارهێنەری یان ئای‌پی ئەدرەسی تۆ بەربەست‌ کراوە.'''
 
@@ -1413,11 +1413,13 @@ $1",
 'right-override-export-depth' => 'هەناردنی لاپەڕەکان کە لاپەڕەکانی بەستەر پێ‌دراو تا قووڵایی 5 لەخۆ بگرێت',
 'right-sendemail' => 'ئەمەیل بنێرە بۆ بەکارھێنەرانی تر',
 
+# Special:Log/newusers
+'newuserlogpage' => 'لۆگی دروستکردنی بەکارھێنەر',
+'newuserlogpagetext' => 'ئەمە لۆگێکی دروستکردنی بەکارھێنەرە.',
+
 # User rights log
 'rightslog' => 'لۆگی مافەکانی بەکارھێنەر',
 'rightslogtext' => 'ئەمە لۆگی دەستکاری مافەکانی بەکار‌هێنەرە.',
-'rightslogentry' => 'بۆ $1 ئەندامەتی گرووپی $2 گۆڕدرا بۆ $3',
-'rightsnone' => '(ھیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'خوێندنەوەی ئەم پەڕە',
@@ -1967,10 +1969,6 @@ $1',
 'activeusers-hidebots' => 'بۆتەکان بشارەوە',
 'activeusers-hidesysops' => 'بەڕێوبەران بشارەوە',
 'activeusers-noresult' => 'هیچ بەکارهێنەرێک نەدۆزرایەوە',
-
-# Special:Log/newusers
-'newuserlogpage' => 'لۆگی دروستکردنی بەکارھێنەر',
-'newuserlogpagetext' => 'ئەمە لۆگێکی دروستکردنی بەکارھێنەرە.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'مافەکانی گرووپی بەکارھێنەر',
@@ -3439,9 +3437,9 @@ $5
 # New logging system
 'logentry-delete-delete' => '$1 پەڕەی $3ی سڕییەوە',
 'logentry-delete-restore' => '$1 پەڕەی $3ی ھێنایەوە',
-'logentry-delete-revision' => '$1 دەرکەوتنی {{PLURAL:$5|پێداچوونەوەیەکی|$5 پێداچوونەوەی}} پەڕەی $3 گۆڕیی: $4',
+'logentry-delete-revision' => '$1 دەرکەوتنی {{PLURAL:$5|پێداچوونەوەیەکی|$5 پێداچوونەوەی}} پەڕەی $3ی گۆڕیی: $4',
 'logentry-suppress-delete' => '$1 پەڕەی $3 بەرگری کرد.',
-'revdelete-content-hid' => 'شاردنەوەی ناوەرۆک',
+'revdelete-content-hid' => 'ناوەرۆک شاردراوە',
 'revdelete-summary-hid' => 'کورتەی دەستکاری شاردراوە',
 'revdelete-uname-hid' => 'ناوی بەکارهێنەری شاراوە',
 'revdelete-content-unhid' => 'ناوەرۆک نیشان درا',
@@ -3458,6 +3456,7 @@ $5
 'logentry-newusers-create2' => 'ھەژماری بەکارھێنەریی $3 لە لایەن $1 دروست کرا',
 'logentry-newusers-autocreate' => 'ھەژماری $1 بە شێوەی خۆگەڕ دروستکرا',
 'newuserlog-byemail' => 'تێپەڕوشە بە ئیمەیل نێردرا.',
+'rightsnone' => '(ھیچ)',
 
 # Feedback
 'feedback-subject' => 'بابەت:',

@@ -1477,12 +1477,13 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-sendemail' => 'Senda tölvupóst til annara notenda',
 'right-passwordreset' => 'Skoða tölvupósta um endurstillingu lykilorðs',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Skrá yfir nýja notendur',
+'newuserlogpagetext' => 'Þetta er skrá yfir nýskráða notendur.',
+
 # User rights log
 'rightslog' => 'Réttindaskrá notenda',
 'rightslogtext' => 'Þetta er skrá yfir breytingar á réttindum notenda.',
-'rightslogentry' => 'breytti réttindum $1 frá $2 í $3',
-'rightslogentry-autopromote' => 'fékk sjálfvirkt aukin réttindi frá $2 til $3',
-'rightsnone' => '(engin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lesa þessa síðu',
@@ -2089,10 +2090,6 @@ Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitin
 'activeusers-hidebots' => 'Fela vélmenni',
 'activeusers-hidesysops' => 'Fela möppudýr',
 'activeusers-noresult' => 'Enginn notandi fannst.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Skrá yfir nýja notendur',
-'newuserlogpagetext' => 'Þetta er skrá yfir nýskráða notendur.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Notandahópréttindi',
@@ -3686,6 +3683,7 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'logentry-newusers-create2' => '$1 stofnaði aðganginn $3',
 'logentry-newusers-autocreate' => 'Aðgangurinn $1 var stofnaður sjálfvirkt',
 'newuserlog-byemail' => 'lykilorð sent með tölvupósti',
+'rightsnone' => '(engin)',
 
 # Feedback
 'feedback-bugornote' => 'Ef þú ert reiðubúinn að lýsa tæknilegri villu í smáatriðum, vinsamlegast [$1 tilkynntu villu].

@@ -1689,15 +1689,13 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-sendemail' => 'E-mail versturen aan andere gebruikers',
 'right-passwordreset' => 'E-mails voor wachtwoord opnieuw instellen bekijken',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboek nieuwe gebruikers',
+'newuserlogpagetext' => 'Hieronder staan de nieuw ingeschreven gebruikers',
+
 # User rights log
 'rightslog' => 'Gebruikersrechtenlogboek',
 'rightslogtext' => 'Hieronder staan de wijzigingen in gebruikersrechten.',
-'rightslogentry' => 'heeft de gebruikersrechten voor $1 gewijzigd van $2 naar $3',
-'rightslogentry-autopromote' => 'is automatisch gepromoveerd van de groepen "$2" naar de groepen "$3"',
-'logentry-rights-rights' => '$1 heeft groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
-'logentry-rights-rights-legacy' => '$1 heeft groepslidmaatschap voor $3 gewijzigd',
-'logentry-rights-autopromote' => '$1 is automatisch gepromoveerd van $4 naar $5',
-'rightsnone' => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'deze pagina te bekijken',
@@ -2366,10 +2364,6 @@ Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
 'activeusers-hidebots' => 'Bots verbergen',
 'activeusers-hidesysops' => 'Beheerders verbergen',
 'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logboek nieuwe gebruikers',
-'newuserlogpagetext' => 'Hieronder staan de nieuw ingeschreven gebruikers',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechten van gebruikersgroepen',
@@ -4147,6 +4141,10 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-newusers-create2' => 'Gebruiker $3 is aangemaakt door $1',
 'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
 'newuserlog-byemail' => 'wachtwoord is verzonden per e-mail',
+'logentry-rights-rights' => '$1 heeft groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
+'logentry-rights-rights-legacy' => '$1 heeft groepslidmaatschap voor $3 gewijzigd',
+'logentry-rights-autopromote' => '$1 is automatisch gepromoveerd van $4 naar $5',
+'rightsnone' => '(geen)',
 
 # Feedback
 'feedback-bugornote' => 'Als u zover bent om een technisch probleem in detail te beschrijven, [$1 rapporteer dan een bug].

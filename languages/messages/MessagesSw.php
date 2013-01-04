@@ -1345,11 +1345,13 @@ Taarifa hii itakuwa wazi.',
 'right-sendemail' => 'Kutuma barua-pepe kwa watumiaji wengine',
 'right-passwordreset' => 'Onesha barua pepe zinazoweka neno la siri upya',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kumbukumbu za kuanzisha akaunti za watumiaji',
+'newuserlogpagetext' => 'Hii ni kumbukumbu ya akaunti mpya zilizosajiliwa.',
+
 # User rights log
 'rightslog' => 'Kumbukumbu za vyeo vya watumiaji',
 'rightslogtext' => 'Hii ni kumbukumbu za mabadiliko za wezo za watumiaji.',
-'rightslogentry' => 'alibadilisha wezo za $1 aliyekuwa na wezo za kundi $2 awe mwanachama wa $3',
-'rightsnone' => '(hana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'kusoma ukurasa huu',
@@ -1921,10 +1923,6 @@ Itifaki zinazoungwa mkono: <code>$1</code> (usiongeza hizi unapotafuta).',
 'activeusers-hidebots' => 'Ficha boti',
 'activeusers-hidesysops' => 'Ficha wakabidhi',
 'activeusers-noresult' => 'Watumiaji hawakupatikana.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kumbukumbu za kuanzisha akaunti za watumiaji',
-'newuserlogpagetext' => 'Hii ni kumbukumbu ya akaunti mpya zilizosajiliwa.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Wezo za kundi za watumiaji',
@@ -3156,6 +3154,7 @@ Tovuti hii inapata matatatizo wakati huu.',
 'logentry-newusers-create2' => '$1 alianzisha akaunti ya mtumiaji $3',
 'logentry-newusers-autocreate' => 'Akaunti ya mtumiaji $1 ilianzishwa na mashine',
 'newuserlog-byemail' => 'neno la siri limetumwa kwa barua pepe',
+'rightsnone' => '(hana)',
 
 # Feedback
 'feedback-subject' => 'Mada:',

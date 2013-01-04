@@ -1615,12 +1615,13 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-sendemail' => 'Diğer kullanıcılara e-posta gönder',
 'right-passwordreset' => 'Parola sıfırlama e-postalarını görür',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Yeni kullanıcı kayıtları',
+'newuserlogpagetext' => 'En son kaydolan kullanıcı kayıtları.',
+
 # User rights log
 'rightslog' => 'Kullanıcı hakları kayıtları',
 'rightslogtext' => 'Kullanıcı hakları değişiklikleri kayıtları.',
-'rightslogentry' => '$1 adlı kullanıcının yetkileri $2 iken $3 olarak değiştirildi',
-'rightslogentry-autopromote' => '$2 otomatik olarak yükseltilerek $3 yapıldı.',
-'rightsnone' => '(hiçbiri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'bu sayfayı okumaya',
@@ -2222,10 +2223,6 @@ Desteklenen iletişim kuralları: <code>$1</code> (bunların hiçbirini aramanı
 'activeusers-hidebots' => 'Botları gizle',
 'activeusers-hidesysops' => 'Yöneticileri gizle',
 'activeusers-noresult' => 'Kullanıcı bulunamadı.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Yeni kullanıcı kayıtları',
-'newuserlogpagetext' => 'En son kaydolan kullanıcı kayıtları.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Kullanıcı grubu hakları',
@@ -3892,6 +3889,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'logentry-newusers-create2' => '$1 kullanıcı hesabı oluşturdu $3',
 'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
 'newuserlog-byemail' => 'e-posta yoluyla şifre gönderilmiştir',
+'rightsnone' => '(hiçbiri)',
 
 # Feedback
 'feedback-subject' => 'Konu:',

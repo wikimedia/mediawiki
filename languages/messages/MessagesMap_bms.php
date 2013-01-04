@@ -1141,12 +1141,12 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'right-override-export-depth' => "Ekspor kaca sisan karo kaca sing kagandheng gutul lapisan (''depth'') kaping 5",
 'right-sendemail' => 'Ngirim imel maring panganggo liyane',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log panganggo anyar',
+
 # User rights log
 'rightslog' => 'Log pangowahan hak akses panganggo',
 'rightslogtext' => 'Kiye log pangowahan maring hak-hak panganggo.',
-'rightslogentry' => 'Ngganti kaanggotaan kelompok nggo $1 sekang $2 dadi $3',
-'rightslogentry-autopromote' => 'otomatis dipromosikna sekang $2 dadi $3',
-'rightsnone' => '(ora ana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'maca kaca kiye',
@@ -1449,9 +1449,6 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 
 # Special:LinkSearch
 'linksearch-line' => '$1 duwe pranala sekang  $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log panganggo anyar',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(daftar anggota)',
@@ -1811,5 +1808,8 @@ Sing liyane bakal diumpetna sacara ''default''.
 
 # Special:Tags
 'tag-filter' => 'Filter [[Special:Tags|Tag]]:',
+
+# New logging system
+'rightsnone' => '(ora ana)',
 
 );
