@@ -576,6 +576,11 @@ class Block {
 	 * @return Array: block IDs of retroactive autoblocks made
 	 */
 	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
+		// No IPs are in recentchanges table, so nothing to select
+		if( !$wgPutIPinRC ) {
+			return;
+		}
+
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
