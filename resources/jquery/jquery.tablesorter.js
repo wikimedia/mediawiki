@@ -112,14 +112,6 @@
 		}
 	}
 
-	function getTextFromRowAndCellIndex( rows, rowIndex, cellIndex ) {
-		if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
-			return $.trim( getElementSortKey( rows[rowIndex].cells[cellIndex] ) );
-		} else {
-			return '';
-		}
-	}
-
 	function detectParserForColumn( table, rows, cellIndex ) {
 		var l = parsers.length,
 			nodeValue,
@@ -129,8 +121,13 @@
 			concurrent = 0,
 			needed = ( rows.length > 4 ) ? 5 : rows.length;
 
-		while( i < l ) {
-			nodeValue = getTextFromRowAndCellIndex( rows, rowIndex, cellIndex );
+		while ( i < l ) {
+			if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
+				nodeValue = $.trim( getElementSortKey( rows[rowIndex].cells[cellIndex] ) );
+			} else {
+				nodeValue = '';
+			}
+
 			if ( nodeValue !== '') {
 				if ( parsers[i].is( nodeValue, table ) ) {
 					concurrent++;
