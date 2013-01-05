@@ -151,6 +151,11 @@ production.
 * BREAKING CHANGE: list=logevents output format changed for details of some log
   types. Specifically, details that were formerly reported under a key like
   "4::foo" will now be reported under a key of simply "foo".
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity 
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === Languages updated in 1.21 ===
 
