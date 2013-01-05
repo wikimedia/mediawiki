@@ -687,7 +687,6 @@ abstract class DatabaseUpdater {
 
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
-			return false;
 		} else if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index $index already set on $table table.\n" );
 		} else {
@@ -752,17 +751,22 @@ abstract class DatabaseUpdater {
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	protected function renameIndex( $table, $oldIndex, $newIndex, $skipBothIndexExistWarning, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		// First requirement: the table must exist
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
-			return false;
+			return true;
 		}
 
 		// Second requirement: the new index must be missing
 		if ( $this->db->indexExists( $table, $newIndex, __METHOD__ ) ) {
 			$this->output( "...index $newIndex already set on $table table.\n" );
 			if ( !$skipBothIndexExistWarning && $this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
-				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n            $oldIndex should be manually removed if not needed anymore.\n" );
+				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n" .
+					"            $oldIndex should be manually removed if not needed anymore.\n" );
 			}
 			return true;
 		}
@@ -770,7 +774,7 @@ abstract class DatabaseUpdater {
 		// Third requirement: the old index must exist
 		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
 			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
-			return false;
+			return true;
 		}
 
 		// Requirements have been satisfied, patch can be applied
