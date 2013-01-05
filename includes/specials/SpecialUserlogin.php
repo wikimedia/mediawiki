@@ -328,7 +328,7 @@ class LoginForm extends SpecialPage {
 		# Request forgery checks.
 		if ( !self::getCreateaccountToken() ) {
 			self::setCreateaccountToken();
-			return Status::newFatal( 'sessionfailure' );
+			return Status::newFatal( 'nocookiesfornew' );
 		}
 
 		# The user didn't pass a createaccount token
