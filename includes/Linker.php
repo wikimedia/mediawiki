@@ -1923,7 +1923,7 @@ class Linker {
 			}
 			$outText .= '</ul>';
 		}
-		wfProfileOut( __METHOD__  );
+		wfProfileOut( __METHOD__ );
 		return $outText;
 	}
 
@@ -1949,7 +1949,7 @@ class Linker {
 			}
 			$outText .= '</ul>';
 		}
-		wfProfileOut( __METHOD__  );
+		wfProfileOut( __METHOD__ );
 		return $outText;
 	}
 

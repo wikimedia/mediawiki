@@ -579,7 +579,7 @@ class LoadBalancer {
 		wfProfileIn( __METHOD__ );
 		if ( $wiki !== false ) {
 			$conn = $this->openForeignConnection( $i, $wiki );
-			wfProfileOut( __METHOD__);
+			wfProfileOut( __METHOD__ );
 			return $conn;
 		}
 		if ( isset( $this->mConns['local'][$i][0] ) ) {
