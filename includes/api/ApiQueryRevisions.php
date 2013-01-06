@@ -338,10 +338,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			if ( !is_null( $params['continue'] ) ) {
 				$cont = explode( '|', $params['continue'] );
-				if ( count( $cont ) != 2 ) {
-					$this->dieUsage( 'Invalid continue param. You should pass the original ' .
-							'value returned by the previous query', '_badcontinue' );
-				}
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$pageid = intval( $cont[0] );
 				$revid = intval( $cont[1] );
 				$this->addWhere(
