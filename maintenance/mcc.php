@@ -25,9 +25,16 @@
 /** */
 require_once( __DIR__ . '/commandLine.inc' );
 
-$mcc = new MWMemcached( array( 'persistent' => true/*, 'debug' => true*/ ) );
-$mcc->set_servers( $wgMemCachedServers );
-# $mcc->set_debug( true );
+$mcc = new MWMemcached( array( 'persistent' => true ) );
+
+if ( $wgMainCacheType === CACHE_MEMCACHED ) {
+	$mcc->set_servers( $wgMemCachedServers );
+} elseif( isset( $wgObjectCaches[$wgMainCacheType] ) ) {
+	$mcc->set_servers( $wgObjectCaches[$wgMainCacheType]['servers'] );
+} else {
+	print "MediaWiki isn't configured for Memcached usage\n";
+	exit( 1 );
+}
 
 function mccShowHelp( $command ) {
 	$commandList = array(
@@ -73,7 +80,7 @@ do {
 		case 'help':
 			// show an help message
 			mccShowHelp( array_shift( $args ) );
-		break;
+			break;
 
 		case 'get':
 			$sub = '';
@@ -93,7 +100,7 @@ do {
 			} else {
 				var_dump( $res );
 			}
-		break;
+			break;
 
 		case 'getsock':
 			$res = $mcc->get( $args[0] );
