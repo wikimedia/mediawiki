@@ -61,6 +61,7 @@
  * @author Tischbeinahe
  * @author UV
  * @author Umherirrender
+ * @author Vogone
  * @author W (aka Wuzur)
  * @author Wikifan
  * @author Wikinaut
@@ -3018,7 +3019,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-noarticle' => 'Es wurde keine zu importierende Seite angegeben!',
 'import-nonewrevisions' => 'Alle Versionen wurden bereits zu einem früheren Zeitpunkt importiert.',
 'xml-error-string' => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
-'import-upload' => 'XML-Daten importieren',
+'import-upload' => 'XML-Dateien importieren',
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
 'import-invalid-interwiki' => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 'import-error-edit' => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.',

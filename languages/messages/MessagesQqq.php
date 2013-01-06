@@ -708,8 +708,12 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 'hidetoc' => 'This is the link used to hide the table of contents
 
 {{Identical|Hide}}',
-'collapsible-collapse' => 'This is the link used to collapse a collapsible element. (used as plaintext. No wikitext or html is parsed.)',
-'collapsible-expand' => 'This is the link used to expand a collapsible element (used as plaintext. No wikitext or html is parsed.)',
+'collapsible-collapse' => 'This is the link used to collapse a collapsible element. (used as plaintext. No wikitext or html is parsed.)
+
+{{Doc-actionlink}}',
+'collapsible-expand' => 'This is the link used to expand a collapsible element (used as plaintext. No wikitext or html is parsed.)
+
+{{Doc-actionlink}}',
 'thisisdeleted' => 'Message shown on a deleted page when the user has the undelete right. $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|viewdeleted}}.',
 'viewdeleted' => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|thisisdeleted}}.',
 'restorelink' => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see
@@ -4536,15 +4540,21 @@ See also:
 'rollback' => '{{Identical|Rollback}}',
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
-This link text appears on the recent changes page to users who have the "rollback" right.  It is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.
-This message has a tooltip {{msg-mw|tooltip-rollback}}',
-'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. This link is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.  See also {{msg-mw|rollbacklink}}.
+This link text appears on the recent changes page to users who have the "rollback" right.  
+This message has a tooltip {{msg-mw|tooltip-rollback}}
+
+{{Doc-actionlink}}',
+'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
 * $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.
 
-The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}',
+The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}
+
+{{Doc-actionlink}}',
 'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
 
-When the number of edits rolled back is smaller than [[mw:Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.',
+When the number of edits rolled back is smaller than [[mw:Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.
+
+{{Doc-actionlink}}',
 'rollbackfailed' => '{{Identical|Rollback}}',
 'cantrollback' => 'Used as error message when rolling back.
 
@@ -6656,8 +6666,8 @@ See also:
 'pageinfo-robot-policy' => 'The search engine status of the page.
 *{{msg-mw|Pageinfo-robot-index}}
 *{{msg-mw|Pageinfo-robot-noindex}}',
-'pageinfo-robot-index' => 'An indication that the page is indexable.',
-'pageinfo-robot-noindex' => 'An indication that the page is not indexable.',
+'pageinfo-robot-index' => 'An indication that the page is indexable by search engines, that is listed in their search results.',
+'pageinfo-robot-noindex' => 'An indication that the page is not indexable (that is, is not listed on the results page of a search engine).',
 'pageinfo-views' => 'The number of times the page has been viewed.',
 'pageinfo-watchers' => 'The number of users watching the page.',
 'pageinfo-redirects-name' => "The number of redirects to the page.
@@ -6687,7 +6697,7 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
-'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect.',
+'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect. Verb. See [http://en.wikipedia.org/w/index.php?title=Main_page&action=info example].',
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.',
 'pageinfo-contentpage' => 'Key for the row shown on [{{fullurl:News|action=info}} action=info] if this page is [[mw:Manual:Article count|counted as a content page]]',
 'pageinfo-contentpage-yes' => 'Yes, this page is a content page',

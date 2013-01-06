@@ -233,7 +233,7 @@ $messages = array(
 
 'underline-always' => 'Свал',
 'underline-never' => 'Зярдояк',
-'underline-default' => 'Васнянь браузер',
+'underline-default' => 'Браузерэнь ушодкс ладсематне',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Витнема-петнема уминенть фонт стилезэ',
@@ -491,8 +491,8 @@ $messages = array(
 Пачтта сёрмине теде [[Special:ListUsers/sysop|системань ветийнень]] URL адресэнть тештязь.',
 'missingarticle-rev' => '(лиякстомтома#: $1)',
 'missingarticle-diff' => '(Мейсэ явовить: $1, $2)',
-'internalerror' => 'Потмонь ильведькс',
-'internalerror_info' => 'Потмонь ильведькс: $1',
+'internalerror' => 'Потмоильведькс',
+'internalerror_info' => 'Потмоильведькс: $1',
 'fileappenderrorread' => '"$1" файлась эзь ловново поладомо шкастонзо.',
 'fileappenderror' => '"$1" файлась эзь поладово "$2" файлантень.',
 'filecopyerror' => '"$1" файлась эзь ванстово од "$2" файлакс.',
@@ -504,6 +504,7 @@ $messages = array(
 'unexpected' => 'Апак учонь вейкетстямо: "$1"="$2".',
 'formerror' => 'Ильведевкс: Формась а кучови',
 'badarticleerror' => 'Те лопасонть вешезь тевесь а тееви.',
+'cannotdelete-title' => '"$1" лопась а нардави',
 'badtitle' => 'Амаштовикс конякс',
 'badtitletext' => 'Вешезь лопанть лемезэ аволь виде, чаво, эли аволь видестэ сюлмазь келеньйутковань эли интервикинь лем. Паряк, лемсэнть тевс нолдазь анолдавикс тешкст.',
 'viewsource' => 'Ванномс лисьмапрянть',
@@ -512,9 +513,11 @@ $messages = array(
 'protectedpagetext' => 'Те лопась панжома экшсэ, илязо понго витнемс-петнемс эли лия тевс.',
 'viewsourcetext' => 'Те лопанть лисьмапрясь маштови ваномскак, лангстонзо саемс копияяк:',
 'sqlhidden' => '(SQL вешнемась кекшезь)',
+'namespaceprotected' => "'''$1''' лемпотмосонть арась видечить витнемс-петнемс лопатнесэ.",
 'ns-specialprotected' => '{{ns:special}} лем марто лопатне а витневить-петневить.',
 'titleprotected' => "Те коняксонть ванстызе [[Теиця:$1|$1]], кияк иляссо тее.
 Тувталось вана ''$2''.",
+'exception-nologin' => 'Эзить сова',
 
 # Virus scanner
 'virus-scanfailed' => 'сканнось эзь лисе (код $1)',
@@ -526,7 +529,9 @@ $messages = array(
 'yourpassword' => 'Салава валот:',
 'yourpasswordagain' => 'Омбоцеде сёрмадык кирдицянь леметь:',
 'remembermypassword' => 'Ледстемс совамом те бравзерсэнть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
+'securelogin-stick-https' => 'Кирдемс "HTTPS" сюлмавкс совамодо мейлеяк',
 'yourdomainname' => 'Эсеть доменэть:',
+'password-change-forbidden' => 'Те викисэнть а полавтсак салававалот.',
 'login' => 'Совамо',
 'nav-login-createaccount' => 'Совамо / тейть совамотарка',
 'loginprompt' => '{{SITENAME}} сайтэнтень совамга эряви нолдамс тевс cookies.',
@@ -593,6 +598,7 @@ $messages = array(
 
 # Change password dialog
 'resetpass' => 'Полавтомс совамо валот',
+'resetpass_announce' => 'Совавить нурька шкань салававалсо, кона кучозель куляпаргозот. Совамот прядомга эряви путомс од салававал вана тезэень:',
 'resetpass_header' => 'Полавтомс совамо валот',
 'oldpassword' => 'Ташто совамо валот:',
 'newpassword' => 'Од совамо валот:',
@@ -865,6 +871,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'search-interwiki-default' => '$1 савкс:',
 'search-interwiki-more' => '(седе ламо)',
 'search-relatedarticle' => 'Малавикс',
+'mwsuggest-disable' => 'Лоткавтомс "AJAX" превспутыенть',
 'searcheverything-enable' => 'Вешнемс весе лем потмотнестэ',
 'searchrelated' => 'малавикс',
 'searchall' => 'весе',
@@ -914,6 +921,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'prefs-rendering' => 'Тюсозо-лангозо',
 'saveprefs' => 'Ванстомс',
 'resetprefs' => 'Нардамс апак вансто полавтнемат',
+'restoreprefs' => 'Велявтомс мекев весе ушодкс ладсематнень',
 'prefs-editing' => 'Витнема-петнема',
 'prefs-edit-boxsize' => 'Витнема-петнема вальманть сэрензэ-келензэ.',
 'rows' => 'Вал чилькстнэ (строкатне):',
@@ -985,9 +993,10 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'group-user-member' => '{{GENDER:$1|теиця}}',
 'group-autoconfirmed-member' => '
 {{GENDER:$1|сонсь кемекставиця теиця}}',
-'group-bot-member' => 'Бот',
-'group-sysop-member' => 'Администратор',
-'group-bureaucrat-member' => 'Бюрократ',
+'group-bot-member' => '{{GENDER:$1|Бот}}',
+'group-sysop-member' => '{{GENDER:$1|Администратор}}',
+'group-bureaucrat-member' => '
+{{GENDER:$1|Бюрократ}}',
 
 'grouppage-user' => '{{ns:project}}:Совицятне',
 'grouppage-bot' => '{{ns:project}}:Ботт',
@@ -1090,6 +1099,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'newsectionsummary' => '/* $1 */ од пелькс',
 'rc-enhanced-expand' => 'Невтемс седе ламо тень ланга (JavaScript эряви)',
 'rc-enhanced-hide' => 'Кекшемс келейстэ ёвтазенть',
+'rc-old-title' => 'васня сёрмадозель «$1» лем марто',
 
 # Recent changes linked
 'recentchangeslinked' => 'Сюлмавозь лиякстоматне',
@@ -1118,6 +1128,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'filestatus' => 'Авторонь видечинь статусозо:',
 'filesource' => 'Лисьмапрязо:',
 'uploadedfiles' => 'Ёвкстань файлат',
+'ignorewarnings' => 'А явомс мель «Ванок» серьгедематненень',
 'minlength1' => 'Файлалемесь аштезэ вейке эли седе ламо тешксттнэстэ.',
 'badfilename' => 'Файланть лемесь полавтозь "$1"-кс.',
 'filetype-missing' => 'Файланть арась поладкс пезэ (саемга «.jpg»).',
@@ -1315,6 +1326,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'mostimages' => 'Весемеде ламо сюлмавкс марто файлат',
 'mostrevisions' => 'Лопат конатнесэ теезь сехте ламо лиякстомтомат',
 'prefixindex' => 'Весе лопатне, конат саевить истямо икелькс пене марто',
+'prefixindex-namespace' => 'Весе лопат, косо лемушодксось ($1 лемпотмо)',
 'shortpages' => 'Нурькине лопат',
 'longpages' => 'Кувака лопат',
 'deadendpages' => 'Поладкстомо-лисемавтомо лопат',
@@ -2219,6 +2231,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'feedback-message' => 'Пачтямнэсь:',
 'feedback-cancel' => 'А теемс',
 'feedback-close' => 'Анок',
+
+# Search suggestions
+'searchsuggest-search' => 'Вешнемс',
 
 # API errors
 'api-error-filename-tooshort' => 'Керьмазлементь а саты кувалмозо',

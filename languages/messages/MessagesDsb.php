@@ -2984,6 +2984,8 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 minutu|$1 minutoma|$1 minutami|$1 minutami}}',
 'hours' => '{{PLURAL:$1|$1 góźinu|$1 góźinoma|$1 góźinami|$1 góźinami}}',
 'days' => '{{PLURAL:$1|$1 dnjom|$1 dnjoma|$1 dnjami|$1 dnjami}}',
+'months' => '{{PLURAL:$1|$1 mjasecom|$1 mjasecoma|$1 mjasecami|$1 mjasecami}}',
+'years' => '{{PLURAL:$1|$1 lětom|$1 lětoma|$1 lětami|$1 lětami}}',
 'ago' => 'pśed $1',
 'just-now' => 'rowno',
 

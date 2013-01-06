@@ -871,7 +871,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'diff' => 'farq',
 'hist' => 'tarix',
 'hide' => 'Yashirish',
-'show' => 'Koʻrsatish',
+'show' => 'koʻrsatish',
 'minoreditletter' => 'k',
 'newpageletter' => 'Y',
 'boteditletter' => 'b',

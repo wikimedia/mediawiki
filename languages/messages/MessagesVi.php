@@ -3214,6 +3214,8 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'minutes' => '$1 phút',
 'hours' => '$1 giờ',
 'days' => '$1 ngày',
+'months' => '$1 tháng',
+'years' => '$1 năm',
 'ago' => 'cách đây $1',
 'just-now' => 'hồi nãy',
 

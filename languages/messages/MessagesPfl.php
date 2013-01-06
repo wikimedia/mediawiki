@@ -18,11 +18,11 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
-'tog-showtoolbar' => "Werkzaich zum Bearwaide zaische (dodezu braucht's JavaScript)",
+'tog-showtoolbar' => "Werkzaich zum Bearwaide zaische (dodezu brauchd's JavaScript)",
 
 'underline-always' => 'Immer',
 'underline-never' => 'Garnet',
-'underline-default' => 'Des nemme, was em Broweser gsaacht hoscht.',
+'underline-default' => 'Des nemme, was em Browser gsaachd hoschd.',
 
 # Dates
 'sunday' => 'Sundaach',
@@ -58,7 +58,7 @@ $messages = array(
 'may-gen' => 'Mai',
 'june-gen' => 'Juni',
 'july-gen' => 'Juli',
-'august-gen' => 'Auguscht',
+'august-gen' => 'Auguschd',
 'september-gen' => 'Sebdember',
 'october-gen' => 'Ogdower',
 'november-gen' => 'November',
@@ -120,6 +120,7 @@ $messages = array(
 'printableversion' => 'Druck-Aasicht',
 'permalink' => 'Permanentlink',
 'print' => 'Ausdrugge',
+'view' => 'Lese',
 'edit' => 'Bearwaide',
 'create' => 'Aaleche',
 'editthispage' => 'Die Said bearwaide',
@@ -127,6 +128,7 @@ $messages = array(
 'undelete_short' => '{{PLURAL:$1|ä Ännerung|$1 Ännerunge}} widderherschdelle',
 'protect' => 'schitze',
 'protect_change' => 'ännere',
+'protectthispage' => 'Die Said schidze',
 'unprotect' => 'Saideschudz änare',
 'newpage' => 'Naie Said',
 'talkpage' => 'Iwwer die Said dischbediere',
@@ -190,10 +192,10 @@ $messages = array(
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezialsaid',
 'nstab-project' => 'Bordal',
-'nstab-image' => 'Datei',
+'nstab-image' => 'Dadei',
 'nstab-mediawiki' => 'Mitdeelung',
 'nstab-template' => 'Vorlaach',
-'nstab-help' => 'Hilfe',
+'nstab-help' => 'Hilf',
 'nstab-category' => 'Kadegorie',
 
 # General errors
@@ -211,37 +213,38 @@ S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid 
 
 # Login and logout pages
 'yourname' => 'Benutzername:',
-'yourpassword' => 'Passwort:',
+'yourpassword' => 'Password:',
+'yourpasswordagain' => 'Password nomol oigewe:',
 'remembermypassword' => 'Mai Passwort uff dem Computer merke (hechschtens fer $1 {{PLURAL:$1|Dach|Dach}})',
 'login' => 'Omelde',
 'nav-login-createaccount' => 'Aamelde / Benutzerkonto aaleche',
 'userlogin' => 'Omelde / Benutzerkonto anleche',
 'logout' => 'Abmelde',
 'userlogout' => 'Abmelde',
-'nologinlink' => 'E Benutzerkonto aaleche',
+'nologinlink' => 'E Benutzerkondo aaleche',
 'mailmypassword' => 'Nais Passwort per E-Mail schicke',
 
 # Edit page toolbar
-'bold_sample' => 'Fette Schrift',
-'bold_tip' => 'Fette Schrift',
-'italic_sample' => 'Kursive Schrift',
-'italic_tip' => 'Kursive Schrift',
-'link_sample' => 'Stichwort',
+'bold_sample' => 'Fedde Schrifd',
+'bold_tip' => 'Fedde Schrifd',
+'italic_sample' => 'Kursive Schrifd',
+'italic_tip' => 'Kursive Schrifd',
+'link_sample' => 'Schdischword',
 'link_tip' => 'Interner Link',
-'extlink_sample' => 'http://www.example.com Linktext',
+'extlink_sample' => "http://www.example.com Ling'gtegschd",
 'extlink_tip' => 'Externer Link (uff http:// Acht gewwe)',
 'headline_sample' => 'Abschnitts-Iwwerschrift',
 'headline_tip' => 'Iwwerschrift Ewene 2',
 'nowiki_sample' => 'Gebb do en Text ai, wu nit formatiert wird',
 'nowiki_tip' => 'Wiki-Formatierunge ignoriere',
 'image_tip' => 'Bildverwais',
-'media_tip' => 'Dateilink',
+'media_tip' => 'Dadeilink',
 'sig_tip' => 'Dai Unnerschrifd mid ener Zaidaagab',
 'hr_tip' => 'Horizontale Linie (sparsam verwenne)',
 
 # Edit pages
 'summary' => 'Zammefassung:',
-'subject' => 'Betreff:',
+'subject' => 'Bedreff:',
 'minoredit' => 'Des isch e klänni Bearwaidung',
 'watchthis' => 'Die Said beowachde',
 'savearticle' => 'Said schbeichere',

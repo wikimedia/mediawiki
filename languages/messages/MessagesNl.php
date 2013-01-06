@@ -718,7 +718,7 @@ Mogelijk is deze al door iemand anders verwijderd.',
 'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
 Er is geen toelichting beschikbaar.',
 'badtitle' => 'Ongeldige paginanaam',
-'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamkoppeling.
+'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikikoppeling.
 Wellicht bevat de paginanaam niet toegestane tekens.',
 'perfcached' => 'Deze gegevens komen uit een cache en zijn mogelijk niet actueel. Er {{PLURAL:$1|is maximaal één resultaat|zijn maximaal $1 resultaten}} beschikbaar in de cache.',
 'perfcachedts' => 'Deze gegevens komen uit een cache die voor het laatst is bijgewerkt op $2 om $3. Er {{PLURAL:$4|is maximaal één resultaat|zijn maximaal $4 resultaten}} beschikbaar in de cache.',
@@ -2728,7 +2728,7 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'isimage' => 'bestandskoppeling',
 'whatlinkshere-prev' => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|volgende|volgende $1}}',
-'whatlinkshere-links' => '← koppelingen naar deze pagina',
+'whatlinkshere-links' => '← koppelingen',
 'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
 'whatlinkshere-hidetrans' => 'Transclusies $1',
 'whatlinkshere-hidelinks' => 'koppelingen $1',
@@ -3364,6 +3364,8 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 minuut|$1 minuten}}',
 'hours' => '{{PLURAL:$1|$1 uur|$1 uur}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagen}}',
+'months' => '{{PLURAL:$1|één maand|$1 maanden}}',
+'years' => '{{PLURAL:$1|één jaar|$1 jaar}}',
 'ago' => '$1 geleden',
 'just-now' => 'Daarnet',
 

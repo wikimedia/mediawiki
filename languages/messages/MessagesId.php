@@ -440,7 +440,7 @@ $messages = array(
 'may' => 'Mei',
 'jun' => 'Jun',
 'jul' => 'Jul',
-'aug' => 'Agu',
+'aug' => 'Ags',
 'sep' => 'Sep',
 'oct' => 'Okt',
 'nov' => 'Nov',
@@ -2229,9 +2229,9 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-pat' => 'Pola pencarian:',
 'linksearch-ns' => 'Ruang nama:',
 'linksearch-ok' => 'Cari',
-'linksearch-text' => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
+'linksearch-text' => 'Tanda bintang seperti "*.wikipedia.org" dapat digunakan.
 Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
-Protokol yang didukung: <code>$1</code> (menggunakan http:// bila protokol tidak ditentukan)',
+{{PLURAL:$2|Protokol|Protokol}} yang didukung: <code>$1</code> (menggunakan http:// bila protokol tidak ditentukan)',
 'linksearch-line' => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 
@@ -2558,7 +2558,7 @@ $1',
 'namespace' => 'Ruang nama:',
 'invert' => 'Balikkan pilihan',
 'tooltip-invert' => 'Centang kotak ini untuk menyembunyikan perubahan halaman dalam ruang nama yang dipilih (dan ruang nama terkait jika dicentang)',
-'namespace_association' => 'Ruangnamo takaik',
+'namespace_association' => 'Ruangnama terkait',
 'tooltip-namespace_association' => 'Centang halaman ini untuk menyertakan ruang nama pembicaraan atau subjek yang terkait dengan ruang nama terpilih',
 'blanknamespace' => '(Utama)',
 

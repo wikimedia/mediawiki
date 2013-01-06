@@ -31,6 +31,7 @@
  * @author Omnipaedista
  * @author Pedroca cerebral
  * @author Petrus Adamus
+ * @author Renardo
  * @author Smeira
  * @author ThomasPusch
  * @author Tlustulimu
@@ -3235,6 +3236,7 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutoj}}',
 'hours' => '{{PLURAL:$1|$1 horo|$1 horoj}}',
 'days' => '{{PLURAL:$1|$1 tago|$1 tagoj}}',
+'months' => '{{PLURAL:$1|$1 monato|$1 monatoj}}',
 'ago' => 'antaŭ $1',
 'just-now' => 'ĵus nune',
 

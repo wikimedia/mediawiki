@@ -3055,6 +3055,8 @@ Du kan beskadige dit system hvis du udfører den.",
 'minutes' => '{{PLURAL: $1|$1 minut|$1 minutter}}',
 'hours' => '{{PLURAL: $1|$1 time|$1 timer}}',
 'days' => '{{PLURAL: $1|$1 dag|$1 dage}}',
+'months' => '{{PLURAL:$1|$1 måned|$1 måneder}}',
+'years' => '{{PLURAL:$1|$1 år}}',
 'ago' => '$1 siden',
 'just-now' => 'lige nu',
 

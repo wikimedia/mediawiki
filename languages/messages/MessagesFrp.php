@@ -350,10 +350,10 @@ $messages = array(
 'tog-watchlisthideanons' => 'Cachiér los changements fêts per des utilisators anonimos dedens la lista de siuvu',
 'tog-watchlisthidepatrolled' => 'Cachiér los changements gouardâs dedens la lista de siuvu',
 'tog-ccmeonemails' => 'Mè mandar na copia des mèssâjos que mando ux ôtros utilisators',
-'tog-diffonly' => 'Pas montrar lo contegnu de les pâges desot los difs',
+'tog-diffonly' => 'Pas montrar lo contegnu de les pâges desot les difs',
 'tog-showhiddencats' => 'Montrar les catègories cachiêes',
 'tog-noconvertlink' => 'Dèsactivar la convèrsion des titros des lims',
-'tog-norollbackdiff' => 'Pas fâre vêre lo dif pendent na rèvocacion',
+'tog-norollbackdiff' => 'Pas fâre vêre la dif pendent na rèvocacion',
 
 'underline-always' => 'Tojorn',
 'underline-never' => 'Jamés',
@@ -647,7 +647,7 @@ La bâsa de donâs at retornâ la fôta « $3 : $4 ».',
 L’administrator que l’at vèrrolyê at balyê cet’èxplicacion : $1',
 'missing-article' => 'La bâsa de donâs at pas trovâ lo tèxto d’una pâge qu’el arêt diu trovar, apelâye « $1 » $2.
 
-En g·ènèral cen arreve en siuvent un lim d’un dif ou ben d’un historico dèpassâ de vers na pâge qu’est étâye suprimâye.
+En g·ènèral cen arreve en siuvent un lim d’una dif ou ben d’un historico dèpassâ(ye) de vers na pâge qu’est étâye suprimâye.
 
 S’o est pas lo câs, pôt étre quèstion d’una cofierie dedens la programeria.
 La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar de lui endicar l’URL du lim.',
@@ -797,7 +797,7 @@ Vos volyéd tornar branchiér aprés l’avêr reçu.',
 'eauthentsent' => 'Un mèssâjo de confirmacion est étâ mandâ a l’adrèce èlèctronica endicâye.
 Devant qu’un ôtro mèssâjo seye mandâ a ceti compto, vos devréd siuvre les enstruccions du mèssâjo et pués confirmar que lo compto est franc lo voutro.',
 'throttled-mailpassword' => 'Un mèssâjo de sovegnence de voutron contresegno est ja étâ mandâ pendent {{PLURAL:$1|l’hora passâye|les $1 hores passâyes}}.
-Por èvitar los abus, solament yon mèssâjo de sovegnence serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
+Por èvitar los abus, ren que yon mèssâjo de sovegnence serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
 'mailerror' => 'Fôta pendent l’èxpèdicion du mèssâjo : $1',
 'acct_creation_throttle_hit' => 'Quârqu’un qu’emplèye voutron adrèce IP at fêt {{PLURAL:$1|yon compto|$1 comptos}} pendent les 24 hores passâyes, cen qu’est la limita ôtorisâye dens ceti temps.
 Du côp la crèacion de compto est étâye dèsactivâye temporèrament por cel’adrèce IP.',
@@ -1139,100 +1139,100 @@ Celos arguments sont pas étâs betâs.",
 'expansion-depth-exceeded-warning' => 'Pâge que dèpâsse la provondior d’èxpension',
 'parser-unstrip-loop-warning' => 'Boclla pas dèmontâbla dècelâye',
 'parser-unstrip-recursion-limit' => 'Limita de rècursion pas dèmontâbla dèpassâye ($1)',
-'converter-manual-rule-error' => 'Fôta dècelâye dens la règlla de convèrsion manuèla de lengoua',
+'converter-manual-rule-error' => 'Fôta dècelâye dens la règlla de convèrsion de lengoua manuèla',
 
 # "Undo" feature
-'undo-success' => 'Ceti changement vôt étre dèfêt.
-Volyéd controlar los changements ce-desot, et pués sôvar s’o est franc cen que vos voléd fâre.',
-'undo-failure' => 'Cél changement pôt pas étre dèfêt : cen rentrerêt en conflit avouéc los changements entèrmèdièros.',
-'undo-norev' => 'Lo changement at pas possu étre dèfêt perce qu’il est pas ègzistent ou ben qu’il at étâ suprimâ.',
-'undo-summary' => 'Anulacion du changement $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])',
+'undo-success' => 'Lo changement pôt étre dèfêt.
+Volyéd controlar la comparèson ce-desot por vos assurar qu’o est franc cen que vos voléd fâre et pués encartar los changements ce-desot por chavonar la sina dèfêta.',
+'undo-failure' => 'Lo changement at pas possu étre dèfêt a côsa d’un conflit avouéc des changements entèrmèdièros.',
+'undo-norev' => 'Lo changement at pas possu étre dèfêt perce qu’il est pas ègzistent ou ben qu’il est étâ suprimâ.',
+'undo-summary' => 'Dèfêta du changement $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Vos pouede pas fâre un compto.',
-'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP ('''$1''') at étâ dèfendua per [[User:$3|$3]].
+'cantcreateaccounttitle' => 'Empossiblo de fâre lo compto',
+'cantcreateaccount-text' => "La crèacion de compto dês cet’adrèce IP ('''$1''') est étâye blocâye per [[User:$3|$3]].
 
-La rêson balyê per $3 ére ''$2''.",
+La rêson balyêe per $3 ére ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Vêde los jornals de ceta pâge',
 'nohistory' => 'Ègziste gins d’historico por ceta pâge.',
 'currentrev' => 'Vèrsion d’ora',
-'currentrev-asof' => 'Vèrsion d’ora en dâta du $1',
-'revisionasof' => 'Vèrsion du $1',
-'revision-info' => 'Vèrsion du $1 per $2',
-'previousrevision' => '← Vèrsion devant',
-'nextrevision' => 'Vèrsion aprés →',
-'currentrevisionlink' => 'vêde la vèrsion d’ora',
-'cur' => 'ora',
+'currentrev-asof' => 'Vèrsion d’ora du $2 a $3',
+'revisionasof' => 'Vèrsion du $2 a $3',
+'revision-info' => 'Vèrsion du $4 a $5 per $2',
+'previousrevision' => '← Vèrsion ples vielye',
+'nextrevision' => 'Vèrsion ples novèla →',
+'currentrevisionlink' => 'Vèrsion d’ora',
+'cur' => 'd’ora',
 'next' => 'aprés',
-'last' => 'dif',
-'page_first' => 'premiére',
-'page_last' => 'dèrriére',
-'histlegend' => "Lègenda : '''({{int:cur}})''' = difèrence avouéc la vèrsion d’ora,
-'''({{int:last}})''' = difèrence avouéc la vèrsion devant, '''{{int:minoreditletter}}''' = petiôt changement.",
-'history-fieldset-title' => 'Navegar dens l’historico',
-'history-show-deleted' => 'Solament los suprimâs',
-'histfirst' => 'Tota premiére',
-'histlast' => 'Tota dèrriére',
+'last' => 'devant',
+'page_first' => 'Premiére',
+'page_last' => 'Dèrriére',
+'histlegend' => "Chouèx de difs : pouentâd les câses de les vèrsions a comparar et pués apoyéd dessus « Entrâ » ou ben lo boton d’avâl.<br />
+Lègenda : '''({{int:cur}})''' = difèrence avouéc la vèrsion d’ora, '''({{int:last}})''' = difèrence avouéc la vèrsion devant, '''{{int:minoreditletter}}''' = petiôt changement.",
+'history-fieldset-title' => 'Fâre dèfelar l’historico',
+'history-show-deleted' => 'Ren que les suprimâyes',
+'histfirst' => 'Premiére',
+'histlast' => 'Dèrriére',
 'historysize' => '($1 octèt{{PLURAL:$1||s}})',
-'historyempty' => '(vouedo)',
+'historyempty' => '(voueda)',
 
 # Revision feed
 'history-feed-title' => 'Historico de les vèrsions',
 'history-feed-description' => 'Historico por ceta pâge sur lo vouiqui',
-'history-feed-item-nocomment' => '$1 lo $2',
-'history-feed-empty' => 'La pâge demandâ ègziste pas.
-El at pôt-étre étâ suprimâ ou ben renomâ.
+'history-feed-item-nocomment' => '$1 lo $3 a $4',
+'history-feed-empty' => 'La pâge demandâye ègziste pas.
+Pôt-étre el est étâye suprimâye du vouiqui ou ben renomâye.
 Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâges novèles que vont avouéc.',
 
 # Revision deletion
 'rev-deleted-comment' => '(rèsumâ de changement enlevâ)',
-'rev-deleted-user' => '(nom d’usanciér suprimâ)',
-'rev-deleted-event' => '(entrâ suprimâ)',
-'rev-deleted-user-contribs' => '[nom d’usanciér ou ben adrèce IP suprimâ - changement cachiê sur les contribucions]',
+'rev-deleted-user' => '(nom d’utilisator enlevâ)',
+'rev-deleted-event' => '(accion du jornal enlevâye)',
+'rev-deleted-user-contribs' => '[nom d’utilisator ou ben adrèce IP enlevâ(ye) - changement cachiê sur les contribucions]',
 'rev-deleted-text-permission' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-text-unhide' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+'rev-deleted-text-unhide' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
+Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
-'rev-suppressed-text-unhide' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+'rev-suppressed-text-unhide' => "Ceta vèrsion de la pâge est étâye '''rèprimâye'''.
+Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
 Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
 'rev-deleted-text-view' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
 Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-suppressed-text-view' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
-Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-no-diff' => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions est étâye '''suprimâye'''.
+'rev-suppressed-text-view' => "Ceta vèrsion de la pâge est étâye '''rèprimâye'''.
+Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].",
+'rev-deleted-no-diff' => "Vos pouede pas vêre ceta dif perce que yona de les vèrsions est étâye '''suprimâye'''.
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-suppressed-no-diff' => "Vos pouede pas vêre ceta difèrence perce que yona de les vèrsions at étâ '''suprimâ'''.",
-'rev-deleted-unhide-diff' => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
-'rev-suppressed-unhide-diff' => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
-'rev-deleted-diff-view' => "Yona de les vèrsions de ceti dif est étâye '''suprimâye'''.
-Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-suppressed-diff-view' => "Yona de les vèrsions de ceti dif est étâye '''suprimâye'''.
-Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-suppressed-no-diff' => "Vos pouede pas vêre ceta dif perce que yona de les vèrsions est étâye '''suprimâye'''.",
+'rev-deleted-unhide-diff' => "Yona de les vèrsions de ceta dif est étâye '''suprimâye'''.
+Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Vos pouede adés [$1 vêre cela dif] se vos lo voléd.",
+'rev-suppressed-unhide-diff' => "Yona de les vèrsions de ceta dif est étâye '''rèprimâye'''.
+Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
+Vos pouede adés [$1 vêre cela dif] se vos lo voléd.",
+'rev-deleted-diff-view' => "Yona de les vèrsions de ceta dif est étâye '''suprimâye'''.
+Vos pouede vêre ceta dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-suppressed-diff-view' => "Yona de les vèrsions de ceta dif est étâye '''rèprimâye'''.
+Vos pouede vêre ceta dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].",
 'rev-delundel' => 'montrar / cachiér',
 'rev-showdeleted' => 'montrar',
 'revisiondelete' => 'Suprimar / refâre des vèrsions',
 'revdelete-nooldid-title' => 'Vèrsion ciba envalida',
-'revdelete-nooldid-text' => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
-la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
-'revdelete-nologtype-title' => 'Gins de tipo de jornal spècefiâ',
-'revdelete-nologtype-text' => 'Vos éd pas spècefiâ un tipo de jornal sur loquint cela accion dêt étre rèalisâ.',
+'revdelete-nooldid-text' => 'Vos éd pas spècifiâ na vèrsion ciba (ou ben des vèrsions cibes) por fâre cela
+fonccion, la vèrsion spècifiâye ègziste pas ou ben vos tâchiéd de cachiér la vèrsion d’ora.',
+'revdelete-nologtype-title' => 'Nion tipo de jornal balyê',
+'revdelete-nologtype-text' => 'Vos éd pas spècifiâ un tipo de jornal por fâre cel’accion.',
 'revdelete-nologid-title' => 'Entrâ du jornal envalida',
-'revdelete-nologid-text' => 'Ou ben vos éd pas spècefiâ una entrâ du jornal sur laquinta cela accion dêt étre rèalisâ, ou ben l’entrâ ègziste pas.',
-'revdelete-no-file' => 'Lo fichiér spècefiâ ègziste pas.',
-'revdelete-show-file-confirm' => 'Éte-vos de sûr de volêr vêre una vèrsion suprimâ du fichiér « <nowiki>$1</nowiki> » que dâte du $2 a $3 ?',
+'revdelete-nologid-text' => 'Ou ben vos éd pas spècifiâ un èvènement du jornal ciba por fâre cela fonccion ou ben l’entrâ spècifiâye ègziste pas.',
+'revdelete-no-file' => 'Lo fichiér spècifiâ ègziste pas.',
+'revdelete-show-file-confirm' => 'Éte-vos de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » du $2 a $3 ?',
 'revdelete-show-file-submit' => 'Ouè',
 'revdelete-selected' => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
-'logdelete-selected' => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
-'revdelete-text' => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
-Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela méma entèrface, a muens que des rèstriccions de ples seyont betâs en place.",
+'logdelete-selected' => "'''{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :'''",
+'revdelete-text' => "'''Les vèrsions et los èvènements suprimâ(ye)s aparètront adés dedens l’historico de la pâge et pués dedens los jornals, mas quârques parties de lor contegnu seront inaccèssibles u publico.'''
+Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela mém’entèrface, a muens que des rèstriccions de ples seyont pas dèfenies.",
 'revdelete-confirm' => 'Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'revdelete-suppress-text' => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
 * Enformacions a sè que vont pas avouéc :

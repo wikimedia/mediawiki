@@ -1216,7 +1216,7 @@ Ngem saanto a mabalinen nga ipasubli.',
 'youremail' => 'E-surat:',
 'username' => 'Nagan ti agar-aramat:',
 'uid' => 'ID ti agar-aramat:',
-'prefs-memberingroups' => 'Kameng iti {{PLURAL:$1|a bunggoy| a bungbunggoy}}:',
+'prefs-memberingroups' => 'Kameng {{PLURAL:$1|ti grupo|dagiti grupo}}:',
 'prefs-registration' => 'Oras a nagrehistro:',
 'yourrealname' => 'Pudno a nagan:',
 'yourlanguage' => 'Pagsasao:',
@@ -1999,9 +1999,9 @@ Kitaen met [[Special:WantedCategories|dagiti makidkiddaw a kategoria]].',
 'linksearch-pat' => 'Alagad ti panagbiruk:',
 'linksearch-ns' => 'Nagan ti lugar:',
 'linksearch-ok' => 'Biruken',
-'linksearch-text' => 'Ti naataap a tarheta a kas "*.wikipedia.org" ket mabalin nga usaren.
+'linksearch-text' => 'Ti naataap a tarheta a kas ti "*.wikipedia.org" ket mabalin nga usaren.
 Masapul ti kangatuan a pagturayan, a kaspagarigan "*.org".<br />
-Dagiti nasuportaran a protokol: <code>$1</code> (naipakasigud ti http:// no awan ti protokol a nainaganan).',
+{PLURAL:$2|Ti protokol|Dagiti protokol}} a nasuportaran: <code>$1</code> (naipakasigud ti http:// no awan ti protokol a nainaganan).',
 'linksearch-line' => 'Ti $1 ket nakasilpo idiay $2',
 'linksearch-error' => 'Ti naatap a tarheta ket agparang laeng iti pinagrugi ti nagan ti agsangaili.',
 

@@ -3125,6 +3125,8 @@ $1',
 'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
 'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
 'days' => '{{PLURAL:$1|un giorno|$1 giorni}}',
+'months' => '{{PLURAL:$1|$1 mese|$1 mesi}}',
+'years' => '{{PLURAL:$1|$1 anno|$1 anni}}',
 'ago' => '$1 fa',
 'just-now' => 'proprio ora',
 

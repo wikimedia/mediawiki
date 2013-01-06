@@ -1326,6 +1326,10 @@ Waxaa fiiri kartaa cadaadkiisa',
 'lastmodifiedatby' => 'Bogaan waxaa ugu dambeyntii wax laga bedelay $2, $1 kana bedelay $3.',
 'othercontribs' => 'Waxay ku saleysantahay shaqada $1.',
 
+# Info page
+'pageinfo-title' => 'Macluumaad ku saabsan "$1"',
+'pageinfo-toolboxlink' => 'Macluumad ku saabsan',
+
 # Browsing diffs
 'previousdiff' => '← bedelkii ka duqsanaa',
 'nextdiff' => 'Bedelkii ugu cusbaa →',

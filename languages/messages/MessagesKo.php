@@ -3333,10 +3333,12 @@ $1',
 'sp-newimages-showfrom' => '$1 $2부터 올라온 파일 목록 보기',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '$1초',
-'minutes' => '$1분',
-'hours' => '$1시간',
-'days' => '$1일',
+'seconds' => '{{PLURAL:$1|$1초}}',
+'minutes' => '{{PLURAL:$1|$1분}}',
+'hours' => '{{PLURAL:$1|$1시간}}',
+'days' => '{{PLURAL:$1|$1일}}',
+'months' => '{{PLURAL:$1|$1월}}',
+'years' => '{{PLURAL:$1|$1년}}',
 'ago' => '$1 전',
 'just-now' => '방금',
 

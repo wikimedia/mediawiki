@@ -617,7 +617,7 @@ $2
 'watchthis' => 'بو صفحه‌نی ایزله',
 'savearticle' => 'صحیفه‌نی قئید ائت',
 'preview' => 'اؤن‌گؤستریش',
-'showpreview' => 'سینیق گؤستریش',
+'showpreview' => 'سیناق گؤستریش',
 'showlivepreview' => 'دیری اؤن‌گؤستریش',
 'showdiff' => 'دَییشیکلیکلری گؤستر',
 'anoneditwarning' => "'''دیقت:''' سیز سیستئمه گیرمه‌میسینیز. سیزین آی‌پی آدرسینیز بو صفحه‌نین دییشیک تاریخچه‌سین‌ده یازیلاجاق‌دیر.",
@@ -2820,6 +2820,9 @@ $1 آدلی ایستیفاده‌چی‌نین باغلانما سببی: "$2"',
 'pageinfo-protect-cascading' => 'مدافعه‌‌لر بورادان شراره کیمی تؤکولور',
 'pageinfo-protect-cascading-yes' => 'بلی',
 'pageinfo-protect-cascading-from' => 'شراره مدافعه‌‌لر بورادان',
+
+# Skin names
+'skinname-myskin' => 'منیم قابیغیم',
 
 # Patrolling
 'markaspatrolleddiff' => 'ایداره ائدیلمیش اولا‌راق ایشاره‌له',

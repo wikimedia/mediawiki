@@ -4273,14 +4273,15 @@ $messages['dtp'] = array(
 
 /** Greek (Ελληνικά)
  * @author Glavkos
+ * @author Protnet
  * @author ZaDiak
  */
 $messages['el'] = array(
 	'config-desc' => 'Το πρόγραμμα εγκατάστασης για το MediaWiki',
-	'config-title' => 'MediaWiki $1 εγκατάσταση',
+	'config-title' => 'Εγκατάσταση MediaWiki $1',
 	'config-information' => 'Πληροφορίες',
 	'config-your-language' => 'Η γλώσσα σας:',
-	'config-wiki-language' => 'Γλώσσα βίκι:',
+	'config-wiki-language' => 'Γλώσσα του wiki:',
 	'config-back' => '← Πίσω',
 	'config-continue' => 'Συνέχεια →',
 	'config-page-language' => 'Γλώσσα',
@@ -4294,12 +4295,12 @@ $messages['el'] = array(
 	'config-page-upgradedoc' => 'Αναβάθμιση',
 	'config-page-existingwiki' => 'Υπάρχον βίκι',
 	'config-restart' => 'Ναι, κάντε επανεκκίνηση',
-	'config-env-php' => 'Το PHP $1 εγκαταστάθηκε.',
+	'config-env-php' => 'H PHP $1 είναι εγκατεστημένη.',
 	'config-db-type' => 'Τύπος βάσης δεδομένων:',
 	'config-db-host' => 'Φιλοξενία βάσης δεδομένων:',
 	'config-db-wiki-settings' => 'Αναγνώριση αυτού του βίκι',
 	'config-db-name' => 'Όνομα βάσης δεδομένων:',
-	'config-db-install-account' => 'Λογαριασμός χρήστη προς εγκατάσταση',
+	'config-db-install-account' => 'Λογαριασμός χρήστη για την εγκατάσταση',
 	'config-db-username' => 'Όνομα χρήστη βάσης δεδομένων:',
 	'config-db-password' => 'Κωδικός πρόσβασης βάσης δεδομένων:',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 δυαδικό',
@@ -4314,7 +4315,7 @@ $messages['el'] = array(
 	'config-site-name-blank' => 'Εισάγετε ένα όνομα ιστοχώρου.',
 	'config-project-namespace' => 'Περιοχή ονόματος εγχειρήματος:',
 	'config-ns-generic' => 'Εγχείρημα',
-	'config-ns-site-name' => 'Ίδιο με το όνομα βίκι: $1',
+	'config-ns-site-name' => 'Ίδιο με το όνομα του wiki: $1',
 	'config-ns-other' => 'Άλλο (προσδιορίστε)',
 	'config-admin-box' => 'Λογαριασμός διαχειριστή',
 	'config-admin-name' => 'Το όνομά σας:',
@@ -4322,12 +4323,12 @@ $messages['el'] = array(
 	'config-admin-password-confirm' => 'Επανάληψη κωδικού πρόσβασης:',
 	'config-admin-email' => 'Διεύθυνση ηλεκτρονικού ταχυδρομείου:',
 	'config-optional-continue' => 'Να ερωτηθώ περισσότερες ερωτήσεις.',
-	'config-profile-wiki' => 'Παραδοσιακό βίκι',
+	'config-profile-wiki' => 'Παραδοσιακό wiki',
 	'config-profile-no-anon' => 'Απαιτείται η δημιουργία λογαριασμού',
-	'config-profile-private' => 'Ιδιωτικό βίκι',
+	'config-profile-private' => 'Ιδιωτικό wiki',
 	'config-email-settings' => 'Ρυθμίσεις ηλεκτρονικού ταχυδρομείου',
-	'config-upload-settings' => 'Επιφορτώσεις εικόνων και άλλων αρχείων',
-	'config-upload-enable' => 'Ενεργοποιήστε την επιφόρτωση αρχείων',
+	'config-upload-settings' => 'Ανέβασμα εικόνων και άλλων αρχείων',
+	'config-upload-enable' => 'Ενεργοποιήστε το ανέβασμα αρχείων',
 	'config-logo' => 'Διεύθυνση URL λογότυπου:',
 	'config-cc-again' => 'Επιλέξτε ξανά...',
 	'config-extensions' => 'Επεκτάσεις',

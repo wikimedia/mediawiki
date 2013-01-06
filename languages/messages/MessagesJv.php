@@ -416,7 +416,7 @@ Ora ana alesané.",
 'actionthrottled' => 'Tindakan diwatesi',
 'actionthrottledtext' => 'Minangka sawijining pepesthèn anti-spam, panjenengan diwatesi nglakoni tindhakan iki sing cacahé kakèhan ing wektu cendhak.
 Mangga dicoba manèh ing sawetara menit.',
-'protectedpagetext' => 'Kaca iki dikunci supaya ora disunting.',
+'protectedpagetext' => 'Kaca iki wis digembok supaya ora bisa disunting lan diapa-apakaké.',
 'viewsourcetext' => 'Panjenengan bisa mirsani utawa nulad sumber kaca iki:',
 'viewyourtext' => "Sampéyan bisa ndelok lan nyalin sumber '''suntingan Sampéyan''' nèng kaca iki:",
 'protectedinterface' => 'Kaca iki isiné tèks antarmuka sing dienggo software lan wis dikunci kanggo menghindari kasalahan.',
@@ -451,6 +451,7 @@ Pangurus sing ngopèni kuwi ngawedharaké: "$3".',
 Sampéyan bisa nganggo {{SITENAME}} sacara anonim, utawa bisa <span class='plainlinks'>[$1 mlebu log manèh]</span> kanthi jeneng panganggo sing padha utawa beda.
 
 Cathet yèn sapérangan kaca mungkin isih nampilaké tulisan yèn Sampéyan isih nèng njero log, kuwi bisa ilang yèn Sampéyan ngresiki ''cache'' pramban Sampéyan.",
+'welcomeuser' => 'Sugeng Rawuh, $1!',
 'yourname' => 'Asma pangangeman',
 'yourpassword' => 'Tembung sandhi:',
 'yourpasswordagain' => 'Balènana tembung sandhi',

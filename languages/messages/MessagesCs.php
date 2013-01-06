@@ -3248,6 +3248,8 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours' => '{{PLURAL:$1|$1 hodina|$1 hodiny|$1 hodin}}',
 'days' => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
+'months' => '{{PLURAL:$1|$1 měsícem|$1 měsíci}}',
+'years' => '{{PLURAL:$1|$1 rokem|$1 roky}}',
 'ago' => 'před 
 $1',
 'just-now' => 'Právě teď',
