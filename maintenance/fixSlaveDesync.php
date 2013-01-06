@@ -67,7 +67,7 @@ class FixSlaveDesync extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$masterIDs = array();
 		$res = $dbw->select( 'page', array( 'page_id', 'page_latest' ), array( 'page_id<6054123' ), __METHOD__ );
-		$this->output( "Number of pages: " . $dbw->numRows( $res ) . "\n" );
+		$this->output( "Number of pages: " . $res->numRows() . "\n" );
 		foreach ( $res as $row ) {
 			$masterIDs[$row->page_id] = $row->page_latest;
 			if ( !( ++$n % 10000 ) ) {

@@ -105,7 +105,7 @@ class RefreshLinks extends Maintenance {
 				array(),
 				array( 'redirect' => array( "LEFT JOIN", "page_id=rd_from" ) )
 			);
-			$num = $dbr->numRows( $res );
+			$num = $res->numRows();
 			$this->output( "Refreshing $num old redirects from $start...\n" );
 
 			$i = 0;
@@ -126,7 +126,7 @@ class RefreshLinks extends Maintenance {
 					"page_id >= $start" ),
 				__METHOD__
 			);
-			$num = $dbr->numRows( $res );
+			$num = $res->numRows();
 			$this->output( "$num new articles...\n" );
 
 			$i = 0;
