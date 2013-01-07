@@ -361,7 +361,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Set a query-continue value
+	 * Set a query-continue value.
 	 * @param $paramName string Parameter name
 	 * @param $paramValue string Parameter value
 	 */
@@ -608,4 +608,30 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 *  this object
 	 */
 	public abstract function executeGenerator( $resultPageSet );
+
+	/**
+	 * Overrides base in case of generator & smart continue to
+	 * notify ApiQueryMain instead of adding them to the result right away.
+	 * @param $paramName string Parameter name
+	 * @param $paramValue string Parameter value
+	 */
+	protected function setContinueEnumParameter( $paramName, $paramValue ) {
+		if ( $this->mIsGenerator && $this->getQuery()->useSmartContinue() ) {
+			$paramName = $this->encodeParamName( $paramName );
+			$this->getQuery()->setGeneratorContinue( $paramName, $paramValue );
+		} else {
+			parent::setContinueEnumParameter( $paramName, $paramValue );
+		}
+	}
+
+	/**
+	* This method is called for the generator module by ApiQueryMain when in
+	* smart-continue mode if the result returned by the generator needs to be
+	* repeated on the next call. If the generator needs to alter its g_continue
+	* value, it should override and return a new one. An example of a generator
+	* that might need this is ApiQueryRandom, where it must preserve random value.
+	*/
+	public function getGeneratorPageRepeatValue() {
+		return null;
+	}
 }

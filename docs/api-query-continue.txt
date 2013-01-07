@@ -1,0 +1,15 @@
+api-query-continue.txt
+
+When using API action=query, since 1.21 you can use the 'smart continue' mode.
+
+In this mode, all 'continue' values are set in such a way as to minimize
+client logic needed to optimally iterate over the resultset.
+
+Assuming the client has the param=>value dictionary with the original request
+parameters, client will only need to perform this operation in their language:
+
+  $request = array_merge( $request, $result['query-continue'] );
+
+before the next api call. The client should not be making any additional
+request parameter modifications. The query is complete when the result has
+no 'query-continue' section.
