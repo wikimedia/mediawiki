@@ -218,6 +218,7 @@ class ApiUpload extends ApiBase {
 					$cmd = wfShellWikiCmd(
 						"$IP/includes/upload/AssembleUploadChunks.php",
 						array(
+							'--wiki', wfWikiID(),
 							'--filename', $this->mParams['filename'],
 							'--filekey', $this->mParams['filekey'],
 							'--userid', $this->getUser()->getId(),
