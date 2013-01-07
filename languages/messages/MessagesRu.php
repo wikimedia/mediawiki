@@ -3257,6 +3257,10 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-protect-cascading' => 'Каскадная защита отсюда',
 'pageinfo-protect-cascading-yes' => 'Да',
 'pageinfo-protect-cascading-from' => 'Каскадная защита от',
+'pageinfo-category-info' => 'Информация о категории',
+'pageinfo-category-pages' => 'Количество страниц',
+'pageinfo-category-subcats' => 'Количество подкатегорий',
+'pageinfo-category-files' => 'Количество файлов',
 
 # Skin names
 'skinname-standard' => 'Классическое',

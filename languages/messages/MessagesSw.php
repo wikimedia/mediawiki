@@ -2582,6 +2582,9 @@ Tafadhali jaribu tena.',
 'pageinfo-toolboxlink' => 'Maelezo ya ukurasa',
 'pageinfo-contentpage-yes' => 'Ndiyo',
 'pageinfo-protect-cascading-yes' => 'Ndiyo',
+'pageinfo-category-info' => 'Maelezo ya jamii',
+'pageinfo-category-pages' => 'Idadi ya kurasa',
+'pageinfo-category-files' => 'Idadi ya mafaili',
 
 # Image deletion
 'deletedrevision' => 'Pitio la awali lililofutwa $1',

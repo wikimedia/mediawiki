@@ -559,8 +559,7 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'viewcount' => 'Used as page-view counter.',
 'protectedpage' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
-*{{msg-mw|protectedpage}}
-*{{msg-mw|protectedpagetext}}",
+This message is the title for the message {{msg-mw|protectedpagetext}}.",
 'jumpto' => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].',
 'jumptonavigation' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
 
@@ -926,8 +925,7 @@ See also:
 'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
 'protectedpagetext' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
-*{{msg-mw|protectedpage}}
-*{{msg-mw|protectedpagetext}}",
+The title for this message is {{msg-mw|protectedpage}}.",
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'viewyourtext' => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
 'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.
@@ -1177,21 +1175,18 @@ Parameters:
 'passwordreset-emailsent' => 'Used in [[Special:PasswordReset]].
 
 See also:
-* {{msg-mw|Passwordreset-emailsent}}
 * {{msg-mw|Passwordreset-emailsent-capture}}
 * {{msg-mw|Passwordreset-emailerror-capture}}',
 'passwordreset-emailsent-capture' => 'Used in [[Special:PasswordReset]].
 
 See also:
 * {{msg-mw|Passwordreset-emailsent}}
-* {{msg-mw|Passwordreset-emailsent-capture}}
 * {{msg-mw|Passwordreset-emailerror-capture}}',
 'passwordreset-emailerror-capture' => 'Error message displayed in [[Special:PasswordReset]] when sending an e-mail fails. Parameters:
 * $1 - the name of a user who was supposed to get the e-mail
 See also:
 * {{msg-mw|Passwordreset-emailsent}}
-* {{msg-mw|Passwordreset-emailsent-capture}}
-* {{msg-mw|Passwordreset-emailerror-capture}}',
+* {{msg-mw|Passwordreset-emailsent-capture}}',
 
 # Special:ChangeEmail
 'changeemail' => 'Title of [[Special:ChangeEmail|special page]].',
@@ -1295,11 +1290,9 @@ See also:
 * {{msg-mw|Tooltip-diff}}',
 'anoneditwarning' => 'Shown when editing a page anonymously.
 See also:
-* {{msg-mw|Anoneditwarning}}
 * {{msg-mw|Anonpreviewwarning}}',
 'anonpreviewwarning' => 'See also:
-* {{msg-mw|Anoneditwarning}}
-* {{msg-mw|Anonpreviewwarning}}',
+* {{msg-mw|Anoneditwarning}}',
 'missingsummary' => 'The text "edit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
 'missingcommenttext' => 'This message is shown, when the textbox by a new-section is empty.',
@@ -1344,8 +1337,9 @@ See also:
 'confirmedittext' => 'Used as error message.',
 'nosuchsectiontitle' => 'Used as error message when the user has attempted to edit a nonexistent section.',
 'nosuchsectiontext' => 'This message is displayed when a user tries to edit a section that does not exist.',
-'loginreqtitle' => 'Used as title of error message. See also:
-* {{msg-mw|loginreqtitle}}
+'loginreqtitle' => 'Used as title of error message.
+
+See also:
 * {{msg-mw|permissionserrors}}',
 'loginreqlink' => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
 
@@ -1415,20 +1409,18 @@ See also:
 'editingsection' => 'This message displays at the top of the page when a user is editing a page section. Parameters:
 * $1 - page name
 See also:
-* {{msg-mw|Editingsection}}
 * {{msg-mw|Editingcomment}}',
 'editingcomment' => 'This message displays at the top of the page when a user is creating a new section. Parameters:
 * $1 - page name
 See also:
-* {{msg-mw|Editingsection}}
-* {{msg-mw|Editingcomment}}',
+* {{msg-mw|Editingsection}}',
 'editconflict' => 'Used as title of error message. Parameters:
 * $1 - page title',
 'explainconflict' => 'Appears at the top of a page when there is an edit conflict.',
 'yourtext' => 'Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.
 
 Also used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-mw|storedversion}}.',
-'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
+'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version {{msg-mw|yourtext}} that has not been stored which is shown at the bottom of the page.',
 'nonunicodebrowser' => 'Used as warning when editing page.',
 'editingold' => 'Used as warning when editing page.',
 'yourdiff' => '',
@@ -1466,9 +1458,10 @@ See also:
 * {{msg-mw|Nocreatetext}}',
 'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
-'permissionserrors' => 'Used as title of error message. See also:
-* {{msg-mw|loginreqtitle}}
-* {{msg-mw|permissionserrors}}',
+'permissionserrors' => 'Used as title of error message.
+
+See also:
+* {{msg-mw|loginreqtitle}}',
 'permissionserrorstext' => "This message is \"without action\" version of {{msg-mw|Permissionserrorstext-withaction}}.
 * \$1 is the number of reasons that were found why ''the action'' cannot be performed.",
 'permissionserrorstext-withaction' => 'This message is "with action" version of {{msg-mw|Permissionserrorstext}}.
@@ -1483,7 +1476,6 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'edit-hook-aborted' => 'Used as error message.
 
 See also:
-* {{msg-mw|edit-hook-aborted}}
 * {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
 * {{msg-mw|edit-no-change}}
@@ -1492,7 +1484,6 @@ See also:
 
 See also:
 * {{msg-mw|edit-hook-aborted}}
-* {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
 * {{msg-mw|edit-no-change}}
 * {{msg-mw|edit-already-exists}}',
@@ -1501,7 +1492,6 @@ See also:
 See also:
 * {{msg-mw|edit-hook-aborted}}
 * {{msg-mw|edit-gone-missing}}
-* {{msg-mw|edit-conflict}}
 * {{msg-mw|edit-no-change}}
 * {{msg-mw|edit-already-exists}}",
 'edit-no-change' => 'Used as error message.
@@ -1510,7 +1500,6 @@ See also:
 * {{msg-mw|edit-hook-aborted}}
 * {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
-* {{msg-mw|edit-no-change}}
 * {{msg-mw|edit-already-exists}}',
 'edit-already-exists' => 'Used as error message.
 
@@ -1518,8 +1507,7 @@ See also:
 * {{msg-mw|edit-hook-aborted}}
 * {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
-* {{msg-mw|edit-no-change}}
-* {{msg-mw|edit-already-exists}}',
+* {{msg-mw|edit-no-change}}',
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
 'content-failed-to-parse' => "Error message indicating that the page's content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.
 *$1 – content model ({{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}})
@@ -1559,35 +1547,29 @@ This message is substituted in:
 See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunctionLimit in the MediaWiki manual]].
 
 See also:
-* {{msg-mw|Expensive-parserfunction-warning}}
 * {{msg-mw|Expensive-parserfunction-category}}',
 'expensive-parserfunction-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.
 
 See also:
-* {{msg-mw|Expensive-parserfunction-warning}}
-* {{msg-mw|Expensive-parserfunction-category}}',
+* {{msg-mw|Expensive-parserfunction-warning}}',
 'post-expand-template-inclusion-warning' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.
 
 
 See also:
-* {{msg-mw|Post-expand-template-inclusion-warning}}
 * {{msg-mw|Post-expand-template-inclusion-category}}',
 'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
 When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.
 
 See also:
-* {{msg-mw|Post-expand-template-inclusion-warning}}
-* {{msg-mw|Post-expand-template-inclusion-category}}',
+* {{msg-mw|Post-expand-template-inclusion-warning}}',
 'post-expand-template-argument-warning' => 'Used as warning in parser limitation.
 
 See also:
-* {{msg-mw|Post-expand-template-argument-warning}}
 * {{msg-mw|Post-expand-template-argument-category}}',
 'post-expand-template-argument-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain omitted template arguments.
 
 See also:
-* {{msg-mw|Post-expand-template-argument-warning}}
-* {{msg-mw|Post-expand-template-argument-category}}',
+* {{msg-mw|Post-expand-template-argument-warning}}',
 'parser-template-loop-warning' => '* $1 - page title',
 'parser-template-recursion-depth-warning' => '* $1 - limit value of recursion depth',
 'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax
@@ -1644,7 +1626,8 @@ Also used as title of error message when the feed is empty. See [{{canonicalurl:
 
 See the error message:
 * {{msg-mw|history-feed-empty}}',
-'currentrev' => '{{Identical|Current revision}}',
+'currentrev' => 'Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.
+{{Identical|Current revision}}',
 'currentrev-asof' => 'Used on a difference page when comparing the current versions of a page with each other. See {{msg-mw|Revisionasof}} for the message for non-current version.
 * $1 is a date and time
 * $2 is a date (optional)
@@ -1662,11 +1645,9 @@ See the error message:
 * (optional) $5: time of revision
 * (optional) $6: author of revision, for GENDER use',
 'previousrevision' => 'See also:
-* {{msg-mw|Previousrevision}}
 * {{msg-mw|Nextrevision}}',
 'nextrevision' => 'See also:
-* {{msg-mw|Previousrevision}}
-* {{msg-mw|Nextrevision}}',
+* {{msg-mw|Previousrevision}}',
 'currentrevisionlink' => '{{Identical|Current revision}}',
 'cur' => 'Link in page history',
 'next' => 'Link in page history
@@ -1711,63 +1692,31 @@ See [{{canonicalurl:x|feed=atom&action=history}} example].',
 'rev-deleted-comment' => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
 *{{msg-mw|revdelete-hide-comment}}',
 'rev-deleted-user' => 'See also:
-* {{msg-mw|Rev-deleted-user}}
 * {{msg-mw|Rev-deleted-event}}',
 'rev-deleted-event' => 'See also:
-* {{msg-mw|Rev-deleted-user}}
-* {{msg-mw|Rev-deleted-event}}',
+* {{msg-mw|Rev-deleted-user}}',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
-'rev-deleted-text-permission' => 'See also:
-* {{msg-mw|Rev-deleted-text-permission}}
-* {{msg-mw|Rev-deleted-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-view}}',
-'rev-deleted-text-unhide' => '* $1 - a HTML link to the revision
-See also:
-* {{msg-mw|Rev-deleted-text-permission}}
-* {{msg-mw|Rev-deleted-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-view}}',
-'rev-suppressed-text-unhide' => '* $1 - a HTML link to the revision
-See also:
-* {{msg-mw|Rev-deleted-text-permission}}
-* {{msg-mw|Rev-deleted-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-view}}',
+'rev-deleted-text-permission' => '{{Related|Rev-deleted-text}}',
+'rev-deleted-text-unhide' => 'Parameters:
+* $1 - a HTML link to the revision
+{{Related|Rev-deleted-text}}',
+'rev-suppressed-text-unhide' => 'Parameters:
+* $1 - a HTML link to the revision
+{{Related|Rev-deleted-text}}',
 'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
-'rev-suppressed-text-view' => 'See also:
-* {{msg-mw|Rev-deleted-text-permission}}
-* {{msg-mw|Rev-deleted-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-unhide}}
-* {{msg-mw|Rev-suppressed-text-view}}',
+'rev-suppressed-text-view' => '{{Related|Rev-deleted-text}}',
 'rev-deleted-no-diff' => 'See also:
-* {{msg-mw|Rev-deleted-no-diff}}
 * {{msg-mw|Rev-suppressed-no-diff}}',
 'rev-suppressed-no-diff' => 'See also:
-* {{msg-mw|Rev-deleted-no-diff}}
-* {{msg-mw|Rev-suppressed-no-diff}}',
-'rev-deleted-unhide-diff' => '* $1 - a HTML link to the diff
-See also:
-* {{msg-mw|Rev-suppressed-unhide-diff}}
-* {{msg-mw|Rev-deleted-unhide-diff}}
-* {{msg-mw|Rev-suppressed-diff-view}}
-* {{msg-mw|Rev-deleted-diff-view}}',
-'rev-suppressed-unhide-diff' => '* $1 - a HTML link to the diff
-See also:
-* {{msg-mw|Rev-suppressed-unhide-diff}}
-* {{msg-mw|Rev-deleted-unhide-diff}}
-* {{msg-mw|Rev-suppressed-diff-view}}
-* {{msg-mw|Rev-deleted-diff-view}}',
-'rev-deleted-diff-view' => 'See also:
-* {{msg-mw|Rev-suppressed-unhide-diff}}
-* {{msg-mw|Rev-deleted-unhide-diff}}
-* {{msg-mw|Rev-suppressed-diff-view}}
-* {{msg-mw|Rev-deleted-diff-view}}',
-'rev-suppressed-diff-view' => 'See also:
-* {{msg-mw|Rev-suppressed-unhide-diff}}
-* {{msg-mw|Rev-deleted-unhide-diff}}
-* {{msg-mw|Rev-suppressed-diff-view}}
-* {{msg-mw|Rev-deleted-diff-view}}',
+* {{msg-mw|Rev-deleted-no-diff}}',
+'rev-deleted-unhide-diff' => 'Parameters:
+* $1 - a HTML link to the diff
+{{Related|Rev-deleted-diff}}',
+'rev-suppressed-unhide-diff' => 'Parameters:
+* $1 - a HTML link to the diff
+{{Related|Rev-deleted-diff}}',
+'rev-deleted-diff-view' => '{{Related|Rev-deleted-diff}}',
+'rev-suppressed-diff-view' => '{{Related|Rev-deleted-diff}}',
 'rev-delundel' => 'Link in page history for oversight (see also {{msg-mw|rev-showdeleted}})',
 'rev-showdeleted' => 'Link in page history for oversight (see also {{msg-mw|rev-delundel}})
 {{Identical|Show}}',
@@ -1776,17 +1725,13 @@ It is the page title of [[Special:RevisionDelete]].',
 'revdelete-nooldid-title' => '{{RevisionDelete}}',
 'revdelete-nooldid-text' => '{{RevisionDelete}}',
 'revdelete-nologtype-title' => 'See also:
-* {{msg-mw|Revdelete-nologtype-title}}
 * {{msg-mw|Revdelete-nologtype-text}}',
 'revdelete-nologtype-text' => 'See also:
-* {{msg-mw|Revdelete-nologtype-title}}
-* {{msg-mw|Revdelete-nologtype-text}}',
+* {{msg-mw|Revdelete-nologtype-title}}',
 'revdelete-nologid-title' => 'See also:
-* {{msg-mw|Revdelete-nologid-title}}
 * {{msg-mw|Revdelete-nologid-text}}',
 'revdelete-nologid-text' => 'See also:
-* {{msg-mw|Revdelete-nologid-title}}
-* {{msg-mw|Revdelete-nologid-text}}',
+* {{msg-mw|Revdelete-nologid-title}}',
 'revdelete-no-file' => 'Used as error message in [[Special:RevisionDelete]].',
 'revdelete-show-file-confirm' => 'A confirmation message shown on Special:Revisiondelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 
@@ -1808,13 +1753,11 @@ This is the introduction explaining the feature.',
 
 See also:
 * {{msg-mw|Revdelete-suppress}}
-* {{msg-mw|Revdelete-suppress-text}}
-* {{msg-mw|Revdelete-confirm}}',
+* {{msg-mw|Revdelete-suppress-text}}',
 'revdelete-suppress-text' => 'Used as usage text in [[Special:RevisionDelete]].
 
 See also:
 * {{msg-mw|Revdelete-suppress}}
-* {{msg-mw|Revdelete-suppress-text}}
 * {{msg-mw|Revdelete-confirm}}',
 'revdelete-legend' => '{{RevisionDelete}}
 Used as legend for the form.
@@ -1837,21 +1780,27 @@ See also:
 'revdelete-hide-restricted' => 'Option for oversight.',
 'revdelete-radio-same' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
-There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.',
+There are three radio buttons in each row, and the captions above each column read:
+* {{msg-mw|Revdelete-radio-same}}
+* {{msg-mw|Revdelete-radio-set}}
+* {{msg-mw|Revdelete-radio-unset}}',
 'revdelete-radio-set' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
-There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.
-
+There are three radio buttons in each row, and the captions above each column read:
+* {{msg-mw|Revdelete-radio-same}}
+* {{msg-mw|Revdelete-radio-set}}
+* {{msg-mw|Revdelete-radio-unset}}
 {{Identical|Yes}}',
 'revdelete-radio-unset' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
-There are three radio buttons in each row, and the captions above each column read {{msg-mw|Revdelete-radio-same}}, {{msg-mw|Revdelete-radio-set}}, and {{msg-mw|Revdelete-radio-unset}}.
-
+There are three radio buttons in each row, and the captions above each column read:
+* {{msg-mw|Revdelete-radio-same}}
+* {{msg-mw|Revdelete-radio-set}}
+* {{msg-mw|Revdelete-radio-unset}}
 {{Identical|No}}',
 'revdelete-suppress' => 'Option for oversight; used in [[Special:RevisionDelete]].
 
 See also:
-* {{msg-mw|Revdelete-suppress}}
 * {{msg-mw|Revdelete-suppress-text}}
 * {{msg-mw|Revdelete-confirm}}',
 'revdelete-unsuppress' => '{{RevisionDelete}}',
@@ -1969,7 +1918,6 @@ Title of the suppression log. Shown in the drop down menu at [[Special:log]] and
 'mergehistory-header' => 'Used as header for Merge form in [[Special:MergeHistory]].
 
 See also:
-* {{msg-mw|mergehistory-header}}
 * {{msg-mw|mergehistory-box}}
 * {{msg-mw|mergehistory-from}}
 * {{msg-mw|mergehistory-into}}
@@ -1978,7 +1926,6 @@ See also:
 
 See also:
 * {{msg-mw|mergehistory-header}}
-* {{msg-mw|mergehistory-box}}
 * {{msg-mw|mergehistory-from}}
 * {{msg-mw|mergehistory-into}}
 * {{msg-mw|mergehistory-go}}',
@@ -1987,7 +1934,6 @@ See also:
 See also:
 * {{msg-mw|mergehistory-header}}
 * {{msg-mw|mergehistory-box}}
-* {{msg-mw|mergehistory-from}}
 * {{msg-mw|mergehistory-into}}
 * {{msg-mw|mergehistory-go}}',
 'mergehistory-into' => 'Used as label for the Merge form in [[Special:MergeHistory]].
@@ -1996,7 +1942,6 @@ See also:
 * {{msg-mw|mergehistory-header}}
 * {{msg-mw|mergehistory-box}}
 * {{msg-mw|mergehistory-from}}
-* {{msg-mw|mergehistory-into}}
 * {{msg-mw|mergehistory-go}}',
 'mergehistory-list' => 'Used as section header in [[Special:MergeHistory]].',
 'mergehistory-merge' => 'Used in [[Special:MergeHistory]].
@@ -2008,8 +1953,7 @@ See also:
 * {{msg-mw|mergehistory-header}}
 * {{msg-mw|mergehistory-box}}
 * {{msg-mw|mergehistory-from}}
-* {{msg-mw|mergehistory-into}}
-* {{msg-mw|mergehistory-go}}',
+* {{msg-mw|mergehistory-into}}',
 'mergehistory-submit' => 'Used as label for Submit button in [[Special:MergeHistory]].',
 'mergehistory-empty' => 'Used in [[Special:MergeHistory]].',
 'mergehistory-success' => 'Used in [[Special:MergeHistory]].
@@ -2021,7 +1965,6 @@ See also:
 * $1 - source page title
 See also:
 * {{msg-mw|mergehistory-invalid-source}}
-* {{msg-mw|mergehistory-no-source}}
 * {{msg-mw|mergehistory-invalid-destination}}
 * {{msg-mw|mergehistory-no-destination}}
 * {{msg-mw|mergehistory-same-destination}}',
@@ -2031,12 +1974,10 @@ See also:
 * {{msg-mw|mergehistory-invalid-source}}
 * {{msg-mw|mergehistory-no-source}}
 * {{msg-mw|mergehistory-invalid-destination}}
-* {{msg-mw|mergehistory-no-destination}}
 * {{msg-mw|mergehistory-same-destination}}',
 'mergehistory-invalid-source' => 'Used as error message in [[Special:MergeHistory]].
 
 See also:
-* {{msg-mw|mergehistory-invalid-source}}
 * {{msg-mw|mergehistory-no-source}}
 * {{msg-mw|mergehistory-invalid-destination}}
 * {{msg-mw|mergehistory-no-destination}}
@@ -2046,7 +1987,6 @@ See also:
 See also:
 * {{msg-mw|mergehistory-invalid-source}}
 * {{msg-mw|mergehistory-no-source}}
-* {{msg-mw|mergehistory-invalid-destination}}
 * {{msg-mw|mergehistory-no-destination}}
 * {{msg-mw|mergehistory-same-destination}}',
 'mergehistory-autocomment' => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.
@@ -2064,8 +2004,7 @@ See also:
 * {{msg-mw|mergehistory-invalid-source}}
 * {{msg-mw|mergehistory-no-source}}
 * {{msg-mw|mergehistory-invalid-destination}}
-* {{msg-mw|mergehistory-no-destination}}
-* {{msg-mw|mergehistory-same-destination}}',
+* {{msg-mw|mergehistory-no-destination}}',
 'mergehistory-reason' => '{{Identical|Reason}}',
 'mergehistory-revisionrow' => 'A revision row in the merge history page. Parameters:
 * $1 is a radio button to indicate a merge point,
@@ -2258,17 +2197,16 @@ This is a search result (and I guess search engine) dependent messages. I do not
 
 This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
 'searchall' => '{{Identical|All}}',
-'showingresults' => 'This message is used on some special pages such as [[Special:WantedCategories]].
+'showingresults' => 'This message is used on some special pages such as [[Special:WantedCategories]]. Parameters:
 *$1 is the total number of results in the batch shown.
 *$2 is the number of the first item listed.
 See also:
-* {{msg-mw|Showingresults}}
 * {{msg-mw|Showingresultsnum}}',
-'showingresultsnum' => '* $2 - the first number in the batch of results
+'showingresultsnum' => 'Parameters:
+* $2 - the first number in the batch of results
 * $3 - the number of results on the page
 See also:
-* {{msg-mw|Showingresults}}
-* {{msg-mw|Showingresultsnum}}',
+* {{msg-mw|Showingresults}}',
 'showingresultsheader' => 'Used in search results of [[Special:Search]].',
 'nonefound' => 'This message appears on the search results page if no results are found.
 {{doc-important|Do not translate "all:".}}',
@@ -2392,116 +2330,26 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'timezoneoffset' => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'servertime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
 'guesstimezone' => 'Option to fill in the timezone from the browser setting',
-'timezoneregion-africa' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-america' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-antarctica' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-arctic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-asia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-atlantic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-australia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-europe' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-indian' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
-'timezoneregion-pacific' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab. See also:
-* {{msg-mw|Timezoneregion-africa}}
-* {{msg-mw|Timezoneregion-america}}
-* {{msg-mw|Timezoneregion-antarctica}}
-* {{msg-mw|Timezoneregion-arctic}}
-* {{msg-mw|Timezoneregion-asia}}
-* {{msg-mw|Timezoneregion-atlantic}}
-* {{msg-mw|Timezoneregion-australia}}
-* {{msg-mw|Timezoneregion-europe}}
-* {{msg-mw|Timezoneregion-indian}}
-* {{msg-mw|Timezoneregion-pacific}}',
+'timezoneregion-africa' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-america' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-antarctica' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-arctic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-asia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-atlantic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-australia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-europe' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-indian' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
+'timezoneregion-pacific' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
+{{Related|Timezoneregion}}',
 'allowemail' => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions' => '{{Identical|Search options}}',
 'prefs-namespaces' => "{{Identical|Namespaces}}
@@ -2945,11 +2793,9 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'rc-change-size-new' => 'Tooltip when hovering a change list diff size. The tooltip shows the resulting new size in bytes.',
 'newsectionsummary' => 'Default summary when adding a new section to a page.',
 'rc-enhanced-expand' => 'See also:
-* {{msg-mw|Rc-enhanced-expand}}
 * {{msg-mw|Rc-enhanced-hide}}',
 'rc-enhanced-hide' => 'See also:
-* {{msg-mw|Rc-enhanced-expand}}
-* {{msg-mw|Rc-enhanced-hide}}',
+* {{msg-mw|Rc-enhanced-expand}}',
 'rc-old-title' => 'Text that shows the original title of a page, $1 is the original title text',
 
 # Recent changes linked
@@ -3326,7 +3172,6 @@ See also:
 * {{msg-mw|fileexists-extension}}
 * {{msg-mw|fileexists-thumbnail-yes',}}
 * {{msg-mw|file-thumbnail-no}}
-* {{msg-mw|filename-bad-prefix}}
 * {{msg-mw|filewasdeleted}}",
 'filename-prefix-blacklist' => "{{optional}}
 Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
@@ -3436,33 +3281,14 @@ See also:
 * $1 is a file path
 * $2 is a file path.',
 'backend-fail-opentemp' => 'Used as error message.
-
-See also:
-* {{msg-mw|Backend-fail-opentemp}}
-* {{msg-mw|Backend-fail-writetemp}}
-* {{msg-mw|Backend-fail-closetemp}}
-* {{msg-mw|Backend-fail-read}}',
+{{Related|Backend-fail}}',
 'backend-fail-writetemp' => 'Used as error message.
-
-See also:
-* {{msg-mw|Backend-fail-opentemp}}
-* {{msg-mw|Backend-fail-writetemp}}
-* {{msg-mw|Backend-fail-closetemp}}
-* {{msg-mw|Backend-fail-read}}',
+{{Related|Backend-fail}}',
 'backend-fail-closetemp' => 'Used as error message.
-
-See also:
-* {{msg-mw|Backend-fail-opentemp}}
-* {{msg-mw|Backend-fail-writetemp}}
-* {{msg-mw|Backend-fail-closetemp}}
-* {{msg-mw|Backend-fail-read}}',
+{{Related|Backend-fail}}',
 'backend-fail-read' => 'Used as error message. Parameters:
 * $1 - filename
-See also:
-* {{msg-mw|Backend-fail-opentemp}}
-* {{msg-mw|Backend-fail-writetemp}}
-* {{msg-mw|Backend-fail-closetemp}}
-* {{msg-mw|Backend-fail-read}}',
+{{Related|Backend-fail}}',
 'backend-fail-create' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-maxsize' => '* $1 - destination storage path
@@ -3518,7 +3344,6 @@ A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by 
 'zip-file-open-error' => 'Used as ZIP error message.
 
 See also:
-* {{msg-mw|Zip-file-open-error}}
 * {{msg-mw|Zip-wrong-format}}
 * {{msg-mw|Zip-bad}}
 * {{msg-mw|Zip-unsupported}}',
@@ -3526,7 +3351,6 @@ See also:
 
 See also:
 * {{msg-mw|Zip-file-open-error}}
-* {{msg-mw|Zip-wrong-format}}
 * {{msg-mw|Zip-bad}}
 * {{msg-mw|Zip-unsupported}}',
 'zip-bad' => 'Used as ZIP error message.
@@ -3534,7 +3358,6 @@ See also:
 See also:
 * {{msg-mw|Zip-file-open-error}}
 * {{msg-mw|Zip-wrong-format}}
-* {{msg-mw|Zip-bad}}
 * {{msg-mw|Zip-unsupported}}',
 'zip-unsupported' => "Used as ZIP error message.
 
@@ -3543,8 +3366,7 @@ Perhaps translations of 'software' can be used instead of 'features' and 'unders
 See also:
 * {{msg-mw|Zip-file-open-error}}
 * {{msg-mw|Zip-wrong-format}}
-* {{msg-mw|Zip-bad}}
-* {{msg-mw|Zip-unsupported}}",
+* {{msg-mw|Zip-bad}}",
 
 # Special:UploadStash
 'uploadstash' => 'Used as page title in [[Special:UploadStash]].',
@@ -3586,7 +3408,6 @@ If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.'
 'http-request-error' => 'Used as error message when executing HTTP request.
 
 See also:
-* {{msg-mw|Http-request-error}}
 * {{msg-mw|Http-read-error}}
 * {{msg-mw|Http-host-unreachable|6}}
 * {{msg-mw|Http-timed-out|28}}',
@@ -3594,7 +3415,6 @@ See also:
 
 See also:
 * {{msg-mw|Http-request-error}}
-* {{msg-mw|Http-read-error}}
 * {{msg-mw|Http-host-unreachable|6}}
 * {{msg-mw|Http-timed-out|28}}',
 'http-timed-out' => 'Used as error message when executing HTTP request.
@@ -3602,8 +3422,7 @@ See also:
 See also:
 * {{msg-mw|Http-request-error}}
 * {{msg-mw|Http-read-error}}
-* {{msg-mw|Http-host-unreachable|6}}
-* {{msg-mw|Http-timed-out|28}}',
+* {{msg-mw|Http-host-unreachable|6}}',
 'http-curl-error' => 'Used as curl error message when the error is other than known messages.
 * $1 - error code; not URL
 Known messages are:
@@ -3614,7 +3433,6 @@ Known messages are:
 See also:
 * {{msg-mw|Http-request-error}}
 * {{msg-mw|Http-read-error}}
-* {{msg-mw|Http-host-unreachable|6}}
 * {{msg-mw|Http-timed-out|28}}',
 'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
 
@@ -4112,7 +3930,7 @@ Title of [[Special:Log]].',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'Message notifying they are watching a cached page. $1 is a duration (ie "1 hour and 30 minutes")',
-'cachedspecial-viewing-cached-ts' => 'Message notifying they are watching a cached page.',
+'cachedspecial-viewing-cached-ts' => 'Message notifying they are watching a cached page. This is a message displayed on special pages (contaning lists of pages with certain properties) that are served from the cache, as opposed to having been compiled run-time. This means that the displayed data may differ from the current situation.',
 'cachedspecial-refresh-now' => 'Link text pointing to the most recent version of the page.',
 
 # Special:Categories
@@ -4218,35 +4036,19 @@ See also {{msg|listgrouprights-removegroup}}.',
 * $2 is the number of group names in $1.
 See also {{msg|listgrouprights-addgroup}}.',
 'listgrouprights-addgroup-all' => 'Used on [[Special:ListGroupRights]].
-
-See also:
-* {{msg-mw|Listgrouprights-addgroup-all}}
-* {{msg-mw|Listgrouprights-removegroup-all}}
-* {{msg-mw|Listgrouprights-addgroup-self-all}}
-* {{msg-mw|Listgrouprights-removegroup-self-all}}',
+{{Related|Listgrouprights}}',
 'listgrouprights-removegroup-all' => 'Used on [[Special:ListGroupRights]].
-
-See also:
-* {{msg-mw|Listgrouprights-addgroup-all}}
-* {{msg-mw|Listgrouprights-removegroup-all}}
-* {{msg-mw|Listgrouprights-addgroup-self-all}}
-* {{msg-mw|Listgrouprights-removegroup-self-all}}',
+{{Related|Listgrouprights}}',
 'listgrouprights-addgroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
 'listgrouprights-removegroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
-'listgrouprights-addgroup-self-all' => 'See also:
-* {{msg-mw|Listgrouprights-addgroup-all}}
-* {{msg-mw|Listgrouprights-removegroup-all}}
-* {{msg-mw|Listgrouprights-addgroup-self-all}}
-* {{msg-mw|Listgrouprights-removegroup-self-all}}',
-'listgrouprights-removegroup-self-all' => 'See also:
-* {{msg-mw|Listgrouprights-addgroup-all}}
-* {{msg-mw|Listgrouprights-removegroup-all}}
-* {{msg-mw|Listgrouprights-addgroup-self-all}}
-* {{msg-mw|Listgrouprights-removegroup-self-all}}',
+'listgrouprights-addgroup-self-all' => 'Used on [[Special:ListGroupRights]].
+{{Related|Listgrouprights}}',
+'listgrouprights-removegroup-self-all' => 'Used on [[Special:ListGroupRights]].
+{{Related|Listgrouprights}}',
 
 # E-mail user
 'mailnologin' => 'Used in [[Special:EmailUser]].
@@ -4383,11 +4185,9 @@ See also:
 * {{msg-mw|enotif reset|Submit button text}}',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
 'watchmethod-recent' => 'See also:
-* {{msg-mw|Watchmethod-recent}}
 * {{msg-mw|Watchmethod-list}}',
 'watchmethod-list' => 'See also:
-* {{msg-mw|Watchmethod-recent}}
-* {{msg-mw|Watchmethod-list}}',
+* {{msg-mw|Watchmethod-recent}}',
 'watchlistcontains' => '* $1 - number of pages in your watchlist',
 'wlnote' => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
@@ -4527,14 +4327,14 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]]. See also {{msg|Ipb-edit-dropdown}} and {{msg|Protect-edit-reasonlist}}.
 
 {{Identical|Edit delete reasons}}',
-'delete-toobig' => '* $1 - the upper limit of number of revisions
+'delete-toobig' => 'Parameters:
+* $1 - the upper limit of number of revisions
 See also:
-* {{msg-mw|Delete-toobig}}
 * {{msg-mw|Delete-warning-toobig}}',
-'delete-warning-toobig' => '* $1 - the upper limit of number of revisions
+'delete-warning-toobig' => 'Parameters:
+* $1 - the upper limit of number of revisions
 See also:
-* {{msg-mw|Delete-toobig}}
-* {{msg-mw|Delete-warning-toobig}}',
+* {{msg-mw|Delete-toobig}}',
 
 # Rollback
 'rollback' => '{{Identical|Rollback}}',
@@ -4603,8 +4403,8 @@ Example:
 'prot_1movedto2' => 'Message description: [[mw:Manual:Interface/1movedto2]]',
 'protect-badnamespace-title' => 'Title of error page when trying to access action=protect on a non-protectable namespace (currently this only for the MediaWiki: namespace).',
 'protect-badnamespace-text' => 'Content of the error page that goes with {{msg-mw|protect-badnamespace-title}}.',
-'protect-norestrictiontypes-title' => 'Page title in case there aren\'t any restriction types (like edit or create) available ($1 represents the page title).',
-'protect-norestrictiontypes-text' => 'Content of the error page in case there aren\'t any restriction types (like edit or create) available.',
+'protect-norestrictiontypes-text' => "Content of the error page in case there aren't any restriction types (like edit or create) available.",
+'protect-norestrictiontypes-title' => "Page title in case there aren't any restriction types (like edit or create) available ($1 represents the page title).",
 'protect-legend' => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment' => '{{Identical|Reason}}',
 'protectexpiry' => '{{Identical|Expires}}',
@@ -4692,19 +4492,19 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 # Restriction levels
 'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
 
-*{{msg-mw|Restriction-level-sysop}}
+See also:
 *{{msg-mw|Restriction-level-autoconfirmed}}
 *{{msg-mw|Restriction-level-all}}",
 'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
 
+See also:
 *{{msg-mw|Restriction-level-sysop}}
-*{{msg-mw|Restriction-level-autoconfirmed}}
 *{{msg-mw|Restriction-level-all}}",
 'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
 
+See also:
 *{{msg-mw|Restriction-level-sysop}}
-*{{msg-mw|Restriction-level-autoconfirmed}}
-*{{msg-mw|Restriction-level-all}}",
+*{{msg-mw|Restriction-level-autoconfirmed}}",
 
 # Undelete
 'undelete' => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
@@ -4727,21 +4527,18 @@ See also:
 'undeletehistory' => 'Used in [[Special:Undelete]].
 
 See also:
-* {{msg-mw|Undeletehistory}}
 * {{msg-mw|Undeleterevdel}}
 * {{msg-mw|Undeletehistorynoadmin}}',
 'undeleterevdel' => 'Used in [[Special:Undelete]].
 
 See also:
 * {{msg-mw|Undeletehistory}}
-* {{msg-mw|Undeleterevdel}}
 * {{msg-mw|Undeletehistorynoadmin}}',
 'undeletehistorynoadmin' => 'Used in [[Special:Undelete]].
 
 See also:
 * {{msg-mw|Undeletehistory}}
-* {{msg-mw|Undeleterevdel}}
-* {{msg-mw|Undeletehistorynoadmin}}',
+* {{msg-mw|Undeleterevdel}}',
 'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
 
 * $1: deleted page name
@@ -4767,21 +4564,18 @@ See also:
 * $1 - number of revisions
 See also:
 * {{msg-mw|Undeletedrevisions-files}}
-* {{msg-mw|Undeletedrevisions}}
 * {{msg-mw|Undeletedfiles}}',
 'undeletedrevisions-files' => 'Used as reason in the log entry. Parameters:
 * $1 - number of revisions
 * $2 - number of files
 See also:
-* {{msg-mw|Undeletedrevisions-files}}
 * {{msg-mw|Undeletedrevisions}}
 * {{msg-mw|Undeletedfiles}}',
 'undeletedfiles' => 'Used as reason in the log entry. Parameters:
 * $1 - number of files
 See also:
 * {{msg-mw|Undeletedrevisions-files}}
-* {{msg-mw|Undeletedrevisions}}
-* {{msg-mw|Undeletedfiles}}',
+* {{msg-mw|Undeletedrevisions}}',
 'cannotundelete' => 'Message shown when undeletion failed for some reason.
 * <code>$1</code> is the combined wikitext of messages for all errors that caused the failure.',
 'undeletedpage' => '* $1 - page title',
@@ -4789,7 +4583,6 @@ See also:
 'undelete-search-title' => 'Page title when showing the search form in [[Special:Undelete]].
 
 See also:
-* {{msg-mw|undelete-search-title}}
 * {{msg-mw|undelete-search-box}}
 * {{msg-mw|undelete-search-prefix}}
 * {{msg-mw|undelete-search-submit}}',
@@ -4797,7 +4590,6 @@ See also:
 
 See also:
 * {{msg-mw|undelete-search-title}}
-* {{msg-mw|undelete-search-box}}
 * {{msg-mw|undelete-search-prefix}}
 * {{msg-mw|undelete-search-submit}}',
 'undelete-search-prefix' => 'Used as label for the input box in [[Special:Undelete]].
@@ -4805,7 +4597,6 @@ See also:
 See also:
 * {{msg-mw|undelete-search-title}}
 * {{msg-mw|undelete-search-box}}
-* {{msg-mw|undelete-search-prefix}}
 * {{msg-mw|undelete-search-submit}}',
 'undelete-search-submit' => 'Used as Submit button text in Search form on [[Special:Undelete]].
 
@@ -4813,7 +4604,6 @@ See also:
 * {{msg-mw|undelete-search-title}}
 * {{msg-mw|undelete-search-box}}
 * {{msg-mw|undelete-search-prefix}}
-* {{msg-mw|undelete-search-submit}}
 {{Identical|Search}}',
 'undelete-no-results' => 'Used as Search result in [[Special:Undelete]].',
 'undelete-filename-mismatch' => '* $1 - date and time',
@@ -5131,23 +4921,21 @@ Parameters:
 * Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
 * It is now the button below the form',
 'unblocked' => '{{doc-important|Do not translate the namespace "User:".}}
+Parameters:
 * $1 - the IP address or username that was unblocked
 See also:
-* {{msg-mw|Unblocked}}
 * {{msg-mw|Unblocked-range}}
 * {{msg-mw|Unblocked-id}}',
-'unblocked-range' => 'Shown when successfully lifting a rangeblock, so do not link to contributions.
-* $1 - the range that was unblocked.
+'unblocked-range' => 'Shown when successfully lifting a rangeblock, so do not link to contributions. Parameters:
+* $1 - the range that was unblocked
 See also:
 * {{msg-mw|Unblocked}}
-* {{msg-mw|Unblocked-range}}
 * {{msg-mw|Unblocked-id}}',
-'unblocked-id' => 'Used in [[Special:Unblock]].
+'unblocked-id' => 'Used in [[Special:Unblock]]. Parameters:
 * $1 - autoblock ID
 See also:
 * {{msg-mw|Unblocked}}
-* {{msg-mw|Unblocked-range}}
-* {{msg-mw|Unblocked-id}}',
+* {{msg-mw|Unblocked-range}}',
 'ipblocklist' => 'Title of [[Special:Ipblocklist]].',
 'ipblocklist-legend' => 'Used as legend of the form in [[Special:BlockList]].
 
@@ -5155,35 +4943,15 @@ See also:
 * {{msg-mw|Ipblocklist-legend}}
 * {{msg-mw|Ipblocklist-submit}}',
 'blocklist-userblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
-
-See also:
-* {{msg-mw|Blocklist-userblocks}}
-* {{msg-mw|Blocklist-tempblocks}}
-* {{msg-mw|Blocklist-addressblocks}}
-* {{msg-mw|Blocklist-rangeblocks}}',
+{{Related|Blocklist-blocks}}',
 'blocklist-tempblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
-
-See also:
-* {{msg-mw|Blocklist-userblocks}}
-* {{msg-mw|Blocklist-tempblocks}}
-* {{msg-mw|Blocklist-addressblocks}}
-* {{msg-mw|Blocklist-rangeblocks}}',
+{{Related|Blocklist-blocks}}',
 'blocklist-addressblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
-
-See also:
-* {{msg-mw|Blocklist-userblocks}}
-* {{msg-mw|Blocklist-tempblocks}}
-* {{msg-mw|Blocklist-addressblocks}}
-* {{msg-mw|Blocklist-rangeblocks}}',
+{{Related|Blocklist-blocks}}',
 'blocklist-rangeblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
 
 For an explanation of "range blocks", see http://www.mediawiki.org/wiki/Help:Range_blocks
-
-See also:
-* {{msg-mw|Blocklist-userblocks}}
-* {{msg-mw|Blocklist-tempblocks}}
-* {{msg-mw|Blocklist-addressblocks}}
-* {{msg-mw|Blocklist-rangeblocks}}',
+{{Related|Blocklist-blocks}}',
 'blocklist-timestamp' => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].
 {{Identical|Timestamp}}',
 'blocklist-target' => 'The table header for the column containing the block targets, that is user names or IP-addresses linked to their respective user pages, in the table on the page [[Special:BlockList]].',
@@ -5443,13 +5211,11 @@ See also:
 'lockconfirm' => 'Used as label for checkbox in the form on [[Special:LockDB]].
 
 See also:
-* {{msg-mw|Lockconfirm}}
 * {{msg-mw|Unlockconfirm}}',
 'unlockconfirm' => 'Used as label for checkbox in the form on [[Special:UnlockDB]].
 
 See also:
-* {{msg-mw|Lockconfirm}}
-* {{msg-mw|Unlockconfirm}}',
+* {{msg-mw|Lockconfirm}}',
 'lockbtn' => 'The submit button on the special page [[Special:LockDB]].
 
 See also:
@@ -5546,36 +5312,36 @@ See also:
 'movenologin' => '{{Identical|Not logged in}}',
 'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.
 
+See also:
 * {{msg-mw|cant-move-user-page}}
 * {{msg-mw|cant-move-to-user-page}}
 * {{msg-mw|movenotallowedfile}}
-* {{msg-mw|movenotallowed}}
-* {{msg-mw|movenologintext}}",
+* {{msg-mw|movenotallowed}}",
 'movenotallowed' => 'Used as error message.
 
+See also:
 * {{msg-mw|cant-move-user-page}}
 * {{msg-mw|cant-move-to-user-page}}
 * {{msg-mw|movenotallowedfile}}
-* {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
 'movenotallowedfile' => 'Used as error message.
 
+See also:
 * {{msg-mw|cant-move-user-page}}
 * {{msg-mw|cant-move-to-user-page}}
-* {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
 'cant-move-user-page' => 'Used as error message.
 
-* {{msg-mw|cant-move-user-page}}
+See also:
 * {{msg-mw|cant-move-to-user-page}}
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
 'cant-move-to-user-page' => 'Used as error message.
 
+See also:
 * {{msg-mw|cant-move-user-page}}
-* {{msg-mw|cant-move-to-user-page}}
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
@@ -5889,7 +5655,6 @@ See also:
 'thumbnail-temp-create' => 'Used as thumbnail error message.
 
 See also:
-* {{msg-mw|Thumbnail-temp-create}}
 * {{msg-mw|Thumbnail-dest-create}}
 * {{msg-mw|Thumbnail invalid params}}
 * {{msg-mw|Thumbnail dest directory}}',
@@ -5898,7 +5663,6 @@ See also:
 See also:
 * {{msg-mw|Thumbnail error}}
 * {{msg-mw|Thumbnail-temp-create}}
-* {{msg-mw|Thumbnail-dest-create}}
 * {{msg-mw|Thumbnail invalid params}}
 * {{msg-mw|Thumbnail dest directory}}',
 'thumbnail_invalid_params' => 'Used as thumbnail error message.
@@ -5906,7 +5670,6 @@ See also:
 See also:
 * {{msg-mw|Thumbnail-temp-create}}
 * {{msg-mw|Thumbnail-dest-create}}
-* {{msg-mw|Thumbnail invalid params}}
 * {{msg-mw|Thumbnail dest directory}}',
 'thumbnail_dest_directory' => 'Used as thumbnail error message.
 
@@ -5914,8 +5677,7 @@ See also:
 * {{msg-mw|Thumbnail error}}
 * {{msg-mw|Thumbnail-temp-create}}
 * {{msg-mw|Thumbnail-dest-create}}
-* {{msg-mw|Thumbnail invalid params}}
-* {{msg-mw|Thumbnail dest directory}}',
+* {{msg-mw|Thumbnail invalid params}}',
 'thumbnail_image-type' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}',
 'thumbnail_gd-library' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
 *$1 is a function name of the GD library',
@@ -5930,7 +5692,6 @@ See also:
 'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.
 
 See also:
-* {{msg-mw|Import-interwiki-history}}
 * {{msg-mw|Import-interwiki-templates}}
 * {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-comment}}
@@ -5940,7 +5701,6 @@ See also:
 
 See also:
 * {{msg-mw|Import-interwiki-history}}
-* {{msg-mw|Import-interwiki-templates}}
 * {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-comment}}
 * {{msg-mw|Import-interwiki-rootpage}}
@@ -5953,14 +5713,12 @@ See also:
 * {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-comment}}
 * {{msg-mw|Import-interwiki-rootpage}}
-* {{msg-mw|Import-interwiki-submit}}
 {{Identical|Import}}',
 'import-interwiki-namespace' => 'Used as label in Import form on [[Special:Import]].
 
 See also:
 * {{msg-mw|Import-interwiki-history}}
 * {{msg-mw|Import-interwiki-templates}}
-* {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-comment}}
 * {{msg-mw|Import-interwiki-rootpage}}
 * {{msg-mw|Import-interwiki-submit}}',
@@ -5971,7 +5729,6 @@ See also:
 * {{msg-mw|Import-interwiki-templates}}
 * {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-comment}}
-* {{msg-mw|Import-interwiki-rootpage}}
 * {{msg-mw|Import-interwiki-submit}}',
 'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
 'import-comment' => 'Used as label for input box in [[Special:Import]].
@@ -5980,14 +5737,12 @@ See also:
 * {{msg-mw|Import-interwiki-history}}
 * {{msg-mw|Import-interwiki-templates}}
 * {{msg-mw|Import-interwiki-namespace}}
-* {{msg-mw|Import-comment}}
 * {{msg-mw|Import-interwiki-rootpage}}
 * {{msg-mw|Import-interwiki-submit}}',
 'importtext' => 'Used in the Import form on [[Special:Import]].',
 'importstart' => 'Used in [[Special:Import]].
 
 See also:
-* {{msg-mw|Importstart}}
 * {{msg-mw|Importsuccess}}
 * {{msg-mw|Importfailed}}',
 'import-revision-count' => '* $1 - number of revisions, success count',
@@ -5997,8 +5752,7 @@ See also:
 * $1 - import source
 See also:
 * {{msg-mw|Importstart}}
-* {{msg-mw|Importsuccess}}
-* {{msg-mw|Importfailed}}',
+* {{msg-mw|Importsuccess}}',
 'importunknownsource' => 'Used as error message in [[Special:Import]].
 
 See also:
@@ -6015,13 +5769,11 @@ See also:
 
 See also:
 * {{msg-mw|Importstart}}
-* {{msg-mw|Importsuccess}}
 * {{msg-mw|Importfailed}}',
 'importnosources' => 'Used in [[Special:Import]] instead of the Import form.',
 'importnofile' => 'Used as error message when importing from file.
 
 See also:
-* {{msg-mw|importnofile}}
 * {{msg-mw|importuploaderrorsize}}
 * {{msg-mw|importuploaderrorpartial}}
 * {{msg-mw|importuploaderrortemp}}',
@@ -6029,7 +5781,6 @@ See also:
 
 See also:
 * {{msg-mw|importnofile}}
-* {{msg-mw|importuploaderrorsize}}
 * {{msg-mw|importuploaderrorpartial}}
 * {{msg-mw|importuploaderrortemp}}',
 'importuploaderrorpartial' => 'Used as error message when importing from file.
@@ -6037,15 +5788,13 @@ See also:
 See also:
 * {{msg-mw|importnofile}}
 * {{msg-mw|importuploaderrorsize}}
-* {{msg-mw|importuploaderrorpartial}}
 * {{msg-mw|importuploaderrortemp}}',
 'importuploaderrortemp' => 'Used as error message when importing from file.
 
 See also:
 * {{msg-mw|importnofile}}
 * {{msg-mw|importuploaderrorsize}}
-* {{msg-mw|importuploaderrorpartial}}
-* {{msg-mw|importuploaderrortemp}}',
+* {{msg-mw|importuploaderrorpartial}}',
 'import-noarticle' => 'Used as error message when importing from interwiki.
 
 See also:
@@ -6624,7 +6373,6 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'spamprotectiontitle' => 'Used as page title when the edit contains spam.
 
 See also:
-* {{msg-mw|Spamprotectiontitle|title}}
 * {{msg-mw|Spamprotectiontext|text}}
 * {{msg-mw|Spamprotectionmatch|if matched}}
 * {{msg-mw|Yourdiff}}
@@ -6633,7 +6381,6 @@ See also:
 
 See also:
 * {{msg-mw|Spamprotectiontitle|title}}
-* {{msg-mw|Spamprotectiontext|text}}
 * {{msg-mw|Spamprotectionmatch|if matched}}
 * {{msg-mw|Yourdiff}}
 * {{msg-mw|Yourtext}}',
@@ -6642,7 +6389,6 @@ See also:
 See also:
 * {{msg-mw|Spamprotectiontitle|title}}
 * {{msg-mw|Spamprotectiontext|text}}
-* {{msg-mw|Spamprotectionmatch|if matched}}
 * {{msg-mw|Yourdiff}}
 * {{msg-mw|Yourtext}}',
 'spam_reverting' => 'Edit summary for spam cleanup script. Used when a page is reverted because all later revisions contained a particular link. Parameters:
@@ -6710,10 +6456,16 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 *{{msg-mw|Pageinfo-protect-cascading}}
 *{{msg-mw|Pageinfo-protect-cascading-yes}}',
 'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
-'pageinfo-category-info' => 'Header for the category information section in InfoAction',
-'pageinfo-category-pages' => 'Label for the number of files in a category',
-'pageinfo-category-subcats' => 'Label for the number of subcategories in a category',
-'pageinfo-category-files' => 'Label for the number of files in a category',
+'pageinfo-category-info' => 'Showed on the page displaying informations about the current page (add "?action=info" to the URL)',
+'pageinfo-category-pages' => 'See also:
+* {{msg-mw|Pageinfo-category-subcats}}
+* {{msg-mw|Pageinfo-category-files}}',
+'pageinfo-category-subcats' => 'See also:
+* {{msg-mw|Pageinfo-category-pages}}
+* {{msg-mw|Pageinfo-category-files}}',
+'pageinfo-category-files' => 'See also:
+* {{msg-mw|Pageinfo-category-pages}}
+* {{msg-mw|Pageinfo-category-subcats}}',
 
 # Skin names
 'skinname-standard' => '{{optional}}
@@ -6728,48 +6480,46 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'skinname-vector' => '{{optional}}',
 
 # Patrolling
-'markaspatrolleddiff' => 'See also:
-* {{msg-mw|Markaspatrolleddiff}}
+'markaspatrolleddiff' => '{{doc-actionlink}}
+See also:
 * {{msg-mw|Markaspatrolledtext}}',
-'markaspatrolledtext' => 'See also:
-* {{msg-mw|Markaspatrolleddiff}}
-* {{msg-mw|Markaspatrolledtext}}',
-'markedaspatrolled' => 'Used as page title.
+'markaspatrolledtext' => '{{doc-actionlink}}
+See also:
+* {{msg-mw|Markaspatrolleddiff}}',
+'markedaspatrolled' => 'Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.
+{{Related|Markedaspatrolled}}',
+'markedaspatrolledtext' => 'Used when marking a change as patrolled.
 
-The text for this message is {{msg-mw|Markedaspatrolledtext}}.',
-'markedaspatrolledtext' => 'The page title for this message is {{msg-mw|Markedaspatrolled}}.
-
+The title for this message is {{msg-mw|Markedaspatrolled}}.
+{{Related|Markedaspatrolled}}
 {{Identical|Markedaspatrolled}}',
-'rcpatroldisabled' => 'Used as title of error message when marking RecentChange as patrolled.
+'rcpatroldisabled' => 'Used as title of the error message {{msg-mw|Rcpatroldisabledtext}}, when marking a change as patrolled.
+{{Related|Markedaspatrolled}}',
+'rcpatroldisabledtext' => 'Used as the error message when marking a change as patrolled.
+
+The title for this error message is {{msg-mw|Rcpatroldisabled}}.
+{{Related|Markedaspatrolled}}',
+'markedaspatrollederror' => 'Used as title of the following error messages:
+* {{msg-mw|Markedaspatrollederrortext}}
+* {{msg-mw|Markedaspatrollederror-noautopatrol}}
+This message is used when marking a change as patrolled.
+{{Related|Markedaspatrolled}}',
+'markedaspatrollederrortext' => 'Used as the error message when marking a change as patrolled.
+
+The title for this error message is {{msg-mw|Markedaspatrollederror}}.
+{{Related|Markedaspatrolled}}',
+'markedaspatrollederror-noautopatrol' => 'Used as error message when marking a change as patrolled.
+
+The title for this error message is {{msg-mw|Markedaspatrollederror}}.
+{{Related|Markedaspatrolled}}',
+'markedaspatrollednotify' => 'Notification shown after the user has marked a change as patrolled successfully. Parameters:
+* $1 - the page title
+See also:
+* {{msg-mw|Markedaspatrollederrornotify}} - error message on failure',
+'markedaspatrollederrornotify' => 'Notification shown after the user has failed to mark a change as patrolled.
 
 See also:
-* {{msg-mw|Rcpatroldisabled|title}}
-* {{msg-mw|Rcpatroldisabledtext|text}}
-* {{msg-mw|Markedaspatrollederror-noautopatrol}}',
-'rcpatroldisabledtext' => 'Used as error message when marking RecentChange as patrolled.
-
-See also:
-* {{msg-mw|Rcpatroldisabled|title}}
-* {{msg-mw|Rcpatroldisabledtext|text}}
-* {{msg-mw|Markedaspatrollederror-noautopatrol}}',
-'markedaspatrollederror' => 'Used as title of error message.
-
-See also:
-* {{msg-mw|Markedaspatrollederror|title}}
-* {{msg-mw|Markedaspatrollederrortext|text}}',
-'markedaspatrollederrortext' => 'Used as error message.
-
-See also:
-* {{msg-mw|Markedaspatrollederror|title}}
-* {{msg-mw|Markedaspatrollederrortext|text}}',
-'markedaspatrollederror-noautopatrol' => 'Used as error message when marking RecentChange as patrolled.
-
-See also:
-* {{msg-mw|Rcpatroldisabled|title}}
-* {{msg-mw|Rcpatroldisabledtext|text}}
-* {{msg-mw|Markedaspatrollederror-noautopatrol}}',
-'markedaspatrollednotify' => 'Notification shown after a change has been marked as patrolled, $1 is the page title',
-'markedaspatrollederrornotify' => 'Notification shown after marking a change as patrolled failed',
+* {{msg-mw|Markedaspatrollednotify}} - notification on success',
 
 # Patrol log
 'patrol-log-page' => '{{doc-logpage}}',
@@ -7070,28 +6820,12 @@ Similar to "metadata-langitem" but for the case where a multilingual property ha
 'exif-compression' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This field labels what the compression of the image is. It is commonly seen in Tiff images. It uses messages like {{msg-mw|exif-compression-1}} for the value. http://en.wikipedia.org/wiki/TIFF#TIFF_Compression_Tag has information about this field.
-
-See also:
-* {{msg-mw|Exif-compression}}
-* {{msg-mw|Exif-compression-1}}
-* {{msg-mw|Exif-compression-2}}
-* {{msg-mw|Exif-compression-3}}
-* {{msg-mw|Exif-compression-4}}',
+{{Related|Exif-compression}}',
 'exif-photometricinterpretation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-orientation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 For specific information on the orientation tag, see http://sylvana.net/jpegcrop/exif_orientation.html
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-samplesperpixel' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-planarconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
@@ -7101,11 +6835,7 @@ See also:
 * {{msg-mw|Exif-planarconfiguration-2}}',
 'exif-ycbcrsubsampling' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-ycbcrpositioning' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
-See also:
-* {{msg-mw|Exif-ycbcrpositioning}}
-* {{msg-mw|Exif-ycbcrpositioning-1}}
-* {{msg-mw|Exif-ycbcrpositioning-2}}',
+{{Related|Exif-ycbcrpositioning}}',
 'exif-xresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This is the horizontal resolution in either dots/inch or dots/cm.',
@@ -7173,16 +6903,7 @@ See also:
 'exif-componentsconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.
-
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 'exif-compressedbitsperpixel' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-pixelxdimension' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
@@ -7226,18 +6947,7 @@ Exif is a format for storing metadata in image files. See this [http://en.wikipe
 'exif-exposureprogram' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How the camera figured out what exposure to use. (If it was manually set, if its optimizing for fast shutter speed, etc).
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}',
+{{Related|Exif-exposureprogram}}',
 'exif-spectralsensitivity' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How sensitive each channel (colour) of the photo is to light. This tag is almost never used.',
@@ -7267,16 +6977,7 @@ The subject of a photograph is the person or thing on which the camera focuses. 
 'exif-meteringmode' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See [http://en.wikipedia.org/wiki/Metering_mode Wikipedia article] on metering mode.
-
-See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}',
+{{Related|Exif-meteringmode}}',
 'exif-lightsource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Related|Exif-lightsource}}',
 'exif-flash' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -7309,23 +7010,13 @@ Indicates the number of pixels in the image width (X) direction per FocalPlaneRe
 'exif-focalplaneresolutionunit' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also:
-* {{msg-mw|Exif-focalplaneresolutionunit}}
 * {{msg-mw|Exif-focalplaneresolutionunit-2}}',
 'exif-subjectlocation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Same as {{msg-mw|exif-subjectarea}} but only ever has two numbers as a value.',
 'exif-exposureindex' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-sensingmethod' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
-See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}',
+{{Related|Exif-sensingmethod}}',
 'exif-filesource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Determines if the image was recorded by a digital camera adhering to DSC standard (which is almost all digital cameras).',
@@ -7347,12 +7038,7 @@ See also:
 'exif-exposuremode' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also Wikipedia on [http://en.wikipedia.org/wiki/Exposure_(photography) exposure in photography]. This tag shows if the photo's exposure was manually set or automatically determined.
-
-See also:
-* {{msg-mw|Exif-exposuremode}}
-* {{msg-mw|Exif-exposuremode-0}}
-* {{msg-mw|Exif-exposuremode-1}}
-* {{msg-mw|Exif-exposuremode-2}}",
+{{Related|Exif-exposuremode}}",
 'exif-whitebalance' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also Wikipedia on [http://en.wikipedia.org/wiki/Color_balance color balance].
@@ -7367,133 +7053,39 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Digital_zoom digital zoom].'
 'exif-focallengthin35mmfilm' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography focal length].',
-'exif-scenecapturetype' => 'See also:
-* {{msg-mw|Exif-scenecapturetype}}
-* {{msg-mw|Exif-scenecapturetype-0}}
-* {{msg-mw|Exif-scenecapturetype-1}}
-* {{msg-mw|Exif-scenecapturetype-2}}
-* {{msg-mw|Exif-scenecapturetype-3}}',
+'exif-scenecapturetype' => '{{Related|Exif-scenecapturetype}}',
 'exif-gaincontrol' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
-
-See also:
-* {{msg-mw|Exif-gaincontrol}}
-* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
-* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
-* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
-* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
-* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
-'exif-contrast' => 'See also:
-* {{msg-mw|Exif-contrast}}
-* {{msg-mw|Exif-contrast-0}}
-* {{msg-mw|Exif-contrast-1}}
-* {{msg-mw|Exif-contrast-2}}',
-'exif-saturation' => 'See also:
-* {{msg-mw|Exif-saturation}}
-* {{msg-mw|Exif-saturation-0}}
-* {{msg-mw|Exif-saturation-1}}
-* {{msg-mw|Exif-saturation-2}}',
-'exif-sharpness' => 'See also:
-* {{msg-mw|Exif-sharpness}}
-* {{msg-mw|Exif-sharpness-0}}
-* {{msg-mw|Exif-sharpness-1}}
-* {{msg-mw|Exif-sharpness-2}}',
-'exif-subjectdistancerange' => 'See also:
-* {{msg-mw|Exif-subjectdistancerange}}
-* {{msg-mw|Exif-subjectdistancerange-0}}
-* {{msg-mw|Exif-subjectdistancerange-1}}
-* {{msg-mw|Exif-subjectdistancerange-2}}
-* {{msg-mw|Exif-subjectdistancerange-3}}',
+{{Related|Exif-gaincontrol}}',
+'exif-contrast' => '{{Related|Exif-contrast}}',
+'exif-saturation' => '{{Related|Exif-saturation}}',
+'exif-sharpness' => '{{Related|Exif-sharpness}}',
+'exif-subjectdistancerange' => '{{Related|Exif-subjectdistancerange}}',
 'exif-imageuniqueid' => 'A unique identifier for the image in the form of a 128-bit hexadecimal string. See http://www.exif.org/Exif2-2.PDF for details on exif properties.',
 'exif-gpsversionid' => 'Version of the GPS IFD used to store location information. This is usually 2.2.0.0',
 'exif-gpslatituderef' => 'In older versions of mediawiki this referred to if the latitude was North or South. This is no longer used in modern versions of mediawiki except for when using a foreign image repository that is using an older version of mediawiki since the information is now contained in {{msg-mw|exif-gpslatitude}}.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}
-See also:
-* {{msg-mw|Exif-gpsdestlatituderef}}
-* {{msg-mw|Exif-gpsdestlongituderef}}
-* {{msg-mw|Exif-gpslatituderef}}
-* {{msg-mw|Exif-gpslongituderef}}',
+{{Related|Exif-gpslatitude}}',
 'exif-gpslatitude' => 'The latitude of the location from where the picture was taken from.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}',
+{{Related|Exif-gpslatitude}}',
 'exif-gpslongituderef' => 'Same as {{msg-mw|exif-gpslatituderef}} but for longitude.
 
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}
-See also:
-* {{msg-mw|Exif-gpsdestlatituderef}}
-* {{msg-mw|Exif-gpsdestlongituderef}}
-* {{msg-mw|Exif-gpslatituderef}}
-* {{msg-mw|Exif-gpslongituderef}}',
+{{Related|Exif-gpslatitude}}',
 'exif-gpslongitude' => 'The longitude of the location from where the picture was taken from.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}
-{{Identical|Longitude}}',
+{{Related|Exif-gpslatitude}}',
 'exif-gpsaltituderef' => 'No longer used except for when using foreign image repository with old version of mediawiki. 0 for above sea level, 1 for below sea level.',
 'exif-gpsaltitude' => 'Altitude in meters that the image was taken at.',
 'exif-gpstimestamp' => 'Time (does not include date) that GPS measurement was taken, in UTC. Since often this is at the same time as photo was taken, this is sometimes more reliable than {{msg-mw|exif-datetimeoriginal}}.',
 'exif-gpsstatus' => 'See also:
-* {{msg-mw|Exif-gpsstatus}}
 * {{msg-mw|Exif-gpsstatus-a}}
 * {{msg-mw|Exif-gpsstatus-v}}',
 'exif-gpsmeasuremode' => 'Is the measurement 2D (latitude and longitude) or 3D (latitude, longitude, and altitude).
 
 See also:
-* {{msg-mw|Exif-gpsmeasuremode}}
 * {{msg-mw|Exif-gpsmeasuremode-2}}
 * {{msg-mw|Exif-gpsmeasuremode-3}}',
 'exif-gpsdop' => 'How accurate the GPS information is. See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-
-See also:
-* {{msg-mw|Exif-gpsdop}}
-* {{msg-mw|Exif-gpsdop-excellent}}
-* {{msg-mw|Exif-gpsdop-good}}
-* {{msg-mw|Exif-gpsdop-moderate}}
-* {{msg-mw|Exif-gpsdop-fair}}
-* {{msg-mw|Exif-gpsdop-poor}}',
-'exif-gpsspeedref' => 'See also:
-* {{msg-mw|Exif-gpsspeed}}
-* {{msg-mw|Exif-gpsspeedref}}
-* {{msg-mw|Exif-gpsspeed-k}}
-* {{msg-mw|Exif-gpsspeed-m}}
-* {{msg-mw|Exif-gpsspeed-n}}',
-'exif-gpsspeed' => 'See also:
-* {{msg-mw|Exif-gpsspeed}}
-* {{msg-mw|Exif-gpsspeedref}}
-* {{msg-mw|Exif-gpsspeed-k}}
-* {{msg-mw|Exif-gpsspeed-m}}
-* {{msg-mw|Exif-gpsspeed-n}}',
+{{Related|Exif-gpsdop}}',
+'exif-gpsspeedref' => '{{Related|Exif-gpsspeed}}',
+'exif-gpsspeed' => '{{Related|Exif-gpsspeed}}',
 'exif-gpstrackref' => 'See also:
 * {{msg-mw|Exif-gpstrack}}
 * {{msg-mw|Exif-gpsimgdirection}}
@@ -7518,21 +7110,13 @@ See also:
 * {{msg-mw|Exif-gpsimgdirectionref}}
 * {{msg-mw|Exif-gpsdestbearing}}
 * {{msg-mw|Exif-gpsdestbearingref}}',
-'exif-gpsdestlatituderef' => 'See also:
-* {{msg-mw|Exif-gpsdestlatituderef}}
-* {{msg-mw|Exif-gpsdestlongituderef}}
-* {{msg-mw|Exif-gpslatituderef}}
-* {{msg-mw|Exif-gpslongituderef}}',
+'exif-gpsdestlatituderef' => '{{Related|Exif-gpslatitude}}',
 'exif-gpsdestlatitude' => 'The latitude of the location shown in the picture, if it is different from latitude of the camera location. See {{msg-mw|exif-gpslatitude}}.
-
+{{Related|Exif-gpslatitude}}
 {{Identical|Latitude}}',
-'exif-gpsdestlongituderef' => 'See also:
-* {{msg-mw|Exif-gpsdestlatituderef}}
-* {{msg-mw|Exif-gpsdestlongituderef}}
-* {{msg-mw|Exif-gpslatituderef}}
-* {{msg-mw|Exif-gpslongituderef}}',
+'exif-gpsdestlongituderef' => '{{Related|Exif-gpslatitude}}',
 'exif-gpsdestlongitude' => 'The longitude of the location shown in the picture, if it is different from longitude of the camera location. See {{msg-mw|exif-gpslongitude}}.
-
+{{Related|Exif-gpslatitude}}
 {{Identical|Longitude}}',
 'exif-gpsdestbearingref' => 'See also:
 * {{msg-mw|Exif-gpstrack}}
@@ -7547,19 +7131,8 @@ See also:
 * {{msg-mw|Exif-gpsimgdirectionref}}
 * {{msg-mw|Exif-gpsdestbearingref}}',
 'exif-gpsdestdistanceref' => 'I think "reference" stands for "unit". See {{msg-mw|Exif-gpsspeedref}}
-
-See also:
-* {{msg-mw|Exif-gpsdestdistance}}
-* {{msg-mw|Exif-gpsdestdistanceref}}
-* {{msg-mw|Exif-gpsdestdistance-k}}
-* {{msg-mw|Exif-gpsdestdistance-m}}
-* {{msg-mw|Exif-gpsdestdistance-n}}',
-'exif-gpsdestdistance' => 'See also:
-* {{msg-mw|Exif-gpsdestdistance}}
-* {{msg-mw|Exif-gpsdestdistanceref}}
-* {{msg-mw|Exif-gpsdestdistance-k}}
-* {{msg-mw|Exif-gpsdestdistance-m}}
-* {{msg-mw|Exif-gpsdestdistance-n}}',
+{{Related|Exif-gpsdestdistance}}',
+'exif-gpsdestdistance' => '{{Related|Exif-gpsdestdistance}}',
 'exif-gpsdatestamp' => 'Date (does not generally include time unless recorded in XMP) that GPS measurement was taken, in UTC. Since often this is at the same date as photo was taken, this is sometimes more reliable than {{msg-mw|exif-datetimeoriginal}}.',
 'exif-coordinate-format' => '{{optional}} For formatting GPS latitude coordinates. $1 is degrees, $2 is minutes, $3 is seconds (up to two decimal places), $4 is direction (N, S, W, or E), $5 is coordinate as a single positive or negative real number.',
 'exif-jpegfilecomment' => 'This is not a true exif tag, but the contents of the JPEG COM segment. This often contains a file source, but can potentially contain any comment about the file. This is similar to {{msg-mw|exif-usercomment}}, {{msg-mw|exif-pngfilecomment}}, and {{msg-mw|exif-giffilecomment}}.',
@@ -7596,20 +7169,13 @@ This is who originally owned the image (a person, stock photo agency, etc). This
 {{Identical|Source}}',
 'exif-editstatus' => 'Editorial status of image. This is more intended for use with people making news papers. This denotes whether the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-urgency' => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.
-
-See also:
-* {{msg-mw|Exif-urgency}}
-* {{msg-mw|Exif-urgency-normal}}
-* {{msg-mw|Exif-urgency-low}}
-* {{msg-mw|Exif-urgency-high}}
-* {{msg-mw|Exif-urgency-other}}',
+{{Related|Exif-urgency}}',
 'exif-fixtureidentifier' => 'Fixture name. Identifies frequently occuring object data, for example a regular column in a news paper.',
 'exif-locationdest' => 'Full printable name of location.',
 'exif-locationdestcode' => 'Code of location depicted. Typically this is an ISO country code, but the IPTC-iim standard also defines other codes like XSP for outer space. See appendix D (and tag 2:100) of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-objectcycle' => 'Time of day that media is intended for. Either morning only, evening only, or all day. Typically only used for news related things that might only be broadcast at a specific time of day.
 
 See also:
-* {{msg-mw|Exif-objectcycle}}
 * {{msg-mw|Exif-objectcycle-a}}
 * {{msg-mw|Exif-objectcycle-p}}
 * {{msg-mw|Exif-objectcycle-b}}',
@@ -7683,30 +7249,10 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
 
 # EXIF attributes
-'exif-compression-1' => 'See also:
-* {{msg-mw|Exif-compression}}
-* {{msg-mw|Exif-compression-1}}
-* {{msg-mw|Exif-compression-2}}
-* {{msg-mw|Exif-compression-3}}
-* {{msg-mw|Exif-compression-4}}',
-'exif-compression-2' => 'See also:
-* {{msg-mw|Exif-compression}}
-* {{msg-mw|Exif-compression-1}}
-* {{msg-mw|Exif-compression-2}}
-* {{msg-mw|Exif-compression-3}}
-* {{msg-mw|Exif-compression-4}}',
-'exif-compression-3' => 'See also:
-* {{msg-mw|Exif-compression}}
-* {{msg-mw|Exif-compression-1}}
-* {{msg-mw|Exif-compression-2}}
-* {{msg-mw|Exif-compression-3}}
-* {{msg-mw|Exif-compression-4}}',
-'exif-compression-4' => 'See also:
-* {{msg-mw|Exif-compression}}
-* {{msg-mw|Exif-compression-1}}
-* {{msg-mw|Exif-compression-2}}
-* {{msg-mw|Exif-compression-3}}
-* {{msg-mw|Exif-compression-4}}',
+'exif-compression-1' => '{{Related|Exif-compression}}',
+'exif-compression-2' => '{{Related|Exif-compression}}',
+'exif-compression-3' => '{{Related|Exif-compression}}',
+'exif-compression-4' => '{{Related|Exif-compression}}',
 'exif-compression-5' => '{{optional}}
 Lempel-Ziv & Welch algorithm',
 'exif-compression-6' => '{{optional}}',
@@ -7722,111 +7268,31 @@ Lempel-Ziv & Welch algorithm',
 'exif-photometricinterpretation-2' => '{{optional}}',
 'exif-photometricinterpretation-6' => '{{optional}}',
 
-'exif-orientation-1' => '{{Identical|Normal}}
-0th row: top; 0th column: left
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+'exif-orientation-1' => '0th row: top; 0th column: left
+{{Related|Exif-orientation}}
+{{Identical|Normal}}',
 'exif-orientation-2' => '0th row: top; 0th column: right
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-orientation-3' => '0th row: bottom; 0th column: right
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-orientation-4' => '0th row: bottom; 0th column: left
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-orientation-5' => '0th row: left; 0th column: top
 
 CCW is an abbreviation for counter-clockwise
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-orientation-6' => '0th row: right; 0th column: top
 
 CCW is an abbreviation for counter-clockwise.
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-orientation-7' => '0th row: right; 0th column: bottom
 
 CW is an abbreviation for clockwise
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 'exif-orientation-8' => '0th row: left; 0th column: bottom
 
 CW is an abbreviation for clockwise.
-
-See also:
-* {{msg-mw|Exif-orientation}}
-* {{msg-mw|Exif-orientation-1}}
-* {{msg-mw|Exif-orientation-2}}
-* {{msg-mw|Exif-orientation-3}}
-* {{msg-mw|Exif-orientation-4}}
-* {{msg-mw|Exif-orientation-5}}
-* {{msg-mw|Exif-orientation-6}}
-* {{msg-mw|Exif-orientation-7}}
-* {{msg-mw|Exif-orientation-8}}',
+{{Related|Exif-orientation}}',
 
 'exif-planarconfiguration-1' => 'See also:
 * {{msg-mw|Exif-planarconfiguration}}
@@ -7854,257 +7320,48 @@ See also:
 * {{msg-mw|Exif-colorspace-1|optional}}
 * {{msg-mw|Exif-colorspace-65535}}',
 
-'exif-componentsconfiguration-0' => 'See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+'exif-componentsconfiguration-0' => '{{Related|Exif-componentsconfiguration}}',
 'exif-componentsconfiguration-1' => '{{optional}}
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 'exif-componentsconfiguration-2' => '{{optional}}
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 'exif-componentsconfiguration-3' => '{{optional}}
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 'exif-componentsconfiguration-4' => '{{optional}}
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 'exif-componentsconfiguration-5' => '{{optional}}
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 'exif-componentsconfiguration-6' => '{{optional}}
-See also:
-* {{msg-mw|Exif-componentsconfiguration}}
-* {{msg-mw|Exif-componentsconfiguration-0}}
-* {{msg-mw|Exif-componentsconfiguration-1|optional}}
-* {{msg-mw|Exif-componentsconfiguration-2|optional}}
-* {{msg-mw|Exif-componentsconfiguration-3|optional}}
-* {{msg-mw|Exif-componentsconfiguration-4|optional}}
-* {{msg-mw|Exif-componentsconfiguration-5|optional}}
-* {{msg-mw|Exif-componentsconfiguration-6|optional}}',
+{{Related|Exif-componentsconfiguration}}',
 
-'exif-exposureprogram-0' => 'See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}',
+'exif-exposureprogram-0' => '{{Related|Exif-exposureprogram}}',
 'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}",
-'exif-exposureprogram-2' => 'See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}',
+{{Related|Exif-exposureprogram}}",
+'exif-exposureprogram-2' => '{{Related|Exif-exposureprogram}}',
 'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Aperture_priority aperture priority].
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}',
+{{Related|Exif-exposureprogram}}',
 'exif-exposureprogram-4' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Shutter_priority shutter priority].
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}',
+{{Related|Exif-exposureprogram}}',
 'exif-exposureprogram-5' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}",
+{{Related|Exif-exposureprogram}}",
 'exif-exposureprogram-6' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}",
+{{Related|Exif-exposureprogram}}",
 'exif-exposureprogram-7' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}",
+{{Related|Exif-exposureprogram}}",
 'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
-
-See also:
-* {{msg-mw|Exif-exposureprogram}}
-* {{msg-mw|Exif-exposureprogram-0}}
-* {{msg-mw|Exif-exposureprogram-1}}
-* {{msg-mw|Exif-exposureprogram-2}}
-* {{msg-mw|Exif-exposureprogram-3}}
-* {{msg-mw|Exif-exposureprogram-4}}
-* {{msg-mw|Exif-exposureprogram-5}}
-* {{msg-mw|Exif-exposureprogram-6}}
-* {{msg-mw|Exif-exposureprogram-7}}
-* {{msg-mw|Exif-exposureprogram-8}}",
+{{Related|Exif-exposureprogram}}",
 
 'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
 
-'exif-meteringmode-0' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}
+'exif-meteringmode-0' => '{{Related|Exif-meteringmode}}
 {{Identical|Unknown}}',
-'exif-meteringmode-1' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}
+'exif-meteringmode-1' => '{{Related|Exif-meteringmode}}
 {{Identical|Average}}',
-'exif-meteringmode-2' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}',
-'exif-meteringmode-3' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}',
-'exif-meteringmode-4' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}',
-'exif-meteringmode-5' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}',
-'exif-meteringmode-6' => 'See also:
-* {{msg-mw|Exif-meteringmode}}
-* {{msg-mw|Exif-meteringmode-0}}
-* {{msg-mw|Exif-meteringmode-1}}
-* {{msg-mw|Exif-meteringmode-2}}
-* {{msg-mw|Exif-meteringmode-3}}
-* {{msg-mw|Exif-meteringmode-4}}
-* {{msg-mw|Exif-meteringmode-5}}
-* {{msg-mw|Exif-meteringmode-6}}',
+'exif-meteringmode-2' => '{{Related|Exif-meteringmode}}',
+'exif-meteringmode-3' => '{{Related|Exif-meteringmode}}',
+'exif-meteringmode-4' => '{{Related|Exif-meteringmode}}',
+'exif-meteringmode-5' => '{{Related|Exif-meteringmode}}',
+'exif-meteringmode-6' => '{{Related|Exif-meteringmode}}',
 'exif-meteringmode-255' => '{{Identical|Other}}',
 
 'exif-lightsource-0' => '{{Identical|Unknown}}
@@ -8187,76 +7444,17 @@ See also:
 'exif-flash-function-1' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 
 'exif-focalplaneresolutionunit-2' => 'See also:
-* {{msg-mw|Exif-focalplaneresolutionunit}}
-* {{msg-mw|Exif-focalplaneresolutionunit-2}}',
+* {{msg-mw|Exif-focalplaneresolutionunit}}',
 
-'exif-sensingmethod-1' => 'See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}',
-'exif-sensingmethod-2' => 'See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}',
-'exif-sensingmethod-3' => 'See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}',
-'exif-sensingmethod-4' => 'See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}',
+'exif-sensingmethod-1' => '{{Related|Exif-sensingmethod}}',
+'exif-sensingmethod-2' => '{{Related|Exif-sensingmethod}}',
+'exif-sensingmethod-3' => '{{Related|Exif-sensingmethod}}',
+'exif-sensingmethod-4' => '{{Related|Exif-sensingmethod}}',
 'exif-sensingmethod-5' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).
-
-See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}",
-'exif-sensingmethod-7' => 'See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}',
+{{Related|Exif-sensingmethod}}",
+'exif-sensingmethod-7' => '{{Related|Exif-sensingmethod}}',
 'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).
-
-See also:
-* {{msg-mw|Exif-sensingmethod}}
-* {{msg-mw|Exif-sensingmethod-1}}
-* {{msg-mw|Exif-sensingmethod-2}}
-* {{msg-mw|Exif-sensingmethod-3}}
-* {{msg-mw|Exif-sensingmethod-4}}
-* {{msg-mw|Exif-sensingmethod-5}}
-* {{msg-mw|Exif-sensingmethod-7}}
-* {{msg-mw|Exif-sensingmethod-8}}",
+{{Related|Exif-sensingmethod}}",
 
 'exif-filesource-3' => '{{optional}}',
 
@@ -8273,23 +7471,10 @@ See also:
 * {{msg-mw|Exif-customrendered-0}}
 * {{msg-mw|Exif-customrendered-1}}',
 
-'exif-exposuremode-0' => 'See also:
-* {{msg-mw|Exif-exposuremode}}
-* {{msg-mw|Exif-exposuremode-0}}
-* {{msg-mw|Exif-exposuremode-1}}
-* {{msg-mw|Exif-exposuremode-2}}',
-'exif-exposuremode-1' => 'See also:
-* {{msg-mw|Exif-exposuremode}}
-* {{msg-mw|Exif-exposuremode-0}}
-* {{msg-mw|Exif-exposuremode-1}}
-* {{msg-mw|Exif-exposuremode-2}}',
+'exif-exposuremode-0' => '{{Related|Exif-exposuremode}}',
+'exif-exposuremode-1' => '{{Related|Exif-exposuremode}}',
 'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [http://en.wikipedia.org/wiki/Bracketing#Exposure_bracketing bracketing] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.
-
-See also:
-* {{msg-mw|Exif-exposuremode}}
-* {{msg-mw|Exif-exposuremode-0}}
-* {{msg-mw|Exif-exposuremode-1}}
-* {{msg-mw|Exif-exposuremode-2}}",
+{{Related|Exif-exposuremode}}",
 
 'exif-whitebalance-0' => 'See also:
 * {{msg-mw|Exif-whitebalance}}
@@ -8300,338 +7485,122 @@ See also:
 * {{msg-mw|Exif-whitebalance-0}}
 * {{msg-mw|Exif-whitebalance-1}}',
 
-'exif-scenecapturetype-0' => 'See also:
-* {{msg-mw|Exif-scenecapturetype}}
-* {{msg-mw|Exif-scenecapturetype-0}}
-* {{msg-mw|Exif-scenecapturetype-1}}
-* {{msg-mw|Exif-scenecapturetype-2}}
-* {{msg-mw|Exif-scenecapturetype-3}}
+'exif-scenecapturetype-0' => '{{Related|Exif-scenecapturetype}}
 {{Identical|Standard}}',
-'exif-scenecapturetype-1' => 'See also:
-* {{msg-mw|Exif-scenecapturetype}}
-* {{msg-mw|Exif-scenecapturetype-0}}
-* {{msg-mw|Exif-scenecapturetype-1}}
-* {{msg-mw|Exif-scenecapturetype-2}}
-* {{msg-mw|Exif-scenecapturetype-3}}',
-'exif-scenecapturetype-2' => 'See also:
-* {{msg-mw|Exif-scenecapturetype}}
-* {{msg-mw|Exif-scenecapturetype-0}}
-* {{msg-mw|Exif-scenecapturetype-1}}
-* {{msg-mw|Exif-scenecapturetype-2}}
-* {{msg-mw|Exif-scenecapturetype-3}}',
-'exif-scenecapturetype-3' => 'See also:
-* {{msg-mw|Exif-scenecapturetype}}
-* {{msg-mw|Exif-scenecapturetype-0}}
-* {{msg-mw|Exif-scenecapturetype-1}}
-* {{msg-mw|Exif-scenecapturetype-2}}
-* {{msg-mw|Exif-scenecapturetype-3}}',
+'exif-scenecapturetype-1' => '{{Related|Exif-scenecapturetype}}',
+'exif-scenecapturetype-2' => '{{Related|Exif-scenecapturetype}}',
+'exif-scenecapturetype-3' => '{{Related|Exif-scenecapturetype}}',
 
 'exif-gaincontrol-0' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
-
-See also:
-* {{msg-mw|Exif-gaincontrol}}
-* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
-* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
-* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
-* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
-* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)
+{{Related|Exif-gaincontrol}}
 {{Identical|None}}',
 'exif-gaincontrol-1' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
-
-See also:
-* {{msg-mw|Exif-gaincontrol}}
-* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
-* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
-* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
-* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
-* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+{{Related|Exif-gaincontrol}}',
 'exif-gaincontrol-2' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
-
-See also:
-* {{msg-mw|Exif-gaincontrol}}
-* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
-* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
-* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
-* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
-* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+{{Related|Exif-gaincontrol}}',
 'exif-gaincontrol-3' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
-
-See also:
-* {{msg-mw|Exif-gaincontrol}}
-* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
-* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
-* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
-* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
-* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
+{{Related|Exif-gaincontrol}}',
 'exif-gaincontrol-4' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
+{{Related|Exif-gaincontrol}}',
 
-See also:
-* {{msg-mw|Exif-gaincontrol}}
-* {{msg-mw|Exif-gaincontrol-0}} - no gain at all
-* {{msg-mw|Exif-gaincontrol-1}} - some more brightness
-* {{msg-mw|Exif-gaincontrol-2}} - much more brightness
-* {{msg-mw|Exif-gaincontrol-3}} - some less brightness (seems to be uncommon in photography)
-* {{msg-mw|Exif-gaincontrol-4}} - much less brightness (seems to be uncommon in photography)',
-
-'exif-contrast-0' => 'See also:
-* {{msg-mw|Exif-contrast}}
-* {{msg-mw|Exif-contrast-0}}
-* {{msg-mw|Exif-contrast-1}}
-* {{msg-mw|Exif-contrast-2}}
+'exif-contrast-0' => '{{Related|Exif-contrast}}
 {{Identical|Normal}}',
-'exif-contrast-1' => 'See also:
-* {{msg-mw|Exif-contrast}}
-* {{msg-mw|Exif-contrast-0}}
-* {{msg-mw|Exif-contrast-1}}
-* {{msg-mw|Exif-contrast-2}}
+'exif-contrast-1' => '{{Related|Exif-contrast}}
 {{Identical|Soft}}',
-'exif-contrast-2' => 'See also:
-* {{msg-mw|Exif-contrast}}
-* {{msg-mw|Exif-contrast-0}}
-* {{msg-mw|Exif-contrast-1}}
-* {{msg-mw|Exif-contrast-2}}
+'exif-contrast-2' => '{{Related|Exif-contrast}}
 {{Identical|Hard}}',
 
-'exif-saturation-0' => 'See also:
-* {{msg-mw|Exif-saturation}}
-* {{msg-mw|Exif-saturation-0}}
-* {{msg-mw|Exif-saturation-1}}
-* {{msg-mw|Exif-saturation-2}}
+'exif-saturation-0' => '{{Related|Exif-saturation}}
 {{Identical|Normal}}',
-'exif-saturation-1' => 'See also:
-* {{msg-mw|Exif-saturation}}
-* {{msg-mw|Exif-saturation-0}}
-* {{msg-mw|Exif-saturation-1}}
-* {{msg-mw|Exif-saturation-2}}',
+'exif-saturation-1' => '{{Related|Exif-saturation}}',
 'exif-saturation-2' => 'Color saturation in picture EXIF data
+{{Related|Exif-saturation}}',
 
-See also:
-* {{msg-mw|Exif-saturation}}
-* {{msg-mw|Exif-saturation-0}}
-* {{msg-mw|Exif-saturation-1}}
-* {{msg-mw|Exif-saturation-2}}',
-
-'exif-sharpness-0' => 'See also:
-* {{msg-mw|Exif-sharpness}}
-* {{msg-mw|Exif-sharpness-0}}
-* {{msg-mw|Exif-sharpness-1}}
-* {{msg-mw|Exif-sharpness-2}}
+'exif-sharpness-0' => '{{Related|Exif-sharpness}}
 {{Identical|Normal}}',
-'exif-sharpness-1' => 'See also:
-* {{msg-mw|Exif-sharpness}}
-* {{msg-mw|Exif-sharpness-0}}
-* {{msg-mw|Exif-sharpness-1}}
-* {{msg-mw|Exif-sharpness-2}}
+'exif-sharpness-1' => '{{Related|Exif-sharpness}}
 {{Identical|Soft}}',
-'exif-sharpness-2' => 'See also:
-* {{msg-mw|Exif-sharpness}}
-* {{msg-mw|Exif-sharpness-0}}
-* {{msg-mw|Exif-sharpness-1}}
-* {{msg-mw|Exif-sharpness-2}}
+'exif-sharpness-2' => '{{Related|Exif-sharpness}}
 {{Identical|Hard}}',
 
-'exif-subjectdistancerange-0' => 'See also:
-* {{msg-mw|Exif-subjectdistancerange}}
-* {{msg-mw|Exif-subjectdistancerange-0}}
-* {{msg-mw|Exif-subjectdistancerange-1}}
-* {{msg-mw|Exif-subjectdistancerange-2}}
-* {{msg-mw|Exif-subjectdistancerange-3}}
+'exif-subjectdistancerange-0' => '{{Related|Exif-subjectdistancerange}}
 {{Identical|Unknown}}',
 'exif-subjectdistancerange-1' => 'Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].
-
-See also:
-* {{msg|Exif-subjectdistancerange-0}}
-* {{msg|Exif-subjectdistancerange-1}}
-* {{msg|Exif-subjectdistancerange-2}}
-* {{msg|Exif-subjectdistancerange-3}}',
-'exif-subjectdistancerange-2' => 'See also:
-* {{msg-mw|Exif-subjectdistancerange}}
-* {{msg-mw|Exif-subjectdistancerange-0}}
-* {{msg-mw|Exif-subjectdistancerange-1}}
-* {{msg-mw|Exif-subjectdistancerange-2}}
-* {{msg-mw|Exif-subjectdistancerange-3}}',
-'exif-subjectdistancerange-3' => 'See also:
-* {{msg-mw|Exif-subjectdistancerange}}
-* {{msg-mw|Exif-subjectdistancerange-0}}
-* {{msg-mw|Exif-subjectdistancerange-1}}
-* {{msg-mw|Exif-subjectdistancerange-2}}
-* {{msg-mw|Exif-subjectdistancerange-3}}',
+{{Related|Exif-subjectdistancerange}}',
+'exif-subjectdistancerange-2' => '{{Related|Exif-subjectdistancerange}}',
+'exif-subjectdistancerange-3' => '{{Related|Exif-subjectdistancerange}}',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}',
+{{Related|Exif-gpslatitude}}',
 'exif-gpslatitude-s' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}',
+{{Related|Exif-gpslatitude}}',
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}',
+{{Related|Exif-gpslatitude}}',
 'exif-gpslongitude-w' => 'Very rarely used. Only used when using an old version of Mediawiki as a foreign image repo.
-
-See also:
-* {{msg-mw|Exif-gpslatitude}}
-* {{msg-mw|Exif-gpslatituderef}}
-** {{msg-mw|Exif-gpslatitude-n}}
-** {{msg-mw|Exif-gpslatitude-s}}
-* {{msg-mw|Exif-gpslongitude}}
-* {{msg-mw|Exif-gpslongituderef}}
-** {{msg-mw|Exif-gpslongitude-e}}
-** {{msg-mw|Exif-gpslongitude-w}}',
+{{Related|Exif-gpslatitude}}',
 
 # Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => 'Used as GPS Altitude in Exif data. Parameters:
 * $1 - altitude above sea level (in meters)
 See also:
-* {{msg-mw|Exif-gpsaltitude-above-sealevel}}
 * {{msg-mw|Exif-gpsaltitude-below-sealevel}}',
 'exif-gpsaltitude-below-sealevel' => 'Used as GPS Altitude in Exif data. Parameters:
 * $1 - altitude below sea level (in meters)
 See also:
-* {{msg-mw|Exif-gpsaltitude-above-sealevel}}
-* {{msg-mw|Exif-gpsaltitude-below-sealevel}}',
+* {{msg-mw|Exif-gpsaltitude-above-sealevel}}',
 
 'exif-gpsstatus-a' => 'See also:
 * {{msg-mw|Exif-gpsstatus}}
-* {{msg-mw|Exif-gpsstatus-a}}
 * {{msg-mw|Exif-gpsstatus-v}}',
 'exif-gpsstatus-v' => 'See also:
 * {{msg-mw|Exif-gpsstatus}}
-* {{msg-mw|Exif-gpsstatus-a}}
-* {{msg-mw|Exif-gpsstatus-v}}',
+* {{msg-mw|Exif-gpsstatus-a}}',
 
 'exif-gpsmeasuremode-2' => 'Only latitude and longitude recorded, no altitude.
 
 See also:
 * {{msg-mw|Exif-gpsmeasuremode}}
-* {{msg-mw|Exif-gpsmeasuremode-2}}
 * {{msg-mw|Exif-gpsmeasuremode-3}}',
 'exif-gpsmeasuremode-3' => 'Latitude, longitude, and altitude recorded.
 
 See also:
 * {{msg-mw|Exif-gpsmeasuremode}}
-* {{msg-mw|Exif-gpsmeasuremode-2}}
-* {{msg-mw|Exif-gpsmeasuremode-3}}',
+* {{msg-mw|Exif-gpsmeasuremode-2}}',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'See also:
-* {{msg-mw|Exif-gpsspeed}}
-* {{msg-mw|Exif-gpsspeedref}}
-* {{msg-mw|Exif-gpsspeed-k}}
-* {{msg-mw|Exif-gpsspeed-m}}
-* {{msg-mw|Exif-gpsspeed-n}}',
-'exif-gpsspeed-m' => 'See also:
-* {{msg-mw|Exif-gpsspeed}}
-* {{msg-mw|Exif-gpsspeedref}}
-* {{msg-mw|Exif-gpsspeed-k}}
-* {{msg-mw|Exif-gpsspeed-m}}
-* {{msg-mw|Exif-gpsspeed-n}}',
+'exif-gpsspeed-k' => '{{Related|Exif-gpsspeed}}',
+'exif-gpsspeed-m' => '{{Related|Exif-gpsspeed}}',
 'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.
-
-See also:
-* {{msg-mw|Exif-gpsspeed}}
-* {{msg-mw|Exif-gpsspeedref}}
-* {{msg-mw|Exif-gpsspeed-k}}
-* {{msg-mw|Exif-gpsspeed-m}}
-* {{msg-mw|Exif-gpsspeed-n}}",
+{{Related|Exif-gpsspeed}}",
 
 # Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'See also:
-* {{msg-mw|Exif-gpsdestdistance}}
-* {{msg-mw|Exif-gpsdestdistanceref}}
-* {{msg-mw|Exif-gpsdestdistance-k}}
-* {{msg-mw|Exif-gpsdestdistance-m}}
-* {{msg-mw|Exif-gpsdestdistance-n}}',
-'exif-gpsdestdistance-m' => 'See also:
-* {{msg-mw|Exif-gpsdestdistance}}
-* {{msg-mw|Exif-gpsdestdistanceref}}
-* {{msg-mw|Exif-gpsdestdistance-k}}
-* {{msg-mw|Exif-gpsdestdistance-m}}
-* {{msg-mw|Exif-gpsdestdistance-n}}',
-'exif-gpsdestdistance-n' => 'See also:
-* {{msg-mw|Exif-gpsdestdistance}}
-* {{msg-mw|Exif-gpsdestdistanceref}}
-* {{msg-mw|Exif-gpsdestdistance-k}}
-* {{msg-mw|Exif-gpsdestdistance-m}}
-* {{msg-mw|Exif-gpsdestdistance-n}}',
+'exif-gpsdestdistance-k' => '{{Related|Exif-gpsdestdistance}}',
+'exif-gpsdestdistance-m' => '{{Related|Exif-gpsdestdistance}}',
+'exif-gpsdestdistance-n' => '{{Related|Exif-gpsdestdistance}}',
 
-'exif-gpsdop-excellent' => '$1 is the actual HDOP/PDOP value (less than or equal to 2 for excellent). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-
-See also:
-* {{msg-mw|Exif-gpsdop}}
-* {{msg-mw|Exif-gpsdop-excellent}}
-* {{msg-mw|Exif-gpsdop-good}}
-* {{msg-mw|Exif-gpsdop-moderate}}
-* {{msg-mw|Exif-gpsdop-fair}}
-* {{msg-mw|Exif-gpsdop-poor}}',
-'exif-gpsdop-good' => '$1 is the actual HDOP/PDOP value (2-5 for good). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-
-See also:
-* {{msg-mw|Exif-gpsdop}}
-* {{msg-mw|Exif-gpsdop-excellent}}
-* {{msg-mw|Exif-gpsdop-good}}
-* {{msg-mw|Exif-gpsdop-moderate}}
-* {{msg-mw|Exif-gpsdop-fair}}
-* {{msg-mw|Exif-gpsdop-poor}}',
-'exif-gpsdop-moderate' => '$1 is the actual HDOP/PDOP value (5-10 for moderate). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-
-See also:
-* {{msg-mw|Exif-gpsdop}}
-* {{msg-mw|Exif-gpsdop-excellent}}
-* {{msg-mw|Exif-gpsdop-good}}
-* {{msg-mw|Exif-gpsdop-moderate}}
-* {{msg-mw|Exif-gpsdop-fair}}
-* {{msg-mw|Exif-gpsdop-poor}}',
-'exif-gpsdop-fair' => '$1 is the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-
-See also:
-* {{msg-mw|Exif-gpsdop}}
-* {{msg-mw|Exif-gpsdop-excellent}}
-* {{msg-mw|Exif-gpsdop-good}}
-* {{msg-mw|Exif-gpsdop-moderate}}
-* {{msg-mw|Exif-gpsdop-fair}}
-* {{msg-mw|Exif-gpsdop-poor}}',
-'exif-gpsdop-poor' => '$1 is the actual HDOP/PDOP value (greater than 20 for poor). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-
-See also:
-* {{msg-mw|Exif-gpsdop}}
-* {{msg-mw|Exif-gpsdop-excellent}}
-* {{msg-mw|Exif-gpsdop-good}}
-* {{msg-mw|Exif-gpsdop-moderate}}
-* {{msg-mw|Exif-gpsdop-fair}}
-* {{msg-mw|Exif-gpsdop-poor}}',
+'exif-gpsdop-excellent' => 'Parameters:
+* $1 - the actual HDOP/PDOP value (less than or equal to 2 for excellent). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+{{Related|Exif-gpsdop}}',
+'exif-gpsdop-good' => 'Parameters:
+* $1 - the actual HDOP/PDOP value (2-5 for good). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+{{Related|Exif-gpsdop}}',
+'exif-gpsdop-moderate' => 'Parameters:
+* $1 - the actual HDOP/PDOP value (5-10 for moderate). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+{{Related|Exif-gpsdop}}',
+'exif-gpsdop-fair' => 'Parameters:
+* $1 - the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+{{Related|Exif-gpsdop}}',
+'exif-gpsdop-poor' => 'Parameters:
+* $1 - the actual HDOP/PDOP value (greater than 20 for poor). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+{{Related|Exif-gpsdop}}',
 
 'exif-objectcycle-a' => 'Morning only (a is for AM).
 
 See also:
 * {{msg-mw|Exif-objectcycle}}
-* {{msg-mw|Exif-objectcycle-a}}
 * {{msg-mw|Exif-objectcycle-p}}
 * {{msg-mw|Exif-objectcycle-b}}',
 'exif-objectcycle-p' => 'Evening only (p is for PM).
@@ -8639,37 +7608,25 @@ See also:
 See also:
 * {{msg-mw|Exif-objectcycle}}
 * {{msg-mw|Exif-objectcycle-a}}
-* {{msg-mw|Exif-objectcycle-p}}
 * {{msg-mw|Exif-objectcycle-b}}',
 'exif-objectcycle-b' => 'Both morning and evening (b is for both).
 
 See also:
 * {{msg-mw|Exif-objectcycle}}
 * {{msg-mw|Exif-objectcycle-a}}
-* {{msg-mw|Exif-objectcycle-p}}
-* {{msg-mw|Exif-objectcycle-b}}',
+* {{msg-mw|Exif-objectcycle-p}}',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'See also:
-* {{msg-mw|Exif-gpsdirection-t}}
 * {{msg-mw|Exif-gpsdirection-m}}',
 'exif-gpsdirection-m' => 'See also:
-* {{msg-mw|Exif-gpsdirection-t}}
-* {{msg-mw|Exif-gpsdirection-m}}',
+* {{msg-mw|Exif-gpsdirection-t}}',
 
 'exif-ycbcrpositioning-1' => 'If the Chrominance samples are centered with respect to the Luminance samples.
-
-See also:
-* {{msg-mw|Exif-ycbcrpositioning}}
-* {{msg-mw|Exif-ycbcrpositioning-1}}
-* {{msg-mw|Exif-ycbcrpositioning-2}}',
+{{Related|Exif-ycbcrpositioning}}',
 'exif-ycbcrpositioning-2' => 'If the Chrominance samples are on top of to the Luminance samples.
 See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
-
-See also:
-* {{msg-mw|Exif-ycbcrpositioning}}
-* {{msg-mw|Exif-ycbcrpositioning-1}}
-* {{msg-mw|Exif-ycbcrpositioning-2}}',
+{{Related|Exif-ycbcrpositioning}}',
 
 'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.',
 'exif-dc-coverage' => '"The extent or scope of the resource" see dc:coverage in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
@@ -8711,36 +7668,16 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 
 'exif-urgency-normal' => 'Parameters:
 * $1 - numeric priority (aka 5 for normal)
-See also:
-* {{msg-mw|Exif-urgency}}
-* {{msg-mw|Exif-urgency-normal}}
-* {{msg-mw|Exif-urgency-low}}
-* {{msg-mw|Exif-urgency-high}}
-* {{msg-mw|Exif-urgency-other}}',
+{{Related|Exif-urgency}}',
 'exif-urgency-low' => 'Parameters:
 * $1 - numeric priority (6-8 for low)
-See also:
-* {{msg-mw|Exif-urgency}}
-* {{msg-mw|Exif-urgency-normal}}
-* {{msg-mw|Exif-urgency-low}}
-* {{msg-mw|Exif-urgency-high}}
-* {{msg-mw|Exif-urgency-other}}',
+{{Related|Exif-urgency}}',
 'exif-urgency-high' => 'Parameters:
 * $1 - numeric priority (1-4 for high)
-See also:
-* {{msg-mw|Exif-urgency}}
-* {{msg-mw|Exif-urgency-normal}}
-* {{msg-mw|Exif-urgency-low}}
-* {{msg-mw|Exif-urgency-high}}
-* {{msg-mw|Exif-urgency-other}}',
+{{Related|Exif-urgency}}',
 'exif-urgency-other' => 'Parameters:
 * $1 - numeric priority. Most specs define 0 and 9 to either be reserved or not allowed. However the exiftool documentation defines 0 to be reserved and 9 to be user-defined priority.
-See also:
-* {{msg-mw|Exif-urgency}}
-* {{msg-mw|Exif-urgency-normal}}
-* {{msg-mw|Exif-urgency-low}}
-* {{msg-mw|Exif-urgency-high}}
-* {{msg-mw|Exif-urgency-other}}',
+{{Related|Exif-urgency}}',
 
 # External editor support
 'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
@@ -9576,86 +8513,14 @@ $4 is the gender of the target user.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 # Durations
-'duration-seconds' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-minutes' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-hours' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-days' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-weeks' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-years' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-decades' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-centuries' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
-'duration-millennia' => '* {{msg-mw|Duration-seconds}}
-* {{msg-mw|Duration-minutes}}
-* {{msg-mw|Duration-hours}}
-* {{msg-mw|Duration-days}}
-* {{msg-mw|Duration-weeks}}
-* {{msg-mw|Duration-years}}
-* {{msg-mw|Duration-decades}}
-* {{msg-mw|Duration-centuries}}
-* {{msg-mw|Duration-millennia}}',
+'duration-seconds' => '{{Related|Duration}}',
+'duration-minutes' => '{{Related|Duration}}',
+'duration-hours' => '{{Related|Duration}}',
+'duration-days' => '{{Related|Duration}}',
+'duration-weeks' => '{{Related|Duration}}',
+'duration-years' => '{{Related|Duration}}',
+'duration-decades' => '{{Related|Duration}}',
+'duration-centuries' => '{{Related|Duration}}',
+'duration-millennia' => '{{Related|Duration}}',
 
 );

@@ -668,6 +668,7 @@ Y cyfrinair dros dro: $2",
 'changeemail-oldemail' => 'Y cyfeiriad e-bost presennol:',
 'changeemail-newemail' => 'Cyfeiriad e-bost newydd:',
 'changeemail-none' => '(dim)',
+'changeemail-password' => 'Eich cyfrinair ar {{SITENAME}}:',
 'changeemail-submit' => 'Newidier y cyfeiriad e-bost',
 'changeemail-cancel' => 'Dileer',
 
@@ -868,6 +869,7 @@ Mae ar gael yn barod.',
 
 # Content models
 'content-model-wikitext' => 'cystrawen wici',
+'content-model-text' => 'testun plaen',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
 
@@ -2123,6 +2125,11 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 'enotif_mailer' => 'Sustem hysbysu {{SITENAME}}',
 'enotif_reset' => 'Ystyried bod pob tudalen wedi cael ymweliad',
 'enotif_impersonal_salutation' => 'at ddefnyddiwr {{SITENAME}}',
+'enotif_subject_deleted' => 'Dilewyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
+'enotif_subject_created' => 'Dechrewyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
+'enotif_subject_moved' => 'Symudwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
+'enotif_subject_restored' => 'Adferwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
+'enotif_subject_changed' => 'Newidiwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
 'enotif_lastvisited' => 'Gwelwch $1 am bob newid ers eich ymweliad blaenorol.',
 'enotif_lastdiff' => 'Gallwch weld y newid ar $1.',
 'enotif_anon_editor' => 'defnyddiwr anhysbys $1',
@@ -2872,6 +2879,10 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-templates' => '{{PLURAL:$1|Nodyn|Nodyn|Nodiadau}} a drawsgynhwyswyd ($1)',
 'pageinfo-toolboxlink' => 'Gwybodaeth am y dudalen',
 'pageinfo-redirectsto' => 'Yn ailgyfeirio i',
+'pageinfo-category-info' => 'Gwybodaeth am y categori',
+'pageinfo-category-pages' => 'Nifer y tudalennau',
+'pageinfo-category-subcats' => 'Nifer yr is-gategorïau',
+'pageinfo-category-files' => 'Nifer y ffeiliau',
 
 # Skin names
 'skinname-standard' => 'Safonol',

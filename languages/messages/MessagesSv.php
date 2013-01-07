@@ -2466,6 +2466,7 @@ Se [[Special:ProtectedPages|listan över skyddade sidor]] för listan över akti
 'prot_1movedto2' => 'flyttade [[$1]] till [[$2]]',
 'protect-badnamespace-title' => 'Namnrymd som inte kan skrivskyddas',
 'protect-badnamespace-text' => 'Sidor i den här namnrymden kan inte skrivskyddas.',
+'protect-norestrictiontypes-text' => 'Denna sida kan inte skyddas eftersom det inte finns några begränsningstyper tillgängliga.',
 'protect-legend' => 'Bekräfta skrivskydd av sida',
 'protectcomment' => 'Anledning:',
 'protectexpiry' => 'Varaktighet:',
@@ -3158,6 +3159,10 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-protect-cascading' => 'Skrivskydd kaskaderar härifrån',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Skrivskydd kaskaderar från',
+'pageinfo-category-info' => 'Kategoriinformation',
+'pageinfo-category-pages' => 'Antal sidor',
+'pageinfo-category-subcats' => 'Antal underkategorier',
+'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
 'skinname-standard' => 'Standard',

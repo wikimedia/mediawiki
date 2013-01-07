@@ -2865,6 +2865,10 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-protect-cascading' => 'Le protession a son a cascada da sì',
 'pageinfo-protect-cascading-yes' => 'É!',
 'pageinfo-protect-cascading-from' => 'Le protession a son a cascada da',
+'pageinfo-category-info' => 'Anformassion ëd categorìa',
+'pageinfo-category-pages' => 'Nùmer ëd pàgine',
+'pageinfo-category-subcats' => 'Nùmer ëd sotcategorìe',
+'pageinfo-category-files' => "Nùmer d'archivi",
 
 # Patrolling
 'markaspatrolleddiff' => 'Marché coma verificà',
@@ -3784,9 +3788,9 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'api-error-mustbeposted' => "Eror antern: L'arcesta a l'ha da manca d'HTTP POST.",
 'api-error-noimageinfo' => "Ël cariament a l'é andàit bin, ma ël servent a l'ha dane gnun-e anformassion an sl'archivi.",
 'api-error-nomodule' => 'Eror antern: gnun mòdoj ëd caria ampostà.',
-'api-error-ok-but-empty' => 'Eror antern: Gnun-a arspòste dal sërvent.',
+'api-error-ok-but-empty' => 'Eror antern: Gnun-a rispòsta dal servent.',
 'api-error-overwrite' => "Dzorascrive ansima a n'archivi esistent a l'é nen përmëttù.",
-'api-error-stashfailed' => "Eror antern: ël sërvent a l'ha pa podù memorisé l'archivi a temp.",
+'api-error-stashfailed' => "Eror antern: ël servent a l'ha pa podù memorisé l'archivi a temp.",
 'api-error-timeout' => "Ël sërvent a l'ha pa arspondù ant ël temp spetà.",
 'api-error-unclassified' => "A l'é capitaje n'eror nen conossù.",
 'api-error-unknown-code' => 'Eror sconossù: "$1"',

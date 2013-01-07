@@ -4312,7 +4312,7 @@ $messages['el'] = array(
 	'config-invalid-db-type' => 'Μη έγκυρος τύπος βάσης δεδομένων',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Όνομα του βίκι:',
-	'config-site-name-blank' => 'Εισάγετε ένα όνομα ιστοχώρου.',
+	'config-site-name-blank' => 'Εισαγάτε όνομα ιστοχώρου.',
 	'config-project-namespace' => 'Περιοχή ονόματος εγχειρήματος:',
 	'config-ns-generic' => 'Εγχείρημα',
 	'config-ns-site-name' => 'Ίδιο με το όνομα του wiki: $1',
@@ -9841,7 +9841,8 @@ I seguenti collegamenti sono in lingua inglese:
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
 * [//www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]", # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localizza MediaWiki nella tua lingua]",
 );
 
 /** Japanese (日本語)
