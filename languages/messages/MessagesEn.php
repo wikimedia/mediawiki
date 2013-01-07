@@ -2991,7 +2991,7 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'protect-badnamespace-title'       => 'Non-protectable namespace',
 'protect-badnamespace-text'        => 'Pages in this namespace cannot be protected.',
 'protect-norestrictiontypes-title' => 'Non-protectable page',
-'protect-norestrictiontypes-text'  => 'This page can\'t be protected as there aren\'t any restriction types available.',
+'protect-norestrictiontypes-text'  => 'This page cannot be protected as there are no restriction types available.',
 'protect-legend'                   => 'Confirm protection',
 'protectcomment'                   => 'Reason:',
 'protectexpiry'                    => 'Expires:',
