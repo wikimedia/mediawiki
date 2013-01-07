@@ -148,6 +148,18 @@
 		}
 	);
 	tableTest(
+		'Basic planet table: ascending by name (multiple clicks)',
+		header,
+		planets,
+		ascendingName,
+		function ( $table ) {
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+	tableTest(
 		'Basic planet table: descending by name',
 		header,
 		planets,
@@ -227,6 +239,35 @@
 				[ { 0: 'desc' }, { 1: 'asc' } ]
 			);
 			$table.data( 'tablesorter' ).sort();
+		}
+	);
+	tableTest(
+		'Sort via click event after having initialized the tablesorter with initial sorting',
+		header,
+		initial,
+		descasc,
+		function ( $table ) {
+			$table.tablesorter(
+				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
+			);
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+	tableTest(
+		'Multi-sort via click event after having initialized the tablesorter with initial sorting',
+		header,
+		initial,
+		asc,
+		function ( $table ) {
+			$table.tablesorter(
+				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
+			);
+			$table.find( '.headerSort:eq(0)' ).click();
+
+			// Pretend to click while pressing the multi-sort key
+			var event = $.Event( 'click' );
+			event[$table.data( 'tablesorter' ).config.sortMultiSortKey] = true;
+			$table.find( '.headerSort:eq(1)' ).trigger( event );
 		}
 	);
 	QUnit.test( 'Reset sorting making table appear unsorted', 3, function ( assert ) {

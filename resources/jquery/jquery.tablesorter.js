@@ -500,7 +500,7 @@
 		$.each( sortObjects, function( i, sortObject ) {
 			$.each ( sortObject, function( columnIndex, order ) {
 				var orderIndex = ( order === 'desc' ) ? 1 : 0;
-				sortList.push( [columnIndex, orderIndex] );
+				sortList.push( [parseInt( columnIndex, 10 ), orderIndex] );
 			} );
 		} );
 		return sortList;
@@ -686,6 +686,15 @@
 								}
 							}
 
+							// Reset count of unaffected columns to have them sorted in default
+							// (ascending) order when their header is clicked the next time
+							$headers.each( function( i, header ) {
+								if ( !isValueInArray( i, config.sortList ) ) {
+									header.order = 0;
+									header.count = 0;
+								}
+							} );
+
 							// Set CSS for headers
 							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, columnToHeader );
 							appendToTable(
@@ -725,6 +734,23 @@
 						} else if ( sortList.length > 0 ) {
 							sortList = convertSortList( sortList );
 						}
+
+						// Set each column's sort count to be able to determine the correct sort
+						// order when clicking on a header cell the next time
+						$.each( $headers, function( i, header ) {
+							if ( isValueInArray( i, sortList ) ) {
+								$.each( sortList, function( j, sortColumn ) {
+									if ( sortColumn[0] === i ) {
+										header.order = sortColumn[1];
+										header.count = sortColumn[1] + 1;
+										return false;
+									}
+								} );
+							} else {
+								header.order = 0;
+								header.count = 0;
+							}
+						} );
 
 						// re-build the cache for the tbody cells
 						cache = buildCache( table );
