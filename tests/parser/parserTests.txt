@@ -3232,6 +3232,25 @@ Link with suffix
 </p>
 !! end
 
+!! article
+prefixed article
+!! text
+Some text
+!! endarticle
+
+!! test
+Bug 43661: Piped links with identical prefixes
+!! input
+[[prefixed article|prefixed articles with spaces]]
+
+[[prefixed article|prefixed articlesaoeu]]
+!! result
+<p><a href="/wiki/Prefixed_article" title="Prefixed article">prefixed articles with spaces</a>
+</p><p><a href="/wiki/Prefixed_article" title="Prefixed article">prefixed articlesaoeu</a>
+</p>
+!! end
+
+
 !! test
 Link with HTML entity in suffix / tail
 !! input
