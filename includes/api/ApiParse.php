@@ -450,14 +450,14 @@ class ApiParse extends ApiBase {
 			$text = Language::fetchLanguageName( $nt->getInterwiki() );
 
 			$langs[] = Html::element( 'a',
-				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
+				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => 'external' ),
 				$text == '' ? $l : $text );
 		}
 
 		$s .= implode( wfMessage( 'pipe-separator' )->escaped(), $langs );
 
 		if ( $wgContLang->isRTL() ) {
-			$s = Html::rawElement( 'span', array( 'dir' => "LTR" ), $s );
+			$s = Html::rawElement( 'span', array( 'dir' => 'LTR' ), $s );
 		}
 
 		return $s;
