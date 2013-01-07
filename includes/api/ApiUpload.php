@@ -226,7 +226,9 @@ class ApiUpload extends ApiBase {
 							'--quiet'
 						)
 					) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-					wfShellExec( $cmd, $retVal ); // start a process in the background
+					// Start a process in the background. Enforce the time limits via PHP
+					// since ulimit4.sh seems to often not work for this particular usage.
+					wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
 					if ( $retVal == 0 ) {
 						$result['result'] = 'Poll';
 					} else {
