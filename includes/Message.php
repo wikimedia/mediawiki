@@ -480,7 +480,24 @@ class Message {
 	 * @return String
 	 */
 	public function __toString() {
-		return $this->toString();
+		// PHP doesn't allow __toString to throw exceptions and will
+		// trigger a fatal error if it does. So, catch any exceptions.
+
+		try {
+			return $this->toString();
+		} catch ( Exception $ex ) {
+			try {
+				wfWarn( "Exception caught in " . __METHOD__ . " (message " . $this->key . "): "
+					. $ex );
+			} catch ( Exception $ex ) {
+				// Doh! Cause a fatal error after all?
+			}
+
+			if ( $this->format === 'plain' ) {
+				return '<' . $this->key . '>';
+			}
+			return '&lt;' . $this->key . '&gt;';
+		}
 	}
 
 	/**
