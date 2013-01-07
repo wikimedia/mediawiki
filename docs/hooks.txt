@@ -869,11 +869,18 @@ $text: content of the edit box
 &$error: error message to return
 $summary: Edit summary for page
 
-'EditFilterMergedContent': Post-section-merge edit filter
-$editor: EditPage instance (object)
-$content: content of the edit box, as a Content object
-&$error: error message to return
+'EditFilterMergedContent': Post-section-merge edit filter.
+This may be triggered by the EditPage or any other facility that modifies page content.
+Use the $status object to indicate whether the edit should be allowed, and to provide
+a reason for disallowing it. Return false to abort the edit, and true to continue.
+Returning true if $status->isOK() returns false means "don't save but continue user
+interaction", e.g. show the edit form.
+$context: object implementing the IContextSource interface.
+$content: content of the edit box, as a Content object.
+$status: Status object to represent errors, etc.
 $summary: Edit summary for page
+$user: the User object representing the user whois performing the edit.
+$minoredit: whether the edit was marked as minor by the user.
 
 'EditFormPreloadText': Allows population of the edit form when creating
 new pages
