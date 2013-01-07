@@ -2955,6 +2955,10 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-protect-cascading' => 'Protezziune vonne a cascate da aqquà',
 'pageinfo-protect-cascading-yes' => 'Sine',
 'pageinfo-protect-cascading-from' => 'Le protezziune sò a cascate da',
+'pageinfo-category-info' => "'Mbormaziune sus a 'a categorije",
+'pageinfo-category-pages' => 'Numere de pàggene',
+'pageinfo-category-subcats' => 'Numere de sottocategorije',
+'pageinfo-category-files' => 'Numere de file',
 
 # Skin names
 'skinname-standard' => 'Classeche',

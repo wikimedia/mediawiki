@@ -26,6 +26,7 @@
  * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
+ * @author LFM
  * @author Mintz0223
  * @author Pi.C.Noizecehx
  * @author PuzzletChung
@@ -3250,6 +3251,10 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-protect-cascading' => '여기서의 연쇄적 보호',
 'pageinfo-protect-cascading-yes' => '예',
 'pageinfo-protect-cascading-from' => '연쇄적 보호한 기점',
+'pageinfo-category-info' => '분류 정보',
+'pageinfo-category-pages' => '문서 수',
+'pageinfo-category-subcats' => '하위 분류 수',
+'pageinfo-category-files' => '파일 개수',
 
 # Skin names
 'skinname-standard' => '클래식',

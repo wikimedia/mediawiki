@@ -2968,6 +2968,10 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-protect-cascading' => 'Kaskadebeskyttelser begynder her',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Kaskadebeskyttelser begynder fra',
+'pageinfo-category-info' => 'Kategorioplysninger',
+'pageinfo-category-pages' => 'Antal sider',
+'pageinfo-category-subcats' => 'Antal underkategorier',
+'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
 'skinname-standard' => 'Klassik',

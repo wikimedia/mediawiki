@@ -3928,7 +3928,7 @@ $5
 'logentry-delete-restore' => 'Ο/η $1 αποκατέστησε τη σελίδα $3',
 'logentry-delete-event' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα σε {{PLURAL:$5|ένα γεγονός καταγραφής|$5 log events}} στο $3: $4',
 'logentry-delete-revision' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα {{PLURAL:$5|μιας έκδοσης|$5 εκδόσεων}} στη σελίδα $3: $4',
-'logentry-delete-event-legacy' => '$1 άλλαξαν ορατότητα της καταγραφής συμβάντων σε $3',
+'logentry-delete-event-legacy' => '{{GENDER:$2|Ο|Η}} $1 άλλαξε την ορατότητα της καταγραφής συμβάντων στη σελίδα $3',
 'logentry-delete-revision-legacy' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την  ορατότητα των αναθεωρήσεων στη σελίδα $3',
 'logentry-suppress-delete' => '{{GENDER:$1|Ο|Η}} $1 διέγραψε τη σελίδα $3',
 'logentry-suppress-revision-legacy' => '$1 κρυφά άλλαξαν την  ορατότητα των αναθεωρήσεων στη σελίδα $3',

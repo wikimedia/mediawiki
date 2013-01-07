@@ -561,8 +561,8 @@ $1',
 'privacypage' => 'Project:Politica de confidencialitât',
 
 'badaccess' => 'Fôta de pèrmission',
-'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion demandâye.',
-'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de {{PLURAL:$2|la tropa|les tropes}} : $1.',
+'badaccess-group0' => 'Vos éte pas ôtorisâ a fâre l’accion demandâye.',
+'badaccess-groups' => 'L’accion demandâye est limitâye ux utilisators de {{PLURAL:$2|la tropa|yona de les tropes}} : $1.',
 
 'versionrequired' => 'Vèrsion $1 de MediaWiki nècèssèra',
 'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por empleyér ceta pâge.
@@ -670,8 +670,8 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'cannotdelete' => 'Empossiblo de suprimar la pâge ou ben lo fichiér « $1 ».
 Pôt-étre la suprèssion est ja étâye fêta per quârqu’un d’ôtro.',
 'cannotdelete-title' => 'Empossiblo de suprimar la pâge « $1 »',
-'delete-hook-aborted' => 'Suprèssion anulâye per n’èxtension.
-Niona èxplicacion est étâye balyêe.',
+'delete-hook-aborted' => 'Suprèssion anulâye per un grèfon.
+Nion’èxplicacion est étâye balyêe.',
 'badtitle' => 'Crouyo titro',
 'badtitletext' => 'Lo titro de la pâge demandâye est envalido, vouedo ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
 Contint sûrament yon ou ben un mouél de caractèros que pôvont pas étre empleyês dedens los titros.',
@@ -789,7 +789,7 @@ Voutron contresegno temporèro èxpirerat dens {{PLURAL:$5|yon jorn|$5 jorns}}.
 Se cela demanda vint pas de vos ou ben que vos vos éte rapelâ
 de voutron contresegno et que vos souhètâd pas més lo changiér, vos
 pouede ignorar ceti mèssâjo et continuar a empleyér voutron viely contresegno.',
-'noemail' => 'Niona adrèce èlèctronica est étâye encartâye por l’utilisator « $1 ».',
+'noemail' => 'Nion’adrèce èlèctronica est étâye encartâye por l’utilisator « $1 ».',
 'noemailcreate' => 'Vos dête balyér n’adrèce èlèctronica valida',
 'passwordsent' => 'Un contresegno novél est étâ mandâ a l’adrèce èlèctronica de l’utilisator « $1 ».
 Vos volyéd tornar branchiér aprés l’avêr reçu.',
@@ -892,7 +892,7 @@ Contresegno temporèro : $2',
 'changeemail-text' => 'Rempléd ceti formulèro por changiér voutron adrèce èlèctronica. Vos devréd buchiér voutron contresegno por confirmar cél changement.',
 'changeemail-no-info' => 'Vos dête étre branchiê por arrevar tot drêt a cela pâge.',
 'changeemail-oldemail' => 'Adrèce èlèctronica d’ora :',
-'changeemail-newemail' => 'Novèla adrèce èlèctronica :',
+'changeemail-newemail' => 'Novèl’adrèce èlèctronica :',
 'changeemail-none' => '(niona)',
 'changeemail-password' => 'Voutron contresegno dessus {{SITENAME}} :',
 'changeemail-submit' => 'Changiér l’adrèce èlèctronica',
@@ -951,7 +951,7 @@ La rêson balyêe est ''$2''.
 Vos vos pouede veriér vers $1 ou ben un ôtr’[[{{MediaWiki:Grouppage-sysop}}|administrator]] por nen discutar.
 Vos pouede pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens qu’un’adrèce èlèctronica valida est spècifiâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 Voutron adrèce IP d’ora est $3, et l’identifient de blocâjo est $5.
-Volyéd entrebetar tôs los dètalys ce-dessus dedens sé-quinta demanda que vos faréd.",
+Volyéd entrebetar tôs los dètalys ce-dessus dedens na sé-quinta demanda que vos faréd.",
 'autoblockedtext' => "Voutron adrèce IP est étâye blocâye ôtomaticament perce qu’el est étâye empleyêe per un ôtr’utilisator, lui-mémo blocâ per $1.
 La rêson balyêe est :
 
@@ -966,7 +966,7 @@ Vos vos pouede veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sys
 Notâd que vos porréd pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens que vos avéd n’adrèce èlèctronica valida encartâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 
 Voutron adrèce IP d’ora est $3, et l’identifient de blocâjo est $5.
-Volyéd entrebetar tôs los dètalys ce-dessus dedens sé-quinta demanda que vos faréd.",
+Volyéd entrebetar tôs los dètalys ce-dessus dedens na sé-quinta demanda que vos faréd.",
 'blockednoreason' => 'niona rêson balyêe',
 'whitelistedittext' => 'Vos vos dête $1 por povêr changiér les pâges.',
 'confirmedittext' => 'Vos dête confirmar voutron adrèce èlèctronica devant que changiér les pâges.
@@ -1100,8 +1100,8 @@ Por comoditât, lo jornal de les suprèssions et des changements de nom de cela 
 'moveddeleted-notice' => 'Ceta pâge est étâye suprimâye.
 Por refèrence, lo jornal de les suprèssions et des changements de nom est montrâ ce-desot.',
 'log-fulllog' => 'Vêre lo jornal complèt',
-'edit-hook-aborted' => 'Changement anulâ per n’èxtension.
-Niona èxplicacion est étâye balyêe.',
+'edit-hook-aborted' => 'Changement anulâ per un grèfon.
+Nion’èxplicacion est étâye balyêe.',
 'edit-gone-missing' => 'Empossiblo de betar a jorn la pâge.
 Semble que seye étâye suprimâye.',
 'edit-conflict' => 'Conflit de changement.',
@@ -1168,12 +1168,12 @@ La rêson balyêe per $3 ére ''$2''.",
 'next' => 'aprés',
 'last' => 'devant',
 'page_first' => 'Premiére',
-'page_last' => 'Dèrriére',
+'page_last' => 'dèrriére',
 'histlegend' => "Chouèx de difs : pouentâd les câses de les vèrsions a comparar et pués apoyéd dessus « Entrâ » ou ben lo boton d’avâl.<br />
 Lègenda : '''({{int:cur}})''' = difèrence avouéc la vèrsion d’ora, '''({{int:last}})''' = difèrence avouéc la vèrsion devant, '''{{int:minoreditletter}}''' = petiôt changement.",
 'history-fieldset-title' => 'Fâre dèfelar l’historico',
 'history-show-deleted' => 'Ren que les suprimâyes',
-'histfirst' => 'Premiére',
+'histfirst' => 'premiére',
 'histlast' => 'Dèrriére',
 'historysize' => '($1 octèt{{PLURAL:$1||s}})',
 'historyempty' => '(voueda)',
@@ -1195,10 +1195,10 @@ Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâg
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
+Vos pouede adés [$1 vêre cela vèrsion] se vos o voléd.",
 'rev-suppressed-text-unhide' => "Ceta vèrsion de la pâge est étâye '''rèprimâye'''.
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
-Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
+Vos pouede adés [$1 vêre cela vèrsion] se vos o voléd.",
 'rev-deleted-text-view' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
 Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-text-view' => "Ceta vèrsion de la pâge est étâye '''rèprimâye'''.
@@ -1208,10 +1208,10 @@ Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page=
 'rev-suppressed-no-diff' => "Vos pouede pas vêre ceta dif perce que yona de les vèrsions est étâye '''suprimâye'''.",
 'rev-deleted-unhide-diff' => "Yona de les vèrsions de ceta dif est étâye '''suprimâye'''.
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Vos pouede adés [$1 vêre cela dif] se vos lo voléd.",
+Vos pouede adés [$1 vêre cela dif] se vos o voléd.",
 'rev-suppressed-unhide-diff' => "Yona de les vèrsions de ceta dif est étâye '''rèprimâye'''.
 Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
-Vos pouede adés [$1 vêre cela dif] se vos lo voléd.",
+Vos pouede adés [$1 vêre cela dif] se vos o voléd.",
 'rev-deleted-diff-view' => "Yona de les vèrsions de ceta dif est étâye '''suprimâye'''.
 Vos pouede vêre ceta dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-diff-view' => "Yona de les vèrsions de ceta dif est étâye '''rèprimâye'''.
@@ -1233,46 +1233,47 @@ fonccion, la vèrsion spècifiâye ègziste pas ou ben vos tâchiéd de cachiér
 'logdelete-selected' => "'''{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :'''",
 'revdelete-text' => "'''Les vèrsions et los èvènements suprimâ(ye)s aparètront adés dedens l’historico de la pâge et pués dedens los jornals, mas quârques parties de lor contegnu seront inaccèssibles u publico.'''
 Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela mém’entèrface, a muens que des rèstriccions de ples seyont pas dèfenies.",
-'revdelete-confirm' => 'Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
-'revdelete-suppress-text' => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
-* Enformacions a sè que vont pas avouéc :
-*: ''adrèce et numerô de tèlèfono, numerô de sècuritât sociâla, ...''",
-'revdelete-legend' => 'Betar en place des rèstriccions de visibilitât :',
+'revdelete-confirm' => 'Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos o féte en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
+'revdelete-suppress-text' => "La rèprèssion dêt étre empleyêe '''ren que''' dens cetos câs :
+* Enformacions que pôvont étre difamatouères
+* Enformacions a sè que vont pas avouéc
+*: ''adrèces et numerôs de tèlèfono, numerôs de sècuritât sociâla, ...''",
+'revdelete-legend' => 'Dèfenir des rèstriccions de visibilitât',
 'revdelete-hide-text' => 'Cachiér lo tèxto de la vèrsion',
 'revdelete-hide-image' => 'Cachiér lo contegnu du fichiér',
 'revdelete-hide-name' => 'Cachiér l’accion et la ciba',
 'revdelete-hide-comment' => 'Cachiér lo rèsumâ de changement',
-'revdelete-hide-user' => 'Cachiér lo nom ou l’adrèce IP u contributor.',
-'revdelete-hide-restricted' => 'Cachiér les balyês ux administrators et pués ux ôtros',
+'revdelete-hide-user' => 'Cachiér lo nom d’utilisator / l’adrèce IP du contributor',
+'revdelete-hide-restricted' => 'Rèprimar celes donâs ux administrators et pués ux ôtros',
 'revdelete-radio-same' => '(pas changiér)',
 'revdelete-radio-set' => 'Ouè',
 'revdelete-radio-unset' => 'Nan',
-'revdelete-suppress' => 'Suprimar les balyês ux administrators et pués ux ôtros',
+'revdelete-suppress' => 'Rèprimar celes donâs ux administrators et pués ux ôtros',
 'revdelete-unsuppress' => 'Enlevar les rèstriccions sur les vèrsions refêtes',
 'revdelete-log' => 'Rêson :',
 'revdelete-submit' => 'Aplicar a {{PLURAL:$1|la vèrsion chouèsia|les vèrsions chouèsies}}',
-'revdelete-success' => "'''Visibilitât de la vèrsion betâ a jorn avouéc reusséta.'''",
-'revdelete-failure' => "'''La visibilitât de la vèrsion at pas possu étre betâ a jorn :'''
+'revdelete-success' => "'''Visibilitât de la vèrsion betâye a jorn avouéc reusséta.'''",
+'revdelete-failure' => "'''La visibilitât de la vèrsion at pas possu étre betâye a jorn :'''
 $1",
 'logdelete-success' => "'''Visibilitât du jornal dèfenia avouéc reusséta.'''",
 'logdelete-failure' => "'''La visibilitât du jornal at pas possu étre dèfenia :'''
 $1",
-'revdel-restore' => 'Changiér la visibilitât',
-'revdel-restore-deleted' => 'vèrsions suprimâs',
+'revdel-restore' => 'changiér la visibilitât',
+'revdel-restore-deleted' => 'vèrsions suprimâyes',
 'revdel-restore-visible' => 'vèrsions visibles',
 'pagehist' => 'Historico de la pâge',
 'deletedhist' => 'Historico suprimâ',
-'revdelete-hide-current' => 'Èrror pendent la suprèssion de l’èlèment datâ du $1 a $2 : o est la vèrsion d’ora.
-Pôt pas étre suprimâ.',
-'revdelete-show-no-access' => 'Fôta pendent la visualisacion de la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
+'revdelete-hide-current' => 'Fôta en cachient la piéce datâye du $1 a $2 : o est la vèrsion d’ora.
+Pôt pas étre cachiêe.',
+'revdelete-show-no-access' => 'Fôta en montrent la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
 Vos y avéd pas accès.',
-'revdelete-modify-no-access' => 'Fôta pendent lo changement de la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
+'revdelete-modify-no-access' => 'Fôta en changient la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
 Vos y avéd pas accès.',
-'revdelete-modify-missing' => 'Èrror pendent lo changement de l’èlèment avouéc lo numerô $1 : il est manquent dens la bâsa de balyês !',
-'revdelete-no-change' => "'''Atencion :''' l’èlèment datâ du $1 a $2 at ja los paramètres de visibilitât demandâs.",
-'revdelete-concurrent-change' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : son statut at étâ changiê per quârqu’un d’ôtro pendent que vos lo changiéd.
+'revdelete-modify-missing' => 'Fôta en changient la piéce avouéc l’identifient $1 : el est manquenta dedens la bâsa de donâs !',
+'revdelete-no-change' => "'''Atencion :''' la piéce datâye du $1 a $2 at ja la configuracion de visibilitât demandâye.",
+'revdelete-concurrent-change' => 'Fôta en changient la piéce datâye du $1 a $2 : lo sin statut semble étre étâ changiê per quârqu’un d’ôtro justo que vos tâchiêvâd d’o changiér.
 Volyéd controlar los jornals.',
-'revdelete-only-restricted' => 'Èrror pendent la suprèssion de l’entrâ datâ du $1 a $2 : vos pouede pas suprimar celos èlèments ux administrators sen chouèsir avouéc des ôtros chouèx de suprèssion.',
+'revdelete-only-restricted' => 'Fôta en cachient la piéce datâye du $1 a $2 : vos pouede pas rèprimar celes piéces de la vua ux administrators sen chouèsir avouéc des ôtros chouèx de visibilitât.',
 'revdelete-reason-dropdown' => '*Rêsons corentes de suprèssion
 ** Violacion du drêt d’ôtor
 ** Comentèros ou ben enformacions a sè que vont pas avouéc
@@ -1290,8 +1291,8 @@ Vêde la [[Special:BlockList|lista des blocâjos]] por la lista des banissements
 
 # History merging
 'mergehistory' => 'Fusionar los historicos de les pâges',
-'mergehistory-header' => 'Ceta pâge vos pèrmèt de fusionar des vèrsions de l’historico d’una pâge d’origina vers una pâge novèla.
-Assurâd-vos que cela opèracion consèrverat la continuitât de l’historico de la pâge.',
+'mergehistory-header' => 'Ceta pâge vos pèrmèt de fusionar des vèrsions de l’historico d’una pâge d’origina vers na pâge novèla.
+Assurâd-vos que cél changement consèrverat la continuitât de l’historico de la pâge.',
 'mergehistory-box' => 'Fusionar les vèrsions de doves pâges :',
 'mergehistory-from' => 'Pâge d’origina :',
 'mergehistory-into' => 'Pâge de dèstinacion :',

@@ -1293,7 +1293,7 @@ $3が示した理由：''$2''",
 'revdelete-text' => "'''削除された版や記録項目は引き続きページの履歴や記録に表示されますが、一般利用者はその内容の一部を取得できなくなります。'''
 追加の制限がかけられない限り、{{SITENAME}}の他の管理者は同じインターフェイスを使って非表示の内容の取得や復元ができます。",
 'revdelete-confirm' => 'この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。',
-'revdelete-suppress-text' => "秘匿は、'''以下の場合に限って'''使用すべきです：
+'revdelete-suppress-text' => "秘匿は、'''以下の場合に限って'''使用すべきです:
 * 名誉毀損の恐れのある記述
 * 非公開個人情報
 *: ''自宅の住所、電話番号、社会保障番号など''",
@@ -2041,7 +2041,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization をご覧ください�
 'http-invalid-url' => '無効なURL：$1',
 'http-invalid-scheme' => 'スキーム「$1」の URL には未対応です。',
 'http-request-error' => '不明なエラーによりHTTPリクエストに失敗しました。',
-'http-read-error' => 'HTTP読み込みエラー。',
+'http-read-error' => 'HTTP読み込みエラーです。',
 'http-timed-out' => 'HTTP要求がタイムアウトしました。',
 'http-curl-error' => 'URLからの取得に失敗しました: $1',
 'http-host-unreachable' => 'URLに到達できません。',
@@ -2942,7 +2942,7 @@ $1 のブロックの理由は「''$2''」です。",
 'movenologintext' => 'ページを移動するためには、登録利用者でありかつ、[[Special:UserLogin|ログイン]]している必要があります。',
 'movenotallowed' => 'ページを移動する権限がありません。',
 'movenotallowedfile' => 'ファイルを移動する権限がありません。',
-'cant-move-user-page' => '利用者ページを移動させる権限がありません（下位ページ内は除く）。',
+'cant-move-user-page' => '利用者ページを移動させる権限がありません (下位ページ内を除く)。',
 'cant-move-to-user-page' => '利用者下位ページ以外の利用者ページに、ページを移動させる権限がありません。',
 'newtitle' => '新しいページ名:',
 'move-watch' => '移動元と移動先ページをウォッチ',
@@ -3293,6 +3293,10 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'pageinfo-protect-cascading' => 'カスケード保護されている',
 'pageinfo-protect-cascading-yes' => 'はい',
 'pageinfo-protect-cascading-from' => 'カスケード保護の起点',
+'pageinfo-category-info' => 'カテゴリ情報',
+'pageinfo-category-pages' => 'ページ数',
+'pageinfo-category-subcats' => '下位カテゴリ数',
+'pageinfo-category-files' => 'ファイル数',
 
 # Skin names
 'skinname-standard' => 'クラシック',
@@ -3314,8 +3318,8 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'rcpatroldisabledtext' => '最近の更新の巡回機能は現在無効になっています。',
 'markedaspatrollederror' => '巡回済みにできません',
 'markedaspatrollederrortext' => '巡回済みにするには、版を指定する必要があります。',
-'markedaspatrollederror-noautopatrol' => '自分の編集を巡回済みにする権限がありません。',
-'markedaspatrollednotify' => '$1 へのこの変更は巡回済みになりました。',
+'markedaspatrollederror-noautopatrol' => 'あなたには自分の編集を巡回済みにする権限がありません。',
+'markedaspatrollednotify' => '$1 へのこの変更を巡回済みにしました。',
 'markedaspatrollederrornotify' => '巡回済みにするのに失敗しました。',
 
 # Patrol log
@@ -3608,7 +3612,7 @@ Variants for Chinese language
 'exif-credit' => '帰属/提供者',
 'exif-source' => 'ソース',
 'exif-editstatus' => '画像の編集上の状態',
-'exif-urgency' => '緊急',
+'exif-urgency' => '緊急度',
 'exif-fixtureidentifier' => 'フィクスチャ名',
 'exif-locationdest' => '映っている場所',
 'exif-locationdestcode' => '映っている場所のコード',

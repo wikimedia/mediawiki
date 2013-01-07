@@ -2259,6 +2259,8 @@ Hlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu
 'prot_1movedto2' => 'je [[$1]] pod hesło [[$2]] přesunył',
 'protect-badnamespace-title' => 'Nješkitajomny mjenowy rum',
 'protect-badnamespace-text' => 'Strony w tutym mjenowym rumje njehodźa so škitać.',
+'protect-norestrictiontypes-text' => 'Tuta strona njeda so škitać, dokelž žane wobmjezowanja k dispoziciji njesteja.',
+'protect-norestrictiontypes-title' => 'Nješkitajomna strona',
 'protect-legend' => 'Škit wobkrućić',
 'protectcomment' => 'Přičina:',
 'protectexpiry' => 'Čas škita:',
@@ -2895,6 +2897,10 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-protect-cascading' => 'Kaskadowy škit wottud',
 'pageinfo-protect-cascading-yes' => 'Haj',
 'pageinfo-protect-cascading-from' => 'Kaskadowy škit wot',
+'pageinfo-category-info' => 'Kategorijowe informacije',
+'pageinfo-category-pages' => 'Ličba rěkow',
+'pageinfo-category-subcats' => 'Ličba podkategorijow',
+'pageinfo-category-files' => 'Ličba datajow',
 
 # Skin names
 'skinname-standard' => 'Klasiski',

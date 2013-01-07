@@ -650,7 +650,7 @@ Query: $2',
 'viewsourcetext' => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'viewyourtext' => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
 'protectedinterface' => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software di questo sito ed è protetta per evitare possibili abusi.
-Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki,",
+Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki.",
 'editinginterface' => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti su questo wiki.
 Per aggiungere o modificare le traduzioni valide su tutti i wiki, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
 'sqlhidden' => '(la query SQL è stata nascosta)',
@@ -2377,6 +2377,8 @@ Vedi la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenco dell
 'prot_1movedto2' => 'ha spostato [[$1]] a [[$2]]',
 'protect-badnamespace-title' => 'Namespace non suscettibile di protezione',
 'protect-badnamespace-text' => 'Le pagine di questo namespace non possono essere protette.',
+'protect-norestrictiontypes-text' => 'Questa pagina non può essere protetta poiché non vi è alcun tipo di restrizione disponibile.',
+'protect-norestrictiontypes-title' => 'Pagina non proteggibile',
 'protect-legend' => 'Conferma la protezione',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Scadenza:',
@@ -3046,6 +3048,10 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-protect-cascading' => 'Protezione ricorsiva da qui',
 'pageinfo-protect-cascading-yes' => 'Sì',
 'pageinfo-protect-cascading-from' => 'Protezione ricorsiva ereditata da',
+'pageinfo-category-info' => 'Informazioni sulla categoria',
+'pageinfo-category-pages' => 'Numero di pagine',
+'pageinfo-category-subcats' => 'Numero di sottocategorie',
+'pageinfo-category-files' => 'Numero di file',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna la modifica come verificata',

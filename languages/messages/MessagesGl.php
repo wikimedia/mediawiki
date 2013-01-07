@@ -2407,6 +2407,8 @@ Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a 
 'prot_1movedto2' => 'moveu "[[$1]]" a "[[$2]]"',
 'protect-badnamespace-title' => 'Espazo de nomes que non se pode protexer',
 'protect-badnamespace-text' => 'As páxinas presentes neste espazo de nomes non se poden protexer.',
+'protect-norestrictiontypes-text' => 'Esta páxina non se pode protexer porque non hai dispoñible ningún tipo de restrición.',
+'protect-norestrictiontypes-title' => 'Páxina non protexible',
 'protect-legend' => 'Confirmar a protección',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Caducidade:',
@@ -3098,6 +3100,10 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-protect-cascading' => 'Protección en serie activada',
 'pageinfo-protect-cascading-yes' => 'Si',
 'pageinfo-protect-cascading-from' => 'Protección en serie activada',
+'pageinfo-category-info' => 'Información da categoría',
+'pageinfo-category-pages' => 'Número de páxinas',
+'pageinfo-category-subcats' => 'Número de subcategorías',
+'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
 'skinname-standard' => 'Clásica',
@@ -3185,6 +3191,8 @@ O seu sistema pode quedar comprometido se o executa.",
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 horas}}',
 'days' => '{{PLURAL:$1|$1 día|$1 días}}',
+'months' => '{{PLURAL:$1|$1 mes|$1 meses}}',
+'years' => '{{PLURAL:$1|$1 ano|$1 anos}}',
 'ago' => 'hai $1',
 'just-now' => 'agora mesmo',
 
