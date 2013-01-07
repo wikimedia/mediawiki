@@ -3232,6 +3232,25 @@ Link with suffix
 </p>
 !! end
 
+!! article
+Foo
+!! text
+Some text
+!! endarticle
+
+!! test
+Bug 43661: Piped links with identical prefixes
+!! input
+[[foo|foo bar]]
+
+[[foo|foobar]]
+!! result
+<p><a href="/wiki/Foo" title="Foo">foo bar</a>
+</p><p><a href="/wiki/Foo" title="Foo">foobar</a>
+</p>
+!! end
+
+
 !! test
 Link with HTML entity in suffix / tail
 !! input
