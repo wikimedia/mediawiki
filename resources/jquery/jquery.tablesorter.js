@@ -686,6 +686,15 @@
 								}
 							}
 
+							// Reset count of unaffected columns to have them sorted in default
+							// (ascending) order when their header is clicked the next time
+							$headers.each( function( i, header ) {
+								if ( !isValueInArray( i, config.sortList ) ) {
+									header.order = 0;
+									header.count = 0;
+								}
+							} );
+
 							// Set CSS for headers
 							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, columnToHeader );
 							appendToTable(

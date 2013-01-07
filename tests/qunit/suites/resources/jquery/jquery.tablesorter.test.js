@@ -148,6 +148,18 @@
 		}
 	);
 	tableTest(
+		'Basic planet table: ascending by name (multiple clicks)',
+		header,
+		planets,
+		ascendingName,
+		function ( $table ) {
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+	tableTest(
 		'Basic planet table: descending by name',
 		header,
 		planets,
