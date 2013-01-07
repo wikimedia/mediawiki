@@ -3012,25 +3012,26 @@ class Language {
 	 * @return string
 	 */
 	function listToText( array $l ) {
-		$s = '';
 		$m = count( $l ) - 1;
-
-		if ( $m === 0 ) {
-			return $l[0];
-		} elseif ( $m === 1 ) {
-			return $l[0] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $l[1];
-		} else {
-			for ( $i = $m; $i >= 0; $i-- ) {
-				if ( $i == $m ) {
-					$s = $l[$i];
-				} elseif ( $i == $m - 1 ) {
-					$s = $l[$i] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $s;
-				} else {
-					$s = $l[$i] . $this->getMessageFromDB( 'comma-separator' ) . $s;
-				}
-			}
-			return $s;
+		if ( $m < 0 ) {
+			return '';
 		}
+		if ( $m > 0 ) {
+			$and = $this->getMessageFromDB( 'and' );
+			$space = $this->getMessageFromDB( 'word-separator' );
+			if ( $m > 1 ) {
+				$comma = $this->getMessageFromDB( 'comma-separator' );
+			}
+		}
+		$s = $l[$m];
+		for ( $i = $m - 1; $i >= 0; $i-- ) {
+			if ( $i == $m - 1 ) {
+				$s = $l[$i] . $and . $space . $s;
+			} else {
+				$s = $l[$i] . $comma . $s;
+			}
+		}
+		return $s;
 	}
 
 	/**
