@@ -156,6 +156,9 @@ production.
 * BREAKING CHANGE: list=logevents output format changed for details of some log
   types. Specifically, details that were formerly reported under a key like
   "4::foo" will now be reported under a key of simply "foo".
+* BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
+  for all query modules.
+* ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
 
 === Languages updated in 1.21 ===
 

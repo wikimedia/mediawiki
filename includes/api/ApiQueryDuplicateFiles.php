@@ -66,10 +66,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		$skipUntilThisDup = false;
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$fromImage = $cont[0];
 			$skipUntilThisDup = $cont[1];
 			// Filter out any images before $fromImage
@@ -202,12 +199,6 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
 	public function getDescription() {
 		return 'List all files that are duplicates of the given file(s) based on hash values';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
 	}
 
 	public function getExamples() {
