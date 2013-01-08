@@ -97,15 +97,6 @@ abstract class BagOStuff {
 	}
 
 	/**
-	 * @todo: what is this?
-	 * @return Array
-	 */
-	public function keys() {
-		/* stub */
-		return array();
-	}
-
-	/**
 	 * Delete all objects expiring before a certain date.
 	 * @param $date string The reference date in MW format
 	 * @param $progressCallback callback|bool Optional, a function which will be called

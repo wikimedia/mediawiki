@@ -264,23 +264,4 @@ class DBABagOStuff extends BagOStuff {
 
 		return ( $value === false ) ? false : (int)$value;
 	}
-
-	function keys() {
-		$reader = $this->getReader();
-		$k1 = dba_firstkey( $reader );
-
-		if ( !$k1 ) {
-			return array();
-		}
-
-		$result[] = $k1;
-
-		$key = dba_nextkey( $reader );
-		while ( $key ) {
-			$result[] = $key;
-			$key = dba_nextkey( $reader );
-		}
-
-		return $result;
-	}
 }

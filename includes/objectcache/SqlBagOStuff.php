@@ -49,7 +49,7 @@ class SqlBagOStuff extends BagOStuff {
 	 *   - server:      A server info structure in the format required by each
 	 *                  element in $wgDBServers.
 	 *
-	 *   - servers:     An array of server info structures describing a set of 
+	 *   - servers:     An array of server info structures describing a set of
 	 *                  database servers to distribute keys to. If this is
 	 *                  specified, the "server" option will be ignored.
 	 *
@@ -62,7 +62,7 @@ class SqlBagOStuff extends BagOStuff {
 	 *
 	 *   - tableName:   The table name to use, default is "objectcache".
 	 *
-	 *   - shards:      The number of tables to use for data storage on each server. 
+	 *   - shards:      The number of tables to use for data storage on each server.
 	 *                  If this is more than 1, table names will be formed in the style
 	 *                  objectcacheNNN where NNN is the shard index, between 0 and
 	 *                  shards-1. The number of digits will be the minimum number
@@ -113,8 +113,8 @@ class SqlBagOStuff extends BagOStuff {
 			}
 
 			# Don't keep timing out trying to connect for each call if the DB is down
-			if ( isset( $this->connFailureErrors[$serverIndex] ) 
-				&& ( time() - $this->connFailureTimes[$serverIndex] ) < 60 ) 
+			if ( isset( $this->connFailureErrors[$serverIndex] )
+				&& ( time() - $this->connFailureTimes[$serverIndex] ) < 60 )
 			{
 				throw $this->connFailureErrors[$serverIndex];
 			}
@@ -385,29 +385,6 @@ class SqlBagOStuff extends BagOStuff {
 		}
 
 		return $newValue;
-	}
-
-	/**
-	 * @return Array
-	 */
-	public function keys() {
-		$result = array();
-
-		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
-			try {
-				$db = $this->getDB( $serverIndex );
-				for ( $i = 0; $i < $this->shards; $i++ ) {
-					$res = $db->select( $this->getTableNameByShard( $i ),
-						array( 'keyname' ), false, __METHOD__ );
-					foreach ( $res as $row ) {
-						$result[] = $row->keyname;
-					}
-				}
-			} catch ( DBError $e ) {
-				$this->handleReadError( $e, $serverIndex );
-			}
-		}
-		return $result;
 	}
 
 	/**

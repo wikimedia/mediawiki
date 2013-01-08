@@ -91,12 +91,5 @@ class HashBagOStuff extends BagOStuff {
 
 		return true;
 	}
-
-	/**
-	 * @return array
-	 */
-	function keys() {
-		return array_keys( $this->bag );
-	}
 }
 
