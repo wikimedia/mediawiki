@@ -8676,4 +8676,7 @@ $4 is the gender of the target user.',
 'duration-centuries' => '{{Related|Duration}}',
 'duration-millennia' => '{{Related|Duration}}',
 
+# Rotation
+'rotation-comment' => 'comment set for new version uploaded after rotation',
+
 );
