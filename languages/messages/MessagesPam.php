@@ -950,11 +950,12 @@ Nung ibie me, magamit ya bang kilalanan ing kekang ambag.',
 'right-userrights-interwiki' => 'I-edit la reng katulirang talagamit (user rights) da reng talagamit kareng aliwang karinan a wiki',
 'right-siteadmin' => 'Isara ya ampong ibusni ing database',
 
+# Special:Log/newusers
+'newuserlogpage' => "Tala ning pamaglalang talagamit (''User creation log'')",
+
 # User rights log
 'rightslog' => 'Tala da reng katulirang talagamit (user rights log)',
 'rightslogtext' => 'Ini tala de reng miyalilan king katulirang talagamit (user rights).',
-'rightslogentry' => 'miyalilan ya ing grupu nung nu ya kayanib i $1 manibat king $2 paras king $3',
-'rightsnone' => '(ala)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'i-edit/alilan ya ing bulung a ini',
@@ -1321,9 +1322,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Ipakit la reng talagamit magumpisa king:',
 'listusers-submit' => 'Pakit',
 'listusers-noresult' => 'Alang meyakit a talagamit.',
-
-# Special:Log/newusers
-'newuserlogpage' => "Tala ning pamaglalang talagamit (''User creation log'')",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Katuliran da reng grupung talagamit (user group rights)',
@@ -2345,5 +2343,6 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 # New logging system
 'revdelete-restricted' => 'ipairal la reng limitasiun kareng sysop',
 'revdelete-unrestricted' => 'ilako la reng makabawal kareng sysops',
+'rightsnone' => '(ala)',
 
 );

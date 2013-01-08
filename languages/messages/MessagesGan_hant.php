@@ -889,11 +889,12 @@ $2',
 'grouppage-sysop' => '{{ns:project}}:操作員',
 'grouppage-bureaucrat' => '{{ns:project}}:行政員',
 
+# Special:Log/newusers
+'newuserlogpage' => '新開戶嗰人名單',
+
 # User rights log
 'rightslog' => '用戶許可權日誌',
 'rightslogtext' => '底下記到用戶許可權嗰更改記錄。',
-'rightslogentry' => '拿 $1 嗰許可權從 $2 改到 $3',
-'rightsnone' => '（冇）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => '編輯箇頁',
@@ -1250,9 +1251,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => '顯示噉樣用戶條件:',
 'listusers-submit' => '顯示',
 'listusers-noresult' => '尋伓到用戶。',
-
-# Special:Log/newusers
-'newuserlogpage' => '新開戶嗰人名單',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '（成員名單）',
@@ -2281,6 +2279,9 @@ $3
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|標籤]]過濾器：',
+
+# New logging system
+'rightsnone' => '（冇）',
 
 # Search suggestions
 'searchsuggest-search' => '尋吖',

@@ -1018,6 +1018,10 @@ Eger bildirseñiz, saifelerdeki deñişmelerni kimniñ yapqanını köstermek i�
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokratlar',
 'grouppage-suppress' => '{{ns:project}}:Teftişçiler',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Yañı qullanıcı jurnalı',
+'newuserlogpagetext' => 'Eñ sоñki qayd оlğan qullanıcı jurnalı.',
+
 # User rights log
 'rightslog' => 'Qullanıcınıñ aqları jurnalı',
 
@@ -1368,10 +1372,6 @@ Ayrıca [[Special:WantedCategories|talap etilgen kategoriyalarnıñ cedveline]] 
 # Special:ListUsers
 'listusers-submit' => 'Köster',
 'listusers-noresult' => 'İç bir qullanıcı tapılmadı.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Yañı qullanıcı jurnalı',
-'newuserlogpagetext' => 'Eñ sоñki qayd оlğan qullanıcı jurnalı.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(azalar cedveli)',

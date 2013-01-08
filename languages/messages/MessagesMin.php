@@ -1120,7 +1120,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'blanknamespace' => '(Utamo)',
 
 # Contributions
-'contributions' => '{{GENDER:$1|User}} kontribusi',
+'contributions' => 'Kontribusi {{GENDER:$1|pangguno}}',
 'contributions-title' => 'Jariah pangguno untuak $1',
 'mycontris' => 'Jariah denai',
 'contribsub2' => 'Untuak $1 ($2)',

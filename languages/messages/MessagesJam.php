@@ -735,6 +735,9 @@ Chrai priifix yu kwieri wid ''all:'' fi saach aal kantent (inkluudn taak piej, t
 
 'grouppage-sysop' => '{{ns:project}}:Adminischrieta',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Yuuza krieshan lag',
+
 # User rights log
 'rightslog' => 'Yuuza raits lag',
 
@@ -824,9 +827,6 @@ Piej pahn [[Special:Watchlist|yu wachlis]] dem '''buol'''.",
 
 # Special:LinkSearch
 'linksearch' => 'Extoernal lingk',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Yuuza krieshan lag',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis a memba)',

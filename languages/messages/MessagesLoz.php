@@ -504,7 +504,6 @@ Informasi: (bye) = petuho a nca selt,
 
 # User rights log
 'rightslog' => 'Desu di petuhoni kwa sebelu',
-'rightsnone' => '(ni)',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|petuho|petuho}}',
@@ -1077,5 +1076,8 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 
 # Special:SpecialPages
 'specialpages' => 'Petulo zwenti',
+
+# New logging system
+'rightsnone' => '(ni)',
 
 );

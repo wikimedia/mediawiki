@@ -764,7 +764,6 @@ $2
 'template-protected' => '(حماية كاملة)',
 'template-semiprotected' => '(حماية جزئية)',
 'hiddencategories' => '{{PLURAL:$1|هذه الصفحة غير موجودة في أي تصنايف مخفية|هذه الصفحة موجودة في تصنيف مخفي واحد|هذه الصفحة موجودة في تصنيفين مخفيين|هذه الصفحة موجودة في $1 تصانيف مخفية|هذه الصفحة موجودة في $1 تصنيفا مخفيا|هذه الصفحة موجودة في $1 تصنيف مخفي}}:',
-'nocreatetitle' => 'تم تحديد إنشاء الصفحات',
 'nocreatetext' => 'قام {{SITENAME}} بتحديد القدرة على إنشاء صفحات جديدة.
 يمكنك العودة وتحرير صفحة موجودة بالفعل، أو [[Special:UserLogin|الدخول أو تسجيل حساب]].',
 'nocreate-loggedin' => 'أنت لا تمتلك الصلاحية لإنشاء صفحات جديدة.',
@@ -1040,6 +1039,9 @@ $1",
 'prefs-help-email' => 'عنوان البريد الإلكتروني هو أمر اختياري، ولكن ستحتاج لإعادة تعيين كلمة المرور، إن نسيت كلمة المرور الخاصة بك.',
 'prefs-help-email-others' => 'يمكنك أيضا اختيار للسماح للآخرين الاتصال بك عن طريق صفحة المستخدم أو نقاش المستخدم الخاص بك دون الحاجة إلى الكشف عن الهوية الخاصة بك.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'سجل إنشاء المستخدمين',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'modifi hal page',
 
@@ -1147,9 +1149,6 @@ $1",
 
 # Special:LinkSearch
 'linksearch-line' => '$1 موصولة من $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'سجل إنشاء المستخدمين',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(قائمة الأعضاء)',

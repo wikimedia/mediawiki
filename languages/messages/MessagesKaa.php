@@ -1014,11 +1014,13 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'right-userrights-interwiki' => "Basqa wikilerdegi paydalanıwshının' huquqların o'zgertiw",
 'right-siteadmin' => "Mag'lıwmatlar bazasın qulıplaw ha'm qulıplawın o'shiriw",
 
+# Special:Log/newusers
+'newuserlogpage' => 'Paydalanıwshılardı esapqa alıw jurnalı',
+'newuserlogpagetext' => 'Bul paydalanıwshılardı esapqa alıw jurnalı',
+
 # User rights log
 'rightslog' => 'Paydalanıwshı huquqları jurnalı',
 'rightslogtext' => "Bul paydalanıwshı huquqların o'zgertiw jurnalı.",
-'rightslogentry' => "$1 paydalanıwshısının' ag'za bolg'an toparları $2 degennen $3 degenge o'zgertti",
-'rightsnone' => '(hesh qanday)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'bul betti oqıw',
@@ -1364,10 +1366,6 @@ Ja'nede [[Special:WantedCategories|kerekli kategoriyalardı]] qarap ko'rin'.",
 'listusersfrom' => "Mına paydalanıwshıdan baslap ko'rsetiw:",
 'listusers-submit' => "Ko'rset",
 'listusers-noresult' => 'Paydalanıwshı tabılmadı.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Paydalanıwshılardı esapqa alıw jurnalı',
-'newuserlogpagetext' => 'Bul paydalanıwshılardı esapqa alıw jurnalı',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Paydalanıwshılar toparı huqıqları',
@@ -1943,5 +1941,6 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 'revdelete-restricted' => "administratorlarg'a qollanılg'an sheklewler",
 'revdelete-unrestricted' => "administratorlardan alıp taslang'an sheklewler",
 'newuserlog-byemail' => 'parol e-mail arqalı jiberildi',
+'rightsnone' => '(hesh qanday)',
 
 );

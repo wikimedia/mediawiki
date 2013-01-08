@@ -607,6 +607,9 @@ Tistingan mo i-prefiks ang imo pamangkot upod sang ''tanan:'' para makita mo ang
 
 'grouppage-sysop' => '{{ns:project}}:Mga manugdumala',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Listahan sang pag-ubra sang manug-usar',
+
 # User rights log
 'rightslog' => 'Lista sang mga karapatan sang manug-usar',
 
@@ -713,9 +716,6 @@ Ang paglarawan nga yara sa ibabaw sang [$2 pahina sang paglarawan sang akta] sin
 
 # Special:LinkSearch
 'linksearch' => 'Panggwa nga mga link',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Listahan sang pag-ubra sang manug-usar',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista sang mga myembro)',

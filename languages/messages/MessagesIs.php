@@ -1006,7 +1006,7 @@ Hún er nú þegar til.',
 'defaultmessagetext' => 'Sjálfgefinn skilaboða texti',
 'content-failed-to-parse' => 'Gat ekki þáttað $2 efni samkvæmt $1 líkani: $3',
 'invalid-content-data' => 'Ógild efnisgögn.',
-'content-not-allowed-here' => '„$1“ efni er ekki leyfilegt á síðunni $2',
+'content-not-allowed-here' => '„$1“ efni er ekki leyfilegt á síðunni [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'wiki-texti',
@@ -1334,9 +1334,9 @@ Ekki er hægt að taka þessa breytingu til baka.',
 'prefs-emailconfirm-label' => 'Staðfesting netfangs:',
 'prefs-textboxsize' => 'Stærð breytingarglugga',
 'youremail' => 'Netfang:',
-'username' => 'Notandanafn:',
-'uid' => 'Raðnúmer:',
-'prefs-memberingroups' => 'Meðlimur {{PLURAL:$1|hóps|hópa}}:',
+'username' => '{{Gender:$1|Notandanafn}}:',
+'uid' => 'Raðnúmer {{GENDER:$1|notanda}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Meðlimur}} {{PLURAL:$1|hóps|hópa}}:',
 'prefs-registration' => 'Nýskráningartími:',
 'yourrealname' => 'Fullt nafn:',
 'yourlanguage' => 'Viðmótstungumál:',
@@ -1955,6 +1955,7 @@ Hún er tilvísun á [[$2]].',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bæt|bæti}}',
 'ncategories' => '$1 {{PLURAL:$1|flokkur|flokkar}}',
+'ninterwikis' => '$1 {{PLURAL:$1|tungumálatengill|tungumálatenglar}}',
 'nlinks' => '$1 {{PLURAL:$1|tengill|tenglar}}',
 'nmembers' => '$1 {{PLURAL:$1|meðlimur|meðlimir}}',
 'nrevisions' => '$1 {{PLURAL:$1|breyting|breytingar}}',
@@ -1983,6 +1984,7 @@ Hún er tilvísun á [[$2]].',
 'mostlinkedtemplates' => 'Mest ítengdu snið',
 'mostcategories' => 'Mest flokkaðar greinar',
 'mostimages' => 'Mest ítengdu skrárnar',
+'mostinterwikis' => 'Síður með flestm tungumálatenglum',
 'mostrevisions' => 'Síður eftir fjölda breytinga',
 'prefixindex' => 'Allar síður með forskeyti',
 'prefixindex-namespace' => 'Allar síður með forskeyti ($1 nafnrými)',
@@ -2058,6 +2060,7 @@ Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan,
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'Þú ert að skoða útgáfu síðunnar úr skyndiminni, sem getur verið allt að $1 gömul.',
+'cachedspecial-viewing-cached-ts' => 'Þetta er útgáfa þessarar síðu úr skyndiminni og sem endurspeglar ekki endilega núverandi ástand.',
 'cachedspecial-refresh-now' => 'Skoða síðustu',
 
 # Special:Categories
@@ -2079,9 +2082,9 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'linksearch-pat' => 'Leitarmynstur:',
 'linksearch-ns' => 'Nafnrými:',
 'linksearch-ok' => 'Leita',
-'linksearch-text' => 'Algildistafir eins og "*.wikipedia.org" eru leyfðir.<br />
-Stafurinn þarf í minnsta kosti að innihalda rótarlén, eins og "*.org"
-Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitina)',
+'linksearch-text' => 'Algildisleit eins og "*.wikipedia.org" er leyfð.<br />
+Leitin þarf að minnsta kosti að innihalda rótarlén, eins og "*.org"
+{{PLURAL:$2|Studd samskiptaregla|Studdar samskiptareglur}}: <code>$1</code> (http:// sjálfgefið ef engin regla er valin).',
 'linksearch-line' => 'Tengt er í $1 á síðunni $2',
 'linksearch-error' => 'Algildistafir mega engöngu birtast í upphafi vefslóðarinnar.',
 
@@ -2123,9 +2126,11 @@ Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitin
 'mailnologin' => 'Ekkert netfang til að senda á',
 'mailnologintext' => 'Þú verður að vera [[Special:UserLogin|innskráð(ur)]] auk þess að hafa gilt netfang í [[Special:Preferences|stillingunum]] þínum til að senda tölvupóst til annara notenda.',
 'emailuser' => 'Senda þessum notanda tölvupóst',
+'emailuser-title-target' => 'Sendu þessum {{GENDER:$1|notanda}} tölvupóst',
+'emailuser-title-notarget' => 'Senda tölvupóst',
 'emailpage' => 'Senda tölvupóst',
-'emailpagetext' => 'Hafi notandi tilgreint netfang í stillingunum sínum er hægt að senda póst til hans hér.
-Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]] birtist í "Frá:" hluta tölvupóstsins, svo að viðtakandi þess geti svarað beint til þín.',
+'emailpagetext' => 'Hafi notandinn tilgreint netfang í stillingunum sínum er hægt að senda póst til {{GENDER:$1|hans|hennar|hans}} hér.
+Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]] birtist í "Frá:" hluta tölvupóstsins, svo að viðtakandi hans geti svarað beint til þín.',
 'usermailererror' => 'Póst hlutur skilaði villu:',
 'defemailsubject' => '{{SITENAME}} skilaboð frá notandanum "$1"',
 'usermaildisabled' => 'Netfang notenda er óvirkt',
@@ -2163,8 +2168,8 @@ Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]
 'watchnologin' => 'Óinnskráð(ur)',
 'watchnologintext' => 'Þú verður að vera [[Special:UserLogin|innskáð(ur)]] til að geta breytt vaktlistanum.',
 'addwatch' => 'Bæta á vaktlistann',
-'addedwatchtext' => "Síðunni „[[:$1]]“ hefur verið bætt á [[Special:Watchlist|Vaktlistann]] þinn.
-Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og síðan mun vera '''feitletruð''' í [[Special:RecentChanges|Nýlegum breytingum]] svo auðveldara sé að finna hana.",
+'addedwatchtext' => 'Síðunni „[[:$1]]“ hefur verið bætt á [[Special:Watchlist|vaktlistann]] þinn.
+Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar.',
 'removewatch' => 'Fjarlægja af vaktlistanum',
 'removedwatchtext' => 'Síðan „[[:$1]]“ hefur verið fjarlægð af [[Special:Watchlist|vaktlistanum þínum]].',
 'watch' => 'Vakta',
@@ -2190,6 +2195,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'unwatching' => 'Afvakta...',
 'watcherrortext' => 'Villa kom upp við breytingu á stillingum vaktlistans fyrir "$1".',
 
+'enotif_mailer' => '{{SITENAME}} tilkynningasendill',
 'enotif_reset' => 'Merkja allar síður sem skoðaðar',
 'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
 'enotif_subject_deleted' => '$1 á {{SITENAME}} hefur verið eytt af {{gender:$2|$2}}',
@@ -2303,6 +2309,8 @@ Sjáðu [[Special:ProtectedPages|Verndunarskrá]] fyrir núverandi lista yfir ve
 'prot_1movedto2' => '[[$1]] færð á [[$2]]',
 'protect-badnamespace-title' => 'Óverndanlegt nafnrými',
 'protect-badnamespace-text' => 'Síður í þessu nafnrými geta ekki verið verndaðar.',
+'protect-norestrictiontypes-text' => 'Ekki er hægt að vernda síðuna þar sem skilgreind verndunarstig eru ekki til staðar.',
+'protect-norestrictiontypes-title' => 'Óverndanleg síða',
 'protect-legend' => 'Verndunarstaðfesting',
 'protectcomment' => 'Ástæða:',
 'protectexpiry' => 'Rennur út:',
@@ -2387,7 +2395,8 @@ Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletedrevisions' => '$1 {{PLURAL:$1|breyting endurvakin|breytingar endurvaktar}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|breyting|breytingar}} og $2 {{PLURAL:$2|skrá|skrár}} endurvaktar',
 'undeletedfiles' => '{{PLURAL:$1|Ein skrá endurvakin|$1 skrár endurvaktar}}',
-'cannotundelete' => 'Ekki var hægt að afturkalla síðuna. (Líklega hefur einhver gert það á undan þér.)',
+'cannotundelete' => 'Ekki var hægt að afturkalla eyðingu.
+$1',
 'undeletedpage' => "'''$1 var endurvakin'''
 
 Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og endurvakningar.",
@@ -2610,6 +2619,7 @@ Vinsamlegast hafðu samband við internetþjónustuaðilann þinn eða netstjór
 Mundu að [[Special:UnlockDB|opna hann aftur]] þegar þú hefur lokið viðgerðum.',
 'unlockdbsuccesstext' => 'Gagnagrunnurinn hefur verið opnaður.',
 'databasenotlocked' => 'Gagnagrunnurinn er ekki læstur.',
+'lockedbyandtime' => '(af {{GENDER:$1|$1}} kl. $3, $2)',
 
 # Move page
 'move-page' => 'Færa $1',
@@ -3687,9 +3697,9 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'logentry-move-move_redir-noredirect' => '$1 færði $3 á $4 yfir tilvísun, án þess að skilja eftir tilvísun',
 'logentry-patrol-patrol' => '$1 merkti útgáfu $3 frá $4 sem yfirfarna',
 'logentry-patrol-patrol-auto' => '$1 merkti sjálfvirkt útgáfu $3 frá $4 sem yfirfarna',
-'logentry-newusers-newusers' => '$1 stofnaði notanda aðgang',
-'logentry-newusers-create' => '$1 stofnaði notanda aðgang',
-'logentry-newusers-create2' => '$1 stofnaði aðganginn $3',
+'logentry-newusers-newusers' => 'Notandaaðgangurinn $1 var stofnaður',
+'logentry-newusers-create' => 'Notandaaðgangurinn $1 var stofnaður',
+'logentry-newusers-create2' => '$1 stofnaði notandaaðganginn $3',
 'logentry-newusers-autocreate' => 'Aðgangurinn $1 var stofnaður sjálfvirkt',
 'newuserlog-byemail' => 'lykilorð sent með tölvupósti',
 'rightsnone' => '(engin)',

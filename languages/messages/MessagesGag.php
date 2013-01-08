@@ -616,6 +616,9 @@ Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aarama
 
 'grouppage-sysop' => '{{ns:project}}:Önderciler',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Eni kullanıcı bennemäkleri',
+
 # User rights log
 'rightslog' => 'Kullanıcı hakları jurnalı',
 
@@ -790,9 +793,6 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 
 # Special:LinkSearch
 'linksearch' => 'İç baalantlar',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Eni kullanıcı bennemäkleri',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(azaların listası)',

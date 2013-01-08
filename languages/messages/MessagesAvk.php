@@ -1035,10 +1035,12 @@ Rinafe e-mail mane me zo razdar viele ar webesik uzerar.',
 'right-userrights-interwiki' => "Betara va favesikrokeem koe aro 'wiki' xo",
 'right-siteadmin' => 'Origakelekara is dimelekara',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Buredura "log"',
+
 # User rights log
 'rightslog' => '"Log" bu va favesikrokeem',
 'rightslogtext' => 'Tir "log" va betara va favesikroka.',
-'rightsnone' => '(mek)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Redura va batu bu',
@@ -1413,9 +1415,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Fintara va favesikeem male :',
 'listusers-submit' => 'Nedira',
 'listusers-noresult' => 'Mek trasiyin favesik.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Buredura "log"',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rokeem ke favesiklospa',
@@ -2385,5 +2384,6 @@ This confirmation code will expire at $4.',
 'revdelete-restricted' => 'irutara rewana pu ristusik',
 'revdelete-unrestricted' => 'irutara tiolteyena pu ristusik',
 'newuserlog-byemail' => 'remravlem staksayan kan e-mail',
+'rightsnone' => '(mek)',
 
 );

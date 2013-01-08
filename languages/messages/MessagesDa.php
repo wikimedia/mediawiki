@@ -2322,6 +2322,8 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'prot_1movedto2' => '$1 flyttet til $2',
 'protect-badnamespace-title' => 'Navnerum, der ikke kan beskyttes',
 'protect-badnamespace-text' => 'Sider i dette navnerum kan ikke beskyttes.',
+'protect-norestrictiontypes-text' => 'Denne side kan ikke beskyttes, da der er ikke er nogen tilgængelige begrænsningstyper.',
+'protect-norestrictiontypes-title' => 'Ikke muligt at beskytte side',
 'protect-legend' => 'Bekræft beskyttelse',
 'protectcomment' => 'Begrundelse:',
 'protectexpiry' => 'Udløb',

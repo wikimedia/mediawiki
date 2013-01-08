@@ -807,6 +807,9 @@ Yer e-mail address insae revealed whin ither uisers contact ye.",
 # Rights
 'right-delete' => 'Delete pages',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Uiser creation log',
+
 # User rights log
 'rightslog' => 'Uiser richts log',
 'rightslogtext' => 'This is a log o chynges tae uiser richts.',
@@ -1052,9 +1055,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListUsers
 'listusers-submit' => 'Shaw',
 'listusers-blocked' => '(blockit)',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Uiser creation log',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(leet o members)',

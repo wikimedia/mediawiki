@@ -2246,6 +2246,8 @@ Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le 
 'prot_1movedto2' => "[[$1]] spustete jndr'à [[$2]]",
 'protect-badnamespace-title' => 'Namespace none proteggibbele',
 'protect-badnamespace-text' => "Le pàggene jndr'à stu namespace non ge ponne essere prutette.",
+'protect-norestrictiontypes-text' => 'Sta pàggene non ge pò essere protette purcé non ge stonne tipe de restriziune disponibbile.',
+'protect-norestrictiontypes-title' => 'Pàgene non proteggibbele',
 'protect-legend' => "Conferme 'a protezione",
 'protectcomment' => 'Mutive:',
 'protectexpiry' => 'More:',

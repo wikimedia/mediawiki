@@ -710,6 +710,9 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'right-autoconfirmed' => 'Edicëjô dzélowò zazychrowónych starnów',
 'right-bot' => 'Nacéchòwanié edicëjó jakno aùtomatnych',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nowi brëkòwnicë',
+
 # User rights log
 'rightslog' => 'Prawa brëkòwnika',
 
@@ -883,9 +886,6 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 
 # Special:LinkSearch
 'linksearch' => 'Bùtnowé lënczi',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nowi brëkòwnicë',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lësta nôlëżników karna)',

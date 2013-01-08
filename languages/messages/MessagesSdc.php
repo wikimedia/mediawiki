@@ -906,11 +906,12 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'grouppage-sysop' => '{{ns:project}}:Amministhradori',
 'grouppage-bureaucrat' => '{{ns:project}}:Buròcrati',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nobi utenti',
+
 # User rights log
 'rightslog' => 'Diritti di li utenti',
 'rightslogtext' => "Chisthu è lu rigisthru di lu mudìfigghi a li diritti assignaddi a l'utenti.",
-'rightslogentry' => "à mudìfiggaddu l'apparthinènzia di $1 da lu gruppu $2 a lu gruppu $3",
-'rightsnone' => '(nisciunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'mudìfiggà chistha pàgina',
@@ -1240,9 +1241,6 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'listusersfrom' => "Musthra l'utenti parthendi da:",
 'listusers-submit' => 'Musthra',
 'listusers-noresult' => 'Nisciun utenti curripundi a li critéri impusthaddi.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nobi utenti',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(erencu di li membri)',
@@ -2038,5 +2036,8 @@ Pa piazeri, cunfèimma chi vòi ricrià avveru chistha pàgina.",
 'htmlform-submit' => 'Invia',
 'htmlform-reset' => 'Annulla mudifigghi',
 'htmlform-selectorother-other' => 'Althru',
+
+# New logging system
+'rightsnone' => '(nisciunu)',
 
 );

@@ -2568,6 +2568,8 @@ $UNWATCHURL
 'prot_1movedto2' => '[[$1]] переименована в [[$2]]',
 'protect-badnamespace-title' => 'Незащищаемое пространство имён',
 'protect-badnamespace-text' => 'Страницы в этом пространстве имён не могут быть защищены.',
+'protect-norestrictiontypes-text' => 'Эта страница не может быть защищена, как как для неё нет доступных типов ограничений.',
+'protect-norestrictiontypes-title' => 'Незащищаемая страница',
 'protect-legend' => 'Подтвердите установку защиты страницы',
 'protectcomment' => 'Причина:',
 'protectexpiry' => 'Истекает:',

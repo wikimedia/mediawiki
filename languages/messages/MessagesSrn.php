@@ -727,7 +727,6 @@ A kan ben trowe efu dribi.
 
 # User rights log
 'rightslog' => 'Log buku fu kebroikiman leti',
-'rightsnone' => '(no)',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|kenki|kenki}}',
@@ -1236,5 +1235,8 @@ Trawan o kibri.
 
 # Special:SpecialPages
 'specialpages' => 'Spesrutu papira',
+
+# New logging system
+'rightsnone' => '(no)',
 
 );

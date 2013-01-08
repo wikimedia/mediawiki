@@ -1024,9 +1024,11 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'grouppage-user' => '{{ns:project}}:Cleachdaichean',
 'grouppage-sysop' => '{{ns:project}}:Rianadairean',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Loga cruthachaidh de chleachdaichean',
+
 # User rights log
 'rightslog' => "Loga còraichean a' chleachdaiche",
-'rightsnone' => '(chan eil gin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'deasaich an duilleag seo',
@@ -1178,9 +1180,6 @@ Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan i
 # Special:LinkSearch
 'linksearch' => 'Ceanglaichean dhan taobh a-muigh',
 'linksearch-line' => "Tha $1 a' ceangal an-seo o $2",
-
-# Special:Log/newusers
-'newuserlogpage' => 'Loga cruthachaidh de chleachdaichean',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(liosta de bhuill)',
@@ -1554,6 +1553,9 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 
 # Special:Tags
 'tag-filter' => 'Criathrag [[Special:Tags|Tag]]:',
+
+# New logging system
+'rightsnone' => '(chan eil gin)',
 
 # Search suggestions
 'searchsuggest-containing' => 'anns a bheil...',

@@ -1224,6 +1224,9 @@ eeg [[Special:ProtectedPages|Liiska bogagga dhowrsoon]] liiska bogagga howlaha d
 'autoblocker' => 'Waxaa automaatik u xirista keenay in mudo dhow uu cinwaanka IP:ga isticmaalay "[[User:$1|$1]]". Sababta keentay in loo xiro $1 waa: "\'\'\'$2\'\'\'"',
 'blocklogpage' => 'Mamnuucida guda galaheeda',
 'blocklogentry' => 'la mamnuucay  [[$1]] Waqtiga uu dhacaayo neh waa $2 $3',
+'blocklogtext' => 'Halkaan waa  liiska lagu muujiyo manuuca iyo mamnuuc ka qaadista.
+Ciwaanka IP ga ee la mamnuucay so iskeedka ee aan la soo ban dhigin.
+Eeg [[Special:BlockList|Mamnuucyada]] si aad u aragto liiska mamnuucyada ee hadda shaqaynaua.',
 'unblocklogentry' => 'lama mamnuucin $1',
 'block-log-flags-anononly' => "Isticmaalayaasha aanan la'aqoonsanin oo kaliya",
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',

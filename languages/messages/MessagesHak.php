@@ -715,11 +715,13 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 'grouppage-bot' => '{{ns:project}}:Kî-hi-ngìn',
 'grouppage-sysop' => '{{ns:project}}:Kón-lî-yèn',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Sîn-chin yung-fu miàng-chhak',
+'newuserlogpagetext' => 'Liá-he yit-ke chui-khiun pûn chhóng-kien yung-fu ke ngit-ki.',
+
 # User rights log
 'rightslog' => 'Yung-fu khièn-han ngit-ki',
 'rightslogtext' => 'Yî-ha ki-liu̍k yung-fu khièn-han ke kiên-kói ki-liu̍k.',
-'rightslogentry' => 'Chiong $1 ke khièn-han chhiùng $2 kói-vi $3',
-'rightsnone' => '（mò）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'phiên-siá pún-chông',
@@ -1002,10 +1004,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Hién-sṳ yung-fu lie̍t-péu chhiùng:',
 'listusers-submit' => 'Hién-sṳ',
 'listusers-noresult' => 'Cháu put-to yung-fu.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Sîn-chin yung-fu miàng-chhak',
-'newuserlogpagetext' => 'Liá-he yit-ke chui-khiun pûn chhóng-kien yung-fu ke ngit-ki.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(sṳ̀n-yèn chhîn-tân)',
@@ -1668,5 +1666,6 @@ Sòn-chhṳ phêu-chún yi-liau.',
 # New logging system
 'revdelete-restricted' => 'yí-kîn yin-yung han-tsṳ tsṳ tshâu-tsok-yèn',
 'revdelete-unrestricted' => 'yí-kîn yì-tshù yû-kûan tshâu-tsok-yè ke han-tsṳ',
+'rightsnone' => '（mò）',
 
 );

@@ -963,9 +963,11 @@ $2',
 
 'grouppage-sysop' => '{{ns:project}}:প্রশাসকগি',
 
+# Special:Log/newusers
+'newuserlogpage' => 'আতাকুরা হঙসে লগহানি',
+
 # User rights log
 'rightslog' => 'আতাকুরার অধিকারর লগ',
-'rightsnone' => '(নেই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'পাতা এহান পাকর',
@@ -1230,9 +1232,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ActiveUsers
 'activeusers-noresult' => 'আতাকুরা নাপেইলাং।',
-
-# Special:Log/newusers
-'newuserlogpage' => 'আতাকুরা হঙসে লগহানি',
 
 # Special:ListGroupRights
 'listgrouprights-key' => '* <span class="listgrouprights-granted">য়্যাথাং পাসে অধিকার</span>
@@ -1728,6 +1727,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'revdelete-restricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি ফলা',
 'revdelete-unrestricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
 'newuserlog-byemail' => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
+'rightsnone' => '(নেই)',
 
 # Search suggestions
 'searchsuggest-search' => 'বিসারা',

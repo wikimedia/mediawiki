@@ -772,9 +772,11 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'right-undelete' => 'Restaurare una pàgina',
 'right-siteadmin' => 'Bloccare e sbloccare su database',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Usuàrios nous',
+
 # User rights log
 'rightslog' => 'Deretos de is usuàrios',
-'rightsnone' => '(nisciunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lègher custa pàgina',
@@ -1009,9 +1011,6 @@ Dia podent essere immàgines impreadas dae àteros giassos cun unu ligàmine dir
 # Special:ActiveUsers
 'activeusers-hidebots' => 'Cua bots',
 'activeusers-hidesysops' => 'Cua amministradores',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Usuàrios nous',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupu',
@@ -1550,6 +1549,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # New logging system
 'newuserlog-byemail' => 'password imbiada via e-mail',
+'rightsnone' => '(nisciunu)',
 
 # Search suggestions
 'searchsuggest-search' => 'Chirca',

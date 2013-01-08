@@ -660,7 +660,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # User rights log
 'rightslogtext' => 'Ку пользовательсен прависене улăштарниссен журналě',
-'rightsnone' => '(çук)',
 
 # Recent changes
 'recentchanges' => 'Улшăнусем',
@@ -1211,5 +1210,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'specialpages-group-media' => 'Медиа-материалсемпе тултарăшсем',
 'specialpages-group-users' => 'Хутшăнакансем тата правасем',
 'specialpages-group-highuse' => 'Нумай усă куракан страницăсем',
+
+# New logging system
+'rightsnone' => '(çук)',
 
 );

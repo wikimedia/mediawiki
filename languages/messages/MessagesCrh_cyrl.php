@@ -1022,6 +1022,10 @@ $3 мына бу себепни бильдирди: ''$2''",
 'grouppage-bureaucrat' => '{{ns:project}}:Бюрократлар',
 'grouppage-suppress' => '{{ns:project}}:Тефтишчилер',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Янъы къулланыджы журналы',
+'newuserlogpagetext' => 'Энъ сонъки къайд олгъан къулланыджы журналы.',
+
 # User rights log
 'rightslog' => 'Къулланыджынынъ акълары журналы',
 
@@ -1373,10 +1377,6 @@ $3 мына бу себепни бильдирди: ''$2''",
 # Special:ListUsers
 'listusers-submit' => 'Косьтер',
 'listusers-noresult' => 'Ич бир къулланыджы тапылмады.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Янъы къулланыджы журналы',
-'newuserlogpagetext' => 'Энъ сонъки къайд олгъан къулланыджы журналы.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(азалар джедвели)',

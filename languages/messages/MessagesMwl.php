@@ -639,9 +639,11 @@ Causo l çponiblizes, este será outelizado pa te dar crédito pul tou trabalho.
 'right-move' => 'Arrastrar páiginas',
 'right-movefile' => 'Arrastrar fexeiros',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de criaçon de outelizadores',
+
 # User rights log
 'rightslog' => 'Registro de dreitos de l outelizador',
-'rightsnone' => '(nanhun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lher esta páigina',
@@ -845,9 +847,6 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 
 # Special:ListUsers
 'listusers-submit' => 'Amostrar',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de criaçon de outelizadores',
 
 # Special:ListGroupRights
 'listgrouprights-rights' => 'Dreitos',
@@ -1229,5 +1228,8 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 # Special:Tags
 'tags-title' => 'Eitiquetas',
 'tags-edit' => 'eiditar',
+
+# New logging system
+'rightsnone' => '(nanhun)',
 
 );

@@ -795,6 +795,9 @@ Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 'right-upload' => 'Rẽtko rakabmẽ',
 'right-delete' => 'Sakamko get giḍiymẽ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Laṛcaṛićaḱ tear cạbi',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'noa sakam joṛao',
 
@@ -933,9 +936,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 # Special:ListUsers
 'listusers-submit' => 'Udugmẽ',
 'listusers-blocked' => '(Esetgea)',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Laṛcaṛićaḱ tear cạbi',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Gaõta',

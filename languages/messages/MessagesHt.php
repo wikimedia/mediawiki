@@ -932,6 +932,10 @@ Si ou mete li, n ap itilize li pou nou ka nonmen ou pou kontribisyon ou yo.',
 
 'grouppage-sysop' => '{{ns:project}}:Administratè',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Jounal pou kreyasyon kont itilizatè yo',
+'newuserlogpagetext' => 'Men jounal, istorik kreyasyon kont itilizatè yo.',
+
 # User rights log
 'rightslog' => 'Jounal modifikasyon estati itilizatè yo',
 
@@ -1092,10 +1096,6 @@ Gade tou [[Special:WantedCategories|kategori moun mande]].',
 
 # Special:LinkSearch
 'linksearch' => 'Lyen andeyò',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Jounal pou kreyasyon kont itilizatè yo',
-'newuserlogpagetext' => 'Men jounal, istorik kreyasyon kont itilizatè yo.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis manm yo)',

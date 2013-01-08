@@ -1218,9 +1218,11 @@ Ang imo adres sang e-mail wala ginapakita kon kontakon ka sang iban.',
 'right-read' => 'Basahan ang panid',
 'right-edit' => 'Ilisan ang panid',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Naga-usar nga ginhimo log',
+
 # User rights log
 'rightslog' => 'Karapatan sang naga-usar log',
-'rightsnone' => '(wala)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'islan ini nga pahina',
@@ -1336,9 +1338,6 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 # Special:LinkSearch
 'linksearch' => 'Eksternal na mga tabid',
 'linksearch-ok' => 'Pangita-a',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Naga-usar nga ginhimo log',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupo',
@@ -1644,5 +1643,6 @@ Ang iban ay pagataguon sang default.
 # New logging system
 'revdelete-restricted' => 'ginapatuman nga pagbawal sa mga administrador',
 'revdelete-unrestricted' => 'ginkakas nga pagbawal sa mga administrador',
+'rightsnone' => '(wala)',
 
 );

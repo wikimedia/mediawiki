@@ -942,11 +942,12 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'grouppage-bureaucrat' => "{{ns:project}}:Bureaucraot'n",
 'grouppage-suppress' => '{{ns:project}}:Toezicht',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboek nuwe gebrukers',
+
 # User rights log
 'rightslog' => 'Gebrukersrechtenlogboek',
 'rightslogtext' => 'Ieronder staen de wiezigiengen in gebrukersrechen.',
-'rightslogentry' => 'wiezihen de gebrukersrechen voe $1 van $2 ni $3',
-'rightsnone' => '(hin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'deêze bladzie te bewerken',
@@ -1114,9 +1115,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-line' => "$1 ei 'n verwiezienge in $2",
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logboek nuwe gebrukers',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(ledenlieste)',
@@ -1399,5 +1397,6 @@ Aorre veld'n worr'n verborr'n.
 # New logging system
 'revdelete-restricted' => 'ei beperkiengen an beheêrders opeleid',
 'revdelete-unrestricted' => 'ei beperkiengen voe beheêrders opeheven',
+'rightsnone' => '(hin)',
 
 );

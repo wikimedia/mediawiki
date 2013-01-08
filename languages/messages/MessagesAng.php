@@ -631,6 +631,9 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 
 'grouppage-sysop' => '{{ns:project}}:Beƿitendas',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Brūcenda ȝesceaft ȝetalu',
+
 # User rights log
 'rightslog' => 'Brūcenda riht cranic',
 
@@ -832,9 +835,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ActiveUsers
 'activeusers' => 'Hƿata brūcenda ȝetalu',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Brūcenda ȝesceaft ȝetalu',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Clīeƿen',

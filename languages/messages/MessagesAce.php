@@ -584,9 +584,9 @@ Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta 
 'newarticletext' => "Droëneuh   ka neuseutot u ôn nyang goh na. Keu peugöt ôn nyan, neukeutik asoë ôn di  kutak di yup nyoë (ngiëng [[{{MediaWiki:Helppage}}|ôn bantu]] keu beurita leubèh lanjut). Meunyo Droëneuh  hana neusaja ka trôk keunoë, teugon '''back''' nyang na bak layeuë.",
 'noarticletext' => 'Hana naseukah jinoë lam ôn nyoë.
 Ji Droëneuh jeuët [[Special:Search/{{PAGENAME}}|neumita keu nan ôn nyoë]] bak ôn-ôn la’én, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} log nyang na hubôngan], atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} neu\'andam ôn nyoë]</span>.',
-'noarticletext-nopermission' => 'Hana asoe bak on nyoe jinoe.
-Droeneuh jeuet [[Special:Search/{{PAGENAME}}|neumita keu nan on nyoe]] bak on la\'en,
-atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} neumita log nyang na hubongan]</span>.',
+'noarticletext-nopermission' => 'Hana asoë bak ôn nyoë jinoë.
+Droëneuh jeuët [[Special:Search/{{PAGENAME}}|neumita keu nan ôn nyoë]] bak ôn-ôn la\'én,
+atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} neumita log nyang na meuhubông]</span>, tapi Droëneuh hana idin keu neupeugöt ôn nyoë',
 'updated' => '(Seubarô)',
 'note' => "'''Ceunatat:'''",
 'previewnote' => "'''Beu neuingat meunyo ôn nyoë goh lom neukeubah!'''",
@@ -718,6 +718,9 @@ Surat-e droeneuh h'an geupeugah keu ureueng nyan.",
 'group-sysop' => 'Ureuëng urôh',
 
 'grouppage-sysop' => '{{ns:project}}:Ureuëng urôh',
+
+# Special:Log/newusers
+'newuserlogpage' => 'ureuëng nguy barô',
 
 # User rights log
 'rightslog' => 'Log neuubah hak peuhah',
@@ -894,9 +897,6 @@ Teuneurang bak [$2 on teuneurangjih] geupeuleumah di yup nyoe.",
 'linksearch-ok' => 'Mita',
 'linksearch-line' => '$1 meusambat nibak $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'ureuëng nguy barô',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(dapeuta anggèëta)',
 
@@ -969,10 +969,11 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 # Namespace form on various pages
 'namespace' => 'Ruweuëng nan:',
 'invert' => 'Peubalék peuniléh',
+'namespace_association' => 'Ruweuëng nan meuhubông',
 'blanknamespace' => '(Keuë)',
 
 # Contributions
-'contributions' => 'Peuneugöt',
+'contributions' => 'Peuneugöt {{GENDER:$1|ureuëng nguy}}',
 'contributions-title' => 'Peuneugöt ureuëng nguy keu $1',
 'mycontris' => 'Peuneugöt',
 'contribsub2' => 'Keu $1 ($2)',
@@ -1006,7 +1007,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'whatlinkshere-hideredirs' => '$1 peuninah',
 'whatlinkshere-hidetrans' => '$1 transklusi',
 'whatlinkshere-hidelinks' => '$1 hubông',
-'whatlinkshere-hideimages' => '$1 hubong gamba',
+'whatlinkshere-hideimages' => '$1 hubông beureukaih',
 'whatlinkshere-filters' => 'Saréng',
 
 # Block/unblock

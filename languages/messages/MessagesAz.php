@@ -1168,11 +1168,13 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'right-siteadmin' => 'Məlumatlar bazasının bloklanması və blokun götürülməsi',
 'right-sendemail' => 'Digər istifadəçilərə elektron poçt göndər',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Yeni istifadəçilərin qeydiyyatı',
+'newuserlogpagetext' => 'Yeni qeydiyyatdan keçmiş istifadəçilərin siyahısı.',
+
 # User rights log
 'rightslog' => 'İstifadəçi hüquqları qeydləri',
 'rightslogtext' => 'İstifadəçi hüquqları dəyişikliyi qeydləri.',
-'rightslogentry' => '$1 adlı istifadəçinin istifadəçi qruplarındakı üzvlüyü dəyişdirildi: $2 ► $3',
-'rightsnone' => '(heç biri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'bu səhifənin oxunması',
@@ -1647,10 +1649,6 @@ Həmçinin, [[Special:WantedCategories|tələb olunan kateqoriyalara]] baxın.',
 'activeusers-hidebots' => 'Botları gizlə',
 'activeusers-hidesysops' => 'İdarəçiləri gizlə',
 'activeusers-noresult' => 'İstifadəçi tapılmadı.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Yeni istifadəçilərin qeydiyyatı',
-'newuserlogpagetext' => 'Yeni qeydiyyatdan keçmiş istifadəçilərin siyahısı.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'İstifadəçi qruplarının hüquqları',
@@ -2985,6 +2983,7 @@ Bu saytda texniki problemlər var.',
 'logentry-newusers-create2' => '$1 $3 üçün istifadəçi hesabı yaratdı',
 'logentry-newusers-autocreate' => '$1 hesabı avtomatik yaradıldı',
 'newuserlog-byemail' => 'parol e-maillə göndərildi',
+'rightsnone' => '(heç biri)',
 
 # Feedback
 'feedback-subject' => 'Mövzu:',

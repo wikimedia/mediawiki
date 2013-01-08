@@ -689,9 +689,11 @@ HTML tags لوڑے.',",
 'right-upload' => 'فائل انځاوے',
 'right-delete' => 'صفحان ضائع کورے',
 
+# Special:Log/newusers
+'newuserlogpage' => 'نوشتۂ آمد صارف',
+
 # User rights log
 'rightslog' => 'یوزروت مختص شدہ حقوق',
-'rightsnone' => '(نو)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ھیہ صفحا ایڈیٹنگ کورے',
@@ -838,9 +840,6 @@ HTML tags لوڑے.',",
 'linksearch-ns' => 'نامو ژاغہ:',
 'linksearch-ok' => 'Search/تلاش',
 'linksearch-line' => '$1 مربوط شیر $2 ری',
-
-# Special:Log/newusers
-'newuserlogpage' => 'نوشتۂ آمد صارف',
 
 # Special:ListGroupRights
 'listgrouprights-members' => 'ممبارانن فھرست',
@@ -1130,6 +1129,9 @@ HTML tags لوڑے.',",
 
 # Special:ComparePages
 'compare-page1' => 'صفحہ 1',
+
+# New logging system
+'rightsnone' => '(نو)',
 
 # Feedback
 'feedback-message' => 'پیغام',

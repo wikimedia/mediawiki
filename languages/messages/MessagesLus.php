@@ -945,6 +945,10 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'right-hideuser' => 'Hmangtu hming dangbet rawh, vantlang laka thupin',
 'right-unblockself' => 'Mahnia dalna inphelh',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Hmangtu siamna chanchin-ziak',
+'newuserlogpagetext' => 'Hei hi hmangtu siangchan siam chhinchhiahna a ni.',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'he phêk hi chhiar rawh',
 'action-edit' => 'phek siamṭhat',
@@ -1352,10 +1356,6 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'activeusers-hidebots' => 'Khawlmi thupna',
 'activeusers-hidesysops' => 'Roreltu thupna',
 'activeusers-noresult' => 'Hmangtu awm lo.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Hmangtu siamna chanchin-ziak',
-'newuserlogpagetext' => 'Hei hi hmangtu siangchan siam chhinchhiahna a ni.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Hmangtu pawl dikna-chanvote',

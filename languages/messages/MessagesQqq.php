@@ -348,6 +348,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
+'morenotlisted' => 'An indication that more of a certain list is not shown.',
 'mypage' => "A text for the link to the user's user page in the links at the top of the page.",
 'mytalk' => 'In the personal URLs page section - right upper corner.
 
@@ -363,7 +364,6 @@ See also:
 * {{msg-mw|Anontalk}}
 * {{msg-mw|Accesskey-pt-anontalk}}
 * {{msg-mw|Tooltip-pt-anontalk}}',
-'morenotlisted' => 'An indication that more of a certain list is not shown.',
 'navigation' => 'This is shown as a section header in the sidebar of most skins.
 
 {{Identical|Navigation}}',

@@ -658,9 +658,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'grouppage-sysop' => '{{ns:project}}:Sysopam',
 'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrátam',
 
-# User rights log
-'rightsnone' => '(zéro)',
-
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|quiix|quíix}}',
 'recentchanges' => 'Camjöx cmaa',
@@ -1056,5 +1053,8 @@ iitom e-iitomde diijömde caitóm.',
 
 # Special:SpecialPages
 'specialpages' => 'Páhinám extravám',
+
+# New logging system
+'rightsnone' => '(zéro)',
 
 );

@@ -749,6 +749,9 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'right-minoredit' => 'Marcar trocamientos como "chiquiticos"',
 'right-delete' => 'Efassar hojas',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de creación de usuarios',
+
 # User rights log
 'rightslog' => 'Trocamientos de profil de usuario',
 
@@ -881,9 +884,6 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Special:LinkSearch
 'linksearch' => 'Linkes eksternos',
 'linksearch-line' => 'Atamiento para $1 en la ója $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de creación de usuarios',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(ver los miembros de este grupo)',

@@ -2546,6 +2546,8 @@ $UNWATCHURL
 'prot_1movedto2' => '[[$1]] 문서를 [[$2]] 문서로 이동함',
 'protect-badnamespace-title' => '보호할 수 없는 이름공간',
 'protect-badnamespace-text' => '이 이름공간에 있는 문서는 보호할 수 없습니다.',
+'protect-norestrictiontypes-text' => '이 문서는 제한 유형을 사용할 수 없음으로 보호할 수 없습니다.',
+'protect-norestrictiontypes-title' => '보호할 수 없는 문서',
 'protect-legend' => '보호 확인',
 'protectcomment' => '이유:',
 'protectexpiry' => '보호 기간:',

@@ -466,9 +466,11 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'right-delete' => 'Rausim ol pes',
 'right-suppressionlog' => 'Lukim ol praivet ripot',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ripot long ol nupela yusa',
+
 # User rights log
 'rightslog' => 'Ripot long ol pawa bilong ol yusa',
-'rightsnone' => 'i nogat wanpela',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ridim dispela pes',
@@ -607,9 +609,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListUsers
 'listusers-submit' => 'Soim',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Ripot long ol nupela yusa',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grup',
@@ -880,6 +879,9 @@ Yu inap lukim as tok bilong em',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Narapela',
+
+# New logging system
+'rightsnone' => 'i nogat wanpela',
 
 # Search suggestions
 'searchsuggest-search' => 'Painim',

@@ -1042,6 +1042,9 @@ Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
 
 'grouppage-sysop' => '{{ns:project}}:Mandur',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log pinamansaian momomoguno',
+
 # User rights log
 'rightslog' => 'Log kasagaan momomoguno',
 
@@ -1200,9 +1203,6 @@ Kointalangan dilo [$2 kointalangan pail] okito id siriba.',
 'linksearch-ns' => 'Ponuratan ngaran:',
 'linksearch-ok' => 'Ihumo',
 'linksearch-line' => '$1 toput mantad $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log pinamansaian momomoguno',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis do kinoruhangan)',

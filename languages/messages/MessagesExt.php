@@ -948,11 +948,12 @@ Amás premiti qu'otrus ussuárius contatin contigu pol mé la tu página d'ussu�
 'right-userrights' => 'Eital los derechus de tolos usuárius',
 'right-siteadmin' => 'Atarugal i desatarugal la basi e datus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rustrihu de nuevus usuárius',
+
 # User rights log
 'rightslog' => 'Rustrihu e derechus de los usuárius',
 'rightslogtext' => 'Esti es un rustrihu e chambus enus derechus los usuárius.',
-'rightslogentry' => 'chambó el grupu al que preteneci $1: de $2 a $3',
-'rightsnone' => '(dengunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leyel esta página',
@@ -1338,9 +1339,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => "Muestral usuárius qu'esmiencin pol:",
 'listusers-submit' => 'Muestral',
 'listusers-noresult' => 'Nu s´alcuentró dengún usuáriu.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Rustrihu de nuevus usuárius',
 
 # Special:ListGroupRights
 'listgrouprights' => "Derechus del grupu d'usuárius",
@@ -2405,5 +2403,6 @@ Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehec
 'revdelete-restricted' => 'las restricionis a los çahorilis án siu apricás',
 'revdelete-unrestricted' => 'las restricionis a los çahorilis án siu esborrás',
 'newuserlog-byemail' => 'consínia enviá pol e-mail',
+'rightsnone' => '(dengunu)',
 
 );

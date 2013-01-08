@@ -975,6 +975,9 @@ $1",
 
 'grouppage-sysop' => '{{ns:project}}:Тхьэмадэхэр',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ЦӀыхухэтхэм я регистрациэ тхылъ',
+
 # User rights log
 'rightslog' => 'Хэтым пӀалъэ иӀэхэм я тхылъ',
 
@@ -1070,9 +1073,6 @@ $1",
 
 # Special:LinkSearch
 'linksearch' => 'КІуэцІ техьэпІэхэр',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ЦӀыхухэтхэм я регистрациэ тхылъ',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(гупым и тхылъ)',

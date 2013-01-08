@@ -635,6 +635,9 @@ $messages = array(
 'right-delete' => 'ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ',
 'right-undelete' => 'ಪುಟೊನ್ ಮಾಜಾವಡೆ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ಸದಸ್ಯ ರಚನೆ ಲಾಗ್',
+
 # User rights log
 'rightslog' => 'ಸದಸ್ಯೆರ್ನ ಹಕ್ಕು ದಾಖಲೆ',
 
@@ -770,9 +773,6 @@ $messages = array(
 'allpagesto' => 'ಇಂದೆರ್ದ್ ಅಂತ್ಯ ಆಪುನ ಪುಟೊಲೆನ್ ತೊಜ್ಪಾವು:',
 'allarticles' => 'ಪೂರಾ ಲೇಖನೊಲು',
 'allpagessubmit' => 'ಪೋ',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ಸದಸ್ಯ ರಚನೆ ಲಾಗ್',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(ಸದಸ್ಯೆರ್ನ ಪಟ್ಟಿ)',

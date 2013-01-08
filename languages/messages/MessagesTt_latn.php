@@ -1113,10 +1113,12 @@ Ul $1 {{PLURAL:$1|xäreftän}} kübräk bulırğa tieş tügel.',
 'right-delete' => 'bitlärne beterü',
 'right-editinterface' => 'Qullanuçı interfeysın üzgärtü',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Qullanuçılarnı terkäw köndälege',
+'newuserlogpagetext' => 'Yaña terkälgän qullanuçılar isemlege',
+
 # User rights log
 'rightslog' => 'Qullanuçınıñ xoquqları köndälege',
-'rightslogentry' => '$1 qullanuçısın $2 gruppasınnan $3 gruppasına küçerde',
-'rightsnone' => '(yuq)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'bu bitne üzgärtergä',
@@ -1462,10 +1464,6 @@ Asta [[Special:UnusedCategories|qullanılmağan törkemnär]] kärsätelgän.
 'activeusers-hidebots' => 'Botlarnı yäşer',
 'activeusers-hidesysops' => 'İdaräçelärne yäşer',
 'activeusers-noresult' => 'Qullanuçılar tabılmadı.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Qullanuçılarnı terkäw köndälege',
-'newuserlogpagetext' => 'Yaña terkälgän qullanuçılar isemlege',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Qullanuçı törkemnäreneñ xoquqları',
@@ -2187,5 +2185,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 # New logging system
 'revdelete-restricted' => 'çikläwlär idaräçelärgä dä qullanıla',
 'newuserlog-byemail' => 'sersüz elektron poçta aşa cibärelde',
+'rightsnone' => '(yuq)',
 
 );

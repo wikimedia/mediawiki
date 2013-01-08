@@ -1036,10 +1036,13 @@ Si vis id dare, opera tua tibi ascribentur.',
 'right-userrights-interwiki' => 'Potestates usorum aliis in vicis recensere',
 'right-siteadmin' => 'Basem datorum obstruere vel deobstruere',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Index rationum novarum creatarum',
+'newuserlogpagetext' => 'Hic est index rationum novarum creatarum.',
+
 # User rights log
 'rightslog' => 'Index mutationum iuribus usorum',
 'rightslogtext' => 'Haec est index mutationum iuribus usorum.',
-'rightsnone' => '(nullus)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'hanc paginam legere',
@@ -1417,10 +1420,6 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'activeusers-hidebots' => 'Celare automata',
 'activeusers-hidesysops' => 'Celare magistratus',
 'activeusers-noresult' => 'Nullus usor inventus.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Index rationum novarum creatarum',
-'newuserlogpagetext' => 'Hic est index rationum novarum creatarum.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gregum usorum potestates',
@@ -2374,6 +2373,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'logentry-newusers-create2' => 'Ratio usoris $3 creata est ab usore $1',
 'logentry-newusers-autocreate' => 'Ratio $1 automatice creata est',
 'newuserlog-byemail' => 'tessera missa litteris electronicis',
+'rightsnone' => '(nullus)',
 
 # Search suggestions
 'searchsuggest-search' => 'Quaerere',

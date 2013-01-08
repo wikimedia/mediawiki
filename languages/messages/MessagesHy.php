@@ -1348,11 +1348,13 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'right-upload_by_url' => 'Բեռնել նիշքեր ինտերնետային հասցեից',
 'right-delete' => 'Էջերի ջնջում',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Մասնակիցների գրանցման տեղեկամատյան',
+'newuserlogpagetext' => 'Սա նոր մասնակիցների գրանցման տեղեկամատյանն է.',
+
 # User rights log
 'rightslog' => 'Մասնակցի իրավունքների տեղեկամատյան',
 'rightslogtext' => 'Սա մասնակիցների իրավունքների փոփոխությունների տեղեկամատյանն է։',
-'rightslogentry' => '$1 մասնակցի անդամակցությունը փոխվել է $2-ից $3',
-'rightsnone' => '(ոչ մի)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'խմբագրել այս էջը',
@@ -1736,10 +1738,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ActiveUsers
 'activeusers' => 'Ակտիվ մասնակիցների ցանկ',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Մասնակիցների գրանցման տեղեկամատյան',
-'newuserlogpagetext' => 'Սա նոր մասնակիցների գրանցման տեղեկամատյանն է.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(անդամների ցանկ)',
@@ -2728,6 +2726,7 @@ $3
 'logentry-newusers-create' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create2' => '$1 Ստեղծեց նոր հաշիվ $3',
 'newuserlog-byemail' => 'Գաղտնաբառն ուղարկված է էլ․ փոստով',
+'rightsnone' => '(ոչ մի)',
 
 # Feedback
 'feedback-subject' => 'Թեմա.',

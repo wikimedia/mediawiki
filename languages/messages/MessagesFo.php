@@ -1285,12 +1285,13 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'right-sendemail' => 'Send t-post til aðrir brúkarar',
 'right-passwordreset' => 'Sí teldupostar til nullstilling av loyniorði',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Brúkara logg',
+'newuserlogpagetext' => 'Hetta er ein listi yvir seinast stovnaðu brúkarar.',
+
 # User rights log
 'rightslog' => 'Rættindaloggur',
 'rightslogtext' => 'Hetta er ein loggur sum vísir broytingar í brúkararættindum.',
-'rightslogentry' => 'broyttar bólka limaskap fyri $1 frá $2 til $3',
-'rightslogentry-autopromote' => 'varð sjálvvirkandi fluttur upp frá $2 til $3',
-'rightsnone' => '(ongin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'les hesa síðu',
@@ -1684,10 +1685,6 @@ Sí eisini [[Special:WantedCategories|ynsktir bólkar]].',
 'activeusers-hidebots' => 'Fjal bottar',
 'activeusers-hidesysops' => 'Fjal umboðsstjórar (administratorar)',
 'activeusers-noresult' => 'Ongir brúkarar funnir.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Brúkara logg',
-'newuserlogpagetext' => 'Hetta er ein listi yvir seinast stovnaðu brúkarar.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Brúkara bólka rættindi',
@@ -2251,6 +2248,9 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 # Special:ComparePages
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
+
+# New logging system
+'rightsnone' => '(ongin)',
 
 # Search suggestions
 'searchsuggest-search' => 'Leita',

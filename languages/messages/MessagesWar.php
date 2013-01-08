@@ -985,9 +985,12 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'right-userrights-interwiki' => 'Igliwat an mga katungod han gumaramit han mga gumaramit ha iba nga mga wiki',
 'right-sendemail' => 'Padad-i hin e-mail ngada ha iba nga mga gumaramit',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Talaan han paghimo hin gumaramit',
+'newuserlogpagetext' => 'Ini an talaan han mga nagkahihimo nga mga gumaramit.',
+
 # User rights log
 'rightslog' => 'Talaan hin mga katungod han gumaramit',
-'rightsnone' => '(waray)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaha ini nga pakli',
@@ -1352,10 +1355,6 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'activeusers-hidebots' => 'Igtago an mga bot',
 'activeusers-hidesysops' => 'Igtago an mga magdudumara',
 'activeusers-noresult' => 'Waray gumaramit nga nahiagian.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Talaan han paghimo hin gumaramit',
-'newuserlogpagetext' => 'Ini an talaan han mga nagkahihimo nga mga gumaramit.',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Hugpo',
@@ -2203,6 +2202,7 @@ An iba in daan nakatago.
 'logentry-newusers-create2' => '$1 in naghimo hin gumaramit nga akawnt $3',
 'logentry-newusers-autocreate' => 'An akawnt nga $1 in lugaring nga nahimo',
 'newuserlog-byemail' => 'Ginpadangat an tigaman-pagsulod pinaagi han e-mail',
+'rightsnone' => '(waray)',
 
 # Feedback
 'feedback-subject' => 'Himangrawon:',

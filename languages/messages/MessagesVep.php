@@ -1197,11 +1197,13 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'right-sendemail' => 'Oigeta e-počtad toižile kävutajile',
 'right-passwordreset' => 'Kacta e-kirjeižid peitsanan toižetandanke',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kävutajiden registracijan aigkirj',
+'newuserlogpagetext' => 'Tantoi registriruidud kävutajiden nimikirjutez.',
+
 # User rights log
 'rightslog' => 'Kävutajan oiktusiden aigkirj',
 'rightslogtext' => 'Nece om kävutajan oiktusiden toižetusen aigkirj.',
-'rightslogentry' => 'toižetin $1-kävutajan ühtnend gruppiš - oli $2, linneb $3',
-'rightsnone' => '(ei ole)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "lugeda necidä lehtpol't",
@@ -1687,10 +1689,6 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 'activeusers-hidebots' => 'Peitta botid',
 'activeusers-hidesysops' => 'Peitta administratorid',
 'activeusers-noresult' => 'Kävutajad ei olgoi löutud.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kävutajiden registracijan aigkirj',
-'newuserlogpagetext' => 'Tantoi registriruidud kävutajiden nimikirjutez.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Kävutajiden gruppiden oiktused',
@@ -3058,6 +3056,7 @@ Kävutagat normaline ezikacund.',
 'revdelete-restricted' => 'kaidendused administratoriden täht',
 'revdelete-unrestricted' => 'kaidendused heittud administratoriden täht',
 'newuserlog-byemail' => 'peisana om oigetud e-počtadme',
+'rightsnone' => '(ei ole)',
 
 # Feedback
 'feedback-subject' => 'Tem:',

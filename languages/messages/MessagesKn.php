@@ -1026,12 +1026,12 @@ $2',
 'right-sendemail' => 'ಇತರ ಬಳಕೆದಾರರಿಗೆ ಇಮೇಲ್ ಕಳುಹಿಸಿ',
 'right-passwordreset' => 'ಪಾಸ್ವರ್ಡ್ ಮತ್ತೆ ಜೋಡಿಸಲ್ಪಟ್ಟ  ಇಮೇಲ್ ಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ಸದಸ್ಯತ್ವ ಸೃಷ್ಟಿಗಳ ದಾಖಲೆ',
+
 # User rights log
 'rightslog' => 'ಸದಸ್ಯರ ಹಕ್ಕುಗಳ ದಾಖಲೆಗಳು',
 'rightslogtext' => 'ಇದು ಬಳಕೆದಾರ ಹಕ್ಕುಗಳ ಬದಲಾವಣೆಗಳ ದಾಖಲೆ.',
-'rightslogentry' => '$1 ಅವರ ಗುಂಪು ಸದಸ್ಯತ್ವವನ್ನು $2 ಇಂದ $3 ಗೆ ಬದಲಾಯಿಸಲಾಯಿತು',
-'rightslogentry-autopromote' => 'ಸ್ವಯಂಚಾಲಿತವಾಗಿ $2 ರಿಂದ $3 ಬಡ್ತಿ ನೀಡಲಾಯಿತು',
-'rightsnone' => '(ಯಾವೂ ಇಲ್ಲ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ಈ ಪುಟವನ್ನು ಓದಿ',
@@ -1425,9 +1425,6 @@ $2',
 # Special:ActiveUsers
 'activeusers' => 'ಸಕ್ರಿಯ ಸದಸ್ಯರ ಪಟ್ಟಿ',
 'activeusers-noresult' => 'ಯಾವ ಬಳಕೆದಾರರೂ ಸಿಗಲಿಲ್ಲ.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ಸದಸ್ಯತ್ವ ಸೃಷ್ಟಿಗಳ ದಾಖಲೆ',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ಬಳಕೆದಾರ ಗುಂಪು ಹಕ್ಕುಗಳು',
@@ -2178,6 +2175,7 @@ $5
 # New logging system
 'revdelete-restricted' => 'ನಿರ್ವಾಹಕರಿಗೆ ನಿಬಂಧನೆಗಳನ್ನು ಅನ್ವಯಿಸಲಾಯಿತು',
 'revdelete-unrestricted' => 'ನಿರ್ವಾಹಕರ ನಿಬಂಧನೆಗಳನ್ನು ತೆಗೆಯಲಾಯಿತು',
+'rightsnone' => '(ಯಾವೂ ಇಲ್ಲ)',
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|ಕ್ಷಣ|ಕ್ಷಣಗಳು}}',

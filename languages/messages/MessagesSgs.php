@@ -876,11 +876,12 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 'right-read' => 'Skaitītė poslapius',
 'right-edit' => 'Keistė poslapius',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nauduotuojė kūrėma regėstros',
+
 # User rights log
 'rightslog' => 'Nauduotuoju teisiu istuorėjė',
 'rightslogtext' => 'Pateikiams nauduotuoju teisiu pakeitėmu sārašos.',
-'rightslogentry' => 'pakeista $1 gropės narīstė ėš $2 i $3. Sveikėnam!',
-'rightsnone' => '(juokiū)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'redagoutė ta poslapi',
@@ -1224,9 +1225,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Ruodītė nauduotuojus pradedont nū:',
 'listusers-submit' => 'Ruodītė',
 'listusers-noresult' => 'Nerast anėjuokiū nauduotuoju.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nauduotuojė kūrėma regėstros',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Nauduotuoju gropiu teisės',
@@ -1963,5 +1961,6 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'logentry-newusers-create2' => '$1 padėrba nauduotuojė paskīra $3',
 'logentry-newusers-autocreate' => 'Paskīra $1 bova padėrbta autuomatėškā',
 'newuserlog-byemail' => 'slaptažuodis ėšsiōsts par el. pašta',
+'rightsnone' => '(juokiū)',
 
 );

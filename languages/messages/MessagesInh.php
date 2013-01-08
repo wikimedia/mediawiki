@@ -631,9 +631,11 @@ $messages = array(
 'right-move' => 'ОагIувний цIи хувца',
 'right-movefile' => 'Паьлий цIи хувца',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Дакъалаьцархоший дIаязбeнна таптар',
+
 # User rights log
 'rightslog' => 'Дакъалаьцархочунна бокъона тептар',
-'rightsnone' => '(а)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Укх оагIуви дешам',
@@ -789,9 +791,6 @@ $messages = array(
 'linksearch' => 'Т|ера|инкаш лахар',
 'linksearch-ok' => 'Лаха',
 'linksearch-line' => '$1 тIа Iинк $2 юкъера',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Дакъалаьцархоший дIаязбeнна таптар',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(тоабий дагарче)',
@@ -1179,5 +1178,8 @@ $messages = array(
 'htmlform-submit' => 'ДIадахьийта',
 'htmlform-reset' => 'Хувцамаш юхадаккха',
 'htmlform-selectorother-other' => 'Кхыдола',
+
+# New logging system
+'rightsnone' => '(а)',
 
 );

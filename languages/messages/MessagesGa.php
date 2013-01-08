@@ -946,6 +946,9 @@ do chuid dreachtaí a chur i leith tusa.',
 'right-undelete' => 'Díscrios leathanach',
 'right-userrights' => 'Cur gach cearta usáideoira in eagar',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log cruthú úsáideoira',
+
 # User rights log
 'rightslog' => 'Log cearta úsáideoira',
 
@@ -1238,9 +1241,6 @@ Féach freisin ar [[Special:WantedCategories|catagóirí faoi iarraidh]].',
 
 # Special:ListUsers
 'listusers-submit' => 'Taispeáin',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log cruthú úsáideoira',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Ghrúpa',

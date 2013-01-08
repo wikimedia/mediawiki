@@ -1124,11 +1124,13 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'right-siteadmin' => 'Caabi walla caabeedi dàttub njoxe bi',
 'right-override-export-depth' => 'génne ay xët yu ëmbi xët yu lëkkaloo ba-ci xóotaay bu tolluwaayam àgg 5',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Jëfandikukat yu yees yi',
+'newuserlogpagetext' => 'Xët wii daf lay won limu sáq yi fi mujjee sosu.',
+
 # User rights log
 'rightslog' => 'Sañ-sañi jëfandikukat',
 'rightslogtext' => 'Lii di toftal limu jaar-jaaru coppitey sañ-sañi jëfandikukat yi.',
-'rightslogentry' => 'moo jële jëfandikukat bii di « $1 » ci mbooloo  $2  yóbb ko ci $3',
-'rightsnone' => '(menn)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'jàng wii xët',
@@ -1543,10 +1545,6 @@ Xoolal itam [[Special:WantedCategories|wàll yi ñuy laaj]].',
 'activeusers-count' => '$1 coppite {{PLURAL:$2|bu mujj|yu mujj}}',
 'activeusers-from' => 'Wone jëfandikukat yi dalee ko ci:',
 'activeusers-noresult' => 'Benn jëfandikukat giseesu ko',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Jëfandikukat yu yees yi',
-'newuserlogpagetext' => 'Xët wii daf lay won limu sáq yi fi mujjee sosu.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Sañ-sañi mbooloom jëfandikukat mi',
@@ -2199,5 +2197,6 @@ Man nga tamit  [[Special:EditWatchlist/raw|soppi ko]].',
 'revdelete-restricted' => 'doxalub digal ngir yorkat yi',
 'revdelete-unrestricted' => 'digal ngir yorkat yi deñ na',
 'newuserlog-byemail' => 'baatujáll bi yónne nañu ko cib bataaxal',
+'rightsnone' => '(menn)',
 
 );

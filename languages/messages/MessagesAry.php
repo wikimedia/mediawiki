@@ -1186,11 +1186,13 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'right-override-export-depth' => 'tsdir sfahi obinha sfahi lmawsola hta lomq 5',
 'right-sendemail' => 'sift email lmostkhdimin lkhrin',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ṫariĥ dyal l-ḫsabaṫ j-jdad',
+'newuserlogpagetext' => "hada sijill d-inċa'aṫ l-moṣṫĥdimin.",
+
 # User rights log
 'rightslog' => 'Ĝamaliyaṫ ḫoqoq l-mosṫeĥdim',
 'rightslogtext' => 'hada sijil btaghyirat f salahiyat lmostkhdimin',
-'rightslogentry' => 'ghyr salahiyat $1 mn $2 l $3',
-'rightsnone' => '(walo)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "Ĥṫareĝ had 'ṣ-ṣefḫa",
@@ -1607,10 +1609,6 @@ daba ka ṫḫwwal l-[[$2]].',
 'activeusers-hidebots' => 'khbbi lbotat',
 'activeusers-hidesysops' => 'Khbbi lidariyin',
 'activeusers-noresult' => 'ta mostakhdim matlgach.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Ṫariĥ dyal l-ḫsabaṫ j-jdad',
-'newuserlogpagetext' => "hada sijill d-inċa'aṫ l-moṣṫĥdimin.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'salahiyat mjmoat lmostkhdimin',
@@ -2712,5 +2710,6 @@ jrreb l-ĝṛḍ l-ĝadi.',
 'revdelete-restricted' => 'tḅḅq ḍ-ḍawaḅit ll-idariyyin',
 'revdelete-unrestricted' => 'ḫyyd ḍ-ḍawaḅit ll-idariyyin',
 'newuserlog-byemail' => "lmot de passe raha tsiftat f l'email",
+'rightsnone' => '(walo)',
 
 );

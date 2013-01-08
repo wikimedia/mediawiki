@@ -1153,11 +1153,13 @@ $3|'''1''' ਨਤੀਜਾ|'''$3''' ਨਤੀਜੇ}} ਵਖਾਓ।",
 'right-siteadmin' => 'ਡੈਟਾਬੇਸ ਨੂੰ ਤਾਲਾ ਲਾਉਣਾ ਤੇ ਖੋਲ੍ਹਣਾ',
 'right-sendemail' => 'ਦੂਜੇ ਮੈਂਬਰਾਂ ਨੂੰ ਈ-ਮੇਲ ਭੇਜਣਾ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ਬਣਾਏ ਖਾਤਿਆਂ ਦਾ ਚਿੱਠਾ',
+'newuserlogpagetext' => 'ਇਹ ਬਣੇ ਮੈਂਬਰਾਂ ਦਾ ਚਿੱਠਾ ਹੈ।',
+
 # User rights log
 'rightslog' => 'ਮੈਂਬਰ ਹੱਕਾਂ ਦਾ ਚਿੱਠਾ',
 'rightslogtext' => 'ਇਹ ਮੈਂਬਰ ਹੱਕਾਂ ਵਿਚ ਹੋਈਆਂ ਤਬਦੀਲੀਆਂ ਦਾ ਚਿੱਠਾ ਹੈ।',
-'rightslogentry-autopromote' => '$2 ਤੋਂ ਆਪਣੇ ਆਪ $3 ਤੱਕ ਤਰੱਕੀ ਕਰੀ',
-'rightsnone' => '(ਕੋਈ ਨਹੀਂ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ਇਹ ਸਫ਼ਾ ਪੜ੍ਹਨ',
@@ -1520,10 +1522,6 @@ to upload files.',
 'activeusers-hidebots' => 'ਬੋਟਾਂ ਨੂੰ ਲੁਕਾਓ',
 'activeusers-hidesysops' => 'ਐਡਮਨਿਸਟ੍ਰੇਟਰ ਲੁਕਾਓ',
 'activeusers-noresult' => 'ਕੋਈ ਮੈਂਬਰ ਨਹੀਂ ਲੱਭਿਆ।',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ਬਣਾਏ ਖਾਤਿਆਂ ਦਾ ਚਿੱਠਾ',
-'newuserlogpagetext' => 'ਇਹ ਬਣੇ ਮੈਂਬਰਾਂ ਦਾ ਚਿੱਠਾ ਹੈ।',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'ਗਰੁੱਪ',
@@ -2121,6 +2119,9 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'htmlform-submit' => 'ਭੇਜੋ',
 'htmlform-reset' => 'ਬਦਲਾਅ ਵਾਪਸ ਲਵੋ',
 'htmlform-selectorother-other' => 'ਹੋਰ',
+
+# New logging system
+'rightsnone' => '(ਕੋਈ ਨਹੀਂ)',
 
 # Search suggestions
 'searchsuggest-search' => 'ਖੋਜ',

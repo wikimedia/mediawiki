@@ -1063,7 +1063,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 このページの作成/編集が適切かご確認ください。',
 'userpage-userdoesnotexist-view' => '利用者アカウント「$1」は登録されていません。',
 'blocked-notice-logextract' => 'この利用者は現在ブロックされています。
-参考のために最新のブロック記録を以下に表示します：',
+参考のために最新のブロック記録項目を以下に表示します:',
 'clearyourcache' => "'''注意:''' 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。
 * '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックするか、''Ctrl-F5'' または ''Ctrl-R'' を押してください (Mac では ''&#x2318;-R'')
 * '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Mac では ''&#x2318;-Shift-R'')
@@ -1286,7 +1286,7 @@ $3が示した理由：''$2''",
 'revdelete-nologid-title' => '無効な記録項目',
 'revdelete-nologid-text' => 'この操作の対象となる記録項目を指定していないか、または指定した項目が存在しません。',
 'revdelete-no-file' => '指定されたファイルは存在しません。',
-'revdelete-show-file-confirm' => '本当にファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を閲覧しますか？',
+'revdelete-show-file-confirm' => 'ファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を本当に閲覧しますか?',
 'revdelete-show-file-submit' => 'はい',
 'revdelete-selected' => "'''[[:$1]] の{{PLURAL:$2|選択された版}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|選択された記録項目}}:'''",
@@ -1309,7 +1309,7 @@ $3が示した理由：''$2''",
 'revdelete-radio-unset' => 'いいえ',
 'revdelete-suppress' => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-unsuppress' => '復元版に対する制限を除去',
-'revdelete-log' => '理由：',
+'revdelete-log' => '理由:',
 'revdelete-submit' => '選択された{{PLURAL:$1|版}}に適用',
 'revdelete-success' => "'''版の閲覧レベルを更新しました。'''",
 'revdelete-failure' => "'''版の閲覧レベルを更新できませんでした:'''
@@ -1322,26 +1322,26 @@ $1",
 'revdel-restore-visible' => '閲覧できる版',
 'pagehist' => 'ページの履歴',
 'deletedhist' => '削除された履歴',
-'revdelete-hide-current' => '$1$2の項目の非表示に失敗しました：これは最新版であるため。
+'revdelete-hide-current' => '$1$2の項目の非表示に失敗しました: これは最新版であるため。
 非表示にはできません。',
-'revdelete-show-no-access' => '$1$2の項目の表示に失敗しました：この項目には「制限付き」の印が付いています。
+'revdelete-show-no-access' => '$1$2の項目の表示に失敗しました: この項目には「制限付き」の印が付いています。
 アクセス権限がありません。',
-'revdelete-modify-no-access' => '$1$2の項目の修正に失敗しました：この項目には「制限付き」の印が付いています。
+'revdelete-modify-no-access' => '$1$2の項目の修正に失敗しました: この項目には「制限付き」の印が付いています。
 アクセス権限がありません。',
 'revdelete-modify-missing' => '版 ID $1 の項目の変更に失敗しました: データベース内にありません!',
 'revdelete-no-change' => "'''警告:''' $1$2の項目には要求された閲覧レベルが既に設定されています。",
-'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
+'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました: あなたが変更しようとしている間に、他の誰かが変更したようです。
 記録を確認してください。',
-'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
+'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました: 他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
 'revdelete-reason-dropdown' => '*よくある削除理由
 ** 著作権侵害
 ** 不適切なコメントや個人情報の開示
 ** 不適切な利用者名
 ** 名誉毀損のおそれ',
-'revdelete-otherreason' => '他の、または追加の理由：',
+'revdelete-otherreason' => '他の、または追加の理由:',
 'revdelete-reasonotherlist' => 'その他の理由',
 'revdelete-edit-reasonlist' => '削除理由を編集',
-'revdelete-offender' => '指定版の投稿者：',
+'revdelete-offender' => '指定版の投稿者:',
 
 # Suppression log
 'suppressionlog' => '秘匿記録',
@@ -1813,12 +1813,13 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 
 参考のため、このページの削除と移動の記録を以下に示します:",
 'uploadtext' => "ファイルをアップロードするには、以下のフォームを使用してください。
+
 以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用してください。(再) アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを入れるには、以下の書式のリンクを使用してください:
-* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>''' とすると、ファイルが完全なままで使用されます
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>''' とすると、ファイルが完全なままで使用されます。
 * '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code>''' とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
-* '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>''' とすると、ファイルを表示せずにそのファイルに直接リンクします",
+* '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>''' とすると、ファイルを表示せずにそのファイルに直接リンクします。",
 'upload-permitted' => '許可されているファイル形式: $1。',
 'upload-preferred' => '推奨されているファイル形式: $1。',
 'upload-prohibited' => '禁止されているファイル形式: $1。',
@@ -2125,7 +2126,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 'filerevert' => '$1を差し戻す',
 'filerevert-legend' => 'ファイルを差し戻す',
 'filerevert-intro' => "ファイル'''[[Media:$1|$1]]'''を[$4 $2$3版]に差し戻そうとしています。",
-'filerevert-comment' => '理由：',
+'filerevert-comment' => '理由:',
 'filerevert-defaultcomment' => '$1$2の版へ差し戻し',
 'filerevert-submit' => '差し戻す',
 'filerevert-success' => "'''[[Media:$1|$1]]'''は[$4 $2$3の版]に差し戻されました。",
@@ -2136,13 +2137,13 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 'filedelete-legend' => 'ファイルの削除',
 'filedelete-intro' => "'''[[Media:$1|$1]]'''をすべての履歴とともに削除しようとしています。",
 'filedelete-intro-old' => "'''[[Media:$1|$1]]'''の[$4 $2$3の版]を削除しようとしています。",
-'filedelete-comment' => '理由：',
+'filedelete-comment' => '理由:',
 'filedelete-submit' => '削除',
 'filedelete-success' => "'''$1''' は削除されました。",
 'filedelete-success-old' => "'''[[Media:$1|$1]]'''の$2$3の版は削除されています。",
 'filedelete-nofile' => "'''$1'''は存在しません。",
 'filedelete-nofile-old' => "指定された属性を持つ'''$1'''の古い版は存在しません。",
-'filedelete-otherreason' => '他の、または追加の理由：',
+'filedelete-otherreason' => '他の、または追加の理由:',
 'filedelete-reason-otherlist' => 'その他の理由',
 'filedelete-reason-dropdown' => '*よくある削除理由
 ** 著作権侵害
@@ -2457,7 +2458,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'notanarticle' => '記事ではありません',
 'notvisiblerev' => '別の利用者による最終版は削除されました',
 'watchnochange' => 'ウォッチリストに登録しているページで、指定期間内に編集されたものはありません。',
-'watchlist-details' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています（トークページを除く）。',
+'watchlist-details' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています (トークページを除く)。',
 'wlheader-enotif' => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* 最終訪問以降に変更されたページは、'''太字'''で表示されます",
 'watchmethod-recent' => '最近の更新内のウォッチされているページを確認中',
@@ -2536,8 +2537,8 @@ $UNWATCHURL
 'dellogpagetext' => '以下は最近の削除と復元の一覧です。',
 'deletionlog' => '削除記録',
 'reverted' => '以前の版への差し戻し',
-'deletecomment' => '理由：',
-'deleteotherreason' => '他の、または追加の理由：',
+'deletecomment' => '理由:',
+'deleteotherreason' => '他の、または追加の理由:',
 'deletereasonotherlist' => 'その他の理由',
 'deletereason-dropdown' => '*よくある削除理由
 ** 投稿者依頼
@@ -2588,19 +2589,20 @@ $2による直前の版へ変更されました。',
 'prot_1movedto2' => '[[$1]] を [[$2]] へ移動',
 'protect-badnamespace-title' => '保護不可能な名前空間',
 'protect-badnamespace-text' => 'この名前空間のページは保護できません。',
+'protect-norestrictiontypes-title' => '保護できないページ',
 'protect-legend' => '保護の確認',
-'protectcomment' => '理由：',
-'protectexpiry' => '有効期限：',
+'protectcomment' => '理由:',
+'protectexpiry' => '有効期限:',
 'protect_expiry_invalid' => '有効期間が正しくありません。',
 'protect_expiry_old' => '有効期限が過去の時刻です。',
 'protect-unchain-permissions' => '追加保護オプションをロック解除',
 'protect-text' => "ページ「'''$1'''」に対する保護レベルの表示と操作ができます。",
 'protect-locked-blocked' => "ブロックされている間は、保護レベルを変更できません。
-ページ「'''$1'''」の現在の状態は以下の通りです：",
+ページ「'''$1'''」の現在の状態は以下の通りです:",
 'protect-locked-dblock' => "データベースのロックが有効なため、保護レベルを変更できません。
-ページ「'''$1'''」の現在の状態は以下の通りです：",
+ページ「'''$1'''」の現在の状態は以下の通りです:",
 'protect-locked-access' => "アカウントに、ページの保護レベルを変更する権限がありません。
-ページ「'''$1'''」の現在の状態は以下の通りです：",
+ページ「'''$1'''」の現在の状態は以下の通りです:",
 'protect-cascadeon' => 'このページは現在、カスケード保護が有効になっている以下の{{PLURAL:$1|ページ|ページ群}}から読み込まれているため、保護されています。
 このページの保護レベルを変更できますが、カスケード保護には影響しません。',
 'protect-default' => 'すべての利用者を許可',
@@ -2612,12 +2614,12 @@ $2による直前の版へ変更されました。',
 'protect-expiring' => '$1(UTC)で自動的に解除',
 'protect-expiring-local' => '期限 $1',
 'protect-expiry-indefinite' => '無期限',
-'protect-cascade' => 'このページに読み込まれているページを保護する（カスケード保護）',
+'protect-cascade' => 'このページに読み込まれているページを保護する (カスケード保護)',
 'protect-cantedit' => 'このページの編集権限がないため、保護レベルを変更できません。',
-'protect-othertime' => 'その他の期間：',
+'protect-othertime' => 'その他の期間:',
 'protect-othertime-op' => 'その他の期間',
 'protect-existing-expiry' => '現在の保護期限: $2 $3',
-'protect-otherreason' => '他の、または追加の理由：',
+'protect-otherreason' => '他の、または追加の理由:',
 'protect-otherreason-op' => 'その他の理由',
 'protect-dropdown' => '*よくある保護理由
 ** 度重なる荒らし
@@ -2661,7 +2663,7 @@ $2による直前の版へ変更されました。',
 'undeletehistorynoadmin' => 'このページは削除されています。
 削除の理由は、削除前にこのページを編集していた利用者の詳細情報と共に、以下に表示されています。
 管理者以外の利用者には、削除された各版の本文への制限がかけられています。',
-'undelete-revision' => '削除されたページ「$1」の $4 $5 時点での $3 による版：',
+'undelete-revision' => '削除されたページ「$1」の $4 $5 時点での $3 による版:',
 'undeleterevision-missing' => '無効または存在しない版です。
 間違ったリンクをたどったか、この版は既に復元されたか、もしくは保存版から除去された可能性があります。',
 'undelete-nodiff' => 'これより前の版はありません。',
@@ -2695,7 +2697,7 @@ $1',
 'undelete-error-long' => 'ファイルの復元中にエラーが発生しました:
 
 $1',
-'undelete-show-file-confirm' => '$2$3の版からファイル「<nowiki>$1</nowiki>」の削除版を本当に表示しますか？',
+'undelete-show-file-confirm' => 'ファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を本当に閲覧しますか?',
 'undelete-show-file-submit' => 'はい',
 
 # Namespace form on various pages
@@ -2726,9 +2728,9 @@ $1',
 'sp-contributions-talk' => 'トーク',
 'sp-contributions-userrights' => '利用者権限の管理',
 'sp-contributions-blocked-notice' => 'この利用者は現在ブロックされています。
-参考のために最新のブロック記録項目を以下に表示します：',
+参考のために最新のブロック記録項目を以下に表示します:',
 'sp-contributions-blocked-notice-anon' => 'このIPアドレスは現在ブロックされています。
-参考のために最近のブロック記録項目を以下に表示します：',
+参考のために最近のブロック記録項目を以下に表示します:',
 'sp-contributions-search' => '投稿の検索',
 'sp-contributions-username' => 'IPアドレスまたは利用者名:',
 'sp-contributions-toponly' => '最新版の編集のみを表示',
@@ -2737,8 +2739,8 @@ $1',
 # What links here
 'whatlinkshere' => 'リンク元',
 'whatlinkshere-title' => '「$1」へリンクしているページ',
-'whatlinkshere-page' => 'ページ：',
-'linkshere' => "以下のページが、'''[[:$1]]'''にリンクしています：",
+'whatlinkshere-page' => 'ページ:',
+'linkshere' => "以下のページが、'''[[:$1]]'''にリンクしています:",
 'nolinkshere' => "'''[[:$1]]'''にリンクしているページはありません。",
 'nolinkshere-ns' => "選択された名前空間中で、'''[[:$1]]'''にリンクしているページはありません。",
 'isredirect' => '転送ページ',
@@ -2764,8 +2766,8 @@ $1',
 このような措置は、荒らしからの防御の目的のみに行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。
 以下にブロックの理由を具体的に書いてください (例えば、荒らされたページへの言及など)。',
 'ipadressorusername' => 'IPアドレスまたは利用者名:',
-'ipbexpiry' => '有効期限：',
-'ipbreason' => '理由：',
+'ipbexpiry' => '有効期限:',
+'ipbreason' => '理由:',
 'ipbreasonotherlist' => 'その他の理由',
 'ipbreason-dropdown' => '*よくあるブロック理由
 ** 虚偽情報の挿入
@@ -2780,10 +2782,10 @@ $1',
 'ipbemailban' => 'メール送信を禁止',
 'ipbenableautoblock' => 'この利用者が最後に使用したIPアドレスと、ブロック後に編集を試みた際のIPアドレスを自動的にブロック',
 'ipbsubmit' => 'この利用者をブロック',
-'ipbother' => 'その他の期間：',
+'ipbother' => 'その他の期間:',
 'ipboptions' => '2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite',
 'ipbotheroption' => 'その他',
-'ipbotherreason' => '他の、または追加の理由：',
+'ipbotherreason' => '他の、または追加の理由:',
 'ipbhidename' => '利用者名を編集履歴や各種一覧から秘匿する',
 'ipbwatchuser' => 'この利用者の利用者ページとトークページをウォッチ',
 'ipb-disableusertalk' => 'ブロック中のこの利用者自身によるトークページ編集を禁止',
@@ -2840,11 +2842,11 @@ $1',
 $1 のブロックの理由は「''$2''」です。",
 'blocklogpage' => 'ブロック記録',
 'blocklog-showlog' => 'この利用者は以前にブロックされたことがあります。
-参考のため、ブロックの記録を以下に示します：',
+参考のため、ブロック記録を以下に示します:',
 'blocklog-showsuppresslog' => 'この利用者は以前にブロックされ、隠されたことがあります。
-参考のため、秘匿記録を以下に示します：',
-'blocklogentry' => 'が [[$1]] を$2ブロックしました。ブロックの詳細：$3',
-'reblock-logentry' => 'が [[$1]] のブロック設定を$2に変更しました。ブロックの詳細：$3',
+参考のため、秘匿記録を以下に示します:',
+'blocklogentry' => 'が [[$1]] を$2ブロックしました。ブロックの詳細: $3',
+'reblock-logentry' => 'が [[$1]] のブロック設定を$2に変更しました。ブロックの詳細: $3',
 'blocklogtext' => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
 現時点で有効なブロックは[[Special:BlockList|ブロックの一覧]]をご覧ください。',
@@ -2864,8 +2866,8 @@ $1 のブロックの理由は「''$2''」です。",
 'ipb-needreblock' => '$1 は既にブロックされています。設定を変更しますか?',
 'ipb-otherblocks-header' => 'その他の{{PLURAL:$1|ブロック}}',
 'unblock-hideuser' => '利用者名が隠されているため、この利用者のブロックを解除できません。',
-'ipb_cant_unblock' => 'エラー：ブロック ID $1 はありません。ブロックが既に解除されている可能性があります。',
-'ipb_blocked_as_range' => 'エラー：IPアドレス$1は直接ブロックされておらず、ブロック解除できませんでした。
+'ipb_cant_unblock' => 'エラー: ブロック ID $1 が見つかりません。ブロックが既に解除されている可能性があります。',
+'ipb_blocked_as_range' => 'エラー: IPアドレス$1は直接ブロックされておらず、ブロック解除できませんでした。
 ただし、$2の範囲でブロックされており、こちらのブロックは別途解除できます。',
 'ip_range_invalid' => 'IP範囲が無効です。',
 'ip_range_toolarge' => '/$1より広範囲の範囲ブロックは許可されていません。',

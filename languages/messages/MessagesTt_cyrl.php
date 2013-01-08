@@ -1343,10 +1343,12 @@ $1",
 'right-delete' => 'битләрне бетерү',
 'right-editinterface' => 'Кулланучы интерфейсын үзгәртү',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Кулланучыларны теркәү көндәлеге',
+'newuserlogpagetext' => 'Яңа теркәлгән кулланучылар исемлеге',
+
 # User rights log
 'rightslog' => 'Кулланучының хокуклары көндәлеге',
-'rightslogentry' => '$1 кулланучысын $2 группасыннан $3 группасына күчерде',
-'rightsnone' => '(юк)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'бу битне укырга',
@@ -1703,10 +1705,6 @@ PICT # төрле
 'activeusers-hidesysops' => 'Идарәчеләрне яшер',
 'activeusers-noresult' => 'Кулланучылар табылмады.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Кулланучыларны теркәү көндәлеге',
-'newuserlogpagetext' => 'Яңа теркәлгән кулланучылар исемлеге',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Кулланучы төркемнәренең хокуклары',
 'listgrouprights-group' => 'Төркем',
@@ -1716,7 +1714,10 @@ PICT # төрле
 
 # E-mail user
 'emailuser' => 'Бу кулланучыга хат',
+'emailuser-title-target' => '{{GENDER:$1|Кулланучыга}} электрон хат язу',
+'emailuser-title-notarget' => 'Кулланучыга хат җибәрү',
 'emailpage' => 'Кулланучыга хат җибәрү',
+'emailpagetext' => 'Әлеге форма ярдәмендә {{GENDER:$1|кулланучының}} электрон почта адресына хат җибәрергә мөмкин. Җибәрелгән адрес исемендә Сезнең [[Special:Preferences|көйләнмәләрдә]] күрсәтелгән адресыгыз күрсәтеләчәк, шуның ярдәмендә Сез ул кулланучы белән турыдан-туры сөйләшә аласыз.',
 'defemailsubject' => '{{SITENAME}}: хат',
 'noemailtitle' => 'Электрон почта адресы юк',
 'noemailtext' => 'Бу кулланучы чын электрон әрҗә адресын күрсәтмәде.',
@@ -2529,6 +2530,7 @@ $1',
 'logentry-newusers-create2' => '$1 $3 кулланучы хисап язмасын төзеде',
 'logentry-newusers-autocreate' => 'Автоматик рәвештә $1 хисап язмасы төзелде.',
 'newuserlog-byemail' => 'серсүз электрон почта аша җибәрелде',
+'rightsnone' => '(юк)',
 
 # Feedback
 'feedback-bugornote' => 'Әгәр дә сез техник проблеманы җентекләп тасвирларга әзер икәнсез, зинһар өчен, [$1 хата турында хәбәр итегез].

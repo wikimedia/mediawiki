@@ -278,7 +278,7 @@ $messages = array(
 
 'about' => 'سەبارەت',
 'article' => 'بابەت',
-'newwindow' => '(لە پەڕەیەکی نوێ دەکرێتەوە)',
+'newwindow' => '(لە پەڕەیەکی نوێدا دەکرێتەوە)',
 'cancel' => 'ھەڵیوەشێنەوە',
 'moredotdotdot' => 'زیاتر',
 'mypage' => 'پەڕه‌',

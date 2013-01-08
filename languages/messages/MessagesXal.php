@@ -708,9 +708,11 @@ $1',
 'grouppage-sysop' => '{{ns:project}}:Закрачуд',
 'grouppage-bureaucrat' => '{{ns:project}}:Нойнчуд',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Бичгдлһнә сеткүл',
+
 # User rights log
 'rightslog' => 'Демнчна зөвәнә сеткүл',
-'rightsnone' => '(уга)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'эн халхиг чиклх',
@@ -852,9 +854,6 @@ $1',
 
 # Special:LinkSearch
 'linksearch' => 'Һаза заалһуд',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Бичгдлһнә сеткүл',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(мөчүдин сеткүл)',
@@ -1264,5 +1263,8 @@ $2 шидрә һарһлһна төлә хәләтн.',
 # HTML forms
 'htmlform-reset' => 'Сольлһиг уга кех',
 'htmlform-selectorother-other' => 'Талдан',
+
+# New logging system
+'rightsnone' => '(уга)',
 
 );

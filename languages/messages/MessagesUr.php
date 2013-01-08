@@ -979,11 +979,13 @@ HTML tags جانچئے.',
 'right-delete' => 'صفحات حذف کریں',
 'right-sendemail' => 'دیگر صارفین کو برقی ڈاک بھیجیں',
 
+# Special:Log/newusers
+'newuserlogpage' => 'نوشتۂ آمد صارف',
+'newuserlogpagetext' => 'یہ نۓ صارفوں کی آمد کا نوشتہ ہے',
+
 # User rights log
 'rightslog' => 'نوشتہ صارفی اختیارات',
 'rightslogtext' => 'یہ صارفی اختیارات میں تبدیلیوں کا نوشتہ ہے۔',
-'rightslogentry' => 'گروہ رکنیت میں برائے $1 از $2 تا $3 تبدیلی ہوئی',
-'rightsnone' => '(کچھ نہیں)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'اس صفحہ میں ترمیم کریں',
@@ -1181,10 +1183,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-line' => '$1 مربوط ہے $2 سے',
-
-# Special:Log/newusers
-'newuserlogpage' => 'نوشتۂ آمد صارف',
-'newuserlogpagetext' => 'یہ نۓ صارفوں کی آمد کا نوشتہ ہے',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(اراکین کی فہرست)',
@@ -1524,6 +1522,9 @@ $1 × $2 عکصر (پکسلز)، حجم ملف: $3، MIME قسم: $4',
 
 # Special:SpecialPages
 'specialpages' => 'خصوصی صفحات',
+
+# New logging system
+'rightsnone' => '(کچھ نہیں)',
 
 # Search suggestions
 'searchsuggest-search' => 'تلاش',

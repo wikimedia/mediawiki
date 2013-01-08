@@ -995,9 +995,11 @@ $1",
 'grouppage-sysop' => '{{ns:project}}:管理员',
 'grouppage-bureaucrat' => '{{ns:project}}:行政员',
 
+# Special:Log/newusers
+'newuserlogpage' => '用户创建日志',
+
 # User rights log
 'rightslog' => '用户权限日志',
-'rightsnone' => '（呒）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => '编辑箇只页面',
@@ -1186,9 +1188,6 @@ $1",
 
 # Special:ListUsers
 'listusers-submit' => '显示',
-
-# Special:Log/newusers
-'newuserlogpage' => '用户创建日志',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '（成员列表）',
@@ -1593,5 +1592,6 @@ Variants for Chinese language
 # New logging system
 'revdelete-restricted' => '已将限制应用到管理员',
 'revdelete-unrestricted' => '已移除对管理员个限制',
+'rightsnone' => '（呒）',
 
 );

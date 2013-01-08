@@ -826,6 +826,9 @@ $1',
 'grouppage-bureaucrat' => '{{ns:project}}:Даржахой',
 'grouppage-suppress' => '{{ns:project}}:Левисорхой',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Декъашхой дlабазбина тептар',
+
 # User rights log
 'rightslog' => 'Декъашхон бакъона тéптар',
 
@@ -1058,9 +1061,6 @@ PICT # тайп тайпан
 
 # Special:ActiveUsers
 'activeusers' => 'Жигар декъашхой могlам',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Декъашхой дlабазбина тептар',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Декъашхойн тобанаши бакъонаш',
