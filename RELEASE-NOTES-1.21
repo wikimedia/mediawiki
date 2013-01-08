@@ -111,6 +111,7 @@ production.
   gl, hr, hsb, hu, is, it, kk, kl, ku, ky, la, lb, lt, lv, mk, mo, mt, nl, no,
   oc, pl, pt, rm, ro, ru, rup, sco, sk, sl, smn, sq, sr, sv, tk, tl, tr, tt, uk,
   uz, vi.
+* (bug 33186) Add image rotation api "imagerotate"
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
