@@ -49,6 +49,13 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain() );
 	}
 
+	function testDeliciouslyManyParams() {
+		$msg = new RawMessage( '$1$2$3$4$5$6$7$8$9$10$11$12' );
+		// One less than above has placeholders
+		$params = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' );
+		$this->assertEquals( 'abcdefghijka2', $msg->params( $params )->plain(), 'Params > 9 are replaced correctly' );
+	}
+
 	function testInContentLanguage() {
 		global $wgLang, $wgForceUIMsgAsContentMsg;
 		$wgLang = Language::factory( 'fr' );

@@ -756,7 +756,6 @@ Asekcem aneggaru n uɣmis yella ddaw-agi :",
 'template-semiprotected' => '(nnefṣ-yettwaḥrez)',
 'hiddencategories' => 'Asebter agi yella deg {{PLURAL:$1|Taggayt i ffren|Tiggayin i ffren}} agi :',
 'edittools' => '<!-- Aḍris yettbanen-d seddaw talɣa n ubeddil d uzen. -->',
-'nocreatetitle' => 'Axleq n isebtar meḥdud',
 'nocreatetext' => '{{SITENAME}} yekref iẓubaẓ n usnulfu n isebtar imaynuten.
 Tzemreḍ ad uɣaleḍ ar deffir dɣa ad beddeleḍ asebter yellan yakan, naɣ [[Special:UserLogin|ad qqeneḍ naɣ ad snulfuḍ amiḍan]].',
 'nocreate-loggedin' => 'Ur tesɛiḍ ara turagt i usnulfu n isebtar imaynuten.',
@@ -1298,12 +1297,13 @@ Ur ilaq ara ad i sɛu ugar n $1 {{PLURAL:$1|asekkil|isekkilen}}.',
 'right-sendemail' => 'Ceggaɛ tirawt i iseqdacen nniḍen',
 'right-passwordreset' => 'Ẓeṛ tira n uwennez n awalen uɛaddi',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Aɣmis n isnulfan n  imiḍanen n imseqdacen',
+'newuserlogpagetext' => 'Asebter agi yebeqqeḍ amezruy n usnulfu n imiḍanen n iseqdacen.',
+
 # User rights log
 'rightslog' => 'Aɣmis n yizerfan n wemseqdac',
 'rightslogtext' => 'Wagi d aɣmis n yibeddlen n yizerfan n wemseqdac',
-'rightslogentry' => 'Yettubeddel izerfan n wemseqdac $1 seg $2 ar $3',
-'rightslogentry-autopromote' => 'yesnerna s uwurman seg $2 ar $3',
-'rightsnone' => '(ulaḥedd)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ɣaṛ asebter agi',
@@ -1930,10 +1930,6 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'activeusers-hidebots' => 'Ffer iṛubuten',
 'activeusers-hidesysops' => 'Ffer inedbalen',
 'activeusers-noresult' => 'Ur yufi aseqdac.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Aɣmis n isnulfan n  imiḍanen n imseqdacen',
-'newuserlogpagetext' => 'Asebter agi yebeqqeḍ amezruy n usnulfu n imiḍanen n iseqdacen.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Izerfan n igrawen n iseqdacen',
@@ -3004,6 +3000,9 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 
 # Special:Tags
 'tag-filter' => 'Astay n [[Special:Tags|ticraḍ]] :',
+
+# New logging system
+'rightsnone' => '(ulaḥedd)',
 
 # Feedback
 'feedback-subject' => 'Asentel :',

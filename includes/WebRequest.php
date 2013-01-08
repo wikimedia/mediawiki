@@ -192,7 +192,14 @@ class WebRequest {
 	 * @return array
 	 */
 	public static function detectProtocolAndStdPort() {
-		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ? array( 'https', 443 ) : array( 'http', 80 );
+		if ( ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ||
+			( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) &&
+			$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ) ) {
+			$arr = array( 'https', 443 );
+		} else {
+			$arr = array( 'http', 80 );
+		}
+		return $arr;
 	}
 
 	/**

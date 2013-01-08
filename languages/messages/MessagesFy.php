@@ -737,7 +737,6 @@ In  behearder hat de database blokkearre om de folgjende reden: $1",
 'hiddencategories' => 'Dizze side falt yn de folgjende ferburgen
 {{PLURAL:$1|kategory|kategoryen}}:',
 'edittools' => '<!-- Tekst hjir stiet ûnder bewurkingsfjilden en oanbringfjilden.  -->',
-'nocreatetitle' => 'It oanmeitsjen fan siden is beheind',
 'nocreatetext' => '{{SITENAME}} hat de mûglikheid beheind om nije siden te meitsjen.
 Jo kinne al besteande siden feroarje of jo kinne [[Special:UserLogin|jo oanmelde of in brûker oanmeitsje]].',
 'nocreate-loggedin' => 'Jo meie gjin nije siden meitsje',
@@ -1155,11 +1154,13 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'right-siteadmin' => 'De database blokkearje en wer frij jaan',
 'right-override-export-depth' => 'Alle siden oant en mei in keppelingsdjipte fan fiif fuortskriuwe',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ynskriuwingsloch',
+'newuserlogpagetext' => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
+
 # User rights log
 'rightslog' => 'Rjochten-loch',
 'rightslogtext' => 'Dit is in loch fan feroarings fan meidoggerrjochten.',
-'rightslogentry' => 'groep foar $1 feroare fan $2 yn $3',
-'rightsnone' => '(gjin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'dizze side besjen',
@@ -1643,10 +1644,6 @@ Stipe protokollen: <code>$1</code>',
 # Special:ActiveUsers
 'activeusers' => 'Aktive meidoggers',
 'activeusers-noresult' => 'Gjin meidoggers fûn.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Ynskriuwingsloch',
-'newuserlogpagetext' => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rjochten fan brûkersgroepen',
@@ -2357,5 +2354,6 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'revdelete-restricted' => 'hat beheinings oplein oan behearders',
 'revdelete-unrestricted' => 'hat beheinings foar behearders goedmakke',
 'newuserlog-byemail' => 'wachtwurd is ferstjoerd oer e-mail',
+'rightsnone' => '(gjin)',
 
 );

@@ -37,7 +37,7 @@ class SkinStandard extends SkinLegacy {
 	/**
 	 * @param $out OutputPage
 	 */
-	function setupSkinUserCss( OutputPage $out ){
+	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.standard' );
 

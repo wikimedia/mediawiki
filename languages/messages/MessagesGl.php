@@ -805,6 +805,7 @@ Contrasinal temporal: $2',
 'changeemail-oldemail' => 'Enderezo de correo electrónico actual:',
 'changeemail-newemail' => 'Novo enderezo de correo electrónico:',
 'changeemail-none' => '(ningún)',
+'changeemail-password' => 'O seu contrasinal en {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar o correo electrónico',
 'changeemail-cancel' => 'Cancelar',
 
@@ -987,7 +988,6 @@ Velaquí está a última entrada no rexistro, por se quere consultala:",
 'template-semiprotected' => '(semiprotexido)',
 'hiddencategories' => 'Esta páxina forma parte {{PLURAL:$1|dunha categoría oculta|de $1 categorías ocultas}}:',
 'edittools' => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
-'nocreatetitle' => 'Limitada a creación de páxinas',
 'nocreatetext' => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
 Pode volver e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
 'nocreate-loggedin' => 'Non dispón dos permisos necesarios para crear páxinas novas.',
@@ -1538,15 +1538,13 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-sendemail' => 'Enviar correos electrónicos a outros usuarios',
 'right-passwordreset' => 'Ver os correos electrónicos de restablecemento de contrasinais',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rexistro de creación de usuarios',
+'newuserlogpagetext' => 'Este é un rexistro de creación de contas de usuario.',
+
 # User rights log
 'rightslog' => 'Rexistro de dereitos de usuario',
 'rightslogtext' => 'Este é un rexistro dos cambios nos permisos de usuario.',
-'rightslogentry' => 'cambiou o grupo ao que pertence $1 de $2 a $3',
-'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
-'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
-'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
-'rightsnone' => '(ningún)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ler esta páxina',
@@ -2183,8 +2181,8 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ns' => 'Espazo de nomes:',
 'linksearch-ok' => 'Procurar',
 'linksearch-text' => 'Pódense usar caracteres comodín como "*.wikipedia.org".
-Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (úsase http:// como predeterminado se non se especifica ningún protocolo).',
+Cómpre, polo menos, un dominio de nivel superior; por exemplo, "*.org".<br />
+{{PLURAL:$2|Protocolo soportado|Protocolos soportados}}: <code>$1</code> (úsase http:// como predeterminado se non se especifica ningún protocolo).',
 'linksearch-line' => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
@@ -2202,10 +2200,6 @@ Protocolos soportados: <code>$1</code> (úsase http:// como predeterminado se no
 'activeusers-hidebots' => 'Agochar os bots',
 'activeusers-hidesysops' => 'Agochar os administradores',
 'activeusers-noresult' => 'Non se atopou ningún usuario.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Rexistro de creación de usuarios',
-'newuserlogpagetext' => 'Este é un rexistro de creación de contas de usuario.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Dereitos dun usuario segundo o seu grupo',
@@ -2272,8 +2266,8 @@ O enderezo de correo electrónico que inseriu [[Special:Preferences|nas súas pr
 'watchnologin' => 'Non accedeu ao sistema',
 'watchnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.',
 'addwatch' => 'Engadir á lista vixilancia',
-'addedwatchtext' => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|lista de vixilancia]].
-Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|lista de cambios recentes]] para facer máis sinxela a súa sinalización.",
+'addedwatchtext' => 'A páxina "[[:$1]]" foi engadida á súa [[Special:Watchlist|lista de vixilancia]].
+Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí.',
 'removewatch' => 'Eliminar da lista de vixilancia',
 'removedwatchtext' => 'A páxina "[[:$1]]" foi eliminada [[Special:Watchlist|da súa lista de vixilancia]].',
 'watch' => 'Vixiar',
@@ -2307,7 +2301,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_subject_moved' => '{{GENDER:$2|$2}} trasladou a páxina chamada "$1" en {{SITENAME}}',
 'enotif_subject_restored' => '{{GENDER:$2|$2}} restaurou a páxina chamada "$1" en {{SITENAME}}',
 'enotif_subject_changed' => '{{GENDER:$2|$2}} modificou a páxina chamada "$1" en {{SITENAME}}',
-'enotif_body_intro_deleted' => '{{GENDER:$2|$2}} borrou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
+'enotif_body_intro_deleted' => '{{GENDER:$2|$2}} borrou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3.',
 'enotif_body_intro_created' => '{{GENDER:$2|$2}} creou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
 'enotif_body_intro_moved' => '{{GENDER:$2|$2}} trasladou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
 'enotif_body_intro_restored' => '{{GENDER:$2|$2}} restaurou a páxina chamada "$1" en {{SITENAME}} o $PAGEEDITDATE. Consulte $3 para ver a revisión actual.',
@@ -2413,6 +2407,8 @@ Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a 
 'prot_1movedto2' => 'moveu "[[$1]]" a "[[$2]]"',
 'protect-badnamespace-title' => 'Espazo de nomes que non se pode protexer',
 'protect-badnamespace-text' => 'As páxinas presentes neste espazo de nomes non se poden protexer.',
+'protect-norestrictiontypes-text' => 'Esta páxina non se pode protexer porque non hai dispoñible ningún tipo de restrición.',
+'protect-norestrictiontypes-title' => 'Páxina non protexible',
 'protect-legend' => 'Confirmar a protección',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Caducidade:',
@@ -2912,6 +2908,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'import-error-interwiki' => 'Non se pode importar a páxina "$1" porque o seu nome está reservado para unha ligazón externa (interwiki).',
 'import-error-special' => 'Non se pode importar a páxina "$1" porque pertence a un espazo de nomes especial que non o permite.',
 'import-error-invalid' => 'Non se pode importar a páxina "$1" porque o seu nome non é válido.',
+'import-error-unserialize' => 'Non se puido deserializar a revisión $2 da páxina "$1". Informouse de que a revisión usa o modelo de contido $3 serializado como $4.',
 'import-options-wrong' => '{{PLURAL:$2|Opción incorrecta|Opcións incorrectas}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A páxina raíz dada é un título non válido.',
 'import-rootpage-nosubpage' => 'O espazo de nomes "$1" da páxina raíz non permite as subpáxinas.',
@@ -3103,6 +3100,10 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-protect-cascading' => 'Protección en serie activada',
 'pageinfo-protect-cascading-yes' => 'Si',
 'pageinfo-protect-cascading-from' => 'Protección en serie activada',
+'pageinfo-category-info' => 'Información da categoría',
+'pageinfo-category-pages' => 'Número de páxinas',
+'pageinfo-category-subcats' => 'Número de subcategorías',
+'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
 'skinname-standard' => 'Clásica',
@@ -3159,6 +3160,7 @@ O seu sistema pode quedar comprometido se o executa.",
 'file-nohires' => 'Non se dispón dunha resolución máis grande.',
 'svg-long-desc' => 'ficheiro SVG; resolución de $1 × $2 píxeles; tamaño do ficheiro: $3',
 'svg-long-desc-animated' => 'ficheiro SVG animado; resolución de $1 × $2 píxeles; tamaño do ficheiro: $3',
+'svg-long-error' => 'Ficheiro SVG non válido: $1',
 'show-big-image' => 'Imaxe na máxima resolución',
 'show-big-image-preview' => 'Tamaño desta vista previa: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Outra resolución|Outras resolucións}}: $1.',
@@ -3189,6 +3191,8 @@ O seu sistema pode quedar comprometido se o executa.",
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 horas}}',
 'days' => '{{PLURAL:$1|$1 día|$1 días}}',
+'months' => '{{PLURAL:$1|$1 mes|$1 meses}}',
+'years' => '{{PLURAL:$1|$1 ano|$1 anos}}',
 'ago' => 'hai $1',
 'just-now' => 'agora mesmo',
 
@@ -3953,6 +3957,10 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-newusers-create2' => '$1 creou a conta de usuario $3',
 'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
 'newuserlog-byemail' => 'contrasinal enviado por correo electrónico',
+'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
+'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
+'rightsnone' => '(ningún)',
 
 # Feedback
 'feedback-bugornote' => 'Se está listo para describir un problema técnico en detalle, [$1 informe do erro].
@@ -4026,6 +4034,4 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'svg-long-error' => 'Ficheiro SVG non válido: $1',
 );

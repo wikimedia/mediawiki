@@ -921,7 +921,6 @@ Keýin qoldanw üşin mätändi qýıp alıp jäne qoýıp, mätin faýlına saq
 'template-protected' => '(qorğalğan)',
 'template-semiprotected' => '(jartılaý qorğalğan)',
 'hiddencategories' => 'Bul bet $1 jasırın sanattıñ müşesi:',
-'nocreatetitle' => 'Betti bastaw şektelgen',
 'nocreatetext' => '{{SITENAME}} jobasında jaña bet bastawı şektelgen.
 Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{#special:Userlogin}}|kirwiñizge ne tirkelwiñizge]] boladı.',
 'nocreate-loggedin' => '{{SITENAME}} jobasında jaña bet bastaw ruqsatıñız joq.',
@@ -1267,11 +1266,13 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 'right-userrights-interwiki' => 'Basqa üïkïlerdegi qatıswşılardıñ quqıqtarın öñdew',
 'right-siteadmin' => 'Derekqordı qulıptaw jäne qulıptawın öşirw',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Tirkelw jwrnalı',
+'newuserlogpagetext' => 'Bul qatıswşı tirkelgi jasaw jwrnalı',
+
 # User rights log
 'rightslog' => 'Qatıswşı quqıqtarı jwrnalı',
 'rightslogtext' => 'Bul qatıswşı quqıqtarın özgertw jwrnalı.',
-'rightslogentry' => '$1 kirgen toptarın $2 degennen $3 degenge özgertti',
-'rightsnone' => '(eşqandaý)',
 
 # Recent changes
 'nchanges' => '$1 özgeris',
@@ -1645,10 +1646,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Mına qatıswşıdan bastap körsetw:',
 'listusers-submit' => 'Körset',
 'listusers-noresult' => 'Qatıswşı tabılğan joq.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Tirkelw jwrnalı',
-'newuserlogpagetext' => 'Bul qatıswşı tirkelgi jasaw jwrnalı',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Qatıswşı tobı quqıqtarı',
@@ -2856,5 +2853,6 @@ Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qat
 # New logging system
 'revdelete-restricted' => 'äkimşilerge tïımdar qoldadı',
 'revdelete-unrestricted' => 'äkimşilerden tïımdardı alastadı',
+'rightsnone' => '(eşqandaý)',
 
 );

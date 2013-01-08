@@ -416,7 +416,7 @@ Ora ana alesané.",
 'actionthrottled' => 'Tindakan diwatesi',
 'actionthrottledtext' => 'Minangka sawijining pepesthèn anti-spam, panjenengan diwatesi nglakoni tindhakan iki sing cacahé kakèhan ing wektu cendhak.
 Mangga dicoba manèh ing sawetara menit.',
-'protectedpagetext' => 'Kaca iki dikunci supaya ora disunting.',
+'protectedpagetext' => 'Kaca iki wis digembok supaya ora bisa disunting lan diapa-apakaké.',
 'viewsourcetext' => 'Panjenengan bisa mirsani utawa nulad sumber kaca iki:',
 'viewyourtext' => "Sampéyan bisa ndelok lan nyalin sumber '''suntingan Sampéyan''' nèng kaca iki:",
 'protectedinterface' => 'Kaca iki isiné tèks antarmuka sing dienggo software lan wis dikunci kanggo menghindari kasalahan.',
@@ -451,6 +451,7 @@ Pangurus sing ngopèni kuwi ngawedharaké: "$3".',
 Sampéyan bisa nganggo {{SITENAME}} sacara anonim, utawa bisa <span class='plainlinks'>[$1 mlebu log manèh]</span> kanthi jeneng panganggo sing padha utawa beda.
 
 Cathet yèn sapérangan kaca mungkin isih nampilaké tulisan yèn Sampéyan isih nèng njero log, kuwi bisa ilang yèn Sampéyan ngresiki ''cache'' pramban Sampéyan.",
+'welcomeuser' => 'Sugeng Rawuh, $1!',
 'yourname' => 'Asma pangangeman',
 'yourpassword' => 'Tembung sandhi:',
 'yourpasswordagain' => 'Balènana tembung sandhi',
@@ -748,7 +749,6 @@ Entri cathetan pungkasan disadiakake ing ngisor kanggo referensi:",
 'template-semiprotected' => '(semi-pangreksan)',
 'hiddencategories' => 'Kaca iki sawijining anggota saka {{PLURAL:$1|1 kategori ndelik|$1 kategori-kategori ndelik}}:',
 'edittools' => '<!-- Tèks ing ngisor iki bakal ditudhuhaké ing ngisoring isènan suntingan lan pangemotan.-->',
-'nocreatetitle' => 'Panggawéan kaca anyar diwatesi',
 'nocreatetext' => 'Situs iki ngwatesi kemampuan kanggo nggawé kaca anyar. Panjenengan bisa bali lan nyunting kaca sing wis ana, utawa mangga [[Special:UserLogin|mlebua log utawa ndaftar]]',
 'nocreate-loggedin' => 'Panjenengan ora kagungan idin kanggo nggawé kaca anyar.',
 'sectioneditnotsupported-title' => 'Panyuntingan bagéyan ora kasengkuyungan',
@@ -1280,12 +1280,13 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'right-sendemail' => 'Ngirim layang listrik (e-mail) menyang panganggo liya',
 'right-passwordreset' => 'Delok layang èlèktronik panyetèlulangan tembung sandhi',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log panganggo anyar',
+'newuserlogpagetext' => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
+
 # User rights log
 'rightslog' => 'Log pangowahan hak aksès',
 'rightslogtext' => 'Ing ngisor iki kapacak log pangowahan marang hak-hak panganggo.',
-'rightslogentry' => 'ngganti kaanggotan kelompok kanggo $1 saka $2 dadi $3',
-'rightslogentry-autopromote' => 'otomatis ditawakaké saka $2 nèng $3',
-'rightsnone' => '(ora ana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'maca kaca iki',
@@ -1899,10 +1900,6 @@ Deleng uga [[Special:WantedCategories|kategori sing diperlokaké]].',
 'activeusers-hidebots' => 'Delikna bot',
 'activeusers-hidesysops' => 'Delikna pangurus',
 'activeusers-noresult' => 'Panganggo ora ditemokaké.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log panganggo anyar',
-'newuserlogpagetext' => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Hak-hak grup panganggo',
@@ -3480,6 +3477,7 @@ Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka lan
 'logentry-newusers-create2' => 'Akun panganggo $3 digawé déning $1',
 'logentry-newusers-autocreate' => 'Akun $1 digawé otomatis',
 'newuserlog-byemail' => 'tembung sandhi wis dikirim liwat e-mail',
+'rightsnone' => '(ora ana)',
 
 # Feedback
 'feedback-bugornote' => 'Yèn Sampéyan siap njelasaké masalah tèhnis kanthi rinci mangga [$1 laporaké bug].

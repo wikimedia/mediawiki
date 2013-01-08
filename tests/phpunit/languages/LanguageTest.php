@@ -847,35 +847,36 @@ class LanguageTest extends LanguageClassesTestCase {
 				'2 days',
 			),
 			array(
-				365.25 * 86400, // 365.25 * 86400 = 31557600
+				// ( 365 + ( 24 * 3 + 25 ) / 400 ) * 86400 = 31556952
+				( 365 + ( 24 * 3 + 25 ) / 400.0 ) * 86400,
 				'1 year',
 			),
 			array(
-				2 * 31557600,
+				2 * 31556952,
 				'2 years',
 			),
 			array(
-				10 * 31557600,
+				10 * 31556952,
 				'1 decade',
 			),
 			array(
-				20 * 31557600,
+				20 * 31556952,
 				'2 decades',
 			),
 			array(
-				100 * 31557600,
+				100 * 31556952,
 				'1 century',
 			),
 			array(
-				200 * 31557600,
+				200 * 31556952,
 				'2 centuries',
 			),
 			array(
-				1000 * 31557600,
+				1000 * 31556952,
 				'1 millennium',
 			),
 			array(
-				2000 * 31557600,
+				2000 * 31556952,
 				'2 millennia',
 			),
 			array(
@@ -887,11 +888,11 @@ class LanguageTest extends LanguageClassesTestCase {
 				'1 hour and 1 second'
 			),
 			array(
-				31557600 + 2 * 86400 + 9000,
+				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days, 2 hours and 30 minutes'
 			),
 			array(
-				42 * 1000 * 31557600 + 42,
+				42 * 1000 * 31556952 + 42,
 				'42 millennia and 42 seconds'
 			),
 			array(
@@ -910,7 +911,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				array( 'seconds' ),
 			),
 			array(
-				31557600 + 2 * 86400 + 9000,
+				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days and 150 minutes',
 				array( 'years', 'days', 'minutes' ),
 			),
@@ -920,7 +921,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				array( 'years', 'days' ),
 			),
 			array(
-				31557600 + 2 * 86400 + 9000,
+				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days and 150 minutes',
 				array( 'minutes', 'days', 'years' ),
 			),
@@ -1109,6 +1110,50 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( array( 'timeanddate', '19691231235959' ), '1969-12-31 23:59:59', 'time before epoch' ),
 			array( 'dummy', 'dummy', 'return garbage as is' ),
 		);
+	}
+
+	/**
+	 * @covers Language::commafy()
+	 * @dataProvider provideCommafyData
+	 */
+	function testCommafy( $number, $numbersWithCommas ) {
+		$this->assertEquals(
+			$numbersWithCommas,
+			$this->getLang()->commafy( $number ),
+			"commafy('$number')"
+		);
+	}
+
+	function provideCommafyData() {
+		return array(
+			array( 1, '1' ),
+			array( 10, '10' ),
+			array( 100, '100' ),
+			array( 1000, '1,000' ),
+			array( 10000, '10,000' ),
+			array( 100000, '100,000' ),
+			array( 1000000, '1,000,000' ),
+			array( 1.0001, '1.0001' ),
+			array( 10.0001, '10.0001' ),
+			array( 100.0001, '100.0001' ),
+			array( 1000.0001, '1,000.0001' ),
+			array( 10000.0001, '10,000.0001' ),
+			array( 100000.0001, '100,000.0001' ),
+			array( 1000000.0001, '1,000,000.0001' ),
+		);
+	}
+
+	function testListToText() {
+		$lang = $this->getLang();
+		$and = $lang->getMessageFromDB( 'and' );
+		$s = $lang->getMessageFromDB( 'word-separator' );
+		$c = $lang->getMessageFromDB( 'comma-separator' );
+
+		$this->assertEquals( '', $lang->listToText( array( ) ) );
+		$this->assertEquals( 'a', $lang->listToText( array( 'a' ) ) );
+		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( array( 'a', 'b' ) ) );
+		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( array( 'a', 'b', 'c' ) ) );
+		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( array( 'a', 'b', 'c', 'd' ) ) );
 	}
 }
 

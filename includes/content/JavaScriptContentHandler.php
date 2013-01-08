@@ -1,5 +1,7 @@
 <?php
 /**
+ * Content handler for JavaScript pages.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,10 +20,12 @@
  * @file
  */
 
-# XXX: make ScriptContentHandler base class, do highlighting stuff there?
-
 /**
+ * Content handler for JavaScript pages.
+ *
  * @since 1.21
+ * @ingroup Content
+ * @todo make ScriptContentHandler base class, do highlighting stuff there?
  */
 class JavaScriptContentHandler extends TextContentHandler {
 

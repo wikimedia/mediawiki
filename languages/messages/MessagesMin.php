@@ -149,7 +149,7 @@ $messages = array(
 
 'about' => 'Tentang',
 'article' => 'Artikel',
-'newwindow' => '(buka di jendela baru)',
+'newwindow' => '(buka di jandela baru)',
 'cancel' => 'Batalkan',
 'moredotdotdot' => 'Lainnyo...',
 'mypage' => 'Laman',
@@ -194,7 +194,7 @@ $messages = array(
 'searchbutton' => 'Cari',
 'go' => 'Tuju',
 'searcharticle' => 'Tuju',
-'history' => 'Riwayat halaman',
+'history' => 'Riwayaik halaman',
 'history_short' => 'Riwayaik',
 'updatedmarker' => 'diubah sajak kunjuangan tarakhir ambo',
 'printableversion' => 'Versi cetak',
@@ -232,10 +232,10 @@ $messages = array(
 'viewhelppage' => 'Caliak laman bantuan',
 'categorypage' => 'Caliak laman kategori',
 'viewtalkpage' => 'Caliak laman ota',
-'otherlanguages' => 'Dalam baso lain',
+'otherlanguages' => 'Dalam bahaso lain',
 'redirectedfrom' => '(Dialiahkan dari $1)',
 'redirectpagesub' => 'Laman pengalihan',
-'lastmodifiedat' => 'Laman ko tarakhir diubah pado $2, $1.',
+'lastmodifiedat' => 'Laman ko taakia diubah pado $2, $1.',
 'viewcount' => 'Laman iko alah diakses sabanyak {{PLURAL:$1|ciek kali|$1 kali}}.<br />',
 'protectedpage' => 'Laman nan dilindungi',
 'jumpto' => 'Lompek ka:',
@@ -259,7 +259,7 @@ $1',
 'currentevents-url' => 'Project:Kajadian kini ko',
 'disclaimers' => 'Sanggah',
 'disclaimerpage' => 'Project:Sanggahan umum',
-'edithelp' => 'Bantuan suntingan',
+'edithelp' => 'Bantuan suntiangan',
 'edithelppage' => 'Help:Suntingan',
 'helppage' => 'Help:Takadia',
 'mainpage' => 'Laman Utamo',
@@ -390,8 +390,8 @@ Indak ado keterangan.',
 'protectedpagetext' => 'Laman ko alah dikunci untuak manghindari panyuntiangan.',
 'viewsourcetext' => 'Sanak dapek malihek atau manyalin sumber laman iko:',
 'viewyourtext' => 'Sanak bisa mancaliak dan mangopi sumber untuak "editan sanak" ka halaman iko',
-'protectedinterface' => 'Laman iko barisi teks antarmuko untuak digunoan oleh parangkaik lunak di wiki iko sajo, dan alah dikunci untuak manghindari kasalahan. 
-Untuak manambah atau mangubah tarjemahan di sadonyo wiki, tolong digunoan [//translatewiki.net/ translatewiki.net], yaitu proyek lokalisasi dari MediaWiki.',
+'protectedinterface' => 'Laman iko baisi teks antarmuko untuak digunoan dek parangkaik lunak di wiki iko sajo, dan alah dikunci untuak maindaan kasalahan. 
+Untuak manambah atau maubah tajamahan di sadonyo wiki, harap gunoan [//translatewiki.net/ translatewiki.net], yaitu proyek palokalan MediaWiki.',
 'editinginterface' => "'''Paringatan:''' Sanak manyuntiang laman nan digunoan untuak manyadiokan teks antarmuko untuak parangkaik lunak.
 Parubahan teks ko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
 Untuak tarjamahan, harap gunokan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
@@ -408,6 +408,7 @@ Alasan nan diberikan adolah ''$2''.",
 
 Pangurus nan manguncinyo manawarkan penjelasan: "$3"',
 'invalidtitle-knownnamespace' => '↓Judul nan indak sah jo ruangnamo "$2" dan teks "$3"',
+'invalidtitle-unknownnamespace' => 'Judul nan tak sah jo nomor ruang namo indak diketahui $1 dan teks "$2"',
 'exception-nologin' => 'Indak log masuak',
 'exception-nologin-text' => 'Halaman ko hanyo bisa disuntiang dek pangguno badaftar.',
 
@@ -571,6 +572,7 @@ ingin maubahnyo, Sanak dapek maabaikan pasan iko dan taruih manggunokan sandi la
 Sandi samantaro: $2',
 'passwordreset-emailsent' => 'Surel pangingek alah dikiriman.',
 'passwordreset-emailsent-capture' => 'E-mail paringatan alah dikirim, nan tacaliak di bawah ko.',
+'passwordreset-emailerror-capture' => 'Surel pangingek, nan ditampilkan di bawah, alah dibuek, tapi pengirimannyo gagal ka pangguno: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Tuka alamat e-mail.',
@@ -580,6 +582,7 @@ Sandi samantaro: $2',
 'changeemail-oldemail' => 'Alamat e-mail kini:',
 'changeemail-newemail' => 'Alamat e-mail baharu:',
 'changeemail-none' => '(indak ado)',
+'changeemail-password' => 'Sandi {{SITENAME}} Sanak:',
 'changeemail-submit' => 'Ganti e-mail.',
 'changeemail-cancel' => 'Batalkan',
 
@@ -604,13 +607,13 @@ Sandi samantaro: $2',
 # Edit pages
 'summary' => 'Ringkasan:',
 'subject' => 'Subjek/tajuk:',
-'minoredit' => 'Iko di suntiang saketek',
+'minoredit' => 'Iko disuntiang saketek',
 'watchthis' => 'Pantau laman ko',
 'savearticle' => 'Simpan halaman',
 'preview' => 'Pratonton',
-'showpreview' => 'Lihek pratonton',
+'showpreview' => 'Caliak pratonton',
 'showlivepreview' => 'Pratayang langsuang',
-'showdiff' => 'Lihek parubahan',
+'showdiff' => 'Caliak parubahan',
 'anoneditwarning' => "'''Peringatan:''' Awak alun masuak log.
 Alamat IP awak akan tacatat pado riwayat suntingan laman ko.",
 'anonpreviewwarning' => "''Sanak alun masuak log. Manyimpan laman akan manyababkan alamaik IP Sanak tacatat pado riwayat suntiangan laman iko.''",
@@ -665,8 +668,8 @@ Subbagian iko mungkin dipindahan atau dihapuih katiko Sanak mambukanyo.',
 Kato sandi untuak akun baharu iko dapek diubah di laman ''[[Special:ChangePassword|pangubahan kato sandi]]'' satalah masuak log.",
 'newarticle' => '(Baru)',
 'newarticletext' => "Laman nan awak cari alun ado.
-Untuak mambuek laman tu, mulailah dengan menulis dalam kotak di bawah (lihek [[{{MediaWiki:Helppage}}|laman bantuan]] untuak maklumat lanjut).
-Jiko awak indak sangajo sampai ka laman ko, klik tombol '''back''' pado penjelajah web awak.",
+Untuak mambuek laman tu, mulailah dangan manulih dalam kotak di bawah (caliak [[{{MediaWiki:Helppage}}|laman bantuan]] untuak informasi lanjuiknyo).
+Jikok awak indak sangajo sampai ka laman ko, klik tombol '''back''' pado panjalajah web awak.",
 'anontalkpagetext' => "----''Iko adolah laman pambicaraan saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
 Jadi, kami tapaso harus mamakai alamat IP nan basangkutan untuak maidentifikasikannyo.
 Jikok Sanak adolah saurang pangguno anonim dan marasa mandapekkan komentar-komentar nan indak relevan nan ditujuan langsung kapado Sanak, sila [[Special:UserLogin/signup|mambuek akun]] atau [[Special:UserLogin|masuak log]] untuak mahindari karancuan jo pangguno anonim lainnya di lain wakatu.''",
@@ -683,10 +686,11 @@ Rinciannyo dapek dicaliak di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'userpage-userdoesnotexist-view' => 'Pangguno "$1" indak tadafta.',
 'blocked-notice-logextract' => 'Pangguno iko sadang diblokir.
 Entri log pamblokiran tabaharu iko disadioan di bawah iko untuak referensi:',
-'clearyourcache' => "'''Catatan:''' Sasudah manyimpan preferensi, Sanak mungkin paralu mambarasiahan singgahan panjalajah web Sanak untuak mancaliak parubahan. '''Mozilla / Firefox / Safari:''' takan ''Ctrl-R'' (''Cmd-R'' pado Mac);
-'''Konqueror:''': takan ''F5'';
-'''Opera''' barasiahan singgahan malalui menu ''Tools → Preferences'';
-'''Internet Explorer:''' takan ''Ctrl-F5''.",
+'clearyourcache' => "'''Catatan:''' Sasudah menyimpan, Sanak mungkin harus meminteh singgahan paramban Sanak untuak maliek parubahan.
+* '''Firefox / Safari:''' Tahan ''Shift'' sambia mangklik ''Reload'', atau takan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
+* '''Google Chrome:''' Takan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
+* '''Internet Explorer:''' Tahan ''Ctrl'' sambia mangklik ''Refresh'', atau takan ''Ctrl-F5''
+* '''Opera:''' Barasiahkan tembolok di ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Tips:''' Gunoan tombol \"{{int:showpreview}}\" untuak mauji CSS baharu Sanak sabalun manyimpannyo.",
 'userjsyoucanpreview' => "'''Tips:''' Gunoan tombol \"{{int:showpreview}}\" untuak mauji JS baharu Sanak sabalun manyimpannyo.",
 'usercsspreview' => "'''Ingeklah bahawa Sanak sadang manampilan pratayang dari CSS Sanak.
@@ -717,7 +721,7 @@ Suntiangan tasabuik ditolak untuak mancegah kasalahan pado teks laman.
 Hal iko kadang tajadi jikok Sanak manggunokan layanan proxy anonim babasis web nan bamasalah.",
 'edit_form_incomplete' => "'''Babarapo bagian dari formulir suntiangan indak mancapai server; pariso baliak apokah suntiangan Sanak tatap utuah dan cubo lai.'''",
 'editing' => 'Manyuntiang $1',
-'creating' => 'Mambuek $!',
+'creating' => 'Mambuek $1',
 'editingsection' => 'Suntiang $1 (bagian)',
 'editingcomment' => 'Manyuntiang $1 (bahagian baharu)',
 'editconflict' => 'Konflik panyuntiangan: $1',
@@ -734,12 +738,12 @@ Alah tadapek sabuah solusi agar Sanak dapek manyuntiang laman jo aman: karakter 
 Sanak manyuntiang revisi lama suatu laman.
 Jikok Sanak manyimpannyo, parubahan-parubahan nan dibuek sajak revisi iko akan hilang.'''",
 'yourdiff' => 'Pambedoan',
-'copyrightwarning' => "Untuak diingek bahwa apo nan disumbang kapado {{SITENAME}} dianggap lah dilapeh di bawah $2 (lihek $1 untuak lengkapnyo).
-Jiko awak indak ingin apo nan ditulis tu disuntiang dan disebarkan, jan dikirim tulisan tu ka siko.<br />
-Awak juo mesti bajanji bahwa itu adolah hasil karya awak surang, atau disalin dari sumber milik basamo atau sumber bebas lainnyo.
-'''Jan dikirim karya punyo hak cipta tanpa izin!'''",
+'copyrightwarning' => "Untuak diingek bahaso apo nan disumbang kapado {{SITENAME}} dianggap lah dilapeh di bawah $2 (caliak $1 untuak langkoknyo).
+Jikok awak indak ingin apo nan ditulih tu disuntiang dan disebaran, jan dikirim tulisan tu ka siko.<br />
+Awak musti bajanji juo bahaso iko adolah asia karya awak surang, atau disalin dari sumber miliak basamo atau sumber bebas lainnyo.
+'''Jan dikirim karya bahak cipta nan indak baizin!'''",
 'copyrightwarning2' => "Parhatikan bahawa sadoalah kontribusi terhadap {{SITENAME}} dapek disuntiang, diubah, atau dihapuih oleh panyumbang lainnyo. Jikok Sanak indak ingin tulisan Sanak disuntiang urang lain, jan kiriman ka siko.<br />Sanak jua bajanji bahawa iko adolah hasil karyo Sanak surang, atau disalin dari sumber miliak umum atau sumber bebas nan lain (liek $1 untuak informasi labiah lanjuik). '''JAN KIRIMAN KARYO NAN DILINDUNGI HAK CIPTA TANPA IJIN!'''",
-'longpageerror' => "'''KASALAHAN: Teks nan Sanak kiriman sagadang $1 kilobita, nan barati labiah gadang dari jumlah maksimum $2 kilobita. Teks indak dapek disimpan.'''",
+'longpageerror' => "'''KASALAHAN: Teks nan Sanak kiriman sagadang {{PLURAL:$1|kilobita|$1 kilobita}}, nan barati labiah gadang dari jumlah maksimum {{PLURAL:$2|kilobita|$2 kilobita}}. Teks indak dapek disimpan.'''",
 'readonlywarning' => "'''PARINGATAN: Basis data sadang dikunci karano pamaliharaan, sahinggo saat iko Sanak indak dapek manyimpan hasil suntiangan Sanak.
 Sanak mungkin paralu manyalin teks suntiangan Sanak iko dan manyimpannyo ka sabuah berkas teks dan mamuekannyo baliak sausai pamaliharaan usai.'''
 
@@ -757,7 +761,6 @@ Entri catatan tarakhir disadioan di bawah untuak referensi:",
 'template-protected' => '(dilinduangi)',
 'template-semiprotected' => '(semi-perlindungan)',
 'hiddencategories' => 'Laman ko marupokan kalompok dari {{PLURAL:$1|1 kategori tapandam|$1 kategori tapandam}}:',
-'nocreatetitle' => 'Pambuekan laman baharu dibatasi',
 'nocreatetext' => '{{SITENAME}} alah mambatasi pambuekan laman-laman baharu.
 Sanak dapek baliak dan manyuntiang laman nan alah ado, atau sila [[Special:UserLogin|masuak log atau mambuek akun]].',
 'nocreate-loggedin' => 'Sanak ndak mampunyoi hak akses untuak mambuek laman baharu.',
@@ -773,6 +776,8 @@ Barikuik adolah log panghapuihan dan pamindahan dari laman iko:",
 'moveddeleted-notice' => 'Laman iko alah dihapuih.
 Sabagai referensi, barikuik adolah log panghapusan dan pamindahan laman iko.',
 'log-fulllog' => 'Liek saluruah log',
+'edit-hook-aborted' => 'Suntiangan dibatalan samo kait parser
+tanpa ado katarangan.',
 'edit-gone-missing' => 'Indak bisa mamperbarui halaman.
 Mungkin alah dihapuih.',
 'edit-conflict' => 'Konflik suntingan.',
@@ -780,7 +785,9 @@ Mungkin alah dihapuih.',
 'edit-already-exists' => 'Indak bisa mambuek halaman baru.
 Alah ado.',
 'defaultmessagetext' => 'Teks pasan default.',
+'content-failed-to-parse' => 'Gagal manjabarkan konten $2 untuak model $1: $3',
 'invalid-content-data' => 'Data kanduangan indak valid.',
+'content-not-allowed-here' => 'Konten "$1" indak diizinan di laman [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'Teks wiki',
@@ -789,15 +796,34 @@ Alah ado.',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
+'expensive-parserfunction-warning' => "'''Warning:''' Laman ko manganduang talalu banyak panggilan fungsi parser.
+
+Seharusnyo kurang dari $2 {{PLURAL:$2|panggilan|$2 panggilan}}, tapi {{PLURAL:$1|kini ado $1 panggilan|kini ko ado $1 panggilan}}.",
+'expensive-parserfunction-category' => 'Laman nan talalu banyak panggilan fungsi parser',
 'post-expand-template-inclusion-warning' => "'''Peringatan:''' Ukuran templat talalu gadang.
 Babarapo templat akan diabaikan.",
 'post-expand-template-inclusion-category' => 'Laman nan ukurannyo templatnyo malabiahi bateh',
 'post-expand-template-argument-warning' => 'Peringatan: Laman ko barisi satidaknyo ciek uraian templat na baukuran ekspansi nan talalu gadang. 
 Uraian-uraian tu alah diabaikan.',
 'post-expand-template-argument-category' => 'Laman nan barisi uraian template nan diabaikan',
+'parser-template-loop-warning' => 'Hubungan barulang templat tadeteksi: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limit kadalaman hubungan barulang templat lah talampau ($1)',
+'language-converter-depth-warning' => 'Bateh kadalaman pangonversi bahaso lah talampau ($1)',
+'node-count-exceeded-category' => 'Laman dimano hitungan-node talampaui',
+'node-count-exceeded-warning' => 'Laman hitungan-node lah talampau',
+'expansion-depth-exceeded-category' => 'Laman dima kadalaman ekspansi lah talampau',
+'expansion-depth-exceeded-warning' => 'Laman kadalaman ekspansi lah talampau',
+'converter-manual-rule-error' => 'Kasalahan tadeteksi di aturan manual konversi bahaso',
+
+# "Undo" feature
+'undo-success' => 'Suntiangan iko dapek dibatalan. 
+Tolong cek pabandiangan di bawah untuak mayakinkan bahwa bana itu nan Sanak ingin buek, lalu simpan parubahan tasabuik untuak manyalasaikan pambatalan suntiangan.',
+'undo-failure' => 'Suntiangan ko indak dapek dibatalan dek konflik panyuntiangan antaro.',
+'undo-norev' => 'Suntiangan ko indak dapek dibatalan dek laman indak ditamukan atau lah dihapuih.',
+'undo-summary' => 'Mambatalan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
 
 # History pages
-'viewpagelogs' => 'Lihek log untuak laman ko',
+'viewpagelogs' => 'Caliak log untuak laman ko',
 'currentrev-asof' => 'Revisi terkini pado $1',
 'revisionasof' => 'Pabaikkan per $1',
 'revision-info' => 'Revisi sajak $1 dek $2',
@@ -806,9 +832,9 @@ Uraian-uraian tu alah diabaikan.',
 'currentrevisionlink' => 'Revisi terkini',
 'cur' => 'kini',
 'last' => 'sabalun',
-'histlegend' => "Membandingkan pilihan: Tandoi dari revisi yang ingin dibandingkan dengan memilih kotak radionyo dan tekan tombol ''Bandingkan revisi pilihan''.<br />
-Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''' = perbedaan jo revisi sabalunnyo, '''{{int:k}}''' = suntingan ketek, '''{{int:b}}''' = suntingan bot.",
-'history-fieldset-title' => 'Telusuri riwayat',
+'histlegend' => "Membandingkan pilihan: Tandoi antaro duo versi nan ingin dibandingan dangan mamilih kotak radionyo, dan takan tombol ''Bandiangan versi tapiliah''.<br />
+Legend: '''({{int:kini}})''' = perbedaan jo versi taakhia, '''({{int:dulu}})''' = pabedoan jo versi sabalunnyo, '''{{int:k}}''' = suntiangan ketek, '''{{int:b}}''' = suntiangan bot.",
+'history-fieldset-title' => 'Talusuri riwayaik',
 'history-show-deleted' => 'Hanyo nan dihapuih',
 'histfirst' => 'Nan lamo',
 'histlast' => 'Nan baru',
@@ -828,20 +854,20 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 # Diffs
 'history-title' => 'Riwayaik pabaiakkan dari "$1"',
 'lineno' => 'Barih $1:',
-'compareselectedversions' => 'Bandingkan revisi pilihan',
+'compareselectedversions' => 'Bandiangan versi tapiliah',
 'editundo' => 'batalan',
 'diff-multi' => '({{PLURAL:$1|ciek |$1 revisi antaro}} oleh {{PLURAL:$2|ciek|$2 pangguno}} indak ditampilkan)',
 
 # Search results
-'searchresults' => 'Hasil pencarian',
+'searchresults' => 'Asia pancarian',
 'searchresults-title' => 'Hasil pancarian untuak "$1"',
-'searchresulttext' => 'Untuak informasi lanjut tentang pencarian {{SITENAME}}, lihek [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext' => 'Untuak informasi labiah lanjuik tantang pancarian {{SITENAME}}, caliak [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => 'Awak mancari \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sado laman yang dimulai jo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|sado laman nan tapauik ka "$1"]])',
 'searchsubtitleinvalid' => "Awak mancari '''$1'''",
 'notitlematches' => 'Indak ado judul nan pas',
 'notextmatches' => 'Indak ado judul nan pas',
 'prevn' => '{{PLURAL:$1|$1}} sabalunnyo',
-'nextn' => '{{PLURAL:$1|$1}} salanjuknyo',
+'nextn' => '{{PLURAL:$1|$1}} salanjuiknyo',
 'prevn-title' => '$1 {{PLURAL:$1|Hasil|Hasil-hasil}} sabalunnyo',
 'nextn-title' => '$1 {{PLURAL:$1|Hasil|Hasil-hasil}} barikuiknyo',
 'shown-title' => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil-hasil}} per laman',
@@ -852,7 +878,7 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'searchprofile-project' => 'Laman Bantuan jo Proyek',
 'searchprofile-images' => 'Multimedia',
 'searchprofile-everything' => 'Sadonyo',
-'searchprofile-advanced' => 'Lanjukkan',
+'searchprofile-advanced' => 'Labiah lanjuik',
 'searchprofile-articles-tooltip' => 'Cari di $1',
 'searchprofile-project-tooltip' => 'Cari di $1',
 'searchprofile-images-tooltip' => 'Cari untuak berkas',
@@ -868,6 +894,8 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'search-interwiki-more' => '(selanjutnyo)',
 'searchrelated' => 'bakaitan',
 'searchall' => 'sado',
+'showingresults' => "Di bawah iko dikaluaan inggo {{PLURAL:$1|'''1''' asia|'''$1''' asia}}, dimulai dari #'''$2'''.",
+'showingresultsnum' => "Di bawah iko dikaluaan {{PLURAL:$3|'''1'''|'''$3'''}} asia, dimulai dari #'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Hasil '''$1''' dari '''$3'''|Hasil '''$1 - $2''' dari '''$3'''}} untuak '''$4'''",
 'nonefound' => "'''Catatan''': hanyo babarapo ruangnamo yang dicari sacaro default.
 Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasuak laman ota, templat, dll), atau gunoan ruangnamo yang diinginkan sabagai awalan.",
@@ -875,7 +903,7 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 'powersearch' => 'Pencarian lanjut',
 'powersearch-legend' => 'Pencarian lanjut',
 'powersearch-ns' => 'Mancari di ruangnamo:',
-'powersearch-redir' => 'Senarai pengalihan',
+'powersearch-redir' => 'Dafta pangaliahan',
 'powersearch-field' => 'Mancari',
 
 # Preferences page
@@ -894,6 +922,9 @@ Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan mangh
 
 'grouppage-sysop' => '{{ns:project}}:Pengurus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log pangguno baru',
+
 # User rights log
 'rightslog' => 'Log parubahan hak akses',
 
@@ -907,7 +938,7 @@ Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan mangh
 'recentchanges-summary' => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
 'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
 'recentchanges-label-newpage' => 'Suntiang ko mambuek laman baru',
-'recentchanges-label-minor' => 'Iko di suntiang saketek',
+'recentchanges-label-minor' => 'Iko disuntiang saketek',
 'recentchanges-label-bot' => 'Suntiang ko dibuek dek bot',
 'recentchanges-label-unpatrolled' => 'Suntiangan ko alun tajago',
 'rcnote' => "Berikut ko {{PLURAL:$1|'''1'''|'''$1'''}} parubahan dalam {{PLURAL:$2|hari|'''$2''' hari}} terakhir, sampai $5, pukul $4.",
@@ -983,8 +1014,8 @@ Deskripsi dari [$2 laman deskripsi berkas] ditampilkan di bawah.',
 'prefixindex' => 'Semua laman jo awalan',
 'usercreated' => '{{GENDER:$3|Dibuek}} pado $1 pukua $2',
 'newpages' => 'Laman baru',
-'move' => 'Pindahkan',
-'movethispage' => 'Pindahkan laman ko',
+'move' => 'Pindahan',
+'movethispage' => 'Pindahan laman ko',
 'pager-newer-n' => '{{PLURAL:$1|labiah baru 1|labiah baru $1}}',
 'pager-older-n' => '{{PLURAL:$1|labiah lamo 1|labiah lamo $1}}',
 
@@ -1012,9 +1043,6 @@ Deskripsi dari [$2 laman deskripsi berkas] ditampilkan di bawah.',
 'linksearch' => 'Pranala lua',
 'linksearch-line' => '$1 tapauik dari $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Log pangguno baru',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(senarai anggota)',
 
@@ -1023,7 +1051,7 @@ Deskripsi dari [$2 laman deskripsi berkas] ditampilkan di bawah.',
 
 # Watchlist
 'watchlist' => 'Senarai pantauan denai',
-'mywatchlist' => 'Daftar pantauan denai',
+'mywatchlist' => 'Dafta pantauan denai',
 'watchlistfor2' => 'Untuak $1 $2',
 'addedwatchtext' => "Laman \"[[:\$1]]\" lah ditambahkan ka [[Special:Watchlist|senarai pantauan awak]].
 Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba''' pado [[Special:RecentChanges|senarai parubahan]] agar lebih mudah manjagonyo.",
@@ -1046,7 +1074,7 @@ Pastikan awak mainginkannyo, dan awak lah tahu sagalo akibatnyo dan sasuai jo [[
 'actioncomplete' => 'Proses selesai',
 'actionfailed' => 'Aksi gagal',
 'deletedtext' => '"$1" lah dihapuih.
-Lihek $2 untuak rekam jejak laman yang lah dihapuih.',
+Caliak $2 untuak rakam jajak laman nan lah dihapuih.',
 'dellogpage' => 'Log penghapusan',
 'deletecomment' => 'Alasan:',
 'deleteotherreason' => 'Alasan lain/tambahan:',
@@ -1079,6 +1107,9 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'restriction-type' => 'Perlindungan:',
 'restriction-level' => 'Tingkek larangan:',
 
+# Restrictions (nouns)
+'restriction-move' => 'Pindahan',
+
 # Undelete
 'undeletelink' => 'caliak/cegakkan',
 'undeleteviewlink' => 'caliak',
@@ -1094,17 +1125,18 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'mycontris' => 'Jariah denai',
 'contribsub2' => 'Untuak $1 ($2)',
 'uctop' => '(atas)',
-'month' => 'Sejak bulan (dan sabalunnyo):',
-'year' => 'Sejak tahun (dan sabalunnyo):',
+'month' => 'Sajak bulan (dan sabalunnyo):',
+'year' => 'Sajak taun (dan sabalunnyo):',
 
 'sp-contributions-newbies' => 'Tampilkan jariah pangguno baru',
-'sp-contributions-blocklog' => 'log pemblokiran',
+'sp-contributions-blocklog' => 'log pambalokiran',
+'sp-contributions-deleted' => 'kontribusi pangguno nan lah batiadoan',
 'sp-contributions-uploads' => 'muek',
 'sp-contributions-logs' => 'log',
 'sp-contributions-talk' => 'kecek',
 'sp-contributions-search' => 'Cari jariah',
 'sp-contributions-username' => 'Alamat IP atau namo pangguno:',
-'sp-contributions-toponly' => 'Hanyo manampilkan suntiang nan tarakhir',
+'sp-contributions-toponly' => 'Hanyo manampilan suntiangan nan taakhia',
 'sp-contributions-submit' => 'Cari',
 
 # What links here
@@ -1133,7 +1165,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'unblocklink' => 'hilangkan balokir',
 'change-blocklink' => 'ubah balokir',
 'contribslink' => 'jariah',
-'blocklogpage' => 'Log pemblokiran',
+'blocklogpage' => 'Log pambalokiran',
 'blocklogentry' => 'memblokir [[$1]] dalam maso berlaku $2 $3',
 'unblocklogentry' => 'mahilangkan blokir $1',
 'block-log-flags-nocreate' => 'cipta akun dimatikan',
@@ -1187,11 +1219,11 @@ Dalam kasus tu, apobilo diinginkan, awak dapek mamindahkan atau manggabuangkan l
 'tooltip-ca-edit' => 'Sanak dapek manyuntiang laman iko. Silakan gunokan tombol pratonton sabalun manyimpan',
 'tooltip-ca-addsection' => 'Mulai bagian baru',
 'tooltip-ca-viewsource' => 'Laman ko dilinduangi.
-Sanak hanyo buliah lihek sumbernyo sajo',
+Sanak hanyo buliah caliak sumbernyo sajo',
 'tooltip-ca-history' => 'Pabaiakkan sabalunnyo dari laman ko',
 'tooltip-ca-protect' => 'Lindungi laman ko',
 'tooltip-ca-delete' => 'Hapuih laman iko',
-'tooltip-ca-move' => 'Pindahkan laman ko',
+'tooltip-ca-move' => 'Pindahan laman ko',
 'tooltip-ca-watch' => 'Tambahkan laman ko ka daftar pantauan sanak',
 'tooltip-ca-unwatch' => 'Kaluaan laman ko dari senarai pantauan awak',
 'tooltip-search' => 'Cari {{SITENAME}}',
@@ -1209,7 +1241,7 @@ Sanak hanyo buliah lihek sumbernyo sajo',
 'tooltip-t-recentchangeslinked' => 'Parubahan baru halaman nan bakaik jo laman ko',
 'tooltip-feed-rss' => 'Umpan RSS untuak laman ko',
 'tooltip-feed-atom' => 'Umpan Atom untuak laman ko',
-'tooltip-t-contributions' => 'Lihek senarai jariah pangguno ko',
+'tooltip-t-contributions' => 'Caliak dafta jariah pangguno ko',
 'tooltip-t-emailuser' => 'Kirimkan e-mail ka pangguno ko',
 'tooltip-t-upload' => 'Muek berkas',
 'tooltip-t-specialpages' => 'Daftar dari kasado laman istimewa',
@@ -1218,16 +1250,16 @@ Sanak hanyo buliah lihek sumbernyo sajo',
 'tooltip-ca-nstab-main' => 'Caliak isi laman',
 'tooltip-ca-nstab-user' => 'Caliak laman pangguno',
 'tooltip-ca-nstab-special' => 'Iko adolah laman istimewa, awak indak buliah manyuntiangnyo',
-'tooltip-ca-nstab-project' => 'Lihek laman proyek',
+'tooltip-ca-nstab-project' => 'Caliak laman proyek',
 'tooltip-ca-nstab-image' => 'Caliak laman berkas',
-'tooltip-ca-nstab-template' => 'Lihek templat',
+'tooltip-ca-nstab-template' => 'Caliak templat',
 'tooltip-ca-nstab-help' => 'Caliak laman bantuan',
-'tooltip-ca-nstab-category' => 'Lihek laman kategori',
+'tooltip-ca-nstab-category' => 'Caliak laman kategori',
 'tooltip-minoredit' => 'Tandoi iko sabagai suntingan ketek',
 'tooltip-save' => 'Simpan yang awak ubah ko',
 'tooltip-preview' => 'Pratonton parubahan, harap gunokan iko sabalun disimpan',
-'tooltip-diff' => 'Lihek parubahan yang sudah awak buek tu',
-'tooltip-compareselectedversions' => 'Lihek parbedaan antaro duo revisi pilihan laman ko',
+'tooltip-diff' => 'Caliak parubahan nan alah awak buek tu',
+'tooltip-compareselectedversions' => 'Caliak pabedoan antaro duo revisi pilihan laman ko',
 'tooltip-watch' => 'Tambahkan laman ko ka senarai pantauan awak',
 'tooltip-recreate' => 'Buek baliak laman walaupun sabananyo pernah dihapuih',
 'tooltip-upload' => 'Mulai mamuek',
@@ -1279,7 +1311,7 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # External editor support
 'edit-externally' => 'Suntiang berkas ko dengan aplikasi lua',
-'edit-externally-help' => '(Lihek [//www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuak maklumat lanjutnyo)',
+'edit-externally-help' => '(Caliak [//www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] untuak informasi lanjuiknyo)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',

@@ -568,7 +568,6 @@ Hamin tavr şumo qavl medihed, ki xudatonro inro naviştaed jo onro az jak manba
 'template-protected' => '(hifzşuda)',
 'template-semiprotected' => '(nima-muhofizatşuda)',
 'hiddencategories' => 'In sahifa dar {{PLURAL:$1|1 gurūhi pinhon|$1 gurūhhoi pinhon}} qaror dorad:',
-'nocreatetitle' => 'Eçodi sahifa mahdud şudaast',
 'nocreatetext' => '{{SITENAME}} qobilijati eçodi sahifahoi çadidro mahdud karda ast.
 Şumo metavoned bozgaşta sahifai mavçudbudaro viroiş kuned, jo [[Special:UserLogin|ba sistem vurud kuned jo hisobi korbarī eçod kuned]].',
 'nocreate-loggedin' => 'Şumo içozati eçodi sahifai çadidro nadored.',
@@ -888,11 +887,13 @@ On bojad kamtar az $1 {{PLURAL:$1|alomat|alomatho}} boşad.',
 'right-userrights-interwiki' => 'Viroişi ixtijoroti korbariji korbaroni digar vikiho',
 'right-siteadmin' => 'Bastn va boz kardani pojgohi doda',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Guzorişi eçodi korbar',
+'newuserlogpagetext' => 'In guzoriş az nomhoi korbariji tozasoxtaşuda ast.',
+
 # User rights log
 'rightslog' => 'Guzorişi ixtijoroti korbar',
 'rightslogtext' => 'In guzoriş taƣjiroti ixtijoroti korbar ast.',
-'rightslogentry' => 'uzvijati $1 az gurūh $2 ba $3 taƣjir doda şud',
-'rightsnone' => '(heç)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'viroişi in sahifa',
@@ -1227,10 +1228,6 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'listusersfrom' => "Namoişi korbaron bo şurū' az:",
 'listusers-submit' => 'Nişon dodani',
 'listusers-noresult' => 'Heç korbare joft naşud.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Guzorişi eçodi korbar',
-'newuserlogpagetext' => 'In guzoriş az nomhoi korbariji tozasoxtaşuda ast.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Ixtijoroti gurūhhoi korbarī',
@@ -2337,5 +2334,6 @@ Nişonai pajvandro biduni peşvand "{{ns:file}}:" vorid kuned.',
 'revdelete-restricted' => 'mahdudijatho ba mudiron amalī şudand',
 'revdelete-unrestricted' => 'mahdudijatho az mudiron bardoşta şudand',
 'newuserlog-byemail' => 'kalimai ubur ba poctai elektronī firistoda şud',
+'rightsnone' => '(heç)',
 
 );

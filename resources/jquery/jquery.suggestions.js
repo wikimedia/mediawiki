@@ -49,8 +49,8 @@
 
 $.suggestions = {
 	/**
-	 * Cancel any delayed updateSuggestions() call and inform the user so
-	 * they can cancel their result fetching if they use AJAX or something
+	 * Cancel any delayed maybeFetch() call and callback the context so
+	 * they can cancel any async fetching if they use AJAX or something.
 	 */
 	cancel: function ( context ) {
 		if ( context.data.timerID !== null ) {
@@ -93,12 +93,12 @@ $.suggestions = {
 			}
 		}
 
-		// Cancel previous call
-		if ( context.data.timerID !== null ) {
-			clearTimeout( context.data.timerID );
-		}
+		// Cancels any delayed maybeFetch call, and invokes context.config.cancel.
+		$.suggestions.cancel( context );
+
 		if ( delayed ) {
-			// Start a new asynchronous call
+			// To avoid many started/aborted requests while typing, we're gonna take a short
+			// break before trying to fetch data.
 			context.data.timerID = setTimeout( maybeFetch, context.config.delay );
 		} else {
 			maybeFetch();

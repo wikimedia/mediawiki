@@ -504,7 +504,6 @@ Jan lajxepe occuram me usadad proxy service anon web-based buggy.'''",
 'templatesusedsection' => 'Automií usadad jan seccion iti:',
 'template-protected' => '(protectöx)',
 'template-semiprotected' => '(semi-protectöx)',
-'nocreatetitle' => 'Limiitde creacionde páhinám',
 'nocreatetext' => 'Jan site coccebj avlutuatl altede creatöx hun páhinám.
 Me pos-coccebj revertöx ö ticpatlöx janpáhinám jöx [[Special:UserLogin|caápo]].',
 'nocreate-loggedin' => 'Me necoccebj permiccionde creatöx hunpáhinám jan wiki iti.',

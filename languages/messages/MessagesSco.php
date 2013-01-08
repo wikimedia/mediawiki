@@ -595,7 +595,6 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.'''"
 'template-protected' => '(protectit)',
 'template-semiprotected' => '(semi-protectit)',
 'hiddencategories' => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
-'nocreatetitle' => 'Page makkin limitit',
 'nocreatetext' => 'This site haes restrictit the ability to mak new pages.
 Ye can go back an eik tae an existing page, or [[Special:UserLogin|log in or mak an accoont]].',
 'nocreate-loggedin' => 'Ye dinnae hae the richts tae mak new pages on this wiki.',

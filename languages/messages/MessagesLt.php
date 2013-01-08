@@ -737,6 +737,7 @@ Laikinas slaptažodis: $2',
 'changeemail-oldemail' => 'Dabartinis el. pašto adresas:',
 'changeemail-newemail' => 'Naujas el. pašto adresas:',
 'changeemail-none' => '(nėra)',
+'changeemail-password' => 'Jūsų {{SITENAME}} slaptažodis:',
 'changeemail-submit' => 'Keisti el. pašto adresą',
 'changeemail-cancel' => 'Atšaukti',
 
@@ -908,7 +909,6 @@ Naujausias įrašas žurnale yra pateiktas žemiau:",
 'template-semiprotected' => '(pusiau apsaugotas)',
 'hiddencategories' => 'Šis puslapis priklauso $1 {{PLURAL:$1|paslėptai kategorijai|paslėptoms kategorijoms|paslėptų kategorijų}}:',
 'edittools' => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
-'nocreatetitle' => 'Puslapių kūrimas apribotas',
 'nocreatetext' => '{{SITENAME}} apribojo galimybę kurti naujus puslapius.
 Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin|prisijungti arba sukurti paskyrą]].',
 'nocreate-loggedin' => 'Jūs neturite teisės kurti puslapius.',
@@ -933,6 +933,12 @@ Greičiausiai jis yra ištrintas.',
 'edit-already-exists' => 'Negalima sukurti naujo puslapio.
 Jis jau egzistuoja.',
 'defaultmessagetext' => 'Numatytasis pranešimo tekstas',
+
+# Content models
+'content-model-wikitext' => 'wikitekstas',
+'content-model-text' => 'paprastasis tekstas',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Įspėjimas: Šiame puslapyje yra per daug užtrunkančių analizatoriaus funkcijų šaukinių.
@@ -1439,15 +1445,13 @@ teisės",
 'right-sendemail' => 'Siųsti el. laišką kitiems naudotojams',
 'right-passwordreset' => 'Peržiūrėti slaptažodžio pakeitimo e-mail laiškus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Prisiregistravę naudotojai',
+'newuserlogpagetext' => 'Tai naudotojų kūrimo sąrašas.',
+
 # User rights log
 'rightslog' => 'Naudotojų teisių pakeitimai',
 'rightslogtext' => 'Pateikiamas naudotojų teisių pakeitimų sąrašas.',
-'rightslogentry' => 'pakeista $1 grupės narystė iš $2 į $3',
-'rightslogentry-autopromote' => 'buvo automatiškai paaukštintas iš $2 į $3',
-'logentry-rights-rights' => '$1 pakeista narystė grupėje $3 iš $4 į $5',
-'logentry-rights-rights-legacy' => '$1 pakeista narystė grupėje $3',
-'logentry-rights-autopromote' => '$1 buvo automatiškai pervestas iš $4 į $5',
-'rightsnone' => '(jokių)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'skaityti šį puslapį',
@@ -1671,6 +1675,7 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'backend-fail-notsame' => 'Jau egzistuoja neidentiškas failas $1.',
 'backend-fail-invalidpath' => '$1 yra neteisinga saugojimo nuoroda.',
 'backend-fail-delete' => 'Negalima panaikinti failo $1.',
+'backend-fail-describe' => 'Nepavyko pakeisti failo metaduomenis "$1".',
 'backend-fail-alreadyexists' => 'Failas $1 jau egzistuoja.',
 'backend-fail-store' => 'Negalima išsaugoti failo $1 kaip $2.',
 'backend-fail-copy' => 'Negalima nukopijuoti failo $1 į $2.',
@@ -2058,10 +2063,6 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'activeusers-hidesysops' => 'Slėpti administratorius',
 'activeusers-noresult' => 'Nerasta jokių naudotojų.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Prisiregistravę naudotojai',
-'newuserlogpagetext' => 'Tai naudotojų kūrimo sąrašas.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Naudotojų grupių teisės',
 'listgrouprights-summary' => 'Žemiau pateiktas naudotojų grupių, apibrėžtų šioje wiki, ir su jomis susijusių teisių sąrašas.
@@ -2085,6 +2086,7 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'mailnologin' => 'Nėra adreso',
 'mailnologintext' => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser' => 'Rašyti laišką šiam naudotojui',
+'emailuser-title-notarget' => 'El. pašto vartotojas',
 'emailpage' => 'Siųsti el. laišką naudotojui',
 'emailpagetext' => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
 El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustatymuose]], bus rodomas kaip el. pašto siuntėjo adresas, tam, kad gavėjas galėtų jums iškart atsakyti.',
@@ -2976,6 +2978,7 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'file-info-size-pages' => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4, $5 {{PLURAL:$5|page|pages}}',
 'file-nohires' => 'Geresnė raiška negalima.',
 'svg-long-desc' => 'SVG failas, formaliai $1 × $2 taškų, failo dydis: $3',
+'svg-long-error' => 'Neleistinas SVG failas: $1',
 'show-big-image' => 'Pilna raiška',
 'show-big-image-preview' => 'Sumažintos iliustracijos dydis: $1 .',
 'show-big-image-other' => '{{PLURAL:$2|Kita rezoliucija|Kitos $2 rezoliucijos|Kitų $2 rezoliucijų}}: $1 .',
@@ -3004,6 +3007,7 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'hours' => '{{PLURAL:$1|$1 valandą|$1 valandas|$1 valandų}}',
 'days' => '{{PLURAL:$1|$1 dieną|$1 dienas|$1 dienų}}',
 'ago' => 'prieš $1',
+'just-now' => 'tik dabar',
 
 # Bad image list
 'bad_image_list' => 'Formatas yra toks:
@@ -3760,6 +3764,10 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'logentry-newusers-create2' => '$1 sukūrė naudotojo paskyrą $3',
 'logentry-newusers-autocreate' => 'Paskyra $1 buvo sukurta automatiškai',
 'newuserlog-byemail' => 'slaptažodis nusiųstas elektroniniu paštu',
+'logentry-rights-rights' => '$1 pakeista narystė grupėje $3 iš $4 į $5',
+'logentry-rights-rights-legacy' => '$1 pakeista narystė grupėje $3',
+'logentry-rights-autopromote' => '$1 buvo automatiškai pervestas iš $4 į $5',
+'rightsnone' => '(jokių)',
 
 # Feedback
 'feedback-bugornote' => 'Jei jūs esate pasirengę aprašyti techninę problemą išsamiau, [$1 praneškite apie programinę klaidą].

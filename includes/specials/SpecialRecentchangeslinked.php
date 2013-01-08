@@ -261,15 +261,6 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		}
 	}
 
-	public function getFeedQuery() {
-		$target = $this->getTargetTitle();
-		if( $target ) {
-			return "target=" . urlencode( $target->getPrefixedDBkey() );
-		} else {
-			return false;
-		}
-	}
-
 	function setBottomText( FormOptions $opts ) {
 		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ) {
 			$this->getOutput()->addWikiMsg( 'recentchangeslinked-noresult' );

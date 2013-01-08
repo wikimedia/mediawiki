@@ -25,6 +25,12 @@
  *
  * @author Daniel Kinzler
  */
+
+/**
+ * Base implementation for content objects.
+ *
+ * @ingroup Content
+ */
 abstract class AbstractContent implements Content {
 
 	/**

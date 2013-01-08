@@ -427,10 +427,10 @@ class WikiExporter {
 	protected function outputPageStream( $resultset ) {
 		$last = null;
 		foreach ( $resultset as $row ) {
-			if ( is_null( $last ) ||
+			if ( $last === null ||
 				$last->page_namespace != $row->page_namespace ||
 				$last->page_title     != $row->page_title ) {
-				if ( isset( $last ) ) {
+				if ( $last !== null ) {
 					$output = '';
 					if ( $this->dumpUploads ) {
 						$output .= $this->writer->writeUploads( $last, $this->dumpUploadFileContents );
@@ -445,7 +445,7 @@ class WikiExporter {
 			$output = $this->writer->writeRevision( $row );
 			$this->sink->writeRevision( $row, $output );
 		}
-		if ( isset( $last ) ) {
+		if ( $last !== null ) {
 			$output = '';
 			if ( $this->dumpUploads ) {
 				$output .= $this->writer->writeUploads( $last, $this->dumpUploadFileContents );

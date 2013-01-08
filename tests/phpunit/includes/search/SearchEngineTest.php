@@ -31,6 +31,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 	protected function tearDown() {
 		unset( $this->search );
+
+		parent::tearDown();
 	}
 
 	function pageExists( $title ) {

@@ -988,9 +988,7 @@ class Article extends Page {
 				}
 
 				// Add a <link rel="canonical"> tag
-				$outputPage->addLink( array( 'rel' => 'canonical',
-					'href' => $this->getTitle()->getLocalURL() )
-				);
+				$outputPage->setCanonicalUrl( $this->getTitle()->getLocalURL() );
 
 				// Tell the output object that the user arrived at this article through a redirect
 				$outputPage->setRedirectedFrom( $this->mRedirectedFrom );

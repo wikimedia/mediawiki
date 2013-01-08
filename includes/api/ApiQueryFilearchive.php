@@ -103,15 +103,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		if ( $sha1Set || $sha1base36Set ) {
 			$sha1 = false;
 			if ( $sha1Set ) {
-				if ( !$this->validateSha1Hash( $params['sha1'] ) ) {
+				$sha1 = strtolower( $params['sha1'] );
+				if ( !$this->validateSha1Hash( $sha1 ) ) {
 					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
 				}
-				$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
+				$sha1 = wfBaseConvert( $sha1, 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
-				if ( !$this->validateSha1Base36Hash( $params['sha1base36'] ) ) {
+				$sha1 = strtolower( $params['sha1base36'] );
+				if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
 					$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
 				}
-				$sha1 = $params['sha1base36'];
 			}
 			if ( $sha1 ) {
 				$this->addWhereFld( 'fa_sha1', $sha1 );

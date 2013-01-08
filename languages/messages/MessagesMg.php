@@ -944,7 +944,6 @@ Ny mpandrindra nanidy ny banky angona dia nanome ny antony : <br />$1",
 'template-protected' => '(voaaro)',
 'template-semiprotected' => '(voaaro an-tàpany)',
 'hiddencategories' => '{{PLURAL:$1|anaty sokajy|anaty sokajy}} nasitrika $1 ity pejy ity',
-'nocreatetitle' => 'Voafetra ny famoronana pejy',
 'nocreatetext' => " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:UserLogin|midira na mamoròna kaonty]].",
 'nocreate-loggedin' => 'Tsy mahazo ataonao no manamboatra pejy vao.',
 'sectioneditnotsupported-title' => 'Fanovana fizarana tsy zaka',
@@ -1477,15 +1476,13 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'right-sendemail' => "Mandefa imailaka any amin'ny mpikambana hafa",
 'right-passwordreset' => 'Hijery ny imailaka famerenana ny tenimiafina',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Tatitr’asan’ny fanokafana kaontim-pikambana',
+'newuserlogpagetext' => "Ity pejy ity dia maneho ny tantaran'asan'ny fampidirana mpikambana vaovao.",
+
 # User rights log
 'rightslog' => 'Tatitr’asa momban’ny fanovana satam-pikambana',
 'rightslogtext' => "Ity ny laogy momban'ny fanovana ny zom-pikambana.",
-'rightslogentry' => "nanova ny fahefan'ny mpikambana « $1 », avy amin'ny $2 izy lasa $3",
-'rightslogentry-autopromote' => '$2 navadika $3 ho azy',
-'logentry-rights-rights' => "$1 dia nanova ny sokajim-pikambana isian'i $3 avy amin'ny $4 lasa $5",
-'logentry-rights-rights-legacy' => "$1 nanova ny vonodrom-pikambana isian'i $3",
-'logentry-rights-autopromote' => 'Lasa $5 ho azy i $1 izay $4 taloha',
-'rightsnone' => '(tsy misy)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'mamaky ity pejy ity',
@@ -2082,10 +2079,6 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'activeusers-hidebots' => 'Asitriho ny robo',
 'activeusers-hidesysops' => 'Asitriho ny mpandrindra',
 'activeusers-noresult' => 'Tsy nahitana mpikambana.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Tatitr’asan’ny fanokafana kaontim-pikambana',
-'newuserlogpagetext' => "Ity pejy ity dia maneho ny tantaran'asan'ny fampidirana mpikambana vaovao.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Fahefan'ny vondrom-pikambana",
@@ -3305,5 +3298,9 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'logentry-newusers-create2' => "Noforonin'i $1 ny kaomtim-pikambana $3",
 'logentry-newusers-autocreate' => 'Noforonina ho azy ny kaontim-pikambana $&',
 'newuserlog-byemail' => "tenimiafina nalefa tamin'ny imailaka",
+'logentry-rights-rights' => "$1 dia nanova ny sokajim-pikambana isian'i $3 avy amin'ny $4 lasa $5",
+'logentry-rights-rights-legacy' => "$1 nanova ny vonodrom-pikambana isian'i $3",
+'logentry-rights-autopromote' => 'Lasa $5 ho azy i $1 izay $4 taloha',
+'rightsnone' => '(tsy misy)',
 
 );

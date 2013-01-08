@@ -29,11 +29,11 @@ class ViewAction extends FormlessAction {
 		return 'view';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 		$this->page->view();
 	}
 

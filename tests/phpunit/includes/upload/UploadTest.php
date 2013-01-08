@@ -20,6 +20,8 @@ class UploadTest extends MediaWikiTestCase {
 	protected function tearDown() {
 		global $wgHooks;
 		$wgHooks = $this->hooks;
+
+		parent::tearDown();
 	}
 
 

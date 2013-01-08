@@ -1242,10 +1242,10 @@ function wfIncrStats( $key, $count = 1 ) {
 	$count = intval( $count );
 
 	if( $wgStatsMethod == 'udp' ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
 		static $socket;
 
-		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
+		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : wfWikiID();
 
 		if ( !$socket ) {
 			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
@@ -2360,7 +2360,7 @@ function wfSuppressWarnings( $end = false ) {
 		}
 	} else {
 		if ( !$suppressCount ) {
-			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_USER_DEPRECATED ) );
+			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_USER_DEPRECATED | E_STRICT ) );
 		}
 		++$suppressCount;
 	}
@@ -2936,7 +2936,7 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 	fclose( $yourtextFile );
 
 	# Check for a conflict
-	$cmd = $wgDiff3 . ' -a --overlap-only ' .
+	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a --overlap-only ' .
 		wfEscapeShellArg( $mytextName ) . ' ' .
 		wfEscapeShellArg( $oldtextName ) . ' ' .
 		wfEscapeShellArg( $yourtextName );
@@ -2950,7 +2950,7 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 	pclose( $handle );
 
 	# Merge differences
-	$cmd = $wgDiff3 . ' -a -e --merge ' .
+	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a -e --merge ' .
 		wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 	$result = '';
@@ -3179,84 +3179,97 @@ function wfDoUpdates( $commit = '' ) {
  * Supports base 2 through 36; digit values 10-36 are represented
  * as lowercase letters a-z. Input is case-insensitive.
  *
- * @param $input String: of digits
- * @param $sourceBase Integer: 2-36
- * @param $destBase Integer: 2-36
- * @param $pad Integer: 1 or greater
- * @param $lowercase Boolean
- * @return String or false on invalid input
+ * @param string $input Input number
+ * @param int $sourceBase Base of the input number
+ * @param int $destBase Desired base of the output
+ * @param int $pad Minimum number of digits in the output (pad with zeroes)
+ * @param bool $lowercase Whether to output in lowercase or uppercase
+ * @param string $engine Either "gmp", "bcmath", or "php"
+ * @return string|bool The output number as a string, or false on error
  */
-function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = true ) {
-	$input = strval( $input );
-	if( $sourceBase < 2 ||
+function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = true, $engine = 'auto' ) {
+	if(
+		$sourceBase < 2 ||
 		$sourceBase > 36 ||
 		$destBase < 2 ||
 		$destBase > 36 ||
-		$pad < 1 ||
-		$sourceBase != intval( $sourceBase ) ||
-		$destBase != intval( $destBase ) ||
-		$pad != intval( $pad ) ||
-		!is_string( $input ) ||
-		$input == '' ) {
+		$sourceBase != (int) $sourceBase ||
+		$destBase != (int) $destBase ||
+		$pad != (int) $pad ||
+		!preg_match( "/^[" . substr( '0123456789abcdefghijklmnopqrstuvwxyz', 0, $sourceBase ) . "]+$/i", $input )
+	) {
 		return false;
 	}
-	$digitChars = ( $lowercase ) ? '0123456789abcdefghijklmnopqrstuvwxyz' : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$inDigits = array();
-	$outChars = '';
 
-	// Decode and validate input string
-	$input = strtolower( $input );
-	for( $i = 0; $i < strlen( $input ); $i++ ) {
-		$n = strpos( $digitChars, $input[$i] );
-		if( $n === false || $n > $sourceBase ) {
-			return false;
+	static $baseChars = array (
+		10 => 'a', 11 => 'b', 12 => 'c', 13 => 'd', 14 => 'e', 15 => 'f',
+		16 => 'g', 17 => 'h', 18 => 'i', 19 => 'j', 20 => 'k', 21 => 'l',
+		22 => 'm', 23 => 'n', 24 => 'o', 25 => 'p', 26 => 'q', 27 => 'r',
+		28 => 's', 29 => 't', 30 => 'u', 31 => 'v', 32 => 'w', 33 => 'x',
+		34 => 'y', 35 => 'z',
+
+		'0' => 0,  '1' => 1,  '2' => 2,  '3' => 3,  '4' => 4,  '5' => 5,
+		'6' => 6,  '7' => 7,  '8' => 8,  '9' => 9,  'a' => 10, 'b' => 11,
+		'c' => 12, 'd' => 13, 'e' => 14, 'f' => 15, 'g' => 16, 'h' => 17,
+		'i' => 18, 'j' => 19, 'k' => 20, 'l' => 21, 'm' => 22, 'n' => 23,
+		'o' => 24, 'p' => 25, 'q' => 26, 'r' => 27, 's' => 28, 't' => 29,
+		'u' => 30, 'v' => 31, 'w' => 32, 'x' => 33, 'y' => 34, 'z' => 35
+	);
+
+	if( extension_loaded( 'gmp' ) && ( $engine == 'auto' || $engine == 'gmp' ) ) {
+		$result = gmp_strval( gmp_init( $input, $sourceBase ), $destBase );
+	} elseif( extension_loaded( 'bcmath' ) && ( $engine == 'auto' || $engine == 'bcmath' ) ) {
+		$decimal = '0';
+		foreach( str_split( strtolower( $input ) ) as $char ) {
+			$decimal = bcmul( $decimal, $sourceBase );
+			$decimal = bcadd( $decimal, $baseChars[$char] );
 		}
-		$inDigits[] = $n;
-	}
 
-	// Iterate over the input, modulo-ing out an output digit
-	// at a time until input is gone.
-	while( count( $inDigits ) ) {
-		$work = 0;
-		$workDigits = array();
+		for( $result = ''; bccomp( $decimal, 0 ); $decimal = bcdiv( $decimal, $destBase, 0 ) ) {
+			$result .= $baseChars[bcmod( $decimal, $destBase )];
+		}
 
-		// Long division...
-		foreach( $inDigits as $digit ) {
-			$work *= $sourceBase;
-			$work += $digit;
+		$result = strrev( $result );
+	} else {
+		$inDigits = array();
+		foreach( str_split( strtolower( $input ) ) as $char ) {
+			$inDigits[] = $baseChars[$char];
+		}
 
-			if( $work < $destBase ) {
-				// Gonna need to pull another digit.
-				if( count( $workDigits ) ) {
-					// Avoid zero-padding; this lets us find
-					// the end of the input very easily when
-					// length drops to zero.
-					$workDigits[] = 0;
+		// Iterate over the input, modulo-ing out an output digit
+		// at a time until input is gone.
+		$result = '';
+		while( $inDigits ) {
+			$work = 0;
+			$workDigits = array();
+
+			// Long division...
+			foreach( $inDigits as $digit ) {
+				$work *= $sourceBase;
+				$work += $digit;
+
+				if( $workDigits || $work >= $destBase ) {
+					$workDigits[] = (int) ( $work / $destBase );
 				}
-			} else {
-				// Finally! Actual division!
-				$workDigits[] = intval( $work / $destBase );
-
-				// Isn't it annoying that most programming languages
-				// don't have a single divide-and-remainder operator,
-				// even though the CPU implements it that way?
-				$work = $work % $destBase;
+				$work %= $destBase;
 			}
+
+			// All that division leaves us with a remainder,
+			// which is conveniently our next output digit.
+			$result .= $baseChars[$work];
+
+			// And we continue!
+			$inDigits = $workDigits;
 		}
 
-		// All that division leaves us with a remainder,
-		// which is conveniently our next output digit.
-		$outChars .= $digitChars[$work];
-
-		// And we continue!
-		$inDigits = $workDigits;
+		$result = strrev( $result );
 	}
 
-	while( strlen( $outChars ) < $pad ) {
-		$outChars .= '0';
+	if( !$lowercase ) {
+		$result = strtoupper( $result );
 	}
 
-	return strrev( $outChars );
+	return str_pad( $result, $pad, '0', STR_PAD_LEFT );
 }
 
 /**

@@ -218,6 +218,7 @@ class ApiUpload extends ApiBase {
 					$cmd = wfShellWikiCmd(
 						"$IP/includes/upload/AssembleUploadChunks.php",
 						array(
+							'--wiki', wfWikiID(),
 							'--filename', $this->mParams['filename'],
 							'--filekey', $this->mParams['filekey'],
 							'--userid', $this->getUser()->getId(),
@@ -225,7 +226,9 @@ class ApiUpload extends ApiBase {
 							'--quiet'
 						)
 					) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-					wfShellExec( $cmd, $retVal ); // start a process in the background
+					// Start a process in the background. Enforce the time limits via PHP
+					// since ulimit4.sh seems to often not work for this particular usage.
+					wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
 					if ( $retVal == 0 ) {
 						$result['result'] = 'Poll';
 					} else {
@@ -683,7 +686,7 @@ class ApiUpload extends ApiBase {
 			'offset' => 'Offset of chunk in bytes',
 			'filesize' => 'Filesize of entire upload',
 
-			'async', 'Make potentially large file operations asynchronous when possible',
+			'async' => 'Make potentially large file operations asynchronous when possible',
 			'asyncdownload' => 'Make fetching a URL asynchronous',
 			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
 			'statuskey' => 'Fetch the upload status for this file key (upload by URL)',

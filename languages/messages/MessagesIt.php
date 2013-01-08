@@ -39,6 +39,7 @@
  * @author McDutchie
  * @author Melos
  * @author Minerva Titani
+ * @author Muxator
  * @author Nemo bis
  * @author Nick1915
  * @author Ninniuz
@@ -54,12 +55,14 @@
  * @author Rippitippi
  * @author S.Örvarr.S
  * @author SabineCretella
+ * @author Sannita
  * @author Stefano-c
  * @author Tonyfroio
  * @author Trixt
  * @author Una giornata uggiosa '94
  * @author Vajotwo
  * @author Valepert
+ * @author Vituzzu
  * @author Ximo17
  * @author Xpensive
  * @author ZioNicco
@@ -322,9 +325,9 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => 'Stile del carattere nella casella di modifica:',
 'editfont-default' => 'Predefinito del browser',
-'editfont-monospace' => 'Font monospazio',
-'editfont-sansserif' => 'Font sans-serif',
-'editfont-serif' => 'Font serif',
+'editfont-monospace' => 'Carattere a larghezza fissa',
+'editfont-sansserif' => 'Carattere sans-serif',
+'editfont-serif' => 'Carattere serif',
 
 # Dates
 'sunday' => 'domenica',
@@ -482,7 +485,7 @@ $messages = array(
 'viewhelppage' => 'Visualizza la pagina di aiuto',
 'categorypage' => 'Visualizza la categoria',
 'viewtalkpage' => 'Visualizza la pagina di discussione',
-'otherlanguages' => 'Altre lingue',
+'otherlanguages' => 'In altre lingue',
 'redirectedfrom' => '(Reindirizzamento da <b>$1</b>)',
 'redirectpagesub' => 'Pagina di reindirizzamento',
 'lastmodifiedat' => "Questa pagina è stata modificata per l'ultima volta il $1 alle $2.",
@@ -647,7 +650,7 @@ Query: $2',
 'viewsourcetext' => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'viewyourtext' => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
 'protectedinterface' => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software di questo sito ed è protetta per evitare possibili abusi.
-Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki,",
+Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki.",
 'editinginterface' => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti su questo wiki.
 Per aggiungere o modificare le traduzioni valide su tutti i wiki, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
 'sqlhidden' => '(la query SQL è stata nascosta)',
@@ -789,10 +792,10 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
-'passwordreset-text' => 'Completa questo modulo per ricevere i dettagli del tuo account via e-mail.',
+'passwordreset-text' => 'Compila questo modulo per ricevere i dettagli del tuo account via e-mail.',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
-'passwordreset-pretext' => '{{PLURAL:$1||Immetti una delle porzioni di dati qui sotto}}',
+'passwordreset-pretext' => '{{PLURAL:$1||Immetti uno dei dati richiesti qui sotto}}',
 'passwordreset-username' => 'Nome utente:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Visualizzare il contenuto del messaggio e-mail?',
@@ -829,6 +832,7 @@ Password temporanea: $2',
 'changeemail-oldemail' => 'Indirizzo e-mail attuale:',
 'changeemail-newemail' => 'Nuovo indirizzo e-mail:',
 'changeemail-none' => '(nessuno)',
+'changeemail-password' => 'La password su {{SITENAME}}:',
 'changeemail-submit' => 'Modifica e-mail',
 'changeemail-cancel' => 'Annulla',
 
@@ -999,7 +1003,6 @@ L'ultimo elemento del registro è riportato di seguito per informazione:",
 'template-semiprotected' => '(semiprotetto)',
 'hiddencategories' => 'Questa pagina appartiene a {{PLURAL:$1|una categoria nascosta|$1 categorie nascoste}}:',
 'edittools' => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
-'nocreatetitle' => 'Creazione delle pagine limitata',
 'nocreatetext' => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:UserLogin|entrare o registrarsi]].',
 'nocreate-loggedin' => 'Non si dispone dei permessi necessari a creare nuove pagine.',
 'sectioneditnotsupported-title' => 'Modifica delle sezioni non supportata',
@@ -1440,7 +1443,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'userrights-groups-help' => "È possibile modificare i gruppi cui è assegnato l'utente.
 * Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
 * Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
-* Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
+* Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o viceversa).",
 'userrights-reason' => 'Motivo:',
 'userrights-no-interwiki' => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase' => 'Il database $1 non esiste o non è un database locale.',
@@ -1535,15 +1538,13 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'right-sendemail' => 'Invia e-mail ad altri utenti',
 'right-passwordreset' => 'Vede i messaggi di reimpostazione della password',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nuovi utenti',
+'newuserlogpagetext' => 'Di seguito sono elencate le utenze di nuova creazione.',
+
 # User rights log
 'rightslog' => 'Diritti degli utenti',
 'rightslogtext' => 'Di seguito sono elencate le modifiche ai diritti assegnati agli utenti.',
-'rightslogentry' => "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
-'rightslogentry-autopromote' => 'è stato/a automaticamente promosso/a da $2 a $3',
-'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
-'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",
-'logentry-rights-autopromote' => '$1 è stato/a automaticamente promosso/a da $4 a $5',
-'rightsnone' => '(nessuno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leggere questa pagina',
@@ -2157,9 +2158,9 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'linksearch-pat' => 'Pattern di ricerca:',
 'linksearch-ns' => 'Namespace:',
 'linksearch-ok' => 'Cerca',
-'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".<br />
+'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".
 È necessario almeno un dominio di primo livello, ad esempio "*.org".<br />
-Protocolli supportati: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).',
+{{PLURAL:$2|Protocollo supportato|Protocolli supportati}}: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).',
 'linksearch-line' => '$1 presente nella pagina $2',
 'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 
@@ -2177,10 +2178,6 @@ Protocolli supportati: <code>$1</code> (predefinito http:// se nessun protocollo
 'activeusers-hidebots' => 'Nascondi i bot',
 'activeusers-hidesysops' => 'Nascondi gli amministratori',
 'activeusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nuovi utenti',
-'newuserlogpagetext' => 'Di seguito sono elencate le utenze di nuova creazione.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti del gruppo utente',
@@ -2247,9 +2244,8 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'watchnologin' => 'Accesso non effettuato',
 'watchnologintext' => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:UserLogin|accesso al sito]].",
 'addwatch' => 'Aggiungi agli osservati speciali',
-'addedwatchtext' => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
-D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
-il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile.",
+'addedwatchtext' => 'La pagina "[[:$1]]" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
+D\'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede.',
 'removewatch' => 'Rimuovi dagli osservati speciali',
 'removedwatchtext' => 'La pagina "[[:$1]]" è stata eliminata dalla [[Special:Watchlist|lista degli osservati speciali]].',
 'watch' => 'Segui',
@@ -2283,7 +2279,7 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'enotif_subject_moved' => 'La pagina $1 di {{SITENAME}} è stata spostata da {{gender:$2|$2}}',
 'enotif_subject_restored' => 'La pagina $1 di {{SITENAME}} è stata ripristinata da {{gender:$2|$2}}',
 'enotif_subject_changed' => 'La pagina $1 di {{SITENAME}} è stata modificata da {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'La pagina $1 di {{SITENAME}} è stata cancellata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
+'enotif_body_intro_deleted' => 'La pagina $1 di {{SITENAME}} è stata cancellata da {{gender:$2|$2}} il $PAGEEDITDATE (vedi $3 per la versione attuale).',
 'enotif_body_intro_created' => 'La pagina $1 di {{SITENAME}} è stata creata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
 'enotif_body_intro_moved' => 'La pagina $1 di {{SITENAME}} è stata spostata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
 'enotif_body_intro_restored' => 'La pagina $1 di {{SITENAME}} è stata ripristinata da {{gender:$2|$2}} il $PAGEEDITDATE, vedi $3 per la versione attuale.',
@@ -2381,6 +2377,8 @@ Vedi la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenco dell
 'prot_1movedto2' => 'ha spostato [[$1]] a [[$2]]',
 'protect-badnamespace-title' => 'Namespace non suscettibile di protezione',
 'protect-badnamespace-text' => 'Le pagine di questo namespace non possono essere protette.',
+'protect-norestrictiontypes-text' => 'Questa pagina non può essere protetta poiché non vi è alcun tipo di restrizione disponibile.',
+'protect-norestrictiontypes-title' => 'Pagina non proteggibile',
 'protect-legend' => 'Conferma la protezione',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Scadenza:',
@@ -2860,6 +2858,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-error-interwiki' => 'La pagina "$1" non viene importata perché il suo nome è riservato per il collegamento esterno (interwiki).',
 'import-error-special' => 'La pagina "$1" non viene importata perché appartiene a un namespace speciale che non permette pagine.',
 'import-error-invalid' => 'La pagina "$1" non viene importata perché il suo nome non è valido.',
+'import-error-unserialize' => 'La versione $2 della pagina "$1" non può essere de-serializzata. La versione è stata segnalata per utilizzare il modello di contenuto $3 serializzato come $4.',
 'import-options-wrong' => '{{PLURAL:$2|Opzione sbagliata|Opzioni sbagliate}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La pagina principale fornita non è un titolo valido.',
 'import-rootpage-nosubpage' => 'Il namespace "$1" della pagina principale non permette di avere sottopagine.',
@@ -3049,6 +3048,10 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-protect-cascading' => 'Protezione ricorsiva da qui',
 'pageinfo-protect-cascading-yes' => 'Sì',
 'pageinfo-protect-cascading-from' => 'Protezione ricorsiva ereditata da',
+'pageinfo-category-info' => 'Informazioni sulla categoria',
+'pageinfo-category-pages' => 'Numero di pagine',
+'pageinfo-category-subcats' => 'Numero di sottocategorie',
+'pageinfo-category-files' => 'Numero di file',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna la modifica come verificata',
@@ -3094,6 +3097,7 @@ $1',
 'file-nohires' => 'Non sono disponibili versioni a risoluzione più elevata.',
 'svg-long-desc' => 'file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'svg-long-desc-animated' => 'file in formato SVG animato, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
+'svg-long-error' => 'File SVG non valido: $1',
 'show-big-image' => 'Versione ad alta risoluzione',
 'show-big-image-preview' => 'Dimensioni di questa anteprima: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Altra risoluzione|Altre risoluzioni}}: $1.',
@@ -3127,6 +3131,8 @@ $1',
 'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
 'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
 'days' => '{{PLURAL:$1|un giorno|$1 giorni}}',
+'months' => '{{PLURAL:$1|$1 mese|$1 mesi}}',
+'years' => '{{PLURAL:$1|$1 anno|$1 anni}}',
 'ago' => '$1 fa',
 'just-now' => 'proprio ora',
 
@@ -3895,6 +3901,10 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-newusers-create2' => "L'utenza $3 è stata creata da $1",
 'logentry-newusers-autocreate' => "L'utenza $1 è stata creata automaticamente",
 'newuserlog-byemail' => 'password inviata via mail',
+'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
+'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",
+'logentry-rights-autopromote' => '$1 è stato/a automaticamente promosso/a da $4 a $5',
+'rightsnone' => '(nessuno)',
 
 # Feedback
 'feedback-bugornote' => 'Se si è in grado di descrivere il problema tecnico riscontrato in maniera precisa, [$1 segnalate il bug]. In alternativa, si può usare il modulo semplificato sottostante. Il commento inserito sarà aggiunto alla pagina "[$3 $2]", insieme al proprio nome utente e al browser in uso.',
@@ -3967,6 +3977,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'svg-long-error' => 'File SVG non valido: $1',
 );

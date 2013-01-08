@@ -9,6 +9,7 @@
  *
  * @author Alebcay
  * @author Anakmalaysia
+ * @author Arlin
  * @author Bencmq
  * @author Biŋhai
  * @author Breawycker
@@ -43,6 +44,7 @@
  * @author Onecountry
  * @author PhiLiP
  * @author Shinjiman
+ * @author Shirayuki
  * @author Shizhao
  * @author Simon Shek
  * @author Supaiku
@@ -610,7 +612,7 @@ $1',
 'youhavenewmessagesfromusers' => '你有来自{{PLURAL:$3| 另一位用户| $3位用户}}的$1（$2）。',
 'youhavenewmessagesmanyusers' => '你有来自多位用户的$1（$2）。',
 'newmessageslinkplural' => '{{PLURAL:$1|一条新信息|新信息}}',
-'newmessagesdifflinkplural' => '最新$1次更改',
+'newmessagesdifflinkplural' => '最新{{PLURAL:$1|更改}}',
 'youhavenewmessagesmulti' => '你在$1有新信息',
 'editsection' => '编辑',
 'editold' => '编辑',
@@ -890,6 +892,7 @@ $2
 'changeemail-oldemail' => '当前的电子邮件地址：',
 'changeemail-newemail' => '新的电子邮件地址：',
 'changeemail-none' => '（无）',
+'changeemail-password' => '您的{{SITENAME}}密码：',
 'changeemail-submit' => '更改电子邮箱',
 'changeemail-cancel' => '取消',
 
@@ -1047,7 +1050,6 @@ $2
 'template-semiprotected' => '（半保护）',
 'hiddencategories' => '本页面属于$1个隐藏分类：',
 'edittools' => '<!-- 这里的文字将显示在编辑和上传表格下面。 -->',
-'nocreatetitle' => '创建页面受限',
 'nocreatetext' => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
 'nocreate-loggedin' => '你没有权限创建新页面。',
 'sectioneditnotsupported-title' => '段落编辑不支持',
@@ -1421,7 +1423,7 @@ $1",
 'youremail' => '电子邮件：',
 'username' => '{{GENDER:$1|用户名}}：',
 'uid' => '{{GENDER:$1|用户}}ID：',
-'prefs-memberingroups' => '{{PLURAL:$1|用户组}}：',
+'prefs-memberingroups' => '{{PLURAL:$1|用户组}}的{{GENDER:$2|成员}}：',
 'prefs-registration' => '注册时间：',
 'yourrealname' => '真实姓名：',
 'yourlanguage' => '语言：',
@@ -1568,15 +1570,13 @@ $1",
 'right-sendemail' => '电邮联系其他用户',
 'right-passwordreset' => '查看密码重置电子邮件',
 
+# Special:Log/newusers
+'newuserlogpage' => '用户创建日志',
+'newuserlogpagetext' => '这是用户创建的日志。',
+
 # User rights log
 'rightslog' => '用户权限日志',
 'rightslogtext' => '这是用户权限更改的日志。',
-'rightslogentry' => '将$1的用户组由$2更改为$3',
-'rightslogentry-autopromote' => '被自动提升自$2至$3',
-'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',
-'logentry-rights-rights-legacy' => '$1更改$3的用户组',
-'logentry-rights-autopromote' => '$1的用户组已自动从$4改为$5',
-'rightsnone' => '（无）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '阅读本页',
@@ -2172,8 +2172,8 @@ $1',
 'linksearch-pat' => '搜索网址：',
 'linksearch-ns' => '名字空间：',
 'linksearch-ok' => '搜索',
-'linksearch-text' => '制作可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />
-支持的协议：<code>$1</code>（如果没有设置协议则默认为<nowiki>http://</nowiki>）。',
+'linksearch-text' => '可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />
+支持的{{PLURAL:$2|协议}}：<code>$1</code>（如果没有设置协议则默认为<nowiki>http://</nowiki>）。',
 'linksearch-line' => '$1 链自 $2',
 'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
@@ -2191,10 +2191,6 @@ $1',
 'activeusers-hidebots' => '隐藏机器人',
 'activeusers-hidesysops' => '隐藏管理员',
 'activeusers-noresult' => '找不到用户。',
-
-# Special:Log/newusers
-'newuserlogpage' => '用户创建日志',
-'newuserlogpagetext' => '这是用户创建的日志。',
 
 # Special:ListGroupRights
 'listgrouprights' => '用户组权限',
@@ -2222,7 +2218,8 @@ $1',
 'emailuser-title-target' => '电邮联系该{{GENDER:$1|用户}}',
 'emailuser-title-notarget' => '电邮联系',
 'emailpage' => '电邮联系',
-'emailpagetext' => '你可以使用下面的表单向该用户发送电子邮件消息。你在[[Special:Preferences|你的系统设置]]中输入的电子邮件地址将显示为该邮件的“发件人”地址，所以该用户将可以直接回复你。',
+'emailpagetext' => '您可以使用下面的表单向该{{GENDER:$1|用户}}发送电子邮件消息。
+您在[[Special:Preferences|你的系统设置]]中输入的电子邮件地址将显示为该邮件的“发件人”地址，所以收件人将可以直接回复你。',
 'usermailererror' => 'Mail 对象返回错误：',
 'defemailsubject' => '{{SITENAME}}来自用户“$1”的电子邮件',
 'usermaildisabled' => '用户电邮已停用',
@@ -2260,7 +2257,8 @@ $1',
 'watchnologin' => '未登录',
 'watchnologintext' => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addwatch' => '添加至监视列表',
-'addedwatchtext' => "页面“[[:$1]]”已添加至你的[[Special:Watchlist|监视列表]]。本页面及其讨论页面的新增更改将会列入监视列表，本页面将以'''粗体'''显示在[[Special:RecentChanges|最近更改列表]]中以方便识别。",
+'addedwatchtext' => '页面“[[:$1]]”已添加至你的[[Special:Watchlist|监视列表]]。
+本页面及其讨论页面的新增更改将会列入监视列表。',
 'removewatch' => '从监视列表中删除',
 'removedwatchtext' => '页面“[[:$1]]”已从[[Special:Watchlist|你的监视列表]]中删除。',
 'watch' => '监视',
@@ -2294,23 +2292,25 @@ $1',
 'enotif_subject_moved' => '{{SITENAME}}的$1页面被$2移动',
 'enotif_subject_restored' => '{{SITENAME}}的$1页面被$2恢复',
 'enotif_subject_changed' => '{{SITENAME}}的$1页面被$2修改',
+'enotif_body_intro_deleted' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被{{gender:$2|$2}}删除，见 $3 。',
+'enotif_body_intro_created' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被{{gender:$2|$2}}创建，在 $3 可以查看当前版本。',
+'enotif_body_intro_moved' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被{{gender:$2|$2}}移动，在 $3 可以查看当前版本。',
+'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被{{gender:$2|$2}}恢复，在 $3 可以查看当前版本。',
+'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被{{gender:$2|$2}}变更，在 $3 可以查看当前版本。',
 'enotif_lastvisited' => '请浏览 $1 查看你上次访问后的所有更改。',
 'enotif_lastdiff' => '请浏览 $1 查看该更改。',
 'enotif_anon_editor' => '匿名用户$1',
 'enotif_body' => '亲爱的$WATCHINGUSERNAME：
 
-你好！
+$PAGEINTRO $NEWPAGE
 
-{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR $CHANGEDORCREATED，请浏览 $PAGETITLE_URL 查看当前版本。
-$NEWPAGE
 编辑摘要：$PAGESUMMARY $PAGEMINOREDIT
 
 你可以通过以下方式联系编者：
 电子邮件：$PAGEEDITOR_EMAIL
-用户页面：$PAGEEDITOR_WIKI
+wiki: $PAGEEDITOR_WIKI
 
-在你访问该页面之前，我们不会发送新增更改的通知。
-你也可以重设你的监视列表中所有监视页面的通知标志。
+在你访问该页面之前，我们不会发送新增更改的通知。你也可以重设你的监视列表中所有监视页面的通知标志。
 
 友好的{{SITENAME}}通知系统
 
@@ -2872,6 +2872,7 @@ $1被封禁的理由是：“$2”',
 'import-error-interwiki' => '页面“$1”未能导入，因为它的名称需要使用外部跨wiki链接。',
 'import-error-special' => '页面“$1”未导入，因为它需要使用一个不能创建页面的特殊名字空间。',
 'import-error-invalid' => '页面“$1”未能导入，因为它的名字无效。',
+'import-error-unserialize' => '页面“$1”的版本$2无法反序列化。此版本使用内容模型$3序列化为$4。',
 'import-options-wrong' => '{{PLURAL:$2|选项}}出错：<nowiki>$1</nowiki>',
 'import-rootpage-invalid' => '根页面的标题无效。',
 'import-rootpage-nosubpage' => '名字空间为“$1”的根页面不允许子页面。',
@@ -3110,6 +3111,7 @@ $1',
 'file-nohires' => '没有更高的分辨率。',
 'svg-long-desc' => 'SVG文件，图像大小：$1 × $2像素，文件大小：$3',
 'svg-long-desc-animated' => '动画SVG文件，图像大小为$1 × $2像素，文件大小：$3',
+'svg-long-error' => '无效的SVG文件：$1',
 'show-big-image' => '完全分辨率',
 'show-big-image-preview' => '本预览的大小：$1。',
 'show-big-image-other' => '其他{{PLURAL:$2|分辨率}}：$1。',
@@ -3919,6 +3921,10 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'logentry-newusers-create2' => '创建用户帐户 $3 由 $1',
 'logentry-newusers-autocreate' => '账户$1被自动创建',
 'newuserlog-byemail' => '密码已用电子邮件发送',
+'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',
+'logentry-rights-rights-legacy' => '$1更改$3的用户组',
+'logentry-rights-autopromote' => '$1的用户组已自动从$4改为$5',
+'rightsnone' => '（无）',
 
 # Feedback
 'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论将被添加至页面“[$3 $2]”，附有你的用户名和使用的浏览器。',
@@ -3965,7 +3971,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-missingparam' => '内部错误：请求中缺少参数。',
 'api-error-missingresult' => '内部错误：无法确定是否复制成功。',
 'api-error-mustbeloggedin' => '您必须登录后再上传文件。',
-'api-error-mustbeposted' => '该软件存在故障，它没有使用正确的HTTP方法。',
+'api-error-mustbeposted' => '内部错误：请求需要HTTP POST',
 'api-error-noimageinfo' => '上传成功，但服务器没有给我们任何该文件的信息。',
 'api-error-nomodule' => '内部错误：缺少上传模块集。',
 'api-error-ok-but-empty' => '内部错误：服务器没有响应。',
@@ -3991,6 +3997,4 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'svg-long-error' => '无效的SVG文件：$1',
 );

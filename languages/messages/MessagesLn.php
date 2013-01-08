@@ -25,6 +25,9 @@ $messages = array(
 'tog-showtoolbar' => 'Komɔ́nisa ndámbo-ndámbo (esengélí JavaScript)',
 'tog-rememberpassword' => 'Komíkundola bokitoli na molúki (ekosúkisa na {{PLURAL:$1|mokɔlɔ|mikɔlɔ}} $1)',
 
+'underline-always' => 'Mikɔlɔ yɔ́nsɔ',
+'underline-never' => 'Libélá tɛ́',
+
 # Dates
 'sunday' => 'Lomíngo',
 'monday' => 'mokɔlɔ ya libosó',
@@ -88,6 +91,7 @@ $messages = array(
 'article' => 'ekakoli',
 'newwindow' => '(ekofúngola na lininísa lya sika)',
 'cancel' => 'Kozóngela',
+'mypage' => 'Lonkásá',
 'mytalk' => 'Ntembe na ngáí',
 'navigation' => 'Botamboli',
 'and' => '&#32;mpé',
@@ -96,6 +100,8 @@ $messages = array(
 'qbfind' => 'Koluka',
 'qbbrowse' => 'Kolúka',
 'qbedit' => 'Kobɔngisa',
+'qbpageoptions' => 'Lonkásá óyo',
+'qbmyoptions' => 'Lonkásá na ngáí',
 'qbspecialpages' => 'Nkásá gudi',
 'faq' => 'Mitúná Mizóngelaka (MM)',
 
@@ -144,6 +150,7 @@ $messages = array(
 'talkpagelinktext' => 'Ntembe',
 'specialpage' => 'Lonkásá gudi',
 'personaltools' => 'Bisáleli ya moto-mɛ́i',
+'postcomment' => 'Sɛksió sika',
 'articlepage' => 'Komɔ́nisa káti',
 'talk' => 'Ntembe',
 'views' => 'Bomɔ́nisi',
@@ -235,6 +242,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'yourpassword' => 'Banda nayó:',
 'yourpasswordagain' => 'Banda naíno:',
 'remembermypassword' => 'Mɛ́i-komíkitola na molúki moye mbala ilandí (ekosúkisa na {{PLURAL:$1|mokɔlɔ|mikɔlɔ}} $1)',
+'yourdomainname' => 'Dɔmɛ́nɛ na yɔ̌:',
 'login' => 'komíkitola (log in)',
 'nav-login-createaccount' => 'Komíkomisa tǒ kokɔtɔ',
 'userlogin' => 'Komíkomisa tǒ komíkitola',
@@ -243,6 +251,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'userlogout' => 'Kolongwa',
 'nologin' => "Omíkomísí naíno tɛ̂? '''$1'''.",
 'nologinlink' => 'Míkomísá yɔ̌-mɛ́i',
+'createaccount' => 'Míkomísá yɔ̌-mɛ́i',
 'gotaccount' => "Omíkomísí naíno ? '''$1'''.",
 'gotaccountlink' => 'komíkitola (log in)',
 'createaccountmail' => 'na mokánda',

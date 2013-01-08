@@ -811,7 +811,6 @@ Ti kinaudi a naikabil iti listaan ket naikabil dita baba tapno usaren a reperens
 'template-protected' => '(nasalakniban)',
 'template-semiprotected' => '(nasalakniban-bassit)',
 'hiddencategories' => 'Daytoy a panid ket kameng  {{PLURAL:$1|ti 1 a nailemmeng a kategoria|dagiti $1 a nailemmeng a kategoria}}:',
-'nocreatetitle' => 'Napatinggaan ti panagaramid iti panid',
 'nocreatetext' => 'Pinaritan ti {{SITENAME}} ti kabaelan a panagaramid iti kabarbaro a pampanid.
 Mabalinmo ti agsubli ken urnosen ti adda a panid, wenno [[Special:UserLogin|sumrek wenno agaramid ti pakabilangan]].',
 'nocreate-loggedin' => 'Awan ti pammalubosmo nga agpartuat kadagiti baro a panid.',
@@ -1217,7 +1216,7 @@ Ngem saanto a mabalinen nga ipasubli.',
 'youremail' => 'E-surat:',
 'username' => 'Nagan ti agar-aramat:',
 'uid' => 'ID ti agar-aramat:',
-'prefs-memberingroups' => 'Kameng iti {{PLURAL:$1|a bunggoy| a bungbunggoy}}:',
+'prefs-memberingroups' => 'Kameng {{PLURAL:$1|ti grupo|dagiti grupo}}:',
 'prefs-registration' => 'Oras a nagrehistro:',
 'yourrealname' => 'Pudno a nagan:',
 'yourlanguage' => 'Pagsasao:',
@@ -1369,15 +1368,13 @@ Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak
 'right-sendemail' => 'Agpatulod ti e-surat kadagiti sabali nga agar-aramat',
 'right-passwordreset' => 'Kitaen dagiti e-surat ti naipasubli a kontrasenias',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Listaan dagiti naaramid nga agar-aramat',
+'newuserlogpagetext' => 'Listaan dagiti panakaramid ti agar-aramat.',
+
 # User rights log
 'rightslog' => 'Listaan dagiti karbengan ti agar-aramat',
 'rightslogtext' => 'Listaan daytoy kadagiti sinukatan a karbengan ti agar-aramat.',
-'rightslogentry' => 'sinukatan ti panagkameng iti bunggoy ti $1 manipud $2 iti $3',
-'rightslogentry-autopromote' => 'naautomatiko a naipangato a naggapo iti $2 idiay $3',
-'logentry-rights-rights' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3 manipud ti $4 iti $5',
-'logentry-rights-rights-legacy' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3',
-'logentry-rights-autopromote' => 'Ni $1 ket automatiko idi a naipangato manipud ti $4 iti $5',
-'rightsnone' => '(awan)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaen datoy a panid',
@@ -2002,9 +1999,9 @@ Kitaen met [[Special:WantedCategories|dagiti makidkiddaw a kategoria]].',
 'linksearch-pat' => 'Alagad ti panagbiruk:',
 'linksearch-ns' => 'Nagan ti lugar:',
 'linksearch-ok' => 'Biruken',
-'linksearch-text' => 'Ti naataap a tarheta a kas "*.wikipedia.org" ket mabalin nga usaren.
+'linksearch-text' => 'Ti naataap a tarheta a kas ti "*.wikipedia.org" ket mabalin nga usaren.
 Masapul ti kangatuan a pagturayan, a kaspagarigan "*.org".<br />
-Dagiti nasuportaran a protokol: <code>$1</code> (naipakasigud ti http:// no awan ti protokol a nainaganan).',
+{PLURAL:$2|Ti protokol|Dagiti protokol}} a nasuportaran: <code>$1</code> (naipakasigud ti http:// no awan ti protokol a nainaganan).',
 'linksearch-line' => 'Ti $1 ket nakasilpo idiay $2',
 'linksearch-error' => 'Ti naatap a tarheta ket agparang laeng iti pinagrugi ti nagan ti agsangaili.',
 
@@ -2022,10 +2019,6 @@ Dagiti nasuportaran a protokol: <code>$1</code> (naipakasigud ti http:// no awan
 'activeusers-hidebots' => 'Ilemmeng dagiti bot',
 'activeusers-hidesysops' => 'Ilemmeng dagiti administrador',
 'activeusers-noresult' => 'Awan ti nasarakan nga agar-aramat.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Listaan dagiti naaramid nga agar-aramat',
-'newuserlogpagetext' => 'Listaan dagiti panakaramid ti agar-aramat.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Dagiti karbengan ti bunggoy ti agar-aramat',
@@ -2948,6 +2941,7 @@ No usarem daytoy, baka makompromiso ti sistema.",
 'file-nohires' => 'Awan ti mabalin a nangatngato a resolusion.',
 'svg-long-desc' => 'SVG a papeles, babassit ngem $1 × $2 pixels, kadakkel ti papeles: $3',
 'svg-long-desc-animated' => 'Naanimado nga SVG a papeles, babassit ngem  $1 × $2 pixels, kadakkel ti papeles: $3',
+'svg-long-error' => 'Saan nga umisu a papeles ti SVG: $1',
 'show-big-image' => 'Sibubukel a resolusion',
 'show-big-image-preview' => 'Kadakkel na daytoy a pagpadas: $1.',
 'show-big-image-other' => 'Sabali  {{PLURAL:$2|a resolusion|kadagiti resolusion}}: $1.',
@@ -3731,6 +3725,10 @@ Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
 'logentry-newusers-create2' => 'Nagpartuat ni ti $3 a pakabilangan ti agar-aramat babaen ni $1',
 'logentry-newusers-autocreate' => 'Ti pakabilangan ni $1 ket automatiko a napartuat',
 'newuserlog-byemail' => 'naipatulod ti kontrasenias ti e-surat',
+'logentry-rights-rights' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3 manipud ti $4 iti $5',
+'logentry-rights-rights-legacy' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3',
+'logentry-rights-autopromote' => 'Ni $1 ket automatiko idi a naipangato manipud ti $4 iti $5',
+'rightsnone' => '(awan)',
 
 # Feedback
 'feedback-bugornote' => 'No agsagana kan nga agibaga ti teknikal a pakirut a naisalaysay pangngaasi nga [$1 ireporta ti kiteb].
@@ -3804,6 +3802,4 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
-# Unknown messages
-'svg-long-error' => 'Saan nga umisu a papeles ti SVG: $1',
 );

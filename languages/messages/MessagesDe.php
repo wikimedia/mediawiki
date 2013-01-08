@@ -61,6 +61,7 @@
  * @author Tischbeinahe
  * @author UV
  * @author Umherirrender
+ * @author Vogone
  * @author W (aka Wuzur)
  * @author Wikifan
  * @author Wikinaut
@@ -968,6 +969,7 @@ Temporäres Passwort: $2',
 'changeemail-oldemail' => 'Aktuelle E-Mail-Adresse:',
 'changeemail-newemail' => 'Neue E-Mail-Adresse:',
 'changeemail-none' => '(keine)',
+'changeemail-password' => 'Dein {{SITENAME}}-Passwort:',
 'changeemail-submit' => 'E-Mail-Adresse ändern',
 'changeemail-cancel' => 'Abbrechen',
 
@@ -1146,7 +1148,6 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'template-semiprotected' => '(schreibgeschützt für unangemeldete und neue Benutzer)',
 'hiddencategories' => 'Diese Seite ist Mitglied von {{PLURAL:$1|1 versteckter Kategorie|$1 versteckten Kategorien}}:',
 'edittools' => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem „Hochladen“-Formular angezeigt. -->',
-'nocreatetitle' => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext' => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].',
 'nocreate-loggedin' => 'Du hast nicht die erforderliche Berechtigung, um neue Seiten erstellen zu können.',
 'sectioneditnotsupported-title' => 'Die Bearbeitung von Abschnitten wird nicht unterstützt',
@@ -1689,15 +1690,13 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-sendemail' => 'E-Mails an andere Benutzer senden',
 'right-passwordreset' => 'Passwort eines Benutzers zurücksetzen und die dazu verschickte E-Mail einsehen',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Neuanmeldungs-Logbuch',
+'newuserlogpagetext' => 'Dies ist ein Logbuch der neu erstellten Benutzerkonten.',
+
 # User rights log
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
-'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ zu „$3“',
-'rightslogentry-autopromote' => 'wurde automatisch von „$2“ zu „$3“ zugeordnet',
-'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
-'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
-'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 zugeordnet',
-'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'die Seite zu lesen',
@@ -2321,7 +2320,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'linksearch-pat' => 'Suchmuster:',
 'linksearch-ns' => 'Namensraum:',
 'linksearch-ok' => 'Suchen',
-'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Standard ist http, falls kein Protokoll angegeben ist.)',
+'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: <code>$1</code> (Standard ist http, falls kein Protokoll angegeben ist.)',
 'linksearch-line' => '$1 ist verlinkt von $2',
 'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
 
@@ -2339,10 +2338,6 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'activeusers-hidebots' => 'Bots ausblenden',
 'activeusers-hidesysops' => 'Administratoren ausblenden',
 'activeusers-noresult' => 'Keine Benutzer gefunden.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Neuanmeldungs-Logbuch',
-'newuserlogpagetext' => 'Dies ist ein Logbuch der neu erstellten Benutzerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppenrechte',
@@ -2411,7 +2406,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'watchnologintext' => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste bearbeiten zu können.',
 'addwatch' => 'Zur Beobachtungsliste hinzufügen',
 'addedwatchtext' => 'Die Seite „[[:$1]]“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
-Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet und die Seite wird in der [[Special:RecentChanges|Liste der letzten Änderungen]] in Fettschrift angezeigt.',
+Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet.',
 'removewatch' => 'Von der Beobachtungsliste entfernen',
 'removedwatchtext' => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch' => 'Beobachten',
@@ -2445,7 +2440,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'enotif_subject_moved' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} verschoben',
 'enotif_subject_restored' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} wiederhergestellt',
 'enotif_subject_changed' => '{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} geändert',
-'enotif_body_intro_deleted' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} gelöscht. Siehe $3 für deren aktuelle Version.',
+'enotif_body_intro_deleted' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} gelöscht. Siehe $3.',
 'enotif_body_intro_created' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} erstellt. Siehe $3 für deren aktuelle Version.',
 'enotif_body_intro_moved' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} verschoben. Siehe $3 für deren aktuelle Version.',
 'enotif_body_intro_restored' => 'Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} wiederhergestellt. Siehe $3 für deren aktuelle Version.',
@@ -2540,6 +2535,8 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'prot_1movedto2' => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
 'protect-badnamespace-title' => 'Nicht-schützbarer Namensraum',
 'protect-badnamespace-text' => 'Seiten dieses Namensraums können nicht geschützt werden.',
+'protect-norestrictiontypes-text' => 'Diese Seite kann nicht geschützt werden, da keine Beschränkungstypen verfügbar sind.',
+'protect-norestrictiontypes-title' => 'Nicht schützbare Seite',
 'protect-legend' => 'Seitenschutzstatus ändern',
 'protectcomment' => 'Grund:',
 'protectexpiry' => 'Sperrdauer:',
@@ -3024,7 +3021,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-noarticle' => 'Es wurde keine zu importierende Seite angegeben!',
 'import-nonewrevisions' => 'Alle Versionen wurden bereits zu einem früheren Zeitpunkt importiert.',
 'xml-error-string' => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
-'import-upload' => 'XML-Daten importieren',
+'import-upload' => 'XML-Dateien importieren',
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
 'import-invalid-interwiki' => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 'import-error-edit' => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.',
@@ -3032,6 +3029,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-error-interwiki' => 'Die Seite „$1“ wurde nicht importiert, da deren Name für externe Links (Interwiki) reserviert ist.',
 'import-error-special' => 'Die Seite „$1“ wurde nicht importiert, da sie zu einem besonderen Namensraum gehört, in dem keine Seiten möglich sind.',
 'import-error-invalid' => 'Seite „$1“ wurde nicht importiert, da deren Name ungültig ist.',
+'import-error-unserialize' => 'Die Version $2 der Seite „$1“ konnte nicht deserialisiert werden. Die Version wurde zur Verwendung des Inhaltsmodells $3 gemeldet, das als $4 serialisiert ist.',
 'import-options-wrong' => 'Falsche {{PLURAL:$2|Option|Optionen}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Der angegebene Stammseitenname ist ungültig.',
 'import-rootpage-nosubpage' => 'Im Namensraum „$1“ der Stammseite sind keine Unterseiten erlaubt.',
@@ -3223,6 +3221,10 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-protect-cascading' => 'Seiten mit Kaskadenschutz von hier',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Seiten mit Kaskadenschutz von',
+'pageinfo-category-info' => 'Kategorieinformationen',
+'pageinfo-category-pages' => 'Anzahl der Seiten',
+'pageinfo-category-subcats' => 'Anzahl der Unterkategorien',
+'pageinfo-category-files' => 'Anzahl der Dateien',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -3280,6 +3282,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-nohires' => 'Keine höhere Auflösung vorhanden.',
 'svg-long-desc' => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
 'svg-long-desc-animated' => 'Animierte SVG-Datei, Basisgröße $1 × $2 Pixel, Dateigröße: $3',
+'svg-long-error' => 'Ungültige SVG-Datei: $1',
 'show-big-image' => 'Volle Auflösung',
 'show-big-image-preview' => 'Größe dieser Vorschau: $1.',
 'show-big-image-other' => 'Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.',
@@ -3309,6 +3312,8 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
 'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
+'months' => '{{PLURAL:$1|Ein Monat|$1 Monate}}',
+'years' => '{{PLURAL:$1|Ein Jahr|$1 Jahre}}',
 'ago' => 'vor $1',
 'just-now' => 'Gerade eben',
 
@@ -4083,6 +4088,10 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-newusers-create2' => 'Benutzerkonto $3 wurde von $1 erstellt',
 'logentry-newusers-autocreate' => 'Benutzerkonto $1 wurde automatisch erstellt',
 'newuserlog-byemail' => 'das Passwort wurde per E-Mail versandt',
+'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
+'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
+'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 zugeordnet',
+'rightsnone' => '(–)',
 
 # Feedback
 'feedback-bugornote' => 'Sofern du detailliert ein technisches Problem beschreiben möchtest, melde bitte [$1 einen Fehler].
@@ -4156,6 +4165,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'svg-long-error' => 'Ungültige SVG-Datei: $1',
 );

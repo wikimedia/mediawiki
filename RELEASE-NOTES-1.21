@@ -13,6 +13,9 @@ production.
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname'
   instead.
+* (bug 39957) Added $wgUnwatchedPageThreshold, specifying minimum count
+  of page watchers required for the number to be accessible to users
+  without the unwatchedpages permission.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and
@@ -57,11 +60,17 @@ production.
   debug mode: wfMsg, wfMsgNoTrans, wfMsgForContent, wfMsgForContentNoTrans,
   wfMsgReal, wfMsgGetKey, wfMsgHtml, wfMsgWikiHtml, wfMsgExt, wfEmptyMsg. Use
   the Message class, or the global method wfMessage.
+* Added $wgEnableCanonicalServerLink, off by default. If enabled, a 
+  <link rel=canonical> tag is added to every page indicating the correct server
+  to use.
 * Debug message emitted by wfDebugLog() will now be prefixed with the group
   name when its logged to the default log file. That is the case whenever the
   group has no key in wgDebugLogGroups, that will help triage the default log.
 * (bug 24620) Add types to LogFormatter.
 * jQuery JSON upgraded from 2.3 to 2.4.0.
+* Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
+* DatabaseUpdater class has two new methods to ease extensions schema changes:
+  dropExtensionIndex and renameExtensionIndex.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -97,7 +106,7 @@ production.
   needed.
 * (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
   actually sorted.
-* (bug 2865)  User interface HTML elements don't use lang attribute
+* (bug 2865)  User interface HTML elements don't use lang attribute.
   (completed the fix by adding the lang attribute to firstHeading).
 * (bug 42173) Removed namespace prefixes on Special:UncategorizedCategories.
 * (bug 36053) Log in "returnto" feature forgets query parameters if no
@@ -112,6 +121,18 @@ production.
   <h4>, <h5> or <h6> to only <h3>s, with a <h2> hidden heading above them.
   If you are styling or scripting the headings in a custom way, this change
   will require updates to your site's CSS or JS.
+* (bug 41342) jquery.suggestions should cancel any active (async) fetches
+  before it triggers another fetch.
+* (bug 42184) $wgUploadSizeWarning missing second variable.
+* (bug 34581) removeUnusedAccounts.php maintenance script now ignores newuser
+  log when determining whether an account is used.
+* (bug 43379) Gracefully fail if rev_len is unavailable for a revision on the
+  History page.
+* (bug 42949) API no longer assumes all exceptions are MWException.
+* (bug 41733) Hide "New user message" (.usermessage) element from printable view.
+* (bug 39062) Special:Contributions will display changes that don't have
+  a parent id instead of just an empty bullet item.
+* wfMerge() now works if $wgDiff3 contains spaces
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
@@ -124,6 +145,17 @@ production.
 * (bug 41042) Revert change to action=parse&page=... behavior when the page
   does not exist.
 * (bug 27202) Add timestamp sort to list=allimages.
+* (bug 43137) Don't return the sha1 of revisions through the API if the content is
+  revision-deleted.
+* ApiQueryImageInfo now also returns imageinfo for redirects.
+* list=alltransclusions added to enumerate every instance of page embedding
+* list=alllinks & alltransclusions now allow both 'from' and 'continue' in
+  the same query. When both are present, 'from' is simply ignored.
+* list=alllinks & alltransclusions now allow 'unique' in generators, to yield
+  a list of all link/template target pages instead of source pages.
+* BREAKING CHANGE: list=logevents output format changed for details of some log
+  types. Specifically, details that were formerly reported under a key like
+  "4::foo" will now be reported under a key of simply "foo".
 
 === Languages updated in 1.21 ===
 
@@ -169,9 +201,11 @@ due to database schema changes.
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
 new database fields are filled with data.
 
-If you are upgrading from MediaWiki 1.4.x or earlier, some major database
-changes are made, and there is a slightly higher chance that things could
-break. Don't forget to always back up your database before upgrading!
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 

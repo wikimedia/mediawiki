@@ -1030,7 +1030,6 @@ Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
 'template-semiprotected' => '(čiastočne zamknutá)',
 'hiddencategories' => 'Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:',
 'edittools' => '<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->',
-'nocreatetitle' => 'Tvorba nových stránok bola obmedzená',
 'nocreatetext' => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:UserLogin|sa prihlásiť alebo vytvoriť účet]].',
 'nocreate-loggedin' => 'Nemáte povolenie vytvárať nové stránky.',
@@ -1576,15 +1575,13 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-sendemail' => 'Posielať e-mail ostatným používateľom',
 'right-passwordreset' => 'Prezeranie e-mailov pre znovunastavovanie hesla',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Záznam vytvorených používateľov',
+'newuserlogpagetext' => 'Toto je záznam naposledy vytvorených používateľských účtov.',
+
 # User rights log
 'rightslog' => 'Záznam používateľských práv',
 'rightslogtext' => 'Toto je záznam zmien práv používateľa.',
-'rightslogentry' => 'členstvo v skupine zmenené pre $1 z $2 na $3',
-'rightslogentry-autopromote' => 'bol automaticky povýšený z $2 na $3',
-'logentry-rights-rights' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách',
-'logentry-rights-autopromote' => '$1 {{GENDER:$2|bol automaticky povýšený|bola automaticky povýšená}} z $4 na $5',
-'rightsnone' => '(žiadne)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'čítať túto stránku',
@@ -2226,10 +2223,6 @@ Podporované protokoly: <code>$1</code> (ak protokol nie je uvedený, použije s
 'activeusers-hidesysops' => 'Skryť správcov',
 'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Záznam vytvorených používateľov',
-'newuserlogpagetext' => 'Toto je záznam naposledy vytvorených používateľských účtov.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Práva skupiny používateľov',
 'listgrouprights-summary' => 'Toto je zoznam skupín používateľov definovaných na tejto wiki a ich prístupových práv.
@@ -2295,9 +2288,7 @@ Mailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach
 'watchnologin' => 'Nie ste prihlásený/á',
 'watchnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený/á]], aby ste mohli modifikovať vaše sledované stránky.',
 'addwatch' => 'Pridať do zoznamu sledovaných stránok',
-'addedwatchtext' => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.
-
-Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{int:unwatch}}“ v záložkách na vrchu.",
+'addedwatchtext' => "Stránka [[:$1]] bola pridaná do zoznamu [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.",
 'removewatch' => 'Odstrániť zo zoznamu sledovaných',
 'removedwatchtext' => 'Stránka „[[:$1]]“ bola odstránená z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].',
 'watch' => 'Sledovať',
@@ -3962,11 +3953,15 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'logentry-move-move_redir-noredirect' => '$1 premiestnil stránku $3 na $4 prostredníctvom  presmerovania, ale neponechal presmerovanie',
 'logentry-patrol-patrol' => '$1 označil revíziu $4 stránky $3 ako overenú',
 'logentry-patrol-patrol-auto' => '$1 automaticky označil revíziu $4 stránky $3 ako overenú',
-'logentry-newusers-newusers' => '$1 založil používateľský účet',
-'logentry-newusers-create' => '$1 založil používateľský účet',
-'logentry-newusers-create2' => '$1 založil používateľský účet $3',
+'logentry-newusers-newusers' => 'Bol vytvorený používateľský účet $1',
+'logentry-newusers-create' => 'Bol vytvorený používateľský účet $1',
+'logentry-newusers-create2' => '$1 vytvoril používateľský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky bol založený účet $1',
 'newuserlog-byemail' => 'heslo poslané emailom',
+'logentry-rights-rights' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|bol automaticky povýšený|bola automaticky povýšená}} z $4 na $5',
+'rightsnone' => '(žiadne)',
 
 # Feedback
 'feedback-bugornote' => 'Ak ste pripravený podrobne popísať technický problém, prosím pošlite [$1 hlásenie o chybe]. 

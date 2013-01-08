@@ -862,7 +862,6 @@ $2
 'template-protected' => '(సంరక్షితం)',
 'template-semiprotected' => '(సెమీ-రక్షణలో ఉంది)',
 'hiddencategories' => 'ఈ పేజీ {{PLURAL:$1|ఒక దాచిన వర్గంలో|$1 దాచిన వర్గాల్లో}} ఉంది:',
-'nocreatetitle' => 'పేజీని సృష్టించడాన్ని నియంత్రించాం.',
 'nocreatetext' => '{{SITENAME}}లో కొత్త పేజీలు సృష్టించడాన్ని నియంత్రించారు.
 మీరు వెనక్కి వెళ్ళి వేరే పేజీలు మార్చవచ్చు, లేదా [[Special:UserLogin|లోనికి ప్రవేశించండి లేదా ఖాతా సృష్టించుకోండి]].',
 'nocreate-loggedin' => 'కొత్త పేజీలను సృష్టించేందుకు మీకు అనుమతి లేదు.',
@@ -1392,11 +1391,13 @@ $1",
 'right-sendemail' => 'ఇతర వాడుకరులకు ఈ-మెయిలు పంపించగలగడం',
 'right-passwordreset' => 'సంకేతపదాన్ని పునరుద్ధరించిన ఈ-మెయిళ్ళు',
 
+# Special:Log/newusers
+'newuserlogpage' => 'కొత్త వాడుకరుల చిట్టా',
+'newuserlogpagetext' => 'ఇది వాడుకరి నమోదుల చిట్టా.',
+
 # User rights log
 'rightslog' => 'వాడుకరుల హక్కుల మార్పుల చిట్టా',
 'rightslogtext' => 'ఇది వాడుకరుల హక్కులకు జరిగిన మార్పుల చిట్టా.',
-'rightslogentry' => '$1 గారి సభ్యత్వ గుంపును $2 నుండి $3 కి మార్చారు',
-'rightsnone' => '(ఏమీలేవు)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ఈ పేజీని చదవండి',
@@ -1968,10 +1969,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'activeusers-hidebots' => 'బాట్లను దాచు',
 'activeusers-hidesysops' => 'నిర్వాహకులను దాచు',
 'activeusers-noresult' => 'వాడుకరులెవరూ లేరు.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'కొత్త వాడుకరుల చిట్టా',
-'newuserlogpagetext' => 'ఇది వాడుకరి నమోదుల చిట్టా.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'వాడుకరి గుంపుల హక్కులు',
@@ -3299,7 +3296,7 @@ $5
 # action=purge
 'confirm_purge_button' => 'సరే',
 'confirm-purge-top' => 'ఈ పేజీ యొక్క పాత కాపీని తొలగించమంటారా?',
-'confirm-purge-bottom' => 'పేజీ తాడనతో కోశం ఖాళీ అయి, ఇట్టీవలి కూర్పును కనబడేలా చేస్తుంది.',
+'confirm-purge-bottom' => 'సత్వరనిల్వ(cache)లోపేజీ నిర్మూలించితే, ఇటీవలి కూర్పు కనబడుతుంది.',
 
 # action=watch/unwatch
 'confirm-watch-button' => 'సరే',
@@ -3523,6 +3520,7 @@ $5
 'logentry-newusers-create2' => '$1  వాడుకరి ఖాతా $3ను సృష్టించారు',
 'logentry-newusers-autocreate' => '$1 ఖాతాను ఆటోమెటిగ్గా సృష్టించారు',
 'newuserlog-byemail' => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
+'rightsnone' => '(ఏమీలేవు)',
 
 # Feedback
 'feedback-subject' => 'విషయం:',

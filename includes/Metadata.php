@@ -150,7 +150,7 @@ abstract class RdfMetaData {
 		}
 	}
 
-	protected function getTerms( $url ){
+	protected function getTerms( $url ) {
 		global $wgLicenseTerms;
 
 		if( $wgLicenseTerms ){

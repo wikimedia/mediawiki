@@ -4065,6 +4065,40 @@ Nested lists 8 (multiple nesting transitions)
 !! end
 
 !! test
+Unbalanced closing block tags break a list
+(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+disabled
+!! input
+<div>
+*a</div><div>
+*b</div>
+!! result
+<div>
+<ul><li>a
+</li></ul></div><div>
+<ul><li>b
+</li></ul></div>
+!! end
+
+!! test
+Unbalanced closing non-block tags don't break a list
+(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+disabled
+!! input
+<span>
+*a</span><span>
+*b</span>
+!! result
+<p><span></span>
+</p>
+<ul><li>a<span></span>
+</li><li>b
+</li></ul>
+!! end
+
+!! test
 List items are not parsed correctly following a <pre> block (bug 785)
 !! input
 * <pre>foo</pre>
@@ -10861,6 +10895,29 @@ language=sr cat
 !! end
 
 
+!! article
+Category:分类
+!! text
+blah
+!! endarticle
+
+!! article
+Category:分類
+!! text
+blah
+!! endarticle
+
+!! test
+Don't convert blue categorylinks to another variant (bug 33210)
+!! options
+language=zh cat
+!! input
+[[A]][[Category:分类]]
+!! result
+<a href="/wiki/Category:%E5%88%86%E7%B1%BB" title="Category:分类">分类</a>
+!! end
+
+
 !! test
 Stripping -{}- tags (language variants)
 !! options
@@ -10934,6 +10991,20 @@ language=zh variant=zh-tw
 
 
 !! test
+Conversion around HTML tags
+!! options
+language=sr variant=sr-ec
+!! input
+-{H|span=>sr-ec:script;title=>sr-ec:src;}-
+<span title="La-{sr-el:L;sr-ec:C;}-tin">ski</span>
+!! result
+<p>
+<span title="ЛаCтин">ски</span>
+</p>
+!! end
+
+
+!! test
 Explicit session-wise language variant mapping (A flag and - flag)
 !! options
 language=zh variant=zh-tw
@@ -10984,6 +11055,20 @@ Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
 !! result
 China
 <p>Should be stripped!
+</p>
+!! end
+
+!! test
+Recursive conversion of alt and title attrs shouldn't clear converter state
+!! options
+language=zh variant=zh-cn showtitle
+!! input
+-{H|zh-cn:Exclamation;zh-tw:exclamation;}-
+Should be stripped-{T|zh-cn:China;zh-tw:Taiwan}-<span title="exclamation">!</span>
+!! result
+China
+<p>
+Should be stripped<span title="Exclamation">!</span>
 </p>
 !! end
 

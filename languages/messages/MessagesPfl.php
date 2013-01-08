@@ -18,11 +18,11 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
-'tog-showtoolbar' => "Werkzaich zum Bearwaide zaische (dodezu braucht's JavaScript)",
+'tog-showtoolbar' => "Werkzaich zum Bearwaide zaische (dodezu brauchd's JavaScript)",
 
 'underline-always' => 'Immer',
 'underline-never' => 'Garnet',
-'underline-default' => 'Des nemme, was em Broweser gsaacht hoscht.',
+'underline-default' => 'Des nemme, was em Browser gsaachd hoschd.',
 
 # Dates
 'sunday' => 'Sundaach',
@@ -58,7 +58,7 @@ $messages = array(
 'may-gen' => 'Mai',
 'june-gen' => 'Juni',
 'july-gen' => 'Juli',
-'august-gen' => 'Auguscht',
+'august-gen' => 'Auguschd',
 'september-gen' => 'Sebdember',
 'october-gen' => 'Ogdower',
 'november-gen' => 'November',
@@ -101,7 +101,7 @@ $messages = array(
 # Vector skin
 'vector-action-delete' => 'Lesche',
 'vector-action-move' => 'Verschiewe',
-'vector-action-protect' => 'Schitze',
+'vector-action-protect' => 'Schidze',
 'vector-view-edit' => 'Bearwaide',
 'vector-view-history' => 'Dadaigschischd',
 'vector-view-view' => 'Lese',
@@ -115,11 +115,12 @@ $messages = array(
 'searchbutton' => 'Suche',
 'go' => 'Adiggel',
 'searcharticle' => 'Suche',
-'history' => 'Gschicht vun de Said',
+'history' => 'Gschichd vun de Said',
 'history_short' => 'Versione',
 'printableversion' => 'Druck-Aasicht',
 'permalink' => 'Permanentlink',
 'print' => 'Ausdrugge',
+'view' => 'Lese',
 'edit' => 'Bearwaide',
 'create' => 'Aaleche',
 'editthispage' => 'Die Said bearwaide',
@@ -127,6 +128,7 @@ $messages = array(
 'undelete_short' => '{{PLURAL:$1|ä Ännerung|$1 Ännerunge}} widderherschdelle',
 'protect' => 'schitze',
 'protect_change' => 'ännere',
+'protectthispage' => 'Die Said schidze',
 'unprotect' => 'Saideschudz änare',
 'newpage' => 'Naie Said',
 'talkpage' => 'Iwwer die Said dischbediere',
@@ -163,20 +165,21 @@ $messages = array(
 'privacy' => 'Dadeschuds',
 'privacypage' => 'Project:Daadeschutz',
 
-'badaccess' => 'Kää ausraichende Recht',
+'badaccess' => 'Kää ausraichende Reschd',
 
 'retrievedfrom' => 'Vun "$1"',
 'youhavenewmessages' => 'Du hoscht $1 ($2).',
-'newmessageslink' => 'naie Nochrichte',
-'newmessagesdifflink' => 'letschte Ännerung',
+'newmessageslink' => 'naie Nochrischde',
+'newmessagesdifflink' => 'ledschde Ännerung',
 'editsection' => 'bearwaide',
 'editold' => 'bearwaide',
+'viewsourceold' => 'Quelltegschd ogugge',
 'editlink' => 'bearwaide',
-'viewsourcelink' => 'Quell aagucke',
+'viewsourcelink' => 'Quell aagugge',
 'editsectionhint' => 'Abschnidd ännere: $1',
 'toc' => 'Inhald',
-'showtoc' => 'zaiche',
-'hidetoc' => 'versteggeln',
+'showtoc' => 'zaische',
+'hidetoc' => 'versteggle',
 'site-rss-feed' => '$1 RSS Feed',
 'site-atom-feed' => '$1 Atom Feed',
 'page-rss-feed' => '"$1" RSS Feed',
@@ -189,10 +192,10 @@ $messages = array(
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezialsaid',
 'nstab-project' => 'Bordal',
-'nstab-image' => 'Datei',
+'nstab-image' => 'Dadei',
 'nstab-mediawiki' => 'Mitdeelung',
 'nstab-template' => 'Vorlaach',
-'nstab-help' => 'Hilfe',
+'nstab-help' => 'Hilf',
 'nstab-category' => 'Kadegorie',
 
 # General errors
@@ -206,61 +209,63 @@ Bidde meldsm [[Special:ListUsers/sysop|Adminischdrador]], un gebb d URL dezu aa.
 'badtitle' => 'Schleschde Didl',
 'badtitletext' => 'De Titel vun de aageforderte Said isch nid giltich, leer, odder e nid giltiche Link vun eme annere Wiki.
 S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid gebraucht werre därfe.',
-'viewsource' => 'Quelltekschd betrachde',
+'viewsource' => 'Quelltegschd bedrachde',
 
 # Login and logout pages
 'yourname' => 'Benutzername:',
-'yourpassword' => 'Passwort:',
+'yourpassword' => 'Password:',
+'yourpasswordagain' => 'Password nomol oigewe:',
 'remembermypassword' => 'Mai Passwort uff dem Computer merke (hechschtens fer $1 {{PLURAL:$1|Dach|Dach}})',
 'login' => 'Omelde',
 'nav-login-createaccount' => 'Aamelde / Benutzerkonto aaleche',
 'userlogin' => 'Omelde / Benutzerkonto anleche',
 'logout' => 'Abmelde',
 'userlogout' => 'Abmelde',
-'nologinlink' => 'E Benutzerkonto aaleche',
+'nologinlink' => 'E Benutzerkondo aaleche',
 'mailmypassword' => 'Nais Passwort per E-Mail schicke',
 
 # Edit page toolbar
-'bold_sample' => 'Fette Schrift',
-'bold_tip' => 'Fette Schrift',
-'italic_sample' => 'Kursive Schrift',
-'italic_tip' => 'Kursive Schrift',
-'link_sample' => 'Stichwort',
+'bold_sample' => 'Fedde Schrifd',
+'bold_tip' => 'Fedde Schrifd',
+'italic_sample' => 'Kursive Schrifd',
+'italic_tip' => 'Kursive Schrifd',
+'link_sample' => 'Schdischword',
 'link_tip' => 'Interner Link',
-'extlink_sample' => 'http://www.example.com Linktext',
+'extlink_sample' => "http://www.example.com Ling'gtegschd",
 'extlink_tip' => 'Externer Link (uff http:// Acht gewwe)',
 'headline_sample' => 'Abschnitts-Iwwerschrift',
 'headline_tip' => 'Iwwerschrift Ewene 2',
 'nowiki_sample' => 'Gebb do en Text ai, wu nit formatiert wird',
 'nowiki_tip' => 'Wiki-Formatierunge ignoriere',
 'image_tip' => 'Bildverwais',
-'media_tip' => 'Dateilink',
+'media_tip' => 'Dadeilink',
 'sig_tip' => 'Dai Unnerschrifd mid ener Zaidaagab',
 'hr_tip' => 'Horizontale Linie (sparsam verwenne)',
 
 # Edit pages
 'summary' => 'Zammefassung:',
-'subject' => 'Betreff:',
-'minoredit' => 'Des ischt e klänni Bearwaidung',
+'subject' => 'Bedreff:',
+'minoredit' => 'Des isch e klänni Bearwaidung',
 'watchthis' => 'Die Said beowachde',
 'savearticle' => 'Said schbeichere',
 'preview' => 'Voaschau',
 'showpreview' => 'Vorschau zaische',
 'showlivepreview' => 'Live-Vorschau',
 'showdiff' => 'Ännerunge zaische',
-'anoneditwarning' => "'''Warnung:''' Du bischt nit aagemeldt. Dai IP-Adress werd in de Gschicht vun dem Artikel gspaichert.",
+'anoneditwarning' => "'''Warnung:''' Du bischt nit aagemeldt. Dai IP-Adress werd in de Gschichd vum Artikel gspaichert.",
 'summary-preview' => 'Zammefassung:',
 'newarticle' => '(Nai)',
 'newarticletext' => "Du bisch eme Link nogange zu re Said, wu s no gar nit gebbt.
 Zum die Said aaleche, kannscht do in dem Käschtel unne aafange mid schraiwe (guck[[{{MediaWiki:Helppage}}|Hilfe]] fer meh Informatione).
 Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
-'noarticletext' => 'Uff derre Said gebbt\'s noch kää Text. Du kannscht uff annere Saide [[Special:Search/{{PAGENAME}}|den Aitrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
+'noarticletext' => 'Uff derre Said gebbt\'s noch kää Text. Du kannschd uff annere Saide [[Special:Search/{{PAGENAME}}|de Aidrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
 orrer [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said bearwaide]</span>.',
 'previewnote' => "'''Deng'g droa, dass des numme e Vorschau isch.'''
 Doi Ännerunge sinn no nid gschbaichert worre!",
 'editing' => 'Am $1 bearwaide',
 'editingsection' => '$1 bearwaide (Abschnitt)',
 'yourtext' => 'Doin Tegschd',
+'storedversion' => 'Gschbaischerdi Version',
 'yourdiff' => 'Unaschied',
 'copyrightwarning' => "Bitte gebb acht, dass alle Baidräch zu {{SITENAME}} unner $2 vereffentlicht werre (guck $1 fer mehr Details).
 Wenn du nit willhsct, dass deswu du gschriwwe hoscht, gänneret un kopiert werre kann, dann duu s do nit naischraiwe.<br />
@@ -276,21 +281,22 @@ du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effe
 De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 
 # History pages
-'viewpagelogs' => 'Lochbicher fer die Said aagucke',
-'currentrev-asof' => 'Aktuelle Version vun $1',
+'viewpagelogs' => 'Lochbischer fer die Said aagucke',
+'currentrev' => 'Ledschdi Änarung',
+'currentrev-asof' => 'Agduell Version vun $1',
 'revisionasof' => 'Version vun $1',
-'previousrevision' => '← Ältere Versione',
-'nextrevision' => 'Naier Version →',
-'currentrevisionlink' => 'Aktuell Version',
+'previousrevision' => '← Äldere Versione',
+'nextrevision' => 'Naiere Versione →',
+'currentrevisionlink' => 'Agduell Version',
 'cur' => 'jetzert',
-'next' => 'Negschte',
+'next' => 'Negschde',
 'last' => 'vorich',
 'histlegend' => "Du kannscht zwää Versione auswähle un verglaiche.<br />
 Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 '''({{int:last}})''' = Unnerschied zu de voriche Version, '''{{int:minoreditletter}}''' = klenni Ännerung.",
-'history-fieldset-title' => 'In de Versionsgschicht suche',
-'histfirst' => 'Ältschte',
-'histlast' => 'Naischte',
+'history-fieldset-title' => 'In de Versionsgschichd gugge',
+'histfirst' => 'Ältschde',
+'histlast' => 'Naischde',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 om $2',
@@ -300,7 +306,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-radio-set' => 'Ja',
 'revdelete-radio-unset' => 'Nä',
-'revdelete-submit' => 'Uff die aussgewählt {{PLURAL:$1|Version|Versione}} owende',
+'revdelete-submit' => 'Uff die gewehld {{PLURAL:$1|Version|Versione}} owende',
 'revdel-restore' => 'Sischdbakaid ännere',
 'revdel-restore-deleted' => 'gleschdi Änarunge',
 'revdel-restore-visible' => 'sischdbari Änarunge',
@@ -328,6 +334,10 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'nextn-title' => 'Negschdi $1 {{PLURAL:$1|result|Ergewnis}}',
 'viewprevnext' => 'Gugg ($1 {{int:pipe-separator}} $2) ($3)',
 'searchprofile-everything' => 'Alles',
+'searchprofile-articles-tooltip' => 'In $1 gugge',
+'searchprofile-project-tooltip' => 'In $1 gugge',
+'searchprofile-images-tooltip' => 'Gugg noch Bilder',
+'searchprofile-advanced-tooltip' => 'Gugg in onare Nomensraim',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Word|$2 Wärder}})',
 'search-redirect' => '(Wairerlaitung $1)',
 'search-section' => '(Abschnitt $1)',
@@ -352,6 +362,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'saveprefs' => 'Oischdellunge schbeichere',
 'resetprefs' => 'Oischdellunge verwerfe',
 'guesstimezone' => 'Aus em Browser iwwernemme',
+'yourrealname' => 'Birscherlischer Nome:',
 'gender-unknown' => 'Ghoim gkalde',
 
 # Groups
@@ -367,9 +378,11 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 
 'grouppage-sysop' => '{{ns:project}}:Adminischtratore',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Naiaameldungs-Logbuch',
+
 # User rights log
 'rightslog' => 'Benutzerrecht-Logbuch',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'die Said bearwaide',
@@ -423,6 +436,9 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'lockmanager-fail-acquirelock' => '„$1“ komma ned schberre.',
 'lockmanager-fail-openlock' => 'Die gschberd Dadai „$1“ komma ned uffmache.',
 'lockmanager-fail-releaselock' => '„$1“ konn ned fraigewe werre.',
+
+# Special:ListFiles
+'listfiles_count' => 'Versione',
 
 # File description page
 'file-anchor-link' => 'Datei',
@@ -485,14 +501,11 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 # Special:LinkSearch
 'linksearch' => 'Externe Links',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Naiaameldungs-Logbuch',
-
 # Special:ListGroupRights
-'listgrouprights-members' => '(Mitgliederlischd)',
+'listgrouprights-members' => '(Midgliederlischd)',
 
 # E-mail user
-'emailuser' => 'E-Mail on den Benutzer',
+'emailuser' => 'E-Mail on de Benutzer',
 'emailsend' => 'Abschigge',
 
 # Watchlist
@@ -693,7 +706,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-ca-unwatch' => 'Die Said aus Dainer Beowachdunschlischde rausnemme',
 'tooltip-search' => 'Durchsuch {{SITENAME}}',
 'tooltip-search-go' => 'Geh zu ere Said mid genää dem Namme, wenn s se gebbt',
-'tooltip-search-fulltext' => 'Such in de Said nochm Tegschd',
+'tooltip-search-fulltext' => 'Gugg in de Said nochm Tegschd',
 'tooltip-p-logo' => 'Haubdsaid',
 'tooltip-n-mainpage' => 'Uff d Hääptsaid geh',
 'tooltip-n-mainpage-description' => 'Haubdsaid aagucke',
@@ -793,6 +806,9 @@ Annere Medadaade sinn noamalawais verschdegld.
 
 # Special:Tags
 'tags-edit' => 'bearwaide',
+
+# New logging system
+'rightsnone' => '(-)',
 
 # Feedback
 'feedback-close' => 'Erledischd',

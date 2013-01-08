@@ -868,7 +868,6 @@ As Referänz wird do dr letscht Logbuechyytrag aagee:",
 'template-semiprotected' => '(schrybgschitzt fir Benutzer, wo nit aagmäldet oder nei sin)',
 'hiddencategories' => 'Die Syte ghert zue {{PLURAL:$1|einere versteckte Kategori|$1 versteckte Kategorie}}:',
 'edittools' => '<!-- Dää Text wird unter em "Ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
-'nocreatetitle' => 'S Aalege vu neje Syte isch yygschränkt.',
 'nocreatetext' => "Uf {{SITENAME}} isch d Erstellig vo nöue Syten ygschränkt.
 Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|amälde]].",
 'nocreate-loggedin' => 'Du bisch nid berächtigt, neji Syte aazlege.',
@@ -1406,15 +1405,13 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-sendemail' => 'E-Mail an anderi Benutzer schicke',
 'right-passwordreset' => 'Passwort vun eme Benutzer zruggsetze',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nejaamäldigs-Logbuech',
+'newuserlogpagetext' => 'Des isch e Logbuech fir nej aagleiti Benutzerchonte.',
+
 # User rights log
 'rightslog' => 'Benutzerrächt-Logbuech',
 'rightslogtext' => 'Des ischs Logbuech vun de Änderunge on Bnutzerrechte.',
-'rightslogentry' => 'het d Benutzerrächt fir „$1“ vu „$2“ uf „$3“ gänderet',
-'rightslogentry-autopromote' => 'd Zueornig zue dr Benutzergruppe isch automatisch vu $2 in $3 gänderet wore',
-'logentry-rights-rights' => '$1 het d Gruppezuegherigkeit fir $3 vu $4 uf $5 gänderet',
-'logentry-rights-rights-legacy' => '$1 het d Gruppezuegherigkeit fir $3 gänderet',
-'logentry-rights-autopromote' => '$1 isch automatisch vu $4 zue $5 zuegordnet wore',
-'rightsnone' => '(keini)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'die Syte z läse',
@@ -2040,10 +2037,6 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'activeusers-hidebots' => 'Bötli uusblände',
 'activeusers-hidesysops' => 'Ammanne (Administratore) uusblände',
 'activeusers-noresult' => 'Kei Benutzer gfunde.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nejaamäldigs-Logbuech',
-'newuserlogpagetext' => 'Des isch e Logbuech fir nej aagleiti Benutzerchonte.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppe-Rächt',
@@ -3687,6 +3680,10 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 'logentry-newusers-create2' => 'Benutzerkonto $3 isch aalgeit wore vu $1',
 'logentry-newusers-autocreate' => 'S Benutzerchonto $1 isch automatisch erstellt worde',
 'newuserlog-byemail' => 's Passwort isch per E-Mail gschickt wore',
+'logentry-rights-rights' => '$1 het d Gruppezuegherigkeit fir $3 vu $4 uf $5 gänderet',
+'logentry-rights-rights-legacy' => '$1 het d Gruppezuegherigkeit fir $3 gänderet',
+'logentry-rights-autopromote' => '$1 isch automatisch vu $4 zue $5 zuegordnet wore',
+'rightsnone' => '(keini)',
 
 # Feedback
 'feedback-bugornote' => 'Wän Du detailliert e tächnisch Probläm witt bschryybe, no mäld bitte [$1 ne Fähler].

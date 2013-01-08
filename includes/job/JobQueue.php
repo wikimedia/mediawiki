@@ -63,6 +63,8 @@ abstract class JobQueue {
 	 *   claimTTL : If supported, the queue will recycle jobs that have been popped
 	 *              but not acknowledged as completed after this many seconds.
 	 *
+	 * Queue classes should throw an exception if they do not support the options given.
+	 *
 	 * @param $params array
 	 * @return JobQueue
 	 * @throws MWException
@@ -94,7 +96,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Quickly check if the queue is empty.
+	 * Quickly check if the queue is empty (has no available jobs).
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * @return bool
@@ -111,6 +113,44 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	abstract protected function doIsEmpty();
+
+	/**
+	 * Get the number of available jobs in the queue.
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * @return integer
+	 */
+	final public function getSize() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doGetSize();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::getSize()
+	 * @return integer
+	 */
+	abstract protected function doGetSize();
+
+	/**
+	 * Get the number of acquired jobs (these are temporarily out of the queue).
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * @return integer
+	 */
+	final public function getAcquiredCount() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doGetAcquiredCount();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::getAcquiredCount()
+	 * @return integer
+	 */
+	abstract protected function doGetAcquiredCount();
 
 	/**
 	 * Push a batch of jobs into the queue
@@ -157,7 +197,9 @@ abstract class JobQueue {
 	abstract protected function doPop();
 
 	/**
-	 * Acknowledge that a job was completed
+	 * Acknowledge that a job was completed.
+	 *
+	 * This does nothing for certain queue classes or if "claimTTL" is not set.
 	 *
 	 * @param $job Job
 	 * @throws MWException
@@ -204,6 +246,8 @@ abstract class JobQueue {
 	 * Essentially, the new batch of jobs belong to a new "root job" and the older ones to a
 	 * previous "root job" for the same task of "update links of pages that use template X".
 	 *
+	 * This does nothing for certain queue classes.
+	 *
 	 * @param $job Job
 	 * @throws MWException
 	 * @return bool
@@ -228,7 +272,9 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Wait for any slaves or backup servers to catch up
+	 * Wait for any slaves or backup servers to catch up.
+	 *
+	 * This does nothing for certain queue classes.
 	 *
 	 * @return void
 	 */

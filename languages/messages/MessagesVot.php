@@ -8,6 +8,7 @@
  * @file
  *
  * @author 2Q
+ * @author Aig mest ei varasta
  * @author Andrijko Z.
  * @author Comp1089
  * @author Erdemaslancan
@@ -688,7 +689,7 @@ Cüľľellä $2 on spiiska viimeiziss pühcimühsiiss.',
 'blanknamespace' => '(Artikkelid)',
 
 # Contributions
-'contributions' => 'Cäüttijää avittamizõd',
+'contributions' => '{{GENDER:$1|Cäüttijää}} avittamizõd',
 'contributions-title' => 'Cäüttijää $1 avittamizõd',
 'mycontris' => 'Minu avittamizõd',
 'contribsub2' => 'Cäüttijää $1 ($2) avittamizõd',

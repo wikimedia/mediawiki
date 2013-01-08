@@ -43,6 +43,13 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->context->setLanguage( $wgLang );
 	}
 
+	protected function tearDown() {
+		parent::tearDown();
+
+		global $wgLang;
+		$wgLang->getLocalisationCache()->recache( $wgLang->getCode() );
+	}
+
 	public function newLogEntry( $action, $params ) {
 		$logEntry = new ManualLogEntry( 'phpunit', $action );
 		$logEntry->setPerformer( $this->user );

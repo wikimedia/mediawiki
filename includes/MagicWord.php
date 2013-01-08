@@ -282,6 +282,7 @@ class MagicWord {
 	 */
 	static function getDoubleUnderscoreArray() {
 		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
+			wfRunHooks( 'GetDoubleUnderscoreIDs', array( &self::$mDoubleUnderscoreIDs ) );
 			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
 		}
 		return self::$mDoubleUnderscoreArray;
@@ -577,7 +578,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function getWasModified(){
+	function getWasModified() {
 		return $this->mModified;
 	}
 
@@ -594,7 +595,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function replaceMultiple( $magicarr, $subject, &$result ){
+	function replaceMultiple( $magicarr, $subject, &$result ) {
 		$search = array();
 		$replace = array();
 		foreach( $magicarr as $id => $replacement ){

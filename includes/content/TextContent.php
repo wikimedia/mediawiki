@@ -1,9 +1,6 @@
 <?php
-
 /**
  * Content object implementation for representing flat text.
- *
- * TextContent instances are immutable
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +23,14 @@
  * @ingroup Content
  *
  * @author Daniel Kinzler
+ */
+
+/**
+ * Content object implementation for representing flat text.
+ *
+ * TextContent instances are immutable
+ *
+ * @ingroup Content
  */
 class TextContent extends AbstractContent {
 

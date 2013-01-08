@@ -29,11 +29,11 @@ class RenderAction extends FormlessAction {
 		return 'render';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 
 		$this->page->render();
 

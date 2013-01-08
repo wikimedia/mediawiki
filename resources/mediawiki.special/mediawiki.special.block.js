@@ -2,8 +2,7 @@
  * JavaScript for Special:Block
  */
 ( function ( mw, $ ) {
-	$( function ( $ ) {
-
+	$( document ).ready( function () {
 		var $blockTarget = $( '#mw-bi-target' ),
 			$anonOnlyRow = $( '#mw-input-wpHardBlock' ).closest( 'tr' ),
 			$enableAutoblockRow = $( '#mw-input-wpAutoBlock' ).closest( 'tr' ),
@@ -11,10 +10,6 @@
 			$watchUser = $( '#mw-input-wpWatch' ).closest( 'tr' );
 
 		function updateBlockOptions( instant ) {
-			if ( !$blockTarget.length ) {
-				return;
-			}
-
 			var blocktarget = $.trim( $blockTarget.val() ),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPv4Address( blocktarget, true ) || mw.util.isIPv6Address( blocktarget, true ),
@@ -39,11 +34,13 @@
 			}
 		}
 
-		// Bind functions so they're checked whenever stuff changes
-		$blockTarget.keyup( updateBlockOptions );
+		if ( $blockTarget.length ) {
+			// Bind functions so they're checked whenever stuff changes
+			$blockTarget.keyup( updateBlockOptions );
 
-		// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
-		updateBlockOptions( /* instant= */ true );
+			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
+			updateBlockOptions( /* instant= */ true );
+		}
 	} );
 }( mediaWiki, jQuery ) );
 

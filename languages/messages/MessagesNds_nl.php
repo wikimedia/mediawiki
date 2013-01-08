@@ -1047,7 +1047,6 @@ De leste logboekregel steet hieronder:",
 'template-semiprotected' => '(half-beveiligd)',
 'hiddencategories' => 'Disse zied völt in de volgende verbörgen {{PLURAL:$1|kategorie|kategorieën}}:',
 'edittools' => '<!-- Disse tekste steet onder de bewarkings- en bestaandinlaodformulieren. -->',
-'nocreatetitle' => 't Anmaken van nieje ziejen is beteund',
 'nocreatetext' => 'Disse webstee hef de meugelikheid um nieje ziejen an te maken beteund. Je kunnen ziejen die al bestaon wiezigen of je kunnen je [[Special:UserLogin|anmelden of n gebrukerszied anmaken]].',
 'nocreate-loggedin' => 'Je hebben gien toestemming um nieje ziejen an te maken.',
 'sectioneditnotsupported-title' => 't Bewarken van seksies wörden niet ondersteund',
@@ -1579,12 +1578,13 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'right-sendemail' => 'Bericht versturen naor aandere gebrukers',
 'right-passwordreset' => 'Bekiek netpostberichten veur t opniej instellen van joew wachtwoord',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboek mit anwas',
+'newuserlogpagetext' => 'Hieronder staon de niej in-eschreven gebrukers',
+
 # User rights log
 'rightslog' => 'Gebrukersrechtenlogboek',
 'rightslogtext' => 'Dit is n logboek mit veraanderingen van gebrukersrechten',
-'rightslogentry' => 'Gebrukersrechten veur $1 ewiezigd van $2 naor $3',
-'rightslogentry-autopromote' => 'was automaties umhoge egaon van $2 naor $3',
-'rightsnone' => '(gien)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'disse zied lezen',
@@ -2217,10 +2217,6 @@ Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 'activeusers-hidebots' => 'Bots verbargen',
 'activeusers-hidesysops' => 'Beheerders verbargen',
 'activeusers-noresult' => 'Gien aktieve gebrukers evunnen.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logboek mit anwas',
-'newuserlogpagetext' => 'Hieronder staon de niej in-eschreven gebrukers',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechten van gebrukersgroepen',
@@ -3886,6 +3882,7 @@ Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma 
 'logentry-newusers-create2' => '$1 hef n gebruker $3 an-emaakt',
 'logentry-newusers-autocreate' => 'De gebruker $1 is automaties an-emaakt',
 'newuserlog-byemail' => 'wachtwoord is verstuurd via de netpost',
+'rightsnone' => '(gien)',
 
 # Feedback
 'feedback-bugornote' => 'A\'j zovere bin um n technies probleem nauwkeurig te beschrieven, [$1 meld dan n programmafout].

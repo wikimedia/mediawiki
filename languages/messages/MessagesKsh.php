@@ -234,7 +234,7 @@ $messages = array(
 'tog-previewonfirst' => 'Zeich de Vör-Aansich tirek för et eetste Mol beim Bearbeide aan',
 'tog-nocache' => 'Dun et Sigge Zweschespeichere en Dingem Brauser avschalte',
 'tog-enotifwatchlistpages' => 'Scheck mer en <i lang="en">e-mail</i>, wann en Sigg us minge Oppaßlėß verändert woode es',
-'tog-enotifusertalkpages' => 'Scheck mer en E-Mail, wann ming Klaaf Sigg jeändert weed',
+'tog-enotifusertalkpages' => 'Scheck mer en <i lang="en">e-mail</i>, wann ming Klaaf_Sigg jeändert weed',
 'tog-enotifminoredits' => 'Scheck mer och en <i lang="en">e-mail</i> för de klein Mini-Änderonge',
 'tog-enotifrevealaddr' => 'Zeich dä Andere ming E-Mail Adress aan, en de Benohrichtijunge per E-Mail',
 'tog-shownumberswatching' => 'Zeich de Aanzahl Metmaacher, die op die Sigg am oppasse sin',
@@ -377,6 +377,7 @@ $messages = array(
 'namespaces' => 'Appachtemangs',
 'variants' => 'Variante',
 
+'navigation-heading' => 'Menü för et Navijeere',
 'errorpagetitle' => 'Fähler',
 'returnto' => 'Jangk widder noh: „$1“.',
 'tagline' => 'Us {{GRAMMAR:Dative|{{SITENAME}}}}',
@@ -423,7 +424,7 @@ $messages = array(
 'viewhelppage' => 'De Hölpsigg aanluure',
 'categorypage' => 'De Saachjruppesigg aanluure',
 'viewtalkpage' => 'Klaaf aanluure',
-'otherlanguages' => 'En ander Sproche',
+'otherlanguages' => 'En ander Schprooche',
 'redirectedfrom' => '(Ömjeleit vun $1)',
 'redirectpagesub' => 'Ömleitungssigg',
 'lastmodifiedat' => 'Heh di Sigg es et letz aam $1 öm $2 Uhr jeändert woode.',
@@ -839,6 +840,7 @@ Do moß Ding Paßwoot enjävve, öm Ding Änderong ze bschtäätejje.',
 'changeemail-oldemail' => 'Ding Address för de <i lang="en">e-mail</i> es jäz:',
 'changeemail-newemail' => 'Ding neue Address för de <i lang="en">e-mail</i> sull wääde:',
 'changeemail-none' => '(kein)',
+'changeemail-password' => 'Ding Passwoot {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}}:',
 'changeemail-submit' => 'Lohß jonn!',
 'changeemail-cancel' => 'Ophüre',
 
@@ -1069,7 +1071,6 @@ Heh kütt der neuste Enndrach em Logbooch doh drövver:",
 'template-semiprotected' => '(halfjeschöz - tabu för neu Metmaacher un ohne Enlogge)',
 'hiddencategories' => 'Die Sigg heh is en {{PLURAL:$1|dä verstoche Saachjrupp: |dä $1 verstoche Saachjruppe: |keij verstoche Saachjruppe dren.}}',
 'edittools' => '<!-- Dä Tex hee zeich et Wiki unger däm Texfeld zom „Ändere/Bearbeide“ un beim Texfeld vum „Huhlade“. -->',
-'nocreatetitle' => 'Neu Sigge Aanläje eß nit einfach esu müjjelesch.',
 'nocreatetext' => 'Sigge neu aanläje es nor müjjelich, wann de [[Special:UserLogin|enjelogg]] bes. Der ohne kanns De ävver Sigge ändere, die ald do sin.',
 'nocreate-loggedin' => 'Do häs nit dat Rääch, neu Sigge aanzelääje.',
 'sectioneditnotsupported-title' => 'Afschnedde Ändere is nit zohjelohße',
@@ -1409,7 +1410,7 @@ dat dänne ihr Daate topaktuell sin,
 'prefs-labs' => 'Neu Saache zom Ußprobeere, die künnte noch nit akeraat fluppe',
 'prefs-user-pages' => 'Metmaachersigge',
 'prefs-personal' => 'De Enstellunge',
-'prefs-rc' => 'Neuste Änderunge',
+'prefs-rc' => 'Neuste Änderonge',
 'prefs-watchlist' => 'De Oppassliss',
 'prefs-watchlist-days' => 'Aanzahl Daare för en ming Oppassliss aanzezeije:',
 'prefs-watchlist-days-max' => 'Nit mieh wie {{PLURAL:$1|eine Daach|$1 Dääch|keine Daach}}',
@@ -1471,9 +1472,9 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'prefs-emailconfirm-label' => 'Beshtätejung övver <i lang="en">e-mail</i>:',
 'prefs-textboxsize' => 'Wi jruuß sull dat Feld för et Afschnedde un Sigge ändere sin',
 'youremail' => 'E-Mail *',
-'username' => 'Metmaacher Name:',
-'uid' => 'Metmaacher Nommer:',
-'prefs-memberingroups' => 'Bes en {{PLURAL:$1|de Metmaacherjrupp:|<strong>$1</strong> Metmaacherjruppe:|keijn Metmaacherjruppe.}}',
+'username' => '{{GENDER:$1|Metmaacher|Metmaacherėnne|Metmaacher|Metmaacherėnne|Metmaacher}} Name:',
+'uid' => '{{GENDER:$1|Metmaacher|Metmaacherėnne|Metmaacher|Metmaacherėnne|Metmaacher}} Nommer:',
+'prefs-memberingroups' => '{{GENDER:$2|Bes}} en {{PLURAL:$1|de Metmaacherjrupp:|$1 Metmaacherjruppe:|keijn Metmaacherjruppe.}}',
 'prefs-registration' => 'Aanjemeldt zick',
 'prefs-registration-date-time' => 'dem $2 öm $3 Uhr',
 'yourrealname' => 'Dinge richtije Name *',
@@ -1622,15 +1623,13 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-sendemail' => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
 'right-passwordreset' => 'De <i lang="en">e-mails</i> vum Paßwoot neu Säze aanloore',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboch för neu Metmaachere',
+'newuserlogpagetext' => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
+
 # User rights log
 'rightslog' => 'Logboch för Änderunge aan Metmaacher-Räächde',
 'rightslogtext' => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver Metmaacher, Wiki-Köbesse, Bürrokrade, Stewards, un esu, kanns De nohlese, wat domet es.',
-'rightslogentry' => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt.',
-'rightslogentry-autopromote' => 'wood automattesch vun $2 zohm $3 jemaat.',
-'logentry-rights-rights' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} „$1“ hät däm Metmaacher „$3“ sing Jroppe-Räächde vun „$4“ op „$5“ ömjestallt.',
-'logentry-rights-rights-legacy' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 hät däm Metmaacher $3 sing Räääschte-Jroppe verändert.',
-'logentry-rights-autopromote' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 wood automattesch vum $4 zom $5 jemaat.',
-'rightsnone' => '(nix)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'di Sigg ze lesse',
@@ -1671,7 +1670,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|Ein Änderong|$1 Änderonge|Kein Änderong}}',
-'recentchanges' => 'Neuste Änderunge',
+'recentchanges' => 'Neuste Änderonge',
 'recentchanges-legend' => 'Enstellunge',
 'recentchanges-summary' => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
 'recentchanges-feed-description' => 'Op dämm Abonnomang-Kannal (<i lang="en">Feed</i>) kannze de {{int:recentchanges}} aam Wiki en Laif un en Färve metloore.',
@@ -2313,11 +2312,9 @@ eins vun all däm op eimol.',
 'linksearch-pat' => 'Sök noh:',
 'linksearch-ns' => 'Appachtemang:',
 'linksearch-ok' => 'Söhke',
-'linksearch-text' => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
+'linksearch-text' => 'Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Naame, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
 
-Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
-
-De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code> un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
+De Brauserprotokolle, di mer beim Söke aanjäjovve kann, sin: <code>$1</code>, un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
 'linksearch-line' => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 
@@ -2335,10 +2332,6 @@ De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code
 'activeusers-hidebots' => 'De Bots fott lohße',
 'activeusers-hidesysops' => 'De Wiki_Köbesse fott lohße',
 'activeusers-noresult' => 'Kein Metmaacher jefonge.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logboch för neu Metmaachere',
-'newuserlogpagetext' => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Metmaacher-Jruppe-Rääschte',
@@ -2412,11 +2405,11 @@ Alles klor?',
 'watchnologin' => 'Nit enjelogg',
 'watchnologintext' => 'Öm Ding Oppassliss ze ändere, mööts de ald [[Special:UserLogin|enjelogg]] sin.',
 'addwatch' => 'En de Oppassliss don',
-'addedwatchtext' => "Die Sigg „[[:$1]]“ es jetz en Ding [[Special:Watchlist|Oppassliss]].
+'addedwatchtext' => "Die Sigg „[[:$1]]“ es jetz en Dinge [[Special:Watchlist|Oppaßleß]].
 Av jetz, wann die Sigg verändert weed, oder ehr Klaafsigg, dann weed dat en de
 Oppassliss jezeich. Dä Endrach för die Sigg kütt en  '''Fettschreff''' en de
-„[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fings.
-Wann de dä widder loss wääde wells us Dinger Oppassliss,
+„[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fengs.
+Wann de dä widder loss wääde wells us Dinger Oppaßleß,
 dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'removewatch' => 'Us de Oppassliss nämme',
 'removedwatchtext' => 'Die Sigg „[[:$1]]“ es jetz us de [[Special:Watchlist|Oppassliss]] erusjenomme.',
@@ -2446,14 +2439,22 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'enotif_mailer' => '{{ucfirst:{{GRAMMAR:Genitive singe male|{{SITENAME}}}}}} Nohreechte-Versand',
 'enotif_reset' => 'Setz all Änderunge op „Aanjeluurt“ un Erledich.',
 'enotif_impersonal_salutation' => 'Metmaacher {{GRAMMAR:Genitiv vun|{{SITENAME}}}}',
+'enotif_subject_deleted' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} fott jeschmeße.',
+'enotif_subject_created' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aanjelaat.',
+'enotif_subject_moved' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} ömjenannt.',
+'enotif_subject_restored' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} zeröck jehollt.',
+'enotif_subject_changed' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} verändert.',
+'enotif_body_intro_deleted' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aam $PAGEEDITDATE fott jeschmeße, loor op $3.',
+'enotif_body_intro_created' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aam $PAGEEDITDATE aanjelaat. Op $3 fengks De der aktoälle Schtand dervun.',
+'enotif_body_intro_moved' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aam $PAGEEDITDATE ömjenannt. Op $3 fengks De der aktoälle Schtand vun dä Sigg.',
+'enotif_body_intro_restored' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aam $PAGEEDITDATE zerökjehollt. Op $3 fengks De der aktoälle Schtand vun dä Sigg.',
+'enotif_body_intro_changed' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aam $PAGEEDITDATE verändert. Op $3 fengks De der aktoälle Schtand vun dä Sigg.',
 'enotif_lastvisited' => 'Luur unger „$1“ - do fings de all die Änderunge zick Dingem letzte Besoch hee.',
 'enotif_lastdiff' => 'Loor op $1 för heh di Änderung aan_ze_loore.',
 'enotif_anon_editor' => 'Dä namelose Metmaacher $1',
 'enotif_body' => 'Leeven $WATCHINGUSERNAME,
 
-{{GRAMMAR:em|{{SITENAME}}}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATE {{GENDER:$PAGEEDITOR|vum|vum|vum_Metmaacher|vun dä|vum}} „$PAGEEDITOR“ $CHANGEDORCREATED, unger $PAGETITLE_URL fings Do de neuste Version.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 {{int:summary}} „$PAGESUMMARY“ $PAGEMINOREDIT
 
@@ -2462,8 +2463,8 @@ Do kanns dä Metmaacher „$PAGEEDITOR“ aanspreche:
 * Em Wiki: $PAGEEDITOR_WIKI
 
 Do kriss vun jetz aan kein e-mail mieh, bes dat Do Der di Sigg aanjeluurt häs,
-och wann se norr_ens verändert weed.
-Do kanns ävver och all die Merker för e-mail för die Sigge en Dinger Oppassliss op eimol ändere.
+och wann se norr_ens verändert weed. Do kanns ävver och all die Merker för 
+e-mail för die Sigge en Dinger Oppassliss op eimol ändere.
 
 Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 
@@ -2659,7 +2660,8 @@ $1',
 'blanknamespace' => '(Atikkele)',
 
 # Contributions
-'contributions' => 'Däm Metmaacher sing Beidräch',
+'contributions' => '{{GENDER:$1|Däm Metmaacher|Däm|Däm Metmaacher|Dä Metmaacherėn|Däm Metmaacher}} $1
+{{GENDER:$1|singe|singe|singe|iere|singe}} Beidräch',
 'contributions-title' => 'Beidräsch fum  $1',
 'mycontris' => 'Beidrähch',
 'contribsub2' => 'För dä Metmaacher: $1 ($2)',
@@ -3058,6 +3060,7 @@ Bes esu joot, un versök et noch ens.',
 'import-error-interwiki' => 'Di Sigg „$1“ weed nit empoteet, weil dä iehre Name för et Verlengke noh ußerhallef, pä Engerwiki-Lengk, jebruch weed.',
 'import-error-special' => 'Di Sigg „$1“ weed nit empoteet, weil dä iehre Name en enem besöndere Appachtemang litt, woh kein Sigge dren zohjelohße sin.',
 'import-error-invalid' => 'Di Sigg „$1“ weed nit empoteet, weil dä iehre Name nit jöltesch es.',
+'import-error-unserialize' => 'De Väsjohn $2 vun dä Sigg „$1“ kunnt nit von serijäll ußjepack wääde. De Väsjohn sull Daate vun dä Zoot „$3“ änthallde un ußjepack „$4“ jävve.',
 'import-options-wrong' => '{{PLURAL:$2|En verkiehrte Aanjab|Verkiehrte Aanjabe|Kein verkiehrte Aanjabe}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Di aanjejovve Aanfangssigg hät keine jölteje Tittel.',
 'import-rootpage-nosubpage' => 'Em Appachtemang „$1“ vun dä Aanfangssig sin kein Ongersigge zohjelohße.',
@@ -3135,7 +3138,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-ca-nstab-help' => 'Donn en Sigg met Hölp aanzeije',
 'tooltip-ca-nstab-category' => 'Dun die Saachjrupp aanzeije',
 'tooltip-minoredit' => 'Deit Ding Änderunge als klein Mini-Änderunge markeere.',
-'tooltip-save' => 'Deit Ding Änderunge avspeichere.',
+'tooltip-save' => 'Deit Ding Änderonge avspeichere.',
 'tooltip-preview' => 'Liss de Vör-Aansich vun dä Sigg un vun Dinge Änderunge ih datte se Avspeichere deis!',
 'tooltip-diff' => 'Zeich Ding Änderunge am Tex aan.',
 'tooltip-compareselectedversions' => 'Dun de Ungerscheid zwesche dä beids usjewählde Versione zeije.',
@@ -3305,6 +3308,7 @@ $1',
 'file-nohires' => 'Mer han kein hüütere Oplösung vun däm Beld.',
 'svg-long-desc' => 'SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle|kei Pixel}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle|kei Pixel}} huh, dä Dateiömfang es $3',
 'svg-long-desc-animated' => 'SVG-Datei met Bewääjong, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle|kei Pixel}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle|kei Pixel}} huh, dä Dateiömfang es $3',
+'svg-long-error' => 'En kapodde <i lang="en">SVG</i>-Dattei: $1',
 'show-big-image' => 'Jröößer Oplöösung',
 'show-big-image-preview' => 'Heh di Vör_Aanseesch es $1 jruuß.',
 'show-big-image-other' => '{{PLURAL:$2|Ander Oplühsung|Ander Oplühsunge|kein ander Oplühsunge}}: $1.',
@@ -3335,9 +3339,10 @@ $1',
 'hours-abbrev' => '$1&nbsp;Std.',
 'seconds' => '{{PLURAL:$1|eine Sekund|$1 Sekunde|keine Sekund}}',
 'minutes' => '{{PLURAL:$1|eine Menutt|$1 Menutte|keine Menutt}}',
-'hours' => '{{PLURAL:$1|eine Shtundt|$1 Shtunde|keine Shtundt}}',
+'hours' => '{{PLURAL:$1|ein Schtundt|$1 Schtunde|kein Schtundt}}',
 'days' => '{{PLURAL:$1|einem Daach|$1 Dääsch|keinem Daach}}',
 'ago' => 'vür $1',
+'just-now' => 'jraad äävens',
 
 # Bad image list
 'bad_image_list' => '<strong>Fomat:</strong>
@@ -4165,11 +4170,15 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'logentry-move-move_redir-noredirect' => 'Dä $1 hätt di Sigg „$3“ en „$4“ ömjenannt un derbei en ahle Ömleidongssigg fottjeschmeße un kein neue Ömliedongssig aanjelaat.',
 'logentry-patrol-patrol' => 'Dä $1 hät di Version $4 vun dä Sigg „$3“ nohjeloort.',
 'logentry-patrol-patrol-auto' => 'Dä $1 hät di Version $4 vun dä Sigg „$3“ automattesch nohjeloort.',
-'logentry-newusers-newusers' => 'Dä $1 hät ene neue Metmaacher aanjelaat.',
-'logentry-newusers-create' => 'Dä $1 hät ene Metmaacher aanjelaat.',
+'logentry-newusers-newusers' => 'Dä neue Metmaacher $1 wood aanjelaat.',
+'logentry-newusers-create' => 'Dä neue Metmaacher $1 wood aanjelaat.',
 'logentry-newusers-create2' => 'Dä $1 hät dä $3 als ene neue Metmaacher aanjelaat.',
 'logentry-newusers-autocreate' => 'Dä $1 wood automattesch als Metmaacher aanjelaat.',
 'newuserlog-byemail' => 'dat Passwood wood med de e-mail loßjescheck',
+'logentry-rights-rights' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} „$1“ hät däm Metmaacher „$3“ sing Jroppe-Räächde vun „$4“ op „$5“ ömjestallt.',
+'logentry-rights-rights-legacy' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 hät däm Metmaacher $3 sing Räääschte-Jroppe verändert.',
+'logentry-rights-autopromote' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} $1 wood automattesch vum $4 zom $5 jemaat.',
+'rightsnone' => '(nix)',
 
 # Feedback
 'feedback-bugornote' => 'Wann de em Bejreff bes, övver e täschesch Probleem ze schrieve, bes esu jood un donn dat als en [$1 Fählermäldong].

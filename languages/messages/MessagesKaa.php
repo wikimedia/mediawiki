@@ -701,7 +701,6 @@ To'mende en' aqırg'ı jurnal mag'lıwmatları berilgen.",
 'template-protected' => "(qorg'alg'an)",
 'template-semiprotected' => "(yarım-qorg'alg'an)",
 'hiddencategories' => "Bul bet {{PLURAL:$1|1 jasırın kategoriyasının'|$1 jasırın kategoriyalarının'}} ag'zası:",
-'nocreatetitle' => 'Bet jaratıw sheklengen',
 'nocreatetext' => "{{SITENAME}} saytında taza betlerdi jaratıw sheklengen.
 Arqag'a qaytıp bar betti o'zgertiwin'izge yamasa [[Special:UserLogin|kiriwin'izge / akkaunt jaratıwın'ızg'a]] boladı.",
 'nocreate-loggedin' => "Taza betler jaratıwın'ızg'a ruxsatın'ız joq.",

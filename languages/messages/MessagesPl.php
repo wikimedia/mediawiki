@@ -43,6 +43,7 @@
  * @author Saper
  * @author Sovq
  * @author Sp5uhe
+ * @author Stanko
  * @author Stlmch
  * @author Stv
  * @author Szczepan1990
@@ -866,6 +867,7 @@ Tymczasowe hasło – $2',
 'changeemail-oldemail' => 'Obecny adres e‐mail',
 'changeemail-newemail' => 'Nowy adres e-mail',
 'changeemail-none' => '(brak)',
+'changeemail-password' => 'Hasło {{SITENAME}}:',
 'changeemail-submit' => 'Zapisz nowy',
 'changeemail-cancel' => 'Anuluj',
 
@@ -1050,7 +1052,6 @@ Ostatni wpis z rejestru jest pokazany poniżej.",
 'template-semiprotected' => '(częściowo zabezpieczony)',
 'hiddencategories' => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
 'edittools' => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
-'nocreatetitle' => 'Ograniczono możliwość tworzenia nowych stron',
 'nocreatetext' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
 Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować się lub utworzyć konto]].',
 'nocreate-loggedin' => 'Nie masz uprawnień do tworzenia nowych stron.',
@@ -1599,15 +1600,13 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-sendemail' => 'Wysyłanie e‐maili do innych użytkowników',
 'right-passwordreset' => 'Sprawdzanie treści e‐maila o resetowaniu hasła',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nowi użytkownicy',
+'newuserlogpagetext' => 'To jest rejestr ostatnio utworzonych kont użytkowników',
+
 # User rights log
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienił przynależność $1 do grup ($2 → $3)',
-'rightslogentry-autopromote' => 'automatycznie zmienił przynależność ($2 → $3)',
-'logentry-rights-rights' => '$1 zmienił przynależność $3 do grup ($4 → $5)',
-'logentry-rights-rights-legacy' => '$1 zmienił przynależność $3 do grup',
-'logentry-rights-autopromote' => '$1 automatycznie zmienił przynależność ($4 → $5)',
-'rightsnone' => 'brak',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'przeglądania tej strony',
@@ -2260,10 +2259,6 @@ Obsługiwane protokoły: <code>$1</code> (jeśli nie podano, domyślny to http:/
 'activeusers-hidesysops' => 'Ukryj administratorów',
 'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Nowi użytkownicy',
-'newuserlogpagetext' => 'To jest rejestr ostatnio utworzonych kont użytkowników',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawnienia grup użytkowników',
 'listgrouprights-summary' => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im uprawnień.
@@ -2329,8 +2324,8 @@ Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferenc
 'watchnologin' => 'Nie jesteś zalogowany',
 'watchnologintext' => 'Musisz się [[Special:UserLogin|zalogować]] przed modyfikacją listy obserwowanych stron.',
 'addwatch' => 'Dodaj do listy obserwowanych',
-'addedwatchtext' => "Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
-Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na tej liście. Dodatkowo nazwa strony zostanie '''wytłuszczona''' na [[Special:RecentChanges|liście ostatnich zmian]], aby ułatwić Ci zauważenie faktu zmiany.",
+'addedwatchtext' => 'Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
+Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na tej liście.',
 'removewatch' => 'Usuń z listy obserwowanych',
 'removedwatchtext' => 'Strona „[[:$1]]” została usunięta z Twojej [[Special:Watchlist|listy obserwowanych]].',
 'watch' => 'Obserwuj',
@@ -3209,6 +3204,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'file-nohires' => 'Grafika w wyższej rozdzielczości nie jest dostępna.',
 'svg-long-desc' => 'Plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
 'svg-long-desc-animated' => 'Animowany plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
+'svg-long-error' => 'Nieprawidłowy plik SVG:$1',
 'show-big-image' => 'Pełna rozdzielczość',
 'show-big-image-preview' => 'Rozmiar podglądu – $1.',
 'show-big-image-other' => '{{PLURAL:$2|Inna rozdzielczość|Inne rozdzielczości}}: $1.',
@@ -4022,12 +4018,12 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'sqlite-no-fts' => '$1 bez obsługi pełnotekstowego wyszukiwania',
 
 # New logging system
-'logentry-delete-delete' => '$1 usuwa stronę $3',
-'logentry-delete-restore' => '$1 odtwarza stronę $3',
-'logentry-delete-event' => '$1 zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
-'logentry-delete-revision' => '$1 zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-delete-event-legacy' => '$1 zmienia widoczność zdarzeń w rejestrze $3',
-'logentry-delete-revision-legacy' => '$1 zmienia widoczność wersji strony $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|usunął|usunęła}} stronę $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|odtworzył|odtworzyła}} stronę $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'logentry-suppress-delete' => '$1 ukrywa stronę $3',
 'logentry-suppress-event' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
 'logentry-suppress-revision' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
@@ -4041,17 +4037,21 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'revdelete-uname-unhid' => 'wycofano ukrycie nazwy użytkownika',
 'revdelete-restricted' => 'ograniczono widoczność dla administratorów',
 'revdelete-unrestricted' => 'wycofano ograniczenie widoczności dla administratorów',
-'logentry-move-move' => '$1 przenosi stronę $3 do $4',
-'logentry-move-move-noredirect' => '$1 przenosi stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
-'logentry-move-move_redir' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania',
-'logentry-move-move_redir-noredirect' => '$1 przenosi stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
-'logentry-patrol-patrol' => '$1 oznacza wersję $4 strony $3 jako sprawdzoną',
-'logentry-patrol-patrol-auto' => '$1 automatycznie oznacza wersję $4 strony $3 jako sprawdzoną',
+'logentry-move-move' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 do $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|odznaczył|odznaczyła}} wersję $4 strony $3 jako sprawdzoną',
+'logentry-patrol-patrol-auto' => '$1 automatycznie {{GENDER:$2|odznaczył|odznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
 'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
 'newuserlog-byemail' => 'hasło zostało wysłane e‐mailem',
+'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
+'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',
+'rightsnone' => 'brak',
 
 # Feedback
 'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny proszę [$1 zgłoś błąd].
@@ -4125,6 +4125,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
-'svg-long-error' => 'Nieprawidłowy plik SVG:$1',
 );

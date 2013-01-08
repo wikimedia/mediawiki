@@ -257,6 +257,19 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Drop an index from an extension table
+	 *
+	 * @since 1.21
+	 *
+	 * @param $tableName string The table name
+	 * @param $indexName string The index name
+	 * @param $sqlPath string The path to the SQL change path
+	 */
+	public function dropExtensionIndex( $tableName, $indexName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropIndex', $tableName, $indexName, $sqlPath, true );
+	}
+
+	/**
 	 *
 	 * @since 1.20
 	 *
@@ -265,6 +278,21 @@ abstract class DatabaseUpdater {
 	 */
 	public function dropExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
+	}
+
+	/**
+	 * Rename an index on an extension table
+	 *
+	 * @since 1.21
+	 *
+	 * @param $tableName string The table name
+	 * @param $oldIndexName string The old index name
+	 * @param $newIndexName string The new index name
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist. [facultative; by default, false]
+	 * @param $sqlPath string The path to the SQL change path
+	 */
+	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName, $sqlPath, $skipBothIndexExistWarning = false ) {
+		$this->extensionUpdates[] = array( 'renameIndex', $tableName, $oldIndexName, $newIndexName, $skipBothIndexExistWarning, $sqlPath, true );
 	}
 
 	/**
@@ -465,6 +493,26 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Returns whether updates should be executed on the database table $name.
+	 * Updates will be prevented if the table is a shared table and it is not
+	 * specified to run updates on shared tables.
+	 *
+	 * @param $name String table name
+	 * @return bool
+	 */
+	protected function doTable( $name ) {
+		global $wgSharedDB, $wgSharedTables;
+
+		// Don't bother to check $wgSharedTables if there isn't a shared database
+		// or the user actually also wants to do updates on the shared database.
+		if ( $wgSharedDB === null || $this->shared ) {
+			return true;
+		}
+
+		return !in_array( $name, $wgSharedTables );
+	}
+
+	/**
 	 * Before 1.17, we used to handle updates via stuff like
 	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
 	 * of this in 1.17 but we want to remain back-compatible for a while. So
@@ -474,11 +522,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function getOldGlobalUpdates() {
 		global $wgExtNewFields, $wgExtNewTables, $wgExtModifiedFields,
-			$wgExtNewIndexes, $wgSharedDB, $wgSharedTables;
-
-		$doUser = $this->shared ?
-			$wgSharedDB && in_array( 'user', $wgSharedTables ) :
-			!$wgSharedDB || !in_array( 'user', $wgSharedTables );
+			$wgExtNewIndexes;
 
 		$updates = array();
 
@@ -489,12 +533,10 @@ abstract class DatabaseUpdater {
 		}
 
 		foreach ( $wgExtNewFields as $fieldRecord ) {
-			if ( $fieldRecord[0] != 'user' || $doUser ) {
-				$updates[] = array(
-					'addField', $fieldRecord[0], $fieldRecord[1],
-						$fieldRecord[2], true
-				);
-			}
+			$updates[] = array(
+				'addField', $fieldRecord[0], $fieldRecord[1],
+					$fieldRecord[2], true
+			);
 		}
 
 		foreach ( $wgExtNewIndexes as $fieldRecord ) {
@@ -555,6 +597,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Applies a SQL patch
+	 *
 	 * @param $path String Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
 	 * @param $msg String Description of the patch
@@ -585,12 +628,17 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new table to the database
+	 *
 	 * @param $name String Name of the new table
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	protected function addTable( $name, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $name ) ) {
+			return true;
+		}
+
 		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
 			$this->output( "...$name table already exists.\n" );
 		} else {
@@ -601,6 +649,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new field to an existing table
+	 *
 	 * @param $table String Name of the table to modify
 	 * @param $field String Name of the new field
 	 * @param $patch String Path to the patch file
@@ -608,6 +657,10 @@ abstract class DatabaseUpdater {
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	protected function addField( $table, $field, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping new field patch.\n" );
 		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
@@ -620,6 +673,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new index to an existing table
+	 *
 	 * @param $table String Name of the table to modify
 	 * @param $index String Name of the new index
 	 * @param $patch String Path to the patch file
@@ -627,9 +681,12 @@ abstract class DatabaseUpdater {
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
-			return false;
 		} else if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index $index already set on $table table.\n" );
 		} else {
@@ -648,6 +705,10 @@ abstract class DatabaseUpdater {
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			return $this->applyPatch( $patch, $fullpath, "Table $table contains $field field. Dropping" );
 		} else {
@@ -660,18 +721,64 @@ abstract class DatabaseUpdater {
 	 * Drop an index from an existing table
 	 *
 	 * @param $table String: Name of the table to modify
-	 * @param $index String: Name of the old index
+	 * @param $index String: Name of the index
 	 * @param $patch String: Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			return $this->applyPatch( $patch, $fullpath, "Dropping $index index from table $table" );
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
 		return true;
+	}
+
+	/**
+	 * Rename an index from an existing table
+	 *
+	 * @param $table String: Name of the table to modify
+	 * @param $oldIndex String: Old name of the index
+	 * @param $newIndex String: New name of the index
+	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist.
+	 * @param $patch String: Path to the patch file
+	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
+	 * @return Boolean false if this was skipped because schema changes are skipped
+	 */
+	protected function renameIndex( $table, $oldIndex, $newIndex, $skipBothIndexExistWarning, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		// First requirement: the table must exist
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return true;
+		}
+
+		// Second requirement: the new index must be missing
+		if ( $this->db->indexExists( $table, $newIndex, __METHOD__ ) ) {
+			$this->output( "...index $newIndex already set on $table table.\n" );
+			if ( !$skipBothIndexExistWarning && $this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
+				$this->output( "...WARNING: $oldIndex still exists, despite it has been renamed into $newIndex (which also exists).\n" .
+					"            $oldIndex should be manually removed if not needed anymore.\n" );
+			}
+			return true;
+		}
+
+		// Third requirement: the old index must exist
+		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
+			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
+			return true;
+		}
+
+		// Requirements have been satisfied, patch can be applied
+		return $this->applyPatch( $patch, $fullpath, "Renaming index $oldIndex into $newIndex to table $table" );
 	}
 
 	/**
@@ -686,6 +793,10 @@ abstract class DatabaseUpdater {
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	public function dropTable( $table, $patch = false, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
 			$msg = "Dropping table $table";
 
@@ -713,6 +824,10 @@ abstract class DatabaseUpdater {
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
 	public function modifyField( $table, $field, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
 		$updateKey = "$table-$field-$patch";
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch.\n" );

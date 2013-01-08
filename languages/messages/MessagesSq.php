@@ -961,7 +961,6 @@ Regjistri më i vonshëm i hyrjeve është poshtë për referncë:",
 'template-semiprotected' => '(gjysëm-mbrojtur)',
 'hiddencategories' => 'Kjo faqe është nën {{PLURAL:$1|një kategori të fshehur|$1 kategori të fshehura}}:',
 'edittools' => '<!-- Teksti këtu do të tregohet poshtë kutive të redaktimit dhe ngarkimit të skedave. -->',
-'nocreatetitle' => 'Krijimi i faqeve të reja është i kufizuar.',
 'nocreatetext' => 'Mundësia për të krijuar faqe të reja është kufizuar. Duhet të [[Special:UserLogin|hyni ose të hapni një llogari]] për të krijuar faqe të reja, ose mund të ktheheni mbrapsh dhe të redaktoni një faqe ekzistuese.',
 'nocreate-loggedin' => 'Nuk ju lejohet të krijoni faqe të reja.',
 'sectioneditnotsupported-title' => 'Redaktimi i pjesës nuk është i mbështetur',
@@ -1489,12 +1488,13 @@ Kjo informatë është publike.',
 'right-sendemail' => 'Dërgo e-mail tek përdoruesit e tjerë',
 'right-passwordreset' => 'Shiko e-mail-et e rivendosjes së fjalëkalimit',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Regjistri i llogarive',
+'newuserlogpagetext' => 'Ky është një regjistër i llogarive të fundit që janë hapur',
+
 # User rights log
 'rightslog' => 'Regjistri i privilegjeve të përdoruesit',
 'rightslogtext' => 'Ky është një regjistër për ndryshimet e privilegjeve të përdoruesit.',
-'rightslogentry' => 'u ndryshua anëtarësimi i grupit për $1 nga $2 tek $3',
-'rightslogentry-autopromote' => 'automatikisht u rrit në datyrë nga $2 në $3',
-'rightsnone' => '(asgjë)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lexo këtë faqe',
@@ -2120,10 +2120,6 @@ Protokolle të mbështetura: <code>$1<code> (mos shtoni ndonjërin nga këta në
 'activeusers-hidebots' => 'Fshih robotët',
 'activeusers-hidesysops' => 'Fshih administratorët',
 'activeusers-noresult' => 'Asnjë përdorues nuk u gjet.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Regjistri i llogarive',
-'newuserlogpagetext' => 'Ky është një regjistër i llogarive të fundit që janë hapur',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Grupime përdoruesish me privilegje',
@@ -3780,6 +3776,7 @@ Kjo faqe është duke përjetuar vështirësi teknike.',
 'logentry-newusers-create2' => '$1 krijoi një llogari $3',
 'logentry-newusers-autocreate' => 'Llogaria $1 u krijua automatikisht',
 'newuserlog-byemail' => 'fjalëkalimi u dërgua në postën elektronike',
+'rightsnone' => '(asgjë)',
 
 # Feedback
 'feedback-bugornote' => 'Nëse jeni gati për të përshkruar një problem teknik me detaje ju lutemi [$1 raportoni një problem].

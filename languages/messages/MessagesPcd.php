@@ -520,11 +520,12 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 # Preferences page
 'preferences' => 'Préférinches',
 'mypreferences' => 'Mes préférinches',
+'changepassword' => "Canger ch'mot d'passe",
 'timezoneregion-europe' => 'Urope',
 'youremail' => 'Imèle:',
 'username' => "Nom d'uzeu:",
 'uid' => 'ID dech uzeu:',
-'prefs-memberingroups' => 'Mimbe éd {{PLURAL:$1|groupe|groupes}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Mimbe}}  {{PLURAL:$1|du groupe|des groupes}}:',
 'yourrealname' => 'Vrai nom:',
 'yourlanguage' => 'Langache:',
 'badsiglength' => 'Vote signature est gramint longue.
@@ -540,6 +541,8 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'userrights-groupsmember' => 'Mimbe éd:',
 
 # Groups
+'group-user' => 'Uzeus',
+'group-autoconfirmed' => 'Uzeus inrégistrés',
 'group-sysop' => 'Aménistrateus',
 'group-bureaucrat' => 'Buroécrates',
 
@@ -547,6 +550,9 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'group-bureaucrat-member' => '{{GENDER:$1|buroécrate}}',
 
 'grouppage-sysop' => '{{ns:project}}:Aménistrateus',
+
+# Special:Log/newusers
+'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
 
 # User rights log
 'rightslog' => "Jornal d'chés droés dechl uzeu",
@@ -650,6 +656,9 @@ Vir apré ([$2 pache]).",
 # MIME search
 'mimesearch' => 'Tracher pèr type éd contenu MIME',
 
+# Unwatched pages
+'unwatchedpages' => 'Paches poin suivies',
+
 # List redirects
 'listredirects' => 'Lisse des érdiréccions',
 
@@ -661,6 +670,7 @@ Vir apré ([$2 pache]).",
 
 # Statistics
 'statistics' => 'Éstatistikes',
+'statistics-users' => '[[Special:ListUsers|Uzeus]] inrégistrés',
 
 'disambiguations' => 'Paches aveuc des loïens vers des paches du meume nom',
 'disambiguationspage' => 'Template:Omonymie',
@@ -725,15 +735,16 @@ Vir apré ([$2 pache]).",
 # Special:Categories
 'categories' => 'Lisse des catégories',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contérbuchons abolies',
+'deletedcontributions-title' => 'Contérbuchons abolies',
+
 # Special:LinkSearch
 'linksearch' => 'Loïens éstérieurs',
 'linksearch-line' => '$1 est loïé édpuis $2',
 
 # Special:ActiveUsers
 'activeusers' => 'Lisse des ouvreus uzeus',
-
-# Special:Log/newusers
-'newuserlogpage' => "Jornal éd chés créachons d'comptes d'uzeu",
 
 # Special:ListGroupRights
 'listgrouprights-summary' => "L'pache-lo ch'est ène lisse d'chés groupes d'uzeus définis édseur ech wiki aveuc chés drouots d'intrèe achuchonnés.<br />I put y avoèr ichi d'eutes [[MediaWiki:Listgrouprights-helppage|informacions]] édseur chés drouots individuèls. ([[{{MediaWiki:Listgrouprights-helppage}}|vir]])",
@@ -806,6 +817,8 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'restriction-level' => 'Nivieu éd réstricchon:',
 
 # Undelete
+'undelete' => 'Vir chés paches abolies',
+'viewdeletedpage' => 'Vir chés paches abolies',
 'undeletelink' => 'vir/érfoaire',
 'undeleteviewlink' => 'Vir',
 
@@ -825,6 +838,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 
 'sp-contributions-newbies' => 'Montrer chés contérbuchons éd chés nouvieus conptes seulemint',
 'sp-contributions-blocklog' => 'jornal éd chés blotcåjhes',
+'sp-contributions-deleted' => 'Contérbuchons abolies',
 'sp-contributions-uploads' => "téléquértch'mints",
 'sp-contributions-logs' => 'Gasètes',
 'sp-contributions-talk' => 'Dviser',
@@ -853,6 +867,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'whatlinkshere-filters' => 'Filtes',
 
 # Block/unblock
+'block' => "Blotcher l'uzeu",
 'blockip' => "Blotcher l'uzeu",
 'blockip-title' => "Blotcher l'uzeu",
 'blockip-legend' => "Blotcher l'uzeu",
@@ -1080,6 +1095,8 @@ Chés eutes cans is s'ront muchés pèr défeut.
 'tag-filter' => 'Filtrer chés [[Special:Tags|balises]] :',
 
 # Special:ComparePages
+'comparepages' => 'Compérer dés paches',
+'compare-selector' => 'Compérer chés vèrsions dés paches',
 'compare-page1' => 'Pache 1',
 'compare-page2' => 'Pache 2',
 'compare-rev1' => 'Canjemint 1',

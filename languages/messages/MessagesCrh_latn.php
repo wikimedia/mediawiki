@@ -726,7 +726,6 @@ Jurnalnıñ soñki yazısı aşağıda berilgen:",
 'template-protected' => '(qorçalav altında)',
 'template-semiprotected' => '(qısmen qorçalav altında)',
 'hiddencategories' => 'Bu saife {{PLURAL:$1|1|$1}} gizli kategoriyağa mensüptir:',
-'nocreatetitle' => 'Saife yaratuv sıñırlıdır',
 'nocreatetext' => '{{SITENAME}} saytında yañı saife yaratuv sıñırlıdır.
 Keri qaytıp mevcut olğan saifeni deñiştire, [[Special:UserLogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
 'nocreate-loggedin' => 'Yañı saifeler yaratmağa iziniñiz yoqtır.',

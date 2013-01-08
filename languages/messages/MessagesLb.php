@@ -742,6 +742,7 @@ Temporärt Passwuert: $2',
 'changeemail-oldemail' => 'Aktuell Mailadress:',
 'changeemail-newemail' => 'Nei Mailadress:',
 'changeemail-none' => '(keng)',
+'changeemail-password' => 'Ärt {{SITENAME}}-Passwuert:',
 'changeemail-submit' => 'Mailadress änneren',
 'changeemail-cancel' => 'Ofbriechen',
 
@@ -922,7 +923,6 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'template-semiprotected' => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories' => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
 'edittools' => '<!-- Dësen Text gëtt ënnert dem "Ännere"-Formulair esouwéi dem "Eropluede"-Formulair ugewisen. -->',
-'nocreatetitle' => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin' => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'sectioneditnotsupported-title' => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
@@ -1458,13 +1458,13 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-sendemail' => 'Anere Benotzer E-Maile schécken',
 'right-passwordreset' => 'Maile vum Zrécksetze vum Passwuert weisen',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logbuch vun den neien Umeldungen',
+'newuserlogpagetext' => "Dëst ass d'Lescht vun de Benotzernimm déi ugeluecht goufen.",
+
 # User rights log
 'rightslog' => 'Logbuch vun de Benotzerrechter',
 'rightslogtext' => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
-'rightslogentry' => "huet d'Benotzerrechter vum $1 vun $2 op $3 geännert.",
-'rightslogentry-autopromote' => 'gouf automatesch aus dem Grupp $2 an de Grupp $3 gesat',
-'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
-'rightsnone' => '(keen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'dës Säit ze liesen',
@@ -2069,7 +2069,7 @@ Kuckt och [[Special:WantedCategories|Gewënscht Kategorien]].',
 'linksearch-ok' => 'Sichen',
 'linksearch-text' => '"Wildcards" wéi zum Beispill "*.example.com" kënne benotzt ginn.
 Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
-Ënnerstëtzte Protekoller: <code>$1</code> (http:// gëtt benotzt wann näischt spezifizéiert gëtt).',
+Ënnerstëtzte {{PLURAL:$2|Protokoll|Protekoller}}: <code>$1</code> (http:// gëtt benotzt wann näischt spezifizéiert gëtt).',
 'linksearch-line' => '$1 verlinkt vun $2',
 'linksearch-error' => 'Wildcards (*,?) kënnen nëmmen am Ufank vum Host-Numm benotzt ginn.',
 
@@ -2087,10 +2087,6 @@ Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
 'activeusers-hidebots' => 'Botte verstoppen',
 'activeusers-hidesysops' => 'Administrateure verstoppen',
 'activeusers-noresult' => 'Keng Benotzer fonnt.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logbuch vun den neien Umeldungen',
-'newuserlogpagetext' => "Dëst ass d'Lescht vun de Benotzernimm déi ugeluecht goufen.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechter vun de Benotzergruppen',
@@ -2157,9 +2153,8 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 'watchnologin' => 'Net ageloggt',
 'watchnologintext' => "Dir musst [[Special:UserLogin|ugemellt]] sinn, fir Är Iwwerwaachungslëscht z'änneren.",
 'addwatch' => "Op d'Iwwerwaachungslëscht derbäisetzen",
-'addedwatchtext' => "D'Säit \"[[:\$1]]\" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit ginn hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:RecentChanges|rezenten Ännerungen]] aus, fir se méi séier erëmzefannen.
-
-Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
+'addedwatchtext' => 'D\'Säit "[[:$1]]" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat.
+All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit ginn hei opgelëscht.',
 'removewatch' => 'Vun der Iwwerwaachungslëscht erofhuelen',
 'removedwatchtext' => 'D\'Säit "[[:$1]]" gouf vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] erofgeholl.',
 'watch' => 'Iwwerwaachen',
@@ -2193,7 +2188,7 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_subject_moved' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geréckelt",
 'enotif_subject_restored' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} restauréiert",
 'enotif_subject_changed' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geännert",
-'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3 fir déi aktuell Versioun.',
+'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3.',
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',
@@ -2955,7 +2950,9 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-redirectsto-info' => 'Informatioun',
 'pageinfo-contentpage' => 'Als Säit mat Inhalt gezielt',
 'pageinfo-contentpage-yes' => 'Jo',
+'pageinfo-protect-cascading' => 'Säite mat Kaskadespär vun hei aus',
 'pageinfo-protect-cascading-yes' => 'Jo',
+'pageinfo-protect-cascading-from' => 'Säite mat Kaskadespär vu(n)',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -3012,6 +3009,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'file-nohires' => 'Et gëtt keng méi héich Opléisung.',
 'svg-long-desc' => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
 'svg-long-desc-animated' => 'Animéierten SVG-Fichier, Basisgréisst $1 x $2 Pixel, Gréisst vum Fichier: $3',
+'svg-long-error' => 'Ongëltegen SVG-Fichier: $1',
 'show-big-image' => 'Voll Opléisung',
 'show-big-image-preview' => 'Gréisst vun dësem Preview: $1.',
 'show-big-image-other' => 'Aner {{PLURAL:$2|Opléisung|Opléisungen}}: $1.',
@@ -3040,6 +3038,8 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'minutes' => '{{PLURAL:$1|enger Minutt|$1 Minutten}}',
 'hours' => '{{PLURAL:$1|enger Stonn|$1 Stonnen}}',
 'days' => '{{PLURAL:$1|engem Dag|$1 Deeg}}',
+'months' => '{{PLURAL:$1|ee Mount|$1 Méint}}',
+'years' => '{{PLURAL:$1|ee Joer|$1 Joer}}',
 'ago' => 'viru(n) $1',
 'just-now' => 'grad elo',
 
@@ -3769,6 +3769,8 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch ugeluecht',
 'newuserlog-byemail' => "d'Passwuert gouf per E-Mail geschéckt",
+'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
+'rightsnone' => '(keen)',
 
 # Feedback
 'feedback-bugornote' => 'Wann Dir bereet sidd fir en technesche Problem am Detail ze beschreiwen da [$1 mellt w.e.g. e Feeler (Bug)].

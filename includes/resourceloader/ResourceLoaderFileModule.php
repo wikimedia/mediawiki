@@ -170,7 +170,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         // Scripts to include in the startup module
 	 *         'loaderScripts' => [file path string or array of file path strings],
 	 *         // Modules which must be loaded before this module
-	 *         'dependencies' => [modile name string or array of module name strings],
+	 *         'dependencies' => [module name string or array of module name strings],
 	 *         // Styles to always load
 	 *         'styles' => [file path string or array of file path strings],
 	 *         // Styles to include in specific skin contexts
@@ -647,23 +647,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return CSSMin::remap(
 			$style, $dir, $remoteDir, true
 		);
-	}
-
-	/**
-	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
-	 * but returns 1 instead.
-	 * @param $filename string File name
-	 * @return int UNIX timestamp, or 1 if the file doesn't exist
-	 */
-	protected static function safeFilemtime( $filename ) {
-		if ( file_exists( $filename ) ) {
-			return filemtime( $filename );
-		} else {
-			// We only ever map this function on an array if we're gonna call max() after,
-			// so return our standard minimum timestamps here. This is 1, not 0, because
-			// wfTimestamp(0) == NOW
-			return 1;
-		}
 	}
 
 	/**

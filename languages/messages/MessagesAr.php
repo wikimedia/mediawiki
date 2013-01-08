@@ -1235,7 +1235,6 @@ $2
 'template-semiprotected' => '(حماية جزئية)',
 'hiddencategories' => '{{PLURAL:$1|هذه الصفحة غير موجودة في أي تصنايف مخفية|هذه الصفحة موجودة في تصنيف مخفي واحد|هذه الصفحة موجودة في تصنيفين مخفيين|هذه الصفحة موجودة في $1 تصانيف مخفية|هذه الصفحة موجودة في $1 تصنيفا مخفيا|هذه الصفحة موجودة في $1 تصنيف مخفي}}:',
 'edittools' => '<!-- النص هنا سيظهر تحت صندوق التحرير واستمارة رفع الصور. -->',
-'nocreatetitle' => 'تم تحديد إنشاء الصفحات',
 'nocreatetext' => 'قام {{SITENAME}} بتحديد القدرة على إنشاء صفحات جديدة.
 يمكنك العودة وتحرير صفحة موجودة بالفعل، أو [[Special:UserLogin|الدخول أو تسجيل حساب]].',
 'nocreate-loggedin' => 'أنت لا تمتلك الصلاحية لإنشاء صفحات جديدة.',
@@ -1790,15 +1789,13 @@ $1",
 'right-sendemail' => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
 'right-passwordreset' => 'عرض رسائل إعادة ضبط كلمات السر',
 
+# Special:Log/newusers
+'newuserlogpage' => 'سجل إنشاء المستخدمين',
+'newuserlogpagetext' => 'هذا سجل بعمليات إنشاء المستخدمين.',
+
 # User rights log
 'rightslog' => 'سجل صلاحيات المستخدمين',
 'rightslogtext' => 'هذا سجل بالتغييرات في صلاحيات المستخدمين.',
-'rightslogentry' => 'غير صلاحيات $1 من $2 إلى $3',
-'rightslogentry-autopromote' => 'تمت ترقيته تلقائيا من $2 إلى $3',
-'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',
-'logentry-rights-rights-legacy' => 'غير $1 صلاحيات $3',
-'logentry-rights-autopromote' => 'تمت ترقية $1 تلقائياً من  $4 إلى $5',
-'rightsnone' => '(لا شيء)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'قراءة هذه الصفحة',
@@ -2457,10 +2454,6 @@ $1',
 'activeusers-hidebots' => 'أخف البوتات',
 'activeusers-hidesysops' => 'أخف الإداريين',
 'activeusers-noresult' => 'لم يعثر على أي مستخدمين',
-
-# Special:Log/newusers
-'newuserlogpage' => 'سجل إنشاء المستخدمين',
-'newuserlogpagetext' => 'هذا سجل بعمليات إنشاء المستخدمين.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'صلاحيات مجموعات المستخدمين',
@@ -3420,6 +3413,7 @@ $1',
 'file-nohires' => 'لا توجد دقة أعلى متوفرة.',
 'svg-long-desc' => 'ملف SVG، أبعاده $1 × $2 بكسل، حجم الملف: $3',
 'svg-long-desc-animated' => 'ملف SVG متحرك، بمقاسات  $1  ×  $2  بكسل، حجم الملف: $3',
+'svg-long-error' => 'ملف SVG غير صالح: $1',
 'show-big-image' => 'دقة كاملة',
 'show-big-image-preview' => 'حجم هذه المعاينة: $1.',
 'show-big-image-other' => '{{PLURAL:$2||البعد الآخر|البعدان الآخران|الأبعاد الأخرى}}: $1.',
@@ -4335,6 +4329,10 @@ $5
 'logentry-newusers-create2' => 'أنشأ $1 حساب المستخدم $3',
 'logentry-newusers-autocreate' => 'أنشئ حساب $1 تلقائياً',
 'newuserlog-byemail' => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
+'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',
+'logentry-rights-rights-legacy' => 'غير $1 صلاحيات $3',
+'logentry-rights-autopromote' => 'تمت ترقية $1 تلقائياً من  $4 إلى $5',
+'rightsnone' => '(لا شيء)',
 
 # Feedback
 'feedback-bugornote' => 'إن كنت مستعدا لشرح  مشكلة تقنية بالتفصيل، رجاءا [$1 قدم تقريرا بالخلل].
@@ -4408,6 +4406,4 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
-# Unknown messages
-'svg-long-error' => 'ملف SVG غير صالح: $1',
 );

@@ -793,7 +793,6 @@ Seo an rud mu dheireadh san loga mar fhiosrachadh dhut:",
 'template-protected' => '(air a dhìon)',
 'template-semiprotected' => '(air a leth-dhìon)',
 'hiddencategories' => "Tha an duilleag seo 'na ball de {{PLURAL:$1|1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|$1 roinnean-seòrsa falaichte|$1 roinn-seòrsa fhalaichte}}:",
-'nocreatetitle' => 'Tha cruthachadh dhuilleagan cuingichte',
 'nocreatetext' => "Chuir {{SITENAME}} bacadh air cruthachadh de dhuilleagan ùra.
 'S urrainn dhut tilleadh is duilleag a tha ann mu thràth a dheasachadh no [[Special:UserLogin|clàradh a-steach no cunntas a chruthachadh]].",
 'nocreate-loggedin' => 'Chan eil cead agad duilleagan ùra a chruthachadh.',

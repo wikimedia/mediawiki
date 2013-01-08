@@ -655,7 +655,6 @@ $1 نے پابندی لگائی تھی.
 'template-protected' => '(محفوظ شدہ)',
 'template-semiprotected' => '(نیم محفوظ)',
 'hiddencategories' => 'یہ صفحہ {{PLURAL:$1|1 چُھپے زمرے|$1 چُھپے زمرہ جات}} میں شامل ہے:',
-'nocreatetitle' => 'تخلیقِ صفحہ محدود',
 'nocreate-loggedin' => 'آپ کو نئے صفحات تخلیق کرنے کی اجازت نہیں ہے.',
 'sectioneditnotsupported-title' => 'قطعہ کی تدوین حمایت شدہ نہیں ہے',
 'sectioneditnotsupported-text' => 'اِس صفحہ میں قطعہ کی تدوین حمایت شدہ نہیں ہے.',

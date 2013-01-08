@@ -226,7 +226,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			'to' => null,
 			'prefix' => null,
 			'namespace' => array(
-				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_DFLT => NS_MAIN,
 				ApiBase::PARAM_TYPE => 'namespace',
 			),
 			'filterredir' => array(

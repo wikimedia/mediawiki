@@ -95,13 +95,15 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	private function limitType( $types ) {
 		global $wgLogRestrictions;
+
+		$user = $this->getUser();
 		// If $types is not an array, make it an array
 		$types = ($types === '') ? array() : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
 		$needReindex = false;
 		foreach ( $types as $type ) {
 			if( isset( $wgLogRestrictions[$type] )
-				&& !$this->getUser()->isAllowed($wgLogRestrictions[$type])
+				&& !$user->isAllowed( $wgLogRestrictions[$type] )
 			) {
 				$needReindex = true;
 				$types = array_diff( $types, array( $type ) );
@@ -116,7 +118,7 @@ class LogPager extends ReverseChronologicalPager {
 		// Don't show private logs to unprivileged users.
 		// Also, only show them upon specific request to avoid suprises.
 		$audience = $types ? 'user' : 'public';
-		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience );
+		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $user );
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}

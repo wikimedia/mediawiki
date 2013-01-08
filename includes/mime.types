@@ -65,6 +65,7 @@ audio/basic au snd
 audio/midi mid midi kar
 audio/mpeg mpga mp2 mp3
 audio/ogg oga ogg spx
+video/webm webm
 audio/webm webm
 audio/x-aiff aif aiff aifc
 audio/x-matroska mka mkv
@@ -120,7 +121,6 @@ video/mpeg mpeg mpg mpe
 video/ogg ogv ogm ogg
 video/quicktime qt mov
 video/vnd.mpegurl mxu
-video/webm webm
 video/x-flv flv
 video/x-matroska mkv mka
 video/x-msvideo avi

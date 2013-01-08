@@ -1840,7 +1840,7 @@ class Title {
 	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		# Only 'createaccount' and 'execute' can be performed on
 		# special pages, which don't actually exist in the DB.
-		$specialOKActions = array( 'createaccount', 'execute', 'read' );
+		$specialOKActions = array( 'createaccount', 'execute' );
 		if ( NS_SPECIAL == $this->mNamespace && !in_array( $action, $specialOKActions ) ) {
 			$errors[] = array( 'ns-specialprotected' );
 		}
@@ -2361,7 +2361,8 @@ class Title {
 		$expiry = array( 'create' => $expiry );
 
 		$page = WikiPage::factory( $this );
-		$status = $page->doUpdateRestrictions( $limit, $expiry, false, $reason, $wgUser );
+		$cascade = false;
+		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $wgUser );
 
 		return $status->isOK();
 	}
@@ -4461,6 +4462,7 @@ class Title {
 	 * @return Bool true if the update succeded
 	 */
 	public function invalidateCache() {
+		global $wgMemc;
 		if ( wfReadOnly() ) {
 			return false;
 		}
@@ -4472,6 +4474,14 @@ class Title {
 			__METHOD__
 		);
 		HTMLFileCache::clearFileCache( $this );
+
+		// Clear page info.
+		$revision = WikiPage::factory( $this )->getRevision();
+		if( $revision !== null ) {
+			$memcKey = wfMemcKey( 'infoaction', $this->getPrefixedText(), $revision->getId() );
+			$success = $success && $wgMemc->delete( $memcKey );
+		}
+
 		return $success;
 	}
 

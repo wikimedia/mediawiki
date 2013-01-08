@@ -484,6 +484,7 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 
 # Special:ChangeEmail
 'changeemail-none' => '(نو)',
+'changeemail-cancel' => 'کھینسل',
 
 # Edit page toolbar
 'bold_sample' => 'بوسک متن',
@@ -560,6 +561,9 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'moveddeleted-notice' => 'ھیہ ای حذف شدہ صفحہ شیر.
 صفحو نوشتۂ حذف شدگی و منتقلی ذیلا بطورِ حوالہ دیونو بویان.',
 
+# Content models
+'content-model-javascript' => 'جاوا اسکرپٹ',
+
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''خبردار:''' سانچو سایز بو لوٹ شیر.
 بعضی سانچہ شامل نو بونی.",
@@ -594,6 +598,7 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 
 # Revision deletion
 'rev-delundel' => 'پشاوے/کھوشتاوے',
+'revdelete-radio-set' => 'Yes/دی',
 'revdel-restore' => 'ظاہریتو تبدیل کورے',
 'revdel-restore-deleted' => 'حذف شدہ رویژنز',
 'revdel-restore-visible' => 'ویزیبل رویژنز',
@@ -654,10 +659,12 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'powersearch-ns' => 'جائے ناما تلاش:',
 'powersearch-redir' => 'فہرستِ رجوع مکرر',
 'powersearch-field' => 'تلاش برائے',
+'powersearch-toggleall' => 'سف',
 
 # Preferences page
 'preferences' => 'ترجیحات',
 'mypreferences' => 'مہ ترجیہات',
+'skin-preview' => 'نمائش',
 'youremail' => 'بشلی کغاز',
 'username' => 'ممبارو نم',
 'uid' => 'ممبارو لمبار:',

@@ -614,7 +614,7 @@ EOT
 
 		/* Add canonical to head if there is no local page for this shared file */
 		if( $descUrl && $this->mPage->getID() == 0 ) {
-			$out->addLink( array( 'rel' => 'canonical', 'href' => $descUrl ) );
+			$out->setCanonicalUrl( $descUrl );
 		}
 
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
@@ -803,7 +803,7 @@ EOT
 				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
 			} else {
 				# Redirect with usages
-				$ul = "<ul class='mw-imagepage-redirectstofile'>\n";
+				$li = '';
 				foreach ( $redirects[$element->page_title] as $row ) {
 					$currentCount++;
 					if ( $currentCount > $limit ) {
@@ -811,13 +811,18 @@ EOT
 					}
 
 					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
-					$ul .= Html::rawElement(
+					$li .= Html::rawElement(
 						'li',
 						array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 						$link2
 						) . "\n";
 				}
-				$ul .= '</ul>';
+
+				$ul = Html::rawElement(
+					'ul',
+					array( 'class' => 'mw-imagepage-redirectstofile'),
+					$li
+					) . "\n";
 				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams(
 					$link, $ul )->parse();
 			}
@@ -1230,7 +1235,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 * @param ImagePage $imagePage
 	 */
 	function __construct( $imagePage ) {
-		parent::__construct();
+		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = clone ( $imagePage->getTitle() );
 		$this->mTitle->setFragment( '#filehistory' );

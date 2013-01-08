@@ -328,7 +328,7 @@ class LoginForm extends SpecialPage {
 		# Request forgery checks.
 		if ( !self::getCreateaccountToken() ) {
 			self::setCreateaccountToken();
-			return Status::newFatal( 'sessionfailure' );
+			return Status::newFatal( 'nocookiesfornew' );
 		}
 
 		# The user didn't pass a createaccount token
@@ -737,7 +737,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin, $wgCookieSecure;
+		global $wgMemc, $wgLang, $wgSecureLogin;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:

@@ -2363,7 +2363,7 @@ $wgDisableLangConversion = false;
 /** Whether to enable language variant conversion for links. */
 $wgDisableTitleConversion = false;
 
-/** Whether to enable cononical language links in meta data. */
+/** Whether to enable canonical language links in meta data. */
 $wgCanonicalLanguageLinks = true;
 
 /** Default variant code, if false, the default will be the language code */
@@ -2831,6 +2831,14 @@ $wgSend404Code = true;
  * @since 1.20
  */
 $wgShowRollbackEditCount = 10;
+
+/**
+ * Output a <link rel="canonical"> tag on every page indicating the canonical
+ * server which should be used, i.e. $wgServer or $wgCanonicalServer. Since 
+ * detection of the current server is unreliable, the link is sent
+ * unconditionally.
+ */
+$wgEnableCanonicalServerLink = false;
 
 /** @} */ # End of output format settings }
 
@@ -4291,6 +4299,7 @@ $wgRateLimitsExcludedIPs = array();
 /**
  * Log IP addresses in the recentchanges table; can be accessed only by
  * extensions (e.g. CheckUser) or a DB admin
+ * Used for retroactive autoblocks
  */
 $wgPutIPinRC = true;
 
@@ -5157,6 +5166,15 @@ $wgAllowCategorizedRecentChanges = false;
  * Has no effect if no tags are defined in valid_tag.
  */
 $wgUseTagFilter = true;
+
+/**
+ * If set to an integer, pages that are watched by more users than this
+ * threshold will not require the unwatchedpages permission to view the
+ * number of watchers.
+ *
+ * @since 1.21
+ */
+$wgUnwatchedPageThreshold = false;
 
 /** @} */ # end RC/watchlist }
 
@@ -6150,6 +6168,15 @@ $wgUpdateRowsPerJob = 500;
  * Number of rows to update per query
  */
 $wgUpdateRowsPerQuery = 100;
+
+/**
+ * Do not purge all the pages that use a page when it is edited
+ * if there are more than this many such pages. This is used to
+ * avoid invalidating a large portion of the squid/parser cache.
+ *
+ * This setting should factor in any squid/parser cache expiry settings.
+ */
+$wgMaxBacklinksInvalidate = false;
 
 /** @} */ # End job queue }
 

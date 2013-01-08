@@ -480,7 +480,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		// And now for the content
-		$this->getOutput()->setFeedAppendQuery( $this->getFeedQuery() );
+		$feedQuery = $this->getFeedQuery();
+		if ( $feedQuery !== '' ) {
+			$this->getOutput()->setFeedAppendQuery( $feedQuery );
+		} else {
+			$this->getOutput()->setFeedAppendQuery( false );
+		}
 
 		if( $wgAllowCategorizedRecentChanges ) {
 			$this->filterByCategories( $rows, $opts );
@@ -524,8 +529,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				}
 				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 			}
-			$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
-			--$limit;
+
+			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
+			if ( $changeLine !== false ) {
+				$s .= $changeLine;
+				--$limit;
+			}
 		}
 		$s .= $list->endRecentChangesList();
 		$this->getOutput()->addHTML( $s );
@@ -533,11 +542,24 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 	/**
 	 * Get the query string to append to feed link URLs.
-	 * This is overridden by RCL to add the target parameter
-	 * @return bool
+	 * 
+	 * @return string
 	 */
 	public function getFeedQuery() {
-		return false;
+		global $wgFeedLimit;
+
+		$this->getOptions()->validateIntBounds( 'limit', 0, $wgFeedLimit );
+		$options = $this->getOptions()->getChangedValues();
+
+		// wfArrayToCgi() omits options set to null or false
+		foreach ( $options as &$value ) {
+			if ( $value === false ) {
+				$value = '0';
+			}
+		}
+		unset( $value );
+
+		return wfArrayToCgi( $options );
 	}
 
 	/**

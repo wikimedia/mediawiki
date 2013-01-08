@@ -286,6 +286,10 @@ class ChangesList extends ContextSource {
 		}
 	}
 
+	/**
+	 * @param $s string HTML to update
+	 * @param $rc_timestamp mixed
+	 */
 	public function insertDateHeader( &$s, $rc_timestamp ) {
 		# Make date header if necessary
 		$date = $this->getLanguage()->userDate( $rc_timestamp, $this->getUser() );
@@ -299,6 +303,11 @@ class ChangesList extends ContextSource {
 		}
 	}
 
+	/**
+	 * @param $s string HTML to update
+	 * @param $title Title
+	 * @param $logtype string
+	 */
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->escaped();
@@ -306,7 +315,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * @param $s string HTML to update
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 */
@@ -349,7 +358,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * @param $s string HTML to update
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 * @param $watched
@@ -384,12 +393,25 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * Get the timestamp from $rc formatted with current user's settings
+	 * and a separator
+	 *
+	 * @param $rc RecentChange
+	 * @return string HTML fragment
+	 */
+	public function getTimestamp( $rc ) {
+		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
+			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+	}
+
+	/**
+	 * Insert time timestamp string from $rc into $s
+	 *
+	 * @param $s string HTML to update
 	 * @param $rc RecentChange
 	 */
 	public function insertTimestamp( &$s, $rc ) {
-		$s .= $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
-			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+		$s .= $this->getTimestamp( $rc );
 	}
 
 	/**
@@ -568,7 +590,8 @@ class OldChangesList extends ChangesList {
 	 * @param $rc RecentChange, passed by reference
 	 * @param $watched Bool (default false)
 	 * @param $linenumber Int (default null)
-	 * @return string
+	 *
+	 * @return string|bool
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		global $wgRCShowChangedSize;
@@ -659,7 +682,10 @@ class OldChangesList extends ChangesList {
 			$classes[] = Sanitizer::escapeClass( 'watchlist-'.$rc->mAttribs['rc_namespace'].'-'.$rc->mAttribs['rc_title'] );
 		}
 
-		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
+		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc ) ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
 
 		wfProfileOut( __METHOD__ );
 		return "$dateheader<li class=\"".implode( ' ', $classes )."\">".$s."</li>\n";
@@ -926,7 +952,7 @@ class EnhancedChangesList extends ChangesList {
 				implode( $this->message['semicolon-separator'], $users )
 			)->escaped() . '</span>';
 
-		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow"></span>';
+		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		$r .= "<td>$tl</td>";
 
 		# Main line
@@ -1180,7 +1206,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
+		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
 		if( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces

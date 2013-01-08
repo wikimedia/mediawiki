@@ -29,11 +29,11 @@ class ProtectAction extends FormlessAction {
 		return 'protect';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 
 		$this->page->protect();
 
@@ -47,7 +47,7 @@ class UnprotectAction extends ProtectAction {
 		return 'unprotect';
 	}
 
-	public function show(){
+	public function show() {
 
 		$this->page->unprotect();
 
