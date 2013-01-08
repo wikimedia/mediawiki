@@ -1193,6 +1193,7 @@ Please wait before trying again.',
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error-unknown' => "Unknown error in PHP's mail() function.",
 'user-mail-no-addy'      => 'Tried to send e-mail without an e-mail address.',
+'user-mail-no-body'      => 'Tried to send e-mail with an empty or unreasonably short body.',
 
 # Change password dialog
 'resetpass'                 => 'Change password',
