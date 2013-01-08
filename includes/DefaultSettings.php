@@ -804,6 +804,13 @@ $wgImageMagickTempDir = false;
  */
 $wgCustomConvertCommand = false;
 
+/** used for lossless jpeg rotation
+ *
+ * @since 1.21
+ * **/
+$wgJpegTran = '/usr/bin/jpegtran';
+
+
 /**
  * Some tests and extensions use exiv2 to manipulate the EXIF metadata in some
  * image formats.

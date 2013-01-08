@@ -357,6 +357,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiFormatXmlRsd' => 'includes/api/ApiRsd.php',
 	'ApiFormatYaml' => 'includes/api/ApiFormatYaml.php',
 	'ApiHelp' => 'includes/api/ApiHelp.php',
+	'ApiImageRotate' => 'includes/api/ApiImageRotate.php',
 	'ApiImport' => 'includes/api/ApiImport.php',
 	'ApiImportReporter' => 'includes/api/ApiImport.php',
 	'ApiLogin' => 'includes/api/ApiLogin.php',
