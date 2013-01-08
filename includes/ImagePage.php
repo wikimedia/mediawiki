@@ -796,8 +796,13 @@ EOT
 
 			$link = Linker::linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
 			if ( !isset( $redirects[$element->page_title] ) ) {
+				# No redirects
 				$liContents = $link;
+			} elseif ( count( $redirects[$element->page_title] ) === 0 ) {
+				# Redirect without usages
+				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
 			} else {
+				# Redirect with usages
 				$ul = "<ul class='mw-imagepage-redirectstofile'>\n";
 				foreach ( $redirects[$element->page_title] as $row ) {
 					$currentCount++;
