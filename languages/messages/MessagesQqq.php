@@ -8782,9 +8782,13 @@ $4 is the gender of the target user.',
 'duration-centuries' => '{{Related|Duration}}',
 'duration-millennia' => '{{Related|Duration}}',
 
+# Rotation
+'rotation-comment' => 'comment set for new version uploaded after rotation',
+
 # Unknown messages
 'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
 {{Identical|Page with page property}}',
 'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
 {{Identical|Go}}',
+
 );
