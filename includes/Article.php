@@ -403,7 +403,7 @@ class Article extends Page {
 	 *
 	 * @note code that wants to retrieve page content from the database should use WikiPage::getContent().
 	 *
-	 * @return Content|null
+	 * @return Content|null|boolean false
 	 *
 	 * @since 1.21
 	 */
