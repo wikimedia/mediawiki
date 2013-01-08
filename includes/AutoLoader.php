@@ -418,6 +418,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryWatchlistRaw' => 'includes/api/ApiQueryWatchlistRaw.php',
 	'ApiResult' => 'includes/api/ApiResult.php',
 	'ApiRollback' => 'includes/api/ApiRollback.php',
+	'ApiRotate' => 'includes/api/ApiRotate.php',
 	'ApiRsd' => 'includes/api/ApiRsd.php',
 	'ApiSetNotificationTimestamp' => 'includes/api/ApiSetNotificationTimestamp.php',
 	'ApiTokens' => 'includes/api/ApiTokens.php',
