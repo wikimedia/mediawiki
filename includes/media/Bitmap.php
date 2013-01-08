@@ -637,7 +637,7 @@ class BitmapHandler extends ImageHandler {
 		# Escape glob chars
 		$path = preg_replace( '/[*?\[\]{}]/', '\\\\\0', $path );
 
-		return $this->escapeMagickPath( $path, $scene );
+		return self::escapeMagickPath( $path, $scene );
 	}
 
 	/**
@@ -647,7 +647,7 @@ class BitmapHandler extends ImageHandler {
 	 */
 	function escapeMagickOutput( $path, $scene = false ) {
 		$path = str_replace( '%', '%%', $path );
-		return $this->escapeMagickPath( $path, $scene );
+		return self::escapeMagickPath( $path, $scene );
 	}
 
 	/**
@@ -756,6 +756,47 @@ class BitmapHandler extends ImageHandler {
 				# Other scalers don't support rotation
 				return false;
 		}
+	}
+
+	public static function rotate( $file, $params ) {
+		global $wgImageMagickConvertCommand, $wgJpegtran;
+
+		$rotation = ($params[ 'rotation' ] + self::getRotation( $file )) % 360;
+		$scene = false;
+
+		$scaler = self::getScalerType( null, false );
+		if ( $scaler == 'im' ) {
+			$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
+				wfEscapeShellArg( self::escapeMagickInput( $params[ 'srcPath' ], $scene ) ) .
+				" -rotate -$rotation " .
+				wfEscapeShellArg( self::escapeMagickOutput( $params[ 'dstPath' ] ) ) . " 2>&1";
+			wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
+			wfProfileIn( 'convert' );
+			$retval = 0;
+			$err = wfShellExec( $cmd, $retval, $env );
+			wfProfileOut( 'convert' );
+			if ( $retval !== 0 ) {
+				self::logErrorForExternalProcess( $retval, $err, $cmd );
+				return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
+			}
+		} else if ( $scale == 'imext' ) {
+			$im = new Imagick();
+			$im->readImage( $params['srcPath'] );
+			if ( !$im->rotateImage( new ImagickPixel( 'white' ), 360 - $rotation ) ) {
+				return new MediaTransformError( 'thumbnail_error', 0, 0,
+					"Error rotating $rotation degrees" );
+			}
+			$result = $im->writeImage( $params['dstPath'] );
+			if ( !$result ) {
+				return new MediaTransformError( 'thumbnail_error', 0, 0,
+					"Unable to write image to {$params['dstPath']}" );
+			}
+		} else {
+			return new MediaTransformError( 'thumbnail_error', 0, 0,
+				"$scaler rotation not implemented" );
+		}
+
+		return false;
 	}
 
 	/**

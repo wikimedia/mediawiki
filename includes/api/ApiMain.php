@@ -83,6 +83,7 @@ class ApiMain extends ApiBase {
 		'import' => 'ApiImport',
 		'userrights' => 'ApiUserrights',
 		'options' => 'ApiOptions',
+		'rotate' =>'ApiRotate',
 	);
 
 	/**

@@ -59,5 +59,30 @@ class JpegHandler extends ExifBitmapHandler {
 		}
 	}
 
+	public static function rotate( $file, $params ) {
+		global $wgJpegtran;
+
+		$rotation = ($params[ 'rotation' ] + self::getRotation( $file )) % 360;
+
+		if( $wgJpegtran && is_file( $wgJpegtran ) ){
+			$cmd = wfEscapeShellArg( $wgJpegtran ) .
+				" -rotate " . wfEscapeShellArg( $rotation ) .
+				" -outfile " . wfEscapeShellArg( $params[ 'dstPath' ] ) .
+				" " . wfEscapeShellArg( $params[ 'srcPath' ] ) .  " 2>&1";
+				wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
+				wfProfileIn( 'jpegtran' );
+				$retval = 0;
+				$err = wfShellExec( $cmd, $retval, $env );
+				wfProfileOut( 'jpegtran' );
+			if ( $retval !== 0 ) {
+				self::logErrorForExternalProcess( $retval, $err, $cmd );
+				return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
+			}
+			return false;
+		} else {
+			return Bitmap::rotate( $file, $params );
+		}
+	}
+
 }
 

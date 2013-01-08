@@ -566,4 +566,12 @@ abstract class MediaHandler {
 	public function filterThumbnailPurgeList( &$files, $options ) {
 		// Do nothing
 	}
+
+	/*
+	 * True if the handler can rotate the media
+	 * @return bool
+	 */
+	public static function canRotate() {
+		return false;
+	}
 }
