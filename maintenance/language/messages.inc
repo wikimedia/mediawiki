@@ -4094,4 +4094,5 @@ Variants for Chinese language",
 	'apierrors'             => 'API errors',
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',
+	'rotation-comment'      => 'Image rotation message',
 );
