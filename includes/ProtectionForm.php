@@ -136,11 +136,15 @@ class ProtectionForm {
 				// Prevent users from setting levels that they cannot later unset
 				if( $val == 'sysop' ) {
 					// Special case, rewrite sysop to either protect and editprotected
-					if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) )
+					if ( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) ) {
 						continue;
+					}
 				} else {
-					if( !$wgUser->isAllowed($val) )
+					// Users with the 'editprotected' right can choose all levels
+					// as those can edit all pages anyway (protection level doesn't matter)
+					if ( !$wgUser->isAllowed( $val ) && !$wgUser->isAllowed( 'editprotected' ) ) {
 						continue;
+					}
 				}
 				$this->mRestrictions[$action] = $val;
 			}
@@ -563,14 +567,19 @@ class ProtectionForm {
 
 		$levels = array();
 		foreach( $wgRestrictionLevels as $key ) {
-			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
-			if( $key == 'sysop' ) {
+			// Don't let them choose levels above their own (so they can still unprotect and edit the page).
+			// Only show them when the form isn't enabled
+			if ( $key == 'sysop' ) {
 				//special case, rewrite sysop to protect and editprotected
-				if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled )
+				if ( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled ) {
 					continue;
+				}
 			} else {
-				if( !$wgUser->isAllowed($key) && !$this->disabled )
+				if ( !$wgUser->isAllowed( $key ) && !$this->disabled && !$wgUser->isAllowed( 'editprotected' ) ) {
+					// This check is skipped for users with the 'editprotected' right
+					// as those can edit all pages anyway (protection level doesn't matter)
 					continue;
+				}
 			}
 			$levels[] = $key;
 		}
