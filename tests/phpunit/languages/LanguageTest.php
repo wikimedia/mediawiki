@@ -1142,5 +1142,18 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 1000000.0001, '1,000,000.0001' ),
 		);
 	}
+
+	function testListToText() {
+		$lang = $this->getLang();
+		$and = $lang->getMessageFromDB( 'and' );
+		$s = $lang->getMessageFromDB( 'word-separator' );
+		$c = $lang->getMessageFromDB( 'comma-separator' );
+
+		$this->assertEquals( '', $lang->listToText( array( ) ) );
+		$this->assertEquals( 'a', $lang->listToText( array( 'a' ) ) );
+		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( array( 'a', 'b' ) ) );
+		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( array( 'a', 'b', 'c' ) ) );
+		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( array( 'a', 'b', 'c', 'd' ) ) );
+	}
 }
 
