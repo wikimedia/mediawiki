@@ -133,16 +133,18 @@ class ProtectionForm {
 
 			$val = $wgRequest->getVal( "mwProtect-level-$action" );
 			if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
-				// Prevent users from setting levels that they cannot later unset
-				if( $val == 'sysop' ) {
-					// Special case, rewrite sysop to either protect and editprotected
-					if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) )
-						continue;
-				} else {
-					if( !$wgUser->isAllowed($val) )
-						continue;
+				// Prevent users from setting levels that they cannot later unset or edit
+				if (
+					// Users with the 'editprotected' right can choose all levels
+					// as those can edit all pages anyway (protection level doesn't matter)
+					$wgUser->isAllowed( 'editprotected' ) ||
+					// The user got the access level and it's not called sysop as sysop means protect
+					( $val !== 'sysop' && $wgUser->isAllowed( $val ) ) ||
+					// Special case, rewrite sysop to protect
+					( $val === 'sysop' && $wgUser->isAllowed( 'protect' ) )
+				) {
+					$this->mRestrictions[$action] = $val;
 				}
-				$this->mRestrictions[$action] = $val;
 			}
 		}
 	}
@@ -563,16 +565,21 @@ class ProtectionForm {
 
 		$levels = array();
 		foreach( $wgRestrictionLevels as $key ) {
-			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
-			if( $key == 'sysop' ) {
-				//special case, rewrite sysop to protect and editprotected
-				if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled )
-					continue;
-			} else {
-				if( !$wgUser->isAllowed($key) && !$this->disabled )
-					continue;
+			// Don't let them choose levels above their own (so they can still unprotect and edit the page).
+			// Only show them when the form isn't enabled
+			if (
+				// The form is disabled so it's safe to show all levels
+				$this->disabled ||
+				// Users with the 'editprotected' right can choose all levels
+				// as those can edit all pages anyway (protection level doesn't matter)
+				$wgUser->isAllowed( 'editprotected' ) ||
+				// The user got the access level and it's not called sysop as sysop means protect
+				( $key !== 'sysop' && $wgUser->isAllowed( $key ) ) ||
+				// Special case, rewrite sysop to protect
+				( $key === 'sysop' && $wgUser->isAllowed( 'protect' ) )
+			) {
+				$levels[] = $key;
 			}
-			$levels[] = $key;
 		}
 
 		$id = 'mwProtect-level-' . $action;
