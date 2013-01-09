@@ -59,12 +59,10 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
 			array( 'doRemoveNotNullEmptyDefaults2' ),
 			array( 'addIndex', 'page', 'i03', 'patch-page_redirect_namespace_len.sql' ),
-			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase.sql' ),
 			array( 'addField', 'uploadstash', 'us_chunk_inx', 'patch-us_chunk_inx_field.sql' ),
 			array( 'addField', 'job', 'job_timestamp', 'patch-job_timestamp_field.sql' ),
 			array( 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ),
 			array( 'doPageRestrictionsPKUKFix' ),
-			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase.sql' ),
 
 			//1.20
 			array( 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ),
@@ -84,6 +82,8 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
 			array( 'addField', 'job',           'job_attempts',       'patch-job_attempts.sql' ),
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
+			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
+			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
