@@ -581,14 +581,14 @@ class languages {
 		# Check default namespace name
 		if( isset( $this->mNamespaceNames[$code][NS_PROJECT_TALK] ) ) {
 			$default = $this->mNamespaceNames[$code][NS_PROJECT_TALK];
-			if ( strpos( $default, '$1' ) === FALSE ) {
+			if ( strpos( $default, '$1' ) === false ) {
 				$namespaces[$default] = 'default';
 			}
 		}
 
 		# Check namespace aliases
 		foreach( $this->mNamespaceAliases[$code] as $key => $value ) {
-			if ( $value == NS_PROJECT_TALK && strpos( $key, '$1' ) === FALSE ) {
+			if ( $value == NS_PROJECT_TALK && strpos( $key, '$1' ) === false ) {
 				$namespaces[$key] = '';
 			}
 		}

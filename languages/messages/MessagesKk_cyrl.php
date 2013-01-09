@@ -1053,7 +1053,6 @@ IP-мекенжайыңыз бұл беттің түзету тарихында 
 'template-protected' => '(қорғалған)',
 'template-semiprotected' => '(жартылай қорғалған)',
 'hiddencategories' => 'Бұл бет $1 жасырын санаттың мүшесі:',
-'nocreatetitle' => 'Бетті бастау шектелген',
 'nocreatetext' => '{{SITENAME}} жобасында жаңа бет бастауы шектелген.
 Кері қайтып бар бетті өңдеуіңізге болады, немесе [[Special:UserLogin|кіруіңізге не тіркелуіңізге]] болады.',
 'nocreate-loggedin' => 'Жаңа бет бастауға рұқсатыңыз жоқ.',
@@ -1492,11 +1491,13 @@ $3 келтірілген себебі: ''$2''",
 'right-userrights-interwiki' => 'Басқа үикилердегі қатысушылардың құқықтарын өңдеу',
 'right-siteadmin' => 'Дерекқорды құлыптау және құлыптауын өшіру',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Тіркелу журналы',
+'newuserlogpagetext' => 'Бұл қатысушы тіркелгі жасау журналы',
+
 # User rights log
 'rightslog' => 'Қатысушы құқықтары журналы',
 'rightslogtext' => 'Бұл қатысушы құқықтарын өзгерту журналы.',
-'rightslogentry' => '$1 кірген топтарын $2 дегеннен $3 дегенге өзгертті',
-'rightsnone' => '(ешқандай)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Осы бетті оқу',
@@ -1916,10 +1917,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Мына қатысушыдан бастап көрсету:',
 'listusers-submit' => 'Көрсет',
 'listusers-noresult' => 'Қатысушы табылған жоқ.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Тіркелу журналы',
-'newuserlogpagetext' => 'Бұл қатысушы тіркелгі жасау журналы',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Қатысушы тобы құқықтары',
@@ -3182,6 +3179,7 @@ $5
 'logentry-newusers-create2' => '$1 $3 деген аккаунт тіркеді',
 'logentry-newusers-autocreate' => '$1 аккаунты автоматты түрде тіркелді',
 'newuserlog-byemail' => 'Құпия сөз e-mail арқылы жіберілді',
+'rightsnone' => '(ешқандай)',
 
 # Search suggestions
 'searchsuggest-search' => 'Іздеу',

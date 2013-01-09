@@ -331,8 +331,18 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$title = $this->context->getTitle();
-		$article = Article::newFromTitle( $title, $this->context );
-		$this->context->setWikiPage( $article->getPage() );
+		if ( $this->context->canUseWikiPage() ) {
+			// Try to use request context wiki page, as there
+			// is already data from db saved in per process
+			// cache there from this->getAction() call.
+			$page = $this->context->getWikiPage();
+			$article = Article::newFromWikiPage( $page, $this->context );
+		} else {
+			// This case should not happen, but just in case.
+			$article = Article::newFromTitle( $title, $this->context );
+			$this->context->setWikiPage( $article->getPage() );
+		}
+
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {

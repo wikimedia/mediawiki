@@ -6,7 +6,7 @@
 	/**
 	 * Add a preview to the upload form
 	 */
-	$( function ( $ ) {
+	$( document ).ready( function () {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
 		 */
@@ -25,7 +25,7 @@
 		 * @return boolean
 		 */
 		function fileIsPreviewable( file ) {
-			var	known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
+			var known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
 				tooHuge = 10 * 1024 * 1024;
 			return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
@@ -62,7 +62,7 @@
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
 			fetchPreview( file, function ( dataURL ) {
-				var	img = new Image(),
+				var img = new Image(),
 					rotation = 0;
 
 				if ( meta && meta.tiff && meta.tiff.Orientation ) {
@@ -290,7 +290,7 @@
 	/**
 	 * Disable all upload source fields except the selected one
 	 */
-	$( function ( $ ) {
+	$( document ).ready( function () {
 		var i, $row,
 			$rows = $( '.mw-htmlform-field-UploadSourceField' );
 

@@ -71,11 +71,12 @@ class CategoryViewer extends ContextSource {
 	 * @since 1.19 $context is a second, required parameter
 	 * @param $title Title
 	 * @param $context IContextSource
-	 * @param $from String
-	 * @param $until String
+	 * @param $from Array An array with keys page, subcat,
+	 *        and file for offset of results of each section (since 1.17)
+	 * @param $until Array An array with 3 keys for until of each section (since 1.17)
 	 * @param $query Array
 	 */
-	function __construct( $title, IContextSource $context, $from = '', $until = '', $query = array() ) {
+	function __construct( $title, IContextSource $context, $from = array(), $until = array(), $query = array() ) {
 		global $wgCategoryPagingLimit;
 		$this->title = $title;
 		$this->setContext( $context );

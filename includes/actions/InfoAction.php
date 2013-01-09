@@ -165,15 +165,21 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge;
+		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgUnwatchedPageThreshold;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
-		// Get page information that would be too "expensive" to retrieve by normal means
-		$pageCounts = self::pageCounts( $title, $user );
+		$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $this->page->getLatest() );
+		$pageCounts = $wgMemc->get( $memcKey );
+		if ( $pageCounts === false ) {
+			// Get page information that would be too "expensive" to retrieve by normal means
+			$pageCounts = self::pageCounts( $title );
+
+			$wgMemc->set( $memcKey, $pageCounts );
+		}
 
 		// Get page properties
 		$dbr = wfGetDB( DB_SLAVE );
@@ -259,7 +265,11 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
-		if ( isset( $pageCounts['watchers'] ) ) {
+		if (
+			$user->isAllowed( 'unwatchedpages' ) ||
+			( $wgUnwatchedPageThreshold !== false &&
+			  $pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
+		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
@@ -297,6 +307,24 @@ class InfoAction extends FormlessAction {
 						$pageCounts['subpages']['total'],
 						$pageCounts['subpages']['redirects'],
 						$pageCounts['subpages']['nonredirects'] )
+			);
+		}
+
+		if ( $title->inNamespace( NS_CATEGORY ) ) {
+			$category = Category::newFromTitle( $title );
+			$pageInfo['category-info'] = array(
+				array(
+					$this->msg( 'pageinfo-category-pages' ),
+					$lang->formatNum( $category->getPageCount() )
+				),
+				array(
+					$this->msg( 'pageinfo-category-subcats' ),
+					$lang->formatNum( $category->getSubcatCount() )
+				),
+				array(
+					$this->msg( 'pageinfo-category-files' ),
+					$lang->formatNum( $category->getFileCount() )
+				)
 			);
 		}
 
@@ -473,11 +501,10 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns page counts that would be too "expensive" to retrieve by normal means.
 	 *
-	 * @param $title Title object
-	 * @param $user User object
+	 * @param Title $title Title to get counts for
 	 * @return array
 	 */
-	protected static function pageCounts( $title, $user ) {
+	protected static function pageCounts( Title $title ) {
 		global $wgRCMaxAge, $wgDisableCounters;
 
 		wfProfileIn( __METHOD__ );
@@ -497,19 +524,17 @@ class InfoAction extends FormlessAction {
 			$result['views'] = $views;
 		}
 
-		if ( $user->isAllowed( 'unwatchedpages' ) ) {
-			// Number of page watchers
-			$watchers = (int) $dbr->selectField(
-				'watchlist',
-				'COUNT(*)',
-				array(
-					'wl_namespace' => $title->getNamespace(),
-					'wl_title'     => $title->getDBkey(),
-				),
-				__METHOD__
-			);
-			$result['watchers'] = $watchers;
-		}
+		// Number of page watchers
+		$watchers = (int) $dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			array(
+				'wl_namespace' => $title->getNamespace(),
+				'wl_title'     => $title->getDBkey(),
+			),
+			__METHOD__
+		);
+		$result['watchers'] = $watchers;
 
 		// Total number of edits
 		$edits = (int) $dbr->selectField(

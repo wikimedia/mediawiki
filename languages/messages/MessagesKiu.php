@@ -905,11 +905,12 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-delete' => 'Pelu bıestere',
 'right-undelete' => 'Esterıtena na pele peyser bıcê',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Qeydê karberiê newey',
+
 # User rights log
 'rightslog' => 'Qeydê hequnê karberi',
 'rightslogtext' => 'No jü qeydê vurnaisê hequnê karberio.',
-'rightslogentry' => 'selahiyetê $1i $2 ra vurniya be $3i',
-'rightsnone' => '(qet jü)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'na pele bıwane',
@@ -1127,9 +1128,6 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 # Special:ActiveUsers
 'activeusers' => 'Lista karberunê fealu',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Qeydê karberiê newey',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Kome',
 'listgrouprights-rights' => 'Heqi',
@@ -1252,7 +1250,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'blanknamespace' => '(Ser)',
 
 # Contributions
-'contributions' => 'İştırakê karberi',
+'contributions' => 'İştıraqê {{GENDER:$1|karber}}i',
 'contributions-title' => '$1 de iştırakê karberi',
 'mycontris' => 'İştıraqi',
 'contribsub2' => 'Serba $1 ($2)',
@@ -1602,5 +1600,8 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 # Special:ComparePages
 'compare-page1' => 'Pele 1',
 'compare-page2' => 'Pele 2',
+
+# New logging system
+'rightsnone' => '(qet jü)',
 
 );

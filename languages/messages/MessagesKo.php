@@ -26,6 +26,7 @@
  * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
+ * @author LFM
  * @author Mintz0223
  * @author Pi.C.Noizecehx
  * @author PuzzletChung
@@ -512,7 +513,7 @@ $messages = array(
 
 'navigation-heading' => '둘러보기 메뉴',
 'errorpagetitle' => '오류',
-'returnto' => '$1(으)로 돌아갑니다.',
+'returnto' => '$1 문서로 돌아갑니다.',
 'tagline' => '{{SITENAME}}',
 'help' => '도움말',
 'search' => '찾기',
@@ -597,7 +598,7 @@ $1',
 
 'badaccess' => '권한 오류',
 'badaccess-group0' => '요청한 동작을 실행할 권한이 없습니다.',
-'badaccess-groups' => '요청한 동작은 {{PLURAL:$2|다음|다음 중 하나의}} 권한을 가진 사용자에게만 가능합니다: $1.',
+'badaccess-groups' => '요청한 동작은 {{PLURAL:$2|다음|다음 중 하나의}} 권한을 가진 사용자에게만 가능합니다: $1',
 
 'versionrequired' => '미디어위키 $1 버전 필요',
 'versionrequiredtext' => '이 문서를 사용하려면 $1 버전 미디어위키가 필요합니다.
@@ -778,7 +779,7 @@ $2',
 'nologin' => '계정이 없나요? $1.',
 'nologinlink' => '계정을 만들 수 있습니다',
 'createaccount' => '계정 만들기',
-'gotaccount' => "계정이 이미 있다면, '''$1'''.",
+'gotaccount' => '계정이 이미 있다면, $1.',
 'gotaccountlink' => '로그인하세요',
 'userlogin-resetlink' => '사용자 이름이나 비밀번호를 잊으셨나요?',
 'createaccountmail' => '이메일로 보내기',
@@ -924,6 +925,7 @@ $2
 'changeemail-oldemail' => '현재 이메일 주소 :',
 'changeemail-newemail' => '새 이메일 주소:',
 'changeemail-none' => '(없음)',
+'changeemail-password' => '{{SITENAME}} 비밀번호:',
 'changeemail-submit' => '이메일 주소 바꾸기',
 'changeemail-cancel' => '취소',
 
@@ -979,7 +981,8 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
 지금 당신의 IP 주소는 $3이고, 차단 ID는 #$5입니다.
 문의할 때에 이 정보를 같이 알려주세요.",
-'autoblockedtext' => "당신의 IP 주소는 $1이 차단한 사용자가 사용했던 IP이기 때문에 자동으로 차단되었습니다. 차단된 이유는 다음과 같습니다:
+'autoblockedtext' => '당신의 IP 주소는 $1 사용자가 차단한 사용자가 사용했던 IP이기 때문에 자동으로 차단되었습니다.
+차단된 이유는 다음과 같습니다:
 
 :$2
 
@@ -989,10 +992,10 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 
 $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.
 
-[[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
+[[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 "이메일 보내기" 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
 
-당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다.
-문의할 때에 이 정보를 같이 알려주세요.",
+현재 IP 주소는 $3이고, 차단 ID는 #$5입니다.
+문의할 때에 이 정보를 같이 알려주세요.',
 'blockednoreason' => '이유를 입력하지 않음',
 'whitelistedittext' => '문서를 편집하려면 $1해야 합니다.',
 'confirmedittext' => '문서를 고치려면 이메일 인증 절차가 필요합니다.
@@ -1111,7 +1114,6 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'template-semiprotected' => '(준보호됨)',
 'hiddencategories' => '이 문서는 다음 숨은 분류 $1개에 속해 있습니다:',
 'edittools' => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
-'nocreatetitle' => '문서 만들기 제한',
 'nocreatetext' => '{{SITENAME}}에서 새로운 문서를 만드는 것은 제한되어 있습니다.
 이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들 수 있습니다]].',
 'nocreate-loggedin' => '새 문서를 만들 권한이 없습니다.',
@@ -1349,7 +1351,7 @@ $1",
 # Diffs
 'history-title' => '"$1" 문서의 바뀜 내역',
 'difference-title' => '"$1"의 두 판 사이의 차이',
-'difference-title-multipage' => '문서 "$1"(와)과 "$2" 사이의 차이',
+'difference-title-multipage' => '"$1" 문서와 "$2" 문서 사이의 차이',
 'difference-multipage' => '(문서 사이의 차이)',
 'lineno' => '$1번째 줄:',
 'compareselectedversions' => '선택한 판을 비교하기',
@@ -1378,7 +1380,7 @@ $1",
 'prevn-title' => '이전 결과 $1개',
 'nextn-title' => '다음 결과 $1개',
 'shown-title' => '쪽마다 결과 $1개씩 보이기',
-'viewprevnext' => '보기: ($1 {{int:pipe-separator}} $2) ($3).',
+'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) 보기',
 'searchmenu-legend' => '찾기 설정',
 'searchmenu-exists' => "'''이 위키에 \"[[:\$1]]\"의 이름을 가진 문서가 있습니다.'''",
 'searchmenu-new' => "'''이 위키에 \"[[:\$1]]\" 문서를 만드세요!'''",
@@ -1667,15 +1669,13 @@ HTML 태그를 확인하세요.',
 'right-sendemail' => '다른 사용자에게 이메일 보내기',
 'right-passwordreset' => '비밀번호 재설정 이메일을 보기',
 
+# Special:Log/newusers
+'newuserlogpage' => '사용자 등록 기록',
+'newuserlogpagetext' => '사용자 등록 기록입니다.',
+
 # User rights log
 'rightslog' => '사용자 권한 기록',
 'rightslogtext' => '사용자 권한 조정 기록입니다.',
-'rightslogentry' => '사용자가 $1의 권한을 $2에서 $3으로 바꾸었습니다',
-'rightslogentry-autopromote' => '사용자의 권한이 자동적으로 $2에서 $3으로 바뀌었습니다.',
-'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 바꾸었습니다.',
-'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 바꾸었습니다.',
-'logentry-rights-autopromote' => '$1 사용자의 권한이 자동적으로 $4에서 $5으로 바뀌었습니다.',
-'rightsnone' => '(없음)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => '이 문서를 읽기',
@@ -1878,7 +1878,7 @@ $2 형식만 사용할 수 있습니다.',
 'watchthisupload' => '이 파일 주시하기',
 'filewasdeleted' => '같은 이름을 가진 파일이 올라온 적이 있었고 그 후에 삭제되었습니다.
 올리기 전에 $1을 확인해 주시기 바랍니다.',
-'filename-bad-prefix' => '올리려고 하는 파일 이름이 \'\'\'"$1"\'\'\'(으)로 시작합니다. "$1"은(는) 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
+'filename-bad-prefix' => '올리려고 하는 파일 이름이 \'\'\'"$1"\'\'\' 이름으로 시작합니다. "$1" 이름은 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
 파일에 대해 알기 쉬운 이름을 골라주세요.',
 'filename-prefix-blacklist' => ' #<!-- 이 줄은 그대로 두십시오 --> <pre>
 # 문법은 다음과 같습니다:
@@ -2320,7 +2320,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'linksearch-ok' => '찾기',
 'linksearch-text' => '"*.wikipedia.org"와 같이 와일드 카드를 사용할 수 있습니다.
 적어도 "*.org"와 같이 최상위 도메인을 입력해야 합니다.<br />
-지원하는 프로토콜: <code>$1</code> (프로토콜을 지정하지 않을 때 기본값은 http://)',
+지원하는 {{PLURAL:$2|프로토콜}}: <code>$1</code> (프로토콜을 지정하지 않을 때 기본값은 http://)',
 'linksearch-line' => '$2에서 $1 을 링크하고 있습니다.',
 'linksearch-error' => '와일드카드는 주소의 처음 부분에만 사용될 수 있습니다.',
 
@@ -2338,10 +2338,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'activeusers-hidebots' => '봇을 숨기기',
 'activeusers-hidesysops' => '관리자를 숨기기',
 'activeusers-noresult' => '사용자가 없습니다.',
-
-# Special:Log/newusers
-'newuserlogpage' => '사용자 등록 기록',
-'newuserlogpagetext' => '사용자 등록 기록입니다.',
 
 # Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
@@ -2409,8 +2405,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchnologin' => '로그인하지 않음',
 'watchnologintext' => '주시문서 목록을 고치려면 [[Special:UserLogin|로그인]]해야 합니다.',
 'addwatch' => '주시문서 목록에 추가',
-'addedwatchtext' => "\"[[:\$1]]\" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
-앞으로 이 문서나 토론 문서가 바뀌면 [[Special:RecentChanges|최근 바뀜]]에서 알아보기 쉽게 '''굵은 글씨'''로 보일 것입니다.",
+'addedwatchtext' => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.
+앞으로 이 문서나 관련된 토론 문서가 바뀌면 보일 것입니다.',
 'removewatch' => '주시문서 목록에서 제거',
 'removedwatchtext' => '"[[:$1]]" 문서를 [[Special:Watchlist|주시문서 목록]]에서 뺐습니다.',
 'watch' => '주시',
@@ -2444,7 +2440,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'enotif_subject_moved' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 옮겼습니다',
 'enotif_subject_restored' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 복구했습니다',
 'enotif_subject_changed' => '{{SITENAME}} $1 문서를 {{gender:$2|$2}} 사용자가 바꾸었습니다',
-'enotif_body_intro_deleted' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 삭제했습니다. 현재 판은 $3 에서 볼 수 있습니다.',
+'enotif_body_intro_deleted' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 삭제했습니다. $3 에서 볼 수 있습니다.',
 'enotif_body_intro_created' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 만들었습니다. 현재 판은 $3 에서 볼 수 있습니다.',
 'enotif_body_intro_moved' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 옮겼습니다. 현재 판은 $3 에서 볼 수 있습니다.',
 'enotif_body_intro_restored' => '{{SITENAME}} $1 문서를 $PAGEEDITDATE에 {{gender:$2|$2}} 사용자가 복구했습니다. 현재 판은 $3 에서 볼 수 있습니다.',
@@ -2607,7 +2603,7 @@ $UNWATCHURL
 # Undelete
 'undelete' => '삭제된 문서 보기',
 'undeletepage' => '삭제된 문서를 보거나 되살리기',
-'undeletepagetitle' => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
+'undeletepagetitle' => "'''아래는 [[:$1|$1]]의 삭제된 판입니다'''.",
 'viewdeletedpage' => '삭제된 문서 보기',
 'undeletepagetext' => '다음 {{PLURAL:$1|문서는|문서 $1개는}} 삭제되었지만 아직 보관되어 있고 되살릴 수 있습니다.
 보관된 문서는 주기적으로 삭제될 것입니다.',
@@ -2826,7 +2822,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'ipb-needreblock' => '$1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습니까?',
 'ipb-otherblocks-header' => '다른 {{PLURAL:$1|차단}} 기록',
 'unblock-hideuser' => '이 사용자 이름이 숨겨져 있기 때문에 이 사용자를 차단 해제할 수 없습니다.',
-'ipb_cant_unblock' => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
+'ipb_cant_unblock' => '오류: $1 차단 ID가 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'ipb_blocked_as_range' => '오류: IP 주소 $1은 직접 차단되지 않았기 때문에 차단 해제할 수 없습니다.
 하지만 $2로 광역 차단되었기 때문에, 광역 차단 해제로 차단을 해제할 수 있습니다.',
 'ip_range_invalid' => 'IP 범위가 잘못되었습니다.',
@@ -3062,6 +3058,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'import-error-interwiki' => '"$1" 문서는 제목이 바깥 링크(인터위키)용으로 할당되어 있기 때문에 가져오지 않습니다.',
 'import-error-special' => '"$1" 문서는 특수 문서에 속해 있기 때문에 가져오지 않습니다.',
 'import-error-invalid' => '"$1" 문서는 제목이 잘못되었기 때문에 가져오지 않습니다.',
+'import-error-unserialize' => '"$1" 문서의 $2 판이 일렬적이지 않습니다. $3 콘텐츠 모델을 사용하여 $4 형식으로 일렬화되도록 판을 보고했습니다.',
 'import-options-wrong' => '잘못된 {{PLURAL:$2|선택 사항}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => '주어진 루트 문서는 잘못된 제목입니다.',
 'import-rootpage-nosubpage' => '루트 문서의 "$1" 이름공간은 하위 문서를 허용하지 않습니다.',
@@ -3156,15 +3153,15 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Stylesheets
 'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
-'standard.css' => '/* 이 CSS 설정은 모든 스탠다드 스킨에 적용됩니다 */',
-'nostalgia.css' => '/* 이 CSS 설정은 모든 노스텔지아 스킨에 적용됩니다 */',
-'cologneblue.css' => '/* 이 CSS 설정은 모든 쾰른 블루 스킨에 적용됩니다 */',
-'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
-'myskin.css' => '/* 이 CSS 설정은 모든 마이스킨 스킨에 적용됩니다 */',
-'chick.css' => '/* 이 CSS 설정은 모든 치크 스킨에 적용됩니다 */',
-'simple.css' => '/* 이 CSS 설정은 모든 심플 스킨에 적용됩니다 */',
-'modern.css' => '/* 이 CSS 설정은 모든 모던 스킨에 적용됩니다 */',
-'vector.css' => '/* 이 CSS 설정은 모든 벡터 스킨에 적용됩니다 */',
+'standard.css' => '/* 이 CSS 설정은 스탠다드 스킨을 사용하는 사용자에게 적용됩니다 */',
+'nostalgia.css' => '/* 이 CSS 설정은 노스텔지아 스킨을 사용하는 사용자에게 적용됩니다 */',
+'cologneblue.css' => '/* 이 CSS 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
+'monobook.css' => '/* 이 CSS 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
+'myskin.css' => '/* 이 CSS 설정은 마이스킨 스킨을 사용하는 사용자에게 적용됩니다 */',
+'chick.css' => '/* 이 CSS 설정은 치크 스킨을 사용하는 사용자에게 적용됩니다 */',
+'simple.css' => '/* 이 CSS 설정은 심플 스킨을 사용하는 사용자에게 적용됩니다 */',
+'modern.css' => '/* 이 CSS 설정은 모던 스킨을 사용하는 사용자에게 적용됩니다 */',
+'vector.css' => '/* 이 CSS 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */',
 'print.css' => '/* 이 CSS 설정은 인쇄 출력 화면에 적용됩니다 */',
 'handheld.css' => '/* 이 CSS 설정은 $wgHandheldStyle에 설정한 스킨을 기반으로 한 휴대 기기에 적용됩니다 */',
 'noscript.css' => '/* 이 CSS 설정은 자바스크립트를 비활성화한 사용자에 적용됩니다 */',
@@ -3254,6 +3251,10 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-protect-cascading' => '여기서의 연쇄적 보호',
 'pageinfo-protect-cascading-yes' => '예',
 'pageinfo-protect-cascading-from' => '연쇄적 보호한 기점',
+'pageinfo-category-info' => '분류 정보',
+'pageinfo-category-pages' => '문서 수',
+'pageinfo-category-subcats' => '하위 분류 수',
+'pageinfo-category-files' => '파일 개수',
 
 # Skin names
 'skinname-standard' => '클래식',
@@ -3311,9 +3312,10 @@ $1',
 'file-nohires' => '최대 해상도입니다.',
 'svg-long-desc' => 'SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기: $3',
 'svg-long-desc-animated' => '애니메이션 SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기: $3',
+'svg-long-error' => '잘못된 SVG 파일: $1',
 'show-big-image' => '최대 해상도',
-'show-big-image-preview' => '미리 보기 크기: $1.',
-'show-big-image-other' => '다른 {{PLURAL:$2|해상도}}: $1.',
+'show-big-image-preview' => '미리 보기 크기: $1',
+'show-big-image-other' => '다른 {{PLURAL:$2|해상도}}: $1',
 'show-big-image-size' => '$1 × $2 픽셀',
 'file-info-gif-looped' => '반복됨',
 'file-info-gif-frames' => '$1 프레임',
@@ -3336,10 +3338,12 @@ $1',
 'sp-newimages-showfrom' => '$1 $2부터 올라온 파일 목록 보기',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '$1초',
-'minutes' => '$1분',
-'hours' => '$1시간',
-'days' => '$1일',
+'seconds' => '{{PLURAL:$1|$1초}}',
+'minutes' => '{{PLURAL:$1|$1분}}',
+'hours' => '{{PLURAL:$1|$1시간}}',
+'days' => '{{PLURAL:$1|$1일}}',
+'months' => '{{PLURAL:$1|$1월}}',
+'years' => '{{PLURAL:$1|$1년}}',
 'ago' => '$1 전',
 'just-now' => '방금',
 
@@ -3969,7 +3973,7 @@ $5
 'version-license' => '라이선스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
-'version-credits-summary' => '우리는 [[Special:Version|미디어위키]]에 기여한 다음 사람한테 감사드립니다.',
+'version-credits-summary' => '[[Special:Version|미디어위키]]에 기여한 다음 사람한테 감사드립니다.',
 'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
 미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용'''되거나 '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
@@ -4005,8 +4009,8 @@ $5
 # Special:SpecialPages
 'specialpages' => '특수 문서 목록',
 'specialpages-note' => '----
-* 일반 특수 문서.
-* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
+* 일반 특수 문서입니다.
+* <span class="mw-specialpagerestricted">제한된 특수 문서입니다.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other' => '다른 특수 문서',
 'specialpages-group-login' => '로그인 / 계정 만들기',
@@ -4116,6 +4120,10 @@ $5
 'logentry-newusers-create2' => '$1 사용자가 $3 사용자 계정을 만들었습니다.',
 'logentry-newusers-autocreate' => '$1 사용자 계정을 자동적으로 만들었습니다.',
 'newuserlog-byemail' => '이메일로 보낸 비밀번호',
+'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 바꾸었습니다.',
+'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 바꾸었습니다.',
+'logentry-rights-autopromote' => '$1 사용자의 권한이 자동적으로 $4에서 $5으로 바뀌었습니다.',
+'rightsnone' => '(없음)',
 
 # Feedback
 'feedback-bugornote' => '기술적 문제를 구체적으로 설명할 준비가 되었다면 [$1 버그를 신고]해 주세요.
@@ -4189,6 +4197,4 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
-# Unknown messages
-'svg-long-error' => '잘못된 SVG 파일: $1',
 );

@@ -3,6 +3,7 @@
 /**
  * @group API
  * @group Database
+ * @group medium
  */
 class ApiOptionsTest extends MediaWikiLangTestCase {
 

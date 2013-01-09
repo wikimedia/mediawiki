@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group API
+ */
 class ApiGeneratorTest extends MediaWikiTestCase {
 
 	/**

@@ -597,7 +597,7 @@ $1',
 'policy-url' => 'Project:Начела',
 'portal' => 'Портал',
 'portal-url' => 'Project:Портал на заедницата',
-'privacy' => 'Заштита на приватноста',
+'privacy' => 'Заштита на личните податоци',
 'privacypage' => 'Project:Заштита на личните податоци',
 
 'badaccess' => 'Немате овластување',
@@ -765,7 +765,7 @@ $2',
 
 Можете да продолжите со користење на {{SITENAME}} анонимно или можете <span class='plainlinks'>[$1 повторно да се најавите]</span> под исто или различно корисничко име.
 Да напоменеме дека некои страници може да продолжат да се прикажуваат како да сте најавени, се додека не го исчистите кешот на вашиот прелистувач.",
-'welcomeuser' => 'Добредојдовте, $1!',
+'welcomeuser' => 'Добр едојдовте, $1!',
 'welcomecreation-msg' => 'Вашата корисничка сметка е создадена.
 Не заборавајте да ги измените вашите [[Special:Preferences|{{SITENAME}} нагодувања]].',
 'yourname' => 'Корисничко име:',
@@ -933,6 +933,7 @@ $2
 'changeemail-oldemail' => 'Тековна е-пошта:',
 'changeemail-newemail' => 'Нова е-пошта:',
 'changeemail-none' => '(нема)',
+'changeemail-password' => 'Вашата лозинка на {{SITENAME}}:',
 'changeemail-submit' => 'Смени е-пошта',
 'changeemail-cancel' => 'Откажи',
 
@@ -1119,7 +1120,6 @@ $2
 'template-semiprotected' => '(полузаштитен)',
 'hiddencategories' => 'Оваа страница припаѓа на {{PLURAL:$1|1 скриена категорија|$1 скриени категории}}:',
 'edittools' => '<!-- Овој текст ќе се прикаже под обрасците за уредување и подигање. -->',
-'nocreatetitle' => 'Создавањето на нови страници е ограничено',
 'nocreatetext' => '{{SITENAME}} ја има ограничено можноста за создавање нови страници.
 Можете да се вратите назад и да уредувате постоечка страница или [[Special:UserLogin|најавете се или создајте нова корисничка сметка]].',
 'nocreate-loggedin' => 'Немате дозвола да создавате нови страници.',
@@ -1441,7 +1441,7 @@ $1",
 
 # Preferences page
 'preferences' => 'Нагодувања',
-'mypreferences' => 'Нагодувања',
+'mypreferences' => 'нагодувања',
 'prefs-edits' => 'Број на уредувања:',
 'prefsnologin' => 'Не сте најавени',
 'prefsnologintext' => 'Мора да бидете <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} најавени]</span> за да ги менувате вашите кориснички нагодувања.',
@@ -1670,15 +1670,13 @@ $1",
 'right-sendemail' => 'Испраќање на е-пошта до други корисници',
 'right-passwordreset' => 'Преглед на пораки по е-пошта за промена на лозинка',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Дневник на регистрирања на корисници',
+'newuserlogpagetext' => 'Ова е дневник на регистрирани корисници.',
+
 # User rights log
 'rightslog' => 'Дневник на менувања на кориснички права',
 'rightslogtext' => 'Ова е дневник на промени на кориснички права.',
-'rightslogentry' => 'Променето членство во група за $1 од $2 во $3',
-'rightslogentry-autopromote' => 'е автоматски унапреден од $2 во $3',
-'logentry-rights-rights' => '$1 го смени групното членство за $3 од $4 во $5',
-'logentry-rights-rights-legacy' => '$1 го смени групното членство за $3',
-'logentry-rights-autopromote' => '$1 е автоматски унапреден од $4 во $5',
-'rightsnone' => '(нема)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'читање на оваа страница',
@@ -2320,7 +2318,7 @@ $1',
 'linksearch-ok' => 'Барај',
 'linksearch-text' => 'Може да се користат џокери, како на „*.wikipedia.org“.
 Бара барем највисок домен, како на пр. „*.org“.<br />
-Поддржани протоколи: <code>$1</code> (задава http:// ако не укажете протокол).',
+{{PLURAL:$2|Поддржан протокол|Поддржани протоколи}}: <code>$1</code> (задава http:// ако не укажете протокол).',
 'linksearch-line' => '$1 врска во $2',
 'linksearch-error' => 'Џокер-знаците може да се користат само на почетокот во името на домаќинот.',
 
@@ -2338,10 +2336,6 @@ $1',
 'activeusers-hidebots' => 'Скриј ботови',
 'activeusers-hidesysops' => 'Скриј администратори',
 'activeusers-noresult' => 'Нема пронајдено корисници.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Дневник на регистрирања на корисници',
-'newuserlogpagetext' => 'Ова е дневник на регистрирани корисници.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Права на кориснички групи',
@@ -2400,7 +2394,7 @@ $1',
 'usermessage-editor' => 'Системски гласник',
 
 # Watchlist
-'watchlist' => 'мои набљудувања',
+'watchlist' => 'набљудувања',
 'mywatchlist' => 'Набљудувања',
 'watchlistfor2' => 'За $1 $2',
 'nowatchlist' => 'Немате ништо во списокот на набљудувања.',
@@ -2408,8 +2402,8 @@ $1',
 'watchnologin' => 'Не сте најавени',
 'watchnologintext' => 'Мора да сте [[Special:UserLogin|најавени]] за да го менувате списокот на набљудувања.',
 'addwatch' => 'Додај во списокот на набљудувања',
-'addedwatchtext' => "Страницата „[[:$1]]“ е додадена во [[Special:Watchlist|списокот на набљудувања]].
-Идните промени на оваа страница и поврзаните со неа страници за разговор ќе бидат прикажани овде, а страницата ќе се прикаже '''задебелена''' во [[Special:RecentChanges|списокот на скорешни промени]] за да можете полесно да ја препознаете.",
+'addedwatchtext' => 'Страницата „[[:$1]]“ е додадена во [[Special:Watchlist|списокот на набљудувања]].
+Идните промени на оваа страница и нејзината страница за разговор ќе се прикажуваат таму.',
 'removewatch' => 'Отстрани од списокот на набљудувања',
 'removedwatchtext' => 'Страницата „[[:$1]]“ е отстранета од [[Special:Watchlist|списокот на набљудувања]].',
 'watch' => 'Набљудувај',
@@ -2443,7 +2437,7 @@ $1',
 'enotif_subject_moved' => 'Страницата $1 на {{SITENAME}} е преместена од {{gender:$2|$2}}',
 'enotif_subject_restored' => 'Страницата $1 на {{SITENAME}} е повратена од {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Страницата $1 на {{SITENAME}} е изменета од {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'Страницата $1 на {{SITENAME}} е избришана на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
+'enotif_body_intro_deleted' => 'Страницата $1 на {{SITENAME}} е избришана на $PAGEEDITDATE од {{gender:$2|$2}}. Погл. $3.',
 'enotif_body_intro_created' => 'Страницата $1 на {{SITENAME}} е создадена на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
 'enotif_body_intro_moved' => 'Страницата $1 на {{SITENAME}} е преместена на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
 'enotif_body_intro_restored' => 'Страницата $1 на {{SITENAME}} е повратена на $PAGEEDITDATE од {{gender:$2|$2}}. Тековната ревизија ќе ја најдете на $3.',
@@ -2551,6 +2545,8 @@ $UNWATCHURL
 'prot_1movedto2' => '[[$1]] преместена како [[$2]]',
 'protect-badnamespace-title' => 'Незаштитлив именски простор',
 'protect-badnamespace-text' => 'Страниците во овој именски простор не можат да се заштитуваат.',
+'protect-norestrictiontypes-text' => 'Страницава не може да се заштити бидејќи нема расположиви типови на ограничување.',
+'protect-norestrictiontypes-title' => 'Незаштитливи страници',
 'protect-legend' => 'Потврдете ја заштитата',
 'protectcomment' => 'Причина:',
 'protectexpiry' => 'Истекува:',
@@ -2672,7 +2668,7 @@ $1',
 # Contributions
 'contributions' => '{{GENDER:$1|Кориснички}} придонеси',
 'contributions-title' => 'Придонеси на корисникот $1',
-'mycontris' => 'Придонеси',
+'mycontris' => 'придонеси',
 'contribsub2' => 'За $1 ($2)',
 'nocontribs' => 'Не се пронајдени промени што одговараат на овој критериум.',
 'uctop' => ' (врв)',
@@ -3063,6 +3059,7 @@ $1',
 'import-error-interwiki' => 'Страницата „$1“ не е увезена бидејќи името е резервирано за надворешни врски (меѓувики).',
 'import-error-special' => 'Страницата „$1“ не е увезена бидејќи припаѓа на посебен именски простор што не дозволува страници.',
 'import-error-invalid' => 'Страницата „$1“ не е увезена бидејќи името ѝ е неважечко.',
+'import-error-unserialize' => 'Ревизијата $2 на страницата „$1“ не може да се отсеријализира. Утврдено е дека користи содржинскиот модел $3 што е серијализиран како $4.',
 'import-options-wrong' => '{{PLURAL:$2|Погрешна можност|Погрешни можности}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Укажаната основна страница е неважечки наслов.',
 'import-rootpage-nosubpage' => 'Именскиот простор „$1“ на основната страница не допушта потстраници.',
@@ -3254,6 +3251,10 @@ $1',
 'pageinfo-protect-cascading' => 'Каскадната заштита на страниците важи од тука',
 'pageinfo-protect-cascading-yes' => 'Да',
 'pageinfo-protect-cascading-from' => 'Страници со каскадна заштита од',
+'pageinfo-category-info' => 'Информации за категоријата',
+'pageinfo-category-pages' => 'Број на страници',
+'pageinfo-category-subcats' => 'Број на поткатегории',
+'pageinfo-category-files' => 'Број на податотеки',
 
 # Skin names
 'skinname-standard' => 'Класично',
@@ -3312,6 +3313,7 @@ $1',
 'file-nohires' => 'Не е достапна поголема резолуција.',
 'svg-long-desc' => 'SVG податотека, номинално $1 × $2 пиксели, големина: $3',
 'svg-long-desc-animated' => 'Анимирана SVG-податотека, номинално: $1 × $2 пиксели, големина: $3',
+'svg-long-error' => 'Неважечка SVG-податотека: $1',
 'show-big-image' => 'Вистинска големина',
 'show-big-image-preview' => 'Големина на овој преглед: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Друга резолуција|Други резолуции}}: $1.',
@@ -3346,6 +3348,8 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 минута|$1 минути}}',
 'hours' => '{{PLURAL:$1|$1 час|$1 часа}}',
 'days' => '{{PLURAL:$1|$1 ден|$1 дена}}',
+'months' => '{{PLURAL:$1|$1 месец|$1 месеци}}',
+'years' => '{{PLURAL:$1|$1 година|$1 години}}',
 'ago' => 'пред $1',
 'just-now' => 'Штотуку',
 
@@ -4255,6 +4259,10 @@ $5
 'logentry-newusers-create2' => 'Направена е корисничката сметка $3; создавач: $1',
 'logentry-newusers-autocreate' => 'Сметката $1 е создадена автоматски',
 'newuserlog-byemail' => 'испратена лозинка по е-пошта',
+'logentry-rights-rights' => '$1 го смени групното членство за $3 од $4 во $5',
+'logentry-rights-rights-legacy' => '$1 го смени групното членство за $3',
+'logentry-rights-autopromote' => '$1 е автоматски унапреден од $4 во $5',
+'rightsnone' => '(нема)',
 
 # Feedback
 'feedback-bugornote' => 'Ако сте спремни подробно да го опишете техничкиот проблем, тогаш [$1 пријавете грешка]. 
@@ -4328,6 +4336,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
-# Unknown messages
-'svg-long-error' => 'Неважечка SVG-податотека: $1',
 );

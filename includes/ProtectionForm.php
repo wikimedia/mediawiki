@@ -207,11 +207,24 @@ class ProtectionForm {
 		global $wgOut;
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$wgOut->addBacklinkSubtitle( $this->mTitle );
 
 		if ( is_array( $err ) ) {
 			$wgOut->wrapWikiMsg( "<p class='error'>\n$1\n</p>\n", $err );
 		} elseif ( is_string( $err ) ) {
 			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
+		}
+
+		if ( $this->mTitle->getRestrictionTypes() === array() ) {
+			// No restriction types available for the current title
+			// this might happen if an extension alters the available types
+			$wgOut->setPageTitle( wfMessage( 'protect-norestrictiontypes-title', $this->mTitle->getPrefixedText() ) );
+			$wgOut->addWikiText( wfMessage( 'protect-norestrictiontypes-text' )->text() );
+
+			// Show the log in case protection was possible once
+			$this->showLogExtract( $wgOut );
+			// return as there isn't anything else we can do
+			return;
 		}
 
 		list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
@@ -236,7 +249,6 @@ class ProtectionForm {
 				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}
 
-		$wgOut->addBacklinkSubtitle( $this->mTitle );
 		$wgOut->addHTML( $this->buildForm() );
 		$this->showLogExtract( $wgOut );
 	}

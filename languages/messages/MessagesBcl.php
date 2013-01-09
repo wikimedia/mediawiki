@@ -849,7 +849,6 @@ An pinakahuring entrada sa talaan pinaghaya sa ibaba bilang reperensiya:",
 'template-semiprotected' => '(semi-protektado)',
 'hiddencategories' => 'Ining pahina sarong miyembro kan {{PLURAL:$1|1 pinagtagong kategorya|$1 pinagtagong mga kategorya}}:',
 'edittools' => '<!-- An teksto digdi mahihiling sa babâ kan mga pormang pighihirá asin pigkakarga. -->',
-'nocreatetitle' => 'Limitado an paggibo nin pahina',
 'nocreatetext' => '{{SITENAME}} pinagpupugol an kakayanan na magmukna nin baguhong mga pahina.
 Ika makakabalik asin magliwat kan eksistidong nang pahina, o [[Special:UserLogin|maglaog ka o magmukna nin sarong panindog]].',
 'nocreate-loggedin' => 'Ika mayo tabi nin permiso tanganing magmukna nin baguhong mga pahina.',
@@ -1402,15 +1401,13 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'right-sendemail' => 'Magpadara nin e-koreo sa ibang mga paragamit',
 'right-passwordreset' => 'Tanawon an e-koreo kan pagbabago nin sekretong panlaog',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Paragamit na talaan nin pagmukna',
+'newuserlogpagetext' => 'Ini an talaan kan mga pagmukna nin paragamit.',
+
 # User rights log
 'rightslog' => 'Usip nin derechos nin paragamit',
 'rightslogtext' => 'Ini an historial kan mga pagbabâgo sa mga derecho nin parágamit.',
-'rightslogentry' => 'Rinibayab an pagkamyembro ni $1 sa $2 sagkod sa $3',
-'rightslogentry-autopromote' => 'dati na awtomatikong pinagpalangkaw gikan sa $2 sagkod $3',
-'logentry-rights-rights' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3 gikan sa $4 pasiring sa $5',
-'logentry-rights-rights-legacy' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3',
-'logentry-rights-autopromote' => '$1 awtomatikong pinagpalangkaw gikan sa $4 pasiring sa $5',
-'rightsnone' => '(mayô)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaha ining pahina',
@@ -2045,10 +2042,6 @@ Suportadong mga panundan: <code>$1</code> (defaults to http:// kun mayo nin panu
 'activeusers-hidebots' => 'Itago an mga panalnga',
 'activeusers-hidesysops' => 'Itago an mga administrador',
 'activeusers-noresult' => 'Mayong mga paragamit na nanagboan.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Paragamit na talaan nin pagmukna',
-'newuserlogpagetext' => 'Ini an talaan kan mga pagmukna nin paragamit.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Mga karapatan kan grupo nin paragamit',
@@ -2973,6 +2966,7 @@ Sa pagpapa-andar kaini, an saimong sistema mapupuwedeng makompromiso.",
 'file-nohires' => 'Mayong mas halangkáw na resolusyon.',
 'svg-long-desc' => 'file na SVG, haros $1 × $2 pixels, sokol kan file: $3',
 'svg-long-desc-animated' => 'Animatadong SVG na sagunson, nangangaranang $1 x $2 piksel, kadakulaan nin sagunson: $3',
+'svg-long-error' => 'Imbalidong SVG na sagunson: $1',
 'show-big-image' => 'Todong resolusyon',
 'show-big-image-preview' => 'Sukol kaining patanaw: $1.',
 'show-big-image-other' => 'Ibang {{PLURAL:$2|resolusyon|mga resoluyon}}: $1.',
@@ -3758,6 +3752,10 @@ Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
 'logentry-newusers-create2' => 'An paragamit na panindog $3 pinagmukna na ni $1',
 'logentry-newusers-autocreate' => 'An paragamit na panindog $1 awtomatikong pinagmukna na',
 'newuserlog-byemail' => 'an pasa-taramon ipinadara na sa paagi kan e-surat',
+'logentry-rights-rights' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3 gikan sa $4 pasiring sa $5',
+'logentry-rights-rights-legacy' => '$1 nagliwat kan pangrupong pagkamiyembro para sa $3',
+'logentry-rights-autopromote' => '$1 awtomatikong pinagpalangkaw gikan sa $4 pasiring sa $5',
+'rightsnone' => '(mayô)',
 
 # Feedback
 'feedback-bugornote' => 'Kun ika andam na iladawan an sarong teknikal na problema na igwang detalye tabi [$1 ipaaram an kuto].
@@ -3831,6 +3829,4 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|mga siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga millenyo}}',
 
-# Unknown messages
-'svg-long-error' => 'Imbalidong SVG na sagunson: $1',
 );

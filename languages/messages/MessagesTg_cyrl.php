@@ -668,7 +668,6 @@ $1',
 'template-protected' => '(ҳифзшуда)',
 'template-semiprotected' => '(нима-муҳофизатшуда)',
 'hiddencategories' => 'Ин саҳифа дар {{PLURAL:$1|1 гурӯҳи пинҳон|$1 гурӯҳҳои пинҳон}} қарор дорад:',
-'nocreatetitle' => 'Эҷоди саҳифа маҳдуд шудааст',
 'nocreatetext' => '{{SITENAME}} қобилияти эҷоди саҳифаҳои ҷадидро маҳдуд карда аст.
 Шумо метавонед бозгашта саҳифаи мавҷудбударо вироиш кунед, ё [[Special:UserLogin|ба систем вуруд кунед ё ҳисоби корбарӣ эҷод кунед]].',
 'nocreate-loggedin' => 'Шумо иҷозати эҷоди саҳифаи ҷадидро надоред.',
@@ -1006,11 +1005,13 @@ $1',
 'right-userrights-interwiki' => 'Вироиши ихтиёроти корбарии корбарони дигар викиҳо',
 'right-siteadmin' => 'Бастн ва боз кардани пойгоҳи дода',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Гузориши эҷоди корбар',
+'newuserlogpagetext' => 'Ин гузориш аз номҳои корбарии тозасохташуда аст.',
+
 # User rights log
 'rightslog' => 'Гузориши ихтиёроти корбар',
 'rightslogtext' => 'Ин гузориш тағйироти ихтиёроти корбар аст.',
-'rightslogentry' => 'узвияти $1 аз гурӯҳ $2 ба $3 тағйир дода шуд',
-'rightsnone' => '(ҳеҷ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'вироиши ин саҳифа',
@@ -1377,10 +1378,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'Намоиши корбарон бо шурӯъ аз:',
 'listusers-submit' => 'Нишон додани',
 'listusers-noresult' => 'Ҳеҷ корбаре ёфт нашуд.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Гузориши эҷоди корбар',
-'newuserlogpagetext' => 'Ин гузориш аз номҳои корбарии тозасохташуда аст.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Ихтиёроти гурӯҳҳои корбарӣ',
@@ -2535,5 +2532,6 @@ $5
 'revdelete-restricted' => 'маҳдудиятҳо ба мудирон амалӣ шуданд',
 'revdelete-unrestricted' => 'маҳдудиятҳо аз мудирон бардошта шуданд',
 'newuserlog-byemail' => 'калимаи убур ба почтаи электронӣ фиристода шуд',
+'rightsnone' => '(ҳеҷ)',
 
 );

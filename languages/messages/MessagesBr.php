@@ -912,7 +912,6 @@ Enmont diwezhañ ar marilh a ziskouezer amañ a-is evel dave :",
 'template-semiprotected' => '(damwarezet)',
 'hiddencategories' => "{{PLURAL:$1|1 rummad kuzhet|$1 rummad kuzhet}} m'emañ rollet ar bajenn-mañ :",
 'edittools' => '<!-- Diskouezet e vo an destenn kinniget amañ dindan ar sternioù kemmañ ha kargañ. -->',
-'nocreatetitle' => "Strishaet eo bet ar c'hrouiñ pajennoù",
 'nocreatetext' => 'Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.
 Gallout a rit mont war-gil ha lakaat kemmañ ur bajenn zo anezhi dija, pe [[Special:UserLogin|en em enrollañ ha krouiñ ur gont]].',
 'nocreate-loggedin' => "N'oc'h ket aotreet da grouiñ pajennoù nevez.",
@@ -1458,12 +1457,13 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-sendemail' => "Kas ur postel d'an implijerien all",
 'right-passwordreset' => 'Gwelet ar posteloù assevel gerioù-tremen',
 
+# Special:Log/newusers
+'newuserlogpage' => "Marilh ar c'hontoù krouet",
+'newuserlogpagetext' => "Marilh krouiñ ar c'hontoù implijer.",
+
 # User rights log
 'rightslog' => 'Marilh statud an implijerien',
 'rightslogtext' => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
-'rightslogentry' => '{{Gender:.|en|he}} deus cheñchet gwirioù an {{Gender:.|implijer|implijerez}}  $1 a oa $2 hag a zo bet lakaet da $3',
-'rightslogentry-autopromote' => 'zo bet anvet ent emgefre a $2 da $3',
-'rightsnone' => '(netra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lenn ar bajenn-mañ',
@@ -2107,10 +2107,6 @@ Protokoloù skoret : <code>$1</code> (defaults to http:// na lakait hini ebet eu
 'activeusers-hidebots' => 'Kuzhat ar robotoù',
 'activeusers-hidesysops' => 'Kuzhat ar verourien',
 'activeusers-noresult' => "N'eus bet kavet implijer ebet.",
-
-# Special:Log/newusers
-'newuserlogpage' => "Marilh ar c'hontoù krouet",
-'newuserlogpagetext' => "Marilh krouiñ ar c'hontoù implijer.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gwirioù ar strolladoù implijer',
@@ -3037,6 +3033,7 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'file-nohires' => "N'haller ket gwellaat ar pizhder.",
 'svg-long-desc' => 'restr SVG file, pizhder $1 × $2 piksel, ment ar restr : $3',
 'svg-long-desc-animated' => 'Restr SVG bev, ment $1 × $2 piksel, ment ar restr: $3',
+'svg-long-error' => 'Restr SVG direizh : $1',
 'show-big-image' => 'Pizhder leun',
 'show-big-image-preview' => 'Ment ar rakweled-mañ : $1.',
 'show-big-image-other' => '{{PLURAL:$2|pizhder all|pizhderioù all}} : $1.',
@@ -3830,11 +3827,12 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-move-move_redir-noredirect' => 'kaset ar bajenn $3 da $4 gant $1 dreist un adkas hep lezel un adkas',
 'logentry-patrol-patrol' => 'Merket eo bet an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
 'logentry-patrol-patrol-auto' => 'Merket eo bet ent emgefre an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
-'logentry-newusers-newusers' => 'Ar gont implijer $1 oa bet krouet',
-'logentry-newusers-create' => 'Ar gont implijer $1 oa bet krouet',
-'logentry-newusers-create2' => 'Ar gont implijer $3 oa bet krouet gant $1',
+'logentry-newusers-newusers' => 'Krouet eo bet ar gont implijer $1',
+'logentry-newusers-create' => 'Krouet eo bet ar gont implijer $1',
+'logentry-newusers-create2' => 'Gant $1 eo bet krouet ar gont implijer $3',
 'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
 'newuserlog-byemail' => 'ger-tremen kaset dre bostel',
+'rightsnone' => '(netra)',
 
 # Feedback
 'feedback-bugornote' => "Ma'z oc'h prest da zeskrivañ ur gudenn deknikel dre ar munud e c'hallit [\$1 kemenn un draen].
@@ -3908,6 +3906,4 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
-# Unknown messages
-'svg-long-error' => 'Restr SVG direizh : $1',
 );

@@ -385,7 +385,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'templatesused' => 'Ngaahi sīpinga ʻoku ngāueʻaki he kupú ni:',
 'templatesusedpreview' => 'Ngaahi sīpinga ʻoku ngāueʻaki he vakaí ni:',
 'templatesusedsection' => 'Ngaahi sīpinga ʻoku ngāueʻaki he kongá ni:',
-'nocreatetitle' => 'ʻOku fakangatangata ʻa e fakatupu ʻo e peesi.',
 'nocreatetext' => 'Naʻe fakangatangata ʻe he tuʻuʻangá ni ʻa e lava ke fakatupu ha peesi foʻou. ʻOku ke lava ke foki pea fatu ha peesi tuʻu, pe [[Special:UserLogin|kau-ki-ai, pe fakatupu ha tohi-kau-ki-ai]].',
 
 # Account creation failure

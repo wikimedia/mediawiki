@@ -12,6 +12,7 @@
  * @author Drorsnir
  * @author Hoo
  * @author Ijon
+ * @author Inkbug
  * @author Ofekalef
  * @author Ofrahod
  * @author Rotem Dan (July 2003)
@@ -932,6 +933,7 @@ $2
 'changeemail-oldemail' => 'כתובת דוא"ל נוכחית:',
 'changeemail-newemail' => 'כתובת דוא"ל חדשה:',
 'changeemail-none' => '(אין)',
+'changeemail-password' => 'סיסמה ב{{grammar:תחילית|{{SITENAME}}}}:',
 'changeemail-submit' => 'שינוי כתובת הדוא"ל',
 'changeemail-cancel' => 'ביטול',
 
@@ -1109,7 +1111,6 @@ $2
 'template-semiprotected' => '(מוגנת חלקית)',
 'hiddencategories' => 'דף זה כלול ב{{PLURAL:$1|קטגוריה מוסתרת אחת|־$1 קטגוריות מוסתרות}}:',
 'edittools' => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
-'nocreatetitle' => 'יצירת הדפים הוגבלה',
 'nocreatetext' => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[Special:UserLogin|להיכנס לחשבון]].',
 'nocreate-loggedin' => 'אינכם מורשים ליצור דפים חדשים.',
 'sectioneditnotsupported-title' => 'עריכת פסקאות אינה נתמכת',
@@ -1660,15 +1661,13 @@ $1",
 'right-sendemail' => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 'right-passwordreset' => 'צפייה בדואר אלקטרוני של איפוס סיסמה',
 
+# Special:Log/newusers
+'newuserlogpage' => 'יומן רישום משתמשים',
+'newuserlogpagetext' => 'זהו יומן המכיל הרשמות של משתמשים.',
+
 # User rights log
 'rightslog' => 'יומן תפקידים',
 'rightslogtext' => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של $1 מ$2 ל$3',
-'rightslogentry-autopromote' => 'קודם אוטומטית מ$2 ל$3',
-'logentry-rights-rights' => '$1 שינה את ההרשאות של $3 מ$4 ל$5',
-'logentry-rights-rights-legacy' => '$1 שינה את ההרשאות של $3',
-'logentry-rights-autopromote' => '$1 קודם אוטומטית מ$4 ל$5',
-'rightsnone' => '(כלום)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'לקרוא דף זה',
@@ -2302,7 +2301,7 @@ $1',
 'linksearch-ok' => 'חיפוש',
 'linksearch-text' => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.
 נדרשת לפחות סיומת אינטרנט (TLD), למשל <span dir="ltr">"*.org"</span>.<br />
-פרוטוקולים נתמכים: <code dir="ltr">$1</code> (ברירת המחדל היא <span dir="ltr">http://</span> אם לא צוין פרוטוקול).',
+{{PLURAL:$2|פרוטוקול נתמך|פרוטוקולים נתמכים}}: <code dir="ltr">$1</code> (ברירת המחדל היא <span dir="ltr">http://</span> אם לא צוין פרוטוקול).',
 'linksearch-line' => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 
@@ -2320,10 +2319,6 @@ $1',
 'activeusers-hidebots' => 'הסתרת בוטים',
 'activeusers-hidesysops' => 'הסתרת מפעילי מערכת',
 'activeusers-noresult' => 'לא נמצאו משתמשים.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'יומן רישום משתמשים',
-'newuserlogpagetext' => 'זהו יומן המכיל הרשמות של משתמשים.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'רשימת הרשאות לקבוצה',
@@ -2390,9 +2385,8 @@ $1',
 'watchnologin' => 'לא נכנסתם לחשבון',
 'watchnologintext' => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.',
 'addwatch' => 'הוספה לרשימת המעקב',
-'addedwatchtext' => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]]. שינויים שייערכו בעתיד, בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.
-
-בנוסף, הדף יופיע בכתב מודגש ב[[Special:RecentChanges|רשימת השינויים האחרונים]], כדי להקל עליכם את המעקב אחריו.',
+'addedwatchtext' => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]].
+שינויים שייערכו בעתיד בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.',
 'removewatch' => 'הסרה מרשימת המעקב',
 'removedwatchtext' => 'הדף [[:$1]] הוסר מ[[Special:Watchlist|רשימת המעקב]].',
 'watch' => 'מעקב',
@@ -2426,7 +2420,7 @@ $1',
 'enotif_subject_moved' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} הועבר על ידי {{gender:$2|$2}}',
 'enotif_subject_restored' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שוחזר על ידי {{gender:$2|$2}}',
 'enotif_subject_changed' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שונה על ידי {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נמחק ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
+'enotif_body_intro_deleted' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נמחק ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3.',
 'enotif_body_intro_created' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} נוצר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
 'enotif_body_intro_moved' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} הועבר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
 'enotif_body_intro_restored' => 'הדף $1 ב{{grammar:תחילית|{{SITENAME}}}} שוחזר ב־$PAGEEDITDATE על ידי {{gender:$2|$2}}, ראו $3 לגרסה הנוכחית.',
@@ -2444,7 +2438,7 @@ $PAGEINTRO $NEWPAGE
 בדואר האלקטרוני: $PAGEEDITOR_EMAIL
 באתר: $PAGEEDITOR_WIKI
 
-לא תהיינה הודעות על שינויים נוספים עד שתבקרו את הדף. באפשרותכם גם לאפס את דגלי ההודעות בכל הדפים שברשימת המעקב.
+לא תהיינה הודעות על פעולות נוספות עד שתבקרו בדף. באפשרותכם גם לאפס את דגלי ההודעות בכל הדפים שברשימת המעקב.
 
              מערכת ההודעות של {{SITENAME}}
 
@@ -3028,6 +3022,7 @@ $1',
 'import-error-interwiki' => 'לא ניתן לייבא את הדף "$1" כיוון ששמו שמור לקישור חיצוני (בין־ויקי).',
 'import-error-special' => 'לא ניתן לייבא את הדף "$1" כיוון שהוא שייך למרחב שם מיוחד שלא יכול להכיל דפים.',
 'import-error-invalid' => 'לא ניתן לייבא את הדף "$1" כיוון ששמו אינו תקין.',
+'import-error-unserialize' => 'לא ניתן היה לפענח את הגרסה $2 של הדף "$1". הגרסה מסומנת כאילו היא משתמשת במודל התוכן $3, אך קודדה כ{{GRAMMAR:תחילית|$4}}.',
 'import-options-wrong' => '{{PLURAL:$2|אפשרות שגויה|אפשרויות שגויות}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'לדף הבסיס שניתן יש כותרת לא תקינה.',
 'import-rootpage-nosubpage' => 'מרחב השם "$1" של דף הבסיס אינו מאפשר דפי־משנה.',
@@ -3276,6 +3271,7 @@ $1',
 'file-nohires' => 'אין גרסה ברזולוציה גבוהה יותר.',
 'svg-long-desc' => 'קובץ SVG, הגודל המקורי: <span dir="ltr">$1 × $2</span> פיקסלים, גודל הקובץ: $3',
 'svg-long-desc-animated' => 'קובץ SVG מונפש, הגודל המקורי: <span dir="ltr">$1 × $2</span> פיקסלים, גודל הקובץ: $3',
+'svg-long-error' => 'קובץ SVG לא תקין: $1',
 'show-big-image' => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-preview' => 'גודל תצוגה זו: $1.',
 'show-big-image-other' => '{{PLURAL:$2|רזולוציה אחרת|רזולוציות אחרות}}: $1.',
@@ -3305,6 +3301,8 @@ $1',
 'minutes' => '{{PLURAL:$1|דקה|$1 דקות}}',
 'hours' => '{{PLURAL:$1|שעה|שעתיים|$1 שעות}}',
 'days' => '{{PLURAL:$1|יום|יומיים|$1 ימים}}',
+'months' => '{{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
+'years' => '{{PLURAL:$1|שנה|שנתיים|$1 שנים}}',
 'ago' => 'לפני $1',
 'just-now' => 'לפני זמן קצר',
 
@@ -4122,6 +4120,10 @@ $5
 'logentry-newusers-create2' => 'חשבון המשתמש $3 נוצר על ידי $1',
 'logentry-newusers-autocreate' => 'חשבון המשתמש $1 נוצר אוטומטית',
 'newuserlog-byemail' => 'הסיסמה נשלחה בדוא"ל',
+'logentry-rights-rights' => '$1 שינה את ההרשאות של $3 מ$4 ל$5',
+'logentry-rights-rights-legacy' => '$1 שינה את ההרשאות של $3',
+'logentry-rights-autopromote' => '$1 קודם אוטומטית מ$4 ל$5',
+'rightsnone' => '(כלום)',
 
 # Feedback
 'feedback-bugornote' => 'אם אתם מוכנים לתאר בעיה טכנית בפרטים, אנא [$1 דווחו על באג].
@@ -4195,6 +4197,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
-# Unknown messages
-'svg-long-error' => 'קובץ SVG לא תקין: $1',
 );

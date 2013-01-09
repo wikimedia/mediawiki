@@ -614,7 +614,7 @@ EOT
 
 		/* Add canonical to head if there is no local page for this shared file */
 		if( $descUrl && $this->mPage->getID() == 0 ) {
-			$out->addLink( array( 'rel' => 'canonical', 'href' => $descUrl ) );
+			$out->setCanonicalUrl( $descUrl );
 		}
 
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
@@ -1230,7 +1230,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 * @param ImagePage $imagePage
 	 */
 	function __construct( $imagePage ) {
-		parent::__construct();
+		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = clone ( $imagePage->getTitle() );
 		$this->mTitle->setFragment( '#filehistory' );

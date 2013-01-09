@@ -1,7 +1,6 @@
 /**
  * JavaScript for Special:MovePage
  */
-
-jQuery( function( $ ) {
+jQuery( document ).ready( function ( $ ) {
 	$( '#wpReason, #wpNewTitleMain' ).byteLimit();
 } );

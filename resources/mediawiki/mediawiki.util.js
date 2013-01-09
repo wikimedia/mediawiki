@@ -28,13 +28,10 @@
 					profile.platform === 'mac'
 						// Chrome on Mac
 						? 'ctrl-option-'
-						: profile.platform === 'win'
-							// Chrome on Windows
-							// (both alt- and alt-shift work, but alt-f triggers Chrome wrench menu
-							// which alt-shift-f does not)
-							? 'alt-shift-'
-							// Chrome on other (Ubuntu?)
-							: 'alt-'
+						// Chrome on Windows or Linux
+						// (both alt- and alt-shift work, but alt with E, D, F etc does not
+						// work since they are browser shortcuts)
+						: 'alt-shift-'
 				);
 
 			// Non-Windows Safari with webkit_version > 526

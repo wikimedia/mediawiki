@@ -749,6 +749,7 @@ Midlertidig adgangskode: $2',
 'changeemail-oldemail' => 'Nuværende email-adresse:',
 'changeemail-newemail' => 'Ny email-adresse:',
 'changeemail-none' => '(ingen)',
+'changeemail-password' => 'Din adgangskode til {{SITENAME}}:',
 'changeemail-submit' => 'Ændr email',
 'changeemail-cancel' => 'Afbryd',
 
@@ -931,7 +932,6 @@ Den seneste logpost vises nedenfor:",
 'template-semiprotected' => '(delvist beskyttet)',
 'hiddencategories' => 'Denne side er i {{PLURAL:$1|en skjult kategori|$1 skjulte kategorier}}:',
 'edittools' => '<!-- Denne tekst vises under formularen „Ændre“ samt "Upload". -->',
-'nocreatetitle' => 'Oprettelse af nye sider er begrænset.',
 'nocreatetext' => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:UserLogin|logge på]].',
 'nocreate-loggedin' => 'Du har ikke rettigheder til at oprette nye sider.',
 'sectioneditnotsupported-title' => 'Afsnitsredigering understøttes ikke',
@@ -1321,9 +1321,9 @@ Det kan ikke gøres om.',
 'prefs-emailconfirm-label' => 'Bekræftelse af e-mail:',
 'prefs-textboxsize' => 'Størrelse på redigeringsvindue',
 'youremail' => 'Din e-mailadresse:',
-'username' => 'Brugernavn:',
-'uid' => 'Brugernummer:',
-'prefs-memberingroups' => 'Medlem af {{PLURAL:$1|gruppen|grupperne}}:',
+'username' => '{{GENDER:$1|Brugernavn}}:',
+'uid' => '{{GENDER:$1|Brugernummer}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Medlem}} af {{PLURAL:$1|gruppen|grupperne}}:',
 'prefs-registration' => 'Registreringstidspunkt:',
 'yourrealname' => 'Dit rigtige navn:',
 'yourlanguage' => 'Sprog:',
@@ -1471,15 +1471,13 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-sendemail' => 'Sende e-mail til andre brugere',
 'right-passwordreset' => 'Se emails til nulstilling af adgangskoder',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Brugeroprettelseslog',
+'newuserlogpagetext' => 'Dette er en log over de senest oprettede brugere.',
+
 # User rights log
 'rightslog' => 'Rettighedslog',
 'rightslogtext' => 'Dette er en log over ændringer i brugeres rettigheder.',
-'rightslogentry' => 'ændrede grupperettigheder for „$1“ fra „$2“ til „$3“.',
-'rightslogentry-autopromote' => 'blev automatisk forfremmet fra $2 til $3',
-'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
-'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
-'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',
-'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'se denne side',
@@ -2103,7 +2101,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-ok' => 'Søg',
 'linksearch-text' => 'Wildcards som "*.wikipedia.org" kan benyttes.
 Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
-Understøttede protokoller: <code>$1</code> (bruger automatisk http:// hvis der ikke er angivet nogen protokol).',
+{{PLURAL:$2|Understøttet protokol|Understøttede protokoller}}: <code>$1</code> (bruger automatisk http:// hvis der ikke er angivet nogen protokol).',
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 
@@ -2121,10 +2119,6 @@ Understøttede protokoller: <code>$1</code> (bruger automatisk http:// hvis der 
 'activeusers-hidebots' => 'Skjul robotter',
 'activeusers-hidesysops' => 'Skjul administratorer',
 'activeusers-noresult' => 'Ingen brugere fundet.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Brugeroprettelseslog',
-'newuserlogpagetext' => 'Dette er en log over de senest oprettede brugere.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Brugergrupperettigheder',
@@ -2192,7 +2186,8 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 'watchnologin' => 'Ikke logget på',
 'watchnologintext' => 'Du skal være [[Special:UserLogin|logget på]] for at kunne ændre din overvågningsliste.',
 'addwatch' => 'Tilføj til overvågningsliste',
-'addedwatchtext' => "Siden \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Special:RecentChanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
+'addedwatchtext' => 'Siden "[[:$1]]" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]].
+Fremtidige ændringer af denne side og dens tilknyttede diskussionsside vil blive vist der.',
 'removewatch' => 'Fjern fra overvågningsliste',
 'removedwatchtext' => 'Siden "[[:$1]]" er blevet fjernet fra [[Special:Watchlist||din overvågningsliste]].',
 'watch' => 'Overvåg',
@@ -2226,7 +2221,7 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 'enotif_subject_moved' => '{{SITENAME}} side $1 er blevet flyttet af {{gender:$2|$2}}',
 'enotif_subject_restored' => '{{SITENAME}} side $1 er blevet gendannet af {{gender:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}} side $1 er blevet ændret af {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => '{{SITENAME}} siden $1 er blevet slettet den $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
+'enotif_body_intro_deleted' => '{{SITENAME}}siden $1 er blevet slettet $PAGEEDITDATE af {{gender:$2|$2}}, se $3.',
 'enotif_body_intro_created' => '{{SITENAME}} siden $1 er blevet oprettet den $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
 'enotif_body_intro_moved' => '{{SITENAME}} siden $1 er blevet flyttet den $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle revision.',
 'enotif_body_intro_restored' => '{{SITENAME}} siden $1 er blevet gendannet den $PAGEEDITDATE af {{gender:$2|$2}}, se $3 for den aktuelle version.',
@@ -2807,6 +2802,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'import-error-interwiki' => 'Siden "$1" importeres ikke, da dens navn er reserveret for eksterne henvisninger (interwiki).',
 'import-error-special' => 'Siden "$1" importeres ikke, da den tilhører et særligt navnerum, der ikke tillader sider.',
 'import-error-invalid' => 'Siden "$1" importeres ikke, da dens navn er ugyldigt.',
+'import-error-unserialize' => 'Ændring $2 af siden "$1" kunne ikke afserialiseres. Ændringen brugte indholdsmodel $3 serialiseret som $4.',
 'import-options-wrong' => '{{PLURAL:$2|Ugyldig indstilling|Ugyldige indstillinger}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Den rodside der er angivet har en ugyldig titel.',
 'import-rootpage-nosubpage' => 'Navnerummet "$1" tillader ikke undersider af rodsiderne.',
@@ -2972,6 +2968,10 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-protect-cascading' => 'Kaskadebeskyttelser begynder her',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Kaskadebeskyttelser begynder fra',
+'pageinfo-category-info' => 'Kategorioplysninger',
+'pageinfo-category-pages' => 'Antal sider',
+'pageinfo-category-subcats' => 'Antal underkategorier',
+'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -3028,6 +3028,7 @@ Du kan beskadige dit system hvis du udfører den.",
 'file-nohires' => 'Ingen højere opløsning fundet.',
 'svg-long-desc' => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
 'svg-long-desc-animated' => 'Animeret SVG-fil, basisstørrelse $1 × $2 punkter, filstørrelse: $3',
+'svg-long-error' => 'Ugyldig SVG-fil: $1',
 'show-big-image' => 'Version i større opløsning',
 'show-big-image-preview' => 'Størrelse af denne forhåndsvisning: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Anden opløsning|Andre opløsninger}}: $1.',
@@ -3058,6 +3059,8 @@ Du kan beskadige dit system hvis du udfører den.",
 'minutes' => '{{PLURAL: $1|$1 minut|$1 minutter}}',
 'hours' => '{{PLURAL: $1|$1 time|$1 timer}}',
 'days' => '{{PLURAL: $1|$1 dag|$1 dage}}',
+'months' => '{{PLURAL:$1|$1 måned|$1 måneder}}',
+'years' => '{{PLURAL:$1|$1 år}}',
 'ago' => '$1 siden',
 'just-now' => 'lige nu',
 
@@ -3803,6 +3806,10 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
 'newuserlog-byemail' => 'kodeord tilsendt pr. e-mail',
+'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
+'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',
+'rightsnone' => '(-)',
 
 # Feedback
 'feedback-bugornote' => 'Hvis du er klar til at beskrive et teknisk problem i detaljer, bedes du [$1 rapportere en fejl].
@@ -3876,6 +3883,4 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
-# Unknown messages
-'svg-long-error' => 'Ugyldig SVG-fil: $1',
 );

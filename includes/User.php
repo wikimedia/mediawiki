@@ -253,7 +253,7 @@ class User {
 	/**
 	 * @return String
 	 */
-	function __toString(){
+	function __toString() {
 		return $this->getName();
 	}
 
@@ -332,6 +332,9 @@ class User {
 				$this->$name = $data[$name];
 			}
 		}
+
+		$this->mLoadedItems = true;
+
 		return true;
 	}
 
@@ -1201,6 +1204,7 @@ class User {
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
+		$this->mGroups = null;
 		$this->mOptions = null;
 		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
@@ -2558,7 +2562,7 @@ class User {
 	 *
 	 * @return bool
 	 */
-	public function isAllowedAny( /*...*/ ){
+	public function isAllowedAny( /*...*/ ) {
 		$permissions = func_get_args();
 		foreach( $permissions as $permission ){
 			if( $this->isAllowed( $permission ) ){
@@ -2573,7 +2577,7 @@ class User {
 	 * @internal param $varargs string
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
-	public function isAllowedAll( /*...*/ ){
+	public function isAllowedAll( /*...*/ ) {
 		$permissions = func_get_args();
 		foreach( $permissions as $permission ){
 			if( !$this->isAllowed( $permission ) ){

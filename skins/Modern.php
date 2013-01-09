@@ -37,7 +37,7 @@ class SkinModern extends SkinTemplate {
 	/**
 	 * @param $out OutputPage
 	 */
-	function setupSkinUserCss( OutputPage $out ){
+	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles ('skins.modern');
 	}
@@ -66,7 +66,7 @@ class ModernTemplate extends MonoBookTemplate {
 
 	<!-- heading -->
 	<div id="mw_header"><h1 id="firstHeading" lang="<?php
-		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageLanguage()->getCode();
+		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 		$this->html( 'pageLanguage' );
 	?>"><span dir="auto"><?php $this->html('title') ?></span></h1></div>
 

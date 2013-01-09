@@ -747,6 +747,7 @@ $2
 'changeemail-oldemail' => 'বৰ্তমানৰ ই-মেইল ঠিকনা:',
 'changeemail-newemail' => 'নতুন ই-মেইল ঠিকনা:',
 'changeemail-none' => '(নাই)',
+'changeemail-password' => 'আপোনাৰ  {{SITENAME}} গুপ্তশব্দ:',
 'changeemail-submit' => 'ই-মেইল ঠিকনা সলনি কৰক',
 'changeemail-cancel' => 'বাতিল কৰক',
 
@@ -936,7 +937,6 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 'template-protected' => '(সুৰক্ষিত)',
 'template-semiprotected' => '(অৰ্ধ-সুৰক্ষিত)',
 'hiddencategories' => 'এই পৃষ্ঠা {{PLURAL:$1|১-টা নিহিত শ্ৰেণীৰ|$1-টা নিহিত শ্ৰেণীৰ}} সদস্য:',
-'nocreatetitle' => 'পৃষ্ঠা সৃষ্টি সীমিত',
 'nocreatetext' => '{{SITENAME}}ত নতুন পৃষ্ঠা সৃষ্টিৰ ক্ষমতা সীমাবদ্ধ কৰা হৈছে।
 আপুনি ঘূৰি গৈ বৰ্তমানে থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:UserLogin|নতুন সদস্যভৰ্তি হওক/ প্ৰবেশ কৰক]] ।',
 'nocreate-loggedin' => 'নতুন পৃষ্ঠা সৃষ্টি কৰিবলৈ আপোনাৰ অনুমতি নাই ।',
@@ -1341,8 +1341,8 @@ $1",
 'prefs-textboxsize' => 'সম্পাদনা ৱিণ্ড’ৰ আকাৰ',
 'youremail' => 'আপোনাৰ ই-মেইল *',
 'username' => '{{GENDER:$1|সদস্যনাম}}:',
-'uid' => 'সদস্য চিহ্ন:',
-'prefs-memberingroups' => '{{PLURAL:$1|টা গোটৰ|টা গোটৰ}} সদস্য:',
+'uid' => '{{GENDER:$1|User}} চিহ্ন:',
+'prefs-memberingroups' => '{{PLURAL:$1|গোট|গোটসমূহৰ}} {{GENDER:$2|সদস্য}} :',
 'prefs-registration' => 'পঞ্জীয়ন কৰাৰ সময়:',
 'yourrealname' => 'প্ৰকৃত নাম:',
 'yourlanguage' => 'ভাষা:',
@@ -1492,15 +1492,13 @@ $1",
 'right-sendemail' => 'আন সদস্যলৈ ই-পত্ৰ ঠিকনা পঠিয়াওক',
 'right-passwordreset' => 'পাছৱৰ্ড ৰি-চেটৰ ই-মেইলসমূহ দেখুৱাওক',
 
+# Special:Log/newusers
+'newuserlogpage' => 'সদস্যৰ সৃষ্টি অভিলেখ',
+'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ।',
+
 # User rights log
 'rightslog' => 'সভ্যৰ অধিকাৰৰ লেখ',
 'rightslogtext' => 'সদস্য অধিকাৰৰ পৰিৱৰ্তনসমূহৰ ল’গ',
-'rightslogentry' => "$1-ৰ গোট সদস্যপদ $2-ৰ পৰা $3-লৈ সলনি কৰা হ'ল",
-'rightslogentry-autopromote' => '$2ৰ পৰা $3লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত হ’ল',
-'logentry-rights-rights' => "$1-ৰ গোট সদস্যপদ $3-ৰ পৰা $4-লৈ $5 লৈ সলনি কৰা হ'ল",
-'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
-'logentry-rights-autopromote' => '$1ৰ পৰা  $2ৰ পৰা $3লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত হ’ল',
-'rightsnone' => '(নাই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'এই পৃষ্ঠা পঢ়ক',
@@ -2129,7 +2127,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'linksearch-ok' => 'অনুসন্ধান',
 'linksearch-text' => "ৱাইল্ডকাৰ্ডসমূহ যেনে \"*.wikipedia.org\" ব্যৱহাৰ কৰিব পাৰি।
 অন্তত এটা উচ্চ-স্তৰৰ ডমেইনৰ প্ৰয়োজন, উদাহৰণস্বৰূপ \"*.org\"। <br />
-সমৰ্থিত প্ৰ'ট'ক'লসমূহ: <code>\$1</code> (কোনো প্ৰ'ট'ক'ল নিৰ্দিষ্ট নকৰিলে http:// সূচাব)।",
+সমৰ্থিত {{PLURAL:\$2|প্ৰ'ট'ক'ল|প্ৰ'ট'ক'লসমূহ}} : <code>\$1</code> (কোনো প্ৰ'ট'ক'ল নিৰ্দিষ্ট নকৰিলে http:// সূচাব)।",
 'linksearch-line' => '$2 পৰা $1 সংযোগ কৰা হৈছে',
 'linksearch-error' => "ৱাইল্ডকাৰ্ড কেৱল হ'ষ্টনামৰ আৰম্ভণিতহে দেখা যাব ।",
 
@@ -2147,10 +2145,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'activeusers-hidebots' => 'বট নেদেখুৱাব',
 'activeusers-hidesysops' => 'প্ৰশাসক নেদেখুৱাব',
 'activeusers-noresult' => "কোনো সদস্য পোৱা নগ'ল।",
-
-# Special:Log/newusers
-'newuserlogpage' => 'সদস্যৰ সৃষ্টি অভিলেখ',
-'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ।',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
@@ -2217,8 +2211,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'watchnologin' => 'প্ৰৱেশ কৰা নাই',
 'watchnologintext' => 'নিৰীক্ষণ তালিকা পৰিৱৰ্তন কৰিবলৈ আপুনি আগতে [[Special:UserLogin|প্ৰৱেশ]] কৰিব লাগিব ।',
 'addwatch' => 'লক্ষ্য-তালিকাত অন্তৰ্ভুক্ত কৰক',
-'addedwatchtext' => "আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] \"[[:\$1]]\" অন্তৰ্ভুক্ত কৰা হ'ল।
-ভৱিষ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সাম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাখন '''গাঢ়''' আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে।",
+'addedwatchtext' => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] "[[:$1]]" পৃষ্ঠাখন অন্তৰ্ভুক্ত কৰা হ\'ল।
+ভৱিষ্যতে এই পৃষ্ঠা বা ইয়াৰ আলোচনা পৃষ্ঠাত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব।',
 'removewatch' => 'লক্ষ্য-তালিকাৰ পৰা আঁতৰাওক',
 'removedwatchtext' => '"[[:$1]]" পৃষ্ঠাখন [[Special:Watchlist|আপোনাৰ লক্ষ্য-তালিকা]]ৰ পৰা আতৰোৱা হৈছে ।',
 'watch' => 'চকু ৰাখক',
@@ -2252,7 +2246,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'enotif_subject_moved' => '{{SITENAME}} পৃষ্ঠা  $1 {{gender:$2|$2}}ৰ দ্বাৰা স্থানান্তৰ সৃষ্টি কৰা',
 'enotif_subject_restored' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা পুনৰ স্থাপন কৰা',
 'enotif_subject_changed' => '{{SITENAME}} পৃষ্ঠা $1 {{gender:$2|$2}}ৰ দ্বাৰা সলনি কৰা হ’ল',
-'enotif_body_intro_deleted' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা বিলোপ কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
+'enotif_body_intro_deleted' => '{{SITENAME}}ৰ পৃষ্ঠা $1ক $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা বিলোপ কৰা হৈছিল। $3 চাওক।',
 'enotif_body_intro_created' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা সৃষ্টি কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
 'enotif_body_intro_moved' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা স্থানান্তৰ কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
 'enotif_body_intro_restored' => '{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা পুনৰ স্থাপন কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।',
@@ -3076,6 +3070,7 @@ $1',
 'file-nohires' => 'ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।',
 'svg-long-desc' => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
 'svg-long-desc-animated' => 'এনিমেটেড SVG ফাইল, সাধাৰণতে $1 × $2 পিক্সেল, ফাইলৰ আকাৰ: $3',
+'svg-long-error' => 'অবৈধ SVG ফাইল: $1',
 'show-big-image' => "সম্পূৰ্ণ ৰিজ'লিউশ্যন",
 'show-big-image-preview' => 'এই খচৰাৰ আকাৰ: $1.',
 'show-big-image-other' => "আন {{PLURAL:$2|ৰিজ'লিউশ্যন|ৰিজ'লিউশ্যনসমূহ}}: $1।",
@@ -3868,6 +3863,10 @@ $5
 'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰা হ'ল",
 'logentry-newusers-autocreate' => '$1’ৰ একাউণ্ট স্বয়ংক্ৰিয়ভাৱে সৃষ্টি কৰা হৈছিল',
 'newuserlog-byemail' => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
+'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
+'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
+'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',
+'rightsnone' => '(নাই)',
 
 # Feedback
 'feedback-bugornote' => 'যদি আপুনি এটা কাৰিকৰী সমস্যাৰ বিৱৰণ দিবলৈ প্ৰস্তুত, অনুগ্ৰহ কৰি [$1 এটা বাগ ৰিপ\'ৰ্ট কৰক]।
@@ -3941,6 +3940,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
 
-# Unknown messages
-'svg-long-error' => 'অবৈধ SVG ফাইল: $1',
 );

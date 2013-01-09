@@ -345,7 +345,7 @@ class LegacyTemplate extends BaseTemplate {
 					$s .= $this->deleteThisPage();
 				}
 
-				if ( $wgUser->isAllowed( 'protect' ) ) {
+				if ( $wgUser->isAllowed( 'protect' ) && $title->getRestrictionTypes() ) {
 					$s .= $sep . $this->protectThisPage();
 				}
 
@@ -610,7 +610,7 @@ class LegacyTemplate extends BaseTemplate {
 		$diff = $wgRequest->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
+		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) && $title->getRestrictionTypes() ) {
 			if ( $title->isProtected() ) {
 				$text = wfMessage( 'unprotectthispage' )->text();
 				$query = array( 'action' => 'unprotect' );

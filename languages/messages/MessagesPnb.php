@@ -735,7 +735,6 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'template-protected' => '(بچایا گیا)',
 'template-semiprotected' => '(کج بچایا ہویا)',
 'hiddencategories' => 'اے صفہ {{PLURAL:$1|1 چھپی گٹھ|$1 چپھی گٹھیاں}} دا رکن اے:',
-'nocreatetitle' => 'صفحہ بنانے دی حد اے',
 'nocreatetext' => '{{SITENAME}} نے نۓ صفحے بنانے تے پابندی لائی اے۔<br />
 تسی واپس جا کے پہلاں توں موجود صفحیاں تے لکھ سکدے او یا فیر [[Special:UserLogin|اندر آؤ یا نواں کھاتہ کھولو۔]]',
 'nocreate-loggedin' => 'توانوں نواں صفحہ بنانے دی اجازت نئیں۔',
@@ -1262,12 +1261,13 @@ $1",
 'right-sendemail' => 'دوجے ورتن والیاں نوں ای-میل کرو',
 'right-passwordreset' => 'کنجی بدلی ای-میلاں نوں وکھاؤ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ورتاوا بنان آلی لاگ',
+'newuserlogpagetext' => 'اے ورتن والا بنان دی لاگ اے۔',
+
 # User rights log
 'rightslog' => 'ورتن والے دے حقاں دی لاگ',
 'rightslogtext' => 'ورتن حقاں چ تبدیلیاں دی اے لاگ اے۔',
-'rightslogentry' => 'ٹولی ممرشپ $1 لئی $2 توں $3 تک بدلو۔',
-'rightslogentry-autopromote' => '$2 توں اپنے آپ $3 تک ودایا گیا۔',
-'rightsnone' => '(کوئی وی نئیں)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'اس صفحے نوں پڑھو',
@@ -1889,10 +1889,6 @@ $1",
 'activeusers-hidebots' => 'بوٹ چھپاؤ',
 'activeusers-hidesysops' => 'مکھۓ لکاؤ',
 'activeusers-noresult' => 'کوئی ورتن والا نئیں لبیا۔',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ورتاوا بنان آلی لاگ',
-'newuserlogpagetext' => 'اے ورتن والا بنان دی لاگ اے۔',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ورتن ٹرلی حق',
@@ -3534,6 +3530,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'logentry-newusers-create2' => '$1 {{جنس:$2|بنایا}} {{جنس:$4|اک ورتن کھاتہ}} $3',
 'logentry-newusers-autocreate' => 'کھاتہ $1 اپنے آپ ای {{جنس:$2|بنایا گیا}} بنایا گیا۔',
 'newuserlog-byemail' => 'کنجی ای-میل راہ پیج دتی گئی۔',
+'rightsnone' => '(کوئی وی نئیں)',
 
 # Feedback
 'feedback-bugornote' => 'اگر تسیں اک تکنیکی مسلے نوں  پوری طراں دسن لئی تیار او تے فیر مہربانی کرکے [$1 بگ بارے دسو]۔  ںئیں تے تسیں تھلے دتا گیا فارم ورتو۔ تواڈی گل صفہ "[$3 $2]" تے جڑے گی،  تواڈے ورتن والے ناں تے براؤزر جیہڑا تسیں ورت رۓ او۔',

@@ -34,7 +34,12 @@ class SearchUpdate implements DeferrableUpdate {
 	private $mTitleWords;
 
 	function __construct( $id, $title, $text = false ) {
-		$nt = Title::newFromText( $title );
+		if ( is_string( $title ) ) {
+			$nt = Title::newFromText( $title );
+		} else {
+			$nt = $title;
+		}
+
 		if( $nt ) {
 			$this->mId = $id;
 			$this->mText = $text;

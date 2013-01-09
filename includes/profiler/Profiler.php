@@ -511,7 +511,7 @@ class Profiler {
 	/**
 	 * Log the whole profiling data into the database.
 	 */
-	public function logData(){
+	public function logData() {
 		global $wgProfilePerHost, $wgProfileToDatabase;
 
 		# Do not log anything if database is readonly (bug 5375)
@@ -588,5 +588,19 @@ class Profiler {
 		if( defined( 'MW_COMPILED' ) || function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );
 		}
+	}
+
+	/**
+	 * Get the content type sent out to the client.
+	 * Used for profilers that output instead of store data.
+	 * @return string
+	 */
+	protected function getContentType() {
+		foreach ( headers_list() as $header ) {
+			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
+				return $m[1];
+			}
+		}
+		return null;
 	}
 }

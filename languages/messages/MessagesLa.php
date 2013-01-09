@@ -701,7 +701,6 @@ Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere
 'template-protected' => '(protecta)',
 'template-semiprotected' => '(semi-protecta)',
 'hiddencategories' => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
-'nocreatetitle' => 'Creatio paginarum coercita',
 'nocreate-loggedin' => 'Tibi non licet paginas novas creare.',
 'permissionserrors' => 'Errores permissionis',
 'permissionserrorstext-withaction' => 'Tibi non licet $2, ex {{PLURAL:$1|ratione|rationibus}}:',
@@ -1469,9 +1468,8 @@ Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis 
 'watchlistanontext' => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',
 'watchnologin' => 'Conventum non est apertum',
 'watchnologintext' => '[[Special:UserLogin|Conventum aperire]] debes ut indicem paginarum custoditarum mutes.',
-'addedwatchtext' => "Pagina \"[[:\$1]]\" in [[Special:Watchlist|paginas tuas custoditas]] addita est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina '''litteris pinguibus''' apparebit in [[Special:RecentChanges|nuper mutatorum]] indice, ut sit facilius electu.
-
-Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\" ab summa pagina.",
+'addedwatchtext' => 'Pagina "[[:$1]]" in [[Special:Watchlist|paginas tuas custoditas]] addita est.
+Mutationes posthac huic paginae et paginae disputationis ibi notabuntur.',
 'removedwatchtext' => 'Pagina "[[:$1]]" ex [[Special:Watchlist|indice paginarum custoditarum]] remota est.',
 'watch' => 'Custodire',
 'watchthispage' => 'Custodire hanc paginam',

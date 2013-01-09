@@ -394,7 +394,7 @@ $messages = array(
 'nstab-project' => 'Нахшә бәрәдә',
 'nstab-image' => 'Фајл',
 'nstab-template' => 'Ғәлиб',
-'nstab-category' => 'Категоријә',
+'nstab-category' => 'Тиспир',
 
 # General errors
 'error' => 'Сәһв',
@@ -564,6 +564,10 @@ $messages = array(
 'revdel-restore-deleted' => 'Рәдд кардә быә рәвојәтон',
 'revdel-restore-visible' => 'Чијә рәвојәтон',
 'pagehist' => 'Сәһифә тарых',
+'revdelete-reasonotherlist' => 'Ҹо сәбәб',
+
+# History merging
+'mergehistory-reason' => 'Сәбәб:',
 
 # Merge log
 'revertmerge' => 'Бахш кардеј',
@@ -584,8 +588,10 @@ $messages = array(
 'nextn-title' => 'Думотоно шә $1 {{PLURAL:$1|нывыштәј|нывыштәјон}}',
 'shown-title' => 'Нишо дој $1 {{PLURAL:$1|нывыштәј|нывыштәјон}} сәһифәдә',
 'viewprevnext' => 'Дијә кардеј ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-legend' => 'Бо нәве кукон',
 'searchmenu-exists' => "'''Бы вики-нәхшәдә һесте сәһифә «[[:$1]]»'''",
 'searchmenu-new' => "'''Сәһифә офәјеј «[[:$1]]» бә ым вики-нахшәдә!'''",
+'searchhelp-url' => 'Help:Мындәриҹот',
 'searchprofile-articles' => 'Әсосә сәһифон',
 'searchprofile-project' => 'Че араијшон ијән нахшон сәһифон',
 'searchprofile-images' => 'Мултимедијә',
@@ -601,6 +607,7 @@ $messages = array(
 'search-redirect' => '(Унвони дәгиш кардеј  $1)',
 'search-section' => '(семонә $1)',
 'search-suggest' => 'Еһтимол шымә нәзәрәдә ым гәтејдәбијон: $1',
+'search-interwiki-more' => '(һәнијән)',
 'searchrelated' => 'ангыл кардә быә',
 'searchall' => 'Һәммәј',
 'showingresultsheader' => "{{PLURAL:$5|Нәтиҹә'''$1''' из '''$3'''|Нәтиҹон '''$1 — $2''' че '''$3'''}} бо '''$4'''",
@@ -628,8 +635,8 @@ $messages = array(
 'prefs-files' => 'Фајлон',
 'prefs-custom-css' => 'Хысуси CSS',
 'youremail' => 'E-номә:',
-'username' => 'Иштирокәкә ном:',
-'uid' => 'Иштирокәкә ID:',
+'username' => '{{GENDER:$1|Иштирокәкә ном}}:',
+'uid' => '{{GENDER:$1|Иштирокәкә}} ID:',
 'yourrealname' => 'Шымә әсыл ном:',
 'yourlanguage' => 'Зывон:',
 'email' => 'E-номә',
@@ -641,6 +648,9 @@ $messages = array(
 
 # Groups
 'group-user' => 'Иштирокәкон',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Иштирокәкон ғеидијоти журнал',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Ым сәһифә сәрост кардеј',
@@ -766,9 +776,6 @@ $messages = array(
 
 # Special:LinkSearch
 'linksearch-line' => '$2-ку сәбон вардә бә $1',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Иштирокәкон ғеидијоти журнал',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(иштирокәкон сијоһи)',

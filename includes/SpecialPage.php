@@ -879,17 +879,27 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected function alterForm( HTMLForm $form ) {}
 
 	/**
+	 * Get message prefix for HTMLForm
+	 *
+	 * @since 1.21
+	 * @return string
+	 */
+	protected function getMessagePrefix() {
+		return strtolower( $this->getName() );
+	}
+
+	/**
 	 * Get the HTMLForm to control behaviour
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
 
-		$form = new HTMLForm( $this->fields, $this->getContext() );
+		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getMessagePrefix() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegend( $this->msg( strtolower( $this->getName() ) . '-legend' ) );
+		$form->setWrapperLegend( $this->msg( $this->getMessagePrefix() . '-legend' ) );
 		$form->addHeaderText(
-			$this->msg( strtolower( $this->getName() ) . '-text' )->parseAsBlock() );
+			$this->msg( $this->getMessagePrefix() . '-text' )->parseAsBlock() );
 
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(

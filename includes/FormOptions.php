@@ -178,8 +178,9 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * @todo Document
-	 * @param $name String: option name
-	 * @return null
+	 * @param string $name Option name
+	 * @throws MWException If option does not exist.
+	 * @return mixed Value or the default value if it is null.
 	 */
 	public function consumeValue( $name ) {
 		$this->validateName( $name, true );

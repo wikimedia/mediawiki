@@ -58,7 +58,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_details = isset( $prop['details'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
-		$hideLogs = LogEventsList::getExcludeClause( $db );
+		$hideLogs = LogEventsList::getExcludeClause( $db, 'user', $this->getUser() );
 		if ( $hideLogs !== false ) {
 			$this->addWhere( $hideLogs );
 		}
@@ -267,9 +267,19 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				break;
 		}
 		if ( !is_null( $params ) ) {
-			$result->setIndexedTagName( $params, 'param' );
-			$result->setIndexedTagName_recursive( $params, 'param' );
-			$vals = array_merge( $vals, $params );
+			$logParams = array();
+			// Keys like "4::paramname" can't be used for output so we change them to "paramname"
+			foreach ( $params as $key => $value ) {
+				if ( strpos( $key, ':' ) === false ) {
+					$logParams[$key] = $value;
+					continue;
+				}
+				$logParam = explode( ':', $key, 3 );
+				$logParams[$logParam[2]] = $value;
+			}
+			$result->setIndexedTagName( $logParams, 'param' );
+			$result->setIndexedTagName_recursive( $logParams, 'param' );
+			$vals = array_merge( $vals, $logParams );
 		}
 		return $vals;
 	}
@@ -367,8 +377,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
-		} else {
+		} elseif ( LogEventsList::getExcludeClause( $this->getDB(), 'user', $this->getUser() )
+			=== LogEventsList::getExcludeClause( $this->getDB(), 'public' )
+		) { // Output can only contain public data.
 			return 'public';
+		} else {
+			return 'anon-public-user-private';
 		}
 	}
 

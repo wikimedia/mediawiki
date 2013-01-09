@@ -372,7 +372,7 @@ $zh2Hant = array(\n'''
         +  PHPArray( toSG ) \
         +  '\n);\n'
     
-    f = open( os.path.join( '..', 'ZhConversion.php' ), 'wb', encoding = 'utf8' )
+    f = open( os.path.join( '..', '..', '..', 'includes', 'ZhConversion.php' ), 'wb', encoding = 'utf8' )
     print ('Writing ZhConversion.php ... ')
     f.write( php )
     f.close()

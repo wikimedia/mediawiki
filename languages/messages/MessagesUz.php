@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abdulla
+ * @author Akmalzhon
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Casual
  * @author CoderSI
@@ -169,7 +170,7 @@ $messages = array(
 'cancel' => 'Bekor qilish',
 'moredotdotdot' => 'Batafsil...',
 'mypage' => 'Sahifa',
-'mytalk' => 'Suhbatim',
+'mytalk' => 'Munozara',
 'anontalk' => 'Bu IP uchun suhbat',
 'navigation' => 'Saytda harakatlanish',
 'and' => '&#32;va',
@@ -231,7 +232,7 @@ $messages = array(
 'unprotectthispage' => "Ushbu sahifaning himoyasini o'zgaritish",
 'newpage' => 'Yangi sahifa',
 'talkpage' => 'Bu sahifa haqida munozara',
-'talkpagelinktext' => 'Munozara',
+'talkpagelinktext' => 'munozara',
 'specialpage' => 'Maxsus sahifa',
 'personaltools' => 'Shaxsiy uskunalar',
 'postcomment' => 'Yangi boʻlim',
@@ -246,7 +247,7 @@ $messages = array(
 'templatepage' => "Andoza sahifasini ko'rish",
 'viewhelppage' => 'Yordam olish',
 'categorypage' => 'Turkum sahifasi',
-'viewtalkpage' => 'Munozara',
+'viewtalkpage' => 'Munozarani koʻrish',
 'otherlanguages' => 'Boshqa tillarda',
 'redirectedfrom' => '($1dan yoʻnaltirildi)',
 'redirectpagesub' => 'Yoʻnaltiruvchi sahifa',
@@ -277,8 +278,8 @@ $messages = array(
 'policy-url' => 'Project:Qoida',
 'portal' => 'Jamoa portali',
 'portal-url' => 'Project:Jamoa portali',
-'privacy' => 'Konfidensiallik siyosati',
-'privacypage' => 'Project:Konfidensiallik siyosati',
+'privacy' => 'Maxfiylik siyosati',
+'privacypage' => 'Project:Maxfiylik siyosati',
 
 'badaccess' => 'Ruxsatlilik xatosi',
 'badaccess-group0' => "Siz so'ralgan amallarni bajara olmaysiz",
@@ -387,7 +388,7 @@ Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguning
 'userloginnocreate' => 'Kirish',
 'logout' => 'Chiqish',
 'userlogout' => 'Chiqish',
-'notloggedin' => "Siz tizimda o'zingizni tanitmadingiz",
+'notloggedin' => 'Siz tizimga kirmagansiz',
 'nologin' => "Hisobingiz yoʻqmi? '''$1'''.",
 'nologinlink' => 'Hisob yaratish',
 'createaccount' => 'Hisob yaratish',
@@ -473,6 +474,7 @@ Vaqtinchalik maxfiy so'z: $2",
 'showlivepreview' => "Tezkor ko'rib chiqish",
 'showdiff' => 'O‘zgarishlarni ko‘rsatish',
 'anoneditwarning' => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
+'missingcommenttext' => 'Iltimos sharh qoldiring.',
 'summary-preview' => "Tavsif shunday bo'ladi:",
 'subject-preview' => "Sarlavha shunday bo'ladi:",
 'blockedtitle' => 'Foydalanuvchi chetlashtirildi',
@@ -489,16 +491,18 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bularni ilova qilishingiz mumkin.",
 'blockednoreason' => "sabab ko'rsatilmadi",
 'whitelistedittext' => "Siz sahifalarni o'zgartirish uchun $1.",
-'nosuchsectiontitle' => "Bo'imni topishning iloji yo'q",
+'nosuchsectiontitle' => "Bo'limni topishning iloji yo'q",
+'nosuchsectiontext' => "Siz mavjud bo'lmagan bo'limni sharhlamoqchi bo'ldingiz.
+Siz sharhlamoqchi bo'lgan bo'lim o'chirilgan yoki boshqa sarlavhaga jildirilgan bo'lishi mumkin.",
 'loginreqtitle' => 'Shaxsiyatni aniqlash talab etiladi',
 'loginreqlink' => 'Kirish',
 'loginreqpagetext' => "Boshqa sahifalarni ko'rish uchun $1",
 'accmailtitle' => "Mahfiy so'z jo'natildi.",
 'newarticle' => '(Yangi)',
 'newarticletext' => "Bu sahifa hali mavjud emas.
-Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qo'shimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] ko'ring).
-Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
-'noarticletext' => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tegishli loglarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
+Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qoʻshimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] koʻring).
+Agar bu sahifaga xatolik sabab kelib qolgan boʻlsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
+'noarticletext' => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tegishli qaydlarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
 'clearyourcache' => "'''Eslatma.''' Saqlaganingizdan so'ng o'zgarishlarni ko'rish uchun siz o'z brauzeringiz keshini tozalashingizga to'gri kelishi mumkin.
 * '''Firefox / Safari:''' ''Shift'' tugmasini bosgan holda, ''Yangilash'' unsurlar darchasini bosing, yoki ''Ctrl-F5'' yoki ''Ctrl-R'' (Macda ''⌘-R'') ni bosing
 * '''Google Chrome:''' ''Ctrl-Shift-R'' (Macda ''⌘-Shift-R'') ni bosing
@@ -507,6 +511,7 @@ Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' t
 'updated' => '(Yangilandi)',
 'note' => "'''Izoh:'''",
 'previewnote' => "'''Bu shunchaki ko‘rib chiqish. O‘zgartirishlar hali saqlangani yo‘q!'''",
+'continue-editing' => 'tahrirlashni davom ettirish',
 'editing' => '$1 tahrirlanmoqda',
 'creating' => '«$1» sahifasini yaratish',
 'editingsection' => '$1 (boʻlim) tahrirlanmoqda',
@@ -515,7 +520,7 @@ Agar yozganlaringiz keyinchalik tahrir qilinishi va qayta tarqatilishiga rozi bo
 Siz shuningdek bu yozganlaringiz sizniki yoki erkin litsenziya ostida ekanligini va'da qilmoqdasiz.
 '''MUALLIFLIK HUQUQLARI BILAN HIMOYALANGAN ISHLARNI ZINHOR BERUXSAT YUBORMANG!'''",
 'copyrightwarning2' => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
-Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar ushun $1 sahifasiga murojaat qiling).
+Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar uchun $1 sahifasiga murojaat qiling).
 '''MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!'''",
 'templatesused' => 'Ushbu sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:',
 'templatesusedpreview' => "Ushbu ko'rib chiqilayotgan sahifada foydalanilgan {{PLURAL:$1|andoza|andozalar}}:",
@@ -523,7 +528,6 @@ Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsa
 'template-protected' => '(himoyalangan)',
 'template-semiprotected' => '(yarim-himoyalangan)',
 'hiddencategories' => 'Ushbu sahifa {{PLURAL:$1|1 yashirin turkum|$1 yashirin turkumlar}}ga kiradi:',
-'nocreatetitle' => 'Sahifalarni yaratish cheklangan',
 'nocreatetext' => 'Ushbu saytda yangi sahifalar yaratish taqiqlagan.
 Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga kirishingiz]] mumkin.',
 'nocreate-loggedin' => "Sizda yangi sahifalar yaratishga ruxsat yo'q.",
@@ -535,8 +539,8 @@ Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga k
 
 Bu sahifani yaratishda davom etishdan avval uning nega avval yoʻqotilgani bilan qiziqib koʻring.
 Qulaylik uchun quyida yoʻqotilish qaydlari keltirilgan:",
-'moveddeleted-notice' => "Bu sahifa o'chirilgan.
-Ma'lumot uchun quyida o'chirishlar va qayta nomlashlar bo'yicha jurnallardan mos yozuvlar keltirilgan.",
+'moveddeleted-notice' => 'Bu sahifa oʻchirilgan.
+Maʼlumot uchun quyida oʻchirish va qayta nomlash jurnallaridan mos yozuvlar keltirilgan.',
 'log-fulllog' => "Qaydlarni to'liq ko'rish",
 'edit-conflict' => "Tashrirlash to'qnashuvi.",
 'defaultmessagetext' => "Boshlang'ich matn",
@@ -668,7 +672,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'search-relatedarticle' => "Bog'liq",
 'mwsuggest-disable' => "AJAX-takliflarini o'chirish",
 'searcheverything-enable' => 'Barcha nomfazolarda qidir',
-'searchrelated' => "bog'langan",
+'searchrelated' => 'bogʻlangan',
 'searchall' => 'barchasi',
 'showingresults' => "Quyida №'''$2'''dan boshlab '''$1''' ta {{PLURAL:$1|natija}} ko'rsatildi.",
 'showingresultsnum' => "Quyida №'''$2'''dan boshlab '''$1''' ta {{PLURAL:$1|natija}} ko'rsatildi.",
@@ -796,6 +800,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'prefs-diffs' => 'Versiyalar farqi',
 
 # User rights
+'editusergroup' => 'Foydalanuvchi guruxlarni taxrirlash',
 'userrights-groupsmember' => 'Aʼzolik:',
 'userrights-groupsmember-auto' => "Noaniq a'zo",
 'userrights-reason' => 'Sabab:',
@@ -830,9 +835,12 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'right-read' => "Sahifalarni o'qish",
 'right-edit' => 'Sahifalarni tahrirlash',
 
+# Special:Log/newusers
+'newuserlogpage' => "Ishtirokchilarni ro'yxatga olish qaydlari",
+'newuserlogpagetext' => 'Yaqinda roʻyxatdan oʻtgan foydalanuvchilar roʻyxati',
+
 # User rights log
 'rightslog' => "Ishtirokchi huquqlari bo'yicha qaydlar",
-'rightslogentry' => "ishtirokchi $1ning guruhlardagi a'zoligini $2dan $3ga o'zgartirdi",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ushbu sahifani tahrirlash',
@@ -842,7 +850,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 
 # Recent changes
 'nchanges' => "$1 {{PLURAL:$1|o'zgarish|o'zgarishlar}}",
-'recentchanges' => 'Yangi o‘zgartirishlar',
+'recentchanges' => 'Yangi oʻzgarishlar',
 'recentchanges-legend' => 'Yangi tahrirlar moslamalari',
 'recentchanges-summary' => "Bu sahifada siz oxirgi o'zgartirishlarni ko'rishingiz mumkin.",
 'recentchanges-feed-description' => "Vikida mazkur oqimdagi oxirgi o'zgarishlarni kuzatish",
@@ -863,7 +871,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'diff' => 'farq',
 'hist' => 'tarix',
 'hide' => 'Yashirish',
-'show' => 'Koʻrsatish',
+'show' => 'koʻrsatish',
 'minoreditletter' => 'k',
 'newpageletter' => 'Y',
 'boteditletter' => 'b',
@@ -1014,31 +1022,53 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 'categoriespagetext' => 'The following {{PLURAL:$1|category contains|categories contain}} pages or media.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
+'categoriesfrom' => 'Quyidagidan boshlanuvchi turkumlarni koʻrsatish:',
+'special-categories-sort-count' => 'miqdori bo‘yicha saralash',
+'special-categories-sort-abc' => 'alifbo bo‘yicha saralash',
 
 # Special:DeletedContributions
+'deletedcontributions' => 'Foydalanuvchining o‘chirilgan hissasi',
+'deletedcontributions-title' => 'O‘chirilgan foydalanuvchilar hissalari',
 'sp-deletedcontributions-contribs' => 'hissa',
 
 # Special:LinkSearch
+'linksearch' => 'Tashqi havolalarni qidirish',
+'linksearch-pat' => 'Qidiruv uchun andaza',
 'linksearch-ns' => 'Nomfazo:',
 'linksearch-ok' => 'Qidirish',
 'linksearch-line' => '$2 ichidan $1 ga havola',
 
 # Special:ListUsers
+'listusersfrom' => 'Quyidagidan boshlanuvchi foydalanuvchilarni koʻrsatish:',
 'listusers-submit' => 'Koʻrsatish',
+'listusers-noresult' => 'Foydalanuvchilar topilmadi.',
+'listusers-blocked' => '(chetlashtirilgan)',
 
-# Special:Log/newusers
-'newuserlogpage' => "Ishtirokchilarni ro'yxatga olish qaydlari",
+# Special:ActiveUsers
+'activeusers' => 'Faol foydalanuvchilar roʻyxati',
+'activeusers-from' => 'Quyidagidan boshlanuvchi foydalanuvchilarni koʻrsatish:',
+'activeusers-hidebots' => 'Botlarni yashirish',
+'activeusers-hidesysops' => 'Maʼmurlarni yashirish',
+'activeusers-noresult' => 'Foydalanuvchilar topilmadi.',
 
 # Special:ListGroupRights
+'listgrouprights' => 'Foydalanuvchilar guruhi huquqlari',
 'listgrouprights-group' => 'Guruh',
 'listgrouprights-rights' => 'Huquqlar',
+'listgrouprights-helppage' => 'Help:Guruhlar huquqlari',
 'listgrouprights-members' => '(a’zolar ro‘yxati)',
 
 # E-mail user
 'emailuser' => 'Foydalanuvchiga maktub',
+'emailuser-title-target' => 'Ushbu {{GENDER:$1|foydalanuvchi}}ga maktub joʻnatish',
+'emailuser-title-notarget' => 'Foydalanuvchiga elektron maktub yozish',
+'emailpage' => 'Foydalanuvchiga maktub',
+'usermailererror' => 'Elektron pochta xabarini joʻnatishda xatolik yuz berdi:',
 'defemailsubject' => '{{SITENAME}} — $1 tomonidan maktub',
+'usermaildisabled' => 'Foydalanuvchi elektron pochtasi o‘chirilgan',
 'noemailtitle' => 'Elektron pochta manzili mavjud emas',
 'noemailtext' => "Bu foydalanuvchi e-mail manzil ko'rsatgani yo'q.",
+'nowikiemailtitle' => 'Maktub joʻnatishga ruxsat yoʻq',
 'emailtarget' => 'Oluvchi ishtirokchining ismini kiriting',
 'emailusername' => 'Ishtirokchi nomi:',
 'emailusernamesubmit' => "Jo'natish",
@@ -1048,6 +1078,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'emailsubject' => 'Sarlavha:',
 'emailmessage' => 'Xabar',
 'emailsend' => 'Joʻnatish',
+'emailccme' => 'Maktub nusxasini menga joʻnatish',
 'emailccsubject' => '$1ga maktubingizning nusxasi: $2',
 'emailsent' => "Xat jo'natildi",
 'emailsenttext' => "Sizning elektron maktubingiz jo'natildi.",
@@ -1085,63 +1116,95 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'enotif_mailer' => "{{SITENAME}} Pochta orqali e'lon qilish xizmati",
 'enotif_reset' => "Hamma sahifalarni ko'rib chiqilgan deb belgilash",
 'enotif_impersonal_salutation' => '{{SITENAME}} ishtirokchisi',
+'enotif_subject_deleted' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan o‘chirildi',
+'enotif_subject_created' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan yaratildi',
+'enotif_subject_moved' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan qayta nomlandi',
+'enotif_subject_restored' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan tiklandi',
+'enotif_subject_changed' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan oʻzgartirildi',
+'enotif_body_intro_deleted' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan o‘chirildi, qarang: $3.',
+'enotif_body_intro_created' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan yaratildi, joriy variantini ko‘rish uchun $3ga qarang.',
+'enotif_body_intro_moved' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan qayta nomlandi, joriy variantini ko‘rish uchun $3ga qarang.',
+'enotif_body_intro_restored' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan tiklandi, joriy variantini ko‘rish uchun $3ga qarang.',
+'enotif_body_intro_changed' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan o‘zgartirildi, joriy variantini ko‘rish uchun $3ga qarang.',
 'enotif_lastvisited' => "Oxirgi tashrifingizdan buyon sodir bo'lgan barcha o'zgarishlarni ko'rish uchun $1 ga qarang.",
 'enotif_lastdiff' => "O'zgarishlar bilan tanishish uchun $1 ga qarang.",
 'enotif_anon_editor' => 'anonim ishtirokchi $1',
-'enotif_body' => "Hurmatli \$WATCHINGUSERNAME,
+'enotif_body' => 'Hurmatli $WATCHINGUSERNAME,
 
-\$PAGEEDITDATE kuni \"{{SITENAME}}\" loyihasining \$PAGETITLE sahifasi ishtirokchi \$PAGEEDITOR tomonidan \$CHANGEDORCREATED, joriy versiyani ko'rish uchun \$PAGETITLE_URL havolasi bo'yicha o'ting.
+$PAGEINTRO $NEWPAGE
 
-\$NEWPAGE
-
-O'zgarish bo'yicha qisqacha izoh: \$PAGESUMMARY \$PAGEMINOREDIT
+O‘zgarish bo‘yicha qisqacha izoh: $PAGESUMMARY $PAGEMINOREDIT
 
 Tahrirlovchiga murojaat qilish:
-el. pochta: \$PAGEEDITOR_EMAIL
-viki: \$PAGEEDITOR_WIKI
+el. pochta: $PAGEEDITOR_EMAIL
+viki: $PAGEEDITOR_WIKI
 
-Agar siz sahifaga o'tib ko'rmasangiz, u holda uning keyingi o'zgarishlari bo'yicha boshqa bildirish xabarlari kelmaydi.
-Siz shuningdek o'zingizning kuzatuv ro'yxatingizda barcha sahifalar uchun bildirish moslamasini o'chirishingiz mumkin.
+Agar siz sahifaga o‘tib ko‘rmasangiz, u holda uning keyingi o‘zgarishlari bo‘yicha boshqa bildirish xabarlari kelmaydi. Siz, shuningdek o‘z kuzatuv ro‘yxatingizda barcha sahifalar uchun xabar berish moslamasini o‘chirishingiz mumkin.
 
-             {{grammar:genitive|{{SITENAME}}}}ning axborot berish tizimi
+{{SITENAME}}ning xabar berish tizimi
 
 --
-Bildirishlar moslamalarini o'zgartirish
+Xabar berish moslamalarini o‘zgartirish uchun quyidagi havola bo‘yicha o‘ting
 {{canonicalurl:{{#special:Preferences}}}}
 
-O'zingizning kuzatuv ro'yxatingiz moslamalarini o'zgartirish
+O‘z kuzatuv ro‘yxatingiz moslamalarini o‘zgartirish uchun quyidagi havola bo‘yicha o‘ting
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Sizning kuzatuv ro'yxatingizdagi sahifalarni o'chirish
-\$UNWATCHURL
+O‘z kuzatuv ro\'yxatingizdan sahifani o‘chirish uchun quyidagi havola bo‘yicha o‘ting
+$UNWATCHURL
 
 Qayta aloqa va yordam
-{{canonicalurl:{{MediaWiki:Helppage}}}}",
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage' => "Sahifani o'chirish",
 'confirm' => 'Tasdiqlash',
+'excontent' => 'tarkibi: "$1"',
+'exblank' => 'sahifa boʻsh edi',
+'delete-confirm' => '$1 — oʻchirish',
+'delete-legend' => 'O‘chirish',
 'actioncomplete' => 'Bajarildi',
 'actionfailed' => 'Jarayon amalga oshmadi',
 'deletedtext' => '"$1" yoʻqotildi.
 Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'dellogpage' => 'Yoʻqotish qaydlari',
+'dellogpagetext' => 'Quyida oxirgi oʻchirish qaydlari keltirilgan',
 'deletionlog' => 'yoʻqotish qaydlari',
+'reverted' => 'Eski holiga keltirildi',
 'deletecomment' => 'Sabab:',
 'deleteotherreason' => 'Boshqa/qoʻshimcha sabab:',
 'deletereasonotherlist' => 'Boshqa sabab',
+'delete-edit-reasonlist' => 'Sabablar roʻyxatini tahrirlash',
 
 # Rollback
+'rollback' => 'Oʻzgarishlarni eski holiga keltirish',
+'rollback_short' => 'Eski holiga keltirish',
 'rollbacklink' => 'eski holiga keltirish',
+'rollbacklinkcount' => '$1 {{PLURAL:$1| ta tahrir}}ni eski holiga keltirish',
+'rollbacklinkcount-morethan' => '$1 {{PLURAL:$1| tadan koʻp tahrir}}ni eski holiga keltirish',
+'rollbackfailed' => 'Eski holiga keltirishda xatolik',
 'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|munozara]]) tahrirlari [[User:$1|$1]] versiyasiga qaytarildi',
+
+# Edit tokens
+'sessionfailure-title' => 'Seansda xatolik',
 
 # Protect
 'protectlogpage' => 'Himoyalash qaydlari',
 'protectedarticle' => '"[[$1]]" sahifasi himoyalandi',
 'modifiedarticleprotection' => '"[[$1]]" uchun himoyalash darajasini o\'zgartirdi',
 'movedarticleprotection' => 'himoyalash moslamalarini "[[$2]]"dan "[[$1]]"ga o\'tkazdi',
+'protect-legend' => 'Himoya oʻrnatishni tasdiqlang',
+'protectcomment' => 'Sabab:',
+'protectexpiry' => 'Tugaydi:',
 'protect-level-sysop' => 'Faqat administratorlar uchun',
+'protect-summary-cascade' => 'pog‘onali',
+'protect-expiring-local' => '$1da tugaydi',
 'protect-expiry-indefinite' => 'muddatsiz',
+'protect-othertime' => 'Boshqa vaqt:',
+'protect-othertime-op' => 'boshqa vaqt',
+'protect-existing-expiry' => 'Joriy tugash vaqti: $2, $3',
+'protect-otherreason' => 'Boshqa/qo‘shimcha sabab',
+'protect-otherreason-op' => 'Boshqa sabab',
 'protect-edit-reasonlist' => "Sabablar ro'yxatini tahrirlash",
 'protect-expiry-options' => '1 soat:1 hours,1 kun:1 day,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
 'restriction-type' => 'Huquqlar:',
@@ -1185,9 +1248,9 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'blanknamespace' => '(asosiy)',
 
 # Contributions
-'contributions' => 'Foydalanuvchining hissasi',
-'contributions-title' => '$1 {{GENDER:$1|foydalanuvchisining}} hissasi',
-'mycontris' => 'Hissam',
+'contributions' => '{{GENDER:$1|Foydalanuvchi}} hissasi',
+'contributions-title' => '{{GENDER:$1|Foydalanuvchi}} $1 hissasi',
+'mycontris' => 'Hissa',
 'contribsub2' => '$1 uchun ($2)',
 'nocontribs' => "Belgilangan shartlarga muvofiq o'zgarishlar topilmadi",
 'uctop' => '(oxirgi)',
@@ -1197,9 +1260,9 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'sp-contributions-newbies' => 'Faqatgina yangi foydalanuvchilarning hissalarini koʻrsat',
 'sp-contributions-newbies-sub' => 'Yangi hisob yozuvlaridan',
 'sp-contributions-newbies-title' => 'Yangi hisob yozuvlarining hissalari',
-'sp-contributions-blocklog' => 'Chetlashtirish qaydlari',
+'sp-contributions-blocklog' => 'chetlatishlar',
 'sp-contributions-deleted' => "o'chirilgan tahrirlar",
-'sp-contributions-uploads' => 'yuklanmalar',
+'sp-contributions-uploads' => 'yuklamalar',
 'sp-contributions-logs' => 'qaydlar',
 'sp-contributions-talk' => 'munozara',
 'sp-contributions-userrights' => 'foydalanuvchining huquqlarini boshqarish',
@@ -1214,6 +1277,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'whatlinkshere-page' => 'Sahifa:',
 'linkshere' => "Quyidagi sahifalar '''[[:$1]]''' sahifasiga bog'langan:",
 'nolinkshere' => "'''[[:$1]]''' sahifasiga hech qaysi sahifa bog‘lanmagan.",
+'nolinkshere-ns' => "Tanlangan nomfazoda '''[[:$1]]'''ga bog‘langan sahifalar mavjud emas.",
 'isredirect' => 'yoʻnaltiruvchi sahifa',
 'istemplate' => 'qoʻshimcha',
 'isimage' => 'faylli havola',
@@ -1245,27 +1309,68 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 ** Tahdid, ishtirokchilarni ta'qib qilish
 ** Bir necha hisob yozuvlaridan o'z manfaatlarida foydalanish
 ** Ishtirokchining nomaqbul ismi",
+'ipbsubmit' => 'Ushbu foydalanuvchini chetlashtirish',
 'ipbother' => 'Boshqa vaqt:',
 'ipboptions' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
-'ipblocklist' => 'Chetlashtirilgan IP manzillari va foydalanuvchilar',
+'ipbotheroption' => 'boshqa',
+'ipbotherreason' => 'Boshqa/qo‘shimcha sabab',
+'ipb-edit-dropdown' => 'Sabablar ro‘yxatini tahrirlash',
+'ipb-unblock-addr' => '$1dan toʻsiqni olish',
+'unblockip' => 'Foydalanuvchidan to‘siqni olib tashlash',
+'ipusubmit' => 'Ushbu chetlashtirishni olib tashlash',
+'unblocked' => '[[User:$1|$1]]dan to‘siq olib tashlandi',
+'unblocked-range' => '$1dan to‘siq olib tashlandi',
+'blocklist' => 'Chetlashtirilgan foydalanuvchilar',
+'ipblocklist' => 'Chetlashtirilgan foydalanuvchilar',
+'blocklist-timestamp' => 'Sana/vaqt',
+'blocklist-target' => 'Maqsad',
+'blocklist-expiry' => 'Tugaydi',
+'blocklist-by' => 'Chetlashtirgan maʻmur',
+'blocklist-params' => 'Chetlashtirish moslamalari',
+'blocklist-reason' => 'Sabab',
+'ipblocklist-submit' => 'Qidiruv',
+'ipblocklist-localblock' => 'Mahalliy chetlashtirish',
+'ipblocklist-otherblocks' => 'Boshqa {{PLURAL:$1|chetlashtirishlar}}',
+'infiniteblock' => 'muddatsiz',
+'expiringblock' => '$1 soat $2da tugaydi',
+'anononlyblock' => 'faqat anonimlar',
+'noautoblockblock' => 'avtochetlashtirish o‘chirilgan',
+'createaccountblock' => 'hisob yozuvi yaratish taqiqlangan',
 'emailblock' => "xatlar jo'natish taqiqlandi",
+'blocklist-nousertalk' => 'o‘zining munozara sahifasini tahrirlay olmaydi',
+'ipblocklist-empty' => 'Toʻsiqlar roʻyxati boʻsh.',
 'blocklink' => 'chetlashtirish',
 'unblocklink' => "muhosarani (to'sishni) bekor qilish",
 'change-blocklink' => "Muhosarani (to'siqni) o'zgartirmoq",
-'contribslink' => 'hissasi',
-'blocklogpage' => 'Chetlashtirish qaydlari',
+'contribslink' => 'hissa',
+'emaillink' => 'e-maktub jo‘natish',
+'blocklogpage' => 'Chetlatish qaydlari',
 'blocklogentry' => '$2 davrga [[$1]]ni chetlashtirdi $3',
 'block-log-flags-nocreate' => 'hisob ochish toʻxtatilgan',
 'block-log-flags-nousertalk' => "o'zining munozara sahifasini tahrirlay olmaydi",
+'proxyblocksuccess' => 'Bajarildi.',
 
 # Move page
-'movearticle' => "Sahifani ko'chirish",
+'move-page' => '$1 — qayta nomlash',
+'move-page-legend' => 'Sahifani qayta nomlash',
+'movearticle' => 'Sahifani qayta nomlash',
+'movenologin' => 'Siz tizimga kirmagansiz',
+'newtitle' => 'Yangi nom:',
 'movepagebtn' => 'Sahifani koʻchirish',
-'pagemovedsub' => 'Koʻchirildi',
+'pagemovedsub' => 'Sahifa qayta nomlandi',
 'movepage-moved' => '\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'',
+'movepage-moved-redirect' => 'Qayta yo‘naltirish yaratildi.',
+'movedto' => 'quyidagiga qayta nomlandi',
 'movelogpage' => 'Koʻchirish qaydlari',
+'movesubpage' => '{{PLURAL:$1|Ostsahifa|Ostsahifalar}}',
+'movesubpagetext' => 'Ushbu sahifada $1 {{PLURAL:$1| ta ostsahifa}} mavjud.',
+'movenosubpage' => 'Bu sahifa ostsahifalarga ega emas.',
 'movereason' => 'Sabab:',
 'revertmove' => 'qaytarish',
+'delete_and_move' => 'O‘chirish va qayta nomlash',
+'delete_and_move_confirm' => 'Ha, ushbu sahifa o‘chirilsin',
+'move-over-sharedrepo' => '== Fayl allaqachon mavjud ==
+Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumiy omborda to‘silishiga olib keladi.',
 
 # Export
 'export' => 'Sahifalar eksporti',
@@ -1276,11 +1381,12 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'export-addns' => "Qo'shish",
 'export-download' => 'Fayl sifatida saqlash',
 'export-templates' => 'Andozalarni kiritish',
+'export-pagelinks' => 'Teranligi quyidagicha bo‘lgan bog‘langan sahifalarni kiritish:',
 
 # Namespace 8 related
 'allmessages' => 'Tizim xabarlari',
 'allmessagesname' => 'Nomi',
-'allmessagesdefault' => "Boshlang'ich matn",
+'allmessagesdefault' => 'Boshlangʻich matn',
 'allmessagescurrent' => 'Joriy xabar matni',
 'allmessages-filter-all' => 'Barcha',
 'allmessages-language' => 'Til:',
@@ -1308,7 +1414,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'tooltip-ca-talk' => 'Sahifa matni borasida munozara',
 'tooltip-ca-edit' => "Siz bu sahifani tahrirlashingiz mumkin. Iltimos, saqlashdan oldim ko'rib chiqish tugmasidan foydalaning.",
 'tooltip-ca-addsection' => 'Yangi boʻlim ochish',
-'tooltip-ca-viewsource' => "Bu sahifa himoyalangan. Siz uning manbasini ko'rishingiz mumkin.",
+'tooltip-ca-viewsource' => 'Bu sahifa himoyalangan. Siz uning manbasini koʻrishingiz mumkin.',
 'tooltip-ca-history' => 'Bu sahifaning oldingi versiyalari.',
 'tooltip-ca-protect' => 'Bu sahifani himoyalash',
 'tooltip-ca-unprotect' => "Ushbu sahifaning himoyasini o'zgaritish",
@@ -1369,6 +1475,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'pageinfo-watchers' => 'Sahifa kuzatuvchilari soni',
 'pageinfo-edits' => 'Jami tahrirlar soni',
 'pageinfo-toolboxlink' => 'Sahifa haqida maʼlumot',
+'pageinfo-redirectsto' => 'Qayta yoʻnaltirish',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -1494,8 +1601,8 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # New logging system
 'logentry-move-move' => '$1 $3 sahifasini $4ga koʻchirdi',
 'logentry-patrol-patrol-auto' => '$1 $3 sahifasining $4 versiyasini avtomatik patrulladi',
-'logentry-newusers-newusers' => '$1 ishtirokchisining hisob yozuvi yaratildi',
-'logentry-newusers-create' => '$1 ishtirokchisining hisob yozuvi yaratildi',
+'logentry-newusers-newusers' => '$1 hisob yozuvi yaratildi',
+'logentry-newusers-create' => '$1 hisob yozuvi yaratildi',
 
 # Feedback
 'feedback-close' => 'Bajarildi',

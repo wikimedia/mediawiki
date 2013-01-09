@@ -88,6 +88,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		FileBackendGroup::destroySingleton();
 
 		$this->teardownUploadDir( $this->uploadDir );
+
+		parent::tearDown();
 	}
 
 	private $uploadDir;

@@ -25,6 +25,12 @@
  *
  * @author Daniel Kinzler
  */
+
+/**
+ * Base interface for content objects.
+ *
+ * @ingroup Content
+ */
 interface Content {
 
 	/**

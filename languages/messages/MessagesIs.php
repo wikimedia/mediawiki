@@ -461,6 +461,7 @@ Of margir notendur eru að reyna að skoða þessa síðu.
 Vinsamlegast bíddu í smástund áður en þú reynir að sækja þessa síðu aftur.
 
 $1',
+'pool-timeout' => 'Of löng bið efttir lás',
 'pool-queuefull' => 'Vefþjónninn er yfirhlaðinn í augnablikinu.',
 'pool-errorunknown' => 'Óþekkt villa',
 
@@ -482,7 +483,7 @@ $1',
 'portal' => 'Samfélagsgátt',
 'portal-url' => 'Project:Samfélagsgátt',
 'privacy' => 'Meðferð persónuupplýsinga',
-'privacypage' => 'Project:Stefnumál um friðhelgi',
+'privacypage' => 'Project:Meðferð persónuupplýsinga',
 
 'badaccess' => 'Aðgangsvilla',
 'badaccess-group0' => 'Þú hefur ekki leyfi til að framkvæma þá aðgerð sem þú baðst um.',
@@ -593,6 +594,8 @@ Gjörðu svo vel og tilkynntu atvikið til [[Special:ListUsers/sysop|stjórnanda
 'cannotdelete' => 'Ekki var hægt að eyða síðunni "$1".
 Líklegt er að einhver annar hafi gert það.',
 'cannotdelete-title' => 'Gat ekki eytt síðunni $1',
+'delete-hook-aborted' => 'Eyðing síðu stöðvuð af viðbótarkrók (extension hook).
+Engin skýring gefin.',
 'badtitle' => 'Slæmur titill',
 'badtitletext' => 'Umbeðin síðutitill er ógildur.',
 'perfcached' => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar. Allt að {{PLURAL:$1|ein niðurstaða er aðgengileg|$1 niðurstöður eru aðgengilegar}} í skyndiminninu.',
@@ -605,7 +608,7 @@ Spurn: $2',
 'viewsource-title' => 'Skoða efni $1',
 'actionthrottled' => 'Aðgerðin kafnaði',
 'actionthrottledtext' => 'Til þess að verjast ruslpósti, er ekki hægt að framkvæma þessa aðgerð of oft, og þú hefur farið fram yfir þau takmörk. Gjörðu svo vel og reyndu aftur eftir nokkrar mínútur.',
-'protectedpagetext' => 'Þessari síðu hefur verið læst til að koma í veg fyrir breytingar.',
+'protectedpagetext' => 'Þessari síðu hefur verið læst til að koma í veg fyrir breytingar eða aðrar aðgerðir.',
 'viewsourcetext' => 'Þú getur skoðað og afritað kóða þessarar síðu:',
 'viewyourtext' => "Þú getur skoðað og afritað kóða '''breytinganna þinna''' yfir á þessa síðu:",
 'protectedinterface' => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins sem keyrir þessa síðu, og er læst til að koma í veg fyrir misnotkun.
@@ -799,6 +802,7 @@ Tímabundið lykilorð: $2',
 'changeemail-oldemail' => 'Núverandi netfang:',
 'changeemail-newemail' => 'Nýtt netfang:',
 'changeemail-none' => '(ekkert)',
+'changeemail-password' => '{{SITENAME}} lykilorðið þitt:',
 'changeemail-submit' => 'Breyta netfangi',
 'changeemail-cancel' => 'Hætta við',
 
@@ -976,7 +980,6 @@ Verndunarskrá síðunnar er gefin fyrir neðan til tilvísunar.",
 'template-protected' => '(vernduð)',
 'template-semiprotected' => '(hálfvernduð)',
 'hiddencategories' => 'Þessi síða er meðlimur í {{PLURAL:$1|1 földum flokki|$1 földum flokkum}}:',
-'nocreatetitle' => 'Síðugerð takmörkuð',
 'nocreatetext' => '{{SITENAME}} hefur takmarkað eiginleikann að gera nýjar síður.
 Þú getur farið til baka og breytt núverandi síðum, eða [[Special:UserLogin|skráð þið inn eða búið til aðgang]].',
 'nocreate-loggedin' => 'Þú hefur ekki leyfi til að skapa nýjar síður.',
@@ -992,6 +995,8 @@ Eyðingarskrá og flutningaskrá fyrir þessa síðu eru útvegaðar hér til þ
 'moveddeleted-notice' => 'Þessari síðu hefur verið eytt.
 Eyðingaskrá og flutningaskrá síðunnar eru gefnar fyrir neðan til tilvísunar.',
 'log-fulllog' => 'Skoða alla aðgerðarskránna',
+'edit-hook-aborted' => 'Breyting síðu stöðvuð af viðbótarkrók (extension hook).
+Engin skýring gefin.',
 'edit-gone-missing' => 'Gat ekki uppfært síðu.
 Svo virðist sem henni hafi verið eytt.',
 'edit-conflict' => 'Breytingaárekstur.',
@@ -999,6 +1004,9 @@ Svo virðist sem henni hafi verið eytt.',
 'edit-already-exists' => 'Gat ekki skapað nýja síðu.
 Hún er nú þegar til.',
 'defaultmessagetext' => 'Sjálfgefinn skilaboða texti',
+'content-failed-to-parse' => 'Gat ekki þáttað $2 efni samkvæmt $1 líkani: $3',
+'invalid-content-data' => 'Ógild efnisgögn.',
+'content-not-allowed-here' => '„$1“ efni er ekki leyfilegt á síðunni $2',
 
 # Content models
 'content-model-wikitext' => 'wiki-texti',
@@ -1478,12 +1486,13 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-sendemail' => 'Senda tölvupóst til annara notenda',
 'right-passwordreset' => 'Skoða tölvupósta um endurstillingu lykilorðs',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Skrá yfir nýja notendur',
+'newuserlogpagetext' => 'Þetta er skrá yfir nýskráða notendur.',
+
 # User rights log
 'rightslog' => 'Réttindaskrá notenda',
 'rightslogtext' => 'Þetta er skrá yfir breytingar á réttindum notenda.',
-'rightslogentry' => 'breytti réttindum $1 frá $2 í $3',
-'rightslogentry-autopromote' => 'fékk sjálfvirkt aukin réttindi frá $2 til $3',
-'rightsnone' => '(engin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lesa þessa síðu',
@@ -2091,10 +2100,6 @@ Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitin
 'activeusers-hidesysops' => 'Fela möppudýr',
 'activeusers-noresult' => 'Enginn notandi fannst.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Skrá yfir nýja notendur',
-'newuserlogpagetext' => 'Þetta er skrá yfir nýskráða notendur.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Notandahópréttindi',
 'listgrouprights-summary' => 'Hér er listi yfir notendahópa á þessum wiki, með þeirra réttindum. 
@@ -2187,6 +2192,16 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 
 'enotif_reset' => 'Merkja allar síður sem skoðaðar',
 'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
+'enotif_subject_deleted' => '$1 á {{SITENAME}} hefur verið eytt af {{gender:$2|$2}}',
+'enotif_subject_created' => '$1 á {{SITENAME}} hefur verið búin til af {{gender:$2|$2}}',
+'enotif_subject_moved' => '$1 á {{SITENAME}} hefur verið færð af {{gender:$2|$2}}',
+'enotif_subject_restored' => '$1 á {{SITENAME}} hefur verið endurvakin af {{gender:$2|$2}}',
+'enotif_subject_changed' => '$1 á {{SITENAME}} hefur verið breytt af {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið eytt $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_created' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið búin til $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_moved' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið færð $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_restored' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið endurvakin $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
+'enotif_body_intro_changed' => 'Síðan „$1” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið breytt $PAGEEDITDATE af {{gender:$2|$2}}. Þetta er tengill á síðuna: $3.',
 'enotif_lastvisited' => 'Heimsóttu eftirfarandi tengil til að sjá allar breytingar síðan 
 þú heimsóttir síðuna síðast:
   $1',
@@ -2195,15 +2210,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_anon_editor' => 'ónefndum notanda $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Síðan „$PAGETITLE” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
-$PAGEEDITOR. Breytingarágripið var:
-
-   $PAGESUMMARY
-
-Þetta er tengill á síðuna:
-
-   $PAGETITLE_URL
-
+$PAGEINTRO
 $NEWPAGE
 
 Til þess að hafa samband við $PAGEEDITOR, smelltu á:
@@ -2412,7 +2419,7 @@ $1',
 'blanknamespace' => '(Aðalnafnrýmið)',
 
 # Contributions
-'contributions' => 'Framlög notanda',
+'contributions' => 'Framlög {{GENDER:$1|notanda}}',
 'contributions-title' => 'Framlög notanda $1',
 'mycontris' => 'Framlög',
 'contribsub2' => 'Eftir $1 ($2)',
@@ -3685,6 +3692,7 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'logentry-newusers-create2' => '$1 stofnaði aðganginn $3',
 'logentry-newusers-autocreate' => 'Aðgangurinn $1 var stofnaður sjálfvirkt',
 'newuserlog-byemail' => 'lykilorð sent með tölvupósti',
+'rightsnone' => '(engin)',
 
 # Feedback
 'feedback-bugornote' => 'Ef þú ert reiðubúinn að lýsa tæknilegri villu í smáatriðum, vinsamlegast [$1 tilkynntu villu].

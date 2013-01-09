@@ -243,7 +243,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection' => 'Нæуæг ныхас бакæнын',
-'vector-action-delete' => 'Аппарын',
+'vector-action-delete' => 'Схафын',
 'vector-action-move' => 'Ном ивын',
 'vector-action-protect' => 'Сæхгæнын',
 'vector-action-undelete' => 'Рацаразын',
@@ -279,7 +279,7 @@ $messages = array(
 'editthispage' => 'Ивын ацы фарс',
 'create-this-page' => 'Ацы фарс скæнын',
 'delete' => 'Схафын',
-'deletethispage' => 'Аппарын ацы фарс',
+'deletethispage' => 'Ацы фарс схафын',
 'undelete_short' => 'Рацаразын {{PLURAL:$1|иу ивд|$1 ивды}}',
 'viewdeleted_short' => 'Кæсын {{PLURAL:$1|иу хафт ивд|$1 хафт ивдтытæ}}',
 'protect' => 'Сæхгæнын',
@@ -306,7 +306,7 @@ $messages = array(
 'categorypage' => 'Категорийы фарс фен',
 'viewtalkpage' => 'Тæрхон фен',
 'otherlanguages' => 'Æндæр æвзæгтыл',
-'redirectedfrom' => '({{grammar:ablative|$1}} ӕрвыст)',
+'redirectedfrom' => '({{grammar:ablative|$1}} æрвыст)',
 'redirectpagesub' => 'Рарвысты фарс',
 'lastmodifiedat' => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.',
 'viewcount' => 'Ацы фарс домд æрцыд {{PLURAL:$1|иу хатт|$1 хатты}}.',
@@ -337,7 +337,7 @@ $1',
 'helppage' => 'Help:Мидис',
 'mainpage' => 'Сæйраг фарс',
 'mainpage-description' => 'Сæйраг фарс',
-'policy-url' => 'Project:Уагæвæрд',
+'policy-url' => 'Project:Фæтк',
 'portal' => 'Архайджыты æхсæнад',
 'portal-url' => 'Project:Архайджыты æхсæнад',
 'privacy' => 'Хибардзинады политикæ',
@@ -444,15 +444,15 @@ $1',
 'fileappenderror' => 'Нæ рауадис бафтауын "$1" "{{grammar:allative|$2}}".',
 'filecopyerror' => 'Файл «$1» файлмæ «$2» халдихгæнæн нæ разынд.',
 'filerenameerror' => 'Нæ рауадис фæивын "$1" файлы ном "$2"-мæ.',
-'filedeleteerror' => 'Нæй аппарæн файл «$1».',
+'filedeleteerror' => 'Нæ уайы файл «$1» схафын.',
 'directorycreateerror' => 'Нæй саразæн файлдон «$1».',
 'filenotfound' => 'Нæй ссарæн файл «$1».',
 'fileexistserror' => 'Нæй фыссæн "$1" файлы: Файл ис.',
 'unexpected' => 'Æнæмбæлон æмиасад: «$1»=«$2».',
 'formerror' => 'Рæдыд: формæ арвитæн нæй',
 'badarticleerror' => 'Ацы архайд нæ арæзт кæны ацы фарсыл.',
-'cannotdelete' => 'Нæй аппарæн файл кæнæ фарс "$1".
-Æндæр исчи йæ аппæрста мыййаг.',
+'cannotdelete' => 'Нæ уайы файл кæнæ фарс "$1" схафын.
+Гæнæн ис, æндæр чидæр æй схафта.',
 'cannotdelete-title' => 'Нæ уайы схафын фарс "$1"',
 'delete-hook-aborted' => 'Хук æй хафын нæ бауагъта.
 Уæлæмхасæн æмбарынгæнæн нæ радта.',
@@ -471,7 +471,7 @@ $1',
 'actionthrottled' => 'Архайд урæд æрцыд',
 'actionthrottledtext' => 'Спамы ныхмæ тохы тыххæй дæуæн нæй гæнæн аразын ацы архайд æвæрд лимитæй фылдæр гыццыл рæстæджы. Ды уыцы лимит сæххæст кодтай.
 Дæ хорзæхæй, бафæлвар нæуæгæй цалдæр минуты фæстæ.',
-'protectedpagetext' => 'Ацы фарс у ивынæй æхгæд.',
+'protectedpagetext' => 'Ацы фарс ивынæй æмæ æндæр митæй æхгæд у.',
 'viewsourcetext' => 'Ацы фарсы код фенæн æмæ халдих кæнæн ис:',
 'viewyourtext' => "Дæ бон у фенын æмæ скопи кæнын ацы фарсмæ '''цы ивдтытæ сарæзтай''', уыдон бындур текст :",
 'protectedinterface' => 'Ацы фарсы ис ацы викийы софты интерфейсæн текст æмæ у æхгæд, цæмæй йæ фехалæн ма уа.
@@ -522,7 +522,7 @@ $2',
 'loginprompt' => 'Дæ cookies хъуамæ иу уой цæмæй дæ бон уа бахизын {{grammar:allative|{{SITENAME}}}}.',
 'userlogin' => 'Бахизын / регистраци кæнын',
 'userloginnocreate' => 'Бахизын',
-'logout' => 'Номсусæг суын',
+'logout' => 'Рахизын',
 'userlogout' => 'Рахизын',
 'notloggedin' => 'Системæйæн дæхи нæ бацамыдтай',
 'nologin' => "Регистрацигонд нæма дæ? '''$1'''.",
@@ -548,7 +548,7 @@ $2',
 'nocookiesfornew' => 'Архайæджы аккаунт нæ сарæзт ис, уымæн æмæ йын мах нæ базыдтам йæ равзæрæн.
 Бацархай, цæмæй cookies иу уой, анæуæг кæн ацы фарс æмæ ногæй бафæлвар.',
 'noname' => 'Раст фæсномыг нæ ныффыстай.',
-'loginsuccesstitle' => 'Бахизын рауадис',
+'loginsuccesstitle' => 'Бахызтæ',
 'loginsuccess' => "'''Ныр ды дæ хыст {{grammar:genitive|{{SITENAME}}}} куыд \"\$1\".'''",
 'nosuchuser' => 'Нæй ахæм архайæг "$1" номимæ.
 Архайджыты нæмттæ хатынц дамгъæты регистр.
@@ -629,7 +629,7 @@ $2',
 'resetpass-temp-password' => 'Рæстæгмæ пароль:',
 
 # Special:PasswordReset
-'passwordreset' => 'Пароль фæлварæн',
+'passwordreset' => 'Пароль раппарæн',
 'passwordreset-text' => 'Байдзаг кæн ацы формæ, цæмæй райсай дæ аккаунты бахизæнтæ рымысæн e-mail.',
 'passwordreset-legend' => 'Пароль раппарын',
 'passwordreset-disabled' => 'Парол фæлварын ацы викийы хицæн у.',
@@ -666,6 +666,7 @@ $2
 'changeemail-oldemail' => 'Нырыккон e-mail адрис:',
 'changeemail-newemail' => 'Ног e-mail адрис:',
 'changeemail-none' => '(нæй)',
+'changeemail-password' => 'Дæ {{grammar:genitive|{{SITENAME}}}} пароль:',
 'changeemail-submit' => 'E-mail фæивын',
 'changeemail-cancel' => 'Ныууадзын',
 
@@ -763,6 +764,10 @@ $2
 кæнæ [{{fullurl:{{FULLPAGENAME}}|action=edit}} скæнын ацы фарс]</span>.',
 'noarticletext-nopermission' => 'Ацы фарсы нырмæ текст нæй.
 Дæ бон у [[Special:Search/{{PAGENAME}}|бацагурын ацы фарсы ном]] æндæр фæрсты, кæнæ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын йæ кой логты]</span>, фæлæ дын йæ саразыны бар нæй.',
+'missing-revision' => '"{{grammar:genitive|{{PAGENAME}}}}" фарсæн $1-æм фæлтæр нæй.
+
+Ай арæх æрцæуы, исчи хафт фарсы зæронд историйы æрвитæны фæдыл куы ацæуы.
+Фылдæр гæнæн ис базонын [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} хафыны логы].',
 'userpage-userdoesnotexist-view' => 'Архайæджы аккаунт "$1" регистрацигонд нæу.',
 'updated' => '(Ноггонд)',
 'note' => "'''Фиппаинаг:'''",
@@ -816,8 +821,8 @@ $2
 'nextrevision' => 'Ногдæр фæлтæр →',
 'currentrevisionlink' => 'Нырыккон фæлтæр',
 'cur' => 'ныр.',
-'next' => 'фæдылдзог',
-'last' => 'раздæры',
+'next' => 'иннæ',
+'last' => 'раз.',
 'page_first' => 'фыццаг',
 'page_last' => 'фæстаг',
 'histlegend' => "Æвзарынæн: банысан кæн фæлтæрты радиобокстæ цæмæй цæ иртæсай æмæ стæй ныххæц enter кæнæ бынæй цы ныххæцæн ис, ууыл.<br />
@@ -840,6 +845,7 @@ $2
 'rev-delundel' => 'равдисын/айсын',
 'rev-showdeleted' => 'равдисын',
 'revisiondelete' => 'Фæлтæртæ схафын/рацаразын',
+'revdelete-show-file-submit' => 'О',
 'revdelete-radio-same' => '(ма баив)',
 'revdelete-radio-set' => 'О',
 'revdelete-radio-unset' => 'Нæ',
@@ -847,6 +853,11 @@ $2
 'revdel-restore-deleted' => 'хафт ивдтытæ',
 'revdel-restore-visible' => 'зынгæ ивдтытæ',
 'pagehist' => 'Фарсы истори',
+'revdelete-reason-dropdown' => '*Хафыны арæхдæр бындуртæ
+** Сфæлдисæгы барты æфхæрд
+** Кæйдæр тыххæй æнæмбæлгæ информаци кæнæ хъуыды
+** Æнæмбæлгæ фæсномыг
+** Гæнæн ис цъыфкалд у',
 'revdelete-reasonotherlist' => 'Æндæр аххос',
 'revdelete-offender' => 'Фæлтæры автор:',
 
@@ -974,8 +985,26 @@ $2
 'prefs-help-email-others' => 'Дæ бон ма у равзарын цæмæй дæм иннæтæ бадзурой e-mail-æй, кæцымæ уыдзæн æрвитæн дæ фарс æмæ дæ ныхасы фарсыл.
 Дæ e-mail адрис афтæмæй нæ рабæрæг уыдзæнис.',
 'prefs-help-email-required' => 'Электронон посты адрис хъæуы.',
+'prefs-advancedediting' => 'Фылдæр фадæттæ',
+'prefs-advancedrc' => 'Фылдæр фадæттæ',
+'prefs-advancedrendering' => 'Фылдæр фадæттæ',
+'prefs-advancedsearchoptions' => 'Фылдæр фадæттæ',
+'prefs-advancedwatchlist' => 'Фылдæр фадæттæ',
+'prefs-displayrc' => 'Æвдисыны фадæттæ',
+'prefs-displaysearchoptions' => 'Æвдисыны фадæттæ',
+'prefs-displaywatchlist' => 'Æвдисыны фадæттæ',
+'prefs-diffs' => 'Иртасæнтæ',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'E-mail раст зыны',
+'email-address-validity-invalid' => 'Раст e-mail бацамон',
 
 # User rights
+'userrights' => 'Архайæджы барты армдарæн',
+'userrights-lookup-user' => 'Архайæджы къордтæ ивын',
+'userrights-user-editname' => 'Фæсномыг бацамон:',
+'editusergroup' => 'Архайæджы къордтæ фæивын',
+'userrights-reason' => 'Бындур:',
 'userrights-nodatabase' => 'Рарддон $1 нæй кæнæ бынæттон нæу.',
 
 # Groups
@@ -1009,10 +1038,10 @@ $2
 'right-upload' => 'Файлтæ æвгæнын',
 'right-upload_by_url' => 'Бавгæнын файлтæ интернетæй',
 'right-delete' => 'Фæрстæ хафын',
-'right-bigdelete' => 'фæрстæ æмæ сæ ивды истори аппарын',
+'right-bigdelete' => 'Стыр историимæ фæрстæ хафын',
 
-# User rights log
-'rightsnone' => '(нæй)',
+# Special:Log/newusers
+'newuserlogpage' => 'Архайджыты фæзындты лог',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ацы фарс кæсын',
@@ -1024,7 +1053,7 @@ $2
 'action-move' => 'ацы фарсы ном ивын',
 'action-movefile' => 'ацы файлы ном ивын',
 'action-upload' => 'ацы файл æвгæнын',
-'action-delete' => 'ацы фарс аппарын',
+'action-delete' => 'ацы фарс схафын',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ивд|ивды}}',
@@ -1058,6 +1087,7 @@ $3',
 'newsectionsummary' => '/* $1 */ ног хай',
 'rc-enhanced-expand' => 'Лæмбынæг информаци равдисын (домы JavaScript)',
 'rc-enhanced-hide' => 'Айсын лæмбынæг информаци',
+'rc-old-title' => 'фыццаг арæзт æрцыд куыд "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Баст ивдтытæ',
@@ -1236,9 +1266,6 @@ $3',
 # Special:ListUsers
 'listusers-submit' => 'Равдисын',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Архайджыты фæзындты лог',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Къорд',
 'listgrouprights-rights' => 'Бартæ',
@@ -1279,8 +1306,8 @@ $3',
 'delete-confirm' => 'Схаф "$1"',
 'actioncomplete' => 'Æххæст',
 'actionfailed' => 'Нæ рауадис',
-'dellogpage' => 'Аппарыны лог',
-'deletionlog' => 'аппарыны лог',
+'dellogpage' => 'Хафынты лог',
+'deletionlog' => 'хафынты лог',
 'deletecomment' => 'Аххос:',
 'deleteotherreason' => 'Æндæр кæнæ уæлæмхасæн аххос:',
 'deletereasonotherlist' => 'Æндæр аххос',
@@ -1307,6 +1334,7 @@ $3',
 # Undelete
 'undeletelink' => 'кæсын/рацаразын',
 'undeleteviewlink' => 'кæсын',
+'undelete-search-submit' => 'Агурын',
 
 # Namespace form on various pages
 'namespace' => 'Номдон:',
@@ -1323,7 +1351,7 @@ $3',
 'year' => 'Ацы азы (æмæ раздæр):',
 
 'sp-contributions-newbies' => 'Æвдисын æрмæст нæуæг архайджыты бавæрд',
-'sp-contributions-blocklog' => 'Хъодыты лог',
+'sp-contributions-blocklog' => 'хъодыты лог',
 'sp-contributions-uploads' => 'бавгæндтытæ',
 'sp-contributions-logs' => 'логтæ',
 'sp-contributions-talk' => 'ныхас',
@@ -1336,7 +1364,7 @@ $3',
 'whatlinkshere' => 'Чи æрвиты ардæм',
 'whatlinkshere-title' => 'Фæрстæ, кæдон æрвитынц ардæм: «$1»',
 'whatlinkshere-page' => 'Фарс:',
-'linkshere' => "Ацы фæрстæ æрвитынц '''{{grammar:allative|[[:$1]]}}''':",
+'linkshere' => "Ацы фæрстæ æрвитынц '''[[:$1|{{grammar:allative|$1}}]]''':",
 'nolinkshere' => "Никæцы фарс æрвиты ардæм: '''[[:$1]]'''.",
 'isredirect' => 'æрвитæн фарс',
 'istemplate' => 'æфтыдæй',
@@ -1351,11 +1379,16 @@ $3',
 'whatlinkshere-filters' => 'Фильтртæ',
 
 # Block/unblock
-'blockip' => 'Бахъоды кæн',
-'blockip-legend' => 'Бахъоды æй кæн',
+'block' => 'Архайæгыл хъоды кæнын',
+'blockip' => 'Бахъоды кæнын',
+'blockip-title' => 'Архайæгыл хъоды',
+'blockip-legend' => 'Архайæгыл хъоды кæнын',
+'ipadressorusername' => 'IP адрис кæнæ фæсномыг:',
+'ipbexpiry' => 'Фæуыны афон:',
 'ipbreason' => 'Аххос:',
-'ipbreasonotherlist' => 'Æндæр аххос',
+'ipbreasonotherlist' => 'Æндæр тыххæй',
 'ipboptions' => '2 сахаты:2 hours,1 бон:1 day,3 боны:3 days,1 къуыри:1 week,2 къуырийы:2 weeks,1 мæй:1 month,3 мæййы:3 months,6 мæййы:6 months,1 аз:1 year,нæбæрæг:infinite',
+'ipbotheroption' => 'æндæр',
 'ipbotherreason' => 'Æндæр кæнæ уæлæмхасæн аххос:',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] хъодыгонд æрцыд.<br />
 Кæс [[Special:Ipblocklist|хъодыгонд IP-адристы номхыгъд]].',
@@ -1363,6 +1396,7 @@ $3',
 'ipb-blocklist-contribs' => '{{grammar:genitive|$1}} бавæрд',
 'ipblocklist' => 'Хъодыгонд архайджытæ',
 'ipblocklist-legend' => 'Хъодыгонд архайæджы ацагур',
+'ipblocklist-submit' => 'Агурын',
 'ipblocklist-empty' => 'Хъодыгæндты номхыгъд афтид у.',
 'blocklink' => 'бахъоды кæн',
 'unblocklink' => 'хъоды айс',
@@ -1392,7 +1426,7 @@ $3',
 'export' => 'Фæрсты экспорт',
 
 # Namespace 8 related
-'allmessages' => 'Системæйы уацтæ',
+'allmessages' => 'Системæйы фыстытæ',
 'allmessagesname' => 'Ном',
 'allmessagesdefault' => 'Разæвæрд текст',
 'allmessages-filter-all' => 'Иууылдæр',
@@ -1422,7 +1456,7 @@ $3',
 Дæ бон у фенын ын йæ бындуртекст',
 'tooltip-ca-history' => 'Ацы фарсæн йæ раздæры фæлтæртæ',
 'tooltip-ca-protect' => 'Ацы фарс ивддзинæдтæй сæхгæнын',
-'tooltip-ca-delete' => 'Аппарын ацы фарс',
+'tooltip-ca-delete' => 'Ацы фарс схафын',
 'tooltip-ca-move' => 'Уацы ном ивын',
 'tooltip-ca-watch' => 'Бафтау ацы фарс дæ цæстдард рæгъмæ',
 'tooltip-ca-unwatch' => 'Айс ацы фарс дæ цæстдард рæгъæй',
@@ -1459,11 +1493,23 @@ $3',
 'tooltip-diff' => 'Æвдисы цы ивд бахастай текстмæ',
 'tooltip-compareselectedversions' => 'Кæс дыууæ æвзæрст фæлтæры цæмæй хицæн кæнынц',
 'tooltip-watch' => 'Ацы фарсмæ цæст æрдарынæн',
+'tooltip-watchlistedit-normal-submit' => 'Нæмттæ схафын',
+'tooltip-watchlistedit-raw-submit' => 'Цæстдард фæнæуæг кæнын',
+'tooltip-recreate' => 'Фарс рацаразын, кæд хафт уыд, уæддæр',
+'tooltip-upload' => 'Æвгæнын байдайын',
 'tooltip-rollback' => '"Раздæхын" æздæхы ацы фарсы фæстаг архайæджы ивд(тытæ) иу хæстмæ',
 'tooltip-undo' => '"Раивын" æздæхы ацы ивд æмæ æвдисы ивæн фарс разбакаст уавæры. Уый дын дæ бавæрдæн фсон скæныны фадат дæтты.',
+'tooltip-preferences-save' => 'Уаг бавæрын',
 'tooltip-summary' => 'Бафысс чысыл æмбарынгæнæн',
 
+# Metadata
+'notacceptable' => 'Ацы викийæн йæ бон нæу радтын рардтæ ахæм форматы, цæмæй цæ дæ клиент фæрса.',
+
 # Attribution
+'anonymous' => '{{grammar:genitive|{{SITENAME}}}} æнæном {{PLURAL:$1|архайæг|архайджытæ}}',
+'siteuser' => '{{grammar:genitive|{{SITENAME}}}} архайæг $1',
+'anonuser' => '{{grammar:genitive|{{SITENAME}}}} æнæном архайæг $1',
+'lastmodifiedatby' => 'Ацы фарс фæстаг хатт фæивта $3, $1, $2 сахатыл.',
 'others' => 'æндæртæ',
 
 # Spam protection
@@ -1646,10 +1692,19 @@ $3',
 # HTML forms
 'htmlform-selectorother-other' => 'Æндæр',
 
+# New logging system
+'logentry-delete-delete' => '$1 схафта фарс $3',
+'logentry-delete-restore' => '$1 рацарæзта фарс $3',
+'rightsnone' => '(нæй)',
+
 # Feedback
 'feedback-subject' => 'Сæр:',
 'feedback-message' => 'Фыстæг:',
+'feedback-cancel' => 'Ныууадзын',
 'feedback-close' => 'Æххæст',
+
+# Search suggestions
+'searchsuggest-search' => 'Агурын',
 
 # API errors
 'api-error-missingparam' => 'Мидæггаг рæдыд: Курдиаты параметртæ нæй.',

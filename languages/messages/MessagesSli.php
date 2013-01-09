@@ -597,7 +597,6 @@ Grund fier de Sperre: $1",
 'template-protected' => '(schreibgeschietzt)',
 'template-semiprotected' => '(schreibgeschietzt fier unoagemeldete und neue Nutzer)',
 'hiddencategories' => 'Diese Seite ies Mitglied vun {{PLURAL:$1|1 versteckter Kategorie|$1 versteckta Kategoria}}:',
-'nocreatetitle' => 'De Erstellung neuer Seyta ies eengeschränkt.',
 'nocreatetext' => 'Uff {{SITENAME}} wurde doas Erstalla neuer Seyta eengeschränkt. Du koast bestiehende Seyten ändern oder diech [[Special:UserLogin|oamelda]].',
 'nocreate-loggedin' => 'Du host kenne Berechtigung, neue Seyta zu erstalla.',
 'permissionserrorstext' => 'Du best ne berechtigt, de Aksjonn auszufiehra. {{PLURAL:$1|Grund|Grinde}}:',
@@ -957,9 +956,12 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'right-siteadmin' => 'Datenbank sperra und entsperra',
 'right-sendemail' => 'E-Mails oa andere Nutzer senda',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Neuoameldungs-Logbuch',
+'newuserlogpagetext' => 'Dies ies a Logbuch fier neu erstellte Nutzerkonten.',
+
 # User rights log
 'rightslogtext' => 'Dies ies doas Logbuch dar Änderunga dar Nutzerrechte.',
-'rightslogentry' => 'änderte de Nutzerrechte fier „$1“ vu „$2“ uff „$3“',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'de Seite zu lasa',
@@ -1359,10 +1361,6 @@ Siehe au de Liste der [[Special:WantedCategories|gewinschta Kategorien]].',
 
 # Special:ActiveUsers
 'activeusers-noresult' => 'Kenne Benutzer gefunda.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Neuoameldungs-Logbuch',
-'newuserlogpagetext' => 'Dies ies a Logbuch fier neu erstellte Nutzerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Nutzergruppen-Rechte',

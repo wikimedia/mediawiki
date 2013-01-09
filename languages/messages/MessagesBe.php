@@ -790,7 +790,6 @@ $2
 'template-protected' => '(ахоўваецца)',
 'template-semiprotected' => '(часткова ахоўвацца)',
 'hiddencategories' => 'Старонка належыць да {{PLURAL:$1|1 схаванай катэгорыі|$1 схаваных катэгорый}}:',
-'nocreatetitle' => 'Стварэнне старонак абмежавана',
 'nocreatetext' => 'На пляцоўцы {{SITENAME}} магчымасці стварэння новых старонак абмежаваныя.
 Вы можаце папрацаваць з існуючай старонкай, або [[Special:UserLogin|увайсці ў сістэму, або завесці сабе рахунак]].',
 'nocreate-loggedin' => 'Вам не дазволена ствараць новых старонак.',
@@ -1308,12 +1307,13 @@ $1",
 'right-sendemail' => 'Адправіць па электроннай пошце іншым карыстальнікам',
 'right-passwordreset' => 'прагляд электронных лістоў са змяненнем пароля',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Журнал рэгістрацыі ўдзельнікаў',
+'newuserlogpagetext' => 'Гэта журнал рэгістрацыі новых удзельнікаў.',
+
 # User rights log
 'rightslog' => 'Журнал правоў удзельнікаў',
 'rightslogtext' => 'Журнал змяненняў у дазволах, прыпісаных удзельнікам.',
-'rightslogentry' => 'зменена групавая прыналежнасць $1 з $2 на $3',
-'rightslogentry-autopromote' => 'быў аўтаматычна перакладзены з $2 да $3',
-'rightsnone' => '(няма)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'чытаць гэтую старонку',
@@ -1907,10 +1907,6 @@ $1',
 'activeusers-hidebots' => 'Без робатаў',
 'activeusers-hidesysops' => 'Без адміністратараў',
 'activeusers-noresult' => 'Няма такіх удзельнікаў.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Журнал рэгістрацыі ўдзельнікаў',
-'newuserlogpagetext' => 'Гэта журнал рэгістрацыі новых удзельнікаў.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Дазволы для груп удзельнікаў',
@@ -3528,6 +3524,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'logentry-newusers-create2' => '$1 стварыў уліковы запіс удзельніка $3',
 'logentry-newusers-autocreate' => 'Аўтаматычна створаны ўліковы запіс $1',
 'newuserlog-byemail' => 'пароль адасланы эл.поштай',
+'rightsnone' => '(няма)',
 
 # Feedback
 'feedback-bugornote' => 'Калі вы гатовыя падрабязна апісаць тэхнічную праблему, калі ласка, [$1 паведаміце пра памылку].

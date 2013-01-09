@@ -1326,7 +1326,7 @@ class Preferences {
 	 * @param $alldata
 	 * @return int
 	 */
-	static function filterIntval( $value, $alldata ){
+	static function filterIntval( $value, $alldata ) {
 		return intval( $value );
 	}
 

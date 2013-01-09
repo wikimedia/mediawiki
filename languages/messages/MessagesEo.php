@@ -11,6 +11,7 @@
  * @author Airon90
  * @author Amikeco
  * @author Amire80
+ * @author Anakmalaysia
  * @author ArnoLagrange
  * @author Blahma
  * @author Castelobranco
@@ -18,6 +19,7 @@
  * @author Jens Liebenau
  * @author Kaganer
  * @author Karika
+ * @author KuboF
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -29,6 +31,7 @@
  * @author Omnipaedista
  * @author Pedroca cerebral
  * @author Petrus Adamus
+ * @author Renardo
  * @author Smeira
  * @author ThomasPusch
  * @author Tlustulimu
@@ -719,12 +722,12 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 'virus-unknownscanner' => 'nekonata kontraŭviruso:',
 
 # Login and logout pages
-'logouttext' => "'''Vi nun estas elsalutita.'''
+'logouttext' => "'''Vi nun estas elsalutinta.'''
 
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
-Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
+Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estus ensalutinta, ĝis vi refreŝigos kaŝmemoron de via retumilo.",
 'welcomeuser' => 'Bonvenon, $1!',
-'welcomecreation-msg' => 'Vian konton kreis.
+'welcomecreation-msg' => 'Via konto estas kreita.
 Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'yourname' => 'Salutnomo:',
 'yourpassword' => 'Pasvorto:',
@@ -884,6 +887,7 @@ Provizora pasvorto: $2',
 'changeemail-oldemail' => 'Aktuala retpoŝtadreso:',
 'changeemail-newemail' => 'Nova retpoŝtadreso:',
 'changeemail-none' => '(nenio)',
+'changeemail-password' => 'Via {{SITENAME}}-ensalutado:',
 'changeemail-submit' => 'Ŝanĝi retpoŝtadreson',
 'changeemail-cancel' => 'Nuligi',
 
@@ -1065,7 +1069,6 @@ Jen la lasta protokolero por via referenco:",
 'template-semiprotected' => '(duone protektita)',
 'hiddencategories' => 'Ĉi tiu paĝo estas membro de {{PLURAL:$1|1 kaŝita kategorio|$1 kaŝitaj kategorioj}}:',
 'edittools' => '<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->',
-'nocreatetitle' => 'Paĝa kreado estas limigita',
 'nocreatetext' => '{{SITENAME}} restriktas la eblecon krei novajn paĝojn. Vi povas reiri kaj redakti faritan paĝon, aŭ [[Special:UserLogin|ensaluti aŭ krei konton]].',
 'nocreate-loggedin' => 'Vi ne rajtas krei novajn paĝojn.',
 'sectioneditnotsupported-title' => 'Redaktado de ĉi tiu sekcio ne estas subtenata',
@@ -1450,7 +1453,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'timezoneregion-indian' => 'Hinda Oceano',
 'timezoneregion-pacific' => 'Pacifiko',
 'allowemail' => 'Rajtigi retmesaĝojn de aliaj uzantoj',
-'prefs-searchoptions' => 'Serĉu',
+'prefs-searchoptions' => 'Serĉi',
 'prefs-namespaces' => 'Nomspacoj',
 'defaultns' => 'Alimaniere, traserĉi la jenajn nomspacojn:',
 'default' => 'defaŭlte',
@@ -1463,9 +1466,9 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-emailconfirm-label' => 'Retpoŝta konfirmado:',
 'prefs-textboxsize' => 'Grandeco de redakta fenestro',
 'youremail' => 'Retadreso:',
-'username' => 'Salutnomo:',
-'uid' => 'Uzant-ID:',
-'prefs-memberingroups' => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
+'username' => '{{GENDER:$1|Salutnomo}}:',
+'uid' => '{{GENDER:$1|Uzanto}}-identaĵo:',
+'prefs-memberingroups' => '{{GENDER:$2|Ano}} de {{PLURAL:$1|grupo|grupoj}}:',
 'prefs-registration' => 'Tempo de registrado:',
 'yourrealname' => 'Vera nomo:',
 'yourlanguage' => 'Lingvo',
@@ -1613,15 +1616,13 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-sendemail' => 'Sendi retpoŝton al aliaj uzantoj',
 'right-passwordreset' => 'Vidi retpoŝtojn de pasvorta restarado.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Protokolo de uzanto-kreado',
+'newuserlogpagetext' => 'Jen protokolo de lastaj kreadoj de uzantoj.',
+
 # User rights log
 'rightslog' => 'Protokolo de uzanto-rajtoj',
 'rightslogtext' => 'Ĉi tio estas protokolo pri la ŝanĝoj de uzantorajtoj.',
-'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
-'rightslogentry-autopromote' => 'estis aŭtomate altrangigita de $2 al $3',
-'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
-'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
-'logentry-rights-autopromote' => '$1 estis aŭtomate altrangigita de $4 al $5',
-'rightsnone' => '(nenia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'legi ĉi tiun paĝon',
@@ -2236,7 +2237,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'linksearch-ns' => 'Nomspaco:',
 'linksearch-ok' => 'Serĉi',
 'linksearch-text' => 'Regulesprimoj kiel "*.wikipedia.org" povas esti uzataj. Nepre havi almenaŭ plej altan domajnon, ekz-e "*.org".<br />
-Subtenataj protokoloj: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
+Subtenataj {{PLURAL:$2|protokolo|protokoloj}}:: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
 'linksearch-line' => '$1 ligita de $2',
 'linksearch-error' => 'Regulesprimoj povas aperi nur ĉe la komenco de la retnoda nomo.',
 
@@ -2254,10 +2255,6 @@ Subtenataj protokoloj: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-me
 'activeusers-hidebots' => 'kaŝi robotojn',
 'activeusers-hidesysops' => 'Kaŝi administrantojn',
 'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Protokolo de uzanto-kreado',
-'newuserlogpagetext' => 'Jen protokolo de lastaj kreadoj de uzantoj.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gruprajtoj de uzantoj',
@@ -2324,7 +2321,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watchnologin' => 'Ne ensalutinta',
 'watchnologintext' => 'Nepras [[Special:UserLogin|ensaluti]] por ŝanĝi vian atentaron.',
 'addwatch' => 'Aldoniĝi al atentaro',
-'addedwatchtext' => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:RecentChanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
+'addedwatchtext' => 'La paĝo "[[:$1]]" aldoniĝis al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu paĝo kaj de ĝia rilata diskutpaĝo aperos tie.',
 'removewatch' => 'Forigi el atentaro',
 'removedwatchtext' => 'La paĝo "[[:$1]]" estas forigita el via [[Special:Watchlist|atentaro]].',
 'watch' => 'Atenti',
@@ -2358,7 +2355,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_subject_moved' => 'La paĝon $1 de {{SITENAME}} movis {{gender:$2|$2}}',
 'enotif_subject_restored' => 'La paĝon $1 de {{SITENAME}} remetis {{gender:$2|$2}}',
 'enotif_subject_changed' => 'La paĝon $1 de {{SITENAME}} ŝanĝis {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'La paĝon $1 de {{SITENAME}} forigis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
+'enotif_body_intro_deleted' => 'La paĝon $1 de {{SITENAME}} forigis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3.',
 'enotif_body_intro_created' => 'La paĝon $1 de {{SITENAME}} kreis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
 'enotif_body_intro_moved' => 'La paĝon $1 de {{SITENAME}} movis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
 'enotif_body_intro_restored' => 'La paĝon $1 de {{SITENAME}} remetis {{gender:$2|$2}} je $PAGEEDITDATE; bonvole vidu $3 pri la nuna revizio.',
@@ -2962,6 +2959,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-error-interwiki' => 'Paĝo "$1" ne estis importita pro sia nomo estas deklarita por ekstera ligado (intervikia).',
 'import-error-special' => 'Paĝo "$1" ne estas importata, ĉar ĝi apartenas al speciala nomspaco, kiu ne permesas paĝojn.',
 'import-error-invalid' => 'Paĝo "$1" ne estas importata, ĉar ĝia nomo estas malvalida.',
+'import-error-unserialize' => 'La revizio n-ro $2 de la paĝo nomata "$1" ne povis senseriiĝi. La revizio raportiĝis uzi enhavmodelon n-ro $3, kiu seriiĝis kiel n-ro $4.',
 'import-options-wrong' => '{{PLURAL:$2|Erara elekto|Eraraj elektoj}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La provizita paĝo havas nevalidan titolon.',
 'import-rootpage-nosubpage' => 'La nomspaco "$1" de la radikopaĝo ne permesas subpaĝoj.',
@@ -3208,6 +3206,7 @@ $1',
 'file-nohires' => 'Nenia pli granda distingivo havebla.',
 'svg-long-desc' => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'svg-long-desc-animated' => 'Animata SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
+'svg-long-error' => 'Malvalida SVG-dosiero: $1',
 'show-big-image' => 'Plena distingivo',
 'show-big-image-preview' => 'Grandeco de ĉi antaŭvido: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Alia distingivo|Aliaj distingivoj}}: $1.',
@@ -3237,6 +3236,7 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutoj}}',
 'hours' => '{{PLURAL:$1|$1 horo|$1 horoj}}',
 'days' => '{{PLURAL:$1|$1 tago|$1 tagoj}}',
+'months' => '{{PLURAL:$1|$1 monato|$1 monatoj}}',
 'ago' => 'antaŭ $1',
 'just-now' => 'ĵus nune',
 
@@ -4047,6 +4047,10 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'logentry-newusers-create2' => '$1 kreis uzanton $3',
 'logentry-newusers-autocreate' => 'Konto $1 estis kreita aŭtomate',
 'newuserlog-byemail' => 'pasvorto sendita retpoŝte',
+'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
+'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
+'logentry-rights-autopromote' => '$1 estis aŭtomate altrangigita de $4 al $5',
+'rightsnone' => '(nenia)',
 
 # Feedback
 'feedback-bugornote' => 'Se vi pretas priskribi teknikan problemon detale, bonvolu [$1 raporti cimon].
@@ -4120,6 +4124,4 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
-# Unknown messages
-'svg-long-error' => 'Malvalida SVG-dosiero: $1',
 );

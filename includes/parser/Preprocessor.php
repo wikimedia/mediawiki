@@ -84,9 +84,9 @@ interface PPFrame {
 	/**
 	 * Create a child frame
 	 *
-	 * @param $args array
-	 * @param $title Title
-	 * @param $indexOffset A number subtracted from the index attributes of the arguments
+	 * @param array $args
+	 * @param Title $title
+	 * @param int $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @return PPFrame
 	 */

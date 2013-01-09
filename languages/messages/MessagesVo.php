@@ -719,7 +719,6 @@ Geban, kel efärmükon oni, egevon kodi at: $1",
 'template-protected' => '(pejelon)',
 'template-semiprotected' => '(dilo pejelon)',
 'hiddencategories' => 'Pad at duton lü {{PLURAL:$1|klad peklänedöl 1|klads peklänedöl $1}}:',
-'nocreatetitle' => 'Padijafam pemiedükon',
 'nocreatetext' => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
 Kanol redakön padi dabinöl, u [[Special:UserLogin|nunädön oli u jafön kali]].',
 'nocreate-loggedin' => 'No dalol jafön padis nulik.',
@@ -1139,11 +1138,13 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'right-siteadmin' => 'Lökofärmükön e maifükön nünodemi',
 'right-sendemail' => 'Sedön penedis leäktronik lü gebans votik',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Lised gebanijafamas',
+'newuserlogpagetext' => 'Is palisedons jafams gebanas nulik.',
+
 # User rights log
 'rightslog' => 'Jenotalised gebanagitätas',
 'rightslogtext' => 'Is palisedons votükams gebanagitätas.',
-'rightslogentry' => 'grupalimanam gebana: $1 pevotükon de $2 ad $3',
-'rightsnone' => '(nonik)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'reidön padi at',
@@ -1606,10 +1607,6 @@ Protoks pestütöl: <code>$1</code>',
 'activeusers-hidebots' => 'Klänedolöd elis bot',
 'activeusers-hidesysops' => 'Klänedolöd guvanis',
 'activeusers-noresult' => 'Geban nonik petuvon.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Lised gebanijafamas',
-'newuserlogpagetext' => 'Is palisedons jafams gebanas nulik.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gitäts gebanagrupa',
@@ -2811,6 +2808,7 @@ Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü
 'revdelete-restricted' => 'miedükams pelonöfükons pro guvans',
 'revdelete-unrestricted' => 'miedükams pro guvans pemoükons',
 'newuserlog-byemail' => 'letavöd pesedon me pot leäktronik',
+'rightsnone' => '(nonik)',
 
 # Search suggestions
 'searchsuggest-search' => 'Suk',

@@ -1,5 +1,7 @@
 <?php
 /**
+ * Content handler for wiki text pages.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -15,11 +17,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @since 1.21
+ *
  * @file
+ * @ingroup Content
  */
 
 /**
- * @since 1.21
+ * Content handler for wiki text pages.
+ *
+ * @ingroup Content
  */
 class WikitextContentHandler extends TextContentHandler {
 
@@ -57,6 +64,17 @@ class WikitextContentHandler extends TextContentHandler {
 		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destination->getPrefixedText() . ']]';
 
 		return new WikitextContent( $redirectText );
+	}
+
+	/**
+	 * Returns true because wikitext supports redirects.
+	 *
+	 * @see ContentHandler::supportsRedirects
+	 *
+	 * @return boolean whether redirects are supported.
+	 */
+	public function supportsRedirects() {
+		return true;
 	}
 
 	/**

@@ -194,14 +194,14 @@ class SpecialImport extends SpecialPage {
 				$this->msg( 'importtext' )->parseAsBlock() .
 				Html::hidden( 'action', 'submit' ) .
 				Html::hidden( 'source', 'upload' ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-import-table-upload' ) ) .
 
 				"<tr>
 					<td class='mw-label'>" .
 						Xml::label( $this->msg( 'import-upload-filename' )->text(), 'xmlimport' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
+						Html::input( 'xmlimport', '', 'file', array( 'id' => 'xmlimport' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
@@ -215,11 +215,11 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage' ) .
+						Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage-upload' ) .
 					"</td>
 					<td class='mw-input'>" .
 						Xml::input( 'rootpage', 50, $this->rootpage,
-							array( 'id' => 'mw-interwiki-rootpage', 'type' => 'text' ) ) . ' ' .
+							array( 'id' => 'mw-interwiki-rootpage-upload', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
@@ -260,13 +260,13 @@ class SpecialImport extends SpecialPage {
 				Html::hidden( 'action', 'submit' ) .
 				Html::hidden( 'source', 'interwiki' ) .
 				Html::hidden( 'editToken', $user->getEditToken() ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-import-table-interwiki' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
 						Xml::label( $this->msg( 'import-interwiki-source' )->text(), 'interwiki' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::openElement( 'select', array( 'name' => 'interwiki' ) )
+						Xml::openElement( 'select', array( 'name' => 'interwiki', 'id' => 'interwiki' ) )
 			);
 			foreach( $wgImportSources as $prefix ) {
 				$selected = ( $this->interwiki === $prefix ) ? ' selected="selected"' : '';
@@ -275,7 +275,7 @@ class SpecialImport extends SpecialPage {
 
 			$out->addHTML(
 						Xml::closeElement( 'select' ) .
-						Xml::input( 'frompage', 50, $this->frompage ) .
+						Xml::input( 'frompage', 50, $this->frompage, array( 'id' => 'frompage' ) ) .
 					"</td>
 				</tr>
 				<tr>
@@ -321,11 +321,11 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage' ) .
+						Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage-interwiki' ) .
 					"</td>
 					<td class='mw-input'>" .
 						Xml::input( 'rootpage', 50, $this->rootpage,
-							array( 'id' => 'mw-interwiki-rootpage', 'type' => 'text' ) ) . ' ' .
+							array( 'id' => 'mw-interwiki-rootpage-interwiki', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>

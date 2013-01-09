@@ -13,7 +13,10 @@
  * @author Asoxor
  * @author Baqeri
  * @author Behdarvandyani
+ * @author Dalba
+ * @author E THP
  * @author Ebraminio
+ * @author Goudarz
  * @author Huji
  * @author Ibrahim
  * @author Ladsgroup
@@ -1008,6 +1011,7 @@ $2
 'changeemail-oldemail' => 'نشانی رایانامهٔ کنونی:',
 'changeemail-newemail' => 'نشانی رایانامهٔ جدید:',
 'changeemail-none' => '(هیچ)',
+'changeemail-password' => ' {{SITENAME}} رمز عبور شما:',
 'changeemail-submit' => 'تغییر رایانامه',
 'changeemail-cancel' => 'انصراف',
 
@@ -1196,7 +1200,6 @@ $2
 'template-semiprotected' => '(نیمه‌حفاظت‌شده)',
 'hiddencategories' => 'این صفحه در {{PLURAL:$1|یک ردهٔ پنهان|$1 ردهٔ پنهان}} قرار دارد:',
 'edittools' => '<!-- متن این قسمت زیر صفحه‌های ویرایش و بارگذاری نشان داده می‌شود -->',
-'nocreatetitle' => 'ایجاد صفحه محدود شده‌است',
 'nocreatetext' => '{{SITENAME}} قابلیت ایجاد صفحه‌های جدید را محدود کرده‌است.
 می‌توانید بازگردید و صفحه‌ای موجود را ویرایش کنید یا اینکه  [[Special:UserLogin|به سامانه وارد شوید یا حساب کاربری ایجاد کنید]].',
 'nocreate-loggedin' => 'شما اجازهٔ ایجاد صفحه‌های جدید را ندارید.',
@@ -1750,15 +1753,13 @@ $1",
 'right-sendemail' => 'ارسال رایانامه به دیگر کاربران',
 'right-passwordreset' => 'مشاهدهٔ نامه‌های تنظیم مجدد گذرواژه',
 
+# Special:Log/newusers
+'newuserlogpage' => 'سیاههٔ ایجاد کاربر',
+'newuserlogpagetext' => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
+
 # User rights log
 'rightslog' => 'سیاههٔ اختیارات کاربر',
 'rightslogtext' => 'این سیاههٔ تغییرات اختیارات کاربر است.',
-'rightslogentry' => 'عضویت $1 را از گروه $2 به $3 تغییر داد',
-'rightslogentry-autopromote' => 'به طور خودکار از $2 به $3 ارتقا یافت',
-'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
-'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
-'logentry-rights-autopromote' => '$1 به طور خودکار از $4 به $5 ارتقا یافت',
-'rightsnone' => '(هیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'خواندن این صفحه',
@@ -2388,7 +2389,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'linksearch-ok' => 'جستجو',
 'linksearch-text' => 'نشانه‌هایی مانند «‎*.wikipedia.org» را می‌توان استفاده کرد.
 حداقل یک دامنه سطح بالا ، به عنوان مثال "*.org" نیاز دارد.<br />
-پروتکل‌های پشتیبانی‌شده: <code>$1</code> (پیش‌فرض برای http:// در صورت مشخص نشدن پروتکل تنظیم شده‌است)',
+{{PLURAL:$2|پروتکل|پروتکل‌های}} پشتیبانی‌شده: <code>$1</code> (پیش‌فرض برای http:// در صورت مشخص نشدن پروتکل تنظیم شده‌است).',
 'linksearch-line' => '$1 از $2 پیوند دارد',
 'linksearch-error' => 'نشانه‌ها فقط در ابتدای نام میزبان اینترنتی می‌توانند استفاده شوند.',
 
@@ -2406,10 +2407,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'activeusers-hidebots' => 'نهفتن ربات‌ها',
 'activeusers-hidesysops' => 'نهفتن مدیران',
 'activeusers-noresult' => 'کاربری پیدا نشد.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'سیاههٔ ایجاد کاربر',
-'newuserlogpagetext' => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'اختیارات گروه‌های کاربری',
@@ -2476,8 +2473,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchnologin' => 'به سامانه وارد نشده‌اید',
 'watchnologintext' => 'برای تغییر فهرست پی‌گیری‌هایتان باید [[Special:UserLogin|به سامانه وارد شوید]].',
 'addwatch' => 'افزودن به فهرست پی‌گیری',
-'addedwatchtext' => "صفحهٔ «[[:$1]]» به [[Special:Watchlist|فهرست پی‌گیری‌های]] شما اضافه شد.
-تغییرات این صفحه و صفحهٔ بحث متناظرش در آینده در اینجا فهرست خواهد شد؛ به‌علاوه، این صفحه، برای واضح‌تر دیده شدن در [[Special:RecentChanges|فهرست تغییرات اخیر]] به شکل '''پررنگ''' نمایش خواهد یافت.",
+'addedwatchtext' => 'صفحهٔ «[[:$1]]» به [[Special:Watchlist|فهرست پی‌گیری‌های]] شما اضافه شد.
+تغییرات این صفحه و صفحهٔ بحث متناظرش در آینده در اینجا فهرست خواهد شد.',
 'removewatch' => 'حذف از فهرست پی‌گیری',
 'removedwatchtext' => 'صفحهٔ «[[:$1]]» از [[Special:Watchlist|فهرست پی‌گیری‌های شما]] برداشته شد.',
 'watch' => 'پی‌گیری',
@@ -2511,7 +2508,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'enotif_subject_moved' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} انتقال یافت.',
 'enotif_subject_restored' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} احیا شد.',
 'enotif_subject_changed' => '{{SITENAME}} صفحهٔ $1 توسط {{gender:$2|$2}} تغییر کرد.',
-'enotif_body_intro_deleted' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} حذف شد. $3 را برای نسخهٔ کنونی شاهده کنید.',
+'enotif_body_intro_deleted' => 'صفحهٔ $1 {{SITENAME}} در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} حذف شد، $3 را ببینید.',
 'enotif_body_intro_created' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} ایجاد شد. $3 را برای نسخهٔ کنونی شاهده کنید.',
 'enotif_body_intro_moved' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} انتقال یافت، $3 را برای نسخهٔ کنونی شاهده کنید.',
 'enotif_body_intro_restored' => '{{SITENAME}} صفحهٔ $1 در تاریخ $PAGEEDITDATE توسط {{gender:$2|$2}} احیا شد، $3 را برای نسخهٔ کنونی شاهده کنید.',
@@ -3129,6 +3126,7 @@ $1',
 'import-error-interwiki' => 'صفحه «$1» وارد نشد. چون نام آن برای پیوند خارجی (interwiki) رزرو شده‌است.',
 'import-error-special' => 'صفحه «$1» درون‌ریزی نشد، چرا که متعلق به فضای نام غیرمجاز است.',
 'import-error-invalid' => 'صفحه "$1" به دلیل نامعتبر بودن نامش وارد نمی‌شود.',
+'import-error-unserialize' => 'امکان خارج کردن نسخهٔ $2 از صفحهٔ «$1» از حالت سریال‌شده وجود نداشت. گزارش شد که نسخه از مدل محتوای $3 استفاده می‌کند که به صورت $4 سریال شده‌است.',
 'import-options-wrong' => '{{PLURAL:$2|جزئیات|جزئیات}} اشتباه: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'با توجه به ریشه صفحه عنوان نامعتبر است.',
 'import-rootpage-nosubpage' => 'فضای نام  "$1" صفحهٔ مبنا اجازهٔ زیرصفحه نمی‌دهد.',
@@ -3289,6 +3287,10 @@ $1',
 'pageinfo-protect-cascading' => 'محافظت آبشاری از اینجا',
 'pageinfo-protect-cascading-yes' => 'بله',
 'pageinfo-protect-cascading-from' => 'محافظت آبشاری از',
+'pageinfo-category-info' => 'اطلاعات رده',
+'pageinfo-category-pages' => 'تعداد صفحه‌ها',
+'pageinfo-category-subcats' => 'تعداد زیررده‌ها',
+'pageinfo-category-files' => 'تعداد پرونده‌ها',
 
 # Skin names
 'skinname-standard' => 'کلاسیک',
@@ -3347,6 +3349,7 @@ $1',
 'file-nohires' => 'تفکیک‌پذیری بالاتری در دسترس نیست.',
 'svg-long-desc' => 'پروندهٔ اس‌وی‌جی، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
 'svg-long-desc-animated' => 'پروندهٔ اس‌وی‌جی متحرک، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
+'svg-long-error' => 'پرونده SVG غیرمجاز: $1',
 'show-big-image' => 'تصویر با تفکیک‌پذیری بالاتر',
 'show-big-image-preview' => 'اندازهٔ این پیش‌نمایش: $1.',
 'show-big-image-other' => '{{PLURAL:$2|کیفیت|کیفیت‌های}} دیگر: $1.',
@@ -3376,6 +3379,8 @@ $1',
 'minutes' => '{{PLURAL: $1|دقیقه|دقیقه}}',
 'hours' => '{{PLURAL: $1|ساعت|ساعت}}',
 'days' => '{{PLURAL: $1|روز|روز}}',
+'months' => '{{PLURAL:$1|$1 ماه|}}',
+'years' => '{{PLURAL:$1|$1 سال|}}',
 'ago' => '$1 پیش',
 'just-now' => 'هم‌اکنون',
 
@@ -4179,9 +4184,9 @@ $5
 'revdelete-content-hid' => 'محتوا را پنهان کرد',
 'revdelete-summary-hid' => 'خلاصه ویرایش را پنهان کرد',
 'revdelete-uname-hid' => 'نام کاربری را پنهان کرد',
-'revdelete-content-unhid' => 'محتوا را پنهان کرد',
-'revdelete-summary-unhid' => 'خلاصه ویرایش را پنهان کرد',
-'revdelete-uname-unhid' => 'نام کاربری را پنهان کرد',
+'revdelete-content-unhid' => 'محتوا را آشکار کرد',
+'revdelete-summary-unhid' => 'خلاصه ویرایش را آشکار کرد',
+'revdelete-uname-unhid' => 'نام کاربری را آشکار کرد',
 'revdelete-restricted' => 'مدیران را محدود کرد',
 'revdelete-unrestricted' => 'محدودیت مدیران را لغو کرد',
 'logentry-move-move' => '$1 صفحهٔ $3 را به $4 منتقل کرد',
@@ -4195,6 +4200,10 @@ $5
 'logentry-newusers-create2' => 'حساب کاربری $3 توسط $1 ایجاد شد',
 'logentry-newusers-autocreate' => 'حساب $1  به شکل خودکار ساخته شد',
 'newuserlog-byemail' => 'گذرواژه بوسیله رایانامه ارسال شد',
+'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
+'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
+'logentry-rights-autopromote' => '$1 به طور خودکار از $4 به $5 ارتقا یافت',
+'rightsnone' => '(هیچ)',
 
 # Feedback
 'feedback-bugornote' => 'اگر آماده‌اید تا مشکلی فنی را با جزئیاتش شرح دهید لطفاً [$1 یک ایراد گزارش دهید]. در غیر این صورت می‌توانید از فرم سادهٔ زیر استفاده کنید. نظر شما به همراه نام کاربری و مرورگرتان به صفحهٔ «[$2 $3]» افزوده خواهد شد.',
@@ -4267,6 +4276,4 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
-# Unknown messages
-'svg-long-error' => 'پرونده SVG غیرمجاز: $1',
 );

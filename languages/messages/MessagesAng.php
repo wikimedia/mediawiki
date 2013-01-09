@@ -476,7 +476,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'template-protected' => '(borgen)',
 'template-semiprotected' => '(sāmborgen)',
 'hiddencategories' => 'Þēos sīde is ȝesīþ {{PLURAL:$1|1 ȝehȳdedes flocces|$1 ȝehȳdeda flocca}}:',
-'nocreatetitle' => 'Sīdan ȝesceaft mǣte',
 'nocreate-loggedin' => 'Þū ne hæfst þafunge to scieppenne nīƿa sīdan.',
 'permissionserrors' => 'Þafunga ƿōh',
 'permissionserrorstext-withaction' => 'Þū ne hæfst þafunge for $2, forþǣm þe {{PLURAL:$1|race|racum}}:',

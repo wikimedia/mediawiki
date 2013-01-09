@@ -730,7 +730,6 @@ Mangakaun ko nogi do sinuratannu iti mopori, toi dinalin iri mantad domin ginumu
 'template-protected' => '(tingoligai)',
 'template-semiprotected' => '(noumoligan)',
 'hiddencategories' => 'Bolikon diti songkoruhang do {{PLURAL:$1|1 katogori poinlisok|$1 kakatogori poinlisok}}:',
-'nocreatetitle' => 'Momonsoi bolikon wagu pinatagal',
 'nocreatetext' => '{{SITENAME}} tinagal kasagaan momonsoi bobolikon kawawagu.
 Milo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|sumuang log toi momonsoi do takaun.]].',
 'nocreate-loggedin' => 'Ingaa kasagaannu do momonsoi bobolikon wagu.',

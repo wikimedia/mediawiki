@@ -693,10 +693,16 @@ class SpecialBlock extends FormSpecialPage {
 		# Try to insert block. Is there a conflicting block?
 		$status = $block->insert();
 		if ( !$status ) {
+			# Indicates whether the user is confirming the block and is aware of
+			# the conflict (did not change the block target in the meantime)
+			$blockNotConfirmed = !$data['Confirm'] || ( array_key_exists( 'PreviousTarget', $data )
+				&& $data['PreviousTarget'] !== $target );
+
+			# Special case for API - bug 32434
+			$reblockNotAllowed = ( array_key_exists( 'Reblock', $data ) && !$data['Reblock'] );
+
 			# Show form unless the user is already aware of this...
-			if ( !$data['Confirm'] || ( array_key_exists( 'PreviousTarget', $data )
-				&& $data['PreviousTarget'] !== $target ) )
-			{
+			if( $blockNotConfirmed || $reblockNotAllowed ) {
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
 			} else {

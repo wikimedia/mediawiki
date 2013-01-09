@@ -43,6 +43,7 @@ class OutputPage extends ContextSource {
 	var $mKeywords = array();
 
 	var $mLinktags = array();
+	var $mCanonicalUrl = false;
 
 	/// Additional stylesheets. Looks like this is for extensions. Might be replaced by resource loader.
 	var $mExtStyles = array();
@@ -316,7 +317,9 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a new \<link\> tag to the page header
+	 * Add a new \<link\> tag to the page header.
+	 *
+	 * Note: use setCanonicalUrl() for rel=canonical.
 	 *
 	 * @param $linkarr Array: associative array of attributes.
 	 */
@@ -334,6 +337,14 @@ class OutputPage extends ContextSource {
 	function addMetadataLink( $linkarr ) {
 		$linkarr['rel'] = $this->getMetadataAttribute();
 		$this->addLink( $linkarr );
+	}
+
+	/**
+	 * Set the URL to be used for the <link rel=canonical>. This should be used
+	 * in preference to addLink(), to avoid duplicate link tags.
+	 */
+	function setCanonicalUrl( $url ) {
+		$this->mCanonicalUrl = $url;
 	}
 
 	/**
@@ -428,7 +439,7 @@ class OutputPage extends ContextSource {
 	 * @param $type string
 	 * @return Array
 	 */
-	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ){
+	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ) {
 		$resourceLoader = $this->getResourceLoader();
 		$filteredModules = array();
 		foreach( $modules as $val ){
@@ -1239,7 +1250,7 @@ class OutputPage extends ContextSource {
 	 * @param $type String ResourceLoaderModule TYPE_ constant
 	 * @return Int ResourceLoaderModule ORIGIN_ class constant
 	 */
-	public function getAllowedModules( $type ){
+	public function getAllowedModules( $type ) {
 		if( $type == ResourceLoaderModule::TYPE_COMBINED ){
 			return min( array_values( $this->mAllowedModules ) );
 		} else {
@@ -1254,7 +1265,7 @@ class OutputPage extends ContextSource {
 	 * @param  $type String ResourceLoaderModule TYPE_ constant
 	 * @param  $level Int ResourceLoaderModule class constant
 	 */
-	public function setAllowedModules( $type, $level ){
+	public function setAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = $level;
 	}
 
@@ -1263,7 +1274,7 @@ class OutputPage extends ContextSource {
 	 * @param  $type String
 	 * @param  $level Int ResourceLoaderModule class constant
 	 */
-	public function reduceAllowedModules( $type, $level ){
+	public function reduceAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = min( $this->getAllowedModules($type), $level );
 	}
 
@@ -3040,6 +3051,8 @@ $templates
 
 		$tags = array();
 
+		$canonicalUrl = $this->mCanonicalUrl;
+
 		if ( $addContentType ) {
 			if ( $wgHtml5 ) {
 				# More succinct than <meta http-equiv=Content-Type>, has the
@@ -3184,10 +3197,7 @@ $templates
 						);
 					}
 				} else {
-					$tags['canonical'] = Html::element( 'link', array(
-						'rel' => 'canonical',
-						'href' => $this->getTitle()->getCanonicalUrl()
-					) );
+					$canonicalUrl = $this->getTitle()->getLocalURL();
 				}
 			}
 		}
@@ -3256,6 +3266,24 @@ $templates
 				}
 			}
 		}
+
+		# Canonical URL
+		global $wgEnableCanonicalServerLink;
+		if ( $wgEnableCanonicalServerLink ) {
+			if ( $canonicalUrl !== false ) {
+				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
+			} else {
+				$reqUrl = $this->getRequest()->getRequestURL();
+				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+			}
+		}
+		if ( $canonicalUrl !== false ) {
+			$tags[] = Html::element( 'link', array(
+				'rel' => 'canonical',
+				'href' => $canonicalUrl
+			) );
+		}
+
 		return $tags;
 	}
 

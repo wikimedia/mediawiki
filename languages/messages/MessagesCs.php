@@ -925,6 +925,7 @@ Dočasné heslo: $2',
 'changeemail-oldemail' => 'Stávající e-mailová adresa:',
 'changeemail-newemail' => 'Nová e-mailová adresa:',
 'changeemail-none' => '(žádná)',
+'changeemail-password' => 'Vaše heslo do {{gender:2sg|{{SITENAME}}}}:',
 'changeemail-submit' => 'Změnit e-mail',
 'changeemail-cancel' => 'Storno',
 
@@ -1097,7 +1098,6 @@ Níže je pro přehled zobrazen nejnovější protokolovací záznam:",
 'template-semiprotected' => '(polozamčena)',
 'hiddencategories' => 'Tato stránka je zařazena {{PLURAL:$1|v jedné skryté kategorii|ve $1 skrytých kategoriích|v $1 skrytých kategoriích}}:',
 'edittools' => '<!-- Tento text bude zobrazen pod formuláři pro editaci stránek a načítání souborů. -->',
-'nocreatetitle' => 'Vytváření nových stránek je omezeno',
 'nocreatetext' => 'Na {{grammar:6sg|{{SITENAME}}}} je možnost vytváření nových stránek omezena.
 Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLogin|se přihlásit či se registrovat]].',
 'nocreate-loggedin' => 'Nemáte povoleno zakládat nové stránky.',
@@ -1642,15 +1642,13 @@ Tuto operaci nelze vrátit zpět.',
 'right-sendemail' => 'Odesílání e-mailů ostatním uživatelům',
 'right-passwordreset' => 'Prohlížení e-mailů pro znovunastavení hesla',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kniha nových uživatelů',
+'newuserlogpagetext' => 'Toto je záznam nově zaregistrovaných uživatelů.',
+
 # User rights log
 'rightslog' => 'Kniha práv uživatelů',
 'rightslogtext' => 'Toto je záznam změn uživatelských práv.',
-'rightslogentry' => 'změnil pro $1 zařazení ve skupinách z $2 na $3',
-'rightslogentry-autopromote' => 'byl automaticky povýšen z $2 na $3',
-'logentry-rights-rights' => '$1 {{GENDER:$1|změnil|změnila}} členství $3 ve skupinách z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|změnil|změnila}} členství $3 ve skupinách',
-'logentry-rights-autopromote' => '$1 {{GENDER:$1|byl automaticky povýšen|byla automaticky povýšena}} z $4 na $5',
-'rightsnone' => '(žádné)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'přečíst tuto stránku',
@@ -2271,7 +2269,7 @@ Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
 'linksearch-ok' => 'Hledat',
 'linksearch-text' => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.
 Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />
-Podporované protokoly: <code>$1</code> (pokud není protokol uveden, použije se http://).',
+{{PLURAL:$2|Podporovaný protokol|Podporované protokoly}}: <code>$1</code> (pokud není protokol uveden, použije se http://).',
 'linksearch-line' => '$2 odkazuje na $1',
 'linksearch-error' => 'Zástupné znaky lze použít jen na začátku doménového jména.',
 
@@ -2289,10 +2287,6 @@ Podporované protokoly: <code>$1</code> (pokud není protokol uveden, použije s
 'activeusers-hidebots' => 'Skrýt roboty',
 'activeusers-hidesysops' => 'Skrýt správce',
 'activeusers-noresult' => 'Nenalezen žádný uživatel.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kniha nových uživatelů',
-'newuserlogpagetext' => 'Toto je záznam nově zaregistrovaných uživatelů.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Práva skupin uživatelů',
@@ -2360,7 +2354,8 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'watchnologin' => 'Nejste přihlášen(a)',
 'watchnologintext' => 'Pro sledování stránek se musíte [[Special:UserLogin|přihlásit]].',
 'addwatch' => 'Přidat do sledovaných stránek',
-'addedwatchtext' => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
+'addedwatchtext' => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které sledujete.
+Ve [[Special:Watchlist|sledovaných stránkách]] se tak budou objevovat budoucí změny této stránky a přidružené diskuse.',
 'removewatch' => 'Vyřadit ze sledovaných stránek',
 'removedwatchtext' => 'Stránka „[[:$1]]“ byla vyřazena z vašeho [[Special:Watchlist|seznamu sledovaných stránek]].',
 'watch' => 'Sledovat',
@@ -2394,7 +2389,7 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'enotif_subject_moved' => '$2 {{gender:$2|přesunul|přesunula}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_restored' => '$2 {{gender:$2|obnovil|obnovila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
 'enotif_subject_changed' => '$2 {{gender:$2|změnil|změnila}} stránku $1 na {{grammar:6sg|{{SITENAME}}}}',
-'enotif_body_intro_deleted' => 'V $PAGEEDITDATE {{gender:$2|smazal|smazala}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
+'enotif_body_intro_deleted' => '$2 {{gender:$2|smazal|smazala}} $PAGEEDITDATE na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte $3.',
 'enotif_body_intro_created' => 'V $PAGEEDITDATE {{gender:$2|založil|založila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
 'enotif_body_intro_moved' => 'V $PAGEEDITDATE {{gender:$2|přesunul|přesunula}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
 'enotif_body_intro_restored' => 'V $PAGEEDITDATE {{gender:$2|obnovil|obnovila}} $2 na {{grammar:6sg|{{SITENAME}}}} stránku $1, vizte aktuální verzi na $3 .',
@@ -2493,6 +2488,8 @@ Můžete si prohlédnout též [[Special:ProtectedPages|seznam aktuálně platn�
 'prot_1movedto2' => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
 'protect-badnamespace-title' => 'Nezamykatelný jmenný prostor',
 'protect-badnamespace-text' => 'Stránky v tomto jmenném prostoru nelze zamykat.',
+'protect-norestrictiontypes-text' => 'Tuto stránku nelze zamknout, protože nejsou k dispozici žádné typy zámků.',
+'protect-norestrictiontypes-title' => 'Nezamykatelná stránka',
 'protect-legend' => 'Potvrdit zamčení',
 'protectcomment' => 'Důvod:',
 'protectexpiry' => 'Čas vypršení:',
@@ -2976,6 +2973,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'import-error-interwiki' => 'Stránka „$1“ se neimportuje, protože její název je vyhrazen pro externí odkazy (interwiki).',
 'import-error-special' => 'Stránka „$1“ se neimportuje, protože patří do speciálního jmenného prostoru, do kterého stránky nepatří.',
 'import-error-invalid' => 'Stránka „$1“ se neimportuje, protože její název je neplatný.',
+'import-error-unserialize' => 'Nepodařilo se deserializovat revizi $2 stránky „$1“. Revize měla používat model obsahu $3 serializovaný jako $4.',
 'import-options-wrong' => '{{PLURAL:$2|Chybná volba|Chybné volby}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Zadaný název kořenové stránky je neplatný.',
 'import-rootpage-nosubpage' => 'Ve jmenném prostoru „$1“ kořenové stránky nejsou dovoleny podstránky.',
@@ -3165,6 +3163,10 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-protect-cascading' => 'Kaskádový zámek',
 'pageinfo-protect-cascading-yes' => 'Ano',
 'pageinfo-protect-cascading-from' => 'Zámky pocházejí z kaskádových zámků na',
+'pageinfo-category-info' => 'Informace o kategorii',
+'pageinfo-category-pages' => 'Počet stránek',
+'pageinfo-category-subcats' => 'Počet podkategorií',
+'pageinfo-category-files' => 'Počet souborů',
 
 # Skin names
 'skinname-standard' => 'Klasický',
@@ -3222,6 +3224,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'file-nohires' => 'Větší rozlišení není k dispozici.',
 'svg-long-desc' => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
 'svg-long-desc-animated' => 'Animovaný soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
+'svg-long-error' => 'Neplatný soubor SVG: $1',
 'show-big-image' => 'Obrázek ve vyšším rozlišení',
 'show-big-image-preview' => 'Velikost tohoto náhledu: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Jiné|Jiná}} rozlišení: $1.',
@@ -3251,6 +3254,8 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours' => '{{PLURAL:$1|$1 hodina|$1 hodiny|$1 hodin}}',
 'days' => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
+'months' => '{{PLURAL:$1|$1 měsícem|$1 měsíci}}',
+'years' => '{{PLURAL:$1|$1 rokem|$1 roky}}',
 'ago' => 'před 
 $1',
 'just-now' => 'Právě teď',
@@ -4063,6 +4068,10 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-newusers-create2' => '$1 založil uživatelský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky byl založen účet $1',
 'newuserlog-byemail' => 'heslo zasláno e-mailem',
+'logentry-rights-rights' => '$1 změnil členství $3 ve skupinách z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 změnil členství $3 ve skupinách',
+'logentry-rights-autopromote' => '$1 byl automaticky povýšen z $4 na $5',
+'rightsnone' => '(žádné)',
 
 # Feedback
 'feedback-bugornote' => 'Pokud dokážete podrobně popsat technický problém, můžete [$1 nahlásit chybu].
@@ -4136,6 +4145,4 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'svg-long-error' => 'Neplatný soubor SVG: $1',
 );

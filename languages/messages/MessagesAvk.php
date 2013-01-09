@@ -659,7 +659,6 @@ Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyaf
 'template-protected' => '(nendana)',
 'template-semiprotected' => '(nendamana)',
 'hiddencategories' => 'Batu bu tir bewafu gu {{PLURAL:$1|1 palsena loma|$1 palsena loma}}:',
-'nocreatetitle' => 'Irutana buredura',
 'nocreatetext' => '{{SITENAME}} va roredura va warzafu bu irutar.
 Rodimal aze va tisu bu robetal oke [[Special:UserLogin|va int rodogluyal oke ropataredul]].',
 'nocreate-loggedin' => 'Rin va warzafu bu me ronoredul.',

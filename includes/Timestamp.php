@@ -54,7 +54,9 @@ class MWTimestamp {
 		"seconds" => 1000, // 1000 milliseconds per second
 		"minutes" => 60, // 60 seconds per minute
 		"hours" => 60, // 60 minutes per hour
-		"days" => 24 // 24 hours per day
+		"days" => 24, // 24 hours per day
+		"months" => 30, // approximately 30 days per month
+		"years" => 12, // 12 months per year
 	);
 
 	/**

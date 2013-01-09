@@ -19,6 +19,12 @@ class BackupDumperPageTest extends DumpTestCase {
 	private $namespace, $talk_namespace;
 
 	function addDBData() {
+		// be sure, titles created here using english namespace names
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+		));
+
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';
@@ -78,11 +84,6 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-
-		$this->setMwGlobals( array(
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-		));
 
 		// Since we will restrict dumping by page ranges (to allow
 		// working tests, even if the db gets prepopulated by a base

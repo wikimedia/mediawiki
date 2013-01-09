@@ -29,11 +29,11 @@ class EditAction extends FormlessAction {
 		return 'edit';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 		$page = $this->page;
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -62,7 +62,7 @@ class SubmitAction extends EditAction {
 		return 'submit';
 	}
 
-	public function show(){
+	public function show() {
 		if ( session_id() == '' ) {
 			// Send a cookie so anons get talk message notifications
 			wfSetupSession();

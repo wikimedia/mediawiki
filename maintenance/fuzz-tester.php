@@ -2041,7 +2041,7 @@ class api extends pageTest {
 	}
 
 	// Adds all the elements to the array, using the specified prefix.
-	private static function addListParams( &$array, $prefix, $elements )  {
+	private static function addListParams( &$array, $prefix, $elements ) {
 		foreach ( $elements as $element ) {
 			$array[$prefix . $element] = self::getParamDetails( $element );
 		}

@@ -728,7 +728,6 @@ Ekyasemba okuyingizibwa mu lukalala olw'ebifuddeyo lwa lwo bibino okwongera okuk
 'template-protected' => '(luno lusibidwa)',
 'template-semiprotected' => '(ebimu ku lupapula luno bisibidwa)',
 'hiddencategories' => 'Olupapula luno lusangibwa mu {{PLURAL:$1|ttuluba erikise limu|matuluba amakise $1}}:',
-'nocreatetitle' => 'Okukolawo empapula kuliko obukwakkulizo',
 'nocreatetext' => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:UserLogin|okufuna obuyinza obw'obwamemba]].",
 'nocreate-loggedin' => 'Tolina buyinza bwa kukolawo empapula mpya.',
 'sectioneditnotsupported-title' => 'Okukyusa mu bitundu tekukkirizibwa',

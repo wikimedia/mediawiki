@@ -56,7 +56,7 @@ class CategoryPage extends Article {
 		$diffOnly = $request->getBool( 'diffonly',
 			$this->getContext()->getUser()->getOption( 'diffonly' ) );
 
-		if ( isset( $diff ) && $diffOnly ) {
+		if ( $diff !== null && $diffOnly ) {
 			parent::view();
 			return;
 		}

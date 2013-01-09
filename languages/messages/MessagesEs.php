@@ -78,6 +78,7 @@
  * @author Spacebirdy
  * @author Technorum
  * @author The Evil IP address
+ * @author TheBITLINK
  * @author Titoxd
  * @author Toniher
  * @author Translationista
@@ -575,7 +576,7 @@ $messages = array(
 'viewtalkpage' => 'Ver discusión',
 'otherlanguages' => 'Otros idiomas',
 'redirectedfrom' => '(Redirigido desde «$1»)',
-'redirectpagesub' => 'Página redirigida',
+'redirectpagesub' => 'Página de redirección',
 'lastmodifiedat' => 'Esta página fue modificada por última vez el $1, a las $2.',
 'viewcount' => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
 'protectedpage' => 'Página protegida',
@@ -615,7 +616,7 @@ $1',
 'badaccess-group0' => 'No estás autorizado a ejecutar la acción solicitada.',
 'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos}}: $1.',
 
-'versionrequired' => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
+'versionrequired' => 'Se requiere la versión $1 de MediaWiki.',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consultar [[Special:Version|la página de versión]]',
 
 'ok' => 'Aceptar',
@@ -926,14 +927,15 @@ Contraseña temporal: $2',
 'passwordreset-emailerror-capture' => 'Un recordatorio por correo electrónico fue generado, que se muestra a continuación, pero el envío al usuario falló: $1',
 
 # Special:ChangeEmail
-'changeemail' => 'Cambiar la dirección de correo-e',
-'changeemail-header' => 'Cambiar la dirección de correo-e de la cuenta',
+'changeemail' => 'Cambiar la dirección de correo electrónico',
+'changeemail-header' => 'Cambiar la dirección de correo electrónico de la cuenta',
 'changeemail-text' => 'Rellena este formulario para cambiar tu dirección de correo electrónico. Debes introducir la contraseña para confirmar este cambio.',
 'changeemail-no-info' => 'Debes iniciar sesión para acceder directamente a esta página.',
-'changeemail-oldemail' => 'Dirección de correo-e actual:',
-'changeemail-newemail' => 'Nueva dirección de correo-e:',
+'changeemail-oldemail' => 'Dirección de correo electrónico actual:',
+'changeemail-newemail' => 'Nueva dirección de correo electrónico:',
 'changeemail-none' => '(ninguna)',
-'changeemail-submit' => 'Cambiar correo-e',
+'changeemail-password' => 'Tu contraseña en {{SITENAME}}:',
+'changeemail-submit' => 'Cambiar correo electrónico',
 'changeemail-cancel' => 'Cancelar',
 
 # Edit page toolbar
@@ -1110,7 +1112,6 @@ A continuación se muestra la última entrada de registro para referencia:",
 'template-semiprotected' => '(semiprotegida)',
 'hiddencategories' => 'Esta página es un miembro de {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:',
 'edittools' => '<!-- Este texto aparecerá bajo los formularios de edición y subida. -->',
-'nocreatetitle' => 'Creación de páginas limitada',
 'nocreatetext' => '{{SITENAME}} ha restringido la posibilidad de crear nuevas páginas.
 Puede volver atrás y editar una página existente, [[Special:UserLogin|identificarte o crear una cuenta]].',
 'nocreate-loggedin' => 'No tienes permiso para crear páginas nuevas.',
@@ -1457,8 +1458,8 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-watchlist-token' => 'Ficha de lista de seguimiento:',
 'prefs-misc' => 'Miscelánea',
 'prefs-resetpass' => 'Cambiar contraseña',
-'prefs-changeemail' => 'Cambiar correo-e',
-'prefs-setemail' => 'Establecer una dirección de correo-e',
+'prefs-changeemail' => 'Cambiar correo electrónico',
+'prefs-setemail' => 'Establecer una dirección de correo electrónico',
 'prefs-email' => 'Opciones de correo electrónico',
 'prefs-rendering' => 'Apariencia',
 'saveprefs' => 'Guardar',
@@ -1510,9 +1511,9 @@ Esto no se puede deshacer.',
 'prefs-emailconfirm-label' => 'Confirmación de correo electrónico:',
 'prefs-textboxsize' => 'Tamaño de la página de edición',
 'youremail' => 'Correo electrónico:',
-'username' => 'Nombre de usuario:',
-'uid' => 'ID de usuario:',
-'prefs-memberingroups' => 'Miembro {{PLURAL:$1|del grupo|de los grupos}}:',
+'username' => '{{GENDER:$1|Nombre de usuario|Nombre de usuaria}}:',
+'uid' => 'ID de {{GENDER:$1|usuario|usuaria}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Miembro}} {{PLURAL:$1|del grupo|de los grupos}}:',
 'prefs-registration' => 'Hora de registro:',
 'yourrealname' => 'Nombre real:',
 'yourlanguage' => 'Idioma:',
@@ -1660,15 +1661,13 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'right-sendemail' => 'Enviar un correo electrónico a otros usuarios',
 'right-passwordreset' => 'Ver os correos electrónicos de restablecimiento de contraseñas',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Registro de creación de usuarios',
+'newuserlogpagetext' => 'Este es un registro de creación de usuarios.',
+
 # User rights log
 'rightslog' => 'Cambios de perfil de usuario',
 'rightslogtext' => 'Este es un registro de cambios en los permisos de usuarios.',
-'rightslogentry' => 'modificó los grupos a los que pertenece $1: de $2 a $3',
-'rightslogentry-autopromote' => 'fue promovido automáticamente desde $2 a $3',
-'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
-'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
-'rightsnone' => '(ninguno)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leer esta página',
@@ -2295,7 +2294,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
 Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <code>$1</code> (si no se especifica ninguno, el protocolo por defecto es http://).',
+{{PLURAL:$2|Protocolo|Protocolos}} soportados: <code>$1</code> (si no se especifica ninguno, el protocolo por defecto es http://).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2313,10 +2312,6 @@ Protocolos soportados: <code>$1</code> (si no se especifica ninguno, el protocol
 'activeusers-hidebots' => 'Ocultar robots',
 'activeusers-hidesysops' => 'Ocultar administradores',
 'activeusers-noresult' => 'No se encontraron usuarios.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Registro de creación de usuarios',
-'newuserlogpagetext' => 'Este es un registro de creación de usuarios.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Permisos del grupo de usuarios',
@@ -2383,7 +2378,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'watchnologin' => 'No has iniciado sesión',
 'watchnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] para modificar tu lista de seguimiento.',
 'addwatch' => 'Añadir a la lista de seguimiento',
-'addedwatchtext' => "La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar.",
+'addedwatchtext' => 'La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí.',
 'removewatch' => 'Quitar de la lista de seguimiento',
 'removedwatchtext' => 'La página «[[:$1]]» ha sido eliminada de tu [[Special:Watchlist|lista de seguimiento]].',
 'watch' => 'Vigilar',
@@ -2417,7 +2412,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'enotif_subject_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada por {{GENDER:$2|$2}}',
 'enotif_subject_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada por {{GENDER:$2|$2}}',
 'enotif_subject_changed' => 'La página $1 de {{SITENAME}} ha sido cambiada por {{GENDER:$2|$2}}',
-'enotif_body_intro_deleted' => 'La página $1 de {{SITENAME}} ha sido borrada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
+'enotif_body_intro_deleted' => 'La página $1 de {{SITENAME}} ha sido borrada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3.',
 'enotif_body_intro_created' => 'La página $1 de {{SITENAME}} ha sido creada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
 'enotif_body_intro_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
 'enotif_body_intro_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
@@ -3012,6 +3007,7 @@ No hay un directorio temporal.',
 'import-error-interwiki' => 'La página "$1" no se ha importado porque su nombre está reservado para la vinculación externa (interwikis).',
 'import-error-special' => 'La página "$1" no se ha importado porque pertenece a un espacio de nombres especial que no admite páginas.',
 'import-error-invalid' => 'La página "$1" no se ha importado porque su nombre no es válido.',
+'import-error-unserialize' => 'La revisión $2 de la página "$1" no pudo dejar de hacerse en serie. Se informó de la revisión para utilizar el modelo de contenidos $3 ejecutado en serie como $4.',
 'import-options-wrong' => '{{PLURAL:$2|Opción errónea|Opciones erróneas}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La página raíz dada es un título inválido.',
 'import-rootpage-nosubpage' => 'El espacio de nombres "$1" de la página raíz no permite subpáginas.',
@@ -3106,16 +3102,16 @@ Permite añadir una razón al resumen de edición.',
 'tooltip-summary' => 'Introduce un breve resumen',
 
 # Stylesheets
-'common.css' => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
-'standard.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
-'nostalgia.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
-'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
-'monobook.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MonoBook */',
-'myskin.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
-'chick.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
-'simple.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
-'modern.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
-'vector.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
+'common.css' => '/* El CSS colocado en esta página sera aplicado a todas las pieles (skins) */',
+'standard.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Standard" */',
+'nostalgia.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Nostalgia" */',
+'cologneblue.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Cologne Blue" */',
+'monobook.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MonoBook" */',
+'myskin.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MySkin" */',
+'chick.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel ""Chick" */',
+'simple.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Simple" */',
+'modern.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Modern" */',
+'vector.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Vector" */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
 'handheld.css' => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
 'noscript.css' => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',
@@ -3263,6 +3259,7 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'file-nohires' => 'No disponible a mayor resolución.',
 'svg-long-desc' => 'archivo SVG, nominalmente $1 × $2 píxeles, tamaño de archivo: $3',
 'svg-long-desc-animated' => 'Archivo SVG animado, nominalmente de $1 × $2 píxeles, tamaño del archivo: $3',
+'svg-long-error' => 'Archivo SVG no válido: $1',
 'show-big-image' => 'Resolución original',
 'show-big-image-preview' => 'Tamaño de esta previsualización: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Otra resolución|Otras resoluciones}}: $1.',
@@ -4050,6 +4047,10 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'newuserlog-byemail' => 'contraseña enviada por correo electrónico',
+'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
+'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
+'rightsnone' => '(ninguno)',
 
 # Feedback
 'feedback-bugornote' => 'Si estás preparado para describir en detalle un problema técnico, [$1 informa de un bug] por favor.
@@ -4124,6 +4125,4 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'svg-long-error' => 'Archivo SVG no válido: $1',
 );

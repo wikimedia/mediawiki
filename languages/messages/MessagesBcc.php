@@ -757,7 +757,6 @@ $2',
 'template-semiprotected' => '(نیم محافظتی)',
 'hiddencategories' => 'ای صفحه عضوی چه {{PLURAL:$1|1 hidden category|$1 پناهین دسته جات}}:',
 'edittools' => '<!-- <strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong> -->',
-'nocreatetitle' => 'شرکتن صفحه محدودنت',
 'nocreatetext' => '{{SITENAME}} شما را چه شرکتن نوکین صفحه منه کته.
 شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:UserLogin|وارد بیت یان یک حسابی شرکنیت]].',
 'nocreate-loggedin' => 'شما را اجازت په شرکتن نوکین صفحات نیست.',
@@ -1212,11 +1211,13 @@ $1",
 'right-siteadmin' => 'کبل و پچ دیتابیس',
 'right-override-export-depth' => 'درگیزگ صفحات گون صفحاتی لینک بوتگین ته سطح ۵',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ورود شرکتن کاربر',
+'newuserlogpagetext' => '.شی یک ورودی چه شرکتن کاربر',
+
 # User rights log
 'rightslog' => 'ورودان حقوق کاربر',
 'rightslogtext' => 'شی یک آماری چه تغییرات په حقوق کاربری انت.',
-'rightslogentry' => 'عوض بوت عضویت گروهی په $1  چه $2 په $3',
-'rightsnone' => '(هچ یک)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'وانگ این صفحه',
@@ -1703,10 +1704,6 @@ PICT # misc.
 'activeusers-count' => '$1 {{PLURAL:$1|اصلاح|اصلاح}} نوکین',
 'activeusers-from' => 'پیشدار کاربرانی که شروع بنت گون :‌',
 'activeusers-noresult' => 'هچ کاربری درگیزگ نه بیت',
-
-# Special:Log/newusers
-'newuserlogpage' => 'ورود شرکتن کاربر',
-'newuserlogpagetext' => '.شی یک ورودی چه شرکتن کاربر',
 
 # Special:ListGroupRights
 'listgrouprights' => 'حقوق گروه کاربر',
@@ -3124,5 +3121,6 @@ $5
 'revdelete-restricted' => 'محدودیت آن په مدیران سیستم بوت',
 'revdelete-unrestricted' => 'به زور چه مدیران سیستم محدودیتان',
 'newuserlog-byemail' => 'کلمه رمز گون ایمیل دیم دهگ بوت',
+'rightsnone' => '(هچ یک)',
 
 );

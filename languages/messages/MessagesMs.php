@@ -754,6 +754,7 @@ Kata laluan sementara: $2',
 'changeemail-oldemail' => 'Alamat e-mel sekarang:',
 'changeemail-newemail' => 'Alamat e-mel baru:',
 'changeemail-none' => '(tiada)',
+'changeemail-password' => 'Kata laluan anda di {{SITENAME}}:',
 'changeemail-submit' => 'Tukar E-mel',
 'changeemail-cancel' => 'Batalkan',
 
@@ -930,7 +931,6 @@ Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'hiddencategories' => 'Laman ini terdapat dalam $1 kategori tersembunyi:',
 'edittools' => '<!-- Teks di sini akan ditunjukkan bawah borang sunting dan muat naik. -->',
 'edittools-upload' => '-',
-'nocreatetitle' => 'Penciptaan laman dihadkan',
 'nocreatetext' => 'Penciptaan laman baru dihadkan pada {{SITENAME}}.
 Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogin|log masuk]].',
 'nocreate-loggedin' => 'Anda tidak mempunyai keizinan untuk mencipta laman baru.',
@@ -1479,15 +1479,13 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-sendemail' => 'Mengirim e-mel kepada pengguna-pengguna lain',
 'right-passwordreset' => 'Lihat e-mel set semula kata laluan',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log akaun baru',
+'newuserlogpagetext' => 'Yang berikut ialah log penciptaan pengguna.',
+
 # User rights log
 'rightslog' => 'Log hak pengguna',
 'rightslogtext' => 'Ini ialah log perubahan terhadap hak pengguna.',
-'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
-'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
-'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
-'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
-'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',
-'rightsnone' => '(tiada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'membaca laman ini',
@@ -1932,7 +1930,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 # Statistics
 'statistics' => 'Statistik',
-'statistics-header-pages' => 'Statistik laman',
+'statistics-header-pages' => 'Statistik halaman',
 'statistics-header-edits' => 'Statistik suntingan',
 'statistics-header-views' => 'Statistik pandangan',
 'statistics-header-users' => 'Statistik pengguna',
@@ -2108,7 +2106,7 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ok' => 'Cari',
 'linksearch-text' => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
 Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
-Protokol yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol dinyatakan).',
+{{PLURAL:$2|Protokol|Protokol-protokol}} yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol dinyatakan).',
 'linksearch-line' => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 
@@ -2126,10 +2124,6 @@ Protokol yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol din
 'activeusers-hidebots' => 'Sorokkan bot',
 'activeusers-hidesysops' => 'Sorokkan pentadbir',
 'activeusers-noresult' => 'Tiada pengguna dijumpai.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Log akaun baru',
-'newuserlogpagetext' => 'Yang berikut ialah log penciptaan pengguna.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Hak kumpulan pengguna',
@@ -2199,12 +2193,8 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 'watchnologin' => 'Belum log masuk',
 'watchnologintext' => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
 'addwatch' => 'Tambahkan ke senarai pantau',
-'addedwatchtext' => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
-Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
-dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
-untuk memudahkan anda.
-
-Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
+'addedwatchtext' => 'Halaman "[[:$1]]" telah dimasukkan ke dalam [[Special:Watchlist|senarai pantau anda]].
+Perubahan-perubahan pada halaman ini dan halaman perbualannya pada masa akan datang akan tersenarai di dalam senarai itu.',
 'removewatch' => 'Buang dari senarai pantau',
 'removedwatchtext' => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch' => 'Pantau',
@@ -2238,7 +2228,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_subject_moved' => 'Halaman $1 di {{SITENAME}} telah dipindahkan oleh {{gender:$2|$2}}',
 'enotif_subject_restored' => 'Halaman $1 di {{SITENAME}} telah dipulihkan oleh {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Halaman $1 di {{SITENAME}} telah disunting oleh {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
+'enotif_body_intro_deleted' => 'Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3.',
 'enotif_body_intro_created' => 'Halaman $1 di {{SITENAME}} telah diwujudkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
 'enotif_body_intro_moved' => 'Halaman $1 di {{SITENAME}} telah dipindahkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
 'enotif_body_intro_restored' => 'Halaman $1 di {{SITENAME}} telah dipulihkan oleh {{gender:$2|$2}} pada $PAGEEDITDATE, sila rujuk $3 untuk semakan terkini.',
@@ -2838,6 +2828,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'import-error-interwiki' => 'Laman "$1" tidak diimport kerana namanya ditempah untuk pemautan luaran (antara wiki).',
 'import-error-special' => 'Laman "$1" tidak diimport kerana ia tergolong dalam ruang nama khas yang tidak membenarkan laman.',
 'import-error-invalid' => 'Laman "$1" tidak diimport kerana namanya tidak sah.',
+'import-error-unserialize' => 'Semakan $2 dari halaman "$1" tidak dapat dinyahsirikan. Semakan ini dilaporkan telah menggunakan model kandungan $3 yang disirikan sebagai $4.',
 'import-options-wrong' => '{{PLURAL:$2|Pilihan|Pilihan-pilihan}} salah: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Halaman akar yang dinyatakan adalah tidak sah.',
 'import-rootpage-nosubpage' => 'Ruang nama "$1" halaman akar tidak membenarkan subhalaman.',
@@ -3062,6 +3053,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'file-nohires' => 'Tiada leraian lebih besar.',
 'svg-long-desc' => 'Fail SVG, ukuran dasar $1 × $2 piksel, saiz fail: $3',
 'svg-long-desc-animated' => 'Fail SVG animasi, ukuran dasar $1 × $2 piksel, saiz fail: $3',
+'svg-long-error' => 'Fail SVG tidak sah: $1',
 'show-big-image' => 'Leraian penuh',
 'show-big-image-preview' => 'Saiz pralihat ini: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Leraian|Leraian-leraian}} lain: $1.',
@@ -3094,6 +3086,8 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'minutes' => '$1 minit',
 'hours' => '$1 jam',
 'days' => '$1 hari',
+'months' => '$1 bulan',
+'years' => '$1 tahun',
 'ago' => '$1 yang lalu',
 'just-now' => 'tadi',
 
@@ -3856,6 +3850,10 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-newusers-create2' => 'Akaun pengguna $3 dibuka oleh $1',
 'logentry-newusers-autocreate' => 'Akaun $1 dibuka secara automatik',
 'newuserlog-byemail' => 'kata laluan dihantar melalui e-mel',
+'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
+'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
+'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',
+'rightsnone' => '(tiada)',
 
 # Feedback
 'feedback-bugornote' => 'Jika anda bersedia untuk menerangkan masalah teknikal secara terperinci, sila [$1 laporkan pepijat]. 
@@ -3929,6 +3927,4 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
-# Unknown messages
-'svg-long-error' => 'Fail SVG tidak sah: $1',
 );

@@ -956,7 +956,6 @@ Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURA
 'template-semiprotected' => '(semiprotegit)',
 'hiddencategories' => "{{PLURAL:$1|Categoria amagada|Categorias amagadas}} qu'aquesta pagina ne fa partida :",
 'edittools' => '<!-- Tot tèxte picat aicí serà afichat jos las bóstias de modificacion o d’impòrt de fichièr. -->',
-'nocreatetitle' => 'Creacion de pagina limitada',
 'nocreatetext' => '{{SITENAME}} a restrencha la possibilitat de crear de paginas novèlas.
 Podètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vos connectar o crear un compte]].',
 'nocreate-loggedin' => 'Avètz pas la permission de crear de paginas novèlas.',
@@ -1474,11 +1473,13 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-sendemail' => 'Mandar un corrièl als autres utilizaires',
 'right-passwordreset' => 'Tòrna inicializar lo senhal d’un utilizaire ([[Special:PasswordReset|pagina especiala]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Istoric de las creacions de comptes',
+'newuserlogpagetext' => "Jornal de las creacions de comptes d'utilizaires.",
+
 # User rights log
 'rightslog' => "Istoric de las modificacions d'estatut",
 'rightslogtext' => "Aquò es un jornal dels cambiaments d'estatut d’utilizaire.",
-'rightslogentry' => 'a modificat los dreches de l’utilizaire « $1 » de $2 a $3',
-'rightsnone' => '(cap)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'legir aquesta pagina',
@@ -2026,10 +2027,6 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'activeusers-hidebots' => 'Amagar los robòts',
 'activeusers-hidesysops' => 'Amagar los administrators',
 'activeusers-noresult' => "Cap d'utilizaire pas trobat.",
-
-# Special:Log/newusers
-'newuserlogpage' => 'Istoric de las creacions de comptes',
-'newuserlogpagetext' => "Jornal de las creacions de comptes d'utilizaires.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Dreches dels gropes d'utilizaires",
@@ -3438,6 +3435,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 'revdelete-restricted' => 'aplicar las restriccions als administrators',
 'revdelete-unrestricted' => 'restriccions levadas pels administrators',
 'newuserlog-byemail' => 'senhal mandat per corrièr electronic',
+'rightsnone' => '(cap)',
 
 # Search suggestions
 'searchsuggest-search' => 'Recercar',

@@ -620,7 +620,6 @@ $2',
 'template-protected' => '(φυλλάττεται)',
 'template-semiprotected' => '(ἡμιπεφυλαγμένη)',
 'hiddencategories' => 'Ἥδε ἡ δέλτος μέλος ἐστὶ {{PLURAL:$1|1 τῆς κεκρυμμένης κατηγορίας|$1 τῶν κεκρυμμένων κατηγοριῶν}}:',
-'nocreatetitle' => 'Ποίησις δέλτων περιωρισμένη',
 'nocreatetext' => "{{SITENAME}} οὐ σ'ἐᾷ νέας δέλτους ποιεῖν.
 Ἐᾷ σε δέλτον ἢδη οὖσαν μεταβάλλειν ἢ [[Special:UserLogin|συνδεῖσθαι ἢ λογισμὸν ποιεῖν]].",
 'nocreate-loggedin' => 'Οὐκ ἔξεστι σοι νέας δέλτους ποιεῖν.',
@@ -1046,11 +1045,13 @@ $1",
 'right-siteadmin' => 'Φράττειν καὶ ἀποφράττειν τὴν βάσιν δεδομένων',
 'right-override-export-depth' => 'Ἐξάγειν δέλτους περιλαμβανομένων συνδεδεμένων δέλτων ἕως βάθος τι 5 ἐπιπέδων',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Κατάλογος ποιήσεων λογισμῶν.',
+'newuserlogpagetext' => 'Ὅδε ἐστὶν κατάλογος τις τῶν ποιήσεων λογισμῶν.',
+
 # User rights log
 'rightslog' => 'Κατάλογος δικαιωμάτων χρωμένων',
 'rightslogtext' => 'Κατάλογος ἀλλαγῶν τῶν δικαιωμάτων χρωμένων.',
-'rightslogentry' => 'Μετεβλήθη ἡ μελότης (δικαιώματα μέλους) διὰ τὸν $1 ἐκ τῆς $2 εἰς τὴν $3',
-'rightsnone' => '(Οὐδέν)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ἀναγιγνώσκειν τήνδε τὴν δέλτον',
@@ -1483,10 +1484,6 @@ $1",
 'activeusers-hidebots' => 'Κρύπτειν αὐτόματα',
 'activeusers-hidesysops' => 'Κρύπτειν ἐπιτρόπους',
 'activeusers-noresult' => 'Οὐδεὶς χρώμενος εὑρέθη.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Κατάλογος ποιήσεων λογισμῶν.',
-'newuserlogpagetext' => 'Ὅδε ἐστὶν κατάλογος τις τῶν ποιήσεων λογισμῶν.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Δικαιώματα ὁμάδος χρωμένου',
@@ -2703,6 +2700,7 @@ $5
 'revdelete-restricted' => 'ἐφηρμοσμένοι περιορισμοὶ διὰ τοὺς ἐπιτρόπους',
 'revdelete-unrestricted' => 'αἱρεθέντες περιορισμοὶ διὰ τοὺς ἐπιτρόπους',
 'newuserlog-byemail' => 'σύνθημα ἀπεσταλμένον μέσῳ ἠλ-ταχυδρομείου',
+'rightsnone' => '(Οὐδέν)',
 
 # Feedback
 'feedback-cancel' => 'Ἀκυροῦν',

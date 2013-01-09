@@ -1,9 +1,6 @@
 <?php
-
 /**
- * Wrapper allowing us to handle a system message as a Content object. Note that this is generally *not* used
- * to represent content from the MediaWiki namespace, and that there is no MessageContentHandler. MessageContent
- * is just intended as glue for wrapping a message programatically.
+ * Wrapper content object allowing to handle a system message as a Content object.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +23,15 @@
  * @ingroup Content
  *
  * @author Daniel Kinzler
+ */
+
+/**
+ * Wrapper allowing us to handle a system message as a Content object.
+ * Note that this is generally *not* used to represent content from the
+ * MediaWiki namespace, and that there is no MessageContentHandler.
+ * MessageContent is just intended as glue for wrapping a message programatically.
+ *
+ * @ingroup Content
  */
 class MessageContent extends AbstractContent {
 

@@ -756,7 +756,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
 'createaccountmail' => 'med e-post',
 'createaccountreason' => 'Orsak:',
-'badretype' => 'De lösenord du uppgett överenstämmer inte med varandra.',
+'badretype' => 'De lösenord du uppgett överensstämmer inte med varandra.',
 'userexists' => 'Det valda användarnamnet används redan.
 Var god välj ett annat namn.',
 'loginerror' => 'Inloggningsproblem',
@@ -881,6 +881,7 @@ Tillfälligt lösenord: $2',
 'changeemail-oldemail' => 'Nuvarande e-postadress:',
 'changeemail-newemail' => 'Ny e-postadress:',
 'changeemail-none' => '(ingen)',
+'changeemail-password' => 'Ditt lösenord till {{SITENAME}}:',
 'changeemail-submit' => 'Ändra e-post',
 'changeemail-cancel' => 'Avbryt',
 
@@ -1061,7 +1062,6 @@ Den senaste loggposten tillhandahålls nedan som referens:",
 'template-semiprotected' => '(delvis skyddad)',
 'hiddencategories' => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
 'edittools' => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
-'nocreatetitle' => 'Skapande av sidor begränsat',
 'nocreatetext' => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
 Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skapa ett användarkonto]].',
 'nocreate-loggedin' => 'Du har inte behörighet att skapa nya sidor.',
@@ -1613,15 +1613,13 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-sendemail' => 'Skicka e-post till andra användare',
 'right-passwordreset' => 'Visa e-postmeddelanden med lösenordsåterställning',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logg över nya användare',
+'newuserlogpagetext' => 'Detta är en logg över skapade användarkonton.',
+
 # User rights log
 'rightslog' => 'Användarrättighetslogg',
 'rightslogtext' => 'Detta är en logg över ändringar av användares rättigheter.',
-'rightslogentry' => 'ändrade grupptillhörighet för $1 från $2 till $3',
-'rightslogentry-autopromote' => 'befordrades automatiskt från $2 till $3',
-'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
-'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',
-'logentry-rights-autopromote' => '$1 befordrades automatiskt från $4 till $5',
-'rightsnone' => '(inga)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'läsa denna sida',
@@ -2248,7 +2246,7 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-ok' => 'Sök',
 'linksearch-text' => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
 Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
-Protokoll som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).',
+{{PLURAL:$2|Protokollet|Protokollen}} som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).',
 'linksearch-line' => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 
@@ -2266,10 +2264,6 @@ Protokoll som stöds: <code>$1</code> (sätts till http:// om inget protokoll an
 'activeusers-hidebots' => 'Göm botar',
 'activeusers-hidesysops' => 'Dölj administratörer',
 'activeusers-noresult' => 'Inga användare funna.',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Logg över nya användare',
-'newuserlogpagetext' => 'Detta är en logg över skapade användarkonton.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Behörigheter för användargrupper',
@@ -2336,8 +2330,8 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'watchnologin' => 'Inte inloggad',
 'watchnologintext' => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ändra din bevakningslista.',
 'addwatch' => 'Lägg till i bevakningslistan',
-'addedwatchtext' => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
-Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
+'addedwatchtext' => 'Sidan "[[:$1]]" har lagts till på din [[Special:Watchlist|bevakningslista]].
+Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där.',
 'removewatch' => 'Ta bort från bevakningslistan',
 'removedwatchtext' => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
 'watch' => 'Bevaka',
@@ -2371,7 +2365,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_subject_moved' => '{{SITENAME}}sidan $1 har flyttats av {{gender:$2|$2}}',
 'enotif_subject_restored' => '{{SITENAME}}sidan $1 har återställts av {{gender:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}}sidan $1 har ändrats {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => '{{SITENAME}}sidan $1 raderades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
+'enotif_body_intro_deleted' => 'Sidan $1 på {{SITENAME}} raderades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3.',
 'enotif_body_intro_created' => '{{SITENAME}}sidan $1 skapades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
 'enotif_body_intro_moved' => '{{SITENAME}}sidan $1 flyttades den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
 'enotif_body_intro_restored' => '{{SITENAME}}sidan $1 återställdes den $PAGEEDITDATE av {{gender:$2|$2}}, se $3 för den aktuella versionen.',
@@ -2472,6 +2466,7 @@ Se [[Special:ProtectedPages|listan över skyddade sidor]] för listan över akti
 'prot_1movedto2' => 'flyttade [[$1]] till [[$2]]',
 'protect-badnamespace-title' => 'Namnrymd som inte kan skrivskyddas',
 'protect-badnamespace-text' => 'Sidor i den här namnrymden kan inte skrivskyddas.',
+'protect-norestrictiontypes-text' => 'Denna sida kan inte skyddas eftersom det inte finns några begränsningstyper tillgängliga.',
 'protect-legend' => 'Bekräfta skrivskydd av sida',
 'protectcomment' => 'Anledning:',
 'protectexpiry' => 'Varaktighet:',
@@ -2971,6 +2966,7 @@ Spara den på din dator och ladda upp den här.',
 'import-error-interwiki' => 'Sidan "$1" är inte importerad eftersom dess namn är reserverat för externa länkar (interwiki).',
 'import-error-special' => 'Sidan "$1" är inte importerad eftersom den tillhör en särskild namnrymd som inte tillåter sidor.',
 'import-error-invalid' => 'Sidan "$1" är inte importerad eftersom dess namn är ogiltigt.',
+'import-error-unserialize' => 'Versionen $2 av sidan "$1" kunde inte avserialiseras. Versionen rapporterades för att använda innehållsmodellen $3, som serialiserades som $4.',
 'import-options-wrong' => 'Fel {{PLURAL:$2|alternativ|alternativ}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Angiven grundsida är en ogiltig titel.',
 'import-rootpage-nosubpage' => 'Namnrymden "$1" till grundsidan tillåter inte undersidor.',
@@ -3163,6 +3159,10 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-protect-cascading' => 'Skrivskydd kaskaderar härifrån',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Skrivskydd kaskaderar från',
+'pageinfo-category-info' => 'Kategoriinformation',
+'pageinfo-category-pages' => 'Antal sidor',
+'pageinfo-category-subcats' => 'Antal underkategorier',
+'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3220,6 +3220,7 @@ Om du kör den kan din dator skadas.",
 'file-nohires' => 'Det finns ingen version med högre upplösning.',
 'svg-long-desc' => 'SVG-fil, grundstorlek: $1 × $2 pixlar, filstorlek: $3',
 'svg-long-desc-animated' => 'Animerad SVG-fil, standardstorlek $1 × $2 pixlar, filstorlek: $3',
+'svg-long-error' => 'Felaktig SVG-fil: $1',
 'show-big-image' => 'Högupplöst version',
 'show-big-image-preview' => 'Storlek på förhandsvisningen: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Annan upplösning|Andra upplösningar}}: $1.',
@@ -3250,6 +3251,8 @@ Om du kör den kan din dator skadas.",
 'minutes' => '{{PLURAL:$1|$1 minut|$1 minuter}}',
 'hours' => '{{PLURAL:$1|$1 timme|$1 timmar}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagar}}',
+'months' => '{{PLURAL:$1|$1 månad|$1 månader}}',
+'years' => '{{PLURAL:$1|$1 år}}',
 'ago' => '$1 sedan',
 'just-now' => 'precis nu',
 
@@ -3849,7 +3852,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'version-specialpages' => 'Specialsidor',
 'version-parserhooks' => 'Parsertillägg',
 'version-variables' => 'Variabler',
-'version-antispam' => 'Förhindring av skräppost',
+'version-antispam' => 'Förhindrar spam',
 'version-skins' => 'Utseenden',
 'version-other' => 'Annat',
 'version-mediahandlers' => 'Mediahanterare',
@@ -4008,6 +4011,10 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
 'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
 'newuserlog-byemail' => 'lösenord skickat med e-post',
+'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
+'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',
+'logentry-rights-autopromote' => '$1 befordrades automatiskt från $4 till $5',
+'rightsnone' => '(inga)',
 
 # Feedback
 'feedback-bugornote' => 'Om du är redo att beskriva ett tekniskt problem detaljerat, var god [$1 rapporterar en bugg].
@@ -4081,6 +4088,4 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'svg-long-error' => 'Felaktig SVG-fil: $1',
 );

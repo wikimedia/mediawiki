@@ -69,7 +69,7 @@ class Block {
 			$timestamp = wfTimestampNow();
 		}
 
-		if( count( func_get_args() ) > 0 ){
+		if( count( func_get_args() ) > 0 ) {
 			# Soon... :D
 			# wfDeprecated( __METHOD__ . " with arguments" );
 		}
@@ -418,7 +418,7 @@ class Block {
 	 * @param  $row ResultWrapper row from the ipblocks table
 	 * @return Block
 	 */
-	public static function newFromRow( $row ){
+	public static function newFromRow( $row ) {
 		$block = new Block;
 		$block->initFromRow( $row );
 		return $block;
@@ -510,7 +510,7 @@ class Block {
 	 * @param $db DatabaseBase
 	 * @return Array
 	 */
-	protected function getDatabaseArray( $db = null ){
+	protected function getDatabaseArray( $db = null ) {
 		if( !$db ){
 			$db = wfGetDB( DB_SLAVE );
 		}
@@ -576,6 +576,13 @@ class Block {
 	 * @return Array: block IDs of retroactive autoblocks made
 	 */
 	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
+		global $wgPutIPinRC;
+
+		// No IPs are in recentchanges table, so nothing to select
+		if( !$wgPutIPinRC ) {
+			return;
+		}
+
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
@@ -1066,12 +1073,13 @@ class Block {
 	}
 
 	/**
-	 * From an existing Block, get the target and the type of target.  Note that it is
-	 * always safe to treat the target as a string; for User objects this will return
-	 * User::__toString() which in turn gives User::getName().
+	 * From an existing Block, get the target and the type of target.
+	 * Note that, except for null, it is always safe to treat the target
+	 * as a string; for User objects this will return User::__toString()
+	 * which in turn gives User::getName().
 	 *
-	 * @param $target String|Int|User
-	 * @return array( User|String, Block::TYPE_ constant )
+	 * @param $target String|Int|User|null
+	 * @return array( User|String|null, Block::TYPE_ constant|null )
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
@@ -1169,7 +1177,7 @@ class Block {
 	 * Set the target for this block, and update $this->type accordingly
 	 * @param $target Mixed
 	 */
-	public function setTarget( $target ){
+	public function setTarget( $target ) {
 		list( $this->target, $this->type ) = self::parseTarget( $target );
 	}
 
@@ -1177,7 +1185,7 @@ class Block {
 	 * Get the user who implemented this block
 	 * @return User|string Local User object or string for a foreign user
 	 */
-	public function getBlocker(){
+	public function getBlocker() {
 		return $this->blocker;
 	}
 
@@ -1185,7 +1193,7 @@ class Block {
 	 * Set the user who implemented (or will implement) this block
 	 * @param $user User|string Local User object or username string for foriegn users
 	 */
-	public function setBlocker( $user ){
+	public function setBlocker( $user ) {
 		$this->blocker = $user;
 	}
 }

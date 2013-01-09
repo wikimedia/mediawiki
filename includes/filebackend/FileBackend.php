@@ -514,9 +514,9 @@ abstract class FileBackend {
 	 *                           header when GETs/HEADs of the destination file are made.
 	 *                           Backends that don't support file metadata will ignore this.
 	 *                           See http://tools.ietf.org/html/rfc6266 (since 1.20).
-	 *   - headers             : If supplied, the backend will return these headers when
-	 *                           GETs/HEADs of the destination file are made. Header values
-	 *                           should be smaller than 256 bytes, often options or numbers.
+	 *   - headers             : If supplied with a header name/value map, the backend will
+	 *                           reply with these headers when GETs/HEADs of the destination
+	 *                           file are made. Header values should be smaller than 256 bytes.
 	 *                           Existing headers will remain, but these will replace any
 	 *                           conflicting previous headers, and headers will be removed
 	 *                           if they are set to an empty string.

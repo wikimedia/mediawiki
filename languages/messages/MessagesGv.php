@@ -492,7 +492,6 @@ Chammah as shen, t’ou gialdyn dooin dy screeu oo hene eh, ny ren oo coip jeh n
 'template-protected' => '(glast)',
 'template-semiprotected' => '(lieh-ghlast)',
 'hiddencategories' => "Ta'n duillag shoh ayns {{PLURAL:$1|ronney follit|ronney follit|ronney follit|ronnaghyn follit}}",
-'nocreatetitle' => 'Crooaght duillag jeorit',
 'nocreatetext' => "Ta ablid duillagyn noa y chroo lhiettalit ec {{SITENAME}}.<br />
 Foddee shiu goll er ash as reaghey duillag t'ayn nish, ny [[Special:UserLogin|loggal stiagh ny croo coontys]].",
 'nocreate-loggedin' => 'Cha nel kied ayd duillagyn noa y chroo er {{SITENAME}}.',
