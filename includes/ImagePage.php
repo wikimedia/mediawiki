@@ -796,9 +796,14 @@ EOT
 
 			$link = Linker::linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
 			if ( !isset( $redirects[$element->page_title] ) ) {
+				# No redirects
 				$liContents = $link;
+			} elseif ( count( $redirects[$element->page_title] ) === 0 ) {
+				# Redirect without usages
+				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
 			} else {
-				$ul = "<ul class='mw-imagepage-redirectstofile'>\n";
+				# Redirect with usages
+				$li = '';
 				foreach ( $redirects[$element->page_title] as $row ) {
 					$currentCount++;
 					if ( $currentCount > $limit ) {
@@ -806,13 +811,18 @@ EOT
 					}
 
 					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
-					$ul .= Html::rawElement(
+					$li .= Html::rawElement(
 						'li',
 						array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 						$link2
 						) . "\n";
 				}
-				$ul .= '</ul>';
+
+				$ul = Html::rawElement(
+					'ul',
+					array( 'class' => 'mw-imagepage-redirectstofile'),
+					$li
+					) . "\n";
 				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams(
 					$link, $ul )->parse();
 			}
