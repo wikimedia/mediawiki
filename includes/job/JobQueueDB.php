@@ -181,6 +181,8 @@ class JobQueueDB extends JobQueue {
 						$dbw->insert( 'job', $rowBatch, __METHOD__ );
 					}
 					wfIncrStats( 'job-insert', count( $rows ) );
+					wfIncrStats( 'job-insert-duplicate',
+						count( $rowSet ) + count( $rowList ) - count( $rows ) );
 				} catch ( DBError $e ) {
 					if ( $atomic ) {
 						$dbw->rollback( __METHOD__ );
@@ -245,7 +247,7 @@ class JobQueueDB extends JobQueue {
 			$job->id = $row->job_id; // XXX: work around broken subclasses
 			// Flag this job as an old duplicate based on its "root" job...
 			if ( $this->isRootJobOldDuplicate( $job ) ) {
-				wfIncrStats( 'job-duplicate' );
+				wfIncrStats( 'job-pop-duplicate' );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
 			break; // done
