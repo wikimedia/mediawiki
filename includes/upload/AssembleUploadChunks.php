@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 require_once( __DIR__ . '/../../maintenance/Maintenance.php' );
+set_time_limit( 3600 ); // 1 hour
 
 /**
  * Assemble the segments of a chunked upload.
