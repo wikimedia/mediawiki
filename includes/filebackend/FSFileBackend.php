@@ -46,6 +46,7 @@ class FSFileBackend extends FileBackendStore {
 	protected $fileOwner; // string; required OS username to own files
 	protected $currentUser; // string; OS username running this script
 
+	/** @var Array */
 	protected $hadWarningErrors = array();
 
 	/**
@@ -196,7 +197,9 @@ class FSFileBackend extends FileBackendStore {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
 				return $status;
 			}
+			$this->trapWarnings();
 			$bytes = file_put_contents( $tempFile->getPath(), $params['content'] );
+			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
 				return $status;
@@ -209,7 +212,9 @@ class FSFileBackend extends FileBackendStore {
 			$status->value = new FSFileOpHandle( $this, $params, 'Create', $cmd, $dest );
 			$tempFile->bind( $status->value );
 		} else { // immediate write
+			$this->trapWarnings();
 			$bytes = file_put_contents( $dest, $params['content'] );
+			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
 				return $status;
@@ -251,9 +256,9 @@ class FSFileBackend extends FileBackendStore {
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Store', $cmd, $dest );
 		} else { // immediate write
-			wfSuppressWarnings();
+			$this->trapWarnings();
 			$ok = copy( $params['src'], $dest );
-			wfRestoreWarnings();
+			$this->untrapWarnings();
 			// In some cases (at least over NFS), copy() returns true when it fails
 			if ( !$ok || ( filesize( $params['src'] ) !== filesize( $dest ) ) ) {
 				if ( $ok ) { // PHP bug
@@ -313,11 +318,15 @@ class FSFileBackend extends FileBackendStore {
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd, $dest );
 		} else { // immediate write
+			$this->trapWarnings();
 			$ok = copy( $source, $dest );
+			$this->untrapWarnings();
 			// In some cases (at least over NFS), copy() returns true when it fails
 			if ( !$ok || ( filesize( $source ) !== filesize( $dest ) ) ) {
 				if ( $ok ) { // PHP bug
+					$this->trapWarnings();
 					unlink( $dest ); // remove broken file
+					$this->untrapWarnings();
 					trigger_error( __METHOD__ . ": copy() failed but returned true." );
 				}
 				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
@@ -373,7 +382,9 @@ class FSFileBackend extends FileBackendStore {
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Move', $cmd );
 		} else { // immediate write
+			$this->trapWarnings();
 			$ok = rename( $source, $dest );
+			$this->untrapWarnings();
 			clearstatcache(); // file no longer at source
 			if ( !$ok ) {
 				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
@@ -421,9 +432,9 @@ class FSFileBackend extends FileBackendStore {
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd );
 		} else { // immediate write
-			wfSuppressWarnings();
+			$this->trapWarnings();
 			$ok = unlink( $source );
-			wfRestoreWarnings();
+			$this->untrapWarnings();
 			if ( !$ok ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
 				return $status;
@@ -453,15 +464,18 @@ class FSFileBackend extends FileBackendStore {
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		$existed = is_dir( $dir ); // already there?
-		if ( !wfMkdirParents( $dir ) ) { // make directory and its parents
+		// Create the directory and its parents as needed...
+		$this->trapWarnings();
+		if ( !wfMkdirParents( $dir ) ) {
 			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
 		} elseif ( !is_writable( $dir ) ) {
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
 		} elseif ( !is_readable( $dir ) ) {
 			$status->fatal( 'directorynotreadableerror', $params['dir'] );
 		}
+		$this->untrapWarnings();
+		// Respect any 'noAccess' or 'noListing' flags...
 		if ( is_dir( $dir ) && !$existed ) {
-			// Respect any 'noAccess' or 'noListing' flags...
 			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
 		}
 		return $status;
@@ -478,19 +492,21 @@ class FSFileBackend extends FileBackendStore {
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
 		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
+			$this->trapWarnings();
 			$bytes = file_put_contents( "{$dir}/index.html", $this->indexHtmlPrivate() );
+			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dir'] . '/index.html' );
-				return $status;
 			}
 		}
 		// Add a .htaccess file to the root of the container...
 		if ( !empty( $params['noAccess'] ) && !file_exists( "{$contRoot}/.htaccess" ) ) {
+			$this->trapWarnings();
 			$bytes = file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
+			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$storeDir = "mwstore://{$this->name}/{$shortCont}";
 				$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
-				return $status;
 			}
 		}
 		return $status;
@@ -508,19 +524,21 @@ class FSFileBackend extends FileBackendStore {
 		// Unseed new directories with a blank index.html, to allow crawling...
 		if ( !empty( $params['listing'] ) && is_file( "{$dir}/index.html" ) ) {
 			$exists = ( file_get_contents( "{$dir}/index.html" ) === $this->indexHtmlPrivate() );
+			$this->trapWarnings();
 			if ( $exists && !unlink( "{$dir}/index.html" ) ) { // reverse secure()
 				$status->fatal( 'backend-fail-delete', $params['dir'] . '/index.html' );
-				return $status;
 			}
+			$this->untrapWarnings();
 		}
 		// Remove the .htaccess file from the root of the container...
 		if ( !empty( $params['access'] ) && is_file( "{$contRoot}/.htaccess" ) ) {
 			$exists = ( file_get_contents( "{$contRoot}/.htaccess" ) === $this->htaccessPrivate() );
+			$this->trapWarnings();
 			if ( $exists && !unlink( "{$contRoot}/.htaccess" ) ) { // reverse secure()
 				$storeDir = "mwstore://{$this->name}/{$shortCont}";
 				$status->fatal( 'backend-fail-delete', "{$storeDir}/.htaccess" );
-				return $status;
 			}
+			$this->untrapWarnings();
 		}
 		return $status;
 	}
@@ -534,11 +552,11 @@ class FSFileBackend extends FileBackendStore {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		wfSuppressWarnings();
+		$this->trapWarnings();
 		if ( is_dir( $dir ) ) {
 			rmdir( $dir ); // remove directory if empty
 		}
-		wfRestoreWarnings();
+		$this->untrapWarnings();
 		return $status;
 	}
 
@@ -668,9 +686,9 @@ class FSFileBackend extends FileBackendStore {
 				} else {
 					$tmpPath = $tmpFile->getPath();
 					// Copy the source file over the temp file
-					wfSuppressWarnings();
+					$this->trapWarnings();
 					$ok = copy( $source, $tmpPath );
-					wfRestoreWarnings();
+					$this->untrapWarnings();
 					if ( !$ok ) {
 						$tmpFiles[$src] = null;
 					} else {
@@ -733,9 +751,9 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool Success
 	 */
 	protected function chmod( $path ) {
-		wfSuppressWarnings();
+		$this->trapWarnings();
 		$ok = chmod( $path, $this->fileMode );
-		wfRestoreWarnings();
+		$this->untrapWarnings();
 
 		return $ok;
 	}
@@ -771,12 +789,11 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Listen for E_WARNING errors and track whether any happen
 	 *
-	 * @return bool
+	 * @return void
 	 */
 	protected function trapWarnings() {
 		$this->hadWarningErrors[] = false; // push to stack
 		set_error_handler( array( $this, 'handleWarning' ), E_WARNING );
-		return false; // invoke normal PHP error handler
 	}
 
 	/**
@@ -790,9 +807,12 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @param $errno integer
+	 * @param $errstr string
 	 * @return bool
 	 */
-	private function handleWarning() {
+	private function handleWarning( $errno, $errstr ) {
+		wfDebugLog( 'FSFileBackend', $errstr ); // more detailed error logging
 		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
 		return true; // suppress from PHP handler
 	}
