@@ -1234,27 +1234,22 @@ abstract class UploadBase {
 			}
 		}
 
+		/* NB: AV_NO_VIRUS is 0 but AV_SCAN_FAILED is false,
+		 * so we need the strict equalities === and thus can't use a switch here
+		 */
 		if ( $mappedCode === AV_SCAN_FAILED ) {
 			# scan failed (code was mapped to false by $exitCodeMap)
 			wfDebug( __METHOD__ . ": failed to scan $file (code $exitCode).\n" );
 
-			if ( $wgAntivirusRequired ) {
-				wfProfileOut( __METHOD__ );
-				return wfMessage( 'virus-scanfailed', array( $exitCode ) )->text();
-			} else {
-				wfProfileOut( __METHOD__ );
-				return null;
-			}
+			$output = $wgAntivirusRequired ? wfMessage( 'virus-scanfailed', array( $exitCode ) )->text() : null;
 		} elseif ( $mappedCode === AV_SCAN_ABORTED ) {
 			# scan failed because filetype is unknown (probably imune)
 			wfDebug( __METHOD__ . ": unsupported file type $file (code $exitCode).\n" );
-			wfProfileOut( __METHOD__ );
-			return null;
+			$output = null;
 		} elseif ( $mappedCode === AV_NO_VIRUS ) {
 			# no virus found
 			wfDebug( __METHOD__ . ": file passed virus scan.\n" );
-			wfProfileOut( __METHOD__ );
-			return false;
+			$output = false;
 		} else {
 			$output = trim( $output );
 
@@ -1270,9 +1265,10 @@ abstract class UploadBase {
 			}
 
 			wfDebug( __METHOD__ . ": FOUND VIRUS! scanner feedback: $output \n" );
-			wfProfileOut( __METHOD__ );
-			return $output;
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $output;
 	}
 
 	/**

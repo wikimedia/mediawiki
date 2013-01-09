@@ -1650,12 +1650,7 @@ class EditPage {
 			$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
 															false, null, $this->contentFormat );
 
-		if ( $doEditStatus->isOK() ) {
-				$result['redirect'] = $content->isRedirect();
-			$this->updateWatchlist();
-			wfProfileOut( __METHOD__ );
-			return $status;
-		} else {
+		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
 			// Show the edit conflict page for certain recognized errors from doEdit(),
 			// but don't show it for errors from extension hooks
@@ -1670,6 +1665,11 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $doEditStatus;
 		}
+
+		$result['redirect'] = $content->isRedirect();
+		$this->updateWatchlist();
+		wfProfileOut( __METHOD__ );
+		return $status;
 	}
 
 	/**
@@ -1761,10 +1761,10 @@ class EditPage {
 			$editContent = $result;
 			wfProfileOut( __METHOD__ );
 			return true;
-		} else {
-			wfProfileOut( __METHOD__ );
-			return false;
 		}
+
+		wfProfileOut( __METHOD__ );
+		return false;
 	}
 
 	/**

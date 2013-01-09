@@ -282,13 +282,14 @@ class Article extends Page {
 			}
 			wfProfileOut( __METHOD__ );
 
-			return $content;
+
 		} else {
 			$this->fetchContentObject();
-			wfProfileOut( __METHOD__ );
-
-			return $this->mContentObject;
+			$content = $this->mContentObject;
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $content;
 	}
 
 	/**
