@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AZISS
  * @author Cekli829
  * @author Don Alessandro
  * @author E THP
@@ -240,7 +241,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'İnkişaf etmiş axtarma təkliflərini gətir (yalnız Vector görünüşü üçün)',
 'vector-view-create' => 'Yarat',
 'vector-view-edit' => 'Redaktə',
-'vector-view-history' => 'Tarixçə',
+'vector-view-history' => 'Tarixçəyə bax',
 'vector-view-view' => 'Oxu',
 'vector-view-viewsource' => 'Mənbəyə bax',
 'actions' => 'Hərəkətlər',
@@ -328,7 +329,7 @@ $1',
 'policy-url' => 'Project:Qaydalar',
 'portal' => 'Kənd meydanı',
 'portal-url' => 'Project:Kənd meydanı',
-'privacy' => 'Gizlilik prinsipi',
+'privacy' => 'Məxfilik siyasəti',
 'privacypage' => 'Project:Gizlilik prinsipi',
 
 'badaccess' => 'İcazə xətası',
@@ -623,7 +624,7 @@ Müvəqqəti parol: $2',
 'minoredit' => 'Kiçik redaktə',
 'watchthis' => 'Bu səhifəni izlə',
 'savearticle' => 'Səhifəni qeyd et',
-'preview' => 'Sınaq göstərişi',
+'preview' => 'Sınaq görüntüsü',
 'showpreview' => 'Sınaq göstərişi',
 'showlivepreview' => 'Canlı sınaq göstərişi',
 'showdiff' => 'Dəyişiklikləri göstər',
@@ -960,7 +961,7 @@ $1",
 'prefsnologintext' => 'Nizamlamaları dəyişmək üçün <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} daxil olmaq]</span> zəruridir.',
 'changepassword' => 'Parolu dəyiş',
 'prefs-skin' => 'Cild',
-'skin-preview' => 'Sınaq göstərişi',
+'skin-preview' => 'Sınaq görüntüsü',
 'datedefault' => 'Seçim yoxdur',
 'prefs-beta' => 'Beta xüsusiyyətlər',
 'prefs-datetime' => 'Tarix və vaxt',

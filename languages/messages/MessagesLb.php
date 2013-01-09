@@ -2953,6 +2953,10 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-protect-cascading' => 'Säite mat Kaskadespär vun hei aus',
 'pageinfo-protect-cascading-yes' => 'Jo',
 'pageinfo-protect-cascading-from' => 'Säite mat Kaskadespär vu(n)',
+'pageinfo-category-info' => "Informatiounen iwwer d'Kategorie",
+'pageinfo-category-pages' => 'Zuel vun de Säiten',
+'pageinfo-category-subcats' => 'Zuel vun den Ënnerkategorien',
+'pageinfo-category-files' => 'Zuel vun de Fichieren',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

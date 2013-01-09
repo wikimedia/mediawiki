@@ -59,7 +59,7 @@ $messages = array(
 'tog-externaldiff' => "Ause 'na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tune. <br />
 [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-showjumplinks' => 'Abbilite "zumbe a" pe accedere a le collegaminde',
-'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendele)",
+'tog-uselivepreview' => "Ause l'andeprime all'istande (richiede JavaScript) (Sperimendale)",
 'tog-forceeditsummary' => "Ciercheme conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
 'tog-watchlisthideown' => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
 'tog-watchlisthidebots' => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",
@@ -163,6 +163,7 @@ $messages = array(
 'newwindow' => "(iapre jndr'à 'na fenestra nova)",
 'cancel' => 'Scangìlle',
 'moredotdotdot' => 'De cchiù...',
+'morenotlisted' => "Otre non jndr'à l'elenghe...",
 'mypage' => "'A pàgena meje",
 'mytalk' => "'Ngazzaminde mie",
 'anontalk' => "'Ngazzaminde pe quiste IP",
@@ -556,6 +557,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 # E-mail sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 'user-mail-no-addy' => "E' pruvate a mannà 'na mail senze 'u 'ndirizze mail",
+'user-mail-no-body' => "Pruvate a mannà 'na mail cu 'nu cuèrpe vacande o troppe curte.",
 
 # Change password dialog
 'resetpass' => "Cange 'a password",
@@ -2949,6 +2951,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorije|Categorije}} scunnute ($1)',
 'pageinfo-templates' => 'Esclude {{PLURAL:$1|template|template}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Pàgene|Pàggene}} escluse sus a ($1)',
 'pageinfo-toolboxlink' => "'Mbormaziune d'a pagene",
 'pageinfo-redirectsto' => 'Reinderizze a',
 'pageinfo-redirectsto-info' => "'Mbormazione",

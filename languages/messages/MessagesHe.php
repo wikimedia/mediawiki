@@ -867,7 +867,8 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'שגיאה לא ידועה בפונקציה mail()‎ של PHP',
-'user-mail-no-addy' => 'ניסיון לשלוח דוא"ל ללא כתובת דוא"ל',
+'user-mail-no-addy' => 'ניסיון לשלוח דוא"ל ללא כתובת דוא"ל.',
+'user-mail-no-body' => 'ניסיון לשלוח דוא"ל עם תוכן ריק או קצר מאוד.',
 
 # Change password dialog
 'resetpass' => 'שינוי סיסמה',

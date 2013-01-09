@@ -344,8 +344,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 {{Identical|Content page}}",
 'newwindow' => 'Below the edit form, next to "{{msg-mw|Edithelp}}".',
-'cancel' => 'Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
-
+'cancel' => '{{doc-actionlink}}
+Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
 'morenotlisted' => 'An indication that more of a certain list is not shown.',
@@ -708,12 +708,19 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 'hidetoc' => 'This is the link used to hide the table of contents
 
 {{Identical|Hide}}',
-'collapsible-collapse' => 'This is the link used to collapse a collapsible element. (used as plaintext. No wikitext or html is parsed.)
+'collapsible-collapse' => '{{Doc-actionlink}}
+This is the link used to collapse a collapsible element. (used as plaintext. No wikitext or html is parsed.)
 
-{{Doc-actionlink}}',
-'collapsible-expand' => 'This is the link used to expand a collapsible element (used as plaintext. No wikitext or html is parsed.)
+See also:
+* {{msg-mw|Collapsible-expand}}',
+'collapsible-expand' => '{{Doc-actionlink}}
+This is the link used to expand a collapsible element (used as plaintext. No wikitext or html is parsed.)
 
-{{Doc-actionlink}}',
+See also:
+* {{msg-mw|Collapsible-collapse}}
+
+See the following example:
+{{Identical|Expand}}',
 'thisisdeleted' => 'Message shown on a deleted page when the user has the undelete right. $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|viewdeleted}}.',
 'viewdeleted' => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|thisisdeleted}}.',
 'restorelink' => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see
@@ -1007,7 +1014,8 @@ See also:
 * {{msg-mw|Accesskey-pt-logout}}
 * {{msg-mw|Tooltip-pt-logout}}
 {{Identical|Log out}}',
-'userlogout' => '{{Identical|Log out}}',
+'userlogout' => '{{Doc-actionlink}}
+{{Identical|Log out}}',
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
@@ -1384,7 +1392,10 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Perm
 'userinvalidcssjstitle' => '* $1 - skin name',
 'updated' => '{{Identical|Updated}}',
 'previewnote' => 'Note displayed when clicking on Show preview',
-'continue-editing' => 'A link to the beginning of the editing textarea on the same page. Displayed after {{msg-mw|previewnote}}.',
+'continue-editing' => '{{doc-actionlink}}
+A link to the beginning of the editing textarea on the same page.
+
+Displayed after {{msg-mw|previewnote}}.',
 'previewconflict' => 'Used in Preview page.',
 'session_fail_preview' => 'Error message in Preview page.
 
@@ -2112,9 +2123,9 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchmenu-legend' => '{{Identical|Search options}}',
 'searchmenu-exists' => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
 'searchmenu-new' => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
-'searchhelp-url' => '{{Identical|HelpContent}}
-Description: The URL of the search help page.
-{{doc-important|Do not change the "<tt>Help:</tt>" part.}}',
+'searchhelp-url' => 'Description: The URL of the search help page.
+{{doc-important|Do not change the "<tt>Help:</tt>" part.}}
+{{Identical|HelpContent}}',
 'searchmenu-prefix' => '{{doc-important|Do not translate "Special:PrefixIndex"}}
 Parameters:
 * $1 - prefix string',
@@ -2257,8 +2268,8 @@ See also:
 {{Identical|Change password}}",
 'prefs-skin' => 'Used in user preferences.
 {{Identical|Skin}}',
-'skin-preview' => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
-
+'skin-preview' => '{{doc-actionlink}}
+The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 {{Identical|Preview}}',
 'datedefault' => 'Used as checkbox label in [[Special:Preferences#mw-prefsection-datetime|user preferences]], {{msg-mw|prefs-datetime}} tab.
 
@@ -2399,10 +2410,10 @@ Used in [[Special:Preferences]]. Parameters are:
 'badsiglength' => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
 'yourgender' => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Gender}}',
-'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.',
-'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
+'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.',
+'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
 {{Identical|Male}}',
-'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
+'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
 {{Identical|Female}}',
 'prefs-help-gender' => 'Used as additional description for {{msg-mw|yourgender}} field in [[Special:Preferences]], section {{msg-mw|prefs-info}}.',
 'email' => '{{Identical|E-mail}}',
@@ -2772,10 +2783,18 @@ Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
 List elements are separated by {{msg-mw|pipe-separator}} each. Each list element is, or contains, a link.",
 'diff' => 'Short form of "differences". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hist' => 'Short form of "history". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
-'hide' => 'Option text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]]
+'hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]].
 
+See also:
+* {{msg-mw|Show}}
 {{Identical|Hide}}',
-'show' => '{{Identical|Show}}',
+'show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]].
+
+See also:
+* {{msg-mw|Hide}}
+{{Identical|Show}}',
 'minoreditletter' => "Very short form of \"'''minor edit'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]], [[Special:Contributions]] and history pages.",
 'newpageletter' => "Very short form of \"'''new page'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]] and [[Special:Contributions]].",
 'boteditletter' => 'Abbreviation of "bot". Appears in [[Special:RecentChanges]] and [[Special:Watchlist]].',
@@ -3166,15 +3185,15 @@ See also:
 'filewasdeleted' => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
 Parameters:
 * $1 is a link to the deletion log, with the text from {{msg|deletionlog}}.',
-'filename-bad-prefix' => "Used as warning in [[Special:Upload]]. Parameters:
+'filename-bad-prefix' => 'Used as warning in [[Special:Upload]]. Parameters:
 * $1 - prefix
 See also:
 * {{msg-mw|fileexists}}
 * {{msg-mw|filepageexists}}
 * {{msg-mw|fileexists-extension}}
-* {{msg-mw|fileexists-thumbnail-yes',}}
+* {{msg-mw|fileexists-thumbnail-yes}}
 * {{msg-mw|file-thumbnail-no}}
-* {{msg-mw|filewasdeleted}}",
+* {{msg-mw|filewasdeleted}}',
 'filename-prefix-blacklist' => "{{optional}}
 Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 'upload-success-subj' => 'Used as message subject which is posted on the user talk page.
@@ -4137,7 +4156,8 @@ See also:
 'addwatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.',
 'addedwatchtext' => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
 'removedwatchtext' => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
-'watch' => 'Name of the Watch tab. Should be in the imperative mood.
+'watch' => '{{doc-actionlink}}
+Name of the Watch tab. Should be in the imperative mood.
 
 See also:
 * {{msg-mw|Watch}}
@@ -4149,7 +4169,8 @@ See also:
 * {{msg-mw|Unwatchthispage|link text}}
 * {{msg-mw|Notanarticle|error message}}
 {{Identical|Watch this page}}',
-'unwatch' => 'Label of "Unwatch" tab.
+'unwatch' => '{{doc-actionlink}}
+Label of "Unwatch" tab.
 
 See also:
 * {{msg-mw|Unwatch}}
@@ -4158,7 +4179,6 @@ See also:
 'unwatchthispage' => 'Used as link text.
 
 See also:
-* {{msg-mw|Unatchthispage|link text}}
 * {{msg-mw|Watchthispage|link text}}
 * {{msg-mw|Notanarticle|error message}}',
 'notanarticle' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
@@ -4666,7 +4686,8 @@ See also:
 * {{msg-mw|Mycontris}}
 * {{msg-mw|Accesskey-pt-mycontris}}
 * {{msg-mw|Tooltip-pt-mycontris}}',
-'contribsub2' => 'Contributions for "user" (links)',
+'contribsub2' => 'Contributions for "user" (links)
+{{Identical|For $1}}',
 'nocontribs' => 'Optional parameter: $1 is the user name',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg|year}}.',
@@ -5637,7 +5658,7 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 The reason $1 is one of the following messages:
 * {{msg-mw|Thumbnail-dest-create}}
 * {{msg-mw|Thumbnail dest directory}}
-* {{msg-mw|Thumbnai invalid params}}
+* {{msg-mw|Thumbnail invalid params}}
 * {{msg-mw|Djvu no xml}}
 * {{msg-mw|Djvu page error}}
 * {{msg-mw|Svg-long-error}}
@@ -5652,7 +5673,6 @@ See also:
 
 See also:
 * {{msg-mw|Thumbnail error}}
-* {{msg-mw|Djvu no xml}}
 * {{msg-mw|Djvu page error}}',
 'thumbnail-temp-create' => 'Used as thumbnail error message.
 
@@ -6058,7 +6078,7 @@ See also:
 * {{msg-mw|Currentevents-url}}
 * {{msg-mw|Accesskey-n-currentevents}}
 * {{msg-mw|Tooltip-n-currentevents}}',
-'tooltip-n-recentchanges' => 'The tooltip when hovering over the {{msg-mw|Recehtchanges}} link in the sidebar going to the special page [[Special:RecentChanges]].
+'tooltip-n-recentchanges' => 'The tooltip when hovering over the {{msg-mw|Recentchanges}} link in the sidebar going to the special page [[Special:RecentChanges]].
 
 See also:
 * {{msg-mw|Recentchanges}}
@@ -6445,9 +6465,13 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
-* $1 is the number of templates transcluded within the page.',
+* $1 is the number of templates transcluded within the page.
+See also:
+* {{msg-mw|Pageinfo-transclusions}}',
 'pageinfo-transclusions' => 'The list of pages on which this page is transcluded. Parameters:
-* $1 is the number of pages the current page is transcluded on.',
+* $1 is the number of pages the current page is transcluded on.
+See also:
+* {{msg-mw|Pageinfo-templates}}',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
 'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect. Verb. See [http://en.wikipedia.org/w/index.php?title=Main_page&action=info example].',
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.',
@@ -7958,10 +7982,21 @@ See also:
 'watchlistedit-raw-removed' => 'Message on [[Special:EditWatchlist/raw]]. The message appears after at least 1 message is deleted from the raw watchlist.',
 
 # Watchlist editing tools
-'watchlisttools-view' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-edit}} and {{msg|watchlisttools-raw}}.',
-'watchlisttools-edit' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-view}} and {{msg|watchlisttools-raw}}.',
-'watchlisttools-raw' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-view}} and {{msg|watchlisttools-edit}}.
+'watchlisttools-view' => '[[Special:Watchlist]]: Navigation link under the title.
 
+See also:
+* {{msg|watchlisttools-edit}}
+* {{msg|watchlisttools-raw}}',
+'watchlisttools-edit' => '[[Special:Watchlist]]: Navigation link under the title.
+
+See also:
+* {{msg|watchlisttools-view}}
+* {{msg|watchlisttools-raw}}',
+'watchlisttools-raw' => '[[Special:Watchlist]]: Navigation link under the title.
+
+See also:
+* {{msg|watchlisttools-view}}
+* {{msg|watchlisttools-edit}}
 {{Identical|Edit raw watchlist}}',
 
 # Iranian month names

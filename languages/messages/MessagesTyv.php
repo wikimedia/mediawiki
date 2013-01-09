@@ -187,10 +187,10 @@ $messages = array(
 'vector-view-create' => 'Чаяары',
 'vector-view-edit' => 'Эдери',
 'vector-view-history' => 'Төөгүнү көөрү',
-'vector-view-view' => 'Номчууру',
+'vector-view-view' => 'Номчуур',
 'vector-view-viewsource' => 'Дөзү бижиин көөрү',
 'actions' => 'Кылыглар',
-'namespaces' => 'Аттар делгеми',
+'namespaces' => 'Аттар делгемнери',
 'variants' => 'Бир янзы',
 
 'errorpagetitle' => 'Алдаг',
@@ -198,7 +198,7 @@ $messages = array(
 'tagline' => '{{SITENAME}} деп веб-сайттан',
 'help' => 'Дуза',
 'search' => 'Диле',
-'searchbutton' => 'Дилээри',
+'searchbutton' => 'Дилээр',
 'go' => 'Баары',
 'searcharticle' => 'Күүcедири',
 'history' => 'Арынның төөгүзү',
@@ -222,12 +222,12 @@ $messages = array(
 'unprotectthispage' => 'Бо арынның камгалалын өскертири',
 'newpage' => 'Чаа арын',
 'talkpage' => 'Бо арын дугайында чугаалажыры',
-'talkpagelinktext' => 'Чугаалажыры',
+'talkpagelinktext' => 'Чугаа',
 'specialpage' => 'Тускай арын',
 'personaltools' => 'Хууда херекселдер',
 'postcomment' => 'Чаа салбыр',
 'articlepage' => 'Допчу арынны көөрү',
-'talk' => 'Чугаалажыры',
+'talk' => 'Чугаа',
 'views' => 'Көрүүшкүннери',
 'toolbox' => 'Херекселдер',
 'userpage' => 'Ажыглакчының арынын көөрү',
@@ -536,7 +536,7 @@ Please check if you want to create/edit this page.',
 
 # Search results
 'searchresults' => 'Түңнелдер',
-'searchresults-title' => '«$1» диле',
+'searchresults-title' => '«$1» деп диле',
 'prevn' => 'эрткен {{PLURAL:$1|$1}}',
 'nextn' => 'дараазында {{PLURAL:$1|$1}}',
 'prevn-title' => 'Эрткен $1 {{PLURAL:$1|бижик|бижик}}',
@@ -670,8 +670,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'right-editusercss' => 'Өске ажыглакчыларның CSS файлдарын өскертири.',
 'right-edituserjs' => 'Өске ажыглакчыларның JavaScript файлдарын өскертири.',
 
-# User rights log
-'rightsnone' => '(чок)',
+# Special:Log/newusers
+'newuserlogpage' => 'Чаа ажыглакчы кырында журнал',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'бо арынны номчууру',
@@ -726,7 +726,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'recentchangeslinked-to' => 'Айыткан арынче шөлүп турар арыннарга өскерилгелерни көргүзер',
 
 # Upload
-'upload' => 'Файлды салыры',
+'upload' => 'Файл чүдүрер',
 'uploadbtn' => 'Файлды салыры',
 'uploadnologin' => 'Кирбес',
 'uploaderror' => 'Кииреринге алдаг',
@@ -899,9 +899,6 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'activeusers-hidebots' => 'Роботтарны чажырары',
 'activeusers-hidesysops' => 'Эргелекчыларны чажырары',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Чаа ажыглакчы кырында журнал',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Бөлүк кижилер',
 'listgrouprights-members' => '(кежигүннүң даңзызы)',
@@ -982,7 +979,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'blanknamespace' => '(Кол)',
 
 # Contributions
-'contributions' => 'Ажыглакчыниң салыышкыннары',
+'contributions' => '{{GENDER:$1|Ажыглакчының}} салыышкыннары',
 'contributions-title' => '«$1» деп ажыглакчының салыышкыннары',
 'mycontris' => 'Салыышкыннар',
 'contribsub2' => '$1 ($2)',
@@ -1109,7 +1106,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'tooltip-search-go' => 'Шак ындыг аттыг арынче щилчиир',
 'tooltip-search-fulltext' => 'Бо бижике арыннардан дилээри',
 'tooltip-p-logo' => 'Кол Арын',
-'tooltip-n-mainpage' => 'Кол Арынны баары',
+'tooltip-n-mainpage' => 'Кол Арынче шилчиир',
 'tooltip-n-mainpage-description' => 'Кол Арынче кирери',
 'tooltip-n-portal' => 'Төлевилел дыгайында, чүнү кылып болур силер, кайда чүү чыдарыл',
 'tooltip-n-currentevents' => 'Ам болуп турар таварылгалар даңзызы',
@@ -1329,6 +1326,9 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 # HTML forms
 'htmlform-submit' => 'Күүcедири',
 'htmlform-selectorother-other' => 'Өске',
+
+# New logging system
+'rightsnone' => '(чок)',
 
 # Feedback
 'feedback-subject' => 'Кол сөс:',

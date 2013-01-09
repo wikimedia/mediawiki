@@ -175,6 +175,7 @@ $messages = array(
 'newwindow' => '(as deurb ant na fnestra neuva)',
 'cancel' => 'Scancela',
 'moredotdotdot' => 'Dë pì...',
+'morenotlisted' => 'Autr pa listà...',
 'mypage' => 'Pàgina',
 'mytalk' => 'Ciaciarade',
 'anontalk' => "Ciaciarade për st'adrëssa IP-sì",
@@ -547,6 +548,7 @@ Për piasì speta prima ëd prové torna.",
 # E-mail sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
 'user-mail-no-addy' => 'Provà a spedì un mëssagi sensa adrëssa ëd pòsta eletrònica.',
+'user-mail-no-body' => 'Preuva a mandé un corel con un còrp veuid o motobin curt.',
 
 # Change password dialog
 'resetpass' => 'Cambia la ciav',
@@ -2859,6 +2861,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgica|Paròle màgiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Pagina|Pagine}} transcludùe dzor ($1)',
 'pageinfo-toolboxlink' => 'Anformassion an sla pàgina',
 'pageinfo-redirectsto' => 'Ridiression-a a',
 'pageinfo-redirectsto-info' => 'anformassion',
@@ -3796,9 +3799,9 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'api-error-timeout' => "Ël servent a l'ha pa rëspondù ant ël temp ëspetà.",
 'api-error-unclassified' => "A l'é capitaje n'eror nen conossù.",
 'api-error-unknown-code' => 'Eror sconossù: «$1».',
-'api-error-unknown-error' => "Eror antern: quaicòs a l'é andàit mal quand a l'é provasse a carié tò archivi.",
+'api-error-unknown-error' => "Eror antern: Cheicòs a l'é andàit mal quand a l'é provasse a carié sò archivi.",
 'api-error-unknown-warning' => 'Avis pa conossù: $1',
-'api-error-unknownerror' => 'Eror sconossù: "$1".',
+'api-error-unknownerror' => 'Eror sconossù: «$1».',
 'api-error-uploaddisabled' => "Ël cariagi a l'é disabilità su sta wiki.",
 'api-error-verification-error' => "Cost archivi a peul esse danegià, o avèj l'estension sbalià.",
 

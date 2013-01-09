@@ -411,7 +411,7 @@ $messages = array(
 'tog-externaleditor' => "Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur, [//www.mediawiki.org/wiki/Manual:External_editors/fr plus d'informations]).",
 'tog-externaldiff' => "Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur, [//www.mediawiki.org/wiki/Manual:External_editors/fr plus d'informations]).",
 'tog-showjumplinks' => 'Activer les liens « navigation » et « recherche » en haut de page',
-'tog-uselivepreview' => "Utiliser l'aperçu rapide (nécessite JavaScript) (expérimental)",
+'tog-uselivepreview' => "Utiliser l'aperçu immédiat (nécessite JavaScript)",
 'tog-forceeditsummary' => "M'avertir lorsque je n'ai pas spécifié de résumé de modification",
 'tog-watchlisthideown' => 'Masquer mes propres modifications dans la liste de suivi',
 'tog-watchlisthidebots' => 'Masquer les modifications faites par des robots dans la liste de suivi',
@@ -512,6 +512,7 @@ $messages = array(
 'newwindow' => '(ouvre une nouvelle fenêtre)',
 'cancel' => 'Annuler',
 'moredotdotdot' => 'Plus...',
+'morenotlisted' => 'Davantage non listé…',
 'mypage' => 'Page',
 'mytalk' => 'Discussion',
 'anontalk' => 'Discussion avec cette adresse IP',
@@ -884,6 +885,7 @@ Veuillez attendre avant d'essayer à nouveau.",
 # E-mail sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
 'user-mail-no-addy' => "Tenté d'envoyer un courriel sans adresse de courriel",
+'user-mail-no-body' => "Essai d'envoi d'un courriel avec un corps vide ou déraisonnablement court.",
 
 # Change password dialog
 'resetpass' => 'Changer de mot de passe',
@@ -3206,6 +3208,7 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 'pageinfo-magic-words' => '{{PLURAL:$1|Mot magique|Mots magiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Page traduite|Pages traduites}} sur ($1)',
 'pageinfo-toolboxlink' => 'Information sur la page',
 'pageinfo-redirectsto' => 'Rediriger vers',
 'pageinfo-redirectsto-info' => 'info',

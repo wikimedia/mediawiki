@@ -2646,7 +2646,7 @@ $1',
 # Import log
 'importlogpage' => 'هێنانەناوەی لۆگ',
 'importlogpagetext' => 'ھاوردنی پەڕەکان لەگەڵ مێژووی دەستکاری لە ویکییەکانی ترەوە.',
-'import-logentry-upload' => 'هێنراوەناوەی [[$1]] بە بارکردنی پەڕگە',
+'import-logentry-upload' => 'ھاوردنی [[$1]] بە بارکردنی پەڕگە',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|پێداچوونەوە|پێداچوونەوە}}',
 'import-logentry-interwiki' => 'ترانس‌ویکی‌کراو $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|پێداچوونەوە|پێداچوونەوە}} لە $2',

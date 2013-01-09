@@ -678,9 +678,9 @@ Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancarian untuak judul laman
 'noarticletext-nopermission' => 'Kini ko indak ado teks dalam laman iko.
 
 Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancahari untuak judul laman iko]] di laman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancahari log takaik] </span>, tapi Sanak indak punyo izin untuak mambuek laman iko.',
-'missing-revision' => 'Revisi $1 di halaman ko nan banamo "{{PAGENAME}}" indak ado.
+'missing-revision' => 'Revisi $1 di laman nan banamo "{{PAGENAME}}" ko indak ado.
 
-Hal iko biasonyo disababkan dek pranala sajarah nan alah kadaluarsa ka halaman ko nan alah dihapuih.
+Hal iko biasonyo disababkan dek pranala sijarah nan alah kadaluarsa ka laman nan alah dihapuih.
 Rinciannyo dapek dicaliak di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log panghapuihan].',
 'userpage-userdoesnotexist' => 'Akun pangguno "<nowiki>$1</nowiki>" indak tadafta.',
 'userpage-userdoesnotexist-view' => 'Pangguno "$1" indak tadafta.',
@@ -952,7 +952,7 @@ Alamaik surek elektronik awak ang tu indak kan katahuan dek urang lain nan mangh
 'rcshowhidemine' => '$1 suntingan denai',
 'rclinks' => 'Tampilkan $1 parubahan baru dalam $2 hari terakhir<br />$3',
 'diff' => 'bedo',
-'hist' => 'sajarah',
+'hist' => 'sijarah',
 'hide' => 'Suruakkan',
 'show' => 'Tampilkan',
 'minoreditletter' => 'k',

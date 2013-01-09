@@ -243,7 +243,7 @@ $messages = array(
 'tog-externaleditor' => '預設使用外部編輯器 （進階者專用，需要在您的電腦上作出一些特別設定。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-externaldiff' => '預設使用外部差異分析 （進階者專用，需要在您的電腦上作出一些特別設定。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks' => '啟用「跳轉到」訪問連結',
-'tog-uselivepreview' => '使用實時預覽 （需要JavaScript） （試驗中）',
+'tog-uselivepreview' => '使用實時預覽 （需要JavaScript）',
 'tog-forceeditsummary' => '當沒有輸入摘要時提醒我',
 'tog-watchlisthideown' => '監視列表中隱藏我的編輯',
 'tog-watchlisthidebots' => '監視列表中隱藏機器人的編輯',
@@ -344,6 +344,7 @@ $messages = array(
 'newwindow' => '（以新視窗開啟）',
 'cancel' => '取消',
 'moredotdotdot' => '更多...',
+'morenotlisted' => '更多未列出的項目...',
 'mypage' => '頁面',
 'mytalk' => '討論',
 'anontalk' => '該IP的對話頁',
@@ -713,6 +714,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 'user-mail-no-addy' => '嘗試不帶電郵地址發送電郵。',
+'user-mail-no-body' => '試圖發送空的或主體不合理短的電子郵件。',
 
 # Change password dialog
 'resetpass' => '更改密碼',
@@ -799,7 +801,7 @@ $2
 
 # Edit pages
 'summary' => '摘要：',
-'subject' => '主題:',
+'subject' => '主題：',
 'minoredit' => '這是一個小修改',
 'watchthis' => '監視本頁',
 'savearticle' => '儲存本頁',
@@ -814,7 +816,7 @@ $2
 'missingcommenttext' => '請在下面輸入評論。',
 'missingcommentheader' => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊「{{int:savearticle}}」，您的編輯將不帶標題儲存。",
 'summary-preview' => '摘要預覽:',
-'subject-preview' => '主題/標題預覽:',
+'subject-preview' => '主題／標題預覽：',
 'blockedtitle' => '用戶被查封',
 'blockedtext' => "'''您的用戶名或IP地址已被封禁。'''
 
@@ -2988,7 +2990,8 @@ $1被封禁的理由是“$2”',
 'pageinfo-recent-authors' => '最近作者數目',
 'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}}（$1）',
 'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}}（$1）',
-'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}}（$1）',
+'pageinfo-templates' => '使用的模板（$1）',
+'pageinfo-transclusions' => '使用的頁面（$1）',
 'pageinfo-toolboxlink' => '頁面資訊',
 'pageinfo-redirectsto' => '重定向到',
 'pageinfo-redirectsto-info' => '資訊',

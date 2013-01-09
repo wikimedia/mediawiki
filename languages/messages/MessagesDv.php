@@ -225,7 +225,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => '{{SITENAME}}ގެ ތަޢާރަފު',
-'aboutpage' => 'Project:ތާރަފު',
+'aboutpage' => 'Project:ތަޢާރަފު',
 'copyright' => 'ހުރިހާ މާއްދާއެއް $1 ގެ ދަށުން ލިބެން އެބަހުއްޓެވެ.',
 'copyrightpage' => '{{ns:project}}:ނަކަލުކުރުމުގެހައްގު',
 'currentevents' => 'ހިނގަމުންދާ ހާދިސާތައް',
@@ -311,6 +311,7 @@ $1',
 'createaccount' => 'މެންބަރަކަށް ވެ ވަޑައިގަންނަވާ',
 'gotaccount' => 'މެމްބަރުކަން ހާސިލް ކުރައްވާފައި ނުވޭތޯ؟ $1',
 'gotaccountlink' => 'ވަދެވަޑައިގަންނަވާ',
+'userlogin-resetlink' => 'ވަދެވަޑައިގަތުމުގެ ސިއްރު ބަހާއި މެމްބަރު ނަން ހަނދާންނެތުނީތޯ؟',
 'createaccountreason' => 'ސަބަބު:',
 'badretype' => 'ތިޔަ ލިޔުއްވި ދެ ސިއްރުބަސް އެއް ސިއްރު ބަހާއި އަނެއް ސިއްރު ބަހާއި ދިމަލެއް ނުވޭ. އަދި ސިއްރުބަސް ރަނގަޅަށް ޖައްސަވާށެވެ!',
 'userexists' => 'ތިޔަ ލިޔުއްވި ނަން މިހާރުވެސް ދަނީ ބޭނުން ކުރެވެމުންނެވެ.
@@ -412,6 +413,7 @@ $1',
 'currentrev-asof' => 'އެންމެ ފަހުން ގެނެވުނު ބަދަލު $1',
 'revisionasof' => '$1ގެ ނުސްހާ',
 'previousrevision' => '→ ކުރީގެ ނުސްހާ',
+'nextrevision' => 'ފަހުގެ ނުސްހާ ←',
 'next' => 'ކުރިޔަށް',
 
 # Revision deletion
@@ -488,6 +490,9 @@ $1',
 'group-sysop' => 'އެޑްމިނިސްޓްރޭޓަރުން',
 'group-bureaucrat' => 'ބިއުރޯކްރެޓުން',
 'group-all' => '(ހުރިހާ)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'މި ޞަފްޙާއަށް އުނިއިތުރު ގެންނަވާ',
 
 # Recent changes
 'recentchanges' => 'އެންމެ ފަހުގެ ބަދަލުތައް',
@@ -591,6 +596,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-hidebots' => 'ބޮޓް ފޮރުއްވާ',
 'activeusers-hidesysops' => 'އެޑްމިނިސްޓްރޭޓަރުން ފޮރުއްވާ',
 
+# Special:ListGroupRights
+'listgrouprights-members' => '(މެމްބަރުންގެ ލިސްޓު)',
+
 # E-mail user
 'emailuser' => 'މި މެންބަރަށް އީމޭލު ފޮނުއްވާ',
 
@@ -646,6 +654,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ipbsubmit' => 'މި މެމްބަރާއި މެދު ފިޔަވަޅު އަޅުއްވާ!',
 'ipboptions' => '2 ގަޑިއިރު:2 hours, 1 ދުވަސް:1 day, 3 ދުވަސް:3 days, 1 ހަފްތާ:1 week, 2 ހަފްތާ:2 weeks, 1 މަސް:1 month,3 މަސް:3 months, 6 މަސް:6 months, 1 އަހަރު:1 year, ހަމައެއްނެތް:infinite',
 'badipaddress' => 'ނުރަނގަޅު އައި.ޕީ އެޑްރެހެއް',
+'ipblocklist' => 'ފިޔަވަޅު އެޅިފައިވާ މެމްބަރުން',
 'expiringblock' => 'މުއްދަތު ހަމަވާނީ $1 $2',
 'blocklink' => 'ފިޔަވަޅުއަޅުއްވާ',
 'contribslink' => 'ޙިއްޞާ',
@@ -715,6 +724,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-t-permalink' => 'ނުސްހާއަށް ދާއިމީ ފާލަން',
 'tooltip-ca-nstab-main' => 'މަޢުލޫމާތު ޞަފްޙާ ބައްލަވާ',
 'tooltip-ca-nstab-user' => 'މެމްބަރު ޞަފްޙާ ބައްލަވާ',
+'tooltip-ca-nstab-special' => 'މިއީ ޚާއްސަ ޞަފްޙާއެކެވެ. މި ޞަފްޙާއަށް އުނިއިތުރު ނުގެނެވޭނެއެވެ.',
 'tooltip-ca-nstab-image' => 'ފައިލު ޞަފްޙާ ބައްލަވާ',
 'tooltip-ca-nstab-template' => 'ފަންވަތް ބައްލަވާ',
 'tooltip-ca-nstab-category' => 'ޤިސްމު ޞަފްޙާ ބައްލަވާ',
@@ -724,6 +734,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Info page
 'pageinfo-toolboxlink' => 'ސަފްޙާ އާއި ބެހޭ މައުލޫމާތު',
+
+# Browsing diffs
+'previousdiff' => '→ ކުރީގެ ނުސްހާ',
+'nextdiff' => 'ފަހުގެ ނުސްހާ ←',
 
 # Special:NewFiles
 'showhidebots' => '($1 ބޮޓްސް)',
