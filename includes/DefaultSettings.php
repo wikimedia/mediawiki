@@ -6389,8 +6389,9 @@ $wgRequirePasswordforEmailChange = true;
  *
  * @since 1.20
  */
-$wgSiteTypes = array();
-$wgSiteTypes['mediawiki'] = 'MediaWikiSite';
+$wgSiteTypes = array(
+	'mediawiki' => 'MediaWikiSite',
+);
 
 /**
  * For really cool vim folding this needs to be at the end:
