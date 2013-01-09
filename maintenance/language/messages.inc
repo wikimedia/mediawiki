@@ -514,6 +514,7 @@ $wgMessageStructure = array(
 		'php-mail-error',
 		'php-mail-error-unknown',
 		'user-mail-no-addy',
+		'user-mail-no-body',
 	),
 	'resetpass' => array(
 		'resetpass',

@@ -1115,6 +1115,7 @@ See also:
 # E-mail sending
 'php-mail-error-unknown' => 'Used as error message when <code>mail()</code> returned empty error message.',
 'user-mail-no-addy' => 'This is the error message in case an e-mail could not be sent because there was no e-mail address to send it to.',
+'user-mail-no-body' => 'This is the error message in case an e-mail has an empty or unreasonably short body',
 
 # Change password dialog
 'resetpass' => 'The caption of [[Special:ChangePassword]]
