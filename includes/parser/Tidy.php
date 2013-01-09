@@ -260,24 +260,24 @@ class MWTidy {
 
 			wfProfileOut( __METHOD__ );
 			return $tidy->errorBuffer;
-		} else {
-			$tidy->cleanRepair();
-			$retval = $tidy->getStatus();
-			if ( $retval == 2 ) {
-				// 2 is magic number for fatal error
-				// http://www.php.net/manual/en/function.tidy-get-status.php
-				$cleansource = null;
-			} else {
-				$cleansource = tidy_get_output( $tidy );
-				if ( $wgDebugTidy && $retval > 0 ) {
-					$cleansource .= "<!--\nTidy reports:\n" .
-						str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
-						"\n-->";
-				}
-			}
-
-			wfProfileOut( __METHOD__ );
-			return $cleansource;
 		}
+
+		$tidy->cleanRepair();
+		$retval = $tidy->getStatus();
+		if ( $retval == 2 ) {
+			// 2 is magic number for fatal error
+			// http://www.php.net/manual/en/function.tidy-get-status.php
+			$cleansource = null;
+		} else {
+			$cleansource = tidy_get_output( $tidy );
+			if ( $wgDebugTidy && $retval > 0 ) {
+				$cleansource .= "<!--\nTidy reports:\n" .
+					str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
+					"\n-->";
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $cleansource;
 	}
 }

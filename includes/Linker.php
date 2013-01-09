@@ -947,10 +947,10 @@ class Linker {
 			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
 				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
 				$encLabel . '</a>';
-		} else {
-			wfProfileOut( __METHOD__ );
-			return self::linkKnown( $title, $encLabel, array(), wfCgiToArray( $query ) );
 		}
+
+		wfProfileOut( __METHOD__ );
+		return self::linkKnown( $title, $encLabel, array(), wfCgiToArray( $query ) );
 	}
 
 	/**

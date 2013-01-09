@@ -280,15 +280,13 @@ class Article extends Page {
 				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
 				$content = new MessageContent( $message, null, 'parsemag' );
 			}
-			wfProfileOut( __METHOD__ );
-
-			return $content;
 		} else {
 			$this->fetchContentObject();
-			wfProfileOut( __METHOD__ );
-
-			return $this->mContentObject;
+			$content = $this->mContentObject;
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $content;
 	}
 
 	/**
