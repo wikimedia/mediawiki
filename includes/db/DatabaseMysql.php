@@ -133,7 +133,7 @@ class DatabaseMysql extends DatabaseBase {
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
 			wfProfileOut( __METHOD__ );
-			$this->reportConnectionError( $error );
+			return $this->reportConnectionError( $error );
 		}
 
 		if ( $dbName != '' ) {
@@ -146,7 +146,7 @@ class DatabaseMysql extends DatabaseBase {
 					"from client host " . wfHostname() . "\n" );
 
 				wfProfileOut( __METHOD__ );
-				$this->reportConnectionError( "Error selecting database $dbName" );
+				return $this->reportConnectionError( "Error selecting database $dbName" );
 			}
 		}
 

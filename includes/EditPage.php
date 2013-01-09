@@ -1283,7 +1283,7 @@ class EditPage {
 
 		$status = Status::newGood();
 
-		wfProfileIn( __METHOD__  );
+		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-checks' );
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
@@ -1291,7 +1291,7 @@ class EditPage {
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__  );
+			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1301,6 +1301,7 @@ class EditPage {
 		} catch ( MWContentSerializationException $ex ) {
 			$status->fatal( 'content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
 			$status->value = self::AS_PARSE_ERROR;
+			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
@@ -1313,7 +1314,7 @@ class EditPage {
 				$status->setResult( false, $code );
 
 				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__  );
+				wfProfileOut( __METHOD__ );
 
 				return $status;
 		}
