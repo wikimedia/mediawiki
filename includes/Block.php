@@ -696,7 +696,7 @@ class Block {
 		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
-		$autoblock->mReason = wfMessage( 'autoblocker', $this->getTarget(), $this->mReason )->inContentLanguage()->text();
+		$autoblock->mReason = wfMessage( 'autoblocker', $this->getTarget(), $this->mReason )->inContentLanguage()->plain();
 		$timestamp = wfTimestampNow();
 		$autoblock->mTimestamp = $timestamp;
 		$autoblock->mAuto = 1;
