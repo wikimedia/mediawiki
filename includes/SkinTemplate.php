@@ -690,12 +690,14 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * TODO document
-	 * @param  $title Title
-	 * @param  $message String message key
-	 * @param  $selected Bool
-	 * @param  $query String
-	 * @param  $checkEdit Bool
+	 * Builds an array with tab definition
+	 *
+	 * @param Title $title page where the tab links to
+	 * @param string|array $message message key or an array of message keys (will fall back)
+	 * @param boolean $selected display the tab as selected
+	 * @param string $query query string attached to tab URL
+	 * @param boolean $checkEdit check if $title exists and mark with .new if one doesn't
+	 *
 	 * @return array
 	 */
 	function tabAction( $title, $message, $selected, $query = '', $checkEdit = false ) {
@@ -705,7 +707,11 @@ class SkinTemplate extends Skin {
 		}
 		if( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
-			$query = 'action=edit&redlink=1';
+			if ( $query !== '' ) {
+				$query = 'action=edit&redlink=1&' . $query;
+			} else {
+				$query = 'action=edit&redlink=1';
+			}
 		}
 
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
