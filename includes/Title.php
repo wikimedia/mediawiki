@@ -86,6 +86,7 @@ class Title {
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mHasSubpage;                 // /< Whether a page has any subpages
+	var $mBadtitleError = null;       // /< Error which caused the invalid title
 	// @}
 
 	/**
@@ -163,6 +164,29 @@ class Title {
 		} else {
 			$ret = null;
 			return $ret;
+		}
+	}
+
+	/**
+	 * Create a new Title from text, checking for errors and
+	 * throwing a BadTitleError if the title is incorrect.
+	 *
+	 * @param string $text the link text; spaces, prefixes, and an
+	 *   initial ':' indicating the main namespace are accepted.
+	 * @throws BadTitleError
+	 */
+	public static function newFromTextThrow( $text ) {
+		$t = new Title();
+		$t->mDbkeyform = str_replace( ' ', '_', $text );
+		if ( $t->secureAndSplit() ) {
+			return $t;
+		} else {
+			// Show detailed errors for incorrect titles which have $mBadtitleError set
+			$error = $t->mBadtitleError;
+			if ( !$error ) {
+				$error = array( 'badtitle', 'badtitletext' );
+			}
+			throw new BadTitleError( $error[0], $error[1] );
 		}
 	}
 
@@ -3040,6 +3064,7 @@ class Title {
 	 */
 	private function secureAndSplit() {
 		global $wgContLang, $wgLocalInterwiki;
+		$this->mBadtitleError = null;
 
 		# Initialisation
 		$this->mInterwiki = $this->mFragment = '';
@@ -3060,11 +3085,13 @@ class Title {
 		$dbkey = trim( $dbkey, '_' );
 
 		if ( $dbkey == '' ) {
+			$this->mBadtitleError = array( 'title-invalid-empty', 'title-invalid-empty-text' );
 			return false;
 		}
 
 		if ( false !== strpos( $dbkey, UTF8_REPLACEMENT ) ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
+			$this->mBadtitleError = array( 'title-invalid-utf8', wfMessage( 'title-invalid-utf8-text', UTF8_REPLACEMENT ) );
 			return false;
 		}
 
@@ -3103,6 +3130,8 @@ class Title {
 					if ( !$firstPass ) {
 						# Can't make a local interwiki link to an interwiki link.
 						# That's just crazy!
+						$this->mBadtitleError = array( 'title-invalid-double-interwiki',
+							'title-invalid-double-interwiki-text' );
 						return false;
 					}
 
@@ -3116,6 +3145,7 @@ class Title {
 					{
 						if ( $dbkey == '' ) {
 							# Can't have an empty self-link
+							$this->mBadtitleError = array( 'title-invalid-empty', 'title-invalid-empty-text' );
 							return false;
 						}
 						$this->mInterwiki = '';
@@ -3152,7 +3182,13 @@ class Title {
 
 		# Reject illegal characters.
 		$rxTc = self::getTitleInvalidRegex();
-		if ( preg_match( $rxTc, $dbkey ) ) {
+		if( preg_match( $rxTc, $dbkey, $m, PREG_OFFSET_CAPTURE ) ) {
+			$marked = substr( $dbkey, 0, $m[0][1] ) . '<span class="error">' .
+				$m[0][0] . '</span>' . substr( $dbkey, $m[0][1] + strlen( $m[0][0] ) );
+			$this->mBadtitleError = array( 'title-invalid-characters',
+				wfMessage( 'title-invalid-characters-text', $m[0][0],
+					mb_strlen( substr( $dbkey, 0, $m[0][1] ) ), mb_strlen( $m[0][0] ), $marked )
+			);
 			return false;
 		}
 
@@ -3171,11 +3207,14 @@ class Title {
 				substr( $dbkey, -3 ) == '/..'
 			)
 		) {
+			$this->mBadtitleError = array( 'title-invalid-relative', 'title-invalid-relative-text' );
 			return false;
 		}
 
 		# Magic tilde sequences? Nu-uh!
-		if ( strpos( $dbkey, '~~~' ) !== false ) {
+		if( ( $p = strpos( $dbkey, '~~~' ) ) !== false ) {
+			$this->mBadtitleError = array( 'title-invalid-magic-tilde',
+				wfMessage( 'title-invalid-magic-tilde-text', $p ) );
 			return false;
 		}
 
@@ -3183,10 +3222,11 @@ class Title {
 		# underlying database field. We make an exception for special pages, which
 		# don't need to be stored in the database, and may edge over 255 bytes due
 		# to subpage syntax for long titles, e.g. [[Special:Block/Long name]]
-		if (
-			( $this->mNamespace != NS_SPECIAL && strlen( $dbkey ) > 255 )
-			|| strlen( $dbkey ) > 512
-		) {
+		$max = $this->mNamespace != NS_SPECIAL ? 255 : 512;
+		if ( strlen( $dbkey ) > $max ) {
+			$chop = substr( $dbkey, 0, $max+1 );
+			$chop = mb_substr( $chop, 0, mb_strlen( $chop ) - 1 );
+			$this->mBadtitleError = array( 'title-invalid-too-long', wfMessage( 'title-invalid-too-long-text', $max, $chop ) );
 			return false;
 		}
 
@@ -3201,6 +3241,7 @@ class Title {
 		# Can't make a link to a namespace alone... "empty" local links can only be
 		# self-links with a fragment identifier.
 		if ( $dbkey == '' && $this->mInterwiki == '' && $this->mNamespace != NS_MAIN ) {
+			$this->mBadtitleError = array( 'title-invalid-empty', 'title-invalid-empty-text' );
 			return false;
 		}
 
@@ -3216,6 +3257,7 @@ class Title {
 
 		// Any remaining initial :s are illegal.
 		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
+			$this->mBadtitleError = array( 'title-invalid-leading-colon', 'title-invalid-leading-colon-text' );
 			return false;
 		}
 

@@ -88,7 +88,7 @@ class MediaWiki {
 		} elseif ( $title == '' && $action != 'delete' ) {
 			$ret = Title::newMainPage();
 		} else {
-			$ret = Title::newFromURL( $title );
+			$ret = Title::newFromTextThrow( $title );
 			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
 			// in wikitext links to tell Parser to make a direct file link
 			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
@@ -127,7 +127,12 @@ class MediaWiki {
 	 */
 	public function getTitle() {
 		if ( $this->context->getTitle() === null ) {
-			$this->context->setTitle( $this->parseTitle() );
+			try {
+				$this->context->setTitle( $this->parseTitle() );
+			} catch ( BadTitleError $e ) {
+				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+				throw $e;
+			}
 		}
 		return $this->context->getTitle();
 	}
