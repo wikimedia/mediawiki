@@ -1,6 +1,6 @@
 ( function ( mw, $ ) {
 
-var mwLanguageCache = {}, oldGetOuterHtml;
+var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests;
 
 QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 	setup: function () {
@@ -380,5 +380,82 @@ QUnit.test( 'mw.msg()', 8, function ( assert ) {
 
 	mw.jqueryMsg.getMessageFunction = oldGMF;
 } );
+
+formatnumTests = [
+	{
+		lang: 'en',
+		number: 987654321.654321,
+		result: '987654321.654321',
+		description: 'formatnum test for English, decimal seperator'
+	},
+	{
+		lang: 'ar',
+		number: 987654321.654321,
+		result: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
+		description: 'formatnum test for Arabic, with decimal seperator'
+	},
+	{
+		lang: 'ar',
+		number: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
+		result: 987654321,
+		integer: true,
+		description: 'formatnum test for Arabic, with decimal seperator, reverse'
+	},
+	{
+		lang: 'ar',
+		number: -12.89,
+		result: '-١٢٫٨٩',
+		description: 'formatnum test for Arabic, negative number'
+	},
+	{
+		lang: 'ar',
+		number: '-١٢٫٨٩',
+		result: -12,
+		integer: true,
+		description: 'formatnum test for Arabic, negative number, reverse'
+	},
+	{
+		lang: 'nl',
+		number: 987654321.654321,
+		result: '987654321,654321',
+		description: 'formatnum test for Nederlands, decimal seperator'
+	},
+	{
+		lang: 'nl',
+		number: -12.89,
+		result: '-12,89',
+		description: 'formatnum test for Nederlands, negative number'
+	},
+	{
+		lang: 'nl',
+		number: 'invalidnumber',
+		result: 'invalidnumber',
+		description: 'formatnum test for Nederlands, invalid number'
+	}
+];
+
+QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
+	mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
+	mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
+	$.each( formatnumTests, function ( i, test ) {
+		QUnit.stop();
+		getMwLanguage( test.lang, function ( langClass ) {
+			QUnit.start();
+			if ( !langClass ) {
+				assert.ok( false, 'Language "' + test.lang + '" failed to load' );
+				return;
+			}
+			mw.messages.set(test.message );
+			mw.config.set( 'wgUserLanguage', test.lang ) ;
+			var parser = new mw.jqueryMsg.parser( { language: langClass } );
+			assert.equal(
+				parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
+					[ test.number ] ).html(),
+				test.result,
+				test.description
+			);
+		} );
+	} );
+});
 
 }( mediaWiki, jQuery ) );
