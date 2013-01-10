@@ -131,6 +131,7 @@ $messages = array(
 'category-empty' => "''މި ޤިސްމުގައި އެއްވެސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
 'hidden-categories' => '{{PLURAL:$1|ފޮރުވިފައިވާ ޤިސްމު|ފޮރުވިފައިވާ ޤިސްމުތައް}}',
 'hidden-category-category' => 'ފޮރުވިފައިވާ ޤިސްމުތައް',
+'category-subcat-count-limited' => 'މި ޤިސްމުގައި ހިމެނެނީ {{PLURAL:$1|ކުދިޤިސްމެވެ|$1 ކުދިޤިސްމުތަކެވެ}}.',
 
 'about' => 'ތަޢާރަފު',
 'article' => 'ފިހުރިސްތު ޞަފްޙާ',
@@ -186,6 +187,7 @@ $messages = array(
 'create-this-page' => 'މި ޞަފްޙާ ފަށްޓަވާ',
 'delete' => 'ފޮހެލައްވާ',
 'deletethispage' => 'މި ޞަފްޙާ ފޮހެލައްވާ',
+'viewdeleted_short' => '{{PLURAL:$1|ފޮހެލެވިފައިވާ އެއް އުނިއިތުރު|ފޮހެލެވިފައިވާ $1 އުނިއިތުރު}} ބައްލަވާ',
 'protect' => 'ދިފާއުކުރައްވާ',
 'protect_change' => 'ބަދަލު ގެންނަވާ',
 'protectthispage' => 'މި ޞަފްޙާ ދިފާއުކުރައްވާ',
@@ -361,6 +363,7 @@ $1',
 'italic_sample' => 'ކަތި އިބާރާތް',
 'italic_tip' => 'ކަތި އިބާރާތް',
 'headline_sample' => 'ސުރުހީގެ އިބާރާތް',
+'media_tip' => 'ފައިލު ފާލަން',
 'sig_tip' => 'ތިޔަބޭފުޅާގެ ސޮއި، ތާރީޚް ތަތްގަނޑާއެކު',
 
 # Edit pages
@@ -395,6 +398,8 @@ $1',
 'newarticle' => '(އައު)',
 'noarticletext' => 'މި ޞަފްޙާގައި އެއްވެސް ލިޔުމެއް ނުވެއެވެ. ތިޔަބޭފުޅާއަށް މި ނަން [[Special:Search/{{PAGENAME}}|އެހެން ޞަފްޙާތަކުން ހޯއްދެވިދާނެއެވެ]]. ނުވަތަ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} މިއާ ގުޅޭ ލޮގްތައް ހޯއްދެވިދާނެއެވެ].
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} ނުވަތަ މި ޞަފްޙާއަށް އުނިއިތުރު ގެނެވިދާނެއެވެ].</span>.',
+'previewnote' => "'''މިއީ ހަމައެކަނި ނަމޫނާ އެކެވެ.'''
+އަދި ތިބޭފުޅާގެ ބަދަލުތައް ރައްކާނުކުރެވެއެވެ!",
 'editing' => '$1 އަށް އުނިއިތުރު ގެންނަނީ',
 'creating' => '$1 ފަށްޓަވަނީ',
 'editingsection' => '$1ގެ ބަޔަކަށް އުނިއިތުރު ގެންނަނީ',
@@ -407,6 +412,12 @@ $1',
 'templatesused' => 'މި ޞަފްޙާ ގައި ބޭނުން ކުރެވިފައިވާ {{PLURAL:$1|ފަންވަތް|ފަންވަތްތައް}}:',
 'template-protected' => '(ދިފާޢުކުރެވިފައި)',
 'template-semiprotected' => '(ބައެއް ދިފާޢުކުރެވިފައި)',
+'recreate-moveddeleted-warn' => "'''ސަމާލުކަމަށް: ތިޔަ ފަށްޓަވަން އުޅުއްވަނީ ކުރީގައި ފޮހެލެވިފައިވާ ޞަފްޙާއެކެވެ.'''
+
+މި ޞަފްޙާ ކުރިއަށް ގެންދެވުމަށް ރަނގަޅުތޯ އަދި އެއްފަހަރު ވިސްނަވާލައްވާށެވެ.
+ފޮހެލެވުނު އަދި ބަދަލުކުރެވުނު ލޮގް ތިރީގައި ވަނީއެވެ :",
+'moveddeleted-notice' => 'މި ޞަފްޙާ ވަނީ ފޮހެލެވިފައެވެ.
+ފޮހެލުމުގެ އަދި ނަން ބަދަލުކުރުމުގެ ލޮގް ތިރީގައިވަނީއެވެ.',
 
 # History pages
 'currentrev' => 'އެންމެފަހުން ގެނެވުނު ބަދަލު',
@@ -415,9 +426,12 @@ $1',
 'previousrevision' => '→ ކުރީގެ ނުސްހާ',
 'nextrevision' => 'ފަހުގެ ނުސްހާ ←',
 'next' => 'ކުރިޔަށް',
+'histfirst' => 'އެންމެ ކުރީގެ',
+'histlast' => 'އެންމެ ފަހުގެ',
 
 # Revision deletion
 'revdel-restore-deleted' => 'ފޮހެލެވިފައިވާ ނުސްހާތައް',
+'revdel-restore-visible' => 'ފާޅު ނުސްހާތައް',
 
 # Diffs
 'lineno' => 'ފޮޅުވަތް $1:',
@@ -497,7 +511,11 @@ $1',
 # Recent changes
 'recentchanges' => 'އެންމެ ފަހުގެ ބަދަލުތައް',
 'recentchanges-summary' => 'މި ވިކިޕީޑިއާ އަށް ގެނެވިފައިވާ އެންމެ ފަހުގެ ބަދަލުތައް މި ޞަފްހާ އިން ބައްލަވާ!',
+'recentchanges-label-newpage' => 'މި އުނިއިތުރުން އާ ޞަފްޙާއެއް ފަށައިގަނެވުނެވެ.',
+'recentchanges-label-minor' => 'މިއީ ކުޑަކުޑަ އުނިއިތުރެކެވެ.',
+'recentchanges-label-bot' => 'މި އުނިއިތުރު ގެނައީ ބޮޓެކެވެ.',
 'diff' => 'ފަރަގު',
+'hist' => 'ތާރީޚް',
 'hide' => 'ފޮރުވާ',
 'show' => 'ދައްކަވާ',
 
@@ -528,6 +546,8 @@ $1',
 'filehist-user' => 'މެމްބަރު',
 'filehist-comment' => 'ޚިޔާލު',
 'imagelinks' => 'ފާލަންތައް',
+'sharedupload-desc-here' => 'މި ފައިލަކީ $1ގެ ފައިލެކެވެ. އަދި އެހެން މަޝްރޫޢުތަކުގައި ބޭނުން ކުރެވިފައި ހުރެދާނެއެވެ.
+މި ފައިލުގެ ތަފްސީލް [$2 ފައިލު ތަފްސީލް ޞަފްޙާއިން] ތިރީގައިވަނީއެވެ.',
 
 # Random page
 'randompage' => 'ކޮންމެވެސް ޞަފްޙާއެއް',
@@ -620,6 +640,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'deletecomment' => 'ސަބަބު',
 
 # Rollback
+'rollbacklink' => 'ކުރީގެ ނުސްހާ އަކަށް ބަދަލުކުރައްވާ',
 'cantrollback' => 'އުނިއިތުރު އިއާދައެއް ނުކުރެވޭނެ؛ އެހެނީ އެންމެ ފަހު އުނިއިތުރުގައި ހިއްސާވި ފަރާތަކީ މިޞަފްޙާގެ ހަމައެކަނި މުއައްލިފެވެ.',
 
 # Protect
@@ -643,7 +664,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'contributions' => 'މެންބަރު ގެ ހިއްސާ',
 'mycontris' => 'މަގޭ ހިއްސާ',
 
+'sp-contributions-talk' => 'ވާހަކަ',
 'sp-contributions-userrights' => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް',
+'sp-contributions-search' => 'ހިއްސާތަށް ހޯއްދަވާ',
 
 # What links here
 'whatlinkshere' => 'މިއާ ގުޅެނީ ކޮންއެއްޗެއް',
@@ -657,6 +680,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ipblocklist' => 'ފިޔަވަޅު އެޅިފައިވާ މެމްބަރުން',
 'expiringblock' => 'މުއްދަތު ހަމަވާނީ $1 $2',
 'blocklink' => 'ފިޔަވަޅުއަޅުއްވާ',
+'unblocklink' => 'ފިޔަވަޅުއެޅުން ބަދަލުކުރައްވާ',
 'contribslink' => 'ޙިއްޞާ',
 'proxyblocksuccess' => 'ފުރިހަމަވެއްޖެ.',
 
@@ -701,9 +725,11 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-ca-viewsource' => 'މި ޞަފްޙާވަނީ ދިފާޢުކުރެވިފައެވެ.
 މި ޞަފްޙާގެ މަސްދަރު ތިބޭފުޅާއަށް ބައްލަވާލެއްވޭނެއެވެ.',
 'tooltip-ca-history' => 'މި ޞަފްޙާގެ ކުރީގެ ނުސްހާތައް',
+'tooltip-ca-protect' => 'މި ޞަފްޙާ ދިފާޢުކުރައްވާ',
 'tooltip-ca-delete' => 'މި ޞަފްޙާ ފޮހެލައްވާ',
 'tooltip-ca-move' => 'މި ޞަފްހާގެ ނަން/ތަން ބަދަލުކުރައްވާ',
 'tooltip-ca-watch' => 'މި ޞަފްޙާއަށް ނަޒަރު ބަހައްޓަވާ',
+'tooltip-ca-unwatch' => 'މަގޭ ނަޒަރުން މި ޞަފްޙާ ދުރުކޮށްލައްވާ',
 'tooltip-search' => '{{SITENAME}}އިން ހޯއްދަވާ',
 'tooltip-search-fulltext' => 'މި ބަސް ޞަފްޙާތަކުން ހޯއްދަވާ',
 'tooltip-p-logo' => 'މައި ޞަފްޙާއަށް ވަޑައިގަންނަވާ',
@@ -725,11 +751,13 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-ca-nstab-main' => 'މަޢުލޫމާތު ޞަފްޙާ ބައްލަވާ',
 'tooltip-ca-nstab-user' => 'މެމްބަރު ޞަފްޙާ ބައްލަވާ',
 'tooltip-ca-nstab-special' => 'މިއީ ޚާއްސަ ޞަފްޙާއެކެވެ. މި ޞަފްޙާއަށް އުނިއިތުރު ނުގެނެވޭނެއެވެ.',
+'tooltip-ca-nstab-project' => 'މަޝްރޫޢު ޞަފްޙާ ބައްލަވާ',
 'tooltip-ca-nstab-image' => 'ފައިލު ޞަފްޙާ ބައްލަވާ',
 'tooltip-ca-nstab-template' => 'ފަންވަތް ބައްލަވާ',
 'tooltip-ca-nstab-category' => 'ޤިސްމު ޞަފްޙާ ބައްލަވާ',
 'tooltip-save' => 'ބަދަލުތައް ރައްކާކުރައްވާ',
 'tooltip-preview' => 'ބަދަލުތައް ދައްކަވާ، ރައްކާކުރެއްވުމުގެ ކުރިން މި ބޭނުންކުރައްވާ!',
+'tooltip-rollback' => '"ކުރީގެ ނުސްހާ އަކަށް ބަދަލުކުރައްވާ" އިން މި ޞަފްޙާއަށް އެންމެ ފަހުން އުނިއިތުރު ގެންނެވި މެމްބަރުގެ އުނިއިތުރު(އުނިއިތުރުތައް) ފޮހެލެވޭނެއެވެ.',
 'tooltip-summary' => 'ކުރު ޚުލާސާއެއް ލިޔުއްވާ',
 
 # Info page

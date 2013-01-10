@@ -704,6 +704,7 @@ Prosimo počakajte, preden poskusite znova.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznana napaka v funkciji PHP mail()',
 'user-mail-no-addy' => 'Poskušal poslati e-pošto brez e-poštnega naslova',
+'user-mail-no-body' => 'Poskušali ste poslati e-pošto s prazno ali nerazumno kratko vsebino.',
 
 # Change password dialog
 'resetpass' => 'Spremeni geslo',

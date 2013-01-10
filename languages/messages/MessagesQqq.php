@@ -2201,14 +2201,12 @@ $1 is the relevance of this result in per cent.
 'search-interwiki-caption' => 'Used in [[Special:Search]], when showing search results from other wikis.',
 'search-interwiki-default' => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-interwiki-more' => '{{Identical|More}}',
-'search-relatedarticle' => '{{Identical|Related}}
-
-This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
+'search-relatedarticle' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
+{{Identical|Related}}',
 'mwsuggest-disable' => "The text of an option on the 'search options' tab of a user's Preferences.",
 'searcheverything-enable' => 'Used in [[Special:Preferences]], tab “Search”.',
-'searchrelated' => '{{Identical|Related}}
-
-This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
+'searchrelated' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
+{{Identical|Related}}',
 'searchall' => '{{Identical|All}}',
 'showingresults' => 'This message is used on some special pages such as [[Special:WantedCategories]]. Parameters:
 *$1 is the total number of results in the batch shown.
@@ -2239,7 +2237,10 @@ See also:
 'powersearch-togglenone' => '"None" refers to namespaces. It is used in Advanced search: http://translatewiki.net/w/i.php?title=Special:Search&advanced=1
 {{Identical|None}}',
 'search-external' => 'Legend of the fieldset for the input form when the internal search is disabled. Inside the fieldset [[MediaWiki:Searchdisabled]] and [[MediaWiki:Googlesearch]] is shown.',
-'searchdisabled' => 'Shown on [[Special:Search]] when the internal search is disabled.',
+'searchdisabled' => '{{doc-singularthey}}
+In this sentence, "their indexes" refers to "Google\'s indexes".
+
+Shown on [[Special:Search]] when the internal search is disabled.',
 
 # Quickbar
 'qbsettings' => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
@@ -2364,7 +2365,7 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'timezoneregion-pacific' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
 {{Related|Timezoneregion}}',
 'allowemail' => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'prefs-searchoptions' => '{{Identical|Search options}}',
+'prefs-searchoptions' => '{{Identical|Search}}',
 'prefs-namespaces' => "{{Identical|Namespaces}}
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
 'defaultns' => 'Used in [[Special:Preferences]], tab "Search".',
@@ -2485,8 +2486,9 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'editinguser' => 'Appears on [[Special:UserRights]]. Parameters:
 * $1 is a username
 * $2 are user tool links. Example: "(Talk | contribs | block | send e-mail)".',
-'userrights-editusergroup' => '{{Identical|Edit user groups}}. Parameter:
-* $1 is a username - optional, can be used for GENDER',
+'userrights-editusergroup' => 'Parameter:
+* $1 is a username - optional, can be used for GENDER
+{{Identical|Edit user groups}}',
 'saveusergroups' => 'Button text when editing user groups',
 'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
 
@@ -2572,7 +2574,8 @@ The right to [[Special:CreateAccount|create a user account]].',
 'right-minoredit' => '{{doc-right|minoredit}}
 The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
 'right-move' => '{{doc-right|move}}
-The right to move any page that is not protected from moving.',
+The right to move any page that is not protected from moving.
+{{Identical|Move page}}',
 'right-move-subpages' => '{{doc-right|move-subpages}}',
 'right-move-rootuserpages' => '{{doc-right|move-rootuserpages}}',
 'right-movefile' => '{{doc-right|movefile}}',
@@ -2652,7 +2655,8 @@ See also
 'right-ipblock-exempt' => '{{doc-right|ipblock-exempt}}
 This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
 'right-proxyunbannable' => '{{doc-right|proxyunbannable}}',
-'right-unblockself' => '{{doc-right|unblockself}}',
+'right-unblockself' => '{{doc-right|unblockself}}
+{{doc-singularthey}}',
 'right-protect' => '{{doc-right|protect}}',
 'right-editprotected' => '{{doc-right|editprotected}}',
 'right-editinterface' => '{{doc-right|editinterface}}',
@@ -4879,7 +4883,8 @@ See also:
 * {{msg-mw|ipbwatchuser}}
 * {{msg-mw|ipb-hardblock}}
 {{Identical|Prevent user from sending e-mail}}',
-'ipbenableautoblock' => 'Used as label for checkbox in [[Special:Block]].
+'ipbenableautoblock' => '{{doc-singularthey}}
+Used as label for checkbox in [[Special:Block]].
 
 See also:
 * {{msg-mw|ipbemailban}}
@@ -8284,7 +8289,8 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'dberr-info' => 'This message does not allow any wiki nor html markup.
 * $1 - database server name',
 'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
-'dberr-outofdate' => "In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
+'dberr-outofdate' => "{{doc-singularthey}}
+In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
 'dberr-cachederror' => 'Used as error message at the bottom of the page.',
 
 # HTML forms

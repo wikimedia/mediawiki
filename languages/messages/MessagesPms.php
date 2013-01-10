@@ -1570,7 +1570,7 @@ $1",
 Për piasì, ch'as butà an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
 'upload-misc-error' => "Eror nen identificà antramentr ch'as cariava",
 'upload-misc-error-text' => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
-Për piasì, ch'a varda che soa anliura a sia bon-a e che a l'arsponda e peuj ch'a preuva torna.
+Për piasì, ch'a varda che soa anliura a sia bon-a e che a rësponda e peuj ch'a preuva torna.
 Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
 'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
 'upload-unknown-size' => 'Dimension pa conossùa',
@@ -1668,10 +1668,10 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'http-bad-status' => "A l'é staje un problema durant l'arcesta HTTP: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => "L'anliura a l'arspond pa",
+'upload-curl-error6' => "L'anliura a rëspond pa",
 'upload-curl-error6-text' => "L'anliura che a l'ha butà a marcia pa. Për piasì, ch'a contròla che st'anliura a sia scrita giusta e che ël sit a marcia.",
 'upload-curl-error28' => "A l'é finìje ël temp ch'as peul dovresse për carié",
-'upload-curl-error28-text' => "Ël sit a-i buta tròp temp a arsponde. Për piasì, ch'a contròla che a l'é an pé, ch'a speta na minuta e peuj che a torna a prové. A peul esse che a-j ven-a a taj serne un moment che ës sit a sia nen tant carià ëd tràfich.",
+'upload-curl-error28-text' => "Ël sit a-i buta tròp temp a rësponde. Për piasì, ch'a contròla che a l'é an pé, ch'a speta na minuta e peuj che a torna a prové. A peul esse che a-j ven-a a taj serne un moment che ës sit a sia nen tant carià ëd tràfich.",
 
 'license' => 'Licensa:',
 'license-header' => 'Licensa',
@@ -3523,8 +3523,7 @@ Ch'a preuva an manera sòlita.",
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Le modìfiche pì neuve ëd $1 {{PLURAL:$1|second}} a podrìo nen ess-ie ant sta lista-sì.',
-'lag-warn-high' => "Për via che la màchina serventa a tarda a dene d'arspòsta, le modìfiche fàite men che $1 {{PLURAL:$1|second}} fa
-a podrìo ëdcò nen ess-ie ant sta lista-sì.",
+'lag-warn-high' => "Për via che la màchina serventa a tarda a dene 'd rispòste, le modìfiche fàite men che $1 {{PLURAL:$1|second}} fa a podrìo ëdcò nen ess-ie ant sta lista-sì.",
 
 # Watchlist editor
 'watchlistedit-numitems' => "A l'é antramentr ch'a ten sot-euj {{PLURAL:$1|1 tìtol|$1 tìtoj}}, nen contand le pàgine ëd discussion.",

@@ -49,7 +49,7 @@ $messages = array(
 'august' => 'Auguschd',
 'september' => 'Sebdember',
 'october' => 'Ogdower',
-'november' => 'November',
+'november' => 'Nowember',
 'december' => 'Dezember',
 'january-gen' => 'Jänner',
 'february-gen' => 'Fewwer',
@@ -61,7 +61,7 @@ $messages = array(
 'august-gen' => 'Auguschd',
 'september-gen' => 'Sebdember',
 'october-gen' => 'Ogdower',
-'november-gen' => 'November',
+'november-gen' => 'Nowember',
 'december-gen' => 'Dezember',
 'jan' => 'Jän',
 'feb' => 'Few',
@@ -82,6 +82,7 @@ $messages = array(
 'subcategories' => 'Unnerkadegorie',
 'category-media-header' => 'Medie in de Kadegorie „$1“',
 'hidden-categories' => '{{PLURAL:$1|Verschdegelde Kadegorie|Verschdegelde Kadegorije}}',
+'hidden-category-category' => 'Verschdegelde Kadegorije',
 'category-subcat-count' => '{{PLURAL:$2|Die Kategorie hot die Unnerkategorie:|{{PLURAL:$1|Die Unnerkategori isch eni vun insgsamt $2 Unnerkategorie in derre Kategorie:|S werre $1 vun insgsamt $2 Unnerkategorie in derre Kategorie aagezeicht:}}}}',
 'category-article-count' => "{{PLURAL:$2|In derre Kadegorie hot's numme die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gebbt's in derre Kadegorie, vun insgsamt $2.}}",
 'listingcontinuesabbrev' => '(Forts.)',
@@ -89,6 +90,7 @@ $messages = array(
 'about' => 'Iwwer',
 'newwindow' => '(werd im e naie Fenschter uffgmacht)',
 'cancel' => 'Abbreche',
+'mypage' => 'Said',
 'mytalk' => 'Dischbediere',
 'navigation' => 'Nawigadzion',
 
@@ -126,7 +128,7 @@ $messages = array(
 'editthispage' => 'Die Said bearwaide',
 'delete' => 'Lesche',
 'undelete_short' => '{{PLURAL:$1|ä Ännerung|$1 Ännerunge}} widderherschdelle',
-'protect' => 'schitze',
+'protect' => 'schidze',
 'protect_change' => 'ännere',
 'protectthispage' => 'Die Said schidze',
 'unprotect' => 'Saideschudz änare',
@@ -267,14 +269,14 @@ Doi Ännerunge sinn no nid gschbaichert worre!",
 'yourtext' => 'Doin Tegschd',
 'storedversion' => 'Gschbaischerdi Version',
 'yourdiff' => 'Unaschied',
-'copyrightwarning' => "Bitte gebb acht, dass alle Baidräch zu {{SITENAME}} unner $2 vereffentlicht werre (guck $1 fer mehr Details).
-Wenn du nit willhsct, dass deswu du gschriwwe hoscht, gänneret un kopiert werre kann, dann duu s do nit naischraiwe.<br />
-du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effentliche, fraie Quell ('''public domain''')orrer vun ere ähnliche fraie Quell her hoscht.
-'''SCHRAIB DO NIX NAI, WAS URHEWERRECHTKLICH GSCHITZT ISCH!'''",
+'copyrightwarning' => "Bidde gebb achd, dass alle Baidräch zu {{SITENAME}} unner $2 vereffentlischd werre (guck $1 fer mehr Details).
+Wenn du nit willschd, dass deswu du gschriwwe hoschd, gänneret un kopierd werre kann, dann duu s do nit naischraiwe.<br />
+du gebbschd do au zu, dass Du des selwerschd gschriwwe hoschd orrer vun ere effendliche, fraie Quell ('''public domain''') orrer vun ere ähnliche fraie Quell her hoschd.
+'''SCHRAIB DO NIX NAI, WAS URHEWERRECHDLICH GSCHIZD ISCH!'''",
 'templatesused' => '{{PLURAL:$1|Vorlach wu uff derre Said gebraucht werd|Vorlache wu uff derre Said gebraucht werre}}:',
 'templatesusedpreview' => '{{PLURAL:$1|Vorlach wu in derre Vorschau gebraucht werd|Vorlache wu in derre Vorschau gebraucht werre}}:',
-'template-protected' => '(gschitzt)',
-'template-semiprotected' => '(halb-gschitzt)',
+'template-protected' => '(gschizd)',
+'template-semiprotected' => '(halb-gschizd)',
 'hiddencategories' => 'Die Said ghert zu {{PLURAL:$1|1 versteckelte Kategorie|$1 versteckelte Kategorie}}:',
 'permissionserrorstext-withaction' => 'Du därfscht nid $2, aus {{PLURAL:$1|dem Grund|denne Grind}}:',
 'moveddeleted-notice' => 'Die Said isch gleschd worre.
@@ -546,7 +548,7 @@ Guck $2 fer e Lischt vun de letschte Leschunge.',
 
 # Protect
 'protectlogpage' => 'Saideschutz-Logbuch',
-'protectedarticle' => 'hot "[[$1]]" gschitzt',
+'protectedarticle' => 'hot "[[$1]]" gschizd',
 'modifiedarticleprotection' => 'hot de Schutzstatus vun "[[$1]]" gännert',
 'protectcomment' => 'Grund:',
 'protectexpiry' => 'Bis:',
@@ -555,7 +557,7 @@ Guck $2 fer e Lischt vun de letschte Leschunge.',
 'protect-text' => "Du kannscht de Schutzstatus vun de Said '''$1''' aagucke un ännere.",
 'protect-locked-access' => "Dai Benutzerkonto hot ken Recht zum de Schutzstatus vun ener Said ze ännere.
 Do hot s di aktuelle Aistellunge vun de Said '''$1''':",
-'protect-cascadeon' => 'Die Said isch gschitzt, wail se {{PLURAL:$1|zu derre Said ghert|zu denne Saide ghert}}, wu e Kaskadesperrung gelt.
+'protect-cascadeon' => 'Die Said isch gschizd, wail se {{PLURAL:$1|zu derre Said ghert|zu denne Saide ghert}}, wu e Kaskadesperrung gelt.
 Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uff d Kaskadesperrung.',
 'protect-default' => 'Alle Benutzer erlääwe',
 'protect-fallback' => '«$1»-Berechdichung nedich',
@@ -696,10 +698,10 @@ Bitte duu se vun Hand zammefiehre.'''",
 'tooltip-ca-edit' => 'Du kannschd die Said bearwaide.
 Bidde nemmde Vorschau-Knobb vorm Schbaischere',
 'tooltip-ca-addsection' => 'E naie Abschnitt aaleche',
-'tooltip-ca-viewsource' => 'Die Said isch gschitzt.
-Du kannscht awwer de Quelltext aagucke',
+'tooltip-ca-viewsource' => 'Die Said isch gschizd.
+Du kannscht awwer de Quelltegschd aagucke',
 'tooltip-ca-history' => 'Ledschde Versione vun derre Said',
-'tooltip-ca-protect' => 'Die Said schitze',
+'tooltip-ca-protect' => 'Die Said schidze',
 'tooltip-ca-delete' => 'Die Said lesche',
 'tooltip-ca-move' => 'Die Said verschiewe',
 'tooltip-ca-watch' => 'Die Said zu Dainere Beowachdungslischt zufieche',

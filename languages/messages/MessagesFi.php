@@ -344,7 +344,7 @@ $messages = array(
 'tog-externaleditor' => 'Käytä ulkoista tekstieditoria oletuksena. Vain kokeneille käyttäjille, vaatii selaimen asetusten muuttamista. (<span class="plainlinks">[//www.mediawiki.org/wiki/Manual:External_editors Ohje]</span>)',
 'tog-externaldiff' => 'Käytä oletuksena ulkoista työkalua sivun eri versioiden välisten erojen tarkasteluun. Vain kokeneille käyttäjille, vaatii selaimen asetusten muuttamista. (<span class="plainlinks">[//www.mediawiki.org/wiki/Manual:External_editors Ohje]</span>)',
 'tog-showjumplinks' => 'Lisää loikkaa-käytettävyyslinkit sivun alkuun',
-'tog-uselivepreview' => 'Käytä pikaesikatselua (JavaScript) (kokeellinen)',
+'tog-uselivepreview' => 'Käytä pikaesikatselua (vaatii JavaScriptin)',
 'tog-forceeditsummary' => 'Huomauta, jos yhteenvetoa ei ole annettu',
 'tog-watchlisthideown' => 'Piilota omat muokkaukset',
 'tog-watchlisthidebots' => 'Piilota bottien muokkaukset',

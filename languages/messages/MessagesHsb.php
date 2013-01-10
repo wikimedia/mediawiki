@@ -186,7 +186,7 @@ $messages = array(
 'tog-externaleditor' => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [//www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
 'tog-externaldiff' => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [//www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
 'tog-showjumplinks' => 'Wotkazy typa „dźi do” zmóžnić',
-'tog-uselivepreview' => 'Live-přehlad wužiwać (wužaduje sej JavaScript) (eksperimentalny)',
+'tog-uselivepreview' => 'Live-přehlad wužiwać (wužaduje sej JavaScript)',
 'tog-forceeditsummary' => 'Mje skedźbnić, jeli zabudu zjeće',
 'tog-watchlisthideown' => 'Moje změny we wobkedźbowankach schować',
 'tog-watchlisthidebots' => 'Změny awtomatiskich programow (botow) we wobkedźbowankach schować',
@@ -286,6 +286,7 @@ $messages = array(
 'newwindow' => '(wočinja so w nowym woknje)',
 'cancel' => 'Přetorhnyć',
 'moredotdotdot' => 'Wjace…',
+'morenotlisted' => 'Dalše njepodate...',
 'mypage' => 'Strona',
 'mytalk' => 'Diskusija',
 'anontalk' => 'Diskusijna strona tuteje IP.adresy',
@@ -648,6 +649,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
 'user-mail-no-addy' => 'Je so spytało e-mejl bjez e-mejloweje adresy słać.',
+'user-mail-no-body' => 'Je so spytało, e-mejl bjez teksta abo z překrótkim tekstom pósłać',
 
 # Change password dialog
 'resetpass' => 'Hesło změnić',
@@ -2889,6 +2891,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Strona zapřijata|Stronje zapřijatej|Strony zapřijate}}  do ($1)',
 'pageinfo-toolboxlink' => 'Informacije wo stronje',
 'pageinfo-redirectsto' => 'Sposrědkuje k',
 'pageinfo-redirectsto-info' => 'Info',

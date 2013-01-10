@@ -191,7 +191,7 @@ $messages = array(
 'tog-externaleditor' => 'Eksterny editor ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle. [//www.mediawiki.org/wiki/Manual:External_editors Dalšne informacije.])',
 'tog-externaldiff' => 'Eksterny diff ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle. [//www.mediawiki.org/wiki/Manual:External_editors Dalšne informacije.])',
 'tog-showjumplinks' => 'Wótkaze typa „źi do” zmóžniś',
-'tog-uselivepreview' => 'Live-pśeglěd wužywaś (JavaScript) (eksperimentelnje)',
+'tog-uselivepreview' => 'Live-pśeglěd wužywaś (JavaScript)',
 'tog-forceeditsummary' => 'Warnowaś, gaž pśi składowanju zespominanje felujo',
 'tog-watchlisthideown' => 'Móje změny na wobglědowańskej lisćinje schowaś',
 'tog-watchlisthidebots' => 'Změny awtomatiskich programow (botow) na wobglědowańskej lisćinje schowaś',
@@ -291,6 +291,7 @@ $messages = array(
 'newwindow' => '(se wótcynijo w nowem woknje)',
 'cancel' => 'Pśetergnuś',
 'moredotdotdot' => 'Wěcej…',
+'morenotlisted' => 'Dalšne njepódane...',
 'mypage' => 'Bok',
 'mytalk' => 'Diskusija',
 'anontalk' => 'Diskusija z toś teju IP',
@@ -651,6 +652,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',
 'user-mail-no-addy' => 'Jo se wopytało, e-mail bźez e-mailoweje adrese pósłaś',
+'user-mail-no-body' => 'Jo se wopytało, e-mail bźez teksta abo z pśekrotkim tekstom pósłaś',
 
 # Change password dialog
 'resetpass' => 'Gronidło změniś',
@@ -2893,6 +2895,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapśěgnjona pśedłoga|Zapśěgnjonej pśedłoze|Zapśěgnjone pśedłogi|Zapśěgnjone pśedłogi}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Bok zapśěgnjony|Boka zapśěgnjonej|Boki zapśěgnjone}}  do ($1)',
 'pageinfo-toolboxlink' => 'Informacije wó boku',
 'pageinfo-redirectsto' => 'Pósrědnja dalej k',
 'pageinfo-redirectsto-info' => 'Info',
