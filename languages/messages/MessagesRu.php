@@ -534,6 +534,7 @@ $messages = array(
 'newwindow' => '(в новом окне)',
 'cancel' => 'Отменить',
 'moredotdotdot' => 'Далее…',
+'morenotlisted' => 'Больше ничего нету...',
 'mypage' => 'Страница',
 'mytalk' => 'Обсуждение',
 'anontalk' => 'Обсуждение для этого IP-адреса',

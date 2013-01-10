@@ -386,7 +386,7 @@ $messages = array(
 'tog-externaleditor' => "Використовувати зовнішній редактор за умовчанням (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера [//www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
 'tog-externaldiff' => "Використовувати зовнішню програму порівняння версій за умовчанням (тільки для експертів, вимагає спеціальних налаштувань вашого комп'ютера. [//www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
 'tog-showjumplinks' => 'Активізувати допоміжні посилання «перейти до»',
-'tog-uselivepreview' => 'Використовувати швидкий попередній перегляд (JavaScript, експериментально)',
+'tog-uselivepreview' => 'Використовувати швидкий попередній перегляд (JavaScript)',
 'tog-forceeditsummary' => 'Попереджати, коли не зазначений короткий опис редагування',
 'tog-watchlisthideown' => 'Приховати мої редагування у списку спостереження',
 'tog-watchlisthidebots' => 'Приховати редагування ботів у списку спостереження',
@@ -490,6 +490,7 @@ $messages = array(
 'newwindow' => '(відкривається в новому вікні)',
 'cancel' => 'Скасувати',
 'moredotdotdot' => 'Детальніше…',
+'morenotlisted' => 'Більше немає нічого…',
 'mypage' => 'Сторінка',
 'mytalk' => 'Обговорення',
 'anontalk' => 'Обговорення для цієї IP-адреси',
@@ -870,6 +871,7 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'Невідома помилка в PHP-mail() функції',
 'user-mail-no-addy' => 'Спроба надсилання електронної пошти без зазначеної адреси електронної пошти.',
+'user-mail-no-body' => 'Спроба надіслати електронного листа із порожнім, або назвичайно коротким вмістом.',
 
 # Change password dialog
 'resetpass' => 'Змінити пароль',
@@ -2312,9 +2314,9 @@ $1',
 'linksearch-pat' => 'Шаблон для пошуку:',
 'linksearch-ns' => 'Простір назв:',
 'linksearch-ok' => 'Знайти',
-'linksearch-text' => 'Можна використовувати підстановочні символи (шаблони), наприклад, "*.wikipedia.org".
-Необхідний домен принаймні верхнього рівня, наприклад "*.org"<br />
-Підтримувані протоколи: <code>$1</code> (за замовчуванням http:// якщо жоден протокол не вказано)',
+'linksearch-text' => 'Можна використовувати підстановочні символи, наприклад, «*.wikipedia.org».
+Необхідний домен принаймні верхнього рівня, наприклад «*.org».<br />
+{{PLURAL:$2|Підтримуваний протокол|Підтримувані протоколи}}: <code>$1</code> (за замовчуванням http:// якщо жоден протокол не вказано).',
 'linksearch-line' => 'Посилання на $1 із $2',
 'linksearch-error' => 'Підстановочні знаки можуть використовуватися лише на початку адрес.',
 
@@ -2540,6 +2542,8 @@ $UNWATCHURL
 'prot_1movedto2' => '«[[$1]]» перейменована на «[[$2]]»',
 'protect-badnamespace-title' => 'Беззахисний простір імен',
 'protect-badnamespace-text' => 'Сторінки у просторі імен не можуть бути захищені.',
+'protect-norestrictiontypes-text' => 'Цю сторінку не може бути захищено, бо для неї немає доступних типів обмежень.',
+'protect-norestrictiontypes-title' => 'Сторінка, яку неможливо захистити',
 'protect-legend' => 'Підтвердження встановлення захисту',
 'protectcomment' => 'Причина:',
 'protectexpiry' => 'Закінчується:',
@@ -3228,6 +3232,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-magic-words' => '{{PLURAL:$1|Магічне слово|Магічні слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Прихована категорія|Приховані категорії}} ($1)',
 'pageinfo-templates' => 'Включено {{PLURAL:$1|шаблон|шаблонів}} ($1)',
+'pageinfo-transclusions' => 'Включено до ($1) {{PLURAL:$1|сторінки|сторінок}}',
 'pageinfo-toolboxlink' => 'Інформація про сторінку',
 'pageinfo-redirectsto' => 'Перенаправляє на',
 'pageinfo-redirectsto-info' => 'інформація',
@@ -3236,6 +3241,10 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-protect-cascading' => 'Звідси розпочинається каскадний захист',
 'pageinfo-protect-cascading-yes' => 'Так',
 'pageinfo-protect-cascading-from' => 'Каскадний захист починається тут',
+'pageinfo-category-info' => 'Інформація про категорію',
+'pageinfo-category-pages' => 'Число сторінок',
+'pageinfo-category-subcats' => 'Число підкатегорій',
+'pageinfo-category-files' => 'Число файлів',
 
 # Skin names
 'skinname-standard' => 'Стандартне',
