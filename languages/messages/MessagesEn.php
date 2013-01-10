@@ -992,6 +992,24 @@ This might also indicate a bug in the software used by {{SITENAME}}.',
 
 A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].',
 
+# Title errors
+'title-invalid-empty'            => 'Empty page title',
+'title-invalid-utf8'             => 'Title contains invalid UTF-8',
+'title-invalid-double-interwiki' => 'Double interwiki link in page title',
+'title-invalid-characters'       => 'Title contains invalid characters',
+'title-invalid-relative'         => 'Title has relative path',
+'title-invalid-magic-tilde'      => 'Title contains tilde sequence',
+'title-invalid-too-long'         => 'Page title is too long',
+'title-invalid-leading-colon'    => 'Title has leading colon',
+'title-invalid-emptytext'            => 'The requested page title is empty or contains only the name of a namespace.',
+'title-invalid-utf8text'             => 'Page title can not contain UTF-8 sequence "$1".',
+'title-invalid-double-interwikitext' => 'The requested page title contains invalid double interwiki link.',
+'title-invalid-characterstext'       => 'The requested page title contains invalid characters: "$1" at position $2.',
+'title-invalid-relativetext'         => 'Relative page titles (./, ../) are invalid, because they will often be unreachable when handled by user\'s browser.',
+'title-invalid-magic-tildetext'      => 'The requested page title contains invalid magic tilde sequence (~~~).',
+'title-invalid-too-longtext'         => 'The requested page title is too long. It must be no longer than $1 bytes in UTF-8 encoding. Page title short enough would be "$2".',
+'title-invalid-leading-colontext'    => 'The requested page title contains an invalid colon at the beginning.',
+
 # General errors
 'error'                         => 'Error',
 'databaseerror'                 => 'Database error',

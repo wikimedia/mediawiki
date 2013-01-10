@@ -903,6 +903,24 @@ See example [{{canonicalurl:Main_page|action=x}} action=x].',
 This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
 * The title of this error is the message {{msg-mw|nosuchspecialpage}}.',
 
+# Title errors
+'title-invalid-empty'            => 'Used as title of error message: empty title',
+'title-invalid-utf8'             => 'Used as title of error message: invalid UTF8 sequence',
+'title-invalid-double-interwiki' => 'Used as title of error message: double-interwiki link',
+'title-invalid-characters'       => 'Used as title of error message: invalid characters',
+'title-invalid-relative'         => 'Used as title of error message: relative titles are invalid',
+'title-invalid-magic-tilde'      => 'Used as title of error message: magic tilde sequence is invalid in page title',
+'title-invalid-too-long'         => 'Used as title of error message: too long title',
+'title-invalid-leading-colon'    => 'Used as title of error message: colon at the beginning of title is invalid',
+'title-invalid-emptytext'            => 'Used as text of error message: empty title',
+'title-invalid-utf8text'             => 'Used as text of error message: invalid UTF8 sequence ($1 is that sequence)',
+'title-invalid-double-interwikitext' => 'Used as text of error message: double-interwiki link',
+'title-invalid-characterstext'       => 'Used as text of error message: invalid characters in title ($1 is the character, $2 is the position)',
+'title-invalid-relativetext'         => 'Used as text of error message: relative titles are invalid',
+'title-invalid-magic-tildetext'      => 'Used as text of error message: magic tilde sequence is invalid in page title',
+'title-invalid-too-longtext'         => 'Used as text of error message: too long title ($1 is maximum length, $2 is the title shortened to this length)',
+'title-invalid-leading-colontext'    => 'Used as text of error message: colon at the beginning of title is invalid',
+
 # General errors
 'error' => '{{Identical|Error}}',
 'databaseerror' => 'Used as title of error message (one of the following messages):
