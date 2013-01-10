@@ -769,6 +769,20 @@
 		 */
 		int: function ( nodes ) {
 			return mw.jqueryMsg.getMessageFunction()( nodes[0].toLowerCase() );
+		},
+
+		/**
+		 * Takes an unformatted number (arab, no group separators and . as decimal separator)
+		 * and outputs it in the localized digit script and formatted with decimal
+		 * separator, according to the current language
+		 * @param {Array} of nodes
+		 * @return {Number|String} formatted number
+		 */
+		formatnum: function ( nodes ) {
+			var isInteger = ( nodes[1] && nodes[1] === 'R' ) ? true : false,
+				number = nodes[0];
+
+			return this.language.convertNumber( number, isInteger );
 		}
 	};
 	// Deprecated! don't rely on gM existing.
