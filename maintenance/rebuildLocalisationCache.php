@@ -53,6 +53,15 @@ class RebuildLocalisationCache extends Maintenance {
 		return '1000M';
 	}
 
+	public function finalSetup() {
+		# This script needs to be run to build the inital l10n cache. But if
+		# $wgLanguageCode is not 'en', it won't be able to run because there is
+		# no l10n cache. Break the cycle by forcing $wgLanguageCode = 'en'.
+		global $wgLanguageCode;
+		$wgLanguageCode = 'en';
+		return parent::finalSetup();
+	}
+
 	public function execute() {
 		global $wgLocalisationCacheConf;
 
