@@ -73,7 +73,8 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * Insert jobs into the respective queues of with the belong
+	 * Insert jobs into the respective queues of with the belong.
+	 * This inserts the jobs into the queue specified by $wgJobTypeConf.
 	 *
 	 * @param $jobs Job|array A single Job or a list of Jobs
 	 * @throws MWException
