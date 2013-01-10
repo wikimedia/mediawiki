@@ -88,7 +88,11 @@ class MediaWiki {
 		} elseif ( $title == '' && $action != 'delete' ) {
 			$ret = Title::newMainPage();
 		} else {
-			$ret = Title::newFromURL( $title );
+			$ret = Title::newFromURL( $title, true );
+			if ( $ret->mBadtitleError ) {
+				// Return invalid titles as-is
+				return $ret;
+			}
 			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
 			// in wikitext links to tell Parser to make a direct file link
 			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
@@ -196,6 +200,15 @@ class MediaWiki {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			wfProfileOut( __METHOD__ );
 			throw new BadTitleError();
+		}
+
+		// Show detailed errors for incorrect titles which have $mBadtitleError set
+		if ( !empty( $title->mBadtitleError ) ) {
+			$error = $title->mBadtitleError;
+			if ( !$error ) {
+				$error = array( 'badtitle' );
+			}
+			throw new BadTitleError( $error[0], new Message( $error[0].'text', isset( $error[1] ) ? $error[1] : array() ) );
 		}
 
 		// Check user's permissions to read this page.
