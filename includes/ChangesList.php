@@ -682,7 +682,7 @@ class OldChangesList extends ChangesList {
 			$classes[] = Sanitizer::escapeClass( 'watchlist-'.$rc->mAttribs['rc_namespace'].'-'.$rc->mAttribs['rc_title'] );
 		}
 
-		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc ) ) ) {
+		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc, &$classes ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}

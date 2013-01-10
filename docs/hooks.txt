@@ -1576,6 +1576,7 @@ return false to omit the line from RecentChanges and Watchlist special pages.
 &$changeslist: The OldChangesList instance.
 &$s: HTML of the form "<li>...</li>" containing one RC entry.
 &$rc: The RecentChange object.
+&$classes: array of css classes for the <li> element
 
 'OpenSearchUrls': Called when constructing the OpenSearch description XML. Hooks
 can alter or append to the array of URLs for search & suggestion formats.
