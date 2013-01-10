@@ -1,6 +1,9 @@
 # Repository management
 .svn
 
+# git-deploy status file:
+/.deploy
+
 # Editors
 *.kate-swp
 *~
