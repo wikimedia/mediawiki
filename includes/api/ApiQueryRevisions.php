@@ -493,7 +493,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$content = null;
 		global $wgParser;
-		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
+		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
 			$content = $revision->getContent();
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
