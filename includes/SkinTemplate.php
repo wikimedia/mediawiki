@@ -705,7 +705,7 @@ class SkinTemplate extends Skin {
 		}
 		if( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
-			$query = 'action=edit&redlink=1';
+			$query .= ( $query === '' ? '?' : '&' ) . 'action=edit&redlink=1';
 		}
 
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
