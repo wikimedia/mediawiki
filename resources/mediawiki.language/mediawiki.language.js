@@ -77,17 +77,20 @@ var language = {
 	/**
 	 * Converts a number using digitTransformTable.
 	 *
-	 * @param {num} number Value to be converted
+	 * @param {Number} number Value to be converted
 	 * @param {boolean} integer Convert the return value to an integer
+	 * @retrun {Number|String} formatted number
 	 */
 	convertNumber: function ( num, integer ) {
 		var i, tmp, transformTable, numberString, convertedNumber;
 
-		if ( !mw.language.digitTransformTable ) {
+		// Set the target Transform table:
+		transformTable = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' );
+
+		if ( !transformTable ) {
 			return num;
 		}
-		// Set the target Transform table:
-		transformTable = mw.language.digitTransformTable;
+
 		// Check if the "restore" to Latin number flag is set:
 		if ( integer ) {
 			if ( parseInt( num, 10 ) === num ) {
