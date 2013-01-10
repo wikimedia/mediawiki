@@ -336,7 +336,7 @@ class SpecialPageFactory {
 	 * Find the object with a given name and return it (or NULL)
 	 *
 	 * @param $name String Special page name, may be localised and/or an alias
-	 * @return SpecialPage object or null if the page doesn't exist
+	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
 	 */
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
