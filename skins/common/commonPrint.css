@@ -126,7 +126,8 @@ li#privacy,
 tr.mw-metadata-show-hide-extended,
 span.mw-filepage-other-resolutions,
 #filetoc,
-.usermessage {
+.usermessage,
+#mw-navigation {
 	/* Hides all the elements irrelevant for printing */
 	display: none;
 }
