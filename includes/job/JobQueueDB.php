@@ -576,7 +576,7 @@ class JobQueueDB extends JobQueue {
 		$lb = ( $this->cluster !== false )
 			? wfGetLBFactory()->getExternalLB( $this->cluster, $this->wiki )
 			: wfGetLB( $this->wiki );
-		$conn = $lb->getConnection( $index );
+		$conn = $lb->getConnection( $index, array(), $this->wiki );
 		return array(
 			$conn,
 			new ScopedCallback( function() use ( $lb, $conn ) {
