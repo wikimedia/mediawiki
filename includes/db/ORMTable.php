@@ -163,7 +163,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 		if ( $result === false ) {
 			// Database connection was in "ignoreErrors" mode. We don't like that.
 			// So, we emulate the DBQueryError that should have been thrown.
-			$error = new \DBQueryError(
+			$error = new DBQueryError(
 				$dbr,
 				$dbr->lastError(),
 				$dbr->lastErrno(),
