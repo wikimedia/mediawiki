@@ -16,8 +16,6 @@ production.
 * (bug 39957) Added $wgUnwatchedPageThreshold, specifying minimum count
   of page watchers required for the number to be accessible to users
   without the unwatchedpages permission.
-* $wgPageInfoTransclusionLimit limits the list size of transcluded articles
-  on the info action. Default is 50.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and
@@ -76,6 +74,8 @@ production.
 * New preference type - 'api'. Preferences of this type are not shown on
   Special:Preferences, but are still available via the action=options API.
 * (bug 39397) Hide rollback link if a user is the only contributor of the page.
+* $wgPageInfoTransclusionLimit limits the list size of transcluded articles
+  on the info action. Default is 50.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
