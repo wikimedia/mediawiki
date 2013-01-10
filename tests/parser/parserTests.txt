@@ -4601,6 +4601,19 @@ ISBN 0-306-40615-2
 !! end
 
 !! test
+Magic links: ISBN: (bug 12900)
+!! input
+ISBN: 0-306-40615-2
+RFC: 822
+PMID: 1234
+!! result
+<p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn">ISBN 0-306-40615-2</a>
+<a class="external mw-magiclink-rfc" href="//tools.ietf.org/html/rfc822">RFC 822</a>
+<a class="external mw-magiclink-pmid" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
+</p>
+!! end
+
+!! test
 Magic links: PMID incorrectly converts space to underscore
 !! input
 PMID 1234
