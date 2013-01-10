@@ -4934,8 +4934,14 @@ Main Page
 Template as link source
 !! input
 [[{{linktest2}}]]
+
+[[{{linktest2}}|Main Page]]
+
+[[{{linktest2}}]]Page
 !! result
 <p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p><p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p><p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>Page
 </p>
 !! end
 
