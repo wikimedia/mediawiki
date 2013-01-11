@@ -70,18 +70,15 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
-			$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-			if ( isset( $params['lang'] ) ) {
+		// Note that, since (ll_from, ll_lang) is a unique key, we don't need
+		// to sort by ll_title to ensure deterministic ordering.
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'll_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'll_from' . $sort );
-			} else {
-				$this->addOption( 'ORDER BY', array(
-							'll_title' . $sort,
-							'll_from' . $sort
-				));
 			}
+			$this->addOption( 'ORDER BY', 'll_from' . $sort );
 		} else {
 			// Don't order by ll_from if it's constant in the WHERE clause
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
