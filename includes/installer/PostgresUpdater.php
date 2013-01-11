@@ -229,6 +229,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'watchlist',     'wl_user',                '(wl_user)' ),
 			array( 'addPgIndex', 'logging',       'logging_user_type_time', '(log_user, log_type, log_timestamp)' ),
 			array( 'addPgIndex', 'logging',       'logging_page_id_time',   '(log_page,log_timestamp)' ),
+			array( 'addPgIndex', 'iwlinks',       'iwl_prefix_from_title',  '(iwl_prefix, iwl_from, iwl_title)' ),
 			array( 'addPgIndex', 'iwlinks',       'iwl_prefix_title_from',  '(iwl_prefix, iwl_title, iwl_from)' ),
 			array( 'addPgIndex', 'job',           'job_timestamp_idx',      '(job_timestamp)' ),
 			array( 'addPgIndex', 'job',           'job_sha1',               '(job_sha1)' ),
@@ -247,6 +248,12 @@ class PostgresUpdater extends DatabaseUpdater {
 				array('cl_from', 'int4_ops', 'btree', 0),
 			),
 			'CREATE INDEX cl_sortkey ON "categorylinks" USING "btree" ("cl_to", "cl_sortkey", "cl_from")' ),
+			array( 'checkIndex', 'iwl_prefix_title_from', array(
+				array('iwl_prefix', 'text_ops', 'btree', 0),
+				array('iwl_title', 'text_ops', 'btree', 0),
+				array('iwl_from', 'int4_ops', 'btree', 0),
+			),
+			'CREATE INDEX iwl_prefix_title_from ON "iwlinks" USING "btree" ("iwl_prefix", "iwl_title", "iwl_from")' ),
 			array( 'checkIndex', 'logging_times', array(
 				array('log_timestamp', 'timestamptz_ops', 'btree', 0),
 			),
@@ -743,7 +750,7 @@ END;
 
 	protected function checkIwlPrefix() {
 		if ( $this->db->indexExists( 'iwlinks', 'iwl_prefix' ) ) {
-			$this->applyPatch( 'patch-rename-iwl_prefix.sql', false, "Replacing index 'iwl_prefix' with 'iwl_prefix_from_title'" );
+			$this->applyPatch( 'patch-rename-iwl_prefix.sql', false, "Replacing index 'iwl_prefix' with 'iwl_prefix_title_from'" );
 		}
 	}
 
