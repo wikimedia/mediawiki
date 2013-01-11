@@ -111,7 +111,7 @@ class JobQueueGroup {
 
 		$ok = true;
 		foreach ( $jobsByType as $type => $jobs ) {
-			if ( !$this->get( $type )->batchPush( $jobs ) ) {
+			if ( !$this->get( $type )->push( $jobs ) ) {
 				$ok = false;
 			}
 		}
