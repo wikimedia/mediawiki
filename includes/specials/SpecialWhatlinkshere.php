@@ -187,7 +187,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 				$joinConds);
 		}
 
-		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
+		if( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
 			if ( 0 == $level ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 

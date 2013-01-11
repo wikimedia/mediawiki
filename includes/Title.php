@@ -4031,7 +4031,7 @@ class Title {
 			array()
 		);
 
-		if ( $dbr->numRows( $res ) > 0 ) {
+		if ( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
 				// $data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$row->cl_to);
 				$data[$wgContLang->getNSText( NS_CATEGORY ) . ':' . $row->cl_to] = $this->getFullText();

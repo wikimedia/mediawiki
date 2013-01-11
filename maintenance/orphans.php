@@ -87,7 +87,7 @@ class Orphans extends Maintenance {
 			FROM $revision LEFT OUTER JOIN $page ON rev_page=page_id
 			WHERE page_id IS NULL
 		" );
-		$orphans = $dbw->numRows( $result );
+		$orphans = $result->numRows();
 		if ( $orphans > 0 ) {
 			global $wgContLang;
 			$this->output( "$orphans orphan revisions...\n" );
@@ -139,7 +139,7 @@ class Orphans extends Maintenance {
 			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
 			WHERE rev_id IS NULL
 		" );
-		$widows = $dbw->numRows( $result );
+		$widows = $result->numRows();
 		if ( $widows > 0 ) {
 			$this->output( "$widows childless pages...\n" );
 			$this->output( sprintf( "%10s %11s %2s %s\n", 'page_id', 'page_latest', 'ns', 'page_title' ) );

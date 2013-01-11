@@ -86,7 +86,7 @@ class PurgeList extends Maintenance {
 		);
 
 		$start   = 0;
-		$end = $dbr->numRows( $result );
+		$end = $result->numRows();
 		$this->output( "Will purge $end pages from namespace $ns\n" );
 
 		# Do remaining chunk

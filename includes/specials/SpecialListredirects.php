@@ -85,7 +85,7 @@ class ListredirectsPage extends QueryPage {
 		$batch->execute();
 
 		// Back to start for display
-		if ( $db->numRows( $res ) > 0 ) {
+		if ( $res->numRows() > 0 ) {
 			// If there are no rows we get an error seeking.
 			$db->dataSeek( $res, 0 );
 		}

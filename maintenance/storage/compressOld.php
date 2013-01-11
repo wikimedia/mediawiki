@@ -115,7 +115,7 @@ class CompressOld extends Maintenance {
 		do {
 			$res = $dbw->select( 'text', array( 'old_id','old_flags','old_text' ),
 				"old_id>=$start", __METHOD__, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
-			if( $dbw->numRows( $res ) == 0 ) {
+			if( $res->numRows() == 0 ) {
 				break;
 			}
 			$last = $start;
@@ -256,7 +256,7 @@ class CompressOld extends Maintenance {
 			$pageRes = $dbr->select( 'page',
 				array('page_id', 'page_namespace', 'page_title','page_latest'),
 				$pageConds + array('page_id' => $pageId), __METHOD__ );
-			if ( $dbr->numRows( $pageRes ) == 0 ) {
+			if ( $pageRes->numRows() == 0 ) {
 				continue;
 			}
 			$pageRow = $dbr->fetchObject( $pageRes );

@@ -594,7 +594,7 @@ class Block {
 		$res = $dbr->select( 'recentchanges', array( 'rc_ip' ), $conds,
 			__METHOD__ ,  $options );
 
-		if ( !$dbr->numRows( $res ) ) {
+		if ( !$res->numRows() ) {
 			# No results, don't autoblock anything
 			wfDebug( "No IP found to retroactively autoblock\n" );
 		} else {
