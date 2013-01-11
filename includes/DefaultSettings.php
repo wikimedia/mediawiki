@@ -6395,6 +6395,15 @@ $wgSiteTypes = array(
 );
 
 /**
+ * This exists only to disable queries that will filesort before the
+ * iwl_prefix_from_title index is created.
+ *
+ * @since 1.21
+ * @deprecated since always
+ */
+$wgDisableQueriesNeedingIwlPrefixFromTitle = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

@@ -83,6 +83,10 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
 				$this->addOption( 'ORDER BY', 'iwl_from' . $sort );
 			} else {
+				global $wgDisableQueriesNeedingIwlPrefixFromTitle;
+				if ( $wgDisableQueriesNeedingIwlPrefixFromTitle ) {
+					throw new MWException( 'Queries needing the iwl_prefix_from_title index are disabled' );
+				}
 				$this->addOption( 'ORDER BY', array(
 						'iwl_from' . $sort,
 						'iwl_title' . $sort
