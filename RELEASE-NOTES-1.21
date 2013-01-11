@@ -16,6 +16,7 @@ production.
 * (bug 39957) Added $wgUnwatchedPageThreshold, specifying minimum count
   of page watchers required for the number to be accessible to users
   without the unwatchedpages permission.
+* $wgBug34832TransitionalRollback has been removed.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and
