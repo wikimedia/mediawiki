@@ -5455,8 +5455,23 @@ Templates: Links: 2. Generation of link href
 Templates: Links: 3. Generation of part of a link href
 !!input
 [[Fo{{echo|o}}|bar]]
+
+[[Foo{{echo|bar}}]]
+
+[[Foo{{echo|bar}}baz]]
+
+[[Foo{{echo|bar}}|bar]]
+
+[[:Foo{{echo|bar}}]]
+
+[[:Foo{{echo|bar}}|bar]]
 !!result
 <p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p><p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">Foobar</a>
+</p><p><a href="/index.php?title=Foobarbaz&amp;action=edit&amp;redlink=1" class="new" title="Foobarbaz (page does not exist)">Foobarbaz</a>
+</p><p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">bar</a>
+</p><p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">Foobar</a>
+</p><p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">bar</a>
 </p>
 !!end
 
