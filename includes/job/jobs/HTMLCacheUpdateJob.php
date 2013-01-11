@@ -244,11 +244,10 @@ class HTMLCacheUpdateJob extends Job {
 
 		# Disable this as a temporary measure per private-l post -- TS
 		# Update squid
-		/*
 		if ( $wgUseSquid ) {
 			$u = SquidUpdate::newFromTitles( $titleArray );
 			$u->doUpdate();
-		} */
+		}
 
 		# Update file cache
 		if  ( $wgUseFileCache ) {
