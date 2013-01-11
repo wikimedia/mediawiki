@@ -705,9 +705,10 @@ class ApiPageSet extends ApiQueryBase {
 				if ( $this->mConvertTitles &&
 						count( $wgContLang->getVariants() ) > 1  &&
 						!$titleObj->exists() ) {
-					// Language::findVariantLink will modify titleObj into
+					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
-					$wgContLang->findVariantLink( $title, $titleObj );
+					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
+					$wgContLang->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
 
@@ -728,7 +729,11 @@ class ApiPageSet extends ApiQueryBase {
 			// namespace is localized or the capitalization is
 			// different
 			if ( $titleWasConverted ) {
-				$this->mConvertedTitles[$title] = $titleObj->getPrefixedText();
+				$this->mConvertedTitles[$unconvertedTitle] = $titleObj->getPrefixedText();
+				// In this case the page can't be Special.
+				if ( is_string( $title ) && $title !== $unconvertedTitle ) {
+					$this->mNormalizedTitles[$title] = $unconvertedTitle;
+				}
 			} elseif ( is_string( $title ) && $title !== $titleObj->getPrefixedText() ) {
 				$this->mNormalizedTitles[$title] = $titleObj->getPrefixedText();
 			}
