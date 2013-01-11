@@ -681,6 +681,7 @@ class Title {
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
 			$linkCache = LinkCache::singleton();
+			$linkCache->addLinkObj( $this );
 			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
 		}
 
@@ -2935,22 +2936,21 @@ class Title {
 	 * @return Bool
 	 */
 	public function isRedirect( $flags = 0 ) {
-		if ( !is_null( $this->mRedirect ) ) {
+		if ( !( $flags & Title::GAID_FOR_UPDATE ) && !is_null( $this->mRedirect ) ) {
 			return $this->mRedirect;
 		}
-		# Calling getArticleID() loads the field from cache as needed
+
 		if ( !$this->getArticleID( $flags ) ) {
 			return $this->mRedirect = false;
 		}
 
 		$linkCache = LinkCache::singleton();
+		$linkCache->addLinkObj( $this );
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+
 		if ( $cached === null ) {
-			// TODO: check the assumption that the cache actually knows about this title
-			// and handle this, such as get the title from the database.
-			// See https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
-			wfDebug( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
-			wfDebug( wfBacktrace() );
+			// Should not happen
+			throw new MWException( "LinkCache doesn't know redirect status of this title: " . $this->getPrefixedDBkey() );
 		}
 
 		$this->mRedirect = (bool)$cached;
@@ -2966,20 +2966,21 @@ class Title {
 	 * @return Int
 	 */
 	public function getLength( $flags = 0 ) {
-		if ( $this->mLength != -1 ) {
+		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mLength != -1 ) {
 			return $this->mLength;
 		}
-		# Calling getArticleID() loads the field from cache as needed
+
 		if ( !$this->getArticleID( $flags ) ) {
 			return $this->mLength = 0;
 		}
+
 		$linkCache = LinkCache::singleton();
+		$linkCache->addLinkObj( $this );
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
-		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
-			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
-			#      as a stop gap, perhaps log this, but don't throw an exception?
-			wfDebug( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
-			wfDebug( wfBacktrace() );
+
+		if ( $cached === null ) {
+			// Should not happen
+			throw new MWException( "LinkCache doesn't know redirect status of this title: " . $this->getPrefixedDBkey() );
 		}
 
 		$this->mLength = intval( $cached );
@@ -2998,17 +2999,18 @@ class Title {
 		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mLatestID !== false ) {
 			return intval( $this->mLatestID );
 		}
-		# Calling getArticleID() loads the field from cache as needed
+
 		if ( !$this->getArticleID( $flags ) ) {
 			return $this->mLatestID = 0;
 		}
+
 		$linkCache = LinkCache::singleton();
 		$linkCache->addLinkObj( $this );
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
-		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
-			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
-			#      as a stop gap, perhaps log this, but don't throw an exception?
-			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+
+		if ( $cached === null ) {
+			// Should not happen
+			throw new MWException( "LinkCache doesn't know latest revision ID of this title: " . $this->getPrefixedDBkey() );
 		}
 
 		$this->mLatestID = intval( $cached );
