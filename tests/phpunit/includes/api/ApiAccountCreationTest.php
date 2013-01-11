@@ -13,6 +13,10 @@ class ApiCreateAccountTest extends ApiTestCase {
 	/**
 	 * Test the account creation API with a valid request. Also
 	 * make sure the new account can log in and is valid.
+	 *
+	 * This test does multiple API requests so it might end up being
+	 * a bit slow. Raise the default timeout.
+	 * @group medium
 	 */
 	function testValid() {
 		global $wgServer;
