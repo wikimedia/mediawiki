@@ -2343,6 +2343,8 @@ $UNWATCHURL
 
 Attendemelding og hjelp:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'oppretta',
+'changed' => 'endra',
 
 # Delete
 'deletepage' => 'Slett sida',

@@ -729,7 +729,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 
 # Search results
 'searchresults' => 'Natiijada raadinta (Baaris)',
-'searchresults-title' => 'Raadi natiijoojika "$1"',
+'searchresults-title' => 'Raadinta natiijooyinka "$1"',
 'searchsubtitle' => 'Waxaad raadisay \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dhamaan bogaaga ka bilaawdo "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dhamaan bogagga la xiriiro "$1"]])',
 'searchsubtitleinvalid' => "Waxaa raadisay '''$1'''",
 'prevn' => 'Ka horeeya {{PLURAL:$1|$1}}',
@@ -1104,6 +1104,38 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Daawasho...',
 
+'enotif_body_intro_changed' => 'Bogga {{SITENAME}} ga $1 waxaa la badelay $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
+'enotif_lastvisited' => 'Eeg $1 Dhamaan isbedeleda ilaa goortii kuugu dambaysay.',
+'enotif_lastdiff' => 'Eeg $1 si aad u aragto bedelkaan.',
+'enotif_anon_editor' => 'Aan la qoon $1',
+'enotif_body' => 'Mudane $WATCHINGUSERNAME,
+
+$PAGEINTRO $NEWPAGE
+
+Qaybta wax laga bedelay: $PAGESUMMARY $PAGEMINOREDIT
+
+La xariirka Tafaftiraha:
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+Lama soo diri doono ogeysiin dambe hadii isbedel kale lagu sii sameeyo ilaa aad ka soo booqato bogga.
+Waxaad awoodaa inaad ka saarto liiska waardiyeha booga.
+
+			 Nidaamka war gelinta {{SITENAME}} ee E-mailka
+
+--
+si aad ubedesho fariinta e-mail dooqyadiisa, Booqo
+{{canonicalurl:{{#special:Preferences}}}}
+
+Si aad ubedesho liiskaada waardiyaha, Booqo
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+si aad utirtirto liiskaada waardiyaha ee gaarka ah, Booqo
+$UNWATCHURL
+
+Faalada iyo helista caawinaad dheeraad ah:
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
+
 # Delete
 'confirm' => 'Xaqiiji',
 'excontent' => "qoraalka wuxuu ahaa: '$1'",
@@ -1379,6 +1411,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 # E-mail address confirmation
 'confirmemail_noemail' => 'Kuma haysatid cinwaan E-boosto sax [[Special:Preferences|isticmaala dooqiisa]].',
 
+# action=watch/unwatch
+'confirm-unwatch-top' => 'Boggaan ka saar liiskaaga waardiyaha',
+
 # Multipage image navigation
 'imgmultigo' => 'Soco!',
 
@@ -1391,6 +1426,13 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'autosumm-blank' => 'Masaxay bogga',
 'autosumm-replace' => 'Wuxuu qoraalka ku badalay "$1"',
 'autosumm-new' => 'Bog cusub: $1',
+
+# Watchlist editor
+'watchlistedit-normal-legend' => 'Ka saar ciwaanada liiska waardiyaha',
+'watchlistedit-normal-explain' => 'Ciwaanada ee liiskaada waardiyaha hoos ayaa lagu soo ban dhigay.
+Si aad u tirtito Ciwaanka, Godka udhow calaameey, ee guji "{{int:Watchlistedit-normal-submit}}".
+waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
+'watchlistedit-raw-legend' => 'Badal liiska waardiyeenta ceeriinka ah',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Itusi isbedelada jiro',

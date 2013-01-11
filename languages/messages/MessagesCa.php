@@ -2244,6 +2244,8 @@ $UNWATCHURL
 
 Suggeriments i ajuda:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creada',
+'changed' => 'modificada',
 
 # Delete
 'deletepage' => 'Elimina la pàgina',

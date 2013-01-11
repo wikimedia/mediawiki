@@ -2091,6 +2091,8 @@ $UNWATCHURL కి వెళ్ళండి.
 
 మీ అభిప్రాయాలు చెప్పేందుకు మరియు మరింత సహాయానికై:
 {{canonicalurl:{{MediaWiki:helppage}}}}',
+'created' => 'సృష్టించారు',
+'changed' => 'మార్చారు',
 
 # Delete
 'deletepage' => 'పేజీని తొలగించు',

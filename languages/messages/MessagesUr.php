@@ -1210,6 +1210,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'wlshowlast' => 'دکھائیں آخری $1 گھنٹے $2 دن $3',
 'watchlist-options' => 'اختیارات برائے زیرِنظرفہرست',
 
+'created' => 'بنا دیا گیا',
+'changed' => 'تبدیل کردیاگیا',
+
 # Delete
 'deletepage' => 'صفحہ ضائع کریں',
 'confirm' => 'یقین',

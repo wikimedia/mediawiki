@@ -1535,6 +1535,8 @@ $UNWATCHURL
 
 Elemtä häm yärdäm:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'tözergän',
+'changed' => 'üzgärtelde',
 
 # Delete
 'deletepage' => 'Bitne beterü',

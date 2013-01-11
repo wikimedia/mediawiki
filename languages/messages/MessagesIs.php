@@ -2239,6 +2239,8 @@ Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smel
 Til þess að hætta að fylgjast með „$PAGETITLE”, smelltu á:
 
 $UNWATCHURL',
+'created' => 'búin til',
+'changed' => 'breytt',
 
 # Delete
 'deletepage' => 'Eyða',

@@ -1328,6 +1328,8 @@ Pa mudìfiggà l\'impusthazioni di la listha di l\'abbaidaddi ippiziari, visita
 
 Pa dì cosa ni pensi e dumandà assisthènzia:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'criadda',
+'changed' => 'ciambadda',
 
 # Delete
 'deletepage' => 'Canzella pàgina',

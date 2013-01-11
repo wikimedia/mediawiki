@@ -1778,6 +1778,8 @@ $UNWATCHURL
 
 Азома мекпяли ди иля лезкс:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'тиф',
+'changed' => 'полафтсь',
 
 # Delete
 'deletepage' => 'Нардамс лопать',

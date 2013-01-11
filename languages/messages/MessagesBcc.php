@@ -1810,6 +1810,8 @@ $NEWPAGE
 
 نظرات و گیشترین کمک:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'شربوتت',
+'changed' => 'عوض بوت.',
 
 # Delete
 'deletepage' => 'حذف صفحه',

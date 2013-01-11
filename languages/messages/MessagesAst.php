@@ -2180,6 +2180,8 @@ $UNWATCHURL
 
 Más ayuda y sofitu:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creada',
+'changed' => 'camudada',
 
 # Delete
 'deletepage' => 'Esborrar páxina',

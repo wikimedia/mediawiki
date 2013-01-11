@@ -1457,6 +1457,7 @@ Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seit
 Im de Einstellunga denner Beobachtungsliste oazupoaßa, besuche: {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Rickmeldungen und wettere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'erzeugt',
 
 # Delete
 'deletepage' => 'Seite läscha',

@@ -2303,6 +2303,8 @@ $UNWATCHURL
 
 មតិ​យោបល់​និងជំនួយបន្ថែម ៖
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'បានបង្កើត',
+'changed' => 'បានផ្លាស់ប្តូរ',
 
 # Delete
 'deletepage' => 'លុបទំព័រចោល',

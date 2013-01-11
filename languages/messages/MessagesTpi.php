@@ -654,6 +654,8 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'enotif_reset' => 'Makim olgeta pes olsem mi lukim pinis',
 'enotif_impersonal_salutation' => 'yusa long {{SITENAME}}',
 'enotif_anon_editor' => 'IP yusa $1',
+'created' => 'i kirapim',
+'changed' => 'i senisim',
 
 # Delete
 'deletepage' => 'Rausim dispela pes',

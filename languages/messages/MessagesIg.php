@@ -1147,6 +1147,8 @@ Ihe gi gbanwe na ógè gi bya nà ihüá na ihü okwu ya gi di ndétu ngáhù, n
 
 'enotif_impersonal_salutation' => "ọ'bànifé {{SITENAME}}",
 'enotif_anon_editor' => "ọ'bànifé ézíghị ihu $1",
+'created' => 'kèrè',
+'changed' => 'gbanwere',
 
 # Delete
 'deletepage' => 'Kàchafu ihü',

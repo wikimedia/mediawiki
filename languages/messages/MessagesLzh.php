@@ -1856,6 +1856,8 @@ $NEWPAGE
 欲刪之頁，惠訪$UNWATCHURL
 
 饋助之，惠訪{{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '撰',
+'changed' => '易',
 
 # Delete
 'deletepage' => '刪頁',

@@ -2263,7 +2263,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'mostinterwikis' => 'ウィキ間リンクの多いページ',
 'mostrevisions' => '版の多いページ',
 'prefixindex' => '先頭が同じ全ページ',
-'prefixindex-namespace' => '先頭が同じ全ページ（$1名前空間）',
+'prefixindex-namespace' => '先頭が同じ全ページ ($1名前空間)',
 'shortpages' => '短いページ',
 'longpages' => '長いページ',
 'deadendpages' => '行き止まりページ',
@@ -2282,7 +2282,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'usereditcount' => '$1 {{PLURAL:$1|回編集}}',
 'usercreated' => '$1 $2 に{{GENDER:$3|作成}}',
 'newpages' => '新しいページ',
-'newpages-username' => '利用者名：',
+'newpages-username' => '利用者名:',
 'ancientpages' => '最古のページ',
 'move' => '移動',
 'movethispage' => 'このページを移動',
@@ -2517,6 +2517,8 @@ $UNWATCHURL
 
 ご意見、お問い合わせ：
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '作成',
+'changed' => '変更',
 
 # Delete
 'deletepage' => 'ページを削除',

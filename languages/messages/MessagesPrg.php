@@ -1607,6 +1607,8 @@ Eraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan 
 'enotif_lastvisited' => 'Wīdais en $1 wissans kitawīdinsnans ezze Twajjai panzdauman kāimalukisenin.',
 'enotif_lastdiff' => 'Wīdais en $1 šan kitawīdisnan.',
 'enotif_anon_editor' => 'anōnims tērpautajs $1',
+'created' => 'teīktan',
+'changed' => 'kitawīdintan',
 
 # Delete
 'deletepage' => 'Āupausinais pāusan',

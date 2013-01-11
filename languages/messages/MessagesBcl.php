@@ -2183,6 +2183,8 @@ $UNWATCHURL
 
 Balik-simbag asin kadagdagang asistensiya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'piggibo',
+'changed' => 'pigbâgo',
 
 # Delete
 'deletepage' => 'Paraon an pahina',

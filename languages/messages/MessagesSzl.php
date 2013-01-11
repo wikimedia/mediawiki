@@ -1736,6 +1736,8 @@ Kejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš poz�
 
 Pomoc:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'utwořono',
+'changed' => 'pomjyńono',
 
 # Delete
 'deletepage' => 'Wyćep artikel',

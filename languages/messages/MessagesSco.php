@@ -1094,6 +1094,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'enotif_reset' => 'Merk aa pages visitit',
 'enotif_lastvisited' => 'Hae a leuk at $1 for aa chynges sin yer last visit.',
+'created' => 'creatit',
+'changed' => 'chynged',
 
 # Delete
 'deletepage' => 'Delete page',

@@ -2079,6 +2079,8 @@ Ta eliminar a pachina d\'a suya lista de seguimiento, vaiga ta $UNWATCHURL
 
 Sucherencias y aduya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creyata',
+'changed' => 'editata',
 
 # Delete
 'deletepage' => 'Borrar ista pachina',

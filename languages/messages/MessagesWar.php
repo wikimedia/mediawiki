@@ -1403,6 +1403,8 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 
 'enotif_impersonal_salutation' => 'gumaramit han {{SITENAME}}',
 'enotif_anon_editor' => 'waray magpakilala nga gumaramit $1',
+'created' => 'nahimo',
+'changed' => 'naliwanan',
 
 # Delete
 'deletepage' => 'Igpara an pakli',

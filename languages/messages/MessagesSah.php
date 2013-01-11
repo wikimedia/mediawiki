@@ -2115,6 +2115,8 @@ $UNWATCHURL
 
 Көмөлөһүннэрэр уонна быһаартарар сир:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'айыллыбыт',
+'changed' => 'уларыппыт (уларытыллыбыт)',
 
 # Delete
 'deletepage' => 'Сирэйи сот',

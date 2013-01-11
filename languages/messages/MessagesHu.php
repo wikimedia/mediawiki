@@ -2368,6 +2368,8 @@ $UNWATCHURL címet
 
 Visszajelzés és további segítség:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'létrehozta',
+'changed' => 'megváltoztatta',
 
 # Delete
 'deletepage' => 'Lap törlése',
@@ -3127,6 +3129,9 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-contentpage' => 'Tartalmi lapnak számít',
 'pageinfo-contentpage-yes' => 'Igen',
 'pageinfo-protect-cascading-yes' => 'Igen',
+'pageinfo-category-pages' => 'Lapok száma',
+'pageinfo-category-subcats' => 'Alkategóriák száma',
+'pageinfo-category-files' => 'Fájlok száma',
 
 # Skin names
 'skinname-standard' => 'Klasszikus',
@@ -3213,6 +3218,8 @@ A futtatása során kárt tehet a számítógépedben.",
 'minutes' => '{{PLURAL:$1|egy|$1}} perccel',
 'hours' => '{{PLURAL:$1|egy|$1}} órával',
 'days' => '{{PLURAL:$1|egy|$1}} nappal',
+'months' => '{{PLURAL:$1|$1 hónap|$1 hónap}}',
+'years' => '{{PLURAL:$1|$1 év|$1 év}}',
 'ago' => '$1 ezelőtt',
 'just-now' => 'épp most',
 
@@ -3821,6 +3828,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-license' => 'Licenc',
 'version-poweredby-credits' => "Ez a wiki '''[//www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'mások',
+'version-credits-summary' => 'Szeretnénk elismerni a következő személyek hozzájárulását a [[Special:Version|MediaWiki]] szoftverhez.',
 'version-license-info' => 'A MediaWiki szabad szoftver, terjeszthető és / vagy módosítható a GNU General Public License alatt, amit a Free Software Foundation közzétett; vagy a 2-es verziójú licenc, vagy (az Ön választása alapján) bármely későbbi verzió szerint. 
 
 A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉLKÜL, anélkül, hogy PIACKÉPES vagy HASZNÁLHATÓ LENNE EGY ADOTT CÉLRA. Lásd a GNU General Public License-t a további részletekért. 

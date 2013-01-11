@@ -2541,6 +2541,8 @@ $PAGEINTRO $NEWPAGE
 
 بازخورد و کمک بیشتر:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ایجاد شده',
+'changed' => 'تغییر یافته',
 
 # Delete
 'deletepage' => 'حذف صفحه',

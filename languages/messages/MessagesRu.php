@@ -911,7 +911,8 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Неизвестная ошибка в PHP-функции mail()',
-'user-mail-no-addy' => 'Попытался отправить электронное письмо без адреса электронной почты',
+'user-mail-no-addy' => 'Пытался отправить электронное письмо без адреса электронной почты',
+'user-mail-no-body' => 'Пытался отправить электронное письмо с пустым или бессмысленно коротким содержанием.',
 
 # Change password dialog
 'resetpass' => 'Изменение пароля',
@@ -2499,6 +2500,8 @@ $UNWATCHURL
 
 Обратная связь и помощь
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'создана',
+'changed' => 'изменена',
 
 # Delete
 'deletepage' => 'Удалить страницу',
@@ -3252,6 +3255,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-magic-words' => '{{PLURAL:$1|Магическое слово|Магические слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Включаемые страницы|Включаемых страниц}} ($1)',
 'pageinfo-toolboxlink' => 'Сведения о странице',
 'pageinfo-redirectsto' => 'Перенаправление',
 'pageinfo-redirectsto-info' => 'сведения',

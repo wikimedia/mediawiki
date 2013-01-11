@@ -960,7 +960,7 @@ $2
 'showlivepreview' => '실시간 미리 보기',
 'showdiff' => '차이 보기',
 'anoneditwarning' => "'''경고''': 로그인하고 있지 않습니다.
-당신의 IP 주소가 문서 역사에 남게 됩니다.",
+IP 주소가 문서 역사에 남게 됩니다.",
 'anonpreviewwarning' => "'''로그인하고 있지 않습니다. 문서를 저장하면 당신의 IP 주소가 문서 역사에 남게 됩니다.'''",
 'missingsummary' => "'''알림:''' 편집 요약을 적지 않았습니다.
 이대로 \"{{int:savearticle}}\"을 클릭하면 편집 요약 없이 저장됩니다.",
@@ -2476,6 +2476,8 @@ $UNWATCHURL
 
 도움을 얻거나 피드백 하기:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '만들었',
+'changed' => '바꾸었',
 
 # Delete
 'deletepage' => '문서 삭제하기',

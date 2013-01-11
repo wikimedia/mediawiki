@@ -1462,6 +1462,8 @@ $UNWATCHURL
 
 Yardım ve teklifler içün:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'yaratıldı',
+'changed' => 'deñiştirildi',
 
 # Delete
 'deletepage' => 'Saifeni yoq et',

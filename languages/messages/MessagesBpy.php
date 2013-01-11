@@ -1275,6 +1275,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watching' => 'চা...',
 'unwatching' => 'নাউচা...',
 
+'changed' => 'পতেসে',
+
 # Delete
 'deletepage' => 'পাতাহান পুস',
 'confirm' => 'লেপকরানি',

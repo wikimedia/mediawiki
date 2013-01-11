@@ -2019,6 +2019,8 @@ Kanggo ngowahi préferènsi ing daftar pangawasan panjenengan, mangga mirsani
 
 Umpan balik lan pitulung sabanjuré:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'kadamel',
+'changed' => 'kaubah',
 
 # Delete
 'deletepage' => 'Busak kaca',

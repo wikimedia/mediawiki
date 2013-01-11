@@ -2203,6 +2203,8 @@ Raha hanova ny fandehan\'ny momba ny lisitry ny pejy arahi-maso, jereo
 
 Hevitrao sy fanampiana:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'voaforona',
+'changed' => 'voaova',
 
 # Delete
 'deletepage' => 'Hamafa ny pejy',

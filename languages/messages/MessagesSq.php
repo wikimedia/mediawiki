@@ -2269,6 +2269,8 @@ $UNWATCHURL
 
 Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 {{canonicalurl:{{MediaWiki:Helpage}}}}',
+'created' => 'u krijua',
+'changed' => 'ndryshuar',
 
 # Delete
 'deletepage' => 'Grise faqen',

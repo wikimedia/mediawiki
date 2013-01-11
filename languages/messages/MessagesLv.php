@@ -1849,6 +1849,8 @@ $UNWATCHURL
 
 Papildinformācija:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'izveidoja',
+'changed' => 'izmainīja',
 
 # Delete
 'deletepage' => 'Dzēst lapu',

@@ -2332,6 +2332,8 @@ Lehekülje kustutamiseks jälgimisloendist mine leheküljele $UNWATCHURL.
 
 Tagasiside ja abi:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'loonud lehekülje',
+'changed' => 'muutnud lehekülge',
 
 # Delete
 'deletepage' => 'Kustuta lehekülg',

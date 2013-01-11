@@ -1622,6 +1622,8 @@ Coppite yiy ñëw yu xët wi ak xëtu waxtaanuwaay wi mu àndal di nañu leen fa
 'enotif_lastvisited' => 'Nemmeekul $1 ngir gis bépp coppite dale ba sa nemmeku gu mujj.',
 'enotif_lastdiff' => 'Xoolal $1 ngir gis gii coppite.',
 'enotif_anon_editor' => 'Jëfandikukat bu binduwul $1',
+'created' => 'sosu na',
+'changed' => 'soppi',
 
 # Delete
 'deletepage' => 'Far xët wi',

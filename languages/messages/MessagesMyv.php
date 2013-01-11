@@ -1459,6 +1459,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'enotif_impersonal_salutation' => '{{SITENAME}} теицясь',
 'enotif_lastdiff' => 'Те полавтоманть ваномга вант $1.',
 'enotif_anon_editor' => 'лемтеме теиця $1',
+'created' => 'теезь-шказь',
+'changed' => 'полавтозь',
 
 # Delete
 'deletepage' => 'Нардамс лопанть',

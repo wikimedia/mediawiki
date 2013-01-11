@@ -2013,6 +2013,8 @@ $UNWATCHURL
 
 Болушлукъ эм теджеуле ючюн:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'къуралды',
+'changed' => 'тюрленди',
 
 # Delete
 'deletepage' => 'Бетни кетер',

@@ -632,6 +632,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistcontains' => 'ތިޔަބޭފުޅާގެ ހާއްސަ ނަޒަރު ފިހުރިސްތުގައި ވަނީ $1 ޞަފްޙާއެވެ.',
 'wlnote' => 'ތިރީގައި މިވަނީ އެއީ ފާއިތުވި <b>$2</b> ގަޑި އިރުގެ ތެރޭގައިގެނެވިފައިވާ ފަހު $1 ބަދަލެވެ.',
 
+'changed' => 'ބަދަލުކުރެވިއްޖެ',
+
 # Delete
 'deletepage' => 'ޞަފްޙާ ފޮހެލައްވާ',
 'confirm' => 'ޔަގީން',

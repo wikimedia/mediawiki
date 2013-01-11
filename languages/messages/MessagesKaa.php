@@ -1428,6 +1428,8 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 'enotif_lastvisited' => "Son'g'ı kirwin'izden beri bolg'an o'zgerisler ushın $1 degendi ko'rin'iz.",
 'enotif_lastdiff' => "Usı o'zgeris ushın $1 degendi ko'rin'iz.",
 'enotif_anon_editor' => 'anonim paydalanıwshı $1',
+'created' => "jaratılg'an",
+'changed' => "o'zgertilgen",
 
 # Delete
 'deletepage' => "Betti o'shir",

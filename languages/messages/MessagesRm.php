@@ -2139,6 +2139,8 @@ $UNWATCHURL
 
 Resuns ed agid chattas qua:
 {{fullurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creada',
+'changed' => 'midada',
 
 # Delete
 'deletepage' => 'Stizzar la pagina',

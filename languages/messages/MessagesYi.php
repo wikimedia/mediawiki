@@ -2200,6 +2200,8 @@ $UNWATCHURL
 
 פאר מער הילף:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'געשאַפֿן',
+'changed' => 'געטוישט',
 
 # Delete
 'deletepage' => 'מעק אויס בלאט',

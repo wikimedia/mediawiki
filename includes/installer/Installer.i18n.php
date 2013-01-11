@@ -626,6 +626,7 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 * $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)',
 	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software)',
+	'config-db-host-help' => '{{doc-singularthey}}',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-oracle-warn' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
@@ -10912,7 +10913,7 @@ chmod a+w $3</pre>',
 이제 [$1 위키를 시작]할 수 있습니다.
 
 만약 <code>LocalSettings.php</code> 파일을 다시 만들기를 원하면 아래의 버튼을 클릭하세요.
-이것은 위키에 문제가 있지 않는 한 '''권장하지 않습니다'''.",
+위키에 문제가 있지 않는 한 '''권장하지 않습니다'''.",
 	'config-upgrade-done-no-regenerate' => '업그레이드가 완료되었습니다.
 
 이제 [$1 위키를 시작]할 수 있습니다.',
@@ -16652,10 +16653,22 @@ Puteți sări peste configurarea rămasă și să instalați wikiul chiar acum.'
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
+	'config-desc' => "'U 'nstallatore de MediaUicchi",
+	'config-title' => 'Installazzione de MediaUicchi $1',
+	'config-information' => "'Mbormaziune",
+	'config-localsettings-key' => 'Chiave de aggiornamende:',
+	'config-page-language' => 'Lènghe',
+	'config-page-name' => 'Nome',
 	'config-db-charset' => "'Nzieme de carattere d'u database",
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 backwards-compatible UTF-8',
+	'config-db-port' => "Porte d'u database:",
+	'config-db-schema' => 'Scheme pe MediaUicchi:',
+	'config-type-mysql' => 'MySQL',
+	'config-type-postgres' => 'PostgreSQL',
+	'config-type-sqlite' => 'SQLite',
+	'config-type-oracle' => 'Oracle',
 	'config-install-step-done' => 'fatte',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => "'Ngludenne le estenziune",

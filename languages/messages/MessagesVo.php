@@ -1714,6 +1714,8 @@ Ad votükön parametami galädaliseda olik, loglös
 
 Küpets e yuf pluik:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'pejafon',
+'changed' => 'pevotüköl',
 
 # Delete
 'deletepage' => 'Moükolöd padi',

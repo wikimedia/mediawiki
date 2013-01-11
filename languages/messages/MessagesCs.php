@@ -2425,6 +2425,8 @@ $UNWATCHURL
 
 Rady a kontakt:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'vytvořil',
+'changed' => 'upravil',
 
 # Delete
 'deletepage' => 'Smazat stránku',

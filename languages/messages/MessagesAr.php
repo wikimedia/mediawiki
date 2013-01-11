@@ -2582,6 +2582,8 @@ $UNWATCHURL
 
 التغذية المرتدة، والحصول على مساعدة إضافية:
 {{canonicalurl: {{MediaWiki:Helppage}}}}',
+'created' => 'أنشئت',
+'changed' => 'غيرت',
 
 # Delete
 'deletepage' => 'حذف الصفحة',

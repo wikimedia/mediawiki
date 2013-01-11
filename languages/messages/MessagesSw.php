@@ -2053,6 +2053,8 @@ $UNWATCHURL
 
 Kutoa maoni yako au kupata msaada mwingine:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'alianzisha',
+'changed' => 'alibadilisha',
 
 # Delete
 'deletepage' => 'Futa ukurasa',

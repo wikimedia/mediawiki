@@ -380,7 +380,7 @@ $messages = array(
 'tog-externaleditor' => 'Varsayılan olarak harici düzenleyici kullan (deneyimli kullanıcılar içindir ve bilgisayarınızda özel ayarlar gerektirir. [//www.mediawiki.org/wiki/Manual:External_editors Ayrıntılı bilgi için tıklayın.])',
 'tog-externaldiff' => 'Varsayılan olarak harici karşılaştırıcı kullan (deneyimli kullanıcılar içindir ve bilgisayarınızda özel ayarlar gerektirir. [//www.mediawiki.org/wiki/Manual:External_editors Ayrıntılı bilgi için tıklayın.])',
 'tog-showjumplinks' => '"{{int:jumpto}}" erişilebilirlik bağlantısı etkinleştir',
-'tog-uselivepreview' => 'Canlı ön izlemeyi kullan (JavaScript gerektirir ve özellik deneme aşamasındadır)',
+'tog-uselivepreview' => 'Canlı ön izlemeyi kullan (JavaScript gerektirir)',
 'tog-forceeditsummary' => 'Özeti boş bıraktığımda beni uyar',
 'tog-watchlisthideown' => 'İzleme listemden düzenlemelerimi gizle',
 'tog-watchlisthidebots' => 'İzleme listemden bot değişikliklerini gizle',
@@ -1465,9 +1465,9 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'prefs-emailconfirm-label' => 'E-posta doğrulaması:',
 'prefs-textboxsize' => 'Değiştirme penceresinin boyutu',
 'youremail' => 'E-posta:',
-'username' => 'Kullanıcı adı:',
-'uid' => 'Kayıt numarası:',
-'prefs-memberingroups' => '{{PLURAL:$1|Grup|Grup}} üyesi:',
+'username' => '{{GENDER:$1|Kullanıcı adı}}:',
+'uid' => '{{GENDER:$1|Kullanıcı}} kimliği:',
+'prefs-memberingroups' => '{{GENDER:$2|Üye}} {{PLURAL:$1|group|grupları}}:',
 'prefs-registration' => 'Kayıt zamanı:',
 'yourrealname' => 'Gerçek adınız:',
 'yourlanguage' => 'Dil:',
@@ -2352,6 +2352,8 @@ $UNWATCHURL
 
 Geri bildirim ve daha fazla yardım için:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'oluşturuldu',
+'changed' => 'değiştirildi',
 
 # Delete
 'deletepage' => 'Sayfayı sil',
@@ -2503,7 +2505,8 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 'undeletedrevisions' => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revizyon|$1 revizyon}} ve {{PLURAL:$2|1 dosya|$2 dosya}} eski konumuna getirildi',
 'undeletedfiles' => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
-'cannotundelete' => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
+'cannotundelete' => 'Silme başarısız oldu:
+$1',
 'undeletedpage' => "'''$1 sayfası geri getirildi'''
 
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
@@ -2666,7 +2669,7 @@ Engelleme günlüğü referans için aşağıda sağlanmıştır:',
 Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'blocklogentry' => ', [[$1]] kullanıcısını engelledi, engelleme süresi: $2 $3',
 'reblock-logentry' => '[[$1]] için bitiş tarihi $2 $3 olmak üzere engelleme ayarlarını değiştirdi',
-'blocklogtext' => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:BlockList|IP engelleme listesi]] sayfasından görebilirsiniz.',
+'blocklogtext' => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:BlockList|engelleme listesi]] sayfasından görebilirsiniz.',
 'unblocklogentry' => '$1 kullanıcının engellemesi kaldırıldı',
 'block-log-flags-anononly' => 'sadece anonim kullanıcılar',
 'block-log-flags-nocreate' => 'hesap yaratımı engellendi',
@@ -2916,6 +2919,7 @@ Geçici dosya kayıp.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
+'javascripttest-title' => '$1 testleri çalışıyor',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Kullanıcı sayfanız',
@@ -3052,6 +3056,9 @@ Geçici dosya kayıp.',
 'pageinfo-contentpage' => 'Bir içerik sayfası sayılır',
 'pageinfo-contentpage-yes' => 'Evet',
 'pageinfo-protect-cascading-yes' => 'Evet',
+'pageinfo-protect-cascading-from' => 'Korumalar üzerinden geçiş',
+'pageinfo-category-info' => 'Kategori bilgileri',
+'pageinfo-category-pages' => 'Sayfa sayısı',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3298,6 +3305,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-source' => 'Kaynak',
 'exif-urgency' => 'Aciliyet',
 'exif-fixtureidentifier' => 'Fikstür adı',
+'exif-locationdest' => 'Yerin konumu',
 'exif-contact' => 'İletişim bilgileri',
 'exif-writer' => 'Yazar',
 'exif-languagecode' => 'Dil',

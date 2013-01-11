@@ -1994,6 +1994,8 @@ $UNWATCHURL
 
 अपन अनुभव बतेबा वा कोनो सहायता लेल:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'बनाएल गेल',
+'changed' => 'बदलल गेल',
 
 # Delete
 'deletepage' => 'पन्ना मेटाउ',

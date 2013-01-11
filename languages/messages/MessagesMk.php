@@ -2476,6 +2476,8 @@ $UNWATCHURL
 
 Ваши мислења, прашања и повеќе помош:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'создадена',
+'changed' => 'изменета',
 
 # Delete
 'deletepage' => 'Избриши страница',

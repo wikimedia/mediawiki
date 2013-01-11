@@ -2206,6 +2206,8 @@ $UNWATCHURL
 
 За обратна връзка и помощ:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'създадена',
+'changed' => 'променена',
 
 # Delete
 'deletepage' => 'Изтриване',

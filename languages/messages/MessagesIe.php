@@ -1009,6 +1009,8 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'watching' => 'Vigilant...',
 'unwatching' => 'Desvigilant...',
 
+'created' => 'creat',
+
 # Delete
 'deletepage' => 'Deleter págine',
 'delete-legend' => 'Deleter',

@@ -2225,6 +2225,8 @@ $UNWATCHURL
 
 Reaktiounen a méi Hëllef:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'gemaach',
+'changed' => 'geännert',
 
 # Delete
 'deletepage' => 'Säit läschen',

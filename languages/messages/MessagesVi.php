@@ -2368,6 +2368,8 @@ $UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'viết mới',
+'changed' => 'thay đổi',
 
 # Delete
 'deletepage' => 'Xóa trang',

@@ -2293,6 +2293,8 @@ $UNWATCHURL
 
 Terugvoer en verdere bystand:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'geskep',
+'changed' => 'verander',
 
 # Delete
 'deletepage' => 'Skrap bladsy',

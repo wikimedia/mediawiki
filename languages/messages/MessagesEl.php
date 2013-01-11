@@ -2389,6 +2389,8 @@ $UNWATCHURL
 
 Παρατηρήσεις και περισσότερη βοήθεια:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'δημιουργήθηκε',
+'changed' => 'έχει αλλάξει',
 
 # Delete
 'deletepage' => 'Διαγραφή σελίδας',

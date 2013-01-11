@@ -2247,6 +2247,8 @@ $UNWATCHURL
 
 回饋和其他幫助：
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '建立了',
+'changed' => '更改',
 
 # Delete
 'deletepage' => '刪除頁面',

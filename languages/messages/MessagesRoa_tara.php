@@ -2175,6 +2175,8 @@ Pe scangellà 'a pàgene da 'a liste de le pàggene condrollate, vè vide
 
 Segnalaziune e otre assistenze:
 {{canonicalurl:{{MediaWiki:Helppage}}}}",
+'created' => 'ccrejete',
+'changed' => 'cangete',
 
 # Delete
 'deletepage' => "Scangille 'a pàgene",

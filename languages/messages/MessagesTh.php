@@ -2135,6 +2135,8 @@ $UNWATCHURL
 
 ถ้าต้องการความช่วยเหลือเพิ่มเติม กรุณาไปที่:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ถูกสร้าง',
+'changed' => 'ถูกเปลี่ยนแปลง',
 
 # Delete
 'deletepage' => 'ลบหน้า',

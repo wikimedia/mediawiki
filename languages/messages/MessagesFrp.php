@@ -2438,6 +2438,8 @@ $UNWATCHURL
 
 Avis et assistance de ples :
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'fêta',
+'changed' => 'changiê',
 
 # Delete
 'deletepage' => 'Suprimar la pâge',

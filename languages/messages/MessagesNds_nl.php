@@ -2346,6 +2346,8 @@ $UNWATCHURL
 
 Opmarkingen en veerdere hulpe:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'an-emaakt',
+'changed' => 'ewiezigd',
 
 # Delete
 'deletepage' => 'Vortdoon',

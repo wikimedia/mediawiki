@@ -2191,6 +2191,8 @@ $UNWATCHURL
 
 Atsiliepimai ir pagalba:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'sukurė',
+'changed' => 'pakeitė',
 
 # Delete
 'deletepage' => 'Trinti puslapį',

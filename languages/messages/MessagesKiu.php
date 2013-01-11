@@ -1165,6 +1165,8 @@ Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, 
 'watching' => 'Şêr ke…',
 'unwatching' => 'Şêr meke…',
 
+'changed' => 'vuriya',
+
 # Delete
 'deletepage' => 'Pele bıestere',
 'delete-legend' => 'Bıestere',

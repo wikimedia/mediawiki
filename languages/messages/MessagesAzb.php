@@ -2097,6 +2097,8 @@ $نئwپاگئ
 
 ياردیم و تکلیفلرینیز اوچون: 
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'یارادیلیب',
+'changed' => 'ديَیشدی',
 
 # Delete
 'deletepage' => 'صحیفه‌‌نی سیل',

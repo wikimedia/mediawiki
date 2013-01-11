@@ -2099,6 +2099,8 @@ $UNWATCHURL
 
 Санал сэтгэгдэл болон тулгарсан бэрхшээлээ :
 {{canonicalurl:{{MediaWiki:Helppage}}}} хаягаар орж бичнэ үү',
+'created' => 'үүсгэсэн',
+'changed' => 'өөрчлөгдсөн',
 
 # Delete
 'deletepage' => 'Хуудсыг устга',

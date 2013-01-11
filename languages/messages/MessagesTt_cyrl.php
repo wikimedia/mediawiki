@@ -1790,6 +1790,8 @@ $UNWATCHURL
 
 Элемтә һәм ярдәм:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'төзергән',
+'changed' => 'үзгәртелде',
 
 # Delete
 'deletepage' => 'Битне бетерү',

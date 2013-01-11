@@ -1516,6 +1516,8 @@ $UNWATCHURL
 
 Po pus d\' aidance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ahivêye',
+'changed' => 'candjeye',
 
 # Delete
 'deletepage' => "Disfacer l' pådje",

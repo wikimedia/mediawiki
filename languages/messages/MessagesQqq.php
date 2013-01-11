@@ -1300,6 +1300,9 @@ See also:
 * {{msg-mw|Tooltip-diff}}',
 'anoneditwarning' => 'Shown when editing a page anonymously.
 See also:
+* {{msg-mw|Sf autoedit anoneditwarning}}
+* {{msg-mw|Wikibase-anonymouseditwarning-property}}
+* {{msg-mw|Wikibase-anonymouseditwarning-item}}
 * {{msg-mw|Anonpreviewwarning}}',
 'anonpreviewwarning' => 'See also:
 * {{msg-mw|Anoneditwarning}}',
@@ -4284,8 +4287,6 @@ See also:
 * $1 is a link to a diff, shown as a plain link.',
 'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
 * $1 is the anonymous user name (i.e. an IP address).',
-'created' => '{{optional}} Deprecated message. Possible value for $CHANGEDORCREATED in {{msg|enotif_body}}.',
-'changed' => '{{optional}} Deprecated message. Possible value for $CHANGEDORCREATED in {{msg|enotif_body}}.',
 'enotif_body' => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
 *$WATCHINGUSERNAME is the username of the user receiving the notification.
@@ -4310,6 +4311,8 @@ The subject of the e-mail is one of the following messages:
 *{{msg-mw|enotif subject moved}}
 *{{msg-mw|enotif subject restored}}
 *{{msg-mw|enotif subject changed}}',
+'created' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'changed' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 
 # Delete
 'confirm' => 'Submit button text for protection confirmation

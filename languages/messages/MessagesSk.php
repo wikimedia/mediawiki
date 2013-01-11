@@ -2345,6 +2345,8 @@ $UNWATCHURL
 
 Návrhy a ďalšia pomoc:
 {{canonicalurl:{{int:Helppage}}}}',
+'created' => 'vytvorení',
+'changed' => 'zmene',
 
 # Delete
 'deletepage' => 'Zmazať stránku',

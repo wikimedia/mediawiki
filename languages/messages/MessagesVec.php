@@ -2100,6 +2100,8 @@ $UNWATCHURL
 
 Par riscontri e ulteriore assistensa:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creà',
+'changed' => 'canbià',
 
 # Delete
 'deletepage' => 'Scancela pagina',

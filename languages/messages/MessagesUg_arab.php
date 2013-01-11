@@ -2191,6 +2191,8 @@ $UNWATCHURL نى زىيارەت قىلىڭ
 
 قايتما ئىنكاس ياكى تېخىمۇ كۆپ ياردەمگە ئېرىشمەكچى بولسىڭىز:
 {{canonicalurl:{{MediaWiki:Helppage}}}} نى زىيارەت قىلىڭ',
+'created' => 'قۇرغان',
+'changed' => 'ئۆزگەردى',
 
 # Delete
 'deletepage' => 'بەت ئۆچۈر',

@@ -2062,6 +2062,8 @@ $NEWPAGE
 
 பின்னூட்டம், மேலதிக உதவிகளுக்கு:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'தொடக்கப்பட்டது',
+'changed' => 'மாற்றப்பட்டது',
 
 # Delete
 'deletepage' => 'பக்கத்தை நீக்கு',

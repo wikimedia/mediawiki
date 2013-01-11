@@ -733,6 +733,8 @@ A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
 'unwatching' => 'Dikentezi...',
 
 'enotif_impersonal_salutation' => '{{SITENAME}} sebelu',
+'created' => 'hlolini',
+'changed' => 'petuhoni',
 
 # Delete
 'deletepage' => 'Afi kulobala petulo',

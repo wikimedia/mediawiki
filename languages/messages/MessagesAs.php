@@ -2284,6 +2284,8 @@ $UNWATCHURL
 
 প্ৰতিক্ৰিয়া আৰু অধিক সহযোগিতাৰ বাবে:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'সৃষ্টি কৰা হ’ল',
+'changed' => 'সলোৱা হৈছে',
 
 # Delete
 'deletepage' => 'পৃষ্ঠা বিলোপ কৰক',

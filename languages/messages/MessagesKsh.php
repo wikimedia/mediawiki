@@ -2480,6 +2480,8 @@ $UNWATCHURL
 
 Do kanns hee noh Hölp luure:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'neu aanjelaht',
+'changed' => 'jeändert',
 
 # Delete
 'deletepage' => 'Schmieß die Sigg jetz fott',

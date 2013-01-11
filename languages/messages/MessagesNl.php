@@ -2500,6 +2500,8 @@ $UNWATCHURL
 
 Terugkoppeling en verdere assistentie:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'aangemaakt',
+'changed' => 'gewijzigd',
 
 # Delete
 'deletepage' => 'Pagina verwijderen',

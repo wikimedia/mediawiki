@@ -2456,6 +2456,8 @@ $UNWATCHURL
 
 למשוב ולעזרה נוספת:
 {{canonicalurl::{{MediaWiki:Helppage}}}}',
+'created' => 'נוצר',
+'changed' => 'שונה',
 
 # Delete
 'deletepage' => 'מחיקה',

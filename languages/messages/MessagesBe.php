@@ -2035,6 +2035,8 @@ $UNWATCHURL
 
 Зваротная сувязь і дапамога
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'створана',
+'changed' => 'зменена',
 
 # Delete
 'deletepage' => 'Сцерці старонку',

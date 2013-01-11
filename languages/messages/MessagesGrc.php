@@ -1586,6 +1586,8 @@ $NEWPAGE
 
 Ἀνάδρασις καὶ περαιτέρω βοήθεια:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ποιηθέν',
+'changed' => 'ἠλλαγμένη',
 
 # Delete
 'deletepage' => 'Διαγράφειν τὴν δέλτον',

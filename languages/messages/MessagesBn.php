@@ -2122,6 +2122,8 @@ $UNWATCHURL
 
 প্রতিক্রিয়া জানাতে ও আরও সহযোগিতার জন্য:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'তৈরী হয়েছিল',
+'changed' => 'পরিবর্তিত',
 
 # Delete
 'deletepage' => 'পাতাটি মুছে ফেলা হোক',

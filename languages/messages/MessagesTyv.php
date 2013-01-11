@@ -933,6 +933,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} ажыглакчызы',
 'enotif_anon_editor' => 'ат эвес ажыглакчы $1',
+'changed' => 'өскертти',
 
 # Delete
 'deletepage' => 'Арынны ырадыры',

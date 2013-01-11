@@ -1763,6 +1763,8 @@ Siz haqqında söhbət gedən səhifəyə baxanadək səhifədəki digər dəyi�
 
 Yardım və təklifləriniz üçün:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'yaradıldı',
+'changed' => 'dəyişdi',
 
 # Delete
 'deletepage' => 'Səhifəni sil',

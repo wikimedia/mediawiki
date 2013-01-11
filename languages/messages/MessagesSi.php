@@ -2245,6 +2245,8 @@ $UNWATCHURL
 
 Feedback and further assistance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'තනන ලදි',
+'changed' => 'වෙනස්කරන ලදි',
 
 # Delete
 'deletepage' => 'පිටුව මකා දමන්න',

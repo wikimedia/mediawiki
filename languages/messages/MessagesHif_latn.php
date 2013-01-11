@@ -2125,6 +2125,8 @@ $UNWATCHURL
 
 Aapan bichar de ke khatir aur aage ke sahaeta:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'banae dewa gais hai',
+'changed' => 'badal dewa gais hai',
 
 # Delete
 'deletepage' => 'Pana ke delete karo',

@@ -1285,6 +1285,8 @@ Jēgo bikumet ožsėnuorietomiet liautėis keravuotė straipsnė, spauskat \"neb
 
 'enotif_reset' => 'Pažīmietė vėsus poslapius kāp aplonkītus',
 'enotif_anon_editor' => 'anuonėminis nauduotuos $1',
+'created' => 'sokūrė',
+'changed' => 'pakeitė',
 
 # Delete
 'deletepage' => 'Trintė poslapi',

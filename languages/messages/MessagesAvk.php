@@ -1516,6 +1516,8 @@ To change your watchlist settings, visit
 
 Feedback and further assistance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'reduyun',
+'changed' => 'betayan',
 
 # Delete
 'deletepage' => 'Busulara',

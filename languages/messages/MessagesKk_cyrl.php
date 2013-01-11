@@ -2012,6 +2012,8 @@ $NEWPAGE
 
 Сын-пікір беру және былайғы жәрдем алу үшін:
 {{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}',
+'created' => 'бастады',
+'changed' => 'өзгертті',
 
 # Delete
 'deletepage' => 'Бетті жою',

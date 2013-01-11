@@ -1818,6 +1818,8 @@ Pi mudificari li mpustazzioni dâ lista di l\'ussirvati spiciali, vìsita
 
 Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'criatu',
+'changed' => 'canciatu',
 
 # Delete
 'deletepage' => 'Elìmina la pàggina',

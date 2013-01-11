@@ -2136,6 +2136,8 @@ $UNWATCHURL
 
 الfeedback و مساعده اكتر:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'إتنشأت',
+'changed' => 'اتغيرت',
 
 # Delete
 'deletepage' => 'امسح الصفحه',

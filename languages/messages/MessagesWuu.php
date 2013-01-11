@@ -1223,6 +1223,9 @@ $1",
 'watching' => '监控……',
 'unwatching' => '解除监控……',
 
+'created' => '建立哉',
+'changed' => '改变哉',
+
 # Delete
 'deletepage' => '删脱页面',
 'confirm' => '确认',

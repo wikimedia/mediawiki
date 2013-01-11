@@ -1369,6 +1369,8 @@ Inämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkae
 Perräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{canonicalurl:Special:Watchlist/edit}}
 
 As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'lehe loonuq',
+'changed' => 'lehte muutnuq',
 
 # Delete
 'deletepage' => 'Kistudaq lehekülg ärq',

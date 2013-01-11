@@ -2250,6 +2250,8 @@ $UNWATCHURL
 
 Tugon at karagdagang tulong:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'nilikha',
+'changed' => 'binago',
 
 # Delete
 'deletepage' => 'Burahin ang pahina',

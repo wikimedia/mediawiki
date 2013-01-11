@@ -1062,6 +1062,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'unwatching' => 'Boghende dae sa watchlist...',
 
 'enotif_impersonal_salutation' => 'Usuàriu de {{SITENAME}}',
+'created' => 'creada',
 
 # Delete
 'deletepage' => 'Fùlia pàgina',

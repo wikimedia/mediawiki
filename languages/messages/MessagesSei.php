@@ -884,6 +884,8 @@ iitom e-iitomde diijömde caitóm.',
 
 'enotif_impersonal_salutation' => '{{SITENAME}} caitom',
 'enotif_anon_editor' => 'caitom anoniimom $1',
+'created' => 'creacöx',
+'changed' => 'quiixöx',
 
 # Delete
 'deletepage' => 'Delatar páhina',

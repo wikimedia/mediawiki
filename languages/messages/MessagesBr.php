@@ -2240,6 +2240,8 @@ $UNWATCHURL
 
 Evezhiadennoù ha skoazell pelloc\'h :
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'Krouet',
+'changed' => 'kemmet',
 
 # Delete
 'deletepage' => 'Diverkañ ur bajenn',

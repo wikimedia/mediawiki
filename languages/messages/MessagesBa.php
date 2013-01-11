@@ -2217,6 +2217,8 @@ $UNWATCHURL
 
 Кире бәйләнеш һәм ярҙам:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'булдырылды',
+'changed' => 'үҙгәртелгән',
 
 # Delete
 'deletepage' => 'Битте юйырға',

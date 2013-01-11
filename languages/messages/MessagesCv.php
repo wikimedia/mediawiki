@@ -922,6 +922,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'enotif_reset' => 'Пур страницăсене те пăхнă пек палăрт',
 'enotif_anon_editor' => '$1 анонимлă хутшăнакан',
+'created' => 'хатĕрленĕ',
+'changed' => 'улăштарнă',
 
 # Delete
 'deletepage' => 'Кăларса парахнă статьясем',

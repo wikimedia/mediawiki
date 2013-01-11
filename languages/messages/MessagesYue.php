@@ -2060,6 +2060,8 @@ wiki: $PAGEEDITOR_WIKI
 
 回饋及更多幫助：
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '建立過',
+'changed' => '修改過',
 
 # Delete
 'deletepage' => '刪除頁面',

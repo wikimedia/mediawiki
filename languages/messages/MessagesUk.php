@@ -2472,6 +2472,8 @@ $UNWATCHURL
 
 Зворотній зв\'язок і допомога:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'створена',
+'changed' => 'змінена',
 
 # Delete
 'deletepage' => 'Вилучити сторінку',

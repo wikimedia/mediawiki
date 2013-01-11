@@ -2164,6 +2164,8 @@ Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{canonicalurl:{{#s
 Go d Syte us Dyyre Beobachtigslischte uuseneh, gang uf $UNWATCHURL
 
 Ruckmäldig un wyteri Hilf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'aagleit',
+'changed' => 'gänderet',
 
 # Delete
 'deletepage' => 'Syte lösche',

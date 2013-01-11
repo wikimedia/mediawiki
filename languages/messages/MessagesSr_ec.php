@@ -2537,6 +2537,8 @@ $UNWATCHURL
 
 Подршка и даља помоћ:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'направљена',
+'changed' => 'измењена',
 
 # Delete
 'deletepage' => 'Обриши страницу',

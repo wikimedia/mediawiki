@@ -1155,6 +1155,8 @@ Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{canonica
 Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
 
 Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'erstöd',
+'changed' => 'gänderd',
 
 # Delete
 'deletepage' => 'Seiten léschen',

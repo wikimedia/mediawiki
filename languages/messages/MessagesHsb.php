@@ -2197,6 +2197,8 @@ $UNWATCHURL
 
 Wotmołwy a dalša pomoc:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'wutworjena',
+'changed' => 'změnjena',
 
 # Delete
 'deletepage' => 'Stronu zhašeć',

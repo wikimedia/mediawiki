@@ -1518,6 +1518,8 @@ To change your watchlist settings, visit
 
 Feedback and further assistance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creata',
+'changed' => 'mutata',
 
 # Delete
 'deletepage' => 'Delere paginam',

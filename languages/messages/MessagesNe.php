@@ -1936,6 +1936,8 @@ $UNWATCHURL
 
 प्रतिक्रिया र अन्य सहयोगको निम्ति:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'बनाइएको',
+'changed' => 'परिवर्तन भइसकेको',
 
 # Delete
 'deletepage' => 'पृष्ठ मेट्नुहोस्',

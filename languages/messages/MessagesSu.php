@@ -1924,6 +1924,8 @@ Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:
 
 Asupan jeung bantuan salajengna:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'geus dijieun',
+'changed' => 'geus robah',
 
 # Delete
 'deletepage' => 'Hapus kaca',

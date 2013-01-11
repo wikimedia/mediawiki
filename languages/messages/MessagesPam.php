@@ -1416,6 +1416,8 @@ Ba mong ayalilan deng pakatuldu king kekang tala ring babanten (watchlist settin
 
 Keni ka magparalang puna/komentu at maniad karagdagang saup:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'melalang',
+'changed' => 'miyalilan',
 
 # Delete
 'deletepage' => 'Buran ya ing bulung',

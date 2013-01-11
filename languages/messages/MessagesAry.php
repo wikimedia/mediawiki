@@ -1692,6 +1692,8 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 'enotif_lastvisited' => 'Sir ċof $1 baċ ṫċof ṫ-ṫeġyiraṫ kamlin men ziyarṫek l-leĥĥraniya.',
 'enotif_lastdiff' => 'Ċof $1 baċ ṫċof had ṫ-ṫeġyiraṫ.',
 'enotif_anon_editor' => 'mosṫeĥdim ma mċejjelċ $1',
+'created' => "tnch'at",
+'changed' => 'Beddel',
 
 # Delete
 'deletepage' => "Mḫi had 'ṣ-ṣefḫa",

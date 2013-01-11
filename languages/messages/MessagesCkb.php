@@ -1339,7 +1339,7 @@ $1",
 'group-sysop' => 'بەڕێوبەران',
 'group-bureaucrat' => 'بیوروکراتەکان',
 'group-suppress' => 'چاودێرەکان',
-'group-all' => '(هەموو)',
+'group-all' => '(ھەموو)',
 
 'group-user-member' => '{{GENDER:$1|بەکارھێنەر}}',
 'group-autoconfirmed-member' => '{{GENDER:$1|بەکارھێنەرانی پەسندکراوی خۆگەڕ}}',
@@ -2100,6 +2100,8 @@ $UNWATCHURL
 
 کاردانەوە و یارمەتیی زۆرتر:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'دروستکرا',
+'changed' => 'گۆڕدرا',
 
 # Delete
 'deletepage' => 'پەڕە بسڕەوە',

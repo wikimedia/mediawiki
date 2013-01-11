@@ -2150,6 +2150,8 @@ $UNWATCHURL
 
 Retorn e assisténcia :
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creada',
+'changed' => 'modificada',
 
 # Delete
 'deletepage' => 'Suprimir la pagina',

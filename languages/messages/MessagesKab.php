@@ -2062,6 +2062,8 @@ $UNWATCHURL
 
 Tuɣalin d tadhelt :
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'yettwaxleq',
+'changed' => 'yettubeddel',
 
 # Delete
 'deletepage' => 'Mḥu asebter',

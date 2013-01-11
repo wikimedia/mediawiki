@@ -2154,6 +2154,8 @@ $UNWATCHURL
 
 Ti makunkunam ken no masapulmo pay ti tulong:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'naaramid',
+'changed' => 'nasukatan',
 
 # Delete
 'deletepage' => 'Ikkaten ti panid',

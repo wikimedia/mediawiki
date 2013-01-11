@@ -2258,6 +2258,8 @@ $UNWATCHURL
 
 Biex tgħaddi kumment u biex tikseb iktar għajnuna:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'inħolqot',
+'changed' => 'modifikata',
 
 # Delete
 'deletepage' => 'Ħassar il-paġna',

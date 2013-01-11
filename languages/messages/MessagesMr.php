@@ -2253,6 +2253,8 @@ $UNWATCHURL
 
 पुढील साहाय्य आणि प्रतिक्रिया:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'तयार केले',
+'changed' => 'बदलले',
 
 # Delete
 'deletepage' => 'पान वगळा',

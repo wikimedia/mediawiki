@@ -1336,6 +1336,8 @@ $UNWATCHURL
 
 Aiseolas agus a thuilleadh cabhrach:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'Chruthaigh',
+'changed' => "D'athraigh",
 
 # Delete
 'deletepage' => 'Scrios an leathanach',

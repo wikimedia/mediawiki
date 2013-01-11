@@ -1759,6 +1759,7 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'unwatching' => 'Strikar eftirlit...',
 
 'enotif_impersonal_salutation' => '{{SITENAME}}brúkari',
+'created' => 'stovnað',
 
 # Delete
 'deletepage' => 'Strika síðu',

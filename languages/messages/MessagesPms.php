@@ -2128,6 +2128,8 @@ $UNWATCHURL
 
 Comunicassion ëd servissi e pì d\'agiut:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creà',
+'changed' => 'modificà',
 
 # Delete
 'deletepage' => 'Scancelé la pàgina',

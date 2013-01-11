@@ -1580,6 +1580,8 @@ $NEWPAGE
 
 በተጨማሪ ለመረዳት፦
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ተፈጠረ',
+'changed' => 'ተለወጠ',
 
 # Delete
 'deletepage' => 'ገጹ ይጥፋ',

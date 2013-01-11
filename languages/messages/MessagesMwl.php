@@ -874,6 +874,9 @@ Altaraçones feturas na tal páigina i páiginas de çcusson a eilha associadas 
 'watching' => 'A begiar...',
 'unwatching' => 'A deixar de begiar...',
 
+'created' => 'criada',
+'changed' => 'demudada',
+
 # Delete
 'deletepage' => 'Botar fuora páigina',
 'delete-confirm' => 'Botar fuora "$1"',

@@ -2392,6 +2392,8 @@ $UNWATCHURL
 
 Komentoj kaj plia helpo:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'kreita',
+'changed' => 'ŝanĝita',
 
 # Delete
 'deletepage' => 'Forigi paĝon',

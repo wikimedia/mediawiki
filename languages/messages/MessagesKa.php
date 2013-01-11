@@ -2269,6 +2269,8 @@ $UNWATCHURL
 
 დამატებითი ინფორმაცია
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'შექმნილია',
+'changed' => 'შეცვლილი',
 
 # Delete
 'deletepage' => 'გვერდის წაშლა',

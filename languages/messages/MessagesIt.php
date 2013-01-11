@@ -2315,6 +2315,8 @@ $UNWATCHURL
 
 Per commentare e ricevere aiuto:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creata',
+'changed' => 'modificata',
 
 # Delete
 'deletepage' => 'Cancella pagina',

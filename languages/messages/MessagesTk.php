@@ -1907,6 +1907,8 @@ $UNWATCHURL
 
 Seslenme we goşmaça kömek:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'döredildi',
+'changed' => 'üýtgedildi',
 
 # Delete
 'deletepage' => 'Sahypany öçür',

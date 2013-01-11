@@ -2387,6 +2387,8 @@ $UNWATCHURL
 
 Qey hemkari u pêşniyazi:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'viraziya',
+'changed' => 'vurneya',
 
 # Delete
 'deletepage' => 'Pele bıestere',

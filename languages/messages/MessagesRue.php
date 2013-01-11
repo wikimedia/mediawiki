@@ -2163,6 +2163,8 @@ $UNWATCHURL
 
 Порада і контакт:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'створена',
+'changed' => 'змінена',
 
 # Delete
 'deletepage' => 'Змазати сторінку',

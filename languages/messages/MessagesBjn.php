@@ -2155,6 +2155,8 @@ $UNWATCHURL
 
 kitihan-bulik wan pangganian labih jauh:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => "ta'ulah",
+'changed' => "ta'ubah",
 
 # Delete
 'deletepage' => 'Hapus tungkaran',

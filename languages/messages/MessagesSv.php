@@ -2400,6 +2400,8 @@ $UNWATCHURL
 
 Feedback och ytterligare hjälp:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'skapad',
+'changed' => 'ändrad',
 
 # Delete
 'deletepage' => 'Ta bort sida',

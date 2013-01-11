@@ -900,6 +900,8 @@ e-mail\'ар $PAGEEDITOR_EMAIL
 
 Хәрү холва болн тус:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'бүтәв',
+'changed' => 'сольв',
 
 # Delete
 'deletepage' => 'Эн халхиг һарһҗ',

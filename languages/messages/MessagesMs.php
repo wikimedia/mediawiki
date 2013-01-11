@@ -2262,6 +2262,8 @@ $UNWATCHURL
 
 Maklum balas dan bantuan selanjutnya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'dicipta',
+'changed' => 'diubah',
 
 # Delete
 'deletepage' => 'Hapus laman',

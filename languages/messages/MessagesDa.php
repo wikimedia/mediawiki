@@ -2255,6 +2255,8 @@ $UNWATCHURL
 
 Tilbagemelding og yderligere hjælp:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'oprettet',
+'changed' => 'ændret',
 
 # Delete
 'deletepage' => 'Slet side',

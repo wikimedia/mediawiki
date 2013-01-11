@@ -1304,6 +1304,8 @@ $NEWPAGE
 {{SITENAME}}通知系统 – 会改卟倷𠮶监视列表设置，请去 {{canonicalurl:{{#special:EditWatchlist}}}}
 
 回馈同到别𠮶说明: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '建正嘞',
+'changed' => '改卟嘞',
 
 # Delete
 'deletepage' => '删卟页面',

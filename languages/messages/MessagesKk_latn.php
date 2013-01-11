@@ -1738,6 +1738,8 @@ Baqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:
 
 Sın-pikir berw jäne bılaýğı järdem alw üşin:
 {{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}',
+'created' => 'bastadı',
+'changed' => 'özgertti',
 
 # Delete
 'deletepage' => 'Betti joyw',

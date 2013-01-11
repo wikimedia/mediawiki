@@ -1915,6 +1915,8 @@ Du kriggst solang keen Bescheedgeev-E-Mails mehr, bet dat du de Siet wedder bes�
 
 --
 De Instellungen vun dien Oppasslist to ännern, gah na: {{canonicalurl:Special:Watchlist/edit}}',
+'created' => 'opstellt',
+'changed' => 'ännert',
 
 # Delete
 'deletepage' => 'Siet wegsmieten',

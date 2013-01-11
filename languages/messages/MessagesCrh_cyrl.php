@@ -1469,6 +1469,8 @@ $UNWATCHURL
 
 Ярдым ве теклифлер ичюн:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'яратылды',
+'changed' => 'денъиштирильди',
 
 # Delete
 'deletepage' => 'Саифени ёкъ эт',

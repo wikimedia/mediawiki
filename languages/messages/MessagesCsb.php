@@ -929,6 +929,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'unwatching' => 'Ju ni ùzéróm...',
 
 'enotif_reset' => 'Òznaczë wszëtczé artiklë jakno òbëzdrzóné',
+'created' => 'zrobionô',
+'changed' => 'zmienioné',
 
 # Delete
 'deletepage' => 'Rëmôj starnã',

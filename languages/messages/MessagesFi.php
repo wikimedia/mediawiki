@@ -2336,6 +2336,8 @@ $UNWATCHURL
 
 Palaute ja lisäapu osoitteessa:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'luonut sivun',
+'changed' => 'muuttanut sivua',
 
 # Delete
 'deletepage' => 'Poista sivu',

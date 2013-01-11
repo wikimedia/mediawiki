@@ -1419,6 +1419,8 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'enotif_lastvisited' => 'I tlawh hnuhnùn ber hnu lama tihdanglam zawng zawng en i duh chuan $1 en rawh.',
 'enotif_lastdiff' => 'Hë tihdanglamna hi en tùrin $1 thlír rawh.',
 'enotif_anon_editor' => 'hmangtu hriat loh $1',
+'created' => 'siam a ni ta',
+'changed' => 'tihdanglam a ni ta',
 
 # Delete
 'deletepage' => 'Hë phêk hi paih rawh',

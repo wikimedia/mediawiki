@@ -2019,6 +2019,8 @@ $UNWATCHURL
 
 فیڈبیک تے ہور مدد لئی:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'بن گیا',
+'changed' => 'بدلیا',
 
 # Delete
 'deletepage' => 'صفہ مٹاؤ',

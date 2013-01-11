@@ -2364,6 +2364,8 @@ wiki: $PAGEEDITOR_WIKI
 --
 ଆପଣା ଇ-ମେଲ ସୂଚନା ସଜାଣି ଦେଖିବା ନିମନ୍ତେ
 {{canonicalurl:{{#special:Preferences}}}} ଦେଖନ୍ତୁ',
+'created' => 'ତିଆରି କରାଗଲା',
+'changed' => 'ବଦଳାଗଲା',
 
 # Delete
 'deletepage' => 'ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ',

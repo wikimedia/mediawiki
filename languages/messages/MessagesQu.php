@@ -2252,6 +2252,8 @@ $UNWATCHURL
 
 Yanapasunaykipaq:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'kamarirqan',
+'changed' => 'hukchasqa',
 
 # Delete
 'deletepage' => "Kay p'anqata qulluy",

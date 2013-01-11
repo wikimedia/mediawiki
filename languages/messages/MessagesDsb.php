@@ -2191,6 +2191,8 @@ $UNWATCHURL
 
 Pšašanja a dalšna pomoc:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'napórał',
+'changed' => 'změnił',
 
 # Delete
 'deletepage' => 'Bok wulašowaś',

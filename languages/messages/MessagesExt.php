@@ -1441,6 +1441,8 @@ Pa hazel chambus ena tu lista e seguimientu, vesita
 
 Ayua la Güiquipeya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'criá',
+'changed' => 'chambau',
 
 # Delete
 'deletepage' => 'Esborral páhina',

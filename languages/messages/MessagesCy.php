@@ -2159,6 +2159,8 @@ $UNWATCHURL
 
 Am fwy o gymorth ac adborth:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'crëwyd',
+'changed' => 'Newidiwyd',
 
 # Delete
 'deletepage' => 'Dileer y dudalen',

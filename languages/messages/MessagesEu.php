@@ -1988,6 +1988,8 @@ $UNWATCHURL
 
 Laguntza:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'sortu',
+'changed' => 'aldatu',
 
 # Delete
 'deletepage' => 'Orrialdea ezabatu',

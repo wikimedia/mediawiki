@@ -2215,6 +2215,8 @@ $UNWATCHURL
 
 મંતવ્યો અને વધુ મદદ માટે 
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'બનાવ્યું',
+'changed' => 'બદલ્યું',
 
 # Delete
 'deletepage' => 'પાનું હટાવો',

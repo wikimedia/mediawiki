@@ -1956,6 +1956,8 @@ Uum ju Siede fon dien Kontrollieste tou läskjen, besäik
 $UNWATCHURL
 
 Touräächmäldengen un wiedere Hälpe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'näi anlaid',
+'changed' => 'annerd',
 
 # Delete
 'deletepage' => 'Siede läskje',

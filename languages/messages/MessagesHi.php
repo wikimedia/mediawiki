@@ -2259,6 +2259,8 @@ $UNWATCHURL
 
 राय देने या अधिक सहायता पाने के लिए:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'बनाया',
+'changed' => 'परिवर्तित किया',
 
 # Delete
 'deletepage' => 'पृष्ठ हटाएँ',

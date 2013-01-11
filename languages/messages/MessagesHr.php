@@ -2359,6 +2359,8 @@ $UNWATCHURL
 
 Za povratne informacije i pomoć posjetite:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'stvorio',
+'changed' => 'promijenio',
 
 # Delete
 'deletepage' => 'Izbriši stranicu',

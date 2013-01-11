@@ -877,6 +877,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'enotif_lastvisited' => 'Sēo $1 for eall hƿearfas siþþan þīn læst cyme.',
 'enotif_lastdiff' => 'Sēo $1 to sēonne þisne hƿearf.',
 'enotif_anon_editor' => 'uncūþ brūcend $1',
+'created' => 'ȝescapen',
+'changed' => 'hƿorfen',
 
 # Delete
 'deletepage' => 'Sīdan āfeorsian',

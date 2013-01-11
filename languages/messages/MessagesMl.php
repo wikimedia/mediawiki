@@ -2386,6 +2386,8 @@ $UNWATCHURL
 
 അഭിപ്രായം അറിയിക്കാനും മറ്റു സഹായങ്ങൾക്കും:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'സൃഷ്ടിച്ചു',
+'changed' => 'മാറ്റിയിരിക്കുന്നു',
 
 # Delete
 'deletepage' => 'താൾ മായ്ക്കുക',

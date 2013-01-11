@@ -1487,6 +1487,8 @@ $2',
 'enotif_impersonal_salutation' => '{{SITENAME}} ಸದಸ್ಯ',
 'enotif_lastvisited' => 'ನಿಮ್ಮ ಕಳೆದ ಭೇಟಿಯ ನಂತರದ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳಿಗೆ $1 ನೋಡಿ.',
 'enotif_anon_editor' => 'ಅನಾಮಧೇಯ ಸದಸ್ಯ $1',
+'created' => 'ಸೃಷ್ಟಿಸಲ್ಪಟ್ಟಿದೆ',
+'changed' => 'ಬದಲಾಯಿಸಲಾಗಿದೆ',
 
 # Delete
 'deletepage' => 'ಪುಟವನ್ನು ಅಳಿಸಿ',

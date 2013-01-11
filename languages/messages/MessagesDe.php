@@ -2472,6 +2472,8 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{canonicalurl
 Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
 
 Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'erstellt',
+'changed' => 'geändert',
 
 # Delete
 'deletepage' => 'Seite löschen',
@@ -3215,7 +3217,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisches Wort|Magische Wörter}} ($1)',
 'pageinfo-hidden-categories' => 'Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)',
-'pageinfo-transclusions' => '{{PLURAL:$1|Seite|Seiten}} die in ($1) eingebunden {{PLURAL:$1|ist|sind}}',
+'pageinfo-transclusions' => 'Eingebunden in {{PLURAL:$1|1 Seite|$1 Seiten}}',
 'pageinfo-toolboxlink' => 'Seiteninformationen',
 'pageinfo-redirectsto' => 'Weiterleitungen nach',
 'pageinfo-redirectsto-info' => 'Information',

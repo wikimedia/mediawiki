@@ -2323,6 +2323,8 @@ wiki: $PAGEEDITOR_WIKI
 $UNWATCHURL
 反馈与其他帮助:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '创建',
+'changed' => '更改',
 
 # Delete
 'deletepage' => '删除页面',

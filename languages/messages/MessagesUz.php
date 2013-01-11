@@ -1156,6 +1156,8 @@ $UNWATCHURL
 
 Qayta aloqa va yordam
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'yaratildi',
+'changed' => 'o‘zgartirildi',
 
 # Delete
 'deletepage' => "Sahifani o'chirish",

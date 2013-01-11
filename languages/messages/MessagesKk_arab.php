@@ -1775,6 +1775,8 @@ $NEWPAGE
 
 سىن-پىكىر بەرۋ جانە بىلايعى جاردەم الۋ ٴۇشىن:
 {{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}',
+'created' => 'باستادى',
+'changed' => 'وزگەرتتى',
 
 # Delete
 'deletepage' => 'بەتتى جويۋ',

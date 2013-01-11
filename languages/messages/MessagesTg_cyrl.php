@@ -1471,6 +1471,8 @@ $NEWPAGE
 
 Пешниҳодот ва кӯмаки бештар:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'эҷод шуд',
+'changed' => 'тағйирёфта',
 
 # Delete
 'deletepage' => 'Ҳазфи саҳифа',

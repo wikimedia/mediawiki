@@ -1832,6 +1832,8 @@ $NEWPAGE
 
 Հետադարձ կապ և օգնություն՝
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ստեղծված է',
+'changed' => 'փոփոխված է',
 
 # Delete
 'deletepage' => 'Ջնջել էջը',

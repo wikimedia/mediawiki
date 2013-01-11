@@ -2395,6 +2395,8 @@ $UNWATCHURL
 
 Tilbakemelding og videre assistanse:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'opprettet',
+'changed' => 'endret',
 
 # Delete
 'deletepage' => 'Slett side',

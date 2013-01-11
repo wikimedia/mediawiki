@@ -1798,6 +1798,8 @@ $UNWATCHURL
 
 Pid\'oitelend da joksii abu:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'om sätud',
+'changed' => 'om toižetadud',
 
 # Delete
 'deletepage' => "Čuta lehtpol' poiš",

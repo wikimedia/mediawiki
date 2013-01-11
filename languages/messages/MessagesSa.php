@@ -2294,6 +2294,8 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'enotif_lastdiff' => 'एतत्परिवर्तनं दृष्टुं $1 पश्यतु ।',
 'enotif_anon_editor' => 'अनामकः योजकः $1',
 'enotif_body' => 'आत्मीय $ अवलोकनबन्धो',
+'created' => 'सृष्टम् ।',
+'changed' => 'परिवर्तितम् ।',
 
 # Delete
 'deletepage' => 'पृष्ठं निराकरोतु।',

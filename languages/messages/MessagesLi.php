@@ -2158,6 +2158,8 @@ $UNWATCHURL
 
 Commentaar en wiejer assistentie:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'aangemaak',
+'changed' => 'verangerd',
 
 # Delete
 'deletepage' => 'Pagina ewegsjaffe',

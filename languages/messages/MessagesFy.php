@@ -1733,6 +1733,8 @@ om jo folchlistynstellings te feroarjen.
 
 Reaksjes en fierdere help:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'oanmakke',
+'changed' => 'feroare',
 
 # Delete
 'deletepage' => 'Wisk side',

@@ -2160,6 +2160,8 @@ $UNWATCHURL
 
 Fún ìrànwọ́ àti ìbérè:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'dídá',
+'changed' => 'títúnṣẹ',
 
 # Delete
 'deletepage' => 'Ìparẹ́ ojúewé',

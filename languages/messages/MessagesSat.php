@@ -969,6 +969,8 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ńeloḱ kana...',
 
+'changed' => 'Bodolena',
+
 # Delete
 'deletepage' => 'Sakam get giḍikam',
 'delete-legend' => 'Get giḍi',

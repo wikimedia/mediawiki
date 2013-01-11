@@ -1295,6 +1295,8 @@ Agar şumo dertar az fehristi nazarotaton in sahifaro hazv kardan xohed, dar men
 'enotif_lastvisited' => 'Baroi didani hamai taƣjirot az oxirin bore, ki sar zadaed $1ro bubined.',
 'enotif_lastdiff' => 'Baroi namoişi in taƣjir $1ro bubined.',
 'enotif_anon_editor' => 'korbari noşinos $1',
+'created' => 'eçod şud',
+'changed' => 'taƣjirjofta',
 
 # Delete
 'deletepage' => 'Hazfi sahifa',
