@@ -46,6 +46,10 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $swiftCDNExpiry; // integer; how long to cache things in the CDN
 	protected $swiftCDNPurgable; // boolean; whether object CDN purging is enabled
 
+	// Rados Gateway specific options
+	protected $rgwS3AccessKey; // string; S3 access key
+	protected $rgwS3SecretKey; // string; S3 authentication key
+
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
 	protected $sessionStarted = 0; // integer UNIX timestamp
@@ -87,6 +91,16 @@ class SwiftFileBackend extends FileBackendStore {
 	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, XCache, ect.
 	 *                          If those are not available, then the main cache will be used.
 	 *                          This is probably insecure in shared hosting environments.
+	 *   - rgwS3AccessKey     : Ragos Gateway S3 "access key" value on the account.
+	 *                          Do not set this until it has been set in the backend.
+	 *                          This is used for generating expiring pre-authenticated URLs.
+	 *                          Only use this when using rgw and to work around
+	 *                          http://tracker.newdream.net/issues/3454.
+	 *   - rgwS3SecretKey     : Ragos Gateway S3 "secret key" value on the account.
+	 *                          Do not set this until it has been set in the backend.
+	 *                          This is used for generating expiring pre-authenticated URLs.
+	 *                          Only use this when using rgw and to work around
+	 *                          http://tracker.newdream.net/issues/3454.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -122,6 +136,12 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
 			? $config['swiftCDNPurgable']
 			: true;
+		$this->rgwS3AccessKey = isset( $config['rgwS3AccessKey'] )
+			? $config['rgwS3AccessKey']
+			: '';
+		$this->rgwS3SecretKey = isset( $config['rgwS3SecretKey'] )
+			? $config['rgwS3SecretKey']
+			: '';
 		// Cache container information to mask latency
 		$this->memCache = wfGetMainCache();
 		// Process cache for container info
@@ -1180,7 +1200,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return string|null
 	 */
 	public function getFileHttpUrl( array $params ) {
-		if ( $this->swiftTempUrlKey != '' ) { // temp urls enabled
+		if ( $this->swiftTempUrlKey != '' ||
+			( $this->rgwS3AccessKey != '' && $this->rgwS3SecretKey != '' ) )
+		{
 			list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 			if ( $srcRel === null ) {
 				return null; // invalid path
@@ -1188,7 +1210,31 @@ class SwiftFileBackend extends FileBackendStore {
 			try {
 				$sContObj = $this->getContainer( $srcCont );
 				$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-				return $obj->get_temp_url( $this->swiftTempUrlKey, 86400, "GET" );
+				if ( $this->swiftTempUrlKey != '' ) {
+					return $obj->get_temp_url( $this->swiftTempUrlKey, 86400, "GET" );
+				} else { // give S3 API URL for rgw
+					$expires = time() + 86400;
+					// Path for signature starts with the bucket
+					$spath = '/' . rawurlencode( $srcCont ) . '/' .
+						str_replace( '%2F', '/', rawurlencode( $srcRel ) );
+					// Calculate the hash
+					$signature = base64_encode( hash_hmac(
+						'sha1',
+						"GET\n\n\n{$expires}\n$spath",
+						$this->rgwS3SecretKey,
+						true // raw
+					) );
+					// See http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
+					// Note: adding a newline for empty CanonicalizedAmzHeaders does not work.
+					return wfAppendQuery(
+						str_replace( '/swift/v1', '', // S3 API is the rgw default
+							$sContObj->cfs_http->getStorageUrl() . $spath ),
+						array(
+							'Signature'      => $signature,
+							'Expires'        => $expires,
+							'AWSAccessKeyId' => $this->rgwS3AccessKey )
+					);
+				}
 			} catch ( NoSuchContainerException $e ) {
 			} catch ( CloudFilesException $e ) { // some other exception?
 				$this->handleException( $e, null, __METHOD__, $params );
