@@ -231,9 +231,8 @@ class ApiUpload extends ApiBase {
 							'--quiet'
 						)
 					) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-					// Start a process in the background. Enforce the time limits via PHP
-					// since ulimit4.sh seems to often not work for this particular usage.
-					wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
+					// Start a process in the background.
+					wfShellExec( $cmd, $retVal, array(), array( 'time' => 3600, 'walltime' => 3600 ) );
 					if ( $retVal == 0 ) {
 						$result['result'] = 'Poll';
 					} else {
@@ -614,9 +613,8 @@ class ApiUpload extends ApiBase {
 					'--quiet'
 				)
 			) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-			// Start a process in the background. Enforce the time limits via PHP
-			// since ulimit4.sh seems to often not work for this particular usage.
-			wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
+			// Start a process in the background.
+			wfShellExec( $cmd, $retVal, array(), array( 'time' => 3600, 'walltime' => 3600 ) );
 			if ( $retVal == 0 ) {
 				$result['result'] = 'Poll';
 			} else {

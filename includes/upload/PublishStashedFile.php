@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 require_once( __DIR__ . '/../../maintenance/Maintenance.php' );
-set_time_limit( 3600 ); // 1 hour
 
 /**
  * Upload a file from the upload stash into the local file repo.
