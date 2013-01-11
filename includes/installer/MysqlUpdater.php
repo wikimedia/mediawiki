@@ -179,7 +179,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'updatelog',     'ul_value',         'patch-ul_value.sql' ),
 			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
 			array( 'dropIndex', 'iwlinks',      'iwl_prefix',       'patch-kill-iwl_prefix.sql' ),
-			array( 'dropIndex', 'iwlinks',      'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
 			array( 'addField', 'categorylinks', 'cl_collation',     'patch-categorylinks-better-collation.sql' ),
 			array( 'doClFieldsUpdate' ),
 			array( 'doCollationUpdate' ),
@@ -230,6 +229,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
 			array( 'addIndex', 'page_props', 'pp_propname_page',  'patch-page_props-propname-page-index.sql' ),
 			array( 'addIndex', 'image', 'img_media_mime', 'patch-img_media_mime-index.sql' ),
+
+			// 1.22
+			array( 'doIwlinksIndexNonUnique' ),
+			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',  'patch-iwlinks-from-title-index.sql' ),
 		);
 	}
 
@@ -901,5 +904,19 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql', false, "Making user_last_timestamp nullable" );
+	}
+
+	protected function doIwlinksIndexNonUnique() {
+		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from' );
+		if ( is_array( $info ) && $info[0]->Non_unique ) {
+			$this->output( "...iwl_prefix_title_from index is already non-UNIQUE.\n" );
+			return true;
+		}
+		if ( $this->skipSchema ) {
+			$this->output( "...skipping schema change (making iwl_prefix_title_from index non-UNIQUE).\n" );
+			return false;
+		}
+
+		return $this->applyPatch( 'patch-iwl_prefix_title_from-non-unique.sql', false, "Making iwl_prefix_title_from index non-UNIQUE" );
 	}
 }
