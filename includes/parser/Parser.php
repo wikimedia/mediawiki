@@ -412,9 +412,7 @@ class Parser {
 		if ( !( $options->getDisableContentConversion()
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) ) )
 		{
-			# Run convert unconditionally in 1.18-compatible mode
-			global $wgBug34832TransitionalRollback;
-			if ( $wgBug34832TransitionalRollback || !$this->mOptions->getInterfaceMessage() ) {
+			if ( !$this->mOptions->getInterfaceMessage() ) {
 				# The position of the convert() call should not be changed. it
 				# assumes that the links are all replaced and the only thing left
 				# is the <nowiki> mark.
@@ -781,12 +779,7 @@ class Parser {
 	 * Get the language object for language conversion
 	 */
 	function getConverterLanguage() {
-		global $wgBug34832TransitionalRollback, $wgContLang;
-		if ( $wgBug34832TransitionalRollback ) {
-			return $wgContLang;
-		} else {
-			return $this->getTargetLanguage();
-		}
+		return $this->getTargetLanguage();
 	}
 
 	/**
