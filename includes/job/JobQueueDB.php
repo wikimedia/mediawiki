@@ -439,6 +439,7 @@ class JobQueueDB extends JobQueue {
 					__METHOD__
 				);
 				$count += $dbw->affectedRows();
+				wfIncrStats( 'job-recycle', $dbw->affectedRows() );
 			}
 		}
 
