@@ -153,13 +153,26 @@ abstract class JobQueue {
 	abstract protected function doGetAcquiredCount();
 
 	/**
+	 * Push a single jobs into the queue.
+	 * This does not require $wgJobClasses to be set for the given job type.
+	 *
+	 * @param $job Job
+	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
+	 * @throws MWException
+	 * @return bool Returns false on failure
+	 */
+	final public function push( Job $job, $flags = 0 ) {
+		return $this->batchPush( array( $job ), $flags );
+	}
+
+	/**
 	 * Push a batch of jobs into the queue.
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 *
 	 * @param $jobs array List of Jobs
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
 	 * @throws MWException
-	 * @return bool
+	 * @return bool Returns false on failure
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		foreach ( $jobs as $job ) {
