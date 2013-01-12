@@ -37,20 +37,11 @@
  */
 class ApiQuery extends ApiBase {
 
-	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
-
-	/**
-	 * @var ApiPageSet
-	 */
-	private $mPageSet;
-
-	private $params, $redirects, $convertTitles, $iwUrl;
-
 	/**
 	 * List of Api Query prop modules
 	 * @var array
 	 */
-	private $mQueryPropModules = array(
+	private static $QueryPropModules = array(
 		'categories' => 'ApiQueryCategories',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
@@ -71,7 +62,7 @@ class ApiQuery extends ApiBase {
 	 * List of Api Query list modules
 	 * @var array
 	 */
-	private $mQueryListModules = array(
+	private static $QueryListModules = array(
 		'allcategories' => 'ApiQueryAllCategories',
 		'allimages' => 'ApiQueryAllImages',
 		'alllinks' => 'ApiQueryAllLinks',
@@ -105,7 +96,7 @@ class ApiQuery extends ApiBase {
 	 * List of Api Query meta modules
 	 * @var array
 	 */
-	private $mQueryMetaModules = array(
+	private static $QueryMetaModules = array(
 		'allmessages' => 'ApiQueryAllMessages',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
@@ -144,8 +135,15 @@ class ApiQuery extends ApiBase {
 		'watchlistraw' => 'ApiQueryWatchlistRaw',
 	);
 
+	/**
+	 * @var ApiPageSet
+	 */
+	private $mPageSet;
+
+	private $params, $redirects, $convertTitles, $iwUrl;
 	private $mSlaveDB = null;
 	private $mNamedDB = array();
+	private $mModuleMgr;
 
 	protected $mAllowedGenerators;
 
@@ -156,30 +154,32 @@ class ApiQuery extends ApiBase {
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 
-		// Allow custom modules to be added in LocalSettings.php
-		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules, $wgAPIGeneratorModules;
-		self::appendUserModules( $this->mQueryPropModules, $wgAPIPropModules );
-		self::appendUserModules( $this->mQueryListModules, $wgAPIListModules );
-		self::appendUserModules( $this->mQueryMetaModules, $wgAPIMetaModules );
-		self::appendUserModules( $this->mQueryGenerators, $wgAPIGeneratorModules );
+		$this->mModuleMgr = new ApiModuleManager( $this );
 
-		$this->mPropModuleNames = array_keys( $this->mQueryPropModules );
-		$this->mListModuleNames = array_keys( $this->mQueryListModules );
-		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
+		// Allow custom modules to be added in LocalSettings.php
+		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules;
+		$this->mModuleMgr->addModules( self::$QueryPropModules, 'prop' );
+		$this->mModuleMgr->addModules( $wgAPIPropModules, 'prop' );
+		$this->mModuleMgr->addModules( self::$QueryListModules, 'list' );
+		$this->mModuleMgr->addModules( $wgAPIListModules, 'list' );
+		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
+		$this->mModuleMgr->addModules( $wgAPIMetaModules, 'meta' );
+
+		global $wgAPIGeneratorModules;
+		if ( is_array( $wgAPIGeneratorModules ) ) {
+			foreach ( $wgAPIGeneratorModules as $moduleName => $moduleClass ) {
+				$this->mQueryGenerators[$moduleName] = $moduleClass;
+			}
+		}
 		$this->mAllowedGenerators = array_keys( $this->mQueryGenerators );
 	}
 
 	/**
-	 * Helper function to append any add-in modules to the list
-	 * @param $modules array Module array
-	 * @param $newModules array Module array to add to $modules
+	 * Overrides to return this instance's module manager.
+	 * @return ApiModuleManager
 	 */
-	private static function appendUserModules( &$modules, $newModules ) {
-		if ( is_array( $newModules ) ) {
-			foreach ( $newModules as $moduleName => $moduleClass ) {
-				$modules[$moduleName] = $moduleClass;
-			}
-		}
+	public function getModuleManager() {
+		return $this->mModuleMgr;
 	}
 
 	/**
@@ -224,10 +224,11 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Get the array mapping module names to class names
+	 * @deprecated since 1.21, use getModuleManager()'s methods instead
 	 * @return array array(modulename => classname)
 	 */
 	public function getModules() {
-		return array_merge( $this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules );
+		return $this->getModuleManager()->getNamesWithClasses();
 	}
 
 	/**
@@ -240,23 +241,12 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Get whether the specified module is a prop, list or a meta query module
+	 * @deprecated since 1.21, use getModuleManager()->getModuleGroup()
 	 * @param $moduleName string Name of the module to find type for
 	 * @return mixed string or null
 	 */
 	function getModuleType( $moduleName ) {
-		if ( isset( $this->mQueryPropModules[$moduleName] ) ) {
-			return 'prop';
-		}
-
-		if ( isset( $this->mQueryListModules[$moduleName] ) ) {
-			return 'list';
-		}
-
-		if ( isset( $this->mQueryMetaModules[$moduleName] ) ) {
-			return 'meta';
-		}
-
-		return null;
+		return $this->getModuleManager()->getModuleGroup( $moduleName );
 	}
 
 	/**
@@ -295,9 +285,9 @@ class ApiQuery extends ApiBase {
 
 		// Instantiate requested modules
 		$modules = array();
-		$this->instantiateModules( $modules, 'prop', $this->mQueryPropModules );
-		$this->instantiateModules( $modules, 'list', $this->mQueryListModules );
-		$this->instantiateModules( $modules, 'meta', $this->mQueryMetaModules );
+		$this->instantiateModules( $modules, 'prop' );
+		$this->instantiateModules( $modules, 'list' );
+		$this->instantiateModules( $modules, 'meta' );
 
 		$cacheMode = 'public';
 
@@ -378,12 +368,11 @@ class ApiQuery extends ApiBase {
 	 * Create instances of all modules requested by the client
 	 * @param $modules Array to append instantiated modules to
 	 * @param $param string Parameter name to read modules from
-	 * @param $moduleList Array array(modulename => classname)
 	 */
-	private function instantiateModules( &$modules, $param, $moduleList ) {
+	private function instantiateModules( &$modules, $param ) {
 		if ( isset( $this->params[$param] ) ) {
 			foreach ( $this->params[$param] as $moduleName ) {
-				$modules[] = new $moduleList[$moduleName] ( $this, $moduleName );
+				$modules[] = $this->mModuleMgr->instantiateModule( $moduleName );
 			}
 		}
 	}
@@ -594,15 +583,10 @@ class ApiQuery extends ApiBase {
 	 * @return ApiQueryGeneratorBase
 	 */
 	public function newGenerator( $generatorName ) {
-		// Find class that implements requested generator
-		if ( isset( $this->mQueryListModules[$generatorName] ) ) {
-			$className = $this->mQueryListModules[$generatorName];
-		} elseif ( isset( $this->mQueryPropModules[$generatorName] ) ) {
-			$className = $this->mQueryPropModules[$generatorName];
-		} else {
-			ApiBase::dieDebug( __METHOD__, "Unknown generator=$generatorName" );
+		$generator = $this->mModuleMgr->instantiateModule( $generatorName );
+		if ( is_null( $generator ) ) {
+			$this->dieUsage( "Unknown generator=$generatorName", 'badgenerator' );
 		}
-		$generator = new $className ( $this, $generatorName );
 		if ( !$generator instanceof ApiQueryGeneratorBase ) {
 			$this->dieUsage( "Module $generatorName cannot be used as a generator", 'badgenerator' );
 		}
@@ -642,15 +626,15 @@ class ApiQuery extends ApiBase {
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->mPropModuleNames
+				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'prop' )
 			),
 			'list' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->mListModuleNames
+				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'list' )
 			),
 			'meta' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->mMetaModuleNames
+				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'meta' )
 			),
 			'generator' => array(
 				ApiBase::PARAM_TYPE => $this->mAllowedGenerators
@@ -676,11 +660,11 @@ class ApiQuery extends ApiBase {
 		$querySeparator = str_repeat( '--- ', 12 );
 		$moduleSeparator = str_repeat( '*** ', 14 );
 		$msg = "\n$querySeparator Query: Prop  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
+		$msg .= $this->makeHelpMsgHelper( 'prop' );
 		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );
+		$msg .= $this->makeHelpMsgHelper( 'list' );
 		$msg .= "\n$querySeparator Query: Meta  $querySeparator\n\n";
-		$msg .= $this->makeHelpMsgHelper( $this->mQueryMetaModules, 'meta' );
+		$msg .= $this->makeHelpMsgHelper( 'meta' );
 		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
 
 		// Use parent to make default message for the query module
@@ -690,21 +674,22 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * For all modules in $moduleList, generate help messages and join them together
-	 * @param $moduleList Array array(modulename => classname)
-	 * @param $paramName string Parameter name
+	 * For all modules of a given group, generate help messages and join them together
+	 * @param $group string Module group
 	 * @return string
 	 */
-	private function makeHelpMsgHelper( $moduleList, $paramName ) {
+	private function makeHelpMsgHelper( $group ) {
 		$moduleDescriptions = array();
 
-		foreach ( $moduleList as $moduleName => $moduleClass ) {
+		$moduleNames = $this->mModuleMgr->getNames( $group );
+		sort( $moduleNames );
+		foreach ( $moduleNames as $name ) {
 			/**
 			 * @var $module ApiQueryBase
 			 */
-			$module = new $moduleClass( $this, $moduleName, null );
+			$module = $this->mModuleMgr->instantiateModule( $name );
 
-			$msg = ApiMain::makeHelpMsgHeader( $module, $paramName );
+			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
 			$msg2 = $module->makeHelpMsg();
 			if ( $msg2 !== false ) {
 				$msg .= $msg2;

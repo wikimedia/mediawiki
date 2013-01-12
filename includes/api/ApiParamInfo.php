@@ -45,39 +45,10 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 
 		$res = array();
-		if ( is_array( $params['modules'] ) ) {
-			$modules = $this->getMain()->getModules();
-			$res['modules'] = array();
-			foreach ( $params['modules'] as $mod ) {
-				if ( !isset( $modules[$mod] ) ) {
-					$res['modules'][] = array( 'name' => $mod, 'missing' => '' );
-					continue;
-				}
-				$obj = new $modules[$mod]( $this->getMain(), $mod );
 
-				$item = $this->getClassInfo( $obj );
-				$item['name'] = $mod;
-				$res['modules'][] = $item;
-			}
-			$result->setIndexedTagName( $res['modules'], 'module' );
-		}
+		$this->addModulesInfo( $params, 'modules', $res, $result );
 
-		if ( is_array( $params['querymodules'] ) ) {
-			$queryModules = $this->queryObj->getModules();
-			$res['querymodules'] = array();
-			foreach ( $params['querymodules'] as $qm ) {
-				if ( !isset( $queryModules[$qm] ) ) {
-					$res['querymodules'][] = array( 'name' => $qm, 'missing' => '' );
-					continue;
-				}
-				$obj = new $queryModules[$qm]( $this, $qm );
-				$item = $this->getClassInfo( $obj );
-				$item['name'] = $qm;
-				$item['querytype'] = $this->queryObj->getModuleType( $qm );
-				$res['querymodules'][] = $item;
-			}
-			$result->setIndexedTagName( $res['querymodules'], 'module' );
-		}
+		$this->addModulesInfo( $params, 'querymodules', $res, $result );
 
 		if ( $params['mainmodule'] ) {
 			$res['mainmodule'] = $this->getClassInfo( $this->getMain() );
@@ -88,29 +59,48 @@ class ApiParamInfo extends ApiBase {
 			$res['pagesetmodule'] = $this->getClassInfo( $pageSet );
 		}
 
-		if ( is_array( $params['formatmodules'] ) ) {
-			$formats = $this->getMain()->getFormats();
-			$res['formatmodules'] = array();
-			foreach ( $params['formatmodules'] as $f ) {
-				if ( !isset( $formats[$f] ) ) {
-					$res['formatmodules'][] = array( 'name' => $f, 'missing' => '' );
-					continue;
-				}
-				$obj = new $formats[$f]( $this, $f );
-				$item = $this->getClassInfo( $obj );
-				$item['name'] = $f;
-				$res['formatmodules'][] = $item;
-			}
-			$result->setIndexedTagName( $res['formatmodules'], 'module' );
-		}
+		$this->addModulesInfo( $params, 'formatmodules', $res, $result );
+
 		$result->addValue( null, $this->getModuleName(), $res );
+	}
+
+	/**
+	 * If the type is requested in parameters, adds a section to res with module info.
+	 * @param array $params user parameters array
+	 * @param string $type parameter name
+	 * @param array $res store results in this array
+	 * @param array $result results object to set indexed tag.
+	 */
+	private function addModulesInfo( $params, $type, &$res, $result ) {
+		if ( !is_array( $params[$type] ) ) return;
+		$isQuery = ( $type === 'querymodules' );
+		if ( $isQuery ) {
+			$mgr = $this->queryObj->getModuleManager();
+		} else {
+			$mgr = $this->getMain()->getModuleManager();
+		}
+		$res[$type] = array();
+		foreach ( $params[$type] as $mod ) {
+			if ( !$mgr->isDefined( $mod ) ) {
+				$res[$type][] = array( 'name' => $mod, 'missing' => '' );
+				continue;
+			}
+			$obj = $mgr->instantiateModule( $mod );
+			$item = $this->getClassInfo( $obj );
+			$item['name'] = $mod;
+			if ( $isQuery ) {
+				$item['querytype'] = $mgr->getModuleGroup( $mod );
+			}
+			$res[$type][] = $item;
+		}
+		$result->setIndexedTagName( $res[$type], 'module' );
 	}
 
 	/**
 	 * @param $obj ApiBase
 	 * @return ApiResult
 	 */
-	function getClassInfo( $obj ) {
+	private function getClassInfo( $obj ) {
 		$result = $this->getResult();
 		$retval['classname'] = get_class( $obj );
 		$retval['description'] = implode( "\n", (array)$obj->getFinalDescription() );
@@ -319,11 +309,11 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$modules = array_keys( $this->getMain()->getModules() );
+		$modules = $this->getMain()->getModuleManager()->getNames( 'action' );
 		sort( $modules );
-		$querymodules = array_keys( $this->queryObj->getModules() );
+		$querymodules = $this->queryObj->getModuleManager()->getNames();
 		sort( $querymodules );
-		$formatmodules = array_keys( $this->getMain()->getFormats() );
+		$formatmodules = $this->getMain()->getModuleManager()->getNames( 'format' );
 		sort( $formatmodules );
 		return array(
 			'modules' => array(
