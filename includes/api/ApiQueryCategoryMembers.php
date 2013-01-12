@@ -106,11 +106,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		} else {
 			if ( $params['continue'] ) {
 				$cont = explode( '|', $params['continue'], 3 );
-				if ( count( $cont ) != 3 ) {
-					$this->dieUsage( 'Invalid continue param. You should pass the original value returned '.
-						'by the previous query', '_badcontinue'
-					);
-				}
+				$this->dieContinueUsageIf( count( $cont ) != 3 );
 
 				// Remove the types to skip from $queryTypes
 				$contTypeIndex = array_search( $cont[0], $queryTypes );
@@ -403,7 +399,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
-				array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 			)
 		);
 	}

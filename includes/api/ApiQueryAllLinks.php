@@ -104,15 +104,11 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$continueArr = explode( '|', $params['continue'] );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			if ( $params['unique'] ) {
-				if ( count( $continueArr ) != 1 ) {
-					$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
-				}
+				$this->dieContinueUsageIf( count( $continueArr ) != 1 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
 				$this->addWhere( "{$pfx}title $op= $continueTitle" );
 			} else {
-				if ( count( $continueArr ) != 2 ) {
-					$this->dieUsage( 'Invalid continue parameter', 'badcontinue' );
-				}
+				$this->dieContinueUsageIf( count( $continueArr ) != 2 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
 				$continueFrom = intval( $continueArr[1] );
 				$this->addWhere(
@@ -279,7 +275,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$link = $this->descriptionLink;
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => "{$m} cannot return corresponding page ids in unique {$link}s mode" ),
-			array( 'code' => 'badcontinue', 'info' => 'Invalid continue parameter' ),
 		) );
 	}
 
