@@ -28,6 +28,7 @@
  * @since 1.21
  */
 class JobQueueDB extends JobQueue {
+	const ROOTJOB_TTL     = 1209600; // integer; seconds to remember root jobs (14 days)
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
 	const CACHE_TTL_LONG  = 300; // integer; seconds to cache info that is kept up to date
 	const MAX_AGE_PRUNE   = 604800; // integer; seconds a job can live once claimed
@@ -215,10 +216,6 @@ class JobQueueDB extends JobQueue {
 
 		$uuid = wfRandomString( 32 ); // pop attempt
 		$job = false; // job popped off
-		// Occasionally recycle jobs back into the queue that have been claimed too long
-		if ( mt_rand( 0, 99 ) == 0 ) {
-			$this->recycleStaleJobs();
-		}
 		do { // retry when our row is invalid or deleted as a duplicate
 			// Try to reserve a row in the DB...
 			if ( in_array( $this->order, array( 'fifo', 'timestamp' ) ) ) {
@@ -401,10 +398,10 @@ class JobQueueDB extends JobQueue {
 	 *
 	 * @return integer Number of jobs recycled/deleted
 	 */
-	protected function recycleStaleJobs() {
+	public function recycleAndDeleteStaleJobs() {
 		global $wgMemc;
 
-		$now   = time();
+		$now = time();
 		list( $dbw, $scope ) = $this->getMasterDB();
 		$count = 0; // affected rows
 
@@ -519,7 +516,7 @@ class JobQueueDB extends JobQueue {
 			}
 
 			// Update the timestamp of the last root job started at the location...
-			return $wgMemc->set( $key, $params['rootJobTimestamp'], 14*86400 ); // 2 weeks
+			return $wgMemc->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
 		} );
 
 		return true;
@@ -555,6 +552,18 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function doWaitForBackups() {
 		wfWaitForSlaves();
+	}
+
+	/**
+	 * @return Array
+	 */
+	protected function doGetPeriodicTasks() {
+		return array(
+			'recycleAndDeleteStaleJobs' => array(
+				'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
+				'period'   => ceil( $this->claimTTL / 2 )
+			)
+		);
 	}
 
 	/**
