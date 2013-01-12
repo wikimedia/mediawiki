@@ -123,6 +123,16 @@ abstract class ApiBase extends ContextSource {
 		return $this->mModuleName;
 	}
 
+
+	/**
+	 * Get the module manager, or null if this module has no sub-modules
+	 * @since 1.21
+	 * @return ApiModuleManager
+	 */
+	public function getModuleManager() {
+		return null;
+	}
+
 	/**
 	 * Get parameter prefix (usually two letters or an empty string).
 	 * @return string
@@ -254,6 +264,8 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msg = $lnPrfx . implode( $lnPrfx, $msg ) . "\n";
 
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, false, $this->getHelpUrls() );
+
 			if ( $this->isReadMode() ) {
 				$msg .= "\nThis module requires read rights";
 			}
@@ -297,8 +309,6 @@ abstract class ApiBase extends ContextSource {
 					}
 				}
 			}
-
-			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
 
 			if ( $this->getMain()->getShowVersions() ) {
 				$versions = $this->getVersion();
