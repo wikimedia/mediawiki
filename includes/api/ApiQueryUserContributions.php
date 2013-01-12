@@ -160,10 +160,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Handle continue parameter
 		if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
 			$continue = explode( '|', $this->params['continue'] );
-			if ( count( $continue ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the original ' .
-					'value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $continue ) != 2 );
 			$db = $this->getDB();
 			$encUser = $db->addQuotes( $continue[0] );
 			$encTS = $db->addQuotes( $db->timestamp( $continue[1] ) );

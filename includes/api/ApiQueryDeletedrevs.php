@@ -160,10 +160,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( !is_null( $params['continue'] ) && ( $mode == 'all' || $mode == 'revs' ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 3 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', 'badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$ns = intval( $cont[0] );
+			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] || !MWNamespace::exists( $ns ) );
 			$title = $db->addQuotes( $cont[1] );
 			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
@@ -397,7 +396,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision information' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision content' ),
-			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 			array( 'code' => 'badparams', 'info' => "The 'from' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'to' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'prefix' parameter cannot be used in modes 1 or 2" ),

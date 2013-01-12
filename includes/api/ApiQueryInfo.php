@@ -268,10 +268,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
 			$cont = explode( '|', $this->params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the original ' .
-						'value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$conttitle = Title::makeTitleSafe( $cont[0], $cont[1] );
 			foreach ( $this->everything as $pageid => $title ) {
 				if ( Title::compare( $title, $conttitle ) >= 0 ) {
@@ -807,12 +804,6 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function getDescription() {
 		return 'Get basic page information such as namespace, title, last touched date, ...';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
 	}
 
 	public function getExamples() {
