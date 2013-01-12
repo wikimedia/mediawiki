@@ -180,4 +180,20 @@ jQuery( document ).ready( function ( $ ) {
 		$tzTextbox.blur( updateTimezoneSelection );
 		updateTimezoneSelection();
 	}
+
+	// Preserve the tab after saving the preferences
+	// Not using cookies, because their deletion results are inconsistent.
+	// Not using jStorage due to its enormous size (for this feature)
+	if ( window.sessionStorage !== undefined ) {
+		if ( window.sessionStorage.getItem( 'mediawikiPreferencesTab' ) !== null ) {
+			switchPrefTab( window.sessionStorage.getItem( 'mediawikiPreferencesTab' ), 'noHash' );
+		}
+		// Deleting the key, the tab states should be reset until we press Save
+		window.sessionStorage.removeItem( 'mediawikiPreferencesTab' );
+
+		$( '#mw-prefs-form' ).submit( function () {
+			var storageData = $( $preftoc ).find( 'li.selected a' ).attr( 'id' ).replace( 'preftab-', '' );
+			window.sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
+		} );
+	}
 } );
