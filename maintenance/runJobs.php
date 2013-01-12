@@ -76,6 +76,12 @@ class RunJobs extends Maintenance {
 		$n = 0;
 
 		$group = JobQueueGroup::singleton();
+		// Handle any required periodic queue maintenance
+		$count = $group->executeReadyPeriodicTasks();
+		if ( $count > 0 ) {
+			$this->runJobsLog( "Executed $count periodic queue task(s)." );
+		}
+
 		do {
 			$job = ( $type === false )
 				? $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE )

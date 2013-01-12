@@ -228,4 +228,58 @@ class JobQueueGroup {
 		}
 		return $types;
 	}
+
+	/**
+	 * Execute any due periodic queue maintenance tasks for all queues.
+	 *
+	 * A task is "due" if the time ellapsed since the last run is greater than
+	 * the defined run period. Concurrent calls to this function will cause tasks
+	 * to be attempted twice, so they may need their own methods of mutual exclusion.
+	 *
+	 * @return integer Number of tasks run
+	 */
+	public function executeReadyPeriodicTasks() {
+		global $wgMemc;
+
+		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+		$key = wfForeignMemcKey( $db, $prefix, 'jobqueuegroup', 'taskruns', 'v1' );
+		$lastRuns = $wgMemc->get( $key ); // (queue => task => UNIX timestamp)
+
+		$count = 0;
+		$tasksRun = array(); // (queue => task => UNIX timestamp)
+		foreach ( $this->getQueueTypes() as $type ) {
+			$queue = $this->get( $type );
+			foreach ( $queue->getPeriodicTasks() as $task => $definition ) {
+				if ( $definition['period'] <= 0 ) {
+					continue; // disabled
+				} elseif ( !isset( $lastRuns[$type][$task] )
+					|| $lastRuns[$type][$task] < ( time() - $definition['period'] ) )
+				{
+					if ( call_user_func( $definition['callback'] ) !== null ) {
+						$tasksRun[$type][$task] = time();
+						++$count;
+					}
+				}
+			}
+		}
+
+		$wgMemc->merge( $key, function( $cache, $key, $lastRuns ) use ( $tasksRun ) {
+			if ( is_array( $lastRuns ) ) {
+				foreach ( $tasksRun as $type => $tasks ) {
+					foreach ( $tasks as $task => $timestamp ) {
+						if ( !isset( $lastRuns[$type][$task] )
+							|| $timestamp > $lastRuns[$type][$task] )
+						{
+							$lastRuns[$type][$task] = $timestamp;
+						}
+					}
+				}
+			} else {
+				$lastRuns = $tasksRun;
+			}
+			return $lastRuns;
+		} );
+
+		return $count;
+	}
 }

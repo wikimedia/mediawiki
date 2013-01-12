@@ -39,7 +39,8 @@ class nextJobDB extends Maintenance {
 	public function execute() {
 		global $wgMemc;
 
-		$type = $this->getOption( 'type', false );
+		// Handle any required periodic queue maintenance
+		$this->executeReadyPeriodicTasks();
 
 		$memcKey = 'jobqueue:dbs:v3';
 		$pendingDbInfo = $wgMemc->get( $memcKey );
@@ -71,6 +72,7 @@ class nextJobDB extends Maintenance {
 			return; // no DBs with jobs or cache is both empty and locked
 		}
 
+		$type = $this->getOption( 'type', false );
 		$pendingDBs = $pendingDbInfo['pendingDBs']; // convenience
 		do {
 			$again = false;
@@ -122,7 +124,7 @@ class nextJobDB extends Maintenance {
 	 * @param $dbName string
 	 * @return bool
 	 */
-	function checkJob( $type, $dbName ) {
+	private function checkJob( $type, $dbName ) {
 		$group = JobQueueGroup::singleton( $dbName );
 		if ( $type === false ) {
 			foreach ( $group->getDefaultQueueTypes() as $type ) {
@@ -145,13 +147,35 @@ class nextJobDB extends Maintenance {
 
 		$pendingDBs = array(); // (job type => (db list))
 		foreach ( $wgLocalDatabases as $db ) {
-			$types = JobQueueGroup::singleton( $db )->getQueuesWithJobs();
-			foreach ( $types as $type ) {
+			foreach ( JobQueueGroup::singleton( $db )->getQueuesWithJobs() as $type ) {
 				$pendingDBs[$type][] = $db;
 			}
 		}
 
 		return $pendingDBs;
+	}
+
+	/**
+	 * Do all ready periodic jobs for all databases every 5 minutes (and .1% of the time)
+	 * @return integer
+	 */
+	private function executeReadyPeriodicTasks() {
+		global $wgLocalDatabases, $wgMemc;
+
+		$count = 0;
+		$memcKey = 'jobqueue:periodic:lasttime';
+		$timestamp = (int)$wgMemc->get( $memcKey ); // UNIX timestamp or 0
+		if ( ( time() - $timestamp ) > 300 || mt_rand( 0, 999 ) == 0 ) { // 5 minutes
+			if ( $wgMemc->add( "$memcKey:rebuild", 1, 1800 ) ) { // lock
+				foreach ( $wgLocalDatabases as $db ) {
+					$count += JobQueueGroup::singleton( $db )->executeReadyPeriodicTasks();
+				}
+				$wgMemc->set( $memcKey, time() );
+				$wgMemc->delete( "$memcKey:rebuild" ); // unlock
+			}
+		}
+
+		return $count;
 	}
 }
 
