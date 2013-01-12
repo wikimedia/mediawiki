@@ -1788,6 +1788,12 @@ $oldtext : the text of the article before editing
 $subject : subject of the new section
 &$text : text of the new section
 
+'PreferencesGetBody': Override the HTML content of the preferences page. This
+should only be used when the GetPreferences hook is not adequate for the job.
+$form: the PreferencesForm object. This is a ContextSource as well
+&$body: the HTML content of the preferences page. Defaults to the content built
+by the PreferencesForm and Preferences classes
+
 'PreferencesGetLegend': Override the text used for the <legend> of a
 preferences section.
 $form: the PreferencesForm object. This is a ContextSource as well

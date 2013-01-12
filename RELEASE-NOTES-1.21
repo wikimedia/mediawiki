@@ -56,6 +56,8 @@ production.
   preview from the edit page.
 * Added EditPage::showStandardInputs:options hook to allow extensions to add
   new fields to the "editOptions" area of the edit form.
+* Added PreferencesGetBody hook to allow extensions to modify the HTML content
+  of the preferences page directly (when GetPreferences isn't adequate).
 * Upload stash DB schema altered to improve upload performance.
 * The following global functions are now reporting deprecated warnings in
   debug mode: wfMsg, wfMsgNoTrans, wfMsgForContent, wfMsgForContentNoTrans,

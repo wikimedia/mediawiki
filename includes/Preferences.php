@@ -1582,10 +1582,14 @@ class PreferencesForm extends HTMLForm {
 
 	/**
 	 * Get the whole body of the form.
+	 * Extensions can override this if they need to do something radical to the
+	 * preferences page (i.e. outside the scope of GetPreferences)
 	 * @return string
 	 */
 	function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
+		$body = $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
+		wfRunHooks( 'PreferencesGetBody', array( $this, &$body ) );
+		return $body;
 	}
 
 	/**
