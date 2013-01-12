@@ -112,8 +112,11 @@ abstract class ApiBase extends ContextSource {
 	 * Typically includes the class name, the svn revision, timestamp, and
 	 * last author. Usually done with SVN's Id keyword
 	 * @return string
+	 * @deprecated since 1.21, version string is no longer supported
 	 */
-	public abstract function getVersion();
+	public function getVersion() {
+		return '';
+	}
 
 	/**
 	 * Get the name of the module being executed by this instance
@@ -299,23 +302,6 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
-
-			if ( $this->getMain()->getShowVersions() ) {
-				$versions = $this->getVersion();
-				$pattern = '/(\$.*) ([0-9a-z_]+\.php) (.*\$)/i';
-				$callback = array( $this, 'makeHelpMsg_callback' );
-
-				if ( is_array( $versions ) ) {
-					foreach ( $versions as &$v ) {
-						$v = preg_replace_callback( $pattern, $callback, $v );
-					}
-					$versions = implode( "\n  ", $versions );
-				} else {
-					$versions = preg_replace_callback( $pattern, $callback, $versions );
-				}
-
-				$msg .= "Version:\n  $versions\n";
-			}
 		}
 
 		return $msg;
@@ -484,44 +470,6 @@ abstract class ApiBase extends ContextSource {
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * Callback for preg_replace_callback() call in makeHelpMsg().
-	 * Replaces a source file name with a link to ViewVC
-	 *
-	 * @param $matches array
-	 * @return string
-	 */
-	public function makeHelpMsg_callback( $matches ) {
-		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
-
-		$file = '';
-		if ( isset( $wgAutoloadLocalClasses[get_class( $this )] ) ) {
-			$file = $wgAutoloadLocalClasses[get_class( $this )];
-		} elseif ( isset( $wgAutoloadClasses[get_class( $this )] ) ) {
-			$file = $wgAutoloadClasses[get_class( $this )];
-		}
-
-		// Do some guesswork here
-		$path = strstr( $file, 'includes/api/' );
-		if ( $path === false ) {
-			$path = strstr( $file, 'extensions/' );
-		} else {
-			$path = 'phase3/' . $path;
-		}
-
-		// Get the filename from $matches[2] instead of $file
-		// If they're not the same file, they're assumed to be in the
-		// same directory
-		// This is necessary to make stuff like ApiMain::getVersion()
-		// returning the version string for ApiBase work
-		if ( $path ) {
-			return "{$matches[0]}\n   https://svn.wikimedia.org/" .
-					"viewvc/mediawiki/trunk/" . dirname( $path ) .
-					"/{$matches[2]}";
-		}
-		return $matches[0];
 	}
 
 	/**
@@ -1688,13 +1636,5 @@ abstract class ApiBase extends ContextSource {
 			print "\n" . wfBacktrace();
 		}
 		print "\n</pre>\n";
-	}
-
-	/**
-	 * Returns a string that identifies the version of this class.
-	 * @return string
-	 */
-	public static function getBaseVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

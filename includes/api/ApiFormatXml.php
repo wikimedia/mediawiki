@@ -248,8 +248,4 @@ class ApiFormatXml extends ApiFormatBase {
 	public function getDescription() {
 		return 'Output data in XML format' . parent::getDescription();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

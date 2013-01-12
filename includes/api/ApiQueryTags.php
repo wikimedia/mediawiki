@@ -195,8 +195,4 @@ class ApiQueryTags extends ApiQueryBase {
 			'api.php?action=query&list=tags&tgprop=displayname|description|hitcount'
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

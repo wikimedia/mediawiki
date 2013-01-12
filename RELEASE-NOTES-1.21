@@ -166,6 +166,7 @@ production.
 * BREAKING CHANGE: list=logevents output format changed for details of some log
   types. Specifically, details that were formerly reported under a key like
   "4::foo" will now be reported under a key of simply "foo".
+* (bug 35885) Removed all getVersion() methods - GIT has no version keyword
 
 === Languages updated in 1.21 ===
 

@@ -61,8 +61,4 @@ class ApiQueryDisabled extends ApiQueryBase {
 	public function getExamples() {
 		return array();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
