@@ -68,12 +68,12 @@ class ApiEditPage extends ApiBase {
 				$redirValues = array();
 				foreach ( $titles as $id => $newTitle ) {
 
-					if ( !isset( $titles[ $id - 1 ] ) ) {
-						$titles[ $id - 1 ] = $oldTitle;
+					if ( !isset( $titles[$id - 1] ) ) {
+						$titles[$id - 1] = $oldTitle;
 					}
 
 					$redirValues[] = array(
-						'from' => $titles[ $id - 1 ]->getPrefixedText(),
+						'from' => $titles[$id - 1]->getPrefixedText(),
 						'to' => $newTitle->getPrefixedText()
 					);
 

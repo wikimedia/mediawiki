@@ -129,7 +129,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		$watch = "preferences";
+		$watch = 'preferences';
 		if ( isset( $params['watchlist'] ) ) {
 			$watch = $params['watchlist'];
 		} elseif ( $params['watch'] ) {
