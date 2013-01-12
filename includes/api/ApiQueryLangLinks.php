@@ -56,10 +56,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$this->addWhereFld( 'll_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$llfrom = intval( $cont[0] );
 			$lllang = $this->getDB()->addQuotes( $cont[1] );
@@ -179,7 +176,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'lang' ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
