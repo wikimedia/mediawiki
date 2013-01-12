@@ -27,7 +27,6 @@
  * Interface for objects which can provide a context on request.
  */
 interface IContextSource {
-
 	/**
 	 * Get the WebRequest object
 	 *
@@ -66,7 +65,7 @@ interface IContextSource {
 	/**
 	 * Get the OutputPage object
 	 *
-	 * @return OutputPage object
+	 * @return OutputPage
 	 */
 	public function getOutput();
 
@@ -103,8 +102,7 @@ interface IContextSource {
 	/**
 	 * Get a Message object with context set
 	 *
-	 * @return Message object
+	 * @return Message
 	 */
 	public function msg();
 }
-
