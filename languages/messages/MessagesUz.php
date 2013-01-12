@@ -916,7 +916,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'listfiles_name' => 'Nomi',
 'listfiles_user' => 'Foydalanuvchi',
 'listfiles_size' => 'Oʻlchami',
-'listfiles_description' => 'Taʻrif',
+'listfiles_description' => 'Taʼrif',
 'listfiles_count' => 'Versiyalar',
 
 # File description page

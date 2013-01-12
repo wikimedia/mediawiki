@@ -3203,6 +3203,10 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-protect-cascading' => 'Protecciones en serie activadas',
 'pageinfo-protect-cascading-yes' => 'Sí',
 'pageinfo-protect-cascading-from' => 'Protecciones en serie activadas',
+'pageinfo-category-info' => 'Información de la categoría',
+'pageinfo-category-pages' => 'Número de páginas',
+'pageinfo-category-subcats' => 'Número de subcategorías',
+'pageinfo-category-files' => 'Número de archivos',
 
 # Skin names
 'skinname-standard' => 'Estándar',

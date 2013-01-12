@@ -2572,7 +2572,7 @@ $1',
 'blanknamespace' => '(Hoved)',
 
 # Contributions
-'contributions' => 'Brukerbidrag',
+'contributions' => '{{GENDER:$1|Brukerbidrag}}',
 'contributions-title' => 'Brukerbidrag av $1',
 'mycontris' => 'Bidrag',
 'contribsub2' => 'For $1 ($2)',
@@ -3131,6 +3131,10 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-protect-cascading' => 'Dypbeskyttelse starter herfra',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => 'Dypbeskyttelse fra',
+'pageinfo-category-info' => 'Kategoriinformasjon',
+'pageinfo-category-pages' => 'Antall sider',
+'pageinfo-category-subcats' => 'Antall underkategorier',
+'pageinfo-category-files' => 'Antall filer',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3217,6 +3221,8 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'minutes' => '{{PLURAL:$1|$1 minutt|$1 minutter}}',
 'hours' => '{{PLURAL:$1|$1 time|$1 timer}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dager}}',
+'months' => '{{PLURAL:$1|$1 måned|$1 måneder}}',
+'years' => '{{PLURAL:$1|$1 år}}',
 'ago' => '$1 siden',
 'just-now' => 'nettopp',
 

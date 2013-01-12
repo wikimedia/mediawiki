@@ -294,7 +294,8 @@ This option means "underline links as in your user skin or your browser", there 
 'feb' => 'Abbreviation of February, the second month of the Gregorian calendar',
 'mar' => 'Abbreviation of March, the third month of the Gregorian calendar',
 'apr' => 'Abbreviation of April, the fourth month of the Gregorian calendar',
-'may' => 'Abbreviation of May, the fifth month of the Gregorian calendar',
+'may' => 'Abbreviation of May, the fifth month of the Gregorian calendar.
+{{Identical|May}}',
 'jun' => 'Abbreviation of June, the sixth month of the Gregorian calendar',
 'jul' => 'Abbreviation of July, the seventh month of the Gregorian calendar',
 'aug' => 'Abbreviation of August, the eighth month of the Gregorian calendar',
@@ -482,7 +483,7 @@ See also:
 
 {{Identical|Create}}',
 'editthispage' => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
-'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.
+'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg-mw|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
 'delete' => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
 
@@ -599,7 +600,7 @@ See also:
 * {{msg-mw|Currentevents-url}}
 * {{msg-mw|Accesskey-n-currentevents}}
 * {{msg-mw|Tooltip-n-currentevents}}',
-'currentevents-url' => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
+'currentevents-url' => "Target page of ''CurrentEvents'' in the sidebar. See also {{msg-mw|currentevents}}.
 {{doc-important|Do not translate the \"<tt>Project:</tt>\" part.}}",
 'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
@@ -622,7 +623,8 @@ See also:
 See also:
 * {{msg-mw|Mainpage-description}}
 * {{msg-mw|Accesskey-n-mainpage-description}}
-* {{msg-mw|Tooltip-n-mainpage-description}}',
+* {{msg-mw|Tooltip-n-mainpage-description}}
+{{Identical|Main page}}',
 'policy-url' => 'Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'portal' => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.
@@ -2606,13 +2608,13 @@ If someone with this right (bots by default) edits a user talk page and marks it
 'right-bigdelete' => '{{doc-right|bigdelete}}',
 'right-deletelogentry' => '{{doc-right|deletelogentry}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
+It can be given to the group {{msg-mw|group-sysop}}, although this right is disabled by default.
 
-See also
-* {{msg|right-suppressionlog|pl=yes}}
-* {{msg|right-hideuser|pl=yes}}
-* {{msg|right-suppressrevision|pl=yes}}
-* {{msg|right-deleterevision|pl=yes}}',
+See also:
+* {{msg-mw|right-suppressionlog}}
+* {{msg-mw|right-hideuser}}
+* {{msg-mw|right-suppressrevision}}
+* {{msg-mw|right-deleterevision}}',
 'right-deleterevision' => '{{doc-right|deleterevision}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
@@ -3771,7 +3773,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
 'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after a page move. See also {{msg|fix-double-redirects}}.',
-'double-redirect-fixed-maintenance' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after running maintenance/fixDoubleRedirects.php. Compare with {{msg|double-redirect-fixed-move}}.',
+'double-redirect-fixed-maintenance' => 'This is the message in the log when the software (under the username {{msg-mw|double-redirect-fixer}}) updates the redirects after running maintenance/fixDoubleRedirects.php. Compare with {{msg-mw|double-redirect-fixed-move}}.',
 'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
 
 'brokenredirects' => 'Name of [[Special:BrokenRedirects]] displayed in [[Special:SpecialPages]]',
@@ -4239,7 +4241,13 @@ See also:
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
-'watcherrortext' => 'When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed. See also {{msg|addedwatchtext}}. and {{msg|addedwatchtext}}. This message is used raw and should not contain wikitext.',
+'watcherrortext' => 'When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed.
+
+This message is used raw and should not contain wikitext.
+
+See also:
+* {{msg-mw|addedwatchtext}}
+* {{msg-mw|addedwatchtext}}',
 
 'enotif_reset' => "Used in [[Special:Watchlist]].
 
@@ -4344,8 +4352,10 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 
 {{Identical|Deletion log}}',
 'dellogpagetext' => 'Text in [[Special:Log/delete]].',
-'deletionlog' => 'This message is used to link to the deletion log as parameter $1 of {{msg|Filewasdeleted}}, as parameter $2 of {{msg|deletedtext}}, and in log lines on [[Special:DeletedContributions]].
-
+'deletionlog' => 'This message is used to link to the deletion log:
+* Used as parameter $1 of {{msg-mw|Filewasdeleted}}
+* Used as parameter $2 of {{msg-mw|deletedtext}}
+* Used in log lines on [[Special:DeletedContributions]].
 {{Identical|Deletion log}}',
 'reverted' => '{{Identical|Revert}}',
 'deletecomment' => '{{Identical|Reason}}',
@@ -4355,8 +4365,11 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 <pre>* Group
 ** Common delete reason
 ** ...</pre>',
-'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]]. See also {{msg|Ipb-edit-dropdown}} and {{msg|Protect-edit-reasonlist}}.
+'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to {{msg-mw|Deletereason-dropdown|notext=1}}.
 
+See also:
+* {{msg-mw|Ipb-edit-dropdown}}
+* {{msg-mw|Protect-edit-reasonlist}}.
 {{Identical|Edit delete reasons}}',
 'delete-toobig' => 'Parameters:
 * $1 - the upper limit of number of revisions
@@ -4498,7 +4511,11 @@ See also:
 
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
-'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
+'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to {{msg-mw|Protect-dropdown|notext=1}}.
+
+See also:
+* {{msg-mw|Delete-edit-reasonlist}}
+* {{msg-mw|Ipb-edit-dropdown}}',
 'protect-expiry-options' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
 
 Options for the duration of the page protection. Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.",
@@ -4699,8 +4716,8 @@ See also:
 {{Identical|For $1}}',
 'nocontribs' => 'Optional parameter: $1 is the user name',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
-'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg|year}}.',
-'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg|month}}.',
+'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
+'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg-mw|month}}.',
 
 'sp-contributions-newbies' => 'Text of radio button on special page [[Special:Contributions]].',
 'sp-contributions-newbies-sub' => "Note at the top of the page of results for a search on [[Special:Contributions]] where 'Show contributions for new accounts only' has been selected.",
@@ -4792,8 +4809,7 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'sp-contributions-blocked-notice-anon' => 'Same as {{msg-mw|Sp-contributions-blocked-notice}} but for anonymous users.',
 'sp-contributions-search' => 'Used on [[Special:Contributions]]',
 'sp-contributions-username' => 'This message appears whenever someone requests [[Special:Contributions]].
-
-{{Identical/IP address or username}}',
+{{Identical|IP address or username}}',
 'sp-contributions-toponly' => '"top revision" means the "latest revision"',
 'sp-contributions-submit' => '{{Identical|Search}}',
 'sp-contributions-explain' => '{{optional}}',
@@ -4861,7 +4877,7 @@ See also:
 'blockip-legend' => 'Legend/Header for the fieldset around the input form of [[Special:Block]].
 
 {{Identical|Block user}}',
-'ipadressorusername' => '{{Identical/IP address or username}}',
+'ipadressorusername' => '{{Identical|IP address or username}}',
 'ipbexpiry' => '{{Identical|Expiry}}',
 'ipbreason' => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
 
@@ -4930,7 +4946,7 @@ See also:
 * {{msg-mw|ipbhidename}}
 * {{msg-mw|ipbwatchuser}}
 * {{msg-mw|ipb-hardblock}}',
-'ipb-change-block' => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
+'ipb-change-block' => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg-mw|ipb-needreblock}}.',
 'ipb-confirm' => 'Used as hidden field in the form on [[Special:Block]].',
 'badipaddress' => 'An error message shown when one entered an invalid IP address in blocking page.',
 'blockipsuccesssub' => 'Used as page title in [[Special:Block]].
@@ -4942,7 +4958,11 @@ The title (subject) for this message is {{msg-mw|Blockipsuccesssub}}.
 
 Parameters:
 * $1 - username, can be used for GENDER',
-'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
+'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to {{msg-mw|Ipbreason-dropdown|notext=1}}.
+
+See also:
+* {{msg-mw|Delete-edit-reasonlist}}
+* {{msg-mw|Protect-edit-reasonlist}}',
 'ipb-unblock-addr' => 'Used in [[Special:Block]].
 * $1 - target username',
 'ipb-blocklist-contribs' => 'Used in [[Special:Block]].
@@ -6484,7 +6504,8 @@ See also:
 * {{msg-mw|Pageinfo-templates}}',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
 'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect. Verb. See [http://en.wikipedia.org/w/index.php?title=Main_page&action=info example].',
-'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.',
+'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.
+{{Identical|Info}}',
 'pageinfo-contentpage' => 'Key for the row shown on [{{fullurl:News|action=info}} action=info] if this page is [[mw:Manual:Article count|counted as a content page]]',
 'pageinfo-contentpage-yes' => 'Yes, this page is a content page',
 'pageinfo-protect-cascading' => 'Key for the row which shows whether this page has cascading protection enabled
@@ -6562,7 +6583,7 @@ See also:
 # Patrol log
 'patrol-log-page' => '{{doc-logpage}}',
 'patrol-log-header' => 'Text that appears above the log entries on the [[Special:log|patrol log]].',
-'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
+'log-show-hide-patrol' => '* $1 is one of {{msg-mw|show}} or {{msg-mw|hide}}',
 
 # Image deletion
 'deletedrevision' => '* $1 - archive name of old image',
