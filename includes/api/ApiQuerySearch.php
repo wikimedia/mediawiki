@@ -168,7 +168,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					}
 				}
 				if ( isset( $prop['hasrelated'] ) && $result->hasRelated() ) {
-					$vals['hasrelated'] = "";
+					$vals['hasrelated'] = '';
 				}
 
 				// Add item to results and see whether it fits

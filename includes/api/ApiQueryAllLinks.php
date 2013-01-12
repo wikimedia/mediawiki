@@ -159,7 +159,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				if ( $params['unique'] ) {
 					$this->setContinueEnumParameter( 'continue', $row->pl_title );
 				} else {
-					$this->setContinueEnumParameter( 'continue', $row->pl_title . "|" . $row->pl_from );
+					$this->setContinueEnumParameter( 'continue', $row->pl_title . '|' . $row->pl_from );
 				}
 				break;
 			}
@@ -178,7 +178,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 					if ( $params['unique'] ) {
 						$this->setContinueEnumParameter( 'continue', $row->pl_title );
 					} else {
-						$this->setContinueEnumParameter( 'continue', $row->pl_title . "|" . $row->pl_from );
+						$this->setContinueEnumParameter( 'continue', $row->pl_title . '|' . $row->pl_from );
 					}
 					break;
 				}
