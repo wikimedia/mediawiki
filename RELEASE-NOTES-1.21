@@ -77,6 +77,8 @@ production.
 * $wgPageInfoTransclusionLimit limits the list size of transcluded articles
   on the info action. Default is 50.
 * Added action=createaccount to allow user account creation.
+* Added the ability to limit the wall clock time used by shell processes, 
+  as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
