@@ -2767,12 +2767,13 @@ function wfEscapeShellArg( ) {
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be
  *                 added to the executed command environment.
- * @param $limits Array optional array with limits(filesize, memory, time)
+ * @param $limits Array optional array with limits(filesize, memory, time, walltime)
  *                 this overwrites the global wgShellMax* limits.
  * @return string collected stdout as a string (trailing newlines stripped)
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
-	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
+	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
+		$wgMaxShellWallClockTime;
 
 	static $disabled;
 	if ( is_null( $disabled ) ) {
@@ -2820,14 +2821,19 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = intval ( isset($limits['time']) ? $limits['time'] : $wgMaxShellTime );
+		if ( isset( $limits['walltime'] ) ) {
+			$wallTime = intval( $limits['walltime'] );
+		} elseif ( isset( $limits['time'] ) ) {
+			$wallTime = $time;
+		} else {
+			$wallTime = intval( $wgMaxShellWallClockTime );
+		}
 		$mem = intval ( isset($limits['memory']) ? $limits['memory'] : $wgMaxShellMemory );
 		$filesize = intval ( isset($limits['filesize']) ? $limits['filesize'] : $wgMaxShellFileSize );
 
-		if ( $time > 0 && $mem > 0 ) {
-			$script = "$IP/bin/ulimit4.sh";
-			if ( is_executable( $script ) ) {
-				$cmd = '/bin/bash ' . escapeshellarg( $script ) . " $time $mem $filesize " . escapeshellarg( $cmd );
-			}
+		if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
+			$cmd = '/bin/bash ' . escapeshellarg( "$IP/bin/ulimit5.sh" ) .
+				" $time $mem $filesize $wallTime " . escapeshellarg( $cmd );
 		}
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
