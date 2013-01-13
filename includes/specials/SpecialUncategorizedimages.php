@@ -60,4 +60,7 @@ class UncategorizedImagesPage extends ImageQueryPage {
 		);
 	}
 
+	public function getGroupName() {
+		return 'maintenance';
+	}
 }
