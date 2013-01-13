@@ -1328,8 +1328,8 @@ $1",
 'userrights-nodatabase' => 'بنکەدراوی $1 بوونی نیە یا لەم شوێنە نیە.',
 'userrights-nologin' => 'بۆ دانانی مافەکانی بەکارهێنەر دەبێ بە هەژماری بەڕێوبەری [[Special:UserLogin|بچیتە ژووروە]].',
 'userrights-notallowed' => 'ھەژمارەکەی تۆ دەسەڵاتی دانان یان لابردنی مافەکانی بەکارھێنەری نییە.',
-'userrights-changeable-col' => 'ئەو گرووپانە بۆت ئەگۆڕدرێن',
-'userrights-unchangeable-col' => 'ئەو گرووپانە بۆت ناگۆڕدرێن',
+'userrights-changeable-col' => 'ئەو گرووپانەی دەتوانی بیگۆڕی',
+'userrights-unchangeable-col' => 'ئەو گرووپانەی ناتوانی بیگۆڕی',
 
 # Groups
 'group' => 'گرووپ:',

@@ -1136,9 +1136,9 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'edit-gone-missing' => '문서를 저장하지 못했습니다.
 문서가 삭제된 것 같습니다.',
 'edit-conflict' => '편집 충돌.',
-'edit-no-change' => '문서에 아무런 변화가 없기 때문에 당신의 편집은 무시되었습니다.',
+'edit-no-change' => '문서에 어떠한 바뀜도 없기 때문에 편집은 무시되었습니다.',
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
-그 문서는 이미 존재합니다.',
+문서가 이미 존재합니다.',
 'defaultmessagetext' => '기본 메세지 내용',
 'content-failed-to-parse' => '$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3',
 'invalid-content-data' => '잘못된 내용 데이터입니다',
@@ -1542,7 +1542,7 @@ HTML 태그를 확인하세요.',
 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'prefs-help-email' => '이메일 주소 입력은 선택 사항입니다. 다만 비밀번호를 잊었을 때 비밀번호 바꾸기를 위해 필요합니다.',
 'prefs-help-email-others' => '자신의 문서나 토론 문서에 있는 이메일 보내기 링크로 다른 사용자가 연락할 수 있게 할 수도 있습니다.
-이 경우에도 당신의 이메일 주소는 다른 사용자가 연락할 때 공개되지 않습니다.',
+이 경우에도 이메일 주소는 다른 사용자가 연락할 때 공개되지 않습니다.',
 'prefs-help-email-required' => '이메일 주소가 필요합니다.',
 'prefs-info' => '기본 정보',
 'prefs-i18n' => '언어 설정',
@@ -3818,7 +3818,7 @@ Variants for Chinese language
 'confirmemail_success' => '이메일 주소가 인증되었습니다.
 이제 [[Special:UserLogin|로그인]]해서 위키를 사용하세요.',
 'confirmemail_loggedin' => '이메일 주소가 인증되었습니다.',
-'confirmemail_error' => '당신의 인증을 저장하는 도중 오류가 발생했습니다.',
+'confirmemail_error' => '인증을 저장하는 도중 오류가 발생했습니다.',
 'confirmemail_subject' => '{{SITENAME}} 이메일 주소 인증',
 'confirmemail_body' => '$1 IP 주소를 사용하는 사용자가
 {{SITENAME}}의 "$2" 계정에 이메일 인증 신청을 했습니다.
@@ -4134,7 +4134,7 @@ $5
 
 # Feedback
 'feedback-bugornote' => '기술적 문제를 구체적으로 설명할 준비가 되었다면 [$1 버그를 신고]해 주세요.
-아니면 아래에 쉬운 양식을 쓸 수 있습니다. 당신의 의견은 사용자 이름과 사용 중인 브라우저 정보와 함께 "[$3 $2]"에 남겨질 것입니다.',
+아니면 아래에 쉬운 양식을 쓸 수 있습니다. 의견은 사용자 이름과 함께 "[$3 $2]"에 남겨질 것입니다.',
 'feedback-subject' => '제목:',
 'feedback-message' => '내용:',
 'feedback-cancel' => '취소',
@@ -4143,7 +4143,7 @@ $5
 'feedback-error1' => '오류: API 실행 결과를 인식할 수 없음',
 'feedback-error2' => '오류: 편집 실패',
 'feedback-error3' => '오류: API가 응답하지 않음',
-'feedback-thanks' => '감사합니다! "[$2 $1]" 문서에 당신의 의견을 남겼습니다.',
+'feedback-thanks' => '감사합니다! "[$2 $1]" 문서에 의견을 남겼습니다.',
 'feedback-close' => '완료',
 'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 보고서]에 올라와 있는지 확인해주세요.',
 'feedback-bugnew' => '확인했습니다. 새로운 버그 보고서를 작성합니다.',

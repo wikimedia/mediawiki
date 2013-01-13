@@ -783,8 +783,8 @@ See also:
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
 	'config-help' => 'This is used in help boxes.
 {{Identical|Help}}',
-	'mainpagetext' => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
-	'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
+	'mainpagetext' => 'Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
+	'mainpagedocfooter' => 'Along with {{msg-mw|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
 This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
 );
 
@@ -10834,7 +10834,7 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 PHP 파일이 있는 곳을 우리가 맡길 수 없는 이유는 웹을 통해 접근할 수 없다는 것입니다.
 
 설치 마법사가 이과 함께 .htaccess 파일을 만들지만 거기서 실패하면 누군가는 원본 데이터베이스에 접근하는 데 실패합니다.
-원본 사용자 데이터(이메일 주소, 암호 해시) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
+원본 사용자 데이터(이메일 주소, 해시한 비밀번호) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
 
 <code>/var/lib/mediawiki/yourwiki</code>와 같이 모두 다른 곳에서 데이터베이스를 넣어보도록 하세요.',
 	'config-oracle-def-ts' => '기본 테이블공간:',

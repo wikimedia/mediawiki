@@ -149,7 +149,7 @@ $messages = array(
 'tog-externaleditor' => 'Defnyddio golygydd allanol trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae arno angen gosodiadau arbennig ar eich cyfrifiadur. [//www.mediawiki.org/wiki/Manual:External_editors Rhagor o wybodaeth.])',
 'tog-externaldiff' => 'Defnyddio "external diff" trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae arno angen gosodiadau arbennig ar eich cyfrifiadur. [//www.mediawiki.org/wiki/Manual:External_editors Rhagor o wybodaeth.])',
 'tog-showjumplinks' => 'Galluogi dolenni hygyrchedd "neidio i"',
-'tog-uselivepreview' => 'Defnyddio rhagolwg byw (JavaScript) (Arbrofol)',
+'tog-uselivepreview' => 'Defnyddio rhagolwg byw (angen JavaScript i hyn)',
 'tog-forceeditsummary' => 'Tynnu fy sylw pan adawaf flwch crynodeb golygu yn wag',
 'tog-watchlisthideown' => 'Cuddio fy ngolygiadau fy hunan yn fy rhestr wylio',
 'tog-watchlisthidebots' => 'Cuddio golygiadau bot yn fy rhestr wylio',
@@ -249,6 +249,7 @@ $messages = array(
 'newwindow' => '(yn agor mewn ffenest newydd)',
 'cancel' => 'Diddymu',
 'moredotdotdot' => 'Rhagor...',
+'morenotlisted' => 'Ni restrir y lleill...',
 'mypage' => 'Tudalen defnyddiwr',
 'mytalk' => 'Sgwrs',
 'anontalk' => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
@@ -611,6 +612,7 @@ Oedwch ychydig cyn mentro eto.',
 # E-mail sending
 'php-mail-error-unknown' => 'Gwall anhysbys yng ngweithrediad post() PHP',
 'user-mail-no-addy' => 'Wedi ceisio anfon e-bost heb gyfeiriad e-bost',
+'user-mail-no-body' => 'Ceisiwyd anfon e-bost gwag neu e-bost oedd a thestun rhy bwt iddo.',
 
 # Change password dialog
 'resetpass' => 'Newid cyfrinair y cyfrif',
@@ -2130,6 +2132,7 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 'enotif_subject_moved' => 'Symudwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
 'enotif_subject_restored' => 'Adferwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Newidiwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
+'enotif_body_intro_deleted' => 'Dilewyd y dudalen $1 ar {{SITENAME}} ar $PAGEEDITDATE gan {{gender:$2|$2}}, gweler $3.',
 'enotif_lastvisited' => 'Gwelwch $1 am bob newid ers eich ymweliad blaenorol.',
 'enotif_lastdiff' => 'Gallwch weld y newid ar $1.',
 'enotif_anon_editor' => 'defnyddiwr anhysbys $1',
