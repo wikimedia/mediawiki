@@ -1351,4 +1351,8 @@ class LoginForm extends SpecialPage {
 			$query
 		);
 	}
+
+	public function getGroupName() {
+		return 'login';
+	}
 }

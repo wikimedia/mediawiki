@@ -157,4 +157,8 @@ HTML;
 		// $wgJavaScriptTestConfig in DefaultSettings.php
 		$out->addJsConfigVars( 'QUnitTestSwarmInjectJSPath', $wgJavaScriptTestConfig['qunit']['testswarm-injectjs'] );
 	}
+
+	public function getGroupName() {
+		return 'other';
+	}
 }

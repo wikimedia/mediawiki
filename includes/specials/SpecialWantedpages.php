@@ -91,4 +91,8 @@ class WantedPagesPage extends WantedQueryPage {
 		wfRunHooks( 'WantedPages::getQueryInfo', array( &$this, &$query ) );
 		return $query;
 	}
+
+	public function getGroupName() {
+		return 'maintenance';
+	}
 }
