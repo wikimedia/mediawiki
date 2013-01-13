@@ -196,7 +196,7 @@ class SpecialWatchlist extends SpecialPage {
 		$conds = array();
 
 		if( $values['days'] > 0 ) {
-			$conds[] = "rc_timestamp > '".$dbr->timestamp( time() - intval( $values['days'] * 86400 ) )."'";
+			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $values['days'] * 86400 ) ) );
 		}
 
 		# If the watchlist is relatively short, it's simplest to zip
