@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MediaWiki Examples</title>
+    <script>
+        function loadInlineExample(code, options, callback) {
+            try {
+                document.body.innerHTML = '';
+                eval(code);
+                callback && callback(true);
+            } catch (e) {
+                document.body.innerHTML = document.createTextNode(e);
+                callback && callback(false, e);
+            }
+        }
+    </script>
+</head>
+<body></body>
+</html>
