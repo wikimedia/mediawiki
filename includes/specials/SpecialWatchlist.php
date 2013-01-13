@@ -91,7 +91,9 @@ class SpecialWatchlist extends SpecialPage {
 			return;
 		}
 
-		$nitems = $this->countItems();
+		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+
+		$nitems = $this->countItems( $dbr );
 		if ( $nitems == 0 ) {
 			$output->addWikiMsg( 'nowatchlist' );
 			return;
@@ -189,8 +191,6 @@ class SpecialWatchlist extends SpecialPage {
 			$output->redirect( $this->getTitle()->getFullUrl( $nondefaults ) );
 			return;
 		}
-
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
 		# Possible where conditions
 		$conds = array();
@@ -497,11 +497,10 @@ class SpecialWatchlist extends SpecialPage {
 	/**
 	 * Count the number of items on a user's watchlist
 	 *
+	 * @param $dbr A database connection
 	 * @return Integer
 	 */
-	protected function countItems() {
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-
+	protected function countItems( $dbr ) {
 		# Fetch the raw count
 		$res = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
 			array( 'wl_user' => $this->getUser()->getId() ), __METHOD__ );
