@@ -1,9 +1,31 @@
 /**
- * Simple Placeholder-based Localization
+ * @class jQuery.plugin.localize
+ */
+( function ( $, mw ) {
+
+/**
+ * Gets a localized message, using parameters from options if present.
+ * @ignore
  *
- * Call on a selection of HTML which contains <html:msg key="message-key" /> elements or elements
+ * @param {Object} options
+ * @param {string} key
+ * @returns {string} Localized message
+ */
+function msg( options, key ) {
+	var args = options.params[key] || [];
+	// Format: mw.msg( key [, p1, p2, ...] )
+	args.unshift( options.prefix + ( options.keys[key] || key ) );
+	return mw.msg.apply( mw, args );
+}
+
+/**
+ * Localizes a DOM selection by replacing <html:msg /> elements with localized text and adding
+ * localized title and alt attributes to elements with title-msg and alt-msg attributes
+ * respectively.
+ *
+ * Call on a selection of HTML which contains `<html:msg key="message-key" />` elements or elements
  * with title-msg="message-key", alt-msg="message-key" or placeholder-msg="message-key" attributes.
- * <html:msg /> elements will be replaced with localized text, *-msg attributes will be replaced
+ * `<html:msg />` elements will be replaced with localized text, *-msg attributes will be replaced
  * with attributes that do not have the "-msg" suffix and contain a localized message.
  *
  * Example:
@@ -77,34 +99,12 @@
  * Appends something like this to the body...
  *     <p>You may not get there all in one piece.</p>
  *
- */
-( function ( $, mw ) {
-
-/**
- * Gets a localized message, using parameters from options if present.
- *
- * @function
- * @param {String} key Message key to get localized message for
- * @returns {String} Localized message
- */
-function msg( options, key ) {
-	var args = options.params[key] || [];
-	// Format: mw.msg( key [, p1, p2, ...] )
-	args.unshift( options.prefix + ( options.keys[key] || key ) );
-	return mw.msg.apply( mw, args );
-}
-
-/**
- * Localizes a DOM selection by replacing <html:msg /> elements with localized text and adding
- * localized title and alt attributes to elements with title-msg and alt-msg attributes
- * respectively.
- *
  * @method
  * @param {Object} options Map of options to be used while localizing
- * @param {String} options.prefix String to prepend to all message keys
+ * @param {string} options.prefix String to prepend to all message keys
  * @param {Object} options.keys Message key aliases, used for remapping keys to a template
  * @param {Object} options.params Lists of parameters to use with certain message keys
- * @returns {jQuery} This selection
+ * @return {jQuery}
  */
 $.fn.localize = function ( options ) {
 	var $target = this,
@@ -161,5 +161,10 @@ $.fn.localize = function ( options ) {
 
 // Let IE know about the msg tag before it's used...
 document.createElement( 'msg' );
+
+/**
+ * @class jQuery
+ * @mixins jQuery.plugin.localize
+ */
 
 }( jQuery, mediaWiki ) );

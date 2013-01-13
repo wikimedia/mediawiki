@@ -18,6 +18,7 @@ sublime-*
 
 # MediaWiki install & usage
 cache
+docs/js
 images/[0-9a-f]
 images/archive
 images/deleted

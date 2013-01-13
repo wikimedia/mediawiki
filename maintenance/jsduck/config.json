@@ -1,0 +1,18 @@
+{
+	"--title": "MediaWiki Code Documentation",
+	"--categories": "./categories.json",
+	"--meta-tags": "./MetaTags.rb",
+	"--warnings": ["-no_doc"],
+	"--builtin-classes": true,
+	"--output": "../../docs/js",
+	"--": [
+		"./external.js",
+		"../../resources/mediawiki/mediawiki.js",
+		"../../resources/mediawiki/mediawiki.util.js",
+		"../../resources/mediawiki/mediawiki.Title.js",
+		"../../resources/mediawiki/mediawiki.notify.js",
+		"../../resources/mediawiki/mediawiki.notification.js",
+		"../../resources/mediawiki.api",
+		"../../resources/jquery/jquery.localize.js"
+	]
+}
