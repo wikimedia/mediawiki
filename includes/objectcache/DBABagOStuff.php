@@ -196,6 +196,7 @@ class DBABagOStuff extends BagOStuff {
 		list( $val, $exptime ) = $this->decode( $val );
 		if ( $casToken !== $val ) {
 			dba_close( $handle );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
