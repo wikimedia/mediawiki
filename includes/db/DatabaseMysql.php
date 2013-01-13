@@ -597,10 +597,9 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res && $row = $this->fetchRow( $res ) ) {
 			wfProfileOut( $fname );
 			return $row[0];
-		} else {
-			wfProfileOut( $fname );
-			return false;
 		}
+		wfProfileOut( $fname );
+		return false;
 	}
 
 	/**
