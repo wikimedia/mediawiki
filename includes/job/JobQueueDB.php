@@ -89,7 +89,7 @@ class JobQueueDB extends JobQueue {
 			return $size;
 		}
 
-		$dbr = $this->getSlaveDB();
+		list( $dbr, ) = $this->getSlaveDB();
 		$size = (int)$dbr->selectField( 'job', 'COUNT(*)',
 			array( 'job_cmd' => $this->type, 'job_token' => '' ),
 			__METHOD__
@@ -113,7 +113,7 @@ class JobQueueDB extends JobQueue {
 			return $count;
 		}
 
-		$dbr = $this->getSlaveDB();
+		list( $dbr, ) = $this->getSlaveDB();
 		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
 			array( 'job_cmd' => $this->type, "job_token !={$dbr->addQuotes('')}" ),
 			__METHOD__
