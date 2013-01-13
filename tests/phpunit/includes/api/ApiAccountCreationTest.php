@@ -31,7 +31,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 			'action' => 'createaccount',
 			'name' => 'Apitestnew',
 			'password' => $password,
-			'email' => 'test@example.com',
+			'email' => 'test@domain.test',
 			'realname' => 'Test Name'
 		) );
 
@@ -88,6 +88,13 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$a = $result['login']['result'];
 
 		$this->assertEquals( 'Success', $a );
+
+		// log out to destroy the session
+		$ret = $this->doApiRequest( array(
+			'action' => 'logout',
+			), $ret[2]
+		);
+		$this->assertEquals( array(), $ret[0] );
 	}
 
 	/**
@@ -133,12 +140,16 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	function testInvalidEmail() {
+		global $wgEnableEmail;
+		if( !$wgEnableEmail ) {
+			$this->markTestSkipped( 'email is not enabled, so createaccount does not check it' );
+		}
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Test User',
 			'token' => LoginForm::getCreateaccountToken(),
 			'password' => 'password',
-			'email' => 'sjlfsjklj',
+			'email' => 'invalid',
 		) );
 	}
 }
