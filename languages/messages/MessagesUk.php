@@ -386,7 +386,7 @@ $messages = array(
 'tog-externaleditor' => "Використовувати зовнішній редактор за умовчанням (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера [//www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
 'tog-externaldiff' => "Використовувати зовнішню програму порівняння версій за умовчанням (тільки для експертів, вимагає спеціальних налаштувань вашого комп'ютера. [//www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
 'tog-showjumplinks' => 'Активізувати допоміжні посилання «перейти до»',
-'tog-uselivepreview' => 'Використовувати швидкий попередній перегляд (JavaScript)',
+'tog-uselivepreview' => 'Застосовувати швидкий попередній перегляд (потребує JavaScript)',
 'tog-forceeditsummary' => 'Попереджати, коли не зазначений короткий опис редагування',
 'tog-watchlisthideown' => 'Приховати мої редагування у списку спостереження',
 'tog-watchlisthidebots' => 'Приховати редагування ботів у списку спостереження',
@@ -871,7 +871,7 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'Невідома помилка в PHP-mail() функції',
 'user-mail-no-addy' => 'Спроба надсилання електронної пошти без зазначеної адреси електронної пошти.',
-'user-mail-no-body' => 'Спроба надіслати електронного листа із порожнім, або назвичайно коротким вмістом.',
+'user-mail-no-body' => 'Спроба надіслати електронного листа з порожнім або надто коротким вмістом.',
 
 # Change password dialog
 'resetpass' => 'Змінити пароль',
@@ -2314,9 +2314,9 @@ $1',
 'linksearch-pat' => 'Шаблон для пошуку:',
 'linksearch-ns' => 'Простір назв:',
 'linksearch-ok' => 'Знайти',
-'linksearch-text' => 'Можна використовувати підстановочні символи, наприклад, «*.wikipedia.org».
-Необхідний домен принаймні верхнього рівня, наприклад «*.org».<br />
-{{PLURAL:$2|Підтримуваний протокол|Підтримувані протоколи}}: <code>$1</code> (за замовчуванням http:// якщо жоден протокол не вказано).',
+'linksearch-text' => 'Можна вживати підстановочні символи, наприклад, «*.wikipedia.org».
+Необхідно зазначити домен, принаймні верхнього рівня, наприклад «*.org».<br />
+{{PLURAL:$2|Підтримується протокол|Підтримуються протоколи}}: <code>$1</code> (за замовчуванням http:// , якщо жоден протокол не зазначено).',
 'linksearch-line' => 'Посилання на $1 із $2',
 'linksearch-error' => 'Підстановочні знаки можуть використовуватися лише на початку адрес.',
 
@@ -2516,10 +2516,10 @@ $UNWATCHURL
 'rollbacklinkcount' => 'скасування $1 {{PLURAL:$1|редагування|редагувань|редагувань}}',
 'rollbacklinkcount-morethan' => 'скасування більш, ніж $1 {{PLURAL:$1|редагування|редагувань|редагувань}}',
 'rollbackfailed' => 'Відкинути зміни не вдалося',
-'cantrollback' => 'Неможливо відкинути редагування, оскільки останній, хто редагував цю сторінку, є єдиним її автором.',
+'cantrollback' => 'Неможливо відкинути редагування, оскільки останній дописувач є її автором.',
 'alreadyrolled' => 'Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), оскільки хтось інший уже змінив чи відкинув редагування цієї статті.
 
-Останні редагування зробив [[User:$3|$3]] ([[User talk:$3|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+Останні редагування зроблено [[User:$3|$3]] ([[User talk:$3|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Пояснення редагування було: «''$1''».",
 'revertpage' => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]',
 'revertpage-nouser' => "Відкинуто редагування (ім'я користувача приховано) до зробленого [[User:$1|$1]]",
@@ -2544,7 +2544,7 @@ $UNWATCHURL
 'prot_1movedto2' => '«[[$1]]» перейменована на «[[$2]]»',
 'protect-badnamespace-title' => 'Беззахисний простір імен',
 'protect-badnamespace-text' => 'Сторінки у просторі імен не можуть бути захищені.',
-'protect-norestrictiontypes-text' => 'Цю сторінку не може бути захищено, бо для неї немає доступних типів обмежень.',
+'protect-norestrictiontypes-text' => 'Цю сторінку не може бути захищено, бо немає ніяких типів обмежень.',
 'protect-norestrictiontypes-title' => 'Сторінка, яку неможливо захистити',
 'protect-legend' => 'Підтвердження встановлення захисту',
 'protectcomment' => 'Причина:',
@@ -3222,7 +3222,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-watchers' => 'Кількість спостерігачів',
 'pageinfo-redirects-name' => 'Перенаправлення на цю сторінку',
 'pageinfo-subpages-name' => 'Підсторінки цієї сторінки',
-'pageinfo-subpages-value' => '$1($2 {{PLURAL:$2|перенаправлення|перенаправлення|перенаправлень}}; $3 {{PLURAL:$3|не-перенаправлення|не-перенаправлення|не-перенаправлень}})',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|перенаправлення|перенаправлення|перенаправлень}}; $3 {{PLURAL:$3|неперенаправлення|неперенаправлення|неперенаправлень}})',
 'pageinfo-firstuser' => 'Створив сторінку',
 'pageinfo-firsttime' => 'Дата створення сторінки',
 'pageinfo-lastuser' => 'Останній редактор',
@@ -3244,9 +3244,9 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-protect-cascading-yes' => 'Так',
 'pageinfo-protect-cascading-from' => 'Каскадний захист починається тут',
 'pageinfo-category-info' => 'Інформація про категорію',
-'pageinfo-category-pages' => 'Число сторінок',
-'pageinfo-category-subcats' => 'Число підкатегорій',
-'pageinfo-category-files' => 'Число файлів',
+'pageinfo-category-pages' => 'Кількість сторінок',
+'pageinfo-category-subcats' => 'Кількість підкатегорій',
+'pageinfo-category-files' => 'Кількість файлів',
 
 # Skin names
 'skinname-standard' => 'Стандартне',

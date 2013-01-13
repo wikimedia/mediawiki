@@ -350,7 +350,8 @@ Message shown below the edit form, and if you click on it, you stop with editing
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
 'morenotlisted' => 'An indication that more of a certain list is not shown.',
-'mypage' => "A text for the link to the user's user page in the links at the top of the page.",
+'mypage' => "A text for the link to the user's user page in the links at the top of the page.
+{{Identical|Page}}",
 'mytalk' => 'In the personal URLs page section - right upper corner.
 
 Used as link title in your personal toolbox.
@@ -608,7 +609,7 @@ See also:
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
 'edithelppage' => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.
 {{doc-important|Do not change the "<tt>Help:</tt>" part.}}',
-'helppage' => 'The link destination used by default in the sidebar, and in {{msg|noarticletext}}.
+'helppage' => 'The link destination used by default in the sidebar, and in {{msg-mw|noarticletext}}.
 {{doc-important|Do not change the "<tt>Help:</tt>" part.}}
 {{Identical|HelpContent}}',
 'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
@@ -862,12 +863,12 @@ This error is shown when trying to open a special page which does not exist, e.g
 * $2: Content of
 *# {{msg-mw|Missingarticle-rev}} - Permalink with invalid revision#
 *# {{msg-mw|Missingarticle-diff}} - Diff with invalid revision#",
-'missingarticle-rev' => 'Parameter $2 of {{msg|Missing-article}}: It is shown after the articlename.
+'missingarticle-rev' => 'Parameter $2 of {{msg-mw|Missing-article}}: It is shown after the articlename.
 
 * $1: revision# of the requested id
 
 [http://translatewiki.net/w/i.php?title=Translating:Tasks&oldid=371789000 Click here] to see an example of such an error message.',
-'missingarticle-diff' => 'Parameter $2 of {{msg|Missing-article}}: It is shown after the articlename.
+'missingarticle-diff' => 'Parameter $2 of {{msg-mw|Missing-article}}: It is shown after the articlename.
 
 * $1: revision# of the old id
 * $2: revision# of the id build the diff with.
@@ -964,7 +965,8 @@ See also {{msg-mw|protectedinterface}}.',
 'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.
 * $1 is the namespace number
 * $2 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
-'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
+'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.
+{{Identical|Not logged in}}',
 'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
 
 # Virus scanner
@@ -994,14 +996,14 @@ See also {{msg-mw|protectedinterface}}.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
-'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg|nav-login-createaccount}} is shown there).
+'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).
 
 See also:
 * {{msg-mw|Login}}
 * {{msg-mw|Accesskey-pt-anonlogin}}
 * {{msg-mw|Tooltip-pt-anonlogin}}
 {{Identical|Log in}}",
-'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.
+'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
 {{identical|Log in / create account}}",
 'loginprompt' => 'A small notice in the log in form.',
 'userlogin' => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
@@ -1053,8 +1055,8 @@ Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
-'nosuchuser' => 'Displayed when trying to log in with an unexisting username. When you are not allowed to create an account, the message {{msg|nosuchusershort}} is displayed.',
-'nosuchusershort' => "Displayed when trying to log in with a non-existant username. This message is only shown when you can't create an account, otherwise the message {{msg|nosuchusershort}} is displayed.",
+'nosuchuser' => 'Displayed when trying to log in with an unexisting username. When you are not allowed to create an account, the message {{msg-mw|nosuchusershort}} is displayed.',
+'nosuchusershort' => "Displayed when trying to log in with a non-existant username. This message is only shown when you can't create an account, otherwise the message {{msg-mw|nosuchusershort}} is displayed.",
 'nouserspecified' => 'Used as error message when username to fetch is not specified.',
 'login-userblocked' => 'This message supports GENDER, username is available in $1.',
 'wrongpassword' => 'Used as error message when the provided password is wrong.',
@@ -1278,7 +1280,7 @@ See also:
 * {{msg-mw|Accesskey-watch}}
 * {{msg-mw|Tooltip-watch}}
 {{Identical|Watch this page}}',
-'savearticle' => 'Text on the Save page button. See also {{msg|showpreview}} and {{msg|showdiff}} for the other buttons.
+'savearticle' => 'Text on the Save page button. See also {{msg-mw|showpreview}} and {{msg-mw|showdiff}} for the other buttons.
 
 See also:
 * {{msg-mw|Savearticle}}
@@ -1287,7 +1289,7 @@ See also:
 'preview' => 'The title of the Preview page shown after clicking the "Show preview" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.
 
 {{Identical|Preview}}',
-'showpreview' => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.
+'showpreview' => 'The text of the button to preview the page you are editing. See also {{msg-mw|showdiff}} and {{msg-mw|savearticle}} for the other buttons.
 
 See also:
 * {{msg-mw|Showpreview}}
@@ -2266,7 +2268,7 @@ See also:
 * {{msg-mw|Mypreferences}}
 * {{msg-mw|Accesskey-pt-preferences}}
 * {{msg-mw|Tooltip-pt-preferences}}
-{{Identical|My preferences}}',
+{{Identical|Preferences}}',
 'prefs-edits' => 'In user preferences.',
 'prefsnologin' => '{{Identical|Not logged in}}',
 'prefsnologintext' => '* $1 - URI for "returnto" argument',
@@ -2288,7 +2290,8 @@ This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).
 'prefs-rc' => 'Used in user preferences.
 
 {{Identical|Recent changes}}',
-'prefs-watchlist' => 'Used in user preferences.',
+'prefs-watchlist' => 'Used in user preferences.
+{{Identical|My watchlist}}',
 'prefs-watchlist-days' => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-days-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-edits' => 'Used in [[Special:Preferences]], tab "Watchlist".',
@@ -2571,13 +2574,13 @@ Basic right to read any page.',
 'right-edit' => '{{doc-right|edit}}
 Basic right to edit pages that are not protected.',
 'right-createpage' => '{{doc-right|createpage}}
-Basic right to create pages. The right to edit discussion/talk pages is {{msg|right-createtalk|pl=yes}}.',
+Basic right to create pages. The right to edit discussion/talk pages is {{msg-mw|right-createtalk|pl=yes}}.',
 'right-createtalk' => '{{doc-right|createtalk}}
-Basic right to create discussion/talk pages. The right to edit other pages is {{msg|right-createpage|pl=yes}}.',
+Basic right to create discussion/talk pages. The right to edit other pages is {{msg-mw|right-createpage|pl=yes}}.',
 'right-createaccount' => '{{doc-right|createaccount}}
 The right to [[Special:CreateAccount|create a user account]].',
 'right-minoredit' => '{{doc-right|minoredit}}
-The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
+The right to use the "This is a minor edit" checkbox. See {{msg-mw|minoredit|pl=yes}} for the message used for that checkbox.',
 'right-move' => '{{doc-right|move}}
 The right to move any page that is not protected from moving.
 {{Identical|Move page}}',
@@ -2588,11 +2591,24 @@ The right to move any page that is not protected from moving.
 'right-upload' => '{{doc-right|upload}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
 'right-reupload' => '{{doc-right|reupload}}
-The right to upload a file under a file name that already exists. Related messages: {{msg|right-upload|pl=yes}}, {{msg|right-reupload-own|pl=yes}} and {{msg|right-reupload-shared|pl=yes}}.',
+The right to upload a file under a file name that already exists.
+
+Related messages:
+* {{msg-mw|right-upload}}
+* {{msg-mw|right-reupload-own}}
+* {{msg-mw|right-reupload-shared}}',
 'right-reupload-own' => '{{doc-right|reupload-own}}
-Right to upload a file under a file name that already exists, and that the same user has uploaded. Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
+Right to upload a file under a file name that already exists, and that the same user has uploaded.
+
+Related messages:
+* {{msg-mw|right-upload}}
+* {{msg-mw|right-reupload}}',
 'right-reupload-shared' => '{{doc-right|reupload-shared}}
-The right to upload a file locally under a file name that already exists in a shared database (for example Commons). Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
+The right to upload a file locally under a file name that already exists in a shared database (for example Commons).
+
+Related messages:
+* {{msg-mw|right-upload}}
+* {{msg-mw|right-reupload}}',
 'right-upload_by_url' => '{{doc-right|upload by url}}',
 'right-purge' => '{{doc-right|purge}}
 The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
@@ -2601,7 +2617,7 @@ If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] 
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
 'right-bot' => '{{doc-right|bot}}',
 'right-nominornewtalk' => '{{doc-right|nominornewtalk}}
-If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
+If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg-mw|right-minoredit}}), the user will not get a notification "You have new messages".',
 'right-apihighlimits' => '{{doc-right|apihighlimits}}',
 'right-writeapi' => '{{doc-right|writeapi}}',
 'right-delete' => '{{doc-right|delete}}',
@@ -2617,46 +2633,46 @@ See also:
 * {{msg-mw|right-deleterevision}}',
 'right-deleterevision' => '{{doc-right|deleterevision}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
+It can be given to the group {{msg-mw|group-sysop}}, although this right is disabled by default.
 
 See also
-* {{msg|right-suppressionlog|pl=yes}}
-* {{msg|right-hideuser|pl=yes}}
-* {{msg|right-suppressrevision|pl=yes}}
-* {{msg|right-deletelogentry|pl=yes}}',
+* {{msg-mw|right-suppressionlog}}
+* {{msg-mw|right-hideuser}}
+* {{msg-mw|right-suppressrevision}}
+* {{msg-mw|right-deletelogentry}}',
 'right-deletedhistory' => '{{doc-right|deletedhistory}}',
 'right-deletedtext' => '{{doc-right|deletedtext}}',
 'right-browsearchive' => '{{doc-right|browsearchive}}',
 'right-undelete' => '{{doc-right|undelete}}',
 'right-suppressrevision' => '{{doc-right|suppressrevision}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
+It can be given to the group {{msg-mw|group-suppress|pl=yes}}, although that group is disabled by default.
 
-See also
-* {{msg|right-suppressionlog|pl=yes}}
-* {{msg|right-hideuser|pl=yes}}
-* {{msg|right-deletelogentry|pl=yes}}
-* {{msg|right-deleterevision|pl=yes}}',
+See also:
+* {{msg-mw|right-suppressionlog|pl=yes}}
+* {{msg-mw|right-hideuser|pl=yes}}
+* {{msg-mw|right-deletelogentry|pl=yes}}
+* {{msg-mw|right-deleterevision|pl=yes}}',
 'right-suppressionlog' => '{{doc-right|suppressionlog}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
+It can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.
 
 See also
-* {{msg|right-suppressrevision|pl=yes}}
-* {{msg|right-hideuser|pl=yes}}
-* {{msg|right-deletelogentry|pl=yes}}
-* {{msg|right-deleterevision|pl=yes}}',
+* {{msg-mw|right-suppressrevision}}
+* {{msg-mw|right-hideuser}}
+* {{msg-mw|right-deletelogentry}}
+* {{msg-mw|right-deleterevision}}',
 'right-block' => '{{doc-right|block}}',
 'right-blockemail' => '{{doc-right|blockemail}}',
 'right-hideuser' => '{{doc-right|hideuser}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
+It can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.
 
 See also
-* {{msg|right-suppressionlog|pl=yes}}
-* {{msg|right-suppressrevision|pl=yes}}
-* {{msg|right-deletelogentry|pl=yes}}
-* {{msg|right-deleterevision|pl=yes}}',
+* {{msg-mw|right-suppressionlog}}
+* {{msg-mw|right-suppressrevision}}
+* {{msg-mw|right-deletelogentry}}
+* {{msg-mw|right-deleterevision}}',
 'right-ipblock-exempt' => '{{doc-right|ipblock-exempt}}
 This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
 'right-proxyunbannable' => '{{doc-right|proxyunbannable}}',
@@ -3887,7 +3903,8 @@ The title is {{msg-mw|nopagetitle}}.
 See also:
 * {{msg-mw|Nopagetitle|title}}
 * {{msg-mw|Nopagetext|text}}',
-'pager-newer-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
+'pager-newer-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.
+{{Identical|Newer}}",
 'pager-older-n' => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 'suppress' => '{{Identical|Oversight}}',
 'querypage-disabled' => "On special pages that use expensive database queries but are not cacheable, this message is displayed when 'miser mode' is on (i.e. no expensive queries allowed).",
@@ -4163,7 +4180,9 @@ See also:
 'watchlistanontext' => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'watchnologin' => '{{Identical|Not logged in}}',
 'addwatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.',
-'addedwatchtext' => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
+'addedwatchtext' => 'Explanation shown when clicking on the {{msg-mw|watch}} tab.
+
+See also {{msg-mw|addedwatch}}.',
 'removedwatchtext' => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
 'watch' => '{{doc-actionlink}}
 Name of the Watch tab. Should be in the imperative mood.
@@ -4319,8 +4338,12 @@ The subject of the e-mail is one of the following messages:
 *{{msg-mw|enotif subject moved}}
 *{{msg-mw|enotif subject restored}}
 *{{msg-mw|enotif subject changed}}',
-'created' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'changed' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'created' => 'Possible value for $CHANGEDORCREATED in the following messages:
+* {{msg-mw|enotif_subject}}
+* {{msg-mw|enotif_body}}',
+'changed' => 'Possible value for $CHANGEDORCREATED in the following messages:
+* {{msg|enotif_subject}}
+* {{msg|enotif_body}}',
 
 # Delete
 'confirm' => 'Submit button text for protection confirmation
@@ -4682,7 +4705,8 @@ See also:
 * $7 is the revision comment",
 
 # Namespace form on various pages
-'namespace' => 'This message is located at [[Special:Contributions]].',
+'namespace' => 'This message is located at [[Special:Contributions]].
+{{Identical|Namespace}}',
 'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]].
 
 This message means "Invert selection of namespace".
@@ -5863,7 +5887,7 @@ See also:
 Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki xml"): Empty document',
 'import-upload' => 'Used on [[Special:Import]].
 
-Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
+Related messages: {{msg-mw|right-importupload|pl=yes}} (the user right for this).',
 'import-token-mismatch' => 'Used as error message in [[Special:Import]].
 
 See also:
@@ -5959,7 +5983,7 @@ See also:
 * {{msg-mw|Mypreferences}}
 * {{msg-mw|Accesskey-pt-preferences}}
 * {{msg-mw|Tooltip-pt-preferences}}
-{{Identical|My preferences}}',
+{{Identical|Preferences}}',
 'tooltip-pt-watchlist' => 'Tooltip shown when hovering over the {{msg-mw|Mywatchlist}} link in your personal toolbox (upper right side).
 
 See also:
@@ -6289,13 +6313,13 @@ See also:
 * {{msg-mw|Accesskey-watch}}
 * {{msg-mw|Tooltip-watch}}
 {{Identical|Add this page to your watchlist}}',
-'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).
+'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg-mw|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).
 
 See also:
 * {{msg-mw|Watchlistedit-normal-submit}}
 * {{msg-mw|Accesskey-watchlistedit-normal-submit}}
 * {{msg-mw|Tooltip-watchlistedit-normal-submit}}',
-'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).
+'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg-mw|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).
 
 See also:
 * {{msg-mw|Watchlistedit-raw-submit}}
@@ -6550,8 +6574,7 @@ See also:
 'markedaspatrolledtext' => 'Used when marking a change as patrolled.
 
 The title for this message is {{msg-mw|Markedaspatrolled}}.
-{{Related|Markedaspatrolled}}
-{{Identical|Markedaspatrolled}}',
+{{Related|Markedaspatrolled}}',
 'rcpatroldisabled' => 'Used as title of the error message {{msg-mw|Rcpatroldisabledtext}}, when marking a change as patrolled.
 {{Related|Markedaspatrolled}}',
 'rcpatroldisabledtext' => 'Used as the error message when marking a change as patrolled.
@@ -8026,8 +8049,8 @@ See also:
 'watchlisttools-raw' => '[[Special:Watchlist]]: Navigation link under the title.
 
 See also:
-* {{msg|watchlisttools-view}}
-* {{msg|watchlisttools-edit}}
+* {{msg-mw|watchlisttools-view}}
+* {{msg-mw|watchlisttools-edit}}
 {{Identical|Edit raw watchlist}}',
 
 # Iranian month names
