@@ -215,7 +215,7 @@ class RefreshLinks extends Maintenance {
 		}
 
 		$content = $page->getContent( Revision::RAW );
-		if ( null === false ) {
+		if ( $content === null ) {
 			return;
 		}
 
