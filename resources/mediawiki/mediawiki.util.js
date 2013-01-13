@@ -1,10 +1,11 @@
-/**
- * Implements mediaWiki.util library
- */
 ( function ( mw, $ ) {
 	'use strict';
 
-	// Local cache and alias
+	/**
+	 * Utility library
+	 * @class mw.util
+	 * @singleton
+	 */
 	var util = {
 
 		/**
@@ -134,7 +135,7 @@
 		/**
 		 * Encode the string like PHP's rawurlencode
 		 *
-		 * @param str string String to be encoded
+		 * @param {string} str String to be encoded.
 		 */
 		rawurlencode: function ( str ) {
 			str = String( str );
@@ -148,7 +149,7 @@
 		 * We want / and : to be included as literal characters in our title URLs
 		 * as they otherwise fatally break the title
 		 *
-		 * @param str string String to be encoded
+		 * @param {string} str String to be encoded.
 		 */
 		wikiUrlencode: function ( str ) {
 			return util.rawurlencode( str )
@@ -156,10 +157,10 @@
 		},
 
 		/**
-		 * Get the link to a page name (relative to wgServer)
+		 * Get the link to a page name (relative to `wgServer`),
 		 *
-		 * @param str String: Page name to get the link for.
-		 * @return String: Location for a page with name of 'str' or boolean false on error.
+		 * @param {string} str Page name to get the link for.
+		 * @return {string} Location for a page with name of `str` or boolean false on error.
 		 */
 		wikiGetlink: function ( str ) {
 			return mw.config.get( 'wgArticlePath' ).replace( '$1',
@@ -168,7 +169,7 @@
 
 		/**
 		 * Get address to a script in the wiki root.
-		 * For index.php use mw.config.get( 'wgScript' )
+		 * For index.php use `mw.config.get( 'wgScript' )`.
 		 *
 		 * @since 1.18
 		 * @param str string Name of script (eg. 'api'), defaults to 'index'
@@ -188,20 +189,18 @@
 
 		/**
 		 * Append a new style block to the head and return the CSSStyleSheet object.
-		 * Use .ownerNode to access the <style> element, or use mw.loader.addStyleTag.
+		 * Use .ownerNode to access the `<style>` element, or use mw.loader#addStyleTag.
 		 * This function returns the styleSheet object for convience (due to cross-browsers
 		 * difference as to where it is located).
-		 * @example
-		 * <code>
-		 * var sheet = mw.util.addCSS('.foobar { display: none; }');
-		 * $(foo).click(function () {
-		 *     // Toggle the sheet on and off
-		 *     sheet.disabled = !sheet.disabled;
-		 * });
-		 * </code>
 		 *
-		 * @param text string CSS to be appended
-		 * @return CSSStyleSheet (use .ownerNode to get to the <style> element)
+		 *     var sheet = mw.util.addCSS('.foobar { display: none; }');
+		 *     $(foo).click(function () {
+		 *         // Toggle the sheet on and off
+		 *         sheet.disabled = !sheet.disabled;
+		 *     });
+		 *
+		 * @param {string} text CSS to be appended
+		 * @return {CSSStyleSheet} Use .ownerNode to get to the `<style>` element.
 		 */
 		addCSS: function ( text ) {
 			var s = mw.loader.addStyleTag( text );
@@ -211,10 +210,10 @@
 		/**
 		 * Hide/show the table of contents element
 		 *
-		 * @param $toggleLink jQuery A jQuery object of the toggle link.
-		 * @param callback function Function to be called after the toggle is
-		 * completed (including the animation) (optional)
-		 * @return mixed Boolean visibility of the toc (true if it's visible)
+		 * @param {jQuery} $toggleLink A jQuery object of the toggle link.
+		 * @param {Function} [callback] Function to be called after the toggle is
+		 *  completed (including the animation).
+		 * @return {Mixed} Boolean visibility of the toc (true if it's visible)
 		 * or Null if there was no table of contents.
 		 */
 		toggleToc: function ( $toggleLink, callback ) {
@@ -251,9 +250,9 @@
 		 * Grab the URL parameter value for the given parameter.
 		 * Returns null if not found.
 		 *
-		 * @param param string The parameter name.
-		 * @param url string URL to search through (optional)
-		 * @return mixed Parameter value or null.
+		 * @param {string} param The parameter name.
+		 * @param {string} [url] URL to search through.
+		 * @return {Mixed} Parameter value or null.
 		 */
 		getParamValue: function ( param, url ) {
 			if ( url === undefined ) {
@@ -271,14 +270,14 @@
 		},
 
 		/**
-		 * @var string
+		 * @property {string}
 		 * Access key prefix. Will be re-defined based on browser/operating system
-		 * detection in mw.util.init().
+		 * detection in mw.util#init.
 		 */
 		tooltipAccessKeyPrefix: 'alt-',
 
 		/**
-		 * @var RegExp
+		 * @property {RegExp}
 		 * Regex to match accesskey tooltips.
 		 */
 		tooltipAccessKeyRegexp: /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
@@ -289,8 +288,7 @@
 		 * otherwise, all the nodes that will probably have accesskeys by
 		 * default are updated.
 		 *
-		 * @param $nodes {Array|jQuery} [optional] A jQuery object, or array
-		 * of elements to update.
+		 * @param {Array|jQuery} [$nodes] A jQuery object, or array of nodes to update.
 		 */
 		updateTooltipAccessKeys: function ( $nodes ) {
 			if ( !$nodes ) {
@@ -312,9 +310,9 @@
 		},
 
 		/*
-		 * @var jQuery
-		 * A jQuery object that refers to the content area element
-		 * Populated by init().
+		 * @property {jQuery}
+		 * A jQuery object that refers to the content area element.
+		 * Populated by #init.
 		 */
 		$content: null,
 
@@ -329,28 +327,28 @@
 		 *
 		 * By default the new link will be added to the end of the list. To
 		 * add the link before a given existing item, pass the DOM node
-		 * (document.getElementById( 'foobar' )) or the jQuery-selector
-		 * ( '#foobar' ) of that item.
+		 * (e.g. `document.getElementById( 'foobar' )`) or a jQuery-selector
+		 * (e.g. `'#foobar'`) for that item.
 		 *
-		 * @example mw.util.addPortletLink(
-		 *	 'p-tb', 'http://mediawiki.org/',
-		 *	 'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
-		 * )
+		 *     mw.util.addPortletLink(
+		 *         'p-tb', 'http://mediawiki.org/',
+		 *         'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
+		 *     );
 		 *
-		 * @param portlet string ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
-		 * @param href string Link URL
-		 * @param text string Link text
-		 * @param id string ID of the new item, should be unique and preferably have
-		 * the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
-		 * @param tooltip string Text to show when hovering over the link, without accesskey suffix
-		 * @param accesskey string Access key to activate this link (one character, try
-		 * to avoid conflicts. Use $( '[accesskey=x]' ).get() in the console to
-		 * see if 'x' is already used.
-		 * @param nextnode mixed DOM Node or jQuery-selector string of the item that the new
-		 * item should be added before, should be another item in the same
-		 * list, it will be ignored otherwise
+		 * @param {string} portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
+		 * @param {string} href Link URL
+		 * @param {string} text Link text
+		 * @param {string} [id] ID of the new item, should be unique and preferably have
+		 *  the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
+		 * @param {string} [tooltip] Text to show when hovering over the link, without accesskey suffix
+		 * @param {string} [accesskey] Access key to activate this link (one character, try
+		 *  to avoid conflicts. Use `$( '[accesskey=x]' ).get()` in the console to
+		 *  see if 'x' is already used.
+		 * @param {HTMLElement|jQuery|string} [nextnode] Element or jQuery-selector string to the item that
+		 *  the new item should be added before, should be another item in the same
+		 *  list, it will be ignored otherwise
 		 *
-		 * @return mixed The DOM Node of the added item (a ListItem or Anchor element,
+		 * @return {HTMLElement|null} The added element (a ListItem or Anchor element,
 		 * depending on the skin) or null if no element was added to the document.
 		 */
 		addPortletLink: function ( portlet, href, text, id, tooltip, accesskey, nextnode ) {
@@ -454,9 +452,9 @@
 		 * something, replacing any previous message.
 		 * Calling with no arguments, with an empty string or null will hide the message
 		 *
-		 * @param message {mixed} The DOM-element, jQuery object or HTML-string to be put inside the message box.
+		 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
 		 * to allow CSS/JS to hide different boxes. null = no class used.
-		 * @depreceated Use mw.notify
+		 * @deprecated Use mw#notify
 		 */
 		jsMessage: function ( message ) {
 			if ( !arguments.length || message === '' || message === null ) {
@@ -474,11 +472,11 @@
 		 * according to HTML5 specification. Please note the specification
 		 * does not validate a domain with one character.
 		 *
-		 * @todo FIXME: should be moved to or replaced by a JavaScript validation module.
+		 * FIXME: should be moved to or replaced by a validation module.
 		 *
-		 * @param mailtxt string E-mail address to be validated.
-		 * @return mixed Null if mailtxt was an empty string, otherwise true/false
-		 * is determined by validation.
+		 * @param {string} mailtxt E-mail address to be validated.
+		 * @return {boolean|null} Null if `mailtxt` was an empty string, otherwise true/false
+		 * as determined by validation.
 		 */
 		validateEmail: function ( mailtxt ) {
 			var rfc5322Atext, rfc1034LdhStr, html5EmailRegexp;
@@ -487,42 +485,35 @@
 				return null;
 			}
 
-			/**
-			 * HTML5 defines a string as valid e-mail address if it matches
-			 * the ABNF:
-			 *	1 * ( atext / "." ) "@" ldh-str 1*( "." ldh-str )
-			 * With:
-			 * - atext	: defined in RFC 5322 section 3.2.3
-			 * - ldh-str : defined in RFC 1034 section 3.5
-			 *
-			 * (see STD 68 / RFC 5234 http://tools.ietf.org/html/std68):
-			 */
-
-			/**
-			 * First, define the RFC 5322 'atext' which is pretty easy:
-			 * atext = ALPHA / DIGIT / ; Printable US-ASCII
-						 "!" / "#" /	 ; characters not including
-						 "$" / "%" /	 ; specials. Used for atoms.
-						 "&" / "'" /
-						 "*" / "+" /
-						 "-" / "/" /
-						 "=" / "?" /
-						 "^" / "_" /
-						 "`" / "{" /
-						 "|" / "}" /
-						 "~"
-			*/
+			// HTML5 defines a string as valid e-mail address if it matches
+			// the ABNF:
+			//	1 * ( atext / "." ) "@" ldh-str 1*( "." ldh-str )
+			// With:
+			// - atext	: defined in RFC 5322 section 3.2.3
+			// - ldh-str : defined in RFC 1034 section 3.5
+			//
+			// (see STD 68 / RFC 5234 http://tools.ietf.org/html/std68)
+			// First, define the RFC 5322 'atext' which is pretty easy:
+			// atext = ALPHA / DIGIT / ; Printable US-ASCII
+			//     "!" / "#" /    ; characters not including
+			//     "$" / "%" /    ; specials. Used for atoms.
+			//     "&" / "'" /
+			//     "*" / "+" /
+			//     "-" / "/" /
+			//     "=" / "?" /
+			//     "^" / "_" /
+			//     "`" / "{" /
+			//     "|" / "}" /
+			//     "~"
 			rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
 
-			/**
-			 * Next define the RFC 1034 'ldh-str'
-			 *	<domain> ::= <subdomain> | " "
-			 *	<subdomain> ::= <label> | <subdomain> "." <label>
-			 *	<label> ::= <letter> [ [ <ldh-str> ] <let-dig> ]
-			 *	<ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
-			 *	<let-dig-hyp> ::= <let-dig> | "-"
-			 *	<let-dig> ::= <letter> | <digit>
-			 */
+			// Next define the RFC 1034 'ldh-str'
+			//	<domain> ::= <subdomain> | " "
+			//	<subdomain> ::= <label> | <subdomain> "." <label>
+			//	<label> ::= <letter> [ [ <ldh-str> ] <let-dig> ]
+			//	<ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
+			//	<let-dig-hyp> ::= <let-dig> | "-"
+			//	<let-dig> ::= <letter> | <digit>
 			rfc1034LdhStr = 'a-z0-9\\-';
 
 			html5EmailRegexp = new RegExp(
@@ -552,9 +543,9 @@
 		/**
 		 * Note: borrows from IP::isIPv4
 		 *
-		 * @param address string
-		 * @param allowBlock boolean
-		 * @return boolean
+		 * @param {string} address
+		 * @param {boolean} allowBlock
+		 * @return {boolean}
 		 */
 		isIPv4Address: function ( address, allowBlock ) {
 			if ( typeof address !== 'string' ) {
@@ -571,9 +562,9 @@
 		/**
 		 * Note: borrows from IP::isIPv6
 		 *
-		 * @param address string
-		 * @param allowBlock boolean
-		 * @return boolean
+		 * @param {string} address
+		 * @param {boolean} allowBlock
+		 * @return {boolean}
 		 */
 		isIPv6Address: function ( address, allowBlock ) {
 			if ( typeof address !== 'string' ) {
