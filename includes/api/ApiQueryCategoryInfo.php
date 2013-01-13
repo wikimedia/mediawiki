@@ -146,8 +146,4 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#categoryinfo_.2F_ci';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

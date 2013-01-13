@@ -123,8 +123,4 @@ class ApiOpenSearch extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Opensearch';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

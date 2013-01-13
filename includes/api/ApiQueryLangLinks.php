@@ -192,8 +192,4 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#langlinks_.2F_ll';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

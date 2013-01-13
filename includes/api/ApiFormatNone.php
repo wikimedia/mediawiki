@@ -44,8 +44,4 @@ class ApiFormatNone extends ApiFormatBase {
 	public function getDescription() {
 		return 'Output nothing' . parent::getDescription();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

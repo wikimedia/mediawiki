@@ -114,10 +114,10 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 		$retval['classname'] = get_class( $obj );
 		$retval['description'] = implode( "\n", (array)$obj->getFinalDescription() );
-
 		$retval['examples'] = '';
 
-		$retval['version'] = implode( "\n", (array)$obj->getVersion() );
+		// version is deprecated since 1.21, but needs to be returned for v1
+		$retval['version'] = '';
 		$retval['prefix'] = $obj->getModulePrefix();
 
 		if ( $obj->isReadMode() ) {
@@ -365,9 +365,5 @@ class ApiParamInfo extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Parameter_information';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

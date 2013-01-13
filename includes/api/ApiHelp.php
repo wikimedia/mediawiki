@@ -151,8 +151,4 @@ class ApiHelp extends ApiBase {
 			'https://www.mediawiki.org/wiki/API:Quick_start_guide',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

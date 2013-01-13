@@ -196,8 +196,4 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			'api.php?action=query&prop=iwlinks&titles=Main%20Page' => 'Get interwiki links from the [[Main Page]]',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

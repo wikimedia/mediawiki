@@ -155,10 +155,6 @@ class ApiRsd extends ApiBase {
 		}
 		return $outputData;
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
 
 class ApiFormatXmlRsd extends ApiFormatXml {
@@ -169,9 +165,5 @@ class ApiFormatXmlRsd extends ApiFormatXml {
 
 	public function getMimeType() {
 		return 'application/rsd+xml';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

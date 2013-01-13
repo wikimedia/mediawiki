@@ -172,8 +172,4 @@ class ApiComparePages extends ApiBase {
 			'api.php?action=compare&fromrev=1&torev=2' => 'Create a diff between revision 1 and 2',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

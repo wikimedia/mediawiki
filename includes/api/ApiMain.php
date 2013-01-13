@@ -132,7 +132,7 @@ class ApiMain extends ApiBase {
 	private $mPrinter;
 
 	private $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mAction, $mShowVersions, $mEnableWrite;
+	private $mResult, $mAction, $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	private $mCacheMode = 'private';
@@ -188,7 +188,6 @@ class ApiMain extends ApiBase {
 		$this->mFormatNames = array_keys( $this->mFormats );
 
 		$this->mResult = new ApiResult( $this );
-		$this->mShowVersions = false;
 		$this->mEnableWrite = $enableWrite;
 
 		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
@@ -681,7 +680,6 @@ class ApiMain extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
 
 		if ( !is_string( $this->mAction ) ) {
@@ -968,7 +966,10 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_DFLT => 'help',
 				ApiBase::PARAM_TYPE => $this->mModuleNames
 			),
-			'version' => false,
+			'version' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true
+			),
 			'maxlag'  => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
@@ -1111,8 +1112,7 @@ class ApiMain extends ApiBase {
 		$this->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
-			SpecialVersion::getVersion( 'nodb' ) .
-			$this->getShowVersions() );
+			SpecialVersion::getVersion( 'nodb' ) );
 		if ( $wgAPICacheHelpTimeout > 0 ) {
 			$cached = $wgMemc->get( $key );
 			if ( $cached ) {
@@ -1202,25 +1202,11 @@ class ApiMain extends ApiBase {
 	/**
 	 * Check whether the user wants us to show version information in the API help
 	 * @return bool
+	 * @deprecated since 1.21, always returns false
 	 */
 	public function getShowVersions() {
-		return $this->mShowVersions;
-	}
-
-	/**
-	 * Returns the version information of this file, plus it includes
-	 * the versions for all files that are not callable proper API modules
-	 *
-	 * @return array
-	 */
-	public function getVersion() {
-		$vers = array();
-		$vers[] = 'MediaWiki: ' . SpecialVersion::getVersion() . "\n    https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/";
-		$vers[] = __CLASS__ . ': $Id$';
-		$vers[] = ApiBase::getBaseVersion();
-		$vers[] = ApiFormatBase::getBaseVersion();
-		$vers[] = ApiQueryBase::getBaseVersion();
-		return $vers;
+		wfDeprecated( __METHOD__, '1.21' );
+		return false;
 	}
 
 	/**
