@@ -163,4 +163,8 @@ class SpecialComparePages extends SpecialPage {
 		}
 		return true;
 	}
+
+	public function getGroupName() {
+		return 'pagetools';
+	}
 }

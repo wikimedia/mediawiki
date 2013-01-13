@@ -42,6 +42,10 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 		}
 	}
+
+	public function getGroupName() {
+		return 'changes';
+	}
 }
 
 

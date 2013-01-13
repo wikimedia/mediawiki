@@ -134,4 +134,8 @@ class MIMEsearchPage extends QueryPage {
 		);
 		return in_array( $type, $types );
 	}
+
+	public function getGroupName() {
+		return 'media';
+	}
 }

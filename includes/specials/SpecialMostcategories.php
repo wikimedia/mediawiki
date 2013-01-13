@@ -99,4 +99,8 @@ class MostcategoriesPage extends QueryPage {
 
 		return $this->getLanguage()->specialList( $link, $count );
 	}
+
+	public function getGroupName() {
+		return 'highuse';
+	}
 }

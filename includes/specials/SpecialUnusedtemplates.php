@@ -85,4 +85,8 @@ class UnusedtemplatesPage extends QueryPage {
 	function getPageHeader() {
 		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
 	}
+
+	public function getGroupName() {
+		return 'maintenance';
+	}
 }

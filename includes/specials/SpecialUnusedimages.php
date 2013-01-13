@@ -80,4 +80,7 @@ class UnusedimagesPage extends ImageQueryPage {
 		return $this->msg( 'unusedimagestext' )->parseAsBlock();
 	}
 
+	public function getGroupName() {
+		return 'maintenance';
+	}
 }

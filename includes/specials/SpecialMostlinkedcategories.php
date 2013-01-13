@@ -94,4 +94,8 @@ class MostlinkedCategoriesPage extends QueryPage {
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
+
+	public function getGroupName() {
+		return 'highuse';
+	}
 }

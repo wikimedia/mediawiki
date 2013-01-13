@@ -254,4 +254,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		return $status->value;
 	}
+
+	public function getGroupName() {
+		return 'users';
+	}
 }

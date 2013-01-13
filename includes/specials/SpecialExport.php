@@ -561,4 +561,7 @@ class SpecialExport extends SpecialPage {
 		return $pageSet;
 	}
 
+	public function getGroupName() {
+		return 'pagetools';
+	}
 }
