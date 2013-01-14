@@ -7788,6 +7788,15 @@ I always thought &eacute; was a cute letter.
 !! end
 
 !! test
+text with entity-escaped character entity-like string: eacute
+!! input
+I always thought &amp;eacute; was a cute letter.
+!! result
+<p>I always thought &amp;eacute; was a cute letter.
+</p>
+!! end
+
+!! test
 text with undefined character entity: xacute
 !! input
 I always thought &xacute; was a cute letter.
@@ -13387,6 +13396,23 @@ disabled
 </p>
 !! end
 
+!! test
+HTML tag with necessary entities in attributes
+!! input
+<span title="&amp;amp;">foo</span>
+!! result
+<p><span title="&amp;amp;">foo</span>
+</p>
+!! end
+
+!! test
+HTML tag with 'unnecessary' entity encoding in attributes
+!! input
+<span title="&amp;">foo</span>
+!! result
+<p><span title="&amp;">foo</span>
+</p>
+!! end
 
 TODO:
 more images
