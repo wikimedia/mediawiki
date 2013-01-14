@@ -31,6 +31,9 @@ class JobQueueGroup {
 	/** @var Array */
 	protected static $instances = array();
 
+	/** @var ProcessCacheLRU */
+	protected $cache;
+
 	protected $wiki; // string; wiki ID
 
 	const TYPE_DEFAULT = 1; // integer; job not in $wgJobTypesExcludedFromDefaultQueue
@@ -41,6 +44,7 @@ class JobQueueGroup {
 	 */
 	protected function __construct( $wiki ) {
 		$this->wiki = $wiki;
+		$this->cache = new ProcessCacheLRU( 2 );
 	}
 
 	/**
@@ -109,15 +113,27 @@ class JobQueueGroup {
 	 * @return Job|bool Returns false on failure
 	 */
 	public function pop( $type = self::TYPE_DEFAULT ) {
-		$types = ( $type == self::TYPE_DEFAULT )
-			? $this->getDefaultQueueTypes()
-			: $this->getQueueTypes();
+		if ( $type == self::TYPE_DEFAULT ) {
+			$cKey = 'default-queues-ready';
+			if ( !$this->cache->has( $cKey, 'list', 15 ) ) {
+				$this->cache->set( $cKey, 'list', $this->getDefaultQueuesWithJobs() );
+			}
+		} else {
+			$cKey = 'queues-ready';
+			if ( !$this->cache->has( $cKey, 'list', 15 ) ) {
+				$this->cache->set( $cKey, 'list', $this->getQueuesWithJobs() );
+			}
+		}
+		$types = $this->cache->get( $cKey, 'list' );
 		shuffle( $types ); // avoid starvation
 
-		foreach ( $types as $type ) { // for each queue...
+		foreach ( $types as $k => $type ) { // for each queue...
 			$job = $this->get( $type )->pop();
 			if ( $job ) {
 				return $job; // found
+			} else {
+				unset( $types[$k] ); // skip this queue next time
+				$this->cache->set( $cKey, 'list', $types );
 			}
 		}
 
@@ -173,6 +189,19 @@ class JobQueueGroup {
 	public function getQueuesWithJobs() {
 		$types = array();
 		foreach ( $this->getQueueTypes() as $type ) {
+			if ( !$this->get( $type )->isEmpty() ) {
+				$types[] = $type;
+			}
+		}
+		return $types;
+	}
+
+	/**
+	 * @return Array List of default job types that have non-empty queues
+	 */
+	public function getDefaultQueuesWithJobs() {
+		$types = array();
+		foreach ( $this->getDefaultQueueTypes() as $type ) {
 			if ( !$this->get( $type )->isEmpty() ) {
 				$types[] = $type;
 			}
