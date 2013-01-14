@@ -2,7 +2,7 @@
 /**
  * Helper class to keep track of options when mixing links and form elements.
  *
- * Copyright © 2008, Niklas Laxstiröm
+ * Copyright © 2008, Niklas Laxström
  * Copyright © 2011, Antoine Musso
  *
  * This program is free software; you can redistribute it and/or modify
