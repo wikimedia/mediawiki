@@ -202,8 +202,4 @@ class ApiOptions extends ApiBase {
 			'api.php?action=options&reset=&change=skin=monobook&optionname=nickname&optionvalue=[[User:Beau|Beau]]%20([[User_talk:Beau|talk]])&token=123ABC',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

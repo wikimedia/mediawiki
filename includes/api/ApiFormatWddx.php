@@ -112,8 +112,4 @@ class ApiFormatWddx extends ApiFormatBase {
 	public function getDescription() {
 		return 'Output data in WDDX format' . parent::getDescription();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

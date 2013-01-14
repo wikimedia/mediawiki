@@ -243,8 +243,4 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			'api.php?action=query&generator=langbacklinks&glbltitle=Test&glbllang=fr&prop=info'
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

@@ -649,8 +649,4 @@ class ApiEditPage extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Edit';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

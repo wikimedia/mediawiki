@@ -267,8 +267,4 @@ class ApiDelete extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Delete';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
