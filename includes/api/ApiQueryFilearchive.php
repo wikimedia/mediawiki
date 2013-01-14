@@ -378,8 +378,4 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			),
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

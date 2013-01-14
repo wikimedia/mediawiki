@@ -138,9 +138,5 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		);
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
-
 }
 

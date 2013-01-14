@@ -213,8 +213,4 @@ class ApiFeedContributions extends ApiBase {
 			'api.php?action=feedcontributions&user=Reedy',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

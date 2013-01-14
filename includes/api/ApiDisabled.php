@@ -63,8 +63,4 @@ class ApiDisabled extends ApiBase {
 	public function getExamples() {
 		return array();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

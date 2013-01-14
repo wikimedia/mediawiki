@@ -776,12 +776,4 @@ class ApiQuery extends ApiBase {
 			'https://www.mediawiki.org/wiki/API:Lists',
 		);
 	}
-
-	public function getVersion() {
-		$psModule = new ApiPageSet( $this );
-		$vers = array();
-		$vers[] = __CLASS__ . ': $Id$';
-		$vers[] = $psModule->getVersion();
-		return $vers;
-	}
 }

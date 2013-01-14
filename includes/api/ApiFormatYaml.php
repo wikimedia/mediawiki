@@ -37,8 +37,4 @@ class ApiFormatYaml extends ApiFormatJson {
 	public function getDescription() {
 		return 'Output data in YAML format' . ApiFormatBase::getDescription();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

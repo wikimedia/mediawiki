@@ -554,14 +554,6 @@ abstract class ApiQueryBase extends ApiBase {
 			array( 'invalidtitle', 'key' ),
 		) );
 	}
-
-	/**
-	 * Get version string for use in the API help output
-	 * @return string
-	 */
-	public static function getBaseVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
 
 /**

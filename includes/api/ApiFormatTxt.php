@@ -48,8 +48,4 @@ class ApiFormatTxt extends ApiFormatBase {
 	public function getDescription() {
 		return 'Output data in PHP\'s print_r() format' . parent::getDescription();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

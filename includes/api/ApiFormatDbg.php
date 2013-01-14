@@ -48,8 +48,4 @@ class ApiFormatDbg extends ApiFormatBase {
 	public function getDescription() {
 		return 'Output data in PHP\'s var_export() format' . parent::getDescription();
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
