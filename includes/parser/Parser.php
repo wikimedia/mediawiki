@@ -4988,13 +4988,17 @@ class Parser {
 						$alt = $this->stripAltText( $match, false );
 					}
 					elseif( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ){
-						$link = strip_tags($this->replaceLinkHoldersText($match));
+						$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
 						$chars = self::EXT_LINK_URL_CLASS;
 						$prots = $this->mUrlProtocols;
 						//check to see if link matches an absolute url, if not then it must be a wiki link.
-						if(!preg_match( "/^($prots)$chars+$/u", $link)){
-							$localLinkTitle = Title::newFromText($link);
-							$link = $localLinkTitle->getLocalURL();
+						if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
+							$link = $linkValue;
+						} else {
+							$localLinkTitle = Title::newFromText( $linkValue );
+							if ( $localLinkTitle !== null ) {
+								$link = $localLinkTitle->getLocalURL();
+							}
 						}
 					}
 					else {
