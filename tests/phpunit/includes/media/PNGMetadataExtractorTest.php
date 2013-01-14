@@ -9,6 +9,10 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * Tests zTXt tag (compressed textual metadata) 
 	 */
 	function testPngNativetZtxt() {
+		if ( !function_exists( 'gzuncompress' ) ) {
+			return $this->markTestSkipped( 'zlib extension not available. Needed for reading compressed metadata.' );
+		}
+
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );
 		$expected = "foo bar baz foo foo foo foof foo foo foo foo";
