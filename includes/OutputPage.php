@@ -3512,10 +3512,14 @@ $templates
 	 * Transform "media" attribute based on request parameters
 	 *
 	 * @param $media String: current value of the "media" attribute
-	 * @return String: modified value of the "media" attribute
+	 * @return String: modified value of the "media" attribute, or null to skip
+	 * this stylesheet
 	 */
 	public static function transformCssMedia( $media ) {
 		global $wgRequest, $wgHandheldForIPhone;
+
+		// http://www.w3.org/TR/css3-mediaqueries/#syntax
+		$screenMediaQueryRegex = '/(?:only\w+)?screen(?:\w+and\w+)?/i';
 
 		// Switch in on-screen display for media testing
 		$switches = array(
@@ -3526,8 +3530,17 @@ $templates
 			if( $wgRequest->getBool( $switch ) ) {
 				if( $media == $targetMedia ) {
 					$media = '';
-				} elseif( $media == 'screen' ) {
-					return null;
+				} elseif( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
+					// This regex will not attempt to understand a comma-separated media_query_list
+					//
+					// If it's a print request, we never want any kind of screen styesheets
+					// If it's a handheld request (currently the only other choice with a switch),
+					// we don't want simple 'screen' but we might want screen queries that
+					// have a max-width or something, so we'll pass all others on and let the
+					// client do the query.
+					if( $targetMedia == 'print' || $media == 'screen' ) {
+						return null;
+					}
 				}
 			}
 		}
