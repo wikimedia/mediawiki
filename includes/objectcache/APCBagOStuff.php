@@ -105,19 +105,4 @@ class APCBagOStuff extends BagOStuff {
 	public function decr( $key, $value = 1 ) {
 		return apc_dec( $key, $value );
 	}
-
-	/**
-	 * @return Array
-	 */
-	public function keys() {
-		$info = apc_cache_info( 'user' );
-		$list = $info['cache_list'];
-		$keys = array();
-
-		foreach ( $list as $entry ) {
-			$keys[] = $entry['info'];
-		}
-
-		return $keys;
-	}
 }

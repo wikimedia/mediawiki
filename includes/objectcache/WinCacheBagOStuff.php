@@ -89,23 +89,4 @@ class WinCacheBagOStuff extends BagOStuff {
 
 		return true;
 	}
-
-	/**
-	 * @return Array
-	 */
-	public function keys() {
-		$info = wincache_ucache_info();
-		$list = $info['ucache_entries'];
-		$keys = array();
-
-		if ( is_null( $list ) ) {
-			return array();
-		}
-
-		foreach ( $list as $entry ) {
-			$keys[] = $entry['key_name'];
-		}
-
-		return $keys;
-	}
 }
