@@ -246,6 +246,19 @@ class Language {
 	}
 
 	/**
+	 * Checks whether any localisation is available for that language tag
+	 * in MediaWiki (MessagesXx.php exists).
+	 *
+	 * @param string $code Language tag (in lower case)
+	 * @return bool Whether language is supported
+	 * @since 1.21
+	 */
+	public static function isSupportedLanguage( $code ) {
+		$languages = self::fetchLanguageNames( null, 'mwfile' );
+		return isset( $languages[$code] );
+	}
+
+	/**
 	 * Returns true if a language code string is of a valid form, whether or
 	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
