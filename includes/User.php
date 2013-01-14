@@ -400,7 +400,7 @@ class User {
 	 */
 	public static function newFromId( $id ) {
 		$u = new User;
-		$u->mId = $id;
+		$u->mId = ( ( int ) $id );
 		$u->mFrom = 'id';
 		$u->setItemLoaded( 'id' );
 		return $u;
