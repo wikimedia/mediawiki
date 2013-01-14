@@ -83,7 +83,7 @@ production.
   in MW 1.20 (saving preferences using Special:Preferences cleared any
   additional fields) and which has been disabled in 1.20.1 as a part of
   a security fix (bug 42202).
-* Added the ability to limit the wall clock time used by shell processes, 
+* Added the ability to limit the wall clock time used by shell processes,
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
 
 === Bug fixes in 1.21 ===
@@ -152,6 +152,8 @@ production.
 * wfMerge() now works if $wgDiff3 contains spaces
 * (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
   ca-edit click instead opening URL directly.
+* (bug 43964) Invalid value of "link" parameter in <gallery> no longer produces
+  a fatal error.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
