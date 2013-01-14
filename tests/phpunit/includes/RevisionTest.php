@@ -139,8 +139,11 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function testCompressRevisionTextUtf8Gzip() {
-		global $wgCompressRevisions;
+		if ( !function_exists( 'gzdeflate' ) ) {
+			return $this->markTestSkipped( 'Gzip compression is not enabled (requires zlib).' );
+		}
 
+		global $wgCompressRevisions;
 		$wgCompressRevisions = true;
 
 		$row = new stdClass;
