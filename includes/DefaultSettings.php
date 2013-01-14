@@ -6097,9 +6097,15 @@ $wgMaxShellMemory = 102400;
 $wgMaxShellFileSize = 102400;
 
 /**
- * Maximum CPU time in seconds for shell processes under linux
+ * Maximum CPU time in seconds for shell processes under Linux
  */
 $wgMaxShellTime = 180;
+
+/**
+ * Maximum wall clock time (i.e. real time, of the kind the clock on the wall
+ * would measure) in seconds for shell processes under Linux
+ */
+$wgMaxShellWallClockTime = 180;
 
 /**
  * Executable path of the PHP cli binary (php/php5). Should be set up on install.
