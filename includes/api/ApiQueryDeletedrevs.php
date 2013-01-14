@@ -74,7 +74,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $mode == 'revs' || $mode == 'user' ) {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
-			foreach( array( 'from', 'to', 'prefix', /*'namespace',*/ 'continue', /*'unique'*/ ) as $p ) {
+			foreach( array( 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ) as $p ) {
 				if ( !is_null( $params[$p] ) ) {
 					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams');
 				}
@@ -362,7 +362,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
 			'excludeuser' => 'Don\'t list revisions by this user',
-			'continue' => 'When more results are available, use this to continue (3)',
+			'continue' => 'When more results are available, use this to continue (1, 3)',
 			'unique' => 'List only one revision for each page (3)',
 		);
 	}
@@ -401,7 +401,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			array( 'code' => 'badparams', 'info' => "The 'from' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'to' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'prefix' parameter cannot be used in modes 1 or 2" ),
-			array( 'code' => 'badparams', 'info' => "The 'continue' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'start' parameter cannot be used in mode 3" ),
 			array( 'code' => 'badparams', 'info' => "The 'end' parameter cannot be used in mode 3" ),
 		) );
