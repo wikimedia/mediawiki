@@ -501,7 +501,7 @@ $messages = array(
 'tog-externaleditor' => 'استخدم محرراً خارجياً بشكل افتراضي (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors لمزيد من المعلومات].)',
 'tog-externaldiff' => 'استخدم فرقاً خارجياً بشكل افتراضي (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors للمزيد من المعلومات].)',
 'tog-showjumplinks' => 'مكن وصلات "اذهب إلى" المساعدة',
-'tog-uselivepreview' => 'استخدم الاستعراض السريع (جافاسكريبت) (تجريبي)',
+'tog-uselivepreview' => 'استخدم الاستعراض السريع (جافاسكريبت)',
 'tog-forceeditsummary' => 'نبهني عند إدخال ملخص تعديل فارغ',
 'tog-watchlisthideown' => 'أخف تعديلاتي من قائمة المراقبة',
 'tog-watchlisthidebots' => 'أخف تعديلات البوت من قائمة المراقبة',
@@ -602,7 +602,7 @@ $messages = array(
 'newwindow' => '(تفتح في نافذة جديدة)',
 'cancel' => 'إلغاء',
 'moredotdotdot' => 'المزيد...',
-'mypage' => 'صفحتي',
+'mypage' => 'صفحة',
 'mytalk' => 'نقاش',
 'anontalk' => 'النقاش لعنوان الأيبي هذا',
 'navigation' => 'إبحار',
@@ -635,6 +635,7 @@ $messages = array(
 'namespaces' => 'النطاقات',
 'variants' => 'المتغيرات',
 
+'navigation-heading' => 'قائمة التصفح',
 'errorpagetitle' => 'خطأ',
 'returnto' => 'ارجع إلى $1.',
 'tagline' => 'من {{SITENAME}}',
@@ -847,7 +848,7 @@ $1',
 'actionthrottled' => 'لا يمكن عمل المزيد من هذا الفعل',
 'actionthrottledtext' => 'كإجراء ضد السبام، أنت ممنوع من إجراء هذا الفعل عدد كبير من المرات في فترة زمنية قصيرة، ولقد تجاوزت هذا الحد.
 من فضلك حاول مرة ثانية خلال عدة دقائق.',
-'protectedpagetext' => 'هذه الصفحة تمت حمايتها لمنع التعديل.',
+'protectedpagetext' => 'هذه الصفحة تمت حمايتها لمنع التعديل أو أية عمليات أخرى.',
 'viewsourcetext' => 'يمكنك رؤية ونسخ مصدر هذه الصفحة:',
 'viewyourtext' => "يمكنك رؤية ونسخ مصدر ''' تعديلاتك ''' في هذه الصفحة:",
 'protectedinterface' => 'توفر هذه الصفحة نص الواجهة للبرنامج على هذا الويكي، وهي محمية لمنع سوء أستخدامها.
@@ -986,6 +987,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 'user-mail-no-addy' => 'لقد حاولت إرسال بريد إلكتروني دون عنوان بريد إلكتروني.',
+'user-mail-no-body' => 'محاول ارسال بريد إلكتروني فارغ أو ذو نص قصير.',
 
 # Change password dialog
 'resetpass' => 'تغيير كلمة السر',
@@ -1046,6 +1048,7 @@ $2
 'changeemail-oldemail' => 'عنوان البريد الإلكتروني الحالي:',
 'changeemail-newemail' => 'عنوان البريد الإلكتروني الجديد:',
 'changeemail-none' => '(لا شيء)',
+'changeemail-password' => 'كلمة سر {{SITENAME}} الخاصة بك:',
 'changeemail-submit' => 'غيّر البريد الإلكتروني',
 'changeemail-cancel' => 'إلغاء',
 
@@ -1175,7 +1178,7 @@ $2
 'note' => "'''ملاحظة:'''",
 'previewnote' => "'''تذكر أن هذه مجرد معاينة أولية.'''
 لم تحفظ تغييراتك إلى الآن!",
-'continue-editing' => 'أكمل التحرير',
+'continue-editing' => 'اذهب لصندوق التحرير',
 'previewconflict' => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview' => "'''عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
 من فضلك حاول مرة أخرى.
@@ -1638,9 +1641,9 @@ $1",
 'prefs-emailconfirm-label' => 'تأكيد البريد الإلكتروني:',
 'prefs-textboxsize' => 'حجم نافذة التحرير',
 'youremail' => 'البريد:',
-'username' => 'اسم المستخدم:',
-'uid' => 'رقم المستخدم:',
-'prefs-memberingroups' => 'عضو في {{PLURAL:$1|مجموعة|مجموعة|مجموعتي|مجموعات}}:',
+'username' => '{{GENDER:$1|اسم المستخدم|اسم المستخدمة}}:',
+'uid' => 'رقم {{GENDER:$1|المستخدم|المستخدمة}}:',
+'prefs-memberingroups' => '{{GENDER:$2|عضو|عضوة}} في {{PLURAL:$1|مجموعة|مجموعة|مجموعتي|مجموعات}}:',
 'prefs-registration' => 'وقت التسجيل:',
 'yourrealname' => 'الاسم الحقيقي:',
 'yourlanguage' => 'اللغة:',
@@ -1660,7 +1663,7 @@ $1",
 'prefs-help-realname' => 'الاسم الحقيقي اختياري.
 لو اخترت أن توفره، فسيستخدم في الإشارة إلى عملك.',
 'prefs-help-email' => 'تحديد عنوان البريد الإلكتروني اختياري، ولكنه يلزم لإعادة تعيين كلمة المرور في حال نسيت كلمة المرور الخاصة بك.',
-'prefs-help-email-others' => 'يمكنك أيضا أن {{GENDER:$1|تسمح|تسمحي}} للآخرين الاتصال بك عن طريق وصلة في صفحة المستخدم أو نقاش المستخدم الخاصة بك. لا يكشف بريدك الإلكتروني عندما يراسلك أحد بهذه الطريقة، ولكن إذا راسلت أحداً سيرى بريدك الإلكتروني.',
+'prefs-help-email-others' => 'يمكنك أيضا أن تسمح للآخرين الاتصال بك عن طريق وصلة في صفحة المستخدم أو نقاش المستخدم الخاصة بك. لا يكشف بريدك الإلكتروني عندما يراسلك أحد بهذه الطريقة، ولكن إذا قمت بالرد سيرى بريدك الإلكتروني.',
 'prefs-help-email-required' => 'عنوان البريد الإلكتروني مطلوب.',
 'prefs-info' => 'المعلومات الأساسية',
 'prefs-i18n' => 'الترجمة',
@@ -2436,7 +2439,7 @@ $1',
 'linksearch-ok' => 'بحث',
 'linksearch-text' => 'Wildcards مثل "*.wikipedia.org" يمكن استخدامها.
 تحتاج على الأقل إلى نطاق ذو مستوى أعلى، كمثال "*.org".<br />
-البروتوكولات المدعومة: <code>$1</code> (لا تقم بإضافة أي من هذه إلى بحثك).',
+{{PLURAL:$2|البروتوكول المدعوم|البروتوكولان المدعومان|البروتوكولات المدعومة}}: <code>$1</code> (تتم إضافة http:// تلقائيا عند عدم تحديد أي بروتوكول).',
 'linksearch-line' => '$1 موصولة من $2',
 'linksearch-error' => 'الكروت الخاصة يمكن أن تظهر فقط في بداية اسم المضيف.',
 
@@ -2481,7 +2484,7 @@ $1',
 'emailuser-title-target' => 'راسل بالبريد الإلكتروني هذا  {{GENDER:$1| المستخدم}}',
 'emailuser-title-notarget' => 'مراسلة المستخدم',
 'emailpage' => 'إرسال رسالة للمستخدم',
-'emailpagetext' => 'يمكنك استخدام الاستمارة بالأسفل لإرسال رسالة بريد إلكتروني إلى هذا المستخدم.
+'emailpagetext' => 'يمكنك استخدام الاستمارة بالأسفل لإرسال رسالة بريد إلكتروني إلى {{GENDER:$1|هذا المستخدم|هذه المستخدمة}}.
 سيظهر عنوان البريد الإلكتروني الذي أدخلته في [[Special:Preferences|تفضيلاتك]] كعنوان المرسل في البريد الإلكتروني، كي يستطيع المتلقي الرد عليك مباشرة.',
 'usermailererror' => 'جسم البريد أرجع خطأ:',
 'defemailsubject' => 'رسالة {{SITENAME}} من المستخدم "$1"',
@@ -2520,8 +2523,8 @@ $1',
 'watchnologin' => 'غير مسجل الدخول',
 'watchnologintext' => 'يجب أن تكون [[Special:UserLogin|مسجل الدخول]] لتعدل قائمة مراقبتك.',
 'addwatch' => 'إضافة إلى قائمة المراقبة',
-'addedwatchtext' => "أضيفت الصفحة  \"[[:\$1]]\" إلى [[Special:Watchlist|قائمة مراقبتك]].
-التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''غليظ''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+'addedwatchtext' => 'أضيفت الصفحة  "[[:$1]]" إلى [[Special:Watchlist|قائمة مراقبتك]].
+التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك.',
 'removewatch' => 'إزالة من قائمة المراقبة',
 'removedwatchtext' => 'أزيلت الصفحة "[[:$1]]" من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch' => 'راقب',
@@ -2552,14 +2555,22 @@ $1',
 'enotif_impersonal_salutation' => 'مستخدم {{SITENAME}}',
 'enotif_subject_deleted' => 'الصفحة {{SITENAME}} $1 حذفها {{الجنس: $2 | $2 }}',
 'enotif_subject_created' => 'الصفحة {{SITENAME}}  $1  أنشأها {{الجنس: $2 | $2 }}',
-'enotif_body_intro_deleted' => 'إن صفحة {{SITENAME}} بعنوان $1 {{GENDER:$2|حذفها|حذفتها}} $2 في $PAGEEDITDATE. لمشاهدة النسخة الحالية راجع $3.',
+'enotif_subject_moved' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|نقلها|نقلتها}} $2',
+'enotif_subject_restored' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|استرجعها|استرجعتها}} $2',
+'enotif_subject_changed' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|عدلها|عدلتها}} $2',
+'enotif_body_intro_deleted' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|حذفها|حذفتها}} $2 في $PAGEEDITDATE.راجع $3.',
+'enotif_body_intro_created' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|أنشأها|أنشأتها}} $2 في $PAGEEDITDATE. لمشاهدة النسخة الحالية راجع $3.',
+'enotif_body_intro_moved' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|نقلها|نقلتها}} $2 في $PAGEEDITDATE. لمشاهدة النسخة الحالية راجع $3.',
+'enotif_body_intro_restored' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|استرجعها|استرجعتها}} $2 في $PAGEEDITDATE. لمشاهدة النسخة الحالية راجع $3.',
+'enotif_body_intro_changed' => 'صفحة {{SITENAME}} $1 {{GENDER:$2|عدلها|عدلتها}} $2 في $PAGEEDITDATE. لمشاهدة النسخة الحالية راجع $3.',
 'enotif_lastvisited' => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff' => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor' => 'مستخدم مجهول $1',
 'enotif_body' => 'عزيزي $WATCHINGUSERNAME
-صفحة  $PAGETITLE قد  $CHANGEDORCREATED في $PAGEEDITDATE بواسطة $PAGEEDITOR, انظر $PAGETITLE_URL للنسخة الحالية
-ملخص التعديل: $PAGESUMMARY $PAGEMINOREDIT
 
+$PAGEINTRO $NEWPAGE
+
+ملخص التعديل: $PAGESUMMARY $PAGEMINOREDIT
 
 الاتصال بالمحرر:
 البريد: $PAGEEDITOR_EMAIL
@@ -2568,7 +2579,7 @@ $1',
 لن يكون هناك إخطارات أخرى في حالة حدوث مزيد من التغييرات إلا إذا قمت بزيارة تلك الصفحة.
 يمكنك أيضاً إزالة العلامات عن جميع الصفحات في قائمة مراقبتك.
 
-			نظام {{SITENAME}} للإعلام بالبريد الإلكتروني
+                   نظام {{SITENAME}} للإعلام بالبريد الإلكتروني
 
 --
 لتغيير إعدادات الإعلام بالبريد الإلكتروني الخاص بك، قم بزيارة
@@ -2580,7 +2591,7 @@ $1',
 لحذف الصفحة من قائمة مراقبتك، قم بزيارة
 $UNWATCHURL
 
-التغذية المرتدة، والحصول على مساعدة إضافية:
+للمقترحات والحصول على مساعدة إضافية:
 {{canonicalurl: {{MediaWiki:Helppage}}}}',
 'created' => 'أنشئت',
 'changed' => 'غيرت',
@@ -2657,6 +2668,8 @@ $UNWATCHURL
 'prot_1movedto2' => 'نُقلت [[$1]] إلى [[$2]]',
 'protect-badnamespace-title' => 'نطاق لا يحمى',
 'protect-badnamespace-text' => 'صفحات هذا النطاق لا يمكن حمايتها',
+'protect-norestrictiontypes-text' => 'لا يمكن حماية هذه الصفحة لعدم توافر أنواع المحددات المطلوبة.',
+'protect-norestrictiontypes-title' => 'صفحة غير قابلة للحماية',
 'protect-legend' => 'تأكيد الحماية',
 'protectcomment' => 'السبب:',
 'protectexpiry' => 'تنتهي في:',
@@ -2771,11 +2784,11 @@ $1',
 'invert' => 'اعكس الاختيار',
 'tooltip-invert' => 'علم على هذا الصندوق لإخفاء التغييرات للصفحات في النطاق المختار (والنطاق المصاحب لو معلم عليها)',
 'namespace_association' => 'النطاق المقترن',
-'tooltip-namespace_association' => 'علم على هذا الصندوق لتضمين نطاق النقاش أو الموضوع لالمصاحب للنطاق المختار',
+'tooltip-namespace_association' => 'علم على هذا الصندوق لتضمين نطاق النقاش أو الموضوع المصاحب للنطاق المختار',
 'blanknamespace' => '(رئيسي)',
 
 # Contributions
-'contributions' => 'مساهمات المستخدم',
+'contributions' => 'مساهمات {{GENDER:$1|المستخدم|المستخدمة}}',
 'contributions-title' => 'مساهمات {{GENDER:$1|المستخدم|المستخدمة}} $1',
 'mycontris' => 'مساهماتي',
 'contribsub2' => 'ل$1 ($2)',
@@ -2818,7 +2831,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 التحويلات',
 'whatlinkshere-hidetrans' => '$1 التضمينات',
 'whatlinkshere-hidelinks' => '$1 الوصلات',
-'whatlinkshere-hideimages' => '$1 وصلة صورة',
+'whatlinkshere-hideimages' => '$1 وصلات الملفات',
 'whatlinkshere-filters' => 'مرشحات',
 
 # Block/unblock
@@ -3323,7 +3336,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'المعلومات عن «$1»',
-'pageinfo-not-current' => 'لا يمكن إظهار المعلومات إلا عن المراجعة الأخيرة للصفحة',
+'pageinfo-not-current' => 'عذرا، لا يمكن عرض تلك المعلومات للنسخ القديمة.',
 'pageinfo-header-basic' => 'المعلومات الأساسية',
 'pageinfo-header-edits' => 'التعديلات',
 'pageinfo-header-restrictions' => 'حماية الصفحة',
@@ -3352,6 +3365,7 @@ $1',
 'pageinfo-magic-words' => '{{PLURAL:$1|لا كلمات سحرية|الكلمة|الكلمات}} السحرية ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|لا تصنيفات مخفية|التصنيف المخفي|التصنيفان المخفيان|التصنيفات المخفية ($1)}}',
 'pageinfo-templates' => '{{PLURAL:$1|لا قوالب مضمنة|القالب المضمن|القالبان المضمنان|القوالب المضمنة ($1)}}',
+'pageinfo-transclusions' => '{{PLURAL:$1||صفحة واحدة|صفحتين|$1 صفحات|$1 صفحة}} مضمنة في ($1)',
 'pageinfo-toolboxlink' => 'معلومات عن هذه الصفحة',
 'pageinfo-redirectsto' => 'تحويلة إلى',
 'pageinfo-redirectsto-info' => 'معلومات',
@@ -3360,6 +3374,10 @@ $1',
 'pageinfo-protect-cascading' => 'مصدر توريث  الحماية للصفحات المدمجة',
 'pageinfo-protect-cascading-yes' => 'نعم',
 'pageinfo-protect-cascading-from' => 'حماية الصفحات المدمجة موروثة من',
+'pageinfo-category-info' => 'معلومات التصنيف',
+'pageinfo-category-pages' => 'عدد الصفحات',
+'pageinfo-category-subcats' => 'عدد التصنيفات الفرعية',
+'pageinfo-category-files' => 'عدد الملفات',
 
 # Skin names
 'skinname-standard' => 'كلاسيك',
@@ -3450,6 +3468,8 @@ $1',
 'minutes' => '{{PLURAL:$1||دقيقة واحدة|دقيقتين|$1 دقائق|$1 دقيقة}}',
 'hours' => '{{PLURAL:$1||ساعة واحدة|ساعتين|$1 ساعات|$1 ساعة}}',
 'days' => '{{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}}',
+'months' => '{{PLURAL:$1||شهر واحد|شهرين|$1 شهور|$1 شهرا|$1 شهر}}',
+'years' => '{{PLURAL:$1||سنة واحدة|سنتين|$1 سنين|$1 سنة}}',
 'ago' => 'قبل $1',
 'just-now' => 'الآن فقط',
 
@@ -4184,7 +4204,7 @@ $5
 'version-license' => 'الرخصة',
 'version-poweredby-credits' => "تدار هذه الويكي ب'''[//www.mediawiki.org/ ميدياويكي]''', حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
-'version-credits-summary' => 'نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[خاص:نسخة|ميدياويكي]].',
+'version-credits-summary' => 'نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[Special:Version|ميدياويكي]].',
 'version-license-info' => "ميدياويكي برنامج حر، يحق لك توزيعه و/أو تعديله وفقاً لبنود رخصة غنو العمومية كما نشرتها مؤسسة البرمجيات الحرة، الإصدار الثاني أو (وفقا لاختيارك أنت) أي إصدار لاحق.
 
 هذا البرنامج يوزع على أمل أن يكون مفيداً، ولكن '''دون أية ضمانات'''، بما في ذلك ضمانات '''التسويق''' أو '''الملاءمة لغرض معين'''. انظر رخصة غنو العمومية لمزيد من التفاصيل.
@@ -4326,9 +4346,9 @@ $5
 'logentry-move-move_redir-noredirect' => 'نقل $1 صفحة $3 إلى التحويلة $4 دون ترك تحويلة',
 'logentry-patrol-patrol' => '$1 مراجعة معلمة $4 للصفحة $3 تم معاينتها',
 'logentry-patrol-patrol-auto' => '$1 مراجعة معلمة تلقائيا $4 للصفحة $3 تم مراجعتها',
-'logentry-newusers-newusers' => 'أنشأ $1 حساب مستخدم',
-'logentry-newusers-create' => 'أنشأ $1 حساب مستخدم',
-'logentry-newusers-create2' => 'أنشأ $1 حساب المستخدم $3',
+'logentry-newusers-newusers' => 'تم إنشاء الحساب $1',
+'logentry-newusers-create' => 'تم إنشاء الحساب $1',
+'logentry-newusers-create2' => 'أنشأ $1 الحساب $3',
 'logentry-newusers-autocreate' => 'أنشئ حساب $1 تلقائياً',
 'newuserlog-byemail' => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',

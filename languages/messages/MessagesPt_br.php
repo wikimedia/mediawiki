@@ -3992,7 +3992,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-patrol-patrol-auto' => '$1 marcou automaticamente a revisão $4 da página $3 como patrulhada',
 'logentry-newusers-newusers' => 'A conta de usuário $1 foi criada',
 'logentry-newusers-create' => 'A conta de usuário $1 foi criada',
-'logentry-newusers-create2' => 'A conta de usuário $1 foi criada por $3',
+'logentry-newusers-create2' => 'A conta de usuário $3 foi criada por $1',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
 'newuserlog-byemail' => 'senha enviada por correio-eletrônico',
 'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',

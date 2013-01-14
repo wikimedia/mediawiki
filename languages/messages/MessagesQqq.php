@@ -76,6 +76,7 @@
  * @author Meno25
  * @author Metalhead64
  * @author MichaelFrey
+ * @author Mido
  * @author Mihai
  * @author Minh Nguyen
  * @author Mormegil
@@ -332,7 +333,8 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
 'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
 'broken-file-category' => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
-'categoryviewer-pagedlinks' => 'The pagination links in category viewer. Parameters:
+'categoryviewer-pagedlinks' => '{{Optional}}
+The pagination links in category viewer. Parameters:
 * $1 is the previous link,
 * $2 is the next link',
 
@@ -658,8 +660,8 @@ See also:
 'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequired}}.',
 
 'ok' => '{{Identical|OK}}',
-'pagetitle' => "{{doc-important|You most probably do not need to translate this message.}}
-
+'pagetitle' => "{{Optional}}
+{{doc-important|You most probably do not need to translate this message.}}
 Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.",
 'pagetitle-view-mainpage' => '{{optional}}',
 'backlinksubtitle' => '{{optional}}
@@ -2026,7 +2028,8 @@ See also:
 * {{msg-mw|mergehistory-invalid-destination}}
 * {{msg-mw|mergehistory-no-destination}}',
 'mergehistory-reason' => '{{Identical|Reason}}',
-'mergehistory-revisionrow' => 'A revision row in the merge history page. Parameters:
+'mergehistory-revisionrow' => '{{Optional}}
+A revision row in the merge history page. Parameters:
 * $1 is a radio button to indicate a merge point,
 * $2 is a link to the last revision of a page ({{msg-mw|last}}),
 * $3 is a page link,
@@ -4338,10 +4341,12 @@ The subject of the e-mail is one of the following messages:
 *{{msg-mw|enotif subject moved}}
 *{{msg-mw|enotif subject restored}}
 *{{msg-mw|enotif subject changed}}',
-'created' => 'Possible value for $CHANGEDORCREATED in the following messages:
+'created' => '{{Optional}}
+Possible value for $CHANGEDORCREATED in the following messages:
 * {{msg-mw|enotif_subject}}
 * {{msg-mw|enotif_body}}',
-'changed' => 'Possible value for $CHANGEDORCREATED in the following messages:
+'changed' => '{{Optional}}
+Possible value for $CHANGEDORCREATED in the following messages:
 * {{msg|enotif_subject}}
 * {{msg|enotif_body}}',
 
@@ -4499,7 +4504,8 @@ See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-level-sysop' => 'Used as protect level.
 
 See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
-'protect-summary-desc' => 'Used in edit summary for description of a protecting restriction.
+'protect-summary-desc' => '{{Optional}}
+Used in edit summary for description of a protecting restriction.
 * $1 is action, taken from restriction-*
 * $2 is restriction, taken from protect-level-*
 * $3 is {{msg-mw|protect-expiring}} or {{msg-mw|protect-expiry-indefinite}}',
@@ -4695,7 +4701,8 @@ See also:
 
 {{identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit' => '{{Identical|Yes}}',
-'undelete-revisionrow' => "A revision row in the undelete page. Parameters:
+'undelete-revisionrow' => "{{Optional}}
+A revision row in the undelete page. Parameters:
 * $1 is a checkBox to indicate whether to restore this specific revision
 * $2 is a link to the revision
 * $3 is a link to the last revision of a page ({{msg-mw|last}})
@@ -6497,8 +6504,9 @@ See also:
 'pageinfo-redirects-name' => "The number of redirects to the page.
 
 Used as link text, linked to '{{int:Whatlinkshere-title}}' page ([[Special:WhatLinksHere]]).",
-'pageinfo-redirects-value' => 'Parameters:
-* $1 is the number of redirects to the page.',
+'pageinfo-redirects-value' => '{{Optional}}
+Parameters:
+* $1 - the number of redirects to the page',
 'pageinfo-subpages-name' => "The number of subpages of the page.
 
 Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]).",
@@ -6539,7 +6547,7 @@ See also:
 *{{msg-mw|Pageinfo-protect-cascading}}
 *{{msg-mw|Pageinfo-protect-cascading-yes}}',
 'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
-'pageinfo-category-info' => 'Showed on the page displaying informations about the current page (add "?action=info" to the URL)',
+'pageinfo-category-info' => 'Showed on the page displaying information about the current page (add "?action=info" to the URL)',
 'pageinfo-category-pages' => 'See also:
 * {{msg-mw|Pageinfo-category-subcats}}
 * {{msg-mw|Pageinfo-category-files}}',
@@ -7897,6 +7905,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'ellipsis' => '{{optional}}',
 'percent' => '{{optional}}',
 'parentheses' => '{{optional}}',
+'brackets' => '{{Optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',
@@ -8220,8 +8229,10 @@ This message is followed by the list of installed software (MediaWiki, PHP and M
 'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
 See also {{msg-mw|Version-entrypoints}}',
 'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
-'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
-'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
+'version-entrypoints-articlepath' => '{{Optional}}
+A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
+'version-entrypoints-scriptpath' => '{{Optional}}
+A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
 # Special:FilePath
 'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',

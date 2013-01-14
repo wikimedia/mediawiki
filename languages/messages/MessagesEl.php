@@ -385,7 +385,7 @@ $messages = array(
 'tog-externaleditor' => 'Χρήση εξωτερικού επεξεργαστή από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
 'tog-externaldiff' => 'Χρήση εξωτερικού diff από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
 'tog-showjumplinks' => 'Ενεργοποίησε τους συνδέσμους προσβασιμότητας του τύπου "μετάβαση σε"',
-'tog-uselivepreview' => 'Χρησιμοποίησε άμεση προεπισκόπηση (JavaScript) (Πειραματικό)',
+'tog-uselivepreview' => 'Χρησιμοποιήστε άμεση προεπισκόπηση (απαιτεί JavaScript)',
 'tog-forceeditsummary' => 'Να ειδοποιούμαι κατά την εισαγωγή κενής σύνοψης επεξεργασίας',
 'tog-watchlisthideown' => 'Απόκρυψη των επεξεργασιών μου από τη λίστα παρακολούθησης',
 'tog-watchlisthidebots' => 'Απόκρυψη των επεξεργασιών των bot από τη λίστα παρακολούθησης',
@@ -3129,6 +3129,9 @@ $1',
 'pageinfo-protect-cascading' => 'Οι προστασίες ξεκινούν τη διαδοχή τους από εδώ',
 'pageinfo-protect-cascading-yes' => 'Ναι',
 'pageinfo-protect-cascading-from' => 'Οι προστασίες ξεκινούν τη διαδοχή τους από',
+'pageinfo-category-pages' => 'Αριθμός σελίδων',
+'pageinfo-category-subcats' => 'Αριθμός υποκατηγοριών',
+'pageinfo-category-files' => 'Αριθμός αρχείων',
 
 # Skin names
 'skinname-standard' => 'Κλασσικό',

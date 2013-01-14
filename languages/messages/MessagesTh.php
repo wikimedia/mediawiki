@@ -229,7 +229,7 @@ $messages = array(
 'tog-externaleditor' => 'ใช้โปรแกรมแก้ไขภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [//www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
 'tog-externaldiff' => 'ใช้โปรแกรมเปรียบเทียบภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [//www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
 'tog-showjumplinks' => 'เปิดใช้งาน "กระโดด" อัตโนมัติไปตามลิงก์',
-'tog-uselivepreview' => 'แสดงตัวอย่างการแก้ไขแบบทันที (จาวาสคริปต์) (ทดลอง)',
+'tog-uselivepreview' => 'แสดงตัวอย่างการแก้ไขทันที (จาวาสคริปต์)',
 'tog-forceeditsummary' => 'เตือนเมื่อช่องคำอธิบายอย่างย่อว่าง',
 'tog-watchlisthideown' => 'ซ่อนการแก้ไขของฉันจากรายการเฝ้าดู',
 'tog-watchlisthidebots' => 'ซ่อนการแก้ไขของบอตจากรายการเฝ้าดู',
@@ -330,6 +330,7 @@ $messages = array(
 'newwindow' => '(เปิดหน้าต่างใหม่)',
 'cancel' => 'ยกเลิก',
 'moredotdotdot' => 'ดูเพิ่ม...',
+'morenotlisted' => 'มีที่ยังไม่แสดงอีก...',
 'mypage' => 'หน้า',
 'mytalk' => 'พูดคุย',
 'anontalk' => 'พูดคุยกับไอพีนี้',
@@ -927,6 +928,7 @@ $1 เป็นผู้ดำเนินการบล็อก
 'edit-no-change' => 'การแก้ไขของคุณถูกเพิกเฉย เพราะไม่มีการเปลี่ยนแปลงใด ๆ',
 'edit-already-exists' => 'ไม่สามารถสร้างหน้าใหม่ได้
 เพราะมีหน้านี้แล้ว',
+'defaultmessagetext' => 'ข้อความสารโดยปริยาย',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''คำเตือน:''' หน้านี้มีการเรียกใช้ฟังก์ชันแจงส่วนมากเกินไป
@@ -1672,7 +1674,7 @@ $1',
 'img-auth-accessdenied' => 'การเข้าถึงถูกจำกัด',
 'img-auth-nopathinfo' => 'ค่า PATH_INFO สูญหาย
 เซิร์ฟเวอร์ของคุณอาจไม่ได้ถูกตั้งให้ส่งข้อมูลนี้
-หรือเซิร์ฟเวอร์อาจจะเป็นแบบ CGI-based และไม่สนับสนุนข้อมูล img_auth
+หรือเซิร์ฟเวอร์อาจเป็นแบบ CGI-based และไม่สนับสนุนข้อมูล img_auth
 ดูที่ https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir' => 'ที่อยู่ที่ร้องขอไม่ได้อยู่ในไดเร็กทอรีอัพโหลดที่กำหนดไ้ว้',
 'img-auth-badtitle' => 'ไม่สามารถสร้างชื่อเรื่องที่ถูกต้องจาก "$1" ได้',
@@ -1989,8 +1991,8 @@ $1',
 'linksearch-ns' => 'เนมสเปซ:',
 'linksearch-ok' => 'สืบค้น',
 'linksearch-text' => 'อักขระตัวแทนเช่น "*.wikipedia.org" สามารถใช้ได้
-โดเมนระดับบนสุดจำเป็นต้องมีเป็นอย่างน้อย เช่น "*.org"<br />
-โพรโทคอลที่รองรับ: <code>$1</code> (อย่าใส่คำเหล่านี้ในการสืบค้นของคุณ)',
+ต้องการโดเมนระดับบนสุดเป็นอย่างน้อย เช่น "*.org"<br />
+โพรโทคอลที่รองรับ: <code>$1</code> (ค่าโดยปริยายเป้น http:// หากไม่ระบุโพรโทคอล)',
 'linksearch-line' => '$1 ถูกลิงก์จาก $2',
 'linksearch-error' => 'เครื่องหมายแทนอักขระ (wildcard) อยู่หน้าชื่อโฮสต์ได้เท่านั้น',
 
@@ -2108,32 +2110,31 @@ $1',
 'enotif_lastvisited' => 'ดู $1 สำหรับการเปลี่ยนแปลงทั้งหมดตั้งแต่ครั้งล่าสุดที่คุณเข้าชม',
 'enotif_lastdiff' => 'ดู $1 เพื่อดูการเปลี่ยนแปลงนี้',
 'enotif_anon_editor' => 'ผู้ใช้นิรนาม $1',
-'enotif_body' => 'เรียน $WATCHINGUSERNAME,
+'enotif_body' => 'เรียน $WATCHINGUSERNAME
 
+$PAGEINTRO $NEWPAGE
 
-ทางระบบจากเว็บ {{SITENAME}} ต้องการแจ้งให้ทราบว่า หน้า $PAGETITLE ได้ $CHANGEDORCREATED เมื่อ $PAGEEDITDATE โดย $PAGEEDITOR ดูรุ่นปัจจุบันได้ที่ $PAGETITLE_URL
+คำอธิบายอย่างย่อของผู้เขียน: $PAGESUMMARY $PAGEMINOREDIT
 
-$NEWPAGE
-
-คำสรุปการแก้ไข: $PAGESUMMARY $PAGEMINOREDIT
-
-ติดต่อผู้แก้ไข:
-อีเมล: $PAGEEDITOR_EMAIL
+ติดต่อผู้เขียน:
+เมล: $PAGEEDITOR_EMAIL
 วิกิ: $PAGEEDITOR_WIKI
 
-จะไม่มีการแจ้งเพิ่มเติมจนกว่าคุณจะได้แวะเข้าไปที่หน้านี้
-นอกจากนี้คุณสามารถตั้งค่ายกเลิกการแจ้งของหน้าที่อยู่ในรายการเฝ้าดูได้
+จะไม่มีประกาศอื่นหากมีกิจกรรมเพิ่มเติม เว้นเสียแต่คุณจะเข้าชมหน้านี้ คุณยังสามารถตั้งค่าตัวบ่งชี้ประกาศใหม่สำหรับหน้าที่คุณเฝ้าดูทุกหน้าในรายการเฝ้าดูของคุณ
 
-             ระบบแจ้งอัตโนมัติจาก {{SITENAME}}
+ระบบประกาศ {{SITENAME}} ที่เป็นมิตรของคุณ
 
 --
-ถ้าต้องการเปลี่ยนแปลงรายการเฝ้าดู กรุณาไปที่:
+ในการเปลี่ยนการตั้งค่าประกาศอีเมลของคุณ โปรดดู
+{{canonicalurl:{{#special:Preferences}}}}
+
+ในการเปลี่ยนการตั้งค่ารายการเฝ้าดูของคุณ โปรดดู
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-ถ้าต้องการลบหน้านี้จากรายการเฝ้าดู กรุณาไปที่:
+ในการลบหน้าจากรายการเฝ้าดูของคุณ โปรดดู
 $UNWATCHURL
 
-ถ้าต้องการความช่วยเหลือเพิ่มเติม กรุณาไปที่:
+ผลป้อนกลับและความช่วยเหลือเพิ่มเติม:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'ถูกสร้าง',
 'changed' => 'ถูกเปลี่ยนแปลง',
@@ -2849,6 +2850,10 @@ $1',
 'pageinfo-redirectsto' => 'เปลี่ยนทางไปยัง',
 'pageinfo-contentpage' => 'นับเป็นหน้าเนื้อหา',
 'pageinfo-contentpage-yes' => 'ใช่',
+'pageinfo-category-info' => 'ข้อมูลหมวดหมู่',
+'pageinfo-category-pages' => 'จำนวนหน้า',
+'pageinfo-category-subcats' => 'จำนวนหมวดหมู่ย่อย',
+'pageinfo-category-files' => 'จำนวนไฟล์',
 
 # Skin names
 'skinname-standard' => 'คลาสสิก',
@@ -3571,9 +3576,17 @@ $5
 'logentry-delete-revision' => '$1 เปลี่ยนแปลงทัศนวิสัยของ $5 รุ่น ในหน้า $3: $4',
 'logentry-delete-event-legacy' => '$1 เปลี่ยนแปลงทัศนวิสัยของเหตุการณ์ปูมในหน้า $3',
 'logentry-delete-revision-legacy' => '$1 เปลี่ยนแปลงทัศนวิสัยของรุ่นในหน้า $3',
+'logentry-suppress-delete' => '$1 ระงับหน้า $3',
+'logentry-suppress-event' => '$1 เปลี่ยนทัศนวิสัยอย่างลับ ๆ ของ $5 รายการปูมบน $3: $4',
+'logentry-suppress-revision' => '$1 เปลี่ยนทัศนวิสัยอย่างลับ ๆ ของ $5 รุ่นบนหน้า $3: $4',
+'logentry-suppress-event-legacy' => '$1 เปลี่ยนทัศนวิสัยอย่างลับ ๆ ของรายการปูมบน $3',
+'logentry-suppress-revision-legacy' => '$1 เปลี่ยนทัศนวิสัยอย่างลับ ๆ ของรุ่นบนหน้า $3',
 'revdelete-content-hid' => 'เนื้อหาถูกซ่อน',
 'revdelete-summary-hid' => 'คำอธิบายอย่างย่อถูกซ่อน',
 'revdelete-uname-hid' => 'ชื่อผู้ใช้ถูกซ่อน',
+'revdelete-content-unhid' => 'เนื้อหาถูกแสดง',
+'revdelete-summary-unhid' => 'คำอธิบายอย่างย่อถูกแสดง',
+'revdelete-uname-unhid' => 'ชื่อผู้ใช้ถูกแสดง',
 'revdelete-restricted' => 'เพิ่มการจำกัดกับผู้ดูแลระบบ',
 'revdelete-unrestricted' => 'ยกเลิกการจำกัดแก่ผู้ดูแลระบบ',
 'logentry-move-move' => '$1 ย้ายหน้า $3 ไปยัง $4',

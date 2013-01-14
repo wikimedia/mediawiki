@@ -9937,15 +9937,15 @@ MediaWikiのインストールはできません。',
 	'config-unicode-using-intl' => 'Unicode正規化に[http://pecl.php.net/intl intl PECL 拡張機能]を使用。',
 	'config-unicode-pure-php-warning' => "'''警告''': Unicode 正規化の処理に [http://pecl.php.net/intl intl PECL 拡張機能]を利用できないため、処理が遅いピュア PHP の実装を代わりに使用しています。
 高トラフィックのサイトを運営する場合は、[//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正規化]をお読みください。",
-	'config-unicode-update-warning' => "'''警告'''：インストールされているバージョンのUnicode正規化ラッパーは、[http://site.icu-project.org/ ICUプロジェクト]のライブラリの古いバージョンを使用しています。
-Unicodeを少しでも利用する可能性があるなら、[//www.mediawiki.org/wiki/Unicode_normalization_considerations アップグレード]する必要があります。",
+	'config-unicode-update-warning' => "'''警告''': インストールされているバージョンの Unicode 正規化ラッパーは、[http://site.icu-project.org/ ICU プロジェクト]のライブラリの古いバージョンを使用しています。
+Unicode を少しでも利用する可能性がある場合は、[//www.mediawiki.org/wiki/Unicode_normalization_considerations アップグレード]してください。",
 	'config-no-db' => '適切なデータベース ドライバーが見つかりませんでした! PHP にデータベース ドライバーをインストールする必要があります。
 以下の種類のデータベースに対応しています: $1
 
 共有サーバーを使用している場合は、適切なデータベース ドライバーのインストールを、サーバーの管理者に依頼してください。
 PHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysql</code> を実行して、データベース クライアントを使用できるように再設定してください。
 Debian または Ubuntu のパッケージから PHP をインストールした場合は、php5-mysql モジュールもインストールする必要があります。',
-	'config-no-fts3' => "'''警告'''：SQLiteは[//sqlite.org/fts3.html FTS3]モジュールなしでコンパイルされており、検索機能はこのバックエンドで利用不可能になります。",
+	'config-no-fts3' => "'''警告''': SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
 	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
 '''可能なら無効化してください。'''
 MediaWikiは動作しますが、サーバーは、潜在的なセキュリティ脆弱性を露呈します。",
@@ -9977,7 +9977,7 @@ MediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] がインストール済み',
 	'config-apc' => '[http://www.php.net/apc APC] がインストール済み',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] がインストール済み',
-	'config-no-cache' => "'''警告：'''[http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]、[http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。
+	'config-no-cache' => "'''警告:''' [http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]、[http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。
 オブジェクトのキャッシュは有効化されません。",
 	'config-diff3-bad' => 'GNU diff3 が見つかりません。',
 	'config-imagemagick' => 'ImageMagickが見つかりました：<code>$1</code>。
@@ -9991,7 +9991,7 @@ MediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	'config-no-cli-uri' => "'''警告''': --scriptpath が指定されていないため、既定値 <code>$1</code> を使用します。",
 	'config-using-server' => 'サーバー名「<nowiki>$1</nowiki>」を使用しています。',
 	'config-using-uri' => 'サーバー URL「<nowiki>$1$2</nowiki>」を使用しています。',
-	'config-uploads-not-safe' => "'''警告：'''アップロードの既定ディレクトリ <code>$1</code> に、任意のスクリプト実行に関する脆弱性があります。
+	'config-uploads-not-safe' => "'''警告:''' アップロードの既定ディレクトリ <code>$1</code> に、任意のスクリプト実行に関する脆弱性があります。
 MediaWiki はアップロードされたファイルのセキュリティ上の脅威を確認しますが、アップロードを有効化する前に、[//www.mediawiki.org/wiki/Manual:Security#Upload_security このセキュリティ上の脆弱性を解決する]ことを強く推奨します。",
 	'config-brokenlibxml' => 'このシステムで使われているPHPとlibxml2のバージョンのこの組み合わせにはバグがあります。具体的には、MediaWikiやその他のウェブアプリケーションでhiddenデータが破損する可能性があります。
 PHPを5.2.9かそれ以降のバージョンに、libxml2を2.7.3かそれ以降のバージョンにアップグレードしてください([//bugs.php.net/bug.php?id=45996 PHPでのバグ情報])。
@@ -10319,12 +10319,12 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 	'config-install-user-missing-create' => '指定したユーザー「$1」は存在しません。
 アカウントを作成する場合は、下の「アカウント作成」をクリックしてください。',
 	'config-install-tables' => 'テーブルの作成',
-	'config-install-tables-exist' => "'''警告'''：MediaWikiテーブルは既に存在するようです。
-作成を飛ばします。",
+	'config-install-tables-exist' => "'''警告''': MediaWiki テーブルは既に存在するようです。
+作成を省略します。",
 	'config-install-tables-failed' => "'''エラー''': テーブルの作成が、以下のエラーにより失敗しました: $1",
 	'config-install-interwiki' => '既定のウィキ間テーブルの導入',
 	'config-install-interwiki-list' => 'ファイル <code>interwiki.list</code> から読み取れませんでした。',
-	'config-install-interwiki-exists' => "'''警告'''：ウィキ間テーブルは既に登録されているようです。
+	'config-install-interwiki-exists' => "'''警告''': ウィキ間テーブルは既に登録されているようです。
 既定のテーブルを無視します。",
 	'config-install-stats' => '統計情報の初期化',
 	'config-install-keys' => '秘密鍵の生成',
