@@ -341,6 +341,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			case RC_LOG:
 				$vals['type'] = 'log';
 				break;
+			case RC_EXTERNAL:
+				$vals['type'] = 'external';
+				break;
 			case RC_MOVE_OVER_REDIRECT:
 				$vals['type'] = 'move over redirect';
 				break;
@@ -477,6 +480,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				return RC_NEW;
 			case 'log':
 				return RC_LOG;
+			case 'external':
+				return RC_EXTERNAL;
 		}
 	}
 
@@ -573,6 +578,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'edit',
+					'external',
 					'new',
 					'log'
 				)
