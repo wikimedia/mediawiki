@@ -1152,11 +1152,11 @@ abstract class ApiBase extends ContextSource {
 	 * @return string
 	 */
 	function validateTimestamp( $value, $paramName ) {
-		$value = wfTimestamp( TS_UNIX, $value );
-		if ( $value === 0 ) {
+		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
+		if ( $unixTimestamp === false ) {
 			$this->dieUsage( "Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$paramName}" );
 		}
-		return wfTimestamp( TS_MW, $value );
+		return wfTimestamp( TS_MW, $unixTimestamp );
 	}
 
 	/**
