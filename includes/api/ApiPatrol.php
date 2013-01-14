@@ -120,8 +120,4 @@ class ApiPatrol extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Patrol';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

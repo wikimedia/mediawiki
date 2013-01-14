@@ -555,8 +555,4 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return $this->helpUrl;
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

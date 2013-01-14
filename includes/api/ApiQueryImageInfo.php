@@ -703,8 +703,4 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#imageinfo_.2F_ii';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

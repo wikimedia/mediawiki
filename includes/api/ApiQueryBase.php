@@ -578,14 +578,6 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 		return $errors;
 	}
-
-	/**
-	 * Get version string for use in the API help output
-	 * @return string
-	 */
-	public static function getBaseVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
 
 /**

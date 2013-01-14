@@ -146,8 +146,4 @@ class ApiQueryPageProps extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#pageprops_.2F_pp';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

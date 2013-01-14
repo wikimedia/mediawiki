@@ -303,8 +303,4 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Meta#userinfo_.2F_ui';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

@@ -151,8 +151,4 @@ class ApiTokens extends ApiBase {
 			'api.php?action=tokens&type=email|move' => 'Retrieve an email token and a move token'
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

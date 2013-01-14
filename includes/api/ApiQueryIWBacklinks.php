@@ -239,8 +239,4 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

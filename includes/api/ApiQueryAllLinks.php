@@ -297,8 +297,4 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return "https://www.mediawiki.org/wiki/API:All{$this->descriptionLink}s";
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

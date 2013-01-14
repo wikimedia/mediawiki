@@ -195,8 +195,4 @@ class ApiFileRevert extends ApiBase {
 				=> 'Revert Wiki.png to the version of 20110305152740',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

@@ -355,8 +355,4 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Allpages';
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

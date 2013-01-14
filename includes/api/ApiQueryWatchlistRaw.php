@@ -222,8 +222,4 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			'api.php?action=query&generator=watchlistraw&gwrshow=changed&prop=revisions',
 		);
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
