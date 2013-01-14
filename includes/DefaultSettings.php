@@ -2830,7 +2830,7 @@ $wgShowRollbackEditCount = 10;
 
 /**
  * Output a <link rel="canonical"> tag on every page indicating the canonical
- * server which should be used, i.e. $wgServer or $wgCanonicalServer. Since 
+ * server which should be used, i.e. $wgServer or $wgCanonicalServer. Since
  * detection of the current server is unreliable, the link is sent
  * unconditionally.
  */
@@ -5453,7 +5453,8 @@ $wgJobClasses = array(
 
 /**
 
- * Jobs that must be explicitly requested, i.e. aren't run by job runners unless special flags are set.
+ * Jobs that must be explicitly requested, i.e. aren't run by job runners unless
+ * special flags are set. The values here are keys of $wgJobClasses.
  *
  * These can be:
  * - Very long-running jobs.

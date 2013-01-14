@@ -23,6 +23,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		$status = $template->doEditContent( new WikitextContent( '[[Category:Solved bugs]]' ), 'Add a category through a template', 0, false, $user );
 
 		// Run the job queue
+		JobQueueGroup::destroySingletons();
 		$jobs = new RunJobs;
 		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
 		$jobs->execute();

@@ -31,16 +31,22 @@ class JobQueueGroup {
 	/** @var Array */
 	protected static $instances = array();
 
+	/** @var ProcessCacheLRU */
+	protected $cache;
+
 	protected $wiki; // string; wiki ID
 
 	const TYPE_DEFAULT = 1; // integer; job not in $wgJobTypesExcludedFromDefaultQueue
 	const TYPE_ANY     = 2; // integer; any job
+
+	const USE_CACHE = 1; // integer; use process cache
 
 	/**
 	 * @param $wiki string Wiki ID
 	 */
 	protected function __construct( $wiki ) {
 		$this->wiki = $wiki;
+		$this->cache = new ProcessCacheLRU( 2 );
 	}
 
 	/**
@@ -53,6 +59,15 @@ class JobQueueGroup {
 			self::$instances[$wiki] = new self( $wiki );
 		}
 		return self::$instances[$wiki];
+	}
+
+	/**
+	 * Destroy the singleton instances
+	 *
+	 * @return void
+	 */
+	public static function destroySingletons() {
+		self::$instances = array();
 	}
 
 	/**
@@ -99,25 +114,45 @@ class JobQueueGroup {
 			}
 		}
 
+		if ( $this->cache->has( 'queues-ready', 'list', 15 ) ) {
+			$this->cache->set( 'queues-ready', 'list', array_unique( array_merge(
+				$this->cache->get( 'queues-ready', 'list' ), array_keys( $jobsByType )
+			) ) );
+		}
+
 		return $ok;
 	}
 
 	/**
 	 * Pop a job off one of the job queues
 	 *
-	 * @param $type integer JobQueueGroup::TYPE_* constant
+	 * @param $queueType integer JobQueueGroup::TYPE_* constant
+	 * @param $flags integer Bitfield of JobQueueGroup::USE_* constants
 	 * @return Job|bool Returns false on failure
 	 */
-	public function pop( $type = self::TYPE_DEFAULT ) {
-		$types = ( $type == self::TYPE_DEFAULT )
-			? $this->getDefaultQueueTypes()
-			: $this->getQueueTypes();
+	public function pop( $queueType = self::TYPE_DEFAULT, $flags = 0 ) {
+		if ( $flags & self::USE_CACHE ) {
+			if ( !$this->cache->has( 'queues-ready', 'list', 15 ) ) {
+				$this->cache->set( 'queues-ready', 'list', $this->getQueuesWithJobs() );
+			}
+			$types = $this->cache->get( 'queues-ready', 'list' );
+		} else {
+			$types = $this->getQueuesWithJobs();
+		}
+
+		if ( $queueType == self::TYPE_DEFAULT ) {
+			$types = array_intersect( $types, $this->getDefaultQueueTypes() );
+		}
 		shuffle( $types ); // avoid starvation
 
 		foreach ( $types as $type ) { // for each queue...
 			$job = $this->get( $type )->pop();
-			if ( $job ) {
-				return $job; // found
+			if ( $job ) { // found
+				return $job;
+			} elseif ( $flags & self::USE_CACHE ) { // not found
+				$this->cache->set( 'queues-ready', 'list', array_diff(
+					$this->cache->get( 'queues-ready', 'list' ), array( $type )
+				) );
 			}
 		}
 
@@ -173,6 +208,19 @@ class JobQueueGroup {
 	public function getQueuesWithJobs() {
 		$types = array();
 		foreach ( $this->getQueueTypes() as $type ) {
+			if ( !$this->get( $type )->isEmpty() ) {
+				$types[] = $type;
+			}
+		}
+		return $types;
+	}
+
+	/**
+	 * @return Array List of default job types that have non-empty queues
+	 */
+	public function getDefaultQueuesWithJobs() {
+		$types = array();
+		foreach ( $this->getDefaultQueueTypes() as $type ) {
 			if ( !$this->get( $type )->isEmpty() ) {
 				$types[] = $type;
 			}

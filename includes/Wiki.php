@@ -616,39 +616,22 @@ class MediaWiki {
 		}
 
 		$group = JobQueueGroup::singleton();
-		$types = $group->getDefaultQueueTypes();
-		shuffle( $types ); // avoid starvation
-
-		// Scan the queues for a job N times...
 		do {
-			$jobFound = false; // found a job in any queue?
-			// Find a queue with a job on it and run it...
-			foreach ( $types as $i => $type ) {
-				$queue = $group->get( $type );
-				if ( $queue->isEmpty() ) {
-					unset( $types[$i] ); // don't keep checking this queue
-					continue;
-				}
-				$job = $queue->pop();
-				if ( $job ) {
-					$jobFound = true;
-					$output = $job->toString() . "\n";
-					$t = - microtime( true );
-					$success = $job->run();
-					$queue->ack( $job ); // done
-					$t += microtime( true );
-					$t = round( $t * 1000 );
-					if ( !$success ) {
-						$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-					} else {
-						$output .= "Success, Time: $t ms\n";
-					}
-					wfDebugLog( 'jobqueue', $output );
-					break;
+			$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+			if ( $job ) {
+				$output = $job->toString() . "\n";
+				$t = - microtime( true );
+				$success = $job->run();
+				$group->ack( $job ); // done
+				$t += microtime( true );
+				$t = round( $t * 1000 );
+				if ( !$success ) {
+					$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
 				} else {
-					unset( $types[$i] ); // don't keep checking this queue
+					$output .= "Success, Time: $t ms\n";
 				}
+				wfDebugLog( 'jobqueue', $output );
 			}
-		} while ( --$n && $jobFound );
+		} while ( --$n && $job );
 	}
 }
