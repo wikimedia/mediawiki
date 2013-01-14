@@ -400,7 +400,7 @@ class User {
 	 */
 	public static function newFromId( $id ) {
 		$u = new User;
-		$u->mId = $id;
+		$u->mId = (int) $id;
 		$u->mFrom = 'id';
 		$u->setItemLoaded( 'id' );
 		return $u;
@@ -507,7 +507,7 @@ class User {
 		if ( $s === false ) {
 			$result = null;
 		} else {
-			$result = $s->user_id;
+			$result = (int) $s->user_id;
 		}
 
 		self::$idCacheByName[$name] = $result;
@@ -1006,7 +1006,7 @@ class User {
 	 */
 	public function loadFromDatabase() {
 		# Paranoia
-		$this->mId = intval( $this->mId );
+		$this->mId = (int) $this->mId;
 
 		/** Anonymous user */
 		if( !$this->mId ) {
@@ -1063,7 +1063,7 @@ class User {
 		}
 
 		if ( isset( $row->user_id ) ) {
-			$this->mId = intval( $row->user_id );
+			$this->mId = (int) $row->user_id;
 			$this->mFrom = 'id';
 			$this->setItemLoaded( 'id' );
 		} else {
@@ -1700,7 +1700,7 @@ class User {
 	 * @param $v Int User ID to reload
 	 */
 	public function setId( $v ) {
-		$this->mId = $v;
+		$this->mId = (int) $v;
 		$this->clearInstanceCache( 'id' );
 	}
 
@@ -3061,7 +3061,7 @@ class User {
 			array( 'IGNORE' )
 		);
 		if ( !$dbw->affectedRows() ) {
-			$this->mId = $dbw->selectField( 'user', 'user_id',
+			$this->mId = (int) $dbw->selectField( 'user', 'user_id',
 				array( 'user_name' => $this->mName ), __METHOD__ );
 			$loaded = false;
 			if ( $this->mId ) {
@@ -3075,10 +3075,7 @@ class User {
 			}
 			return Status::newFatal( 'userexists' );
 		}
-		$this->mId = $dbw->insertId();
-
-		// Clear instance cache other than user table data, which is already accurate
-		$this->clearInstanceCache();
+		$this->mId = $this->setId( $dbw->insertId() );
 
 		$this->saveOptions();
 		return Status::newGood();
