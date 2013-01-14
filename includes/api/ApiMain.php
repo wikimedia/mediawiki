@@ -876,7 +876,7 @@ class ApiMain extends ApiBase {
 		if ( !$table ) {
 			$chars = ';@$!*(),/:';
 			for ( $i = 0; $i < strlen( $chars ); $i++ ) {
-				$table[ rawurlencode( $chars[$i] ) ] = $chars[$i];
+				$table[rawurlencode( $chars[$i] )] = $chars[$i];
 			}
 		}
 		return strtr( rawurlencode( $s ), $table );
@@ -1140,6 +1140,7 @@ class ApiMain extends ApiBase {
 		foreach ( array_keys( $this->mModules ) as $moduleName ) {
 			$module = new $this->mModules[$moduleName] ( $this, $moduleName );
 			$msg .= self::makeHelpMsgHeader( $module, 'action' );
+
 			$msg2 = $module->makeHelpMsg();
 			if ( $msg2 !== false ) {
 				$msg .= $msg2;
@@ -1150,9 +1151,8 @@ class ApiMain extends ApiBase {
 		$msg .= "\n$astriks Permissions $astriks\n\n";
 		foreach ( self::$mRights as $right => $rightMsg ) {
 			$groups = User::getGroupsWithPermission( $right );
-			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg[ 'msg' ], $rightMsg[ 'params' ] ) .
+			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg['msg'], $rightMsg['params'] ) .
 						"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
-
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";

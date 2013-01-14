@@ -143,7 +143,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				}
 
 				if ( $customiseFilterEnabled ) {
-					$messageIsCustomised = isset( $customisedMessages['pages'][ $langObj->ucfirst( $message ) ] );
+					$messageIsCustomised = isset( $customisedMessages['pages'][$langObj->ucfirst( $message )] );
 					if ( $customised === $messageIsCustomised ) {
 						if ( $customised ) {
 							$a['customised'] = '';

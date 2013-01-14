@@ -340,13 +340,15 @@ abstract class ApiBase extends ContextSource {
 			return '';
 		}
 		if ( !is_array( $input ) ) {
-			$input = array(
-				$input
-			);
+			$input = array( $input );
 		}
 
 		if ( count( $input ) > 0 ) {
-			$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			if ( $title ) {
+				$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			} else {
+				$msg = '  ';
+			}
 			$msg .= implode( $prefix, $input ) . "\n";
 			return $msg;
 		}

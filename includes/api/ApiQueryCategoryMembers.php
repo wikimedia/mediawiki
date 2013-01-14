@@ -118,7 +118,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 				// Add a WHERE clause for sortkey and from
 				// pack( "H*", $foo ) is used to convert hex back to binary
-				$escSortkey = $this->getDB()->addQuotes( pack( "H*", $cont[1] ) );
+				$escSortkey = $this->getDB()->addQuotes( pack( 'H*', $cont[1] ) );
 				$from = intval( $cont[2] );
 				$op = $dir == 'newer' ? '>' : '<';
 				// $contWhere is used further down
