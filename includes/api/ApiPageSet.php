@@ -4,7 +4,7 @@
  *
  * Created on Sep 24, 2006
  *
- * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
+ * Copyright © 2006, 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,18 +47,28 @@ class ApiPageSet extends ApiQueryBase {
 	private $mConvertTitles, $mConvertedTitles;
 	private $mGoodRevIDs, $mMissingRevIDs;
 	private $mFakePageId;
+	private $mCacheMode;
+	private $mAllowGenerator;
 
-	private $mRequestedPageFields;
+	// requestField() might be called before execution
+	private $mRequestedPageFields = array();
 
 	/**
 	 * Constructor
-	 * @param $query ApiBase
-	 * @param $resolveRedirects bool Whether redirects should be resolved
-	 * @param $convertTitles bool
+	 * @param $dbSource ApiBase Module implementing getDB().
+	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
+	 * @param $allowGenerator boolean If true, will handle generator= parameter
 	 */
-	public function __construct( $query, $resolveRedirects = false, $convertTitles = false ) {
-		parent::__construct( $query, 'query' );
+	public function __construct( $dbSource, $allowGenerator = true ) {
+		parent::__construct( $dbSource, $dbSource->getModuleName() );
+		$this->mAllowGenerator = $allowGenerator;
+	}
 
+	/**
+	 * Populate the PageSet from the request parameters.
+	 */
+	public function execute() {
+		$this->profileIn();
 		$this->mAllPages = array();
 		$this->mTitles = array();
 		$this->mGoodTitles = array();
@@ -71,17 +81,92 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mGoodRevIDs = array();
 		$this->mMissingRevIDs = array();
 		$this->mSpecialTitles = array();
+		$this->mPendingRedirectIDs = array();
+		$this->mConvertedTitles = array();
+		$this->mFakePageId = - 1;
 
-		$this->mRequestedPageFields = array();
-		$this->mResolveRedirects = $resolveRedirects;
-		if ( $resolveRedirects ) {
-			$this->mPendingRedirectIDs = array();
+		$params = $this->extractRequestParams();
+		$this->mResolveRedirects = $params['redirects'];
+		$this->mConvertTitles = $params['converttitles'];
+		$generator = $this->mAllowGenerator ? $params['generator'] : null;
+
+		// Only one of the titles/pageids/revids is allowed at the same time
+		$dataSource = null;
+		if( isset( $params['titles'] ) ) {
+			$dataSource = 'titles';
+		}
+		if( isset( $params['pageids'] ) ) {
+			if ( isset( $dataSource ) ) {
+				$this->dieUsage( "Cannot use 'pageids' at the same time as '$dataSource'", 'multisource' );
+			}
+			$dataSource = 'pageids';
+		}
+		if( isset( $params['revids'] ) ) {
+			if ( isset( $dataSource ) ) {
+				$this->dieUsage( "Cannot use 'revids' at the same time as '$dataSource'", 'multisource' );
+			}
+			$dataSource = 'revids';
 		}
 
-		$this->mConvertTitles = $convertTitles;
-		$this->mConvertedTitles = array();
+		if( isset( $generator ) ) {
+			$dbSource = $this->getQuery();
+			$isQuery = $dbSource instanceof ApiQuery;
+			if( !$isQuery ) {
+				// If the parent container of this pageset is not ApiQuery, we must create it to run generator
+				$dbSource = $this->getMain()->getModuleManager()->getModule( 'query' );
+				// Enable profiling for query module because it will be used for db sql profiling
+				$dbSource->profileIn();
+			}
+			$generator = $dbSource->getModuleManager()->getModule($generator);
+			if ( is_null( $generator ) ) {
+				$this->dieUsage( 'Unknown generator=' . $generator, 'badgenerator' );
+			}
+			if ( !$generator instanceof ApiQueryGeneratorBase ) {
+				$this->dieUsage( "Module {$generator} cannot be used as a generator", 'badgenerator' );
+			}
+			$generator->setGeneratorMode();
+			$this->mCacheMode = $generator->getCacheMode( $generator->extractRequestParams() );
 
-		$this->mFakePageId = - 1;
+			// Create a temporary pageset to store generator's output,
+			// add any additional fields generator may need, and execute pageset to populate titles/pageids
+			$tmpPageSet = new ApiPageSet( $dbSource, false );
+			$generator->requestExtraData( $tmpPageSet );
+			$tmpPageSet->execute();
+
+			// populate this pageset with the generator output
+			$generator->profileIn();
+			$generator->executeGenerator( $this );
+			wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
+			$this->resolvePendingRedirects();
+			$generator->profileOut();
+
+			if( !$isQuery ) {
+				$dbSource->profileOut();
+			}
+		} else {
+			// Populate page information with the original user input
+			switch( $dataSource ) {
+				case 'titles':
+					$this->initFromTitles( $params['titles'] );
+					break;
+				case 'pageids':
+					$this->initFromPageIds( $params['pageids'] );
+					break;
+				case 'revids':
+					if ( $this->mResolveRedirects ) {
+						$this->setWarning( 'Redirect resolution cannot be used together with the revids= parameter. ' .
+							'Any redirects the revids= point to have not been resolved.' );
+					}
+					$this->mResolveRedirects = false;
+					$this->initFromRevIDs( $params['revids'] );
+					break;
+				default:
+					// Do nothing - some queries do not need any of the data sources.
+					break;
+			}
+			$this->mCacheMode = 'public';
+		}
+		$this->profileOut();
 	}
 
 	/**
@@ -93,8 +178,8 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Request an additional field from the page table. Must be called
-	 * before execute()
+	 * Request an additional field from the page table.
+	 * Must be called before execute()
 	 * @param $fieldName string Field name
 	 */
 	public function requestField( $fieldName ) {
@@ -207,11 +292,38 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
-	 * target.
-	 * @return array prefixed_title (string) => Title object
+	 * target, as an array of output-ready arrays
+	 * @return array
 	 */
 	public function getRedirectTitles() {
 		return $this->mRedirectTitles;
+	}
+
+	/**
+	 * Get a list of redirect resolutions - maps a title to its redirect
+	 * target.
+	 * @param $result
+	 * @return array prefixed_title (string) => Title object
+	 */
+	public function getRedirectTitlesAsResult( $result = null ) {
+		$values = array();
+		foreach( $this->getRedirectTitles() as $titleStrFrom => $titleTo ) {
+			$r = array(
+				'from' => strval( $titleStrFrom ),
+				'to' => $titleTo->getPrefixedText(),
+			);
+			if( $titleTo->getFragment() !== '' ) {
+				$r['tofragment'] = $titleTo->getFragment();
+			}
+			$values[] = $r;
+		}
+		if( count( $values ) ) {
+			if( $result ) {
+				$result->setIndexedTagName( $values, 'r' );
+			}
+			return $values;
+		}
+		return false;
 	}
 
 	/**
@@ -224,6 +336,29 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
+	 * Get a list of title normalizations - maps a title to its normalized
+	 * version in the form of result array.
+	 * @param $result
+	 * @return array raw_prefixed_title (string) => prefixed_title (string)
+	 */
+	public function getNormalizedTitlesAsResult( $result = null  ) {
+		$values = array();
+		foreach( $this->getNormalizedTitles() as $rawTitleStr => $titleStr ) {
+			$values[] = array(
+				'from' => $rawTitleStr,
+				'to' => $titleStr
+			);
+		}
+		if( count( $values ) ) {
+			if( $result ) {
+				$result->setIndexedTagName( $values, 'n' );
+			}
+			return $values;
+		}
+		return false;
+	}
+
+	/**
 	 * Get a list of title conversions - maps a title to its converted
 	 * version.
 	 * @return array raw_prefixed_title (string) => prefixed_title (string)
@@ -233,12 +368,64 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
+	 * Get a list of title conversions - maps a title to its converted
+	 * version as a result array.
+	 * @param $result
+	 * @return array
+	 */
+	public function getConvertedTitlesAsResult( $result = null ) {
+		$values = array();
+		foreach( $this->getConvertedTitles() as $rawTitleStr => $titleStr ) {
+			$values[] = array(
+				'from' => $rawTitleStr,
+				'to' => $titleStr
+			);
+		}
+		if( count( $values ) ) {
+			if( $result ) {
+				$result->setIndexedTagName( $values, 'c' );
+			}
+			return $values;
+		}
+		return false;
+	}
+
+	/**
 	 * Get a list of interwiki titles - maps a title to its interwiki
 	 * prefix.
 	 * @return array raw_prefixed_title (string) => interwiki_prefix (string)
 	 */
 	public function getInterwikiTitles() {
 		return $this->mInterwikiTitles;
+	}
+
+	/**
+	 * Get a list of interwiki titles - maps a title to its interwiki
+	 * prefix as result.
+	 * @param $result
+	 * @param $iwUrl
+	 * @return array raw_prefixed_title (string) => interwiki_prefix (string)
+	 */
+	public function getInterwikiTitlesAsResult( $result = null, $iwUrl = false ) {
+		$values = array();
+		foreach( $this->getInterwikiTitles() as $rawTitleStr => $interwikiStr ) {
+			$item = array(
+				'title' => $rawTitleStr,
+				'iw' => $interwikiStr,
+			);
+			if( $iwUrl ) {
+				$title = Title::newFromText( $rawTitleStr );
+				$item['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+			}
+			$values[] = $item;
+		}
+		if( count( $values ) ) {
+			if( $result ) {
+				$result->setIndexedTagName( $values, 'i' );
+			}
+			return $values;
+		}
+		return false;
 	}
 
 	/**
@@ -258,6 +445,26 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
+	 * Revision IDs that were not found in the database as result array.
+	 * @return array of revision IDs
+	 */
+	public function getMissingRevisionIDsAsResult( $result = null ) {
+		$values = array();
+		foreach( $this->getMissingRevisionIDs() as $revid ) {
+			$values[$revid] = array(
+				'revid' => $revid
+			);
+		}
+		if( count( $values ) ) {
+			if( $result ) {
+				$result->setIndexedTagName( $values, 'rev' );
+			}
+			return $values;
+		}
+		return false;
+	}
+
+	/**
 	 * Get the list of titles with negative namespace
 	 * @return array Title
 	 */
@@ -271,53 +478,6 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function getRevisionCount() {
 		return count( $this->getRevisionIDs() );
-	}
-
-	/**
-	 * Populate the PageSet from the request parameters.
-	 */
-	public function execute() {
-		$this->profileIn();
-		$params = $this->extractRequestParams();
-
-		// Only one of the titles/pageids/revids is allowed at the same time
-		$dataSource = null;
-		if ( isset( $params['titles'] ) ) {
-			$dataSource = 'titles';
-		}
-		if ( isset( $params['pageids'] ) ) {
-			if ( isset( $dataSource ) ) {
-				$this->dieUsage( "Cannot use 'pageids' at the same time as '$dataSource'", 'multisource' );
-			}
-			$dataSource = 'pageids';
-		}
-		if ( isset( $params['revids'] ) ) {
-			if ( isset( $dataSource ) ) {
-				$this->dieUsage( "Cannot use 'revids' at the same time as '$dataSource'", 'multisource' );
-			}
-			$dataSource = 'revids';
-		}
-
-		switch ( $dataSource ) {
-			case 'titles':
-				$this->initFromTitles( $params['titles'] );
-				break;
-			case 'pageids':
-				$this->initFromPageIds( $params['pageids'] );
-				break;
-			case 'revids':
-				if ( $this->mResolveRedirects ) {
-					$this->setWarning( 'Redirect resolution cannot be used together with the revids= parameter. ' .
-					'Any redirects the revids= point to have not been resolved.' );
-				}
-				$this->mResolveRedirects = false;
-				$this->initFromRevIDs( $params['revids'] );
-				break;
-			default:
-				// Do nothing - some queries do not need any of the data sources.
-				break;
-		}
-		$this->profileOut();
 	}
 
 	/**
@@ -355,7 +515,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * Populate this PageSet from a list of revision IDs
 	 * @param $revIDs array of revision IDs
 	 */
-	public function populateFromRevisionIDs( $revIDs ) {
+		public function populateFromRevisionIDs( $revIDs ) {
 		$this->profileIn();
 		$this->initFromRevIDs( $revIDs );
 		$this->profileOut();
@@ -382,15 +542,6 @@ class ApiPageSet extends ApiQueryBase {
 		foreach ( $this->mRequestedPageFields as $fieldName => &$fieldValues ) {
 			$fieldValues[$pageId] = $row-> $fieldName;
 		}
-	}
-
-	/**
-	 * Resolve redirects, if applicable
-	 */
-	public function finishPageSetGeneration() {
-		$this->profileIn();
-		$this->resolvePendingRedirects();
-		$this->profileOut();
 	}
 
 	/**
@@ -669,6 +820,10 @@ class ApiPageSet extends ApiQueryBase {
 		return $lb;
 	}
 
+	public function getCacheMode( $params = null ) {
+		return $this->mCacheMode;
+	}
+
 	/**
 	 * Given an array of title strings, convert them into Title objects.
 	 * Alternativelly, an array of Title objects may be given.
@@ -773,15 +928,43 @@ class ApiPageSet extends ApiQueryBase {
 			'revids' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true
-			)
+			),
+			'generator' => null,
+			'redirects' => false,
+			'converttitles' => false,
 		);
 	}
 
 	public function getParamDescription() {
+		$query = $this->getQuery();
+		if( $query instanceof ApiQuery ) {
+			$gens = array();
+			$mgr = $query->getModuleManager();
+			foreach( $mgr->getNames() as $name ) {
+				$module = $mgr->getModule( $name );
+				if( $module instanceof ApiQueryGeneratorBase ) {
+					$gens[] = $module->getModuleName();
+				}
+			}
+			sort( $gens );
+			$genExtra = 'Available generators: ' . implode( ', ', $gens );
+			$descWordwrap = "\n" . str_repeat( ' ', 28 );
+			$genExtra = wordwrap( $genExtra, 100, $descWordwrap );
+		} else {
+			$genExtra = 'See action=query for the list of available generators';
+		}
+
 		return array(
 			'titles' => 'A list of titles to work on',
 			'pageids' => 'A list of page IDs to work on',
-			'revids' => 'A list of revision IDs to work on'
+			'revids' => 'A list of revision IDs to work on',
+			'generator' => array( 'Use the output of a list module instead of setting titles/pageids/revids parameter',
+				'This param can be set to any module that can work as a generator',
+				'NOTE: generator parameter names must be prefixed with a \'g\', see examples',
+				$genExtra ),
+			'redirects' => 'Automatically resolve redirects',
+			'converttitles' => array( 'Convert titles to other variants if necessary. Only works if the wiki\'s content language supports variant conversion.',
+				'Languages that support variant conversion include ' . implode( ', ', LanguageConverter::$languagesWithVariants ) ),
 		);
 	}
 
@@ -789,7 +972,8 @@ class ApiPageSet extends ApiQueryBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'multisource', 'info' => "Cannot use 'pageids' at the same time as 'dataSource'" ),
 			array( 'code' => 'multisource', 'info' => "Cannot use 'revids' at the same time as 'dataSource'" ),
-		) );
+			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
+			) );
 	}
 
 	public function getVersion() {
