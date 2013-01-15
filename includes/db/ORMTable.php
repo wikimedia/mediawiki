@@ -19,6 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.20
+ * Non-abstract since 1.21
  *
  * @file ORMTable.php
  * @ingroup ORM
@@ -27,7 +28,96 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-abstract class ORMTable extends DBAccessBase implements IORMTable {
+class ORMTable extends DBAccessBase implements IORMTable {
+
+	/**
+	 * Cache for instances, used by the singleton method.
+	 *
+	 * @since 1.20
+	 * @deprecated since 1.21
+	 *
+	 * @var ORMTable[]
+	 */
+	protected static $instanceCache = array();
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string
+	 */
+	protected $tableName;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string[]
+	 */
+	protected $fields = array();
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string
+	 */
+	protected $fieldPrefix = '';
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string
+	 */
+	protected $rowClass = 'ORMRow';
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var array
+	 */
+	protected $defaults = array();
+
+	/**
+	 * ID of the database connection to use for read operations.
+	 * Can be changed via @see setReadDb.
+	 *
+	 * @since 1.20
+	 *
+	 * @var integer DB_ enum
+	 */
+	protected $readDb = DB_SLAVE;
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $tableName
+	 * @param string[] $fields
+	 * @param array $defaults
+	 * @param string|null $rowClass
+	 * @param string $fieldPrefix
+	 */
+	public function __construct( $tableName = '', array $fields = array(), array $defaults = array(), $rowClass = null, $fieldPrefix = '' ) {
+		$this->tableName = $tableName;
+		$this->fields = $fields;
+		$this->defaults = $defaults;
+
+		if ( is_string( $rowClass ) ) {
+			$this->rowClass = $rowClass;
+		}
+
+		$this->fieldPrefix = $fieldPrefix;
+	}
+
+	/**
+	 * @see IORMTable::getName
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->tableName;
+	}
 
 	/**
 	 * Gets the db field prefix.
@@ -36,24 +126,31 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @return string
 	 */
-	protected abstract function getFieldPrefix();
+	protected function getFieldPrefix() {
+		return $this->fieldPrefix;
+	}
 
 	/**
-	 * Cache for instances, used by the singleton method.
+	 * @see IORMTable::getRowClass
 	 *
-	 * @since 1.20
-	 * @var array of DBTable
+	 * @since 1.21
+	 *
+	 * @return string
 	 */
-	protected static $instanceCache = array();
+	public function getRowClass() {
+		return $this->rowClass;
+	}
 
 	/**
-	 * ID of the database connection to use for read operations.
-	 * Can be changed via @see setReadDb.
+	 * @see ORMTable::getFields
 	 *
-	 * @since 1.20
-	 * @var integer DB_ enum
+	 * @since 1.21
+	 *
+	 * @return array
 	 */
-	protected $readDb = DB_SLAVE;
+	public function getFields() {
+		return $this->fields;
+	}
 
 	/**
 	 * Returns a list of default field values.
@@ -64,7 +161,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return array
 	 */
 	public function getDefaults() {
-		return array();
+		return $this->defaults;
 	}
 
 	/**
@@ -680,6 +777,7 @@ abstract class ORMTable extends DBAccessBase implements IORMTable {
 	 * Get an instance of this class.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @return IORMTable
 	 */

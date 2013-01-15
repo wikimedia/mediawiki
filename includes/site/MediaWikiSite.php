@@ -32,23 +32,34 @@
  *
  * @ingroup Site
  */
-class MediaWikiSite extends SiteObject {
+class MediaWikiSite extends Site {
 
 	const PATH_FILE = 'file_path';
 	const PATH_PAGE = 'page_path';
 
 	/**
 	 * @since 1.21
+	 * @deprecated Just use the constructor or the factory Site::newForType
 	 *
 	 * @param integer $globalId
 	 *
 	 * @return MediaWikiSite
 	 */
 	public static function newFromGlobalId( $globalId ) {
-		return SitesTable::singleton()->newRow( array(
-			'type' => Site::TYPE_MEDIAWIKI,
-			'global_key' => $globalId,
-		), true );
+		$site = new static();
+		$site->setGlobalId( $globalId );
+		return $site;
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $type
+	 */
+	public function __construct( $type = self::TYPE_MEDIAWIKI ) {
+		parent::__construct( $type );
 	}
 
 	/**
@@ -167,7 +178,7 @@ class MediaWikiSite extends SiteObject {
 	 * @param array $externalData A reply from the API on a external server.
 	 * @param string $pageTitle Identifies the page at the external site, needing normalization.
 	 *
-	 * @return array|false a 'page' structure representing the page identified by $pageTitle.
+	 * @return array|boolean false a 'page' structure representing the page identified by $pageTitle.
 	 */
 	private static function extractPageRecord( $externalData, $pageTitle ) {
 		// If there is a special case with only one returned page
@@ -290,7 +301,7 @@ class MediaWikiSite extends SiteObject {
 	}
 
 	/**
-	 * @see Site::getPagePath
+	 * @see Site::getPageUrl
 	 *
 	 * This implementation returns a URL constructed using the path returned by getLinkPath().
 	 * In addition to the default behaviour implemented by SiteObject::getPageUrl(), this
@@ -299,7 +310,7 @@ class MediaWikiSite extends SiteObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $pagename string: Page name (default: false)
+	 * @param string|boolean $pageName Page name or false (default: false)
 	 *
 	 * @return string
 	 */
@@ -325,7 +336,7 @@ class MediaWikiSite extends SiteObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string|false $path
+	 * @param string|boolean $path
 	 *
 	 * @return string
 	 */

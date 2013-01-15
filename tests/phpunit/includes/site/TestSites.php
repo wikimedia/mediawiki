@@ -39,21 +39,22 @@ class TestSites {
 	public static function getSites() {
 		$sites = array();
 
-		$site = Sites::newSite( 'foobar' );
+		$site = new Site();
+		$site->setGlobalId( 'foobar' );
 		$sites[] = $site;
 
-		$site = Sites::newSite( 'enwiktionary' );
+		$site = new MediaWikiSite();
+		$site->setGlobalId( 'enwiktionary' );
 		$site->setGroup( 'wiktionary' );
-		$site->setType( Site::TYPE_MEDIAWIKI );
 		$site->setLanguageCode( 'en' );
 		$site->addNavigationId( 'enwiktionary' );
 		$site->setPath( MediaWikiSite::PATH_PAGE, "https://en.wiktionary.org/wiki/$1" );
 		$site->setPath( MediaWikiSite::PATH_FILE, "https://en.wiktionary.org/w/$1" );
 		$sites[] = $site;
 
-		$site = Sites::newSite( 'dewiktionary' );
+		$site = new MediaWikiSite();
+		$site->setGlobalId( 'dewiktionary' );
 		$site->setGroup( 'wiktionary' );
-		$site->setType( Site::TYPE_MEDIAWIKI );
 		$site->setLanguageCode( 'de' );
 		$site->addInterwikiId( 'dewiktionary' );
 		$site->addInterwikiId( 'wiktionaryde' );
@@ -61,9 +62,9 @@ class TestSites {
 		$site->setPath( MediaWikiSite::PATH_FILE, "https://de.wiktionary.org/w/$1" );
 		$sites[] = $site;
 
-		$site = Sites::newSite( 'spam' );
+		$site = new Site();
+		$site->setGlobalId( 'spam' );
 		$site->setGroup( 'spam' );
-		$site->setType( Site::TYPE_UNKNOWN );
 		$site->setLanguageCode( 'en' );
 		$site->addNavigationId( 'spam' );
 		$site->addNavigationId( 'spamz' );
@@ -72,9 +73,9 @@ class TestSites {
 		$sites[] = $site;
 
 		foreach ( array( 'en', 'de', 'nl', 'sv', 'sr', 'no', 'nn' ) as $langCode ) {
-			$site = Sites::newSite( $langCode . 'wiki' );
+			$site = new MediaWikiSite();
+			$site->setGlobalId( $langCode . 'wiki' );
 			$site->setGroup( 'wikipedia' );
-			$site->setType( Site::TYPE_MEDIAWIKI );
 			$site->setLanguageCode( $langCode );
 			$site->addInterwikiId( $langCode );
 			$site->addNavigationId( $langCode );
@@ -94,21 +95,21 @@ class TestSites {
 	public static function insertIntoDb() {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->begin( __METHOD__ );
+		$trx = $dbw->trxLevel();
+
+		if ( $trx == 0 ) {
+			$dbw->begin( __METHOD__ );
+		}
 
 		$dbw->delete( 'sites', '*', __METHOD__ );
 		$dbw->delete( 'site_identifiers', '*', __METHOD__ );
 
-		/**
-		 * @var Site $site
-		 */
-		foreach ( TestSites::getSites() as $site ) {
-			$site->save();
+		$sitesTable = SiteSQLStore::newInstance();
+		$sitesTable->saveSites( TestSites::getSites() );
+
+		if ( $trx == 0 ) {
+			$dbw->commit( __METHOD__ );
 		}
-
-		$dbw->commit( __METHOD__ );
-
-		Sites::singleton()->getSites( false ); // re-cache
 	}
 
 }
