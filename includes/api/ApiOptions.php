@@ -54,6 +54,9 @@ class ApiOptions extends ApiBase {
 		}
 
 		if ( $params['reset'] ) {
+			$user->resetOptions( $params['reset'] );
+			$changed = true;
+		} elseif ( $this->getMain()->getCheck( $this->encodeParamName( 'reset' ) ) ) {
 			$user->resetOptions( 'all' );
 			$changed = true;
 		}
@@ -133,7 +136,10 @@ class ApiOptions extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'reset' => false,
+			'reset' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_ISMULTI => true
+			),
 			'change' => array(
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -161,8 +167,8 @@ class ApiOptions extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'token' => 'An options token previously obtained through the action=tokens',
-			'reset' => 'Resets all preferences to the site defaults',
-			'change' => 'List of changes, formatted name=value (e.g. skin=vector), value cannot contain pipe characters',
+			'reset' => 'If not given a value, reset all options. Otherwise, takes a pipe-separated list of option kinds to reset (registered, registered-multiselect, userjs, and/or unused)',
+			'change' => 'List of changes, formatted name=value (e.g. skin=vector), value cannot contain pipe characters. If no value is given (not even an equals sign), e.g., optionname|otheroption|..., the option will be reset to its default value',
 			'optionname' => 'A name of a option which should have an optionvalue set',
 			'optionvalue' => 'A value of the option specified by the optionname, can contain pipe characters',
 		);
