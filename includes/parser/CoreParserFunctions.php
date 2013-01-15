@@ -667,6 +667,13 @@ class CoreParserFunctions {
 
 			// Register dependency in templatelinks
 			$parser->mOutput->addTemplate( $title, $id, $rev ? $rev->getId() : 0 );
+
+			// If we are looking at the current page, this will change once
+			// the new version of the page is saved.
+			if ( $title->equals( $parser->getTitle() ) ) {
+				$parser->mOutput->setFlag( 'vary-revision' );
+				unset( $cache[$page] );
+			}
 		}
 		return self::formatRaw( $length, $raw );
 	}
