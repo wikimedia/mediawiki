@@ -44,7 +44,15 @@ class GitInfo {
 	 * @param $dir string The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
-		$this->basedir = "{$dir}/.git/";
+		if ( is_readable( "{$dir}/.git/" ) ) {
+			$this->basedir = "{$dir}/.git/";
+		}
+		elseif ( is_readable( "{$dir}/../.git/" ) ) {
+			$this->basedir = "{$dir}/../.git/";
+		}
+		else {
+			$this->basedir = null;
+		}
 	}
 
 	/**
