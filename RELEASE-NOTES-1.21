@@ -174,9 +174,16 @@ production.
 * BREAKING CHANGE: list=logevents output format changed for details of some log
   types. Specifically, details that were formerly reported under a key like
   "4::foo" will now be reported under a key of simply "foo".
+* action=help suports generalized submodules (modules=query+value), querymodules obsolete
+* Add supports for all pageset capabilities - generators, redirects, converttitles to
+  action=purge and action=setnotificationtimestamp 
+
+=== API internal changes in 1.21 ===
+* For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
 * ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
 * Query stores prop/list/meta as submodules
-* action=help suports generalized submodules (modules=query+value), querymodules obsolete
+* PageSet can now be used in any action to process titles/pageids/revids or any generator.
+* $wgAPIGeneratorModules is now obsolete and will be ignored
 
 === Languages updated in 1.21 ===
 
