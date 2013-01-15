@@ -86,6 +86,8 @@ production.
   a security fix (bug 42202).
 * Added the ability to limit the wall clock time used by shell processes, 
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
+* New collation uppercase-sv, which is like uppercase, but adapted
+  to Swedish sort order.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
