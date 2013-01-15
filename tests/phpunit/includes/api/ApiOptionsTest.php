@@ -213,6 +213,24 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$Success, $response );
 	}
 
+	public function testResetKinds() {
+		$this->mUserMock->expects( $this->once() )
+			->method( 'resetOptions' )
+			->with( $this->equalTo( array( 'registered' ) ) );
+
+		$this->mUserMock->expects( $this->never() )
+			->method( 'setOption' );
+
+		$this->mUserMock->expects( $this->once() )
+			->method( 'saveSettings' );
+
+		$request = $this->getSampleRequest( array( 'reset' => '', 'resetkinds' => 'registered' ) );
+
+		$response = $this->executeQuery( $request );
+
+		$this->assertEquals( self::$Success, $response );
+	}
+
 	public function testOptionWithValue() {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
