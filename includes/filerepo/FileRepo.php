@@ -120,7 +120,7 @@ class FileRepo {
 		$this->isPrivate = !empty( $info['isPrivate'] );
 		// Give defaults for the basic zones...
 		$this->zones = isset( $info['zones'] ) ? $info['zones'] : array();
-		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
+		foreach ( array( 'public', 'thumb', 'transcodes', 'temp', 'deleted' ) as $zone ) {
 			if ( !isset( $this->zones[$zone]['container'] ) ) {
 				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
 			}
@@ -204,7 +204,7 @@ class FileRepo {
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
-		if ( in_array( $zone, array( 'public', 'temp', 'thumb' ) ) ) { // standard public zones
+		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcodes' ) ) ) { // standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
 				return $this->zones[$zone]['urlsByExt'][$ext]; // custom URL for extension/zone
 			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
@@ -220,6 +220,8 @@ class FileRepo {
 				return false; // no public URL
 			case 'thumb':
 				return $this->thumbUrl;
+			case 'transcodes':
+				return "{$this->url}/transcodes";
 			default:
 				return false;
 		}
@@ -240,7 +242,7 @@ class FileRepo {
 	 */
 	public function getZoneHandlerUrl( $zone ) {
 		if ( isset( $this->zones[$zone]['handlerUrl'] )
-			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
+			&& in_array( $zone, array( 'public', 'temp', 'thumb', 'transcodes' ) ) )
 		{
 			return $this->zones[$zone]['handlerUrl'];
 		}
@@ -1670,10 +1672,17 @@ class FileRepo {
 					'directory' => ( $this->zones['thumb']['directory'] == '' )
 						? 'temp'
 						: $this->zones['thumb']['directory'] . '/temp'
+				),
+				'transcodes'  => array(
+					'container' => $this->zones['transcodes']['container'],
+					'directory' => ( $this->zones['transcodes']['directory'] == '' )
+						? 'temp'
+						: $this->zones['transcodes']['directory'] . '/temp'
 				)
 			),
 			'url'        => $this->getZoneUrl( 'temp' ),
 			'thumbUrl'   => $this->getZoneUrl( 'thumb' ) . '/temp',
+			'transcodesUrl'   => $this->getZoneUrl( 'transcodes' ) . '/temp',
 			'hashLevels' => $this->hashLevels // performance
 		) );
 	}
