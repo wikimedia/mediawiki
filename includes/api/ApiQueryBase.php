@@ -375,6 +375,19 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * Die with the $prefix.'badcontinue' error. This call is common enough to make it into the base method.
+	 * @param $condition boolean will only die if this value is true
+	 * @since 1.21
+	 */
+	protected function dieContinueUsageIf( $condition ) {
+		if ( $condition ) {
+			$this->dieUsage(
+				'Invalid continue param. You should pass the original value returned by the previous query',
+				'badcontinue' );
+		}
+	}
+
+	/**
 	 * Get the Query database connection (read-only)
 	 * @return DatabaseBase
 	 */
@@ -549,10 +562,21 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return array
 	 */
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
+		$errors = parent::getPossibleErrors();
+		$errors = array_merge( $errors, array(
 			array( 'invalidtitle', 'title' ),
 			array( 'invalidtitle', 'key' ),
 		) );
+		$params = $this->getFinalParams();
+		if ( array_key_exists( 'continue', $params ) ) {
+			$errors = array_merge( $errors, array(
+				array(
+					'code' => 'badcontinue',
+					'info' => 'Invalid continue param. You should pass the original value returned by the previous query'
+				),
+			) );
+		}
+		return $errors;
 	}
 
 	/**

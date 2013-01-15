@@ -60,10 +60,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 1 ) {
-				$this->dieUsage( "Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue" );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 1 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$cont_from = $db->addQuotes( $cont[0] );
 			$this->addWhere( "cat_title $op= $cont_from" );
@@ -222,12 +219,6 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 	public function getDescription() {
 		return 'Enumerate all categories';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
 	}
 
 	public function getExamples() {
