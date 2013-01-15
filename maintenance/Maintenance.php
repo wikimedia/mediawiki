@@ -952,7 +952,10 @@ abstract class Maintenance {
 		$this->output( 'Searching for active text records in archive table...' );
 		$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
 		foreach ( $res as $row ) {
-			$cur[] = $row->ar_text_id;
+			# old pre-MW 1.5 records can have null ar_text_id's.
+			if ( $row->ar_text_id !== null ) {
+				$cur[] = $row->ar_text_id;
+			}
 		}
 		$this->output( "done.\n" );
 
