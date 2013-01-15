@@ -67,6 +67,7 @@ abstract class ApiBase extends ContextSource {
 	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
 
 	private $mMainModule, $mModuleName, $mModulePrefix;
+	private $mSlaveDB = null;
 	private $mParamCache = array();
 
 	/**
@@ -1400,6 +1401,25 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Will only set a warning instead of failing if the global $wgDebugAPI
+	 * is set to true. Otherwise behaves exactly as dieUsageMsg().
+	 * @param $error (array|string) Element of a getUserPermissionsErrors()-style array
+	 */
+	public function dieUsageMsgOrDebug( $error ) {
+		global $wgDebugAPI;
+		if( $wgDebugAPI !== true ) {
+			$this->dieUsageMsg( $error );
+		} else {
+			if( is_string( $error ) ) {
+				$error = array( $error );
+			}
+			$parsed = $this->parseMsg( $error );
+			$this->setWarning( '$wgDebugAPI: ' . $parsed['code']
+				. ' - ' . $parsed['info'] );
+		}
+	}
+
+	/**
 	 * Return the error message related to a certain array
 	 * @param $error array Element of a getUserPermissionsErrors()-style array
 	 * @return array('code' => code, 'info' => info)
@@ -1681,10 +1701,16 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Gets a default slave database connection object
 	 * @return DatabaseBase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_SLAVE, 'api' );
+		if ( !isset( $this->mSlaveDB ) ) {
+			$this->profileDBIn();
+			$this->mSlaveDB = wfGetDB( DB_SLAVE, 'api' );
+			$this->profileDBOut();
+		}
+		return $this->mSlaveDB;
 	}
 
 	/**

@@ -31,6 +31,8 @@
  */
 class ApiPurge extends ApiBase {
 
+	private $mPageSet;
+
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}
@@ -39,15 +41,10 @@ class ApiPurge extends ApiBase {
 	 * Purges the cache of a page
 	 */
 	public function execute() {
-		$user = $this->getUser();
 		$params = $this->extractRequestParams();
-		if ( !$user->isAllowed( 'purge' ) && !$this->getMain()->isInternalMode() &&
-				!$this->getRequest()->wasPosted() ) {
-			$this->dieUsageMsg( array( 'mustbeposted', $this->getModuleName() ) );
-		}
 
 		$forceLinkUpdate = $params['forcelinkupdate'];
-		$pageSet = new ApiPageSet( $this );
+		$pageSet = $this->getPageSet();
 		$pageSet->execute();
 
 		$result = array();
@@ -69,23 +66,42 @@ class ApiPurge extends ApiBase {
 			$rev['missing'] = '';
 			$result[] = $rev;
 		}
-
-		foreach ( $pageSet->getTitles() as $title ) {
+		foreach ( $pageSet->getMissingTitles() as $title ) {
 			$r = array();
-
 			ApiQueryBase::addTitleInfo( $r, $title );
-			if ( !$title->exists() ) {
-				$r['missing'] = '';
-				$result[] = $r;
-				continue;
+			$r['missing'] = '';
+			$result[] = $r;
+		}
+		$normValues = $pageSet->getNormalizedTitlesAsResult( $result );
+		if ( $normValues ) {
+			foreach( $normValues as $val ) {
+				$val['normalized'] = '';
+				$result[] = $val;
 			}
-
+		}
+		$convValues = $pageSet->getConvertedTitlesAsResult( $result );
+		if ( $convValues  ) {
+			foreach( $convValues as $val ) {
+				$val['converted'] = '';
+				$result[] = $val;
+			}
+		}
+		$redirValues = $pageSet->getRedirectTitlesAsResult();
+		if( $redirValues ) {
+			foreach( $redirValues as $val ) {
+				$val['redirect'] = '';
+				$result[] = $val;
+			}
+		}
+		foreach ( $pageSet->getGoodTitles() as $title ) {
+			$r = array();
+			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
 			$page->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
 
 			if( $forceLinkUpdate ) {
-				if ( !$user->pingLimiter() ) {
+				if ( !$this->getUser()->pingLimiter() ) {
 					global $wgEnableParserCache;
 
 					$popts = $page->makeParserOptions( 'canonical' );
@@ -118,22 +134,34 @@ class ApiPurge extends ApiBase {
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 	}
 
+	/**
+	 * Get a cached instance of an ApiPageSet object
+	 * @return ApiPageSet
+	 */
+	private function getPageSet() {
+		if( !isset( $this->mPageSet ) ) {
+			$this->mPageSet = new ApiPageSet( $this );
+		}
+		return $this->mPageSet;
+	}
+
 	public function isWriteMode() {
 		return true;
 	}
 
+	public function mustBePosted() {
+		// Anonymous users are not allowed a non-POST request
+		return !$this->getUser()->isAllowed( 'purge' );
+	}
+
 	public function getAllowedParams() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->getAllowedParams() + array(
-			'forcelinkupdate' => false,
-		);
+		return $this->getPageSet()->getAllowedParams()
+			+ array( 'forcelinkupdate' => false );
 	}
 
 	public function getParamDescription() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->getParamDescription() + array(
-			'forcelinkupdate' => 'Update the links tables',
-		);
+		return $this->getPageSet()->getParamDescription()
+			+ array( 'forcelinkupdate' => 'Update the links tables' );
 	}
 
 	public function getResultProperties() {
@@ -171,10 +199,9 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		$psModule = new ApiPageSet( $this );
 		return array_merge(
 			parent::getPossibleErrors(),
-			$psModule->getPossibleErrors()
+			$this->getPageSet()->getPossibleErrors()
 		);
 	}
 

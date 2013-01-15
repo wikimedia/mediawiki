@@ -31,6 +31,8 @@
  */
 class ApiSetNotificationTimestamp extends ApiBase {
 
+	private $mPageSet;
+
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}
@@ -45,7 +47,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
 
-		$pageSet = new ApiPageSet( $this );
+		$pageSet = $this->getPageSet();
 		$args = array_merge( array( $params, 'entirewatchlist' ), array_keys( $pageSet->getAllowedParams() ) );
 		call_user_func_array( array( $this, 'requireOnlyOneParameter' ), $args );
 
@@ -161,6 +163,17 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 	}
 
+	/**
+	 * Get a cached instance of an ApiPageSet object
+	 * @return ApiPageSet
+	 */
+	private function getPageSet() {
+		if( !isset( $this->mPageSet ) ) {
+			$this->mPageSet = new ApiPageSet( $this );
+		}
+		return $this->mPageSet;
+	}
+
 	public function mustBePosted() {
 		return true;
 	}
@@ -178,8 +191,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->getAllowedParams() + array(
+		return $this->getPageSet()->getAllowedParams() + array(
 			'entirewatchlist' => array(
 				ApiBase::PARAM_TYPE => 'boolean'
 			),
@@ -197,8 +209,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->getParamDescription() + array(
+		return $this->getPageSet()->getParamDescription() + array(
 			'entirewatchlist' => 'Work on all watched pages',
 			'timestamp' => 'Timestamp to which to set the notification timestamp',
 			'torevid' => 'Revision to set the notification timestamp to (one page only)',
@@ -253,10 +264,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		$psModule = new ApiPageSet( $this );
 		return array_merge(
 			parent::getPossibleErrors(),
-			$psModule->getPossibleErrors(),
+			$this->getPageSet()->getPossibleErrors(),
 			$this->getRequireMaxOneParameterErrorMessages( array( 'timestamp', 'torevid', 'newerthanrevid' ) ),
 			$this->getRequireOnlyOneParameterErrorMessages( array_merge( array( 'entirewatchlist' ), array_keys( $psModule->getAllowedParams() ) ) ),
 			array(
