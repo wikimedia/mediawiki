@@ -1,5 +1,87 @@
 <?php
 
+interface Santiy {}
+
+class SaneTable extends ORMTable implements Santiy {
+
+	protected $tableName;
+	protected $fields;
+	protected $fieldPrefix = '';
+	protected $rowClass = 'ORMRow';
+	protected $defaults = array();
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $tableName
+	 * @param string[] $fields
+	 * @param array $defaults
+	 */
+	public function __construct( $tableName, array $fields, array $defaults = array() ) {
+		$this->tableName = $tableName;
+		$this->fields = $fields;
+		$this->defaults = $defaults;
+	}
+
+	/**
+	 * @see ORMTable::getName
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->tableName;
+	}
+
+	/**
+	 * @see ORMTable::getFieldPrefix
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getFieldPrefix() {
+		return $this->fieldPrefix;
+	}
+
+	/**
+	 * @see ORMTable::getRowClass
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getRowClass() {
+		return $this->rowClass;
+	}
+
+	/**
+	 * @see ORMTable::getFields
+	 *
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	public function getFields() {
+		return $this->fields;
+	}
+
+	/**
+	 * @see ORMTable::getDefaults
+	 *
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	public function getDefaults() {
+		return $this->defaults;
+	}
+
+}
+
 /**
  * Represents the sites database table.
  * All access to this table should be done through this class.
@@ -27,7 +109,9 @@
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SitesTable extends ORMTable {
+class SitesTable {
+
+
 
 	/**
 	 * @see IORMTable::getName()
@@ -97,40 +181,6 @@ class SitesTable extends ORMTable {
 			'config' => array(),
 			'language' => 'en', // XXX: can we default to '' instead?
 		);
-	}
-
-	/**
-	 * Returns the class name for the provided site type.
-	 *
-	 * @since 1.21
-	 *
-	 * @param integer $siteType
-	 *
-	 * @return string
-	 */
-	protected static function getClassForType( $siteType ) {
-		global $wgSiteTypes;
-		return array_key_exists( $siteType, $wgSiteTypes ) ? $wgSiteTypes[$siteType] : 'SiteObject';
-	}
-
-	/**
-	 * Factory method to construct a new Site instance.
-	 *
-	 * @since 1.21
-	 *
-	 * @param array $data
-	 * @param boolean $loadDefaults
-	 *
-	 * @return Site
-	 */
-	public function newRow( array $data, $loadDefaults = false ) {
-		if ( !array_key_exists( 'type', $data ) ) {
-			$data['type'] = Site::TYPE_UNKNOWN;
-		}
-
-		$class = static::getClassForType( $data['type'] );
-
-		return new $class( $this, $data, $loadDefaults );
 	}
 
 }

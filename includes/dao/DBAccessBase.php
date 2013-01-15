@@ -33,7 +33,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 * @var String|bool $wiki The target wiki's name. This must be an ID
 	 * that LBFactory can understand.
 	 */
-	protected $wiki;
+	protected $wiki = false;
 
 	/**
 	 * @param String|bool $wiki The target wiki's name. This must be an ID

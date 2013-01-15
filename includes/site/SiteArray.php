@@ -27,6 +27,7 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteArray extends GenericArrayObject implements SiteList {
+
 	/**
 	 * Update this version number when the SiteArray format
 	 * changes in an incompatible way
