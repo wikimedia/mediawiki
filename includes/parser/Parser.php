@@ -193,6 +193,7 @@ class Parser {
 	var $mRevisionTimestamp; # The timestamp of the specified revision ID
 	var $mRevisionUser; # User to display in {{REVISIONUSER}} tag
 	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
+	var $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
 	 * @var string
@@ -360,6 +361,8 @@ class Parser {
 		wfProfileIn( $fname );
 
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
+
+		$this->mInputSize = strlen( $text );
 
 		# Remove the strip marker tag prefix from the input, if present.
 		if ( $clearState ) {
@@ -3615,6 +3618,11 @@ class Parser {
 		if ( isset( $stuff['deps'] ) ) {
 			foreach ( $stuff['deps'] as $dep ) {
 				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
+				if ( $dep['title']->equals( $this->getTitle() ) ) {
+					// If we transclude ourselves, the final result
+					// will change based on the new version of the page
+					$this->mOutput->setFlag( 'vary-revision' );
+				}
 			}
 		}
 		return array( $text, $finalTitle );
