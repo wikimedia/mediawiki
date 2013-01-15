@@ -2310,10 +2310,10 @@ class User {
 	}
 
 	/**
-	 * Return an associative array mapping preferences keys to the kind of a preference they're
-	 * used for. Different kinds are handled differently when setting or reading preferences.
+	 * Return a list of the types of user options currently returned by
+	 * User::getOptionKinds().
 	 *
-	 * Currently, the kind is one of:
+	 * Currently, the option kinds are:
 	 * - 'registered' - preferences which are registered in core MediaWiki or
 	 *                  by extensions using the UserGetDefaultOptions hook.
 	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
@@ -2322,6 +2322,29 @@ class User {
 	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
 	 *              These are usually legacy options, removed in newer versions.
 	 *
+	 * The API (and possibly others) use this function to determine the possible
+	 * option types for validation purposes, so make sure to update this when a
+	 * new option kind is added.
+	 *
+	 * @see User::getOptionKinds
+	 * @return array Option kinds
+	 */
+	public static function listOptionKinds() {
+		return array(
+			'registered',
+			'registered-multiselect',
+			'userjs',
+			'unused'
+		);
+	}
+
+	/**
+	 * Return an associative array mapping preferences keys to the kind of a preference they're
+	 * used for. Different kinds are handled differently when setting or reading preferences.
+	 *
+	 * See User::listOptionKinds for the list of valid option types that can be provided.
+	 *
+	 * @see User::listOptionKinds
 	 * @param $context IContextSource
 	 * @param $options array assoc. array with options keys to check as keys. Defaults to $this->mOptions.
 	 * @return array the key => kind mapping data
@@ -2401,6 +2424,7 @@ class User {
 			}
 
 			$optionKinds = $this->getOptionKinds( $context );
+			$resetKinds = array_intersect( $resetKinds, self::listOptionKinds() );
 			$newOptions = array();
 
 			// Use default values for the options that should be deleted, and
