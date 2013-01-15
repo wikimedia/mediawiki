@@ -1933,7 +1933,7 @@ class Linker {
 	 * or similar
 	 * @param bool $preview Whether this is for a preview
 	 * @param bool $section Whether this is for a section edit
-	 * @param Title|string|null $more A link for "More..." of the templates
+	 * @param Title|Message|string|null $more A link for "More..." of the templates
 	 * @return String: HTML output
 	 */
 	public static function formatTemplates( $templates, $preview = false, $section = false, $more = null ) {
@@ -1997,7 +1997,10 @@ class Linker {
 			if ( $more instanceof Title ) {
 				$outText .= '<li>' . self::link( $more, wfMessage( 'moredotdotdot' ) ) . '</li>';
 			} elseif ( $more ) {
-				$outText .= "<li>$more</li>";
+				if ( !$more instanceof Message ) {
+					$more = new RawMessage( $more );
+				}
+				$outText .= '<li>' . $more->escaped() . '</li>';
 			}
 
 			$outText .= '</ul>';
