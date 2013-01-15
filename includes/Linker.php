@@ -1927,13 +1927,13 @@ class Linker {
 	 * Make an HTML list of templates, and then add a "More..." link at
 	 * the bottom. If $more is null, do not add a "More..." link. If $more
 	 * is a Title, make a link to that title and use it. If $more is a string,
-	 * directly paste it in as the link.
+	 * directly paste it in as the link (escaping needs to be done manually).
+	 * Finally, if $more is a Message, call toString().
 	 *
-	 * @param $templates Array of templates from Article::getUsedTemplate
-	 * or similar
+	 * @param array $templates Array of templates from Article::getUsedTemplate or similar
 	 * @param bool $preview Whether this is for a preview
 	 * @param bool $section Whether this is for a section edit
-	 * @param Title|string|null $more A link for "More..." of the templates
+	 * @param Title|Message|string|null $more An escaped link for "More..." of the templates
 	 * @return String: HTML output
 	 */
 	public static function formatTemplates( $templates, $preview = false, $section = false, $more = null ) {
