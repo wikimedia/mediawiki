@@ -31,55 +31,77 @@
 class Sites {
 
 	/**
-	 * @since 1.21
-	 * @var SiteList|null
-	 */
-	protected $sites = null;
-
-	/**
-	 * Constructor.
-	 *
-	 * @since 1.21
-	 */
-	protected function __construct() {}
-
-	/**
-	 * Returns an instance of Sites.
-	 *
-	 * @since 1.21
-	 *
-	 * @return Sites
-	 */
-	public static function singleton() {
-		static $instance = false;
-
-		if ( $instance === false ) {
-			$instance = new static();
-		}
-
-		return $instance;
-	}
-
-	/**
 	 * Factory for creating new site objects.
 	 *
 	 * @since 1.21
+	 * @deprecated
 	 *
 	 * @param string|boolean false $globalId
 	 *
 	 * @return Site
 	 */
 	public static function newSite( $globalId = false ) {
-		/**
-		 * @var Site $site
-		 */
-		$site = SitesTable::singleton()->newRow( array(), true );
+		$site = new Site();
 
 		if ( $globalId !== false ) {
 			$site->setGlobalId( $globalId );
 		}
 
 		return $site;
+	}
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var SiteList|null
+	 */
+	protected $sites = null;
+
+	/**
+	 * @var ORMTable
+	 */
+	protected $sitesTable;
+
+	public function __construct( ORMTable $sitesTable ) {
+		$this->sitesTable = $sitesTable;
+	}
+
+	/**
+	 * @return ORMTable
+	 */
+	public function newSitesTable() {
+		return new SaneTable(
+			'sites',
+			array(
+				'id' => 'id',
+
+				// Site data
+				'global_key' => 'str',
+				'type' => 'str',
+				'group' => 'str',
+				'source' => 'str',
+				'language' => 'str',
+				'protocol' => 'str',
+				'domain' => 'str',
+				'data' => 'array',
+
+				// Site config
+				'forward' => 'bool',
+				'config' => 'array',
+			),
+			array(
+				'type' => Site::TYPE_UNKNOWN,
+				'group' => Site::GROUP_NONE,
+				'source' => Site::SOURCE_LOCAL,
+				'data' => array(),
+
+				'forward' => false,
+				'config' => array(),
+				'language' => '',
+			),
+			'SiteRow',
+			'site_'
+		);
 	}
 
 	/**
@@ -99,7 +121,7 @@ class Sites {
 				$cache = wfGetMainCache();
 				$sites = $cache->get( wfMemcKey( 'SiteList' ) );
 
-				if ( is_object( $sites ) && isset( $sites->cacheVersion ) && $sites->cacheVersion === SiteArray::CACHE_VERSION ) {
+				if ( is_object( $sites ) ) {
 					$this->sites = $sites;
 				} else {
 					$this->loadSites();
@@ -139,17 +161,60 @@ class Sites {
 	}
 
 	/**
+	 * Returns a new Site object constructed from the provided ORMRow.
+	 *
+	 * @since 1.21
+	 *
+	 * @param ORMRow $siteRow
+	 *
+	 * @return Site
+	 */
+	protected function siteFromRow( ORMRow $siteRow ) {
+		$site = Site::newForType( $siteRow->getField( 'type', Site::TYPE_UNKNOWN ) );
+
+		$site->setGlobalId( $siteRow->getField( 'global_key' ) );
+
+		if ( $siteRow->hasField( 'forward' ) ) {
+			$site->setForward( $siteRow->getField( 'forward' ) );
+		}
+
+		if ( $siteRow->hasField( 'group' ) ) {
+			$site->setGroup( $siteRow->getField( 'group' ) );
+		}
+
+		if ( $siteRow->hasField( 'language' ) ) {
+			$site->setLanguageCode( $siteRow->getField( 'language' ) === '' ? null : $siteRow->getField( 'language' ) );
+		}
+
+		if ( $siteRow->hasField( 'source' ) ) {
+			$site->setSource( $siteRow->getField( 'source' ) );
+		}
+
+		if ( $siteRow->hasField( 'data' ) ) {
+			$site->setExtraData( $siteRow->getField( 'data' ) );
+		}
+
+		if ( $siteRow->hasField( 'config' ) ) {
+			$site->setExtraConfig( $siteRow->getField( 'config' ) );
+		}
+
+		return $site;
+	}
+
+	/**
 	 * Fetches the site from the database and loads them into the sites field.
 	 *
 	 * @since 1.21
 	 */
 	protected function loadSites() {
-		$this->sites = new SiteArray( SitesTable::singleton()->select() );
+		$this->sites = new SiteArray();
+
+		foreach ( $this->sitesTable->select() as $siteRow ) {
+			$this->sites[] = $this->siteFromRow( $siteRow );
+		}
 
 		// Batch load the local site identifiers.
-		$dbr = wfGetDB( SitesTable::singleton()->getReadDb() );
-
-		$ids = $dbr->select(
+		$ids = wfGetDB( $this->sitesTable->getReadDb() )->select(
 			'site_identifiers',
 			array(
 				'si_site',
@@ -173,19 +238,116 @@ class Sites {
 	}
 
 	/**
-	 * Returns the site with provided global id, or false if there is no such site.
+	 * Returns the site with provided global id, or null if there is no such site.
 	 *
 	 * @since 1.21
 	 *
 	 * @param string $globalId
 	 * @param string $source
 	 *
-	 * @return Site|false
+	 * @return Site|null
 	 */
 	public function getSite( $globalId, $source = 'cache' ) {
 		$sites = $this->getSites( $source );
 
-		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : false;
+		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
+	}
+
+	/**
+	 * Saves the provided site.
+	 *
+	 * @since 1.21
+	 *
+	 * @param Site $site
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function saveSite( Site $site ) {
+		return $this->saveSites( array( $site ) );
+	}
+
+	/**
+	 * Saves the provided sites.
+	 *
+	 * @since 1.21
+	 *
+	 * @param Site[] $sites
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function saveSites( array $sites ) {
+		if ( empty( $sites ) ) {
+			return true;
+		}
+
+		$dbw = $this->sitesTable->getWriteDbConnection();
+
+		$trx = $dbw->trxLevel();
+
+		if ( $trx == 0 ) {
+			$dbw->begin( __METHOD__ );
+		}
+
+		$success = true;
+
+		$internalIds = array();
+		$localIds = array();
+
+		foreach ( $sites as $site ) {
+			$fields = array(
+				// Site data
+				'global_key' => $site->getGlobalId(), // TODO: check not null
+				'type' => $site->getType(),
+				'group' => $site->getGroup(),
+				'source' => $site->getSource(),
+				'language' => $site->getLanguageCode() === null ? '' : $site->getLanguageCode(),
+				'protocol' => $site->getProtocol(),
+				'domain' => strrev( $site->getDomain() ) . '.',
+				'data' => $site->getExtraData(),
+
+				// Site config
+				'forward' => $site->shouldForward(),
+				'config' => $site->getExtraConfig(),
+			);
+
+			if ( $site->getInternalId() !== null ) {
+				$fields['id'] = $site->getInternalId();
+				$internalIds[] = $site->getInternalId();
+			}
+
+			$siteRow = new ORMRow( $this->sitesTable, $fields );
+			$success = $siteRow->save( __METHOD__ ) && $success;
+
+			foreach ( $site->getLocalIds() as $idType => $ids ) {
+				foreach ( $ids as $id ) {
+					$localIds[] = array( $siteRow->getId(), $idType, $id );
+				}
+			}
+		}
+
+		$dbw->delete(
+			'site_identifiers',
+			array( 'si_site' => $internalIds ),
+			__METHOD__
+		);
+
+		foreach ( $localIds as $localId ) {
+			$dbw->insert(
+				'site_identifiers',
+				array(
+					'si_site' => $localId[0],
+					'si_type' => $localId[1],
+					'si_key' => $localId[2],
+				),
+				__METHOD__
+			);
+		}
+
+		if ( $trx == 0 ) {
+			$dbw->commit( __METHOD__ );
+		}
+
+		return $success;
 	}
 
 }

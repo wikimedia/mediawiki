@@ -30,8 +30,7 @@
  * @license GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-
-abstract class ORMRow implements IORMRow {
+class ORMRow implements IORMRow {
 
 	/**
 	 * The fields of the object.
