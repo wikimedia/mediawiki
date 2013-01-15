@@ -671,8 +671,6 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @todo FIXME: This doesn't work correctly on preview for getting the size
-	 *   of the current page.
 	 * @todo FIXME: Title::getLength() documentation claims that it adds things
 	 *   to the link cache, so the local cache here should be unnecessary, but
 	 *   in fact calling getLength() repeatedly for the same $page does seem to
@@ -680,8 +678,8 @@ class CoreParserFunctions {
 	 * @todo Document parameters
 	 *
 	 * @param $parser Parser
-	 * @param string $page TODO DOCUMENT (Default: empty string)
-	 * @param $raw TODO DOCUMENT (Default: null)
+	 * @param $page String Name of page to check (Default: empty string)
+	 * @param $raw String Should number be human readable with commas or just number
 	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
@@ -697,7 +695,13 @@ class CoreParserFunctions {
 		$page = $title->getPrefixedText();
 
 		$length = 0;
-		if ( isset( $cache[$page] ) ) {
+		if ( $title->equals( $parser->getTitle() )
+			&& $parser->mInputSize !== false
+		) {
+			# We are on current page (and not in PST), so
+			# take length of input to parser.
+			$length = $parser->mInputSize;
+		} elseif( isset( $cache[$page] ) ) {
 			$length = $cache[$page];
 		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
