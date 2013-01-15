@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Represents the sites database table.
- * All access to this table should be done through this class.
+ * Represents the site configuration of a wiki.
+ * Holds a list of sites (ie SiteList) and takes care
+ * of retrieving and caching site information when appropriate.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,110 +28,348 @@
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SitesTable extends ORMTable {
+class SitesTable implements SiteStore {
 
 	/**
-	 * @see IORMTable::getName()
 	 * @since 1.21
-	 * @return string
+	 *
+	 * @var SiteList|null
 	 */
-	public function getName() {
-		return 'sites';
+	protected $sites = null;
+
+	/**
+	 * @var ORMTable
+	 */
+	protected $sitesTable;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @param ORMTable|null $sitesTable
+	 *
+	 * @return SiteStore
+	 */
+	public static function newInstance( ORMTable $sitesTable = null ) {
+		return new static( $sitesTable );
 	}
 
 	/**
-	 * @see IORMTable::getFieldPrefix()
-	 * @since 1.21
-	 * @return string
-	 */
-	public function getFieldPrefix() {
-		return 'site_';
-	}
-
-	/**
-	 * @see IORMTable::getRowClass()
-	 * @since 1.21
-	 * @return string
-	 */
-	public function getRowClass() {
-		return 'SiteObject';
-	}
-
-	/**
-	 * @see IORMTable::getFields()
-	 * @since 1.21
-	 * @return array
-	 */
-	public function getFields() {
-		return array(
-			'id' => 'id',
-
-			// Site data
-			'global_key' => 'str',
-			'type' => 'str',
-			'group' => 'str',
-			'source' => 'str',
-			'language' => 'str',
-			'protocol' => 'str',
-			'domain' => 'str',
-			'data' => 'array',
-
-			// Site config
-			'forward' => 'bool',
-			'config' => 'array',
-		);
-	}
-
-	/**
-	 * @see IORMTable::getDefaults()
-	 * @since 1.21
-	 * @return array
-	 */
-	public function getDefaults() {
-		return array(
-			'type' => Site::TYPE_UNKNOWN,
-			'group' => Site::GROUP_NONE,
-			'source' => Site::SOURCE_LOCAL,
-			'data' => array(),
-
-			'forward' => false,
-			'config' => array(),
-			'language' => 'en', // XXX: can we default to '' instead?
-		);
-	}
-
-	/**
-	 * Returns the class name for the provided site type.
+	 * Constructor.
 	 *
 	 * @since 1.21
 	 *
-	 * @param integer $siteType
-	 *
-	 * @return string
+	 * @param ORMTable|null $sitesTable
 	 */
-	protected static function getClassForType( $siteType ) {
-		global $wgSiteTypes;
-		return array_key_exists( $siteType, $wgSiteTypes ) ? $wgSiteTypes[$siteType] : 'SiteObject';
+	protected function __construct( ORMTable $sitesTable = null ) {
+		if ( $sitesTable === null ) {
+			$sitesTable = $this->newSitesTable();
+		}
+
+		$this->sitesTable = $sitesTable;
 	}
 
 	/**
-	 * Factory method to construct a new Site instance.
+	 * @see SiteStore::getSites
 	 *
 	 * @since 1.21
 	 *
-	 * @param array $data
-	 * @param boolean $loadDefaults
+	 * @param string $source either 'cache' or 'recache'
+	 *
+	 * @return SiteList
+	 */
+	public function getSites( $source = 'cache' ) {
+		if ( $source === 'cache' ) {
+			if ( $this->sites === null ) {
+				$cache = wfGetMainCache();
+				$sites = $cache->get( wfMemcKey( 'SiteList' ) );
+
+				if ( is_object( $sites ) ) {
+					$this->sites = $sites;
+				} else {
+					$this->loadSites();
+				}
+			}
+		}
+		else {
+			$this->loadSites();
+		}
+
+		return $this->sites;
+	}
+
+	/**
+	 * Returns a new Site object constructed from the provided ORMRow.
+	 *
+	 * @since 1.21
+	 *
+	 * @param ORMRow $siteRow
 	 *
 	 * @return Site
 	 */
-	public function newRow( array $data, $loadDefaults = false ) {
-		if ( !array_key_exists( 'type', $data ) ) {
-			$data['type'] = Site::TYPE_UNKNOWN;
+	protected function siteFromRow( ORMRow $siteRow ) {
+		$site = Site::newForType( $siteRow->getField( 'type', Site::TYPE_UNKNOWN ) );
+
+		$site->setGlobalId( $siteRow->getField( 'global_key' ) );
+
+		if ( $siteRow->hasField( 'forward' ) ) {
+			$site->setForward( $siteRow->getField( 'forward' ) );
 		}
 
-		$class = static::getClassForType( $data['type'] );
+		if ( $siteRow->hasField( 'group' ) ) {
+			$site->setGroup( $siteRow->getField( 'group' ) );
+		}
 
-		return new $class( $this, $data, $loadDefaults );
+		if ( $siteRow->hasField( 'language' ) ) {
+			$site->setLanguageCode( $siteRow->getField( 'language' ) === '' ? null : $siteRow->getField( 'language' ) );
+		}
+
+		if ( $siteRow->hasField( 'source' ) ) {
+			$site->setSource( $siteRow->getField( 'source' ) );
+		}
+
+		if ( $siteRow->hasField( 'data' ) ) {
+			$site->setExtraData( $siteRow->getField( 'data' ) );
+		}
+
+		if ( $siteRow->hasField( 'config' ) ) {
+			$site->setExtraConfig( $siteRow->getField( 'config' ) );
+		}
+
+		return $site;
+	}
+
+	/**
+	 * Fetches the site from the database and loads them into the sites field.
+	 *
+	 * @since 1.21
+	 */
+	protected function loadSites() {
+		$this->sites = new SiteList();
+
+		foreach ( $this->sitesTable->select() as $siteRow ) {
+			$this->sites[] = $this->siteFromRow( $siteRow );
+		}
+
+		// Batch load the local site identifiers.
+		$ids = wfGetDB( $this->sitesTable->getReadDb() )->select(
+			'site_identifiers',
+			array(
+				'si_site',
+				'si_type',
+				'si_key',
+			),
+			array(),
+			__METHOD__
+		);
+
+		foreach ( $ids as $id ) {
+			if ( $this->sites->hasInternalId( $id->si_site ) ) {
+				$site = $this->sites->getSiteByInternalId( $id->si_site );
+				$site->addLocalId( $id->si_type, $id->si_key );
+				$this->sites->setSite( $site );
+			}
+		}
+
+		$cache = wfGetMainCache();
+		$cache->set( wfMemcKey( 'SiteList' ), $this->sites );
+	}
+
+	/**
+	 * @see SiteStore::getSite
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $globalId
+	 * @param string $source
+	 *
+	 * @return Site|null
+	 */
+	public function getSite( $globalId, $source = 'cache' ) {
+		$sites = $this->getSites( $source );
+
+		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
+	}
+
+	/**
+	 * @see SiteStore::saveSite
+	 *
+	 * @since 1.21
+	 *
+	 * @param Site $site
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function saveSite( Site $site ) {
+		return $this->saveSites( array( $site ) );
+	}
+
+	/**
+	 * @see SiteStore::saveSites
+	 *
+	 * @since 1.21
+	 *
+	 * @param Site[] $sites
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function saveSites( array $sites ) {
+		if ( empty( $sites ) ) {
+			return true;
+		}
+
+		$dbw = $this->sitesTable->getWriteDbConnection();
+
+		$trx = $dbw->trxLevel();
+
+		if ( $trx == 0 ) {
+			$dbw->begin( __METHOD__ );
+		}
+
+		$success = true;
+
+		$internalIds = array();
+		$localIds = array();
+
+		foreach ( $sites as $site ) {
+			$fields = array(
+				// Site data
+				'global_key' => $site->getGlobalId(), // TODO: check not null
+				'type' => $site->getType(),
+				'group' => $site->getGroup(),
+				'source' => $site->getSource(),
+				'language' => $site->getLanguageCode() === null ? '' : $site->getLanguageCode(),
+				'protocol' => $site->getProtocol(),
+				'domain' => strrev( $site->getDomain() ) . '.',
+				'data' => $site->getExtraData(),
+
+				// Site config
+				'forward' => $site->shouldForward(),
+				'config' => $site->getExtraConfig(),
+			);
+
+			if ( $site->getInternalId() !== null ) {
+				$fields['id'] = $site->getInternalId();
+				$internalIds[] = $site->getInternalId();
+			}
+
+			$siteRow = new ORMRow( $this->sitesTable, $fields );
+			$success = $siteRow->save( __METHOD__ ) && $success;
+
+			foreach ( $site->getLocalIds() as $idType => $ids ) {
+				foreach ( $ids as $id ) {
+					$localIds[] = array( $siteRow->getId(), $idType, $id );
+				}
+			}
+		}
+
+		if ( $internalIds !== array() ) {
+			$dbw->delete(
+				'site_identifiers',
+				array( 'si_site' => $internalIds ),
+				__METHOD__
+			);
+		}
+
+		foreach ( $localIds as $localId ) {
+			$dbw->insert(
+				'site_identifiers',
+				array(
+					'si_site' => $localId[0],
+					'si_type' => $localId[1],
+					'si_key' => $localId[2],
+				),
+				__METHOD__
+			);
+		}
+
+		if ( $trx == 0 ) {
+			$dbw->commit( __METHOD__ );
+		}
+
+		return $success;
+	}
+
+	/**
+	 * @since 1.21
+	 *
+	 * @return ORMTable
+	 */
+	protected function newSitesTable() {
+		return new SaneTable(
+			'sites',
+			array(
+				'id' => 'id',
+
+				// Site data
+				'global_key' => 'str',
+				'type' => 'str',
+				'group' => 'str',
+				'source' => 'str',
+				'language' => 'str',
+				'protocol' => 'str',
+				'domain' => 'str',
+				'data' => 'array',
+
+				// Site config
+				'forward' => 'bool',
+				'config' => 'array',
+			),
+			array(
+				'type' => Site::TYPE_UNKNOWN,
+				'group' => Site::GROUP_NONE,
+				'source' => Site::SOURCE_LOCAL,
+				'data' => array(),
+
+				'forward' => false,
+				'config' => array(),
+				'language' => '',
+			),
+			'ORMRow',
+			'site_'
+		);
+	}
+
+}
+
+/**
+ * @deprecated
+ */
+class Sites extends SitesTable {
+
+	/**
+	 * Factory for creating new site objects.
+	 *
+	 * @since 1.21
+	 * @deprecated
+	 *
+	 * @param string|boolean false $globalId
+	 *
+	 * @return Site
+	 */
+	public static function newSite( $globalId = false ) {
+		$site = new Site();
+
+		if ( $globalId !== false ) {
+			$site->setGlobalId( $globalId );
+		}
+
+		return $site;
+	}
+
+	/**
+	 * @deprecated
+	 * @return SiteStore
+	 */
+	public static function singleton() {
+		return new static();
+	}
+
+	/**
+	 * @deprecated
+	 * @return SiteList
+	 */
+	public function getSiteGroup( $group ) {
+		return $this->getSites()->getGroup( $group );
 	}
 
 }

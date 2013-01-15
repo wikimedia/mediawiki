@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Interface for site objects.
+ * Represents a single site.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface Site {
+class Site {
 
 	const TYPE_UNKNOWN = 'unknown';
 	const TYPE_MEDIAWIKI = 'mediawiki';
@@ -38,23 +38,119 @@ interface Site {
 
 	const SOURCE_LOCAL = 'local';
 
+	const PATH_LINK = 'link';
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string|null
+	 */
+	protected $globalId = null;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string
+	 */
+	protected $type = self::TYPE_UNKNOWN;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string
+	 */
+	protected $group = self::GROUP_NONE;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string
+	 */
+	protected $source = self::SOURCE_LOCAL;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var string|null
+	 */
+	protected $languageCode = null;
+
+	/**
+	 * Holds the local ids for this site.
+	 * local id type => [ ids for this type (strings) ]
+	 *
+	 * @since 1.21
+	 *
+	 * @var array[]
+	 */
+	protected $localIds = array();
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var array
+	 */
+	protected $extraData = array();
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var array
+	 */
+	protected $extraConfig = array();
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var bool
+	 */
+	protected $forward = false;
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var int|null
+	 */
+	protected $internalId = null;
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $type
+	 */
+	public function __construct( $type = self::TYPE_UNKNOWN ) {
+		$this->type = $type;
+	}
+
 	/**
 	 * Returns the global site identifier (ie enwiktionary).
 	 *
 	 * @since 1.21
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getGlobalId();
+	public function getGlobalId() {
+		return $this->globalId;
+	}
 
 	/**
 	 * Sets the global site identifier (ie enwiktionary).
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $globalId
+	 * @param string|null $globalId
+	 *
+	 * @throws MWException
 	 */
-	public function setGlobalId( $globalId );
+	public function setGlobalId( $globalId ) {
+		if ( $globalId !== null && !is_string( $globalId ) ) {
+			throw new MWException( '$globalId needs to be string or null' );
+		}
+
+		$this->globalId = $globalId;
+	}
 
 	/**
 	 * Returns the type of the site (ie mediawiki).
@@ -63,17 +159,9 @@ interface Site {
 	 *
 	 * @return string
 	 */
-	public function getType();
-
-	/**
-	 * Sets the type of the site (ie mediawiki).
-	 * TODO: remove, we cannot change this after instantiation
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $type
-	 */
-	public function setType( $type );
+	public function getType() {
+		return $this->type;
+	}
 
 	/**
 	 * Gets the type of the site (ie wikipedia).
@@ -82,7 +170,9 @@ interface Site {
 	 *
 	 * @return string
 	 */
-	public function getGroup();
+	public function getGroup() {
+		return $this->group;
+	}
 
 	/**
 	 * Sets the type of the site (ie wikipedia).
@@ -90,8 +180,16 @@ interface Site {
 	 * @since 1.21
 	 *
 	 * @param string $group
+	 *
+	 * @throws MWException
 	 */
-	public function setGroup( $group );
+	public function setGroup( $group ) {
+		if ( !is_string( $group ) ) {
+			throw new MWException( '$group needs to be a string' );
+		}
+
+		$this->group = $group;
+	}
 
 	/**
 	 * Returns the source of the site data (ie 'local', 'wikidata', 'my-magical-repo').
@@ -100,7 +198,9 @@ interface Site {
 	 *
 	 * @return string
 	 */
-	public function getSource();
+	public function getSource() {
+		return $this->source;
+	}
 
 	/**
 	 * Sets the source of the site data (ie 'local', 'wikidata', 'my-magical-repo').
@@ -108,18 +208,46 @@ interface Site {
 	 * @since 1.21
 	 *
 	 * @param string $source
+	 *
+	 * @throws MWException
 	 */
-	public function setSource( $source );
+	public function setSource( $source ) {
+		if ( !is_string( $source ) ) {
+			throw new MWException( '$source needs to be a string' );
+		}
+
+		$this->source = $source;
+	}
 
 	/**
-	 * Returns the protocol of the site, ie 'http://', 'irc://', '//'
-	 * Or false if it's not known.
+	 * Gets if site.tld/path/key:pageTitle should forward users to  the page on
+	 * the actual site, where "key" is the local identifier.
 	 *
 	 * @since 1.21
 	 *
-	 * @return string|false
+	 * @return boolean
 	 */
-	public function getProtocol();
+	public function shouldForward() {
+		return $this->forward;
+	}
+
+	/**
+	 * Sets if site.tld/path/key:pageTitle should forward users to  the page on
+	 * the actual site, where "key" is the local identifier.
+	 *
+	 * @since 1.21
+	 *
+	 * @param boolean $shouldForward
+	 *
+	 * @throws MWException
+	 */
+	public function setForward( $shouldForward ) {
+		if ( !is_bool( $shouldForward ) ) {
+			throw new MWException( '$shouldForward needs to be a boolean' );
+		}
+
+		$this->forward = $shouldForward;
+	}
 
 	/**
 	 * Returns the domain of the site, ie en.wikipedia.org
@@ -127,147 +255,49 @@ interface Site {
 	 *
 	 * @since 1.21
 	 *
-	 * @return string|false
+	 * @return string|null
 	 */
-	public function getDomain();
+	public function getDomain() {
+		$path = $this->getLinkPath();
+
+		if ( $path === null ) {
+			return null;
+		}
+
+		return parse_url( $path, PHP_URL_HOST );
+	}
 
 	/**
-	 * Returns the full URL for the given page on the site.
-	 * Or false if the needed information is not known.
-	 *
-	 * This generated URL is usually based upon the path returned by getLinkPath(),
-	 * but this is not a requirement.
-	 *
-	 * @since 1.21
-	 * @see Site::getLinkPath()
-	 *
-	 * @param bool|String $page
-	 *
-	 * @return string|false
-	 */
-	public function getPageUrl( $page = false );
-
-	/**
-	 * Returns language code of the sites primary language.
+	 * Returns the protocol of the site, ie 'http://', 'irc://', '//'
 	 * Or false if it's not known.
 	 *
 	 * @since 1.21
 	 *
-	 * @return string|false
+	 * @throws MWException
+	 * @return string
 	 */
-	public function getLanguageCode();
+	public function getProtocol() {
+		$path = $this->getLinkPath();
 
-	/**
-	 * Sets language code of the sites primary language.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $languageCode
-	 */
-	public function setLanguageCode( $languageCode );
+		if ( $path === null ) {
+			return '';
+		}
 
-	/**
-	 * Returns the normalized, canonical form of the given page name.
-	 * How normalization is performed or what the properties of a normalized name are depends on the site.
-	 * The general contract of this method is that the normalized form shall refer to the same content
-	 * as the original form, and any other page name referring to the same content will have the same normalized form.
-	 *
-	 * Note that this method may call out to the target site to perform the normalization, so it may be slow
-	 * and fail due to IO errors.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $pageName
-	 *
-	 * @return string the normalized page name
-	 */
-	public function normalizePageName( $pageName );
+		$protocol = parse_url( $path, PHP_URL_SCHEME );
 
-	/**
-	 * Returns the interwiki link identifiers that can be used for this site.
-	 *
-	 * @since 1.21
-	 *
-	 * @return array of string
-	 */
-	public function getInterwikiIds();
+		// Malformed URL
+		if ( $protocol === false ) {
+			throw new MWException( "failed to parse URL '$path'" );
+		}
 
-	/**
-	 * Returns the equivalent link identifiers that can be used to make
-	 * the site show up in interfaces such as the "language links" section.
-	 *
-	 * @since 1.21
-	 *
-	 * @return array of string
-	 */
-	public function getNavigationIds();
+		// No schema
+		if ( $protocol === null ) {
+			// Used for protocol relative URLs
+			$protocol = '';
+		}
 
-	/**
-	 * Adds an local identifier to the site.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $type The type of the identifier, element of the Site::ID_ enum
-	 * @param string $identifier
-	 */
-	public function addLocalId( $type, $identifier );
-
-	/**
-	 * Adds an interwiki id to the site.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $identifier
-	 */
-	public function addInterwikiId( $identifier );
-
-	/**
-	 * Adds a navigation id to the site.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $identifier
-	 */
-	public function addNavigationId( $identifier );
-
-	/**
-	 * Saves the site.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string|null $functionName
-	 */
-	public function save( $functionName = null );
-
-	/**
-	 * Returns the internal ID of the site.
-	 *
-	 * @since 1.21
-	 *
-	 * @return integer
-	 */
-	public function getInternalId();
-
-	/**
-	 * Sets the provided url as path of the specified type.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $pathType
-	 * @param string $fullUrl
-	 */
-	public function setPath( $pathType, $fullUrl );
-
-	/**
-	 * Returns the path of the provided type or false if there is no such path.
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $pathType
-	 *
-	 * @return string|false
-	 */
-	public function getPath( $pathType );
+		return $protocol;
+	}
 
 	/**
 	 * Sets the path used to construct links with.
@@ -276,23 +306,295 @@ interface Site {
 	 * @param string $fullUrl
 	 *
 	 * @since 1.21
+	 *
+	 * @throws MWException
 	 */
-	public function setLinkPath( $fullUrl );
+	public function setLinkPath( $fullUrl ) {
+		$type = $this->getLinkPathType();
+
+		if ( $type === null ) {
+			throw new MWException( "This SiteObject does not support link paths." );
+		}
+
+		$this->setPath( $type, $fullUrl );
+	}
 
 	/**
 	 * Returns the path used to construct links with or false if there is no such path.
+	 *
 	 * Shall be equivalent to getPath( getLinkPathType() ).
 	 *
-	 * @return string|false
+	 * @return string|null
 	 */
-	public function getLinkPath();
+	public function getLinkPath() {
+		$type = $this->getLinkPathType();
+		return $type === null ? null: $this->getPath( $type );
+	}
 
 	/**
-	 * Returns the path type used to construct links with.
+	 * Returns the main path type, that is the type of the path that should generally be used to construct links
+	 * to the target site.
 	 *
-	 * @return string|false
+	 * This default implementation returns SiteObject::PATH_LINK as the default path type. Subclasses can override this
+	 * to define a different default path type, or return false to disable site links.
+	 *
+	 * @since 1.21
+	 *
+	 * @return string|null
 	 */
-	public function getLinkPathType();
+	public function getLinkPathType() {
+		return self::PATH_LINK;
+	}
+
+	/**
+	 * Returns the full URL for the given page on the site.
+	 * Or false if the needed information is not known.
+	 *
+	 * This generated URL is usually based upon the path returned by getLinkPath(),
+	 * but this is not a requirement.
+	 *
+	 * This implementation returns a URL constructed using the path returned by getLinkPath().
+	 *
+	 * @since 1.21
+	 *
+	 * @param bool|String $pageName
+	 *
+	 * @return string|boolean false
+	 */
+	public function getPageUrl( $pageName = false ) {
+		$url = $this->getLinkPath();
+
+		if ( $url === false ) {
+			return false;
+		}
+
+		if ( $pageName !== false ) {
+			$url = str_replace( '$1', rawurlencode( $pageName ), $url ) ;
+		}
+
+		return $url;
+	}
+
+	/**
+	 * Returns $pageName without changes.
+	 * Subclasses may override this to apply some kind of normalization.
+	 *
+	 * @see Site::normalizePageName
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $pageName
+	 *
+	 * @return string|boolean false
+	 */
+	public function normalizePageName( $pageName ) {
+		return $pageName;
+	}
+
+	/**
+	 * Returns the type specific fields.
+	 *
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	public function getExtraData() {
+		return $this->extraData;
+	}
+
+	/**
+	 * Sets the type specific fields.
+	 *
+	 * @since 1.21
+	 *
+	 * @param array $extraData
+	 */
+	public function setExtraData( array $extraData ) {
+		$this->extraData = $extraData;
+	}
+
+	/**
+	 * Returns the type specific config.
+	 *
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	public function getExtraConfig() {
+		return $this->extraConfig;
+	}
+
+	/**
+	 * Sets the type specific config.
+	 *
+	 * @since 1.21
+	 *
+	 * @param array $extraConfig
+	 */
+	public function setExtraConfig( array $extraConfig ) {
+		$this->extraConfig = $extraConfig;
+	}
+
+	/**
+	 * Returns language code of the sites primary language.
+	 * Or null if it's not known.
+	 *
+	 * @since 1.21
+	 *
+	 * @return string|null
+	 */
+	public function getLanguageCode() {
+		return $this->languageCode;
+	}
+
+	/**
+	 * Sets language code of the sites primary language.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $languageCode
+	 */
+	public function setLanguageCode( $languageCode ) {
+		$this->languageCode = $languageCode;
+	}
+
+	/**
+	 * Returns the set internal identifier for the site.
+	 *
+	 * @since 1.21
+	 *
+	 * @return string|null
+	 */
+	public function getInternalId() {
+		return $this->internalId;
+	}
+
+	/**
+	 * Sets the internal identifier for the site.
+	 * This typically is a primary key in a db table.
+	 *
+	 * @since 1.21
+	 *
+	 * @param int|null $internalId
+	 */
+	public function setInternalId( $internalId = null ) {
+		$this->internalId = $internalId;
+	}
+
+	/**
+	 * Adds a local identifier.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $type
+	 * @param string $identifier
+	 */
+	public function addLocalId( $type, $identifier ) {
+		if ( $this->localIds === false ) {
+			$this->localIds = array();
+		}
+
+		if ( !array_key_exists( $type, $this->localIds ) ) {
+			$this->localIds[$type] = array();
+		}
+
+		if ( !in_array( $identifier, $this->localIds[$type] ) ) {
+			$this->localIds[$type][] = $identifier;
+		}
+	}
+
+	/**
+	 * Adds an interwiki id to the site.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $identifier
+	 */
+	public function addInterwikiId( $identifier ) {
+		$this->addLocalId( self::ID_INTERWIKI, $identifier );
+	}
+
+	/**
+	 * Adds a navigation id to the site.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $identifier
+	 */
+	public function addNavigationId( $identifier ) {
+		$this->addLocalId( self::ID_EQUIVALENT, $identifier );
+	}
+
+	/**
+	 * Returns the interwiki link identifiers that can be used for this site.
+	 *
+	 * @since 1.21
+	 *
+	 * @return string[]
+	 */
+	public function getInterwikiIds() {
+		return array_key_exists( self::ID_INTERWIKI, $this->localIds ) ? $this->localIds[self::ID_INTERWIKI] : array();
+	}
+
+	/**
+	 * Returns the equivalent link identifiers that can be used to make
+	 * the site show up in interfaces such as the "language links" section.
+	 *
+	 * @since 1.21
+	 *
+	 * @return string[]
+	 */
+	public function getNavigationIds() {
+		return array_key_exists( self::ID_EQUIVALENT, $this->localIds ) ? $this->localIds[self::ID_EQUIVALENT] : array();
+	}
+
+	/**
+	 * Returns all local ids
+	 *
+	 * @since 1.21
+	 *
+	 * @return array[]
+	 */
+	public function getLocalIds() {
+		return $this->localIds;
+	}
+
+	/**
+	 * Sets the path used to construct links with.
+	 * Shall be equivalent to setPath( getLinkPathType(), $fullUrl ).
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $pathType
+	 * @param string $fullUrl
+	 *
+	 * @throws MWException
+	 */
+	public function setPath( $pathType, $fullUrl ) {
+		if ( !is_string( $fullUrl ) ) {
+			throw new MWException( '$fullUrl needs to be a string' );
+		}
+
+		if ( !array_key_exists( 'paths', $this->extraData ) ) {
+			$this->extraData['paths'] = array();
+		}
+
+		$this->extraData['paths'][$pathType] = $fullUrl;
+	}
+
+	/**
+	 * Returns the path of the provided type or false if there is no such path.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $pathType
+	 *
+	 * @return string|null
+	 */
+	public function getPath( $pathType ) {
+		$paths = $this->getAllPaths();
+		return array_key_exists( $pathType, $paths ) ? $paths[$pathType] : null;
+	}
 
 	/**
 	 * Returns the paths as associative array.
@@ -300,9 +602,11 @@ interface Site {
 	 *
 	 * @since 1.21
 	 *
-	 * @return array of string
+	 * @return string[]
 	 */
-	public function getAllPaths();
+	public function getAllPaths() {
+		return array_key_exists( 'paths', $this->extraData ) ? $this->extraData['paths'] : array();
+	}
 
 	/**
 	 * Removes the path of the provided type if it's set.
@@ -311,6 +615,34 @@ interface Site {
 	 *
 	 * @param string $pathType
 	 */
-	public function removePath( $pathType );
+	public function removePath( $pathType ) {
+		if ( array_key_exists( 'paths', $this->extraData ) ) {
+			unset( $this->extraData['paths'][$pathType] );
+		}
+	}
+
+	// TODO: config
+
+	/**
+	 * @since 1.21
+	 *
+	 * @param string $siteType
+	 *
+	 * @return Site
+	 */
+	public static function newForType( $siteType ) {
+		global $wgSiteTypes;
+
+		if ( array_key_exists( $siteType, $wgSiteTypes ) ) {
+			return new $wgSiteTypes[$siteType]();
+		}
+
+		return new Site();
+	}
 
 }
+
+/**
+ * @deprecated
+ */
+class SiteObject extends Site {}
