@@ -1208,6 +1208,23 @@ c
 !!end
 
 !!test
+2c. Indent-Pre and tables (bug 42252)
+!!input
+{|
+ |+ foo
+ !  | bar
+|}
+!!result
+<table>
+<caption> foo
+</caption>
+<tr>
+<th> bar
+</th></tr></table>
+
+!!end
+
+!!test
 3a. Indent-Pre and block tags (single-line html)
 !!input
  <p> foo </p>
