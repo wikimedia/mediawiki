@@ -883,11 +883,12 @@ $wgAutoloadLocalClasses = array(
 	# includes/site
 	'MediaWikiSite' => 'includes/site/MediaWikiSite.php',
 	'Site' => 'includes/site/Site.php',
-	'SiteArray' => 'includes/site/SiteArray.php',
+	'SiteObject' => 'includes/site/Site.php',
+	'SiteArray' => 'includes/site/SiteList.php',
 	'SiteList' => 'includes/site/SiteList.php',
-	'SiteObject' => 'includes/site/SiteObject.php',
-	'Sites' => 'includes/site/Sites.php',
-	'SitesTable' => 'includes/site/SitesTable.php',
+	'SiteSQLStore' => 'includes/site/SiteSQLStore.php',
+	'Sites' => 'includes/site/SiteSQLStore.php',
+	'SiteStore' => 'includes/site/SiteStore.php',
 
 	# includes/specials
 	'ActiveUsersPager' => 'includes/specials/SpecialActiveusers.php',
