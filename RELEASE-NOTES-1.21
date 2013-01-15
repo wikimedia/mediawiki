@@ -1,4 +1,3 @@
-
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
@@ -151,6 +150,8 @@ production.
   a parent id instead of just an empty bullet item.
 * (bug 37209) "LinkCache doesn't currently know about this title" error fixed.
 * wfMerge() now works if $wgDiff3 contains spaces
+* (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
+  ca-edit click instead opening URL directly.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
