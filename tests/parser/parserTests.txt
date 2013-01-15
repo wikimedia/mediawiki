@@ -2725,6 +2725,69 @@ A table with nothing but a caption
 !! end
 
 !! test
+A table with caption with default-spaced attributes and a table row
+!! input
+{|
+|+ style="color: red;" | caption1
+|-
+| foo
+|}
+!! result
+<table>
+<caption style="color: red;"> caption1
+</caption>
+<tr>
+<td> foo
+</td></tr></table>
+
+!! end
+
+!! test
+A table with captions with non-default spaced attributes and a table row
+!! input
+{|
+|+style="color: red;"|caption2
+|+ style="color: red;"| caption3
+|-
+| foo
+|}
+!! result
+<table>
+<caption style="color: red;">caption2
+</caption>
+<caption style="color: red;"> caption3
+</caption>
+<tr>
+<td> foo
+</td></tr></table>
+
+!! end
+
+!! test
+A table with captions with attributes and a table row
+!! input
+{|
+|+ style="color: red" | caption1
+|+style="color: red"|caption2
+|+ style="color: red"| caption3
+|-
+| foo
+|}
+!! result
+<table>
+<caption style="color: red"> caption1
+</caption>
+<caption style="color: red">caption2
+</caption>
+<caption style="color: red"> caption3
+</caption>
+<tr>
+<td> foo
+</td></tr></table>
+
+!! end
+
+!! test
 Table td-cell syntax variations
 !! input
 {|
