@@ -406,20 +406,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// null stuff out now so we know what's set and what isn't
 		$this->rootTitle = $this->contID = $this->redirID = null;
 		$rootNs = intval( $continueList[0] );
-		if ( $rootNs === 0 && $continueList[0] !== '0' ) {
-			// Illegal continue parameter
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
-		}
+		$this->dieContinueUsageIf( $rootNs === 0 && $continueList[0] !== '0' );
+
 		$this->rootTitle = Title::makeTitleSafe( $rootNs, $continueList[1] );
+		$this->dieContinueUsageIf( !$this->rootTitle );
 
-		if ( !$this->rootTitle ) {
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
-		}
 		$contID = intval( $continueList[2] );
+		$this->dieContinueUsageIf( $contID === 0 && $continueList[2] !== '0' );
 
-		if ( $contID === 0 && $continueList[2] !== '0' ) {
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
-		}
 		$this->contID = $contID;
 		$id2 = isset( $continueList[3] ) ? $continueList[3] : null;
 		$redirID = intval( $id2 );
@@ -535,7 +529,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
-				array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 			)
 		);
 	}

@@ -113,10 +113,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			// Pagination
 			if ( !is_null( $params['continue'] ) ) {
 				$cont = explode( '|', $params['continue'] );
-				if ( count( $cont ) != 1 ) {
-					$this->dieUsage( 'Invalid continue param. You should pass the ' .
-						'original value returned by the previous query', '_badcontinue' );
-				}
+				$this->dieContinueUsageIf( count( $cont ) != 1 );
 				$op = ( $ascendingOrder ? '>' : '<' );
 				$continueFrom = $db->addQuotes( $cont[0] );
 				$this->addWhere( "img_name $op= $continueFrom" );
@@ -385,7 +382,6 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			array( 'code' => 'mimesearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
 			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
 			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
