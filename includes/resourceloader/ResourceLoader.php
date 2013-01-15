@@ -176,6 +176,7 @@ class ResourceLoader {
 		} catch ( Exception $exception ) {
 			// Return exception as a comment
 			$result = $this->makeComment( $exception->__toString() );
+			$this->hasErrors = true;
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -434,6 +435,7 @@ class ResourceLoader {
 
 		wfProfileIn( __METHOD__ );
 		$errors = '';
+		$this->hasErrors = false;
 
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
@@ -445,6 +447,7 @@ class ResourceLoader {
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
 					$errors .= $this->makeComment( "Cannot show private module \"$name\"" );
+					$this->hasErrors = true;
 					continue;
 				}
 				$modules[$name] = $this->getModule( $name );
@@ -459,6 +462,7 @@ class ResourceLoader {
 		} catch( Exception $e ) {
 			// Add exception to the output as a comment
 			$errors .= $this->makeComment( $e->__toString() );
+			$this->hasErrors = true;
 		}
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
@@ -476,13 +480,11 @@ class ResourceLoader {
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
 				$errors .= $this->makeComment( $e->__toString() );
+				$this->hasErrors = true;
 			}
 		}
 
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
-
-		// Send content type and cache related headers
-		$this->sendResponseHeaders( $context, $mtime );
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
@@ -500,6 +502,7 @@ class ResourceLoader {
 		// response in a comment if we're in debug mode.
 		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
 			$response = $this->makeComment( $warnings ) . $response;
+			$this->hasErrors = true;
 		}
 
 		// Save response to file cache unless there are errors
@@ -514,6 +517,9 @@ class ResourceLoader {
 			}
 		}
 
+		// Send content type and cache related headers
+		$this->sendResponseHeaders( $context, $mtime, $this->hasErrors );
+
 		// Remove the output buffer and output the response
 		ob_end_clean();
 		echo $response;
@@ -525,13 +531,15 @@ class ResourceLoader {
 	 * Send content type and last modified headers to the client.
 	 * @param $context ResourceLoaderContext
 	 * @param $mtime string TS_MW timestamp to use for last-modified
+	 * @param $error bool Whether there are commented-out errors in the response
 	 * @return void
 	 */
-	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime ) {
+	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $errors ) {
 		global $wgResourceLoaderMaxage;
 		// If a version wasn't specified we need a shorter expiry time for updates
 		// to propagate to clients quickly
-		if ( is_null( $context->getVersion() ) ) {
+		// If there were errors, we also need a shorter expiry time so we can recover quickly
+		if ( is_null( $context->getVersion() ) || $errors ) {
 			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
 		// If a version was specified we can use a longer expiry time since changing
@@ -679,6 +687,7 @@ class ResourceLoader {
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
 				$exceptions .= $this->makeComment( $e->__toString() );
+				$this->hasErrors = true;
 			}
 		} else {
 			$blobs = array();
@@ -784,6 +793,7 @@ class ResourceLoader {
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
 				$exceptions .= $this->makeComment( $e->__toString() );
+				$this->hasErrors = true;
 
 				// Register module as missing
 				$missing[] = $name;
