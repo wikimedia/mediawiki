@@ -49,7 +49,7 @@ class FileRepo {
 	var $descBaseUrl, $scriptDirUrl, $scriptExtension, $articleUrl;
 	var $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'simple'; // 'paranoid'
-	var $descriptionCacheExpiry, $url, $thumbUrl;
+	var $descriptionCacheExpiry, $url, $thumbUrl, $mediaUrl;
 	var $hashLevels, $deletedHashLevels;
 	protected $abbrvThreshold;
 
@@ -107,6 +107,11 @@ class FileRepo {
 		} else {
 			$this->thumbUrl = $this->url ? "{$this->url}/thumb" : false;
 		}
+		if ( isset( $info['mediaUrl'] ) ) {
+			$this->mediaUrl = $info['mediaUrl'];
+		} else {
+			$this->mediaUrl = $this->url ? "{$this->url}/media" : false;
+		}
 		$this->hashLevels = isset( $info['hashLevels'] )
 			? $info['hashLevels']
 			: 2;
@@ -120,7 +125,7 @@ class FileRepo {
 		$this->isPrivate = !empty( $info['isPrivate'] );
 		// Give defaults for the basic zones...
 		$this->zones = isset( $info['zones'] ) ? $info['zones'] : array();
-		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
+		foreach ( array( 'public', 'thumb', 'media', 'temp', 'deleted' ) as $zone ) {
 			if ( !isset( $this->zones[$zone]['container'] ) ) {
 				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
 			}
@@ -204,7 +209,7 @@ class FileRepo {
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
-		if ( in_array( $zone, array( 'public', 'temp', 'thumb' ) ) ) { // standard public zones
+		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'media' ) ) ) { // standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
 				return $this->zones[$zone]['urlsByExt'][$ext]; // custom URL for extension/zone
 			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
@@ -220,6 +225,8 @@ class FileRepo {
 				return false; // no public URL
 			case 'thumb':
 				return $this->thumbUrl;
+			case 'media':
+				return $this->mediaUrl;
 			default:
 				return false;
 		}
@@ -240,7 +247,7 @@ class FileRepo {
 	 */
 	public function getZoneHandlerUrl( $zone ) {
 		if ( isset( $this->zones[$zone]['handlerUrl'] )
-			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
+			&& in_array( $zone, array( 'public', 'temp', 'thumb', 'media' ) ) )
 		{
 			return $this->zones[$zone]['handlerUrl'];
 		}
@@ -1670,10 +1677,17 @@ class FileRepo {
 					'directory' => ( $this->zones['thumb']['directory'] == '' )
 						? 'temp'
 						: $this->zones['thumb']['directory'] . '/temp'
+				),
+				'media'  => array(
+					'container' => $this->zones['media']['container'],
+					'directory' => ( $this->zones['media']['directory'] == '' )
+						? 'temp'
+						: $this->zones['media']['directory'] . '/temp'
 				)
 			),
 			'url'        => $this->getZoneUrl( 'temp' ),
 			'thumbUrl'   => $this->getZoneUrl( 'thumb' ) . '/temp',
+			'mediaUrl'   => $this->getZoneUrl( 'media' ) . '/temp',
 			'hashLevels' => $this->hashLevels // performance
 		) );
 	}

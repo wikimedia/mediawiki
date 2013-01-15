@@ -1235,6 +1235,19 @@ abstract class File {
 	}
 
 	/**
+	 * Get the path of the zone directory, or a particular file if $suffix is specified
+	 *
+	 * @param $zone string name of requested zone
+	 * @param $suffix bool|string if not false, the name of a file in zone
+	 *
+	 * @return string
+	 */
+	function getZonePath( $zone, $suffix = false ) {
+		$this->assertRepoDefined();
+		return $this->repo->getZonePath( $zone ) . '/' . $this->getThumbRel( $suffix );
+	}
+
+	/**
 	 * Get the path of the thumbnail directory, or a particular file if $suffix is specified
 	 *
 	 * @param $suffix bool|string if not false, the name of a thumbnail file
@@ -1242,8 +1255,18 @@ abstract class File {
 	 * @return string
 	 */
 	function getThumbPath( $suffix = false ) {
-		$this->assertRepoDefined();
-		return $this->repo->getZonePath( 'thumb' ) . '/' . $this->getThumbRel( $suffix );
+		return $this->getZonePath( 'thumb', $suffix );
+	}
+
+	/**
+	 * Get the path of the media directory, or a particular file if $suffix is specified
+	 *
+	 * @param $suffix bool|string if not false, the name of a media file
+	 *
+	 * @return string
+	 */
+	function getMediaPath( $suffix = false ) {
+		return $this->getZonePath( 'media', $suffix );
 	}
 
 	/**
@@ -1287,6 +1310,24 @@ abstract class File {
 	}
 
 	/**
+	 * Get the URL of the zone directory, or a particular file if $suffix is specified
+	 *
+	 * @param $zone string name of requested zone
+	 * @param $suffix bool|string if not false, the name of a file in zone
+	 *
+	 * @return string path
+	 */
+	function getZoneUrl( $zone, $suffix = false ) {
+		$this->assertRepoDefined();
+		$ext = $this->getExtension();
+		$path = $this->repo->getZoneUrl( $zone, $ext ) . '/' . $this->getUrlRel();
+		if ( $suffix !== false ) {
+			$path .= '/' . rawurlencode( $suffix );
+		}
+		return $path;
+	}
+
+	/**
 	 * Get the URL of the thumbnail directory, or a particular file if $suffix is specified
 	 *
 	 * @param $suffix bool|string if not false, the name of a thumbnail file
@@ -1294,13 +1335,18 @@ abstract class File {
 	 * @return string path
 	 */
 	function getThumbUrl( $suffix = false ) {
-		$this->assertRepoDefined();
-		$ext = $this->getExtension();
-		$path = $this->repo->getZoneUrl( 'thumb', $ext ) . '/' . $this->getUrlRel();
-		if ( $suffix !== false ) {
-			$path .= '/' . rawurlencode( $suffix );
-		}
-		return $path;
+		return $this->getZoneUrl( 'thumb', $suffix );
+	}
+
+	/**
+	 * Get the URL of the media directory, or a particular file if $suffix is specified
+	 *
+	 * @param $suffix bool|string if not false, the name of a media file
+	 *
+	 * @return string path
+	 */
+	function getMediaUrl( $suffix = false ) {
+		return $this->getZoneUrl( 'media', $suffix );
 	}
 
 	/**
