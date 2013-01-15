@@ -1981,7 +1981,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'invalid-chunk-offset' => '청크 오프셋이 잘못되었습니다.',
 
 # img_auth script messages
-'img-auth-accessdenied' => '접근 거부됨',
+'img-auth-accessdenied' => '접근이 거부됨',
 'img-auth-nopathinfo' => 'PATH_INFO를 잃었습니다.
 서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
 이러한 경우는 서버가 CGI 기반이고 img_auth를 지원하지 않을 때 나타날 수 있습니다.

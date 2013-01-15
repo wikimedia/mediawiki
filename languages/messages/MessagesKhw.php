@@ -592,13 +592,16 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'history-show-deleted' => 'صرفی حذف شدہ',
 'histfirst' => 'قدیم ترین',
 'histlast' => 'تازہ ترین',
+'historyempty' => '(خالی)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 تا $2',
 
 # Revision deletion
 'rev-delundel' => 'پشاوے/کھوشتاوے',
+'rev-showdeleted' => 'پشاوے',
 'revdelete-radio-set' => 'Yes/دی',
+'revdelete-radio-unset' => 'نو',
 'revdel-restore' => 'ظاہریتو تبدیل کورے',
 'revdel-restore-deleted' => 'حذف شدہ رویژنز',
 'revdel-restore-visible' => 'ویزیبل رویژنز',

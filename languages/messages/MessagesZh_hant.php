@@ -549,12 +549,12 @@ $1',
 這很可能是由於資料庫正在維修，之後即可恢復。
 
 管理員有如下解釋：$1',
-'missing-article' => '資料庫找不到文字"$1" $2。
+'missing-article' => '資料庫找不到文字「$1」 $2。
 
-<p>通常這是由於修訂歷史頁上過時的連結到已經被刪除的頁面所導致的。</p>
+通常這是由於修訂歷史頁上過時的連結到已經被刪除的頁面所導致的。
 
-<p>如果情況不是這樣，您可能找到了軟體內的一個臭蟲。
-請記錄下URL地址，並向[[Special:ListUsers/sysop|管理員]]報告。</p>',
+果情況不是這樣，您可能找到了軟體內的一個臭蟲。
+請記錄下URL地址，並向[[Special:ListUsers/sysop|管理員]]報告',
 'missingarticle-rev' => '（修訂#: $1）',
 'missingarticle-diff' => '（差異: $1, $2）',
 'readonly_lag' => '附屬資料庫伺服器正在將快取更新到主伺服器，資料庫已被自動鎖定',
@@ -856,10 +856,10 @@ $2
 'newarticle' => '（新）',
 'newarticletext' => '您進入了一個尚未建立的頁面。
 要建立該頁面，請在下面的編輯框中輸入內容（詳情參見[[{{MediaWiki:Helppage}}|幫助]]）。
-如果您是不小心來到此頁面，直接點擊您瀏覽器中的“返回”按鈕返回。',
+如果您是不小心來到此頁面，直接點擊您瀏覽器中的「返回」按鈕返回。',
 'anontalkpagetext' => "---- ''這是一個還未建立賬號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:UserLogin/signup|創建新賬號]]或[[Special:UserLogin|登入]]以避免在未來於其他匿名用戶混淆。''",
-'noarticletext' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]，
+'noarticletext' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜尋有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
 'noarticletext-nopermission' => '此頁目前沒有內容。
 您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜尋有關日誌]</span>，但您沒有權限建立此頁。',
@@ -904,7 +904,7 @@ $2
 'token_suffix_mismatch' => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'edit_form_incomplete' => '編輯表單的某些部分沒有到達伺服器 ；請檢查您的編輯內容是否完整並再試一次。',
-'editing' => '編輯“$1”',
+'editing' => '編輯「$1」',
 'creating' => '創建$1',
 'editingsection' => '編輯“$1”（段落）',
 'editingcomment' => '編輯“$1”（新段落）',
@@ -1019,8 +1019,8 @@ $2
 'viewpagelogs' => '查詢這個頁面的日誌',
 'nohistory' => '沒有本頁的修訂記錄。',
 'currentrev' => '最新修訂版本',
-'currentrev-asof' => '在$1的最新修訂版本',
-'revisionasof' => '在$1所做的修訂版本',
+'currentrev-asof' => '$1的最新修訂版本',
+'revisionasof' => '$1的修訂版本',
 'revision-info' => '在$1由$2所做的修訂版本',
 'previousrevision' => '←上一修訂',
 'nextrevision' => '下一修訂→',
@@ -1162,7 +1162,7 @@ $1",
 'mergelogpagetext' => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
 
 # Diffs
-'history-title' => '$1：修訂歷史',
+'history-title' => '「$1」的修訂歷史',
 'difference-title' => '$1：修訂版本之間的差異',
 'difference-title-multipage' => '"$1"和"$2": 頁面之間的差異',
 'difference-multipage' => '（頁面間的差異）',
@@ -1208,7 +1208,7 @@ $1",
 'searchprofile-project-tooltip' => '在$1中搜尋',
 'searchprofile-images-tooltip' => '搜尋檔案',
 'searchprofile-everything-tooltip' => '搜尋全部（包括討論頁面）',
-'searchprofile-advanced-tooltip' => '在自定名字空間中度搜尋',
+'searchprofile-advanced-tooltip' => '在自定名字空間中搜尋',
 'search-result-size' => '$1 （$2個字）',
 'search-result-category-size' => '$1個成員（$2個子分類，$3個檔案）',
 'search-result-score' => '相關度: $1%',
@@ -2885,7 +2885,7 @@ $1被封禁的理由是“$2”',
 'tooltip-ca-nstab-user' => '檢視使用者頁面',
 'tooltip-ca-nstab-media' => '檢視多媒體檔案資訊頁面',
 'tooltip-ca-nstab-special' => '本頁面會隨著資料庫的數據即時更新，任何人均不能直接編輯',
-'tooltip-ca-nstab-project' => '檢視項目頁面',
+'tooltip-ca-nstab-project' => '檢視計劃頁面',
 'tooltip-ca-nstab-image' => '檢視檔案頁面',
 'tooltip-ca-nstab-mediawiki' => '檢視系統資訊',
 'tooltip-ca-nstab-template' => '檢視模板',
@@ -2901,8 +2901,8 @@ $1被封禁的理由是“$2”',
 'tooltip-watchlistedit-raw-submit' => '更新監視列表',
 'tooltip-recreate' => '重建該頁面，無論是否被刪除。',
 'tooltip-upload' => '開始上傳',
-'tooltip-rollback' => '『反轉』可以一按恢復上一位貢獻者對這個頁面的編輯',
-'tooltip-undo' => '『復原』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
+'tooltip-rollback' => '按「恢復」恢復上一位貢獻者對本頁面的編輯',
+'tooltip-undo' => '「復原」可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 'tooltip-preferences-save' => '儲存使用偏好',
 'tooltip-summary' => '輸入一個簡短的摘要',
 

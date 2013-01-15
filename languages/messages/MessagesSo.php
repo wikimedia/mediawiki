@@ -1012,6 +1012,8 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'deadendpages' => 'Boggaga aanan la daba joogin',
 'deadendpagestext' => 'Boggagaan soo socota lama xiriiraan boggaga kale ee {{SITENAME}}.',
 'protectedpages' => "Boggag la'difaacay",
+'listusers-editsonly' => 'Itus adeegsede yaasha sameeyey bedalka oo kaliya',
+'listusers-creationsort' => 'Ka dhig si ah taariikhdii la sameeyey',
 'usercreated' => '{{GENDER:$3|Sameeyay}} marka ee eheed $1 saacada $2',
 'newpages' => 'Bogyaalo cusub',
 'newpages-username' => 'Magaca gudagalka:',

@@ -1266,7 +1266,7 @@ $3が示した理由：''$2''",
 内容を閲覧できます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-deleted-no-diff' => "どちらかの版が'''削除されているため'''、差分表示できません。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
-'rev-suppressed-no-diff' => "指定された差分は'''削除された'''版を含んでいるため、閲覧できません。",
+'rev-suppressed-no-diff' => "どちらかの版が'''削除されているため'''、差分表示できません。",
 'rev-deleted-unhide-diff' => "この差分の一方の版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
 このまま[$1 この差分を閲覧]できます。",
