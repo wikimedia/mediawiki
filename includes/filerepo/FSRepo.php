@@ -46,6 +46,9 @@ class FSRepo extends FileRepo {
 			$thumbDir = isset( $info['thumbDir'] )
 				? $info['thumbDir']
 				: "{$directory}/thumb";
+			$mediaDir = isset( $info['mediaDir'] )
+				? $info['mediaDir']
+				: "{$directory}/media";
 			$fileMode = isset( $info['fileMode'] )
 				? $info['fileMode']
 				: 0644;
@@ -59,6 +62,7 @@ class FSRepo extends FileRepo {
 					"{$repoName}-public"  => "{$directory}",
 					"{$repoName}-temp"    => "{$directory}/temp",
 					"{$repoName}-thumb"   => $thumbDir,
+					"{$repoName}-media"   => $mediaDir,
 					"{$repoName}-deleted" => $deletedDir
 				),
 				'fileMode'       => $fileMode,
