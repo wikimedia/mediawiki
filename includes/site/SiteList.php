@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Interface for lists of Site objects.
+ * Collection of Site objects.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,78 @@
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
+class SiteList extends GenericArrayObject {
+
+	/**
+	 * Internal site identifiers pointing to their sites offset value.
+	 *
+	 * @since 1.21
+	 *
+	 * @var array of integer
+	 */
+	protected $byInternalId = array();
+
+	/**
+	 * Global site identifiers pointing to their sites offset value.
+	 *
+	 * @since 1.21
+	 *
+	 * @var array of string
+	 */
+	protected $byGlobalId = array();
+
+	/**
+	 * @see GenericArrayObject::getObjectType
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getObjectType() {
+		return 'Site';
+	}
+
+	/**
+	 * @see GenericArrayObject::preSetElement
+	 *
+	 * @since 1.21
+	 *
+	 * @param int|string $index
+	 * @param Site $site
+	 *
+	 * @return boolean
+	 */
+	protected function preSetElement( $index, $site ) {
+		if ( $this->hasSite( $site->getGlobalId() ) ) {
+			$this->removeSite( $site->getGlobalId() );
+		}
+
+		$this->byGlobalId[$site->getGlobalId()] = $index;
+		$this->byInternalId[$site->getInternalId()] = $index;
+
+		return true;
+	}
+
+	/**
+	 * @see ArrayObject::offsetUnset()
+	 *
+	 * @since 1.21
+	 *
+	 * @param mixed $index
+	 */
+	public function offsetUnset( $index ) {
+		if ( $this->offsetExists( $index ) ) {
+			/**
+			 * @var Site $site
+			 */
+			$site = $this->offsetGet( $index );
+
+			unset( $this->byGlobalId[$site->getGlobalId()] );
+			unset( $this->byInternalId[$site->getInternalId()] );
+		}
+
+		parent::offsetUnset( $index );
+	}
 
 	/**
 	 * Returns all the global site identifiers.
@@ -36,7 +107,9 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @return array
 	 */
-	public function getGlobalIdentifiers();
+	public function getGlobalIdentifiers() {
+		return array_keys( $this->byGlobalId );
+	}
 
 	/**
 	 * Returns if the list contains the site with the provided global site identifier.
@@ -45,7 +118,9 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @return boolean
 	 */
-	public function hasSite( $globalSiteId );
+	public function hasSite( $globalSiteId ) {
+		return array_key_exists( $globalSiteId, $this->byGlobalId );
+	}
 
 	/**
 	 * Returns the Site with the provided global site identifier.
@@ -57,7 +132,9 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @return Site
 	 */
-	public function getSite( $globalSiteId );
+	public function getSite( $globalSiteId ) {
+		return $this->offsetGet( $this->byGlobalId[$globalSiteId] );
+	}
 
 	/**
 	 * Removes the site with the specified global site identifier.
@@ -67,7 +144,20 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @param string $globalSiteId
 	 */
-	public function removeSite( $globalSiteId );
+	public function removeSite( $globalSiteId ) {
+		$this->offsetUnset( $this->byGlobalId[$globalSiteId] );
+	}
+
+	/**
+	 * Returns if the list contains no sites.
+	 *
+	 * @since 1.21
+	 *
+	 * @return boolean
+	 */
+	public function isEmpty() {
+		return $this->byGlobalId === array();
+	}
 
 	/**
 	 * Returns if the list contains the site with the provided site id.
@@ -76,7 +166,9 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @return boolean
 	 */
-	public function hasInternalId( $id );
+	public function hasInternalId( $id ) {
+		return array_key_exists( $id, $this->byInternalId );
+	}
 
 	/**
 	 * Returns the Site with the provided site id.
@@ -88,7 +180,9 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @return Site
 	 */
-	public function getSiteByInternalId( $id );
+	public function getSiteByInternalId( $id ) {
+		return $this->offsetGet( $this->byInternalId[$id] );
+	}
 
 	/**
 	 * Removes the site with the specified site id.
@@ -98,7 +192,9 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @param integer $id
 	 */
-	public function removeSiteByInternalId( $id );
+	public function removeSiteByInternalId( $id ) {
+		$this->offsetUnset( $this->byInternalId[$id] );
+	}
 
 	/**
 	 * Sets a site in the list. If the site was not there,
@@ -108,15 +204,72 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 *
 	 * @param Site $site
 	 */
-	public function setSite( Site $site );
+	public function setSite( Site $site ) {
+		$this[] = $site;
+	}
 
 	/**
-	 * Returns if the site list contains no sites.
+	 * Returns the sites that are in the provided group.
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @param string $groupName
+	 *
+	 * @return SiteList
 	 */
-	public function isEmpty();
+	public function getGroup( $groupName ) {
+		$group = new self();
+
+		/**
+		 * @var \Site $site
+		 */
+		foreach ( $this as $site ) {
+			if ( $site->getGroup() === $groupName ) {
+				$group[] = $site;
+			}
+		}
+
+		return $group;
+	}
+
+	/**
+	 * @see GenericArrayObject::getSerializationData
+	 *
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	protected function getSerializationData() {
+		return array_merge(
+			parent::getSerializationData(),
+			array(
+				'internalIds' => $this->byInternalId,
+				'globalIds' => $this->byGlobalId,
+			)
+		);
+	}
+
+	/**
+	 * @see GenericArrayObject::unserialize
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $serialization
+	 *
+	 * @return array
+	 */
+	public function unserialize( $serialization ) {
+		$serializationData = parent::unserialize( $serialization );
+
+		$this->byInternalId = $serializationData['internalIds'];
+		$this->byGlobalId = $serializationData['globalIds'];
+
+		return $serializationData;
+	}
 
 }
+
+/**
+ * @deprecated
+ */
+class SiteArray extends SiteList {}
