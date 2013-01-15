@@ -178,6 +178,8 @@ production.
 * BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
   for all query modules.
 * ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
+* action=options now takes a "resetkinds" option, which allows only resetting
+  certain types of preferences when the "reset" option is set.
 
 === Languages updated in 1.21 ===
 
