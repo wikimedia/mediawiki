@@ -87,6 +87,9 @@ class FileBackendGroup {
 			$thumbDir = isset( $info['thumbDir'] )
 				? $info['thumbDir']
 				: "{$directory}/thumb";
+			$transcodeDir = isset( $info['transcodeDir'] )
+				? $info['transcodeDir']
+				: "{$directory}/transcode";
 			$fileMode = isset( $info['fileMode'] )
 				? $info['fileMode']
 				: 0644;
@@ -98,6 +101,7 @@ class FileBackendGroup {
 				'containerPaths' => array(
 					"{$repoName}-public"  => "{$directory}",
 					"{$repoName}-thumb"   => $thumbDir,
+					"{$repoName}-transcode"   => $transcodeDir,
 					"{$repoName}-deleted" => $deletedDir,
 					"{$repoName}-temp"    => "{$directory}/temp"
 				),
