@@ -37,30 +37,6 @@ class Sites {
 	protected $sites = null;
 
 	/**
-	 * Constructor.
-	 *
-	 * @since 1.21
-	 */
-	protected function __construct() {}
-
-	/**
-	 * Returns an instance of Sites.
-	 *
-	 * @since 1.21
-	 *
-	 * @return Sites
-	 */
-	public static function singleton() {
-		static $instance = false;
-
-		if ( $instance === false ) {
-			$instance = new static();
-		}
-
-		return $instance;
-	}
-
-	/**
 	 * Factory for creating new site objects.
 	 *
 	 * @since 1.21
