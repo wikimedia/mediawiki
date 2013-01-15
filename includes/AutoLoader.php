@@ -463,6 +463,7 @@ $wgAutoloadLocalClasses = array(
 	'Blob' => 'includes/db/DatabaseUtility.php',
 	'ChronologyProtector' => 'includes/db/LBFactory.php',
 	'CloneDatabase' => 'includes/db/CloneDatabase.php',
+	'ConfigurableORMTable' => 'includes/db/ConfigurableORMTable.php',
 	'DatabaseBase' => 'includes/db/Database.php',
 	'DatabaseIbm_db2' => 'includes/db/DatabaseIbm_db2.php',
 	'DatabaseMssql' => 'includes/db/DatabaseMssql.php',
@@ -883,11 +884,12 @@ $wgAutoloadLocalClasses = array(
 	# includes/site
 	'MediaWikiSite' => 'includes/site/MediaWikiSite.php',
 	'Site' => 'includes/site/Site.php',
-	'SiteArray' => 'includes/site/SiteArray.php',
+	'SiteObject' => 'includes/site/Site.php',
+	'SiteArray' => 'includes/site/SiteList.php',
 	'SiteList' => 'includes/site/SiteList.php',
-	'SiteObject' => 'includes/site/SiteObject.php',
-	'Sites' => 'includes/site/Sites.php',
 	'SitesTable' => 'includes/site/SitesTable.php',
+	'Sites' => 'includes/site/SitesTable.php',
+	'SiteStore' => 'includes/site/SiteStore.php',
 
 	# includes/specials
 	'ActiveUsersPager' => 'includes/specials/SpecialActiveusers.php',
