@@ -37,11 +37,6 @@ class SitesTest extends MediaWikiTestCase {
 		TestSites::insertIntoDb();
 	}
 
-	public function testSingleton() {
-		$this->assertInstanceOf( 'Sites', Sites::singleton() );
-		$this->assertTrue( Sites::singleton() === Sites::singleton() );
-	}
-
 	public function testGetSites() {
 		$this->assertInstanceOf( 'SiteList', Sites::singleton()->getSites() );
 	}

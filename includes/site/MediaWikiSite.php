@@ -8,7 +8,7 @@
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * but WITHOUT ANID_INTERWIKIY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
@@ -32,7 +32,7 @@
  *
  * @ingroup Site
  */
-class MediaWikiSite extends SiteObject {
+class MediaWikiSite extends Site {
 
 	const PATH_FILE = 'file_path';
 	const PATH_PAGE = 'page_path';
@@ -49,6 +49,17 @@ class MediaWikiSite extends SiteObject {
 			'type' => Site::TYPE_MEDIAWIKI,
 			'global_key' => $globalId,
 		), true );
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $type
+	 */
+	public function __construct( $type = self::TYPE_MEDIAWIKI ) {
+		parent::__construct( $type );
 	}
 
 	/**

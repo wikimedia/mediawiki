@@ -31,55 +31,70 @@
 class Sites {
 
 	/**
-	 * @since 1.21
-	 * @var SiteList|null
-	 */
-	protected $sites = null;
-
-	/**
-	 * Constructor.
-	 *
-	 * @since 1.21
-	 */
-	protected function __construct() {}
-
-	/**
-	 * Returns an instance of Sites.
-	 *
-	 * @since 1.21
-	 *
-	 * @return Sites
-	 */
-	public static function singleton() {
-		static $instance = false;
-
-		if ( $instance === false ) {
-			$instance = new static();
-		}
-
-		return $instance;
-	}
-
-	/**
 	 * Factory for creating new site objects.
 	 *
 	 * @since 1.21
+	 * @deprecated
 	 *
 	 * @param string|boolean false $globalId
 	 *
 	 * @return Site
 	 */
 	public static function newSite( $globalId = false ) {
-		/**
-		 * @var Site $site
-		 */
-		$site = SitesTable::singleton()->newRow( array(), true );
+		$site = new Site();
 
 		if ( $globalId !== false ) {
 			$site->setGlobalId( $globalId );
 		}
 
 		return $site;
+	}
+
+	/**
+	 * @since 1.21
+	 *
+	 * @var SiteList|null
+	 */
+	protected $sites = null;
+
+	/**
+	 * @var SaneTable
+	 */
+	protected $sitesTable;
+
+	public function __construct() {
+		$this->sitesTable = new SaneTable(
+			'sites',
+			array(
+				'id' => 'id',
+
+				// Site data
+				'global_key' => 'str',
+				'type' => 'str',
+				'group' => 'str',
+				'source' => 'str',
+				'language' => 'str',
+				'protocol' => 'str',
+				'domain' => 'str',
+				'data' => 'array',
+
+				// Site config
+				'forward' => 'bool',
+				'config' => 'array',
+			),
+			array(
+				'type' => Site::TYPE_UNKNOWN,
+				'group' => Site::GROUP_NONE,
+				'source' => Site::SOURCE_LOCAL,
+				'data' => array(),
+
+				'forward' => false,
+				'config' => array(),
+				'language' => '',
+			),
+			'SiteRow',
+			'site_'
+		);
 	}
 
 	/**
@@ -99,7 +114,7 @@ class Sites {
 				$cache = wfGetMainCache();
 				$sites = $cache->get( wfMemcKey( 'SiteList' ) );
 
-				if ( is_object( $sites ) && isset( $sites->cacheVersion ) && $sites->cacheVersion === SiteArray::CACHE_VERSION ) {
+				if ( is_object( $sites ) ) {
 					$this->sites = $sites;
 				} else {
 					$this->loadSites();
@@ -139,17 +154,58 @@ class Sites {
 	}
 
 	/**
+	 * Returns a new Site object constructed from the provided ORMRow.
+	 *
+	 * @since 1.21
+	 *
+	 * @param ORMRow $siteRow
+	 *
+	 * @return Site
+	 */
+	protected function siteFromRow( ORMRow $siteRow ) {
+		$site = Site::newForType( $siteRow->getField( 'type', Site::TYPE_UNKNOWN ) );
+
+		$site->setGlobalId( $siteRow->getField( 'global_key' ) );
+
+		if ( $siteRow->hasField( 'forward' ) ) {
+			$site->setForward( $siteRow->getField( 'forward' ) );
+		}
+
+		if ( $siteRow->hasField( 'group' ) ) {
+			$site->setGroup( $siteRow->getField( 'group' ) );
+		}
+
+		if ( $siteRow->hasField( 'language' ) ) {
+			$site->setLanguageCode( $siteRow->getField( 'language' ) );
+		}
+
+		if ( $siteRow->hasField( 'source' ) ) {
+			$site->setSource( $siteRow->getField( 'source' ) );
+		}
+
+		if ( $siteRow->hasField( 'data' ) ) {
+			$site->setExtraData( $siteRow->getField( 'data' ) );
+		}
+
+		// TODO: config
+
+		return $site;
+	}
+
+	/**
 	 * Fetches the site from the database and loads them into the sites field.
 	 *
 	 * @since 1.21
 	 */
 	protected function loadSites() {
-		$this->sites = new SiteArray( SitesTable::singleton()->select() );
+		$this->sites = new SiteArray();
+
+		foreach ( $this->sitesTable->select() as $siteRow ) {
+			$this->sites[] = $this->siteFromRow( $siteRow );
+		}
 
 		// Batch load the local site identifiers.
-		$dbr = wfGetDB( SitesTable::singleton()->getReadDb() );
-
-		$ids = $dbr->select(
+		$ids = wfGetDB( $this->sitesTable->getReadDb() )->select(
 			'site_identifiers',
 			array(
 				'si_site',
@@ -173,19 +229,35 @@ class Sites {
 	}
 
 	/**
-	 * Returns the site with provided global id, or false if there is no such site.
+	 * Returns the site with provided global id, or null if there is no such site.
 	 *
 	 * @since 1.21
 	 *
 	 * @param string $globalId
 	 * @param string $source
 	 *
-	 * @return Site|false
+	 * @return Site|null
 	 */
 	public function getSite( $globalId, $source = 'cache' ) {
 		$sites = $this->getSites( $source );
 
-		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : false;
+		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
+	}
+
+	public function saveSite( Site $site ) {
+		$this->saveSites( array( $site ) );
+	}
+
+	/**
+	 * @param Site[] $sites
+	 */
+	public function saveSites( array $sites ) {
+
+
+		foreach ( $sites as $site ) {
+			$this->setField( 'protocol', $site->getProtocol() );
+			$this->setField( 'domain', strrev( $site->getDomain() ) . '.' );
+		}
 	}
 
 }
