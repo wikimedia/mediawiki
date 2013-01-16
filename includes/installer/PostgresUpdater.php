@@ -223,6 +223,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'oldimage',      'oi_sha1',                '(oi_sha1)' ),
 			array( 'addPgIndex', 'page',          'page_mediawiki_title',   '(page_title) WHERE page_namespace = 8' ),
 			array( 'addPgIndex', 'pagelinks',     'pagelinks_title',        '(pl_title)' ),
+			array( 'addPgIndex', 'page_props',    'pp_propname_page',       '(pp_propname, pp_page)' ),
 			array( 'addPgIndex', 'revision',      'rev_text_id_idx',        '(rev_text_id)' ),
 			array( 'addPgIndex', 'recentchanges', 'rc_timestamp_bot',       '(rc_timestamp) WHERE rc_bot = 0' ),
 			array( 'addPgIndex', 'templatelinks', 'templatelinks_from',     '(tl_from)' ),
