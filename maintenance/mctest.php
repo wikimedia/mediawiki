@@ -40,14 +40,21 @@ class mcTest extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgMemCachedServers, $wgMemCachedTimeout;
+		global $wgMainCacheType, $wgMemCachedTimeout, $wgObjectCaches;
 
 		$iterations = $this->getOption( 'i', 100 );
 		if ( $this->hasArg() ) {
-			$wgMemCachedServers = array( $this->getArg() );
+			$servers = array( $this->getArg() );
+		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
+			global $wgMemCachedServers;
+			$servers = $wgMemCachedServers ;
+		} elseif( isset( $wgObjectCaches[$wgMainCacheType] ) ) {
+			$servers = $wgObjectCaches[$wgMainCacheType]['servers'];
+		} else {
+			$this->error( "MediaWiki isn't configured for Memcached usage", 1 );
 		}
 
-		foreach ( $wgMemCachedServers as $server ) {
+		foreach ( $servers as $server ) {
 			$this->output( $server . " ", $server );
 			$mcc = new MemCachedClientforWiki( array(
 				'persistant' => true,
