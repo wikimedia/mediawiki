@@ -598,7 +598,7 @@ class MessageCache {
 	 * @return string|bool
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
-		global $wgLanguageCode, $wgContLang;
+		global $wgLanguageCode, $wgContLang, $wgMemc;
 
 		if ( is_int( $key ) ) {
 			// "Non-string key given" exception sometimes happens for numerical strings that become ints somewhere on their way here
@@ -614,14 +614,43 @@ class MessageCache {
 			return false;
 		}
 
+		# Obtain the initial language object
+		if ( $isFullKey ) {
+			$keyParts = explode( '/', $key );
+			if ( count( $keyParts ) < 2 ) {
+				throw new MWException( "Message key '$key' does not appear to be a full key." );
+			}
+
+			$langcode = array_pop( $keyParts );
+			$key = implode( '/', $keyParts );
+		}
+
 		$lang = wfGetLangObj( $langcode );
 		if ( !$lang ) {
 			throw new MWException( "Bad lang code $langcode given" );
 		}
 
+		# This seems redundant, but apparently we occasionally get $langcode passed as a language object!
 		$langcode = $lang->getCode();
 
-		$message = false;
+		# Get the fallback list. We will not immediately fallback to english if wgLanguageCode
+		# is not present in the intial list. Instead we will replace english with the fallback
+		# list for wgLanguageCode.
+		$fallbackKey = wfMemcKey( 'messagecache', 'fallback-langs', $langcode );
+		$langFallbacks = $wgMemc->get( $fallbackKey );
+		if ( !$langFallbacks ) {
+			$langFallbacks = $lang->getFallbackLanguages();
+			array_unshift( $langFallbacks, $langcode );
+
+			if ( !( array_key_exists( $wgLanguageCode, array_flip( $langFallbacks ) ) ) ) {
+				if ( end( $wgLanguageCode ) === 'en' ) {
+					array_pop( $langFallbacks );
+				}
+				$langFallbacks = array_merge( $langFallbacks, $lang->getFallbacksFor( $wgLanguageCode ) );
+			}
+
+			$wgMemc->set( $fallbackKey, $langFallbacks, 86400 );
+		}
 
 		# Normalise title-case input (with some inlining)
 		$lckey = str_replace( ' ', '_', $key );
@@ -633,24 +662,36 @@ class MessageCache {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
-		# Try the MediaWiki namespace
-		if( !$this->mDisable && $useDB ) {
-			$title = $uckey;
-			if( !$isFullKey && ( $langcode != $wgLanguageCode ) ) {
-				$title .= '/' . $langcode;
+		# Loop through each language in the fallback list until we find something useful
+		$message = false;
+
+		foreach ( $langFallbacks as $langcode ) {
+			# Try the MediaWiki namespace
+			if ( !$this->mDisable && $useDB ) {
+				$message = $this->getMsgFromNamespace( "$uckey/$langcode", $langcode );
+
+				if ( !$message && ( $langcode == $wgLanguageCode ) ) {
+					# Occasionally messages are created without the /lang extension. Typically
+					# these are the original source messages so therefore I assert should be
+					# in the original language of the wiki.
+					$message = $this->getMsgFromNamespace( $uckey, $langcode );
+				}
 			}
-			$message = $this->getMsgFromNamespace( $title, $langcode );
+
+			# Try the array in the language object
+			if ( $message === false ) {
+				$message = wfGetLangObj( $langcode )->getMessage( $lckey );
+				if ( is_null ( $message ) ) {
+					$message = false;
+				}
+			}
+
+			if ( $message ) {
+				break;
+			}
 		}
 
-		# Try the array in the language object
-		if ( $message === false ) {
-			$message = $lang->getMessage( $lckey );
-			if ( is_null( $message ) ) {
-				$message = false;
-			}
-		}
-
-		# Try the array of another language
+		# If we still have no message, maybe the key was in fact a full key so try that
 		if( $message === false ) {
 			$parts = explode( '/', $lckey );
 			# We may get calls for things that are http-urls from sidebar
@@ -662,13 +703,6 @@ class MessageCache {
 					$message = false;
 				}
 			}
-		}
-
-		# Is this a custom message? Try the default language in the db...
-		if( ( $message === false || $message === '-' ) &&
-			!$this->mDisable && $useDB &&
-			!$isFullKey && ( $langcode != $wgLanguageCode ) ) {
-			$message = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
 		}
 
 		# Final fallback
