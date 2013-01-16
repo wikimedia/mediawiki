@@ -215,7 +215,7 @@ $messages = array(
 'tog-externaldiff' => 'ניצן א דרויסנדיגן פֿאַרגלײַכער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)
 [//www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
 'tog-showjumplinks' => 'באמעגלעך צוטריט לינקס פון "שפרינג צו"',
-'tog-uselivepreview' => 'באנוצט זיך מיט זאפארטן פאראויסקוק (JavaScript)',
+'tog-uselivepreview' => 'באנוצט זיך מיט לייוו פאראויסדיגע ווייזונג (JavaScript) (עקספירענמעטל)',
 'tog-forceeditsummary' => 'ווארן מיך ווען איך לייג א ליידיג קורץ ווארט ענדערונג',
 'tog-watchlisthideown' => 'באהאלט מיינע ענדערונגען פון דער אויפפאסן ליסטע',
 'tog-watchlisthidebots' => 'באהאלט באט עדיטס פון אויפפאסן ליסטע',

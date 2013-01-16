@@ -19,6 +19,7 @@ $fallback = 'de';
 $messages = array(
 # User preference toggles
 'tog-showtoolbar' => "Werkzaich zum Bearwaide zaische (dodezu brauchd's JavaScript)",
+'tog-showhiddencats' => 'Zaisch vaschdeglde Kadegorije',
 
 'underline-always' => 'Immer',
 'underline-never' => 'Garnet',

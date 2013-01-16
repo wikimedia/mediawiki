@@ -346,7 +346,7 @@ $messages = array(
 'tog-externaldiff' => 'Bruk eit eksternt skilnadprogram som standard (berre for vidarekomne, krev eit spesielt oppsett på maskina di.
 [//www.mediawiki.org/wiki/Manual:External_editors Meir informasjon.])',
 'tog-showjumplinks' => 'Slå på «gå til»-lenkjer',
-'tog-uselivepreview' => 'Bruk levande førehandsvising (krev JavaScript)',
+'tog-uselivepreview' => 'Bruk levande førehandsvising (eksperimentelt JavaScript)',
 'tog-forceeditsummary' => 'Spør meg når eg ikkje har skrive noko i endringssamandraget',
 'tog-watchlisthideown' => 'Gøym endringane mine i overvakingslista',
 'tog-watchlisthidebots' => 'Gøym endringar gjorde av robotar i overvakingslista',

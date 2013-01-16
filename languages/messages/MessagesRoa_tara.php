@@ -59,7 +59,7 @@ $messages = array(
 'tog-externaldiff' => "Ause 'na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tune. <br />
 [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-showjumplinks' => 'Abbilite "zumbe a" pe accedere a le collegaminde',
-'tog-uselivepreview' => "Ause l'andeprime all'istande (richiede JavaScript) (Sperimendale)",
+'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendele)",
 'tog-forceeditsummary' => "Ciercheme conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
 'tog-watchlisthideown' => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
 'tog-watchlisthidebots' => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",

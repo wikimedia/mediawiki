@@ -744,7 +744,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userlogin' => 'Entrar / criar conta',
 'userloginnocreate' => 'Entrar',
 'logout' => 'Sair',
-'userlogout' => 'Desconectar',
+'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
 'nologin' => 'Não possui uma conta? $1.',
 'nologinlink' => 'Criar uma conta',

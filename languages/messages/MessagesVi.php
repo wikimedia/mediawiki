@@ -328,7 +328,7 @@ $messages = array(
 'tog-externaleditor' => 'Mặc định dùng trình soạn thảo bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn; [//www.mediawiki.org/wiki/Manual:External_editors?uselang=vi chi tiết])',
 'tog-externaldiff' => 'Mặc định dùng trình so sánh bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn; [//www.mediawiki.org/wiki/Manual:External_editors?uselang=vi chi tiết])',
 'tog-showjumplinks' => 'Bật liên kết “bước tới” trên đầu trang cho bộ trình duyệt thuần văn bản hay âm thanh',
-'tog-uselivepreview' => 'Xem thử trực tiếp (cần JavaScript)',
+'tog-uselivepreview' => 'Xem thử trực tiếp (JavaScript; chưa ổn định)',
 'tog-forceeditsummary' => 'Nhắc tôi khi tôi quên tóm lược sửa đổi',
 'tog-watchlisthideown' => 'Ẩn các sửa đổi của tôi khỏi danh sách theo dõi',
 'tog-watchlisthidebots' => 'Ẩn các sửa đổi của robot khỏi danh sách theo dõi',

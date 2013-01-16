@@ -341,7 +341,7 @@ $messages = array(
 'tog-externaleditor' => 'Empleyér per dèfôt un changior de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-externaldiff' => 'Empleyér per dèfôt un comparator de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-showjumplinks' => 'Activar los lims d’accèssibilitât « {{int:jumpto}} »',
-'tog-uselivepreview' => 'Empleyér l’apèrçu drêt (at fôta de JavaScript)',
+'tog-uselivepreview' => 'Empleyér l’apèrçu rapido (at fôta de JavaScript) (èxpèrimentâl)',
 'tog-forceeditsummary' => 'M’avèrtir quand j’é pas buchiê de rèsumâ de changement',
 'tog-watchlisthideown' => 'Cachiér los mins changements dedens la lista de siuvu',
 'tog-watchlisthidebots' => 'Cachiér los changements fêts per des robots dedens la lista de siuvu',
@@ -624,7 +624,7 @@ Pôt asse-ben étre quèstion d’una cofierie dedens la programeria empleyêe p
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
 'nospecialpagetext' => '<strong>Vos éd demandâ na pâge spèciâla qu’ègziste pas.</strong>
 
-Na lista de les pâges spèciâles justes sè trove dessus [[Special:SpecialPages|{{int:specialpages}}]].',
+Na lista de les pâges spèciâles justes sè trôve dessus [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error' => 'Fôta',
@@ -1542,25 +1542,25 @@ Cel’enformacion serat publica.',
 'editinguser' => "Changement des drêts d’utilisator de l’utilisat{{GENDER:$1|or|rice}} '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Changiér les tropes d’utilisators',
 'saveusergroups' => 'Encartar les tropes d’utilisators',
-'userrights-groupsmember' => 'Membro de :',
-'userrights-groupsmember-auto' => 'Membro emplicito de :',
-'userrights-groups-help' => 'Vos pouede changiér les tropes a lesquintes est ceti usanciér.
-* Una câsa pouentâ vôt dére que l’usanciér sè trove dens cela tropa.
-* Una câsa pas pouentâ vôt dére qu’y sè trove pas.
-* Una petiôta ètêla (*) endique que vos porréd pas enlevar cela tropa setout que vos l’aréd apondua et l’un l’ôtro.',
+'userrights-groupsmember' => 'Membr{{GENDER:$2|o|a}} de :',
+'userrights-groupsmember-auto' => '{{GENDER:$2|Membro tacito|Membra tacita}} de :',
+'userrights-groups-help' => 'Vos pouede changiér les tropes a lesquintes est cet’utilisat{{GENDER:$1|or|rice}} :
+* Na câsa pouentâye vôt dére que l’utilisat{{GENDER:$1|or|rice}} sè trôve dedens cela tropa.
+* Na câsa pas pouentâye vôt dére que s’y trôve pas.
+* Na petiôt’ètêla (*) endique que vos pouede pas enlevar cela tropa setout que vos l’éd apondua ou ben l’una l’ôtra.',
 'userrights-reason' => 'Rêson :',
-'userrights-no-interwiki' => 'Vos avéd pas la pèrmission de changiér des drêts d’usanciér dessus d’ôtros vouiquis.',
-'userrights-nodatabase' => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
-'userrights-nologin' => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’usanciér.',
-'userrights-notallowed' => 'Voutron compto at pas la pèrmission de balyér ou enlevar des drêts d’usanciér.',
+'userrights-no-interwiki' => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
+'userrights-nodatabase' => 'La bâsa de donâs « $1 » ègziste pas ou ben el est pas locala.',
+'userrights-nologin' => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
+'userrights-notallowed' => 'Voutron compto at pas la pèrmission de balyér ou ben enlevar des drêts d’utilisator.',
 'userrights-changeable-col' => 'Les tropes que vos pouede changiér',
 'userrights-unchangeable-col' => 'Les tropes que vos pouede pas changiér',
 
 # Groups
 'group' => 'Tropa :',
-'group-user' => 'Usanciérs',
-'group-autoconfirmed' => 'Usanciérs encartâs',
-'group-bot' => 'Bots',
+'group-user' => 'Utilisators',
+'group-autoconfirmed' => 'Utilisators ôtoconfirmâs',
+'group-bot' => 'Robots',
 'group-sysop' => 'Administrators',
 'group-bureaucrat' => 'Grata-papiérs',
 'group-suppress' => 'Supèrvisors',

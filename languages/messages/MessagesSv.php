@@ -353,7 +353,7 @@ $messages = array(
 'tog-externaldiff' => 'Använd externt diff-verktyg som förval (endast för avancerade användare, kräver speciella inställningar i din dator.
 [//www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-showjumplinks' => 'Aktivera "hoppa till"-tillgänglighetslänkar',
-'tog-uselivepreview' => 'Använd direktuppdaterad förhandsgranskning (kräver JavaScript)',
+'tog-uselivepreview' => 'Använd direktuppdaterad förhandsgranskning (Javascript, på försöksstadiet)',
 'tog-forceeditsummary' => 'Påminn mig om jag inte fyller i en redigeringskommentar',
 'tog-watchlisthideown' => 'Visa inte mina redigeringar i bevakningslistan',
 'tog-watchlisthidebots' => 'Visa inte robotredigeringar i bevakningslistan',
