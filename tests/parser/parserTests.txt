@@ -785,6 +785,24 @@ x <div>foo</div> z
 
 !! end
 
+!! test
+Empty lines between block tags to test open p-tags are closed between the block tags
+!! input
+<div></div>
+
+
+<div></div>a
+
+b
+!! result
+<div></div>
+<p><br />
+</p>
+<div></div>a
+<p>b
+</p>
+!! end
+
 ###
 ### Preformatted text
 ###
@@ -1307,6 +1325,20 @@ c
 </td></tr></table>
 
 !!end
+
+!! test
+5. White-space in indent-pre
+NOTE: the white-space char on 2nd line is significant
+!! input
+ a<br/>
+ 
+ b
+!! result
+<pre>a<br />
+
+b
+</pre>
+!! end
 
 ###
 ### HTML-pre (some to spec PHP parser behavior and some Parsoid-RT-centric)
@@ -3680,6 +3712,24 @@ language=kaa
 </p>
 !! end
 
+!! test
+Parsoid-centric test: Whitespace in ext- and wiki-links should be preserved
+!! input
+[[Foo|  bar]]
+
+[[Foo|  ''bar'']]
+
+[http://wp.org   foo]
+
+[http://wp.org   ''foo'']
+!! result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">  bar</a>
+</p><p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">  <i>bar</i></a>
+</p><p><a rel="nofollow" class="external text" href="http://wp.org">foo</a>
+</p><p><a rel="nofollow" class="external text" href="http://wp.org"><i>foo</i></a>
+</p>
+!! end
+
 ###
 ### Interwiki links (see maintenance/interwiki.sql)
 ###
@@ -4174,6 +4224,20 @@ disabled
 <ul><li>a<span></span>
 </li><li>b
 </li></ul>
+!! end
+
+!! test
+Unclosed formatting tags that straddle lists are closed and reopened
+(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+!! options
+disabled
+!! input
+# <s> a
+# b </s>
+!! result
+<ol><li> <s> a </s>
+</li><li> <s> b </s>
+</li></ol>
 !! end
 
 !! test
@@ -13194,6 +13258,23 @@ disabled
 <tr><td>foo-bar</td><td>foo+bar</td></tr>
 <tr><td><i>foo</i>-bar</td><td><i>foo</i>+bar</td></tr>
 </tbody></table>
+!! end
+
+!! test
+Tables: 4d. No escaping needed
+!! input
+{|
+||+1
+||-2
+|}
+!! result
+<table>
+<tr>
+<td>+1
+</td>
+<td>-2
+</td></tr></table>
+
 !! end
 
 #### --------------- Links ---------------
