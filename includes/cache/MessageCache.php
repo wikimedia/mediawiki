@@ -586,52 +586,51 @@ class MessageCache {
 	}
 
 	/**
-	 * Get a message from either the content language or the user language.
+	 * Get a message from either the content language or the user language. The fallback
+	 * language order is the users language fallback union the content language fallback.
+	 * This list is then applied to find keys in the following order
+	 * 1) MediaWiki:$key/$langcode (for every language except the content language where
+	 *    we look at MediaWiki:$key)
+	 * 2) Built-in messages via the l10n cache which is also in fallback order
 	 *
-	 * @param $key String: the message cache key
-	 * @param $useDB Boolean: get the message from the DB, false to use only
-	 *               the localisation
-	 * @param bool|string $langcode Code of the language to get the message for, if
-	 *                  it is a valid code create a language for that language,
-	 *                  if it is a string but not a valid code then make a basic
-	 *                  language object, if it is a false boolean then use the
-	 *                  current users language (as a fallback for the old
-	 *                  parameter functionality), or if it is a true boolean
-	 *                  then use the wikis content language (also as a
-	 *                  fallback).
-	 * @param $isFullKey Boolean: specifies whether $key is a two part key
+	 * @param string $key the message cache key
+	 * @param bool $useDB If true will look for the message in the DB, false only
+	 *        get the message from the DB, false to use only the compiled l10n cache.
+	 * @param bool|string|object $langcode Code of the language to get the message for.
+	 *        - If string and a valid code, will create a standard language object
+	 *        - If string but not a valid code, will create a basic language object
+	 *        - If boolean and false, create object from the current users language
+	 *        - If boolean and true, create object from the wikis content language
+	 *        - If language object, use it as given
+	 * @param bool $isFullKey specifies whether $key is a two part key
 	 *                   "msg/lang".
 	 *
-	 * @throws MWException
-	 * @return string|bool
+	 * @throws MWException when given an invalid key
+	 * @return string|bool False if the message doesn't exist, otherwise the message
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgLanguageCode, $wgContLang;
 
 		if ( is_int( $key ) ) {
 			// "Non-string key given" exception sometimes happens for numerical strings that become ints somewhere on their way here
-			$key = strval( $key );
-		}
-
-		if ( !is_string( $key ) ) {
+			settype( $key, 'string' );
+		} elseif ( !is_string( $key ) ) {
 			throw new MWException( 'Non-string key given' );
-		}
-
-		if ( strval( $key ) === '' ) {
-			# Shortcut: the empty key is always missing
+		} elseif ( $key === '' ) {
+			// Shortcut: the empty key is always missing
 			return false;
 		}
 
-		$lang = wfGetLangObj( $langcode );
-		if ( !$lang ) {
-			throw new MWException( "Bad lang code $langcode given" );
+		wfProfileIn( __METHOD__ );
+
+		// For full keys, get the language code from the key
+		if ( $isFullKey && strpos( $key, '/' ) !== false ) {
+			$keyParts = explode( '/', $key );
+			$langcode = array_pop( $keyParts );
+			$key = implode( '/', $keyParts );
 		}
 
-		$langcode = $lang->getCode();
-
-		$message = false;
-
-		# Normalise title-case input (with some inlining)
+		// Normalise title-case input (with some inlining)
 		$lckey = str_replace( ' ', '_', $key );
 		if ( ord( $key ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
@@ -641,59 +640,67 @@ class MessageCache {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
-		# Try the MediaWiki namespace
-		if( !$this->mDisable && $useDB ) {
-			$title = $uckey;
-			if( !$isFullKey && ( $langcode != $wgLanguageCode ) ) {
-				$title .= '/' . $langcode;
+		// Loop through each language in the fallback list until we find something useful
+		$message = false;
+		$lang = wfGetLangObj( $langcode );
+		$fallbackChain = Language::getFallbacksIncludingSiteLanguage( $lang->getCode() );
+		array_unshift( $fallbackChain, $lang );
+
+		foreach ( $fallbackChain as $lang ) {
+			$lang = wfGetLangObj( $lang );
+			$code = $lang->getCode();
+
+			if ( $this->mDisable || !$useDB ) {
+				// Don't use the DB
+			} elseif ( $code === $wgLanguageCode ) {
+				// Messages created in the content language will not have the /lang extension
+				$message = $this->getMsgFromNamespace( $uckey, $code );
+			} else {
+				$message = $this->getMsgFromNamespace( "$uckey/$code", $code );
 			}
-			$message = $this->getMsgFromNamespace( $title, $langcode );
+
+			if ( $message === false ) {
+				$message = $lang->getMessage( $lckey );
+				if ( $message === null ) {
+					$message = false;
+				}
+			}
+
+			if ( $message !== false ) {
+				// Found the message.
+				break;
+			}
 		}
 
-		# Try the array in the language object
+		// If we still have no message, maybe the key was in fact a full key so try that
 		if ( $message === false ) {
-			$message = $lang->getMessage( $lckey );
-			if ( is_null( $message ) ) {
-				$message = false;
-			}
-		}
-
-		# Try the array of another language
-		if( $message === false ) {
 			$parts = explode( '/', $lckey );
-			# We may get calls for things that are http-urls from sidebar
-			# Let's not load nonexistent languages for those
-			# They usually have more than one slash.
+			// We may get calls for things that are http-urls from sidebar
+			// Let's not load nonexistent languages for those
+			// They usually have more than one slash.
 			if ( count( $parts ) == 2 && $parts[1] !== '' ) {
 				$message = Language::getMessageFor( $parts[0], $parts[1] );
-				if ( is_null( $message ) ) {
+				if ( $message === null ) {
 					$message = false;
 				}
 			}
 		}
 
-		# Is this a custom message? Try the default language in the db...
-		if( ( $message === false || $message === '-' ) &&
-			!$this->mDisable && $useDB &&
-			!$isFullKey && ( $langcode != $wgLanguageCode ) ) {
-			$message = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
+		// Final fallback
+		if( $message !== false ) {
+			// Fix whitespace
+			$message = strtr( $message,
+				array(
+					# Fix for trailing whitespace, removed by textarea
+					'&#32;' => ' ',
+					# Fix for NBSP, converted to space by firefox
+					'&nbsp;' => "\xc2\xa0",
+					'&#160;' => "\xc2\xa0",
+				)
+			);
 		}
 
-		# Final fallback
-		if( $message === false ) {
-			return false;
-		}
-
-		# Fix whitespace
-		$message = strtr( $message,
-			array(
-				# Fix for trailing whitespace, removed by textarea
-				'&#32;' => ' ',
-				# Fix for NBSP, converted to space by firefox
-				'&nbsp;' => "\xc2\xa0",
-				'&#160;' => "\xc2\xa0",
-			) );
-
+		wfProfileOut( __METHOD__ );
 		return $message;
 	}
 
