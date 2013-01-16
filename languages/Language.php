@@ -3860,19 +3860,44 @@ class Language {
 	 *
 	 * @since 1.19
 	 * @param $code string Language code
+	 * @params $includeSiteLanguage If true, end the fallback chain with the
+	 *	site's $wgLanguageCode chain.
 	 * @return array
 	 */
-	public static function getFallbacksFor( $code ) {
+	public static function getFallbacksFor( $code, $includeSiteLanguage = false ) {
+		global $wgLanguageCode;
+
+		// Usually, we will only store a tiny number of fallback chains, so we
+		// keep them in static memory.
+		static $fallbackLanguageCache = array();
+		$cache_key = $code . ($includeSiteLanguage ? "-{$wgLanguageCode}" : "");
+
 		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
 			return array();
-		} else {
+		} elseif ( !array_key_exists( $cache_key, $fallbackLanguageCache ) ) {
+			// Get the callback chain for the requested language code
 			$v = self::getLocalisationCache()->getItem( $code, 'fallback' );
 			$v = array_map( 'trim', explode( ',', $v ) );
-			if ( $v[count( $v ) - 1] !== 'en' ) {
+
+			if ( end( $v ) === 'en' ) {
+				array_pop( $v );
+			}
+			// Append the site's fallback chain, if requested
+			if ( $includeSiteLanguage === true ) {
+				$siteFallbackChain = Language::getFallbacksFor( $wgLanguageCode, false );
+
+				// Eliminate any languages already included in the chain
+				$siteFallbackChain = array_intersect( array_diff( $siteFallbackChain, $v ), $siteFallbackChain );
+				if ( $siteFallbackChain ) {
+					$v = array_merge( $v, $siteFallbackChain );
+				}
+			}
+			if ( end( $v ) !== 'en' ) {
 				$v[] = 'en';
 			}
-			return $v;
+			$fallbackLanguageCache[$cache_key] = $v;
 		}
+		return $fallbackLanguageCache[$cache_key];
 	}
 
 	/**
