@@ -214,7 +214,7 @@ QUnit.test( 'Links', 6, function ( assert ) {
 	mw.messages.set( 'pipe-trick', '[[Tampa, Florida|]]' );
 	assert.equal(
 		parser( 'pipe-trick' ),
-		'Error: Parse error at position 0 in input: [[Tampa, Florida|]]',
+		'pipe-trick: Parse error at position 0 in input: [[Tampa, Florida|]]',
 		'Pipe trick should return error string.'
 	);
 
