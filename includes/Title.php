@@ -3504,9 +3504,11 @@ class Title {
 		if ( !$wgContentHandlerUseDB &&
 				$this->getContentModel() !== $nt->getContentModel() ) {
 			// can't move a page if that would change the page's content model
-			$errors[] = array( 'bad-target-model',
-							ContentHandler::getLocalizedName( $this->getContentModel() ),
-							ContentHandler::getLocalizedName( $nt->getContentModel() ) );
+			$errors[] = array(
+				'bad-target-model',
+				ContentHandler::getLocalizedName( $this->getContentModel() ),
+				ContentHandler::getLocalizedName( $nt->getContentModel() )
+			);
 		}
 
 		// Image-specific checks
