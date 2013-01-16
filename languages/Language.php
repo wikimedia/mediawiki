@@ -171,6 +171,14 @@ class Language {
 	);
 
 	/**
+	 * Cache for language fallbacks.
+	 * @see Language::getFallbacksIncludingSiteLanguage
+	 * @since 1.21
+	 * @var array
+	 */
+	static private $fallbackLanguageCache = array();
+
+	/**
 	 * Get a cached or new language object for a given language code
 	 * @param $code String
 	 * @return Language
@@ -3957,6 +3965,36 @@ class Language {
 			}
 			return $v;
 		}
+	}
+
+	/**
+	 * Get the ordered list of fallback languages, ending with the fallback
+	 * language chain for the site language.
+	 *
+	 * @since 1.22
+	 * @param string $code Language code
+	 * @return array array( fallbacks, site fallbacks )
+	 */
+	public static function getFallbacksIncludingSiteLanguage( $code ) {
+		global $wgLanguageCode;
+
+		// Usually, we will only store a tiny number of fallback chains, so we
+		// keep them in static memory.
+		$cacheKey = "{$code}-{$wgLanguageCode}";
+
+		if ( !array_key_exists( $cacheKey, self::$fallbackLanguageCache ) ) {
+			$fallbacks = self::getFallbacksFor( $code );
+
+			// Append the site's fallback chain, including the site language itself
+			$siteFallbacks = self::getFallbacksFor( $wgLanguageCode );
+			array_unshift( $siteFallbacks, $wgLanguageCode );
+
+			// Eliminate any languages already included in the chain
+			$siteFallbacks = array_diff( $siteFallbacks, $fallbacks );
+
+			self::$fallbackLanguageCache[$cacheKey] = array( $fallbacks, $siteFallbacks );
+		}
+		return self::$fallbackLanguageCache[$cacheKey];
 	}
 
 	/**
