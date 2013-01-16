@@ -1067,11 +1067,6 @@ class MWMemcached {
 	 * @param $text string
 	 */
 	function _debugprint( $text ) {
-		global $wgDebugLogGroups;
-		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
-			# Prefix message since it will end up in main debug log file
-			$text = "memcached: $text";
-		}
 		wfDebugLog( 'memcached', $text );
 	}
 
