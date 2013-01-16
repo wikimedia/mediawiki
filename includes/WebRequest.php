@@ -1297,6 +1297,10 @@ class FauxRequest extends WebRequest {
 		return $this->wasPosted;
 	}
 
+	public function getCookie( $key, $prefix = null, $default = null ) {
+		return $default;
+	}
+
 	public function checkSessionCookie() {
 		return false;
 	}
