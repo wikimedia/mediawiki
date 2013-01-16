@@ -39,8 +39,8 @@ Download the files for the new version of the software. These are available
 as a compressed "tar" archive from the Wikimedia Download Service
 (http://download.wikimedia.org/mediawiki).
 
-You can also obtain the new files directly from our Subversion source code
-repository, via a checkout or export operation.
+You can also obtain the new files directly from our Git source code
+repository.
 
 Replace the existing MediaWiki files with the new. You should preserve the
 LocalSettings.php file and the "extensions" and "images" directories.
