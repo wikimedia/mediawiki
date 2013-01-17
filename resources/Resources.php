@@ -20,6 +20,10 @@
  * @file
  */
 
+if( !defined( 'MEDIAWIKI' ) ) {
+	die( 'Not an entry point.' );
+}
+
 return array(
 
 	/* Special modules who have their own classes */
