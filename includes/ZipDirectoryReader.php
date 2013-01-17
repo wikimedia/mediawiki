@@ -191,6 +191,11 @@ class ZipDirectoryReader {
 	 * spec.
 	 */
 	function readEndOfCentralDirectoryRecord() {
+		global $wgAllowDOCasZip;
+
+		if( $wgAllowDOCasZip ) {
+			return;				/* *FIXME* Just skip this bit. */
+		}
 		$info = array(
 			'signature' => 4,
 			'disk' => 2,

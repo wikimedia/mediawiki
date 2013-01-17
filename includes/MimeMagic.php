@@ -726,7 +726,10 @@ class MimeMagic {
 		}
 
 		// Check for ZIP variants (before getimagesize)
-		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
+		// We ignore files that start with the signature of Microsoft's Compound Document Format,
+		// these are MS Office files, that embed Office Open XML files
+		$msFileMarker = "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1";
+		if ( strpos( $tail, "PK\x05\x06" ) !== false && substr( $head, 0, strlen( $msFileMarker ) ) !== $msFileMarker ) {
 			wfDebug( __METHOD__.": ZIP header present in $file\n" );
 			return $this->detectZipType( $head, $tail, $ext );
 		}

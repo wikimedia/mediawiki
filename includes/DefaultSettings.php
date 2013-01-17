@@ -682,6 +682,11 @@ $wgMimeTypeBlacklist = array(
 $wgAllowJavaUploads = false;
 
 /**
+ * Allow DOC files to be uploaded.
+ */
+$wgAllowDOCasZip = true;
+
+/**
  * This is a flag to determine whether or not to check file extensions on upload.
  *
  * @warning Setting this to false is insecure for public wikis.
@@ -5007,8 +5012,8 @@ $wgUpgradeKey = false;
  * @since 1.20
  */
 $wgGitRepositoryViewers = array(
-    'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
-    'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+	'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
 );
 
 /** @} */ # End of maintenance }
