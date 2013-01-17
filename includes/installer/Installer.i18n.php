@@ -359,7 +359,7 @@ In '''UTF-8 mode''', MySQL will know what character set your data is in, and can
 	'config-ns-other-default'         => 'MyWiki',
 	'config-project-namespace-help'   => 'Following Wikipedia\'s example, many wikis keep their policy pages separate from their content pages, in a "\'\'\'project namespace\'\'\'".
 All page titles in this namespace start with a certain prefix, which you can specify here.
-Traditionally, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
+Usually, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
 	'config-ns-invalid'               => 'The specified namespace "<nowiki>$1</nowiki>" is invalid.
 Specify a different project namespace.',
 	'config-ns-conflict'               => 'The specified namespace "<nowiki>$1</nowiki>" conflicts with a default MediaWiki namespace.
@@ -391,7 +391,7 @@ You can now skip the remaining configuration and install the wiki right now.',
 	'config-optional-continue'        => 'Ask me more questions.',
 	'config-optional-skip'            => "I'm bored already, just install the wiki.",
 	'config-profile'                  => 'User rights profile:',
-	'config-profile-wiki'             => 'Traditional wiki',
+	'config-profile-wiki'             => 'Open wiki',
 	'config-profile-no-anon'          => 'Account creation required',
 	'config-profile-fishbowl'         => 'Authorized editors only',
 	'config-profile-private'          => 'Private wiki',
@@ -401,7 +401,7 @@ In MediaWiki, it is easy to review the recent changes, and to revert any damage 
 However, many have found MediaWiki to be useful in a wide variety of roles, and sometimes it is not easy to convince everyone of the benefits of the wiki way.
 So you have the choice.
 
-A '''{{int:config-profile-wiki}}''' allows anyone to edit, without even logging in.
+The '''{{int:config-profile-wiki}}''' model allows anyone to edit, without even logging in.
 A wiki with '''{{int:config-profile-no-anon}}''' provides extra accountability, but may deter casual contributors.
 
 The '''{{int:config-profile-fishbowl}}''' scenario allows approved users to edit, but the public can view the pages, including history.
@@ -492,7 +492,7 @@ They may require additional configuration, but you can enable them now',
 	'config-install-alreadydone'      => "'''Warning:''' You seem to have already installed MediaWiki and are trying to install it again.
 Please proceed to the next page.",
 	'config-install-begin'            => 'By pressing "{{int:config-continue}}", you will begin the installation of MediaWiki.
-If you still want to make changes, press back.',
+If you still want to make changes, press "{{int:config-back}}".',
 	'config-install-step-done'        => 'done',
 	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
