@@ -178,6 +178,9 @@ production.
 * BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
   for all query modules.
 * ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
+* ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
+* Query stores prop/list/meta as submodules
+* action=help suports generalized submodules (modules=query+value), querymodules obsolete
 
 === Languages updated in 1.21 ===
 
