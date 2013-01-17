@@ -44,6 +44,7 @@ class UploadStashCleanup extends Maintenance {
 		global $wgUploadStashMaxAge;
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
+		$tempRepo = $repo->getTempRepo();
 
 		$dbr = $repo->getSlaveDb();
 
@@ -58,54 +59,80 @@ class UploadStashCleanup extends Maintenance {
 			__METHOD__
 		);
 
-		if( !is_object( $res ) || $res->numRows() == 0 ) {
-			$this->output( "No files to cleanup!\n" );
-			// nothing to do.
-			return;
-		}
-
-		// finish the read before starting writes.
-		$keys = array();
-		foreach( $res as $row ) {
-			array_push( $keys, $row->us_key );
-		}
-
-		$this->output( 'Removing ' . count( $keys ) . " file(s)...\n" );
-		// this could be done some other, more direct/efficient way, but using
-		// UploadStash's own methods means it's less likely to fall accidentally
-		// out-of-date someday
-		$stash = new UploadStash( $repo );
-
-		$i = 0;
-		foreach( $keys as $key ) {
-			$i++;
-			try {
-				$stash->getFile( $key, true );
-				$stash->removeFileNoAuth( $key );
-			} catch ( UploadStashBadPathException $ex ) {
-				$this->output( "Failed removing stashed upload with key: $key\n"  );
-			} catch ( UploadStashZeroLengthFileException $ex ) {
-				$this->output( "Failed removing stashed upload with key: $key\n"  );
+		// Delete all registered stash files...
+		if ( $res->numRows() == 0 ) {
+			$this->output( "No stashed files to cleanup according to the DB.\n" );
+		} else {
+			// finish the read before starting writes.
+			$keys = array();
+			foreach( $res as $row ) {
+				array_push( $keys, $row->us_key );
 			}
-			if ( $i % 100 == 0 ) {
-				$this->output( "$i\n" );
+
+			$this->output( 'Removing ' . count( $keys ) . " file(s)...\n" );
+			// this could be done some other, more direct/efficient way, but using
+			// UploadStash's own methods means it's less likely to fall accidentally
+			// out-of-date someday
+			$stash = new UploadStash( $repo );
+
+			$i = 0;
+			foreach( $keys as $key ) {
+				$i++;
+				try {
+					$stash->getFile( $key, true );
+					$stash->removeFileNoAuth( $key );
+				} catch ( UploadStashBadPathException $ex ) {
+					$this->output( "Failed removing stashed upload with key: $key\n"  );
+				} catch ( UploadStashZeroLengthFileException $ex ) {
+					$this->output( "Failed removing stashed upload with key: $key\n"  );
+				}
+				if ( $i % 100 == 0 ) {
+					$this->output( "$i\n" );
+				}
+			}
+			$this->output( "$i done\n" );
+		}
+
+		// Delete all the corresponding thumbnails...
+		$dir      = $tempRepo->getZonePath( 'thumb' );
+		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
+		$this->output( "Deleting old thumbnails...\n" );
+		$i = 0;
+		foreach ( $iterator as $file ) {
+			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
+				$status = $tempRepo->quickPurge( "$dir/$file" );
+				if ( !$status->isOK() ) {
+					$this->error( print_r( $status->getErrorsArray(), true ) );
+				}
+				if ( ( ++$i % 100 ) == 0 ) {
+					$this->output( "$i\n" );
+				}
 			}
 		}
 		$this->output( "$i done\n" );
 
-		$tempRepo = $repo->getTempRepo();
-		$dir      = $tempRepo->getZonePath( 'thumb' );
+		// Apparently lots of stash files are not registered in the DB...
+		$dir      = $tempRepo->getZonePath( 'public' );
 		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
-
-		$this->output( "Deleting old thumbnails...\n" );
+		$this->output( "Deleting orphaned temp files...\n" );
+		if ( strpos( $dir, '/local-temp' ) === false ) { // sanity check
+			$this->error( "Temp repo is not using the temp container.", 1 ); // die
+		}
 		$i = 0;
 		foreach ( $iterator as $file ) {
-			$i++;
-			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
-				$tempRepo->quickPurge( "$dir/$file" );
+			// Absolute sanity check for stashed files and file segments
+			if ( !preg_match( '#(^\d{14}!|\.\d+\.\w+\.\d+$)#', basename( $file ) ) ) {
+				$this->output( "Skipped non-stash $file\n" );
+				continue;
 			}
-			if ( $i % 100 == 0 ) {
-				$this->output( "$i\n" );
+			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
+				$status = $tempRepo->quickPurge( "$dir/$file" );
+				if ( !$status->isOK() ) {
+					$this->error( print_r( $status->getErrorsArray(), true ) );
+				}
+				if ( ( ++$i % 100 ) == 0 ) {
+					$this->output( "$i\n" );
+				}
 			}
 		}
 		$this->output( "$i done\n" );
