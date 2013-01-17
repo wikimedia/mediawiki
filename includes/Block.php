@@ -997,9 +997,11 @@ class Block {
 	 * Purge expired blocks from the ipblocks table
 	 */
 	public static function purgeExpired() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'ipblocks',
-			array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
+		if ( !wfReadOnly() ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->delete( 'ipblocks',
+				array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
+		}
 	}
 
 	/**
