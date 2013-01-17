@@ -689,7 +689,7 @@ class Title {
 		}
 
 		if( !$this->mContentModel ) {
-			throw new MWException( "failed to determin content model!" );
+			throw new MWException( 'Failed to determine content model!' );
 		}
 
 		return $this->mContentModel;
