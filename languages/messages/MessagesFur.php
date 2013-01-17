@@ -814,6 +814,10 @@ La tô direzion di pueste no ven mostrade cuant che i utents ti contatin.',
 
 'grouppage-sysop' => '{{ns:project}}:Aministradôrs',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Regjistri dai gnûfs utents',
+'newuserlogpagetext' => 'Ca sot tu cjatis un regjistri dai gnûfs utents creâts.',
+
 # User rights log
 'rightslog' => 'Regjistri dai dirits dai utents',
 
@@ -1112,10 +1116,6 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'activeusers-hidesysops' => 'Plate i aministradôrs',
 'activeusers-noresult' => 'Nissun utent cjatât.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Regjistri dai gnûfs utents',
-'newuserlogpagetext' => 'Ca sot tu cjatis un regjistri dai gnûfs utents creâts.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Dirits dai grups di utents',
 'listgrouprights-group' => 'Grup',
@@ -1173,6 +1173,8 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 'enotif_reset' => 'Segne dutis lis pagjinis come visitadis',
 'enotif_impersonal_salutation' => 'Utent di {{SITENAME}}',
 'enotif_anon_editor' => 'utent anonim $1',
+'created' => 'creade',
+'changed' => 'cambiade',
 
 # Delete
 'deletepage' => 'Elimine pagjine',

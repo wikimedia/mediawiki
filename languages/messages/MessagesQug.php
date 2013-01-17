@@ -525,6 +525,9 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 
 'grouppage-sysop' => '{{ns:project}}:Kamachik',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rurakkununata kamaykunapa kamu',
+
 # User rights log
 'rightslog' => 'Rurakpa hayñikunapa kamu',
 
@@ -639,9 +642,6 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 # Special:LinkSearch
 'linksearch' => 'hawaman tinkikunata maskana',
 'linksearch-line' => '$1 pankaka $2-manta tinkishkami kan',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Rurakkununata kamaykunapa kamu',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Kay tantanakuypa rurakkunapa shutikuna)',

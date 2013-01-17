@@ -24,6 +24,7 @@
  * @author Dereckson
  * @author Diti
  * @author Dodoïste
+ * @author Drongou
  * @author Elfix
  * @author Enzoreg
  * @author Erkethan
@@ -2128,7 +2129,7 @@ N'oubliez pas de vérifier s'il n'y a pas d'autres liens vers les modèles avant
 'statistics-articles' => 'Pages de contenu',
 'statistics-pages' => 'Pages',
 'statistics-pages-desc' => 'Toutes les pages du wiki, y compris les pages de discussion, les redirections, etc.',
-'statistics-files' => 'Fichers importés',
+'statistics-files' => 'Fichiers importés',
 'statistics-edits' => "Modifications de pages depuis l'installation de {{SITENAME}}",
 'statistics-edits-average' => 'Nombre moyen de modifications par page',
 'statistics-views-total' => 'Visites',
@@ -2542,9 +2543,9 @@ Voici les réglages actuels de la page '''$1''' :",
 Voici les réglages actuels de la page '''$1''' :",
 'protect-cascadeon' => "Cette page est protégée car incluse dans {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l'option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n'affecte la protection en cascade.",
 'protect-default' => 'Autoriser tous les utilisateurs',
-'protect-fallback' => 'Nécessite la permission « $1 »',
-'protect-level-autoconfirmed' => 'Bloquer les nouveaux utilisateurs et les utilisateurs anonymes',
-'protect-level-sysop' => 'Administrateurs uniquement',
+'protect-fallback' => 'Autoriser uniquement les utilisateurs avec le droit « $1 »',
+'protect-level-autoconfirmed' => 'Autoriser uniquement les utilisateurs auto-confirmés',
+'protect-level-sysop' => 'Autoriser uniquement les administrateurs',
 'protect-summary-cascade' => 'protection en cascade',
 'protect-expiring' => 'expire le $1 (UTC)',
 'protect-expiring-local' => 'expire le $1',

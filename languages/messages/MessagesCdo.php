@@ -409,6 +409,9 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'group-sysop-member' => 'Guāng-lī-uòng',
 'group-bureaucrat-member' => 'Guăng-lièu-cū',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kŭi dióng-hô̤ nĭk-cé',
+
 # Recent changes
 'recentchanges' => 'Cī-bŏng gì gāi-biéng',
 'recentchanges-summary' => 'Găk cī hiĕk dŭi-sùi wiki cī-bŏng dék sĭng gì gāi-biéng.',
@@ -566,9 +569,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 
 # Special:LinkSearch
 'linksearch-ok' => 'Sìng-tō̤',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kŭi dióng-hô̤ nĭk-cé',
 
 # E-mail user
 'emailuser' => 'Gié diêng-piĕ ké̤ṳk ĭ',

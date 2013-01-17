@@ -1230,6 +1230,8 @@ $1',
 'enotif_lastvisited' => 'ܚܙܝ $1 ܠܟܠ ܫܘܚܠܦ̈ܐ ܡܢ ܐܡܬܝ ܕܣܘܥܪܢܐ ܐܚܪܝܐ ܕܝܠܟ.',
 'enotif_lastdiff' => 'ܚܙܝ $1 ܠܚܙܝܐ ܕܫܘܚܠܦܐ ܗܢܐ.',
 'enotif_anon_editor' => 'ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ $1',
+'created' => 'ܒܪܐ',
+'changed' => 'ܐܫܬܚܠܦܬ',
 
 # Delete
 'deletepage' => 'ܫܘܦ ܦܐܬܐ',

@@ -723,9 +723,11 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'right-edit' => 'Edita pàgini',
 'right-createaccount' => 'Crea cünt de dovratt bej-e növ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rrgister di druvat növ',
+
 # User rights log
 'rightslog' => 'Dirit di druvat',
-'rightslogentry' => "l'ha mudifegaa $1 dal grüp $2 al grüp $3",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'mudifega quela pagina chì',
@@ -939,9 +941,6 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 # Special:ActiveUsers
 'activeusers-from' => 'Fàm vedè i dupradur a partì da:',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Rrgister di druvat növ',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Dirit del grüp di druvat',
 'listgrouprights-members' => '(Lista di member)',
@@ -996,6 +995,7 @@ Per mudifegà l\'impustazión de la lista di paginn che te tegn d\'ögg, varda
 
 Per fà di cumünicazion de servizzi e per cercà jüt:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'changed' => 'cambiaa',
 
 # Delete
 'deletepage' => 'Scancela la pagina',

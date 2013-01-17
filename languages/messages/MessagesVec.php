@@ -1888,6 +1888,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i modèi elencà
 Ogni riga la contien dei colegamenti al primo e al secondo rimando, oltre a la destinassion del secondo rimando, che de solito la xe la "vera" pagina de destinassion, a cui dovarìa pontar el primo rimando.
 Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'double-redirect-fixed-move' => '[[$1]] xe stà spostà, desso el xe solo un rimando a [[$2]]',
+'double-redirect-fixed-maintenance' => 'Coreto dopio rimando da [[$1]] a [[$2]].',
 'double-redirect-fixer' => 'Coretòr de redirect',
 
 'brokenredirects' => 'Redirect mìa giusti',
@@ -1905,6 +1906,7 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorie}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|colegamento|colegamenti}}',
 'nmembers' => '$1 {{PLURAL:$1|elemento|elementi}}',
 'nrevisions' => '$1 {{PLURAL:$1|revision|revision}}',
@@ -1925,14 +1927,18 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'wantedpages' => 'Pagine pì domandà',
 'wantedpages-badtitle' => 'Titolo mia valido nel grupo de risultati: $1',
 'wantedfiles' => 'File domandà',
+'wantedfiletext-cat' => 'I seguenti file i xe riciamai da wikilink, ma nó i existe. I file ospitai so repository esterni i podaria esar elencai anca se de fato existenti. Sti falsi poxitivi i sarà <del>sbarai</del>. Łe pàjine che incorpora i file che nó existe łe xe elencae in [[:$1]].',
+'wantedfiletext-nocat' => 'I seguenti file i xe riciamai da wikilink, ma nó i existe. I file ospitai so repository esterni i podaria esar elencai anca se de fato existenti. Sti falsi poxitivi i sarà <del>sbarai</del>.',
 'wantedtemplates' => 'Modèi domandà',
 'mostlinked' => 'Pagine piassè puntà',
 'mostlinkedcategories' => 'Categorie piassè riciamae',
 'mostlinkedtemplates' => 'Modèi piassè doparà',
 'mostcategories' => 'Pagine con piassè categorie',
 'mostimages' => 'File piassè riciamà',
+'mostinterwikis' => 'Pàjine có pì interwiki',
 'mostrevisions' => 'Pagine con piassè revisión',
 'prefixindex' => 'Tute le pagine che taca con...',
+'prefixindex-namespace' => "Tute łe pàjine có 'l prefiso del namespace $1",
 'shortpages' => 'Pagine curte',
 'longpages' => 'Pagine longhe',
 'deadendpages' => 'Pagine sensa uscita',
@@ -1965,6 +1971,7 @@ Par piaser tien conto che altri siti web i podarìa realizar colegamenti ai file
 'pager-newer-n' => '{{PLURAL:$1|quel pi novo|i $1 pi novi}}',
 'pager-older-n' => '{{PLURAL:$1|quel pi vecio|i $1 pi vèci}}',
 'suppress' => 'Supervision',
+'querypage-disabled' => 'Sta pàjina speciałe ła xe dixativà par motivi de prestasion.',
 
 # Book sources
 'booksources' => 'Fonti librarie',
@@ -1982,6 +1989,7 @@ Par piaser tien conto che altri siti web i podarìa realizar colegamenti ai file
 Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el nome utente, o la pàxena interessà (ocio che sti ultimi du i distingue tra majuscolo e minuscolo).',
 'logempty' => "El registro no'l contien mìa elementi corispondenti a la riçerca.",
 'log-title-wildcard' => 'Riçerca dei titoli che scuminsia con',
+'showhideselectedlogentries' => 'Mostra/scondi łe voxe de registro sełesionae',
 
 # Special:AllPages
 'allpages' => 'Tute le pagine',
@@ -2002,6 +2010,8 @@ Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el n
 'allpages-hide-redirects' => 'Scondi rimandi',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Te si drio vardar na version de sta pàjina memorixà inte ła cache, che ła pol esar vecia al masimo de $1.',
+'cachedspecial-viewing-cached-ts' => 'Te si drio vardar na version de sta pàjina memorixà inte ła cache, che ła podaria nó esar conpletamente axornà.',
 'cachedspecial-refresh-now' => "Varda l'ultima.",
 
 # Special:Categories
@@ -2073,13 +2083,15 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'emailpagetext' => 'Te podi usar el modulo chi soto par mandare na e-mail a sto utente.
 La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte a ti diretamente.',
 'usermailererror' => "L'ogeto mail el gà restituìo l'eror:",
-'defemailsubject' => 'Messagio da {{SITENAME}}',
+'defemailsubject' => 'Mesajo da {{SITENAME}} dal utente "$1"',
 'usermaildisabled' => 'e-mail utente disabiłità',
 'usermaildisabledtext' => 'No xè posibiłe inviare e-mail ad altri utenti so sto wiki',
 'noemailtitle' => 'Nissun indirisso e-mail',
 'noemailtext' => "Sto utente no'l gà indicà nissuna casela e-mail valida.",
 'nowikiemailtitle' => 'Posta elétronega mia parmessa',
 'nowikiemailtext' => 'Sto utente el ga sielto de no ricévar e-mail da i altri utenti.',
+'emailnotarget' => 'Nome utente del destinatario inexistente o nó vałido.',
+'emailtarget' => 'Inserisi el nome utente del destinatario',
 'emailusername' => 'Nome utente:',
 'emailusernamesubmit' => 'Manda',
 'email-legend' => "Màndeghe na e-mail a n'altro utente de {{SITENAME}}",
@@ -2109,6 +2121,7 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'addwatch' => "Tien d'ocio",
 'addedwatchtext' => "La pagina \"[[:\$1]]\" la xe stà zontà a la to [[Special:Watchlist|lista de pagine da tegner d'ocio]].
 I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fora qua, e la pagina la se vedarà in '''grosso''' sui [[Special:RecentChanges|ultimi canbiamenti]] par tegnerla d'ocio mejo.",
+'removewatch' => "Cava da łe tegnùe d'ocio",
 'removedwatchtext' => 'La pagina "[[:$1]]" la xe stà cavà da le to [[Special:Watchlist|pagine tegnùe de ocio]].',
 'watch' => "Tien d'ocio",
 'watchthispage' => "Tien d'ocio sta pagina",
@@ -2611,7 +2624,7 @@ Par piaser, métighe un titolo difarente.",
 
 La voxe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarla par proseguir con ło spostamento?',
 'delete_and_move_confirm' => 'Sì, scancèla la pagina',
-'delete_and_move_reason' => 'Scancelà par rendar posibiłe el spostamento da "$1"',
+'delete_and_move_reason' => 'Scanselà par rendar posibiłe el spostamento da "[[$1]]"',
 'selfmove' => 'No se pol spostar, el titolo novo el xe conpagno del vecio.',
 'immobile-source-namespace' => 'No te pol spostar pàxene in tel namespace "$1"',
 'immobile-target-namespace' => 'No te pol spostar pàxene \'ntel namespace "$1"',
@@ -2729,6 +2742,10 @@ Salveło so'l to conpiuter e carghelo cuà.",
 'import-error-interwiki' => 'Ła pàjina "$1" nò ła vien inportà parché el so nome el xe riservà pa\'l ligamento foresto (interwiki).',
 'import-error-special' => 'Ła pàjina "$1" nò ła vien inportà parché ła apartien a un namespace speciałe che nò \'l permete pàjine.',
 'import-error-invalid' => 'Ła pàjina "$1" nò ła vien inportà parché el so nome nò \'l xe vałido.',
+'import-error-unserialize' => 'Ła version $2 de ła pàjina "$1" nó ła pol esar de-seriałixà. Ła version ła xe sta segnałà par doparar el modèl de contegnùo $3 seriałixà cofà $4.',
+'import-options-wrong' => '{{PLURAL:$2|Opsion sbałià|Opsion sbałiae}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Ła pàjina prinsipałe fornia nó ła xe un titoło vałido.',
+'import-rootpage-nosubpage' => 'El namespace "$1" de ła pàjina prinsipałe nó \'l permete de \'ver sotopajine.',
 
 # Import log
 'importlogpage' => 'Inportassion',
@@ -2737,6 +2754,16 @@ Salveło so'l to conpiuter e carghelo cuà.",
 'import-logentry-upload-detail' => '{{PLURAL:$1|una revixion importà|$1 revixion importae}}',
 'import-logentry-interwiki' => 'gà trasferìo da altra wiki ła pàxena $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|una revixion importà|$1 revixion importae}} da $2',
+
+# JavaScriptTest
+'javascripttest' => 'Sperimentasion JavaScript',
+'javascripttest-title' => 'In execusion test par $1',
+'javascripttest-pagetext-noframework' => "Sta pàjina ła xe riservà a l'execusion de test de JavaScript.",
+'javascripttest-pagetext-unknownframework' => 'Framework de test sconosùo "$1".',
+'javascripttest-pagetext-frameworks' => "Par piasere, siełi uno de i seguenti framework pa' i test: $1",
+'javascripttest-pagetext-skins' => 'Siełi na skin có cui exeguir i test:',
+'javascripttest-qunit-intro' => 'Varda so mediawiki.org ła [$1 documentasion rivardante i test].',
+'javascripttest-qunit-heading' => 'Suite de test de JavaScript par QUnit in MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'La to pagina utente',
@@ -2798,6 +2825,8 @@ Salveło so'l to conpiuter e carghelo cuà.",
 'tooltip-diff' => 'Varda i canbiamenti fati al testo',
 'tooltip-compareselectedversions' => 'Varda le difarense tra le do version selessionà de sta pagina.',
 'tooltip-watch' => "Tien d'ocio sta pagina",
+'tooltip-watchlistedit-normal-submit' => 'Cava i titołi',
+'tooltip-watchlistedit-raw-submit' => "Axorna ła lista de łe tegnùe d'ocio",
 'tooltip-recreate' => 'Ricrea ła pàxena anca se la xè stà scancełà',
 'tooltip-upload' => 'Intaca el caricamento',
 'tooltip-rollback' => 'El "tira indrio" el desfa i canbiamenti a sta pagina fati de l\'ultimo che gà messo le mane.',
@@ -2828,9 +2857,11 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'spambot_username' => 'MediaWiki - sistema de rimozion del spam',
 'spam_reverting' => "Ripristinà l'ultima version priva de colegamenti a $1",
 'spam_blanking' => 'Pàxena svodà, tute łe version le contegneva cołegamenti a $1',
+'spam_deleting' => 'Pàjina scansełà, tute łe version łe contegneva ligamenti a $1',
 
 # Info page
 'pageinfo-title' => 'Informasion par "$1"',
+'pageinfo-not-current' => 'Ne disipiaxe, ma xe inposibiłe fornir sta informasion par vecie version.',
 'pageinfo-header-basic' => 'Informassion de base',
 'pageinfo-header-edits' => 'Storia dei canbiamenti',
 'pageinfo-header-restrictions' => 'Protession de la pagina',
@@ -2859,6 +2890,7 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola magica|Parole magiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria sconta|Categorie sconte}} ($1)',
 'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Pàjina incluxa|Pàjine incluxe}} so ($1)',
 'pageinfo-toolboxlink' => 'Informassion su sta pagina',
 'pageinfo-redirectsto' => 'La rimanda a',
 'pageinfo-redirectsto-info' => 'info',
@@ -2867,6 +2899,10 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'pageinfo-protect-cascading' => 'Protession ricorsiva da qua',
 'pageinfo-protect-cascading-yes' => 'Sì',
 'pageinfo-protect-cascading-from' => 'Protession ricorsiva eredità da',
+'pageinfo-category-info' => 'Informasion so ła categoria',
+'pageinfo-category-pages' => 'Nùmaro de pàjine',
+'pageinfo-category-subcats' => 'Nùmaro de sotocategorie',
+'pageinfo-category-files' => 'Nùmaro de file',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna la modifica come verificà',
@@ -2878,6 +2914,8 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'markedaspatrollederror' => 'No se pol contrassegnar ła voxe come verificà',
 'markedaspatrollederrortext' => 'Bisogna speçificare na revixion da contrassegnar come verificà.',
 'markedaspatrollederror-noautopatrol' => 'No te ghè i parmessi necessari par segnar le to stesse modifiche come verificàe.',
+'markedaspatrollednotify' => 'Ła modifega a $1 ła xe sta segnà come verifegà.',
+'markedaspatrollederrornotify' => 'Eror durante ła verifega.',
 
 # Patrol log
 'patrol-log-page' => 'Modifiche verificàe',
@@ -2907,15 +2945,22 @@ La so esecuzion la podarìa danegiar el to computer.",
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info' => 'Dimensioni: $1, tipo MIME: $2',
 'file-info-size' => '$1 × $2 pixel, dimension del file: $3, tipo MIME: $4',
+'file-info-size-pages' => '$1 × $2 pixel, dimension del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pàjina|pàjine}}',
 'file-nohires' => 'No ghe xe version a risolussion pì granda.',
 'svg-long-desc' => 'file en formato SVG, dimension nominałi $1 × $2 pixel, dimension del file: $3',
+'svg-long-desc-animated' => 'file in formato SVG animà, dimension nominałi $1 × $2 pixel, dimension del file: $3',
+'svg-long-error' => 'File SVG mìa valido: $1',
 'show-big-image' => 'Version ad alta risołusion',
+'show-big-image-preview' => 'Dimension de sta anteprima: $1.',
+'show-big-image-other' => '{{PLURAL:$2|Altra risołusion|Altre risołusion}}: $1.',
 'show-big-image-size' => '$1 × $2 pixel',
 'file-info-gif-looped' => 'ripetù',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
 'file-info-png-looped' => 'ripetù',
 'file-info-png-repeat' => 'ripetù $1 {{PLURAL:$1|olta|olte}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogrami}}',
+'file-no-thumb-animation' => "'''Nota: a cauxa de limitasion teniche, łe miniadure de sto file nó łe sarà animae.'''",
+'file-no-thumb-animation-gif' => "'''Nota: a cauxa de limitasion teniche, łe miniadure de łe imaxeni GIF a alta risołusion come cuesta nó łe sarà animae.'''",
 
 # Special:NewFiles
 'newimages' => 'Galeria dei file novi',
@@ -2934,6 +2979,8 @@ La so esecuzion la podarìa danegiar el to computer.",
 'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
 'hours' => "{{PLURAL:$1|un'ora|$1 ore}}",
 'days' => '{{PLURAL:$1|un zorno|$1 zorni}}',
+'months' => '{{PLURAL:$1|$1 mexe|$1 mexi}}',
+'years' => '{{PLURAL:$1|$1 ano|$1 ani}}',
 'ago' => '$1 fa',
 'just-now' => 'giusto desso',
 
@@ -3077,10 +3124,79 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-gpsareainformation' => 'Nome de ła xòna GPS',
 'exif-gpsdatestamp' => 'Data GPS',
 'exif-gpsdifferential' => 'Corezion diferensiałe GPS',
+'exif-jpegfilecomment' => 'Comento del file JPEG',
+'exif-keywords' => 'Parołe ciave',
+'exif-worldregioncreated' => "Rejon del Mondo in cui l'imaxene ła xe sta fata",
+'exif-countrycreated' => 'Paexe dove xe sta fata ła someja',
+'exif-countrycodecreated' => "Còdexe del paexe 'ndove xe sta fata ła someja",
+'exif-provinceorstatecreated' => "Provincia o stato 'ndove xe sta fata ła someja",
+'exif-citycreated' => "Sità 'ndove xe sta fata ła someja",
+'exif-sublocationcreated' => 'Parte de ła sità in cui xe sta fata ła someja',
+'exif-worldregiondest' => 'Rejon del Mondo mostrà',
+'exif-countrydest' => 'Paexe mostrà',
+'exif-countrycodedest' => 'Còdexe del Paexe mostrà',
+'exif-provinceorstatedest' => 'Provincia o stato mostrà',
+'exif-citydest' => 'Sità mostrà',
+'exif-sublocationdest' => 'Parte de ła sità mostrà',
 'exif-objectname' => 'Titoło curto',
+'exif-specialinstructions' => 'Istrusion speciałi',
+'exif-headline' => 'Titoło',
+'exif-credit' => 'Crediti',
+'exif-source' => 'Fonte',
+'exif-editstatus' => "Stato de edision de l'imaxene",
+'exif-urgency' => 'Urgensa',
+'exif-fixtureidentifier' => 'Nome del riferimento',
+'exif-locationdest' => 'Locałità rafegurà',
+'exif-locationdestcode' => 'Còdexe del liogo rafegurà',
+'exif-objectcycle' => "Momento del xorno pa'l cuałe el medium el xe progetà",
+'exif-contact' => 'Informasion de contato',
+'exif-writer' => 'Scritor',
+'exif-languagecode' => 'Léngua',
+'exif-iimversion' => 'Version IIM',
+'exif-iimcategory' => 'Categoria',
+'exif-iimsupplementalcategory' => 'Categorie xontive',
+'exif-datetimeexpires' => 'Nó doparar dopo',
+'exif-datetimereleased' => 'Rełasà el',
+'exif-originaltransmissionref' => 'Còdexe del liogo de trasmision orixenaria',
+'exif-identifier' => 'Identifegativo',
+'exif-lens' => 'Lente doparà',
+'exif-serialnumber' => 'Nùmaro de serie de ła fotocamera',
+'exif-cameraownername' => 'Paron de ła fotocamera',
+'exif-label' => 'Eticheta',
+'exif-datetimemetadata' => "Data in cui i metadata i xe stai modifegai l'ultema volta",
+'exif-nickname' => "Nome informałe de l'imaxene",
+'exif-rating' => 'Vałutasion (so 5)',
+'exif-rightscertificate' => 'Certificato de gestion de i diriti',
+'exif-copyrighted' => "Informasion so'l copyright",
+'exif-copyrightowner' => 'Detentor del copyright',
+'exif-usageterms' => "Termini d'utiłixo",
+'exif-webstatement' => 'Dichiarasion online de copyright',
+'exif-originaldocumentid' => 'ID univoco del documento orixenałe',
+'exif-licenseurl' => 'URL par ła licensa del copyright',
+'exif-morepermissionsurl' => 'Informasion so łe license alternadive',
+'exif-attributionurl' => "Pa'l riutiłixo de sta òpara, se prega de inserir un ligamento ipertestuałe a",
+'exif-preferredattributionname' => "Pa'l riutiłixo de sta òpara, se prega de atribuighine ła paternidà a",
+'exif-pngfilecomment' => 'Comento del file PNG',
+'exif-disclaimer' => 'Avertense',
+'exif-contentwarning' => "Avixo so'l contegnùo",
+'exif-giffilecomment' => 'Comento del file GIF',
+'exif-intellectualgenre' => 'Tipo de elemento',
+'exif-subjectnewscode' => 'Còdexe del ogeto',
+'exif-scenecode' => 'Còdexe de sèna IPTC',
+'exif-event' => 'Evento rafegurà',
+'exif-organisationinimage' => 'Organixasion rafegurà',
+'exif-personinimage' => 'Persona rafegurà',
+'exif-originalimageheight' => "Altesa de l'imaxene prima che ła fuse tajà",
+'exif-originalimagewidth' => "Larghesa de l'imaxene prima che ła fuse tajà",
 
 # EXIF attributes
 'exif-compression-1' => 'No conpresso',
+'exif-compression-2' => 'CCITT grupo 3 monodimensionałe - codifega run length de Huffman modifegà',
+'exif-compression-3' => 'Codifega fax CCITT Group 3',
+'exif-compression-4' => 'Codifega fax CCITT gruppo 4',
+
+'exif-copyrighted-true' => 'Proteto da copyright',
+'exif-copyrighted-false' => 'Dominio pùblico',
 
 'exif-unknowndate' => 'Data sconossiùa',
 
@@ -3098,6 +3214,8 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 
 'exif-xyresolution-i' => '$1 punti par połiçe (dpi)',
 'exif-xyresolution-c' => '$1 punti par çentimetro (dpc)',
+
+'exif-colorspace-65535' => 'Nó całibrià',
 
 'exif-componentsconfiguration-0' => 'no esiste',
 
@@ -3216,6 +3334,10 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-gpslongitude-e' => 'Longitudine Est',
 'exif-gpslongitude-w' => 'Longitudine Ovest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => "$1 {{PLURAL:$1|metro|metri}} so'l liveło del mar",
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metri}} soto el liveło del mar',
+
 'exif-gpsstatus-a' => 'Mixurassion in corso',
 'exif-gpsstatus-v' => 'Mixurassion interoperabiłe',
 
@@ -3232,9 +3354,58 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-gpsdestdistance-m' => 'Mija',
 'exif-gpsdestdistance-n' => 'Mija nàutiche',
 
+'exif-gpsdop-excellent' => 'Esełente ($1)',
+'exif-gpsdop-good' => 'Bon ($1)',
+'exif-gpsdop-moderate' => 'Moderà ($1)',
+'exif-gpsdop-fair' => 'Discreto ($1)',
+'exif-gpsdop-poor' => 'Scarso ($1)',
+
+'exif-objectcycle-a' => 'Soło che ła matina',
+'exif-objectcycle-p' => 'Soło che ła sera',
+'exif-objectcycle-b' => 'Matina e sera',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Diression reałe',
 'exif-gpsdirection-m' => 'Diression magnetica',
+
+'exif-ycbcrpositioning-1' => 'Centrà',
+'exif-ycbcrpositioning-2' => 'Co-situà',
+
+'exif-dc-contributor' => 'Cołaboradori',
+'exif-dc-coverage' => 'Anbito spasiałe o tenporałe de i media',
+'exif-dc-date' => 'Data (e)',
+'exif-dc-publisher' => 'Editor',
+'exif-dc-relation' => 'File ligai',
+'exif-dc-rights' => 'Diriti',
+'exif-dc-source' => 'Fonte del file',
+'exif-dc-type' => 'Tipo de file',
+
+'exif-rating-rejected' => 'Rifiutà',
+
+'exif-isospeedratings-overflow' => 'Maxor de 65535',
+
+'exif-iimcategory-ace' => 'Arte, cultura e spetacoło',
+'exif-iimcategory-clj' => 'Criminałità e dirito',
+'exif-iimcategory-dis' => 'Dixastri e insidenti',
+'exif-iimcategory-fin' => 'Economia e afari',
+'exif-iimcategory-edu' => 'Istrusion',
+'exif-iimcategory-evn' => 'Anbiente',
+'exif-iimcategory-hth' => 'Sałute',
+'exif-iimcategory-hum' => 'Interese uman',
+'exif-iimcategory-lab' => 'Laoro',
+'exif-iimcategory-lif' => 'Stiłe de vita e tenpo libaro',
+'exif-iimcategory-pol' => 'Pułitega',
+'exif-iimcategory-rel' => 'Rełijon e fè',
+'exif-iimcategory-sci' => 'Siensa e tenołoxia',
+'exif-iimcategory-soi' => 'Cuestion sociałi',
+'exif-iimcategory-spo' => 'Spor',
+'exif-iimcategory-war' => 'Guera, radeghi e dixordeni',
+'exif-iimcategory-wea' => 'Meteo',
+
+'exif-urgency-normal' => 'Normałe ($1)',
+'exif-urgency-low' => 'Basa ($1)',
+'exif-urgency-high' => 'Alta ($1)',
+'exif-urgency-other' => 'Priorità definie dal utente ($1)',
 
 # External editor support
 'edit-externally' => 'Modifega sto file usando on programa foresto',
@@ -3304,6 +3475,7 @@ El codexe de conferma el scadarà en automatego a łe $4.',
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion de pagine tra siti wiki no la xe ativa]",
 'scarytranscludefailed' => '[Inpossibile otegner el modèl $1]',
+'scarytranscludefailed-httpstatus' => '[Eror: inposibiłe otegner el modèl $1: HTTP $2]',
 'scarytranscludetoolong' => '[La URL la xe massa longa]',
 
 # Delete conflict
@@ -3311,6 +3483,8 @@ El codexe de conferma el scadarà en automatego a łe $4.',
 'confirmrecreate' => "L'utente [[User:$1|$1]] ([[User talk:$1|discussion]]) el ga scancełà sta voxe dopo che te ghè scuminsià a modificarla, con ła seguente motivazion:
 : ''$2''
 Par piaser, conferma che te vołi dal bon ricrear sta voxe.",
+'confirmrecreate-noreason' => 'El utente [[User:$1|$1]] ([[User talk:$1|discussion]]) el ga scansełà sta voxe dopo che te ghè scuminsià a modifegarla.
+Par piaser, conferma che te vołi dal bon ricrear sta voxe.',
 'recreate' => 'Ricrea',
 
 # action=purge
@@ -3320,7 +3494,9 @@ Par piaser, conferma che te vołi dal bon ricrear sta voxe.",
 
 # action=watch/unwatch
 'confirm-watch-button' => 'Va ben',
+'confirm-watch-top' => "Xonto sta pàjina a ła to lista de łe tegnùe d'ocio?",
 'confirm-unwatch-button' => 'Va ben',
+'confirm-unwatch-top' => "Cavo sta pàjina da ła to lista de łe tegnùe d'ocio?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← la pagina prima',
@@ -3398,6 +3574,7 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'version-specialpages' => 'Pagine speciali',
 'version-parserhooks' => 'Hook del parser',
 'version-variables' => 'Variabili',
+'version-antispam' => 'Prevension del spam',
 'version-skins' => 'Aspeto grafego',
 'version-other' => 'Altro',
 'version-mediahandlers' => 'Gestori de contenuti multimediài',
@@ -3411,6 +3588,7 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'version-license' => 'Licensa',
 'version-poweredby-credits' => "Sta wiki la va con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'altri',
+'version-credits-summary' => "Semo contenti de riconosare łe seguenti persone p' 'ver contribuio a [[Special:Version|MediaWiki]].",
 'version-license-info' => "MediaWiki xe un software lìbaro; te pol redistribuirlo e/o modificarlo secondo i termini de la Licensa Publica Zeneral GNU publicà da la Free Software Foundation; secondo la version 2 de la Licensa, o (a scelta tua) una qualunque altra version sucessiva.
 
 MediaWiki el xe distribuìo sperando che el possa vegner utile, ma SENSA NISSUNA GARANSIA; sensa gnanca la garansia inplicita de COMERCIALIZASSION o de ADATAMENTO A UN USO PARTICOLARE. Varda la Licensa Publica Zeneral GNU par ulteriori detagli.
@@ -3419,6 +3597,8 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'version-software' => 'Software instalà',
 'version-software-product' => 'Prodoto',
 'version-software-version' => 'Version',
+'version-entrypoints' => 'URL de aceso',
+'version-entrypoints-header-entrypoint' => 'Punti de aceso',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
@@ -3437,15 +3617,16 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'fileduplicatesearch-info' => '$1 × $2 pixel<br />Dimension: $3<br />Tipo MIME: $4',
 'fileduplicatesearch-result-1' => 'No ghe xe duplicati conpagni del file "$1".',
 'fileduplicatesearch-result-n' => 'Ghe xe {{PLURAL:$2|un duplicato conpagno|$2 duplicati conpagni}} al file "$1".',
+'fileduplicatesearch-noresults' => 'Nisun file de nome "$1" trovà.',
 
 # Special:SpecialPages
 'specialpages' => 'Pagine speciali',
 'specialpages-note' => '----
-* Pagine speciali normali.
-* <strong class="mw-specialpagerestricted">Pagine speciali ad acesso limità.</strong>',
+* Pàjine speciałi normałi.
+* <span class="mw-specialpagerestricted">Pàjine speciałi a aceso limità.</span>',
 'specialpages-group-maintenance' => 'Resoconti de manutenzion',
 'specialpages-group-other' => 'Altre pagine speciali',
-'specialpages-group-login' => 'Login / registrazion',
+'specialpages-group-login' => 'Login / registrasion',
 'specialpages-group-changes' => 'Ultime modifiche e registri',
 'specialpages-group-media' => 'Resoconti e caricamenti dei file multimediài',
 'specialpages-group-users' => 'Utenti e diriti',
@@ -3491,6 +3672,9 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'compare-rev1' => 'Revisión 1',
 'compare-rev2' => 'Revisión 2',
 'compare-submit' => 'Confronta',
+'compare-invalid-title' => "El titoło che te ghè indicà nó 'l xe mia valido.",
+'compare-title-not-exists' => "El titoło che te ghe spesifegà nó 'l existe.",
+'compare-revision-not-exists' => 'Ła revixion che te ghe spesifegà nó ła existe.',
 
 # Database error messages
 'dberr-header' => 'Sta wiki la ga un problema',
@@ -3543,22 +3727,75 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-move-move_redir-noredirect' => '$1 ga spostà la pajina $3 a $4 al posto de un rimando sensa metare un rimando',
 'logentry-patrol-patrol' => '$1 ga segnà la revixion $4 de la pajina $3 come verifegà',
 'logentry-patrol-patrol-auto' => '$1 ga segnà automategamente la revixion $4 de la pajina $3 come verifegà',
-'logentry-newusers-newusers' => '$1 ga creà na utensa',
-'logentry-newusers-create' => '$1 ga creà na utensa',
-'logentry-newusers-create2' => '$1 ga creà na utensa $3',
+'logentry-newusers-newusers' => "L'utensa $1 xe sta creà",
+'logentry-newusers-create' => "L'utensa $1 xe sta creà",
+'logentry-newusers-create2' => 'Lutensa $3 xe sta creà da $1',
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
 'newuserlog-byemail' => 'password spedìa par e-mail',
+'logentry-rights-rights' => "$1 ga canbià l'apartenensa de $3 dal grupo $4 al grupo $5",
+'logentry-rights-rights-legacy' => "$1 ga canbià l'apartenensa a grupi de $3",
+'logentry-rights-autopromote' => '$1 xe stà automategamente promoso/a da $4 a $5',
 'rightsnone' => '(nissun)',
 
 # Feedback
+'feedback-bugornote' => 'Se se xe in grado de descrivare el problema tenico riscontrà in maniera precixa, [$1 segnałare el bug]. In alternadiva, se pol doparar el moduło senplifegà cuà soto. El comento inserio el sarà xontà a ła pàjina "[$3 $2]", insieme al propio nome utente.',
 'feedback-subject' => 'Ogeto:',
 'feedback-message' => 'Messajo:',
 'feedback-cancel' => 'Anuła',
+'feedback-submit' => 'Invia feedback',
+'feedback-adding' => 'Inserimento del feedback inte ła pàjina...',
+'feedback-error1' => 'Eror: Da ła API xe rivà un rexultà nó riconosùo',
+'feedback-error2' => 'Eror: Nó xe sta posibiłe exeguir ła modifega',
+'feedback-error3' => 'Errore: Nisuna risposta da ła API',
+'feedback-thanks' => 'Grasie! El to feedback el xe sta publicà a ła pàjina "[$2 $1]".',
 'feedback-close' => 'Fato',
+'feedback-bugcheck' => "Otimo! Verifega che nó 'l sia xà infrà i [$1 bug conosui].",
+'feedback-bugnew' => 'Controło efetuà. Segnała un novo bug',
 
 # Search suggestions
 'searchsuggest-search' => 'Serca',
 'searchsuggest-containing' => 'che contien...',
+
+# API errors
+'api-error-badaccess-groups' => 'Nó te si autorixà a cargar documenti so sta wiki.',
+'api-error-badtoken' => 'Eror interno: token fałà.',
+'api-error-copyuploaddisabled' => 'El cargamento tramite URL el xe dixabiłità so sto server.',
+'api-error-duplicate' => "So'l sito {{PLURAL:$1|ghe xe xà [$2 'n altro documento]|ghe xe xà [$2 altri documenti]}} có 'l steso contegnuo.",
+'api-error-duplicate-archive' => "{{PLURAL:$1|Ghe xera [$2 'n altro file]|Ghe xera [$2 altri file]}} xà inte'l sito có 'l steso contegnuo, ma {{PLURAL:$1|el xe sta scansełà|i xe stai scansełai}}.",
+'api-error-duplicate-archive-popup-title' => 'File duplic{{PLURAL:$1|à che xe xà sta scansełà|ai che i xe xà stai scansełai}}',
+'api-error-duplicate-popup-title' => '{{PLURAL:$1|documento duplicà|documenti duplicai}}',
+'api-error-empty-file' => 'El file sełesionà el gera vodo.',
+'api-error-emptypage' => 'Ła creasion de nove pàjine vode nó ła xe consentia.',
+'api-error-fetchfileerror' => 'Eror interno: ghe xe sta un problema durante el recupero del documento.',
+'api-error-fileexists-forbidden' => 'Un file de nome "$1" \'l existe xà e nò \'l pol esar sovrascrito.',
+'api-error-fileexists-shared-forbidden' => 'Un file de nome "$1" \'l existe xà inte\'l repository condivixo e nó \'l pol esar sovrascrito.',
+'api-error-file-too-large' => 'El file sełesionà el gera masa grando.',
+'api-error-filename-tooshort' => 'El nome del file el xe massa curto.',
+'api-error-filetype-banned' => 'Sto tipo de file el xe vietà.',
+'api-error-filetype-banned-type' => "$1 {{PLURAL:$4|nó 'l xe un tipo de file consentio|nó i xe tipi de file consentìi}}. {{PLURAL:$3|El tipo de file consentio el xe|I tipi de file consentìi i xe}} $2.",
+'api-error-filetype-missing' => "Al file ghe manca l'estension.",
+'api-error-hookaborted' => 'Ła modifega che te ghe proà a far ła xe sta interota da na estension.',
+'api-error-http' => 'Eror interno: inposibiłe conetarse al server.',
+'api-error-illegal-filename' => "El nome del file nó 'l xe parmeso.",
+'api-error-internal-error' => "Eror interno: calcosa xe ndà storo có l'elaborasion del to cargamento so ła wiki.",
+'api-error-invalid-file-key' => 'Eror interno: file nó prexente inte ła carteła de i file tenporanei.',
+'api-error-missingparam' => 'Eror interno: parametri de ła dimanda mancanti.',
+'api-error-missingresult' => 'Eror interno: inposibiłe determinar se ła copia ła xe riusia.',
+'api-error-mustbeloggedin' => "Te ghe da efetuar 'l aceso par cargar i file.",
+'api-error-mustbeposted' => 'Eror interno: ła dimanda dimanda HTTP POST.',
+'api-error-noimageinfo' => "El cargamento el xe riusio, ma 'l server nó el ne ga dato gnauna informasion so'l file.",
+'api-error-nomodule' => 'Eror interno: nó xe sta inpostà el moduło de cargamento.',
+'api-error-ok-but-empty' => 'Eror interno: nisuna risposta dal server.',
+'api-error-overwrite' => 'Nó xe parmeso de sorascrìvar un file existente.',
+'api-error-stashfailed' => "Eror interno: el server nó 'l xe riusio a memorixar el documento tenporaneo.",
+'api-error-timeout' => "El server nó 'l ga risposto entro el tenpo previsto.",
+'api-error-unclassified' => 'Se gà verifegà un eror sconosùo.',
+'api-error-unknown-code' => 'Eror sconosùo: "$1"',
+'api-error-unknown-error' => 'Eror interno: calcosa xe ndà storto có se jera drio proar a cargar el file.',
+'api-error-unknown-warning' => 'Avixo sconosùo: "$1".',
+'api-error-unknownerror' => 'Eror sconosùo: "$1".',
+'api-error-uploaddisabled' => 'El cargamento el xe dixabiłità so sta wiki.',
+'api-error-verification-error' => "Sto file el podaria esar danegià, o 'ver l'estension sbałià.",
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|secondo|secondi}}',

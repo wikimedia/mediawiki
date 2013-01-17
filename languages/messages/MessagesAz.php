@@ -594,7 +594,7 @@ Müvəqqəti parol: $2',
 'changeemail' => 'E-məktub ünvanını dəyiş',
 'changeemail-oldemail' => 'Hazırki e-poçt ünvanı:',
 'changeemail-newemail' => 'Yeni e-poçt ünvanı:',
-'changeemail-none' => '(heç biri)',
+'changeemail-none' => '(yoxdur)',
 'changeemail-submit' => 'E-poçtu dəyiş',
 'changeemail-cancel' => 'İmtina',
 
@@ -2986,7 +2986,7 @@ Bu saytda texniki problemlər var.',
 'logentry-newusers-create2' => '$1 $3 üçün istifadəçi hesabı yaratdı',
 'logentry-newusers-autocreate' => '$1 hesabı avtomatik yaradıldı',
 'newuserlog-byemail' => 'parol e-maillə göndərildi',
-'rightsnone' => '(heç biri)',
+'rightsnone' => '(yoxdur)',
 
 # Feedback
 'feedback-subject' => 'Mövzu:',

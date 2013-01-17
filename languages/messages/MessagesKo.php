@@ -1424,7 +1424,7 @@ $1",
 'powersearch-field' => '찾기',
 'powersearch-togglelabel' => '확인:',
 'powersearch-toggleall' => '모두 선택',
-'powersearch-togglenone' => '모두 선택하지 않음',
+'powersearch-togglenone' => '없음',
 'search-external' => '바깥 찾기',
 'searchdisabled' => '{{SITENAME}} 찾기 기능이 비활성화되어 있습니다.
 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 찾을 수 있습니다.

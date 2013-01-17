@@ -401,9 +401,11 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 # Rights
 'right-delete' => 'Am sayfape jili',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ağani maxmareş kʼayitʼepe',
+
 # User rights log
 'rightslog' => 'Maxmareş hakʼişi kʼayitʼepe',
-'rightsnone' => '(Va ren)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "am sayfa ik'itxi",
@@ -502,9 +504,6 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 
 # Special:LinkSearch
 'linksearch' => 'Galeni kʼontaktʼepe',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Ağani maxmareş kʼayitʼepe',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(makʼaturepeşi listʼe)',
@@ -776,5 +775,8 @@ Ukʼaçxe na mulunan kʼontʼaktʼepe istʼisna oqʼopinot kʼabuli ixvenen. Mes
 
 # Special:SpecialPages
 'specialpages' => 'Doxmeli butʼkʼape',
+
+# New logging system
+'rightsnone' => '(Va ren)',
 
 );

@@ -647,6 +647,9 @@ Ga re fane ka e-poso ya gago go bašumiši ba bangwe ge ba polela le wena ka yon
 'right-edit' => 'Fetola matlakala',
 'right-move' => 'Huduša matlakala',
 
+# Special:Log/newusers
+'newuserlogpage' => '"Log" yago hlola mošumiši',
+
 # User rights log
 'rightslog' => "''log'' ya ditumello tša mošomiši",
 
@@ -863,9 +866,6 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 # Special:ListUsers
 'listusers-submit' => 'Bontšha',
 
-# Special:Log/newusers
-'newuserlogpage' => '"Log" yago hlola mošumiši',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(Lenano la ditho)',
 
@@ -906,6 +906,8 @@ Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiš
 'enotif_impersonal_salutation' => '{{SITENAME}} mošumiši',
 'enotif_lastvisited' => 'Lebelela  $1 go bona diphetogo ka moka gotloga ge go tsena la mafelelo.',
 'enotif_lastdiff' => 'Bona $1 go nyakorela phetogo ye.',
+'created' => 'tlhodilwe',
+'changed' => 'fetotšwe',
 
 # Delete
 'deletepage' => 'Phumula letlakala',

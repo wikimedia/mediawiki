@@ -445,6 +445,9 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:Съмотритєлє',
 'grouppage-bureaucrat' => '{{ns:project}}:Чинодатєлє',
 
+# Special:Log/newusers
+'newuserlogpage' => 'новъ мѣстъ сътворѥниꙗ їсторїꙗ',
+
 # User rights log
 'rightslog' => 'чинодатєльства їсторїꙗ',
 
@@ -596,9 +599,6 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'виждь',
 
-# Special:Log/newusers
-'newuserlogpage' => 'новъ мѣстъ сътворѥниꙗ їсторїꙗ',
-
 # E-mail user
 'emailuser' => 'посъли єпїстолѫ',
 
@@ -615,6 +615,8 @@ $messages = array(
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'блюдєниѥ ...',
 'unwatching' => 'оставьлєниѥ блюдєниꙗ ...',
+
+'created' => 'сътворѥнъ ѥстъ',
 
 # Delete
 'deletepage' => 'поничьжєниѥ',

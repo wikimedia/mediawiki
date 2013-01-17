@@ -9686,6 +9686,15 @@ Controlla il tuo file php.ini ed assicurati che <code>session.save_path</code> �
 	'config-welcome' => "=== Controllo dell'ambiente ===
 Vengono eseguiti controlli di base per vedere se questo ambiente è adatto per l'installazione di MediaWiki.
 Se hai bisogno di aiuto durante l'installazione, è necessario fornire i risultati di questi controlli.",
+	'config-sidebar' => '* [//www.mediawiki.org Pagina principale MediaWiki]
+* [//www.mediawiki.org/wiki/Aiuto:Guida ai contenuti per utenti]
+* [//www.mediawiki.org/wiki/Manuale:Guida ai contenuti per admin]
+* [//www.mediawiki.org/wiki/Manuale:FAQ FAQ]
+----
+* <doclink href=Readme>Leggimi</doclink>
+* <doclink href=ReleaseNotes>Note di versione</doclink>
+* <doclink href=Copying>Copie</doclink>
+* <doclink href=UpgradeDoc>Aggiornamenti</doclink>',
 	'config-env-good' => "L'ambiente è stato controllato.
 È possibile installare MediaWiki.",
 	'config-env-bad' => "L'ambiente è stato controllato.

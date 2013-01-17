@@ -762,6 +762,9 @@ Nyns yw disqwedhys agas trigva ebost pan wrella devnydhyoryon erel kestava dhywg
 'right-upload' => 'Ughcarga restrennow',
 'right-delete' => 'Dilea folennow',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Covnoten formya acontow devnydhyer',
+
 # User rights log
 'rightslog' => 'Covnoten wiryow an devnydhyer',
 
@@ -953,9 +956,6 @@ Yma'n descrifans war y [$2 folen dhescrifans] disqwedhys a-woles.",
 
 # Special:ListUsers
 'listusers-submit' => 'Disqwedhes',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Covnoten formya acontow devnydhyer',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(rol esely)',

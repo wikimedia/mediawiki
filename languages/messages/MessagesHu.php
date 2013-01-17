@@ -1287,7 +1287,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'editundo' => 'visszavonás',
 'diff-multi' => '({{PLURAL:$2|egy|$2}} szerkesztő {{PLURAL:$1|egy|$1}} közbeeső változata nincs mutatva)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
-'difference-missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 változata nem létezik.
+'difference-missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 $2 változata nem létezik.
 
 Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.',
 
@@ -2216,7 +2216,7 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'linksearch-ok' => 'keresés',
 'linksearch-text' => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org".
 Legalább egy felső szintű tartománynak lennie kell, például "*.org"<br />
-Támogatott protokollok: <code>$1</code> (http:// az alapértelmezett, ha nincs protokoll megadva).',
+Támogatott {{PLURAL:$2|protokoll|protokollok}}: <code>$1</code> (http:// az alapértelmezett, ha nincs protokoll megadva).',
 'linksearch-line' => '$1 hivatkozva innen: $2',
 'linksearch-error' => 'Helyettesítő karakterek csak a cím elején szerepelhetnek.',
 
@@ -2456,8 +2456,8 @@ be van kapcsolva a kaszkád védelem.
 Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszkád védelemre.',
 'protect-default' => 'Minden szerkesztő számára engedélyezett',
 'protect-fallback' => '"$1" engedély szükséges hozzá',
-'protect-level-autoconfirmed' => 'Nem és frissen regisztrált szerkesztők blokkolása',
-'protect-level-sysop' => 'Csak adminisztrátorok',
+'protect-level-autoconfirmed' => 'Csak automatikusan ellenőrzött szerkesztőknek engedélyezett (nem vagy frissen regisztráltaknak nem)',
+'protect-level-sysop' => 'Csak adminisztrátoroknak engedélyezett',
 'protect-summary-cascade' => 'kaszkád védelem',
 'protect-expiring' => 'lejár: $1 (UTC)',
 'protect-expiring-local' => 'lejárat: $1',

@@ -487,8 +487,8 @@ Paesswatt fer nau: $2',
 'right-writeapi' => 'Yuus vun write API',
 'right-delete' => 'Bledder lesche',
 
-# User rights log
-'rightsnone' => '(ken)',
+# Special:Log/newusers
+'newuserlogpage' => 'Logbuch vun neie Yuuser',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'es Blatt zu lese',
@@ -668,9 +668,6 @@ Paesswatt fer nau: $2',
 'activeusers-hidebots' => 'Waddefresser verschwinne losse',
 'activeusers-hidesysops' => 'Verwalter verschwinne losse',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Logbuch vun neie Yuuser',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Rechte vun Yuuser-Druppe',
 'listgrouprights-group' => 'Druppe',
@@ -707,6 +704,7 @@ Paesswatt fer nau: $2',
 'unwatching' => 'Nimmi watsche...',
 
 'enotif_impersonal_salutation' => '{{SITENAME}}-Yuuser',
+'changed' => 'gennert',
 
 # Delete
 'deletepage' => 'Blatt lesche',
@@ -1011,6 +1009,9 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 # HTML forms
 'htmlform-reset' => 'Enneringe losmache',
 'htmlform-selectorother-other' => 'Annere',
+
+# New logging system
+'rightsnone' => '(ken)',
 
 # Feedback
 'feedback-message' => 'Melding:',

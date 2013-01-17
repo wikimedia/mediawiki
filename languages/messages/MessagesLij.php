@@ -651,6 +651,9 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 
 'grouppage-sysop' => '{{ns:project}}:Amministratoî',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nêuvi utenti',
+
 # User rights log
 'rightslog' => "Diritti d'ûtente",
 
@@ -864,9 +867,6 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'listusers-submit' => 'Fanni vedde',
 'listusers-noresult' => 'Utente non trovöo.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Nêuvi utenti',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(Elenco di membri)',
 
@@ -905,6 +905,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'unwatching' => 'Scassâ da-i osservæ speçiâli',
 
 'enotif_anon_editor' => 'ûtente anònnimo $1',
+'changed' => 'cangiâ',
 
 # Delete
 'deletepage' => 'Scassa a paggina',

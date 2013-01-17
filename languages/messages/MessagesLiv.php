@@ -372,6 +372,9 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 
 'grouppage-sysop' => '{{ns:project}}:Administrātord',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Kȭlbatijizt lūomiz log',
+
 # User rights log
 'rightslog' => 'Kȭlbatijiz õigõmt log',
 
@@ -487,9 +490,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 # Special:LinkSearch
 'linksearch' => 'Uļļizt siḑīmõd',
 'linksearch-line' => '$1 um sidtõd līedst $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Kȭlbatijizt lūomiz log',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(nõtkõmd nimkēra)',

@@ -708,8 +708,6 @@ $1 {{int:pipe-separator}} $2',
 # User rights log
 'rightslog' => 'Logga geavaheaddjirievttiin',
 'rightslogtext' => 'Vuolábealde lea logga geavaheaddjirivttiid rievdadusain.',
-'rightslogentry' => 'Geavaheaddji $1 rievttit rievdaduvvoi joavkkuin $2 joavkkuide $3',
-'rightsnone' => '(eai rievttit)',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|rievdadus|rievdadusa}}',
@@ -1044,6 +1042,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'enotif_lastvisited' => 'Čujuhusas $1 leat buot rievdadusat du maŋimus geavahangearddi maŋŋá.',
 'enotif_lastdiff' => 'Rievdadus lea čujuhusas $1.',
 'enotif_anon_editor' => 'registereretkeahtes geavaheaddji $1',
+'created' => 'álggahan siiddu',
+'changed' => 'rievdadan siiddu',
 
 # Delete
 'deletepage' => 'Sihko siiddu',
@@ -1465,6 +1465,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'logentry-move-move_redir-noredirect' => '$1 sirddii siiddu $3 nammii $4 iige ráhkadan ođđasitstivrema',
 'logentry-newusers-create' => '$1 ráhkadii dovddaldaga',
 'logentry-newusers-autocreate' => 'Dovddaldat $1 ráhkaduvvui automáhtalaččat',
+'rightsnone' => '(eai rievttit)',
 
 # Search suggestions
 'searchsuggest-search' => 'Oza',

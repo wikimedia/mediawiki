@@ -894,11 +894,13 @@ Your e-mail address is not revealed when other users contact you.
 'right-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
 'right-sendemail' => 'အခြားအသုံးပြုသူများကို အီးမေးပို့ရန်',
 
+# Special:Log/newusers
+'newuserlogpage' => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
+'newuserlogpagetext' => 'ဤသည်မှာ အသုံးပြုသူအသစ် ဖတ်တီးမှု မှတ်တမ်း ဖြစ်သည်။',
+
 # User rights log
 'rightslog' => 'အသုံးပြုသူ၏ အခွင့်အရေးများ မှတ်တမ်း',
 'rightslogtext' => 'ဤသည်မှာ အသုံးပြုသူအခွင့်အရေးများ၏ ပြောင်းလဲမှုများမှတ်တမ်းဖြစ်သည်။',
-'rightslogentry' => '$1 အတွက် အုပ်စုအသင်ဝင်ဖြစ်မှုကို အုပ်စု $2 မှ အုပ်စု $3 သို့ ပြောင်းလဲပြီး',
-'rightsnone' => '(ဘာမှမရှိ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ဤစာမျက်နှာကို ဖတ်ရန်',
@@ -1261,10 +1263,6 @@ Your e-mail address is not revealed when other users contact you.
 'activeusers-hidesysops' => 'အက်ဒမင်များကို ဝှက်ရန်',
 'activeusers-noresult' => 'အသုံးပြုသူ မတွေ့ပါ။',
 
-# Special:Log/newusers
-'newuserlogpage' => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
-'newuserlogpagetext' => 'ဤသည်မှာ အသုံးပြုသူအသစ် ဖတ်တီးမှု မှတ်တမ်း ဖြစ်သည်။',
-
 # Special:ListGroupRights
 'listgrouprights' => 'အသုံးပြုသူအုပ်စု အခွင့်အရေးများ',
 'listgrouprights-group' => 'အုပ်စု',
@@ -1320,6 +1318,8 @@ Your e-mail address is not revealed when other users contact you.
 
 'enotif_impersonal_salutation' => '{{SITENAME}} အသုံးပြုသူ',
 'enotif_anon_editor' => 'အမည်မသိ အသုံးပြုသူ $1',
+'created' => 'ဖန်တီးလိုက်သည်',
+'changed' => 'ပြောင်းလဲလိုက်သည်',
 
 # Delete
 'deletepage' => 'စာမျက်နှာကိုဖျက်ပါ',
@@ -1909,6 +1909,7 @@ Your e-mail address is not revealed when other users contact you.
 'revdelete-restricted' => 'အက်ဒမင်များသို့ ကန့်သတ်ချက်များ သက်ရောက်ရန်',
 'revdelete-unrestricted' => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
 'newuserlog-byemail' => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
+'rightsnone' => '(ဘာမှမရှိ)',
 
 # API errors
 'api-error-filename-tooshort' => 'ဖိုင်အမည်သည် တိုလွန်းသည်။',

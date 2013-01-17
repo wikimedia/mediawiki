@@ -535,6 +535,10 @@ $messages = array(
 # User rights
 'editinguser' => 'ຜູ້ໃຊ້ <b>$1</b> ພວມດັດແກ້ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ບັນທຶກການສ້າງບັນຊີຜູ້ໃຊ້',
+'newuserlogpagetext' => 'ນີ້ແມ່ນ ບັນທຶກການສ້າງ ບັນຊີຜູ້ໃຊ້ໃໝ່',
+
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ການປ່ຽນແປງ|ການປ່ຽນແປງ}}',
 'recentchanges' => 'ການດັດແກ້ຫຼ້າສຸດ',
@@ -683,10 +687,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListUsers
 'listusers-submit' => 'ສະແດງ',
 
-# Special:Log/newusers
-'newuserlogpage' => 'ບັນທຶກການສ້າງບັນຊີຜູ້ໃຊ້',
-'newuserlogpagetext' => 'ນີ້ແມ່ນ ບັນທຶກການສ້າງ ບັນຊີຜູ້ໃຊ້ໃໝ່',
-
 # E-mail user
 'emailuser' => 'ສົ່ງອີເມລ ຫາ ຜູ້ໃຊ້ນີ້',
 'emailpage' => 'ສົ່ງອີເມລ ຫາ ຜູ້ໃຊ້',
@@ -722,6 +722,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatching' => 'ພວມເຊົາຕິດຕາມ...',
 
 'enotif_lastvisited' => 'ເບິ່ງ $1 ເພື່ອ ທຸກໆການປ່ຽນແປງ ຕັ້ງແຕ່ເທື່ອສຸດທ້າຍ ທີ່ ທ່ານເຂົ້າຫາ.',
+'created' => 'ສ້າງແລ້ວ',
+'changed' => 'ປ່ຽນແລ້ວ',
 
 # Delete
 'confirm' => 'ຢືນຢັນ',

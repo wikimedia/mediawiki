@@ -739,7 +739,6 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 
 # User rights log
 'rightslog' => 'Tlatequitiltilīlli huelītiliztli tlahcuilōlloh',
-'rightsnone' => 'ahtlein',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ticpōhuāz inīn zāzanilli',
@@ -1058,6 +1057,8 @@ $UNWATCHURL
 
 Tētlamachītīliztli īhuān oc yeh tēpalehuiliztli:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'ōmochīuh',
+'changed' => 'ōmotlacuep',
 
 # Delete
 'deletepage' => 'Ticpolōz inīn zāzanilli',
@@ -1502,6 +1503,9 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Occē',
+
+# New logging system
+'rightsnone' => 'ahtlein',
 
 # Search suggestions
 'searchsuggest-search' => 'Tlatēmoliztli',

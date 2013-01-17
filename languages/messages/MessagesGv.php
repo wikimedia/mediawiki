@@ -707,9 +707,11 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'right-upload' => 'Laadey neese coadanyn',
 'right-delete' => 'Duillag y scryssey',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Lioar chooishyn ny h-ymmydeyryn noa',
+
 # User rights log
 'rightslog' => 'Lioar chooishyn kiartyn ymmydeyr',
-'rightsnone' => '(veg)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'y duillag shoh y lhaih',
@@ -953,9 +955,6 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 # Special:ListUsers
 'listusers-submit' => 'Taishbyn',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Lioar chooishyn ny h-ymmydeyryn noa',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Possan',
 'listgrouprights-rights' => 'Kiartyn',
@@ -1028,6 +1027,8 @@ $UNWATCHURL
 
 Aaveaghey as cooney s\'odjey:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'crooit',
+'changed' => 'ceaghlit',
 
 # Delete
 'deletepage' => 'Scryss y duillag',
@@ -1466,6 +1467,9 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 
 # Special:Tags
 'tags-edit' => 'reaghey',
+
+# New logging system
+'rightsnone' => '(veg)',
 
 # Search suggestions
 'searchsuggest-search' => 'Ronsaghey',

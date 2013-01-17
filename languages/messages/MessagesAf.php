@@ -255,7 +255,7 @@ $messages = array(
 
 'underline-always' => 'Altyd',
 'underline-never' => 'Nooit',
-'underline-default' => 'Blaaierverstek',
+'underline-default' => 'Standaard in u omslag of webblaaier',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Lettertipe vir wysigingsvenster:',
@@ -340,6 +340,7 @@ $messages = array(
 'newwindow' => '(verskyn in nuwe venster)',
 'cancel' => 'Kanselleer',
 'moredotdotdot' => 'Meer…',
+'morenotlisted' => 'Meer nie gelys nie...',
 'mypage' => 'Gebruikersblad',
 'mytalk' => 'Bespreking',
 'anontalk' => 'Besprekingsblad vir hierdie IP',
@@ -363,7 +364,7 @@ $messages = array(
 'vector-action-protect' => 'Beskerm',
 'vector-action-undelete' => 'Ontskrap',
 'vector-action-unprotect' => 'Wysig beskerming',
-'vector-simplesearch-preference' => 'Aktiveer verbeterde soek-voorstelle (slegs vir die Vektor omslag)',
+'vector-simplesearch-preference' => 'Aktiveer vereenvoudigde soekbalk (slegs vir die Vektor-omslag)',
 'vector-view-create' => 'Skep',
 'vector-view-edit' => 'Wysig',
 'vector-view-history' => 'Wys geskiedenis',
@@ -586,10 +587,11 @@ Navraag: $2',
 'actionthrottled' => 'Outo-rem op aksie uitgevoer',
 'actionthrottledtext' => "As 'n teen-strooi aksie, word u beperk om hierdie aksie te veel keer in 'n kort tyd uit te voer, en u het hierdie limiet oorskry.
 Probeer asseblief weer oor 'n paar minute.",
-'protectedpagetext' => 'Hierdie bladsy is beskerm om redigering te verhoed.',
+'protectedpagetext' => 'Hierdie bladsy is beskerm om wysigings en ander aksies te verhoed.',
 'viewsourcetext' => 'U mag die bronteks van hierdie bladsy lees en kopieer:',
 'viewyourtext' => "U kan '''u wysigings''' aan die bronteks van hierdie bladsy bekyk en kopieer:",
-'protectedinterface' => 'Hierdie bladsy verskaf teks vir die koppelvlak van die sagteware, en is beskerm om misbruik te voorkom.',
+'protectedinterface' => 'Hierdie bladsy verskaf teks vir die koppelvlak van die sagteware, en is beskerm om misbruik te voorkom.
+Gebruik asseblief [//translatewiki.net/ translatewiki.net] om vertalings by te voeg of te wysig.',
 'editinginterface' => "'''Waarskuwing:''' U is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, oorweeg om eerder [//translatewiki.net/wiki/Main_Page?setlang=af translatewiki.net] (die vertalingsprojek vir MediaWiki) te gebruik.",
 'sqlhidden' => '(SQL navraag versteek)',
 'cascadeprotected' => 'Hierdie bladsy is beskerm teen redigering omdat dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat beskerm is met die "kaskade" opsie aangeskakel: $2',
@@ -713,6 +715,7 @@ Wag asseblief alvorens u weer probeer.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
 'user-mail-no-addy' => "Geprobeer om e-pos te stuur sonder 'n e-posadres.",
+'user-mail-no-body' => "Daar is probeer om 'n leë of 'n onredelike kort boodskap te stuur.",
 
 # Change password dialog
 'resetpass' => 'Verander wagwoord',
@@ -1139,7 +1142,9 @@ Kontroleer asseblief die logboeke.",
 'revdelete-only-restricted' => "'n Fout het voorgekom met die verberging van die item van $1, $2: u kan nie items onderdruk uit die sig van administrateurs sonder om ook een van die ander sigbaarheidsopsies te kies nie.",
 'revdelete-reason-dropdown' => '* Algemene redes vir skrapping
 ** Skending van outeursreg
-** Onbetaamlike persoonlike inligting',
+** Onbetaamlike persoonlike inligting
+** Onbetaamlike gebruikersnaam
+** Potensieel lasterlike gegewens',
 'revdelete-otherreason' => 'Ander rede:',
 'revdelete-reasonotherlist' => 'Ander rede',
 'revdelete-edit-reasonlist' => 'Wysig skrap redes',
@@ -1348,9 +1353,9 @@ Die aksie kan nie ongedaan gemaak word nie.',
 'prefs-emailconfirm-label' => 'E-posbevestiging:',
 'prefs-textboxsize' => 'Afmetings van die wysigingsvenster',
 'youremail' => 'E-pos',
-'username' => 'Gebruikersnaam:',
+'username' => '{{GENDER:$1|Gebruikersnaam}}:',
 'uid' => '{{GENDER:$1|Gebruikersnommer}}:',
-'prefs-memberingroups' => 'Lid van {{PLURAL:$1|groep|groepe}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepe}}:',
 'prefs-registration' => 'Registrasiedatum:',
 'yourrealname' => 'Regte naam:',
 'yourlanguage' => 'Taal:',
@@ -1767,7 +1772,7 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'backend-fail-internal' => "'n Onbekende fout het in die agterliggende stoorspasie $1 voorgekom.",
 'backend-fail-contenttype' => 'Kon nie die inhoudstipe van die lêer bepaal om na "$1" te stoor nie.',
 'backend-fail-batchsize' => "Die agterliggende stoorspasie het 'n groep van $1 {{PLURAL:$1|operasie|operasies}} ontvang; die limiet is $2 {{PLURAL:$2|operasie|operasies}}.",
-'backend-fail-usable' => 'Kon nie na die lêer "$1" skryf nie vanweë onvoldoende regte of gidse wat nie bestaan nie.',
+'backend-fail-usable' => 'Kon nie die lêer "$1" lees of skryf nie vanweë onvoldoende regte of gidse wat nie bestaan nie.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kon nie na die joernaal-databasis op die agterliggende stoorspasie "$1" konnekteer nie.',
@@ -2141,7 +2146,7 @@ Sie ook [[Special:WantedCategories|nie-bestaande kategorieë met verwysings]].',
 'linksearch-ok' => 'Soek',
 'linksearch-text' => 'Patrone soos "*.wikipedia.org" kan gebruik word.<br />
 Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
-Ondersteunde protokolle: <code>$1</code> (moenie hierdie in u soektog gebruik nie)',
+{{PLURAL:$2|Ondersteunde protokol|Ondersteunde protokolle}}: <code>$1</code> (http:// word gebruik as niks gespesifiseer is nie)',
 'linksearch-line' => '$1 geskakel vanaf $2',
 'linksearch-error' => 'Patrone kan slegs aan die begin van die rekenaarnaam geplaas word.',
 
@@ -2186,7 +2191,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'emailuser-title-target' => 'E-pos die {{GENDER:$1|gebruiker}}',
 'emailuser-title-notarget' => 'E-pos gebruiker',
 'emailpage' => 'Stuur e-pos na gebruiker',
-'emailpagetext' => 'As dié gebruiker \'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm \'n enkele boodskap stuur. Die e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] sal verkyn as die "Van"-adres van die pos. Dus sal die ontvanger kan terug antwoord.',
+'emailpagetext' => 'As {{GENDER:$1|dié gebruiker}} \'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm \'n enkele boodskap stuur. Die e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] sal verskyn as die "Van"-adres van die pos. Dus sal die ontvanger kan terug antwoord.',
 'usermailererror' => 'Fout met versending van e-pos:',
 'defemailsubject' => 'E-pos van {{SITENAME}}-gebruiker "$1"',
 'usermaildisabled' => 'E-pos deur gebruikers is gedeaktiveer.',
@@ -2225,9 +2230,8 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'watchnologintext' => 'U moet [[Special:UserLogin|ingeteken]]
 wees om u dophoulys te verander.',
 'addwatch' => 'Voeg by dophoulys',
-'addedwatchtext' => "Die bladsy \"[[:\$1]]\" is by u [[Special:Watchlist|dophoulys]] bygevoeg. Toekomstige wysigings aan hierdie bladsy en sy verwante besprekingsblad sal op [[Special:Watchlist|u dophoulys]] gelys word en sal in '''vetdruk''' in die [[Special:RecentChanges|lys van onlangse wysigings]] vertoon word, sodat u dit makliker kan raaksien.
-
-As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoulys\" in die kieslys bo-aan die bladsy.",
+'addedwatchtext' => 'Die bladsy "[[:$1]]" is by u [[Special:Watchlist|dophoulys]] bygevoeg.
+Toekomstige wysigings aan hierdie bladsy en sy bybehorende besprekingsblad sal hier gelys word.',
 'removewatch' => 'Verwyder van dophoulys',
 'removedwatchtext' => 'Die bladsy "[[:$1]]" is van [[Special:Watchlist|u dophoulys]] afgehaal.',
 'watch' => 'Hou dop',
@@ -2261,14 +2265,17 @@ As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoul
 'enotif_subject_moved' => '{{SITENAME}}: bladsy $1 is geskuif deur {{GENDER:$2|$2}}',
 'enotif_subject_restored' => '{{SITENAME}}: bladsy $1 is teruggeplaas deur {{GENDER:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}}: bladsy $1 is gewysig deur {{GENDER:$2|$2}}',
+'enotif_body_intro_deleted' => 'Die bladsy $1 op {{SITENAME}} is deur {{gender:$2|$2}} op $PAGEEDITDATE verwyder. Sien $3 vir die huidige weergawe.',
+'enotif_body_intro_created' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE geskep. Sien $3 vir die huidige weergawe.',
+'enotif_body_intro_moved' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE hernoem. Sien $3 vir die huidige weergawe.',
+'enotif_body_intro_restored' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE teruggeplaas. Sien $3 vir die huidige weergawe.',
+'enotif_body_intro_changed' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE gewysig. Sien $3 vir die huidige weergawe.',
 'enotif_lastvisited' => 'Sien $1 vir alle wysigings sedert u laaste besoek.',
 'enotif_lastdiff' => 'Sien $1 om hierdie wysiging te bekyk.',
 'enotif_anon_editor' => 'anonieme gebruiker $1',
 'enotif_body' => 'Beste $WATCHINGUSERNAME,
 
-Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, sien $PAGETITLE_URL vir die nuutste weergawe.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Samevatting van die wysiging: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2277,7 +2284,7 @@ E-pos: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
 Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie.
-U kan ook die waarskuwingsvlag op u dophoulys verstel.
+U kan ook die waarskuwingsvlag op u dophoulys stel.
 
 Groete van {{SITENAME}} se waarskuwingssisteem.
 
@@ -2366,6 +2373,8 @@ Sien die [[Special:ProtectedPages|lys van beveiligde bladsye]] vir alle bladsye 
 'prot_1movedto2' => 'het [[$1]] geskuif na [[$2]]',
 'protect-badnamespace-title' => 'Nie-beskermde naamruimte',
 'protect-badnamespace-text' => 'Bladsye in hierdie naamruimte kan nie beskerm word nie.',
+'protect-norestrictiontypes-text' => 'Die bladsy kan nie beveilig word nie omdat daar geen beperkingstipes beskikbaar is nie.',
+'protect-norestrictiontypes-title' => 'Nie beveiligbare bladsy',
 'protect-legend' => 'Bevestig beskerming',
 'protectcomment' => 'Rede:',
 'protectexpiry' => 'Verval:',
@@ -2381,9 +2390,9 @@ Hier volg die huidige instellings vir bladsy '''$1''':",
 Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-cascadeon' => 'Die bladsy word beskerm want dit is ingesluit by die volgende {{PLURAL:$1|blad|blaaie}} wat kaskade-beskerming geniet. U kan die veiligheidsvlak van die bladsy verander, maar dit sal nie die ander kaskade blaaie beïnvloed nie.',
 'protect-default' => 'Laat alle gebruikers toe',
-'protect-fallback' => 'Hiervoor is "$1" regte nodig',
-'protect-level-autoconfirmed' => 'Blokkeer nuwe en ongeregistreerde gebruikers',
-'protect-level-sysop' => 'Slegs administrateurs',
+'protect-fallback' => 'Laat slegs gebruikers met "$1" regte toe',
+'protect-level-autoconfirmed' => 'Laat slegs "autoconfirmed" gebruikers toe',
+'protect-level-sysop' => 'Laat slegs administrateurs toe',
 'protect-summary-cascade' => 'kaskade',
 'protect-expiring' => 'verval op $2 om $3 (UTC)',
 'protect-expiring-local' => 'verval op $1',
@@ -2449,7 +2458,8 @@ U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit d
 'undeletedrevisions' => '{{PLURAL:$1|1 weergawe|$1 weergawes}} herstel',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 weergawe|$1 weergawes}} en {{PLURAL:$2|1 lêer|$2 lêers}} herstel',
 'undeletedfiles' => '{{PLURAL:$1|1 lêer|$1 lêers}} herstel',
-'cannotundelete' => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
+'cannotundelete' => 'Terugplasing was onsuksesvol:
+$1',
 'undeletedpage' => "'''$1 is teruggeplaas'''
 
 Konsulteer die [[Special:Log/delete|verwyderingslogboek]] vir 'n rekord van onlangse verwyderings en terugplasings.",
@@ -2834,6 +2844,7 @@ Alle transwiki-laaie word opgeteken in die [[Special:Log/import|invoer-logboek]]
 'import-interwiki-templates' => 'Sluit alle sjablone in',
 'import-interwiki-submit' => 'Importeer',
 'import-interwiki-namespace' => 'Doelnaamruimte:',
+'import-interwiki-rootpage' => 'Basisblad van bestemming (opsioneel):',
 'import-upload-filename' => 'Lêernaam:',
 'import-comment' => 'Opmerking:',
 'importtext' => 'Gebruik die [[Special:Export|eksport-funksie]] van die wiki waar die inligting vandaan kom.
@@ -2869,7 +2880,10 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'import-error-interwiki' => 'Die bladsy "$1" is nie geïmporteer nie omdat sy naam vir eksterne skakeling (interwiki) gereserveer is.',
 'import-error-special' => 'Die bladsy "$1" is nie geïmporteer nie omdat dit aan \'n spesiale naamruimte behoort waarin geen bladsye geplaas kan word nie.',
 'import-error-invalid' => 'Die bladsy "$1" is nie geïmporteer nie omdat die naam ongeldig is.',
+'import-error-unserialize' => 'Weergawe $2 van die bladsy "$1" kon nie verwerk word nie. Die weergawe hoort inhoudsmodel $3 te gebruik met \'n serialisasie van $4.',
 'import-options-wrong' => 'Verkeerde {{PLURAL:$2|opsie|opsies}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Die gespesifiseerde basisblad is ongeldig.',
+'import-rootpage-nosubpage' => 'Die naamruimte "$1" van die basisblad laat nie subblaaie toe nie.',
 
 # Import log
 'importlogpage' => 'Invoer logboek',
@@ -3018,6 +3032,7 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiese woord|Magiese woorde}} ($1)',
 'pageinfo-hidden-categories' => 'Versteekte {{PLURAL:$1|kategorie|kategorieë}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikte sjabloon|Gebruikte sjablone}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Bladsy|Bladsye}} getranskludeerd op ($1)',
 'pageinfo-toolboxlink' => 'Bladinligting',
 'pageinfo-redirectsto' => 'Stuur aan na',
 'pageinfo-redirectsto-info' => 'Inligting',
@@ -3026,6 +3041,10 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-protect-cascading' => 'Beveiliging werk vanaf hier deur',
 'pageinfo-protect-cascading-yes' => 'Ja',
 'pageinfo-protect-cascading-from' => "Bladsy is vanuit 'n ander blad beveilig",
+'pageinfo-category-info' => 'Kategoriegegewens',
+'pageinfo-category-pages' => 'Aantal bladsye',
+'pageinfo-category-subcats' => 'Aantal subkategorieë',
+'pageinfo-category-files' => 'Aantal lêers',
 
 # Skin names
 'skinname-standard' => 'Standaard',

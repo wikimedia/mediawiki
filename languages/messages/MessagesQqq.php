@@ -2577,13 +2577,13 @@ Basic right to read any page.',
 'right-edit' => '{{doc-right|edit}}
 Basic right to edit pages that are not protected.',
 'right-createpage' => '{{doc-right|createpage}}
-Basic right to create pages. The right to edit discussion/talk pages is {{msg-mw|right-createtalk|pl=yes}}.',
+Basic right to create pages. The right to edit discussion/talk pages is {{msg-mw|right-createtalk}}.',
 'right-createtalk' => '{{doc-right|createtalk}}
-Basic right to create discussion/talk pages. The right to edit other pages is {{msg-mw|right-createpage|pl=yes}}.',
+Basic right to create discussion/talk pages. The right to edit other pages is {{msg-mw|right-createpage}}.',
 'right-createaccount' => '{{doc-right|createaccount}}
 The right to [[Special:CreateAccount|create a user account]].',
 'right-minoredit' => '{{doc-right|minoredit}}
-The right to use the "This is a minor edit" checkbox. See {{msg-mw|minoredit|pl=yes}} for the message used for that checkbox.',
+The right to use the "This is a minor edit" checkbox. See {{msg-mw|minoredit}} for the message used for that checkbox.',
 'right-move' => '{{doc-right|move}}
 The right to move any page that is not protected from moving.
 {{Identical|Move page}}',
@@ -2649,13 +2649,13 @@ See also
 'right-undelete' => '{{doc-right|undelete}}',
 'right-suppressrevision' => '{{doc-right|suppressrevision}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-It can be given to the group {{msg-mw|group-suppress|pl=yes}}, although that group is disabled by default.
+It can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.
 
 See also:
-* {{msg-mw|right-suppressionlog|pl=yes}}
-* {{msg-mw|right-hideuser|pl=yes}}
-* {{msg-mw|right-deletelogentry|pl=yes}}
-* {{msg-mw|right-deleterevision|pl=yes}}',
+* {{msg-mw|right-suppressionlog}}
+* {{msg-mw|right-hideuser}}
+* {{msg-mw|right-deletelogentry}}
+* {{msg-mw|right-deleterevision}}',
 'right-suppressionlog' => '{{doc-right|suppressionlog}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.
@@ -5894,7 +5894,8 @@ See also:
 Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki xml"): Empty document',
 'import-upload' => 'Used on [[Special:Import]].
 
-Related messages: {{msg-mw|right-importupload|pl=yes}} (the user right for this).',
+Related messages:
+* {{msg-mw|right-importupload}} (the user right for this)',
 'import-token-mismatch' => 'Used as error message in [[Special:Import]].
 
 See also:

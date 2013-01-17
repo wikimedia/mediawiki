@@ -765,7 +765,7 @@ Contrasenya temporal: $2",
 'link_tip' => 'Enllaç intern',
 'extlink_sample' => "http://www.example.com títol de l'enllaç",
 'extlink_tip' => 'Enllaç extern (recordeu el prefix http://)',
-'headline_sample' => "Text per a l'encapçalament",
+'headline_sample' => "Text de l'encapçalament",
 'headline_tip' => 'Encapçalat de secció de 2n nivell',
 'nowiki_sample' => 'Inseriu ací text sense format',
 'nowiki_tip' => 'Ignora el format wiki',
@@ -2256,7 +2256,7 @@ Suggeriments i ajuda:
 'exblank' => 'la pàgina estava en blanc',
 'delete-confirm' => 'Elimina «$1»',
 'delete-legend' => 'Elimina',
-'historywarning' => "'''Avís:''' La pàgina que eliminareu té un historial amb aproximadament {{PLURAL:$1|una modificació|$1 modificacions}}:",
+'historywarning' => "'''Atenció:''' La pàgina que esteu a punt d'eliminar té un historial amb $1 {{PLURAL:$1|versió|versions}}, aproximadament:",
 'confirmdeletetext' => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",

@@ -413,6 +413,9 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 'group-sysop-member' => 'Moyángeli',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Zuluná ya bokeli bwa konti ya mosáleli',
+
 # User rights log
 'rightslog' => 'Zuluná ya makokí ma basáleli',
 
@@ -523,9 +526,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Special:Categories
 'categories' => 'Ndéngé',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Zuluná ya bokeli bwa konti ya mosáleli',
-
 # E-mail user
 'emailuser' => 'Kotíndela yě mɛ́lɛ',
 'defemailsubject' => '{{SITENAME}} mokánda',
@@ -550,6 +550,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Kolanda...',
 'unwatching' => 'Kolanda tɛ́...',
+
+'created' => 'ekomákí',
 
 # Delete
 'deletepage' => 'Kolímwisa lonkásá loye',

@@ -704,9 +704,11 @@ $messages = array(
 'right-import' => "Έμπαζμαν σελιδίων ασ' άλλα βίκι",
 'right-siteadmin' => 'Ασπάλισον κι άνοιξον τη βάση δογμενίων',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Αρχείον ποισιματίων λογαρίων χρήστε',
+
 # User rights log
 'rightslog' => 'Αρχείον δικαιωματίων',
-'rightsnone' => '(τιδέν)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'δεάβασον αβούτεν την σελίδαν',
@@ -941,9 +943,6 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'Δείξον',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Αρχείον ποισιματίων λογαρίων χρήστε',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Ομάδαν',
 'listgrouprights-rights' => 'Δικαιώματα',
@@ -978,6 +977,8 @@ $messages = array(
 
 'enotif_impersonal_salutation' => '{{SITENAME}} χρήστες',
 'enotif_anon_editor' => 'ανώνυμον χρήστες $1',
+'created' => 'έντον',
+'changed' => 'ελλάγεν',
 
 # Delete
 'deletepage' => 'Σβήσον τη σελίδαν',
@@ -1436,6 +1437,9 @@ $messages = array(
 'htmlform-submit' => 'Στείλον',
 'htmlform-reset' => "Κλώσον τ'αλλαγάς",
 'htmlform-selectorother-other' => 'Άλλον',
+
+# New logging system
+'rightsnone' => '(τιδέν)',
 
 # Search suggestions
 'searchsuggest-search' => 'Αράεμαν',

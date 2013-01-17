@@ -3076,7 +3076,7 @@ Pozwala na wpisanie powodu w opisie zmian.',
 'print.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd wydruku */',
 'handheld.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd na urządzeniach kieszonkowych skórki ustawionej w zmiennej $wgHandheldStyle */',
 'noscript.css' => '/* Umieszczony tu arkusz stylów CSS będzie wykorzystywany dla użytkowników z wyłączoną obsługą JavaScript */',
-'group-autoconfirmed.css' => '/* CSS tutaj umieszczony będzie dotyczyć tylko samoczynnie potwierdzonych użytkowników */',
+'group-autoconfirmed.css' => '/* CSS tutaj umieszczony będzie dotyczyć tylko automatycznie zatwierdzonych użytkowników */',
 'group-bot.css' => '/* CSS tutaj umieszczony będzie obowiązywał tylko dla botów */',
 
 # Scripts

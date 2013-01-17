@@ -481,11 +481,13 @@ Ita-nia mudansa la armazenadu seidauk!",
 'right-userrights' => "Edita priviléjiu uza-na'in hotu",
 'right-userrights-interwiki' => "Edita priviléjiu uza-na'in iha wiki seluk sira",
 
+# Special:Log/newusers
+'newuserlogpage' => "Lista kria uza-na'in",
+'newuserlogpagetext' => "Ne'e lista kria uza-na'in.",
+
 # User rights log
 'rightslog' => "Lista mudansa priviléjiu uza-na'in",
 'rightslogtext' => "Ne'e lista mudansa priviléjiu uza-na'in sira nian.",
-'rightslogentry' => 'muda grupu "$1" nian husi "$2" ba "$3"',
-'rightsnone' => '(mamuk)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "lee pájina ne'e",
@@ -627,10 +629,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 'activeusers-hidebots' => 'Subar bot sira',
 'activeusers-hidesysops' => 'Subar administradór sira',
 
-# Special:Log/newusers
-'newuserlogpage' => "Lista kria uza-na'in",
-'newuserlogpagetext' => "Ne'e lista kria uza-na'in.",
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-rights' => 'Priviléjiu',
@@ -658,6 +656,8 @@ Ita-nia mudansa la armazenadu seidauk!",
 'unwatching' => 'La hateke...',
 
 'enotif_impersonal_salutation' => "Uza-na'in {{SITENAME}} nian",
+'created' => 'kria ona',
+'changed' => 'muda ona',
 
 # Delete
 'deletepage' => 'Halakon pájina',
@@ -974,5 +974,8 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 
 # Database error messages
 'dberr-header' => "Wiki ne'e iha problema",
+
+# New logging system
+'rightsnone' => '(mamuk)',
 
 );

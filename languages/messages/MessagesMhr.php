@@ -591,6 +591,9 @@ $messages = array(
 'grouppage-bot' => '{{ns:project}}:Бот-влак',
 'grouppage-sysop' => '{{ns:project}}:Сайтвиктарыше-влак',
 
+# Special:Log/newusers
+'newuserlogpage' => 'У пайдаланыше регистрацийым эртарыме журнал',
+
 # User rights log
 'rightslog' => 'Пайдаланышын кертыж нерген журнал',
 
@@ -762,9 +765,6 @@ $messages = array(
 'activeusers-count' => 'Пытартыш $3 {{PLURAL:$3|кечыште|кечылаште}} $1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
 'activeusers-hidebots' => 'Бот-влакым шылташ',
 'activeusers-hidesysops' => 'Сайтвиктарыше-влакым шылташ',
-
-# Special:Log/newusers
-'newuserlogpage' => 'У пайдаланыше регистрацийым эртарыме журнал',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(тӱшкаште улшо-влак)',

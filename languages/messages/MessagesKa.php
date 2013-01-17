@@ -303,6 +303,7 @@ $messages = array(
 'newwindow' => '(ახალ ფანჯარაში)',
 'cancel' => 'გაუქმება',
 'moredotdotdot' => 'ვრცლად...',
+'morenotlisted' => 'მეტი არ არის ნაჩვენები...',
 'mypage' => 'გვერდი',
 'mytalk' => 'განხილვა',
 'anontalk' => 'ამ IP-ს განხილვა',

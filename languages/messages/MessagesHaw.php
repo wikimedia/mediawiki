@@ -659,6 +659,8 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'watching' => 'Ke kia‘i nei...',
 'unwatching' => 'Ke wehe nei i ke kiaʻi...',
 
+'changed' => 'ua loli ‘ia',
+
 # Delete
 'deletepage' => 'Kāpae ʻaoʻao',
 'actioncomplete' => 'Ua pau',

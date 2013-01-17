@@ -531,7 +531,6 @@ $messages = array(
 
 # User rights log
 'rightslog' => 'སྤྱོད་མིའི་ཐོབ་ཐང་།',
-'rightsnone' => '(སྟོང་པ།)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ཤོག་ངོས་འདི་ཀློག་པ།',
@@ -701,6 +700,8 @@ $messages = array(
 'unwatching' => 'ལྟ་ཐོ་ལས་འདོར་བཞིན་པ་་་',
 
 'enotif_reset' => 'ཤོག་ངོས་ཚང་མ་བལྟས་ཟིན་དུ་རྟགས་རྒྱོབ།',
+'created' => 'བཟོས་ཟིན།',
+'changed' => 'བསྒྱུར་ཟིན།',
 
 # Delete
 'deletepage' => 'ཤོག་ངོས་འདོར་བ།',
@@ -876,5 +877,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'དམིགས་གསལ་ཤོག་ངོས།',
+
+# New logging system
+'rightsnone' => '(སྟོང་པ།)',
 
 );

@@ -687,6 +687,8 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 'watching' => 'Oserva...',
 'unwatching' => 'No oserva...',
 
+'created' => 'Creada',
+
 # Delete
 'deletepage' => 'Sutrae la paje',
 'confirm' => 'Aproba',
