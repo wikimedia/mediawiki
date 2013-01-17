@@ -53,6 +53,10 @@ class RunJobs extends Maintenance {
 	public function execute() {
 		global $wgTitle;
 
+		if ( wfReadOnly() ) {
+			$this->error( "Unable to run jobs; the wiki is in read-only mode.", 1 ); // die
+		}
+
 		if ( $this->hasOption( 'procs' ) ) {
 			$procs = intval( $this->getOption( 'procs' ) );
 			if ( $procs < 1 || $procs > 1000 ) {
