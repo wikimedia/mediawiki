@@ -25,50 +25,28 @@
  * @ingroup Test
  *
  * @group Site
- * @group Database
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteObjectTest extends ORMRowTest {
+class SiteTest extends MediaWikiTestCase {
 
-	/**
-	 * @see ORMRowTest::getRowClass
-	 * @since 1.21
-	 * @return string
-	 */
-	protected function getRowClass() {
-		return 'SiteObject';
-	}
+	public function instanceProvider() {
+		$instances = array();
 
-	/**
-	 * @see ORMRowTest::getTableInstance
-	 * @since 1.21
-	 * @return IORMTable
-	 */
-	protected function getTableInstance() {
-		return SitesTable::singleton();
-	}
+		$instances[] = new Site();
 
-	/**
-	 * @see ORMRowTest::constructorTestProvider
-	 * @since 1.21
-	 * @return array
-	 */
-	public function constructorTestProvider() {
-		$argLists = array();
+		$site = new Site();
+		$site->setGlobalId( 'enwiki' );
+		$site->setInternalId( 42 );
+		$instances[] = $site;
 
-		$argLists[] = array( 'global_key' => 'foo' );
+		$site = new MediaWikiSite();
+		$site->setGlobalId( 'nlwiki' );
+		$site->setLanguageCode( 'nl' );
+		$instances[] = $site;
 
-		$argLists[] = array( 'global_key' => 'bar', 'type' => Site::TYPE_MEDIAWIKI );
-
-		$constructorArgs = array();
-
-		foreach ( $argLists as $argList ) {
-			$constructorArgs[] = array( $argList, true );
-		}
-
-		return $constructorArgs;
+		return $this->arrayWrap( $instances );
 	}
 
 	/**
@@ -110,7 +88,7 @@ class SiteObjectTest extends ORMRowTest {
 	 * @param Site $site
 	 */
 	public function testGetLanguageCode( Site $site ) {
-		$this->assertTypeOrFalse( 'string', $site->getLanguageCode() );
+		$this->assertTypeOrValue( 'string', $site->getLanguageCode(), null );
 	}
 
 	/**
@@ -135,7 +113,7 @@ class SiteObjectTest extends ORMRowTest {
 	 * @param Site $site
 	 */
 	public function testGetGlobalId( Site $site ) {
-		$this->assertInternalType( 'string', $site->getGlobalId() );
+		$this->assertTypeOrValue( 'string', $site->getGlobalId(), null );
 	}
 
 	/**
@@ -160,9 +138,9 @@ class SiteObjectTest extends ORMRowTest {
 	 * @param Site $site
 	 */
 	public function testGetPath( Site $site ) {
-		$this->assertTypeOrFalse( 'string', $site->getPath( 'page_path' ) );
-		$this->assertTypeOrFalse( 'string', $site->getPath( 'file_path' ) );
-		$this->assertTypeOrFalse( 'string', $site->getPath( 'foobar' ) );
+		$this->assertTypeOrValue( 'string', $site->getPath( 'page_path' ), null );
+		$this->assertTypeOrValue( 'string', $site->getPath( 'file_path' ), null );
+		$this->assertTypeOrValue( 'string', $site->getPath( 'foobar' ), null );
 	}
 
 	/**
@@ -194,13 +172,12 @@ class SiteObjectTest extends ORMRowTest {
 
 		$this->assertEquals( $count, count( $site->getAllPaths() ) );
 
-		$this->assertFalse( $site->getPath( 'foobar' ) );
-		$this->assertFalse( $site->getPath( 'spam' ) );
+		$this->assertNull( $site->getPath( 'foobar' ) );
+		$this->assertNull( $site->getPath( 'spam' ) );
 	}
 
 	public function testSetLinkPath() {
-		/* @var SiteObject $site */
-		$site = $this->getRowInstance( $this->getMockFields(), false );
+		$site = new Site();
 		$path = "TestPath/$1";
 
 		$site->setLinkPath( $path );
@@ -208,8 +185,7 @@ class SiteObjectTest extends ORMRowTest {
 	}
 
 	public function testGetLinkPathType() {
-		/* @var SiteObject $site */
-		$site = $this->getRowInstance( $this->getMockFields(), false );
+		$site = new Site();
 
 		$path = 'TestPath/$1';
 		$site->setLinkPath( $path );
@@ -221,8 +197,7 @@ class SiteObjectTest extends ORMRowTest {
 	}
 
 	public function testSetPath() {
-		/* @var SiteObject $site */
-		$site = $this->getRowInstance( $this->getMockFields(), false );
+		$site = new Site();
 
 		$path = 'TestPath/$1';
 		$site->setPath( 'foo', $path );
@@ -231,8 +206,7 @@ class SiteObjectTest extends ORMRowTest {
 	}
 
 	public function testProtocolRelativePath() {
-		/* @var SiteObject $site */
-		$site = $this->getRowInstance( $this->getMockFields(), false );
+		$site = new Site();
 
 		$type = $site->getLinkPathType();
 		$path = '//acme.com/'; // protocol-relative URL
@@ -270,11 +244,10 @@ class SiteObjectTest extends ORMRowTest {
 	 * @dataProvider provideGetPageUrl
 	 */
 	public function testGetPageUrl( $path, $page, $expected ) {
-		/* @var SiteObject $site */
-		$site = $this->getRowInstance( $this->getMockFields(), false );
+		$site = new Site();
 
 		//NOTE: the assumption that getPageUrl is based on getLinkPath
-		//      is true for SiteObject but not guaranteed for subclasses.
+		//      is true for Site but not guaranteed for subclasses.
 		//      Subclasses need to override this test case appropriately.
 		$site->setLinkPath( $path );
 		$this->assertContains( $path, $site->getPageUrl() );

@@ -25,32 +25,15 @@
  * @ingroup Test
  *
  * @group Site
- * @group Database
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MediaWikiSiteTest extends SiteObjectTest {
-
-	public function setUp() {
-		parent::setUp();
-
-		static $hasSites = false;
-
-		if ( !$hasSites ) {
-			TestSites::insertIntoDb();
-			$hasSites = true;
-		}
-	}
-
-	public function testFactoryConstruction() {
-		$this->assertInstanceOf( 'MediaWikiSite', MediaWikiSite::newFromGlobalId( 'enwiki' ) );
-		$this->assertInstanceOf( 'Site', MediaWikiSite::newFromGlobalId( 'enwiki' ) );
-		$this->assertInstanceOf( 'MediaWikiSite', SitesTable::singleton()->newRow( array( 'type' => Site::TYPE_MEDIAWIKI ) ) );
-	}
+class MediaWikiSiteTest extends SiteTest {
 
 	public function testNormalizePageTitle() {
-		$site = MediaWikiSite::newFromGlobalId( 'enwiki' );
+		$site = new MediaWikiSite();
+		$site->setGlobalId( 'enwiki' );
 
 		//NOTE: this does not actually call out to the enwiki site to perform the normalization,
 		//      but uses a local Title object to do so. This is hardcoded on SiteLink::normalizePageTitle
@@ -73,8 +56,7 @@ class MediaWikiSiteTest extends SiteObjectTest {
 	 * @dataProvider fileUrlProvider
 	 */
 	public function testGetFileUrl( $url, $filePath, $pathArgument, $expected ) {
-		$site = MediaWikiSite::newFromGlobalId( 'enwiki' );
-
+		$site = new MediaWikiSite();
 		$site->setFilePath( $url . $filePath );
 
 		$this->assertEquals( $expected, $site->getFileUrl( $pathArgument ) );
@@ -97,10 +79,9 @@ class MediaWikiSiteTest extends SiteObjectTest {
 	 * @dataProvider provideGetPageUrl
 	 */
 	public function testGetPageUrl( $path, $page, $expected ) {
-		/* @var MediaWikiSite $site */
-		$site = MediaWikiSite::newFromGlobalId( 'enwiki' );
-
+		$site = new MediaWikiSite();
 		$site->setLinkPath( $path );
+
 		$this->assertContains( $path, $site->getPageUrl() );
 		$this->assertContains( $expected, $site->getPageUrl( $page ) );
 	}
