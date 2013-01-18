@@ -2593,7 +2593,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname String name of the calling function
 	 *
 	 * @throws DBUnexpectedError
-	 * @return bool
+	 * @return bool|ResultWrapper
 	 */
 	public function delete( $table, $conds, $fname = 'DatabaseBase::delete' ) {
 		if ( !$conds ) {
