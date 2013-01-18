@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Tests for the SiteList implementing classes.
+ * Tests for the SiteList class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ class SiteListTest extends MediaWikiTestCase {
 		$listInstances = array();
 
 		foreach ( $sitesArrays as $sitesArray ) {
-			$listInstances[] = new SiteArray( $sitesArray[0] );
+			$listInstances[] = new SiteList( $sitesArray[0] );
 		}
 
 		return $this->arrayWrap( $listInstances );
@@ -164,5 +164,28 @@ class SiteListTest extends MediaWikiTestCase {
 		$this->assertArrayEquals( $expected, $identifiers );
 	}
 
+	/**
+	 * @dataProvider siteListProvider
+	 *
+	 * @since 1.21
+	 *
+	 * @param SiteList $list
+	 */
+	public function testSerialization( SiteList $list ) {
+		$serialization = serialize( $list );
+		/**
+		 * @var SiteArray $copy
+		 */
+		$copy = unserialize( $serialization );
+
+		$this->assertArrayEquals( $list->getGlobalIdentifiers(), $copy->getGlobalIdentifiers() );
+
+		/**
+		 * @var Site $site
+		 */
+		foreach ( $list as $site ) {
+			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
+		}
+	}
 
 }
