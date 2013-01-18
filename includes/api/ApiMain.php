@@ -385,7 +385,7 @@ class ApiMain extends ApiBase {
 				}
 			}
 
-			// Handle any kind of exception by outputing properly formatted error message.
+			// Handle any kind of exception by outputting properly formatted error message.
 			// If this fails, an unhandled exception should be thrown so that global error
 			// handler will process and log it.
 
@@ -623,7 +623,6 @@ class ApiMain extends ApiBase {
 			if ( $this->mPrinter->getWantsHelp() || $this->mAction == 'help' ) {
 				ApiResult::setContent( $errMessage, $this->makeHelpMsg() );
 			}
-
 		} else {
 			global $wgShowSQLErrors, $wgShowExceptionDetails;
 			// Something is seriously wrong
@@ -640,6 +639,10 @@ class ApiMain extends ApiBase {
 			ApiResult::setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : '' );
 		}
 
+		// Remember all the warnings to re-add them later
+		$oldResult = $result->getData();
+		$warnings = isset( $oldResult['warnings'] ) ? $oldResult['warnings'] : null;
+
 		$result->reset();
 		$result->disableSizeCheck();
 		// Re-add the id
@@ -647,10 +650,12 @@ class ApiMain extends ApiBase {
 		if ( !is_null( $requestid ) ) {
 			$result->addValue( null, 'requestid', $requestid );
 		}
-
 		if ( $wgShowHostnames ) {
 			// servedby is especially useful when debugging errors
 			$result->addValue( null, 'servedby', wfHostName() );
+		}
+		if ( !is_null( $warnings ) ) {
+			$result->addValue( null, 'warnings', $warnings );
 		}
 
 		$result->addValue( null, 'error', $errMessage );
