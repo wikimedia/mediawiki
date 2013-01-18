@@ -2441,7 +2441,7 @@ define( 'TS_ISO_8601_BASIC', 9 );
  * @param $outputtype Mixed: A timestamp in one of the supported formats, the
  *                    function will autodetect which format is supplied and act
  *                    accordingly.
- * @param $ts Mixed: the timestamp to convert or 0 for the current timestamp
+ * @param $ts Mixed: optional timestamp to convert, default 0 for the current time
  * @return Mixed: String / false The same date in the format specified in $outputtype or false
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
