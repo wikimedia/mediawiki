@@ -496,6 +496,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @param String $expectedText: Text after merge has been completed
 	 *
 	 * @dataProvider provideMerge()
+	 * @group medium
 	 */
 	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
 		$this->checkHasDiff3();

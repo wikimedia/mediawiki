@@ -3,6 +3,7 @@
 /**
  * @group Database
  * @group API
+ * @group medium
  */
 class ApiCreateAccountTest extends ApiTestCase {
 	function setUp() {
