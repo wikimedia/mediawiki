@@ -766,7 +766,8 @@ return array(
 		),
 		'dependencies' => array(
 				'mediawiki.language.data',
-				'mediawiki.cldr'
+				'mediawiki.language.numbers',
+				'mediawiki.cldr',
 			),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -787,6 +788,11 @@ return array(
 	'mediawiki.language.init' => array(
 		'scripts' => 'resources/mediawiki.language/mediawiki.language.init.js',
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'mediawiki.language.numbers' => array(
+			'scripts' => 'resources/mediawiki.language/mediawiki.language.numbers.js',
+			'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	'mediawiki.jqueryMsg' => array(
