@@ -5993,6 +5993,22 @@ $wgEnableAPI = true;
 $wgEnableWriteAPI = true;
 
 /**
+ *
+ *     WARNING: SECURITY THREAT - debug use only
+ *
+ * Disables many security checks in the API for debugging purposes.
+ * This flag should never be used on the production servers, as it introduces
+ * a number of potential security holes. Even when enabled, the validation
+ * will still be performed, but instead of failing, API will return a warning.
+ * Also, there will always be a warning notifying that this flag is set.
+ * At this point, the flag allows GET requests to go through for modules
+ * requiring POST, and ignores incorrect tokens.
+ *
+ * @since 1.21
+ */
+$wgDebugAPI = false;
+
+/**
  * API module extensions.
  * Associative array mapping module name to class name.
  * Extension modules may override the core modules.
