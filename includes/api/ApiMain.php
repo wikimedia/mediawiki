@@ -711,11 +711,12 @@ class ApiMain extends ApiBase {
 
 		$salt = $module->getTokenSalt();
 		if ( $salt !== false && !$gettoken ) {
+			// Both cases are allowed in the debug mode
 			if ( !isset( $moduleParams['token'] ) ) {
-				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+				$this->dieUsageMsgOrDebug( array( 'missingparam', 'token' ) );
 			} else {
 				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() ) ) {
-					$this->dieUsageMsg( 'sessionfailure' );
+					$this->dieUsageMsgOrDebug( 'sessionfailure' );
 				}
 			}
 		}
@@ -787,9 +788,10 @@ class ApiMain extends ApiBase {
 	 * @param $params Array an array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
-		// Ignore mustBePosted() for internal calls
-		if ( $module->mustBePosted() && !$this->getRequest()->wasPosted() ) {
-			$this->dieUsageMsg( array( 'mustbeposted', $this->mAction ) );
+		// wasPosted() might be faster than mustBePosted(), check it first
+		if ( !$this->getRequest()->wasPosted() && $module->mustBePosted() ) {
+			// Allowed for debugging, otherwise fail
+			$this->dieUsageMsgOrDebug( array( 'mustbeposted', $this->mAction ) );
 		}
 
 		// See if custom printer is used
@@ -927,6 +929,11 @@ class ApiMain extends ApiBase {
 	 * @param $isError bool
 	 */
 	protected function printResult( $isError ) {
+		global $wgDebugAPI;
+		if( $wgDebugAPI !== false ) {
+			$this->getResult()->setWarning('SECURITY WARNING: $wgDebugAPI is enabled');
+		}
+
 		$this->getResult()->cleanUpUTF8();
 		$printer = $this->mPrinter;
 		$printer->profileIn();

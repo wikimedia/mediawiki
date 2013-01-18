@@ -1390,6 +1390,26 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Will only set a warning instead of failing if the global $wgDebugAPI
+	 * is set to true. Otherwise behaves exactly as dieUsageMsg().
+	 * @param $error (array|string) Element of a getUserPermissionsErrors()-style array
+	 * @since 1.21
+	 */
+	public function dieUsageMsgOrDebug( $error ) {
+		global $wgDebugAPI;
+		if( $wgDebugAPI !== true ) {
+			$this->dieUsageMsg( $error );
+		} else {
+			if( is_string( $error ) ) {
+				$error = array( $error );
+			}
+			$parsed = $this->parseMsg( $error );
+			$this->setWarning( '$wgDebugAPI: ' . $parsed['code']
+				. ' - ' . $parsed['info'] );
+		}
+	}
+
+	/**
 	 * Return the error message related to a certain array
 	 * @param $error array Element of a getUserPermissionsErrors()-style array
 	 * @return array('code' => code, 'info' => info)
