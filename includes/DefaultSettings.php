@@ -2618,7 +2618,7 @@ $wgDefaultSkin = 'vector';
  */
 $wgSkipSkin = '';
 /** Array for more like $wgSkipSkin. */
-$wgSkipSkins = array();
+$wgSkipSkins = array( 'nostalgia' );
 
 /**
  * Optionally, we can specify a stylesheet to use for media="handheld".

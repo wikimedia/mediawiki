@@ -335,7 +335,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 \$wgUpgradeKey = \"{$this->values['wgUpgradeKey']}\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
-## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook', 'vector':
+## names, ie 'monobook', 'vector':
 \$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
 
 ## For attaching licensing metadata to pages, and displaying an

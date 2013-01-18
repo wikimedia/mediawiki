@@ -3799,13 +3799,9 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-category-files'         => 'Number of files',
 
 # Skin names
-'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it
 'skinname-nostalgia'   => 'Nostalgia', # only translate this message to other languages if you have to change it
 'skinname-cologneblue' => 'Cologne Blue', # only translate this message to other languages if you have to change it
 'skinname-monobook'    => 'MonoBook', # only translate this message to other languages if you have to change it
-'skinname-myskin'      => 'MySkin', # only translate this message to other languages if you have to change it
-'skinname-chick'       => 'Chick', # only translate this message to other languages if you have to change it
-'skinname-simple'      => 'Simple', # only translate this message to other languages if you have to change it
 'skinname-modern'      => 'Modern', # only translate this message to other languages if you have to change it
 'skinname-vector'      => 'Vector', # only translate this message to other languages if you have to change it
 

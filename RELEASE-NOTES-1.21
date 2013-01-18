@@ -199,6 +199,8 @@ changes to languages because of Bugzilla reports.
   as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
+* Legacy skins Simple, MySkin and Standard were all removed. Nostalgia was
+  added to $wgSkipSkins by default.
 
 == Compatibility ==
 
