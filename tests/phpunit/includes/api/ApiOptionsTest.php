@@ -198,7 +198,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	public function testReset() {
 		$this->mUserMock->expects( $this->once() )
-			->method( 'resetOptions' );
+			->method( 'resetOptions' )
+			->with( $this->equalTo( array( 'all' ) ) );
 
 		$this->mUserMock->expects( $this->never() )
 			->method( 'setOption' );
@@ -207,6 +208,24 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->method( 'saveSettings' );
 
 		$request = $this->getSampleRequest( array( 'reset' => '' ) );
+
+		$response = $this->executeQuery( $request );
+
+		$this->assertEquals( self::$Success, $response );
+	}
+
+	public function testResetKinds() {
+		$this->mUserMock->expects( $this->once() )
+			->method( 'resetOptions' )
+			->with( $this->equalTo( array( 'registered' ) ) );
+
+		$this->mUserMock->expects( $this->never() )
+			->method( 'setOption' );
+
+		$this->mUserMock->expects( $this->once() )
+			->method( 'saveSettings' );
+
+		$request = $this->getSampleRequest( array( 'reset' => '', 'resetkinds' => 'registered' ) );
 
 		$response = $this->executeQuery( $request );
 
@@ -237,7 +256,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'name' ), $this->equalTo( null ) );
+			->with( $this->equalTo( 'name' ), $this->identicalTo( null ) );
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
@@ -257,7 +276,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$this->mUserMock->expects( $this->at( 3 ) )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'willBeNull' ), $this->equalTo( null ) );
+			->with( $this->equalTo( 'willBeNull' ), $this->identicalTo( null ) );
 
 		$this->mUserMock->expects( $this->at( 4 ) )
 			->method( 'getOptions' );
@@ -322,19 +341,19 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$this->mUserMock->expects( $this->at( 2 ) )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'testmultiselect-opt1' ), $this->equalTo( true ) );
+			->with( $this->equalTo( 'testmultiselect-opt1' ), $this->identicalTo( true ) );
 
 		$this->mUserMock->expects( $this->at( 3 ) )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'testmultiselect-opt2' ), $this->equalTo( false ) );
+			->with( $this->equalTo( 'testmultiselect-opt2' ), $this->identicalTo( null ) );
 
 		$this->mUserMock->expects( $this->at( 4 ) )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'testmultiselect-opt3' ), $this->equalTo( false ) );
+			->with( $this->equalTo( 'testmultiselect-opt3' ), $this->identicalTo( false ) );
 
 		$this->mUserMock->expects( $this->at( 5 ) )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'testmultiselect-opt4' ), $this->equalTo( false ) );
+			->with( $this->equalTo( 'testmultiselect-opt4' ), $this->identicalTo( false ) );
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
