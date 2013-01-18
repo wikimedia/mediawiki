@@ -2199,6 +2199,22 @@ $search: SpecialSearch special page object
 $profile: String: current search profile
 $engine: the search engine
 
+'SpecialSearchResultsPrepend': Called immediately before returning HTML
+on the search results page.  Useful for including an external search
+provider.  To disable the output of MediaWiki search output, return
+false.
+$specialSearch: SpecialSearch object ($this)
+$output: $wgOut
+$term: Search term specified by the user
+
+'SpecialSearchResultsAppend': Called after all search results HTML has
+been output.  Note that in some cases, this hook will not be called (no
+results, too many results, SpecialSearchResultsPrepend returned false,
+etc).
+$specialSearch: SpecialSearch object ($this)
+$output: $wgOut
+$term: Search term specified by the user
+
 'SpecialSearchResults': Called before search result display when there are
 matches.
 $term: string of search term
