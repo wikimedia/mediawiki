@@ -238,7 +238,8 @@ class ProtectedTitlesPager extends AlphabeticPager {
 			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => 'protected_titles',
-			'fields' => 'pt_namespace,pt_title,pt_create_perm,pt_expiry,pt_timestamp',
+			'fields' => array( 'pt_namespace', 'pt_title', 'pt_create_perm',
+				'pt_expiry', 'pt_timestamp' ),
 			'conds' => $conds
 		);
 	}

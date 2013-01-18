@@ -343,8 +343,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		}
 
 		if( $this->indefonly ) {
-			$db = wfGetDB( DB_SLAVE );
-			$conds[] = "pr_expiry = {$db->addQuotes( $db->getInfinity() )} OR pr_expiry IS NULL";
+			$conds[] = "pr_expiry = {$this->mDb->addQuotes( $this->mDb->getInfinity() )} OR pr_expiry IS NULL";
 		}
 		if( $this->cascadeonly ) {
 			$conds[] = "pr_cascade = '1'";
@@ -356,7 +355,8 @@ class ProtectedPagesPager extends AlphabeticPager {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
-			'fields' => 'pr_id,page_namespace,page_title,page_len,pr_type,pr_level,pr_expiry,pr_cascade',
+			'fields' => array( 'pr_id', 'page_namespace', 'page_title', 'page_len',
+				'pr_type', 'pr_level', 'pr_expiry', 'pr_cascade' ),
 			'conds' => $conds
 		);
 	}
