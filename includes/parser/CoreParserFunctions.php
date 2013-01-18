@@ -662,11 +662,12 @@ class CoreParserFunctions {
 			$length = $cache[$page];
 		} elseif( $parser->incrementExpensiveFunctionCount() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			$id = $rev ? $rev->getPage() : 0;
+			$pageID = $rev ? $rev->getPage() : 0;
+			$revID = $rev ? $rev->getId() : 0;
 			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
 
 			// Register dependency in templatelinks
-			$parser->mOutput->addTemplate( $title, $id, $rev ? $rev->getId() : 0 );
+			$parser->mOutput->addTemplate( $title, $pageID, $revID );
 		}
 		return self::formatRaw( $length, $raw );
 	}
