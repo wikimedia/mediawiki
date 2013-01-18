@@ -75,46 +75,6 @@ var language = {
 	},
 
 	/**
-	 * Converts a number using digitTransformTable.
-	 *
-	 * @param {Number} number Value to be converted
-	 * @param {boolean} integer Convert the return value to an integer
-	 * @return {Number|String} formatted number
-	 */
-	convertNumber: function ( num, integer ) {
-		var i, tmp, transformTable, numberString, convertedNumber;
-
-		// Set the target Transform table:
-		transformTable = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' );
-
-		if ( !transformTable ) {
-			return num;
-		}
-
-		// Check if the "restore" to Latin number flag is set:
-		if ( integer ) {
-			if ( parseInt( num, 10 ) === num ) {
-				return num;
-			}
-			tmp = [];
-			for ( i in transformTable ) {
-				tmp[ transformTable[ i ] ] = i;
-			}
-			transformTable = tmp;
-		}
-		numberString = '' + num;
-		convertedNumber = '';
-		for ( i = 0; i < numberString.length; i++ ) {
-			if ( transformTable[ numberString[i] ] ) {
-				convertedNumber += transformTable[numberString[i]];
-			} else {
-				convertedNumber += numberString[i];
-			}
-		}
-		return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
-	},
-
-	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
 	 * If second or third parameter are not specified, masculine is used.
@@ -156,10 +116,8 @@ var language = {
 			return grammarForms[form][word] || word;
 		}
 		return word;
-	},
+	}
 
-	// Digit Transform Table, populated by language classes where applicable
-	digitTransformTable: mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'digitTransformTable' )
 };
 
 $.extend( mw.language, language );

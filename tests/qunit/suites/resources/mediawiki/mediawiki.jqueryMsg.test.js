@@ -385,13 +385,13 @@ formatnumTests = [
 	{
 		lang: 'en',
 		number: 987654321.654321,
-		result: '987654321.654321',
+		result: '987,654,321.654',
 		description: 'formatnum test for English, decimal seperator'
 	},
 	{
 		lang: 'ar',
 		number: 987654321.654321,
-		result: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
+		result: '٩٨٧٬٦٥٤٬٣٢١٫٦٥٤',
 		description: 'formatnum test for Arabic, with decimal seperator'
 	},
 	{
@@ -417,7 +417,7 @@ formatnumTests = [
 	{
 		lang: 'nl',
 		number: 987654321.654321,
-		result: '987654321,654321',
+		result: '987.654.321,654',
 		description: 'formatnum test for Nederlands, decimal seperator'
 	},
 	{
@@ -428,9 +428,55 @@ formatnumTests = [
 	},
 	{
 		lang: 'nl',
+		number: '.89',
+		result: '0,89',
+		description: 'formatnum test for Nederlands'
+	},
+	{
+		lang: 'nl',
 		number: 'invalidnumber',
 		result: 'invalidnumber',
 		description: 'formatnum test for Nederlands, invalid number'
+	},
+	{
+		lang: 'ml',
+		number: '1000000000',
+		result: '1,00,00,00,000',
+		description: 'formatnum test for Malayalam'
+	},
+	{
+		lang: 'ml',
+		number: '-1000000000',
+		result: '-1,00,00,00,000',
+		description: 'formatnum test for Malayalam, negative number'
+	},
+	/*
+	 * This will fail because of wrong pattern for ml in MW(different from CLDR)
+	{
+		lang: 'ml',
+		number: '1000000000.000',
+		result: '1,00,00,00,000.000',
+		description: 'formatnum test for Malayalam with decimal place'
+	},
+	*/
+	{
+		lang: 'hi',
+		number: '123456789.123456789',
+		result: '१२,३४,५६,७८९',
+		description: 'formatnum test for Hindi'
+	},
+	{
+		lang: 'hi',
+		number: '१२,३४,५६,७८९',
+		result: '१२,३४,५६,७८९',
+		description: 'formatnum test for Hindi, Devanagari digits passed'
+	},
+	{
+		lang: 'hi',
+		number: '१२३४५६,७८९',
+		result: '123456',
+		integer: true,
+		description: 'formatnum test for Hindi, Devanagari digits passed to get integer value'
 	}
 ];
 
