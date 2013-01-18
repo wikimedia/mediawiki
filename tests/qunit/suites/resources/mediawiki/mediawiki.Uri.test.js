@@ -361,6 +361,32 @@
 		assert.ok( relativePath.indexOf( uri.fragment ) >= 0, 'fragement in relative path' );
 	} );
 
+	QUnit.test( 'Parse a uri with an @ symbol in the path and query', 1, function ( assert ) {
+		var uri = new mw.Uri( 'http://www.google.com/test@test?q=@uri' );
+
+		assert.deepEqual(
+			{
+				protocol: uri.protocol,
+				host: uri.host,
+				port: uri.port,
+				path: uri.path,
+				query: uri.query,
+				fragment: uri.fragment,
+				queryString: uri.getQueryString()
+			},
+			{
+				protocol: 'http',
+				host: 'www.google.com',
+				port: undefined,
+				path: '/test@test',
+				query: { q: '@uri' },
+				fragment: undefined,
+				queryString: 'q=@uri'
+			},
+			'basic object properties'
+		);
+	} );
+
 	QUnit.test( 'Handle protocol-relative URLs', 5, function ( assert ) {
 		var UriRel, uri;
 
