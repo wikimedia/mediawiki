@@ -788,7 +788,7 @@ abstract class ContentHandler {
 	 *    boolean false if no revision occurred
 	 *
 	 * @XXX &$hasHistory is extremely ugly, it's here because
-	 * WikiPage::getAutoDeleteReason() and Article::getReason()
+	 * WikiPage::getAutoDeleteReason() and Article::generateReason()
 	 * have it / want it.
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
