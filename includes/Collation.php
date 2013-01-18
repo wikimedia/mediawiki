@@ -408,4 +408,39 @@ class IcuCollation extends Collation {
 	static function getICUVersion() {
 		return defined( 'INTL_ICU_VERSION' ) ? INTL_ICU_VERSION : false;
 	}
+
+	/**
+	 * Return the version of Unicode appropriate for the version of ICU library
+	 * currently in use, or false when it can't be determined.
+	 *
+	 * @since 1.21
+	 * @return string|false
+	 */
+	static function getUnicodeVersionForICU() {
+		$icuVersion = IcuCollation::getICUVersion();
+		if ( !$icuVersion ) {
+			return false;
+		}
+
+		$versionPrefix = substr( $icuVersion, 0, 3 );
+		// Source: http://site.icu-project.org/download
+		$map = array(
+			'50.' => '6.2',
+			'49.' => '6.1',
+			'4.8' => '6.0',
+			'4.6' => '6.0',
+			'4.4' => '5.2',
+			'4.2' => '5.1',
+			'4.0' => '5.1',
+			'3.8' => '5.0',
+			'3.6' => '5.0',
+			'3.4' => '4.1',
+		);
+
+		if ( isset( $map[$versionPrefix] ) ) {
+			return $map[$versionPrefix];
+		} else {
+			return false;
+		}
+	}
 }
