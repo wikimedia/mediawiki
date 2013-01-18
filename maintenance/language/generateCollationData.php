@@ -60,19 +60,54 @@ class GenerateCollationData extends Maintenance {
 	}
 
 	public function execute() {
+		$icuVersion = ICUCollation::getICUVersion();
+		$unicodeVersion = ICUCollation::getUnicodeVersionForICU();
+		
+		$allkeysPresent = file_exists( "{$this->dataDir}/allkeys.txt" );
+		$ucdallPresent = file_exists( "{$this->dataDir}/ucd.all.grouped.xml" );
+		
 		$this->dataDir = $this->getOption( 'data-dir', '.' );
-		if ( !file_exists( "{$this->dataDir}/allkeys.txt" ) ) {
-			$this->error( "Unable to find allkeys.txt. Please download it from " .
-				"http://www.unicode.org/Public/UCA/latest/allkeys.txt and specify " .
-				"its location with --data-dir=<DIR>" );
+		
+		if ( !$allkeysPresent ) {
+			// As of January 2013, these links work for all versions of Unicode
+			// between 4.1 and 6.2, inclusive.
+			$error = "Unable to find allkeys.txt. ";
+			if ( version_compare( $unicodeVersion, "4.1", "<" ) ) {
+				$error .= "This file may not be available for your version of ICU/Unicode ($icuVersion/$unicodeVersion); "
+					. "consider upgrading PHP's intl extension or try finding appropriate one at "
+					. "http://www.unicode.org/Public/UCA/";
+			} elseif ( version_compare( $unicodeVersion, "6.2", ">" ) ) {
+				$error .= "It is probably available at "
+					. "http://www.unicode.org/Public/UCA/$unicodeVersion.0/allkeys.txt";
+			} else {
+				$error .= "Please download it from "
+					. "http://www.unicode.org/Public/UCA/$unicodeVersion.0/allkeys.txt";
+			}
+			$error .= " and specify its location with --data-dir=<DIR>";
+			$this->error( $error );
+		}
+		if ( !$ucdallPresent ) {
+			// As of January 2013, these links work for all versions of Unicode
+			// between 5.1 and 6.2, inclusive.
+			$error = "Unable to find ucd.all.grouped.xml. ";
+			if ( version_compare( $unicodeVersion, "5.1", "<" ) ) {
+				$error .= "This file is not available for your version of ICU/Unicode ($icuVersion/$unicodeVersion); "
+					. "consider upgrading PHP's intl extension or try one for a different version, "
+					. "available at http://www.unicode.org/Public/<version>/ucdxml/ucd.all.grouped.zip";
+			} elseif ( version_compare( $unicodeVersion, "6.2", ">" ) ) {
+				$error .= "It is probably available at "
+					. "http://www.unicode.org/Public/$unicodeVersion.0/ucdxml/ucd.all.grouped.zip";
+			} else {
+				$error .= "Please download it from "
+					. "http://www.unicode.org/Public/$unicodeVersion.0/ucdxml/ucd.all.grouped.zip";
+			}
+			$error .= " and specify its location with --data-dir=<DIR>";
+			$this->error( $error );
+		}
+		if ( !$allkeysPresent || !$ucdallPresent ) {
 			exit( 1 );
 		}
-		if ( !file_exists( "{$this->dataDir}/ucd.all.grouped.xml" ) ) {
-			$this->error( "Unable to find ucd.all.grouped.xml. Please download it " .
-				"from http://www.unicode.org/Public/6.0.0/ucdxml/ucd.all.grouped.zip " .
-				"and specify its location with --data-dir=<DIR>" );
-			exit( 1 );
-		}
+		
 		$debugOutFileName = $this->getOption( 'debug-output' );
 		if ( $debugOutFileName ) {
 			$this->debugOutFile = fopen( $debugOutFileName, 'w' );
