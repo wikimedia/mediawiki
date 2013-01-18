@@ -288,6 +288,13 @@ class SpecialSearch extends SpecialPage {
 
 			$this->didYouMeanHtml = '<div class="searchdidyoumean">' . $this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() . '</div>';
 		}
+
+		if ( !wfRunHooks( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
+			# Hook requested termination
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
 		// start rendering the page
 		$out->addHtml(
 			Xml::openElement(
@@ -404,6 +411,7 @@ class SpecialSearch extends SpecialPage {
 		if( $num || $this->offset ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
+		wfRunHooks( 'SpecialSearchResultsAppend', array( $this, $out, $term ) );
 		wfProfileOut( __METHOD__ );
 	}
 
