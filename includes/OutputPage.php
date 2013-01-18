@@ -1435,6 +1435,9 @@ class OutputPage extends ContextSource {
 	 */
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
 		$title = $this->getTitle(); // Work arround E_STRICT
+		if ( !$title ) {
+			throw new MWException( 'Title is null' );
+		}
 		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/false, $interface );
 	}
 
