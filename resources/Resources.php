@@ -746,7 +746,10 @@ return array(
 	/* MediaWiki Language */
 
 	'mediawiki.language' => array(
-		'scripts' => 'resources/mediawiki.language/mediawiki.language.js',
+		'scripts' => array(
+			'resources/mediawiki.language/mediawiki.language.js',
+			'resources/mediawiki.language/mediawiki.language.numbers.js'
+		),
 		'languageScripts' => array(
 			'bs' => 'resources/mediawiki.language/languages/bs.js',
 			'dsb' => 'resources/mediawiki.language/languages/dsb.js',
@@ -764,7 +767,7 @@ return array(
 		),
 		'dependencies' => array(
 				'mediawiki.language.data',
-				'mediawiki.cldr'
+				'mediawiki.cldr',
 			),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
