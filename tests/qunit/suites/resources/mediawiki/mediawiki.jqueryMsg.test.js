@@ -337,7 +337,7 @@
 		assertBothModes( ['grammar-msg'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
 
 		mw.config.set( 'wgUserLanguage', 'en' );
-		assertBothModes( ['formatnum-msg', '987654321.654321'], '987654321.654321', 'formatnum is resolved' );
+		assertBothModes( ['formatnum-msg', '987654321.654321'], '987,654,321.654', 'formatnum is resolved' );
 
 		// Test non-{{ wikitext, where behavior differs
 
@@ -475,80 +475,127 @@
 		mw.jqueryMsg.getMessageFunction = oldGMF;
 	} );
 
-	formatnumTests = [
-		{
-			lang: 'en',
-			number: 987654321.654321,
-			result: '987654321.654321',
-			description: 'formatnum test for English, decimal seperator'
-		},
-		{
-			lang: 'ar',
-			number: 987654321.654321,
-			result: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
-			description: 'formatnum test for Arabic, with decimal seperator'
-		},
-		{
-			lang: 'ar',
-			number: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
-			result: 987654321,
-			integer: true,
-			description: 'formatnum test for Arabic, with decimal seperator, reverse'
-		},
-		{
-			lang: 'ar',
-			number: -12.89,
-			result: '-١٢٫٨٩',
-			description: 'formatnum test for Arabic, negative number'
-		},
-		{
-			lang: 'ar',
-			number: '-١٢٫٨٩',
-			result: -12,
-			integer: true,
-			description: 'formatnum test for Arabic, negative number, reverse'
-		},
-		{
-			lang: 'nl',
-			number: 987654321.654321,
-			result: '987654321,654321',
-			description: 'formatnum test for Nederlands, decimal seperator'
-		},
-		{
-			lang: 'nl',
-			number: -12.89,
-			result: '-12,89',
-			description: 'formatnum test for Nederlands, negative number'
-		},
-		{
-			lang: 'nl',
-			number: 'invalidnumber',
-			result: 'invalidnumber',
-			description: 'formatnum test for Nederlands, invalid number'
-		}
-	];
+formatnumTests = [
+	{
+		lang: 'en',
+		number: 987654321.654321,
+		result: '987,654,321.654',
+		description: 'formatnum test for English, decimal seperator'
+	},
+	{
+		lang: 'ar',
+		number: 987654321.654321,
+		result: '٩٨٧٬٦٥٤٬٣٢١٫٦٥٤',
+		description: 'formatnum test for Arabic, with decimal seperator'
+	},
+	{
+		lang: 'ar',
+		number: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
+		result: 987654321,
+		integer: true,
+		description: 'formatnum test for Arabic, with decimal seperator, reverse'
+	},
+	{
+		lang: 'ar',
+		number: -12.89,
+		result: '-١٢٫٨٩',
+		description: 'formatnum test for Arabic, negative number'
+	},
+	{
+		lang: 'ar',
+		number: '-١٢٫٨٩',
+		result: -12,
+		integer: true,
+		description: 'formatnum test for Arabic, negative number, reverse'
+	},
+	{
+		lang: 'nl',
+		number: 987654321.654321,
+		result: '987.654.321,654',
+		description: 'formatnum test for Nederlands, decimal seperator'
+	},
+	{
+		lang: 'nl',
+		number: -12.89,
+		result: '-12,89',
+		description: 'formatnum test for Nederlands, negative number'
+	},
+	{
+		lang: 'nl',
+		number: '.89',
+		result: '0,89',
+		description: 'formatnum test for Nederlands'
+	},
+	{
+		lang: 'nl',
+		number: 'invalidnumber',
+		result: 'invalidnumber',
+		description: 'formatnum test for Nederlands, invalid number'
+	},
+	{
+		lang: 'ml',
+		number: '1000000000',
+		result: '1,00,00,00,000',
+		description: 'formatnum test for Malayalam'
+	},
+	{
+		lang: 'ml',
+		number: '-1000000000',
+		result: '-1,00,00,00,000',
+		description: 'formatnum test for Malayalam, negative number'
+	},
+	/*
+	 * This will fail because of wrong pattern for ml in MW(different from CLDR)
+	{
+		lang: 'ml',
+		number: '1000000000.000',
+		result: '1,00,00,00,000.000',
+		description: 'formatnum test for Malayalam with decimal place'
+	},
+	*/
+	{
+		lang: 'hi',
+		number: '123456789.123456789',
+		result: '१२,३४,५६,७८९',
+		description: 'formatnum test for Hindi'
+	},
+	{
+		lang: 'hi',
+		number: '१२,३४,५६,७८९',
+		result: '१२,३४,५६,७८९',
+		description: 'formatnum test for Hindi, Devanagari digits passed'
+	},
+	{
+		lang: 'hi',
+		number: '१२३४५६,७८९',
+		result: '123456',
+		integer: true,
+		description: 'formatnum test for Hindi, Devanagari digits passed to get integer value'
+	}
+];
 
-	QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
-		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
-		$.each( formatnumTests, function ( i, test ) {
-			QUnit.stop();
-			getMwLanguage( test.lang, function ( langClass ) {
-				QUnit.start();
-				if ( !langClass ) {
-					assert.ok( false, 'Language "' + test.lang + '" failed to load' );
-					return;
-				}
-				mw.messages.set( test.message );
-				mw.config.set( 'wgUserLanguage', test.lang );
-				var parser = new mw.jqueryMsg.parser( { language: langClass } );
-				assert.equal(
-					parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
-						[ test.number ] ).html(),
-					test.result,
-					test.description
-				);
-			} );
+QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
+	mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
+	mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
+	$.each( formatnumTests, function ( i, test ) {
+		QUnit.stop();
+		getMwLanguage( test.lang, function ( langClass ) {
+			QUnit.start();
+			if ( !langClass ) {
+				assert.ok( false, 'Language "' + test.lang + '" failed to load' );
+				return;
+			}
+			mw.messages.set(test.message );
+			mw.config.set( 'wgUserLanguage', test.lang ) ;
+			var parser = new mw.jqueryMsg.parser( { language: langClass } );
+			assert.equal(
+				parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
+					[ test.number ] ).html(),
+				test.result,
+				test.description
+			);
 		} );
 	} );
+} );
 
 }( mediaWiki, jQuery ) );

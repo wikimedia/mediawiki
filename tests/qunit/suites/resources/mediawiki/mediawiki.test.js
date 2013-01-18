@@ -182,7 +182,7 @@
 		assertMultipleFormats( ['grammar-msg'], ['text', 'parse'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar is resolved' );
 		assert.equal( mw.message( 'grammar-msg' ).escaped(), 'Przeszukaj ' + mw.html.escape( mw.config.get( 'wgSiteName' ) ), 'Grammar is resolved in escaped mode' );
 
-		assertMultipleFormats( ['formatnum-msg', '987654321.654321'], ['text', 'parse', 'escaped'], '987654321.654321', 'formatnum is resolved' );
+		assertMultipleFormats( ['formatnum-msg', '987654321.654321'], ['text', 'parse', 'escaped'], '987,654,321.654', 'formatnum is resolved' );
 		assert.equal( mw.message( 'formatnum-msg' ).plain(), mw.messages.get( 'formatnum-msg' ), 'formatnum is not resolved in plain mode' );
 
 		assertMultipleFormats( ['int-msg'], ['text', 'parse', 'escaped'], 'Some Other Message', 'int is resolved' );
@@ -207,7 +207,7 @@
 
 		assert.equal( mw.msg( 'grammar-msg' ), 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar is resolved' );
 
-		assert.equal( mw.msg( 'formatnum-msg', '987654321.654321' ), '987654321.654321', 'formatnum is resolved' );
+		assert.equal( mw.msg( 'formatnum-msg', '987654321.654321' ), '987,654,321.654', 'formatnum is resolved' );
 
 		assert.equal( mw.msg( 'int-msg' ), 'Some Other Message', 'int is resolved' );
 	} );
