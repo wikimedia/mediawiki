@@ -61,18 +61,80 @@ class GenerateCollationData extends Maintenance {
 
 	public function execute() {
 		$this->dataDir = $this->getOption( 'data-dir', '.' );
-		if ( !file_exists( "{$this->dataDir}/allkeys.txt" ) ) {
-			$this->error( "Unable to find allkeys.txt. Please download it from " .
-				"http://www.unicode.org/Public/UCA/latest/allkeys.txt and specify " .
-				"its location with --data-dir=<DIR>" );
+
+		$allkeysPresent = file_exists( "{$this->dataDir}/allkeys.txt" );
+		$ucdallPresent = file_exists( "{$this->dataDir}/ucd.all.grouped.xml" );
+
+		// As of January 2013, these links work for all versions of Unicode
+		// between 5.1 and 6.2, inclusive.
+		$allkeysURL = "http://www.unicode.org/Public/UCA/<Unicode version>/allkeys.txt";
+		$ucdallURL = "http://www.unicode.org/Public/<Unicode version>/ucdxml/ucd.all.grouped.zip";
+
+		if ( !$allkeysPresent || !$ucdallPresent ) {
+			$icuVersion = ICUCollation::getICUVersion();
+			$unicodeVersion = ICUCollation::getUnicodeVersionForICU();
+
+			$error = "";
+
+			if ( !$allkeysPresent ) {
+				$error .= "Unable to find allkeys.txt. "
+					. "Download it and specify its location with --data-dir=<DIR>. ";
+					. "\n\n";
+			}
+			if ( !$ucdallPresent ) {
+				$error = "Unable to find ucd.all.grouped.xml. "
+					. "Download it, unzip, and specify its location with --data-dir=<DIR>. ";
+					. "\n\n";
+			}
+
+			$versionKnown = false;
+			if ( !$icuVersion ) {
+				// Unknown version - either very old intl,
+				// or PHP < 5.3.7 which does not expose this information
+				$error .= "As MediaWiki could not determine the version of ICU library used by your PHP's "
+					. "intl extension it can't suggest which file version to download. "
+					. "This can be caused by running a very old version of intl or PHP < 5.3.7. "
+					. "If you are sure everything is all right, find out the ICU version "
+					. "by running phpinfo(), check what is the Unicode version it is using "
+					. "at http://site.icu-project.org/download, then try finding appropriate data file(s) at:";
+			} elseif ( version_compare( $icuVersion, "4.0", "<" ) ) {
+				// Extra old version
+				$error .= "You are using outdated version of ICU ($icuVersion), intended for "
+					. ( $unicodeVersion ? "Unicode $unicodeVersion" : "unknown version of Unicode" )
+					. "; this file might not be avalaible for it, and it's not supported by MediaWiki. "
+					." You are on your own; consider upgrading PHP's intl extension or try "
+					. "one of the files available at:";
+			} elseif ( version_compare( $icuVersion, "51.0", ">=" ) ) {
+				// Extra recent version
+				$error .= "You are using ICU $icuVersion, released after this script was last updated. "
+					. "Check what is the Unicode version it is using at http://site.icu-project.org/download . "
+					. "It can't be guaranteed everything will work, but appropriate file(s) should "
+					. "be available at:";
+			} else {
+				// ICU 4.0 to 50.x, $unicodeVersion is guaranteed to be known
+				$versionKnown = true;
+				$error .= "You are using ICU $icuVersion, intended for Unicode $unicodeVersion. "
+					. "Appropriate file(s) should be available at:";
+			}
+			$error .= "\n";
+
+			if ( !$allkeysPresent ) {
+				if ( $versionKnown ) {
+					$allkeysURL = str_replace( "<Unicode version>", "$unicodeVersion.0", $allkeysURL );
+				}
+				$error .= "* $allkeysURL\n";
+			}
+			if ( !$ucdallPresent ) {
+				if ( $versionKnown ) {
+					$ucdallURL = str_replace( "<Unicode version>", "$unicodeVersion.0", $ucdallURL );
+				}
+				$error .= "* $ucdallURL\n";
+			}
+
+			$this->error( $error );
 			exit( 1 );
 		}
-		if ( !file_exists( "{$this->dataDir}/ucd.all.grouped.xml" ) ) {
-			$this->error( "Unable to find ucd.all.grouped.xml. Please download it " .
-				"from http://www.unicode.org/Public/6.0.0/ucdxml/ucd.all.grouped.zip " .
-				"and specify its location with --data-dir=<DIR>" );
-			exit( 1 );
-		}
+
 		$debugOutFileName = $this->getOption( 'debug-output' );
 		if ( $debugOutFileName ) {
 			$this->debugOutFile = fopen( $debugOutFileName, 'w' );
