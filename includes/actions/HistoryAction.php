@@ -154,7 +154,7 @@ class HistoryAction extends FormlessAction {
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
 		 */
 		if ( $request->getBool( 'deleted' ) ) {
-			$conds = array( "rev_deleted != '0'" );
+			$conds = array( 'rev_deleted != 0' );
 		} else {
 			$conds = array();
 		}

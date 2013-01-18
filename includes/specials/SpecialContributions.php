@@ -727,10 +727,10 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 		}
 		if ( $this->deletedOnly ) {
-			$condition[] = "rev_deleted != '0'";
+			$condition[] = 'rev_deleted != 0';
 		}
 		if ( $this->topOnly ) {
-			$condition[] = "rev_id = page_latest";
+			$condition[] = 'rev_id = page_latest';
 		}
 		return array( $tables, $index, $condition, $join_conds );
 	}
