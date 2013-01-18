@@ -1283,8 +1283,8 @@ class SwiftFileBackend extends FileBackendStore {
 		$cfOps = $batch->execute();
 		foreach ( $cfOps as $index => $cfOp ) {
 			$status = Status::newGood();
+			$function = '_getResponse' . $fileOpHandles[$index]->call;
 			try { // catch exceptions; update status
-				$function = '_getResponse' . $fileOpHandles[$index]->call;
 				$this->$function( $cfOp, $status, $fileOpHandles[$index]->params );
 				$this->purgeCDNCache( $fileOpHandles[$index]->affectedObjects );
 			} catch ( CloudFilesException $e ) { // some other exception?
