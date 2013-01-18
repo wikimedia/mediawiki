@@ -374,5 +374,24 @@ class IcuCollation extends Collation {
 		}
 		return false;
 	}
+
+	/**
+	 * Return the version of PHP's intl extension or false when it is missing.
+	 *
+	 * @return string|false
+	 */
+	static function getIntlVersion() {
+		return phpversion( "intl" );
+	}
+
+	/**
+	 * Return the version of ICU library used by PHP's intl extension,
+	 * or false when it is missing or the version in use can't be determined.
+	 *
+	 * @return string|false
+	 */
+	static function getICUVersion() {
+		return defined( "INTL_ICU_VERSION" ) ? INTL_ICU_VERSION : false;
+	}
 }
 
