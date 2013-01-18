@@ -177,7 +177,10 @@ production.
   "4::foo" will now be reported under a key of simply "foo".
 * BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
   for all query modules.
+
+=== API internal changes in 1.21 ===
 * ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
+* Added flags ApiResult::OVERRIDE and ADD_ON_TOP to setElement() and addValue()
 
 === Languages updated in 1.21 ===
 
