@@ -374,5 +374,21 @@ class IcuCollation extends Collation {
 		}
 		return false;
 	}
+
+	/**
+	 * Return the version of ICU library used by PHP's intl extension,
+	 * or false when the extension is not installed of the version
+	 * can't be determined.
+	 *
+	 * The constant INTL_ICU_VERSION this function refers to isn't really
+	 * documented. It is available since PHP 5.3.7 (see PHP bug 54561).
+	 * This function will return false on older PHPs.
+	 *
+	 * @since 1.21
+	 * @return string|false
+	 */
+	static function getICUVersion() {
+		return defined( 'INTL_ICU_VERSION' ) ? INTL_ICU_VERSION : false;
+	}
 }
 
