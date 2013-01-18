@@ -77,7 +77,7 @@ $wgAutoloadClasses += array(
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
 
 	# tests/phpunit/includes/site
-	'SiteObjectTest' => "$testDir/phpunit/includes/site/SiteObjectTest.php",
+	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
 	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
 
 	# tests/phpunit/languages
