@@ -147,6 +147,17 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'prop' => 'info' ), $session, false, $user->user );
 		return $data;
 	}
+
+	public function testApiTestGroup() {
+		$groups = PHPUnit_Util_Test::getGroups( get_class( $this ) );
+		$constraint = PHPUnit_Framework_Assert::logicalOr(
+			$this->contains( 'medium' ),
+			$this->contains( 'large' )
+		);
+		$this->assertThat( $groups, $constraint,
+			'ApiTestCase::setUp can be slow, tests must be "medium" or "large"'
+		);
+	}
 }
 
 class UserWrapper {
