@@ -672,11 +672,20 @@ class CoreParserFunctions {
 	}
 
 	/**
-	* Returns the requested protection level for the current page
+	 * Returns the requested protection level for the current page
+	 *
+	 * @param Parser $parser
+	 * @param string $type
+	 * @param string $title
+	 *
 	 * @return string
 	 */
-	static function protectionlevel( $parser, $type = '' ) {
-		$restrictions = $parser->mTitle->getRestrictions( strtolower( $type ) );
+	static function protectionlevel( $parser, $type = '', $title = '' ) {
+		$titleObject = Title::newFromText( $title );
+		if ( !( $titleObject instanceof Title ) ) {
+			$titleObject = $parser->mTitle;
+		}
+		$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
 		# Title::getRestrictions returns an array, its possible it may have
 		# multiple values in the future
 		return implode( $restrictions, ',' );
