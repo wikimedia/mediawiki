@@ -1235,11 +1235,15 @@ function wfLogProfilingData() {
  *
  * @param $key String
  * @param $count Int
+ * @return void
  */
 function wfIncrStats( $key, $count = 1 ) {
 	global $wgStatsMethod;
 
 	$count = intval( $count );
+	if ( $count == 0 ) {
+		return;
+	}
 
 	if( $wgStatsMethod == 'udp' ) {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
