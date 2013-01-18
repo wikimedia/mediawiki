@@ -119,9 +119,7 @@ class ApiModuleManager extends ContextSource {
 	}
 
 	/**
-	 * Get an array of (moduleName => moduleClass) for a specific group or for all.
-	 * Must be used for compatibility only
-	 * @deprecated
+	 * Creates an array of (moduleName => moduleClass) for a specific group or for all.
 	 * @param string $group name of the group to get or null for all
 	 * @return array name=>class map
 	 */

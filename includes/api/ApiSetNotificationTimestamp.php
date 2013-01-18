@@ -31,6 +31,8 @@
  */
 class ApiSetNotificationTimestamp extends ApiBase {
 
+	private $mPageSet;
+
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}
@@ -45,7 +47,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
 
-		$pageSet = new ApiPageSet( $this );
+		$pageSet = $this->getPageSet();
 		$args = array_merge( array( $params, 'entirewatchlist' ), array_keys( $pageSet->getAllowedParams() ) );
 		call_user_func_array( array( $this, 'requireOnlyOneParameter' ), $args );
 
@@ -161,6 +163,17 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 	}
 
+	/**
+	 * Get a cached instance of an ApiPageSet object
+	 * @return ApiPageSet
+	 */
+	private function getPageSet() {
+		if( !isset( $this->mPageSet ) ) {
+			$this->mPageSet = new ApiPageSet( $this );
+		}
+		return $this->mPageSet;
+	}
+
 	public function mustBePosted() {
 		return true;
 	}
@@ -177,9 +190,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return '';
 	}
 
-	public function getAllowedParams() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->getAllowedParams() + array(
+	public function getAllowedParams( $flags = 0 ) {
+		$result = array(
 			'entirewatchlist' => array(
 				ApiBase::PARAM_TYPE => 'boolean'
 			),
@@ -194,11 +206,15 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 		);
+		if( $flags ) {
+			$result += $this->getPageSet()->getFinalParams( $flags );
+		}
+		return $result;
+
 	}
 
 	public function getParamDescription() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->getParamDescription() + array(
+		return $this->getPageSet()->getParamDescription() + array(
 			'entirewatchlist' => 'Work on all watched pages',
 			'timestamp' => 'Timestamp to which to set the notification timestamp',
 			'torevid' => 'Revision to set the notification timestamp to (one page only)',
@@ -253,12 +269,14 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		$psModule = new ApiPageSet( $this );
+		$ps = $this->getPageSet();
 		return array_merge(
 			parent::getPossibleErrors(),
-			$psModule->getPossibleErrors(),
-			$this->getRequireMaxOneParameterErrorMessages( array( 'timestamp', 'torevid', 'newerthanrevid' ) ),
-			$this->getRequireOnlyOneParameterErrorMessages( array_merge( array( 'entirewatchlist' ), array_keys( $psModule->getAllowedParams() ) ) ),
+			$ps->getPossibleErrors(),
+			$this->getRequireMaxOneParameterErrorMessages(
+				array( 'timestamp', 'torevid', 'newerthanrevid' ) ),
+			$this->getRequireOnlyOneParameterErrorMessages(
+				array_merge( array( 'entirewatchlist' ), array_keys( $ps->getFinalParams() ) ) ),
 			array(
 				array( 'code' => 'notloggedin', 'info' => 'Anonymous users cannot use watchlist change notifications' ),
 				array( 'code' => 'multpages', 'info' => 'torevid may only be used with a single page' ),
