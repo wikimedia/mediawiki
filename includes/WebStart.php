@@ -84,7 +84,7 @@ define( 'MEDIAWIKI', true );
 # __DIR__ would do.
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
-	$IP = realpath( '.' );
+	$IP = dirname( __DIR__ );
 }
 
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
