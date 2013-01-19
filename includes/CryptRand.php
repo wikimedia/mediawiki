@@ -106,7 +106,11 @@ class MWCryptRand {
 					}
 				}
 				// The absolute filename itself will differ from install to install so don't leave it out
-				$state .= realpath( $file );
+				if( ( $path = realpath( $file ) ) !== false ) {
+					$state .= $path;
+				} else {
+					$state .= $file;
+				}
 				$state .= implode( '', $stat );
 			} else {
 				// The fact that the file isn't there is worth at least a
