@@ -861,12 +861,15 @@ abstract class FSFileBackendList implements Iterator {
 	 * @param $params array
 	 */
 	public function __construct( $dir, array $params ) {
-		$dir = realpath( $dir ); // normalize
-		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
+		$path = realpath( $dir ); // normalize
+		if( $path === false ) {
+			$path = $dir;
+		}
+		$this->suffixStart = strlen( $path ) + 1; // size of "path/to/dir/"
 		$this->params = $params;
 
 		try {
-			$this->iter = $this->initIterator( $dir );
+			$this->iter = $this->initIterator( $path );
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null; // bad permissions? deleted?
 		}
@@ -958,8 +961,12 @@ abstract class FSFileBackendList implements Iterator {
 	 * @param $path string
 	 * @return string
 	 */
-	protected function getRelPath( $path ) {
-		return strtr( substr( realpath( $path ), $this->suffixStart ), '\\', '/' );
+	protected function getRelPath( $dir ) {
+		$path = realpath( $dir );
+		if( $path === false ) {
+			$path = $dir;
+		}
+		return strtr( substr( $path, $this->suffixStart ), '\\', '/' );
 	}
 }
 
