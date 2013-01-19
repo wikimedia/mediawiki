@@ -242,11 +242,12 @@ class CategoryViewer extends ContextSource {
 	 * @param $sortkey
 	 * @param $pageLength
 	 * @param $isRedirect bool
+	 * @param $displayTitle string
 	 */
-	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
+	function addPage( $title, $sortkey, $pageLength, $isRedirect = false, $displayTitle = null ) {
 		global $wgContLang;
 
-		$link = Linker::link( $title );
+		$link = Linker::link( $title, $displayTitle );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
 			// but keeping for back-compatiability with user css.
@@ -298,11 +299,11 @@ class CategoryViewer extends ContextSource {
 			}
 
 			$res = $dbr->select(
-				array( 'page', 'categorylinks', 'category' ),
+				array( 'page', 'categorylinks', 'category', 'page_props' ),
 				array( 'page_id', 'page_title', 'page_namespace', 'page_len',
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files',
-					'cl_sortkey_prefix', 'cl_collation' ),
+					'cl_sortkey_prefix', 'cl_collation', 'pp_value' ),
 				array_merge( array( 'cl_to' => $this->title->getDBkey() ), $extraConds ),
 				__METHOD__,
 				array(
@@ -312,7 +313,8 @@ class CategoryViewer extends ContextSource {
 				),
 				array(
 					'categorylinks' => array( 'INNER JOIN', 'cl_from = page_id' ),
-					'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY )
+					'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ),
+					'page_props' => array( 'LEFT JOIN', 'pp_page = page_id and pp_propname = "displaytitle"' )
 				)
 			);
 
@@ -341,7 +343,7 @@ class CategoryViewer extends ContextSource {
 				} elseif ( $title->getNamespace() == NS_FILE ) {
 					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
-					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect, $row->pp_value );
 				}
 			}
 		}
