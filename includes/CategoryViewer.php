@@ -242,11 +242,17 @@ class CategoryViewer extends ContextSource {
 	 * @param $sortkey
 	 * @param $pageLength
 	 * @param $isRedirect bool
+	 * @param $displayTitle string
 	 */
-	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
+	function addPage( $title, $sortkey, $pageLength, $isRedirect = false, $displayTitle = null ) {
 		global $wgContLang;
 
-		$link = Linker::link( $title );
+		if ( $displayTitle !== null ) {
+			$displayTitle = CoreParserFunctions::sanitizeDisplayTitle( $title, $displayTitle );
+			$displayTitle = ( $displayTitle === '' ) ? null : $displayTitle;
+		}
+
+		$link = Linker::link( $title, $displayTitle );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
 			// but keeping for back-compatiability with user css.
@@ -274,6 +280,7 @@ class CategoryViewer extends ContextSource {
 	}
 
 	function doCategoryQuery() {
+		global $wgAllowDisplayTitle;
 		$dbr = wfGetDB( DB_SLAVE, 'category' );
 
 		$this->nextPage = array(
@@ -297,12 +304,21 @@ class CategoryViewer extends ContextSource {
 				$this->flip[$type] = true;
 			}
 
-			$res = $dbr->select(
-				array( 'page', 'categorylinks', 'category' ),
-				array( 'page_id', 'page_title', 'page_namespace', 'page_len',
-					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
-					'cat_subcats', 'cat_pages', 'cat_files',
-					'cl_sortkey_prefix', 'cl_collation' ),
+			$tables = array( 'page', 'categorylinks', 'category' );
+			$joinConditions = array(
+				'categorylinks' => array( 'INNER JOIN', 'cl_from = page_id' ),
+				'category' => array( 'LEFT JOIN', 'cat_title = page_title', 'page_namespace' => NS_CATEGORY )
+			);
+			$cols = array( 'page_id', 'page_title', 'page_namespace', 'page_len',
+				'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
+				'cat_subcats', 'cat_pages', 'cat_files',
+				'cl_sortkey_prefix', 'cl_collation' );
+			if ( $wgAllowDisplayTitle ) {
+				$tables[] = 'page_props';
+				$joinConditions['page_props'] = array( 'LEFT JOIN', 'pp_page = page_id', 'pp_propname' => 'displaytitle' );
+				$cols[] = 'pp_value';
+			}
+			$res = $dbr->select( $tables, $cols,
 				array_merge( array( 'cl_to' => $this->title->getDBkey() ), $extraConds ),
 				__METHOD__,
 				array(
@@ -310,13 +326,7 @@ class CategoryViewer extends ContextSource {
 					'LIMIT' => $this->limit + 1,
 					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',
 				),
-				array(
-					'categorylinks' => array( 'INNER JOIN', 'cl_from = page_id' ),
-					'category' => array( 'LEFT JOIN', array(
-						'cat_title = page_title',
-						'page_namespace' => NS_CATEGORY
-					))
-				)
+				$joinConditions
 			);
 
 			$count = 0;
@@ -344,7 +354,7 @@ class CategoryViewer extends ContextSource {
 				} elseif ( $title->getNamespace() == NS_FILE ) {
 					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
-					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect, $row->pp_value );
 				}
 			}
 		}
