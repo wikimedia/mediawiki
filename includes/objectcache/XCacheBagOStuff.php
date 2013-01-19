@@ -44,6 +44,8 @@ class XCacheBagOStuff extends BagOStuff {
 			} else {
 				$val = unserialize( $val );
 			}
+		} elseif ( is_null( $val ) ) {
+			return false;
 		}
 
 		return $val;
