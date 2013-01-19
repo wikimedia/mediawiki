@@ -5376,8 +5376,14 @@ See also:
 
 Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}
 
-See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
-'movepagetext-noredirectfixer' => 'A variant of {{msg-mw|Movepagetext|notext=1}} displayed when the automatic redirect fixer is not enabled.',
+See also:
+* {{msg-mw|Movepagetext-noredirectfixer}}',
+'movepagetext-noredirectfixer' => "A variant of the following message ''Movepagetext'' displayed when the automatic redirect fixer is not enabled.
+
+Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}
+
+See also:
+* {{msg-mw|Movepagetext}}",
 'movepagetalktext' => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
 'movearticle' => 'The text before the name of the page that you are moving. Can be translated as "Page that is going to be moved". Used in [[Special:MovePage]].
 

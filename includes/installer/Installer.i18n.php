@@ -4009,7 +4009,7 @@ Mit MediaWiki ist es einfach die letzten Änderungen nachzuvollziehen und unbrau
 
 Allerdings finden etliche Menschen Wikis auch mit anderen Bearbeitungskonzepten sinnvoll. Manchmal ist es zudem nicht einfach alle Beteiligten von den Vorteilen des „Wiki-Prinzips” zu überzeugen. Darum ist diese Auswahl möglich.
 
-Ein '''{{int:config-profile-wiki}}''' ermöglicht es jedermann, sogar ohne über ein Benutzerkonto zu verfügen, Bearbeitungen vorzunehmen.
+Das Modell „'''{{int:config-profile-wiki}}'''“ ermöglicht es jedermann, sogar ohne über ein Benutzerkonto zu verfügen, Bearbeitungen vorzunehmen.
 Ein Wiki bei dem die '''{{int:config-profile-no-anon}}''' ist, fordert von den Benutzern eine höhere Verantwortung für ihre Bearbeitungen ein, könnte allerdings Personen abschrecken, die nur gelegentlich Bearbeitungen vornehmen wollen. Ein Wiki für '''{{int:config-profile-fishbowl}}''' gestattet es nur bestimmten Benutzern, Bearbeitungen vorzunehmen. Allerdings kann dabei die Allgemeinheit die Seiten immer noch betrachten und Änderungen nachvollziehen. Ein '''{{int:config-profile-private}}''' gestattet es nur ausgewählten Benutzern, Seiten zu betrachten sowie zu bearbeiten.
 
 Komplexere Konzepte zur Zugriffssteuerung können erst nach abgeschlossenem Installationsvorgang eingerichtet werden. Hierzu gibt es weitere Informationen auf der Website mit der [//www.mediawiki.org/wiki/Manual:User_rights entsprechenden Anleitung].",
@@ -4097,7 +4097,7 @@ Es könnten zusätzliche Konfigurierungen zu einzelnen Erweiterungen erforderlic
 	'config-install-alreadydone' => "'''Warnung:''' Es wurde eine vorhandene MediaWiki-Installation gefunden.
 Es muss daher mit den nächsten Seite weitergemacht werden.",
 	'config-install-begin' => 'Durch Drücken von „{{int:config-continue}}“ wird die Installation von MediaWiki gestartet.
-Sofern Änderungen vorgenommen werden sollen, kann man auf „← Zurück“ klicken.',
+Sofern Änderungen vorgenommen werden sollen, kann man auf „{{int:config-back}}“ klicken.',
 	'config-install-step-done' => 'erledigt',
 	'config-install-step-failed' => 'gescheitert',
 	'config-install-extensions' => 'Programmerweiterungen',
@@ -4324,7 +4324,7 @@ $messages['el'] = array(
 	'config-admin-password-confirm' => 'Επανάληψη κωδικού πρόσβασης:',
 	'config-admin-email' => 'Διεύθυνση ηλεκτρονικού ταχυδρομείου:',
 	'config-optional-continue' => 'Να ερωτηθώ περισσότερες ερωτήσεις.',
-	'config-profile-wiki' => 'Παραδοσιακό wiki',
+	'config-profile-wiki' => 'Παραδοσιακό wiki', # Fuzzy
 	'config-profile-no-anon' => 'Απαιτείται η δημιουργία λογαριασμού',
 	'config-profile-private' => 'Ιδιωτικό wiki',
 	'config-email-settings' => 'Ρυθμίσεις ηλεκτρονικού ταχυδρομείου',
@@ -6590,7 +6590,7 @@ Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.'
 	'config-optional-continue' => 'Facédeme máis preguntas.',
 	'config-optional-skip' => 'Xa estou canso. Instalade o wiki.',
 	'config-profile' => 'Perfil dos dereitos de usuario:',
-	'config-profile-wiki' => 'Wiki tradicional',
+	'config-profile-wiki' => 'Wiki aberto',
 	'config-profile-no-anon' => 'Necesítase a creación dunha conta',
 	'config-profile-fishbowl' => 'Só os editores autorizados',
 	'config-profile-private' => 'Wiki privado',
@@ -6599,7 +6599,7 @@ En MediaWiki, é doado revisar os cambios recentes e reverter calquera dano feit
 Porén, moita xente atopa MediaWiki útil nunha ampla variedade de papeis, e ás veces non é fácil convencer a todos dos beneficios que leva consigo o estilo wiki.
 Vostede decide.
 
-O tipo '''{{int:config-profile-wiki}}''' permite a edición por parte de calquera, mesmo sen rexistro.
+O modelo '''{{int:config-profile-wiki}}''' permite a edición por parte de calquera, mesmo sen rexistro.
 A opción '''{{int:config-profile-no-anon}}''' proporciona un control maior, pero pode desalentar os colaboradores casuais.
 
 O escenario '''{{int:config-profile-fishbowl}}''' restrinxe a edición aos usuarios aprobados, pero o público pode ollar as páxinas, incluíndo os historiais.
@@ -6690,7 +6690,7 @@ Quizais necesite algunha configuración adicional, pero pode activalas agora',
 	'config-install-alreadydone' => "'''Atención:''' Semella que xa instalou MediaWiki e que o está a instalar de novo.
 Vaia ata a seguinte páxina.",
 	'config-install-begin' => 'Ao premer en "{{int:config-continue}}", comezará a instalación de MediaWiki.
-Se aínda quere facer algún cambio, volva atrás.',
+Se aínda quere facer algún cambio, prema en "{{int:config-back}}".',
 	'config-install-step-done' => 'feito',
 	'config-install-step-failed' => 'erro',
 	'config-install-extensions' => 'Incluíndo as extensións',
@@ -9792,7 +9792,7 @@ Inserire un indirizzo email se si desidera effettuare l'iscrizione alla mailing 
 	'config-almost-done' => 'Hai quasi finito!
 Adesso puoi saltare la rimanente parte della configurazione e semplicemente installare la wiki.',
 	'config-optional-continue' => 'Fammi altre domande.',
-	'config-profile-wiki' => 'Wiki tradizionale',
+	'config-profile-wiki' => 'Wiki tradizionale', # Fuzzy
 	'config-profile-no-anon' => 'Creazione utenza obbligatoria',
 	'config-profile-fishbowl' => 'Solo editori autorizzati',
 	'config-profile-private' => 'Wiki privata',
@@ -10187,8 +10187,8 @@ chmod a+w $3</pre>',
 	'config-ns-other' => 'その他 (指定してください)',
 	'config-ns-other-default' => 'マイウィキ',
 	'config-project-namespace-help' => "ウィキペディアの例に従い、多くのウィキは、コンテンツのページとは分離したポリシーページを「'''プロジェクトの名前空間'''」に持っています。
-この名前空間のページのタイトルはすべて、ある接頭辞で始まります。それをここで指定することができます。
-この接頭辞はウィキの名前に由来するのが伝統的ですが、「#」や「:」のような区切り文字を含めることはできません。",
+この名前空間内のページのページ名はすべて特定の接頭辞で始まります。それをここで指定できます。
+通常、この接頭辞はウィキ名に基づきますが、「#」や「:」のような区切り文字を含めることはできません。",
 	'config-ns-invalid' => '"<nowiki>$1</nowiki>"のように指定された名前空間は無効です。
 違うプロジェクト名前空間を指定してください。',
 	'config-admin-box' => '管理アカウント',
@@ -10215,21 +10215,21 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => '私にもっと質問してください。',
 	'config-optional-skip' => 'もう飽きてしまったので、とにかくウィキをインストールしてください。',
 	'config-profile' => '利用者権限のプロファイル:',
-	'config-profile-wiki' => '伝統的なウィキ',
+	'config-profile-wiki' => '伝統的なウィキ', # Fuzzy
 	'config-profile-no-anon' => 'アカウントの作成が必要',
 	'config-profile-fishbowl' => '承認された編集者のみ',
 	'config-profile-private' => '非公開ウィキ',
-	'config-profile-help' => "ウィキは、たくさんの人が可能な限りそのウィキを編集できるとき、最も優れた働きをします。
-MediaWikiでは、最近の更新を確認し、神経質な、もしくは悪意を持った利用者からの損害を差し戻すことが、簡単にできます。
+	'config-profile-help' => "ウィキは、できるだけ多くの人が編集できるようにすると最も優れた働きをします。
+MediaWikiでは、最近の更新を確認しやすく、神経質な、または悪意を持った利用者からの損害を簡単に差し戻せます。
 
 しかし一方で、MediaWikiは、さらにさまざまな形態での利用も優れていると言われています。また、時には、すべての人にウィキ手法の利点を説得させるのは容易ではないかもしれません。
 そこで、選択肢があります。
 
-'''{{int:config-profile-wiki}}'''は、ログインしなくても、誰でも編集できるものです。
-'''{{int:config-profile-no-anon}}'''なウィキは、各編集に対してより強い説明責任を付与しますが、気軽な投稿を阻害するかもしれません。
+「'''{{int:config-profile-wiki}}'''」モデルでは、ログインしなくても、誰でも編集できます。
+「'''{{int:config-profile-no-anon}}'''」なウィキでは、各編集に対してより強い説明責任を付与しますが、気軽な投稿を阻害するかもしれません。
 
-'''{{int:config-profile-fishbowl}}'''のウィキは、承認された利用者が編集でき、一方、一般の人はページ（とその履歴）を閲覧できます。
-'''{{int:config-profile-private}}'''は、承認された利用者のみがページを閲覧でき、そのグループが編集できます。
+「'''{{int:config-profile-fishbowl}}'''」シナリオでは、承認された利用者のみが編集でき、一般の人はページ (とその履歴) を閲覧できます。
+「'''{{int:config-profile-private}}'''」では、承認された利用者のみがページを閲覧でき、そのグループが編集できます。
 
 より複雑な利用者権限の設定は、インストール後に設定できます。詳細は[//www.mediawiki.org/wiki/Manual:User_rights 関連するマニュアル]をご覧ください。",
 	'config-license' => '著作権とライセンス:',
@@ -10310,7 +10310,7 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 	'config-install-alreadydone' => "'''警告:''' 既にMediaWikiがインストール済みで、再びインストールし直そうとしています。
 次のページへ進んでください。",
 	'config-install-begin' => '「{{int:config-continue}}」を押すと、MediaWiki のインストールを開始できます。
-変更したい設定がある場合は、「{{int:Config-back}}」を押してください。',
+変更したい設定がある場合は、「{{int:config-back}}」を押してください。',
 	'config-install-step-done' => '実行',
 	'config-install-step-failed' => '失敗した',
 	'config-install-extensions' => '拡張機能を含む',
@@ -10999,7 +10999,7 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-optional-continue' => '더 많은 질문을 물어보세요.',
 	'config-optional-skip' => '지겨워요, 그냥 위키를 설치할래요.',
 	'config-profile' => '사용자 권한 프로필:',
-	'config-profile-wiki' => '평범한 위키',
+	'config-profile-wiki' => '평범한 위키', # Fuzzy
 	'config-profile-no-anon' => '계정 만들기 필요',
 	'config-profile-fishbowl' => '승인된 편집자만 이용 가능',
 	'config-profile-private' => '비공개 위키',
@@ -11015,7 +11015,7 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 '''{{int:config-profile-fishbowl}}''' 같은 경우는 승인된 사용자만 편집할 수 있지만, 대중은 역사를 포함하여 페이지를 볼 수 있습니다.
 '''{{int:config-profile-private}}'''는 승인된 사용자만 같은 그룹에서 편집할 수 있고 볼 수 있습니다.
 
-더 복잡한 사용자 권한을 설정하여 설치한 후 사용할 수 있도록 하려면 [//www.mediawiki.org/wiki/Manual:User_rights 관련 매뉴얼 항목]을 참고하세요.",
+더 복잡한 사용자 권한을 설정하여 설치한 후 사용할 수 있도록 하려면 [//www.mediawiki.org/wiki/Manual:User_rights 관련 매뉴얼 항목]을 참고하세요.", # Fuzzy
 	'config-license' => '저작권 및 라이선스:',
 	'config-license-none' => '라이선스 바닥글 없음',
 	'config-license-cc-by-sa' => '크리에이티브 커먼즈 저작자표시-동일조건변경허락',
@@ -11100,7 +11100,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-install-alreadydone' => "'''경고:''' 이미 미디어위키를 설치했고 다시 설치하려고 합니다.
 다음 페이지에서 진행하세요.",
 	'config-install-begin' => '"{{int:config-continue}}"을 누르면 미디어위키의 설치를 시작합니다.
-그래도 바꾸는 것을 원한다면 뒤로를 누릅니다.',
+그래도 바꾸는 것을 원한다면 뒤로를 누릅니다.', # Fuzzy
 	'config-install-step-done' => '완료',
 	'config-install-step-failed' => '실패',
 	'config-install-extensions' => '확장 기능을 포함하는 중',
@@ -12645,7 +12645,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Постави ми повеќе прашања.',
 	'config-optional-skip' => 'Веќе ми здосади, дај само инсталирај го викито.',
 	'config-profile' => 'Профил на кориснички права:',
-	'config-profile-wiki' => 'Традиционално вики',
+	'config-profile-wiki' => 'Отворено вики',
 	'config-profile-no-anon' => 'Задолжително отворање сметка',
 	'config-profile-fishbowl' => 'Само овластени уредници',
 	'config-profile-private' => 'Приватно вики',
@@ -12655,7 +12655,7 @@ chmod a+w $3</pre>',
 Многумина имаат најдено најразлични полезни примени за МедијаВики, но понекогаш не е лесно да убедите некого во предностите на вики-концептот.
 Значи имате избор.
 
-'''{{int:config-profile-wiki}}''' — секој може да го уредува, дури и без најавување.
+'''{{int:config-profile-wiki}}''' — модел според кој секој може да уредува, дури и без најавување.
 Ако имате вики со '''задолжително отворање на сметка''', тогаш добивате повеќе контрола, но ова може даги одврати спонтаните учесници.
 
 '''{{int:config-profile-fishbowl}}''' — може да уредуваат само уредници што имаат добиено дозвола за тоа, но јавноста може да ги гледа страниците, вклучувајќи ја нивната историја.
@@ -12746,7 +12746,7 @@ chmod a+w $3</pre>',
 	'config-install-alreadydone' => "'''Предупредување:''' Изгледа дека веќе го имате инсталирано МедијаВики и сега сакате да го инсталирате повторно.
 Продолжете на следната страница.",
 	'config-install-begin' => 'Стискајќи на „{{int:config-continue}}“ ќе ја започнете инсталацијата на МедијаВики.
-Ако сакате да направите измени во досегашното, стиснете на „Назад“.',
+Ако сакате да направите измени во досегашното, стиснете на „{{int:config-back}}“.',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'не успеа',
 	'config-install-extensions' => 'Вклучувам додатоци',
@@ -15592,7 +15592,7 @@ A peul adess sauté la configurassion rimanenta e instalé dlongh la wiki.",
 	'config-optional-continue' => "Ciameme d'àutre chestion.",
 	'config-optional-skip' => 'I son già anojà, instala mach la wiki.',
 	'config-profile' => "Profil dij drit d'utent:",
-	'config-profile-wiki' => 'Wiki tradissional',
+	'config-profile-wiki' => 'Deurb wiki',
 	'config-profile-no-anon' => 'A venta creé un cont',
 	'config-profile-fishbowl' => 'Mach editor autorisà',
 	'config-profile-private' => 'Wiki privà',
@@ -15602,7 +15602,7 @@ An MediaWiki, a l'é bel fé revisioné ij cambi recent, e buté andré minca da
 An tùit ij cas, an tanti a l'han trovà che MediaWiki a sia ùtil ant na gran varietà ëd manere, e dle vire a l'é pa bel fé convince cheidun dij vantagi dla wiki.
 Parèj a l'ha doe possibilità.
 
-Un '''{{int:config-profile-wiki}}''' a përmët a chicassìa ëd modifiché, bele sensa intré ant ël sistema.
+Ël model '''{{int:config-profile-wiki}}''' a përmët a chicassìa ëd modifiché, bele sensa intré ant ël sistema.
 Na wiki con  '''{{int:config-profile-no-anon}}''' a dà pì 'd contròl, ma a peul slontané dij contribudor casuaj.
 
 Ël senari '''{{int:config-profile-fishbowl}}''' a përmët a j'utent aprovà ëd modifiché, ma ël pùblich a peul vëdde le pàgine, comprèisa la stòria.
@@ -15691,8 +15691,8 @@ S'a conòsse nen la pòrta, cola predefinìa a l'é 11211.",
 A peulo avèj da manca ëd configurassion adissionaj, ma a peul abiliteje adess",
 	'config-install-alreadydone' => "'''Avis''' A smija ch'a l'abie già instalà MediaWiki e ch'a preuva a instalelo torna.
 Për piasì, ch'a vada a la pàgina ch'a-i ven.",
-	'config-install-begin' => "An sgnacand \"{{int:config-continue}}\", a anandiërà l'istalassion ëd MediaWiki.
-S'a veul anco' fé dle modìfiche, ch'A sgnaca su andré.",
+	'config-install-begin' => 'An sgnacand "{{int:config-continue}}", a anandiërà l\'istalassion ëd MediaWiki.
+S\'a veul anco\' fé dle modìfiche, ch\'a sgnaca su "{{int:config-back}}".',
 	'config-install-step-done' => 'fàit',
 	'config-install-step-failed' => 'falì',
 	'config-install-extensions' => "Comprende j'estension",

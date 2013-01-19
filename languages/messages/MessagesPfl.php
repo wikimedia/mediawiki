@@ -518,6 +518,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 # Watchlist
 'watchlist' => 'Beowachdungslischd',
 'mywatchlist' => 'Beowachdungslischd',
+'watchlistfor2' => 'Vun $1 $2',
 'addedwatchtext' => "Die Said \"[[:\$1]]\" isch zu Dainer [[Special:Watchlist|Beowachdungslischt]] zugefiecht worre.
 Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre doo aagezaicht, un d Said werd '''fett''' aagezaicht in de [[Special:RecentChanges|Letschte Ännerunge]] fer dass es ääfacher isch zum finne.",
 'removedwatchtext' => 'D Said "[[:$1]]" isch aus [[Special:Watchlist|Dainer Beowachdungslischt]] rausgenumme worre.',
@@ -810,6 +811,9 @@ Annere Medadaade sinn noamalawais verschdegld.
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsaide',
+'specialpages-group-other' => 'Onare bsundare Saide',
+'specialpages-group-pagetools' => 'Wergzaisch fa Saide',
+'specialpages-group-wiki' => 'Daade un Wergzaisch',
 
 # Special:Tags
 'tags-edit' => 'bearwaide',

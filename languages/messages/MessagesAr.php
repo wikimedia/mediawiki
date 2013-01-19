@@ -2686,9 +2686,9 @@ $UNWATCHURL
 'protect-cascadeon' => 'هذه الصفحة محمية لكونها مضمنة في {{PLURAL:$1|الصفحة|الصفحات}} التالية، والتي بها خيار حماية الصفحات المدمجة فعال.
 يمكنك تغيير مستوى حماية هذه الصفحة بدون التأثير على حماية الصفحات المدمجة الأخرى.',
 'protect-default' => 'اسمح لكل المستخدمين',
-'protect-fallback' => 'يتطلب السماح "$1"',
-'protect-level-autoconfirmed' => 'امنع المستخدمين الجدد وغير المسجلين',
-'protect-level-sysop' => 'الإداريون فقط',
+'protect-fallback' => 'السماح فقط للمستخدمين ذوي الصلاحية "$1"',
+'protect-level-autoconfirmed' => 'السماح فقط للمستخدمين المؤكدين تلقائيا',
+'protect-level-sysop' => 'السماح للإداريين فقط',
 'protect-summary-cascade' => 'مضمنة',
 'protect-expiring' => 'تنتهي في $1 (UTC)',
 'protect-expiring-local' => 'ينتهي $1',

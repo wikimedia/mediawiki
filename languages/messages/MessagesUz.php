@@ -1010,10 +1010,12 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 'prevpage' => 'Avvalgi sahifa ($1)',
 'allpagesfrom' => 'Quyidagidan boshlanuvchi sahifalarni koʻrsatish:',
 'allarticles' => 'Barcha sahifalar',
+'allnotinnamespace' => 'Barcha sahifalar ("$1" nomfazolaridan tashqari)',
 'allpagesprev' => 'Oldingi',
 'allpagesnext' => 'Keyingi',
 'allpagessubmit' => 'Oʻtish',
 'allpagesprefix' => 'Shunday prefiksli sahifalarni koʻrsatish:',
+'allpages-hide-redirects' => 'Yoʻnaltirishlarni yashirish',
 
 # SpecialCachedPage
 'cachedspecial-refresh-now' => "Oxirgi versiyasini ko'rish",
@@ -1123,10 +1125,10 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'enotif_subject_restored' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan tiklandi',
 'enotif_subject_changed' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan oʻzgartirildi',
 'enotif_body_intro_deleted' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan o‘chirildi, qarang: $3.',
-'enotif_body_intro_created' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan yaratildi, joriy variantini ko‘rish uchun $3ga qarang.',
-'enotif_body_intro_moved' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan qayta nomlandi, joriy variantini ko‘rish uchun $3ga qarang.',
-'enotif_body_intro_restored' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan tiklandi, joriy variantini ko‘rish uchun $3ga qarang.',
-'enotif_body_intro_changed' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan o‘zgartirildi, joriy variantini ko‘rish uchun $3ga qarang.',
+'enotif_body_intro_created' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan yaratildi, joriy variantini ko‘rish uchun $3 ga qarang.',
+'enotif_body_intro_moved' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan qayta nomlandi, joriy variantini ko‘rish uchun $3 ga qarang.',
+'enotif_body_intro_restored' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan tiklandi, joriy variantini ko‘rish uchun $3 ga qarang.',
+'enotif_body_intro_changed' => '{{SITENAME}} loyihasining $1 nomli sahifasi $PAGEEDITDATEda foydalanuvchi {{gender:$2|$2}} tomonidan o‘zgartirildi, joriy variantini ko‘rish uchun $3 ga qarang.',
 'enotif_lastvisited' => "Oxirgi tashrifingizdan buyon sodir bo'lgan barcha o'zgarishlarni ko'rish uchun $1 ga qarang.",
 'enotif_lastdiff' => "O'zgarishlar bilan tanishish uchun $1 ga qarang.",
 'enotif_anon_editor' => 'anonim ishtirokchi $1',
@@ -1148,10 +1150,10 @@ Agar siz sahifaga o‘tib ko‘rmasangiz, u holda uning keyingi o‘zgarishlari 
 Xabar berish moslamalarini o‘zgartirish uchun quyidagi havola bo‘yicha o‘ting
 {{canonicalurl:{{#special:Preferences}}}}
 
-O‘z kuzatuv ro‘yxatingiz moslamalarini o‘zgartirish uchun quyidagi havola bo‘yicha o‘ting
+Oʻz kuzatuv roʻyxatingiz moslamalarini o‘zgartirish uchun quyidagi havola bo‘yicha o‘ting
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-O‘z kuzatuv ro\'yxatingizdan sahifani o‘chirish uchun quyidagi havola bo‘yicha o‘ting
+Oʻz kuzatuv roʻyxatingizdan sahifani o‘chirish uchun quyidagi havola bo‘yicha o‘ting
 $UNWATCHURL
 
 Qayta aloqa va yordam

@@ -2568,9 +2568,9 @@ $UNWATCHURL
 'protect-cascadeon' => '다음 {{PLURAL:$1|문서}}에 연쇄적 보호가 작동하고 있어 그 문서에 속한 이 문서도 현재 보호됩니다.
 사용자는 이 문서의 보호 설정을 바꾸실 수 있지만 연쇄적 보호에는 영향을 주지 않습니다.',
 'protect-default' => '모든 사용자에게 허용',
-'protect-fallback' => '"$1" 권한 필요',
-'protect-level-autoconfirmed' => '등록된 사용자만 가능',
-'protect-level-sysop' => '관리자만 가능',
+'protect-fallback' => '"$1" 권한의 사용자만 허용',
+'protect-level-autoconfirmed' => '자동 인증된 사용자만 허용',
+'protect-level-sysop' => '관리자만 허용',
 'protect-summary-cascade' => '연쇄적',
 'protect-expiring' => '$1 (UTC)에 만료',
 'protect-expiring-local' => '$1에 해제',

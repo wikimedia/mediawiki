@@ -1190,7 +1190,7 @@ $1",
 'qbsettings-floatingright' => 'سەراوی ڕاست',
 
 # Preferences page
-'preferences' => 'ھەڵبژاردەکان',
+'preferences' => 'ھەڵبەژاردەکان',
 'mypreferences' => 'ھەڵبژاردەکان',
 'prefs-edits' => 'ژمارەی گۆڕانکارییەکان:',
 'prefsnologin' => 'لەژوورەوە نیت',

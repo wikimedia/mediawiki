@@ -568,7 +568,7 @@ Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek.
 'unexpected' => 'Onverwagte waarde: "$1"="$2".',
 'formerror' => 'Fout: kon vorm nie stuur nie',
 'badarticleerror' => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
-'cannotdelete' => 'Die bladsy of lêer "$1" kon nie skrap word nie.
+'cannotdelete' => 'Die bladsy of lêer "$1" kon nie verwyder word nie.
 Iemand anders het dit moontlik reeds geskrap.',
 'cannotdelete-title' => 'Bladsy "$1" kan nie verwyder word nie',
 'delete-hook-aborted' => "Die wysiging is deur 'n hoek gekanselleer.
@@ -2269,9 +2269,9 @@ Toekomstige wysigings aan hierdie bladsy en sy bybehorende besprekingsblad sal h
 'enotif_body_intro_created' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE geskep. Sien $3 vir die huidige weergawe.',
 'enotif_body_intro_moved' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE hernoem. Sien $3 vir die huidige weergawe.',
 'enotif_body_intro_restored' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE teruggeplaas. Sien $3 vir die huidige weergawe.',
-'enotif_body_intro_changed' => 'Die bladsy $1 op {{SITENAME}} is deur {{GENDER:$2|$2}} op $PAGEEDITDATE gewysig. Sien $3 vir die huidige weergawe.',
+'enotif_body_intro_changed' => 'Die bladsy $1 op {{SITENAME}} is op $PAGEEDITDATE deur {{GENDER:$2|$2}} gewysig. Sien $3 vir die huidige weergawe.',
 'enotif_lastvisited' => 'Sien $1 vir alle wysigings sedert u laaste besoek.',
-'enotif_lastdiff' => 'Sien $1 om hierdie wysiging te bekyk.',
+'enotif_lastdiff' => 'Gaan na $1 om hierdie wysiging te sien.',
 'enotif_anon_editor' => 'anonieme gebruiker $1',
 'enotif_body' => 'Beste $WATCHINGUSERNAME,
 
@@ -2286,7 +2286,7 @@ Wiki: $PAGEEDITOR_WIKI
 Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie.
 U kan ook die waarskuwingsvlag op u dophoulys stel.
 
-Groete van {{SITENAME}} se waarskuwingssisteem.
+Groete van {{SITENAME}} se waarskuwingsstelsel.
 
 --
 U kan u e-posvoorkeure stel by:
@@ -2743,14 +2743,14 @@ Kies asseblief 'n ander naam.",
 'move-subpages' => 'Skuif al die subbladsye (maksimaal $1)',
 'move-talk-subpages' => 'Skuif al die subbladsye van die besprekingsblad (maksimaal $1)',
 'movepage-page-exists' => 'Die bladsy $1 bestaan reeds en kan nie outomaties oorskryf word nie.',
-'movepage-page-moved' => 'Die bladsy $1 was na $2 geskuif.',
+'movepage-page-moved' => 'Die bladsy $1 is na $2 geskuif.',
 'movepage-page-unmoved' => 'Die bladsy $1 kon nie na $2 geskuif word nie.',
 'movepage-max-pages' => 'Die maksimum van $1 {{PLURAL:$1|bladsy|bladsye}} is geskuif. Die oorblywende bladsye na nie outomaties geskuif word nie.',
 'movelogpage' => 'Skuiflogboek',
 'movelogpagetext' => "Hier onder is 'n lys van geskuifde bladsye.",
 'movesubpage' => '{{PLURAL:$1|Subbladsy|Subbladsye}}',
 'movesubpagetext' => 'Die {{PLURAL:$1|subbladsy|$1 subbladsye}} van hierdie blad word hieronder gewys.',
-'movenosubpage' => 'Die bladsy het geen subbladsye.',
+'movenosubpage' => 'Die bladsy het geen subbladsye nie.',
 'movereason' => 'Rede:',
 'revertmove' => 'rol terug',
 'delete_and_move' => 'Skrap en skuif',
@@ -3021,7 +3021,7 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-redirects-name' => 'Aansture na die bladsy',
 'pageinfo-subpages-name' => 'Subblaaie van die bladsy',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|aanstuur|aansture}}; $3 {{PLURAL:$3|nie-aanstuur|nie-aansture}})',
-'pageinfo-firstuser' => 'Gebruiker die die bladsy geskep het',
+'pageinfo-firstuser' => 'Gebruiker wat die bladsy geskep het',
 'pageinfo-firsttime' => 'Datum waarop die bladsy geskep is',
 'pageinfo-lastuser' => 'Laatste wysiger',
 'pageinfo-lasttime' => 'Datum van laatste wysiging',

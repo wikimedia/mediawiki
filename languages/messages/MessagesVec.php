@@ -309,7 +309,7 @@ $messages = array(
 'vector-simplesearch-preference' => "Intaca i sugerimenti di ricerca avansadi (solo par l'interfacia Vector)",
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Canbia',
-'vector-view-history' => 'Varda la storia',
+'vector-view-history' => "Varda ła 'storia",
 'vector-view-view' => 'Lezi',
 'vector-view-viewsource' => 'Varda el testo',
 'actions' => 'Asion',
@@ -1210,7 +1210,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'prefs-user-pages' => 'Pàjine utente',
 'prefs-personal' => 'Profiło utente',
 'prefs-rc' => 'Ultime modifeghe',
-'prefs-watchlist' => 'Tegnùi de òcio',
+'prefs-watchlist' => "Pàjine tegnùe d'ocio",
 'prefs-watchlist-days' => 'Nùmaro de giòrni da far védar nei osservati speciali:',
 'prefs-watchlist-days-max' => 'Masimo $1 dì',
 'prefs-watchlist-edits' => 'Nùmaro de modifiche da far védar con le funzion avanzade:',
@@ -2112,7 +2112,7 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 
 # Watchlist
 'watchlist' => "Pagine tegnùe d'ocio",
-'mywatchlist' => "Pagine tegnùe d'ocio",
+'mywatchlist' => "Pàjine tegnùe d'ocio",
 'watchlistfor2' => 'De $1 $2',
 'nowatchlist' => "No te ghè indicà pagine da tegner d'ocio.",
 'watchlistanontext' => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",

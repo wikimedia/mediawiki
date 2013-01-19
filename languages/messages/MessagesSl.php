@@ -2393,9 +2393,9 @@ Trenutne nastavitve za stran '''$1''' so:",
 'protect-cascadeon' => 'Ta stran je trenutno uaščitena, ker je vključena v {{PLURAL:$1|naslednjo stran, ki ima|naslednji strani, ki imata|naslednje strani, ki imajo|naslednjih strani, ki imajo}} vključeno kaskadno zaščito.
 Stopnjo zaščite te strani lahko spremenite, vendar to ne bo vplivalo na kaskadno zaščito.',
 'protect-default' => 'Dovoli vsem uporabnikom',
-'protect-fallback' => 'Potrebujete pravice »$1«',
-'protect-level-autoconfirmed' => 'Blokiraj nove in neregistrirane uporabnike',
-'protect-level-sysop' => 'Samo administratorji',
+'protect-fallback' => 'Dovoli samo uporabnikom s pravico »$1«',
+'protect-level-autoconfirmed' => 'Dovoli samo samodejno potrjenim uporabnikom',
+'protect-level-sysop' => 'Dovoli samo administratorjem',
 'protect-summary-cascade' => 'kaskadno',
 'protect-expiring' => 'poteče $1 (UTC)',
 'protect-expiring-local' => 'poteče $1',
@@ -2702,7 +2702,7 @@ Samodejno lahko posodobite preusmeritve, ki kažejo na dosedanji naslov.
 Če se za to ne odločite, ne pozabite preveriti vseh [[Special:DoubleRedirects|dvojnih]] ali [[Special:BrokenRedirects|pretrganih preusmeritev]].
 Odgovorni ste, da bodo povezave še naprej kazale na prava mesta.
 
-Kjer stran z izbranim novim imenom že obstaja, dejanje '''ne''' bo izvedeno, razen če je sedanja stran prazna ali preusmeritvena in brez zgodovine urejanj.
+Kjer stran z izbranim novim imenom že obstaja, dejanje '''ne''' bo izvedeno, razen če je sedanja stran preusmeritev in brez zgodovine urejanj.
 To pomeni, da lahko, če se zmotite, strani vrnete prvotno ime, ne morete pa prepisati že obstoječe strani.
 
 '''Opozorilo!'''

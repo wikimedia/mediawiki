@@ -325,7 +325,7 @@ $messages = array(
 'tog-rememberpassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'tog-watchcreations' => 'Apondre les pâges que fé et pués los fichiérs que tèlècharjo a ma lista de siuvu',
 'tog-watchdefault' => 'Apondre les pâges et los fichiérs que chanjo a ma lista de siuvu',
-'tog-watchmoves' => 'Apondre les pâges et los fichiérs que renomo a ma lista de siuvu',
+'tog-watchmoves' => 'Apondre les pâges et los fichiérs que dèplaço a ma lista de siuvu',
 'tog-watchdeletion' => 'Apondre les pâges et los fichiérs que suprimo a ma lista de siuvu',
 'tog-minordefault' => 'Marcar per dèfôt tôs los changements coment petiôts',
 'tog-previewontop' => 'Montrar l’apèrçu d’amont la zona de changement',
@@ -462,7 +462,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Apondre na chousa',
 'vector-action-delete' => 'Suprimar',
-'vector-action-move' => 'Renomar',
+'vector-action-move' => 'Dèplaciér',
 'vector-action-protect' => 'Protègiér',
 'vector-action-undelete' => 'Refâre',
 'vector-action-unprotect' => 'Changiér la protèccion',
@@ -1098,9 +1098,9 @@ Vos pouede tornar arriér et pués changiér na pâge ègzistenta ou ben [[Speci
 'recreate-moveddeleted-warn' => "'''Atencion : vos éte aprés refâre na pâge qu’est étâye suprimâye dês devant.'''
 
 Demandâd-vos se fôt franc continuar son changement.
-Por comoditât, lo jornal de les suprèssions et des changements de nom de cela pâge est montrâ ce-desot :",
+Por comoditât, lo jornal de les suprèssions et des dèplacements de cela pâge est montrâ ce-desot :",
 'moveddeleted-notice' => 'Ceta pâge est étâye suprimâye.
-Por refèrence, lo jornal de les suprèssions et des changements de nom est montrâ ce-desot.',
+Por refèrence, lo jornal de les suprèssions et des dèplacements de cela pâge est montrâ ce-desot.',
 'log-fulllog' => 'Vêre lo jornal complèt',
 'edit-hook-aborted' => 'Changement anulâ per un grèfon.
 Nion’èxplicacion est étâye balyêe.',
@@ -1587,10 +1587,10 @@ Cel’enformacion serat publica.',
 'right-createtalk' => 'Fâre des pâges de discussion',
 'right-createaccount' => 'Fâre des comptos utilisator novéls',
 'right-minoredit' => 'Marcar los changements coment petiôts',
-'right-move' => 'Renomar des pâges',
-'right-move-subpages' => 'Renomar des pâges avouéc lors sot-pâges',
-'right-move-rootuserpages' => 'Renomar la pâge principâla a un usanciér',
-'right-movefile' => 'Renomar des fichiérs',
+'right-move' => 'Dèplaciér des pâges',
+'right-move-subpages' => 'Dèplaciér des pâges avouéc lors sot-pâges',
+'right-move-rootuserpages' => 'Dèplaciér des pâges utilisator principâles',
+'right-movefile' => 'Dèplaciér des fichiérs',
 'right-suppressredirect' => 'Pas fâre de redirèccion dês lo titro d’origina en renoment una pâge',
 'right-upload' => 'Tèlèchargiér des fichiérs',
 'right-reupload' => 'Ècllafar un fichiér ègzistent',
