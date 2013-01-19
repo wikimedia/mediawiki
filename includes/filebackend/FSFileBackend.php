@@ -861,7 +861,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @param $params array
 	 */
 	public function __construct( $dir, array $params ) {
-		$dir = realpath( $dir ); // normalize
+		$dir = wfRealpath( $dir ); // normalize
 		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
 		$this->params = $params;
 
@@ -959,7 +959,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @return string
 	 */
 	protected function getRelPath( $path ) {
-		return strtr( substr( realpath( $path ), $this->suffixStart ), '\\', '/' );
+		return strtr( substr( wfRealpath( $path ), $this->suffixStart ), '\\', '/' );
 	}
 }
 
