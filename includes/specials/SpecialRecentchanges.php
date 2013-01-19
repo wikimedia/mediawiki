@@ -387,8 +387,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$tables[] = 'watchlist';
 			$fields[] = 'wl_user';
 			$fields[] = 'wl_notificationtimestamp';
-			$join_conds['watchlist'] = array('LEFT JOIN',
-				"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace");
+			$join_conds['watchlist'] = array('LEFT JOIN', array(
+				'wl_user' => $uid,
+				'wl_title=rc_title',
+				'wl_namespace=rc_namespace'
+			));
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
