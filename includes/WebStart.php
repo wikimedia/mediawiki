@@ -80,11 +80,15 @@ define( 'MEDIAWIKI', true );
 
 # Full path to working directory.
 # Makes it possible to for example to have effective exclude path in apc.
-# Also doesn't break installations using symlinked includes, like
-# __DIR__ would do.
+# __DIR__ breaks symlinked includes, but realpath() returns false
+# if we don't have permissions on parent directories.
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
-	$IP = realpath( '.' );
+	if( realpath( '.' ) ) {
+		$IP = realpath( '.' );
+	} else {
+		$IP = dirname( __DIR__ );
+	}
 }
 
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
