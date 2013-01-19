@@ -2844,7 +2844,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 
 	$retval = 1; // error by default?
 	ob_start();
+	wfSuppressWarnings();
 	passthru( $cmd, $retval );
+	wfRestoreWarnings();
 	$output = ob_get_contents();
 	ob_end_clean();
 
