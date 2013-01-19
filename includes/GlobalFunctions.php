@@ -3991,3 +3991,18 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	wfProfileOut( __METHOD__ );
 	return $bad;
 }
+
+/**
+ * Safe wrapper for PHP's realpath() that fails gracefully if it's unable to canonicalize the path.
+ *
+ * @param $path string
+ *
+ * @return string
+ */
+function wfRealpath( $path ) {
+	$result = realpath( $path );
+	if ( !$result ) {
+		return $path;
+	}
+	return $result;
+}
