@@ -21,18 +21,13 @@ body {
 	font-size: 1em;
 }
 body {
-	background-color: #f3f3f3;
-	/* @embed */
-	background-image: url(images/page-base.png);
+	background-color: #f6f6f6;
 }
 /* Content */
 div#content {
 	margin-left: 10em;
 	padding: 1em;
-	/* @embed */
-	background-image: url(images/border.png);
-	background-position: top left;
-	background-repeat: repeat-y;
+	border-left: 1px solid #a7d7f9;
 	background-color: white;
 	color: black;
 	direction: ltr;
@@ -55,10 +50,7 @@ div#content {
 	margin-top: -5em;
 	margin-left: 10em;
 	height: 5em;
-	/* @embed */
-	background-image: url(images/border.png);
-	background-position: bottom left;
-	background-repeat: repeat-x;
+	border-bottom: 1px solid #a7d7f9;
 }
 div#mw-head {
 	position: absolute;
@@ -528,10 +520,7 @@ div#footer {
 	margin-left: 10em;
 	margin-top: 0;
 	padding: 0.75em;
-	/* @embed */
-	background-image: url(images/border.png);
-	background-position: top left;
-	background-repeat: repeat-x;
+	border-top: 1px solid #a7d7f9;
 	direction: ltr;
 }
 div#footer ul {
@@ -654,9 +643,7 @@ div#footer #footer-places li {
 	margin-top: -2px;
 	clear: both;
 	border: solid 1px #ccc;
-	background-color: #f9f9f9;
-	/* @embed */
-	background-image: url(images/preferences-base.png);
+	background-color: #fafafa;
 }
 #preferences fieldset {
 	border: none;
