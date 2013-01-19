@@ -85,6 +85,9 @@ production.
   a security fix (bug 42202).
 * Added the ability to limit the wall clock time used by shell processes, 
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
+* (bug 28411) Pages now appear in category according to their {{DISPLAYTITLE}}.
+  Users script should use title attribute of the link to get the correct name
+  of a page from category.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
