@@ -152,6 +152,7 @@ production.
 * wfMerge() now works if $wgDiff3 contains spaces
 * (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
   ca-edit click instead opening URL directly.
+* (bug 22471) Show local image usage of foreign file redirects (ForeignDB only).
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.

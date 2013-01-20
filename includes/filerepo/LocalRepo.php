@@ -199,6 +199,35 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
+	 * Select the redirect names pointing to $title.
+	 *
+	 * @param $title Title of image
+	 * @return array of Title objects
+	 */
+	public function getFileRedirects( Title $title ) {
+		if( !$title instanceof Title || $title->isExternal() || $title->getNamespace() != NS_FILE ) {
+			return array();
+		}
+		$dbr = $this->getSlaveDB();
+		$rows = $dbr->select(
+			array( 'redirect', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'rd_from = page_id',
+				'rd_title' => $title->getDbKey(),
+				'rd_namespace' => $title->getNamespace(),
+				'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
+			),
+			__METHOD__
+		);
+		$result = array();
+		foreach( $rows as $row ) {
+			$result[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+		}
+		return $result;
+	}
+
+	/**
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 *
