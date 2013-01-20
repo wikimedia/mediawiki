@@ -182,12 +182,34 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		if( !$hideimages ) {
 			$options['ORDER BY'] = 'il_from';
-			$ilRes = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
+			$ilResDb = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
 				$ilConds, __METHOD__, $options,
 				$joinConds);
+
+			// copy immutable ResultWrapper to add other objects to it
+			$ilRes = array();
+			foreach( $ilResDb as $row ) {
+				$ilRes[] = $row;
+			}
+
+			// Add file redirects from the foreign repo to the output
+			// This allows the user to see image usage to a redirect,
+			// which is not in the local redirect table
+			$redirects = RepoGroup::singleton()->getFileRedirects( $target );
+			$fakeId = 0;
+			foreach( $redirects as $redirect ) {
+				$fakeId--; // negative id to have no conflict
+				$ilRes[] = (object)array(
+					// must be the same fields as $fields
+					'page_id' => $fakeId,
+					'page_namespace' => $redirect->getNamespace(),
+					'page_title' => $redirect->getDBKey(),
+					'rd_from' => $fakeId, // trigger redirect workflow
+				);
+			}
 		}
 
-		if( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
+		if( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !count( $ilRes ) ) ) {
 			if ( 0 == $level ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 

@@ -222,6 +222,27 @@ class RepoGroup {
 	}
 
 	/**
+	 * Interface for FileRepo::getFileRedirects()
+	 * Select the redirect names pointing to $title.
+	 *
+	 * @param $title Title
+	 * @param $local Select also local redirects, defaults to false
+	 * @return array of Title objects
+	 */
+	function getFileRedirects( Title $title, $local = false ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$result = $local ? $this->localRepo->getFileRedirects( $title ) : array();
+		foreach ( $this->foreignRepos as $repo ) {
+			$result = array_merge( $result, $repo->getFileRedirects( $title ) );
+		}
+		usort( $result, 'Title::compare' );
+		return $result;
+	}
+
+	/**
 	 * Find an instance of the file with this key, created at the specified time
 	 * Returns false if the file does not exist.
 	 *

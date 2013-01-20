@@ -281,6 +281,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$resultPageSet->processDbRow( $row );
 			}
 		}
+		if( $this->bl_code === 'iu' ) {
+			$this->processFileRedirects( $resultPageSet );
+		}
 
 		if ( $this->redirect && count( $this->redirTitles ) ) {
 			$this->resetQueryParams();
@@ -392,6 +395,30 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// only image titles are allowed for the root in imageinfo mode
 		if ( !$this->hasNS && $this->rootTitle->getNamespace() !== NS_FILE ) {
 			$this->dieUsage( "The title for {$this->getModuleName()} query must be an image", 'bad_image_title' );
+		}
+	}
+
+	/**
+	 * Add file redirects from the foreign repo to the output
+	 * This allows to query image usage to a redirect,
+	 * which is not in the local redirect table
+	 */
+	protected function processFileRedirects( $resultPageSet ) {
+		$redirects = RepoGroup::singleton()->getFileRedirects( $this->rootTitle );
+		$fakeId = 0;
+		foreach( $redirects as $redirect ) {
+			$fakeId--; // negative id to have no conflict
+			$row = (object)array(
+				'page_id' => $fakeId,
+				'page_namespace' => $redirect->getNamespace(),
+				'page_title' => $redirect->getDBKey(),
+				'page_is_redirect' => 1
+			);
+			// Add only, when not in generator mode, no need for adding the non-existing page
+			if ( is_null( $resultPageSet ) ) {
+				$this->extractRowInfo( $row );
+			}
+			$this->redirTitles[] = $redirect;
 		}
 	}
 
