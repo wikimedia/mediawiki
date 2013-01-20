@@ -948,6 +948,9 @@ Tila binura na ito.',
 Umiiral na ito.',
 'defaultmessagetext' => 'Nakatakdang teksto ng mensahe',
 
+# Content models
+'content-model-text' => 'purong teksto',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Babala: Naglalaman ang pahinang ito ng napakaraming mamahaling mga tawag na pantungkulin.
 
@@ -1711,6 +1714,7 @@ Kapag nagpatuloy ang suliranin, makipagugnayan sa isang [[Special:ListUsers/syso
 'backend-fail-notsame' => 'Isang hindi kamukhang talaksan ang umiiral na sa $1.',
 'backend-fail-invalidpath' => 'Ang $1 ay hindi isang katanggap-tanggap na landas ng imbakan.',
 'backend-fail-delete' => 'Hindi mabura ang talaksang $1.',
+'backend-fail-describe' => 'Hindi mapalitan ang metadatos para sa talaksang "$1".',
 'backend-fail-alreadyexists' => 'Umiiral na ang pahinang $1.',
 'backend-fail-store' => 'Hindi maimbak ang talaksang $1 sa $2.',
 'backend-fail-copy' => 'Hindi makopya ang talaksang $1 sa $2.',
@@ -2180,7 +2184,7 @@ Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustu
 
 # Watchlist
 'watchlist' => 'Mga binabantayan ko',
-'mywatchlist' => 'Bantayan ko',
+'mywatchlist' => 'Bantayan',
 'watchlistfor2' => 'Para sa $1 $2',
 'nowatchlist' => 'Wala kang pahinang binabantayan.',
 'watchlistanontext' => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',

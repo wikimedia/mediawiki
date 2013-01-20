@@ -2785,8 +2785,7 @@ nu uitați să verificați dacă nu există redirecționări [[Special:DoubleRed
 
 Vă rugăm să rețineți că sunteți responsabil(ă) pentru a face legăturile vechi să rămână valide.
 
-Rețineți că pagina '''nu va fi redenumită''' dacă există deja o pagină cu noul titlu, în afara cazurilor în care cea din urmă nu are conținut sau este deja
-o redirecționare; în plus, aceasta nu trebuie să aibă un istoric de modificări.
+Rețineți că pagina '''nu va fi redenumită''' dacă există deja o pagină cu noul titlu, în afara cazului în care cea din urmă este deja o redirecționare; în plus, aceasta nu trebuie să aibă un istoric de modificări.
 Cu alte cuvinte, veți putea redenumi înapoi o pagină pe care ați redenumit-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin redenumirea alteia.
 
 '''ATENȚIE!'''

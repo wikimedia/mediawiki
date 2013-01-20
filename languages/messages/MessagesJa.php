@@ -1915,7 +1915,7 @@ file_uploadsの設定を確認してください。',
 'sourceurl' => 'アップロード元の URL:',
 'destfilename' => '登録するファイル名:',
 'upload-maxfilesize' => 'ファイルの最大サイズ: $1',
-'upload-description' => 'ファイルの説明',
+'upload-description' => 'ファイルの解説',
 'upload-options' => 'アップロードのオプション',
 'watchthisupload' => 'このファイルをウォッチ',
 'filewasdeleted' => 'この名前のファイルは一度アップロードされ、その後削除されています。

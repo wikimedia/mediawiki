@@ -803,6 +803,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
 'user-mail-no-addy' => '↓Prøvde å senda e-post utan e-postadresse',
+'user-mail-no-body' => 'Freista å senda e-post med tom eller urimeleg stutt brødtekst.',
 
 # Change password dialog
 'resetpass' => 'Endra passord',
@@ -1327,7 +1328,7 @@ For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, m
 'powersearch-ns' => 'Søk i namnerom:',
 'powersearch-redir' => 'Vis omdirigeringar',
 'powersearch-field' => 'Søk etter',
-'powersearch-togglelabel' => 'Haka av:',
+'powersearch-togglelabel' => 'Hak av:',
 'powersearch-toggleall' => 'Alle',
 'powersearch-togglenone' => 'Ingen',
 'search-external' => 'Eksternt søk',
@@ -2423,9 +2424,9 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 Her er dei noverande innstillingane for sida '''$1''':",
 'protect-cascadeon' => 'Denne sida er verna fordi ho er inkludert på {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på. Du kan endre på nivået til vernet av denne sida, men det vil ikkje ha innverknad på djupvernet.',
 'protect-default' => 'Tillat alle brukarar',
-'protect-fallback' => 'Må ha «$1»-tilgang',
-'protect-level-autoconfirmed' => 'Tillat berre autostadfeste brukarar',
-'protect-level-sysop' => 'Berre administratorar',
+'protect-fallback' => 'Berre tillat brukarar med løyvet «$1»',
+'protect-level-autoconfirmed' => 'Berre tillat autostadfeste brukarar',
+'protect-level-sysop' => 'Berre tillat administratorar',
 'protect-summary-cascade' => 'djupvern',
 'protect-expiring' => 'endar $1 (UTC)',
 'protect-expiring-local' => 'endar $1',
@@ -2468,8 +2469,8 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'viewdeletedpage' => 'Sjå sletta sider',
 'undeletepagetext' => '{{PLURAL:$1|Den følgjande sida er sletta, men ho|Dei følgjande $1 sidene er sletta, men dei}} finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undelete-fieldset-title' => 'Attenderull endringar',
-'undeleteextrahelp' => "For å attoppretta heile historikken til sida, lat alle boksane vera vera tomme og trykk '''''{{int:undeletebtn}}'''''.
-For å berre attopretta delar av historikken, haka av boksane til dei relevante endringane og trykk '''''{{int:undeletebtn}}'''''.",
+'undeleteextrahelp' => "For å attoppretta heile historikken til sida, lat alle boksane vera tomme og trykk '''''{{int:undeletebtn}}'''''.
+For å berre attopretta delar av historikken, hak av boksane til dei relevante endringane og trykk '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
 'undeletehistory' => 'Om du gjenopprettar sida vil alle endringar i historikken også bli gjenoppretta. Dersom ei ny side med same namn er oppretta etter slettinga, vil dei gjenoppretta endringane dukke opp før denne i endringshistorikken.',
 'undeleterevdel' => 'Gjenoppretting kan ikkje utførast om det resulterer i at den øvste endringa delvis vert sletta. I slike tilfelle må du fjerne merkinga av den siste sletta endringa.',
@@ -2514,9 +2515,9 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Namnerom:',
 'invert' => 'Vreng val',
-'tooltip-invert' => 'Haka av boksen for å gøyma endringar på sider i det valde namnerommet (og det tilknytte namnerommet om det er haka av)',
+'tooltip-invert' => 'Hak av boksen for å gøyma endringar på sider i det valde namnerommet (og det tilknytte namnerommet om det er haka av)',
 'namespace_association' => 'Tilknytt namnerom',
-'tooltip-namespace_association' => 'Haka av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg',
+'tooltip-namespace_association' => 'Hak av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg',
 'blanknamespace' => '(Hovud)',
 
 # Contributions
@@ -2707,11 +2708,15 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Blo
 # Move page
 'move-page' => 'Flytt $1',
 'move-page-legend' => 'Flytt side',
-'movepagetext' => "Ved å bruke skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å sjekke for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+'movepagetext' => "Ved å bruka skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet.
+Den gamle tittelen vil verta ei omdirigeringsside til den nye.
+Du kan oppdatera omdirigeringar som peikar til den opphavlege tittelen automatisk.
+Vel du å ikkje gjera dette, pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|øydelagde omdirigeringar]].
 
-Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
+Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder ho er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.
 
-<b>ÅTVARING!</b> Dette kan vera ei drastisk og uventa endring for ei populær side; ver sikker på at du skjønner konsekvensane av dette før du fortset.",
+'''ÅTVARING!'''
+Dette kan vera ei drastisk og uventa endring for ei populær side; ver viss på at du skjøner konsekvensane av dette før du held fram.",
 'movepagetext-noredirectfixer' => "Nyttar ein skjemaet under får ein døypt om ei side og flytt heile historikken til det nye namnet. 
 Den gamle tittelen vil verta ei omdirigeringsside for den nye tittelen. 
 Pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|uverksame]] omdirigeringar. 
@@ -2727,7 +2732,7 @@ ver viss på at du skjøner konsekvensane av flyttinga før du held fram.",
 *ei ikkje-tom diskusjonsside alt finst under det nye namnet, eller
 *du fjernar avhakinga i boksen nedanfor.
 
-I desse falla lyt du flytta eller fletta sida manuelt, om ynskeleg.",
+I desse falla lyt du flytta eller fletta sida manuelt, om ynskjeleg.",
 'movearticle' => 'Flytt side:',
 'moveuserpage-warning' => "'''Åtvaring:''' Du er i ferd med å flytta ei brukarside. Merk at berre sida vert flytt og at brukarnamnet '''ikkje''' vert endra.",
 'movenologin' => 'Ikkje innlogga',
@@ -3054,6 +3059,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'pageinfo-magic-words' => '{{PLURAL:$1|Trylleord}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Løynd kategori|Løynde kategoriar}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkludert mal|Inkluderte malar}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Side inkludert|Sider inkluderte}} på ($1)',
 'pageinfo-toolboxlink' => 'Sideinformasjon',
 'pageinfo-redirectsto' => 'Omdirigerer til',
 'pageinfo-redirectsto-info' => 'info',

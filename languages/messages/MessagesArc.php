@@ -1451,6 +1451,7 @@ Do you want to change the settings?',
 # Namespace 8 related
 'allmessages' => 'ܐܓܪ̈ܬܐ ܕܛܟܣܐ',
 'allmessagesname' => 'ܫܡܐ',
+'allmessagescurrent' => 'ܟܬܒܬܐ ܗܫܝܬܐ ܕܐܓܪܬܐ',
 'allmessages-filter-legend' => 'ܡܨܦܝܢܝܬܐ',
 'allmessages-filter-all' => 'ܟܠ',
 'allmessages-prefix' => 'ܡܨܦܝܢܝܬܐ ܐܝܟ ܫܘܪܝܐ',
