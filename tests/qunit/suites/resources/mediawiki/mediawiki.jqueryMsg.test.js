@@ -49,6 +49,59 @@ function getMwLanguage( langCode, cb ) {
 	});
 }
 
+QUnit.test( 'Replace', 9, function ( assert ) {
+	var parser = mw.jqueryMsg.getMessageFunction();
+
+	mw.messages.set( 'simple', 'Foo $1 baz $2' );
+
+	assert.equal( parser( 'simple' ), 'Foo $1 baz $2', 'Replacements with no substitutes' );
+	assert.equal( parser( 'simple', 'bar' ), 'Foo bar baz $2', 'Replacements with less substitutes' );
+	assert.equal( parser( 'simple', 'bar', 'quux' ), 'Foo bar baz quux', 'Replacements with all substitutes' );
+
+	mw.messages.set( 'plain-input', '<foo foo="foo">x$1y&lt;</foo>z' );
+
+	assert.equal(
+		parser( 'plain-input', 'bar' ),
+		'&lt;foo foo="foo"&gt;xbary&amp;lt;&lt;/foo&gt;z',
+		'Input is not considered html'
+	);
+
+	mw.messages.set( 'plain-replace', 'Foo $1' );
+
+	assert.equal(
+		parser( 'plain-replace', '<bar bar="bar">&gt;</bar>' ),
+		'Foo &lt;bar bar="bar"&gt;&amp;gt;&lt;/bar&gt;',
+		'Replacement is not considered html'
+	);
+
+	mw.messages.set( 'object-replace', 'Foo $1' );
+
+	assert.equal(
+		parser( 'object-replace', $( '<div class="bar">&gt;</div>' ) ),
+		'Foo <div class="bar">&gt;</div>',
+		'jQuery objects are preserved as raw html'
+	);
+
+	assert.equal(
+		parser( 'object-replace', $( '<div class="bar">&gt;</div>' ).get( 0 ) ),
+		'Foo <div class="bar">&gt;</div>',
+		'HTMLElement objects are preserved as raw html'
+	);
+
+	assert.equal(
+		parser( 'object-replace', $( '<div class="bar">&gt;</div>' ).toArray() ),
+		'Foo <div class="bar">&gt;</div>',
+		'HTMLElement[] arrays are preserved as raw html'
+	);
+
+	mw.messages.set( 'wikilink-replace', 'Foo [$1 bar]' );
+	assert.equal(
+		parser( 'wikilink-replace', 'http://example.org/?x=y&z' ),
+		'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
+		'Href is not double-escaped in wikilink function'
+	);
+} );
+
 QUnit.test( 'Plural', 3, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction();
 
@@ -57,7 +110,6 @@ QUnit.test( 'Plural', 3, function ( assert ) {
 	assert.equal( parser( 'plural-msg', 1 ), 'Found 1 item', 'Singular test for english' );
 	assert.equal( parser( 'plural-msg', 2 ), 'Found 2 items', 'Plural test for english' );
 } );
-
 
 QUnit.test( 'Gender', 11, function ( assert ) {
 	// TODO: These tests should be for mw.msg once mw.msg integrated with mw.jqueryMsg
@@ -144,7 +196,7 @@ QUnit.test( 'Grammar', 2, function ( assert ) {
 	assert.equal( parser( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ' , 'Grammar Test with wrong grammar template syntax' );
 } );
 
-QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
+QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
 	mw.messages.set( mw.libs.phpParserData.messages );
 	$.each( mw.libs.phpParserData.tests, function ( i, test ) {
 		QUnit.stop();
@@ -165,7 +217,7 @@ QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, fun
 	} );
 });
 
-QUnit.test( 'Links', 6, function ( assert ) {
+QUnit.test( 'Wikilink', 6, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
 		expectedListUsers,
 		expectedDisambiguationsText,
@@ -191,12 +243,12 @@ QUnit.test( 'Links', 6, function ( assert ) {
 		'Piped wikilink'
 	);
 
-	expectedDisambiguationsText = 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.<br>\nA page is treated as a disambiguation page if it uses a template that is linked from ' +
+	expectedDisambiguationsText = 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from ' +
 		$( '<a>' ).attr( {
 			title: 'MediaWiki:Disambiguationspage',
 			href: mw.util.wikiGetlink( 'MediaWiki:Disambiguationspage' )
 		} ).text( 'MediaWiki:Disambiguationspage' ).getOuterHtml() + '.';
-	mw.messages.set( 'disambiguations-text', 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.<br />\nA page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].' );
+	mw.messages.set( 'disambiguations-text', 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].' );
 	assert.equal(
 		parser( 'disambiguations-text' ),
 		expectedDisambiguationsText,
@@ -243,7 +295,7 @@ QUnit.test( 'Links', 6, function ( assert ) {
 	);
 });
 
-QUnit.test( 'Int magic word', 4, function ( assert ) {
+QUnit.test( 'Int', 4, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
 	    newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Helppage}}|help page]] for more info). If you are here by mistake, click your browser\'s back button.',
 		expectedNewarticletext;
@@ -292,7 +344,7 @@ QUnit.test( 'Int magic word', 4, function ( assert ) {
 
 // Tests that getMessageFunction is used for messages with curly braces or square brackets,
 // but not otherwise.
-QUnit.test( 'Calls to mw.msg', 8, function ( assert ) {
+QUnit.test( 'mw.msg()', 8, function ( assert ) {
 	// Should be
 	var map, oldGMF, outerCalled, innerCalled;
 
