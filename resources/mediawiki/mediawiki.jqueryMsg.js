@@ -100,6 +100,8 @@
 		 */
 		return function () {
 			var $target = this.empty();
+			// TODO: Simply $target.append( failableParserFn( arguments ).contents() )
+			// or Simply $target.append( failableParserFn( arguments ) )
 			$.each( failableParserFn( arguments ).contents(), function ( i, node ) {
 				$target.append( node );
 			} );
@@ -593,8 +595,9 @@
 						$span.append( childNode );
 					} );
 				} else {
-					// strings, integers, anything else
-					$span.append( node );
+					// Let jQuery append nodes, arrays of nodes and jQuery objects
+					// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
+					$span.append( $.type( node ) === 'object' ? node : document.createTextNode( node ) );
 				}
 			} );
 			return $span;
@@ -605,7 +608,7 @@
 		 * Note that we expect the parsed parameter to be zero-based. i.e. $1 should have become [ 0 ].
 		 * if the specified parameter is not found return the same string
 		 * (e.g. "$99" -> parameter 98 -> not found -> return "$99" )
-		 * TODO throw error if nodes.length > 1 ?
+		 * TODO: Throw error if nodes.length > 1 ?
 		 * @param {Array} of one element, integer, n >= 0
 		 * @return {String} replacement
 		 */
@@ -613,13 +616,7 @@
 			var index = parseInt( nodes[0], 10 );
 
 			if ( index < replacements.length ) {
-				if ( typeof arg === 'string' ) {
-					// replacement is a string, escape it
-					return mw.html.escape( replacements[index] );
-				} else {
-					// replacement is no string, don't touch!
-					return replacements[index];
-				}
+				return replacements[index];
 			} else {
 				// index not found, fallback to displaying variable
 				return '$' + ( index + 1 );
