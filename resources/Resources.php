@@ -101,6 +101,7 @@ return array(
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
 			'vector/screen.css' => array( 'media' => 'screen' ),
 			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
+			'vector/screen-ld.css' => array( 'media' => 'screen and (max-width: 800px)' ),
 		),
 		'scripts' => 'vector/vector.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],

@@ -1,0 +1,54 @@
+/* Vector screen styles for low definition displays (800px of width or less) */
+
+/*
+	The styles below essentially place the navigation menu below the content,
+	instead of to the side of it. They also hide the logo, as there's no space
+	left for it.
+*/
+
+/* Move the panel to the bottom and display it horizontally; hide the logo */
+div#mw-panel {
+	display: table;
+	position: static;
+	table-layout: fixed;
+	width: 100%;
+}
+div#mw-panel .portal {
+	display: table-cell;
+	vertical-align: top;
+}
+#p-logo {
+	display: none;
+}
+
+/* Rearrange various page elements to fill the now-available space */
+#p-personal ul {
+	padding-left: 0;
+}
+div#footer {
+	margin-left: 0;
+	padding-top: 0;
+}
+div#content {
+	/* Hide the 1px blue border on the left side */
+	background-image: none;
+	border-left: 0;
+	margin-left: 0;
+}
+#left-navigation {
+	/* Make sure the 1px blue border on the left side is not visible */
+	left: -1px;
+}
+#mw-head-base {
+	margin-left: 0;
+}
+
+/* Footer is no longer directly below content */
+/* Move the blue border from it to the navigation menu */
+div#footer {
+	background-image: none;
+	border-top: 0;
+}
+#mw-panel {
+	border-top: 1px solid #a7d7f9;
+}
