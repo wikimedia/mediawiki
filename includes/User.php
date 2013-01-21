@@ -4217,38 +4217,60 @@ class User {
 	}
 
 	/**
-	 * Add a newuser log entry for this user. Before 1.19 the return value was always true.
+	 * Add a newuser log entry for this user.
+	 * Before 1.19 the return value was always true.
 	 *
-	 * @param $byEmail Boolean: account made by email?
+	 * @param $action string|bool: account creation type.
+	 *   - String, one of the following values:
+	 *     - 'create' for an anonymous user creating an account for himself.
+	 *       This will force the action's performer to be the created user itself,
+	 *       no matter the value of $wgUser
+	 *     - 'create2' for a logged in user creating an account for someone else
+	 *     - 'byemail' when the created user will receive its password by e-mail
+	 *   - Boolean means whether the account was created by e-mail (deprecated):
+	 *     - true will be converted to 'byemail'
+	 *     - false will be converted to 'create' if this object is the same as
+	 *       $wgUser and to 'create2' otherwise
+	 *
 	 * @param $reason String: user supplied reason
 	 *
 	 * @return int|bool True if not $wgNewUserLog; otherwise ID of log item or 0 on failure
 	 */
-	public function addNewUserLogEntry( $byEmail = false, $reason = '' ) {
+	public function addNewUserLogEntry( $action = false, $reason = '' ) {
 		global $wgUser, $wgContLang, $wgNewUserLog;
 		if( empty( $wgNewUserLog ) ) {
 			return true; // disabled
 		}
 
-		if( $this->getName() == $wgUser->getName() ) {
-			$action = 'create';
-		} else {
+		if ( $action === true || $action === 'byemail' ) {
 			$action = 'create2';
-			if ( $byEmail ) {
-				if ( $reason === '' ) {
-					$reason = wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text();
-				} else {
-					$reason = $wgContLang->commaList( array(
-						$reason, wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text() ) );
-				}
+			if ( $reason === '' ) {
+				$reason = wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text();
+			} else {
+				$reason = $wgContLang->commaList( array(
+					$reason, wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text() ) );
+			}
+		} elseif ( $action === false ) {
+			if ( $this->getName() == $wgUser->getName() ) {
+				$action = 'create';
+			} else {
+				$action = 'create2';
 			}
 		}
+
+		if ( $action === 'create' ) {
+			$performer = $this;
+		} else {
+			$performer = $wgUser;
+		}
+
 		$log = new LogPage( 'newusers' );
 		return (int)$log->addEntry(
 			$action,
 			$this->getUserPage(),
 			$reason,
-			array( $this->getId() )
+			array( $this->getId() ),
+			$performer
 		);
 	}
 

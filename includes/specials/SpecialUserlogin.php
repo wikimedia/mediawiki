@@ -212,7 +212,7 @@ class LoginForm extends SpecialPage {
 		$result = $this->mailPasswordInternal( $u, false, 'createaccount-title', 'createaccount-text' );
 
 		wfRunHooks( 'AddNewAccount', array( $u, true ) );
-		$u->addNewUserLogEntry( true, $this->mReason );
+		$u->addNewUserLogEntry( 'byemail', $this->mReason );
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'accmailtitle' ) );
@@ -274,7 +274,7 @@ class LoginForm extends SpecialPage {
 			// wrong.
 			$this->getContext()->setUser( $u );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
-			$u->addNewUserLogEntry();
+			$u->addNewUserLogEntry( 'create' );
 			if( $this->hasSessionCookie() ) {
 				$this->successfulCreation();
 			} else {
@@ -286,7 +286,7 @@ class LoginForm extends SpecialPage {
 			$out->addWikiMsg( 'accountcreatedtext', $u->getName() );
 			$out->addReturnTo( $this->getTitle() );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
-			$u->addNewUserLogEntry( false, $this->mReason );
+			$u->addNewUserLogEntry( 'create2', $this->mReason );
 		}
 		return true;
 	}
