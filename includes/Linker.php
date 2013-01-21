@@ -1038,9 +1038,11 @@ class Linker {
 	 * @param $escape Boolean: do we escape the link text?
 	 * @param $linktype String: type of external link. Gets added to the classes
 	 * @param $attribs Array of extra attributes to <a>
+	 * @param $title Title|null Title object used for title specific link attributes
 	 * @return string
 	 */
-	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
+	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array(), $title = null ) {
+		global $wgTitle;
 		$class = "external";
 		if ( $linktype ) {
 			$class .= " $linktype";
@@ -1053,6 +1055,11 @@ class Linker {
 		if ( $escape ) {
 			$text = htmlspecialchars( $text );
 		}
+
+		if ( !$title ) {
+			$title = $wgTitle;
+		}
+		$attribs['rel'] = Parser::getExternalLinkRel( $url, $title );
 		$link = '';
 		$success = wfRunHooks( 'LinkerMakeExternalLink',
 			array( &$url, &$text, &$link, &$attribs, $linktype ) );
