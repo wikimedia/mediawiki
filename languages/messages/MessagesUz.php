@@ -502,6 +502,10 @@ Siz sharhlamoqchi bo'lgan bo'lim o'chirilgan yoki boshqa sarlavhaga jildirilgan 
 'newarticletext' => "Bu sahifa hali mavjud emas.
 Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qoʻshimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] koʻring).
 Agar bu sahifaga xatolik sabab kelib qolgan boʻlsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
+'anontalkpagetext' => "----''Ushbu munozara sahifasi hali hisob yozuvini yaratmagan, yoki undan foydalanmaydigan anonim ishtirokchiga tegishli.
+Shu sababli tenglashtirish uchun raqamli IP-manzildan foydalaniladi.
+Ushbu manzilning oʻzi bir nechta boshqa ishtirokchilarga ham mos kelishi mumkin.
+Agar siz anonim ishtirokchi boʻlsangiz va siz oʻzingizga yoʻnaltirilmagan xabar oldim deb taxmin qilsangiz, iltimos, boshqa anonim ishtirokchilar bilan mumkin boʻlgan chalkashliklarni chetlab oʻtish uchun [[Special:UserLogin/signup|hisob yozuvi yarating]] yoki [[Special:UserLogin|tizimga kiring]].''",
 'noarticletext' => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tegishli qaydlarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
 'clearyourcache' => "'''Eslatma.''' Saqlaganingizdan so'ng o'zgarishlarni ko'rish uchun siz o'z brauzeringiz keshini tozalashingizga to'gri kelishi mumkin.
 * '''Firefox / Safari:''' ''Shift'' tugmasini bosgan holda, ''Yangilash'' unsurlar darchasini bosing, yoki ''Ctrl-F5'' yoki ''Ctrl-R'' (Macda ''⌘-R'') ni bosing

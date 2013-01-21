@@ -1463,6 +1463,9 @@ waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
 # Special:BlankPage
 'blankpage' => 'Bog masaxan',
 
+# Special:Tags
+'tag-filter' => '[[Special:Tags|Filtaraha]] tag:',
+
 # Database error messages
 'dberr-usegoogle' => 'Waxaa baroobeen kartaa in aad ka raadiso google',
 

@@ -3141,7 +3141,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
-'pageinfo-templates' => '{{PLURAL:$1|predefinição transcluída|predefinições transcluídas}}',
+'pageinfo-templates' => '{{PLURAL:$1|Predefinição transcluída|Predefinições transcluídas ($1)}}',
 'pageinfo-toolboxlink' => 'Informações da página',
 'pageinfo-redirectsto' => 'Redirecionar para',
 'pageinfo-redirectsto-info' => 'informações',

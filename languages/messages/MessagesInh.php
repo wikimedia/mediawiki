@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amire80
+ * @author Andrijko Z.
  * @author Reedy
  * @author Sapral Mikail
  * @author Tagir
@@ -870,7 +871,7 @@ $messages = array(
 'blanknamespace' => '(Корта)',
 
 # Contributions
-'contributions' => 'Дакъалаьцархочунна къахьегам',
+'contributions' => '{{GENDER:$1|Дакъалаьцархочунна}} къахьегам',
 'contributions-title' => '$1 дакъалаьцархочунна къахьегам',
 'mycontris' => 'Са къахьегам',
 'contribsub2' => '$1 ($2) баь болх',

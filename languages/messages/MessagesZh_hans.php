@@ -2220,7 +2220,7 @@ $1',
 # E-mail user
 'mailnologin' => '没有发送地址',
 'mailnologintext' => '您必须[[Special:UserLogin|登录]]并在您的[[Special:Preferences|个人设置]]中设置一个有效的电子邮件地址才能向其他用户发送电子邮件。',
-'emailuser' => '向该用户发送邮件',
+'emailuser' => '电邮联系',
 'emailuser-title-target' => '邮件联系该{{GENDER:$1|用户}}',
 'emailuser-title-notarget' => '邮件联系',
 'emailpage' => '邮件联系',
