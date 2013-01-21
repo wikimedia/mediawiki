@@ -350,8 +350,15 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'cancel' => '{{doc-actionlink}}
 Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
 {{Identical|Cancel}}',
-'moredotdotdot' => '{{Identical|More...}}',
-'morenotlisted' => 'An indication that more of a certain list is not shown.',
+'moredotdotdot' => 'Used as "More..." link for {{msg-mw|pageinfo-transclusions}} field, in the "templates used on this page" list.
+
+Similar to {{msg-mw|morenotlisted}}.
+{{Identical|More...}}',
+'morenotlisted' => 'An indication that more of a templates list is not shown.
+
+Used as "More..." link for {{msg-mw|pageinfo-templates}} field.
+
+Similar to {{msg-mw|moredotdotdot}}.',
 'mypage' => "A text for the link to the user's user page in the links at the top of the page.
 {{Identical|Page}}",
 'mytalk' => 'In the personal URLs page section - right upper corner.
@@ -6534,7 +6541,7 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
-* $1 is the number of templates transcluded within the page.
+* $1 is the number of templates transcluded within the current page.
 See also:
 * {{msg-mw|Pageinfo-transclusions}}',
 'pageinfo-transclusions' => 'The list of pages on which this page is transcluded. Parameters:

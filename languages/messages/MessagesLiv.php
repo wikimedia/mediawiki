@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Erdemaslancan
  * @author Ohpuu
  * @author Warbola
@@ -560,7 +561,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'blanknamespace' => '(Kēratõkst)',
 
 # Contributions
-'contributions' => 'Kȭlbatijiz kubsõtīe',
+'contributions' => '{{GENDER:$1|Kȭlbatijiz}} kubsõtīe',
 'contributions-title' => 'Kȭlbatijiz $1 kubsõtīe',
 'mycontris' => 'Min kubsõtīed',
 'contribsub2' => 'Kȭlbatiji $1 ($2) pierāst',

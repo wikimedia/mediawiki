@@ -5772,7 +5772,7 @@ Vous pouvez passer la configuration restante et installer immédiatement le wiki
 	'config-optional-continue' => 'Me poser davantage de questions.',
 	'config-optional-skip' => 'J’en ai assez, installer simplement le wiki.',
 	'config-profile' => 'Profil des droits d’utilisateurs :',
-	'config-profile-wiki' => 'Wiki traditionnel',
+	'config-profile-wiki' => 'Wiki ouvert',
 	'config-profile-no-anon' => 'Création de compte requise',
 	'config-profile-fishbowl' => 'Éditeurs autorisés seulement',
 	'config-profile-private' => 'Wiki privé',
@@ -5782,7 +5782,7 @@ Avec MediaWiki, il est facile de vérifier les modifications récentes et de ré
 Cependant, de nombreuses autres utilisations ont été trouvées au logiciel et il n’est pas toujours facile de convaincre tout le monde des bénéfices de l’esprit wiki.
 Vous avez donc le choix.
 
-'''{{int:config-profile-wiki}}''' autorise toute personne à modifier, y compris sans s’identifier.
+Le modèle '''{{int:config-profile-wiki}}''' autorise toute personne à modifier, y compris sans s’identifier.
 '''{{int:config-profile-no-anon}}''' fournit plus de contrôle, par l’identification, mais peut rebuter les contributeurs occasionnels.
 
 '''{{int:config-profile-fishbowl}}''' autorise la modification par les utilisateurs approuvés, mais le public peut toujours lire les pages et leur historique.
@@ -5871,8 +5871,8 @@ Si vous ne le connaissez pas, la valeur par défaut est 11211.",
 Elles peuvent nécessiter une configuration supplémentaire, mais vous pouvez les activer maintenant',
 	'config-install-alreadydone' => "'''Attention''': Vous semblez avoir déjà installé MediaWiki et tentez de l'installer à nouveau.
 S'il vous plaît, allez à la page suivante.",
-	'config-install-begin' => "En appuyant sur {{int:config-continue}}, vous commencerez l'installation de MediaWiki.
-Si vous voulez apporter des modifications, appuyez sur Retour.",
+	'config-install-begin' => 'En appuyant sur {{int:config-continue}}, vous commencerez l\'installation de MediaWiki.
+Si vous voulez apporter des modifications, appuyez sur "{{int:config-back}}".',
 	'config-install-step-done' => 'fait',
 	'config-install-step-failed' => 'échec',
 	'config-install-extensions' => 'Inclusion des extensions',
@@ -14122,7 +14122,7 @@ Als u wilt kunt u de overige instellingen overslaan en de wiki nu installeren.',
 	'config-optional-continue' => 'Stel me meer vragen.',
 	'config-optional-skip' => 'Laat dat maar, installeer gewoon de wiki.',
 	'config-profile' => 'Gebruikersrechtenprofiel:',
-	'config-profile-wiki' => 'Traditionele wiki',
+	'config-profile-wiki' => 'Open wiki',
 	'config-profile-no-anon' => 'Gebruiker aanmaken verplicht',
 	'config-profile-fishbowl' => 'Alleen voor geautoriseerde bewerkers',
 	'config-profile-private' => 'Privéwiki',
@@ -14138,7 +14138,7 @@ Een wiki met '''{{int:config-profile-no-anon}}\" biedt extra verantwoordelijkhei
 Het scenario '''{{int:config-profile-fishbowl}}''' laat gebruikers waarvoor dat is ingesteld bewerkt, maar andere gebruikers kunnen alleen pagina's bekijken, inclusief de bewerkingsgeschiedenis.
 In een '''{{int:config-profile-private}}''' kunnen alleen goedgekeurde gebruikers pagina's bekijken en bewerken.
 
-Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].",
+Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].", # Fuzzy
 	'config-license' => 'Auteursrechten en licentie:',
 	'config-license-none' => 'Geen licentie in de voettekst',
 	'config-license-cc-by-sa' => 'Creative Commons Naamsvermelding-Gelijk delen',
@@ -14225,7 +14225,7 @@ Mogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen n
 	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof u MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
 Ga alstublieft door naar de volgende pagina.",
 	'config-install-begin' => 'Als u nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
-Als u nog wijzigingen wilt maken, klik dan op "Terug".',
+Als u nog wijzigingen wilt maken, klik dan op "Terug".', # Fuzzy
 	'config-install-step-done' => 'afgerond',
 	'config-install-step-failed' => 'mislukt',
 	'config-install-extensions' => 'Inclusief uitbreidingen',
@@ -17963,12 +17963,14 @@ MediaWiki kräver PHP $2 eller högre.',
 	'config-diff3-bad' => 'GNU diff3 hittades inte.',
 	'config-using-server' => 'Använder servernamn "<nowiki>$1</nowiki>".',
 	'config-using-uri' => 'Använder server-URL "<nowiki>$1$2</nowiki>".',
+	'config-db-type' => 'Databastyp:',
 	'config-db-wiki-settings' => 'Identifiera denna wiki',
 	'config-db-name' => 'Databasnamn:',
 	'config-db-name-oracle' => 'Databasschema:',
 	'config-db-install-account' => 'Användarkonto för installation',
 	'config-db-username' => 'Databas-användarnamn:',
 	'config-db-password' => 'Databas-lösenord:',
+	'config-db-port' => 'Databasport:',
 	'config-db-schema' => 'Schema för MediaWiki',
 	'config-header-mysql' => 'MySQL-inställningar',
 	'config-header-postgres' => 'PostgreSQL-inställningar',
@@ -17997,6 +17999,10 @@ Detta '''rekommenderas inte''' om du har problem med din wiki.",
 	'config-upgrade-done-no-regenerate' => 'Uppgraderingen slutfördes.
 
 Du kan nu [$1 börja använda din wiki].',
+	'config-db-web-account-same' => 'Använd samma konto som för installation',
+	'config-db-web-create' => 'Skapa kontot om det inte redan finns',
+	'config-mysql-engine' => 'Lagringsmotor:',
+	'config-mysql-binary' => 'Binär',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Namnet på wikin:',
 	'config-site-name-blank' => 'Ange ett sidnamn.',
@@ -18023,7 +18029,7 @@ Ange ett annat användarnamn.',
 Du kan nu hoppa över återstående konfigurationer och installera wikin nu.',
 	'config-optional-continue' => 'Ställ fler frågor till mig.',
 	'config-optional-skip' => 'Jag är redan uttråkad, bara installera wiki.',
-	'config-profile-wiki' => 'Traditionell wiki',
+	'config-profile-wiki' => 'Öppen wiki',
 	'config-profile-fishbowl' => 'Endast auktoriserade redigerare',
 	'config-profile-private' => 'Privat wiki',
 	'config-license' => 'Upphovsrätt och licens:',
@@ -18036,16 +18042,31 @@ Du kan nu hoppa över återstående konfigurationer och installera wikin nu.',
 	'config-license-pd' => 'Allmän egendom',
 	'config-license-cc-choose' => 'Välj en anpassad Creative Commons-licens',
 	'config-email-settings' => 'E-postinställningar',
+	'config-email-watchlist' => 'Aktivera meddelanden för bevakningslistan',
+	'config-upload-settings' => 'Bild- och filuppladdningar',
 	'config-upload-enable' => 'Aktivera filöverföringar',
+	'config-upload-deleted' => 'Mapp för raderade filer:',
 	'config-logo' => 'Logotyp-URL:',
 	'config-cc-again' => 'Välj igen...',
 	'config-advanced-settings' => 'Avancerad konfiguration',
 	'config-extensions' => 'Tillägg',
 	'config-install-step-done' => 'klar',
 	'config-install-step-failed' => 'misslyckades',
+	'config-install-database' => 'Konfigurerar databas',
+	'config-install-schema' => 'Skapar schema',
+	'config-install-user' => 'Skapar databasanvändare',
 	'config-install-user-alreadyexists' => 'Användaren "$1" finns redan',
+	'config-install-user-create-failed' => 'Misslyckades att skapa användare "$1": $2',
+	'config-install-user-missing' => 'Den angivna användaren "$1" existerar inte.',
+	'config-install-tables' => 'Skapar tabeller',
+	'config-install-interwiki' => 'Lägger till standardtabell för interwiki',
 	'config-install-interwiki-list' => 'Kunde inte läsa filen <code>interwiki.list</code>.',
+	'config-install-stats' => 'Initierar statistik',
+	'config-install-keys' => 'Genererar hemliga nycklar',
 	'config-insecure-keys' => "'''Varning:''' {{PLURAL:$2|En säkerhetsnyckel|Säkerhetsnycklar}} ($1) som generades under installationen är inte helt {{PLURAL:$2|säker|säkra}} . Överväg att ändra {{PLURAL:$2|den|dem}} manuellt.",
+	'config-install-sysop' => 'Skapar administratörskonto',
+	'config-install-mainpage' => 'Skapa huvudsida med standardinnehåll',
+	'config-install-extension-tables' => 'Skapar tabeller för aktiverade tillägg',
 	'config-install-done' => "'''Grattis!'''
 Du har installerat MediaWiki.
 
@@ -18068,10 +18089,10 @@ När det är klart, kan du '''[$2 gå in på din wiki]'''.",
 	'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [//meta.wikimedia.org/wiki/Help:Contents användarguiden].
 
 == Att komma igång ==
-
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista över konfigurationsinställningar]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Lokalisera MediaWiki för ditt språk]',
 );
 
 /** Swahili (Kiswahili)
