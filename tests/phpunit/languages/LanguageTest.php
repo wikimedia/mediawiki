@@ -338,6 +338,44 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * Test Language::isKnownLanguageTag()
+	 * @dataProvider provideKnownLanguageTags
+	 */
+	function testKnownLanguageTag( $code, $message = '' ) {
+		$this->assertTrue(
+			(bool) Language::isKnownLanguageTag( $code ),
+			"validating code $code - $message"
+		);
+	}
+
+	function provideKnownLanguageTags() {
+		return array(
+			array( 'fr', 'simple code' ),
+			array( 'bat-smg', 'an MW legacy tag' ),
+			array( 'sgs', 'an internal standard MW name, for which a legacy tag is used externally' ),
+			array( 'qqq', 'a private use MW tag' ),
+			array( 'pal', 'an ancient language, which appears in CLDR for English, and unlikely to ever appear in Names.php' ),
+		);
+	}
+
+	/**
+	 * Negative tests for Language::isKnownLanguageTag()
+	 * @dataProvider provideUnKnownLanguageTags
+	 */
+	function testUnknownLanguageTag( $code, $message = '' ) {
+		$this->assertFalse(
+			(bool) Language::isKnownLanguageTag( $code ),
+			"checking that code $code is invalid - $message"
+		);
+	}
+
+	function provideUnknownLanguageTags() {
+		return array(
+			array( 'mw', 'non-existent two-letter code' ),
+		);
+	}
+
+	/**
 	 * @dataProvider provideSprintfDateSamples
 	 */
 	function testSprintfDate( $format, $ts, $expected, $msg ) {

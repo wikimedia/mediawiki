@@ -290,6 +290,37 @@ class Language {
 	}
 
 	/**
+	 * Returns true if a language code is an IETF tag known to MediaWiki.
+	 *
+	 * @param $code string
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public static function isKnownLanguageTag( $tag ) {
+		static $coreLanguageNames;
+
+		if ( $coreLanguageNames === null ) {
+			include( MWInit::compiledPath( 'languages/Names.php' ) );
+		}
+
+		if ( isset( $coreLanguageNames[$tag] ) ) {
+			return true;
+		}
+
+		global $wgExtraLanguageNames;
+		$availableTags = array_keys( $coreLanguageNames ) + array_keys( $wgExtraLanguageNames );
+
+		foreach ( $availableTags as $code ) {
+			if ( self::fetchLanguageName( $tag, $code ) !== '' ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param $code
 	 * @return String Name of the language class
 	 */
