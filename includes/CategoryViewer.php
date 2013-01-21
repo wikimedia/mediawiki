@@ -312,7 +312,10 @@ class CategoryViewer extends ContextSource {
 				),
 				array(
 					'categorylinks' => array( 'INNER JOIN', 'cl_from = page_id' ),
-					'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY )
+					'category' => array( 'LEFT JOIN', array(
+						'cat_title = page_title',
+						'page_namespace' => NS_CATEGORY
+					))
 				)
 			);
 
