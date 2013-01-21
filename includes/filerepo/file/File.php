@@ -903,13 +903,14 @@ abstract class File {
 				$this->migrateThumbFile( $thumbName );
 				// Check if an up-to-date thumbnail already exists...
 				wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
-				if ( $this->repo->fileExists( $thumbPath ) && !( $flags & self::RENDER_FORCE ) ) {
+				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
 					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
 					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
 						// XXX: Pass in the storage path even though we are not rendering anything
 						// and the path is supposed to be an FS path. This is due to getScalerType()
 						// getting called on the path and clobbering $thumb->getUrl() if it's false.
-						$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+						$thumb = $this->handler->getTransform(
+							$this, $thumbPath, $thumbUrl, $params );
 						$thumb->setStoragePath( $thumbPath );
 						break;
 					}
