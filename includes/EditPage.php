@@ -624,8 +624,11 @@ class EditPage {
 				wfProfileOut( get_class( $this ) . "::importContentFormData" );
 			}
 
+			# Trim spaces on user supplied text
+			$summary = trim( $request->getText( 'wpSummary' ) );
+
 			# Truncate for whole multibyte characters
-			$this->summary = $wgContLang->truncate( $request->getText( 'wpSummary' ), 255 );
+			$this->summary = $wgContLang->truncate( $summary, 255 );
 
 			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
 			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for

@@ -442,8 +442,11 @@ class ManualLogEntry extends LogEntryBase {
 			$this->timestamp = wfTimestampNow();
 		}
 
+		# Trim spaces on user supplied text
+		$comment = trim( $this->getComment() );
+
 		# Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $this->getComment(), 255 );
+		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$data = array(
 			'log_id' => $id,
