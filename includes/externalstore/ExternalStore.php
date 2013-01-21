@@ -25,18 +25,21 @@
  */
 
 /**
- * Constructor class for data kept in external repositories.
+ * Constructor class for key/value blob data kept in external repositories.
  *
  * Objects in external stores are defined by a special URL. The URL is of
- * the form "<store protocal>://<location>/<object name>". When an object
- * is inserted into a store, the calling code uses a partial URL of the form
- * "<store protocal>://<location>" and receives the full object URL on success.
+ * the form "<store protocal>://<location>/<object name>". The protocal is used
+ * to determine what ExternalStoreMedium class is used. The location identifies
+ * particular storage instances or database clusters for store class to use.
+ *
+ * When an object is inserted into a store, the calling code uses a partial URL of
+ * the form "<store protocal>://<location>" and receives the full object URL on success.
  * This is useful since object names can be sequential IDs, UUIDs, or hashes.
  * Callers are not responsible for unique name generation.
  *
  * External repositories might be populated by maintenance/async
  * scripts, thus partial moving of data may be possible, as well
- * as possibility to have any storage format (i.e. for archives)
+ * as the possibility to have any storage format (i.e. for archives).
  *
  * @ingroup ExternalStorage
  */
@@ -44,9 +47,9 @@ class ExternalStore {
 	/**
 	 * Get an external store object of the given type, with the given parameters
 	 *
-	 * @param $proto String: type of external storage, should be a value in $wgExternalStores
-	 * @param $params Array: associative array of parameters for the ExternalStore object.
-	 * @return ExternalStore|bool ExternalStore class or false on error
+	 * @param $proto string Type of external storage, should be a value in $wgExternalStores
+	 * @param $params array Associative array of ExternalStoreMedium parameters
+	 * @return ExternalStoreMedium|bool The store class or false on error
 	 */
 	public static function getStoreObject( $proto, array $params = array() ) {
 		global $wgExternalStores;
@@ -63,8 +66,8 @@ class ExternalStore {
 	/**
 	 * Fetch data from given URL
 	 *
-	 * @param $url String: The URL of the text to get
-	 * @param $params Array: associative array of parameters for the ExternalStore object.
+	 * @param $url string The URL of the text to get
+	 * @param $params array Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The text stored or false on error
 	 * @throws MWException
 	 */
@@ -91,9 +94,10 @@ class ExternalStore {
 	 * Store a data item to an external store, identified by a partial URL
 	 * The protocol part is used to identify the class, the rest is passed to the
 	 * class itself as a parameter.
-	 * @param $url
-	 * @param $data
-	 * @param $params array
+	 *
+	 * @param $url String A partial external store URL ("<store type>://<location>")
+	 * @param $data string
+	 * @param $params array Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
@@ -121,8 +125,8 @@ class ExternalStore {
 	 * This function does not need a url param, it builds it by
 	 * itself. It also fails-over to the next possible clusters.
 	 *
-	 * @param $data String
-	 * @param $params Array: associative array of parameters for the ExternalStore object.
+	 * @param $data string
+	 * @param $params array Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
@@ -163,8 +167,8 @@ class ExternalStore {
 	}
 
 	/**
-	 * @param $data
-	 * @param $wiki
+	 * @param $data string
+	 * @param $wiki string
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
