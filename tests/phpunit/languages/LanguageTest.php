@@ -308,6 +308,118 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * Test Language::isWellFormedLanguageTag()
+	 * @dataProvider provideWellFormedLanguageTags
+	 */
+	function testWellFormedLanguageTag( $code, $message = '' ) {
+		$this->assertTrue(
+			Language::isWellFormedLanguageTag( $code ),
+			"validating code $code $message"
+		);
+	}
+
+	/**
+	 * The test cases are based on the tests in the GaBuZoMeu parser
+	 * written by Stéphane Bortzmeyer <bortzmeyer@nic.fr>
+	 * and distributed as free software, under the GNU General Public Licence.
+	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
+	 */
+	function provideWellFormedLanguageTags() {
+		return array(
+			array( 'fr', 'two-letter code' ),
+			array( 'fr-latn', 'two-letter code with lower case script code' ),
+			array( 'fr-Latn-FR', 'two-letter code with title case script code and uppercase country code' ),
+			array( 'fr-Latn-419', 'two-letter code with title case script code and region number' ),
+			array( 'fr-FR', 'two-letter code with uppercase' ),
+			array( 'ax-TZ', 'Not in the registry, but well-formed' ),
+			array( 'fr-shadok', 'two-letter code with variant' ),
+			array( 'fr-y-myext-myext2', 'non-x singleton' ),
+			array( 'fra-Latn', 'ISO 639 can be 3-letters' ),
+			array( 'fra', 'three-letter language code' ),
+			array( 'fra-FX', 'three-letter language code with country code' ),
+			array( 'i-klingon', 'grandfathered with singleton' ),
+			array( 'I-kLINgon', 'tags are case-insensitive...' ),
+			array( 'no-bok', 'grandfathered without singleton' ),
+			array( 'i-enochian', 'Grandfathered' ),
+			array( 'x-fr-CH', 'private use' ),
+			array( 'es-419', 'two-letter code with region number' ),
+			array( 'en-Latn-GB-boont-r-extended-sequence-x-private', 'weird, but well-formed' ),
+			array( 'ab-x-abc-x-abc', 'anything goes after x' ),
+			array( 'ab-x-abc-a-a', 'anything goes after x, including several non-x singletons' ),
+			array( 'i-default', 'grandfathered' ),
+			array( 'abcd-Latn', 'Language of 4 chars reserved for future use' ),
+			array( 'AaBbCcDd-x-y-any-x', 'Language of 5-8 chars, registered' ),
+			array( 'de-CH-1901', 'with country and year' ),
+			array( 'en-US-x-twain', 'with country and singleton' ),
+			array( 'zh-cmn', 'three-letter variant' ),
+			array( 'zh-cmn-Hant', 'three-letter variant and script' ),
+			array( 'zh-cmn-Hant-HK', 'three-letter variant, script and country' ),
+			array( 'xr-p-lze', 'Extension' ),
+		);
+	}
+
+	/**
+	 * Negative test for Language::isWellFormedLanguageTag()
+	 * @dataProvider provideMalformedLanguageTags
+	 */
+	function testMalformedLanguageTag( $code, $message = '' ) {
+		$this->assertFalse(
+			Language::isWellFormedLanguageTag( $code ),
+			"validating that code $code is a malformed language tag - $message"
+		);
+	}
+
+	/**
+	 * The test cases are based on the tests in the GaBuZoMeu parser
+	 * written by Stéphane Bortzmeyer <bortzmeyer@nic.fr>
+	 * and distributed as free software, under the GNU General Public Licence.
+	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
+	 */
+	function provideMalformedLanguageTags() {
+		return array(
+			array( 'f', 'language too short' ),
+			array( 'f-Latn', 'language too short with script' ),
+			array( 'xr-lxs-qut', 'variants too short' ), # extlangS
+			array( 'fr-Latn-F', 'region too short' ),
+			array( 'a-value', 'language too short with region' ),
+			array( 'tlh-a-b-foo', 'valid three-letter with wrong variant' ),
+			array( 'i-notexist', 'grandfathered but not registered: invalid, even if we only test well-formedness' ),
+			array( 'abcdefghi-012345678', 'numbers too long' ),
+			array( 'ab-abc-abc-abc-abc', 'invalid extensions' ),
+			array( 'ab-abcd-abc', 'invalid extensions' ),
+			array( 'ab-ab-abc', 'invalid extensions' ),
+			array( 'ab-123-abc', 'invalid extensions' ),
+			array( 'a-Hant-ZH', 'short language with valid extensions' ),
+			array( 'a1-Hant-ZH', 'invalid character in language' ),
+			array( 'ab-abcde-abc', 'invalid extensions' ),
+			array( 'ab-1abc-abc', 'invalid characters in extensions' ),
+			array( 'ab-ab-abcd', 'invalid order of extensions' ),
+			array( 'ab-123-abcd', 'invalid order of extensions' ),
+			array( 'ab-abcde-abcd', 'invalid extensions' ),
+			array( 'ab-1abc-abcd', 'invalid characters in extensions' ),
+			array( 'ab-a-b', 'extensions too short' ),
+			array( 'ab-a-x', 'extensions too short, even with singleton' ),
+			array( 'ab--ab', 'two separators' ),
+			array( 'ab-abc-', 'separator in the end' ),
+			array( '-ab-abc', 'separator in the beginning' ),
+			array( 'abcd-efg', 'language too long' ),
+			array( 'aabbccddE', 'tag too long' ),
+			array( 'pa_guru', 'A tag with underscore is invalid in strict mode' ),
+			array( 'de-f', 'subtag too short' ),
+		);
+	}
+
+	/**
+	 * Negative test for Language::isWellFormedLanguageTag()
+	 */
+	function testLenientLanguageTag() {
+		$this->assertTrue(
+			Language::isWellFormedLanguageTag( 'pa_guru', true ),
+			'pa_guru is a well-formed language tag in lenient mode'
+		);
+	}
+
+	/**
 	 * Test Language::isValidBuiltInCode()
 	 * @dataProvider provideLanguageCodes
 	 */
