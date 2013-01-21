@@ -258,6 +258,66 @@ class Language {
 	}
 
 	/**
+	 * Returns true if a language code string is a well-formed language tag
+	 * according to RFC 5646.
+	 * This function only checks well-formedness; it doesn't check that
+	 * language, script or variant codes actually exist in the repositories.
+	 *
+	 * Based on regexes by Mark Davis of the Unicode Consortium:
+	 * http://unicode.org/repos/cldr/trunk/tools/java/org/unicode/cldr/util/data/langtagRegex.txt
+	 *
+	 * @param $code string
+	 * @param $lenient boolean Whether to allow '_' as separator. The default is only '-'.
+	 *
+	 * @return bool
+	 * @since 1.21
+	 */
+	public static function isWellFormedLanguageTag( $code, $lenient = false ) {
+		$alpha = '[a-z]';
+		$digit = '[0-9]';
+		$alphanum = '[a-z0-9]';
+		$x = 'x' ; # private use singleton
+		$singleton = '[a-wy-z]'; # other singleton
+		$s = $lenient ? '[-_]' : '-';
+
+		$language = "$alpha{2,8}|$alpha{2,3}$s$alpha{3}";
+		$script = "$alpha{4}"; # ISO 15924
+		$region = "(?:$alpha{2}|$digit{3})"; # ISO 3166-1 alpha-2 or UN M.49
+		$variant = "(?:$alphanum{5,8}|$digit$alphanum{3})";
+		$extension = "$singleton(?:$s$alphanum{2,8})+";
+		$privateUse = "$x(?:$s$alphanum{1,8})+";
+
+		# Define certain grandfathered codes, since otherwise the regex is pretty useless.
+		# Since these are limited, this is safe even later changes to the registry --
+		# the only oddity is that it might change the type of the tag, and thus
+		# the results from the capturing groups.
+		# http://www.iana.org/assignments/language-subtag-registry
+
+		$grandfathered = "en{$s}GB{$s}oed"
+			. "|i{$s}(?:ami|bnn|default|enochian|hak|klingon|lux|mingo|navajo|pwn|tao|tay|tsu)"
+			. "|no{$s}(?:bok|nyn)"
+			. "|sgn{$s}(?:BE{$s}(?:fr|nl)|CH{$s}de)"
+			. "|zh{$s}min{$s}nan";
+
+		$variantList = "$variant(?:$s$variant)*";
+		$extensionList = "$extension(?:$s$extension)*";
+
+		$langtag = "(?:($language)"
+			. "(?:$s$script)?"
+			. "(?:$s$region)?"
+			. "(?:$s$variantList)?"
+			. "(?:$s$extensionList)?"
+			. "(?:$s$privateUse)?)";
+
+		# The final breakdown, with capturing groups for each of these components
+		# The variants, extensions, grandfathered, and private-use may have interior '-'
+
+		$root = "^(?:$langtag|$privateUse|$grandfathered)$";
+
+		return (bool)preg_match( "/$root/", strtolower( $code ) );
+	}
+
+	/**
 	 * Returns true if a language code string is of a valid form, whether or
 	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
@@ -4300,5 +4360,4 @@ class Language {
 		$form = CLDRPluralRuleEvaluator::evaluateCompiled( $number, $pluralRules );
 		return $form;
 	}
-
 }
