@@ -346,7 +346,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 			$conds[] = "pr_expiry = {$this->mDb->addQuotes( $this->mDb->getInfinity() )} OR pr_expiry IS NULL";
 		}
 		if( $this->cascadeonly ) {
-			$conds[] = "pr_cascade = '1'";
+			$conds[] = 'pr_cascade = 1';
 		}
 
 		if( $this->level )
