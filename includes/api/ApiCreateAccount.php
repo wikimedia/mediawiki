@@ -89,8 +89,16 @@ class ApiCreateAccount extends ApiBase {
 			// Save settings (including confirmation token)
 			$user->saveSettings();
 
-			wfRunHooks( 'AddNewAccount', array( $user, false ) );
-			$user->addNewUserLogEntry( $this->getUser()->isAnon(), $params['reason'] );
+			wfRunHooks( 'AddNewAccount', array( $user, $params['mailpassword'] ) );
+
+			if ( $params['mailpassword'] ) {
+				$logAction = 'byemail';
+			} elseif ( $this->getUser()->isLoggedIn() ) {
+				$logAction = 'create2';
+			} else {
+				$logAction = 'create';
+			}
+			$user->addNewUserLogEntry( $logAction, (string)$params['reason'] );
 
 			// Add username, id, and token to result.
 			$result['username'] = $user->getName();
