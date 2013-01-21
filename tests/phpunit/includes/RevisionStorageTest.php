@@ -486,7 +486,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$revisions[0] = new Revision( array(
 			'page' => $page->getId(),
 			'title' => $page->getTitle(), // we need the title to determine the page's default content model
-			'timestamp' => '20120101000000',
+			'timestamp' => $dbw->timestamp( '20120101000000' ),
 			'user' => $userA->getId(),
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
@@ -498,7 +498,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$revisions[1] = new Revision( array(
 			'page' => $page->getId(),
 			'title' => $page->getTitle(), // still need the title, because $page->getId() is 0 (there's no entry in the page table)
-			'timestamp' => '20120101000100',
+			'timestamp' => $dbw->timestamp( '20120101000100' ),
 			'user' => $userA->getId(),
 			'text' => 'one',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
@@ -510,7 +510,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$revisions[2] = new Revision( array(
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
-			'timestamp' => '20120101000200',
+			'timestamp' => $dbw->timestamp( '20120101000200' ),
 			'user' => $userB->getId(),
 			'text' => 'two',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
@@ -522,7 +522,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$revisions[3] = new Revision( array(
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
-			'timestamp' => '20120101000300',
+			'timestamp' => $dbw->timestamp( '20120101000300' ),
 			'user' => $userA->getId(),
 			'text' => 'three',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
@@ -534,7 +534,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$revisions[4] = new Revision( array(
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
-			'timestamp' => '20120101000200',
+			'timestamp' => $dbw->timestamp( '20120101000200' ),
 			'user' => $userA->getId(),
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
