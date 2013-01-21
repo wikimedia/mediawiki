@@ -38,7 +38,7 @@ abstract class Action {
 
 	/**
 	 * Page on which we're performing the action
-	 * @var Page $page
+	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
 	 */
 	protected $page;
 
