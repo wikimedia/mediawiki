@@ -341,7 +341,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'revision',
-			array( 'rev_timestamp' => $timestamp ),
+			array( 'rev_timestamp' => $dbw->timestamp( $timestamp ) ),
 			array( 'rev_id' => $page->getLatest() ) );
 
 		$page->clear();
