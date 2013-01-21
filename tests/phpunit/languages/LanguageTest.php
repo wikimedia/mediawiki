@@ -308,6 +308,52 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * Test Language::isWellFormedLanguageTag()
+	 * @dataProvider provideWellFormedLanguageTags
+	 */
+	function testWellFormedLanguageTag( $code, $message = '' ) {
+		$this->assertTrue(
+			Language::isWellFormedLanguageTag( $code ),
+			"validating code $code $message"
+		);
+	}
+
+	function provideWellFormedLanguageTags() {
+		return array(
+			array( 'pa-guru', 'language and script' ),
+			array( 'fi-Cyrl-JA-x-foo', 'weird, but well-formed' ),
+		);
+	}
+
+	/**
+	 * Negative test for Language::isWellFormedLanguageTag()
+	 * @dataProvider provideMalFormedLanguageTags
+	 */
+	function testMalFormedLanguageTag( $code, $message = '' ) {
+		$this->assertFalse(
+			Language::isWellFormedLanguageTag( $code ),
+			"validating that code $code is a malformed language tag - $message"
+		);
+	}
+
+	function provideMalFormedLanguageTags() {
+		return array(
+			array( 'pa_guru', 'A tag with underscore' ),
+			array( 'ru-s', 'An invalid subtag' ),
+		);
+	}
+
+	/**
+	 * Negative test for Language::isWellFormedLanguageTag()
+	 */
+	function testLenientLanguageTag() {
+		$this->assertTrue(
+			Language::isWellFormedLanguageTag( 'pa_guru', true ),
+			'pa_guru is a well-formed language tag in lenient mode'
+		);
+	}
+
+	/**
 	 * Test Language::isValidBuiltInCode()
 	 * @dataProvider provideLanguageCodes
 	 */
