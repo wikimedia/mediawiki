@@ -35,4 +35,21 @@ class ParserOutputTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $shouldMatch, ParserOutput::isLinkInternal( $server, $url ) );
 	}
+
+	public function testExtensionData() {
+		$po = new ParserOutput();
+
+		$po->setExtensionData( "one", "Foo" );
+
+		$this->assertEquals( "Foo", $po->getExtensionData( "one" ) );
+		$this->assertNull( $po->getExtensionData( "spam" ) );
+
+		$po->setExtensionData( "two", "Bar" );
+		$this->assertEquals( "Foo", $po->getExtensionData( "one" ) );
+		$this->assertEquals( "Bar", $po->getExtensionData( "two" ) );
+
+		$po->setExtensionData( "one", null );
+		$this->assertNull( $po->getExtensionData( "one" ) );
+		$this->assertEquals( "Bar", $po->getExtensionData( "two" ) );
+	}
 }
