@@ -51,6 +51,7 @@ class ParserOutput extends CacheTime {
 		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
+		private $mExtensionData = array(); # extra data used by extensions
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -464,6 +465,47 @@ class ParserOutput extends CacheTime {
 		}
 
 		return $updates;
-	 }
+	}
+
+	/**
+	 * Attaches arbitrary data to this ParserObject. This can be used to store some information in
+	 * the ParserOutput object for later use during page output. The data will be cached along with
+	 * the ParserOutput object, but unlike data set using setProperty(), it is not recorded in the
+	 * database.
+	 *
+	 * This method is provided to overcome the unsafe practice of attaching extra information to a
+	 * ParserObject by directly assigning member variables.
+	 *
+	 * @param string $key The key for accessing the data. Extensions should take care to avoid
+	 *               conflicts in naming keys. It is suggested to use the extension's name as a
+	 *               prefix.
+	 *
+	 * @param mixed $value The value to set. Setting a value to null is equivalent to removing
+	 *              the value.
+	 */
+	public function setExtensionData( $key, $value ) {
+		if ( $value === null ) {
+			unset( $this->mExtensionData[$key] );
+		} else {
+			$this->mExtensionData[$key] = $value;
+		}
+	}
+
+	/**
+	 * Gets extensions data previously attached to this ParserOutput using setExtensionData().
+	 * Typically, such data would be set while parsing the page, e.g. by a parser function.
+	 *
+	 * @param string $key The key to look up.
+	 *
+	 * @return mixed The value previously set for the given key using setExtensionData( $key ),
+	 *         or null if no value was set for this key.
+	 */
+	public function getExtensionData( $key ) {
+		if ( isset( $this->mExtensionData[$key] ) ) {
+			return $this->mExtensionData[$key];
+		}
+
+		return null;
+	}
 
 }
