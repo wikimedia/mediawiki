@@ -359,6 +359,7 @@ if ( $wgNewUserLog ) {
 	$wgLogActionsHandlers['newusers/newusers'] = 'NewUsersLogFormatter';
 	$wgLogActionsHandlers['newusers/create'] = 'NewUsersLogFormatter';
 	$wgLogActionsHandlers['newusers/create2'] = 'NewUsersLogFormatter';
+	$wgLogActionsHandlers['newusers/byemail'] = 'NewUsersLogFormatter';
 	$wgLogActionsHandlers['newusers/autocreate'] = 'NewUsersLogFormatter';
 }
 
