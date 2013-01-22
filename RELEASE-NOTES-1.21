@@ -181,11 +181,14 @@ production.
 * (bug 35885) Removed version parameter and all getVersion() methods.
 * action=options now takes a "resetkinds" option, which allows only resetting
   certain types of preferences when the "reset" option is set.
+* action=help suports generalized submodules (modules=query+value), querymodules obsolete
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
   Never use on the production servers, as this flag introduces security holes.
   Whenever enabled, a warning will also be added to all output.
+* ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
+* Query stores prop/list/meta as submodules
 
 === Languages updated in 1.21 ===
 
