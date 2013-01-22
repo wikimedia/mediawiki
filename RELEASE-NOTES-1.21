@@ -201,6 +201,9 @@ changes to languages because of Bugzilla reports.
   as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
+* (bug 18010) Remove *.php5 files from MediaWiki (other than index.php5).
+  The .php5 file extension is a legacy feature from when PHP 4 and 5 were
+  both installed on the same server.
 
 == Compatibility ==
 
