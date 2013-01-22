@@ -4242,14 +4242,8 @@ class User {
 			return true; // disabled
 		}
 
-		if ( $action === true || $action === 'byemail' ) {
-			$action = 'create2';
-			if ( $reason === '' ) {
-				$reason = wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text();
-			} else {
-				$reason = $wgContLang->commaList( array(
-					$reason, wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text() ) );
-			}
+		if ( $action === true ) {
+			$action = 'byemail';
 		} elseif ( $action === false ) {
 			if ( $this->getName() == $wgUser->getName() ) {
 				$action = 'create';
@@ -4258,35 +4252,38 @@ class User {
 			}
 		}
 
-		if ( $action === 'create' ) {
+		if ( $action === 'create' || $action === 'autocreate' ) {
 			$performer = $this;
 		} else {
 			$performer = $wgUser;
 		}
 
-		$log = new LogPage( 'newusers' );
-		return (int)$log->addEntry(
-			$action,
-			$this->getUserPage(),
-			$reason,
-			array( $this->getId() ),
-			$performer
-		);
+		$logEntry = new ManualLogEntry( 'newusers', $action );
+		$logEntry->setPerformer( $performer );
+		$logEntry->setTarget( $this->getUserPage() );
+		$logEntry->setComment( $reason );
+		$logEntry->setParameters( array(
+			'4::userid' => $this->getId(),
+		) );
+		$logid = $logEntry->insert();
+
+		if ( $action !== 'autocreate' ) {
+			$logEntry->publish( $logid );
+		}
+
+		return (int)$logid;
 	}
 
 	/**
 	 * Add an autocreate newuser log entry for this user
 	 * Used by things like CentralAuth and perhaps other authplugins.
+	 * Consider calling addNewUserLogEntry() directly instead.
 	 *
 	 * @return bool
 	 */
 	public function addNewUserLogEntryAutoCreate() {
-		global $wgNewUserLog;
-		if( !$wgNewUserLog ) {
-			return true; // disabled
-		}
-		$log = new LogPage( 'newusers', false );
-		$log->addEntry( 'autocreate', $this->getUserPage(), '', array( $this->getId() ), $this );
+		$this->addNewUserLogEntry( 'autocreate' );
+
 		return true;
 	}
 

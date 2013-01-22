@@ -8525,6 +8525,9 @@ $4 is the gender of the target user.',
 'logentry-newusers-create2' => '{{Logentry}}
 
 $4 is the name of the target user.',
+'logentry-newusers-byemail' => '{{Logentry}}
+
+$4 is the name of the target user.',
 'logentry-newusers-autocreate' => '{{Logentry}}
 
 $4 is the gender of the target user.',
