@@ -123,7 +123,7 @@ class ApiParamInfo extends ApiBase {
 			$retval['generator'] = '';
 		}
 
-		$allowedParams = $obj->getFinalParams();
+		$allowedParams = $obj->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		if ( !is_array( $allowedParams ) ) {
 			return $retval;
 		}

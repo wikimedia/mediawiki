@@ -83,7 +83,7 @@ production.
   in MW 1.20 (saving preferences using Special:Preferences cleared any
   additional fields) and which has been disabled in 1.20.1 as a part of
   a security fix (bug 42202).
-* Added the ability to limit the wall clock time used by shell processes, 
+* Added the ability to limit the wall clock time used by shell processes,
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
 
 === Bug fixes in 1.21 ===
@@ -184,11 +184,16 @@ production.
 * ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
 * Query stores prop/list/meta as submodules
 * action=help suports generalized submodules (modules=query+value), querymodules obsolete
+* Add supports for all pageset capabilities - generators, redirects, converttitles to
+  action=purge and action=setnotificationtimestamp.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
   Never use on the production servers, as this flag introduces security holes.
   Whenever enabled, a warning will also be added to all output.
+* ApiPageSet can now be used in any action to process titles/pageids/revids or any generator.
+* ApiPageSet constructor now has two params instead of three, but still only one required.
+* $wgAPIGeneratorModules is now obsolete and will be ignored.
 
 === Languages updated in 1.21 ===
 
