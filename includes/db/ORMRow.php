@@ -509,11 +509,7 @@ class ORMRow implements IORMRow {
 					$value = (float)$value;
 					break;
 				case 'bool':
-					if ( is_string( $value ) ) {
-						$value = $value !== '0';
-					} elseif ( is_int( $value ) ) {
-						$value = $value !== 0;
-					}
+					$value = (bool)$value;
 					break;
 				case 'array':
 					if ( is_string( $value ) ) {
