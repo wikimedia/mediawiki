@@ -3002,6 +3002,8 @@ $templates
 			implode( "\t", $digitTransTable ),
 		);
 
+		$user = $this->getUser();
+
 		$vars = array(
 			'wgCanonicalNamespace' => $nsname,
 			'wgCanonicalSpecialPageName' => $canonicalName,
@@ -3012,8 +3014,7 @@ $templates
 			'wgArticleId' => $pageID,
 			'wgIsArticle' => $this->isArticle(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
-			'wgUserName' => $this->getUser()->isAnon() ? null : $this->getUser()->getName(),
-			'wgUserGroups' => $this->getUser()->getEffectiveGroups(),
+			'wgUserGroups' => $user->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
 			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 			'wgPageContentLanguage' => $lang->getCode(),
@@ -3024,6 +3025,12 @@ $templates
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
 		);
+		if ( $user->isLoggedIn() ) {
+			$vars['wgUserName'] = $user->getName();
+			$vars['wgUserId'] = $user->getId();
+			$vars['wgEditCount'] = $user->getEditCount();
+			$vars['wgRegistration'] = $user->getRegistration();
+		}
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
 		}
