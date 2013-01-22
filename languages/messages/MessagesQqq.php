@@ -8526,7 +8526,10 @@ Parameter $4, the target page, is also not visible to parser functions.',
 $4 is the gender of the target user.',
 'logentry-newusers-create2' => '{{Logentry}}
 
-$4 is the name of the target user.',
+$4 is the name of the user that was created.',
+'logentry-newusers-byemail' => '{{Logentry}}
+
+$4 is the name of the user that was created.',
 'logentry-newusers-autocreate' => '{{Logentry}}
 
 $4 is the gender of the target user.',
