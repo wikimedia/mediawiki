@@ -3934,6 +3934,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-variables' => 'Erweiterungen mit Variablen',
 'version-antispam' => 'Spamschutzerweiterungen',
 'version-skins' => 'Benutzeroberflächen',
+'version-api' => 'API-Erweiterungen',
 'version-other' => 'Andere Erweiterungen',
 'version-mediahandlers' => 'Mediennutzungserweiterungen',
 'version-hooks' => "Schnittstellen ''(Hooks)''",

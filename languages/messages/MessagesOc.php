@@ -658,7 +658,7 @@ Cap d'explicacion es pas estada provesida.",
 'badtitle' => 'Títol marrit',
 'badtitletext' => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
 'perfcached' => "Las donadas seguendas son en escondedor e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins l'escondedor.",
-'perfcachedts' => "Las donadas que segon son dins l'amagatal, son doncas pas forçadament a jorn. La darrièra actualizacion data del $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
+'perfcachedts' => "Las donadas seguendas son en escondedor e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins l'escondedor.",
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
 'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
 Foncion : $1<br />
@@ -667,8 +667,9 @@ Requèsta : $2',
 'viewsource-title' => 'Veire la font de $1',
 'actionthrottled' => 'Accion limitada',
 'actionthrottledtext' => "Per luchar contra lo spam, l’utilizacion d'aquesta accion es limitada a un cèrt nombre de còps dins una sosta pro corta. S'avèra qu'avètz depassat aqueste limit. Ensajatz tornamai dins qualques minutas.",
-'protectedpagetext' => 'Aquesta pagina es estada protegida per empachar sa modificacion.',
+'protectedpagetext' => "Aquesta pagina es estada protegida per empachar sa modificacion o d'autras accions.",
 'viewsourcetext' => 'Podètz veire e copiar lo contengut de l’article per poder trabalhar dessús :',
+'viewyourtext' => "Podètz veire e copiar lo contengut de '''vòstras modificacions''' a aquesta pagina :",
 'protectedinterface' => 'Aquesta pagina provesís de tèxte d’interfàcia pel logicial e es protegida per evitar los abuses.',
 'editinginterface' => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxte de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxte, sus totas o d'unas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte MediaWiki d'internacionalizacion dels messatges [//translatewiki.net/wiki/Main_Page?setlang=oc translatewiki.net].",
 'sqlhidden' => '(Requèsta SQL amagada)',
@@ -768,6 +769,7 @@ Atal los visitors qu'utilizan aquesta adreça IP pòdon pas crear mai de compte 
 'emailconfirmlink' => 'Confirmatz vòstra adreça de corrièr electronic',
 'invalidemailaddress' => "Aquesta adreça de corrièr electronic pòt pas èsser acceptada perque sembla qu'a un format incorrècte.
 Picatz una adreça plan formatada o daissatz aqueste camp void.",
+'emaildisabled' => 'Aqueste site pòt pas mandar de corrièls.',
 'accountcreated' => 'Compte creat.',
 'accountcreatedtext' => "Lo compte d'utilizaire de $1 es estat creat.",
 'createaccount-title' => "Creacion d'un compte per {{SITENAME}}",
@@ -777,8 +779,12 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'usernamehasherror' => "Lo nom d'utilizaire pòt pas conténer de caractèrs de hachage",
 'login-throttled' => 'Avètz ensajat tròp de temptativas de connexion darrièrament.
 Esperatz abans d’ensajar tornamai.',
+'login-abort-generic' => 'Vòstra temptativa de connexion a fracassat',
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Error desconeguda dins la foncion mail() de PHP.',
 
 # Change password dialog
 'resetpass' => 'Cambiar lo senhal del compte',

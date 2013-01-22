@@ -172,9 +172,9 @@ $messages = array(
 'tog-previewontop' => "Mostra l'anteprima sora ła caseła de modifega e no soto",
 'tog-previewonfirst' => "Mostra l'anteprima par ła prima modifega",
 'tog-nocache' => 'Disativa ła cache par łe pajine del browser',
-'tog-enotifwatchlistpages' => 'Segnałame via e-mail łe modifeghe a łe pajine oservae',
+'tog-enotifwatchlistpages' => "Segnałame via e-mail có vien canbià na pàjina o un file prexente inte ła lista de łe tegnùe d'ocio",
 'tog-enotifusertalkpages' => 'Avìseme par e-mail se i scrive su la me pagina de discussion',
-'tog-enotifminoredits' => 'Avìseme par e-mail anca par i canbiamenti picenini',
+'tog-enotifminoredits' => "Avìxeme par e-mail anca pa' i canbiamenti picenini de pàjine e file",
 'tog-enotifrevealaddr' => 'Fà védar el me indirisso e-mail in tei messagi de aviso',
 'tog-shownumberswatching' => 'Mostra el numaro de utenti che i ga ła pajina en oservasion',
 'tog-oldsig' => 'Anteprima de ła firma:',
@@ -197,7 +197,7 @@ $messages = array(
 
 'underline-always' => 'Senpre',
 'underline-never' => 'Mai',
-'underline-default' => 'Mantieni łe inpostasion del browser',
+'underline-default' => 'Mantien łe inpostasion del browser o de ła skin',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Stiłe font de l'area de modifega:",
@@ -283,7 +283,7 @@ $messages = array(
 'cancel' => 'Lassa star',
 'moredotdotdot' => 'Altro...',
 'morenotlisted' => 'Altro nó elencà',
-'mypage' => 'La me pagina',
+'mypage' => 'Pàjina',
 'mytalk' => 'Discussion',
 'anontalk' => 'Discusion par sto IP',
 'navigation' => 'Navigasion',
@@ -306,7 +306,7 @@ $messages = array(
 'vector-action-protect' => 'Protezi',
 'vector-action-undelete' => 'Recupera',
 'vector-action-unprotect' => 'Canbia ła protesion',
-'vector-simplesearch-preference' => "Intaca i sugerimenti di ricerca avansadi (solo par l'interfacia Vector)",
+'vector-simplesearch-preference' => "Abiłita ła sbara par ła riserca senplifegà (soło che par l'interfacia Vector)",
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Canbia',
 'vector-view-history' => "Varda ła 'storia",
@@ -468,12 +468,12 @@ L'elenco de le pagine speciali te lo cati su [[Special:SpecialPages|{{int:specia
 # General errors
 'error' => 'Erore',
 'databaseerror' => 'Erore del database',
-'dberrortext' => 'Erore de sintassi ne ła richiesta inoltrà al database.
-Ciò podaria indicare ła presensa de on bug nel software.
-L\'ultima query invià al database xè sta:
+'dberrortext' => 'Eror de sintasi inte ła dimanda inoltrà al database.
+Ciò podaria indicar ła prexensa de un bug inte\'l software.
+L\'ultema query invià al database ła xè sta:
 <blockquote><tt>$1</tt></blockquote>
 riciamà da ła funsion "<tt>$2</tt>".
-El database el ga restituio el seguente erore "<tt>$3: $4</tt>".',
+El database el ga restituio el seguente eror "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Erore de sintasi ne ła richiesta inoltrà al database.
 L\'ultima query invià al database xè sta:
 "$1"
@@ -525,12 +525,13 @@ Query: $2',
 'viewsource-title' => 'Varda el testo de $1',
 'actionthrottled' => 'Asion ritardà',
 'actionthrottledtext' => "Come misura de sicuresa contro e o spam, l'esecusion de alcune asion e a xè limità a on numaro masimo de volte en on determinà periodo de tenpo, limite che en questo caso xè sta superà. Se prega de riprovare tra qualche minuto.",
-'protectedpagetext' => 'Sta pagina la xe stà proteta de modo che nissuni possa canbiarla.',
+'protectedpagetext' => 'Sta pàjina ła xe stà proteta de modo che nisun posa canbiarla o far altre operasion.',
 'viewsourcetext' => 'Se pole vardar e copiar el testo de sta pagina:',
 'viewyourtext' => "Xè posibile vedàre e copiare el codexe sorzente de le '''to modifighe''' a sta pajina:",
-'protectedinterface' => "Sta pagina la gà drento un testo de l'interfacia utente del software, quindi la xe proteta parché nissuni la strussia.",
-'editinginterface' => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti.
-Par łe tradusion, considera ła posibiłità de usare [//translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localizasion.",
+'protectedinterface' => "Sta pàjina ła gà drento un testo de l'interfacia utente del software de sto sito, quindi la xe proteta parché nisuni ła strusie.
+Par xontar o modifegar tradusion par tute łe wiki doparar [//translatewiki.net/ translatewiki.net], el projeto de locałixasion de MediaWiki.",
+'editinginterface' => "'''Ocio:''' El testo de sta pàjina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałixà par tuti i utenti so sta wiki.
+Par xontare o modifegar łe tradusion vałide so tute łe wiki, considera ła posibiłità de doparar [//translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localixasion.",
 'sqlhidden' => '(ła query SQL ła xè sta sconta)',
 'cascadeprotected' => 'So sta pajina no xè posibiłe efetuare modifeghe parché xè sta inclusa {{PLURAL:$1|ne ła pajina indicà de seguito, che xè sta proteta|ne łe pajine indicae de seguito, che e xè sta protete}} sełesionando ła protesion "ricorsiva":
 $2',
@@ -831,7 +832,7 @@ Le modifiche no le xe gnancora stà salvà!'''",
 'updated' => '(Agiornà)',
 'note' => "'''Nota:'''",
 'previewnote' => "Sta cua ła xe soło n'anteprima; i canbiamenti a ła pajina NO i xe gnancora stà salvài!",
-'continue-editing' => 'Continua modifegare',
+'continue-editing' => "Va a l'area de modifega",
 'previewconflict' => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
 'session_fail_preview' => "No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi.
 Par piaser, riproa da novo.
@@ -1065,9 +1066,11 @@ No ti gà acesso su de ela.',
 'revdelete-no-change' => "''Ocio:''' la version datà $1 a le $2 la gà zà le inpostassion de visibilità da ti richieste.",
 'revdelete-concurrent-change' => "No se riesse a modificar la version datà $1 a le $2: pararìa che qualchidun altro el gavesse canbià el stato de la version intanto che ti te sercavi de far la stessa roba. Daghe n'ociada sui registri.",
 'revdelete-only-restricted' => "Eròr sercando de scondar l'elemento datà $1 a le $2: no te podi inpedirghe ai aministradori de vardar na revision se no te selessioni al tenpo stesso una de le altre opzioni de restrizion.",
-'revdelete-reason-dropdown' => '*Motivassion pi comuni par la scancelassion
-** Violassion de copyright
-** Informassion personali inapropriàe',
+'revdelete-reason-dropdown' => '*Motivasion pi comuni par la scansełasion
+** Viołasion de copyright
+** Comenti o informasion personali inapropriàe
+** Nome utente inapropià
+** Informasion potensialmente difamatoria',
 'revdelete-otherreason' => 'Altro:',
 'revdelete-reasonotherlist' => 'Altra motivassion',
 'revdelete-edit-reasonlist' => 'Modifica le motivazion par la scancelazion',
@@ -1212,7 +1215,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'prefs-rc' => 'Ultime modifeghe',
 'prefs-watchlist' => "Pàjine tegnùe d'ocio",
 'prefs-watchlist-days' => 'Nùmaro de giòrni da far védar nei osservati speciali:',
-'prefs-watchlist-days-max' => 'Masimo $1 dì',
+'prefs-watchlist-days-max' => 'Masimo $1 {{PLURAL:$1|xorno|xorni}}',
 'prefs-watchlist-edits' => 'Nùmaro de modifiche da far védar con le funzion avanzade:',
 'prefs-watchlist-edits-max' => 'Numaro massimo: 1000',
 'prefs-watchlist-token' => "Segnal par le pagine tegnùe d'ocio:",
@@ -1257,7 +1260,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'timezoneregion-indian' => 'Oceano Indian',
 'timezoneregion-pacific' => 'Oceano Pacifico',
 'allowemail' => 'Consenti la ricezion de e-mail da altri utenti<sup>1</sup>',
-'prefs-searchoptions' => 'Opsioni de riserca',
+'prefs-searchoptions' => 'Riserca',
 'prefs-namespaces' => 'Namespace',
 'defaultns' => 'Serca in sti namespace se no diversamente specificà:',
 'default' => 'predefinìo',
@@ -1270,9 +1273,9 @@ Sta operassion no la pol èssar anulà.',
 'prefs-emailconfirm-label' => "Conferma de l'e-mail:",
 'prefs-textboxsize' => 'Dimension de la casèla de modifica',
 'youremail' => 'La to e-mail',
-'username' => 'Nome utente',
-'uid' => 'ID utente:',
-'prefs-memberingroups' => 'Menbro {{PLURAL:$1|del grupo|dei grupi}}:',
+'username' => '{{GENDER:$1|Nome utente}}:',
+'uid' => '{{GENDER:$1|ID utente}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Menbro}} {{PLURAL:$1|del grupo|de i grupi}}:',
 'prefs-registration' => 'Data de registrassion:',
 'yourrealname' => 'El to vero nome:',
 'yourlanguage' => 'Lengua:',
@@ -2270,9 +2273,9 @@ Le inpostazion corenti par la pagina le xe '''$1''':",
 Le impostazion atuali par la pagina le xe '''$1''':",
 'protect-cascadeon' => 'Al momento sta pagina la xe blocà parché la xe inclusa {{PLURAL:$1|ne la pagina indicà de seguito, par la quale|ne le pagine indichè de seguito, par le quali}} xe ativa la protezion ricorsiva. Se pol modificar el livel de protezion individual de la pagina, ma le inpostazion derivanti da la protezion ricorsiva no le sarà mìa modificà.',
 'protect-default' => 'Autoriza tuti i utenti',
-'protect-fallback' => 'Ghe vole el parmesso de "$1"',
-'protect-level-autoconfirmed' => 'Bloca i utenti novi o mia registrà',
-'protect-level-sysop' => 'Solo aministradori',
+'protect-fallback' => 'Consentio soło che a i utenti có parmeso "$1"',
+'protect-level-autoconfirmed' => 'Consentio soło che a i utenti "autoconfermai"',
+'protect-level-sysop' => 'Consentio soło che a i aministradori',
 'protect-summary-cascade' => 'ricorsiva',
 'protect-expiring' => 'scadensa: $1 (UTC)',
 'protect-expiring-local' => 'scade el $1',

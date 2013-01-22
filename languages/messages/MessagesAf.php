@@ -540,13 +540,11 @@ Databasis gee foutboodskap: "$3: $4".',
 'laggedslavemode' => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
 'readonly' => 'Databasis gesluit',
 'enterlockreason' => 'Rede vir die sluiting,
-en beraming van wanneer ontsluiting sal plaas vind',
-'readonlytext' => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
-artikelwysigings, waarskynlik vir roetine databasisonderhoud,
+en beraming van wanneer ontsluiting sal plaasvind',
+'readonlytext' => 'Die databasis is tans gesluit vir nuwe artikelwysigings, waarskynlik vir roetine onderhoud,
 waarna dit terug sal wees na normaal.
-Die administreerder wat dit gesluit het se verduideliking:
 
-$1',
+Die administrateur wat dit gesluit het se verduideliking: $1',
 'missing-article' => "Die databasis kon nie soos verwag die teks vir die bladsy genaamd \"\$1\" \$2 kry nie.
 
 Dit gebeur gewoonlik as mens 'n verouderde verskil- of geskiedenis-skakel volg na 'n bladsy wat reeds verwyder is.
@@ -554,7 +552,7 @@ Dit gebeur gewoonlik as mens 'n verouderde verskil- of geskiedenis-skakel volg n
 Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek. Rapporteer asseblief die probleem aan 'n [[Special:ListUsers/sysop|administrateur]], en maak 'n nota van die URL.",
 'missingarticle-rev' => '(weergawe#: $1)',
 'missingarticle-diff' => '(Wysiging: $1, $2)',
-'readonly_lag' => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
+'readonly_lag' => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse met die meester gesinchroniseer word',
 'internalerror' => 'Interne fout',
 'internalerror_info' => 'Interne fout: $1',
 'fileappenderrorread' => 'Kon nie "$1" tydens die "append" lees nie.',
@@ -629,7 +627,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'securelogin-stick-https' => 'Bly verbind met HTTPS na aanmelding',
 'yourdomainname' => 'U domein:',
 'password-change-forbidden' => 'U kan nie wagwoorde op hierdie wiki verander nie.',
-'externaldberror' => "'n Databasis fout het voorgekom tydens aanmelding of u het nie toestemming om u eksterne rekening op te dateer nie.",
+'externaldberror' => "'n Databasisfout het voorgekom tydens aanmelding of u het nie toestemming om u eksterne rekening op te dateer nie.",
 'login' => 'Teken in',
 'nav-login-createaccount' => 'Teken in',
 'loginprompt' => 'U blaaier moet koekies toelaat om by {{SITENAME}} te kan aanteken.',
@@ -939,9 +937,9 @@ Deur enigiets hier te plaas, beloof u dat u dit self geskryf het, of dat dit gek
 '''MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!'''",
 'longpageerror' => "'''Fout: die teks wat u bygevoeg het is {{PLURAL:$1|een kilogreep|$1 kilogrepe}} groot, wat groter is as die maksimum van {{PLURAL:$2|een kilogreep|$2 kilogrepe}}.'''
 Die bladsy kan nie gestoor word nie.",
-'readonlywarning' => "'''WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later.'''
+'readonlywarning' => "'''WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks in 'n lêer plak en stoor vir later.'''
 
-Een administrateur het die databasis geblokkeer vir hierdie rede: $1",
+Die administrateur wat dit gesluit het se verduideliking: \$ 1",
 'protectedpagewarning' => "'''WAARSKUWING: Hierdie bladsy is beveilig sodat slegs administrateurs die inhoud sal kan verander.''' Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'semiprotectedpagewarning' => "'''Let wel:''' Hierdie artikel is beveilig sodat slegs ingetekende gebruikers dit sal kan wysig. Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'cascadeprotectedwarning' => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",

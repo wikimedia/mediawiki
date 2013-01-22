@@ -152,6 +152,7 @@ $messages = array(
 'newwindow' => '(wårt önj en nai waning ääm mååged)',
 'cancel' => 'Oufbreege',
 'moredotdotdot' => 'Mör ...',
+'morenotlisted' => 'Öödern, ei apfeerd ...',
 'mypage' => 'Sidj',
 'mytalk' => 'Diskusjuun',
 'anontalk' => 'Diskusjoonssid foon jüdeer IP',
@@ -185,6 +186,7 @@ $messages = array(
 'namespaces' => 'Noomerüme',
 'variants' => 'Fariante',
 
+'navigation-heading' => 'Nawigatsjuun',
 'errorpagetitle' => 'Fäägel',
 'returnto' => 'Tubääg tu jü side $1.',
 'tagline' => 'Üt {{SITENAME}}',
@@ -285,6 +287,10 @@ Sii jü [[Special:Version|Färsjoonssid]]',
 'youhavenewmessages' => 'Dü hääst $1 aw din diskusjoonssid ($2).',
 'newmessageslink' => 'naie tisinge',
 'newmessagesdifflink' => 'Leest änring',
+'youhavenewmessagesfromusers' => 'Dü heest $1 faan {{PLURAL:$3|en öödern brüker|$3 ööder brükern}} ($2).',
+'youhavenewmessagesmanyusers' => 'Dü heest $1 faan flook ööder brükern ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ian nei nooracht|nei noorachten}}',
+'newmessagesdifflinkplural' => 'leetst {{PLURAL:$1|feranrang|feranrangen}}',
 'youhavenewmessagesmulti' => 'Dü hääst nai tisinge aw $1',
 'editsection' => 'Beårbe',
 'editsection-brackets' => '[$1]',
@@ -413,6 +419,7 @@ Di grünj faan di administraator as: „$3“.',
 'invalidtitle-knownnamespace' => 'Ferkiard auerskraft uun di nöömrüm „$2“ an tekst „$3“',
 'invalidtitle-unknownnamespace' => 'Ferkiard auerskraft uun di ünbekäänd nöömrüm „$1“ an tekst „$2“',
 'exception-nologin' => 'Ei uunmeldet',
+'exception-nologin-text' => 'Det könst dü bluas bewerke, wan dü uunmeldet beest.',
 
 # Virus scanner
 'virus-badscanner' => "Hiinje konfigurasjoon: ünbekånde fiirusscanner: ''$1''",
@@ -424,12 +431,16 @@ Di grünj faan di administraator as: „$3“.',
 
 Dü koost {{SITENAME}} nü anonüüm widerbrüke, unti de wider uner diseelew unti en oudern brükernoome <span class='plainlinks'>[$1 önjmälde]</span>.
 Påås aw, dåt hu side nuch wise koone, dåt dü önjmälded bast, sülung dü ai dan browsercache lääsimååged heest.",
+'welcomeuser' => 'Welkimen, $1!',
+'welcomecreation-msg' => 'Din brükerkonto as iinracht wurden.
+Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelangen]].',
 'yourname' => 'Brükernoome:',
 'yourpassword' => 'Pååsuurd:',
 'yourpasswordagain' => 'Schriw pååsuurd nuch iinjsen:',
-'remembermypassword' => 'Aw diheere komputer foon duur önjmälde (maksimool for {{PLURAL:$1|däi|deege}})',
+'remembermypassword' => 'Aw diheere komputer foon duur önjmälde (maksimool for $1 {{PLURAL:$1|däi|deege}})',
 'securelogin-stick-https' => 'Eefter önjmälding ma HTTPS ferbünen bliwe',
 'yourdomainname' => 'Din domain:',
+'password-change-forbidden' => 'Üüb detheer wiki könst dü nian paaswurden feranre.',
 'externaldberror' => 'Deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',
 'login' => 'Önjmälde',
 'nav-login-createaccount' => 'Önjmälde',
@@ -519,6 +530,7 @@ Wees sü gödj än täif, bit dü wider ferseechst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktsjuun mail() faan PHP.',
 'user-mail-no-addy' => 'Köö niinj e-mail schake suner e-mail-adres.',
+'user-mail-no-body' => 'Dü wulst en e-mail saner tekst wechsjüür.',
 
 # Change password dialog
 'resetpass' => 'Pååsuurd änre',
@@ -575,6 +587,7 @@ Tidwis paasuurd: $2',
 'changeemail-oldemail' => 'Aktuel e-mail adres',
 'changeemail-newemail' => 'Nei e-mail adres',
 'changeemail-none' => '(niin)',
+'changeemail-password' => 'Din {{SITENAME}} paaswurd:',
 'changeemail-submit' => 'E-mail adres feranre',
 'changeemail-cancel' => 'Ufbreeg',
 
@@ -670,6 +683,10 @@ Dü koost dideere tiitel aw da ouder side [[Special:Search/{{PAGENAME}}|säke]],
 <span class="plainlinks">önj da deertuhiirende [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logböke säke] unti jüdeer sid [{{fullurl:{{FULLPAGENAME}}|action=edit}} beårbe]</span>.',
 'noarticletext-nopermission' => 'Üüb detdiar sidj stäänt noch niks, oober dü mutst diar uk niks iinskriiw.
 Dü könst diar üüb ööder sidjen efter [[Special:Search/{{PAGENAME}}|sjük]] of a <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAME}}}} logbuken uunluke].</span>',
+'missing-revision' => 'Det werjuun #$1 faan det sidj "{{PAGENAME}}" jaft at ei.
+
+Det komt diar miast faan, dat en ual ferwisang stregen wurden as.
+Dü könst det uun\'t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logbuk faan stregen sidjen] efterlees.',
 'userpage-userdoesnotexist' => "Det brükerkonto ''$1'' as ei diar.
 Wel dü detdiar sidj würelk maage/bewerke?",
 'userpage-userdoesnotexist-view' => 'Benjüterkonto "$1" bestoont ai.',
@@ -773,6 +790,15 @@ Jü wörd önjscheened sleeked.',
 'edit-already-exists' => 'Köö niinj nai sid mååge.
 Dåt bestöö ål.',
 'defaultmessagetext' => 'Standard tekst',
+'content-failed-to-parse' => "Parsing faan $2 för't model $1 ging skiaf: $3",
+'invalid-content-data' => 'Diar stäänt wat uun, wat diar ei hen hiart',
+'content-not-allowed-here' => '„$1“ mut ei skrewen wurd üüb sidj [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-text' => 'normool tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Woorschauing: Jüdeer sid önjthålt tu fool apteele foon widluftie parserfunksjoone.
@@ -792,6 +818,7 @@ Deer {{PLURAL:$2|mötj ai mör ås 1 apteel|mönje ai mör ås $1 apteele}} wees
 'expansion-depth-exceeded-warning' => 'Detdiar sidj hää tuföl ütjwidjangen (expansion)',
 'parser-unstrip-loop-warning' => 'Diar as en jinsidjag ferwisang',
 'parser-unstrip-recursion-limit' => 'Tuföl jinsidjag ferwisangen bi $1',
+'converter-manual-rule-error' => "Bi't manuel reegel för't spriakferanrang lääpt wat skiaf.",
 
 # "Undo" feature
 'undo-success' => 'Detdiar feranrang koon turag nimen wurd. 
@@ -979,6 +1006,10 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 'editundo' => 'tunintemååge',
 'diff-multi' => '({{PLURAL:$1|Ian wersjuun diartesken|$1 wersjuunen diartesken}} faan {{PLURAL:$2|ään brüker|$2 brükern}} {{PLURAL:$1|woort|wurd}} ei uunwiset)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ian wersjuun diartesken|$1 wersjuunen diartesken}} faan muar üs $2 {{PLURAL:$2|brüker|brükern}} wurd ei uunwiset)',
+'difference-missing-revision' => "{{PLURAL:$2|Ian werjuun|$2 werjuunen}} faan di ferskeel ($1) {{PLURAL:$2|as|san}} ei fünjen wurden.
+
+Det komt diar miast faan, dat en ual ferwisang stregen wurden as.
+Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logbuk faan stregen sidjen] efterlees.",
 
 # Search results
 'searchresults' => 'Säkjresultoote',
