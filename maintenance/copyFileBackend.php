@@ -134,6 +134,17 @@ class CopyFileBackend extends Maintenance {
 		$ops = array();
 		$fsFiles = array();
 		$copiedRel = array(); // for output message
+
+		// Download the batch of source files into backend cache...
+		if ( $this->hasOption( 'missingonly' ) ) {
+			$srcPaths = array();
+			foreach ( $srcPathsRel as $srcPathRel ) {
+				$srcPaths[] = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
+			}
+			$fsFiles = $src->getLocalReferenceMulti( array( 'srcs' => $srcPaths, 'latest' => 1 ) );
+		}
+
+		// Determine what files need to be copied over...
 		foreach ( $srcPathsRel as $srcPathRel ) {
 			$srcPath = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			$dstPath = $dst->getRootStoragePath() . "/$backendRel/$srcPathRel";
@@ -144,8 +155,9 @@ class CopyFileBackend extends Maintenance {
 				$this->output( "Already have $srcPathRel.\n" );
 				continue; // assume already copied...
 			}
-			// Note: getLocalReference() is fast for FS backends
-			$fsFile = $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
+			$fsFile = array_key_exists( $srcPath, $fsFiles )
+				? $fsFiles[$srcPath]
+				: $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
 			if ( !$fsFile ) {
 				$this->error( "Could not get local copy of $srcPath.", 1 ); // die
 			} elseif ( !$fsFile->exists() ) {
@@ -167,6 +179,7 @@ class CopyFileBackend extends Maintenance {
 			$copiedRel[] = $srcPathRel;
 		}
 
+		// Copy in the batch of source files...
 		$t_start = microtime( true );
 		$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
 		if ( !$status->isOK() ) {
