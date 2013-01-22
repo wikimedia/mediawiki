@@ -1155,5 +1155,21 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( array( 'a', 'b', 'c' ) ) );
 		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( array( 'a', 'b', 'c', 'd' ) ) );
 	}
+
+	/**
+	 * @dataProvider provideIsSupportedLanguage
+	 */
+	function testIsSupportedLanguage( $code, $expected, $comment ) {
+		$this->assertEquals( $expected, Language::isSupportedLanguage( $code ), $comment );
+	}
+
+	static function provideIsSupportedLanguage() {
+		return array(
+			array( 'en', true, 'is supported language' ),
+			array( 'fi', true, 'is supported language' ),
+			array( 'bunny', false, 'is not supported language' ),
+			array( 'FI', false, 'is not supported language, input should be in lower case' ),
+		);
+	}
 }
 
