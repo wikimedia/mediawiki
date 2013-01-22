@@ -203,7 +203,6 @@
 
 			var conditions, dir, i, op, val;
 			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
-
 			dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
 			// Check over each browser condition to determine if we are running in a compatible client
 			if ( typeof map[dir] !== 'object' || map[dir][profile.name] === undefined ) {
@@ -211,6 +210,9 @@
 				return true;
 			}
 			conditions = map[dir][profile.name];
+			if ( conditions === false ) {
+				return false;
+			}
 			for ( i = 0; i < conditions.length; i++ ) {
 				op = conditions[i][0];
 				val = conditions[i][1];
@@ -227,6 +229,7 @@
 					}
 				}
 			}
+
 			return true;
 		}
 	};
