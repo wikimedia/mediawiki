@@ -212,21 +212,27 @@ abstract class ApiBase extends ContextSource {
 	public function setWarning( $warning ) {
 		$result = $this->getResult();
 		$data = $result->getData();
-		if ( isset( $data['warnings'][$this->getModuleName()] ) ) {
+		$moduleName = $this->getModuleName();
+		if( isset( $data['warnings'][$moduleName] ) ) {
 			// Don't add duplicate warnings
-			$warn_regex = preg_quote( $warning, '/' );
-			if ( preg_match( "/{$warn_regex}(\\n|$)/", $data['warnings'][$this->getModuleName()]['*'] ) ) {
-				return;
+			$oldWarning = $data['warnings'][$moduleName]['*'];
+			$warnPos = strpos( $oldWarning, $warning );
+			// If $warning was found in $oldWarning, check if it starts at 0 or after "\n"
+			if( $warnPos !== false && ( $warnPos === 0 || $oldWarning[$warnPos - 1] === "\n" ) ) {
+				// Check if $warning is followed by "\n" or the end of the $oldWarning
+				$warnPos += strlen( $warning );
+				if( strlen( $oldWarning ) <= $warnPos || $oldWarning[$warnPos] === "\n" ) {
+					return;
+				}
 			}
-			$oldwarning = $data['warnings'][$this->getModuleName()]['*'];
 			// If there is a warning already, append it to the existing one
-			$warning = "$oldwarning\n$warning";
-			$result->unsetValue( 'warnings', $this->getModuleName() );
+			$warning = "$oldWarning\n$warning";
 		}
 		$msg = array();
 		ApiResult::setContent( $msg, $warning );
 		$result->disableSizeCheck();
-		$result->addValue( 'warnings', $this->getModuleName(), $msg );
+		$result->addValue( 'warnings', $moduleName,
+			$msg, ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP );
 		$result->enableSizeCheck();
 	}
 

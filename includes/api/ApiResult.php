@@ -43,6 +43,19 @@
  */
 class ApiResult extends ApiBase {
 
+	/**
+	 * override existing value in addValue() and setElement()
+	 * @since 1.21
+	 */
+	const OVERRIDE = 1;
+
+	/**
+	 * For addValue() and setElement(), if the value does not exist, add it as the first element.
+	 * In case the new value has no name (numerical index), all indexes will be renumbered.
+	 * @since 1.21
+	 */
+	const ADD_ON_TOP = 2;
+
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
 	/**
@@ -137,15 +150,24 @@ class ApiResult extends ApiBase {
 	 * @param $arr array to add $value to
 	 * @param $name string Index of $arr to add $value at
 	 * @param $value mixed
-	 * @param $overwrite bool Whether overwriting an existing element is allowed
+	 * @param $flags int Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
+	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
+	 *        compatible with the new method signature.
+	 *
+	 * @since 1.21 int $flags replaced boolean $override
 	 */
-	public static function setElement( &$arr, $name, $value, $overwrite = false ) {
+	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
 		if ( $arr === null || $name === null || $value === null || !is_array( $arr ) || is_array( $name ) ) {
 			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
 		}
 
-		if ( !isset ( $arr[$name] ) || $overwrite ) {
-			$arr[$name] = $value;
+		$exists = isset( $arr[$name] );
+		if( !$exists || ( $flags & ApiResult::OVERRIDE ) ) {
+			if( !$exists && ( $flags & ApiResult::ADD_ON_TOP ) ) {
+				$arr = array( $name => $value ) + $arr;
+			} else {
+				$arr[$name] = $value;
+			}
 		} elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
 			$merged = array_intersect_key( $arr[$name], $value );
 			if ( !count( $merged ) ) {
@@ -156,6 +178,22 @@ class ApiResult extends ApiBase {
 		} else {
 			ApiBase::dieDebug( __METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
 		}
+	}
+
+	/**
+	 * Add a new $name => $value pair to the array $arr so that they appear as the first item
+	 * @param $arr array Array to modify
+	 * @param $name string Index of the new value
+	 * @param $value mixed New value
+	 * @since 1.21
+	 */
+	public static function addAsFirstElement( &$arr, $name, $value ) {
+		// insert key=>value at the beginning of the array
+		// by reversing the array preserving keys,
+		// adding the new value, and reversing again
+		$arr = array_reverse( $arr, true );
+		$arr[$name] = $value;
+		$arr = array_reverse( $arr, true );
 	}
 
 	/**
@@ -249,11 +287,14 @@ class ApiResult extends ApiBase {
 	 * @param $path array|string|null
 	 * @param $name string
 	 * @param $value mixed
-	 * @param $overwrite bool
-	 *
+	 * @param $flags int Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
+	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
+	 *        compatible with the new method signature.
 	 * @return bool True if $value fits in the result, false if not
+	 *
+	 * @since 1.21 int $flags replaced boolean $override
 	 */
-	public function addValue( $path, $name, $value, $overwrite = false ) {
+	public function addValue( $path, $name, $value, $flags = 0 ) {
 		global $wgAPIMaxResultSize;
 
 		$data = &$this->mData;
@@ -268,26 +309,34 @@ class ApiResult extends ApiBase {
 			$this->mSize = $newsize;
 		}
 
-		if ( !is_null( $path ) ) {
-			if ( is_array( $path ) ) {
-				foreach ( $path as $p ) {
-					if ( !isset( $data[$p] ) ) {
+		$addOnTop = $flags & ApiResult::ADD_ON_TOP;
+		if( $path !== null ) {
+			foreach( (array) $path as $p ) {
+				if( !isset( $data[$p] ) ) {
+					if( $addOnTop ) {
+						$data = array( $p => array() ) + $data;
+						$addOnTop = false;
+					} else {
 						$data[$p] = array();
 					}
-					$data = &$data[$p];
 				}
-			} else {
-				if ( !isset( $data[$path] ) ) {
-					$data[$path] = array();
-				}
-				$data = &$data[$path];
+				$data = &$data[$p];
 			}
 		}
 
-		if ( !$name ) {
-			$data[] = $value; // Add list element
+		if( !$name ) {
+			// Add list element
+			if( $addOnTop ) {
+				// This element needs to be inserted in the beginning
+				// Numerical indexes will be renumbered
+				array_unshift( $data, $value );
+			} else {
+				// Add new value at the end
+				$data[] = $value;
+			}
 		} else {
-			self::setElement( $data, $name, $value, $overwrite ); // Add named element
+			// Add named element
+			self::setElement( $data, $name, $value, $flags );
 		}
 		return true;
 	}
@@ -300,7 +349,7 @@ class ApiResult extends ApiBase {
 	 */
 	public function setParsedLimit( $moduleName, $limit ) {
 		// Add value, allowing overwriting
-		$this->addValue( 'limits', $moduleName, $limit, true );
+		$this->addValue( 'limits', $moduleName, $limit, ApiResult::OVERRIDE );
 	}
 
 	/**
