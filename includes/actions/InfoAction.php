@@ -386,6 +386,22 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-edits'] = array();
 
 		$firstRev = $this->page->getOldestRevision();
+		$lastRev = $this->page->getRevision();
+		$batch = new LinkBatch;
+
+		$firstRevUser = $firstRev->getUserText( Revision::FOR_THIS_USER );
+		if ( $firstRevUser !== '' ) {
+			$batch->add( NS_USER, $firstRevUser );
+			$batch->add( NS_USER_TALK, $firstRevUser );
+		}
+
+		$lastRevUser = $lastRev->getUserText( Revision::FOR_THIS_USER );
+		if ( $lastRevUser !== '' ) {
+			$batch->add( NS_USER, $lastRevUser );
+			$batch->add( NS_USER_TALK, $lastRevUser );
+		}
+
+		$batch->execute();
 
 		// Page creator
 		$pageInfo['header-edits'][] = array(
@@ -407,7 +423,7 @@ class InfoAction extends FormlessAction {
 		// Latest editor
 		$pageInfo['header-edits'][] = array(
 			$this->msg( 'pageinfo-lastuser' ),
-			Linker::revUserTools( $this->page->getRevision() )
+			Linker::revUserTools( $lastRev )
 		);
 
 		// Date of latest edit
