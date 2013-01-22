@@ -214,7 +214,6 @@ $wgIgnoredMessages = array(
 	'1movedto2',
 	'1movedto2_redir',
 	'move-redirect-suppressed',
-	// 'newuserlog-byemail',
 	'newuserlog-create-entry',
 	'newuserlog-create2-entry',
 	'newuserlog-autocreate-entry',
