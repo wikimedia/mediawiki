@@ -99,6 +99,22 @@ class TestORMRowTest extends ORMRowTest {
 		);
 	}
 
+	/**
+	 * @since 1.21
+	 * @return array
+	 */
+	protected function getMockValues() {
+		return array(
+			'id' => 1,
+			'str' => 'foobar4645645',
+			'int' => 42,
+			'float' => 4.2,
+			'bool' => '',
+			'array' => array( 42, 'foobar' ),
+			'blob' => new stdClass()
+		);
+	}
+
 }
 
 class TestORMRow extends ORMRow {}
