@@ -232,12 +232,14 @@ class SavepointPostgres {
 	public function __destruct() {
 		if ( $this->didbegin ) {
 			$this->dbw->rollback();
+			$this->didbegin = false;
 		}
 	}
 
 	public function commit() {
 		if ( $this->didbegin ) {
 			$this->dbw->commit();
+			$this->didbegin = false;
 		}
 	}
 
