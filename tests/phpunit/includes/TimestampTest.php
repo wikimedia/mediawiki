@@ -54,11 +54,11 @@ class TimestampTest extends MediaWikiTestCase {
 	 */
 	function testHumanOutput() {
 		$timestamp = new MWTimestamp( time() - 3600 );
-		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
-		$timestamp = new MWTimestamp( time() - 5184000 );
-		$this->assertEquals( "2 months ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
-		$timestamp = new MWTimestamp( time() - 31536000 );
-		$this->assertEquals( "1 year ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
+		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp() );
+		$timestamp = new MWTimestamp( time() - 5356000 );
+		$this->assertEquals( "2 months ago", $timestamp->getHumanTimestamp() );
+		$timestamp = new MWTimestamp( time() - 31622000 );
+		$this->assertEquals( "1 year ago", $timestamp->getHumanTimestamp() );
 	}
 
 	/**
