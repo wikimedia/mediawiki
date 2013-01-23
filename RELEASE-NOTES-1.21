@@ -187,6 +187,7 @@ production.
   a redirect and its target.
 * (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
   redirects.
+* On error, any warnings generated before that error will be shown in the result.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
