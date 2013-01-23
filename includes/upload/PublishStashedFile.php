@@ -112,7 +112,7 @@ class PublishStashedFile extends Maintenance {
 				array(
 					'result' => 'Failure',
 					'stage'  => 'publish',
-					'status' => Status::newFatal( 'api-error-stashfailed' )
+					'status' => Status::newFatal( 'api-error-publishfailed' )
 				)
 			);
 			throw $e;

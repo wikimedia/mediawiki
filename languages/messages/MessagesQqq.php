@@ -4331,7 +4331,7 @@ See also:
 **{{msg-mw|enotif body intro deleted}}
 **{{msg-mw|enotif body intro created}}
 **{{msg-mw|enotif body intro moved}}
-**{{msg-mw|enotif body intro restored}} 
+**{{msg-mw|enotif body intro restored}}
 **{{msg-mw|enotif body intro changed}} (for all the other cases).
 *$NEWPAGE consists of either
 **if the page is new (in older releases), {{msg-mw|enotif newpagetext}}
@@ -4419,7 +4419,7 @@ See also:
 'rollback' => '{{Identical|Rollback}}',
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
-This link text appears on the recent changes page to users who have the "rollback" right.  
+This link text appears on the recent changes page to users who have the "rollback" right.
 This message has a tooltip {{msg-mw|tooltip-rollback}}
 
 {{Doc-actionlink}}',
@@ -8619,6 +8619,7 @@ $4 is the gender of the target user.',
 'api-error-ok-but-empty' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-overwrite' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-stashfailed' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-publishfailed' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-timeout' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unclassified' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unknown-code' => 'API error message that can be used for client side localisation of API errors. Parameters:
