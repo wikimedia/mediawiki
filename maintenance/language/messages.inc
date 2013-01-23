@@ -3823,6 +3823,7 @@ $wgMessageStructure = array(
 		'api-error-ok-but-empty',
 		'api-error-overwrite',
 		'api-error-stashfailed',
+		'api-error-publishfailed',
 		'api-error-timeout',
 		'api-error-unclassified',
 		'api-error-unknown-code',
