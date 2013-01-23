@@ -590,7 +590,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// No errors, no warnings: do the upload
-		if ( $this->mParams['async'] ) {
+		if ( false && $this->mParams['async'] ) { // XXX: disabled per bug 44080
 			$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
 			if ( $progress && $progress['result'] === 'Poll' ) {
 				$this->dieUsage( "Upload from stash already in progress.", 'publishfailed' );
