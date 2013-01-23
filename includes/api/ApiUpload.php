@@ -53,6 +53,7 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		// Check if async mode is actually supported
 		$this->mParams['async'] = ( $this->mParams['async'] && !wfIsWindows() );
+		$this->mParams['async'] = false; // XXX: disabled per bug 44080
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
