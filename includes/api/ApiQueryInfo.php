@@ -33,7 +33,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false, $fld_watched = false, $fld_notificationtimestamp = false,
+		$fld_readable = false, $fld_watched = false, $fld_watchers = false,
+		$fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
 	private $params, $titles, $missing, $everything, $pageCounter;
@@ -41,7 +42,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
-	private $protections, $watched, $notificationtimestamps, $talkids, $subjectids, $displaytitles;
+	private $protections, $watched, $watchers, $notificationtimestamps, $talkids, $subjectids, $displaytitles;
+	private $noWatchers = '';
 
 	private $tokenFunctions;
 
@@ -248,6 +250,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$prop = array_flip( $this->params['prop'] );
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
+			$this->fld_watchers = isset( $prop['watchers'] );
 			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
 			$this->fld_talkid = isset( $prop['talkid'] );
 			$this->fld_subjectid = isset( $prop['subjectid'] );
@@ -303,6 +306,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_watched || $this->fld_notificationtimestamp ) {
 			$this->getWatchedInfo();
+		}
+
+		if ( $this->fld_watchers ) {
+			$this->getWatcherInfo();
 		}
 
 		// Run the talkid/subjectid query if requested
@@ -382,6 +389,13 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
 			$pageInfo['watched'] = '';
+		}
+
+		if ( $this->fld_watchers ) {
+			$pageInfo['watchers'] = $this->noWatchers;
+			if ( isset( $this->watchers[$ns][$dbkey] ) ) {
+				$pageInfo['watchers'] = $this->watchers[$ns][$dbkey];
+			}
 		}
 
 		if ( $this->fld_notificationtimestamp ) {
@@ -675,6 +689,46 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	/**
+	 * Get the count of watchers and put it in $this->watchers
+	 */
+	private function getWatcherInfo() {
+		global $wgUnwatchedPageThreshold;
+
+		if ( count( $this->everything ) == 0 ) {
+			return;
+		}
+
+		$user = $this->getUser();
+		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		if ( !$canUnwatchedpages && !is_int( $wgUnwatchedPageThreshold ) ) {
+			return;
+		}
+
+		$this->watchers = array();
+		$this->noWatchers = $canUnwatchedpages ? 0 : '';
+		$db = $this->getDB();
+
+		$lb = new LinkBatch( $this->everything );
+
+		$this->resetQueryParams();
+		$this->addTables( array( 'watchlist' ) );
+		$this->addFields( array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ) );
+		$this->addWhere( array(
+			$lb->constructSet( 'wl', $db )
+		) );
+		$this->addOption( 'GROUP BY', 'wl_namespace, wl_title' );
+		if ( !$canUnwatchedpages ) {
+			$this->addOption( 'HAVING', "COUNT(*) >= $wgUnwatchedPageThreshold" );
+		}
+
+		$res = $this->select( __METHOD__ );
+
+		foreach ( $res as $row ) {
+			$this->watchers[$row->wl_namespace][$row->wl_title] = (int)$row->count;
+		}
+	}
+
 	public function getCacheMode( $params ) {
 		$publicProps = array(
 			'protection',
@@ -706,6 +760,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'protection',
 					'talkid',
 					'watched', # private
+					'watchers', # private
 					'notificationtimestamp', # private
 					'subjectid',
 					'url',
@@ -731,6 +786,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				' protection            - List the protection level of each page',
 				' talkid                - The page ID of the talk page for each non-talk page',
 				' watched               - List the watched status of each page',
+				' watchers              - The number of watchers, if allowed',
 				' notificationtimestamp - The watchlist notification timestamp of each page',
 				' subjectid             - The page ID of the parent page for each talk page',
 				' url                   - Gives a full URL to the page, and also an edit URL',
@@ -763,6 +819,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			),
 			'watched' => array(
 				'watched' => 'boolean'
+			),
+			'watchers' => array(
+				'watchers' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
 			),
 			'notificationtimestamp' => array(
 				'notificationtimestamp' => array(
