@@ -349,12 +349,15 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider dataGetDeletionUpdates
 	 */
 	public function testDeletionUpdates( $title, $model, $text, $expectedStuff ) {
-		$title = Title::newFromText( $title );
-		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
+		$ns = $this->getDefaultWikitextNS();
+		$title = Title::newFromText( $title, $ns );
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
 
-		$updates = $content->getDeletionUpdates( WikiPage::factory( $title ) );
+		$page = WikiPage::factory( $title );
+		$page->doEditContent( $content, '' );
+
+		$updates = $content->getDeletionUpdates( $page );
 
 		// make updates accessible by class name
 		foreach ( $updates as $update ) {
@@ -377,6 +380,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
 			}
 		}
+
+		$page->doDeleteArticle( '' );
 	}
 
 	public static function provideConvert() {

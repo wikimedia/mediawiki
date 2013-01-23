@@ -69,10 +69,13 @@ more stuff
 	 * @group Database
 	 */
 	public function testGetSecondaryDataUpdates( $title, $model, $text, $expectedStuff ) {
-		$title = Title::newFromText( $title );
-		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
+		$ns = $this->getDefaultWikitextNS();
+		$title = Title::newFromText( $title, $ns );
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
+
+		$page = WikiPage::factory( $title );
+		$page->doEditContent( $content, '' );
 
 		$updates = $content->getSecondaryDataUpdates( $title );
 
@@ -92,6 +95,8 @@ more stuff
 				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
 			}
 		}
+
+		$page->doDeleteArticle( '' );
 	}
 
 	public static function dataGetSection() {
