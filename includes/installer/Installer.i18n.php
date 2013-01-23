@@ -20060,7 +20060,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => '多问我一些问题吧。',
 	'config-optional-skip' => '我已经不耐烦了，赶紧安装我的wiki。',
 	'config-profile' => '用户权限配置：',
-	'config-profile-wiki' => '传统wiki',
+	'config-profile-wiki' => '开放的wiki',
 	'config-profile-no-anon' => '需要注册帐号',
 	'config-profile-fishbowl' => '编辑受限',
 	'config-profile-private' => '非公开wiki',
@@ -20137,7 +20137,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 
 您可能要对它们进行额外的配置，但您现在可以启用它们。',
 	'config-install-alreadydone' => "'''警告：'''您似乎已经安装了MediaWiki，并试图重新安装它。请前往下一个页面。",
-	'config-install-begin' => '点击“{{int:config-continue}}”后，您将开始安装MediaWiki。如果您还想对配置作一些修改，请点击后退。',
+	'config-install-begin' => '点击“{{int:config-continue}}”后，您将开始安装MediaWiki。如果您还想对配置作一些修改，请点击“{{int:config-back}}”。',
 	'config-install-step-done' => '完成',
 	'config-install-step-failed' => '失败',
 	'config-install-extensions' => '正在启用扩展',
@@ -20197,7 +20197,8 @@ $3
 == 入门 ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki配置设置列表]
 * [//www.mediawiki.org/wiki/Manual:FAQ/zh-hans MediaWiki常见问题]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources 本地化MediaWiki到您的语言]',
 );
 
 /** Traditional Chinese (中文（繁體）‎)

@@ -1935,7 +1935,7 @@ bıewnê keyepel akerdeyo ya zi bıne vınderê u newe ra tesel bıkerê.
 keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 
 'license' => 'Lisans:',
-'license-header' => 'Lisans',
+'license-header' => 'Lisansdayış',
 'nolicense' => 'Theba nêweçineya',
 'license-nopreview' => '(verqeydî çin o)',
 'upload_source_url' => '(yew URLê raştî, şar rê akerde yo)',

@@ -4192,6 +4192,7 @@ $5
 'api-error-ok-but-empty' => 'שגיאה פנימית: אין תשובה מהשרת.',
 'api-error-overwrite' => 'לא מותרת החלפת קובץ קיים.',
 'api-error-stashfailed' => 'שגיאה פנימית: השרת נכשל באחסון הקובץ הזמני.',
+'api-error-publishfailed' => 'שגיאה פנימית: השרת נכשל בפרסום הקובץ הזמני.',
 'api-error-timeout' => 'השרת לא השיב בזמן המצופה.',
 'api-error-unclassified' => 'אירעה שגיאה בלתי ידועה.',
 'api-error-unknown-code' => 'שגיאה בלתי ידועה: "$1".',

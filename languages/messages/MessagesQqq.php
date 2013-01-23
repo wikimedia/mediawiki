@@ -2806,7 +2806,8 @@ Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
 {{Identical|$1 bots}}",
 'rcshowhideliu' => 'Option text in [[Special:RecentChanges]]',
 'rcshowhideanons' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
+* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.
+{{Identical|Anonymous user}}",
 'rcshowhidepatr' => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
 'rcshowhidemine' => "Option text in [[Special:RecentChanges]]. Parameters:
@@ -6775,7 +6776,8 @@ Part of variable $1 in {{msg-mw|Ago}}',
 
 See also {{msg-mw|Minutes-abbrev}}
 
-Part of variable $1 in {{msg-mw|Ago}}',
+Part of variable $1 in {{msg-mw|Ago}}.
+{{Identical|Minute}}',
 'hours' => 'Full word for "hours". $1 is the number of hours.
 
 See also {{msg-mw|Hours-abbrev}}
@@ -8634,7 +8636,8 @@ $4 is the gender of the target user.',
 
 # Durations
 'duration-seconds' => '{{Related|Duration}}',
-'duration-minutes' => '{{Related|Duration}}',
+'duration-minutes' => '{{Related|Duration}}
+{{Identical|Minute}}',
 'duration-hours' => '{{Related|Duration}}',
 'duration-days' => '{{Related|Duration}}',
 'duration-weeks' => '{{Related|Duration}}',

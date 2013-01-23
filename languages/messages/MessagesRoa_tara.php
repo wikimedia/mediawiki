@@ -4067,6 +4067,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-ok-but-empty' => "Errore inderne: Nisciune resposte da 'u server.",
 'api-error-overwrite' => "'A sovrascritture de 'nu file ca esiste non ge se pò fà.",
 'api-error-stashfailed' => "Errore inderne: 'U server ha fallite 'a reggistrazione de le file temboranèe.",
+'api-error-publishfailed' => "Errore inderne: 'U server ha fallite 'a pubblecazione d'u file temboranèe.",
 'api-error-timeout' => "'U server non g'ave resposte jndr'à 'u tiembe ca 'u spettave.",
 'api-error-unclassified' => "'N'errore scanusciute s'a verificate",
 'api-error-unknown-code' => 'Errore scanusciute: "$1"',

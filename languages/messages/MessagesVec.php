@@ -815,12 +815,11 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view' => 'L\'utensa "$1" no la xe gnancora registrà.',
 'blocked-notice-logextract' => "Sto utente xè atualmente blocà.
 L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informasion:",
-'clearyourcache' => "Ocio: dopo aver salvà, połe darse che te gabi da netare ła cache del to browser par védar i canbiamenti.
+'clearyourcache' => "Ocio: dopo 'ver salvà, pol darse che te gabi da netare ła cache del to browser par védar i canbiamenti.
 *Par '''Firefox / Safari:''' tien macà el boton de łe majuscołe e schicia \"Recarga\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' se te ghè el Mac)
-*Par '''Google Chrome''':schicia ''Ctrl-Shift-R'' (''⌘-Shift-R'' co' un Mac)
+*Par '''Google Chrome''':schicia ''Ctrl-Shift-R'' (''⌘-Shift-R'' có un Mac)
 *Par '''Internet Explorer''': tien schicià el boton \"Ctrl\" fin che te schici '''Recarga''', senò schicia '''Ctrl+F5'''
-*Par '''Konqueror''': schicia \"Recarga\" o maca ''F5'';
-*Par '''Opera:''' néta la cache in ''Strumenti → Preferense;''",
+*Par '''Opera:''' néta la cache in ''Strumenti → Prefarense;''",
 'usercssyoucanpreview' => "'''Sugerimento:''' se consiglia de doparar el boton \"{{int:showpreview}} par proàr i novi CSS prima de salvarli.",
 'userjsyoucanpreview' => "'''Sugerimento:''' se consiglia de doparar el boton \"{{int:showpreview}}\" par proàr i novi JavaScript prima de salvarli.",
 'usercsspreview' => "'''Sta qua la xe solo n'anteprima del proprio CSS personal.
@@ -1883,8 +1882,9 @@ Probabilmente te vui modifegar ła descrision prexente inte ła [$2 pàjina de d
 
 'disambiguations' => 'Pajine cołegade a pajine de dixanbiguasion',
 'disambiguationspage' => 'Template:Disambigua',
-'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />
-Vien considerà pagine de disanbiguazion tute quele che contien i modèi elencà in [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Łe pàjine inte ła lista cuà soto łe ga drento almanco un ligamento a na '''pàjina de dixanbiguasion'''.
+Łe podaria dover puntar a na pàjina pì apropià.<br />
+Vien considerae pàjine de dixanbiguasion tute cuełe che łe ga drento i modełi elencai in [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirect dopi',
 'doubleredirectstext' => 'Sta pagina le elenca pagine che rimanda a altre pagine de rimando.
@@ -2036,9 +2036,9 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'linksearch-pat' => 'Espression de riserca:',
 'linksearch-ns' => 'Namespace:',
 'linksearch-ok' => 'Serca',
-'linksearch-text' => 'Xe posibiłe doparare metacarateri, come "*.wikipedia.org".<br />
-Xe necesario almanco un dominio de primo liveło, tipo "*.org".<br />
-Protocołi suportadi: <code>$1</code> (no sta xontare nesuno de sti cuà inte ła to riçerca).',
+'linksearch-text' => 'Xe posibiłe doparare metacarateri, come "*.wikipedia.org".
+Xe nesesario almanco un dominio de primo liveło, tipo "*.org".<br />
+{{PLURAL:$2|Protocoło suportà|Protocołi suportai}}: <code>$1</code> (predefinio http:// se nisun protocoło el xe spesifegà).',
 'linksearch-line' => '$1 presente ne la pagina $2',
 'linksearch-error' => "I metacaràteri i pode vegner doparài solo a l'inizio del nome de l'host.",
 
@@ -2083,8 +2083,8 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'emailuser-title-target' => 'Scrivi na e-mail a {{GENDER:$1|sto|sta}} utente',
 'emailuser-title-notarget' => "Scrivi na e-mail a l'utente",
 'emailpage' => "Scrivi na e-mail a l'utente",
-'emailpagetext' => 'Te podi usar el modulo chi soto par mandare na e-mail a sto utente.
-La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte a ti diretamente.',
+'emailpagetext' => 'Te podi usar el moduło chi soto par mandare na e-mail a sto {{GENDER:$1|utente}}.
+Ła e-mail che te ghè indicà inte łe [[Special:Preferences|to prefarense]] ła vegnarà fora inte\'l canpo "Da" de la mail, cusì che\'l destinatario el posa rispóndarte diretamente a ti.',
 'usermailererror' => "L'ogeto mail el gà restituìo l'eror:",
 'defemailsubject' => 'Mesajo da {{SITENAME}} dal utente "$1"',
 'usermaildisabled' => 'e-mail utente disabiłità',
@@ -2122,8 +2122,8 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'watchnologin' => 'Acesso mia efetuà',
 'watchnologintext' => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
 'addwatch' => "Tien d'ocio",
-'addedwatchtext' => "La pagina \"[[:\$1]]\" la xe stà zontà a la to [[Special:Watchlist|lista de pagine da tegner d'ocio]].
-I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fora qua, e la pagina la se vedarà in '''grosso''' sui [[Special:RecentChanges|ultimi canbiamenti]] par tegnerla d'ocio mejo.",
+'addedwatchtext' => 'Ła pagina "[[:$1]]" ła xe stà xontà a ła to [[Special:Watchlist|lista de pàjine da tegner d\'ocio]].
+I futuri canbiamenti a sta pàjina e a ła so pàjina de discusion i vegnarà elencai in cheła pàjina là.',
 'removewatch' => "Cava da łe tegnùe d'ocio",
 'removedwatchtext' => 'La pagina "[[:$1]]" la xe stà cavà da le to [[Special:Watchlist|pagine tegnùe de ocio]].',
 'watch' => "Tien d'ocio",
@@ -2140,7 +2140,7 @@ I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fo
 'watchmethod-list' => 'controło de i osservati speciałi par modifeghe recenti',
 'watchlistcontains' => 'La lista de i osservati speciałi la contien {{PLURAL:$1|una pagina|$1 pagine}}.',
 'iteminvalidname' => "Problemi con la voxe '$1', nome mìa vałido...",
-'wlnote' => "Qua soto te cati {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultima ora|le ultime '''$2''' ore}}.",
+'wlnote' => "Cuà soto te cati {{PLURAL:$1|'l ultimo canbiamento|i ultimi '''$1''' canbiamenti}} inte {{PLURAL:$2|l'ultema ora|łe ultime '''$2''' ore}}; i dati i xe axornai a łe $4 del $3.",
 'wlshowlast' => 'Mostra le ultime $1 ore $2 zorni $3',
 'watchlist-options' => "Inpostassion de le pagine tegnùe d'ocio",
 
@@ -2167,29 +2167,29 @@ I futuri canbiamenti a sta pagina e a la so pagina de discussion i se vedarà fo
 'enotif_anon_editor' => 'utente anonimo $1',
 'enotif_body' => 'Caro/a $WATCHINGUSERNAME,
 
-ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATE da $PAGEEDITOR, varda $PAGETITLE_URL par ła version atuałe.
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
+Ogeto del intervento, inserio dal autor: $PAGESUMMARY $PAGEMINOREDIT
 
-Somario del redator: $PAGESUMMARY $PAGEMINOREDIT
+Contata l\'autor:
+via posta eletronega: $PAGEEDITOR_EMAIL
+so\'l sito: $PAGEEDITOR_WIKI
 
-Contatta el redator:
-mail: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+Nó vegnarà inviae altre notifeghe in caxo de ulteriori atività, se nó te vixiti ła pàjina. Inoltre, xe posibiłe modifegar łe inpostasion de notifega par tute łe pàjine inte ła lista de łe tegnùe d\'ocio.
 
-No ghe sarà altre notifiche in caso de ulteriori canbiamenti, a manco che ti no te visiti sta pàxena.
-Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de ła to łista.
-
-             El to amichevole sistema de notifica de {{SITENAME}}
+             El sistema de notifega de {{SITENAME}}, al to servisio
 
 --
-Par canbiar łe inpostassion de i to osservati speciałi, visita
-{{canonicalurl:Special:Watchlist/edit}}
+Par modifegar łe inpostasion de łe notifeghe via posta eletronega, varda 
+{{canonicalurl:{{#special:Preferences}}}}
 
-Par cavar la pagina da i to osservati speciałi, visita
+Par modifegar ła lista de łe tegnùe d\'ocio, varda 
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+Par cavar ła pàjina da ła lista de łe tegnùe d\'ocio, varda
 $UNWATCHURL
 
-Par riscontri e ulteriore assistensa:
+Par comentare e risevere ajuto:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'creà',
 'changed' => 'canbià',
@@ -2320,8 +2320,8 @@ Le impostazion atuali par la pagina le xe '''$1''':",
 'undeletepagetext' => "{{PLURAL:$1|La pàxena qua de sèvito la xe stà scancelà, ma la ghe xe 'ncora in archivio e pertanto se pole 'ncora recuperarla|Le $1 pàxene qua de sèvito le xe stà scancelè, ma le ghe xe 'ncora in archivio e pertanto se pole 'ncora recuperarle}}.
 L'archivio el vien svodà periodicamente.",
 'undelete-fieldset-title' => 'Recupera version',
-'undeleteextrahelp' => "Par recuperar la storia de la pàxena par intiero, lassa tute łe casełe desełezionàe e struca '''''Ripristina'''''.
-Par efetuar un ripristino sełetivo, seleziona łe casełe corispondenti a łe revixion da ripristinar e struca '''''Ripristina'''''. Strucando '''''Reset''''' vegnarà deselezionàe tute łe casełe e svodà el posto par el comento.",
+'undeleteextrahelp' => "Par recuperar l'intiera storia de ła pàjina, łasar tute łe caxełe desełesionae e strucar so '''''{{int:undeletebtn}}'''''.
+Par efetuar un ripristino sełetivo, sełesionar łe caxełe corispondenti a łe revixion da ripristinar e strucar so '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|Una revision|$1 revision}} in archivio',
 'undeletehistory' => 'Recuperando sta pàxena, tute łe so revixion le vegnarà inserìe da novo ne ła rełativa cronołogia.
 Se dopo ła scancełazion xè stà creà na nova pàxena col stesso titoło, łe revixion recuperà le sarà inserìe ne ła cronołogia preçedente.',
@@ -2339,7 +2339,8 @@ Se dopo ła scancełazion xè stà creà na nova pàxena col stesso titoło, łe
 'undeletedrevisions' => '{{PLURAL:$1|Una revision recuperà|$1 revision recuperà}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|Una revision|$1 revision}} e $2 file recuperà',
 'undeletedfiles' => '{{PLURAL:$1|Un file recuperà|$1 file recuperà}}',
-'cannotundelete' => "El recupero no'l xè riussìo: qualchedun altro el podarià aver xà recuperà ła pàxena.",
+'cannotundelete' => 'Ripristino nó riusìo:
+$1',
 'undeletedpage' => "'''$1 la xè stà recuperà'''
 
 Consulta el [[Special:Log/delete|registro de le scancełassion]] par vardare łe scancełassion e i recuperi pì reçenti.",
@@ -2561,18 +2562,18 @@ Tiente in mente de [[Special:UnlockDB|sblocarlo]] co te ghè finìo de far manut
 # Move page
 'move-page' => 'Spostamento de $1',
 'move-page-legend' => 'Spostamento de pagina',
-'movepagetext' => "Col modulo qua soto te podi rinominar na pagina, spostando anca tuta la so storia al titolo novo.
-El vecio titolo el deventarà automaticamente un rimando (redirect) che punta al titolo novo.
-Te podi agiornar automaticamente i rimandi che punta al vecio titolo.
-Se te siegli de no farlo, tiente in mente de controlar ben che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
-Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar dove che i deve.
+'movepagetext' => "Có 'l moduło cuà soto te podi rinominar na pàjina, spostando anca tuta ła so storia al titoło novo.
+El vecio titoło el devegnarà automategamente un rimando (redirect) che ponta al titoło novo.
+Te podi axornar automategamente i rimandi che ponta al vecio titoło.
+Se te siełi de nó farlo, tiente inamente de controłar ben che nó se cree [[Special:DoubleRedirects|dopi rimandi]] o [[Special:BrokenRedirects|rimandi interoti]].
+Resta inte ła to responsabiłità de controłar che i ligamenti i continue a pontar 'ndove che i deve.
 
-Ocio: la pagina '''no''' la sarà spostà se ghe fusse zà na pagina col titolo novo, a meno che no la sia na pagina voda o un rimando, e senpre che no la gabia na storia.
-Questo significa che, se te fè un eror, te podi da novo rinominar na pagina col vecio titolo, ma no te podi sovrascrìvar na pagina zà esistente.
+Ocio: ła pàjina '''nó''' ła sarà spostà se ghe fuse xà na pàjina có 'l titoło novo, a meno che nó ła sia un rimando, e senpre che nó ła gabia na storia.
+Cuesto signifega che, se te fè un eror, te podi da novo rinominar na pàjina có 'l vecio titoło, ma nó te podi sovrascrìvar na pàjina xà existente.
 
 '''OCIO!'''
-Sto canbiamento drastico el podarìa dar problemi che no se se speta, specialmente se se trata de na pagina molto visità.
-Stà ben tento a le conseguense del spostamento, prima de farlo.",
+Sto canbiamento drastico el podarìa dar problemi che nó se se speta, spesalmente se se trata de na pàjina molto vixità.
+Stà ben tento a łe conseguense del spostamento, prima de farlo.",
 'movepagetext-noredirectfixer' => "Col modulo qua soto te podi rinominar na pagina, spostando anca tuta la so storia al titolo novo.
 El vecio titolo el deventarà automaticamente un rimando (redirect) che punta al titolo novo.
 Tiente in mente de controlar ben che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
@@ -3791,6 +3792,7 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'api-error-ok-but-empty' => 'Eror interno: nisuna risposta dal server.',
 'api-error-overwrite' => 'Nó xe parmeso de sorascrìvar un file existente.',
 'api-error-stashfailed' => "Eror interno: el server nó 'l xe riusio a memorixar el documento tenporaneo.",
+'api-error-publishfailed' => "Eror interno: el server nó 'l xe riusio a publicar el documento tenporaneo.",
 'api-error-timeout' => "El server nó 'l ga risposto entro el tenpo previsto.",
 'api-error-unclassified' => 'Se gà verifegà un eror sconosùo.',
 'api-error-unknown-code' => 'Eror sconosùo: "$1"',

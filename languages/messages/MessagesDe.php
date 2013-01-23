@@ -4151,6 +4151,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-ok-but-empty' => 'Interner Fehler: Der Server reagiert nicht.',
 'api-error-overwrite' => 'Das Überschreiben einer vorhandenen Datei ist nicht erlaubt.',
 'api-error-stashfailed' => 'Interner Fehler: Der Server konnte keine temporäre Datei speichern.',
+'api-error-publishfailed' => 'Interner Fehler: Der Server konnte die temporäre Datei nicht veröffentlichen.',
 'api-error-timeout' => 'Der Server hat nicht innerhalb der erwarteten Zeit reagiert.',
 'api-error-unclassified' => 'Ein unbekannter Fehler ist aufgetreten.',
 'api-error-unknown-code' => 'Unbekannter Fehler: „$1“',

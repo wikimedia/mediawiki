@@ -3992,6 +3992,7 @@ MediaWiki 是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-ok-but-empty' => '内部错误：服务器没有响应。',
 'api-error-overwrite' => '不允许覆盖现有文件。',
 'api-error-stashfailed' => '内部错误：服务器保存临时文件失败。',
+'api-error-publishfailed' => '内部错误：服务器发布临时文件失败。',
 'api-error-timeout' => '服务器没有在预期内响应。',
 'api-error-unclassified' => '出现未知错误。',
 'api-error-unknown-code' => '未知错误：$1',

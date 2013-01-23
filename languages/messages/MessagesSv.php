@@ -4074,6 +4074,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-ok-but-empty' => 'Internt fel: Inget svar från servern.',
 'api-error-overwrite' => 'Det är inte tillåtet att skriva över en befintlig fil.',
 'api-error-stashfailed' => 'Internt fel: servern kunde inte lagra temporär fil.',
+'api-error-publishfailed' => 'Internt fel: Servern kunde inte publicera temporär fil.',
 'api-error-timeout' => 'Servern svarade inte inom förväntad tid.',
 'api-error-unclassified' => 'Ett okänt fel uppstod',
 'api-error-unknown-code' => 'Okänt fel: "$1"',

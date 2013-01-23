@@ -990,7 +990,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'watchthisupload' => 'Na dosya de şêr ke',
 
 'license' => 'Lisans:',
-'license-header' => 'Lisanskerdene',
+'license-header' => 'Lisansdais',
 
 # Special:ListFiles
 'imgfile' => 'dosya',

@@ -4184,6 +4184,7 @@ $5
 'api-error-ok-but-empty' => '내부 오류: 서버에서 응답이 없습니다.',
 'api-error-overwrite' => '이미 있는 파일을 덮어쓸 수 없습니다.',
 'api-error-stashfailed' => '내부 오류: 서버가 임시 파일을 저장하지 못했습니다.',
+'api-error-publishfailed' => '내부 오류: 서버가 임시 파일을 게시하지 못했습니다.',
 'api-error-timeout' => '서버가 제 시간 내에 응답하지 않았습니다.',
 'api-error-unclassified' => '알 수 없는 오류가 발생했습니다.',
 'api-error-unknown-code' => '알 수 없는 오류: "$1".',
