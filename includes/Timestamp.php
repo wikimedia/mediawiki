@@ -50,12 +50,12 @@ class MWTimestamp {
 	 * @see MWTimestamp::getHumanTimestamp
 	 */
 	private static $units = array(
-		"milliseconds" => 1,
-		"seconds" => 1000, // 1000 milliseconds per second
+		"seconds" => 1,
 		"minutes" => 60, // 60 seconds per minute
 		"hours" => 60, // 60 minutes per hour
 		"days" => 24, // 24 hours per day
-		"months" => 30, // approximately 30 days per month
+		"weeks" => 7, // 7 days per week
+		"months" => 4.35, // approximately 4.35 weeks per month
 		"years" => 12, // 12 months per year
 	);
 
@@ -193,35 +193,61 @@ class MWTimestamp {
 	 * Get the timestamp in a human-friendly relative format, e.g., "3 days ago".
 	 *
 	 * Determine the difference between the timestamp and the current time, and
-	 * generate a readable timestamp by returning "<N> <units> ago", where the
-	 * largest possible unit is used.
+	 * generate a readable timestamp. If you have the CLDR extension installed,
+	 * both future and past timestamps are supported. Otherwise, only past
+	 * timestamps are supports (in the format "<N> <units> ago").
 	 *
 	 * @since 1.20
 	 *
-	 * @return Message Formatted timestamp
+	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp() {
 		$then = $this->getTimestamp( TS_UNIX );
 		$now = time();
-		$timeago = ($now - $then) * 1000;
-		$message = false;
+		$timeDifference = $now - $then;
+		$timestamp = '';
 
-		foreach( self::$units as $unit => $factor ) {
-			$next = $timeago / $factor;
-			if( $next < 1 ) {
+		// Figure out if the timestamp is in the future or the past.
+		// Return a 'just now' message if it is neither.
+		if ( $timeDifference === 0 ) {
+			return wfMessage( 'just-now' )->text();
+		} elseif ( $timeDifference > 0 ) {
+			$tense = 'past';
+		} else {
+			$tense = 'future';
+		}
+
+		// Drop the sign now that we know the tense to use.
+		$timeDifference = abs( $timeDifference );
+
+		// Figure out which unit (days, weeks, etc.) it makes sense to display
+		// the timestamp in, and calculate the number of that unit to use.
+		foreach ( self::$units as $testUnit => $factor ) {
+			$next = $timeDifference / $factor;
+			if ( $next < 1 ) {
 				break;
 			} else {
-				$timeago = $next;
-				$message = array( $unit, floor( $timeago ) );
+				$timeDifference = $next;
+				$unit = $testUnit;
+				$number = floor( $timeDifference );
 			}
 		}
 
-		if( $message ) {
-			$initial = call_user_func_array( 'wfMessage', $message );
-			return wfMessage( 'ago', $initial->parse() );
-		} else {
-			return wfMessage( 'just-now' );
+		// Let extensions create the localized timestamp, if desired.
+		// See https://www.mediawiki.org/wiki/Extension:CLDR, for example.
+		wfRunHooks( 'GetHumanTimestamp', array( &$timestamp, $unit, $number, $tense ) );
+
+		// Otherwise, create the localized timestamp via i18n messages.
+		// Currently, only past tense timestamps are supported.
+		if ( !$timestamp ) {
+			if ( $tense === 'past' ) {
+				$initial = wfMessage( $unit, $number );
+				$timestamp = wfMessage( 'ago', $initial->parse() )->text();
+			} else {
+				throw new MWException( "Future timestamps not supported" );
+			}
 		}
+		return $timestamp;
 	}
 
 	/**
