@@ -6787,6 +6787,9 @@ See also {{msg-mw|Days-abbrev}}
 
 Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
+'weeks' => 'Full word for "weeks". $1 is the number of weeks.
+
+Part of variable $1 in {{msg-mw|Ago}}',
 'months' => 'Full word for "months". $1 is the number of months.
 
 Part of variable $1 in {{msg-mw|Ago}}',
