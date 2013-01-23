@@ -50,12 +50,12 @@ class MWTimestamp {
 	 * @see MWTimestamp::getHumanTimestamp
 	 */
 	private static $units = array(
-		"milliseconds" => 1,
-		"seconds" => 1000, // 1000 milliseconds per second
+		"seconds" => 1,
 		"minutes" => 60, // 60 seconds per minute
 		"hours" => 60, // 60 minutes per hour
 		"days" => 24, // 24 hours per day
-		"months" => 30, // approximately 30 days per month
+		"weeks" => 7, // 7 days per week
+		"months" => 4.35, // approximately 4.35 weeks per month
 		"years" => 12, // 12 months per year
 	);
 
@@ -193,34 +193,70 @@ class MWTimestamp {
 	 * Get the timestamp in a human-friendly relative format, e.g., "3 days ago".
 	 *
 	 * Determine the difference between the timestamp and the current time, and
-	 * generate a readable timestamp by returning "<N> <units> ago", where the
-	 * largest possible unit is used.
+	 * generate a readable timestamp. If you have the CLDR extension installed,
+	 * both future and past timestamps are supported. Otherwise, only past
+	 * timestamps are supports (in the format "<N> <units> ago").
 	 *
 	 * @since 1.20
 	 *
-	 * @return Message Formatted timestamp
+	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp() {
+		global $wgLang;
 		$then = $this->getTimestamp( TS_UNIX );
 		$now = time();
-		$timeago = ($now - $then) * 1000;
-		$message = false;
+		$timeago = $now - $then;
 
-		foreach( self::$units as $unit => $factor ) {
+		if ( $timeago === 0 ) {
+			return wfMessage( 'just-now' )->text();
+		} elseif ( $timeago > 0 ) {
+			$tense = 'past';
+		} else {
+			$tense = 'future';
+		}
+		// Drop the sign now that we know the tense to use
+		$timeago = abs( $timeago );
+
+		foreach ( self::$units as $unit => $factor ) {
 			$next = $timeago / $factor;
-			if( $next < 1 ) {
+			if ( $next < 1 ) {
 				break;
 			} else {
 				$timeago = $next;
-				$message = array( $unit, floor( $timeago ) );
+				$lastUnit = $unit;
+				$number = floor( $timeago );
 			}
 		}
 
-		if( $message ) {
-			$initial = call_user_func_array( 'wfMessage', $message );
-			return wfMessage( 'ago', $initial->parse() );
+		// If CLDR extension is installed, use it
+		if ( is_callable( array( 'TimeUnits', 'getUnits' ) ) ) {
+			$timeUnits = TimeUnits::getUnits( $wgLang->getCode() );
+			// Switch to singular form of unit (trim the 's')
+			$lastUnit = substr_replace( $lastUnit, '', -1 );
+
+			// Figure out which grammatical number to use
+			// TODO: Figure out if there is a way to reliably use the 'few' and
+			// 'many' designations. The thresholds of these grammatical numbers
+			// vary by language (and sometimes by context).
+			if ( $number == 1 ) {
+				$grammaticalNumber = 'one';
+			} elseif ( $number == 2 && isset( $timeUnits["{$lastUnit}-{$tense}-two"] ) ) {
+				$grammaticalNumber = 'two';
+			} else {
+				$grammaticalNumber = 'other';
+			}
+
+			$timeUnit = $timeUnits["{$lastUnit}-{$tense}-{$grammaticalNumber}"];
+			// Replace the placeholder with the number
+			$timestamp = preg_replace( '/\{0\}/', $number, $timeUnit );
+			return $timestamp;
+		}
+
+		if ( $tense === 'past' ) {
+			$initial = wfMessage( $lastUnit, $number );
+			return wfMessage( 'ago', $initial->parse() )->text();
 		} else {
-			return wfMessage( 'just-now' );
+			throw new MWException( "Future timestamps not supported without CLDR" );
 		}
 	}
 
