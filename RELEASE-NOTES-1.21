@@ -187,6 +187,7 @@ production.
   a redirect and its target.
 * (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
   redirects.
+* (bug 44244) prop=info may now return the number of people watching each page.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
