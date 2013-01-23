@@ -2822,6 +2822,7 @@ $wgMessageStructure = array(
 		'minutes',
 		'hours',
 		'days',
+		'weeks',
 		'months',
 		'years',
 		'ago',
