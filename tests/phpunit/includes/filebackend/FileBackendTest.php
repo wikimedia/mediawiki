@@ -1998,12 +1998,22 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
 
+		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/e/subdir1" ) );
+		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
+		$this->assertEquals( array(), $items, "Directory listing is empty." );
+
 		foreach ( $files as $file ) { // clean up
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
 		}
 
 		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $iter ) {} // no errors
+		foreach ( $iter as $file ) {} // no errors
+		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
+		$this->assertEquals( array(), $items, "Directory listing is empty." );
+
+		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/e/not/exists" ) );
+		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
+		$this->assertEquals( array(), $items, "Directory listing is empty." );
 	}
 
 	public function testLockCalls() {
