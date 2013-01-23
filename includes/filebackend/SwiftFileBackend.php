@@ -988,7 +988,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$objects = $container->list_objects( $limit, $after, $prefix );
 				foreach ( $objects as $object ) { // files
 					$objectDir = $this->getParentDir( $object ); // directory of object
-					if ( $objectDir !== false ) { // file has a parent dir
+					if ( $objectDir !== false && $objectDir !== $dir ) {
 						// Swift stores paths in UTF-8, using binary sorting.
 						// See function "create_container_table" in common/db.py.
 						// If a directory is not "greater" than the last one,
