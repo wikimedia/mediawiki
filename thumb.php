@@ -170,11 +170,11 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file storage path
 	if ( !$img->exists() ) {
-		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+		wfThumbError( 404, "The source file '$fileName' does not exist." );
 		wfProfileOut( __METHOD__ );
 		return;
 	} elseif ( $img->getPath() === false ) {
-		wfThumbError( 500, 'The source file is not locally accessible.' );
+		wfThumbError( 500, "The source file '$fileName' is not locally accessible." );
 		wfProfileOut( __METHOD__ );
 		return;
 	}
