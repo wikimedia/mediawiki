@@ -242,6 +242,13 @@ abstract class Job {
 				if ( $paramString != '' ) {
 					$paramString .= ' ';
 				}
+
+				if ( is_array( $value ) ) {
+					$value = "array(" . count( $value ) . ")";
+				} else if ( is_object( $value ) && !method_exists( $value, '__toString' ) ) {
+					$value = "object(" . get_class( $value ) . ")";
+				}
+
 				$paramString .= "$key=$value";
 			}
 		}
