@@ -25,7 +25,7 @@ class ChangeTags {
 	/**
 	 * Creates HTML for the given tags
 	 *
-	 * @param $tags String: Comma-separated list of tags
+	 * @param $tags String|null: Comma-separated list of tags
 	 * @param $page String: A label for the type of action which is being displayed,
 	 *                     for example: 'history', 'contributions' or 'newpages'
 	 *
@@ -37,22 +37,31 @@ class ChangeTags {
 	static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
 
-		if( !$tags )
+		if ( $tags === null || $tags === '' ) {
 			return array( '', array() );
+		}
 
 		$classes = array();
 
 		$tags = explode( ',', $tags );
 		$displayTags = array();
 		foreach( $tags as $tag ) {
-			$displayTags[] = Xml::tags(
-				'span',
-				array( 'class' => 'mw-tag-marker ' .
-								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ),
-				self::tagDescription( $tag )
-			);
-			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
+			$description = self::tagDescription( $tag );
+			if ( $description !== false ) {
+				$displayTags[] = Xml::tags(
+					'span',
+					array( 'class' => 'mw-tag-marker ' .
+									Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ),
+					$description
+				);
+				$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
+			}
 		}
+
+		if ( !count( $displayTags ) ) {
+			return array( '', array() );
+		}
+
 		$markers = wfMessage( 'parentheses' )->rawParams( $wgLang->commaList( $displayTags ) )->text();
 		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
 
@@ -64,12 +73,20 @@ class ChangeTags {
 	 *
 	 * @param $tag String: tag
 	 *
-	 * @return String: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
-	 *                 html-escaped version of $tag otherwise
+	 * @return String|bool: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
+	 *                      false if this message is disabled, or html-escaped version of $tag otherwise.
 	 */
 	static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
-		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag );
+		if ( $msg->exists() ) {
+			if ( $msg->isDisabled() ) {
+				return false;
+			} else {
+				return $msg->parse();
+			}
+		} else {
+			return htmlspecialchars( $tag );
+		}
 	}
 
 	/**
@@ -91,7 +108,9 @@ class ChangeTags {
 			$tags = array( $tags );
 		}
 
-		$tags = array_filter( $tags ); // Make sure we're submitting all tags...
+		$tags = array_filter( $tags, function( $tag ) {
+			return $tag !== '';
+		} ); // Make sure we're submitting all tags...
 
 		if( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( "At least one of: RCID, revision ID, and log ID MUST be specified when adding a tag to a change!" );
@@ -117,8 +136,7 @@ class ChangeTags {
 
 		## Update the summary row.
 		$prevTags = $dbr->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
-		$prevTags = $prevTags ? $prevTags : '';
-		$prevTags = array_filter( explode( ',', $prevTags ) );
+		$prevTags = $prevTags === false ? array() : explode( ',', $prevTags );
 		$newTags = array_unique( array_merge( $prevTags, $tags ) );
 		sort( $prevTags );
 		sort( $newTags );
@@ -132,16 +150,15 @@ class ChangeTags {
 		$dbw->replace(
 			'tag_summary',
 			array( 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ),
-			array_filter( array_merge( $tsConds, array( 'ts_tags' => implode( ',', $newTags ) ) ) ),
+			array( 'ts_tags' => implode( ',', $newTags ) ) + $tsConds,
 			__METHOD__
 		);
 
 		// Insert the tags rows.
 		$tagsRows = array();
 		foreach( $tags as $tag ) { // Filter so we don't insert NULLs as zero accidentally.
-			$tagsRows[] = array_filter(
+			$tagsRows[] = array( 'ct_tag' => $tag ) + array_filter(
 				array(
-					'ct_tag' => $tag,
 					'ct_rc_id' => $rc_id,
 					'ct_log_id' => $log_id,
 					'ct_rev_id' => $rev_id,
