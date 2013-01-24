@@ -104,7 +104,8 @@ class ApiQueryTags extends ApiQueryBase {
 		$tag['name'] = $tagName;
 
 		if ( $this->fld_displayname ) {
-			$tag['displayname'] = ChangeTags::tagDescription( $tagName );
+			$disp = ChangeTags::tagDescription( $tagName );
+			$tag['displayname'] = $disp === false ? '' : $disp;
 		}
 
 		if ( $this->fld_description ) {

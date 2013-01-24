@@ -64,14 +64,14 @@ class SpecialTags extends SpecialPage {
 	function doTagRow( $tag, $hitcount ) {
 		static $doneTags = array();
 
-		if ( in_array( $tag, $doneTags ) ) {
+		$disp = ChangeTags::tagDescription( $tag );
+		if ( in_array( $tag, $doneTags ) || $disp === false ) {
 			return '';
 		}
 
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
-		$disp = ChangeTags::tagDescription( $tag );
 		$disp .= ' ';
 		$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
 		$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
