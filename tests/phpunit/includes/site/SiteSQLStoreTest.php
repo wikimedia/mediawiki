@@ -36,9 +36,9 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 		$expectedSites = TestSites::getSites();
 		TestSites::insertIntoDb();
 
-		$sitesTable = SiteSQLStore::newInstance();
+		$store = SiteSQLStore::newInstance();
 
-		$sites = $sitesTable->getSites();
+		$sites = $store->getSites();
 
 		$this->assertInstanceOf( 'SiteList', $sites );
 
@@ -57,7 +57,7 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	public function testSaveSites() {
-		$sitesTable = SiteSQLStore::newInstance();
+		$store = SiteSQLStore::newInstance();
 
 		$sites = array();
 
@@ -71,15 +71,37 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 		$site->setLanguageCode( 'nl' );
 		$sites[] = $site;
 
-		$this->assertTrue( $sitesTable->saveSites( $sites ) );
+		$this->assertTrue( $store->saveSites( $sites ) );
 
-		$site = $sitesTable->getSite( 'ertrywuutr', 'nocache' );
+		$site = $store->getSite( 'ertrywuutr' );
 		$this->assertInstanceOf( 'Site', $site );
 		$this->assertEquals( 'en', $site->getLanguageCode() );
 
-		$site = $sitesTable->getSite( 'sdfhxujgkfpth', 'nocache' );
+		$site = $store->getSite( 'sdfhxujgkfpth' );
 		$this->assertInstanceOf( 'Site', $site );
 		$this->assertEquals( 'nl', $site->getLanguageCode() );
+	}
+
+	public function testReset() {
+		$store = SiteSQLStore::newInstance();
+
+		// initialize internal cache
+		$this->assertGreaterThan( 0, $store->getSites()->count() );
+
+		// Clear actual data. Will not purge the internal cache in store2.
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'sites', '*', __METHOD__ );
+		$dbw->delete( 'site_identifiers', '*', __METHOD__ );
+
+		// sanity check: $store2 should have a stale cache now
+		$this->assertNotNull( $store->getSite( 'enwiki' ) );
+
+		// purge cache
+		$store->reset();
+
+		// ...now the internal cache of $store2 should be updated and thus empty.
+		$site = $store->getSite( 'enwiki' );
+		$this->assertNull( $site );
 	}
 
 }
