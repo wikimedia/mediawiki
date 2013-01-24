@@ -252,7 +252,8 @@ class LocalFile extends File {
 			}
 		}
 
-		$wgMemc->set( $key, $cache, 60 * 60 * 24 * 7 ); // A week
+		// Cache presence for 1 week and negatives for 1 hour
+		$wgMemc->set( $key, $cache, $this->fileExists ? 3600 * 24 * 7 : 3600 );
 	}
 
 	/**
