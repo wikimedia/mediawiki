@@ -169,13 +169,14 @@ class OldLocalFile extends LocalFile {
 
 	function loadFromDB() {
 		wfProfileIn( __METHOD__ );
+
 		$this->dataLoaded = true;
 		$dbr = $this->repo->getSlaveDB();
 		$conds = array( 'oi_name' => $this->getName() );
 		if ( is_null( $this->requestedTime ) ) {
 			$conds['oi_archive_name'] = $this->archive_name;
 		} else {
-			$conds[] = 'oi_timestamp = ' . $dbr->addQuotes( $dbr->timestamp( $this->requestedTime ) );
+			$conds['oi_timestamp'] = $dbr->timestamp( $this->requestedTime );
 		}
 		$row = $dbr->selectRow( 'oldimage', $this->getCacheFields( 'oi_' ),
 			$conds, __METHOD__, array( 'ORDER BY' => 'oi_timestamp DESC' ) );
@@ -184,6 +185,42 @@ class OldLocalFile extends LocalFile {
 		} else {
 			$this->fileExists = false;
 		}
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Load lazy file metadata from the DB
+	 */
+	protected function loadExtraFromDB() {
+		wfProfileIn( __METHOD__ );
+
+		$this->extraDataLoaded = true;
+		$dbr = $this->repo->getSlaveDB();
+		$conds = array( 'oi_name' => $this->getName() );
+		if ( is_null( $this->requestedTime ) ) {
+			$conds['oi_archive_name'] = $this->archive_name;
+		} else {
+			$conds['oi_timestamp'] = $dbr->timestamp( $this->requestedTime );
+		}
+		// In theory the file could have just been renamed/deleted...oh well
+		$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
+			$conds, __METHOD__, array( 'ORDER BY' => 'oi_timestamp DESC' ) );
+
+		if ( !$row ) { // fallback to master
+			$dbr = $this->repo->getMasterDB();
+			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
+				$conds, __METHOD__, array( 'ORDER BY' => 'oi_timestamp DESC' ) );
+		}
+
+		if ( $row ) {
+			foreach ( $this->unprefixRow( $row, 'oi_' ) as $name => $value ) {
+				$this->$name = $value;
+			}
+		} else {
+			throw new MWException( "Could not find data for image '{$this->archive_name}'." );
+		}
+
 		wfProfileOut( __METHOD__ );
 	}
 
