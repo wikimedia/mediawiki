@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Code-Review+1: CSteipp <csteipp@wikimedia.org>
+Code-Review+1: Matmarex <matma.rex@gmail.com>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 24 Jan 2013 23:14:52 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/38905
+Project: mediawiki/core
+Branch: refs/heads/master
