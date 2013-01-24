@@ -1991,6 +1991,8 @@ class Language {
 	 * @param $type string May be date, time or both
 	 * @param $pref string The format name as it appears in Messages*.php
 	 *
+	 * @since 1.22 New type 'pretty' that provides a more readable timestamp format
+	 *
 	 * @return string
 	 */
 	function getDateFormatString( $type, $pref ) {
@@ -2000,7 +2002,12 @@ class Language {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			} else {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-				if ( is_null( $df ) ) {
+
+				if ( $type === 'pretty' && $df === null ) {
+					$df = $this->getDateFormatString( 'date', $pref );
+				}
+
+				if ( $df === null ) {
 					$pref = $this->getDefaultDateFormat();
 					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 				}
@@ -2231,6 +2238,155 @@ class Language {
 	 */
 	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
+	}
+
+	/**
+	 * Adjust a DateTime object depending on the given user's preferences.
+	 *
+	 * @since 1.21
+	 *
+	 * @param User $user User to take preferences from
+	 * @param[out] MWTimestamp $ts Timestamp to adjust
+	 * @return DateInterval Offset that was applied to the timestamp
+	 */
+	public function offsetTimestampForUser( User $user, MWTimestamp $ts /* ... */ ) {
+		global $wgLocalTZOffset;
+
+		$option = $user->getOption( 'timecorrection' );
+		$data = explode( '|', $option, 3 );
+
+		// First handle the case of an actual timezone being specified.
+		if ( $data[0] == 'ZoneInfo' ) {
+			try {
+				$tz = new DateTimeZone( $data[2] );
+			} catch ( Exception $e ) {
+				$tz = false;
+			}
+
+			if ( $tz ) {
+				$ts->timestamp->setTimezone( $tz );
+				return new DateInterval( 'P0Y' );
+			} else {
+				$data[0] = 'Offset';
+			}
+		}
+
+		$diff = 0;
+		// If $option is in fact a pipe-separated value, check the
+		// first value.
+		if ( $data[0] == 'System' ) {
+			// First value is System, so use the system offset.
+			if ( isset( $wgLocalTZOffset ) ) {
+				$diff = $wgLocalTZOffset;
+			}
+		} elseif ( $data[0] == 'Offset' ) {
+			// First value is Offset, so use the specified offset
+			$diff = (int)$data[1];
+		} else {
+			// $option actually isn't a pipe separated value, but instead
+			// a comma separated value. Isn't MediaWiki fun?
+			$data = explode( ':', $option );
+			if ( count( $data ) >= 2 ) {
+				// Combination hours and minutes.
+				$diff = abs( (int)$data[0] ) * 60 + (int)$data[1];
+				if ( (int) $data[0] < 0 ) {
+					$diff *= -1;
+				}
+			} else {
+				// Just hours.
+				$diff = (int)$data[0] * 60;
+			}
+		}
+
+		$interval = new DateInterval('PT' . abs( $diff ) . 'M');
+		if ( $diff < 1 ) {
+			$interval->invert = 1;
+		}
+
+		$timestamps = func_get_args();
+		array_shift( $timestamps );
+		foreach ( $timestamps as $ts ) {
+			$ts->timestamp->add( $interval );
+		}
+
+		return $interval;
+	}
+
+	/**
+	 * Get the date format belonging to a certain user.
+	 *
+	 * @since 1.21
+	 *
+	 * @param User $user User to get preference for
+	 * @return string The user's preference
+	 */
+	public function timestampUserFormat( User $user ) {
+		return $user->getDatePreference() ?: 'default';
+	}
+
+	/**
+	 * Convert an MWTimestamp into a pretty human-readable timestamp using
+	 * the given user preferences and relative base time.
+	 *
+	 * @param MWTimestamp $ts Timestamp to prettify
+	 * @param MWTimestamp $relativeTo Base timestamp
+	 * @param User $user User preferences to use
+	 * @return string Human timestamp
+	 * @since 1.21
+	 */
+	public function getHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
+		$diff = $ts->diff( $relativeTo );
+		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) - (int)$relativeTo->timestamp->format( 'w' ) );
+		$days = $diff->days ?: (int)$diffDay;
+		if ( $diff->invert || $days > 5 && $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' ) ) {
+			// Different years: full timestamp
+			// Also do full timestamp for future dates
+			/**
+			 * @FIXME Add better handling of future timestamps.
+			 */
+			$format = $this->getDateFormatString( 'both', $this->timestampUserFormat( $user ) );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+		} elseif ( $days > 5 ) {
+			// Same year, more than 5 days ago: XX XMonth
+			$format = $this->getDateFormatString( 'pretty', $this->timestampUserFormat( $user ) );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+		} elseif ( $days > 1 ) {
+			// This past week: XDay at XX:XX
+			$format = $this->getDateFormatString( 'time', $this->timestampUserFormat( $user ) );
+			$weekday = self::$mWeekdayMsgs[$ts->timestamp->format( 'w' )];
+			$ts = wfMessage( "$weekday-at" )
+				->inLanguage( $this )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->text();
+		} elseif ( $days == 1 ) {
+			// Previous day: Yesterday at XX:XX
+			$format = $this->getDateFormatString( 'time', $this->timestampUserFormat( $user ) );
+			$ts = wfMessage( 'yesterday-at' )
+				->inLanguage( $this )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->text();
+		} elseif ( $diff->h > 1 || $diff->h == 1 && $diff->i > 30 ) {
+			// Same day, more than 90 minutes ago: XX:XX
+			$format = $this->getDateFormatString( 'time', $this->timestampUserFormat( $user ) );
+			$ts = wfMessage( 'today-at' )
+				->inLanguage( $this )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->text();
+		} elseif ( $diff->h == 1 ) {
+			// Less than 90, but more than an hour ago: 1 hour ago
+			$ts = wfMessage( 'hours-ago' )->inLanguage( $this )->numParams( 1 )->text();
+		} elseif ( $diff->i >= 1 ) {
+			// A few minutes ago: X minutes ago
+			$ts = wfMessage( 'minutes-ago' )->inLanguage( $this )->numParams( $diff->i )->text();
+		} elseif ( $diff->s >= 30 ) {
+			// Less than a minute, but more than 30 sec ago: X seconds ago
+			$ts = wfMessage( 'seconds-ago' )->inLanguage( $this )->numParams( $diff->s )->text();
+		} else {
+			// Less than 30 seconds ago.
+			$ts = wfMessage( 'just-now' )->text();
+		}
+
+		return $ts;
 	}
 
 	/**
