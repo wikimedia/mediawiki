@@ -271,6 +271,33 @@ class MWTimestamp {
 	}
 
 	/**
+	 * Generate a purely relative timestamp, i.e., represent the time elapsed between
+	 * the given base timestamp and this object.
+	 *
+	 * @param MWTimestamp $relativeTo Relative base timestamp (defaults to now)
+	 * @param Language $lang Language to use
+	 * @param array $chosenIntervals Intervals to use to represent it
+	 * @return string Relative timestamp
+	 */
+	public function getRelativeTimestamp( MWTimestamp $relativeTo = null, Language $lang = null, array $chosenIntervals = array() ) {
+		if ( $relativeTo === null ) {
+			$relativeTo = new self;
+		}
+		if ( $lang === null ) {
+			$lang = RequestContext::getMain()->getLanguage();
+		}
+
+		$ts = '';
+		$diff = $this->diff( $relativeTo );
+		if ( !wfRunHooks( 'GetRelativeTimestamp', array( &$ts, $this, $relativeTo, $diff ) ) ) {
+			return $ts;
+		} else {
+			$seconds = ( ( ( $diff->a * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );
+			return wfMesage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) );
+		}
+	}
+
+	/**
 	 * @since 1.20
 	 *
 	 * @return string
