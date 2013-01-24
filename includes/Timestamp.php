@@ -46,26 +46,12 @@ class MWTimestamp {
 	);
 
 	/**
-	 * Different units for human readable timestamps.
-	 * @see MWTimestamp::getHumanTimestamp
-	 */
-	private static $units = array(
-		"milliseconds" => 1,
-		"seconds" => 1000, // 1000 milliseconds per second
-		"minutes" => 60, // 60 seconds per minute
-		"hours" => 60, // 60 minutes per hour
-		"days" => 24, // 24 hours per day
-		"months" => 30, // approximately 30 days per month
-		"years" => 12, // 12 months per year
-	);
-
-	/**
 	 * The actual timestamp being wrapped. Either a DateTime
 	 * object or a string with a Unix timestamp depending on
 	 * PHP.
-	 * @var string|DateTime
+	 * @var DateTime
 	 */
-	private $timestamp;
+	public $timestamp;
 
 	/**
 	 * Make a new timestamp and set it to the specified time,
@@ -171,16 +157,7 @@ class MWTimestamp {
 			throw new TimestampException( __METHOD__ . ' : Illegal timestamp output type.' );
 		}
 
-		if( is_object( $this->timestamp  ) ) {
-			// DateTime object was used, call DateTime::format.
-			$output = $this->timestamp->format( self::$formats[$style] );
-		} elseif( TS_UNIX == $style ) {
-			// Unix timestamp was used and is wanted, just return it.
-			$output = $this->timestamp;
-		} else {
-			// Unix timestamp was used, use gmdate().
-			$output = gmdate( self::$formats[$style], $this->timestamp );
-		}
+		$output = $this->timestamp->format( self::$formats[$style] );
 
 		if ( ( $style == TS_RFC2822 ) || ( $style == TS_POSTGRES ) ) {
 			$output .= ' GMT';
@@ -198,30 +175,48 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @return Message Formatted timestamp
+	 * @param MWTimestamp $relativeTo The base timestamp to compare to (defaults to now)
+	 * @param User $user User the timestamp is being generated for
+	 * @param Language $lang Language to use to make the human timestamp
+	 * @return string Formatted timestamp
 	 */
-	public function getHumanTimestamp() {
-		$then = $this->getTimestamp( TS_UNIX );
-		$now = time();
-		$timeago = ($now - $then) * 1000;
-		$message = false;
+	public function getHumanTimestamp( MWTimestamp $relativeTo = null, User $user = null, Language $lang = null ) {
+		if ( $relativeTo === null ) {
+			$relativeTo = new self;
+		}
+		if ( $user === null ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+		if ( $lang === null ) {
+			$lang = RequestContext::getMain()->getLanguage();
+		}
 
-		foreach( self::$units as $unit => $factor ) {
-			$next = $timeago / $factor;
-			if( $next < 1 ) {
-				break;
+		// Adjust for the user's timezone.
+		$adj = $lang->timestampUserAdjust( $this, $user );
+		$lang->timestampUserAdjust( $relativeTo, $user );
+
+		$diff = $this->diff( $relativeTo );
+		$ts = '';
+		if ( wfRunHooks( 'GetHumanTimestamp', array( &$ts, $this, $relativeTo, $diff, $user ) ) ) {
+			$ts = $lang->getHumanTimestamp( $this, $relativeTo, $diff, $user );
+		}
+
+		// Reset the timezone on the objects.
+		if ( class_exists( 'DateInterval' ) && $adj instanceof DateInterval ) {
+			$this->timestamp->sub( $adj );
+			$relativeTo->timestamp->sub( $adj );
+		} else {
+			$adj *= -1;
+			if ( $adj > 0 ) {
+				$this->timestamp->modify( "+$adj minutes" );
+				$relativeTo->timestamp->modify( "+$adj minutes" );
 			} else {
-				$timeago = $next;
-				$message = array( $unit, floor( $timeago ) );
+				$this->timestamp->modify( "$adj minutes" );
+				$relativeTo->timestamp->modify( "$adj minutes" );
 			}
 		}
 
-		if( $message ) {
-			$initial = call_user_func_array( 'wfMessage', $message );
-			return wfMessage( 'ago', $initial->parse() );
-		} else {
-			return wfMessage( 'just-now' );
-		}
+		return $ts;
 	}
 
 	/**
@@ -231,6 +226,45 @@ class MWTimestamp {
 	 */
 	public function __toString() {
 		return $this->getTimestamp();
+	}
+
+	/**
+	 * Calculate the difference between two MWTimestamp objects.
+	 *
+	 * @since 1.21
+	 * @param MWTimestamp Relative current time
+	 * @return stdClass|DateInterval Difference
+	 */
+	public function diff( MWTimestamp $relativeTo ) {
+		// Calculate the difference.
+		if ( class_exists( 'DateInterval' ) ) {
+			$diff = $this->timestamp->diff( $relativeTo->timestamp );
+		} else {
+			// PHP 5.2 compatibility
+			$diff = new stdClass;
+			$thisMW = $this->getTimestamp( TS_MW );
+			$relMW = $relativeTo->getTimestamp( TS_MW );
+
+			if ( $this->timestamp < $relativeTo->timestamp ) {
+				$diff->invert = 1;
+				$tmp = $thisMW;
+				$thisMW = $relMW;
+				$relMW = tmp;
+			} else {
+				$diff->invert = 0;
+			}
+
+			$diff->y = (int) substr( $thisMW, 0, 4 ) - (int) substr( $relMW, 0, 4 );
+			$diff->m = (int) substr( $thisMW, 4, 2 ) - (int) substr( $relMW, 4, 2 );
+			$diff->d = (int) substr( $thisMW, 6, 2 ) - (int) substr( $relMW, 6, 2 );
+			$diff->h = (int) substr( $thisMW, 8, 2 ) - (int) substr( $relMW, 8, 2 );
+			$diff->i = (int) substr( $thisMW, 10, 2 ) - (int) substr( $relMW, 10, 2 );
+			$diff->s = (int) substr( $thisMW, 12 ) - (int) substr( $relMW, 12 );
+			// Good enough approximate of the total number of days.
+			$diff->days = $diff->y * 365 + $diff->m * 30;
+		}
+
+		return $diff;
 	}
 }
 
