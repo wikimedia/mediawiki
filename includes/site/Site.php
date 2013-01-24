@@ -26,7 +26,7 @@
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class Site {
+class Site implements Serializable {
 
 	const TYPE_UNKNOWN = 'unknown';
 	const TYPE_MEDIAWIKI = 'mediawiki';
@@ -620,8 +620,6 @@ class Site {
 		}
 	}
 
-	// TODO: config
-
 	/**
 	 * @since 1.21
 	 *
@@ -637,6 +635,54 @@ class Site {
 		}
 
 		return new Site();
+	}
+
+	/**
+	 * @see Serializable::serialize
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function serialize() {
+		$fields = array(
+			'globalid' => $this->globalId,
+			'type' => $this->type,
+			'group' => $this->group,
+			'source' => $this->source,
+			'language' => $this->languageCode,
+			'localids' => $this->localIds,
+			'config' => $this->extraConfig,
+			'data' => $this->extraData,
+			'forward' => $this->forward,
+			'internalid' => $this->internalId,
+
+		);
+
+		return serialize( $fields );
+	}
+
+	/**
+	 * @see Serializable::unserialize
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $serialized
+	 */
+	public function unserialize( $serialized ) {
+		$fields = unserialize( $serialized );
+
+		$this->__construct( $fields['type'] );
+
+		$this->setGlobalId( $fields['globalid'] );
+		$this->setGroup( $fields['group'] );
+		$this->setSource( $fields['source'] );
+		$this->setLanguageCode( $fields['language'] );
+		$this->localIds = $fields['localids'];
+		$this->setExtraConfig( $fields['config'] );
+		$this->setExtraData( $fields['data'] );
+		$this->setForward( $fields['forward'] );
+		$this->setInternalId( $fields['internalid'] );
 	}
 
 }
