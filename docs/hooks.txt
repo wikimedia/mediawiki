@@ -1138,6 +1138,15 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getFullURL()
 
+'GetHumanTimestamp': Pre-emptively override the human-readable timestamp generated
+by MWTimestamp::getHumanTimestamp(). Return false in this hook to use the custom
+output.
+&$output: string for the output timestamp
+$timestamp: MWTimestamp object of the current (user-adjusted) timestamp
+$relativeTo: MWTimestamp object of the relative (user-adjusted) timestamp
+$user: User whose preferences are being used to make timestamp
+$lang: Language that will be used to render the timestamp
+
 'GetInternalURL': Modify fully-qualified URLs used for squid cache purging.
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
