@@ -1917,7 +1917,12 @@ class Language {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			} else {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-				if ( is_null( $df ) ) {
+
+				if ( $type === 'pretty' && $df === null ) {
+					$df = $this->getDateFormatString( 'date', $pref );
+				}
+
+				if ( $df === null ) {
 					$pref = $this->getDefaultDateFormat();
 					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 				}
@@ -2148,6 +2153,86 @@ class Language {
 	 */
 	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
+	}
+
+	/**
+	 * Adjust a DateTime object depending on the given user's preferences.
+	 *
+	 * @since 1.21
+	 *
+	 * @param[out] MWTimestamp $datetime Object representing a date-time
+	 * @param User $user User to take preferences from
+	 * @return DateInterval|int Either DateInterval or number of minutes difference
+	 */
+	public function timestampUserAdjust( MWTimestamp $ts, User $user = null ) {
+		global $wgUser, $wgLocalTZOffset;
+		if ( $user === null ) {
+			$user = $wgUser;
+		}
+
+		$option = $user->getOption( 'timecorrection' );
+		$data = explode( '|', $option, 3 );
+
+		if ( $data[0] == 'ZoneInfo' ) {
+			wfSuppressWarnings();
+			$tz = new DateTimeZone( $data[2] );
+			wfRestoreWarnings();
+
+			if ( $tz ) {
+				$ts->timestamp->setTimezone( $tz );
+				return $tz;
+			} else {
+				$data[0] = 'Offset';
+			}
+		}
+
+		$diff = 0;
+		if ( $data[0] == 'System' ) {
+			if ( isset( $wgLocalTZOffset ) ) {
+				$diff = $wgLocalTZOffset;
+			}
+		} elseif ( $data[0] == 'Offset' ) {
+			$diff = (int) $data[1];
+		} else {
+			$data = explode( ':', $option );
+			if ( count( $data ) >= 2 ) {
+				$diff = abs( (int) $data[0] ) * 60 + (int) $data[1];
+				if ( (int) $data[0] < 0 ) {
+					$diff *= -1;
+				}
+			} else {
+				$diff = (int) $data[0] * 60;
+			}
+		}
+
+		if ( class_exists( 'DateInterval' ) ) {
+			$interval = new DateInterval("P{$diff}M");
+			$ts->timestamp->add( $interval );
+		} elseif( $diff > 0 ) {
+			$ts->timestamp->modify( "+$diff minutes" );
+		} else {
+			$ts->timestamp->modify( "$diff minutes" );
+		}
+
+		return $diff;
+	}
+
+	/**
+	 * Get the date format belonging to a certain user.
+	 *
+	 * @since 1.21
+	 *
+	 * @param User|null $user User to get preference for, or null for default
+	 * @return string The user's preference
+	 */
+	public function timestampUserFormat( User $user = null ) {
+		if ( $user !== null ) {
+			$pref = $user->getDatePreference();
+		} else {
+			$pref = (string) User::getDefaultOption( 'date' );
+		}
+
+		return $pref ? $pref : 'default';
 	}
 
 	/**
