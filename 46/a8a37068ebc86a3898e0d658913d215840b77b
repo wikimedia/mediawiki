@@ -1,0 +1,8 @@
+Change-Id: I46a8a37068ebc86a3898e0d658913d215840b77b
+Code-Review+2: awjrichards <arichards@wikimedia.org>
+Verified+2: awjrichards <arichards@wikimedia.org>
+Submitted-by: awjrichards <arichards@wikimedia.org>
+Submitted-at: Thu, 24 Jan 2013 17:39:30 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/45560
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.21wmf7
