@@ -45,26 +45,12 @@ class MWTimestamp {
 	);
 
 	/**
-	 * Different units for human readable timestamps.
-	 * @see MWTimestamp::getHumanTimestamp
-	 */
-	private static $units = array(
-		"milliseconds" => 1,
-		"seconds" => 1000, // 1000 milliseconds per second
-		"minutes" => 60, // 60 seconds per minute
-		"hours" => 60, // 60 minutes per hour
-		"days" => 24, // 24 hours per day
-		"months" => 30, // approximately 30 days per month
-		"years" => 12, // 12 months per year
-	);
-
-	/**
 	 * The actual timestamp being wrapped. Either a DateTime
 	 * object or a string with a Unix timestamp depending on
 	 * PHP.
-	 * @var string|DateTime
+	 * @var DateTime
 	 */
-	private $timestamp;
+	public $timestamp;
 
 	/**
 	 * Make a new timestamp and set it to the specified time,
@@ -168,16 +154,7 @@ class MWTimestamp {
 			throw new TimestampException( __METHOD__ . ' : Illegal timestamp output type.' );
 		}
 
-		if( is_object( $this->timestamp  ) ) {
-			// DateTime object was used, call DateTime::format.
-			$output = $this->timestamp->format( self::$formats[$style] );
-		} elseif( TS_UNIX == $style ) {
-			// Unix timestamp was used and is wanted, just return it.
-			$output = $this->timestamp;
-		} else {
-			// Unix timestamp was used, use gmdate().
-			$output = gmdate( self::$formats[$style], $this->timestamp );
-		}
+		$output = $this->timestamp->format( self::$formats[$style] );
 
 		if ( ( $style == TS_RFC2822 ) || ( $style == TS_POSTGRES ) ) {
 			$output .= ' GMT';
@@ -195,30 +172,36 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @return Message Formatted timestamp
+	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
+	 * @param User|null $user User the timestamp is being generated for (or null to use main context's user)
+	 * @param Language|null $lang Language to use to make the human timestamp (or null to use main context's language)
+	 * @return string Formatted timestamp
 	 */
-	public function getHumanTimestamp() {
-		$then = $this->getTimestamp( TS_UNIX );
-		$now = time();
-		$timeago = ($now - $then) * 1000;
-		$message = false;
-
-		foreach( self::$units as $unit => $factor ) {
-			$next = $timeago / $factor;
-			if( $next < 1 ) {
-				break;
-			} else {
-				$timeago = $next;
-				$message = array( $unit, floor( $timeago ) );
-			}
+	public function getHumanTimestamp( MWTimestamp $relativeTo = null, User $user = null, Language $lang = null ) {
+		if ( $relativeTo === null ) {
+			$relativeTo = new self;
+		}
+		if ( $user === null ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+		if ( $lang === null ) {
+			$lang = RequestContext::getMain()->getLanguage();
 		}
 
-		if( $message ) {
-			$initial = call_user_func_array( 'wfMessage', $message );
-			return wfMessage( 'ago', $initial->parse() );
-		} else {
-			return wfMessage( 'just-now' );
+		// Adjust for the user's timezone.
+		$adj = $lang->timestampUserAdjust( $this, $user );
+		$lang->timestampUserAdjust( $relativeTo, $user );
+
+		$ts = '';
+		if ( wfRunHooks( 'GetHumanTimestamp', array( &$ts, $this, $relativeTo, $user, $lang ) ) ) {
+			$ts = $lang->getHumanTimestamp( $this, $relativeTo, $user );
 		}
+
+		// Reset the timezone on the objects.
+		$this->timestamp->sub( $adj );
+		$relativeTo->timestamp->sub( $adj );
+
+		return $ts;
 	}
 
 	/**
@@ -228,6 +211,17 @@ class MWTimestamp {
 	 */
 	public function __toString() {
 		return $this->getTimestamp();
+	}
+
+	/**
+	 * Calculate the difference between two MWTimestamp objects.
+	 *
+	 * @since 1.21
+	 * @param MWTimestamp Base time to calculate difference from
+	 * @return DateInterval Difference
+	 */
+	public function diff( MWTimestamp $relativeTo ) {
+		return $this->timestamp->diff( $relativeTo->timestamp );
 	}
 }
 
