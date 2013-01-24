@@ -340,6 +340,34 @@ class SiteSQLStore implements SiteStore {
 	}
 
 	/**
+	 * Clears the list of sites stored in the database.
+	 *
+	 * @see SiteStore::clear()
+	 *
+	 * @return bool success
+	 */
+	public function clear() {
+		$dbw = $this->sitesTable->getWriteDbConnection();
+
+		$trx = $dbw->trxLevel();
+
+		if ( $trx == 0 ) {
+			$dbw->begin( __METHOD__ );
+		}
+
+		$ok = $dbw->delete( 'sites', '*', __METHOD__ );
+		$ok = $dbw->delete( 'site_identifiers', '*', __METHOD__ ) && $ok;
+
+		if ( $trx == 0 ) {
+			$dbw->commit( __METHOD__ );
+		}
+
+		$this->reset();
+
+		return $ok;
+	}
+
+	/**
 	 * @since 1.21
 	 *
 	 * @return ORMTable
