@@ -233,6 +233,29 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
+	 * A version ID that identifies the serialization structure used by getSerializationData()
+	 * and unserialize(). This is useful for constructing cache keys in cases where the cache relies
+	 * on serialization for storing the SiteList.
+	 *
+	 * @var string A string uniquely identifying the version of the serialization structure,
+	 *             not including any sub-structures.
+	 */
+	const SERIAL_VERSION_ID = '2013-01-23';
+
+	/**
+	 * Returns the version ID that identifies the serialization structure used by
+	 * getSerializationData() and unserialize(), including the structure of any nested structures.
+	 * This is useful for constructing cache keys in cases where the cache relies
+	 * on serialization for storing the SiteList.
+	 *
+	 * @return string A string uniquely identifying the version of the serialization structure,
+	 *                including any sub-structures.
+	 */
+	public static function getSerialVersionId() {
+		return self::SERIAL_VERSION_ID . '+Site:' . Site::SERIAL_VERSION_ID;
+	}
+
+	/**
 	 * @see GenericArrayObject::getSerializationData
 	 *
 	 * @since 1.21
@@ -240,6 +263,8 @@ class SiteList extends GenericArrayObject {
 	 * @return array
 	 */
 	protected function getSerializationData() {
+		//NOTE: When changing the structure, either implement unserialize() to handle the
+		//      old structure too, or update SERIAL_VERSION_ID to kill any caches.
 		return array_merge(
 			parent::getSerializationData(),
 			array(

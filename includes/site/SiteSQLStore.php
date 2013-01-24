@@ -43,6 +43,11 @@ class SiteSQLStore implements SiteStore {
 	protected $sitesTable;
 
 	/**
+	 * @var string|null
+	 */
+	private $cacheKey = null;
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param ORMTable|null $sitesTable
@@ -69,6 +74,35 @@ class SiteSQLStore implements SiteStore {
 	}
 
 	/**
+	 * Constructs a cache key to use for caching the list of sites.
+	 *
+	 * This includes the concrete class name of the site list as well as a version identifier
+	 * for the list's serialization, to avoid problems when unserializing site lists serialized
+	 * by an older version, e.g. when reading from a cache.
+	 *
+	 * The cache key also includes information about where the sites were loaded from, e.g.
+	 * the name of a database table.
+	 *
+	 * @see SiteList::getSerialVersionId
+	 *
+	 * @return String The cache key.
+	 */
+	protected function getCacheKey() {
+		if ( $this->cacheKey === null ) {
+			$type = 'SiteList#' . SiteList::getSerialVersionId();
+			$source = $this->sitesTable->getName();
+
+			if ( $this->sitesTable->getTargetWiki() !== false ) {
+				$source = $this->sitesTable->getTargetWiki() . '.' . $source;
+			}
+
+			$this->cacheKey = wfMemcKey( "$source/$type" );
+		}
+
+		return $this->cacheKey;
+	}
+
+	/**
 	 * @see SiteStore::getSites
 	 *
 	 * @since 1.21
@@ -81,7 +115,7 @@ class SiteSQLStore implements SiteStore {
 		if ( $source === 'cache' ) {
 			if ( $this->sites === null ) {
 				$cache = wfGetMainCache();
-				$sites = $cache->get( wfMemcKey( 'SiteList' ) );
+				$sites = $cache->get( $this->getCacheKey() );
 
 				if ( is_object( $sites ) ) {
 					$this->sites = $sites;
@@ -171,7 +205,7 @@ class SiteSQLStore implements SiteStore {
 		}
 
 		$cache = wfGetMainCache();
-		$cache->set( wfMemcKey( 'SiteList' ), $this->sites );
+		$cache->set( $this->getCacheKey(), $this->sites );
 	}
 
 	/**
