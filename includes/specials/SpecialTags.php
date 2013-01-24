@@ -64,7 +64,8 @@ class SpecialTags extends SpecialPage {
 	function doTagRow( $tag, $hitcount ) {
 		static $doneTags = array();
 
-		if ( in_array( $tag, $doneTags ) ) {
+		$disp = ChangeTags::tagDescription( $tag );
+		if ( in_array( $tag, $doneTags ) || $disp === false ) {
 			return '';
 		}
 
@@ -72,7 +73,6 @@ class SpecialTags extends SpecialPage {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
-		$disp = ChangeTags::tagDescription( $tag );
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$disp .= ' ';
 			$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
