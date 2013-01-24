@@ -83,25 +83,37 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	public function testReset() {
-		$store = SiteSQLStore::newInstance();
+		$store1 = SiteSQLStore::newInstance();
+		$store2 = SiteSQLStore::newInstance();
 
 		// initialize internal cache
-		$this->assertGreaterThan( 0, $store->getSites()->count() );
+		$this->assertGreaterThan( 0, $store1->getSites()->count() );
+		$this->assertGreaterThan( 0, $store2->getSites()->count() );
 
-		// Clear actual data. Will not purge the internal cache in store2.
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'sites', '*', __METHOD__ );
-		$dbw->delete( 'site_identifiers', '*', __METHOD__ );
+		// Clear actual data. Will purge the external cache and reset the internal
+		// cache in $store1, but not the internal cache in store2.
+		$this->assertTrue( $store1->clear() );
 
 		// sanity check: $store2 should have a stale cache now
-		$this->assertNotNull( $store->getSite( 'enwiki' ) );
+		$this->assertNotNull( $store2->getSite( 'enwiki' ) );
 
 		// purge cache
-		$store->reset();
+		$store2->reset();
 
 		// ...now the internal cache of $store2 should be updated and thus empty.
+		$site = $store2->getSite( 'enwiki' );
+		$this->assertNull( $site );
+	}
+
+	public function testClear() {
+		$store = SiteSQLStore::newInstance();
+		$this->assertTrue( $store->clear() );
+
 		$site = $store->getSite( 'enwiki' );
 		$this->assertNull( $site );
+
+		$sites = $store->getSites();
+		$this->assertEquals( 0, $sites->count() );
 	}
 
 }

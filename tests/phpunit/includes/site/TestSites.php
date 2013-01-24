@@ -93,23 +93,9 @@ class TestSites {
 	 * @since 0.1
 	 */
 	public static function insertIntoDb() {
-		$dbw = wfGetDB( DB_MASTER );
-
-		$trx = $dbw->trxLevel();
-
-		if ( $trx == 0 ) {
-			$dbw->begin( __METHOD__ );
-		}
-
-		$dbw->delete( 'sites', '*', __METHOD__ );
-		$dbw->delete( 'site_identifiers', '*', __METHOD__ );
-
 		$sitesTable = SiteSQLStore::newInstance();
+		$sitesTable->clear();
 		$sitesTable->saveSites( TestSites::getSites() );
-
-		if ( $trx == 0 ) {
-			$dbw->commit( __METHOD__ );
-		}
 	}
 
 }
