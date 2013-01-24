@@ -141,6 +141,7 @@ $messages = array(
 'index-category' => 'نو انڈیکس صفحات',
 'noindex-category' => 'نو انڈیکس صفحات',
 'broken-file-category' => 'نس پھت صفحات',
+'categoryviewer-pagedlinks' => '($1) ($2)',
 
 'about' => 'تعارف',
 'article' => 'صفحۂ مشمول',
@@ -269,6 +270,7 @@ $1',
 [[Special:Version|version page]]',
 
 'ok' => 'ٹھیک شیر',
+'pagetitle' => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '‘‘$1’’ نقل کاردو',
 'youhavenewmessages' => 'تہ بچے ای $1 شیر۔ ($2)',
@@ -276,6 +278,7 @@ $1',
 'newmessagesdifflink' => 'تـجـدیـد مـاقـبل آخـراری فـرق',
 'youhavenewmessagesmulti' => 'ء$1 تہ بچے نوغ نوغ پیغامات شینی',
 'editsection' => 'ترمیم',
+'editsection-brackets' => '[$1]',
 'editold' => 'ترمیم',
 'viewsourceold' => 'مآخذو لوڑے',
 'editlink' => 'تدوین کورے',
@@ -293,6 +296,8 @@ $1',
 'site-atom-feed' => '$1 اٹوم فیڈ',
 'page-rss-feed' => '$1 آر ایس ایس فیڈ',
 'page-atom-feed' => '$1 آٹوم فیڈ',
+'feed-atom' => 'اٹوم',
+'feed-rss' => 'آر ایس ایس',
 'red-link-title' => '
 $1 (صفحہ موجود نیکی)',
 
@@ -606,6 +611,9 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'revdel-restore-deleted' => 'حذف شدہ رویژنز',
 'revdel-restore-visible' => 'ویزیبل رویژنز',
 
+# History merging
+'mergehistory-revisionrow' => '$1 ($2) $3 . . $4 $5 $6',
+
 # Merge log
 'revertmerge' => 'غیر ضم',
 
@@ -672,6 +680,7 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'username' => 'ممبارو نم',
 'uid' => 'ممبارو لمبار:',
 'prefs-memberingroups' => '{{PLURAL:$1|گروہ|گروہاں}} رُکن:',
+'prefs-registration-date-time' => '$1',
 'yourrealname' => '* اصلی نم',
 'yournick' => 'دسخط',
 'badsig' => "ناقص خام دسخط.

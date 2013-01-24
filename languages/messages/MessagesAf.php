@@ -939,7 +939,7 @@ Deur enigiets hier te plaas, beloof u dat u dit self geskryf het, of dat dit gek
 Die bladsy kan nie gestoor word nie.",
 'readonlywarning' => "'''WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks in 'n lêer plak en stoor vir later.'''
 
-Die administrateur wat dit gesluit het se verduideliking: \$ 1",
+Die administrateur wat dit gesluit het se verduideliking: $1",
 'protectedpagewarning' => "'''WAARSKUWING: Hierdie bladsy is beveilig sodat slegs administrateurs die inhoud sal kan verander.''' Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'semiprotectedpagewarning' => "'''Let wel:''' Hierdie artikel is beveilig sodat slegs ingetekende gebruikers dit sal kan wysig. Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'cascadeprotectedwarning' => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",

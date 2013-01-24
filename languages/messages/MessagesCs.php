@@ -1083,7 +1083,8 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>), podrobnosti najdete na $1. '''Nekopírujte díla chráněná autorským právem bez dovolení!'''",
 'longpageerror' => "'''Chyba: Pokoušíte se uložit text o velikosti {{PLURAL:$1|$1 KiB}}, přičemž dovolené maximum je {{PLURAL:$2|$2 KiB}}.'''
 Vaše změna nemůže být uložena.",
-'readonlywarning' => "'''VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.'''
+'readonlywarning' => "'''Varování: Databáze byla uzamčena kvůli údržbě, takže momentálně nebudete moci uložit své změny.'''
+Můžete si okopírovat text do souboru a uložit ho na později.
 
 Správce serveru, který databázi zamkl, poskytl toto zdůvodnění: $1",
 'protectedpagewarning' => "'''Varování: Tato stránka byla zamčena, takže ji mohou editovat pouze správci.'''
@@ -4130,7 +4131,8 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-nomodule' => 'Interní chyba: není nastaven načítací modul.',
 'api-error-ok-but-empty' => 'Interní chyba: ze serveru nepřišla odpověď.',
 'api-error-overwrite' => 'Není dovoleno přepsat existující soubor.',
-'api-error-stashfailed' => 'Vnitřní chyba: serveru se nepodařilo uložit dočasný soubor.',
+'api-error-stashfailed' => 'Vnitřní chyba: Serveru se nepodařilo uložit dočasný soubor.',
+'api-error-publishfailed' => 'Vnitřní chyba: Serveru se nepodařilo zveřejnit dočasný soubor.',
 'api-error-timeout' => 'Server neodpověděl v očekávaném čase.',
 'api-error-unclassified' => 'Došlo k neznámé chybě',
 'api-error-unknown-code' => 'Neznámá chyba: „$1“',

@@ -608,8 +608,13 @@ Do not translate: <code>php5-mysql</code>.
 Parameters:
 * $1 is comma separated list of database types supported by MediaWiki.',
 	'config-no-fts3' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
+	'config-magic-quotes-runtime' => '{{Related|Config-fatal}}',
+	'config-magic-quotes-sybase' => '{{Related|Config-fatal}}',
+	'config-mbstring' => '{{Related|Config-fatal}}',
+	'config-ze1' => '{{Related|Config-fatal}}',
 	'config-pcre' => 'PCRE is an initialism for "Perl-compatible regular expression". Perl is programming language whose [[:w:regular expression|regular expression]] syntax is popular and used in other languages using a library called PCRE.',
-	'config-pcre-no-utf8' => "PCRE is a name of a programmers' library for supporting regular expressions. It can probably be translated without change.",
+	'config-pcre-no-utf8' => "PCRE is a name of a programmers' library for supporting regular expressions. It can probably be translated without change.
+{{Related|Config-fatal}}",
 	'config-memory-raised' => 'Parameters:
 * $1 is the configured <code>memory_limit</code>.
 * $2 is the value to which <code>memory_limit</code> was raised.',
@@ -9958,18 +9963,18 @@ Debian または Ubuntu のパッケージから PHP をインストールした
 	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
 '''可能なら無効化してください。'''
 MediaWikiは動作しますが、サーバーは、潜在的なセキュリティ脆弱性を露呈します。",
-	'config-magic-quotes-runtime' => "'''致命的エラー：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]が動作しています！'''
+	'config-magic-quotes-runtime' => "'''致命的エラー: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] が動作しています!'''
 このオプションは、予期せずデータ入力を破壊します。
-このオプションが無効化されないかぎり、MediaWikiをインストールし利用することはできません。",
-	'config-magic-quotes-sybase' => "'''致命的エラー：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]が動作しています！'''
+このオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
+	'config-magic-quotes-sybase' => "'''致命的エラー: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] が動作しています!'''
 このオプションは、予期せずデータ入力を破壊します。
-このオプションが無効化されないかぎり、MediaWikiをインストールし利用することはできません。",
-	'config-mbstring' => "'''致命的エラー：[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]が動作しています！'''
-このオプションは、エラーを引き起こし、予期せずデータ入力を破壊する可能性があります。
-このオプションが無効化されないかぎり、MediaWikiをインストールし利用することはできません。",
-	'config-ze1' => "'''致命的エラー：[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]が動作しています！'''
-このオプションは、MediaWikiにおいて深刻なバグを引き起こします。
-このオプションが無効化されないかぎり、MediaWikiをインストールし利用することはできません。",
+このオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
+	'config-mbstring' => "'''致命的エラー: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] が動作しています!'''
+このオプションは、エラーを引き起こし、予期せずデータを破壊するおそれがあります。
+このオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
+	'config-ze1' => "'''致命的エラー: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] が動作しています!'''
+このオプションは、MediaWiki において深刻なバグを引き起こします。
+このオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
 	'config-safe-mode' => "'''警告:''' PHPの[http://www.php.net/features.safe-mode セーフモード]が有効になっています。
 特に、ファイルのアップロードや<code>math</code>機能で、問題が発生するおそれがあります。",
 	'config-xml-bad' => 'PHPのXMLモジュールが不足しています。
@@ -16678,6 +16683,7 @@ $messages['roa-tara'] = array(
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-admin-email' => 'Indirizze e-mail:',
 	'config-install-step-done' => 'fatte',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => "'Ngludenne le estenziune",

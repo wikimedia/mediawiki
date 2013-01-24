@@ -3956,6 +3956,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-ok-but-empty' => 'Notranja napaka: strežnik se ne odziva.',
 'api-error-overwrite' => 'Prepisovanje obstoječe datoteke ni dovoljeno.',
 'api-error-stashfailed' => 'Notranja napaka: strežnik ni uspel shraniti začasne datoteke.',
+'api-error-publishfailed' => 'Notranja napaka: strežnik ni uspel objaviti začasne datoteke.',
 'api-error-timeout' => 'Strežnik se ni odzval v pričakovanem času.',
 'api-error-unclassified' => 'Prišlo je do neznane napake',
 'api-error-unknown-code' => 'Neznana napaka: »$1«',

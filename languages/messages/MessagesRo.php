@@ -4039,6 +4039,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-ok-but-empty' => 'Eroare internă: niciun răspuns de la server.',
 'api-error-overwrite' => 'Nu este permisă suprascrierea unui fișier existent.',
 'api-error-stashfailed' => 'Eroare internă: serverul nu a putut stoca fișierul temporar.',
+'api-error-publishfailed' => 'Eroare internă: serverul nu a putut publica fișierul temporar.',
 'api-error-timeout' => 'Serverul nu a răspuns în timp util.',
 'api-error-unclassified' => 'A apărut o eroare necunoscută.',
 'api-error-unknown-code' => 'Eroare necunoscută: „$1”',

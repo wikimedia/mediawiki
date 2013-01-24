@@ -790,10 +790,10 @@ Tu ne stè promitte ca quidde ca scrive tu, o lè scritte cu 'u penziere tue o l
 '''NO REGGISTRA' FATIJE CUPERTE DA 'U COPYRIGHT SENZA PERMESSE! NO FA STUDECARIE!'''",
 'longpageerror' => "'''ERRORE: 'U teste ca tu vuè ccu reggistre è luenghe {{PLURAL:$1|'nu kilobyte|$1 kilobyte}}, invece 'u limite massime jè de {{PLURAL:$2|'nu kilobyte|$2 kilobyte}}.'''
 Non ge puè reggistrà sta pàggene.",
-'readonlywarning' => "'''FA ATTENZIO': 'U database ha state bloccate pe manutenziona, e allore tu non ge puè reggistrà le cangiaminde ca ste face mò.'''
-Tu puè fa 'na bella cose, tagghie e 'nzicche le cangiaminde jndr'à 'nu file de teste sus a 'u combiuter tue e pò cchiù tarde le reggistre sus 'a Uicchi.
+'readonlywarning' => "'''FA ATTENZIO': 'U database ha state bloccate pe manutenzione, e allore tu non ge puè reggistrà le cangiaminde ca ste face mò.'''
+Tu puè fa 'na bella cose, tagghie e 'nzicche le cangiaminde jndr'à 'nu file de teste sus a 'u combiuter tune e pò cchiù tarde le reggistre sus 'a Uicchi.
 
-L'amministratore ca ha bloccate 'u database ha scritte stu mutive: $1",
+L'amministratore ca ha bloccate 'u database ha date stu mutive: $1",
 'protectedpagewarning' => "'''ATTENZIO': Sta pàgene ha state bloccate e allore sulamende le utinde cu le privilegge de ''sysop'' ponne cangiarle.'''
 L'urteme archivie de le trasute ha state previste aqquà sotte pe referimende:",
 'semiprotectedpagewarning' => "'''Fà attenzione:''' Sta pàgene ha state bloccate accussì sulamende l'utinde reggistrete ponne fà cangiaminde.

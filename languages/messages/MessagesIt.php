@@ -3962,6 +3962,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-ok-but-empty' => 'Errore interno: nessuna risposta dal server.',
 'api-error-overwrite' => 'Sovrascrivere un file esistente non è consentito.',
 'api-error-stashfailed' => 'Errore interno: il server non è riuscito a memorizzare il documento temporaneo.',
+'api-error-publishfailed' => 'Errore interno: il server non è riuscito a pubblicare il documento temporaneo.',
 'api-error-timeout' => 'Il server non ha risposto entro il tempo previsto.',
 'api-error-unclassified' => 'Si è verificato un errore sconosciuto.',
 'api-error-unknown-code' => 'Errore sconosciuto: "$1"',
