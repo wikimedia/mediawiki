@@ -51,4 +51,9 @@ interface SiteStore {
 	 */
 	public function getSites( $source = 'cache' );
 
+	/**
+	 * Deletes all sites from the database. After calling clear(), getSites() will return an empty
+	 * list and getSite() will return null until saveSite() or saveSites() is called.
+	 */
+	public function clear();
 }
