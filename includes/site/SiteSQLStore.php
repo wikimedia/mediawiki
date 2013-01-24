@@ -312,7 +312,21 @@ class SiteSQLStore implements SiteStore {
 			$dbw->commit( __METHOD__ );
 		}
 
+		// purge cache
+		$this->reset();
+
 		return $success;
+	}
+
+	/**
+	 * Purges the internal and external cache of the site list, forcing the list
+	 * of sites to be re-read from the database.
+	 */
+	public function reset() {
+		// purge cache
+		$cache = wfGetMainCache();
+		$cache->delete( $this->getCacheKey() );
+		$this->sites = null;
 	}
 
 	/**
