@@ -889,4 +889,25 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf( $expected, $pokemons, $message );
 	}
 
+	/**
+	 * Returns a random string of the specified length.
+	 *
+	 * @since 1.21
+	 *
+	 * @param integer $minLength
+	 * @param integer|null $maxLength Omit or null for equal value as $minLength
+	 *
+	 * @return string
+	 */
+	protected function getRandomString( $minLength, $maxLength = null ) {
+		$string = array();
+		$length = mt_rand( $minLength, $maxLength === null ? $minLength : $maxLength );
+
+		for ( $position = 0; $position < $length; $position++ ) {
+			$string[] = chr( mt_rand( 32, 126 ) );
+		}
+
+		return implode( '', $string );
+	}
+
 }
