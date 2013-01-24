@@ -205,7 +205,13 @@ class ApiFormatXml extends ApiFormatBase {
 				// ignore
 				break;
 			default:
-				$retval .= $indstr . Xml::element( $elemName, null, $elemValue );
+				// to make sure null value doesn't produce unclosed element,
+				// which is what Xml::element( $elemName, null, null ) returns
+				if ( $elemValue === null ) {
+					$retval .= $indstr . Xml::element( $elemName );
+				} else {
+					$retval .= $indstr . Xml::element( $elemName, null, $elemValue );
+				}
 				break;
 		}
 		return $retval;
