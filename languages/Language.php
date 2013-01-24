@@ -1961,6 +1961,8 @@ class Language {
 	 * @param $type string May be date, time or both
 	 * @param $pref string The format name as it appears in Messages*.php
 	 *
+	 * @since 1.22 New type 'pretty' that provides a more readable timestamp format
+	 *
 	 * @return string
 	 */
 	function getDateFormatString( $type, $pref ) {
@@ -1970,7 +1972,12 @@ class Language {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			} else {
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-				if ( is_null( $df ) ) {
+
+				if ( $type === 'pretty' && $df === null ) {
+					$df = $this->getDateFormatString( 'date', $pref );
+				}
+
+				if ( $df === null ) {
 					$pref = $this->getDefaultDateFormat();
 					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 				}
@@ -2201,6 +2208,79 @@ class Language {
 	 */
 	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
+	}
+
+	/**
+	 * Convert an MWTimestamp into a pretty human-readable timestamp using
+	 * the given user preferences and relative base time.
+	 *
+	 * DO NOT USE THIS FUNCTION DIRECTLY. Instead, call MWTimestamp::getHumanTimestamp
+	 * on your timestamp object, which will then call this function. Calling
+	 * this function directly will cause hooks to be skipped over.
+	 *
+	 * @see MWTimestamp::getHumanTimestamp
+	 * @param MWTimestamp $ts Timestamp to prettify
+	 * @param MWTimestamp $relativeTo Base timestamp
+	 * @param User $user User preferences to use
+	 * @return string Human timestamp
+	 * @since 1.21
+	 */
+	public function getHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
+		$diff = $ts->diff( $relativeTo );
+		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) - (int)$relativeTo->timestamp->format( 'w' ) );
+		$days = $diff->days ?: (int)$diffDay;
+		if ( $diff->invert || $days > 5 && $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' ) ) {
+			// Timestamps are in different years: use full timestamp
+			// Also do full timestamp for future dates
+			/**
+			 * @FIXME Add better handling of future timestamps.
+			 */
+			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+		} elseif ( $days > 5 ) {
+			// Timestamps are in same year,  but more than 5 days ago: show day and month only.
+			$format = $this->getDateFormatString( 'pretty', $user->getDatePreference() ?: 'default' );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+		} elseif ( $days > 1 ) {
+			// Timestamp within the past week: show the day of the week and time
+			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
+			$weekday = self::$mWeekdayMsgs[$ts->timestamp->format( 'w' )];
+			$ts = wfMessage( "$weekday-at" )
+				->inLanguage( $this )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->text();
+		} elseif ( $days == 1 ) {
+			// Timestamp was yesterday: say 'yesterday' and the time.
+			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
+			$ts = wfMessage( 'yesterday-at' )
+				->inLanguage( $this )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->text();
+		} elseif ( $diff->h > 1 || $diff->h == 1 && $diff->i > 30 ) {
+			// Timestamp was today, but more than 90 minutes ago: say 'today' and the time.
+			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
+			$ts = wfMessage( 'today-at' )
+				->inLanguage( $this )
+				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
+				->text();
+
+		// From here on in, the timestamp was soon enough ago so that we can simply say
+		// XX units ago, e.g., "2 hours ago" or "5 minutes ago"
+		} elseif ( $diff->h == 1 ) {
+			// Less than 90 minutes, but more than an hour ago.
+			$ts = wfMessage( 'hours-ago' )->inLanguage( $this )->numParams( 1 )->text();
+		} elseif ( $diff->i >= 1 ) {
+			// A few minutes ago.
+			$ts = wfMessage( 'minutes-ago' )->inLanguage( $this )->numParams( $diff->i )->text();
+		} elseif ( $diff->s >= 30 ) {
+			// Less than a minute, but more than 30 sec ago.
+			$ts = wfMessage( 'seconds-ago' )->inLanguage( $this )->numParams( $diff->s )->text();
+		} else {
+			// Less than 30 seconds ago.
+			$ts = wfMessage( 'just-now' )->text();
+		}
+
+		return $ts;
 	}
 
 	/**
