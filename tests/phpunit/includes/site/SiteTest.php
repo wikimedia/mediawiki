@@ -32,21 +32,7 @@
 class SiteTest extends MediaWikiTestCase {
 
 	public function instanceProvider() {
-		$instances = array();
-
-		$instances[] = new Site();
-
-		$site = new Site();
-		$site->setGlobalId( 'enwiki' );
-		$site->setInternalId( 42 );
-		$instances[] = $site;
-
-		$site = new MediaWikiSite();
-		$site->setGlobalId( 'nlwiki' );
-		$site->setLanguageCode( 'nl' );
-		$instances[] = $site;
-
-		return $this->arrayWrap( $instances );
+		return $this->arrayWrap( TestSites::getSites() );
 	}
 
 	/**
@@ -262,6 +248,21 @@ class SiteTest extends MediaWikiTestCase {
 		else {
 			$this->assertInternalType( $type, $value );
 		}
+	}
+
+	/**
+	 * @dataProvider instanceProvider
+	 * @param Site $site
+	 */
+	public function testSerialization( Site $site ) {
+		$this->assertInstanceOf( 'Serializable', $site );
+
+		$serialization = serialize( $site );
+		$newInstance = unserialize( $serialization );
+
+		$this->assertInstanceOf( 'Site', $newInstance );
+
+		$this->assertEquals( $serialization, serialize( $newInstance ) );
 	}
 
 }
