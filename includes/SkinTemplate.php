@@ -1008,6 +1008,12 @@ class SkinTemplate extends Skin {
 					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
 					$preferred = $pageLang->getPreferredVariant();
+					if ( Action::getActionName( $this ) === 'view' ) {
+						$params = $request->getQueryValues();
+						unset( $params['title'] );
+					} else {
+						$params = array();
+					}
 					// Loops over each variant
 					foreach( $variants as $code ) {
 						// Gets variant name from language code
@@ -1021,7 +1027,7 @@ class SkinTemplate extends Skin {
 						$content_navigation['variants'][] = array(
 							'class' => ( $code == $preferred ) ? 'selected' : false,
 							'text' => $varname,
-							'href' => $title->getLocalURL( array( 'variant' => $code ) ),
+							'href' => $title->getLocalURL( array( 'variant' => $code ) + $params ),
 							'lang' => $code,
 							'hreflang' => $code
 						);
