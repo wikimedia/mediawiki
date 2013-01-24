@@ -1205,6 +1205,16 @@ $out: OutputPage object (to check what type of page the user is on)
 $user: User whose preferences are being modified.
 &$preferences: Preferences description array, to be fed to an HTMLForm object
 
+'GetRelativeTimestamp': Pre-emptively override the relative timestamp generated
+by MWTimestamp::getRelativeTimestamp(). Return false in this hook to use the custom
+output.
+&$output: string for the output timestamp
+&$diff: DateInterval representing the difference between the timestamps
+$timestamp: MWTimestamp object of the current (user-adjusted) timestamp
+$relativeTo: MWTimestamp object of the relative (user-adjusted) timestamp
+$user: User whose preferences are being used to make timestamp
+$lang: Language that will be used to render the timestamp
+
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
 can't do it, and populate $result with the reason in the form of
