@@ -89,7 +89,9 @@ abstract class BagOStuff {
 	abstract public function delete( $key, $time = 0 );
 
 	/**
-	 * Merge changes into the existing cache value (possibly creating a new one)
+	 * Merge changes into the existing cache value (possibly creating a new one).
+	 * The callback function returns the new value given the current value (possibly false),
+	 * and takes the arguments: (this BagOStuff object, cache key, current value).
 	 *
 	 * @param $key string
 	 * @param $callback closure Callback method to be executed
