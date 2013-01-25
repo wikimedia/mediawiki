@@ -2,6 +2,7 @@
 <!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
 <supplementalData>
 	<plurals>
+		<!-- What is this override for Hebrew based on? Is there a CLDR ticket for this? -Ryan Kaldari 2013-01-28 -->
 		<pluralRules locales="he">
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>
@@ -30,11 +31,20 @@
 		$forms[2] - 11
 		$forms[3] - 12
 		$forms[4] - 3-10, 13-19
-		$forms[5] - 0, 20, rest -->
+		$forms[5] - 0, 20, rest
+		However, based on discussion at http://unicode.org/cldr/trac/ticket/2883 the rules that were recently
+		implemented in CLDR are:
+		$forms[0] - 1, 11
+		$forms[1] - 2, 12
+		$forms[2] - 3-10, 13-19
+		$forms[3] - 0, 20, rest
+		These are the rules that we currently have in plurals.xml. We probably need to delete the override
+		below and write a script to adjust any i18n messages accordingly. -Ryan Kaldari 2013-01-28
+		-->
 		<pluralRules locales="gd">
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>
-			<pluralRule count="elevan">n is 11</pluralRule>
+			<pluralRule count="eleven">n is 11</pluralRule>
 			<pluralRule count="twelve">n is 12</pluralRule>
 			<pluralRule count="few">n in 3..10 or n in 13..19</pluralRule>
 		</pluralRules>

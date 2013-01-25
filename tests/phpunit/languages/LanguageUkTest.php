@@ -9,13 +9,18 @@
 /** Tests for MediaWiki languages/classes/LanguageUk.php */
 class LanguageUkTest extends LanguageClassesTestCase {
 
-	/** @dataProvider providePluralFourForms */
-	function testPluralFourForms( $result, $value ) {
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providePluralFourForms() {
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
 		return array (
 			array( 'one', 1 ),
 			array( 'many', 11 ),
@@ -32,15 +37,15 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	}
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'several' );
+		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 	function providePluralTwoForms() {
 		return array (
 			array( 'one', 1 ),
-			array( 'several', 11 ),
-			array( 'several', 91 ),
-			array( 'several', 121 ),
+			array( 'other', 11 ),
+			array( 'other', 91 ),
+			array( 'other', 121 ),
 		);
 	}
 }

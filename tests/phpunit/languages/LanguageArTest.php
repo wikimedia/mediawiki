@@ -44,11 +44,18 @@ class LanguageArTest extends LanguageClassesTestCase {
 			),
 		);
 	}
+
 	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms =  array( 'zero', 'one', 'two', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
+
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
 	function providePlural() {
 		return array (
 			array( 'zero', 0 ),

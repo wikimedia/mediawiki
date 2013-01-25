@@ -8,13 +8,18 @@
 /** Tests for MediaWiki languages/classes/LanguageGa.php */
 class LanguageGaTest extends LanguageClassesTestCase {
 
-	/** @dataProvider providerPlural */
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms =  array( 'one', 'two', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
 		return array (
 			array( 'other', 0 ),
 			array( 'one', 1 ),

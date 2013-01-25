@@ -8,44 +8,35 @@
 /** Tests for MediaWiki languages/classes/LanguageHe.php */
 class LanguageHeTest extends LanguageClassesTestCase {
 
-	/** @dataProvider providerPluralDual */
-	function testPluralDual( $result, $value ) {
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPluralDual() {
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
 		return array (
-			array( 'other', 0 ), // Zero -> plural
-			array( 'one', 1 ), // Singular
-			array( 'two', 2 ), // Dual
-			array( 'other', 3 ), // Plural
+			array( 'other', 0 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
+			array( 'other', 3 ),
+			array( 'other', 10 ),
 		);
 	}
 
-	/** @dataProvider providerPlural */
-	function testPlural( $result, $value ) {
-		$forms = array( 'one', 'other' );
-		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
-	}
-
-	function providerPlural() {
-		return array (
-			array( 'other', 0 ), // Zero -> plural
-			array( 'one', 1 ), // Singular
-			array( 'other', 2 ), // Plural, no dual provided
-			array( 'other', 3 ), // Plural
-		);
-	}
-
-	/** @dataProvider providerGrammar */
+	/** @dataProvider provideGrammar */
 	function testGrammar( $result, $word, $case ) {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
 	}
 
 	// The comments in the beginning of the line help avoid RTL problems
 	// with text editors.
-	function providerGrammar() {
+	function provideGrammar() {
 		return array (
 			array(
 				/* result */ 'וויקיפדיה',

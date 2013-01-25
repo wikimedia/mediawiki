@@ -8,13 +8,18 @@
 /** Tests for MediaWiki languages/classes/LanguageSma.php */
 class LanguageSmaTest extends LanguageClassesTestCase {
 
-	/** @dataProvider providerPluralThreeForms */
-	function testPluralThreeForms( $result, $value ) {
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPluralThreeForms() {
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
 		return array (
 			array( 'other', 0 ),
 			array( 'one',   1 ),
@@ -23,13 +28,13 @@ class LanguageSmaTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providerPlural */
-	function testPlural( $result, $value ) {
+	/** @dataProvider providerPluralTwoForms */
+	function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
+	function providerPluralTwoForms() {
 		return array (
 			array( 'other', 0 ),
 			array( 'one',   1 ),
