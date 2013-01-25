@@ -541,7 +541,7 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildPersonalUrls() {
-		global $wgSecureLogin;
+		global $wgSecureLogin, $wgSecureLoginDefaultHTTPS;
 
 		$title = $this->getTitle();
 		$request = $this->getRequest();
@@ -570,7 +570,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		if ( $wgSecureLogin && $request->detectProtocol() === 'https' ) {
+		if ( $wgSecureLogin && ( $request->detectProtocol() === 'https' || $wgSecureLoginDefaultHTTPS ) ) {
 			$a['wpStickHTTPS'] = true;
 		}
 
