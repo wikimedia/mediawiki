@@ -7,11 +7,15 @@
 
 /** Tests for MediaWiki languages/LanguageBe.php */
 class LanguageBeTest extends LanguageClassesTestCase {
-
 	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
+	}
+
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
 	function providePlural() {
