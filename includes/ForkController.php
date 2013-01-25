@@ -140,7 +140,7 @@ class ForkController {
 		// Don't share DB, storage, or memcached connections
 		wfGetLBFactory()->destroyInstance();
 		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingleton();
+		LockManagerGroup::destroySingletons();
 		ObjectCache::clear();
 		$wgMemc = null;
 	}
