@@ -7,7 +7,6 @@
 
 /** Tests for MediaWiki languages/classes/LanguageGd.php */
 class LanguageGdTest extends LanguageClassesTestCase {
-
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'few', 'other' );
