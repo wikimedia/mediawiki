@@ -79,9 +79,9 @@ class LockServerDaemon {
 		foreach ( array( 'address', 'port', 'authKey' ) as $par ) {
 			if ( !isset( $config[$par] ) ) {
 				die( "Usage: php LockServerDaemon.php " .
-					"--address <address> --port <port> --authkey <key> " .
+					"--address <address> --port <port> --authKey <key> " .
 					"[--lockTimeout <seconds>] " .
-					"[--maxLocks <integer>] [--maxClients <integer>] [--maxBacklog <integer>]"
+					"[--maxLocks <integer>] [--maxClients <integer>] [--maxBacklog <integer>]\n"
 				);
 			}
 		}
