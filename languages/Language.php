@@ -3447,7 +3447,7 @@ class Language {
 		}
 		$forms = array_values( $forms );
 
-		$pluralForm = $this->getPluralForm( $count );
+		$pluralForm = $this->getPluralRuleIndexNumber( $count );
 		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
 		return $forms[$pluralForm];
 	}
@@ -4274,7 +4274,7 @@ class Language {
 	/**
 	 * Get the plural rules for the language
 	 * @since 1.20
-	 * @return array Associative array with plural form, and plural rule as key-value pairs
+	 * @return array Associative array with plural form number and plural rule as key-value pairs
 	 */
 	public function getPluralRules() {
 		$pluralRules = self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
@@ -4291,14 +4291,49 @@ class Language {
 	}
 
 	/**
-	 * Find the plural form matching to the given number
-	 * It return the form index.
-	 * @return int The index of the plural form
+	 * Get the plural rule types for the language
+	 * @since 1.21
+	 * @return array Associative array with plural form number and plural rule type as key-value pairs
 	 */
-	private function getPluralForm( $number ) {
+	public function getPluralRuleTypes() {
+		$pluralRuleTypes = self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
+		$fallbacks = Language::getFallbacksFor( $this->mCode );
+		if ( !$pluralRuleTypes ) {
+			foreach ( $fallbacks as $fallbackCode ) {
+				$pluralRuleTypes = self::$dataCache->getItem( strtolower( $fallbackCode ), 'pluralRuleTypes' );
+				if ( $pluralRuleTypes ) {
+					break;
+				}
+			}
+		}
+		return $pluralRuleTypes;
+	}
+
+	/**
+	 * Find the index number of the plural rule appropriate for the given number
+	 * @return int The index number of the plural rule
+	 */
+	private function getPluralRuleIndexNumber( $number ) {
 		$pluralRules = $this->getCompiledPluralRules();
 		$form = CLDRPluralRuleEvaluator::evaluateCompiled( $number, $pluralRules );
 		return $form;
+	}
+
+	/**
+	 * Find the plural rule type appropriate for the given number
+	 * For example, if the language is set to Arabic, getPluralType(5) should
+	 * return 'few'.
+	 * @since 1.21
+	 * @return string The name of the plural rule type, e.g. one, two, few, many
+	 */
+	public function getPluralRuleType( $number ) {
+		$index = $this->getPluralRuleIndexNumber( $number );
+		$pluralRuleTypes = $this->getPluralRuleTypes();
+		if ( isset( $pluralRuleTypes[$index] ) ) {
+			return $pluralRuleTypes[$index];
+		} else {
+			return 'other';
+		}
 	}
 
 }

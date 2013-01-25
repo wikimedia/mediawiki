@@ -110,7 +110,7 @@ class LocalisationCache {
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
-		'digitGroupingPattern', 'pluralRules', 'compiledPluralRules',
+		'digitGroupingPattern', 'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
 	);
 
 	/**
@@ -159,6 +159,20 @@ class LocalisationCache {
 	 * the value is an array of plural rules for that language.
 	 */
 	var $pluralRules = null;
+
+	/**
+	 * Associative array of cached plural rule types. The key is the language
+	 * code, the value is an array of plural rule types for that language. For
+	 * example, $pluralRuleTypes['ar'] = ['zero', 'one', 'two', 'few', 'many'].
+	 * The index for each rule type matches the index for the rule in
+	 * $pluralRules, thus allowing correlation between the two. The reason we
+	 * don't just use the type names as the keys in $pluralRules is because
+	 * Language::convertPlural applies the rules based on numeric order (or
+	 * explicit numeric parameter), not based on the name of the rule type. For
+	 * example, {{plural:count|wordform1|wordform2|wordform3}}, rather than
+	 * {{plural:count|one=wordform1|two=wordform2|many=wordform3}}.
+	 */
+	var $pluralRuleTypes = null;
 
 	var $mergeableKeys = null;
 
@@ -519,17 +533,8 @@ class LocalisationCache {
 	 * @since 1.20
 	 */
 	public function getPluralRules( $code ) {
-		global $IP;
-
 		if ( $this->pluralRules === null ) {
-			$cldrPlural = "$IP/languages/data/plurals.xml";
-			$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
-			// Load CLDR plural rules
-			$this->loadPluralFile( $cldrPlural );
-			if ( file_exists( $mwPlural ) ) {
-				// Override or extend
-				$this->loadPluralFile( $mwPlural );
-			}
+			$this->loadPluralFiles();
 		}
 		if ( !isset( $this->pluralRules[$code] ) ) {
 			return null;
@@ -538,6 +543,36 @@ class LocalisationCache {
 		}
 	}
 
+	/**
+	 * Get the plural rule types for a given language from the XML files.
+	 * Cached.
+	 * @since 1.21
+	 */
+	public function getPluralRuleTypes( $code ) {
+		if ( $this->pluralRuleTypes === null ) {
+			$this->loadPluralFiles();
+		}
+		if ( !isset( $this->pluralRuleTypes[$code] ) ) {
+			return null;
+		} else {
+			return $this->pluralRuleTypes[$code];
+		}
+	}
+
+	/**
+	 * Load the plural XML files.
+	 */
+	protected function loadPluralFiles() {
+		global $IP;
+		$cldrPlural = "$IP/languages/data/plurals.xml";
+		$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
+		// Load CLDR plural rules
+		$this->loadPluralFile( $cldrPlural );
+		if ( file_exists( $mwPlural ) ) {
+			// Override or extend
+			$this->loadPluralFile( $mwPlural );
+		}
+	}
 
 	/**
 	 * Load a plural XML file with the given filename, compile the relevant
@@ -550,12 +585,16 @@ class LocalisationCache {
 		foreach ( $rulesets as $ruleset ) {
 			$codes = $ruleset->getAttribute( 'locales' );
 			$rules = array();
+			$ruleTypes = array();
 			$ruleElements = $ruleset->getElementsByTagName( "pluralRule" );
 			foreach ( $ruleElements as $elt ) {
+				$ruleType = $elt->getAttribute( 'count' );
 				$rules[] = $elt->nodeValue;
+				$ruleTypes[] = $ruleType;
 			}
 			foreach ( explode( ' ', $codes ) as $code ) {
 				$this->pluralRules[$code] = $rules;
+				$this->pluralRuleTypes[$code] = $ruleTypes;
 			}
 		}
 	}
@@ -580,6 +619,8 @@ class LocalisationCache {
 		$data['pluralRules'] = $this->getPluralRules( $code );
 		# And for PHP
 		$data['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
+		# Load plural rule types
+		$data['pluralRuleTypes'] = $this->getPluralRuleTypes( $code );
 
 		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
 		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
@@ -786,6 +827,10 @@ class LocalisationCache {
 		}
 		if ( $allData['compiledPluralRules'] === null ) {
 			$allData['compiledPluralRules'] = array();
+		}
+		# If there were no plural rule types, return an empty array
+		if ( $allData['pluralRuleTypes'] === null ) {
+			$allData['pluralRuleTypes'] = array();
 		}
 
 		# Set the list keys
