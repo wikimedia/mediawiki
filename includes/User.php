@@ -1467,7 +1467,7 @@ class User {
 	public function pingLimiter( $action = 'edit' ) {
 		# Call the 'PingLimiter' hook
 		$result = false;
-		if( !wfRunHooks( 'PingLimiter', array( &$this, $action, $result ) ) ) {
+		if( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result ) ) ) {
 			return $result;
 		}
 
