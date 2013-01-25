@@ -3747,6 +3747,13 @@ $wgAllowPrefChange = array();
  */
 $wgSecureLogin = false;
 
+/**
+ * By default, keep users logged in via HTTPS when $wgSecureLogin is also
+ * true. Users opt-out of HTTPS when they login by de-selecting the checkbox.
+ * @since 1.21
+ */
+$wgSecureLoginDefaultHTTPS = true;
+
 /** @} */ # end user accounts }
 
 /************************************************************************//**
