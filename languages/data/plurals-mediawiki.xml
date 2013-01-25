@@ -2,6 +2,7 @@
 <!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
 <supplementalData>
 	<plurals>
+		<!-- What is this override for Hebrew based on? Is there a CLDR ticket for this? -Ryan Kaldari 2013-01-28 -->
 		<pluralRules locales="he">
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>
@@ -22,10 +23,6 @@
 			<pluralRule count="one">n mod 10 is 1</pluralRule>
 			<pluralRule count="two">n mod 10 is 2</pluralRule>
 			<pluralRule count="few">n mod 10 in 3..4</pluralRule>
-		</pluralRules>
-		<!-- Hopefully temporary overrides for bug 40251 -->
-		<pluralRules locales="fa hu ja vi">
-			<pluralRule count="one">n is 1</pluralRule>
 		</pluralRules>
 		<!-- Copied from "bh" -->
 		<pluralRules locales="bho">
