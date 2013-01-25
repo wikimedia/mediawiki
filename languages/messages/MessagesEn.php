@@ -4786,7 +4786,7 @@ Images are shown in full resolution, other file types are started with their ass
 'specialpages-group-highuse'     => 'High use pages',
 'specialpages-group-pages'       => 'Lists of pages',
 'specialpages-group-pagetools'   => 'Page tools',
-'specialpages-group-wiki'        => 'Wiki data and tools',
+'specialpages-group-wiki'        => 'Data and tools',
 'specialpages-group-redirects'   => 'Redirecting special pages',
 'specialpages-group-spam'        => 'Spam tools',
 
