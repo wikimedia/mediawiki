@@ -94,7 +94,7 @@ class LSLockManager extends QuorumLockManager {
 
 		// Send out the command and get the response...
 		$type = ( $type == self::LOCK_SH ) ? 'SH' : 'EX';
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
 		$response = $this->sendCommand( $lockSrv, 'ACQUIRE', $type, $keys );
 
 		if ( $response !== 'ACQUIRED' ) {
@@ -115,7 +115,7 @@ class LSLockManager extends QuorumLockManager {
 
 		// Send out the command and get the response...
 		$type = ( $type == self::LOCK_SH ) ? 'SH' : 'EX';
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
 		$response = $this->sendCommand( $lockSrv, 'RELEASE', $type, $keys );
 
 		if ( $response !== 'RELEASED' ) {
