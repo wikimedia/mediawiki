@@ -475,7 +475,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'gotaccount' => "Tine già 'nu cunde? '''$1'''.",
 'gotaccountlink' => 'Tràse',
 'userlogin-resetlink' => "T'è scurdate le dettaglie pe trasè?",
-'createaccountmail' => 'pe e-mail',
+'createaccountmail' => 'Pe e-mail',
 'createaccountreason' => 'Mutive:',
 'badretype' => 'Le passuord ca è scritte non ge sonde uguale.',
 'userexists' => "'U nome de l'utende ca è scritte jè già ausate.
@@ -2031,7 +2031,7 @@ Onne abbesogne almene de \'nu dominie de levèlle ierte, pe esembie "*.org". <br
 # Special:ActiveUsers
 'activeusers' => "Liste de l'utinde attive",
 'activeusers-intro' => "Queste jè 'n'elenghe de utinde ca avene fatte certe tipe de attività fine a l'urteme $1 {{PLURAL:$1|sciurne|sciurne}}.",
-'activeusers-count' => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne|$3 sciurne}}",
+'activeusers-count' => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne}}",
 'activeusers-from' => "Fà vedè l'utinde partenne da:",
 'activeusers-hidebots' => 'Scunne le bot',
 'activeusers-hidesysops' => 'Scunne le amministrature',
@@ -4009,7 +4009,6 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-newusers-create' => "'U cunde utende $1 ha state ccrejate",
 'logentry-newusers-create2' => "$1 {{GENDER:$2|ccrejate}} {{GENDER:$4|'nu cunde utende}} $3",
 'logentry-newusers-autocreate' => "'U cunde utende $1 ha state ccrejate automaticamende",
-'newuserlog-byemail' => 'password mannete pe e-mail',
 'logentry-rights-rights' => "$1 membre d'u gruppe cangiate pe $3 da $4 a $5",
 'logentry-rights-rights-legacy' => "$1 ave cangiate 'u membre d'u gruppe pe $3",
 'logentry-rights-autopromote' => '$1 ha state promosse automaticamende da $4 a $5',

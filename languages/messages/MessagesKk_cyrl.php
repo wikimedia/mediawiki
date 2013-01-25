@@ -3180,7 +3180,6 @@ $5
 'logentry-newusers-create' => '$1 жаңадан аккаунт тіркеді',
 'logentry-newusers-create2' => '$1 $3 деген аккаунт тіркеді',
 'logentry-newusers-autocreate' => '$1 аккаунты автоматты түрде тіркелді',
-'newuserlog-byemail' => 'Құпия сөз e-mail арқылы жіберілді',
 'rightsnone' => '(ешқандай)',
 
 # Search suggestions

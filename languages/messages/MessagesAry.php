@@ -2711,7 +2711,6 @@ jrreb l-ĝṛḍ l-ĝadi.',
 # New logging system
 'revdelete-restricted' => 'tḅḅq ḍ-ḍawaḅit ll-idariyyin',
 'revdelete-unrestricted' => 'ḫyyd ḍ-ḍawaḅit ll-idariyyin',
-'newuserlog-byemail' => "lmot de passe raha tsiftat f l'email",
 'rightsnone' => '(walo)',
 
 );

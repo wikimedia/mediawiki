@@ -1962,7 +1962,6 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'logentry-newusers-newusers' => '$1 padėrba nauduotuojė paskīra',
 'logentry-newusers-create2' => '$1 padėrba nauduotuojė paskīra $3',
 'logentry-newusers-autocreate' => 'Paskīra $1 bova padėrbta autuomatėškā',
-'newuserlog-byemail' => 'slaptažuodis ėšsiōsts par el. pašta',
 'rightsnone' => '(juokiū)',
 
 );

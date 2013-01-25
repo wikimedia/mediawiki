@@ -3932,7 +3932,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'logentry-newusers-create' => 'Быў створаны рахунак $1',
 'logentry-newusers-create2' => '$1 стварыў рахунак $3',
 'logentry-newusers-autocreate' => 'Рахунак $1 быў створаны аўтаматычна',
-'newuserlog-byemail' => 'Пароль адасланы па электроннай пошце',
 'logentry-rights-rights' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групы з $4 на $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групаў',
 'logentry-rights-autopromote' => '$1 {{GENDER:$1|быў аўтаматычна пераведзены|была аўтаматычна пераведзеная}} з групы $4 ў $5',

@@ -3896,7 +3896,6 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'logentry-newusers-create' => 'Kullanıcı hesabı $1 oluşturdu',
 'logentry-newusers-create2' => '$1 kullanıcı hesabı oluşturdu $3',
 'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
-'newuserlog-byemail' => 'e-posta yoluyla şifre gönderilmiştir',
 'rightsnone' => '(hiçbiri)',
 
 # Feedback

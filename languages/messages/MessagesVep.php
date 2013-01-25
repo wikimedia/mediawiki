@@ -3057,7 +3057,6 @@ Kävutagat normaline ezikacund.',
 # New logging system
 'revdelete-restricted' => 'kaidendused administratoriden täht',
 'revdelete-unrestricted' => 'kaidendused heittud administratoriden täht',
-'newuserlog-byemail' => 'peisana om oigetud e-počtadme',
 'rightsnone' => '(ei ole)',
 
 # Feedback

@@ -39,6 +39,7 @@
  * @author Reedy
  * @author Remedios44
  * @author Remember the dot
+ * @author Rezonansowy
  * @author Rzuwig
  * @author Saper
  * @author Sovq
@@ -2481,7 +2482,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'protect-default' => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback' => 'Wymaga uprawnień „$1”',
 'protect-level-autoconfirmed' => 'Blokuj nowych i niezarejestrowanych użytkowników',
-'protect-level-sysop' => 'Dostęp mają tylko administratorzy',
+'protect-level-sysop' => 'Dozwolone tylko dla administratorów',
 'protect-summary-cascade' => 'dziedziczenie',
 'protect-expiring' => 'wygasa $1 (UTC)',
 'protect-expiring-local' => 'wygasa $1',
@@ -4055,7 +4056,6 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
 'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
-'newuserlog-byemail' => 'hasło zostało wysłane e‐mailem',
 'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
 'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',

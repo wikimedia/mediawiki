@@ -3478,7 +3478,6 @@ Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka lan
 'logentry-newusers-create' => 'Akun panganggo $1 digawé',
 'logentry-newusers-create2' => 'Akun panganggo $3 digawé déning $1',
 'logentry-newusers-autocreate' => 'Akun $1 digawé otomatis',
-'newuserlog-byemail' => 'tembung sandhi wis dikirim liwat e-mail',
 'rightsnone' => '(ora ana)',
 
 # Feedback

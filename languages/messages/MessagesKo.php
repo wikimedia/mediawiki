@@ -783,7 +783,7 @@ $2',
 'gotaccount' => '계정이 이미 있다면, $1.',
 'gotaccountlink' => '로그인하세요',
 'userlogin-resetlink' => '사용자 이름이나 비밀번호를 잊으셨나요?',
-'createaccountmail' => '이메일로 보내기',
+'createaccountmail' => '임시 임의 비밀번호를 아래에 지정한 이메일로 보내기',
 'createaccountreason' => '이유:',
 'badretype' => '입력한 비밀번호가 서로 다릅니다.',
 'userexists' => '입력하신 사용자 이름이 이미 등록되어 있습니다.
@@ -1099,7 +1099,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'longpageerror' => "'''오류: 문서의 크기가 {{PLURAL:$1|$1킬로바이트}}로 최대 크기인 {{PLURAL:$2|$2킬로바이트}}보다 큽니다.'''
 저장할 수 없습니다.",
 'readonlywarning' => "'''경고: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다.'''
-편집 내용을 복사 붙여넣기 등을 사용하여 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.
+편집 내용을 복사하여 붙여넣기 등을 사용하여 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.
 
 잠근 관리자가 남긴 설명은 다음과 같습니다: $1",
 'protectedpagewarning' => "'''경고: 이 문서는 관리자만 편집할 수 있도록 보호되어 있습니다.'''
@@ -2335,7 +2335,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Special:ActiveUsers
 'activeusers' => '활동적인 사용자 목록',
 'activeusers-intro' => '다음은 최근 $1일 동안 활동한 사용자의 목록입니다.',
-'activeusers-count' => '최근 $3일 사이의 편집 $1개',
+'activeusers-count' => '최근 {{PLURAL:$3|1일|$3일}} 사이의 {{PLURAL:$1|활동}} $1회',
 'activeusers-from' => '다음으로 시작하는 사용자를 보기:',
 'activeusers-hidebots' => '봇을 숨기기',
 'activeusers-hidesysops' => '관리자를 숨기기',
@@ -4126,7 +4126,6 @@ $5
 'logentry-newusers-create' => '$1 사용자 계정을 만들었습니다.',
 'logentry-newusers-create2' => '$1 사용자가 $3 사용자 계정을 만들었습니다.',
 'logentry-newusers-autocreate' => '$1 사용자 계정을 자동적으로 만들었습니다.',
-'newuserlog-byemail' => '이메일로 보낸 비밀번호',
 'logentry-rights-rights' => '$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 바꾸었습니다.',
 'logentry-rights-rights-legacy' => '$1 사용자가 $3 사용자의 권한을 바꾸었습니다.',
 'logentry-rights-autopromote' => '$1 사용자의 권한이 자동적으로 $4에서 $5으로 바뀌었습니다.',

@@ -2099,9 +2099,6 @@ $5
 # HTML forms
 'htmlform-reset' => 'Денъишикликлерни кери ал',
 
-# New logging system
-'newuserlog-byemail' => 'пароль e-mail вастасынен йиберильген',
-
 # Search suggestions
 'searchsuggest-containing' => 'ичинде бу олгъан...',
 

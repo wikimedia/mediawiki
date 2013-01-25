@@ -3088,7 +3088,6 @@ Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 # New logging system
 'revdelete-restricted' => 'Inschränkungen för Administraters instellt',
 'revdelete-unrestricted' => 'Inschränkungen för Administraters rutnahmen',
-'newuserlog-byemail' => 'Passwoord per E-Mail toschickt',
 'rightsnone' => '(kene)',
 
 );

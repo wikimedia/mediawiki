@@ -2701,7 +2701,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'ἐφηρμοσμένοι περιορισμοὶ διὰ τοὺς ἐπιτρόπους',
 'revdelete-unrestricted' => 'αἱρεθέντες περιορισμοὶ διὰ τοὺς ἐπιτρόπους',
-'newuserlog-byemail' => 'σύνθημα ἀπεσταλμένον μέσῳ ἠλ-ταχυδρομείου',
 'rightsnone' => '(Οὐδέν)',
 
 # Feedback

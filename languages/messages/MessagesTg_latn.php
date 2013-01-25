@@ -2335,7 +2335,6 @@ Nişonai pajvandro biduni peşvand "{{ns:file}}:" vorid kuned.',
 # New logging system
 'revdelete-restricted' => 'mahdudijatho ba mudiron amalī şudand',
 'revdelete-unrestricted' => 'mahdudijatho az mudiron bardoşta şudand',
-'newuserlog-byemail' => 'kalimai ubur ba poctai elektronī firistoda şud',
 'rightsnone' => '(heç)',
 
 );

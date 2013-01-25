@@ -1279,7 +1279,6 @@ Los otros campos se van a guardar por defecto.
 
 # New logging system
 'logentry-newusers-autocreate' => 'El cuento $1 fue crîado otomatika mente',
-'newuserlog-byemail' => 'kóddiche mandado con letral',
 
 # Feedback
 'feedback-subject' => 'Sujeto',

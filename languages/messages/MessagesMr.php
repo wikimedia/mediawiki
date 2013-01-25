@@ -3806,7 +3806,6 @@ $5
 'logentry-newusers-create' => 'एक सदस्यखाते $1 तयार केले',
 'logentry-newusers-create2' => '$1  ने  सदस्य खाते $3  निर्मित केले  आहे.',
 'logentry-newusers-autocreate' => '$1  खाते स्वयमेव निर्मित झाले आहे.',
-'newuserlog-byemail' => 'परवलीचा शब्द ई-मेल मार्फत पाठविलेला आहे',
 'logentry-rights-rights-legacy' => '$1 ने $3 चे ग्रुप सदस्यत्व बदलले',
 'rightsnone' => '(काहीही नाही)',
 

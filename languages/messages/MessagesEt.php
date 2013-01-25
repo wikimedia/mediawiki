@@ -3876,7 +3876,6 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'logentry-newusers-create' => 'Loodud kasutajakonto $1',
 'logentry-newusers-create2' => '$1 lõi kasutajakonto $3',
 'logentry-newusers-autocreate' => 'Konto $1 loodi automaatselt',
-'newuserlog-byemail' => 'parool saadetud e-postiga',
 'rightsnone' => '(puudub)',
 
 # Feedback

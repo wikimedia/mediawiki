@@ -755,7 +755,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'gotaccount' => "Har du redan ett användarkonto? '''$1'''.",
 'gotaccountlink' => 'Logga in',
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
-'createaccountmail' => 'med e-post',
+'createaccountmail' => 'Använd ett tillfällig slumpartat lösenord och skicka den till e-postadressen som anges nedan',
 'createaccountreason' => 'Orsak:',
 'badretype' => 'De lösenord du uppgett överensstämmer inte med varandra.',
 'userexists' => 'Det valda användarnamnet används redan.
@@ -1047,7 +1047,7 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 'longpageerror' => "'''FEL: Texten som du försöker spara är {{PLURAL:$1|en kilobyte|$1 kilobyte}}, vilket är mer än det maximalt tillåtna {{PLURAL:$2|en kilobyte|$2 kilobyte}}.'''
 Den kan inte sparas.",
 'readonlywarning' => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu.
-Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
+Det kan vara klokt att kopiera texten till ett textdokument som sparas på din dator tills vidare.'''
 
 Administratören som låste databasen gav följande förklaring: $1",
 'protectedpagewarning' => "'''Varning: Den här sidan har låsts så att bara användare med administratörsrättigheter kan redigera den.'''
@@ -2261,7 +2261,7 @@ Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lista över aktiva användare',
 'activeusers-intro' => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dygnet|dygnen}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|redigering|redigeringar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
+'activeusers-count' => '$1 {{PLURAL:$1|handling|handlingar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
 'activeusers-from' => 'Visa användare från och med:',
 'activeusers-hidebots' => 'Göm botar',
 'activeusers-hidesysops' => 'Dölj administratörer',
@@ -4016,7 +4016,6 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-newusers-create' => 'Användarkonto $1 skapades',
 'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
 'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
-'newuserlog-byemail' => 'lösenord skickat med e-post',
 'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
 'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',
 'logentry-rights-autopromote' => '$1 befordrades automatiskt från $4 till $5',

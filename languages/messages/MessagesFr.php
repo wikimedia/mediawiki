@@ -4149,7 +4149,6 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-newusers-create' => 'Le compte utilisateur $1 a été créé',
 'logentry-newusers-create2' => 'Le compte utilisateur $3 a été créé par $1',
 'logentry-newusers-autocreate' => 'Le compte $1 a été créé automatiquement',
-'newuserlog-byemail' => 'mot de passe envoyé par courriel',
 'logentry-rights-rights' => "$1 a modifié l'appartenance au groupe pour $3 de $4 à $5",
 'logentry-rights-rights-legacy' => "$1 a modifié l'appartenance au groupe pour $3",
 'logentry-rights-autopromote' => '$1 a été promu automatiquement de $4 à $5',

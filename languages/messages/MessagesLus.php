@@ -1918,7 +1918,6 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'logentry-newusers-create' => '$1 hian hmangtu siangchan a siam.',
 'logentry-newusers-create2' => '$1 hian hmangtu siangchan $3 a siam.',
 'logentry-newusers-autocreate' => 'Siangchan $1 hi amahin a insiam.',
-'newuserlog-byemail' => 'thurûk e-lehkha hmanga thawn a ni.',
 
 # Feedback
 'feedback-subject' => 'Thupui:',

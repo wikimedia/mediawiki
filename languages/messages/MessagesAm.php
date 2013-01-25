@@ -2572,7 +2572,6 @@ $3
 
 # New logging system
 'logentry-delete-delete' => '$1 ገጹን $3 አጠፋ',
-'newuserlog-byemail' => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
 'rightsnone' => '(የለም)',
 
 # Feedback

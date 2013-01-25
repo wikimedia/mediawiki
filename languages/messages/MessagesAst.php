@@ -3798,7 +3798,6 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-newusers-create' => "Se creó la cuenta d'usuariu $1",
 'logentry-newusers-create2' => "$1 creó la cuenta d'usuariu $3",
 'logentry-newusers-autocreate' => 'La cuenta $1 se creó automáticamente',
-'newuserlog-byemail' => 'conseña unviada per corréu electrónicu',
 'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
 'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
 'logentry-rights-autopromote' => '$1 promocionó automáticamente de $4 a $5',

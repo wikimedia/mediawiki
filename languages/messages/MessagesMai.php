@@ -3527,7 +3527,6 @@ $5
 'logentry-newusers-create' => '$1 {{लिंग:$2|बनाएल}} एकटा प्रयोक्ता खाता',
 'logentry-newusers-create2' => '$1 {{लिंग:$2|बनाएल}} {{लिंग:$4|एकटा प्रयोक्ता खाता}} $3',
 'logentry-newusers-autocreate' => 'खाता $1 छल {{लिंग:$2|बनाएल}} स्वतः',
-'newuserlog-byemail' => 'कूटशब्द ई-पत्र द्वारा पठाएल गेल',
 'rightsnone' => '(कोनो नै)',
 
 # API errors

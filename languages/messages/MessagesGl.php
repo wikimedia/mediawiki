@@ -660,7 +660,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'gotaccount' => "Xa ten unha conta? '''$1'''.",
 'gotaccountlink' => 'Acceda ao sistema',
 'userlogin-resetlink' => 'Esqueceu os seus datos de rexistro?',
-'createaccountmail' => 'Por correo electrónico',
+'createaccountmail' => 'Utilizar un contrasinal aleatorio temporal e envialo ao enderezo de correo electrónico especificado embaixo',
 'createaccountreason' => 'Motivo:',
 'badretype' => 'Os contrasinais que inseriu non coinciden.',
 'userexists' => 'O nome de usuario que inseriu xa está en uso.
@@ -2197,7 +2197,7 @@ Cómpre, polo menos, un dominio de nivel superior; por exemplo, "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lista de usuarios activos',
 'activeusers-intro' => 'Esta é unha lista cos usuarios que tiveron algún tipo de actividade {{PLURAL:$1|no último día|nos últimos $1 días}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|edición|edicións}} {{PLURAL:$3|no último día|nos últimos $3 días}}',
+'activeusers-count' => '$1 {{PLURAL:$1|acción|accións}} {{PLURAL:$3|no último día|nos últimos $3 días}}',
 'activeusers-from' => 'Mostrar os usuarios que comecen por:',
 'activeusers-hidebots' => 'Agochar os bots',
 'activeusers-hidesysops' => 'Agochar os administradores',
@@ -3961,7 +3961,6 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-newusers-create' => 'Creouse a conta de usuario $1',
 'logentry-newusers-create2' => '$1 creou a conta de usuario $3',
 'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
-'newuserlog-byemail' => 'contrasinal enviado por correo electrónico',
 'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
 'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',

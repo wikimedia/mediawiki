@@ -2355,7 +2355,6 @@ Wolle jo de side wier op 'e nij skriuwe?",
 # New logging system
 'revdelete-restricted' => 'hat beheinings oplein oan behearders',
 'revdelete-unrestricted' => 'hat beheinings foar behearders goedmakke',
-'newuserlog-byemail' => 'wachtwurd is ferstjoerd oer e-mail',
 'rightsnone' => '(gjin)',
 
 );

@@ -3880,7 +3880,6 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'logentry-newusers-create' => 'Gebruiker $1 is geskep',
 'logentry-newusers-create2' => 'Gebruiker $3 is deur $1 geskep',
 'logentry-newusers-autocreate' => 'Die gebruiker $1 is outomaties geskep',
-'newuserlog-byemail' => 'wagwoord is per e-pos versend',
 'logentry-rights-rights' => '$1 het groepslidmaatskap vir $3 van $4 na $5 gewysig',
 'logentry-rights-rights-legacy' => '$1 het groepslidmaatskap vir $3 gewysig',
 'logentry-rights-autopromote' => '$1 is outomaties gepromoveerd van $4 na $5',

@@ -3458,7 +3458,6 @@ $5
 'logentry-newusers-create' => 'ھەژماری بەکارھێنەریی $1 دروست کرا',
 'logentry-newusers-create2' => 'ھەژماری بەکارھێنەریی $3 لە لایەن $1 دروست کرا',
 'logentry-newusers-autocreate' => 'ھەژماری $1 بە شێوەی خۆگەڕ دروستکرا',
-'newuserlog-byemail' => 'تێپەڕوشە بە ئیمەیل نێردرا.',
 'rightsnone' => '(ھیچ)',
 
 # Feedback

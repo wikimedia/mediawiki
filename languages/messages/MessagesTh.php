@@ -3599,7 +3599,6 @@ $5
 'logentry-newusers-create' => 'บัญชีผู้ใช้ $1 ถูกสร้างขึ้น',
 'logentry-newusers-create2' => 'บัญชีผู้ใช้ $3 ถูกสร้างขึ้นโดย $1',
 'logentry-newusers-autocreate' => 'บัญชี $1 ถูกสร้างขึ้นอัตโนมัติ',
-'newuserlog-byemail' => 'รหัสผ่านถูกส่งทางอีเมล',
 'rightsnone' => '(ไม่มี)',
 
 # Feedback

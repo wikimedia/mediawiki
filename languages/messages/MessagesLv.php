@@ -3113,7 +3113,6 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'logentry-newusers-create' => 'Lietotāja konts $1 tika izveidots',
 'logentry-newusers-create2' => 'Lietotāja kontu $3 izveidoja $1',
 'logentry-newusers-autocreate' => 'Konts $1 tika izveidots automātiski',
-'newuserlog-byemail' => 'parole nosūtīta pa e-pastu',
 'rightsnone' => '(nav)',
 
 # Feedback

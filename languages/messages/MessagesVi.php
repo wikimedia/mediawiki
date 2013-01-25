@@ -4095,7 +4095,6 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'logentry-newusers-create' => 'Đã mở tài khoản người dùng $1',
 'logentry-newusers-create2' => '$1 đã mở tài khoản người dùng $3',
 'logentry-newusers-autocreate' => 'Tài khoản $1 đã được mở tự động',
-'newuserlog-byemail' => 'gửi mật khẩu qua thư điện tử',
 'logentry-rights-rights' => '$1 đã đổi các nhóm liên kết của $3 từ $4 đến $5',
 'logentry-rights-rights-legacy' => '$1 đã đổi các nhóm liên kết của $3',
 'logentry-rights-autopromote' => '$1 đã được tự động phong cấp từ $4 đến $5',

@@ -2727,7 +2727,6 @@ $3
 'logentry-newusers-newusers' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create2' => '$1 Ստեղծեց նոր հաշիվ $3',
-'newuserlog-byemail' => 'Գաղտնաբառն ուղարկված է էլ․ փոստով',
 'rightsnone' => '(ոչ մի)',
 
 # Feedback

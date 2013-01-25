@@ -4128,7 +4128,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-newusers-create' => 'Lo compto utilisator $1 est étâ fêt',
 'logentry-newusers-create2' => 'Lo compto utilisator $3 est étâ fêt per $1',
 'logentry-newusers-autocreate' => 'Lo compto $1 at étâ fêt ôtomaticament',
-'newuserlog-byemail' => 'contresegno mandâ per mèssageria èlèctronica',
 'logentry-rights-rights' => '$1 at changiê l’apartegnence a la tropa por « $3 » de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 at changiê l’apartegnence a la tropa por « $3 »',
 'logentry-rights-autopromote' => '$1 est étâ nomâ ôtomaticament de $4 a $5',

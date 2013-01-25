@@ -2830,7 +2830,6 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 # New logging system
 'revdelete-restricted' => '應限至有秩',
 'revdelete-unrestricted' => '除限自有秩',
-'newuserlog-byemail' => '號發自電郵',
 'rightsnone' => '（凡）',
 
 );

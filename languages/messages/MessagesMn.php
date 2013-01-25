@@ -3484,7 +3484,6 @@ $5
 'logentry-delete-restore' => '$3 хуудсыг $1 сэтгээсэн',
 'revdelete-restricted' => 'системийн операторуудад тавигдсан хязгаарлалтууд',
 'revdelete-unrestricted' => 'системийн операторуудаас авч хаясан хязгаарлалтууд',
-'newuserlog-byemail' => 'мэйлээр явуулсан нууц үг',
 'logentry-rights-rights' => '$1 $3 дахь грүпийн гишүүнчлэлээ $4 ээс $5 руу шилжүүллээ',
 'logentry-rights-rights-legacy' => '$1 $3 дэхь грүпийн гишүүнчлэлээ сольсон',
 'logentry-rights-autopromote' => '$1 $4 аас $5 руу автоматаар дэвшигдлээ',

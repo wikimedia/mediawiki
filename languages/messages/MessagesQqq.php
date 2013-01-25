@@ -8533,7 +8533,6 @@ $4 is the name of the user that was created.',
 'logentry-newusers-autocreate' => '{{Logentry}}
 
 $4 is the gender of the target user.',
-'newuserlog-byemail' => 'Used as reason in [[Special:Log/newusers]].',
 'logentry-rights-rights' => '*$1 - username
 *$2 - (see below)
 *$3 - username

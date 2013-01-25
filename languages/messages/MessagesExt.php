@@ -2404,7 +2404,6 @@ Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehec
 # New logging system
 'revdelete-restricted' => 'las restricionis a los çahorilis án siu apricás',
 'revdelete-unrestricted' => 'las restricionis a los çahorilis án siu esborrás',
-'newuserlog-byemail' => 'consínia enviá pol e-mail',
 'rightsnone' => '(dengunu)',
 
 );

@@ -3981,7 +3981,6 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-newusers-create' => 'Contul de utilizator $1 a fost creat',
 'logentry-newusers-create2' => 'Contul de utilizator $3 a fost creat de către $1',
 'logentry-newusers-autocreate' => 'Contul $1 a fost creat în mod automat',
-'newuserlog-byemail' => 'parola trimisă prin e-mail',
 'logentry-rights-rights' => '$1 a schimbat apartenența la grup pentru $3 de la $4 la $5',
 'logentry-rights-rights-legacy' => '$1 a schimbat apartenența la grup pentru $3',
 'logentry-rights-autopromote' => '$1 a fost promovat în mod automat de la $4 la $5',

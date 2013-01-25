@@ -2225,7 +2225,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'htmlform-selectorother-other' => 'Лия',
 
 # New logging system
-'newuserlog-byemail' => 'салава валот кучозь е-сёрмасо',
 'rightsnone' => '(арасть)',
 
 # Feedback

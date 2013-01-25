@@ -3805,7 +3805,6 @@ Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapus
 'logentry-newusers-create' => '$1 sutiyuq rakiquna kamarisqañam',
 'logentry-newusers-create2' => '$1 sutiyuq ruraqqa $3 sutiyuq rakiqunatam kamarirqanñam',
 'logentry-newusers-autocreate' => '$1 sutiyuq rakiqunaqa kikinmanta kamarisqam',
-'newuserlog-byemail' => 'e-chaskiwan kachasqa yaykuna rima',
 'rightsnone' => '(-)',
 
 # Feedback

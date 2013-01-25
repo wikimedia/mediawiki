@@ -2976,7 +2976,6 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'revdelete-unrestricted' => 'ristrizzioni pi suli amministraturi rimossi',
 'logentry-move-move' => '$1 spustau la pàggina $3 a $4',
 'logentry-newusers-create' => '$1 criau na utenza',
-'newuserlog-byemail' => 'password mannata via mail',
 'rightsnone' => '(nuddu)',
 
 # Search suggestions

@@ -3860,7 +3860,6 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-newusers-create' => 'Akaun pengguna $1 dibuka',
 'logentry-newusers-create2' => 'Akaun pengguna $3 dibuka oleh $1',
 'logentry-newusers-autocreate' => 'Akaun $1 dibuka secara automatik',
-'newuserlog-byemail' => 'kata laluan dihantar melalui e-mel',
 'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
 'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
 'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',

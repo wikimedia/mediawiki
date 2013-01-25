@@ -2531,7 +2531,6 @@ $1',
 'logentry-newusers-create' => '$1 хисап язмасы төзеде',
 'logentry-newusers-create2' => '$1 $3 кулланучы хисап язмасын төзеде',
 'logentry-newusers-autocreate' => 'Автоматик рәвештә $1 хисап язмасы төзелде.',
-'newuserlog-byemail' => 'серсүз электрон почта аша җибәрелде',
 'rightsnone' => '(юк)',
 
 # Feedback

@@ -3819,7 +3819,6 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'logentry-newusers-create' => "S'ha creat el compte d'usuari $1",
 'logentry-newusers-create2' => "$1 ha creat el compte d'usuari $3",
 'logentry-newusers-autocreate' => "El compte d'usuari $1 ha estat creat de manera automàtica",
-'newuserlog-byemail' => 'contrasenya enviada per correu electrònic',
 'logentry-rights-rights' => '$1 ha canviat la pertinença de grups per $3 de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 ha canviat la pertinença de grups per $3',
 'logentry-rights-autopromote' => '$1 ha estat promogut automàticament de $4 a $5',

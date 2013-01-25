@@ -2339,7 +2339,6 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'logentry-newusers-create' => "$1 a-st ahivé on conte d' uzeu",
 'logentry-newusers-create2' => "$1 a-st ahivé on conte d' uzeu $3",
 'logentry-newusers-autocreate' => 'li conte $1 a stî ahivé otomaticmint',
-'newuserlog-byemail' => "emilaedje d' on scret",
 'rightsnone' => '(nouk)',
 
 # Feedback

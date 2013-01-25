@@ -3777,7 +3777,6 @@ Kjo faqe është duke përjetuar vështirësi teknike.',
 'logentry-newusers-create' => '$1 krijoi një llogari',
 'logentry-newusers-create2' => '$1 krijoi një llogari $3',
 'logentry-newusers-autocreate' => 'Llogaria $1 u krijua automatikisht',
-'newuserlog-byemail' => 'fjalëkalimi u dërgua në postën elektronike',
 'rightsnone' => '(asgjë)',
 
 # Feedback

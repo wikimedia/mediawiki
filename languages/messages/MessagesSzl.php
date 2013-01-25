@@ -2842,7 +2842,6 @@ Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 # New logging system
 'revdelete-restricted' => 'naštaluj uograničyńo do administratorůw',
 'revdelete-unrestricted' => 'wycofej uograničyńo do administratorůw',
-'newuserlog-byemail' => 'hasło uostało wysłane e-brifym',
 'rightsnone' => 'podstawowo',
 
 );

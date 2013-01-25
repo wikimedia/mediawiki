@@ -3042,7 +3042,6 @@ Coba ku sawangan normal.',
 # New logging system
 'revdelete-restricted' => 'akses geus dibatesan ukur keur kuncén',
 'revdelete-unrestricted' => 'Watesan akses kuncén dihapuskeun',
-'newuserlog-byemail' => 'Sandi geus dikirim maké surélék.',
 'rightsnone' => '(euweuh)',
 
 # Feedback

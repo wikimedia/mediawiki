@@ -3710,7 +3710,6 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-newusers-create' => 'Dechreuwyd y cyfrif defnyddiwr $1',
 'logentry-newusers-create2' => 'Dechreuwyd y cyfrif defnyddiwr $3 gan $1',
 'logentry-newusers-autocreate' => 'Crëwyd y cyfrif $1 yn awtomatig',
-'newuserlog-byemail' => 'anfonwyd y cyfrinair trwy e-bost',
 'rightsnone' => '(dim)',
 
 # Feedback

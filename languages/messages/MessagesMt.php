@@ -3805,7 +3805,6 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'logentry-newusers-create' => 'Il-kont $1 ġie maħluq',
 'logentry-newusers-create2' => 'Il-kont $3 ġie maħluq minn $1',
 'logentry-newusers-autocreate' => 'Il-kont $1 ġie maħluq awtomatikament',
-'newuserlog-byemail' => "il-password intbagħtet permezz ta' posta elettronika",
 'logentry-rights-rights' => "$1 biddel is-sħubija ta' $3 minn $4 għal $5",
 'logentry-rights-rights-legacy' => "$1 biddel is-sħubija fil-gruppi ta' $3",
 'logentry-rights-autopromote' => '$1 ġie awtomatikament promoss minn $4 għal $5',

@@ -2198,7 +2198,6 @@ Man nga tamit  [[Special:EditWatchlist/raw|soppi ko]].',
 # New logging system
 'revdelete-restricted' => 'doxalub digal ngir yorkat yi',
 'revdelete-unrestricted' => 'digal ngir yorkat yi deñ na',
-'newuserlog-byemail' => 'baatujáll bi yónne nañu ko cib bataaxal',
 'rightsnone' => '(menn)',
 
 );

@@ -3122,7 +3122,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'محدودیت آن په مدیران سیستم بوت',
 'revdelete-unrestricted' => 'به زور چه مدیران سیستم محدودیتان',
-'newuserlog-byemail' => 'کلمه رمز گون ایمیل دیم دهگ بوت',
 'rightsnone' => '(هچ یک)',
 
 );

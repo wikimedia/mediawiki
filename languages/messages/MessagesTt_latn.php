@@ -2186,7 +2186,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 
 # New logging system
 'revdelete-restricted' => 'çikläwlär idaräçelärgä dä qullanıla',
-'newuserlog-byemail' => 'sersüz elektron poçta aşa cibärelde',
 'rightsnone' => '(yuq)',
 
 );

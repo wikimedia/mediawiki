@@ -4333,7 +4333,6 @@ $5
 'logentry-newusers-create' => '$1 {{GENDER:|је отворио|је отворила|је отворио}} кориснички налог',
 'logentry-newusers-create2' => '$1 {{GENDER:|је отворио|је отворила|је отворио}} кориснички налог $3',
 'logentry-newusers-autocreate' => 'Налог $1 је самостално отворен',
-'newuserlog-byemail' => 'лозинка је послата е-поштом',
 'logentry-rights-rights' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3 из $4 у $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|је променио|је променила|је променио}} чланство групе за $3',
 'logentry-rights-autopromote' => '$1 је аутоматски {{GENDER:$1|унапређен|унапређена|унапређен}} из $4 у $5',

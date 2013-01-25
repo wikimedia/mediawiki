@@ -3983,7 +3983,6 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'logentry-newusers-create' => 'Suradnički račun $1 je otvoren.',
 'logentry-newusers-create2' => '$1 je  {{GENDER:$2|otvorio|otvorila}} suradnički račun $3',
 'logentry-newusers-autocreate' => 'Suradnički račun $1 je automatski stvoren',
-'newuserlog-byemail' => 'lozinka poslana e-poštom',
 'logentry-rights-rights' => '$1 {{GENDER:$2|je promijenio|je promijenila}} suradnička prava računa $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|je promijenio|je promijenila|je promijenio}} članstvo grupe suradničkog računa $3',
 'logentry-rights-autopromote' => 'Suradničkom računu $1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5',

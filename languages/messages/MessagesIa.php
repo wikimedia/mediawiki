@@ -3886,7 +3886,6 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'logentry-newusers-create' => 'Le conto de usator $1 ha essite create',
 'logentry-newusers-create2' => 'Le conto de usator $3 ha essite create per $1',
 'logentry-newusers-autocreate' => 'Le conto $1 ha essite create automaticamente',
-'newuserlog-byemail' => 'contrasigno inviate per e-mail',
 'logentry-rights-rights' => '$1 cambiava le appertinentia a gruppos pro $3 de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 cambiava le appertinentia a gruppos pro $3',
 'logentry-rights-autopromote' => '$1 ha essite automaticamente promovite de $4 a $5',

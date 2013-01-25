@@ -3959,7 +3959,6 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'logentry-newusers-create' => 'Bol vytvorený používateľský účet $1',
 'logentry-newusers-create2' => '$1 vytvoril používateľský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky bol založený účet $1',
-'newuserlog-byemail' => 'heslo poslané emailom',
 'logentry-rights-rights' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách z $4 na $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmenil|zmenila}} členstvo $3 v skupinách',
 'logentry-rights-autopromote' => '$1 {{GENDER:$2|bol automaticky povýšený|bola automaticky povýšená}} z $4 na $5',

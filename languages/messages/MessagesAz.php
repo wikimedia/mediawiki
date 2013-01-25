@@ -2985,7 +2985,6 @@ Bu saytda texniki problemlər var.',
 'logentry-newusers-create' => '$1 istifadəçi hesabı yaratdı',
 'logentry-newusers-create2' => '$1 $3 üçün istifadəçi hesabı yaratdı',
 'logentry-newusers-autocreate' => '$1 hesabı avtomatik yaradıldı',
-'newuserlog-byemail' => 'parol e-maillə göndərildi',
 'rightsnone' => '(yoxdur)',
 
 # Feedback

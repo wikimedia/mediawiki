@@ -3152,7 +3152,6 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 # New logging system
 'revdelete-restricted' => 'administratorlara goýlan çäklendirmeler',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
-'newuserlog-byemail' => 'parol e-poçta bilen iberildi',
 'rightsnone' => '(hiç biri)',
 
 # Search suggestions

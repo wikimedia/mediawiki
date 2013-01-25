@@ -4153,7 +4153,6 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-newusers-create' => 'Gebruiker $1 is aangemaakt',
 'logentry-newusers-create2' => 'Gebruiker $3 is aangemaakt door $1',
 'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
-'newuserlog-byemail' => 'wachtwoord is verzonden per e-mail',
 'logentry-rights-rights' => '$1 heeft groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
 'logentry-rights-rights-legacy' => '$1 heeft groepslidmaatschap voor $3 gewijzigd',
 'logentry-rights-autopromote' => '$1 is automatisch gepromoveerd van $4 naar $5',

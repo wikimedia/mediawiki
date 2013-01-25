@@ -431,9 +431,9 @@ $messages = array(
 'category-empty' => "''Kategorien inneheld for tida ingen sider eller mediefiler.''",
 'hidden-categories' => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
 'hidden-category-category' => 'Gøymde kategoriar',
-'category-subcat-count' => 'Kategorien har {{PLURAL:$2|berre den følgjande underkategorien|{{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2}}.',
-'category-subcat-count-limited' => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
-'category-article-count' => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande sida|dei følgjande {{PLURAL:$1|side|$1 sidene}}, av totalt $2}}.',
+'category-subcat-count' => 'Kategorien har {{PLURAL:$2|berre denne underkategorien|{{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}, av totalt $2}}.',
+'category-subcat-count-limited' => 'Kategorien har {{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}.',
+'category-article-count' => 'Kategorien inneheld {{PLURAL:$2|berre denne sida|{{PLURAL:$1|denne sida|desse $1 sidene}}, av totalt $2}}.',
 'category-article-count-limited' => 'Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
 'category-file-count' => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande fila|dei følgjande {{PLURAL:$1|fil|$1 filene}}, av totalt $2}}.',
 'category-file-count-limited' => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
@@ -740,7 +740,7 @@ Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}
 'gotaccount' => "Har du ein brukarkonto? '''$1'''.",
 'gotaccountlink' => 'Logg inn',
 'userlogin-resetlink' => 'Har du gløymd påloggingsopplysingane dine?',
-'createaccountmail' => 'over e-post',
+'createaccountmail' => 'Bruk eit mellombels tilfeldig passord og send det til e-postadressa som er oppgjeven under',
 'createaccountreason' => 'Årsak:',
 'badretype' => 'Passorda du skreiv inn er ikkje like.',
 'userexists' => 'Brukarnamnet er alt i bruk. Vel eit anna brukarnamn.',
@@ -1014,9 +1014,9 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 
 '''LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!'''",
 'longpageerror' => "'''Feil: Teksten du sende inn er {{PLURAL:$1|éin kilobyte|$1 kilobyte}} stor, noko som er større enn øvstegrensa på {{PLURAL:$2|éin kilobyte|$2 kilobyte}}.''' Han kan difor ikkje lagrast.",
-'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
+'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
 
-Systemadministratoren som låste databasen gav følgjande årsak: $1",
+Systemadministratoren som låste databasen gav denne årsaka: $1",
 'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endra henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
 'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.
@@ -2074,7 +2074,7 @@ Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja
 'ntransclusions' => 'brukt på $1 {{PLURAL:$1|side|sider}}',
 'specialpage-empty' => 'Det er ingen resultat for denne rapporten.',
 'lonelypages' => 'Foreldrelause sider',
-'lonelypagestext' => 'Følgjande sider er ikkje lenkja til på andre sider på {{SITENAME}}.',
+'lonelypagestext' => 'Desse sidene er ikkje lenkja til eller inkluderte på andre sider på {{SITENAME}}.',
 'uncategorizedpages' => 'Ukategoriserte sider',
 'uncategorizedcategories' => 'Ukategoriserte kategoriar',
 'uncategorizedimages' => 'Ukategoriserte filer',
@@ -2206,7 +2206,7 @@ Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
 # Special:ActiveUsers
 'activeusers' => 'Liste over aktive brukarar',
 'activeusers-intro' => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
-'activeusers-count' => '{{PLURAL:$1|Éi endring|$1 endringar}} {{PLURAL:$3|det siste døgeret|dei siste $3 døgra}}',
+'activeusers-count' => '{{PLURAL:$1|Éi handling|$1 handlingar}} {{PLURAL:$3|det siste døgeret|dei siste $3 døgra}}',
 'activeusers-from' => 'Vis brukarar frå og med:',
 'activeusers-hidebots' => 'Skjul botar',
 'activeusers-hidesysops' => 'Skjul administratorar',
@@ -3908,7 +3908,6 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'logentry-newusers-create' => 'Brukarkontoen $1 vart oppretta',
 'logentry-newusers-create2' => 'Brukarkontoen $3 vart oppretta av $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
-'newuserlog-byemail' => 'passordet er sendt på e-post',
 'logentry-rights-rights' => '$1 endra gruppemedlemskap for $3 frå $4 til $5',
 'logentry-rights-rights-legacy' => '$1 endra gruppemedlemskap for $3',
 'logentry-rights-autopromote' => '$1 vart automatisk forfremja frå $4 til $5',
@@ -3966,6 +3965,7 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'api-error-ok-but-empty' => 'Intern feil: ikkje noko svar frå tenaren.',
 'api-error-overwrite' => 'Det er ikkje tillate å skriva over filer som alt finst.',
 'api-error-stashfailed' => 'Intern feil: tenaren greidde ikkje å lagra ei mellombels fil.',
+'api-error-publishfailed' => 'Intern feil: tenaren greidde ikkje å publisera mellombels fil.',
 'api-error-timeout' => 'Tenaren svara ikkje innan tida svar var venta.',
 'api-error-unclassified' => 'Det oppstod ein ukjend feil.',
 'api-error-unknown-code' => 'Ukjend feil: «$1»',

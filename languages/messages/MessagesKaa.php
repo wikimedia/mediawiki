@@ -1942,7 +1942,6 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 # New logging system
 'revdelete-restricted' => "administratorlarg'a qollanılg'an sheklewler",
 'revdelete-unrestricted' => "administratorlardan alıp taslang'an sheklewler",
-'newuserlog-byemail' => 'parol e-mail arqalı jiberildi',
 'rightsnone' => '(hesh qanday)',
 
 );

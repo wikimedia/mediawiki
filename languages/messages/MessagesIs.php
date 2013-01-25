@@ -3703,7 +3703,6 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'logentry-newusers-create' => 'Notandaaðgangurinn $1 var stofnaður',
 'logentry-newusers-create2' => '$1 stofnaði notandaaðganginn $3',
 'logentry-newusers-autocreate' => 'Aðgangurinn $1 var stofnaður sjálfvirkt',
-'newuserlog-byemail' => 'lykilorð sent með tölvupósti',
 'rightsnone' => '(engin)',
 
 # Feedback
