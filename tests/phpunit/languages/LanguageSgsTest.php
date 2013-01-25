@@ -7,18 +7,22 @@
 
 /** Tests for MediaWiki languages/classes/LanguageSgs.php */
 class LanguageSgsTest extends LanguageClassesTestCase {
-
-	/** @dataProvider providePluralAllForms */
-	function testPluralAllForms( $result, $value ) {
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providePluralAllForms() {
-		return array(
-			array( 'many', 0 ),
-			array( 'one', 1 ),
-			array( 'few', 2 ),
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
+		return array (
+			array( 'many',  0 ),
+			array( 'one',   1 ),
+			array( 'few',   2 ),
 			array( 'other', 3 ),
 			array( 'many', 10 ),
 			array( 'many', 11 ),

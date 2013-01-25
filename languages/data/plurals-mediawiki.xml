@@ -2,6 +2,7 @@
 <!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
 <supplementalData>
 	<plurals>
+		<!-- What is this override for Hebrew based on? Is there a CLDR ticket for this? -Ryan Kaldari 2013-01-28 -->
 		<pluralRules locales="he">
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>

@@ -6,7 +6,6 @@
 
 /** Tests for MediaWiki languages/LanguageAr.php */
 class LanguageArTest extends LanguageClassesTestCase {
-
 	function testFormatNum() {
 		$this->assertEquals( '١٬٢٣٤٬٥٦٧', $this->getLang()->formatNum( '1234567' ) );
 		$this->assertEquals( '-١٢٫٨٩', $this->getLang()->formatNum( -12.89 ) );
@@ -49,6 +48,11 @@ class LanguageArTest extends LanguageClassesTestCase {
 	function testPlural( $result, $value ) {
 		$forms = array( 'zero', 'one', 'two', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
+	}
+
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
 	function providePlural() {
