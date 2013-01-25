@@ -3659,7 +3659,6 @@ Situs ngini mangalami kangalihan teknik.',
 'logentry-newusers-create' => '$1 ma-ulah sabuting akun pamakai',
 'logentry-newusers-create2' => '$1 ma-ulah sabuting akun pamakai $3',
 'logentry-newusers-autocreate' => 'Akun $1 utumatis diulah',
-'newuserlog-byemail' => 'Katasunduk dikirimakan lung suril.',
 'rightsnone' => '(kadada)',
 
 # Feedback

@@ -3158,7 +3158,6 @@ Tovuti hii inapata matatatizo wakati huu.',
 'logentry-newusers-create' => '$1 alianzisha akaunti ya mtumiaji',
 'logentry-newusers-create2' => '$1 alianzisha akaunti ya mtumiaji $3',
 'logentry-newusers-autocreate' => 'Akaunti ya mtumiaji $1 ilianzishwa na mashine',
-'newuserlog-byemail' => 'neno la siri limetumwa kwa barua pepe',
 'rightsnone' => '(hana)',
 
 # Feedback

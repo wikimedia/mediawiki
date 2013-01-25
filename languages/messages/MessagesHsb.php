@@ -3740,7 +3740,6 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'logentry-newusers-create' => 'Wužiwarske konto $1 je so załožiło',
 'logentry-newusers-create2' => '$1 załoži wužiwarske konto $3',
 'logentry-newusers-autocreate' => 'Konto $1 je so awtomatisce załožiło',
-'newuserlog-byemail' => 'Hesło z e-mejlku pósłane',
 'logentry-rights-rights' => '$1 změni skupinske čłonstwo za $3 z $4 do $5',
 'logentry-rights-rights-legacy' => '$1 změni skupinske čłonstwo za $3',
 'logentry-rights-autopromote' => '$1 powyši so awtomatisce wot $4 do $5',

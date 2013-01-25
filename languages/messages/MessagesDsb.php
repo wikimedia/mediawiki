@@ -3749,7 +3749,6 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'logentry-newusers-create' => 'Wužywarske konto $1 jo se załožyło',
 'logentry-newusers-create2' => '$1 jo załožył wužywarske konto $3',
 'logentry-newusers-autocreate' => 'Konto $1 jo se awtomatiski załožyło',
-'newuserlog-byemail' => 'Pótajne słowo bu pśez e-mail pósłane.',
 'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 změnił',
 'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 změnił',
 'logentry-rights-autopromote' => '$1 jo se awtomatiski wót $4 do $5 pówušył',

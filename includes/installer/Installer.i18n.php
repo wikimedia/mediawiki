@@ -652,6 +652,7 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 * $1 - a link to the SQLite home page having the anchor text "SQLite".',
 	'config-support-oracle' => 'Parameters:
 * $1 - a link to the Oracle home page, the anchor text of which is "Oracle".',
+	'config-support-ibm_db2' => 'Used in the DBConnect step of the installer, explaining what is the ibm_db2 database',
 	'config-connection-error' => '$1 is the external error from the database, such as "DB connection error: Access denied for user \'dba\'@\'localhost\' (using password: YES) (localhost)."
 
 If you\'re translating this message to a right-to-left language, consider writing <nowiki><div dir="ltr">$1.</div></nowiki>. (When the bidi features for HTML5 will be implemented in the browsers, it will probably be a good idea to write it as <nowiki><div dir="auto">$1.</div></nowiki>.)',
@@ -676,6 +677,8 @@ If you\'re translating this message to a right-to-left language, consider writin
 	'config-logo-help' => '',
 	'config-cc-not-chosen' => 'Do not translate the <code>"proceed".</code> part.
 This message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to klick "proceed" so as to return to the MediaWiki installer page.',
+	'config-memcached-servers' => '{{doc-important|Do not translate "memcached".}}
+{{Identical|Memcached server}}',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-install-step-done' => '{{Identical|Done}}',
 	'config-install-database' => '*{{msg-mw|Config-install-database}}
@@ -3863,7 +3866,7 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/de/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung]). Es gibt allerdings einige kleinere Implementierungsfehler, so dass von der Nutzung in einer Produktivumgebung abgeraten wird.',
 	'config-support-sqlite' => '* $1 ist ein verschlanktes Datenbanksystem, das auch gut unterstützt wird ([http://www.php.net/manual/de/pdo.installation.php Anleitung zur Kompilierung von PHP mit SQLite-Unterstützung], verwendet PHP Data Objects (PDO))',
 	'config-support-oracle' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/oci8.installation.php Anleitung zur Kompilierung von PHP mit OCI8-Unterstützung (en)])',
-	'config-support-ibm_db2' => '* $1 ist eine kommerzielle Unternehmensdatenbank',
+	'config-support-ibm_db2' => '* $1 ist eine kommerzielle Unternehmensdatenbank', # Fuzzy
 	'config-header-mysql' => 'MySQL-Einstellungen',
 	'config-header-postgres' => 'PostgreSQL-Einstellungen',
 	'config-header-sqlite' => 'SQLite-Einstellungen',
@@ -4318,7 +4321,7 @@ $messages['el'] = array(
 	'config-invalid-db-type' => 'Μη έγκυρος τύπος βάσης δεδομένων',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Όνομα του βίκι:',
-	'config-site-name-blank' => 'Εισαγάτε όνομα ιστοχώρου.',
+	'config-site-name-blank' => 'Εισάγετε όνομα ιστοχώρου.',
 	'config-project-namespace' => 'Περιοχή ονόματος εγχειρήματος:',
 	'config-ns-generic' => 'Εγχείρημα',
 	'config-ns-site-name' => 'Ίδιο με το όνομα του wiki: $1',
@@ -4613,9 +4616,9 @@ $1
 Si no encuentras en el listado el sistema de base de datos que estás intentando utilizar, sigue las instrucciones vinculadas arriba para habilitar la compatibilidad.',
 	'config-support-mysql' => '* $1 es la base de datos mayoritaria para MediaWiki y la que goza de mayor compatibilidad ([http://www.php.net/manual/es/mysql.installation.php cómo compilar PHP con compatibilidad MySQL])',
 	'config-support-postgres' => '$1 es un popular sistema de base de datos de código abierto, alternativa a MySQL. ([http://www.php.net/manual/es/pgsql.installation.php cómo compilar PHP con compatibilidad PostgreSQL]). Puede haber algunos defectos menores destacables, y no es recomendable para uso en un entorno de producción.',
-	'config-support-sqlite' => '* $1 es una base de datos ligera con gran compatibilidad con MediaWiki. ([http://www.php.net/manual/es/pdo.installation.php Cómo compilar PHP con compatibilidad SQLite], usa PDO)',
+	'config-support-sqlite' => '* $1 es una base de datos ligera con gran compatibilidad con MediaWiki ([http://www.php.net/manual/es/pdo.installation.php cómo compilar PHP con compatibilidad SQLite usando PDO]).',
 	'config-support-oracle' => '* $1 es una base de datos comercial a nivel empresarial ([http://www.php.net/manual/es/oci8.installation.php cómo compilar PHP con compatibilidad con OCI8])',
-	'config-support-ibm_db2' => ' $1  es una base de datos de empresa comercial.',
+	'config-support-ibm_db2' => '* $1 es una base de datos comercial a nivel empresarial ([http://www.php.net/manual/es/ibm-db2.installation.php cómo compilar PHP con compatibilidad con ibm_db2]).', # Fuzzy
 	'config-header-mysql' => 'Configuración de MySQL',
 	'config-header-postgres' => 'Configuración de PostgreSQL',
 	'config-header-sqlite' => 'Configuración de SQLite',
@@ -4755,7 +4758,7 @@ Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterm
 	'config-optional-continue' => 'Hazme más preguntas.',
 	'config-optional-skip' => 'Ya estoy aburrido, sólo instala el wiki.',
 	'config-profile' => 'Perfil de derechos de usuario:',
-	'config-profile-wiki' => 'Wiki tradicional',
+	'config-profile-wiki' => 'Wiki tradicional', # Fuzzy
 	'config-profile-no-anon' => 'Creación de cuenta requerida',
 	'config-profile-fishbowl' => 'Sólo editores autorizados',
 	'config-profile-private' => 'Wiki privado',
@@ -4770,7 +4773,7 @@ Un wiki con '''{{int:config-profile-no-anon}}''' ofrece rendición de cuentas ad
 El escenario '''{{int:config-profile-fishbowl}}''' permite editar a los usuarios autorizados, pero el público puede ver las páginas, incluyendo el historial.
 Un '''{{int:config-profile-private}}''' sólo permite ver páginas a los usuarios autorizados, el mismo grupo al que le está permitido editar.
 
-Configuraciones más complejas de derechos de usuario están disponibles después de la instalación, consulte [//www.mediawiki.org/wiki/Manual:User_rights esta entrada en el manual].",
+Configuraciones más complejas de derechos de usuario están disponibles después de la instalación, consulte [//www.mediawiki.org/wiki/Manual:User_rights esta entrada en el manual].", # Fuzzy
 	'config-license' => 'Copyright and licencia:',
 	'config-license-none' => 'Pie sin licencia',
 	'config-license-cc-by-sa' => 'Creative Commons Reconocimiento Compartir Igual',
@@ -4855,7 +4858,7 @@ Puede que necesiten configuraciones adicionales, pero puedes habilitarlas ahora.
 	'config-install-alreadydone' => "'''Aviso:''' Parece que ya habías instalado MediaWiki y estás intentando instalarlo nuevamente.
 Pasa a la próxima página, por favor.",
 	'config-install-begin' => 'Pulsando "{{int:config-continue}}", se iniciará la instalación de MediaWiki.
-Si todavía desea realizar algún cambio, pulse atrás.',
+Si todavía desea realizar algún cambio, pulse atrás.', # Fuzzy
 	'config-install-step-done' => 'hecho',
 	'config-install-step-failed' => 'falló',
 	'config-install-extensions' => 'Extensiones inclusive',
@@ -5299,7 +5302,7 @@ Asennus saattaa epäonnistua!",
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
 	'config-type-ibm_db2' => 'IBM DB2',
-	'config-support-ibm_db2' => '* $1 on kaupallinen tietokanta yrityskäyttöön.',
+	'config-support-ibm_db2' => '* $1 on kaupallinen tietokanta yrityskäyttöön.', # Fuzzy
 	'config-header-mysql' => 'MySQL-asetukset',
 	'config-header-postgres' => 'PostgreSQL-asetukset',
 	'config-header-sqlite' => 'SQLite-asetukset',
@@ -5349,7 +5352,7 @@ Voit [$1 aloittaa wikin käytön].',
 	'config-admin-error-bademail' => 'Annoit virheellisen sähköpostiosoitteen.',
 	'config-almost-done' => 'Olet jo lähes valmis!
 Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
-	'config-profile-wiki' => 'Perinteinen wiki',
+	'config-profile-wiki' => 'Avoin wiki',
 	'config-profile-no-anon' => 'Tunnuksen luonti vaaditaan',
 	'config-profile-private' => 'Yksityinen wiki',
 	'config-license' => 'Tekijänoikeus ja lisenssi:',
@@ -5641,7 +5644,7 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-support-postgres' => "* $1 est un système de base de données populaire et ''open source'' qui peut être une alternative à MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). Il peut contenir quelques bogues mineurs et n'est pas recommandé dans un environnement de production.",
 	'config-support-sqlite' => '* $1 est un système de base de données léger qui est bien supporté. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], utilise PDO)',
 	'config-support-oracle' => '* $1 est un système commercial de gestion de base de données d’entreprise. ([http://www.php.net/manual/en/oci8.installation.php Comment compiler PHP avec le support OCI8])',
-	'config-support-ibm_db2' => "* $1 est une base de données d'entreprise commerciale.",
+	'config-support-ibm_db2' => "* $1 est une base de données d'entreprise commerciale.", # Fuzzy
 	'config-header-mysql' => 'Paramètres de MySQL',
 	'config-header-postgres' => 'Paramètres de PostgreSQL',
 	'config-header-sqlite' => 'Paramètres de SQLite',
@@ -6454,7 +6457,7 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-support-postgres' => '* $1 é un sistema de base de datos popular e de código aberto como alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar o PHP con soporte PostgreSQL]). É posible que haxa algúns pequenos erros e non se recomenda o seu uso nunha contorna de produción.',
 	'config-support-sqlite' => '* $1 é un sistema de base de datos lixeiro moi ben soportado. ([http://www.php.net/manual/en/pdo.installation.php Como compilar o PHP con soporte SQLite], emprega PDO)',
 	'config-support-oracle' => '* $1 é un sistema comercial de xestión de base de datos de empresa. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con soporte OCI8])',
-	'config-support-ibm_db2' => '* $1 é unha base de datos de empresa comercial.',
+	'config-support-ibm_db2' => '* $1 é unha base de datos de empresa comercial.', # Fuzzy
 	'config-header-mysql' => 'Configuración do MySQL',
 	'config-header-postgres' => 'Configuración do PostgreSQL',
 	'config-header-sqlite' => 'Configuración do SQLite',
@@ -9960,9 +9963,9 @@ Unicode を少しでも利用する可能性がある場合は、[//www.mediawik
 PHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysql</code> を実行して、データベース クライアントを使用できるように再設定してください。
 Debian または Ubuntu のパッケージから PHP をインストールした場合は、php5-mysql モジュールもインストールする必要があります。',
 	'config-no-fts3' => "'''警告''': SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
-	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
+	'config-register-globals' => "'''警告: PHP の <code>[http://php.net/register_globals register_globals]</code> オプションが有効になっています。'''
 '''可能なら無効化してください。'''
-MediaWikiは動作しますが、サーバーは、潜在的なセキュリティ脆弱性を露呈します。",
+MediaWiki は動作しますが、サーバーの潜在的なセキュリティ脆弱性が露呈されます。",
 	'config-magic-quotes-runtime' => "'''致命的エラー: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] が動作しています!'''
 このオプションは、予期せずデータ入力を破壊します。
 このオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
@@ -10090,11 +10093,11 @@ PostgreSQLを使用している場合、UNIXソケットで接続するにはこ
 $1
 
 使用しようとしているデータベース システムが下記の一覧にない場合は、上記リンク先の手順に従ってインストールしてください。',
-	'config-support-mysql' => '* $1はMediaWikiの主要な対象で、もっともサポートされています（[http://www.php.net/manual/en/mysql.installation.php MySQLのサポート下でPHPをコンパイルする方法]）',
-	'config-support-postgres' => '* $1は、MySQLの代替として、人気のあるオープンソースデータベースシステムです（[http://www.php.net/manual/en/pgsql.installation.php PostgreSQLのサポート下でPHPをコンパイルする方法]）',
-	'config-support-sqlite' => '* $1は、良くサポートされている、軽量データベースシステムです。（[http://www.php.net/manual/en/pdo.installation.php SQLiteのサポート下でPHPをコンパイルする方法]、PDOを使用）',
-	'config-support-oracle' => '* $1は商業企業のデータベースです。（[http://www.php.net/manual/en/oci8.installation.php OCI8サポートなPHPをコンパイルする方法]）',
-	'config-support-ibm_db2' => '* $1 は商業企業のデータベースです。',
+	'config-support-mysql' => '* $1はMediaWikiの主要な対象であり、最もサポートされています ([http://www.php.net/manual/en/mysql.installation.php MySQLに対応したPHPをコンパイルする方法])',
+	'config-support-postgres' => '* $1は、MySQLの代替として人気があるオープンソースのデータベースシステムです ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQLに対応したPHPをコンパイルする方法])',
+	'config-support-sqlite' => '* $1は、良くサポートされている、軽量データベースシステムです。([http://www.php.net/manual/ja/pdo.installation.php SQLiteに対応したPHPをコンパイルする方法]、PDOを使用)',
+	'config-support-oracle' => '* $1は商業企業のデータベースです。([http://www.php.net/manual/en/oci8.installation.php OCI8サポートなPHPをコンパイルする方法])',
+	'config-support-ibm_db2' => '* $1 は商業企業のデータベースです。', # Fuzzy
 	'config-header-mysql' => 'MySQL の設定',
 	'config-header-postgres' => 'PostgreSQL の設定',
 	'config-header-sqlite' => 'SQLite の設定',
@@ -10175,7 +10178,7 @@ chmod a+w $3</pre>',
 
 '''MyISAM'''は、利用者が1人の場合、あるいは読み込み専用でインストールする場合に、より処理が早くなるでしょう。
 ただし、MyISAMのデータベースは、InnoDBより高頻度で破損する傾向があります。",
-	'config-mysql-charset' => 'データベースの文字セット：',
+	'config-mysql-charset' => 'データベースの文字セット:',
 	'config-mysql-binary' => 'バイナリ',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-mysql-charset-help' => "'''バイナリ モード'''では、MediaWiki は、UTF-8 テキストをデータベースのバイナリ フィールドに格納します。
@@ -10302,8 +10305,8 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 中〜大規模サイトではこれを有効にすることを強くお勧めします。小規模サイトでも同様に効果があります。',
 	'config-cache-none' => 'キャッシングしない(機能は取り払われます、しかもより大きなウィキサイト上でスピードの問題が発生します)',
 	'config-cache-accel' => 'PHP オブジェクト キャッシュ (APC、XCache、WinCache のいずれか)',
-	'config-cache-memcached' => 'Memcachedを使用（追加の設定が必要です）',
-	'config-memcached-servers' => 'メモリをキャッシュされたサーバ:',
+	'config-cache-memcached' => 'memcached を使用 (追加の設定が必要)',
+	'config-memcached-servers' => 'memcached サーバー:',
 	'config-memcached-help' => 'Memcachedを使用するIPアドレスの一覧。
 カンマ区切りで、利用する特定のポートの指定が必要です。例:
 127.0.0.1:11211
@@ -12510,7 +12513,7 @@ $1
 	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL]). Може сè уште да има некои грешки. па затоа не се препорачува за употреба во производна средина.',
 	'config-support-sqlite' => '* $1 е лесен систем за бази на податоци кој е многу добро поддржан. ([http://www.php.net/manual/en/pdo.installation.php Како да составите PHP со поддршка за SQLite], користи PDO)',
 	'config-support-oracle' => '* $1 е база на податоци на комерцијално претпријатие. ([http://www.php.net/manual/en/oci8.installation.php Како да составите PHP со поддршка за OCI8])',
-	'config-support-ibm_db2' => '* $1 is комерцијална база на податоциза фирми.',
+	'config-support-ibm_db2' => '* $1 is комерцијална база на податоциза фирми.', # Fuzzy
 	'config-header-mysql' => 'Нагодувања на MySQL',
 	'config-header-postgres' => 'Нагодувања на PostgreSQL',
 	'config-header-sqlite' => 'Нагодувања на SQLite',
@@ -13984,7 +13987,7 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-support-postgres' => '* $1 is een populair open source databasesysteem als alternatief voor MySQL ([http://www.php.net/manual/en/pgsql.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor PostgreSQL]). Het is mogelijk dat er een aantal bekende problemen zijn met MediaWiki in combinatie met deze database en daarom wordt PostgreSQL niet aanbevolen voor een productieomgeving.',
 	'config-support-sqlite' => '* $1 is een zeer goed ondersteund lichtgewicht databasesysteem ([http://www.php.net/manual/en/pdo.installation.php hoe PHP gecompileerd zijn met ondersteuning voor SQLite]; gebruikt PDO)',
 	'config-support-oracle' => '* $1 is een commerciële data voor grote bedrijven ([http://www.php.net/manual/en/oci8.installation.php PHP compileren met ondersteuning voor OCI8]).',
-	'config-support-ibm_db2' => '* $1 is een commerciële enterprisedatabase.',
+	'config-support-ibm_db2' => '* $1 is een commerciële enterprisedatabase.', # Fuzzy
 	'config-header-mysql' => 'MySQL-instellingen',
 	'config-header-postgres' => 'PostgreSQL-instellingen',
 	'config-header-sqlite' => 'SQLite-instellingen',
@@ -15459,7 +15462,7 @@ S'a vëd pa listà sì-sota ël sistema ëd base ëd dàit ch'a preuva a dovré,
 	'config-support-postgres' => "* $1 e l'é un sistema ëd base ëd dàit popolar a sorgiss duverta com alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php com compilé PHP con ël manteniment ëd PostgreSQL]). A peulo ess-ie chèich cit bigat, e a l'é nen arcomandà ëd dovrelo an n'ambient ëd produssion.",
 	'config-support-sqlite' => "* $1 e l'é un sistema ëd base ëd dàit leger che a l'é motobin bin mantnù ([http://www.php.net/manual/en/pdo.installation.php com compilé PHP con ël manteniment ëd SQLite], a deuvra PDO)",
 	'config-support-oracle' => "* $1 a l'é na base ëd dàit comersial për j'amprèise. ([http://www.php.net/manual/en/oci8.installation.php Com compilé PHP con ël manteniment OCI8])",
-	'config-support-ibm_db2' => "* $1 a l'é na base ëd dàit d'asiendal comersial.",
+	'config-support-ibm_db2' => "* $1 a l'é na base ëd dàit d'asiendal comersial.", # Fuzzy
 	'config-header-mysql' => 'Ampostassion MySQL',
 	'config-header-postgres' => 'Ampostassion PostgreSQL',
 	'config-header-sqlite' => 'Ampostassion SQLite',
@@ -16949,7 +16952,7 @@ $1
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL]). Могут встречаться небольшие неисправленные ошибки, не рекомендуется для использования в рабочей системе.',
 	'config-support-sqlite' => '* $1 — это легковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
 	'config-support-oracle' => '* $1 — это коммерческая база данных масштаба предприятия. ([http://www.php.net/manual/en/oci8.installation.php Как собрать PHP с поддержкой OCI8])',
-	'config-support-ibm_db2' => '$1 — коммерческая база данных масштаба предприятия.',
+	'config-support-ibm_db2' => '$1 — коммерческая база данных масштаба предприятия.', # Fuzzy
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
 	'config-header-sqlite' => 'Настройки SQLite',
@@ -17088,7 +17091,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Произвести тонкую настройку',
 	'config-optional-skip' => 'Хватит, установить вики',
 	'config-profile' => 'Профиль прав прользователей:',
-	'config-profile-wiki' => 'Традиционная вики',
+	'config-profile-wiki' => 'Открытая вики',
 	'config-profile-no-anon' => 'Требуется создание учётной записи',
 	'config-profile-fishbowl' => 'Только для авторизованных редакторов',
 	'config-profile-private' => 'Закрытая вики',
@@ -17098,7 +17101,7 @@ chmod a+w $3</pre>',
 Однако, движок MediaWiki можно использовать и иными способами, и не далеко не всех удаётся убедить в преимуществах открытой вики-работы.
 Так что в вас есть выбор.
 
-Конфигурация '''«{{int:config-profile-wiki}}»''' позволяет всем править страницы даже не регистрируясь на сайте. Конфигурация '''{{int:config-profile-no-anon}}''' обеспечивает дополнительный учёт, но может отсечь случайных участников.
+Модель '''«{{int:config-profile-wiki}}»''' позволяет всем править страницы даже не регистрируясь на сайте. Конфигурация '''{{int:config-profile-no-anon}}''' обеспечивает дополнительный учёт, но может отсечь случайных участников.
 
 Сценарий '''«{{int:config-profile-fishbowl}}»''' разрешает редактирование только определённым участникам, но общедоступным остаётся просмотр страниц, в том числе просмотр истории изменения. В режиме '''«{{int:config-profile-private}}»''' просмотр страниц разрешён только определённым пользователям, какая-то их часть может иметь также права на редактирование.
 
@@ -17186,7 +17189,7 @@ GFDL может быть использована, но она сложна дл
 	'config-install-alreadydone' => "'''Предупреждение:''' Вы, кажется, уже устанавливали MediaWiki и пытаетесь произвести повторную установку.
 Пожалуйста, перейдите на следующую страницу.",
 	'config-install-begin' => 'Нажав «{{int:config-continue}}», вы начнёте установку MediaWiki.
-Если вы хотите внести изменения, нажмите «Назад».',
+Если вы хотите внести изменения, нажмите «{{int:config-back}}».',
 	'config-install-step-done' => 'выполнено',
 	'config-install-step-failed' => 'не удалось',
 	'config-install-extensions' => 'В том числе расширения',
@@ -19952,7 +19955,7 @@ $1
 	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）。本程序中可能依然存在一些小而明显的错误，因此并不建议在生产环境中使用该数据库系统。',
 	'config-support-sqlite' => '* $1是一种轻量级的数据库系统，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）',
 	'config-support-oracle' => '* $1是一种商用企业级的数据库。（[http://www.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）',
-	'config-support-ibm_db2' => '* $1是一种商用企业级数据库。',
+	'config-support-ibm_db2' => '* $1是一种商用企业级数据库。', # Fuzzy
 	'config-header-mysql' => 'MySQL设置',
 	'config-header-postgres' => 'PostgreSQL设置',
 	'config-header-sqlite' => 'SQLite设置',

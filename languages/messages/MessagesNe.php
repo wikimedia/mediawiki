@@ -3432,7 +3432,6 @@ $5
 'revdelete-restricted' => 'प्रबन्धकहरुमाथि सीमितता लागू गरियो',
 'revdelete-unrestricted' => 'प्रवन्धककोलागि निषेधहरु हटाइयो ।',
 'logentry-move-move' => '$1 द्वारा $3 पृष्ठलाई $4 मा सारियो',
-'newuserlog-byemail' => 'इ मेलबाट पठाइएको प्रवेशशव्द',
 'rightsnone' => '(कुनैपनि होइन)',
 
 # Feedback

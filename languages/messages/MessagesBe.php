@@ -3525,7 +3525,6 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'logentry-newusers-create' => '$1 стварыў уліковы запіс удзельніка',
 'logentry-newusers-create2' => '$1 стварыў уліковы запіс удзельніка $3',
 'logentry-newusers-autocreate' => 'Аўтаматычна створаны ўліковы запіс $1',
-'newuserlog-byemail' => 'пароль адасланы эл.поштай',
 'rightsnone' => '(няма)',
 
 # Feedback

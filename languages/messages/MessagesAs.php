@@ -3864,7 +3864,6 @@ $5
 'logentry-newusers-create' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
 'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰা হ'ল",
 'logentry-newusers-autocreate' => '$1’ৰ একাউণ্ট স্বয়ংক্ৰিয়ভাৱে সৃষ্টি কৰা হৈছিল',
-'newuserlog-byemail' => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
 'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
 'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
 'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',

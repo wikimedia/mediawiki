@@ -1751,7 +1751,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'logentry-newusers-create' => '$1 эсеп жазуусу жаратылды',
 'logentry-newusers-create2' => '$1 эсеп жазуусун жаратты',
 'logentry-newusers-autocreate' => 'Автоматтуу түрдө $1 эсеп жазуусу жаратылды',
-'newuserlog-byemail' => 'сырсөз эл. почта аркылуу жөнөтүлдү',
 'rightsnone' => '(жок)',
 
 # Feedback

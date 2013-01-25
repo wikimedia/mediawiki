@@ -3677,7 +3677,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'logentry-newusers-create' => '$1 диэн кыттааччы бэлиэтэннэ',
 'logentry-newusers-create2' => '$3 кыттааччыны $1 бэлиэтээбит',
 'logentry-newusers-autocreate' => 'Маннык аат $1 аптамаатынан бэлиэтэнилиннэ',
-'newuserlog-byemail' => 'киирии тыл эл. почтаннан ыытылынна',
 'rightsnone' => '(суох)',
 
 # Feedback

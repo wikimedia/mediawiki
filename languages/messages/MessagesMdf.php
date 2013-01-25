@@ -2887,7 +2887,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'нолдаф тевс кардафксне системонь вятиксненди',
 'revdelete-unrestricted' => 'системонь вятиксненди кардафксне валхтфт',
-'newuserlog-byemail' => 'сувама валце кучф электрононь сёрмаса',
 'rightsnone' => '(аш)',
 
 );

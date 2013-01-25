@@ -3977,7 +3977,7 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-delete-delete' => '$1 apagou a página $3',
 'logentry-delete-restore' => '$1 restaurou a página $3',
 'logentry-delete-event' => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
-'logentry-delete-revision' => '$1 alterou a visibilidade {{PLURAL:$5|de uma revisão|das $5 revisões}} em $3: $4',
+'logentry-delete-revision' => '$1 alterou a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} em $3: $4',
 'logentry-delete-event-legacy' => '$1 alterou a visibilidade de uma entrada em $3',
 'logentry-delete-revision-legacy' => '$1 alterou a visibilidade de uma revisão em $3',
 'logentry-suppress-delete' => '$1 suprimiu a página $3',
@@ -4003,7 +4003,6 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-newusers-create' => 'A conta de utilizador $1 foi criada',
 'logentry-newusers-create2' => 'A conta de utilizador $3 foi criada por $1',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
-'newuserlog-byemail' => 'palavra-chave enviada por correio-electrónico',
 'logentry-rights-rights' => '$1 modificou os privilégios do utilizador  $3  de  $4  para $5',
 'rightsnone' => '(nenhum)',
 

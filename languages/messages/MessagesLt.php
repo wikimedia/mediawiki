@@ -3765,7 +3765,6 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'logentry-newusers-create' => '$1 sukūrė naudotojo paskyrą',
 'logentry-newusers-create2' => '$1 sukūrė naudotojo paskyrą $3',
 'logentry-newusers-autocreate' => 'Paskyra $1 buvo sukurta automatiškai',
-'newuserlog-byemail' => 'slaptažodis nusiųstas elektroniniu paštu',
 'logentry-rights-rights' => '$1 pakeista narystė grupėje $3 iš $4 į $5',
 'logentry-rights-rights-legacy' => '$1 pakeista narystė grupėje $3',
 'logentry-rights-autopromote' => '$1 buvo automatiškai pervestas iš $4 į $5',

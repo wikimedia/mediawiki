@@ -2197,7 +2197,7 @@ Vaaditaan vähintään ylätason verkkotunnus, esimerkiksi "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Aktiivisten käyttäjien lista',
 'activeusers-intro' => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
-'activeusers-count' => '$1 {{PLURAL:$1|muokkaus|muokkausta}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
+'activeusers-count' => '$1 {{PLURAL:$1|toiminto|toimintoa}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
 'activeusers-from' => 'Näytä käyttäjät alkaen',
 'activeusers-hidebots' => 'Piilota botit',
 'activeusers-hidesysops' => 'Piilota ylläpitäjät',
@@ -2415,7 +2415,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-locked-access' => "Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
 'protect-cascadeon' => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.',
 'protect-default' => 'Salli kaikki käyttäjät',
-'protect-fallback' => 'Vaadi $1-oikeus',
+'protect-fallback' => 'Salli vain käyttäjät, joilla on oikeus $1',
 'protect-level-autoconfirmed' => 'Estä uudet ja kirjautumattomat käyttäjät',
 'protect-level-sysop' => 'Salli vain ylläpitäjät',
 'protect-summary-cascade' => 'laajennettu',
@@ -2707,7 +2707,7 @@ Voit päivittää sivuun viittaavat ohjaukset automaattisesti ohjaamaan uudelle 
 Jos et halua tätä tehtävän automaattisesti, muista tehdä tarkistukset [[Special:DoubleRedirects|kaksinkertaisten]] tai [[Special:BrokenRedirects|rikkinäisten]] ohjausten varalta.
 Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.
 
-Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa.
+Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on ohjaus, jolla ei ole muokkaushistoriaa.
 Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle.
 
 Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, että tiedät seuraukset ennen kuin siirrät sivun.",
@@ -3067,6 +3067,10 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-contentpage' => 'Lasketaan sisältösivuksi',
 'pageinfo-contentpage-yes' => 'Kyllä',
 'pageinfo-protect-cascading-yes' => 'Kyllä',
+'pageinfo-category-info' => 'Luokkatiedot',
+'pageinfo-category-pages' => 'Sivujen määrä',
+'pageinfo-category-subcats' => 'Alaluokkien määrä',
+'pageinfo-category-files' => 'Tiedostojen määrä',
 
 # Skin names
 'skinname-standard' => 'Perus',
@@ -3153,6 +3157,8 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'minutes' => '{{PLURAL:$1|$1 minuutti|$1 minuuttia}}',
 'hours' => '{{PLURAL:$1|$1 tunti|$1 tuntia}}',
 'days' => '{{PLURAL:$1|$1 päivä|$1 päivää}}',
+'months' => '{{PLURAL:$1|$1 kuukausi|$1 kuukautta}}',
+'years' => '{{PLURAL:$1|$1 vuosi|$1 vuotta}}',
 'ago' => '$1 sitten',
 'just-now' => 'juuri nyt',
 
@@ -3903,7 +3909,6 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'logentry-newusers-create' => 'Käyttäjätunnus $1 luotiin',
 'logentry-newusers-create2' => '$1 loi käyttäjätunnuksen $3',
 'logentry-newusers-autocreate' => 'Käyttäjätunnus $1 luotiin automaattisesti',
-'newuserlog-byemail' => 'salasana lähetetty sähköpostitse',
 'logentry-rights-rights' => '$1 muutti käyttäjän $3 oikeudet ryhmistä $4 ryhmiin $5',
 'logentry-rights-autopromote' => '$1 ylennettiin automaattisesti ryhmistä $4 ryhmiin $5',
 'rightsnone' => '(ei oikeuksia)',
@@ -3959,7 +3964,8 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-nomodule' => 'Sisäinen virhe: tallennusmoduulia ei ole asetettu.',
 'api-error-ok-but-empty' => 'Sisäinen virhe: palvelimelta ei saatu vastausta.',
 'api-error-overwrite' => 'Olemassa olevan tiedoston korvaaminen ei ole sallittua.',
-'api-error-stashfailed' => 'Sisäinen virhe: välikaikaisen tiedoston tallentaminen epäonnistui.',
+'api-error-stashfailed' => 'Sisäinen virhe: Väliaikaisen tiedoston tallentaminen epäonnistui.',
+'api-error-publishfailed' => 'Sisäinen virhe: Väliaikaisen tiedoston julkaiseminen epäonnistui.',
 'api-error-timeout' => 'Palvelin ei vastannut odotetun ajan kuluessa.',
 'api-error-unclassified' => 'Tapahtui tuntematon virhe.',
 'api-error-unknown-code' => 'Tuntematon virhe: $1',

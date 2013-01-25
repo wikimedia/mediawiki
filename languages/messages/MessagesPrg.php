@@ -2707,7 +2707,6 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 # New logging system
 'revdelete-restricted' => 'ensadinnais arāikinsenins per perwaldītajans',
 'revdelete-unrestricted' => 'āupausinais arāikinsenins per perwaldītajans',
-'newuserlog-byemail' => 'kliptaswīrds tengīntan pra e-mail',
 'rightsnone' => '(nisātausna)',
 
 );

@@ -3776,7 +3776,6 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-newusers-create' => 'De Benotzerkont $1 gouf ugeluecht',
 'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch ugeluecht',
-'newuserlog-byemail' => "d'Passwuert gouf per E-Mail geschéckt",
 'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
 'rightsnone' => '(keen)',
 

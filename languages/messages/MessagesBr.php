@@ -3833,7 +3833,6 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-newusers-create' => 'Krouet eo bet ar gont implijer $1',
 'logentry-newusers-create2' => 'Gant $1 eo bet krouet ar gont implijer $3',
 'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
-'newuserlog-byemail' => 'ger-tremen kaset dre bostel',
 'rightsnone' => '(netra)',
 
 # Feedback

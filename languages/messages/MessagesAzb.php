@@ -3663,7 +3663,6 @@ $5
 'logentry-newusers-create' => 'بیر ایستیفاده‌چی حسابی $1 یاراتدی',
 'logentry-newusers-create2' => 'بیر ایستیفاده‌چی $1 حسابی $3 یاراتدی',
 'logentry-newusers-autocreate' => '$1 حسابی اوتوماتیک یارادیلدی',
-'newuserlog-byemail' => 'رمز ایمیل ایله گؤندریلدی',
 'logentry-rights-rights' => '$1 $3-ین قروپ عوضولوگونو $4-دن $5-ه دَییشدیردی',
 'logentry-rights-rights-legacy' => '$1، $3-ین قروپ عوضولوگونو دَییشدیردی',
 'logentry-rights-autopromote' => '$1-ین مقامی اوتوماتیک $4-دن $5-ه آرتیریلدی',

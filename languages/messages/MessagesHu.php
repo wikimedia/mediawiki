@@ -16,6 +16,7 @@
  * @author BáthoryPéter
  * @author CERminator
  * @author Cerasus
+ * @author Csigabi
  * @author Dani
  * @author Dj
  * @author Dorgan
@@ -847,7 +848,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-capture-help' => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
 'passwordreset-email' => 'E-mail cím:',
 'passwordreset-emailtitle' => 'A(z) {{SITENAME}}-fiók adatai',
-'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címrő)l emlékeztetők kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címről) emlékeztetőt kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
@@ -857,7 +858,7 @@ $2
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
-'passwordreset-emailelement' => 'Felhaználónév: $1
+'passwordreset-emailelement' => 'Felhasználónév: $1
 Ideiglenes jelszó: $2',
 'passwordreset-emailsent' => 'Emlékeztető e-mail elküldve.',
 'passwordreset-emailsent-capture' => 'Az alább látható emlékeztető e-mail elküldve.',
@@ -3971,7 +3972,6 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-newusers-create' => '$1 felhasználói fiók létrehozva',
 'logentry-newusers-create2' => '$1 létrehozta $3 felhasználói fiókját',
 'logentry-newusers-autocreate' => '$1 fiók automatikusan létrehozva',
-'newuserlog-byemail' => 'a jelszót kiküldtük a megadott e-mail címre',
 'logentry-rights-rights' => '$1 megváltoztatta $3 csoport tagságát erről: $4 erre: $5',
 'logentry-rights-rights-legacy' => '$1 megváltoztatta $3 csoport tagságát',
 'logentry-rights-autopromote' => '$1 automatikusan előléptetve erről: $4 erre: $5',

@@ -3711,7 +3711,6 @@ $5
 'logentry-newusers-create' => 'באניצער קאנטע $1 געשאפן געווארן',
 'logentry-newusers-create2' => 'באניצער קאנטע $1 געשאפן געווארן דורך $3',
 'logentry-newusers-autocreate' => 'קאנטע $1 באשאפן אויטאמאטיש',
-'newuserlog-byemail' => 'פאַסווארט געשיקט דורך ע-פאסט',
 'logentry-rights-rights' => '$1 האט געביטן גרופע מיטגלידערשאַפֿט פֿאַר $3 פֿון $4 אויף $5',
 'logentry-rights-rights-legacy' => '$1 האט געביטן גרופע מיטגלידערשאפט פאר $3',
 'logentry-rights-autopromote' => '$1 אויטאמאטיש פראמאווירט פון $4 צו $5',

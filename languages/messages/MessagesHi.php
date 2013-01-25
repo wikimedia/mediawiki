@@ -3847,7 +3847,6 @@ $5
 'logentry-newusers-create' => 'सदस्य खाता $1 बनाया गया',
 'logentry-newusers-create2' => 'सदस्य खाता $3 $1 द्वारा बनाया गया था',
 'logentry-newusers-autocreate' => 'खाते $1 स्वचालित रूप से बनाया गया',
-'newuserlog-byemail' => 'कूटशब्द इ-मेल द्वारा भेजा गया हैं',
 'logentry-rights-rights' => '$1 ने $3 के सदस्य समूह $4 से बदलकर $5 किये',
 'logentry-rights-rights-legacy' => '$1 ने $3 के सदस्य समूह बदले',
 'logentry-rights-autopromote' => '$1 के सदस्य समूह स्वतः $4 से बदलकर $5 किये गए',

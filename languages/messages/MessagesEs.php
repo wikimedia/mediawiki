@@ -494,6 +494,7 @@ $messages = array(
 'newwindow' => '(se abre en una ventana nueva)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Más...',
+'morenotlisted' => 'Más no en la lista...',
 'mypage' => 'Mi página',
 'mytalk' => 'Discusión',
 'anontalk' => 'Discusión para esta IP',
@@ -868,6 +869,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
 'user-mail-no-addy' => 'Se ha intentado enviar correo electrónico sin una dirección de correo electrónico.',
+'user-mail-no-body' => 'Trató de enviar un correo electrónico con un cuerpo vacío o excesivamente corto.',
 
 # Change password dialog
 'resetpass' => 'Cambiar la contraseña',
@@ -1094,10 +1096,10 @@ Si la guardas, se perderán los cambios realizados desde esta revisión.",
 '''¡No uses escritos con copyright sin permiso!'''",
 'longpageerror' => "'''Error: El texto que has enviado ocupa {{PLURAL:$1|un kilobyte|$1 kilobytes}}, que excede el máximo de {{PLURAL:$2|un kilobyte|$2 kilobytes}}.''' 
 No se lo puede guardar.",
-'readonlywarning' => "'''Aviso: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrás guardar tus modificaciones en este momento.
-Puedes copiar y pegar el texto en un archivo y guardarlo para más tarde.'''
+'readonlywarning' => "'''Advertencia: La base de datos ha sido bloqueada para mantenimiento, así que no podrás guardar tus ediciones en este momento.'''
+Quizás quieras copiar y pegar tu texto en un archivo de texto y guardarlo para después.
 
-El administrador que la bloqueó dio esta explicación: $1",
+El administrador que lo bloqueó ofreció esta explicación: $1",
 'protectedpagewarning' => "'''Aviso: Esta página ha sido protegida de manera que solo usuarios con permisos de administrador puedan editarla.'''
 A continuación se muestra la última entrada de registro para referencia:",
 'semiprotectedpagewarning' => "'''Nota:''' Esta página ha sido protegida para que solo usuarios registrados puedan editarla.
@@ -2515,6 +2517,7 @@ Véase [[Special:ProtectedPages|la lista de páginas protegidas]] para ver las p
 'prot_1movedto2' => 'heredando la protección al trasladar [[$1]] a [[$2]]',
 'protect-badnamespace-title' => 'Espacio de nombres no protegible',
 'protect-badnamespace-text' => 'Las páginas de este espacio de nombres no pueden ser protegidas',
+'protect-norestrictiontypes-text' => 'Esta página no se puede proteger ya que no hay ningún tipo de restricción disponible.',
 'protect-norestrictiontypes-title' => 'Página no protegible',
 'protect-legend' => 'Confirmar protección',
 'protectcomment' => 'Motivo:',
@@ -2531,8 +2534,8 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-cascadeon' => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default' => 'Permitir todos los usuarios',
 'protect-fallback' => 'Necesita el permiso «$1»',
-'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
-'protect-level-sysop' => 'Solo administradores',
+'protect-level-autoconfirmed' => 'Permitir solo usuarios autoconfirmados',
+'protect-level-sysop' => 'Permitir solo administradores',
 'protect-summary-cascade' => 'en cascada',
 'protect-expiring' => 'caduca el $1 (UTC)',
 'protect-expiring-local' => 'caduca el $1',
@@ -4056,7 +4059,6 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-newusers-create' => 'Se ha creado la cuenta de usuario $1',
 'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
-'newuserlog-byemail' => 'contraseña enviada por correo electrónico',
 'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
 'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
@@ -4115,6 +4117,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-ok-but-empty' => 'Error interno: No hay respuesta del servidor.',
 'api-error-overwrite' => 'No se permite sobrescribir un archivo existente.',
 'api-error-stashfailed' => 'Error interno: El servidor no pudo almacenar el archivo temporal.',
+'api-error-publishfailed' => 'Error interno: el servidor no pudo publicar el archivo temporal.',
 'api-error-timeout' => 'El servidor no respondió en el plazo previsto.',
 'api-error-unclassified' => 'Ocurrió un error desconocido.',
 'api-error-unknown-code' => 'Error desconocido: «$1»',

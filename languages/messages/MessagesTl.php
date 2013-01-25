@@ -4045,7 +4045,6 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 'logentry-newusers-create' => 'Lumikha si $1 ng isang kuwenta ng tagagamit',
 'logentry-newusers-create2' => 'Lumikha si $1 ng isang kuwenta ng tagagamit na $3',
 'logentry-newusers-autocreate' => 'Kusang nalikha ang akawnt na $1',
-'newuserlog-byemail' => 'Ipinadala ang hudyat sa pamamagitan ng e-liham',
 'rightsnone' => '(wala)',
 
 # Feedback

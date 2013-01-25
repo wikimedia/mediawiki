@@ -2362,6 +2362,5 @@ De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
 # New logging system
 'revdelete-restricted' => 'Einschränkungen gelten au fier Administratorn',
 'revdelete-unrestricted' => 'Einschränkungen fier Administratorn uffgehobn',
-'newuserlog-byemail' => 'doas Passwurt wourde per E-Mail versandt',
 
 );

@@ -853,7 +853,4 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 # Special:SpecialPages
 'specialpages' => 'Sonst sider',
 
-# New logging system
-'newuserlog-byemail' => 'kodeort tilsend via e-mail',
-
 );

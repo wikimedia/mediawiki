@@ -4005,7 +4005,6 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-newusers-create' => 'Kontoen $1 ble opprettet',
 'logentry-newusers-create2' => 'Kontoen $3 ble opprettet av $1',
 'logentry-newusers-autocreate' => 'Konto $1 ble opprettet automatisk',
-'newuserlog-byemail' => 'passord sendt på e-post',
 'logentry-rights-rights' => '$1 endret gruppemedlemskap for $3 fra $4 til $5',
 'logentry-rights-rights-legacy' => '$1 endret gruppemedlemskap for $3',
 'logentry-rights-autopromote' => '$1 ble automatisk forfremmet fra $4 til $5',

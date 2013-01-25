@@ -757,6 +757,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-redirect' => '(waxaa loo toosiyay $1)',
 'search-section' => '(maqaalka $1)',
 'search-suggest' => 'Ma waxaad ulajeeday: $1',
+'search-interwiki-caption' => 'Mashaariicda walaalaha',
 'search-interwiki-default' => '$1 natiijooyinka:',
 'search-interwiki-more' => '(wax kale)',
 'search-relatedarticle' => 'La xiriiro',

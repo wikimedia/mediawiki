@@ -689,13 +689,13 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 ソフトウェアにバグがある可能性があります。
 最後に実行を試みたクエリ:
 <blockquote><code>$1</code></blockquote>
-（関数「<code>$2</code>」内）。
-データベースはエラー「<samp>$3：$4</samp>」を返しました。',
+(関数「<code>$2</code>」内)。
+データベースはエラー「<samp>$3: $4</samp>」を返しました。',
 'dberrortextcl' => 'データベース クエリの構文エラーが発生しました。
 最後に実行を試みたクエリ:
 「$1」
-（関数「$2」内）。
-データベースはエラー「$3：$4」を返しました',
+(関数「$2」内)。
+データベースはエラー「$3: $4」を返しました',
 'laggedslavemode' => "'''警告:''' ページに最新の編集が反映されていない可能性があります。",
 'readonly' => 'データベースがロックされています',
 'enterlockreason' => 'ロックの理由とロック解除の予定を入力してください',
@@ -804,7 +804,7 @@ $2',
 'gotaccount' => 'アカウントを既に持っている場合、$1。',
 'gotaccountlink' => 'ログインしてください',
 'userlogin-resetlink' => 'ログイン情報をお忘れですか？',
-'createaccountmail' => 'メールで送信',
+'createaccountmail' => '一時的でランダムなパスワードを生成して、以下に指定したメールアドレスに送信する',
 'createaccountreason' => '理由:',
 'badretype' => '入力したパスワードが一致しません。',
 'userexists' => '入力された利用者名は既に使用されています。
@@ -840,10 +840,10 @@ Cookieを有効にしていることを確認して、このページを再読�
 'password-login-forbidden' => 'この利用者名とパスワードの使用は禁止されています。',
 'mailmypassword' => '新しいパスワードをメールで送信',
 'passwordremindertitle' => '{{SITENAME}}の仮パスワード通知',
-'passwordremindertext' => '誰か（おそらくあなた）がIPアドレス$1から{{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。
+'passwordremindertext' => '誰か (おそらくあなた) が IP アドレス $1 から{{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。
 利用者「$2」の仮パスワードが作成され「$3」に設定されました。
 もしあなたがこの申請をしたのであれば、ログインして新しいパスワードを決めてください。
-この仮パスワードは {{PLURAL:$5|$5 日間}}で有効期限が切れます。
+この仮パスワードは {{PLURAL:$5|$5 日|$5 日間}}で有効期限が切れます。
 
 この申請をしたのが他人の場合、あるいはパスワードを思い出してパスワード変更が不要になった場合は、
 このメッセージを無視して、引き続き以前のパスワードを使用し続けることができます。',
@@ -920,13 +920,13 @@ Cookieを有効にしていることを確認して、このページを再読�
 'passwordreset-capture-help' => 'このボックスにチェックを入れると、利用者に送信されるメールの内容（仮パスワードを含む）をあなたも閲覧できます。',
 'passwordreset-email' => 'メールアドレス:',
 'passwordreset-emailtitle' => '{{SITENAME}}上のアカウントの詳細',
-'passwordreset-emailtext-ip' => 'どなたか（おそらくあなた、IP アドレス $1）が {{SITENAME}} ($4) での
+'passwordreset-emailtext-ip' => '誰か (おそらくあなた、IP アドレス $1) が {{SITENAME}} ($4) での
 あなたのアカウントの詳細情報を送信するよう申請しました。
 以下の利用者{{PLURAL:$3|アカウント|アカウント群}}がこのメールアドレスと紐付けられています。
 
 $2
 
-{{PLURAL:$3|この仮パスワード|これらの仮パスワード}}は {{PLURAL:$5|$5 日間}}で有効期限が切れます。
+{{PLURAL:$3|この仮パスワード|これらの仮パスワード}}は {{PLURAL:$5|$5 日|$5 日間}}で有効期限が切れます。
 あなたはすぐにログインして新しいパスワードを設定する必要があります。
 これが他の誰かによる申請である場合、あるいはあなたが自分の元のパスワードを
 覚えていてそれを変更したくない場合には、このメッセージを無視して以前のパスワードを
@@ -998,8 +998,8 @@ $2
 'missingcommenttext' => '以下にコメントを入力してください。',
 'missingcommentheader' => "'''注意:''' このコメントに対する題名/見出しが空欄です。
 「{{int:savearticle}}」ボタンをもう一度押すと、空のまま編集が保存されます。",
-'summary-preview' => '要約のプレビュー：',
-'subject-preview' => '題名/見出しのプレビュー：',
+'summary-preview' => '要約のプレビュー:',
+'subject-preview' => '題名/見出しのプレビュー:',
 'blockedtitle' => '利用者はブロックされています',
 'blockedtext' => "'''この利用者名またはIPアドレスはブロックされています。'''
 
@@ -1106,7 +1106,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'creating' => '「$1」を作成中',
 'editingsection' => '「$1」を編集中 (節単位)',
 'editingcomment' => '「$1」を編集中 (新しい節)',
-'editconflict' => '編集競合：$1',
+'editconflict' => '編集競合: $1',
 'explainconflict' => "このページを編集し始めた後に、他の誰かがこのページを変更しました。
 上側のテキスト領域は現在の最新の状態です。
 編集していた文章は下側のテキスト領域に示されています。
@@ -1114,23 +1114,23 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 上側のテキスト領域の内容'''だけ'''が、「{{int:savearticle}}」をクリックした時に実際に保存されます。",
 'yourtext' => '編集中の文章',
 'storedversion' => '保存された版',
-'nonunicodebrowser' => "'''警告：ご使用中のブラウザーはUnicodeに未対応です。'''
-安全にページを編集する回避策を表示しています：編集ボックス内の非ASCII文字を16進数コードで表現しています。",
-'editingold' => "'''警告：このページの古い版を編集しています。'''
-保存すると、この版以降に追加されていた変更がすべて失われます。",
+'nonunicodebrowser' => "'''警告: ご使用中のブラウザーは Unicode に未対応です。'''
+安全にページを編集する回避策を表示しています: 編集ボックス内の非 ASCII 文字を 16 進数コードで表現しています。",
+'editingold' => "'''警告: このページの古い版を編集しています。'''
+保存すると、この版以降になされた変更がすべて失われます。",
 'yourdiff' => '差分',
 'copyrightwarning' => "{{SITENAME}}への投稿は、すべて$2 (詳細は$1を参照) のもとで公開したと見なされることにご注意ください。
 あなたが投稿したものを、他人がよって遠慮なく編集し、それを自由に配布するのを望まない場合は、ここには投稿しないでください。<br />
 また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください。
 '''著作権保護されている作品を、許諾なしに投稿しないでください!'''",
-'copyrightwarning2' => "{{SITENAME}}へのすべての投稿は、他の利用者が編集、変更、除去する可能性があります。
+'copyrightwarning2' => "{{SITENAME}}へのすべての投稿は、他の利用者によって編集、変更、除去される場合があります。
 あなたの投稿を、他人が遠慮なく編集するのを望まない場合は、ここには投稿しないでください。<br />
-また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください（詳細は$1を参照）。
+また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください (詳細は$1を参照)。
 '''著作権保護されている作品を、許諾なしに投稿してはいけません!'''",
 'longpageerror' => "'''エラー: 投稿された文章は {{PLURAL:$1|$1 KB}} の長さがあります。これは投稿できる最大の長さ {{PLURAL:$2|$2 KB}} を超えています。'''
 この編集内容は保存できません。",
 'readonlywarning' => "'''警告: データベースがメンテナンスのためロックされており、現在は編集内容を保存できません。'''
-必要であれば文章をカット&amp;ペーストしてテキストファイルとして保存し、後ほど保存をやり直してください。
+必要であれば文章をコピー&amp;ペーストしてテキストファイルとして保存し、後ほど保存をやり直してください。
 
 データベースをロックした管理者による説明は以下の通りです: $1",
 'protectedpagewarning' => "'''警告: このページは保護されているため、管理者権限を持つ利用者のみが編集できます。'''
@@ -1140,12 +1140,12 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'cascadeprotectedwarning' => "'''警告:''' このページはカスケード保護されている以下の{{PLURAL:$1|ページ|ページ群}}から読み込まれているため、管理者権限を持つ利用者のみが編集できるように保護されています:",
 'titleprotectedwarning' => "'''警告: このページは保護されているため、作成には[[Special:ListGroupRights|特定の権限]]が必要です。'''
 参考として以下に最後の記録を表示します:",
-'templatesused' => 'このページで使用されている{{PLURAL:$1|テンプレート}}：',
-'templatesusedpreview' => 'このプレビューで使用されている{{PLURAL:$1|テンプレート}}：',
-'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}：',
+'templatesused' => 'このページで使用されている{{PLURAL:$1|テンプレート}}:',
+'templatesusedpreview' => 'このプレビューで使用されている{{PLURAL:$1|テンプレート}}:',
+'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}:',
 'template-protected' => '(保護)',
 'template-semiprotected' => '(半保護)',
-'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています：',
+'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています:',
 'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetext' => '{{SITENAME}}ではページの新規作成を制限しています。
 元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウント作成]]をしてください。',
@@ -1153,12 +1153,12 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'sectioneditnotsupported-title' => '節単位編集はサポートされていません',
 'sectioneditnotsupported-text' => 'このページでは節単位編集はサポートされません。',
 'permissionserrors' => '認証エラー',
-'permissionserrorstext' => 'あなたにはこの操作を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです：',
+'permissionserrorstext' => 'あなたにはこの操作を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです:',
 'permissionserrorstext-withaction' => 'あなたには「$2」を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです:',
-'recreate-moveddeleted-warn' => "'''警告：以前削除されたページを再作成しようとしています。'''
+'recreate-moveddeleted-warn' => "'''警告: 以前削除されたページを再作成しようとしています。'''
 
 このページの編集を続行するのが適切かどうかご確認ください。
-参考までに、このページの削除と移動の記録を以下に示します：",
+参考までに、このページの削除と移動の記録を以下に示します:",
 'moveddeleted-notice' => 'このページは削除されています。
 参考のため、このページの削除と移動の記録を以下に表示します。',
 'log-fulllog' => '完全な記録を閲覧',
@@ -1192,7 +1192,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'post-expand-template-argument-warning' => "'''警告:''' このページは、展開後のサイズが大きすぎるテンプレート引数を少なくとも 1 つ含んでいます。
 これらの引数を省略しました。",
 'post-expand-template-argument-category' => '省略されたテンプレート引数を含むページ',
-'parser-template-loop-warning' => 'テンプレートのループが検出されました：[[$1]]',
+'parser-template-loop-warning' => 'テンプレートのループを検出しました: [[$1]]',
 'parser-template-recursion-depth-warning' => 'テンプレートの再帰の深さ（$1）が上限を超えました',
 'language-converter-depth-warning' => '言語変換機能の深さ（$1）が制限を超えました',
 'node-count-exceeded-category' => 'ノード数が制限を超えたページ',
@@ -1214,7 +1214,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'cantcreateaccounttitle' => 'アカウントを作成できません',
 'cantcreateaccount-text' => "このIPアドレス('''$1''')からのアカウント作成は[[User:$3|$3]]によってブロックされています。
 
-$3が示した理由：''$2''",
+$3が示した理由: ''$2''",
 
 # History pages
 'viewpagelogs' => 'このページの記録を閲覧',
@@ -1809,7 +1809,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'uploadnologin' => 'ログインしていません',
 'uploadnologintext' => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',
 'upload_directory_missing' => 'アップロード先ディレクトリ ($1) が見つかりませんでした。ウェブ サーバーによる作成もできませんでした。',
-'upload_directory_read_only' => 'アップロード先ディレクトリ（$1）には、ウェブサーバーが書き込めません。',
+'upload_directory_read_only' => 'アップロード先ディレクトリ ($1) には、ウェブサーバーが書き込めません。',
 'uploaderror' => 'アップロードのエラー',
 'upload-recreate-warning' => "'''警告: その名前のファイルは、以前に削除または移動されています。'''
 
@@ -2112,9 +2112,9 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'sharedupload-desc-here' => 'このファイルは$1から来ており、他のプロジェクトで使用されている可能性があります。
 $1での[$2 ファイル解説ページ]にある説明を以下に示します。',
 'sharedupload-desc-edit' => 'このファイルは$1から来ており、他のプロジェクトで使用されている可能性があります。
-$1での[$2 ファイル解説ページ]にある説明を編集したほうがいいかもしれません。',
+$1での[$2 ファイル解説ページ]にある説明を編集した方がいいかもしれません。',
 'sharedupload-desc-create' => 'このファイルは$1から来ており、他のプロジェクトで使用されている可能性があります。
-$1での[$2 ファイル解説ページ]にある説明を編集したほうがいいかもしれません。',
+$1での[$2 ファイル解説ページ]にある説明を編集した方がいいかもしれません。',
 'filepage-nofile' => 'この名前のファイルは存在しません。',
 'filepage-nofile-link' => 'この名前のファイルは存在しませんが、[$1 アップロード]できます。',
 'uploadnewversion-linktext' => 'このファイルの新しい版をアップロードする',
@@ -2313,7 +2313,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'log' => '記録',
 'all-logs-page' => 'すべての公開記録',
 'alllogstext' => '{{SITENAME}}の取得できる記録をまとめて表示しています。
-記録の種類、実行した利用者（大文字小文字は区別）、影響を受けたページ（大文字小文字は区別）による絞り込みができます。',
+記録の種類、実行した利用者 (大文字小文字は区別)、影響を受けたページ (大文字小文字は区別) による絞り込みができます。',
 'logempty' => '該当する記録はありません。',
 'log-title-wildcard' => 'この文字列で始まるページ名を検索',
 'showhideselectedlogentries' => '選択した記録項目を表示/非表示',
@@ -2479,16 +2479,16 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'enotif_mailer' => '{{SITENAME}} 通知メール',
 'enotif_reset' => 'すべてのページを訪問済みにする',
 'enotif_impersonal_salutation' => '{{SITENAME}}の利用者',
-'enotif_subject_deleted' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が削除しました',
-'enotif_subject_created' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が作成しました',
-'enotif_subject_moved' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が移動しました',
-'enotif_subject_restored' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が復元しました',
-'enotif_subject_changed' => '{{SITENAME}} ページ $1 を {{gender:$2|$2}} が変更しました',
-'enotif_body_intro_deleted' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって削除されました。$3をご覧ください。',
-'enotif_body_intro_created' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって作成されました。現在の版は$3で閲覧できます。',
-'enotif_body_intro_moved' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって移動されました。現在の版は$3で閲覧できます。',
-'enotif_body_intro_restored' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって復元されました。現在の版は$3で閲覧できます。',
-'enotif_body_intro_changed' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、{{gender:$2 |$2}}によって変更されました。現在の版は$3で閲覧できます。',
+'enotif_subject_deleted' => '{{SITENAME}} ページ $1 を $2 が{{GENDER:$2|削除しました}}',
+'enotif_subject_created' => '{{SITENAME}} ページ $1 を $2 が{{GENDER:$2|作成しました}}',
+'enotif_subject_moved' => '{{SITENAME}} ページ $1 を $2 が{{GENDER:$2|移動しました}}',
+'enotif_subject_restored' => '{{SITENAME}} ページ $1 を $2 が{{GENDER:$2|復元しました}}',
+'enotif_subject_changed' => '{{SITENAME}} ページ $1 を $2 が{{GENDER:$2|変更しました}}',
+'enotif_body_intro_deleted' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、$2 によって{{GENDER:$2|削除}}されました。$3 をご覧ください。',
+'enotif_body_intro_created' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、$2 によって{{GENDER:$2|作成}}されました。現在の版は $3 で閲覧できます。',
+'enotif_body_intro_moved' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、$2 によって{{GENDER:$2|移動}}されました。現在の版は $3 で閲覧できます。',
+'enotif_body_intro_restored' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、$2 によって{{GENDER:$2|復元}}されました。現在の版は $3 で閲覧できます。',
+'enotif_body_intro_changed' => '{{SITENAME}}のページ「$1」が$PAGEEDITDATEに、$2 によって{{GENDER:$2|変更}}されました。現在の版は $3 で閲覧できます。',
 'enotif_lastvisited' => '最終訪問以降のすべての変更は $1 をご覧ください。',
 'enotif_lastdiff' => 'この変更内容を表示するには $1 をご覧ください。',
 'enotif_anon_editor' => '匿名利用者「$1」',
@@ -3466,8 +3466,8 @@ Variants for Chinese language
 
 # Metadata
 'metadata' => 'メタデータ',
-'metadata-help' => 'このファイルには、追加情報があります（おそらく、作成やデジタル化する際に使用したデジタルカメラやスキャナーが追加したものです）。
-このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルを完全に反映していないかもしれません。',
+'metadata-help' => 'このファイルには、追加情報があります (おそらく、作成やデジタル化する際に使用したデジタルカメラやスキャナーが追加したものです)。
+このファイルが元の状態から変更されている場合、修正されたファイルを完全に反映していない項目がある場合があります。',
 'metadata-expand' => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を非表示',
 'metadata-fields' => 'このメッセージで列挙している画像メタデータフィールドは、メタデータ表を折り畳んだ状態のときに画像ページに読み込まれます。
@@ -4294,7 +4294,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'logentry-newusers-create' => '利用者アカウント $1 が作成されました',
 'logentry-newusers-create2' => '利用者アカウント $3 が $1 により作成されました',
 'logentry-newusers-autocreate' => '利用者アカウント $1 が自動的に作成されました',
-'newuserlog-byemail' => 'パスワードをメールで送信しました',
 'logentry-rights-rights' => '$1 が $3 の所属グループを $4 から $5 に変更しました',
 'logentry-rights-rights-legacy' => '$1 が $3 の所属グループを変更しました',
 'logentry-rights-autopromote' => '$1 が $4 から $5 に自動的に昇格しました',

@@ -3883,7 +3883,6 @@ Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma 
 'logentry-newusers-create' => '$1 hef n gebruker an-emaakt',
 'logentry-newusers-create2' => '$1 hef n gebruker $3 an-emaakt',
 'logentry-newusers-autocreate' => 'De gebruker $1 is automaties an-emaakt',
-'newuserlog-byemail' => 'wachtwoord is verstuurd via de netpost',
 'rightsnone' => '(gien)',
 
 # Feedback

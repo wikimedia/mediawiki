@@ -464,6 +464,9 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'group-user' => 'Hadome',
 'group-all' => '(kulle)',
 
+# Special:Log/newusers
+'newuserlogpage' => 'User creation log',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Mşaḥlaf iFaṭaṭe',
 
@@ -584,9 +587,6 @@ The description on its [$2 file description page] there is shown below.',
 
 # Special:ListUsers
 'listusers-submit' => 'Maḥway',
-
-# Special:Log/newusers
-'newuserlogpage' => 'User creation log',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Gudo',

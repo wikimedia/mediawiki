@@ -3644,7 +3644,6 @@ $5
 'logentry-newusers-create' => 'បានបង្កើតគណនីអ្នកប្រើប្រាស់ $1',
 'logentry-newusers-create2' => ' $3 បានបង្កើតគណនីអ្នកប្រើប្រាស់ $1',
 'logentry-newusers-autocreate' => 'គណនី $1 ត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ',
-'newuserlog-byemail' => 'ពាក្យសំងាត់ត្រូវបានផ្ញើតាមអ៊ីមែល',
 'logentry-rights-rights' => '$1 បានផ្លាស់ប្ដូរសមាជិកភាពរបស់ $3 ពី $4 ទៅជា $5',
 'logentry-rights-rights-legacy' => '$1បានផ្លាស់ប្ដូរសមាជិកភាពរបស់ $3',
 'logentry-rights-autopromote' => '$1 ត្រូវបានតំលើងសមាជិកភាពពី $4 ជា $5',

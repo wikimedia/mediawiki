@@ -2203,7 +2203,6 @@ An iba in daan nakatago.
 'logentry-newusers-create' => '$1 in naghimo hin gumaramit nga akawnt',
 'logentry-newusers-create2' => '$1 in naghimo hin gumaramit nga akawnt $3',
 'logentry-newusers-autocreate' => 'An akawnt nga $1 in lugaring nga nahimo',
-'newuserlog-byemail' => 'Ginpadangat an tigaman-pagsulod pinaagi han e-mail',
 'rightsnone' => '(waray)',
 
 # Feedback

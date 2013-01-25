@@ -1248,7 +1248,6 @@ Ang uban default nga nakatago.
 # New logging system
 'revdelete-restricted' => 'mga na-aplay nga restriksyon sa mga tagdumala',
 'revdelete-unrestricted' => 'gitangtang ang mga restriksyon alang sa mga tagdumala',
-'newuserlog-byemail' => "ang pasword gipadala na pinaagi sa ''e-mail''",
 'rightsnone' => '(wala)',
 
 );

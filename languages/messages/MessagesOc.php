@@ -3669,7 +3669,6 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 'logentry-newusers-create' => "Lo compte d'utilizaire $1 es estat creat",
 'logentry-newusers-create2' => "Lo compte d'utilizaire $3 es estat creat per $1",
 'logentry-newusers-autocreate' => 'Lo compte $1 es estat creat automaticament',
-'newuserlog-byemail' => 'senhal mandat per corrièr electronic',
 'rightsnone' => '(cap)',
 
 # Feedback

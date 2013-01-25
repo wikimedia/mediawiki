@@ -3521,7 +3521,6 @@ $5
 'logentry-newusers-create' => '$1 ఒక వాడుకరి ఖాతాను సృష్టించారు',
 'logentry-newusers-create2' => '$1  వాడుకరి ఖాతా $3ను సృష్టించారు',
 'logentry-newusers-autocreate' => '$1 ఖాతాను ఆటోమెటిగ్గా సృష్టించారు',
-'newuserlog-byemail' => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
 'rightsnone' => '(ఏమీలేవు)',
 
 # Feedback

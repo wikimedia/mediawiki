@@ -3765,7 +3765,6 @@ $5
 'logentry-newusers-create' => 'સભ્ય ખાતું $1 બનાવવામાં આવ્યું',
 'logentry-newusers-create2' => 'સભ્ય ખાતું $3 $1 વડે બનાવવામાં આવ્યું',
 'logentry-newusers-autocreate' => 'એકાઉન્ટ $1 બનાવનાર આપોઆપ',
-'newuserlog-byemail' => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
 'rightsnone' => '(કંઈ નહી)',
 
 # Feedback

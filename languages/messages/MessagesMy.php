@@ -1908,7 +1908,6 @@ Your e-mail address is not revealed when other users contact you.
 # New logging system
 'revdelete-restricted' => 'အက်ဒမင်များသို့ ကန့်သတ်ချက်များ သက်ရောက်ရန်',
 'revdelete-unrestricted' => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
-'newuserlog-byemail' => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
 'rightsnone' => '(ဘာမှမရှိ)',
 
 # API errors

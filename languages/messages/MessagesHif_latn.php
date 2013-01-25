@@ -3239,7 +3239,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # New logging system
 'revdelete-restricted' => 'sysops pe llabu restrictions',
 'revdelete-unrestricted' => 'sysops se hatawa gae rukawat',
-'newuserlog-byemail' => 'password ke e-mail se bheja gais hai',
 'logentry-rights-rights' => '$1 $3 ke group ke membership ke $4 se badal ke $5 kar dia hae',
 'logentry-rights-rights-legacy' => '$1 $3 ke group membership ke badal dia hae',
 'logentry-rights-autopromote' => '$1 ke apne se $2 se $3 ke promotion dewa gais',

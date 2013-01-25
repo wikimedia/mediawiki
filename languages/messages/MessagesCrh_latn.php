@@ -2093,9 +2093,6 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 # HTML forms
 'htmlform-reset' => 'Deñişikliklerni keri al',
 
-# New logging system
-'newuserlog-byemail' => 'parol e-mail vastasınen yiberilgen',
-
 # Search suggestions
 'searchsuggest-containing' => 'içinde bu olğan...',
 

@@ -225,6 +225,7 @@ $messages = array(
 'newwindow' => '(кæны ног рудзынджы)',
 'cancel' => 'Ныууадзын',
 'moredotdotdot' => 'Фылдæр…',
+'morenotlisted' => 'Фылдæр æнææвдыст...',
 'mypage' => 'Фарс',
 'mytalk' => 'Ныхас',
 'anontalk' => 'Ацы IP-адрисы тæрхон',

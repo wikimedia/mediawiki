@@ -2533,7 +2533,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'маҳдудиятҳо ба мудирон амалӣ шуданд',
 'revdelete-unrestricted' => 'маҳдудиятҳо аз мудирон бардошта шуданд',
-'newuserlog-byemail' => 'калимаи убур ба почтаи электронӣ фиристода шуд',
 'rightsnone' => '(ҳеҷ)',
 
 );

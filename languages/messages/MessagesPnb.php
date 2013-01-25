@@ -3531,7 +3531,6 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'logentry-newusers-create' => '$1 {{جنس:$2|بنایا}} اک ورتن والا کھاتہ',
 'logentry-newusers-create2' => '$1 {{جنس:$2|بنایا}} {{جنس:$4|اک ورتن کھاتہ}} $3',
 'logentry-newusers-autocreate' => 'کھاتہ $1 اپنے آپ ای {{جنس:$2|بنایا گیا}} بنایا گیا۔',
-'newuserlog-byemail' => 'کنجی ای-میل راہ پیج دتی گئی۔',
 'rightsnone' => '(کوئی وی نئیں)',
 
 # Feedback

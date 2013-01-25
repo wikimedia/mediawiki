@@ -4206,7 +4206,6 @@ $5
 'logentry-newusers-create' => 'حساب کاربری $1 ایجاد شد',
 'logentry-newusers-create2' => 'حساب کاربری $3 توسط $1 ایجاد شد',
 'logentry-newusers-autocreate' => 'حساب $1  به شکل خودکار ساخته شد',
-'newuserlog-byemail' => 'گذرواژه بوسیله رایانامه ارسال شد',
 'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
 'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
 'logentry-rights-autopromote' => '$1 به طور خودکار از $4 به $5 ارتقا یافت',

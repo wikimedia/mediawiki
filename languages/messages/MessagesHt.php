@@ -1384,6 +1384,5 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 
 # New logging system
 'revdelete-restricted' => 'aplike restriksyon sa yo pou administratè yo',
-'newuserlog-byemail' => 'mopas an voye pa imèl',
 
 );

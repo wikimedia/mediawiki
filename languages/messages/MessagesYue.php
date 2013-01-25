@@ -3362,7 +3362,6 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 # New logging system
 'revdelete-restricted' => '已經應用限制到操作員',
 'revdelete-unrestricted' => '已經拎走對於操作員嘅限制',
-'newuserlog-byemail' => '密碼已由電郵寄出',
 'rightsnone' => '(無)',
 
 # Search suggestions

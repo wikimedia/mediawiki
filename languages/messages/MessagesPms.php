@@ -3739,7 +3739,6 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'logentry-newusers-create' => "Ël cont utent $1 a l'é stàit creà",
 'logentry-newusers-create2' => "Ël cont utent $3 a l'é stàit creà da $1",
 'logentry-newusers-autocreate' => "Ël cont $1 a l'é stàit creà an automàtich",
-'newuserlog-byemail' => 'ciav spedìa për pòsta eletrònica',
 'logentry-rights-rights' => "$1 a l'ha tramudà l'apartenesa a la partìa për $3 da $4 a $5",
 'logentry-rights-rights-legacy' => "$1 a l'ha tramudà l'apartenensa a la partìa për $3",
 'logentry-rights-autopromote' => "$1 a l'é stàit automaticament promovù da $4 a $5",

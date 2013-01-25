@@ -3475,7 +3475,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted' => 'شيل الضوابط من على السيسوبات',
-'newuserlog-byemail' => 'الباسورد اتبعتت بالايميل',
 'rightsnone' => '(فاضى)',
 
 # Search suggestions

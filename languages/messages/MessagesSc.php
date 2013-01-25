@@ -1549,7 +1549,6 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'htmlform-selectorother-other' => 'Àteru',
 
 # New logging system
-'newuserlog-byemail' => 'password imbiada via e-mail',
 'rightsnone' => '(nisciunu)',
 
 # Search suggestions

@@ -3885,7 +3885,6 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-newusers-create' => 'Korisnički račun $1 je napravljen',
 'logentry-newusers-create2' => 'Korisnički račun $3 {{GENDER:|je napravio|je napravila|je napravio}} $1',
 'logentry-newusers-autocreate' => 'Račun $1 je samostalno otvoren',
-'newuserlog-byemail' => 'lozinka je poslana putem e-maila',
 'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|je promenio|je promenila|je promenio}} članstvo grupe za $3',
 'logentry-rights-autopromote' => '$1 je automatski {{GENDER:$1|unaprijeđen|unaprijeđena|unaprijeđen}} iz $4 u $5',

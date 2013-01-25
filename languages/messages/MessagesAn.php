@@ -3601,7 +3601,6 @@ As imachens s'amuestran en resolución completa, a resta de fichers fan encetar 
 'logentry-newusers-create' => "$1 creyó una cuenta d'usuario",
 'logentry-newusers-create2' => "$1 creyó una cuenta d'usuario $3",
 'logentry-newusers-autocreate' => "S'ha creyau automaticament a cuenta $1",
-'newuserlog-byemail' => 'Clau ninviata por correu electronico',
 'rightsnone' => '(garra)',
 
 # Feedback

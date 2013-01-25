@@ -3647,7 +3647,6 @@ Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes
 'logentry-newusers-create' => "$1 haet 'ne gebroeker aangemaak",
 'logentry-newusers-create2' => "$1 haet 'ne gebroeker $3 aangemaak",
 'logentry-newusers-autocreate' => 'De gebroeker $1 is autematis aangemaak',
-'newuserlog-byemail' => 'wachwaord is versjik per e-mail',
 'rightsnone' => '(gein)',
 
 # Feedback

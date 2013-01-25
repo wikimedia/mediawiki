@@ -1691,9 +1691,6 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'htmlform-submit' => 'Invie',
 'htmlform-selectorother-other' => 'Altris',
 
-# New logging system
-'newuserlog-byemail' => 'peraule clâf mandade par pueste eletroniche',
-
 # Search suggestions
 'searchsuggest-search' => 'Ricercje',
 'searchsuggest-containing' => 'che al à dentri...',

@@ -3557,7 +3557,6 @@ $5
 'logentry-newusers-create' => '$1 ஒரு புதிய பயனர் கணக்கை உருவாக்கியுள்ளார்.',
 'logentry-newusers-create2' => '$3 பயனர் கணக்கினை $1 உருவாக்கினார்',
 'logentry-newusers-autocreate' => 'கணக்கு  $1   தானாக    உருவாக்கப்பட்டது',
-'newuserlog-byemail' => 'மின்னஞ்சல் மூலம் கடவுச்சொல் அனுப்பப்பட்டுவிட்டது',
 'rightsnone' => '(எதுவுமில்லை)',
 
 # Feedback

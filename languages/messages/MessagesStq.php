@@ -3286,7 +3286,6 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 # New logging system
 'revdelete-restricted' => 'Einskränkengen jäilde uk foar Administratore',
 'revdelete-unrestricted' => 'Ienskränkengen foar Administratore wächhoald',
-'newuserlog-byemail' => 'dät Paaswoud wuud uur E-Mail fersoand',
 'rightsnone' => '(-)',
 
 # Search suggestions

@@ -3735,7 +3735,6 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-newusers-create' => "L'utensa $1 xe sta creà",
 'logentry-newusers-create2' => 'Lutensa $3 xe sta creà da $1',
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
-'newuserlog-byemail' => 'password spedìa par e-mail',
 'logentry-rights-rights' => "$1 ga canbià l'apartenensa de $3 dal grupo $4 al grupo $5",
 'logentry-rights-rights-legacy' => "$1 ga canbià l'apartenensa a grupi de $3",
 'logentry-rights-autopromote' => '$1 xe stà automategamente promoso/a da $4 a $5',

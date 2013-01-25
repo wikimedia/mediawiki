@@ -3333,7 +3333,6 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'logentry-newusers-newusers' => '$1 wikilariak erabiltzaile kontu bat sortu du',
 'logentry-newusers-create' => '$1 wikilariak erabiltzaile kontu bat sortu du',
 'logentry-newusers-create2' => '$1 wikilariak $3 erabiltzaile kontu bat sortu du',
-'newuserlog-byemail' => 'pasahitza e-postaz bidali da',
 'rightsnone' => '(bat ere ez)',
 
 # Feedback

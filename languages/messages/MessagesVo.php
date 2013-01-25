@@ -2809,7 +2809,6 @@ Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü
 # New logging system
 'revdelete-restricted' => 'miedükams pelonöfükons pro guvans',
 'revdelete-unrestricted' => 'miedükams pro guvans pemoükons',
-'newuserlog-byemail' => 'letavöd pesedon me pot leäktronik',
 'rightsnone' => '(nonik)',
 
 # Search suggestions

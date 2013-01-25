@@ -2675,7 +2675,6 @@ $5
 'logentry-newusers-newusers' => 'د $1 کارن ګڼون جوړ شو',
 'logentry-newusers-create' => 'د $1 کارن ګڼون جوړ شو',
 'logentry-newusers-autocreate' => 'د $1 ګڼون په اتوماتيک ډول جوړ شو',
-'newuserlog-byemail' => 'پټنوم مو برېښليک ته درولېږه',
 'rightsnone' => '(هېڅ)',
 
 # Feedback

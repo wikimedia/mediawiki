@@ -1253,7 +1253,7 @@ $1',
 # Rollback
 'rollbacklink' => 'ܐܦܢܝ',
 'editcomment' => "ܦܣܝܩܬ̈ܐ ܕܫܘܚܠܦܐ ܗܘܐ: \"''\$1''\".",
-'revertpage' => 'ܐܗܦܟ ܫܘܚܠܦ̈ܐ ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]]) ܠܬܢܝܬܐ ܐܚܪܬܐ ܒܝܕ [[User:$1|$1]]',
+'revertpage' => 'ܐܗܦܟ ܫܘܚܠܦ̈ܐ ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]]) ܠܬܢܝܬܐ ܐܚܪܝܬܐ ܒܝܕ [[User:$1|$1]]',
 
 # Edit tokens
 'sessionfailure-title' => 'ܡܘܬܒܐ ܠܐ ܢܨܚܬ',
@@ -1787,7 +1787,6 @@ $1',
 'logentry-newusers-create' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $1 ܐܬܒܪܐ',
 'logentry-newusers-create2' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3 ܐܬܒܪܐ ܒܝܕ $1',
 'logentry-newusers-autocreate' => 'ܚܘܫܒܢܐ $1 ܐܬܒܪܝ ܝܬܐܝܬ',
-'newuserlog-byemail' => 'ܡܠܬܐ ܕܥܠܠܐ ܐܫܬܕܪܬ ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 'rightsnone' => '(ܠܐ ܡܕܡ)',
 
 # Feedback

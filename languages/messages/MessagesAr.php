@@ -4350,7 +4350,6 @@ $5
 'logentry-newusers-create' => 'تم إنشاء الحساب $1',
 'logentry-newusers-create2' => 'أنشأ $1 الحساب $3',
 'logentry-newusers-autocreate' => 'أنشئ حساب $1 تلقائياً',
-'newuserlog-byemail' => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',
 'logentry-rights-rights-legacy' => 'غير $1 صلاحيات $3',
 'logentry-rights-autopromote' => 'تمت ترقية $1 تلقائياً من  $4 إلى $5',

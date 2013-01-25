@@ -3989,7 +3989,6 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'logentry-newusers-create' => '$1 membuat akun pengguna',
 'logentry-newusers-create2' => '$1 membuat akun pengguna $3',
 'logentry-newusers-autocreate' => 'Akun $1 dibuat secara otomatis',
-'newuserlog-byemail' => 'kata sandi dikirim melalui surel',
 'logentry-rights-rights' => '$1 mengubah keanggotaan grup $3 dari $4 menjadi $5',
 'logentry-rights-rights-legacy' => '$1 mengubah keanggotaan grup $3',
 'logentry-rights-autopromote' => '$1 secara otomatis dipromosikan dari $4 menjadi $5',

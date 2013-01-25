@@ -1,5 +1,5 @@
 <?php
-/** Bihari (भोजपुरी)
+/** bh (भोजपुरी)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -536,6 +536,8 @@ Legend: '''({{int:cur}})''' = हाल के संशोधन के सा�
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'ध्यानसूची में जाते हुए',
 'unwatching' => 'ध्यानसूची से हटते हुए',
+
+'created' => 'बनावल गईल',
 
 # Undelete
 'undeletelink' => 'देखीं/बहाल करीं',

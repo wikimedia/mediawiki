@@ -3809,7 +3809,6 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-newusers-create' => 'Brugerkontoen $1 blev oprettet',
 'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
-'newuserlog-byemail' => 'kodeord tilsendt pr. e-mail',
 'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
 'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
 'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',

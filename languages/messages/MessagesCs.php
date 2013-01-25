@@ -793,7 +793,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'gotaccount' => "Už jste registrováni? '''$1'''.",
 'gotaccountlink' => 'Přihlaste se',
 'userlogin-resetlink' => 'Zapomněli jste přihlašovací údaje?',
-'createaccountmail' => 'pomocí e-mailu',
+'createaccountmail' => 'Použít dočasné náhodné heslo a odeslat ho na níže uvedenou e-mailovou adresu',
 'createaccountreason' => 'Důvod:',
 'badretype' => 'Vámi napsaná hesla nesouhlasí.',
 'userexists' => 'Zadané uživatelské jméno se již používá.
@@ -2285,7 +2285,7 @@ Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br
 # Special:ActiveUsers
 'activeusers' => 'Seznam aktivních uživatelů',
 'activeusers-intro' => 'Toto je seznam uživatelů, kteří byli nějak aktivní v {{plural:$1|posledním dni|posledních $1 dnech}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|editace|editace|editací}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
+'activeusers-count' => '$1 {{PLURAL:$1|akce|akce|akcí}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
 'activeusers-from' => 'Zobrazit uživatele počínaje od:',
 'activeusers-hidebots' => 'Skrýt roboty',
 'activeusers-hidesysops' => 'Skrýt správce',
@@ -4074,7 +4074,6 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-newusers-create' => 'Byl založen uživatelský účet $1',
 'logentry-newusers-create2' => '$1 založil uživatelský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky byl založen účet $1',
-'newuserlog-byemail' => 'heslo zasláno e-mailem',
 'logentry-rights-rights' => '$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách z $4 na $5',
 'logentry-rights-rights-legacy' => '$1 změnil členství $3 ve skupinách',
 'logentry-rights-autopromote' => '$1 byl automaticky povýšen z $4 na $5',

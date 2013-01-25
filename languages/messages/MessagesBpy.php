@@ -1728,7 +1728,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # New logging system
 'revdelete-restricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি ফলা',
 'revdelete-unrestricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
-'newuserlog-byemail' => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
 'rightsnone' => '(নেই)',
 
 # Search suggestions
