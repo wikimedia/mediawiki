@@ -1011,7 +1011,7 @@ class LoginForm extends SpecialPage {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		global $wgHiddenPrefs, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
-		global $wgSecureLogin, $wgPasswordResetRoutes;
+		global $wgSecureLogin, $wgSecureLoginDefaultHTTPS, $wgPasswordResetRoutes;
 
 		$titleObj = $this->getTitle();
 		$user = $this->getUser();
@@ -1073,6 +1073,11 @@ class LoginForm extends SpecialPage {
 			$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
 		} else {
 			$template->set( 'link', '' );
+		}
+
+		// Decide if we default stickHTTPS on
+		if ( $wgSecureLoginDefaultHTTPS && $this->mAction != 'submitlogin' && !$this->mLoginattempt ) {
+			$this->mStickHTTPS = true;
 		}
 
 		$resetLink = $this->mType == 'signup'
