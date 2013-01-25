@@ -214,7 +214,7 @@ abstract class AbstractContent implements Content {
 	 * resulting ParserOutput object.
 	 *
 	 * Subclasses may override this to determine the secondary data updates more
-	 * efficiently, preferrably without the need to generate a parser output object.
+	 * efficiently, preferably without the need to generate a parser output object.
 	 *
 	 * @see Content::getSecondaryDataUpdates()
 	 *
