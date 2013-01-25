@@ -36,17 +36,22 @@
  * @since 1.20
  */
 abstract class FileJournal {
-	protected $backend; // string
-	protected $ttlDays; // integer
+	protected $wiki; // string; wiki ID
+	protected $backend; // string; corresponding file backend name
+	protected $ttlDays; // integer; seconds
 
 	/**
 	 * Construct a new instance from configuration.
 	 * $config includes:
-	 *     'ttlDays' : days to keep log entries around (false means "forever")
+	 *   - wiki    : the wiki ID of the corresponding file backend
+	 *   - backend : the name of the corresponding file backend this logs for
+	 *   - ttlDays : days to keep log entries around (false means "forever") [optional]
 	 *
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {
+		$this->wiki    = $config['wiki'];
+		$this->backend = $config['backend'];
 		$this->ttlDays = isset( $config['ttlDays'] ) ? $config['ttlDays'] : false;
 	}
 
@@ -60,11 +65,11 @@ abstract class FileJournal {
 	 */
 	final public static function factory( array $config, $backend ) {
 		$class = $config['class'];
-		$jrn = new $class( $config );
+		unset( $config['class'] ); // journal won't need this
+		$jrn = new $class( array( 'backend' => $backend ) + $config );
 		if ( !$jrn instanceof self ) {
 			throw new MWException( "Class given is not an instance of FileJournal." );
 		}
-		$jrn->backend = $backend;
 		return $jrn;
 	}
 
