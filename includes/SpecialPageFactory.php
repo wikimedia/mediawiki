@@ -119,7 +119,7 @@ class SpecialPageFactory {
 		'Upload'                    => 'SpecialUpload',
 		'UploadStash'               => 'SpecialUploadStash',
 
-		// Wiki data and tools
+		// Data and tools
 		'Statistics'                => 'SpecialStatistics',
 		'Allmessages'               => 'SpecialAllmessages',
 		'Version'                   => 'SpecialVersion',
