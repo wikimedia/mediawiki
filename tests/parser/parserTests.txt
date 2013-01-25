@@ -13453,6 +13453,29 @@ HTML tag with 'unnecessary' entity encoding in attributes
 </p>
 !! end
 
+!! test
+HTML tag with broken attribute value quoting
+!! input
+<span title="Hello world>Foo</span>
+!! result
+<p><span>Foo</span>
+</p>
+!! end
+
+!! test
+Table with broken attribute value quoting
+!! input
+{|
+| title="Hello world|Foo
+|}
+!! result
+<table>
+<tr>
+<td>Foo
+</td></tr></table>
+
+!! end
+
 TODO:
 more images
 more tables
