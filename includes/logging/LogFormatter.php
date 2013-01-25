@@ -270,6 +270,7 @@ class LogFormatter {
 							->inContentLanguage()->escaped();
 						break;
 					case 'create2':
+					case 'byemail':
 						$text = wfMessage( 'newuserlog-create2-entry' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
@@ -1085,7 +1086,8 @@ class PatrolLogFormatter extends LogFormatter {
 class NewUsersLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		if ( $this->entry->getSubtype() === 'create2' ) {
+		$subtype = $this->entry->getSubtype();
+		if ( $subtype === 'create2' || $subtype === 'byemail' ) {
 			if ( isset( $params[3] ) ) {
 				$target = User::newFromId( $params[3] );
 			} else {
@@ -1108,7 +1110,8 @@ class NewUsersLogFormatter extends LogFormatter {
 	}
 
 	public function getPreloadTitles() {
-		if ( $this->entry->getSubtype() === 'create2' ) {
+		$subtype = $this->entry->getSubtype();
+		if ( $subtype === 'create2' || $subtype === 'byemail' ) {
 			//add the user talk to LinkBatch for the userLink
 			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
 		}
