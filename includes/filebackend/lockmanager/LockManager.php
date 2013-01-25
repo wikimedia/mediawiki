@@ -53,6 +53,8 @@ abstract class LockManager {
 	/** @var Array Map of (resource path => lock type => count) */
 	protected $locksHeld = array();
 
+	protected $wiki; // string; wiki ID
+
 	/* Lock types; stronger locks have higher values */
 	const LOCK_SH = 1; // shared lock (for reads)
 	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
@@ -61,9 +63,14 @@ abstract class LockManager {
 	/**
 	 * Construct a new instance from configuration
 	 *
+	 * $config paramaters include:
+	 *   - wiki : Wiki ID string that all resources are relative to [optional]
+	 *
 	 * @param $config Array
 	 */
-	public function __construct( array $config ) {}
+	public function __construct( array $config ) {
+		$this->wiki = isset( $config['wiki'] ) ? $config['wiki'] : wfWikiID();
+	}
 
 	/**
 	 * Lock the resources at the given abstract paths
@@ -94,13 +101,15 @@ abstract class LockManager {
 	}
 
 	/**
-	 * Get the base 36 SHA-1 of a string, padded to 31 digits
+	 * Get the base 36 SHA-1 of a string, padded to 31 digits.
+	 * Before hashing, the path will be prefixed with the wiki ID.
+	 * This should be used interally for lock key or file names.
 	 *
 	 * @param $path string
 	 * @return string
 	 */
-	final protected static function sha1Base36( $path ) {
-		return wfBaseConvert( sha1( $path ), 16, 36, 31 );
+	final protected function sha1Base36Absolute( $path ) {
+		return wfBaseConvert( sha1( "{$this->wiki}:{$path}" ), 16, 36, 31 );
 	}
 
 	/**

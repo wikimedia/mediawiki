@@ -50,7 +50,6 @@ class MemcLockManager extends QuorumLockManager {
 
 	protected $lockExpiry; // integer; maximum time locks can be held
 	protected $session = ''; // string; random SHA-1 UUID
-	protected $wikiId = ''; // string
 
 	/**
 	 * Construct a new instance from configuration.
@@ -61,7 +60,6 @@ class MemcLockManager extends QuorumLockManager {
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - memcConfig   : Configuration array for ObjectCache::newFromParams. [optional]
 	 *                    If set, this must use one of the memcached classes.
-	 *   - wikiId       : Wiki ID string that all resources are relative to. [optional]
 	 *
 	 * @param Array $config
 	 * @throws MWException
@@ -87,8 +85,6 @@ class MemcLockManager extends QuorumLockManager {
 					'Only MemcachedBagOStuff classes are supported by MemcLockManager.' );
 			}
 		}
-
-		$this->wikiId = isset( $config['wikiId'] ) ? $config['wikiId'] : wfWikiID();
 
 		$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
 		$this->lockExpiry = $met ? 2*(int)$met : 2*3600;
@@ -252,9 +248,7 @@ class MemcLockManager extends QuorumLockManager {
 	 * @return string
 	 */
 	protected function recordKeyForPath( $path ) {
-		$hash = LockManager::sha1Base36( $path );
-		list( $db, $prefix ) = wfSplitWikiID( $this->wikiId );
-		return wfForeignMemcKey( $db, $prefix, __CLASS__, 'locks', $hash );
+		return implode( ':', array( __CLASS__, 'locks', $this->sha1Base36Absolute( $path ) ) );
 	}
 
 	/**

@@ -122,7 +122,7 @@ class DBLockManager extends QuorumLockManager {
 
 		if ( $type == self::LOCK_EX ) { // writer locks
 			try {
-				$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+				$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
 				# Build up values for INSERT clause
 				$data = array();
 				foreach ( $keys as $key ) {
@@ -321,7 +321,7 @@ class MySqlLockManager extends DBLockManager {
 		$status = Status::newGood();
 
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
 		# Build up values for INSERT clause
 		$data = array();
 		foreach ( $keys as $key ) {

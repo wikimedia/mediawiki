@@ -966,7 +966,7 @@ class ParserTest {
 	private function teardownGlobals() {
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingleton();
+		LockManagerGroup::destroySingletons();
 		LinkCache::singleton()->clear();
 
 		foreach ( $this->savedGlobals as $var => $val ) {
