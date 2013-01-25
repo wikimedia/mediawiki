@@ -457,13 +457,7 @@ class ParserOutput extends CacheTime {
 
 		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
 
-		if ( $this->mSecondaryDataUpdates === array() ) {
-			return array( $linksUpdate );
-		} else {
-			$updates = array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
-		}
-
-		return $updates;
+		return array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
 	 }
 
 }
