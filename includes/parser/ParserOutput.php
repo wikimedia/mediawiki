@@ -189,7 +189,7 @@ class ParserOutput extends CacheTime {
 	 * @param $title Title object
 	 * @param $id Mixed: optional known page_id so we can skip the lookup
 	 */
-	function addLink( $title, $id = null ) {
+	function addLink( Title $title, $id = null ) {
 		if ( $title->isExternal() ) {
 			// Don't record interwikis in pagelinks
 			$this->addInterwikiLink( $title );
