@@ -236,7 +236,7 @@ abstract class AbstractContent implements Content {
 		Content $old = null,
 		$recursive = true, ParserOutput $parserOutput = null
 	) {
-		if ( !$parserOutput ) {
+		if ( $parserOutput === null ) {
 			$parserOutput = $this->getParserOutput( $title, null, null, false );
 		}
 
