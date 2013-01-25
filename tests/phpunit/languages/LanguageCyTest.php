@@ -7,15 +7,19 @@
 
 /** Tests for MediaWiki languages/classes/LanguageCy.php */
 class LanguageCyTest extends LanguageClassesTestCase {
-
-	/** @dataProvider providerPlural */
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'zero', 'one', 'two', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array(
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
+		return array (
 			array( 'zero', 0 ),
 			array( 'one', 1 ),
 			array( 'two', 2 ),
@@ -30,5 +34,4 @@ class LanguageCyTest extends LanguageClassesTestCase {
 			array( 'other', 200.00 ),
 		);
 	}
-
 }
