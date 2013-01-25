@@ -106,7 +106,8 @@ abstract class FileBackend {
 			? ( ( $config['fileJournal'] instanceof FileJournal )
 				? $config['fileJournal']
 				: FileJournal::factory( $config['fileJournal'], $this->name ) )
-			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
+			: FileJournal::factory(
+				array( 'class' => 'NullFileJournal', 'wiki' => '' ), $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
