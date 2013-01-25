@@ -908,15 +908,9 @@ class DatabaseMssql extends DatabaseBase {
 			}
 		}
 
-		if ( isset( $options['GROUP BY'] ) ) {
-			$tailOpts .= " GROUP BY {$options['GROUP BY']}";
-		}
-		if ( isset( $options['HAVING'] ) ) {
-			$tailOpts .= " HAVING {$options['GROUP BY']}";
-		}
-		if ( isset( $options['ORDER BY'] ) ) {
-			$tailOpts .= " ORDER BY {$options['ORDER BY']}";
-		}
+		$tailOpts .= $this->makeGroupByWithHaving( $options );
+		
+		$tailOpts .= $this->makeOrderBy( $options );
 
 		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) {
 			$startOpts .= 'DISTINCT';

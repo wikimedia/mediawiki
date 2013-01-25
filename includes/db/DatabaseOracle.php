@@ -1166,26 +1166,9 @@ class DatabaseOracle extends DatabaseBase {
 			}
 		}
 
-		if ( isset( $options['GROUP BY'] ) ) {
-			$gb = is_array( $options['GROUP BY'] )
-				? implode( ',', $options['GROUP BY'] )
-				: $options['GROUP BY'];
-			$preLimitTail .= " GROUP BY {$gb}";
-		}
+		$preLimitTail .= $this->makeGroupByWithHaving( $options );
 
-		if ( isset( $options['HAVING'] ) ) {
-			$having = is_array( $options['HAVING'] )
-				? $this->makeList( $options['HAVING'], LIST_AND )
-				: $options['HAVING'];
-			$preLimitTail .= " HAVING {$having}";
-		}
-
-		if ( isset( $options['ORDER BY'] ) ) {
-			$ob = is_array( $options['ORDER BY'] )
-				? implode( ',', $options['ORDER BY'] )
-				: $options['ORDER BY'];
-			$preLimitTail .= " ORDER BY {$ob}";
-		}
+		$preLimitTail .= $this->makeOrderBy( $options );
 
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
