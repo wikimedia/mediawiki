@@ -30,21 +30,6 @@ class DBFileJournal extends FileJournal {
 	/** @var DatabaseBase */
 	protected $dbw;
 
-	protected $wiki = false; // string; wiki DB name
-
-	/**
-	 * Construct a new instance from configuration.
-	 * $config includes:
-	 *     'wiki' : wiki name to use for LoadBalancer
-	 *
-	 * @param $config Array
-	 */
-	protected function __construct( array $config ) {
-		parent::__construct( $config );
-
-		$this->wiki = $config['wiki'];
-	}
-
 	/**
 	 * @see FileJournal::logChangeBatch()
 	 * @return Status
