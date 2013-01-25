@@ -1180,26 +1180,9 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 		}
 
-		if ( isset( $options['GROUP BY'] ) ) {
-			$gb = is_array( $options['GROUP BY'] )
-				? implode( ',', $options['GROUP BY'] )
-				: $options['GROUP BY'];
-			$preLimitTail .= " GROUP BY {$gb}";
-		}
+		$preLimitTail .= $this->makeGroupByWithHaving( $options );
 
-		if ( isset( $options['HAVING'] ) ) {
-			$having = is_array( $options['HAVING'] )
-				? $this->makeList( $options['HAVING'], LIST_AND )
-				: $options['HAVING'];
-			$preLimitTail .= " HAVING {$having}";
-		}
-
-		if ( isset( $options['ORDER BY'] ) ) {
-			$ob = is_array( $options['ORDER BY'] )
-				? implode( ',', $options['ORDER BY'] )
-				: $options['ORDER BY'];
-			$preLimitTail .= " ORDER BY {$ob}";
-		}
+		$preLimitTail .= $this->makeOrderBy( $options );
 
 		// if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
@@ -1259,6 +1242,47 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
+	}
+
+	/**
+	 * Returns an optional GROUP BY with an optional HAVING
+	 *
+	 * @param $options Array: associative array of options
+	 * @return string
+	 * @see DatabaseBase::select()
+	 */
+	public function makeGroupByWithHaving( $options ) {
+		$sql = '';
+		if ( isset( $options['GROUP BY'] ) ) {
+			$gb = is_array( $options['GROUP BY'] )
+				? implode( ',', $options['GROUP BY'] )
+				: $options['GROUP BY'];
+			$sql .= ' GROUP BY ' . $gb;
+		}
+		if ( isset( $options['HAVING'] ) ) {
+			$having = is_array( $options['HAVING'] )
+				? $this->makeList( $options['HAVING'], LIST_AND )
+				: $options['HAVING'];
+			$sql .= ' HAVING ' . $having;
+		}
+		return $sql;
+	}
+
+	/**
+	 * Returns an optional ORDER BY
+	 *
+	 * @param $options Array: associative array of options
+	 * @return string
+	 * @see DatabaseBase::select()
+	 */
+	public function makeOrderBy( $options ) {
+		if ( isset( $options['ORDER BY'] ) ) {
+			$ob = is_array( $options['ORDER BY'] )
+				? implode( ',', $options['ORDER BY'] )
+				: $options['ORDER BY'];
+			return ' ORDER BY ' . $ob;
+		}
+		return '';
 	}
 
 	/**
