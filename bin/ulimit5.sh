@@ -9,7 +9,7 @@ fi
 if [ "$3" -gt 0 ]; then
 	ulimit -f "$3"
 fi
-if [ "$4" -gt 0 ]; then
+if [ "$4" -gt 0 -a -e "/usr/bin/timeout" ]; then
 	timeout $4 /bin/bash -c "$5"
 	STATUS="$?"
 	if [ "$STATUS" == 124 ]; then
