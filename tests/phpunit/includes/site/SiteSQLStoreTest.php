@@ -76,10 +76,14 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 		$site = $store->getSite( 'ertrywuutr' );
 		$this->assertInstanceOf( 'Site', $site );
 		$this->assertEquals( 'en', $site->getLanguageCode() );
+		$this->assertTrue( is_integer( $site->getInternalId() ) );
+		$this->assertTrue( $site->getInternalId() >= 0 );
 
 		$site = $store->getSite( 'sdfhxujgkfpth' );
 		$this->assertInstanceOf( 'Site', $site );
 		$this->assertEquals( 'nl', $site->getLanguageCode() );
+		$this->assertTrue( is_integer( $site->getInternalId() ) );
+		$this->assertTrue( $site->getInternalId() >= 0 );
 	}
 
 	public function testReset() {

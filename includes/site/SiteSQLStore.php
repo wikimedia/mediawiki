@@ -145,6 +145,8 @@ class SiteSQLStore implements SiteStore {
 
 		$site->setGlobalId( $siteRow->getField( 'global_key' ) );
 
+		$site->setInternalId( $siteRow->getField( 'id' ) );
+
 		if ( $siteRow->hasField( 'forward' ) ) {
 			$site->setForward( $siteRow->getField( 'forward' ) );
 		}
