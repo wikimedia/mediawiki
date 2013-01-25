@@ -4042,8 +4042,8 @@ You can apparently use 'URL' instead of 'hostname'.",
 'activeusers' => 'Title of [[Special:ActiveUsers]]',
 'activeusers-intro' => 'Used as introduction in [[Special:ActiveUsers]]. Parameters:
 * $1 - number of days (<code>$wgActiveUserDays</code>)',
-'activeusers-count' => "Used in [[Special:ActiveUsers]] to show the active user's recent edit count in brackets ([]).
-* $1 is the number of recent edits
+'activeusers-count' => "Used in [[Special:ActiveUsers]] to show the active user's recent action count in brackets ([]).
+* $1 is the number of recent actions
 * $2 is the user's name for use with GENDER (optional)
 * $3 is the maximum number of days of the RecentChangesList",
 'activeusers-from' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
