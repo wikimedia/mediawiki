@@ -7,16 +7,20 @@
 
 /** Tests for MediaWiki languages/classes/LanguageLv.php */
 class LanguageLvTest extends LanguageClassesTestCase {
-
-	/** @dataProvider providerPlural */
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array(
-			array( 'other', 0 ), #this must be zero form as per CLDR
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
+		return array (
+			array( 'zero', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 11 ),
 			array( 'one', 21 ),
@@ -27,5 +31,4 @@ class LanguageLvTest extends LanguageClassesTestCase {
 			array( 'other', 200 ),
 		);
 	}
-
 }
