@@ -549,6 +549,15 @@ nowiki 3
 
 !! end
 
+!! test
+Entities inside <nowiki>
+!! input
+<nowiki>&lt;</nowiki>
+!! result
+<p>&lt;
+</p>
+!! end
+
 
 ###
 ### Comments
@@ -904,6 +913,15 @@ Bug 6200: Preformatted in <blockquote>
 <pre width="8" onmouseover="alert(document.cookie)">Narrow screen goodies</pre>
 !! result
 <pre width="8">Narrow screen goodies</pre>
+
+!! end
+
+!! test
+Entities inside <pre>
+!! input
+<pre>&lt;</pre>
+!! result
+<pre>&lt;</pre>
 
 !! end
 
@@ -13578,6 +13596,17 @@ HTML tag with broken attribute value quoting
 !! end
 
 !! test
+Parsoid-only: HTML tag with broken attribute value quoting
+!! options
+disabled
+!! input
+<span title="Hello world>Foo</span>
+!! result
+<p><span title="Hello world">Foo</span>
+</p>
+!! end
+
+!! test
 Table with broken attribute value quoting
 !! input
 {|
@@ -13587,6 +13616,41 @@ Table with broken attribute value quoting
 <table>
 <tr>
 <td>Foo
+</td></tr></table>
+
+!! end
+
+!! test
+Table with broken attribute value quoting on consecutive lines
+!! input
+{|
+| title="Hello world|Foo
+| style="color:red|Bar
+|}
+!! result
+<table>
+<tr>
+<td>Foo
+</td>
+<td>Bar
+</td></tr></table>
+
+!! end
+
+!! test
+Parsoid-only: Table with broken attribute value quoting on consecutive lines
+!! options
+disabled
+!! input
+{|
+| title="Hello world|Foo
+| style="color:red|Bar
+|}
+!! result
+<table>
+<tr>
+<td title="Hello world">Foo
+</td><td style="color: red;">Bar
 </td></tr></table>
 
 !! end
