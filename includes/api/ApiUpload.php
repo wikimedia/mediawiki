@@ -122,7 +122,7 @@ class ApiUpload extends ApiBase {
 	 * Get an uplaod result based on upload context
 	 * @return array
 	 */
-	private function getContextResult(){
+	private function getContextResult() {
 		$warnings = $this->getApiWarnings();
 		if ( $warnings && !$this->mParams['ignorewarnings'] ) {
 			// Get warnings formated in result array format
@@ -144,7 +144,7 @@ class ApiUpload extends ApiBase {
 	 * @param $warnings array Array of Api upload warnings
 	 * @return array
 	 */
-	private function getStashResult( $warnings ){
+	private function getStashResult( $warnings ) {
 		$result = array ();
 		// Some uploads can request they be stashed, so as not to publish them immediately.
 		// In this case, a failure to stash ought to be fatal
@@ -166,7 +166,7 @@ class ApiUpload extends ApiBase {
 	 * @param $warnings array Array of Api upload warnings
 	 * @return array
 	 */
-	private function getWarningsResult( $warnings ){
+	private function getWarningsResult( $warnings ) {
 		$result = array();
 		$result['result'] = 'Warning';
 		$result['warnings'] = $warnings;
@@ -366,7 +366,7 @@ class ApiUpload extends ApiBase {
 		if ( $this->mParams['chunk'] ) {
 			// Chunk upload
 			$this->mUpload = new UploadFromChunks();
-			if( isset( $this->mParams['filekey'] ) ){
+			if( isset( $this->mParams['filekey'] ) ) {
 				// handle new chunk
 				$this->mUpload->continueChunks(
 					$this->mParams['filename'],

@@ -4987,7 +4987,7 @@ class Parser {
 					if ( $match = $magicWordAlt->matchVariableStartToEnd( $parameterMatch ) ) {
 						$alt = $this->stripAltText( $match, false );
 					}
-					elseif( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ){
+					elseif( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ) {
 						$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
 						$chars = self::EXT_LINK_URL_CLASS;
 						$prots = $this->mUrlProtocols;

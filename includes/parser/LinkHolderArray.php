@@ -322,7 +322,7 @@ class LinkHolderArray {
 		}
 		if ( $queries ) {
 			$where = array();
-			foreach( $queries as $ns => $pages ){
+			foreach( $queries as $ns => $pages ) {
 				$where[] = $dbr->makeList(
 					array(
 						'page_namespace' => $ns,
@@ -514,7 +514,7 @@ class LinkHolderArray {
 		}
 
 
-		if(!$linkBatch->isEmpty()){
+		if( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
 			$varRes = $dbr->select( 'page',
@@ -570,16 +570,18 @@ class LinkHolderArray {
 			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 
 			// rebuild the categories in original order (if there are replacements)
-			if(count($varCategories)>0){
+			if( count( $varCategories ) > 0 ) {
 				$newCats = array();
 				$originalCats = $output->getCategories();
-				foreach($originalCats as $cat => $sortkey){
+				foreach( $originalCats as $cat => $sortkey ) {
 					// make the replacement
-					if( array_key_exists($cat,$varCategories) )
+					if( array_key_exists( $cat, $varCategories ) ) {
 						$newCats[$varCategories[$cat]] = $sortkey;
-					else $newCats[$cat] = $sortkey;
+					} else {
+						$newCats[$cat] = $sortkey;
+					}
 				}
-				$output->setCategoryLinks($newCats);
+				$output->setCategoryLinks( $newCats );
 			}
 		}
 	}

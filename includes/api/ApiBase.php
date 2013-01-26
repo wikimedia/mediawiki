@@ -1369,7 +1369,7 @@ abstract class ApiBase extends ContextSource {
 
 		// Check whether the error array was nested
 		// array( array( <code>, <params> ), array( <another_code>, <params> ) )
-		if( is_array( $key ) ){
+		if( is_array( $key ) ) {
 			$error = $key;
 			$key = array_shift( $error );
 		}
