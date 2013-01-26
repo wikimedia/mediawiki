@@ -221,7 +221,7 @@ class _DiffEngine {
 			}
 
 			$add = array();
-			while ( $yi < $n_to && $this->ychanged[$yi] )  {
+			while ( $yi < $n_to && $this->ychanged[$yi] ) {
 				$add[] = $to_lines[$yi++];
 			}
 

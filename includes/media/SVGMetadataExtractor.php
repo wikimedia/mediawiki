@@ -187,7 +187,7 @@ class SVGReader {
 		while( $keepReading ) {
 			if( $this->reader->localName == $name && $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
-			} elseif( $this->reader->nodeType == XmlReader::TEXT ){
+			} elseif( $this->reader->nodeType == XmlReader::TEXT ) {
 				$this->metadata[$metafield] = trim( $this->reader->value );
 			}
 			$keepReading = $this->reader->read();

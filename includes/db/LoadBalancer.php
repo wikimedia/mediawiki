@@ -209,7 +209,7 @@ class LoadBalancer {
 			return $this->getWriterIndex();
 		}
 
-		if ( count( $this->mServers ) == 1 )  {
+		if ( count( $this->mServers ) == 1 ) {
 			# Skip the load balancing if there's only one server
 			return 0;
 		} elseif ( $group === false and $this->mReadIndex >= 0 ) {
@@ -258,7 +258,7 @@ class LoadBalancer {
 					$i = $this->pickRandom( $currentLoads );
 				} else {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
-					if ( $i === false && count( $currentLoads ) != 0 )  {
+					if ( $i === false && count( $currentLoads ) != 0 ) {
 						# All slaves lagged. Switch to read-only mode
 						wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
 						$wgReadOnly = 'The database has been automatically locked ' .
@@ -392,7 +392,7 @@ class LoadBalancer {
 		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
 		for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
-			$this->doWait( $i , true );
+			$this->doWait( $i, true );
 		}
 		wfProfileOut( __METHOD__ );
 	}

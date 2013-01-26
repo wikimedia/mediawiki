@@ -390,7 +390,7 @@ class ParserOutput extends CacheTime {
 		$this->mProperties[$name] = $value;
 	}
 
-	public function getProperty( $name ){
+	public function getProperty( $name ) {
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
 

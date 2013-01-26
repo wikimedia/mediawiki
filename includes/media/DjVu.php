@@ -247,7 +247,7 @@ class DjVuHandler extends ImageHandler {
 			$image->djvuTextTree = false;
 			$tree = new SimpleXMLElement( $metadata );
 			if( $tree->getName() == 'mw-djvu' ) {
-				foreach($tree->children() as $b){
+				foreach( $tree->children() as $b ) {
 					if( $b->getName() == 'DjVuTxt' ) {
 						$image->djvuTextTree = $b;
 					}

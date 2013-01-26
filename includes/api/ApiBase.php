@@ -654,7 +654,7 @@ abstract class ApiBase extends ContextSource {
 			array( $this, "parameterNotEmpty" ) ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
-			$this->dieUsage( "The parameters {$p}" . implode( ", {$p}",  $intersection ) . ' can not be used together', "{$p}invalidparammix" );
+			$this->dieUsage( "The parameters {$p}" . implode( ", {$p}", $intersection ) . ' can not be used together', "{$p}invalidparammix" );
 		} elseif ( count( $intersection ) == 0 ) {
 			$this->dieUsage( "One of the parameters {$p}" . implode( ", {$p}", $required ) . ' is required', "{$p}missingparam" );
 		}
@@ -1369,7 +1369,7 @@ abstract class ApiBase extends ContextSource {
 
 		// Check whether the error array was nested
 		// array( array( <code>, <params> ), array( <another_code>, <params> ) )
-		if( is_array( $key ) ){
+		if( is_array( $key ) ) {
 			$error = $key;
 			$key = array_shift( $error );
 		}
