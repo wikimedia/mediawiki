@@ -32,7 +32,7 @@ class RandomPage extends SpecialPage {
 	protected $isRedir = false; // should the result be a redirect?
 	protected $extra = array(); // Extra SQL statements
 
-	public function __construct( $name = 'Randompage' ){
+	public function __construct( $name = 'Randompage' ) {
 		$this->namespaces = MWNamespace::getContentNamespaces();
 		parent::__construct( $name );
 	}
@@ -49,7 +49,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	// select redirects instead of normal pages?
-	public function isRedirect(){
+	public function isRedirect() {
 		return $this->isRedir;
 	}
 

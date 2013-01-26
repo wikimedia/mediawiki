@@ -29,7 +29,7 @@
 class SpecialPrefixindex extends SpecialAllpages {
 	// Inherit $maxPerPage
 
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'Prefixindex' );
 	}
 

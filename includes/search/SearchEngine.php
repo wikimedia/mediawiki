@@ -183,7 +183,7 @@ class SearchEngine {
 
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
-			if ( is_null( $title ) ){
+			if ( is_null( $title ) ) {
 				return null;
 			}
 
@@ -1243,7 +1243,7 @@ class SearchHighlighter {
 			$posEnd = $end;
 		}
 
-		if ( $end > $start )  {
+		if ( $end > $start ) {
 			return substr( $text, $start, $end - $start );
 		} else {
 			return '';

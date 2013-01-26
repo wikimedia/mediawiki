@@ -76,7 +76,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		static $infinity = null;
 
-		if( is_null( $infinity ) ){
+		if( is_null( $infinity ) ) {
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 

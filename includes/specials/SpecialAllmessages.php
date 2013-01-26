@@ -118,7 +118,7 @@ class AllmessagesTablePager extends TablePager {
 		$request = $this->getRequest();
 
 		$this->filter = $request->getVal( 'filter', 'all' );
-		if( $this->filter === 'all' ){
+		if( $this->filter === 'all' ) {
 			$this->custom = null; // So won't match in either case
 		} else {
 			$this->custom = ($this->filter == 'unmodified');
@@ -126,7 +126,7 @@ class AllmessagesTablePager extends TablePager {
 
 		$prefix = $this->getLanguage()->ucfirst( $request->getVal( 'prefix', '' ) );
 		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $request->getVal( 'prefix', null ) ) : null;
-		if( $prefix !== null ){
+		if( $prefix !== null ) {
 			$this->displayPrefix = $prefix->getDBkey();
 			$this->prefix = '/^' . preg_quote( $this->displayPrefix ) . '/i';
 		} else {
@@ -216,7 +216,7 @@ class AllmessagesTablePager extends TablePager {
 	function getAllMessages( $descending ) {
 		wfProfileIn( __METHOD__ );
 		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
-		if( $descending ){
+		if( $descending ) {
 			rsort( $messageNames );
 		} else {
 			asort( $messageNames );
@@ -331,15 +331,15 @@ class AllmessagesTablePager extends TablePager {
 			</tr></thead><tbody>\n";
 	}
 
-	function formatValue( $field, $value ){
-		switch( $field ){
+	function formatValue( $field, $value ) {
+		switch( $field ) {
 
 			case 'am_title' :
 
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
 				$talk  = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 
-				if( $this->mCurrentRow->am_customised ){
+				if( $this->mCurrentRow->am_customised ) {
 					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );
 				} else {
 					$title = Linker::link(
@@ -370,12 +370,12 @@ class AllmessagesTablePager extends TablePager {
 		return '';
 	}
 
-	function formatRow( $row ){
+	function formatRow( $row ) {
 		// Do all the normal stuff
 		$s = parent::formatRow( $row );
 
 		// But if there's a customised message, add that too.
-		if( $row->am_customised ){
+		if( $row->am_customised ) {
 			$s .= Xml::openElement( 'tr', $this->getRowAttrs( $row, true ) );
 			$formatted = strval( $this->formatValue( 'am_actual', $row->am_actual ) );
 			if ( $formatted == '' ) {
@@ -387,19 +387,19 @@ class AllmessagesTablePager extends TablePager {
 		return $s;
 	}
 
-	function getRowAttrs( $row, $isSecond = false ){
+	function getRowAttrs( $row, $isSecond = false ) {
 		$arr = array();
-		if( $row->am_customised ){
+		if( $row->am_customised ) {
 			$arr['class'] = 'allmessages-customised';
 		}
-		if( !$isSecond ){
+		if( !$isSecond ) {
 			$arr['id'] = Sanitizer::escapeId( 'msg_' . $this->getLanguage()->lcfirst( $row->am_title ) );
 		}
 		return $arr;
 	}
 
-	function getCellAttrs( $field, $value ){
-		if( $this->mCurrentRow->am_customised && $field == 'am_title' ){
+	function getCellAttrs( $field, $value ) {
+		if( $this->mCurrentRow->am_customised && $field == 'am_title' ) {
 			return array( 'rowspan' => '2', 'class' => $field );
 		} elseif( $field == 'am_title' ) {
 			return array( 'class' => $field );
@@ -420,15 +420,15 @@ class AllmessagesTablePager extends TablePager {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
 	}
 
-	function isFieldSortable( $x ){
+	function isFieldSortable( $x ) {
 		return false;
 	}
 
-	function getDefaultSort(){
+	function getDefaultSort() {
 		return '';
 	}
 
-	function getQueryInfo(){
+	function getQueryInfo() {
 		return '';
 	}
 }

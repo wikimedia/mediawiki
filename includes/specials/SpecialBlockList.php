@@ -113,14 +113,14 @@ class SpecialBlockList extends SpecialPage {
 
 		$conds = array();
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ){
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 
-		if ( $this->target !== '' ){
+		if ( $this->target !== '' ) {
 			list( $target, $type ) = Block::parseTarget( $this->target );
 
-			switch( $type ){
+			switch( $type ) {
 				case Block::TYPE_ID:
 				case Block::TYPE_AUTO:
 					$conds['ipb_id'] = $target;
@@ -269,11 +269,11 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_target':
-				if( $row->ipb_auto ){
+				if( $row->ipb_auto ) {
 					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
 				} else {
 					list( $target, $type ) = Block::parseTarget( $row->ipb_address );
-					switch( $type ){
+					switch( $type ) {
 						case Block::TYPE_USER:
 						case Block::TYPE_IP:
 							$formatted = Linker::userLink( $target->getId(), $target );
@@ -292,8 +292,8 @@ class BlockListPager extends TablePager {
 
 			case 'ipb_expiry':
 				$formatted = $this->getLanguage()->formatExpiry( $value, /* User preference timezone */ true );
-				if( $this->getUser()->isAllowed( 'block' ) ){
-					if( $row->ipb_auto ){
+				if( $this->getUser()->isAllowed( 'block' ) ) {
+					if( $row->ipb_auto ) {
 						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Unblock' ),
 							$msg['unblocklink'],
@@ -391,14 +391,14 @@ class BlockListPager extends TablePager {
 		);
 
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ){
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$info['conds']['ipb_deleted'] = 0;
 		}
 
 		return $info;
 	}
 
-	public function getTableClass(){
+	public function getTableClass() {
 		return 'TablePager mw-blocklist';
 	}
 
@@ -418,7 +418,7 @@ class BlockListPager extends TablePager {
 	 * Do a LinkBatch query to minimise database load when generating all these links
 	 * @param $result
 	 */
-	function preprocessResults( $result ){
+	function preprocessResults( $result ) {
 		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		$lb = new LinkBatch;
@@ -437,7 +437,7 @@ class BlockListPager extends TablePager {
 		}
 
 		$ua = UserArray::newFromIDs( $userids );
-		foreach( $ua as $user ){
+		foreach( $ua as $user ) {
 			$name = str_replace( ' ', '_', $user->getName() );
 			$lb->add( NS_USER, $name );
 			$lb->add( NS_USER_TALK, $name );

@@ -29,7 +29,7 @@
 class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	var $rclTargetTitle;
 
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'Recentchangeslinked' );
 	}
 
@@ -50,7 +50,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		return $opts;
 	}
 
-	public function getFeedObject( $feedFormat ){
+	public function getFeedObject( $feedFormat ) {
 		$feed = new ChangesFeed( $feedFormat, false );
 		$feedObj = $feed->getFeedObject(
 			$this->msg( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() )
@@ -71,7 +71,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		}
 		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
-		if( !$title || $title->getInterwiki() != '' ){
+		if( !$title || $title->getInterwiki() != '' ) {
 			$outputPage->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
 			return false;
 		}
@@ -228,7 +228,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	 * @param $opts FormOptions
 	 * @return array
 	 */
-	function getExtraOptions( $opts ){
+	function getExtraOptions( $opts ) {
 		$opts->consumeValues( array( 'showlinkedto', 'target', 'tagfilter' ) );
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );

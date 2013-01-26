@@ -106,7 +106,7 @@ class SpecialComparePages extends SpecialPage {
 		$form->trySubmit();
 	}
 
-	public static function showDiff( $data, HTMLForm $form ){
+	public static function showDiff( $data, HTMLForm $form ) {
 		$rev1 = self::revOrTitle( $data['Revision1'], $data['Page1'] );
 		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
@@ -128,11 +128,11 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	public static function revOrTitle( $revision, $title ) {
-		if( $revision ){
+		if( $revision ) {
 			return $revision;
 		} elseif( $title ) {
 			$title = Title::newFromText( $title );
-			if( $title instanceof Title ){
+			if( $title instanceof Title ) {
 				return $title->getLatestRevID();
 			}
 		}

@@ -112,7 +112,7 @@ class UploadFromChunks extends UploadFromFile {
 		// Concatenate all the chunks to mVirtualTempPath
 		$fileList = Array();
 		// The first chunk is stored at the mVirtualTempPath path so we start on "chunk 1"
-		for( $i = 0; $i <= $this->getChunkIndex(); $i++ ){
+		for( $i = 0; $i <= $this->getChunkIndex(); $i++ ) {
 			$fileList[] = $this->getVirtualChunkLocation( $i );
 		}
 
@@ -127,7 +127,7 @@ class UploadFromChunks extends UploadFromFile {
 		$tStart = microtime( true );
 		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
 		$tAmount = microtime( true ) - $tStart;
-		if( !$status->isOk() ){
+		if( !$status->isOk() ) {
 			return $status;
 		}
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds.\n" );
@@ -190,7 +190,7 @@ class UploadFromChunks extends UploadFromFile {
 				// Update local chunk index for the current chunk
 				$this->mChunkIndex++;
 				$status = $this->outputChunk( $chunkPath );
-				if( $status->isGood() ){
+				if( $status->isGood() ) {
 					// Update local offset:
 					$this->mOffset = $preAppendOffset + $chunkSize;
 					// Update chunk table status db
@@ -257,7 +257,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return Integer index of the current chunk
 	 */
 	private function getChunkIndex() {
-		if( $this->mChunkIndex !== null ){
+		if( $this->mChunkIndex !== null ) {
 			return $this->mChunkIndex;
 		}
 		return 0;
@@ -268,7 +268,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return Integer current byte offset of the chunk file set
 	 */
 	private function getOffset() {
-		if ( $this->mOffset !== null ){
+		if ( $this->mOffset !== null ) {
 			return $this->mOffset;
 		}
 		return 0;
@@ -307,7 +307,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	private function getChunkFileKey( $index = null ) {
-		if( $index === null ){
+		if( $index === null ) {
 			$index = $this->getChunkIndex();
 		}
 		return $this->mFileKey . '.' . $index ;

@@ -86,7 +86,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			);
 		}
 
-		if( $this->getUser()->isAllowed( 'passwordreset' ) ){
+		if( $this->getUser()->isAllowed( 'passwordreset' ) ) {
 			$a['Capture'] = array(
 				'type' => 'check',
 				'label-message' => 'passwordreset-capture',
@@ -136,7 +136,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			}
 		}
 
-		if( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ){
+		if( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ) {
 			// The user knows they don't have the passwordreset permission, but they tried to spoof the form.  That's naughty
 			throw new PermissionsError( 'passwordreset' );
 		}
@@ -162,7 +162,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			);
 			if ( $res ) {
 				$users = array();
-				foreach( $res as $row ){
+				foreach( $res as $row ) {
 					$users[] = User::newFromRow( $row );
 				}
 			} else {
@@ -180,8 +180,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 			return array( $error );
 		}
 
-		if( count( $users ) == 0 ){
-			if( $method == 'email' ){
+		if( count( $users ) == 0 ) {
+			if( $method == 'email' ) {
 				// Don't reveal whether or not an email address is in use
 				return true;
 			} else {
@@ -264,7 +264,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		if ( $this->result->isGood() ) {
 			return true;
-		} elseif( isset( $data['Capture'] ) && $data['Capture'] ){
+		} elseif( isset( $data['Capture'] ) && $data['Capture'] ) {
 			// The email didn't send, but maybe they knew that and that's why they captured it
 			return true;
 		} else {
@@ -275,10 +275,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function onSuccess() {
-		if( $this->getUser()->isAllowed( 'passwordreset' ) && $this->email != null ){
+		if( $this->getUser()->isAllowed( 'passwordreset' ) && $this->email != null ) {
 			// @todo: Logging
 
-			if( $this->result->isGood() ){
+			if( $this->result->isGood() ) {
 				$this->getOutput()->addWikiMsg( 'passwordreset-emailsent-capture' );
 			} else {
 				$this->getOutput()->addWikiMsg( 'passwordreset-emailerror-capture', $this->result->getMessage() );

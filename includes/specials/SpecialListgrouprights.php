@@ -170,7 +170,7 @@ class SpecialListGroupRights extends SpecialPage {
 		}
 		sort( $r );
 		$lang = $this->getLanguage();
-		if( $add === true ){
+		if( $add === true ) {
 			$r[] = $this->msg( 'listgrouprights-addgroup-all' )->escaped();
 		} elseif( is_array( $add ) && count( $add ) ) {
 			$add = array_values( array_unique( $add ) );
@@ -179,7 +179,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $add )
 			)->parse();
 		}
-		if( $remove === true ){
+		if( $remove === true ) {
 			$r[] = $this->msg( 'listgrouprights-removegroup-all' )->escaped();
 		} elseif( is_array( $remove ) && count( $remove ) ) {
 			$remove = array_values( array_unique( $remove ) );
@@ -188,7 +188,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $remove )
 			)->parse();
 		}
-		if( $addSelf === true ){
+		if( $addSelf === true ) {
 			$r[] = $this->msg( 'listgrouprights-addgroup-self-all' )->escaped();
 		} elseif( is_array( $addSelf ) && count( $addSelf ) ) {
 			$addSelf = array_values( array_unique( $addSelf ) );
@@ -197,7 +197,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $addSelf )
 			)->parse();
 		}
-		if( $removeSelf === true ){
+		if( $removeSelf === true ) {
 			$r[] = $this->msg( 'listgrouprights-removegroup-self-all' )->parse();
 		} elseif( is_array( $removeSelf ) && count( $removeSelf ) ) {
 			$removeSelf = array_values( array_unique( $removeSelf ) );

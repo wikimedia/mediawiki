@@ -61,7 +61,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 *
 	 * @param $name string: name of the special page, as seen in links and URLs (default: 'Allpages')
 	 */
-	function __construct( $name = 'Allpages' ){
+	function __construct( $name = 'Allpages' ) {
 		parent::__construct( $name );
 	}
 

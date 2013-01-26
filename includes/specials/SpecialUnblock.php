@@ -32,11 +32,11 @@ class SpecialUnblock extends SpecialPage {
 	protected $type;
 	protected $block;
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct( 'Unblock', 'block' );
 	}
 
-	public function execute( $par ){
+	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();
 
@@ -56,8 +56,8 @@ class SpecialUnblock extends SpecialPage {
 		$form->setSubmitTextMsg( 'ipusubmit' );
 		$form->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
-		if( $form->show() ){
-			switch( $this->type ){
+		if( $form->show() ) {
+			switch( $this->type ) {
 				case Block::TYPE_USER:
 				case Block::TYPE_IP:
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
@@ -73,7 +73,7 @@ class SpecialUnblock extends SpecialPage {
 		}
 	}
 
-	protected function getFields(){
+	protected function getFields() {
 		$fields = array(
 			'Target' => array(
 				'type' => 'text',
@@ -92,21 +92,21 @@ class SpecialUnblock extends SpecialPage {
 			)
 		);
 
-		if( $this->block instanceof Block ){
+		if( $this->block instanceof Block ) {
 			list( $target, $type ) = $this->block->getTargetAndType();
 
 			# Autoblocks are logged as "autoblock #123 because the IP was recently used by
 			# User:Foo, and we've just got any block, auto or not, that applies to a target
 			# the user has specified.  Someone could be fishing to connect IPs to autoblocks,
 			# so don't show any distinction between unblocked IPs and autoblocked IPs
-			if( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ){
+			if( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
 
 			} else {
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
-				switch( $type ){
+				switch( $type ) {
 					case Block::TYPE_USER:
 					case Block::TYPE_IP:
 						$fields['Name']['default'] = Linker::link(
@@ -152,12 +152,12 @@ class SpecialUnblock extends SpecialPage {
 	 * @throws ErrorPageError
 	 * @return Array( Array(message key, parameters) ) on failure, True on success
 	 */
-	public static function processUnblock( array $data, IContextSource $context ){
+	public static function processUnblock( array $data, IContextSource $context ) {
 		$performer = $context->getUser();
 		$target = $data['Target'];
 		$block = Block::newFromTarget( $data['Target'] );
 
-		if( !$block instanceof Block ){
+		if( !$block instanceof Block ) {
 			return array( array( 'ipb_cant_unblock', $target ) );
 		}
 

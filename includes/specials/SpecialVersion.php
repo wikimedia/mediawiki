@@ -40,7 +40,7 @@ class SpecialVersion extends SpecialPage {
 		'https://svn.wikimedia.org/svnroot/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
 	);
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct( 'Version' );
 	}
 

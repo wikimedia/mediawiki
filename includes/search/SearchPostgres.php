@@ -186,10 +186,10 @@ class SearchPostgres extends SearchEngine {
 			$query .= ' AND page_is_redirect = 0';
 
 		## Namespaces - defaults to 0
-		if( !is_null($this->namespaces) ){ // null -> search all
-			if ( count($this->namespaces) < 1)
+		if( !is_null( $this->namespaces ) ) { // null -> search all
+			if ( count( $this->namespaces ) < 1 ) {
 				$query .= ' AND page_namespace = 0';
-			else {
+			} else {
 				$namespaces = $this->db->makeList( $this->namespaces );
 				$query .= " AND page_namespace IN ($namespaces)";
 			}
