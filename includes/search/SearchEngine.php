@@ -183,7 +183,7 @@ class SearchEngine {
 
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
-			if ( is_null( $title ) ){
+			if ( is_null( $title ) ) {
 				return null;
 			}
 
@@ -1243,7 +1243,7 @@ class SearchHighlighter {
 			$posEnd = $end;
 		}
 
-		if ( $end > $start )  {
+		if ( $end > $start ) {
 			return substr( $text, $start, $end - $start );
 		} else {
 			return '';
@@ -1419,8 +1419,7 @@ class SearchHighlighter {
 
 			$line = htmlspecialchars( $pre . $found . $post );
 			$pat2 = '/(' . $terms . ")/i";
-			$line = preg_replace( $pat2,
-			  "<span class='searchmatch'>\\1</span>", $line );
+			$line = preg_replace( $pat2, "<span class='searchmatch'>\\1</span>", $line );
 
 			$extract .= "${line}\n";
 		}

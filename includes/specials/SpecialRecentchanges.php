@@ -155,7 +155,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		// Fetch results, prepare a batch link existence check query
 		$conds = $this->buildMainQueryConds( $opts );
 		$rows = $this->doMainQuery( $conds, $opts );
-		if( $rows === false ){
+		if( $rows === false ) {
 			if( !$this->including() ) {
 				$this->doHeader( $opts );
 			}
@@ -186,7 +186,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 *
 	 * @return Array
 	 */
-	public function getFeedObject( $feedFormat ){
+	public function getFeedObject( $feedFormat ) {
 		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
 		$formatter = $changesFeed->getFeedObject(
 			$this->msg( 'recentchanges' )->inContentLanguage()->text(),
@@ -281,9 +281,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		# It makes no sense to hide both anons and logged-in users
 		# Where this occurs, force anons to be shown
 		$forcebot = false;
-		if( $opts['hideanons'] && $opts['hideliu'] ){
+		if( $opts['hideanons'] && $opts['hideliu'] ) {
 			# Check if the user wants to show bots only
-			if( $opts['hidebots'] ){
+			if( $opts['hidebots'] ) {
 				$opts['hideanons'] = false;
 			} else {
 				$forcebot = true;
@@ -297,8 +297,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match('/^[0-9]{14}$/', $opts['from']);
-		if( $fromValid && $opts['from'] > wfTimestamp(TS_MW,$cutoff) ) {
-			$cutoff = $dbr->timestamp($opts['from']);
+		if( $fromValid && $opts['from'] > wfTimestamp( TS_MW, $cutoff ) ) {
+			$cutoff = $dbr->timestamp( $opts['from'] );
 		} else {
 			$opts->reset( 'from' );
 		}
@@ -729,7 +729,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $opts FormOptions
 	 */
 	function filterByCategories( &$rows, FormOptions $opts ) {
-		$categories = array_map( 'trim', explode( '|' , $opts['categories'] ) );
+		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
 
 		if( !count( $categories ) ) {
 			return;

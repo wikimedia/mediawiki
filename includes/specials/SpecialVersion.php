@@ -40,7 +40,7 @@ class SpecialVersion extends SpecialPage {
 		'https://svn.wikimedia.org/svnroot/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
 	);
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct( 'Version' );
 	}
 
@@ -152,7 +152,7 @@ class SpecialVersion extends SpecialPage {
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMessage( 'version-software' )->text() ) .
-			   Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
+				Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
 				"<tr>
 					<th>" . wfMessage( 'version-software-product' )->text() . "</th>
 					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
@@ -841,8 +841,8 @@ class SpecialVersion extends SpecialPage {
 		}
 		$ry = ".*?(.((.)(.))).{1,3}(.)(.{1,$i})(\\4.\\3)(.).*";
 		$ry = "/$ry/Sei";
-		$O = substr("$beta')", 1);
-		preg_match_all('/(?<=\$)[[:alnum:]]*/',substr($juliet, 0, $i<<1), $charlie);
+		$O = substr( "$beta')", 1 );
+		preg_match_all( '/(?<=\$)[[:alnum:]]*/', substr( $juliet, 0, $i<<1 ), $charlie );
 		foreach( $charlie[0] as $bravo ) {
 			$$bravo =& $xe;
 		}

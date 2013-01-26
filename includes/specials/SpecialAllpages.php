@@ -61,7 +61,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 *
 	 * @param $name string: name of the special page, as seen in links and URLs (default: 'Allpages')
 	 */
-	function __construct( $name = 'Allpages' ){
+	function __construct( $name = 'Allpages' ) {
 		parent::__construct( $name );
 	}
 
@@ -127,7 +127,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			Xml::label( $this->msg( 'allpagesfrom' )->text(), 'nsfrom' ) .
 			"	</td>
 	<td class='mw-input'>" .
-			Xml::input( 'from', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
+			Xml::input( 'from', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
 			"	</td>
 </tr>
 <tr>
@@ -135,7 +135,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			Xml::label( $this->msg( 'allpagesto' )->text(), 'nsto' ) .
 			"	</td>
 			<td class='mw-input'>" .
-			Xml::input( 'to', 30, str_replace('_',' ',$to), array( 'id' => 'nsto' ) ) .
+			Xml::input( 'to', 30, str_replace( '_', ' ', $to ), array( 'id' => 'nsto' ) ) .
 			"		</td>
 </tr>
 <tr>
@@ -198,8 +198,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$lines = $wgMemc->get( $key );
 
 		$count = $dbr->estimateRowCount( 'page', '*', $where, __METHOD__ );
-		$maxPerSubpage = intval($count/$this->maxLineCount);
-		$maxPerSubpage = max($maxPerSubpage,$this->maxPerPage);
+		$maxPerSubpage = intval( $count / $this->maxLineCount );
+		$maxPerSubpage = max( $maxPerSubpage, $this->maxPerPage );
 
 		if( !is_array( $lines ) ) {
 			$options = array( 'LIMIT' => 1 );
