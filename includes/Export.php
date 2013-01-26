@@ -330,7 +330,7 @@ class WikiExporter {
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
 			} elseif ( $this->history & WikiExporter::CURRENT ) {
 				# Latest revision dumps...
-				if ( $this->list_authors && $cond != '' )  { // List authors, if so desired
+				if ( $this->list_authors && $cond != '' ) { // List authors, if so desired
 					$this->do_list_authors( $cond );
 				}
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' );

@@ -598,7 +598,7 @@ class MagicWord {
 	function replaceMultiple( $magicarr, $subject, &$result ) {
 		$search = array();
 		$replace = array();
-		foreach( $magicarr as $id => $replacement ){
+		foreach( $magicarr as $id => $replacement ) {
 			$mw = MagicWord::get( $id );
 			$search[] = $mw->getRegex();
 			$replace[] = $replacement;

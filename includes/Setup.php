@@ -50,9 +50,9 @@ if ( $wgLoadScript === false ) $wgLoadScript = "$wgScriptPath/load$wgScriptExten
 
 if ( $wgArticlePath === false ) {
 	if ( $wgUsePathInfo ) {
-		$wgArticlePath      = "$wgScript/$1";
+		$wgArticlePath = "$wgScript/$1";
 	} else {
-		$wgArticlePath      = "$wgScript?title=$1";
+		$wgArticlePath = "$wgScript?title=$1";
 	}
 }
 
@@ -323,7 +323,7 @@ if ( !$wgEnotifMinorEdits ) {
 }
 
 # $wgDisabledActions is deprecated as of 1.18
-foreach( $wgDisabledActions as $action ){
+foreach( $wgDisabledActions as $action ) {
 	$wgActions[$action] = false;
 }
 

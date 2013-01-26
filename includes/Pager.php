@@ -1160,7 +1160,7 @@ abstract class TablePager extends IndexPager {
 			# The pair is either $index => $limit, in which case the $value
 			# will be numeric, or $limit => $text, in which case the $value
 			# will be a string.
-			if( is_int( $value ) ){
+			if( is_int( $value ) ) {
 				$limit = $value;
 				$text = $this->getLanguage()->formatNum( $limit );
 			} else {
