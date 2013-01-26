@@ -443,13 +443,21 @@ class CheckStorage {
 
 	function importRevision( &$revision, &$importer ) {
 		$id = $revision->getID();
-		$text = $revision->getText();
+		$content = $revision->getContent( Revision::RAW );
+		$id = $id ? $id : '';
+
+		if ( $content === null ) {
+			echo "Revision $id is broken, we have no content available\n";
+			return;
+		}
+
+		$text = $content->serialize();
 		if ( $text === '' ) {
 			// This is what happens if the revision was broken at the time the
 			// dump was made. Unfortunately, it also happens if the revision was
 			// legitimately blank, so there's no way to tell the difference. To
 			// be safe, we'll skip it and leave it broken
-			$id = $id ? $id : '';
+
 			echo "Revision $id is blank in the dump, may have been broken before export\n";
 			return;
 		}
