@@ -136,7 +136,7 @@ class ChangesList extends ContextSource {
 	 */
 	protected function recentChangesFlags( $flags, $nothing = '&#160;' ) {
 		$f = '';
-		foreach( array( 'newpage', 'minor', 'bot', 'unpatrolled' ) as $flag ){
+		foreach( array( 'newpage', 'minor', 'bot', 'unpatrolled' ) as $flag ) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
 				? self::flag( $flag )
 				: $nothing;
@@ -846,7 +846,7 @@ class EnhancedChangesList extends ChangesList {
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
 			# Logs are grouped by type
-			if( $type == RC_LOG ){
+			if( $type == RC_LOG ) {
 				$secureName = SpecialPage::getTitleFor( 'Log', $logType )->getPrefixedDBkey();
 			}
 			if( !isset( $this->rc_cache[$secureName] ) ) {

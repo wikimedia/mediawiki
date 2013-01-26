@@ -1139,7 +1139,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public function doPurge() {
 		global $wgUseSquid;
 
-		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ){
+		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 			return false;
 		}
 

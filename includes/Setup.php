@@ -323,7 +323,7 @@ if ( !$wgEnotifMinorEdits ) {
 }
 
 # $wgDisabledActions is deprecated as of 1.18
-foreach( $wgDisabledActions as $action ){
+foreach( $wgDisabledActions as $action ) {
 	$wgActions[$action] = false;
 }
 

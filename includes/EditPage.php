@@ -1715,7 +1715,7 @@ class EditPage {
 	 * @return bool
 	 * @deprecated since 1.21, use mergeChangesIntoContent() instead
 	 */
-	function mergeChangesInto( &$editText ){
+	function mergeChangesInto( &$editText ) {
 		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$editContent = $this->toEditContent( $editText );
@@ -1740,7 +1740,7 @@ class EditPage {
 	 *
 	 * @return bool
 	 */
-	private function mergeChangesIntoContent( &$editContent ){
+	private function mergeChangesIntoContent( &$editContent ) {
 		wfProfileIn( __METHOD__ );
 
 		$db = wfGetDB( DB_MASTER );
@@ -3454,7 +3454,7 @@ HTML
 		global $wgOut, $wgLang;
 		$this->textbox2 = $this->textbox1;
 
-		if( is_array( $match ) ){
+		if( is_array( $match ) ) {
 			$match = $wgLang->listToText( $match );
 		}
 		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );

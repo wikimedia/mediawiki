@@ -159,7 +159,7 @@ class FauxResponse extends WebResponse {
 	 * @param $name string
 	 * @return string
 	 */
-	public function getcookie( $name )  {
+	public function getcookie( $name ) {
 		if ( isset( $this->cookies[$name] ) ) {
 			return $this->cookies[$name];
 		}

@@ -1039,7 +1039,7 @@ class Sanitizer {
 		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
 
 		if ( !preg_match( '/^[a-zA-Z]/', $id )
-		&& !in_array( 'noninitial', $options ) )  {
+		&& !in_array( 'noninitial', $options ) ) {
 			// Initial character must be a letter!
 			$id = "x$id";
 		}

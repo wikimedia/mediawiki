@@ -87,7 +87,7 @@ class ExternalEdit extends ContextSource {
 						'URL' => $image->getCanonicalURL()
 					)
 				);
-			} else{
+			} else {
 				$urls = array();
 			}
 		} else {

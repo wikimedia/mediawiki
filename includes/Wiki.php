@@ -126,7 +126,7 @@ class MediaWiki {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if( $this->context->getTitle() === null ){
+		if( $this->context->getTitle() === null ) {
 			$this->context->setTitle( $this->parseTitle() );
 		}
 		return $this->context->getTitle();

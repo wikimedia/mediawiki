@@ -329,7 +329,7 @@ class ErrorPageError extends MWException {
 		$this->msg = $msg;
 		$this->params = $params;
 
-		if( $msg instanceof Message ){
+		if( $msg instanceof Message ) {
 			parent::__construct( $msg );
 		} else {
 			parent::__construct( wfMessage( $msg )->text() );
@@ -423,7 +423,7 @@ class PermissionsError extends ErrorPageError {
  * @ingroup Exception
  */
 class ReadOnlyError extends ErrorPageError {
-	public function __construct(){
+	public function __construct() {
 		parent::__construct(
 			'readonly',
 			'readonlytext',
@@ -439,14 +439,14 @@ class ReadOnlyError extends ErrorPageError {
  * @ingroup Exception
  */
 class ThrottledError extends ErrorPageError {
-	public function __construct(){
+	public function __construct() {
 		parent::__construct(
 			'actionthrottled',
 			'actionthrottledtext'
 		);
 	}
 
-	public function report(){
+	public function report() {
 		global $wgOut;
 		$wgOut->setStatusCode( 503 );
 		parent::report();
@@ -460,7 +460,7 @@ class ThrottledError extends ErrorPageError {
  * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
-	public function __construct( Block $block ){
+	public function __construct( Block $block ) {
 		global $wgLang, $wgRequest;
 
 		$blocker = $block->getBlocker();
@@ -560,7 +560,7 @@ class HttpError extends MWException {
 	 * @param $content String|Message: content of the message
 	 * @param $header String|Message: content of the header (\<title\> and \<h1\>)
 	 */
-	public function __construct( $httpCode, $content, $header = null ){
+	public function __construct( $httpCode, $content, $header = null ) {
 		parent::__construct( $content );
 		$this->httpCode = (int)$httpCode;
 		$this->header = $header;

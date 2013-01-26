@@ -413,7 +413,7 @@ class SiteConfiguration {
 			return $default;
 		}
 
-		foreach( $default as $name => $def ){
+		foreach( $default as $name => $def ) {
 			if( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) ) {
 				$ret[$name] = $default[$name];
 			}
@@ -446,7 +446,7 @@ class SiteConfiguration {
 		$ret['params'] += $params;
 
 		// Automatically fill that ones if needed
-		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ){
+		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ) {
 			$ret['params']['lang'] = $ret['lang'];
 		}
 		if( !isset( $ret['params']['site'] ) && !is_null( $ret['suffix'] ) ) {
