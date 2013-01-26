@@ -280,7 +280,7 @@ abstract class ExternalUser {
 	 *
 	 * @param $id int user_id
 	 */
-	public final function linkToLocal( $id ) {
+	final public function linkToLocal( $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'external_user',
 			array( 'eu_local_id', 'eu_external_id' ),
@@ -294,7 +294,7 @@ abstract class ExternalUser {
 	 * a local user.
 	 * @return Mixed User if the account is linked, Null otherwise.
 	 */
-	public final function getLocalUser(){
+	final public function getLocalUser(){
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'external_user',

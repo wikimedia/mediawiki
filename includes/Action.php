@@ -61,7 +61,7 @@ abstract class Action {
 	 * @param $overrides Array
 	 * @return bool|null|string
 	 */
-	private final static function getClass( $action, array $overrides ) {
+	final private static function getClass( $action, array $overrides ) {
 		global $wgActions;
 		$action = strtolower( $action );
 
@@ -88,7 +88,7 @@ abstract class Action {
 	 * @return Action|bool|null false if the action is disabled, null
 	 *     if it is not recognised
 	 */
-	public final static function factory( $action, Page $page, IContextSource $context = null ) {
+	final public static function factory( $action, Page $page, IContextSource $context = null ) {
 		$class = self::getClass( $action, $page->getActionOverrides() );
 		if ( $class ) {
 			$obj = new $class( $page, $context );
@@ -106,7 +106,7 @@ abstract class Action {
 	 * @param $context IContextSource
 	 * @return string: action name
 	 */
-	public final static function getActionName( IContextSource $context ) {
+	final public static function getActionName( IContextSource $context ) {
 		global $wgActions;
 
 		$request = $context->getRequest();
@@ -150,7 +150,7 @@ abstract class Action {
 	 * @param $name String: name of an action
 	 * @return Bool
 	 */
-	public final static function exists( $name ) {
+	final public static function exists( $name ) {
 		return self::getClass( $name, array() ) !== null;
 	}
 
@@ -158,7 +158,7 @@ abstract class Action {
 	 * Get the IContextSource in use here
 	 * @return IContextSource
 	 */
-	public final function getContext() {
+	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
 		}
@@ -170,7 +170,7 @@ abstract class Action {
 	 *
 	 * @return WebRequest
 	 */
-	public final function getRequest() {
+	final public function getRequest() {
 		return $this->getContext()->getRequest();
 	}
 
@@ -179,7 +179,7 @@ abstract class Action {
 	 *
 	 * @return OutputPage
 	 */
-	public final function getOutput() {
+	final public function getOutput() {
 		return $this->getContext()->getOutput();
 	}
 
@@ -188,7 +188,7 @@ abstract class Action {
 	 *
 	 * @return User
 	 */
-	public final function getUser() {
+	final public function getUser() {
 		return $this->getContext()->getUser();
 	}
 
@@ -197,7 +197,7 @@ abstract class Action {
 	 *
 	 * @return Skin
 	 */
-	public final function getSkin() {
+	final public function getSkin() {
 		return $this->getContext()->getSkin();
 	}
 
@@ -206,7 +206,7 @@ abstract class Action {
 	 *
 	 * @return Language
 	 */
-	public final function getLanguage() {
+	final public function getLanguage() {
 		return $this->getContext()->getLanguage();
 	}
 
@@ -216,7 +216,7 @@ abstract class Action {
 	 * @deprecated 1.19 Use getLanguage instead
 	 * @return Language
 	 */
-	public final function getLang() {
+	final public function getLang() {
 		wfDeprecated( __METHOD__, '1.19' );
 		return $this->getLanguage();
 	}
@@ -225,7 +225,7 @@ abstract class Action {
 	 * Shortcut to get the Title object from the page
 	 * @return Title
 	 */
-	public final function getTitle() {
+	final public function getTitle() {
 		return $this->page->getTitle();
 	}
 
@@ -235,7 +235,7 @@ abstract class Action {
 	 *
 	 * @return Message object
 	 */
-	public final function msg() {
+	final public function msg() {
 		$params = func_get_args();
 		return call_user_func_array( array( $this->getContext(), 'msg' ), $params );
 	}

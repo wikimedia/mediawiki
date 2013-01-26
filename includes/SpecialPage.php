@@ -598,7 +598,7 @@ class SpecialPage {
 	 *
 	 * @param $subPage string|null
 	 */
-	public final function run( $subPage ) {
+	final public function run( $subPage ) {
 		/**
 		 * Gets called before @see SpecialPage::execute.
 		 *
