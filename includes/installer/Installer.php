@@ -313,19 +313,19 @@ abstract class Installer {
 	 * output format such as HTML or text before being sent to the user.
 	 * @param $msg
 	 */
-	public abstract function showMessage( $msg /*, ... */ );
+	abstract public function showMessage( $msg /*, ... */ );
 
 	/**
 	 * Same as showMessage(), but for displaying errors
 	 * @param $msg
 	 */
-	public abstract function showError( $msg /*, ... */ );
+	abstract public function showError( $msg /*, ... */ );
 
 	/**
 	 * Show a message to the installing user by using a Status object
 	 * @param $status Status
 	 */
-	public abstract function showStatusMessage( Status $status );
+	abstract public function showStatusMessage( Status $status );
 
 	/**
 	 * Constructor, always call this from child classes.
@@ -927,7 +927,7 @@ abstract class Installer {
 	 * Helper function to be called from envCheckServer()
 	 * @return String
 	 */
-	protected abstract function envGetDefaultServer();
+	abstract protected function envGetDefaultServer();
 
 	/**
 	 * Environment check for setting $IP and $wgScriptPath.

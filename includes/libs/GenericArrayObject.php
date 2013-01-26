@@ -41,7 +41,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @return string
 	 */
-	public abstract function getObjectType();
+	abstract public function getObjectType();
 
 	/**
 	 * @see SiteList::getNewOffset()

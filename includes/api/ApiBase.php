@@ -105,7 +105,7 @@ abstract class ApiBase extends ContextSource {
 	 * The result data should be stored in the ApiResult object available
 	 * through getResult().
 	 */
-	public abstract function execute();
+	abstract public function execute();
 
 	/**
 	 * Returns a string that identifies the version of the extending class.

@@ -575,7 +575,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @return Array
 	 */
-	protected abstract function getCoreUpdateList();
+	abstract protected function getCoreUpdateList();
 
 	/**
 	 * Append an SQL fragment to the open file handle.

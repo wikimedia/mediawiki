@@ -255,7 +255,7 @@ abstract class Action {
 	 * Return the name of the action this object responds to
 	 * @return String lowercase
 	 */
-	public abstract function getName();
+	abstract public function getName();
 
 	/**
 	 * Get the permission required to perform this action.  Often, but not always,
@@ -350,13 +350,13 @@ abstract class Action {
 	 * $this->getOutput(), etc.
 	 * @throws ErrorPageError
 	 */
-	public abstract function show();
+	abstract public function show();
 
 	/**
 	 * Execute the action in a silent fashion: do not display anything or release any errors.
 	 * @return Bool whether execution was successful
 	 */
-	public abstract function execute();
+	abstract public function execute();
 }
 
 /**
@@ -368,7 +368,7 @@ abstract class FormAction extends Action {
 	 * Get an HTMLForm descriptor array
 	 * @return Array
 	 */
-	protected abstract function getFormFields();
+	abstract protected function getFormFields();
 
 	/**
 	 * Add pre- or post-text to the form
@@ -425,14 +425,14 @@ abstract class FormAction extends Action {
 	 * @param  $data Array
 	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
 	 */
-	public abstract function onSubmit( $data );
+	abstract public function onSubmit( $data );
 
 	/**
 	 * Do something exciting on successful processing of the form.  This might be to show
 	 * a confirmation message (watch, rollback, etc) or to redirect somewhere else (edit,
 	 * protect, etc).
 	 */
-	public abstract function onSuccess();
+	abstract public function onSuccess();
 
 	/**
 	 * The basic pattern for actions is to display some sort of HTMLForm UI, maybe with
@@ -508,7 +508,7 @@ abstract class FormlessAction extends Action {
 	 * @return String|null will be added to the HTMLForm if present, or just added to the
 	 *     output if not.  Return null to not add anything
 	 */
-	public abstract function onView();
+	abstract public function onView();
 
 	/**
 	 * We don't want an HTMLForm

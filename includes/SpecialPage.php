@@ -863,7 +863,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * Get an HTMLForm descriptor array
 	 * @return Array
 	 */
-	protected abstract function getFormFields();
+	abstract protected function getFormFields();
 
 	/**
 	 * Add pre- or post-text to the form
@@ -921,13 +921,13 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @param  $data Array
 	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
 	 */
-	public abstract function onSubmit( array $data );
+	abstract public function onSubmit( array $data );
 
 	/**
 	 * Do something exciting on successful processing of the form, most likely to show a
 	 * confirmation message
 	 */
-	public abstract function onSuccess();
+	abstract public function onSuccess();
 
 	/**
 	 * Basic SpecialPage workflow: get a form, send it to the user; get some data back,

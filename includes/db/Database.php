@@ -811,7 +811,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @since 1.20
 	 * @return bool: Whether connection was closed successfully
 	 */
-	protected abstract function closeConnection();
+	abstract protected function closeConnection();
 
 	/**
 	 * @param $error String: fallback error message, used if none is given by DB
@@ -833,7 +833,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param  $sql String: SQL query.
 	 * @return ResultWrapper Result object to feed to fetchObject, fetchRow, ...; or false on failure
 	 */
-	protected abstract function doQuery( $sql );
+	abstract protected function doQuery( $sql );
 
 	/**
 	 * Determine whether a query writes to the DB.

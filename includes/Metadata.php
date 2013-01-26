@@ -34,7 +34,7 @@ abstract class RdfMetaData {
 		$this->mArticle = $article;
 	}
 
-	public abstract function show();
+	abstract public function show();
 
 	protected function setup() {
 		global $wgOut, $wgRequest;

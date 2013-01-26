@@ -209,7 +209,7 @@ abstract class UploadBase {
 	/**
 	 * Initialize from a WebRequest. Override this in a subclass.
 	 */
-	public abstract function initializeFromRequest( &$request );
+	abstract public function initializeFromRequest( &$request );
 
 	/**
 	 * Fetch the file. Usually a no-op

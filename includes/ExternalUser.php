@@ -128,7 +128,7 @@ abstract class ExternalUser {
 	 * @param $name string
 	 * @return bool Success?
 	 */
-	protected abstract function initFromName( $name );
+	abstract protected function initFromName( $name );
 
 	/**
 	 * Given an id, which was at some previous point in history returned by
@@ -138,7 +138,7 @@ abstract class ExternalUser {
 	 * @param $id string
 	 * @return bool Success?
 	 */
-	protected abstract function initFromId( $id );
+	abstract protected function initFromId( $id );
 
 	/**
 	 * Try to magically initialize the user from cookies or similar information

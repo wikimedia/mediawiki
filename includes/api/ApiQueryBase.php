@@ -623,5 +623,5 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 * @param $resultPageSet ApiPageSet: All output should be appended to
 	 *  this object
 	 */
-	public abstract function executeGenerator( $resultPageSet );
+	abstract public function executeGenerator( $resultPageSet );
 }

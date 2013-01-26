@@ -35,7 +35,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 *
 	 * @return IORMTable
 	 */
-	protected abstract function getTable();
+	abstract protected function getTable();
 
 	/**
 	 * Returns the name of the individual rows.

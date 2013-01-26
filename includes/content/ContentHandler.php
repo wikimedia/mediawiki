@@ -413,7 +413,7 @@ abstract class ContentHandler {
 	 * @param $format null|String The desired serialization format
 	 * @return string Serialized form of the content
 	 */
-	public abstract function serializeContent( Content $content, $format = null );
+	abstract public function serializeContent( Content $content, $format = null );
 
 	/**
 	 * Unserializes a Content object of the type supported by this ContentHandler.
@@ -424,7 +424,7 @@ abstract class ContentHandler {
 	 * @param $format null|String the format used for serialization
 	 * @return Content the Content object created by deserializing $blob
 	 */
-	public abstract function unserializeContent( $blob, $format = null );
+	abstract public function unserializeContent( $blob, $format = null );
 
 	/**
 	 * Creates an empty Content object of the type supported by this
@@ -434,7 +434,7 @@ abstract class ContentHandler {
 	 *
 	 * @return Content
 	 */
-	public abstract function makeEmptyContent();
+	abstract public function makeEmptyContent();
 
 	/**
 	 * Creates a new Content object that acts as a redirect to the given page,

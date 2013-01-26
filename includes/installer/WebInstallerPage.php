@@ -36,7 +36,7 @@ abstract class WebInstallerPage {
 	 */
 	public $parent;
 
-	public abstract function execute();
+	abstract public function execute();
 
 	/**
 	 * Constructor.
@@ -1259,7 +1259,7 @@ class WebInstaller_Restart extends WebInstallerPage {
 
 abstract class WebInstaller_Document extends WebInstallerPage {
 
-	protected abstract function getFileName();
+	abstract protected function getFileName();
 
 	public  function execute() {
 		$text = $this->getFileContents();

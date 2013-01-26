@@ -58,7 +58,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * This method is not called if getIsHtml() returns true.
 	 * @return string
 	 */
-	public abstract function getMimeType();
+	abstract public function getMimeType();
 
 	/**
 	 * Whether this formatter needs raw data such as _element tags
