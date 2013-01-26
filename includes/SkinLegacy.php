@@ -253,7 +253,7 @@ class LegacyTemplate extends BaseTemplate {
 		$lang = $title->getPageLanguage();
 		$variants = $lang->getVariants();
 
-		if ( !$wgDisableLangConversion && sizeof( $variants ) > 1
+		if ( !$wgDisableLangConversion && count( $variants ) > 1
 			&& !$title->isSpecialPage() ) {
 			foreach ( $variants as $code ) {
 				$varname = $lang->getVariantname( $code );

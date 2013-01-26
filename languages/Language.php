@@ -3652,7 +3652,7 @@ class Language {
 	 * @return bool
 	 */
 	public function hasVariants() {
-		return sizeof( $this->getVariants() ) > 1;
+		return count( $this->getVariants() ) > 1;
 	}
 
 	/**

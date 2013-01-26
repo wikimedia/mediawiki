@@ -330,9 +330,9 @@ class MimeMagic {
 				$this->mMediaTypes[$mtype][] = $mime;
 			}
 
-			if ( sizeof( $m ) > 1 ) {
+			if ( count( $m ) > 1 ) {
 				$main = $m[0];
-				for ( $i=1; $i<sizeof($m); $i += 1 ) {
+				for ( $i=1; $i<count($m); $i += 1 ) {
 					$mime = $m[$i];
 					$this->mMimeTypeAliases[$mime] = $main;
 				}

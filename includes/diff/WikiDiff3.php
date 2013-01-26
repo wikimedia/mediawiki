@@ -64,7 +64,7 @@ class WikiDiff3 {
 
 	public function diff( /*array*/ $from, /*array*/ $to ) {
 		// remember initial lengths
-		$m = sizeof( $from );
+		$m = count( $from );
 		$n = count( $to );
 
 		$this->heuristicUsed = false;
