@@ -43,12 +43,12 @@
 			collapsible: 'li.collapsible',
 			shifting: false,
 			expandCondition: function ( eleWidth ) {
-				return ( $( '#left-navigation' ).position().left + $( '#left-navigation' ).width() )
-					< ( $( '#right-navigation' ).position().left - eleWidth );
+				return ( $( '#left-navigation' ).offset().left + $( '#left-navigation' ).width() )
+					< ( $( '#right-navigation' ).offset().left - eleWidth );
 			},
 			collapseCondition: function () {
-				return ( $( '#left-navigation' ).position().left + $( '#left-navigation' ).width() )
-					> $( '#right-navigation' ).position().left;
+				return ( $( '#left-navigation' ).offset().left + $( '#left-navigation' ).width() )
+					> $( '#right-navigation' ).offset().left;
 			}
 		},
 		addData: function ( $collapsible ) {
