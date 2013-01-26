@@ -443,7 +443,8 @@ class CheckStorage {
 
 	function importRevision( &$revision, &$importer ) {
 		$id = $revision->getID();
-		$text = $revision->getText();
+		$content = $revision->getContent( Revision::RAW );
+		$text = ContentHandler::getContentText( $content, 'serialize' );
 		if ( $text === '' ) {
 			// This is what happens if the revision was broken at the time the
 			// dump was made. Unfortunately, it also happens if the revision was
