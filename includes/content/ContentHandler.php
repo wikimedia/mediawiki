@@ -75,24 +75,26 @@ abstract class ContentHandler {
 	 * text as returned by $content->getNativeData().
 	 *
 	 * If $content is not a TextContent object, the behavior of this method
-	 * depends on the global $wgContentHandlerTextFallback:
-	 * - If $wgContentHandlerTextFallback is 'fail' and $content is not a
-	 *   TextContent object, an MWException is thrown.
-	 * - If $wgContentHandlerTextFallback is 'serialize' and $content is not a
-	 *   TextContent object, $content->serialize() is called to get a string
-	 *   form of the content.
-	 * - If $wgContentHandlerTextFallback is 'ignore' and $content is not a
-	 *   TextContent object, this method returns null.
+	 * depends on the $textFallback parameter:
+	 * - If $textFallback is 'global', the effective value is taken from the
+	 *   global $wgContentHandlerTextFallback.
+	 * - If $textFallback is 'fail' and $content is not a TextContent object,
+	 *   an MWException is thrown.
+	 * - If $textFallback is 'serialize' and $content is not a TextContent object,
+	 *   $content->serialize() is called to get a string form of the content.
+	 * - If TextContent object, is 'ignore' and $content is not a TextContent
+	 *   object, this method returns null.
 	 * - otherwise, the behaviour is undefined.
 	 *
 	 * @since 1.21
 	 *
 	 * @param $content Content|null
+	 * @param $textFallback string 'global'/'fail'/'serialize'/'ignore'
 	 * @return null|string the textual form of $content, if available
 	 * @throws MWException if $content is not an instance of TextContent and
 	 *   $wgContentHandlerTextFallback was set to 'fail'.
 	 */
-	public static function getContentText( Content $content = null ) {
+	public static function getContentText( Content $content = null, $textFallback = 'global' ) {
 		global $wgContentHandlerTextFallback;
 
 		if ( is_null( $content ) ) {
@@ -103,16 +105,20 @@ abstract class ContentHandler {
 			return $content->getNativeData();
 		}
 
+		if ( $textFallback == 'global' ) {
+			$textFallback = $wgContentHandlerTextFallback;
+		}
+
 		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
 
-		if ( $wgContentHandlerTextFallback == 'fail' ) {
+		if ( $textFallback == 'fail' ) {
 			throw new MWException(
 				"Attempt to get text from Content with model " .
 				$content->getModel()
 			);
 		}
 
-		if ( $wgContentHandlerTextFallback == 'serialize' ) {
+		if ( $textFallback == 'serialize' ) {
 			return $content->serialize();
 		}
 
