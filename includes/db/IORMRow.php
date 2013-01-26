@@ -33,18 +33,6 @@
 
 interface IORMRow {
 
-
-	/**
-	 * Constructor.
-	 *
-	 * @since 1.20
-	 *
-	 * @param IORMTable $table
-	 * @param array|null $fields
-	 * @param boolean $loadDefaults
-	 */
-	public function __construct( IORMTable $table, $fields = null, $loadDefaults = false );
-
 	/**
 	 * Load the specified fields from the database.
 	 *
