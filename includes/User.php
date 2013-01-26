@@ -4237,7 +4237,7 @@ class User {
 	 * @return int|bool True if not $wgNewUserLog; otherwise ID of log item or 0 on failure
 	 */
 	public function addNewUserLogEntry( $action = false, $reason = '' ) {
-		global $wgUser, $wgContLang, $wgNewUserLog;
+		global $wgUser, $wgNewUserLog;
 		if( empty( $wgNewUserLog ) ) {
 			return true; // disabled
 		}
