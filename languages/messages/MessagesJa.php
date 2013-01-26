@@ -916,7 +916,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'passwordreset-pretext' => '{{PLURAL:$1||下記のデータのいずれか 1 つを入力してください}}',
 'passwordreset-username' => '利用者名:',
 'passwordreset-domain' => 'ドメイン:',
-'passwordreset-capture' => '送信されるメールの内容を表示しますか？',
+'passwordreset-capture' => 'お送りするメールの内容を表示しますか?',
 'passwordreset-capture-help' => 'このボックスにチェックを入れると、利用者に送信されるメールの内容（仮パスワードを含む）をあなたも閲覧できます。',
 'passwordreset-email' => 'メールアドレス:',
 'passwordreset-emailtitle' => '{{SITENAME}}上のアカウントの詳細',
@@ -2376,7 +2376,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 # Special:ActiveUsers
 'activeusers' => '活動中の利用者一覧',
 'activeusers-intro' => 'これは過去 $1 {{PLURAL:$1|日|日間}}に何らかの活動をした利用者の一覧です。',
-'activeusers-count' => '過去 {{PLURAL:$3|1 日|$3 日間}}に $1 {{PLURAL:$1|回の編集}}',
+'activeusers-count' => '過去 {{PLURAL:$3|1 日|$3 日間}}に $1 {{PLURAL:$1|回の操作}}',
 'activeusers-from' => '最初に表示する利用者:',
 'activeusers-hidebots' => 'ボットを隠す',
 'activeusers-hidesysops' => '管理者を隠す',
@@ -3911,16 +3911,16 @@ Variants for Chinese language
 'confirmemail_loggedin' => 'メールアドレスは確認されました。',
 'confirmemail_error' => '確認情報を保存する際にエラーが発生しました。',
 'confirmemail_subject' => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body' => '誰か（おそらくあなた）が、IPアドレス$1から、
+'confirmemail_body' => '誰か (おそらくあなた) が、IPアドレス$1から、
 このメールアドレスで{{SITENAME}}のアカウント「$2」を登録しました。
 
 このアカウントが本当に自分のものか確認して、
-{{SITENAME}}のメール機能を有効にするには、以下のURLをブラウザーで開いてください：
+{{SITENAME}}のメール機能を有効にするには、以下のURLをブラウザーで開いてください:
 
 $3
 
 もしアカウントの登録をした覚えがない場合は、
-次のURLをブラウザーで開いて、メールアドレスの確認を中止してください：
+次のURLをブラウザーで開いて、メールアドレスの確認を中止してください:
 
 $5
 
@@ -3966,8 +3966,8 @@ $5
 'deletedwhileediting' => "'''警告''': このページが、編集開始後に削除されました!",
 'confirmrecreate' => "あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを以下の理由で削除しました:
 : ''$2''
-本当にこのままこのページを再作成していいか確認してください。",
-'confirmrecreate-noreason' => 'あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを削除しました。本当にこのページを再作成していいかご確認ください。',
+このままこのページを本当に再作成していいか確認してください。",
+'confirmrecreate-noreason' => 'あなたが編集を開始した後、[[User:$1|$1]] ([[User talk:$1|トーク]]) がこのページを削除しました。このページを本当に再作成していいかご確認ください。',
 'recreate' => '再作成する',
 
 # action=purge
@@ -4195,7 +4195,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'specialpages-group-highuse' => 'よく利用されているページ',
 'specialpages-group-pages' => 'ページの一覧',
 'specialpages-group-pagetools' => 'ページツール',
-'specialpages-group-wiki' => 'ウィキに関する情報とツール',
+'specialpages-group-wiki' => 'データとツール',
 'specialpages-group-redirects' => '転送される特別ページ',
 'specialpages-group-spam' => 'スパム対策ツール',
 
@@ -4293,6 +4293,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'logentry-newusers-newusers' => '利用者アカウント $1 が作成されました',
 'logentry-newusers-create' => '利用者アカウント $1 が作成されました',
 'logentry-newusers-create2' => '利用者アカウント $3 が $1 により作成されました',
+'logentry-newusers-byemail' => '利用者アカウント $3 が $1 によって作成され、そのパスワードをメールで送信しました',
 'logentry-newusers-autocreate' => '利用者アカウント $1 が自動的に作成されました',
 'logentry-rights-rights' => '$1 が $3 の所属グループを $4 から $5 に変更しました',
 'logentry-rights-rights-legacy' => '$1 が $3 の所属グループを変更しました',

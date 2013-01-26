@@ -615,7 +615,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'gotaccount' => "Dir hutt schonn e Benotzerkont? '''$1'''.",
 'gotaccountlink' => 'Umellen',
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
-'createaccountmail' => 'Via E-Mail',
+'createaccountmail' => 'En temporäert Passwuert benotzen an et per E-Mail un déi E-Mailadress schécken déi hei drënner steet',
 'createaccountreason' => 'Grond:',
 'badretype' => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists' => 'De Benotzernumm deen agi gouf gëtt scho benotzt.
@@ -910,7 +910,8 @@ Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus 
 'copyrightwarning2' => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
 'longpageerror' => "'''FEELER: Den Text, den Dir Versicht ze späicheren, huet {{PLURAL:$1|1 Kilobyte|$1 Kilobytes}}. Dëst ass méi wéi den erlaabte Maximum vun  {{PLURAL:$2|1 Kilobyte|$2 Kilobytes}}''' Dofir kann den Text net gespäichert ginn.",
-'readonlywarning' => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte fir Säitenännerunge gespaart, dofir kënnt Dir déi Säit den Ament net ofspäicheren. Versuergt den Text a versicht d'Ännerunge méi spéit nach emol ze maachen.'''
+'readonlywarning' => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte gespaart, dofir kënnt Dir Är Ännerungen den Ament net ofspäicheren.'''
+Dir kënnt den Text kopéieren an an een Textfichier drasetzen an deen ofspäicheren fir méi spéit.
 
 Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'protectedpagewarning' => "'''OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
@@ -2083,7 +2084,7 @@ Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lëscht vun den aktive Benotzer',
 'activeusers-intro' => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
-'activeusers-count' => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
+'activeusers-count' => '$1 {{PLURAL:$1|Aktioun|Aktiounen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
 'activeusers-from' => 'Benotzer weisen, ugefaang bäi:',
 'activeusers-hidebots' => 'Botte verstoppen',
 'activeusers-hidesysops' => 'Administrateure verstoppen',
@@ -3681,7 +3682,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'specialpages-group-highuse' => 'Dacks benotzte Säiten',
 'specialpages-group-pages' => 'Lëschte vu Säiten',
 'specialpages-group-pagetools' => 'Handwierksgeschir fir Säiten',
-'specialpages-group-wiki' => 'Systemdaten an Handwierksgeschir',
+'specialpages-group-wiki' => 'Daten an Handwierksgeschir',
 'specialpages-group-redirects' => 'Spezialsäiten déi viruleeden',
 'specialpages-group-spam' => 'Handwierksgeschir géint de Spam',
 

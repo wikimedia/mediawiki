@@ -12,6 +12,7 @@
  * @author Lloffiwr
  * @author Malafaya
  * @author Reedy
+ * @author Robin Owain
  * @author Thaf
  * @author Urhixidur
  * @author Xxglennxx
@@ -525,6 +526,7 @@ Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
 Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch <span class='plainlinks'>[$1 fewngofnodi eto]</span> wrth yr un un enw neu wrth enw arall.
 Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.",
 'welcomeuser' => 'Croeso, $1!',
+'welcomecreation-msg' => 'Peidiwch ag anghofio newid eich [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname' => 'Eich enw defnyddiwr:',
 'yourpassword' => 'Eich cyfrinair:',
 'yourpasswordagain' => 'Ail-deipiwch y cyfrinair:',
@@ -1085,7 +1087,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-multi-manyusers' => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan mwy na $2 {{PLURAL:$2|o ddefnyddwyr}}.)',
 'difference-missing-revision' => "Ni chafwyd hyd i $1 {{PLURAL:$2|diwygiad|diwygiad|ddiwygiad|diwygiad}} o'r gwahaniaeth ($1) {{PLURAL:$2|hwn}}.
 
-Fel arfer, fe ddigwydd hyn pan mae dyn wedi dilyn hen gyswllt gwahaniaeth i dudalen sydd erbyn hyn wedi cael ei dileu.
+Fel arfer, fe ddigwydd hyn pan mae person wedi dilyn hen gyswllt gwahaniaeth i dudalen sydd erbyn hyn wedi cael ei ddileu.
 Mae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg y dileuon].",
 
 # Search results
@@ -2864,8 +2866,8 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-article-id' => 'ID y dudalen',
 'pageinfo-language' => 'Iaith cynnwys y dudalen',
 'pageinfo-robot-policy' => 'Statws i beiriannau chwilio',
-'pageinfo-robot-index' => 'Gellir ei rhestri gan beiriannau chwilio',
-'pageinfo-robot-noindex' => 'Ni ellir ei rhestri gan beiriannau chwilio',
+'pageinfo-robot-index' => 'Gellir ei rhestru gan beiriannau chwilio',
+'pageinfo-robot-noindex' => 'Ni ellir ei rhestru gan beiriannau chwilio',
 'pageinfo-views' => 'Nifer yr ymweliadau',
 'pageinfo-watchers' => 'Nifer gwylwyr y dudalen',
 'pageinfo-redirects-name' => "Nifer yr ailgyfeiriadau i'r dudalen hon",
@@ -2972,7 +2974,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'months' => '{{PLURAL:$1|$1 mis|mis|deufis|$1 mis}}',
 'years' => '{{PLURAL:$1|$1 blwyddyn|blwyddyn|$1 flynedd|$1 blynedd|$1 blynedd|$1 mlynedd}}',
 'ago' => '$1 yn ôl',
-'just-now' => 'gynnau',
+'just-now' => 'nawr',
 
 # Bad image list
 'bad_image_list' => "Dyma'r fformat:

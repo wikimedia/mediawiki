@@ -2338,7 +2338,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'specialpages-group-users' => 'Usores eorumque potestates',
 'specialpages-group-pages' => 'Indices paginarum',
 'specialpages-group-pagetools' => 'Instrumenta paginarum',
-'specialpages-group-wiki' => 'Vici-data et instrumenta',
+'specialpages-group-wiki' => 'Data et instrumenta',
 'specialpages-group-redirects' => 'Paginae speciales redirigentes',
 'specialpages-group-spam' => 'Instrumenta contra praeconia incommoda',
 

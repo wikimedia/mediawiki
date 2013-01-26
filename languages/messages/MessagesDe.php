@@ -3995,7 +3995,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'specialpages-group-highuse' => 'Häufig benutzte Seiten',
 'specialpages-group-pages' => 'Seitenlisten',
 'specialpages-group-pagetools' => 'Seitenwerkzeuge',
-'specialpages-group-wiki' => 'Systemdaten und Werkzeuge',
+'specialpages-group-wiki' => 'Daten und Werkzeuge',
 'specialpages-group-redirects' => 'Weiterleitende Spezialseiten',
 'specialpages-group-spam' => 'Spam-Werkzeuge',
 
@@ -4092,6 +4092,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-newusers-newusers' => 'Benutzerkonto $1 wurde erstellt',
 'logentry-newusers-create' => 'Benutzerkonto $1 wurde erstellt',
 'logentry-newusers-create2' => 'Benutzerkonto $3 wurde von $1 erstellt',
+'logentry-newusers-byemail' => 'Das Benutzerkonto $3 wurde von $1 erstellt und das Passwort wurde per E-Mail zugesandt',
 'logentry-newusers-autocreate' => 'Benutzerkonto $1 wurde automatisch erstellt',
 'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
 'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',

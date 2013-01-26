@@ -553,7 +553,7 @@ Goulenn : $2",
 'viewsource-title' => 'Gwelet an tarzh evit $1',
 'actionthrottled' => 'Ober daleet',
 'actionthrottledtext' => "A-benn dizarbenn ar strob, n'haller ket implijout an ober-mañ re alies en ur frapad amzer lakaet, hag aet oc'h dreist ar muzul. Klaskit en-dro a-benn un nebeut munutennoù.",
-'protectedpagetext' => "Prennet eo bet ar bajenn-mañ. N'haller ket kemmañ anezhi ken.",
+'protectedpagetext' => 'Prennet eo bet ar bajenn-mañ kuit na vefe skrivet pe cheñchet un dra bennak enni',
 'viewsourcetext' => 'Gallout a rit gwelet hag eilañ danvez ar bajenn-mañ',
 'viewyourtext' => "Gallout a rit gwelet hag eilañ mammenn ho '''kemmoù''' d'ar bajenn-mañ :",
 'protectedinterface' => 'Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant er wiki-mañ. Setu perak eo bet gwarezet ar bajenn.',
@@ -608,7 +608,7 @@ Notit mat e c'hallo pajennoù zo kenderc'hel da vezañ diskwelet evel pa vefec'h
 'gotaccount' => "Ur gont zo ganeoc'h dija ? '''$1'''.",
 'gotaccountlink' => 'Kevreañ',
 'userlogin-resetlink' => "Ha disoñjet eo bet ho titouroù kevreañ ganeoc'h ?",
-'createaccountmail' => 'dre bostel',
+'createaccountmail' => 'Dre bostel',
 'createaccountreason' => 'Abeg :',
 'badretype' => 'Ne glot ket ar gerioù-tremen an eil gant egile.',
 'userexists' => "Implijet eo an anv implijer lakaet ganeoc'h dija.
@@ -896,10 +896,11 @@ Heñveldra, prometiñ a rit kemer perzh dre zegas skridoù savet ganeoc'h hepken
 '''NA IMPLIJIT KET LABOURIOÙ GANT GWIRIOÙ AOZER (COPYRIGHT) HEP AOTRE D'OBER KEMENT-SE!'''",
 'copyrightwarning2' => "Notit mat e c'hall kement degasadenn graet ganeoc'h war {{SITENAME}} bezañ kemmet, adaozet pe lamet kuit gant an implijerien all. Mar ne fell ket deoc'h e vije kemmet-digemmet ar pezh hoc'h eus skrivet na gemerit ket perzh er raktres-mañ.<br /> Gouestlañ a rit ivez eo bet savet ar boued spered ganeoc'h pe eilet diwar ur vammenn frank a wirioù pe en domani foran (gwelet $1 evit gouzout hiroc'h). '''NA IMPLIJIT KET LABOURIOÙ GANT GWIRIOÙ AOZER HEP AOTRE D'OBER KEMENT-SE!'''",
 'longpageerror' => "'''FAZI : {{PLURAL:$1|Ur c'hilookted|$1 kilookted}} hir eo an destenn lakaet ganeoc'h, ar pezh zo hiroc'h eget {{PLURAL:$2|ur c'hilookted|$2 kilookted}}, ar vent vrasañ aotreet. N'haller ket enrollañ.'''",
-'readonlywarning' => "'''KEMENN DIWALL : stanket eo an diaz titouroù a-benn bezañ trezalc'het; setu ne viot ket evit enrollañ ho kemmoù diouzhtu-diouzhtu eta.
-Gallout a rit eilañ-pegañ an destenn en ur restr skrid all hag enrollañ anezhi a-benn diwezhatoc'hik.'''
+'readonlywarning' => "'''KEMENN DIWALL : prennet eo bet an diaz titouroù evit bezañ trezalc'het; setu ne viot ket evit enrollañ ho kemmoù diouzhtu-diouzhtu eta.'''
 
-Setu an displegadenn lakaet gant ar merour en deus stanket an traoù : $1",
+Gallout a rit eilañ ha pegañ ho testenn en ur restr skrid all hag enrollañ anezhi a-benn diwezhatoc'hik.'''
+
+Setu an displegadenn lakaet gant ar merour eo bet prennet an traoù gantañ : $1",
 'protectedpagewarning' => "'''KEMENN DIWALL: Gwarezet eo bet ar bajenn-mañ. N'eus nemet an implijerien ganto ar statud merour a c'hall kemmañ anezhi.'''
 Enmont diwezhañ ar marilh a ziskouezer amañ a-is evel dave :",
 'semiprotectedpagewarning' => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a kemmañ anezhi. Kasadenn ziwezhañ ar marilh zo diskouezet amañ a-is evel dave :",
@@ -1305,8 +1306,8 @@ Setu aze un dalvoudenn ganet dre zegouezh hag a c'hallfec'h implijout : $1",
 'prefs-emailconfirm-label' => 'Kadarnaat ar postel :',
 'prefs-textboxsize' => 'Ment ar prenestr skridaozañ',
 'youremail' => 'Postel :',
-'username' => 'Anv implijer :',
-'uid' => 'Niv. identelezh an implijer :',
+'username' => '{{GENDER:$1|Anv implijer|Anv implijerez}}:',
+'uid' => '{{GENDER:$1|Niv. identelezh an implijer|Niv. identelezh an implijerez}}:',
 'prefs-memberingroups' => 'Ezel eus {{PLURAL:$1|ar strollad|ar strolladoù}}:',
 'prefs-registration' => 'Deiziad enskrivañ :',
 'yourrealname' => 'Anv gwir*',
@@ -2328,7 +2329,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'protect-default' => 'Aotren an holl implijerien',
 'protect-fallback' => 'Ezhomm zo aotre "$1"',
 'protect-level-autoconfirmed' => "Stankañ an implijerien nevez hag ar re n'int ket enrollet",
-'protect-level-sysop' => 'Merourien hepken',
+'protect-level-sysop' => 'Aotren ar verourien hepken',
 'protect-summary-cascade' => 'Gwareziñ dre skalierad',
 'protect-expiring' => "a zeu d'e dermen d'an $1",
 'protect-expiring-local' => "a ya d'e dermen d'an $1",

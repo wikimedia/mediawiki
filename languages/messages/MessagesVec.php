@@ -584,7 +584,7 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'gotaccount' => "Sito zà iscrito? '''$1'''.",
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => "Desmentegà i to dati d'aceso?",
-'createaccountmail' => 'Par e-mail',
+'createaccountmail' => 'Dopara na password caxuałe tenporanea e inviała al indiriso e-mail spesifegà cuà soto',
 'createaccountreason' => 'Motivassion:',
 'badretype' => 'Le do password le xe difarenti.',
 'userexists' => 'El nome utente inserido vien xa doparà da cualchedun altro.
@@ -868,10 +868,10 @@ Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o
 '''NO STA INSERIR OPERE PROTETE DA COPYRIGHT SENSA PERMESSO!'''",
 'longpageerror' => "'''Erore: el testo invià xe grando {{PLURAL:$1|1|$1}} kilobyte, che xe de pì deła dimension masima consentìa de {{PLURAL:$2|1|$2}} kilobyte.'''
 El testo no połe esare salvà.",
-'readonlywarning' => "'''OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento.
-Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.'''
+'readonlywarning' => "'''OCIO: El database el xe stà blocà par manutension, cuindi nó se pol salvar łe modifeghe in sto momento.'''
+Par nó pèrdarle, te pol copiar tuto chel che te ghè inserìo fin deso inte ła caxeła de modifega, incołarlo inte un programa de elaborasion de testi e salvarlo, intanto che te speti che i sbloca el database.
 
-L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $1",
+L'aministrador che gà blocà el database el gà dato ła seguente spiegasion: $1",
 'protectedpagewarning' => "'''Ocio:''' Sta pajina ła xe sta proteta in maniera che soło i aministradori i posa canbiarla. Sta qua ła xe l'ultima operasion catà sul registro de ła pajina:",
 'semiprotectedpagewarning' => "'''Ocio:''' Sta pajina ła xe stà proteta in maniera che soło i utenti rexistrài i posa canbiarla. Sta qua ła xe l'ultima operasion catà sul registro de ła pajina:",
 'cascadeprotectedwarning' => "'''Ocio:''' Sta pajina ła xe stà proteta in maniera che soło i utenti co priviłegi de aministrador i posa canbiarla. Questo sucede parché ła pajina ła xe inclusa {{PLURAL:\$1|'nte ła pajina indicà de seguito, che ła xe stà proteta|ne le pagine indicà de seguito, che łe xe stae protete}} sełesionando ła protesion \"ricorsiva\":",
@@ -2051,7 +2051,7 @@ Xe nesesario almanco un dominio de primo liveło, tipo "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lista dei utenti ativi',
 'activeusers-intro' => 'Sta qua xe la lista dei utenti che ga fato calcossa {{PLURAL:$1|sto ultimo zorno|sti ultimi $1 zorni}}.',
-'activeusers-count' => "$1 {{PLURAL:$1|canbiamento|canbiamenti}} {{PLURAL:$3|ne l'ultimo zorno|in tei ultimi $3 zorni}}",
+'activeusers-count' => "$1 {{PLURAL:$1|asion}} {{PLURAL:$3|inte'l ultimo xorno|inte i ultimi $3 xorni}}",
 'activeusers-from' => 'Fà védar i utenti a partir da:',
 'activeusers-hidebots' => 'Scondi i bot',
 'activeusers-hidesysops' => 'Scondi i aministradori',
@@ -2067,14 +2067,14 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'listgrouprights-rights' => 'Diriti',
 'listgrouprights-helppage' => 'Help:Diriti dei grupi',
 'listgrouprights-members' => '(Elenco de i menbri)',
-'listgrouprights-addgroup' => 'Pode zontar {{PLURAL:$2|al grupo|ai grupi}}: $1',
-'listgrouprights-removegroup' => 'Pode cavar {{PLURAL:$2|dal grupo|dai grupi}}: $1',
-'listgrouprights-addgroup-all' => 'Pode zontar tuti i grupi',
-'listgrouprights-removegroup-all' => 'Pode cavar tuti i grupi',
-'listgrouprights-addgroup-self' => 'Poder zontar la propria utensa in {{PLURAL:$2|te un grupo|più grupi}}: $1',
-'listgrouprights-removegroup-self' => 'Poder cavar la propria utensa da {{PLURAL:$2|un grupo|dei grupi}}: $1',
-'listgrouprights-addgroup-self-all' => 'Pode zontar la propria utensa in tuti i grupi',
-'listgrouprights-removegroup-self-all' => 'Pode cavar la propria utensa da tuti i grupi',
+'listgrouprights-addgroup' => 'Pol xontar {{PLURAL:$2|al grupo|ai grupi}}: $1',
+'listgrouprights-removegroup' => 'Pol cavar {{PLURAL:$2|dal grupo|dai grupi}}: $1',
+'listgrouprights-addgroup-all' => 'Pol xontar a tuti i grupi',
+'listgrouprights-removegroup-all' => 'Pol cavar da tuti i grupi',
+'listgrouprights-addgroup-self' => 'Pol xontarse {{PLURAL:$2|al grupo|ai grupi}}: $1',
+'listgrouprights-removegroup-self' => 'Pol cavarse da {{PLURAL:$2|un grupo|dei grupi}}: $1',
+'listgrouprights-addgroup-self-all' => 'Pol xontarse a tuti i grupi',
+'listgrouprights-removegroup-self-all' => 'Pol cavarse da tuti i grupi',
 
 # E-mail user
 'mailnologin' => 'Nissun indirizo a cui mandarghe el messagio',
@@ -3637,7 +3637,7 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'specialpages-group-highuse' => 'Pagine doparà assè',
 'specialpages-group-pages' => 'Liste de pagine',
 'specialpages-group-pagetools' => 'Strumenti par le pagine',
-'specialpages-group-wiki' => 'Dati e strumenti wiki',
+'specialpages-group-wiki' => "Strumenti e informasion so'l projeto",
 'specialpages-group-redirects' => 'Pagine speciali de rimando',
 'specialpages-group-spam' => 'Strumenti anti spam',
 
@@ -3733,7 +3733,8 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-patrol-patrol-auto' => '$1 ga segnà automategamente la revixion $4 de la pajina $3 come verifegà',
 'logentry-newusers-newusers' => "L'utensa $1 xe sta creà",
 'logentry-newusers-create' => "L'utensa $1 xe sta creà",
-'logentry-newusers-create2' => 'Lutensa $3 xe sta creà da $1',
+'logentry-newusers-create2' => "L'utensa $3 xe sta creà da $1",
+'logentry-newusers-byemail' => "L'utensa $3 xe sta creà da $1 e ła password ła xe sta invià via e-mail",
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
 'logentry-rights-rights' => "$1 ga canbià l'apartenensa de $3 dal grupo $4 al grupo $5",
 'logentry-rights-rights-legacy' => "$1 ga canbià l'apartenensa a grupi de $3",

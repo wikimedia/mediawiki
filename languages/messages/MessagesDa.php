@@ -32,6 +32,7 @@
  * @author Morten LJ
  * @author Najami
  * @author Nghtwlkr
+ * @author Palnatoke
  * @author Peter Alberti
  * @author Peter Andersen
  * @author Purodha
@@ -321,6 +322,7 @@ $messages = array(
 'newwindow' => '(åbner i et nyt vindue)',
 'cancel' => 'Afbryd',
 'moredotdotdot' => 'Mere...',
+'morenotlisted' => 'Mere ikke angivet...',
 'mypage' => 'Side',
 'mytalk' => 'Diskussion',
 'anontalk' => 'Diskussionsside for denne IP-adresse',
@@ -620,7 +622,7 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'gotaccount' => 'Har du allerede en konto? $1.',
 'gotaccountlink' => 'Log på',
 'userlogin-resetlink' => 'Har du glemt dine login oplysninger?',
-'createaccountmail' => 'via e-mail',
+'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til e-mailadressen angivet nedenfor',
 'createaccountreason' => 'Begrundelse:',
 'badretype' => 'De indtastede adgangskoder er ikke ens.',
 'userexists' => 'Det brugernavn, du har valgt, er allerede i brug.
@@ -692,6 +694,7 @@ Vent venligst før du prøver igen.',
 # E-mail sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
 'user-mail-no-addy' => 'Forsøgte at sende email uden en email-adresse',
+'user-mail-no-body' => 'Forsøgte at sende en e-mail med tomt eller urimeligt kort indhold.',
 
 # Change password dialog
 'resetpass' => 'Skift adgangskode',
@@ -915,9 +918,10 @@ Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret de
 '''OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD UDEN TILLADELSE!'''",
 'longpageerror' => "'''Fejl: Teksten, som du ville gemme, er {{PLURAL:$1|en kilobyte|$1 kilobytes}} stor, hvilket er mere end det tilladte maksimum på {{PLURAL:$2|en kilobyte|$2 kilobytes}}.'''
 Det er ikke muligt at gemme den.",
-'readonlywarning' => "'''ADVARSEL: Databasen er låst på grund af vedligeholdelse, så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.'''
+'readonlywarning' => "'''Advarsel: Databasen er låst på grund af vedligeholdelse, så du kan ikke gemme dine ændringer lige nu.'''
+Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.
 
-Systemadministratoren som låste databasen, gav denne forklaring: $1",
+Administratoren som låste databasen, gav denne forklaring: $1",
 'protectedpagewarning' => "'''ADVARSEL: Denne side er skrivebeskyttet, så kun administratorer kan redigere den.'''<br />
 Den seneste logpost vises nedenfor:",
 'semiprotectedpagewarning' => "'''Bemærk: Siden er låst, så kun registrerede brugere kan ændre den.'''
@@ -2114,7 +2118,7 @@ Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Liste over aktive brugere',
 'activeusers-intro' => 'Dette er en liste over brugere, som har haft en eller anden form for aktivitet inden for {{PLURAL:$1|den|de}} seneste {{PLURAL:$1|dag|$1 dage}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|redigering|redigeringer}} i {{PLURAL:$3|det seneste døgn|de seneste $3 dage}}',
+'activeusers-count' => '$1 {{PLURAL:$1|handling|handlinger}} i {{PLURAL:$3|det seneste døgn|de seneste $3 dage}}',
 'activeusers-from' => 'Vis brugere som starter med:',
 'activeusers-hidebots' => 'Skjul robotter',
 'activeusers-hidesysops' => 'Skjul administratorer',
@@ -2338,9 +2342,9 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'protect-locked-access' => "Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-cascadeon' => 'Denne side er del af en nedarvet skrivebeskyttelse. Wen er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse" Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke kaskadespærringen:',
 'protect-default' => 'Tillad alle brugere',
-'protect-fallback' => 'Kræver "$1"-tilladelse',
-'protect-level-autoconfirmed' => 'Spær for nye og uregistrerede brugere',
-'protect-level-sysop' => 'Kun administratorer',
+'protect-fallback' => 'Tillad kun brugere med "$1" adgang',
+'protect-level-autoconfirmed' => 'Tillad kun autobekræftede brugere',
+'protect-level-sysop' => 'Tillad kun administratorer',
 'protect-summary-cascade' => 'nedarvende',
 'protect-expiring' => 'til $1 (UTC)',
 'protect-expiring-local' => 'udløber $1',
@@ -2964,6 +2968,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Transkluderet skabelon|Transkluderede skabeloner}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Side|Sider}} transkluderet på ( $1 )',
 'pageinfo-toolboxlink' => 'Oplysninger om siden',
 'pageinfo-redirectsto' => 'Omdirigerer til',
 'pageinfo-redirectsto-info' => 'info',
@@ -3711,7 +3716,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'specialpages-group-highuse' => 'Højt profilerede sider',
 'specialpages-group-pages' => 'Sidelister',
 'specialpages-group-pagetools' => 'Sideværktøjer',
-'specialpages-group-wiki' => 'Wikidata og værktøjer',
+'specialpages-group-wiki' => 'Data og værktøjer',
 'specialpages-group-redirects' => 'Specialsider der viderestiller',
 'specialpages-group-spam' => 'Spamværktøjer',
 
@@ -3808,6 +3813,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-newusers-newusers' => 'Brugerkontoen $1 blev oprettet',
 'logentry-newusers-create' => 'Brugerkontoen $1 blev oprettet',
 'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
+'logentry-newusers-byemail' => 'Brugerkonto  $3  blev oprettet af  $1  og adgangskode er sendt via e-mail',
 'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
 'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
 'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
@@ -3866,6 +3872,7 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'api-error-ok-but-empty' => 'Intern fejl: intet svar fra serveren.',
 'api-error-overwrite' => 'Det er ikke tilladt at overskrive en eksisterende fil.',
 'api-error-stashfailed' => 'Intern fejl: serveren kunne ikke gemme midlertidig fil.',
+'api-error-publishfailed' => 'Intern fejl: serveren kunne ikke udgive midlertidig fil.',
 'api-error-timeout' => 'Serveren svarede ikke tilbage inden for den forventede tid.',
 'api-error-unclassified' => 'En ukendt fejl opstod.',
 'api-error-unknown-code' => 'Ukendt fejl: "$1"',
