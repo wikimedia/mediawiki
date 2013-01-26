@@ -102,9 +102,17 @@ div.emptyPortlet {
 }
 /* Navigation Containers */
 #left-navigation {
-	position: absolute;
-	left: 10em;
-	top: 2.5em;
+	float: left;
+	margin-left: 10em;
+	margin-top: 2.5em;
+	/* When right nav would overlap left nav, it's placed below it
+	   (normal CSS floats behavior). This rule ensures that no empty space
+	   is shown between them due to right nav's margin-top. Page layout
+	   is still broken, but at least the nav overlaps only the page title
+	   instead of half the content. */
+	margin-bottom: -2.5em;
+	/* IE 6 double-margin bug fix */
+	display: inline;
 }
 #right-navigation {
 	float: right;
@@ -880,14 +888,14 @@ div.vectorTabs ul {
 /* Animate between standard and high definition layouts */
 
 body.vector-animateLayout div#content,
-body.vector-animateLayout div#footer {
+body.vector-animateLayout div#footer,
+body.vector-animateLayout #left-navigation {
 	-moz-transition: margin-left 250ms, padding 250ms;
 	-webkit-transition: margin-left 250ms, padding 250ms;
 	-o-transition: margin-left 250ms, padding 250ms;
 	transition: margin-left 250ms, padding 250ms;
 }
-body.vector-animateLayout #p-logo,
-body.vector-animateLayout #left-navigation {
+body.vector-animateLayout #p-logo {
 	-moz-transition: left 250ms;
 	-webkit-transition: left 250ms;
 	-o-transition: left 250ms;
