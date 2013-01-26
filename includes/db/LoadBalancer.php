@@ -501,7 +501,7 @@ class LoadBalancer {
 			if ( $i === false ) {
 				$this->mLastError = 'No working slave server: ' . $this->mLastError;
 				wfProfileOut( __METHOD__ );
-				return $this->reportConnectionError( $this->mErrorConnection );
+				return $this->reportConnectionError();
 			}
 		}
 
@@ -509,7 +509,7 @@ class LoadBalancer {
 		$conn = $this->openConnection( $i, $wiki );
 		if ( !$conn ) {
 			wfProfileOut( __METHOD__ );
-			return $this->reportConnectionError( $this->mErrorConnection );
+			return $this->reportConnectionError();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -731,16 +731,17 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @param $conn
 	 * @throws DBConnectionError
 	 */
-	function reportConnectionError( &$conn ) {
+	private function reportConnectionError() {
+		$conn = $this->mErrorConnection; // The connection which caused the error
+
 		if ( !is_object( $conn ) ) {
 			// No last connection, probably due to all servers being too busy
 			wfLogDBError( "LB failure with no last connection. Connection error: {$this->mLastError}\n" );
-			$conn = new Database;
+
 			// If all servers were busy, mLastError will contain something sensible
-			throw new DBConnectionError( $conn, $this->mLastError );
+			throw new DBConnectionError( null, $this->mLastError );
 		} else {
 			$server = $conn->getProperty( 'mServer' );
 			wfLogDBError( "Connection error: {$this->mLastError} ({$server})\n" );

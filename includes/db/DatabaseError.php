@@ -37,7 +37,7 @@ class DBError extends MWException {
 	 * @param $db DatabaseBase object which threw the error
 	 * @param $error String A simple error message to be used for debugging
 	 */
-	function __construct( DatabaseBase &$db, $error ) {
+	function __construct( DatabaseBase $db = null, $error ) {
 		$this->db = $db;
 		parent::__construct( $error );
 	}
@@ -91,7 +91,7 @@ class DBError extends MWException {
 class DBConnectionError extends DBError {
 	public $error;
 
-	function __construct( DatabaseBase &$db, $error = 'unknown error' ) {
+	function __construct( DatabaseBase $db = null, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 
 		if ( trim( $error ) != '' ) {
@@ -158,7 +158,7 @@ class DBConnectionError extends DBError {
 		# No database access
 		MessageCache::singleton()->disable();
 
-		if ( trim( $this->error ) == '' ) {
+		if ( trim( $this->error ) == '' && $this->db ) {
 			$this->error = $this->db->getProperty( 'mServer' );
 		}
 
@@ -288,7 +288,7 @@ class DBQueryError extends DBError {
 	 * @param $sql string
 	 * @param $fname string
 	 */
-	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
+	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred. Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 			"Query: $sql\n" .
 			"Function: $fname\n" .
