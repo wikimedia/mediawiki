@@ -65,7 +65,7 @@ class Block {
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
 		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '' )
 	{
-		if( $timestamp === 0 ){
+		if( $timestamp === 0 ) {
 			$timestamp = wfTimestampNow();
 		}
 
@@ -206,16 +206,16 @@ class Block {
 	 */
 	public function load( $address = '', $user = 0 ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		if( $user ){
+		if( $user ) {
 			$username = User::whoIs( $user );
 			$block = self::newFromTarget( $username, $address );
 		} else {
 			$block = self::newFromTarget( null, $address );
 		}
 
-		if( $block instanceof Block ){
+		if( $block instanceof Block ) {
 			# This is mildly evil, but hey, it's B/C :D
-			foreach( $block as $variable => $value ){
+			foreach( $block as $variable => $value ) {
 				$this->$variable = $value;
 			}
 			return true;
@@ -237,7 +237,7 @@ class Block {
 	protected function newLoad( $vagueTarget = null ) {
 		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
 
-		if( $this->type !== null ){
+		if( $this->type !== null ) {
 			$conds = array(
 				'ipb_address' => array( (string)$this->target ),
 			);
@@ -247,7 +247,7 @@ class Block {
 
 		# Be aware that the != '' check is explicit, since empty values will be
 		# passed by some callers (bug 29116)
-		if( $vagueTarget != ''){
+		if( $vagueTarget != '' ) {
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch( $type ) {
 				case self::TYPE_USER:
@@ -285,20 +285,20 @@ class Block {
 		# This is begging for $this = $bestBlock, but that's not allowed in PHP :(
 		$bestBlockPreventsEdit = null;
 
-		foreach( $res as $row ){
+		foreach( $res as $row ) {
 			$block = self::newFromRow( $row );
 
 			# Don't use expired blocks
-			if( $block->deleteIfExpired() ){
+			if( $block->deleteIfExpired() ) {
 				continue;
 			}
 
 			# Don't use anon only blocks on users
-			if( $this->type == self::TYPE_USER && !$block->isHardblock() ){
+			if( $this->type == self::TYPE_USER && !$block->isHardblock() ) {
 				continue;
 			}
 
-			if( $block->getType() == self::TYPE_RANGE ){
+			if( $block->getType() == self::TYPE_RANGE ) {
 				# This is the number of bits that are allowed to vary in the block, give
 				# or take some floating point errors
 				$end = wfBaseconvert( $block->getRangeEnd(), 16, 10 );
@@ -313,14 +313,14 @@ class Block {
 				$score = $block->getType();
 			}
 
-			if( $score < $bestBlockScore ){
+			if( $score < $bestBlockScore ) {
 				$bestBlockScore = $score;
 				$bestRow = $row;
 				$bestBlockPreventsEdit = $block->prevents( 'edit' );
 			}
 		}
 
-		if( $bestRow !== null ){
+		if( $bestRow !== null ) {
 			$this->initFromRow( $bestRow );
 			$this->prevents( 'edit', $bestBlockPreventsEdit );
 			return true;
@@ -371,9 +371,9 @@ class Block {
 	protected static function getIpFragment( $hex ) {
 		global $wgBlockCIDRLimit;
 		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
-			return 'v6-' . substr( substr( $hex, 3 ), 0,  floor( $wgBlockCIDRLimit['IPv6'] / 4 ) );
+			return 'v6-' . substr( substr( $hex, 3 ), 0, floor( $wgBlockCIDRLimit['IPv6'] / 4 ) );
 		} else {
-			return substr( $hex, 0,  floor( $wgBlockCIDRLimit['IPv4'] / 4 ) );
+			return substr( $hex, 0, floor( $wgBlockCIDRLimit['IPv4'] / 4 ) );
 		}
 	}
 
@@ -511,7 +511,7 @@ class Block {
 	 * @return Array
 	 */
 	protected function getDatabaseArray( $db = null ) {
-		if( !$db ){
+		if( !$db ) {
 			$db = wfGetDB( DB_SLAVE );
 		}
 		$expiry = $db->encodeExpiry( $this->mExpiry );
@@ -592,7 +592,7 @@ class Block {
 		$options['LIMIT'] = 1;
 
 		$res = $dbr->select( 'recentchanges', array( 'rc_ip' ), $conds,
-			__METHOD__ ,  $options );
+			__METHOD__, $options );
 
 		if ( !$res->numRows() ) {
 			# No results, don't autoblock anything
@@ -1050,10 +1050,10 @@ class Block {
 	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
 
 		list( $target, $type ) = self::parseTarget( $specificTarget );
-		if( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ){
+		if( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
 			return Block::newFromID( $target );
 
-		} elseif( $target === null && $vagueTarget == '' ){
+		} elseif( $target === null && $vagueTarget == '' ) {
 			# We're not going to find anything useful here
 			# Be aware that the == '' check is explicit, since empty values will be
 			# passed by some callers (bug 29116)
@@ -1063,11 +1063,11 @@ class Block {
 			$block = new Block();
 			$block->fromMaster( $fromMaster );
 
-			if( $type !== null ){
+			if( $type !== null ) {
 				$block->setTarget( $target );
 			}
 
-			if( $block->newLoad( $vagueTarget ) ){
+			if( $block->newLoad( $vagueTarget ) ) {
 				return $block;
 			}
 		}
@@ -1085,13 +1085,13 @@ class Block {
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
-		if( $target instanceof User ){
-			if( IP::isValid( $target->getName() ) ){
+		if( $target instanceof User ) {
+			if( IP::isValid( $target->getName() ) ) {
 				return array( $target, self::TYPE_IP );
 			} else {
 				return array( $target, self::TYPE_USER );
 			}
-		} elseif( $target === null ){
+		} elseif( $target === null ) {
 			return array( null, null );
 		}
 
@@ -1112,7 +1112,7 @@ class Block {
 
 		# Consider the possibility that this is not a username at all
 		# but actually an old subpage (bug #29797)
-		if( strpos( $target, '/' ) !== false ){
+		if( strpos( $target, '/' ) !== false ) {
 			# An old subpage, drill down to the user behind it
 			$parts = explode( '/', $target );
 			$target = $parts[0];

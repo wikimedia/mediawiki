@@ -37,7 +37,7 @@
  * @note Since we can't rely on anything, the minimum PHP versions and MW current
  * version are hardcoded here
  */
-function wfPHPVersionError( $type ){
+function wfPHPVersionError( $type ) {
 	$mwVersion = '1.21';
 	$phpVersion = PHP_VERSION;
 	$message = "MediaWiki $mwVersion requires at least PHP version 5.3.2, you are using PHP $phpVersion.";

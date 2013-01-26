@@ -360,9 +360,9 @@ class SiteConfiguration {
 	public function extractGlobalSetting( $setting, $wiki, $params ) {
 		$value = $this->getSetting( $setting, $wiki, $params );
 		if ( !is_null( $value ) ) {
-			if (substr($setting,0,1) == '+' && is_array($value)) {
-				$setting = substr($setting,1);
-				if ( is_array($GLOBALS[$setting]) ) {
+			if ( substr( $setting, 0, 1 ) == '+' && is_array( $value ) ) {
+				$setting = substr( $setting, 1 );
+				if ( is_array( $GLOBALS[$setting] ) ) {
 					$GLOBALS[$setting] = self::arrayMerge( $GLOBALS[$setting], $value );
 				} else {
 					$GLOBALS[$setting] = $value;
@@ -413,7 +413,7 @@ class SiteConfiguration {
 			return $default;
 		}
 
-		foreach( $default as $name => $def ){
+		foreach( $default as $name => $def ) {
 			if( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) ) {
 				$ret[$name] = $default[$name];
 			}
@@ -446,7 +446,7 @@ class SiteConfiguration {
 		$ret['params'] += $params;
 
 		// Automatically fill that ones if needed
-		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ){
+		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ) {
 			$ret['params']['lang'] = $ret['lang'];
 		}
 		if( !isset( $ret['params']['site'] ) && !is_null( $ret['suffix'] ) ) {

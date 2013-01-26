@@ -3980,7 +3980,7 @@ class Title {
 		}
 		# Get the article text
 		$rev = Revision::newFromTitle( $nt, false, Revision::READ_LATEST );
-		if( !is_object( $rev ) ){
+		if( !is_object( $rev ) ) {
 			return false;
 		}
 		$content = $rev->getContent();

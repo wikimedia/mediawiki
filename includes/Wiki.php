@@ -126,7 +126,7 @@ class MediaWiki {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if( $this->context->getTitle() === null ){
+		if( $this->context->getTitle() === null ) {
 			$this->context->setTitle( $this->parseTitle() );
 		}
 		return $this->context->getTitle();
@@ -507,7 +507,7 @@ class MediaWiki {
 			&& $request->getMethod() == 'GET'
 		) {
 			$redirUrl = $request->getFullRequestURL();
-			$redirUrl = str_replace( 'http://' , 'https://' , $redirUrl );
+			$redirUrl = str_replace( 'http://', 'https://', $redirUrl );
 
 			// Setup dummy Title, otherwise OutputPage::redirect will fail
 			$title = Title::newFromText( NS_MAIN, 'REDIR' );

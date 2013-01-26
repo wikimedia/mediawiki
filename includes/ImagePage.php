@@ -382,7 +382,7 @@ class ImagePage extends Article {
 							params( count( $otherSizes ) )->parse()
 						);
 					}
-				} elseif ( $width == 0 && $height == 0 ){
+				} elseif ( $width == 0 && $height == 0 ) {
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
 					$msgsmall = '';
@@ -1166,7 +1166,7 @@ class ImageHistoryList extends ContextSource {
 	protected function getThumbForLine( $file ) {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
-		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE,$user )
+		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE, $user )
 			&& !$file->isDeleted( File::DELETED_FILE ) )
 		{
 			$params = array(

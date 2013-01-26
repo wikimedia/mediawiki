@@ -1139,7 +1139,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public function doPurge() {
 		global $wgUseSquid;
 
-		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ){
+		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 			return false;
 		}
 
@@ -1948,7 +1948,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
-		return $this->prepareContentForEdit( $content, $revid , $user );
+		return $this->prepareContentForEdit( $content, $revid, $user );
 	}
 
 	/**
@@ -2151,7 +2151,7 @@ class WikiPage extends Page implements IDBAccessObject {
 		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
-		return $this->doQuickEditContent( $content, $user, $comment , $minor );
+		return $this->doQuickEditContent( $content, $user, $comment, $minor );
 	}
 
 	/**
@@ -2292,8 +2292,8 @@ class WikiPage extends Page implements IDBAccessObject {
 				if ( $encodedExpiry[$action] != 'infinity' ) {
 					$expiryText = wfMessage(
 						'protect-expiring',
-						$wgContLang->timeanddate( $expiry[$action], false, false ) ,
-						$wgContLang->date( $expiry[$action], false, false ) ,
+						$wgContLang->timeanddate( $expiry[$action], false, false ),
+						$wgContLang->date( $expiry[$action], false, false ),
 						$wgContLang->time( $expiry[$action], false, false )
 					)->inContentLanguage()->text();
 				} else {
@@ -3451,4 +3451,3 @@ class PoolWorkArticleView extends PoolCounterWork {
 		return false;
 	}
 }
-

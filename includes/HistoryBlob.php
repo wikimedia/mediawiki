@@ -430,7 +430,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @throws MWException
 	 */
 	function compress() {
-		if ( !function_exists( 'xdiff_string_rabdiff' ) ){
+		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
 			throw new MWException( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
 		}
 		if ( isset( $this->mDiffs ) ) {
