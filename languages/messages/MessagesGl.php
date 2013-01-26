@@ -3863,7 +3863,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'specialpages-group-highuse' => 'Páxinas con máis uso',
 'specialpages-group-pages' => 'Listas de páxinas',
 'specialpages-group-pagetools' => 'Ferramentas das páxinas',
-'specialpages-group-wiki' => 'Datos do wiki e ferramentas',
+'specialpages-group-wiki' => 'Datos e ferramentas',
 'specialpages-group-redirects' => 'Páxinas de redirección especiais',
 'specialpages-group-spam' => 'Ferramentas contra o spam',
 
@@ -3960,6 +3960,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-newusers-newusers' => 'Creouse a conta de usuario $1',
 'logentry-newusers-create' => 'Creouse a conta de usuario $1',
 'logentry-newusers-create2' => '$1 creou a conta de usuario $3',
+'logentry-newusers-byemail' => '$1 creou a conta de usuario $3; o contrasinal enviouse por correo electrónico',
 'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
 'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',

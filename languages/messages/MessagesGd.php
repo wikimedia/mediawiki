@@ -1282,7 +1282,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 
 # Namespace form on various pages
 'namespace' => 'Namespace:',
-'invert' => 'Cuir na tagh mi bun os cionn',
+'invert' => 'Cuir na thagh mi bun os cionn',
 'blanknamespace' => '(Prìomh)',
 
 # Contributions

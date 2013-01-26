@@ -4036,7 +4036,7 @@ $5
 'specialpages-group-highuse' => 'דפים בשימוש רב',
 'specialpages-group-pages' => 'רשימות דפים',
 'specialpages-group-pagetools' => 'כלים לדפים',
-'specialpages-group-wiki' => 'מידע וכלים על האתר',
+'specialpages-group-wiki' => 'מידע וכלים',
 'specialpages-group-redirects' => 'הפניות מדפים מיוחדים',
 'specialpages-group-spam' => 'כלי ספאם',
 
@@ -4133,6 +4133,7 @@ $5
 'logentry-newusers-newusers' => 'חשבון המשתמש $1 נוצר',
 'logentry-newusers-create' => 'חשבון המשתמש $1 נוצר',
 'logentry-newusers-create2' => 'חשבון המשתמש $3 נוצר על ידי $1',
+'logentry-newusers-byemail' => 'חשבון המשתמש $3 נוצר על ידי $1 והסיסמה נשלחה בדוא"ל',
 'logentry-newusers-autocreate' => 'חשבון המשתמש $1 נוצר אוטומטית',
 'logentry-rights-rights' => '$1 שינה את ההרשאות של $3 מ$4 ל$5',
 'logentry-rights-rights-legacy' => '$1 שינה את ההרשאות של $3',

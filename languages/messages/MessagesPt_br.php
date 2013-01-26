@@ -447,6 +447,7 @@ $messages = array(
 'newwindow' => '(abre em uma nova janela)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Mais...',
+'morenotlisted' => 'Outros não listados...',
 'mypage' => 'Página',
 'mytalk' => 'Discussão',
 'anontalk' => 'Discussão para este IP',
@@ -752,7 +753,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'gotaccount' => "Já possui uma conta? '''$1'''.",
 'gotaccountlink' => 'Autenticar-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de usuário ou da senha?',
-'createaccountmail' => 'por e-mail',
+'createaccountmail' => 'Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir',
 'createaccountreason' => 'Razão:',
 'badretype' => 'As senhas que você digitou não são iguais.',
 'userexists' => 'O nome de usuário fornecido já está em uso.
@@ -823,6 +824,7 @@ Por favor aguarde antes de tentar novamente.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 'user-mail-no-addy' => 'Tentou enviar uma mensagem sem um endereço de e-mail.',
+'user-mail-no-body' => 'Você tentou enviar com o campo de e-mail vazio ou com poucos caracteres.',
 
 # Change password dialog
 'resetpass' => 'Alterar senha',
@@ -1049,10 +1051,10 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
 'longpageerror' => "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''
 A página não pode ser salva.",
-'readonlywarning' => "'''Aviso: A base de dados foi bloqueada para manutenção, por isso você não poderá salvar a sua edição neste momento.'''
-Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior envio.
+'readonlywarning' => "'''Aviso: O banco de dados foi bloqueado para manutenção, por isso você não poderá salvar a sua edição neste momento.'''
+Talvez você queira copiar o seu texto num editor externo e guardá-lo, para posterior envio.
 
-Quem bloqueou o banco de dados forneceu a seguinte justificativa: $1",
+Quem bloqueou o banco de dados forneceu a seguinte explicação: $1",
 'protectedpagewarning' => "'''Atenção: Esta página foi protegida para que apenas usuários com privilégios de administrador possam editá-la.'''
 A última entrada no histórico é fornecida abaixo como referência:",
 'semiprotectedpagewarning' => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.
@@ -2262,7 +2264,7 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'linksearch-ok' => 'Pesquisar',
 'linksearch-text' => 'É possível usar caracteres coringa, como "*.wikipedia.org".
 Necessário no mínimo um domínio de nível superior, por exemplo "*.org".<br />
-Protocolos suportados: <code>$1</code> (o padrão é http://).',
+{{PLURAL:$2|Protocolo suportado|Protocolos suportados}}: <code>$1</code> (caso nenhum seja especificado, o protocolo http:// será selecionado automaticamente).',
 'linksearch-line' => '$2 possui links para $1',
 'linksearch-error' => "\"Caracteres mágicos\" (''wildcards'') só podem ser usados no início do endereço.",
 
@@ -2275,7 +2277,7 @@ Protocolos suportados: <code>$1</code> (o padrão é http://).',
 # Special:ActiveUsers
 'activeusers' => 'Lista de usuários ativos',
 'activeusers-intro' => 'Esta é uma lista de usuários com algum tipo de atividade nos últimos $1 {{PLURAL:$1|dia|dias}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|edição|edições}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
+'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from' => 'Mostrar usuários começando em:',
 'activeusers-hidebots' => 'Esconder robôs',
 'activeusers-hidesysops' => 'Esconder administradores',
@@ -2489,6 +2491,8 @@ Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as p
 'prot_1movedto2' => '[[$1]] foi movido para [[$2]]',
 'protect-badnamespace-title' => 'Espaço de nomes não-protegidos',
 'protect-badnamespace-text' => 'As páginas presentes nesse espaço de nomes não se pode proteger',
+'protect-norestrictiontypes-text' => 'Esta página não pode ser protegida, pois não há nenhum tipo de restrição disponível.',
+'protect-norestrictiontypes-title' => 'Página com proteção indisponível',
 'protect-legend' => 'Confirmar proteção',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Expiração',
@@ -2503,9 +2507,9 @@ Esta é a configuração atual para a página '''$1''':",
 Esta é a configuração atual para a página '''$1''':",
 'protect-cascadeon' => 'Esta página encontra-se protegida, uma vez que se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "proteção progressiva" ativada. Você poderá alterar o nível de proteção desta página, mas isso não afetará a "proteção progressiva".',
 'protect-default' => 'Permitir todos os usuários',
-'protect-fallback' => 'É necessário o privilégio de "$1"',
-'protect-level-autoconfirmed' => 'Bloquear usuários novos e não registrados',
-'protect-level-sysop' => 'Apenas administradores',
+'protect-fallback' => 'Permitir apenas os usuários com privilégio de "$1"',
+'protect-level-autoconfirmed' => 'Permitir apenas usuários auto-confirmados',
+'protect-level-sysop' => 'Permitir apenas administradores',
 'protect-summary-cascade' => 'p. progressiva',
 'protect-expiring' => 'expira em $1 (UTC)',
 'protect-expiring-local' => 'expira $1',
@@ -2795,14 +2799,18 @@ Por favor, confirme que realmente pretende fazer isso.',
 # Move page
 'move-page' => 'Mover $1',
 'move-page-legend' => 'Mover página',
-'movepagetext' => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico para o novo título. O título anterior será transformado em um redirecionamento para o novo.
+'movepagetext' => "Utilizando o formulário a seguir você poderá renomear uma página, movendo todo o histórico para o novo título.
+O título anterior será transformado em um redirecionamento para o novo.
+Você poderá optar em atualizar automaticamente os redirecionamentos que se destinem ao título original.
+Caso escolha pela não-atualização, se certifique de verificar por redirecionamentos [[Special:DoubleRedirects|duplos]] ou [[Special:BrokenRedirects|quebrados]].
+É de sua responsabilidade que os links continuem direcionando para onde eles devem.
 
-Links para as páginas antigas não serão mudados; certifique-se de verificar por redirecionamentos quebrados ou duplos. Você é responsável por certificar-se que os links continuam apontando para onde eles deveriam apontar.
+Note que a página '''não''' será movida se já existir uma página com o novo título, a não ser que ele seja um redirecionamento e não tenha histórico de edições.
+Isto significa que você pode renomear uma página de volta para o seu nome anterior se cometer algum engano e que não poderá sobrescrever uma página existente.
 
-Note que a página '''não''' será movida se já existir uma página com o novo título, a não ser que ele esteja vazio ou seja um redirecionamento e não tenha histórico de edições. Isto significa que pode renomear uma página de volta para o nome que tinha anteriormente se cometer algum engano e que não pode sobrescrever uma página.
-
-<b>CUIDADO!</b>
-Isto pode ser uma mudança drástica e inesperada para uma página popular; por favor, tenha certeza de que compreende as consequências da mudança antes de prosseguir.",
+'''CUIDADO!'''
+Esta pode ser uma mudança drástica e inesperada para uma página popular;
+tenha certeza de que compreende as consequências da mudança antes de prosseguir.",
 'movepagetext-noredirectfixer' => "Usando o formulário abaixo, você irá alterar o nome de uma página e moverá todo o histórico desta para o nome novo.
 A página antiga será transformada numa página de redirecionamento para a nova.
 Verifique a existência de [[Special:DoubleRedirects|redirecionamentos duplos]] ou [[Special:BrokenRedirects|quebrados]].
@@ -3142,6 +3150,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Predefinição transcluída|Predefinições transcluídas ($1)}}',
+'pageinfo-transclusions' => '{{PLURAL:$1|Página incluída |Páginas incluídas}} ($1)',
 'pageinfo-toolboxlink' => 'Informações da página',
 'pageinfo-redirectsto' => 'Redireciona para',
 'pageinfo-redirectsto-info' => 'informações',
@@ -3150,6 +3159,10 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-protect-cascading' => 'Proteção em cascata ativada',
 'pageinfo-protect-cascading-yes' => 'Sim',
 'pageinfo-protect-cascading-from' => 'Proteções herdadas de',
+'pageinfo-category-info' => 'Informações da categoria',
+'pageinfo-category-pages' => 'Número de páginas',
+'pageinfo-category-subcats' => 'Número de subcategorias',
+'pageinfo-category-files' => 'Número de arquivos',
 
 # Skin names
 'skinname-standard' => 'Clássico',
@@ -3236,6 +3249,8 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'minutes' => '{{PLURAL:$1|um minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|uma hora|$1 horas}}',
 'days' => '{{PLURAL:$1|um dia|$1 dias}}',
+'months' => '{{PLURAL:$1|$1 mês|$1 meses}}',
+'years' => '{{PLURAL:$1|$1 ano|$1 anos}}',
 'ago' => '$1 atrás',
 'just-now' => 'agora mesmo',
 
@@ -3896,7 +3911,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'specialpages-group-highuse' => 'Páginas muito usadas',
 'specialpages-group-pages' => 'Listas de páginas',
 'specialpages-group-pagetools' => 'Ferramentas de páginas',
-'specialpages-group-wiki' => 'Dados e ferramentas sobre este wiki',
+'specialpages-group-wiki' => 'Dados e ferramentas',
 'specialpages-group-redirects' => 'Páginas especiais redirecionadas',
 'specialpages-group-spam' => 'Ferramentas anti-spam',
 
@@ -3993,6 +4008,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-newusers-newusers' => 'A conta de usuário $1 foi criada',
 'logentry-newusers-create' => 'A conta de usuário $1 foi criada',
 'logentry-newusers-create2' => 'A conta de usuário $3 foi criada por $1',
+'logentry-newusers-byemail' => 'A conta de usuário $3 foi criada por $1, com a senha sendo enviada por e-mail',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
 'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
 'logentry-rights-rights-legacy' => '$1 alterou os grupos de $3',

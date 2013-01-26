@@ -732,7 +732,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'gotaccount' => "Masz już konto? '''$1'''.",
 'gotaccountlink' => 'Zaloguj się',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
-'createaccountmail' => 'Wyślij hasło e-mailem',
+'createaccountmail' => 'Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany poniżej adres e-mail',
 'createaccountreason' => 'Powód',
 'badretype' => 'Wprowadzone hasła różnią się między sobą.',
 'userexists' => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
@@ -1037,7 +1037,7 @@ Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i ro
 Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na warunkach ''domeny publicznej'' lub kompatybilnych (zobacz także $1).
 '''PROSZĘ NIE WPROWADZAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!'''",
 'longpageerror' => "'''Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.'''",
-'readonlywarning' => "'''Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku, używając wytnij i wklej, aby zachować na później.'''
+'readonlywarning' => "'''Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Jeśli chcesz, może skopiować ją do pliku, aby móc zapisać ją później.'''
 
 Administrator, który zablokował bazę, podał następujące wyjaśnienie: $1",
 'protectedpagewarning' => "'''Uwaga! Możliwość modyfikacja tej strony została zabezpieczona. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.'''
@@ -3148,6 +3148,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-magic-words' => 'Magiczne {{PLURAL:$1|słowo|słowa|słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukryte kategorie}} ($1)',
 'pageinfo-templates' => 'Wykorzystywan{{PLURAL:$1|y szablon|e szablony}} ($1)',
+'pageinfo-transclusions' => 'Dołączona na {{PLURAL:$1|stronie|stronach}} ($1)',
 'pageinfo-toolboxlink' => 'Informacje o tej stronie',
 'pageinfo-redirectsto' => 'Przekierowuje na',
 'pageinfo-redirectsto-info' => 'informacje',
@@ -3156,6 +3157,10 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-protect-cascading' => 'Zabezpieczona z włączoną opcją dziedziczenia',
 'pageinfo-protect-cascading-yes' => 'Tak',
 'pageinfo-protect-cascading-from' => 'Zabezpieczenie dziedziczone z',
+'pageinfo-category-info' => 'Informacje o kategorii',
+'pageinfo-category-pages' => 'Liczba stron',
+'pageinfo-category-subcats' => 'Liczba podkategorii',
+'pageinfo-category-files' => 'Liczba plików',
 
 # Skin names
 'skinname-standard' => 'Standardowa',
@@ -3246,6 +3251,8 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours' => '{{PLURAL:$1|$1 godzina|$1 godziny|$1 godzin}}',
 'days' => '{{PLURAL:$1|$1 dzień|$1 dni}}',
+'months' => '{{PLURAL:$1|$1 miesiąc|$1 miesiące|$1 miesięcy}}',
+'years' => '{{PLURAL:$1|$1 rok|$1 lata|$1 lat}}',
 'ago' => '$1 temu',
 'just-now' => 'przed chwilą',
 
@@ -3958,7 +3965,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'specialpages-group-highuse' => 'Strony często używane',
 'specialpages-group-pages' => 'Zestawienia stron',
 'specialpages-group-pagetools' => 'Narzędzia stron',
-'specialpages-group-wiki' => 'Informacje oraz narzędzia wiki',
+'specialpages-group-wiki' => 'Informacje i narzędzia',
 'specialpages-group-redirects' => 'Specjalne strony przekierowujące',
 'specialpages-group-spam' => 'Narzędzia do walki ze spamem',
 
@@ -4055,6 +4062,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
+'logentry-newusers-byemail' => 'Konto $3 zostało utworzone przez użytkownika $1, hasło wysłano e-mailem',
 'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
 'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',

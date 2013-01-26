@@ -3866,7 +3866,7 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/de/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung]). Es gibt allerdings einige kleinere Implementierungsfehler, so dass von der Nutzung in einer Produktivumgebung abgeraten wird.',
 	'config-support-sqlite' => '* $1 ist ein verschlanktes Datenbanksystem, das auch gut unterstützt wird ([http://www.php.net/manual/de/pdo.installation.php Anleitung zur Kompilierung von PHP mit SQLite-Unterstützung], verwendet PHP Data Objects (PDO))',
 	'config-support-oracle' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/oci8.installation.php Anleitung zur Kompilierung von PHP mit OCI8-Unterstützung (en)])',
-	'config-support-ibm_db2' => '* $1 ist eine kommerzielle Unternehmensdatenbank', # Fuzzy
+	'config-support-ibm_db2' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/ibm-db2.installation.php PHP mit IBM-DB2-Support kompilieren])',
 	'config-header-mysql' => 'MySQL-Einstellungen',
 	'config-header-postgres' => 'PostgreSQL-Einstellungen',
 	'config-header-sqlite' => 'SQLite-Einstellungen',
@@ -6456,8 +6456,8 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-support-mysql' => '* $1 é o obxectivo principal para MediaWiki e está mellor soportado ([http://www.php.net/manual/en/mysql.installation.php como compilar o PHP con soporte MySQL])',
 	'config-support-postgres' => '* $1 é un sistema de base de datos popular e de código aberto como alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar o PHP con soporte PostgreSQL]). É posible que haxa algúns pequenos erros e non se recomenda o seu uso nunha contorna de produción.',
 	'config-support-sqlite' => '* $1 é un sistema de base de datos lixeiro moi ben soportado. ([http://www.php.net/manual/en/pdo.installation.php Como compilar o PHP con soporte SQLite], emprega PDO)',
-	'config-support-oracle' => '* $1 é un sistema comercial de xestión de base de datos de empresa. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con soporte OCI8])',
-	'config-support-ibm_db2' => '* $1 é unha base de datos de empresa comercial.', # Fuzzy
+	'config-support-oracle' => '* $1 é un sistema comercial de xestión de base de datos de empresa. ([http://www.php.net/manual/en/oci8.installation.php Como compilar o PHP con soporte OCI8])',
+	'config-support-ibm_db2' => '* $1 é unha base de datos de empresa comercial. ([http://www.php.net/manual/en/ibm-db2.installation.php Como compilar o PHP con soporte IBM DB2])',
 	'config-header-mysql' => 'Configuración do MySQL',
 	'config-header-postgres' => 'Configuración do PostgreSQL',
 	'config-header-sqlite' => 'Configuración do SQLite',
@@ -9920,7 +9920,7 @@ php.ini 内で <code>session.save_path</code> が適切なディレクトリに�
 	'config-page-copying' => 'コピー',
 	'config-page-upgradedoc' => 'アップグレード',
 	'config-page-existingwiki' => '既存のウィキ',
-	'config-help-restart' => '入力した保存データをすべて消去して、インストール作業を再起動しますか？',
+	'config-help-restart' => '入力した保存データをすべて消去して、インストール作業を再起動しますか?',
 	'config-restart' => 'はい、再起動します',
 	'config-welcome' => '=== 環境の確認 ===
 基本的な確認では、現在の環境がMediaWikiのインストールに適しているかを確認します。
@@ -10097,7 +10097,7 @@ $1
 	'config-support-postgres' => '* $1は、MySQLの代替として人気があるオープンソースのデータベースシステムです ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQLに対応したPHPをコンパイルする方法])',
 	'config-support-sqlite' => '* $1は、良くサポートされている、軽量データベースシステムです。([http://www.php.net/manual/ja/pdo.installation.php SQLiteに対応したPHPをコンパイルする方法]、PDOを使用)',
 	'config-support-oracle' => '* $1は商業企業のデータベースです。([http://www.php.net/manual/en/oci8.installation.php OCI8サポートなPHPをコンパイルする方法])',
-	'config-support-ibm_db2' => '* $1 は商業企業のデータベースです。', # Fuzzy
+	'config-support-ibm_db2' => '* $1 は商業企業のデータベースです。([http://www.php.net/manual/en/ibm-db2.installation.php IBM DB2に対応したPHPをコンパイルする方法])',
 	'config-header-mysql' => 'MySQL の設定',
 	'config-header-postgres' => 'PostgreSQL の設定',
 	'config-header-sqlite' => 'SQLite の設定',
@@ -10634,13 +10634,13 @@ $messages['kn'] = array(
  * @author 아라
  */
 $messages['ko'] = array(
-	'config-desc' => '미디어위키 설치 마법사',
+	'config-desc' => '미디어위키 설치 프로그램',
 	'config-title' => 'MediaWiki $1 설치',
 	'config-information' => '정보',
-	'config-localsettings-upgrade' => '<code>LocalSettings.php</code> 파일이 감지되었습니다.
+	'config-localsettings-upgrade' => '<code>LocalSettings.php</code> 파일을 감지했습니다.
 이 설치를 업그레이드하려면 아래 상자에 <code>$wgUpgradeKey</code>의 값을 입력하세요.
-LocalSettings.php에 찾으세요.',
-	'config-localsettings-cli-upgrade' => 'LocalSettings.php 파일이 감지되었습니다.
+LocalSettings.php에 찾을 수 있습니다.',
+	'config-localsettings-cli-upgrade' => 'LocalSettings.php 파일을 감지했습니다.
 이 설치를 업그레이드하려면 update.php를 대신 실행하세요',
 	'config-localsettings-key' => '업그레이드 키:',
 	'config-localsettings-badkey' => '제공한 키가 잘못되었습니다.',
@@ -10659,12 +10659,12 @@ $1',
 세션은 $1의 작동 시간 동안 구성됩니다.
 php.ini에 있는 <code>session.gc_maxlifetime</code>에서 설정해 이를 증가시킬 수 있습니다.
 설치 과정을 다시 시작합니다.',
-	'config-no-session' => '세션 데이터가 손실되었습니다!
+	'config-no-session' => '세션 데이터가 없어졌습니다!
 php.ini를 확인하고 <code>session.save_path</code>가 적절한 디렉토리로 설정되어 있는지 확인하세요.',
 	'config-your-language' => '설치 언어:',
 	'config-your-language-help' => '설치 과정에서 사용할 언어를 선택하세요.',
 	'config-wiki-language' => '위키 언어:',
-	'config-wiki-language-help' => '주로 작성될 위키에 대한 언어를 선택하세요.',
+	'config-wiki-language-help' => '위키에 주로 작성될 언어를 선택하세요.',
 	'config-back' => '← 뒤로',
 	'config-continue' => '계속 →',
 	'config-page-language' => '언어',
@@ -10713,35 +10713,35 @@ $1
 	'config-env-php' => 'PHP $1(이)가 설치되었습니다.',
 	'config-env-php-toolow' => 'PHP $1(이)가 설치되었습니다.
 하지만 미디어위키는 PHP $2 이상이 필요합니다.',
-	'config-unicode-using-utf8' => '유니코드 정규화에 대해 Brion Vibber의 utf8_normalize.so를 사용합니다.',
-	'config-unicode-using-intl' => '유니코드 정규화에 대해 [http://pecl.php.net/intl intl PECL 확장]을 사용합니다.',
-	'config-unicode-pure-php-warning' => "'''경고''': [http://pecl.php.net/intl intl PECL 확장]은 PHP만으로 구현하는 데에는 느려질 정도로 성능이 떨어지는 유니코드 정규화를 처리할 수 없습니다.
-높은 트래픽의 사이트에서 실행하려면 [//www.mediawiki.org/wiki/Unicode_normalization_considerations 유니코드 정규화]에 대해 약간 참고해야 합니다.",
+	'config-unicode-using-utf8' => '유니코드 정규화에 Brion Vibber의 utf8_normalize.so를 사용합니다.',
+	'config-unicode-using-intl' => '유니코드 정규화에 [http://pecl.php.net/intl intl PECL 확장 기능]을 사용합니다.',
+	'config-unicode-pure-php-warning' => "'''경고''': 유니코드 정규화를 처리할 [http://pecl.php.net/intl intl PECL 확장 기능]을 사용할 수 없기 때문에 느린 순수한 PHP 구현을 대신 사용합니다.
+높은 트래픽 사이트에서 실행하려면 [//www.mediawiki.org/wiki/Unicode_normalization_considerations 유니코드 정규화]를 읽어보시기 바랍니다.",
 	'config-unicode-update-warning' => "'''경고''': 유니코드 정규화 래퍼의 설치된 버전은 [http://site.icu-project.org/ ICU 프로젝트]의 라이브러리의 이전 버전을 사용합니다.
 만약 유니코드를 사용하는 것에 대해 우려가 된다면 [//www.mediawiki.org/wiki/Unicode_normalization_considerations 업그레이드]해야합니다.",
 	'config-no-db' => '적절한 데이터베이스 드라이버를 찾을 수 없습니다! PHP에 데이터베이스 드라이버를 설치해야 합니다.
 다음 데이터베이스 유형을 지원합니다 : $1.
 
-호스팅을 공유하고 있다면 적절한 데이터베이스 드라이버를 설치하도록 호스팅 제공 업체에 문의하세요.
-PHP를 직접 컴파일할 경우 데이터베이스 클라이언트를 사용하여 활성화하도록 다시 설정하세요. 예들 들어 <code>./configure --with-mysql</code>을 사용하세요.
+공유하는 호스팅을 사용하고 있다면 적절한 데이터베이스 드라이버를 설치하도록 호스팅 제공 업체에 문의하세요.
+PHP를 직접 컴파일했다면 예를 들어 <code>./configure --with-mysql</code>을 사용하여 데이터베이스 클라이언트를 활성화하도록 다시 설정하세요.
 데비안이나 우분트 패키지에서 PHP를 설치했다면 php-mysql 모듈도 설치해야 합니다.',
 	'config-outdated-sqlite' => "'''경고''': SQLite 필요한 최소 $2 버전보다 낮은 $1(이)가 있습니다. SQLite는 사용할 수 없습니다.",
 	'config-no-fts3' => "'''경고''': SQLite는 [//sqlite.org/fts3.html FTS3 모듈] 없이 컴파일되어, 검색 기능은 백엔드에 사용할 수 없습니다.",
 	'config-register-globals' => "'''경고: PHP의 <code>[http://php.net/register_globals register_globals]</code> 옵션이 활성화되어 있습니다.'''
 '''가능하면 이를 비활성화하십시오.'''
-미디어위키는 작동하지만 서버에 잠재적인 보안 취약점에 노출됩니다.",
+미디어위키는 작동하지만 서버에 잠재적인 보안 취약점이 노출됩니다.",
 	'config-magic-quotes-runtime' => "'''치명: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]이 활성합니다!'''
 이 옵션은 데이터를 입력하는 데 예기치 않는 손상이 일어납니다.
-설치할 수 없습니다. 또는 미디어위키가 사용하지 않는 이 옵션을 비활성화하십시오.",
+이 옵션을 비활성화하지 않는 한 미디어위키를 설치하고 사용할 수 없습니다.",
 	'config-magic-quotes-sybase' => "'''치명: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]이 활성합니다!'''
 이 옵션은 데이터를 입력하는 데 예기치 않는 손상이 일어납니다.
-설치할 수 없습니다. 또는 미디어위키가 사용하지 않는 이 옵션을 비활성화하십시오.",
+이 옵션을 비활성화하지 않는 한 미디어위키를 설치하고 사용할 수 없습니다.",
 	'config-mbstring' => "'''치명: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]이 활성합니다!'''
 이 옵션은 오류가 발생하고 데이터를 입력하는 데 예기치 않는 손상이 일어날 수 있습니다.
-설치할 수 없습니다. 또는 미디어위키가 사용하지 않는 이 옵션을 비활성화하십시오.",
+이 옵션을 비활성화하지 않는 한 미디어위키를 설치하고 사용할 수 없습니다.",
 	'config-ze1' => "'''치명: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]이 활성합니다!'''
-이 옵션은 미디어위키에 끔찍한 버그를 일으킵니다.
-설치할 수 없습니다. 또는 미디어위키가 사용하지 않는 이 옵션을 비활성화하십시오.",
+이 옵션은 미디어위키에 심간한 버그를 일으킵니다.
+이 옵션을 비활성화하지 않는 한 미디어위키를 설치하고 사용할 수 없습니다.",
 	'config-safe-mode' => "'''경고:''' [http://www.php.net/features.safe-mode 안전 모드]이 활성합니다!
 특히 파일을 올리거나 <code>math</code>를 지원하는 데 문제가 발생할 수 있습니다.",
 	'config-xml-bad' => 'PHP의 XML 모듈이 없습니다.
@@ -10760,7 +10760,7 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 	'config-apc' => '[http://www.php.net/apc APC]가 설치되었습니다',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache]가 설치되었습니다',
 	'config-no-cache' => "'''경고:''' [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] 또는 [http://www.iis.net/download/WinCacheForPhp WinCache]를 찾을 수 없습니다.
-개체 캐싱이 활성화되지 않습니다.",
+개체 캐싱을 활성화하지 않습니다.",
 	'config-mod-security' => "'''경고''': 웹 서버에 [http://modsecurity.org/ mod_security]가 허용되었습니다. 잘못 설정된 경우 미디어위키나 사용자가 임의의 콘텐츠를 게시할 수 있는 다른 소프트웨어에 대한 문제를 일으킬 수 있습니다.
 [http://modsecurity.org/documentation/ mod_security] 문서를 참고하거나 임의의 오류가 발생할 경우 호스트의 지원 요청에 문의하십시오.",
 	'config-diff3-bad' => 'GNU diff3를 찾을 수 없습니다.',
@@ -10779,7 +10779,7 @@ Mandrake를 실행하고 있다면 php-xml 패키지를 설치하세요.',
 미디어위키는 보안 위협에 대한 모든 올린 파일을 검사하지만, 올리기를 활성화하기 전에 [//www.mediawiki.org/wiki/Manual:Security#Upload_security 이 보안 취약점을 해결할 것]을 매우 권장합니다.",
 	'config-no-cli-uploads-check' => "'''경고:''' 올리기에 대한 기본 디렉토리(<code>$1</code>)는 CLI를 설치하는 동안 임의의 스크립트 실행에 대한 취약점에 대해 검사되지 않습니다.",
 	'config-brokenlibxml' => '시스템에 버그가 있는 PHP와 libxml2의 조합이 있으며 미디어위키나 다른 웹 어플리케이션에 숨겨진 데이터 손상을 일으킬 수 있습니다.
-PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요 ([//bugs.php.net/bug.php?id=45996 PHP에 제기한 버그]).
+PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요. ([//bugs.php.net/bug.php?id=45996 PHP에 제기한 버그])
 설치가 중단되었습니다.',
 	'config-using531' => '미디어위키는 <code>__call()</code>을 참고로 매개 변수를 포함하는 버그로 인해 PHP $1(와)과 함께 사용할 수 없습니다.
 문제를 해결하려면 PHP 5.3.2 이상로 업그레이드하거나 PHP 5.3.0으로 다운그레이드를 하세요.
@@ -10787,13 +10787,13 @@ PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요 ([//bugs.ph
 	'config-suhosin-max-value-length' => 'Suhosin(수호신)이 설치되었고 $1 바이트로 GET 매개 변수 길이를 제한하고 있습니다. 미디어위키의 ResourceLoader 구성 요소는 이 제한을 해결하지만 성능이 저하됩니다. 가능하면 php.ini의 suhosin.get.max_value_length에 1024 이상으로 설정하고 LocalSettings.php의 $wgResourceLoaderMaxQueryLength에 같은 값을 설정해야 합니다.',
 	'config-db-type' => '데이터베이스 종류:',
 	'config-db-host' => '데이터베이스 호스트:',
-	'config-db-host-help' => '데이터베이스 서버가 다른 서버에 있을 경우 여기에 호스트 이름이나 IP 주소를 입력하세요.
+	'config-db-host-help' => '데이터베이스 서버가 다른 서버에 있으면 여기에 호스트 이름이나 IP 주소를 입력하세요.
 
-공유된 웹 호스팅을 사용하는 경우 호스팅 공급자는 올바른 호스트 이름을 설명해야 합니다.
+공유하는 웹 호스팅을 사용하고 있으면 호스팅 제공 업체는 호스트 이름을 설명하고 있을 것입니다.
 
-윈도 서버에 설치하고 MySQL을 사용할 경우 "localhost"는 서버 이름으로 작동하지 않을 수 있습니다. 그렇지 않으면 로컬 IP 주소로 "127.0.0.1"를 시도하세요.
+윈도 서버에 설치하고 MySQL을 사용하면 "localhost"는 서버 이름으로 작동하지 않을 수 있습니다. 그렇게 된다면 로컬 IP 주소로 "127.0.0.1"를 시도하세요.
 
-PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력란을 비워두세요.',
+PostgreSQL을 사용하면 유닉스 소켓을 통해 연결되도록 입력란을 비워두세요.',
 	'config-db-host-oracle' => '데이터베이스 TNS:',
 	'config-db-host-oracle-help' => '유효한 [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm 로컬 연결 이름]을 입력하세요. tnsnames.ora 파일이 이 설치에 보여야 합니다.<br />10g 이후의 클라이언트 라이브러리를 사용하는 경우 [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm 쉬운 연결] 네이밍 메소드도 사용할 수 있습니다.',
 	'config-db-wiki-settings' => '이 위키 식별',
@@ -10801,13 +10801,13 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 	'config-db-name-help' => '위키를 식별하기 위한 이름을 선택하세요.
 공백이 없어야 합니다.
 
-공유된 웹 호스팅 사용하는 경우 호스팅 제공 업체가 특정 데이터베이스 이름을 제공하거나 제어판에서 데이터베이스를 만들 수 있도록 합니다.',
+공유하는 웹 호스팅 사용하면 호스팅 제공 업체가 특정 데이터베이스 이름을 제공하거나 관리 패널에서 데이터베이스를 만들 수 있습니다.',
 	'config-db-name-oracle' => '데이터베이스 스키마:',
 	'config-db-account-oracle-warn' => '데이터베이스 백엔드로 오라클을 설치하기 위해 지원하는 세 가지 시나리오가 있습니다:
 
 설치 과정의 일부로 데이터베이스 계정을 만들려면 설치를 위해 데이터베이스 계정으로 SYSDBA 역할을 가진 계정을 제공하고 웹 접근 계정에 대해 원하는 자격 증명을 지정하세요, 그렇지 않으면 수동으로 웹 접근 계정을 만들 수 있으며 (필요한 경우 권한 스키마 개체를 만들어야 합니다) 또는 다른 계정 두 개를 만들고 권한을 가진 하나의 웹 접근을 위한 제한된 하나를 제공할 수 있습니다.
 
-필요한 권한을 가진 계정을 만드는 스크립트는 이 설치의 "maintenance/oracle/" 디렉토리에서 찾을 수 있습니다. 제한된 계정을 사용하면 기본 계정으로 모든 관리 기능을 비활성화할 것을 염두해 두십시오.',
+필요한 권한을 가진 계정을 만드는 스크립트는 이 설치의 "maintenance/oracle/" 디렉토리에서 찾을 수 있습니다. 제한된 계정을 사용하면 기본 계정으로 모든 관리 기능을 비활성화할 것을 유의하십시오.',
 	'config-db-install-account' => '설치를 위한 사용자 계정',
 	'config-db-username' => '데이터베이스 사용자 이름:',
 	'config-db-password' => '데이터베이스 비밀번호:',
@@ -10835,25 +10835,25 @@ PostgreSQL을 사용할 경우 유닉스 소켓을 통해 연결되도록 입력
 
 '''바이너리 모드'''에서는 미디어위키는 바이너리 필드의 데이터베이스에 UTF-8 텍스트를 저장합니다.
 MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
-'''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 어떤 문자열인지를 알 것이며, 표현하고 적절하게 그것을 변환할 수 있지만
-[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 기본 다국어 범위] 상의 문자를 저장하지 못하게 될 수 있습니다.",
+'''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 문자 집합을 알고 있기 때문에 적절하게 표현하고 변환할 수 있지만
+[//ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C_%ED%8F%89%EB%A9%B4#.EA.B8.B0.EB.B3.B8_.EB.8B.A4.EA.B5.AD.EC.96.B4_.ED.8F.89.EB.A9.B4 기본 다국어 평면] 밖의 문자를 저장할 수 없습니다.",
 	'config-mysql-old' => 'MySQL $1 이상이 필요하나 $2(이)가 있습니다.',
 	'config-db-port' => '데이터베이스 포트:',
 	'config-db-schema' => '미디어위키에 대한 스키마:',
-	'config-db-schema-help' => '이 스키마는 보통 괜찮습니다.
-필요로 알고 있을 경우에만 이를 바꾸세요.',
+	'config-db-schema-help' => '보통 이 스키마는 문제가 없습니다.
+필요한 경우에만 바꾸세요.',
 	'config-pg-test-error' => "'''$1''' 데이터베이스에 연결할 수 없습니다: $2",
 	'config-sqlite-dir' => 'SQLite 데이터 디렉토리:',
-	'config-sqlite-dir-help' => 'SQLite는 하나의 파일에 모든 데이터를 저장합니다.
+	'config-sqlite-dir-help' => "SQLite는 하나의 파일에 모든 데이터를 저장합니다.
 
-제공하는 디렉토리는 설치하는 동안 웹 서버에 의해 쓸 수 있어야 합니다.
+제공하는 디렉토리는 설치하는 동안 웹 서버가 쓸 수 있어야 합니다.
 
-PHP 파일이 있는 곳을 우리가 맡길 수 없는 이유는 웹을 통해 접근할 수 없다는 것입니다.
+이 디렉토리는 웹을 통해 접근할 수 '''없어야''' 하는데 PHP 파일이 있는 곳에 넣을 수 없는 것은 이 때문입니다.
 
-설치 마법사가 이과 함께 .htaccess 파일을 만들지만 거기서 실패하면 누군가는 원본 데이터베이스에 접근하는 데 실패합니다.
-원본 사용자 데이터(이메일 주소, 해시한 비밀번호) 뿐만 아니라 삭제된 개정판과 위키의 다른 제한된 데이터를 포함합니다.
+설치 프로그램은 <code>.htaccess</code> 파일을 작성하지만 이것이 실패하면 누군가가 원본 데이터베이스에 접근할 수 있습니다.
+데이터베이스는 원본 사용자 데이터(이메일 주소, 해시한 비밀번호) 뿐만 아니라 삭제된 판과 위키의 다른 제한된 데이터를 포함합니다.
 
-<code>/var/lib/mediawiki/yourwiki</code>와 같이 모두 다른 곳에서 데이터베이스를 넣어보도록 하세요.',
+예를 들어 <code>/var/lib/mediawiki/yourwiki</code>와 같이 다른 곳에 데이터베이스를 넣는 것이 좋습니다.",
 	'config-oracle-def-ts' => '기본 테이블공간:',
 	'config-oracle-temp-ts' => '임시 테이블공간:',
 	'config-type-oracle' => '오라클',
@@ -10864,10 +10864,10 @@ $1
 
 데이터베이스 시스템이 표시되지 않을 때 아래에 나열된 다음 지원을 활성화하려면 위의 링크된 지시에 따라 설치해볼 수 있습니다.',
 	'config-support-mysql' => '* $1은 미디어위키의 기본 대상으로 가장 잘 지원합니다. ([http://www.php.net/manual/en/mysql.installation.php MySQL을 지원하여 PHP를 컴파일하는 방법])',
-	'config-support-postgres' => '* $1은 MySQL의 대안으로 인기있는 오픈 소스 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQL을 지원하여 PHP를 컴파일하는 방법]) 몇가지 사소한 해결하지 못한 버그가 있을 수 있으며, 이를 제작 환경에서 사용하지 않는 것이 좋습니다.',
+	'config-support-postgres' => '* $1은 MySQL의 대안으로 인기 있는 오픈 소스 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQL을 지원하여 PHP를 컴파일하는 방법]) 몇가지 사소한 해결하지 못한 버그가 있을 수 있으며, 이를 제작 환경에서 사용하지 않는 것이 좋습니다.',
 	'config-support-sqlite' => '* $1는 매우 잘 지원하는 가벼운 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pdo.installation.php SQLite를 지원하여 PHP를 컴파일하는 방법], PDO 사용)',
 	'config-support-oracle' => '* $1은 상용 엔터프라이스 데이터베이스입니다. ([http://www.php.net/manual/en/oci8.installation.php OCI8을 지원하여 PHP를 컴파일하는 방법])',
-	'config-support-ibm_db2' => '* $1는 상용 엔터프라이즈 데이터베이스입니다.',
+	'config-support-ibm_db2' => '* $1는 상용 엔터프라이즈 데이터베이스입니다.([http://www.php.net/manual/en/ibm-db2.installation.php IBM DB2를 지원하여 PHP를 컴파일하는 방법])',
 	'config-header-mysql' => 'MySQL 설정',
 	'config-header-postgres' => 'PostgreSQL 설정',
 	'config-header-sqlite' => 'SQLite 설정',
@@ -10888,39 +10888,39 @@ ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하�
 호스트, 계정 이름과 비밀번호를 확인하고 다시 시도하세요.',
 	'config-invalid-schema' => '미디어위키 "$1"에 대한 스키마가 잘못됐습니다.
 ASCII 글자 (a-z, A-Z), 숫자 (0-9), 밑줄 (_)과 하이픈 (-)만 사용하세요.',
-	'config-db-sys-create-oracle' => '설치 마법사는 새 계정을 만들기 위한 SYSDBA 계정만을 지원합니다.',
+	'config-db-sys-create-oracle' => '설치 프로그램은 새 계정을 만들기 위한 SYSDBA 계정만을 지원합니다.',
 	'config-db-sys-user-exists-oracle' => '"$1" 사용자 계정이 이미 존재합니다. SYSDBA는 새 계정을 만드는 데에만 사용할 수 있습니다!',
 	'config-postgres-old' => 'PostgreSQL $1 이상이 필요하나 $2(이)가 있습니다.',
 	'config-sqlite-name-help' => '위키를 식별하기 위한 이름을 선택하세요.
 공백이나 하이픈을 사용하지 마십시오.
 SQLite 데이터 파일 이름에 사용됩니다.',
-	'config-sqlite-parent-unwritable-group' => '<code><nowiki>$1</nowiki></code> 데이터 디렉토리를 만들 수 없으며 <code><nowiki>$2</nowiki></code> 상위 디렉토리에 웹 서버에 의해 쓸 수 없기 때문입니다.
+	'config-sqlite-parent-unwritable-group' => '<code><nowiki>$1</nowiki></code> 데이터 디렉토리를 만들 수 없으며 웹 서버는 <code><nowiki>$2</nowiki></code> 상위 디렉토리에 쓸 수 없기 때문입니다.
 
-설치 마법사는 웹 서버로 실행중인 사용자를 결정할 수 없습니다.
-계속하려면 이를 쓸 수 있는 <code><nowiki>$3</nowiki></code> 디렉토리를 만드세요.
+설치 프로그램은 웹 서버로 실행중인 사용자를 지정할 수 없습니다.
+계속하려면 웹 서버가 쓸 수 있는 <code><nowiki>$3</nowiki></code> 디렉토리를 만드세요.
 유닉스/리눅스 시스템에서의 수행:
 
 <pre>cd $2
 mkdir $3
 chgrp $4 $3
 chmod g+w $3</pre>',
-	'config-sqlite-parent-unwritable-nogroup' => '<code><nowiki>$1</nowiki></code> 데이터 디렉토리를 만들 수 없으며 <code><nowiki>$2</nowiki></code> 상위 디렉토리에 웹 서버에 의해 쓸 수 없기 때문입니다.
+	'config-sqlite-parent-unwritable-nogroup' => '<code><nowiki>$1</nowiki></code> 데이터 디렉토리를 만들 수 없으며 웹 서버는 <code><nowiki>$2</nowiki></code> 상위 디렉토리에 쓸 수 없기 때문입니다.
 
-설치 마법사는 웹 서버로 실행중인 사용자를 결정할 수 없습니다.
-계속하려면 이(와 기타!)를 전역으로 쓸 수 있는 <code><nowiki>$3</nowiki></code> 디렉토리를 만드세요.
+설치 프로그램은 웹 서버로 실행중인 사용자를 지정할 수 없습니다.
+계속하려면 웹 서버(와 기타!)가 전역으로 쓸 수 있는 <code><nowiki>$3</nowiki></code> 디렉토리를 만드세요.
 유닉스/리눅스 시스템에서의 수행:
 
 <pre>cd $2
 mkdir $3
 chmod a+w $3</pre>',
-	'config-sqlite-mkdir-error' => '"$1" 데이터 디렉토리를 만드는 중 오류났습니다.
+	'config-sqlite-mkdir-error' => '"$1" 데이터 디렉토리를 만드는 중 오류가 났습니다.
 경로를 확인하고 다시 시도하세요.',
 	'config-sqlite-dir-unwritable' => '"$1" 디렉토리에 쓸 수 없습니다.
 웹 서버를 쓸 수 있도록 권한을 바꾸고 다시 시도하세요.',
 	'config-sqlite-connection-error' => '$1.
 
 호스트, 계정 이름과 비밀번호를 확인하고 다시 시도하세요.',
-	'config-sqlite-readonly' => '<code>$1</code> 파일은 쓰기가 불가능합니다.',
+	'config-sqlite-readonly' => '<code>$1</code> 파일은 쓸 수 없습니다.',
 	'config-sqlite-cant-create-db' => '<code>$1</code> 데이터베이스 파일을 만들 수 없습니다.',
 	'config-sqlite-fts3-downgrade' => 'PHP가 FTS3 지원이 없어졌습니다. 테이블을 다운그레이드하세요.',
 	'config-can-upgrade' => "이 데이터베이스에 미디어위키 테이블이 있습니다.
@@ -10953,7 +10953,7 @@ chmod a+w $3</pre>',
 
 MySQL 설치가 InnoDB를 지원한다면 그 선택 대신에 InnoDB를 선택할 것을 매우 권장합니다.
 MySQL 설치가 InnoDB를 지원하지 않는다면 아마도 업그레이드를 해야 할 수도 있습니다.",
-	'config-mysql-engine-help' => "'''InnoDB'''는 동시적인 지원에 좋기 때문에 거의 항상 최고의 옵션입니다.
+	'config-mysql-engine-help' => "'''InnoDB'''는 동시적인 지원에 좋기 때문에 대부분 최고의 옵션입니다.
 
 '''MyISAM'''은 단일 사용자 또는 읽기 전용 설치에 빠를 수 있습니다.
 MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실될 수 있습니다.",
@@ -10962,8 +10962,8 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 	'config-mysql-utf8' => 'UTF-8',
 	'config-mysql-charset-help' => "'''바이너리 모드'''에서는 미디어위키는 바이너리 필드의 데이터베이스에 UTF-8 텍스트를 저장합니다.
 MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
-'''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 어떤 문자열인지를 알 것이며, 표현하고 적절하게 그것을 변환할 수 있지만
-[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 기본 다국어 범위] 상의 문자를 저장하지 못하게 될 수 있습니다.",
+'''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 문자 집합을 알고 있기 때문에 적절하게 표현하고 변환할 수 있지만
+[//ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C_%ED%8F%89%EB%A9%B4#.EA.B8.B0.EB.B3.B8_.EB.8B.A4.EA.B5.AD.EC.96.B4_.ED.8F.89.EB.A9.B4 기본 다국어 평면] 밖의 문자를 저장할 수 없습니다.",
 	'config-ibm_db2-low-db-pagesize' => "DB2 데이터베이스에 부족한 페이지 크기가 기본 테이블 공간에 있습니다. 페이지 크기는 '''32K''' 이상이어야 합니다.",
 	'config-site-name' => '위키 이름:',
 	'config-site-name-help' => '브라우저 제목 표시줄과 다른 여러 곳에 나타납니다.',
@@ -11007,23 +11007,23 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-optional-continue' => '더 많은 질문을 물어보세요.',
 	'config-optional-skip' => '지겨워요, 그냥 위키를 설치할래요.',
 	'config-profile' => '사용자 권한 프로필:',
-	'config-profile-wiki' => '평범한 위키', # Fuzzy
+	'config-profile-wiki' => '열린 위키',
 	'config-profile-no-anon' => '계정 만들기 필요',
-	'config-profile-fishbowl' => '승인된 편집자만 이용 가능',
+	'config-profile-fishbowl' => '승인된 편집자만',
 	'config-profile-private' => '비공개 위키',
-	'config-profile-help' => "위키는 많은 사람들이 가능한 한 해당 위키를 편집할 때 가장 뛰어난 역할을 합니다.
-미디어위키에서는 최근 바뀜을 검토하고, 선하거나 악의적인 사용자의 모든 손실을 되돌리는 것이 쉽습니다.
+	'config-profile-help' => "위키는 많은 사람들이 가능한 한 편집할 수 있도록 하면 가장 뛰어난 역할을 합니다.
+미디어위키에서는 최근 바뀜을 검토하기 쉽고, 선하거나 악의적인 사용자의 어떠한 손실을 되돌리는 것이 쉽습니다.
 
-그러나 많은 사람들이 미디어위키가 다양한 역할로 유용하지만, 때로는 모든 사람에게 위키 방식의 장점을 모두 설득하기 쉽지 않을 지도 모릅니다.
+그러나 많은 사람이 미디어위키는 다양한 역할로 유용하지만, 때로는 모든 사람에게 위키 방식의 장점을 설득하기 쉽지 않을 지도 모릅니다.
 그래서 선택할 수 있습니다.
 
-'''{{int:config-profile-wiki}}'''는 로그인하지 않고도 누구나 편집할 수 있습니다.
-'''{{int:config-profile-no-anon}}'''는 각 편집에 추가적으로 강한 책임성을 제공하지만, 부담 없는 기여를 저해할 수도 있습니다.
+'''{{int:config-profile-wiki}}''' 모델은 로그인하지 않고도 누구나 편집할 수 있습니다.
+'''{{int:config-profile-no-anon}}'''인 위키는 각 편집에 추가적으로 강한 책임을 제공하지만, 부담 없는 기여를 저해할 수도 있습니다.
 
-'''{{int:config-profile-fishbowl}}''' 같은 경우는 승인된 사용자만 편집할 수 있지만, 대중은 역사를 포함하여 페이지를 볼 수 있습니다.
-'''{{int:config-profile-private}}'''는 승인된 사용자만 같은 그룹에서 편집할 수 있고 볼 수 있습니다.
+'''{{int:config-profile-fishbowl}}''' 시나리오는 승인된 사용자만 편집할 수 있지만, 대중은 역사를 포함하여 문서를 볼 수 있습니다.
+'''{{int:config-profile-private}}'''는 승인된 사용자만 문서를 볼 수 있으며 해당 그룹을 편집할 수 있습니다.
 
-더 복잡한 사용자 권한을 설정하여 설치한 후 사용할 수 있도록 하려면 [//www.mediawiki.org/wiki/Manual:User_rights 관련 매뉴얼 항목]을 참고하세요.", # Fuzzy
+더 복잡한 사용자 권한을 설정은 설치한 후 사용할 수 있으며 [//www.mediawiki.org/wiki/Manual:User_rights 관련 설명서 항목]을 참고하세요.",
 	'config-license' => '저작권 및 라이선스:',
 	'config-license-none' => '라이선스 바닥글 없음',
 	'config-license-cc-by-sa' => '크리에이티브 커먼즈 저작자표시-동일조건변경허락',
@@ -11033,15 +11033,15 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-license-gfdl' => 'GNU 자유 문서 사용 허가서 1.3 이상',
 	'config-license-pd' => '퍼블릭 도메인',
 	'config-license-cc-choose' => '다른 크리에이티브 커먼즈 라이선스 선택',
-	'config-license-help' => '많은 공개 위키는 모든 기여를 [http://freedomdefined.org/Definition 자유 라이선스] 하에 넣습니다.
-이럴 경우 커뮤니티 소유권의 이해를 할 수 있도록 하고 장기적인 기여를 장려합니다.
+	'config-license-help' => "많은 공개 위키는 모든 기여를 [http://freedomdefined.org/Definition 자유 라이선스] 하에 넣습니다.
+이렇게 하면 커뮤니티 소유권의 이해를 할 수 있도록 하고 장기적인 기여를 장려합니다.
 일반적으로 개인 또는 회사 위키에 대해서는 필요하지 않습니다.
 
-위키백과의 텍스트를 사용할 수 있도록 하고 위키백과가 위키에서 복사한 텍스트를 사용할 수 있도록 원한다면 크리에이티브 커먼즈 저작자표시-동일조건변경허락으로 선택해야 합니다.
+위키백과의 텍스트를 사용할 수 있도록 하고 위키백과가 위키에서 복사한 텍스트를 사용할 수 있도록 원한다면 '''크리에이티브 커먼즈 저작자표시-동일조건변경허락'''으로 선택해야 합니다.
 
 위키백과는 이전에 GNU 자유 문서 사용 허가서를 사용했습니다.
-GFDL은 유효한 라이선스이지만 이해하기 어렵습니다.
-GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
+GFDL은 유효한 라이선스이지만 내용을 이해하기 어렵습니다.
+GFDL 하에 사용을 허가한 내용을 재사용하는 것도 어렵습니다.",
 	'config-email-settings' => '이메일 설정',
 	'config-enable-email' => '발신 이메일 활성화',
 	'config-enable-email-help' => '이메일을 작동하려면 [http://www.php.net/manual/en/mail.configuration.php PHP의 메일 설정]을 올바르게 설정해야 합니다.
@@ -11053,7 +11053,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-email-watchlist' => '주시문서 목록 알림 활성화',
 	'config-email-watchlist-help' => '환경 설정에서 활성화한 경우 사용자가 주시한 문서에 대한 알림을 받도록 활성화합니다.',
 	'config-email-auth' => '이메일 인증 활성화',
-	'config-email-auth-help' => "이 설정이 활성화되어 있으면 사용자는 이메일 주소를 설정하거나 바꿀 때마다 그들에게 보낸 링크를 사용하여 이메일 주소를 확인해야 합니다.
+	'config-email-auth-help' => "이 설정이 활성화되어 있으면 사용자는 이메일 주소를 설정하거나 바꿀 때마다 링크를 사용하여 이메일 주소를 확인해야 합니다.
 인증된 이메일 주소만 다른 사용자로부터의 이메일이나 바뀜 알림 이메일을 받을 수 있습니다.
 이메일 기능의 남용 가능성이 있기 때문에 이 옵션을 설정하는 것은 공개 위키에서 '''권장'''합니다.",
 	'config-email-sender' => '반송 이메일 주소',
@@ -11063,7 +11063,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-upload-settings' => '그림과 파일 올리기',
 	'config-upload-enable' => '파일 올리기 활성화',
 	'config-upload-help' => '파일 올리기는 서버에 잠재적인 보안 위험에 쉽게 노출될 수 있습니다.
-자세한 내용은 매뉴얼의 [//www.mediawiki.org/wiki/Manual:Security 보안 문단]을 읽어보세요.
+자세한 내용은 매뉴얼의 [//www.mediawiki.org/wiki/Manual:Security 보안 문단]을 참고하세요.
 
 파일 올리기를 활성화하려면 미디어위키의 루트 디렉토리에 있는 <code>images</code> 하위 디렉토리에서 웹 서버가 기록할 수 있도록 모드를 바꿉니다.
 그 다음 이 옵션을 활성화합니다.',
@@ -11071,10 +11071,10 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-upload-deleted-help' => '삭제된 파일을 보관할 디렉토리를 선택하세요.
 이상적으로 웹에서 접근할 수 없게 해야 합니다.',
 	'config-logo' => '로고 URL:',
-	'config-logo-help' => '미디어위키 기본 스킨은 사이드바 메뉴 위에 135×160픽셀의 로고를 포함하고 있습니다.
+	'config-logo-help' => '미디어위키의 기본 스킨은 사이드바 메뉴 위에 135×160 픽셀의 로고를 포함하고 있습니다.
 적당한 크기로 이미지를 올리고 URL을 여기에 입력하세요.
 
-로고 사용을 원하지 않으면 이 상자를 비워 두십시오.',
+로고 사용을 원하지 않으면 이 상자를 비우세요.',
 	'config-instantcommons' => '인스턴트 공용 활성화',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons 인스턴트 공용]은 [//commons.wikimedia.org/ 위키미디어 공용] 사이트에서 찾을 수 있는 그림, 소리 및 다른 미디어를 위키에서 사용할 수 있도록 하는 기능입니다.
 이렇게 하려면 미디어위키가 인터넷에 접근해야합니다.
@@ -11108,7 +11108,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-install-alreadydone' => "'''경고:''' 이미 미디어위키를 설치했고 다시 설치하려고 합니다.
 다음 페이지에서 진행하세요.",
 	'config-install-begin' => '"{{int:config-continue}}"을 누르면 미디어위키의 설치를 시작합니다.
-그래도 바꾸는 것을 원한다면 뒤로를 누릅니다.', # Fuzzy
+그래도 바꾸는 것을 원한다면 "{{int:config-back}}"를 누르세요.',
 	'config-install-step-done' => '완료',
 	'config-install-step-failed' => '실패',
 	'config-install-extensions' => '확장 기능을 포함하는 중',
@@ -11126,7 +11126,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 
 현재 미디어위키는 테이블을 웹 사용자가 소유해야 합니다. 다른 웹 계정 이름을 지정하거나 "뒤로"를 클릭하고 적절한 권한의 설치할 사용자를 지정하세요.',
 	'config-install-user' => '데이터베이스 사용자를 만드는 중',
-	'config-install-user-alreadyexists' => '"$1" 사용자가 이미 있음',
+	'config-install-user-alreadyexists' => '"$1" 사용자가 이미 있습니다',
 	'config-install-user-create-failed' => '"$1" 사용자 만드는 중 실패: $2',
 	'config-install-user-grant-failed' => '"$1" 사용자에 대한 권한 부여 실패: $2',
 	'config-install-user-missing' => '지정한 "$1" 사용자가 존재하지 않습니다.',
@@ -11152,7 +11152,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 	'config-install-done' => "'''축하합니다!'''
 미디어위키가 성공적으로 설치되었습니다.
 
-설치 마법사가 <code>LocalSettings.php</code> 파일을 만들었습니다.
+설치 프로그램이 <code>LocalSettings.php</code> 파일을 만들었습니다.
 모든 설정이 포함되어 있습니다.
 
 파일을 다운로드하여 위키 설치의 거점에 넣어야 합니다. (index.php와 같은 디렉토리) 다운로드가 자동으로 시작됩니다.
@@ -11161,7 +11161,7 @@ GFDL 하에 라이선스 내용을 재사용하는 것도 어렵습니다.',
 
 $3
 
-'''참고''': 지금 이렇게 하지 않으면, 이 설정 파일을 다운로드하지 않고 설치를 종료할 경우 만들어진 설정 파일은 나중에 사용할 수 없습니다.
+'''참고''': 이 생성한 설정 파일을 다운로드하지 않고 설치를 끝내면 이 파일은 나중에 사용할 수 없습니다.
 
 완료되었으면 '''[$2 위키에 들어갈 수 있습니다]'''.",
 	'config-download-localsettings' => 'LocalSettings.php 다운로드',
@@ -12513,7 +12513,7 @@ $1
 	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL]). Може сè уште да има некои грешки. па затоа не се препорачува за употреба во производна средина.',
 	'config-support-sqlite' => '* $1 е лесен систем за бази на податоци кој е многу добро поддржан. ([http://www.php.net/manual/en/pdo.installation.php Како да составите PHP со поддршка за SQLite], користи PDO)',
 	'config-support-oracle' => '* $1 е база на податоци на комерцијално претпријатие. ([http://www.php.net/manual/en/oci8.installation.php Како да составите PHP со поддршка за OCI8])',
-	'config-support-ibm_db2' => '* $1 is комерцијална база на податоциза фирми.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 е комерцијална база на податоциза фирми. ([http://www.php.net/manual/en/ibm-db2.installation.php Како да составите PHP со поддршка за IBM DB2])',
 	'config-header-mysql' => 'Нагодувања на MySQL',
 	'config-header-postgres' => 'Нагодувања на PostgreSQL',
 	'config-header-sqlite' => 'Нагодувања на SQLite',

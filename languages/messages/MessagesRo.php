@@ -739,7 +739,7 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'gotaccount' => "Aveți deja un cont de utilizator? '''$1'''.",
 'gotaccountlink' => 'Autentificați-vă',
 'userlogin-resetlink' => 'Ați uitat datele de autentificare?',
-'createaccountmail' => 'după e-mail',
+'createaccountmail' => 'Utilizează o parolă temporară aleasă la întâmplare și o trimite la adresa de e-mail specificată mai jos',
 'createaccountreason' => 'Motiv:',
 'badretype' => 'Parolele pe care le-ați introdus diferă.',
 'userexists' => 'Numele de utilizator pe care l-ați introdus este deja folosit.
@@ -2249,9 +2249,9 @@ Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
 'listusers-blocked' => '(blocat{{GENDER:$1||ă|}})',
 
 # Special:ActiveUsers
-'activeusers' => 'Lista de utilizatori activi',
-'activeusers-intro' => 'Aceasta este o listă cu utilizatorii care au avut un fel de activitate în {{PLURAL:$1|ultima zi|ultimele $1 zile}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|modificare recentă|modificări recente}} în {{PLURAL:$3|ultima zi|ultimele $3 zile}}',
+'activeusers' => 'Listă utilizatori activi',
+'activeusers-intro' => 'Aceasta este o listă cu utilizatorii care au avut orice fel de activitate în {{PLURAL:$1|ultima zi|ultimele $1 zile}}.',
+'activeusers-count' => '{{PLURAL:$1|o acțiune|$1 acțiuni|$1 de acțiuni}} în {{PLURAL:$3|ultima zi|ultimele $3 zile|ultimele $3 de zile}}',
 'activeusers-from' => 'Afișează utilizatori începând cu:',
 'activeusers-hidebots' => 'Ascunde roboții',
 'activeusers-hidesysops' => 'Ascunde administratorii',
@@ -3883,7 +3883,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'specialpages-group-highuse' => 'Pagini utilizate intens',
 'specialpages-group-pages' => 'Liste de pagini',
 'specialpages-group-pagetools' => 'Unelte pentru pagini',
-'specialpages-group-wiki' => 'Date și unelte wiki',
+'specialpages-group-wiki' => 'Date și instrumente',
 'specialpages-group-redirects' => 'Pagini speciale de redirecționare',
 'specialpages-group-spam' => 'Unelte spam',
 
@@ -3980,6 +3980,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-newusers-newusers' => 'Contul de utilizator $1 a fost creat',
 'logentry-newusers-create' => 'Contul de utilizator $1 a fost creat',
 'logentry-newusers-create2' => 'Contul de utilizator $3 a fost creat de către $1',
+'logentry-newusers-byemail' => 'Contul de utilizator $3 a fost creat de către $1, iar parola a fost trimisă prin e-mail',
 'logentry-newusers-autocreate' => 'Contul $1 a fost creat în mod automat',
 'logentry-rights-rights' => '$1 a schimbat apartenența la grup pentru $3 de la $4 la $5',
 'logentry-rights-rights-legacy' => '$1 a schimbat apartenența la grup pentru $3',
