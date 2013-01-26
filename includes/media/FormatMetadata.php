@@ -1120,7 +1120,7 @@ class FormatMetadata {
 	 * @param $val String: The 8 digit news code.
 	 * @return string The human readable form
 	 */
-	static private function convertNewsCode( $val ) {
+	private static function convertNewsCode( $val ) {
 		if ( !preg_match( '/^\d{8}$/D', $val ) ) {
 			// Not a valid news code.
 			return $val;

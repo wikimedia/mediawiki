@@ -417,7 +417,7 @@ class PNGMetadataExtractor {
 	 * @throws Exception if too big.
 	 * @return String The chunk.
 	 */
-	static private function read( $fh, $size ) {
+	private static function read( $fh, $size ) {
 		if ( $size > self::MAX_CHUNK_SIZE ) {
 			throw new Exception( __METHOD__ . ': Chunk size of ' . $size .
 				' too big. Max size is: ' . self::MAX_CHUNK_SIZE );

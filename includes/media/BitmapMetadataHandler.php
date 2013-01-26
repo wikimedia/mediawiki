@@ -190,7 +190,7 @@ class BitmapMetadataHandler {
 	 * @param $filename String full path to file
 	 * @return Array Array for storage in img_metadata.
 	 */
-	static public function PNG ( $filename ) {
+	public static function PNG ( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 
 		$meta = new self();
@@ -219,7 +219,7 @@ class BitmapMetadataHandler {
 	 * @param $filename string full path to file
 	 * @return Array metadata array
 	 */
-	static public function GIF ( $filename ) {
+	public static function GIF ( $filename ) {
 
 		$meta = new self();
 		$baseArray = GIFMetadataExtractor::getMetadata( $filename );
@@ -260,7 +260,7 @@ class BitmapMetadataHandler {
 	 * @throws MWException
 	 * @return Array The metadata.
 	 */
-	static public function Tiff ( $filename ) {
+	public static function Tiff ( $filename ) {
 		if ( file_exists( $filename ) ) {
 			$byteOrder = self::getTiffByteOrder( $filename );
 			if ( !$byteOrder ) {
