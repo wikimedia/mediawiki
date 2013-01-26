@@ -80,7 +80,7 @@ function benchmarkTest( &$u, $filename, $desc ) {
 	}
 }
 
-function benchTime(){
+function benchTime() {
 	$st = explode( ' ', microtime() );
 	return (float)$st[0] + (float)$st[1];
 }

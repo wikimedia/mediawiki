@@ -151,7 +151,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( is_null( $title ) ) {
 				$this->dieUsage( "Bad title value '$prefix'", 'param_prefix' );
 			}
-			$this->addWhereFld( 'log_namespace',  $title->getNamespace() );
+			$this->addWhereFld( 'log_namespace', $title->getNamespace() );
 			$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
 		}
 
@@ -201,7 +201,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts, $legacy = false ) {
 		switch ( $type ) {
 			case 'move':
-				if ( $legacy ){
+				if ( $legacy ) {
 					$targetKey = 0;
 					$noredirKey = 1;
 				} else {
@@ -223,7 +223,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$params = null;
 				break;
 			case 'patrol':
-				if ( $legacy ){
+				if ( $legacy ) {
 					$cur = 0;
 					$prev = 1;
 					$auto = 2;

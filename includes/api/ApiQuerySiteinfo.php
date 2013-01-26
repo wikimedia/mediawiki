@@ -559,7 +559,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		ksort( $myWgHooks );
 
 		$data = array();
-		foreach ( $myWgHooks as $hook => $hooks )  {
+		foreach ( $myWgHooks as $hook => $hooks ) {
 			$arr = array(
 				'name' => $hook,
 				'subscribers' => array_map( array( 'SpecialVersion', 'arrayToString' ), $hooks ),

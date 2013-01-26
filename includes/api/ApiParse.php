@@ -102,7 +102,7 @@ class ApiParse extends ApiBase {
 				$popts->enableLimitReport( !$params['disablepp'] );
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
-				if ( $rev->isCurrent() )  {
+				if ( $rev->isCurrent() ) {
 					// May get from/save to parser cache
 					$p_result = $this->getParsedContent( $pageObj, $popts,
 						$pageid, isset( $prop['wikitext'] ) ) ;

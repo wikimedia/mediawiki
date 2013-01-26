@@ -176,7 +176,7 @@ class DBConnectionError extends DBError {
 		return "$text<hr />$extra";
 	}
 
-	public function reportHTML(){
+	public function reportHTML() {
 		global $wgUseFileCache;
 
 		# Check whether we can serve a file-cached copy of the page with the error underneath
