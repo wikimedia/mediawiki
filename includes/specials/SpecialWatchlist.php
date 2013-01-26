@@ -26,7 +26,7 @@ class SpecialWatchlist extends SpecialPage {
 	/**
 	 * Constructor
 	 */
-	public function __construct( $page = 'Watchlist' ){
+	public function __construct( $page = 'Watchlist' ) {
 		parent::__construct( $page );
 	}
 
@@ -76,7 +76,7 @@ class SpecialWatchlist extends SpecialPage {
 		$mode = SpecialEditWatchlist::getMode( $request, $par );
 		if( $mode !== false ) {
 			# TODO: localise?
-			switch( $mode ){
+			switch( $mode ) {
 				case SpecialEditWatchlist::EDIT_CLEAR:
 					$mode = 'clear';
 					break;
@@ -249,7 +249,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		# Create output form
-		$form  = Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
+		$form = Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
 
 		# Show watchlist header
 		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse();

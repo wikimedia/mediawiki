@@ -22,11 +22,11 @@
  */
 class SpecialNewFiles extends IncludableSpecialPage {
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct( 'Newimages' );
 	}
 
-	public function execute( $par ){
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -57,7 +57,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
-		$this->showbots = $context->getRequest()->getBool( 'showbots' , 0 );
+		$this->showbots = $context->getRequest()->getBool( 'showbots', 0 );
 		if ( is_numeric( $par ) ) {
 			$this->setLimit( $par );
 		}
@@ -85,10 +85,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 			}
 		}
 
-		if( !$wgMiserMode && $this->like !== null ){
+		if( !$wgMiserMode && $this->like !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$likeObj = Title::newFromURL( $this->like );
-			if( $likeObj instanceof Title ){
+			if( $likeObj instanceof Title ) {
 				$like = $dbr->buildLike( $dbr->anyString(), strtolower( $likeObj->getDBkey() ), $dbr->anyString() );
 				$conds[] = "LOWER(img_name) $like";
 			}
@@ -104,18 +104,18 @@ class NewFilesPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
-	function getIndexField(){
+	function getIndexField() {
 		return 'img_timestamp';
 	}
 
-	function getStartBody(){
+	function getStartBody() {
 		if ( !$this->gallery ) {
 			$this->gallery = new ImageGallery();
 		}
 		return '';
 	}
 
-	function getEndBody(){
+	function getEndBody() {
 		return $this->gallery->toHTML();
 	}
 
@@ -161,7 +161,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 		);
 
-		if( $wgMiserMode ){
+		if( $wgMiserMode ) {
 			unset( $fields['like'] );
 		}
 

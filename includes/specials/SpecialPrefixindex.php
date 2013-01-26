@@ -29,7 +29,7 @@
 class SpecialPrefixindex extends SpecialAllpages {
 	// Inherit $maxPerPage
 
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'Prefixindex' );
 	}
 
@@ -101,7 +101,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'prefix', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
+					Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
 				"</td>
 			</tr>
 			<tr>
@@ -248,7 +248,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				}
 				$nextLink = Linker::linkKnown(
 						$self,
-						$this->msg( 'nextpage', str_replace( '_',' ', $s->page_title ) )->escaped(),
+						$this->msg( 'nextpage', str_replace( '_', ' ', $s->page_title ) )->escaped(),
 						array(),
 						$query
 					);

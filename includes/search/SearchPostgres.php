@@ -51,11 +51,11 @@ class SearchPostgres extends SearchEngine {
 	 * @return PostgresSearchResultSet
 	 */
 	function searchTitle( $term ) {
-		$q = $this->searchQuery( $term , 'titlevector', 'page_title' );
-		$olderror = error_reporting(E_ERROR);
+		$q = $this->searchQuery( $term, 'titlevector', 'page_title' );
+		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
-		error_reporting($olderror);
-		if (!$resultSet) {
+		error_reporting( $olderror );
+		if ( !$resultSet ) {
 			// Needed for "Query requires full scan, GIN doesn't support it"
 			return new SearchResultTooMany();
 		}
@@ -186,10 +186,10 @@ class SearchPostgres extends SearchEngine {
 			$query .= ' AND page_is_redirect = 0';
 
 		## Namespaces - defaults to 0
-		if( !is_null($this->namespaces) ){ // null -> search all
-			if ( count($this->namespaces) < 1)
+		if( !is_null( $this->namespaces ) ) { // null -> search all
+			if ( count( $this->namespaces ) < 1 ) {
 				$query .= ' AND page_namespace = 0';
-			else {
+			} else {
 				$namespaces = $this->db->makeList( $this->namespaces );
 				$query .= " AND page_namespace IN ($namespaces)";
 			}
@@ -211,7 +211,7 @@ class SearchPostgres extends SearchEngine {
 		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id IN ".
 				"(SELECT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) .
 				" ORDER BY rev_text_id DESC OFFSET 1)";
-		$this->db->query($SQL);
+		$this->db->query( $SQL );
 		return true;
 	}
 

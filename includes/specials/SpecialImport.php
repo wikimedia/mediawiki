@@ -114,7 +114,7 @@ class SpecialImport extends SpecialPage {
 				throw new PermissionsError( 'importupload' );
 			}
 		} elseif ( $sourceName == "interwiki" ) {
-			if( !$user->isAllowed( 'import' ) ){
+			if( !$user->isAllowed( 'import' ) ) {
 				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $request->getVal( 'interwiki' );
@@ -153,7 +153,7 @@ class SpecialImport extends SpecialPage {
 
 			$out->addWikiMsg( "importstart" );
 
-			$reporter = new ImportReporter( $importer, $isUpload, $this->interwiki , $this->logcomment);
+			$reporter = new ImportReporter( $importer, $isUpload, $this->interwiki, $this->logcomment );
 			$reporter->setContext( $this->getContext() );
 			$exception = false;
 

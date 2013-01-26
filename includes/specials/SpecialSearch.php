@@ -729,10 +729,11 @@ class SpecialSearch extends SpecialPage {
 		// work out custom project captions
 		$customCaptions = array();
 		$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() ); // format per line <iwprefix>:<caption>
-		foreach($customLines as $line) {
-			$parts = explode(":",$line,2);
-			if(count($parts) == 2) // validate line
+		foreach( $customLines as $line ) {
+			$parts = explode( ":", $line, 2 );
+			if( count( $parts ) == 2 ) { // validate line
 				$customCaptions[$parts[0]] = $parts[1];
+			}
 		}
 
 		$prev = null;
@@ -1025,7 +1026,7 @@ class SpecialSearch extends SpecialPage {
 
 		// Results-info
 		if ( $resultsShown > 0 ) {
-			if ( $totalNum > 0 ){
+			if ( $totalNum > 0 ) {
 				$top = $this->msg( 'showingresultsheader' )
 					->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
 					->params( wfEscapeWikiText( $term ) )
