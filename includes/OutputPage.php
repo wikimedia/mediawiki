@@ -442,7 +442,7 @@ class OutputPage extends ContextSource {
 	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ) {
 		$resourceLoader = $this->getResourceLoader();
 		$filteredModules = array();
-		foreach( $modules as $val ){
+		foreach( $modules as $val ) {
 			$module = $resourceLoader->getModule( $val );
 			if( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
@@ -512,7 +512,7 @@ class OutputPage extends ContextSource {
 	 * @return Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
-		return $this->getModules( $filter,  $position, 'mModuleStyles' );
+		return $this->getModules( $filter, $position, 'mModuleStyles' );
 	}
 
 	/**
@@ -1251,7 +1251,7 @@ class OutputPage extends ContextSource {
 	 * @return Int ResourceLoaderModule ORIGIN_ class constant
 	 */
 	public function getAllowedModules( $type ) {
-		if( $type == ResourceLoaderModule::TYPE_COMBINED ){
+		if( $type == ResourceLoaderModule::TYPE_COMBINED ) {
 			return min( array_values( $this->mAllowedModules ) );
 		} else {
 			return isset( $this->mAllowedModules[$type] )
@@ -2071,7 +2071,7 @@ class OutputPage extends ContextSource {
 
 		$this->prepareErrorPage( $title );
 
-		if ( $msg instanceof Message ){
+		if ( $msg instanceof Message ) {
 			$this->addHTML( $msg->parseAsBlock() );
 		} else {
 			$this->addWikiMsgArray( $msg, $params );
@@ -2483,7 +2483,7 @@ $templates
 			'mediawiki.page.startup',
 			'mediawiki.page.ready',
 		) );
-		if ( $wgIncludeLegacyJavaScript ){
+		if ( $wgIncludeLegacyJavaScript ) {
 			$this->addModules( 'mediawiki.legacy.wikibits' );
 		}
 
@@ -2711,7 +2711,7 @@ $templates
 				}
 			}
 
-			if( $group == 'noscript' ){
+			if( $group == 'noscript' ) {
 				$links .= Html::rawElement( 'noscript', array(), $link ) . "\n";
 			} else {
 				$links .= $link . "\n";
@@ -3379,7 +3379,7 @@ $templates
 		if ( $wgUseSiteCss ) {
 			$moduleStyles[] = 'site';
 			$moduleStyles[] = 'noscript';
-			if( $this->getUser()->isLoggedIn() ){
+			if( $this->getUser()->isLoggedIn() ) {
 				$moduleStyles[] = 'user.groups';
 			}
 		}

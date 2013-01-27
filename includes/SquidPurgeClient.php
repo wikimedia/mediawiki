@@ -293,7 +293,7 @@ class SquidPurgeClient {
 			if ( count( $lines ) < 2 ) {
 				return 'done';
 			}
-			if ( $this->readState == 'status' )  {
+			if ( $this->readState == 'status' ) {
 				$this->processStatusLine( $lines[0] );
 			} else { // header
 				$this->processHeaderLine( $lines[0] );

@@ -42,7 +42,7 @@ abstract class RdfMetaData {
 		$httpaccept = isset( $_SERVER['HTTP_ACCEPT'] ) ? $_SERVER['HTTP_ACCEPT'] : null;
 		$rdftype = wfNegotiateType( wfAcceptToPrefs( $httpaccept ), wfAcceptToPrefs( self::RDF_TYPE_PREFS ) );
 
-		if( !$rdftype ){
+		if( !$rdftype ) {
 			throw new HttpError( 406, wfMessage( 'notacceptable' ) );
 		}
 
@@ -70,7 +70,7 @@ abstract class RdfMetaData {
 		$lastEditor = User::newFromId( $this->mArticle->getUser() );
 		$this->person( 'creator', $lastEditor );
 
-		foreach( $this->mArticle->getContributors() as $user ){
+		foreach( $this->mArticle->getContributors() as $user ) {
 			$this->person( 'contributor', $user );
 		}
 
@@ -95,7 +95,7 @@ abstract class RdfMetaData {
 			$nt = Title::newFromText( $page );
 		}
 
-		if( !$nt || $nt->getArticleID() == 0 ){
+		if( !$nt || $nt->getArticleID() == 0 ) {
 			$this->element( $name, $str );
 		} else {
 			$this->page( $name, $nt );
@@ -116,7 +116,7 @@ abstract class RdfMetaData {
 	}
 
 	protected function person( $name, User $user ) {
-		if( $user->isAnon() ){
+		if( $user->isAnon() ) {
 			$this->element( $name, wfMessage( 'anonymous' )->numParams( 1 )->text() );
 		} else {
 			$real = $user->getRealName();
@@ -141,11 +141,11 @@ abstract class RdfMetaData {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 
 		if( $wgRightsPage && ( $nt = Title::newFromText( $wgRightsPage ) )
-			&& ($nt->getArticleID() != 0)) {
-			$this->page('rights', $nt);
-		} elseif( $wgRightsUrl ){
-			$this->url('rights', $wgRightsUrl);
-		} elseif( $wgRightsText ){
+			&& ( $nt->getArticleID() != 0 ) ) {
+			$this->page( 'rights', $nt );
+		} elseif( $wgRightsUrl ) {
+			$this->url( 'rights', $wgRightsUrl );
+		} elseif( $wgRightsText ) {
 			$this->element( 'rights', $wgRightsText );
 		}
 	}
@@ -153,7 +153,7 @@ abstract class RdfMetaData {
 	protected function getTerms( $url ) {
 		global $wgLicenseTerms;
 
-		if( $wgLicenseTerms ){
+		if( $wgLicenseTerms ) {
 			return $wgLicenseTerms;
 		} else {
 			$known = $this->getKnownLicenses();
@@ -200,4 +200,3 @@ abstract class RdfMetaData {
 		return $knownLicenses;
 	}
 }
-

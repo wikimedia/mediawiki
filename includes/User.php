@@ -547,7 +547,7 @@ class User {
 	 * @return Bool
 	 */
 	public static function isIP( $name ) {
-		return preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/',$name) || IP::isIPv6($name);
+		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name ) || IP::isIPv6( $name );
 	}
 
 	/**
@@ -1569,7 +1569,7 @@ class User {
 	 * @param $bFromSlave Bool Whether to check the slave database instead of the master
 	 * @return Block|null
 	 */
-	public function getBlock( $bFromSlave = true ){
+	public function getBlock( $bFromSlave = true ) {
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlock instanceof Block ? $this->mBlock : null;
 	}
@@ -2229,7 +2229,7 @@ class User {
 		# set it, and then it was disabled removing their ability to change it).  But
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		if( in_array( $oname, $wgHiddenPrefs ) && !$ignoreHidden ){
+		if( in_array( $oname, $wgHiddenPrefs ) && !$ignoreHidden ) {
 			return self::getDefaultOption( $oname );
 		}
 
@@ -2255,9 +2255,9 @@ class User {
 		# set it, and then it was disabled removing their ability to change it).  But
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		foreach( $wgHiddenPrefs as $pref ){
+		foreach( $wgHiddenPrefs as $pref ) {
 			$default = self::getDefaultOption( $pref );
-			if( $default !== null ){
+			if( $default !== null ) {
 				$options[$pref] = $default;
 			}
 		}
@@ -2690,8 +2690,8 @@ class User {
 	 */
 	public function isAllowedAny( /*...*/ ) {
 		$permissions = func_get_args();
-		foreach( $permissions as $permission ){
-			if( $this->isAllowed( $permission ) ){
+		foreach( $permissions as $permission ) {
+			if( $this->isAllowed( $permission ) ) {
 				return true;
 			}
 		}
@@ -2705,8 +2705,8 @@ class User {
 	 */
 	public function isAllowedAll( /*...*/ ) {
 		$permissions = func_get_args();
-		foreach( $permissions as $permission ){
-			if( !$this->isAllowed( $permission ) ){
+		foreach( $permissions as $permission ) {
+			if( !$this->isAllowed( $permission ) ) {
 				return false;
 			}
 		}
@@ -2880,7 +2880,7 @@ class User {
 			return;
 		}
 		$id = $this->getId();
-		if( $id != 0 )  {
+		if( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */
@@ -3265,7 +3265,7 @@ class User {
 		wfDeprecated( __METHOD__, '1.17' );
 
 		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
-		if( $this->mHash ){
+		if( $this->mHash ) {
 			return $this->mHash;
 		}
 
@@ -3306,7 +3306,7 @@ class User {
 	 */
 	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
-		if( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ){
+		if( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ) {
 			return $this->mBlock;
 		}
 

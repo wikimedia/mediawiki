@@ -369,10 +369,10 @@ class Xml {
 		$a = array( 'for' => $id );
 
 		# FIXME avoid copy pasting below:
-		if( isset( $attribs['class'] ) ){
+		if( isset( $attribs['class'] ) ) {
 				$a['class'] = $attribs['class'];
 		}
-		if( isset( $attribs['title'] ) ){
+		if( isset( $attribs['title'] ) ) {
 				$a['title'] = $attribs['title'];
 		}
 
