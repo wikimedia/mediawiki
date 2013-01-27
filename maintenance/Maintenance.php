@@ -1210,7 +1210,7 @@ abstract class Maintenance {
 			$encPrompt = wfEscapeShellArg( $prompt );
 			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
 			$encCommand = wfEscapeShellArg( $command );
-			$line = wfShellExec( "$bash -c $encCommand", $retval );
+			$line = wfShellExec( "$bash -c $encCommand", $retval, array(), array( 'walltime' => 0 ) );
 
 			if ( $retval == 0 ) {
 				return $line;
