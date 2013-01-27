@@ -97,7 +97,7 @@ class RunJobs extends Maintenance {
 					break;
 				}
 				// Don't let any slaves/backups fall behind...
-				$group->get( $type )->waitForBackups();
+				$group->get( $job->getType() )->waitForBackups();
 			}
 		} while ( $job ); // stop when there are no jobs
 	}
