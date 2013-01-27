@@ -606,7 +606,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	static public function getRandomString() {
+	public static function getRandomString() {
 		return wfRandomString( 16 );
 	}
 

@@ -76,7 +76,7 @@ class WebRequest {
 	 *
 	 * @return Array: Any query arguments found in path matches.
 	 */
-	static public function getPathInfo( $want = 'all' ) {
+	public static function getPathInfo( $want = 'all' ) {
 		global $wgUsePathInfo;
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.

@@ -50,7 +50,7 @@ class Interwiki {
 	 * @param string $prefix Interwiki prefix to use
 	 * @return bool Whether it exists
 	 */
-	static public function isValidInterwiki( $prefix ) {
+	public static function isValidInterwiki( $prefix ) {
 		$result = self::fetch( $prefix );
 		return (bool)$result;
 	}
@@ -61,7 +61,7 @@ class Interwiki {
 	 * @param string $prefix Interwiki prefix to use
 	 * @return Interwiki|null|bool
 	 */
-	static public function fetch( $prefix ) {
+	public static function fetch( $prefix ) {
 		global $wgContLang;
 		if ( $prefix == '' ) {
 			return null;
