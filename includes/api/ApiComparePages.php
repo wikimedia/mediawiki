@@ -85,11 +85,11 @@ class ApiComparePages extends ApiBase {
 	 * @return int
 	 */
 	private function revisionOrTitleOrId( $revision, $titleText, $titleId ) {
-		if( $revision ){
+		if( $revision ) {
 			return $revision;
 		} elseif( $titleText ) {
 			$title = Title::newFromText( $titleText );
-			if( !$title ){
+			if( !$title ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $titleText ) );
 			}
 			return $title->getLatestRevID();

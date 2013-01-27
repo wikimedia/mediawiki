@@ -604,7 +604,7 @@ class LocalisationCache {
 				} elseif ( in_array( $key, self::$mergeableAliasListKeys ) ) {
 					$value = array_merge_recursive( $value, $fallbackValue );
 				} elseif ( in_array( $key, self::$optionalMergeKeys ) ) {
-					if ( !empty( $value['inherit'] ) )  {
+					if ( !empty( $value['inherit'] ) ) {
 						$value = array_merge( $fallbackValue, $value );
 					}
 

@@ -102,7 +102,7 @@ class DatabaseMssql extends DatabaseBase {
 		$ntAuthPassTest = strtolower( $password );
 
 		// Decide which auth scenerio to use
-		if( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ){
+		if( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ) {
 			// Don't add credentials to $connectionInfo
 		} else {
 			$connectionInfo['UID'] = $user;
@@ -414,7 +414,7 @@ class DatabaseMssql extends DatabaseBase {
 		$identity = null;
 		$tableRaw = preg_replace( '#\[([^\]]*)\]#', '$1', $table ); // strip matching square brackets from table name
 		$res = $this->doQuery( "SELECT NAME AS idColumn FROM SYS.IDENTITY_COLUMNS WHERE OBJECT_NAME(OBJECT_ID)='{$tableRaw}'" );
-		if( $res && $res->numrows() ){
+		if( $res && $res->numrows() ) {
 			// There is an identity for this table.
 			$identity = array_pop( $res->fetch( SQLSRV_FETCH_ASSOC ) );
 		}
@@ -431,7 +431,7 @@ class DatabaseMssql extends DatabaseBase {
 				// iterate through
 				foreach ($a as $k => $v ) {
 					if ( $k == $identity ) {
-						if( !is_null($v) ){
+						if( !is_null($v) ) {
 							// there is a value being passed to us, we need to turn on and off inserted identity
 							$sqlPre = "SET IDENTITY_INSERT $table ON;" ;
 							$sqlPost = ";SET IDENTITY_INSERT $table OFF;";
@@ -930,7 +930,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Get the type of the DBMS, as it appears in $wgDBtype.
 	 * @return string
 	 */
-	function getType(){
+	function getType() {
 		return 'mssql';
 	}
 
