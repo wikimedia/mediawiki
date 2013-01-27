@@ -33,13 +33,21 @@ class nextJobDB extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Pick a database that has pending jobs";
-		$this->addOption( 'type', "The type of job to search for", false, true );
+		$this->addOption( 'type', "Search by job type", false, true );
+		$this->addOption( 'types', "CSV list of job types to search for", false, true );
 	}
 
 	public function execute() {
 		global $wgMemc;
 
-		$type = $this->getOption( 'type', false );
+		$type = false; // job type required/picked
+		if ( $this->hasOption( 'types' ) ) {
+			$types = explode( ',', $this->getOption( 'types' ) );
+		} elseif ( $this->hasOption( 'type' ) ) {
+			$types = array( $this->getOption( 'type' ) );
+		} else {
+			$types = false;
+		}
 
 		$memcKey = 'jobqueue:dbs:v3';
 		$pendingDbInfo = $wgMemc->get( $memcKey );
@@ -75,15 +83,19 @@ class nextJobDB extends Maintenance {
 		do {
 			$again = false;
 
-			if ( $type === false ) {
+			if ( $types === false ) {
 				$candidates = call_user_func_array( 'array_merge', $pendingDBs );
-			} elseif ( isset( $pendingDBs[$type] ) ) {
-				$candidates = $pendingDBs[$type];
 			} else {
 				$candidates = array();
+				$possTypes = array_intersect( $types, array_keys( $pendingDBs ) );
+				if ( $possTypes ) {
+					$possTypes = array_values( $possTypes );
+					$type = $possTypes[ mt_rand( 0, count( $possTypes ) - 1 ) ];
+					$candidates = $pendingDBs[$type];
+				}
 			}
 			if ( !$candidates ) {
-				return;
+				return; // no jobs for this type
 			}
 
 			$candidates = array_values( $candidates );
@@ -112,7 +124,11 @@ class nextJobDB extends Maintenance {
 			}
 		} while ( $again );
 
-		$this->output( $db . "\n" );
+		if ( $this->hasOption( 'types' ) ) {
+			$this->output( $db . " " . $type . "\n" );
+		} else {
+			$this->output( $db . "\n" );
+		}
 	}
 
 	/**
