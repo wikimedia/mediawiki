@@ -295,7 +295,7 @@ ob_get_clean().
 $title: Title under which the revisions were imported
 $origTitle: Title provided by the XML file
 $revCount: Number of revisions in the XML file
-$sRevCount: Number of sucessfully imported revisions
+$sRevCount: Number of successfully imported revisions
 $pageInfo: associative array of page information
 
 'AfterFinalPageOutput': Nearly at the end of OutputPage::output() but
@@ -365,7 +365,7 @@ descriptions.
 &$module: ApiBase Module object
 &$desc: Array of parameter descriptions
 
-'APIGetResultProperties': Use this hook to mofify the propertiesin a module's
+'APIGetResultProperties': Use this hook to modify the properties in a module's
 result.
 &$module: ApiBase Module object
 &$properties: Array of properties
@@ -521,7 +521,7 @@ $row: row (object) returned from the database server
 
 'ArticlePageDataBefore': Before loading data of an article from the database.
 $wikiPage: WikiPage (object) that data will be loaded
-$fields: fileds (array) to load from the database
+$fields: fields (array) to load from the database
 
 'ArticlePrepareTextForEdit': Called when preparing text to be saved.
 $wikiPage: the WikiPage being saved
@@ -616,14 +616,14 @@ $article: target article (object)
 
 'ArticleViewCustom': Allows to output the text of the article in a different
 format than wikitext. DEPRECATED, use ArticleContentViewCustom instead. Note
-that it is preferrable to implement proper handing for a custom data type using
+that it is preferable to implement proper handing for a custom data type using
 the ContentHandler facility.
 $text: text of the page
 $title: title of the page
 $output: reference to $wgOut
 
 'ArticleContentViewCustom': Allows to output the text of the article in a
-different format than wikitext. Note that it is preferrable to implement proper
+different format than wikitext. Note that it is preferable to implement proper
 handing for a custom data type using the ContentHandler facility.
 $content: content of the page, as a Content object
 $title: title of the page
@@ -634,7 +634,7 @@ in from an external authentication method.
 $user: User object created locally
 
 'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
-Gives a chance for an extension to set it programattically to a variable class.
+Gives a chance for an extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
 'AutopromoteCondition': Check autopromote condition for user.
@@ -643,7 +643,7 @@ $args: arguments
 $user: user
 $result: result of checking autopromote condition
 
-'BacklinkCacheGetPrefix': Allows to set prefix for a spefific link table.
+'BacklinkCacheGetPrefix': Allows to set prefix for a specific link table.
 $table: table name
 &$prefix: prefix
 
@@ -769,7 +769,7 @@ $collationName: Name of the collation in question
 successfully.
 $user: user (object) whose email is being confirmed
 
-'ContentHandlerDefaultModelFor': Called when the default content model is determiend
+'ContentHandlerDefaultModelFor': Called when the default content model is determined
 for a given title. May be used to assign a different model for that title.
 $title: the Title in question
 &$model: the model name. Use with CONTENT_MODEL_XXX constants.
@@ -954,27 +954,27 @@ $title: title of page being edited
 
 'EditPageGetDiffText': DEPRECATED. Use EditPageGetDiffContent instead. Allow
 modifying the wikitext that will be used in "Show changes". Note that it is
-preferrable to implement diff handling for different data types using the
+preferable to implement diff handling for different data types using the
 ContentHandler facility.
 $editPage: EditPage object
 &$newtext: wikitext that will be used as "your version"
 
 'EditPageGetDiffContent': Allow modifying the wikitext that will be used in
-"Show changes". Note that it is preferrable to implement diff handling for
+"Show changes". Note that it is preferable to implement diff handling for
 different data types using the ContentHandler facility.
 $editPage: EditPage object
 &$newtext: wikitext that will be used as "your version"
 
 'EditPageGetPreviewText': DEPRECATED. Use EditPageGetPreviewContent instead.
-Allow modifying the wikitext that will be previewed. Note that it is preferrable
-to implement previews for different data types using the COntentHandler
+Allow modifying the wikitext that will be previewed. Note that it is preferable
+to implement previews for different data types using the ContentHandler
 facility.
 $editPage: EditPage object
 &$toparse: wikitext that will be parsed
 
 'EditPageGetPreviewContent': Allow modifying the wikitext that will be
-previewed. Note that it is preferrable to implement previews for different data
-types using the COntentHandler facility.
+previewed. Note that it is preferable to implement previews for different data
+types using the ContentHandler facility.
 $editPage: EditPage object
 &$content: Content object to be previewed (may be replaced by hook function)
 
@@ -1151,7 +1151,7 @@ $title: Title object of page
 &$url: string value as output (out parameter, can modify)
 
 'GetMetadataVersion': Modify the image metadata version currently in use. This
-is used when requesting image metadata from a ForiegnApiRepo. Media handlers
+is used when requesting image metadata from a ForeignApiRepo. Media handlers
 that need to have versioned metadata should add an element to the end of the
 version array of the form 'handler_name=version'. Most media handlers won't need
 to do this unless they broke backwards compatibility with a previous version of
@@ -1215,7 +1215,7 @@ page is built.
 $imagePage: ImagePage object ($this)
 &$html: HTML for the hook to add
 
-'ImagePageFileHistoryLine': Called when a file history line is contructed.
+'ImagePageFileHistoryLine': Called when a file history line is constructed.
 $file: the file
 $line: the HTML of the history line
 $css: the line CSS class
@@ -1338,13 +1338,13 @@ CanonicalNamespaces for that.
 $wgExtensionMessagesFiles instead.
 Use this to define synonyms of magic words depending of the language
 $magicExtensions: associative array of magic words synonyms
-$lang: laguage code (string)
+$lang: language code (string)
 
 'LanguageGetSpecialPageAliases': DEPRECATED, use $specialPageAliases in a file
 listed in $wgExtensionMessagesFiles instead.
 Use to define aliases of special pages names depending of the language
 $specialPageAliases: associative array of magic words synonyms
-$lang: laguage code (string)
+$lang: language code (string)
 
 'LanguageGetTranslatedLanguageNames': Provide translated language names.
 &$names: array of language code => language name
@@ -1375,8 +1375,8 @@ $target: the Title object that the link is pointing to
 $options: the options.  Will always include either 'known' or 'broken', and may
   include 'noclasses'.
 &$html: the final (raw HTML) contents of the <a> tag, after processing.
-&$attribs: the final HTML attributes of the <a> tag, after processing, in asso-
-  ciative array form.
+&$attribs: the final HTML attributes of the <a> tag, after processing, in
+  associative array form.
 &$ret: the value to return if your hook returns false.
 
 'LinkerMakeExternalImage': At the end of Linker::makeExternalImage() just
@@ -1401,13 +1401,13 @@ actual update.
 each link table insert.  For example, pagelinks, imagelinks, externallinks.
 $linksUpdate: LinksUpdate object
 $table: the table to insert links to
-$insertions: an arry of links to insert
+$insertions: an array of links to insert
 
 'LinksUpdateComplete': At the end of LinksUpdate::doUpdate() when updating,
 including delete and insert, has completed for all link tables
 &$linksUpdate: the LinksUpdate object
 
-'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
+'LinksUpdateConstructed': At the end of LinksUpdate() is construction.
 &$linksUpdate: the LinksUpdate object
 
 'ListDefinedTags': When trying to find all defined tags.
@@ -1481,7 +1481,7 @@ $time: timestamp of the log entry (added in 1.12)
 script.
 $refreshLinks: RefreshLinks object
 
-'MagicWordwgVariableIDs': When definig new magic words IDs.
+'MagicWordwgVariableIDs': When defining new magic words IDs.
 $variableIDs: array of strings
 
 'MakeGlobalVariablesScript': Called right before Skin::makeVariablesScript is
@@ -1492,7 +1492,7 @@ ResourceLoaderGetConfigVars instead.
   Skin::makeVariablesScript
 $out: The OutputPage which called the hook, can be used to get the real title.
 
-'MarkPatrolled': Aefore an edit is marked patrolled.
+'MarkPatrolled': Before an edit is marked patrolled.
 $rcid: ID of the revision to be marked patrolled
 $user: the user (object) marking the revision as patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user needs to be a
@@ -1689,7 +1689,7 @@ $stripState: stripState used (object)
 
 'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
 $parser: Parser object being used
-$text: text that'll be returned
+$text: text that will be returned
 
 'ParserBeforeInternalParse': Called at the beginning of Parser::internalParse().
 $parser: Parser object
@@ -1732,7 +1732,7 @@ $time: actual time (timestamp)
 'ParserGetVariableValueVarCache': use this to change the value of the variable
 cache or return false to not use it.
 $parser: Parser object
-$varCache: varaiable cache (array)
+$varCache: variable cache (array)
 
 'ParserLimitReport': Called at the end of Parser:parse() when the parser will
 include comments about size of the text parsed.
@@ -1807,7 +1807,7 @@ $oldaddr: old email address (string)
 $newaddr: new email address (string)
 
 'PrefsPasswordAudit': Called when user changes his password.
-$user: User (object) changing his passoword
+$user: User (object) changing his password
 $newPass: new password
 $error: error (string) 'badretype', 'wrongpassword', 'error' or 'success'
 
@@ -2170,7 +2170,7 @@ go to the existing page.
 $t: title object searched for
 &$params: an array of the default message name and page title (as parameter)
 
-'SpecialSearchGo': Valled when user clicked the "Go".
+'SpecialSearchGo': Called when user clicked the "Go".
 &$title: title object generated from the text entered by the user
 &$term: the search term entered by the user
 
@@ -2264,7 +2264,7 @@ $output: OutputPage object
 'ThumbnailBeforeProduceHTML': Called before an image HTML is about to be
 rendered (by ThumbnailImage:toHtml method).
 $thumbnail: the ThumbnailImage object
-&$attribs: image attibute array
+&$attribs: image attribute array
 &$linkAttribs: image link attribute array
 
 'TitleArrayFromResult': Called when creating an TitleArray object from a
@@ -2299,7 +2299,7 @@ $result: Boolean; whether MediaWiki currently thinks this page is movable.
   Title::isMovable().
 
 'TitleIsWikitextPage': Called when determining if a page is a wikitext or should
-be handled by seperate handler (via ArticleViewCustom).
+be handled by separate handler (via ArticleViewCustom).
 $title: Title object that is being checked
 $result: Boolean; whether MediaWiki currently thinks this is a wikitext page.
   Hooks may change this value to override the return value of
@@ -2340,7 +2340,7 @@ $title: Title object of the page that we're about to undelete
 $title: title object related to the revision
 $rev: revision (object) that will be viewed
 
-'UnknownAction': An unknown "action" has occured (useful for defining your own
+'UnknownAction': An unknown "action" has occurred (useful for defining your own
 actions).
 $action: action name
 $article: article "acted on"
@@ -2437,7 +2437,7 @@ $user: User (object) whose permission is being checked
 
 'UserClearNewTalkNotification': Called when clearing the "You have new
 messages!" message, return false to not delete it.
-$user: User (object) that'll clear the message
+$user: User (object) that will clear the message
 
 'UserComparePasswords': Called when checking passwords, return false to
 override the default password checks.
@@ -2478,9 +2478,9 @@ $user: User object
 &$email: email, change this to override local email
 
 'UserGetEmailAuthenticationTimestamp': Called when getting the timestamp of
-email authentification.
+email authentication.
 $user: User object
-&$timestamp: timestamp, change this to override local email authentification
+&$timestamp: timestamp, change this to override local email authentication
   timestamp
 
 'UserGetImplicitGroups': Called in User::getImplicitGroups().
@@ -2488,7 +2488,7 @@ $user: User object
 
 'UserGetLanguageObject': Called when getting user's interface language object.
 $user: User object
-&$code: Langauge code that will be used to create the object
+&$code: Language code that will be used to create the object
 $context: RequestContext object
 
 'UserGetReservedNames': Allows to modify $wgReservedUsernames at run time.
@@ -2526,7 +2526,7 @@ $user: user object
 'UserLoadFromSession': Called to authenticate users on external/environmental
 means; occurs before session is loaded.
 $user: user object being loaded
-&$result: set this to a boolean value to abort the normal authentification
+&$result: set this to a boolean value to abort the normal authentication
   process
 
 'UserLoadOptions': When user options/preferences are being loaded from the
@@ -2581,10 +2581,10 @@ $user: User object
 &$email: new email, change this to override new email address
 
 'UserSetEmailAuthenticationTimestamp': Called when setting the timestamp of
-email authentification.
+email authentication.
 $user: User object
 &$timestamp: new timestamp, change this to override local email
-authentification timestamp
+authentication timestamp
 
 'UserToolLinksEdit': Called when generating a list of user tool links, e.g.
 "Foobar (Talk | Contribs | Block)".
