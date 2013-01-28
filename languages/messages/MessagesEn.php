@@ -2841,7 +2841,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'usermessage-template' => 'MediaWiki:UserMessage', # only translate this message to other languages if you have to change it
 
 # Watchlist
-'watchlist'            => 'My watchlist',
+'watchlist'            => 'Watchlist',
 'watchlist-summary'    => '', # do not translate or duplicate this message to other languages
 'mywatchlist'          => 'Watchlist',
 'watchlistfor2'        => 'For $1 $2',
