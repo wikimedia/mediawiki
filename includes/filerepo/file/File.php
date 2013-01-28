@@ -842,7 +842,7 @@ abstract class File {
 		global $wgIgnoreImageErrors;
 
 		if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
-			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+			return $this->getHandler()->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
@@ -873,17 +873,18 @@ abstract class File {
 				$params['descriptionUrl'] = wfExpandUrl( $descriptionUrl, PROTO_CANONICAL );
 			}
 
+			$handler = $this->getHandler();
 			$script = $this->getTransformScript();
 			if ( $script && !( $flags & self::RENDER_NOW ) ) {
 				// Use a script to transform on client request, if possible
-				$thumb = $this->handler->getScriptedTransform( $this, $script, $params );
+				$thumb = $handler->getScriptedTransform( $this, $script, $params );
 				if ( $thumb ) {
 					break;
 				}
 			}
 
 			$normalisedParams = $params;
-			$this->handler->normaliseParams( $this, $normalisedParams );
+			$handler->normaliseParams( $this, $normalisedParams );
 
 			$thumbName = $this->thumbName( $normalisedParams );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
@@ -896,7 +897,7 @@ abstract class File {
 					// XXX: Pass in the storage path even though we are not rendering anything
 					// and the path is supposed to be an FS path. This is due to getScalerType()
 					// getting called on the path and clobbering $thumb->getUrl() if it's false.
-					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+					$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 					break;
 				}
 				// Clean up broken thumbnails as needed
@@ -909,7 +910,7 @@ abstract class File {
 						// XXX: Pass in the storage path even though we are not rendering anything
 						// and the path is supposed to be an FS path. This is due to getScalerType()
 						// getting called on the path and clobbering $thumb->getUrl() if it's false.
-						$thumb = $this->handler->getTransform(
+						$thumb = $handler->getTransform(
 							$this, $thumbPath, $thumbUrl, $params );
 						$thumb->setStoragePath( $thumbPath );
 						break;
@@ -937,7 +938,7 @@ abstract class File {
 
 			// Actually render the thumbnail...
 			wfProfileIn( __METHOD__ . '-doTransform' );
-			$thumb = $this->handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
+			$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
 			wfProfileOut( __METHOD__ . '-doTransform' );
 			$tmpFile->bind( $thumb ); // keep alive with $thumb
 
@@ -947,7 +948,7 @@ abstract class File {
 				$this->lastError = $thumb->toText();
 				// Ignore errors if requested
 				if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
-					$thumb = $this->handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
+					$thumb = $handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 				// Copy the thumbnail from the file system into storage...
