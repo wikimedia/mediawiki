@@ -474,7 +474,7 @@ class PageArchive {
 				__METHOD__ );
 
 			if( $previousTimestamp === false ) {
-				wfDebug( __METHOD__.": existing page refers to a page_latest that does not exist\n" );
+				wfDebug( __METHOD__ . ": existing page refers to a page_latest that does not exist\n" );
 
 				$status = Status::newGood( 0 );
 				$status->warning( 'undeleterevision-missing' );
@@ -512,7 +512,8 @@ class PageArchive {
 			'ar_deleted',
 			'ar_page_id',
 			'ar_len',
-			'ar_sha1');
+			'ar_sha1'
+		);
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';
@@ -1075,10 +1076,10 @@ class SpecialUndelete extends SpecialPage {
 					$targetQuery
 				) .
 			'</strong></div>' .
-			'<div id="mw-diff-'.$prefix.'title2">' .
+			'<div id="mw-diff-' . $prefix . 'title2">' .
 				Linker::revUserTools( $rev ) . '<br />' .
 			'</div>' .
-			'<div id="mw-diff-'.$prefix.'title3">' .
+			'<div id="mw-diff-' . $prefix . 'title3">' .
 				Linker::revComment( $rev ) . $rdel . '<br />' .
 			'</div>';
 	}
@@ -1230,7 +1231,7 @@ class SpecialUndelete extends SpecialPage {
 							Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
 						"</td>
 						<td class='mw-input'>" .
-							Xml::input( 'wpComment', 50, $this->mComment, array( 'id' =>  'wpComment' ) ) .
+							Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
 						"</td>
 					</tr>
 					<tr>
@@ -1348,7 +1349,7 @@ class SpecialUndelete extends SpecialPage {
 		// Revision delete links
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
 
-		$revisionRow = $this->msg( 'undelete-revisionrow' )->rawParams( $checkBox, $revdlink, $last, $pageLink , $userLink, $revTextSize, $comment )->escaped();
+		$revisionRow = $this->msg( 'undelete-revisionrow' )->rawParams( $checkBox, $revdlink, $last, $pageLink, $userLink, $revTextSize, $comment )->escaped();
 		return "<li>$revisionRow</li>";
 	}
 

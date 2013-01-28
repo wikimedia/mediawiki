@@ -105,7 +105,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			}
 			// PG offsets not just digits!
 			if ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) ) {
-				$this->opts->setValue( 'offset',  intval( $m[1] ) );
+				$this->opts->setValue( 'offset', intval( $m[1] ) );
 			}
 			if ( preg_match( '/^username=(.*)$/', $bit, $m ) ) {
 				$this->opts->setValue( 'username', $m[1] );
@@ -113,7 +113,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $this->getLanguage()->getNsIndex( $m[1] );
 				if( $ns !== false ) {
-					$this->opts->setValue( 'namespace',  $ns );
+					$this->opts->setValue( 'namespace', $ns );
 				}
 			}
 		}

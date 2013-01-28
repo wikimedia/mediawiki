@@ -168,7 +168,7 @@ class DeletedContribsPager extends IndexPager {
 
 		$user = $this->getUser();
 
-		if( $user->isAllowed('deletedtext') ) {
+		if( $user->isAllowed( 'deletedtext' ) ) {
 			$last = Linker::linkKnown(
 				$undelete,
 				$this->messages['diff'],
@@ -475,7 +475,7 @@ class DeletedContributionsPage extends SpecialPage {
 		if ( !isset( $options['target'] ) ) {
 			$options['target'] = '';
 		} else {
-			$options['target'] = str_replace( '_' , ' ' , $options['target'] );
+			$options['target'] = str_replace( '_', ' ', $options['target'] );
 		}
 
 		if ( !isset( $options['namespace'] ) ) {
@@ -499,7 +499,7 @@ class DeletedContributionsPage extends SpecialPage {
 			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
-		$f .=  Xml::openElement( 'fieldset' ) .
+		$f .= Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), $this->msg( 'sp-contributions-search' )->text() ) .
 			Xml::tags( 'label', array( 'for' => 'target' ), $this->msg( 'sp-contributions-username' )->parse() ) . ' ' .
 			Html::input( 'target', $options['target'], 'text', array(
