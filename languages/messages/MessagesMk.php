@@ -2397,7 +2397,7 @@ $1',
 'usermessage-editor' => 'Системски гласник',
 
 # Watchlist
-'watchlist' => 'набљудувања',
+'watchlist' => 'Набљудувања',
 'mywatchlist' => 'Набљудувања',
 'watchlistfor2' => 'За $1 $2',
 'nowatchlist' => 'Немате ништо во списокот на набљудувања.',

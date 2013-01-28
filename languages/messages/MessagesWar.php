@@ -200,7 +200,7 @@ $messages = array(
 'cancel' => 'Pasagdi',
 'moredotdotdot' => 'Damo pa nga…',
 'mypage' => 'Akon pakli',
-'mytalk' => 'Akon paghingay',
+'mytalk' => 'Mga akon paghingay',
 'anontalk' => 'Paghingay para hini nga IP',
 'navigation' => 'Paglayag',
 'and' => '&#32;ngan',
@@ -829,7 +829,7 @@ Ginpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.',
 
 # Preferences page
 'preferences' => 'Mga karuyag',
-'mypreferences' => 'Akon mga karuyag',
+'mypreferences' => 'Mga akon karuyag',
 'prefs-edits' => 'Ihap han mga pagliwat:',
 'prefsnologin' => 'Diri nakalog-in',
 'changepassword' => 'Igliwan an tigaman-pagsulod',
@@ -1390,8 +1390,8 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'usermessage-editor' => 'Mensahero han sistema',
 
 # Watchlist
-'watchlist' => 'Akon barantayan',
-'mywatchlist' => 'Akon angay timan-an',
+'watchlist' => 'Barantayan',
+'mywatchlist' => 'Mga angay timan-an nakon',
 'watchlistfor2' => 'Para ha $1 $2',
 'watchnologin' => 'Diri nakalog-in',
 'watch' => 'Bantayi',
@@ -1480,9 +1480,9 @@ $1',
 'blanknamespace' => '(Panguna)',
 
 # Contributions
-'contributions' => 'Mga amot han gumaramit',
+'contributions' => 'Mga ámot ni {{GENDER:$1|User}}',
 'contributions-title' => 'Mga amot han gumaramit para ha $1',
-'mycontris' => 'Akon mga ámot',
+'mycontris' => 'Mga ámot nakon',
 'contribsub2' => 'Para ha $1 $2',
 'uctop' => '(bawbaw)',
 'month' => 'Tikang ha bulan (ngan uruunhan):',
@@ -1514,7 +1514,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 nga mga redirek',
 'whatlinkshere-hidetrans' => '$1 nga mga transklusyon',
 'whatlinkshere-hidelinks' => '$1 an mga sumpay',
-'whatlinkshere-hideimages' => '$1 sumpay hin hulagway',
+'whatlinkshere-hideimages' => '$1 an mga sumpay han paypay',
 'whatlinkshere-filters' => 'Mga panara',
 
 # Block/unblock

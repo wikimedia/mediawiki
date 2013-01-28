@@ -794,7 +794,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'gotaccount' => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink' => 'Aanmelden',
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
-'createaccountmail' => 'Gebruik een tijdelijke willekeurig wachtwoord en stuur het naar het e-mailadres dat hieronder is vermeld',
+'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het e-mailadres dat hieronder is vermeld',
 'createaccountreason' => 'Reden:',
 'badretype' => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists' => 'De gekozen gebruikersnaam is al in gebruik.
