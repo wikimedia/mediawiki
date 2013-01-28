@@ -393,8 +393,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function getDB() {
 		if ( is_null( $this->mDb ) ) {
-			$apiQuery = $this->getQuery();
-			$this->mDb = $apiQuery->getDB();
+			$this->mDb = $this->getQuery()->getDB();
 		}
 		return $this->mDb;
 	}

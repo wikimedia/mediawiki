@@ -9,7 +9,7 @@ class PrefixUniquenessTest extends MediaWikiTestCase {
 	public function testPrefixes() {
 		$main = new ApiMain( new FauxRequest() );
 		$query = new ApiQuery( $main, 'foo', 'bar' );
-		$modules = $query->getModules();
+		$modules = $query->getModuleManager()->getNamesWithClasses();
 		$prefixes = array();
 
 		foreach ( $modules as $name => $class ) {
