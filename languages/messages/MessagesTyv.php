@@ -15,6 +15,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback8bitEncoding = "windows-1251";
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Тускай',
@@ -45,6 +47,47 @@ $namespaceAliases = array(
 	'Бөлүк_чугаа'     => NS_CATEGORY_TALK,
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#ШИГЛЕДИР', '#REDIRECT' ),
+	'notoc'                     => array( '0', '__ДОПЧУЗУЧОК__', '__NOTOC__' ),
+	'toc'                       => array( '0', '__ДОПЧУЗУ__', '__TOC__' ),
+	'currentmonth'              => array( '1', 'АМГЫАЙ', 'АМГЫАЙ2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'             => array( '1', 'АМГЫАЙ1', 'CURRENTMONTH1' ),
+	'currentmonthname'          => array( '1', 'АМГЫАЙНЫҢАДЫ', 'CURRENTMONTHNAME' ),
+	'currentday'                => array( '1', 'АМГЫХҮН', 'CURRENTDAY' ),
+	'currentday2'               => array( '1', 'АМГЫХҮН2', 'CURRENTDAY2' ),
+	'currentdayname'            => array( '1', 'АМГЫХҮННҮҢАДЫ', 'CURRENTDAYNAME' ),
+	'currentyear'               => array( '1', 'АМГЫЧЫЛ', 'CURRENTYEAR' ),
+	'currenttime'               => array( '1', 'АМГЫҮЕ', 'CURRENTTIME' ),
+	'currenthour'               => array( '1', 'АМГЫШАК', 'CURRENTHOUR' ),
+	'numberofpages'             => array( '1', 'АРЫННАРНЫҢСАНЫ', 'NUMBEROFPAGES' ),
+	'numberofarticles'          => array( '1', 'ЧҮҮЛДЕРНИҢСАНЫ', 'NUMBEROFARTICLES' ),
+	'numberoffiles'             => array( '1', 'ФАЙЛДАРНЫҢСАНЫ', 'NUMBEROFFILES' ),
+	'numberofusers'             => array( '1', 'АЖЫГЛАКЧЫЛАРНЫҢСАНЫ', 'NUMBEROFUSERS' ),
+	'numberofedits'             => array( '1', 'ӨСКЕРЛИИШКИННЕРНИҢСАНЫ', 'NUMBEROFEDITS' ),
+	'pagename'                  => array( '1', 'АРЫННЫҢАДЫ', 'PAGENAME' ),
+	'namespace'                 => array( '1', 'АТТАРДЕЛГЕМИ', 'NAMESPACE' ),
+	'namespacee'                => array( '1', 'АТТАРДЕЛГЕМИ2', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'АТТАРДЕЛГЕМИНИҢСАНЫ', 'NAMESPACENUMBER' ),
+	'talkspace'                 => array( '1', 'ЧУГААДЕЛГЕМИ', 'TALKSPACE' ),
+	'talkspacee'                => array( '1', 'ЧУГААДЕЛГЕМИ2', 'TALKSPACEE' ),
+	'img_right'                 => array( '1', 'оң', 'right' ),
+	'img_left'                  => array( '1', 'солагай', 'left' ),
+	'img_center'                => array( '1', 'төп', 'center', 'centre' ),
+	'sitename'                  => array( '1', 'САЙТТЫҢАДЫ', 'SITENAME' ),
+	'ns'                        => array( '0', 'АД:', 'NS:' ),
+	'nse'                       => array( '0', 'АД2:', 'NSE:' ),
+	'currentweek'               => array( '1', 'АМГЫЧЕДИХОНУК', 'CURRENTWEEK' ),
+	'currentdow'                => array( '1', 'АМГЫЧЕДИХОНУКТУҢХҮНҮ', 'CURRENTDOW' ),
+	'raw'                       => array( '0', 'ЧИГ:', 'RAW:' ),
+	'language'                  => array( '0', '#ДЫЛ:', '#LANGUAGE:' ),
+	'special'                   => array( '0', 'тускай', 'special' ),
+	'tag'                       => array( '0', 'демдек', 'tag' ),
+	'pagesincategory_all'       => array( '0', 'шупту', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'арыннар', 'pages' ),
+	'pagesincategory_files'     => array( '0', 'файлдар', 'files' ),
+);
+
 $bookstoreList = array(
 	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
 	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
@@ -54,8 +97,6 @@ $bookstoreList = array(
 	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1'
 );
-
-$fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles

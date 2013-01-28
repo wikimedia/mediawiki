@@ -50,6 +50,20 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ایزله‌دیکلر' ),
 );
 
+$magicWords = array(
+	'numberofpages'             => array( '1', 'صحیفه‌لر_ساییسی', 'تعدادصفحه‌ها', 'NUMBEROFPAGES' ),
+	'numberofarticles'          => array( '1', 'مقاله‌لر_ساییسی', 'تعدادمقاله‌ها', 'NUMBEROFARTICLES' ),
+	'numberoffiles'             => array( '1', 'قایل‌لار_ساییسی', 'تعدادپرونده‌ها', 'NUMBEROFFILES' ),
+	'numberofusers'             => array( '1', 'ایستیفاده‌چیلر_ساییسی', 'تعدادکاربران', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'       => array( '1', 'چالیشقان_ایستیفاده‌چیلر', 'کاربران‌فعال', 'کاربران_فعال', 'NUMBEROFACTIVEUSERS' ),
+	'numberofedits'             => array( '1', 'دَییشدیرمه_ساییسی', 'تعدادویرایش‌ها', 'NUMBEROFEDITS' ),
+	'pagename'                  => array( '1', 'صحیفه‌نین_آدی', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ),
+	'img_right'                 => array( '1', 'ساغ', 'راست', 'right' ),
+	'img_left'                  => array( '1', 'سول', 'چپ', 'left' ),
+	'img_none'                  => array( '1', 'هئچ', 'هیچ', 'none' ),
+	'img_framed'                => array( '1', 'قابیق', 'قاب', 'framed', 'enframed', 'frame' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'باغلانتی‌لارین آلتینی خطله:',

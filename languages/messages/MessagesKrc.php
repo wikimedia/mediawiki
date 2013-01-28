@@ -61,6 +61,12 @@ $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Экили_редирект' ),
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#джибериу', '#редирект', '#перенаправление', '#перенапр', '#REDIRECT' ),
+	'notoc'                     => array( '0', '__БАШЛАСЫЗ__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ),
+	'nogallery'                 => array( '0', '_ГАЛЛЕРЕЯСЫЗ__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Джибериулени черт:',

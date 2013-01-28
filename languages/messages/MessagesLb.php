@@ -156,7 +156,7 @@ $magicWords = array(
 	'pagename'                  => array( '1', 'Säitennumm', 'SEITENNAME', 'PAGENAME' ),
 	'namespace'                 => array( '1', 'Nummraum', 'NAMENSRAUM', 'NAMESPACE' ),
 	'subjectspace'              => array( '1', 'Haaptnummraum', 'HAUPTNAMENSRAUM', 'SUBJECTSPACE', 'ARTICLESPACE' ),
-	'subjectpagename'           => array( '1', 'Haaptsäit', 'HAUPTSEITE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
+	'subjectpagename'           => array( '1', 'Haaptsäit', 'HAUPTSEITE', 'HAUPTSEITENNAME', 'VORDERSEITE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'img_thumbnail'             => array( '1', 'Miniatur', 'miniatur', 'mini', 'thumbnail', 'thumb' ),
 	'img_right'                 => array( '1', 'riets', 'rechts', 'right' ),
 	'img_left'                  => array( '1', 'lénks', 'links', 'left' ),
@@ -175,8 +175,8 @@ $magicWords = array(
 	'formatnum'                 => array( '0', 'ZUELEFORMAT', 'ZAHLENFORMAT', 'FORMATNUM' ),
 	'special'                   => array( '0', 'spezial', 'special' ),
 	'hiddencat'                 => array( '1', '__VERSTOPPT_KATEGORIE__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
-	'pagesincategory_pages'     => array( '0', 'Säiten', 'pages' ),
-	'pagesincategory_files'     => array( '0', 'Fichieren', 'files' ),
+	'pagesincategory_pages'     => array( '0', 'Säiten', 'seiten', 'pages' ),
+	'pagesincategory_files'     => array( '0', 'Fichieren', 'dateien', 'files' ),
 );
 
 $messages = array(

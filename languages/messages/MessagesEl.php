@@ -223,6 +223,7 @@ $magicWords = array(
 	'pagenamee'                 => array( '1', 'ΟΝΟΜΑΣΕΛΙΔΑΣΚ', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ΠΕΡΙΟΧΗ', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'ΠΕΡΙΟΧΗΚ', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'ΑΡΙΘΜΟΣΟΝΟΜΑΤΟΣΧΩΡΟΥ', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'ΠΕΡΙΟΧΗΣΥΖΗΤΗΣΕΩΝ', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'ΠΕΡΙΟΧΗΣΥΖΗΤΗΣΕΩΝΚ', 'TALKSPACEE' ),
 	'subjectspace'              => array( '1', 'ΠΕΡΙΟΧΗΘΕΜΑΤΩΝ', 'SUBJECTSPACE', 'ARTICLESPACE' ),

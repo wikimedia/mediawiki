@@ -160,6 +160,16 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'ਬਿਨਾਂ_ਇੰਟਰਵਿਕੀਆਂ_ਵਾਲੇ' ),
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ),
+	'url_wiki'                  => array( '0', 'ਵਿਕੀ', 'WIKI' ),
+	'defaultsort_noerror'       => array( '0', 'ਗਲਤੀ_ਨਹੀਂ', 'noerror' ),
+	'pagesincategory_all'       => array( '0', 'ਸਬ', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'ਪੰਨੇ', 'pages' ),
+	'pagesincategory_subcats'   => array( '0', 'ਉਪਸ਼੍ਰੇਣੀਆਂ', 'subcats' ),
+	'pagesincategory_files'     => array( '0', 'ਫ਼ਾਈਲਾਂ', 'files' ),
+);
+
 $digitTransformTable = array(
 	'0' => '੦', # &#x0a66;
 	'1' => '੧', # &#x0a67;

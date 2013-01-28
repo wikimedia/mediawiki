@@ -134,6 +134,27 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'بدون_بین_الویکی' ),
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#رجوع_مکرر', '#REDIRECT' ),
+	'notoc'                     => array( '0', '_فہرست_نہیں_', '__NOTOC__' ),
+	'toc'                       => array( '0', '__فہرست__', '__TOC__' ),
+	'noeditsection'             => array( '0', '__ناتحریرقسم__', '__NOEDITSECTION__' ),
+	'msg'                       => array( '0', 'پیغام:', 'MSG:' ),
+	'subst'                     => array( '0', 'نقل:', 'SUBST:' ),
+	'safesubst'                 => array( '0', 'محفوظ_نقل:', 'SAFESUBST:' ),
+	'img_thumbnail'             => array( '1', 'تصغیر', 'thumbnail', 'thumb' ),
+	'img_right'                 => array( '1', 'دائیں', 'right' ),
+	'img_left'                  => array( '1', 'بائیں', 'left' ),
+	'img_center'                => array( '1', 'درمیان', 'center', 'centre' ),
+	'sitename'                  => array( '1', 'نام_موقع', 'SITENAME' ),
+	'grammar'                   => array( '0', 'قواعد:', 'GRAMMAR:' ),
+	'gender'                    => array( '0', 'جنس:', 'GENDER:' ),
+	'special'                   => array( '0', 'خاص', 'special' ),
+	'speciale'                  => array( '0', 'خاص_عنوان', 'speciale' ),
+	'index'                     => array( '1', '__اشاریہ__', '__INDEX__' ),
+	'noindex'                   => array( '1', '__نااشاریہ__', '__NOINDEX__' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ربط کی خط کشیدگی:',

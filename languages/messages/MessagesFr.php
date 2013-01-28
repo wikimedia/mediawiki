@@ -256,6 +256,7 @@ $magicWords = array(
 	'pagenamee'                 => array( '1', 'NOMPAGEX', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ESPACENOMMAGE', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'ESPACENOMMAGEX', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'NOMBREESPACENOMMAGE', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'ESPACEDISCUSSION', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'ESPACEDISCUSSIONX', 'TALKSPACEE' ),
 	'subjectspace'              => array( '1', 'ESPACESUJET', 'ESPACEARTICLE', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -353,6 +354,8 @@ $magicWords = array(
 	'protectionlevel'           => array( '1', 'NIVEAUDEPROTECTION', 'PROTECTIONLEVEL' ),
 	'url_path'                  => array( '0', 'CHEMIN', 'PATH' ),
 	'url_query'                 => array( '0', 'QUESTION', 'QUERY' ),
+	'pagesincategory_all'       => array( '0', 'tous', 'all' ),
+	'pagesincategory_files'     => array( '0', 'fichier', 'files' ),
 );
 
 $bookstoreList = array(

@@ -154,9 +154,32 @@ $specialPageAliases = array(
 
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#РАРВЫСТ', '#перенаправление', '#перенапр', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#ÆРВИТÆН', '#ÆРВЫСТ', '#РАРВЫСТ', '#перенаправление', '#перенапр', '#REDIRECT' ),
+	'notoc'                     => array( '0', '__ÆНÆСÆР__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ),
+	'nogallery'                 => array( '0', '__ÆНÆГАЛЕРЕЙ__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ),
+	'forcetoc'                  => array( '0', '__СÆРТИМÆ__', '__ОБЯЗАТЕЛЬНОЕ_ОГЛАВЛЕНИЕ__', '__ОБЯЗ_ОГЛ__', '__FORCETOC__' ),
+	'toc'                       => array( '0', '__СÆРТÆ__', '__ОГЛАВЛЕНИЕ__', '__ОГЛ__', '__TOC__' ),
+	'noeditsection'             => array( '0', '__ÆНÆХАЙИВЫНÆЙ__', '__БЕЗ_РЕДАКТИРОВАНИЯ_РАЗДЕЛА__', '__NOEDITSECTION__' ),
+	'currentmonth'              => array( '1', 'АЦЫМÆЙ', 'АЦЫМÆЙ2', 'ТЕКУЩИЙ_МЕСЯЦ', 'ТЕКУЩИЙ_МЕСЯЦ_2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'             => array( '1', 'АЦЫМÆЙ1', 'ТЕКУЩИЙ_МЕСЯЦ_1', 'CURRENTMONTH1' ),
+	'currentmonthname'          => array( '1', 'АЦЫМÆЙЫНОМ', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА', 'CURRENTMONTHNAME' ),
+	'currentmonthnamegen'       => array( '1', 'АЦЫМÆЙЫНОМГУЫР', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА_РОД', 'CURRENTMONTHNAMEGEN' ),
+	'currentmonthabbrev'        => array( '1', 'АЦЫМÆЙЫНОМЦЫБ', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА_АБР', 'CURRENTMONTHABBREV' ),
+	'currentday'                => array( '1', 'АБОН', 'ТЕКУЩИЙ_ДЕНЬ', 'CURRENTDAY' ),
+	'currentday2'               => array( '1', 'АБОН2', 'ТЕКУЩИЙ_ДЕНЬ_2', 'CURRENTDAY2' ),
+	'currentdayname'            => array( '1', 'АБОНЫБОНЫНОМ', 'НАЗВАНИЕ_ТЕКУЩЕГО_ДНЯ', 'CURRENTDAYNAME' ),
+	'currentyear'               => array( '1', 'АЦЫАЗ', 'ТЕКУЩИЙ_ГОД', 'CURRENTYEAR' ),
+	'currenttime'               => array( '1', 'НЫРЫРÆСТÆГ', 'ТЕКУЩЕЕ_ВРЕМЯ', 'CURRENTTIME' ),
+	'currenthour'               => array( '1', 'НЫРЫСАХАТ', 'ТЕКУЩИЙ_ЧАС', 'CURRENTHOUR' ),
+	'numberofpages'             => array( '1', 'ФÆРСТЫНЫМÆЦ', 'КОЛИЧЕСТВО_СТРАНИЦ', 'NUMBEROFPAGES' ),
+	'numberofarticles'          => array( '1', 'УАЦТЫНЫМÆЦ', 'КОЛИЧЕСТВО_СТАТЕЙ', 'NUMBEROFARTICLES' ),
+	'pagename'                  => array( '1', 'ФАРСЫНОМ', 'НАЗВАНИЕ_СТРАНИЦЫ', 'PAGENAME' ),
+	'img_thumbnail'             => array( '1', 'къаддæргонд', 'къаддæр', 'мини', 'миниатюра', 'thumbnail', 'thumb' ),
+	'img_manualthumb'           => array( '1', 'къаддæргонд=$1', 'къаддæр=$1', 'мини=$1', 'миниатюра=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'                 => array( '1', 'рахиз', 'справа', 'right' ),
 	'img_left'                  => array( '1', 'галиу', 'слева', 'left' ),
+	'img_none'                  => array( '1', 'æнæ', 'без', 'none' ),
+	'img_center'                => array( '1', 'астæу', 'центр', 'center', 'centre' ),
 );
 
 $linkTrail = '/^((?:[a-z]|а|æ|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|“|»)+)(.*)$/sDu';

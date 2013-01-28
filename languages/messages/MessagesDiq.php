@@ -301,6 +301,7 @@ $magicWords = array(
 	'defaultsort_noreplace'     => array( '0', 'cewabçıniyo', 'noreplace' ),
 	'pagesincategory_all'       => array( '0', 'pêro', 'all' ),
 	'pagesincategory_pages'     => array( '0', 'peley', 'pages' ),
+	'pagesincategory_subcats'   => array( '0', 'bınkati', 'subcats' ),
 	'pagesincategory_files'     => array( '0', 'dosyey', 'files' ),
 );
 

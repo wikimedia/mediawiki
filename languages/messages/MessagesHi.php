@@ -165,6 +165,10 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'अन्तरविकि_रहित', 'अंतरविकि_रहित' ),
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#अनुप्रेषित', '#REDIRECT' ),
+);
+
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
