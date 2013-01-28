@@ -25,6 +25,8 @@ changes to languages because of Bugzilla reports.
 
 === Other changes in 1.22 ===
 * redirect.php was removed. It was unused.
+* ClickTracking integration was dropped from the mediaWiki.user.bucket
+  JavaScript function. The 'tracked' option is now ignored.
 * BREAKING CHANGE: Legacy skins Simple, MySkin and Standard were all removed.
   Nostalgia was moved to an extension.
 
