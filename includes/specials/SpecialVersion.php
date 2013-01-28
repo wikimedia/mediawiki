@@ -123,9 +123,9 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw',
-			'[[Special:Version/Credits|' .
+			'[http://www.mediawiki.org/wiki/Special:Version/Credits ' .
 			wfMessage( 'version-poweredby-others' )->text() .
-			']]'
+			']'
 		);
 
 		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
