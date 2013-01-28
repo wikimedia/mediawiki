@@ -863,6 +863,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Check if $extName is a loaded PHP extension, will skip the
+	 * test whenever it is not loaded.
+	 *
+	 * @since 1.21
+	 */
+	protected function checkPHPExtension( $extName ) {
+		$loaded = extension_loaded( $extName );
+		if( ! $loaded ) {
+			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
+		}
+		return $loaded;
+	}
+
+	/**
 	 * Asserts that an exception of the specified type occurs when running
 	 * the provided code.
 	 *
