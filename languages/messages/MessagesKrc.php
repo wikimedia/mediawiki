@@ -39,6 +39,28 @@ $namespaceNames = array(
 // Remove Russian aliases
 $namespaceGenderAliases = array();
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'Тири_къошулуучула' ),
+	'Allmessages'               => array( 'Системаны_билдириулери' ),
+	'Allpages'                  => array( 'Бютеу_бетле' ),
+	'Blankpage'                 => array( 'Бош_бет' ),
+	'Block'                     => array( 'Блокла' ),
+	'Blockme'                   => array( 'Мени_блокла' ),
+	'Booksources'               => array( 'Китабланы_къайнакълары' ),
+	'BrokenRedirects'           => array( 'Джыртылгъан_редиректле' ),
+	'Categories'                => array( 'Категорияла' ),
+	'ChangeEmail'               => array( 'E-mail_ауушдур' ),
+	'ChangePassword'            => array( 'Пароль_ауушдур' ),
+	'ComparePages'              => array( 'Бетлени_тенглешдириу' ),
+	'Confirmemail'              => array( 'E-mail_тюзлюгюн_бегит' ),
+	'Contributions'             => array( 'Къошум' ),
+	'CreateAccount'             => array( 'Тергеу_джазыуну_къура', 'Къошулуучуну_къура', 'Зарегистрироваться' ),
+	'Deadendpages'              => array( 'Чыкъмазча_бетле' ),
+	'DeletedContributions'      => array( 'Кетерилген_къошум' ),
+	'Disambiguations'           => array( 'Кёб_магъаналы' ),
+	'DoubleRedirects'           => array( 'Экили_редирект' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Джибериулени черт:',

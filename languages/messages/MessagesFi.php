@@ -109,6 +109,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIME-haku' ),
 	'Mostcategories'            => array( 'Luokitelluimmat_sivut' ),
 	'Mostimages'                => array( 'Viitatuimmat_tiedostot' ),
+	'Mostinterwikis'            => array( 'Eniten_kielilinkkejä' ),
 	'Mostlinked'                => array( 'Viitatuimmat_sivut' ),
 	'Mostlinkedcategories'      => array( 'Viitatuimmat_luokat' ),
 	'Mostlinkedtemplates'       => array( 'Viitatuimmat_mallineet' ),

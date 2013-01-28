@@ -19,6 +19,37 @@
 $fallback = 'fa';
 $rtl = true;
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'چالیشقان_ایستسفاده‌چیلر' ),
+	'Allmessages'               => array( 'بوتون_مئساژلار' ),
+	'Allpages'                  => array( 'بوتون_صحیفه‌لر' ),
+	'Ancientpages'              => array( 'اسکی_صحیفه‌لر' ),
+	'Badtitle'                  => array( 'پیس_آد' ),
+	'Blankpage'                 => array( 'بوش_صحیفه' ),
+	'ChangePassword'            => array( 'رمزی_دَییش' ),
+	'CreateAccount'             => array( 'حساب_یارات' ),
+	'Mycontributions'           => array( 'چالیشمالاریم' ),
+	'Mypage'                    => array( 'صحیفه‌م' ),
+	'Mytalk'                    => array( 'دانیشیغیم' ),
+	'Myuploads'                 => array( 'یوکله‌دیکلریم' ),
+	'Newimages'                 => array( 'یئنی_فایل‌لار' ),
+	'Newpages'                  => array( 'یئنی_صحیفه‌لر' ),
+	'PasswordReset'             => array( 'رمز_دَییشمه‌' ),
+	'Randompage'                => array( 'راست‌گله' ),
+	'Recentchanges'             => array( 'سون_دَییشیکلر' ),
+	'Search'                    => array( 'آختار' ),
+	'Shortpages'                => array( 'قیسسا_صحیفه‌لر' ),
+	'Specialpages'              => array( 'اؤزل_صحیفه‌لر' ),
+	'Statistics'                => array( 'آمار' ),
+	'Unusedcategories'          => array( 'ایشلنممیش_بؤلمه‌لر' ),
+	'Unusedimages'              => array( 'ایشلنممیش_فایل‌لار' ),
+	'Unusedtemplates'           => array( 'ایشلنممیش_شابلونلار' ),
+	'Unwatchedpages'            => array( 'باخیلمامیش_صحیفه‌لر' ),
+	'Upload'                    => array( 'یوکله' ),
+	'Version'                   => array( 'نوسخه' ),
+	'Watchlist'                 => array( 'ایزله‌دیکلر' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'باغلانتی‌لارین آلتینی خطله:',
