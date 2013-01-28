@@ -157,8 +157,6 @@
 		 * must have at least one pair)
 		 * @param options.version Number: Version of bucket test, changing this forces rebucketing
 		 * (optional, default: 0)
-		 * @param options.tracked Boolean: Track the event of bucketing through the API module of
-		 * the ClickTracking extension (optional, default: false)
 		 * @param options.expires Number: Length of time (in days) until the user gets rebucketed
 		 * (optional, default: 30)
 		 * @return String: Bucket name - the randomly chosen key of the options.buckets object
@@ -167,7 +165,6 @@
 		 *     mw.user.bucket( 'test', {
 		 *         'buckets': { 'ignored': 50, 'control': 25, 'test': 25 },
 		 *         'version': 1,
-		 *         'tracked': true,
 		 *         'expires': 7
 		 *     } );
 		 */
@@ -178,7 +175,6 @@
 			options = $.extend( {
 				buckets: {},
 				version: 0,
-				tracked: false,
 				expires: 30
 			}, options || {} );
 
@@ -212,13 +208,6 @@
 					if ( total >= rand ) {
 						break;
 					}
-				}
-				if ( options.tracked ) {
-					mw.loader.using( 'jquery.clickTracking', function () {
-						$.trackAction(
-							'mediaWiki.user.bucket:' + key + '@' + version + ':' + bucket
-						);
-					} );
 				}
 				$.cookie(
 					'mediaWiki.user.bucket:' + key,
