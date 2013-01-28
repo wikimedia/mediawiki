@@ -140,12 +140,9 @@ class ApiQuery extends ApiBase {
 	 */
 	private $mPageSet;
 
-	private $params, $redirects, $convertTitles, $iwUrl;
-	private $mSlaveDB = null;
+	private $params, $iwUrl;
 	private $mNamedDB = array();
 	private $mModuleMgr;
-
-	protected $mAllowedGenerators;
 
 	/**
 	 * @param $main ApiMain
@@ -171,7 +168,9 @@ class ApiQuery extends ApiBase {
 				$this->mQueryGenerators[$moduleName] = $moduleClass;
 			}
 		}
-		$this->mAllowedGenerators = array_keys( $this->mQueryGenerators );
+
+		// Create PageSet that will process titles/pageids/revids/generator
+		$this->mPageSet = new ApiPageSet( $this );
 	}
 
 	/**
@@ -180,19 +179,6 @@ class ApiQuery extends ApiBase {
 	 */
 	public function getModuleManager() {
 		return $this->mModuleMgr;
-	}
-
-	/**
-	 * Gets a default slave database connection object
-	 * @return DatabaseBase
-	 */
-	public function getDB() {
-		if ( !isset( $this->mSlaveDB ) ) {
-			$this->profileDBIn();
-			$this->mSlaveDB = wfGetDB( DB_SLAVE, 'api' );
-			$this->profileDBOut();
-		}
-		return $this->mSlaveDB;
 	}
 
 	/**
@@ -228,6 +214,7 @@ class ApiQuery extends ApiBase {
 	 * @return array array(modulename => classname)
 	 */
 	public function getModules() {
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->getModuleManager()->getNamesWithClasses();
 	}
 
@@ -276,12 +263,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function execute() {
 		$this->params = $this->extractRequestParams();
-		$this->redirects = $this->params['redirects'];
-		$this->convertTitles = $this->params['converttitles'];
 		$this->iwUrl = $this->params['iwurl'];
-
-		// Create PageSet
-		$this->mPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
 
 		// Instantiate requested modules
 		$modules = array();
@@ -289,20 +271,16 @@ class ApiQuery extends ApiBase {
 		$this->instantiateModules( $modules, 'list' );
 		$this->instantiateModules( $modules, 'meta' );
 
-		$cacheMode = 'public';
-
-		// If given, execute generator to substitute user supplied data with generated data.
-		if ( isset( $this->params['generator'] ) ) {
-			$generator = $this->newGenerator( $this->params['generator'] );
-			$params = $generator->extractRequestParams();
-			$cacheMode = $this->mergeCacheMode( $cacheMode,
-				$generator->getCacheMode( $params ) );
-			$this->executeGeneratorModule( $generator, $modules );
-		} else {
-			// Append custom fields and populate page/revision information
-			$this->addCustomFldsToPageSet( $modules, $this->mPageSet );
-			$this->mPageSet->execute();
+		// Query modules may optimize data requests through the $this->getPageSet()
+		// object by adding extra fields from the page table.
+		// This function will gather all the extra request fields from the modules.
+		foreach ( $modules as $module ) {
+			$module->requestExtraData( $this->mPageSet );
 		}
+
+		// Populate page/revision information
+		$this->mPageSet->execute();
+		$cacheMode = $this->mPageSet->getCacheMode();
 
 		// Record page information (title, namespace, if exists, etc)
 		$this->outputGeneralPageInfo();
@@ -348,23 +326,6 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * Query modules may optimize data requests through the $this->getPageSet() object
-	 * by adding extra fields from the page table.
-	 * This function will gather all the extra request fields from the modules.
-	 * @param $modules array of module objects
-	 * @param $pageSet ApiPageSet
-	 */
-	private function addCustomFldsToPageSet( $modules, $pageSet ) {
-		// Query all requested modules.
-		/**
-		 * @var $module ApiQueryBase
-		 */
-		foreach ( $modules as $module ) {
-			$module->requestExtraData( $pageSet );
-		}
-	}
-
-	/**
 	 * Create instances of all modules requested by the client
 	 * @param $modules Array to append instantiated modules to
 	 * @param $param string Parameter name to read modules from
@@ -390,85 +351,25 @@ class ApiQuery extends ApiBase {
 		// more than 380K. The maximum revision size is in the megabyte range,
 		// and the maximum result size must be even higher than that.
 
-		// Title normalizations
-		$normValues = array();
-		foreach ( $pageSet->getNormalizedTitles() as $rawTitleStr => $titleStr ) {
-			$normValues[] = array(
-				'from' => $rawTitleStr,
-				'to' => $titleStr
-			);
-		}
-
-		if ( count( $normValues ) ) {
-			$result->setIndexedTagName( $normValues, 'n' );
+		$normValues = $pageSet->getNormalizedTitlesAsResult( $result );
+		if ( $normValues ) {
 			$result->addValue( 'query', 'normalized', $normValues );
 		}
-
-		// Title conversions
-		$convValues = array();
-		foreach ( $pageSet->getConvertedTitles() as $rawTitleStr => $titleStr ) {
-			$convValues[] = array(
-				'from' => $rawTitleStr,
-				'to' => $titleStr
-			);
-		}
-
-		if ( count( $convValues ) ) {
-			$result->setIndexedTagName( $convValues, 'c' );
+		$convValues = $pageSet->getConvertedTitlesAsResult( $result );
+		if ( $convValues  ) {
 			$result->addValue( 'query', 'converted', $convValues );
 		}
-
-		// Interwiki titles
-		$intrwValues = array();
-		foreach ( $pageSet->getInterwikiTitles() as $rawTitleStr => $interwikiStr ) {
-			$item = array(
-				'title' => $rawTitleStr,
-				'iw' => $interwikiStr,
-			);
-			if ( $this->iwUrl ) {
-				$title = Title::newFromText( $rawTitleStr );
-				$item['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-			}
-			$intrwValues[] = $item;
-		}
-
-		if ( count( $intrwValues ) ) {
-			$result->setIndexedTagName( $intrwValues, 'i' );
+		$intrwValues = $pageSet->getInterwikiTitlesAsResult( $result, $this->iwUrl );
+		if ( $intrwValues ) {
 			$result->addValue( 'query', 'interwiki', $intrwValues );
 		}
-
-		// Show redirect information
-		$redirValues = array();
-		/**
-		 * @var $titleTo Title
-		 */
-		foreach ( $pageSet->getRedirectTitles() as $titleStrFrom => $titleTo ) {
-			$r = array(
-				'from' => strval( $titleStrFrom ),
-				'to' => $titleTo->getPrefixedText(),
-			);
-			if ( $titleTo->getFragment() !== '' ) {
-				$r['tofragment'] = $titleTo->getFragment();
-			}
-			$redirValues[] = $r;
-		}
-
-		if ( count( $redirValues ) ) {
-			$result->setIndexedTagName( $redirValues, 'r' );
+		$redirValues = $pageSet->getRedirectTitlesAsResult( $result );
+		if ( $redirValues ) {
 			$result->addValue( 'query', 'redirects', $redirValues );
 		}
-
-		// Missing revision elements
-		$missingRevIDs = $pageSet->getMissingRevisionIDs();
-		if ( count( $missingRevIDs ) ) {
-			$revids = array();
-			foreach ( $missingRevIDs as $revid ) {
-				$revids[$revid] = array(
-					'revid' => $revid
-				);
-			}
-			$result->setIndexedTagName( $revids, 'rev' );
-			$result->addValue( 'query', 'badrevids', $revids );
+		$missingRevIDs = $pageSet->getMissingRevisionIDsAsResult( $result );
+		if ( $missingRevIDs ) {
+			$result->addValue( 'query', 'badrevids', $missingRevIDs );
 		}
 
 		// Page elements
@@ -581,8 +482,10 @@ class ApiQuery extends ApiBase {
 	 * Create a generator object of the given type and return it
 	 * @param $generatorName string Module name
 	 * @return ApiQueryGeneratorBase
+	 * @deprecated since 1.21, generators are maintained by ApiPageSet
 	 */
 	public function newGenerator( $generatorName ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		$generator = $this->mModuleMgr->getModule( $generatorName );
 		if ( $generator === null ) {
 			$this->dieUsage( "Unknown generator=$generatorName", 'badgenerator' );
@@ -594,36 +497,8 @@ class ApiQuery extends ApiBase {
 		return $generator;
 	}
 
-	/**
-	 * For generator mode, execute generator, and use its output as new
-	 * ApiPageSet
-	 * @param $generator ApiQueryGeneratorBase Generator Module
-	 * @param $modules array of module objects
-	 */
-	protected function executeGeneratorModule( $generator, $modules ) {
-		// Generator results
-		$resultPageSet = new ApiPageSet( $this, $this->redirects, $this->convertTitles );
-
-		// Add any additional fields modules may need
-		$generator->requestExtraData( $this->mPageSet );
-		$this->addCustomFldsToPageSet( $modules, $resultPageSet );
-
-		// Populate page information with the original user input
-		$this->mPageSet->execute();
-
-		// populate resultPageSet with the generator output
-		$generator->profileIn();
-		$generator->executeGenerator( $resultPageSet );
-		wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$resultPageSet ) );
-		$resultPageSet->finishPageSetGeneration();
-		$generator->profileOut();
-
-		// Swap the resulting pageset back in
-		$this->mPageSet = $resultPageSet;
-	}
-
-	public function getAllowedParams() {
-		return array(
+	public function getAllowedParams( $flags = 0 ) {
+		$result = array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'prop' )
@@ -636,16 +511,15 @@ class ApiQuery extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'meta' )
 			),
-			'generator' => array(
-				ApiBase::PARAM_TYPE => $this->mAllowedGenerators
-			),
-			'redirects' => false,
-			'converttitles' => false,
 			'indexpageids' => false,
 			'export' => false,
 			'exportnowrap' => false,
 			'iwurl' => false,
 		);
+		if( $flags ) {
+			$result += $this->getPageSet()->getFinalParams( $flags );
+		}
+		return $result;
 	}
 
 	/**
@@ -653,22 +527,19 @@ class ApiQuery extends ApiBase {
 	 * @return string
 	 */
 	public function makeHelpMsg() {
-		// Make sure the internal object is empty
-		// (just in case a sub-module decides to optimize during instantiation)
-		$this->mPageSet = null;
+
+		// Use parent to make default message for the query module
+		$msg = parent::makeHelpMsg();
 
 		$querySeparator = str_repeat( '--- ', 12 );
 		$moduleSeparator = str_repeat( '*** ', 14 );
-		$msg = "\n$querySeparator Query: Prop  $querySeparator\n\n";
+		$msg .= "\n$querySeparator Query: Prop  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( 'prop' );
 		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( 'list' );
 		$msg .= "\n$querySeparator Query: Meta  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( 'meta' );
 		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
-
-		// Use parent to make default message for the query module
-		$msg = parent::makeHelpMsg() . $msg;
 
 		return $msg;
 	}
@@ -703,29 +574,15 @@ class ApiQuery extends ApiBase {
 		return implode( "\n", $moduleDescriptions );
 	}
 
-	/**
-	 * Override to add extra parameters from PageSet
-	 * @return string
-	 */
-	public function makeHelpMsgParameters() {
-		$psModule = new ApiPageSet( $this );
-		return $psModule->makeHelpMsgParameters() . parent::makeHelpMsgParameters();
-	}
-
 	public function shouldCheckMaxlag() {
 		return true;
 	}
 
 	public function getParamDescription() {
-		return array(
+		return $this->getPageSet()->getParamDescription() + array(
 			'prop' => 'Which properties to get for the titles/revisions/pageids. Module help is available below',
 			'list' => 'Which lists to get. Module help is available below',
 			'meta' => 'Which metadata to get about the site. Module help is available below',
-			'generator' => array( 'Use the output of a list as the input for other prop/list/meta items',
-					'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
-			'redirects' => 'Automatically resolve redirects',
-			'converttitles' => array( "Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion.",
-					'Languages that support variant conversion include ' . implode( ', ', LanguageConverter::$languagesWithVariants ) ),
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
@@ -742,9 +599,10 @@ class ApiQuery extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
-		) );
+		return array_merge(
+			parent::getPossibleErrors(),
+			$this->getPageSet()->getPossibleErrors()
+		);
 	}
 
 	public function getExamples() {
