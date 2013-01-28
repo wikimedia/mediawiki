@@ -145,8 +145,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 			$from = $prefix;
 		}
 
-		$fromList = $this->getNamespaceKeyAndText($namespace, $from);
-		$prefixList = $this->getNamespaceKeyAndText($namespace, $prefix);
+		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
+		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
 		$namespaces = $wgContLang->getNamespaces();
 
 		if ( !$prefixList || !$fromList ) {
@@ -227,7 +227,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		} else {
 			$nsForm = $this->namespacePrefixForm( $namespace, $prefix, $hideredirects );
 			$self = $this->getTitle();
-			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) )  .
+			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
 				'<tr>
 					<td>' .
 						$nsForm .

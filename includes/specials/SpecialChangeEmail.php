@@ -195,7 +195,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			if ( $type != 'text' ) {
 				$out .= Xml::label( $this->msg( $label )->text(), $name );
 			} else {
-				$out .=  $this->msg( $label )->escaped();
+				$out .= $this->msg( $label )->escaped();
 			}
 			$out .= "</td>\n";
 			$out .= "\t<td class='mw-input'>";

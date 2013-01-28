@@ -386,7 +386,7 @@ class SpecialBlock extends FormSpecialPage {
 			);
 		}
 
-		$text =  Html::rawElement(
+		$text = Html::rawElement(
 			'p',
 			array( 'class' => 'mw-ipb-conveniencelinks' ),
 			$this->getLanguage()->pipeList( $links )
@@ -650,7 +650,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		if ( $data['HideUser'] ) {
-			if ( !$performer->isAllowed('hideuser') ) {
+			if ( !$performer->isAllowed( 'hideuser' ) ) {
 				# this codepath is unreachable except by a malicious user spoofing forms,
 				# or by race conditions (user has oversight and sysop, loads block form,
 				# and is de-oversighted before submission); so need to fail completely

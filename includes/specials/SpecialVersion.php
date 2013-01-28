@@ -590,7 +590,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	private function IPInfo() {
-		$ip =  str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
+		$ip = str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
 		return "<!-- visited from $ip -->\n" .
 			"<span style='display:none'>visited from $ip</span>";
 	}
@@ -826,16 +826,16 @@ class SpecialVersion extends SpecialPage {
 
 	function showEasterEgg() {
 		$rx = $rp = $xe = '';
-		$alpha = array("", "kbQW", "\$\n()");
+		$alpha = array( "", "kbQW", "\$\n()" );
 		$beta = implode( "', '", $alpha);
-		$juliet = 'echo $delta + strrev($foxtrot) - $alfa + $wgVersion . base64_decode($bravo) * $charlie';
+		$juliet = 'echo $delta + strrev( $foxtrot ) - $alfa + $wgVersion . base64_decode( $bravo ) * $charlie';
 		for ( $i = 1; $i <= 4; $i++ ) {
 			$rx .= '([^j]*)J';
 			$rp .= "+(\\$i)";
 		}
 
 		$rx = "/$rx/Sei";
-		$O = substr("$alpha')", 1);
+		$O = substr( "$alpha')", 1 );
 		for ( $i = 1; $i <= strlen( $rx ) / 3; $i++ ) {
 			$rx[$i-1] = strtolower( $rx[$i-1] );
 		}

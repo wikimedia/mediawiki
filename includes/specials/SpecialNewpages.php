@@ -113,7 +113,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $this->getLanguage()->getNsIndex( $m[1] );
 				if( $ns !== false ) {
-					$this->opts->setValue( 'namespace',  $ns );
+					$this->opts->setValue( 'namespace', $ns );
 				}
 			}
 		}

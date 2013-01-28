@@ -112,7 +112,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	 * @param $msg string
 	 */
 	function error( $msg ) {
-		$this->getOutput()->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
+		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $msg ) );
 	}
 
 	function showForm() {
@@ -202,7 +202,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			if ( $type != 'text' )
 				$out .= Xml::label( $this->msg( $label )->text(), $name );
 			else
-				$out .=  $this->msg( $label )->escaped();
+				$out .= $this->msg( $label )->escaped();
 			$out .= "</td>\n";
 			$out .= "\t<td class='mw-input'>";
 			$out .= $field;
@@ -231,7 +231,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			throw new PasswordError( $this->msg( 'login-throttled' )->text() );
 		}
 
-		if( !$user->checkTemporaryPassword($this->mOldpass) && !$user->checkPassword($this->mOldpass) ) {
+		if( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
 			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}

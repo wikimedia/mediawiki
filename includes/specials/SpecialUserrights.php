@@ -379,7 +379,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgScript;
 		$this->getOutput()->addHTML(
 			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
-			Html::hidden( 'title',  $this->getTitle()->getPrefixedText() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
 			Xml::inputLabel( $this->msg( 'userrights-user-editname' )->text(), 'user', 'username', 30, str_replace( '_', ' ', $this->mTarget ) ) . ' ' .
 			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
