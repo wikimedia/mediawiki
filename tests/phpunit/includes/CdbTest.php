@@ -3,7 +3,6 @@
 /**
  * Test the CDB reader/writer
  */
-
 class CdbTest extends MediaWikiTestCase {
 
 	protected function setUp() {
@@ -13,6 +12,9 @@ class CdbTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @group medium
+	 */
 	public function testCdb() {
 		$dir = wfTempDir();
 		if ( !is_writable( $dir ) ) {
