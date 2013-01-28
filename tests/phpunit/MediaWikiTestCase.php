@@ -863,6 +863,30 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Check whether we have the 'gzip' commandline utility, will skip
+	 * the test whenever "gzip -V" fails.
+	 *
+	 * Result is cached at the process level.
+	 *
+	 * @since 1.21
+	 */
+	protected function checkHasGzip() {
+		static $haveGzip;
+
+		if( $haveGzip === null ) {
+			$retval = null;
+			wfShellExec( 'gzip -V', $retval );
+			$haveGzip = ($retval === 0);
+		}
+
+		if( !$haveGzip ) {
+			$this->markTestSkipped( "Skip test, requires the gzip utility in PATH" );
+		}
+
+		return $haveGzip;
+	}
+
+	/**
 	 * Check if $extName is a loaded PHP extension, will skip the
 	 * test whenever it is not loaded.
 	 *
