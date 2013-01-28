@@ -19,6 +19,26 @@
 $fallback = 'fa';
 $rtl = true;
 
+$namespaceNames = array(
+	NS_MEDIA            => 'مئدیا',
+	NS_SPECIAL          => 'اؤزل',
+	NS_MAIN             => '',
+	NS_TALK             => 'دانیشیق',
+	NS_USER             => 'ایستیفاده‌چی',
+	NS_USER_TALK        => 'ایستیفاده‌چی_دانیشیغی',
+	NS_PROJECT_TALK     => '$1_دانیشیق',
+	NS_FILE             => 'فایل',
+	NS_FILE_TALK        => 'فایل_دانیشیغی',
+	NS_MEDIAWIKI        => 'مئدیا‌ویکی',
+	NS_MEDIAWIKI_TALK   => 'مئدیا‌ویکی_دانیشیغی',
+	NS_TEMPLATE         => 'شابلون',
+	NS_TEMPLATE_TALK    => 'شابلون_دانیشیغی',
+	NS_HELP             => 'یاردیم',
+	NS_HELP_TALK        => 'یاردیم_دانیشیغی',
+	NS_CATEGORY         => 'بؤلمه',
+	NS_CATEGORY_TALK    => 'بؤلمه_دانیشیغی',
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'چالیشقان_ایستسفاده‌چیلر' ),
 	'Allmessages'               => array( 'بوتون_مئساژلار' ),

@@ -73,7 +73,7 @@ $namespaceNames = array(
 	NS_TALK             => 'Συζήτηση',
 	NS_USER             => 'Χρήστης',
 	NS_USER_TALK        => 'Συζήτηση_χρήστη',
-	NS_PROJECT_TALK     => '$1_συζήτηση',
+	NS_PROJECT_TALK     => 'Συζήτηση_$1',
 	NS_FILE             => 'Αρχείο',
 	NS_FILE_TALK        => 'Συζήτηση_αρχείου',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -87,8 +87,9 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Μέσον' => NS_MEDIA,
-	'Εικόνα' => NS_FILE,
+	'Μέσον'            => NS_MEDIA,
+	'$1_συζήτηση'      => NS_PROJECT_TALK,
+	'Εικόνα'           => NS_FILE,
 	'Συζήτηση_εικόνας' => NS_FILE_TALK,
 );
 

@@ -18,6 +18,11 @@
 
 $fallback = 'id';
 
+$namespaceNames = array(
+	NS_FILE             => 'Berkas',
+	NS_TEMPLATE         => 'Templat',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garih bawahi link:',
