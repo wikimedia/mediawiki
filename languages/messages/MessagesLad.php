@@ -315,7 +315,7 @@ $messages = array(
 'cancel'        => 'Anular',
 'moredotdotdot' => 'Más...',
 'mypage'        => 'Mi hoja',
-'mytalk'        => 'Mi diskusyón',
+'mytalk'        => 'La mi diskusyon',
 'anontalk'      => 'Diskusyón para este adresso de IP',
 'navigation'    => 'Navigación',
 'and'           => '&#32;y',
@@ -713,7 +713,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 
 # Preferences page
 'preferences'               => 'Preferencias',
-'mypreferences'             => 'Mis preferencias',
+'mypreferences'             => 'Las mis preferensias',
 'changepassword'            => 'Trocar el kóddiche',
 'prefs-skin'                => 'Vista',
 'skin-preview'              => 'Previstear',
@@ -897,7 +897,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 
 # Watchlist
 'watchlist'         => 'Mi lista de escogidas',
-'mywatchlist'       => 'Mi lista de akavidamientos',
+'mywatchlist'       => 'La mi lista de akavidamientos',
 'watchlistfor2'     => 'Para $1 $2',
 'addedwatchtext'    => "La hoja «[[:$1]]» fue ajustada a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta hoja i en tu hoja de diskussión associada se van indicar aí, i la hoja va aparecer '''gordo''' en la hoja de [[Special:RecentChanges|trocamientos freskos]] para hazerla más kolay de detektar.
 

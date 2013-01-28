@@ -38,6 +38,7 @@
  * @author McDutchie
  * @author Melos
  * @author Minerva Titani
+ * @author Muxator
  * @author Nemo bis
  * @author Nick1915
  * @author Ninniuz
@@ -59,6 +60,7 @@
  * @author Una giornata uggiosa '94
  * @author Vajotwo
  * @author Valepert
+ * @author Vituzzu
  * @author Ximo17
  * @author Xpensive
  * @author ZioNicco
@@ -317,9 +319,9 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Stile del carattere nella casella di modifica:',
 'editfont-default'   => 'Predefinito del browser',
-'editfont-monospace' => 'Font monospazio',
-'editfont-sansserif' => 'Font sans-serif',
-'editfont-serif'     => 'Font serif',
+'editfont-monospace' => 'Carattere a larghezza fissa',
+'editfont-sansserif' => 'Carattere sans-serif',
+'editfont-serif'     => 'Carattere serif',
 
 # Dates
 'sunday'        => 'domenica',
@@ -477,7 +479,7 @@ $messages = array(
 'viewhelppage'      => 'Visualizza la pagina di aiuto',
 'categorypage'      => 'Visualizza la categoria',
 'viewtalkpage'      => 'Visualizza la pagina di discussione',
-'otherlanguages'    => 'Altre lingue',
+'otherlanguages'    => 'In altre lingue',
 'redirectedfrom'    => '(Reindirizzamento da <b>$1</b>)',
 'redirectpagesub'   => 'Pagina di reindirizzamento',
 'lastmodifiedat'    => "Questa pagina è stata modificata per l'ultima volta il $1 alle $2.",
@@ -632,11 +634,11 @@ Query: $2',
 'viewsource-title'     => 'Visualizza sorgente di $1',
 'actionthrottled'      => 'Azione ritardata',
 'actionthrottledtext'  => "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che in questo caso è stato superato. Si prega di riprovare tra qualche minuto.",
-'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',
+'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica o altre operazioni.',
 'viewsourcetext'       => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'viewyourtext'         => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
 'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software di questo sito ed è protetta per evitare possibili abusi.
-Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki,",
+Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki.",
 'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti su questo wiki.
 Per aggiungere o modificare le traduzioni valide su tutti i wiki, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
 'sqlhidden'            => '(la query SQL è stata nascosta)',
@@ -679,7 +681,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'notloggedin'                => 'Accesso non effettuato',
 'nologin'                    => "Non hai ancora un accesso? '''$1'''.",
 'nologinlink'                => 'Registrati',
-'createaccount'              => 'Crea un accesso',
+'createaccount'              => "Crea un'utenza",
 'gotaccount'                 => "Hai già un accesso? '''$1'''.",
 'gotaccountlink'             => 'Entra',
 'userlogin-resetlink'        => 'Hai dimenticato i tuoi dati di accesso?',
@@ -769,10 +771,10 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reimposta password',
-'passwordreset-text'               => 'Completa questo modulo per ricevere i dettagli del tuo account via e-mail.',
+'passwordreset-text'               => 'Compila questo modulo per ricevere i dettagli del tuo account via e-mail.',
 'passwordreset-legend'             => 'Reimposta password',
 'passwordreset-disabled'           => 'La reimpostazione delle password è stata disabilitata su questa wiki',
-'passwordreset-pretext'            => '{{PLURAL:$1||Immetti una delle porzioni di dati qui sotto}}',
+'passwordreset-pretext'            => '{{PLURAL:$1||Immetti uno dei dati richiesti qui sotto}}',
 'passwordreset-username'           => 'Nome utente:',
 'passwordreset-domain'             => 'Dominio:',
 'passwordreset-capture'            => 'Visualizzare il contenuto del messaggio e-mail?',
@@ -842,7 +844,7 @@ Password temporanea: $2',
 'showpreview'                      => 'Visualizza anteprima',
 'showlivepreview'                  => "Funzione ''Live preview''",
 'showdiff'                         => 'Mostra cambiamenti',
-'anoneditwarning'                  => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
+'anoneditwarning'                  => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato il tuo indirizzo IP.",
 'anonpreviewwarning'               => "''Non è stato eseguito il login. Salvando la pagina, il proprio indirizzo IP sarà registrato nella cronologia.''",
 'missingsummary'                   => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata con l'oggetto vuoto.",
 'missingcommenttext'               => 'Inserire un commento qui sotto.',
@@ -1393,7 +1395,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'userrights-groups-help'       => "È possibile modificare i gruppi cui è assegnato l'utente.
 * Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
 * Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
-* Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
+* Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o viceversa).",
 'userrights-reason'            => 'Motivo:',
 'userrights-no-interwiki'      => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'        => 'Il database $1 non esiste o non è un database locale.',
@@ -1962,7 +1964,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'fewestrevisions' => 'Pagine con meno revisioni',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
+'nbytes'                  => '$1 {{PLURAL:$1|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorie}}',
 'nlinks'                  => '$1 {{PLURAL:$1|collegamento|collegamenti}}',
 'nmembers'                => '$1 {{PLURAL:$1|elemento|elementi}}',
@@ -2098,7 +2100,7 @@ Protocolli supportati: <code>$1</code> (predefinito http:// se nessun protocollo
 # Special:ActiveUsers
 'activeusers'            => 'Elenco degli utenti attivi',
 'activeusers-intro'      => 'Questo è un elenco di utenti che hanno avuto qualche tipo di attività da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.',
-'activeusers-count'      => "$1 {{PLURAL:$1|modifica|modifiche}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
+'activeusers-count'      => "$1 {{PLURAL:$1|azione|azioni}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
 'activeusers-from'       => 'Mostra gli utenti a partire da:',
 'activeusers-hidebots'   => 'Nascondi i bot',
 'activeusers-hidesysops' => 'Nascondi gli amministratori',
@@ -2171,9 +2173,8 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:UserLogin|accesso al sito]].",
 'addwatch'             => 'Aggiungi agli osservati speciali',
-'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
-D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
-il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile.",
+'addedwatchtext'       => 'La pagina "[[:$1]]" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
+D\'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede.',
 'removewatch'          => 'Rimuovi dagli osservati speciali',
 'removedwatchtext'     => 'La pagina "[[:$1]]" è stata eliminata dalla [[Special:Watchlist|lista degli osservati speciali]].',
 'watch'                => 'Segui',
@@ -2206,8 +2207,8 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'changed'                      => 'modificata',
 'created'                      => 'creata',
 'enotif_subject'               => 'La pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED da $PAGEEDITOR',
-'enotif_lastvisited'           => "Consultare $1 per vedere tutte le modifiche dall'ultima visita.",
-'enotif_lastdiff'              => 'Vedere $1 per visualizzare la modifica.',
+'enotif_lastvisited'           => "Visita $1 per vedere tutte le modifiche dall'ultima visita.",
+'enotif_lastdiff'              => 'Visita $1 per vedere la modifica.',
 'enotif_anon_editor'           => 'utente anonimo $1',
 'enotif_body'                  => 'Gentile $WATCHINGUSERNAME,
 
@@ -2313,9 +2314,9 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 Le impostazioni correnti per la pagina sono '''$1''':",
 'protect-cascadeon'           => 'Al momento questa pagina è bloccata perché viene inclusa {{PLURAL:$1|nella pagina indicata di seguito, per la quale|nelle pagine indicate di seguito, per le quali}} è attiva la protezione ricorsiva. È possibile modificare il livello di protezione individuale della pagina, ma le impostazioni derivanti dalla protezione ricorsiva non saranno modificate.',
 'protect-default'             => 'Autorizza tutti gli utenti',
-'protect-fallback'            => 'È richiesto il permesso "$1"',
-'protect-level-autoconfirmed' => 'Blocca gli utenti nuovi e i non registrati',
-'protect-level-sysop'         => 'Solo amministratori',
+'protect-fallback'            => 'Consentito solo agli utenti con permesso "$1"',
+'protect-level-autoconfirmed' => 'Consentito solo agli utenti "autoconfermati"',
+'protect-level-sysop'         => 'Consentito solo agli amministratori',
 'protect-summary-cascade'     => 'ricorsiva',
 'protect-expiring'            => 'scadenza: $1 (UTC)',
 'protect-expiring-local'      => 'scade il $1',
@@ -2604,7 +2605,7 @@ Ricordare di [[Special:UnlockDB|rimuovere il blocco]] dopo aver terminato le ope
 'move-page-legend'             => 'Spostamento di pagina',
 'movepagetext'                 => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. Puoi aggiornare automaticamente i redirect che puntano al titolo originale. Puoi decidere di non farlo, ma ricordati di verificare che lo spostamento non abbia creato [[Special:DoubleRedirects|doppi redirect]] o [[Special:BrokenRedirects|redirect errati]]. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
-Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia vuota o costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.
+Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.
 
 '''ATTENZIONE:'''
 Un cambiamento così drastico può creare contrattempi e problemi, soprattutto per le pagine più visitate. Accertarsi di aver valutato le conseguenze dello spostamento prima di procedere.",
@@ -3668,7 +3669,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'specialpages-group-highuse'     => 'Pagine molto usate',
 'specialpages-group-pages'       => 'Elenchi di pagine',
 'specialpages-group-pagetools'   => 'Strumenti utili per le pagine',
-'specialpages-group-wiki'        => 'Strumenti e informazioni sul progetto',
+'specialpages-group-wiki'        => 'Dati e strumenti',
 'specialpages-group-redirects'   => 'Pagine speciali di redirect',
 'specialpages-group-spam'        => 'Strumenti contro lo spam',
 
@@ -3762,9 +3763,9 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-move-move_redir-noredirect' => '$1 ha spostato la pagina $3 a $4 al posto di un redirect senza lasciare redirect',
 'logentry-patrol-patrol'              => '$1 ha segnato la versione $4 della pagina $3 come verificata',
 'logentry-patrol-patrol-auto'         => '$1 ha segnato automaticamente la versione $4 della pagina $3 come verificata',
-'logentry-newusers-newusers'          => "L'account utente $1 è stato creato",
-'logentry-newusers-create'            => "L'account utente $1 è stato creato",
-'logentry-newusers-create2'           => "L'account utente $3 è stato creato da $1",
+'logentry-newusers-newusers'          => "L'utenza $1 è stata creata",
+'logentry-newusers-create'            => "L'utenza $1 è stata creata",
+'logentry-newusers-create2'           => "L'utenza $3 è stata creata da $1",
 'logentry-newusers-autocreate'        => "L'utenza $1 è stata creata automaticamente",
 'newuserlog-byemail'                  => 'password inviata via mail',
 

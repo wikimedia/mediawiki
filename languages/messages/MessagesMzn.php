@@ -211,7 +211,7 @@ $messages = array(
 'september'     => 'سـه‌پـتـه‌مـبـر',
 'october'       => 'اکتبر',
 'november'      => 'نـووه‌مـبـر',
-'december'      => 'ده‌سـه‌مـبـر',
+'december'      => 'دسامبر',
 'january-gen'   => 'جـانـویـه',
 'february-gen'  => 'فوریه',
 'march-gen'     => 'مـارس',
@@ -223,7 +223,7 @@ $messages = array(
 'september-gen' => 'سـه‌پـتـه‌مـبـر',
 'october-gen'   => 'اکتبر',
 'november-gen'  => 'نـووه‌مـبـر',
-'december-gen'  => 'ده‌سـه‌مـبـر',
+'december-gen'  => 'دسامبر',
 'jan'           => 'جانویه',
 'feb'           => 'فه‌وریه',
 'mar'           => 'مارچ',
@@ -235,7 +235,7 @@ $messages = array(
 'sep'           => 'سه‌پته‌مبر',
 'oct'           => 'ئوکتوبر',
 'nov'           => 'نووه‌مبر',
-'dec'           => 'ده‌سه‌مبر',
+'dec'           => 'دسامبر',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|رج|رج‌ئون}}',

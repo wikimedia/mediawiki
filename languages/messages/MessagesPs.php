@@ -504,7 +504,7 @@ $1',
 'viewsource'           => 'سرچينه کتل',
 'viewsource-title'     => 'د $1 سرچينه کتل',
 'actionthrottled'      => 'د دې کړنې مخنيوی وشو',
-'protectedpagetext'    => 'دا مخ د بدلون او سمون د مخنيوي په تکل تړل شوی دی.',
+'protectedpagetext'    => 'دا مخ د سمون او نورو کړنو د ترسره کولو په تکل ژغورل شوی.',
 'viewsourcetext'       => 'تاسې د دې مخ سرچينه کتلی او لمېسلی شی:',
 'protectedinterface'   => 'دا مخ د دې ويکي د ساوترې د ليدنمخ متن لري، او د ورانکارۍ په خاطر ژغورل شوی.
 په ټولو ويکي ګانو کې د ژباړې د ورګډولو او يا هم د ژباړې د سمون او بدلون لپاره د مېډياويکي د ځايتابه پروژه [//translatewiki.net/ translatewiki.net] وکاروۍ.',
@@ -1379,19 +1379,20 @@ $1',
 'filerevert-submit'  => 'په څټ ګرځول',
 
 # File deletion
-'filedelete'                  => '$1 ړنګول',
-'filedelete-legend'           => 'دوتنه ړنګول',
-'filedelete-intro'            => "تاسې د '''[[Media:$1|$1]]''' دوتنې او د ورسره ټول پېښليک د ړنګولو په حال کې ياست.",
-'filedelete-comment'          => 'سبب:',
-'filedelete-submit'           => 'ړنګول',
-'filedelete-success'          => "'''$1''' ړنګ شو.",
-'filedelete-nofile'           => "'''$1''' نشته.",
-'filedelete-otherreason'      => 'بل/اضافه سبب:',
-'filedelete-reason-otherlist' => 'بل سبب',
-'filedelete-reason-dropdown'  => '*د ړنګولو ټولګړی سبب
+'filedelete'                   => '$1 ړنګول',
+'filedelete-legend'            => 'دوتنه ړنګول',
+'filedelete-intro'             => "تاسې د '''[[Media:$1|$1]]''' دوتنې او د ورسره ټول پېښليک د ړنګولو په حال کې ياست.",
+'filedelete-comment'           => 'سبب:',
+'filedelete-submit'            => 'ړنګول',
+'filedelete-success'           => "'''$1''' ړنګ شو.",
+'filedelete-nofile'            => "'''$1''' نشته.",
+'filedelete-otherreason'       => 'بل/اضافه سبب:',
+'filedelete-reason-otherlist'  => 'بل سبب',
+'filedelete-reason-dropdown'   => '*د ړنګولو ټولګړی سبب
 ** د رښتو نه غاړه غړونه
 ** کټ مټ دوه ګونې دوتنه',
-'filedelete-edit-reasonlist'  => 'د ړنګولو سببونه سمول',
+'filedelete-edit-reasonlist'   => 'د ړنګولو سببونه سمول',
+'filedelete-maintenance-title' => 'دوتنه نه شي ړنګېدی',
 
 # MIME search
 'mimesearch' => 'MIME پلټنه',
@@ -1428,6 +1429,7 @@ $1',
 'statistics-edits'             => 'د {{SITENAME}} د جوړېدو راهيسې د مخونو سمون',
 'statistics-edits-average'     => 'پر يوه مخ د سمون منځوۍ کچه',
 'statistics-views-total'       => 'ټولټال کتنې',
+'statistics-views-peredit'     => 'د هر سمون په سر کتنې',
 'statistics-users'             => 'ثبت شوي [[Special:ListUsers|کارنان]]',
 'statistics-users-active'      => 'فعاله کارنان',
 'statistics-users-active-desc' => 'هغه کارنان چې په {{PLURAL:$1|وروستۍ ورځ|وروستيو $1 ورځو}} کې فعاله ونډه لرلې',
@@ -1626,11 +1628,9 @@ $1',
 'watchnologin'         => 'غونډال کې نه ياست ننوتي.',
 'watchnologintext'     => 'ددې لپاره چې خپل کتنلړ کې بدلون راولی نو تاسو ته پکار ده چې لومړی غونډال کې [[Special:UserLogin|ورننوځۍ]].',
 'addwatch'             => 'کتنلړ کې ورګډول',
-'addedwatchtext'       => "د \"[[:\$1]]\" په نوم يو مخ ستاسې [[Special:Watchlist|کتنلړ]] کې ورګډ شو.
-په راتلونکې کې چې په دغه مخ او د ده د خبرواترو مخ کې کوم بدلونونه راځي نو هغه به ستاسې کتنلړ کې ښکاره شي،
-او په همدې توګه هغه مخونه به د [[Special:RecentChanges|وروستي بدلونونو]] په لړليک کې په '''روڼ''' ليک ښکاري ترڅو په اسانۍ سره څوک وپوهېږي چې په کوم کوم مخونو کې بدلونونه ترسره شوي.
-
-که چېرته تاسې بيا وروسته غواړۍ چې کوم مخ د خپل کتنلړ نه ليرې کړۍ، نو په \"نه کتل\" تڼۍ باندې ټک ورکړۍ.",
+'addedwatchtext'       => 'د "[[:$1]]" په نوم يو مخ ستاسې [[Special:Watchlist|کتنلړ]] کې ورګډ شو.
+په راتلونکې کې چې په دغه مخ او د دې د خبرواترو مخ کې کوم بدلونونه راځي نو هغه به ستاسې کتنلړ کې ښکاري.',
+'removewatch'          => 'له کتنلړ نه غورځول',
 'removedwatchtext'     => 'د "[[:$1]]" مخ [[Special:Watchlist|ستاسې کتنلړ]] نه لرې شو.',
 'watch'                => 'کتل',
 'watchthispage'        => 'همدا مخ کتل',
@@ -2634,8 +2634,8 @@ $5
 'revdelete-content-unhid'      => 'مېنځپانګه ښکاره شوی',
 'revdelete-uname-unhid'        => 'ښکاره کارن-نوم',
 'logentry-move-move'           => '$1 د $3 مخ $4 ته ولېږداوه',
-'logentry-newusers-newusers'   => '$1 يو کارن ګڼون جوړ کړ',
-'logentry-newusers-create'     => '$1 يو کارن ګڼون جوړ کړ',
+'logentry-newusers-newusers'   => 'د $1 کارن ګڼون جوړ شو',
+'logentry-newusers-create'     => 'د $1 کارن ګڼون جوړ شو',
 'logentry-newusers-autocreate' => 'د $1 ګڼون په اتوماتيک ډول جوړ شو',
 'newuserlog-byemail'           => 'پټنوم مو برېښليک ته درولېږه',
 

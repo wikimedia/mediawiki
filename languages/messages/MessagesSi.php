@@ -243,7 +243,7 @@ $messages = array(
 
 'underline-always'  => 'සැමවිටම කරන්න',
 'underline-never'   => 'කිසිවිටෙක නොකරන්න',
-'underline-default' => 'බ්‍රවුසරයෙහි පෙරනිමිය අනුවය',
+'underline-default' => 'සම හෝ ගවේෂකයෙහි පෙරනිමිය',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'අකුරු විලාසයන් සංස්කරණ පෙදෙස:',
@@ -330,7 +330,7 @@ $messages = array(
 'newwindow'     => '(නව කවුළුවක විවෘතවේ)',
 'cancel'        => 'අත් හරින්න',
 'moredotdotdot' => 'තවත්...',
-'mypage'        => 'මගේ පිටුව',
+'mypage'        => 'පිටුව',
 'mytalk'        => 'සාකච්ඡාව',
 'anontalk'      => 'මෙම අයිපී ලිපිනය සඳහා සාකච්ඡාව',
 'navigation'    => 'යාත්‍රණය',
@@ -354,7 +354,7 @@ $messages = array(
 'vector-action-protect'          => 'ආරක්‍ෂණය',
 'vector-action-undelete'         => 'මකාදැමීම අවලංගු කරන්න',
 'vector-action-unprotect'        => 'ආරක්ෂණ තත්වය වෙනස් කරන්න',
-'vector-simplesearch-preference' => 'වැඩිදියුණුකළ සෙවුම් යෝජනා සක්‍රීය කරන්න (වෙක්ටර් තීමය සඳහා පමණි)',
+'vector-simplesearch-preference' => 'සුළු කළ සෙවුම් බාරය (වෙක්ටර් තීමය සඳහා පමණි)',
 'vector-view-create'             => 'තනන්න',
 'vector-view-edit'               => 'සංස්කරණය',
 'vector-view-history'            => 'ඉතිහාසය නරඹන්න',
@@ -1932,9 +1932,9 @@ When filtered by user, only files where that user uploaded the most recent versi
 
 'disambiguations'      => 'නිරාකරණ පිටු සඳහා සබැදෙන පිටු',
 'disambiguationspage'  => 'Template:තේරුම් නිරාකරණය',
-'disambiguations-text' => "ඉදිරි පිටු '''වක්‍රෝත්තිහරණ පිටුව'''කට සබැ‍ඳේ.
+'disambiguations-text' => "පහත දැක්වෙන පිටු අතර '''වක්‍රෝත්තිහරණ පිටුවකට''' සබැඳෙන එක් සබැඳියක් හෝ ඇත.
 ඒවා ඒ වෙනුවට අනුරූප මාතෘකාවට සබැඳිය යුතුය.<br />
-යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය",
+යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය.",
 
 'doubleredirects'                   => 'ද්විත්ව යළි-යොමුකිරීම්',
 'doubleredirectstext'               => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.
@@ -2318,9 +2318,9 @@ $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙන
 'protect-cascadeon'           => 'තීරු දර්ශන ආරක්ෂණය (cascading protection) බල ගන්වා ඇති පහත  {{PLURAL:$1|පිටුව|පිටු}} අන්තර්ගත වීම හේතුවෙන් මෙම පිටුව දැනට ආරක්ෂණයට ලක්ව ඇත.
 පිටුවෙහි ආරක්ෂණ මට්ටම ඔබ විසින් වෙනස් කල හැකි නමුදු, එම ක්‍රියාව තීරු දර්ශන ආරක්ෂණය කෙරෙහි බලපෑම් ඇති නොකරනු ඇත.',
 'protect-default'             => 'සියළු පරිශිලකයන්ට ඉඩ සලසන්න',
-'protect-fallback'            => '"$1" අවසරය අවශ්‍ය වේ',
-'protect-level-autoconfirmed' => 'නව සහ ලියාපදිංචි වී නොමැති පරිශීලකයන් වාරණය කරන්න',
-'protect-level-sysop'         => 'පරිපාලකවරුන්ට පමණයි',
+'protect-fallback'            => '"$1" අවසරය සහිත පරිශීලකයන්ට පමණක් ඉඩදෙන්න',
+'protect-level-autoconfirmed' => 'ස්වයංතහවුරු කල පරිශීලකයන්ට පමණක් ඉඩදෙන්න',
+'protect-level-sysop'         => 'පරිපාලකවරුන්ට පමණක් ඉඩදෙන්න',
 'protect-summary-cascade'     => 'තීරු දර්ශනය (cascading)',
 'protect-expiring'            => 'ඉකුත් වේ  $1 (යූටීසි)',
 'protect-expiring-local'      => 'කල් ඉකුත්වීම $1',

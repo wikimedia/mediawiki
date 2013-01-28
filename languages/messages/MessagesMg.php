@@ -351,7 +351,7 @@ $messages = array(
 'newwindow'     => '(sokafy anaty takila hafa)',
 'cancel'        => 'Aoka ihany',
 'moredotdotdot' => 'Tohiny...',
-'mypage'        => 'Pejiko',
+'mypage'        => 'Pejy',
 'mytalk'        => 'Dinika',
 'anontalk'      => "Resaka ho an'io adiresy IP io",
 'navigation'    => 'Fikarohana',
@@ -587,11 +587,15 @@ fangatahana : $2",
 'actionthrottled'      => 'Tao voafetra',
 'actionthrottledtext'  => "Mba hiady amin'ny spam, ny hatetika momba ny fanaovana io otao io dia ferana ho foifoy, ary niaotra io fetra io ianao.
 Andramo indray afaka minitra vitsivitsy.",
-'protectedpagetext'    => 'Voaaro mba tsy hisy hanova ity pejy ity.',
+'protectedpagetext'    => 'Narovana mba tsy hisiana fanovana na tao hafa ity pejy ity.',
 'viewsourcetext'       => "Azonao atao no mijery sy mandrika ny votoatin'ity pejy ity :",
 'viewyourtext'         => "Azonao atao ny mijery ary mandika ny fangon'ny '''fanovanao''' tamin'ity pejy ity:",
-'protectedinterface'   => "Manome lahatsoratra ho an'ny rindrankajy ity pejy ity ary voaaro izy ity mba tsy hisy hanararaotra",
-'editinginterface'     => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [//translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
+'protectedinterface'   => "Ity pejy ity dia manome ny lahatsoratra ho an'ny rindrankajy eto amin'ity Wiki ity, ary narovana mba tsy hisian'ny fanararaotana. Raha tia hanampy na hanova ny dikanteny ho an'ny wiki rehetra, ampiasao [//translatewiki.net/ translatewiki.net], izay tetikasa fandikanan ny rindrankajy Mediawiki.",
+'editinginterface'     => "'''Tandremo''' : Manova pejy ampiasaina amin'ny famoahana ny hafatray ny rindrankajy ianao io.
+
+Hisy fiantraikany amin'ny fisehon'ny tranonkala amin'ny mpampiasa rehetra eto amin'ity wiki ity ny fanovana.
+
+Raha hanampy dikanteny izay tokony hihatra amin'ny wiki rehetra, ampiaao ny tranonkala [//translatewiki.net/ translatewiki.net translatewiki.net], ny tetikasa fandikana an'i MediaWiki.",
 'sqlhidden'            => '(nafenina ny requête SQL)',
 'cascadeprotected'     => 'Ankehitriny dia voaaro ity pejy ity satria misy pejy voaaro {{PLURAL:$1||$1}}1 mampiasa ity pejy ity. Io pejy io dia mampiasa ny fiarovana "en cascade" :
 
@@ -1111,9 +1115,10 @@ Tsy azo jerenao io.",
 'revdelete-concurrent-change' => "Tsi-fetezana teo am-panovana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : ny satany dia voaovan' olon-kafa tamin'ianao nanova azy.
 Jereo ny laogy.",
 'revdelete-only-restricted'   => "Tsi-fetezana teo am-panitrihana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : tsy azonao fafana ireo zavatra ireo amin'ny mpandrindra raha tsy misafidy famafana.",
-'revdelete-reason-dropdown'   => '* Antom-pamafana matetika miasa
-** Tsi-fanajana ny Copyright
-** Fampahalalana tsy tokony apetraka eo',
+'revdelete-reason-dropdown'   => "* Antom-pamafana matetika :
+** Tsifanajakan ny zom-pamrona;
+** Famoahan-kevitra na fampahalalana ho ann'ny olon-tokana tsy tokony haseho;
+** Fampahalalana mety mifototra amin'ny lainga.",
 'revdelete-otherreason'       => 'Antony hafa / antony miampy :',
 'revdelete-reasonotherlist'   => 'Antony hafa',
 'revdelete-edit-reasonlist'   => "Hanova ny anton'ny famafàna",
@@ -1775,8 +1780,7 @@ ity wiki ity dia no-regler-na ho sarababem-bahoaka.",
 
 # Special:ListFiles
 'listfiles-summary'     => "Ahitana ny rakitra rehetra nampidirina ity pejy manokana ity.
-Napetraka eny amin'ny voalohandohany ny rakitra vao nampidirina.
-Tsindrio eo amin'ny lohan-tsanganana raha hanova ny laharam-pisehoana.",
+Rehefa sivanin'ny mpikambana iray izy ity, ny rakitra izay ahitana santiôna vaovao indrindra izay nalefan'io mpikamana io no aseho.",
 'listfiles_search_for'  => 'Hitady anarana media :',
 'imgfile'               => 'rakitra',
 'listfiles'             => "Lisitran'ny rakitra",
@@ -1897,7 +1901,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'statistics-users-active-desc' => "Mpikambana nanao zavatra teto tanatin'ny $1 andro{{PLURAL:}}.",
 'statistics-mostpopular'       => 'Pejy voatsidika',
 
-'disambiguations'     => 'pejina homonimia',
+'disambiguations'     => 'Pejy misy rohy amina pejy fanalana ny fisalasalana',
 'disambiguationspage' => 'Template:homonimia',
 
 'doubleredirects'            => 'Fihodinana roa',

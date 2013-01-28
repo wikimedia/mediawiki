@@ -11,6 +11,7 @@
  * @author Harvzsf
  * @author JinJian
  * @author Kaganer
+ * @author Wiki indio
  * @author לערי ריינהארט
  */
 
@@ -342,6 +343,7 @@ $1',
 'viewdeleted'             => '¿Kitaa in $1?',
 'restorelink'             => '{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}',
 'feedlinks'               => 'Igsulod:',
+'feed-invalid'            => 'Inbalido nga pagpapaabot',
 'site-rss-feed'           => '$1 RSS nga feed',
 'site-atom-feed'          => '$1 Atom nga feed',
 'page-rss-feed'           => '"$1" RSS nga feed',

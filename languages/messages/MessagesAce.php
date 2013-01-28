@@ -968,9 +968,10 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'undelete-search-submit' => 'Mita',
 
 # Namespace form on various pages
-'namespace'      => 'Ruweuëng nan:',
-'invert'         => 'Peubalék peuniléh',
-'blanknamespace' => '(Keuë)',
+'namespace'             => 'Ruweuëng nan:',
+'invert'                => 'Peubalék peuniléh',
+'namespace_association' => 'Ruweuëng nan meuhubông',
+'blanknamespace'        => '(Keuë)',
 
 # Contributions
 'contributions'       => 'Peuneugöt',
@@ -1007,7 +1008,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'whatlinkshere-hideredirs' => '$1 peuninah',
 'whatlinkshere-hidetrans'  => '$1 transklusi',
 'whatlinkshere-hidelinks'  => '$1 hubông',
-'whatlinkshere-hideimages' => '$1 hubong gamba',
+'whatlinkshere-hideimages' => '$1 hubông beureukaih',
 'whatlinkshere-filters'    => 'Saréng',
 
 # Block/unblock

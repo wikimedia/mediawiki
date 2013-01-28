@@ -2608,6 +2608,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-gpsareainformation'          => 'GPS-agjan nimi',
 'exif-gpsdatestamp'                => 'GPS-dat',
 'exif-gpsdifferential'             => 'GPS-differencialine kohenduz',
+'exif-jpegfilecomment'             => 'Kommentarii JPEG-failha',
 'exif-keywords'                    => 'Avadimsanad',
 'exif-worldregiondest'             => "Ozutadud mail'man region",
 'exif-countrydest'                 => 'Ozutadud ma',
@@ -2864,6 +2865,10 @@ Necen vahvištoitandkodan kävutamižen lopstrok om $4.',
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Puhtastada necen lehtpolen keš?',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
 
 # Multipage image navigation
 'imgmultipageprev' => "← edeline lehtpol'",

@@ -16,6 +16,7 @@
  * @author BáthoryPéter
  * @author CERminator
  * @author Cerasus
+ * @author Csigabi
  * @author Dani
  * @author Dj
  * @author Dorgan
@@ -30,6 +31,7 @@
  * @author Samat
  * @author Sucy
  * @author TK-999
+ * @author Tacsipacsi
  * @author Terik
  * @author Tgr
  * @author Xbspiro
@@ -682,7 +684,7 @@ Lekérdezés: $2',
 'viewsource-title'     => '$1 forrásának megtekintése',
 'actionthrottled'      => 'Művelet megszakítva',
 'actionthrottledtext'  => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
-'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
+'protectedpagetext'    => 'Ez egy védett lap, így nem végezhető rajta szerkesztés és más tevékenység',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
 'viewyourtext'         => "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
@@ -834,7 +836,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-capture-help'       => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
 'passwordreset-email'              => 'E-mail cím:',
 'passwordreset-emailtitle'         => 'A(z) {{SITENAME}}-fiók adatai',
-'passwordreset-emailtext-ip'       => 'Valaki (vélhetően Te, a $1 IP-címrő)l emlékeztetők kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-ip'       => 'Valaki (vélhetően Te, a $1 IP-címről) emlékeztetőt kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
@@ -844,7 +846,7 @@ $2
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
-'passwordreset-emailelement'       => 'Felhaználónév: $1
+'passwordreset-emailelement'       => 'Felhasználónév: $1
 Ideiglenes jelszó: $2',
 'passwordreset-emailsent'          => 'Emlékeztető e-mail elküldve.',
 'passwordreset-emailsent-capture'  => 'Az alább látható emlékeztető e-mail elküldve.',
@@ -2204,7 +2206,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'mailnologintext'      => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'            => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'            => 'E-mail küldése',
-'emailpagetext'        => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'emailpagetext'        => '{{GENDER:$1|user}} nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.',
 'usermailererror'      => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject'      => '{{SITENAME}} e-mail a következő felhasználótól: „$1”',
@@ -2393,8 +2395,8 @@ be van kapcsolva a kaszkád védelem.
 Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszkád védelemre.',
 'protect-default'             => 'Minden szerkesztő számára engedélyezett',
 'protect-fallback'            => '"$1" engedély szükséges hozzá',
-'protect-level-autoconfirmed' => 'Nem és frissen regisztrált szerkesztők blokkolása',
-'protect-level-sysop'         => 'Csak adminisztrátorok',
+'protect-level-autoconfirmed' => 'Csak automatikusan ellenőrzött szerkesztőknek engedélyezett (nem vagy frissen regisztráltaknak nem)',
+'protect-level-sysop'         => 'Csak adminisztrátoroknak engedélyezett',
 'protect-summary-cascade'     => 'kaszkád védelem',
 'protect-expiring'            => 'lejár: $1 (UTC)',
 'protect-expiring-local'      => 'lejárat: $1',
@@ -3859,9 +3861,9 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-move-move_redir-noredirect' => '$1 átnevezte a(z) $3 lapot $4 lapra az átirányítást felülírva, átirányítás nélkül',
 'logentry-patrol-patrol'              => '$1 a(z) $3 lap $4 változatát ellenőrzöttnek jelölte',
 'logentry-patrol-patrol-auto'         => '$1 a(z) $3 lap $4 változatát automatikusan ellenőrzöttnek jelölte',
-'logentry-newusers-newusers'          => '$1 létrehozott egy felhasználói fiókot',
-'logentry-newusers-create'            => '$1 létrehozott egy felhasználói fiókot',
-'logentry-newusers-create2'           => '$1 létrehozott egy felhasználói fiókot $3',
+'logentry-newusers-newusers'          => '$1 felhasználói fiók létrehozva',
+'logentry-newusers-create'            => '$1 felhasználói fiók létrehozva',
+'logentry-newusers-create2'           => '$1 létrehozta $3 felhasználói fiókját',
 'logentry-newusers-autocreate'        => '$1 fiók automatikusan létrehozva',
 'newuserlog-byemail'                  => 'a jelszót kiküldtük a megadott e-mail címre',
 

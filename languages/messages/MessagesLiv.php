@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Erdemaslancan
  * @author Ohpuu
  * @author Warbola
