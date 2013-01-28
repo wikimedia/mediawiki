@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @todo Make this work on PostgreSQL and maybe other database servers
  * @ingroup Maintenance
  */
 
@@ -101,22 +100,17 @@ class nextJobDB extends Maintenance {
 			$candidates = array_values( $candidates );
 			$db = $candidates[ mt_rand( 0, count( $candidates ) - 1 ) ];
 			if ( !$this->checkJob( $type, $db ) ) {
-				if ( $type === false ) {
-					// There are no jobs available in the current database
-					foreach ( $pendingDBs as $type2 => $dbs ) {
-						$pendingDBs[$type2] = array_diff( $pendingDBs[$type2], array( $db ) );
-					}
-				} else {
-					// There are no jobs of this type available in the current database
-					$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
-				}
+				$pendingDBs = $this->delistDB( $pendingDBs, $db, $type );
 				// Update the cache to remove the outdated information.
 				// Make sure that this does not race (especially with full rebuilds).
-				$pendingDbInfo['pendingDBs'] = $pendingDBs;
 				if ( $wgMemc->add( "$memcKey:lock", 1, 60 ) ) { // lock
 					$curInfo = $wgMemc->get( $memcKey );
-					if ( $curInfo && $curInfo['timestamp'] === $pendingDbInfo['timestamp'] ) {
-						$wgMemc->set( $memcKey, $pendingDbInfo );
+					if ( is_array( $curInfo ) ) {
+						$curInfo['pendingDBs'] =
+							$this->delistDB( $curInfo['pendingDBs'], $db, $type );
+						$wgMemc->set( $memcKey, $curInfo );
+						// May as well make use of this newer information
+						$pendingDBs = $curInfo['pendingDBs'];
 					}
 					$wgMemc->delete( "$memcKey:lock" ); // unlock
 				}
@@ -131,6 +125,19 @@ class nextJobDB extends Maintenance {
 		}
 	}
 
+	private function delistDB( array $pendingDBs, $db, $type ) {
+		if ( $type === false ) {
+			// There are no jobs available in the current database
+			foreach ( $pendingDBs as $type2 => $dbs ) {
+				$pendingDBs[$type2] = array_diff( $pendingDBs[$type2], array( $db ) );
+			}
+		} else {
+			// There are no jobs of this type available in the current database
+			$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
+		}
+		return $pendingDBs;
+	}
+
 	/**
 	 * Check if the specified database has a job of the specified type in it.
 	 * The type may be false to indicate "all".
@@ -138,7 +145,7 @@ class nextJobDB extends Maintenance {
 	 * @param $dbName string
 	 * @return bool
 	 */
-	function checkJob( $type, $dbName ) {
+	private function checkJob( $type, $dbName ) {
 		$group = JobQueueGroup::singleton( $dbName );
 		if ( $type === false ) {
 			foreach ( $group->getDefaultQueueTypes() as $type ) {
