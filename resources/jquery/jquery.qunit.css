@@ -39,7 +39,6 @@
 	font-weight: normal;
 
 	border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-top-right-radius: 5px;
 	-webkit-border-top-left-radius: 5px;
 }
@@ -118,7 +117,6 @@
 	background-color: #fff;
 
 	border-radius: 5px;
-	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
 
@@ -195,7 +193,6 @@
 
 #qunit-tests > li:last-child {
 	border-radius: 0 0 5px 5px;
-	-moz-border-radius: 0 0 5px 5px;
 	-webkit-border-bottom-right-radius: 5px;
 	-webkit-border-bottom-left-radius: 5px;
 }

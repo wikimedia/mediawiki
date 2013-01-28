@@ -46,10 +46,10 @@ body .ui-button {
 /* Corner radius */
 /* This is normally handled in jquery.ui.theme.css, but in our case, the corner
    styling of our buttons doesn't match our default widget corner styling */
-.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-left, .ui-button.ui-corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; }
-.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-right, .ui-button.ui-corner-tr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; }
-.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-left, .ui-button.ui-corner-bl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
-.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-right, .ui-button.ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-left, .ui-button.ui-corner-tl { -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-right, .ui-button.ui-corner-tr { -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-left, .ui-button.ui-corner-bl { -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
+.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-right, .ui-button.ui-corner-br { -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
 
 body .ui-button:hover {
 	border-color: #6e7273;
@@ -105,7 +105,6 @@ body .ui-button.ui-button-green.ui-button-large:hover {
 }
 body .ui-button.ui-button-green.disabled {
 	filter:alpha(opacity=50);
-	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
 	opacity: 0.50;
 }
@@ -133,7 +132,6 @@ body .ui-button.ui-button-blue.ui-button-large:hover {
 }
 body .ui-button.ui-button-blue.disabled {
 	filter:alpha(opacity=50);
-	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
 	opacity: 0.50;
 }
@@ -161,7 +159,6 @@ body .ui-button.ui-button-red.ui-button-large:hover {
 }
 body .ui-button.ui-button-red.disabled {
 	filter:alpha(opacity=50);
-	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
 	opacity: 0.50;
 }
@@ -189,7 +186,6 @@ body .ui-button.ui-button-orange.ui-button-large:hover {
 }
 body .ui-button.ui-button-orange.disabled {
 	filter:alpha(opacity=50);
-	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
 	opacity: 0.50;
 }
