@@ -17,19 +17,19 @@ $messages['en'] = array(
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "A <code>LocalSettings.php</code> file has been detected.
 To upgrade this installation, please enter the value of <code>\$wgUpgradeKey</code> in the box below.
-You will find it in LocalSettings.php.",
-	'config-localsettings-cli-upgrade'    => 'A LocalSettings.php file has been detected.
-To upgrade this installation, please run update.php instead',
+You will find it in <code>LocalSettings.php</code>.",
+	'config-localsettings-cli-upgrade'    => 'A <code>LocalSettings.php</code> file has been detected.
+To upgrade this installation, please run <code>update.php</code> instead',
 	'config-localsettings-key'        => 'Upgrade key:',
 	'config-localsettings-badkey'     => 'The key you provided is incorrect.',
 	'config-upgrade-key-missing'      => 'An existing installation of MediaWiki has been detected.
-To upgrade this installation, please put the following line at the bottom of your LocalSettings.php:
+To upgrade this installation, please put the following line at the bottom of your <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'The existing LocalSettings.php appears to be incomplete.
+	'config-localsettings-incomplete' => 'The existing <code>LocalSettings.php</code> appears to be incomplete.
 The $1 variable is not set.
-Please change LocalSettings.php so that this variable is set, and click "Continue".',
-	'config-localsettings-connection-error' => 'An error was encountered when connecting to the database using the settings specified in LocalSettings.php or AdminSettings.php. Please fix these settings and try again.
+Please change <code>LocalSettings.php</code> so that this variable is set, and click "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'An error was encountered when connecting to the database using the settings specified in <code>LocalSettings.php</code> or <code>AdminSettings.php</code>. Please fix these settings and try again.
 
 $1',
 	'config-session-error'            => 'Error starting session: $1',
@@ -317,7 +317,7 @@ This is '''not recommended''' unless you are having problems with your wiki.",
 
 You can now [$1 start using your wiki].",
 	'config-regenerate'               => 'Regenerate LocalSettings.php →',
-	'config-show-table-status'        => 'SHOW TABLE STATUS query failed!',
+	'config-show-table-status'        => '<code>SHOW TABLE STATUS</code> query failed!',
 	'config-unknown-collation'        => "'''Warning:''' Database is using unrecognised collation.",
 	'config-db-web-account'           => 'Database account for web access',
 	'config-db-web-help'              => 'Select the username and password that the web server will use to connect to the database server, during ordinary operation of the wiki.',
