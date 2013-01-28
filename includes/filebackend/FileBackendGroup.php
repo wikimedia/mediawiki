@@ -122,7 +122,9 @@ class FileBackendGroup {
 				throw new MWException( "Cannot register a backend with no name." );
 			}
 			$name = $config['name'];
-			if ( !isset( $config['class'] ) ) {
+			if ( isset( $this->backends[$name] ) ) {
+				throw new MWException( "Backend with name `{$name}` already registered." );
+			} elseif ( !isset( $config['class'] ) ) {
 				throw new MWException( "Cannot register backend `{$name}` with no class." );
 			}
 			$class = $config['class'];
