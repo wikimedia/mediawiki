@@ -826,7 +826,6 @@ div#bodyContent {
 	border: solid 1px #a7d7f9;
 	border-radius: 0.75em;
 	-webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.125);
-	-moz-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.125);
 	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.125);
 }
 
