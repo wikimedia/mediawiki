@@ -84,7 +84,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$f = $this->storeit( $fn, $infn, 0 );
 		$this->assertTrue( $f->isOK(), 'failed to store a new file' );
 		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 1 , "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
 		if ( $fromrepo ) {
 			$f = $this->storeit( "Other-$fn", $infn, FileRepo::OVERWRITE);
 			$infn = $f->value;
@@ -93,17 +93,17 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$f = $this->storeit( $fn, $infn, FileRepo::OVERWRITE );
 		$this->assertTrue( $f->isOK(), 'We should be allowed to overwrite' );
 		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 1 , "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should fail because we're overwriting.
 		$f = $this->storeit( $fn, $infn, 0 );
 		$this->assertFalse( $f->isOK(), 'We should not be allowed to overwrite' );
 		$this->assertEquals( $f->failCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 0 , "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertEquals( $f->successCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should succeed because we're overwriting the same content.
 		$f = $this->storeit( $fn, $infn, FileRepo::OVERWRITE_SAME );
 		$this->assertTrue( $f->isOK(), 'We should be able to overwrite the same content' );
 		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 1 , "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should fail because we're overwriting different content.
 		if ( $fromrepo ) {
 			$f = $this->storeit( "Other-$fn", $otherfn, FileRepo::OVERWRITE);
@@ -112,7 +112,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$f = $this->storeit( $fn, $otherfn, FileRepo::OVERWRITE_SAME );
 		$this->assertFalse( $f->isOK(), 'We should not be allowed to overwrite different content' );
 		$this->assertEquals( $f->failCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 0 , "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertEquals( $f->successCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
 	}
 
 	public function teststore() {

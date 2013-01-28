@@ -22,7 +22,7 @@ class MediaWikiParserTest {
 			 * and then was ucfirst( basename( $filename, '.txt' )
 			 * but that didn't work with names like foo.tests.txt
 			 */
-			$className = str_replace( '.', '_',  ucfirst( $testsName ) );
+			$className = str_replace( '.', '_', ucfirst( $testsName ) );
 
 			eval( "/** @group Database\n@group Parser\n*/ class $className extends NewParserTest { protected \$file = '" . strtr( $filename, array( "'" => "\\'", '\\' => '\\\\' ) ) . "'; } " );
 

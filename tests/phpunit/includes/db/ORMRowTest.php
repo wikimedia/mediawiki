@@ -43,19 +43,19 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 	 * @since 1.20
 	 * @return string
 	 */
-	protected abstract function getRowClass();
+	abstract protected function getRowClass();
 
 	/**
 	 * @since 1.20
 	 * @return IORMTable
 	 */
-	protected abstract function getTableInstance();
+	abstract protected function getTableInstance();
 
 	/**
 	 * @since 1.20
 	 * @return array
 	 */
-	public abstract function constructorTestProvider();
+	abstract public function constructorTestProvider();
 
 	/**
 	 * @since 1.20

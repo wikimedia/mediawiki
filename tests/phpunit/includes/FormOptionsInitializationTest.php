@@ -61,12 +61,12 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 	}
 
 	public function testAddIntegers() {
-		$this->object->add( 'one',     1 ); 
-		$this->object->add( 'negone', -1 ); 
+		$this->object->add( 'one', 1 );
+		$this->object->add( 'negone', -1 );
 		$this->assertEquals(
 			array(
 				'negone' => array(
-					'default'  => -1, 
+					'default'  => -1,
 					'value'	=> null,
 					'consumed' => false,
 					'type'	 => FormOptions::INT,

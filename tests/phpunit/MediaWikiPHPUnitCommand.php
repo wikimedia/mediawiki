@@ -2,7 +2,7 @@
 
 class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 
-	static $additionalOptions = array(
+	public static $additionalOptions = array(
 		'regex=' => false,
 		'file=' => false,
 		'use-filebackend=' => false,

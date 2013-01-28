@@ -105,5 +105,3 @@ class LocalFileTest extends MediaWikiTestCase {
 		$this->assertThat( $file, $this->isInstanceOf( 'LocalFile' ), 'wfLocalFile() returns LocalFile for valid Titles' );
 	}
 }
-
-

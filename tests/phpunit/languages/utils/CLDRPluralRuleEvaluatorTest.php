@@ -9,7 +9,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 	 * @dataProvider validTestCases
 	 */
 	function testValidRules( $expected, $rules, $number, $comment ) {
-		$result = CLDRPluralRuleEvaluator::evaluate( $number, (array) $rules );
+		$result = CLDRPluralRuleEvaluator::evaluate( $number, (array)$rules );
 		$this->assertEquals( $expected, $result, $comment );
 	}
 
@@ -18,7 +18,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 	 * @expectedException CLDRPluralRuleError
 	 */
 	function testInvalidRules( $rules, $comment ) {
-		CLDRPluralRuleEvaluator::evaluate( 1, (array) $rules );
+		CLDRPluralRuleEvaluator::evaluate( 1, (array)$rules );
 	}
 
 	function validTestCases() {

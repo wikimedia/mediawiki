@@ -93,5 +93,3 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 	}
 
 }
-
-

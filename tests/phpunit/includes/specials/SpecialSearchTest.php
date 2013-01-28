@@ -138,4 +138,3 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 	}
 }
-

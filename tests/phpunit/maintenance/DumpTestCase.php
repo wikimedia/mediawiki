@@ -57,7 +57,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 */
 	protected function gunzip( $fname ) {
 		$gzipped_contents = file_get_contents( $fname );
-		if ( $gzipped_contents === FALSE ) {
+		if ( $gzipped_contents === false ) {
 			$this->fail( "Could not get contents of $fname" );
 		}
 		// We resort to use gzinflate instead of gzdecode, as gzdecode

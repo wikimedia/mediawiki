@@ -68,7 +68,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		 * - pcntl_fork is supported by the system
 		 * - cache type will correctly support calls over forks
 		 */
-		$fork = (bool) $this->getCliArg( 'use-bagostuff=' );
+		$fork = (bool)$this->getCliArg( 'use-bagostuff=' );
 		$fork &= function_exists( 'pcntl_fork' );
 		$fork &= !$this->cache instanceof HashBagOStuff;
 		$fork &= !$this->cache instanceof EmptyBagOStuff;

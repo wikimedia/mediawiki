@@ -60,5 +60,3 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 	}
 
 }
-
-
