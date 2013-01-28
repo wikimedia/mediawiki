@@ -1652,7 +1652,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'action-suppressionlog' => 'ver este registro privado',
 'action-block' => 'impedir que este usuário edite',
 'action-protect' => 'alterar os níveis de proteção desta página',
-'action-rollback' => 'Reverter rapidamente as edições do último usuário que editou uma página em particular',
+'action-rollback' => 'reverter rapidamente as edições do último usuário que editou uma página em particular',
 'action-import' => 'importar esta página a partir de outro wiki',
 'action-importupload' => 'importar esta página através do carregamento de um arquivo',
 'action-patrol' => 'marcar as edições de outros usuários como patrulhadas',

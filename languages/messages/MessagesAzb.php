@@ -2027,7 +2027,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 # Special:ActiveUsers
 'activeusers' => 'چالیشان ایستیفاده‌چیلرین لیستی',
 'activeusers-intro' => 'بوردا سون {{PLURAL:$1|بیر|$1}} گون‌ده بیر ایشلر گؤرن ایستیفاده‌چیلرین لیستی گؤستریلیر.',
-'activeusers-count' => 'سون {{PLURAL:$3|بیر|$3}} گون‌ده، {{PLURAL:$1|بیر|$1}} دَییشیکلیک.',
+'activeusers-count' => 'سون {{PLURAL:$3|گون|$3 گون}}‌ده، {{PLURAL:$1|$1}} چالیشما',
 'activeusers-from' => 'بوندان باشلایاراق ایستیفاده‌چیلری گؤستر:',
 'activeusers-hidebots' => 'بوتلاری گیزلت',
 'activeusers-hidesysops' => 'ایداره‌چیلری گیزلت',
@@ -3629,7 +3629,7 @@ $5
 'specialpages-group-highuse' => 'ان چوخ ایستیفاده ائدیلن صحیفه‌لر',
 'specialpages-group-pages' => 'صحیفه‌لرین سیاهی‌لاری',
 'specialpages-group-pagetools' => 'صحیفه آلتلری',
-'specialpages-group-wiki' => 'ویکی بیلگیلری و آلت‌لری',
+'specialpages-group-wiki' => 'بیلگیلر و آلتلر',
 'specialpages-group-redirects' => 'خصوصی ایستیقامتلندیرمه صحیفه‌لری',
 'specialpages-group-spam' => 'هرزه یازماق آلت‌لری',
 
@@ -3727,6 +3727,7 @@ $5
 'logentry-newusers-newusers' => ' بیر ایستیفاده‌چی حسابی $1 یاراتدی',
 'logentry-newusers-create' => 'بیر ایستیفاده‌چی حسابی $1 یاراتدی',
 'logentry-newusers-create2' => 'بیر ایستیفاده‌چی $1 حسابی $3 یاراتدی',
+'logentry-newusers-byemail' => '$3 ایستیفاده‌چی حسابی، $1 ایله یارادیلیب و رمز، ایمیل ایله گؤندریلیب‌دیر',
 'logentry-newusers-autocreate' => '$1 حسابی اوتوماتیک یارادیلدی',
 'logentry-rights-rights' => '$1 $3-ین قروپ عوضولوگونو $4-دن $5-ه دَییشدیردی',
 'logentry-rights-rights-legacy' => '$1، $3-ین قروپ عوضولوگونو دَییشدیردی',
@@ -3785,6 +3786,7 @@ $5
 'api-error-ok-but-empty' => 'ایچری خطا: خیدمتچی‌دن جاواب گلمه‌دی.',
 'api-error-overwrite' => 'بیر اولان فایلین اوستونه یازماغا ایجازه یوخدور.',
 'api-error-stashfailed' => 'ایچری خطا: خیدمتچی، گئچیجی فایلی ساخلایانمادی.',
+'api-error-publishfailed' => 'ایچری خطاسی: خیدمت‌چی، گئچیجی فایلی یایانمادی.',
 'api-error-timeout' => 'خیدمتچی، گؤزله‌نیلن واخت‌دا جاواب وئرمه‌دی.',
 'api-error-unclassified' => 'بیر تانینمامیش خطا قاباغا گلدی.',
 'api-error-unknown-code' => 'تانینمامیش خطا: «$1».',

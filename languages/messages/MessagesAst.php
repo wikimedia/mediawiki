@@ -497,7 +497,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Identificase',
 'userlogin-resetlink' => "¿Escaecisti los datos d'identificación?",
-'createaccountmail' => 'Per corréu electrónicu',
+'createaccountmail' => 'Usar una contraseña al debalu temporal y unviala a la direición de corréu electrónicu conseñada más abaxo',
 'createaccountreason' => 'Motivu:',
 'badretype' => "Les claves qu'escribisti nun concuayen.",
 'userexists' => "El nome d'usuariu conseñáu yá ta usándose.
@@ -578,6 +578,7 @@ Por favor espera enantes d'intentalo otra vuelta.",
 # E-mail sending
 'php-mail-error-unknown' => 'Fallu desconocíu na función mail() de PHP.',
 'user-mail-no-addy' => 'Intentasti unviar un corréu electrónicu ensin direición.',
+'user-mail-no-body' => "Trató d'unviar un corréu electrónicu con un cuerpu baleru o curtiu enforma.",
 
 # Change password dialog
 'resetpass' => 'Camudar la clave',
@@ -818,7 +819,7 @@ Amás tas dexándonos afitao qu'escribisti esto tu mesmu, o que lo copiasti d'un
 'longpageerror' => "'''ERROR: El testu qu'unviasti tien {{PLURAL:$1|un quilobyte|$1 quilobytes}}, que pasa del máximu de {{PLURAL:$2|un quilobyte|$2 quilobytes}}.'''
 Nun se pue grabar.",
 'readonlywarning' => "'''Avisu: La base de datos ta candada por mantenimientu, polo que nun vas poder guardar les tos ediciones nestos momentos.'''
-Seique habríes copiar el testu nun ficheru de testu y guardalu pa intentalo llueu.
+Seique habríes copiar y apegar el testu nun ficheru de testu y guardalu pa intentalo más sero.
 
 L'alministrador que la candó dio esta esplicación: $1",
 'protectedpagewarning' => "'''Avisu: Esta páxina ta candada pa que sólo los alministradores puean editala.'''
@@ -2038,7 +2039,7 @@ Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => "Llista d'usuarios activos",
 'activeusers-intro' => "Esta ye una llista d'usuarios que tuvieron alguna mena d'actividá hai menos de $1 {{PLURAL:$1|día|díes}}.",
-'activeusers-count' => '$1 {{PLURAL:$1|edición|ediciones}} nos caberos {{PLURAL:$3|día|$3 díes}}',
+'activeusers-count' => '$1 {{PLURAL:$1|edición|ediciones}} {{PLURAL:$3|nel caberu día|nos caberos $3 díes}}',
 'activeusers-from' => 'Amosar usuarios principiando dende:',
 'activeusers-hidebots' => 'Anubrir bots',
 'activeusers-hidesysops' => 'Anubrir alministradores',
@@ -2270,9 +2271,9 @@ la base de datos. Esta ye la configuración actual de la páxina '''$1''':",
 Esta ye la configuración actual pa la páxina '''$1''':",
 'protect-cascadeon' => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
 'protect-default' => 'Permitir tolos usuarios',
-'protect-fallback' => 'Requier el permisu "$1"',
-'protect-level-autoconfirmed' => 'Bloquiar usuarios nuevos y non rexistraos',
-'protect-level-sysop' => 'Namái alministradores',
+'protect-fallback' => 'Permitir namái usuarios con permisu "$1"',
+'protect-level-autoconfirmed' => 'Permitir namái usuarios autoconfirmaos',
+'protect-level-sysop' => 'Permitir namái alministradores',
 'protect-summary-cascade' => 'en cascada',
 'protect-expiring' => "caduca'l $1 (UTC)",
 'protect-expiring-local' => 'caduca el $1',
@@ -2565,13 +2566,13 @@ Como nun tienes permisos p'anubrir usuarios, nun pues ver o editar el bloquéu d
 'move-page' => 'Treslladar $1',
 'move-page-legend' => 'Treslladar páxina',
 'movepagetext' => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome.
-El nome vieyu va convertise nuna redireición al nuevu.
-Pues actualizar redireiciones qu'enllacien al títulu orixinal automáticamente.
+El nome vieyu va convertise nuna páxina de redireición al títulu nuevu.
+Pues actualizar les redireiciones qu'enllacien al títulu orixinal automáticamente.
 Si prefieres nun lo facer, asegúrate de que nun dexes [[Special:DoubleRedirects|redireiciones dobles]] o [[Special:BrokenRedirects|rotes]].
-Tu yes el responsable de facer que los enllaces queden apuntando aonde se supón qu'han apuntar.
+Tu yes el responsable de facer que los enllaces queden apuntando au se supón que tienen d'apuntar.
 
-Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que tea vacia o seya una redireición que nun tenga historial.
-Esto significa que pues volver a renomar una páxina col nome orixinal si t'enquivoques, y que nun pues sobreescribir una páxina yá esistente.
+Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que seya una redireición y nun tenga historial.
+Esto significa que pues volver a renomar una páxina col nome orixinal si t'enquivoques, y nun pues sobreescribir una páxina yá esistente.
 
 ¡AVISU!'''
 Esti pue ser un cambéu importante y inesperáu pa una páxina popular;
@@ -3700,7 +3701,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'specialpages-group-highuse' => 'Páxines mui usaes',
 'specialpages-group-pages' => 'Llistes de páxines',
 'specialpages-group-pagetools' => 'Ferramientes de páxina',
-'specialpages-group-wiki' => 'Datos wiki y ferramientes',
+'specialpages-group-wiki' => 'Datos y ferramientes',
 'specialpages-group-redirects' => 'Páxines especiales de redireición',
 'specialpages-group-spam' => 'Ferramientes pa spam',
 
@@ -3797,6 +3798,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-newusers-newusers' => "Se creó la cuenta d'usuariu $1",
 'logentry-newusers-create' => "Se creó la cuenta d'usuariu $1",
 'logentry-newusers-create2' => "$1 creó la cuenta d'usuariu $3",
+'logentry-newusers-byemail' => "$1 creó la cuenta d'usuariu $3 y la contraseña uviose per corréu electrónicu",
 'logentry-newusers-autocreate' => 'La cuenta $1 se creó automáticamente',
 'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
 'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
@@ -3855,6 +3857,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-ok-but-empty' => 'Fallu internu: nun hai respuesta del sirvidor.',
 'api-error-overwrite' => 'Nun ta permitío sobroscribir un ficheru esistente.',
 'api-error-stashfailed' => 'Fallu internu: el sirvidor nun pudo guardar el ficheru temporal.',
+'api-error-publishfailed' => 'Fallu internu: el sirvidor nun pudo espublizar el ficheru temporal.',
 'api-error-timeout' => 'El sirvidor nun respondió nel tiempu esperáu.',
 'api-error-unclassified' => 'Hebo un fallu desconocíu',
 'api-error-unknown-code' => 'Fallu desconocíu: «$1»',

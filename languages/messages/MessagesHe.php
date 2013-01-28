@@ -2379,7 +2379,7 @@ $1',
 'usermessage-editor' => 'שולח הודעות המערכת',
 
 # Watchlist
-'watchlist' => 'רשימת המעקב שלי',
+'watchlist' => 'רשימת המעקב',
 'mywatchlist' => 'רשימת מעקב',
 'watchlistfor2' => 'עבור $1 $2',
 'nowatchlist' => 'אין דפים ברשימת המעקב.',

@@ -1041,7 +1041,8 @@ $1",
 'revdelete-only-restricted' => '$2, $1 తేదీ గల అంశాన్ని దాచడంలో పొరపాటు: ఇతర దృశ్యత వికల్పాల్లోంచి ఒకదాన్ని ఎంచుకోకుండా అంశాలని నిర్వాహకులకు కనబడకుండా అణచివెయ్యలేరు.',
 'revdelete-reason-dropdown' => '*సాధారణ తొలగింపు కారణాలు
 ** కాపీహక్కుల ఉల్లంఘన
-** అసంబద్ధ వ్యక్తిగత సమాచారం
+** అసంబద్ధ వ్యాఖ్య లేదా వ్యక్తిగత సమాచారం
+** అసంబద్ధ వాడుకరి పేరు
 ** నిందాపూర్వక సమాచారం',
 'revdelete-otherreason' => 'ఇతర/అదనపు కారణం:',
 'revdelete-reasonotherlist' => 'ఇతర కారణం',
@@ -1229,7 +1230,7 @@ $1",
 'timezoneregion-indian' => 'హిందూ మహాసముద్రం',
 'timezoneregion-pacific' => 'పసిఫిక్ మహాసముద్రం',
 'allowemail' => 'ఇతర వాడుకరుల నుండి ఈ-మెయిళ్ళను రానివ్వు',
-'prefs-searchoptions' => 'అన్వేషణ ఎంపికలు',
+'prefs-searchoptions' => 'వెతుకులాట',
 'prefs-namespaces' => 'పేరుబరులు',
 'defaultns' => 'లేకపోతే ఈ నేంస్పేసులలో అన్వేషించు:',
 'default' => 'అప్రమేయం',
@@ -1241,7 +1242,7 @@ $1",
 'prefs-emailconfirm-label' => 'ఈ-మెయిల్ నిర్ధారణ:',
 'prefs-textboxsize' => 'దిద్దుబాటు కిటికీ పరిమాణం',
 'youremail' => 'మీ ఈ-మెయిలు*',
-'username' => 'వాడుకరి పేరు:',
+'username' => '{{GENDER:$1|వాడుకరి పేరు}}:',
 'uid' => 'వాడుకరి ID:',
 'prefs-memberingroups' => 'సభ్యులుగా ఉన్న {{PLURAL:$1|గుంపు|గుంపులు}}:',
 'prefs-registration' => 'నమోదైన సమయం:',
@@ -2264,7 +2265,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'blanknamespace' => '(మొదటి)',
 
 # Contributions
-'contributions' => 'వాడుకరి రచనలు',
+'contributions' => '{{GENDER:$1|వాడుకరి}} రచనలు',
 'contributions-title' => '$1 యొక్క మార్పులు-చేర్పులు',
 'mycontris' => 'మార్పులు చేర్పులు',
 'contribsub2' => '$1 ($2) కొరకు',
@@ -2832,7 +2833,10 @@ $1',
 'minutes' => '{{PLURAL:$1|ఒక నిమిషం|$1 నిమిషాల}}',
 'hours' => '{{PLURAL:$1|ఒక గంట|$1 గంటల}}',
 'days' => '{{PLURAL:$1|ఒక రోజు|$1 రోజుల}}',
+'months' => '{{PLURAL:$1|ఒక నెల|$1 నెలల}}',
+'years' => '{{PLURAL:$1|ఒక సంవత్సరం|$1 సంవత్సరాల}}',
 'ago' => '$1 క్రితం',
+'just-now' => 'ఇప్పుడే',
 
 # Bad image list
 'bad_image_list' => 'కింద తెలిపిన తీరులో కలపాలి:

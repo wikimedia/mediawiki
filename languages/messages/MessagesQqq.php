@@ -682,7 +682,10 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 
 {{Identical|New messages}}',
-'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
+'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).
+
+See also:
+* {{msg-mw|Newmessagesdifflinkplural}}',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
 The message takes three parameters;
 *$1 {{msg-mw|newmessageslinkplural}},
@@ -696,7 +699,9 @@ This message itself takes one parameter, $1, which is 1 if there was one new edi
 since the last time the user has seen his or her talk page.',
 'newmessagesdifflinkplural' => 'This message itself takes one parameter, $1, which is the number of new edits since the last time the user has seen his or her talk page: it should be used only for correct [[plural]] as in the source text, as the exact number is not relevant.
 
-Like {{msg-mw|newmessagesdifflink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).',
+Like {{msg-mw|newmessagesdifflink}} but supporting pluralization.
+
+Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $2).',
 'youhavenewmessagesmulti' => 'The alternative of {{msg|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].

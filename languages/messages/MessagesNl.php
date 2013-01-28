@@ -794,7 +794,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'gotaccount' => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink' => 'Aanmelden',
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
-'createaccountmail' => 'Per e-mail',
+'createaccountmail' => 'Gebruik een tijdelijke willekeurig wachtwoord en stuur het naar het e-mailadres dat hieronder is vermeld',
 'createaccountreason' => 'Reden:',
 'badretype' => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists' => 'De gekozen gebruikersnaam is al in gebruik.
@@ -2361,7 +2361,7 @@ Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Aanwezige gebruikers',
 'activeusers-intro' => 'Dit is een lijst met gebruikers die enige activiteit hebben laten zien in de afgelopen {{PLURAL:$1|dag|$1 dagen}}.',
-'activeusers-count' => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
+'activeusers-count' => '$1 recente {{PLURAL:$1|handeling|handelingen}} in de {{PLURAL:$3|afgelopen dag|laatste $3 dagen}}',
 'activeusers-from' => 'Gebruikers worden weergegeven vanaf:',
 'activeusers-hidebots' => 'Bots verbergen',
 'activeusers-hidesysops' => 'Beheerders verbergen',
@@ -4055,7 +4055,7 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'specialpages-group-highuse' => "Veelgebruikte pagina's",
 'specialpages-group-pages' => 'Paginalijsten',
 'specialpages-group-pagetools' => 'Paginahulpmiddelen',
-'specialpages-group-wiki' => 'Wikigegevens en -hulpmiddelen',
+'specialpages-group-wiki' => 'Gegevens en -hulpmiddelen',
 'specialpages-group-redirects' => "Doorverwijzende speciale pagina's",
 'specialpages-group-spam' => 'Spamhulpmiddelen',
 
@@ -4152,6 +4152,7 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-newusers-newusers' => 'Gebruiker $1 is aangemaakt',
 'logentry-newusers-create' => 'Gebruiker $1 is aangemaakt',
 'logentry-newusers-create2' => 'Gebruiker $3 is aangemaakt door $1',
+'logentry-newusers-byemail' => 'Gebruiker $3 is aangemaakt door $1 en het wachtwoord is per e-mail verzonden',
 'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
 'logentry-rights-rights' => '$1 heeft groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
 'logentry-rights-rights-legacy' => '$1 heeft groepslidmaatschap voor $3 gewijzigd',
@@ -4210,6 +4211,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'api-error-ok-but-empty' => 'Interne fout: de server heeft geen gegevens teruggeleverd.',
 'api-error-overwrite' => 'Het overschrijven van een bestand bestand is niet toegestaan.',
 'api-error-stashfailed' => 'Interne fout: de server kon het tijdelijke bestand niet opslaan.',
+'api-error-publishfailed' => 'Interne fout: de server kon het tijdelijke bestand niet publiceren.',
 'api-error-timeout' => 'De server heeft niet binnen de verwachte tijd geantwoord.',
 'api-error-unclassified' => 'Er is een onbekende fout opgetreden',
 'api-error-unknown-code' => 'Interne fout: "$1"',

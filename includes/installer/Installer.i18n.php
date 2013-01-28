@@ -583,7 +583,7 @@ $messages['qqq'] = array(
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
 	'config-information' => '{{Identical|Information}}',
-	'config-localsettings-cli-upgrade' => 'Do not translate the <code>LocalSettings.php</code> and the <code>update.php</code> parts.',
+	'config-localsettings-cli-upgrade' => 'Do not translate the <code><code>LocalSettings.php</code></code> and the <code>update.php</code> parts.',
 	'config-session-error' => 'Parameters:
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
@@ -660,7 +660,7 @@ If you\'re translating this message to a right-to-left language, consider writin
 	'config-sqlite-dir-unwritable' => 'webserver refers to a software like Apache or Lighttpd.',
 	'config-can-upgrade' => 'Parameters:
 * $1 - Version or Revision indicator.',
-	'config-show-table-status' => '{{doc-important|"SHOW TABLE STATUS" is a MySQL command. Do not translate this.}}',
+	'config-show-table-status' => '{{doc-important|"<code>SHOW TABLE STATUS</code>" is a MySQL command. Do not translate this.}}',
 	'config-db-web-account-same' => 'checkbox label',
 	'config-db-web-create' => 'checkbox label',
 	'config-ns-generic' => '{{Identical|Project}}',
@@ -887,7 +887,7 @@ U gebruik tans $2.',
 
 U kan nou [$1 u wiki gebruik].',
 	'config-regenerate' => 'Herskep LocalSettings.php →',
-	'config-show-table-status' => 'Die uitvoer van SHOW TABLE STATUS het gefaal!',
+	'config-show-table-status' => 'Die uitvoer van <code>SHOW TABLE STATUS</code> het gefaal!',
 	'config-db-web-account' => 'Databasisgebruiker vir toegang tot die web',
 	'config-mysql-engine' => 'Stoor-enjin:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -912,7 +912,7 @@ U kan nou [$1 u wiki gebruik].',
 	'config-admin-email' => 'E-posadres:',
 	'config-optional-continue' => 'Vra my meer vrae.',
 	'config-optional-skip' => 'Ek is reeds verveeld, installeer maar net die wiki.',
-	'config-profile-wiki' => 'Tradisionele wiki',
+	'config-profile-wiki' => 'Tradisionele wiki', # Fuzzy
 	'config-profile-no-anon' => 'Skep van gebruiker is verpligtend',
 	'config-profile-fishbowl' => 'Slegs vir gemagtigde redaksie',
 	'config-profile-private' => 'Privaat wiki',
@@ -977,7 +977,7 @@ As dit gedoen is, kan u '''[u $2 wiki besoek]'''.", # Fuzzy
 == Hoe om te Begin ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Gheg Albanian (Gegë)
@@ -1250,6 +1250,7 @@ $messages['be'] = array(
  * @author Jim-by
  * @author Wizardist
  * @author Zedlik
+ * @author 아라
  */
 $messages['be-tarask'] = array(
 	'config-desc' => 'Праграма ўсталяваньня MediaWiki',
@@ -1257,19 +1258,19 @@ $messages['be-tarask'] = array(
 	'config-information' => 'Інфармацыя',
 	'config-localsettings-upgrade' => 'Выяўлены файл <code>LocalSettings.php</code>.
 Каб абнавіць гэтае усталяваньне, калі ласка, увядзіце значэньне <code>$wgUpgradeKey</code> у полі ніжэй.
-Яго можна знайсьці ў LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Быў знойдзены файл LocalSettings.php.
-Каб зьмяніць гэтае ўсталяваньне, калі ласка, запусьціце update.php',
+Яго можна знайсьці ў <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Быў знойдзены файл <code>LocalSettings.php</code>.
+Каб зьмяніць гэтае ўсталяваньне, калі ласка, запусьціце <code>update.php</code>',
 	'config-localsettings-key' => 'Ключ паляпшэньня:',
 	'config-localsettings-badkey' => 'Пададзены Вамі ключ зьяўляецца няслушным',
 	'config-upgrade-key-missing' => 'Выяўленае існуючае ўсталяваньне MediaWiki.
-Каб абнавіць гэтае ўсталяваньне, калі ласка, устаўце наступны радок у канец Вашага LocalSettings.php:
+Каб абнавіць гэтае ўсталяваньне, калі ласка, устаўце наступны радок у канец Вашага <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Выглядае, што існуючы LocalSettings.php зьяўляецца няпоўным.
+	'config-localsettings-incomplete' => 'Выглядае, што існуючы <code>LocalSettings.php</code> зьяўляецца няпоўным.
 Не ўстаноўленая пераменная $1.
-Калі ласка, зьмяніце LocalSettings.php так, каб была ўстаноўленая гэтая пераменная, і націсьніце «Працягваць».',
-	'config-localsettings-connection-error' => 'Адбылася памылка падчас злучэньня з базай зьвестак з выкарыстаньнем наладаў, пазначаных у LocalSettings.php ці AdminSettings.php. Калі ласка, выпраўце гэтыя налады і паспрабуйце зноў.
+Калі ласка, зьмяніце <code>LocalSettings.php</code> так, каб была ўстаноўленая гэтая пераменная, і націсьніце «{{int:Config-continue}}».',
+	'config-localsettings-connection-error' => 'Адбылася памылка падчас злучэньня з базай зьвестак з выкарыстаньнем наладаў, пазначаных у <code>LocalSettings.php</code> ці <code>AdminSettings.php</code>. Калі ласка, выпраўце гэтыя налады і паспрабуйце зноў.
 
 $1',
 	'config-session-error' => 'Памылка стварэньня сэсіі: $1',
@@ -1487,7 +1488,7 @@ $1
 	'config-support-postgres' => '* $1 — вядомая сыстэма базы зьвестак з адкрытым кодам, якая зьяўляецца альтэрнатывай MySQL ([http://www.php.net/manual/en/pgsql.installation.php як кампіляваць PHP з падтрымкай PostgreSQL]). Яна можа ўтрымліваць дробныя памылкі, і не рэкамэндуецца выкарыстоўваць яе для працуючых праектаў.',
 	'config-support-sqlite' => '* $1 — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([http://www.php.net/manual/en/pdo.installation.php як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)',
 	'config-support-oracle' => '* $1 зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([http://www.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])',
-	'config-support-ibm_db2' => '* $1 — база зьвестак камэрцыйнага прадпрыемства.',
+	'config-support-ibm_db2' => '* $1 — база зьвестак камэрцыйнага прадпрыемства.', # Fuzzy
 	'config-header-mysql' => 'Налады MySQL',
 	'config-header-postgres' => 'Налады PostgreSQL',
 	'config-header-sqlite' => 'Налады SQLite',
@@ -1555,7 +1556,7 @@ chmod a+w $3</pre>',
 
 Цяпер Вы можаце [$1 пачаць працу з вікі].',
 	'config-regenerate' => 'Рэгенэраваць LocalSettings.php →',
-	'config-show-table-status' => "Запыт 'SHOW TABLE STATUS' не атрымаўся!",
+	'config-show-table-status' => "Запыт '<code>SHOW TABLE STATUS</code>' не атрымаўся!",
 	'config-unknown-collation' => "'''Папярэджаньне:''' база зьвестак выкарыстоўвае нераспазнанае супастаўленьне.",
 	'config-db-web-account' => 'Рахунак базы зьвестак для вэб-доступу',
 	'config-db-web-help' => 'Выберыце імя карыстальніка і пароль, які выкарыстоўваецца вэб-сэрвэрам для злучэньня з сэрвэрам базы зьвестак, падчас звычайных апэрацыяў вікі.',
@@ -1627,7 +1628,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Задаць болей пытаньняў.',
 	'config-optional-skip' => 'Хопіць, проста ўсталяваць вікі.',
 	'config-profile' => 'Профіль правоў удзельніка:',
-	'config-profile-wiki' => 'Традыцыйная вікі',
+	'config-profile-wiki' => 'Традыцыйная вікі', # Fuzzy
 	'config-profile-no-anon' => 'Патрэбнае стварэньне рахунку',
 	'config-profile-fishbowl' => 'Толькі для аўтарызаваных рэдактараў',
 	'config-profile-private' => 'Прыватная вікі',
@@ -1643,7 +1644,7 @@ chmod a+w $3</pre>',
 Сцэнар '''{{int:config-profile-fishbowl}}''' дазваляе рэдагаваць зацьверджаным удзельнікам, але ўсе могуць праглядаць старонкі іх гісторыю.
 '''{{int:config-profile-private}}''' дазваляе праглядаць і рэдагаваць старонкі толькі зацьверджаным удзельнікам.
 
-Больш складаныя правы ўдзельнікаў даступныя пасьля ўсталяваньня, глядзіце [//www.mediawiki.org/wiki/Manual:User_rights адпаведную старонку дакумэнтацыі].",
+Больш складаныя правы ўдзельнікаў даступныя пасьля ўсталяваньня, глядзіце [//www.mediawiki.org/wiki/Manual:User_rights адпаведную старонку дакумэнтацыі].", # Fuzzy
 	'config-license' => 'Аўтарскія правы і ліцэнзія:',
 	'config-license-none' => 'Без інфармацыі пра ліцэнзію',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
@@ -1728,7 +1729,7 @@ chmod a+w $3</pre>',
 	'config-install-alreadydone' => "'''Папярэджаньне:''' здаецца, што Вы ўжо ўсталёўвалі MediaWiki і спрабуеце зрабіць гэтай зноў.
 Калі ласка, перайдзіце на наступную старонку.",
 	'config-install-begin' => 'Пасьля націску кнопкі «{{int:config-continue}}» пачнецца ўсталяваньне MediaWiki.
-Калі Вы жадаеце што-небудзь зьмяніць, націсьніце кнопку «Вярнуцца».',
+Калі Вы жадаеце што-небудзь зьмяніць, націсьніце кнопку «Вярнуцца».', # Fuzzy
 	'config-install-step-done' => 'зроблена',
 	'config-install-step-failed' => 'не атрымалася',
 	'config-install-extensions' => 'Уключаючы пашырэньні',
@@ -1793,11 +1794,12 @@ $3
 == З чаго пачаць ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]
 * [//www.mediawiki.org/wiki/Manual:FAQ Частыя пытаньні MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]', # Fuzzy
 );
 
 /** Bulgarian (български)
  * @author DCLXVI
+ * @author 아라
  */
 $messages['bg'] = array(
 	'config-desc' => 'Инсталатор на МедияУики',
@@ -1805,19 +1807,19 @@ $messages['bg'] = array(
 	'config-information' => 'Информация',
 	'config-localsettings-upgrade' => 'Беше открит файл <code>LocalSettings.php</code>.
 За надграждане на съществуващата инсталация, необходимо е в кутията по-долу да се въведе стойността на <code>$wgUpgradeKey</code>.
-Тази информация е налична в LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Беше открит файл LocalSettings.php.
-За надграждане на наличната инсталация, необходимо е да се стартира update.php',
+Тази информация е налична в <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Беше открит файл <code>LocalSettings.php</code>.
+За надграждане на наличната инсталация, необходимо е да се стартира <code>update.php</code>',
 	'config-localsettings-key' => 'Ключ за надграждане:',
 	'config-localsettings-badkey' => 'Предоставеният ключ е неправилен.',
 	'config-upgrade-key-missing' => 'Беше открита съществуваща инсталация на МедияУики.
-За надграждане на съществуващата инсталация, необходимо е да се постави следният ред в края на файла LocalSettings.php:
+За надграждане на съществуващата инсталация, необходимо е да се постави следният ред в края на файла <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Съществуващият файл LocalSettings.php изглежда непълен.
+	'config-localsettings-incomplete' => 'Съществуващият файл <code>LocalSettings.php</code> изглежда непълен.
 Променливата $1 не е зададена.
-Необходимо е да се редактира файлът LocalSettings.php и да се зададе променливата, след което да се натисне "Продължаване".',
-	'config-localsettings-connection-error' => 'Възникна грешка при свързване с базата от данни чрез данните, посочени в LocalSettings.php или AdminSettings.php. Необходимо е да се коригират тези настройки преди повторен опит за свързване.
+Необходимо е да се редактира файлът <code>LocalSettings.php</code> и да се зададе променливата, след което да се натисне "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Възникна грешка при свързване с базата от данни чрез данните, посочени в <code>LocalSettings.php</code> или <code>AdminSettings.php</code>. Необходимо е да се коригират тези настройки преди повторен опит за свързване.
 
 $1',
 	'config-session-error' => 'Грешка при създаване на сесия: $1',
@@ -2012,7 +2014,7 @@ $1
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL]). Възможно е все още да има грешки, затова не се препоръчва да се използва в общодостъпна среда.',
 	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
 	'config-support-oracle' => '* $1 е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
-	'config-support-ibm_db2' => '* $1 е комерсиална фирмена база от данни.',
+	'config-support-ibm_db2' => '* $1 е комерсиална фирмена база от данни.', # Fuzzy
 	'config-header-mysql' => 'Настройки за MySQL',
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
@@ -2080,7 +2082,7 @@ chmod a+w $3</pre>',
 
 Вече е възможно [$1 да използвате уикито].',
 	'config-regenerate' => 'Създаване на LocalSettings.php →',
-	'config-show-table-status' => 'Заявката SHOW TABLE STATUS не сполучи!',
+	'config-show-table-status' => 'Заявката <code>SHOW TABLE STATUS</code> не сполучи!',
 	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
 	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
 	'config-db-web-help' => 'Избиране на потребителско име и парола, които уеб сървърът ще използва да се свързва с базата от данни при обичайната работа на уикито.',
@@ -2151,7 +2153,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Задаване на допълнителни въпроси.',
 	'config-optional-skip' => 'Достатъчно, инсталиране на уикито.',
 	'config-profile' => 'Профил на потребителските права:',
-	'config-profile-wiki' => 'Традиционно уики',
+	'config-profile-wiki' => 'Традиционно уики', # Fuzzy
 	'config-profile-no-anon' => 'Необходимо е създаване на сметка',
 	'config-profile-fishbowl' => 'Само одобрени редактори',
 	'config-profile-private' => 'Затворено уики',
@@ -2167,7 +2169,7 @@ chmod a+w $3</pre>',
 Уики, което е '''{{int:config-profile-fishbowl}}''' позволява на всички да преглеждат страниците, но само предварително одобрени редактори могат да редактират съдържанието.
 В '''{{int:config-profile-private}}''' само предварително одобрени потребители могат да четат и редактират съдържанието.
 
-Детайлно обяснение на конфигурациите на потребителските права е достъпно след инсталацията в [//www.mediawiki.org/wiki/Manual:User_rights Наръчника за потребителски права].",
+Детайлно обяснение на конфигурациите на потребителските права е достъпно след инсталацията в [//www.mediawiki.org/wiki/Manual:User_rights Наръчника за потребителски права].", # Fuzzy
 	'config-license' => 'Авторски права и лиценз:',
 	'config-license-none' => 'Без лиценз',
 	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното',
@@ -2251,7 +2253,7 @@ chmod a+w $3</pre>',
 	'config-install-alreadydone' => "'''Предупреждение:''' Изглежда вече сте инсталирали МедияУики и се опитвате да го инсталирате отново.
 Продължете към следващата страница.",
 	'config-install-begin' => 'Инсталацията на МедияУики ще започне след натискане на бутона "{{int:config-continue}}".
-Ако желаете да направите промени, натиснете Връщане.',
+Ако желаете да направите промени, натиснете Връщане.', # Fuzzy
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'неуспешно',
 	'config-install-extensions' => 'Добавяне на разширенията',
@@ -2315,7 +2317,7 @@ $3
 == Първи стъпки ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурационни настройки]
 * [//www.mediawiki.org/wiki/Manual:FAQ ЧЗВ за МедияУики]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]', # Fuzzy
 );
 
 /** Banjar (Bahasa Banjar)
@@ -2465,6 +2467,7 @@ $messages['bpy'] = array(
  * @author Fulup
  * @author Gwendal
  * @author Y-M D
+ * @author 아라
  */
 $messages['br'] = array(
 	'config-desc' => 'Poellad staliañ MediaWIki',
@@ -2472,19 +2475,19 @@ $messages['br'] = array(
 	'config-information' => 'Titouroù',
 	'config-localsettings-upgrade' => 'Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
 Evit hizivaat ar staliadur-se, merkit an talvoud <code>$wgUpgradeKey</code> er voest dindan.
-E gavout a rit e LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Dinoet ez eus bet ur restr LocalSettings.php.
-Evit lakaat ar staliadur-mañ a-live, implijit update.php e plas',
+E gavout a rit e <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Dinoet ez eus bet ur restr <code>LocalSettings.php</code>.
+Evit lakaat ar staliadur-mañ a-live, implijit <code>update.php</code> e plas',
 	'config-localsettings-key' => "Alc'hwez hizivaat :",
 	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
 	'config-upgrade-key-missing' => 'Kavet ez eus bet ur staliadur kent eus MediaWiki.
-Evit hizivaat ar staliadur-se, ouzhpennit al linenn da-heul e traoñ ho restr LocalSettings.php:
+Evit hizivaat ar staliadur-se, ouzhpennit al linenn da-heul e traoñ ho restr <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => "Diglok e seblant bezañ ar restr LocalSettings.php zo anezhi dija.
+	'config-localsettings-incomplete' => "Diglok e seblant bezañ ar restr <code>LocalSettings.php</code> zo anezhi dija.
 An argemmenn $1 n'eo ket termenet.
-Kemmit LocalSettings.php evit ma vo termenet an argemmenn-se, ha klikit war « Kenderc'hel ».",
-	'config-localsettings-connection-error' => "C'hoarvezet ez eus ur fazi en ur gevreañ ouzh an diaz roadennoù oc'h implijout an arventennoù diferet e LocalSettings.php pe AdminSettings.php. Reizhit an arventennoù-se hag esaeit en-dro.
+Kemmit <code>LocalSettings.php</code> evit ma vo termenet an argemmenn-se, ha klikit war « {{int:Config-continue}} ».",
+	'config-localsettings-connection-error' => "C'hoarvezet ez eus ur fazi en ur gevreañ ouzh an diaz roadennoù oc'h implijout an arventennoù diferet e <code>LocalSettings.php</code> pe <code>AdminSettings.php</code>. Reizhit an arventennoù-se hag esaeit en-dro.
 
 $1",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
@@ -2663,7 +2666,7 @@ Ma ne welit ket amañ dindan ar reizhiad diaz titouroù a fell deoc'h ober ganti
 	'config-support-postgres' => "* Ur reizhiad diaz titouroù brudet ha digor eo $1. Gallout a ra ober evit MySQL ([http://www.php.net/manual/en/pgsql.installation.php Penaos kempunañ PHP gant skor PostgreSQL]). Gallout a ra bezañ un nebeud drein bihan enni ha n'eo ket erbedet he implijout en un endro produiñ.",
 	'config-support-sqlite' => "* $1 zo ur reizhiad diaz titouroù skañv skoret eus ar c'hentañ. ([http://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
 	'config-support-oracle' => '* $1 zo un diaz titouroù kenwerzhel. ([http://www.php.net/manual/en/oci8.installation.php Penaos kempunañ PHP gant skor OCI8])',
-	'config-support-ibm_db2' => '* Un diaz titouroù evit embregerezhioù kenwerzhel eo $1.',
+	'config-support-ibm_db2' => '* Un diaz titouroù evit embregerezhioù kenwerzhel eo $1.', # Fuzzy
 	'config-header-mysql' => 'Arventennoù MySQL',
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
@@ -2706,7 +2709,7 @@ Da hizivaat anezho da VediaWiki $1, klikañ war '''Kenderc'hel'''.",
 
 Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-regenerate' => 'Adgenel LocalSettings.php →',
-	'config-show-table-status' => "C'hwitet ar reked SHOW TABLE STATUS !",
+	'config-show-table-status' => "C'hwitet ar reked <code>SHOW TABLE STATUS</code> !",
 	'config-unknown-collation' => "'''Diwallit :''' Emañ an diaz roadennoù o renkañ an traoù diouzh un urzh lizherennek dianav.",
 	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
 	'config-db-web-help' => 'Diuzañ an anv implijer hag ar ger-tremen a vo implijet gant ar servijer web evit kevreañ ouzh ar servijer diaz roadennoù pa vez ar wiki o vont en-dro war ar pemdez.',
@@ -2753,7 +2756,7 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-optional-continue' => "Sevel muioc'h a goulennoù ouzhin.",
 	'config-optional-skip' => 'Aet on skuizh, staliañ ar wiki hepken.',
 	'config-profile' => 'Profil ar gwirioù implijer :',
-	'config-profile-wiki' => 'Wiki hengounel',
+	'config-profile-wiki' => 'Wiki hengounel', # Fuzzy
 	'config-profile-no-anon' => 'Krouidigezh ur gont ret',
 	'config-profile-fishbowl' => 'Embanner aotreet hepken',
 	'config-profile-private' => 'Wiki prevez',
@@ -2810,7 +2813,7 @@ Marteze e vo ezhomm kefluniañ pelloc'h met gallout a rit o gweredekaat bremañ.
 	'config-install-alreadydone' => "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh.
 Kit d'ar bajenn war-lerc'h, mar plij.",
 	'config-install-begin' => 'Pa vo bet pouezet ganeoc\'h war "{{int:config-continue}}"  e krogo staliadur MediaWiki.
-Pouezit war Kent mar fell deoc\'h cheñch tra pe dra.',
+Pouezit war Kent mar fell deoc\'h cheñch tra pe dra.', # Fuzzy
 	'config-install-step-done' => 'graet',
 	'config-install-step-failed' => "c'hwitet",
 	'config-install-extensions' => 'En ur gontañ an astennoù',
@@ -2847,7 +2850,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Bosnian (bosanski)
@@ -2859,7 +2862,7 @@ $messages['bs'] = array(
 	'config-information' => 'Informacija',
 	'config-localsettings-upgrade' => 'Otkrivena je datoteka <code>LocalSettings.php</code>.
 Da biste unaprijedili vaš softver, molimo vas upišite vrijednost od <code>$wgUpgradeKey</code> u okvir ispod.
-Naći ćete ga u LocalSettings.php.',
+Naći ćete ga u <code>LocalSettings.php</code>.',
 	'config-localsettings-key' => 'Ključ za nadgradnju:',
 	'config-session-error' => 'Greška pri pokretanju sesije: $1',
 	'config-no-session' => 'Vaši podaci sesije su izgubljeni!
@@ -2932,7 +2935,7 @@ Ovo '''nije preporučeno''' osim ako nemate problema s vašom wiki.",
 == Početak ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista postavki]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]', # Fuzzy
 );
 
 /** Catalan (català)
@@ -3033,25 +3036,26 @@ $messages['crh-latn'] = array(
 /** Czech (česky)
  * @author Danny B.
  * @author Mormegil
+ * @author 아라
  */
 $messages['cs'] = array(
 	'config-desc' => 'Instalační program pro MediaWiki',
 	'config-title' => 'Instalace MediaWiki $1',
 	'config-information' => 'Informace',
 	'config-localsettings-upgrade' => 'Byl nalezen soubor <code>LocalSettings.php</code>.
-Pokud chcete stávající instalaci aktualizovat, zadejte hodnotu <code>$wgUpgradeKey</code>, kterou naleznete v souboru LocalSettings.php, do následujícího rámečku.',
-	'config-localsettings-cli-upgrade' => 'Byl detekován soubor <code>LocalSettings.php</code>
+Pokud chcete stávající instalaci aktualizovat, zadejte hodnotu <code>$wgUpgradeKey</code>, kterou naleznete v souboru <code>LocalSettings.php</code>, do následujícího rámečku.',
+	'config-localsettings-cli-upgrade' => 'Byl detekován soubor <code><code>LocalSettings.php</code></code>
 Pro aktualizaci spusťte místo instalace skript <code>update.php</code>.',
 	'config-localsettings-key' => 'Klíč pro aktualizaci:',
 	'config-localsettings-badkey' => 'Zadaný klíč je nesprávný.',
 	'config-upgrade-key-missing' => 'Byla detekována existující instalace MediaWiki.
-Pokud ji chcete aktualizovat, přidejte následující řádku na konec souboru LocalSettings.php:
+Pokud ji chcete aktualizovat, přidejte následující řádku na konec souboru <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Existující soubor LocalSettings.php vypadá neúplný.
+	'config-localsettings-incomplete' => 'Existující soubor <code>LocalSettings.php</code> vypadá neúplný.
 Není nastavena proměnná $1.
-Upravte soubor LocalSettings.php tak, aby tuto proměnnou obsahoval, a klikněte na „Pokračovat“.',
-	'config-localsettings-connection-error' => 'Při připojování k databázi s využitím nastavení uvedených v LocalSettings.php nebo AdminSettings.php došlo k chybě. Opravte tato nastavení a zkuste to znovu.
+Upravte soubor <code>LocalSettings.php</code> tak, aby tuto proměnnou obsahoval, a klikněte na „{{int:Config-continue}}“.',
+	'config-localsettings-connection-error' => 'Při připojování k databázi s využitím nastavení uvedených v <code>LocalSettings.php</code> nebo <code>AdminSettings.php</code> došlo k chybě. Opravte tato nastavení a zkuste to znovu.
 
 $1',
 	'config-session-error' => 'Nepodařilo se inicializovat relaci: $1',
@@ -3269,7 +3273,7 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-support-postgres' => '* $1 je populární open-source databázový systém používaný jako alternativa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak přeložit PHP s podporou PostgreSQL]). Mohou se vyskytnout ještě nějaké menší chyby, použití v produkčním prostředí se nedoporučuje.',
 	'config-support-sqlite' => '* $1 je velmi dobře podporovaný lehký databázový systém. ([http://www.php.net/manual/en/pdo.installation.php Jak přeložit PHP s podporou SQLite], používá PDO)',
 	'config-support-oracle' => '* $1 je komerční podniková databáze. ([http://www.php.net/manual/en/oci8.installation.php Jak přeložit PHP s podporou OCI8])',
-	'config-support-ibm_db2' => '* $1 je komerční podniková databáze.',
+	'config-support-ibm_db2' => '* $1 je komerční podniková databáze.', # Fuzzy
 	'config-header-mysql' => 'Nastavení MySQL',
 	'config-header-postgres' => 'Nastavení PostgreSQL',
 	'config-header-sqlite' => 'Nastavení SQLite',
@@ -3337,7 +3341,7 @@ To se ale '''nedoporučuje''', pokud s wiki nemáte problémy.",
 
 Svou wiki teď můžete [$1 začít používat].',
 	'config-regenerate' => 'Přegenerovat LocalSettings.php →',
-	'config-show-table-status' => 'Dotaz SHOW TABLE STATUS se nezdařil!',
+	'config-show-table-status' => 'Dotaz <code>SHOW TABLE STATUS</code> se nezdařil!',
 	'config-unknown-collation' => "'''Upozornění:''' Databáze používá nerozpoznané řazení.",
 	'config-db-web-account' => 'Databázový účet pro webový přístup',
 	'config-db-web-help' => 'Zvolte uživatelské jméno a heslo, které bude webový server používat pro připojení k databázovému serveru při běžném provozu wiki.',
@@ -3409,7 +3413,7 @@ Zbývající konfiguraci už můžete přeskočit a nainstalovat wiki hned teď.
 	'config-optional-continue' => 'Ptejte se mě dál.',
 	'config-optional-skip' => 'Už mě to nudí, prostě nainstalujte wiki.',
 	'config-profile' => 'Profil uživatelských práv:',
-	'config-profile-wiki' => 'Tradiční wiki',
+	'config-profile-wiki' => 'Tradiční wiki', # Fuzzy
 	'config-profile-no-anon' => 'Vyžadována registrace uživatelů',
 	'config-profile-fishbowl' => 'Editace jen pro vybrané',
 	'config-profile-private' => 'Soukromá wiki',
@@ -3425,7 +3429,7 @@ Na wiki, kde je '''{{int:config-profile-no-anon}}''', se lépe řídí zodpověd
 Profil '''{{int:config-profile-fishbowl}}''' umožňuje schváleným uživatelům editovat, ale veřejnost si může stránky prohlížet včetně jejich historie.
 '''{{int:config-profile-private}}''' dovoluje stránky prohlížet jen schváleným uživatelům, kteří je i mohou editovat.
 
-Po instalaci je možná komplexní konfigurace uživatelských práv; vizte [//www.mediawiki.org/wiki/Manual:User_rights odpovídající stránku příručky].",
+Po instalaci je možná komplexní konfigurace uživatelských práv; vizte [//www.mediawiki.org/wiki/Manual:User_rights odpovídající stránku příručky].", # Fuzzy
 	'config-license' => 'Autorská práva a licence:',
 	'config-license-none' => 'Bez patičky s licencí',
 	'config-license-cc-by-sa' => 'Creative Commons Uveďte autora-Zachovejte licenci',
@@ -3510,7 +3514,7 @@ Mohou vyžadovat dodatečnou konfiguraci, ale teď je můžete povolit.',
 	'config-install-alreadydone' => "'''Upozornění:''' Vypadá to, že jste MediaWiki již nainstalovali a teď se o to pokoušíte znovu.
 Pokračujte na další stránku.",
 	'config-install-begin' => 'Stisknutím „{{int:config-continue}}“ spustíte instalaci MediaWiki.
-Pokud ještě chcete udělat nějaké změny, stiskněte tlačítko zpět.',
+Pokud ještě chcete udělat nějaké změny, stiskněte tlačítko zpět.', # Fuzzy
 	'config-install-step-done' => 'hotovo',
 	'config-install-step-failed' => 'selhaly',
 	'config-install-extensions' => 'Vkládají se rozšíření',
@@ -3576,7 +3580,7 @@ Až to dokončíte, můžete '''[$2 vstoupit do své wiki]'''.",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Nastavení konfigurace]
 * [//www.mediawiki.org/wiki/Manual:FAQ Často kladené otázky o MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]', # Fuzzy
 );
 
 /** Kashubian (kaszëbsczi)
@@ -3632,6 +3636,7 @@ $messages['da'] = array(
  * @author Rillke
  * @author The Evil IP address
  * @author Umherirrender
+ * @author 아라
  */
 $messages['de'] = array(
 	'config-desc' => 'Das MediaWiki-Installationsprogramm',
@@ -3639,19 +3644,19 @@ $messages['de'] = array(
 	'config-information' => 'Informationen',
 	'config-localsettings-upgrade' => 'Eine Datei <code>LocalSettings.php</code> wurde gefunden.
 Um die vorhandene Installation aktualisieren zu können, muss der Wert des Parameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angegeben werden.
-Der Parameterwert befindet sich in der Datei LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Eine Datei <code>LocalSettings.php</code> wurde gefunden.
+Der Parameterwert befindet sich in der Datei <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Eine Datei <code><code>LocalSettings.php</code></code> wurde gefunden.
 Um die vorhandene Installation zu aktualisieren, muss die Datei <code>update.php</code> ausgeführt werden.',
 	'config-localsettings-key' => 'Aktualisierungsschlüssel:',
 	'config-localsettings-badkey' => 'Der angegebene Aktualisierungsschlüssel ist falsch.',
 	'config-upgrade-key-missing' => 'Eine MediaWiki-Installation wurde gefunden.
-Um die vorhandene Installation aktualisieren zu können, muss die unten angegebene Codezeile in die Datei LocalSettings.php an deren Ende eingefügt werden:
+Um die vorhandene Installation aktualisieren zu können, muss die unten angegebene Codezeile in die Datei <code>LocalSettings.php</code> an deren Ende eingefügt werden:
 
 $1',
-	'config-localsettings-incomplete' => 'Die vorhandene Datei LocalSettings.php scheint unvollständig zu sein.
+	'config-localsettings-incomplete' => 'Die vorhandene Datei <code>LocalSettings.php</code> scheint unvollständig zu sein.
 Die Variable <code>$1</code> wurde nicht definiert.
-Die Datei LocalSettings.php muss entsprechend geändert werden, so dass sie definiert ist. Klicke danach auf „Weiter“.',
-	'config-localsettings-connection-error' => 'Beim Verbindungsversuch zur Datenbank ist, unter Verwendung der in den Dateien LocalSettings.php oder AdminSettings.php hinterlegten Einstellungen, ein Fehler aufgetreten. Diese Einstellungen müssen korrigiert werden. Danach kann ein erneuter Versuch unternommen werden.
+Die Datei <code>LocalSettings.php</code> muss entsprechend geändert werden, so dass sie definiert ist. Klicke danach auf „{{int:Config-continue}}“.',
+	'config-localsettings-connection-error' => 'Beim Verbindungsversuch zur Datenbank ist, unter Verwendung der in den Dateien <code>LocalSettings.php</code> oder <code>AdminSettings.php</code> hinterlegten Einstellungen, ein Fehler aufgetreten. Diese Einstellungen müssen korrigiert werden. Danach kann ein erneuter Versuch unternommen werden.
 
 $1',
 	'config-session-error' => 'Fehler beim Starten der Sitzung: $1',
@@ -3935,7 +3940,7 @@ Dies wird '''nicht empfohlen''', es sei denn, es treten Probleme mit dem Wiki au
 
 Das Wiki kann nun [$1 genutzt werden].',
 	'config-regenerate' => 'LocalSettings.php neu erstellen →',
-	'config-show-table-status' => 'Die Abfrage SHOW TABLE STATUS ist gescheitert!',
+	'config-show-table-status' => 'Die Abfrage <code>SHOW TABLE STATUS</code> ist gescheitert!',
 	'config-unknown-collation' => "'''Warnung:''' Die Datenbank nutzt eine unbekannte Kollation.",
 	'config-db-web-account' => 'Datenbankkonto für den Webzugriff',
 	'config-db-web-help' => 'Bitte Benutzernamen und Passwort auswählen, die der Webserver während des Normalbetriebes dazu verwenden soll, eine Verbindung zum Datenbankserver herzustellen.',
@@ -4321,7 +4326,7 @@ $messages['el'] = array(
 	'config-invalid-db-type' => 'Μη έγκυρος τύπος βάσης δεδομένων',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Όνομα του βίκι:',
-	'config-site-name-blank' => 'Εισάγετε όνομα ιστοχώρου.',
+	'config-site-name-blank' => 'Εισαγάγετε όνομα ιστοχώρου.',
 	'config-project-namespace' => 'Περιοχή ονόματος εγχειρήματος:',
 	'config-ns-generic' => 'Εγχείρημα',
 	'config-ns-site-name' => 'Ίδιο με το όνομα του wiki: $1',
@@ -4383,6 +4388,7 @@ $messages['eo'] = array(
  * @author Sanbec
  * @author Translationista
  * @author Vivaelcelta
+ * @author 아라
  */
 $messages['es'] = array(
 	'config-desc' => 'El instalador para MediaWiki',
@@ -4390,19 +4396,19 @@ $messages['es'] = array(
 	'config-information' => 'Información',
 	'config-localsettings-upgrade' => 'Se ha encontrado un archivo <code>LocalSettings.php</code>.
 Para actualizar esta instalación, por favor ingresa el valor de <code>$wgUpgradeKey</code> en el cuadro de abajo.
-Lo encontrarás en LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Se ha detectado un archivo LocalSettings.php.
-Para actualizar la instalación, vuelva a ejecutar update.php',
+Lo encontrarás en <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Se ha detectado un archivo <code>LocalSettings.php</code>.
+Para actualizar la instalación, vuelva a ejecutar <code>update.php</code>',
 	'config-localsettings-key' => 'Clave de actualización:',
 	'config-localsettings-badkey' => 'La clave proporcionada es incorrecta.',
 	'config-upgrade-key-missing' => 'Se ha detectado una instalación existente de MediaWiki.
-Para actualizar la instalación, por favor, ponga la siguiente línea al final de su archivo LocalSettings.php:
+Para actualizar la instalación, por favor, ponga la siguiente línea al final de su archivo <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'El archivo LocalSettings.php existente parece estar incompleto.
+	'config-localsettings-incomplete' => 'El archivo <code>LocalSettings.php</code> existente parece estar incompleto.
 La variable $1 no está definida.
-Cambie el archivo LocalSettings.php para que esta variable quede establecida y haga clic en "Continuar".',
-	'config-localsettings-connection-error' => 'Se detectó un error al conectarse a la base de datos utilizando la configuración especificada en los archivos LocalSettings.php o AdminSettings.php. Corrija estas opciones y vuelva a intentarlo.
+Cambie el archivo <code>LocalSettings.php</code> para que esta variable quede establecida y haga clic en "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Se detectó un error al conectarse a la base de datos utilizando la configuración especificada en los archivos <code>LocalSettings.php</code> o <code>AdminSettings.php</code>. Corrija estas opciones y vuelva a intentarlo.
 
 $1',
 	'config-session-error' => 'Error comenzando sesión: $1',
@@ -4685,7 +4691,7 @@ Esto '''no se recomienda''' a menos que esté teniendo problemas con su wiki.",
 
 Usted puede ahora [$1  empezar a usar su wiki].',
 	'config-regenerate' => 'Regenerar LocalSettings.php →',
-	'config-show-table-status' => 'SHOW TABLE STATUS ha fallado!',
+	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> ha fallado!',
 	'config-unknown-collation' => "'''Advertencia:''' La base de datos está utilizando una intercalación no reconocida.",
 	'config-db-web-account' => 'Cuenta de base de datos para acceso Web',
 	'config-db-web-help' => 'Elige el usuario y contraseña que el servidor Web usará para conectarse al servidor de la base de datos durante el fincionamiento normal del wiki.',
@@ -5201,6 +5207,7 @@ $messages['fa'] = array(
  * @author Olli
  * @author Str4nd
  * @author VezonThunder
+ * @author 아라
  */
 $messages['fi'] = array(
 	'config-desc' => 'MediaWiki-asennin',
@@ -5208,19 +5215,19 @@ $messages['fi'] = array(
 	'config-information' => 'Tiedot',
 	'config-localsettings-upgrade' => '<code>LocalSettings.php</code>-tiedosto havaittiin.
 Kirjoita muuttujan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
-Löydät sen LocalSettings.php-tiedostosta.',
-	'config-localsettings-cli-upgrade' => 'LocalSettings.php-tiedosto havaittiin.
-Päivitä asennus suorittamalla update.php.',
+Löydät sen <code>LocalSettings.php</code>-tiedostosta.',
+	'config-localsettings-cli-upgrade' => '<code>LocalSettings.php</code>-tiedosto havaittiin.
+Päivitä asennus suorittamalla <code>update.php</code>.',
 	'config-localsettings-key' => 'Päivitysavain',
 	'config-localsettings-badkey' => 'Antamasi avain on virheellinen.',
 	'config-upgrade-key-missing' => 'Havaittiin aiempi MediaWiki-asennus.
-Päivittääksesi tämän asennuksen lisää LocalSettings.php-tiedostosi loppuun seuraava rivi:
+Päivittääksesi tämän asennuksen lisää <code>LocalSettings.php</code>-tiedostosi loppuun seuraava rivi:
 
 $1',
-	'config-localsettings-incomplete' => 'Nykyinen LocalSettings.php-tiedosto näyttää olevan puutteellinen.
+	'config-localsettings-incomplete' => 'Nykyinen <code>LocalSettings.php</code>-tiedosto näyttää olevan puutteellinen.
 Muuttujaa $1 ei ole asetettu.
-Muuta LocalSettings.php-tiedostoa siten, että muuttuja on asetettu ja napsauta »Jatka».',
-	'config-localsettings-connection-error' => 'Virhe yhdistettäessä tietokantaan käyttäen tiedostossa LocalSettings.php tai AdminSettings.php määritettyjä asetuksia. Korjaa asetukset ja yritä uudelleen.
+Muuta <code>LocalSettings.php</code>-tiedostoa siten, että muuttuja on asetettu ja napsauta »{{int:Config-continue}}».',
+	'config-localsettings-connection-error' => 'Virhe yhdistettäessä tietokantaan käyttäen tiedostossa <code>LocalSettings.php</code> tai <code>AdminSettings.php</code> määritettyjä asetuksia. Korjaa asetukset ja yritä uudelleen.
 
 $1',
 	'config-session-error' => 'Istunnon aloittaminen epäonnistui: $1',
@@ -5332,7 +5339,7 @@ Tämä '''ei ole suositeltavaa''', jos wikissäsi ei ole ongelmia.",
 
 Voit [$1 aloittaa wikin käytön].',
 	'config-regenerate' => 'Luo LocalSettings.php uudelleen →',
-	'config-show-table-status' => 'Kysely SHOW TABLE STATUS epäonnistui!',
+	'config-show-table-status' => 'Kysely <code>SHOW TABLE STATUS</code> epäonnistui!',
 	'config-mysql-engine' => 'Tallennusmoottori',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -5410,6 +5417,7 @@ $messages['fo'] = array(
  * @author Verdy p
  * @author Wyz
  * @author Yumeki
+ * @author 아라
  */
 $messages['fr'] = array(
 	'config-desc' => 'Le programme d’installation de MediaWiki',
@@ -5417,20 +5425,20 @@ $messages['fr'] = array(
 	'config-information' => 'Informations',
 	'config-localsettings-upgrade' => 'Un fichier <code>LocalSettings.php</code> a été détecté.
 Pour mettre à jour cette installation, veuillez saisir la valeur de <code>$wgUpgradeKey</code> dans le champ ci-dessous.
-Vous la trouverez dans LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Un fichier LocalSettings.php a été détecté.
-Pour mettre à niveau cette installation, veuillez exécuter update.php',
+Vous la trouverez dans <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Un fichier <code>LocalSettings.php</code> a été détecté.
+Pour mettre à niveau cette installation, veuillez exécuter <code>update.php</code>',
 	'config-localsettings-key' => 'Clé de mise à jour :',
 	'config-localsettings-badkey' => 'La clé que vous avez fournie est incorrecte',
 	'config-upgrade-key-missing' => 'Une installation existante de MediaWiki a été détectée.
 
-Pour mettre à jour cette installation, veuillez ajouter la ligne suivante à la fin de votre fichier LocalSettings.php
+Pour mettre à jour cette installation, veuillez ajouter la ligne suivante à la fin de votre fichier <code>LocalSettings.php</code>
 
 $1',
-	'config-localsettings-incomplete' => 'Le fichier LocalSettings.php existant semble être incomplet.
+	'config-localsettings-incomplete' => 'Le fichier <code>LocalSettings.php</code> existant semble être incomplet.
 La variable $1 n’est pas définie.
-Veuillez modifier LocalSettings.php de sorte que cette variable soit définie, puis cliquer sur « Continuer ».',
-	'config-localsettings-connection-error' => 'Une erreur est survenue lors de la connexion à la base de données en utilisant la configuration spécifiée dans LocalSettings.php ou AdminSettings.php. Veuillez corriger cette configuration puis réessayer.
+Veuillez modifier <code>LocalSettings.php</code> de sorte que cette variable soit définie, puis cliquer sur « {{int:Config-continue}} ».',
+	'config-localsettings-connection-error' => 'Une erreur est survenue lors de la connexion à la base de données en utilisant la configuration spécifiée dans <code>LocalSettings.php</code> ou <code>AdminSettings.php</code>. Veuillez corriger cette configuration puis réessayer.
 
 $1',
 	'config-session-error' => 'Erreur lors du démarrage de la session : $1',
@@ -5712,7 +5720,7 @@ Ce '''n'est pas recommandé''' sauf si vous rencontrez des problèmes avec votre
 
 Vous pouvez maintenant [$1 commencer à utiliser votre wiki].',
 	'config-regenerate' => 'Regénérer LocalSettings.php →',
-	'config-show-table-status' => 'Échec de la requête SHOW TABLE STATUS !',
+	'config-show-table-status' => 'Échec de la requête <code>SHOW TABLE STATUS</code> !',
 	'config-unknown-collation' => "'''Attention:''' La base de données effectue un classement alphabétique (''collation'') inconnu.",
 	'config-db-web-account' => "Compte de la base de données pour l'accès Web",
 	'config-db-web-help' => "Sélectionnez le nom d'utilisateur et le mot de passe que le serveur web utilisera pour se connecter au serveur de base de données pendant le fonctionnement habituel du wiki.",
@@ -6029,7 +6037,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-missing-db-server-oracle' => 'Vos dête buchiér una valor por « TNS de la bâsa de balyês »',
 	'config-sqlite-readonly' => 'Lo fichiér <code>$1</code> est pas accèssiblo en ècritura.',
 	'config-regenerate' => 'Refâre LocalSettings.php →',
-	'config-show-table-status' => 'Falyita de la requéta SHOW TABLE STATUS !',
+	'config-show-table-status' => 'Falyita de la requéta <code>SHOW TABLE STATUS</code> !',
 	'config-db-web-account' => 'Compto de la bâsa de balyês por l’accès vouèbe',
 	'config-db-web-account-same' => 'Utilisâd lo mémo compto que por l’enstalacion',
 	'config-db-web-create' => 'Féte lo compto s’ègziste p’oncor',
@@ -6055,7 +6063,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-admin-email' => 'Adrèce èlèctronica :',
 	'config-optional-continue' => 'Mè posar més de quèstions.',
 	'config-profile' => 'Profil des drêts d’usanciér :',
-	'config-profile-wiki' => 'Vouiqui tradicionâl',
+	'config-profile-wiki' => 'Vouiqui tradicionâl', # Fuzzy
 	'config-profile-no-anon' => 'Crèacion de compto nècèssèra',
 	'config-profile-fishbowl' => 'Solament los èditors ôtorisâs',
 	'config-profile-private' => 'Vouiqui privâ',
@@ -6116,7 +6124,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 == Emmodar avouéc MediaWiki ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista des paramètres de configuracion]
 * [//www.mediawiki.org/wiki/Manual:FAQ/fr FDQ sur MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion sur les distribucions de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion sur les distribucions de MediaWiki]', # Fuzzy
 );
 
 /** Northern Frisian (Nordfriisk)
@@ -6221,6 +6229,7 @@ $messages['gd'] = array(
 /** Galician (galego)
  * @author Elisardojm
  * @author Toliño
+ * @author 아라
  */
 $messages['gl'] = array(
 	'config-desc' => 'O programa de instalación de MediaWiki',
@@ -6228,19 +6237,19 @@ $messages['gl'] = array(
 	'config-information' => 'Información',
 	'config-localsettings-upgrade' => 'Detectouse un ficheiro <code>LocalSettings.php</code>.
 Para actualizar esta instalación, introduza o valor de <code>$wgUpgradeKey</code> na caixa.
-Pode atopalo en LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Detectouse un ficheiro LocalSettings.php.
-Para actualizar esta instalación, execute update.php',
+Pode atopalo en <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Detectouse un ficheiro <code>LocalSettings.php</code>.
+Para actualizar esta instalación, execute <code>update.php</code>',
 	'config-localsettings-key' => 'Clave de actualización:',
 	'config-localsettings-badkey' => 'A clave dada é incorrecta',
 	'config-upgrade-key-missing' => 'Detectouse unha instalación existente de MediaWiki.
-Para actualizar esta instalación, inclúa esta liña ao final do ficheiro LocalSettings.php:
+Para actualizar esta instalación, inclúa esta liña ao final do ficheiro <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Semella que o ficheiro LocalSettings.php existente está incompleto.
+	'config-localsettings-incomplete' => 'Semella que o ficheiro <code>LocalSettings.php</code> existente está incompleto.
 A variable $1 non está establecida.
-Modifique o ficheiro LocalSettings.php de xeito que a variable quede establecida e prema en "Continuar".',
-	'config-localsettings-connection-error' => 'Atopouse un erro ao conectar coa base de datos empregando a configuración especificada no ficheiro LocalSettings.php ou no ficheiro AdminSettings.php. Corrixa esta configuración e inténteo de novo.
+Modifique o ficheiro <code>LocalSettings.php</code> de xeito que a variable quede establecida e prema en "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Atopouse un erro ao conectar coa base de datos empregando a configuración especificada no ficheiro <code>LocalSettings.php</code> ou no ficheiro <code>AdminSettings.php</code>. Corrixa esta configuración e inténteo de novo.
 
 $1',
 	'config-session-error' => 'Erro ao iniciar a sesión: $1',
@@ -6525,7 +6534,7 @@ Isto '''non é recomendable''' a menos que estea a ter problemas co seu wiki.",
 
 Xa pode [$1 comezar a usar o seu wiki].',
 	'config-regenerate' => 'Rexenerar LocalSettings.php →',
-	'config-show-table-status' => 'A pescuda SHOW TABLE STATUS fallou!',
+	'config-show-table-status' => 'A pescuda <code>SHOW TABLE STATUS</code> fallou!',
 	'config-unknown-collation' => "'''Atención:''' A base de datos está a empregar unha clasificación alfabética irrecoñecible.",
 	'config-db-web-account' => 'Conta na base de datos para o acceso á internet',
 	'config-db-web-help' => 'Seleccione o nome de usuario e contrasinal que o servidor web empregará para se conectar ao servidor da base de datos durante o funcionamento normal do wiki.',
@@ -6798,7 +6807,7 @@ $messages['gsw'] = array(
 	'config-information' => 'Information',
 	'config-localsettings-upgrade' => "'''Warnig:''' E Datei <code>LocalSettings.php</code> isch gfunde wore.
 Fir d Aktualisierig vu dr däre Inschtallation, gib bitte dr Wärt vum Parameter <code>\$wgUpgradeKey</code> im Fäld unten yy.
-Du findsch dr Wärt in dr Datei LocalSettings.php.",
+Du findsch dr Wärt in dr Datei <code>LocalSettings.php</code>.",
 	'config-localsettings-key' => 'Aktualisierigsschlissel:',
 	'config-localsettings-badkey' => 'Dr Aktualisierigsschlissel, wu du aagee hesch, isch falsch.',
 	'config-session-error' => 'Fähler bim Starte vu dr Sitzig: $1',
@@ -6897,7 +6906,7 @@ S Objäktcaching isch wäge däm nit aktiviert.",
 Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.',
 	'config-help' => 'Hilf',
 	'mainpagetext' => "'''MediaWiki isch erfolgrich inschtalliert worre.'''",
-	'mainpagedocfooter' => 'Lueg uf d [//meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.',
+	'mainpagedocfooter' => 'Lueg uf d [//meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.', # Fuzzy
 );
 
 /** Gujarati (ગુજરાતી)
@@ -6942,6 +6951,7 @@ $messages['haw'] = array(
  * @author Amire80
  * @author YaronSh
  * @author ערן
+ * @author 아라
  */
 $messages['he'] = array(
 	'config-desc' => 'תכנית ההתקנה של מדיה־ויקי',
@@ -6949,19 +6959,19 @@ $messages['he'] = array(
 	'config-information' => 'פרטים',
 	'config-localsettings-upgrade' => 'זוהה קובץ <code>LocalSettings.php</code>.
 כדי לשדרג את ההתקנה הזאת, נא להקליד את הערך של <code>$wgUpgradeKey</code> בתיבה להלן.
-אפשר למצוא אותו בקובץ LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'זוהה קובץ LocalSettings.php.
-כדי לשדרג את ההתקנה הזאת, הריצו את update.php ולא את הקובץ הזה.',
+אפשר למצוא אותו בקובץ <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'זוהה קובץ <code>LocalSettings.php</code>.
+כדי לשדרג את ההתקנה הזאת, הריצו את <code>update.php</code> ולא את הקובץ הזה.',
 	'config-localsettings-key' => 'מפתח השדרוג:',
 	'config-localsettings-badkey' => 'המפתח שהקלדתם שגוי',
 	'config-upgrade-key-missing' => 'זוהתה התקנה קיימת של מדיה־ויקי.
-כדי לשדרג את ההתקנה הזאת, אנא כתבו את השורה הבא בתחתית קובץ LocalSettings.php שלכם:
+כדי לשדרג את ההתקנה הזאת, אנא כתבו את השורה הבא בתחתית קובץ <code>LocalSettings.php</code> שלכם:
 
 $1',
-	'config-localsettings-incomplete' => 'נראה שקובץ LocalSettings.php הקיים אינו שלם.
+	'config-localsettings-incomplete' => 'נראה שקובץ <code>LocalSettings.php</code> הקיים אינו שלם.
 המשתנה $1 אינו מוגדר.
-נו לשנות את קובץ LocalSettings.php שלכם כך שהמשתנה הזה יהיה מוגדר וללחוץ "המשך".',
-	'config-localsettings-connection-error' => 'אירעה שגיאה בעת חיבור למסד נתונים עם הגדרות ב־LocalSettings.php או ב־AdminSettings.php. נא לתקן את ההגדרות האלו ולנסות שוב.
+נו לשנות את קובץ <code>LocalSettings.php</code> שלכם כך שהמשתנה הזה יהיה מוגדר וללחוץ "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'אירעה שגיאה בעת חיבור למסד נתונים עם הגדרות ב־<code>LocalSettings.php</code> או ב־<code>AdminSettings.php</code>. נא לתקן את ההגדרות האלו ולנסות שוב.
 
 $1',
 	'config-session-error' => 'שגיאה באתחול שיחה: $1',
@@ -7174,7 +7184,7 @@ $1
 	'config-support-postgres' => '$1 הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). ייתכן שיש בתצורה הזאת באגים מסוימים והיא לא מומלצת לסביבות מבצעיות.',
 	'config-support-sqlite' => '* $1 הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)',
 	'config-support-oracle' => '* $1 הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
-	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני.',
+	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני.', # Fuzzy
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
@@ -7242,7 +7252,7 @@ chmod a+w $3</pre></div>',
 
 עכשיו אפשר [$1 להתחיל להשתמש בוויקי שלכם].',
 	'config-regenerate' => 'לחולל מחדש את LocalSettings.php ←',
-	'config-show-table-status' => 'שאילתת SHOW TABLE STATUS נכשלה!',
+	'config-show-table-status' => 'שאילתת <code>SHOW TABLE STATUS</code> נכשלה!',
 	'config-unknown-collation' => "'''אזהרה:''' מסד הנתונים משתמש בשיטת מיון שאינה מוּכּרת.",
 	'config-db-web-account' => 'חשבון במסד הנתונים לגישה מהרשת',
 	'config-db-web-help' => 'לבחור את שם המשתמש ואת הססמה ששרת הווב ישתמש בו להתחברות לשרת מסד הנתונים בזמן פעילות רגילה של הוויקי.',
@@ -7314,7 +7324,7 @@ chmod a+w $3</pre></div>',
 	'config-optional-continue' => 'הצגת שאלות נוספות.',
 	'config-optional-skip' => 'משעמם לי, תתקינו לי כבר את הוויקי הזה.',
 	'config-profile' => 'תסריט הרשאות משתמשים:',
-	'config-profile-wiki' => 'ויקי מסורתי',
+	'config-profile-wiki' => 'ויקי מסורתי', # Fuzzy
 	'config-profile-no-anon' => 'נדרשת יצירת חשבון',
 	'config-profile-fishbowl' => 'עורכים מורשים בלבד',
 	'config-profile-private' => 'ויקי פרטי',
@@ -7329,7 +7339,7 @@ chmod a+w $3</pre></div>',
 בתסריט '''{{int:config-profile-fishbowl}}''' רק משתמשים שקיבלו אישור יכולים לערוך, אבל כל הגולשים יכולים לקרוא את הדפים ואת גרסאותיהם הקודמות.
 ב'''{{int:config-profile-private}}''' רק משתמשים שקיבלו אישור יכולים לקרוא ולערוך דפים.
 
-הגדרות מורכבות של הרשאות אפשריות אחרי ההתקנה, ר׳ את [//www.mediawiki.org/wiki/Manual:User_rights הפרק על הנושא הזה בספר ההדרכה].",
+הגדרות מורכבות של הרשאות אפשריות אחרי ההתקנה, ר׳ את [//www.mediawiki.org/wiki/Manual:User_rights הפרק על הנושא הזה בספר ההדרכה].", # Fuzzy
 	'config-license' => 'זכויות יוצרים ורישיון:',
 	'config-license-none' => 'ללא כותרת תחתית עם רישיון',
 	'config-license-cc-by-sa' => 'קריאייטיב קומונז–ייחוס–שיתוף זהה',
@@ -7414,7 +7424,7 @@ chmod a+w $3</pre></div>',
 	'config-install-alreadydone' => "'''אזהרה:''' נראה שכבר התקנתם את מדיה־ויקי ואתם מנסים להתקין אותה שוב.
 אנה התקדמו לדף הבא.",
 	'config-install-begin' => 'כשתלחצו על "{{int:config-continue}}", תתחילו את ההתקנה של מדיה־ויקי.
-אם אתם עדיין רוצים לשנות משהו, לחצו על "הקודם".',
+אם אתם עדיין רוצים לשנות משהו, לחצו על "הקודם".', # Fuzzy
 	'config-install-step-done' => 'בוצע',
 	'config-install-step-failed' => 'נכשל',
 	'config-install-extensions' => 'כולל הרחבות',
@@ -7479,7 +7489,7 @@ $3
 == קישורים שימושיים ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
 * [//www.mediawiki.org/wiki/Manual:FAQ שאלות ותשובות על מדיה־ויקי]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]', # Fuzzy
 );
 
 /** Hindi (हिन्दी)
@@ -7530,6 +7540,7 @@ i [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za po
 
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
+ * @author 아라
  */
 $messages['hsb'] = array(
 	'config-desc' => 'Instalaciski program za MediaWiki',
@@ -7537,19 +7548,19 @@ $messages['hsb'] = array(
 	'config-information' => 'Informacije',
 	'config-localsettings-upgrade' => 'Dataja <code>LocalSettings.php</code> je so wotkryła.
 Zo by tutu instalaciju aktualizował, zapodaj prošu hódnotu za parameter <code>$wgUpgradeKey</code> do slědowaceho pola.
-Namakaš tón parameter w dataji LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Dataja LocalSettings.php bu wotkryta.
-Zo by tutu instalaciju aktualizował, wuwjedźće update.php',
+Namakaš tón parameter w dataji <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Dataja <code>LocalSettings.php</code> bu wotkryta.
+Zo by tutu instalaciju aktualizował, wuwjedźće <code>update.php</code>',
 	'config-localsettings-key' => 'Aktualizaciski kluč:',
 	'config-localsettings-badkey' => 'Kluč, kotryž sy podał, je wopak',
 	'config-upgrade-key-missing' => 'Eksistowaca instalacija MediaWiki je so wotkryła.
-Zo by tutu instalaciju aktualizował, staj prošu slědowacu linku deleka w dataji LocalSettings.php:
+Zo by tutu instalaciju aktualizował, staj prošu slědowacu linku deleka w dataji <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Zda so, zo eksistwoaca dataja LocalSettings.php je njedospołna.
+	'config-localsettings-incomplete' => 'Zda so, zo eksistwoaca dataja <code>LocalSettings.php</code> je njedospołna.
 Wariabla $1 njeje nastajena.
-Prošu změń dataju LocalSettings.php, zo by so tuta wariabla nastajiła a klikń na "Dale".',
-	'config-localsettings-connection-error' => 'Při zwjazowanju z datowej banku z pomocu nastajenjow podatych w LocalSettings.php abo AdminSettings.php je zmylk wustupił. Prošu skoriguj tute nastajenja a spytaj hišće raz.
+Prošu změń dataju <code>LocalSettings.php</code>, zo by so tuta wariabla nastajiła a klikń na "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Při zwjazowanju z datowej banku z pomocu nastajenjow podatych w <code>LocalSettings.php</code> abo <code>AdminSettings.php</code> je zmylk wustupił. Prošu skoriguj tute nastajenja a spytaj hišće raz.
 
 $1',
 	'config-session-error' => 'Zmylk při startowanju posedźenja: $1',
@@ -7677,7 +7688,7 @@ Změń ju jenož, jeli su přeswědčiwe přičiny za to.',
 	'config-support-mysql' => '* $1 je primarny cil za MediaWiki a podpěruje so najlěpje ([http://www.php.net/manual/en/mysql.installation.php Nawod ke kompilowanju  PHP z  MySQL-podpěru])',
 	'config-support-postgres' => '* $1 je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php nawod za kompilowanje PHP z podpěru PostgreSQL]). Móhło hišće někotre zmylki eksistować, a njeporuča so jón w produktiwnej wokolinje wužiwać.',
 	'config-support-oracle' => '* $1 je komercielna předewzaćelska datowa banka. ([http://www.php.net/manual/en/oci8.installation.php Nawod za kompilowanje PHP z OCI8-podpěru])',
-	'config-support-ibm_db2' => '* $1 je komercielna předewzaćelska datowa banka.',
+	'config-support-ibm_db2' => '* $1 je komercielna předewzaćelska datowa banka.', # Fuzzy
 	'config-header-mysql' => 'Nastajenja MySQL',
 	'config-header-postgres' => 'Nastajenja PostgreSQL',
 	'config-header-sqlite' => 'Nastajenja SQLite',
@@ -7720,7 +7731,7 @@ Zo by je na MediaWiki $1 aktualizował, klikń na '''Dale'''.",
 
 Móžeš nětko [$1 swój wiki wužiwać].',
 	'config-regenerate' => 'LocalSettings.php znowa wutworić →',
-	'config-show-table-status' => 'Naprašowanje SHOW TABLE STATUS je so njeporadźiło!',
+	'config-show-table-status' => 'Naprašowanje <code>SHOW TABLE STATUS</code> je so njeporadźiło!',
 	'config-unknown-collation' => "'''Warnowanje:''' Datowa banka njeznatu kolaciju wužiwa.",
 	'config-db-web-account' => 'Konto datoweje banki za webpřistup',
 	'config-db-web-help' => 'wubjer wužiwarske mjeno a hesło, kotrejž webserwer budźe wužiwać, zo by z serwerom datoweje banki za wšědnu operaciju zwjazać',
@@ -7769,7 +7780,7 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 	'config-optional-continue' => 'Dalše prašenja?',
 	'config-optional-skip' => 'Instaluj nětko wiki.',
 	'config-profile' => 'Profil wužiwarskich prawow:',
-	'config-profile-wiki' => 'Tradicionelny wiki',
+	'config-profile-wiki' => 'Tradicionelny wiki', # Fuzzy
 	'config-profile-no-anon' => 'Załoženje konto je trěbne',
 	'config-profile-fishbowl' => 'Jenož awtorizowani wobdźěłarjo',
 	'config-profile-private' => 'Priwatny wiki',
@@ -7827,7 +7838,7 @@ To móže sej přidatnu konfiguraciju wužadać, ale móžeš je nětko zmóžni
 	'config-install-alreadydone' => "'''Warnowanje:''' Zda so, zo sy hižo MediaWiki instalował a pospytuješ jón znowa instalować.
 Prošu pokročuj z přichodnej stronu.",
 	'config-install-begin' => 'Přez kliknjenje na "{{int:config-continue}}" budźe so instalacija MediaWiki startować.
-Jeli hišće chceš něšto změnić, klikń na "Wróćo".',
+Jeli hišće chceš něšto změnić, klikń na "Wróćo".', # Fuzzy
 	'config-install-step-done' => 'dokónčene',
 	'config-install-step-failed' => 'njeporadźiło',
 	'config-install-extensions' => 'Inkluziwnje rozšěrjenja',
@@ -7873,7 +7884,7 @@ Standardna lisćina sp přeskakuje.",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Wo nastajenjach]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
 );
 
 /** Haitian (Kreyòl ayisyen)
@@ -7893,25 +7904,26 @@ $messages['ht'] = array(
 /** Hungarian (magyar)
  * @author Dani
  * @author Glanthor Reviol
+ * @author 아라
  */
 $messages['hu'] = array(
 	'config-desc' => 'A MediaWiki telepítője',
 	'config-title' => 'A MediaWiki $1 telepítése',
 	'config-information' => 'Információ',
 	'config-localsettings-upgrade' => 'Már létezik a <code>LocalSettings.php</code> fájl.
-A telepített szoftver frissítéséhez írd be az alábbi mezőbe a <code>$wgUpgradeKey</code> beállítás értékét, melyet a LocalSettings.php nevű fájlban találhatsz meg.',
-	'config-localsettings-cli-upgrade' => 'A LocalSettings.php fájl megtalálható.
-A telepített rendszer frissítéséhez futtasd az update.php-t.',
+A telepített szoftver frissítéséhez írd be az alábbi mezőbe a <code>$wgUpgradeKey</code> beállítás értékét, melyet a <code>LocalSettings.php</code> nevű fájlban találhatsz meg.',
+	'config-localsettings-cli-upgrade' => 'A <code>LocalSettings.php</code> fájl megtalálható.
+A telepített rendszer frissítéséhez futtasd az <code>update.php</code>-t.',
 	'config-localsettings-key' => 'Frissítési kulcs:',
 	'config-localsettings-badkey' => 'A megadott kulcs érvénytelen.',
 	'config-upgrade-key-missing' => 'A telepítő a MediaWiki meglévő példányát észlelte.
-A telepített rendszer frissítéséhez helyezd el az alábbi sort a LocalSettings.php végére:
+A telepített rendszer frissítéséhez helyezd el az alábbi sort a <code>LocalSettings.php</code> végére:
 
 $1',
-	'config-localsettings-incomplete' => 'A meglévő LocalSettings.php hiányosnak tűnik.
+	'config-localsettings-incomplete' => 'A meglévő <code>LocalSettings.php</code> hiányosnak tűnik.
 A(z) $1 változó értéke nincs beállítva.
-Módosítsd a LocalSettings.php fájlt úgy, hogy ez a változó be legyen állítva, majd kattints a „Folytatás” gombra.',
-	'config-localsettings-connection-error' => 'Nem sikerült csatlakozni az adatbázishoz a LocalSettings.php-ben vagy az AdminSettings.php-ben megadott adatokkal. Ellenőrizd a beállításokat, majd próbáld újra.
+Módosítsd a <code>LocalSettings.php</code> fájlt úgy, hogy ez a változó be legyen állítva, majd kattints a „{{int:Config-continue}}” gombra.',
+	'config-localsettings-connection-error' => 'Nem sikerült csatlakozni az adatbázishoz a <code>LocalSettings.php</code>-ben vagy az <code>AdminSettings.php</code>-ben megadott adatokkal. Ellenőrizd a beállításokat, majd próbáld újra.
 
 $1',
 	'config-session-error' => 'Nem sikerült elindítani a munkamenetet: $1',
@@ -8114,7 +8126,7 @@ Ha az alábbi listán nem találod azt a rendszert, melyet használni szeretnél
 	'config-support-postgres' => '* A $1 népszerű, nyílt forráskódú adatbázisrendszer, a MySQL alternatívája ([http://www.php.net/manual/en/pgsql.installation.php Hogyan fordítható a PHP PostgreSQL-támogatással]). Több apró, javítatlan hiba is előfordulhat, így nem ajánlott éles környezetben használni.',
 	'config-support-sqlite' => '* Az $1 egy könnyű, nagyon jól támogatott adatbázisrendszer. ([http://www.php.net/manual/en/pdo.installation.php Hogyan fordítható a PHP SQLite-támogatással], PDO-t használ)',
 	'config-support-oracle' => '* Az $1 kereskedelmi, vállalati adatbázisrendszer. ([http://www.php.net/manual/en/oci8.installation.php Hogyan fordítható a PHP OCI8-támogatással])',
-	'config-support-ibm_db2' => '* Az $1 kereskedelmi vállalati adatbázisrendszer.',
+	'config-support-ibm_db2' => '* Az $1 kereskedelmi vállalati adatbázisrendszer.', # Fuzzy
 	'config-header-mysql' => 'MySQL-beállítások',
 	'config-header-postgres' => 'PostgreSQL-beállítások',
 	'config-header-sqlite' => 'SQLite-beállítások',
@@ -8182,7 +8194,7 @@ Ez '''nem ajánlott''', csak akkor, ha problémák vannak a wikivel.",
 
 Most már '''[$1 beléphetsz a wikibe]'''.",
 	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
-	'config-show-table-status' => 'A SHOW TABLE STATUS lekérdezés nem sikerült!',
+	'config-show-table-status' => 'A <code>SHOW TABLE STATUS</code> lekérdezés nem sikerült!',
 	'config-unknown-collation' => "'''Figyelmeztetés:''' az adatbázis ismeretlen egybevetést használ.",
 	'config-db-web-account' => 'A webes hozzáférésnél használt adatbázisfiók',
 	'config-db-web-help' => 'Add meg azt a felhasználónevet és jelszót, amit a webszerver a wiki általános működése során használ a csatlakozáshoz.',
@@ -8253,7 +8265,7 @@ A további konfigurációt kihagyhatod, és most azonnal elindíthatod a wiki te
 	'config-optional-continue' => 'További információk megadása.',
 	'config-optional-skip' => 'Épp elég volt, települjön a wiki!',
 	'config-profile' => 'Felhasználói jogosultságok profilja:',
-	'config-profile-wiki' => 'Hagyományos wiki',
+	'config-profile-wiki' => 'Hagyományos wiki', # Fuzzy
 	'config-profile-no-anon' => 'Felhasználói fiók létrehozása szükséges',
 	'config-profile-fishbowl' => 'Csak engedélyezett szerkesztők',
 	'config-profile-private' => 'Privát wiki',
@@ -8267,7 +8279,7 @@ Választhatsz!
 
 Lehetőség van arra is, hogy '''{{lc:{{int:config-profile-fishbowl}}}}''' módosíthassák a lapokat, de a nyilvánosság ekkor megtekintheti a lapokat és azok laptörténetét is. '''{{int:config-profile-private}}''' esetén csak az engedélyezett szerkesztők tekinthetik meg a lapokat, és ugyanez a csoport szerkeszthet.
 
-Telepítés után jóval összetettebb jogosultságrendszer állítható össze, további információ a [//www.mediawiki.org/wiki/Manual:User_rights kézikönyv kapcsolódó bejegyzésében].",
+Telepítés után jóval összetettebb jogosultságrendszer állítható össze, további információ a [//www.mediawiki.org/wiki/Manual:User_rights kézikönyv kapcsolódó bejegyzésében].", # Fuzzy
 	'config-license' => 'Szerzői jog és licenc:',
 	'config-license-none' => 'Nincs licencjelzés',
 	'config-license-cc-by-sa' => 'Creative Commons Nevezd meg! - Így add tovább!',
@@ -8351,7 +8363,7 @@ Lehetséges, hogy további beállításra lesz szükség hozzájuk, de már most
 	'config-install-alreadydone' => "'''Figyelmeztetés:''' Úgy tűnik, hogy a MediaWiki telepítve van, és te ismét megpróbálod telepíteni.
 Folytasd a következő oldalon.",
 	'config-install-begin' => 'A „{{int:config-continue}}” gomb megnyomása elindítja a MediaWiki telepítését.
-Ha szeretnél módosítani a beállításokon, kattints a vissza gombra.',
+Ha szeretnél módosítani a beállításokon, kattints a vissza gombra.', # Fuzzy
 	'config-install-step-done' => 'kész',
 	'config-install-step-failed' => 'sikertelen',
 	'config-install-extensions' => 'Kiterjesztések beillesztése',
@@ -8410,7 +8422,7 @@ Ha végeztél a fájl elhelyezésével, '''[$2 beléphetsz a wikibe]'''.",
 == Alapok (angol nyelven) ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]", # Fuzzy
 );
 
 /** Magyar (magázó) (Magyar (magázó))
@@ -8489,7 +8501,7 @@ Ha ezzel készen van, '''[$2 beléphet a wikibe]'''.", # Fuzzy
 == Alapok (angol nyelven) ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]", # Fuzzy
 );
 
 /** Armenian (Հայերեն)
@@ -8507,6 +8519,7 @@ $messages['hy'] = array(
 
 /** Interlingua (interlingua)
  * @author McDutchie
+ * @author 아라
  */
 $messages['ia'] = array(
 	'config-desc' => 'Le installator de MediaWiki',
@@ -8514,19 +8527,19 @@ $messages['ia'] = array(
 	'config-information' => 'Information',
 	'config-localsettings-upgrade' => 'Un file <code>LocalSettings.php</code> ha essite detegite.
 Pro actualisar iste installation, per favor entra le valor de <code>$wgUpgradeKey</code> in le quadro hic infra.
-Iste se trova in LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Un file LocalSettings.php file ha essite detegite.
-Pro actualisar iste installation, per favor executa upgrade.php.',
+Iste se trova in <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Un file <code>LocalSettings.php</code> file ha essite detegite.
+Pro actualisar iste installation, per favor executa <code>update.php</code>.',
 	'config-localsettings-key' => 'Clave de actualisation:',
 	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
 	'config-upgrade-key-missing' => 'Un installation existente de MediaWiki ha essite detegite.
-Pro actualisar iste installation, es necessari adjunger le sequente linea al fin del file LocalSettings.php:
+Pro actualisar iste installation, es necessari adjunger le sequente linea al fin del file <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Le file LocalSettings.php existente pare esser incomplete.
+	'config-localsettings-incomplete' => 'Le file <code>LocalSettings.php</code> existente pare esser incomplete.
 Le variabile $1 non es definite.
-Per favor cambia LocalSettings.php de sorta que iste variabile es definite, e clicca "Continuar".',
-	'config-localsettings-connection-error' => 'Un error esseva incontrate durante le connexion al base de datos usante le configurationes specificate in LocalSettings.php o AdminSettings.php. Per favor repara iste configurationes e tenta lo de novo.
+Per favor cambia <code>LocalSettings.php</code> de sorta que iste variabile es definite, e clicca "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Un error esseva incontrate durante le connexion al base de datos usante le configurationes specificate in <code>LocalSettings.php</code> o <code>AdminSettings.php</code>. Per favor repara iste configurationes e tenta lo de novo.
 
 $1',
 	'config-session-error' => 'Error al comenciamento del session: $1',
@@ -8744,7 +8757,7 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-support-postgres' => '* $1 es un systema de base de datos popular e open source, alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP con supporto de PostgreSQL]). Es possibile que resta alcun minor defectos non resolvite, dunque illo non es recommendate pro uso in un ambiente de production.',
 	'config-support-sqlite' => '* $1 es un systema de base de datos legier que es multo ben supportate. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 es un banca de datos commercial pro interprisas. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])',
-	'config-support-ibm_db2' => '* $1 es un systema commercial de base de datos pro interprisas.',
+	'config-support-ibm_db2' => '* $1 es un systema commercial de base de datos pro interprisas.', # Fuzzy
 	'config-header-mysql' => 'Configuration de MySQL',
 	'config-header-postgres' => 'Configuration de PostgreSQL',
 	'config-header-sqlite' => 'Configuration de SQLite',
@@ -8812,7 +8825,7 @@ Isto '''non es recommendate''' si tu non ha problemas con tu wiki.",
 
 Tu pote ora [$1 comenciar a usar tu wiki].',
 	'config-regenerate' => 'Regenerar LocalSettings.php →',
-	'config-show-table-status' => 'Le consulta SHOW TABLE STATUS falleva!',
+	'config-show-table-status' => 'Le consulta <code>SHOW TABLE STATUS</code> falleva!',
 	'config-unknown-collation' => "'''Aviso:''' Le base de datos usa un collation non recognoscite.",
 	'config-db-web-account' => 'Conto de base de datos pro accesso via web',
 	'config-db-web-help' => 'Selige le nomine de usator e contrasigno que le servitor web usara pro connecter al servitor de base de datos, durante le operation ordinari del wiki.',
@@ -8884,7 +8897,7 @@ Tu pote ora saltar le configuration remanente e installar le wiki immediatemente
 	'config-optional-continue' => 'Pone me plus questiones.',
 	'config-optional-skip' => 'Isto me es jam tediose. Simplemente installa le wiki.',
 	'config-profile' => 'Profilo de derectos de usator:',
-	'config-profile-wiki' => 'Wiki traditional',
+	'config-profile-wiki' => 'Wiki traditional', # Fuzzy
 	'config-profile-no-anon' => 'Creation de conto obligatori',
 	'config-profile-fishbowl' => 'Modificatores autorisate solmente',
 	'config-profile-private' => 'Wiki private',
@@ -8900,7 +8913,7 @@ Un wiki con '''{{int:config-profile-no-anon}}''' attribue additional responsabil
 Le scenario '''{{int:config-profile-fishbowl}}''' permitte al usatores approbate de modificar, ma le publico pote vider le paginas, includente lor historia.
 Un '''{{int:config-profile-private}}''' permitte solmente al usatores approbate de vider le paginas e de modificar los.
 
-Configurationes de derectos de usator plus complexe es disponibile post installation, vide le [//www.mediawiki.org/wiki/Manual:User_rights pertinente section del manual].",
+Configurationes de derectos de usator plus complexe es disponibile post installation, vide le [//www.mediawiki.org/wiki/Manual:User_rights pertinente section del manual].", # Fuzzy
 	'config-license' => 'Copyright e licentia:',
 	'config-license-none' => 'Nulle licentia in pede de paginas',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
@@ -8985,7 +8998,7 @@ Istes pote requirer additional configuration, ma tu pote activar los ora.',
 	'config-install-alreadydone' => "'''Aviso:''' Il pare que tu ha jam installate MediaWiki e tenta installar lo de novo.
 Per favor continua al proxime pagina.",
 	'config-install-begin' => 'Un clic sur "{{int:config-continue}}" comencia le installation de MediaWiki.
-Pro facer alterationes, clicca sur "Retro".',
+Pro facer alterationes, clicca sur "Retro".', # Fuzzy
 	'config-install-step-done' => 'finite',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => 'Include le extensiones',
@@ -9051,7 +9064,7 @@ Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 == Pro initiar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configurationes]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]', # Fuzzy
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -9059,6 +9072,7 @@ Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
  * @author IvanLanin
  * @author Kenrick95
  * @author Reedy
+ * @author 아라
  */
 $messages['id'] = array(
 	'config-desc' => 'Penginstal untuk MediaWiki',
@@ -9066,19 +9080,19 @@ $messages['id'] = array(
 	'config-information' => 'Informasi',
 	'config-localsettings-upgrade' => 'Berkas <code>LocalSettings.php</code> sudah ada.
 Untuk memutakhirkan instalasi ini, masukkan nilai <code>$wgUpgradeKey</code> dalam kotak yang tersedia di bawah ini.
-Anda dapat menemukan nilai tersebut dalam LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Berkas LocalSettings.php terdeteksi.
-Untuk meningkatkan versi, harap jalankan update.php.',
+Anda dapat menemukan nilai tersebut dalam <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Berkas <code>LocalSettings.php</code> terdeteksi.
+Untuk meningkatkan versi, harap jalankan <code>update.php</code>.',
 	'config-localsettings-key' => 'Kunci pemutakhiran:',
 	'config-localsettings-badkey' => 'Kunci yang Anda berikan tidak benar',
 	'config-upgrade-key-missing' => 'Suatu instalasi MediaWiki telah terdeteksi.
-Untuk memutakhirkan instalasi ini, silakan masukkan baris berikut di bagian bawah LocalSettings.php Anda:
+Untuk memutakhirkan instalasi ini, silakan masukkan baris berikut di bagian bawah <code>LocalSettings.php</code> Anda:
 
 $1',
-	'config-localsettings-incomplete' => 'LocalSettings.php yang ada tampaknya tidak lengkap.
+	'config-localsettings-incomplete' => '<code>LocalSettings.php</code> yang ada tampaknya tidak lengkap.
 Variabel $1 tidak diatur.
-Silakan ubah LocalSettings.php untuk mengatur variabel ini dan klik "Lanjutkan".',
-	'config-localsettings-connection-error' => 'Timbul galat saat menghubungkan ke basis data dengan menggunakan setelan yang ditentukan di LocalSettings.php atau AdminSettings.php. Harap perbaiki setelan ini dan coba lagi.
+Silakan ubah <code>LocalSettings.php</code> untuk mengatur variabel ini dan klik "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Timbul galat saat menghubungkan ke basis data dengan menggunakan setelan yang ditentukan di <code>LocalSettings.php</code> atau <code>AdminSettings.php</code>. Harap perbaiki setelan ini dan coba lagi.
 
 $1',
 	'config-session-error' => 'Kesalahan sesi mulai: $1',
@@ -9284,7 +9298,7 @@ Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah i
 	'config-support-postgres' => '* $1 adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL]). Mungkin ada beberapa bug terbuka dan alternatif ini tidak direkomendasikan untuk dipakai dalam lingkungan produksi.',
 	'config-support-sqlite' => '* $1 adalah sistem basis data yang ringan yang sangat baik dukungannya. ([http://www.php.net/manual/en/pdo.installation.php cara mengompilasi PHP dengan dukungan SQLite], menggunakan PDO)',
 	'config-support-oracle' => '* $1 adalah basis data komersial untuka perusahaan. ([http://www.php.net/manual/en/oci8.installation.php cara mengompilasi PHP dengan dukungan OCI8])',
-	'config-support-ibm_db2' => '* $1 adalah basis data-perusahaan komersial.',
+	'config-support-ibm_db2' => '* $1 adalah basis data-perusahaan komersial.', # Fuzzy
 	'config-header-mysql' => 'Pengaturan MySQL',
 	'config-header-postgres' => 'Pengaturan PostgreSQL',
 	'config-header-sqlite' => 'Pengaturan SQLite',
@@ -9352,7 +9366,7 @@ Tindakan ini '''tidak dianjurkan''' kecuali jika Anda mengalami masalah dengan w
 
 Anda sekarang dapat [$1 mulai menggunakan wiki Anda].',
 	'config-regenerate' => 'Regenerasi LocalSettings.php →',
-	'config-show-table-status' => 'Kueri SHOW TABLE STATUS gagal!',
+	'config-show-table-status' => 'Kueri <code>SHOW TABLE STATUS</code> gagal!',
 	'config-unknown-collation' => "'''Peringatan:''' basis data menggunakan kolasi yang tidak dikenal.",
 	'config-db-web-account' => 'Akun basis data untuk akses web',
 	'config-db-web-help' => 'Masukkan nama pengguna dan sandi yang akan digunakan server web untuk terhubung ke server basis data saat operasi normal wiki.',
@@ -9415,7 +9429,7 @@ Anda sekarang dapat melewati sisa konfigurasi dan menginstal wiki sekarang.',
 	'config-optional-continue' => 'Berikan saya pertanyaan lagi.',
 	'config-optional-skip' => 'Saya sudah bosan, instal saja wikinya.',
 	'config-profile' => 'Profil hak pengguna:',
-	'config-profile-wiki' => 'Wiki tradisional',
+	'config-profile-wiki' => 'Wiki tradisional', # Fuzzy
 	'config-profile-no-anon' => 'Pembuatan akun diperlukan',
 	'config-profile-fishbowl' => 'Khusus penyunting terdaftar',
 	'config-profile-private' => 'Wiki pribadi',
@@ -9429,7 +9443,7 @@ Namun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak m
 '''{{int:config-profile-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.
 '''{{int:config-profile-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.
 
-Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [//www.mediawiki.org/wiki/Manual:User_rights/id entri manual terkait].",
+Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [//www.mediawiki.org/wiki/Manual:User_rights/id entri manual terkait].", # Fuzzy
 	'config-license' => 'Hak cipta dan lisensi:',
 	'config-license-none' => 'Tidak ada lisensi',
 	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa',
@@ -9514,7 +9528,7 @@ Ekstensi tersebut mungkin memerlukan konfigurasi tambahan, tetapi Anda dapat men
 	'config-install-alreadydone' => "'''Peringatan:''' Anda tampaknya telah menginstal MediaWiki dan mencoba untuk menginstalnya lagi.
 Lanjutkan ke halaman berikutnya.",
 	'config-install-begin' => 'Dengan menekan "{{int:config-continue}}", Anda akan memulai instalasi MediaWiki.
-Jika Anda masih ingin membuat perubahan, tekan "{{int:config-back}}".',
+Jika Anda masih ingin membuat perubahan, tekan "{{int:config-back}}".', # Fuzzy
 	'config-install-step-done' => 'selesai',
 	'config-install-step-failed' => 'gagal',
 	'config-install-extensions' => 'Termasuk ekstensi',
@@ -9640,6 +9654,7 @@ $messages['is'] = array(
  * @author F. Cosoleto
  * @author Gianfranco
  * @author Karika
+ * @author 아라
  */
 $messages['it'] = array(
 	'config-desc' => 'Il programma di installazione per MediaWiki',
@@ -9647,19 +9662,19 @@ $messages['it'] = array(
 	'config-information' => 'Informazioni',
 	'config-localsettings-upgrade' => 'È stato rilevato un file <code>LocalSettings.php</code>.
 Per aggiornare questa installazione, si prega di inserire il valore di <code>$wgUpgradeKey</code> nella casella qui sotto.
-Lo potete trovare in LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'È stato rilevato un file LocalSettings.php.
-Per aggiornare questa installazione, eseguire update.php',
+Lo potete trovare in <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'È stato rilevato un file <code>LocalSettings.php</code>.
+Per aggiornare questa installazione, eseguire <code>update.php</code>',
 	'config-localsettings-key' => 'Chiave di aggiornamento:',
 	'config-localsettings-badkey' => 'La chiave che hai fornito non è corretta.',
 	'config-upgrade-key-missing' => "È stata rilevata un'installazione esistente di MediaWiki.
-Per aggiornare questa installazione, si prega di inserire la seguente riga nella parte inferiore del tuo LocalSettings.php:
+Per aggiornare questa installazione, si prega di inserire la seguente riga nella parte inferiore del tuo <code>LocalSettings.php</code>:
 
 $1",
-	'config-localsettings-incomplete' => 'Il file LocalSettings.php esistente sembra essere incompleto.
+	'config-localsettings-incomplete' => 'Il file <code>LocalSettings.php</code> esistente sembra essere incompleto.
 La variabile $1 non è impostata.
-Cambia LocalSettings.php in modo che questa variabile sia impostata e fai clic su "Continua".',
-	'config-localsettings-connection-error' => 'Si è verificato un errore durante la connessione al database utilizzando le impostazioni specificate in LocalSettings.php o AdminSettings.php. Si prega di correggere queste impostazioni e riprovare.
+Cambia <code>LocalSettings.php</code> in modo che questa variabile sia impostata e fai clic su "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Si è verificato un errore durante la connessione al database utilizzando le impostazioni specificate in <code>LocalSettings.php</code> o <code>AdminSettings.php</code>. Si prega di correggere queste impostazioni e riprovare.
 
 $1',
 	'config-session-error' => "Errore nell'avvio della sessione: $1",
@@ -9880,18 +9895,22 @@ $messages['ja'] = array(
 	'config-information' => '情報',
 	'config-localsettings-upgrade' => 'ファイル <code>LocalSettings.php</code> を検出しました。
 インストールされているものをアップグレードするには、<code>$wgUpgradeKey</code> の値を以下の欄に入力してください。
-この値は LocalSettings.php 内にあります。',
-	'config-localsettings-cli-upgrade' => 'ファイル LocalSettings.php を検出しました。
-インストールされているものをアップグレードするには、update.php を実行してください',
+この値は <code>LocalSettings.php</code> 内にあります。',
+	'config-localsettings-cli-upgrade' => 'ファイル <code>LocalSettings.php</code> を検出しました。
+インストールされているものをアップグレードするには、<code>update.php</code> を実行してください',
 	'config-localsettings-key' => 'アップグレード キー:',
 	'config-localsettings-badkey' => '与えられたキーが間違っています',
 	'config-upgrade-key-missing' => 'MediaWiki が既にインストールされていることを検出しました。
-インストールされているものをアップグレードするために、以下の行を LocalSettings.php の末尾に挿入してください:
+インストールされているものをアップグレードするために、以下の行を <code>LocalSettings.php</code> の末尾に挿入してください:
 
 $1',
-	'config-localsettings-incomplete' => '既存の LocalSettings.php の内容は不完全のようです。
+	'config-localsettings-incomplete' => '既存の <code>LocalSettings.php</code> の内容は不完全のようです。
 変数 $1 が設定されていません。
-LocalSettings.php 内でこの変数を設定して、「{{int:Config-continue}}」をクリックしてください。',
+<code>LocalSettings.php</code> 内でこの変数を設定して、「{{int:Config-continue}}」をクリックしてください。',
+	'config-localsettings-connection-error' => '<code>LocalSettings.php</code> または <code>AdminSettings.php</code> で指定した設定を使用してデータベースに接続する際にエラーが発生しました。
+設定を修正してから再度試してください。
+
+$1',
 	'config-session-error' => 'セッションの開始エラー: $1',
 	'config-session-expired' => 'セッションの有効期限が切れたようです。
 セッションの有効期間は$1に設定されています。
@@ -10163,7 +10182,7 @@ chmod a+w $3</pre>',
 
 [$1 ウィキの使用を開始]することができます。',
 	'config-regenerate' => 'LocalSettings.phpを再生成→',
-	'config-show-table-status' => 'SHOW TABLE STATUS クエリが失敗しました!',
+	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> クエリが失敗しました!',
 	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
 	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
 	'config-db-web-help' => 'ウィキの通常の操作の際に、ウェブ サーバーがデータベース サーバーに接続できるように、ユーザー名とパスワードを指定してください。',
@@ -10639,19 +10658,19 @@ $messages['ko'] = array(
 	'config-information' => '정보',
 	'config-localsettings-upgrade' => '<code>LocalSettings.php</code> 파일을 감지했습니다.
 이 설치를 업그레이드하려면 아래 상자에 <code>$wgUpgradeKey</code>의 값을 입력하세요.
-LocalSettings.php에 찾을 수 있습니다.',
-	'config-localsettings-cli-upgrade' => 'LocalSettings.php 파일을 감지했습니다.
-이 설치를 업그레이드하려면 update.php를 대신 실행하세요',
+<code>LocalSettings.php</code>에 찾을 수 있습니다.',
+	'config-localsettings-cli-upgrade' => '<code>LocalSettings.php</code> 파일을 감지했습니다.
+이 설치를 업그레이드하려면 <code>update.php</code>를 대신 실행하세요',
 	'config-localsettings-key' => '업그레이드 키:',
 	'config-localsettings-badkey' => '제공한 키가 잘못되었습니다.',
 	'config-upgrade-key-missing' => '미디어위키의 기존 설치가 감지되었습니다.
-이 설치를 업그레이드하려면 LocalSettings.php의 아래에 다음 줄을 넣으세요:
+이 설치를 업그레이드하려면 <code>LocalSettings.php</code>의 아래에 다음 줄을 넣으세요:
 
 $1',
-	'config-localsettings-incomplete' => '기존 LocalSettings.php가 완전하지 않은 것 같습니다.
+	'config-localsettings-incomplete' => '기존 <code>LocalSettings.php</code>가 완전하지 않은 것 같습니다.
 $1 변수가 설정되어 있지 않습니다.
-이 변수가 설정되도록 LocalSettings.php를 바꾸고 "계속"을 클릭하세요.',
-	'config-localsettings-connection-error' => 'LocalSettings.php 또는 AdminSettings.php에 지정한 설정을 사용하여 데이터베이스에 연결할 때 오류가 발생했습니다. 이러한 설정을 수정하고 다시 시도하세요.
+이 변수가 설정되도록 <code>LocalSettings.php</code>를 바꾸고 "{{int:Config-continue}}"을 클릭하세요.',
+	'config-localsettings-connection-error' => '<code>LocalSettings.php</code> 또는 <code>AdminSettings.php</code>에 지정한 설정을 사용하여 데이터베이스에 연결할 때 오류가 발생했습니다. 이러한 설정을 수정하고 다시 시도하세요.
 
 $1',
 	'config-session-error' => '세션 시작 오류: $1',
@@ -10935,7 +10954,7 @@ chmod a+w $3</pre>',
 
 이제 [$1 위키를 시작]할 수 있습니다.',
 	'config-regenerate' => 'LocalSettings.php 다시 만들기 →',
-	'config-show-table-status' => 'SHOW TABLE STATUS 쿼리 실패!',
+	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> 쿼리를 실패했습니다!',
 	'config-unknown-collation' => "'''경고:''' 데이터베이스가 인식하지 않는 정렬을 사용하고 있습니다.",
 	'config-db-web-account' => '웹 접근을 위한 데이터베이스 계정',
 	'config-db-web-help' => '위키의 일반적인 작업 중에 데이터베이스 서버에 연결하는 데 사용할 웹 서버에 대한 계정 이름과 비밀번호를 선택하세요.',
@@ -11200,21 +11219,21 @@ $messages['ksh'] = array(
 	'config-desc' => 'Et Projramm för Mediwiki opzesäze.',
 	'config-title' => 'MediaWiki $1 opsäze',
 	'config-information' => 'Enfomazjuhn',
-	'config-localsettings-upgrade' => 'De Dattei <code lang="en">LocalSettings.php</code> es ald doh.
+	'config-localsettings-upgrade' => 'De Dattei <code lang="en"><code>LocalSettings.php</code></code> es ald doh.
 De Projramme vum Wiki künne op der neußte Shtand jebraat wääde:
 Donn doför dä Wäät vum <code lang="en">$wgUpgradeKey</code> en dat heh Feld enjävve.
-Do fenggs_et en dä Dattei <code lang="en">LocalSettings.php</code> om ẞööver.',
-	'config-localsettings-cli-upgrade' => 'En Dattei <code lang="en">LocalSettings.php</code> es jefonge woode.
+Do fenggs_et en dä Dattei <code lang="en"><code>LocalSettings.php</code></code> om ẞööver.',
+	'config-localsettings-cli-upgrade' => 'En Dattei <code lang="en"><code>LocalSettings.php</code></code> es jefonge woode.
 Öm et Wiki_Projramm op ene neue Shtand ze bränge, donn <code lang="en">update.php</code> oproofe.',
 	'config-localsettings-key' => 'Der Schlößel för et Projramm op ene neue Schtand ze bränge:',
 	'config-localsettings-badkey' => 'Dinge Schlößel paß nit.',
 	'config-upgrade-key-missing' => 'Mer han jefonge, dat MediaWiki ald enschtalleed es.
-Üm de Projramme un Daate o der neue Schtand bränge ze künne, dunn aan et Engk vun dä Dattei <code lang="en">LocalSettings.php</code> op dämm ẞööver:
+Üm de Projramme un Daate o der neue Schtand bränge ze künne, dunn aan et Engk vun dä Dattei <code lang="en"><code>LocalSettings.php</code></code> op dämm ẞööver:
 
 $1
 
 aanhange.',
-	'config-localsettings-incomplete' => 'Mer han en Dattei <code lang="en">LocalSettings.php:</code> jefonge, ävver di schingk nit kumplätt ze sin.
+	'config-localsettings-incomplete' => 'Mer han en Dattei <code lang="en"><code>LocalSettings.php</code>:</code> jefonge, ävver di schingk nit kumplätt ze sin.
 De Varijable <code lang="en">$1</code> es nit jesatz.
 Bes esu joot, un donn di Dattei esu aanpaße, dat se jesaz ea, un dann donn op „{{int:config-continue}}“ klecke.',
 	'config-localsettings-connection-error' => 'Ene Fähler es opjetrodde wi mer en Verbendung noh de Datebangk opmaache wullte met dä Enshtellunge uß dä Dattei <code lang="en">LocalSettings</code> udder uß dä Dattei <code lang="en">LocalSettings</code> un et hät nit jeflupp. Bes esu joot un dat repareere un versöhg et dann norr_ens.
@@ -11444,7 +11463,7 @@ Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn
 	'config-support-postgres' => '* <i lang="en">$1</i> es e bikannt Daatebangksüßteem met offe Quälltäxde, un en och en Wahl nävve <i lang="en">MySQL</i> ([http://www.php.net/manual/de/pgsql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">PostgreSQL</i> dobei, op Deutsch]) Et sinn_er ävver paa klein Fählershe bekannt, um kunne dat em Momang för et reschtijje Werke nit emfähle.',
 	'config-support-sqlite' => '* <i lang="en">$1</i> es e eijfach Daatebangksüßteem, wat joot ongershtöz weed. ([http://www.php.net/manual/de/pdo.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">SQLite</i> dobei, op Deutsch])',
 	'config-support-oracle' => '* <i lang="en">$1</i> es e jeschäfflesch Daatebangksüßteem för Ferme. ([http://www.php.net/manual/de/oci8.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">OCI8</i> dobei, op Deutsch])',
-	'config-support-ibm_db2' => '* $1 es en Datebengk för et Jeschäff un fö Ongernehme.',
+	'config-support-ibm_db2' => '* $1 es en Datebengk för et Jeschäff un fö Ongernehme.', # Fuzzy
 	'config-header-mysql' => 'De Enshtällunge för de <i lang="en">MySQL</i> Daatebangk',
 	'config-header-postgres' => 'De Enshtällunge för de <i lang="en">PostgreSQL</i> Daatebangk',
 	'config-header-sqlite' => 'De Enshtällunge för de <i lang="en">SQLite</i> Daatebangk',
@@ -11508,7 +11527,7 @@ Dat dom_mer ävver '''nit vörschlonn'''em Jääjedeil, ußer, wann et Probleme 
 
 Mer kann dat Wiki jäz [$1 bruche].',
 	'config-regenerate' => 'Donn de Dattei <code lang="en">LocalSettings.php</code> neu opsäze →',
-	'config-show-table-status' => 'Et Kommando <code lang="en">SHOW TABLE STATUS</code> aan de Daatebangk es donävve jejange!',
+	'config-show-table-status' => 'Et Kommando <code lang="en"><code>SHOW TABLE STATUS</code></code> aan de Daatebangk es donävve jejange!',
 	'config-unknown-collation' => "'''Opjepaß:''' De Daatabangk deiht en onbikannte Reijefollsch bruche, för Booshtaabe un Zeishe ze verjliishe un ze zotteere.",
 	'config-db-web-account' => 'Dä Zohjang zor Daatebangk för et Wiki',
 	'config-db-web-help' => 'Donn ene Name un e Paßwoot för der Zohjang zor Daatebangk för et Wiki em nomaale Bedrief aanjävve.',
@@ -11581,7 +11600,7 @@ Do künnts jez der Räß vun de einzel Enshtellunge övverjonn, un et Wiki tirä
 	'config-optional-continue' => 'De wells noch mieh Frore jeshtallt krijje un noch mieh Enshtällunge maache?',
 	'config-optional-skip' => 'Nä, lohß dä Ömshtand, donn eifarr_et Wiki opsäze.',
 	'config-profile' => 'Enshtällunge för de Metmaacher ier Rääschte:',
-	'config-profile-wiki' => 'E tradizjonäll offe Wiki',
+	'config-profile-wiki' => 'E tradizjonäll offe Wiki', # Fuzzy
 	'config-profile-no-anon' => 'Schriever möße enlogge',
 	'config-profile-fishbowl' => 'Bloß ußdröcklesch zohjelohße Schriever',
 	'config-profile-private' => 'E jeschloße Privat_Wiki',
@@ -11599,7 +11618,7 @@ Esu häß De de Wahl:
 
 '''{{int:config-profile-private}}''' kann nur lässe, wäh en et Wiki zohjelohße es, un desellve Jropp kann uch schrieve.
 
-Noch ander un un opwändijere Enshtellunge för de Rääschte sin müjjelesch, wann et Wiki ens aam Loufe es. Loor Der doför de [//www.mediawiki.org/wiki/Manual:User_rights zopaß Hölp em Handbooch] aan.",
+Noch ander un un opwändijere Enshtellunge för de Rääschte sin müjjelesch, wann et Wiki ens aam Loufe es. Loor Der doför de [//www.mediawiki.org/wiki/Manual:User_rights zopaß Hölp em Handbooch] aan.", # Fuzzy
 	'config-license' => 'Urhävverrääsch un Lizänz:',
 	'config-license-none' => 'Kein Fooßreih övver de Lizänz',
 	'config-license-cc-by-sa' => '<i lang="en">Creative Commons</i> Der Name moß jenannt sin, et Wiggerjävve es zohjelohße onger dersellve Bedengunge',
@@ -11682,7 +11701,7 @@ Do kann se heh un jez aanschallde, ävver se künnte noch zohsäzlesch Enshtellu
 Et sühd esu uß, wi wann De MediaWiki ald enshtalleet hätß, un wöhrs aam Versöhke, dat norr_ens ze donn.
 Jang wigger op de näähßte Sigg.",
 	'config-install-begin' => 'Wann De op „{{int:config-continue}}“ klecks, jeiht de Enshtallazjuhn vum MediaWiki loßß.
-Wann De noch Änderonge maache wells, dann kleck op „{{int:config-back}}“.',
+Wann De noch Änderonge maache wells, dann kleck op „{{int:config-back}}“.', # Fuzzy
 	'config-install-step-done' => 'jedonn',
 	'config-install-step-failed' => 'donävve jejange',
 	'config-install-extensions' => 'Zohsazprojramme enjeschloße',
@@ -11749,7 +11768,7 @@ Wann De mem Ronger- un widder Huhlaade fäädesh bes, kanns De '''[\$2 en Ding W
 Dat es och all op Änglesch:
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
@@ -11789,6 +11808,7 @@ $messages['lad'] = array(
 
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
+ * @author 아라
  */
 $messages['lb'] = array(
 	'config-desc' => 'Den Installatiounsprogramm vu MediaWiki',
@@ -11796,12 +11816,12 @@ $messages['lb'] = array(
 	'config-information' => 'Informatioun',
 	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
 Är Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code>\$wgUpgradeKey</code> an d'Këscht.
-Dir fannt en am LocalSettings.php.",
+Dir fannt en am <code>LocalSettings.php</code>.",
 	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
 	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
-	'config-localsettings-incomplete' => 'De Fichier LocalSettings.php schéngt net komplett ze sinn.
+	'config-localsettings-incomplete' => 'De Fichier <code>LocalSettings.php</code> schéngt net komplett ze sinn.
 D\'Variabel $1 ass net definéiert.
-Ännert w.e.g. de Fichier LocalSettings.php esou datt déi Variabel definéiert ass a klickt op "Virufueren".',
+Ännert w.e.g. de Fichier <code>LocalSettings.php</code> esou datt déi Variabel definéiert ass a klickt op "{{int:Config-continue}}".',
 	'config-session-error' => 'Feeler beim Starte vun der Sessioun: $1',
 	'config-no-session' => "D'Donnéeë vun ärer Sessioun si verluergaangen!
 Kuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  op adequate REpertoire agestallt ass.",
@@ -11894,7 +11914,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
 	'config-type-ibm_db2' => 'IBM DB2',
-	'config-support-ibm_db2' => '* $1 ass eng kommerziell Firma fir Datebanken',
+	'config-support-ibm_db2' => '* $1 ass eng kommerziell Firma fir Datebanken', # Fuzzy
 	'config-header-mysql' => 'MySQL-Astellungen',
 	'config-header-postgres' => 'PostgreSQL-Astellungen',
 	'config-header-sqlite' => 'SQLite-Astellungen',
@@ -11952,7 +11972,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-optional-continue' => 'Stellt mir méi Froen.',
 	'config-optional-skip' => "Ech hunn es genuch, installéier just d'Wiki.",
 	'config-profile' => 'Profil vun de Benotzerrechter:',
-	'config-profile-wiki' => 'Traditionell Wiki',
+	'config-profile-wiki' => 'Traditionell Wiki', # Fuzzy
 	'config-profile-no-anon' => 'Uleeë vun engem Benotzerkont verlaangt',
 	'config-profile-fishbowl' => 'Nëmmen autoriséiert Editeuren',
 	'config-profile-private' => 'Privat Wiki',
@@ -12000,7 +12020,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 == Starthëllefen ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Hëllef bei der Konfiguratioun]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]", # Fuzzy
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)
@@ -12277,6 +12297,7 @@ $messages['min'] = array(
 
 /** Macedonian (македонски)
  * @author Bjankuloski06
+ * @author 아라
  */
 $messages['mk'] = array(
 	'config-desc' => 'Инсталатор на МедијаВики',
@@ -12284,19 +12305,19 @@ $messages['mk'] = array(
 	'config-information' => 'Информации',
 	'config-localsettings-upgrade' => 'Востановена е податотека <code>LocalSettings.php</code>.
 За да ја надградите инсталцијава, внесете ја вредноста на <code>$wgUpgradeKey</code> во полето подолу.
-Тоа е го најдете во LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Утврдено е присуството на податотеката „LocalSettings.php“.
-За да ја надградите инсталацијата, пуштете ја „update.php“ наместо горенаведената.',
+Тоа е го најдете во <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Утврдено е присуството на податотеката „<code>LocalSettings.php</code>“.
+За да ја надградите инсталацијата, пуштете ја „<code>update.php</code>“ наместо горенаведената.',
 	'config-localsettings-key' => 'Надградбен клуч:',
 	'config-localsettings-badkey' => 'Клучот што го наведовте е погрешен',
 	'config-upgrade-key-missing' => 'Востановена е постоечка инсталација на МедијаВики.
-За да ја надградите, вметнете го следниов ред на дното од вашата страница LocalSettings.php:
+За да ја надградите, вметнете го следниов ред на дното од вашата страница <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Постоечката страница LocalSettings.php е нецелосна.
+	'config-localsettings-incomplete' => 'Постоечката страница <code>LocalSettings.php</code> е нецелосна.
 Не е поставена променливата $1.
-Изменете ја страницата LocalSettings.php така што ќе ѝ зададете вредност на променливата, па стиснете на „Продолжи“.',
-	'config-localsettings-connection-error' => 'Се појави грешка при поврзувањето со базата користејќи ги поставките назначени во LocalSettings.php или AdminSettings.php. Исправете ги овие поставки и обидете се повторно.
+Изменете ја страницата <code>LocalSettings.php</code> така што ќе ѝ зададете вредност на променливата, па стиснете на „{{int:Config-continue}}“.',
+	'config-localsettings-connection-error' => 'Се појави грешка при поврзувањето со базата користејќи ги поставките назначени во <code>LocalSettings.php</code> или <code>AdminSettings.php</code>. Исправете ги овие поставки и обидете се повторно.
 
 $1',
 	'config-session-error' => 'Грешка при започнување на сесијата: $1',
@@ -12581,7 +12602,7 @@ chmod a+w $3</pre>',
 
 Сега можете да [$1 почнете да го користите викито].',
 	'config-regenerate' => 'Пресоздај LocalSettings.php →',
-	'config-show-table-status' => 'Барањето SHOW TABLE STATUS не успеа!',
+	'config-show-table-status' => 'Барањето <code>SHOW TABLE STATUS</code> не успеа!',
 	'config-unknown-collation' => "'''Предупредување:''' Базата корисни непрепознаена упатна споредба.",
 	'config-db-web-account' => 'Сметка на базата за мрежен пристап',
 	'config-db-web-help' => 'Одберете корисничко име и лозинка што ќе ги користи мрежниот опслужувач за поврзување со опслужувачот на базта на податоци во текот на редовната работа со викито.',
@@ -12922,7 +12943,7 @@ $1
 ബാക്കിയുള്ളവ അവഗണിച്ച് വിക്കി ഇൻസ്റ്റോൾ ചെയ്യാവുന്നതാണ്.',
 	'config-optional-continue' => 'കൂടുതൽ ചോദ്യങ്ങൾ ചോദിക്കൂ.',
 	'config-optional-skip' => 'എനിക്ക് മടുത്തു, ഒന്ന് ഇൻസ്റ്റോൾ ചെയ്ത് തീർക്ക്.',
-	'config-profile-wiki' => 'പരമ്പരാഗത വിക്കി',
+	'config-profile-wiki' => 'പരമ്പരാഗത വിക്കി', # Fuzzy
 	'config-profile-no-anon' => 'അംഗത്വ സൃഷ്ടി ചെയ്യേണ്ടതുണ്ട്',
 	'config-profile-fishbowl' => 'അനുവാദമുള്ളവർ മാത്രം തിരുത്തുക',
 	'config-profile-private' => 'സ്വകാര്യ വിക്കി',
@@ -12976,7 +12997,7 @@ $3
 == പ്രാരംഭസഹായികൾ ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings ക്രമീകരണങ്ങളുടെ പട്ടിക]
 * [//www.mediawiki.org/wiki/Manual:FAQ മീഡിയവിക്കി പതിവുചോദ്യങ്ങൾ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയവിക്കി പ്രകാശന മെയിലിങ് ലിസ്റ്റ്]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയവിക്കി പ്രകാശന മെയിലിങ് ലിസ്റ്റ്]', # Fuzzy
 );
 
 /** Mongolian (монгол)
@@ -13248,6 +13269,7 @@ $messages['nan'] = array(
 /** Norwegian Bokmål (norsk (bokmål)‎)
  * @author Event
  * @author Nghtwlkr
+ * @author 아라
  */
 $messages['nb'] = array(
 	'config-desc' => 'Installasjonsprogrammet for MediaWiki',
@@ -13255,19 +13277,19 @@ $messages['nb'] = array(
 	'config-information' => 'Informasjon',
 	'config-localsettings-upgrade' => 'En <code>LocalSettings.php</code>-fil har blitt oppdaget.
 For å oppgradere denne installasjonen, skriv inn verdien av <code>$wgUpgradeKey</code> i boksen nedenfor.
-Du finner denne i LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => "Filen ''LocalSettings.php'' er funnet.
+Du finner denne i <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => "Filen ''<code>LocalSettings.php</code>'' er funnet.
 For å oppgradere denne installasjonen, vennligst kjør ''update.php'' i stedet",
 	'config-localsettings-key' => 'Oppgraderingsnøkkel:',
 	'config-localsettings-badkey' => 'Nøkkelen du oppga er feil.',
 	'config-upgrade-key-missing' => "En eksisterende installasjon av MediaWiki er funnet.
-For å oppgradere denne installasjonen, vær vennlig å legge til følgende linje helt til slutt i din ''LocalSettings.php''-fil:
+For å oppgradere denne installasjonen, vær vennlig å legge til følgende linje helt til slutt i din ''<code>LocalSettings.php</code>''-fil:
 
 $1",
-	'config-localsettings-incomplete' => "Den eksisterende ''LocalSettings.php'' ser ut til å være ufullstendig.
+	'config-localsettings-incomplete' => "Den eksisterende ''<code>LocalSettings.php</code>'' ser ut til å være ufullstendig.
 Variabelen $1 har ingen verdi.
-Vær vennlig å endre ''LocalSettings.php'' slik at variabelen får en verdi, og klikk ''Fortsett''.",
-	'config-localsettings-connection-error' => "Det ble funnet en feil ved tilknytning av databasen med innstillingene i ''LocalSettings.php'' eller ''AdminSettings.php''. Vær vennlig å rette opp disse innstillingene og prøv igjen.
+Vær vennlig å endre ''<code>LocalSettings.php</code>'' slik at variabelen får en verdi, og klikk ''{{int:Config-continue}}''.",
+	'config-localsettings-connection-error' => "Det ble funnet en feil ved tilknytning av databasen med innstillingene i ''<code>LocalSettings.php</code>'' eller ''<code>AdminSettings.php</code>''. Vær vennlig å rette opp disse innstillingene og prøv igjen.
 
 $1",
 	'config-session-error' => 'Feil under oppstart av økt: $1',
@@ -13485,7 +13507,7 @@ Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg i
 	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte]). Det kan være noen små utestående feil og det anbefales ikke for bruk i et produksjonsmiljø.',
 	'config-support-sqlite' => '* $1 er et lettvekts-databasesystem som er veldig godt støttet. ([http://www.php.net/manual/en/pdo.installation.php hvordan kompilere PHP med SQLite-støtte], bruker PDO)',
 	'config-support-oracle' => '* $1 er en kommersiell bedriftsdatabase. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])',
-	'config-support-ibm_db2' => '* $1 er en kommersiell bedriftsdatabase.',
+	'config-support-ibm_db2' => '* $1 er en kommersiell bedriftsdatabase.', # Fuzzy
 	'config-header-mysql' => 'MySQL-innstillinger',
 	'config-header-postgres' => 'PostgreSQL-innstillinger',
 	'config-header-sqlite' => 'SQLite-innstillinger',
@@ -13553,7 +13575,7 @@ Dette er '''ikke anbefalt''' med mindre du har problemer med wikien din.",
 
 Du kan nå [$1 begynne å bruke wikien din].',
 	'config-regenerate' => 'Regenerer LocalSettings.php →',
-	'config-show-table-status' => 'SHOW TABLE STATUS etterspørselen mislyktes!',
+	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> etterspørselen mislyktes!',
 	'config-unknown-collation' => "'''Advarsel:''' Databasen bruker en ukjent sortering.",
 	'config-db-web-account' => 'Databasekonto for nettilgang',
 	'config-db-web-help' => 'Velg brukernavnet og passordet som nettjeneren skal bruke for å koble til databasetjeneren under ordinær drift av wikien.',
@@ -13617,7 +13639,7 @@ Du kan hoppe over de resterende konfigurasjonene og installere wikien nå.',
 	'config-optional-continue' => 'Spør meg flere spørsmål.',
 	'config-optional-skip' => 'Jeg er lei, bare installer wikien.',
 	'config-profile' => 'Brukerrettighetsprofil:',
-	'config-profile-wiki' => 'Tradisjonell wiki',
+	'config-profile-wiki' => 'Tradisjonell wiki', # Fuzzy
 	'config-profile-no-anon' => 'Kontoopprettelse påkrevd',
 	'config-profile-fishbowl' => 'Kun autoriserte bidragsytere',
 	'config-profile-private' => 'Privat wiki',
@@ -13633,7 +13655,7 @@ En wiki med '''{{int:config-profile-no-anon}}''' tilbyr ekstra ansvarlighet, men
 '''{{int:config-profile-fishbowl}}'''-scenariet tillater godkjente brukere å redigere, mens publikum kan se sider, og også historikken.
 En '''{{int:config-profile-private}}''' tillater kun godkjente brukere å se sider, den samme gruppen som får lov til å redigere dem.
 
-Mer komplekse konfigurasjoner av brukerrettigheter er tilgjengelig etter installasjon, se det [//www.mediawiki.org/wiki/Manual:User_rights relevante manualavsnittet].",
+Mer komplekse konfigurasjoner av brukerrettigheter er tilgjengelig etter installasjon, se det [//www.mediawiki.org/wiki/Manual:User_rights relevante manualavsnittet].", # Fuzzy
 	'config-license' => 'Opphavsrett og lisens:',
 	'config-license-none' => 'Ingen lisensbunntekst',
 	'config-license-cc-by-sa' => 'Creative Commons Navngivelse Del på samme vilkår',
@@ -13703,7 +13725,7 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 ==Å starte==
 *[//www.mediawiki.org/wiki/Manual:Configuration_settings Oppsettsliste]
 *[//www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
-*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
+*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]', # Fuzzy
 );
 
 /** Low German (Plattdüütsch)
@@ -13748,6 +13770,7 @@ $messages['ne'] = array(
  * @author SPQRobin
  * @author Siebrand
  * @author Tjcool007
+ * @author 아라
  */
 $messages['nl'] = array(
 	'config-desc' => 'Het installatieprogramma voor MediaWiki',
@@ -13755,19 +13778,19 @@ $messages['nl'] = array(
 	'config-information' => 'Gegevens',
 	'config-localsettings-upgrade' => 'Er is een bestaand instellingenbestand <code>LocalSettings.php</code> gevonden.
 Voer de waarde van <code>$wgUpgradeKey</code> in in onderstaande invoerveld om deze installatie bij te werken.
-De instelling is terug te vinden in LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Het bestand LocalSettings.php is al aanwezig.
-Voer update.php uit om deze installatie bij te werken.',
+De instelling is terug te vinden in <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Het bestand <code>LocalSettings.php</code> is al aanwezig.
+Voer <code>update.php</code> uit om deze installatie bij te werken.',
 	'config-localsettings-key' => 'Upgradesleutel:',
 	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
 	'config-upgrade-key-missing' => 'Er is een bestaande installatie van MediaWiki aangetroffen.
-Plaats de volgende regel onderaan uw LocalSettings.php om deze installatie bij te werken:
+Plaats de volgende regel onderaan uw <code>LocalSettings.php</code> om deze installatie bij te werken:
 
 $1',
-	'config-localsettings-incomplete' => 'De bestaande inhoud van LocalSettings.php lijkt incompleet.
+	'config-localsettings-incomplete' => 'De bestaande inhoud van <code>LocalSettings.php</code> lijkt incompleet.
 De variabele $1 is niet ingesteld.
-Wijzig LocalSettings.php zodat deze variabele is ingesteld en klik op "Doorgaan".',
-	'config-localsettings-connection-error' => 'Er is een fout opgetreden tijdens het verbinden van de database met de instellingen uit LocalSettings.php of AdminSettings.php. Los het probleem met de instellingen op en probeer het daarna opnieuw.
+Wijzig <code>LocalSettings.php</code> zodat deze variabele is ingesteld en klik op "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Er is een fout opgetreden tijdens het verbinden van de database met de instellingen uit <code>LocalSettings.php</code> of <code>AdminSettings.php</code>. Los het probleem met de instellingen op en probeer het daarna opnieuw.
 
 $1',
 	'config-session-error' => 'Fout bij het begin van de sessie: $1',
@@ -13987,7 +14010,7 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-support-postgres' => '* $1 is een populair open source databasesysteem als alternatief voor MySQL ([http://www.php.net/manual/en/pgsql.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor PostgreSQL]). Het is mogelijk dat er een aantal bekende problemen zijn met MediaWiki in combinatie met deze database en daarom wordt PostgreSQL niet aanbevolen voor een productieomgeving.',
 	'config-support-sqlite' => '* $1 is een zeer goed ondersteund lichtgewicht databasesysteem ([http://www.php.net/manual/en/pdo.installation.php hoe PHP gecompileerd zijn met ondersteuning voor SQLite]; gebruikt PDO)',
 	'config-support-oracle' => '* $1 is een commerciële data voor grote bedrijven ([http://www.php.net/manual/en/oci8.installation.php PHP compileren met ondersteuning voor OCI8]).',
-	'config-support-ibm_db2' => '* $1 is een commerciële enterprisedatabase.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 is een commerciële enterprisedatabase. ([http://www.php.net/manual/en/ibm-db2.installation.php Hoe PHP compolieren met ondersteuning voor IBM DB2])',
 	'config-header-mysql' => 'MySQL-instellingen',
 	'config-header-postgres' => 'PostgreSQL-instellingen',
 	'config-header-sqlite' => 'SQLite-instellingen',
@@ -14057,7 +14080,7 @@ Dit is '''niet aan te raden''' tenzij u problemen hebt met uw wiki.",
 
 U kunt nu [$1 uw wiki gebruiken].',
 	'config-regenerate' => 'LocalSettings.php opnieuw aanmaken →',
-	'config-show-table-status' => 'Het uitvoeren van SHOW TABLE STATUS is mislukt!',
+	'config-show-table-status' => 'Het uitvoeren van <code>SHOW TABLE STATUS</code> is mislukt!',
 	'config-unknown-collation' => "'''Waarschuwing:''' de database gebruikt een collatie die niet wordt herkend.",
 	'config-db-web-account' => 'Databasegebruiker voor webtoegang',
 	'config-db-web-help' => 'Selecteer de gebruikersnaam en het wachtwoord die de webserver gebruikt om verbinding te maken met de databaseserver na de installatie.',
@@ -14140,13 +14163,13 @@ In MediaWiki is het eenvoudig om de recente wijzigingen te controleren en eventu
 Daarnaast vinden velen MediaWiki goed inzetbaar in vele andere rollen, en soms is het niet handig om helemaal \"op de wikimanier\" te werken.
 Daarom biedt dit installatieprogramma u de volgende keuzes voor de basisinstelling van gebruikersvrijheden:
 
-Een '''{{int:config-profile-wiki}}''' staat iedereen toe te bewerken, zonder zelfs aan te melden.
+Het profiel '''{{int:config-profile-wiki}}''' staat iedereen toe te bewerken, zonder zelfs aan te melden.
 Een wiki met '''{{int:config-profile-no-anon}}\" biedt extra verantwoordelijkheid, maar kan afschrikken toevallige gebruikers afschrikken.
 
 Het scenario '''{{int:config-profile-fishbowl}}''' laat gebruikers waarvoor dat is ingesteld bewerkt, maar andere gebruikers kunnen alleen pagina's bekijken, inclusief de bewerkingsgeschiedenis.
 In een '''{{int:config-profile-private}}''' kunnen alleen goedgekeurde gebruikers pagina's bekijken en bewerken.
 
-Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].", # Fuzzy
+Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].",
 	'config-license' => 'Auteursrechten en licentie:',
 	'config-license-none' => 'Geen licentie in de voettekst',
 	'config-license-cc-by-sa' => 'Creative Commons Naamsvermelding-Gelijk delen',
@@ -14233,7 +14256,7 @@ Mogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen n
 	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof u MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
 Ga alstublieft door naar de volgende pagina.",
 	'config-install-begin' => 'Als u nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
-Als u nog wijzigingen wilt maken, klik dan op "Terug".', # Fuzzy
+Als u nog wijzigingen wilt maken, klik dan op "{{int:config-back}}".',
 	'config-install-step-done' => 'afgerond',
 	'config-install-step-failed' => 'mislukt',
 	'config-install-extensions' => 'Inclusief uitbreidingen',
@@ -14310,7 +14333,7 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
 $messages['nl-informal'] = array(
 	'config-localsettings-badkey' => 'De sleutel die je hebt opgegeven is onjuist',
 	'config-upgrade-key-missing' => 'Er is een bestaande installatie van MediaWiki aangetroffen.
-Plaats de volgende regel onderaan je LocalSettings.php om deze installatie bij te werken:
+Plaats de volgende regel onderaan je <code>LocalSettings.php</code> om deze installatie bij te werken:
 
 $1',
 	'config-session-expired' => 'Je sessiegegevens zijn verlopen.
@@ -14483,7 +14506,7 @@ Een wiki met '''{{int:config-profile-no-anon}}\" biedt extra verantwoordelijkhei
 Het scenario '''{{int:config-profile-fishbowl}}''' laat gebruikers waarvoor dat is ingesteld bewerkt, maar andere gebruikers kunnen alleen pagina's bekijken, inclusief de bewerkingsgeschiedenis.
 In een '''{{int:config-profile-private}}''' kunnen alleen goedgekeurde gebruikers pagina's bekijken en bewerken.
 
-Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].",
+Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [//www.mediawiki.org/wiki/Manual:User_rights handleiding].", # Fuzzy
 	'config-license-help' => "In veel openbare wiki's zijn alle bijdragen beschikbaar onder een [http://freedomdefined.org/Definition vrije licentie].
 Dit helpt bij het creëren van een gevoel van gemeenschappelijk eigendom en stimuleert bijdragen op lange termijn.
 Dit is over het algemeen niet nodig is voor een particuliere of zakelijke wiki.
@@ -14515,7 +14538,7 @@ Mogelijk moet je aanvullende instellingen maken, maar je kunt deze uitbreidingen
 	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof je MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
 Ga alsjeblieft door naar de volgende pagina.",
 	'config-install-begin' => 'Als je nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
-Als je nog wijzigingen wilt maken, klik dan op "Terug".',
+Als je nog wijzigingen wilt maken, klik dan op "Terug".', # Fuzzy
 	'config-pg-no-plpgsql' => 'Je moet de taal PL/pgSQL installeren in de database $1',
 	'config-pg-no-create-privs' => 'De gebruiker die je hebt opgegeven door de installatie heeft niet voldoende rechten om een gebruiker aan te maken.',
 	'config-pg-not-in-role' => 'De gebruiker die je hebt opgegeven voor de webgebruiker bestaat al.
@@ -14687,6 +14710,7 @@ $messages['pdc'] = array(
  * @author Saper
  * @author Sp5uhe
  * @author Woytecr
+ * @author 아라
  */
 $messages['pl'] = array(
 	'config-desc' => 'Instalator MediaWiki',
@@ -14694,19 +14718,19 @@ $messages['pl'] = array(
 	'config-information' => 'Informacja',
 	'config-localsettings-upgrade' => 'Plik <code>LocalSettings.php</code> istnieje.
 Aby oprogramowanie zostało zaktualizowane musisz wstawić wartość <code>$wgUpgradeKey</code> w poniższe pole.
-Odnajdziesz ją w LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Wykryto obecność pliku LocalSettings.php.
-Aktualizację należy wykonać poprzez uruchomienie update.php',
+Odnajdziesz ją w <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Wykryto obecność pliku <code>LocalSettings.php</code>.
+Aktualizację należy wykonać poprzez uruchomienie <code>update.php</code>',
 	'config-localsettings-key' => 'Klucz aktualizacji',
 	'config-localsettings-badkey' => 'Podany klucz jest nieprawidłowy',
 	'config-upgrade-key-missing' => 'Wykryto zainstalowane wcześniej MediaWiki.
-Jeśli chcesz je zaktualizować dodaj na koniec pliku LocalSettings.php poniższą linię tekstu.
+Jeśli chcesz je zaktualizować dodaj na koniec pliku <code>LocalSettings.php</code> poniższą linię tekstu.
 
 $1',
-	'config-localsettings-incomplete' => 'Istniejący plik LocalSettings.php wygląda na niekompletny.
+	'config-localsettings-incomplete' => 'Istniejący plik <code>LocalSettings.php</code> wygląda na niekompletny.
 Brak wartości zmiennej $1.
-Zmień plik LocalSettings.php, tak by zawierał deklarację wartości tej zmiennej, a następnie kliknij „Dalej”.',
-	'config-localsettings-connection-error' => 'Wystąpił błąd podczas łączenia z bazą danych z wykorzystaniem danych z LocalSettings.php lub AdminSettings.php.
+Zmień plik <code>LocalSettings.php</code>, tak by zawierał deklarację wartości tej zmiennej, a następnie kliknij „{{int:Config-continue}}”.',
+	'config-localsettings-connection-error' => 'Wystąpił błąd podczas łączenia z bazą danych z wykorzystaniem danych z <code>LocalSettings.php</code> lub <code>AdminSettings.php</code>.
 Popraw ustawienia i spróbuj ponownie.
 
 $1',
@@ -14919,7 +14943,7 @@ Poniżej wyświetlone są systemy baz danych gotowe do użycia. Jeżeli poniżej
 	'config-support-postgres' => '* $1 jest popularnym systemem baz danych, często stosowanym zamiast MySQL  ([http://www.php.net/manual/en/pgsql.installation.php Zobacz, jak skompilować PHP ze wsparciem dla PostgreSQL]). Z powodu możliwości wystąpienia drobnych błędów, nie jest zalecana do wymagających wdrożeń.',
 	'config-support-sqlite' => '* $1 jest niewielkim systemem bazy danych, z którym MediaWiki bardzo dobrze współpracuje. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
 	'config-support-oracle' => '* $1 jest komercyjną profesjonalną bazą danych. ([http://www.php.net/manual/en/oci8.installation.php Jak skompilować PHP ze wsparciem dla OCI8])',
-	'config-support-ibm_db2' => '* $1 jest komercyjną zaawansowaną bazą danych.',
+	'config-support-ibm_db2' => '* $1 jest komercyjną zaawansowaną bazą danych.', # Fuzzy
 	'config-header-mysql' => 'Ustawienia MySQL',
 	'config-header-postgres' => 'Ustawienia PostgreSQL',
 	'config-header-sqlite' => 'Ustawienia SQLite',
@@ -14987,7 +15011,7 @@ Jest to '''nie zalecane''', chyba że występują problemy z twoją wiki.",
 
 Możesz wreszcie [$1 zacząć korzystać ze swojej wiki].',
 	'config-regenerate' => 'Ponowne generowanie LocalSettings.php →',
-	'config-show-table-status' => 'Zapytanie „SHOW TABLE STATUS” nie powiodło się!',
+	'config-show-table-status' => 'Zapytanie „<code>SHOW TABLE STATUS</code>” nie powiodło się!',
 	'config-unknown-collation' => "'''Uwaga''' – bazy danych używa nierozpoznanej metody porównywania.",
 	'config-db-web-account' => 'Konto bazy danych dla dostępu przez WWW',
 	'config-db-web-help' => 'Wybierz nazwę użytkownika i hasło, z których korzystać będzie serwer WWW do łączenia się z serwerem baz danych, podczas zwykłej pracy z wiki.',
@@ -15059,7 +15083,7 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-optional-continue' => 'Zadaj mi więcej pytań.',
 	'config-optional-skip' => 'Jestem już znudzony, po prostu zainstaluj wiki.',
 	'config-profile' => 'Profil uprawnień użytkowników',
-	'config-profile-wiki' => 'Tradycyjne wiki',
+	'config-profile-wiki' => 'Tradycyjne wiki', # Fuzzy
 	'config-profile-no-anon' => 'Wymagane utworzenie konta',
 	'config-profile-fishbowl' => 'Wyłącznie zatwierdzeni edytorzy',
 	'config-profile-private' => 'Prywatna wiki',
@@ -15074,7 +15098,7 @@ Wiki z '''{{int:config-profile-no-anon}}''' zawiera dodatkowe funkcje rozliczani
 Scenariusz '''{{int:config-profile-fishbowl}}''' umożliwia zatwierdzonym użytkownikom edycję, ale wyświetlanie stron jest powszechnie dostępne, włącznie z historią.
 Ustawienie '''{{int:config-profile-private}}'' ' pozwala na wyświetlanie stron tylko zatwierdzonym użytkownikom, ta sama grupa może edytować.
 
-Bardziej skomplikowane konfiguracje uprawnień użytkowników są dostępne po zakończeniu instalacji, zobacz [//www.mediawiki.org/wiki/Manual:User_rights odpowiednią część podręcznika].",
+Bardziej skomplikowane konfiguracje uprawnień użytkowników są dostępne po zakończeniu instalacji, zobacz [//www.mediawiki.org/wiki/Manual:User_rights odpowiednią część podręcznika].", # Fuzzy
 	'config-license' => 'Prawa autorskie i licencja',
 	'config-license-none' => 'Brak stopki z licencją',
 	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach',
@@ -15159,7 +15183,7 @@ Mogą one wymagać dodatkowych czynności konfiguracyjnych, ale można je teraz 
 	'config-install-alreadydone' => "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.
 Przejdź do następnej strony.",
 	'config-install-begin' => 'Po naciśnięciu "{{int:config-continue}}", rozpocznie się instalacji MediaWiki.
-Jeśli nadal chcesz dokonać zmian, naciśnij wstecz.',
+Jeśli nadal chcesz dokonać zmian, naciśnij wstecz.', # Fuzzy
 	'config-install-step-done' => 'gotowe',
 	'config-install-step-failed' => 'nieudane',
 	'config-install-extensions' => 'Włącznie z rozszerzeniami',
@@ -15223,13 +15247,14 @@ Po załadowaniu pliku konfiguracyjnego możesz '''[ $2  wejść na wiki]'''.",
 == Na początek ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista ustawień konfiguracyjnych]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]', # Fuzzy
 );
 
 /** Piedmontese (Piemontèis)
  * @author Borichèt
  * @author Dragonòt
  * @author Krinkle
+ * @author 아라
  */
 $messages['pms'] = array(
 	'config-desc' => "L'instalador për mediaWiki",
@@ -15238,18 +15263,18 @@ $messages['pms'] = array(
 	'config-localsettings-upgrade' => "A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
 Për agiorné cost'anstalassion, ch'a anserissa ël valor ëd <code>\$wgUpgradeKey</code> ant la casela sì-sota.
 A la trovrà an LocalSetting.php.",
-	'config-localsettings-cli-upgrade' => "N'archivi LocalSettings.php a l'é stàit trovà.
-Për agiorné sta instalassion, për piasì fà anvece giré update.php",
+	'config-localsettings-cli-upgrade' => "N'archivi <code>LocalSettings.php</code> a l'é stàit trovà.
+Për agiorné sta instalassion, për piasì fà anvece giré <code>update.php</code>",
 	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-localsettings-badkey' => "La ciav ch'it l'has dàit a l'é pa giusta.",
 	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki. 
-Për agiorné soa istalassion, për piasì ch'a buta la linia sì-sota al fond ëd sò LocalSettings.php:
+Për agiorné soa istalassion, për piasì ch'a buta la linia sì-sota al fond ëd sò <code>LocalSettings.php</code>:
 
 $1",
-	'config-localsettings-incomplete' => "L'esistent LocalSettings.php a smija esse ancomplet.
+	'config-localsettings-incomplete' => "L'esistent <code>LocalSettings.php</code> a smija esse ancomplet.
 La variàbil $1 a l'é nen ampostà.
-Për piasì, ch'a modìfica LocalSettings.php ëd fasson che costa variàbil a sia ampostà, e ch'a sgnaca «Anans».",
-	'config-localsettings-connection-error' => "A l'é ancapitaje n'eror an colegand-se a la base ëd dàit an dovrand j'ampostassion specificà an LocalSettings.php o AdminSettings.php. Për piasì, ch'a coregia cost'ampostassion e ch'a preuva torna.
+Për piasì, ch'a modìfica <code>LocalSettings.php</code> ëd fasson che costa variàbil a sia ampostà, e ch'a sgnaca «{{int:Config-continue}}».",
+	'config-localsettings-connection-error' => "A l'é ancapitaje n'eror an colegand-se a la base ëd dàit an dovrand j'ampostassion specificà an <code>LocalSettings.php</code> o <code>AdminSettings.php</code>. Për piasì, ch'a coregia cost'ampostassion e ch'a preuva torna.
 
 $1",
 	'config-session-error' => 'Eror an fasend parte la session: $1',
@@ -15528,7 +15553,7 @@ Sòn a l'è '''pa arcomandà''' gavà ch'a rancontra dij problema con soa wiki."
 
 It peule adess [$1 ancaminé a dovré toa wiki].',
 	'config-regenerate' => 'Generé torna LocalSettings.php →',
-	'config-show-table-status' => 'Arcesta SHOW TABLE STATUS falìa!',
+	'config-show-table-status' => 'Arcesta <code>SHOW TABLE STATUS</code> falìa!',
 	'config-unknown-collation' => "'''Avis:''' La base ëd dàit a deuvra na classificassion pa arconossùa.",
 	'config-db-web-account' => "Cont dla base ëd dàit për l'acess a l'aragnà",
 	'config-db-web-help' => "Ch'a selession-a lë stranòm d'utent e la ciav che ël servent ëd l'aragnà a dovrërà për coleghesse al servent dle base ëd dàit, durant j'operassion ordinarie dla wiki.",
@@ -15847,6 +15872,7 @@ $messages['ps'] = array(
  * @author Platonides
  * @author SandroHc
  * @author Waldir
+ * @author 아라
  */
 $messages['pt'] = array(
 	'config-desc' => 'O instalador do MediaWiki',
@@ -15854,19 +15880,19 @@ $messages['pt'] = array(
 	'config-information' => 'Informação',
 	'config-localsettings-upgrade' => 'Foi detectado um ficheiro <code>LocalSettings.php</code>.
 Para actualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
-Encontra este valor no LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro LocalSettings.php.
-Para actualizar esta instalação execute o update.php, por favor.',
+Encontra este valor no <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
+Para actualizar esta instalação execute o <code>update.php</code>, por favor.',
 	'config-localsettings-key' => 'Chave de actualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
-Para actualizar esta instalação, por favor coloque a seguinte linha no final do seu LocalSettings.php:
+Para actualizar esta instalação, por favor coloque a seguinte linha no final do seu <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'O ficheiro LocalSettings.php existente parece estar incompleto.
+	'config-localsettings-incomplete' => 'O ficheiro <code>LocalSettings.php</code> existente parece estar incompleto.
 A variável $1 não está definida.
-Por favor defina esta variável no LocalSettings.php e clique "Continuar".',
-	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente.
+Por favor defina esta variável no <code>LocalSettings.php</code> e clique "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no <code>LocalSettings.php</code> ou <code>AdminSettings.php</code>. Por favor corrija essas configurações e tente novamente.
 
 $1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
@@ -16082,7 +16108,7 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-support-postgres' => '* $1 é uma plataforma de base de dados comum, de fonte aberta, alternativa ao MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP com suporte PostgreSQL]). Poderão existir alguns pequenos problemas e não é recomendado o seu uso em ambientes de exploração/produção.',
 	'config-support-sqlite' => '* $1 é uma plataforma de base de dados ligeira muito bem suportada. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP com suporte SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 é uma base de dados de uma empresa comercial. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
-	'config-support-ibm_db2' => '* $1 é uma base de dados empresarial.',
+	'config-support-ibm_db2' => '* $1 é uma base de dados empresarial.', # Fuzzy
 	'config-header-mysql' => 'Definições MySQL',
 	'config-header-postgres' => 'Definições PostgreSQL',
 	'config-header-sqlite' => 'Definições SQLite',
@@ -16150,7 +16176,7 @@ Esta operação '''não é recomendada''' a menos que esteja a ter problemas com
 
 Agora pode [$1 começar a usar a sua wiki].',
 	'config-regenerate' => 'Regenerar o LocalSettings.php →',
-	'config-show-table-status' => 'A consulta SHOW TABLE STATUS falhou!',
+	'config-show-table-status' => 'A consulta <code>SHOW TABLE STATUS</code> falhou!',
 	'config-unknown-collation' => "'''Aviso:''' A base de dados está a utilizar uma colação ''(collation)'' desconhecida.",
 	'config-db-web-account' => 'Conta na base de dados para acesso pela internet',
 	'config-db-web-help' => 'Seleccione o nome de utilizador e a palavra-chave que o servidor de internet irá utilizar para aceder ao servidor da base de dados, durante a operação normal da wiki.',
@@ -16223,7 +16249,7 @@ Agora pode saltar as configurações restantes e instalar já a wiki.',
 	'config-optional-continue' => 'Faz-me mais perguntas.',
 	'config-optional-skip' => 'Já estou aborrecido, instala lá a wiki.',
 	'config-profile' => 'Perfil de permissões:',
-	'config-profile-wiki' => 'Wiki tradicional',
+	'config-profile-wiki' => 'Wiki tradicional', # Fuzzy
 	'config-profile-no-anon' => 'Criação de conta exigida',
 	'config-profile-fishbowl' => 'Somente utilizadores autorizados',
 	'config-profile-private' => 'Wiki privada',
@@ -16239,7 +16265,7 @@ Uma wiki com '''{{int:config-profile-no-anon}}''' atribui mais responsabilidade,
 Um cenário '''{{int:config-profile-fishbowl}}''' permite que os utilizadores aprovados editem, mas que o público visione as páginas, incluindo o historial das mesmas.
 Uma '''{{int:config-profile-private}}''' só permite que os utilizadores aprovados visionem as páginas e as editem.
 
-Após a instalação, estarão disponíveis mais configurações de privilégios. Consulte [//www.mediawiki.org/wiki/Manual:User_rights a entrada relevante no Manual].",
+Após a instalação, estarão disponíveis mais configurações de privilégios. Consulte [//www.mediawiki.org/wiki/Manual:User_rights a entrada relevante no Manual].", # Fuzzy
 	'config-license' => 'Direitos de autor e licença:',
 	'config-license-none' => 'Sem rodapé com a licença',
 	'config-license-cc-by-sa' => 'Creative Commons - Atribuição - Partilha nos Mesmos Termos',
@@ -16324,7 +16350,7 @@ Estas talvez necessitem de configurações adicionais, mas pode activá-las agor
 	'config-install-alreadydone' => "'''Aviso:''' Parece que já instalou o MediaWiki e está a tentar instalá-lo novamente.
 Passe para a próxima página, por favor.",
 	'config-install-begin' => 'Ao clicar "{{int:config-continue}}", vai iniciar a instalação do MediaWiki.
-Se quiser fazer mais alterações, clique Voltar.',
+Se quiser fazer mais alterações, clique Voltar.', # Fuzzy
 	'config-install-step-done' => 'terminado',
 	'config-install-step-failed' => 'falhou',
 	'config-install-extensions' => 'A incluir as extensões',
@@ -16390,7 +16416,7 @@ Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [//www.mediawiki.org/wiki/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]', # Fuzzy
 );
 
 /** Brazilian Portuguese (português do Brasil)
@@ -16405,13 +16431,13 @@ $messages['pt-br'] = array(
 	'config-information' => 'Informações',
 	'config-localsettings-upgrade' => 'Foi detectada a existência do arquivo <code>LocalSettings.php</code>.
 Para atualizar esta instalação, insira no box abaixo o valor de <code>$wgUpgradeKey</code>.
-Essa informação pode ser encontrada no arquivo LocalSettings.php',
-	'config-localsettings-cli-upgrade' => 'Foi detectada a existência do arquivo <code>LocalSettings.php</code>.
+Essa informação pode ser encontrada no arquivo <code>LocalSettings.php</code>',
+	'config-localsettings-cli-upgrade' => 'Foi detectada a existência do arquivo <code><code>LocalSettings.php</code></code>.
 Esta instalação deverá ser atualizada através do <code>update.php</code>',
 	'config-localsettings-key' => 'Chave de atualização:',
 	'config-localsettings-badkey' => 'A chave fornecida está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
-Para atualizar esta instalação, por favor, coloque a seguinte linha na parte inferior do seu LocalSettings.php:
+Para atualizar esta instalação, por favor, coloque a seguinte linha na parte inferior do seu <code>LocalSettings.php</code>:
 
 $ 1', # Fuzzy
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
@@ -16485,7 +16511,7 @@ Se você não pretende usar um logotipo, deixe este campo em branco.', # Fuzzy
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ do MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]', # Fuzzy
 );
 
 /** Quechua (Runa Simi)
@@ -16716,6 +16742,7 @@ $messages['roa-tara'] = array(
  * @author Yuriy Apostol
  * @author Александр Сигачёв
  * @author Сrower
+ * @author 아라
  */
 $messages['ru'] = array(
 	'config-desc' => 'Инсталлятор MediaWiki',
@@ -16723,19 +16750,19 @@ $messages['ru'] = array(
 	'config-information' => 'Информация',
 	'config-localsettings-upgrade' => 'Обнаружен файл <code>LocalSettings.php</code>.
 Для обновления этой установки, пожалуйста, введите значение <code>$wgUpgradeKey</code>.
-Его можно найти в файле LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Обнаружен файл LocalSettings.php.
-Для обновления этой установки, пожалуйста, запустите update.php',
+Его можно найти в файле <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Обнаружен файл <code>LocalSettings.php</code>.
+Для обновления этой установки, пожалуйста, запустите <code>update.php</code>',
 	'config-localsettings-key' => 'Ключ обновления:',
 	'config-localsettings-badkey' => 'Вы указали неправильный ключ',
 	'config-upgrade-key-missing' => 'Обнаружена существующая установленная копия MediaWiki.
-Чтобы обновить обнаруженную установку, пожалуйста, добавьте следующую строку в конец вашего файла LocalSettings.php:
+Чтобы обновить обнаруженную установку, пожалуйста, добавьте следующую строку в конец вашего файла <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Похоже, что существующий файл LocalSettings.php не является полными.
+	'config-localsettings-incomplete' => 'Похоже, что существующий файл <code>LocalSettings.php</code> не является полными.
 Не установлена переменная $1.
-Пожалуйста, измените LocalSettings.php так, чтобы значение этой переменной было задано, затем нажмите «Продолжить».',
-	'config-localsettings-connection-error' => 'Произошла ошибка при подключении к базе данных с помощью настроек, указанных в LocalSettings.php или AdminSettings.php. Пожалуйста, исправьте эти настройки и повторите попытку.
+Пожалуйста, измените <code>LocalSettings.php</code> так, чтобы значение этой переменной было задано, затем нажмите «{{int:Config-continue}}».',
+	'config-localsettings-connection-error' => 'Произошла ошибка при подключении к базе данных с помощью настроек, указанных в <code>LocalSettings.php</code> или <code>AdminSettings.php</code>. Пожалуйста, исправьте эти настройки и повторите попытку.
 
 $1',
 	'config-session-error' => 'Ошибка при запуске сессии: $1',
@@ -17020,7 +17047,7 @@ chmod a+w $3</pre>',
 
 Теперь вы можете [$1 начать работу с вики].',
 	'config-regenerate' => 'Создать LocalSettings.php заново →',
-	'config-show-table-status' => 'Запрос «SHOW TABLE STATUS» не выполнен!',
+	'config-show-table-status' => 'Запрос «<code>SHOW TABLE STATUS</code>» не выполнен!',
 	'config-unknown-collation' => "'''Внимание:''' База данных использует нераспознанные правила сортировки.",
 	'config-db-web-account' => 'Учётная запись для доступа к базе данных из веб-сервера',
 	'config-db-web-help' => 'Выберите имя пользователя и пароль, которые веб-сервер будет использовать для подключения к серверу базы данных при обычной работе вики.',
@@ -17546,12 +17573,12 @@ $messages['sl'] = array(
 	'config-desc' => 'Namestitveni program za MediaWiki',
 	'config-title' => 'Namestitev MediaWiki $1',
 	'config-information' => 'Informacije',
-	'config-localsettings-cli-upgrade' => 'Zaznana je bila datoteka LocalSettings.php.
-Za nadgradnjo te namestitve zaženite update.php',
+	'config-localsettings-cli-upgrade' => 'Zaznana je bila datoteka <code>LocalSettings.php</code>.
+Za nadgradnjo te namestitve zaženite <code>update.php</code>',
 	'config-localsettings-key' => 'Nadgraditveni ključ:',
 	'config-localsettings-badkey' => 'Naveden ključ je napačen.',
 	'config-upgrade-key-missing' => 'Zaznana je bila obstoječa namestitev MediaWiki.
-Za nadgradnjo te namestitve vstavite naslednjo vrstico na dno vaše LocalSettings.php:
+Za nadgradnjo te namestitve vstavite naslednjo vrstico na dno vaše <code>LocalSettings.php</code>:
 
 $1',
 	'config-session-error' => 'Napaka pri začenjanju seje: $1',
@@ -17663,7 +17690,7 @@ Preverite mapo podatkov in ime zbirke podatkov spodaj ter poskusite znova.',
 
 Sedaj lahko [$1 začnete uporabljati vaš wiki].',
 	'config-regenerate' => 'Ponovno ustvari LocalSettings.php →',
-	'config-show-table-status' => 'Poizvedba SHOW TABLE STATUS ni uspela!',
+	'config-show-table-status' => 'Poizvedba <code>SHOW TABLE STATUS</code> ni uspela!',
 	'config-unknown-collation' => "'''Opozorilo:''' Zbirke podatkov uporablja neprepoznano razvrščanje znakov.",
 	'config-db-web-account' => 'Račun zbirke podatkov za spletni dostop',
 	'config-db-web-account-same' => 'Uporabi enak račun kot za namestitev',
@@ -17708,7 +17735,7 @@ Sedaj lahko preskočite preostalo konfiguriranje in zdaj namestite wiki.',
 	'config-optional-continue' => 'Zastavi mi več vprašanj.',
 	'config-optional-skip' => 'Se že dolgočasim; samo namesti wiki.',
 	'config-profile' => 'Profil uporabniških pravic:',
-	'config-profile-wiki' => 'Klasičen wiki',
+	'config-profile-wiki' => 'Klasičen wiki', # Fuzzy
 	'config-profile-no-anon' => 'Zahtevano je ustvarjanje računa',
 	'config-profile-fishbowl' => 'Samo pooblaščeni urejevalci',
 	'config-profile-private' => 'Zasebni wiki',
@@ -17751,7 +17778,7 @@ Vnesite ime dovoljenja ročno.',
 	'config-help' => 'pomoč',
 	'mainpagetext' => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
 	'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
-in [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
+in [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].', # Fuzzy
 );
 
 /** Lower Silesian (Schläsch)
@@ -18376,6 +18403,7 @@ $messages['tk'] = array(
 /** Tagalog (Tagalog)
  * @author AnakngAraw
  * @author Sky Harbor
+ * @author 아라
  */
 $messages['tl'] = array(
 	'config-desc' => 'Ang tagapagluklok para sa MediaWiki',
@@ -18383,20 +18411,20 @@ $messages['tl'] = array(
 	'config-information' => 'Kabatiran',
 	'config-localsettings-upgrade' => 'Napansin ang isang talaksang <code>LocalSettings.php</code>.
 Upang maitaas ang uri ng pagluluklok na ito, paki ipasok ang halaga ng <code>$wgUpgradeKey</code> sa loob ng kahong nasa ibaba.
-Matatagpuan mo ito sa loob ng LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Napansin ang isang talaksan ng LocalSettings.php.
-Upang isapanahon ang pagtatalagang ito, mangyaring patakbuhin sa halip ang update.php',
+Matatagpuan mo ito sa loob ng <code>LocalSettings.php</code>.',
+	'config-localsettings-cli-upgrade' => 'Napansin ang isang talaksan ng <code>LocalSettings.php</code>.
+Upang isapanahon ang pagtatalagang ito, mangyaring patakbuhin sa halip ang <code>update.php</code>',
 	'config-localsettings-key' => 'Susi ng pagsasapanahon:',
 	'config-localsettings-badkey' => 'Hindi tama ang susing ibinigay mo.',
 	'config-upgrade-key-missing' => 'Napansin ang isang umiiral na pagtatalaga ng MediaWiki.
-Upang isapanahon ang katalagahang ito, mangyaring ilagay ang sumusunod na guhit sa ilalim ng iyong LocalSettings.php:
+Upang isapanahon ang katalagahang ito, mangyaring ilagay ang sumusunod na guhit sa ilalim ng iyong <code>LocalSettings.php</code>:
 
 $1',
-	'config-localsettings-incomplete' => 'Lumilitaw na hindi pa buo ang umiiral na LocalSettings.php.
+	'config-localsettings-incomplete' => 'Lumilitaw na hindi pa buo ang umiiral na <code>LocalSettings.php</code>.
 Ang pabagu-bagong $1 ay hindi nakatakda.
-Mangyaring baguhin ang  LocalSettings.php upang ang maitakda ang pagpapabagu-bagong ito, at pindutin ang "Magpatuloy".',
-	'config-localsettings-connection-error' => 'Isang kamalian ang nakatagpo noong kumakabit sa kalipunan ng dato na ginagamit ang tinukoy na mga katakdaan sa loob ng LocalSettings.php o
-AdminSettings.php. Paki kumpunihin ang mga katakdaang ito at subukang muli.
+Mangyaring baguhin ang  <code>LocalSettings.php</code> upang ang maitakda ang pagpapabagu-bagong ito, at pindutin ang "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Isang kamalian ang nakatagpo noong kumakabit sa kalipunan ng dato na ginagamit ang tinukoy na mga katakdaan sa loob ng <code>LocalSettings.php</code> o
+<code>AdminSettings.php</code>. Paki kumpunihin ang mga katakdaang ito at subukang muli.
 
 $1',
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',
@@ -18610,7 +18638,7 @@ Kung hindi mo makita ang sistema ng kalipunan ng dato na sinusubukan mong gamiti
 	'config-support-postgres' => '* Ang $1 ay isang bantog na sistema ng kalipunan ng dato na bukas ang pinagmulan na panghalili sa MySQL ([http://www.php.net/manual/en/pgsql.installation.php paano magtipon ng PHP na mayroong suporta ng PostgreSQL]). Maaaring mayroong ilang hindi pangunahing mga surot na natitira pa, at hindi iminumungkahi para gamitin sa loob ng isang kapaligiran ng produksiyon.',
 	'config-support-sqlite' => 'Ang $1 ay isang magaan ang timbang na sistema ng kalipunan ng dato na sinusuportahan nang napaka mainam. ([http://www.php.net/manual/en/pdo.installation.php Paano magtipon ng PHP na mayroong suporta ng SQLite], gumagamit ng PDO)',
 	'config-support-oracle' => '* Ang $1 ay isang kalipunan ng dato ng kasigasigang pangkalakal. ([http://www.php.net/manual/en/oci8.installation.php Paano magtipunan ng PHP na mayroong suporta ng OCI8])',
-	'config-support-ibm_db2' => '* Ang $1 ay isang kalipunan ng dato ng kasigasigang pangkalakal.',
+	'config-support-ibm_db2' => '* Ang $1 ay isang kalipunan ng dato ng kasigasigang pangkalakal.', # Fuzzy
 	'config-header-mysql' => 'Mga katakdaan ng MySQL',
 	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
 	'config-header-sqlite' => 'Mga katakdaan ng SQLite',
@@ -18678,7 +18706,7 @@ Kung nais mong muling likhain ang iyong talaksang <code>LocalSettings.php</code>
 
 Maaari ka na ngayong [$1 magsimula sa paggamit ng wiki mo].',
 	'config-regenerate' => 'Muling likhain ang LocalSettings.php →',
-	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!',
+	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!', # Fuzzy
 	'config-unknown-collation' => "'''Babala:''' Ang kalipunan ng dato ay gumagagamit ng hindi nakikilalang pag-iipon.",
 	'config-db-web-account' => 'Akawnt ng kalipunan ng dato para sa pagpunta sa web',
 	'config-db-web-help' => 'Piliin ang pangalan ng tagagamit at hudyat na gagamitin ng tagapaghain ng web upang umugnay sa tagapaghain ng kalipunan ng dato, habang nasa pangkaraniwang pagtakbo ng wiki.',
@@ -18748,7 +18776,7 @@ Maaari mo ngayong laktawan ang natitira pang pag-aayos at iluklok na ang wiki ng
 	'config-optional-continue' => 'Magtanong sa akin ng marami pang mga tanong.',
 	'config-optional-skip' => 'Naiinip na ako, basta iluklok na lang ang wiki.',
 	'config-profile' => 'Balangkas ng mga karapatan ng tagagamit:',
-	'config-profile-wiki' => 'Tradisyonal na wiki',
+	'config-profile-wiki' => 'Tradisyonal na wiki', # Fuzzy
 	'config-profile-no-anon' => 'Kailangan ang paglikha ng akawnt',
 	'config-profile-fishbowl' => 'Pinahintulutang mga patnugot lamang',
 	'config-profile-private' => 'Pribadong wiki',
@@ -18764,7 +18792,7 @@ Ang isang wiki na mayroong '''{{int:config-profile-no-anon}}''' ay nagbibigay ng
 Ang tagpo na '''{{int:config-profile-fishbowl}}''' ay nagpapahintulot lamang sa pinayagang mga tagagamit na makatingin ng mga pahina, na kapiling ang pangkat na pinayagang  makapamatnugot.
 Ang isang '''{{int:config-profile-private}}''' ay nagpapahintulot lamang sa pinayagang mga tagagamit na makatingin ng mga pahina, na kapiling ang pangkat na pinayagang makapamatnugot.
 
-Ang mas masasalimuot na mga kaayusan ng mga karapatan ng tagagamit ay makukuha pagkaraan ng pagluluklok, tingnan ang [//www.mediawiki.org/wiki/Manual:User_rights may kaugnayang kinamay na lahok].",
+Ang mas masasalimuot na mga kaayusan ng mga karapatan ng tagagamit ay makukuha pagkaraan ng pagluluklok, tingnan ang [//www.mediawiki.org/wiki/Manual:User_rights may kaugnayang kinamay na lahok].", # Fuzzy
 	'config-license' => 'Karapatang-ari at lisensiya:',
 	'config-license-none' => 'Walang talababa ng lisensiya',
 	'config-license-cc-by-sa' => 'Malikhaing Pangkaraniwang Pagtukoy Pamamahaging Magkatulad',
@@ -18849,7 +18877,7 @@ Maaaring mangailangan ang mga ito ng karagdagang kaayusan, subalit mapapagana mo
 	'config-install-alreadydone' => "'''Babala:''' Tila nailuklok mo na ang MediaWiki at tinatangka mong iluklok ito ulit.
 Paki magpatuloy sa susunod na pahina.",
 	'config-install-begin' => 'Sa pamamagitan ng pagpindot sa "{{int:config-continue}}", sisimulan mo ang pagluluklok ng MediaWiki.
-Kung nais mo paring gumawa ng mga pagbabago, paki pindutin ang bumalik.',
+Kung nais mo paring gumawa ng mga pagbabago, paki pindutin ang bumalik.', # Fuzzy
 	'config-install-step-done' => 'nagawa na',
 	'config-install-step-failed' => 'nabigo',
 	'config-install-extensions' => 'Isinasama ang mga karugtong',
@@ -18915,7 +18943,7 @@ Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa wiki mo]'''.",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Tala ng mga nakatakdang kumpigurasyon]
 * [//www.mediawiki.org/wiki/Manual:FAQ Mga malimit itanong sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Tala ng mga pinadadalhan ng liham ng MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Tala ng mga pinadadalhan ng liham ng MediaWiki]", # Fuzzy
 );
 
 /** толышә зывон (толышә зывон)
@@ -18991,6 +19019,7 @@ $messages['ug-arab'] = array(
  * @author Diemon.ukr
  * @author Ата
  * @author Тест
+ * @author 아라
  */
 $messages['uk'] = array(
 	'config-desc' => 'Інсталятор MediaWiki',
@@ -18999,17 +19028,17 @@ $messages['uk'] = array(
 	'config-localsettings-upgrade' => "'''Увага''': було виявлено файл <code>LocalSettings.php</code>.
 Ваше програмне забезпечення може бути оновлено.
 Будь-ласка, перемістіть файл <code>LocalSettings.php</code> в іншу безпечну директорію, а потім знову запустіть програму установки.",
-	'config-localsettings-cli-upgrade' => 'Виявлено файл LocalSettings.php.
-Щоб оновити наявну установку, запустіть update.php',
+	'config-localsettings-cli-upgrade' => 'Виявлено файл <code>LocalSettings.php</code>.
+Щоб оновити наявну установку, запустіть <code>update.php</code>',
 	'config-localsettings-key' => 'Ключ оновлення:',
 	'config-localsettings-badkey' => 'Ви вказали неправильний ключ.',
 	'config-upgrade-key-missing' => 'Виявлено наявну установку MediaWiki.
-Для оновлення цієї установки, будь ласка, вставте такий рядок в кінець вашого LocalSettings.php:
+Для оновлення цієї установки, будь ласка, вставте такий рядок в кінець вашого <code>LocalSettings.php</code>:
 $1',
-	'config-localsettings-incomplete' => 'Існуючий файл LocalSettings.php виявився неповним.
+	'config-localsettings-incomplete' => 'Існуючий файл <code>LocalSettings.php</code> виявився неповним.
 Не вказано змінну $1.
-Будь ласка, змініть LocalSettings.php так, щоб цю змінну було задано, і натисніть "Продовжити".',
-	'config-localsettings-connection-error' => 'Сталася помилка при підключення до бази даних з допомогою налаштувань на сторінці LocalSettings.php чи AdminSettings.php. Будь ласка, виплавте ці налаштування і спробуйте знову.
+Будь ласка, змініть <code>LocalSettings.php</code> так, щоб цю змінну було задано, і натисніть "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Сталася помилка при підключення до бази даних з допомогою налаштувань на сторінці <code>LocalSettings.php</code> чи <code>AdminSettings.php</code>. Будь ласка, виплавте ці налаштування і спробуйте знову.
 
 $1',
 	'config-session-error' => 'Помилка початку сесії: $1',
@@ -19221,7 +19250,7 @@ $1
 	'config-support-postgres' => '* $1 — популярна відкрита СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php як зібрати PHP з допомогою PostgreSQL]). Можуть зустрічатись деякі невеликі невиправлені помилки, не рекомендується використовувати у робочій системі.',
 	'config-support-sqlite' => '* $1 — легка система баз даних, яка дуже добре підтримується. ([http://www.php.net/manual/en/pdo.installation.php Як зібрати PHP з допомогою SQLite], що використовує PDO)',
 	'config-support-oracle' => '* $1 — комерційна база даних масштабу підприємства. ([http://www.php.net/manual/en/oci8.installation.php Як зібрати PHP з підтримкою OCI8])',
-	'config-support-ibm_db2' => '* $1 — комерційна база даних масштабу підприємства.',
+	'config-support-ibm_db2' => '* $1 — комерційна база даних масштабу підприємства.', # Fuzzy
 	'config-header-mysql' => 'Налаштування MySQL',
 	'config-header-postgres' => 'Налаштування PostgreSQL',
 	'config-header-sqlite' => 'Налаштування SQLite',
@@ -19289,7 +19318,7 @@ chmod a+w $3</pre>',
 
 Ви можете зараз [$1 починати використовувати свою вікі].',
 	'config-regenerate' => 'Повторно згенерувати LocalSettings.php →',
-	'config-show-table-status' => 'Запит SHOW TABLE STATUS не виконано!',
+	'config-show-table-status' => 'Запит <code>SHOW TABLE STATUS</code> не виконано!',
 	'config-unknown-collation' => "'''Увага:''' База даних використовує нерозпізнане сортування.",
 	'config-db-web-account' => 'Обліковий запис бази даних для інтернет-доступу',
 	'config-db-web-help' => "Оберіть ім'я користувача і пароль, які веб-сервер буде використовувати для з'єднання із сервером бази даних під час звичайної роботи вікі.",
@@ -19361,7 +19390,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Запитуйте ще.',
 	'config-optional-skip' => 'Це вже втомлює, просто встановити вікі.',
 	'config-profile' => 'Профіль прав користувача:',
-	'config-profile-wiki' => 'Традиційна вікі',
+	'config-profile-wiki' => 'Традиційна вікі', # Fuzzy
 	'config-profile-no-anon' => 'Необхідно створити обліковий запис',
 	'config-profile-fishbowl' => 'Тільки для авторизованих редакторів',
 	'config-profile-private' => 'Приватна вікі',
@@ -19376,7 +19405,7 @@ chmod a+w $3</pre>',
 Спосіб \"'''{{int:config-profile-fishbowl}}'''\" дозволяє редагувати підтвердженим користувачам, а переглядати сторінки і історію можуть усі.
 '''{{int:config-profile-private}}''' дозволяє переглядати сторінки і редагувати лише підтвердженим користувачам.
 
-Детальніші конфігурації прав користувачів доступні після встановлення, див. [//www.mediawiki.org/wiki/Manual:User_rights відповідний розділ посібника].",
+Детальніші конфігурації прав користувачів доступні після встановлення, див. [//www.mediawiki.org/wiki/Manual:User_rights відповідний розділ посібника].", # Fuzzy
 	'config-license' => 'Авторські права і ліцензія:',
 	'config-license-none' => 'Без ліцензії у нижньому колонтитулі',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
@@ -19458,7 +19487,7 @@ GFDL — допустима ліцензія, але у ній важко роз
 	'config-install-alreadydone' => "'''Увага:''' Здається, Ви вже встановлювали MediaWiki і зараз намагаєтесь встановити її знову.
 Будь ласка, перейдіть на наступну сторінку.",
 	'config-install-begin' => 'Натискаючи "{{int:config-continue}}", Ви розпочинаєте встановлення MediaWiki.
-Якщо Ви все ще хочете внести зміни, натисніть "Назад".',
+Якщо Ви все ще хочете внести зміни, натисніть "Назад".', # Fuzzy
 	'config-install-step-done' => 'виконано',
 	'config-install-step-failed' => 'не вдалося',
 	'config-install-extensions' => 'У тому числі розширення',
@@ -19772,20 +19801,21 @@ $messages['zea'] = array(
  * @author Xiaomingyan
  * @author Yfdyh000
  * @author 阿pp
+ * @author 아라
  */
 $messages['zh-hans'] = array(
 	'config-desc' => 'MediaWiki安装程序',
 	'config-title' => 'MediaWiki $1配置',
 	'config-information' => '信息',
-	'config-localsettings-upgrade' => '已检测到<code>LocalSettings.php</code>文件。要升级该配置，请在下面的框中输入<code>$wgUpgradeKey</code>的值。您可以在LocalSettings.php中找到它。',
-	'config-localsettings-cli-upgrade' => '已检测到LocalSettings.php文件。要升级该配置，请直接运行update.php。',
+	'config-localsettings-upgrade' => '已检测到<code>LocalSettings.php</code>文件。要升级该配置，请在下面的框中输入<code>$wgUpgradeKey</code>的值。您可以在<code>LocalSettings.php</code>中找到它。',
+	'config-localsettings-cli-upgrade' => '已检测到<code>LocalSettings.php</code>文件。要升级该配置，请直接运行<code>update.php</code>。',
 	'config-localsettings-key' => '升级密钥：',
 	'config-localsettings-badkey' => '您提供的密钥不正确。',
-	'config-upgrade-key-missing' => '检测到MediaWiki的配置已经存在。若要升级该配置，请将下面一行文本添加到LocalSettings.php的底部：
+	'config-upgrade-key-missing' => '检测到MediaWiki的配置已经存在。若要升级该配置，请将下面一行文本添加到<code>LocalSettings.php</code>的底部：
 
 $1',
-	'config-localsettings-incomplete' => '当前的LocalSettings.php可能并不完整，因为变量$1没有设置。请在LocalSettings.php设置该变量，并单击“继续”。',
-	'config-localsettings-connection-error' => '在使用LocalSettings.php或AdminSettings.php中指定的设置连接数据库时发生错误。请修复相应设置并重试。
+	'config-localsettings-incomplete' => '当前的<code>LocalSettings.php</code>可能并不完整，因为变量$1没有设置。请在<code>LocalSettings.php</code>设置该变量，并单击“{{int:Config-continue}}”。',
+	'config-localsettings-connection-error' => '在使用<code>LocalSettings.php</code>或<code>AdminSettings.php</code>中指定的设置连接数据库时发生错误。请修复相应设置并重试。
 
 $1',
 	'config-session-error' => '启动会话出错：$1',
@@ -20009,7 +20039,7 @@ chmod a+w $3</pre>',
 
 现在您可以[$1 开始使用您的wiki]了。',
 	'config-regenerate' => '重新生成LocalSettings.php →',
-	'config-show-table-status' => 'SHOW TABLE STATUS语句执行失败！',
+	'config-show-table-status' => '<code>SHOW TABLE STATUS</code>语句执行失败！',
 	'config-unknown-collation' => "'''警告：'''数据库使用了无法识别的整理。",
 	'config-db-web-account' => '供网页访问使用的数据库帐号',
 	'config-db-web-help' => '请指定在wiki执行普通操作时，网页服务器用于连接数据库服务器的用户名和密码。',
@@ -20216,20 +20246,21 @@ $3
  * @author Liangent
  * @author Mark85296341
  * @author Simon Shek
+ * @author 아라
  */
 $messages['zh-hant'] = array(
 	'config-desc' => 'MediaWiki安裝程序',
 	'config-title' => 'MediaWiki $1配置',
 	'config-information' => '資訊',
-	'config-localsettings-upgrade' => '已檢測到<code>LocalSettings.php</code>文件。要升級該配置，請在下面的框中輸入<code>$wgUpgradeKey</code>的值。您可以在LocalSettings.php中找到它。',
-	'config-localsettings-cli-upgrade' => '已檢測到LocalSettings.php文件。要升級該配置，請直接執行update.php。',
+	'config-localsettings-upgrade' => '已檢測到<code>LocalSettings.php</code>文件。要升級該配置，請在下面的框中輸入<code>$wgUpgradeKey</code>的值。您可以在<code>LocalSettings.php</code>中找到它。',
+	'config-localsettings-cli-upgrade' => '已檢測到<code>LocalSettings.php</code>文件。要升級該配置，請直接執行<code>update.php</code>。',
 	'config-localsettings-key' => '升級密鑰：',
 	'config-localsettings-badkey' => '您提供的密鑰不正確。',
-	'config-upgrade-key-missing' => '檢測到MediaWiki的配置已經存在。若要升級該配置，請將下面一行文本添加到LocalSettings.php的底部：
+	'config-upgrade-key-missing' => '檢測到MediaWiki的配置已經存在。若要升級該配置，請將下面一行文本添加到<code>LocalSettings.php</code>的底部：
 
 $1',
-	'config-localsettings-incomplete' => '當前的LocalSettings.php可能並不完整，因為變量$1沒有設置。請在LocalSettings.php設置該變量，並單擊“繼續”。',
-	'config-localsettings-connection-error' => '在使用LocalSettings.php或AdminSettings.php中指定的設置連接數據庫時發生錯誤。請修復相應設置並重試。
+	'config-localsettings-incomplete' => '當前的<code>LocalSettings.php</code>可能並不完整，因為變量$1沒有設置。請在<code>LocalSettings.php</code>設置該變量，並單擊“{{int:Config-continue}}”。',
+	'config-localsettings-connection-error' => '在使用<code>LocalSettings.php</code>或<code>AdminSettings.php</code>中指定的設置連接數據庫時發生錯誤。請修復相應設置並重試。
 
 $1',
 	'config-session-error' => '啟動會話出錯：$1',
@@ -20398,7 +20429,7 @@ $1
 	'config-support-postgres' => '* $1是一種流行的開源數據庫系統，可作為MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何將對PostgreSQL的支持編譯進PHP中]）。本程序中可能依然存在一些小而明顯的錯誤，因此並不建議在生產環境中使用該數據庫系統。',
 	'config-support-sqlite' => '* $1是一種輕量級的數據庫系統，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何將對SQLite的支持編譯進PHP中]，須使用PDO）',
 	'config-support-oracle' => '* $1是一種商用企業級的數據庫。（[http://www.php.net/manual/en/oci8.installation.php 如何將對OCI8的支持編譯進PHP中]）',
-	'config-support-ibm_db2' => '* $1是一種商用企業級數據庫。',
+	'config-support-ibm_db2' => '* $1是一種商用企業級數據庫。', # Fuzzy
 	'config-header-mysql' => 'MySQL 的設定',
 	'config-header-postgres' => 'PostgreSQL設置',
 	'config-header-sqlite' => 'SQLite 的設定',
@@ -20452,7 +20483,7 @@ chmod a+w $3</pre>',
 
 現在您可以[$1 開始使用您的wiki]了。',
 	'config-regenerate' => '重新生成LocalSettings.php →',
-	'config-show-table-status' => '查詢SHOW TABLE STATUS失敗！',
+	'config-show-table-status' => '查詢<code>SHOW TABLE STATUS</code>失敗！',
 	'config-unknown-collation' => "'''警告：'''數據庫使用了無法識別的整理。",
 	'config-db-web-account' => '供網頁訪問使用的數據庫帳號',
 	'config-db-web-help' => '請指定在wiki執行普通操作時，網頁服務器用於連接數據庫服務器的用戶名和密碼。',
@@ -20512,7 +20543,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => '多問我一些問題吧。',
 	'config-optional-skip' => '我已經不耐煩了，趕緊安裝我的wiki。',
 	'config-profile' => '用戶權限配置：',
-	'config-profile-wiki' => '傳統wiki',
+	'config-profile-wiki' => '傳統wiki', # Fuzzy
 	'config-profile-no-anon' => '需要註冊帳號',
 	'config-profile-fishbowl' => '編輯受限',
 	'config-profile-private' => '非公開wiki',
@@ -20524,7 +20555,7 @@ chmod a+w $3</pre>',
 
 '''{{int:config-profile-fishbowl}}'''模式只允許獲批准的用戶編輯，但對公眾開放頁面瀏覽（包括歷史記錄）。'''{{int:config-profile-private}}'''則只允許獲批准的用戶瀏覽、編輯頁面。
 
-安裝完成後，您還可以對用戶權限進行更多、更複雜的配置，參見[//www.mediawiki.org/wiki/Manual:User_rights 相關的使用手冊]。",
+安裝完成後，您還可以對用戶權限進行更多、更複雜的配置，參見[//www.mediawiki.org/wiki/Manual:User_rights 相關的使用手冊]。", # Fuzzy
 	'config-license' => '版權和許可證：',
 	'config-license-none' => '頁腳無許可證',
 	'config-license-cc-by-sa' => '知識共享署名-相同方式分享',
@@ -20589,7 +20620,7 @@ GNU自由文檔許可證是維基百科曾經使用過的許可證，並迄今�
 
 您可能要對它們進行額外的配置，但您現在可以啟用它們。',
 	'config-install-alreadydone' => "'''警告：'''您似乎已經安裝了MediaWiki，並試圖重新安裝它。請前往下一個頁面。",
-	'config-install-begin' => '點擊“{{int:config-continue}}”後，您將開始安裝MediaWiki。如果您還想對配置作一些修改，請點擊後退。',
+	'config-install-begin' => '點擊“{{int:config-continue}}”後，您將開始安裝MediaWiki。如果您還想對配置作一些修改，請點擊後退。', # Fuzzy
 	'config-install-step-done' => '完成',
 	'config-install-step-failed' => '失敗',
 	'config-install-extensions' => '正在啟用擴展',

@@ -741,7 +741,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'gotaccount' => "Jos sinulla on jo tunnus, voit '''$1'''.",
 'gotaccountlink' => 'kirjautua sisään',
 'userlogin-resetlink' => 'Unohditko salasanasi?',
-'createaccountmail' => 'sähköpostitse',
+'createaccountmail' => 'Käytä satunnaista väliaikaissalasanaa ja lähetä se alla määritettyyn sähköpostiosoitteeseen',
 'createaccountreason' => 'Syy',
 'badretype' => 'Syöttämäsi salasanat ovat erilaiset.',
 'userexists' => 'Pyytämäsi käyttäjänimi on jo käytössä. Valitse toinen käyttäjänimi.',
@@ -3812,7 +3812,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'specialpages-group-highuse' => 'Sivujen käyttöaste',
 'specialpages-group-pages' => 'Sivulistaukset',
 'specialpages-group-pagetools' => 'Sivutyökalut',
-'specialpages-group-wiki' => 'Wikitiedot ja työkalut',
+'specialpages-group-wiki' => 'Tiedot ja työkalut',
 'specialpages-group-redirects' => 'Ohjaavat toimintosivut',
 'specialpages-group-spam' => 'Mainostenpoistotyökalut',
 

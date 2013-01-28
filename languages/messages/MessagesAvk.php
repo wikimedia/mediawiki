@@ -2248,6 +2248,20 @@ Rodjeyesi staksasiki : $1',
 'confirmemail_loggedin' => 'Votre adresse est maintenant confirmée',
 'confirmemail_error' => 'Un problème est survenu en voulant enregistrer votre confirmation',
 'confirmemail_subject' => "Confirmation d'email pour {{SITENAME}}",
+'confirmemail_body' => 'Someone, probably you, from IP address $1,
+has registered an account "$2" with this e-mail address on {{SITENAME}}.
+
+To confirm that this account really does belong to you and activate
+e-mail features on {{SITENAME}}, open this link in your browser:
+
+$3
+
+If you did *not* register the account, follow this link
+to cancel the e-mail address confirmation:
+
+$5
+
+This confirmation code will expire at $4.',
 'confirmemail_invalidated' => "Waljoana gruyera va 'e-mail' mane",
 'invalidateemail' => "Kuidera va 'email' gruyera",
 

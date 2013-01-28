@@ -2163,7 +2163,7 @@ Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
 # Special:ActiveUsers
 'activeusers' => 'Seznam aktivnih uporabnikov',
 'activeusers-intro' => 'Seznam uporabnikov, ki so bili kakor koli aktivni v {{PLURAL:$1|zadnjem $1 dnevu|zadnjih $1 dneh}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}',
+'activeusers-count' => '$1 {{PLURAL:$1|dejanje|dejanji|dejanja|dejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}',
 'activeusers-from' => 'Prikaži uporabnike začenši z:',
 'activeusers-hidebots' => 'Skrij bote',
 'activeusers-hidesysops' => 'Skrij administratorje',
@@ -3799,7 +3799,7 @@ Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
 'specialpages-group-highuse' => 'Strani visoke uporabe',
 'specialpages-group-pages' => 'Seznam strani',
 'specialpages-group-pagetools' => 'Orodja strani',
-'specialpages-group-wiki' => 'Podatki in orodja wiki',
+'specialpages-group-wiki' => 'Podatki in orodja',
 'specialpages-group-redirects' => 'Preusmerjajoče posebne strani',
 'specialpages-group-spam' => 'Orodja za spam',
 

@@ -564,6 +564,9 @@ Adiresi ya wena ya e-mail yitunberile loko van'wana va bula na wena.",
 'right-move-subpages' => "yisa matluka lawa na matluka-ntsongo ya wona, kun'wana",
 'right-delete' => 'Sula matluka lawa',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nghula ya nxaxamelo wa ku tumbuluxiwa ka vatirhisi',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'hlaya tluka leri',
 'action-edit' => 'Lulamisa tluka leri',
@@ -689,9 +692,6 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 # Special:LinkSearch
 'linksearch-ok' => 'Lava',
 'linksearch-line' => '$1 yi khwekerisiwe kusuka eka $2',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Nghula ya nxaxamelo wa ku tumbuluxiwa ka vatirhisi',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(nxaxamelo wa valandzeri)',

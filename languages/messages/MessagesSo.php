@@ -833,6 +833,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 # Groups
 'group' => 'Koox:',
 'group-user' => 'Isticmaalada',
+'group-autoconfirmed' => 'Gude galayaasha la hubiyey si iskeed ah',
 'group-bot' => 'botyada',
 'group-sysop' => 'Maamulada',
 'group-all' => '(dhamaan)',
@@ -842,6 +843,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'group-sysop-member' => '{{GENDER:$1|maamulaha}}',
 
 'grouppage-user' => '{{ns:project}}:Isticmaalada',
+'grouppage-autoconfirmed' => '{{ns:project}}:Gude gale la hubiyey si iskeeda ah',
 'grouppage-sysop' => '{{ns:project}}:Maamulada',
 
 # Rights
@@ -1111,6 +1113,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'enotif_subject_created' => '{{SITENAME}} Bogga $1 Qof ayaa sameeyey {{gender:$2|$2}}',
 'enotif_subject_changed' => '{{SITENAME}} Bogga $1 Waxaa {{GENDER:$2|Bedel}} ku sameeyey qof $2',
 'enotif_body_intro_created' => 'Bogga {{SITENAME}} ga $1 waxaa la sameeyey $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
+'enotif_body_intro_restored' => 'Booga {{SITENAME}} $1 waa labadelay {{GENDER:$2|dib u habayn}} waqtigaan $PAGEEDITDATE waxaana badalay $2, eeg $3 sida hadda laga dhigay.',
 'enotif_body_intro_changed' => 'Bogga {{SITENAME}} ga $1 waxaa la badelay $PAGEEDITDATE qof {{gender:$2|$2}}, eeg $3 sida laga dhigay hadda.',
 'enotif_lastvisited' => 'Eeg $1 Dhamaan isbedeleda ilaa goortii kuugu dambaysay.',
 'enotif_lastdiff' => 'Eeg $1 si aad u aragto bedelkaan.',

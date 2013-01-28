@@ -3810,7 +3810,7 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'specialpages-group-highuse' => 'Mykje brukte sider',
 'specialpages-group-pages' => 'Sidelister',
 'specialpages-group-pagetools' => 'Sideverktøy',
-'specialpages-group-wiki' => 'Informasjon og verktøy for wikien',
+'specialpages-group-wiki' => 'Data og verktøy',
 'specialpages-group-redirects' => 'Omdirigerande spesialsider',
 'specialpages-group-spam' => 'Spamverktøy',
 
@@ -3907,6 +3907,7 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'logentry-newusers-newusers' => 'Brukarkontoen $1 vart oppretta',
 'logentry-newusers-create' => 'Brukarkontoen $1 vart oppretta',
 'logentry-newusers-create2' => 'Brukarkontoen $3 vart oppretta av $1',
+'logentry-newusers-byemail' => 'Brukarkontoen $3 vart oppretta av $1 og passord vart sendt med e-post',
 'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
 'logentry-rights-rights' => '$1 endra gruppemedlemskap for $3 frå $4 til $5',
 'logentry-rights-rights-legacy' => '$1 endra gruppemedlemskap for $3',

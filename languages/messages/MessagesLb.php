@@ -690,6 +690,7 @@ Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Fonctioun',
 'user-mail-no-addy' => 'Huet versicht eng Mail ouni Mailadress ze schécken',
+'user-mail-no-body' => 'Et gouf probéiert eng E-Mail ouni Text oder mat engem ze kuerzen Text ze schécken.',
 
 # Change password dialog
 'resetpass' => 'Passwuert änneren',
@@ -2609,13 +2610,13 @@ Fir d'Datebank ze spären oder fir d'Spär opzehiewen muss dëse Fichier vum Web
 'move-page' => 'Réckel $1',
 'move-page-legend' => 'Säit réckelen',
 'movepagetext' => "Wann dir dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm.
-Den alen Titel déngt als Viruleedung op déi nei Säit.
+Den alen Titel gëtt eng Viruleedung op déi nei Säit.
 Dir kënnt Viruleedungen déi op déi al Säit ginn automatesch aktualiséieren.
-Wann Dir dat net maacht, da vergewëssert iech datt keng [[Special:DoubleRedirects|duebel]] oder [[Special:BrokenRedirects|futtis Viruleedungen]] am Spill sinn.
-Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hi sollen.
+Wann Dir dat net maacht, da vergewëssert Iech datt keng [[Special:DoubleRedirects|duebel]] oder [[Special:BrokenRedirects|futtis Viruleedungen]] am Spill sinn.
+Dir sidd responsabel datt d'Linke weiderhin dohinner pointéieren, wou se hi sollen.
 
 Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann et schonns eng Säit mat deem Titel gëtt, ausser déi ass eidel, ass eng Viruleedung oder huet keen Historique.
-Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
+Dëst bedeit datt dir eng Säit zréck op hiren ursprénglechen Numm ëmbenenne kënnt wann Dir Iech geiert hat an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
 '''OPGEPASST!'''
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten;
@@ -3776,6 +3777,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-newusers-newusers' => 'De Benotzerkont $1 gouf ugeluecht',
 'logentry-newusers-create' => 'De Benotzerkont $1 gouf ugeluecht',
 'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
+'logentry-newusers-byemail' => "De Benotzerkont $3 gouf vum $1 ugeluecht an d'Passwuert gouf per E-Mail geschéckt.",
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch ugeluecht',
 'logentry-rights-autopromote' => "De Benotzer $1 huet d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
 'rightsnone' => '(keen)',
@@ -3832,6 +3834,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-ok-but-empty' => 'Interne Feeler: keng Äntwert vum Server.',
 'api-error-overwrite' => "D'Iwwerschreiwe vun engem Fichier ass net erlaabt.",
 'api-error-stashfailed' => 'Interne Feeler: de Server konnt den temporäre Fichier net späicheren.',
+'api-error-publishfailed' => 'Interne Feeler: de Server konnt den temporäre Fichier net publizéieren.',
 'api-error-timeout' => 'De Server huet net bannen där Zäit geäntwert déi virgesinn ass.',
 'api-error-unclassified' => 'En onbekannte Feeler ass geschitt',
 'api-error-unknown-code' => 'Onbekannte Feeler: "$1"',

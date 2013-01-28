@@ -3822,7 +3822,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'specialpages-group-highuse' => 'Pagine molto usate',
 'specialpages-group-pages' => 'Elenchi di pagine',
 'specialpages-group-pagetools' => 'Strumenti utili per le pagine',
-'specialpages-group-wiki' => 'Strumenti e informazioni sul progetto',
+'specialpages-group-wiki' => 'Dati e strumenti',
 'specialpages-group-redirects' => 'Pagine speciali di redirect',
 'specialpages-group-spam' => 'Strumenti contro lo spam',
 
@@ -3919,6 +3919,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-newusers-newusers' => "L'utenza $1 è stata creata",
 'logentry-newusers-create' => "L'utenza $1 è stata creata",
 'logentry-newusers-create2' => "L'utenza $3 è stata creata da $1",
+'logentry-newusers-byemail' => "L'utente $3 è stato creato da $1 e la password è stata inviata via e-mail",
 'logentry-newusers-autocreate' => "L'utenza $1 è stata creata automaticamente",
 'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
 'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",

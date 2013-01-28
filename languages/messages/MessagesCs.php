@@ -3264,8 +3264,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'days' => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
 'months' => '{{PLURAL:$1|$1 měsícem|$1 měsíci}}',
 'years' => '{{PLURAL:$1|$1 rokem|$1 roky}}',
-'ago' => 'před 
-$1',
+'ago' => 'před $1',
 'just-now' => 'Právě teď',
 
 # Bad image list
@@ -3977,7 +3976,7 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'specialpages-group-highuse' => 'Často používané stránky',
 'specialpages-group-pages' => 'Seznamy stránek',
 'specialpages-group-pagetools' => 'Nástroje ke stránkám',
-'specialpages-group-wiki' => 'Informace a nástroje k celé wiki',
+'specialpages-group-wiki' => 'Nástroje a data',
 'specialpages-group-redirects' => 'Přesměrovávací speciální stránky',
 'specialpages-group-spam' => 'Protispamové nástroje',
 
@@ -4074,6 +4073,7 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-newusers-newusers' => 'Byl založen uživatelský účet $1',
 'logentry-newusers-create' => 'Byl založen uživatelský účet $1',
 'logentry-newusers-create2' => '$1 založil uživatelský účet $3',
+'logentry-newusers-byemail' => '$1 {{GENDER:$2|založil|založila}} uživatelský účet $3, heslo bylo posláno e-mailem',
 'logentry-newusers-autocreate' => 'Automaticky byl založen účet $1',
 'logentry-rights-rights' => '$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách z $4 na $5',
 'logentry-rights-rights-legacy' => '$1 změnil členství $3 ve skupinách',

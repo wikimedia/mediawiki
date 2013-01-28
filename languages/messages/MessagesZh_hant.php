@@ -3813,7 +3813,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'specialpages-group-highuse' => '高度使用頁面',
 'specialpages-group-pages' => '頁面清單',
 'specialpages-group-pagetools' => '頁面工具',
-'specialpages-group-wiki' => 'Wiki 資料和工具',
+'specialpages-group-wiki' => '資料和工具',
 'specialpages-group-redirects' => '重新定向特殊頁面',
 'specialpages-group-spam' => '反垃圾工具',
 
@@ -3911,6 +3911,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'logentry-newusers-newusers' => '已建立用戶「$1」',
 'logentry-newusers-create' => '已建立用戶「$1」',
 'logentry-newusers-create2' => '用戶「$1」建立用戶「$3」',
+'logentry-newusers-byemail' => '$1建立用戶$3並電郵密碼給他',
 'logentry-newusers-autocreate' => '帳戶$1被自動創建',
 'logentry-rights-rights' => '$1將$3的權限從$4改為$5',
 'logentry-rights-rights-legacy' => '$1更改$3的權限',
