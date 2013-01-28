@@ -846,7 +846,7 @@ class SpecialPage {
 
 		foreach ( $wgFeedClasses as $format => $class ) {
 			$theseParams = $params + array( 'feedformat' => $format );
-			$url = $feedTemplate . wfArrayToCGI( $theseParams );
+			$url = $feedTemplate . wfArrayToCgi( $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );
 		}
 	}
@@ -904,7 +904,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(
 			$this->getRequest()->getQueryValues(), array( 'title' => null ) );
-		$form->addHiddenField( 'redirectparams', wfArrayToCGI( $params ) );
+		$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
 
 		$form->addPreText( $this->preText() );
 		$form->addPostText( $this->postText() );
@@ -1045,7 +1045,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		// Redirect to index.php with query parameters
 		} elseif ( $redirect === true ) {
 			global $wgScript;
-			$url = $wgScript . '?' . wfArrayToCGI( $query );
+			$url = $wgScript . '?' . wfArrayToCgi( $query );
 			$this->getOutput()->redirect( $url );
 			return $redirect;
 		} else {

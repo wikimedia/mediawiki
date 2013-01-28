@@ -2128,7 +2128,7 @@ class OutputPage extends ContextSource {
 					unset( $returntoquery['title'] );
 					unset( $returntoquery['returnto'] );
 					unset( $returntoquery['returntoquery'] );
-					$query['returntoquery'] = wfArrayToCGI( $returntoquery );
+					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
 				}
 			}
 			$loginLink = Linker::linkKnown(

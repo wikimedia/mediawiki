@@ -146,7 +146,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 			$allValues = $this->opts->getAllValues();
 			unset( $allValues['feed'] );
-			$out->setFeedAppendQuery( wfArrayToCGI( $allValues ) );
+			$out->setFeedAppendQuery( wfArrayToCgi( $allValues ) );
 		}
 
 		$pager = new NewPagesPager( $this, $this->opts );

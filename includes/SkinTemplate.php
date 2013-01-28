@@ -169,7 +169,7 @@ class SkinTemplate extends Skin {
 			unset( $query['returnto'] );
 			unset( $query['returntoquery'] );
 		}
-		$this->thisquery = wfArrayToCGI( $query );
+		$this->thisquery = wfArrayToCgi( $query );
 		$this->loggedin = $user->isLoggedIn();
 		$this->username = $user->getName();
 
@@ -577,7 +577,7 @@ class SkinTemplate extends Skin {
 			$a['wpStickHTTPS'] = true;
 		}
 
-		$returnto = wfArrayToCGI( $a );
+		$returnto = wfArrayToCgi( $a );
 		if( $this->loggedin ) {
 			$personal_urls['userpage'] = array(
 				'text' => $this->username,

@@ -188,7 +188,7 @@ abstract class ImageHandler extends MediaHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return false;
 		}
-		$url = $script . '&' . wfArrayToCGI( $this->getScriptParams( $params ) );
+		$url = $script . '&' . wfArrayToCgi( $this->getScriptParams( $params ) );
 
 		if( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, false, $params );

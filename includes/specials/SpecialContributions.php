@@ -152,7 +152,7 @@ class SpecialContributions extends SpecialPage {
 				$apiParams['month'] = $this->opts['month'];
 			}
 
-			$url = wfScript( 'api' ) . '?' . wfArrayToCGI( $apiParams );
+			$url = wfScript( 'api' ) . '?' . wfArrayToCgi( $apiParams );
 
 			$out->redirect( $url, '301' );
 			return;
