@@ -138,7 +138,7 @@ class SpecialSearch extends SpecialPage {
 			// BC with old request format
 			$profile = 'advanced';
 			foreach( $profiles as $key => $data ) {
-				if ( $nslist === $data['namespaces'] && $key !== 'advanced') {
+				if ( $nslist === $data['namespaces'] && $key !== 'advanced' ) {
 					$profile = $key;
 				}
 			}
@@ -159,7 +159,7 @@ class SpecialSearch extends SpecialPage {
 		$default = $request->getBool( 'profile' ) ? 0 : 1;
 		$this->searchRedirects = $request->getBool( 'redirs', $default ) ? 1 : 0;
 		$this->didYouMeanHtml = ''; # html of did you mean... link
-		$this->fulltext = $request->getVal('fulltext');
+		$this->fulltext = $request->getVal( 'fulltext' );
 		$this->profile = $profile;
 	}
 
@@ -218,7 +218,7 @@ class SpecialSearch extends SpecialPage {
 		$search->showRedirects = $this->searchRedirects; // BC
 		$search->setFeatureData( 'list-redirects', $this->searchRedirects );
 		$search->prefix = $this->mPrefix;
-		$term = $search->transformSearchTerm($term);
+		$term = $search->transformSearchTerm( $term );
 
 		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
 
@@ -250,7 +250,7 @@ class SpecialSearch extends SpecialPage {
 		$t = Title::newFromText( $term );
 
 		// fetch search results
-		$rewritten = $search->replacePrefixes($term);
+		$rewritten = $search->replacePrefixes( $term );
 
 		$titleMatches = $search->searchTitle( $rewritten );
 		if( !( $titleMatches instanceof SearchResultTooMany ) ) {
@@ -311,9 +311,9 @@ class SpecialSearch extends SpecialPage {
 			Xml::openElement( 'tr' ) .
 			Xml::openElement( 'td' ) . "\n" .
 			$this->shortDialog( $term ) .
-			Xml::closeElement('td') .
-			Xml::closeElement('tr') .
-			Xml::closeElement('table')
+			Xml::closeElement( 'td' ) .
+			Xml::closeElement( 'tr' ) .
+			Xml::closeElement( 'table' )
 		);
 
 		// Sometimes the search engine knows there are too many hits
@@ -323,7 +323,7 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
+		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
 		if( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			$out->addHTML( $this->formHeader( $term, 0, 0 ) );
 			$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
@@ -347,9 +347,9 @@ class SpecialSearch extends SpecialPage {
 
 		// get total number of results if backend can calculate it
 		$totalRes = 0;
-		if($titleMatches && !is_null( $titleMatches->getTotalHits() ) )
+		if( $titleMatches && !is_null( $titleMatches->getTotalHits() ) )
 			$totalRes += $titleMatches->getTotalHits();
-		if($textMatches && !is_null( $textMatches->getTotalHits() ))
+		if( $textMatches && !is_null( $textMatches->getTotalHits() ) )
 			$totalRes += $textMatches->getTotalHits();
 
 		// show number of results and current offset
@@ -516,7 +516,7 @@ class SpecialSearch extends SpecialPage {
 
 		$out = "";
 		$infoLine = $matches->getInfo();
-		if( !is_null($infoLine) ) {
+		if( !is_null( $infoLine ) ) {
 			$out .= "\n<!-- {$infoLine} -->\n";
 		}
 		$out .= "<ul class='mw-search-results'>\n";
@@ -551,7 +551,7 @@ class SpecialSearch extends SpecialPage {
 
 		$t = $result->getTitle();
 
-		$titleSnippet = $result->getTitleSnippet($terms);
+		$titleSnippet = $result->getTitleSnippet( $terms );
 
 		if( $titleSnippet == '' )
 			$titleSnippet = null;
@@ -584,12 +584,12 @@ class SpecialSearch extends SpecialPage {
 
 		// format redirects / relevant sections
 		$redirectTitle = $result->getRedirectTitle();
-		$redirectText = $result->getRedirectSnippet($terms);
+		$redirectText = $result->getRedirectSnippet( $terms );
 		$sectionTitle = $result->getSectionTitle();
-		$sectionText = $result->getSectionSnippet($terms);
+		$sectionText = $result->getSectionSnippet( $terms );
 		$redirect = '';
 
-		if( !is_null($redirectTitle) ) {
+		if( !is_null( $redirectTitle ) ) {
 			if( $redirectText == '' )
 				$redirectText = null;
 
@@ -601,7 +601,7 @@ class SpecialSearch extends SpecialPage {
 
 		$section = '';
 
-		if( !is_null($sectionTitle) ) {
+		if( !is_null( $sectionTitle ) ) {
 			if( $sectionText == '' )
 				$sectionText = null;
 
@@ -612,7 +612,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// format text extract
-		$extract = "<div class='searchresult'>".$result->getTextSnippet($terms)."</div>";
+		$extract = "<div class='searchresult'>" . $result->getTextSnippet( $terms ) . "</div>";
 
 		$lang = $this->getLanguage();
 
@@ -723,7 +723,7 @@ class SpecialSearch extends SpecialPage {
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>".
-			$this->msg( 'search-interwiki-caption' )->text()  . "</div>\n";
+			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
 		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions
@@ -773,7 +773,7 @@ class SpecialSearch extends SpecialPage {
 
 		$t = $result->getTitle();
 
-		$titleSnippet = $result->getTitleSnippet($terms);
+		$titleSnippet = $result->getTitleSnippet( $terms );
 
 		if( $titleSnippet == '' )
 			$titleSnippet = null;
@@ -785,9 +785,9 @@ class SpecialSearch extends SpecialPage {
 
 		// format redirect if any
 		$redirectTitle = $result->getRedirectTitle();
-		$redirectText = $result->getRedirectSnippet($terms);
+		$redirectText = $result->getRedirectSnippet( $terms );
 		$redirect = '';
-		if( !is_null($redirectTitle) ) {
+		if( !is_null( $redirectTitle ) ) {
 			if( $redirectText == '' )
 				$redirectText = null;
 
@@ -799,8 +799,8 @@ class SpecialSearch extends SpecialPage {
 
 		$out = "";
 		// display project name
-		if(is_null($lastInterwiki) || $lastInterwiki != $t->getInterwiki()) {
-			if( array_key_exists($t->getInterwiki(),$customCaptions) ) {
+		if( is_null( $lastInterwiki ) || $lastInterwiki != $t->getInterwiki() ) {
+			if( array_key_exists( $t->getInterwiki(), $customCaptions ) ) {
 				// captions from 'search-interwiki-custom'
 				$caption = $customCaptions[$t->getInterwiki()];
 			} else {
@@ -810,7 +810,7 @@ class SpecialSearch extends SpecialPage {
 				$caption = $this->msg( 'search-interwiki-default', $parsed['host'] )->text();
 			}
 			// "more results" link (special page stuff could be localized, but we might not know target lang)
-			$searchTitle = Title::newFromText($t->getInterwiki().":Special:Search");
+			$searchTitle = Title::newFromText( $t->getInterwiki() . ":Special:Search" );
 			$searchLink = Linker::linkKnown(
 				$searchTitle,
 				$this->msg( 'search-interwiki-more' )->text(),
@@ -918,7 +918,7 @@ class SpecialSearch extends SpecialPage {
 				'fieldset',
 				array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
 			) .
-			Xml::element( 'legend', null, $this->msg('powersearch-legend' )->text() ) .
+			Xml::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
 			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
 			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
@@ -985,7 +985,7 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
-		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
+		$out = Xml::openElement( 'div', array( 'class' => 'mw-search-formheader' ) );
 
 		$bareterm = $term;
 		if( $this->startsWithImage( $term ) ) {
@@ -1022,7 +1022,7 @@ class SpecialSearch extends SpecialPage {
 			);
 		}
 		$out .= Xml::closeElement( 'ul' );
-		$out .= Xml::closeElement('div') ;
+		$out .= Xml::closeElement( 'div' ) ;
 
 		// Results-info
 		if ( $resultsShown > 0 ) {
@@ -1047,7 +1047,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
-		$out .= Xml::closeElement('div');
+		$out .= Xml::closeElement( 'div' );
 
 		return $out;
 	}

@@ -410,7 +410,7 @@ class ImportReporter extends ContextSource {
 				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
 					$successCount )->inContentLanguage()->text();
 				if ( $this->reason ) {
-					$detail .=  $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
+					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
@@ -419,7 +419,7 @@ class ImportReporter extends ContextSource {
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
 				if ( $this->reason ) {
-					$detail .=  $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
+					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
 				$log->addEntry( 'interwiki', $title, $detail );
 			}
@@ -428,7 +428,7 @@ class ImportReporter extends ContextSource {
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
 			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleID(), $comment, true );
-			if (!is_null($nullRevision)) {
+			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record

@@ -42,16 +42,16 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	public function getDefaultOptions() {
 		$opts = new FormOptions();
 
-		$opts->add( 'days',  (int)$this->getUser()->getOption( 'rcdays' ) );
+		$opts->add( 'days', (int)$this->getUser()->getOption( 'rcdays' ) );
 		$opts->add( 'limit', (int)$this->getUser()->getOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor',     $this->getUser()->getBoolOption( 'hideminor' ) );
-		$opts->add( 'hidebots',      true  );
-		$opts->add( 'hideanons',     false );
-		$opts->add( 'hideliu',       false );
+		$opts->add( 'hideminor', $this->getUser()->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hidebots', true  );
+		$opts->add( 'hideanons', false );
+		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );
-		$opts->add( 'hidemyself',    false );
+		$opts->add( 'hidemyself', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -232,7 +232,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			}
 
 			if( is_numeric( $bit ) ) {
-				$opts['limit'] =  $bit;
+				$opts['limit'] = $bit;
 			}
 
 			$m = array();
@@ -296,7 +296,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
-		$fromValid = preg_match('/^[0-9]{14}$/', $opts['from']);
+		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
 		if( $fromValid && $opts['from'] > wfTimestamp( TS_MW, $cutoff ) ) {
 			$cutoff = $dbr->timestamp( $opts['from'] );
 		} else {
@@ -387,7 +387,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$tables[] = 'watchlist';
 			$fields[] = 'wl_user';
 			$fields[] = 'wl_notificationtimestamp';
-			$join_conds['watchlist'] = array('LEFT JOIN', array(
+			$join_conds['watchlist'] = array( 'LEFT JOIN', array(
 				'wl_user' => $uid,
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
@@ -396,7 +396,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
 			$fields[] = 'page_latest';
-			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
+			$join_conds['page'] = array( 'LEFT JOIN', 'rc_cur_id=page_id' );
 		}
 		// Tag stuff.
 		ChangeTags::modifyDisplayQuery(

@@ -117,7 +117,7 @@ class DoubleRedirectsPage extends QueryPage {
 			$dbr = wfGetDB( DB_SLAVE );
 			$qi = $this->reallyGetQueryInfo( $result->namespace,
 					$result->title );
-			$res = $dbr->select($qi['tables'], $qi['fields'],
+			$res = $dbr->select( $qi['tables'], $qi['fields'],
 					$qi['conds'], __METHOD__ );
 			if ( $res ) {
 				$result = $dbr->fetchObject( $res );
@@ -128,7 +128,7 @@ class DoubleRedirectsPage extends QueryPage {
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
-		$titleC = Title::makeTitle( $result->nsc, $result->tc, '',  $result->iwc );
+		$titleC = Title::makeTitle( $result->nsc, $result->tc, '', $result->iwc );
 
 		$linkA = Linker::linkKnown(
 			$titleA,

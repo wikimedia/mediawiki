@@ -110,7 +110,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
-			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
+			$join_conds['page'] = array( 'LEFT JOIN', 'rc_cur_id=page_id' );
 			$select[] = 'page_latest';
 		}
 		ChangeTags::modifyDisplayQuery(
@@ -204,15 +204,15 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$subsql[] = $query;
 		}
 
-		if( count($subsql) == 0 ) {
+		if( count( $subsql ) == 0 ) {
 			return false; // should never happen
 		}
-		if( count($subsql) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
+		if( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
 			$sql = $subsql[0];
 		} else {
 			// need to resort and relimit after union
-			$sql = $dbr->unionQueries($subsql, false).' ORDER BY rc_timestamp DESC';
-			$sql = $dbr->limitResult($sql, $limit, false);
+			$sql = $dbr->unionQueries( $subsql, false ) . ' ORDER BY rc_timestamp DESC';
+			$sql = $dbr->limitResult( $sql, $limit, false );
 		}
 
 		$res = $dbr->query( $sql, __METHOD__ );
@@ -237,7 +237,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array( 'id' => 'showlinkedto' ) ) . ' ' .
 			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) );
 		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
-		if ($tagFilter) {
+		if ( $tagFilter ) {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
 		return $extraOpts;

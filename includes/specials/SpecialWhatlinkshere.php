@@ -69,7 +69,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 
 		// Give precedence to subpage syntax
-		if ( isset($par) ) {
+		if ( isset( $par ) ) {
 			$opts->setValue( 'target', $par );
 		}
 
@@ -137,7 +137,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		);
 
 		$namespace = $this->opts->getValue( 'namespace' );
-		if ( is_int($namespace) ) {
+		if ( is_int( $namespace ) ) {
 			$plConds['page_namespace'] = $namespace;
 			$tlConds['page_namespace'] = $namespace;
 			$ilConds['page_namespace'] = $namespace;
@@ -195,7 +195,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 				if( $hidelinks || $hidetrans || $hideredirs || $hideimages )
 					$out->addHTML( $this->getFilterPanel() );
 
-				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
+				$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 			}
 			return;
@@ -360,7 +360,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->escaped();
 
 		$changed = $this->opts->getChangedValues();
-		unset($changed['target']); // Already in the request title
+		unset( $changed['target'] ); // Already in the request title
 
 		if ( 0 != $prevId ) {
 			$overrides = array( 'from' => $this->opts->getValue( 'back' ) );
@@ -446,7 +446,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$hide = $this->msg( 'hide' )->escaped();
 
 		$changed = $this->opts->getChangedValues();
-		unset($changed['target']); // Already in the request title
+		unset( $changed['target'] ); // Already in the request title
 
 		$links = array();
 		$types = array( 'hidetrans', 'hidelinks', 'hideredirs' );
@@ -459,7 +459,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$chosen = $this->opts->getValue( $type );
 			$msg = $chosen ? $show : $hide;
 			$overrides = array( $type => !$chosen );
-			$links[] =  $this->msg( "whatlinkshere-{$type}" )->rawParams(
+			$links[] = $this->msg( "whatlinkshere-{$type}" )->rawParams(
 				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
 		}
 		return Xml::fieldset( $this->msg( 'whatlinkshere-filters' )->text(), $this->getLanguage()->pipeList( $links ) );
