@@ -416,7 +416,7 @@ class WebInstaller_Welcome extends WebInstallerPage {
 			$this->parent->output->addHTML( '<span class="success-message">' .
 				wfMessage( 'config-env-good' )->escaped() . '</span>' );
 			$this->parent->output->addWikiText( wfMessage( 'config-copyright',
-				SpecialVersion::getCopyrightAndAuthorList() )->plain() );
+				SpecialVersion::getCopyrightAndAuthorList(true) )->plain() );
 			$this->startForm();
 			$this->endForm();
 		} else {
