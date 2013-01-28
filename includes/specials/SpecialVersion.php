@@ -114,6 +114,17 @@ class SpecialVersion extends SpecialPage {
 	public static function getCopyrightAndAuthorList() {
 		global $wgLang;
 
+		$othersLink = 
+			( MEDIAWIKI_INSTALL === true ) ? 
+				'[http://www.mediawiki.org/wiki/Special:Version/Credits ' . 
+				wfMessage( 'version-poweredby-others' )->text() . 
+				']'
+			:
+				'[[Special:Version/Credits|'.
+				wfMessage( 'version-poweredby-others' )->text() . 
+				']]'
+			;
+
 		$authorList = array(
 			'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
 			'Tim Starling', 'Erik Möller', 'Gabriel Wicke', 'Ævar Arnfjörð Bjarmason',
@@ -122,10 +133,7 @@ class SpecialVersion extends SpecialPage {
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
-			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw',
-			'[[Special:Version/Credits|' .
-			wfMessage( 'version-poweredby-others' )->text() .
-			']]'
+			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', $othersLink
 		);
 
 		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
