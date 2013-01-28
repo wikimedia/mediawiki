@@ -799,7 +799,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$status = $this->prepare( array( 'dir' => dirname( $path ) ) );
 			$this->assertGoodStatus( $status,
 				"Preparing $path succeeded without warnings ($backendName)." );
-			$ops[] = array( 'op' => 'create', 'dst' => $path, 'content' => mt_rand(0,50000) );
+			$ops[] = array( 'op' => 'create', 'dst' => $path, 'content' => mt_rand(0, 50000) );
 			$purgeOps[] = array( 'op' => 'delete', 'src' => $path );
 		}
 		$purgeOps[] = array( 'op' => 'null' );

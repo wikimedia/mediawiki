@@ -32,4 +32,3 @@ class wfGetCaller extends MediaWikiTestCase {
 			$this->assertEquals( "wfGetCaller::intermediateFunction", self::intermediateFunction( $i + 1, $i ) );
 	}
 }
-

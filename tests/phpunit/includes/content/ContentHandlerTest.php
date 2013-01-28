@@ -103,7 +103,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		if ( $expected ) {
 			$this->assertNotNull( $name, "no name found for content model $id" );
-			$this->assertTrue( preg_match( $expected, $name ) > 0 ,
+			$this->assertTrue( preg_match( $expected, $name ) > 0,
 				"content model name for #$id did not match pattern $expected"
 			);
 		} else {
@@ -361,8 +361,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * @return mixed the native representation of the content. Could be a string, a nested array
 	 *  structure, an object, a binary blob... anything, really.
 	 */
-	public function getNativeData()
-	{
+	public function getNativeData() {
 		return $this->data;
 	}
 
@@ -415,7 +414,7 @@ class DummyContentForTesting extends AbstractContent {
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true ) {
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
 		return new ParserOutput( $this->getNativeData() );
 	}
 }

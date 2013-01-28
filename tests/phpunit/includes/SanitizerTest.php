@@ -226,4 +226,3 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 }
-

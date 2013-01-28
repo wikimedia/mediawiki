@@ -306,7 +306,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		$this->assertEquals( $getall['simple'], $GLOBALS['simple'], 'extractAllGlobals(): simple setting' );
 		$this->assertEquals( $getall['fallback'], $GLOBALS['fallback'], 'extractAllGlobals(): fallback setting' );
 		$this->assertEquals( $getall['params'], $GLOBALS['params'], 'extractAllGlobals(): parameter replacement' );
-		$this->assertEquals( $getall['global'], $GLOBALS['global'],  'extractAllGlobals(): merging with global' );
-		$this->assertEquals( $getall['merge'], $GLOBALS['merge'],  'extractAllGlobals(): merging setting' );
+		$this->assertEquals( $getall['global'], $GLOBALS['global'], 'extractAllGlobals(): merging with global' );
+		$this->assertEquals( $getall['merge'], $GLOBALS['merge'], 'extractAllGlobals(): merging setting' );
 	}
 }

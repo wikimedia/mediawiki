@@ -570,4 +570,3 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertFalse( MWNamespace::subjectEquals( $ns1, $ns2, $msg ) );
 	}
 }
-

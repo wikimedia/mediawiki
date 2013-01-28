@@ -46,5 +46,3 @@ class MediaHandlerTest extends MediaWikiTestCase {
 		}
 	}
 }
-
-

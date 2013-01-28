@@ -11,10 +11,6 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 		$this->lastQuery = $sql;
 		return true;
 	}
-
-	function replaceVars( $s ) {
-		return parent::replaceVars( $s );
-	}
 }
 
 /**

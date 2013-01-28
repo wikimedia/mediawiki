@@ -686,4 +686,3 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 	/* TODO: many more! */
 }
-

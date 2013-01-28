@@ -30,4 +30,3 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	// TODO: Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
 }
-

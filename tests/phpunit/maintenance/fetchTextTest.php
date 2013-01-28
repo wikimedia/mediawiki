@@ -18,7 +18,7 @@ class SemiMockedFetchText extends FetchText {
 	/**
 	 * @var bool Whether or not a text for stdin has been provided
 	 */
-	private $mockSetUp = False;
+	private $mockSetUp = false;
 
 	/**
 	 * @var Array Invocation counters for the mocked aspects
@@ -32,10 +32,9 @@ class SemiMockedFetchText extends FetchText {
 	 *
 	 * @param $stdin String The string to be used instead of stdin
 	 */
-	function mockStdin( $stdin )
-	{
+	function mockStdin( $stdin ) {
 		$this->mockStdinText = $stdin;
-		$this->mockSetUp = True;
+		$this->mockSetUp = true;
 	}
 
 	/**
@@ -44,16 +43,14 @@ class SemiMockedFetchText extends FetchText {
 	 * @return Array An array, whose keys are function names. The corresponding values
 	 * denote the number of times the function has been invoked.
 	 */
-	function mockGetInvocations()
-	{
+	function mockGetInvocations() {
 		return $this->mockInvocations;
 	}
 
 	// -----------------------------------------------------------------
 	// Mocked functions from FetchText follow.
 
-	function getStdin( $len = null )
-	{
+	function getStdin( $len = null ) {
 		$this->mockInvocations['getStdin']++;
 		if ( $len !== null ) {
 			throw new PHPUnit_Framework_ExpectationFailedException(

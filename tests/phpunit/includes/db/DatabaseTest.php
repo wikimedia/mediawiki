@@ -210,5 +210,3 @@ class DatabaseTest extends MediaWikiTestCase {
 		);
 	}
 }
-
-

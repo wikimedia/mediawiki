@@ -71,7 +71,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->backupStaticAttributes = false;
 	}
 
-	function run( PHPUnit_Framework_TestResult $result = NULL ) {
+	function run( PHPUnit_Framework_TestResult $result = null ) {
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
@@ -365,7 +365,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'page_id' => 0,
 				'page_namespace' => 0,
 				'page_title' => ' ',
-				'page_restrictions' => NULL,
+				'page_restrictions' => null,
 				'page_counter' => 0,
 				'page_is_redirect' => 0,
 				'page_is_new' => 0,
@@ -513,12 +513,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $this->assertTrue( $value == '', $msg );
 	}
 
-	static private function unprefixTable( $tableName ) {
+	private static function unprefixTable( $tableName ) {
 		global $wgDBprefix;
 		return substr( $tableName, strlen( $wgDBprefix ) );
 	}
 
-	static private function isNotUnittest( $table ) {
+	private static function isNotUnittest( $table ) {
 		return strpos( $table, 'unittest_' ) !== 0;
 	}
 

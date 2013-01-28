@@ -111,7 +111,7 @@ class HooksTest extends MediaWikiTestCase {
 class NothingClass {
 	public $calls = 0;
 
-	static public function someStatic( &$foo, &$bar ) {
+	public static function someStatic( &$foo, &$bar ) {
 		$foo = 'bah';
 		return true;
 	}

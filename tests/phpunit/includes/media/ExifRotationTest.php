@@ -222,41 +222,40 @@ class ExifRotationTest extends MediaWikiTestCase {
 			)
 		);
 	}
-	
-	
+
+
 	const TEST_WIDTH = 100;
 	const TEST_HEIGHT = 200;
-	
+
 	/**
 	 * @dataProvider provideBitmapExtractPreRotationDimensions
 	 */
 	function testBitmapExtractPreRotationDimensions( $rotation, $expected ) {
 		$result = $this->handler->extractPreRotationDimensions( array(
-				'physicalWidth' => self::TEST_WIDTH, 
+				'physicalWidth' => self::TEST_WIDTH,
 				'physicalHeight' => self::TEST_HEIGHT,
 			), $rotation );
 		$this->assertEquals( $expected, $result );
 	}
-	
+
 	function provideBitmapExtractPreRotationDimensions() {
 		return array(
 			array(
 				0,
-				array( self::TEST_WIDTH, self::TEST_HEIGHT ) 
+				array( self::TEST_WIDTH, self::TEST_HEIGHT )
 			),
 			array(
 				90,
-				array( self::TEST_HEIGHT, self::TEST_WIDTH ) 
+				array( self::TEST_HEIGHT, self::TEST_WIDTH )
 			),
 			array(
 				180,
-				array( self::TEST_WIDTH, self::TEST_HEIGHT ) 
+				array( self::TEST_WIDTH, self::TEST_HEIGHT )
 			),
 			array(
 				270,
-				array( self::TEST_HEIGHT, self::TEST_WIDTH ) 
+				array( self::TEST_HEIGHT, self::TEST_WIDTH )
 			),
 		);
 	}
 }
-

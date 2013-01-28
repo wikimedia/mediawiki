@@ -226,4 +226,3 @@ class PreprocessorTest extends MediaWikiTestCase {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
 	}
 }
-
