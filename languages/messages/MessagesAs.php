@@ -317,7 +317,7 @@ $messages = array(
 'cancel' => 'বাতিল কৰক',
 'moredotdotdot' => 'অধিক...',
 'mypage' => 'মোৰ পৃষ্ঠা',
-'mytalk' => 'মোৰ কথা-বতৰা',
+'mytalk' => 'কথা-বতৰা',
 'anontalk' => 'এই IP-ত যোগাযোগ কৰক',
 'navigation' => 'দিকদৰ্শন',
 'and' => '&#32;আৰু',
@@ -557,7 +557,7 @@ $1',
 'actionthrottled' => 'কাৰ্য লেহেম কৰা হৈছে',
 'actionthrottledtext' => 'স্পাম ৰোধ কৰিবলৈ এই ক্ৰিয়াতো কম সময়ৰ ভিতৰত বহু বেছি বাৰ কৰাতো ৰোধ কৰা হৈছে, আৰু আপুনি ইতিমধ্যে সেই সীমা অতিক্ৰম কৰিলে।
 অনুগ্ৰহ কৰি কিছু সময় পাছত চেষ্টা কৰক।',
-'protectedpagetext' => 'এই পৃষ্ঠাটোৰ সম্পাদনা ৰোধ কৰিবলৈ সুৰক্ষিত কৰা হৈছে।',
+'protectedpagetext' => 'সম্পাদনা ৰোধ কৰিবলৈ এই পৃষ্ঠাখন সুৰক্ষিত কৰা হৈছে।',
 'viewsourcetext' => 'আপুনি এই পৃষ্ঠাটোৰ উৎস চাব আৰু নকল কৰিব পাৰে',
 'viewyourtext' => "আপুনি '''আপোনাৰ সম্পাদনাসমূহ'''ৰ উৎস চাব আৰু এই পৃষ্ঠালৈ নকল কৰিব পাৰে:",
 'protectedinterface' => 'এই পৃষ্ঠাই ৱিকি ছফ্টৱেৰৰ ইণ্টাৰফে’চ বাৰ্তা প্ৰদান কৰে আৰু ইয়াক সুৰক্ষিত কৰি ৰখা হৈছে।
@@ -1174,6 +1174,11 @@ $1",
 'editundo' => 'পূৰ্ববত কৰক',
 'diff-multi' => '({{PLURAL:$2|এজন সদস্যৰ|$2জন সদস্যৰ}} দ্বাৰা {{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1-টা মধ্যৱৰ্তী সংশোধন}} দেখোৱা হোৱা নাই)',
 'diff-multi-manyusers' => '({{PLURAL:$2|এজনতকৈ|$2-জনতকৈ}} অধিক সদস্যৰ দ্বাৰা {{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1-টা মধ্যৱৰ্তী সংশোধন}} দেখুওৱা হোৱা নাই)',
+'difference-missing-revision' => '{{PLURAL:$2|এটা সংস্কৰণ|$2 সংস্কৰণসমূহৰ}} সংশোধনৰ পাৰ্থক্য  ($1) {{PLURAL:$2| পোৱা নগ’ল}}।
+
+
+সাধাৰণতে বিলোপ কৰা এখন পৃষ্ঠাৰ পুৰণা ইতিহাস লিংক অনুসৰণ কৰিলে এনে হয়।
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} বিলোপন অভিলেখ] চালে অধিক তথ্য পাব।',
 
 # Search results
 'searchresults' => 'অনুসন্ধানৰ ফলাফল',
@@ -1251,7 +1256,7 @@ $1",
 
 # Preferences page
 'preferences' => 'পছন্দসমূহ',
-'mypreferences' => 'মোৰ পছন্দসমূহ',
+'mypreferences' => 'পছন্দসমূহ',
 'prefs-edits' => 'সম্পাদনাৰ সংখ্যা:',
 'prefsnologin' => 'প্ৰৱেশ কৰা নাই',
 'prefsnologintext' => 'আপোনাৰ পছন্দ সলনি কৰিবলৈ হ’লে <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} প্ৰৱেশ]</span> কৰাতো আৱশ্যক।',
@@ -1272,7 +1277,7 @@ $1",
 'prefs-watchlist-edits-max' => 'সৰ্বোচ্চ নম্বৰ: ১০০০',
 'prefs-watchlist-token' => 'লক্ষ্যতালিকা টোকেন:',
 'prefs-misc' => 'অন্যান্য',
-'prefs-resetpass' => 'গুপ্তশব্দ শলনি কৰক',
+'prefs-resetpass' => 'গুপ্তশব্দ সলনি কৰক',
 'prefs-changeemail' => 'ই-মেইল ঠিকনা সলনি কৰক',
 'prefs-setemail' => 'এটা ই-মেইল ঠিকনা দিয়ক',
 'prefs-email' => 'ই-মেইল বিকল্প',
@@ -2160,7 +2165,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'emailuser-title-target' => '{{GENDER:$1|সদস্যজনক}} ইমেইল পঠিয়াওক',
 'emailuser-title-notarget' => 'ব্যৱহাৰকাৰী ই-পত্ৰ প্ৰেৰণ কৰক',
 'emailpage' => 'ই-পত্ৰ ব্যৱহাৰকাৰী',
-'emailpagetext' => 'তলৰ প্ৰপত্ৰখন ব্যৱহাৰ কৰি আপুনি এই সদস্যজনলৈ ই-মেইল পঠাব পাৰে ।
+'emailpagetext' => 'তলৰ প্ৰপত্ৰখন ব্যৱহাৰ কৰি আপুনি এই {{GENDER:$1|সদস্যজনলৈ}} ই-মেইল পঠাব পাৰে ।
 আপুনি [[Special:Preferences|আপোনাৰ সদস্য পছন্দসমূহ]]ত প্ৰৱেশ কৰা ই-মেইল ঠিকনাটো প্ৰেৰকৰ ঠিকনা হিছাপে দেখা যাব, যাতে মেইলৰ প্ৰাপকে আপোনাক উত্তৰ দিব পাৰে ।',
 'usermailererror' => 'মেইল বিষয়বস্তুৰ ত্ৰুটি:',
 'defemailsubject' => '"$1" সদস্যৰ পৰা {{SITENAME}} ই-মেইল',
@@ -2192,15 +2197,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 
 # Watchlist
 'watchlist' => 'মোৰ লক্ষ্য-তালিকা',
-'mywatchlist' => 'মোৰ লক্ষ্য-তালিকা',
+'mywatchlist' => 'লক্ষ্য-তালিকা',
 'watchlistfor2' => '$1 ৰ কাৰণে($2)',
 'nowatchlist' => 'আপোনাৰ নিৰীক্ষণ তালিকাত একো নাই ।',
 'watchlistanontext' => 'আপোনাৰ লক্ষ্য তালিকাত থকা বস্তুবোৰ চাবলৈ বা সম্পাদনা কৰিবলৈ অনুগ্ৰহ কৰি $1 কৰক।',
 'watchnologin' => 'প্ৰৱেশ কৰা নাই',
 'watchnologintext' => 'নিৰীক্ষণ তালিকা পৰিৱৰ্তন কৰিবলৈ আপুনি আগতে [[Special:UserLogin|প্ৰৱেশ]] কৰিব লাগিব ।',
 'addwatch' => 'লক্ষ্য-তালিকাত অন্তৰ্ভুক্ত কৰক',
-'addedwatchtext' => "আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] \"[[:\$1]]\" অন্তৰ্ভুক্ত কৰা হ'ল।
-ভৱিষ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সাম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাখন '''গাঢ়''' আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে।",
+'addedwatchtext' => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] "[[:$1]]" পৃষ্ঠাখন অন্তৰ্ভুক্ত কৰা হ\'ল।
+ভৱিষ্যতে এই পৃষ্ঠা বা ইয়াৰ আলোচনা পৃষ্ঠাত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব।',
 'removewatch' => 'লক্ষ্য-তালিকাৰ পৰা আঁতৰাওক',
 'removedwatchtext' => '"[[:$1]]" পৃষ্ঠাখন [[Special:Watchlist|আপোনাৰ লক্ষ্য-তালিকা]]ৰ পৰা আতৰোৱা হৈছে ।',
 'watch' => 'চকু ৰাখক',
@@ -2457,7 +2462,7 @@ $1',
 # Contributions
 'contributions' => 'সদস্যৰ বৰঙণিসমূহ',
 'contributions-title' => '$1ৰ বৰঙণিসমূহ',
-'mycontris' => 'মোৰ বৰঙণিসমূহ',
+'mycontris' => 'বৰঙণিসমূহ',
 'contribsub2' => '$1 ৰ কাৰণে ($2)',
 'nocontribs' => 'এই গুণসমূহৰ লগত মিল থকা কোনো সালসলনি পোৱা নগ’ল ।',
 'uctop' => '(ওপৰত)',
@@ -2498,7 +2503,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 পুননিৰ্দেশনাসমূহ',
 'whatlinkshere-hidetrans' => '$1 ট্ৰেন্সক্লুস্বনসমূহ',
 'whatlinkshere-hidelinks' => '$1 টা সংযোগ',
-'whatlinkshere-hideimages' => '$1 চিত্ৰ সংযোগসমূহ',
+'whatlinkshere-hideimages' => '$1 ফাইল সংযোগসমূহ',
 'whatlinkshere-filters' => 'ছেকনী',
 
 # Block/unblock
@@ -2969,7 +2974,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 
 # Info page
 'pageinfo-title' => '"$1" ৰ তথ্য',
-'pageinfo-not-current' => "কেৱল সাম্প্ৰতিক সংশোধনৰ বাবে তথ্য দৃশ্যমান হ'ব পাৰে।",
+'pageinfo-not-current' => 'ক্ষমা কৰিব, পুৰণা সংশোধনৰ বাবে এই তথ্য মুকলি কৰাটো সম্ভৱ নহয়।',
 'pageinfo-header-basic' => 'প্ৰাথমিক তথ্য',
 'pageinfo-header-edits' => 'ইতিহাস সম্পাদনা কৰক',
 'pageinfo-header-restrictions' => 'পৃষ্ঠা সুৰক্ষা',
@@ -3825,9 +3830,9 @@ $5
 'logentry-move-move_redir-noredirect' => 'পুনৰ্নিৰ্দেশ নেৰাকৈ এটা পুনৰ্নিৰ্দেশৰ ওপৰেৰে পৃষ্ঠা $3 -ৰ পৰা $4 $1 স্থানান্তৰ কৰা হল',
 'logentry-patrol-patrol' => "পৃষ্ঠা $3 -ৰ $1 চিহ্নিত সংশোধন $4 নিৰীক্ষণ কৰা হ'ল",
 'logentry-patrol-patrol-auto' => "পৃষ্ঠা $3 -ৰ $1 চিহ্নিত সংশোধন $4 স্বচালিতভাৱে নিৰীক্ষণ কৰা হ'ল",
-'logentry-newusers-newusers' => '$1’য়ে এটা ব্যৱহাৰকাৰী একাউণ্ট সৃষ্টি কৰিলে',
-'logentry-newusers-create' => '$1য়ে এটা ব্যৱহাৰকাৰী একাউণ্ট সৃষ্টি কৰিলে',
-'logentry-newusers-create2' => '$1’য়ে এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰিলে',
+'logentry-newusers-newusers' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
+'logentry-newusers-create' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
+'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰা হ'ল",
 'logentry-newusers-autocreate' => '$1’ৰ একাউণ্ট স্বয়ংক্ৰিয়ভাৱে সৃষ্টি কৰা হৈছিল',
 'newuserlog-byemail' => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
 

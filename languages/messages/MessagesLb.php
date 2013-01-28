@@ -556,7 +556,7 @@ Ufro: $2',
 'viewsource-title' => 'Quelltext vun der Säit $1 weisen',
 'actionthrottled' => 'Dës Aktioun gouf gebremst',
 'actionthrottledtext' => 'Fir géint de Spam virzegoen, ass dës Aktioun esou programméiert datt Dir se an enger kuerzer Zäit nëmme limitéiert dacks maache kënnt. Dir hutt dës Limite iwwerschratt. Versicht et w.e.g. an e puer Minutten nach eng Kéier.',
-'protectedpagetext' => 'Dës Säit ass fir Ännerunge gespaart.',
+'protectedpagetext' => 'Dës Säit ass fir Ännerungen an aner Aktioune gespaart.',
 'viewsourcetext' => 'Dir kënnt de Quelltext vun dëser Säit kucken a kopéieren:',
 'viewyourtext' => "Dir kënnt de Quelltext vun '''Ären Ännerungen''' op dëser Säit kucken a kopéieren:",
 'protectedinterface' => "Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software op dëser Wiki an dofir ass si gespaart fir Mëssbrauch ze verhënneren.
@@ -908,7 +908,8 @@ Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus 
 'copyrightwarning2' => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
 'longpageerror' => "'''FEELER: Den Text, den Dir Versicht ze späicheren, huet {{PLURAL:$1|1 Kilobyte|$1 Kilobytes}}. Dëst ass méi wéi den erlaabte Maximum vun  {{PLURAL:$2|1 Kilobyte|$2 Kilobytes}}''' Dofir kann den Text net gespäichert ginn.",
-'readonlywarning' => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte fir Säitenännerunge gespaart, dofir kënnt Dir déi Säit den Ament net ofspäicheren. Versuergt den Text a versicht d'Ännerunge méi spéit nach emol ze maachen.'''
+'readonlywarning' => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte gespaart, dofir kënnt Dir Är Ännerungen den Ament net ofspäicheren.'''
+Dir kënnt den Text kopéieren an an een Textfichier drasetzen an deen ofspäicheren fir méi spéit.
 
 Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'protectedpagewarning' => "'''OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
@@ -1952,6 +1953,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'wantedpages-badtitle' => 'Net valabelen Titel am Resultat: $1',
 'wantedfiles' => 'Gewënschte Fichieren',
 'wantedfiletext-cat' => 'Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All esou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.',
+'wantedfiletext-nocat' => 'Dës Fichiere gi benotzt existéieren awer net. Fichieren aus frieme Repertoiren kënnen trotzdeem opgelëscht ginn. All dës positiv Fichiere ginn <del>duergestrach</del>.',
 'wantedtemplates' => 'Gewënschte Schablounen',
 'mostlinked' => 'Dacks verlinkte Säiten',
 'mostlinkedcategories' => 'Dacks benotzte Kategorien',
@@ -2071,7 +2073,7 @@ Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lëscht vun den aktive Benotzer',
 'activeusers-intro' => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
-'activeusers-count' => '$1 {{PLURAL:$1|Ännerung|Ännerungen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
+'activeusers-count' => '$1 {{PLURAL:$1|Aktioun|Aktiounen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
 'activeusers-from' => 'Benotzer weisen, ugefaang bäi:',
 'activeusers-hidebots' => 'Botte verstoppen',
 'activeusers-hidesysops' => 'Administrateure verstoppen',
@@ -2146,9 +2148,8 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 'watchnologin' => 'Net ageloggt',
 'watchnologintext' => "Dir musst [[Special:UserLogin|ugemellt]] sinn, fir Är Iwwerwaachungslëscht z'änneren.",
 'addwatch' => "Op d'Iwwerwaachungslëscht derbäisetzen",
-'addedwatchtext' => "D'Säit \"[[:\$1]]\" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit ginn hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:RecentChanges|rezenten Ännerungen]] aus, fir se méi séier erëmzefannen.
-
-Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
+'addedwatchtext' => 'D\'Säit "[[:$1]]" gouf op är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat.
+All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit ginn hei opgelëscht.',
 'removewatch' => 'Vun der Iwwerwaachungslëscht erofhuelen',
 'removedwatchtext' => 'D\'Säit "[[:$1]]" gouf vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] erofgeholl.',
 'watch' => 'Iwwerwaachen',
@@ -2302,9 +2303,9 @@ Hei sinn déi aktuell Astellungen fir d'Säit '''$1''':",
 Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-cascadeon' => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Säit geännert ginn, dat huet awer keen Afloss op d'Kaskadespär.",
 'protect-default' => 'All Benotzer erlaben',
-'protect-fallback' => 'Eng "$1"-Autorisatioun gëtt gebraucht.',
-'protect-level-autoconfirmed' => 'Spär fir nei an net ugemellte Benotzer',
-'protect-level-sysop' => 'Nëmmen Administrateuren',
+'protect-fallback' => 'Nëmme Benotzer mat enger "$1"-Autorisatioun erlaben.',
+'protect-level-autoconfirmed' => 'Nëmmen automatesch ugemellte Benotzer erlaben',
+'protect-level-sysop' => 'Nëmmen Administrateuren erlaben',
 'protect-summary-cascade' => 'Protectioun a Kaskaden',
 'protect-expiring' => 'bis $1 (UTC)',
 'protect-expiring-local' => 'bis $1',
@@ -2595,13 +2596,13 @@ Fir d'Datebank ze spären oder fir d'Spär opzehiewen muss dëse Fichier vum Web
 'move-page' => 'Réckel $1',
 'move-page-legend' => 'Säit réckelen',
 'movepagetext' => "Wann dir dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm.
-Den alen Titel déngt als Viruleedung op déi nei Säit.
+Den alen Titel gëtt eng Viruleedung op déi nei Säit.
 Dir kënnt Viruleedungen déi op déi al Säit ginn automatesch aktualiséieren.
-Wann Dir dat net maacht, da vergewëssert iech datt keng [[Special:DoubleRedirects|duebel]] oder [[Special:BrokenRedirects|futtis Viruleedungen]] am Spill sinn.
-Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hi sollen.
+Wann Dir dat net maacht, da vergewëssert Iech datt keng [[Special:DoubleRedirects|duebel]] oder [[Special:BrokenRedirects|futtis Viruleedungen]] am Spill sinn.
+Dir sidd responsabel datt d'Linke weiderhin dohinner pointéieren, wou se hi sollen.
 
 Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann et schonns eng Säit mat deem Titel gëtt, ausser déi ass eidel, ass eng Viruleedung oder huet keen Historique.
-Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
+Dëst bedeit datt dir eng Säit zréck op hiren ursprénglechen Numm ëmbenenne kënnt wann Dir Iech geiert hat an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
 '''OPGEPASST!'''
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten;
@@ -2796,6 +2797,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'javascripttest-title' => '$1-Tester ginn elo gemaach',
 'javascripttest-pagetext-noframework' => 'Dës Säit ass fir Java-Script-Tester reservéiert.',
 'javascripttest-pagetext-unknownframework' => 'Onbekannten Test-Framework "$1".',
+'javascripttest-pagetext-frameworks' => 'Sicht w.e.g. eng vun dësen Test-Strukturen eraus: $1',
 'javascripttest-qunit-intro' => "Kuckt d'[$1 Dokumentatioun vun den Tester] op mediawiki.org",
 
 # Tooltip help for the actions
@@ -2918,6 +2920,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-default-sort' => 'Standard-Zortéierschlëssel',
 'pageinfo-length' => 'Gréisst vun der Säit (a Bytes)',
 'pageinfo-article-id' => 'ID (Nummer) vun der Säit',
+'pageinfo-robot-noindex' => 'Net indexéierbar',
 'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-watchers' => "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
 'pageinfo-redirects-name' => 'Viruleedungen op dës Säit',
@@ -3538,7 +3541,7 @@ Dëse Confirmatiouns-Code leeft den $4 of.',
 'autosumm-new' => "Säit ugeluecht mat: '$1'",
 
 # Live preview
-'livepreview-loading' => 'Lueden…',
+'livepreview-loading' => 'Lueden...',
 'livepreview-ready' => 'Lueden … Fäerdeg!',
 'livepreview-failed' => "Live-Preview huet net fonctionéiert! Benotzt w.e.g. d'Fonctioun ''Kucken ouni ofzespäicheren''.",
 'livepreview-error' => "Verbindung net méiglech: $1 „$2“.
@@ -3646,7 +3649,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'specialpages-group-highuse' => 'Dacks benotzte Säiten',
 'specialpages-group-pages' => 'Lëschte vu Säiten',
 'specialpages-group-pagetools' => 'Handwierksgeschir fir Säiten',
-'specialpages-group-wiki' => 'Systemdaten an Handwierksgeschir',
+'specialpages-group-wiki' => 'Daten an Handwierksgeschir',
 'specialpages-group-redirects' => 'Spezialsäiten déi viruleeden',
 'specialpages-group-spam' => 'Handwierksgeschir géint de Spam',
 

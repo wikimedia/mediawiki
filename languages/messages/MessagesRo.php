@@ -417,7 +417,7 @@ pe titlul secțiunii (JavaScript)',
 'category-empty' => "''Această categorie nu conține articole sau fișiere media.''",
 'hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}}',
 'hidden-category-category' => 'Categorii ascunse',
-'category-subcat-count' => '{{PLURAL:$2|Această categorie conține doar următoarea subcategorie.|Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}, dintr-un total de $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Această categorie conține doar următoarea subcategorie.|Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii|următoarele $1 de subcategorii}}, dintr-un total de $2.}}',
 'category-subcat-count-limited' => 'Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}.',
 'category-article-count' => '{{PLURAL:$2|Această categorie conține doar următoarea pagină.|{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în această categorie, dintr-un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în categoria curentă.',
@@ -679,7 +679,7 @@ Interogarea: $2',
 'actionthrottled' => 'Acțiune limitată',
 'actionthrottledtext' => 'Ca o măsură anti-spam, aveți permisiuni limitate în a efectua această acțiune de prea multe ori într-o perioadă scurtă de timp, iar dv. tocmai ați depășit această limită.
 Vă rugăm să încercați din nou în câteva minute.',
-'protectedpagetext' => 'Această pagină este protejată împotriva modificărilor.',
+'protectedpagetext' => 'Această pagină este protejată împotriva modificărilor sau a altor acțiuni.',
 'viewsourcetext' => 'Se poate vizualiza și copia conținutul acestei pagini:',
 'viewyourtext' => "Se poate vizualiza și copia conținutul '''modificărilor dumneavoastră''' efectuate asupra acestei pagini:",
 'protectedinterface' => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.
@@ -1176,7 +1176,7 @@ Ca administrator puteți vedea în continuare această diferență dinte versiun
 Ca administrator puteți vedea în continuare această diferență dinte versiuni; detalii puteți găsi în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-delundel' => 'șterge/recuperează',
 'rev-showdeleted' => 'arată',
-'revisiondelete' => 'Șterge/recuperează versiuni',
+'revisiondelete' => 'Ștergere/recuperare versiuni',
 'revdelete-nooldid-title' => 'Versiune invalidă',
 'revdelete-nooldid-text' => 'Fie nu ați specificat versiunea pentru a efectua această
 funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascundeți versiunea curentă.',
@@ -2237,9 +2237,9 @@ Protocoale suportate: <code>$1</code> (se trece implicit la http:// dacă nu est
 'listusers-blocked' => '(blocat{{GENDER:$1||ă|}})',
 
 # Special:ActiveUsers
-'activeusers' => 'Lista de utilizatori activi',
-'activeusers-intro' => 'Aceasta este o listă cu utilizatorii care au avut un fel de activitate în {{PLURAL:$1|ultima zi|ultimele $1 zile}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|modificare recentă|modificări recente}} în {{PLURAL:$3|ultima zi|ultimele $3 zile}}',
+'activeusers' => 'Listă utilizatori activi',
+'activeusers-intro' => 'Aceasta este o listă cu utilizatorii care au avut orice fel de activitate în {{PLURAL:$1|ultima zi|ultimele $1 zile}}.',
+'activeusers-count' => '{{PLURAL:$1|o acțiune|$1 acțiuni|$1 de acțiuni}} în {{PLURAL:$3|ultima zi|ultimele $3 zile|ultimele $3 de zile}}',
 'activeusers-from' => 'Afișează utilizatori începând cu:',
 'activeusers-hidebots' => 'Ascunde roboții',
 'activeusers-hidesysops' => 'Ascunde administratorii',
@@ -2315,7 +2315,7 @@ Adresa de e-mail specificată de dumneavoastră în [[Special:Preferences|prefer
 'watchnologintext' => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addwatch' => 'Adăugă la lista de pagini urmărite',
 'addedwatchtext' => 'Pagina „[[:$1]]” a fost adăugată la lista dumneavoastră de [[Special:Watchlist|pagini urmărite]].
-Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo și, în plus, ele vor apărea cu <b>caractere îngroșate</b> în pagina cu [[Special:RecentChanges|schimbări recente]] pentru evidențiere.',
+Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo.',
 'removewatch' => 'Elimină din lista de pagini urmărite',
 'removedwatchtext' => 'Pagina „[[:$1]]” a fost eliminată din [[Special:Watchlist|lista de pagini urmărite]].',
 'watch' => 'Urmărire',
@@ -2464,9 +2464,9 @@ Aici sunt setările curente pentru pagina '''$1''':",
 'protect-cascadeon' => 'Această pagină este protejată deoarece este inclusă în {{PLURAL:$1|următoarea pagină, ce are|următoarele pagini ce au}} activată protejarea la modificare în cascadă.
 Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta protecția în cascadă.',
 'protect-default' => 'Permis pentru toți utilizatorii',
-'protect-fallback' => 'Cere permisiunea "$1"',
-'protect-level-autoconfirmed' => 'Blochează utilizatorii noi și neînregistrați',
-'protect-level-sysop' => 'Numai administratorii',
+'protect-fallback' => 'Autorizat doar pentru utilizatorii cu permisiunea „$1”',
+'protect-level-autoconfirmed' => 'Autorizat doar pentru utilizatorii autoconfirmați',
+'protect-level-sysop' => 'Autorizat doar pentru administratori',
 'protect-summary-cascade' => 'în cascadă',
 'protect-expiring' => 'expiră $1 (UTC)',
 'protect-expiring-local' => 'expiră la $1',
@@ -2771,8 +2771,7 @@ nu uitați să verificați dacă nu există redirecționări [[Special:DoubleRed
 
 Vă rugăm să rețineți că sunteți responsabil(ă) pentru a face legăturile vechi să rămână valide.
 
-Rețineți că pagina '''nu va fi redenumită''' dacă există deja o pagină cu noul titlu, în afara cazurilor în care cea din urmă nu are conținut sau este deja
-o redirecționare; în plus, aceasta nu trebuie să aibă un istoric de modificări.
+Rețineți că pagina '''nu va fi redenumită''' dacă există deja o pagină cu noul titlu, în afara cazului în care cea din urmă este deja o redirecționare; în plus, aceasta nu trebuie să aibă un istoric de modificări.
 Cu alte cuvinte, veți putea redenumi înapoi o pagină pe care ați redenumit-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin redenumirea alteia.
 
 '''ATENȚIE!'''
@@ -3847,7 +3846,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'specialpages-group-highuse' => 'Pagini utilizate intens',
 'specialpages-group-pages' => 'Liste de pagini',
 'specialpages-group-pagetools' => 'Unelte pentru pagini',
-'specialpages-group-wiki' => 'Date și unelte wiki',
+'specialpages-group-wiki' => 'Date și instrumente',
 'specialpages-group-redirects' => 'Pagini speciale de redirecționare',
 'specialpages-group-spam' => 'Unelte spam',
 

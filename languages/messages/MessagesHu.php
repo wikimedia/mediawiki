@@ -16,6 +16,7 @@
  * @author BáthoryPéter
  * @author CERminator
  * @author Cerasus
+ * @author Csigabi
  * @author Dani
  * @author Dj
  * @author Dorgan
@@ -30,6 +31,7 @@
  * @author Samat
  * @author Sucy
  * @author TK-999
+ * @author Tacsipacsi
  * @author Terik
  * @author Tgr
  * @author Xbspiro
@@ -686,7 +688,7 @@ Lekérdezés: $2',
 'viewsource-title' => '$1 forrásának megtekintése',
 'actionthrottled' => 'Művelet megszakítva',
 'actionthrottledtext' => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
-'protectedpagetext' => 'Ez egy védett lap, nem szerkeszthető.',
+'protectedpagetext' => 'Ez egy védett lap, így nem végezhető rajta szerkesztés és más tevékenység',
 'viewsourcetext' => 'Megtekintheted és másolhatod a lap forrását:',
 'viewyourtext' => "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 'protectedinterface' => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
@@ -847,7 +849,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-capture-help' => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
 'passwordreset-email' => 'E-mail cím:',
 'passwordreset-emailtitle' => 'A(z) {{SITENAME}}-fiók adatai',
-'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címrő)l emlékeztetők kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címről) emlékeztetőt kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
@@ -857,7 +859,7 @@ $2
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
-'passwordreset-emailelement' => 'Felhaználónév: $1
+'passwordreset-emailelement' => 'Felhasználónév: $1
 Ideiglenes jelszó: $2',
 'passwordreset-emailsent' => 'Emlékeztető e-mail elküldve.',
 'passwordreset-emailsent-capture' => 'Az alább látható emlékeztető e-mail elküldve.',
@@ -1088,7 +1090,13 @@ Néhány sablon nem fog megjelenni.',
 'parser-template-loop-warning' => 'Végtelen ciklus a következő sablonban: [[$1]]',
 'parser-template-recursion-depth-warning' => 'A sablon rekurzív beillesztésének mélysége átlépte a határérékét ($1)',
 'language-converter-depth-warning' => 'A nyelvátalakító rekurzióinak száma túllépve ($1)',
+'node-count-exceeded-category' => 'Lapok, ahogy a csomópont szám túl nagy',
+'node-count-exceeded-warning' => 'Az oldal meghaladta a csomópont számot',
 'expansion-depth-exceeded-category' => 'Lapok, melyeken a sablonok kibontása meghaladja a megengedett szintet',
+'expansion-depth-exceeded-warning' => 'A lap meghaladta az engedélyezett kiterjesztési mélységet',
+'parser-unstrip-loop-warning' => 'Unstrip hurok észlelve',
+'parser-unstrip-recursion-limit' => 'Túl mély unstrip rekurzió: $1',
+'converter-manual-rule-error' => 'Hiba van a kézi nyelvi konverziós szabályban',
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -1272,6 +1280,9 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'editundo' => 'visszavonás',
 'diff-multi' => '({{PLURAL:$2|egy|$2}} szerkesztő {{PLURAL:$1|egy|$1}} közbeeső változata nincs mutatva)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
+'difference-missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 $2 változata nem létezik.
+
+Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.',
 
 # Search results
 'searchresults' => 'A keresés eredménye',
@@ -1805,6 +1816,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
 'upload-unknown-size' => 'Ismeretlen méretű',
 'upload-http-error' => 'HTTP-hiba történt: $1',
+'upload-copy-upload-invalid-domain' => 'Másolás nem engedélyezett ebből a tartományból.',
 
 # File backend
 'backend-fail-stream' => 'Nem sikerült sugározni ezt a fájlt: $1.',
@@ -1830,6 +1842,10 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-internal' => 'Ismeretlen hiba keletkezett a(z) „$1” tárolórendszerben.',
 'backend-fail-contenttype' => 'Nem lehetett a fájl típusát meghatározni a „$1” helyen történő tároláshoz.',
 'backend-fail-batchsize' => 'A tárolórendszer {{PLURAL:$1|1|$1}} fájlműveletet tartalmazó parancsfájlt kapott; legfeljebb {{PLURAL:$2|1|$2}} műveletből állót kaphat.',
+'backend-fail-usable' => 'Nem lehet olvasni vagy írni a "$1" fájlt, jogosultság hiánya, vagy hiányzó könyvtár/konténer miatt.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Nem sikerült csatlakozni a napló adatbázis "$1 " háttér tárolójához.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
@@ -1840,6 +1856,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'lockmanager-fail-releaselock' => 'Nem sikerült a(z) „$1” fájl zárolásának feloldása.',
 'lockmanager-fail-db-bucket' => 'Nem sikerült kapcsolatot létesíteni elég adatbázis zároláshoz a $1 vödörben.',
 'lockmanager-fail-db-release' => 'Nem lehet a $1 adatbázis zárolását feloldani.',
+'lockmanager-fail-svr-acquire' => 'Nem sikerült zárolást igényelni a $1 szerveren.',
 'lockmanager-fail-svr-release' => 'Nem lehet a(z) $1 szerver zárolását feloldani.',
 
 # ZipDirectoryReader
@@ -2238,7 +2255,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'emailuser-title-target' => 'E-mail küldése ennek a felhasználónak: $1',
 'emailuser-title-notarget' => 'E-mail küldése a felhasználónak',
 'emailpage' => 'E-mail küldése',
-'emailpagetext' => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'emailpagetext' => '{{GENDER:$1|user}} nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.',
 'usermailererror' => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject' => '{{SITENAME}} e-mail a következő felhasználótól: „$1”',
@@ -2429,8 +2446,8 @@ be van kapcsolva a kaszkád védelem.
 Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszkád védelemre.',
 'protect-default' => 'Minden szerkesztő számára engedélyezett',
 'protect-fallback' => '"$1" engedély szükséges hozzá',
-'protect-level-autoconfirmed' => 'Nem és frissen regisztrált szerkesztők blokkolása',
-'protect-level-sysop' => 'Csak adminisztrátorok',
+'protect-level-autoconfirmed' => 'Csak automatikusan ellenőrzött szerkesztőknek engedélyezett (nem vagy frissen regisztráltaknak nem)',
+'protect-level-sysop' => 'Csak adminisztrátoroknak engedélyezett',
 'protect-summary-cascade' => 'kaszkád védelem',
 'protect-expiring' => 'lejár: $1 (UTC)',
 'protect-expiring-local' => 'lejárat: $1',
@@ -3067,6 +3084,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 
 # Info page
 'pageinfo-title' => 'Információk a(z) „$1” lapról',
+'pageinfo-not-current' => 'Sajnáljuk, de lehetetlen információt nyújtani a régi verziókhoz.',
 'pageinfo-header-basic' => 'Alapinformációk',
 'pageinfo-header-edits' => 'Szerkesztések története',
 'pageinfo-header-restrictions' => 'Lapvédelem',
@@ -3083,8 +3101,8 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-redirects-name' => 'Átirányítások erre a lapra',
 'pageinfo-subpages-name' => 'Az lap allapjai',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|átirányítás}}; $3 {{PLURAL:$3|nem átirányítás}})',
-'pageinfo-firstuser' => 'Lap létrehozója',
-'pageinfo-firsttime' => 'A lap létrehozás ideje',
+'pageinfo-firstuser' => 'A lap létrehozója',
+'pageinfo-firsttime' => 'A lap létrehozásának ideje',
 'pageinfo-lastuser' => 'Utolsó szerkesztő',
 'pageinfo-lasttime' => 'Az utolsó szerkesztés ideje',
 'pageinfo-edits' => 'Szerkesztések teljes száma',
@@ -3922,9 +3940,9 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-move-move_redir-noredirect' => '$1 átnevezte a(z) $3 lapot $4 lapra az átirányítást felülírva, átirányítás nélkül',
 'logentry-patrol-patrol' => '$1 a(z) $3 lap $4 változatát ellenőrzöttnek jelölte',
 'logentry-patrol-patrol-auto' => '$1 a(z) $3 lap $4 változatát automatikusan ellenőrzöttnek jelölte',
-'logentry-newusers-newusers' => '$1 létrehozott egy felhasználói fiókot',
-'logentry-newusers-create' => '$1 létrehozott egy felhasználói fiókot',
-'logentry-newusers-create2' => '$1 létrehozott egy felhasználói fiókot $3',
+'logentry-newusers-newusers' => '$1 felhasználói fiók létrehozva',
+'logentry-newusers-create' => '$1 felhasználói fiók létrehozva',
+'logentry-newusers-create2' => '$1 létrehozta $3 felhasználói fiókját',
 'logentry-newusers-autocreate' => '$1 fiók automatikusan létrehozva',
 'newuserlog-byemail' => 'a jelszót kiküldtük a megadott e-mail címre',
 

@@ -514,7 +514,7 @@ $messages = array(
 'unprotectthispage' => 'Endre beskyttelsen av denne siden',
 'newpage' => 'Ny side',
 'talkpage' => 'Diskuter denne siden',
-'talkpagelinktext' => 'Diskusjon',
+'talkpagelinktext' => 'diskusjon',
 'specialpage' => 'Spesialside',
 'personaltools' => 'Personlige verktøy',
 'postcomment' => 'Ny seksjon',
@@ -692,7 +692,7 @@ Spørring: $2',
 'viewsource-title' => 'Vis kilden til $1',
 'actionthrottled' => 'Handlingsgrense overskredet',
 'actionthrottledtext' => 'For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.',
-'protectedpagetext' => 'Denne siden har blitt låst for redigeringer.',
+'protectedpagetext' => 'Denne siden har blitt låst for endringer.',
 'viewsourcetext' => 'Du kan se og kopiere kilden til denne siden:',
 'viewyourtext' => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
 'protectedinterface' => 'Denne siden fremskaffer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
@@ -2320,8 +2320,8 @@ E-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil vis
 'watchnologin' => 'Ikke logget inn',
 'watchnologintext' => 'Du må være [[Special:UserLogin|logget inn]] for å kunne endre overvåkningslisten.',
 'addwatch' => 'Legg til i overvåkningslisten',
-'addedwatchtext' => "Siden «[[:$1]]» er lagt til [[Special:Watchlist|overvåkningslisten]].
-Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir listet opp her, og siden vil fremstå '''uthevet''' i [[Special:RecentChanges|listen over siste endringer]] for å gjøre det lettere å finne den.",
+'addedwatchtext' => 'Siden «[[:$1]]» er lagt til [[Special:Watchlist|overvåkningslisten]] din.
+Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir listet opp der.',
 'removewatch' => 'Fjern fra overvåkningslisten',
 'removedwatchtext' => 'Siden «[[:$1]]» er fjernet fra [[Special:Watchlist|overvåkningslisten din]].',
 'watch' => 'Overvåk',
@@ -2466,9 +2466,9 @@ Dette er de nåværende innstillingene for siden '''$1''':",
 'protect-cascadeon' => 'Denne siden er for tiden beskyttet fordi den er inkludert på følgende {{PLURAL:$1|side|sider}} som har dypbeskyttelse slått på.
 Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default' => 'Tillat alle brukere',
-'protect-fallback' => 'Må ha «$1»-tillatelse',
-'protect-level-autoconfirmed' => 'Blokker uregistrerte og nye brukere',
-'protect-level-sysop' => 'Kun administratorer',
+'protect-fallback' => 'Tillat kun brukere med tillatelsen «$1»',
+'protect-level-autoconfirmed' => 'Tillat kun autobekreftede brukere',
+'protect-level-sysop' => 'Tillat kun administratorer',
 'protect-summary-cascade' => 'dypbeskyttelse',
 'protect-expiring' => 'utløper $1 (UTC)',
 'protect-expiring-local' => 'løper ut $1',
@@ -2778,7 +2778,7 @@ Merk at sider '''ikke''' blir flyttet om det allerede finnes en side med den tit
 Dette betyr at du kan endre tittelen til en tittel siden hadde tidligere, og at du ikke kan skrive over en eksisterende side.
 
 '''Advarsel!'''
-Dette kan være en drastisk og uventen endring for en populær side;
+Dette kan være en drastisk og uventet endring for en populær side;
 vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 'movepagetalktext' => "Den tilhørende diskusjonssiden vil automatisk bli flyttet sammen med siden '''med mindre:'''
 *Det allerede finnes en diskusjonsside som ikke er tom under det nye navnet, eller
@@ -3110,7 +3110,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-recent-authors' => 'Antall nylige forfattere',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
-'pageinfo-templates' => 'Transkludert {{PLURAL:$1|mal|maler}} ($1)',
+'pageinfo-templates' => 'Transkluderte {{PLURAL:$1|mal|maler}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3962,9 +3962,9 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-move-move_redir-noredirect' => '$1 flyttet siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
 'logentry-patrol-patrol' => '$1 markerte revisjon $4 av siden $3 som patruljert',
 'logentry-patrol-patrol-auto' => '$1 markerte automatisk revisjon $4 av siden $3 som patruljert',
-'logentry-newusers-newusers' => '$1 opprettet en brukerkonto',
-'logentry-newusers-create' => '$1 opprettet en brukerkonto',
-'logentry-newusers-create2' => '$1 opprettet en brukerkonto $3',
+'logentry-newusers-newusers' => 'Kontoen $1 ble opprettet',
+'logentry-newusers-create' => 'Kontoen $1 ble opprettet',
+'logentry-newusers-create2' => 'Kontoen $3 ble opprettet av $1',
 'logentry-newusers-autocreate' => 'Konto $1 ble opprettet automatisk',
 'newuserlog-byemail' => 'passord sendt på e-post',
 

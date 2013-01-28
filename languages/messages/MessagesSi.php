@@ -241,7 +241,7 @@ $messages = array(
 
 'underline-always' => 'සැමවිටම කරන්න',
 'underline-never' => 'කිසිවිටෙක නොකරන්න',
-'underline-default' => 'බ්‍රවුසරයෙහි පෙරනිමිය අනුවය',
+'underline-default' => 'සම හෝ ගවේෂකයෙහි පෙරනිමිය',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'අකුරු විලාසයන් සංස්කරණ පෙදෙස:',
@@ -328,7 +328,7 @@ $messages = array(
 'newwindow' => '(නව කවුළුවක විවෘතවේ)',
 'cancel' => 'අත් හරින්න',
 'moredotdotdot' => 'තවත්...',
-'mypage' => 'මගේ පිටුව',
+'mypage' => 'පිටුව',
 'mytalk' => 'සාකච්ඡාව',
 'anontalk' => 'මෙම අයිපී ලිපිනය සඳහා සාකච්ඡාව',
 'navigation' => 'යාත්‍රණය',
@@ -352,7 +352,7 @@ $messages = array(
 'vector-action-protect' => 'ආරක්‍ෂණය',
 'vector-action-undelete' => 'මකාදැමීම අවලංගු කරන්න',
 'vector-action-unprotect' => 'ආරක්ෂණ තත්වය වෙනස් කරන්න',
-'vector-simplesearch-preference' => 'වැඩිදියුණුකළ සෙවුම් යෝජනා සක්‍රීය කරන්න (වෙක්ටර් තීමය සඳහා පමණි)',
+'vector-simplesearch-preference' => 'සුළු කළ සෙවුම් බාරය (වෙක්ටර් තීමය සඳහා පමණි)',
 'vector-view-create' => 'තනන්න',
 'vector-view-edit' => 'සංස්කරණය',
 'vector-view-history' => 'ඉතිහාසය නරඹන්න',
@@ -614,6 +614,7 @@ $2',
 'remembermypassword' => 'මාගේ පිවිසීම මෙම ගවේෂක මතකයෙහි (උපරිම ලෙස {{PLURAL:$1|දින|දින}}) $1 ක් මතක තබාගන්න',
 'securelogin-stick-https' => 'ඇතුල්වීමෙන් පසුවද HTTPS හරහා සම්බන්ධ වන්න',
 'yourdomainname' => 'ඔබගේ වසම:',
+'password-change-forbidden' => 'ඔබට මෙම විකියෙහි මුරපද වෙනස් කල නොහැක.',
 'externaldberror' => 'එක්කෝ සත්‍යාවත් දත්ත-ගබඩා දෝෂයක් පැවතුනි නැතිනම් ඔබගේ බාහිර ගිණුම යාවත්කාලීන කිරීමට ඔබ හට අවසර දී නොමැත.',
 'login' => 'පිවිසෙන්න',
 'nav-login-createaccount' => 'පිවිසෙන්න / නව ගිණුමක් තනන්න',
@@ -687,6 +688,7 @@ $2',
 'invalidemailaddress' => 'විද්‍යුත්-තැපැල් ලිපිනයෙහි  ආකෘතිය අනීතික බවක් ‍ පිළිබිඹු කරන බැවින් එය පිළිගත නොහැක.
 මනා-ආකෘතියකින් සුසැදි ලිපිනයක් ඇතුළත් කිරීමට හෝ එම ක්ෂේත්‍රය සිස් කිරීම‍ට හෝ කාරුණික වන්න.',
 'cannotchangeemail' => 'මෙම විකියේ ගිණුම් විද්‍යුත් ලිපිනය වෙනස් කල නොහැකිය.',
+'emaildisabled' => 'මෙම අඩවියට විද්‍යුත්-තැපැල් යැවිය නොහැක.',
 'accountcreated' => 'ගිණුම තනන ලදි',
 'accountcreatedtext' => ' $1 සඳහා පරිශීලක ගිණුම තනන ලදි.',
 'createaccount-title' => '{{SITENAME}} සඳහා ගිණුම තැනීම',
@@ -883,7 +885,7 @@ $2
 'note' => "'''සටහන:'''",
 'previewnote' => "'''මෙය පෙරදසුනක් පමණක් බව සිහිතබාගන්න.'''
 ඔබගේ වෙනස්කිරීම් තවමත් සුරැකීමට ලක් කොට නොමැත!",
-'continue-editing' => 'සංස්කරණය කරගෙනයන්න',
+'continue-editing' => 'සංස්කරණ කලාපය වෙත යන්න',
 'previewconflict' => 'ඔබ විසින් සුරැකීම තෝරාගත්තොත්,  ඉහළ පෙළ සංස්කරණ සරියෙහි,  පෙළ දර්ශනය විය හැකි අයුර මෙම පෙර-දසුනෙන් ආවර්ජනය වේ.',
 'session_fail_preview' => "'''කණගාටුයි! සැසි දත්ත හානියක් හේතුවෙන් අප විසින් ඔබගේ  සංස්කරණය ක්‍රියායයනය කිරීමට නොහැකි වී ඇත.
 කරුණාකර නැවත උත්සාහ කරන්න.
@@ -964,6 +966,7 @@ $2
 'edit-no-change' => 'පෙළට කිසිදු වෙනසක් සිදු නොකල  බැවින් ඔබගේ සංස්කරණය නොසලකාහරින ලදි.',
 'edit-already-exists' => 'නව පිටුවක් තැනිය නොහැකි විය.
 එය දැනටමත් පවතියි.',
+'defaultmessagetext' => 'සාමාන්‍ය පණිවුඩ පෙළ',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'අවවාදයයි: මෙම පිටුවෙහි අධිවැය ව්‍යාකරණ විග්‍රහ ශ්‍රිත කැඳවුම් (expensive parser function calls) පමණට වඩා ඇත.
@@ -1254,6 +1257,7 @@ $1",
 'prefs-beta' => 'බීටා අනුවාදයේ ලක්ෂණ',
 'prefs-datetime' => 'දිනය සහ වේලාව',
 'prefs-labs' => 'Labs features',
+'prefs-user-pages' => 'පරිශීලක පිටු',
 'prefs-personal' => 'පරිශීලක පැතිකඩ',
 'prefs-rc' => '‍නව වෙනස්වීම්',
 'prefs-watchlist' => 'මුර-ලැයිස්තුව',
@@ -1938,9 +1942,9 @@ When filtered by user, only files where that user uploaded the most recent versi
 
 'disambiguations' => 'නිරාකරණ පිටු සඳහා සබැදෙන පිටු',
 'disambiguationspage' => 'Template:තේරුම් නිරාකරණය',
-'disambiguations-text' => "ඉදිරි පිටු '''වක්‍රෝත්තිහරණ පිටුව'''කට සබැ‍ඳේ.
+'disambiguations-text' => "පහත දැක්වෙන පිටු අතර '''වක්‍රෝත්තිහරණ පිටුවකට''' සබැඳෙන එක් සබැඳියක් හෝ ඇත.
 ඒවා ඒ වෙනුවට අනුරූප මාතෘකාවට සබැඳිය යුතුය.<br />
-යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය",
+යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය.",
 
 'doubleredirects' => 'ද්විත්ව යළි-යොමුකිරීම්',
 'doubleredirectstext' => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.
@@ -1964,6 +1968,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 # Miscellaneous special pages
 'nbytes' => '{{PLURAL:$1|බයිටි|බයිට්}} $1 ක්',
 'ncategories' => '{{PLURAL:$1|එක් ප්‍රවර්ගයකි|ප්‍රවර්ගයන් $1 කි}}',
+'ninterwikis' => '{{PLURAL:$1|අන්තර්විකි}} $1 ක්',
 'nlinks' => '{{PLURAL:$1|එක් සබැඳියකි|සබැඳියන් $1 කි}}',
 'nmembers' => '{{PLURAL:$1|එක් සාමාජිකයෙකි|සාමාජීකයන් $1 කි}}',
 'nrevisions' => '{{PLURAL:$1|එක් සංශෝධනයකි|සංශෝධන $1 කි }}',
@@ -2328,9 +2333,9 @@ $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙන
 'protect-cascadeon' => 'තීරු දර්ශන ආරක්ෂණය (cascading protection) බල ගන්වා ඇති පහත  {{PLURAL:$1|පිටුව|පිටු}} අන්තර්ගත වීම හේතුවෙන් මෙම පිටුව දැනට ආරක්ෂණයට ලක්ව ඇත.
 පිටුවෙහි ආරක්ෂණ මට්ටම ඔබ විසින් වෙනස් කල හැකි නමුදු, එම ක්‍රියාව තීරු දර්ශන ආරක්ෂණය කෙරෙහි බලපෑම් ඇති නොකරනු ඇත.',
 'protect-default' => 'සියළු පරිශිලකයන්ට ඉඩ සලසන්න',
-'protect-fallback' => '"$1" අවසරය අවශ්‍ය වේ',
-'protect-level-autoconfirmed' => 'නව සහ ලියාපදිංචි වී නොමැති පරිශීලකයන් වාරණය කරන්න',
-'protect-level-sysop' => 'පරිපාලකවරුන්ට පමණයි',
+'protect-fallback' => '"$1" අවසරය සහිත පරිශීලකයන්ට පමණක් ඉඩදෙන්න',
+'protect-level-autoconfirmed' => 'ස්වයංතහවුරු කල පරිශීලකයන්ට පමණක් ඉඩදෙන්න',
+'protect-level-sysop' => 'පරිපාලකවරුන්ට පමණක් ඉඩදෙන්න',
 'protect-summary-cascade' => 'තීරු දර්ශනය (cascading)',
 'protect-expiring' => 'ඉකුත් වේ  $1 (යූටීසි)',
 'protect-expiring-local' => 'කල් ඉකුත්වීම $1',
@@ -2787,6 +2792,7 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'import-interwiki-templates' => 'සියළු සැකිලි අන්තර්ගත කරන්න',
 'import-interwiki-submit' => 'ආයාත කරන්න',
 'import-interwiki-namespace' => 'ගමනාන්ත නාමඅවකාශය:',
+'import-interwiki-rootpage' => 'ගමනාන්ත මූල පිටුව (අමතර)ථ',
 'import-upload-filename' => 'ගොනු-නාමය:',
 'import-comment' => 'පරිකථනය:',
 'importtext' => 'කරුණාකර [[Special:Export|නිර්යාත උපයුක්තය]] භාවිත කරමින් මූලාශ්‍ර විකිය මගින් ගොනුව නිර්යාත කරන්න .
@@ -2820,6 +2826,7 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'import-invalid-interwiki' => 'සඳහන් කර ඇති විකියෙන් ආයාත කිරීම සිදු කල නොහැක.',
 'import-error-edit' => '"$1" පිටුව ආයාත නොකරන ලදී මන්ද ඔබට එය සංස්කරණය කිරීමට ඉඩ නොදේ.',
 'import-error-create' => '"$1" පිටුව ආයාත නොකරන ලදී මන්ද ඔබට එය තැනීමට ඉඩ නොදේ.',
+'import-rootpage-invalid' => 'ලබා දුන් මූල පිටුව වැරදි ශීර්ෂයක් වේ.',
 
 # Import log
 'importlogpage' => 'ලඝු-සටහන් ආයාත කරන්න',
@@ -2958,11 +2965,14 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'pageinfo-header-basic' => 'මූලික තොරතුරු',
 'pageinfo-header-edits' => 'සංස්කරණ',
 'pageinfo-header-restrictions' => 'පිටු ආරක්ෂණය',
+'pageinfo-header-properties' => 'පිටු ගුණාංග',
 'pageinfo-display-title' => 'මාතෘකාව පෙන්වන්න',
 'pageinfo-default-sort' => 'පෙරනිමි තේරීම් යතුර',
 'pageinfo-length' => 'පිටු දිග (බයිට් වලින්)',
 'pageinfo-article-id' => 'පිටු අනන්‍යනාංකය',
 'pageinfo-robot-policy' => 'සෙවුම් එන්ජිම් තත්ත්වය',
+'pageinfo-robot-index' => 'සුචිමය',
+'pageinfo-robot-noindex' => 'සුචිමය නොවන',
 'pageinfo-views' => 'නැරඹුම් සංඛ්‍යාව',
 'pageinfo-watchers' => 'පිටු මුරකරන්නන් සංඛ්‍යාව',
 'pageinfo-redirects-name' => 'මෙම පිටුවට යළියොමු ගණන',

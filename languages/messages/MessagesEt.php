@@ -338,7 +338,7 @@ $messages = array(
 
 'underline-always' => 'Alati',
 'underline-never' => 'Mitte kunagi',
-'underline-default' => 'Brauseri vaikeväärtus',
+'underline-default' => 'Kujunduse või võrgulehitseja vaikeväärtus',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Redigeerimisala kirjatüüp:',
@@ -665,7 +665,7 @@ Päring: $2',
 'actionthrottled' => 'Toiming nurjus',
 'actionthrottledtext' => 'Rämpsmuudatuste vastase meetmena pole sul lühikse aja jooksul seda toimingut liiga palju kordi lubatud sooritada. Sa oled lühikse aja jooskul seda toimingut liiga palju kordi sooritanud.
 Palun proovi mõne minuti pärast uuesti.',
-'protectedpagetext' => 'See lehekülg on lukustatud, et muudatusi ei tehtaks.',
+'protectedpagetext' => 'See lehekülg on lukustatud, et ei tehtaks muudatusi ega sooritataks muid toiminguid.',
 'viewsourcetext' => 'Saad vaadata ja kopeerida lehekülje lähteteksti:',
 'viewyourtext' => "Saad vaadata ja kopeerida sellel leheküljel tehtud '''enda muudatuste '''lähteteksti:",
 'protectedinterface' => 'Sellel leheküljel on selle viki tarkvara kasutajaliidese tekst. Väärtarvituse vältimiseks on lehekülg kaitstud.
@@ -973,7 +973,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'note' => "'''Meeldetuletus:'''",
 'previewnote' => "'''Ära unusta, et see on kõigest eelvaade!'''
 Sinu muudatused pole veel salvestatud!",
-'continue-editing' => 'Jätka redigeerimist',
+'continue-editing' => 'Mine redigeerimiskasti juurde',
 'previewconflict' => 'See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.',
 'session_fail_preview' => "'''Vabandust! Meil ei õnnestunud seansiandmete kaotuse tõttu sinu muudatust töödelda.'''
 Palun proovi uuesti.
@@ -1933,7 +1933,7 @@ Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
 'uploadnewversion-linktext' => 'Laadi üles selle faili uus versioon',
 'shared-repo-from' => 'varamust $1',
 'shared-repo' => 'jagatud varamu',
-'upload-disallowed-here' => 'Paraku ei saa sa seda pilti üle kirjutada.',
+'upload-disallowed-here' => 'Sa ei saa seda faili üle kirjutada.',
 
 # File reversion
 'filerevert' => 'Taasta $1',
@@ -2220,7 +2220,7 @@ Toetatud protokollid: <code>$1</code> (otsingus ära neid kasuta).',
 'emailuser-title-target' => 'Sellele {{GENDER:$1|kasutajale}} e-kirja saatmine',
 'emailuser-title-notarget' => 'Kasutajale e-kirja saatmine',
 'emailpage' => 'Saada kasutajale e-kiri',
-'emailpagetext' => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, saad alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "Kellelt" e-posti aadressiga, mille oled sisestanud [[Special:Preferences|oma eelistuste lehel]].',
+'emailpagetext' => 'Alloleva vormi kaudu saad sellele {{GENDER:$1|kasutajale}} e-kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli e-posti aadressiga, mille oled sisestanud [[Special:Preferences|oma eelistuste leheküljel]].',
 'usermailererror' => 'Saatmise viga:',
 'defemailsubject' => 'E-kiri {{GRAMMAR:genitive|{{SITENAME}}}} kasutajalt $1',
 'usermaildisabled' => 'Kasutajatele e-kirjade saatmine keelatud',
@@ -2258,11 +2258,8 @@ Toetatud protokollid: <code>$1</code> (otsingus ära neid kasuta).',
 'watchnologin' => 'Ei ole sisse logitud',
 'watchnologintext' => 'Jälgimisloendi muutmiseks pead [[Special:UserLogin|sisse logima]].',
 'addwatch' => 'Lisa jälgimisloendisse',
-'addedwatchtext' => "Lehekülg \"[[:\$1]]\" on sinu [[Special:Watchlist|jälgimisloendisse]] lisatud.
-
-Edasised muudatused käesoleval lehel ja sellega seotud aruteluleheküljel ilmuvad jälgimisloendisse ning [[Special:RecentChanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile '''rasvase''' kirja abil.
-
-Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"Lõpeta jälgimine\".",
+'addedwatchtext' => 'Lehekülg "[[:$1]]" on lisatud sinu [[Special:Watchlist|jälgimisloendisse]].
+Edasised muudatused sellel leheküljel ja seotud aruteluleheküljel tuuakse ära jälgimisloendis.',
 'removewatch' => 'Eemalda jälgimisloendist',
 'removedwatchtext' => 'Lehekülg "[[:$1]]" on [[Special:Watchlist|jälgimisloendist]] eemaldatud.',
 'watch' => 'Jälgi',
@@ -2553,7 +2550,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'whatlinkshere-hideredirs' => '$1 ümbersuunamised',
 'whatlinkshere-hidetrans' => '$1 mallina kasutamised',
 'whatlinkshere-hidelinks' => '$1 lingid',
-'whatlinkshere-hideimages' => '$1 pildilingid',
+'whatlinkshere-hideimages' => '$1 faililingid',
 'whatlinkshere-filters' => 'Filtrid',
 
 # Block/unblock
@@ -3026,6 +3023,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 
 # Info page
 'pageinfo-title' => 'Teave lehekülje "$1" kohta',
+'pageinfo-not-current' => 'Kahjuks pole vanade redaktsioonide kohta võimalik seda teavet ära tuua.',
 'pageinfo-header-basic' => 'Põhiteave',
 'pageinfo-header-edits' => 'Redigeerimislugu',
 'pageinfo-header-restrictions' => 'Lehekülje kaitse',
@@ -3849,9 +3847,9 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'logentry-move-move_redir-noredirect' => '$1 teisaldas lehekülje $3 ümbersuunamise $4 asemele ümbersuunamist maha jätmata',
 'logentry-patrol-patrol' => '$1 märkis lehekülje $3 redaktsiooni $4 kontrollituks',
 'logentry-patrol-patrol-auto' => '$1 märkis automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
-'logentry-newusers-newusers' => '$1 tegi kasutajakonto',
-'logentry-newusers-create' => '$1 tegi kasutajakonto',
-'logentry-newusers-create2' => '$1 tegi kasutajakonto $3',
+'logentry-newusers-newusers' => 'Loodud kasutajakonto $1',
+'logentry-newusers-create' => 'Loodud kasutajakonto $1',
+'logentry-newusers-create2' => '$1 lõi kasutajakonto $3',
 'logentry-newusers-autocreate' => 'Konto $1 loodi automaatselt',
 'newuserlog-byemail' => 'parool saadetud e-postiga',
 

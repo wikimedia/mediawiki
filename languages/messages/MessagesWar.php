@@ -11,6 +11,7 @@
  * @author Harvzsf
  * @author JinJian
  * @author Kaganer
+ * @author Wiki indio
  * @author לערי ריינהארט
  */
 
@@ -351,6 +352,7 @@ $1',
 'viewdeleted' => '¿Kitaa in $1?',
 'restorelink' => '{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}',
 'feedlinks' => 'Igsulod:',
+'feed-invalid' => 'Inbalido nga pagpapaabot',
 'site-rss-feed' => '$1 RSS nga feed',
 'site-atom-feed' => '$1 Atom nga feed',
 'page-rss-feed' => '"$1" RSS nga feed',
@@ -454,6 +456,7 @@ An katadungan nga ginhatag amo in "\'\'$2\'\'".',
 'filereadonlyerror' => 'Diri maliliwat ini nga paypay "$1" tungod an ginsusudlan han paypay nga "$2" in aada la ha pagbasa-la nga kahimtang.
 
 An magdudurmara nga nagtrangka hini in naghatag hini nga eksplenasyon: "$3".',
+'invalidtitle-knownnamespace' => 'Titulo nga inbalido nga may pan-ngaran "$2 ngan teksto nga "$3"',
 'exception-nologin' => 'Diri nakalog-in',
 'exception-nologin-text' => 'Ini nga pakli o pagbuhat in nagkikinahanglan nga ikaw in mag-log-in ha dinhi nga wiki.',
 

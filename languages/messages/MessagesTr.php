@@ -374,7 +374,7 @@ $messages = array(
 
 'underline-always' => 'Daima',
 'underline-never' => 'Asla',
-'underline-default' => 'Tema veya Tarayıcı varsayılanı',
+'underline-default' => 'Tema ya da tarayıcı varsayılanı',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Düzenleme alanının yazı tipi:',
@@ -701,7 +701,7 @@ Sorgu: $2',
 'actionthrottled' => 'Eylem kısılmışdır',
 'actionthrottledtext' => 'Anti-spam önlemleri nedeniyle, bir eylemi kısa bir zaman aralığında çok defa yapmanız kısıtlandı, ve siz sınırı aşmış bulunmaktasınız.
 Lütfen birkaç dakika sonra yeniden deneyin.',
-'protectedpagetext' => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
+'protectedpagetext' => 'Bu sayfa değişiklik ya da diğer eylemlerin yapılmasını engellemek için koruma altına alınmıştır.',
 'viewsourcetext' => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'viewyourtext' => "Bu sayfaya '''yaptığınız değişikliklerin''' kaynağını görünteleyip kopyalayabilirsiniz:",
 'protectedinterface' => "Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için korumaya alınmıştır. Eklemek ya da bütün vikilerdeki çevirileri değiştirmek için lütfen MediaWiki yerelleştirme projesi [//translatewiki.net/ translatewiki.net]'i kullanın.",
@@ -1243,7 +1243,7 @@ Lütfen günlükleri kontrol edin.',
 # Suppression log
 'suppressionlog' => 'Gizleme kayıtları',
 'suppressionlogtext' => 'Aşağıdaki, hizmetlilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir.
-Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:BlockList|IP engelleme listesine]] bakın.',
+Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:BlockList|engelleme listesine]] bakın.',
 
 # History merging
 'mergehistory' => 'Sayfa geçmişlerini takas et.',
@@ -1859,7 +1859,7 @@ Güvenlik denetimi uygun bir şekilde gerçekleştirilemiyor.',
 'img-auth-accessdenied' => 'Erişim engellendi',
 'img-auth-nopathinfo' => 'Eksik PATH_INFO.
 Sunucunuz bu bilgiyi geçirmek için ayarlanmamış.
-CGI-tabanlı olabilir ve img_auth desteklenmiyor olabilir.
+CGI-tabanlı ve img_auth desteklenmiyor olabilir.
 https://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
 'img-auth-notindir' => 'İstenen yol yapılandırılmış yükleme dizininde değil.',
 'img-auth-badtitle' => '"$1" ile geçerli bir başlık yapılamıyor.',
@@ -2053,6 +2053,7 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|bayt}}',
 'ncategories' => '{{PLURAL:$1|kategori|kategoriler}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interviki|interviki}}',
 'nlinks' => '$1 {{PLURAL:$1|bağlantı|bağlantılar}}',
 'nmembers' => '{{PLURAL:$1|üye|üye}}',
 'nrevisions' => '{{PLURAL:$1|değişiklik|değişiklikler}}',
@@ -2592,8 +2593,8 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'ipb-confirm' => 'Engeli onayla',
 'badipaddress' => 'Geçersiz IP adresi',
 'blockipsuccesssub' => 'IP adresi engelleme işlemi başarılı oldu',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] engellendi.
-<br />Engellemeleri gözden geçirmek için [[Special:BlockList|IP adresi engellenenler]] listesine bakınız.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] engellendi.<br />
+Engellemeleri gözden geçirmek için [[Special:BlockList|engel listesine]] bakınız.',
 'ipb-blockingself' => 'Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?',
 'ipb-confirmhideuser' => '"Kullanıcıyı gizle" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?',
 'ipb-edit-dropdown' => 'Engelleme nedenleri düzenle',
@@ -2644,7 +2645,7 @@ Engelleme günlüğü referans için aşağıda sağlanmıştır:',
 Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'blocklogentry' => ', [[$1]] kullanıcısını engelledi, engelleme süresi: $2 $3',
 'reblock-logentry' => '[[$1]] için bitiş tarihi $2 $3 olmak üzere engelleme ayarlarını değiştirdi',
-'blocklogtext' => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:BlockList|IP engelleme listesi]] sayfasından görebilirsiniz.',
+'blocklogtext' => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:BlockList|engelleme listesi]] sayfasından görebilirsiniz.',
 'unblocklogentry' => '$1 kullanıcının engellemesi kaldırıldı',
 'block-log-flags-anononly' => 'sadece anonim kullanıcılar',
 'block-log-flags-nocreate' => 'hesap yaratımı engellendi',
@@ -2895,6 +2896,7 @@ Geçici dosya kayıp.',
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
 'javascripttest-disabled' => 'Bu işlev, bu viki üzerinde etkinleştirilmedi.',
+'javascripttest-title' => '$1 testleri çalışıyor',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Kullanıcı sayfanız',
@@ -3268,6 +3270,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-source' => 'Kaynak',
 'exif-urgency' => 'Aciliyet',
 'exif-fixtureidentifier' => 'Fikstür adı',
+'exif-locationdest' => 'Yerin konumu',
 'exif-contact' => 'İletişim bilgileri',
 'exif-writer' => 'Yazar',
 'exif-languagecode' => 'Dil',
@@ -3854,8 +3857,8 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'logentry-move-move-noredirect' => '$1 $3 sayfasını $4 sayfasına yönlendirme olmaksızın taşıdı',
 'logentry-move-move_redir' => '$1 $3 sayfasını $4 sayfasına yönlendirme üzerinden taşıdı',
 'logentry-patrol-patrol-auto' => '$1 $3 sayfasını $4 sürümü ile kontrol etti',
-'logentry-newusers-newusers' => '$1 kullanıcı hesabı oluşturdu',
-'logentry-newusers-create' => '$1 kullanıcı hesabı oluşturdu',
+'logentry-newusers-newusers' => 'Kullanıcı hesabı $1 oluşturdu',
+'logentry-newusers-create' => 'Kullanıcı hesabı $1 oluşturdu',
 'logentry-newusers-create2' => '$1 kullanıcı hesabı oluşturdu $3',
 'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
 'newuserlog-byemail' => 'e-posta yoluyla şifre gönderilmiştir',

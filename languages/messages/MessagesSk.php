@@ -2288,9 +2288,7 @@ Mailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach
 'watchnologin' => 'Nie ste prihlásený/á',
 'watchnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený/á]], aby ste mohli modifikovať vaše sledované stránky.',
 'addwatch' => 'Pridať do zoznamu sledovaných stránok',
-'addedwatchtext' => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.
-
-Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{int:unwatch}}“ v záložkách na vrchu.",
+'addedwatchtext' => "Stránka [[:$1]] bola pridaná do zoznamu [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.",
 'removewatch' => 'Odstrániť zo zoznamu sledovaných',
 'removedwatchtext' => 'Stránka „[[:$1]]“ bola odstránená z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].',
 'watch' => 'Sledovať',
@@ -3944,9 +3942,9 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'logentry-move-move_redir-noredirect' => '$1 premiestnil stránku $3 na $4 prostredníctvom  presmerovania, ale neponechal presmerovanie',
 'logentry-patrol-patrol' => '$1 označil revíziu $4 stránky $3 ako overenú',
 'logentry-patrol-patrol-auto' => '$1 automaticky označil revíziu $4 stránky $3 ako overenú',
-'logentry-newusers-newusers' => '$1 založil používateľský účet',
-'logentry-newusers-create' => '$1 založil používateľský účet',
-'logentry-newusers-create2' => '$1 založil používateľský účet $3',
+'logentry-newusers-newusers' => 'Bol vytvorený používateľský účet $1',
+'logentry-newusers-create' => 'Bol vytvorený používateľský účet $1',
+'logentry-newusers-create2' => '$1 vytvoril používateľský účet $3',
 'logentry-newusers-autocreate' => 'Automaticky bol založený účet $1',
 'newuserlog-byemail' => 'heslo poslané emailom',
 

@@ -600,7 +600,7 @@ Pescuda: $2',
 'actionthrottled' => 'Acción limitada',
 'actionthrottledtext' => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite.
 Inténteo de novo nuns minutos.",
-'protectedpagetext' => 'Esta páxina foi protexida para evitar a edición.',
+'protectedpagetext' => 'Esta páxina foi protexida para evitar a edición e outras accións.',
 'viewsourcetext' => 'Pode ver e copiar o código fonte desta páxina:',
 'viewyourtext' => "Pode ver e copiar o código fonte '''das súas edicións''' nesta páxina:",
 'protectedinterface' => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.
@@ -739,7 +739,7 @@ Por favor, agarde antes de probar outra vez.',
 'suspicious-userlogout' => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
 
 # E-mail sending
-'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP',
+'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP.',
 'user-mail-no-addy' => 'Intentou enviar un correo sen enderezo de correo electrónico.',
 
 # Change password dialog
@@ -2073,7 +2073,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'mostimages' => 'Ficheiros máis usados',
 'mostinterwikis' => 'Páxinas con máis interwikis',
 'mostrevisions' => 'Páxinas con máis revisións',
-'prefixindex' => 'Todas as páxinas coas iniciais',
+'prefixindex' => 'Todas as páxinas con prefixo',
 'prefixindex-namespace' => 'Todas as páxinas con prefixo (espazo de nomes $1)',
 'shortpages' => 'Páxinas curtas',
 'longpages' => 'Páxinas longas',
@@ -2185,7 +2185,7 @@ Protocolos soportados: <code>$1</code> (úsase http:// como predeterminado se no
 # Special:ActiveUsers
 'activeusers' => 'Lista de usuarios activos',
 'activeusers-intro' => 'Esta é unha lista cos usuarios que tiveron algún tipo de actividade {{PLURAL:$1|no último día|nos últimos $1 días}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|edición|edicións}} {{PLURAL:$3|no último día|nos últimos $3 días}}',
+'activeusers-count' => '$1 {{PLURAL:$1|acción|accións}} {{PLURAL:$3|no último día|nos últimos $3 días}}',
 'activeusers-from' => 'Mostrar os usuarios que comecen por:',
 'activeusers-hidebots' => 'Agochar os bots',
 'activeusers-hidesysops' => 'Agochar os administradores',
@@ -2260,8 +2260,8 @@ O enderezo de correo electrónico que inseriu [[Special:Preferences|nas súas pr
 'watchnologin' => 'Non accedeu ao sistema',
 'watchnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.',
 'addwatch' => 'Engadir á lista vixilancia',
-'addedwatchtext' => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|lista de vixilancia]].
-Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|lista de cambios recentes]] para facer máis sinxela a súa sinalización.",
+'addedwatchtext' => 'A páxina "[[:$1]]" foi engadida á súa [[Special:Watchlist|lista de vixilancia]].
+Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí.',
 'removewatch' => 'Eliminar da lista de vixilancia',
 'removedwatchtext' => 'A páxina "[[:$1]]" foi eliminada [[Special:Watchlist|da súa lista de vixilancia]].',
 'watch' => 'Vixiar',
@@ -2414,9 +2414,9 @@ Velaquí a configuración actual da páxina '''$1''':",
 'protect-cascadeon' => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|nas seguintes páxinas, que foron protexidas}} coa opción protección en serie activada.
 Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
 'protect-default' => 'Permitir a todos os usuarios',
-'protect-fallback' => 'Cómpre ter permisos de "$1"',
-'protect-level-autoconfirmed' => 'Bloquear os usuarios novos e anónimos',
-'protect-level-sysop' => 'Só os administradores',
+'protect-fallback' => 'Permitir só aos usuarios con permisos de "$1"',
+'protect-level-autoconfirmed' => 'Permitir só aos usuarios autoconfirmados',
+'protect-level-sysop' => 'Permitir só aos administradores',
 'protect-summary-cascade' => 'protección en serie',
 'protect-expiring' => 'remata o $2 ás $3 (UTC)',
 'protect-expiring-local' => 'caduca o $1',
@@ -2716,10 +2716,10 @@ Pode actualizar automaticamente as redireccións que van dar ao título orixinal
 Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
 Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
-Teña en conta que a páxina '''non''' será movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións.
+Teña en conta que a páxina '''non''' será movida se xa existe unha páxina co novo título, a menos que sexa unha redirección e non teña historial de edicións.
 Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.
 
-'''ATENCIÓN!'''
+'''Atención!'''
 Este cambio nunha páxina popular pode ser drástico e inesperado;
 por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
 'movepagetext-noredirectfixer' => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
@@ -2727,10 +2727,10 @@ O título vello vaise converter nunha páxina de redirección ao novo título.
 Asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
 Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
-Teña en conta que a páxina '''non''' será movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións.
+Teña en conta que a páxina '''non''' será movida se xa existe unha páxina co novo título, a menos que sexa unha redirección e non teña historial de edicións.
 Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.
 
-'''ATENCIÓN!'''
+'''Atención!'''
 Este cambio nunha páxina popular pode ser drástico e inesperado;
 por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
 'movepagetalktext' => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
@@ -3825,7 +3825,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'specialpages-group-highuse' => 'Páxinas con máis uso',
 'specialpages-group-pages' => 'Listas de páxinas',
 'specialpages-group-pagetools' => 'Ferramentas das páxinas',
-'specialpages-group-wiki' => 'Datos do wiki e ferramentas',
+'specialpages-group-wiki' => 'Datos e ferramentas',
 'specialpages-group-redirects' => 'Páxinas de redirección especiais',
 'specialpages-group-spam' => 'Ferramentas contra o spam',
 
@@ -3976,9 +3976,9 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-nomodule' => 'Erro interno: Non hai ningún módulo de cargas.',
 'api-error-ok-but-empty' => 'Erro interno: Non hai resposta do servidor.',
 'api-error-overwrite' => 'Non está permitido sobrescribir un ficheiro existente.',
-'api-error-stashfailed' => 'Erro interno: O servidor non puido almacenar os ficheiros temporais.',
+'api-error-stashfailed' => 'Erro interno: O servidor non puido almacenar o ficheiro temporal.',
 'api-error-timeout' => 'O servidor non respondeu no tempo esperado.',
-'api-error-unclassified' => 'Houbo un erro descoñecido',
+'api-error-unclassified' => 'Houbo un erro descoñecido.',
 'api-error-unknown-code' => 'Erro descoñecido: "$1"',
 'api-error-unknown-error' => 'Erro interno: Houbo un problema ao intentar cargar o ficheiro.',
 'api-error-unknown-warning' => 'Advertencia descoñecida: $1',

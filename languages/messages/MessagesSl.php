@@ -562,7 +562,7 @@ Poizvedba: $2',
 'actionthrottled' => 'Dejanje zaustavljeno',
 'actionthrottledtext' => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
-'protectedpagetext' => 'Ta stran je bila zaklenjena za preprečitev urejanja.',
+'protectedpagetext' => 'Ta stran je bila zaklenjena za preprečitev urejanja ali drugih dejanj.',
 'viewsourcetext' => 'Lahko si ogledate in kopirate vsebino te strani:',
 'viewyourtext' => "Lahko si ogledate in kopirate vsebino '''vaših urejanj''' te strani:",
 'protectedinterface' => 'Prikazana stran vsebuje besedilo vmesnika programja na tem wikiju in je zaradi preprečevanja zlorab zaščitena.
@@ -1870,7 +1870,7 @@ Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri kateri
 'filehist-thumbtext' => 'Sličica za različico $1',
 'filehist-nothumb' => 'Brez predogleda',
 'filehist-user' => 'Uporabnik',
-'filehist-dimensions' => 'Dimenzije',
+'filehist-dimensions' => 'Velikost',
 'filehist-filesize' => 'Velikost datoteke',
 'filehist-comment' => 'Komentar',
 'filehist-missing' => 'Datoteka manjka',
@@ -2150,7 +2150,7 @@ Podprti protokoli: <code>$1</code> (če protokol ni določen, se privzame http:/
 # Special:ActiveUsers
 'activeusers' => 'Seznam aktivnih uporabnikov',
 'activeusers-intro' => 'Seznam uporabnikov, ki so bili kakor koli aktivni v {{PLURAL:$1|zadnjem $1 dnevu|zadnjih $1 dneh}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}',
+'activeusers-count' => '$1 {{PLURAL:$1|dejanje|dejanji|dejanja|dejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}',
 'activeusers-from' => 'Prikaži uporabnike začenši z:',
 'activeusers-hidebots' => 'Skrij bote',
 'activeusers-hidesysops' => 'Skrij administratorje',
@@ -2225,8 +2225,8 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'watchnologin' => 'Niste prijavljeni',
 'watchnologintext' => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
 'addwatch' => 'Dodaj na spisek nadzorov',
-'addedwatchtext' => "Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
-Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj, v [[Special:RecentChanges|seznamu zadnjih sprememb]] pa bodo za lažjo izbiro označene '''krepko'''.",
+'addedwatchtext' => 'Stran »[[:$1]]« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]].
+Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tukaj.',
 'removewatch' => 'Odstrani s spiska nadzorov',
 'removedwatchtext' => 'Stran »[[:$1]]« je bila odstranjena z vašega [[Special:Watchlist|spiska nadzorov]].',
 'watch' => 'Opazuj',
@@ -2378,9 +2378,9 @@ Trenutne nastavitve za stran '''$1''' so:",
 'protect-cascadeon' => 'Ta stran je trenutno uaščitena, ker je vključena v {{PLURAL:$1|naslednjo stran, ki ima|naslednji strani, ki imata|naslednje strani, ki imajo|naslednjih strani, ki imajo}} vključeno kaskadno zaščito.
 Stopnjo zaščite te strani lahko spremenite, vendar to ne bo vplivalo na kaskadno zaščito.',
 'protect-default' => 'Dovoli vsem uporabnikom',
-'protect-fallback' => 'Potrebujete pravice »$1«',
-'protect-level-autoconfirmed' => 'Blokiraj nove in neregistrirane uporabnike',
-'protect-level-sysop' => 'Samo administratorji',
+'protect-fallback' => 'Dovoli samo uporabnikom s pravico »$1«',
+'protect-level-autoconfirmed' => 'Dovoli samo samodejno potrjenim uporabnikom',
+'protect-level-sysop' => 'Dovoli samo administratorjem',
 'protect-summary-cascade' => 'kaskadno',
 'protect-expiring' => 'poteče $1 (UTC)',
 'protect-expiring-local' => 'poteče $1',
@@ -2687,7 +2687,7 @@ Samodejno lahko posodobite preusmeritve, ki kažejo na dosedanji naslov.
 Če se za to ne odločite, ne pozabite preveriti vseh [[Special:DoubleRedirects|dvojnih]] ali [[Special:BrokenRedirects|pretrganih preusmeritev]].
 Odgovorni ste, da bodo povezave še naprej kazale na prava mesta.
 
-Kjer stran z izbranim novim imenom že obstaja, dejanje '''ne''' bo izvedeno, razen če je sedanja stran prazna ali preusmeritvena in brez zgodovine urejanj.
+Kjer stran z izbranim novim imenom že obstaja, dejanje '''ne''' bo izvedeno, razen če je sedanja stran preusmeritev in brez zgodovine urejanj.
 To pomeni, da lahko, če se zmotite, strani vrnete prvotno ime, ne morete pa prepisati že obstoječe strani.
 
 '''Opozorilo!'''
@@ -3761,7 +3761,7 @@ Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
 'specialpages-group-highuse' => 'Strani visoke uporabe',
 'specialpages-group-pages' => 'Seznam strani',
 'specialpages-group-pagetools' => 'Orodja strani',
-'specialpages-group-wiki' => 'Podatki in orodja wiki',
+'specialpages-group-wiki' => 'Podatki in orodja',
 'specialpages-group-redirects' => 'Preusmerjajoče posebne strani',
 'specialpages-group-spam' => 'Orodja za spam',
 

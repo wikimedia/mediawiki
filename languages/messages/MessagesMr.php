@@ -43,6 +43,7 @@
  * @author कोल्हापुरी
  * @author प्रणव कुलकर्णी
  * @author शࣿरीहरि
+ * @author संतोष दहिवळ
  */
 
 $namespaceNames = array(
@@ -701,6 +702,9 @@ $2',
 'ns-specialprotected' => 'विशेष पाने संपादित करता येत नाहीत.',
 'titleprotected' => "या शीर्षकाचे पान सदस्य [[User:$1|$1]]ने निर्मीत करण्यापासून सुरक्षित केलेले आहे.
 ''$2'' हे कारण नमूद केलेले आहे.",
+'invalidtitle-knownnamespace' => '"$2" नामविश्वात "$3" हे अयोग्य शीर्षक',
+'exception-nologin' => 'प्रवेश केलेला नाही',
+'exception-nologin-text' => 'हे करण्यासाठी आपल्याला या विकिवर सदस्यनावाने प्रवेश करायला हवा.',
 
 # Virus scanner
 'virus-badscanner' => "चुकीचे कॉन्फिगरेशन: व्हायरस स्कॅनर अनोळखी: ''$1''",
@@ -722,6 +726,7 @@ $2',
 'remembermypassword' => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवस|दिवसांसाठी}})',
 'securelogin-stick-https' => 'प्रवेशानंतर एचटीटीपीएसच्या संपर्कात रहा',
 'yourdomainname' => 'तुमचे क्षेत्र (डॉमेन) :',
+'password-change-forbidden' => 'तुम्ही या विकिवर तुमचा संकेतशब्द बदलू शकत नाही.',
 'externaldberror' => 'विदागार ’खातरजमा’ (प्रमाणितीकरण) त्रुटी होती अथवा तुम्हाला तुमचे बाह्य खाते अद्ययावत  करण्याची परवानगी नाही.',
 'login' => 'प्रवेश करा',
 'nav-login-createaccount' => 'सदस्य प्रवेश',
@@ -783,6 +788,7 @@ $2',
 'emailconfirmlink' => 'आपला ई-मेल पत्ता तपासून पहा.',
 'invalidemailaddress' => 'तुम्ही दिलेला ई-मेल पत्ता चुकीचा आहे, कारण तो योग्यप्रकारे लिहिलेला नाही. कृपया योग्यप्रकारे ई-मेल पत्ता लिहा अथवा ती जागा मोकळी सोडा.',
 'cannotchangeemail' => 'या विकीवर खात्याचा ईमेल बदलता येत नाही',
+'emaildisabled' => 'हे संकेतस्थळ विपत्र पाठवू शकत नाही.',
 'accountcreated' => 'खाते उघडले.',
 'accountcreatedtext' => '$1 चे सदस्यखाते उघडले.',
 'createaccount-title' => '{{SITENAME}} साठीची सदस्य नोंदणी',
@@ -1893,6 +1899,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे
 'uploadnewversion-linktext' => 'या संचिकेची नवीन आवृत्ती चढवा',
 'shared-repo-from' => '$1 पासून',
 'shared-repo' => 'एक मुक्त कोश',
+'upload-disallowed-here' => 'या संचिकेवर आपण पुनर्लिखाण करु शकत नाही.',
 
 # File reversion
 'filerevert' => '$1 पूर्वपद',
@@ -1997,6 +2004,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|बाइट|बाइट}}',
 'ncategories' => '$1 {{PLURAL:$1|वर्ग|वर्ग}}',
+'ninterwikis' => '$1 {{PLURAL:$1|आंतरविकि|आंतरविकि दुवे}}',
 'nlinks' => '$1 {{PLURAL:$1|दुवा|दुवे}}',
 'nmembers' => '$1 {{PLURAL:$1|सदस्य|सदस्य}}',
 'nrevisions' => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
@@ -2025,6 +2033,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'mostlinkedtemplates' => 'सर्वाधिक जोडलेले साचे',
 'mostcategories' => 'सर्वाधिक वर्गीकृत पाने',
 'mostimages' => 'सर्वाधिक जोडलेली चित्रे',
+'mostinterwikis' => 'सर्वाधिक आंतरविकि दुवे असणारी पाने',
 'mostrevisions' => 'सर्वाधिक बदललेले लेख',
 'prefixindex' => 'उपसर्ग असणाऱ्या लेखांची यादी',
 'prefixindex-namespace' => '($1 नामविश्व) हा  उपसर्ग असणारी सर्व पाने',
@@ -2093,6 +2102,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'allpagesprefix' => 'पुढील शब्दाने सुरू होणारी पाने दाखवा:',
 'allpagesbadtitle' => 'दिलेले शीर्षक चुकीचे किंवा आंतरभाषीय किंवा आंतरविकि शब्दाने सुरू होणारे होते. त्यात एक किंवा अधिक शीर्षकात न वापरता येणारी अक्षरे असावीत.',
 'allpages-bad-ns' => '{{SITENAME}}मध्ये "$1" हे नामविश्व नाही.',
+'allpages-hide-redirects' => 'पुनर्निर्देशने लपवा',
 
 # SpecialCachedPage
 'cachedspecial-refresh-now' => 'आखेरचे दृश्य',
@@ -2163,6 +2173,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'mailnologin' => 'पाठविण्याचा पत्ता नाही',
 'mailnologintext' => 'इतर सदस्यांना विपत्र(ई-मेल) पाठवण्याकरिता तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असणे आणि  प्रमाणित (ई-मेल) पत्ता तुमच्या [[Special:Preferences|पसंतीत]] नमुद असणे आवश्यक आहे.',
 'emailuser' => 'या सदस्याला ई-मेल पाठवा',
+'emailuser-title-target' => '{{GENDER:$1|सदस्याला}} विपत्र पाठवा',
 'emailuser-title-notarget' => 'विपत्र (ईमेल) उपयोगकर्ता',
 'emailpage' => 'विपत्र (ईमेल) उपयोगकर्ता',
 'emailpagetext' => 'जर या सदस्याने प्रमाणित विपत्र (ईमेल)पत्ता तीच्या अथवा त्याच्या सदस्य पसंतीत नमुद केला असेल,तर खालील सारणी तुम्हाला एक(च) संदेश पाठवेल.तुम्ही तुमच्या [[Special:Preferences|सदस्य पसंतीत]] नमुद केलेला विपत्र पत्ता "कडून" पत्त्यात येईल म्हणजे  प्राप्तकरता आपल्याला उत्तर देऊ शकेल.',
@@ -2304,6 +2315,8 @@ $UNWATCHURL
 'rollback' => 'बदल वेगात माघारी न्या',
 'rollback_short' => 'द्रुतमाघार',
 'rollbacklink' => 'द्रुतमाघार',
+'rollbacklinkcount' => 'उलटवा $1 {{PLURAL:$1|संपादन|संपादने}}',
+'rollbacklinkcount-morethan' => '$1 पेक्षा अधिक उलटवा {{PLURAL:$1|संपादन|संपादने}}',
 'rollbackfailed' => 'द्रूतमाघार फसली',
 'cantrollback' => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
 'alreadyrolled' => '[[User:$2|$2]] ([[User talk:$2|Talk]] [[Special:Contributions/$2|{{int:contribslink}}]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येत नाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
@@ -2940,8 +2953,15 @@ $1',
 'pageinfo-header-basic' => 'मूलभूत माहिती',
 'pageinfo-header-edits' => 'संपादने',
 'pageinfo-header-restrictions' => 'पान सुरक्षा',
+'pageinfo-header-properties' => 'पानाची माहिती',
+'pageinfo-display-title' => 'दृश्य शीर्षक',
+'pageinfo-length' => 'पानाचा आकार (बाइट्समध्ये)',
 'pageinfo-views' => 'अभिप्रायांची संख्या',
 'pageinfo-watchers' => 'पाहणाऱ्यांची संख्या',
+'pageinfo-redirects-name' => 'या पानाकडील पुनर्निर्देशने',
+'pageinfo-firsttime' => 'पान निर्मितीचा दिनांक',
+'pageinfo-lastuser' => 'अलीकडील संपादक',
+'pageinfo-lasttime' => 'अलीकडिल संपादनाचा दिनांक',
 'pageinfo-edits' => 'संपादनांची संख्या',
 'pageinfo-authors' => 'वेगळ्या लेखकांची संख्या',
 

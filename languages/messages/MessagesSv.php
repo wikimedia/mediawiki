@@ -694,7 +694,7 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'viewsource-title' => 'Visa källkod för $1',
 'actionthrottled' => 'Åtgärden stoppades',
 'actionthrottledtext' => 'Som skydd mot spam, finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen. Försök igen om några minuter.',
-'protectedpagetext' => 'Den här sidan har skrivskyddats för att förhindra redigering.',
+'protectedpagetext' => 'Den här sidan har skrivskyddats för att förhindra redigering eller andra åtgärder.',
 'viewsourcetext' => 'Du kan se och kopiera denna sidas källtext:',
 'viewyourtext' => "Du kan se och kopiera källan för '''dina redigeringar''' på denna sida:",
 'protectedinterface' => 'Denna sida innehåller text för mjukvarans gränssnitt på denna wiki, och är skrivskyddad för att förebygga missbruk.
@@ -756,7 +756,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
 'createaccountmail' => 'med e-post',
 'createaccountreason' => 'Orsak:',
-'badretype' => 'De lösenord du uppgett överenstämmer inte med varandra.',
+'badretype' => 'De lösenord du uppgett överensstämmer inte med varandra.',
 'userexists' => 'Det valda användarnamnet används redan.
 Var god välj ett annat namn.',
 'loginerror' => 'Inloggningsproblem',
@@ -1044,7 +1044,7 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 'longpageerror' => "'''FEL: Texten som du försöker spara är {{PLURAL:$1|en kilobyte|$1 kilobyte}}, vilket är mer än det maximalt tillåtna {{PLURAL:$2|en kilobyte|$2 kilobyte}}.'''
 Den kan inte sparas.",
 'readonlywarning' => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu.
-Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
+Det kan vara klokt att kopiera texten till ett textdokument som sparas på din dator tills vidare.'''
 
 Administratören som låste databasen gav följande förklaring: $1",
 'protectedpagewarning' => "'''Varning: Den här sidan har låsts så att bara användare med administratörsrättigheter kan redigera den.'''
@@ -2118,7 +2118,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'lonelypagestext' => 'Följande sidor länkas inte till från någon annan sida på {{SITENAME}}.',
 'uncategorizedpages' => 'Ej kategoriserade sidor',
 'uncategorizedcategories' => 'Ej kategoriserade kategorier',
-'uncategorizedimages' => 'Filer utan kategori',
+'uncategorizedimages' => 'Ej kategoriserade filer',
 'uncategorizedtemplates' => 'Ej kategoriserade mallar',
 'unusedcategories' => 'Tomma kategorier',
 'unusedimages' => 'Oanvända filer',
@@ -2248,7 +2248,7 @@ Protokoll som stöds: <code>$1</code> (sätts till http:// om inget protokoll an
 # Special:ActiveUsers
 'activeusers' => 'Lista över aktiva användare',
 'activeusers-intro' => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dygnet|dygnen}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|redigering|redigeringar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
+'activeusers-count' => '$1 {{PLURAL:$1|handling|handlingar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
 'activeusers-from' => 'Visa användare från och med:',
 'activeusers-hidebots' => 'Göm botar',
 'activeusers-hidesysops' => 'Dölj administratörer',
@@ -2323,8 +2323,8 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'watchnologin' => 'Inte inloggad',
 'watchnologintext' => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ändra din bevakningslista.',
 'addwatch' => 'Lägg till i bevakningslistan',
-'addedwatchtext' => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
-Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
+'addedwatchtext' => 'Sidan "[[:$1]]" har lagts till på din [[Special:Watchlist|bevakningslista]].
+Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där.',
 'removewatch' => 'Ta bort från bevakningslistan',
 'removedwatchtext' => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
 'watch' => 'Bevaka',
@@ -2471,7 +2471,7 @@ Nuvarande skrivskyddsinställning för sidan '''$1''' är:",
 'protect-cascadeon' => 'Den här sidan är skrivskyddad eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som har ett kaskaderande skydd.
 Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande skyddet.',
 'protect-default' => 'Tillåt alla användare',
-'protect-fallback' => 'Kräver "$1"-behörighet',
+'protect-fallback' => 'Kräv "$1"-behörighet',
 'protect-level-autoconfirmed' => 'Blockera nya och oregistrerade användare',
 'protect-level-sysop' => 'Enbart administratörer',
 'protect-summary-cascade' => 'kaskaderande',
@@ -2647,7 +2647,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbotherreason' => 'Annan/ytterligare anledning:',
 'ipbhidename' => 'Dölj användarnamnet från redigeringar och listor',
 'ipbwatchuser' => 'Bevaka användarens användarsida och diskussionssida',
-'ipb-disableusertalk' => 'Hindra denne användare från att redigera sina egna diskussionssida under blockeringen',
+'ipb-disableusertalk' => 'Hindra användaren från att redigera sina egna diskussionssida under blockeringen',
 'ipb-change-block' => 'Återblockera användaren med de här inställningarna',
 'ipb-confirm' => 'Bekräfta blockering',
 'badipaddress' => 'Du har inte skrivit IP-adressen korrekt.',
@@ -2771,7 +2771,7 @@ Du kan välja att automatiskt uppdatera omdirigeringar som leder till den gamla 
 Om du väljer att inte göra det, kontrollera då att du inte skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
 Du bör också se till att länkar fortsätter att peka dit de ska.
 
-Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigering till den gamla titeln och saknar annan versionshistorik.
+Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är en omdirigering till den gamla titeln och saknar annan versionshistorik.
 Det innebär att du kan flytta tillbaks en sida om du råkar göra fel, och att du inte kan skriva över existerande sidor.
 
 '''VARNING!'''
@@ -3818,7 +3818,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'version-specialpages' => 'Specialsidor',
 'version-parserhooks' => 'Parsertillägg',
 'version-variables' => 'Variabler',
-'version-antispam' => 'Förhindring av skräppost',
+'version-antispam' => 'Förhindrar spam',
 'version-skins' => 'Utseenden',
 'version-other' => 'Annat',
 'version-mediahandlers' => 'Mediahanterare',

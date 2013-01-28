@@ -573,7 +573,7 @@ Pertanyaan: $2',
 'viewsource-title' => 'Lihat sumber bagi $1',
 'actionthrottled' => 'Tindakan didikitkan',
 'actionthrottledtext' => 'Untuk mencegah spam, anda dihadkan daripada melakukan tindakan ini berulang kali dalam ruang waktu yang singkat, dan anda telah melebihi had tersebut. Sila cuba lagi selepas beberapa minit.',
-'protectedpagetext' => 'Laman ini telah dikunci untuk menghalang penyuntingan.',
+'protectedpagetext' => 'Laman ini telah dikunci untuk melarang penyuntingan atau sebarang tindakan yang lain.',
 'viewsourcetext' => 'Anda boleh melihat dan menyalin sumber bagi laman ini:',
 'viewyourtext' => "Anda boleh melihat dan menyalin sumber '''suntingan anda''' kepada laman ini:",
 'protectedinterface' => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.
@@ -1353,9 +1353,9 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-advancedrendering' => 'Pilihan lanjutan',
 'prefs-advancedsearchoptions' => 'Pilihan lanjutan',
 'prefs-advancedwatchlist' => 'Pilihan lanjutan',
-'prefs-displayrc' => 'Papar pilihan',
-'prefs-displaysearchoptions' => 'Papar pilihan',
-'prefs-displaywatchlist' => 'Papar pilihan',
+'prefs-displayrc' => 'Pilihan paparan',
+'prefs-displaysearchoptions' => 'Pilihan paparan',
+'prefs-displaywatchlist' => 'Pilihan paparan',
 'prefs-diffs' => 'Beza',
 
 # User preference: e-mail validation using jQuery
@@ -1920,7 +1920,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 # Statistics
 'statistics' => 'Statistik',
-'statistics-header-pages' => 'Statistik laman',
+'statistics-header-pages' => 'Statistik halaman',
 'statistics-header-edits' => 'Statistik suntingan',
 'statistics-header-views' => 'Statistik pandangan',
 'statistics-header-users' => 'Statistik pengguna',
@@ -2187,12 +2187,8 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 'watchnologin' => 'Belum log masuk',
 'watchnologintext' => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
 'addwatch' => 'Tambahkan ke senarai pantau',
-'addedwatchtext' => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
-Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
-dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
-untuk memudahkan anda.
-
-Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
+'addedwatchtext' => 'Halaman "[[:$1]]" telah dimasukkan ke dalam [[Special:Watchlist|senarai pantau anda]].
+Perubahan-perubahan pada halaman ini dan halaman perbualannya pada masa akan datang akan tersenarai di dalam senarai itu.',
 'removewatch' => 'Buang dari senarai pantau',
 'removedwatchtext' => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch' => 'Pantau',

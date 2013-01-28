@@ -430,9 +430,9 @@ $messages = array(
 'category-empty' => "''Kategorien inneheld for tida ingen sider eller mediefiler.''",
 'hidden-categories' => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
 'hidden-category-category' => 'Gøymde kategoriar',
-'category-subcat-count' => 'Kategorien har {{PLURAL:$2|berre den følgjande underkategorien|{{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2}}.',
-'category-subcat-count-limited' => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
-'category-article-count' => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande sida|dei følgjande {{PLURAL:$1|side|$1 sidene}}, av totalt $2}}.',
+'category-subcat-count' => 'Kategorien har {{PLURAL:$2|berre denne underkategorien|{{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}, av totalt $2}}.',
+'category-subcat-count-limited' => 'Kategorien har {{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}.',
+'category-article-count' => 'Kategorien inneheld {{PLURAL:$2|berre denne sida|{{PLURAL:$1|denne sida|desse $1 sidene}}, av totalt $2}}.',
 'category-article-count-limited' => 'Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
 'category-file-count' => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande fila|dei følgjande {{PLURAL:$1|fil|$1 filene}}, av totalt $2}}.',
 'category-file-count-limited' => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
@@ -678,7 +678,7 @@ Funksjonen oppgav inga årsak.',
 'viewsource-title' => 'Sjå kjelda til $1',
 'actionthrottled' => 'Handlinga vart stoppa',
 'actionthrottledtext' => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
-'protectedpagetext' => 'Denne sida er verna for å hindre endring.',
+'protectedpagetext' => 'Sida har vorte verna for å hindra endring eller andre handlingar.',
 'viewsourcetext' => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
 'viewyourtext' => "Du kan sjå og kopiera kjelda til '''endringane dine''' på sida:",
 'protectedinterface' => 'Denne sida inneheld tekst nytta av brukargrensesnittet for programvara på wikien, og er låst for å hindra hærverk.
@@ -939,7 +939,7 @@ Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|end
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har følgt ei lenkje til ei side som ikkje finst enno.
 For å opprette sida, kan du skrive i boksen under (sjå [[{{MediaWiki:Helppage}}|hjelpesida]] for meir informasjon).
-Dersom du ikkje ønskjer å opprette sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
+Hamna du her ved ein feil, klikk på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext' => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext' => 'Det er nett no ikkje noko tekst på denne sida.
@@ -972,7 +972,7 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userinvalidcssjstitle' => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated' => '(Oppdatert)',
 'note' => "'''Merk:'''",
-'previewnote' => "'''Hugsa at dette berre er ei førehandsvising.'''
+'previewnote' => "'''Hugs at dette berre er ei førehandsvising.'''
 Endringane dine er ikkje lagra enno!",
 'continue-editing' => 'Gå til endringsområdet',
 'previewconflict' => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
@@ -1010,9 +1010,9 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 
 '''LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!'''",
 'longpageerror' => "'''Feil: Teksten du sende inn er {{PLURAL:$1|éin kilobyte|$1 kilobyte}} stor, noko som er større enn øvstegrensa på {{PLURAL:$2|éin kilobyte|$2 kilobyte}}.''' Han kan difor ikkje lagrast.",
-'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
+'readonlywarning' => "'''ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, så du kan ikkje lagre endringane dine akkurat no. Det kan vera lurt å kopiere teksten din til ei tekstfil, så du kan lagre han her seinare.'''
 
-Systemadministratoren som låste databasen gav følgjande årsak: $1",
+Systemadministratoren som låste databasen gav denne årsaka: $1",
 'protectedpagewarning' => "'''ÅTVARING: Denne sida er verna, slik at berre administratorar kan endra henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
 'semiprotectedpagewarning' => "'''Merk:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.
@@ -1316,7 +1316,7 @@ For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, m
 'powersearch-ns' => 'Søk i namnerom:',
 'powersearch-redir' => 'Vis omdirigeringar',
 'powersearch-field' => 'Søk etter',
-'powersearch-togglelabel' => 'Haka av:',
+'powersearch-togglelabel' => 'Hak av:',
 'powersearch-toggleall' => 'Alle',
 'powersearch-togglenone' => 'Ingen',
 'search-external' => 'Eksternt søk',
@@ -1853,7 +1853,7 @@ Ho kan ikkje tryggingskontrollerast godt nok.',
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
 'img-auth-nopathinfo' => 'PATH_INFO saknar.
-Filtenaren din er ikkje sett opp for å gjeva denne informasjonen.
+Filtenaren din er ikkje sett opp for å gje denne informasjonen.
 Han kan vera CGI-basert og ikkje stø img_auth.
 Sjå https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
@@ -1949,7 +1949,7 @@ Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
 'upload-disallowed-here' => 'Du kan ikkje overskriva denne fila.',
 
 # File reversion
-'filerevert' => 'Rulla attende $1',
+'filerevert' => 'Rull attende $1',
 'filerevert-legend' => 'Rull attende fila',
 'filerevert-intro' => "Du rullar attende '''[[Media:$1|$1]]''' til [$4 versjonen frå $3, $2].",
 'filerevert-comment' => 'Årsak:',
@@ -2060,7 +2060,7 @@ Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja
 'ntransclusions' => 'brukt på $1 {{PLURAL:$1|side|sider}}',
 'specialpage-empty' => 'Det er ingen resultat for denne rapporten.',
 'lonelypages' => 'Foreldrelause sider',
-'lonelypagestext' => 'Følgjande sider er ikkje lenkja til på andre sider på {{SITENAME}}.',
+'lonelypagestext' => 'Desse sidene er ikkje lenkja til eller inkluderte på andre sider på {{SITENAME}}.',
 'uncategorizedpages' => 'Ukategoriserte sider',
 'uncategorizedcategories' => 'Ukategoriserte kategoriar',
 'uncategorizedimages' => 'Ukategoriserte filer',
@@ -2192,7 +2192,7 @@ Støtta protokollar: <code>$1</code> (nyttar http:// som standard om ingen proto
 # Special:ActiveUsers
 'activeusers' => 'Liste over aktive brukarar',
 'activeusers-intro' => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
-'activeusers-count' => '{{PLURAL:$1|Éi endring|$1 endringar}} {{PLURAL:$3|det siste døgeret|dei siste $3 døgra}}',
+'activeusers-count' => '{{PLURAL:$1|Éi handling|$1 handlingar}} {{PLURAL:$3|det siste døgeret|dei siste $3 døgra}}',
 'activeusers-from' => 'Vis brukarar frå og med:',
 'activeusers-hidebots' => 'Skjul botar',
 'activeusers-hidesysops' => 'Skjul administratorar',
@@ -2266,9 +2266,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'watchnologin' => 'Ikkje innlogga',
 'watchnologintext' => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
 'addwatch' => '↓Legg til i overvakingslista',
-'addedwatchtext' => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
-
-Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
+'addedwatchtext' => 'Sida «[[:$1]]» er lagd til i [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av henne og den tilhøyrande diskusjonssida hennar vil bli oppførde der.',
 'removewatch' => 'Fjerna frå overvakingslista',
 'removedwatchtext' => 'Sida «[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]].',
 'watch' => 'Overvak',
@@ -2313,7 +2311,7 @@ $NEWPAGE
 
 Endringssamandraget var: $PAGESUMMARY $PAGEMINOREDIT
 
-Kontakta brukaren:
+Kontakt brukaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
@@ -2366,10 +2364,10 @@ Attendemelding og hjelp:
 
 # Rollback
 'rollback' => 'Rull attende endringar',
-'rollback_short' => 'Rulla attende',
-'rollbacklink' => 'rulla attende',
-'rollbacklinkcount' => 'rulla attende {{PLURAL:$1|éi endring|$1 endringar}}',
-'rollbacklinkcount-morethan' => 'rulla attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}',
+'rollback_short' => 'Rull attende',
+'rollbacklink' => 'rull attende',
+'rollbacklinkcount' => 'rull attende {{PLURAL:$1|éi endring|$1 endringar}}',
+'rollbacklinkcount-morethan' => 'rull attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}',
 'rollbackfailed' => 'Kunne ikkje rulle attende',
 'cantrollback' => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
 'alreadyrolled' => 'Kan ikkje rulla attende den siste endringa på [[:$1]] gjord av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) av di nokon andre alt har endra eller attenderulla sida.
@@ -2410,9 +2408,9 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 Her er dei noverande innstillingane for sida '''$1''':",
 'protect-cascadeon' => 'Denne sida er verna fordi ho er inkludert på {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på. Du kan endre på nivået til vernet av denne sida, men det vil ikkje ha innverknad på djupvernet.',
 'protect-default' => 'Tillat alle brukarar',
-'protect-fallback' => 'Må ha «$1»-tilgang',
-'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukarar',
-'protect-level-sysop' => 'Berre administratorar',
+'protect-fallback' => 'Berre tillat brukarar med løyvet «$1»',
+'protect-level-autoconfirmed' => 'Berre tillat autostadfeste brukarar',
+'protect-level-sysop' => 'Berre tillat administratorar',
 'protect-summary-cascade' => 'djupvern',
 'protect-expiring' => 'endar $1 (UTC)',
 'protect-expiring-local' => 'endar $1',
@@ -2455,8 +2453,8 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'viewdeletedpage' => 'Sjå sletta sider',
 'undeletepagetext' => '{{PLURAL:$1|Den følgjande sida er sletta, men ho|Dei følgjande $1 sidene er sletta, men dei}} finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undelete-fieldset-title' => 'Attenderull endringar',
-'undeleteextrahelp' => "For å attoppretta heile historikken til sida, lat alle boksane vera vera tomme og trykk '''''{{int:undeletebtn}}'''''.
-For å berre attopretta delar av historikken, haka av boksane til dei relevante endringane og trykk '''''{{int:undeletebtn}}'''''.",
+'undeleteextrahelp' => "For å attoppretta heile historikken til sida, lat alle boksane vera tomme og trykk '''''{{int:undeletebtn}}'''''.
+For å berre attopretta delar av historikken, hak av boksane til dei relevante endringane og trykk '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
 'undeletehistory' => 'Om du gjenopprettar sida vil alle endringar i historikken også bli gjenoppretta. Dersom ei ny side med same namn er oppretta etter slettinga, vil dei gjenoppretta endringane dukke opp før denne i endringshistorikken.',
 'undeleterevdel' => 'Gjenoppretting kan ikkje utførast om det resulterer i at den øvste endringa delvis vert sletta. I slike tilfelle må du fjerne merkinga av den siste sletta endringa.',
@@ -2500,9 +2498,9 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Namnerom:',
 'invert' => 'Vreng val',
-'tooltip-invert' => 'Haka av boksen for å gøyma endringar på sider i det valde namnerommet (og det tilknytte namnerommet om det er haka av)',
+'tooltip-invert' => 'Hak av boksen for å gøyma endringar på sider i det valde namnerommet (og det tilknytte namnerommet om det er haka av)',
 'namespace_association' => 'Tilknytt namnerom',
-'tooltip-namespace_association' => 'Haka av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg',
+'tooltip-namespace_association' => 'Hak av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg',
 'blanknamespace' => '(Hovud)',
 
 # Contributions
@@ -2607,7 +2605,7 @@ Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'blocklist-tempblocks' => 'Gøym mellombelse blokkeringar',
 'blocklist-addressblocks' => 'Gøym einskilde IP-blokkeringar',
 'blocklist-rangeblocks' => 'Gøym intervallblokkeringar',
-'blocklist-timestamp' => 'Tidsmerkje',
+'blocklist-timestamp' => 'Tidsmerke',
 'blocklist-target' => 'Mål',
 'blocklist-expiry' => 'Endar',
 'blocklist-by' => 'Blokkerande admin',
@@ -2693,11 +2691,15 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Blo
 # Move page
 'move-page' => 'Flytt $1',
 'move-page-legend' => 'Flytt side',
-'movepagetext' => "Ved å bruke skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å sjekke for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+'movepagetext' => "Ved å bruka skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet.
+Den gamle tittelen vil verta ei omdirigeringsside til den nye.
+Du kan oppdatera omdirigeringar som peikar til den opphavlege tittelen automatisk.
+Vel du å ikkje gjera dette, pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|øydelagde omdirigeringar]].
 
-Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
+Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder ho er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.
 
-<b>ÅTVARING!</b> Dette kan vera ei drastisk og uventa endring for ei populær side; ver sikker på at du skjønner konsekvensane av dette før du fortset.",
+'''ÅTVARING!'''
+Dette kan vera ei drastisk og uventa endring for ei populær side; ver viss på at du skjøner konsekvensane av dette før du held fram.",
 'movepagetext-noredirectfixer' => "Nyttar ein skjemaet under får ein døypt om ei side og flytt heile historikken til det nye namnet. 
 Den gamle tittelen vil verta ei omdirigeringsside for den nye tittelen. 
 Pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|uverksame]] omdirigeringar. 
@@ -2713,7 +2715,7 @@ ver viss på at du skjøner konsekvensane av flyttinga før du held fram.",
 *ei ikkje-tom diskusjonsside alt finst under det nye namnet, eller
 *du fjernar avhakinga i boksen nedanfor.
 
-I desse falla lyt du flytta eller fletta sida manuelt, om ynskeleg.",
+I desse falla lyt du flytta eller fletta sida manuelt, om ynskjeleg.",
 'movearticle' => 'Flytt side:',
 'moveuserpage-warning' => "'''Åtvaring:''' Du er i ferd med å flytta ei brukarside. Merk at berre sida vert flytt og at brukarnamnet '''ikkje''' vert endra.",
 'movenologin' => 'Ikkje innlogga',
@@ -2800,7 +2802,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessages' => 'Systemmeldingar',
 'allmessagesname' => 'Namn',
 'allmessagesdefault' => 'Standardtekst',
-'allmessagescurrent' => 'Noverande tekst',
+'allmessagescurrent' => 'Gjeldande meldingstekst',
 'allmessagestext' => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
 'allmessagesnotsupportedDB' => "Denne sida kan ein ikkje bruka fordi «'''\$wgUseDatabaseMessages'''» er slått av.",
@@ -3010,7 +3012,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-not-current' => 'Orsak, det er umogeleg å gjeva denne informasjonen for gamle versjonar.',
+'pageinfo-not-current' => 'Diverre er det umogeleg å gje ut denne informasjonen for gamle versjonar.',
 'pageinfo-header-basic' => 'Grunnleggjande informasjon',
 'pageinfo-header-edits' => 'Endringshistorikk',
 'pageinfo-header-restrictions' => 'Sidevern',
@@ -3768,7 +3770,7 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'specialpages-group-highuse' => 'Mykje brukte sider',
 'specialpages-group-pages' => 'Sidelister',
 'specialpages-group-pagetools' => 'Sideverktøy',
-'specialpages-group-wiki' => 'Informasjon og verktøy for wikien',
+'specialpages-group-wiki' => 'Data og verktøy',
 'specialpages-group-redirects' => 'Omdirigerande spesialsider',
 'specialpages-group-spam' => 'Spamverktøy',
 

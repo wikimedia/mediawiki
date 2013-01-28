@@ -68,6 +68,7 @@
  * @author Piolinfax
  * @author Platonides
  * @author PoLuX124
+ * @author Ralgis
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
@@ -76,6 +77,7 @@
  * @author Spacebirdy
  * @author Technorum
  * @author The Evil IP address
+ * @author TheBITLINK
  * @author Titoxd
  * @author Toniher
  * @author Translationista
@@ -576,7 +578,7 @@ $messages = array(
 'viewtalkpage' => 'Ver discusión',
 'otherlanguages' => 'Otros idiomas',
 'redirectedfrom' => '(Redirigido desde «$1»)',
-'redirectpagesub' => 'Página redirigida',
+'redirectpagesub' => 'Página de redirección',
 'lastmodifiedat' => 'Esta página fue modificada por última vez el $1, a las $2.',
 'viewcount' => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
 'protectedpage' => 'Página protegida',
@@ -616,7 +618,7 @@ $1',
 'badaccess-group0' => 'No estás autorizado a ejecutar la acción solicitada.',
 'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos}}: $1.',
 
-'versionrequired' => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
+'versionrequired' => 'Se requiere la versión $1 de MediaWiki.',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consultar [[Special:Version|la página de versión]]',
 
 'ok' => 'Aceptar',
@@ -735,7 +737,7 @@ Consulta: $2',
 'viewsource-title' => 'Ver el código fuente de «$1»',
 'actionthrottled' => 'Acción bloqueada',
 'actionthrottledtext' => "Como medida contra el ''spam'', la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite. Por favor inténtalo de nuevo en unos minutos.",
-'protectedpagetext' => 'Esta página ha sido protegida para evitar su edición.',
+'protectedpagetext' => 'Esta página ha sido protegida para evitar su edición u otras acciones.',
 'viewsourcetext' => 'Puedes ver y copiar el código fuente de esta página:',
 'viewyourtext' => "Puedes ver y copiar el código de '''tus ediciones''' a esta página:",
 'protectedinterface' => 'Esta página proporciona el texto de la interfaz del software en este wiki, y está protegida para prevenir el abuso.
@@ -928,14 +930,14 @@ Contraseña temporal: $2',
 'passwordreset-emailerror-capture' => 'Un recordatorio por correo electrónico fue generado, que se muestra a continuación, pero el envío al usuario falló: $1',
 
 # Special:ChangeEmail
-'changeemail' => 'Cambiar la dirección de correo-e',
-'changeemail-header' => 'Cambiar la dirección de correo-e de la cuenta',
+'changeemail' => 'Cambiar la dirección de correo electrónico',
+'changeemail-header' => 'Cambiar la dirección de correo electrónico de la cuenta',
 'changeemail-text' => 'Rellena este formulario para cambiar tu dirección de correo electrónico. Debes introducir la contraseña para confirmar este cambio.',
 'changeemail-no-info' => 'Debes iniciar sesión para acceder directamente a esta página.',
-'changeemail-oldemail' => 'Dirección de correo-e actual:',
-'changeemail-newemail' => 'Nueva dirección de correo-e:',
+'changeemail-oldemail' => 'Dirección de correo electrónico actual:',
+'changeemail-newemail' => 'Nueva dirección de correo electrónico:',
 'changeemail-none' => '(ninguna)',
-'changeemail-submit' => 'Cambiar correo-e',
+'changeemail-submit' => 'Cambiar correo electrónico',
 'changeemail-cancel' => 'Cancelar',
 
 # Edit page toolbar
@@ -1094,10 +1096,10 @@ Si la guardas, se perderán los cambios realizados desde esta revisión.",
 '''¡No uses escritos con copyright sin permiso!'''",
 'longpageerror' => "'''Error: El texto que has enviado ocupa {{PLURAL:$1|un kilobyte|$1 kilobytes}}, que excede el máximo de {{PLURAL:$2|un kilobyte|$2 kilobytes}}.''' 
 No se lo puede guardar.",
-'readonlywarning' => "'''Aviso: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrás guardar tus modificaciones en este momento.
-Puedes copiar y pegar el texto en un archivo y guardarlo para más tarde.'''
+'readonlywarning' => "'''Advertencia: La base de datos ha sido bloqueada para mantenimiento, así que no podrás guardar tus ediciones en este momento.'''
+Quizás quieras copiar y pegar tu texto en un archivo de texto y guardarlo para después.
 
-El administrador que la bloqueó dio esta explicación: $1",
+El administrador que lo bloqueó ofreció esta explicación: $1",
 'protectedpagewarning' => "'''Aviso: Esta página ha sido protegida de manera que solo usuarios con permisos de administrador puedan editarla.'''
 A continuación se muestra la última entrada de registro para referencia:",
 'semiprotectedpagewarning' => "'''Nota:''' Esta página ha sido protegida para que solo usuarios registrados puedan editarla.
@@ -1450,8 +1452,8 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-watchlist-token' => 'Ficha de lista de seguimiento:',
 'prefs-misc' => 'Miscelánea',
 'prefs-resetpass' => 'Cambiar contraseña',
-'prefs-changeemail' => 'Cambiar correo-e',
-'prefs-setemail' => 'Establecer una dirección de correo-e',
+'prefs-changeemail' => 'Cambiar correo electrónico',
+'prefs-setemail' => 'Establecer una dirección de correo electrónico',
 'prefs-email' => 'Opciones de correo electrónico',
 'prefs-rendering' => 'Apariencia',
 'saveprefs' => 'Guardar',
@@ -1506,7 +1508,7 @@ Esto no se puede deshacer.',
 'username' => 'Nombre de usuario:',
 'uid' => 'ID de usuario:',
 'prefs-memberingroups' => 'Miembro {{PLURAL:$1|del grupo|de los grupos}}:',
-'prefs-registration' => 'Hora de registro:',
+'prefs-registration' => 'Fecha y hora de registro:',
 'yourrealname' => 'Nombre real:',
 'yourlanguage' => 'Idioma:',
 'yourvariant' => 'Variante lingüística del contenido:',
@@ -2372,7 +2374,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'watchnologin' => 'No has iniciado sesión',
 'watchnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] para modificar tu lista de seguimiento.',
 'addwatch' => 'Añadir a la lista de seguimiento',
-'addedwatchtext' => "La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar.",
+'addedwatchtext' => 'La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí.',
 'removewatch' => 'Quitar de la lista de seguimiento',
 'removedwatchtext' => 'La página «[[:$1]]» ha sido eliminada de tu [[Special:Watchlist|lista de seguimiento]].',
 'watch' => 'Vigilar',
@@ -2520,8 +2522,8 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-cascadeon' => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default' => 'Permitir todos los usuarios',
 'protect-fallback' => 'Necesita el permiso «$1»',
-'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
-'protect-level-sysop' => 'Solo administradores',
+'protect-level-autoconfirmed' => 'Permitir solo usuarios autoconfirmados',
+'protect-level-sysop' => 'Permitir solo administradores',
 'protect-summary-cascade' => 'en cascada',
 'protect-expiring' => 'caduca el $1 (UTC)',
 'protect-expiring-local' => 'caduca el $1',
@@ -3093,16 +3095,16 @@ Permite añadir una razón al resumen de edición.',
 'tooltip-summary' => 'Introduce un breve resumen',
 
 # Stylesheets
-'common.css' => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
-'standard.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Standard */',
-'nostalgia.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Nostalgia */',
-'cologneblue.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Cologne Blue */',
-'monobook.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MonoBook */',
-'myskin.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel MySkin */',
-'chick.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Chick */',
-'simple.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Simple */',
-'modern.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Modern */',
-'vector.css' => '/* Los estilos CSS colocados aquí se aplicarán para todos los usuarios que usen la piel Vector */',
+'common.css' => '/* El CSS colocado en esta página sera aplicado a todas las pieles (skins) */',
+'standard.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Standard" */',
+'nostalgia.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Nostalgia" */',
+'cologneblue.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Cologne Blue" */',
+'monobook.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MonoBook" */',
+'myskin.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MySkin" */',
+'chick.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel ""Chick" */',
+'simple.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Simple" */',
+'modern.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Modern" */',
+'vector.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Vector" */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
 'handheld.css' => '/* Los estilos CSS colocados aquí afectarán a los dispositivos móviles basados en las pieles configuradas en $wgHandheldStyle */',
 'noscript.css' => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',
@@ -3182,7 +3184,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-recent-authors' => 'Número de autores distintos recientes',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
-'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Plantilla incluida|Plantillas incluidas}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Estándar',

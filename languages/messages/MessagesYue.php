@@ -8,6 +8,7 @@
  * @file
  *
  * @author Horacewai2
+ * @author Justincheng12345
  * @author Kaganer
  * @author KaiesTse
  * @author Mark85296341
@@ -808,8 +809,7 @@ $1',
 'noarticletext' => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]，
 或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一版]</span>。',
-'noarticletext-nopermission' => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
-或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]</span>。',
+'noarticletext-nopermission' => '呢一頁而家冇任何文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搵有關嘅日誌]</span>。',
 'userpage-userdoesnotexist' => '用戶戶口"<nowiki>$1</nowiki>"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'userpage-userdoesnotexist-view' => '用戶戶口"$1"重未開。',
 'blocked-notice-logextract' => '呢位用戶而家被封鎖緊。
@@ -1097,7 +1097,7 @@ $1",
 'mergelogpagetext' => '下面係一個最近由一版嘅修訂記錄合併到另一個嘅一覽。',
 
 # Diffs
-'history-title' => '"$1"嘅修訂歷史',
+'history-title' => '「$1」嘅修訂歷史',
 'difference-multipage' => '（版之間嘅差異）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較被選嘅修訂',
@@ -1178,7 +1178,7 @@ $1",
 
 # Preferences page
 'preferences' => '喜好設定',
-'mypreferences' => '安排與架生',
+'mypreferences' => '自訂喜好',
 'prefs-edits' => '編輯數:',
 'prefsnologin' => '重未登入',
 'prefsnologintext' => '你一定要去<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登入]</span>設定好用戶喜好值先。',
@@ -1862,7 +1862,7 @@ Template:搞清楚',
 'listusers-editsonly' => '只顯示有編輯嘅用戶',
 'listusers-creationsort' => '按建立日期排序',
 'usereditcount' => '$1次編輯',
-'usercreated' => '響$1 $2建立',
+'usercreated' => '響$1 $2{{GENDER:$3|建立}}',
 'newpages' => '新頁',
 'newpages-username' => '用戶名：',
 'ancientpages' => '舊頁面',
@@ -2326,7 +2326,7 @@ $1',
 'ipusubmit' => '拎走呢個封鎖',
 'unblocked' => '"[[User:$1|$1]]"已經解封',
 'unblocked-id' => '$1嘅封鎖已經拎走咗',
-'ipblocklist' => 'IP地址同用戶名阻止名單',
+'ipblocklist' => '封咗嘅用戶',
 'ipblocklist-legend' => '搵一位封咗嘅用戶',
 'ipblocklist-submit' => '搵',
 'ipblocklist-localblock' => '本地封鎖',
@@ -2813,7 +2813,7 @@ Variants for Chinese language
 'metadata-help' => '呢個檔案有額外嘅資料。佢應該係數碼相機或者掃描器整出來嘅。如果佢整咗之後畀人改過，裏面嘅資料未必同改過之後相符。',
 'metadata-expand' => '打開詳細資料',
 'metadata-collapse' => '收埋詳細資料',
-'metadata-fields' => '響呢個信息列出嘅 EXIF 元數據項目會喺圖像頁中包含起嚟，而且個元數據表除咗喺下面列出嘅項目之外，其它嘅項目預設會被隱藏。
+'metadata-fields' => '響呢個信息列出嘅EXIF元數據項目會喺圖像頁中包含起嚟，而且個元數據表除咗喺下面列出嘅項目之外，其它嘅項目預設會隱藏。
 * make
 * model
 * datetimeoriginal

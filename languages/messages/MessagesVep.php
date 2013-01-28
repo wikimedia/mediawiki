@@ -2604,6 +2604,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-gpsareainformation' => 'GPS-agjan nimi',
 'exif-gpsdatestamp' => 'GPS-dat',
 'exif-gpsdifferential' => 'GPS-differencialine kohenduz',
+'exif-jpegfilecomment' => 'Kommentarii JPEG-failha',
 'exif-keywords' => 'Avadimsanad',
 'exif-worldregiondest' => "Ozutadud mail'man region",
 'exif-countrydest' => 'Ozutadud ma',
@@ -2861,6 +2862,10 @@ Necen vahvištoitandkodan kävutamižen lopstrok om $4.',
 'confirm_purge_button' => 'OK',
 'confirm-purge-top' => 'Puhtastada necen lehtpolen keš?',
 
+# action=watch/unwatch
+'confirm-watch-button' => 'OK',
+'confirm-unwatch-button' => 'OK',
+
 # Multipage image navigation
 'imgmultipageprev' => "← edeline lehtpol'",
 'imgmultipagenext' => "jäl'ghine lehtpol' →",
@@ -2963,6 +2968,7 @@ Kävutagat normaline ezikacund.',
 'version-software' => 'Seižutadud programmišt',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versii',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Te failannoks',
@@ -3085,5 +3091,14 @@ Kävutagat normaline ezikacund.',
 'api-error-unknown-code' => 'Tundmatoi petuz: "$1"',
 'api-error-unknown-warning' => 'Tadmatoi varutuz: $1',
 'api-error-unknownerror' => 'Tundmatoi petuz: "$1"',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunad}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minutad}}',
+'duration-hours' => '$1 {{PLURAL:$1|čas|časud}}',
+'duration-days' => '$1 {{PLURAL:$1|päiv|päiväd}}',
+'duration-weeks' => "$1 {{PLURAL:$1|nedal'|nedalid}}",
+'duration-years' => "$1 {{PLURAL:$1|voz'|vot}}",
+'duration-decades' => '$1 {{PLURAL:$1|dekad|dekadad}}',
 
 );

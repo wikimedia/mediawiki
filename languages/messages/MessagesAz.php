@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AZISS
  * @author Cekli829
  * @author Don Alessandro
  * @author E THP
@@ -112,7 +113,7 @@ $messages = array(
 'tog-externaleditor' => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
 'tog-externaldiff' => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
 'tog-showjumplinks' => '"Keçid et:" linklərini aktivləşdir',
-'tog-uselivepreview' => 'Canlı sınaq baxışı xüsusiyyətini istifadə et (JavaScript, sınaq mərhələsində)',
+'tog-uselivepreview' => 'Canlı sınaq baxışı xüsusiyyətindən istifadə et (JavaScript tələb edir, sınaq mərhələsindədir)',
 'tog-forceeditsummary' => 'Qısa məzmunu boş saxladıqda mənə bildir',
 'tog-watchlisthideown' => 'Mənim redaktələrimi izləmə siyahısında gizlət',
 'tog-watchlisthidebots' => 'Bot redaktələrini izləmə siyahısında gizlət',
@@ -241,7 +242,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'İnkişaf etmiş axtarma təkliflərini gətir (yalnız Vector görünüşü üçün)',
 'vector-view-create' => 'Yarat',
 'vector-view-edit' => 'Redaktə',
-'vector-view-history' => 'Tarixçə',
+'vector-view-history' => 'Tarixçəyə bax',
 'vector-view-view' => 'Oxu',
 'vector-view-viewsource' => 'Mənbəyə bax',
 'actions' => 'Hərəkətlər',
@@ -329,7 +330,7 @@ $1',
 'policy-url' => 'Project:Qaydalar',
 'portal' => 'Kənd meydanı',
 'portal-url' => 'Project:Kənd meydanı',
-'privacy' => 'Gizlilik prinsipi',
+'privacy' => 'Məxfilik siyasəti',
 'privacypage' => 'Project:Gizlilik prinsipi',
 
 'badaccess' => 'İcazə xətası',
@@ -597,7 +598,7 @@ Müvəqqəti parol: $2',
 'changeemail' => 'E-məktub ünvanını dəyiş',
 'changeemail-oldemail' => 'Hazırki e-poçt ünvanı:',
 'changeemail-newemail' => 'Yeni e-poçt ünvanı:',
-'changeemail-none' => '(heç biri)',
+'changeemail-none' => '(yoxdur)',
 'changeemail-submit' => 'E-poçtu dəyiş',
 'changeemail-cancel' => 'İmtina',
 
@@ -627,7 +628,7 @@ Müvəqqəti parol: $2',
 'minoredit' => 'Kiçik redaktə',
 'watchthis' => 'Bu səhifəni izlə',
 'savearticle' => 'Səhifəni qeyd et',
-'preview' => 'Sınaq göstərişi',
+'preview' => 'Sınaq görüntüsü',
 'showpreview' => 'Sınaq göstərişi',
 'showlivepreview' => 'Canlı sınaq göstərişi',
 'showdiff' => 'Dəyişiklikləri göstər',
@@ -962,7 +963,7 @@ $1",
 'prefsnologintext' => 'Nizamlamaları dəyişmək üçün <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} daxil olmaq]</span> zəruridir.',
 'changepassword' => 'Parolu dəyiş',
 'prefs-skin' => 'Cild',
-'skin-preview' => 'Sınaq göstərişi',
+'skin-preview' => 'Sınaq görüntüsü',
 'datedefault' => 'Seçim yoxdur',
 'prefs-beta' => 'Beta xüsusiyyətlər',
 'prefs-datetime' => 'Tarix və vaxt',
@@ -1174,7 +1175,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'rightslog' => 'İstifadəçi hüquqları qeydləri',
 'rightslogtext' => 'İstifadəçi hüquqları dəyişikliyi qeydləri.',
 'rightslogentry' => '$1 adlı istifadəçinin istifadəçi qruplarındakı üzvlüyü dəyişdirildi: $2 ► $3',
-'rightsnone' => '(heç biri)',
+'rightsnone' => '(yoxdur)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'bu səhifənin oxunması',

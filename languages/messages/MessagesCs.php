@@ -23,6 +23,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Mr. Richard Bolla
+ * @author Quinn
  * @author Ragimiri
  * @author Reaperman
  * @author Spiffyk
@@ -732,7 +733,7 @@ Dotaz: $2',
 'viewsource-title' => 'Zobrazení zdroje stránky $1',
 'actionthrottled' => 'Akce byla pozastavena',
 'actionthrottledtext' => 'Vzhledem k protispamovým opatřením nemůžete požadovanou akci provádět příliš častokrát v krátké době. Zkuste to znovu za několik minut.',
-'protectedpagetext' => 'Tato stránka byla zamčena, takže ji nelze editovat.',
+'protectedpagetext' => 'Tato stránka byla zamčena, aby se předešlo jejímu editování.',
 'viewsourcetext' => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'viewyourtext' => "Můžete si prohlédnout a zkopírovat zdrojový kód '''vašich změn''' této stránky:",
 'protectedinterface' => 'Tato stránka obsahuje text softwarového rozhraní a je zamčena kvůli prevenci zneužití.
@@ -1079,7 +1080,8 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>), podrobnosti najdete na $1. '''Nekopírujte díla chráněná autorským právem bez dovolení!'''",
 'longpageerror' => "'''Chyba: Pokoušíte se uložit text o velikosti {{PLURAL:$1|$1 KiB}}, přičemž dovolené maximum je {{PLURAL:$2|$2 KiB}}.'''
 Vaše změna nemůže být uložena.",
-'readonlywarning' => "'''VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.'''
+'readonlywarning' => "'''Varování: Databáze byla uzamčena kvůli údržbě, takže momentálně nebudete moci uložit své změny.'''
+Můžete si okopírovat text do souboru a uložit ho na později.
 
 Správce serveru, který databázi zamkl, poskytl toto zdůvodnění: $1",
 'protectedpagewarning' => "'''Varování: Tato stránka byla zamčena, takže ji mohou editovat pouze správci.'''
@@ -2270,7 +2272,7 @@ Podporované protokoly: <code>$1</code> (pokud není protokol uveden, použije s
 # Special:ActiveUsers
 'activeusers' => 'Seznam aktivních uživatelů',
 'activeusers-intro' => 'Toto je seznam uživatelů, kteří byli nějak aktivní v {{plural:$1|posledním dni|posledních $1 dnech}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|editace|editace|editací}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
+'activeusers-count' => '$1 {{PLURAL:$1|akce|akce|akcí}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
 'activeusers-from' => 'Zobrazit uživatele počínaje od:',
 'activeusers-hidebots' => 'Skrýt roboty',
 'activeusers-hidesysops' => 'Skrýt správce',
@@ -2346,7 +2348,8 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'watchnologin' => 'Nejste přihlášen(a)',
 'watchnologintext' => 'Pro sledování stránek se musíte [[Special:UserLogin|přihlásit]].',
 'addwatch' => 'Přidat do sledovaných stránek',
-'addedwatchtext' => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
+'addedwatchtext' => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které sledujete.
+Ve [[Special:Watchlist|sledovaných stránkách]] se tak budou objevovat budoucí změny této stránky a přidružené diskuse.',
 'removewatch' => 'Vyřadit ze sledovaných stránek',
 'removedwatchtext' => 'Stránka „[[:$1]]“ byla vyřazena z vašeho [[Special:Watchlist|seznamu sledovaných stránek]].',
 'watch' => 'Sledovat',
@@ -2490,9 +2493,9 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-cascadeon' => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
 'protect-default' => 'Povolit všem',
-'protect-fallback' => 'Vyžaduje oprávnění „$1“',
-'protect-level-autoconfirmed' => 'Zakázat novým a neregistrovaným uživatelům',
-'protect-level-sysop' => 'Pouze správci',
+'protect-fallback' => 'Povolit jen uživatelům s oprávněním „$1“',
+'protect-level-autoconfirmed' => 'Povolit jen automaticky schváleným uživatelům',
+'protect-level-sysop' => 'Povolit jen správcům',
 'protect-summary-cascade' => 'kaskádový',
 'protect-expiring' => 'vyprší $1 (UTC)',
 'protect-expiring-local' => 'vyprší $1',
@@ -2783,11 +2786,12 @@ Přesměrování na původní název můžete nechat aktualizovat automaticky.
 Pokud nenecháte, nezapomeňte poté zkontrolovat [[Special:DoubleRedirects|dvojitá]] nebo [[Special:BrokenRedirects|přerušená]] přesměrování.
 Je na vaší zodpovědnosti zajistit, aby odkazy stále vedly tam, kam mají.
 
-Stránku '''není možno''' přejmenovat, pokud pod cílovým názvem již nějaká stránka existuje, s výjimkou situace, kdy je cílová stránka prázdná nebo je přesměrováním na tuto stránku a nemá žádnou historii editací.
+Stránku '''není možno''' přejmenovat, pokud pod cílovým názvem již nějaká stránka existuje, s výjimkou situace, kdy je cílová stránka přesměrováním na tuto stránku a nemá žádnou historii editací.
 To znamená, že stránku můžete přesunout zpět na původní název, pokud uděláte chybu, a že nemůžete přepsat existující stránku.
 
 '''Upozornění!'''
-Přejmenování oblíbené stránky může být drastická a nečekaná změna; ujistěte se, prosím, že chápete důsledky svého kroku před tím, než změnu provedete.",
+Přejmenování oblíbené stránky může být drastická a nečekaná změna;
+ujistěte se, že chápete důsledky svého kroku před tím, než změnu provedete.",
 'movepagetext-noredirectfixer' => "Použitím tohoto formuláře změníte název stránky a přesunete i celou její historii na nový název.
 Původní název se stane přesměrováním na nový název.
 Nezapomeňte poté zkontrolovat [[Special:DoubleRedirects|dvojitá]] nebo [[Special:BrokenRedirects|přerušená]] přesměrování.
@@ -3222,8 +3226,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours' => '{{PLURAL:$1|$1 hodina|$1 hodiny|$1 hodin}}',
 'days' => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
-'ago' => 'před 
-$1',
+'ago' => 'před $1',
 
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:
@@ -3932,7 +3935,7 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'specialpages-group-highuse' => 'Často používané stránky',
 'specialpages-group-pages' => 'Seznamy stránek',
 'specialpages-group-pagetools' => 'Nástroje ke stránkám',
-'specialpages-group-wiki' => 'Informace a nástroje k celé wiki',
+'specialpages-group-wiki' => 'Nástroje a data',
 'specialpages-group-redirects' => 'Přesměrovávací speciální stránky',
 'specialpages-group-spam' => 'Protispamové nástroje',
 
@@ -4083,7 +4086,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-nomodule' => 'Interní chyba: není nastaven načítací modul.',
 'api-error-ok-but-empty' => 'Interní chyba: ze serveru nepřišla odpověď.',
 'api-error-overwrite' => 'Není dovoleno přepsat existující soubor.',
-'api-error-stashfailed' => 'Vnitřní chyba: serveru se nepodařilo uložit dočasný soubor.',
+'api-error-stashfailed' => 'Vnitřní chyba: Serveru se nepodařilo uložit dočasný soubor.',
 'api-error-timeout' => 'Server neodpověděl v očekávaném čase.',
 'api-error-unclassified' => 'Došlo k neznámé chybě',
 'api-error-unknown-code' => 'Neznámá chyba: „$1“',

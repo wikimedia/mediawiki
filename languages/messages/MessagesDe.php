@@ -61,6 +61,7 @@
  * @author Tischbeinahe
  * @author UV
  * @author Umherirrender
+ * @author Vogone
  * @author W (aka Wuzur)
  * @author Wikifan
  * @author Wikinaut
@@ -410,7 +411,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
 'tog-extendwatchlist' => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc' => 'Seitenbezogene Gruppierung bei den „Letzten Änderungen“ und auf der Beobachtungsliste (benötigt JavaScript)',
+'tog-usenewrc' => 'Seitenbezogene Gruppierung in den „Letzten Änderungen“ und auf der Beobachtungsliste (benötigt JavaScript)',
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen (benötigt JavaScript)',
 'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
@@ -779,7 +780,7 @@ Abfrage: $2',
 'actionthrottled' => 'Aktionsanzahl limitiert',
 'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
-'protectedpagetext' => 'Diese Seite wurde geschützt, um Bearbeitungen zu verhindern.',
+'protectedpagetext' => 'Diese Seite wurde geschützt, um Bearbeitungen sowie andere Aktionen zu verhindern.',
 'viewsourcetext' => 'Du kannst den Quelltext dieser Seite betrachten und kopieren:',
 'viewyourtext' => "Du kannst den Quelltext '''deiner Bearbeitung''' dieser Seite betrachten und kopieren:",
 'protectedinterface' => 'Diese Seite enthält Text für die Benutzeroberfläche der Software auf diesem Wiki und ist geschützt, um Missbrauch vorzubeugen.
@@ -840,7 +841,7 @@ Vergiss nicht, deine [[Special:Preferences|Einstellungen]] für dieses Wiki anzu
 'gotaccount' => "Du hast bereits ein Benutzerkonto? '''$1'''.",
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => 'Die Anmeldedaten vergessen?',
-'createaccountmail' => 'Benutzerkonto anlegen (mit Passwortzusendung)',
+'createaccountmail' => 'Per E-Mail',
 'createaccountreason' => 'Grund:',
 'badretype' => 'Die beiden Passwörter stimmen nicht überein.',
 'userexists' => 'Dieser Benutzername ist schon vergeben.
@@ -1528,7 +1529,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'youremail' => 'E-Mail-Adresse:',
 'username' => 'Benutzername:',
 'uid' => 'Benutzerkennung:',
-'prefs-memberingroups' => 'Mitglied der {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}:',
+'prefs-memberingroups' => 'Mitglied der {{PLURAL:$1|Gruppe|Gruppen}}:',
 'prefs-memberingroups-type' => '$2',
 'prefs-registration' => 'Anmeldezeitpunkt:',
 'prefs-registration-date-time' => '$2, $3 Uhr',
@@ -1967,7 +1968,7 @@ Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werd
 
 # Special:UploadStash
 'uploadstash' => 'Vorabspeicherung beim Hochladen',
-'uploadstash-summary' => 'Diese Seite ermöglicht den Zugriff auf Dateien, die hochgeladen wurden, bzw. gerade hochgeladen werden, aber noch nicht auf dem Wiki publiziert wurden. Diese Dateien sind, der hochladende Benutzer ausgenommen, noch nicht öffentlich einsehbar.',
+'uploadstash-summary' => 'Diese Seite ermöglicht den Zugriff auf Dateien, die hochgeladen wurden, bzw. gerade hochgeladen werden, aber noch nicht auf dem Wiki publiziert wurden. Die Dateien sind ausschließlich für den hochladenden Benutzer einsehbar.',
 'uploadstash-clear' => 'Die vorab gespeicherten Dateien entfernen',
 'uploadstash-nofiles' => 'Es sind keine vorab gespeicherten Dateien vorhanden.',
 'uploadstash-badtoken' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil deine Sitzungsdaten abgelaufen sind. Bitte versuche es erneut.',
@@ -2305,7 +2306,9 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'linksearch-pat' => 'Suchmuster:',
 'linksearch-ns' => 'Namensraum:',
 'linksearch-ok' => 'Suchen',
-'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Standard ist http, falls kein Protokoll angegeben ist.)',
+'linksearch-text' => 'Es können Wildcards wie „*.wikipedia.org“ verwendet werden.
+Es muss mindestens eine Top-Level-Domain wie „*.org“ angegeben werden.<br />
+Unterstützte Protokolle: <code>$1</code> (falls kein Protokoll angegeben ist, wird standardmäßig http:// verwendet).',
 'linksearch-line' => '$1 ist verlinkt von $2',
 'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
 
@@ -2318,7 +2321,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 # Special:ActiveUsers
 'activeusers' => 'Aktive Benutzer',
 'activeusers-intro' => 'Dies ist eine Liste von Benutzern, die innerhalb {{PLURAL:$1|des letzten Tages|der letzten $1 Tage}} Aktivitäten aufwiesen.',
-'activeusers-count' => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}} in den {{PLURAL:$3|letzten 24 Stunden|vergangenen $3 Tagen}}',
+'activeusers-count' => '$1 {{PLURAL:$1|Aktion|Aktionen}} in den {{PLURAL:$3|letzten 24 Stunden|vergangenen $3 Tagen}}',
 'activeusers-from' => 'Zeige Benutzer ab:',
 'activeusers-hidebots' => 'Bots ausblenden',
 'activeusers-hidesysops' => 'Administratoren ausblenden',
@@ -2395,7 +2398,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'watchnologintext' => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste bearbeiten zu können.',
 'addwatch' => 'Zur Beobachtungsliste hinzufügen',
 'addedwatchtext' => 'Die Seite „[[:$1]]“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
-Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet und die Seite wird in der [[Special:RecentChanges|Liste der letzten Änderungen]] in Fettschrift angezeigt.',
+Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet.',
 'removewatch' => 'Von der Beobachtungsliste entfernen',
 'removedwatchtext' => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch' => 'Beobachten',
@@ -2534,9 +2537,9 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-locked-access' => "Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen der Seite '''„$1“:'''",
 'protect-cascadeon' => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, welche durch die Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}. Der Seitenschutzstatus dieser Seite kann geändert werden, dies hat jedoch keinen Einfluss auf die Kaskadensperre:',
 'protect-default' => 'Alle Benutzer',
-'protect-fallback' => 'Es wird die „$1“-Berechtigung benötigt.',
-'protect-level-autoconfirmed' => 'Sperrung für neue und nicht registrierte Benutzer',
-'protect-level-sysop' => 'Nur Administratoren',
+'protect-fallback' => 'Nur Benutzern mit der „$1“-Berechtigung erlauben.',
+'protect-level-autoconfirmed' => 'Nur automatisch bestätigten Benutzern erlauben',
+'protect-level-sysop' => 'Nur Administratoren erlauben',
 'protect-summary-cascade' => 'kaskadierend',
 'protect-expiring' => 'bis $2, $3 Uhr (UTC)',
 'protect-expiring-local' => 'bis $1',
@@ -2725,7 +2728,7 @@ Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperr
 'ipb-unblock' => 'IP-Adresse/Benutzer freigeben',
 'ipb-blocklist' => 'Alle aktuellen Sperren anzeigen',
 'ipb-blocklist-contribs' => 'Benutzerbeiträge von „$1“',
-'unblockip' => 'IP-Adresse freigeben',
+'unblockip' => 'Benutzer freigeben',
 'unblockiptext' => 'Mit diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.',
 'ipusubmit' => 'Freigeben',
 'unblocked' => '[[User:$1|$1]] wurde freigegeben',
@@ -2827,22 +2830,22 @@ Siehe die [[Special:BlockList|Liste der gesperrten IP-Adressen und Benutzernamen
 'movepagetext' => "Mit untenstehendem Formular kannst du eine Seite umbenennen, indem du sie mitsamt allen Versionen auf einen neuen Titel verschiebst.
 Der alte Titel wird danach zum neuen weiterleiten.
 Du kannst Weiterleitungen, die auf den Originaltitel verlinken, automatisch korrigieren lassen.
-Stelle sicher, dass du im Anschluss alle [[Special:DoubleRedirects|doppelten]] oder [[Special:BrokenRedirects|kaputten Weiterleitungen]] überprüfst.
+Stelle sicher, dass du im Anschluss alle [[Special:DoubleRedirects|doppelten]] oder [[Special:BrokenRedirects|defekten Weiterleitungen]] überprüfst.
 Du bist dafür verantwortlich, dass Links weiterhin auf das korrekte Ziel verweisen.
 
-Die Seite wird '''nicht''' verschoben, sofern es bereits eine Seite mit dem vorgesehenen Titel gibt, es sei denn, diese ist leer oder eine Weiterleitung ohne Versionsgeschichte.
-Dies bedeutet, dass du die Umbenennung rückgängig machen kannst, sofern du einen Fehler gemacht hast. Du kannst hingegen keine Seite überschreiben.
+Die Seite wird '''nicht''' verschoben, sofern es bereits eine Seite mit dem vorgesehenen Titel gibt, es sei denn, diese eine Weiterleitung ohne Versionsgeschichte.
+Dies bedeutet, dass du die Umbenennung rückgängig machen kannst, sofern du einen Fehler gemacht hast. Du kannst hingegen keine existierende Seite überschreiben.
 
 '''Warnung!'''
 Die Verschiebung kann weitreichende und unerwartete Folgen für häufig besuchte Seiten haben.
 Du solltest daher die Konsequenzen verstanden haben, bevor du jetzt fortfährst.",
 'movepagetext-noredirectfixer' => "Mit untenstehendem Formular kannst du eine Seite umbenennen, indem du sie mitsamt allen Versionen auf einen neuen Titel verschiebst.
 Der alte Titel wird danach zum neuen weiterleiten.
-Stelle sicher, dass du im Anschluss alle [[Special:DoubleRedirects|doppelten]] oder [[Special:BrokenRedirects|kaputten Weiterleitungen]] überprüfst.
+Stelle sicher, dass du im Anschluss alle [[Special:DoubleRedirects|doppelten]] oder [[Special:BrokenRedirects|defekten Weiterleitungen]] überprüfst.
 Du bist dafür verantwortlich, dass Links weiterhin auf das korrekte Ziel verweisen.
 
-Die Seite wird '''nicht''' verschoben, sofern es bereits eine Seite mit dem vorgesehenen Titel gibt, es sei denn, diese ist leer oder eine Weiterleitung ohne Versionsgeschichte.
-Dies bedeutet, dass du die Umbenennung rückgängig machen kannst, sofern du einen Fehler gemacht hast. Du kannst hingegen keine Seite überschreiben.
+Die Seite wird '''nicht''' verschoben, sofern es bereits eine Seite mit dem vorgesehenen Titel gibt, es sei denn, diese ist eine Weiterleitung ohne Versionsgeschichte.
+Dies bedeutet, dass du die Umbenennung rückgängig machen kannst, sofern du einen Fehler gemacht hast. Du kannst hingegen keine existierende Seite überschreiben.
 
 '''Warnung!'''
 Die Verschiebung kann weitreichende und unerwartete Folgen für häufig besuchte Seiten haben.
@@ -3004,7 +3007,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-noarticle' => 'Es wurde keine zu importierende Seite angegeben!',
 'import-nonewrevisions' => 'Alle Versionen wurden bereits zu einem früheren Zeitpunkt importiert.',
 'xml-error-string' => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
-'import-upload' => 'XML-Daten importieren',
+'import-upload' => 'XML-Dateien importieren',
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
 'import-invalid-interwiki' => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 'import-error-edit' => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.',
@@ -3176,8 +3179,8 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-length' => 'Seitenlänge (in Byte)',
 'pageinfo-article-id' => 'Seitenkennnummer',
 'pageinfo-robot-policy' => 'Suchmaschinenstatus',
-'pageinfo-robot-index' => 'Indizierbar',
-'pageinfo-robot-noindex' => 'Nicht indizierbar',
+'pageinfo-robot-index' => 'Indexierbar',
+'pageinfo-robot-noindex' => 'Nicht indexierbar',
 'pageinfo-views' => 'Anzahl der Seitenaufrufe',
 'pageinfo-watchers' => 'Anzahl der Beobachter der Seite',
 'pageinfo-redirects-name' => 'Weiterleitungen zu dieser Seite',
@@ -3892,6 +3895,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-variables' => 'Erweiterungen mit Variablen',
 'version-antispam' => 'Spamschutzerweiterungen',
 'version-skins' => 'Benutzeroberflächen',
+'version-api' => 'API-Erweiterungen',
 'version-other' => 'Andere Erweiterungen',
 'version-mediahandlers' => 'Mediennutzungserweiterungen',
 'version-hooks' => "Schnittstellen ''(Hooks)''",
@@ -3951,7 +3955,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'specialpages-group-highuse' => 'Häufig benutzte Seiten',
 'specialpages-group-pages' => 'Seitenlisten',
 'specialpages-group-pagetools' => 'Seitenwerkzeuge',
-'specialpages-group-wiki' => 'Systemdaten und Werkzeuge',
+'specialpages-group-wiki' => 'Daten und Werkzeuge',
 'specialpages-group-redirects' => 'Weiterleitende Spezialseiten',
 'specialpages-group-spam' => 'Spam-Werkzeuge',
 

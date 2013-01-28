@@ -562,7 +562,7 @@ Forespørgsel: $2',
 'viewsource-title' => 'Se kildekoden til $1',
 'actionthrottled' => 'Begrænsning af handling',
 'actionthrottledtext' => 'For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.',
-'protectedpagetext' => 'Denne side er skrivebeskyttet.',
+'protectedpagetext' => 'Denne side er blevet beskyttet, for at forhindre redigering eller andre handlinger.',
 'viewsourcetext' => 'Du kan se og kopiere kildekoden til siden:',
 'viewyourtext' => "Du kan se og kopiere kildekoden for '''dine redigeringer''' til denne side:",
 'protectedinterface' => 'Denne side indeholder teksten i brugergrænsefladen til softwaren på denne wiki, og er beskyttet for at forhindre misbrug.
@@ -914,9 +914,10 @@ Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret de
 '''OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD UDEN TILLADELSE!'''",
 'longpageerror' => "'''Fejl: Teksten, som du ville gemme, er {{PLURAL:$1|en kilobyte|$1 kilobytes}} stor, hvilket er mere end det tilladte maksimum på {{PLURAL:$2|en kilobyte|$2 kilobytes}}.'''
 Det er ikke muligt at gemme den.",
-'readonlywarning' => "'''ADVARSEL: Databasen er låst på grund af vedligeholdelse, så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.'''
+'readonlywarning' => "'''Advarsel: Databasen er låst på grund af vedligeholdelse, så du kan ikke gemme dine ændringer lige nu.'''
+Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.
 
-Systemadministratoren som låste databasen, gav denne forklaring: $1",
+Administratoren som låste databasen, gav denne forklaring: $1",
 'protectedpagewarning' => "'''ADVARSEL: Denne side er skrivebeskyttet, så kun administratorer kan redigere den.'''<br />
 Den seneste logpost vises nedenfor:",
 'semiprotectedpagewarning' => "'''Bemærk: Siden er låst, så kun registrerede brugere kan ændre den.'''
@@ -1661,6 +1662,20 @@ Det er ikke tilladt at uploade Javafiler, da det kan forårsage, at sikkerhedsre
 'watchthisupload' => 'Overvåg filen',
 'filewasdeleted' => 'En fil med dette navn er tidligere uploadet og i mellemtiden slettet igen. Kontroller først indførslen i $1, før du gemmer filen.',
 'filename-bad-prefix' => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
+'filename-prefix-blacklist' => ' #<!-- efterlad denne linje præcis som den er --> <pre>
+# Syntax is as follows:
+#   * Alt fra at "#" tegn til slutningen af linjen er en kommentar
+#   * Hver ikke tom linje er et præfiks for typiske filnavne automatisk tildelt af digitalkameraer
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # nogen mobil telefoner
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # div.
+ #</pre> <!-- efterlad denne linje præcis som den er -->',
 'upload-success-subj' => 'Oplægningen er gennemført',
 'upload-success-msg' => 'Din upload fra [$2] lykkedes. Den er tilgængelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Upload problem',
@@ -2089,7 +2104,7 @@ Understøttede protokoller: <code>$1</code> (bruger automatisk http:// hvis der 
 # Special:ActiveUsers
 'activeusers' => 'Liste over aktive brugere',
 'activeusers-intro' => 'Dette er en liste over brugere, som har haft en eller anden form for aktivitet inden for {{PLURAL:$1|den|de}} seneste {{PLURAL:$1|dag|$1 dage}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|redigering|redigeringer}} i {{PLURAL:$3|det seneste døgn|de seneste $3 dage}}',
+'activeusers-count' => '$1 {{PLURAL:$1|handling|handlinger}} i {{PLURAL:$3|det seneste døgn|de seneste $3 dage}}',
 'activeusers-from' => 'Vis brugere som starter med:',
 'activeusers-hidebots' => 'Skjul robotter',
 'activeusers-hidesysops' => 'Skjul administratorer',
@@ -2165,7 +2180,8 @@ Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]],
 'watchnologin' => 'Ikke logget på',
 'watchnologintext' => 'Du skal være [[Special:UserLogin|logget på]] for at kunne ændre din overvågningsliste.',
 'addwatch' => 'Tilføj til overvågningsliste',
-'addedwatchtext' => "Siden \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Special:RecentChanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
+'addedwatchtext' => 'Siden "[[:$1]]" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]].
+Fremtidige ændringer af denne side og dens tilknyttede diskussionsside vil blive vist der.',
 'removewatch' => 'Fjern fra overvågningsliste',
 'removedwatchtext' => 'Siden "[[:$1]]" er blevet fjernet fra [[Special:Watchlist||din overvågningsliste]].',
 'watch' => 'Overvåg',
@@ -2309,9 +2325,9 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'protect-locked-access' => "Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-cascadeon' => 'Denne side er del af en nedarvet skrivebeskyttelse. Wen er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse" Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke kaskadespærringen:',
 'protect-default' => 'Tillad alle brugere',
-'protect-fallback' => 'Kræver "$1"-tilladelse',
-'protect-level-autoconfirmed' => 'Spær for nye og uregistrerede brugere',
-'protect-level-sysop' => 'Kun administratorer',
+'protect-fallback' => 'Tillad kun brugere med "$1" adgang',
+'protect-level-autoconfirmed' => 'Tillad kun autobekræftede brugere',
+'protect-level-sysop' => 'Tillad kun administratorer',
 'protect-summary-cascade' => 'nedarvende',
 'protect-expiring' => 'til $1 (UTC)',
 'protect-expiring-local' => 'udløber $1',
@@ -3659,7 +3675,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'specialpages-group-highuse' => 'Højt profilerede sider',
 'specialpages-group-pages' => 'Sidelister',
 'specialpages-group-pagetools' => 'Sideværktøjer',
-'specialpages-group-wiki' => 'Wikidata og værktøjer',
+'specialpages-group-wiki' => 'Data og værktøjer',
 'specialpages-group-redirects' => 'Specialsider der viderestiller',
 'specialpages-group-spam' => 'Spamværktøjer',
 
@@ -3753,9 +3769,9 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-move-move_redir-noredirect' => '$1 flyttede siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
 'logentry-patrol-patrol' => '$1 markerede version $4 af siden $3 som patruljeret',
 'logentry-patrol-patrol-auto' => '$1 markerede automatisk version $4 af siden $3 som patruljeret',
-'logentry-newusers-newusers' => '$1 oprettede en brugerkonto',
-'logentry-newusers-create' => '$1 oprettede en brugerkonto',
-'logentry-newusers-create2' => '$1 oprettede brugerkontoen $3',
+'logentry-newusers-newusers' => 'Brugerkontoen $1 blev oprettet',
+'logentry-newusers-create' => 'Brugerkontoen $1 blev oprettet',
+'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
 'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
 'newuserlog-byemail' => 'kodeord tilsendt pr. e-mail',
 

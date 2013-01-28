@@ -184,8 +184,8 @@ $messages = array(
 'newwindow' => '(buka ing jendhéla anyar)',
 'cancel' => 'Batalna',
 'moredotdotdot' => 'Liyané...',
-'mypage' => 'Kacaku',
-'mytalk' => 'Gunemanku',
+'mypage' => 'Kaca',
+'mytalk' => 'Wicara',
 'anontalk' => 'Dhiskusi IP puniki',
 'navigation' => 'Pandhu Arah',
 'and' => '&#32;Lan',
@@ -208,7 +208,7 @@ $messages = array(
 'vector-action-protect' => 'Reksa',
 'vector-action-undelete' => 'Batalna pambusakan',
 'vector-action-unprotect' => 'Owahi pangreksan',
-'vector-simplesearch-preference' => 'Aktifaken pamrayogi pamadosan ingkang kasampurnakaken (namung kulit vektor)',
+'vector-simplesearch-preference' => 'Urubaké wilah panggolèkan ringkes (namung kulit Vèktor)',
 'vector-view-create' => 'Gawé',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Sajarah kaca',
@@ -416,7 +416,7 @@ Ora ana alesané.",
 'actionthrottled' => 'Tindakan diwatesi',
 'actionthrottledtext' => 'Minangka sawijining pepesthèn anti-spam, panjenengan diwatesi nglakoni tindhakan iki sing cacahé kakèhan ing wektu cendhak.
 Mangga dicoba manèh ing sawetara menit.',
-'protectedpagetext' => 'Kaca iki dikunci supaya ora disunting.',
+'protectedpagetext' => 'Kaca iki wis digembok supaya ora bisa disunting lan diapa-apakaké.',
 'viewsourcetext' => 'Panjenengan bisa mirsani utawa nulad sumber kaca iki:',
 'viewyourtext' => "Sampéyan bisa ndelok lan nyalin sumber '''suntingan Sampéyan''' nèng kaca iki:",
 'protectedinterface' => 'Kaca iki isiné tèks antarmuka sing dienggo software lan wis dikunci kanggo menghindari kasalahan.',
@@ -676,7 +676,7 @@ Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjla
 utawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} nyunting kaca iki]</span>.',
 'noarticletext-nopermission' => 'Saiki ora ana tèks ing kaca iki. 
 Sampéyan bisa [[Special:Search/{{PAGENAME}}|nggolèki judhul kaca iki]] nèng kaca liya, 
-utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|kaca={{urlencode:{{FULLPAGENAME}}}}}} nggolèki log sing kaitan].',
+utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|kaca={{urlencode:{{FULLPAGENAME}}}}}} nggolèki log sing kaitan]</span>, nanging Sampéyan ora nduwèni idin nggawé kaca iki.',
 'missing-revision' => 'Benahan #$1 saka kaca ajeneng "{{PAGENAME}}" ora ana.
 
 Iki biasané kasebabaké pranala riwayat sing kedaluwarsa saka kaca kuwi wis dibusak.
@@ -1055,7 +1055,7 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 
 # Preferences page
 'preferences' => 'Preferensi (pilihan)',
-'mypreferences' => 'Préferènsiku',
+'mypreferences' => 'Préferènsi',
 'prefs-edits' => 'Gunggungé suntingan:',
 'prefsnologin' => 'Durung mlebu log',
 'prefsnologintext' => 'Panjenengan kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}| mlebu log]</span> kanggo ngowahin préferènsi njenengan.',
@@ -1963,7 +1963,7 @@ Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi
 
 # Watchlist
 'watchlist' => 'Daftar artikel pilihan',
-'mywatchlist' => 'Daftar pangawasanku',
+'mywatchlist' => 'Daftar pangawasan',
 'watchlistfor2' => 'Kanggo $1 $2',
 'nowatchlist' => 'Daftar pangawasan panjenengan kosong.',
 'watchlistanontext' => 'Mangga $1 kanggo mirsani utawa nyunting daftar pangawasan panjenengan.',
@@ -2215,7 +2215,7 @@ $1',
 # Contributions
 'contributions' => 'Sumbangan panganggo',
 'contributions-title' => 'Kontribusi panganggo kanggo $1',
-'mycontris' => 'Kontribusiku',
+'mycontris' => 'Kontribusi',
 'contribsub2' => 'Kanggo $1 ($2)',
 'nocontribs' => 'Ora ditemokaké owah-owahan sing cocog karo kritéria kasebut iku.',
 'uctop' => ' (dhuwur)',
@@ -2256,7 +2256,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 pangalihan-pangalihan',
 'whatlinkshere-hidetrans' => '$1 transklusi',
 'whatlinkshere-hidelinks' => 'pranala-pranala $1',
-'whatlinkshere-hideimages' => '$1 pranala-pranala berkas',
+'whatlinkshere-hideimages' => '$1 pranala berkas',
 'whatlinkshere-filters' => 'Filter-filter',
 
 # Block/unblock
@@ -2695,11 +2695,16 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 
 # Info page
 'pageinfo-title' => 'Inpormasi kanggo "$1"',
-'pageinfo-header-edits' => 'Suntingan',
+'pageinfo-header-edits' => 'Riwayat suntingan',
 'pageinfo-views' => 'Cacahing delokan',
-'pageinfo-watchers' => 'Cacahing pangawas',
-'pageinfo-edits' => 'Cacahing suntingan',
-'pageinfo-authors' => 'Cacahing beda-beda panganggit',
+'pageinfo-watchers' => 'Cacahé pangawas kaca',
+'pageinfo-lasttime' => 'Tanggal suntingan pungkasan',
+'pageinfo-edits' => 'Cacahé kabèh suntingan',
+'pageinfo-authors' => 'Cacahé kabèh panganggit sing bédha-bédha.',
+'pageinfo-recent-edits' => 'Cacahé suntingan saiki (ing $1 kapungkur)',
+'pageinfo-recent-authors' => 'Cacahé panganggit sing bédha-bédha saiki',
+'pageinfo-magic-words' => '{{PLURAL:$1|Tembung|Tembung}} mujarab ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Katégori|Katégori}} kadhelikaké ($1)',
 
 # Patrolling
 'markaspatrolleddiff' => 'Tandhanana wis dipatroli',
@@ -3472,9 +3477,9 @@ Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka lan
 'logentry-move-move_redir-noredirect' => '$1 mindhahaké kaca $3 nèng $4 ngliwati pangalihan tanpa nginggalaké pangalihan',
 'logentry-patrol-patrol' => '$1 nandhai benahan $4 saka kaca $3 kaawasi',
 'logentry-patrol-patrol-auto' => '$1 otomatis nandhai benahan $4 saka kaca $3 kaawasai',
-'logentry-newusers-newusers' => '$1 nggawé akun panganggo',
-'logentry-newusers-create' => '$1 nggawé akun panganggo',
-'logentry-newusers-create2' => '$1 nggawé akun panganggo $3',
+'logentry-newusers-newusers' => 'Akun panganggo $1 digawé',
+'logentry-newusers-create' => 'Akun panganggo $1 digawé',
+'logentry-newusers-create2' => 'Akun panganggo $3 digawé déning $1',
 'logentry-newusers-autocreate' => 'Akun $1 digawé otomatis',
 'newuserlog-byemail' => 'tembung sandhi wis dikirim liwat e-mail',
 

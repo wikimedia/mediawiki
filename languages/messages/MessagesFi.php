@@ -320,15 +320,15 @@ $messages = array(
 'tog-hidepatrolled' => 'Piilota tarkastetut muutokset tuoreet muutokset -listasta',
 'tog-newpageshidepatrolled' => 'Piilota tarkastetut sivut uusien sivujen listalta',
 'tog-extendwatchlist' => 'Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset eikä vain viimeisimmät',
-'tog-usenewrc' => 'Käytä kehittynyttä tuoreet muutokset -listausta (JavaScript)',
+'tog-usenewrc' => 'Ryhmittele muutokset sivukohtaisesti muutoslistauksissa (JavaScript)',
 'tog-numberheadings' => 'Numeroi otsikot',
 'tog-showtoolbar' => 'Näytä työkalupalkki (JavaScript)',
 'tog-editondblclick' => 'Muokkaa sivuja kaksoisnapsautuksella (JavaScript)',
 'tog-editsection' => 'Näytä muokkauslinkit jokaisen osion yläpuolella',
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla otsikkoa hiiren oikealla painikkeella (JavaScript)',
-'tog-showtoc' => 'Näytä sisällysluettelo sivuille, joilla yli 3 otsikkoa',
-'tog-rememberpassword' => 'Muista kirjautumiseni tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})',
-'tog-watchcreations' => 'Lisää luomani sivut tarkkailulistalleni',
+'tog-showtoc' => 'Näytä sisällysluettelo sivuille, joilla on yli 3 otsikkoa',
+'tog-rememberpassword' => 'Muista kirjautuminen tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})',
+'tog-watchcreations' => 'Lisää luomani sivut ja tallentamani tiedostot tarkkailulistalleni',
 'tog-watchdefault' => 'Lisää muokkaamani sivut tarkkailulistalleni',
 'tog-watchmoves' => 'Lisää siirtämäni sivut tarkkailulistalleni',
 'tog-watchdeletion' => 'Lisää poistamani sivut tarkkailulistalleni',
@@ -336,8 +336,8 @@ $messages = array(
 'tog-previewontop' => 'Näytä esikatselu muokkauskentän yläpuolella',
 'tog-previewonfirst' => 'Näytä esikatselu heti, kun muokkaus aloitetaan',
 'tog-nocache' => 'Älä tallenna sivuja selaimen välimuistiin',
-'tog-enotifwatchlistpages' => 'Lähetä sähköpostiviesti tarkkailulistallani olevien sivujen muutoksista',
-'tog-enotifusertalkpages' => 'Lähetä sähköpostiviesti, kun käyttäjäsivun keskustelusivu muuttuu',
+'tog-enotifwatchlistpages' => 'Lähetä sähköpostiviesti tarkkailulistallani olevien sivujen muokkauksista',
+'tog-enotifusertalkpages' => 'Lähetä sähköpostiviesti oman keskustelusivun muokkauksista',
 'tog-enotifminoredits' => 'Lähetä sähköpostiviesti myös pienistä muokkauksista',
 'tog-enotifrevealaddr' => 'Näytä sähköpostiosoitteeni muille lähetetyissä ilmoituksissa',
 'tog-shownumberswatching' => 'Näytä sivua tarkkailevien käyttäjien määrä',
@@ -425,7 +425,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Luokka|Luokat}}',
-'category_header' => "Luokan ''$1'' sisältämät sivut",
+'category_header' => 'Sivut, jotka ovat luokassa $1',
 'subcategories' => 'Alaluokat',
 'category-media-header' => 'Tiedostot, jotka ovat luokassa $1',
 'category-empty' => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
@@ -597,7 +597,7 @@ $1',
 'thisisdeleted' => 'Näytä tai palauta $1.',
 'viewdeleted' => 'Näytä $1?',
 'restorelink' => '{{PLURAL:$1|yksi poistettu muokkaus|$1 poistettua muokkausta}}',
-'feedlinks' => 'Uutissyötteet:',
+'feedlinks' => 'Syötteet:',
 'feed-invalid' => 'Virheellinen syötetyyppi.',
 'feed-unavailable' => 'Verkkosyötteet eivät ole saatavilla.',
 'site-rss-feed' => '$1-RSS-syöte',
@@ -671,10 +671,10 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 'cannotdelete' => 'Sivun tai tiedoston ”$1” poisto epäonnistui.
 Joku muu on saattanut poistaa sen.',
 'cannotdelete-title' => 'Sivua $1 ei voi poistaa',
-'delete-hook-aborted' => 'Laajennuskoohdi esti muokkauksen antamatta syytä.',
+'delete-hook-aborted' => 'Laajennuskoodi esti poiston antamatta syytä.',
 'badtitle' => 'Virheellinen otsikko',
 'badtitletext' => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
-'perfcached' => 'Tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
+'perfcached' => 'Nämä tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
 'perfcachedts' => 'Nämä tiedot ovat välimuistista, ja ne on päivitetty viimeksi $1. Välimuistissa on saatavilla enintään {{PLURAL:$4|yksi tulos|$4 tulosta}}.',
 'querypage-no-updates' => 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
 'wrong_wfQuery_params' => 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
@@ -704,7 +704,7 @@ Syynä on: ''$2''.",
 Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.',
 'invalidtitle-knownnamespace' => 'Virheellinen sivunimi, nimiavaruus "$2" ja teksti "$3"',
 'invalidtitle-unknownnamespace' => 'Virheellinen sivunimi, tuntematon nimiavaruus numero $1 ja teksti $2',
-'exception-nologin' => 'Et ole kirjautuneena',
+'exception-nologin' => 'Et ole kirjautunut sisään',
 'exception-nologin-text' => 'Tämä sivu tai toiminto edellyttää sisäänkirjautumista tähän wikiin.',
 
 # Virus scanner
@@ -1901,7 +1901,7 @@ Jos suodatusperusteena käytetään käyttäjää, tuloksissa näytetään vain 
 # File description page
 'file-anchor-link' => 'Tiedosto',
 'filehist' => 'Tiedoston historia',
-'filehist-help' => 'Päiväystä napsauttamalla näet millainen tiedosto oli sillä ajan hetkellä.',
+'filehist-help' => 'Päiväystä napsauttamalla näet, millainen tiedosto oli kyseisellä hetkellä.',
 'filehist-deleteall' => 'poista kaikki',
 'filehist-deleteone' => 'poista tämä',
 'filehist-revert' => 'palauta',
@@ -2189,7 +2189,7 @@ Tuetut protokollat: <code>$1</code> (oletuksena on <code>http://</code>, jos pro
 # Special:ActiveUsers
 'activeusers' => 'Aktiivisten käyttäjien lista',
 'activeusers-intro' => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
-'activeusers-count' => '$1 {{PLURAL:$1|muokkaus|muokkausta}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
+'activeusers-count' => '$1 {{PLURAL:$1|toiminto|toimintoa}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
 'activeusers-from' => 'Näytä käyttäjät alkaen',
 'activeusers-hidebots' => 'Piilota botit',
 'activeusers-hidesysops' => 'Piilota ylläpitäjät',
@@ -2263,7 +2263,8 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchnologin' => 'Et ole kirjautunut sisään',
 'watchnologintext' => 'Sinun pitää [[Special:UserLogin|kirjautua sisään]], jotta voisit käyttää tarkkailulistaasi.',
 'addwatch' => 'Lisää tarkkailulistalle',
-'addedwatchtext' => "Sivu '''[[:$1]]''' on lisätty [[Special:Watchlist|tarkkailulistallesi]]. Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä. Sivu on '''lihavoitu''' [[Special:RecentChanges|tuoreiden muutosten listassa]], jotta huomaisit sen helpommin. Jos haluat myöhemmin poistaa sivun tarkkailulistaltasi, napsauta linkkiä ''lopeta tarkkailu'' sivun reunassa.",
+'addedwatchtext' => "Sivu '''[[:$1]]''' on lisätty [[Special:Watchlist|tarkkailulistallesi]].
+Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä.",
 'removewatch' => 'Poista tarkkailulistalta',
 'removedwatchtext' => "Sivu '''[[:$1]]''' on poistettu [[Special:Watchlist|tarkkailulistaltasi]].",
 'watch' => 'Tarkkaile',
@@ -2279,7 +2280,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchmethod-recent' => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
 'watchmethod-list' => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
 'watchlistcontains' => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
-'iteminvalidname' => 'Sivun $1 kanssa oli ongelmia! Sivun nimessä on vikaa.',
+'iteminvalidname' => 'Sivun $1 kanssa oli ongelmia. Sivun nimessä on vikaa.',
 'wlnote' => "Alla on {{PLURAL:$1|yksi muutos|'''$1''' muutosta}} viimeisen {{PLURAL:$2|tunnin|'''$2''' tunnin}} ajalta $3 kello $4 asti.",
 'wlshowlast' => 'Näytä viimeiset $1 tuntia tai $2 päivää, $3',
 'watchlist-options' => 'Tarkkailulistan asetukset',
@@ -2292,7 +2293,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'enotif_mailer' => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
 'enotif_reset' => 'Merkitse kaikki sivut kerralla nähdyiksi',
 'enotif_newpagetext' => 'Tämä on uusi sivu.',
-'enotif_impersonal_salutation' => '{{SITENAME}}-käyttäjä',
+'enotif_impersonal_salutation' => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä',
 'changed' => 'muuttanut sivua',
 'created' => 'luonut sivun',
 'enotif_subject' => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
@@ -2402,9 +2403,9 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-locked-access' => "Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
 'protect-cascadeon' => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.',
 'protect-default' => 'Salli kaikki käyttäjät',
-'protect-fallback' => 'Vaadi $1-oikeus',
-'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
-'protect-level-sysop' => 'Vain ylläpitäjät',
+'protect-fallback' => 'Salli vain käyttäjät, joilla on oikeus $1',
+'protect-level-autoconfirmed' => 'Estä uudet ja kirjautumattomat käyttäjät',
+'protect-level-sysop' => 'Salli vain ylläpitäjät',
 'protect-summary-cascade' => 'laajennettu',
 'protect-expiring' => 'vanhentuu $1 (UTC)',
 'protect-expiring-local' => 'vanhentuu $1',
@@ -2430,10 +2431,10 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'pagesize' => 'tavua',
 
 # Restrictions (nouns)
-'restriction-edit' => 'muokkaus',
-'restriction-move' => 'siirto',
-'restriction-create' => 'luonti',
-'restriction-upload' => 'tiedostotallennus',
+'restriction-edit' => 'Muokkaus',
+'restriction-move' => 'Siirto',
+'restriction-create' => 'Luonti',
+'restriction-upload' => 'Tiedostotallennus',
 
 # Restriction levels
 'restriction-level-sysop' => 'täysin suojattu',
@@ -2693,7 +2694,7 @@ Voit päivittää sivuun viittaavat ohjaukset automaattisesti ohjaamaan uudelle 
 Jos et halua tätä tehtävän automaattisesti, muista tehdä tarkistukset [[Special:DoubleRedirects|kaksinkertaisten]] tai [[Special:BrokenRedirects|rikkinäisten]] ohjausten varalta.
 Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.
 
-Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa.
+Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on ohjaus, jolla ei ole muokkaushistoriaa.
 Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle.
 
 Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, että tiedät seuraukset ennen kuin siirrät sivun.",
@@ -3017,7 +3018,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',
-'pageinfo-not-current' => 'Tiedot voidaan näyttää vain sivun viimeisimmälle versiolle.',
+'pageinfo-not-current' => 'Tätä tietoa on mahdoton näyttää vanhoille versiolle.',
 'pageinfo-header-basic' => 'Perustiedot',
 'pageinfo-header-edits' => 'Muutoshistoria',
 'pageinfo-header-restrictions' => 'Sivun suojaus',
@@ -3777,7 +3778,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'specialpages-group-highuse' => 'Sivujen käyttöaste',
 'specialpages-group-pages' => 'Sivulistaukset',
 'specialpages-group-pagetools' => 'Sivutyökalut',
-'specialpages-group-wiki' => 'Wikitiedot ja työkalut',
+'specialpages-group-wiki' => 'Tiedot ja työkalut',
 'specialpages-group-redirects' => 'Ohjaavat toimintosivut',
 'specialpages-group-spam' => 'Mainostenpoistotyökalut',
 
@@ -3928,7 +3929,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-nomodule' => 'Sisäinen virhe: tallennusmoduulia ei ole asetettu.',
 'api-error-ok-but-empty' => 'Sisäinen virhe: palvelimelta ei saatu vastausta.',
 'api-error-overwrite' => 'Olemassa olevan tiedoston korvaaminen ei ole sallittua.',
-'api-error-stashfailed' => 'Sisäinen virhe: välikaikaisen tiedoston tallentaminen epäonnistui.',
+'api-error-stashfailed' => 'Sisäinen virhe: Väliaikaisen tiedoston tallentaminen epäonnistui.',
 'api-error-timeout' => 'Palvelin ei vastannut odotetun ajan kuluessa.',
 'api-error-unclassified' => 'Tapahtui tuntematon virhe.',
 'api-error-unknown-code' => 'Tuntematon virhe: $1',

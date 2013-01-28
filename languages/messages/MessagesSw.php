@@ -1842,6 +1842,7 @@ Sasa unaelekeza kwa [[$2]].',
 'notargettitle' => 'Hakuna lengo',
 'pager-newer-n' => '{{PLURAL:$1|1 ya karibu zaidi|$1 ya karibu zaidi}}',
 'pager-older-n' => '{{PLURAL:$1|$1 ya zamani zaidi}}',
+'suppress' => 'Uangalizi',
 
 # Book sources
 'booksources' => 'Vyanzo vya vitabu',
@@ -1948,6 +1949,8 @@ Labda patakuwa na [[{{MediaWiki:Listgrouprights-helppage}}|maelezo mengine]] kuh
 'mailnologin' => 'Hakuna anwani wa kutuma',
 'mailnologintext' => 'Ukitaka kutuma barua pepe kwa watumiaji wengine inabidi uwe [[Special:UserLogin|umeshaingia kwenye akaunti yako]] na pia uwe na anwani ya barua pepe sahihi pale [[Special:Preferences|mapendekezo yako]].',
 'emailuser' => 'Mtumie mtumiaji huyu barua pepe',
+'emailuser-title-target' => 'Tumia barua pepe {{GENDER:$1|user}}',
+'emailuser-title-notarget' => 'Kumtumia mtumiaji barua pepe',
 'emailpage' => 'Kumtumia mtumiaji barua pepe',
 'emailpagetext' => 'Utumie fomu iliopo chini ili kutuma barua pepe kwa mtumiaji huyu.
 Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yako]] itaandikwa kwenye sanduku la anwani "Kutoka kwa" katika barua pepe, ili mtu atakayeipokea aweze kukujibu moja kwa moja.',
@@ -2184,6 +2187,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'cannotundelete' => 'Kurudisha ukurasa imeshindikana;
 huenda ikawa mtu mwingine ameurudisha tayari.',
 'undelete-header' => 'Tazama [[Special:Log/delete|kumbukumbu za ufutaji]] ili kujua kurasa zipi zilizofutwa hivi karibuni.',
+'undelete-search-title' => 'Tafuta kwenye kurasa zilizofutwa',
 'undelete-search-box' => 'Tafuta kwenye kurasa zilizofutwa',
 'undelete-search-prefix' => 'Onyesha kurasa kuanzia na:',
 'undelete-search-submit' => 'Tafuta',
@@ -2285,8 +2289,10 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'ipb-edit-dropdown' => 'Hariri sababu za kuzuia',
 'ipb-unblock-addr' => 'Acha kumzuia $1',
 'ipb-unblock' => 'Acha kumzuia mtumiaji au anwani ya IP',
+'ipb-blocklist' => 'Tazama vizuizi vilivyomo',
 'ipb-blocklist-contribs' => 'Michango ya $1',
 'unblockip' => 'Acha kuzuia mtumiaji',
+'ipusubmit' => 'Toa kizuizi hiki',
 'blocklist' => 'Watumiaji waliozuiliwa',
 'ipblocklist' => 'Watumiaji waliozuiliwa',
 'ipblocklist-legend' => 'Tafuta mtumiaji aliyezuiwa',
@@ -2312,7 +2318,7 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'block-log-flags-noemail' => 'barua pepe imezuiliwa',
 'block-log-flags-hiddenname' => 'jina la mtumiaji limefichwa',
 'ipb_already_blocked' => '"$1" tayari imeshazuiwa',
-'blockme' => 'Unizuishe',
+'blockme' => 'Nizuie',
 'proxyblocksuccess' => 'Tayari.',
 
 # Developer tools
@@ -2479,6 +2485,8 @@ Ulihafadhie katika tarakalishi yako, halafu ulipakie hapa.',
 'importnotext' => 'Tupu au bila maandishi',
 'importsuccess' => 'Kuleta kumekamilishwa!',
 'import-noarticle' => 'Hakuna kurasa ya kuingiza!',
+'import-nonewrevisions' => 'Pitio zote zilikuwa zimepakiwa hapo awali',
+'import-upload' => 'Pakia data ya XML',
 'import-token-mismatch' => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
 
@@ -2546,6 +2554,7 @@ Tafadhali jaribu tena.',
 'tooltip-diff' => 'Onyesha mabadiliko uliyofanya kwenye maandishi.',
 'tooltip-compareselectedversions' => 'Tazama tofauti baina ya mapitio mawili uliochagua ya ukurasa huu.',
 'tooltip-watch' => 'Fuatilia ukurasa huu kwenye maangalizi yako',
+'tooltip-watchlistedit-normal-submit' => 'Ondoa mada',
 'tooltip-recreate' => 'Kuanzisha ukurasa upya ingawa umekuwa umefutwa',
 'tooltip-upload' => 'Kuanza kupakia',
 'tooltip-rollback' => '"Rejesha" inarejesha (ma)sahihisho ya ukurasa huu yaliyofanyika na yule aliyeuhariri mwishoni, kwa kubofya mara moja tu.',
@@ -2567,7 +2576,12 @@ Tafadhali jaribu tena.',
 
 # Info page
 'pageinfo-title' => 'Taarifa juu ya "$1"',
-'pageinfo-header-edits' => 'Maharirio',
+'pageinfo-header-basic' => 'Maelezo ya msingi',
+'pageinfo-header-edits' => 'Historia ya hariri',
+'pageinfo-header-restrictions' => 'Ulinzi wa ukurasa',
+'pageinfo-header-properties' => 'Sifa za ukurasa',
+'pageinfo-display-title' => 'Onyesha mada',
+'pageinfo-article-id' => 'ID ya ukurasa',
 'pageinfo-watchers' => 'Idadi ya wanaofuatilia',
 'pageinfo-edits' => 'Idadi ya maharirio',
 
@@ -3169,6 +3183,7 @@ Tovuti hii inapata matatatizo wakati huu.',
 'api-error-unknown-code' => 'Hitilafu isiyojulikana: "$1".',
 'api-error-unknown-warning' => 'Ilani isiyojulikana: "$1".',
 'api-error-unknownerror' => 'Hitilafu isiyojulikana: "$1".',
+'api-error-uploaddisabled' => 'Kupakia kumelemazwa katika wiki hii.',
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|second|sekunde}}',

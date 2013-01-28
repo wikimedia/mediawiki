@@ -526,7 +526,7 @@ Wotprašenje: $2',
 'viewsource-title' => 'Žórłowy tekst za $1 sej wobhladać',
 'actionthrottled' => 'Akcije wobmjezowane',
 'actionthrottledtext' => 'Jako připrawa přećiwo spamej, je častosć wuwjedźenja tuteje akcije w krótkej dobje wobmjezowana a ty sy tutón limit překročił. Prošu spytaj za něšto mjeńšiny hišće raz.',
-'protectedpagetext' => 'Strona je přećiwo wobdźěłowanju škitana.',
+'protectedpagetext' => 'Tuta strona je přećiwo wobdźěłowanju abo druhim akcijam škitana.',
 'viewsourcetext' => 'Móžeš sej žórłowy tekst tuteje strony wobhladać a jón kopěrować:',
 'viewyourtext' => "Móžeš sej žórłowy tekst '''swojich změnow''' wobhladać a do slědowaceje strony kopěrować:",
 'protectedinterface' => 'Tuta strona wobsahuje tekst za wužiwarski powjerch softwary na tutym wikiju a je škitana, zo by so znjewužiwanje zadźěwało.
@@ -2116,10 +2116,8 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 'watchnologin' => 'Njejsy přizjewjeny.',
 'watchnologintext' => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być, zo by swoje wobkedźbowanki změnić móhł.',
 'addwatch' => 'K wobkedźbowankam přidać',
-'addedwatchtext' => "Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.
-Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować a strona so '''w tučnym pismje''' w [[Special:RecentChanges|lisćinje aktualnych změnach]] zjewi, zo by so wosnadniło ju wubrać.
-
-Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na rajtark „njewobkedźbować” horjeka na tutej stronje.",
+'addedwatchtext' => 'Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.
+Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować.',
 'removewatch' => 'Z wobkedźbowankow wotstronić',
 'removedwatchtext' => 'Strona "[[:$1]]" bu z [[Special:Watchlist|twojich wobkedźbowankow]] wotstronjena.',
 'watch' => 'wobkedźbować',
@@ -2262,9 +2260,9 @@ Hlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu
 'protect-locked-access' => "Nimaš trěbne prawa, zo by škit strony změnił. Tu widźiš aktualne škitne nastajenja za stronu'''„$1“:'''",
 'protect-cascadeon' => 'Tuta strona je tuchwilu škitana, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitane}}. Móžeš škitowy status strony změnić, to wšak wliw na kaskadowy škit nima.',
 'protect-default' => 'Wšěch wužiwarjow dowolić',
-'protect-fallback' => 'Prawo "$1" trěbne.',
-'protect-level-autoconfirmed' => 'Nowych a njeregistrowanych wužiwarjow blokować',
-'protect-level-sysop' => 'jenož administratorojo',
+'protect-fallback' => 'Jenož wužiwarjow z prawom "$1" dowolić',
+'protect-level-autoconfirmed' => 'Jenož awtomatisce wobkrućenych wužiwarjow dowolić',
+'protect-level-sysop' => 'Jenož administratorow dowolić',
 'protect-summary-cascade' => 'kaskadowacy',
 'protect-expiring' => 'spadnje $1 (UTC)',
 'protect-expiring-local' => 'płaćiwy hač do $1',

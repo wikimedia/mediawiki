@@ -50,7 +50,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'tog-showjumplinks' => 'Salangian la reng suglung a pampabilis (accessibility links) a "luksu king" (jump to)',
 'tog-uselivepreview' => 'Gumamit kang live preview (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Pabaluan mu ku ustung magpalub a blankung edit',
-'tog-watchlisthideown' => 'Isaliut mo reng alili kareng babante',
+'tog-watchlisthideown' => 'Isalikut mo reng alili kareng babanten',
 'tog-watchlisthidebots' => 'Isalikut la reng edit kareng babanten',
 'tog-watchlisthideminor' => 'Isalikut la reng mangalating edits kareng babanten',
 'tog-watchlisthideliu' => "Isalikut la reng elilan da reng talagamit a maka-log in (''edits by logged in users'') king listaan da reng babanten (''watchlist'')",
@@ -484,7 +484,7 @@ Bang mayari ing kekang pamag-login, kailangan mung mangibiling bayung password k
 'minoredit' => 'Malati yang edit ini',
 'watchthis' => 'Banten ya ing bulung a ini',
 'savearticle' => 'Isikap ya ing bulung',
-'preview' => 'I-preview',
+'preview' => '↓Ipasinag',
 'showpreview' => 'Pakit ya ing pasinag',
 'showlivepreview' => 'Kasalungsungan (live) a preview',
 'showdiff' => 'Pakit la reng miyalilan',
@@ -762,11 +762,15 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'notextmatches' => 'Alang tinud/pareu kareng bansag bulung (no page title matches)',
 'prevn' => 'minunang {{PLURAL:$1|$1}}',
 'nextn' => 'tutuking {{PLURAL:$1|$1}}',
+'prevn-title' => '↓Dati $1 {{PLURAL:$1|result|results}}',
+'nextn-title' => '↓
+Tutuking $1 {{PLURAL:$1|result|results}}',
 'shown-title' => '↓Ipakit $1 {{PLURAL:$1|bunga|ding bunga}}balang bulung',
 'viewprevnext' => 'Lon ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Atin bulung a mikilagiung \"[[:\$1]]\" keng wiking ini.'''",
 'searchmenu-new' => "↓'''Maglalang kang bulung \"[[:\$1]] keng wiking ini!'''",
 'searchhelp-url' => 'Help:Kalamnan',
+'searchprofile-articles' => '↓Kalamnan bulung',
 'searchprofile-project' => '↓Saup ampong bulung proyectu',
 'searchprofile-images' => '↓Dakalmedia',
 'searchprofile-everything' => 'Eganagana',
@@ -807,7 +811,7 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 
 # Preferences page
 'preferences' => 'Pinili',
-'mypreferences' => 'Deng pinili ku',
+'mypreferences' => '↓Deng pinili ku',
 'prefs-edits' => 'Bilang da reng edit:',
 'prefsnologin' => 'ekamaka log',
 'prefsnologintext' => 'Kailangan kang [[Special:UserLogin|maka-login]] ba mong apagana deng pinili ning talagamit (user preferences).',
@@ -1907,7 +1911,7 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 'tooltip-recreate' => 'Isubli ya ing bulung angiang mebura ne',
 'tooltip-upload' => 'Umpisan ya ing pamaglulan',
 'tooltip-rollback' => "Susubli no ning \"rollback\" deng miyalilan o edit kaniting bulung ning tauling talayambag king metung a ''pindut (click)''",
-'tooltip-undo' => "Ing \"undo\" susubli ne ing edit at bubusni ne ing edit form king preview mode.
+'tooltip-undo' => "Ing \"balikgawan (undo)\" susubli ne ing edit at bubusni ne ing edit form king pasinag mode.
 Paintulutan na ing pamandagdag king sangkan king sampulung (''summary'').",
 'tooltip-summary' => '↓Palub kang makuyad a kabilugan',
 

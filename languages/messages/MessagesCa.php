@@ -25,6 +25,7 @@
  * @author Pasqual (ca)
  * @author Paucabot
  * @author PerroVerd
+ * @author Pitort
  * @author Pérez
  * @author Qllach
  * @author SMP
@@ -571,7 +572,7 @@ Consulta: $2',
 'viewsource-title' => 'Mostra la font per a $1',
 'actionthrottled' => 'Acció limitada',
 'actionthrottledtext' => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
-'protectedpagetext' => 'Aquesta pàgina està protegida per evitar modificacions.',
+'protectedpagetext' => "S'ha protegit la pàgina per evitar-hi modificacions.",
 'viewsourcetext' => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
 'viewyourtext' => "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
 'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
@@ -765,7 +766,7 @@ Contrasenya temporal: $2",
 'link_tip' => 'Enllaç intern',
 'extlink_sample' => "http://www.example.com títol de l'enllaç",
 'extlink_tip' => 'Enllaç extern (recordeu el prefix http://)',
-'headline_sample' => "Text per a l'encapçalament",
+'headline_sample' => "Text de l'encapçalament",
 'headline_tip' => 'Encapçalat de secció de 2n nivell',
 'nowiki_sample' => 'Inseriu ací text sense format',
 'nowiki_tip' => 'Ignora el format wiki',
@@ -2168,8 +2169,8 @@ L'adreça electrònica que vau indicar a [[Special:Preferences|les vostres prefe
 'watchnologintext' => "Heu d'[[Special:UserLogin|entrar]]
 per modificar el vostre llistat de seguiment.",
 'addwatch' => 'Afegeix a llista de seguiment',
-'addedwatchtext' => "S'ha afegit la pàgina «[[:$1]]» a la vostra [[Special:Watchlist|llista de seguiment]].
-S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corresponent discussió. A més la pàgina estarà ressaltada '''en negreta''' a la [[Special:RecentChanges|llista de canvis recents]] perquè pugueu adonar-vos dels canvis amb més facilitat.",
+'addedwatchtext' => 'La pàgina "[[:$1]]" ha estat afegida a la vostra [[Special:Watchlist|llista de seguiment]].
+S\'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corresponent discussió.',
 'removewatch' => 'Treu de la llista de seguiment',
 'removedwatchtext' => "S'ha tret la pàgina «[[:$1]]» de la vostra [[Special:Watchlist|llista de seguiment]].",
 'watch' => 'Vigila',
@@ -2244,7 +2245,7 @@ Suggeriments i ajuda:
 'exblank' => 'la pàgina estava en blanc',
 'delete-confirm' => 'Elimina «$1»',
 'delete-legend' => 'Elimina',
-'historywarning' => "'''Avís:''' La pàgina que eliminareu té un historial amb aproximadament {{PLURAL:$1|una modificació|$1 modificacions}}:",
+'historywarning' => "'''Atenció:''' La pàgina que esteu a punt d'eliminar té un historial amb $1 {{PLURAL:$1|versió|versions}}, aproximadament:",
 'confirmdeletetext' => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
@@ -2930,7 +2931,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-title' => 'Informació de «$1»',
 'pageinfo-not-current' => 'Només es pot visualitzar la informació de la revisió actual.',
 'pageinfo-header-basic' => 'Informació bàsica',
-'pageinfo-header-edits' => "Historial d'edicions",
+'pageinfo-header-edits' => 'Historial d’edicions',
 'pageinfo-header-restrictions' => 'Protecció de pàgina',
 'pageinfo-header-properties' => 'Propietats de la pàgina',
 'pageinfo-display-title' => 'Títol mostrat',

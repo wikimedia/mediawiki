@@ -350,7 +350,7 @@ $messages = array(
 'cancel' => 'Anulo',
 'moredotdotdot' => 'Më shumë...',
 'mypage' => 'Faqja ime',
-'mytalk' => 'Diskutimet e mia',
+'mytalk' => 'diskutimet',
 'anontalk' => 'Diskutimet për këtë IP',
 'navigation' => 'Shfleto',
 'and' => '&#32;dhe',
@@ -873,10 +873,8 @@ Kjo adresë IP mund të përdoret nga disa përdorues.
 Ju mund [[Special:Search/{{PAGENAME}}|ta kërkoni këtë titull]] në faqe tjera,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} të kërkoni ngjarjet e ngjashme në regjistër],
 ose [{{fullurl:{{FULLPAGENAME}}|action=edit}} të redaktoni këtë faqe]</span>.',
-'noarticletext-nopermission' => 'Momentalisht nuk ka tekst në këtë faqe.
-Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjera,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërku në regjistrat tematikisht të afërm],
-apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
+'noarticletext-nopermission' => 'Për momentin faqja e kërkuar është bosh.
+Ju mund të [[Special:Search/{{PAGENAME}}|kërkoni këtë titiull]] në faqet e tjera, ose të <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} këtkoni regjistrat e ngjashëm]</span>, por ju nuk mundeni ta krijoni këtë faqe.',
 'missing-revision' => 'Inspektimi #$1 i faqes me emrin "{{PAGENAME}}" nuk ekziston.
 
 Kjo zakonisht shkaktuar duke ndjekur një lidhje të vjetër tek një faqe që është fshirë. Hollësitë mund të gjenden në [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regjistrin e fshirjeve].',
@@ -1177,7 +1175,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'mergelogpagetext' => 'Më poshtë jepet një listë e bashkimeve së fundmi nga historiku i një faqeje në historikun e një faqeje tjetër.',
 
 # Diffs
-'history-title' => 'Historiku i redaktimeve te "$1"',
+'history-title' => 'Historiku i redaktimeve të "$1"',
 'difference-title' => 'Ndryshimi mes inspektimeve të "$1"',
 'difference-title-multipage' => 'Ndryshimi mes faqeve "$1" dhe "$2"',
 'difference-multipage' => '(Ndryshimi midis faqeve)',
@@ -2458,7 +2456,7 @@ $1',
 # Contributions
 'contributions' => 'Kontributet',
 'contributions-title' => 'Kontributet e përdoruesit për $1',
-'mycontris' => 'Redaktimet e mia',
+'mycontris' => 'Kontributet',
 'contribsub2' => 'Për $1 ($2)',
 'nocontribs' => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.',
 'uctop' => ' (sipër)',
@@ -2499,7 +2497,7 @@ Bllokimi i funditë është më poshtë për referencë:',
 'whatlinkshere-hideredirs' => '$1 përcjellimet',
 'whatlinkshere-hidetrans' => '$1 përfshirjet',
 'whatlinkshere-hidelinks' => '$1 lidhjet',
-'whatlinkshere-hideimages' => '$1 lidhjet e figurave',
+'whatlinkshere-hideimages' => '$1 lidhjet me skedat',
 'whatlinkshere-filters' => 'Filtra',
 
 # Block/unblock
@@ -2598,7 +2596,7 @@ Regjistri i bllokimeve është poshtë për referncë:',
 'blocklogtext' => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[Special:BlockList|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
 'unblocklogentry' => 'çbllokoi "$1"',
 'block-log-flags-anononly' => 'vetëm anonimët',
-'block-log-flags-nocreate' => 'krijimi i kontove është pamundësuar',
+'block-log-flags-nocreate' => 'krijimi i llogarive është pamundësuar',
 'block-log-flags-noautoblock' => 'vetëbllokimi është pamundësuar',
 'block-log-flags-noemail' => 'posta elektronike është e bllokuar',
 'block-log-flags-nousertalk' => 'nuk mund të redaktojë faqen e tij të diskutimit',

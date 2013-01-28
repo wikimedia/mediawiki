@@ -185,7 +185,7 @@ $messages = array(
 'about' => 'Heqa',
 'article' => 'Pela tedeesteyu',
 'newwindow' => '(zerrê pençerê dê newey de beno ra)',
-'cancel' => 'Texelnaene',
+'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Jêde...',
 'mypage' => 'Pela mı',
 'mytalk' => 'Hurênayişê mı',
@@ -993,7 +993,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'watchthisupload' => 'Na dosya de şêr ke',
 
 'license' => 'Lisans:',
-'license-header' => 'Lisanskerdene',
+'license-header' => 'Lisansdais',
 
 # Special:ListFiles
 'imgfile' => 'dosya',
@@ -1011,7 +1011,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'filehist' => 'Tarixê dosya',
 'filehist-help' => "Serba diyaena viartê dosya tarixê ke qısımê tarix/zeman'i derê inu bıteqne.",
 'filehist-deleteall' => 'Pêrune bıestere',
-'filehist-deleteone' => 'bıestere',
+'filehist-deleteone' => 'bestere',
 'filehist-revert' => 'raçarne',
 'filehist-current' => 'nıkaên',
 'filehist-datetime' => 'Tarix/Dem',
@@ -1042,7 +1042,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'filedelete' => 'Bıestere $1',
 'filedelete-legend' => 'Dosya bıestere',
 'filedelete-comment' => 'Sebeb:',
-'filedelete-submit' => 'Bıestere',
+'filedelete-submit' => 'Bestere',
 'filedelete-otherreason' => 'Sebebo bin/ilaweki:',
 'filedelete-reason-otherlist' => 'Sebebo bin',
 'filedelete-edit-reasonlist' => 'Sebebunê esterıtene bıvurne',
@@ -1066,7 +1066,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'disambiguationspage' => 'Template:vuriyaisê maney',
 
 'brokenredirects-edit' => 'bıvurne',
-'brokenredirects-delete' => 'bıestere',
+'brokenredirects-delete' => 'bestere',
 
 'withoutinterwiki-legend' => 'Verbend',
 'withoutinterwiki-submit' => 'Bıasne',
@@ -1175,7 +1175,7 @@ Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, 
 
 # Delete
 'deletepage' => 'Pele bıestere',
-'delete-legend' => 'Bıestere',
+'delete-legend' => 'Bestere',
 'confirmdeletetext' => 'Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.
 Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.',
 'actioncomplete' => 'Kar bi temam',

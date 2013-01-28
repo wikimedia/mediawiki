@@ -22,7 +22,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Umpetna suntingan sing wis dipatroli nang owahan anyar',
 'tog-newpageshidepatrolled' => 'Umpetna kaca sing wis dipatroli sekang daftar kaca anyar',
 'tog-extendwatchlist' => 'Kembangna daftar pengawasan kanggo nidokna kabeh pangowahan, ora mung sing paling anyar thok',
-'tog-usenewrc' => 'Gunakna tampilan owahan anyar sing wis dikembangna (mbutuhna JavaScript)',
+'tog-usenewrc' => 'Klompok owahan miturut kaca nang owahan anyar lan daptar pangawasan (mbutuhna JavaScript)',
 'tog-numberheadings' => 'Aweh nomer judul secara otomatis',
 'tog-showtoolbar' => 'Tidhokna bilah alat penyuntingan',
 'tog-editondblclick' => 'Nyunting kaca nganggo dobel klik (mbutuhna JavaScript)',
@@ -30,17 +30,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Aktifna penyuntingan subbagian nganggo klik-tengen nang judul bagian (mbutuhna JavaScript)',
 'tog-showtoc' => 'Tidhokna daftar isine (kanggo kaca sing duwe lewih sekang 3 subbagian)',
 'tog-rememberpassword' => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
-'tog-watchcreations' => 'Tambahna kaca gaweanne inyong nang daftar pangawasanne inyong',
-'tog-watchdefault' => 'Tambahna kaca sing tak-sunting maring daftar pangawasanne inyong',
-'tog-watchmoves' => 'Tambahna kaca sing tak-pindah maring daftar pangawasanne inyong',
-'tog-watchdeletion' => 'Tambahna kaca sing tak-busak maring daftar pangawasanne inyong',
+'tog-watchcreations' => 'Tambahna kaca gaweanne inyong lan berkas sing tek unggah nang daptar pangawasanne inyong',
+'tog-watchdefault' => 'Tambahna kaca lan berkas sing tek-sunting maring daptar pangawasanne inyong',
+'tog-watchmoves' => 'Tambahna kaca lan berkas sing tek-pindah maring daptar pangawasanne inyong',
+'tog-watchdeletion' => 'Tambahna kaca lan berkas sing tek-busek maring daptar pangawasanne inyong',
 'tog-minordefault' => 'Otomatis nandani kabeh suntingan dadi suntingan cilik',
 'tog-previewontop' => 'Tidokna pratayang sedurunge kotak sunting',
 'tog-previewonfirst' => 'Tidokna pratayang nang suntingan sing pertama',
 'tog-nocache' => 'Nonaktifna penyinggahan kaca peramban',
-'tog-enotifwatchlistpages' => 'Kirimna imel maring inyong angger kaca sing mlebu daftar pangawasanne inyong diowaih',
+'tog-enotifwatchlistpages' => 'Kirimna imel maring inyong angger kaca awa berkas utsing mlebu daptar pangawasanne inyong diowaih',
 'tog-enotifusertalkpages' => 'Kirimna imel maring inyong angger kaca dhiskusine inyong owah',
-'tog-enotifminoredits' => 'Kirimna imel maring inyong uga nek ana suntingan cilik',
+'tog-enotifminoredits' => 'Kirimna imel maring inyong uga nek ana suntingan cilik nang kaca lan berkas',
 'tog-enotifrevealaddr' => 'Tidokna alamat imel-e inyong nang imel notifikasi',
 'tog-shownumberswatching' => 'Tidhokna jumlah pangawas',
 'tog-oldsig' => 'Tapak asma sekiye:',
@@ -63,7 +63,7 @@ $messages = array(
 
 'underline-always' => 'Saben',
 'underline-never' => 'Ora tau',
-'underline-default' => 'Gawane peramban',
+'underline-default' => 'Gawane kulitutawa peramban',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Modhèl aksara (font) nang kotak suntingan:',
@@ -148,8 +148,8 @@ $messages = array(
 'newwindow' => '(buka nang jendhéla anyar)',
 'cancel' => 'Ora Sida',
 'moredotdotdot' => 'Liyané...',
-'mypage' => 'Kaca inyong',
-'mytalk' => 'Catetan inyong',
+'mypage' => 'Kaca',
+'mytalk' => 'Dopokan',
 'anontalk' => 'Dhiskusi IP kiye',
 'navigation' => 'pandhu arah',
 'and' => '&#32;lan',
@@ -172,7 +172,7 @@ $messages = array(
 'vector-action-protect' => 'Reksa',
 'vector-action-undelete' => 'Batalna pambusakan',
 'vector-action-unprotect' => 'Owahi pangreksan',
-'vector-simplesearch-preference' => 'Aktifna saran panggoletan sing wis disempurnakna (nang kulit Vector thok)',
+'vector-simplesearch-preference' => 'Aktifna bilah panggoletan sing wis deringkes (nang kulit Vector thok)',
 'vector-view-create' => 'Gawe',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Sajarah kaca',
@@ -279,6 +279,10 @@ Deleng [[Special:Version|kaca versi]].',
 'youhavenewmessages' => 'Rika duwe $1 ($2).',
 'newmessageslink' => 'pesen anyar',
 'newmessagesdifflink' => 'owahan keri dhewek',
+'youhavenewmessagesfromusers' => 'Rika nduwe $1 sekang {{PLURAL:$3|panganggo liya|$3 panganggo}} ($2).',
+'youhavenewmessagesmanyusers' => 'Rika nduwe $1 sekang akeh panganggo ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|pesen anyar|pesen anyar}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1||}}owah-owahan pungkasan',
 'youhavenewmessagesmulti' => 'Rika olih pesen-pesen anyar nang $1',
 'editsection' => 'sunting',
 'editold' => 'sunting',
@@ -330,12 +334,12 @@ Daftar kaca astamiwa sing sah teyeng dideleng nang [[Special:SpecialPages|{{int:
 # General errors
 'error' => 'Kasalahan',
 'databaseerror' => 'Kasalahan basis data',
-'dberrortext' => 'Ana kesalahan sintaksnang penjalukan basis data.
+'dberrortext' => 'Ana kesalahan sintaks nang penjalukan basis data.
 Kesalahan kiye ndeyan nandakna nek ana \'\'bug\'\' nang piranti alus.
 Penjalukan basis data sing pungkasan yakuwe:
-<blockquote><tt>$1</tt></blockquote>
-sekang jerone fungsi "<tt>$2</tt>".
-Basis data ngasilna kesalahan "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+sekang jerone fungsi "<code>$2</code>".
+Basis data ngasilna kesalahan "<samp>$3: $4</samp>".',
 'laggedslavemode' => "'''Pènget:''' Kaca kiye mbokmenawa isiné dudu pangowahan pungkasan.",
 'readonly' => 'Basis data dikunci',
 'enterlockreason' => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
@@ -628,7 +632,7 @@ Rika teyeng [[Special:Search/{{PAGENAME}}|nggoleti judul kaca kiye]] nang kaca-k
 utawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} nyunting kaca kiye]</span>.',
 'noarticletext-nopermission' => 'Sekiye ora ana teks nang kaca kiye.
 Rika teyeng [[Special:Search/{{PAGENAME}}|nggoleti judul kaca kiye]] nang kaca-kaca liyane,
-utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} goleti log sing ana gandengane]</span>.',
+utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} goleti log sing ana gandengane]</span>, ningen Rika ora olih nggawe kaca kiye.',
 'userpage-userdoesnotexist' => "Akun panganggo ''<nowiki>$1</nowiki>'' ora kedaftar.
 Monggo dipriksa angger Rika kepengin gawe/nyunting kaca kiye.",
 'userpage-userdoesnotexist-view' => 'Panganggo "$1" ora kedaftar.',
@@ -835,7 +839,7 @@ Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 'mergelogpagetext' => 'Nang ngisor kiye isine daftar panggabungan sajarah kaca maring kaca liyane.',
 
 # Diffs
-'history-title' => 'Sajarah revisi sekang "$1"',
+'history-title' => 'Riwayat revisi sekang "$1"',
 'difference-multipage' => '(Prabedan antarkaca)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingna revisi kapilih',
@@ -920,7 +924,7 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 
 # Preferences page
 'preferences' => 'Preferensi',
-'mypreferences' => 'Preferensine Inyong',
+'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Durung mlebu log',
 'prefsnologintext' => 'Rika kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}| mlebu log disit]</span> kanggo ngowahi préferènsine Rika.',
@@ -1256,10 +1260,18 @@ Deleng [[Special:NewFiles|galeri berkas anyar]] nggo tampilan visual.',
 'license' => 'Jenis lisènsi:',
 'license-header' => 'Jinis lisènsi',
 
+# Special:ListFiles
+'listfiles_date' => 'Tanggal',
+'listfiles_name' => 'Jeneng',
+'listfiles_user' => 'Panganggo',
+'listfiles_count' => 'Versi',
+
 # File description page
 'file-anchor-link' => 'Berkas',
 'filehist' => 'Sajarah kaca',
 'filehist-help' => 'Klik nang tanggal/wektu kanggo ndeleng berkas kiye nang wektu kuwe mau.',
+'filehist-deleteall' => 'busek kabeh',
+'filehist-deleteone' => 'busek',
 'filehist-revert' => 'balekna',
 'filehist-current' => 'Sekiye',
 'filehist-datetime' => 'Tanggal/Wektu',
@@ -1450,10 +1462,24 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 
 # E-mail user
 'emailuser' => 'Kirim imel maring panganggo kiye',
+'emailtarget' => 'Lebokna jeneng panganggo utawa panampa',
+'emailusername' => 'Jeneng panganggo:',
+'emailusernamesubmit' => 'Kirimna',
+'email-legend' => 'Kirim imel ming panganggo {{SITENAME}} liyane',
+'emailfrom' => 'Sekang:',
+'emailto' => 'Nggo:',
+'emailsubject' => 'Subyek:',
+'emailmessage' => 'Pesen:',
+'emailsend' => 'Kirim',
+'emailccme' => 'Kirimna salinan pesenku mau ming imele inyong.',
+'emailccsubject' => 'Salinan pesene Rika kanggo $1: $2',
+'emailsent' => 'Imel wis dikirim',
+'emailsenttext' => 'Pesen imele Rika wis dikirim.',
+'emailuserfooter' => 'Layang kiye dikirimna sekang $1 ming $2 nggunakna fungsi "Layangpanganggo" nang {{SITENAME}}.',
 
 # Watchlist
 'watchlist' => 'Daftar pangawasane inyong',
-'mywatchlist' => 'Daftar pangawasane inyong',
+'mywatchlist' => 'Daptar pangawasane inyong',
 'watchlistfor2' => 'Kanggo $1 $2',
 'watch' => 'Pantau',
 'unwatch' => 'Batalna pantauan',
@@ -1556,7 +1582,7 @@ Rika teyeng ngowaih tingkat pangreksan nggo kaca kiye, ningen perkara iku ora aw
 # Contributions
 'contributions' => 'Tulisan anggota',
 'contributions-title' => 'Kontribusi panganggo kanggo $1',
-'mycontris' => 'Tulisan inyong',
+'mycontris' => 'Kontribusi',
 'contribsub2' => 'Kanggo $1 ($2)',
 'uctop' => ' (dhuwur)',
 'month' => 'Sekang sasi (lan sadurungé):',

@@ -316,7 +316,7 @@ $messages = array(
 'cancel' => 'Anular',
 'moredotdotdot' => 'Más...',
 'mypage' => 'Mi hoja',
-'mytalk' => 'Mi diskusyón',
+'mytalk' => 'La mi diskusyon',
 'anontalk' => 'Diskusyón para este adresso de IP',
 'navigation' => 'Navigación',
 'and' => '&#32;y',
@@ -569,9 +569,9 @@ Si venites aquí por yerro, torna a la hoja de antes.',
 Puedes [[Special:Search/{{PAGENAME}}|buscar el títůlo de esta hoja]] en otras hojas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los rējistros relatados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
-'noarticletext-nopermission' => 'No ay teksto oy día en esta hoja.
-Puedes [[Special:Search/{{PAGENAME}}|buscar este títůlo de hoja]] en otras hojas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los rejistros relasyonados]</span>.',
+'noarticletext-nopermission' => 'No ay teksto en esta oja.
+Puedes [[Special:Search/{{PAGENAME}}|bushkar este titolo de oja]] en otras pajinas,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bushkar en los rejistros relasyonados]</span>.',
 'userpage-userdoesnotexist-view' => 'El cuento del usador $1 no está enrejistrado.',
 'note' => "'''Nota:'''",
 'previewnote' => "¡Akórdate ke esto es sólo una previsualizasion i aínda no se enrejistró!'''
@@ -711,7 +711,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 
 # Preferences page
 'preferences' => 'Preferencias',
-'mypreferences' => 'Mis preferencias',
+'mypreferences' => 'Las mis preferensias',
 'changepassword' => 'Trocar el kóddiche',
 'prefs-skin' => 'Vista',
 'skin-preview' => 'Previstear',
@@ -895,7 +895,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 
 # Watchlist
 'watchlist' => 'Mi lista de escogidas',
-'mywatchlist' => 'Mi lista de akavidamientos',
+'mywatchlist' => 'La mi lista de akavidamientos',
 'watchlistfor2' => 'Para $1 $2',
 'addedwatchtext' => "La hoja «[[:$1]]» fue ajustada a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta hoja i en tu hoja de diskussión associada se van indicar aí, i la hoja va aparecer '''gordo''' en la hoja de [[Special:RecentChanges|trocamientos freskos]] para hazerla más kolay de detektar.
 

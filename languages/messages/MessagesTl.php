@@ -371,7 +371,7 @@ $messages = array(
 'viewcount' => 'Namataan na pahinang ito nang {{PLURAL:$1|isang|$1}} beses.',
 'protectedpage' => 'Pahinang nakasanggalang',
 'jumpto' => 'Tumalon sa:',
-'jumptonavigation' => 'paglilibot (nabigasyon)',
+'jumptonavigation' => 'paglilibot',
 'jumptosearch' => 'paghahanap',
 'view-pool-error' => 'Paumanhin, ngunit masyado pong abala ang mga serbidor sa sandaling ito.
 Masyadong maraming tagagamit ay sinusubukang tingnan ang pahinang ito.
@@ -442,9 +442,9 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'feed-invalid' => 'Hindi tanggap na uri ng serbisyo ng pagpaparating.',
 'feed-unavailable' => 'Walang serbisyo mula sa sindikasyong pangpaglalathala',
 'site-rss-feed' => 'Kargang RSS ng $1',
-'site-atom-feed' => 'Kargang Atom ng $1',
+'site-atom-feed' => 'Sindikasyong Atom ng $1',
 'page-rss-feed' => 'Kargang RSS ng "$1"',
-'page-atom-feed' => 'Kargang Atom ng "$1"',
+'page-atom-feed' => 'Sindikasyong Atom ng "$1"',
 'feed-atom' => 'Atom',
 'feed-rss' => 'RSS',
 'red-link-title' => '$1 (hindi umiiral ang pahina)',
@@ -869,8 +869,9 @@ Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na ma
 Hindi pa nasasagip ang mga binago mo!",
 'continue-editing' => 'Pumunta sa pook ng pamamatnugot',
 'previewconflict' => 'Ipinamamalas ng paunang tinging ito ang teksto sa loob ng pangitaas na pook-patnugutan ng teksto ayon sa lilitaw na anyo nito kapag pinili mo ang pagsagip.',
-'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng sesyon ng datos.
-Paki ulit muli. Kung hindi ito gumana, subukang umalis sa pagkalagda at bumalik muli.'''",
+'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng datos ng sesyon.'''
+Pakiulit muli.
+Kung hindi ito gumana, subukang [[Special:UserLogout|umalis sa pagkalagda]] at bumalik muli.",
 'session_fail_preview_html' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng datos ng sesyon.'''
 
 ''Dahil naka-andar ang hilaw na HTML sa {{SITENAME}}, nakatago ang paunang tingin bilang pag-iingat sa mga paglusob ng JavaScript.''
@@ -2188,7 +2189,7 @@ Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustu
 
 # Watchlist
 'watchlist' => 'Mga binabantayan ko',
-'mywatchlist' => 'Bantayan ko',
+'mywatchlist' => 'Bantayan',
 'watchlistfor2' => 'Para sa $1 $2',
 'nowatchlist' => 'Wala kang pahinang binabantayan.',
 'watchlistanontext' => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',
@@ -2438,7 +2439,7 @@ $1',
 'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
-'namespace' => 'Espasyo ng pangalan:',
+'namespace' => 'Ngalan-espasyo:',
 'invert' => 'Baligtarin and pinili',
 'tooltip-invert' => 'Tsekan ang kahong ito upang ikubli ang mga pagbabago sa mga pahina sa loob ng napiling mga puwang ng pangalan (at ang kaugnay na puwang ng pangalan kung may tsek)',
 'namespace_association' => 'Kaugnay na mga puwang na pampangalan',
@@ -2490,7 +2491,7 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa ibaba para sa pa
 'whatlinkshere-hideredirs' => '$1 mga pagturo/pagpapanuto',
 'whatlinkshere-hidetrans' => '$1 paglipat-sali (transklusyon)',
 'whatlinkshere-hidelinks' => '$1 mga kawing',
-'whatlinkshere-hideimages' => '$1 mga kawing ng/sa larawan',
+'whatlinkshere-hideimages' => '$1 kawing ng/sa talaksan',
 'whatlinkshere-filters' => 'Mga pansala',
 
 # Block/unblock
@@ -2571,8 +2572,8 @@ Tingnan ang [[Special:BlockList|talaan ng mga hinadlangan]] upang suriin ang mga
 'blocklist-nousertalk' => 'hindi mo mababago ang iyong pansariling pahina ng usapan',
 'ipblocklist-empty' => 'Walang laman ang talaan ng pagharang/paghadlang.',
 'ipblocklist-no-results' => 'Nakaharang ang hiniling na IP address o bansag.',
-'blocklink' => 'harangin/hadlangan',
-'unblocklink' => 'tanggalin ang pagharang/paghadlang',
+'blocklink' => 'harangin',
+'unblocklink' => 'tanggalin ang pagharang',
 'change-blocklink' => 'baguhin ang pagharang/paghadlang',
 'contribslink' => 'ambag',
 'emaillink' => 'ipadala ang e-liham',
@@ -2869,7 +2870,7 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-pt-logout' => 'Umalis sa pagkakalagda',
 'tooltip-ca-talk' => 'Usapan tungkol sa nilalaman ng pahinang ito',
 'tooltip-ca-edit' => 'Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.',
-'tooltip-ca-addsection' => 'Magsimula ng isang bagong seksyon',
+'tooltip-ca-addsection' => 'Magsimula ng isang bagong seksiyon',
 'tooltip-ca-viewsource' => 'Nakaprotekta ang pahinang ito. Makikita mo lamang ang pinagmulan (source) nito.',
 'tooltip-ca-history' => 'Nakaraang bersyon ng pahinang ito.',
 'tooltip-ca-protect' => 'Iprotekta ang pahinang ito',
@@ -2893,12 +2894,12 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-t-whatlinkshere' => 'Tala ng lahat ng pahina ng mga wiking nakakawing dito',
 'tooltip-t-recentchangeslinked' => 'Kamakailang mga pagbabago na nakakawing mula sa pahinang ito',
 'tooltip-feed-rss' => 'Subo/Kargang RSS para sa pahinang ito',
-'tooltip-feed-atom' => 'Subo/kargang Atom para sa pahinang ito',
+'tooltip-feed-atom' => 'Sindikasyong Atom para sa pahinang ito',
 'tooltip-t-contributions' => 'Tunghayan ang tala ng mga ambag ng tagagamit na ito',
 'tooltip-t-emailuser' => 'Magpadala ng isang e-liham sa tagagamit na ito',
 'tooltip-t-upload' => 'Magkarga ng mga talaksan',
 'tooltip-t-specialpages' => 'Tala ng lahat ng mga natatanging pahina',
-'tooltip-t-print' => 'Nalilimbag na bersyon ng pahinang ito',
+'tooltip-t-print' => 'Bersiyong maililimbag ng pahinang ito',
 'tooltip-t-permalink' => 'Palagiang kawing sa bersyong ito ng pahina',
 'tooltip-ca-nstab-main' => 'Tingnan ang pahina ng nilalaman',
 'tooltip-ca-nstab-user' => 'Tingnan ang pahina ng tagagamit',
@@ -3067,7 +3068,7 @@ Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|pahina|mga pahina}}',
 'file-info' => 'sukat ng talaksan: $1, tipo ng MIME: $2',
-'file-info-size' => '$1 × $2 piksel, sukat ng talaksan: $3, tipo ng MIME: $4',
+'file-info-size' => '$1 × $2 piksel, laki ng talaksan: $3, uri ng MIME: $4',
 'file-info-size-pages' => '$1 × $2 mga piksel, sukat ng talaksan: $3, uri ng MIME: $4, $5 {{PLURAL:$5|pahina|mga pahina}}',
 'file-nohires' => 'Walang makuhang mas mataas na resolusyon (kalinawan).',
 'svg-long-desc' => 'Talaksang SVG, nasa mga bilang na $1 × $2 mga piksel, sukat ng talaksan: $3',
@@ -3970,7 +3971,7 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 
 # Special:Tags
 'tags' => 'Tanggap na mga tatak ng pagbabago',
-'tag-filter' => '[[Special:Tags|Tatakan]] ang pansala:',
+'tag-filter' => 'Pansala ng [[Special:Tags|tatak]]:',
 'tag-filter-submit' => 'Pansala',
 'tags-title' => 'Mga tatak',
 'tags-intro' => 'Itinatala ng pahinang ito ang mga tatak na maaaring ipantatak ng sopwer sa isang pagbabago, at ang kanilang kahulugan.',
