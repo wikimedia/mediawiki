@@ -64,7 +64,7 @@ interface LoadMonitor {
 	 * Return an estimate of replication lag for each server
 	 *
 	 * @param $serverIndexes
-	 * @param $wiki
+	 * @param string|boolean $wiki
 	 *
 	 * @return array
 	 */

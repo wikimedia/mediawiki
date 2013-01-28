@@ -149,7 +149,8 @@ class LoadBalancer {
 
 	/**
 	 * @param $loads array
-	 * @param $wiki bool
+	 * @param $wiki string|bool
+	 * 
 	 * @return bool|int|string
 	 */
 	function getRandomNonLagged( $loads, $wiki = false ) {
@@ -524,7 +525,7 @@ class LoadBalancer {
 	 * @param DatabaseBase $conn
 	 * @throws MWException
 	 */
-	public function reuseConnection( $conn ) {
+	public function reuseConnection( DatabaseBase $conn ) {
 		$serverIndex = $conn->getLBInfo('serverIndex');
 		$refCount = $conn->getLBInfo('foreignPoolRefCount');
 		$dbName = $conn->getDBname();
@@ -1035,7 +1036,7 @@ class LoadBalancer {
 	 * Get lag time for each server
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
 	 *
-	 * @param $wiki
+	 * @param string|boolean $wiki
 	 *
 	 * @return array
 	 */
