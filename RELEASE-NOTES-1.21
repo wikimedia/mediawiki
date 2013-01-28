@@ -207,6 +207,7 @@ production.
 * ApiPageSet can now be used in any action to process titles/pageids/revids or any generator.
 * BREAKING CHANGE: ApiPageSet constructor now has two params instead of three, with only the
   first one keeping its meaning. ApiPageSet is now derived from ApiBase.
+* $wgAPIGeneratorModules is now obsolete and will be ignored.
 
 === Languages updated in 1.21 ===
 
