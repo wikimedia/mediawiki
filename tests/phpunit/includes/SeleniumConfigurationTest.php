@@ -161,7 +161,7 @@ testBrowser 		= "firefox"
 		SeleniumConfig::getSeleniumSettings($seleniumSettings,
 			$seleniumBrowsers,
 			$seleniumTestSuites);
-		$this->assertEquals($seleniumSettings, $this->testSettings0 ,
+		$this->assertEquals($seleniumSettings, $this->testSettings0,
 		'The selenium settings should have been read from the file defined in $wgSeleniumConfigFile'
 		);
 		$this->assertEquals($seleniumBrowsers, $this->testBrowsers0,
@@ -207,7 +207,7 @@ testBrowser 		= "firefox"
 	private function writeToTempFile($textToWrite) {
 		$this->tempFileName = tempnam(sys_get_temp_dir(), 'test_settings.');
 		$tempFile =	 fopen( $this->tempFileName, "w" );
-		fwrite($tempFile , $textToWrite);
+		fwrite($tempFile, $textToWrite);
 		fclose($tempFile);
 	}
 

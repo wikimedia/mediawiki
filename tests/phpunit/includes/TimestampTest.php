@@ -29,7 +29,7 @@ class TimestampTest extends MediaWikiTestCase {
 	 */
 	function testValidOutput( $format, $expected, $original ) {
 		$timestamp = new MWTimestamp( $original );
-		$this->assertEquals( $expected, (string) $timestamp->getTimestamp( $format ) );
+		$this->assertEquals( $expected, (string)$timestamp->getTimestamp( $format ) );
 	}
 
 	/**

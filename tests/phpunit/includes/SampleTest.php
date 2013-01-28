@@ -103,4 +103,3 @@ class TestSample extends MediaWikiLangTestCase {
 		$this->assertEquals( "Test", $title->isLocal() );
 	}
 }
-

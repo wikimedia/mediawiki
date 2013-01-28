@@ -160,4 +160,3 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
 	}
 }
-

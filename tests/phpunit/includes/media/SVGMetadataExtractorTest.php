@@ -106,4 +106,3 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 		);
 	}
 }
-

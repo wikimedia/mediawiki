@@ -175,7 +175,7 @@ class UserTest extends MediaWikiTestCase {
 		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
 		for( $i = 0; $i < 3; $i++ ) {
-			$page->doEdit( (string) $i, 'test', 0, false, $user );
+			$page->doEdit( (string)$i, 'test', 0, false, $user );
 		}
 
 		$user->clearInstanceCache();

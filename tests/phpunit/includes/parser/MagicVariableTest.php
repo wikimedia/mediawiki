@@ -189,7 +189,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 */
 	private function assertMagic( $expected, $magic ) {
 		if( in_array( $magic, $this->expectedAsInteger ) ) {
-			$expected = (int) $expected;
+			$expected = (int)$expected;
 		}
 
 		# Generate a message for the assertion

@@ -10,10 +10,6 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/** Local cache for sidebar messages */
 	private $messages;
 
-	function __construct() {
-		parent::__construct();
-	}
-
 	/** Build $this->messages array */
 	private function initMessagesHref() {
 		# List of default messages for the sidebar:

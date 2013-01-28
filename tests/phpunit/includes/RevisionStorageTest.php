@@ -127,8 +127,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::__construct
 	 */
-	public function testConstructFromRow()
-	{
+	public function testConstructFromRow() {
 		$orig = $this->makeRevision();
 
 		$dbr = wfgetDB( DB_SLAVE );
@@ -146,8 +145,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::newFromRow
 	 */
-	public function testNewFromRow()
-	{
+	public function testNewFromRow() {
 		$orig = $this->makeRevision();
 
 		$dbr = wfgetDB( DB_SLAVE );
@@ -166,8 +164,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::newFromArchiveRow
 	 */
-	public function testNewFromArchiveRow()
-	{
+	public function testNewFromArchiveRow() {
 		$page = $this->createPage( 'RevisionStorageTest_testNewFromArchiveRow', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
 		$orig = $page->getRevision();
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
@@ -187,8 +184,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::newFromId
 	 */
-	public function testNewFromId()
-	{
+	public function testNewFromId() {
 		$orig = $this->makeRevision();
 
 		$rev = Revision::newFromId( $orig->getId() );
@@ -199,8 +195,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::fetchRevision
 	 */
-	public function testFetchRevision()
-	{
+	public function testFetchRevision() {
 		$page = $this->createPage( 'RevisionStorageTest_testFetchRevision', 'one', CONTENT_MODEL_WIKITEXT );
 		$id1 = $page->getRevision()->getId();
 
@@ -223,8 +218,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::selectFields
 	 */
-	public function testSelectFields()
-	{
+	public function testSelectFields() {
 		global $wgContentHandlerUseDB;
 
 		$fields = Revision::selectFields();
@@ -245,8 +239,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getPage
 	 */
-	public function testGetPage()
-	{
+	public function testGetPage() {
 		$page = $this->the_page;
 
 		$orig = $this->makeRevision( array( 'page' => $page->getId() ) );
@@ -258,8 +251,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getText
 	 */
-	public function testGetText()
-	{
+	public function testGetText() {
 		$this->hideDeprecated( 'Revision::getText' );
 
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.' ) );
@@ -271,8 +263,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getContent
 	 */
-	public function testGetContent_failure()
-	{
+	public function testGetContent_failure() {
 		$rev = new Revision( array(
 			'page'       =>  $this->the_page->getId(),
 			'content_model' => $this->the_page->getContentModel(),
@@ -290,8 +281,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getContent
 	 */
-	public function testGetContent()
-	{
+	public function testGetContent() {
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.' ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
@@ -301,8 +291,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::revText
 	 */
-	public function testRevText()
-	{
+	public function testRevText() {
 		$this->hideDeprecated( 'Revision::revText' );
 		$orig = $this->makeRevision( array( 'text' => 'hello hello rev.' ) );
 		$rev = Revision::newFromId( $orig->getId() );
@@ -313,8 +302,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getRawText
 	 */
-	public function testGetRawText()
-	{
+	public function testGetRawText() {
 		$this->hideDeprecated( 'Revision::getRawText' );
 
 		$orig = $this->makeRevision( array( 'text' => 'hello hello raw.' ) );
@@ -326,8 +314,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getContentModel
 	 */
-	public function testGetContentModel()
-	{
+	public function testGetContentModel() {
 		global $wgContentHandlerUseDB;
 
 		if ( !$wgContentHandlerUseDB ) {
@@ -344,8 +331,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getContentFormat
 	 */
-	public function testGetContentFormat()
-	{
+	public function testGetContentFormat() {
 		global $wgContentHandlerUseDB;
 
 		if ( !$wgContentHandlerUseDB ) {
@@ -363,8 +349,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::isCurrent
 	 */
-	public function testIsCurrent()
-	{
+	public function testIsCurrent() {
 		$page = $this->createPage( 'RevisionStorageTest_testIsCurrent', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
@@ -390,8 +375,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getPrevious
 	 */
-	public function testGetPrevious()
-	{
+	public function testGetPrevious() {
 		$page = $this->createPage( 'RevisionStorageTest_testGetPrevious', 'Lorem Ipsum testGetPrevious', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
@@ -408,8 +392,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getNext
 	 */
-	public function testGetNext()
-	{
+	public function testGetNext() {
 		$page = $this->createPage( 'RevisionStorageTest_testGetNext', 'Lorem Ipsum testGetNext', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
@@ -426,8 +409,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::newNullRevision
 	 */
-	public function testNewNullRevision()
-	{
+	public function testNewNullRevision() {
 		$page = $this->createPage( 'RevisionStorageTest_testNewNullRevision', 'some testing text', CONTENT_MODEL_WIKITEXT );
 		$orig = $page->getRevision();
 

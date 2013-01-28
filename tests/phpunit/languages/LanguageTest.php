@@ -425,14 +425,14 @@ class LanguageTest extends LanguageClassesTestCase {
 	 */
 	function testBuiltInCodeValidation( $code, $message = '' ) {
 		$this->assertTrue(
-			(bool) Language::isValidBuiltInCode( $code ),
+			(bool)Language::isValidBuiltInCode( $code ),
 			"validating code $code $message"
 		);
 	}
 
 	function testBuiltInCodeValidationRejectUnderscore() {
 		$this->assertFalse(
-			(bool) Language::isValidBuiltInCode( 'be_tarask' ),
+			(bool)Language::isValidBuiltInCode( 'be_tarask' ),
 			"reject underscore in language code"
 		);
 	}
@@ -1284,4 +1284,3 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 }
-

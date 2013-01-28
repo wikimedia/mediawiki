@@ -125,5 +125,3 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	}
 
 }
-
-

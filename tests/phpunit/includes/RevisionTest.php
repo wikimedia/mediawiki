@@ -313,8 +313,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @group Database
 	 * @dataProvider dataGetSize
 	 */
-	public function testGetSize( $text, $model, $expected_size )
-	{
+	public function testGetSize( $text, $model, $expected_size ) {
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSize', $model );
 		$this->assertEquals( $expected_size, $rev->getSize() );
 	}
@@ -331,8 +330,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @group Database
 	 * @dataProvider dataGetSha1
 	 */
-	public function testGetSha1( $text, $model, $expected_hash )
-	{
+	public function testGetSha1( $text, $model, $expected_hash ) {
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSha1', $model );
 		$this->assertEquals( $expected_hash, $rev->getSha1() );
 	}

@@ -119,7 +119,7 @@ class IPTest extends MediaWikiTestCase {
 			$c = sprintf( "%01d", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f.$f.$f.$f";
-				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv4 address" );
+				$this->assertTrue( IP::isValid( $ip ), "$ip is a valid IPv4 address" );
 			}
 		}
 		foreach ( range( 0x0, 0xFFFF, 0xF ) as $i ) {
@@ -128,7 +128,7 @@ class IPTest extends MediaWikiTestCase {
 			$c = sprintf( "%02x", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
-				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv6 address" );
+				$this->assertTrue( IP::isValid( $ip ), "$ip is a valid IPv6 address" );
 			}
 		}
 		// test with some abbreviations
@@ -173,7 +173,7 @@ class IPTest extends MediaWikiTestCase {
 			$c = sprintf( "%02s", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
-				$this->assertFalse( IP::isValid( $ip ) , "$ip is not a valid IPv6 address" );
+				$this->assertFalse( IP::isValid( $ip ), "$ip is not a valid IPv6 address" );
 			}
 		}
 		// Have CIDR
@@ -264,7 +264,7 @@ class IPTest extends MediaWikiTestCase {
 	 */
 	public function testip2longWrapper() {
 		// @todo FIXME: Add more tests ?
-		$this->assertEquals( pow(2,32) - 1, IP::toUnsigned( '255.255.255.255' ));
+		$this->assertEquals( pow(2,32) - 1, IP::toUnsigned( '255.255.255.255' ) );
 		$i = 'IN.VA.LI.D';
 		$this->assertFalse( IP::toUnSigned( $i ) );
 	}

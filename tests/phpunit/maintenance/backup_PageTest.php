@@ -302,7 +302,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// computer. We only check that reporting does not crash the dumping
 		// and that something is reported
 		$dumper->stderr = fopen( 'php://output', 'a' );
-		if ( $dumper->stderr === FALSE ) {
+		if ( $dumper->stderr === false ) {
 			$this->fail( "Could not open stream for stderr" );
 		}
 

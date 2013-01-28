@@ -12,7 +12,10 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 		return true;
 	}
 
-	function replaceVars( $s ) {
+	/**
+	 * Override parent visibility to public
+	 */
+	public function replaceVars( $s ) {
 		return parent::replaceVars( $s );
 	}
 }

@@ -36,7 +36,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	public abstract function elementInstancesProvider();
+	abstract public function elementInstancesProvider();
 
 	/**
 	 * Returns the name of the concrete class being tested.
@@ -45,7 +45,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 *
 	 * @return string
 	 */
-	public abstract function getInstanceClass();
+	abstract public function getInstanceClass();
 
 	/**
 	 * Provides instances of the concrete class being tested.

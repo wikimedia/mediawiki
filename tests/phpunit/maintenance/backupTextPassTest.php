@@ -156,7 +156,7 @@ class TextPassDumperTest extends DumpTestCase {
 		);
 
 		// The mock itself
-		$prefetchMock = $this->getMock( 'BaseDump', array( 'prefetch' ), array(), '', FALSE );
+		$prefetchMock = $this->getMock( 'BaseDump', array( 'prefetch' ), array(), '', false );
 		$prefetchMock->expects( $this->exactly( 6 ) )
 			->method( 'prefetch' )
 			->will( $this->returnValueMap( $prefetchMap ) );
@@ -230,7 +230,7 @@ class TextPassDumperTest extends DumpTestCase {
 		$nameOutputDir = $this->getNewTempDirectory();
 
 		$stderr = fopen( 'php://output', 'a' );
-		if ( $stderr === FALSE ) {
+		if ( $stderr === false ) {
 			$this->fail( "Could not open stream for stderr" );
 		}
 

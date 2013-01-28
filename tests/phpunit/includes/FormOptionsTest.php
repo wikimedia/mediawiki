@@ -33,8 +33,8 @@ class FormOptionsTest extends MediaWikiTestCase {
 		$this->object = new FormOptions;
 		$this->object->add( 'string1', 'string one' );
 		$this->object->add( 'string2', 'string two' );
-		$this->object->add( 'integer',  0 );
-		$this->object->add( 'intnull',  0, FormOptions::INTNULL );
+		$this->object->add( 'integer', 0 );
+		$this->object->add( 'intnull', 0, FormOptions::INTNULL );
 	}
 
 	/** Helpers for testGuessType() */

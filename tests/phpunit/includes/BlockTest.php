@@ -167,7 +167,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// Reload block from DB
 		$userBlock = Block::newFromTarget( $username );
 		$this->assertTrue(
-			(bool) $block->prevents( 'createaccount' ),
+			(bool)$block->prevents( 'createaccount' ),
 			"Block object in DB should prevents 'createaccount'"
 		);
 
@@ -180,7 +180,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// Reload user
 		$u = User::newFromName( $username );
 		$this->assertTrue(
-			(bool) $u->isBlockedFromCreateAccount(),
+			(bool)$u->isBlockedFromCreateAccount(),
 			"Our sandbox user '$username' should NOT be able to create account"
 		);
 	}
@@ -223,7 +223,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		$block = Block::newFromID( $res['id'] );
 		$this->assertEquals( 'UserOnForeignWiki', $block->getTarget()->getName(), 'Correct blockee name' );
-		$this->assertEquals( '14146',  $block->getTarget()->getId(), 'Correct blockee id' );
+		$this->assertEquals( '14146', $block->getTarget()->getId(), 'Correct blockee id' );
 		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
 		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );

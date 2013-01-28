@@ -108,19 +108,19 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 
 	}
 
-	function fakeUploadChunk(  $fieldName, $fileName, $type, & $chunkData ){
+	function fakeUploadChunk(  $fieldName, $fileName, $type, & $chunkData ) {
 		$tmpName = tempnam( wfTempDir(), "" );
-		// copy the chunk data to temp location: 
+		// copy the chunk data to temp location:
 		if ( !file_put_contents( $tmpName, $chunkData ) ) {
 			throw new Exception( "couldn't copy chunk data to $tmpName" );
 		}
-		
+
 		clearstatcache();
 		$size = filesize( $tmpName );
 		if ( $size === false ) {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
-		
+
 		$_FILES[ $fieldName ] = array(
 			'name'		=> $fileName,
 			'type'		=> $type,

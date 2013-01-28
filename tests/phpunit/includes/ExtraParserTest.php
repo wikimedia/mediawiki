@@ -40,7 +40,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	/* Test the parser entry points */
 	function testParse() {
 		$title = Title::newFromText( __FUNCTION__ );
-		$parserOutput = $this->parser->parse( "Test\n{{Foo}}\n{{Bar}}" , $title, $this->options );
+		$parserOutput = $this->parser->parse( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
 		$this->assertEquals( "<p>Test\nContent of <i>Template:Foo</i>\nContent of <i>Template:Bar</i>\n</p>", $parserOutput->getText() );
 	}
 	
@@ -54,7 +54,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	
 	function testPreprocess() {
 		$title = Title::newFromText( __FUNCTION__ );
-		$outputText = $this->parser->preprocess( "Test\n{{Foo}}\n{{Bar}}" , $title, $this->options );
+		$outputText = $this->parser->preprocess( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
 		
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\nContent of ''Template:Bar''", $outputText );
 	}
@@ -140,7 +140,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$catName =  wfMessage( 'broken-file-category' )->inContentLanguage()->text();
 		$cat = Title::makeTitleSafe( NS_CATEGORY, $catName );
 		$expected = array( $cat->getDBkey() );
-		$parserOutput = $this->parser->parse( "[[file:nonexistent]]" , $title, $this->options );
+		$parserOutput = $this->parser->parse( "[[file:nonexistent]]", $title, $this->options );
 		$result = $parserOutput->getCategoryLinks();
 		$this->assertEquals( $expected, $result );
 	}
@@ -151,7 +151,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	function testTrackingCategorySpecial() {
 		// Special pages shouldn't have tracking cats.
 		$title = SpecialPage::getTitleFor( 'Contributions' );
-		$parserOutput = $this->parser->parse( "[[file:nonexistent]]" , $title, $this->options );
+		$parserOutput = $this->parser->parse( "[[file:nonexistent]]", $title, $this->options );
 		$result = $parserOutput->getCategoryLinks();
 		$this->assertEmpty( $result );
 	}
