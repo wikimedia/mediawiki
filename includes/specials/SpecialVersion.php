@@ -591,8 +591,8 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function IPInfo() {
 		$ip =  str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
-		return "<!-- visited from $ip -->\n" .
-			"<span style='display:none'>visited from $ip</span>";
+		return "<!-- visited from $ip -->\n
+			<span style='display:none'>visited from $ip</span>";
 	}
 
 	/**
@@ -603,7 +603,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	function listAuthors( $authors ) {
 		$list = array();
-		foreach( (array)$authors as $item ) {
+		foreach( (array) $authors as $item ) {
 			if( $item == '...' ) {
 				$list[] = $this->msg( 'version-poweredby-others' )->text();
 			} else {
@@ -626,7 +626,7 @@ class SpecialVersion extends SpecialPage {
 
 		if ( $cnt == 1 ) {
 			// Enforce always returning a string
-			return (string)self::arrayToString( $list[0] );
+			return (string) self::arrayToString( $list[0] );
 		} elseif ( $cnt == 0 ) {
 			return '';
 		} else {
