@@ -193,6 +193,7 @@ $specialPageAliases = array(
 	'Userlogin'                 => array( 'Anmelden' ),
 	'Userlogout'                => array( 'Abmelden' ),
 	'Userrights'                => array( 'Benutzerrechte' ),
+	'Version'                   => array( 'Versionsinformationen' ),
 	'Wantedcategories'          => array( 'Gewünschte_Kategorien' ),
 	'Wantedfiles'               => array( 'Gewünschte_Dateien', 'Fehlende_Dateien' ),
 	'Wantedpages'               => array( 'Gewünschte_Seiten' ),

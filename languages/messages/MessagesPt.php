@@ -155,6 +155,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Minha_discussão' ),
 	'Newimages'                 => array( 'Ficheiros_novos', 'Imagens_novas', 'Arquivos_novos' ),
 	'Newpages'                  => array( 'Páginas_novas', 'Artigos_novos' ),
+	'PermanentLink'             => array( 'Ligação_permanente', 'Link_permanente' ),
 	'Popularpages'              => array( 'Páginas_populares', 'Artigos_populares' ),
 	'Preferences'               => array( 'Preferências' ),
 	'Prefixindex'               => array( 'Índice_por_prefixo', 'Índice_de_prefixo' ),

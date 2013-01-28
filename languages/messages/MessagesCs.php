@@ -84,6 +84,7 @@ $specialPageAliases = array(
 	'Categories'                => array( 'Kategorie' ),
 	'ChangeEmail'               => array( 'Změna_emailu', 'Zmena_emailu' ),
 	'ChangePassword'            => array( 'Změna_hesla', 'Zmena_hesla', 'Resetovat_heslo' ),
+	'ComparePages'              => array( 'Porovnání_stránek', 'PorovnáníStránek', 'Porovnani_stranek', 'PorovnaniStranek' ),
 	'Confirmemail'              => array( 'Potvrdit_e-mail' ),
 	'Contributions'             => array( 'Příspěvky', 'Prispevky' ),
 	'CreateAccount'             => array( 'Vytvořit_účet', 'Vytvorit_ucet' ),

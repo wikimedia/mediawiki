@@ -14,6 +14,17 @@
  * @author ОйЛ
  */
 
+$specialPageAliases = array(
+	'Allpages'                  => array( 'Вьсѩ_страницѧ' ),
+	'Categories'                => array( 'Катигорїѩ' ),
+	'Contributions'             => array( 'Добродѣꙗниꙗ' ),
+	'Preferences'               => array( 'Строи' ),
+	'Recentchanges'             => array( 'Послѣдьнѩ_мѣнꙑ' ),
+	'Search'                    => array( 'Исканиѥ' ),
+	'Statistics'                => array( 'Статїстїка' ),
+	'Upload'                    => array( 'Положєниѥ_дѣла' ),
+);
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Срѣдьства',
 	NS_SPECIAL          => 'Нарочьна',
