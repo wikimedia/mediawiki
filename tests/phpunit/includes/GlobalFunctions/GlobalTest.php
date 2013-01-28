@@ -132,14 +132,14 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @dataProvider provideArrayToCGI
 	 */
 	function testArrayToCGI( $array, $result ) {
-		$this->assertEquals( $result, wfArrayToCGI( $array ) );
+		$this->assertEquals( $result, wfArrayToCgi( $array ) );
 	}
 
 
 	function testArrayToCGI2() {
 		$this->assertEquals(
 			"baz=bar&foo=bar",
-			wfArrayToCGI(
+			wfArrayToCgi(
 				array( 'baz' => 'bar' ),
 				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
 	}
@@ -183,7 +183,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @dataProvider provideCgiRoundTrip
 	 */
 	function testCgiRoundTrip( $cgi ) {
-		$this->assertEquals( $cgi, wfArrayToCGI( wfCgiToArray( $cgi ) ) );
+		$this->assertEquals( $cgi, wfArrayToCgi( wfCgiToArray( $cgi ) ) );
 	}
 
 	function testMimeTypeMatch() {

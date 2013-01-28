@@ -1002,7 +1002,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		$styleUrl = $server . dirname( dirname( $this->parent->getUrl() ) ) .
 			'/skins/common/config-cc.css';
 		$iframeUrl = 'http://creativecommons.org/license/?' .
-			wfArrayToCGI( array(
+			wfArrayToCgi( array(
 				'partner' => 'MediaWiki',
 				'exit_url' => $exitUrl,
 				'lang' => $this->getVar( '_UserLang' ),

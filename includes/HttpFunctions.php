@@ -830,7 +830,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		parent::execute();
 
 		if ( is_array( $this->postData ) ) {
-			$this->postData = wfArrayToCGI( $this->postData );
+			$this->postData = wfArrayToCgi( $this->postData );
 		}
 
 		if ( $this->parsedUrl['scheme'] != 'http' &&

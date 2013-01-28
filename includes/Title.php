@@ -1330,7 +1330,7 @@ class Title {
 	 * second argument named variant. This was deprecated in favor
 	 * of passing an array of option with a "variant" key
 	 * Once $query2 is removed for good, this helper can be dropped
-	 * andthe wfArrayToCGI moved to getLocalURL();
+	 * andthe wfArrayToCgi moved to getLocalURL();
 	 *
 	 * @since 1.19 (r105919)
 	 * @param $query
@@ -1342,15 +1342,15 @@ class Title {
 			wfDeprecated( "Title::get{Canonical,Full,Link,Local} method called with a second parameter is deprecated. Add your parameter to an array passed as the first parameter.", "1.19" );
 		}
 		if ( is_array( $query ) ) {
-			$query = wfArrayToCGI( $query );
+			$query = wfArrayToCgi( $query );
 		}
 		if ( $query2 ) {
 			if ( is_string( $query2 ) ) {
 				// $query2 is a string, we will consider this to be
 				// a deprecated $variant argument and add it to the query
-				$query2 = wfArrayToCGI( array( 'variant' => $query2 ) );
+				$query2 = wfArrayToCgi( array( 'variant' => $query2 ) );
 			} else {
-				$query2 = wfArrayToCGI( $query2 );
+				$query2 = wfArrayToCgi( $query2 );
 			}
 			// If we have $query content add a & to it first
 			if ( $query ) {

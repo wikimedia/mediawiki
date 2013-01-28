@@ -406,7 +406,7 @@ abstract class FormAction extends Action {
 			$this->getRequest()->getQueryValues(),
 			array( 'action' => null, 'title' => null )
 		);
-		$form->addHiddenField( 'redirectparams', wfArrayToCGI( $params ) );
+		$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
 
 		$form->addPreText( $this->preText() );
 		$form->addPostText( $this->postText() );

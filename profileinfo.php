@@ -349,7 +349,7 @@ function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = fals
 
 	return htmlspecialchars(
 		'?' .
-		wfArrayToCGI( array(
+		wfArrayToCgi( array(
 			'filter' => $_filter ? $_filter : $filter,
 			'sort' => $_sort ? $_sort : $sort,
 			'expand' => implode( ',', array_keys( $_expand ) )
