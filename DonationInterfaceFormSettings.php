@@ -10,6 +10,16 @@ $form_dirs = array(
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
+/**********
+ * Amazon *
+ **********/
+$forms_whitelist['amazon'] = array(
+	'gateway' => 'amazon',
+	'countries' => array( '+' => 'US',),
+	'currencies' => array( '+' => 'USD',),
+	'payment_methods' => array('amazon' => 'ALL'),
+	'redirect',
+);
 
 /****************************
  * Bank Transfer - Two-Step *
@@ -403,10 +413,7 @@ $forms_whitelist['rcc'] = array(
 	'file' => $form_dirs['gc'] . '/rcc/rcc.html',
 	'gateway' => 'globalcollect',
 	'payment_methods' => array('cc' => 'ALL'),
-	'recurring',
-	'countries' => array(
-		'+' => $forms_whitelist['cc']['countries']['+']
-	)
+	'recurring'
 );
 
 
