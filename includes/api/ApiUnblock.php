@@ -32,10 +32,6 @@
  */
 class ApiUnblock extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * Unblocks the specified user or provides the reason the unblock failed.
 	 */

@@ -29,10 +29,6 @@
  */
 class ApiRollback extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * @var Title
 	 */

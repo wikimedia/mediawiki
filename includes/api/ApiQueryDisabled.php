@@ -36,10 +36,6 @@
  */
 class ApiQueryDisabled extends ApiQueryBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$this->setWarning( "The \"{$this->getModuleName()}\" module has been disabled." );
 	}

@@ -37,10 +37,6 @@ class ApiFileRevert extends ApiBase {
 
 	protected $params;
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		// Extract the file and archiveName from the request parameters

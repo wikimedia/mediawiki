@@ -30,10 +30,6 @@
  */
 class ApiUserrights extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	private $mUser = null;
 
 	public function execute() {

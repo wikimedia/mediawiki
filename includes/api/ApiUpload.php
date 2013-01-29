@@ -36,10 +36,6 @@ class ApiUpload extends ApiBase {
 
 	protected $mParams;
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() ) {

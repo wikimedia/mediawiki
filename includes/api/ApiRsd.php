@@ -31,10 +31,6 @@
  */
 class ApiRsd extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$result = $this->getResult();
 
