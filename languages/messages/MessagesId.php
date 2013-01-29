@@ -470,6 +470,7 @@ $messages = array(
 'newwindow' => '(buka di jendela baru)',
 'cancel' => 'Batalkan',
 'moredotdotdot' => 'Lainnya...',
+'morenotlisted' => 'Selanjutnya...',
 'mypage' => 'Halaman',
 'mytalk' => 'Pembicaraan',
 'anontalk' => 'Pembicaraan IP ini',
@@ -763,7 +764,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'gotaccount' => "Sudah terdaftar sebagai pengguna? '''$1'''.",
 'gotaccountlink' => 'Masuk log',
 'userlogin-resetlink' => 'Lupa detail info masuk Anda?',
-'createaccountmail' => 'melalui surel',
+'createaccountmail' => 'Gunakan kata sandi acak sementara dan kirimkan ke surel yang tercantum di bawah',
 'createaccountreason' => 'Alasan:',
 'badretype' => 'Kata sandi yang Anda masukkan salah.',
 'userexists' => 'Nama pengguna yang dimasukkan telah digunakan.
@@ -830,6 +831,7 @@ Silakan menunggu sebelum mencoba lagi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Kesalahan yang tidak dikenal dalam fungsi mail() PHP',
 'user-mail-no-addy' => 'Mencoba mengirimkan surel tanpa alamat surel.',
+'user-mail-no-body' => 'Mencoba untuk mengirim surel kosong atau terlalu pendek.',
 
 # Change password dialog
 'resetpass' => 'Ganti kata sandi',
@@ -1053,8 +1055,8 @@ Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hi
 'copyrightwarning' => "Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dianggap dilisensikan sesuai dengan $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak ingin tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain. '''JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!'''",
 'copyrightwarning2' => "Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin tulisan Anda disunting orang lain, jangan kirimkan ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut). '''JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!'''",
 'longpageerror' => "'''KESALAHAN: Teks yang Anda kirimkan sebesar $1 kilobita, yang berarti lebih besar daripada jumlah maksimum $2 kilobita. Teks tidak dapat disimpan.'''",
-'readonlywarning' => "'''PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak dapat menyimpan hasil suntingan Anda.
-Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah berkas teks dan memuatkannya lagi setelah pemeliharaan selesai.'''
+'readonlywarning' => "'''PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak dapat menyimpan hasil suntingan Anda.'''
+Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah berkas teks dan memuatkannya lagi kemudian.
 
 Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
 'protectedpagewarning' => "'''Peringatan: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus yang dapat menyuntingnya.'''
@@ -1130,7 +1132,7 @@ Beberapa templat akan diabaikan.',
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
 'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
 'undo-norev' => 'Suntingan ini tidak dapat dibatalkan karena halaman tidak ditemukan atau telah dihapuskan.',
-'undo-summary' => 'Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[Pembicaraan pengguna:$2|bicara]])',
+'undo-summary' => 'Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
@@ -2244,7 +2246,7 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Daftar pengguna aktif',
 'activeusers-intro' => 'Berikut adalah daftar pengguna yang memiliki suatu bentuk aktivitas selama paling tidak $1 {{PLURAL:$1|hari|hari}} terakhir.',
-'activeusers-count' => '$1 {{PLURAL:$1||}}suntingan selama {{PLURAL:$3||}}$3 hari terakhir',
+'activeusers-count' => '$1 {{PLURAL:$1|aktivitas|aktivitas}} dalam {{PLURAL:$3|hari|$3 hari}} terakhir',
 'activeusers-from' => 'Tampilkan pengguna mulai dari:',
 'activeusers-hidebots' => 'Sembunyikan bot',
 'activeusers-hidesysops' => 'Sembunyikan pengurus',
@@ -2359,10 +2361,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'enotif_anon_editor' => 'pengguna anonim $1',
 'enotif_body' => 'Halo $WATCHINGUSERNAME,
 
-
-Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, lihat $PAGETITLE_URL untuk revisi terakhir.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Ringkasan suntingan: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2373,7 +2372,7 @@ wiki: $PAGEEDITOR_WIKI
 Kami tidak akan mengirim pemberitahuan lain bila ada perubahan lebih lanjut sampai Anda mengunjungi halaman ini.
 Anda juga dapat menyetel ulang tanda pemberitahuan untuk semua halaman pantauan pada daftar pantauan Anda.
 
-             Sistem pemberitahuan situs {{SITENAME}}
+Sistem pemberitahuan situs {{SITENAME}}
 
 --
 Untuk mengubah setelan pemberitahuan surel, kunjungi
@@ -2456,6 +2455,8 @@ Lihat [[Special:ProtectedPages|daftar halaman terlindungi]] untuk daftar perlind
 'prot_1movedto2' => '[[$1]] dipindahkan ke [[$2]]',
 'protect-badnamespace-title' => 'Ruang nama yang tidak dapat dilindungi',
 'protect-badnamespace-text' => 'Halaman dalam ruang nama ini tidak dapat dilindungi.',
+'protect-norestrictiontypes-text' => 'Halaman ini tidak dapat dilindungi karena tidak ada tipe pembatasan yang tersedia.',
+'protect-norestrictiontypes-title' => 'Halaman tak-dilindungi',
 'protect-legend' => 'Konfirmasi pelindungan',
 'protectcomment' => 'Alasan:',
 'protectexpiry' => 'Kedaluwarsa:',
@@ -2468,9 +2469,9 @@ Lihat [[Special:ProtectedPages|daftar halaman terlindungi]] untuk daftar perlind
 'protect-locked-access' => "Akun Anda tidak dapat memiliki hak untuk mengganti tingkat pelindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
 'protect-cascadeon' => 'Halaman ini sedang dilindungi karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan pilihan pelindungan runtun diaktifkan. Anda dapat mengganti tingkat pelindungan untuk halaman ini, tapi hal tersebut tidak akan mempengaruhi pelindungan runtun.',
 'protect-default' => 'Izinkan semua pengguna',
-'protect-fallback' => 'Memerlukan hak akses "$1"',
-'protect-level-autoconfirmed' => 'Blokir pengguna baru dan tak terdaftar',
-'protect-level-sysop' => 'Hanya pengurus',
+'protect-fallback' => 'Hanya untuk pengguna dengan izin  "$1"',
+'protect-level-autoconfirmed' => 'Hanya untuk pengguna terdaftar otomatis',
+'protect-level-sysop' => 'Hanya untuk pengurus',
 'protect-summary-cascade' => 'runtun',
 'protect-expiring' => 'kedaluwarsa $1 (UTC)',
 'protect-expiring-local' => 'kedaluwarsa $1',
@@ -2758,11 +2759,18 @@ Pastikan Anda [[Special:UnlockDB|membuka kuncinya]] setelah pemeliharaan selesai
 # Move page
 'move-page' => 'Pindahkan $1',
 'move-page-legend' => 'Pindahkan halaman',
-'movepagetext' => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
+'movepagetext' => "Menggunakan formulir di bawah ini akan mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.
+Judul lama akan menjadi halaman pengalihan ke judul baru.
+Anda dapat memperbarui pengalihan yang menuju ke judul asli secara otomatis.
+Jika Anda memilih tidak, pastikan untuk memeriksa
+[[Special:DoubleRedirects|double]] atau [[Special:BrokenRedirects|broken redirects]].
+Anda bertanggung jawab untuk memastikan bahwa pranala terhubung ke tempat seharusnya.
 
-Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
+Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman pada judul yang baru, kecuali bila halaman peralihan dan tidak mempunyai sejarah penyuntingan. 
+Ini berarti Anda dapat mengubah kembali nama halaman seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
 
-'''Peringatan:''' Ini dapat mengakibatkan perubahan yang tak terduga dan drastis  bagi halaman yang populer. Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
+'''Peringatan:'''
+Ini dapat mengakibatkan perubahan drastis dan tak terduga bagi halaman yang populer; pastikan Anda mengerti konsekuensinya sebelum melanjutkan.",
 'movepagetext-noredirectfixer' => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.
 Judul yang lama akan menjadi halaman peralihan menuju judul yang baru.
 Pastikan untuk memeriksa pengalihan [[Special:DoubleRedirects|ganda]] atau [[Special:BrokenRedirects|rusak]].
@@ -2824,6 +2832,7 @@ Halaman yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapu
 'immobile-target-namespace-iw' => 'Pranala interwiki bukanlah target yang valid untuk pemindahan halaman.',
 'immobile-source-page' => 'Halaman ini tidak dapat dipindahkan.',
 'immobile-target-page' => 'Tidak dapat memindahkan ke judul tujuan tersebut.',
+'bad-target-model' => 'Tujuan yang diinginkan menggunakan model konten yang berbeda. Tidak dapat mengkonversi dari  $1  untuk  $2 .',
 'imagenocrossnamespace' => 'Tidak dapat memindahkan berkas ke ruang nama non-berkas',
 'nonfile-cannot-move-to-file' => 'Tidak dapat memindahkan non-berkas ke ruang nama berkas',
 'imagetypemismatch' => 'Ekstensi yang diberikan tidak cocok dengan tipe berkas',
@@ -2937,6 +2946,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'import-error-interwiki' => 'Halaman " $1 " tidak diimpor karena namanya dicadangkan untuk pranala eksternal (interwiki).',
 'import-error-special' => 'Halaman " $1 " tidak diimpor karena milik ruang nama khusus yang tidak mengizinkan adanya halaman.',
 'import-error-invalid' => 'Halaman "$1" tidak diimpor karena namanya tidak valid.',
+'import-error-unserialize' => 'Revisi  $2  halaman " $1 " tidak bisa diurutkan. Revisi dilaporkan untuk menggunakan konten model $3 urutan sebagai $4 .',
 'import-options-wrong' => '{{PLURAL:$2|Opsi|Opsi}} salah: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Halaman turunan yang diberikan adalah judul yang salah.',
 'import-rootpage-nosubpage' => 'Ruang nama "$1" di halaman turunan tidak mengizinkan subhalaman.',
@@ -3110,12 +3120,19 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'pageinfo-magic-words' => '{{PLURAL:$1|Kata|Kata}} ajaib ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategori|Kategori}} tersembunyi ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Templat|Templat}} yang ditransklusi ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Halaman|Halaman}} ditransklusikan pada ( $1 )',
 'pageinfo-toolboxlink' => 'Informasi halaman',
 'pageinfo-redirectsto' => 'Beralih ke',
 'pageinfo-redirectsto-info' => 'Info',
 'pageinfo-contentpage' => 'Dihitung sebagai halaman konten',
 'pageinfo-contentpage-yes' => 'Ya',
+'pageinfo-protect-cascading' => 'Perlindungan berurutan dari sini',
 'pageinfo-protect-cascading-yes' => 'Ya',
+'pageinfo-protect-cascading-from' => 'Perlindungan mulai dari',
+'pageinfo-category-info' => 'Kategori informasi',
+'pageinfo-category-pages' => 'Jumlah halaman',
+'pageinfo-category-subcats' => 'Jumlah subkategori',
+'pageinfo-category-files' => 'Jumlah berkas',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3131,6 +3148,8 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'markedaspatrollederror' => 'Tidak dapat menandai telah dipatroli',
 'markedaspatrollederrortext' => 'Anda harus menentukan satu revisi untuk ditandai sebagai yang dipatroli.',
 'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
+'markedaspatrollednotify' => 'Perubahan ini untuk $1 telah ditandai terpatroli.',
+'markedaspatrollederrornotify' => 'Menandai sebagai terpatroli gagal.',
 
 # Patrol log
 'patrol-log-page' => 'Log patroli',
@@ -3197,6 +3216,8 @@ Jika dijalankan, sistem Anda akan berisiko terserang.",
 'minutes' => '{{PLURAL:$1|$1 menit|$1 menit}}',
 'hours' => '{{PLURAL:$1|$1 jam|$1 jam}}',
 'days' => '{{PLURAL:$1|$1 hari|$1 hari}}',
+'months' => '{{PLURAL:$1|$1 bulan|$1 bulan}}',
+'years' => '{{PLURAL:$1|$1 tahun|$1 tahun}}',
 'ago' => '$1 yang lalu',
 'just-now' => 'baru saja',
 
@@ -3892,7 +3913,7 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'specialpages-group-highuse' => 'Frekuensi tinggi',
 'specialpages-group-pages' => 'Daftar halaman',
 'specialpages-group-pagetools' => 'Peralatan halaman',
-'specialpages-group-wiki' => 'Data dan peralatan wiki',
+'specialpages-group-wiki' => 'Data dan peralatan',
 'specialpages-group-redirects' => 'Pencarian dan pengalihan',
 'specialpages-group-spam' => 'Peralatan spam',
 
@@ -3988,6 +4009,7 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'logentry-newusers-newusers' => 'Akun pengguna $1 telah dibuat',
 'logentry-newusers-create' => '$1 membuat akun pengguna',
 'logentry-newusers-create2' => '$1 membuat akun pengguna $3',
+'logentry-newusers-byemail' => 'Akun pengguna  $3  diciptakan oleh  $1  dan password dikirim melalui surel',
 'logentry-newusers-autocreate' => 'Akun $1 dibuat secara otomatis',
 'logentry-rights-rights' => '$1 mengubah keanggotaan grup $3 dari $4 menjadi $5',
 'logentry-rights-rights-legacy' => '$1 mengubah keanggotaan grup $3',
@@ -4046,6 +4068,7 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'api-error-ok-but-empty' => 'Kesalahan internal: tidak ada tanggapan dari peladen.',
 'api-error-overwrite' => 'Tidak diizinkan untuk menimpa berkas yang sudah ada.',
 'api-error-stashfailed' => 'Kesalahan internal: server gagal menyimpan berkas sementara.',
+'api-error-publishfailed' => 'Kesalahan internal: server gagal menyimpan berkas sementara.',
 'api-error-timeout' => 'Peladen tidak merespons dalam waktu yang diharapkan.',
 'api-error-unclassified' => 'Terjadi galat yang tidak diketahui',
 'api-error-unknown-code' => 'Kesalahan tidak dikenal: "$1"',

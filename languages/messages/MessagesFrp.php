@@ -315,12 +315,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Cachiér los changements gouardâs dedens los dèrriérs changements',
 'tog-newpageshidepatrolled' => 'Cachiér les pâges gouardâyes entre-mié la lista de les pâges novèles',
 'tog-extendwatchlist' => 'Ètendre la lista de siuvu por montrar tôs los changements et pas ren que los ples novéls',
-'tog-usenewrc' => 'Rassemblar los changements per pâge dedens los dèrriérs changements et la lista de siuvu (at fôta de JavaScript)',
+'tog-usenewrc' => 'Rassemblar los changements per pâge dedens los dèrriérs changements et la lista de siuvu (il at fôta de JavaScript)',
 'tog-numberheadings' => 'Numerotar ôtomaticament los titros de sèccion',
-'tog-showtoolbar' => 'Montrar la bârra d’outils de changement (at fôta de JavaScript)',
-'tog-editondblclick' => 'Changiér des pâges sur doblo-clic (at fôta de JavaScript)',
+'tog-showtoolbar' => 'Montrar la bârra d’outils de changement (il at fôta de JavaScript)',
+'tog-editondblclick' => 'Changiér des pâges sur doblo-clic (il at fôta de JavaScript)',
 'tog-editsection' => 'Activar lo changement de sèccions avouéc los lims « [changiér] »',
-'tog-editsectiononrightclick' => 'Activar lo changement de sèccions per clic drêt sur lors titros (at fôta de JavaScript)',
+'tog-editsectiononrightclick' => 'Activar lo changement de sèccions per clic drêt sur lors titros (il at fôta de JavaScript)',
 'tog-showtoc' => 'Montrar la trâbla de les matiéres (por les pâges qu’ont més de 3 sèccions)',
 'tog-rememberpassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'tog-watchcreations' => 'Apondre les pâges que fé et pués los fichiérs que tèlècharjo a ma lista de siuvu',
@@ -338,10 +338,10 @@ $messages = array(
 'tog-shownumberswatching' => 'Montrar lo nombro d’utilisators que siuvont na pâge',
 'tog-oldsig' => 'Signatura ègzistenta :',
 'tog-fancysig' => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
-'tog-externaleditor' => 'Empleyér per dèfôt un changior de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
-'tog-externaldiff' => 'Empleyér per dèfôt un comparator de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
+'tog-externaleditor' => 'Empleyér per dèfôt un changior de tèxto de defôr (solament por los utilisators avanciês, il at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
+'tog-externaldiff' => 'Empleyér per dèfôt un comparator de defôr (solament por los utilisators avanciês, il at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-showjumplinks' => 'Activar los lims d’accèssibilitât « {{int:jumpto}} »',
-'tog-uselivepreview' => 'Empleyér l’apèrçu rapido (at fôta de JavaScript) (èxpèrimentâl)',
+'tog-uselivepreview' => 'Empleyér l’apèrçu rapido (il at fôta de JavaScript) (èxpèrimentâl)',
 'tog-forceeditsummary' => 'M’avèrtir quand j’é pas buchiê de rèsumâ de changement',
 'tog-watchlisthideown' => 'Cachiér los mins changements dedens la lista de siuvu',
 'tog-watchlisthidebots' => 'Cachiér los changements fêts per des robots dedens la lista de siuvu',
@@ -590,8 +590,8 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'hidetoc' => 'cachiér',
 'collapsible-collapse' => 'repleyér',
 'collapsible-expand' => 'dèpleyér',
-'thisisdeleted' => 'Voléd-vos vêre ou ben refâre $1 ?',
-'viewdeleted' => 'Vêre $1 ?',
+'thisisdeleted' => '’T-o que vos voléd vêre ou ben refâre $1 ?',
+'viewdeleted' => '’T-o que vos voléd vêre $1 ?',
 'restorelink' => '{{PLURAL:$1|un changement suprimâ|$1 changements suprimâs}}',
 'feedlinks' => 'Flux :',
 'feed-invalid' => 'Tipo d’abonement du flux pas justo.',
@@ -666,7 +666,7 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'filenotfound' => 'Empossiblo de trovar lo fichiér « $1 ».',
 'fileexistserror' => 'Empossiblo d’ècrire lo fichiér « $1 » : lo fichiér ègziste.',
 'unexpected' => 'Valor emprèvua : « $1 » = « $2 ».',
-'formerror' => 'Fôta : empossiblo de sometre lo formulèro.',
+'formerror' => 'Fôta : empossiblo de mandar lo formulèro.',
 'badarticleerror' => 'Cel’accion pôt pas étre fêta sur ceta pâge.',
 'cannotdelete' => 'Empossiblo de suprimar la pâge lo fichiér « $1 ».
 Pôt-étre la suprèssion est ja étâye fêta per un ôtro.',
@@ -691,7 +691,7 @@ Volyéd tornar èprovar dens un tôrn.',
 'protectedpagetext' => 'Ceta pâge est étâye protègiêe por empachiér son changement ou ben d’ôtres accions.',
 'viewsourcetext' => 'Vos pouede vêre et pués copiyér lo tèxto sôrsa de ceta pâge :',
 'viewyourtext' => "Vos pouede vêre et pués copiyér lo tèxto sôrsa de '''voutros changements''' a ceta pâge :",
-'protectedinterface' => 'Cela pâge-que balye de tèxto d’entèrface por la programeria sur ceti vouiqui, et est vêr protègiêe por èvitar los abus.
+'protectedinterface' => 'Cela pâge-que balye de tèxto d’entèrface por la programeria sur ceti vouiqui, et el est vêr protègiêe por èvitar los abus.
 Por apondre ou ben changiér des traduccions sur tôs los vouiquis, volyéd empleyér [//translatewiki.net/ translatewiki.net], lo projèt de localisacion de MediaWiki.',
 'editinginterface' => "'''Atencion :''' vos éte aprés changiér na pâge empleyêe por fâre lo tèxto d’entèrface de la programeria.
 Los changements sè cognetront sur l’aparence de l’entèrface utilisator por los ôtros utilisators de ceti vouiqui.
@@ -705,7 +705,7 @@ $2',
 'ns-specialprotected' => 'Les pâges spèciâles pôvont pas étre changiêes.',
 'titleprotected' => "Cél titro est étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyêe est « ''$2'' ».",
-'filereadonlyerror' => 'Empossiblo de changiér lo fichiér « $1 » perce que lo dèpôt de fichiérs « $2 » est en lèctura solèta.
+'filereadonlyerror' => 'Empossiblo de changiér lo fichiér « $1 » perce que lo dèpôt de fichiérs « $2 » est justo en lèctura.
 
 L’administrator que l’at vèrrolyê at balyê cet’èxplicacion : « $3 ».',
 'invalidtitle-knownnamespace' => 'Titro pas justo avouéc l’èspâço de noms « $2 » et lo tèxto « $3 »',
@@ -748,7 +748,7 @@ Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SI
 'gotaccount' => "Vos avéd ja un compto ? '''$1.'''",
 'gotaccountlink' => 'Branchiéd-vos',
 'userlogin-resetlink' => 'Vos éd oubliâ voutros dètalys de branchement ?',
-'createaccountmail' => 'per mèssageria èlèctronica',
+'createaccountmail' => 'Empleyér un contresegno temporèro fêt per hasârd et pués lo mandar a l’adrèce èlèctronica spècifiâye ce-desot',
 'createaccountreason' => 'Rêson :',
 'badretype' => 'Los contresegnos que vos éd buchiês sont pas pariérs.',
 'userexists' => 'Lo nom d’utilisator buchiê est ja empleyê.
@@ -783,7 +783,7 @@ Volyéd tornar èprovar.',
 'passwordremindertitle' => 'Contresegno temporèro novél por {{SITENAME}}',
 'passwordremindertext' => 'Yon (probâblament vos, dês l’adrèce IP $1) at demandâ un contresegno
 novél por {{SITENAME}} ($4). Un contresegno temporèro est étâ fêt por
-l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
+l’utilisator « $2 » et il est « $3 ». S’o ére voutra entencion, vos vos devréd
 branchiér et pués chouèsir un contresegno novél.
 Voutron contresegno temporèro èxpirerat dens {{PLURAL:$5|un jorn|$5 jorns}}.
 
@@ -827,8 +827,8 @@ Volyéd atendre devant que tornar èprovar.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Fôta encognua dens la fonccion mail() de PHP.',
-'user-mail-no-addy' => 'At tâchiê de mandar un mèssâjo sen adrèce èlèctronica.',
-'user-mail-no-body' => 'At tâchiê de mandar un mèssâjo avouéc un côrp vouedo ou ben dèrêsonâblament côrt.',
+'user-mail-no-addy' => 'Il at tâchiê de mandar un mèssâjo sen adrèce èlèctronica.',
+'user-mail-no-body' => 'Il at tâchiê de mandar un mèssâjo avouéc un côrp vouedo ou ben dèrêsonâblament côrt.',
 
 # Change password dialog
 'resetpass' => 'Changiér lo contresegno',
@@ -858,7 +858,7 @@ Pôt-étre vos éd ja changiê voutron contresegno avouéc reusséta ou ben dema
 'passwordreset-pretext' => '{{PLURAL:$1||Buchiéd yona de les piéces de donâs ce-desot}}',
 'passwordreset-username' => 'Nom d’utilisator :',
 'passwordreset-domain' => 'Domêno :',
-'passwordreset-capture' => 'Vêre lo mèssâjo que rèsulte ?',
+'passwordreset-capture' => '’T-o que vos voléd vêre lo mèssâjo que rèsulte ?',
 'passwordreset-capture-help' => 'Se vos pouentâd cela câsa, lo mèssâjo (avouéc lo contresegno temporèro) vos serat montrâ quand serat mandâ a l’utilisator.',
 'passwordreset-email' => 'Adrèce èlèctronica :',
 'passwordreset-emailtitle' => 'Dètalys du compto dessus {{SITENAME}}',
@@ -1060,26 +1060,26 @@ Na solucion de rechanjo est étâye trovâye por vos pèrmetre de changiér en t
 Se vos l’encartâd, tôs los changements fêts dês ceta vèrsion seront pèrdus.",
 'yourdiff' => 'Difèrences',
 'copyrightwarning' => "Volyéd notar que totes les contribucions a {{SITENAME}} sont considèrâyes coment publeyêes desot los tèrmos de la $2 (vêde $1 por més de dètalys).
-Se vos voléd pas que voutros ècrits seyont changiês sen pouent de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico ou ben d’un’ôtra ressôrsa libra.
+Se vos voléd pas que voutros ècrits seyont changiês sen pouent de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas mandar ique.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico ou d’un’ôtra ressôrsa libra.
 '''Empleyéd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
 'copyrightwarning2' => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiêes ou ben enlevâyes per d’ôtros contributors.
-Se vos voléd pas que voutros ècrits seyont changiês sen pouent de rèstriccion, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico ou ben d’un’ôtra ressôrsa libra (vêde $1 por més de dètalys).
+Se vos voléd pas que voutros ècrits seyont changiês sen pouent de rèstriccion, adonc los volyéd pas mandar ique.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico ou d’un’ôtra ressôrsa libra (vêde $1 por més de dètalys).
 '''Empleyéd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'longpageerror' => "'''Fôta : lo tèxto que vos éd somês fât {{PLURAL:$1|un Kio|$1 Kio}}, cen que dèpâsse la limita fixâye a {{PLURAL:$2|un Kio|$2 Kio}}.'''
+'longpageerror' => "'''Fôta : lo tèxto que vos éd mandâ fât {{PLURAL:$1|un Kio|$1 Kio}}, cen que dèpâsse la limita fixâye a {{PLURAL:$2|un Kio|$2 Kio}}.'''
 Pôt pas étre encartâ.",
 'readonlywarning' => "'''Atencion : la bâsa de donâs est étâye vèrrolyêe por mantegnence, vos porréd vêr pas encartar voutros changements d’abôrd.'''
 Vos pouede copiyér et côlar voutron tèxto dedens un fichiér tèxto et pués l’encartar por ples târd.
 
 L’administrator qu’at vèrrolyê la bâsa de donâs at balyê cet’èxplicacion : $1",
 'protectedpagewarning' => "'''Atencion : ceta pâge est étâye protègiêe de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér.'''
-La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
+Por refèrence, la dèrriére entrâ du jornal est balyêe ce-desot :",
 'semiprotectedpagewarning' => "'''Nota :''' ceta pâge est étâye protègiêe de façon que solament los utilisators encartâs la pouessont changiér.
-La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
+Por refèrence, la dèrriére entrâ du jornal est balyêe ce-desot :",
 'cascadeprotectedwarning' => "'''Atencion :''' cela pâge-que est étâye protègiêe de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér, perce qu’el est entrebetâye dedens {{PLURAL:$1|ceta pâge protègiêe|cetes pâges protègiêes}} avouéc la « protèccion en cascâda » activâye :",
 'titleprotectedwarning' => "'''Atencion : ceta pâge est étâye protègiêe de façon que des [[Special:ListGroupRights|drêts spècificos]] sont nècèssèros por la povêr fâre.'''
-La dèrriére entrâ du jornal est montrâye ce-desot por refèrence :",
+Por refèrence, la dèrriére entrâ du jornal est balyêe ce-desot :",
 'templatesused' => '{{PLURAL:$1|Modèlo empleyê|Modèlos empleyês}} per ceta pâge :',
 'templatesusedpreview' => '{{PLURAL:$1|Modèlo empleyê|Modèlos empleyês}} dedens cet’apèrçu :',
 'templatesusedsection' => '{{PLURAL:$1|Modèlo empleyê|Modèlos empleyês}} dedens ceta sèccion :',
@@ -1098,9 +1098,9 @@ Vos pouede tornar arriér et pués changiér na pâge ègzistenta ou ben [[Speci
 'recreate-moveddeleted-warn' => "'''Atencion : vos éte aprés refâre na pâge qu’est étâye suprimâye dês devant.'''
 
 Demandâd-vos se fôt franc continuar son changement.
-Por comoditât, lo jornal de les suprèssions et des dèplacements de cela pâge est montrâ ce-desot :",
+Por comoditât, lo jornal de les suprèssions et des dèplacements de cela pâge est balyê ce-desot :",
 'moveddeleted-notice' => 'Ceta pâge est étâye suprimâye.
-Por refèrence, lo jornal de les suprèssions et des dèplacements de cela pâge est montrâ ce-desot.',
+Por refèrence, lo jornal de les suprèssions et des dèplacements de cela pâge est balyê ce-desot.',
 'log-fulllog' => 'Vêre lo jornal complèt',
 'edit-hook-aborted' => 'Changement anulâ per un grèfon.
 Nion’èxplicacion est étâye balyêe.',
@@ -1229,7 +1229,7 @@ fonccion, la vèrsion spècifiâye ègziste pas ou ben vos tâchiéd de cachiér
 'revdelete-nologid-title' => 'Entrâ du jornal pas justa',
 'revdelete-nologid-text' => 'Ou ben vos éd pas spècifiâ un èvènement du jornal ciba por fâre cela fonccion ou ben l’entrâ spècifiâye ègziste pas.',
 'revdelete-no-file' => 'Lo fichiér spècifiâ ègziste pas.',
-'revdelete-show-file-confirm' => 'Éte-vos de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » du $2 a $3 ?',
+'revdelete-show-file-confirm' => '’T-o que vos éte de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » du $2 a $3 ?',
 'revdelete-show-file-submit' => 'Ouè',
 'revdelete-selected' => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :'''",
@@ -1719,56 +1719,56 @@ Cel’enformacion serat publica.',
 'rc_categories_any' => 'Totes',
 'rc-change-size-new' => '$1 octèt{{PLURAL:$1||s}} aprés changement',
 'newsectionsummary' => '/* $1 */ novèla sèccion',
-'rc-enhanced-expand' => 'Montrar los dètalys (at fôta de JavaScript)',
+'rc-enhanced-expand' => 'Montrar los dètalys (il at fôta de JavaScript)',
 'rc-enhanced-hide' => 'Cachiér los dètalys',
-'rc-old-title' => 'fêt avouéc lo titro « $1 »',
+'rc-old-title' => 'fêta avouéc lo titro originâl « $1 »',
 
 # Recent changes linked
-'recentchangeslinked' => 'Changements de les pâges liyês',
-'recentchangeslinked-feed' => 'Changements de les pâges liyês',
-'recentchangeslinked-toolbox' => 'Changements de les pâges liyês',
-'recentchangeslinked-title' => 'Changements de les pâges liyês a « $1 »',
-'recentchangeslinked-noresult' => 'Y at gins de changement sur les pâges liyês pendent lo temps chouèsi.',
-'recentchangeslinked-summary' => "Ceta pâge spèciâla montre los dèrriérs changements sur les pâges que sont liyês.
-Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs'''.",
+'recentchangeslinked' => 'Changements liyês',
+'recentchangeslinked-feed' => 'Changements liyês',
+'recentchangeslinked-toolbox' => 'Changements liyês',
+'recentchangeslinked-title' => 'Changements liyês a « $1 »',
+'recentchangeslinked-noresult' => 'Y at gins de changement sur les pâges liyêes pendent lo temps chouèsi.',
+'recentchangeslinked-summary' => "O est na lista des dèrriérs changements sur les pâges liyêes a na pâge spècifiâye (sur los membros d’una catègorie spècifiâye).
+Les pâges de voutra [[Special:Watchlist|lista de siuvu]] sont en '''grâs'''.",
 'recentchangeslinked-page' => 'Nom de la pâge :',
-'recentchangeslinked-to' => 'Fâre vêre los changements de les pâges qu’ont un lim de vers la pâge balyê pletout que l’envèrsa',
+'recentchangeslinked-to' => 'Montrar pletout los changements sur les pâges liyêes a la pâge balyêe',
 
 # Upload
 'upload' => 'Tèlèchargiér un fichiér',
 'uploadbtn' => 'Tèlèchargiér lo fichiér',
-'reuploaddesc' => 'Anular lo tèlèchargement et tornar u formulèro de tèlèchargement.',
+'reuploaddesc' => 'Anular lo tèlèchargement et pués tornar u formulèro de tèlèchargement',
 'upload-tryagain' => 'Mandar la dèscripcion du fichiér changiê',
-'uploadnologin' => 'Pas branchiê',
-'uploadnologintext' => 'Vos dête étre [[Special:UserLogin|branchiê]] por tèlèchargiér des fichiérs sur lo sèrvor.',
-'upload_directory_missing' => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et pués at pas possu étre fêt per lo sèrvor vouèbe.',
-'upload_directory_read_only' => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvor vouèbe.',
-'uploaderror' => 'Èrror pendent lo tèlèchargement',
-'upload-recreate-warning' => "'''Atencion : un fichiér avouéc cél nom at étâ suprimâ ou ben dèplaciê.'''
+'uploadnologin' => 'Pas branchiê(ye)',
+'uploadnologintext' => 'Vos dête étre [[Special:UserLogin|branchiê(ye)]] por tèlèchargiér des fichiérs.',
+'upload_directory_missing' => 'Lo rèpèrtouèro de tèlèchargement ($1) est manquent et pués il at pas possu étre fêt per lo sèrvior Vouèbe.',
+'upload_directory_read_only' => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvior Vouèbe.',
+'uploaderror' => 'Fôta pendent lo tèlèchargement',
+'upload-recreate-warning' => "'''Atencion : un fichiér avouéc cél nom est étâ suprimâ ou ben dèplaciê.'''
 
-Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
+Por comoditât, lo jornal de les suprèssions et des dèplacements de cela pâge est balyê ce-desot :",
 'uploadtext' => "Empleyéd lo formulèro ce-desot por tèlèchargiér des fichiérs.
-Por vêre ou ben rechèrchiér des fichiérs tèlèchargiês dês devant, vêde la [[Special:FileList|lista des fichiérs tèlèchargiês]]. Los tèlèchargements sont asse-ben encartâs dedens lo [[Special:Log/upload|jornal des tèlèchargements]], et pués les suprèssions dedens lo [[Special:Log/delete|jornal de les suprèssions]].
+Por vêre ou ben rechèrchiér des fichiérs tèlèchargiês dês devant, vêde la [[Special:FileList|lista des fichiérs tèlèchargiês]]. Los (re-)tèlèchargements sont asse-ben encartâs dedens lo [[Special:Log/upload|jornal des tèlèchargements]], et pués les suprèssions dedens lo [[Special:Log/delete|jornal de les suprèssions]].
 
 Por entrebetar un fichiér dedens na pâge, empleyéd un lim de yona de cetes fôrmes :
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.jpg]]</nowiki></code>''' por empleyér la vèrsion en plêna largior du fichiér
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.png|200px|thumb|left|tèxto dèscriptif]]</nowiki></code>''' por empleyér na figura de 200 pixèls de lârjo dedens na bouèta a gôche avouéc « tèxto dèscriptif » coment dèscripcion
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichiér.ogg]]</nowiki></code>''' por liyér tot drêt vers lo fichiér sen lo fâre vêre",
-'upload-permitted' => 'Formats de fichiérs ôtorisâs : $1.',
-'upload-preferred' => 'Formats de fichiérs prèferâs : $1.',
-'upload-prohibited' => 'Formats de fichiérs dèfendus : $1.',
-'uploadlog' => 'Jornal des tèlèchargements',
+'upload-permitted' => 'Tipos de fichiérs ôtorisâs : $1.',
+'upload-preferred' => 'Tipos de fichiérs prèferâs : $1.',
+'upload-prohibited' => 'Tipos de fichiérs dèfendus : $1.',
+'uploadlog' => 'jornal des tèlèchargements',
 'uploadlogpage' => 'Jornal des tèlèchargements',
-'uploadlogpagetext' => 'Vê-que la lista des dèrriérs fichiérs tèlèchargiês sur lo sèrvor.
-Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por una presentacion ples visuâla.',
+'uploadlogpagetext' => 'Vê-que na lista des dèrriérs fichiérs tèlèchargiês.
+Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por un apèrçu ples visuâl.',
 'filename' => 'Nom du fichiér',
 'filedesc' => 'Dèscripcion',
 'fileuploadsummary' => 'Dèscripcion :',
 'filereuploadsummary' => 'Changements du fichiér :',
-'filestatus' => 'Statut des drêts d’ôtor :',
+'filestatus' => 'Statut du drêt d’ôtor :',
 'filesource' => 'Sôrsa :',
 'uploadedfiles' => 'Fichiérs tèlèchargiês',
-'ignorewarning' => 'Ignorar l’avèrtissement et pués sôvar quand mémo lo fichiér',
+'ignorewarning' => 'Ignorar l’avèrtissement et pués encartar lo fichiér quand mémo',
 'ignorewarnings' => 'Ignorar tôs los avèrtissements',
 'minlength1' => 'Los noms de fichiér dêvont comprendre u muens yona lètra.',
 'illegalfilename' => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges.

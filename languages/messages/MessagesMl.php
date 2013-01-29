@@ -2309,7 +2309,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'usermessage-editor' => 'വ്യവസ്ഥാസന്ദേശകൻ',
 
 # Watchlist
-'watchlist' => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടിക',
+'watchlist' => 'ശ്രദ്ധിക്കുന്നവ',
 'mywatchlist' => 'ശ്രദ്ധിക്കുന്നവ',
 'watchlistfor2' => 'ഉപയോക്താവ്:$1 $2',
 'nowatchlist' => 'താങ്കൾ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയിൽ ഇനങ്ങളൊന്നുമില്ല.',

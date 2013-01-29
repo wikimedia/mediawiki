@@ -665,9 +665,8 @@ S-ar putea ca acesta să fi fost deja șters de altcineva.',
 'delete-hook-aborted' => 'Ștergerea a fost abandonată din cauza unui hook.
 Nicio explicație furnizată.',
 'badtitle' => 'Titlu incorect',
-'badtitletext' => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.
-
-Poate conține unul sau mai multe caractere ce nu poate fi folosit în titluri.',
+'badtitletext' => 'Titlul paginii căutate este incorect, gol sau este o legătură interlinguală sau interwiki incorectă.
+Poate conține unul sau mai multe caractere ce nu pot fi folosite în titluri.',
 'perfcached' => 'Datele următoare au fost păstrate în cache și s-ar putea să nu fie actualizate. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
 'perfcachedts' => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$4|un rezultat este disponibil|$4 rezultate sunt disponibile}} în cache.',
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informațiile de aici nu sunt împrospătate.',
@@ -1449,7 +1448,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 Acțiunea nu este reversibilă.',
 'prefs-emailconfirm-label' => 'Confirmare e-mail:',
 'prefs-textboxsize' => 'Mărime căsuță de modificare',
-'youremail' => 'Adresa de e-mail:',
+'youremail' => 'Adresă de e-mail:',
 'username' => '{{GENDER:$1|Nume de utilizator}}:',
 'uid' => 'ID {{GENDER:$1|utilizator|utilizatoare}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Membru|Membră}} în {{PLURAL:$1|grupul|grupurile}}:',

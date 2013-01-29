@@ -632,7 +632,8 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)',
-	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software)',
+	'config-suhosin-max-value-length' => 'Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is between 0 and 1023 (that max value is hard set in MediaWiki software)
+Do not translate "length" in the first sentence',
 	'config-db-host-help' => '{{doc-singularthey}}',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
@@ -888,7 +889,7 @@ U gebruik tans $2.',
 	'config-upgrade-done-no-regenerate' => 'Opgradering is voltooi.
 
 U kan nou [$1 u wiki gebruik].',
-	'config-regenerate' => 'Herskep LocalSettings.php →',
+	'config-regenerate' => 'Herskep <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Die uitvoer van <code>SHOW TABLE STATUS</code> het gefaal!',
 	'config-db-web-account' => 'Databasisgebruiker vir toegang tot die web',
 	'config-mysql-engine' => 'Stoor-enjin:',
@@ -971,7 +972,7 @@ U sal dit moet [$1 aflaai] en dit in die hoofgids van u wiki-installasie plaas; 
 '''Let wel''': As u dit nie nou doen nie, sal die gegenereerde konfigurasielêer nie later meer beskikbaar wees nadat u die installasie afgesluit het nie.
 
 As dit gedoen is, kan u '''[u $2 wiki besoek]'''.", # Fuzzy
-	'config-download-localsettings' => 'Laai LocalSettings.php af',
+	'config-download-localsettings' => 'Laai <code>LocalSettings.php</code> af',
 	'config-help' => 'hulp',
 	'mainpagetext' => "'''MediaWiki is suksesvol geïnstalleer.'''",
 	'mainpagedocfooter' => "Konsulteer '''[//meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.
@@ -1406,7 +1407,7 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-using531' => 'PHP $1 не сумяшчальнае з MediaWiki з-за памылкі ў перадачы парамэтраў па ўказальніку да <code>__call()</code>.
 Абнавіце PHP да вэрсіі 5.3.2 ці болей позьняй, ці адкаціце да вэрсіі 5.3.0 каб гэта выправіць.
 Усталяваньне перарванае.',
-	'config-suhosin-max-value-length' => 'Suhosin усталяваны і абмяжоўвае даўжыню парамэтра GET у $1 {{PLURAL:$1|байт|байты|байтаў}}. ResourceLoader для MediaWiki будзе абходзіць гэтае абмежаваньне, што, аднак, адаб’ецца на хуткадзеяньні. Калі магчыма, варта ўстанавіць suhosin.get.max_value_length роўным 1024 ці больш у php.ini, а таксама ўстанавіць тое ж значэньне для $wgResourceLoaderMaxQueryLength у LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin усталяваны і абмяжоўвае даўжыню парамэтра GET у $1 {{PLURAL:$1|байт|байты|байтаў}}. ResourceLoader для MediaWiki будзе абходзіць гэтае абмежаваньне, што, аднак, адаб’ецца на хуткадзеяньні. Калі магчыма, варта ўстанавіць <code>suhosin.get.max_value_length</code> роўным 1024 ці больш у <code>php.ini</code>, а таксама ўстанавіць тое ж значэньне для <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-host' => 'Хост базы зьвестак:',
 	'config-db-host-help' => 'Калі сэрвэр Вашай базы зьвестак знаходзіцца на іншым сэрвэры, увядзіце тут імя хоста ці IP-адрас.
@@ -1557,7 +1558,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Абнаўленьне скончанае.
 
 Цяпер Вы можаце [$1 пачаць працу з вікі].',
-	'config-regenerate' => 'Рэгенэраваць LocalSettings.php →',
+	'config-regenerate' => 'Рэгенэраваць <code>LocalSettings.php</code> →',
 	'config-show-table-status' => "Запыт '<code>SHOW TABLE STATUS</code>' не атрымаўся!",
 	'config-unknown-collation' => "'''Папярэджаньне:''' база зьвестак выкарыстоўвае нераспазнанае супастаўленьне.",
 	'config-db-web-account' => 'Рахунак базы зьвестак для вэб-доступу',
@@ -1787,7 +1788,7 @@ $3
 '''Заўвага''': калі Вы гэтага ня зробіце зараз, то створаны файл ня будзе даступны Вам потым, калі Вы выйдзеце з праграмы ўсталяваньня  без яго загрузкі.
 
 Калі Вы гэта зробіце, Вы можаце '''[$2 ўвайсьці ў Вашую вікі]'''.",
-	'config-download-localsettings' => 'Загрузіць LocalSettings.php',
+	'config-download-localsettings' => 'Загрузіць <code>LocalSettings.php</code>',
 	'config-help' => 'дапамога',
 	'config-nofile' => 'Файл «$1» ня знойдзены. Ці быў ён выдалены?',
 	'mainpagetext' => "'''MediaWiki пасьпяхова ўсталяваная.'''",
@@ -1949,7 +1950,7 @@ $1
 	'config-using531' => 'МедияУики не може да се използва с PHP $1 заради проблем с референтните параметри за <code>__call()</code>.
 За разрешаване на този проблем е необходимо да се обнови до PHP 5.3.2 или по-нова версия или да се инсталира по-стара версия, напр. PHP 5.3.0.
 Инсталацията беше прекратена.',
-	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ограничава дължината на параметъра GET на $1 байта. Компонентът на МедияУики ResourceLoader ще може да пренебрегне частично това ограничение, но това ще намали производителността. По възможност е препоръчително да се настрои suhosin.get.max_value_length на 1024 или по-голяма стойност в php.ini и в LocalSettings.php да се настрои $wgResourceLoaderMaxQueryLength със същата стойност.',
+	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ограничава дължината на параметъра GET на $1 байта. Компонентът на МедияУики ResourceLoader ще може да пренебрегне частично това ограничение, но това ще намали производителността. По възможност е препоръчително да се настрои <code>suhosin.get.max_value_length</code> на 1024 или по-голяма стойност в <code>php.ini</code> и в LocalSettings.php да се настрои <code>$wgResourceLoaderMaxQueryLength</code> със същата стойност.', # Fuzzy
 	'config-db-type' => 'Тип на базата от данни:',
 	'config-db-host' => 'Хост на базата от данни:',
 	'config-db-host-help' => 'Ако базата от данни е на друг сървър, в кутията се въвежда името на хоста или IP адреса.
@@ -2083,7 +2084,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Обновяването приключи.
 
 Вече е възможно [$1 да използвате уикито].',
-	'config-regenerate' => 'Създаване на LocalSettings.php →',
+	'config-regenerate' => 'Създаване на <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Заявката <code>SHOW TABLE STATUS</code> не сполучи!',
 	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
 	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
@@ -2310,7 +2311,7 @@ $3
 '''Забележка''': Ако това не бъде извършено сега, генерираният конфигурационен файл няма да е достъпен на по-късен етап ако не бъде изтеглен сега или инсталацията приключи без изтеглянето му.
 
 Когато файлът вече е в основната директория, '''[$2 уикито ще е достъпно на този адрес]'''.",
-	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
+	'config-download-localsettings' => 'Изтегляне на <code>LocalSettings.php</code>',
 	'config-help' => 'помощ',
 	'config-nofile' => 'Файлът „$1“ не може да бъде открит. Да не е бил изтрит?',
 	'mainpagetext' => "'''Уикито беше успешно инсталирано.'''",
@@ -2710,7 +2711,7 @@ Da hizivaat anezho da VediaWiki $1, klikañ war '''Kenderc'hel'''.",
 	'config-upgrade-done-no-regenerate' => 'Hizivadenn kaset da benn.
 
 Gallout a rit [$1 kregiñ da implijout ho wiki].',
-	'config-regenerate' => 'Adgenel LocalSettings.php →',
+	'config-regenerate' => 'Adgenel <code>LocalSettings.php</code> →',
 	'config-show-table-status' => "C'hwitet ar reked <code>SHOW TABLE STATUS</code> !",
 	'config-unknown-collation' => "'''Diwallit :''' Emañ an diaz roadennoù o renkañ an traoù diouzh un urzh lizherennek dianav.",
 	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
@@ -2843,7 +2844,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-mainpage' => "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
 	'config-install-extension-tables' => 'O krouiñ taolennoù evit an astennoù gweredekaet',
 	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
-	'config-download-localsettings' => 'Pellgargañ LocalSettings.php',
+	'config-download-localsettings' => 'Pellgargañ <code>LocalSettings.php</code>',
 	'config-help' => 'skoazell',
 	'mainpagetext' => "'''Meziant MediaWiki staliet.'''",
 	'mainpagedocfooter' => "Sellit ouzh [//meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
@@ -3189,7 +3190,7 @@ Instalace přerušena.',
 	'config-using531' => 'MediaWiki nelze používat na PHP $1 kvůli chybě při předávání parametrů odkazem do <code>__call()</code>.
 Pro vyřešení upgradujte na PHP 5.3.2 nebo vyšší nebo downgradujte na PHP 5.3.0.
 Instalace přerušena.',
-	'config-suhosin-max-value-length' => 'Je nainstalován Suhosin, který omezuje délku parametrů GET na $1 bajtů. Komponenta ResourceLoader z MediaWiki dokáže s tímto omezením pracovat, ale sníží to výkon. Pokud to je alespoň trochu možné, měli byste v php.ini nastavit suhosin.get.max_value_length na 1024 nebo vyšší a na stejnou hodnotu nastavit v LocalSettings.php proměnnou $wgResourceLoaderMaxQueryLength.',
+	'config-suhosin-max-value-length' => 'Je nainstalován Suhosin, který omezuje délku parametrů GET na $1 bajtů. Komponenta ResourceLoader z MediaWiki dokáže s tímto omezením pracovat, ale sníží to výkon. Pokud to je alespoň trochu možné, měli byste v <code>php.ini</code> nastavit <code>suhosin.get.max_value_length</code> na 1024 nebo vyšší a na stejnou hodnotu nastavit v LocalSettings.php proměnnou <code>$wgResourceLoaderMaxQueryLength</code>.', # Fuzzy
 	'config-db-type' => 'Typ databáze:',
 	'config-db-host' => 'Databázový server:',
 	'config-db-host-help' => 'Pokud je váš databázový server na jiném počítači, zadejte zde jméno stroje nebo IP adresu.
@@ -3342,7 +3343,7 @@ To se ale '''nedoporučuje''', pokud s wiki nemáte problémy.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizace byla dokončena.
 
 Svou wiki teď můžete [$1 začít používat].',
-	'config-regenerate' => 'Přegenerovat LocalSettings.php →',
+	'config-regenerate' => 'Přegenerovat <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Dotaz <code>SHOW TABLE STATUS</code> se nezdařil!',
 	'config-unknown-collation' => "'''Upozornění:''' Databáze používá nerozpoznané řazení.",
 	'config-db-web-account' => 'Databázový účet pro webový přístup',
@@ -3572,7 +3573,7 @@ $3
 '''Poznámka''': Pokud to neuděláte hned, tento vygenerovaný konfigurační soubor nebude později dostupný, pokud instalaci opustíte, aniž byste si ho stáhli.
 
 Až to dokončíte, můžete '''[$2 vstoupit do své wiki]'''.",
-	'config-download-localsettings' => 'Stáhnout LocalSettings.php',
+	'config-download-localsettings' => 'Stáhnout <code>LocalSettings.php</code>',
 	'config-help' => 'nápověda',
 	'config-nofile' => 'Soubor „$1“ nelze nalézt. Byl smazán?',
 	'mainpagetext' => "'''MediaWiki byla úspěšně nainstalována.'''",
@@ -3789,7 +3790,10 @@ PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder
 	'config-using531' => 'MediaWiki kann nicht zusammen mit PHP $1 verwendet werden. Grund hierfür ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
 PHP muss auf Version 5.3.2 oder höher oder 5.3.0 oder niedriger aktualisiert werden, um das Problem zu beheben.
 Die Installation wurde abgebrochen.',
-	'config-suhosin-max-value-length' => 'Suhosin ist installiert und beschränkt die Länge des GET-Parameters auf $1 Bytes. Der ResouceLoader von MediaWiki wird zwar unter diesen Bedingungen funktionieren, allerdings nur mit verminderter Leistungsfähigkeit. Sofern möglich sollte der Parameter <code>suhosin.get.max_value_length</code> in der Datei php.ini auf 1024 oder höher festgelegt werden. Gleichzeitig muss der Parameter <code>$wgResourceLoaderMaxQueryLength</code> in der Datei LocalSettings.php auf den selben Wert eingestellt werden.',
+	'config-suhosin-max-value-length' => 'Suhosin ist installiert und beschränkt die Länge des GET-Parameters auf $1 Bytes.
+Der ResouceLoader von MediaWiki wird zwar unter diesen Bedingungen funktionieren, allerdings nur mit verminderter Leistungsfähigkeit.
+Sofern möglich sollte der Parameter <code>suhosin.get.max_value_length</code> in der Datei <code>php.ini</code> auf 1024 oder höher festgelegt werden.
+Gleichzeitig muss der Parameter <code>$wgResourceLoaderMaxQueryLength</code> in der Datei <code>LocalSettings.php</code> auf den selben Wert eingestellt werden.',
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
 	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
@@ -3941,7 +3945,7 @@ Dies wird '''nicht empfohlen''', es sei denn, es treten Probleme mit dem Wiki au
 	'config-upgrade-done-no-regenerate' => 'Die Aktualisierung ist abgeschlossen.
 
 Das Wiki kann nun [$1 genutzt werden].',
-	'config-regenerate' => 'LocalSettings.php neu erstellen →',
+	'config-regenerate' => '<code>LocalSettings.php</code> neu erstellen →',
 	'config-show-table-status' => 'Die Abfrage <code>SHOW TABLE STATUS</code> ist gescheitert!',
 	'config-unknown-collation' => "'''Warnung:''' Die Datenbank nutzt eine unbekannte Kollation.",
 	'config-db-web-account' => 'Datenbankkonto für den Webzugriff',
@@ -4168,7 +4172,7 @@ $3
 '''Hinweis:''' Die Konfigurationsdatei sollte jetzt unbedingt heruntergeladen werden. Sie wird nach Beenden des Installationsprogramms, nicht mehr zur Verfügung stehen.
 
 Sobald alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''. Wir wünschen viel Spaß und Erfolg mit dem Wiki.",
-	'config-download-localsettings' => 'LocalSettings.php herunterladen',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> herunterladen',
 	'config-help' => 'Hilfe',
 	'config-nofile' => 'Die Datei „$1“ konnte nicht gefunden werden. Wurde sie gelöscht?',
 	'mainpagetext' => "'''MediaWiki wurde erfolgreich installiert.'''",
@@ -4543,7 +4547,7 @@ Instalación anulada.',
 	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
 Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
 Instalación anulada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita la longitud del parámetro GET a $1 bytes. El componente ResourceLoader de MediaWiki trabajará en este límite, pero eso degradará el rendimiento. Si es posible, debe establecer el valor de suhosin.get.max_value_length en 1024 o superior en el archivo php.ini y establecer $wgResourceLoaderMaxQueryLength en el mismo valor en LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita la longitud del parámetro GET a $1 bytes. El componente ResourceLoader de MediaWiki trabajará en este límite, pero eso degradará el rendimiento. Si es posible, debe establecer el valor de <code>suhosin.get.max_value_length</code> en 1024 o superior en el archivo <code>php.ini</code> y establecer <code>$wgResourceLoaderMaxQueryLength</code> en el mismo valor en LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Tipo de base de datos',
 	'config-db-host' => 'Servidor de la base de datos:',
 	'config-db-host-help' => 'Si su servidor de base de datos está en otro servidor, escriba el nombre del host o su dirección IP aquí.
@@ -4692,7 +4696,7 @@ Esto '''no se recomienda''' a menos que esté teniendo problemas con su wiki.",
 	'config-upgrade-done-no-regenerate' => 'Actualización completa.
 
 Usted puede ahora [$1  empezar a usar su wiki].',
-	'config-regenerate' => 'Regenerar LocalSettings.php →',
+	'config-regenerate' => 'Regenerar <code>LocalSettings.php</code> →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> ha fallado!',
 	'config-unknown-collation' => "'''Advertencia:''' La base de datos está utilizando una intercalación no reconocida.",
 	'config-db-web-account' => 'Cuenta de base de datos para acceso Web',
@@ -4920,7 +4924,7 @@ $3
 '''Nota''': Si no haces esto ahora, este archivo de configuración generado no estará disponible para usted más tarde si sale de la instalación sin descargarlo.
 
 Cuando lo haya hecho, usted puede '''[$2  entrar en su wiki]'''.",
-	'config-download-localsettings' => 'Descargar archivo LocalSettings.php',
+	'config-download-localsettings' => 'Descargar archivo <code>LocalSettings.php</code>',
 	'config-help' => 'Ayuda',
 	'config-nofile' => 'El archivo "$1" no se pudo encontrar. ¿Se ha eliminado?',
 	'mainpagetext' => "'''MediaWiki ha sido instalado con éxito.'''",
@@ -5340,7 +5344,7 @@ Tämä '''ei ole suositeltavaa''', jos wikissäsi ei ole ongelmia.",
 	'config-upgrade-done-no-regenerate' => 'Päivitys valmis.
 
 Voit [$1 aloittaa wikin käytön].',
-	'config-regenerate' => 'Luo LocalSettings.php uudelleen →',
+	'config-regenerate' => 'Luo <code>LocalSettings.php</code> uudelleen →',
 	'config-show-table-status' => 'Kysely <code>SHOW TABLE STATUS</code> epäonnistui!',
 	'config-mysql-engine' => 'Tallennusmoottori',
 	'config-mysql-innodb' => 'InnoDB',
@@ -5374,7 +5378,7 @@ Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 	'config-install-step-failed' => 'epäonnistui',
 	'config-install-user-alreadyexists' => 'Käyttäjä $1 on jo olemassa',
 	'config-install-interwiki-list' => 'Tiedostoa <code>interwiki.list</code> ei voitu lukea.',
-	'config-download-localsettings' => 'Lataa LocalSettings.php',
+	'config-download-localsettings' => 'Lataa <code>LocalSettings.php</code>',
 	'config-help' => 'ohje',
 	'mainpagetext' => "'''MediaWiki on onnistuneesti asennettu.'''",
 	'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [//meta.wikimedia.org/wiki/Help:Contents User's Guide].
@@ -5572,7 +5576,8 @@ Installation interrompue.',
 	'config-using531' => 'MediaWiki ne peut pas être utilisé avec PHP $1 à cause d’un bogue affectant les paramètres passés par référence à <code>__call()</code>.
 Veuillez mettre à jour votre système vers PHP 5.3.2 ou plus récent ou revenir à PHP 5.3.0 pour résoudre ce problème.
 Installation interrompue.',
-	'config-suhosin-max-value-length' => 'Suhosin est installé et limite la longueur du paramètre GET à $1 octets. Le <code>ResourceLoader</code> de MediaWiki va répondre en respectant cette limite, mais ses performances seront dégradées. Si possible, vous devriez définir <code>suhosin.get.max_value_length</code> à 1024 ou plus dans le fichier <code>php.ini</code>, et fixer <code>$wgResourceLoaderMaxQueryLength</code> à la même valeur dans <code>LocalSettings.php</code>.',
+	'config-suhosin-max-value-length' => 'Suhosin est installé et limite la <code>longueur</code> du paramètre GET à $1 octets.
+Le composant ResourceLoader de MediaWiki va répondre en respectant cette limite, mais ses performances seront dégradées. Si possible, vous devriez définir <code>suhosin.get.max_value_length</code> à 1024 ou plus dans le fichier <code>php.ini</code>, et fixer <code>$wgResourceLoaderMaxQueryLength</code> à la même valeur dans <code>LocalSettings.php</code>.',
 	'config-db-type' => 'Type de base de données :',
 	'config-db-host' => 'Nom d’hôte de la base de données :',
 	'config-db-host-help' => 'Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
@@ -5654,7 +5659,7 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-support-postgres' => "* $1 est un système de base de données populaire et ''open source'' qui peut être une alternative à MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). Il peut contenir quelques bogues mineurs et n'est pas recommandé dans un environnement de production.",
 	'config-support-sqlite' => '* $1 est un système de base de données léger qui est bien supporté. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], utilise PDO)',
 	'config-support-oracle' => '* $1 est un système commercial de gestion de base de données d’entreprise. ([http://www.php.net/manual/en/oci8.installation.php Comment compiler PHP avec le support OCI8])',
-	'config-support-ibm_db2' => "* $1 est une base de données d'entreprise commerciale.", # Fuzzy
+	'config-support-ibm_db2' => "* $1 est une base de données d'entreprise commerciale. ([http://www.php.net/manual/en/ibm-db2.installation.php Comment compiler PHP avec le support de DB2 d’IBM])",
 	'config-header-mysql' => 'Paramètres de MySQL',
 	'config-header-postgres' => 'Paramètres de PostgreSQL',
 	'config-header-sqlite' => 'Paramètres de SQLite',
@@ -5721,7 +5726,7 @@ Ce '''n'est pas recommandé''' sauf si vous rencontrez des problèmes avec votre
 	'config-upgrade-done-no-regenerate' => 'Mise à jour terminée.
 
 Vous pouvez maintenant [$1 commencer à utiliser votre wiki].',
-	'config-regenerate' => 'Regénérer LocalSettings.php →',
+	'config-regenerate' => 'Regénérer <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Échec de la requête <code>SHOW TABLE STATUS</code> !',
 	'config-unknown-collation' => "'''Attention:''' La base de données effectue un classement alphabétique (''collation'') inconnu.",
 	'config-db-web-account' => "Compte de la base de données pour l'accès Web",
@@ -5943,7 +5948,7 @@ $3
 '''Note''': Si vous ne le faites pas maintenant, ce fichier de configuration généré ne sera pas disponible plus tard si vous quittez l'installation sans le télécharger.
 
 Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
-	'config-download-localsettings' => 'Télécharger LocalSettings.php',
+	'config-download-localsettings' => 'Télécharger <code>LocalSettings.php</code>',
 	'config-help' => 'aide',
 	'config-nofile' => 'Le fichier « $1 » est introuvable. A-t-il été supprimé ?',
 	'mainpagetext' => "'''MediaWiki a été installé avec succès.'''",
@@ -6038,7 +6043,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-missing-db-host' => 'Vos dête buchiér una valor por « Hôto de la bâsa de balyês »',
 	'config-missing-db-server-oracle' => 'Vos dête buchiér una valor por « TNS de la bâsa de balyês »',
 	'config-sqlite-readonly' => 'Lo fichiér <code>$1</code> est pas accèssiblo en ècritura.',
-	'config-regenerate' => 'Refâre LocalSettings.php →',
+	'config-regenerate' => 'Refâre <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Falyita de la requéta <code>SHOW TABLE STATUS</code> !',
 	'config-db-web-account' => 'Compto de la bâsa de balyês por l’accès vouèbe',
 	'config-db-web-account-same' => 'Utilisâd lo mémo compto que por l’enstalacion',
@@ -6118,7 +6123,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-install-mainpage' => 'Crèacion de la pâge principâla avouéc un contegnu per dèfôt',
 	'config-install-extension-tables' => 'Crèacion de trâbles por les èxtensions activâs',
 	'config-install-mainpage-failed' => 'Empossiblo d’entrebetar la pâge principâla : $1',
-	'config-download-localsettings' => 'Tèlèchargiér LocalSettings.php',
+	'config-download-localsettings' => 'Tèlèchargiér <code>LocalSettings.php</code>',
 	'config-help' => 'éde',
 	'mainpagetext' => "'''MediaWiki at étâ enstalâ avouéc reusséta.'''",
 	'mainpagedocfooter' => 'Vêde lo [//meta.wikimedia.org/wiki/Aide:Contenu guido d’usanciér] por més d’enformacions sur l’usâjo de la programeria vouiqui.
@@ -6384,7 +6389,7 @@ Instalación abortada.',
 	'config-using531' => 'O PHP $1 non é compatible con MediaWiki debido a un erro que afecta aos parámetros de referencia de <code>__call()</code>.
 Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema.
 Instalación abortada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita a lonxitude do parámetro GET a $1 bytes. O compoñente ResourceLoader (xestor de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento. Se é posible, debería establecer suhosin.get.max_value_length no valor 1024 ou superior en php.ini e establecer $wgResourceLoaderMaxQueryLength no mesmo valor en LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita a lonxitude do parámetro GET a $1 bytes. O compoñente ResourceLoader (xestor de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento. Se é posible, debería establecer <code>suhosin.get.max_value_length</code> no valor 1024 ou superior en <code>php.ini</code> e establecer <code>$wgResourceLoaderMaxQueryLength</code> no mesmo valor en LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Tipo de base de datos:',
 	'config-db-host' => 'Servidor da base de datos:',
 	'config-db-host-help' => 'Se o servidor da súa base de datos está nun servidor diferente, escriba o nome do servidor ou o enderezo IP aquí.
@@ -6535,7 +6540,7 @@ Isto '''non é recomendable''' a menos que estea a ter problemas co seu wiki.",
 	'config-upgrade-done-no-regenerate' => 'Actualización completada.
 
 Xa pode [$1 comezar a usar o seu wiki].',
-	'config-regenerate' => 'Rexenerar LocalSettings.php →',
+	'config-regenerate' => 'Rexenerar <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'A pescuda <code>SHOW TABLE STATUS</code> fallou!',
 	'config-unknown-collation' => "'''Atención:''' A base de datos está a empregar unha clasificación alfabética irrecoñecible.",
 	'config-db-web-account' => 'Conta na base de datos para o acceso á internet',
@@ -6765,7 +6770,7 @@ $3
 '''Nota:''' Se non fai iso agora, este ficheiro de configuración xerado non estará dispoñible máis adiante se sae da instalación sen descargalo.
 
 Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
-	'config-download-localsettings' => 'Descargar o LocalSettings.php',
+	'config-download-localsettings' => 'Descargar o <code>LocalSettings.php</code>',
 	'config-help' => 'axuda',
 	'config-nofile' => 'Non se puido atopar o ficheiro "$1". Se cadra, foi borrado?',
 	'mainpagetext' => "'''MediaWiki instalouse correctamente.'''",
@@ -7105,7 +7110,7 @@ $1
 	'config-using531' => 'אי־אפשר להשתמש במדיה־ויקי עם <span dir="ltr">PHP $1</span> בגלל באג בפרמטרים של הפניות (reference parameters) ל־<code dir="ltr">__call()</code>.
 שדרגו ל־PHP 5.3.2 או לגרסה גבוהה יותר כדי לתקן את זה ([//bugs.php.net/bug.php?id=50394 bug filed with PHP]) או שַנמכו ל־PHP 5.3.0 כדי לפתור את הבעיה הזאת.
 ההתקנה בוטלה.',
-	'config-suhosin-max-value-length' => 'מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכיב ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפגע בביצועים. אם זה בכלל אפשרי, כדי לתקן את הערך של suhosin.get.max_value_length ל־1024 בקובץ php.ini ולהגדיר את ‎$wgResourceLoaderMaxQueryLength לאותו הערך בקובץ LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכיב ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפגע בביצועים. אם זה בכלל אפשרי, כדי לתקן את הערך של <code>suhosin.get.max_value_length</code> ל־1024 בקובץ <code>php.ini</code> ולהגדיר את ‎<code>$wgResourceLoaderMaxQueryLength</code> לאותו הערך בקובץ LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'סוג מסד הנתונים:',
 	'config-db-host' => 'שרת מסד הנתונים:',
 	'config-db-host-help' => 'אם שרת מסד הנתונים שלכם נמצא על שרת אחר, הקלידו את שם המחשב או את כתובת ה־IP כאן.
@@ -7253,7 +7258,7 @@ chmod a+w $3</pre></div>',
 	'config-upgrade-done-no-regenerate' => 'השדרוג הושלם.
 
 עכשיו אפשר [$1 להתחיל להשתמש בוויקי שלכם].',
-	'config-regenerate' => 'לחולל מחדש את LocalSettings.php ←',
+	'config-regenerate' => 'לחולל מחדש את <code>LocalSettings.php</code> ←',
 	'config-show-table-status' => 'שאילתת <code>SHOW TABLE STATUS</code> נכשלה!',
 	'config-unknown-collation' => "'''אזהרה:''' מסד הנתונים משתמש בשיטת מיון שאינה מוּכּרת.",
 	'config-db-web-account' => 'חשבון במסד הנתונים לגישה מהרשת',
@@ -7482,7 +7487,7 @@ $3
 '''שימו לב''': אם לא תעשו זאת עכשיו, קובץ ההגדרות המחוּלל לא יהיה זמין לכם שוב.
 
 אחרי שתעשו את זה, תוכלו '''[$2 להיכנס לוויקי שלכם]'''.",
-	'config-download-localsettings' => 'הורדת LocalSettings.php',
+	'config-download-localsettings' => 'הורדת <code>LocalSettings.php</code>',
 	'config-help' => 'עזרה',
 	'config-nofile' => 'הקובץ "$1" לא נמצא. האם הוא נמחק?',
 	'mainpagetext' => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
@@ -7732,7 +7737,7 @@ Zo by je na MediaWiki $1 aktualizował, klikń na '''Dale'''.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizacija dokónčena.
 
 Móžeš nětko [$1 swój wiki wužiwać].',
-	'config-regenerate' => 'LocalSettings.php znowa wutworić →',
+	'config-regenerate' => '<code>LocalSettings.php</code> znowa wutworić →',
 	'config-show-table-status' => 'Naprašowanje <code>SHOW TABLE STATUS</code> je so njeporadźiło!',
 	'config-unknown-collation' => "'''Warnowanje:''' Datowa banka njeznatu kolaciju wužiwa.",
 	'config-db-web-account' => 'Konto datoweje banki za webpřistup',
@@ -7876,7 +7881,7 @@ Standardna lisćina sp přeskakuje.",
 	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
 	'config-install-extension-tables' => 'Tabele za zmóžnjene rozšěrjenja so tworja',
 	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć: $1',
-	'config-download-localsettings' => 'LocalSettings.php sćahnyć',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> sćahnyć',
 	'config-help' => 'pomoc',
 	'config-nofile' => 'Dataja "$1" njeje so namakała. Je so zhašała?',
 	'mainpagetext' => "'''MediaWiki bu wuspěšnje instalowany.'''",
@@ -8050,7 +8055,7 @@ Telepítés megszakítva.',
 	'config-using531' => 'A MediaWiki nem használható a PHP $1-es verziójával, mert hiba van a <code>__call()</code> függvénynek átadott referenciaparaméterekkel.
 A probléma kiküszöböléséhez frissíts a PHP 5.3.2-es verziójára, vagy használd a korábbi, 5.3.0-ásat.
 Telepítés megszakítva.',
-	'config-suhosin-max-value-length' => 'A Suhosin telepítve van, és a GET paraméter hosszát $1 bájtra korlátozza. A MediaWiki erőforrásbetöltő összetevője megkerüli a problémát, de így csökkenni fog a teljesítmény. Ha lehetséges, állítsd be a suhosin.get.max_value_length értékét legalább 1024-re a php.iniben, és állítsd be a $wgResourceLoaderMaxQueryLength változót ugyanerre az értékre a LocalSettings.php-ben.',
+	'config-suhosin-max-value-length' => 'A Suhosin telepítve van, és a GET paraméter hosszát $1 bájtra korlátozza. A MediaWiki erőforrásbetöltő összetevője megkerüli a problémát, de így csökkenni fog a teljesítmény. Ha lehetséges, állítsd be a <code>suhosin.get.max_value_length</code> értékét legalább 1024-re a <code>php.ini</code>ben, és állítsd be a <code>$wgResourceLoaderMaxQueryLength</code> változót ugyanerre az értékre a LocalSettings.php-ben.', # Fuzzy
 	'config-db-type' => 'Adatbázis típusa:',
 	'config-db-host' => 'Adatbázis hosztneve:',
 	'config-db-host-help' => 'Ha az adatbázisszerver másik szerveren található, add meg a hosztnevét vagy az IP-címét.
@@ -8195,7 +8200,7 @@ Ez '''nem ajánlott''', csak akkor, ha problémák vannak a wikivel.",
 	'config-upgrade-done-no-regenerate' => "A frissítés befejeződött.
 
 Most már '''[$1 beléphetsz a wikibe]'''.",
-	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
+	'config-regenerate' => '<code>LocalSettings.php</code> elkészítése újra →',
 	'config-show-table-status' => 'A <code>SHOW TABLE STATUS</code> lekérdezés nem sikerült!',
 	'config-unknown-collation' => "'''Figyelmeztetés:''' az adatbázis ismeretlen egybevetést használ.",
 	'config-db-web-account' => 'A webes hozzáférésnél használt adatbázisfiók',
@@ -8416,7 +8421,7 @@ $3
 '''Megjegyzés''': Ha ezt most nem teszed meg, és kilépsz a telepítésből, az elkészített konfigurációs fájlt nem tudod elérni a későbbiekben.
 
 Ha végeztél a fájl elhelyezésével, '''[$2 beléphetsz a wikibe]'''.",
-	'config-download-localsettings' => 'LocalSettings.php letöltése',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> letöltése',
 	'config-help' => 'segítség',
 	'mainpagetext' => "'''A MediaWiki telepítése sikeresen befejeződött.'''",
 	'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [//meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
@@ -8675,7 +8680,7 @@ Installation abortate.',
 	'config-using531' => 'MediaWiki non pote esser usate con PHP $1 a causa de un defecto concernente parametros de referentia a <code>__call()</code>.
 Actualisa a PHP 5.3.2 o plus recente, o retrograda a PHP 5.3.0 pro remediar isto.
 Installation abortate.',
-	'config-suhosin-max-value-length' => 'Suhosin es installate e limita le longitude del parametro GET a $1 bytes. Le componente ResourceLoader de MediaWiki pote contornar iste limite, ma isto degradara le rendimento. Si possibile, tu deberea mitter suhosin.get.max_value_length a 1024 o plus in php.ini , e mitter $wgResourceLoaderMaxQueryLength al mesme valor in LocalSettings.php .',
+	'config-suhosin-max-value-length' => 'Suhosin es installate e limita le longitude del parametro GET a $1 bytes. Le componente ResourceLoader de MediaWiki pote contornar iste limite, ma isto degradara le rendimento. Si possibile, tu deberea mitter <code>suhosin.get.max_value_length</code> a 1024 o plus in <code>php.ini</code> , e mitter <code>$wgResourceLoaderMaxQueryLength</code> al mesme valor in LocalSettings.php .', # Fuzzy
 	'config-db-type' => 'Typo de base de datos:',
 	'config-db-host' => 'Servitor de base de datos:',
 	'config-db-host-help' => 'Si tu servitor de base de datos es in un altere servitor, entra hic le nomine o adresse IP del servitor.
@@ -8826,7 +8831,7 @@ Isto '''non es recommendate''' si tu non ha problemas con tu wiki.",
 	'config-upgrade-done-no-regenerate' => 'Actualisation complete.
 
 Tu pote ora [$1 comenciar a usar tu wiki].',
-	'config-regenerate' => 'Regenerar LocalSettings.php →',
+	'config-regenerate' => 'Regenerar <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Le consulta <code>SHOW TABLE STATUS</code> falleva!',
 	'config-unknown-collation' => "'''Aviso:''' Le base de datos usa un collation non recognoscite.",
 	'config-db-web-account' => 'Conto de base de datos pro accesso via web',
@@ -9057,7 +9062,7 @@ $3
 '''Nota''': Si tu non discarga iste file de configuration ora, illo non essera disponibile plus tarde.
 
 Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
-	'config-download-localsettings' => 'Discargar LocalSettings.php',
+	'config-download-localsettings' => 'Discargar <code>LocalSettings.php</code>',
 	'config-help' => 'adjuta',
 	'config-nofile' => 'Le file "$1" non poteva esser trovate. Ha illo essite delite?',
 	'mainpagetext' => "'''MediaWiki ha essite installate con successo.'''",
@@ -9218,7 +9223,7 @@ Instalasi dibatalkan.',
 	'config-using531' => 'MediaWiki tidak dapat dijalankan dengan PHP $1 karena bug yang melibatkan parameter referensi untuk <code>__call()</code> .
 Tingkatkan ke PHP 5.3.2 atau lebih baru, atau turunkan ke PHP versi 5.3.0 untuk menyelesaikan hal ini.
 Instalasi dibatalkan.',
-	'config-suhosin-max-value-length' => 'Suhosin terpasang dan membatasi panjang parameter GET sebesar $1 bita. Komponen ResourceLoader MediaWiki akan mengatasi batasan ini, tapi penanganannya akan menurunkan kinerja. Jika memungkinkan, Anda sebaiknya menetapkan nilai suhosin.get.max_value_length menjadi 1024 atau lebih tinggi dalam php.ini dan menyetel $wgResourceLoaderMaxQueryLength dengan nilai yang sama dalam LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin terpasang dan membatasi panjang parameter GET sebesar $1 bita. Komponen ResourceLoader MediaWiki akan mengatasi batasan ini, tapi penanganannya akan menurunkan kinerja. Jika memungkinkan, Anda sebaiknya menetapkan nilai <code>suhosin.get.max_value_length</code> menjadi 1024 atau lebih tinggi dalam <code>php.ini</code> dan menyetel <code>$wgResourceLoaderMaxQueryLength</code> dengan nilai yang sama dalam LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Jenis basis data:',
 	'config-db-host' => 'Inang basis data:',
 	'config-db-host-help' => 'Jika server basis data Anda berada di server yang berbeda, masukkan nama inang atau alamat IP di sini.
@@ -9367,7 +9372,7 @@ Tindakan ini '''tidak dianjurkan''' kecuali jika Anda mengalami masalah dengan w
 	'config-upgrade-done-no-regenerate' => 'Pemutakhiran selesai.
 
 Anda sekarang dapat [$1 mulai menggunakan wiki Anda].',
-	'config-regenerate' => 'Regenerasi LocalSettings.php →',
+	'config-regenerate' => 'Regenerasi <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Kueri <code>SHOW TABLE STATUS</code> gagal!',
 	'config-unknown-collation' => "'''Peringatan:''' basis data menggunakan kolasi yang tidak dikenal.",
 	'config-db-web-account' => 'Akun basis data untuk akses web',
@@ -9578,7 +9583,7 @@ $3
 '''Catatan''': Jika Anda tidak melakukannya sekarang, berkas konfigurasi yang dihasilkan ini tidak akan tersedia lagi setelah Anda keluar dari proses instalasi tanpa mengunduhnya.
 
 Setelah melakukannya, Anda dapat '''[$2 memasuki wiki Anda]'''.",
-	'config-download-localsettings' => 'Unduh LocalSettings.php',
+	'config-download-localsettings' => 'Unduh <code>LocalSettings.php</code>',
 	'config-help' => 'bantuan',
 	'config-nofile' => 'Berkas "$1" tidak dapat ditemukan. Mungkin sudah dihapus?',
 	'mainpagetext' => "'''MediaWiki telah terpasang dengan sukses'''.",
@@ -9865,7 +9870,7 @@ In precedenza Wikipedia ha utilizzato la GNU Free Documentation License. La GFDL
 	'config-install-subscribe-notpossible' => 'cURL non è installato e allow_url_fopen non è disponibile.',
 	'config-install-mainpage' => 'Creazione della pagina principale con contenuto predefinito',
 	'config-install-mainpage-failed' => 'Impossibile inserire la pagina principale: $1',
-	'config-download-localsettings' => 'Scarica LocalSettings.php',
+	'config-download-localsettings' => 'Scarica <code>LocalSettings.php</code>',
 	'config-help' => 'aiuto',
 	'config-nofile' => 'Il file "$1" non può essere trovato. È stato eliminato?',
 	'mainpagetext' => "'''Installazione di MediaWiki completata correttamente.'''",
@@ -10037,7 +10042,7 @@ PHPを5.2.9かそれ以降のバージョンに、libxml2を2.7.3かそれ以降
 	'config-using531' => 'PHP$1は<code>__call()</code>の引数参照に関するバグのため、MediaWikiと互換性がありません。
 PHP5.3.2以降に更新するか、この([//bugs.php.net/bug.php?id=50394 PHPに提出されたバグ])を修正するためにPHP5.3.0へ戻してください。
 インストールは中止されました。',
-	'config-suhosin-max-value-length' => 'Suhosin がインストールされており、GETパラメータの長さを $1 バイトに制限しています。MediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。可能な限り、php.ini で suhosin.get.max_value_length を 1024 以上に設定し、同じ値を LocalSettings.php 中で $wgResourceLoaderMaxQueryLength に設定してください。',
+	'config-suhosin-max-value-length' => 'Suhosin がインストールされており、GET パラメーターの長さを $1 バイトに制限しています。MediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。可能な限り、<code>php.ini</code> で <code>suhosin.get.max_value_length</code> を 1024 以上に設定し、同じ値を <code>LocalSettings.php</code> 中で <code>$wgResourceLoaderMaxQueryLength</code> に設定してください。',
 	'config-db-type' => 'データベースの種類:',
 	'config-db-host' => 'データベースのホスト:',
 	'config-db-host-help' => '異なるサーバー上にデータベースサーバーがある場合、ホスト名またはIPアドレスをここに入力してください。
@@ -10183,7 +10188,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'アップグレードが完了しました。
 
 [$1 ウィキの使用を開始]することができます。',
-	'config-regenerate' => 'LocalSettings.phpを再生成→',
+	'config-regenerate' => '<code>LocalSettings.php</code> を再生成→',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> クエリが失敗しました!',
 	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
 	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
@@ -10384,7 +10389,7 @@ $3
 '''注意''': この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。
 
 上記の作業が完了すると、'''[$2 ウィキに入る]'''ことができます。",
-	'config-download-localsettings' => 'LocalSettings.php をダウンロード',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> をダウンロード',
 	'config-help' => 'ヘルプ',
 	'config-nofile' => 'ファイル「$1」が見つかりませんでした。削除された可能性があります。',
 	'mainpagetext' => "'''MediaWiki のインストールに成功しました。'''",
@@ -10492,7 +10497,7 @@ $messages['ka'] = array(
 	'config-admin-password-confirm' => 'პაროლი ხელმეორედ:',
 	'config-admin-name-blank' => 'შეიყვანეთ ადმინისტრატორის მომხმარებლის სახელი.',
 	'config-admin-email' => 'ელ. ფოსტის მისამართი:',
-	'config-profile-wiki' => 'ტრადიციული ვიკი',
+	'config-profile-wiki' => 'ტრადიციული ვიკი', # Fuzzy
 	'config-profile-private' => 'დახურული ვიკი',
 	'config-license' => 'საავტორო უფლები და ლიცენზია:',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
@@ -10512,7 +10517,7 @@ $messages['ka'] = array(
 	'config-install-step-failed' => 'ვერ მოხერხდა',
 	'config-install-tables' => 'ცხრილების შექმნა',
 	'config-install-interwiki-list' => 'ვერ მოიძებნა ფაილი <code>interwiki.list</code>.',
-	'config-download-localsettings' => 'LocalSettings.php-ის გადმოწერა',
+	'config-download-localsettings' => '<code>LocalSettings.php</code>-ის გადმოწერა',
 	'config-help' => 'დახმარება',
 	'mainpagetext' => "'''მედიავიკი წარმატებით ჩაიტვირთა.'''",
 	'mainpagedocfooter' => 'ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [//meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].
@@ -10805,7 +10810,7 @@ PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요. ([//bugs.p
 	'config-using531' => '미디어위키는 <code>__call()</code>을 참고로 매개 변수를 포함하는 버그로 인해 PHP $1(와)과 함께 사용할 수 없습니다.
 문제를 해결하려면 PHP 5.3.2 이상로 업그레이드하거나 PHP 5.3.0으로 다운그레이드를 하세요.
 설치가 중단되었습니다.',
-	'config-suhosin-max-value-length' => 'Suhosin(수호신)이 설치되었고 $1 바이트로 GET 매개 변수 길이를 제한하고 있습니다. 미디어위키의 ResourceLoader 구성 요소는 이 제한을 해결하지만 성능이 저하됩니다. 가능하면 php.ini의 suhosin.get.max_value_length에 1024 이상으로 설정하고 LocalSettings.php의 $wgResourceLoaderMaxQueryLength에 같은 값을 설정해야 합니다.',
+	'config-suhosin-max-value-length' => 'Suhosin(수호신)이 설치되었고 $1 바이트로 GET 매개 변수 길이를 제한하고 있습니다. 미디어위키의 ResourceLoader 구성 요소는 이 제한을 해결하지만 성능이 저하됩니다. 가능하면 <code>php.ini</code>의 <code>suhosin.get.max_value_length</code>에 1024 이상으로 설정하고 LocalSettings.php의 <code>$wgResourceLoaderMaxQueryLength</code>에 같은 값을 설정해야 합니다.', # Fuzzy
 	'config-db-type' => '데이터베이스 종류:',
 	'config-db-host' => '데이터베이스 호스트:',
 	'config-db-host-help' => '데이터베이스 서버가 다른 서버에 있으면 여기에 호스트 이름이나 IP 주소를 입력하세요.
@@ -10955,7 +10960,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => '업그레이드가 완료되었습니다.
 
 이제 [$1 위키를 시작]할 수 있습니다.',
-	'config-regenerate' => 'LocalSettings.php 다시 만들기 →',
+	'config-regenerate' => '<code>LocalSettings.php</code> 다시 만들기 →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> 쿼리를 실패했습니다!',
 	'config-unknown-collation' => "'''경고:''' 데이터베이스가 인식하지 않는 정렬을 사용하고 있습니다.",
 	'config-db-web-account' => '웹 접근을 위한 데이터베이스 계정',
@@ -11185,7 +11190,7 @@ $3
 '''참고''': 이 생성한 설정 파일을 다운로드하지 않고 설치를 끝내면 이 파일은 나중에 사용할 수 없습니다.
 
 완료되었으면 '''[$2 위키에 들어갈 수 있습니다]'''.",
-	'config-download-localsettings' => 'LocalSettings.php 다운로드',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> 다운로드',
 	'config-help' => '도움말',
 	'config-nofile' => '"$1" 파일을 찾을 수 없습니다. 이미 삭제되었나요?',
 	'mainpagetext' => "'''미디어위키가 성공적으로 설치되었습니다.'''",
@@ -11373,7 +11378,7 @@ Heh jeihd et nit wigger.',
 	'config-using531' => 'MediaWiki läuf nit met PHP $1 zosamme wääje enem [//bugs.php.net/bug.php?id=50394 Fähler em Zosammehang met Parrameetere för <code lang="en">__call()</code>].
 Jangk op de Version 5.3.2 vum <i lang="en">PHP</i> ov dohnoh, udder op de Version 5.3.0 udder dovöör, öm dat Problem ze ömjonn.
 Heh jeiht et nit wigger.',
-	'config-suhosin-max-value-length' => '<i lang="en">Suhosin</i> es enschtalleet. Dröm kann ene <code lang="en">GET</code>-Parrameeter nit övver {{PLURAL:$1|ei Byte|$q Bytes|noll Byte}} lang wääde. En MediaWiki singe <i lang="en">ResourceLoader</i> kütt doh zwa drömeröm, ävver dat brems. Wann müjelesch, doht <code lang="en">suhosin.get.max_value_length</code> en dä Dattei <code lang="en">php.ini</code> op 1024 Bytes udder drövver enschtälle. un dann moß <code lang="en">$wgResourceLoaderMaxQueryLength</code> en dä Dattei <code lang="en">LocalSettings.php</code> op däsälve Wäät jesaz wääde.',
+	'config-suhosin-max-value-length' => '<i lang="en">Suhosin</i> es enschtalleet. Dröm kann ene <code lang="en">GET</code>-Parrameeter nit övver {{PLURAL:$1|ei Byte|$q Bytes|noll Byte}} lang wääde. En MediaWiki singe <i lang="en">ResourceLoader</i> kütt doh zwa drömeröm, ävver dat brems. Wann müjelesch, doht <code lang="en">suhosin.get.max_value_length</code> en dä Dattei <code lang="en">php.ini</code> op 1024 Bytes udder drövver enschtälle. un dann moß <code lang="en">$wgResourceLoaderMaxQueryLength</code> en dä Dattei <code lang="en">LocalSettings.php</code> op däsälve Wäät jesaz wääde.', # Fuzzy
 	'config-db-type' => 'De Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
 	'config-db-host-help' => 'Wann Dinge ẞööver för de Daatebangk ob enem andere Rääschner es, donn heh dämm singe Name udder dämm sing <i lang="en">IP</i>-Addräß enjävve.
@@ -11936,7 +11941,7 @@ E gëtt fir den Numm vum SQLite Date-Fichier benotzt.',
 	'config-upgrade-done-no-regenerate' => "D'Aktualisatioun ass ofgeschloss.
 
 Dir kënnt elo [$1 ufänken Är Wiki ze benotzen]",
-	'config-regenerate' => 'LocalSettings.php regeneréieren →',
+	'config-regenerate' => '<code>LocalSettings.php</code> regeneréieren →',
 	'config-db-web-account' => 'Datebankkont fir den Accès iwwer de Web',
 	'config-db-web-account-same' => 'Dee selwechte Kont wéi bei der Installatioun benotzen',
 	'config-db-web-create' => 'De Kont uleeë wann et e net scho gëtt',
@@ -12013,7 +12018,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
 	'config-install-extension-tables' => "D'Tabelle fir déi aktivéiert Erweiderunge ginn ugeluecht",
 	'config-install-mainpage-failed' => "D'Haaptsäit konnt net dragesat ginn: $1",
-	'config-download-localsettings' => 'LocalSettings.php eroflueden',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> eroflueden',
 	'config-help' => 'Hëllef',
 	'config-nofile' => 'De Fichier "$1" gouf net fonnt. Gouf e geläscht?',
 	'mainpagetext' => "'''MediaWiki gouf installéiert.'''",
@@ -12452,7 +12457,7 @@ $1
 Надградете го на PHP 5.2.9 и libxml2 2.7.3 или нивни понови верзии! ПРЕКИНУВАМ ([//bugs.php.net/bug.php?id=45996 грешката е заведена во PHP]).',
 	'config-using531' => 'МедијаВики не може да се користи со PHP $1 поради грешка кај упатните параметри за <code>__call()</code>.
 За да го решите проблемот, надградете го на PHP 5.3.2 или понова верзија, или пак користете го постариот PHP 5.3.0.',
-	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ја ограничува должината на параметарот GET на $1 bytes. Делот ResourceLoader на МедијаВики ќе ја заобиколува ова граница, но со тоа ќе се влоши делотворноста. Ако е воопшто можно, на suhosin.get.max_value_length треба да го наместите на 1024 или поевеќе во php.ini , и да му ја зададете истата вредност на $wgResourceLoaderMaxQueryLength во LocalSettings.php .',
+	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ја ограничува должината на параметарот GET на $1 бајти. Делот ResourceLoader на МедијаВики ќе ја заобиколува ова граница, но со тоа ќе се влоши делотворноста. Ако е воопшто можно, на <code>suhosin.get.max_value_length</code> треба да го наместите на 1024 или повеќе во <code>php.ini</code>, и да му ја зададете истата вредност на <code>$wgResourceLoaderMaxQueryLength</code> во <code>LocalSettings.php</code>.',
 	'config-db-type' => 'Тип на база:',
 	'config-db-host' => 'Домаќин на базата:',
 	'config-db-host-help' => 'Ако вашата база е на друг опслужувач, тогаш тука внесете го името на домаќинот или IP-адресата.
@@ -12603,7 +12608,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Надградбата заврши.
 
 Сега можете да [$1 почнете да го користите викито].',
-	'config-regenerate' => 'Пресоздај LocalSettings.php →',
+	'config-regenerate' => 'Пресоздај <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Барањето <code>SHOW TABLE STATUS</code> не успеа!',
 	'config-unknown-collation' => "'''Предупредување:''' Базата корисни непрепознаена упатна споредба.",
 	'config-db-web-account' => 'Сметка на базата за мрежен пристап',
@@ -12833,7 +12838,7 @@ $3
 '''Напомена''': Ако ова не го направите сега, податотеката со поставки повеќе нема да биде на достапна.
 
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
-	'config-download-localsettings' => 'Преземи го LocalSettings.php',
+	'config-download-localsettings' => 'Преземи го <code>LocalSettings.php</code>',
 	'config-help' => 'помош',
 	'config-nofile' => 'Податотеката „$1“ не е пронајдена. Да не е избришана?',
 	'mainpagetext' => "'''МедијаВики е успешно инсталиран.'''",
@@ -12913,7 +12918,7 @@ $1
 	'config-connection-error' => '$1.
 
 താഴെ നൽകിയിരിക്കുന്ന ഹോസ്റ്റ്, ഉപയോക്തൃനാമം, രഹസ്യവാക്ക് എന്നിവ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
-	'config-regenerate' => 'LocalSettings.php പുനഃസൃഷ്ടിക്കുക →',
+	'config-regenerate' => '<code>LocalSettings.php</code> പുനഃസൃഷ്ടിക്കുക →',
 	'config-mysql-engine' => 'സ്റ്റോറേജ് എൻജിൻ:',
 	'config-site-name' => 'വിക്കിയുടെ പേര്:',
 	'config-site-name-help' => 'ഇത് ബ്രൗസറിന്റെ ടൈറ്റിൽ ബാറിലും മറ്റനേകം ഇടങ്ങളിലും പ്രദർശിപ്പിക്കപ്പെടും.',
@@ -13194,7 +13199,7 @@ Speċifika isem tal-utent differenti.',
 Jekk trid tista' taqbeż il-parti li jmiss tal-konfigurazzjoni u sempliċiment tinstalla l-wiki.",
 	'config-optional-continue' => 'Staqsini aktar mistoqsijiet.',
 	'config-optional-skip' => 'Xbajt diġà, installa l-wiki.',
-	'config-profile-wiki' => 'Wiki tradizzjonali',
+	'config-profile-wiki' => 'Wiki tradizzjonali', # Fuzzy
 	'config-profile-no-anon' => 'Huwa obbligatorju l-ħolqien tal-kont',
 	'config-profile-fishbowl' => 'Edituri awtorizzati biss',
 	'config-profile-private' => 'Wiki privata',
@@ -13208,7 +13213,7 @@ Jekk trid tista' taqbeż il-parti li jmiss tal-konfigurazzjoni u sempliċiment t
 	'config-upload-deleted-help' => "Agħżel direttorju fejn iżżomm fajls imħassra.
 Idealment, dan m'għandux ikun aċċessibbli mill-web.",
 	'config-logo' => 'URL tal-logo:',
-	'config-download-localsettings' => 'Niżżel LocalSettings.php',
+	'config-download-localsettings' => 'Niżżel <code>LocalSettings.php</code>',
 	'config-help' => 'għajnuna',
 	'config-nofile' => 'Il-fajl "$1" ma setax jinstab. Dan ġie mħassar?',
 	'mainpagetext' => "'''MediaWiki ġie installat b'suċċess.'''",
@@ -13424,7 +13429,7 @@ Installasjon abortert.',
 	'config-using531' => 'MediaWiki kan ikke brukes med PHP $1 på grunn av en feil med referanseparametere til <code>__call()</code>.
 Oppgrader til PHP 5.3.2 eller høyere, eller nedgrader til PHP 5.3.0 for å løse dette.
 Installasjonen avbrutt.',
-	'config-suhosin-max-value-length' => 'Suhosin er installert og begrenser GET-parameterlengder til $1 bytes. MediaWiki\'s ResourceLoader-komponent klarer å komme rundt denne begrensningen, med med redusert ytelse. På mulig bør du sette suhosin.get.max_value_length til minst 1024 i php.ini, og sette $wgResourceLoaderMaxQueryLength til samme verdi i LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin er installert og begrenser GET-parameterlengder til $1 bytes. MediaWiki\'s ResourceLoader-komponent klarer å komme rundt denne begrensningen, med med redusert ytelse. På mulig bør du sette <code>suhosin.get.max_value_length</code> til minst 1024 i <code>php.ini</code>, og sette <code>$wgResourceLoaderMaxQueryLength</code> til samme verdi i LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasevert:',
 	'config-db-host-help' => 'Hvis databasen kjører på en annen tjenermaskin, skriv inn vertsnavnet eller IP-adressen her.
@@ -13576,7 +13581,7 @@ Dette er '''ikke anbefalt''' med mindre du har problemer med wikien din.",
 	'config-upgrade-done-no-regenerate' => 'Oppgradering fullført.
 
 Du kan nå [$1 begynne å bruke wikien din].',
-	'config-regenerate' => 'Regenerer LocalSettings.php →',
+	'config-regenerate' => 'Regenerer <code>LocalSettings.php</code> →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> etterspørselen mislyktes!',
 	'config-unknown-collation' => "'''Advarsel:''' Databasen bruker en ukjent sortering.",
 	'config-db-web-account' => 'Databasekonto for nettilgang',
@@ -13718,7 +13723,7 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 	'config-install-user-grant-failed' => 'Å gi tillatelse til brukeren «$1» mislyktes: $2',
 	'config-install-tables' => 'Oppretter tabeller',
 	'config-install-mainpage-failed' => 'Kunne ikke sette inn hovedside: $1',
-	'config-download-localsettings' => 'Last ned LocalSettings.php',
+	'config-download-localsettings' => 'Last ned <code>LocalSettings.php</code>',
 	'config-help' => 'hjelp',
 	'config-nofile' => 'Filen "$1" ble ikke funnet. Kan den være blitt slettet?',
 	'mainpagetext' => "'''MediaWiki-programvaren er nå installert.'''",
@@ -13927,7 +13932,7 @@ De installatie wordt afgebroken.',
 	'config-using531' => 'PHP $1 is niet compatibel met MediaWiki vanwege een fout met betrekking tot referentieparameters met <code>__call()</code>.
 Werk uw PHP bij naar PHP 5.3.2 of hoger of werk bij naar de lagere versie PHP 5.3.0 om dit op te lossen.
 De installatie wordt afgebroken.',
-	'config-suhosin-max-value-length' => 'Suhosin is geïnstalleerd en beperkt de lengte van de GET-parameter tot $1 bytes. De ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties. Als het mogelijk is, moet u de waarde "suhosin.get.max_value_length" in php.ini instellen op 1024 of hoger en $wgResourceLoaderMaxQueryLength in LocalSettings.php op dezelfde waarde instellen.',
+	'config-suhosin-max-value-length' => 'Suhosin is geïnstalleerd en beperkt de lengte van de GET-parameter tot $1 bytes. De ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties. Als het mogelijk is, moet u de waarde "<code>suhosin.get.max_value_length</code>" in <code>php.ini</code> instellen op 1024 of hoger en <code>$wgResourceLoaderMaxQueryLength</code> in LocalSettings.php op dezelfde waarde instellen.', # Fuzzy
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasehost:',
 	'config-db-host-help' => 'Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.
@@ -14081,7 +14086,7 @@ Dit is '''niet aan te raden''' tenzij u problemen hebt met uw wiki.",
 	'config-upgrade-done-no-regenerate' => 'Het bijwerken is afgerond.
 
 U kunt nu [$1 uw wiki gebruiken].',
-	'config-regenerate' => 'LocalSettings.php opnieuw aanmaken →',
+	'config-regenerate' => '<code>LocalSettings.php</code> opnieuw aanmaken →',
 	'config-show-table-status' => 'Het uitvoeren van <code>SHOW TABLE STATUS</code> is mislukt!',
 	'config-unknown-collation' => "'''Waarschuwing:''' de database gebruikt een collatie die niet wordt herkend.",
 	'config-db-web-account' => 'Databasegebruiker voor webtoegang',
@@ -14315,7 +14320,7 @@ $3
 '''Let op''': als u dit niet nu doet, dan het is bestand als u later de installatieprocedure afsluit zonder het bestand te downloaden niet meer beschikbaar.
 
 Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]'''.",
-	'config-download-localsettings' => 'LocalSettings.php downloaden',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> downloaden',
 	'config-help' => 'hulp',
 	'config-nofile' => 'Het bestand "$1" is niet gevonden. Is het verwijderd?',
 	'mainpagetext' => "'''De installatie van MediaWiki is geslaagd.'''",
@@ -14863,7 +14868,7 @@ Instalacja została przerwana.',
 	'config-using531' => 'MediaWiki nie może być używane z PHP $1 z powodu błędu dotyczącego referencyjnych argumentów funkcji <code>__call()</code>.
 Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 5.3.0, aby naprawić ten błąd.
 Instalacja została przerwana.',
-	'config-suhosin-max-value-length' => 'Jest zainstalowany Suhosin i ogranicza długość parametru GET do $1  bajtów. Komponent ResourceLoader w MediaWiki  wykona obejście tego ograniczenia, ale kosztem wydajności. Jeśli to możliwe należy ustawić suhosin.get.max_value_length na 1024 lub wyższej w php.ini oraz ustawić $wgResourceLoaderMaxQueryLength w LocalSettings.php na tę samą wartość.',
+	'config-suhosin-max-value-length' => 'Jest zainstalowany Suhosin i ogranicza długość parametru GET do $1  bajtów. Komponent ResourceLoader w MediaWiki  wykona obejście tego ograniczenia, ale kosztem wydajności. Jeśli to możliwe należy ustawić <code>suhosin.get.max_value_length</code> na 1024 lub wyższej w <code>php.ini</code> oraz ustawić <code>$wgResourceLoaderMaxQueryLength</code> w LocalSettings.php na tę samą wartość.', # Fuzzy
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
 	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
@@ -15012,7 +15017,7 @@ Jest to '''nie zalecane''', chyba że występują problemy z twoją wiki.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizacja zakończona.
 
 Możesz wreszcie [$1 zacząć korzystać ze swojej wiki].',
-	'config-regenerate' => 'Ponowne generowanie LocalSettings.php →',
+	'config-regenerate' => 'Ponowne generowanie <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Zapytanie „<code>SHOW TABLE STATUS</code>” nie powiodło się!',
 	'config-unknown-collation' => "'''Uwaga''' – bazy danych używa nierozpoznanej metody porównywania.",
 	'config-db-web-account' => 'Konto bazy danych dla dostępu przez WWW',
@@ -15240,7 +15245,7 @@ $3
 '''Uwaga''': Jeśli tego nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.
 
 Po załadowaniu pliku konfiguracyjnego możesz '''[ $2  wejść na wiki]'''.",
-	'config-download-localsettings' => 'Pobierz LocalSettings.php',
+	'config-download-localsettings' => 'Pobierz <code>LocalSettings.php</code>',
 	'config-help' => 'pomoc',
 	'config-nofile' => 'Nie udało się odnaleźć pliku "$1". Czy nie został usunięty?',
 	'mainpagetext' => "'''Instalacja MediaWiki powiodła się.'''",
@@ -15408,7 +15413,7 @@ Istalassion abortìa.",
 	'config-using531' => "MediaWiki a peul pa esse dovrà con PHP $1 a motiv d'un bigat ch'a ìmplica ij paràmetr d'arferiment a <code>__call()</code>.
 Ch'a agiorna a PHP 5.3.2 o pi neuv, o ch'a torna andré a PHP 5.3.0 për arzòlve ës problema.
 Istalassion abortìa.",
-	'config-suhosin-max-value-length' => 'Suhosin a l\'é instalà e a lìmita la longheur dël paràmetr GET a $1 byte. Ël component ResourceLoader ëd MediaWiki a travajerà an rispetand ës lìmit, ma sòn a degraderà le prestassion. Se possìbil, a dovrìa amposté suhosin.get.max_value_lenght a 1024 o pi àut an php.ini, e amposté $wgResourceLoaderMaxQueryLength al midem valor an LocalSettings.php .',
+	'config-suhosin-max-value-length' => 'Suhosin a l\'é instalà e a lìmita la longheur dël paràmetr GET a $1 byte. Ël component ResourceLoader ëd MediaWiki a travajerà an rispetand ës lìmit, ma sòn a degraderà le prestassion. Se possìbil, a dovrìa amposté suhosin.get.max_value_lenght a 1024 o pi àut an <code>php.ini</code>, e amposté <code>$wgResourceLoaderMaxQueryLength</code> al midem valor an LocalSettings.php .', # Fuzzy
 	'config-db-type' => 'Sòrt ëd base ëd dàit:',
 	'config-db-host' => 'Ospitant ëd la base ëd dàit:',
 	'config-db-host-help' => "Se sò servent ëd base ëd dàit a l'é su un servent diferent, ch'a anserissa ambelessì ël nòm dl'ospitant o l'adrëssa IP.
@@ -15554,7 +15559,7 @@ Sòn a l'è '''pa arcomandà''' gavà ch'a rancontra dij problema con soa wiki."
 	'config-upgrade-done-no-regenerate' => 'Agiornament complet.
 
 It peule adess [$1 ancaminé a dovré toa wiki].',
-	'config-regenerate' => 'Generé torna LocalSettings.php →',
+	'config-regenerate' => 'Generé torna <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Arcesta <code>SHOW TABLE STATUS</code> falìa!',
 	'config-unknown-collation' => "'''Avis:''' La base ëd dàit a deuvra na classificassion pa arconossùa.",
 	'config-db-web-account' => "Cont dla base ëd dàit për l'acess a l'aragnà",
@@ -15783,7 +15788,7 @@ $3
 '''Nòta''': S'a lo fa nen adess, cost archivi ëd configurassion generà a sarà pa disponìbil për chiel pi tard s'a chita l'instalassion sensa dëscarielo.
 
 Quand che a l'é stàit fàit, a peul '''[$2 intré an soa wiki]'''.",
-	'config-download-localsettings' => 'Dëscarié LocalSettings.php',
+	'config-download-localsettings' => 'Dëscarié <code>LocalSettings.php</code>',
 	'config-help' => 'agiut',
 	'config-nofile' => "L'archivi «$1» as treuva nen. A l'é stàit ëscancelà?",
 	'mainpagetext' => "'''MediaWiki a l'é staita anstalà a la përfession.'''",
@@ -16026,7 +16031,7 @@ Instalação interrompida.',
 	'config-using531' => 'O MediaWiki não pode ser usado com o PHP $1 devido a um problema que envolve parâmetros de referência para <code>__call()</code>.
 Para resolver este problema, actualize o PHP para a versão 5.3.2 ou posterior, ou reverta-o para a 5.3.0.
 Instalação interrompida.',
-	'config-suhosin-max-value-length' => 'O Suhosin está instalado e limita a $1 bytes o comprimento do parâmetro GET. O componente ResourceLoader do MediaWiki pode tornear este limite, mas prejudicando o desempenho. Se lhe for possível, deve atribuir o valor 1024 ou maior ao parâmetro suhosin.get.max_value_length no ficheiro php.ini, e definir o mesmo valor para $wgResourceLoaderMaxQueryLength no ficheiro LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'O Suhosin está instalado e limita a $1 bytes o comprimento do parâmetro GET. O componente ResourceLoader do MediaWiki pode tornear este limite, mas prejudicando o desempenho. Se lhe for possível, deve atribuir o valor 1024 ou maior ao parâmetro <code>suhosin.get.max_value_length</code> no ficheiro <code>php.ini</code>, e definir o mesmo valor para <code>$wgResourceLoaderMaxQueryLength</code> no ficheiro LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Tipo da base de dados:',
 	'config-db-host' => 'Servidor da base de dados:',
 	'config-db-host-help' => 'Se a base de dados estiver num servidor separado, introduza aqui o nome ou o endereço IP desse servidor.
@@ -16177,7 +16182,7 @@ Esta operação '''não é recomendada''' a menos que esteja a ter problemas com
 	'config-upgrade-done-no-regenerate' => 'Actualização terminada.
 
 Agora pode [$1 começar a usar a sua wiki].',
-	'config-regenerate' => 'Regenerar o LocalSettings.php →',
+	'config-regenerate' => 'Regenerar o <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'A consulta <code>SHOW TABLE STATUS</code> falhou!',
 	'config-unknown-collation' => "'''Aviso:''' A base de dados está a utilizar uma colação ''(collation)'' desconhecida.",
 	'config-db-web-account' => 'Conta na base de dados para acesso pela internet',
@@ -16408,7 +16413,7 @@ $3
 '''Nota''': Se não fizer isto agora, o ficheiro que foi gerado deixará de estar disponível quando sair do processo de instalação.
 
 Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
-	'config-download-localsettings' => 'Download do LocalSettings.php',
+	'config-download-localsettings' => 'Download do <code>LocalSettings.php</code>',
 	'config-help' => 'ajuda',
 	'config-nofile' => 'Não foi possível encontrar o ficheiro "$1". Terá sido apagado?',
 	'mainpagetext' => "'''MediaWiki instalado com sucesso.'''",
@@ -16616,7 +16621,7 @@ Verificați gazda, numele de utilizator și parola și reîncercați.',
 	'config-upgrade-done-no-regenerate' => 'Actualizare completă.
 
 Acum puteți [$1 începe să vă folosiți wikiul].',
-	'config-regenerate' => 'Regenerare LocalSettings.php →',
+	'config-regenerate' => 'Regenerare <code>LocalSettings.php</code> →',
 	'config-unknown-collation' => 'AVERTISMENT: Baza de date folosește o colaționare nerecunoscută.',
 	'config-db-web-account' => 'Contul bazei de date pentru accesul web.',
 	'config-db-web-create' => 'Creați contul dacă nu există deja',
@@ -16647,7 +16652,7 @@ Puteți sări peste configurarea rămasă și să instalați wikiul chiar acum.'
 	'config-optional-continue' => 'Adresează-mi mai multe întrebări.',
 	'config-optional-skip' => 'Sunt deja plictisit, doar instalează wikiul.',
 	'config-profile' => 'Profilul drepturilor de utilizator:',
-	'config-profile-wiki' => 'Wiki tradițional',
+	'config-profile-wiki' => 'Wiki tradițional', # Fuzzy
 	'config-profile-no-anon' => 'Crearea de cont este necesară',
 	'config-profile-fishbowl' => 'Doar editorii autorizați',
 	'config-profile-private' => 'Wiki privat',
@@ -16683,7 +16688,7 @@ Puteți sări peste configurarea rămasă și să instalați wikiul chiar acum.'
 	'config-install-keys' => 'Se generează cheile secrete',
 	'config-install-sysop' => 'Se creează contul de administrator',
 	'config-install-mainpage-failed' => 'Nu s-a putut insera pagina principală: $1',
-	'config-download-localsettings' => 'Descarcă LocalSettings.php',
+	'config-download-localsettings' => 'Descarcă <code>LocalSettings.php</code>',
 	'config-help' => 'ajutor',
 	'mainpagetext' => "'''Programul Wiki a fost instalat cu succes.'''",
 	'mainpagedocfooter' => 'Consultați [//meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informații despre utilizarea software-ului wiki.
@@ -16895,7 +16900,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-using531' => 'PHP $1 не совместим с MediaWiki из-за ошибки с параметрами-ссылками при вызовах <code>__call()</code>.
 Обновитесь до PHP 5.3.2 и выше, или откатитесь до PHP 5.3.0, чтобы избежать этой проблемы.
 Установка прервана.',
-	'config-suhosin-max-value-length' => 'Suhosin установлен и ограничивает длину параметра GET до $1 байт. Компонент MediaWiki ResourceLoader будет обходить это ограничение, но это снизит производительность. Если это возможно, следует установить suhosin.get.max_value_length 1024 или выше в php.ini, а также установить для $wgResourceLoaderMaxQueryLength такое же значение в LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin установлен и ограничивает длину параметра GET до $1 байт. Компонент MediaWiki ResourceLoader будет обходить это ограничение, но это снизит производительность. Если это возможно, следует установить <code>suhosin.get.max_value_length</code> 1024 или выше в <code>php.ini</code>, а также установить для <code>$wgResourceLoaderMaxQueryLength</code> такое же значение в LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Тип базы данных:',
 	'config-db-host' => 'Хост базы данных:',
 	'config-db-host-help' => 'Если сервер базы данных находится на другом сервере, введите здесь его имя хоста или IP-адрес.
@@ -17048,7 +17053,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Обновление завершено.
 
 Теперь вы можете [$1 начать работу с вики].',
-	'config-regenerate' => 'Создать LocalSettings.php заново →',
+	'config-regenerate' => 'Создать <code>LocalSettings.php</code> заново →',
 	'config-show-table-status' => 'Запрос «<code>SHOW TABLE STATUS</code>» не выполнен!',
 	'config-unknown-collation' => "'''Внимание:''' База данных использует нераспознанные правила сортировки.",
 	'config-db-web-account' => 'Учётная запись для доступа к базе данных из веб-сервера',
@@ -17274,7 +17279,7 @@ $3
 '''Примечание''': Если вы не сделаете этого сейчас, то сгенерированный файл конфигурации не будет доступен вам в дальнейшем, если вы выйдете из установки, не скачивая его.
 
 По окончании действий, описанных выше, вы сможете '''[$2 войти в вашу вики]'''.",
-	'config-download-localsettings' => 'Загрузить LocalSettings.php',
+	'config-download-localsettings' => 'Загрузить <code>LocalSettings.php</code>',
 	'config-help' => 'справка',
 	'config-nofile' => 'Файл "$1" не удается найти. Он был удален?',
 	'mainpagetext' => "'''Вики-движок «MediaWiki» успешно установлен.'''",
@@ -17460,7 +17465,7 @@ $messages['si'] = array(
 	'config-missing-db-name' => '"දත්ත සංචිත නාමය" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-missing-db-host' => '"දත්ත සංචිත ධාරකය" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-missing-db-server-oracle' => '"දත්ත සංචිත TNS" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
-	'config-regenerate' => 'නැවත ජනිත කරන්න LocalSettings.php →',
+	'config-regenerate' => 'නැවත ජනිත කරන්න <code>LocalSettings.php</code> →',
 	'config-db-web-account' => 'ජාල ප්‍රවේශනය සඳහා දත්ත සංචිත ගිණුම',
 	'config-mysql-engine' => 'ආචයන එන්ජිම:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -17487,7 +17492,7 @@ $messages['si'] = array(
 	'config-optional-continue' => 'මගෙන් තව ප්‍රශ්ණ අහන්න.',
 	'config-optional-skip' => 'මම දැනටමත් කම්මැලි වී ඇත, විකිය ස්ථාපනය කරන්න.',
 	'config-profile' => 'පරිශීලක හිමිකම් පැතිකඩ:',
-	'config-profile-wiki' => 'සාම්ප්‍රදායික විකිය',
+	'config-profile-wiki' => 'සාම්ප්‍රදායික විකිය', # Fuzzy
 	'config-profile-no-anon' => 'ගිණුම් තැනීම අවශ්‍යයි',
 	'config-profile-fishbowl' => 'අවසරලත් සංස්කාරකවරුන් පමණි',
 	'config-profile-private' => 'පුද්ගලික විකිය',
@@ -17534,7 +17539,7 @@ $messages['si'] = array(
 	'config-install-sysop' => 'පරිපාලක පරිශීලක ගිණුම තනමින්',
 	'config-install-mainpage' => 'සාමාන්‍ය අන්තර්ගතය සමඟින් ප්‍රධාන පිටුව තනමින්',
 	'config-install-mainpage-failed' => 'ප්‍රධාන පිටුව ඇතුල් කල නොහැක: $1',
-	'config-download-localsettings' => 'LocalSettings.php බාගන්න',
+	'config-download-localsettings' => '<code>LocalSettings.php</code> බාගන්න',
 	'config-help' => 'උදව්',
 	'config-nofile' => '"$1" ගොනුව සොයාගත නොහැක. එක මැකිලා ගියාවත්ද?',
 	'mainpagetext' => "'''මීඩියාවිකි සාර්ථක ලෙස ස්ථාපනය කරන ලදි.'''",
@@ -17555,7 +17560,7 @@ $messages['sk'] = array(
 	'config-back' => '← Späť',
 	'config-continue' => 'Pokračovať →',
 	'config-page-language' => 'Jazyk',
-	'config-download-localsettings' => 'Stiahnuť LocalSettings.php',
+	'config-download-localsettings' => 'Stiahnuť <code>LocalSettings.php</code>',
 	'config-nofile' => 'Súbor "$1" sa nenašiel. Bol zmazaný?',
 	'mainpagetext' => "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
 	'mainpagedocfooter' => 'Informácie ako používať wiki softvér nájdete v [//meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].
@@ -17564,7 +17569,7 @@ $messages['sk'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Zoznam konfiguračných nastavení]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]', # Fuzzy
 );
 
 /** Slovenian (slovenščina)
@@ -17691,7 +17696,7 @@ Preverite mapo podatkov in ime zbirke podatkov spodaj ter poskusite znova.',
 	'config-upgrade-done-no-regenerate' => 'Nadgradnja je končana.
 
 Sedaj lahko [$1 začnete uporabljati vaš wiki].',
-	'config-regenerate' => 'Ponovno ustvari LocalSettings.php →',
+	'config-regenerate' => 'Ponovno ustvari <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Poizvedba <code>SHOW TABLE STATUS</code> ni uspela!',
 	'config-unknown-collation' => "'''Opozorilo:''' Zbirke podatkov uporablja neprepoznano razvrščanje znakov.",
 	'config-db-web-account' => 'Račun zbirke podatkov za spletni dostop',
@@ -17776,7 +17781,7 @@ Vnesite ime dovoljenja ročno.',
 	'config-install-pg-schema-not-exist' => 'Shema PostgreSQL ne obstaja.',
 	'config-install-user-alreadyexists' => 'Uporabnik »$1« že obstaja',
 	'config-install-tables' => 'Ustvarjanje tabel',
-	'config-download-localsettings' => 'Prenesi LocalSettings.php',
+	'config-download-localsettings' => 'Prenesi <code>LocalSettings.php</code>',
 	'config-help' => 'pomoč',
 	'mainpagetext' => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
 	'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
@@ -18120,7 +18125,7 @@ $3
 '''OBS''': Om du inte gör detta nu, kommer denna genererade konfigurationsfil inte vara tillgänglig för dig senare om du avslutar installationen utan att ladda ned den.
 
 När det är klart, kan du '''[$2 gå in på din wiki]'''.",
-	'config-download-localsettings' => 'Ladda ned LocalSettings.php',
+	'config-download-localsettings' => 'Ladda ned <code>LocalSettings.php</code>',
 	'config-help' => 'hjälp',
 	'config-nofile' => 'Filen "$1" kunde inte hittas. Har den tagits bort?',
 	'mainpagetext' => "'''MediaWiki har installerats utan problem.'''",
@@ -18230,7 +18235,7 @@ $messages['ta'] = array(
 	'config-optional-continue' => 'என்னை இன்னும் அதிகமாக வினவு.',
 	'config-optional-skip' => 'நான் ஏற்கனவே சோர்வடைந்துள்ளேன், விக்கியை மட்டும் உருவாக்கு.',
 	'config-profile' => 'பயனர் உரிமைகள் சுயவிவரம்:',
-	'config-profile-wiki' => 'பாரம்பரிய விக்கி',
+	'config-profile-wiki' => 'பாரம்பரிய விக்கி', # Fuzzy
 	'config-profile-no-anon' => 'கணக்கு உருவாக்குதல் அவசியம்',
 	'config-profile-private' => 'தனியார் விக்கி',
 	'config-license' => 'பதிப்புரிமை மற்றும் உரிமம்:',
@@ -18251,7 +18256,7 @@ $messages['ta'] = array(
 	'config-install-tables' => 'வரிசைப் பட்டியல்களை உருவாக்குகிறது',
 	'config-install-mainpage' => 'இயல்புநிலை உள்ளடக்கத்துடன் முதற்பக்கத்தை உருவாக்குகிறது',
 	'config-install-extension-tables' => 'செயற்படுத்தப்பட்ட நீட்சிகளுக்கு வரிசைப் பட்டியல்களை உருவாக்குகிறது',
-	'config-download-localsettings' => 'LocalSettings.phpஐத் தரவிறக்கவும்',
+	'config-download-localsettings' => '<code>LocalSettings.php</code>ஐத் தரவிறக்கவும்',
 	'config-help' => 'உதவி',
 	'mainpagetext' => "'''விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.'''",
 	'mainpagedocfooter' => 'விக்கி மென்பொருளைப் பயன்படுத்துவது தொடர்பாக [//meta.wikimedia.org/wiki/Help:Contents பயனர் வழிகாட்டியைப்] பார்க்க.
@@ -18260,7 +18265,7 @@ $messages['ta'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings அமைப்புக்களை மாற்றம் செய்தல்]
 * [//www.mediawiki.org/wiki/Manual:FAQ மிடியாவிக்கி பொதுவான கேள்விகள்]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce மீடியாவிக்கி வெளியீடு மின்னஞ்சல் பட்டியல்]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce மீடியாவிக்கி வெளியீடு மின்னஞ்சல் பட்டியல்]', # Fuzzy
 );
 
 /** Tulu (ತುಳು)
@@ -18555,7 +18560,7 @@ Pinigilan ang pag-iinstala.",
 	'config-brokenlibxml' => "Ang sistema mo ay mayroong isang pagsasama ng mga bersiyon ng PHP at libxml2 na maaaring masurot at maaaring makapagsanhi ng pagkasira ng datong nakakubli sa loob ng MediaWiki at iba pang mga aplikasyon ng sangkasaputan.
 Magtaas ng uri upang maging PHP 5.2.9 o mas lalong huli at libxml2 2.7.3 o mas lalong huli ([//bugs.php.net/bug.php?id=45996 isinalansan ang surot o ''bug'' na mayroong PHP]). Binigo ang pagluluklok.",
 	'config-using531' => 'Hindi maaaring gamitin ang MediaWiki na kapiling ang PHP na $1 dahil sa isang surot na kinasasangkutan ng mga parametrong pangsangguni sa <code>__call()</code>. Magtaas ng uri upang maging PHP 5.3.2 o mas mataas, o magbaba ng uri upang maging PHP 5.3.0 upang malutas ito. Binigo ang pagluluklok.',
-	'config-suhosin-max-value-length' => 'Nakaluklok ang Suhosin at hinahanggahan ang haba ng parametro ng GET sa $1 mga byte. Ang sangkap na ResourceLoader ng MediaWiki ay gagana sa paligid ng hangganang ito, subalit pasasamain nito ang pagganap. Kung talagang maaari, dapat mong itakda ang suhosin.get.max_value_length upang maging 1024 o mas mataas sa loob ng php.ini, at itakda ang $wgResourceLoaderMaxQueryLength sa katulad na halaga sa loob ng LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Nakaluklok ang Suhosin at hinahanggahan ang haba ng parametro ng GET sa $1 mga byte. Ang sangkap na ResourceLoader ng MediaWiki ay gagana sa paligid ng hangganang ito, subalit pasasamain nito ang pagganap. Kung talagang maaari, dapat mong itakda ang <code>suhosin.get.max_value_length</code> upang maging 1024 o mas mataas sa loob ng <code>php.ini</code>, at itakda ang <code>$wgResourceLoaderMaxQueryLength</code> sa katulad na halaga sa loob ng LocalSettings.php.', # Fuzzy
 	'config-db-type' => 'Uri ng kalipunan ng datos:',
 	'config-db-host' => 'Tagapagpasinaya ng kalipunan ng datos:',
 	'config-db-host-help' => 'Kung ang iyong tagapaghain ng kalipunan ng dato ay nasa ibabaw ng isang ibang tagapaghain, ipasok ang pangalan ng tagapagpasinaya o tirahan ng IP dito.
@@ -18707,7 +18712,7 @@ Kung nais mong muling likhain ang iyong talaksang <code>LocalSettings.php</code>
 	'config-upgrade-done-no-regenerate' => 'Buo na ang pagsasapanahon.
 
 Maaari ka na ngayong [$1 magsimula sa paggamit ng wiki mo].',
-	'config-regenerate' => 'Muling likhain ang LocalSettings.php →',
+	'config-regenerate' => 'Muling likhain ang <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!', # Fuzzy
 	'config-unknown-collation' => "'''Babala:''' Ang kalipunan ng dato ay gumagagamit ng hindi nakikilalang pag-iipon.",
 	'config-db-web-account' => 'Akawnt ng kalipunan ng dato para sa pagpunta sa web',
@@ -18935,7 +18940,7 @@ $3
 '''Paunawa''': Kapag hindi mo ito ginawa ngayon, ang nagawang talaksang ito ng pagkakaayos ay hindi mo na makukuha mamaya kapag lumabas ka mula sa pagluluklok na hindi ikinakarga itong paibaba.
 
 Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa wiki mo]'''.",
-	'config-download-localsettings' => 'Ikargang paibaba ang LocalSettings.php',
+	'config-download-localsettings' => 'Ikargang paibaba ang <code>LocalSettings.php</code>',
 	'config-help' => 'saklolo',
 	'config-nofile' => 'Hindi matagpuan ang talaksang "$1". Binura na ba ito?',
 	'mainpagetext' => "'''Matagumpay na ininstala ang MediaWiki.'''",
@@ -19171,7 +19176,7 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 	'config-using531' => 'MediaWiki не можна використовувати разом з PHP $1 через помилку з параметрами-посиланнями <code>__call()</code>.
 Оновіть PHP до версії 5.3.2 і вище або відкотіть до PHP 5.3.0 щоб уникнути цієї проблеми.
 Встановлення скасовано.',
-	'config-suhosin-max-value-length' => 'Suhosin встановлено і обмежує довжину параметра GET до $1 байтів. Компонент MediaWiki ResourceLoader буде обходити це обмеження, однак це зменшить продуктивність. Якщо це можливо, Вам варто встановити значення suhosin.get.max_value_length 1024 і більше у php.ini і встановити таке ж значення $wgResourceLoaderMaxQueryLength у LocalSettings.php .',
+	'config-suhosin-max-value-length' => 'Suhosin встановлено і обмежує довжину параметра GET до $1 байтів. Компонент MediaWiki ResourceLoader буде обходити це обмеження, однак це зменшить продуктивність. Якщо це можливо, Вам варто встановити значення <code>suhosin.get.max_value_length</code> 1024 і більше у <code>php.ini</code> і встановити таке ж значення <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php .', # Fuzzy
 	'config-db-type' => 'Тип бази даних:',
 	'config-db-host' => 'Хост бази даних:',
 	'config-db-host-help' => 'Якщо сервер бази даних знаходиться на іншому сервері, введіть тут ім\'я хосту і IP адресу.
@@ -19319,7 +19324,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Оновлення завершено.
 
 Ви можете зараз [$1 починати використовувати свою вікі].',
-	'config-regenerate' => 'Повторно згенерувати LocalSettings.php →',
+	'config-regenerate' => 'Повторно згенерувати <code>LocalSettings.php</code> →',
 	'config-show-table-status' => 'Запит <code>SHOW TABLE STATUS</code> не виконано!',
 	'config-unknown-collation' => "'''Увага:''' База даних використовує нерозпізнане сортування.",
 	'config-db-web-account' => 'Обліковий запис бази даних для інтернет-доступу',
@@ -19544,7 +19549,7 @@ $3
 '''Примітка''': Якщо Ви не зробите цього зараз, цей файл не буде доступним пізніше, коли Ви вийдете з встановлення, не скачавши його.
 
 Після виконання дій, описаних вище, Ви зможете '''[$2 увійти у свою вікі]'''.",
-	'config-download-localsettings' => 'Завантажити LocalSettings.php',
+	'config-download-localsettings' => 'Завантажити <code>LocalSettings.php</code>',
 	'config-help' => 'допомога',
 	'config-nofile' => 'Файл "$1" не знайдено. Його видалено?',
 	'mainpagetext' => 'Програмне забезпечення «MediaWiki» успішно встановлене.',
@@ -19914,7 +19919,7 @@ Object caching is not enabled.",
 	'config-no-cli-uploads-check' => "'''警告'''：在CLI安装过程中，没有对您的默认上传目录（<code>$1</code>）进行执行任意脚本的漏洞检查。",
 	'config-brokenlibxml' => '您的系统安装的PHP和libxml2版本组合存在故障，并可能在MediaWiki和其他web应用程序中造成隐藏的数据损坏。请将PHP升级到5.2.9或以上，libxml2升级到2.7.3或以上（[//bugs.php.net/bug.php?id=45996 PHP的故障报告]）。安装已中断。',
 	'config-using531' => '由于函数<code>__call()</code>的引用参数存在故障，PHP $1和MediaWiki无法兼容。请升级到PHP 5.3.2或更高版本，或降级到PHP 5.3.0以修复该问题。安装已中断。',
-	'config-suhosin-max-value-length' => 'Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在php.ini中将suhosin.get.max_value_length设为1024或更高值，并在LocalSettings.php中将$wgResourceLoaderMaxQueryLength设为同一值。',
+	'config-suhosin-max-value-length' => 'Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在<code>php.ini</code>中将<code>suhosin.get.max_value_length</code>设为1024或更高值，并在LocalSettings.php中将<code>$wgResourceLoaderMaxQueryLength</code>设为同一值。', # Fuzzy
 	'config-db-type' => '数据库类型：',
 	'config-db-host' => '数据库主机：',
 	'config-db-host-help' => '如果您的数据库在别的服务器上，请在这里输入它的域名或IP地址。
@@ -20040,7 +20045,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => '升级完成。
 
 现在您可以[$1 开始使用您的wiki]了。',
-	'config-regenerate' => '重新生成LocalSettings.php →',
+	'config-regenerate' => '重新生成<code>LocalSettings.php</code> →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code>语句执行失败！',
 	'config-unknown-collation' => "'''警告：'''数据库使用了无法识别的整理。",
 	'config-db-web-account' => '供网页访问使用的数据库帐号',
@@ -20229,7 +20234,7 @@ $3
 '''注意'''：如果您现在不完成本步骤，而是没有下载便退出了安装过程，此后您将无法获得自动生成的配置文件。
 
 当本步骤完成后，您可以 '''[$2 进入您的wiki]'''。",
-	'config-download-localsettings' => '下载LocalSettings.php',
+	'config-download-localsettings' => '下载<code>LocalSettings.php</code>',
 	'config-help' => '帮助',
 	'config-nofile' => '找不到文件“$1”。它是否已被删除？',
 	'mainpagetext' => "'''已成功安装MediaWiki。'''",
@@ -20358,7 +20363,7 @@ Object caching is not enabled.",
 	'config-no-cli-uploads-check' => "'''警告'''：在CLI安裝過程中，沒有對您的默認上傳目錄（<code>$1</code>）進行執行任意腳本的漏洞檢查。",
 	'config-brokenlibxml' => '您的系統安裝的PHP和libxml2版本組合存在故障，並可能在MediaWiki和其他web應用程序中造成隱藏的數據損壞。請將PHP升級到5.2.9或以上，libxml2升級到2.7.3或以上（[//bugs.php.net/bug.php?id=45996 PHP的故障報告]）。安裝已中斷。',
 	'config-using531' => '由於函數<code>__call()</code>的引用參數存在故障，PHP $1和MediaWiki無法兼容。請升級到PHP 5.3.2或更高版本，或降級到PHP 5.3.0以修復該問題。安裝已中斷。',
-	'config-suhosin-max-value-length' => 'Suhosin已經安裝並將GET請求的參數長度限制在$1字節。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能會被降低。如果可能，請在php.ini中將suhosin.get.max_value_length設為1024或更高值，並在LocalSettings.php中將$wgResourceLoaderMaxQueryLength設為同一值。',
+	'config-suhosin-max-value-length' => 'Suhosin已經安裝並將GET請求的參數長度限制在$1字節。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能會被降低。如果可能，請在<code>php.ini</code>中將<code>suhosin.get.max_value_length</code>設為1024或更高值，並在LocalSettings.php中將<code>$wgResourceLoaderMaxQueryLength</code>設為同一值。', # Fuzzy
 	'config-db-type' => '資料庫類型：',
 	'config-db-host' => '資料庫主機：',
 	'config-db-host-help' => '如果您的數據庫在別的服務器上，請在這裡輸入它的域名或IP地址。
@@ -20484,7 +20489,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => '升級完成。
 
 現在您可以[$1 開始使用您的wiki]了。',
-	'config-regenerate' => '重新生成LocalSettings.php →',
+	'config-regenerate' => '重新生成<code>LocalSettings.php</code> →',
 	'config-show-table-status' => '查詢<code>SHOW TABLE STATUS</code>失敗！',
 	'config-unknown-collation' => "'''警告：'''數據庫使用了無法識別的整理。",
 	'config-db-web-account' => '供網頁訪問使用的數據庫帳號',
@@ -20673,7 +20678,7 @@ $3
 '''注意'''：如果您現在不完成本步驟，而是沒有下載便退出了安裝過程，此後您將無法獲得自動生成的配置文件。
 
 當本步驟完成後，您可以 '''[$2 進入您的wiki]'''。",
-	'config-download-localsettings' => '下載LocalSettings.php',
+	'config-download-localsettings' => '下載<code>LocalSettings.php</code>',
 	'config-help' => '說明',
 	'mainpagetext' => "'''已成功安裝MediaWiki。'''",
 	'mainpagedocfooter' => '請參閱[//meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此wiki軟體的訊息！

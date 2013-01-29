@@ -2053,9 +2053,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 'enotif_anon_editor' => 'usuario anonimo $1',
 'enotif_body' => 'Queriu/ida $WATCHINGUSERNAME,
 
-A pachina $PAGETITLE d\'o prochecto {{SITENAME}} s\'ha $CHANGEDORCREATED o día $PAGEEDITDATE por $PAGEEDITOR, veiga a versión actual en $PAGETITLE_URL.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Resumen de l\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2063,8 +2061,9 @@ Contacto con l\'editor:
 correu-e: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Si no visita a pachina, no recibirá mas notificacions de futuros cambios cambios. 
+Si no visita a pachina, no recibirá mas notificacions de futuros cambios. 
 Tamién puet cambiar o modo de notificación d\'as pachinas que cosira en a suya lista de seguimiento.
+
 Atentament,
 O servicio de notificacions d\'o prochecto {{SITENAME}}
 

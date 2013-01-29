@@ -820,7 +820,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'gotaccount' => "Vous avez déjà un compte ? '''$1'''.",
 'gotaccountlink' => 'Connectez-vous',
 'userlogin-resetlink' => 'Vous avez oublié vos détails de connexion ?',
-'createaccountmail' => 'par courriel',
+'createaccountmail' => 'Utiliser un mot de passe aléatoire temporaire et l’envoyer à l’adresse de courriel spécifiée ci-dessous',
 'createaccountreason' => 'Motif :',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
 'userexists' => "Nom d'utilisateur entré déjà utilisé.
@@ -1111,9 +1111,9 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'av
 'longpageerror' => "'''Erreur: Le texte que vous avez soumis fait {{PLURAL:$1|un Kio|$1 Kio}}, ce qui dépasse la limite fixée à {{PLURAL:$2|un Kio|$2 Kio}}.'''
 Il ne peut pas être sauvegardé.",
 'readonlywarning' => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l'instant.'''
-Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
+Vous pouvez copier et coller votre texte dans un fichier texte et l’enregistrer pour plus tard.
 
-L'administrateur ayant verrouillé la base de données a donné l'explication suivante : $1",
+L'administrateur ayant verrouillé la base de données a donné l'explication suivante: $1",
 'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier.'''<br />
 La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning' => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
@@ -2317,7 +2317,7 @@ Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org 
 # Special:ActiveUsers
 'activeusers' => 'Liste des utilisateurs actifs',
 'activeusers-intro' => 'Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|modification|modifications}} dans {{PLURAL:$3|le dernier jour|les $3 derniers jours}}',
+'activeusers-count' => '$1 {{PLURAL:$1|action|actions}} lors {{PLURAL:$3|du dernier jour|des $3 derniers jours}}',
 'activeusers-from' => 'Afficher les utilisateurs depuis :',
 'activeusers-hidebots' => 'Masquer les robots',
 'activeusers-hidesysops' => 'Masquer les administrateurs',
@@ -4056,7 +4056,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'specialpages-group-highuse' => "Pages d'utilisation intensive",
 'specialpages-group-pages' => 'Listes de pages',
 'specialpages-group-pagetools' => 'Outils pour les pages',
-'specialpages-group-wiki' => 'Données du wiki et outils',
+'specialpages-group-wiki' => 'Données et outils',
 'specialpages-group-redirects' => 'Pages spéciales redirigées',
 'specialpages-group-spam' => 'Outils anti-pourriel',
 
@@ -4153,6 +4153,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-newusers-newusers' => 'Le compte utilisateur $1 a été créé',
 'logentry-newusers-create' => 'Le compte utilisateur $1 a été créé',
 'logentry-newusers-create2' => 'Le compte utilisateur $3 a été créé par $1',
+'logentry-newusers-byemail' => 'Le compte utilisateur $3 a été créé par $1 et le mot de passe a été envoyé par courriel',
 'logentry-newusers-autocreate' => 'Le compte $1 a été créé automatiquement',
 'logentry-rights-rights' => "$1 a modifié l'appartenance au groupe pour $3 de $4 à $5",
 'logentry-rights-rights-legacy' => "$1 a modifié l'appartenance au groupe pour $3",
@@ -4211,6 +4212,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-ok-but-empty' => "Erreur interne : Le serveur n'a pas répondu.",
 'api-error-overwrite' => "Écraser un fichier existant n'est pas autorisé.",
 'api-error-stashfailed' => "Erreur interne : le serveur n'a pas pu enregistrer le fichier temporaire.",
+'api-error-publishfailed' => 'Erreur interne: Le serveur n’a pas pu publier le fichier temporaire.',
 'api-error-timeout' => "Le serveur n'a pas répondu dans le délai imparti.",
 'api-error-unclassified' => "Une erreur inconnue s'est produite",
 'api-error-unknown-code' => 'Erreur inconnue : « $1 »',

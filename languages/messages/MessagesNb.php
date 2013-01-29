@@ -751,7 +751,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'gotaccount' => 'Har du allerede en konto? $1.',
 'gotaccountlink' => 'Logg inn',
 'userlogin-resetlink' => 'Har du glemt påloggingsdetaljene dine?',
-'createaccountmail' => 'per e-post',
+'createaccountmail' => 'Bruk et midlertidig tilfeldig passord, og send det til e-postadressen nedenfor',
 'createaccountreason' => 'Årsak:',
 'badretype' => 'Passordene samsvarte ikke.',
 'userexists' => 'Brukernavnet er allerede i bruk.
@@ -3907,7 +3907,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'specialpages-group-highuse' => 'Ofte brukte sider',
 'specialpages-group-pages' => 'Sidelister',
 'specialpages-group-pagetools' => 'Sideverktøy',
-'specialpages-group-wiki' => 'Informasjon og verktøy for wikien',
+'specialpages-group-wiki' => 'Data og verktøy',
 'specialpages-group-redirects' => 'Omdirigerende spesialsider',
 'specialpages-group-spam' => 'Spamverktøy',
 
@@ -4004,6 +4004,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-newusers-newusers' => 'Kontoen $1 ble opprettet',
 'logentry-newusers-create' => 'Kontoen $1 ble opprettet',
 'logentry-newusers-create2' => 'Kontoen $3 ble opprettet av $1',
+'logentry-newusers-byemail' => 'Kontoen $3 ble opprettet av $1 og passordet sendt med e-post',
 'logentry-newusers-autocreate' => 'Konto $1 ble opprettet automatisk',
 'logentry-rights-rights' => '$1 endret gruppemedlemskap for $3 fra $4 til $5',
 'logentry-rights-rights-legacy' => '$1 endret gruppemedlemskap for $3',
@@ -4062,6 +4063,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'api-error-ok-but-empty' => 'Intern feil: ingen svar fra server.',
 'api-error-overwrite' => 'Det er ikke tillatt å overskrive eksisterende filer.',
 'api-error-stashfailed' => 'Internal error: tjeneren greide ikke å lagre midlertidig fil.',
+'api-error-publishfailed' => 'Intern feil: Tjeneren greide ikke å publisere midlertidig fil.',
 'api-error-timeout' => 'Serveren svarte ikke innenfor forventet tid.',
 'api-error-unclassified' => 'En ukjent feil har oppstått',
 'api-error-unknown-code' => 'Ukjent feil: "$1"',

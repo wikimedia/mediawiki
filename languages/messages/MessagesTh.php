@@ -376,7 +376,7 @@ $messages = array(
 'history' => 'ประวัติหน้า',
 'history_short' => 'ประวัติ',
 'updatedmarker' => 'การปรับตั้งแต่การเข้าชมครั้งล่าสุดของฉัน',
-'printableversion' => 'รุ่นสำหรับพิมพ์',
+'printableversion' => 'รุ่นพร้อมพิมพ์',
 'permalink' => 'ลิงก์ถาวร',
 'print' => 'พิมพ์',
 'view' => 'ดู',
@@ -2068,7 +2068,7 @@ $1',
 'usermessage-editor' => 'ตัวส่งข้อความของระบบ',
 
 # Watchlist
-'watchlist' => 'รายการเฝ้าดูของฉัน',
+'watchlist' => 'รายการเฝ้าดู',
 'mywatchlist' => 'รายการเฝ้าดู',
 'watchlistfor2' => 'สำหรับ $1 $2',
 'nowatchlist' => 'ไม่มีรายการในรายการเฝ้าดูของคุณ',
