@@ -37,6 +37,9 @@ StartProfiler.php
 # Building & testing
 node_modules/
 
+# Composer default destination
+/vendor
+
 # Operating systems
 ## Mac OS X
 .DS_Store
