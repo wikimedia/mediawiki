@@ -26,20 +26,18 @@
  *
  * @ingroup ExternalStorage
  */
-class ExternalStoreHttp {
-
+class ExternalStoreHttp extends ExternalStoreMedium {
 	/**
-	 * Fetch data from given URL
-	 *
-	 * @param $url String: the URL
-	 * @return String: the content at $url
+	 * @see ExternalStoreMedium::fetchFromURL()
 	 */
-	function fetchFromURL( $url ) {
-		$ret = Http::get( $url );
-		return $ret;
+	public function fetchFromURL( $url ) {
+		return Http::get( $url );
 	}
 
-	/* XXX: may require other methods, for store, delete,
-	 * whatever, for initial ext storage
+	/**
+	 * @see ExternalStoreMedium::store()
 	 */
+	public function store( $cluster, $data ) {
+		throw new MWException( "ExternalStoreHttp is read-only and does not support store()." );
+	}
 }

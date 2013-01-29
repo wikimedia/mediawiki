@@ -21,16 +21,55 @@
  */
 
 /**
- * DB accessable external objects
+ * DB accessable external objects.
+ *
+ * In this system, each store "location" maps to a database "cluster".
+ * The clusters must be defined in the normal LBFactory configuration.
+ *
  * @ingroup ExternalStorage
  */
-class ExternalStoreDB {
+class ExternalStoreDB extends ExternalStoreMedium {
+	/**
+	 * The URL returned is of the form of the form DB://cluster/id
+	 * or DB://cluster/id/itemid for concatened storage.
+	 *
+	 * @see ExternalStoreMedium::fetchFromURL()
+	 */
+	public function fetchFromURL( $url ) {
+		$path = explode( '/', $url );
+		$cluster = $path[2];
+		$id = $path[3];
+		if ( isset( $path[4] ) ) {
+			$itemID = $path[4];
+		} else {
+			$itemID = false;
+		}
+
+		$ret =& $this->fetchBlob( $cluster, $id, $itemID );
+
+		if ( $itemID !== false && $ret !== false ) {
+			return $ret->getItem( $itemID );
+		}
+		return $ret;
+	}
 
 	/**
-	 * @param $params array
+	 * @see ExternalStoreMedium::store()
 	 */
-	function __construct( $params = array() ) {
-		$this->mParams = $params;
+	public function store( $cluster, $data ) {
+		$dbw = $this->getMaster( $cluster );
+		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
+		$dbw->insert( $this->getTable( $dbw ),
+			array( 'blob_id' => $id, 'blob_text' => $data ),
+			__METHOD__ );
+		$id = $dbw->insertId();
+		if ( !$id ) {
+			throw new MWException( __METHOD__.': no insert ID' );
+		}
+		if ( $dbw->getFlag( DBO_TRX ) ) {
+			$dbw->commit( __METHOD__ );
+		}
+		return "DB://$cluster/$id";
 	}
 
 	/**
@@ -40,7 +79,7 @@ class ExternalStoreDB {
 	 * @return LoadBalancer object
 	 */
 	function &getLoadBalancer( $cluster ) {
-		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
+		$wiki = isset($this->params['wiki']) ? $this->params['wiki'] : false;
 
 		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
 	}
@@ -54,7 +93,7 @@ class ExternalStoreDB {
 	function &getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
 
-		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
+		$wiki = isset($this->params['wiki']) ? $this->params['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 
 		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
@@ -74,7 +113,7 @@ class ExternalStoreDB {
 	 * @return DatabaseBase object
 	 */
 	function &getMaster( $cluster ) {
-		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
+		$wiki = isset($this->params['wiki']) ? $this->params['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER, array(), $wiki );
 	}
@@ -91,29 +130,6 @@ class ExternalStoreDB {
 			$table = 'blobs';
 		}
 		return $table;
-	}
-
-	/**
-	 * Fetch data from given URL
-	 * @param $url String: an url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
-	 * @return mixed
-	 */
-	function fetchFromURL( $url ) {
-		$path = explode( '/', $url );
-		$cluster = $path[2];
-		$id = $path[3];
-		if ( isset( $path[4] ) ) {
-			$itemID = $path[4];
-		} else {
-			$itemID = false;
-		}
-
-		$ret =& $this->fetchBlob( $cluster, $id, $itemID );
-
-		if ( $itemID !== false && $ret !== false ) {
-			return $ret->getItem( $itemID );
-		}
-		return $ret;
 	}
 
 	/**
@@ -161,29 +177,5 @@ class ExternalStoreDB {
 
 		$externalBlobCache = array( $cacheID => &$ret );
 		return $ret;
-	}
-
-	/**
-	 * Insert a data item into a given cluster
-	 *
-	 * @param $cluster String: the cluster name
-	 * @param $data String: the data item
-	 * @throws MWException
-	 * @return string URL
-	 */
-	function store( $cluster, $data ) {
-		$dbw = $this->getMaster( $cluster );
-		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
-		$dbw->insert( $this->getTable( $dbw ),
-			array( 'blob_id' => $id, 'blob_text' => $data ),
-			__METHOD__ );
-		$id = $dbw->insertId();
-		if ( !$id ) {
-			throw new MWException( __METHOD__.': no insert ID' );
-		}
-		if ( $dbw->getFlag( DBO_TRX ) ) {
-			$dbw->commit( __METHOD__ );
-		}
-		return "DB://$cluster/$id";
 	}
 }
