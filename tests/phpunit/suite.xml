@@ -8,8 +8,8 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          stopOnFailure="false"
-		 timeoutForSmallTests="2"
-		 timeoutForMediumTests="10"
+		 timeoutForSmallTests="10"
+		 timeoutForMediumTests="30"
 		 timeoutForLargeTests="60"
          strict="true"
 		 verbose="true">
