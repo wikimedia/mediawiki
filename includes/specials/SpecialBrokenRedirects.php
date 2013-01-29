@@ -50,6 +50,7 @@ class BrokenRedirectsPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
+		$dbr = wfGetDB( DB_SLAVE );
 		return array(
 			'tables' => array(
 				'redirect',
@@ -68,7 +69,7 @@ class BrokenRedirectsPage extends QueryPage {
 				// but aren't "broken" either.
 				// Special pages and interwiki links
 				'rd_namespace >= 0',
-				'(rd_interwiki IS NULL OR rd_interwiki = "")',
+				'rd_interwiki IS NULL OR rd_interwiki = ' . $dbr->addQuotes( '' ),
 				'p2.page_namespace IS NULL',
 			),
 			'join_conds' => array(
