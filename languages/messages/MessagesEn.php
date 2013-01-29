@@ -3768,6 +3768,7 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-robot-noindex'          => 'Not indexable',
 'pageinfo-views'                  => 'Number of views',
 'pageinfo-watchers'               => 'Number of page watchers',
+'pageinfo-few-watchers'           => 'Fewer than $1 {{PLURAL:$1|watcher|watchers}}',
 'pageinfo-redirects-name'         => 'Redirects to this page',
 'pageinfo-redirects-value'        => '$1', # only translate this message to other languages if you have to change it
 'pageinfo-subpages-name'          => 'Subpages of this page',
