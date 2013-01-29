@@ -274,6 +274,11 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
 			);
+		} elseif ( $wgUnwatchedPageThreshold !== false ) {
+			$pageInfo['header-basic'][] = array(
+				$this->msg( 'pageinfo-watchers' ),
+				$this->msg( 'pageinfo-few-watchers', $wgUnwatchedPageThreshold )
+			);
 		}
 
 		// Redirects to this page
