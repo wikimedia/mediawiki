@@ -570,7 +570,7 @@ class HttpError extends MWException {
 	public function report() {
 		$httpMessage = HttpStatus::getMessage( $this->httpCode );
 
-		header( "Status: {$this->httpCode} {$httpMessage}" );
+		header( "Status: {$this->httpCode} {$httpMessage}", true, $this->httpCode );
 		header( 'Content-type: text/html; charset=utf-8' );
 
 		if ( $this->header === null ) {
