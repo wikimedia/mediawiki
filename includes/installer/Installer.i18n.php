@@ -163,7 +163,9 @@ Installation aborted.',
 	'config-using531'                 => 'MediaWiki cannot be used with PHP $1 due to a bug involving reference parameters to <code>__call()</code>.
 Upgrade to PHP 5.3.2 or higher, or downgrade to PHP 5.3.0 to resolve this.
 Installation aborted.',
-	'config-suhosin-max-value-length' => "Suhosin is installed and limits the GET parameter length to $1 bytes. MediaWiki's ResourceLoader component will work around this limit, but that will degrade performance. If at all possible, you should set suhosin.get.max_value_length to 1024 or higher in php.ini , and set \$wgResourceLoaderMaxQueryLength to the same value in LocalSettings.php .",
+	'config-suhosin-max-value-length' => "Suhosin is installed and limits the GET parameter <code>length</code> to $1 bytes.
+MediaWiki's ResourceLoader component will work around this limit, but that will degrade performance.
+If at all possible, you should set <code>suhosin.get.max_value_length</code> to 1024 or higher in <code>php.ini</code>, and set <code>\$wgResourceLoaderMaxQueryLength</code> to the same value in <code>LocalSettings.php</code>.",
 	'config-db-type'                  => 'Database type:',
 	'config-db-host'                  => 'Database host:',
 	'config-db-host-help'             => 'If your database server is on different server, enter the host name or IP address here.
@@ -316,7 +318,7 @@ This is '''not recommended''' unless you are having problems with your wiki.",
 	'config-upgrade-done-no-regenerate' => "Upgrade complete.
 
 You can now [$1 start using your wiki].",
-	'config-regenerate'               => 'Regenerate LocalSettings.php →',
+	'config-regenerate'               => 'Regenerate <code>LocalSettings.php</code> →',
 	'config-show-table-status'        => '<code>SHOW TABLE STATUS</code> query failed!',
 	'config-unknown-collation'        => "'''Warning:''' Database is using unrecognised collation.",
 	'config-db-web-account'           => 'Database account for web access',
@@ -548,7 +550,7 @@ $3
 '''Note''': If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
 
 When that has been done, you can '''[$2 enter your wiki]'''.",
-	'config-download-localsettings' => 'Download LocalSettings.php',
+	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
 	'config-help' => 'help',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
