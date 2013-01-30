@@ -920,7 +920,7 @@ abstract class Maintenance {
 		if ( !is_readable( $settingsFile ) ) {
 			$this->error( "A copy of your installation's LocalSettings.php\n" .
 						"must exist and be readable in the source directory.\n" .
-						"Use --conf to specify it." , true );
+						"Use --conf to specify it.", true );
 		}
 		$wgCommandLineMode = true;
 		return $settingsFile;

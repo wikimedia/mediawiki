@@ -221,9 +221,9 @@ class profile_point {
 		<td class="mw-profileinfo-count"><?php echo $this->count(); ?></td>
 		<td class="mw-profileinfo-cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ); ?></td>
 		<td class="mw-profileinfo-tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ); ?></td>
-		<td class="mw-profileinfo-mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1024 ), 2 ); ?></td>
+		<td class="mw-profileinfo-mpc"><?php echo round( sprintf( '%.2f', $this->memoryPerCall() / 1024 ), 2 ); ?></td>
 		<td class="mw-profileinfo-tpr"><?php echo @round( sprintf( '%.2f', $this->time() / self::$totalcount ), 2 ); ?></td>
-		<td class="mw-profileinfo-mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / self::$totalcount / 1024 ), 2 ); ?></td>
+		<td class="mw-profileinfo-mpr"><?php echo @round( sprintf( '%.2f', $this->memory() / self::$totalcount / 1024 ), 2 ); ?></td>
 		</tr>
 		<?php
 		if ( $ex ) {
