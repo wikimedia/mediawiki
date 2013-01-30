@@ -11,6 +11,10 @@ production.
 === Configuration changes in 1.23 ===
 
 === New features in 1.23 ===
+* New configuration variables $wgNoReferrerLinks, $wgNoReferrerNsExceptions,
+  and $wgNoReferrerDomainExceptions can be used to add rel="noreferrer" to
+  external links for privacy purposes. Also adds a user option for overriding
+  the default NoReferrer settings.
 
 === Bug fixes in 1.23 ===
 
