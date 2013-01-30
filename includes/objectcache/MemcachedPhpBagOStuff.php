@@ -100,4 +100,3 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $this->client->decr( $this->encodeKey( $key ), $value );
 	}
 }
-

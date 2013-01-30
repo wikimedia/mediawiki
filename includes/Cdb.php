@@ -183,4 +183,3 @@ class CdbWriter_DBA {
 		}
 	}
 }
-

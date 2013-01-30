@@ -1114,4 +1114,3 @@ abstract class ContentHandler {
 		return $ok;
 	}
 }
-

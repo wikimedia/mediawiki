@@ -375,4 +375,3 @@ class IcuCollation extends Collation {
 		return false;
 	}
 }
-

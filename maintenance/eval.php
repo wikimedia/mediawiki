@@ -80,5 +80,3 @@ while ( ( $line = Maintenance::readconsole() ) !== false ) {
 }
 
 print "\n";
-
-

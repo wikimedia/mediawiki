@@ -76,5 +76,3 @@ class MaintenanceFormatInstallDoc extends Maintenance {
 
 $maintClass = 'MaintenanceFormatInstallDoc';
 require_once( RUN_MAINTENANCE_IF_MAIN );
-
-

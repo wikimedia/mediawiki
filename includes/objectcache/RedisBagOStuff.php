@@ -449,4 +449,3 @@ class RedisBagOStuff extends BagOStuff {
 			( $result === false ? "failure" : "success" ) );
 	}
 }
-

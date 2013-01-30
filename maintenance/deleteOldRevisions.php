@@ -101,4 +101,3 @@ class DeleteOldRevisions extends Maintenance {
 
 $maintClass = "DeleteOldRevisions";
 require_once( RUN_MAINTENANCE_IF_MAIN );
-

@@ -120,4 +120,3 @@ if ( isset( $mmfl['output'] ) ) {
 } else {
 	echo $s;
 }
-

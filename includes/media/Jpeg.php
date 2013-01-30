@@ -60,4 +60,3 @@ class JpegHandler extends ExifBitmapHandler {
 	}
 
 }
-

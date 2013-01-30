@@ -118,4 +118,3 @@ try {
 	echo( $mwe->getText() );
 	exit( 1 );
 }
-

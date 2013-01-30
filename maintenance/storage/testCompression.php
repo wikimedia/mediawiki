@@ -99,4 +99,3 @@ foreach ( $keys as $id => $key ) {
 }
 $t += microtime( true );
 printf( "Decompression time: %5.2f ms\n", $t * 1000 );
-

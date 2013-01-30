@@ -1302,4 +1302,3 @@ class WebInstaller_UpgradeDoc extends WebInstaller_Document {
 class WebInstaller_Copying extends WebInstaller_Document {
 	protected function getFileName() { return 'COPYING'; }
 }
-

@@ -225,4 +225,3 @@ class ExifBitmapHandler extends BitmapHandler {
 		return 0;
 	}
 }
-

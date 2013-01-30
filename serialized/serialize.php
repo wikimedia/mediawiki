@@ -93,4 +93,3 @@ function unixLineEndings( $var ) {
 	}
 	return $var;
 }
-

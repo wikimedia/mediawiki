@@ -101,4 +101,3 @@ $wgAutoloadClasses += array(
 	'SeleniumTestSuite' => "$testDir/selenium/SeleniumTestSuite.php",
 	'SeleniumConfig' => "$testDir/selenium/SeleniumConfig.php",
 );
-

@@ -368,4 +368,3 @@ class CheckSyntax extends Maintenance {
 
 $maintClass = "CheckSyntax";
 require_once( RUN_MAINTENANCE_IF_MAIN );
-
