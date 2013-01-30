@@ -76,7 +76,7 @@
 					versionSuffix = '(\\/|\\;?\\s|)([a-z0-9\\.\\+]*?)(\\;|dev|rel|\\)|\\s|$)',
 					// Names of known browsers
 					names = [
-						'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
+						'camino', 'chrome', 'firefox', 'iceweasel', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
 						'safari', 'ipod', 'iphone', 'blackberry', 'ps3', 'rekonq'
 					],
 					// Tanslations for conforming browser names
