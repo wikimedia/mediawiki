@@ -3454,6 +3454,33 @@ $wgNoFollowNsExceptions = array();
 $wgNoFollowDomainExceptions = array();
 
 /**
+ * If true, external URL links in wiki text will be given the
+ * rel="noreferrer" attribute to tell compliant browsers not
+ * to use the Referer header when going to the link for prviacy
+ * reasons.
+ */
+$wgNoReferrerLinks = false;
+
+/**
+ * Namespaces in which $wgNoReferrerLinks doesn't apply.
+ * See Language.php for a list of namespaces.
+ */
+$wgNoReferrerNsExceptions = array();
+
+/**
+ * If this is set to an array of domains, external links to these domain names
+ * (or any subdomains) will not be set to rel="noreferrer" regardless of the
+ * value of $wgNoReferrerLinks.  For instance:
+ *
+ * $wgNoReferrerDomainExceptions = array( 'en.wikipedia.org', 'wiktionary.org' );
+ *
+ * This would add rel="noreferrer" to links to de.wikipedia.org, but not
+ * en.wikipedia.org, wiktionary.org, en.wiktionary.org, us.en.wikipedia.org,
+ * etc.
+ */
+$wgNoReferrerDomainExceptions = array();
+
+/**
  * Allow DISPLAYTITLE to change title display
  */
 $wgAllowDisplayTitle = true;

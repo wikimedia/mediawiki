@@ -1616,15 +1616,31 @@ class Parser {
 	 * @return string|null rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, $title = null ) {
-		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions,
+		       $wgNoReferrerLinks, $wgNoReferrerNsExceptions, $wgNoReferrerDomainExceptions;
+
+		$rel = array();
 		$ns = $title ? $title->getNamespace() : false;
-		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) &&
-				!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) )
-		{
-			return 'nofollow';
+
+		if (
+			$wgNoFollowLinks &&
+			!in_array( $ns, $wgNoFollowNsExceptions ) &&
+			!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions )
+		) {
+			$rel[] = 'nofollow';
 		}
-		return null;
+
+		if (
+			$wgNoReferrerLinks &&
+			!in_array( $ns, $wgNoReferrerNsExceptions ) &&
+			!wfMatchesDomainList( $url, $wgNoReferrerDomainExceptions )
+		) {
+			$rel[] = 'noreferrer';
+		}
+
+		return implode( ' ', $rel );
 	}
+
 	/**
 	 * Get an associative array of additional HTML attributes appropriate for a
 	 * particular external link.  This currently may include rel => nofollow
