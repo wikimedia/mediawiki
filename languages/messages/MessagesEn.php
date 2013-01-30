@@ -1149,8 +1149,8 @@ Please log in again after you receive it.',
 'blocked-mailpassword'       => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
 'eauthentsent'               => 'A confirmation email has been sent to the nominated email address.
 Before any other email is sent to the account, you will have to follow the instructions in the email, to confirm that the account is actually yours.',
-'throttled-mailpassword'     => 'A password reminder has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
-To prevent abuse, only one password reminder will be sent per {{PLURAL:$1|hour|$1 hours}}.',
+'throttled-mailpassword'     => 'A password reset email has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
+To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hour|$1 hours}}.',
 'loginstart'                 => '', # do not translate or duplicate this message to other languages
 'loginend'                   => '', # do not translate or duplicate this message to other languages
 'loginend-https'             => '', # do not translate or duplicate this message to other languages
@@ -1219,7 +1219,7 @@ You may have already successfully changed your password or requested a new tempo
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
-'passwordreset-text'               => 'Complete this form to receive an email reminder of your account details.',
+'passwordreset-text'               => 'Complete this form to reset your password.',
 'passwordreset-legend'             => 'Reset password',
 'passwordreset-disabled'           => 'Password resets have been disabled on this wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Enter one of the pieces of data below}}',
@@ -1229,8 +1229,8 @@ You may have already successfully changed your password or requested a new tempo
 'passwordreset-capture-help'       => 'If you check this box, the email (with the temporary password) will be shown to you as well as being sent to the user.',
 'passwordreset-email'              => 'Email address:',
 'passwordreset-emailtitle'         => 'Account details on {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Someone (probably you, from IP address $1) requested a reminder of your
-account details for {{SITENAME}} ($4). The following user {{PLURAL:$3|account is|accounts are}}
+'passwordreset-emailtext-ip'       => 'Someone (probably you, from IP address $1) requested a reset of your
+password for {{SITENAME}} ($4). The following user {{PLURAL:$3|account is|accounts are}}
 associated with this email address:
 
 $2
@@ -1240,7 +1240,7 @@ You should log in and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
-'passwordreset-emailtext-user'     => 'User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
+'passwordreset-emailtext-user'     => 'User $1 on {{SITENAME}} requested a reset of your password for {{SITENAME}}
 ($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this email address:
 
 $2
@@ -1252,9 +1252,9 @@ wish to change it, you may ignore this message and continue using your old
 password.',
 'passwordreset-emailelement'       => 'Username: $1
 Temporary password: $2',
-'passwordreset-emailsent'          => 'A reminder email has been sent.',
-'passwordreset-emailsent-capture'  => 'A reminder email has been sent, which is shown below.',
-'passwordreset-emailerror-capture' => 'A reminder email was generated, which is shown below, but sending it to the user failed: $1',
+'passwordreset-emailsent'          => 'A password reset email has been sent.',
+'passwordreset-emailsent-capture'  => 'A password reset email has been sent, which is shown below.',
+'passwordreset-emailerror-capture' => 'A password reset email was generated, which is shown below, but sending it to the user failed: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Change email address',
