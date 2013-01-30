@@ -2257,7 +2257,7 @@ $1',
 'usermessage-editor' => 'Дастаўка сыстэмных паведамленьняў',
 
 # Watchlist
-'watchlist' => 'Мой сьпіс назіраньня',
+'watchlist' => 'Сьпіс назіраньня',
 'mywatchlist' => 'Сьпіс назіраньня',
 'watchlistfor2' => 'Для $1 $2',
 'nowatchlist' => 'Ваш сьпіс назіраньня пусты.',
@@ -3931,6 +3931,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'logentry-newusers-newusers' => 'Быў створаны рахунак $1',
 'logentry-newusers-create' => 'Быў створаны рахунак $1',
 'logentry-newusers-create2' => '$1 стварыў рахунак $3',
+'logentry-newusers-byemail' => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак $3, пароль быў дасланы электроннай поштай',
 'logentry-newusers-autocreate' => 'Рахунак $1 быў створаны аўтаматычна',
 'logentry-rights-rights' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групы з $4 на $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|зьмяніў|зьмяніла}} прыналежнасьць $3 да групаў',

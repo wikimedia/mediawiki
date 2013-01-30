@@ -3306,7 +3306,7 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 'logentry-newusers-newusers' => 'Noforonina ny kaontim-pikambana $1',
 'logentry-newusers-create' => 'Noforonina ny kaontim-pikambana $1',
 'logentry-newusers-create2' => "Noforonin'i $1 ny kaomtim-pikambana $3",
-'logentry-newusers-autocreate' => 'Noforonina ho azy ny kaontim-pikambana $&',
+'logentry-newusers-autocreate' => 'Noforonina ho azy ny kaontim-pikambana $1',
 'logentry-rights-rights' => "$1 dia nanova ny sokajim-pikambana isian'i $3 avy amin'ny $4 lasa $5",
 'logentry-rights-rights-legacy' => "$1 nanova ny vonodrom-pikambana isian'i $3",
 'logentry-rights-autopromote' => 'Lasa $5 ho azy i $1 izay $4 taloha',

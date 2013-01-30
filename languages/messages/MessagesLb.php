@@ -2148,7 +2148,7 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 'usermessage-editor' => 'Benoriichtegungs-System',
 
 # Watchlist
-'watchlist' => 'Meng Iwwerwaachungslëscht',
+'watchlist' => 'Iwwerwaachungslëscht',
 'mywatchlist' => 'Iwwerwaachungslëscht',
 'watchlistfor2' => 'Vum $1 $2',
 'nowatchlist' => 'Är Iwwerwaachungslëscht ass eidel.',

@@ -624,7 +624,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'gotaccount' => 'Račun že imate? $1.',
 'gotaccountlink' => 'Prijavite se',
 'userlogin-resetlink' => 'Ste pozabili svoje prijavne podatke?',
-'createaccountmail' => 'Po e-pošti',
+'createaccountmail' => 'Ustvari začasno naključno geslo in ga pošlji na spodaj navedeni e-poštni naslov',
 'createaccountreason' => 'Razlog:',
 'badretype' => 'Gesli, ki ste ju vnesli, se ne ujemata.',
 'userexists' => 'Uporabniško ime, ki ste ga vnesli, je že zasedeno.

@@ -3918,7 +3918,7 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'specialpages-group-highuse' => 'Sidor som används mycket',
 'specialpages-group-pages' => 'Listor över sidor',
 'specialpages-group-pagetools' => 'Sidverktyg',
-'specialpages-group-wiki' => 'Information och verktyg för wikin',
+'specialpages-group-wiki' => 'Data och verktyg',
 'specialpages-group-redirects' => 'Omdirigerande specialsidor',
 'specialpages-group-spam' => 'Spamverktyg',
 
@@ -4015,6 +4015,7 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-newusers-newusers' => 'Användarkonto $1 skapades',
 'logentry-newusers-create' => 'Användarkonto $1 skapades',
 'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
+'logentry-newusers-byemail' => 'Användarkontot $3 skapades av $1 och lösenordet skickades via e-post',
 'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
 'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
 'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',

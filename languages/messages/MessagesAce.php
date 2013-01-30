@@ -207,7 +207,7 @@ $messages = array(
 
 'underline-always' => 'Sabe',
 'underline-never' => "H'an tom",
-'underline-default' => 'Penjelajah web bawaan',
+'underline-default' => 'Kulet atawa ngon peuhah web teupasang',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Gaya seunurat komputer bak plok andam',
@@ -292,7 +292,8 @@ $messages = array(
 'newwindow' => '(peuhah bak tingkap barô)',
 'cancel' => 'Peubateuë',
 'moredotdotdot' => 'Lom...',
-'mypage' => 'Ôn lôn',
+'morenotlisted' => 'Lom...',
+'mypage' => 'Ôn',
 'mytalk' => 'Marit',
 'anontalk' => 'Peugah haba IP nyoë.',
 'navigation' => 'Navigasi',
@@ -315,7 +316,7 @@ $messages = array(
 'vector-action-protect' => 'Peulindông',
 'vector-action-undelete' => 'Bateuë sampôh',
 'vector-action-unprotect' => 'Gantoe neulindông',
-'vector-simplesearch-preference' => 'Peuudep mita saran nyang geupeusamporeuna (keu kulet Vector khong)',
+'vector-simplesearch-preference' => 'Peuudep beunteueng mita biasa (kulet Vector khong)',
 'vector-view-create' => 'Peugöt',
 'vector-view-edit' => 'Andam',
 'vector-view-history' => 'Atra u likôt',
@@ -325,6 +326,7 @@ $messages = array(
 'namespaces' => 'Ruweuëng nan',
 'variants' => 'Ragam',
 
+'navigation-heading' => 'Menu navigasi',
 'errorpagetitle' => 'Seunalah',
 'returnto' => 'Gisa u $1.',
 'tagline' => 'Nibak {{SITENAME}}',
@@ -467,7 +469,8 @@ $1",
 'nosuchaction' => 'Hana buet nyan',
 'nosuchactiontext' => 'Buet nyang geulakee le URL nyan hana sah. Droeneuh kadang salah neukeutik URL, atawa neuseutot saboh neuhubong nyang hana beutoy. Hay nyoe kadang jeuet keu lageuem saboh bug bak alat leumiek nyang geunguy le {{SITENAME}}.',
 'nosuchspecialpage' => 'Hana on kusuih lagee nyan',
-'nospecialpagetext' => '<strong>Droeneuh neulakee on kusuih nyang hana sah.</strong>',
+'nospecialpagetext' => "<strong>Droeneuh ka neulakee on kusuih nyang hana sah.</strong>
+Dapeuta on kusuih nyang sah jeuet neu'eu bak [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error' => 'Seunalah',
@@ -529,9 +532,9 @@ Préksa keulayi neu’ija Droëneuh.',
 'passwordtooshort' => "Lageuëm paléng h'an haroh na {{PLURAL:$1|1 karakter|$1 karakter}}.",
 'mailmypassword' => "Peu'ét lageuëm barô",
 'passwordremindertitle' => 'Lageuëm seumeuntara barô keu {{SITENAME}}',
-'passwordremindertext' => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë kamoë keu meukirém lageuëm rahsia nyang barô keu {{SITENAME}} ($4).
-Lageuëm rahsia keu ureuëng nguy "$2" jinoë nakeuh "$3".
-Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahsia.',
+'passwordremindertext' => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë lageuëm barô keu {{SITENAME}} ($4). Lageuëm si\'at keu ureuëng nguy "$2" ka geupeuna ngon ka geuato jeuet keu "$3". Meunyo nyoe nakeuh meukeusud droeneuh, droeneuh peureulee neutamong ngon neupileh lageuem baro jinoe. Lageuem siat droeneuh meung abeh lam {{PLURAL:$5|siuroe|$5 uroe}}.
+
+Meunyo ureueng la\'en nyang peugot neulakee nyoe, atawa meunyo droeneuh ka neuingat lageuem droeneuh, ngon droeneuh h\'an ek neugantoe le, droeneuh jeuet hana neupeureumeuen peusan nyoe ngon neulanjut neunguy lageuem awayneuh.',
 'noemail' => 'Hana alamat surat-e nyang teucatat keu ureuëng nguy "$1".',
 'passwordsent' => 'Lageuëm barô ka geupeu\'ét u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
 'eauthentsent' => 'Saboh surat èlèktronik keu peunyoë ka geukirém u alamat surat èlèktronik Droëneuh. Droëneuh beuneuseutöt préntah lam surat nyan keu neupeunyoë meunyo alamat nyan nakeuh beutôy atra Droëneuh. {{SITENAME}} h‘an geupeuudép surat Droëneuh meunyo langkah nyoë hana neupeulaku lom.',
@@ -906,7 +909,7 @@ Teuneurang bak [$2 on teuneurangjih] geupeuleumah di yup nyoe.",
 'emailuser' => 'Surat-e ureuëng nguy',
 
 # Watchlist
-'watchlist' => 'Dapeuta keunalön lôn',
+'watchlist' => 'Dapeuta keunalön',
 'mywatchlist' => 'Keunalön',
 'watchlistfor2' => 'Keu $1 $2',
 'addedwatchtext' => "Ôn \"[[:\$1]]\" ka geupeutamah u [[Special:Watchlist|dapeuta keunalön]] Droëneuh. Neu’ubah-neu’ubah bak masa u keuë bak ôn nyan ngön bak ôn peugah habajih, euntreuk leumah nyoë pat. Ôn nyan euntreuk geupeuleumah ''teubay'' bak [[Special:RecentChanges|dapeuta neu’ubah paléng barô]] mangat leubèh mudah leumah.",

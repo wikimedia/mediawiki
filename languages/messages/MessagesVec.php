@@ -2120,7 +2120,7 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'usermessage-editor' => 'Messagero de sistema',
 
 # Watchlist
-'watchlist' => "Pagine tegnùe d'ocio",
+'watchlist' => "Pàjine tegnùe d'ocio",
 'mywatchlist' => "Pàjine tegnùe d'ocio",
 'watchlistfor2' => 'De $1 $2',
 'nowatchlist' => "No te ghè indicà pagine da tegner d'ocio.",

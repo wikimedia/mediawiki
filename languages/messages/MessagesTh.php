@@ -348,7 +348,7 @@ $messages = array(
 'faqpage' => 'Project:คำถามถามบ่อย',
 
 # Vector skin
-'vector-action-addsection' => 'เพิ่มหัวข้อใหม่',
+'vector-action-addsection' => 'เพิ่มส่วนใหม่',
 'vector-action-delete' => 'ลบ',
 'vector-action-move' => 'เปลี่ยนชื่อ',
 'vector-action-protect' => 'ป้องกัน',
@@ -1506,7 +1506,7 @@ $1",
 'rc_categories' => 'จำกัดเฉพาะหมวดหมู่ (แยกด้วย "|")',
 'rc_categories_any' => 'ใด ๆ',
 'rc-change-size-new' => '$1 ไบต์หลังปรับปรุง',
-'newsectionsummary' => '/* $1 */ หัวข้อใหม่',
+'newsectionsummary' => '/* $1 */ ส่วนใหม่',
 'rc-enhanced-expand' => 'แสดงรายละเอียด (ต้องใช้จาวาสคริปต์)',
 'rc-enhanced-hide' => 'ซ่อนรายละเอียด',
 'rc-old-title' => 'เดิมถูกสร้างในชื่อ "$1"',

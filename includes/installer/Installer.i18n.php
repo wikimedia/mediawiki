@@ -1407,7 +1407,9 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-using531' => 'PHP $1 не сумяшчальнае з MediaWiki з-за памылкі ў перадачы парамэтраў па ўказальніку да <code>__call()</code>.
 Абнавіце PHP да вэрсіі 5.3.2 ці болей позьняй, ці адкаціце да вэрсіі 5.3.0 каб гэта выправіць.
 Усталяваньне перарванае.',
-	'config-suhosin-max-value-length' => 'Suhosin усталяваны і абмяжоўвае даўжыню парамэтра GET у $1 {{PLURAL:$1|байт|байты|байтаў}}. ResourceLoader для MediaWiki будзе абходзіць гэтае абмежаваньне, што, аднак, адаб’ецца на хуткадзеяньні. Калі магчыма, варта ўстанавіць <code>suhosin.get.max_value_length</code> роўным 1024 ці больш у <code>php.ini</code>, а таксама ўстанавіць тое ж значэньне для <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin усталяваны і абмяжоўвае <code>даўжыню</code> парамэтра GET да $1 {{PLURAL:$1|байта|байтаў}}.
+ResourceLoader, складнік MediaWiki, будзе абходзіць гэтае абмежаваньне, што, адаб’ецца на прадукцыйнасьці.
+Калі магчыма, варта ўсталяваць у <code>php.ini</code> <code>suhosin.get.max_value_length</code> роўным 1024 ці больш, а таксама вызначыць тое ж значэньне для <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php.',
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-host' => 'Хост базы зьвестак:',
 	'config-db-host-help' => 'Калі сэрвэр Вашай базы зьвестак знаходзіцца на іншым сэрвэры, увядзіце тут імя хоста ці IP-адрас.
@@ -1491,7 +1493,7 @@ $1
 	'config-support-postgres' => '* $1 — вядомая сыстэма базы зьвестак з адкрытым кодам, якая зьяўляецца альтэрнатывай MySQL ([http://www.php.net/manual/en/pgsql.installation.php як кампіляваць PHP з падтрымкай PostgreSQL]). Яна можа ўтрымліваць дробныя памылкі, і не рэкамэндуецца выкарыстоўваць яе для працуючых праектаў.',
 	'config-support-sqlite' => '* $1 — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([http://www.php.net/manual/en/pdo.installation.php як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)',
 	'config-support-oracle' => '* $1 зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([http://www.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])',
-	'config-support-ibm_db2' => '* $1 — база зьвестак камэрцыйнага прадпрыемства.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 — база зьвестак маштабу прадпрыемства. ([http://www.php.net/manual/en/ibm-db2.installation.php Як скампіляваць PHP з падтрымкай IBM DB2])',
 	'config-header-mysql' => 'Налады MySQL',
 	'config-header-postgres' => 'Налады PostgreSQL',
 	'config-header-sqlite' => 'Налады SQLite',
@@ -1631,7 +1633,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Задаць болей пытаньняў.',
 	'config-optional-skip' => 'Хопіць, проста ўсталяваць вікі.',
 	'config-profile' => 'Профіль правоў удзельніка:',
-	'config-profile-wiki' => 'Традыцыйная вікі', # Fuzzy
+	'config-profile-wiki' => 'Адкрытая вікі',
 	'config-profile-no-anon' => 'Патрэбнае стварэньне рахунку',
 	'config-profile-fishbowl' => 'Толькі для аўтарызаваных рэдактараў',
 	'config-profile-private' => 'Прыватная вікі',
@@ -1821,7 +1823,7 @@ $messages['bg'] = array(
 $1',
 	'config-localsettings-incomplete' => 'Съществуващият файл <code>LocalSettings.php</code> изглежда непълен.
 Променливата $1 не е зададена.
-Необходимо е да се редактира файлът <code>LocalSettings.php</code> и да се зададе променливата, след което да се натисне "{{int:Config-continue}}".',
+Необходимо е да се редактира файлът <code>LocalSettings.php</code> и да се зададе променливата, след което да се натисне „{{int:Config-continue}}“.',
 	'config-localsettings-connection-error' => 'Възникна грешка при свързване с базата от данни чрез данните, посочени в <code>LocalSettings.php</code> или <code>AdminSettings.php</code>. Необходимо е да се коригират тези настройки преди повторен опит за свързване.
 
 $1',
@@ -2017,7 +2019,7 @@ $1
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL]). Възможно е все още да има грешки, затова не се препоръчва да се използва в общодостъпна среда.',
 	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
 	'config-support-oracle' => '* $1 е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
-	'config-support-ibm_db2' => '* $1 е комерсиална фирмена база от данни.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 е комерсиална фирмена база от данни. ([http://www.php.net/manual/en/ibm-db2.installation.php Как се компилира PHP с поддръжка на IBM DB2])',
 	'config-header-mysql' => 'Настройки за MySQL',
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
@@ -2156,7 +2158,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => 'Задаване на допълнителни въпроси.',
 	'config-optional-skip' => 'Достатъчно, инсталиране на уикито.',
 	'config-profile' => 'Профил на потребителските права:',
-	'config-profile-wiki' => 'Традиционно уики', # Fuzzy
+	'config-profile-wiki' => 'Отворено уики',
 	'config-profile-no-anon' => 'Необходимо е създаване на сметка',
 	'config-profile-fishbowl' => 'Само одобрени редактори',
 	'config-profile-private' => 'Затворено уики',
@@ -2255,8 +2257,8 @@ chmod a+w $3</pre>',
 Възможно е те да изискват допълнително конфигуриране, но сега могат да бъдат включени.',
 	'config-install-alreadydone' => "'''Предупреждение:''' Изглежда вече сте инсталирали МедияУики и се опитвате да го инсталирате отново.
 Продължете към следващата страница.",
-	'config-install-begin' => 'Инсталацията на МедияУики ще започне след натискане на бутона "{{int:config-continue}}".
-Ако желаете да направите промени, натиснете Връщане.', # Fuzzy
+	'config-install-begin' => 'Инсталацията на МедияУики ще започне след натискане на бутона „{{int:config-continue}}“.
+В случай, че е необходимо да се направят промени, използва се бутона „{{int:config-back}}“.',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'неуспешно',
 	'config-install-extensions' => 'Добавяне на разширенията',
@@ -2315,12 +2317,13 @@ $3
 	'config-help' => 'помощ',
 	'config-nofile' => 'Файлът „$1“ не може да бъде открит. Да не е бил изтрит?',
 	'mainpagetext' => "'''Уикито беше успешно инсталирано.'''",
-	'mainpagedocfooter' => 'Разгледайте [//meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на софтуера.
+	'mainpagedocfooter' => 'Разгледайте [//meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на уики софтуера.
 
 == Първи стъпки ==
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурационни настройки]
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Настройки за конфигуриране]
 * [//www.mediawiki.org/wiki/Manual:FAQ ЧЗВ за МедияУики]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Локализиране на МедияУики]',
 );
 
 /** Banjar (Bahasa Banjar)
@@ -6389,7 +6392,9 @@ Instalación abortada.',
 	'config-using531' => 'O PHP $1 non é compatible con MediaWiki debido a un erro que afecta aos parámetros de referencia de <code>__call()</code>.
 Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema.
 Instalación abortada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita a lonxitude do parámetro GET a $1 bytes. O compoñente ResourceLoader (xestor de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento. Se é posible, debería establecer <code>suhosin.get.max_value_length</code> no valor 1024 ou superior en <code>php.ini</code> e establecer <code>$wgResourceLoaderMaxQueryLength</code> no mesmo valor en LocalSettings.php.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita o parámetro GET <code>length</code> a $1 bytes.
+O compoñente ResourceLoader (xestor de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento.
+Se é posible, debería establecer <code>suhosin.get.max_value_length</code> no valor 1024 ou superior en <code>php.ini</code> e establecer <code>$wgResourceLoaderMaxQueryLength</code> no mesmo valor en <code>LocalSettings.php</code>.',
 	'config-db-type' => 'Tipo de base de datos:',
 	'config-db-host' => 'Servidor da base de datos:',
 	'config-db-host-help' => 'Se o servidor da súa base de datos está nun servidor diferente, escriba o nome do servidor ou o enderezo IP aquí.
@@ -15857,7 +15862,7 @@ $messages['ps'] = array(
 	'config-admin-password' => 'پټنوم:',
 	'config-admin-password-confirm' => 'پټنوم يو ځل بيا:',
 	'config-admin-email' => 'برېښليک پته:',
-	'config-profile-wiki' => 'دوديزه ويکي',
+	'config-profile-wiki' => 'دوديزه ويکي', # Fuzzy
 	'config-license-pd' => 'ټولګړی شپول',
 	'config-email-settings' => 'د برېښليک امستنې',
 	'config-install-step-done' => 'ترسره شو',
@@ -15869,7 +15874,8 @@ $messages['ps'] = array(
 == پيلول ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings د امستنو د سازونې لړليک]
 * [//www.mediawiki.org/wiki/Manual:FAQ د ميډياويکي ډېرځليزې پوښتنې]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce د مېډياويکي د برېښليکونو لړليک]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce د مېډياويکي د برېښليکونو لړليک]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources خپلې ژبې لپاره MediaWiki ځايتابول]',
 );
 
 /** Portuguese (português)

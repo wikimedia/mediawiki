@@ -2286,7 +2286,7 @@ O enderezo de correo electrónico que inseriu [[Special:Preferences|nas súas pr
 'usermessage-editor' => 'Editor das mensaxes do sistema',
 
 # Watchlist
-'watchlist' => 'A miña lista de vixilancia',
+'watchlist' => 'Lista de vixilancia',
 'mywatchlist' => 'Lista de vixilancia',
 'watchlistfor2' => 'De $1 $2',
 'nowatchlist' => 'Non ten elementos na súa lista de vixilancia.',

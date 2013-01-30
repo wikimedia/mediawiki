@@ -776,7 +776,7 @@ Volyéd controlar l’ortografia.',
 Volyéd tornar èprovar.',
 'wrongpasswordempty' => 'Vos éd pas buchiê de contresegno.
 Volyéd tornar èprovar.',
-'passwordtooshort' => 'Voutron contresegno dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
+'passwordtooshort' => 'Voutron contresegno dêt contegnir por lo muens $1 caractèro{{PLURAL:$1||s}}.',
 'password-name-match' => 'Voutron contresegno dêt étre difèrent de voutron nom d’utilisator.',
 'password-login-forbidden' => 'L’usâjo de cél nom d’utilisator et de cél contresegno est étâ dèfendu.',
 'mailmypassword' => 'Recêvre un contresegno novél per mèssageria èlèctronica',
@@ -1129,7 +1129,7 @@ Y devrêt avêr muens de $2 apèl{{PLURAL:$2||s}}, pendent qu’y en at ora $1."
 'post-expand-template-inclusion-warning' => "'''Atencion :''' la talye des modèlos entrebetâs est trop grôssa.
 Quârques modèlos seront pas entrebetâs.",
 'post-expand-template-inclusion-category' => 'Pâges yô que la talye des modèlos entrebetâs est dèpassâye',
-'post-expand-template-argument-warning' => "'''Atencion :''' cela pâge contint u muens un argument de modèlo qu’at na talye d’èxpension trop grôssa.
+'post-expand-template-argument-warning' => "'''Atencion :''' cela pâge contint por lo muens un argument de modèlo qu’at na talye d’èxpension trop grôssa.
 Celos arguments sont pas étâs betâs.",
 'post-expand-template-argument-category' => 'Pâges que contegnont des arguments de modèlo pas betâs',
 'parser-template-loop-warning' => 'Modèlo en boclla dècelâ : [[$1]]',
@@ -1768,9 +1768,9 @@ Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por un apèrçu ples
 'filestatus' => 'Statut du drêt d’ôtor :',
 'filesource' => 'Sôrsa :',
 'uploadedfiles' => 'Fichiérs tèlèchargiês',
-'ignorewarning' => 'Ignorar l’avèrtissement et pués encartar lo fichiér quand mémo',
+'ignorewarning' => 'Ignorar l’avèrtissement et pués encartar lo fichiér dens tôs los câs',
 'ignorewarnings' => 'Ignorar tôs los avèrtissements',
-'minlength1' => 'Los noms de fichiér dêvont comprendre u muens yona lètra.',
+'minlength1' => 'Los noms de fichiérs dêvont contegnir por lo muens na lètra.',
 'illegalfilename' => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges.
 Lo volyéd renomar et pués lo tornar tèlèchargiér.',
 'filename-toolong' => 'Lo nom du fichiér pôt pas dèpassar 240 octèts.',

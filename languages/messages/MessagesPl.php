@@ -20,6 +20,7 @@
  * @author Holek
  * @author Jwitos
  * @author Kaganer
+ * @author Kaligula
  * @author Karol007
  * @author Lajsikonik
  * @author Lampak
@@ -2243,7 +2244,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok' => 'Szukaj',
 'linksearch-text' => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <code>$1</code> (jeśli nie podano, domyślny to http://).',
+{{PLURAL:$2|Obsługiwany protokół|Obsługiwane protokoły}}: <code>$1</code> (jeśli nie podano, domyślny to http://).',
 'linksearch-line' => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 
@@ -2362,7 +2363,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_subject_moved' => 'Strona projektu {{SITENAME}} o nazwie $1 została przeniesiona przez {{gender:$2|$2}}',
 'enotif_subject_restored' => 'Strona projektu {{SITENAME}} o nazwie $1 została przywrócona przez {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Strona projektu {{SITENAME}} o nazwie $1 została zmieniona przez {{gender:$2|$2}}',
-'enotif_body_intro_deleted' => 'Strona projektu {{SITENAME}} o nazwie $1 została usunięta $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
+'enotif_body_intro_deleted' => 'Strona projektu {{SITENAME}} o nazwie $1 została usunięta $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz: $3',
 'enotif_body_intro_created' => 'Strona projektu {{SITENAME}} o nazwie $1 została stworzona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
 'enotif_body_intro_moved' => 'Strona projektu {{SITENAME}} o nazwie $1 została przeniesiona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
 'enotif_body_intro_restored' => 'Strona projektu {{SITENAME}} o nazwie $1 została przywrócona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3',
@@ -2466,6 +2467,7 @@ Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages
 'prot_1movedto2' => 'stronę [[$1]] przeniósł do [[$2]]',
 'protect-badnamespace-title' => 'Przestrzeń nazw, w której nie można zabezpieczać stron',
 'protect-badnamespace-text' => 'Stron w tej przestrzeni nazw nie można zabezpieczać.',
+'protect-norestrictiontypes-text' => 'Ta strona nie może być chroniona, gdyż nie ma dla niej żadnych dostępnych typów ograniczeń.',
 'protect-norestrictiontypes-title' => 'Nieblokowalna strona',
 'protect-legend' => 'Potwierdź zabezpieczenie',
 'protectcomment' => 'Powód',
@@ -2785,7 +2787,7 @@ Blokowanie i odblokowywanie bazy danych, wymaga by plik mógł być zapisywany p
 Pod starym tytułem zostanie umieszczona strona przekierowująca.
 Możesz automatycznie zaktualizować przekierowania wskazujące na tytuł przed zmianą.
 Jeśli nie wybierzesz tej opcji, upewnij się po przeniesieniu strony, czy nie powstały [[Special:DoubleRedirects|podwójne]] lub [[Special:BrokenRedirects|zerwane przekierowania]].
-Jesteś odpowiedzialny za to, by linki w dalszym ciągu pokazywały tam, gdzie powinny.
+Jesteś odpowiedzialny za to, by linki w dalszym ciągu prowadziły tam, gdzie powinny.
 
 Strona '''nie''' zostanie przeniesiona, jeśli strona o nowej nazwie już istnieje, chyba że jest pusta lub jest przekierowaniem i ma pustą historię edycji.
 To oznacza, że błędną operację zmiany nazwy można bezpiecznie odwrócić, zmieniając nową nazwę strony na poprzednią, i że nie można nadpisać istniejącej strony.
@@ -4038,7 +4040,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-delete-restore' => '$1 {{GENDER:$2|odtworzył|odtworzyła}} stronę $3',
 'logentry-delete-event' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
 'logentry-delete-revision' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze $3',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze strony $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'logentry-suppress-delete' => '$1 ukrywa stronę $3',
 'logentry-suppress-event' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
@@ -4057,8 +4059,8 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
-'logentry-patrol-patrol' => '$1 {{GENDER:$2|odznaczył|odznaczyła}} wersję $4 strony $3 jako sprawdzoną',
-'logentry-patrol-patrol-auto' => '$1 automatycznie {{GENDER:$2|odznaczył|odznaczyła}} wersję $4 strony $3 jako sprawdzoną',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
+'logentry-patrol-patrol-auto' => '$1 automatycznie {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
@@ -4121,6 +4123,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-ok-but-empty' => 'Błąd wewnętrzny – brak odpowiedzi od serwera.',
 'api-error-overwrite' => 'Nadpisanie istniejącego pliku nie jest dopuszczalne.',
 'api-error-stashfailed' => 'Błąd wewnętrzny – serwer nie mógł zapisać pliku tymczasowego.',
+'api-error-publishfailed' => 'Błąd wewnętrzny: serwer nie mógł zapisać pliku tymczasowego.',
 'api-error-timeout' => 'Serwer nie odpowiedział w oczekiwanym czasie.',
 'api-error-unclassified' => 'Wystąpił nieznany błąd',
 'api-error-unknown-code' => 'Błąd nieznany – „$1”',
