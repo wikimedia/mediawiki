@@ -139,4 +139,3 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 }
-

@@ -306,4 +306,3 @@ class LikeMatch {
  */
 interface DBMasterPos {
 }
-

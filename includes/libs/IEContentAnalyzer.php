@@ -848,4 +848,3 @@ class IEContentAnalyzer {
 		return 'unknown';
 	}
 }
-

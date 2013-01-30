@@ -211,4 +211,3 @@ EOT;
 
 $ul = new UpdateLogging;
 $ul->execute();
-

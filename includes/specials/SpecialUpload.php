@@ -1142,4 +1142,3 @@ class UploadSourceField extends HTMLTextField {
 			: 60;
 	}
 }
-

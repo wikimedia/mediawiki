@@ -110,4 +110,3 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 }
-

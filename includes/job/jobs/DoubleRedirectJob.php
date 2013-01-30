@@ -207,4 +207,3 @@ class DoubleRedirectJob extends Job {
 		return self::$user;
 	}
 }
-

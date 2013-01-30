@@ -323,4 +323,3 @@ class LocalRepo extends FileRepo {
 		}
 	}
 }
-

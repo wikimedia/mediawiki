@@ -107,4 +107,3 @@ if ( $wgAPIRequestLog ) {
 // get here to worry about whether this should be = or =&, but the file has to parse properly.
 $lb = wfGetLBFactory();
 $lb->shutdown();
-

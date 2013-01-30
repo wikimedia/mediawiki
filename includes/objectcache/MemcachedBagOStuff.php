@@ -185,4 +185,3 @@ class MemcachedBagOStuff extends BagOStuff {
 		wfDebugLog( 'memcached', $text );
 	}
 }
-

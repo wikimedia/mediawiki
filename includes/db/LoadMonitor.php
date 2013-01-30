@@ -199,4 +199,3 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		}
 	}
 }
-

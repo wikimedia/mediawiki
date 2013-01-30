@@ -253,5 +253,3 @@ class MssqlSearchResultSet extends SearchResultSet {
 		return new SearchResult( $row );
 	}
 }
-
-

@@ -125,4 +125,3 @@ class MostlinkedTemplatesPage extends QueryPage {
 		return Linker::link( $wlh, $label );
 	}
 }
-

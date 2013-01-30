@@ -1095,4 +1095,3 @@ class ConfEditorToken {
 		return $this->type == 'END';
 	}
 }
-

@@ -124,5 +124,3 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 		}
 	}
 }
-
-

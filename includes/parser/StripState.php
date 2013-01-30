@@ -233,4 +233,3 @@ class StripState {
 		return preg_replace( $this->regex, '', $text );
 	}
 }
-
