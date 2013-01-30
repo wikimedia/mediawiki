@@ -658,6 +658,7 @@ XHTML id names.
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
 'tog-nocache'                 => 'Disable browser page caching',
+'tog-noreferrer'              => 'Hide the Referer when visiting external links',
 'tog-enotifwatchlistpages'    => 'E-mail me when a page or file on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'E-mail me when my user talk page is changed',
 'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages and files',
