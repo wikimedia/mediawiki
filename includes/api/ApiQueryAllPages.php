@@ -135,8 +135,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				} elseif ( $params['prfiltercascade'] == 'noncascading' ) {
 					$this->addWhereFld( 'pr_cascade', 0 );
 				}
-
-				$this->addOption( 'DISTINCT' );
 			}
 			$forceNameTitleIndex = false;
 
@@ -145,6 +143,8 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			} elseif ( $params['prexpiry'] == 'definite' ) {
 				$this->addWhere( "pr_expiry != {$db->addQuotes( $db->getInfinity() )}" );
 			}
+
+			$this->addOption( 'DISTINCT' );
 
 		} elseif ( isset( $params['prlevel'] ) ) {
 			$this->dieUsage( 'prlevel may not be used without prtype', 'params' );

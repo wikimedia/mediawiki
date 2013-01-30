@@ -251,6 +251,8 @@ production.
   an error during parameter validation if the parameter is given but not
   recognized as an uploaded file.
 * (bug 44244) prop=info may now return the number of people watching each page.
+* (bug 33304) list=allpages will no longer return duplicate entries when
+  querying protection.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
