@@ -1096,7 +1096,7 @@ Parameters:
 'blocked-mailpassword' => 'Used as error message in password recovery.',
 'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
 'throttled-mailpassword' => 'Used in [[Special:PasswordReset]].
-* $1 - password reminder resend time (in hours)',
+* $1 - password reset e-mail resend time (in hours)',
 'mailerror' => 'Used as error message in sending confirmation mail to user. Parameters:
 * $1 - new mail address',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
@@ -1193,7 +1193,7 @@ Parameters:
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
-'passwordreset-emailelement' => "This is a body of a reminder email to allow them into the system with a new password. Parameters:
+'passwordreset-emailelement' => "This is a body of a password reset e-mail to allow them into the system with a new password. Parameters:
 * $1 will be the user's login name. This parameter can be used for GENDER.
 * $2 will be the temporary password given by the system.",
 'passwordreset-emailsent' => 'Used in [[Special:PasswordReset]].
