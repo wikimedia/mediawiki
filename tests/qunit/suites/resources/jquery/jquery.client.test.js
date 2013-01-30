@@ -123,6 +123,24 @@
 					rtl: true
 				}
 			},
+			// Iceweasel 10.0.6
+			'Mozilla/5.0 (X11; Linux i686; rv:10.0.6) Gecko/20100101 Iceweasel/10.0.6': {
+				title: 'Iceweasel 10.0.6',
+				platform: 'Linux',
+				profile: {
+					name: 'iceweasel',
+					layout: 'gecko',
+					layoutVersion: 20100101,
+					platform: 'linux',
+					version: '10.0.6',
+					versionBase: '10',
+					versionNumber: 10
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Firefox 5
 			// Safari 3
 			// Safari 4

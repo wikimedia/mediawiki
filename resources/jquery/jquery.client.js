@@ -69,14 +69,14 @@
 					// Strings which precede a version number in a user agent string - combined and used as match 1 in
 					// version detectection
 					versionPrefixes = [
-						'camino', 'chrome', 'firefox', 'netscape', 'netscape6', 'opera', 'version', 'konqueror',
+						'camino', 'chrome', 'firefox', 'iceweasel', 'netscape', 'netscape6', 'opera', 'version', 'konqueror',
 						'lynx', 'msie', 'safari', 'ps3'
 					],
 					// Used as matches 2, 3 and 4 in version extraction - 3 is used as actual version number
 					versionSuffix = '(\\/|\\;?\\s|)([a-z0-9\\.\\+]*?)(\\;|dev|rel|\\)|\\s|$)',
 					// Names of known browsers
 					names = [
-						'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
+						'camino', 'chrome', 'firefox', 'iceweasel', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
 						'safari', 'ipod', 'iphone', 'blackberry', 'ps3', 'rekonq'
 					],
 					// Tanslations for conforming browser names
