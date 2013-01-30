@@ -360,7 +360,7 @@ class SpecialContributions extends SpecialPage {
 		if ( !isset( $this->opts['target'] ) ) {
 			$this->opts['target'] = '';
 		} else {
-			$this->opts['target'] = str_replace( '_' , ' ' , $this->opts['target'] );
+			$this->opts['target'] = str_replace( '_', ' ', $this->opts['target'] );
 		}
 
 		if ( !isset( $this->opts['namespace'] ) ) {

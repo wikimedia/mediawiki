@@ -133,7 +133,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->ids = explode( ',', $ids );
 		} else {
 			# Array input
-			$this->ids = array_keys( $request->getArray('ids',array()) );
+			$this->ids = array_keys( $request->getArray('ids', array()) );
 		}
 		// $this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );

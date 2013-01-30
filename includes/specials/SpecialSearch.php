@@ -800,7 +800,7 @@ class SpecialSearch extends SpecialPage {
 		$out = "";
 		// display project name
 		if(is_null($lastInterwiki) || $lastInterwiki != $t->getInterwiki()) {
-			if( array_key_exists($t->getInterwiki(),$customCaptions) ) {
+			if( array_key_exists($t->getInterwiki(), $customCaptions) ) {
 				// captions from 'search-interwiki-custom'
 				$caption = $customCaptions[$t->getInterwiki()];
 			} else {

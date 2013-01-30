@@ -3440,7 +3440,7 @@ abstract class DatabaseBase implements DatabaseType {
 			// replace `{$var}`
 			$ins = str_replace( '`{$' . $var . '}`', $this->addIdentifierQuotes( $value ), $ins );
 			// replace /*$var*/
-			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ) , $ins );
+			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ), $ins );
 		}
 		return $ins;
 	}

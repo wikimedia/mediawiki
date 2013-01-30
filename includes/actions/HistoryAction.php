@@ -515,7 +515,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	function submitButton( $message, $attributes = array() ) {
 		# Disable submit button if history has 1 revision only
 		if ( $this->getNumRows() > 1 ) {
-			return Xml::submitButton( $message , $attributes );
+			return Xml::submitButton( $message, $attributes );
 		} else {
 			return '';
 		}

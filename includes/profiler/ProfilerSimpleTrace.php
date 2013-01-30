@@ -32,7 +32,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 
 	function profileIn( $functionname ) {
 		parent::profileIn( $functionname );
-		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) .
+		$this->trace .= "         " . sprintf("%6.1f", $this->memoryDiff()) .
 				str_repeat( " ", count($this->mWorkStack)) . " > " . $functionname . "\n";
 	}
 

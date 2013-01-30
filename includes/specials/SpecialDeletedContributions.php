@@ -475,7 +475,7 @@ class DeletedContributionsPage extends SpecialPage {
 		if ( !isset( $options['target'] ) ) {
 			$options['target'] = '';
 		} else {
-			$options['target'] = str_replace( '_' , ' ' , $options['target'] );
+			$options['target'] = str_replace( '_', ' ', $options['target'] );
 		}
 
 		if ( !isset( $options['namespace'] ) ) {

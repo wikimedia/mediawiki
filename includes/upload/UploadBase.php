@@ -940,7 +940,7 @@ abstract class UploadBase {
 		# ugly hack: for text files, always look at the entire file.
 		# For binary field, just check the first K.
 
-		if( strpos( $mime,'text/' ) === 0 ) {
+		if( strpos( $mime, 'text/' ) === 0 ) {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
@@ -1379,7 +1379,7 @@ abstract class UploadBase {
 
 		if ( self::isThumbName( $file->getName() ) ) {
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $extension, NS_FILE );
+			$nt_thb = Title::newFromText( substr( $partname, strpos( $partname, '-' ) +1 ) . '.' . $extension, NS_FILE );
 			$file_thb = wfLocalFile( $nt_thb );
 			if( $file_thb->exists() ) {
 				return array(
@@ -1420,10 +1420,10 @@ abstract class UploadBase {
 		$n = strrpos( $filename, '.' );
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 		return (
-					substr( $partname , 3, 3 ) == 'px-' ||
-					substr( $partname , 2, 3 ) == 'px-'
+					substr( $partname, 3, 3 ) == 'px-' ||
+					substr( $partname, 2, 3 ) == 'px-'
 				) &&
-				preg_match( "/[0-9]{2}/" , substr( $partname , 0, 2 ) );
+				preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
 	}
 
 	/**

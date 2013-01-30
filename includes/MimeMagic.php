@@ -39,7 +39,7 @@
  * appending MM_WELL_KNOWN_MIME_TYPES behind $wgMimeTypeFile, but who knows
  * what will break? In practice this probably isn't a problem anyway -- Bryan)
  */
-define('MM_WELL_KNOWN_MIME_TYPES',<<<END_STRING
+define('MM_WELL_KNOWN_MIME_TYPES', <<<END_STRING
 application/ogg ogx ogg ogm ogv oga spx
 application/pdf pdf
 application/vnd.oasis.opendocument.chart odc
@@ -213,7 +213,7 @@ class MimeMagic {
 		$this->mMimeToExt = array();
 		$this->mToMime = array();
 
-		$lines = explode( "\n",$types );
+		$lines = explode( "\n", $types );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
 			if ( empty( $s ) ) {

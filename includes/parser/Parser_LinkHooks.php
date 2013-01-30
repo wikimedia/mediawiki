@@ -192,7 +192,7 @@ class Parser_LinkHooks extends Parser {
 						# Store the text for the marker
 						$marker = $markers->addMarker($titleText, $paramText);
 						# Replace the current link with the marker
-						$s = substr($s,0,$startBracketOffset).
+						$s = substr($s, 0, $startBracketOffset).
 							$marker.
 							substr($s, $endBracketOffset);
 						# We have modified $s, because of this we need to set the

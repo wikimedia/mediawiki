@@ -132,10 +132,10 @@ class SpecialWatchlist extends SpecialPage {
 		$values = array();
 		$values['days']      	 = $request->getVal( 'days', $prefs['days'] );
 		$values['hideMinor'] 	 = (int)$request->getBool( 'hideMinor', $prefs['hideminor'] );
-		$values['hideBots']  	 = (int)$request->getBool( 'hideBots' , $prefs['hidebots'] );
+		$values['hideBots']  	 = (int)$request->getBool( 'hideBots',  $prefs['hidebots'] );
 		$values['hideAnons'] 	 = (int)$request->getBool( 'hideAnons', $prefs['hideanons'] );
-		$values['hideLiu']   	 = (int)$request->getBool( 'hideLiu'  , $prefs['hideliu'] );
-		$values['hideOwn']   	 = (int)$request->getBool( 'hideOwn'  , $prefs['hideown'] );
+		$values['hideLiu']   	 = (int)$request->getBool( 'hideLiu',   $prefs['hideliu'] );
+		$values['hideOwn']   	 = (int)$request->getBool( 'hideOwn',   $prefs['hideown'] );
 		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $prefs['hidepatrolled'] );
 		foreach( $this->customFilters as $key => $params ) {
 			$values[$key] = (int)$request->getBool( $key );

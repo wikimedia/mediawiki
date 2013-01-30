@@ -73,8 +73,8 @@ class ApiFileRevert extends ApiBase {
 	protected function checkPermissions( $user ) {
 		$title = $this->file->getTitle();
 		$permissionErrors = array_merge(
-			$title->getUserPermissionsErrors( 'edit' , $user ),
-			$title->getUserPermissionsErrors( 'upload' , $user )
+			$title->getUserPermissionsErrors( 'edit', $user ),
+			$title->getUserPermissionsErrors( 'upload', $user )
 		);
 
 		if ( $permissionErrors ) {

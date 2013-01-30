@@ -3067,7 +3067,7 @@ class Language {
 				if ( $start < 0 ) {
 					$start = 0;
 				}
-				$groupedNumber = substr( $number , $start, $end -$start ) . $groupedNumber ;
+				$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber ;
 				$end = $start;
 				if ( $numMatches > 1 ) {
 					// use the last pattern for the rest of the number

@@ -131,7 +131,7 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 	);
 	$tmpCfg = str_replace( array_keys( $replacements ), array_values( $replacements ), $template );
 	$tmpFileName = tempnam( wfTempDir(), 'mwdocgen-' );
-	file_put_contents( $tmpFileName , $tmpCfg ) or die( "Could not write doxygen configuration to file $tmpFileName\n" );
+	file_put_contents( $tmpFileName, $tmpCfg ) or die( "Could not write doxygen configuration to file $tmpFileName\n" );
 
 	return $tmpFileName;
 }

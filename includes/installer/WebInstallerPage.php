@@ -369,7 +369,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 
 		// Set the relevant variables from LocalSettings.php
 		$requiredVars = array( 'wgDBtype' );
-		$status = $this->importVariables( $requiredVars , $vars );
+		$status = $this->importVariables( $requiredVars, $vars );
 		$installer = $this->parent->getDBInstaller();
 		$status->merge( $this->importVariables( $installer->getGlobalNames(), $vars ) );
 		if ( !$status->isOK() ) {

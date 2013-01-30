@@ -1348,7 +1348,7 @@ class SpecialUndelete extends SpecialPage {
 		// Revision delete links
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
 
-		$revisionRow = $this->msg( 'undelete-revisionrow' )->rawParams( $checkBox, $revdlink, $last, $pageLink , $userLink, $revTextSize, $comment )->escaped();
+		$revisionRow = $this->msg( 'undelete-revisionrow' )->rawParams( $checkBox, $revdlink, $last, $pageLink, $userLink, $revTextSize, $comment )->escaped();
 		return "<li>$revisionRow</li>";
 	}
 

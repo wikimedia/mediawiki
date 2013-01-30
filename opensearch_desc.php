@@ -65,7 +65,7 @@ print Xml::element( 'Image',
 		'height' => 16,
 		'width' => 16,
 		'type' => 'image/x-icon' ),
-	wfExpandUrl( $wgFavicon , PROTO_CURRENT ) );
+	wfExpandUrl( $wgFavicon, PROTO_CURRENT ) );
 
 $urls = array();
 

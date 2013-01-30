@@ -435,7 +435,7 @@ abstract class Skin extends ContextSource {
 		$colon = $this->msg( 'colon-separator' )->escaped();
 
 		if ( !empty( $allCats['normal'] ) ) {
-			$t = $embed . implode( "{$pop}{$embed}" , $allCats['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop}{$embed}", $allCats['normal'] ) . $pop;
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
 			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
@@ -456,7 +456,7 @@ abstract class Skin extends ContextSource {
 
 			$s .= "<div id=\"mw-hidden-catlinks\" class=\"mw-hidden-catlinks$class\">" .
 				$this->msg( 'hidden-categories' )->numParams( count( $allCats['hidden'] ) )->escaped() .
-				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
+				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}", $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
 		}
 

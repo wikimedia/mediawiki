@@ -1126,7 +1126,7 @@ class FormatMetadata {
 			return $val;
 		}
 		$cat = '';
-		switch( substr( $val , 0, 2 ) ) {
+		switch( substr( $val, 0, 2 ) ) {
 			case '01':
 				$cat = 'ace';
 				break;

@@ -218,8 +218,8 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
 		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
-		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(),'ll_from' );
-		$this->dumbTableUpdate( 'iwlinks',       $this->getInterwikiInsertions(),'iwl_from' );
+		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(), 'll_from' );
+		$this->dumbTableUpdate( 'iwlinks',       $this->getInterwikiInsertions(), 'iwl_from' );
 		$this->dumbTableUpdate( 'page_props',    $this->getPropertyInsertions(), 'pp_page' );
 
 		# Update the cache of all the category pages and image description

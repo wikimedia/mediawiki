@@ -217,7 +217,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					: array( 'page_title >= ' . $dbr->addQuotes( $lastTitle ) );
 				$res = $dbr->select( 'page', /* FROM */
 					'page_title', /* WHAT */
-					array_merge($where,$chunk),
+					array_merge( $where, $chunk ),
 					__METHOD__,
 					array ('LIMIT' => 2, 'OFFSET' => $maxPerSubpage - 1, 'ORDER BY' => 'page_title ASC')
 				);
@@ -228,7 +228,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				} else {
 					// Final chunk, but ended prematurely. Go back and find the end.
 					$endTitle = $dbr->selectField( 'page', 'MAX(page_title)',
-						array_merge($where,$chunk),
+						array_merge( $where, $chunk ),
 						__METHOD__ );
 					array_push( $lines, $endTitle );
 					$done = true;

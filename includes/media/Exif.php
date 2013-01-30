@@ -322,7 +322,7 @@ class Exif {
 
 		foreach ( array_keys( $this->mRawExifData ) as $section ) {
 			if ( !in_array( $section, array_keys( $this->mExifTags ) ) ) {
-				$this->debug( $section , __FUNCTION__, "'$section' is not a valid Exif section" );
+				$this->debug( $section, __FUNCTION__, "'$section' is not a valid Exif section" );
 				continue;
 			}
 
@@ -445,7 +445,7 @@ class Exif {
 			if ( strlen($this->mFilteredExifData[$prop]) <= 8 ) {
 				//invalid. Must be at least 9 bytes long.
 
-				$this->debug( $this->mFilteredExifData[$prop] , __FUNCTION__, false );
+				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, false );
 				unset($this->mFilteredExifData[$prop]);
 				return;
 			}
@@ -485,7 +485,7 @@ class Exif {
 			$val = trim($val);
 			if ( strlen( $val ) === 0 ) {
 				//only whitespace.
-				$this->debug( $this->mFilteredExifData[$prop] , __FUNCTION__, "$prop: Is only whitespace" );
+				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, "$prop: Is only whitespace" );
 				unset($this->mFilteredExifData[$prop]);
 				return;
 			}

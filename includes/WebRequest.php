@@ -619,7 +619,7 @@ class WebRequest {
 			global $wgCookiePrefix;
 			$prefix = $wgCookiePrefix;
 		}
-		return $this->getGPCVal( $_COOKIE, $prefix . $key , $default );
+		return $this->getGPCVal( $_COOKIE, $prefix . $key, $default );
 	}
 
 	/**
@@ -849,7 +849,7 @@ class WebRequest {
 		} else {
 			foreach ( $_SERVER as $name => $value ) {
 				if ( substr( $name, 0, 5 ) === 'HTTP_' ) {
-					$name = str_replace( '_', '-',  substr( $name, 5 ) );
+					$name = str_replace( '_', '-', substr( $name, 5 ) );
 					$this->headers[$name] = $value;
 				} elseif ( $name === 'CONTENT_LENGTH' ) {
 					$this->headers['CONTENT-LENGTH'] = $value;
