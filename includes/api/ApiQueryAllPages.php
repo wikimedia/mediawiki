@@ -117,7 +117,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		if ( count( $params['prtype'] ) || $params['prexpiry'] != 'all' ) {
 			$this->addTables( 'page_restrictions' );
 			$this->addWhere( 'page_id=pr_page' );
-			$this->addWhere( 'pr_expiry>' . $db->addQuotes( $db->timestamp() ) );
+			$this->addWhere( "pr_expiry > {$db->addQuotes( $db->timestamp() )} OR pr_expiry IS NULL" );
 
 			if ( count( $params['prtype'] ) ) {
 				$this->addWhereFld( 'pr_type', $params['prtype'] );
