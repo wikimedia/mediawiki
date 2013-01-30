@@ -645,7 +645,7 @@ class Preferences {
 	 */
 	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Page Rendering ##############################
-		global $wgAllowUserCssPrefs;
+		global $wgAllowUserCssPrefs, $wgNoReferrerUserOverride;
 		if ( $wgAllowUserCssPrefs ) {
 			$defaultPreferences['underline'] = array(
 				'type' => 'select',
@@ -709,6 +709,14 @@ class Preferences {
 			'section' => 'rendering/advancedrendering',
 			'label-message' => 'tog-numberheadings',
 		);
+
+		if ( $wgNoReferrerUserOverride != 'disabled' ) {
+			$defaultPreferences['noreferrer'] = array(
+				'type' => 'toggle',
+				'section' => 'rendering/advancedrendering',
+				'label-message' => 'tog-noreferrer'
+			);
+		}
 	}
 
 	/**
