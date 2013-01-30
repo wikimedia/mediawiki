@@ -105,6 +105,7 @@ class MwSql extends Maintenance {
 	public function sqlPrintResult( $res, $db ) {
 		if ( !$res ) {
 			// Do nothing
+			return;
 		} elseif ( is_object( $res ) && $res->numRows() ) {
 			foreach ( $res as $row ) {
 				$this->output( print_r( $row, true ) );

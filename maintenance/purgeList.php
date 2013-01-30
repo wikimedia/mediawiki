@@ -41,13 +41,13 @@ class PurgeList extends Maintenance {
 		if( $this->hasOption( 'namespace' ) ) {
 			$this->purgeNamespace();
 		} else {
-			$this->purgeList();
+			$this->doPurge();
 		}
 		$this->output( "Done!\n" );
 	}
 
 	/** Purge URL coming from stdin */
-	private function purgeList() {
+	private function doPurge() {
 		$stdin = $this->getStdin();
 		$urls = array();
 
