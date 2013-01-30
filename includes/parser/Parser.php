@@ -1631,18 +1631,53 @@ class Parser {
 	 * @param string|bool $url optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
 	 * @param $title Title optional Title, for wgNoFollowNsExceptions lookups
+	 * @param User|null Optional user to get preferences from
 	 * @return string|null rel attribute for $url
 	 */
-	public static function getExternalLinkRel( $url = false, $title = null ) {
-		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
+	public static function getExternalLinkRel( $url = false, $title = null, User $user = null ) {
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions,
+		       $wgNoReferrerLinks, $wgNoReferrerNsExceptions, $wgNoReferrerDomainExceptions;
+
+		$rel = array();
 		$ns = $title ? $title->getNamespace() : false;
-		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) &&
-				!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) )
-		{
-			return 'nofollow';
+
+		if (
+			$wgNoFollowLinks &&
+			!in_array( $ns, $wgNoFollowNsExceptions ) &&
+			!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions )
+		) {
+			$rel[] = 'nofollow';
 		}
-		return null;
+
+		if (
+			// If the user preference is allowed to override
+			(
+				$wgNoReferrerUserOverride == 'override' &&
+				$user !== null &&
+				$user->getBoolOption( 'noreferrer' )
+			) || (
+			// Or if
+				(
+				// noreferrer is enabled for all links or the user has it enabled
+					$wgNoReferrerLinks ||
+					(
+						$wgNoReferrerUserOverride == 'enabled' &&
+						$user !== null &&
+						$user->getBoolOption( 'noreferrer' )
+					)
+				) && (
+				// and it's not in the exception list
+					!in_array( $ns, $wgNoReferrerNsExceptions ) &&
+					!wfMatchesDomainList( $url, $wgNoReferrerDomainExceptions )
+				)
+			)
+		) {
+			$rel[] = 'noreferrer';
+		}
+
+		return implode( ' ', $rel );
 	}
+
 	/**
 	 * Get an associative array of additional HTML attributes appropriate for a
 	 * particular external link.  This currently may include rel => nofollow
@@ -1655,7 +1690,7 @@ class Parser {
 	 */
 	function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
-		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle );
+		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle, $this->getUser() );
 
 		if ( $this->mOptions->getExternalLinkTarget() ) {
 			$attribs['target'] = $this->mOptions->getExternalLinkTarget();

@@ -3492,6 +3492,46 @@ $wgNoFollowNsExceptions = array();
 $wgNoFollowDomainExceptions = array();
 
 /**
+ * If true, external URL links in wiki text will be given the
+ * rel="noreferrer" attribute to tell compliant browsers not
+ * to use the Referer header when going to the link for prviacy
+ * reasons.
+ */
+$wgNoReferrerLinks = false;
+
+/**
+ * Namespaces in which $wgNoReferrerLinks doesn't apply.
+ * See Language.php for a list of namespaces.
+ */
+$wgNoReferrerNsExceptions = array();
+
+/**
+ * If this is set to an array of domains, external links to these domain names
+ * (or any subdomains) will not be set to rel="noreferrer" regardless of the
+ * value of $wgNoReferrerLinks.  For instance:
+ *
+ * $wgNoReferrerDomainExceptions = array( 'en.wikipedia.org', 'wiktionary.org' );
+ *
+ * This would add rel="noreferrer" to links to de.wikipedia.org, but not
+ * en.wikipedia.org, wiktionary.org, en.wiktionary.org, us.en.wikipedia.org,
+ * etc.
+ */
+$wgNoReferrerDomainExceptions = array();
+
+/**
+ * Allow users to decide in their preferences if they want rel="noreferrer"
+ * set on external links.
+ *
+ * If set to:
+ *  * 'disabled' - the user option is disabled
+ *  * 'override' - the user option will override all other configuration variables
+ *  * 'enabled' - the user option will only take precedence in cases where the domain/namespace
+ *                exceptions don't apply.
+ * Defaults to 'disabled'.
+ */
+$wgNoReferrerUserOverride = 'disabled';
+
+/**
  * Allow DISPLAYTITLE to change title display
  */
 $wgAllowDisplayTitle = true;
@@ -3664,6 +3704,7 @@ $wgDefaultUserOptions = array(
 	'newpageshidepatrolled' => 0,
 	'nocache' => 0,
 	'noconvertlink' => 0,
+	'noreferrer' => 0,
 	'norollbackdiff' => 0,
 	'numberheadings' => 0,
 	'previewonfirst' => 0,

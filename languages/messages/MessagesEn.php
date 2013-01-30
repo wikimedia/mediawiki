@@ -671,6 +671,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-enotifusertalkpages'     => 'Email me when my user talk page is changed',
 'tog-enotifminoredits'        => 'Email me also for minor edits of pages and files',
 'tog-enotifrevealaddr'        => 'Reveal my email address in notification emails',
+'tog-noreferrer'              => 'Hide the Referer when visiting external links',
 'tog-shownumberswatching'     => 'Show the number of watching users',
 'tog-oldsig'                  => 'Existing signature:',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',

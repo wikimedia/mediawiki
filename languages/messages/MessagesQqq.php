@@ -178,6 +178,7 @@ Parameters:
 'tog-previewontop' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-previewonfirst' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-nocache' => "[[Special:Preferences]], tab 'Misc.'. Offers the user the option of disabling caching of pages in the browser. {{Gender}}",
+'tog-noreferrer' => 'Option in [[Special:Preferences]], under Appearance. Offers the user the option of enabling ref="noreferrer" for external links.',
 'tog-enotifwatchlistpages' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-enotifusertalkpages' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-enotifminoredits' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}

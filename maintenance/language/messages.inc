@@ -49,6 +49,7 @@ $wgMessageStructure = array(
 		'tog-previewontop',
 		'tog-previewonfirst',
 		'tog-nocache',
+		'tog-noreferrer',
 		'tog-enotifwatchlistpages',
 		'tog-enotifusertalkpages',
 		'tog-enotifminoredits',

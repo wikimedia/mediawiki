@@ -84,6 +84,10 @@ production.
   MediaWiki will try outputting markup acording to XHTML5 rules.
 * New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
   HTTP caches when a page is changed.
+* New configuration variables $wgNoReferrerLinks, $wgNoReferrerNsExceptions,
+  and $wgNoReferrerDomainExceptions can be used to add rel="noreferrer" to
+  external links for privacy purposes. Also adds a user option for overriding
+  the default NoReferrer settings.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
