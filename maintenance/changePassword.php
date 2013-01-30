@@ -46,7 +46,7 @@ class ChangePassword extends Maintenance {
 		} elseif ( $this->hasOption( "userid" ) ) {
 			$user = User::newFromId( $this->getOption( 'userid' ) );
 		} else {
-			$this->error( "A \"user\" or \"userid\" must be set to change the password for" , true );
+			$this->error( "A \"user\" or \"userid\" must be set to change the password for", true );
 		}
 		if ( !$user || !$user->getId() ) {
 			$this->error( "No such user: " . $this->getOption( 'user' ), true );

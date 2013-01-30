@@ -627,8 +627,8 @@ class UtfNormal {
 		$lastHangul = 0;
 		$startChar = '';
 		$combining = '';
-		$x1 = ord(substr(UTF8_HANGUL_VBASE,0,1));
-		$x2 = ord(substr(UTF8_HANGUL_TEND,0,1));
+		$x1 = ord(substr(UTF8_HANGUL_VBASE, 0, 1));
+		$x2 = ord(substr(UTF8_HANGUL_TEND, 0, 1));
 		for( $i = 0; $i < $len; $i++ ) {
 			$c = $string[$i];
 			$n = ord( $c );

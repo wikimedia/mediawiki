@@ -53,7 +53,7 @@ class RefreshImageMetadata extends Maintenance {
 		$this->addOption( 'start', 'Name of file to start with', false, true );
 		$this->addOption( 'end', 'Name of file to end with', false, true );
 
-		$this->addOption( 'mime', '(Inefficient!) Only refresh files with this mime type. Can accept wild-card image/*' , false, true );
+		$this->addOption( 'mime', '(Inefficient!) Only refresh files with this mime type. Can accept wild-card image/*', false, true );
 		$this->addOption( 'metadata-contains', '(Inefficient!) Only refresh files where the img_metadata field contains this string. Can be used if its known a specific property was being extracted incorrectly.', false, true );
 
 	}

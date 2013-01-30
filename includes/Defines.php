@@ -227,7 +227,7 @@ define( 'MW_SUPPORTS_RESOURCE_MODULES', 1 );
 define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
 define( 'OT_PREPROCESS', 3 );
-define( 'OT_MSG' , 3 );  // b/c alias for OT_PREPROCESS
+define( 'OT_MSG', 3 );  // b/c alias for OT_PREPROCESS
 define( 'OT_PLAIN', 4 );
 /**@}*/
 
