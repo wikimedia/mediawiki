@@ -29,33 +29,41 @@
  * @since 1.19
  */
 class LockManagerGroup {
-	/**
-	 * @var LockManagerGroup
-	 */
-	protected static $instance = null;
+	/** @var Array (wiki => LockManager) */
+	protected static $instances = array();
+
+	protected $wiki; // string; wiki ID
 
 	/** @var Array of (name => ('class' =>, 'config' =>, 'instance' =>)) */
 	protected $managers = array();
 
-	protected function __construct() {}
-
 	/**
-	 * @return LockManagerGroup
+	 * @param $wiki string Wiki ID
 	 */
-	public static function singleton() {
-		if ( self::$instance == null ) {
-			self::$instance = new self();
-			self::$instance->initFromGlobals();
-		}
-		return self::$instance;
+	protected function __construct( $wiki ) {
+		$this->wiki = $wiki;
 	}
 
 	/**
-	 * Destroy the singleton instance, so that a new one will be created next
-	 * time singleton() is called.
+	 * @param $wiki string Wiki ID
+	 * @return LockManagerGroup
 	 */
-	public static function destroySingleton() {
-		self::$instance = null;
+	public static function singleton( $wiki = false ) {
+		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
+		if ( !isset( self::$instances[$wiki] ) ) {
+			self::$instances[$wiki] = new self( $wiki );
+			self::$instances[$wiki]->initFromGlobals();
+		}
+		return self::$instances[$wiki];
+	}
+
+	/**
+	 * Destroy the singleton instances
+	 *
+	 * @return void
+	 */
+	public static function destroySingletons() {
+		self::$instances = array();
 	}
 
 	/**
@@ -78,6 +86,7 @@ class LockManagerGroup {
 	 */
 	protected function register( array $configs ) {
 		foreach ( $configs as $config ) {
+			$config['wiki'] = $this->wiki;
 			if ( !isset( $config['name'] ) ) {
 				throw new MWException( "Cannot register a lock manager with no name." );
 			}

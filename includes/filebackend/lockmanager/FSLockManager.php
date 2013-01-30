@@ -237,8 +237,7 @@ class FSLockManager extends LockManager {
 	 * @return string
 	 */
 	protected function getLockPath( $path ) {
-		$hash = self::sha1Base36( $path );
-		return "{$this->lockDir}/{$hash}.lock";
+		return "{$this->lockDir}/{$this->sha1Base36Absolute( $path )}.lock";
 	}
 
 	/**
