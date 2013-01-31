@@ -1733,10 +1733,13 @@ class WikiPage extends Page implements IDBAccessObject {
 					throw new MWException( "New content failed validity check!" );
 				}
 
+				wfProfileIn( __METHOD__ . '#insert-revision' );
 				$dbw->begin( __METHOD__ );
 
+				wfProfileIn( __METHOD__ . '#prepare-save' );
 				$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
 				$status->merge( $prepStatus );
+				wfProfileOut( __METHOD__ . '#prepare-save' );
 
 				if ( !$status->isOK() ) {
 					$dbw->rollback( __METHOD__ );
@@ -1762,6 +1765,7 @@ class WikiPage extends Page implements IDBAccessObject {
 
 					$dbw->rollback( __METHOD__ );
 
+					wfProfileOut( __METHOD__ . '#insert-revision' );
 					wfProfileOut( __METHOD__ );
 					return $status;
 				}
@@ -1785,6 +1789,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				}
 				$user->incEditCount();
 				$dbw->commit( __METHOD__ );
+				wfProfileOut( __METHOD__ . '#insert-revision' );
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 				// related variables correctly
@@ -1812,13 +1817,17 @@ class WikiPage extends Page implements IDBAccessObject {
 			// Create new article
 			$status->value['new'] = true;
 
+			wfProfileIn( __METHOD__ . '#insert-revision' );
 			$dbw->begin( __METHOD__ );
 
+			wfProfileIn( __METHOD__ . '#prepare-save' );
 			$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
 			$status->merge( $prepStatus );
+			wfProfileOut( __METHOD__ . '#prepare-save' );
 
 			if ( !$status->isOK() ) {
 				$dbw->rollback( __METHOD__ );
+				wfProfileIn( __METHOD__ . '#insert-revision' );
 
 				wfProfileOut( __METHOD__ );
 				return $status;
@@ -1834,6 +1843,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				$dbw->rollback( __METHOD__ );
 				$status->fatal( 'edit-already-exists' );
 
+				wfProfileOut( __METHOD__ . '#insert-revision' );
 				wfProfileOut( __METHOD__ );
 				return $status;
 			}
@@ -1881,6 +1891,8 @@ class WikiPage extends Page implements IDBAccessObject {
 				}
 			}
 			$user->incEditCount();
+
+			wfProfileOut( __METHOD__ . '#insert-revision' );
 			$dbw->commit( __METHOD__ );
 
 			// Update links, etc.
@@ -1980,6 +1992,8 @@ class WikiPage extends Page implements IDBAccessObject {
 			return $this->mPreparedEdit;
 		}
 
+		wfProfileIn( __METHOD__ );
+
 		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
 		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
 
@@ -2001,6 +2015,8 @@ class WikiPage extends Page implements IDBAccessObject {
 		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialization_format ) : '';
 
 		$this->mPreparedEdit = $edit;
+
+		wfProfileOut( __METHOD__ );
 		return $edit;
 	}
 
