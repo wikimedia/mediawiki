@@ -45,7 +45,7 @@ class nextJobDB extends Maintenance {
 		} elseif ( $this->hasOption( 'type' ) ) {
 			$types = array( $this->getOption( 'type' ) );
 		} else {
-			$types = false;
+			$types = JobQueueGroup::singleton()->getDefaultQueueTypes();
 		}
 
 		$memcKey = 'jobqueue:dbs:v3';
@@ -82,16 +82,12 @@ class nextJobDB extends Maintenance {
 		do {
 			$again = false;
 
-			if ( $types === false ) {
-				$candidates = call_user_func_array( 'array_merge', $pendingDBs );
-			} else {
-				$candidates = array();
-				$possTypes = array_intersect( $types, array_keys( $pendingDBs ) );
-				if ( $possTypes ) {
-					$possTypes = array_values( $possTypes );
-					$type = $possTypes[ mt_rand( 0, count( $possTypes ) - 1 ) ];
-					$candidates = $pendingDBs[$type];
-				}
+			$candidates = array();
+			$possTypes = array_intersect( $types, array_keys( $pendingDBs ) );
+			if ( count( $possTypes ) ) {
+				$possTypes = array_values( $possTypes );
+				$type = $possTypes[ mt_rand( 0, count( $possTypes ) - 1 ) ];
+				$candidates = $pendingDBs[$type];
 			}
 			if ( !$candidates ) {
 				return; // no jobs for this type
@@ -99,7 +95,7 @@ class nextJobDB extends Maintenance {
 
 			$candidates = array_values( $candidates );
 			$db = $candidates[ mt_rand( 0, count( $candidates ) - 1 ) ];
-			if ( !$this->checkJob( $type, $db ) ) {
+			if ( !$this->checkJob( $type, $db ) ) { // queue is actually empty?
 				$pendingDBs = $this->delistDB( $pendingDBs, $db, $type );
 				// Update the cache to remove the outdated information.
 				// Make sure that this does not race (especially with full rebuilds).
@@ -125,16 +121,16 @@ class nextJobDB extends Maintenance {
 		}
 	}
 
+	/**
+	 * Remove a type/DB entry from the list of queues with jobs
+	 *
+	 * @param $pendingDBs array
+	 * @param $db string
+	 * @param $type string
+	 * @return Array
+	 */
 	private function delistDB( array $pendingDBs, $db, $type ) {
-		if ( $type === false ) {
-			// There are no jobs available in the current database
-			foreach ( $pendingDBs as $type2 => $dbs ) {
-				$pendingDBs[$type2] = array_diff( $pendingDBs[$type2], array( $db ) );
-			}
-		} else {
-			// There are no jobs of this type available in the current database
-			$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
-		}
+		$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
 		return $pendingDBs;
 	}
 
@@ -146,17 +142,7 @@ class nextJobDB extends Maintenance {
 	 * @return bool
 	 */
 	private function checkJob( $type, $dbName ) {
-		$group = JobQueueGroup::singleton( $dbName );
-		if ( $type === false ) {
-			foreach ( $group->getDefaultQueueTypes() as $type ) {
-				if ( !$group->get( $type )->isEmpty() ) {
-					return true;
-				}
-			}
-			return false;
-		} else {
-			return !$group->get( $type )->isEmpty();
-		}
+		return !JobQueueGroup::singleton( $dbName )->get( $type )->isEmpty();
 	}
 
 	/**
