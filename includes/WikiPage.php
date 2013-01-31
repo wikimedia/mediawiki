@@ -2274,9 +2274,14 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		$encodedExpiry = array();
 		$protectDescription = '';
+		# Some bots may parse IRC lines, which are generated from log entries which contain plain
+		# protect description text. Keep them in old format to avoid breaking compatibility.
+		# TODO: Fix protection log to store structured description and format it on-the-fly.
+		$protectDescriptionLog = '';
 		foreach ( $limit as $action => $restrictions ) {
 			$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
 			if ( $restrictions != '' ) {
+				$protectDescriptionLog .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
 				# $action is one of $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' ).
 				# All possible message keys are listed here for easier grepping:
 				# * restriction-create
@@ -2307,8 +2312,10 @@ class WikiPage extends Page implements IDBAccessObject {
 				$protectDescription .= wfMessage( 'protect-summary-desc' )
 					->params( $actionText, $restrictionsText, $expiryText )
 					->inContentLanguage()->text();
+				$protectDescriptionLog .= $expiryText . ') ';
 			}
 		}
+		$protectDescriptionLog = trim( $protectDescriptionLog );
 
 		if ( $id ) { // Protection of existing page
 			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
@@ -2413,7 +2420,7 @@ class WikiPage extends Page implements IDBAccessObject {
 		if ( $logAction == 'unprotect' ) {
 			$logParams = array();
 		} else {
-			$logParams = array( $protectDescription, $cascade ? 'cascade' : '' );
+			$logParams = array( $protectDescriptionLog, $cascade ? 'cascade' : '' );
 		}
 
 		// Update the protection log
