@@ -936,13 +936,9 @@ abstract class Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
-		$tbl_arc = $dbw->tableName( 'archive' );
-		$tbl_rev = $dbw->tableName( 'revision' );
-		$tbl_txt = $dbw->tableName( 'text' );
-
 		# Get "active" text records from the revisions table
 		$this->output( 'Searching for active text records in revisions table...' );
-		$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
+		$res = $dbw->select( 'revision', 'rev_text_id', array(), __METHOD__, array( 'DISTINCT' ) );
 		foreach ( $res as $row ) {
 			$cur[] = $row->rev_text_id;
 		}
@@ -950,7 +946,7 @@ abstract class Maintenance {
 
 		# Get "active" text records from the archive table
 		$this->output( 'Searching for active text records in archive table...' );
-		$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
+		$res = $dbw->select( 'archive', 'ar_text_id', array(), __METHOD__, array( 'DISTINCT' ) );
 		foreach ( $res as $row ) {
 			# old pre-MW 1.5 records can have null ar_text_id's.
 			if ( $row->ar_text_id !== null ) {
@@ -961,8 +957,8 @@ abstract class Maintenance {
 
 		# Get the IDs of all text records not in these sets
 		$this->output( 'Searching for inactive text records...' );
-		$set = implode( ', ', $cur );
-		$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
+		$cond = 'old_id NOT IN ( ' . $dbw->makeList( $cur ) . ' )';
+		$res = $dbw->select( 'text', 'old_id', array( $cond ), __METHOD__, array( 'DISTINCT' ) );
 		$old = array();
 		foreach ( $res as $row ) {
 			$old[] = $row->old_id;
@@ -976,8 +972,7 @@ abstract class Maintenance {
 		# Delete as appropriate
 		if ( $delete && $count ) {
 			$this->output( 'Deleting...' );
-			$set = implode( ', ', $old );
-			$dbw->query( "DELETE FROM $tbl_txt WHERE old_id IN ( $set )" );
+			$dbw->delete( 'text', array( 'old_id' => $old ), __METHOD__ );
 			$this->output( "done.\n" );
 		}
 
