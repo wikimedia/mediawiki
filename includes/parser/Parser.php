@@ -1806,12 +1806,6 @@ class Parser {
 			$prefix = '';
 		}
 
-		if ( $this->getConverterLanguage()->hasVariants() ) {
-			$selflink = $this->getConverterLanguage()->autoConvertToAllVariants(
-				$this->mTitle->getPrefixedText() );
-		} else {
-			$selflink = array( $this->mTitle->getPrefixedText() );
-		}
 		$useSubpages = $this->areSubpagesAllowed();
 		wfProfileOut( __METHOD__ . '-setup' );
 
@@ -2047,7 +2041,11 @@ class Parser {
 
 			# Self-link checking
 			if ( $nt->getFragment() === '' && $ns != NS_SPECIAL ) {
-				if ( in_array( $nt->getPrefixedText(), $selflink, true ) ) {
+				if ( $nt->equals( $this->mTitle ) || ( !$nt->isKnown() && in_array(
+					$this->mTitle->getPrefixedText(),
+					$this->getConverterLanguage()->autoConvertToAllVariants( $nt->getPrefixedText() ),
+					true
+				) ) ) {
 					$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
 					continue;
 				}
