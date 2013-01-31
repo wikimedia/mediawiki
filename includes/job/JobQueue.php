@@ -36,6 +36,8 @@ abstract class JobQueue {
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
+	const MAX_ATTEMPTS = 3; // integer; number of times to try a job
+
 	/**
 	 * @param $params array
 	 */
@@ -61,7 +63,9 @@ abstract class JobQueue {
 	 *                If "random" is used, pop() will pick jobs in random order. This might be
 	 *                useful for improving concurrency depending on the queue storage medium.
 	 *   - claimTTL : If supported, the queue will recycle jobs that have been popped
-	 *                but not acknowledged as completed after this many seconds.
+	 *                but not acknowledged as completed after this many seconds. Recycling
+	 *                of jobs simple means re-inserting them into the queue. Jobs can be
+	 *                attempted up to three times before being discarded.
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
 	 *

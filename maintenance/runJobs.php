@@ -85,7 +85,9 @@ class RunJobs extends Maintenance {
 				$t = microtime( true );
 				$this->runJobsLog( $job->toString() . " STARTING" );
 				$status = $job->run();
-				$group->ack( $job ); // done
+				if ( $status ) {
+					$group->ack( $job ); // done
+				}
 				$t = microtime( true ) - $t;
 				$timeMs = intval( $t * 1000 );
 				if ( !$status ) {
