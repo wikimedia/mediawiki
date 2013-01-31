@@ -2302,7 +2302,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'cachedspecial-refresh-now' => '최신 버전 보기.',
 
 # Special:Categories
-'categories' => '분류',
+'categories' => '분류 목록',
 'categoriespagetext' => '{{PLURAL:$1}}문서나 자료를 담고 있는 분류 목록입니다.
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',

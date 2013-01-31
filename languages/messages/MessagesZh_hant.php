@@ -2381,6 +2381,7 @@ $UNWATCHURL
 'protect-fallback' => '僅允許有「$1」權限的用戶',
 'protect-level-autoconfirmed' => '僅允許自動確認使用者',
 'protect-level-sysop' => '僅允許管理員',
+'protect-summary-desc' => '[$1=$2]（$3）',
 'protect-summary-cascade' => '連鎖',
 'protect-expiring' => '終止於 $1 （UTC）',
 'protect-expiring-local' => '$1到期',

@@ -3139,7 +3139,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-robot-noindex' => 'Não indexável',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vigilantes da página',
-'pageinfo-redirects-name' => 'Redireciona para esta página',
+'pageinfo-redirects-name' => 'Redirecionamentos para esta página',
 'pageinfo-subpages-name' => 'Subpáginas desta página',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecionamento|redirecionamentos}}; $3 {{PLURAL:$3|não-redirecionamento|não-redirecionamentos}})',
 'pageinfo-firstuser' => 'Criador da página',
