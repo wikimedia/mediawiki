@@ -567,14 +567,38 @@ class HttpError extends MWException {
 		$this->content = $content;
 	}
 
+	/**
+	 * Returns the HTTP status code supplied to the constructor.
+	 *
+	 * @return int
+	 */
+	public function getStatusCode() {
+		$this->httpCode;
+	}
+
+	/**
+	 * Report the HTTP error.
+	 * Sends the appropriate HTTP status code and outputs an
+	 * HTML page with an error message.
+	 */
 	public function report() {
 		$httpMessage = HttpStatus::getMessage( $this->httpCode );
 
 		header( "Status: {$this->httpCode} {$httpMessage}", true, $this->httpCode );
 		header( 'Content-type: text/html; charset=utf-8' );
 
+		print $this->getHTML();
+	}
+
+	/**
+	 * Returns HTML for reporting the HTTP error.
+	 * This will be a minimal but complete HTML document.
+	 *
+	 * @return string HTML
+	 */
+	public function getHTML() {
 		if ( $this->header === null ) {
-			$header = $httpMessage;
+			$header = HttpStatus::getMessage( $this->httpCode );
 		} elseif ( $this->header instanceof Message ) {
 			$header = $this->header->escaped();
 		} else {
@@ -587,7 +611,7 @@ class HttpError extends MWException {
 			$content = htmlspecialchars( $this->content );
 		}
 
-		print "<!DOCTYPE html>\n".
+		return "<!DOCTYPE html>\n".
 			"<html><head><title>$header</title></head>\n" .
 			"<body><h1>$header</h1><p>$content</p></body></html>\n";
 	}
