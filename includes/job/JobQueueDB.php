@@ -31,7 +31,6 @@ class JobQueueDB extends JobQueue {
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
 	const CACHE_TTL_LONG  = 300; // integer; seconds to cache info that is kept up to date
 	const MAX_AGE_PRUNE   = 604800; // integer; seconds a job can live once claimed
-	const MAX_ATTEMPTS    = 3; // integer; number of times to try a job
 	const MAX_JOB_RANDOM  = 2147483647; // integer; 2^31 - 1, used for job_random
 	const MAX_OFFSET      = 255; // integer; maximum number of rows to skip
 
