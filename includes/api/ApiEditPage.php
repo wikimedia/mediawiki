@@ -33,10 +33,6 @@
  */
 class ApiEditPage extends ApiBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName );
-	}
-
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();

@@ -32,10 +32,6 @@
  */
 class ApiOptions extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * Changes preferences of the current user.
 	 */

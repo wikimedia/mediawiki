@@ -30,10 +30,6 @@
  */
 class ApiFormatWddx extends ApiFormatBase {
 
-	public function __construct( $main, $format ) {
-		parent::__construct( $main, $format );
-	}
-
 	public function getMimeType() {
 		return 'text/xml';
 	}

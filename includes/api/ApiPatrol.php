@@ -30,10 +30,6 @@
  */
 class ApiPatrol extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * Patrols the article or provides the reason the patrol failed.
 	 */
