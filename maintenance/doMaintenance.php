@@ -111,6 +111,9 @@ try {
 
 	// Potentially debug globals
 	$maintenance->globals();
+
+	// log profiling info
+	wfLogProfilingData();
 } catch ( MWException $mwe ) {
 	echo( $mwe->getText() );
 	exit( 1 );
