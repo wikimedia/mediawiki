@@ -585,7 +585,7 @@ $messages['qqq'] = array(
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
 	'config-information' => '{{Identical|Information}}',
-	'config-localsettings-cli-upgrade' => 'Do not translate the <code><code>LocalSettings.php</code></code> and the <code>update.php</code> parts.',
+	'config-localsettings-cli-upgrade' => '{{doc-important|Do not translate the <code>LocalSettings.php</code> and the <code>update.php</code> parts.}}',
 	'config-session-error' => 'Parameters:
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
@@ -603,10 +603,7 @@ $messages['qqq'] = array(
 * $1 is the version of PHP that has been installed.',
 	'config-unicode-pure-php-warning' => 'PECL is the name of a group producing standard pieces of software for PHP, and intl is the name of their library handling some aspects of internationalization.',
 	'config-unicode-update-warning' => "ICU is a body producing standard software tools for support of Unicode and other internationalization aspects. This message warns the system administrator installing MediaWiki that the server's software is not up-to-date and MediaWiki will have problems handling some characters.",
-	'config-no-db' => 'Do not translate: <code>./configure --with-mysql</code>.
-<br />
-Do not translate: <code>php5-mysql</code>.
-
+	'config-no-db' => '{{doc-important|Do not translate "<code>./configure --with-mysql</code>" and "<code>php5-mysql</code>".}}
 Parameters:
 * $1 is comma separated list of database types supported by MediaWiki.',
 	'config-no-fts3' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
@@ -632,8 +629,8 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)',
-	'config-suhosin-max-value-length' => 'Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is between 0 and 1023 (that max value is hard set in MediaWiki software)
-Do not translate "length" in the first sentence',
+	'config-suhosin-max-value-length' => '{{doc-important|Do not translate "length", "suhosin.get.max_value_length", "php.ini", "$wgResourceLoaderMaxQueryLength" and "LocalSettings.php".}}
+Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is between 0 and 1023 (that max value is hard set in MediaWiki software).',
 	'config-db-host-help' => '{{doc-singularthey}}',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
@@ -678,8 +675,8 @@ If you\'re translating this message to a right-to-left language, consider writin
 * {{msg-mw|config-profile-private}}',
 	'config-upload-help' => 'The word "mode" here refers to the access rights given to various user groups when attempting to create and store files and/or subdiretories in the said directory on the server. It also refers to the <code>mode</code> command used to maipulate said right mask under Unix, Linux, and similar operating systems. A less operating-system-centric translation is fine.',
 	'config-logo-help' => '',
-	'config-cc-not-chosen' => 'Do not translate the <code>"proceed".</code> part.
-This message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to klick "proceed" so as to return to the MediaWiki installer page.',
+	'config-cc-not-chosen' => '{{doc-important|Do not translate the "<code>proceed</code>" part.}}
+This message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to click "proceed" so as to return to the MediaWiki installer page.',
 	'config-memcached-servers' => '{{doc-important|Do not translate "memcached".}}
 {{Identical|Memcached server}}',
 	'config-extensions' => '{{Identical|Extension}}',
@@ -2945,11 +2942,24 @@ Ovo '''nije preporučeno''' osim ako nemate problema s vašom wiki.",
 );
 
 /** Catalan (català)
+ * @author Pitort
  * @author පසිඳු කාවින්ද
  */
 $messages['ca'] = array(
 	'config-page-language' => 'Llengua',
 	'config-page-name' => 'Nom',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-ns-generic' => 'Projecte',
+	'config-admin-password' => 'Contrasenya:',
+	'config-profile-wiki' => 'Wiki públic',
+	'config-profile-private' => 'Wiki privat',
+	'config-license-pd' => 'Domini públic',
+	'config-upload-deleted' => 'Directori pels arxius suprimits:',
+	'config-advanced-settings' => 'Configuració avançada',
+	'config-extensions' => 'Extensions',
 	'mainpagetext' => "'''El programari del MediaWiki s'ha instaŀlat correctament.'''",
 	'mainpagedocfooter' => "Consulteu la [//meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
 
@@ -2957,7 +2967,7 @@ $messages['ca'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]
 * [//www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]", # Fuzzy
 );
 
 /** Chechen (нохчийн)
@@ -10047,7 +10057,9 @@ PHPを5.2.9かそれ以降のバージョンに、libxml2を2.7.3かそれ以降
 	'config-using531' => 'PHP$1は<code>__call()</code>の引数参照に関するバグのため、MediaWikiと互換性がありません。
 PHP5.3.2以降に更新するか、この([//bugs.php.net/bug.php?id=50394 PHPに提出されたバグ])を修正するためにPHP5.3.0へ戻してください。
 インストールは中止されました。',
-	'config-suhosin-max-value-length' => 'Suhosin がインストールされており、GET パラメーターの長さを $1 バイトに制限しています。MediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。可能な限り、<code>php.ini</code> で <code>suhosin.get.max_value_length</code> を 1024 以上に設定し、同じ値を <code>LocalSettings.php</code> 中で <code>$wgResourceLoaderMaxQueryLength</code> に設定してください。',
+	'config-suhosin-max-value-length' => 'Suhosin がインストールされており、GET パラメーターの <code>length</code> を $1 バイトに制限しています。
+MediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。
+可能な限り、<code>php.ini</code> で <code>suhosin.get.max_value_length</code> を 1024 以上に設定し、同じ値を <code>LocalSettings.php</code> 内で <code>$wgResourceLoaderMaxQueryLength</code> に設定してください。',
 	'config-db-type' => 'データベースの種類:',
 	'config-db-host' => 'データベースのホスト:',
 	'config-db-host-help' => '異なるサーバー上にデータベースサーバーがある場合、ホスト名またはIPアドレスをここに入力してください。
@@ -10815,7 +10827,9 @@ PHP 5.2.9 이후와 libxml2 2.7.3 이후로 업그레이드하세요. ([//bugs.p
 	'config-using531' => '미디어위키는 <code>__call()</code>을 참고로 매개 변수를 포함하는 버그로 인해 PHP $1(와)과 함께 사용할 수 없습니다.
 문제를 해결하려면 PHP 5.3.2 이상로 업그레이드하거나 PHP 5.3.0으로 다운그레이드를 하세요.
 설치가 중단되었습니다.',
-	'config-suhosin-max-value-length' => 'Suhosin(수호신)이 설치되었고 $1 바이트로 GET 매개 변수 길이를 제한하고 있습니다. 미디어위키의 ResourceLoader 구성 요소는 이 제한을 해결하지만 성능이 저하됩니다. 가능하면 <code>php.ini</code>의 <code>suhosin.get.max_value_length</code>에 1024 이상으로 설정하고 LocalSettings.php의 <code>$wgResourceLoaderMaxQueryLength</code>에 같은 값을 설정해야 합니다.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin이 설치되었고 $1 바이트로 GET 매개 변수인 <code>length</code>를 제한하고 있습니다.
+미디어위키의 ResourceLoader 구성 요소는 이 제한을 해결하지만 성능이 저하됩니다.
+가능하면 <code>php.ini</code>의 <code>suhosin.get.max_value_length</code>에 1024 이상으로 설정하고 <code>LocalSettings.php</code>의 <code>$wgResourceLoaderMaxQueryLength</code>에 같은 값을 설정해야 합니다.',
 	'config-db-type' => '데이터베이스 종류:',
 	'config-db-host' => '데이터베이스 호스트:',
 	'config-db-host-help' => '데이터베이스 서버가 다른 서버에 있으면 여기에 호스트 이름이나 IP 주소를 입력하세요.

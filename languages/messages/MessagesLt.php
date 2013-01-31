@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Audriusa
  * @author Auwris
  * @author Break Through Pain
  * @author Dark Eagle
@@ -315,6 +316,7 @@ $messages = array(
 'newwindow' => '(atsidaro naujame lange)',
 'cancel' => 'Atšaukti',
 'moredotdotdot' => 'Daugiau...',
+'morenotlisted' => 'Daugiau nėra',
 'mypage' => 'Naudotojo puslapis',
 'mytalk' => 'Mano aptarimas',
 'anontalk' => 'Šio IP aptarimas',
@@ -338,7 +340,7 @@ $messages = array(
 'vector-action-protect' => 'Užrakinti',
 'vector-action-undelete' => 'Atkurti',
 'vector-action-unprotect' => 'Keisti apsaugą',
-'vector-simplesearch-preference' => 'Įjungti išplėstinius paieškos pasiūlymus (tik „Vector“ išvaizda)',
+'vector-simplesearch-preference' => 'Supaprastinta paieška (tik „Vector“ išvaizda)',
 'vector-view-create' => 'Kurti',
 'vector-view-edit' => 'Redaguoti',
 'vector-view-history' => 'Istorija',
@@ -500,9 +502,9 @@ Egzistuojančių specialiųjų puslapių sąrašą galite rasti [[Special:Specia
 # General errors
 'error' => 'Klaida',
 'databaseerror' => 'Duomenų bazės klaida',
-'dberrortext' => 'Įvyko duomenų bazės užklausos sintaksės klaida.
-Tai gali reikšti klaidą programinėje įrangoje.
-Paskutinė mėginta duomenų bazės užklausa buvo:
+'dberrortext' => 'Neteisinga duomenų bazės užklausos sintaksė.
+Galima klaida programinėje įrangoje.
+Paskutinė mėginta užklausa:
 <blockquote><tt>$1</tt></blockquote>
 iš funkcijos: „<tt>$2</tt>“.
 Duomenų bazė grąžino klaidą „<tt>$3: $4</tt>“.',
@@ -690,6 +692,7 @@ Palaukite prieš bandant vėl.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
 'user-mail-no-addy' => 'Bandyta išsiųsti elektroninį laišką be el. pašto adreso.',
+'user-mail-no-body' => 'Mėginta siųsti tuščia ar pernelyg trumpą E-pašto žinutė.',
 
 # Change password dialog
 'resetpass' => 'Keisti slaptažodį',
@@ -933,6 +936,8 @@ Greičiausiai jis yra ištrintas.',
 'edit-already-exists' => 'Negalima sukurti naujo puslapio.
 Jis jau egzistuoja.',
 'defaultmessagetext' => 'Numatytasis pranešimo tekstas',
+'invalid-content-data' => 'Neleistinas turinys.',
+'content-not-allowed-here' => 'Turinys "$1" puslapyje [[$2]] nėra leistinas.',
 
 # Content models
 'content-model-wikitext' => 'wikitekstas',
@@ -1089,7 +1094,8 @@ Prašome patikrinti sąrašus.',
 'revdelete-only-restricted' => 'Klaida slepiant $1 $2 elementą: jūs negalite paslėpti elementų nuo administratorių peržiūros nepasirenkant vieno iš kitų matomumo nustatymų.',
 'revdelete-reason-dropdown' => '*Dažnos trynimo priežastys
 ** Autorinių teisių pažeidimas
-** Netinkama asmeninė informacija
+** Netinkamas komentaras ar asmeninė informacija
+** Netinkamas naudotojo vardas
 ** Informacija, kuri gali būti šmeižikiška',
 'revdelete-otherreason' => 'Kita/papildoma priežastis:',
 'revdelete-reasonotherlist' => 'Kita priežastis',
@@ -2261,6 +2267,8 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'prot_1movedto2' => '[[$1]] pervadintas į [[$2]]',
 'protect-badnamespace-title' => 'Neapsaugota vardų sritis',
 'protect-badnamespace-text' => 'Puslapiai šioje vardų srityje negali būti apsaugoti.',
+'protect-norestrictiontypes-text' => 'Šis puslapis negali būti apsaugotas nes neturi galimų apribojimų tipų.',
+'protect-norestrictiontypes-title' => 'Neapsaugomas puslapis',
 'protect-legend' => 'Užrakinimo patvirtinimas',
 'protectcomment' => 'Priežastis:',
 'protectexpiry' => 'Baigia galioti:',
@@ -2926,6 +2934,10 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'pageinfo-contentpage' => 'Priskirtas turinio puslapiams',
 'pageinfo-contentpage-yes' => 'Taip',
 'pageinfo-protect-cascading-yes' => 'Taip',
+'pageinfo-category-info' => 'Informacija apie kategoriją',
+'pageinfo-category-pages' => 'Puslapių skaičius',
+'pageinfo-category-subcats' => 'Dukterinių kategorijų skaičius',
+'pageinfo-category-files' => 'Failų skaičius',
 
 # Skin names
 'skinname-standard' => 'Klasikinė',
@@ -2948,6 +2960,8 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'markedaspatrollederror' => 'Negalima pažymėti, kad patikrinta',
 'markedaspatrollederrortext' => 'Jums reikia nurodyti versiją, kurią pažymėti kaip patikrintą.',
 'markedaspatrollederror-noautopatrol' => 'Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.',
+'markedaspatrollednotify' => '$1 keitimas pažymėtas patikrintu.',
+'markedaspatrollederrornotify' => 'Nepavyko pažymėti kaip patikrinto.',
 
 # Patrol log
 'patrol-log-page' => 'Patikrinimų sąrašas',
@@ -3622,6 +3636,7 @@ Jūs taip pat galite [[Special:EditWatchlist|naudoti standartinį redaktorių]].
 'version-license' => 'Licencija',
 'version-poweredby-credits' => "Šis projektas naudoja '''[//www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
 'version-poweredby-others' => 'kiti',
+'version-credits-summary' => 'Už indėlį kuriant [[Special:Version|MediaWiki]] dėkojame',
 'version-license-info' => 'MediaWiki yra nemokama programinė įranga; galite ją platinti ir/arba modifikuoti pagal GNU General Public License, kurią publikuoja Free Software Foundation; taikoma 2-oji licenzijos versija arba (Jūsų pasirinkimu) bet kuri vėlesnė versija. 
 
 MediaWiki yra platinama su viltimi, kad ji bus naudinga, bet BE JOKIOS GARANTIJOS; be jokios numanomos PARDAVIMO arba TINKAMUMO TAM TIKRAM TIKSLUI garantijos. Daugiau informacijos galite sužinoti GNU General Public License. 
@@ -3764,6 +3779,7 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'logentry-newusers-newusers' => '$1 sukūrė naudotojo paskyrą',
 'logentry-newusers-create' => '$1 sukūrė naudotojo paskyrą',
 'logentry-newusers-create2' => '$1 sukūrė naudotojo paskyrą $3',
+'logentry-newusers-byemail' => 'Naudotojas $1 sukūrė paskyrą $3, slaptažodis išsiųstas E-paštu.',
 'logentry-newusers-autocreate' => 'Paskyra $1 buvo sukurta automatiškai',
 'logentry-rights-rights' => '$1 pakeista narystė grupėje $3 iš $4 į $5',
 'logentry-rights-rights-legacy' => '$1 pakeista narystė grupėje $3',

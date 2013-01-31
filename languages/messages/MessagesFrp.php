@@ -534,7 +534,7 @@ $messages = array(
 'jumptosearch' => 'rechèrche',
 'view-pool-error' => 'Dèconsolâ, los sèrviors sont lapidâs d’ôvra cetos temps.
 Trop d’utilisators tâchont de vêre ceta pâge.
-Volyéd atendre un moment devant que tornar tâchiér d’arrevar a ceta pâge.
+Se vos plét, atende un moment devant que tornar tâchiér d’arrevar a ceta pâge.
 
 $1',
 'pool-timeout' => 'Dèlê dèpassâ pendent l’atenta du vèrroly',
@@ -590,8 +590,8 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'hidetoc' => 'cachiér',
 'collapsible-collapse' => 'repleyér',
 'collapsible-expand' => 'dèpleyér',
-'thisisdeleted' => '’T-o que vos voléd vêre ou ben refâre $1 ?',
-'viewdeleted' => '’T-o que vos voléd vêre $1 ?',
+'thisisdeleted' => 'Est-o que vos voléd vêre ou ben refâre $1 ?',
+'viewdeleted' => 'Est-o que vos voléd vêre $1 ?',
 'restorelink' => '{{PLURAL:$1|un changement suprimâ|$1 changements suprimâs}}',
 'feedlinks' => 'Flux :',
 'feed-invalid' => 'Tipo d’abonement du flux pas justo.',
@@ -858,7 +858,7 @@ Pôt-étre vos éd ja changiê voutron contresegno avouéc reusséta ou ben dema
 'passwordreset-pretext' => '{{PLURAL:$1||Buchiéd yona de les piéces de donâs ce-desot}}',
 'passwordreset-username' => 'Nom d’utilisator :',
 'passwordreset-domain' => 'Domêno :',
-'passwordreset-capture' => '’T-o que vos voléd vêre lo mèssâjo que rèsulte ?',
+'passwordreset-capture' => 'Est-o que vos voléd vêre lo mèssâjo que rèsulte ?',
 'passwordreset-capture-help' => 'Se vos pouentâd cela câsa, lo mèssâjo (avouéc lo contresegno temporèro) vos serat montrâ quand serat mandâ a l’utilisator.',
 'passwordreset-email' => 'Adrèce èlèctronica :',
 'passwordreset-emailtitle' => 'Dètalys du compto dessus {{SITENAME}}',
@@ -1229,7 +1229,7 @@ fonccion, la vèrsion spècifiâye ègziste pas ou ben vos tâchiéd de cachiér
 'revdelete-nologid-title' => 'Entrâ du jornal pas justa',
 'revdelete-nologid-text' => 'Ou ben vos éd pas spècifiâ un èvènement du jornal ciba por fâre cela fonccion ou ben l’entrâ spècifiâye ègziste pas.',
 'revdelete-no-file' => 'Lo fichiér spècifiâ ègziste pas.',
-'revdelete-show-file-confirm' => '’T-o que vos éte de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » du $2 a $3 ?',
+'revdelete-show-file-confirm' => 'Est-o que vos éte de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » du $2 a $3 ?',
 'revdelete-show-file-submit' => 'Ouè',
 'revdelete-selected' => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :'''",
