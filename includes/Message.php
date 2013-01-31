@@ -416,7 +416,7 @@ class Message {
 	 */
 	public function content() {
 		if ( !$this->content ) {
-			$this->content = new MessageContent( $this->key );
+			$this->content = new MessageContent( $this );
 		}
 
 		return $this->content;
