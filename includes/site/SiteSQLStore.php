@@ -466,7 +466,13 @@ class Sites extends SiteSQLStore {
 	 * @return SiteStore
 	 */
 	public static function singleton() {
-		return new static();
+		static $singleton;
+
+		if ( $singleton === null ) {
+			$singleton = new static();
+		}
+
+		return $singleton;
 	}
 
 	/**
