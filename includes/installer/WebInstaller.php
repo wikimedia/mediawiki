@@ -1079,7 +1079,7 @@ class WebInstaller extends Installer {
 		) );
 		$anchor = Html::rawElement( 'a',
 			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
-			$img . ' ' . wfMessage( 'config-download-localsettings' )->escaped() );
+			$img . ' ' . wfMessage( 'config-download-localsettings' )->parse() );
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
 	}
 
