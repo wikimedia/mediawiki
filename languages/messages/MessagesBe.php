@@ -48,6 +48,11 @@ $namespaceAliases = array(
 	'$1_размовы' => NS_PROJECT_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Удзельнік', 'female' => 'Удзельніца' ),
+	NS_USER_TALK => array( 'male' => 'Размовы_з_удзельнікам', 'female' => 'Размовы_з_удзельніцай' ),
+);
+
 $magicWords = array(
 	'img_thumbnail'             => array( '1', 'міні', 'мініяцюра', 'thumbnail', 'thumb' ),
 	'img_manualthumb'           => array( '1', 'міні=$1', 'мініяцюра=$1', 'thumbnail=$1', 'thumb=$1' ),
