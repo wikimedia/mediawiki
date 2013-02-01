@@ -52,9 +52,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$titles = array_keys( $pageIds[NS_FILE] );
 			asort( $titles ); // Ensure the order is always the same
 
-			$skip = false;
+			$fromTitle = null;
 			if ( !is_null( $params['continue'] ) ) {
-				$skip = true;
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$fromTitle = strval( $cont[0] );
@@ -77,12 +76,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$images = RepoGroup::singleton()->findFiles( $titles );
 			}
 			foreach ( $titles as $title ) {
+				$pageId = $pageIds[NS_FILE][$title];
+				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
+
 				if ( !isset( $images[$title] ) ) {
+					$result->addValue(
+						array( 'query', 'pages', intval( $pageId ) ),
+						'imagerepository', ''
+					);
+					// The above can't fail because it doesn't increase the result size
 					continue;
 				}
 
-				$start = $skip ? $fromTimestamp : $params['start'];
-				$pageId = $pageIds[NS_FILE][$title];
 				$img = $images[$title];
 
 				$fit = $result->addValue(
@@ -97,10 +102,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						// thing again. When the violating queries have been
 						// out-continued, the result will get through
 						$this->setContinueEnumParameter( 'start',
-							wfTimestamp( TS_ISO_8601, $img->getTimestamp() ) );
+							$start !== null ? $start : wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
+						);
 					} else {
 						$this->setContinueEnumParameter( 'continue',
-							$this->getContinueStr( $img ) );
+							$this->getContinueStr( $img, $start ) );
 					}
 					break;
 				}
@@ -164,18 +170,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !$fit ) {
 					break;
 				}
-				$skip = false;
-			}
-
-			$data = $this->getResultData();
-			foreach ( $data['query']['pages'] as $pageid => $arr ) {
-				if ( is_array( $arr ) && !isset( $arr['imagerepository'] ) ) {
-					$result->addValue(
-						array( 'query', 'pages', $pageid ),
-						'imagerepository', ''
-					);
-				}
-				// The above can't fail because it doesn't increase the result size
 			}
 		}
 	}
@@ -433,9 +427,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param $img File
 	 * @return string
 	 */
-	protected function getContinueStr( $img ) {
-		return $img->getOriginalTitle()->getText() .
-			'|' . $img->getTimestamp();
+	protected function getContinueStr( $img, $start = null ) {
+		if ( $start === null ) {
+			$start = $img->getTimestamp();
+		}
+		return $img->getOriginalTitle()->getText() . '|' . $start;
 	}
 
 	public function getAllowedParams() {
