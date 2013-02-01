@@ -194,7 +194,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$where[] = 'page_title <= ' . $dbr->addQuotes( $to );
 
 		global $wgMemc;
-		$key = wfMemcKey( 'allpages', 'ns', $namespace, $from, $to );
+		$key = wfMemcKey( 'allpages', 'ns', $namespace, sha1( $from ), sha1( $to ) );
 		$lines = $wgMemc->get( $key );
 
 		$count = $dbr->estimateRowCount( 'page', '*', $where, __METHOD__ );
