@@ -49,7 +49,7 @@ abstract class QuorumLockManager extends LockManager {
 			} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
 				$this->locksHeld[$path][$type] = 1;
 			} else {
-				$bucket = $this->getBucketFromKey( $path );
+				$bucket = $this->getBucketFromPath( $path );
 				$pathsToLock[$bucket][] = $path;
 			}
 		}
@@ -92,7 +92,7 @@ abstract class QuorumLockManager extends LockManager {
 				// Reference count the locks held and release locks when zero
 				if ( $this->locksHeld[$path][$type] <= 0 ) {
 					unset( $this->locksHeld[$path][$type] );
-					$bucket = $this->getBucketFromKey( $path );
+					$bucket = $this->getBucketFromPath( $path );
 					$pathsToUnlock[$bucket][] = $path;
 				}
 				if ( !count( $this->locksHeld[$path] ) ) {
@@ -186,7 +186,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * @param $path string
 	 * @return integer
 	 */
-	protected function getBucketFromKey( $path ) {
+	protected function getBucketFromPath( $path ) {
 		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
 		return (int)base_convert( $prefix, 16, 10 ) % count( $this->srvsByBucket );
 	}
