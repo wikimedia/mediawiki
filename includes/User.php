@@ -2526,6 +2526,23 @@ class User {
 	}
 
 	/**
+	 * Determine based on the wiki configuration and the user's options,
+	 * whether this user must be over HTTPS no matter what.
+	 *
+	 * @return bool
+	 */
+	public function requiresHTTPS() {
+		global $wgSecureLogin, $wgSecureGroups;
+		if ( !$wgSecureLogin ) {
+			return false;
+		} elseif ( array_intersect( $this->getEffectiveGroups(), $wgSecureGroups ) ) {
+			return true;
+		} else {
+			return $this->getBoolOption( 'prefershttps' );
+		}
+	}
+
+	/**
 	 * Get the user preferred stub threshold
 	 *
 	 * @return int
@@ -3075,7 +3092,7 @@ class User {
 		 * will cause the site to redirect the user to HTTPS, if they access
 		 * it over HTTP. Bug 29898.
 		 */
-		if ( $request->getCheck( 'wpStickHTTPS' ) ) {
+		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
 			$this->setCookie( 'forceHTTPS', 'true', time() + 2592000, false ); //30 days
 		}
 	}
