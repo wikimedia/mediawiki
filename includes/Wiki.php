@@ -502,9 +502,16 @@ class MediaWiki {
 
 		$request = $this->context->getRequest();
 
-		if ( $request->getCookie( 'forceHTTPS' )
-			&& $request->detectProtocol() == 'http'
-			&& $request->getMethod() == 'GET'
+		// If the user has forceHTTPS set to true, or if the user
+		// is in a group requiring HTTPS, redirect them to HTTPS.
+		if (
+			(
+				$request->getCookie( 'forceHTTPS' ) ||
+				// Avoid checking the user and groups unless it's enabled.
+				$wgSecureLogin && $wgSecureGroups &&
+				$this->context->getUser()->requiresHTTPS()
+			) &&
+			$request->detectProtocol() == 'http'
 		) {
 			$redirUrl = $request->getFullRequestURL();
 			$redirUrl = str_replace( 'http://', 'https://', $redirUrl );
