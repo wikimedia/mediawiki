@@ -1,6 +1,6 @@
 ( function ( mw, $ ) {
 
-var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests;
+var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests, specialCharactersPageName;
 
 QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 	setup: function () {
@@ -15,6 +15,15 @@ QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 			$div = undefined;
 			return html;
 		};
+
+		// Messages that are reused in multiple tests
+		mw.messages.set( {
+			'pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
+			'categorytree-collapse-bullet':	'<span style="color:#0645AD;">▼</span>',
+			'wikieditor-toolbar-help-content-signature-result': '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)'
+		} );
+
+		specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 	},
 	teardown: function () {
 		mw.language = this.orgMwLangauge;
@@ -94,9 +103,9 @@ QUnit.test( 'Replace', 9, function ( assert ) {
 		'HTMLElement[] arrays are preserved as raw html'
 	);
 
-	mw.messages.set( 'wikilink-replace', 'Foo [$1 bar]' );
+	mw.messages.set( 'external-link-replace', 'Foo [$1 bar]' );
 	assert.equal(
-		parser( 'wikilink-replace', 'http://example.org/?x=y&z' ),
+		parser( 'external-link-replace', 'http://example.org/?x=y&z' ),
 		'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
 		'Href is not double-escaped in wikilink function'
 	);
@@ -217,13 +226,12 @@ QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( a
 	} );
 });
 
-QUnit.test( 'Wikilink', 6, function ( assert ) {
+QUnit.test( 'Links', 6, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
 		expectedListUsers,
 		expectedDisambiguationsText,
 		expectedMultipleBars,
-		expectedSpecialCharacters,
-		specialCharactersPageName;
+		expectedSpecialCharacters;
 
 	/*
 	 The below three are all identical to or based on real messages.  For disambiguations-text,
@@ -281,7 +289,6 @@ QUnit.test( 'Wikilink', 6, function ( assert ) {
 		'Bar in anchor'
 	);
 
-	specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 	expectedSpecialCharacters = $( '<a>' ).attr( {
 		title: specialCharactersPageName,
 		href: mw.util.wikiGetlink( specialCharactersPageName )
@@ -294,6 +301,35 @@ QUnit.test( 'Wikilink', 6, function ( assert ) {
 		'Special characters'
 	);
 });
+
+// Output for format plain when calling main (mediawiki.js) API.
+// We're testing here to ensure our monkey-patching of mw.Message.prototype.parser doesn't
+// cause breakage.
+QUnit.test( 'Plain', 4, function ( assert ) {
+	assert.equal(
+		mw.message( 'pagetriage-del-talk-page-notify-summary' ).plain(),
+		'Notifying author of deletion nomination for [[$1]]',
+		'Square brackets in plain with no parameters'
+	);
+
+	assert.equal(
+		mw.msg( 'pagetriage-del-talk-page-notify-summary', specialCharactersPageName ),
+		'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]',
+		'Square brackets in plain with one parameter'
+	);
+
+	assert.equal(
+		mw.msg(	'categorytree-collapse-bullet' ),
+		mw.messages.get( 'categorytree-collapse-bullet' ),
+		'HTML message is not changed'
+	);
+
+	assert.equal(
+		mw.message( 'wikieditor-toolbar-help-content-signature-result' ).plain(),
+		mw.messages.get( 'wikieditor-toolbar-help-content-signature-result' ),
+		'HTML message with curly braces is not changed'
+	);
+} );
 
 QUnit.test( 'Int', 4, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
@@ -344,12 +380,11 @@ QUnit.test( 'Int', 4, function ( assert ) {
 
 // Tests that getMessageFunction is used for messages with curly braces or square brackets,
 // but not otherwise.
-QUnit.test( 'mw.msg()', 8, function ( assert ) {
+QUnit.test( 'mw.msg()', 22, function ( assert ) {
 	// Should be
 	var map, oldGMF, outerCalled, innerCalled;
 
-	map = new mw.Map();
-	map.set( {
+	mw.messages.set( {
 		'curly-brace': '{{int:message}}',
 		'single-square-bracket': '[https://www.mediawiki.org/ MediaWiki]',
 		'double-square-bracket': '[[Some page]]',
@@ -365,18 +400,32 @@ QUnit.test( 'mw.msg()', 8, function ( assert ) {
 		};
 	};
 
-	function verifyGetMessageFunction( key, shouldCall ) {
+	function verifyGetMessageFunction( key, format,  shouldCall ) {
+		var message;
 		outerCalled = false;
 		innerCalled = false;
-		( new mw.Message( map, key ) ).parser();
+		message = mw.message( key );
+		message.format = format;
+		message.parser();
 		assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 		assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
 	}
 
-	verifyGetMessageFunction( 'curly-brace', true );
-	verifyGetMessageFunction( 'single-square-bracket', true );
-	verifyGetMessageFunction( 'double-square-bracket', true );
-	verifyGetMessageFunction( 'regular', false );
+	verifyGetMessageFunction( 'curly-brace', 'parse', true );
+	verifyGetMessageFunction( 'curly-brace', 'plain', false );
+
+	verifyGetMessageFunction( 'single-square-bracket', 'parse', true );
+	verifyGetMessageFunction( 'single-square-bracket', 'plain', false );
+
+	verifyGetMessageFunction( 'double-square-bracket', 'parse', true );
+	verifyGetMessageFunction( 'double-square-bracket', 'plain', false );
+
+	verifyGetMessageFunction( 'regular', 'parse', false );
+	verifyGetMessageFunction( 'regular', 'plain', false );
+
+	verifyGetMessageFunction( 'pagetriage-del-talk-page-notify-summary', 'plain', false );
+	verifyGetMessageFunction( 'categorytree-collapse-bullet', 'plain', false );
+	verifyGetMessageFunction( 'wikieditor-toolbar-help-content-signature-result', 'plain', false );
 
 	mw.jqueryMsg.getMessageFunction = oldGMF;
 } );
