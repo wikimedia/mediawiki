@@ -197,8 +197,8 @@ class DBLockManager extends QuorumLockManager {
 		if ( !isset( $this->conns[$lockDb] ) ) {
 			$db = null;
 			if ( $lockDb === 'localDBMaster' ) {
-				$lb = wfGetLBFactory()->newMainLB();
-				$db = $lb->getConnection( DB_MASTER );
+				$lb = wfGetLBFactory()->getMainLB( $this->wiki );
+				$db = $lb->getConnection( DB_MASTER, array(), $this->wiki );
 			} elseif ( isset( $this->dbServers[$lockDb] ) ) {
 				$config = $this->dbServers[$lockDb];
 				$db = DatabaseBase::factory( $config['type'], $config );
