@@ -1450,4 +1450,65 @@ SQL;
 		}
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
+
+	/**
+	 * Check to see if a named lock is available. This is non-blocking.
+	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+	 *
+	 * @param $lockName String: name of lock to poll
+	 * @param $method String: name of method calling us
+	 * @return Boolean
+	 * @since 1.20
+	 */
+	public function lockIsFree( $lockName, $method ) {
+		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))
+			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		return ( $row->lockstatus === 't' );
+	}
+
+	/**
+	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+	 * @param $lockName string
+	 * @param $method string
+	 * @param $timeout int
+	 * @return bool
+	 */
+	public function lock( $lockName, $method, $timeout = 5 ) {
+		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+		for ( $attempts=1; $attempts <= $timeout; ++$attempts ) {
+			$result = $this->query(
+				"SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
+			$row = $this->fetchObject( $result );
+			if ( $row->lockstatus === 't' ) {
+				return true;
+			} else {
+				sleep( 1 );
+			}
+		}
+		wfDebug( __METHOD__." failed to acquire lock\n" );
+		return false;
+	}
+
+	/**
+	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKSFROM PG DOCS: http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+	 * @param $lockName string
+	 * @param $method string
+	 * @return bool
+	 */
+	public function unlock( $lockName, $method ) {
+		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+		$result = $this->query( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		return ( $row->lockstatus === 't' );
+	}
+
+	/**
+	 * @param string $lockName
+	 * @return string Integer
+	 */
+	private function bigintFromLockName( $lockName ) {
+		return wfBaseConvert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
+	}
 } // end DatabasePostgres class
