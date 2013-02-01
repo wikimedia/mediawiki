@@ -55,7 +55,8 @@ class TestFileOpPerformance extends Maintenance {
 
 		$profiler = Profiler::instance();
 		$profiler->setTemplated( true );
-		$profiler->logData(); // prints
+
+		//NOTE: as of MW1.21, $profiler->logData() is called implicitly by doMaintenance.php.
 	}
 
 	protected function doPerfTest( FileBackend $backend ) {
