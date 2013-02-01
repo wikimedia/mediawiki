@@ -3203,7 +3203,9 @@ Instalace přerušena.',
 	'config-using531' => 'MediaWiki nelze používat na PHP $1 kvůli chybě při předávání parametrů odkazem do <code>__call()</code>.
 Pro vyřešení upgradujte na PHP 5.3.2 nebo vyšší nebo downgradujte na PHP 5.3.0.
 Instalace přerušena.',
-	'config-suhosin-max-value-length' => 'Je nainstalován Suhosin, který omezuje délku parametrů GET na $1 bajtů. Komponenta ResourceLoader z MediaWiki dokáže s tímto omezením pracovat, ale sníží to výkon. Pokud to je alespoň trochu možné, měli byste v <code>php.ini</code> nastavit <code>suhosin.get.max_value_length</code> na 1024 nebo vyšší a na stejnou hodnotu nastavit v LocalSettings.php proměnnou <code>$wgResourceLoaderMaxQueryLength</code>.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Je nainstalován Suhosin, který omezuje délku parametrů GET na $1 bajtů.
+Komponenta ResourceLoader z MediaWiki dokáže s tímto omezením pracovat, ale sníží to výkon.
+Pokud to je alespoň trochu možné, měli byste v <code>php.ini</code> nastavit <code>suhosin.get.max_value_length</code> na 1024 nebo vyšší a na stejnou hodnotu nastavit v <code>LocalSettings.php</code> proměnnou <code>$wgResourceLoaderMaxQueryLength</code>.',
 	'config-db-type' => 'Typ databáze:',
 	'config-db-host' => 'Databázový server:',
 	'config-db-host-help' => 'Pokud je váš databázový server na jiném počítači, zadejte zde jméno stroje nebo IP adresu.
@@ -3289,7 +3291,7 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-support-postgres' => '* $1 je populární open-source databázový systém používaný jako alternativa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak přeložit PHP s podporou PostgreSQL]). Mohou se vyskytnout ještě nějaké menší chyby, použití v produkčním prostředí se nedoporučuje.',
 	'config-support-sqlite' => '* $1 je velmi dobře podporovaný lehký databázový systém. ([http://www.php.net/manual/en/pdo.installation.php Jak přeložit PHP s podporou SQLite], používá PDO)',
 	'config-support-oracle' => '* $1 je komerční podniková databáze. ([http://www.php.net/manual/en/oci8.installation.php Jak přeložit PHP s podporou OCI8])',
-	'config-support-ibm_db2' => '* $1 je komerční podniková databáze.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 je komerční podniková databáze. ([http://www.php.net/manual/en/ibm-db2.installation.php Jak přeložit PHP s podporou IBM DB2])',
 	'config-header-mysql' => 'Nastavení MySQL',
 	'config-header-postgres' => 'Nastavení PostgreSQL',
 	'config-header-sqlite' => 'Nastavení SQLite',
@@ -3429,7 +3431,7 @@ Zbývající konfiguraci už můžete přeskočit a nainstalovat wiki hned teď.
 	'config-optional-continue' => 'Ptejte se mě dál.',
 	'config-optional-skip' => 'Už mě to nudí, prostě nainstalujte wiki.',
 	'config-profile' => 'Profil uživatelských práv:',
-	'config-profile-wiki' => 'Tradiční wiki', # Fuzzy
+	'config-profile-wiki' => 'Otevřená wiki',
 	'config-profile-no-anon' => 'Vyžadována registrace uživatelů',
 	'config-profile-fishbowl' => 'Editace jen pro vybrané',
 	'config-profile-private' => 'Soukromá wiki',
@@ -3439,13 +3441,13 @@ V MediaWiki můžete snadno kontrolovat poslední změny a vracet zpět libovoln
 Mnoho lidí však zjistilo, že je MediaWiki užitečné v širokém spektru rolí a někdy není snadné všechny přesvědčit o výhodách wikizvyklostí.
 Takže si můžete vybrat.
 
-'''{{int:config-profile-wiki}}''' dovoluje editovat všem, aniž by se museli přihlašovat.
+Model '''{{int:config-profile-wiki}}''' dovoluje editovat všem, aniž by se museli přihlašovat.
 Na wiki, kde je '''{{int:config-profile-no-anon}}''', se lépe řídí zodpovědnost, ale může to odradit náhodné přispěvatele.
 
 Profil '''{{int:config-profile-fishbowl}}''' umožňuje schváleným uživatelům editovat, ale veřejnost si může stránky prohlížet včetně jejich historie.
 '''{{int:config-profile-private}}''' dovoluje stránky prohlížet jen schváleným uživatelům, kteří je i mohou editovat.
 
-Po instalaci je možná komplexní konfigurace uživatelských práv; vizte [//www.mediawiki.org/wiki/Manual:User_rights odpovídající stránku příručky].", # Fuzzy
+Po instalaci je možná komplexní konfigurace uživatelských práv; vizte [//www.mediawiki.org/wiki/Manual:User_rights odpovídající stránku příručky].",
 	'config-license' => 'Autorská práva a licence:',
 	'config-license-none' => 'Bez patičky s licencí',
 	'config-license-cc-by-sa' => 'Creative Commons Uveďte autora-Zachovejte licenci',
@@ -3530,7 +3532,7 @@ Mohou vyžadovat dodatečnou konfiguraci, ale teď je můžete povolit.',
 	'config-install-alreadydone' => "'''Upozornění:''' Vypadá to, že jste MediaWiki již nainstalovali a teď se o to pokoušíte znovu.
 Pokračujte na další stránku.",
 	'config-install-begin' => 'Stisknutím „{{int:config-continue}}“ spustíte instalaci MediaWiki.
-Pokud ještě chcete udělat nějaké změny, stiskněte tlačítko zpět.', # Fuzzy
+Pokud ještě chcete udělat nějaké změny, stiskněte „{{int:config-back}}“.',
 	'config-install-step-done' => 'hotovo',
 	'config-install-step-failed' => 'selhaly',
 	'config-install-extensions' => 'Vkládají se rozšíření',
@@ -3596,7 +3598,8 @@ Až to dokončíte, můžete '''[$2 vstoupit do své wiki]'''.",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Nastavení konfigurace]
 * [//www.mediawiki.org/wiki/Manual:FAQ Často kladené otázky o MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]',
 );
 
 /** Kashubian (kaszëbsczi)
@@ -4560,7 +4563,9 @@ Instalación anulada.',
 	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
 Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
 Instalación anulada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita la longitud del parámetro GET a $1 bytes. El componente ResourceLoader de MediaWiki trabajará en este límite, pero eso degradará el rendimiento. Si es posible, debe establecer el valor de <code>suhosin.get.max_value_length</code> en 1024 o superior en el archivo <code>php.ini</code> y establecer <code>$wgResourceLoaderMaxQueryLength</code> en el mismo valor en LocalSettings.php.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes. 
+El componente ResourceLoader (gestor de recursos) de MediaWiki trabajará en este límite, pero eso perjudicará el rendimiento.
+Si es posible, deberías establecer <code>suhosin.get.max_value_length</code> en el valor 1024 o superior en <code>php.ini</code> y establecer <code>$wgResourceLoaderMaxQueryLength</code> en el mismo valor en <code>php.ini</code>.',
 	'config-db-type' => 'Tipo de base de datos',
 	'config-db-host' => 'Servidor de la base de datos:',
 	'config-db-host-help' => 'Si su servidor de base de datos está en otro servidor, escriba el nombre del host o su dirección IP aquí.

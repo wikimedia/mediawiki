@@ -1997,9 +1997,9 @@ Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
 'sharedupload-desc-here' => 'Ten plik znajduje się w $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 'sharedupload-desc-edit' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
-Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
+Jeżeli chcesz zmienić opis, zrób to na [$2 stronie opisu pliku].',
 'sharedupload-desc-create' => 'Plik ten pochodzi z $1 i może być wykorzystany w innych projektach.
-Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
+Jeżeli chcesz zmienić opis, zrób to na [$2 stronie opisu pliku].',
 'filepage-nofile' => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link' => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',

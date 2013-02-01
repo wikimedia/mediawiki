@@ -13,6 +13,7 @@
  * @author Esteban97
  * @author Kaganer
  * @author LeighvsOptimvsMaximvs
+ * @author MF-Warburg
  * @author McDutchie
  * @author MissPetticoats
  * @author Omnipaedista
@@ -1650,7 +1651,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'blanknamespace' => '(principale)',
 
 # Contributions
-'contributions' => 'Conlationes usoris',
+'contributions' => 'Conlationes {{GENDER:$1|usoris}}',
 'contributions-title' => 'Conlationes usoris $1',
 'mycontris' => 'Conlationes',
 'contribsub2' => 'Pro $1 ($2)',

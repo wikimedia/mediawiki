@@ -751,7 +751,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'gotaccount' => "Ĉu vi jam havas konton? '''$1'''.",
 'gotaccountlink' => 'Ensaluti',
 'userlogin-resetlink' => 'Ĉu vi forgesis ensalutajn detalojn?',
-'createaccountmail' => 'retpoŝte',
+'createaccountmail' => 'Uzi provizoran hazardsignan pasvorton kaj sendi ĝin al la retpoŝto suben',
 'createaccountreason' => 'Kialo:',
 'badretype' => 'La pasvortojn kiujn vi tajpis ne egalas.',
 'userexists' => 'Salutnomo enigita jam estas uzata.
@@ -2313,7 +2313,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'usermessage-editor' => 'Mesaĝanto de sistemo',
 
 # Watchlist
-'watchlist' => 'Atentaro',
+'watchlist' => 'Mia atentaro',
 'mywatchlist' => 'Atentaro',
 'watchlistfor2' => 'Por $1 $2',
 'nowatchlist' => 'Vi ne jam elektis priatenti iun ajn paĝon.',
@@ -3152,6 +3152,10 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-protect-cascading' => 'Protektado kaskade fontas el ĉi tie',
 'pageinfo-protect-cascading-yes' => 'Jes',
 'pageinfo-protect-cascading-from' => 'Protektado kaskade fontas el',
+'pageinfo-category-info' => 'Informo pri kategorio',
+'pageinfo-category-pages' => 'Nombro de paĝoj',
+'pageinfo-category-subcats' => 'Nombro de subkategorioj',
+'pageinfo-category-files' => 'Nombro de dosieroj',
 
 # Skin names
 'skinname-standard' => 'Klasiko',
@@ -3239,6 +3243,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 horo|$1 horoj}}',
 'days' => '{{PLURAL:$1|$1 tago|$1 tagoj}}',
 'months' => '{{PLURAL:$1|$1 monato|$1 monatoj}}',
+'years' => '{{PLURAL:$1|$1 jaro|$1 jaroj}}',
 'ago' => 'antaŭ $1',
 'just-now' => 'ĵus nune',
 
@@ -4104,7 +4109,8 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-nomodule' => 'Interna eraro: ne troveblas alŝuta helpilaro.',
 'api-error-ok-but-empty' => 'Interna eraro: nenia respondo de la servilo.',
 'api-error-overwrite' => 'Anstataŭigo de ekzistanta dosiero ne permesatas.',
-'api-error-stashfailed' => 'Interna eraro: la servilo malsukcesis stoki dumtempan dosieron.',
+'api-error-stashfailed' => 'Interna eraro: la servilo malsukcesis stoki provizoran dosieron.',
+'api-error-publishfailed' => 'Interna eraro: Servilo malsukcesis eldoni provizoran dosieron.',
 'api-error-timeout' => 'La servilo ne respondis ene de la antaŭvidita tempo.',
 'api-error-unclassified' => 'Okazis nekonata eraro',
 'api-error-unknown-code' => 'Nekonata eraro: "$1"',

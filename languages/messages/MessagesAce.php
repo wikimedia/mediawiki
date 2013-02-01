@@ -423,10 +423,10 @@ $1",
 'youhavenewmessages' => 'Droëneuh   na $1 ($2).',
 'newmessageslink' => 'peusan barô',
 'newmessagesdifflink' => 'neuubah keuneulheuëh',
-'youhavenewmessagesfromusers' => "Droeneuh na $1 nibak {{PLURAL:$3||}}ureueng nguy la'en ($2).",
+'youhavenewmessagesfromusers' => "Droeneuh na $1 nibak {{PLURAL:$3|ureueng nguy la'en|$3 ureueng nguy}} ($2).",
 'youhavenewmessagesmanyusers' => "Droeneuh na $1 nibak ureueng nguy la'en ($2)",
 'newmessageslinkplural' => '{{PLURAL:$1|saboh peusan baro|peusan baro}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|neuubah|neuubah}} baro',
+'newmessagesdifflinkplural' => '{{PLURAL:$1||}}neuubah keuneulheueh',
 'youhavenewmessagesmulti' => 'Droëneuh na padum boh peusan barô bak $1',
 'editsection' => 'andam',
 'editold' => 'andam',
@@ -487,6 +487,7 @@ Neulakee basis data nyang keuneulheueh nakeuh:
 nibak fungsi "$2"
 Basis data geupeuhase salah "$3: $4".',
 'laggedslavemode' => 'Peuneugah: On nyoe kadang hana neuubah baro',
+'readonly' => 'Basis data geurok',
 'missing-article' => 'Basis data h’an jeuët jiteumèë naseukah nibak ôn nyang sipatôtjih na, nakeuh "$1" $2.
 
 Nyoë biasajih sabab hubông useuëng u geunantoë away nyang ka teusampôh.

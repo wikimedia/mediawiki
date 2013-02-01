@@ -2097,7 +2097,7 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
-'watchlist' => 'Pàggene condrollete',
+'watchlist' => 'Pàggene condrollate',
 'mywatchlist' => 'Pàggene condrollate',
 'watchlistfor2' => 'Pe $1 $2',
 'nowatchlist' => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
@@ -3911,7 +3911,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'specialpages-group-highuse' => 'Pàggene ausete assaje proprie',
 'specialpages-group-pages' => 'Liste de le pàggene',
 'specialpages-group-pagetools' => 'Pàgene de le struminde',
-'specialpages-group-wiki' => 'Date e struminde de Uicchi',
+'specialpages-group-wiki' => 'Date e struminde',
 'specialpages-group-redirects' => 'Redirezionaminde de le pàggene speciele',
 'specialpages-group-spam' => "Struminde p'u spam",
 
@@ -4008,6 +4008,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-newusers-newusers' => "'U cunde utende $1 ha state ccrejate",
 'logentry-newusers-create' => "'U cunde utende $1 ha state ccrejate",
 'logentry-newusers-create2' => "$1 {{GENDER:$2|ccrejate}} {{GENDER:$4|'nu cunde utende}} $3",
+'logentry-newusers-byemail' => "'U cunde utende $3 ha state ccrejate da $1 e 'a passuord ha state mannate pe e-mail",
 'logentry-newusers-autocreate' => "'U cunde utende $1 ha state ccrejate automaticamende",
 'logentry-rights-rights' => "$1 membre d'u gruppe cangiate pe $3 da $4 a $5",
 'logentry-rights-rights-legacy' => "$1 ave cangiate 'u membre d'u gruppe pe $3",

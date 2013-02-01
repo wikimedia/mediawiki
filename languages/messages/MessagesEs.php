@@ -43,6 +43,7 @@
  * @author Fluence
  * @author Gustronico
  * @author Gwickwire
+ * @author Hazard-SJ
  * @author Hercule
  * @author Icvav
  * @author Imre
@@ -2309,7 +2310,7 @@ Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lista de usuarios activos',
 'activeusers-intro' => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|edición|ediciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
+'activeusers-count' => '$1 {{PLURAL:$1|acción|acciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
 'activeusers-from' => 'Mostrando a los usuarios empezando por:',
 'activeusers-hidebots' => 'Ocultar robots',
 'activeusers-hidesysops' => 'Ocultar administradores',
@@ -2533,7 +2534,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-cascadeon' => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default' => 'Permitir todos los usuarios',
-'protect-fallback' => 'Necesita el permiso «$1»',
+'protect-fallback' => 'Permite sólo a usuarios con el permiso «$1»',
 'protect-level-autoconfirmed' => 'Permitir solo usuarios autoconfirmados',
 'protect-level-sysop' => 'Permitir solo administradores',
 'protect-summary-cascade' => 'en cascada',
@@ -3960,7 +3961,7 @@ Las imágenes se muestran en resolución máxima, otros tipos de archivo se inic
 'specialpages-group-highuse' => 'Páginas sobre usos',
 'specialpages-group-pages' => 'Listas de páginas',
 'specialpages-group-pagetools' => 'Herramientas de páginas',
-'specialpages-group-wiki' => 'Herramientas y datos del wiki',
+'specialpages-group-wiki' => 'Herramientas y datos',
 'specialpages-group-redirects' => 'Búsquedas y redirecciones',
 'specialpages-group-spam' => 'Herramientas anti-SPAM',
 
@@ -4058,6 +4059,7 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-newusers-newusers' => 'Se ha creado la cuenta de usuario $1',
 'logentry-newusers-create' => 'Se ha creado la cuenta de usuario $1',
 'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
+'logentry-newusers-byemail' => '$1 creó la cuenta de usuario $3 y la contraseña se envió por correo electrónico',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',

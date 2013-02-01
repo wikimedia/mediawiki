@@ -2092,6 +2092,7 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'mailnologin' => 'Nėra adreso',
 'mailnologintext' => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser' => 'Rašyti laišką šiam naudotojui',
+'emailuser-title-target' => 'Siųsti E-pašto žinutę {{GENDER:$1|user}}',
 'emailuser-title-notarget' => 'El. pašto vartotojas',
 'emailpage' => 'Siųsti el. laišką naudotojui',
 'emailpagetext' => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
@@ -2164,6 +2165,16 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'enotif_mailer' => '{{SITENAME}} Pranešimų sistema',
 'enotif_reset' => 'Pažymėti visus puslapius kaip aplankytus',
 'enotif_impersonal_salutation' => '{{SITENAME}} naudotojau',
+'enotif_subject_deleted' => '{{GENDER:$2|Naudotojas}} ištrynė puslapį $1, priklausantį projektui {{SITENAME}}',
+'enotif_subject_created' => '{{GENDER:$2|Naudotojas}} sukūrė puslapį $1, priklausantį projektui {{SITENAME}}',
+'enotif_subject_moved' => '{{GENDER:$2|Naudotojas}} pervardino puslapį $1, priklausantį projektui {{SITENAME}}',
+'enotif_subject_restored' => '{{GENDER:$2|Naudotojas}} atstatė puslapį $1, priklausantį projektui {{SITENAME}}',
+'enotif_subject_changed' => '{{GENDER:$2|Naudotojas}} redagavo puslapį $1, priklausantį projektui {{SITENAME}}',
+'enotif_body_intro_deleted' => '$PAGEEDITDATE {{GENDER:$2|Naudotojas}} ištrynė puslapį $1, priklausantį projektui {{SITENAME}}, žr.                     $3.',
+'enotif_body_intro_created' => '$PAGEEDITDATE {{GENDER:$2|Naudotojas}} sukūrė puslapį $1, priklausantį projektui {{SITENAME}}. Dabartinė versija matoma $3.',
+'enotif_body_intro_moved' => '$PAGEEDITDATE {{GENDER:$2|Naudotojas}} pervardino puslapį $1, priklausantį projektui {{SITENAME}}. Dabartinė versija matoma $3.',
+'enotif_body_intro_restored' => '$PAGEEDITDATE {{GENDER:$2|Naudotojas}} atstatė puslapį $1, priklausantį projektui {{SITENAME}}. Dabartinė versija matoma $3.',
+'enotif_body_intro_changed' => '$PAGEEDITDATE {{GENDER:$2|Naudotojas}} redagavo puslapį $1, priklausantį projektui {{SITENAME}}. Dabartinė versija matoma $3.',
 'enotif_lastvisited' => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
 'enotif_lastdiff' => 'Užeikite į $1, jei norite pamatyti šį pakeitimą.',
 'enotif_anon_editor' => 'anoniminis naudotojas $1',
@@ -3804,6 +3815,7 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 
 # Search suggestions
 'searchsuggest-search' => 'Ieškoti',
+'searchsuggest-containing' => 'turintys',
 
 # API errors
 'api-error-badaccess-groups' => 'Jums neleidžiama įkelti failus į šią wiki.',

@@ -92,6 +92,7 @@
  * @author Octahedron80
  * @author Od1n
  * @author Onecountry
+ * @author Opraco
  * @author OsamaK
  * @author PhiLiP
  * @author Piangpha
@@ -6439,7 +6440,7 @@ Parameters:
 This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user is anonymous. The variable $1 in this message is a link to the user's contributions.
 
 See also {{msg-mw|Anonusers}} and {{msg-mw|Siteuser}}.",
-'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
+'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: [{{fullurl:Main Page|action=credits}}]). Note that this action is disabled by default (currently enabled on translatewiki.net).
 * $1: date
 * $2: time
 * $3: if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message [[Mediawiki:siteuser/{{SUBPAGENAME}}]], which includes his username.

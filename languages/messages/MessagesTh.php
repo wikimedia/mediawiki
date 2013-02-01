@@ -641,7 +641,7 @@ $1',
 'loginsuccesstitle' => 'ล็อกอินสำเร็จ',
 'loginsuccess' => "'''ขณะนี้คุณล็อกอินเข้าสู่ {{SITENAME}} ด้วยชื่อ \"\$1\"'''",
 'nosuchuser' => 'ไม่มีผู้ใช้ชื่อ "$1"
-อักษรใหญ่เล็กมีผลต่อชื่อผู้ใช้
+ชื่อผู้ใช้นั้นไวต่ออักษรใหญ่เล็ก
 กรุณาตรวจการสะกดอีกครั้ง หรือ[[Special:UserLogin/signup|สร้างบัญชีใหม่]]',
 'nosuchusershort' => 'ไม่มีผู้ใช้ชื่อ "$1" กรุณาตรวจสอบการสะกด',
 'nouserspecified' => 'คุณต้องระบุชื่อผู้ใช้',
@@ -930,6 +930,11 @@ $1 เป็นผู้ดำเนินการบล็อก
 'edit-already-exists' => 'ไม่สามารถสร้างหน้าใหม่ได้
 เพราะมีหน้านี้แล้ว',
 'defaultmessagetext' => 'ข้อความสารโดยปริยาย',
+
+# Content models
+'content-model-text' => 'ข้อความธรรมดา',
+'content-model-javascript' => 'จาวาสคริปต์',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''คำเตือน:''' หน้านี้มีการเรียกใช้ฟังก์ชันแจงส่วนมากเกินไป
@@ -1355,7 +1360,7 @@ $1",
 'group-all' => '(ทั้งหมด)',
 
 'group-user-member' => '{{GENDER:$1|ผู้ใช้ใหม่}}',
-'group-autoconfirmed-member' => 'ผู้ใช้ทั่วไป',
+'group-autoconfirmed-member' => '{{GENDER:$1|ผู้ใช้ทั่วไป}}',
 'group-bot-member' => '{{GENDER:$1|บอต}}',
 'group-sysop-member' => '{{GENDER:$1|ผู้ดูแลระบบ}}',
 'group-bureaucrat-member' => '{{GENDER:$1|ผู้ดูแลสิทธิแต่งตั้ง}}',
@@ -1653,8 +1658,12 @@ $1',
 'backend-fail-notexists' => 'ไม่พบไฟล์ $1 ที่ต้องการ',
 'backend-fail-delete' => 'ไม่สามารถลบไฟล์ $1 ได้',
 'backend-fail-alreadyexists' => 'มีไฟล์ "$1" อยู่แล้ว',
+'backend-fail-store' => 'ไม่สามารถเก็บไฟล์ "$1" ที่ "$2" ได้',
 'backend-fail-copy' => 'ไม่สามารถคัดลอกไฟล์ "$1" ไปยัง "$2" ได้',
 'backend-fail-move' => 'ไม่สามารถย้ายไฟล์ "$1" ไปยัง "$2" ได้',
+'backend-fail-opentemp' => 'ไม่สามารถเปิดไฟล์ชั่วคราวได้',
+'backend-fail-writetemp' => 'ไม่สามารถเขียนไฟล์ชั่วคราวได้',
+'backend-fail-closetemp' => 'ไม่สามารถปิดไฟล์ชั่วคราวได้',
 'backend-fail-read' => 'ไม่สามารถอ่านไฟล์ "$1" ได้',
 'backend-fail-create' => 'ไม่สามารถเขียนไฟล์ "$1" ได้',
 
@@ -1758,6 +1767,10 @@ $1',
 กรุณาดู [หน้าคำอธิบายของไฟล์ $2] สำหรับข้อมูลเพิ่มเติม',
 'sharedupload-desc-here' => 'ไฟล์นี้มาจาก $1 และอาจมีใช้ในโครงการอื่น
 คำอธิบายใน[$2 หน้าไฟล์]ได้แสดงไว้ข้างล่างนี้',
+'sharedupload-desc-edit' => 'ไฟล์นี้มาจาก $1 และอาจมีการใช้ไฟล์นี้ในโครงการอื่น ๆ อีก
+หากคุณต้องการแก้ไขคำอธิบาย ให้ดำเนินการ[$2 ที่นี่]',
+'sharedupload-desc-create' => 'ไฟล์นี้มาจาก $1 และอาจมีการใช้ไฟล์นี้ในโครงการอื่น ๆ อีก
+หากคุณต้องการแก้ไขคำอธิบาย ให้ดำเนินการ[$2 ที่นี่]',
 'filepage-nofile' => 'ไม่มีไฟล์ชื่อนี้',
 'filepage-nofile-link' => 'ไม่มีไฟล์ชื่อนี้ แต่คุณสามารถ[$1 อัปโหลด]ได้',
 'uploadnewversion-linktext' => 'อัปโหลดรุ่นใหม่ของไฟล์นี้',
@@ -1949,7 +1962,7 @@ $1',
 'log' => 'ปูม',
 'all-logs-page' => 'ปูมสาธารณะทั้งหมด',
 'alllogstext' => 'การแสดงผลรวมปูมที่มีทั้งหมดของ {{SITENAME}}
-คุณสามารถค้นหาให้ละเอียดขึ้นโดยเลือกประเภทปูม ชื่อผู้ใช้หรือหน้าที่ต้องการ (ระวังอักษรภาษาอังกฤษพิมพ์เล็กใหญ่)',
+คุณสามารถค้นหาให้ละเอียดขึ้นโดยเลือกประเภทปูม ชื่อผู้ใช้หรือหน้าที่ต้องการ (ไวต่ออักษรใหญ่เล็ก)',
 'logempty' => 'ไม่พบรายการตรงกันในปูม',
 'log-title-wildcard' => 'ค้นหาชื่อเรื่องด้วยคำขึ้นต้น',
 'showhideselectedlogentries' => 'แสดง/ซ่อนรายการปูมที่เลือก',
@@ -2852,6 +2865,7 @@ $1',
 'pageinfo-redirectsto' => 'เปลี่ยนทางไปยัง',
 'pageinfo-contentpage' => 'นับเป็นหน้าเนื้อหา',
 'pageinfo-contentpage-yes' => 'ใช่',
+'pageinfo-protect-cascading-yes' => 'ใช่',
 'pageinfo-category-info' => 'ข้อมูลหมวดหมู่',
 'pageinfo-category-pages' => 'จำนวนหน้า',
 'pageinfo-category-subcats' => 'จำนวนหมวดหมู่ย่อย',
@@ -2910,6 +2924,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 พิกเซล, ขนาดไฟล์: $3, ประเภท MIME: $4, $5 {{PLURAL:$5|หน้า|หน้า}}',
 'file-nohires' => 'ไม่มีความละเอียดสูงกว่านี้',
 'svg-long-desc' => 'ไฟล์ SVG, $1 × $2 พิกเซล พอเป็นพิธี, ขนาดไฟล์: $3',
+'svg-long-error' => 'ไฟล์ SVG ไม่ถูกต้อง: $1',
 'show-big-image' => 'ความละเอียดสูงสุด',
 'show-big-image-other' => 'อื่นๆ {{PLURAL:$2|resolution|resolutions}}: $1.',
 'show-big-image-size' => '$1 × $2 พิกเซล',

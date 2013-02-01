@@ -585,7 +585,7 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'gotaccount' => 'Maš hižo wužiwarske konto? $1.',
 'gotaccountlink' => 'Přizjewić',
 'userlogin-resetlink' => 'Přizjewjenske daty zabył?',
-'createaccountmail' => 'z mejlku',
+'createaccountmail' => 'Nachwilne přidatne hesło wužiwać a jo na slědowacu e-mejlowu adresu pósłać',
 'createaccountreason' => 'Přičina:',
 'badretype' => 'Hesle, kotrejž sy zapodał, so njekryjetej.',
 'userexists' => 'Wužiwarske mjeno, kotrež sy zapodał, so hižo wužiwa.
@@ -860,7 +860,8 @@ Lubiš nam tež, zo sy jón sam napisał abo ze zjawneje domejny abo z podobneho
 
 '''NJESKŁADUJ PŘINOŠKI Z COPYRIGHTOM BJEZ DOWOLNOSĆE!'''",
 'longpageerror' => "'''ZMYLK: Tekst, kotryž pospytuješ składować, je {{PLURAL:$1| jedyn kilobajt|$1 kilobajtaj|$1 kilobajty|$1 kilobajtow}} dołho, maksimalna wulkosć pak je {{PLURAL:$2|jedyn kilobajt|$1 kilobajtaj|$1 kilobajty|$1 kilobajtow}}.''' Njehodźi so składować.",
-'readonlywarning' => "'''KEDŹBU: Datowa banka bu wothladanja dla zawrjena, tohodla njemóžeš swoje změny nětko składować. Móžeš tekst do tekstoweje dataje přesunyć a jón za pozdźišo składować.'''
+'readonlywarning' => "'''KEDŹBU: Datowa banka bu wothladowanja dla zawrjena, tohodla njemóžeš swoje změny nětko składować.'''
+Móžeš tekst do tekstoweje dataje kopěrować a jón za pozdźišo składować.
 
 Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1",
 'protectedpagewarning' => "'''KEDŹBU: Tuta strona bu zawrjena, tak zo jenož wužiwarjo z prawami administratora móža ju wobdźěłać.'''
@@ -2055,7 +2056,7 @@ Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Lisćina aktiwnych wužiwarjow',
 'activeusers-intro' => 'To je lisćina wužiwarjow, kotřiž běchu aktiwni za {{PLURAL:$1|posledni dźeń|poslednjej $1 dnjej|poslednje $1 dny|poslednich $1 dnjow}}:',
-'activeusers-count' => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|zańdźenej dnju|zańdźenymaj $3 dnjomaj|zańdźenych $3 dnjach|zańdźenych $3 dnjach}}',
+'activeusers-count' => '$1 {{PLURAL:$1|akcija|akciji|akcije|akcijow}} w {{PLURAL:$3|zańdźenej dnju|zańdźenymaj $3 dnjomaj|zańdźenych $3 dnjach}}',
 'activeusers-from' => 'Wužiwarjow zwobraznić, započinajo z:',
 'activeusers-hidebots' => 'Boćiki schować',
 'activeusers-hidesysops' => 'Administratorow schować',
@@ -2117,7 +2118,7 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 'usermessage-editor' => 'Systemowy powěstnik',
 
 # Watchlist
-'watchlist' => 'wobkedźbowanki',
+'watchlist' => 'Wobkedźbowanki',
 'mywatchlist' => 'Wobkedźbowanki',
 'watchlistfor2' => 'Za wužiwarja $1 $2',
 'nowatchlist' => 'Nimaš žane strony w swojich wobkedźbowankach.',
@@ -2563,11 +2564,11 @@ Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.'
 # Move page
 'move-page' => '$1 přesunyć',
 'move-page-legend' => 'Stronu přesunyć',
-'movepagetext' => 'Wužiwanje formulara deleka budźe stronu přemjenować, suwajo jeje cyłe stawizny pod nowe mjeno. Stary titl budźe daleposrědkowanje na nowy titl. Wotkazy na stary titl so njezměnja. Pruwuj za dwójnymi abo skóncowanymi daleposrědkowanjemi. Dyrbiš zaručić, zo wotkazy na stronu pokazuja, na kotruž dyrbja dowjesć.
+'movepagetext' => "Wužiwanje formulara deleka budźe stronu přemjenować, suwajo jeje cyłe stawizny pod nowe mjeno. Stary titl budźe daleposrědkowanje na nowy titl.  Móžeš dalesposrědkowanja, kotrež na prěnjotny titl pokazać, awtomatisce aktualizować. Pruwuj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|skóncowanymi daleposrědkowanjemi]]. Dyrbiš zaručić, zo wotkazy na stronu pokazuja, na kotruž dyrbja dowjesć.
 
-Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo eksistuje, chibazo wona je prózdna abo dalesposrědkowanje a nima zašłe stawizny. To woznamjenja, zo móžeš stronu tam wróćo přemjenować, hdźež bu runje přemjenowana, jeli zmylk činiš a njemóžeš wobstejacu stronu přepisować.
+Wobkedźbuj, zo strona so '''nje''' přesunje, jeli strona z nowym titlom hizo eksistuje, chibazo wona je prózdna abo dalesposrědkowanje a nima zašłe stawizny. To woznamjenja, zo móžeš stronu tam wróćo přemjenować, hdźež bu runje přemjenowana, jeli zmylk činiš a njemóžeš wobstejacu stronu přepisować.
 
-<b>KEDŹBU!</b> Móže to drastiska a njewočakowana změna za woblubowanu stronu być; prošu budź sej wěsty, zo sćěwki rozumiš, prjedy hač pokročuješ.',
+'''Kedźbu!''' Móže to drastiska a njewočakowana změna za woblubowanu stronu być; prošu budź sej wěsty, zo sćěwki rozumiš, prjedy hač pokročuješ.",
 'movepagetext-noredirectfixer' => "Wužiwajo slědowacy formular, móžeš stronu přemjenować a wšě jich daty do stawiznow noweho titula přesunyć.
 Stary titul budźe dalesposrědkowanska strona k nowemu titulej.
 Skontroluj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|wobškodźenymi dalesposrědkowanjemi]].
@@ -3642,7 +3643,7 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'specialpages-group-highuse' => 'Často wužiwane strony',
 'specialpages-group-pages' => 'Lisćiny stronow',
 'specialpages-group-pagetools' => 'Nastroje stronow',
-'specialpages-group-wiki' => 'Wikijowe daty a nastroje',
+'specialpages-group-wiki' => 'Daty a nastroje',
 'specialpages-group-redirects' => 'Daleposrědkowace specialne strony',
 'specialpages-group-spam' => 'Spamowe nastroje',
 
@@ -3739,6 +3740,7 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'logentry-newusers-newusers' => 'Wužiwarske konto $1 je so załožiło',
 'logentry-newusers-create' => 'Wužiwarske konto $1 je so załožiło',
 'logentry-newusers-create2' => '$1 załoži wužiwarske konto $3',
+'logentry-newusers-byemail' => 'Wužiwarske konto $3 je so wot $1 załožiło a hesło je so přez e-mejl pósłało.',
 'logentry-newusers-autocreate' => 'Konto $1 je so awtomatisce załožiło',
 'logentry-rights-rights' => '$1 změni skupinske čłonstwo za $3 z $4 do $5',
 'logentry-rights-rights-legacy' => '$1 změni skupinske čłonstwo za $3',
@@ -3797,6 +3799,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-ok-but-empty' => 'Nutřkowny zmylk: žana wotmołwa wot serwera.',
 'api-error-overwrite' => 'Přepisowanje eksistowaceje dataje njeje dowolene.',
 'api-error-stashfailed' => 'Nutřkowny zmylk: Serwer njemóžeše nachwilnu dataju składować.',
+'api-error-publishfailed' => 'Nutřkowny zmylk: Serwer njemóžeše nachwilnu dataju wozjewić.',
 'api-error-timeout' => 'Serwer njeje znutřka wočakowaneho časa wotmołwił.',
 'api-error-unclassified' => 'Njeznaty zmylk je wustupił.',
 'api-error-unknown-code' => 'Njeznaty zmylk: "$1"',
