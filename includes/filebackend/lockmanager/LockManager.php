@@ -53,7 +53,7 @@ abstract class LockManager {
 	/** @var Array Map of (resource path => lock type => count) */
 	protected $locksHeld = array();
 
-	protected $wiki; // string; wiki ID
+	protected $domain; // string; domain (usually wiki ID)
 
 	/* Lock types; stronger locks have higher values */
 	const LOCK_SH = 1; // shared lock (for reads)
@@ -64,12 +64,12 @@ abstract class LockManager {
 	 * Construct a new instance from configuration
 	 *
 	 * $config paramaters include:
-	 *   - wiki : Wiki ID string that all resources are relative to [optional]
+	 *   - domain : Domain (usually wiki ID) that all resources are relative to [optional]
 	 *
 	 * @param $config Array
 	 */
 	public function __construct( array $config ) {
-		$this->wiki = isset( $config['wiki'] ) ? $config['wiki'] : wfWikiID();
+		$this->domain = isset( $config['domain'] ) ? $config['domain'] : wfWikiID();
 	}
 
 	/**
@@ -102,14 +102,14 @@ abstract class LockManager {
 
 	/**
 	 * Get the base 36 SHA-1 of a string, padded to 31 digits.
-	 * Before hashing, the path will be prefixed with the wiki ID.
+	 * Before hashing, the path will be prefixed with the domain ID.
 	 * This should be used interally for lock key or file names.
 	 *
 	 * @param $path string
 	 * @return string
 	 */
 	final protected function sha1Base36Absolute( $path ) {
-		return wfBaseConvert( sha1( "{$this->wiki}:{$path}" ), 16, 36, 31 );
+		return wfBaseConvert( sha1( "{$this->domain}:{$path}" ), 16, 36, 31 );
 	}
 
 	/**

@@ -101,7 +101,7 @@ abstract class FileBackend {
 			: wfWikiID(); // e.g. "my_wiki-en_"
 		$this->lockManager = ( $config['lockManager'] instanceof LockManager )
 			? $config['lockManager']
-			: LockManagerGroup::singleton()->get( $config['lockManager'] );
+			: LockManagerGroup::singleton( $this->wikiId )->get( $config['lockManager'] );
 		$this->fileJournal = isset( $config['fileJournal'] )
 			? ( ( $config['fileJournal'] instanceof FileJournal )
 				? $config['fileJournal']

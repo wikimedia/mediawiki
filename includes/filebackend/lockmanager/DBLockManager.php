@@ -22,7 +22,8 @@
  */
 
 /**
- * Version of LockManager based on using DB table locks.
+ * Version of LockManager based on using DB table row locks.
+ *
  * This is meant for multi-wiki systems that may share files.
  * All locks are blocking, so it might be useful to set a small
  * lock-wait timeout via server config to curtail deadlocks.
@@ -67,6 +68,7 @@ class DBLockManager extends QuorumLockManager {
 	 *                   each having an odd-numbered list of DB names (peers) as values.
 	 *                   Any DB named 'localDBMaster' will automatically use the DB master
 	 *                   settings for this wiki (without the need for a dbServers entry).
+	 *                   Only use 'localDBMaster' if the domain is a valid wiki ID.
 	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
 	 *                   This tells the DB server how long to wait before assuming
 	 *                   connection failure and releasing all the locks for a session.
@@ -197,8 +199,8 @@ class DBLockManager extends QuorumLockManager {
 		if ( !isset( $this->conns[$lockDb] ) ) {
 			$db = null;
 			if ( $lockDb === 'localDBMaster' ) {
-				$lb = wfGetLBFactory()->getMainLB( $this->wiki );
-				$db = $lb->getConnection( DB_MASTER, array(), $this->wiki );
+				$lb = wfGetLBFactory()->getMainLB( $this->domain );
+				$db = $lb->getConnection( DB_MASTER, array(), $this->domain );
 			} elseif ( isset( $this->dbServers[$lockDb] ) ) {
 				$config = $this->dbServers[$lockDb];
 				$db = DatabaseBase::factory( $config['type'], $config );
