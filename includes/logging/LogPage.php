@@ -271,7 +271,7 @@ class LogPage {
 						$params[2] = isset( $params[2] ) ?
 							self::formatBlockFlags( $params[2], $langObj ) : '';
 					// Page protections
-					} elseif ( $type == 'protect' && count($params) == 3 ) {
+					} elseif ( $type == 'protect' && count( $params ) == 3 ) {
 						// Restrictions and expiries
 						if( $skin ) {
 							$details .= $wgLang->getDirMark() . htmlspecialchars( " {$params[1]}" );

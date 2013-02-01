@@ -74,7 +74,7 @@ class LogEventsList extends ContextSource {
 	public function showHeader( $type ) {
 		wfDeprecated( __METHOD__, '1.19' );
 		// If only one log type is used, then show a special message...
-		$headerType = (count($type) == 1) ? $type[0] : '';
+		$headerType = (count( $type ) == 1) ? $type[0] : '';
 		$out = $this->getOutput();
 		if( LogPage::isLogType( $headerType ) ) {
 			$page = new LogPage( $headerType );
@@ -117,7 +117,7 @@ class LogEventsList extends ContextSource {
 		$html .= $this->getExtraInputs( $types ) . "\n";
 
 		// Title pattern, if allowed
-		if (!$wgMiserMode) {
+		if ( !$wgMiserMode ) {
 			$html .= $this->getTitlePattern( $pattern ) . "\n";
 		}
 
@@ -125,12 +125,12 @@ class LogEventsList extends ContextSource {
 		$html .= Xml::tags( 'p', null, Xml::dateMenu( $year, $month ) );
 
 		// Tag filter
-		if ($tagSelector) {
+		if ( $tagSelector ) {
 			$html .= Xml::tags( 'p', null, implode( '&#160;', $tagSelector ) );
 		}
 
 		// Filter links
-		if ($filter) {
+		if ( $filter ) {
 			$html .= Xml::tags( 'p', null, $this->getFilterLinks( $filter ) );
 		}
 
@@ -162,7 +162,7 @@ class LogEventsList extends ContextSource {
 			$query = $this->getDefaultQuery();
 			$queryKey = "hide_{$type}_log";
 
-			$hideVal = 1 - intval($val);
+			$hideVal = 1 - intval( $val );
 			$query[$queryKey] = $hideVal;
 
 			$link = Linker::linkKnown(
@@ -176,7 +176,7 @@ class LogEventsList extends ContextSource {
 			$hiddens .= Html::hidden( "hide_{$type}_log", $val ) . "\n";
 		}
 		// Build links
-		return '<small>'.$this->getLanguage()->pipeList( $links ) . '</small>' . $hiddens;
+		return '<small>' . $this->getLanguage()->pipeList( $links ) . '</small>' . $hiddens;
 	}
 
 	private function getDefaultQuery() {
@@ -198,7 +198,7 @@ class LogEventsList extends ContextSource {
 	 * @return String: Formatted HTML
 	 */
 	private function getTypeMenu( $queryTypes ) {
-		$queryType = count($queryTypes) == 1 ? $queryTypes[0] : '';
+		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
 		$selector = $this->getTypeSelector();
 		$selector->setDefault( $queryType );
 		return $selector->getHtml();
@@ -212,7 +212,7 @@ class LogEventsList extends ContextSource {
 	public function getTypeSelector() {
 		$typesByName = array(); // Temporary array
 		// First pass to load the log names
-		foreach(  LogPage::validTypes() as $type ) {
+		foreach( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
 			if ( $this->getUser()->isAllowed( $restriction ) ) {
@@ -221,7 +221,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Second pass to sort by name
-		asort($typesByName);
+		asort( $typesByName );
 
 		// Always put "All public logs" on top
 		$public = $typesByName[''];
@@ -273,10 +273,10 @@ class LogEventsList extends ContextSource {
 	private function getExtraInputs( $types ) {
 		$offender = $this->getRequest()->getVal( 'offender' );
 		$user = User::newFromName( $offender, false );
-		if( !$user || ($user->getId() == 0 && !IP::isIPAddress($offender) ) ) {
+		if( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
 			$offender = ''; // Blank field if invalid
 		}
-		if( count($types) == 1 && $types[0] == 'suppress' ) {
+		if( count( $types ) == 1 && $types[0] == 'suppress' ) {
 			return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
 				'mw-log-offender', 20, $offender );
 		}
@@ -383,8 +383,8 @@ class LogEventsList extends ContextSource {
 	 * @param $right string
 	 * @return Boolean
 	 */
-	public static function typeAction( $row, $type, $action, $right='' ) {
-		$match = is_array($type) ?
+	public static function typeAction( $row, $type, $action, $right = '' ) {
+		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
 		if( $match ) {
 			$match = is_array( $action ) ?
@@ -474,7 +474,7 @@ class LogEventsList extends ContextSource {
 			'lim' => 25,
 			'conds' => array(),
 			'showIfEmpty' => true,
-			'msgKey' => array(''),
+			'msgKey' => array( '' ),
 			'wrap' => "$1",
 			'flags' => 0
 		);
@@ -520,8 +520,8 @@ class LogEventsList extends ContextSource {
 				}
 			}
 			$s .= $loglist->beginLogEventsList() .
-				 $logBody .
-				 $loglist->endLogEventsList();
+				$logBody .
+				$loglist->endLogEventsList();
 		} else {
 			if ( $showIfEmpty ) {
 				$s = Html::rawElement( 'div', array( 'class' => 'mw-warning-logempty' ),
@@ -602,4 +602,4 @@ class LogEventsList extends ContextSource {
 		}
 		return false;
 	}
- }
+}

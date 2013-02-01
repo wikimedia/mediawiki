@@ -545,7 +545,7 @@ class MessageCache {
 			$serialized = serialize( $cache );
 			$hash = md5( $serialized );
 			$this->mMemc->set( wfMemcKey( 'messages', $code, 'hash' ), $hash, $this->mExpiry );
-			if ($wgLocalMessageCacheSerialized) {
+			if ( $wgLocalMessageCacheSerialized ) {
 				$this->saveToLocal( $serialized, $hash, $code );
 			} else {
 				$this->saveToScript( $cache, $hash, $code );

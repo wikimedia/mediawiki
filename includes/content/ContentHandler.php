@@ -1074,7 +1074,7 @@ abstract class ContentHandler {
 
 			wfRestoreWarnings();
 
-			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " . implode(', ', $handlerInfo), 2 );
+			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " . implode( ', ', $handlerInfo ), 2 );
 		}
 
 		// convert Content objects to text
