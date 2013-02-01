@@ -219,6 +219,8 @@ production.
 * Add supports for all pageset capabilities - generators, redirects, converttitles to
   action=purge and action=setnotificationtimestamp.
 * (bug 43251) prop=pageprops&ppprop= now accepts multiple props to query.
+* ApiQueryImageInfo will now limit the number of calls to File::transform made
+  in any one query. If there are too many, iicontinue will be returned.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.

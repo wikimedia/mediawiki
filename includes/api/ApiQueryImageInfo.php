@@ -30,6 +30,8 @@
  * @ingroup API
  */
 class ApiQueryImageInfo extends ApiQueryBase {
+	const TRANSFORM_LIMIT = 50;
+	private static $transformCount = 0;
 
 	public function __construct( $query, $moduleName, $prefix = 'ii' ) {
 		// We allow a subclass to override the prefix, to create a related API module.
@@ -89,6 +91,19 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 
 				$img = $images[$title];
+
+				if ( self::getTransformCount() >= self::TRANSFORM_LIMIT ) {
+					if ( count( $pageIds[NS_FILE] ) == 1 ) {
+						// See the 'the user is screwed' comment below
+						$this->setContinueEnumParameter( 'start',
+							$start !== null ? $start : wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
+						);
+					} else {
+						$this->setContinueEnumParameter( 'continue',
+							$this->getContinueStr( $img, $start ) );
+					}
+					break;
+				}
 
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
@@ -337,6 +352,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( $url ) {
 			if ( !is_null( $thumbParams ) ) {
 				$mto = $file->transform( $thumbParams );
+				self::$transformCount++;
 				if ( $mto && !$mto->isError() ) {
 					$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_CURRENT );
 
@@ -394,6 +410,17 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		return $vals;
+	}
+
+	/**
+	 * Get the count of image transformations performed
+	 *
+	 * If this is >= TRANSFORM_LIMIT, you should probably stop processing images.
+	 *
+	 * @return integer count
+	 */
+	static function getTransformCount() {
+		return self::$transformCount;
 	}
 
 	/**
