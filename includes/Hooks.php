@@ -150,6 +150,7 @@ class Hooks {
 			return true;
 		}
 
+		wfProfileIn( 'hook: ' . $event );
 		$hooks = self::getHandlers( $event );
 
 		foreach ( $hooks as $hook ) {
@@ -288,10 +289,12 @@ class Hooks {
 					);
 				}
 			} elseif ( !$retval ) {
+				wfProfileOut( 'hook: ' . $event );
 				return false;
 			}
 		}
 
+		wfProfileOut( 'hook: ' . $event );
 		return true;
 	}
 
