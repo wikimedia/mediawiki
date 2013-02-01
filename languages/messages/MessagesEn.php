@@ -690,6 +690,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
 'tog-norollbackdiff'          => 'Omit diff after performing a rollback',
 'tog-useeditwarning'          => 'Warn me when I leave an edit page with unsaved changes',
+'tog-prefershttps'            => 'Always use a secure connection when logged in',
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
@@ -1998,6 +1999,7 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'prefs-help-email-others'       => 'You can also choose to let others contact you by email through a link on your user or talk page.
 Your email address is not revealed when other users contact you.',
 'prefs-help-email-required'     => 'Email address is required.',
+'prefs-help-prefershttps'       => 'This option is disabled for users who are required to use a secure connection by the {{SITENAME}} administrator.',
 'prefs-info'                    => 'Basic information',
 'prefs-i18n'                    => 'Internationalisation',
 'prefs-signature'               => 'Signature',
@@ -2140,6 +2142,7 @@ Your email address is not revealed when other users contact you.',
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send email to other users',
 'right-passwordreset'         => 'View password reset emails',
+'right-forcehttps'            => 'Use the site while logged in over an insecure connection',
 
 # Special:Log/newusers
 'newuserlogpage'     => 'User creation log',
