@@ -198,6 +198,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-ccmeonemails' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-diffonly' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-showhiddencats' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
+'tog-prefershttps' => 'Toggle option used in [[Special:Preferences]] that indicates if the user wants to use a secure connection when logged in',
 'tog-noconvertlink' => "{{optional}}
 
 ''(the message is considered optional because it is only used in wikis with language variants)''",
@@ -2590,6 +2591,7 @@ Used in [[Special:Preferences]]. Parameters are:
 
 {{Identical|Signature}}',
 'prefs-help-signature' => 'Used in [[Special:Preferences]], tab User profile.',
+'prefs-help-prefershttps' => 'Used in [[Special:Preferences]] to explain that the PrefersHTTPS user option might be disabled if the user is in user groups that require secure connections',
 'badsig' => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength' => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
 'yourgender' => 'Used in [[Special:Preferences]], first tab.
