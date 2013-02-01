@@ -3965,6 +3965,7 @@ $wgDefaultUserOptions = array(
 	'watchmoves' => 0,
 	'wllimit' => 250,
 	'useeditwarning' => 1,
+	'prefershttps' => 1,
 );
 
 /**
