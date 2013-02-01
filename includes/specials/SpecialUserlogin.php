@@ -737,7 +737,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin;
+		global $wgMemc, $wgLang, $wgSecureLogin, $wgSecureGroups;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -750,7 +750,11 @@ class LoginForm extends SpecialPage {
 					$user->invalidateCache();
 				}
 
-				if( $wgSecureLogin && !$this->mStickHTTPS ) {
+				if(
+					$wgSecureLogin &&
+					!$this->mStickHTTPS &&
+					!array_intersect( $wgSecureGroups, $user->getGroups() )
+				) {
 					$user->setCookies( null, false );
 				} else {
 					$user->setCookies();

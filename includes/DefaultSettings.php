@@ -3750,6 +3750,12 @@ $wgAllowPrefChange = array();
  */
 $wgSecureLogin = false;
 
+/**
+ * This is an array of user groups that are forced to use HTTPS once they
+ * log in. This will only take effect if $wgSecureLogin is also set to true.
+ */
+$wgSecureGroups = array();
+
 /** @} */ # end user accounts }
 
 /************************************************************************//**
