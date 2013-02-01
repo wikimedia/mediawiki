@@ -197,6 +197,8 @@ production.
   that the imagerepository property will no longer be set on page objects not
   processed in the current query (i.e. non-images or those skipped due to
   iicontinue).
+* ApiQueryImageInfo will now limit the number of calls to File::transform made
+  in any one query. If there are too many, iicontinue will be returned.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
