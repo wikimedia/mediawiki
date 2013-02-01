@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ "$1" -gt 0 ]; then
 	ulimit -t "$1"
