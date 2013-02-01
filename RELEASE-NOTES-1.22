@@ -15,6 +15,10 @@ production.
   activated; when $wgUseVFormCreateAccount is true, the redesign of
   Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin
+  is enabled has been removed. Instead, whether the user stays in HTTPS will
+  be determined based on 1) $wgSecureGroups (see corresponding note in New features),
+  2) the user's preferences, and 3) whether they came from HTTPS or not.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -54,6 +58,8 @@ production.
   well.
 * (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
   language links associated with a page before display.
+* $wgSecureGroups was added. Users that are in user groups in this option will be
+  required to use HTTPS when logged in if $wgSecureLogin is also true.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
