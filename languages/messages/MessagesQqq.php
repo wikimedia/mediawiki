@@ -202,6 +202,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-ccmeonemails' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-diffonly' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-showhiddencats' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
+'tog-prefershttps' => 'Toggle option used in [[Special:Preferences]] that indicates if the user wants to use a secure connection when logged in',
 'tog-noconvertlink' => "{{optional}}
 
 ''(the message is considered optional because it is only used in wikis with language variants)''",
@@ -1222,7 +1223,6 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 'userlogin-signwithsecure' => 'Text of link to HTTPS login form.
 
 See example: [[Special:UserLogin]]',
-'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',

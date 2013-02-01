@@ -70,6 +70,7 @@ $wgMessageStructure = array(
 		'tog-noconvertlink',
 		'tog-norollbackdiff',
 		'tog-useeditwarning',
+		'tog-prefershttps'
 	),
 	'underline' => array(
 		'underline-always',
@@ -459,7 +460,6 @@ $wgMessageStructure = array(
 		'remembermypassword',
 		'userlogin-remembermypassword',
 		'userlogin-signwithsecure',
-		'securelogin-stick-https',
 		'yourdomainname',
 		'password-change-forbidden',
 		'externaldberror',

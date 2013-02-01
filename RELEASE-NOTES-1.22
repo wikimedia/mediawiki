@@ -46,6 +46,9 @@ production.
 * New key added to $wgGalleryOptions - $wgGalleryOptions['mode'] to set
   default gallery mode.
 * New hook 'GalleryGetModes' to allow extensions to make new gallery modes.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin is
+  enabled has been removed. Instead, whether the user stays in HTTPS will be determined
+  based on the user's preferences, and whether they came from HTTPS or not.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
