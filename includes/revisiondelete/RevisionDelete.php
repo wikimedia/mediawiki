@@ -899,7 +899,7 @@ class RevDel_LogItem extends RevDel_Item {
 		$action = $formatter->getActionText();
 		// Comment
 		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
-		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_COMMENT) ) {
+		if( LogEventsList::isDeleted( $this->row,LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 

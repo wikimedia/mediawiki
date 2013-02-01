@@ -147,7 +147,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				continue;
 			}
 			$title = Title::newFromText( $titleText );
-			if ( !$title || $title->isRedirect()  ) {
+			if ( !$title || $title->isRedirect() ) {
 				continue;
 			}
 			$media = isset( $options['media'] ) ? $options['media'] : 'all';

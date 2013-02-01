@@ -198,12 +198,12 @@ class LogFormatter {
 			case 'move':
 				switch( $entry->getSubtype() ) {
 					case 'move':
-						$movesource =  $parameters['4::target'];
+						$movesource = $parameters['4::target'];
 						$text = wfMessage( '1movedto2' )
 							->rawParams( $target, $movesource )->inContentLanguage()->escaped();
 						break;
 					case 'move_redir':
-						$movesource =  $parameters['4::target'];
+						$movesource = $parameters['4::target'];
 						$text = wfMessage( '1movedto2_redir' )
 							->rawParams( $target, $movesource )->inContentLanguage()->escaped();
 						break;
@@ -588,7 +588,7 @@ class LogFormatter {
 			return $this->msg( $message )->text();
 		}
 
-		$content =  $this->msg( $message )->escaped();
+		$content = $this->msg( $message )->escaped();
 		$attribs = array( 'class' => 'history-deleted' );
 		return Html::rawElement( 'span', $attribs, $content );
 	}
@@ -713,7 +713,7 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$performer = $this->getPerformerElement();
 		if ( !$this->irctext ) {
-			$action = $performer .  $this->msg( 'word-separator' )->text() . $action;
+			$action = $performer . $this->msg( 'word-separator' )->text() . $action;
 		}
 
 		return $action;
@@ -913,7 +913,7 @@ class DeleteLogFormatter extends LogFormatter {
 				foreach ( $extra as $v ) {
 					$changes[] = $this->msg( $v )->plain();
 				}
-				$changeText =  $this->context->getLanguage()->listToText( $changes );
+				$changeText = $this->context->getLanguage()->listToText( $changes );
 
 
 				$newParams = array_slice( $params, 0, 3 );
