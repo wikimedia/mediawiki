@@ -573,7 +573,7 @@ class HttpError extends MWException {
 	 * @return int
 	 */
 	public function getStatusCode() {
-		$this->httpCode;
+		return $this->httpCode;
 	}
 
 	/**
