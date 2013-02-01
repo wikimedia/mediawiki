@@ -438,14 +438,34 @@ $wgUseInstantCommons = false;
 
 /**
  * File backend structure configuration.
+ *
  * This is an array of file backend configuration arrays.
  * Each backend configuration has the following parameters:
- *  - 'name'        : A unique name for the backend
- *  - 'class'       : The file backend class to use
- *  - 'wikiId'      : A unique string that identifies the wiki (container prefix)
- *  - 'lockManager' : The name of a lock manager (see $wgLockManagers)
+ *  - 'name'         : A unique name for the backend
+ *  - 'class'        : The file backend class to use
+ *  - 'wikiId'       : A unique string that identifies the wiki (container prefix)
+ *  - 'lockManager'  : The name of a lock manager (see $wgLockManagers)
  *
- * Additional parameters are specific to the class used.
+ * See FileBackend::__construct() for more details.
+ * Additional parameters are specific to the file backend class used.
+ * These settings should be global to all wikis when possible.
+ *
+ * There are two particularly important aspects about each backend:
+ *   - a) Whether it is fully qualified or wiki-relative.
+ *        By default, the paths of files are relative to the current wiki,
+ *        which works via prefixing them with the current wiki ID when accessed.
+ *        Setting 'wikiId' forces the backend to be fully qualified by prefixing
+ *        all paths with the specified value instead. This can be useful if
+ *        multiple wikis need to share the same data. Note that 'name' is *not*
+ *        part of any prefix and thus should not be relied upon for namespacing.
+ *   - b) Whether it is only defined for some wikis or is defined on all
+ *        wikis in the wiki farm. Defining a backend globally is useful
+ *        if multiple wikis need to share the same data.
+ * One should be aware of these aspects when configuring a backend for use with
+ * any basic feature or plugin. For example, suppose an extension stores data for
+ * different wikis in different directories and sometimes needs to access data from
+ * a foreign wiki's directory in order to render a page on given wiki. The extension
+ * would need a fully qualified backend that is defined on all wikis in the wiki farm.
  */
 $wgFileBackends = array();
 

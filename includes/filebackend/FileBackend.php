@@ -77,6 +77,7 @@ abstract class FileBackend {
 	 *                   This should consist of alphanumberic, '-', and '_' characters.
 	 *                   This name should not be changed after use.
 	 *   - wikiId      : Prefix to container names that is unique to this wiki.
+	 *                   If not provided, this defaults to the current wiki ID.
 	 *                   It should only consist of alphanumberic, '-', and '_' characters.
 	 *   - lockManager : Registered name of a file lock manager to use.
 	 *   - fileJournal : File journal configuration; see FileJournal::factory().
