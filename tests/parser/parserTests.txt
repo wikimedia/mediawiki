@@ -4258,6 +4258,25 @@ disabled
 </li></ol>
 !! end
 
+!!test
+List embedded in a non-block tag
+(Ugly Parsoid output -- worth fixing; Disabled for PHP parser since it relies on Tidy)
+!! options
+disabled
+!!input
+<small>
+* foo
+</small>
+!!result
+<p><small></small></p>
+<small>
+<ul>
+<li> foo</li>
+</ul>
+</small>
+<p><small></small></p>
+!!end
+
 !! test
 List items are not parsed correctly following a <pre> block (bug 785)
 !! input
@@ -13670,6 +13689,51 @@ disabled
 </td></tr></table>
 
 !! end
+
+!!test
+Accept empty td cell attribute
+!!input
+{|
+| align="center" | foo ||  |
+|}
+!!result
+<table>
+<tr>
+<td align="center"> foo </td>
+<td>
+</td></tr></table>
+
+!!end
+
+!!test
+Non-empty attributes in th-cells
+!!input
+{|
+! Foo !! style="color: red" | Bar
+|}
+!!result
+<table>
+<tr>
+<th> Foo </th>
+<th style="color: red"> Bar
+</th></tr></table>
+
+!!end
+
+!!test
+Accept empty attributes in th-cells
+!!input
+{|
+!| foo !!| bar
+|}
+!!result
+<table>
+<tr>
+<th> foo </th>
+<th> bar
+</th></tr></table>
+
+!!end
 
 TODO:
 more images
