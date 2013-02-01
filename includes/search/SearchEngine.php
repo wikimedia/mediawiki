@@ -45,7 +45,7 @@ class SearchEngine {
 	 */
 	protected $db;
 
-	function __construct($db = null) {
+	function __construct( $db = null ) {
 		if ( $db ) {
 			$this->db = $db;
 		} else {
@@ -1153,7 +1153,7 @@ class SearchHighlighter {
 			}
 		}
 
-		// $snippets = array_map('htmlspecialchars', $extended);
+		// $snippets = array_map( 'htmlspecialchars', $extended );
 		$snippets = $extended;
 		$last = - 1;
 		$extract = '';
@@ -1332,12 +1332,12 @@ class SearchHighlighter {
 		$fname = __METHOD__;
 		wfProfileIn( $fname );
 
-		// $text = preg_replace("/'{2,5}/", "", $text);
-		// $text = preg_replace("/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text);
-		// $text = preg_replace("/\[\[([^]|]+)\]\]/", "\\1", $text);
-		// $text = preg_replace("/\[\[([^]]+\|)?([^|]]+)\]\]/", "\\2", $text);
-		// $text = preg_replace("/\\{\\|(.*?)\\|\\}/", "", $text);
-		// $text = preg_replace("/\\[\\[[A-Za-z_-]+:([^|]+?)\\]\\]/", "", $text);
+		// $text = preg_replace( "/'{2,5}/", "", $text );
+		// $text = preg_replace( "/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text );
+		// $text = preg_replace( "/\[\[([^]|]+)\]\]/", "\\1", $text );
+		// $text = preg_replace( "/\[\[([^]]+\|)?([^|]]+)\]\]/", "\\2", $text );
+		// $text = preg_replace( "/\\{\\|(.*?)\\|\\}/", "", $text );
+		// $text = preg_replace( "/\\[\\[[A-Za-z_-]+:([^|]+?)\\]\\]/", "", $text );
 		$text = preg_replace( "/\\{\\{([^|]+?)\\}\\}/", "", $text );
 		$text = preg_replace( "/\\{\\{([^|]+\\|)(.*?)\\}\\}/", "\\2", $text );
 		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );

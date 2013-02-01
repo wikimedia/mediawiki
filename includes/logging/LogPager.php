@@ -71,7 +71,7 @@ class LogPager extends ReverseChronologicalPager {
 	public function getFilterParams() {
 		global $wgFilterLogTypes;
 		$filters = array();
-		if( count($this->types) ) {
+		if( count( $this->types ) ) {
 			return $filters;
 		}
 		foreach( $wgFilterLogTypes as $type => $default ) {
@@ -122,10 +122,10 @@ class LogPager extends ReverseChronologicalPager {
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
-		if( count($types) ) {
+		if( count( $types ) ) {
 			$this->mConds['log_type'] = $types;
 			// Set typeCGI; used in url param for paging
-			if( count($types) == 1 ) $this->typeCGI = $types[0];
+			if( count( $types ) == 1 ) $this->typeCGI = $types[0];
 		}
 	}
 
@@ -140,7 +140,7 @@ class LogPager extends ReverseChronologicalPager {
 			return false;
 		}
 		$usertitle = Title::makeTitleSafe( NS_USER, $name );
-		if( is_null($usertitle) ) {
+		if( is_null( $usertitle ) ) {
 			return false;
 		}
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
@@ -154,9 +154,9 @@ class LogPager extends ReverseChronologicalPager {
 			// Paranoia: avoid brute force searches (bug 17342)
 			$user = $this->getUser();
 			if( !$user->isAllowed( 'deletedhistory' ) ) {
-				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0';
+				$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
 			} elseif( !$user->isAllowed( 'suppressrevision' ) ) {
-				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_USER) .
+				$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 					' != ' . LogPage::SUPPRESSED_USER;
 			}
 			$this->performer = $usertitle->getText();
@@ -209,9 +209,9 @@ class LogPager extends ReverseChronologicalPager {
 		// Paranoia: avoid brute force searches (bug 17342)
 		$user = $this->getUser();
 		if( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
+			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION) . ' = 0';
 		} elseif( !$user->isAllowed( 'suppressrevision' ) ) {
-			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
+			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
 	}
@@ -251,10 +251,10 @@ class LogPager extends ReverseChronologicalPager {
 		# avoids site-breaking filesorts.
 		} elseif( $this->title || $this->pattern || $this->performer ) {
 			$index['logging'] = array( 'page_time', 'user_time' );
-			if( count($this->types) == 1 ) {
+			if( count( $this->types ) == 1 ) {
 				$index['logging'][] = 'log_user_type_time';
 			}
-		} elseif( count($this->types) == 1 ) {
+		} elseif( count( $this->types ) == 1 ) {
 			$index['logging'] = 'type_time';
 		} else {
 			$index['logging'] = 'times';

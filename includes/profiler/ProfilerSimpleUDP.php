@@ -50,7 +50,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		$plength = 0;
 		$packet = "";
 		foreach ( $this->mCollated as $entry => $pfdata ) {
-			if( !isset($pfdata['count'])
+			if( !isset( $pfdata['count'] )
 				|| !isset( $pfdata['cpu'] )
 				|| !isset( $pfdata['cpu_sq'] )
 				|| !isset( $pfdata['real'] )

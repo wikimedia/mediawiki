@@ -34,7 +34,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * Creates an instance of this class
 	 * @param $db DatabaseIbm_db2: database object
 	 */
-	function __construct($db) {
+	function __construct( $db ) {
 		parent::__construct( $db );
 	}
 
@@ -45,8 +45,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
-		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), true)));
-		return new SqlSearchResultSet($resultSet, $this->searchTerms);
+		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**
@@ -55,9 +55,9 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @param $term String: taw search term
 	 * @return SqlSearchResultSet
 	 */
-	function searchTitle($term) {
-		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), false)));
-		return new SqlSearchResultSet($resultSet, $this->searchTerms);
+	function searchTitle( $term ) {
+		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 
@@ -66,7 +66,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @return String
 	 */
 	function queryRedirect() {
-		if ($this->showRedirects) {
+		if ( $this->showRedirects ) {
 			return '';
 		} else {
 			return 'AND page_is_redirect=0';
@@ -78,10 +78,10 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @return String
 	 */
 	function queryNamespaces() {
-		if( is_null($this->namespaces) )
+		if( is_null( $this->namespaces ) )
 			return '';
-		$namespaces = implode(',', $this->namespaces);
-		if ($namespaces == '') {
+		$namespaces = implode( ',', $this->namespaces );
+		if ( $namespaces == '' ) {
 			$namespaces = '0';
 		}
 		return 'AND page_namespace IN (' . $namespaces . ')';
@@ -92,7 +92,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @return String
 	 */
 	function queryLimit( $sql ) {
-		return $this->db->limitResult($sql, $this->limit, $this->offset);
+		return $this->db->limitResult( $sql, $this->limit, $this->offset );
 	}
 
 	/**
@@ -100,7 +100,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * subclasses may define this though
 	 * @return String
 	 */
-	function queryRanking($filteredTerm, $fulltext) {
+	function queryRanking( $filteredTerm, $fulltext ) {
 		// requires Net Search Extender or equivalent
 		// return ' ORDER BY score(1)';
 		return '';
@@ -114,10 +114,10 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @return String
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
-		return $this->queryLimit($this->queryMain($filteredTerm, $fulltext) . ' ' .
+		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
 			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces() . ' ' .
-			$this->queryRanking( $filteredTerm, $fulltext ) . ' ');
+			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
 
 
@@ -126,7 +126,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @param $fulltext Boolean
 	 * @return String
 	 */
-	function getIndexField($fulltext) {
+	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
 	}
 
@@ -138,9 +138,9 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @return String
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
-		$match = $this->parseQuery($filteredTerm, $fulltext);
-		$page        = $this->db->tableName('page');
-		$searchindex = $this->db->tableName('searchindex');
+		$match = $this->parseQuery( $filteredTerm, $fulltext );
+		$page = $this->db->tableName( 'page' );
+		$searchindex = $this->db->tableName( 'searchindex' );
 		return 'SELECT page_id, page_namespace, page_title ' .
 			"FROM $page,$searchindex " .
 			'WHERE page_id=si_page AND ' . $match;
@@ -149,7 +149,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	/** @todo document
 	 * @return string
 	 */
-	function parseQuery($filteredText, $fulltext) {
+	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();
 		$this->searchTerms = array();
@@ -158,9 +158,9 @@ class SearchIBM_DB2 extends SearchEngine {
 		$m = array();
 		$q = array();
 
-		if (preg_match_all('/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $filteredText, $m, PREG_SET_ORDER)) {
-			foreach($m as $terms) {
+		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
+				$filteredText, $m, PREG_SET_ORDER ) ) {
+			foreach( $m as $terms ) {
 
 				// Search terms in all variant forms, only
 				// apply on wiki with LanguageConverter
@@ -173,19 +173,19 @@ class SearchIBM_DB2 extends SearchEngine {
 				else
 					$q[] = $terms[1] . $wgContLang->normalizeForSearch( $terms[2] );
 
-				if (!empty($terms[3])) {
+				if ( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );
-					if ($terms[4])
+					if ( $terms[4] )
 						$regexp .= "[0-9A-Za-z_]+";
 				} else {
-					$regexp = preg_quote(str_replace('"', '', $terms[2]), '/');
+					$regexp = preg_quote(str_replace( '"', '', $terms[2]), '/' );
 				}
 				$this->searchTerms[] = $regexp;
 			}
 		}
 
-		$searchon = $this->db->strencode(join(',', $q));
-		$field = $this->getIndexField($fulltext);
+		$searchon = $this->db->strencode( join( ',', $q ) );
+		$field = $this->getIndexField( $fulltext );
 
 		// requires Net Search Extender or equivalent
 		//return " CONTAINS($field, '$searchon') > 0 ";
@@ -201,18 +201,18 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @param $title String
 	 * @param $text String
 	 */
-	function update($id, $title, $text) {
-		$dbw = wfGetDB(DB_MASTER);
-		$dbw->replace('searchindex',
-			array('si_page'),
+	function update( $id, $title, $text ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->replace( 'searchindex',
+			array( 'si_page' ),
 			array(
 				'si_page' => $id,
 				'si_title' => $title,
 				'si_text' => $text
 			), 'SearchIBM_DB2::update' );
 		// ?
-		//$dbw->query("CALL ctx_ddl.sync_index('si_text_idx')");
-		//$dbw->query("CALL ctx_ddl.sync_index('si_title_idx')");
+		//$dbw->query( "CALL ctx_ddl.sync_index('si_text_idx')" );
+		//$dbw->query( "CALL ctx_ddl.sync_index('si_title_idx')" );
 	}
 
 	/**
@@ -222,13 +222,13 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * @param $id Integer
 	 * @param $title String
 	 */
-	function updateTitle($id, $title) {
-		$dbw = wfGetDB(DB_MASTER);
+	function updateTitle( $id, $title ) {
+		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->update('searchindex',
-			array('si_title' => $title),
-			array('si_page'  => $id),
+		$dbw->update( 'searchindex',
+			array( 'si_title' => $title ),
+			array( 'si_page'  => $id ),
 			'SearchIBM_DB2::updateTitle',
-			array());
+			array() );
 	}
 }

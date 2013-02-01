@@ -168,10 +168,10 @@ class HTMLFileCache extends FileCacheBase {
 		$now = wfTimestampNow();
 		if ( $this->useGzip() ) {
 			$text = str_replace(
-				'</html>', '<!-- Cached/compressed '.$now." -->\n</html>", $text );
+				'</html>', '<!-- Cached/compressed ' . $now . " -->\n</html>", $text );
 		} else {
 			$text = str_replace(
-				'</html>', '<!-- Cached '.$now." -->\n</html>", $text );
+				'</html>', '<!-- Cached ' . $now . " -->\n</html>", $text );
 		}
 
 		// Store text to FS...

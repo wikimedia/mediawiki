@@ -127,7 +127,7 @@ class SearchUpdate implements DeferrableUpdate {
 		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
 
 		# Perform the actual update
-		$search->update($this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
+		$search->update( $this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
 				$search->normalizeText( $text ) );
 
 		wfProfileOut( __METHOD__ );
