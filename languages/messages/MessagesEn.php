@@ -690,6 +690,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
 'tog-norollbackdiff'          => 'Omit diff after performing a rollback',
 'tog-useeditwarning'          => 'Warn me when I leave an edit page with unsaved changes',
+'tog-prefershttps'            => 'Always use a secure connection when logged in',
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
@@ -1112,7 +1113,6 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'remembermypassword'              => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'userlogin-remembermypassword'    => 'Keep me logged in',
 'userlogin-signwithsecure'        => 'Use secure connection',
-'securelogin-stick-https'         => 'Stay connected to HTTPS after login',
 'yourdomainname'                  => 'Your domain:',
 'password-change-forbidden'       => 'You cannot change passwords on this wiki.',
 'externaldberror'                 => 'There was either an authentication database error or you are not allowed to update your external account.',
