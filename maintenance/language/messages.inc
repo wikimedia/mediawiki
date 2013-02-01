@@ -71,6 +71,7 @@ $wgMessageStructure = array(
 		'tog-noconvertlink',
 		'tog-norollbackdiff',
 		'tog-useeditwarning',
+		'tog-prefershttps'
 	),
 	'underline' => array(
 		'underline-always',
@@ -1089,6 +1090,7 @@ $wgMessageStructure = array(
 		'prefs-help-variant',
 		'yournick',
 		'prefs-help-signature',
+		'prefs-help-prefershttps',
 		'badsig',
 		'badsiglength',
 		'yourgender',

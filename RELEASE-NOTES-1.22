@@ -26,6 +26,10 @@ production.
 * $wgHandheldStyle was removed.
 * $wgJsMimeType is no longer used by core. Most usage has been removed since
   HTML output is now exclusively HTML5.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin
+  is enabled has been removed. Instead, whether the user stays in HTTPS will
+  be determined based on 1) $wgSecureGroups (see corresponding note in New features),
+  2) the user's preferences, and 3) whether they came from HTTPS or not.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -84,6 +88,8 @@ production.
   MediaWiki will try outputting markup acording to XHTML5 rules.
 * New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
   HTTP caches when a page is changed.
+* $wgSecureGroups was added. Users that are in user groups in this option will be
+  required to use HTTPS when logged in if $wgSecureLogin is also true.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

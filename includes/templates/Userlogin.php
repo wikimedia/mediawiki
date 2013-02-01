@@ -128,28 +128,7 @@ class UserloginTemplate extends QuickTemplate {
 				?>
 			</td>
 		</tr>
-<?php
-		}
-
-		if ( $this->data['cansecurelogin'] ) {
-?>
-		<tr>
-			<td></td>
-			<td class="mw-input">
-			<?php
-			echo Xml::checkLabel(
-				wfMessage( 'securelogin-stick-https' )->text(),
-				'wpStickHTTPS',
-				'wpStickHTTPS',
-				$this->data['stickHTTPS'],
-				array( 'tabindex' => '9' )
-			);
-?>
-			</td>
-		</tr>
-<?php
-		}
-?>
+<?php } ?>
 		<tr>
 			<td></td>
 			<td class="mw-submit">
@@ -188,6 +167,10 @@ class UserloginTemplate extends QuickTemplate {
 
 	if ( $this->haveData( 'token' ) ) {
 		?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php
+	}
+
+	if ( $this->data['cansecurelogin'] ) {
+		?><input type="hidden" name="wpStickHTTPS" value="<?php $this->text( 'stickHTTPS' ); ?>" /><?php
 	}
 ?>
 </form>
