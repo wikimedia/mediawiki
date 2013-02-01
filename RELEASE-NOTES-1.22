@@ -41,6 +41,10 @@ production.
 * (bug 40866) wgOldChangeTagsIndex removed.
 * $wgNoFollowDomainExceptions now only matches entire domains. For example,
   an entry for 'bar.com' will still match 'foo.bar.com' but not 'foobar.com'.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin
+  is enabled has been removed. Instead, whether the user stays in HTTPS will
+  be determined based on 1) $wgSecureGroups (see corresponding note in New features),
+  2) the user's preferences, and 3) whether they came from HTTPS or not.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -167,6 +171,8 @@ production.
 * (bug 30713) New mw.hook "wikipage.content".
 * (bug 40430) jquery.placeholder gets a new parameter to set the attribute value
   to be used.
+* $wgSecureGroups was added. Users that are in user groups in this option will be
+  required to use HTTPS when logged in if $wgSecureLogin is also true.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
