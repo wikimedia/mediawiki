@@ -128,6 +128,10 @@ production.
   is now non-significant and not preserved in the HTML output.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
+* (bug 25592) LogEventsList::showLogExtract() will now ignore various
+  Pager-related WebRequest parameters by default, as this is overwhelmingly
+  likely to be what was intended by users of the method. If any caller wishes
+  to use these parameters, the new param 'useRequestParams' may be set to true.
 
 === Bug fixes in 1.21 ===
 * (bug 40617) Installer can now customize the logo in LocalSettings.php
