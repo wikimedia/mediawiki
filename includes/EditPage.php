@@ -2607,6 +2607,14 @@ HTML
 
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
+			// adding category links above edit box (bug 2679), but only for Vector skin
+			$context = $this->mArticle->getContext();
+			$skin = $context->getSkin();
+			$skinName = $skin->getSkinName();
+			if ( $skinName == 'vector' ) {
+				$categories = $skin->getCategories();
+				$wgOut->addHTML( $categories );
+			}
 		}
 
 		$wgOut->addHTML( '</div>' );

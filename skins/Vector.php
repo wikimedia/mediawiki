@@ -209,11 +209,19 @@ class VectorTemplate extends BaseTemplate {
 				</div>
 				<!-- /printfooter -->
 				<?php endif; ?>
-				<?php if ( $this->data['catlinks'] ): ?>
-				<!-- catlinks -->
-				<?php $this->html( 'catlinks' ); ?>
-				<!-- /catlinks -->
-				<?php endif; ?>
+				<?php
+				// hiding category links from below edit box (bug 2679)
+				$context = RequestContext::getMain();
+				$request = $context->getRequest();
+				$isPreview = $request->getCheck( 'wpPreview' );
+				if (!isPreview) {
+				?>
+					<?php if ( $this->data['catlinks'] ): ?>
+					<!-- catlinks -->
+					<?php $this->html( 'catlinks' ); ?>
+					<!-- /catlinks -->
+					<?php endif; ?>
+				<?php } ?>
 				<?php if ( $this->data['dataAfterContent'] ): ?>
 				<!-- dataAfterContent -->
 				<?php $this->html( 'dataAfterContent' ); ?>
