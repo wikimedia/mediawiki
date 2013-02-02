@@ -448,3 +448,6 @@
 [submodule "extensions/GuidedTour"]
 	path = extensions/GuidedTour
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GuidedTour
+[submodule "extensions/SearchExtraNS"]
+	path = extensions/SearchExtraNS
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SearchExtraNS.git
