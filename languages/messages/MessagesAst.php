@@ -2104,7 +2104,7 @@ La direición de corréu electrónicu qu\'especificasti nes [[Special:Preference
 'usermessage-editor' => 'Mensaxería del sistema',
 
 # Watchlist
-'watchlist' => 'La mio llista de vixilancia',
+'watchlist' => 'Llista de vixilancia',
 'mywatchlist' => 'Llista de vixilancia',
 'watchlistfor2' => 'Pa $1 $2',
 'nowatchlist' => 'La to llista de vixilancia ta vacia.',

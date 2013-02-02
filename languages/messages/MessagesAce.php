@@ -488,14 +488,19 @@ nibak fungsi "$2"
 Basis data geupeuhase salah "$3: $4".',
 'laggedslavemode' => 'Peuneugah: On nyoe kadang hana neuubah baro',
 'readonly' => 'Basis data geurok',
+'enterlockreason' => 'Pasoe daleh neurok ngon pajan jeuet geupeuhah',
 'missing-article' => 'Basis data h’an jeuët jiteumèë naseukah nibak ôn nyang sipatôtjih na, nakeuh "$1" $2.
 
 Nyoë biasajih sabab hubông useuëng u geunantoë away nyang ka teusampôh.
 
 Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam software. Neutulông peugah bhah nyoë bak salah sidroë [[Special:ListUsers/sysop|Nyang urôh]], ngön neupeugah alamat URL nyang neusaweuë.',
 'missingarticle-rev' => '(revisi#: $1)',
+'missingarticle-diff' => '(Bida: $1, $2)',
+'readonly_lag' => 'Basis data ka geurok otomatis silawet basis data sekunder teungoh geupeusinkron ngon basis data utama',
 'internalerror' => 'Salah bak dalam',
 'internalerror_info' => 'Salah bak dalam: $1',
+'fileappenderrorread' => 'H\'an jitem beuet "$1" \'oh geutamah',
+'fileappenderror' => 'H\'an jeuet jipasoe "$1" u "$2"',
 'badtitle' => 'Nan hana sah',
 'badtitletext' => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
 'viewsource' => 'Eu nè',

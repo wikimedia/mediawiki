@@ -1811,13 +1811,13 @@ Por o fâre, vos la devréd changiér a la man.
 * Nom du fichiér a tèlèchargiér : <strong>[[:$1]]</strong>
 * Nom du fichiér ègzistent : <strong>[[:$2]]</strong>
 Se vos plét, chouèsésséd-nen un ôtro.',
-'fileexists-thumbnail-yes' => "Lo fichiér semble étre una émâge en talye rèduita ''(figura)''.
+'fileexists-thumbnail-yes' => "Lo fichiér semble étre n’émâge en talye rèduita ''(figura)''.
 [[$1|thumb]]
-Volyéd controlar lo fichiér <strong>[[:$1]]</strong>.
-Se lo fichiér controlâ est la méma émâge avouéc la talye originèla, y at pas fôta de tèlèchargiér una vèrsion rèduita.",
+Se vos plét, controlâd lo fichiér <strong>[[:$1]]</strong>.
+Se lo fichiér controlâ est la mém’émâge avouéc la talye originâla, y at pas fôta de tèlèchargiér na figura.",
 'file-thumbnail-no' => "Lo nom du fichiér comence per <strong>$1</strong>.
-O est possiblo que seye una vèrsion rèduita ''(figura)''.
-Se vos avéd lo fichiér en rèsolucion ples hôta, tèlèchargiéd-lo, ôtrament volyéd changiér son nom.",
+Semble étre n’émâge en talye rèduita ''(figura)''.
+Se vos avéd cel’émâge en plêna rèsolucion, tèlèchargiéd-la, ôtrament changiéd lo sin nom, se vos plét.",
 'fileexists-forbidden' => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècllafâ.
 Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom.
 [[File:$1|thumb|center|$1]]',

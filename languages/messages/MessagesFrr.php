@@ -456,7 +456,7 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'gotaccount' => "Dü hääst ål en brükerkonto? '''$1'''.",
 'gotaccountlink' => 'Önjmälde',
 'userlogin-resetlink' => 'Heest dü din login dooten ferjiden?',
-'createaccountmail' => 'ouer E-mail',
+'createaccountmail' => 'E-mail tu det adres oner fersjüür mä en tufelag paaswurd',
 'createaccountreason' => 'Grün:',
 'badretype' => 'Da biise pååsuurde stime ai oueriinj.',
 'userexists' => 'Dideer brükernoome as ål ferjääwen.
@@ -752,7 +752,7 @@ Wan dü heer wat iinskrafst, do beest dü diarmä iinferstenen an seekerst tu, d
 '''Auerdreeg nään frääm teksten an bilen saner ferloof!'''",
 'longpageerror' => "'''Error: Dan tekst as {{PLURAL:$1|ian kilobyte|$1 kilobytes}} lung, hi mut oober ei linger wees üs {{PLURAL:$2|ian kilobyte|$2 kilobytes}}.'''Hi koon ei ufspiikerd wurd.",
 'readonlywarning' => "'''PÅÅS AW: Jü dootenbånk wörd for unerhult spärd, sü dåt din änringe tutids ai spiikerd wårde koone.
-Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tu n lääsern tidpunkt, da änringe tu ouerdreegen.'''.
+Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tun lääsern tidpunkt, da änringe tu ouerdreegen.'''.
 
 Grün for jü späre: $1",
 'protectedpagewarning' => "'''Paase üüb: Detdiar sidj as speret wurden. Bluas administratooren kön det bewerke.'''
@@ -1229,14 +1229,14 @@ Do san jo ual iinstelangen wech.',
 'group-sysop' => 'Administratooren',
 'group-bureaucrat' => 'Bürokraaten',
 'group-suppress' => 'Oversighter',
-'group-all' => '(aaltumaal)',
+'group-all' => '(Aaltumaal)',
 
-'group-user-member' => '{{GENDER:$1|brüker}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|registriaret brüker}}',
-'group-bot-member' => '{{GENDER:$1|bot}}',
-'group-sysop-member' => '{{GENDER:$1|administraator}}',
-'group-bureaucrat-member' => '{{GENDER:$1|bürokraat}}',
-'group-suppress-member' => '{{GENDER:$1|oversighter}}',
+'group-user-member' => '{{GENDER:$1|Brüker}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Registriaret brüker}}',
+'group-bot-member' => '{{GENDER:$1|Bot}}',
+'group-sysop-member' => '{{GENDER:$1|Administraator}}',
+'group-bureaucrat-member' => '{{GENDER:$1|Bürokraat}}',
+'group-suppress-member' => '{{GENDER:$1|Oversighter}}',
 
 'grouppage-user' => '{{ns:project}}:Brükern',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registriaret brükern',
@@ -1452,7 +1452,7 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 'emailuser' => 'E-mail tu dideere brüker',
 
 # Watchlist
-'watchlist' => 'Eefterkiikliste',
+'watchlist' => "Uun't uug behual",
 'mywatchlist' => "Uun't uug behual",
 'watchlistfor2' => 'Foon $1 $2',
 'addedwatchtext' => "Det sidj „[[:$1]]“ wel dü [[Special:Watchlist|uun't uug behual]].

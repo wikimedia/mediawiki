@@ -609,7 +609,7 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 'emailmessage' => 'Ilmottamin:',
 
 # Watchlist
-'watchlist' => 'Minu kattsõspiiska',
+'watchlist' => 'Kattsõspiiska',
 'mywatchlist' => 'Minu kattsõspiiska',
 'watchlistfor2' => '$2 - $1 vart',
 'addedwatchtext' => "Cülci \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].

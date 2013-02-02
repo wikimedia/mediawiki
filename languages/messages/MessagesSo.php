@@ -829,6 +829,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 # User rights
 'saveusergroups' => 'Kaydi kooxaha isticmaalayaasha',
 'userrights-groupsmember' => 'Ka mid ah:',
+'userrights-reason' => 'Sababta:',
 
 # Groups
 'group' => 'Koox:',

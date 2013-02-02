@@ -2417,7 +2417,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-cascadeon' => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.',
 'protect-default' => 'Salli kaikki käyttäjät',
 'protect-fallback' => 'Salli vain käyttäjät, joilla on oikeus $1',
-'protect-level-autoconfirmed' => 'Estä uudet ja kirjautumattomat käyttäjät',
+'protect-level-autoconfirmed' => 'Vain hyväksytyt käyttäjät',
 'protect-level-sysop' => 'Salli vain ylläpitäjät',
 'protect-summary-cascade' => 'laajennettu',
 'protect-expiring' => 'vanhentuu $1 (UTC)',
@@ -3911,6 +3911,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'logentry-newusers-create2' => '$1 loi käyttäjätunnuksen $3',
 'logentry-newusers-autocreate' => 'Käyttäjätunnus $1 luotiin automaattisesti',
 'logentry-rights-rights' => '$1 muutti käyttäjän $3 oikeudet ryhmistä $4 ryhmiin $5',
+'logentry-rights-rights-legacy' => '$1 muutti käyttäjän $3 jäsenyyttä ryhmässä',
 'logentry-rights-autopromote' => '$1 ylennettiin automaattisesti ryhmistä $4 ryhmiin $5',
 'rightsnone' => '(ei oikeuksia)',
 

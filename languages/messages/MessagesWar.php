@@ -112,7 +112,7 @@ $messages = array(
 
 'underline-always' => 'Pirme',
 'underline-never' => 'Diri',
-'underline-default' => 'An aada-nga-daan nga panngaykayan',
+'underline-default' => 'An panmutos o pandalikyat nga aada-nga-daan',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Estilo hin font ha lugar hin pagliwat',
@@ -199,7 +199,8 @@ $messages = array(
 'newwindow' => '(nabuklad hin bag-o nga tamboan o bintana)',
 'cancel' => 'Pasagdi',
 'moredotdotdot' => 'Damo pa nga…',
-'mypage' => 'Akon pakli',
+'morenotlisted' => 'Damo pa nga waray gintalaan...',
+'mypage' => 'Pakli',
 'mytalk' => 'Mga akon paghingay',
 'anontalk' => 'Paghingay para hini nga IP',
 'navigation' => 'Paglayag',
@@ -440,7 +441,7 @@ Kweri: $2',
 'actionthrottled' => 'Ginpahinay an ginbuhat',
 'actionthrottledtext' => 'Komo uska pangontra ha spam, ikaw in ginlilimitaran paghimo hini nga pagbuhat hin sobra kadamo ha sulod hin gutiay nga oras, ngan ikaw in naglapos hini nga katubtuban.
 Alayon pagutro kahuman hin pipira ka mga minuto.',
-'protectedpagetext' => 'Ini nga pakli in pinasaliporan para mapugngan an mga pagliwat.',
+'protectedpagetext' => 'Ginpanalipdan ini nga pakli basi mapugngan an pagliwat o iba pa nga mga maburuhat.',
 'viewsourcetext' => 'Puydi ka kinmita ngan kinmopya han gintikangan han pakli:',
 'viewyourtext' => "Puydi nim makit-an ngan makopya an tinikangan han '''imo mga pagliwat''' ha dinhi nga pakli:",
 'protectedinterface' => 'Ini nga pakli in nahatag hin teksto hit interface para han software han hin nga wiki, ngan in pinasasaliporan para makalikay hit pag-abuso.
@@ -464,6 +465,7 @@ An magdudurmara nga nagtrangka hini in naghatag hini nga eksplenasyon: "$3".',
 'virus-unknownscanner' => 'diri-nasasabtan nga antivirus:',
 
 # Login and logout pages
+'welcomeuser' => '¡Uswag ngan Dayon, $1!',
 'yourname' => 'Agnay hit gumaramit:',
 'yourpassword' => 'Tigaman-pagsulod:',
 'yourpasswordagain' => 'Utroha pagbutang an tigaman-han-pagsakob:',
@@ -628,7 +630,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'note' => "'''Pahibaro:'''",
 'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''
 ¡Waray pa katipig an imo mga ginbag-o!",
-'continue-editing' => 'Padayon pagliwat',
+'continue-editing' => 'Pakadto han lugar hin panliwat',
 'editing' => 'Ginliliwat an $1',
 'creating' => 'Ginhihimo an $1',
 'editingsection' => 'Ginliliwat an $1 (bahin)',
