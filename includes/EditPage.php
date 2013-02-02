@@ -2607,6 +2607,11 @@ HTML
 
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
+			// adding category links above edit box (bug 2679)
+			$context = $this->mArticle->getContext();
+			$skin = $context->getSkin();
+			$categories = $skin->getCategories();
+			$wgOut->addHTML( $categories );
 		}
 
 		$wgOut->addHTML( '</div>' );
