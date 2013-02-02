@@ -2607,6 +2607,10 @@ HTML
 
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
+			$context = RequestContext::getMain();
+			$skin = $context->getSkin();
+			$categories = $skin->getCategories();
+			$wgOut->addHTML( $categories );
 		}
 
 		$wgOut->addHTML( '</div>' );
