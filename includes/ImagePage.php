@@ -369,12 +369,19 @@ class ImagePage extends Article {
 						if ( $size[0] < $width_orig && $size[1] < $height_orig
 							&& $size[0] != $width && $size[1] != $height )
 						{
-							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );
+							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
+							if ( $sizeLink ) {
+								$otherSizes[] = $sizeLink;
+							}
 						}
 					}
-					$msgsmall = wfMessage( 'show-big-image-preview' )->
-						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
-						parse();
+					$msgsmall = '';
+					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
+					if ( $sizeLinkBigImagePreview ) {
+						$msgsmall .= wfMessage( 'show-big-image-preview' )->
+							rawParams( $sizeLinkBigImagePreview )->
+							parse();
+					}
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
