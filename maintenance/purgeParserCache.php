@@ -52,21 +52,19 @@ class PurgeParserCache extends Maintenance {
 			global $wgParserCacheExpireTime;
 			$date = wfTimestamp( TS_MW, time() + $wgParserCacheExpireTime - intval( $inputAge ) );
 		} else {
-			echo "Must specify either --expiredate or --age\n";
-			exit( 1 );
+			$this->error( "Must specify either --expiredate or --age\n", 1 );
 		}
 
 		$english = Language::factory( 'en' );
-		echo "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n";
+		$this->output( "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n" );
 
 		$pc = wfGetParserCacheStorage();
 		$success = $pc->deleteObjectsExpiringBefore( $date, array( $this, 'showProgress' ) );
 		if ( !$success ) {
-			echo "\nCannot purge this kind of parser cache.\n";
-			exit( 1 );
+			$this->error( "\nCannot purge this kind of parser cache.\n", 1 );
 		}
 		$this->showProgress( 100 );
-		echo "\nDone\n";
+		$this->output( "\nDone\n" );
 	}
 
 	function showProgress( $percent ) {
@@ -77,8 +75,8 @@ class PurgeParserCache extends Maintenance {
 		$this->lastProgress = $percentString;
 
 		$stars = floor( $percent / 2 );
-		echo '[' . str_repeat( '*', $stars ), str_repeat( '.', 50 - $stars ) . '] ' .
-			"$percentString%\r";
+		$this->output( '[' . str_repeat( '*', $stars ), str_repeat( '.', 50 - $stars ) . '] ' .
+			"$percentString%\r" );
 
 	}
 }
