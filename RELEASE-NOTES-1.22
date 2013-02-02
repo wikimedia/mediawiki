@@ -31,6 +31,10 @@ production.
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 * The new hook 'APIGetPossibleErrors' to modify the list of possible errors was
   added.
+* (bug 25592) LogEventsList::showLogExtract() will now ignore various
+  Pager-related WebRequest parameters by default, as this is overwhelmingly
+  likely to be what was intended by users of the method. If any caller wishes
+  to use these parameters, the new param 'useRequestParams' may be set to true.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still

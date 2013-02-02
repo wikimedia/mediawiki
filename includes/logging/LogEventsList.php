@@ -464,6 +464,7 @@ class LogEventsList extends ContextSource {
 	 *   set to '' to unset offset
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
+	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
@@ -475,7 +476,8 @@ class LogEventsList extends ContextSource {
 			'showIfEmpty' => true,
 			'msgKey' => array( '' ),
 			'wrap' => "$1",
-			'flags' => 0
+			'flags' => 0,
+			'useRequestParams' => false,
 		);
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -487,6 +489,7 @@ class LogEventsList extends ContextSource {
 		$msgKey = $param['msgKey'];
 		$wrap = $param['wrap'];
 		$flags = $param['flags'];
+		$useRequestParams = $param['useRequestParams'];
 		if ( !is_array( $msgKey ) ) {
 			$msgKey = array( $msgKey );
 		}
@@ -500,6 +503,13 @@ class LogEventsList extends ContextSource {
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $context, null, $flags );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
+		if ( !$useRequestParams ) {
+			# Reset vars that may have been taken from the request
+			$pager->mLimit = 50;
+			$pager->mDefaultLimit = 50;
+			$pager->mOffset = "";
+			$pager->mIsBackwards = false;
+		}
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}
