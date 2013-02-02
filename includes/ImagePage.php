@@ -298,18 +298,7 @@ class ImagePage extends Article {
 		$dirmark = $lang->getDirMarkEntity();
 		$request = $this->getContext()->getRequest();
 
-		$sizeSel = intval( $user->getOption( 'imagesize' ) );
-		if ( !isset( $wgImageLimits[$sizeSel] ) ) {
-			$sizeSel = User::getDefaultOption( 'imagesize' );
-
-			// The user offset might still be incorrect, specially if
-			// $wgImageLimits got changed (see bug #8858).
-			if ( !isset( $wgImageLimits[$sizeSel] ) ) {
-				// Default to the first offset in $wgImageLimits
-				$sizeSel = 0;
-			}
-		}
-		$max = $wgImageLimits[$sizeSel];
+		$max = $this->getImageLimitsFromOption( $user, 'imagesize' );
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
 
@@ -358,10 +347,7 @@ class ImagePage extends Article {
 					} else {
 						# Creating thumb links triggers thumbnail generation.
 						# Just generate the thumb for the current users prefs.
-						$thumbOption = $user->getOption( 'thumbsize' );
-						$thumbSizes = array( isset( $wgImageLimits[$thumbOption] )
-							? $wgImageLimits[$thumbOption]
-							: $wgImageLimits[User::getDefaultOption( 'thumbsize' )] );
+						$thumbSizes = array( $this->getImageLimitsFromOption( $user, 'thumbsize' ) );
 					}
 					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
@@ -910,6 +896,34 @@ EOT
 		} else {
 			return $a->page_namespace - $b->page_namespace;
 		}
+	}
+
+	/**
+	 * Returns the corrosponding $wgImageLimits entry for the selected user option
+	 *
+	 * @param $user User
+	 * @param $optionName string Name of a option to check, typically imagesize or imagesize
+	 * @return array
+	 * @since 1.21
+	 */
+	public function getImageLimitsFromOption( $user, $optionName ) {
+		global $wgImageLimits;
+
+		$option = intval( $user->getOption( $optionName ) );
+		if ( !isset( $wgImageLimits[$option] ) ) {
+			$option = User::getDefaultOption( $optionName );
+		}
+
+		// The user offset might still be incorrect, specially if
+		// $wgImageLimits got changed (see bug #8858).
+		if ( !isset( $wgImageLimits[$option] ) ) {
+			// Default to the first offset in $wgImageLimits
+			$option = 0;
+		}
+
+		return isset( $wgImageLimits[$option] )
+			? $wgImageLimits[$option]
+			: array( 800, 600 ); // if nothing is set, fallback to a hardcoded default
 	}
 }
 
