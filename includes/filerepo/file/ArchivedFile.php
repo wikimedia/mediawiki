@@ -68,7 +68,7 @@ class ArchivedFile {
 	 * @param int $id
 	 * @param string $key
 	 */
-	function __construct( $title, $id=0, $key='' ) {
+	function __construct( $title, $id = 0, $key = '' ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
@@ -95,11 +95,11 @@ class ArchivedFile {
 			$this->name = $title->getDBkey();
 		}
 
-		if ($id) {
+		if ( $id ) {
 			$this->id = $id;
 		}
 
-		if ($key) {
+		if ( $key ) {
 			$this->key = $key;
 		}
 
@@ -130,7 +130,7 @@ class ArchivedFile {
 			$conds['fa_name'] = $this->title->getDBkey();
 		}
 
-		if( !count($conds)) {
+		if( !count( $conds ) ) {
 			throw new MWException( "No specific information for retrieving archived file" );
 		}
 
@@ -197,7 +197,7 @@ class ArchivedFile {
 	 * @since 1.21
 	 */
 	public function loadFromRow( $row ) {
-		$this->id = intval($row->fa_id);
+		$this->id = intval( $row->fa_id );
 		$this->name = $row->fa_name;
 		$this->archive_name = $row->fa_archive_name;
 		$this->group = $row->fa_storage_group;

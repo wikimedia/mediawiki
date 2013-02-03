@@ -162,11 +162,11 @@ abstract class ImageHandler extends MediaHandler {
 
 		# Sanity check $width
 		if( $width <= 0) {
-			wfDebug( __METHOD__.": Invalid destination width: $width\n" );
+			wfDebug( __METHOD__ . ": Invalid destination width: $width\n" );
 			return false;
 		}
 		if ( $srcWidth <= 0 ) {
-			wfDebug( __METHOD__.": Invalid source width: $srcWidth\n" );
+			wfDebug( __METHOD__ . ": Invalid source width: $srcWidth\n" );
 			return false;
 		}
 

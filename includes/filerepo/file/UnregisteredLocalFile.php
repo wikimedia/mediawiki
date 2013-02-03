@@ -71,7 +71,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	function __construct( $title = false, $repo = false, $path = false, $mime = false ) {
 		if ( !( $title && $repo ) && !$path ) {
-			throw new MWException( __METHOD__.': not enough parameters, must specify title and repo, or a full path' );
+			throw new MWException( __METHOD__ . ': not enough parameters, must specify title and repo, or a full path' );
 		}
 		if ( $title instanceof Title ) {
 			$this->title = File::normalizeTitle( $title, 'exception' );

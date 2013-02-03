@@ -35,7 +35,7 @@ class XMPInfo {
 		if( !self::$ranHooks ) {
 			// This is for if someone makes a custom metadata extension.
 			// For example, a medical wiki might want to decode DICOM xmp properties.
-			wfRunHooks('XMPGetInfo', Array(&self::$items));
+			wfRunHooks( 'XMPGetInfo', Array( &self::$items ) );
 			self::$ranHooks = true; // Only want to do this once.
 		}
 		return self::$items;
@@ -260,7 +260,7 @@ class XMPInfo {
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateDate',
 			),
-			'DateTimeDigitized' => array(  /* xmp:CreateDate */
+			'DateTimeDigitized' => array( /* xmp:CreateDate */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateDate',
@@ -552,12 +552,12 @@ class XMPInfo {
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_LANG,
 			),
-			'DateTime'          => array(  /* proper prop is xmp:ModifyDate */
+			'DateTime'          => array( /* proper prop is xmp:ModifyDate */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateDate',
 			),
-			'ImageDescription'  => array(  /* proper one is dc:description */
+			'ImageDescription'  => array( /* proper one is dc:description */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_LANG,
 			),
@@ -622,7 +622,7 @@ class XMPInfo {
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateInteger',
 			),
-			'Software'          => array(  /* see xmp:CreatorTool */
+			'Software'          => array( /* see xmp:CreatorTool */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 			),

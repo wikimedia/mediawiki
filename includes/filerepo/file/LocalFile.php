@@ -36,7 +36,7 @@ define( 'MW_FILE_VERSION', 9 );
  * never name a file class explictly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
  *
- * RepoGroup::singleton()->getLocalRepo()->newFile($title);
+ * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
  *
  * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
  * in most cases.
@@ -398,7 +398,7 @@ class LocalFile extends File {
 
 		// Sanity check prefix once
 		if ( substr( key( $array ), 0, $prefixLength ) !== $prefix ) {
-			throw new MWException( __METHOD__ .  ': incorrect $prefix parameter' );
+			throw new MWException( __METHOD__ . ': incorrect $prefix parameter' );
 		}
 
 		$decoded = array();
@@ -901,7 +901,7 @@ class LocalFile extends File {
 	protected function purgeThumbList( $dir, $files ) {
 		$fileListDebug = strtr(
 			var_export( $files, true ),
-			array("\n"=>'')
+			array( "\n" => '' )
 		);
 		wfDebug( __METHOD__ . ": $fileListDebug\n" );
 
@@ -1285,7 +1285,7 @@ class LocalFile extends File {
 				$log->getRcComment(),
 				false
 			);
-			if (!is_null($nullRevision)) {
+			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 
 				wfRunHooks( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );

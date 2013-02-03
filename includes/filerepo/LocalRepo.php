@@ -212,8 +212,8 @@ class LocalRepo extends FileRepo {
 		$dbr = $this->getSlaveDB();
 		$id = $dbr->selectField(
 			'page', // Table
-			'page_id',  //Field
-			array(  //Conditions
+			'page_id', //Field
+			array( //Conditions
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 			),

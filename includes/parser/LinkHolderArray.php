@@ -217,7 +217,7 @@ class LinkHolderArray {
 	 */
 	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = ''  ) {
 		wfProfileIn( __METHOD__ );
-		if ( ! is_object($nt) ) {
+		if ( !is_object( $nt ) ) {
 			# Fail gracefully
 			$retVal = "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		} else {
@@ -226,7 +226,7 @@ class LinkHolderArray {
 
 			$entry = array(
 				'title' => $nt,
-				'text' => $prefix.$text.$inside,
+				'text' => $prefix . $text . $inside,
 				'pdbk' => $nt->getPrefixedDBkey(),
 			);
 			if ( $query !== array() ) {
@@ -281,7 +281,7 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 
-		wfProfileIn( __METHOD__.'-check' );
+		wfProfileIn( __METHOD__ . '-check' );
 		$dbr = wfGetDB( DB_SLAVE );
 		$threshold = $this->parent->getOptions()->getStubThreshold();
 
@@ -355,19 +355,19 @@ class LinkHolderArray {
 			}
 			unset( $res );
 		}
-		if ( count($linkcolour_ids) ) {
+		if ( count( $linkcolour_ids ) ) {
 			//pass an array of page_ids to an extension
 			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 		}
-		wfProfileOut( __METHOD__.'-check' );
+		wfProfileOut( __METHOD__ . '-check' );
 
 		# Do a second query for different language variants of links and categories
-		if($wgContLang->hasVariants()) {
+		if( $wgContLang->hasVariants() ) {
 			$this->doVariants( $colours );
 		}
 
 		# Construct search and replace arrays
-		wfProfileIn( __METHOD__.'-construct' );
+		wfProfileIn( __METHOD__ . '-construct' );
 		$replacePairs = array();
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $index => $entry ) {
@@ -399,16 +399,16 @@ class LinkHolderArray {
 			}
 		}
 		$replacer = new HashtableReplacer( $replacePairs, 1 );
-		wfProfileOut( __METHOD__.'-construct' );
+		wfProfileOut( __METHOD__ . '-construct' );
 
 		# Do the thing
-		wfProfileIn( __METHOD__.'-replace' );
+		wfProfileIn( __METHOD__ . '-replace' );
 		$text = preg_replace_callback(
 			'/(<!--LINK .*?-->)/',
 			$replacer->cb(),
 			$text);
 
-		wfProfileOut( __METHOD__.'-replace' );
+		wfProfileOut( __METHOD__ . '-replace' );
 		wfProfileOut( __METHOD__ );
 	}
 

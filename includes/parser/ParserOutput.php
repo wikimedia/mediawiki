@@ -83,13 +83,13 @@ class ParserOutput extends CacheTime {
 	function replaceEditSectionLinksCallback( $m ) {
 		global $wgOut, $wgLang;
 		$args = array(
-			htmlspecialchars_decode($m[1]),
-			htmlspecialchars_decode($m[2]),
-			isset($m[4]) ? $m[3] : null,
+			htmlspecialchars_decode( $m[1] ),
+			htmlspecialchars_decode( $m[2] ),
+			isset( $m[4] ) ? $m[3] : null,
 		);
 		$args[0] = Title::newFromText( $args[0] );
-		if ( !is_object($args[0]) ) {
-			throw new MWException("Bad parser output text.");
+		if ( !is_object( $args[0] ) ) {
+			throw new MWException( "Bad parser output text." );
 		}
 		$args[] = $wgLang->getCode();
 		$skin = $wgOut->getSkin();
@@ -261,7 +261,7 @@ class ParserOutput extends CacheTime {
 		if( $prefix == '' ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
-		if (!isset($this->mInterwikiLinks[$prefix])) {
+		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
 			$this->mInterwikiLinks[$prefix] = array();
 		}
 		$this->mInterwikiLinks[$prefix][$title->getDBkey()] = 1;

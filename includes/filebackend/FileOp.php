@@ -167,7 +167,7 @@ abstract class FileOp {
 	 * @return Array
 	 */
 	final public function applyDependencies( array $deps ) {
-		$deps['read']  += array_fill_keys( $this->storagePathsRead(), 1 );
+		$deps['read'] += array_fill_keys( $this->storagePathsRead(), 1 );
 		$deps['write'] += array_fill_keys( $this->storagePathsChanged(), 1 );
 		return $deps;
 	}

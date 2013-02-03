@@ -95,8 +95,8 @@ class XMPValidate {
 			return;
 		}
 		if ( !preg_match( '/^[-+]?\d*(?:\.?\d*)$/D', $val )
-			|| !is_numeric($val)
-		 ) {
+			|| !is_numeric( $val )
+		) {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected rating but got $val" );
 			$val = null;
 			return;
@@ -247,8 +247,8 @@ class XMPValidate {
 		$res = array();
 		if ( !preg_match(
 			/* ahh! scary regex... */
-			'/^([0-3]\d{3})(?:-([01]\d)(?:-([0-3]\d)(?:T([0-2]\d):([0-6]\d)(?::([0-6]\d)(?:\.\d+)?)?([-+]\d{2}:\d{2}|Z)?)?)?)?$/D'
-			, $val, $res)
+			'/^([0-3]\d{3})(?:-([01]\d)(?:-([0-3]\d)(?:T([0-2]\d):([0-6]\d)(?::([0-6]\d)(?:\.\d+)?)?([-+]\d{2}:\d{2}|Z)?)?)?)?$/D',
+			$val, $res )
 		) {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected date but got $val" );
 			$val = null;

@@ -43,9 +43,9 @@ class DjVuImage {
 		$this->mFilename = $filename;
 	}
 
-        /**
-         * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
-         */
+	/**
+	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+	 */
 	const DJVUTXT_MEMORY_LIMIT = 300000;
 
 	/**
@@ -260,7 +260,7 @@ class DjVuImage {
 		if ( isset( $wgDjvuTxt ) ) {
 			wfProfileIn( 'djvutxt' );
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
-			wfDebug( __METHOD__.": $cmd\n" );
+			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
 			wfProfileOut( 'djvutxt' );
