@@ -64,15 +64,15 @@ class LinkSearchPage extends QueryPage {
 
 		$target2 = $target;
 		$protocol = '';
-		$pr_sl = strpos($target2, '//' );
-		$pr_cl = strpos($target2, ':' );
+		$pr_sl = strpos( $target2, '//' );
+		$pr_cl = strpos( $target2, ':' );
 		if ( $pr_sl ) {
 			// For protocols with '//'
-			$protocol = substr( $target2, 0 , $pr_sl+2 );
-			$target2 = substr( $target2, $pr_sl+2 );
+			$protocol = substr( $target2, 0, $pr_sl + 2 );
+			$target2 = substr( $target2, $pr_sl + 2 );
 		} elseif ( !$pr_sl && $pr_cl ) {
 			// For protocols without '//' like 'mailto:'
-			$protocol = substr( $target2, 0 , $pr_cl+1 );
+			$protocol = substr( $target2, 0, $pr_cl + 1 );
 			$target2 = substr( $target2, $pr_cl+1 );
 		} elseif ( $protocol == '' && $target2 != '' ) {
 			// default
@@ -138,10 +138,10 @@ class LinkSearchPage extends QueryPage {
 	 */
 	static function mungeQuery( $query, $prot ) {
 		$field = 'el_index';
-		$rv = LinkFilter::makeLikeArray( $query , $prot );
+		$rv = LinkFilter::makeLikeArray( $query, $prot );
 		if ( $rv === false ) {
 			// LinkFilter doesn't handle wildcard in IP, so we'll have to munge here.
-			if (preg_match('/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/', $query)) {
+			if ( preg_match( '/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/', $query ) ) {
 				$dbr = wfGetDB( DB_SLAVE );
 				$rv = array( $prot . rtrim( $query, " \t*" ), $dbr->anyString() );
 				$field = 'el_to';
@@ -201,7 +201,7 @@ class LinkSearchPage extends QueryPage {
 	 * Override to check query validity.
 	 */
 	function doQuery( $offset = false, $limit = false ) {
-		list( $this->mMungedQuery,  ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
+		list( $this->mMungedQuery, ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
 		if( $this->mMungedQuery === false ) {
 			$this->getOutput()->addWikiMsg( 'linksearch-error' );
 		} else {

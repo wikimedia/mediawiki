@@ -59,20 +59,20 @@ class DisambiguationsPage extends QueryPage {
 			if( $dp->getNamespace() != NS_TEMPLATE ) {
 				# @todo FIXME: We assume the disambiguation message is a template but
 				# the page can potentially be from another namespace :/
-				wfDebug("Mediawiki:disambiguationspage message does not refer to a template!\n");
+				wfDebug( "Mediawiki:disambiguationspage message does not refer to a template!\n" );
 			}
 			$linkBatch->addObj( $dp );
 		} else {
 				# Get all the templates linked from the Mediawiki:Disambiguationspage
 				$disPageObj = Title::makeTitleSafe( NS_MEDIAWIKI, 'disambiguationspage' );
 				$res = $dbr->select(
-					array('pagelinks', 'page'),
+					array( 'pagelinks', 'page' ),
 					'pl_title',
-					array('page_id = pl_from',
+					array( 'page_id = pl_from',
 						'pl_namespace' => NS_TEMPLATE,
 						'page_namespace' => $disPageObj->getNamespace(),
-						'page_title' => $disPageObj->getDBkey()),
-					__METHOD__ );
+						'page_title' => $disPageObj->getDBkey()
+					), __METHOD__ );
 
 				foreach ( $res as $row ) {
 					$linkBatch->addObj( Title::makeTitle( NS_TEMPLATE, $row->pl_title ));

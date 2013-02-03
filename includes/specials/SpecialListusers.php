@@ -212,7 +212,7 @@ class UsersPager extends AlphabeticPager {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
 		# Form tag
-		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
+		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
 			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
 			Html::hidden( 'title', $self );
 
@@ -222,7 +222,7 @@ class UsersPager extends AlphabeticPager {
 
 		# Group drop-down list
 		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
-			Xml::openElement('select',  array( 'name' => 'group', 'id' => 'group' ) ) .
+			Xml::openElement( 'select', array( 'name' => 'group', 'id' => 'group' ) ) .
 			Xml::option( $this->msg( 'group-all' )->text(), '' );
 		foreach( $this->getAllGroups() as $group => $groupText )
 			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );

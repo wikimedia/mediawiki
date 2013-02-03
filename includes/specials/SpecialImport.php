@@ -353,7 +353,7 @@ class ImportReporter extends ContextSource {
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
 
-	function __construct( $importer, $upload, $interwiki , $reason=false ) {
+	function __construct( $importer, $upload, $interwiki, $reason = false ) {
 		$this->mOriginalPageOutCallback =
 				$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mOriginalLogCallback =

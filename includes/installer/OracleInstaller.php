@@ -119,7 +119,7 @@ class OracleInstaller extends DatabaseInstaller {
 					return $status;
 				}
 				if ( !$this->getVar( '_CreateDBAccount' ) ) {
-					$status->fatal('config-db-sys-create-oracle');
+					$status->fatal( 'config-db-sys-create-oracle' );
 				}
 			} else {
 				return $status;
@@ -241,7 +241,7 @@ class OracleInstaller extends DatabaseInstaller {
 			$status->fatal( 'config-db-sys-user-exists-oracle', $this->getVar( 'wgDBuser' ) );
 		}
 
-		if ($status->isOK()) {
+		if ( $status->isOK() ) {
 			// user created or already existing, switching back to a normal connection
 			// as the new user has all needed privileges to setup the rest of the schema
 			// i will be using that user as _InstallUser from this point on

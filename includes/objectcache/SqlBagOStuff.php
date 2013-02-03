@@ -127,7 +127,7 @@ class SqlBagOStuff extends BagOStuff {
 				$info = $this->serverInfos[$serverIndex];
 				$type = isset( $info['type'] ) ? $info['type'] : 'mysql';
 				$host = isset( $info['host'] ) ? $info['host'] : '[unknown]';
-				wfDebug( __CLASS__.": connecting to $host\n" );
+				wfDebug( __CLASS__ . ": connecting to $host\n" );
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
@@ -659,12 +659,12 @@ class SqlBagOStuff extends BagOStuff {
 				unset( $this->connFailureTimes[$serverIndex] );
 				unset( $this->connFailureErrors[$serverIndex] );
 			} else {
-				wfDebug( __METHOD__.": Server #$serverIndex already down\n" );
+				wfDebug( __METHOD__ . ": Server #$serverIndex already down\n" );
 				return;
 			}
 		}
 		$now = time();
-		wfDebug( __METHOD__.": Server #$serverIndex down until " . ( $now + 60 ) . "\n" );
+		wfDebug( __METHOD__ . ": Server #$serverIndex down until " . ( $now + 60 ) . "\n" );
 		$this->connFailureTimes[$serverIndex] = $now;
 		$this->connFailureErrors[$serverIndex] = $exception;
 	}

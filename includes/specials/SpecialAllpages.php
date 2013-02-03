@@ -180,7 +180,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$where = array( 'page_namespace' => $namespace );
 
 		if ( $hideredirects ) {
-			$where[ 'page_is_redirect' ] = 0;
+			$where['page_is_redirect'] = 0;
 		}
 
 		$from = Title::makeTitleSafe( $namespace, $from );
@@ -250,7 +250,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		// If there are only two or less sections, don't even display them.
 		// Instead, display the first section directly.
 		if( count( $lines ) <= 2 ) {
-			if( !empty($lines) ) {
+			if( !empty( $lines ) ) {
 				$this->showChunk( $namespace, $from, $to, $hideredirects );
 			} else {
 				$output->addHTML( $this->namespaceForm( $namespace, $from, $to, $hideredirects ) );
@@ -312,7 +312,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$queryhideredirects = array();
 		if ( $hideredirects ) {
-			$queryhideredirects[ 'hideredirects' ] = 1;
+			$queryhideredirects['hideredirects'] = 1;
 		}
 
 		$special = $this->getTitle();
@@ -357,7 +357,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			);
 
 			if ( $hideredirects ) {
-				$conds[ 'page_is_redirect' ] = 0;
+				$conds['page_is_redirect'] = 0;
 			}
 
 			if( $toKey !== "" ) {

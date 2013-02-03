@@ -351,8 +351,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 					MWNamespace::getAssociated( $opts['namespace'] )
 				);
 				$condition = "(rc_namespace $operator $selectedNS "
-						   . $boolean
-						   . " rc_namespace $operator $associatedNS)";
+					. $boolean
+					. " rc_namespace $operator $associatedNS)";
 			}
 
 			$conds[] = $condition;
@@ -545,7 +545,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 	/**
 	 * Get the query string to append to feed link URLs.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getFeedQuery() {

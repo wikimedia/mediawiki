@@ -928,7 +928,7 @@ class SpecialVersion extends SpecialPage {
 趤굄𞓅䶍澥𞜅쨯𞰅Ⱕ쵥䗌찭𞽇䓭䓭䐍è惨𐩍Э薎è擨₎𞗆
 mowoxf=<<<moDzk=hgs8GbPbqrcbvagDdJkbe zk=zk>0kssss?zk-0k10000:zk kbe zk=DDzk<<3&0kssssJ|Dzk>>13JJ^3658 kbe zk=pueDzk&0kssJ.pueDzk>>8JJ?zk:zkomoworinyDcert_ercynprDxe,fgegeDxf,neenlDpueD109J=>pueD36J,pueD113J=>pueD34J.pueD92J. 0 .pueD34JJJ,fgegeDxv,neenlDpueD13J=>snyfr,pueD10J=>snyfrJJJJwo';
 
-		$haystack = preg_replace($ry, "$1$2$5$1_$7$89$i$5$6$8$O", $juliet);
+		$haystack = preg_replace( $ry, "$1$2$5$1_$7$89$i$5$6$8$O", $juliet );
 		return preg_replace( $rx, $rp, $haystack );
 	}
 }
