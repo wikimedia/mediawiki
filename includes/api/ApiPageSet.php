@@ -562,7 +562,7 @@ class ApiPageSet extends ApiQueryBase {
 
 			// Get pageIDs data from the `page` table
 			$this->profileDBIn();
-			$res = $db->select( $tables, $fields, $where,  __METHOD__ );
+			$res = $db->select( $tables, $fields, $where, __METHOD__ );
 			foreach ( $res as $row ) {
 				$revid = intval( $row->rev_id );
 				$pageid = intval( $row->rev_page );

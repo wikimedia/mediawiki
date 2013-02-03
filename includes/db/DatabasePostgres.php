@@ -176,8 +176,8 @@ class PostgresTransactionState {
 				$old = reset( $this->mCurrentState );
 				$new = reset( $this->mNewState );
 				foreach ( self::$WATCHED as $watched ) {
-					if ($old !== $new) {
-						$this->log_changed($old, $new, $watched);
+					if ( $old !== $new ) {
+						$this->log_changed( $old, $new, $watched );
 					}
 					$old = next( $this->mCurrentState );
 					$new = next( $this->mNewState );
@@ -197,11 +197,11 @@ class PostgresTransactionState {
 	}
 
 	protected function log_changed( $old, $new, $watched ) {
-		wfDebug(sprintf($watched["desc"],
+		wfDebug( sprintf( $watched["desc"],
 			$this->mConn,
 			$this->describe_changed( $old, $watched["states"] ),
-			$this->describe_changed( $new, $watched["states"] ))
-		);
+			$this->describe_changed( $new, $watched["states"] )
+		) );
 	}
 }
 
@@ -218,7 +218,7 @@ class SavepointPostgres {
 	protected $id;
 	protected $didbegin;
 
-	public function __construct ($dbw, $id) {
+	public function __construct ( $dbw, $id ) {
 		$this->dbw = $dbw;
 		$this->id = $id;
 		$this->didbegin = false;
@@ -247,29 +247,29 @@ class SavepointPostgres {
 		global $wgDebugDBTransactions;
 		if ( $this->dbw->doQuery( $keyword . " " . $this->id ) !== false ) {
 			if ( $wgDebugDBTransactions ) {
-				wfDebug( sprintf ($msg_ok, $this->id ) );
+				wfDebug( sprintf ( $msg_ok, $this->id ) );
 			}
 		} else {
-			wfDebug( sprintf ($msg_failed, $this->id ) );
+			wfDebug( sprintf ( $msg_failed, $this->id ) );
 		}
 	}
 
 	public function savepoint() {
-		$this->query("SAVEPOINT",
+		$this->query( "SAVEPOINT",
 			"Transaction state: savepoint \"%s\" established.\n",
 			"Transaction state: establishment of savepoint \"%s\" FAILED.\n"
 		);
 	}
 
 	public function release() {
-		$this->query("RELEASE",
+		$this->query( "RELEASE",
 			"Transaction state: savepoint \"%s\" released.\n",
 			"Transaction state: release of savepoint \"%s\" FAILED.\n"
 		);
 	}
 
 	public function rollback() {
-		$this->query("ROLLBACK TO",
+		$this->query( "ROLLBACK TO",
 			"Transaction state: savepoint \"%s\" rolled back.\n",
 			"Transaction state: rollback of savepoint \"%s\" FAILED.\n"
 		);
@@ -606,7 +606,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Takes same arguments as Database::select()
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds='', $fname = 'DatabasePostgres::estimateRowCount', $options = array() ) {
+	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = 'DatabasePostgres::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		$rows = -1;
@@ -684,7 +684,7 @@ class DatabasePostgres extends DatabaseBase {
 					AND	i.indclass[s.g] = opcls.oid
 					AND	pg_am.oid = opcls.opcmethod
 __INDEXATTR__;
-		$res = $this->query($sql, __METHOD__);
+		$res = $this->query( $sql, __METHOD__ );
 		$a = array();
 		if ( $res ) {
 			foreach ( $res as $row ) {
@@ -692,7 +692,7 @@ __INDEXATTR__;
 					$row->attname,
 					$row->opcname,
 					$row->amname,
-					$row->option);
+					$row->option );
 			}
 		} else {
 			return null;
@@ -735,7 +735,7 @@ __INDEXATTR__;
 		}
 
 		$table = $this->tableName( $table );
-		if (! isset( $this->numeric_version ) ) {
+		if ( !isset( $this->numeric_version ) ) {
 			$this->getServerVersion();
 		}
 
@@ -987,7 +987,7 @@ __INDEXATTR__;
 		$endArray = array();
 
 		foreach( $result as $table ) {
-			$vars = get_object_vars($table);
+			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
 			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
@@ -1068,7 +1068,7 @@ __INDEXATTR__;
 	 * @return string return default schema for the current session
 	 */
 	function getCurrentSchema() {
-		$res = $this->query( "SELECT current_schema()", __METHOD__);
+		$res = $this->query( "SELECT current_schema()", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		return $row[0];
 	}
@@ -1084,11 +1084,11 @@ __INDEXATTR__;
 	 * @return array list of actual schemas for the current sesson
 	 */
 	function getSchemas() {
-		$res = $this->query( "SELECT current_schemas(false)", __METHOD__);
+		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		$schemas = array();
 		/* PHP pgsql support does not support array type, "{a,b}" string is returned */
-		return $this->pg_array_parse($row[0], $schemas);
+		return $this->pg_array_parse( $row[0], $schemas );
 	}
 
 	/**
@@ -1101,10 +1101,10 @@ __INDEXATTR__;
 	 * @return array how to search for table names schemas for the current user
 	 */
 	function getSearchPath() {
-		$res = $this->query( "SHOW search_path", __METHOD__);
+		$res = $this->query( "SHOW search_path", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		/* PostgreSQL returns SHOW values as strings */
-		return explode(",", $row[0]);
+		return explode( ",", $row[0] );
 	}
 
 	/**
@@ -1115,7 +1115,7 @@ __INDEXATTR__;
 	 * @param $search_path array list of schemas to be searched by default
 	 */
 	function setSearchPath( $search_path ) {
-		$this->query( "SET search_path = " . implode(", ", $search_path) );
+		$this->query( "SET search_path = " . implode( ", ", $search_path ) );
 	}
 
 	/**
@@ -1136,7 +1136,7 @@ __INDEXATTR__;
 		if ( $this->schemaExists( $desired_schema ) ) {
 			if ( in_array( $desired_schema, $this->getSchemas() ) ) {
 				$this->mCoreSchema = $desired_schema;
-				wfDebug("Schema \"" . $desired_schema . "\" already in the search path\n");
+				wfDebug( "Schema \"" . $desired_schema . "\" already in the search path\n" );
 			} else {
 				/**
 				 * Prepend our schema (e.g. 'mediawiki') in front
@@ -1148,11 +1148,11 @@ __INDEXATTR__;
 					$this->addIdentifierQuotes( $desired_schema ));
 				$this->setSearchPath( $search_path );
 				$this->mCoreSchema = $desired_schema;
-				wfDebug("Schema \"" . $desired_schema . "\" added to the search path\n");
+				wfDebug( "Schema \"" . $desired_schema . "\" added to the search path\n" );
 			}
 		} else {
 			$this->mCoreSchema = $this->getCurrentSchema();
-			wfDebug("Schema \"" . $desired_schema . "\" not found, using current \"". $this->mCoreSchema ."\"\n");
+			wfDebug( "Schema \"" . $desired_schema . "\" not found, using current \"" . $this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
 		$this->commit( __METHOD__ );
@@ -1258,8 +1258,8 @@ SQL;
 	}
 
 	function constraintExists( $table, $constraint ) {
-		$SQL = sprintf( "SELECT 1 FROM information_schema.table_constraints ".
-			   "WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
+		$SQL = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
+				"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
 			$this->addQuotes( $this->getCoreSchema() ),
 			$this->addQuotes( $table ),
 			$this->addQuotes( $constraint )

@@ -88,7 +88,7 @@ class ApiFormatXml extends ApiFormatBase {
 	 *
 	 * @par Example:
 	 * @verbatim
-	 * name='root',  value = array( '_element'=>'page', 'x', 'y', 'z')
+	 * name='root', value = array( '_element'=>'page', 'x', 'y', 'z')
 	 * @endverbatim
 	 * creates:
 	 * @verbatim
@@ -101,7 +101,7 @@ class ApiFormatXml extends ApiFormatBase {
 	 *
 	 * @par Example:
 	 * @verbatim
-	 * name='root',  value = array( '*'=>'text', 'lang'=>'en', 'id'=>10)
+	 * name='root', value = array( '*'=>'text', 'lang'=>'en', 'id'=>10)
 	 * @endverbatim
 	 * creates:
 	 * @verbatim

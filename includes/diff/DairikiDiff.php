@@ -167,7 +167,7 @@ class _DiffOp_Change extends _DiffOp {
  */
 class _DiffEngine {
 
-	const MAX_XREF_LENGTH =  10000;
+	const MAX_XREF_LENGTH = 10000;
 
 	protected $xchanged, $ychanged;
 
@@ -491,8 +491,7 @@ class _DiffEngine {
 			// $nchunks = sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5);
 			// $nchunks = max(2,min(8,(int)$nchunks));
 			$nchunks = min( 7, $xlim - $xoff, $ylim - $yoff ) + 1;
-			list ( $lcs, $seps )
-			= $this->_diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
+			list ( $lcs, $seps ) = $this->_diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
 		}
 
 		if ( $lcs == 0 ) {
@@ -1365,7 +1364,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 */
 	function _block_header( $xbeg, $xlen, $ybeg, $ylen ) {
 		$r = '<tr><td colspan="2" class="diff-lineno"><!--LINE ' . $xbeg . "--></td>\n" .
-		  '<td colspan="2" class="diff-lineno"><!--LINE ' . $ybeg . "--></td></tr>\n";
+			'<td colspan="2" class="diff-lineno"><!--LINE ' . $ybeg . "--></td></tr>\n";
 		return $r;
 	}
 

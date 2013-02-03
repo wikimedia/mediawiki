@@ -114,7 +114,7 @@ class JobQueueDB extends JobQueue {
 
 		list( $dbr, $scope ) = $this->getSlaveDB();
 		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
-			array( 'job_cmd' => $this->type, "job_token !={$dbr->addQuotes('')}" ),
+			array( 'job_cmd' => $this->type, "job_token != {$dbr->addQuotes( '' )}" ),
 			__METHOD__
 		);
 		$wgMemc->set( $key, $count, self::CACHE_TTL_SHORT );
