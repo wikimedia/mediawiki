@@ -75,7 +75,7 @@ abstract class AbstractContent implements Content {
 		if ( $modelId !== $this->model_id ) {
 			throw new MWException(
 				"Bad content model: " .
-				"expected {$this->model_id}  " .
+				"expected {$this->model_id} " .
 				"but got $modelId."
 			);
 		}

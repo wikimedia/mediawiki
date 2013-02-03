@@ -441,9 +441,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			return $this->modifiedTime[$context->getHash()] = 1;
 		}
 
-		wfProfileIn( __METHOD__.'-filemtime' );
+		wfProfileIn( __METHOD__ . '-filemtime' );
 		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
-		wfProfileOut( __METHOD__.'-filemtime' );
+		wfProfileOut( __METHOD__ . '-filemtime' );
 		$this->modifiedTime[$context->getHash()] = max(
 			$filesMtime,
 			$this->getMsgBlobMtime( $context->getLanguage() ) );
@@ -571,7 +571,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( array_unique( $scripts ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
 			if ( !file_exists( $localPath ) ) {
-				throw new MWException( __METHOD__.": script file not found: \"$localPath\"" );
+				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
 			}
 			$contents = file_get_contents( $localPath );
 			if ( $wgResourceLoaderValidateStaticJS ) {
@@ -628,7 +628,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );
 		if ( !file_exists( $localPath ) ) {
-			$msg = __METHOD__.": style file not found: \"$localPath\"";
+			$msg = __METHOD__ . ": style file not found: \"$localPath\"";
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}

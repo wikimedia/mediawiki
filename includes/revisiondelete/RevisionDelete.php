@@ -424,7 +424,7 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
 		$dbw->update( 'archive',
 			array( 'ar_deleted' => $bits ),
 			array( 'ar_rev_id' => $this->row->ar_rev_id,
-				   'ar_deleted' => $this->getBits()
+				'ar_deleted' => $this->getBits()
 			),
 			__METHOD__ );
 		return (bool)$dbw->affectedRows();
@@ -899,7 +899,7 @@ class RevDel_LogItem extends RevDel_Item {
 		$action = $formatter->getActionText();
 		// Comment
 		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
-		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_COMMENT) ) {
+		if( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 

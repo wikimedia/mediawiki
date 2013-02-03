@@ -241,7 +241,7 @@ class WikitextContent extends TextContent {
 			case 'any':
 				return true;
 			case 'comma':
-				return strpos( $text,  ',' ) !== false;
+				return strpos( $text, ',' ) !== false;
 			case 'link':
 				if ( $hasLinks === null ) { # not known, find out
 					if ( !$title ) {
