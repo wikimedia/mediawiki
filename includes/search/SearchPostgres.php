@@ -66,8 +66,8 @@ class SearchPostgres extends SearchEngine {
 		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
 		$olderror = error_reporting(E_ERROR);
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
-		error_reporting($olderror);
-		if (!$resultSet) {
+		error_reporting( $olderror );
+		if ( !$resultSet ) {
 			return new SearchResultTooMany();
 		}
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
@@ -99,16 +99,16 @@ class SearchPostgres extends SearchEngine {
 		$m = array();
 		if( preg_match_all('/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
-				if (strlen($terms[1])) {
+				if ( strlen( $terms[1] ) ) {
 					$searchstring .= ' & !';
 				}
-				if (strtolower($terms[2]) === 'and') {
+				if ( strtolower( $terms[2] ) === 'and' ) {
 					$searchstring .= ' & ';
 				}
-				elseif (strtolower($terms[2]) === 'or' or $terms[2] === '|') {
+				elseif ( strtolower( $terms[2] ) === 'or' or $terms[2] === '|' ) {
 					$searchstring .= ' | ';
 				}
-				elseif (strtolower($terms[2]) === 'not') {
+				elseif ( strtolower( $terms[2] ) === 'not' ) {
 					$searchstring .= ' & !';
 				}
 				else {
@@ -133,7 +133,7 @@ class SearchPostgres extends SearchEngine {
 		$searchstring = preg_replace('/^[\'"](.*)[\'"]$/', "$1", $searchstring);
 
 		## Quote the whole thing
-		$searchstring = $this->db->addQuotes($searchstring);
+		$searchstring = $this->db->addQuotes( $searchstring );
 
 		wfDebug( "parseQuery returned: $searchstring \n" );
 
@@ -154,15 +154,15 @@ class SearchPostgres extends SearchEngine {
 
 		## We need a separate query here so gin does not complain about empty searches
 		$SQL = "SELECT to_tsquery($searchstring)";
-		$res = $this->db->query($SQL);
-		if (!$res) {
+		$res = $this->db->query( $SQL );
+		if ( !$res ) {
 			## TODO: Better output (example to catch: one 'two)
-			die ("Sorry, that was not a valid search string. Please go back and try again");
+			die( "Sorry, that was not a valid search string. Please go back and try again" );
 		}
 		$top = $res->fetchRow();
 		$top = $top[0];
 
-		if ($top === "") { ## e.g. if only stopwords are used XXX return something better
+		if ( $top === "" ) { ## e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score ".
 				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
 				"AND r.rev_text_id = c.old_id AND 1=0";
@@ -182,7 +182,7 @@ class SearchPostgres extends SearchEngine {
 		}
 
 		## Redirects
-		if (! $this->showRedirects)
+		if ( !$this->showRedirects )
 			$query .= ' AND page_is_redirect = 0';
 
 		## Namespaces - defaults to 0
@@ -226,7 +226,7 @@ class SearchPostgres extends SearchEngine {
  */
 class PostgresSearchResult extends SearchResult {
 	function __construct( $row ) {
-		parent::__construct($row);
+		parent::__construct( $row );
 		$this->score = $row->score;
 	}
 	function getScore() {

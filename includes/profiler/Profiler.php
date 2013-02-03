@@ -178,10 +178,10 @@ class Profiler {
 			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
 		}
 
-		$bit = array_pop($this->mWorkStack);
+		$bit = array_pop( $this->mWorkStack );
 
-		if (!$bit) {
-			$this->debug("Profiling error, !\$bit: $functionname\n");
+		if ( !$bit ) {
+			$this->debug( "Profiling error, !\$bit: $functionname\n" );
 		} else {
 			//if( $wgDebugProfiling ) {
 				if( $functionname == 'close' ) {
@@ -293,9 +293,9 @@ class Profiler {
 	 * @return string
 	 */
 	function getCallTreeLine( $entry ) {
-		list( $fname, $level, $start, /* $x */, $end)  = $entry;
+		list( $fname, $level, $start, /* $x */, $end ) = $entry;
 		$delta = $end - $start;
-		$space = str_repeat(' ', $level);
+		$space = str_repeat( ' ', $level );
 		# The ugly double sprintf is to work around a PHP bug,
 		# which has been fixed in recent releases.
 		return sprintf( "%10s %s %s\n", trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
@@ -386,7 +386,7 @@ class Profiler {
 		$this->mMemory = array();
 
 		# Estimate profiling overhead
-		$profileCount = count($this->mStack);
+		$profileCount = count( $this->mStack );
 		self::calculateOverhead( $profileCount );
 
 		# First, subtract the overhead!
@@ -441,8 +441,8 @@ class Profiler {
 			$this->mCollated[$fname] += $elapsed;
 			$this->mCalls[$fname]++;
 			$this->mMemory[$fname] += $memory;
-			$this->mMin[$fname] = min($this->mMin[$fname], $elapsed);
-			$this->mMax[$fname] = max($this->mMax[$fname], $elapsed);
+			$this->mMin[$fname] = min( $this->mMin[$fname], $elapsed );
+			$this->mMax[$fname] = max( $this->mMax[$fname], $elapsed );
 			$this->mOverhead[$fname] += $subcalls;
 		}
 
@@ -499,10 +499,10 @@ class Profiler {
 	 * @return Integer
 	 * @private
 	 */
-	function calltreeCount($stack, $start) {
+	function calltreeCount( $stack, $start ) {
 		$level = $stack[$start][1];
 		$count = 0;
-		for ($i = $start -1; $i >= 0 && $stack[$i][1] > $level; $i --) {
+		for ( $i = $start -1; $i >= 0 && $stack[$i][1] > $level; $i-- ) {
 			$count ++;
 		}
 		return $count;
@@ -557,9 +557,9 @@ class Profiler {
 
 				$rc = $dbw->affectedRows();
 				if ( $rc == 0 ) {
-					$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
+					$dbw->insert( 'profiling', array ( 'pf_name' => $name, 'pf_count' => $eventCount,
 						'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
-						__METHOD__, array ('IGNORE'));
+						__METHOD__, array ( 'IGNORE' ) );
 				}
 				// When we upgrade to mysql 4.1, the insert+update
 				// can be merged into just a insert with this construct added:

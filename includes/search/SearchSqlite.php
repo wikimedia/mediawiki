@@ -62,7 +62,7 @@ class SearchSqlite extends SearchEngine {
 
 		$m = array();
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $filteredText, $m, PREG_SET_ORDER ) ) {
+				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $bits ) {
 				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
 
@@ -214,7 +214,7 @@ class SearchSqlite extends SearchEngine {
 	 * @return String
 	 */
 	function queryNamespaces() {
-		if( is_null($this->namespaces) )
+		if( is_null( $this->namespaces ) )
 			return '';  # search all
 		if ( !count( $this->namespaces ) ) {
 			$namespaces = '0';
@@ -266,7 +266,7 @@ class SearchSqlite extends SearchEngine {
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
+		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return "SELECT $searchindex.rowid, page_namespace, page_title " .
 			"FROM $page,$searchindex " .
@@ -317,7 +317,7 @@ class SearchSqlite extends SearchEngine {
 	 * @param $id Integer
 	 * @param $title String
 	 */
-    function updateTitle( $id, $title ) {
+	function updateTitle( $id, $title ) {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}
