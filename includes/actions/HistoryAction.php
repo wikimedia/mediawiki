@@ -23,7 +23,7 @@
  */
 
 /**
- * This class handles printing the history page for an article.  In order to
+ * This class handles printing the history page for an article. In order to
  * be efficient, it uses timestamps rather than offsets for paging, to avoid
  * costly LIMIT,offset queries.
  *
@@ -132,7 +132,7 @@ class HistoryAction extends FormlessAction {
 				array( 'delete', 'move' ),
 				$this->getTitle(),
 				'',
-				array(  'lim' => 10,
+				array( 'lim' => 10,
 					'conds' => array( "log_action != 'revision'" ),
 					'showIfEmpty' => false,
 					'msgKey' => array( 'moveddeleted-notice' )
@@ -515,7 +515,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	function submitButton( $message, $attributes = array() ) {
 		# Disable submit button if history has 1 revision only
 		if ( $this->getNumRows() > 1 ) {
-			return Xml::submitButton( $message , $attributes );
+			return Xml::submitButton( $message, $attributes );
 		} else {
 			return '';
 		}
@@ -609,7 +609,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				? $this->parentLens[$row->rev_parent_id]
 				: 0;
 			$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
-			$fSize = Linker::formatRevisionSize($rev->getSize());
+			$fSize = Linker::formatRevisionSize( $rev->getSize() );
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . "$fSize $sDiff";
 		}
 
@@ -617,7 +617,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s2 = Linker::revComment( $rev, false, true );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
-			$s2 .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$s2 .= ' <span class="updatedmarker">' . $this->msg( 'updatedmarker' )->escaped() . '</span>';
 			$classes[] = 'mw-history-line-updated';
 		}
 
@@ -671,7 +671,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
 		}
 
-		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s, &$classes ) );
+		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row, &$s, &$classes ) );
 
 		$attribs = array();
 		if ( $classes ) {

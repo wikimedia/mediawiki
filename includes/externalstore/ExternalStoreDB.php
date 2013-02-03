@@ -79,7 +79,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return LoadBalancer object
 	 */
 	function &getLoadBalancer( $cluster ) {
-		$wiki = isset($this->params['wiki']) ? $this->params['wiki'] : false;
+		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 
 		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
 	}
@@ -93,12 +93,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	function &getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
 
-		$wiki = isset($this->params['wiki']) ? $this->params['wiki'] : false;
+		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 
 		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
 			wfDebug( "read only external store" );
-			$lb->allowLagged(true);
+			$lb->allowLagged( true );
 		} else {
 			wfDebug( "writable external store" );
 		}
@@ -113,7 +113,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return DatabaseBase object
 	 */
 	function &getMaster( $cluster ) {
-		$wiki = isset($this->params['wiki']) ? $this->params['wiki'] : false;
+		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER, array(), $wiki );
 	}

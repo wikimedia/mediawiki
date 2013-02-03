@@ -152,7 +152,7 @@ class DifferenceEngine extends ContextSource {
 	function deletedLink( $id ) {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$row = $dbr->selectRow('archive', '*',
+			$row = $dbr->selectRow( 'archive', '*',
 				array( 'ar_rev_id' => $id ),
 				__METHOD__ );
 			if ( $row ) {

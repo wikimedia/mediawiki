@@ -435,7 +435,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 */
 	protected function getContinueStr( $img ) {
 		return $img->getOriginalTitle()->getText() .
-			'|' .  $img->getTimestamp();
+			'|' . $img->getTimestamp();
 	}
 
 	public function getAllowedParams() {
@@ -539,7 +539,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array(
 			'prop' => self::getPropertyDescriptions( array(), $p ),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
-					    'Only the current version of the image can be scaled' ),
+						'Only the current version of the image can be scaled' ),
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
 				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),

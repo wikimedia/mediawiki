@@ -163,7 +163,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name = '$table'", __METHOD__ );
 			if ( $res ) {
 				$row = $res->fetchRow();
-				self::$fulltextEnabled = stristr($row['sql'], 'fts' ) !== false;
+				self::$fulltextEnabled = stristr( $row['sql'], 'fts' ) !== false;
 			}
 		}
 		return self::$fulltextEnabled;
@@ -850,7 +850,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$endArray = array();
 
 		foreach( $result as $table ) {
-			$vars = get_object_vars($table);
+			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
 
 			if( !$prefix || strpos( $table, $prefix ) === 0 ) {

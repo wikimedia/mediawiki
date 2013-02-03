@@ -462,7 +462,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				}
 				if ( isset( $ext['author'] ) ) {
 					$ret['author'] = is_array( $ext['author'] ) ?
-						implode( ', ', $ext['author' ] ) : $ext['author'];
+						implode( ', ', $ext['author'] ) : $ext['author'];
 				}
 				if ( isset( $ext['url'] ) ) {
 					$ret['url'] = $ext['url'];

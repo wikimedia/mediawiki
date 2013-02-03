@@ -161,7 +161,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['implicitgroups'] ) ) {
-					$data[$name]['implicitgroups'] =  $user->getAutomaticGroups();
+					$data[$name]['implicitgroups'] = $user->getAutomaticGroups();
 				}
 
 				if ( isset( $this->prop['rights'] ) ) {

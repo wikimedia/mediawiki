@@ -206,8 +206,8 @@ class UploadStash {
 		//
 		// some things that when combined will make a suitably unique key.
 		// see: http://www.jwz.org/doc/mid.html
-		list ($usec, $sec) = explode( ' ', microtime() );
-		$usec = substr($usec, 2);
+		list( $usec, $sec ) = explode( ' ', microtime() );
+		$usec = substr( $usec, 2 );
 		$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
 			wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
 			$this->userId . '.' .

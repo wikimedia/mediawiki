@@ -787,8 +787,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		// Wide characters are evil -- some of them look like '
 		$s = utf8_encode( $s );
 		// Fix its stupidity
-		$from =	array( 	"\\\\",	"\\'",	'\\n',	'\\t',	'\\"',	'\\r' );
-		$to = array( 		"\\",		"''",		"\n",		"\t",		'"',		"\r" );
+		$from = array( "\\\\", "\\'", '\\n', '\\t', '\\"', '\\r' );
+		$to = array( "\\", "''", "\n", "\t", '"', "\r" );
 		$s = str_replace( $from, $to, $s ); // DB2 expects '', not \' escaping
 		return $s;
 	}
@@ -1115,10 +1115,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 		// find out the primary keys
 		$keyres = $this->doQuery( "SELECT NAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '"
-		  . strtoupper( $table )
-		  . "' AND TBCREATOR = '"
-		  . strtoupper( $schema )
-		  . "' AND KEYSEQ > 0" );
+			. strtoupper( $table )
+			. "' AND TBCREATOR = '"
+			. strtoupper( $schema )
+			. "' AND KEYSEQ > 0" );
 
 		$keys = array();
 		for (

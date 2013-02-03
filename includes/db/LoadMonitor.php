@@ -159,7 +159,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 
 		$times = array();
 		foreach ( $serverIndexes as $i ) {
-			if ($i == 0) { # Master
+			if ( $i == 0 ) { # Master
 				$times[$i] = 0;
 			} elseif ( false !== ( $conn = $this->parent->getAnyOpenConnection( $i ) ) ) {
 				$times[$i] = $conn->getLag();
@@ -173,7 +173,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		$wgMemc->set( $memcKey, $times, $expiry );
 
 		# But don't give the timestamp to the caller
-		unset($times['timestamp']);
+		unset( $times['timestamp'] );
 		$lagTimes = $times;
 
 		wfProfileOut( __METHOD__ );
@@ -189,7 +189,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		if ( !$threshold ) {
 			return 0;
 		}
-		$status = $conn->getMysqlStatus("Thread%");
+		$status = $conn->getMysqlStatus( "Thread%" );
 		if ( $status['Threads_running'] > $threshold ) {
 			$server = $conn->getProperty( 'mServer' );
 			wfLogDBError( "LB backoff from $server - Threads_running = {$status['Threads_running']}\n" );
