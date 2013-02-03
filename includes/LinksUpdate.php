@@ -213,14 +213,14 @@ class LinksUpdate extends SqlDataUpdate {
 		$existing = $this->getExistingImages();
 		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
 
-		$this->dumbTableUpdate( 'pagelinks',     $this->getLinkInsertions(),     'pl_from' );
-		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
+		$this->dumbTableUpdate( 'pagelinks', $this->getLinkInsertions(), 'pl_from' );
+		$this->dumbTableUpdate( 'imagelinks', $this->getImageInsertions(), 'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
 		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
-		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(),'ll_from' );
-		$this->dumbTableUpdate( 'iwlinks',       $this->getInterwikiInsertions(),'iwl_from' );
-		$this->dumbTableUpdate( 'page_props',    $this->getPropertyInsertions(), 'pp_page' );
+		$this->dumbTableUpdate( 'langlinks', $this->getInterlangInsertions(), 'll_from' );
+		$this->dumbTableUpdate( 'iwlinks', $this->getInterwikiInsertions(), 'iwl_from' );
+		$this->dumbTableUpdate( 'page_props', $this->getPropertyInsertions(), 'pp_page' );
 
 		# Update the cache of all the category pages and image description
 		# pages which were changed, and fix the category table count
@@ -291,7 +291,7 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
 		if ( count( $insertions ) ) {
 			# The link array was constructed without FOR UPDATE, so there may
-			# be collisions.  This may cause minor link table inconsistencies,
+			# be collisions. This may cause minor link table inconsistencies,
 			# which is better than crippling the site with lock contention.
 			$this->mDb->insert( $table, $insertions, __METHOD__, array( 'IGNORE' ) );
 		}
@@ -360,9 +360,9 @@ class LinksUpdate extends SqlDataUpdate {
 				: $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
-					'pl_from'      => $this->mId,
+					'pl_from' => $this->mId,
 					'pl_namespace' => $ns,
-					'pl_title'     => $dbk
+					'pl_title' => $dbk
 				);
 			}
 		}
@@ -380,9 +380,9 @@ class LinksUpdate extends SqlDataUpdate {
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
-					'tl_from'      => $this->mId,
+					'tl_from' => $this->mId,
 					'tl_namespace' => $ns,
-					'tl_title'     => $dbk
+					'tl_title' => $dbk
 				);
 			}
 		}
@@ -401,7 +401,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach( $diffs as $iname => $dummy ) {
 			$arr[] = array(
 				'il_from' => $this->mId,
-				'il_to'   => $iname
+				'il_to' => $iname
 			);
 		}
 		return $arr;
@@ -418,9 +418,9 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach( $diffs as $url => $dummy ) {
 			foreach( wfMakeUrlIndexes( $url ) as $index ) {
 				$arr[] = array(
-					'el_from'   => $this->mId,
-					'el_to'     => $url,
-					'el_index'  => $index,
+					'el_from' => $this->mId,
+					'el_to' => $url,
+					'el_index' => $index,
 				);
 			}
 		}
@@ -459,8 +459,8 @@ class LinksUpdate extends SqlDataUpdate {
 				$this->mTitle->getCategorySortkey( $prefix ) );
 
 			$arr[] = array(
-				'cl_from'    => $this->mId,
-				'cl_to'      => $name,
+				'cl_from' => $this->mId,
+				'cl_to' => $name,
 				'cl_sortkey' => $sortkey,
 				'cl_timestamp' => $this->mDb->timestamp(),
 				'cl_sortkey_prefix' => $prefix,
@@ -483,8 +483,8 @@ class LinksUpdate extends SqlDataUpdate {
 		$arr = array();
 		foreach( $diffs as $lang => $title ) {
 			$arr[] = array(
-				'll_from'  => $this->mId,
-				'll_lang'  => $lang,
+				'll_from' => $this->mId,
+				'll_lang' => $lang,
 				'll_title' => $title
 			);
 		}
@@ -501,9 +501,9 @@ class LinksUpdate extends SqlDataUpdate {
 		$arr = array();
 		foreach ( $diffs as $name => $value ) {
 			$arr[] = array(
-				'pp_page'      => $this->mId,
-				'pp_propname'  => $name,
-				'pp_value'     => $value,
+				'pp_page' => $this->mId,
+				'pp_propname' => $name,
+				'pp_value' => $value,
 			);
 		}
 		return $arr;
@@ -521,9 +521,9 @@ class LinksUpdate extends SqlDataUpdate {
 			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
-					'iwl_from'   => $this->mId,
+					'iwl_from' => $this->mId,
 					'iwl_prefix' => $prefix,
-					'iwl_title'  => $dbk
+					'iwl_title' => $dbk
 				);
 			}
 		}

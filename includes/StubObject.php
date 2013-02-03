@@ -118,7 +118,7 @@ class StubObject {
 		}
 
 		if ( get_class( $GLOBALS[$this->mGlobal] ) != $this->mClass ) {
-			$fname = __METHOD__.'-'.$this->mGlobal;
+			$fname = __METHOD__ . '-' . $this->mGlobal;
 			wfProfileIn( $fname );
 			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {

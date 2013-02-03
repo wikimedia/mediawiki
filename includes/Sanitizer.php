@@ -381,7 +381,7 @@ class Sanitizer {
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'abbr', 'dfn',
+				'ruby', 'rt', 'rb', 'rp', 'p', 'span', 'abbr', 'dfn',
 				'kbd', 'samp'
 			);
 			if ( $wgHtml5 ) {
@@ -604,9 +604,9 @@ class Sanitizer {
 	 */
 	static function removeHTMLcomments( $text ) {
 		wfProfileIn( __METHOD__ );
-		while (($start = strpos($text, '<!--')) !== false) {
-			$end = strpos($text, '-->', $start + 4);
-			if ($end === false) {
+		while ( ($start = strpos( $text, '<!--' ) ) !== false ) {
+			$end = strpos( $text, '-->', $start + 4 );
+			if ( $end === false ) {
 				# Unterminated comment; bail out
 				break;
 			}
@@ -615,22 +615,22 @@ class Sanitizer {
 
 			# Trim space and newline if the comment is both
 			# preceded and followed by a newline
-			$spaceStart = max($start - 1, 0);
+			$spaceStart = max( $start - 1, 0 );
 			$spaceLen = $end - $spaceStart;
-			while (substr($text, $spaceStart, 1) === ' ' && $spaceStart > 0) {
+			while ( substr( $text, $spaceStart, 1 ) === ' ' && $spaceStart > 0 ) {
 				$spaceStart--;
 				$spaceLen++;
 			}
-			while (substr($text, $spaceStart + $spaceLen, 1) === ' ')
+			while ( substr( $text, $spaceStart + $spaceLen, 1 ) === ' ' )
 				$spaceLen++;
-			if (substr($text, $spaceStart, 1) === "\n" and substr($text, $spaceStart + $spaceLen, 1) === "\n") {
+			if ( substr( $text, $spaceStart, 1 ) === "\n" and substr( $text, $spaceStart + $spaceLen, 1 ) === "\n" ) {
 				# Remove the comment, leading and trailing
 				# spaces, and leave only one newline.
-				$text = substr_replace($text, "\n", $spaceStart, $spaceLen + 1);
+				$text = substr_replace( $text, "\n", $spaceStart, $spaceLen + 1 );
 			}
 			else {
 				# Remove just the comment.
-				$text = substr_replace($text, '', $start, $end - $start);
+				$text = substr_replace( $text, '', $start, $end - $start );
 			}
 		}
 		wfProfileOut( __METHOD__ );

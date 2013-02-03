@@ -332,10 +332,10 @@ class CdbWriter_PHP extends CdbWriter {
 	 */
 	public function close() {
 		$this->finish();
-		if( isset($this->handle) ) {
+		if( isset( $this->handle ) ) {
 			fclose( $this->handle );
 		}
-		if ( wfIsWindows() && file_exists($this->realFileName) ) {
+		if ( wfIsWindows() && file_exists( $this->realFileName ) ) {
 			unlink( $this->realFileName );
 		}
 		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
@@ -351,7 +351,7 @@ class CdbWriter_PHP extends CdbWriter {
 	protected function write( $buf ) {
 		$len = fwrite( $this->handle, $buf );
 		if ( $len !== strlen( $buf ) ) {
-			$this->throwException( 'Error writing to CDB file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Error writing to CDB file "' . $this->tmpFileName . '".' );
 		}
 	}
 
@@ -363,7 +363,7 @@ class CdbWriter_PHP extends CdbWriter {
 		$newpos = $this->pos + $len;
 		if ( $newpos > 0x7fffffff ) {
 			$this->throwException(
-				'A value in the CDB file "'.$this->tmpFileName.'" is too large.' );
+				'A value in the CDB file "' . $this->tmpFileName . '" is too large.' );
 		}
 		$this->pos = $newpos;
 	}
@@ -392,10 +392,10 @@ class CdbWriter_PHP extends CdbWriter {
 	 */
 	protected function addbegin( $keylen, $datalen ) {
 		if ( $keylen > 0x7fffffff ) {
-			$this->throwException( 'Key length too long in file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Key length too long in file "' . $this->tmpFileName . '".' );
 		}
 		if ( $datalen > 0x7fffffff ) {
-			$this->throwException( 'Data length too long in file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Data length too long in file "' . $this->tmpFileName . '".' );
 		}
 		$buf = pack( 'VV', $keylen, $datalen );
 		$this->write( $buf );
@@ -470,7 +470,7 @@ class CdbWriter_PHP extends CdbWriter {
 		// Write the pointer array at the start of the file
 		rewind( $this->handle );
 		if ( ftell( $this->handle ) != 0 ) {
-			$this->throwException( 'Error rewinding to start of file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Error rewinding to start of file "' . $this->tmpFileName . '".' );
 		}
 		$this->write( $final );
 	}

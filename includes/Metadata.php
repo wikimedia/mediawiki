@@ -82,10 +82,10 @@ abstract class RdfMetaData {
 		print "\t\t<dc:{$name}>{$value}</dc:{$name}>\n";
 	}
 
-	protected function date($timestamp) {
-		return substr($timestamp, 0, 4) . '-'
-		  . substr($timestamp, 4, 2) . '-'
-		  . substr($timestamp, 6, 2);
+	protected function date( $timestamp ) {
+		return substr( $timestamp, 0, 4 ) . '-'
+			. substr( $timestamp, 4, 2 ) . '-'
+			. substr( $timestamp, 6, 2 );
 	}
 
 	protected function pageOrString( $name, $page, $str ) {
@@ -110,7 +110,7 @@ abstract class RdfMetaData {
 		$this->url( $name, $title->getFullUrl() );
 	}
 
-	protected function url($name, $url) {
+	protected function url( $name, $url ) {
 		$url = htmlspecialchars( $url );
 		print "\t\t<dc:{$name} rdf:resource=\"{$url}\" />\n";
 	}
@@ -166,23 +166,23 @@ abstract class RdfMetaData {
 	}
 
 	protected function getKnownLicenses() {
-		$ccLicenses = array('by', 'by-nd', 'by-nd-nc', 'by-nc',
-							'by-nc-sa', 'by-sa');
-		$ccVersions = array('1.0', '2.0');
+		$ccLicenses = array( 'by', 'by-nd', 'by-nd-nc', 'by-nc',
+							'by-nc-sa', 'by-sa' );
+		$ccVersions = array( '1.0', '2.0' );
 		$knownLicenses = array();
 
-		foreach ($ccVersions as $version) {
-			foreach ($ccLicenses as $license) {
-				if( $version == '2.0' && substr( $license, 0, 2) != 'by' ) {
+		foreach ( $ccVersions as $version ) {
+			foreach ( $ccLicenses as $license ) {
+				if( $version == '2.0' && substr( $license, 0, 2 ) != 'by' ) {
 					# 2.0 dropped the non-attribs licenses
 					continue;
 				}
 				$lurl = "http://creativecommons.org/licenses/{$license}/{$version}/";
-				$knownLicenses[$lurl] = explode('-', $license);
+				$knownLicenses[$lurl] = explode( '-', $license );
 				$knownLicenses[$lurl][] = 're';
 				$knownLicenses[$lurl][] = 'di';
 				$knownLicenses[$lurl][] = 'no';
-				if (!in_array('nd', $knownLicenses[$lurl])) {
+				if ( !in_array( 'nd', $knownLicenses[$lurl] ) ) {
 					$knownLicenses[$lurl][] = 'de';
 				}
 			}
@@ -191,11 +191,11 @@ abstract class RdfMetaData {
 		/* Handle the GPL and LGPL, too. */
 
 		$knownLicenses['http://creativecommons.org/licenses/GPL/2.0/'] =
-		  array('de', 're', 'di', 'no', 'sa', 'sc');
+			array( 'de', 're', 'di', 'no', 'sa', 'sc' );
 		$knownLicenses['http://creativecommons.org/licenses/LGPL/2.1/'] =
-		  array('de', 're', 'di', 'no', 'sa', 'sc');
+			array( 'de', 're', 'di', 'no', 'sa', 'sc' );
 		$knownLicenses['http://www.gnu.org/copyleft/fdl.html'] =
-		  array('de', 're', 'di', 'no', 'sa', 'sc');
+			array( 'de', 're', 'di', 'no', 'sa', 'sc' );
 
 		return $knownLicenses;
 	}

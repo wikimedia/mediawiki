@@ -162,22 +162,22 @@ class WatchedItem {
 		// if there's already an entry for this page
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'watchlist',
-		  array(
-			'wl_user' => $this->getUserId(),
-			'wl_namespace' => MWNamespace::getSubject($this->getTitleNs()),
-			'wl_title' => $this->getTitleDBkey(),
-			'wl_notificationtimestamp' => null
-		  ), __METHOD__, 'IGNORE' );
+			array(
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
+				'wl_title' => $this->getTitleDBkey(),
+				'wl_notificationtimestamp' => null
+			), __METHOD__, 'IGNORE' );
 
 		// Every single watched page needs now to be listed in watchlist;
 		// namespace:page and namespace_talk:page need separate entries:
 		$dbw->insert( 'watchlist',
-		  array(
-			'wl_user' => $this->getUserId(),
-			'wl_namespace' => MWNamespace::getTalk($this->getTitleNs()),
-			'wl_title' => $this->getTitleDBkey(),
-			'wl_notificationtimestamp' => null
-		  ), __METHOD__, 'IGNORE' );
+			array(
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
+				'wl_title' => $this->getTitleDBkey(),
+				'wl_notificationtimestamp' => null
+			), __METHOD__, 'IGNORE' );
 
 		$this->watched = true;
 
@@ -197,7 +197,7 @@ class WatchedItem {
 		$dbw->delete( 'watchlist',
 			array(
 				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getSubject($this->getTitleNs()),
+				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
 				'wl_title' => $this->getTitleDBkey(),
 			), __METHOD__
 		);
@@ -212,7 +212,7 @@ class WatchedItem {
 		$dbw->delete( 'watchlist',
 			array(
 				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getTalk($this->getTitleNs()),
+				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
 				'wl_title' => $this->getTitleDBkey(),
 			), __METHOD__
 		);

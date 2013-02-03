@@ -62,7 +62,7 @@ if ( ini_get( 'register_globals' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
-$wgRequestTime = microtime(true);
+$wgRequestTime = microtime( true );
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
 	$wgRUstart = getrusage();
@@ -123,7 +123,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	MWFunction::call( MW_CONFIG_CALLBACK );
 } else {
 	if ( !defined( 'MW_CONFIG_FILE' ) ) {
-		define('MW_CONFIG_FILE', MWInit::interpretedPath( 'LocalSettings.php' ) );
+		define( 'MW_CONFIG_FILE', MWInit::interpretedPath( 'LocalSettings.php' ) );
 	}
 
 	# LocalSettings.php is the per site customization file. If it does not exist

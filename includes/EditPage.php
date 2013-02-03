@@ -546,8 +546,8 @@ class EditPage {
 			// Standard preference behaviour
 			return true;
 		} elseif ( !$this->mTitle->exists() &&
-		  isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] ) &&
-		  $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
+			isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] ) &&
+			$wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
 		{
 			// Categories are special
 			return true;
@@ -2888,21 +2888,24 @@ HTML
 		$dbr = wfGetDB( DB_SLAVE );
 		$data = $dbr->selectRow(
 			array( 'logging', 'user' ),
-			array( 'log_type',
-				   'log_action',
-				   'log_timestamp',
-				   'log_user',
-				   'log_namespace',
-				   'log_title',
-				   'log_comment',
-				   'log_params',
-				   'log_deleted',
-				   'user_name' ),
-			array( 'log_namespace' => $this->mTitle->getNamespace(),
-				   'log_title' => $this->mTitle->getDBkey(),
-				   'log_type' => 'delete',
-				   'log_action' => 'delete',
-				   'user_id=log_user' ),
+			array(
+				'log_type',
+				'log_action',
+				'log_timestamp',
+				'log_user',
+				'log_namespace',
+				'log_title',
+				'log_comment',
+				'log_params',
+				'log_deleted',
+				'user_name'
+			), array(
+				'log_namespace' => $this->mTitle->getNamespace(),
+				'log_title' => $this->mTitle->getDBkey(),
+				'log_type' => 'delete',
+				'log_action' => 'delete',
+				'user_id=log_user'
+			),
 			__METHOD__,
 			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' )
 		);
@@ -2972,7 +2975,7 @@ HTML
 			$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
 			$parserOptions->setEditSection( false );
 			$parserOptions->setIsPreview( true );
-			$parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
+			$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 
 			# don't parse non-wikitext pages, show message about preview
 			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
@@ -2995,7 +2998,7 @@ HTML
 				# Used messages to make sure grep find them:
 				# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
 				if( $level && $format ) {
-					$note = "<div id='mw-{$level}{$format}preview'>" . wfMessage( "{$level}{$format}preview" )->text()  . "</div>";
+					$note = "<div id='mw-{$level}{$format}preview'>" . wfMessage( "{$level}{$format}preview" )->text() . "</div>";
 				}
 			}
 
@@ -3031,7 +3034,7 @@ HTML
 				}
 			}
 		} catch ( MWContentSerializationException $ex ) {
-			$m = wfMessage('content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
+			$m = wfMessage( 'content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
 			$note .= "\n\n" . $m->parse();
 			$previewHTML = '';
 		}

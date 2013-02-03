@@ -114,9 +114,9 @@ class FakeTitle extends Title {
 	function getParentCategories() { $this->error(); }
 	function getParentCategoryTree( $children = array() ) { $this->error(); }
 	function pageCond() { $this->error(); }
-	function getPreviousRevisionID( $revId, $flags=0 ) { $this->error(); }
-	function getNextRevisionID( $revId, $flags=0 ) { $this->error(); }
-	function getFirstRevision( $flags=0 ) { $this->error(); }
+	function getPreviousRevisionID( $revId, $flags = 0 ) { $this->error(); }
+	function getNextRevisionID( $revId, $flags = 0 ) { $this->error(); }
+	function getFirstRevision( $flags = 0 ) { $this->error(); }
 	function isNewPage() { $this->error(); }
 	function getEarliestRevTime( $flags = 0 ) { $this->error(); }
 	function countRevisionsBetween( $old, $new ) { $this->error(); }

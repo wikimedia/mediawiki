@@ -1451,7 +1451,7 @@ class User {
 			// But this is a crappy hack and should die.
 			return false;
 		}
-		return !$this->isAllowed('noratelimit');
+		return !$this->isAllowed( 'noratelimit' );
 	}
 
 	/**
@@ -2284,7 +2284,7 @@ class User {
 	 * @return Int User's current value for the option
 	 * @see getOption()
 	 */
-	public function getIntOption( $oname, $defaultOverride=0 ) {
+	public function getIntOption( $oname, $defaultOverride = 0 ) {
 		$val = $this->getOption( $oname );
 		if( $val == '' ) {
 			$val = $defaultOverride;
@@ -2620,7 +2620,7 @@ class User {
 			if( $this->getId() ) {
 				$dbw->insert( 'user_groups',
 					array(
-						'ug_user'  => $this->getID(),
+						'ug_user' => $this->getID(),
 						'ug_group' => $group,
 					),
 					__METHOD__,
@@ -2645,13 +2645,13 @@ class User {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user_groups',
 				array(
-					'ug_user'  => $this->getID(),
+					'ug_user' => $this->getID(),
 					'ug_group' => $group,
 				), __METHOD__ );
 			// Remember that the user was in this group
 			$dbw->insert( 'user_former_groups',
 				array(
-					'ufg_user'  => $this->getID(),
+					'ufg_user' => $this->getID(),
 					'ufg_group' => $group,
 				),
 				__METHOD__,
@@ -4058,7 +4058,7 @@ class User {
 			$groups = array_merge_recursive(
 				$groups, $this->changeableByGroup( $addergroup )
 			);
-			$groups['add']    = array_unique( $groups['add'] );
+			$groups['add'] = array_unique( $groups['add'] );
 			$groups['remove'] = array_unique( $groups['remove'] );
 			$groups['add-self'] = array_unique( $groups['add-self'] );
 			$groups['remove-self'] = array_unique( $groups['remove-self'] );

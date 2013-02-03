@@ -135,7 +135,7 @@ class ChangesFeed {
 		$feedLastmod = $messageMemc->get( $timekey );
 
 		if( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
-		    /**
+			/**
 			 * If the cached feed was rendered very recently, we may
 			 * go ahead and use it even if there have been edits made
 			 * since it was rendered. This keeps a swarm of requests

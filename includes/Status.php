@@ -176,10 +176,10 @@ class Status {
 		if ( count( $this->errors ) == 0 ) {
 			if ( $this->ok ) {
 				$this->fatal( 'internalerror_info',
-					__METHOD__." called for a good result, this is incorrect\n" );
+					__METHOD__ . " called for a good result, this is incorrect\n" );
 			} else {
 				$this->fatal( 'internalerror_info',
-					__METHOD__.": Invalid result object: no error text but not OK\n" );
+					__METHOD__ . ": Invalid result object: no error text but not OK\n" );
 			}
 		}
 		if ( count( $this->errors ) == 1 ) {
@@ -190,7 +190,7 @@ class Status {
 				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
-			$s = '* '. implode("\n* ",
+			$s = '* '. implode( "\n* ",
 				$this->getErrorMessageArray( $this->errors ) ) . "\n";
 			if ( $longContext ) {
 				$s = wfMessage( $longContext, $s )->plain();
@@ -216,7 +216,7 @@ class Status {
 				$msg = $error['message'];
 			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
 				$msg = wfMessage( $error['message'],
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) )  );
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) ) );
 			} else {
 				$msgName = array_shift( $error );
 				$msg = wfMessage( $msgName,

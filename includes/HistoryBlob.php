@@ -247,7 +247,7 @@ class HistoryBlobStub {
 				if ( !isset( $parts[1] ) || $parts[1] == '' ) {
 					return false;
 				}
-				$row->old_text = ExternalStore::fetchFromUrl($url);
+				$row->old_text = ExternalStore::fetchFromUrl( $url );
 
 			}
 			if( !in_array( 'object', $flags ) ) {
@@ -395,7 +395,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	function addItem( $text ) {
 		if ( $this->mFrozen ) {
-			throw new MWException( __METHOD__.": Cannot add more items after sleep/wakeup" );
+			throw new MWException( __METHOD__ . ": Cannot add more items after sleep/wakeup" );
 		}
 
 		$this->mItems[] = $text;
@@ -535,11 +535,11 @@ class DiffHistoryBlob implements HistoryBlob {
 		# Check the checksum if hash/mhash is available
 		$ofp = $this->xdiffAdler32( $base );
 		if ( $ofp !== false && $ofp !== substr( $diff, 0, 4 ) ) {
-			wfDebug( __METHOD__. ": incorrect base checksum\n" );
+			wfDebug( __METHOD__ . ": incorrect base checksum\n" );
 			return false;
 		}
 		if ( $header['csize'] != strlen( $base ) ) {
-			wfDebug( __METHOD__. ": incorrect base length\n" );
+			wfDebug( __METHOD__ . ": incorrect base length\n" );
 			return false;
 		}
 
@@ -568,7 +568,7 @@ class DiffHistoryBlob implements HistoryBlob {
 				$out .= substr( $base, $x['off'], $x['csize'] );
 				break;
 			default:
-				wfDebug( __METHOD__.": invalid op\n" );
+				wfDebug( __METHOD__ . ": invalid op\n" );
 				return false;
 			}
 		}

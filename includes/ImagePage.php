@@ -156,7 +156,7 @@ class ImagePage extends Article {
 			$pageLang = $this->getTitle()->getPageViewLanguage();
 			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
+				'class' => 'mw-content-' . $pageLang->getDir() ) ) );
 
 			parent::view();
 
@@ -538,7 +538,7 @@ EOT
 					array( 'delete', 'move' ),
 					$this->getTitle()->getPrefixedText(),
 					'',
-					array(  'lim' => 10,
+					array( 'lim' => 10,
 						'conds' => array( "log_action != 'revision'" ),
 						'showIfEmpty' => false,
 						'msgKey' => array( 'moveddeleted-notice' )
@@ -630,7 +630,7 @@ EOT
 		return $uploadTitle->getFullURL( array(
 			'wpDestFile' => $this->mPage->getFile()->getName(),
 			'wpForReUpload' => 1
-		 ) );
+		) );
 	}
 
 	/**
@@ -1044,9 +1044,9 @@ class ImageHistoryList extends ContextSource {
 				} else {
 					list( $ts, ) = explode( '!', $img, 2 );
 					$query = array(
-						'type'   => 'oldimage',
+						'type' => 'oldimage',
 						'target' => $this->title->getPrefixedText(),
-						'ids'    => $ts,
+						'ids' => $ts,
 					);
 					$del = Linker::revDeleteLink( $query,
 						$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );

@@ -50,7 +50,7 @@ if ( !function_exists( 'mb_substr' ) ) {
 	 * @codeCoverageIgnore
 	 * @return string
 	 */
-	function mb_substr( $str, $start, $count='end' ) {
+	function mb_substr( $str, $start, $count = 'end' ) {
 		return Fallback::mb_substr( $str, $start, $count );
 	}
 
@@ -392,7 +392,7 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 
 	$cgi = '';
 	foreach ( $array1 as $key => $value ) {
-		if ( !is_null($value) && $value !== false ) {
+		if ( !is_null( $value ) && $value !== false ) {
 			if ( $cgi != '' ) {
 				$cgi .= '&';
 			}
@@ -2449,7 +2449,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		$timestamp = new MWTimestamp( $ts );
 		return $timestamp->getTimestamp( $outputtype );
 	} catch( TimestampException $e ) {
-		wfDebug("wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n");
+		wfDebug( "wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n" );
 		return false;
 	}
 }
@@ -2824,7 +2824,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 	$cmd = $envcmd . $cmd;
 
 	if ( php_uname( 's' ) == 'Linux' ) {
-		$time = intval ( isset($limits['time']) ? $limits['time'] : $wgMaxShellTime );
+		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );
 		} elseif ( isset( $limits['time'] ) ) {
@@ -2832,8 +2832,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 		} else {
 			$wallTime = intval( $wgMaxShellWallClockTime );
 		}
-		$mem = intval ( isset($limits['memory']) ? $limits['memory'] : $wgMaxShellMemory );
-		$filesize = intval ( isset($limits['filesize']) ? $limits['filesize'] : $wgMaxShellFileSize );
+		$mem = intval ( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
+		$filesize = intval ( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
 
 		if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 			$cmd = '/bin/bash ' . escapeshellarg( "$IP/bin/ulimit5.sh" ) .

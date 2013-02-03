@@ -3034,10 +3034,10 @@ class WikiPage extends Page implements IDBAccessObject {
 		$removeFields = array( 'cat_pages = cat_pages - 1' );
 
 		if ( $ns == NS_CATEGORY ) {
-			$addFields[]    = 'cat_subcats = cat_subcats + 1';
+			$addFields[] = 'cat_subcats = cat_subcats + 1';
 			$removeFields[] = 'cat_subcats = cat_subcats - 1';
 		} elseif ( $ns == NS_FILE ) {
-			$addFields[]    = 'cat_files = cat_files + 1';
+			$addFields[] = 'cat_files = cat_files + 1';
 			$removeFields[] = 'cat_files = cat_files - 1';
 		}
 
@@ -3315,7 +3315,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $content Content|String: content to parse or null to load it; may also be given as a wikitext string, for BC
 	 */
 	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
-		if ( is_string($content) ) { // BC: old style call
+		if ( is_string( $content ) ) { // BC: old style call
 			$modelId = $page->getRevision()->getContentModel();
 			$format = $page->getRevision()->getContentFormat();
 			$content = ContentHandler::makeContent( $content, $page->getTitle(), $modelId, $format );

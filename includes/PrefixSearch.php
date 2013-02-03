@@ -45,7 +45,7 @@ class PrefixSearch {
 		// Find a Title which is not an interwiki and is in NS_MAIN
 		$title = Title::newFromText( $search );
 		if( $title && $title->getInterwiki() == '' ) {
-			$ns = array($title->getNamespace());
+			$ns = array( $title->getNamespace() );
 			if( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
 			}

@@ -262,7 +262,7 @@ abstract class Skin extends ContextSource {
 	 * @return Title
 	 */
 	public function getRelevantTitle() {
-		if ( isset($this->mRelevantTitle) ) {
+		if ( isset( $this->mRelevantTitle ) ) {
 			return $this->mRelevantTitle;
 		}
 		return $this->getTitle();
@@ -286,7 +286,7 @@ abstract class Skin extends ContextSource {
 	 * @return User
 	 */
 	public function getRelevantUser() {
-		if ( isset($this->mRelevantUser) ) {
+		if ( isset( $this->mRelevantUser ) ) {
 			return $this->mRelevantUser;
 		}
 		$title = $this->getRelevantTitle();
@@ -435,7 +435,7 @@ abstract class Skin extends ContextSource {
 		$colon = $this->msg( 'colon-separator' )->escaped();
 
 		if ( !empty( $allCats['normal'] ) ) {
-			$t = $embed . implode( "{$pop}{$embed}" , $allCats['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop}{$embed}", $allCats['normal'] ) . $pop;
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
 			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
@@ -456,7 +456,7 @@ abstract class Skin extends ContextSource {
 
 			$s .= "<div id=\"mw-hidden-catlinks\" class=\"mw-hidden-catlinks$class\">" .
 				$this->msg( 'hidden-categories' )->numParams( count( $allCats['hidden'] ) )->escaped() .
-				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
+				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}", $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
 		}
 
@@ -499,7 +499,7 @@ abstract class Skin extends ContextSource {
 
 			# add our current element to the list
 			$eltitle = Title::newFromText( $element );
-			$return .=  Linker::link( $eltitle, htmlspecialchars( $eltitle->getText() ) );
+			$return .= Linker::link( $eltitle, htmlspecialchars( $eltitle->getText() ) );
 		}
 
 		return $return;
@@ -860,7 +860,7 @@ abstract class Skin extends ContextSource {
 		if ( is_string( $icon ) ) {
 			$html = $icon;
 		} else { // Assuming array
-			$url = isset($icon["url"]) ? $icon["url"] : null;
+			$url = isset( $icon["url"] ) ? $icon["url"] : null;
 			unset( $icon["url"] );
 			if ( isset( $icon["src"] ) && $withImage === 'withImage' ) {
 				$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array

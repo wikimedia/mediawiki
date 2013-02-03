@@ -219,7 +219,7 @@ class SkinTemplate extends Skin {
 		if ( $subpagestr !== '' ) {
 			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
 		}
-		$tpl->set( 'subtitle',  $subpagestr . $out->getSubtitle() );
+		$tpl->set( 'subtitle', $subpagestr . $out->getSubtitle() );
 
 		$undelete = $this->getUndeleteLink();
 		if ( $undelete === '' ) {
@@ -403,7 +403,7 @@ class SkinTemplate extends Skin {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
-			$realBodyAttribs['class'] = 'mw-content-'.$pageLang->getDir();
+			$realBodyAttribs['class'] = 'mw-content-' . $pageLang->getDir();
 		}
 
 		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
@@ -1051,7 +1051,7 @@ class SkinTemplate extends Skin {
 		}
 
 		// Equiv to SkinTemplateContentActions
-		wfRunHooks( 'SkinTemplateNavigation::Universal', array( &$this,  &$content_navigation ) );
+		wfRunHooks( 'SkinTemplateNavigation::Universal', array( &$this, &$content_navigation ) );
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {

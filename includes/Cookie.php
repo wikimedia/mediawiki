@@ -113,7 +113,7 @@ class Cookie {
 		}
 
 		// Don't allow cookies for "co.uk" or "gov.uk", etc, but allow "supermarket.uk"
-		if ( strrpos( $domain, "." ) - strlen( $domain )  == -3 ) {
+		if ( strrpos( $domain, "." ) - strlen( $domain ) == -3 ) {
 			if ( ( count( $dc ) == 2 && strlen( $dc[0] ) <= 2 )
 				|| ( count( $dc ) == 3 && strlen( $dc[0] ) == "" && strlen( $dc[1] ) <= 2 ) ) {
 				return false;
@@ -165,8 +165,8 @@ class Cookie {
 	protected function canServeDomain( $domain ) {
 		if ( $domain == $this->domain
 			|| ( strlen( $domain ) > strlen( $this->domain )
-				 && substr( $this->domain, 0, 1 ) == '.'
-				 && substr_compare( $domain, $this->domain, -strlen( $this->domain ),
+				&& substr( $this->domain, 0, 1 ) == '.'
+				&& substr_compare( $domain, $this->domain, -strlen( $this->domain ),
 									strlen( $this->domain ), true ) == 0 ) ) {
 			return true;
 		}

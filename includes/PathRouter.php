@@ -293,7 +293,7 @@ class PathRouter {
 			foreach ( $m as $matchKey => $matchValue ) {
 				if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
 					$n = intval( substr( $matchKey, 3 ) );
-					$data['$'.$n] = rawurldecode( $matchValue );
+					$data['$' . $n] = rawurldecode( $matchValue );
 				}
 			}
 			// If present give our $data array a $key as well

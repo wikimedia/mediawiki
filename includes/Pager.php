@@ -866,7 +866,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		if ( $this->mMonth ) {
 			$month = $this->mMonth + 1;
 			// For December, we want January 1 of the next year
-			if ($month > 12) {
+			if ( $month > 12 ) {
 				$month = 1;
 				$year++;
 			}

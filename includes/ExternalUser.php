@@ -285,7 +285,7 @@ abstract class ExternalUser {
 		$dbw->replace( 'external_user',
 			array( 'eu_local_id', 'eu_external_id' ),
 			array( 'eu_local_id' => $id,
-				   'eu_external_id' => $this->getId() ),
+				'eu_external_id' => $this->getId() ),
 			__METHOD__ );
 	}
 

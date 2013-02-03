@@ -400,7 +400,7 @@ class WikiImporter {
 	/** Left in for debugging */
 	private function dumpElement() {
 		static $lookup = null;
-		if (!$lookup) {
+		if ( !$lookup ) {
 			$xmlReaderConstants = array(
 				"NONE",
 				"ELEMENT",
@@ -473,7 +473,7 @@ class WikiImporter {
 				$skip = true;
 			}
 
-			if ($skip) {
+			if ( $skip ) {
 				$keepReading = $this->reader->next();
 				$skip = false;
 				$this->debug( "Skip" );
@@ -897,7 +897,7 @@ class UploadSourceAdapter {
 	 * @return bool
 	 */
 	function stream_open( $path, $mode, $options, &$opened_path ) {
-		$url = parse_url($path);
+		$url = parse_url( $path );
 		$id = $url['host'];
 
 		if ( !isset( self::$sourceRegistrations[$id] ) ) {
@@ -918,22 +918,22 @@ class UploadSourceAdapter {
 		$leave = false;
 
 		while ( !$leave && !$this->mSource->atEnd() &&
-				strlen($this->mBuffer) < $count ) {
+				strlen( $this->mBuffer ) < $count ) {
 			$read = $this->mSource->readChunk();
 
-			if ( !strlen($read) ) {
+			if ( !strlen( $read ) ) {
 				$leave = true;
 			}
 
 			$this->mBuffer .= $read;
 		}
 
-		if ( strlen($this->mBuffer) ) {
+		if ( strlen( $this->mBuffer ) ) {
 			$return = substr( $this->mBuffer, 0, $count );
 			$this->mBuffer = substr( $this->mBuffer, $count );
 		}
 
-		$this->mPosition += strlen($return);
+		$this->mPosition += strlen( $return );
 
 		return $return;
 	}
@@ -1390,7 +1390,7 @@ class WikiRevision {
 				array( 'rev_page' => $pageId,
 					'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
 					'rev_user_text' => $userText,
-					'rev_comment'   => $this->getComment() ),
+					'rev_comment' => $this->getComment() ),
 				__METHOD__
 			);
 			if( $prior ) {
@@ -1405,15 +1405,15 @@ class WikiRevision {
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
 		$revision = new Revision( array(
-			'title'      => $this->title,
-			'page'       => $pageId,
-			'content_model'  => $this->getModel(),
+			'title' => $this->title,
+			'page' => $pageId,
+			'content_model' => $this->getModel(),
 			'content_format' => $this->getFormat(),
-			'text'       => $this->getContent()->serialize( $this->getFormat() ), //XXX: just set 'content' => $this->getContent()?
-			'comment'    => $this->getComment(),
-			'user'       => $userId,
-			'user_text'  => $userText,
-			'timestamp'  => $this->timestamp,
+			'text' => $this->getContent()->serialize( $this->getFormat() ), //XXX: just set 'content' => $this->getContent()?
+			'comment' => $this->getComment(),
+			'user' => $userId,
+			'user_text' => $userText,
+			'timestamp' => $this->timestamp,
 			'minor_edit' => $this->minor,
 			) );
 		$revision->insertOn( $dbw );
@@ -1442,13 +1442,13 @@ class WikiRevision {
 		// @todo FIXME: Use original log ID (better for backups)
 		$prior = $dbw->selectField( 'logging', '1',
 			array( 'log_type' => $this->getType(),
-				'log_action'    => $this->getAction(),
+				'log_action' => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
 				'log_namespace' => $this->getTitle()->getNamespace(),
-				'log_title'     => $this->getTitle()->getDBkey(),
-				'log_comment'   => $this->getComment(),
+				'log_title' => $this->getTitle()->getDBkey(),
+				'log_comment' => $this->getComment(),
 				#'log_user_text' => $this->user_text,
-				'log_params'    => $this->params ),
+				'log_params' => $this->params ),
 			__METHOD__
 		);
 		// @todo FIXME: This could fail slightly for multiple matches :P

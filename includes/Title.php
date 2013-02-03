@@ -1849,7 +1849,7 @@ class Title {
 			$ns = $this->mNamespace == NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $this->getNsText();
 			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
-				array( 'protectedinterface' ) : array( 'namespaceprotected',  $ns );
+				array( 'protectedinterface' ) : array( 'namespaceprotected', $ns );
 		}
 
 		return $errors;
