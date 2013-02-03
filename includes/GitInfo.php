@@ -44,7 +44,16 @@ class GitInfo {
 	 * @param $dir string The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
-		$this->basedir = "{$dir}/.git/";
+		$this->basedir = "{$dir}/.git";
+
+		if ( is_readable( $this->basedir ) && is_file( $this->basedir ) ) {
+			$GITfile = rtrim( file_get_contents( $this->basedir ), "\r\n" );
+			if ( strlen( $GITfile ) > 8 && substr( $GITfile, 0, 8 ) === 'gitdir: ' ) {
+				$path = substr( $GITfile, 8 );
+				$isAbsolute = $path[0] === '/' || $path[1] === ':';
+				$this->basedir = $isAbsolute ? $path : "{$dir}/{$path}";
+			}
+		}
 	}
 
 	/**
@@ -102,7 +111,7 @@ class GitInfo {
 		}
 
 		// If not a SHA1 it may be a ref:
-		$REFfile = "{$this->basedir}{$HEAD}";
+		$REFfile = "{$this->basedir}/{$HEAD}";
 		if ( !is_readable( $REFfile ) ) {
 			return false;
 		}
