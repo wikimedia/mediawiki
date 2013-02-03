@@ -1081,7 +1081,7 @@ $wgAutoloadLocalClasses = array(
 	'wikiStatsOutput' => 'maintenance/language/StatOutputs.php',
 
 	# maintenance/term
-	'AnsiTermColorer'  => 'maintenance/term/MWTerm.php',
+	'AnsiTermColorer' => 'maintenance/term/MWTerm.php',
 	'DummyTermColorer' => 'maintenance/term/MWTerm.php',
 
 	# mw-config

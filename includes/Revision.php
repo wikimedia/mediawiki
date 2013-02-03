@@ -254,9 +254,11 @@ class Revision implements IDBAccessObject {
 			$matchId = 'page_latest';
 		}
 		return self::loadFromConds( $db,
-			array( "rev_id=$matchId",
-				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() )
+			array(
+				"rev_id=$matchId",
+				'page_namespace' => $title->getNamespace(),
+				'page_title'     => $title->getDBkey()
+			)
 		);
 	}
 
@@ -272,9 +274,11 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		return self::loadFromConds( $db,
-			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
-				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() )
+			array(
+				'rev_timestamp'  => $db->timestamp( $timestamp ),
+				'page_namespace' => $title->getNamespace(),
+				'page_title'     => $title->getDBkey()
+			)
 		);
 	}
 
@@ -330,9 +334,11 @@ class Revision implements IDBAccessObject {
 	public static function fetchRevision( $title ) {
 		return self::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
-			array( 'rev_id=page_latest',
-				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() )
+			array(
+				'rev_id=page_latest',
+				'page_namespace' => $title->getNamespace(),
+				'page_title'     => $title->getDBkey()
+			)
 		);
 	}
 
@@ -496,7 +502,7 @@ class Revision implements IDBAccessObject {
 			if ( !isset( $row->rev_parent_id ) ) {
 				$this->mParentId = null;
 			} else {
-				$this->mParentId  = intval( $row->rev_parent_id );
+				$this->mParentId = intval( $row->rev_parent_id );
 			}
 
 			if ( !isset( $row->rev_len ) ) {
@@ -532,7 +538,7 @@ class Revision implements IDBAccessObject {
 			}
 
 			// Lazy extraction...
-			$this->mText      = null;
+			$this->mText = null;
 			if( isset( $row->old_text ) ) {
 				$this->mTextRow = $row;
 			} else {
@@ -557,8 +563,8 @@ class Revision implements IDBAccessObject {
 			if ( !empty( $row['content'] ) ) {
 				//@todo: when is that set? test with external store setup! check out insertOn() [dk]
 				if ( !empty( $row['text_id'] ) ) {
-					throw new MWException( "Text already stored in external store (id {$row['text_id']}), "
-											. "can't serialize content object" );
+					throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
+						"can't serialize content object" );
 				}
 
 				$row['content_model'] = $row['content']->getModel();
@@ -615,12 +621,12 @@ class Revision implements IDBAccessObject {
 				} elseif ( $this->mTitle->getArticleID() !== $this->mPage ) {
 					// Got different page IDs. This may be legit (e.g. during undeletion),
 					// but it seems worth mentioning it in the log.
-					wfDebug( "Page ID " . $this->mPage . " mismatches the ID "
-							. $this->mTitle->getArticleID() . " provided by the Title object." );
+					wfDebug( "Page ID " . $this->mPage . " mismatches the ID " .
+						$this->mTitle->getArticleID() . " provided by the Title object." );
 				}
 			}
 
-			$this->mCurrent   = false;
+			$this->mCurrent = false;
 
 			// If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
@@ -718,7 +724,7 @@ class Revision implements IDBAccessObject {
 				array( 'page', 'revision' ),
 				self::selectPageFields(),
 				array( 'page_id=rev_page',
-					   'rev_id' => $this->mId ),
+					'rev_id' => $this->mId ),
 				__METHOD__ );
 			if ( $row ) {
 				$this->mTitle = Title::newFromRow( $row );

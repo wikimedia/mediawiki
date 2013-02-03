@@ -169,7 +169,7 @@ class ChangeTags {
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
-	static function modifyDisplayQuery( &$tables, &$fields,  &$conds,
+	static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 										&$join_conds, &$options, $filter_tag = false ) {
 		global $wgRequest, $wgUseTagFilter;
 
@@ -221,7 +221,7 @@ class ChangeTags {
 	 *        - if $fullForm is false: Array with
 	 *        - if $fullForm is true: String, html fragment
 	 */
-	public static function buildTagFilterSelector( $selected='', $fullForm = false, Title $title = null ) {
+	public static function buildTagFilterSelector( $selected = '', $fullForm = false, Title $title = null ) {
 		global $wgUseTagFilter;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {

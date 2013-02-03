@@ -1278,7 +1278,7 @@ class SpecialMytalk extends RedirectSpecialArticle {
  */
 class SpecialMycontributions extends RedirectSpecialPage {
 	function __construct() {
-		parent::__construct(  'Mycontributions' );
+		parent::__construct( 'Mycontributions' );
 		$this->mAllowedRedirectParams = array( 'limit', 'namespace', 'tagfilter',
 			'offset', 'dir', 'year', 'month', 'feed' );
 	}

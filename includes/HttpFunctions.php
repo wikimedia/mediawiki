@@ -244,7 +244,7 @@ class MWHttpRequest {
 		}
 
 		$members = array( "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
-				  "method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" );
+				"method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" );
 
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {
@@ -284,7 +284,7 @@ class MWHttpRequest {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
 			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
-								   ' Http::$httpEngine is set to "curl"' );
+				' Http::$httpEngine is set to "curl"' );
 		}
 
 		switch( Http::$httpEngine ) {
@@ -646,12 +646,12 @@ class MWHttpRequest {
 			$locations = $headers[ 'location' ];
 			$domain = '';
 			$foundRelativeURI = false;
-			$countLocations = count($locations);
+			$countLocations = count( $locations );
 
 			for ( $i = $countLocations - 1; $i >= 0; $i-- ) {
 				$url = parse_url( $locations[ $i ] );
 
-				if ( isset($url[ 'host' ]) ) {
+				if ( isset( $url['host'] ) ) {
 					$domain = $url[ 'scheme' ] . '://' . $url[ 'host' ];
 					break;	//found correct URI (with host)
 				} else {

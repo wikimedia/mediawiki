@@ -181,7 +181,7 @@ class ZipDirectoryReader {
 	 * Throw an error, and log a debug message
 	 */
 	function error( $code, $debugMessage ) {
-		wfDebug( __CLASS__.": Fatal error: $debugMessage\n" );
+		wfDebug( __CLASS__ . ": Fatal error: $debugMessage\n" );
 		throw new ZipDirectoryReaderError( $code );
 	}
 
@@ -220,7 +220,7 @@ class ZipDirectoryReader {
 		if ( $structSize + $this->eocdr['file comment length'] != strlen( $block ) - $sigPos ) {
 			$this->error( 'zip-bad', 'trailing bytes after the end of the file comment' );
 		}
-		if (   $this->eocdr['disk'] !== 0
+		if ( $this->eocdr['disk'] !== 0
 			|| $this->eocdr['CD start disk'] !== 0 )
 		{
 			$this->error( 'zip-unsupported', 'more than one disk (in EOCDR)' );
@@ -262,7 +262,7 @@ class ZipDirectoryReader {
 	 * may replace the regular "end of central directory record" in ZIP64 files.
 	 */
 	function readZip64EndOfCentralDirectoryRecord() {
-		if (   $this->eocdr64Locator['eocdr64 start disk'] != 0
+		if ( $this->eocdr64Locator['eocdr64 start disk'] != 0
 			|| $this->eocdr64Locator['number of disks'] != 0 )
 		{
 			$this->error( 'zip-unsupported', 'more than one disk (in EOCDR64 locator)' );
@@ -286,7 +286,7 @@ class ZipDirectoryReader {
 		if ( $data['signature'] !== "PK\x06\x06" ) {
 			$this->error( 'zip-bad', 'wrong signature on Zip64 end of central directory record' );
 		}
-		if (   $data['disk'] !== 0
+		if ( $data['disk'] !== 0
 			|| $data['CD start disk'] !== 0 )
 		{
 			$this->error( 'zip-unsupported', 'more than one disk (in EOCDR64)' );
@@ -327,7 +327,7 @@ class ZipDirectoryReader {
 		$offset = $this->eocdr['CD offset'];
 		$numEntries = $this->eocdr['CD entries total'];
 		$endPos = $this->eocdr['position'];
-		if (   $size == 0xffffffff
+		if ( $size == 0xffffffff
 			|| $offset == 0xffffffff
 			|| $numEntries == 0xffff )
 		{
@@ -395,7 +395,7 @@ class ZipDirectoryReader {
 			$data += $this->unpack( $block, $variableInfo, $pos );
 			$pos += $this->getStructSize( $variableInfo );
 
-			if (   $this->zip64 && (
+			if ( $this->zip64 && (
 				   $data['compressed size'] == 0xffffffff
 				|| $data['uncompressed size'] == 0xffffffff
 				|| $data['local header offset'] == 0xffffffff ) )
@@ -618,7 +618,7 @@ class ZipDirectoryReader {
 					$pos += $fieldSize;
 					break;
 				default:
-					throw new MWException( __METHOD__.": invalid type \"$typeName\"" );
+					throw new MWException( __METHOD__ . ": invalid type \"$typeName\"" );
 				}
 			} else {
 				// Unsigned little-endian integer

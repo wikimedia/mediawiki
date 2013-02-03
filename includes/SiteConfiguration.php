@@ -83,7 +83,7 @@
  * $conf->settings = array(
  *	'wgMergeSetting' = array(
  *		# Value that will be shared among all wikis:
- *		'default' => array(  NS_USER => true ),
+ *		'default' => array( NS_USER => true ),
  *
  *		# Leading '+' means merging the array of value with the defaults
  *		'+beta' => array( NS_HELP => true ),
@@ -205,7 +205,7 @@ class SiteConfiguration {
 							$retval = $thisSetting[$tag];
 						}
 						break 2;
-					} elseif( array_key_exists( "+$tag", $thisSetting ) && is_array($thisSetting["+$tag"]) ) {
+					} elseif( array_key_exists( "+$tag", $thisSetting ) && is_array( $thisSetting["+$tag"] ) ) {
 						if( !isset( $retval ) ) {
 							$retval = array();
 						}
@@ -216,7 +216,7 @@ class SiteConfiguration {
 				$suffix = $params['suffix'];
 				if( !is_null( $suffix ) ) {
 					if( array_key_exists( $suffix, $thisSetting ) ) {
-						if ( isset($retval) && is_array($retval) && is_array($thisSetting[$suffix]) ) {
+						if ( isset( $retval ) && is_array( $retval ) && is_array( $thisSetting[$suffix] ) ) {
 							$retval = self::arrayMerge( $retval, $thisSetting[$suffix] );
 						} else {
 							$retval = $thisSetting[$suffix];
@@ -509,9 +509,9 @@ class SiteConfiguration {
 		$out = $array1;
 		for( $i = 1; $i < func_num_args(); $i++ ) {
 			foreach( func_get_arg( $i ) as $key => $value ) {
-				if ( isset($out[$key]) && is_array($out[$key]) && is_array($value) ) {
+				if ( isset( $out[$key] ) && is_array( $out[$key] ) && is_array( $value ) ) {
 					$out[$key] = self::arrayMerge( $out[$key], $value );
-				} elseif ( !isset($out[$key]) || !$out[$key] && !is_numeric($key) ) {
+				} elseif ( !isset( $out[$key] ) || !$out[$key] && !is_numeric( $key ) ) {
 					// Values that evaluate to true given precedence, for the primary purpose of merging permissions arrays.
 					$out[$key] = $value;
 				} elseif ( is_numeric( $key ) ) {

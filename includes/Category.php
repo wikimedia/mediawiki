@@ -75,11 +75,11 @@ class Category {
 			# Okay, there were no contents.  Nothing to initialize.
 			if ( $this->mTitle ) {
 				# If there is a title object but no record in the category table, treat this as an empty category
-				$this->mID      = false;
-				$this->mName    = $this->mTitle->getDBkey();
-				$this->mPages   = 0;
+				$this->mID = false;
+				$this->mName = $this->mTitle->getDBkey();
+				$this->mPages = 0;
 				$this->mSubcats = 0;
-				$this->mFiles   = 0;
+				$this->mFiles = 0;
 
 				return true;
 			} else {
@@ -87,11 +87,11 @@ class Category {
 			}
 		}
 
-		$this->mID      = $row->cat_id;
-		$this->mName    = $row->cat_title;
-		$this->mPages   = $row->cat_pages;
+		$this->mID = $row->cat_id;
+		$this->mName = $row->cat_title;
+		$this->mPages = $row->cat_pages;
 		$this->mSubcats = $row->cat_subcats;
-		$this->mFiles   = $row->cat_files;
+		$this->mFiles = $row->cat_files;
 
 		# (bug 13683) If the count is negative, then 1) it's obviously wrong
 		# and should not be kept, and 2) we *probably* don't have to scan many
@@ -179,16 +179,16 @@ class Category {
 				$cat->mName = $title->getDBkey(); # if we have a title object, fetch the category name from there
 			}
 
-			$cat->mID =   false;
+			$cat->mID = false;
 			$cat->mSubcats = 0;
-			$cat->mPages   = 0;
-			$cat->mFiles   = 0;
+			$cat->mPages = 0;
+			$cat->mFiles = 0;
 		} else {
-			$cat->mName    = $row->cat_title;
-			$cat->mID      = $row->cat_id;
+			$cat->mName = $row->cat_title;
+			$cat->mID = $row->cat_id;
 			$cat->mSubcats = $row->cat_subcats;
-			$cat->mPages   = $row->cat_pages;
-			$cat->mFiles   = $row->cat_files;
+			$cat->mPages = $row->cat_pages;
+			$cat->mFiles = $row->cat_files;
 		}
 
 		return $cat;
@@ -350,9 +350,9 @@ class Category {
 		wfProfileOut( __METHOD__ );
 
 		# Now we should update our local counts.
-		$this->mPages   = $result->pages;
+		$this->mPages = $result->pages;
 		$this->mSubcats = $result->subcats;
-		$this->mFiles   = $result->files;
+		$this->mFiles = $result->files;
 
 		return $ret;
 	}

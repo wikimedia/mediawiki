@@ -135,12 +135,12 @@ class StringUtils {
 		$m = array();
 
 		while ( $inputPos < strlen( $subject ) &&
-		  preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) )
+			preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) )
 		{
 			$tokenOffset = $m[0][1];
 			if ( $m[1][0] != '' ) {
 				if ( $foundStart &&
-				  $strcmp( $endDelim, substr( $subject, $tokenOffset, $endLength ) ) == 0 )
+					$strcmp( $endDelim, substr( $subject, $tokenOffset, $endLength ) ) == 0 )
 				{
 					# An end match is present at the same location
 					$tokenType = 'end';
@@ -432,7 +432,7 @@ class ReplacementArray {
 	 * @param $from string
 	 */
 	function removePair( $from ) {
-		unset($this->data[$from]);
+		unset( $this->data[$from] );
 		$this->fss = false;
 	}
 

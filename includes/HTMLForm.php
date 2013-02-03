@@ -639,9 +639,9 @@ class HTMLForm extends ContextSource {
 			: 'application/x-www-form-urlencoded';
 		# Attributes
 		$attribs = array(
-			'action'  => $this->mAction === false ? $this->getTitle()->getFullURL() : $this->mAction,
-			'method'  => $this->mMethod,
-			'class'   => 'visualClear',
+			'action' => $this->mAction === false ? $this->getTitle()->getFullURL() : $this->mAction,
+			'method' => $this->mMethod,
+			'class' => 'visualClear',
 			'enctype' => $encType,
 		);
 		if ( !empty( $this->mId ) ) {
@@ -712,8 +712,8 @@ class HTMLForm extends ContextSource {
 
 		foreach ( $this->mButtons as $button ) {
 			$attrs = array(
-				'type'  => 'submit',
-				'name'  => $button['name'],
+				'type' => 'submit',
+				'name' => $button['name'],
 				'value' => $button['value']
 			);
 

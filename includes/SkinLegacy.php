@@ -120,7 +120,7 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>\n" .
-		  "<table cellspacing='0' style='width: 100%;'>\n<tr>\n";
+			"<table cellspacing='0' style='width: 100%;'>\n<tr>\n";
 
 		if ( $this->getSkin()->qbSetting() == 0 ) {
 			$s .= "<td class='top' style='text-align: left; vertical-align: top;' rowspan='{$rows}'>\n" .
@@ -179,10 +179,10 @@ class LegacyTemplate extends BaseTemplate {
 		$search = $wgRequest->getText( 'search' );
 
 		$s = '<form id="searchform' . $this->searchboxes . '" name="search" class="inline" method="post" action="'
-		  . $this->getSkin()->escapeSearchLink() . "\">\n"
-		  . '<input type="text" id="searchInput' . $this->searchboxes . '" name="search" size="19" value="'
-		  . htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />\n"
-		  . '<input type="submit" name="go" value="' . wfMessage( 'searcharticle' )->text() . '" />';
+			. $this->getSkin()->escapeSearchLink() . "\">\n"
+			. '<input type="text" id="searchInput' . $this->searchboxes . '" name="search" size="19" value="'
+			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />\n"
+			. '<input type="submit" name="go" value="' . wfMessage( 'searcharticle' )->text() . '" />';
 
 		if ( $wgUseTwoButtonsSearchForm ) {
 			$s .= '&#160;<input type="submit" name="fulltext" value="' . wfMessage( 'searchbutton' )->text() . "\" />\n";
@@ -263,7 +263,7 @@ class LegacyTemplate extends BaseTemplate {
 				}
 				$s = $wgLang->pipeList( array(
 					$s,
-					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code .  '">' . htmlspecialchars( $varname ) . '</a>'
+					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code . '">' . htmlspecialchars( $varname ) . '</a>'
 				) );
 			}
 		}

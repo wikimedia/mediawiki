@@ -136,10 +136,10 @@ class UserMailer {
 		global $wgSMTP, $wgServer;
 
 		$msgid = uniqid( wfWikiID() . ".", true ); /* true required for cygwin */
-		if ( is_array($wgSMTP) && isset($wgSMTP['IDHost']) && $wgSMTP['IDHost'] ) {
+		if ( is_array( $wgSMTP ) && isset( $wgSMTP['IDHost'] ) && $wgSMTP['IDHost'] ) {
 			$domain = $wgSMTP['IDHost'];
 		} else {
-			$url = wfParseUrl($wgServer);
+			$url = wfParseUrl( $wgServer );
 			$domain = $url['host'];
 		}
 		return "<$msgid@$domain>";
@@ -340,7 +340,7 @@ class UserMailer {
 			#
 			# PHP mail()
 			#
-			if( count($to) > 1 ) {
+			if( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
 			$headers = self::arrayToHeaderString( $headers, $endl );
@@ -517,9 +517,9 @@ class EmailNotification {
 							array( /* SET */
 								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
 							), array( /* WHERE */
-								'wl_user'      => $watchers,
+								'wl_user' => $watchers,
 								'wl_namespace' => $title->getNamespace(),
-								'wl_title'     => $title->getDBkey(),
+								'wl_title' => $title->getDBkey(),
 							), $fname
 						);
 						$dbw->commit( $fname );
@@ -710,16 +710,16 @@ class EmailNotification {
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
 				// since last visited.
-				$keys['$NEWPAGE'] .= "\n\n" .  wfMessage( 'enotif_lastvisited',
+				$keys['$NEWPAGE'] .= "\n\n" . wfMessage( 'enotif_lastvisited',
 					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) )
 					->inContentLanguage()->text();
 			}
-			$keys['$OLDID']   = $this->oldid;
+			$keys['$OLDID'] = $this->oldid;
 			// @deprecated Remove in MediaWiki 1.23.
 			$keys['$CHANGEDORCREATED'] = wfMessage( 'changed' )->inContentLanguage()->text();
 		} else {
 			# clear $OLDID placeholder in the message template
-			$keys['$OLDID']   = '';
+			$keys['$OLDID'] = '';
 			$keys['$NEWPAGE'] = '';
 			// @deprecated Remove in MediaWiki 1.23.
 			$keys['$CHANGEDORCREATED'] = wfMessage( 'created' )->inContentLanguage()->text();
@@ -771,13 +771,13 @@ class EmailNotification {
 		{
 			$editorAddress = new MailAddress( $this->editor );
 			if ( $wgEnotifFromEditor ) {
-				$this->from    = $editorAddress;
+				$this->from = $editorAddress;
 			} else {
-				$this->from    = $adminAddress;
+				$this->from = $adminAddress;
 				$this->replyto = $editorAddress;
 			}
 		} else {
-			$this->from    = $adminAddress;
+			$this->from = $adminAddress;
 			$this->replyto = new MailAddress( $wgNoReplyAddress );
 		}
 	}

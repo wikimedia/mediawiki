@@ -211,7 +211,7 @@ class Categoryfinder {
 			$res = $this->dbr->select(
 				/* FROM   */ 'page',
 				/* SELECT */ array( 'page_id', 'page_title' ),
-				/* WHERE  */ array( 'page_namespace' => NS_CATEGORY , 'page_title' => $layer ),
+				/* WHERE  */ array( 'page_namespace' => NS_CATEGORY, 'page_title' => $layer ),
 				__METHOD__ . '-2'
 			);
 			foreach ( $res as $o ) {
