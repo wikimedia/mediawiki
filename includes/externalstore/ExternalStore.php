@@ -138,7 +138,7 @@ class ExternalStore {
 		while ( count( $tryStores ) > 0 ) {
 			$index = mt_rand( 0, count( $tryStores ) - 1 );
 			$storeUrl = $tryStores[$index];
-			wfDebug( __METHOD__.": trying $storeUrl\n" );
+			wfDebug( __METHOD__ . ": trying $storeUrl\n" );
 			list( $proto, $path ) = explode( '://', $storeUrl, 2 );
 			$store = self::getStoreObject( $proto, $params );
 			if ( $store === false ) {

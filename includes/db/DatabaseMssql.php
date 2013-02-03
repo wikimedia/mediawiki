@@ -156,7 +156,7 @@ class DatabaseMssql extends DatabaseBase {
 		// perform query
 		$stmt = sqlsrv_query( $this->mConn, $sql );
 		if ( $stmt == false ) {
-			$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+			$message = "A database error has occurred. Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 				"Query: " . htmlentities( $sql ) . "\n" .
 				"Function: " . __METHOD__ . "\n";
 			// process each error (our driver will give us an array of errors unlike other providers)
@@ -319,7 +319,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( isset( $options['EXPLAIN'] ) ) {
 			unset( $options['EXPLAIN'] );
 		}
-		return parent::selectSQLText(  $table, $vars, $conds, $fname, $options, $join_conds );
+		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	/**
@@ -484,7 +484,7 @@ class DatabaseMssql extends DatabaseBase {
 				} elseif ( is_array( $value ) || is_object( $value ) ) {
 					if ( is_object( $value ) && strtolower( get_class( $value ) ) == 'blob' ) {
 						$sql .= $this->addQuotes( $value );
-					}  else {
+					} else {
 						$sql .= $this->addQuotes( serialize( $value ) );
 					}
 				} else {
@@ -608,9 +608,9 @@ class DatabaseMssql extends DatabaseBase {
 		} else {
 			$sql = '
 				SELECT * FROM (
-				  SELECT sub2.*, ROW_NUMBER() OVER(ORDER BY sub2.line2) AS line3 FROM (
-					SELECT 1 AS line2, sub1.* FROM (' . $sql . ') AS sub1
-				  ) as sub2
+					SELECT sub2.*, ROW_NUMBER() OVER(ORDER BY sub2.line2) AS line3 FROM (
+						SELECT 1 AS line2, sub1.* FROM (' . $sql . ') AS sub1
+					) as sub2
 				) AS sub3
 				WHERE line3 BETWEEN ' . ( $offset + 1 ) . ' AND ' . ( $offset + $limit );
 			return $sql;
@@ -770,17 +770,17 @@ class DatabaseMssql extends DatabaseBase {
 		$newUser = $this->escapeIdentifier( $newUser );
 		$loginPassword = $this->addQuotes( $loginPassword );
 
-		$this->doQuery("CREATE DATABASE $dbName;");
-		$this->doQuery("USE $dbName;");
-		$this->doQuery("CREATE SCHEMA $dbName;");
-		$this->doQuery("
+		$this->doQuery( "CREATE DATABASE $dbName;" );
+		$this->doQuery( "USE $dbName;" );
+		$this->doQuery( "CREATE SCHEMA $dbName;" );
+		$this->doQuery( "
 						CREATE
 							LOGIN $newUser
 						WITH
 							PASSWORD=$loginPassword
 						;
-					");
-		$this->doQuery("
+					" );
+		$this->doQuery( "
 						CREATE
 							USER $newUser
 						FOR
@@ -788,8 +788,8 @@ class DatabaseMssql extends DatabaseBase {
 						WITH
 							DEFAULT_SCHEMA=$dbName
 						;
-					");
-		$this->doQuery("
+					" );
+		$this->doQuery( "
 						GRANT
 							BACKUP DATABASE,
 							BACKUP LOG,
@@ -804,15 +804,15 @@ class DatabaseMssql extends DatabaseBase {
 							DATABASE::$dbName
 						TO $newUser
 						;
-					");
-		$this->doQuery("
+					" );
+		$this->doQuery( "
 						GRANT
 							CONTROL
 						ON
 							SCHEMA::$dbName
 						TO $newUser
 						;
-					");
+					" );
 
 
 	}
@@ -917,7 +917,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 
 		// we want this to be compatible with the output of parent::makeSelectOptions()
-		return array( $startOpts, '' , $tailOpts, '' );
+		return array( $startOpts, '', $tailOpts, '' );
 	}
 
 	/**

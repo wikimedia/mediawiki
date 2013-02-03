@@ -194,7 +194,7 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
-		if ($this->mParams['offset'] == 0) {
+		if ( $this->mParams['offset'] == 0 ) {
 			$result['filekey'] = $this->performStash();
 		} else {
 			$status = $this->mUpload->addChunk(
@@ -246,7 +246,7 @@ class ApiUpload extends ApiBase {
 					}
 
 					// We have a new filekey for the fully concatenated file.
-					$result['filekey'] =  $this->mUpload->getLocalFile()->getFileKey();
+					$result['filekey'] = $this->mUpload->getLocalFile()->getFileKey();
 
 					// Remove chunk from stash. (Checks against user ownership of chunks.)
 					$this->mUpload->stash->removeFile( $this->mParams['filekey'] );
@@ -519,7 +519,7 @@ class ApiUpload extends ApiBase {
 				break;
 			default:
 				$this->dieUsage( 'An unknown error occurred', 'unknown-error',
-						0, array( 'code' =>  $verification['status'] ) );
+						0, array( 'code' => $verification['status'] ) );
 				break;
 		}
 	}
@@ -791,7 +791,7 @@ class ApiUpload extends ApiBase {
 			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
 			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file".  Also you must get and send an edit token before doing any upload stuff'
+			'sending the "file". Also you must get and send an edit token before doing any upload stuff'
 		);
 	}
 

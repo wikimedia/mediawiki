@@ -138,7 +138,7 @@ class ResultWrapper implements Iterator {
 
 	/**
 	 * Fetch the next row from the given result object, in associative array
-	 * form.  Fields are retrieved with $row['fieldname'].
+	 * form. Fields are retrieved with $row['fieldname'].
 	 *
 	 * @return Array
 	 * @throws DBUnexpectedError Thrown if the database returns an error

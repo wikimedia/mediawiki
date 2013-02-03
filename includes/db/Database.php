@@ -112,8 +112,8 @@ interface DatabaseType {
 	 * The value inserted should be fetched from nextSequenceValue()
 	 *
 	 * Example:
-	 * $id = $dbw->nextSequenceValue('page_page_id_seq');
-	 * $dbw->insert('page',array('page_id' => $id));
+	 * $id = $dbw->nextSequenceValue( 'page_page_id_seq' );
+	 * $dbw->insert( 'page', array( 'page_id' => $id ) );
 	 * $id = $dbw->insertId();
 	 *
 	 * @return int
@@ -393,7 +393,7 @@ abstract class DatabaseBase implements DatabaseType {
 		return wfSetVar( $this->mTablePrefix, $prefix );
 	}
 
- 	/**
+	/**
 	 * Set the filehandle to copy write statements to.
 	 *
 	 * @param $fh filehandle
@@ -584,7 +584,7 @@ abstract class DatabaseBase implements DatabaseType {
 		global $wgDebugDBTransactions;
 		$this->mFlags |= $flag;
 		if ( ( $flag & DBO_TRX) & $wgDebugDBTransactions ) {
-			wfDebug("Implicit transactions are now  disabled.\n");
+			wfDebug( "Implicit transactions are now  disabled.\n" );
 		}
 	}
 
@@ -597,7 +597,7 @@ abstract class DatabaseBase implements DatabaseType {
 		global $wgDebugDBTransactions;
 		$this->mFlags &= ~$flag;
 		if ( ( $flag & DBO_TRX ) && $wgDebugDBTransactions ) {
-			wfDebug("Implicit transactions are now disabled.\n");
+			wfDebug( "Implicit transactions are now disabled.\n" );
 		}
 	}
 
@@ -671,12 +671,12 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( $wgCommandLineMode ) {
 				$this->mFlags &= ~DBO_TRX;
 				if ( $wgDebugDBTransactions ) {
-					wfDebug("Implicit transaction open disabled.\n");
+					wfDebug( "Implicit transaction open disabled.\n" );
 				}
 			} else {
 				$this->mFlags |= DBO_TRX;
 				if ( $wgDebugDBTransactions ) {
-					wfDebug("Implicit transaction open enabled.\n");
+					wfDebug( "Implicit transaction open enabled.\n" );
 				}
 			}
 		}
@@ -772,7 +772,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $errno
 	 * @param $errstr
 	 */
-	protected function connectionErrorHandler( $errno,  $errstr ) {
+	protected function connectionErrorHandler( $errno, $errstr ) {
 		$this->mPHPError = $errstr;
 	}
 
@@ -921,7 +921,7 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 ) {
 				global $wgDebugDBTransactions;
 				if ( $wgDebugDBTransactions ) {
-					wfDebug("Implicit transaction start.\n");
+					wfDebug( "Implicit transaction start.\n" );
 				}
 				$this->begin( __METHOD__ . " ($fname)" );
 				$this->mTrxAutomatic = true;
@@ -1096,7 +1096,7 @@ abstract class DatabaseBase implements DatabaseType {
 			case '\\&': return '&';
 		}
 
-		list( /* $n */ , $arg ) = each( $this->preparedArgs );
+		list( /* $n */, $arg ) = each( $this->preparedArgs );
 
 		switch( $matches[1] ) {
 			case '?': return $this->addQuotes( $arg );
@@ -1419,7 +1419,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * join, the second is an SQL fragment giving the join condition for that
 	 * table. For example:
 	 *
-	 *    array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 *    array( 'page' => array( 'LEFT JOIN', 'page_latest=rev_id' ) )
 	 *
 	 * @return ResultWrapper. If the query returned no rows, a ResultWrapper
 	 *   with no rows in it will be returned. If there was a query error, a
@@ -2097,7 +2097,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * This is handy when you need to construct SQL for joins
 	 *
 	 * Example:
-	 * extract($dbr->tableNames('user','watchlist'));
+	 * extract( $dbr->tableNames( 'user', 'watchlist' ) );
 	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
@@ -2119,7 +2119,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * This is handy when you need to construct SQL for joins
 	 *
 	 * Example:
-	 * list( $user, $watchlist ) = $dbr->tableNamesN('user','watchlist');
+	 * list( $user, $watchlist ) = $dbr->tableNamesN( 'user', 'watchlist' );
 	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
@@ -2671,7 +2671,7 @@ abstract class DatabaseBase implements DatabaseType {
 		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 
 		if ( is_array( $srcTable ) ) {
-			$srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -3466,7 +3466,7 @@ abstract class DatabaseBase implements DatabaseType {
 			// replace `{$var}`
 			$ins = str_replace( '`{$' . $var . '}`', $this->addIdentifierQuotes( $value ), $ins );
 			// replace /*$var*/
-			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ) , $ins );
+			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ), $ins );
 		}
 		return $ins;
 	}

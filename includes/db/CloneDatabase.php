@@ -100,12 +100,12 @@ class CloneDatabase {
 
 			if( $this->dropCurrentTables && !in_array( $this->db->getType(), array( 'postgres', 'oracle' ) ) ) {
 				$this->db->dropTable( $tbl, __METHOD__ );
-				wfDebug( __METHOD__." dropping {$newTableName}\n", true);
+				wfDebug( __METHOD__ . " dropping {$newTableName}\n", true );
 				//Dropping the oldTable because the prefix was changed
 			}
 
 			# Create new table
-			wfDebug( __METHOD__." duplicating $oldTableName to $newTableName\n", true );
+			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName\n", true );
 			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
 		}
 	}

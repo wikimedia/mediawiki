@@ -78,7 +78,7 @@ abstract class UploadBase {
 								self::ILLEGAL_FILENAME => 'illegal-filename',
 								self::OVERWRITE_EXISTING_FILE => 'overwrite',
 								self::VERIFICATION_ERROR => 'verification-error',
-								self::HOOK_ABORTED =>  'hookaborted',
+								self::HOOK_ABORTED => 'hookaborted',
 								self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
 								self::FILENAME_TOO_LONG => 'filename-toolong',
 		);
@@ -409,7 +409,7 @@ abstract class UploadBase {
 		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 
 		# check mime type, if desired
-		$mime = $this->mFileProps[ 'file-mime' ];
+		$mime = $this->mFileProps['file-mime'];
 		$status = $this->verifyMimeType( $mime );
 		if ( $status !== true ) {
 			wfProfileOut( __METHOD__ );
@@ -768,7 +768,7 @@ abstract class UploadBase {
 		}
 
 		if( strlen( $partname ) < 1 ) {
-			$this->mTitleError =  self::MIN_LENGTH_PARTNAME;
+			$this->mTitleError = self::MIN_LENGTH_PARTNAME;
 			return $this->mTitle = null;
 		}
 
@@ -940,7 +940,7 @@ abstract class UploadBase {
 		# ugly hack: for text files, always look at the entire file.
 		# For binary field, just check the first K.
 
-		if( strpos( $mime,'text/' ) === 0 ) {
+		if( strpos( $mime, 'text/' ) === 0 ) {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
@@ -1090,7 +1090,7 @@ abstract class UploadBase {
 
 		foreach( $attribs as $attrib => $value ) {
 			$stripped = $this->stripXmlNamespace( $attrib );
-			$value = strtolower($value);
+			$value = strtolower( $value );
 
 			if( substr( $stripped, 0, 2 ) == 'on' ) {
 				wfDebug( __METHOD__ . ": Found event-handler attribute '$attrib'='$value' in uploaded file.\n" );
@@ -1143,8 +1143,8 @@ abstract class UploadBase {
 			# use CSS styles to bring in remote code
 			# catch url("http:..., url('http:..., url(http:..., but not url("#..., url('#..., url(#....
 			if( $stripped == 'style' && preg_match_all( '!((?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*["\']?\s*[^#]+.*?\))!sim', $value, $matches ) ) {
-				foreach ($matches[1] as $match) {
-					if (!preg_match( '!(?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
+				foreach ( $matches[1] as $match ) {
+					if ( !preg_match( '!(?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
 						wfDebug( __METHOD__ . ": Found svg setting a style with remote url '$attrib'='$value' in uploaded file.\n" );
 						return true;
 					}
@@ -1379,7 +1379,7 @@ abstract class UploadBase {
 
 		if ( self::isThumbName( $file->getName() ) ) {
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $extension, NS_FILE );
+			$nt_thb = Title::newFromText( substr( $partname, strpos( $partname, '-' ) + 1 ) . '.' . $extension, NS_FILE );
 			$file_thb = wfLocalFile( $nt_thb );
 			if( $file_thb->exists() ) {
 				return array(
@@ -1420,10 +1420,10 @@ abstract class UploadBase {
 		$n = strrpos( $filename, '.' );
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 		return (
-					substr( $partname , 3, 3 ) == 'px-' ||
-					substr( $partname , 2, 3 ) == 'px-'
+					substr( $partname, 3, 3 ) == 'px-' ||
+					substr( $partname, 2, 3 ) == 'px-'
 				) &&
-				preg_match( "/[0-9]{2}/" , substr( $partname , 0, 2 ) );
+				preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
 	}
 
 	/**

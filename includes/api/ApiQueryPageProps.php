@@ -49,7 +49,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 		$this->addTables( 'page_props' );
 		$this->addFields( array( 'pp_page', 'pp_propname', 'pp_value' ) );
-		$this->addWhereFld( 'pp_page',  array_keys( $pages ) );
+		$this->addWhereFld( 'pp_page', array_keys( $pages ) );
 
 		if ( $this->params['continue'] ) {
 			$this->addWhere( 'pp_page >=' . intval( $this->params['continue'] ) );

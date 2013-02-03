@@ -83,7 +83,7 @@ class LBFactory_Multi extends LBFactory {
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
-				throw new MWException( __CLASS__.": $key is required in configuration" );
+				throw new MWException( __CLASS__ . ": $key is required in configuration" );
 			}
 			$this->$key = $conf[$key];
 		}
@@ -161,7 +161,7 @@ class LBFactory_Multi extends LBFactory {
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
-			throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
+			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 		$template = $this->serverTemplate;
 		if ( isset( $this->externalTemplateOverrides ) ) {
