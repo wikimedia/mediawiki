@@ -168,6 +168,7 @@ $messages = array(
 'newwindow' => "(a' fosgladh ann an uinneag ùr)",
 'cancel' => 'Sguir dheth',
 'moredotdotdot' => 'Barrachd...',
+'morenotlisted' => 'Barrachd nach eil air an liosta...',
 'mypage' => 'Duilleag',
 'mytalk' => 'Deasbaireachd',
 'anontalk' => 'Conaltradh airson an IP seo',
@@ -201,6 +202,7 @@ $messages = array(
 'namespaces' => 'Namespaces',
 'variants' => 'Tionndaidhean',
 
+'navigation-heading' => 'Clàr-taice na seòladaireachd',
 'errorpagetitle' => 'Mearachd',
 'returnto' => 'Till dhan duilleag a leanas: $1',
 'tagline' => 'O {{SITENAME}}',
@@ -444,6 +446,9 @@ Thug an rianaire a ghlais e seachad an t-adhbhar a leanas: "$3".',
 'logouttext' => "'''Chaidh do logadh a-mach.'''
 'S urrainn dhut leantainn air adhart a' cleachdadh {{SITENAME}} a chleachdadh gun urra no 's urrainn dhut <span class='plainlinks'>[$1 logadh a-steach a-rithist]</span> mar an dearbh-chleachdaiche no mar chleachdaiche eile.
 Thoir an aire gum bi coltas air cuide dhe na duilleagan mar gum biodh tu air logadh a-steach gus am falamhaich thu tasgadan a' bhrabhsair agad.",
+'welcomeuser' => 'Fàilte ort, $1',
+'welcomecreation-msg' => 'Chaidh an cunntas agad a chruthachadh.
+Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a ghleusadh dhut fhèin.',
 'yourname' => 'Ainm-cleachdaiche:',
 'yourpassword' => 'Am facal-faire agad',
 'yourpasswordagain' => 'Ath-sgrìobh facal-faire',
@@ -466,7 +471,7 @@ Thoir an aire gum bi coltas air cuide dhe na duilleagan mar gum biodh tu air log
 'gotaccount' => 'A bheil cunntas agad mu thràth? $1.',
 'gotaccountlink' => 'Log a-steach',
 'userlogin-resetlink' => "Na dhìochuimhnich thu d' ainm is facal-faire?",
-'createaccountmail' => 'Le post-d',
+'createaccountmail' => "Cleachd facal-faire sealach air thuaiream agus cuir e dhan phost-d a tha 'ga shònrachadh gu h-ìosal",
 'createaccountreason' => 'Adhbhar:',
 'badretype' => "Chan eil an dà fhacal-faire a chuir thu a-steach a' freagairt ri chèile.",
 'userexists' => "Tha an t-ainm-cleachdaiche a chuir thu a-steach 'ga chleachdadh mu thràth.
@@ -546,6 +551,7 @@ Fuirich ort mus feuch thu ris a-rithist.",
 # E-mail sending
 'php-mail-error-unknown' => 'Mearachd neo-aithichte san fheart mail() aig PHP.',
 'user-mail-no-addy' => 'Cha do ghabh am post-d a chur leis nach robh seòladh puist-d ann.',
+'user-mail-no-body' => 'Bha bodhaig na teachdaireachd bàn no air leth goirid.',
 
 # Change password dialog
 'resetpass' => 'Atharraich am facal-faire',
@@ -604,6 +610,7 @@ Facal-faire sealach: $2',
 'changeemail-oldemail' => 'An seòladh puist-d làithreach:',
 'changeemail-newemail' => 'An seòladh puist-d ùr:',
 'changeemail-none' => '(chan eil gin)',
+'changeemail-password' => 'Am facal-faire agad air {{SITENAME}}:',
 'changeemail-submit' => 'Atharraich am post-d',
 'changeemail-cancel' => 'Sguir dheth',
 
@@ -776,7 +783,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 '''NA CLEACHDAIBH SAOTHAIR FO DHLIGHE-SGRÌOBHAIDH GUN CHEAD!'''",
 'longpageerror' => "'''Mearachd: Tha an teacsa a chur thu thugainn {{PLURAL:$1 kilobyte|$1 kilobyte|$1 kilobyte|$1 kilobyte|$1 kilobyte|$1 kilobyte|}} a dh'fhaid is tha sin nas fhaide na tha ceadaichte ({{PLURAL:$1 kilobyte|$2 kilobyte|$2 kilobyte|$2 kilobyte|$2 kilobyte|$2 kilobyte|}}).'''
 Cha ghabh a shàbhaladh.",
-'readonlywarning' => "'''Rabhadh: Chaidh an stòr-dàta a ghlasadh a chum obair-ghlèidhidh agus chan urrainn dhut na còraichean-deasachaidh agad a chur gu feum an-dràsta fhèin.'''
+'readonlywarning' => "'''Rabhadh: Chaidh an stòr-dàta a ghlasadh a chum obair-ghlèidhidh agus chan urrainn dhut na dheasaich thu a shàbhaladh an-dràsta fhèin.'''
 'S mathaid gum b' fheairrde dhut lethbhreac a dhèanamh dhen teacsa agus a shàbhaladh ann am faidhle ach an urrainn dhut a chleachdadh as a dhèidh seo.
 
 Seo am mìneachadh a thug an rianaire a ghlais e: $1",
@@ -817,6 +824,15 @@ Tha coltas gun deach a sguabadh às.",
 'edit-already-exists' => "Cha b' urrainn dhuinn an duilleag ùr a chruthachadh.
 Tha e ann mu thràth.",
 'defaultmessagetext' => 'Teacsa bunaiteach na teachdaireachd',
+'content-failed-to-parse' => "Dh'fhàillig parsadh susbaint $2 airson modail $1: $3",
+'invalid-content-data' => 'Dàta susbaint a tha mì-dhligheach',
+'content-not-allowed-here' => 'Chan eil susbaint "$1" ceadaichte air an duilleag [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitext',
+'content-model-text' => 'teacsa lom',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Rabhadh:''' Tha cus expensive parser function calls san duilleag seo.
@@ -856,7 +872,7 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'history-show-deleted' => 'Na chaidh sguabadh às a-mhàin',
 'histfirst' => 'As sine',
 'histlast' => 'As ùire',
-'historysize' => '({{PLURAL:$1|1 bhaidt|$1 bhaidht|$1 bhaidht|$1 bhaidht|$1 baidht|$1 baidht}})',
+'historysize' => '({{PLURAL:$1|1 bhaidt|$1 bhaidht|$1 bhaidht|$1 bhaidht|$1 baidhtichean|$1 baidht}})',
 'historyempty' => '(falamh)',
 
 # Revision feed
@@ -874,9 +890,11 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 'rev-delundel' => 'seall/falaich',
 'rev-showdeleted' => 'seall',
 'revdelete-hide-user' => 'Falaich ainm-cleachdaiche/seòladh IP an deasaiche',
+'revdelete-log' => 'Adhbhar:',
 'revdel-restore' => 'mùth follaiseachd',
 'revdel-restore-deleted' => 'mùthaidhean a chaidh a sguabadh às',
 'revdel-restore-visible' => 'mùthaidhean faicsinneach',
+'pagehist' => 'Eachdraidh na duilleige',
 'revdelete-otherreason' => 'Adhbhar eile/a bharrachd:',
 'revdelete-reasonotherlist' => 'Adhbhar eile',
 'revdelete-edit-reasonlist' => 'Deasaich adhbharan an sguabaidh às',
@@ -902,6 +920,8 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 'searchresulttext' => 'Airson barrachd fiosrachaidh mu rannsachadh {{SITENAME}}, cuir sùil air [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => 'Lorg thu \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|gach duilleag a tha a\' tòiseachadh le "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|gach duilleag a tha a\' ceangal ri "$1"]])',
 'searchsubtitleinvalid' => "Lorg thu airson '''$1'''",
+'toomanymatches' => 'Fhuaras cus thoraidhean, feuch ceist eile',
+'titlematches' => "Tiotalan dhuilleagan a tha a' maidseadh",
 'notitlematches' => "Chan eil tiotal de dhuilleag sam bith a' freagairt ris",
 'notextmatches' => "Chan eil tiotal de dhuilleag sam bith a' freagairt ris",
 'prevn' => 'an {{PLURAL:$1|$1}} mu dheireadh',
@@ -925,6 +945,7 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 'searchprofile-advanced-tooltip' => 'Lorg am broinn ainm-spàsan gnàthaichte',
 'search-result-size' => '$1 ({{PLURAL:$2|1 fhacal|$2 fhacal|1 fhacal|$2 fhacal|$2 faclan|$2 facal}})',
 'search-result-category-size' => '{{PLURAL:$1|1 bhall|$1 bhall|$1 bhall|$1 bhall|$1 bhuill|$1 ball}} ({{PLURAL:$2|1 fho-roinn|$2 fho-roinn|$2 fho-roinn|$2 fho-roinn|$2 fo-roinnean|$2 fo-roinn}}, {{PLURAL:$3|1 fhaidhle|$3 fhaidhle|$3 fhaidhle|$3 fhaidhle|$3 faidhlichean|$3 faidhle}})',
+'search-result-score' => 'Buntainneas: $1%',
 'search-redirect' => '(ag ath-sheòladh $1)',
 'search-section' => '(earrann $1)',
 'search-suggest' => 'An e na leanas a bha fa-near dhut: $1',
@@ -1193,7 +1214,7 @@ Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan i
 'emailsend' => 'Cuir',
 
 # Watchlist
-'watchlist' => 'Mo chlàr-faire',
+'watchlist' => 'An clàr-faire',
 'mywatchlist' => 'An clàr-faire',
 'watchlistfor2' => 'Do $1 $2',
 'nowatchlist' => "Chan eil rud sam bith air a' chlàr-fhaire agad.",

@@ -674,7 +674,7 @@ Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log
 Sıma be idarekerênia ho ra şikinê hona [$1 nê ferqi bıvênê], eke wazenê dewam kerê.",
 'rev-delundel' => 'bıasne/wedare',
 'rev-showdeleted' => 'bıasne',
-'revisiondelete' => 'Çımraviarnaisu bıestere/peyser bia',
+'revisiondelete' => 'Çımraviarnaisu bestere/peyser bia',
 'revdelete-nooldid-title' => 'Çımraviarnaena waştiye nêvêrena',
 'revdelete-nooldid-text' => 'Sıma vırastena nê fonksiyoni rê ya jü çımraviarnaena waştiye diyar nêkerdo, çımraviarnaena diyarkerdiye çına, ya ki sıma wazenê ke çımraviarnaena nıkaêne bınımnê.',
 'revdelete-nologtype-title' => 'Qet qeydê cı nêdiya',
@@ -902,7 +902,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-move' => 'Pelu bere',
 'right-movefile' => 'Dosyu bere',
 'right-upload' => 'Dosyu bar ke',
-'right-delete' => 'Pelu bıestere',
+'right-delete' => 'Pelu bestere',
 'right-undelete' => 'Esterıtena na pele peyser bıcê',
 
 # Special:Log/newusers
@@ -921,7 +921,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'action-move' => 'na pele bere',
 'action-movefile' => 'na dosya bere',
 'action-upload' => 'na dosya bar ke',
-'action-delete' => 'na pele bıestere',
+'action-delete' => 'na pele bestere',
 'action-undelete' => 'na pele meestere',
 
 # Recent changes
@@ -1007,7 +1007,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'file-anchor-link' => 'Dosya',
 'filehist' => 'Tarixê dosya',
 'filehist-help' => "Serba diyaena viartê dosya tarixê ke qısımê tarix/zeman'i derê inu bıteqne.",
-'filehist-deleteall' => 'Pêrune bıestere',
+'filehist-deleteall' => 'Pêrune bestere',
 'filehist-deleteone' => 'bestere',
 'filehist-revert' => 'raçarne',
 'filehist-current' => 'nıkaên',
@@ -1036,8 +1036,8 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'filerevert-submit' => 'Raçarne',
 
 # File deletion
-'filedelete' => 'Bıestere $1',
-'filedelete-legend' => 'Dosya bıestere',
+'filedelete' => 'Bestere $1',
+'filedelete-legend' => 'Dosya bestere',
 'filedelete-comment' => 'Sebeb:',
 'filedelete-submit' => 'Bestere',
 'filedelete-otherreason' => 'Sebebo bin/ilaweki:',
@@ -1168,7 +1168,7 @@ Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, 
 'changed' => 'vuriya',
 
 # Delete
-'deletepage' => 'Pele bıestere',
+'deletepage' => 'Pele bestere',
 'delete-legend' => 'Bestere',
 'confirmdeletetext' => 'Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.
 Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.',
@@ -1398,7 +1398,7 @@ Kerem ke, qeydkerdene ra ver gozaga verqayti bıgurene.',
 Tı şikina çımunê dae bıvênê',
 'tooltip-ca-history' => 'Versiyonê verênê na pele',
 'tooltip-ca-protect' => 'Na pele bısevekne',
-'tooltip-ca-delete' => 'Na pele bıestere',
+'tooltip-ca-delete' => 'Na pele bestere',
 'tooltip-ca-move' => 'Namê na pele bıvurne',
 'tooltip-ca-watch' => 'Na pele bıcê lista huya şêrkerdene',
 'tooltip-ca-unwatch' => 'Na pele lista huya şêrkerdene ra wedare',

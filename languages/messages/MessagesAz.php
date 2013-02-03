@@ -16,6 +16,7 @@
  * @author Erdemaslancan
  * @author Gulmammad
  * @author Kaganer
+ * @author Khan27
  * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
@@ -248,6 +249,7 @@ $messages = array(
 'namespaces' => 'Adlar fəzası',
 'variants' => 'Variantlar',
 
+'navigation-heading' => 'Naviqasiya menyusu',
 'errorpagetitle' => 'Xəta',
 'returnto' => '$1 səhifəsinə qayıt.',
 'tagline' => '{{SITENAME}} saytından',
@@ -477,12 +479,16 @@ Göstərilən səbəb: "\'\'$2\'\'".',
 'logouttext' => "'''Sistemdən çıxdınız.'''
 
 Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər və ya eyni, yaxud başqa istifadəçi adı ilə <span class='plainlinks'>[$1 yenidən daxil ola]</span> bilərsiniz. Veb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
+'welcomeuser' => 'Xoş gəldin $1!',
+'welcomecreation-msg' => 'Hesabınız yaradıldı.
+[[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
 'yourname' => 'İstifadəçi adı',
 'yourpassword' => 'Parol:',
 'yourpasswordagain' => 'Parolu təkrar yazın:',
 'remembermypassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'securelogin-stick-https' => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname' => 'Sizin domain',
+'password-change-forbidden' => 'Bu vikidə parolunuzu dəyişdirə bilməzsiniz.',
 'externaldberror' => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
 'login' => 'Daxil ol',
 'nav-login-createaccount' => 'Daxil ol / hesab yarat',
@@ -544,6 +550,7 @@ Aşağıdakı xidmətlərin heç biri üçün Sizə e-məktub göndərilməyəc�
 'emailconfirmlink' => 'E-poçt ünvanını təsdiq et',
 'invalidemailaddress' => 'E-poçt ünvanınızı qeyri-düzgün formatda olduğu üçün qəbul edə bilmirik.
 Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.',
+'emaildisabled' => 'Bu saytdan e-poçt göndərə bilməzsiniz.',
 'accountcreated' => 'Hesab yaradıldı',
 'accountcreatedtext' => '$1 üçün istifadəçi hesabı yaradıldı.',
 'createaccount-title' => '{{SITENAME}} hesabın yaradılması',

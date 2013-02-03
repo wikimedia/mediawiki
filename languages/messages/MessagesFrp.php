@@ -529,7 +529,7 @@ $messages = array(
 'lastmodifiedat' => 'Dèrriér changement de ceta pâge lo $1 a $2.',
 'viewcount' => 'Ceta pâge est étâye vua {{PLURAL:$1|un côp|$1 côps}}.',
 'protectedpage' => 'Pâge protègiêe',
-'jumpto' => 'Alar a :',
+'jumpto' => 'Alar vers :',
 'jumptonavigation' => 'navigacion',
 'jumptosearch' => 'rechèrche',
 'view-pool-error' => 'Dèconsolâ, los sèrviors sont lapidâs d’ôvra cetos temps.
@@ -571,14 +571,14 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 
 'ok' => 'D’acôrd',
 'retrievedfrom' => 'Rècupèrâye de « $1 »',
-'youhavenewmessages' => 'Vos avéd de $1 ($2).',
+'youhavenewmessages' => 'Vos éd de $1 ($2).',
 'newmessageslink' => 'mèssâjos novéls',
 'newmessagesdifflink' => 'dèrriér changement',
-'youhavenewmessagesfromusers' => 'Vos avéd $1 {{PLURAL:$3|d’un ôtr’utilisator|de $3 ôtros utilisators}} ($2).',
-'youhavenewmessagesmanyusers' => 'Vos avéd $1 d’un mouél d’utilisators ($2).',
+'youhavenewmessagesfromusers' => 'Vos éd $1 {{PLURAL:$3|d’un ôtr’utilisator|de $3 ôtros utilisators}} ($2).',
+'youhavenewmessagesmanyusers' => 'Vos éd $1 d’un mouél d’utilisators ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un mèssâjo novél|de mèssâjos novéls}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|dèrriér changement|dèrriérs changements}}',
-'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls sur $1',
+'youhavenewmessagesmulti' => 'Vos éd de mèssâjos novéls sur $1',
 'editsection' => 'changiér',
 'editold' => 'changiér',
 'viewsourceold' => 'vêre lo tèxto sôrsa',
@@ -699,9 +699,9 @@ Por apondre ou ben changiér des traduccions sur tôs los vouiquis, se vos plét
 'sqlhidden' => '(Demanda SQL cachiêe)',
 'cascadeprotected' => 'Cela pâge-que est protègiêe, el est entrebetâye dedens {{PLURAL:$1|ceta pâge qu’est étâye protègiêe|cetes pâges que sont étâyes protègiêes}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
-'namespaceprotected' => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de noms « '''$1''' ».",
-'customcssprotected' => 'Vos avéd pas la pèrmission de changiér cela pâge CSS, contint la configuracion a sè d’un ôtr’utilisator.',
-'customjsprotected' => 'Vos avéd pas la pèrmission de changiér cela pâge JavaScript, contint la configuracion a sè d’un ôtr’utilisator.',
+'namespaceprotected' => "Vos éd pas la pèrmission de changiér les pâges de l’èspâço de noms « '''$1''' ».",
+'customcssprotected' => 'Vos éd pas la pèrmission de changiér cela pâge CSS, contint la configuracion a sè d’un ôtr’utilisator.',
+'customjsprotected' => 'Vos éd pas la pèrmission de changiér cela pâge JavaScript, contint la configuracion a sè d’un ôtr’utilisator.',
 'ns-specialprotected' => 'Les pâges spèciâles pôvont pas étre changiêes.',
 'titleprotected' => "Cél titro est étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyêe est « ''$2'' ».",
@@ -742,10 +742,10 @@ Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SI
 'logout' => 'Sè dèbranchiér',
 'userlogout' => 'Dèbranchement',
 'notloggedin' => 'Pas branchiê',
-'nologin' => "Vos avéd p’oncor un compto ? '''$1.'''",
+'nologin' => "Vos éd p’oncor un compto ? '''$1.'''",
 'nologinlink' => 'Féte un compto',
 'createaccount' => 'Fâre un compto',
-'gotaccount' => "Vos avéd ja un compto ? '''$1.'''",
+'gotaccount' => "Vos éd ja un compto ? '''$1.'''",
 'gotaccountlink' => 'Branchiéd-vos',
 'userlogin-resetlink' => 'Vos éd oubliâ voutros dètalys de branchement ?',
 'createaccountmail' => 'Empleyér un contresegno temporèro fêt per hasârd et pués lo mandar a l’adrèce èlèctronica spècifiâye ce-desot',
@@ -965,7 +965,7 @@ La rêson balyêe est :
 
 Vos vos pouede veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar.
 
-Notâd que vos porréd pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens que vos avéd n’adrèce èlèctronica justa encartâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
+Notâd que vos porréd pas empleyér la fonccionalitât « Lui mandar un mèssâjo » a muens que vos éd n’adrèce èlèctronica justa encartâye dens voutres [[Special:Preferences|prèferences]] et que vos éte pas étâ blocâ de l’empleyér.
 
 Voutron adrèce IP d’ora est $3, et l’identifient de blocâjo est $5.
 Se vos plét, entrebetâd tôs los dètalys ce-dessus dedens na sé-quinta demanda que vos faréd.",
@@ -996,7 +996,7 @@ Vos pouede [[Special:Search/{{PAGENAME}}|fâre na rechèrche sur cél titro]] de
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dedens los jornals liyês]
 ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} fâre cela pâge]</span>.',
 'noarticletext-nopermission' => 'Ora y at gins de tèxto dedens cela pâge.
-Vos pouede [[Special:Search/{{PAGENAME}}|fâre na rechèrche sur cél titro]] dedens les ôtres pâges ou ben <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dedens los jornals liyês]</span>, mas vos avéd pas la pèrmission de fâre cela pâge.',
+Vos pouede [[Special:Search/{{PAGENAME}}|fâre na rechèrche sur cél titro]] dedens les ôtres pâges ou ben <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dedens los jornals liyês]</span>, mas vos éd pas la pèrmission de fâre cela pâge.',
 'missing-revision' => 'La vèrsion numerô $1 de la pâge apelâye « {{PAGENAME}} » ègziste pas.
 
 En g·ènèral cen arreve en siuvent un lim d’un historico dèpassâ de vers na pâge qu’est étâye suprimâye.
@@ -1027,7 +1027,7 @@ Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js emplèyont des
 'note' => "'''Nota :'''",
 'previewnote' => "'''Rapelâd-vos qu’o est ren qu’un apèrçu.'''
 Voutros changements sont p’oncor étâs encartâs !",
-'continue-editing' => 'Alar a la zona de changement',
+'continue-editing' => 'Alar vers la zona de changement',
 'previewconflict' => 'Cet’apèrçu fât vêre lo tèxto de la zona de changement de d’amont coment aparêtrat se vos chouèsésséd de l’encartar.',
 'session_fail_preview' => "'''Dèconsolâ ! Nos povens pas encartar voutron changement a côsa d’una pèrta d’enformacions sur voutra sèance.'''
 Se vos plét, tornâd èprovar.
@@ -1089,12 +1089,12 @@ Por refèrence, la dèrriére entrâ du jornal est balyêe ce-desot :",
 'edittools' => '<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben los formulèros de tèlèchargement de fichiér. -->',
 'nocreatetext' => '{{SITENAME}} at rètrent la possibilitât de fâre de pâges novèles.
 Vos pouede tornar arriér et pués changiér na pâge ègzistenta ou ben [[Special:UserLogin|vos branchiér ou fâre un compto]].',
-'nocreate-loggedin' => 'Vos avéd pas la pèrmission de fâre de pâges novèles.',
+'nocreate-loggedin' => 'Vos éd pas la pèrmission de fâre de pâges novèles.',
 'sectioneditnotsupported-title' => 'Changement de sèccion pas recognu',
 'sectioneditnotsupported-text' => 'Lo changement d’una sèccion est pas recognu dens cela pâge.',
 'permissionserrors' => 'Fôta de pèrmissions',
-'permissionserrorstext' => 'Vos avéd pas la pèrmission de fâre l’accion demandâye por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
-'permissionserrorstext-withaction' => 'Vos avéd pas la pèrmission de $2 por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
+'permissionserrorstext' => 'Vos éd pas la pèrmission de fâre l’accion demandâye por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
+'permissionserrorstext-withaction' => 'Vos éd pas la pèrmission de $2 por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
 'recreate-moveddeleted-warn' => "'''Atencion : vos éte aprés refâre na pâge qu’est étâye suprimâye dês devant.'''
 
 Demandâd-vos se fôt franc continuar son changement.
@@ -1268,9 +1268,9 @@ $1",
 'revdelete-hide-current' => 'Fôta en cachient la piéce datâye du $1 a $2 : o est la vèrsion d’ora.
 Pôt pas étre cachiêe.',
 'revdelete-show-no-access' => 'Fôta en montrent la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
-Vos y avéd pas accès.',
+Vos y éd pas accès.',
 'revdelete-modify-no-access' => 'Fôta en changient la piéce datâye du $1 a $2 : el est marcâye coment « rètrenta ».
-Vos y avéd pas accès.',
+Vos y éd pas accès.',
 'revdelete-modify-missing' => 'Fôta en changient la piéce avouéc l’identifient $1 : el est manquenta dedens la bâsa de donâs !',
 'revdelete-no-change' => "'''Atencion :''' la piéce datâye du $1 a $2 at ja la configuracion de visibilitât demandâye.",
 'revdelete-concurrent-change' => 'Fôta en changient la piéce datâye du $1 a $2 : lo sin statut semble étre étâ changiê per un ôtro justo que vos tâchiêvâd d’o changiér.
@@ -1549,7 +1549,7 @@ Cel’enformacion serat publica.',
 * Na câsa pas pouentâye vôt dére que s’y trôve pas.
 * Na petiôt’ètêla (*) endique que vos pouede pas enlevar cela tropa setout que vos l’éd apondua ou ben l’una l’ôtra.',
 'userrights-reason' => 'Rêson :',
-'userrights-no-interwiki' => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
+'userrights-no-interwiki' => 'Vos éd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
 'userrights-nodatabase' => 'La bâsa de donâs « $1 » ègziste pas ou ben el est pas locala.',
 'userrights-nologin' => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
 'userrights-notallowed' => 'Voutron compto at pas la pèrmission de balyér ou ben enlevar des drêts d’utilisator.',
@@ -1817,27 +1817,27 @@ Se vos plét, controlâd lo fichiér <strong>[[:$1]]</strong>.
 Se lo fichiér controlâ est la mém’émâge avouéc la talye originâla, y at pas fôta de tèlèchargiér na figura.",
 'file-thumbnail-no' => "Lo nom du fichiér comence per <strong>$1</strong>.
 Semble étre n’émâge en talye rèduita ''(figura)''.
-Se vos avéd cel’émâge en plêna rèsolucion, tèlèchargiéd-la, ôtrament changiéd lo sin nom, se vos plét.",
+Se vos éd cel’émâge en plêna rèsolucion, tèlèchargiéd-la, ôtrament changiéd lo sin nom, se vos plét.",
 'fileexists-forbidden' => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècllafâ.
-Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom.
+Se vos voléd adés tèlèchargiér voutron fichiér, se vos plét tornâd arriér et pués empleyéd un novél nom.
 [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fichiér avouéc cél nom ègziste ja dens lo dèpôt de fichiérs partagiê.
-Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom.
+'fileexists-shared-forbidden' => 'Un fichiér avouéc cél nom ègziste ja dedens lo dèpôt de fichiérs partagiê.
+Se vos voléd adés tèlèchargiér voutron fichiér, se vos plét tornâd arriér et pués empleyéd un novél nom.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Cél fichiér est un doblo {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
-'file-deleted-duplicate' => 'Un fichiér pariér a ceti ([[:$1]]) at ja étâ suprimâ.
+'file-deleted-duplicate' => 'Un fichiér pariér a ceti ([[:$1]]) est ja étâ suprimâ.
 Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
-'uploadwarning' => 'Atencion !',
-'uploadwarning-text' => 'Changiéd la dèscripcion du fichiér et pués tornâd èprovar.',
-'savefile' => 'Sôvar lo fichiér',
+'uploadwarning' => 'Avèrtissement pendent lo tèlèchargement',
+'uploadwarning-text' => 'Se vos plét, changiéd la dèscripcion du fichiér ce-desot et pués tornâd èprovar.',
+'savefile' => 'Encartar lo fichiér',
 'uploadedimage' => 'at tèlèchargiê « [[$1]] »',
-'overwroteimage' => 'at tèlèchargiê una novèla vèrsion de « [[$1]] »',
-'uploaddisabled' => 'Tèlèchargements dèsactivâs',
-'copyuploaddisabled' => 'Tèlèchargement de fichiér per URL dèsactivâ.',
-'uploadfromurl-queued' => 'Voutron tèlèchargement at étâ betâ dens la fela d’atenta.',
-'uploaddisabledtext' => 'Lo tèlèchargement de fichiérs est dèsactivâ.',
-'php-uploaddisabledtext' => 'Lo tèlèchargement de fichiérs at étâ dèsactivâ dens PHP.
-Volyéd controlar lo chouèx de configuracion « file_uploads ».',
+'overwroteimage' => 'at tèlèchargiê na novèla vèrsion de « [[$1]] »',
+'uploaddisabled' => 'Tèlèchargements dèsactivâs.',
+'copyuploaddisabled' => 'Tèlèchargement per URL dèsactivâ.',
+'uploadfromurl-queued' => 'Voutron tèlèchargement est étâ betâ dedens la renche d’atenta.',
+'uploaddisabledtext' => 'Los tèlèchargements de fichiérs sont dèsactivâs.',
+'php-uploaddisabledtext' => 'Los tèlèchargements de fichiérs sont dèsactivâs dedens PHP.
+Se vos plét, controlâd la configuracion de « file_uploads ».',
 'uploadscripted' => 'Cél fichiér contint de code HTML ou ben un scripte que porrêt étre entèrprètâ de façon fôssa per un navigator vouèbe.',
 'uploadvirus' => 'Cél fichiér contint un virus ! Por més de dètalys, vêde : $1',
 'uploadjava' => 'O est un fichiér ZIP que contint un fichiér Java .class.

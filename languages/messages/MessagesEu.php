@@ -800,9 +800,10 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 '''EZ BIDALI BAIMENIK GABEKO COPYRIGHTDUN EDUKIRIK!'''",
 'longpageerror' => "'''Errorea: Bidali duzun testuak {{PLURAL:$1|kilobyte 1eko|$1 kilobyteko}} luzera du, eta {{PLURAL:$2|kilobyte 1eko|$2 kilobyteko}} maximoa baino luzeagoa da.'''
 Ezin da gorde.",
-'readonlywarning' => "'''OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.
+'readonlywarning' => "'''Oharra: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde.'''
+Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.
 
-Blokeatu zuen administratzaileak honako azalpena eman zuen: $1'''",
+Blokeatu zuen administratzaileak honako azalpena eman zuen: $1",
 'protectedpagewarning' => "'''Oharra:  Orri hau blokeatua dago administratzaileek soilik eraldatu ahal dezaten.'''
 Azken erregistroa ondoren ikusgai dago erreferentzia gisa:",
 'semiprotectedpagewarning' => "'''Oharra''': Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.
@@ -1863,7 +1864,7 @@ Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// h
 
 # Special:ActiveUsers
 'activeusers' => 'Lankide aktiboen zerrenda',
-'activeusers-count' => '{{PLURAL:$1|Aldaketa berri bat|$1 aldaketa berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
+'activeusers-count' => '{{PLURAL:$1|Ekintza berri bat|$1 ekintza berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
 'activeusers-from' => 'Bilatu honela hasten diren lankideak:',
 'activeusers-hidebots' => 'Ezkutatu bot-ak',
 'activeusers-hidesysops' => 'Ezkutatu administratzaileak',
@@ -1920,7 +1921,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 'usermessage-editor' => 'Sistemako mezularia',
 
 # Watchlist
-'watchlist' => 'Nire jarraipen zerrenda',
+'watchlist' => 'Jarraipen zerrenda',
 'mywatchlist' => 'Jarraipen zerrenda',
 'watchlistfor2' => '$1 ($2)',
 'nowatchlist' => 'Zure jarraipen zerrenda hutsik dago.',
@@ -2349,7 +2350,6 @@ Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde 
 Horrek esan nahi du hanka sartzekotan orrialde baten jatorrizko izenburua berreskuratu daitekeela, baina ezin dela jada existitzen den orrialde baten gainean idatzi.
 
 '''Oharra!'''
-
 Aldaketa hau drastikoa eta ustekabekoa izan daiteke orrialde oso ezagunetan;
 mesedez, egiazta ezazu honen ondorioak ulertzen dituzula, jarraitu baino lehen.",
 'movepagetalktext' => "Dagokion eztabaida orrialdea berarekin batera mugitu da, honako kasu hauetan '''ezik:'''
@@ -3261,7 +3261,7 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'specialpages-group-highuse' => 'Erabilera handiko orrialdeak',
 'specialpages-group-pages' => 'Orrialdeen zerrendak',
 'specialpages-group-pagetools' => 'Orrialde tresnak',
-'specialpages-group-wiki' => 'Wiki datuak eta tresnak',
+'specialpages-group-wiki' => 'Datuak eta tresnak',
 'specialpages-group-redirects' => 'Berbideraketa-orri bereziak',
 'specialpages-group-spam' => 'Spam tresnak',
 

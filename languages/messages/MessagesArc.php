@@ -488,8 +488,10 @@ $1',
 # Special:PasswordReset
 'passwordreset' => 'ܣܘܡ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢ ܐܚܪܝܢ',
 'passwordreset-legend' => 'ܣܘܡ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢ ܐܚܪܝܢ',
+'passwordreset-pretext' => '{{PLURAL:$1||ܐܥܠ ܚܕ ܡܢ ܡܢܘܬ̈ܐ ܕܝܕ̈ܥܬܐ ܠܬܬܚܬ}}',
 'passwordreset-username' => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'passwordreset-domain' => 'ܪܘܚܬܐ:',
+'passwordreset-email' => 'ܡܘܢܥܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
 
 # Special:ChangeEmail
 'changeemail' => 'ܫܚܠܦ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
@@ -1108,6 +1110,7 @@ $1',
 'speciallogtitlelabel' => 'ܢܘܦܐ (ܟܘܢܝܐ ܐܘ ܡܦܠܚܢܐ):',
 'log' => 'ܣܓܠ̈ܐ',
 'all-logs-page' => 'ܟܠ ܣܓܠ̈ܐ ܓܘܢܝ̈ܐ',
+'logempty' => 'ܠܝܬ ܡܠܘܐ̈ܐ ܠܐ̈ܝܡܐ ܒܣܓܠܐ ܗܢܐ.',
 'log-title-wildcard' => 'ܒܨܝ ܥܠ ܟܘܢܝ̈ܐ ܕܫܪܝܢ ܥܡ ܟܬܒܬܐ ܗܕܐ',
 'showhideselectedlogentries' => 'ܚܘܝ/ܛܫܝ ܣܓܠ̈ܐ ܕܥܠܠܐ ܓܒܝ̈ܐ',
 
@@ -1555,6 +1558,16 @@ Do you want to change the settings?',
 'pageinfo-contentpage-yes' => 'ܐܝܢ',
 'pageinfo-protect-cascading-yes' => 'ܐܝܢ',
 
+# Patrolling
+'markaspatrolleddiff' => 'ܫܘܕܥ ܐܝܟ ܟܪܝܟܐ',
+'markaspatrolledtext' => 'ܫܘܕܥ ܦܐܬܐ ܗܕܐ ܐܝܟ ܟܪܝܟܬܐ',
+'markedaspatrolled' => 'ܫܘܕܥܬ ܐܝܟ ܟܪܝܟܐ',
+'markedaspatrollednotify' => 'ܫܘܚܠܦܐ ܗܢܐ ܥܠ $1 ܐܫܬܘܕܥ ܐܝܟ ܟܪܝܟܐ.',
+
+# Patrol log
+'patrol-log-page' => 'ܣܓܠܐ ܕܟܪܟܐ',
+'log-show-hide-patrol' => '$1 ܣܓܠܐ ܕܟܪܟܐ',
+
 # Image deletion
 'filedeleteerror-short' => 'ܦܘܕܐ ܒܫܝܦܐ ܕܠܦܦܐ: $1',
 'filedeleteerror-long' => 'ܦܘܕ̈ܐ ܐܫܟܚܬ ܟܕ ܫܝܦܐ ܠܦܦܐ:
@@ -1592,6 +1605,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 ܫܥܬܐ|$1 ܫܥܬ̈ܐ}}',
 'days' => '{{PLURAL:$1|$1 ܝܘܡܐ|$1 ܝܘܡܬ̈ܐ}}',
 'ago' => 'ܩܕܡ $1',
+'just-now' => 'ܗܫܐ ܒܪ ܫܥܬܗ',
 
 # Metadata
 'metadata' => 'ܓܠܝܬ̈ܐ ܕܡܝܛܐ',

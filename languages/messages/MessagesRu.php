@@ -20,6 +20,7 @@
  * @author Anonim.one
  * @author Askarmuk
  * @author Assele
+ * @author Biathlon
  * @author Bouron
  * @author Chilin
  * @author Claymore
@@ -4200,6 +4201,7 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-newusers-newusers' => 'Создана учётная запись $1',
 'logentry-newusers-create' => 'Создана учётная запись $1',
 'logentry-newusers-create2' => '$1 {{GENDER:$2|создал|создала}} учётную запись для $3',
+'logentry-newusers-byemail' => 'Учетная запись пользователя $3 была создана $1 и пароль был отправлен по электронной почте',
 'logentry-newusers-autocreate' => 'Автоматически создана учётная запись $1',
 'logentry-rights-rights' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3 с $4 на $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3',

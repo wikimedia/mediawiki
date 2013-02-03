@@ -1575,7 +1575,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-bot' => 'Behandlas som en automatisk process',
 'right-nominornewtalk' => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',
 'right-apihighlimits' => 'Använda högre gränser i API-frågor',
-'right-writeapi' => 'Använda skriv-API:t',
+'right-writeapi' => 'Använda skriv-API:et',
 'right-delete' => 'Radera sidor',
 'right-bigdelete' => 'Radera sidor med stor historik',
 'right-deletelogentry' => 'Radera och återställ specifika loggposter',

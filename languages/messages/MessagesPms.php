@@ -2050,7 +2050,7 @@ L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|s
 'usermessage-editor' => 'Mëssagerìa ëd sistema',
 
 # Watchlist
-'watchlist' => 'Ròba che im ten-o sot-euj',
+'watchlist' => 'Ròba che as ten sot euj',
 'mywatchlist' => 'Ròba che as ten sot euj',
 'watchlistfor2' => 'Për $1 $2',
 'nowatchlist' => "A l'ha ancó pa marcà dj'artìcoj coma ròba da tnì sot-euj.",
