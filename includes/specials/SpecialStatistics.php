@@ -61,7 +61,7 @@ class SpecialStatistics extends SpecialPage {
 		if( !$wgMiserMode ) {
 			$key = wfMemcKey( 'sitestats', 'activeusers-updated' );
 			// Re-calculate the count if the last tally is old...
-			if( !$wgMemc->get($key) ) {
+			if( !$wgMemc->get( $key ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				SiteStatsUpdate::cacheUpdate( $dbw );
 				$wgMemc->set( $key, '1', 24*3600 ); // don't update for 1 day
@@ -222,7 +222,7 @@ class SpecialStatistics extends SpecialPage {
 			}
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
 				$this->getLanguage()->formatNum( $countUsers ),
-				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero )  );
+				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero ) );
 		}
 		return $text;
 	}

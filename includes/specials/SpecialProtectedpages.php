@@ -51,7 +51,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$size = $request->getIntOrNull( 'size' );
 		$NS = $request->getIntOrNull( 'namespace' );
 		$indefOnly = $request->getBool( 'indefonly' ) ? 1 : 0;
-		$cascadeOnly = $request->getBool('cascadeonly') ? 1 : 0;
+		$cascadeOnly = $request->getBool( 'cascadeonly' ) ? 1 : 0;
 
 		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size, $indefOnly, $cascadeOnly );
 
@@ -109,7 +109,7 @@ class SpecialProtectedpages extends SpecialPage {
 			)->escaped();
 		}
 
-		if(!is_null($size = $row->page_len)) {
+		if( !is_null( $size = $row->page_len ) ) {
 			$stxt = $lang->getDirMark() . ' ' . Linker::formatRevisionSize( $size );
 		}
 
@@ -154,7 +154,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @param $cascadeOnly Boolean: only cascading protection
 	 * @return String: input form
 	 */
-	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly, $cascadeOnly ) {
+	protected function showOptions( $namespace, $type = 'edit', $level, $sizetype, $size, $indefOnly, $cascadeOnly ) {
 		global $wgScript;
 		$title = $this->getTitle();
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
@@ -272,7 +272,7 @@ class SpecialProtectedpages extends SpecialPage {
 		// First pass to load the log names
 		foreach( $wgRestrictionLevels as $type ) {
 			// Messages used can be 'restriction-level-sysop' and 'restriction-level-autoconfirmed'
-			if( $type !='' && $type !='*') {
+			if( $type != '' && $type != '*' ) {
 				$text = $this->msg( "restriction-level-$type" )->text();
 				$m[$text] = $type;
 			}
@@ -300,7 +300,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0,
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype = '', $size = 0,
 		$indefonly = false, $cascadeonly = false )
 	{
 		$this->mForm = $form;
@@ -309,7 +309,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$this->level = $level;
 		$this->namespace = $namespace;
 		$this->sizetype = $sizetype;
-		$this->size = intval($size);
+		$this->size = intval( $size );
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
 		parent::__construct( $form->getContext() );
@@ -336,9 +336,9 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$conds[] = 'page_id=pr_page';
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
 
-		if( $this->sizetype=='min' ) {
+		if( $this->sizetype == 'min' ) {
 			$conds[] = 'page_len>=' . $this->size;
-		} elseif( $this->sizetype=='max' ) {
+		} elseif( $this->sizetype == 'max' ) {
 			$conds[] = 'page_len<=' . $this->size;
 		}
 
@@ -351,7 +351,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 
 		if( $this->level )
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
-		if( !is_null($this->namespace) )
+		if( !is_null( $this->namespace ) )
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),

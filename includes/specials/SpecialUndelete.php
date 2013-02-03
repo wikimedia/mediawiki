@@ -138,7 +138,7 @@ class PageArchive {
 		$res = $dbr->select( 'archive',
 			$fields,
 			array( 'ar_namespace' => $this->title->getNamespace(),
-				   'ar_title' => $this->title->getDBkey() ),
+				'ar_title' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		$ret = $dbr->resultObject( $res );
@@ -248,9 +248,9 @@ class PageArchive {
 		$row = $dbr->selectRow( 'archive',
 			'ar_timestamp',
 			array( 'ar_namespace' => $this->title->getNamespace(),
-				   'ar_title' => $this->title->getDBkey(),
-				   'ar_timestamp < ' .
-						$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
+				'ar_title' => $this->title->getDBkey(),
+				'ar_timestamp < ' .
+					$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
 			__METHOD__,
 			array(
 				'ORDER BY' => 'ar_timestamp DESC',
@@ -319,7 +319,7 @@ class PageArchive {
 		$row = $dbr->selectRow( 'archive',
 			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
-				   'ar_title' => $this->title->getDBkey() ),
+				'ar_title' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		if( $row ) {
@@ -338,7 +338,7 @@ class PageArchive {
 		$dbr = wfGetDB( DB_SLAVE );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
 			array( 'ar_namespace' => $this->title->getNamespace(),
-				   'ar_title' => $this->title->getDBkey() ),
+				'ar_title' => $this->title->getDBkey() ),
 			__METHOD__
 		);
 		return ( $n > 0 );
@@ -457,7 +457,7 @@ class PageArchive {
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
-				   'page_title'     => $this->title->getDBkey() ),
+				'page_title' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'FOR UPDATE' ) // lock page
 		);

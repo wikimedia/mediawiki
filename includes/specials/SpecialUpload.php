@@ -246,9 +246,9 @@ class SpecialUpload extends SpecialPage {
 			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ),
 				$desiredTitleObj,
 				'', array( 'lim' => 10,
-					   'conds' => array( "log_action != 'revision'" ),
-					   'showIfEmpty' => false,
-					   'msgKey' => array( 'upload-recreate-warning' ) )
+					'conds' => array( "log_action != 'revision'" ),
+					'showIfEmpty' => false,
+					'msgKey' => array( 'upload-recreate-warning' ) )
 			);
 		}
 		$form->addPreText( $delNotice );
@@ -476,17 +476,17 @@ class SpecialUpload extends SpecialPage {
 		if ( $wgUseCopyrightUpload ) {
 			$licensetxt = '';
 			if ( $license != '' ) {
-				$licensetxt = '== ' . $msg[ 'license-header' ] . " ==\n" . '{{' . $license . '}}' . "\n";
+				$licensetxt = '== ' . $msg['license-header'] . " ==\n" . '{{' . $license . '}}' . "\n";
 			}
-			$pageText = '== ' . $msg[ 'filedesc' ] . " ==\n" . $comment . "\n" .
-				'== ' . $msg[ 'filestatus' ] . " ==\n" . $copyStatus . "\n" .
+			$pageText = '== ' . $msg['filedesc'] . " ==\n" . $comment . "\n" .
+				'== ' . $msg['filestatus'] . " ==\n" . $copyStatus . "\n" .
 				"$licensetxt" .
-				'== ' . $msg[ 'filesource' ] . " ==\n" . $source;
+				'== ' . $msg['filesource'] . " ==\n" . $source;
 		} else {
 			if ( $license != '' ) {
-				$filedesc = $comment == '' ? '' : '== ' . $msg[ 'filedesc' ] . " ==\n" . $comment . "\n";
+				$filedesc = $comment == '' ? '' : '== ' . $msg['filedesc'] . " ==\n" . $comment . "\n";
 					$pageText = $filedesc .
-					'== ' . $msg[ 'license-header' ] . " ==\n" . '{{' . $license . '}}' . "\n";
+					'== ' . $msg['license-header'] . " ==\n" . '{{' . $license . '}}' . "\n";
 			} else {
 				$pageText = $comment;
 			}

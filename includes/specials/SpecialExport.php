@@ -124,7 +124,7 @@ class SpecialExport extends SpecialPage {
 			if ( $this->curonly ) {
 				$history = WikiExporter::CURRENT;
 			} elseif ( !$historyCheck ) {
-				if ( $limit > 0 && ($wgExportMaxHistory == 0 || $limit < $wgExportMaxHistory ) ) {
+				if ( $limit > 0 && ( $wgExportMaxHistory == 0 || $limit < $wgExportMaxHistory ) ) {
 					$history['limit'] = $limit;
 				}
 				if ( !is_null( $offset ) ) {
@@ -339,7 +339,7 @@ class SpecialExport extends SpecialPage {
 
 			// This might take a while... :D
 			wfSuppressWarnings();
-			set_time_limit(0);
+			set_time_limit( 0 );
 			wfRestoreWarnings();
 		}
 
@@ -405,7 +405,7 @@ class SpecialExport extends SpecialPage {
 
 		foreach ( $res as $row ) {
 			$n = $row->page_title;
-			if ($row->page_namespace) {
+			if ( $row->page_namespace ) {
 				$ns = $wgContLang->getNsText( $row->page_namespace );
 				$n = $ns . ':' . $n;
 			}

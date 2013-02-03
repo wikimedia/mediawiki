@@ -516,7 +516,8 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		if( $tryToCreate ) {
-			$createHostList = array($server,
+			$createHostList = array(
+				$server,
 				'localhost',
 				'localhost.localdomain',
 				'%'

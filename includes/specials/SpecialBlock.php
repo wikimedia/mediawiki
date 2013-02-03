@@ -62,7 +62,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @throws ErrorPageError
 	 */
 	protected function checkExecutePermissions( User $user ) {
-		 parent::checkExecutePermissions( $user );
+		parent::checkExecutePermissions( $user );
 
 		# bug 15810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target, $user );
@@ -769,7 +769,7 @@ class SpecialBlock extends FormSpecialPage {
 			$logParams
 		);
 		# Relate log ID to block IDs (bug 25763)
-		$blockIds = array_merge( array( $status['id'] ), $status['autoIds']  );
+		$blockIds = array_merge( array( $status['id'] ), $status['autoIds'] );
 		$log->addRelations( 'ipb_id', $blockIds, $log_id );
 
 		# Report to the user
