@@ -56,13 +56,13 @@ if ( $wgArticlePath === false ) {
 	}
 }
 
-if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
+if ( !empty( $wgActionPaths ) && !isset( $wgActionPaths['view'] ) ) {
 	# 'view' is assumed the default action path everywhere in the code
 	# but is rarely filled in $wgActionPaths
 	$wgActionPaths['view'] = $wgArticlePath;
 }
 
-if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
+if ( !empty( $wgActionPaths ) && !isset( $wgActionPaths['view'] ) ) {
 	# 'view' is assumed the default action path everywhere in the code
 	# but is rarely filled in $wgActionPaths
 	$wgActionPaths['view'] = $wgArticlePath ;
@@ -353,9 +353,9 @@ if ( $wgAjaxUploadDestCheck ) {
 
 if ( $wgNewUserLog ) {
 	# Add a new log type
-	$wgLogTypes[]                        = 'newusers';
-	$wgLogNames['newusers']              = 'newuserlogpage';
-	$wgLogHeaders['newusers']            = 'newuserlogpagetext';
+	$wgLogTypes[] = 'newusers';
+	$wgLogNames['newusers'] = 'newuserlogpage';
+	$wgLogHeaders['newusers'] = 'newuserlogpagetext';
 	$wgLogActionsHandlers['newusers/newusers'] = 'NewUsersLogFormatter';
 	$wgLogActionsHandlers['newusers/create'] = 'NewUsersLogFormatter';
 	$wgLogActionsHandlers['newusers/create2'] = 'NewUsersLogFormatter';

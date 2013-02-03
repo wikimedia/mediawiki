@@ -1122,7 +1122,7 @@ class Article extends Page {
 
 		# Show delete and move logs
 		LogEventsList::showLogExtract( $outputPage, array( 'delete', 'move' ), $this->getTitle(), '',
-			array(  'lim' => 10,
+			array( 'lim' => 10,
 				'conds' => array( "log_action != 'revision'" ),
 				'showIfEmpty' => false,
 				'msgKey' => array( 'moveddeleted-notice' ) )
@@ -1483,7 +1483,7 @@ class Article extends Page {
 				$reason = $this->generateReason( $hasHistory );
 			} catch ( MWException $e ) {
 				# if a page is horribly broken, we still want to be able to delete it. so be lenient about errors here.
-				wfDebug("Error while building auto delete summary: $e");
+				wfDebug( "Error while building auto delete summary: $e" );
 				$reason = '';
 			}
 		}

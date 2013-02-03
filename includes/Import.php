@@ -400,7 +400,7 @@ class WikiImporter {
 	/** Left in for debugging */
 	private function dumpElement() {
 		static $lookup = null;
-		if (!$lookup) {
+		if ( !$lookup ) {
 			$xmlReaderConstants = array(
 				"NONE",
 				"ELEMENT",
@@ -473,7 +473,7 @@ class WikiImporter {
 				$skip = true;
 			}
 
-			if ($skip) {
+			if ( $skip ) {
 				$keepReading = $this->reader->next();
 				$skip = false;
 				$this->debug( "Skip" );
@@ -897,7 +897,7 @@ class UploadSourceAdapter {
 	 * @return bool
 	 */
 	function stream_open( $path, $mode, $options, &$opened_path ) {
-		$url = parse_url($path);
+		$url = parse_url( $path );
 		$id = $url['host'];
 
 		if ( !isset( self::$sourceRegistrations[$id] ) ) {
@@ -918,22 +918,22 @@ class UploadSourceAdapter {
 		$leave = false;
 
 		while ( !$leave && !$this->mSource->atEnd() &&
-				strlen($this->mBuffer) < $count ) {
+				strlen( $this->mBuffer ) < $count ) {
 			$read = $this->mSource->readChunk();
 
-			if ( !strlen($read) ) {
+			if ( !strlen( $read ) ) {
 				$leave = true;
 			}
 
 			$this->mBuffer .= $read;
 		}
 
-		if ( strlen($this->mBuffer) ) {
+		if ( strlen( $this->mBuffer ) ) {
 			$return = substr( $this->mBuffer, 0, $count );
 			$this->mBuffer = substr( $this->mBuffer, $count );
 		}
 
-		$this->mPosition += strlen($return);
+		$this->mPosition += strlen( $return );
 
 		return $return;
 	}

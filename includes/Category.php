@@ -179,16 +179,16 @@ class Category {
 				$cat->mName = $title->getDBkey(); # if we have a title object, fetch the category name from there
 			}
 
-			$cat->mID =   false;
+			$cat->mID = false;
 			$cat->mSubcats = 0;
-			$cat->mPages   = 0;
-			$cat->mFiles   = 0;
+			$cat->mPages = 0;
+			$cat->mFiles = 0;
 		} else {
-			$cat->mName    = $row->cat_title;
-			$cat->mID      = $row->cat_id;
+			$cat->mName = $row->cat_title;
+			$cat->mID = $row->cat_id;
 			$cat->mSubcats = $row->cat_subcats;
-			$cat->mPages   = $row->cat_pages;
-			$cat->mFiles   = $row->cat_files;
+			$cat->mPages = $row->cat_pages;
+			$cat->mFiles = $row->cat_files;
 		}
 
 		return $cat;

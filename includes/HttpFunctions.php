@@ -646,12 +646,12 @@ class MWHttpRequest {
 			$locations = $headers[ 'location' ];
 			$domain = '';
 			$foundRelativeURI = false;
-			$countLocations = count($locations);
+			$countLocations = count( $locations );
 
 			for ( $i = $countLocations - 1; $i >= 0; $i-- ) {
 				$url = parse_url( $locations[ $i ] );
 
-				if ( isset($url[ 'host' ]) ) {
+				if ( isset( $url['host'] ) ) {
 					$domain = $url[ 'scheme' ] . '://' . $url[ 'host' ];
 					break;	//found correct URI (with host)
 				} else {

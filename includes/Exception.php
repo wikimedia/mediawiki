@@ -262,7 +262,7 @@ class MWException extends Exception {
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
 			header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
-			wfHttpError(500, 'Internal Server Error', $this->getText() );
+			wfHttpError( 500, 'Internal Server Error', $this->getText() );
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {

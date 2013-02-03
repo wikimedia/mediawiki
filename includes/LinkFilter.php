@@ -89,7 +89,7 @@ class LinkFilter {
 	 * @param $prot        String: protocol
 	 * @return Array to be passed to DatabaseBase::buildLike() or false on error
 	 */
-	 public static function makeLikeArray( $filterEntry , $prot = 'http://' ) {
+	public static function makeLikeArray( $filterEntry, $prot = 'http://' ) {
 		$db = wfGetDB( DB_MASTER );
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
@@ -118,7 +118,7 @@ class LinkFilter {
 		}
 		// Reverse the labels in the hostname, convert to lower case
 		// For emails reverse domainpart only
-		if ( $prot == 'mailto:' && strpos($host, '@') ) {
+		if ( $prot == 'mailto:' && strpos( $host, '@' ) ) {
 			// complete email adress
 			$mailparts = explode( '@', $host );
 			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );

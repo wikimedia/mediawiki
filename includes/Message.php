@@ -252,9 +252,9 @@ class Message {
 	public static function newFallbackSequence( /*...*/ ) {
 		$keys = func_get_args();
 		if ( func_num_args() == 1 ) {
-			if ( is_array($keys[0]) ) {
+			if ( is_array( $keys[0] ) ) {
 				// Allow an array to be passed as the first argument instead
-				$keys = array_values($keys[0]);
+				$keys = array_values( $keys[0] );
 			} else {
 				// Optimize a single string to not need special fallback handling
 				$keys = $keys[0];
@@ -431,7 +431,7 @@ class Message {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
-			$key =  htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
+			$key = htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
 			if ( $this->format === 'plain' ) {
 				return '<' . $key . '>';
 			}
@@ -474,7 +474,7 @@ class Message {
 
 	/**
 	 * Magic method implementation of the above (for PHP >= 5.2.0), so we can do, eg:
-	 *     $foo = Message::get($key);
+	 *     $foo = Message::get( $key );
 	 *     $string = "<abbr>$foo</abbr>";
 	 * @since 1.18
 	 * @return String

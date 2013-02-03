@@ -465,8 +465,7 @@ class Html {
 			$key = strtolower( $key );
 
 			// Here we're blacklisting some HTML5-only attributes...
-			if ( !$wgHtml5 && in_array( $key, self::$HTMLFiveOnlyAttribs )
-			 ) {
+			if ( !$wgHtml5 && in_array( $key, self::$HTMLFiveOnlyAttribs ) ) {
 				continue;
 			}
 
@@ -738,7 +737,7 @@ class Html {
 			}
 		}
 
-		if (substr($value, 0, 1) == "\n") {
+		if ( substr( $value, 0, 1 ) == "\n" ) {
 			// Workaround for bug 12130: browsers eat the initial newline
 			// assuming that it's just for show, but they do keep the later
 			// newlines, which we may want to preserve during editing.

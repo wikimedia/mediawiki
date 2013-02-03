@@ -318,7 +318,7 @@ class SquidPurgeClient {
 				return 'done';
 			}
 		default:
-			throw new MWException( __METHOD__.': unexpected state' );
+			throw new MWException( __METHOD__ . ': unexpected state' );
 		}
 	}
 
@@ -373,7 +373,7 @@ class SquidPurgeClient {
 	 * @param $msg string
 	 */
 	protected function log( $msg ) {
-		wfDebugLog( 'squid', __CLASS__." ($this->host): $msg\n" );
+		wfDebugLog( 'squid', __CLASS__ . " ($this->host): $msg\n" );
 	}
 }
 
@@ -429,14 +429,14 @@ class SquidPurgeClientPool {
 			$numReady = socket_select( $readSockets, $writeSockets, $exceptSockets, $timeout );
 			wfRestoreWarnings();
 			if ( $numReady === false ) {
-				wfDebugLog( 'squid', __METHOD__.': Error in stream_select: ' .
+				wfDebugLog( 'squid', __METHOD__ . ': Error in stream_select: ' .
 					socket_strerror( socket_last_error() ) . "\n" );
 				break;
 			}
 			// Check for timeout, use 1% tolerance since we aimed at having socket_select()
 			// exit at precisely the overall timeout
 			if ( microtime( true ) - $startTime > $this->timeout * 0.99 ) {
-				wfDebugLog( 'squid', __CLASS__.": timeout ({$this->timeout}s)\n" );
+				wfDebugLog( 'squid', __CLASS__ . ": timeout ({$this->timeout}s)\n" );
 				break;
 			} elseif ( !$numReady ) {
 				continue;

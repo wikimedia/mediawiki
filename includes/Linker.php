@@ -602,7 +602,7 @@ class Linker {
 		if ( 'center' == $fp['align'] ) {
 			$prefix  = '<div class="center">';
 			$postfix = '</div>';
-			$fp['align']   = 'none';
+			$fp['align'] = 'none';
 		}
 		if ( $file && !isset( $hp['width'] ) ) {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
@@ -724,7 +724,7 @@ class Linker {
 				$extLinkAttrs = $parser->getExternalLinkAttribs( $frameParams['link-url'] );
 				foreach ( $extLinkAttrs as $name => $val ) {
 					// Currently could include 'rel' and 'target'
-					$mtoParams['parser-extlink-'.$name] = $val;
+					$mtoParams['parser-extlink-' . $name] = $val;
 				}
 			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
@@ -751,7 +751,7 @@ class Linker {
 	 * @return mixed
 	 */
 	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
-		$align = 'right', $params = array(), $framed = false , $manualthumb = "" )
+		$align = 'right', $params = array(), $framed = false, $manualthumb = "" )
 	{
 		$frameParams = array(
 			'alt' => $alt,
@@ -1028,7 +1028,7 @@ class Linker {
 			$key = strtolower( $name );
 		}
 
-		return self::linkKnown( SpecialPage::getTitleFor( $name ) , wfMessage( $key )->text() );
+		return self::linkKnown( SpecialPage::getTitleFor( $name ), wfMessage( $key )->text() );
 	}
 
 	/**
@@ -1672,11 +1672,10 @@ class Linker {
 		$lang = wfGetLangObj( $lang );
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
-		return
-		   '<table id="toc" class="toc"><tr><td>'
-		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
-		 . $toc
-		 . "</ul>\n</td></tr></table>\n";
+		return '<table id="toc" class="toc"><tr><td>'
+			. '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
+			. $toc
+			. "</ul>\n</td></tr></table>\n";
 	}
 
 	/**
@@ -2075,7 +2074,7 @@ class Linker {
 			# Compatibility: formerly some tooltips had [alt-.] hardcoded
 			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
 			# Message equal to '-' means suppress it.
-			if (  $tooltip == '-' ) {
+			if ( $tooltip == '-' ) {
 				$tooltip = false;
 			}
 		}
@@ -2287,7 +2286,7 @@ class Linker {
 	 * @return string the a-element
 	 */
 	static function makeKnownLinkObj(
-		$title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = ''
+		$title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = '', $style = ''
 	) {
 		wfDeprecated( __METHOD__, '1.21' );
 

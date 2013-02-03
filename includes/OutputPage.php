@@ -1275,7 +1275,7 @@ class OutputPage extends ContextSource {
 	 * @param  $level Int ResourceLoaderModule class constant
 	 */
 	public function reduceAllowedModules( $type, $level ) {
-		$this->mAllowedModules[$type] = min( $this->getAllowedModules($type), $level );
+		$this->mAllowedModules[$type] = min( $this->getAllowedModules( $type ), $level );
 	}
 
 	/**
@@ -1873,7 +1873,7 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$response->header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
+					$response->header( 'Surrogate-Control: max-age=' . $wgSquidMaxage . '+' . $this->mSquidMaxage . ', content="ESI/1.0"');
 					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
@@ -1883,7 +1883,7 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$response->header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
+					$response->header( 'Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
@@ -1892,7 +1892,7 @@ class OutputPage extends ContextSource {
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			if($this->mLastModified) {
+			if( $this->mLastModified ) {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
 			}
 		} else {
@@ -3066,7 +3066,7 @@ $templates
 					'http-equiv' => 'Content-Type',
 					'content' => "$wgMimeType; charset=UTF-8"
 				) );
-				$tags['meta-content-style-type'] = Html::element( 'meta', array(  // bug 15835
+				$tags['meta-content-style-type'] = Html::element( 'meta', array( // bug 15835
 					'http-equiv' => 'Content-Style-Type',
 					'content' => 'text/css'
 				) );
@@ -3095,7 +3095,7 @@ $templates
 			);
 			$tags['meta-keywords'] = Html::element( 'meta', array(
 				'name' => 'keywords',
-				'content' =>  preg_replace(
+				'content' => preg_replace(
 					array_keys( $strip ),
 					array_values( $strip ),
 					implode( ',', $this->mKeywords )
@@ -3629,7 +3629,7 @@ $templates
 						'1.20'
 					);
 				}
-			}  else {
+			} else {
 				$args = array();
 				$name = $spec;
 			}

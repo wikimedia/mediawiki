@@ -217,7 +217,7 @@ class MagicWord {
 
 	/**#@-*/
 
-	function __construct($id = 0, $syn = array(), $cs = false) {
+	function __construct( $id = 0, $syn = array(), $cs = false ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
@@ -367,7 +367,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function getRegex() {
-		if ($this->mRegex == '' ) {
+		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mRegex;
@@ -393,7 +393,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function getRegexStart() {
-		if ($this->mRegex == '' ) {
+		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mRegexStart;
@@ -405,7 +405,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function getBaseRegex() {
-		if ($this->mRegex == '') {
+		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mBaseRegex;
@@ -454,9 +454,9 @@ class MagicWord {
 			# blank elements and re-sort the indices.
 			# See also bug 6526
 
-			$matches = array_values(array_filter($matches));
+			$matches = array_values( array_filter( $matches ) );
 
-			if ( count($matches) == 1 ) {
+			if ( count( $matches ) == 1 ) {
 				return $matches[0];
 			} else {
 				return $matches[1];
@@ -618,7 +618,7 @@ class MagicWord {
 	function addToArray( &$array, $value ) {
 		global $wgContLang;
 		foreach ( $this->mSynonyms as $syn ) {
-			$array[$wgContLang->lc($syn)] = $value;
+			$array[$wgContLang->lc( $syn )] = $value;
 		}
 	}
 
@@ -812,7 +812,7 @@ class MagicWordArray {
 			return array( $magicName, $paramValue );
 		}
 		// This shouldn't happen either
-		throw new MWException( __METHOD__.': parameter not found' );
+		throw new MWException( __METHOD__ . ': parameter not found' );
 	}
 
 	/**

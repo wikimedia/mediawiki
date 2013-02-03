@@ -432,7 +432,7 @@ class ReplacementArray {
 	 * @param $from string
 	 */
 	function removePair( $from ) {
-		unset($this->data[$from]);
+		unset( $this->data[$from] );
 		$this->fss = false;
 	}
 

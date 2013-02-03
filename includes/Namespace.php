@@ -67,7 +67,7 @@ class MWNamespace {
 	public static function isMovable( $index ) {
 		global $wgAllowImageMoving;
 
-		$result = !( $index < NS_MAIN || ( $index == NS_FILE && !$wgAllowImageMoving )  || $index == NS_CATEGORY );
+		$result = !( $index < NS_MAIN || ( $index == NS_FILE && !$wgAllowImageMoving ) || $index == NS_CATEGORY );
 
 		/**
 		 * @since 1.20
@@ -290,9 +290,9 @@ class MWNamespace {
 	 * @param $index Int: namespace index
 	 * @return bool
 	 */
-	 public static function canTalk( $index ) {
+	public static function canTalk( $index ) {
 		return $index >= NS_MAIN;
-	 }
+	}
 
 	/**
 	 * Does this namespace contain content, for the purposes of calculating

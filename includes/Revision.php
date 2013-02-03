@@ -254,9 +254,11 @@ class Revision implements IDBAccessObject {
 			$matchId = 'page_latest';
 		}
 		return self::loadFromConds( $db,
-			array( "rev_id=$matchId",
-				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() )
+			array(
+				"rev_id=$matchId",
+				'page_namespace' => $title->getNamespace(),
+				'page_title'     => $title->getDBkey()
+			)
 		);
 	}
 
@@ -272,9 +274,11 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		return self::loadFromConds( $db,
-			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
-				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() )
+			array(
+				'rev_timestamp'  => $db->timestamp( $timestamp ),
+				'page_namespace' => $title->getNamespace(),
+				'page_title'     => $title->getDBkey()
+			)
 		);
 	}
 
@@ -330,9 +334,11 @@ class Revision implements IDBAccessObject {
 	public static function fetchRevision( $title ) {
 		return self::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
-			array( 'rev_id=page_latest',
-				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() )
+			array(
+				'rev_id=page_latest',
+				'page_namespace' => $title->getNamespace(),
+				'page_title'     => $title->getDBkey()
+			)
 		);
 	}
 
@@ -718,7 +724,7 @@ class Revision implements IDBAccessObject {
 				array( 'page', 'revision' ),
 				self::selectPageFields(),
 				array( 'page_id=rev_page',
-					   'rev_id' => $this->mId ),
+					'rev_id' => $this->mId ),
 				__METHOD__ );
 			if ( $row ) {
 				$this->mTitle = Title::newFromRow( $row );
