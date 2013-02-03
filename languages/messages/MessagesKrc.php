@@ -3600,4 +3600,8 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 'duration-centuries' => '$1 {{PLURAL:$1|ёмюр}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мингджыллыкъ}}',
 
+# Variant names for Karachay language
+'variantname-krc' => 'Кирилл',
+'variantname-krc-latn' => 'Latin',
+
 );
