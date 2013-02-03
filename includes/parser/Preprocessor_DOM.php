@@ -137,9 +137,9 @@ class Preprocessor_DOM implements Preprocessor {
 		$cacheable = ( $wgPreprocessorCacheThreshold !== false
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold );
 		if ( $cacheable ) {
-			wfProfileIn( __METHOD__.'-cacheable' );
+			wfProfileIn( __METHOD__ . '-cacheable' );
 
-			$cacheKey = wfMemcKey( 'preprocess-xml', md5($text), $flags );
+			$cacheKey = wfMemcKey( 'preprocess-xml', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
 			if ( $cacheValue ) {
 				$version = substr( $cacheValue, 0, 8 );
@@ -152,11 +152,11 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 		if ( $xml === false ) {
 			if ( $cacheable ) {
-				wfProfileIn( __METHOD__.'-cache-miss' );
+				wfProfileIn( __METHOD__ . '-cache-miss' );
 				$xml = $this->preprocessToXml( $text, $flags );
 				$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . $xml;
 				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-				wfProfileOut( __METHOD__.'-cache-miss' );
+				wfProfileOut( __METHOD__ . '-cache-miss' );
 				wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
 			} else {
 				$xml = $this->preprocessToXml( $text, $flags );
@@ -169,10 +169,10 @@ class Preprocessor_DOM implements Preprocessor {
 		$this->parser->mGeneratedPPNodeCount += substr_count( $xml, '<' );
 		$max = $this->parser->mOptions->getMaxGeneratedPPNodeCount();
 		if ( $this->parser->mGeneratedPPNodeCount > $max ) {
-			throw new MWException( __METHOD__.': generated node count limit exceeded' );
+			throw new MWException( __METHOD__ . ': generated node count limit exceeded' );
 		}
 
-		wfProfileIn( __METHOD__.'-loadXML' );
+		wfProfileIn( __METHOD__ . '-loadXML' );
 		$dom = new DOMDocument;
 		wfSuppressWarnings();
 		$result = $dom->loadXML( $xml );
@@ -183,13 +183,13 @@ class Preprocessor_DOM implements Preprocessor {
 			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
 			$result = $dom->loadXML( $xml, 1 << 19 );
 			if ( !$result ) {
-				throw new MWException( __METHOD__.' generated invalid XML' );
+				throw new MWException( __METHOD__ . ' generated invalid XML' );
 			}
 		}
 		$obj = new PPNode_DOM( $dom->documentElement );
-		wfProfileOut( __METHOD__.'-loadXML' );
+		wfProfileOut( __METHOD__ . '-loadXML' );
 		if ( $cacheable ) {
-			wfProfileOut( __METHOD__.'-cacheable' );
+			wfProfileOut( __METHOD__ . '-cacheable' );
 		}
 		wfProfileOut( __METHOD__ );
 		return $obj;
@@ -397,7 +397,7 @@ class Preprocessor_DOM implements Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( ! (isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 )) {
+							if ( !(isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 )) {
 								$part->visualEnd = $wsStart;
 							}
 							// Else comments abutting, no change in visual end
@@ -758,7 +758,7 @@ class PPDStack {
 
 	function pop() {
 		if ( !count( $this->stack ) ) {
-			throw new MWException( __METHOD__.': no elements remaining' );
+			throw new MWException( __METHOD__ . ': no elements remaining' );
 		}
 		$temp = array_pop( $this->stack );
 
@@ -815,7 +815,7 @@ class PPDStackElement {
 	}
 
 	function &getAccum() {
-		return $this->parts[count($this->parts) - 1]->out;
+		return $this->parts[count( $this->parts ) - 1]->out;
 	}
 
 	function addPart( $s = '' ) {
@@ -824,7 +824,7 @@ class PPDStackElement {
 	}
 
 	function getCurrentPart() {
-		return $this->parts[count($this->parts) - 1];
+		return $this->parts[count( $this->parts ) - 1];
 	}
 
 	/**
@@ -1118,7 +1118,7 @@ class PPFrame_DOM implements PPFrame {
 					}
 					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
 					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && ! ( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
 						$out .= $this->parser->insertStripItem( $contextNode->textContent );
 					}
 					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
@@ -1175,7 +1175,7 @@ class PPFrame_DOM implements PPFrame {
 				}
 			} else {
 				wfProfileOut( __METHOD__ );
-				throw new MWException( __METHOD__.': Invalid parameter type' );
+				throw new MWException( __METHOD__ . ': Invalid parameter type' );
 			}
 
 			if ( $newIterator !== false ) {
@@ -1459,25 +1459,25 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	function getArguments() {
 		$arguments = array();
 		foreach ( array_merge(
-				array_keys($this->numberedArgs),
-				array_keys($this->namedArgs)) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+				array_keys( $this->numberedArgs ),
+				array_keys( $this->namedArgs ) ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}
 
 	function getNumberedArguments() {
 		$arguments = array();
-		foreach ( array_keys($this->numberedArgs) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+		foreach ( array_keys( $this->numberedArgs ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}
 
 	function getNamedArguments() {
 		$arguments = array();
-		foreach ( array_keys($this->namedArgs) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+		foreach ( array_keys( $this->namedArgs ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}

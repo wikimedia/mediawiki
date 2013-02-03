@@ -62,7 +62,7 @@ class BmpHandler extends BitmapHandler {
 			return false;
 		}
 		$header = fread( $f, 54 );
-		fclose($f);
+		fclose( $f );
 
 		// Extract binary form of width and height from the header
 		$w = substr( $header, 18, 4);

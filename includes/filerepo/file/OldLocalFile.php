@@ -42,7 +42,7 @@ class OldLocalFile extends LocalFile {
 	static function newFromTitle( $title, $repo, $time = null ) {
 		# The null default value is only here to avoid an E_STRICT
 		if ( $time === null ) {
-			throw new MWException( __METHOD__.' got null for $time parameter' );
+			throw new MWException( __METHOD__ . ' got null for $time parameter' );
 		}
 		return new self( $title, $repo, $time, null );
 	}
@@ -132,7 +132,7 @@ class OldLocalFile extends LocalFile {
 		$this->requestedTime = $time;
 		$this->archive_name = $archiveName;
 		if ( is_null( $time ) && is_null( $archiveName ) ) {
-			throw new MWException( __METHOD__.': must specify at least one of $time or $archiveName' );
+			throw new MWException( __METHOD__ . ': must specify at least one of $time or $archiveName' );
 		}
 	}
 
@@ -164,7 +164,7 @@ class OldLocalFile extends LocalFile {
 	 * @return bool
 	 */
 	function isVisible() {
-		return $this->exists() && !$this->isDeleted(File::DELETED_FILE);
+		return $this->exists() && !$this->isDeleted( File::DELETED_FILE );
 	}
 
 	function loadFromDB() {
@@ -255,7 +255,7 @@ class OldLocalFile extends LocalFile {
 
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
-			wfDebug( __METHOD__.": file does not exist, aborting\n" );
+			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -263,7 +263,7 @@ class OldLocalFile extends LocalFile {
 		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
-		wfDebug(__METHOD__.': upgrading '.$this->archive_name." to the current schema\n");
+		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema\n" );
 		$dbw->update( 'oldimage',
 			array(
 				'oi_size'       => $this->size, // sanity

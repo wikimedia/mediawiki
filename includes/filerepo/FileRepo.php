@@ -955,7 +955,7 @@ class FileRepo {
 		$hashPath   = $this->getHashPath( $originalName );
 		$dstRel     = "{$hashPath}{$date}!{$originalName}";
 		$dstUrlRel  = $hashPath . $date . '!' . rawurlencode( $originalName );
-		$virtualUrl = $this->getVirtualUrl( 'temp' )  . '/' . $dstUrlRel;
+		$virtualUrl = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
 
 		$result = $this->quickImport( $srcPath, $virtualUrl );
 		$result->value = $virtualUrl;
@@ -1105,7 +1105,7 @@ class FileRepo {
 			if ( !$this->initDirectory( $dstDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
 			}
-			if ( !$this->initDirectory($archiveDir )->isOK() ) {
+			if ( !$this->initDirectory( $archiveDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
 

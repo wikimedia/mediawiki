@@ -131,7 +131,7 @@ class RepoGroup {
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			$dbkey = $title->getDBkey();
 			if ( isset( $this->cache[$dbkey][$time] ) ) {
-				wfDebug( __METHOD__.": got File:$dbkey from process cache\n" );
+				wfDebug( __METHOD__ . ": got File:$dbkey from process cache\n" );
 				# Move it to the end of the list so that we can delete the LRU entry later
 				$this->pingCache( $dbkey );
 				# Return the entry
@@ -388,12 +388,12 @@ class RepoGroup {
 	 */
 	function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
-			throw new MWException( __METHOD__.': unknown protocol' );
+			throw new MWException( __METHOD__ . ': unknown protocol' );
 		}
 
 		$bits = explode( '/', substr( $url, 9 ), 3 );
 		if ( count( $bits ) != 3 ) {
-			throw new MWException( __METHOD__.": invalid mwrepo URL: $url" );
+			throw new MWException( __METHOD__ . ": invalid mwrepo URL: $url" );
 		}
 		return $bits;
 	}
@@ -433,7 +433,7 @@ class RepoGroup {
 		while ( count( $this->cache ) >= self::MAX_CACHE_SIZE ) {
 			reset( $this->cache );
 			$key = key( $this->cache );
-			wfDebug( __METHOD__.": evicting $key\n" );
+			wfDebug( __METHOD__ . ": evicting $key\n" );
 			unset( $this->cache[$key] );
 		}
 	}

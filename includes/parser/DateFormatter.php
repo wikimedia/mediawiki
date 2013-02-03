@@ -102,11 +102,11 @@ class DateFormatter {
 
 		# Rules
 		#            pref    source 	  target
-		$this->rules[self::DMY][self::MD] 	= self::DM;
-		$this->rules[self::ALL][self::MD] 	= self::MD;
-		$this->rules[self::MDY][self::DM] 	= self::MD;
-		$this->rules[self::ALL][self::DM] 	= self::DM;
-		$this->rules[self::NONE][self::ISO2] 	= self::ISO1;
+		$this->rules[self::DMY][self::MD] = self::DM;
+		$this->rules[self::ALL][self::MD] = self::MD;
+		$this->rules[self::MDY][self::DM] = self::MD;
+		$this->rules[self::ALL][self::DM] = self::DM;
+		$this->rules[self::NONE][self::ISO2] = self::ISO1;
 
 		$this->preferences = array(
 			'default' => self::NONE,
@@ -145,7 +145,7 @@ class DateFormatter {
 	 * @param $options Array: can contain 'linked' and/or 'match-whole'
 	 * @return mixed|String
 	 */
-	function reformat( $preference, $text, $options = array('linked') ) {
+	function reformat( $preference, $text, $options = array( 'linked' ) ) {
 		$linked = in_array( 'linked', $options );
 		$match_whole = in_array( 'match-whole', $options );
 
@@ -172,21 +172,21 @@ class DateFormatter {
 			$regex = $this->regexes[$i];
 
 			// Horrible hack
-			if (!$linked) {
+			if ( !$linked ) {
 				$regex = str_replace( array( '\[\[', '\]\]' ), '', $regex );
 			}
 
-			if ($match_whole) {
+			if ( $match_whole ) {
 				// Let's hope this works
 				$regex = preg_replace( '!^/!', '/^', $regex );
 				$regex = str_replace( $this->regexTrail,
-					'$'.$this->regexTrail, $regex );
+					'$' . $this->regexTrail, $regex );
 			}
 
 			// Another horrible hack
 			$this->mLinked = $linked;
 			$text = preg_replace_callback( $regex, array( &$this, 'replace' ), $text );
-			unset($this->mLinked);
+			unset( $this->mLinked );
 		}
 		return $text;
 	}
@@ -203,7 +203,7 @@ class DateFormatter {
 
 		$bits = array();
 		$key = $this->keys[$this->mSource];
-		for ( $p=0; $p < strlen($key); $p++ ) {
+		for ( $p=0; $p < strlen( $key ); $p++ ) {
 			if ( $key[$p] != ' ' ) {
 				$bits[$key[$p]] = $matches[$p+1];
 			}
@@ -220,7 +220,7 @@ class DateFormatter {
 	function formatDate( $bits, $link = true ) {
 		$format = $this->targets[$this->mTarget];
 
-		if (!$link) {
+		if ( !$link ) {
 			// strip piped links
 			$format = preg_replace( '/\[\[[^|]+\|([^\]]+)\]\]/', '$1', $format );
 			// strip remaining links
@@ -246,7 +246,7 @@ class DateFormatter {
 			}
 		}
 
-		if ( !isset($bits['d']) ) {
+		if ( !isset( $bits['d'] ) ) {
 			$bits['d'] = sprintf( '%02d', $bits['j'] );
 		}
 
@@ -263,7 +263,7 @@ class DateFormatter {
 					$text .= $bits['y'];
 					break;
 				case 'j': # ordinary day of month
-					if ( !isset($bits['j']) ) {
+					if ( !isset( $bits['j'] ) ) {
 						$text .= intval( $bits['d'] );
 					} else {
 						$text .= $bits['j'];
@@ -271,7 +271,7 @@ class DateFormatter {
 					break;
 				case 'F': # long month
 					if ( !isset( $bits['F'] ) ) {
-						$m = intval($bits['m']);
+						$m = intval( $bits['m'] );
 						if ( $m > 12 || $m < 1 ) {
 							$fail = true;
 						} else {
@@ -293,7 +293,7 @@ class DateFormatter {
 		}
 
 		$isoBits = array();
-		if ( isset($bits['y']) )
+		if ( isset( $bits['y'] ) )
 			$isoBits[] = $bits['y'];
 		$isoBits[] = $bits['m'];
 		$isoBits[] = $bits['d'];

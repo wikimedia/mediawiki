@@ -267,7 +267,7 @@ class ForeignAPIRepo extends FileRepo {
 		$sizekey = "$width:$height:$params";
 
 		/* Get the array of urls that we already know */
-		$knownThumbUrls = $wgMemc->get($key);
+		$knownThumbUrls = $wgMemc->get( $key );
 		if( !$knownThumbUrls ) {
 			/* No knownThumbUrls for this file */
 			$knownThumbUrls = array();
@@ -294,9 +294,9 @@ class ForeignAPIRepo extends FileRepo {
 			wfDebug( __METHOD__ . " The deduced filename $fileName is not safe\n" );
 			return false;
 		}
-		$localPath =  $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
+		$localPath = $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
 		$localFilename = $localPath . "/" . $fileName;
-		$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
+		$localUrl = $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
 		if( $backend->fileExists( array( 'src' => $localFilename ) )
 			&& isset( $metadata['timestamp'] ) )

@@ -114,7 +114,7 @@ class XMPReader {
 	*/
 	private function resetXMLParser() {
 
-		if ($this->xmlParser) {
+		if ( $this->xmlParser ) {
 			//is this needed?
 			xml_parser_free( $this->xmlParser );
 		}
@@ -156,7 +156,7 @@ class XMPReader {
 
 		$data = $this->results;
 
-		wfRunHooks('XMPGetResults', Array(&$data));
+		wfRunHooks( 'XMPGetResults', Array( &$data ) );
 
 		if ( isset( $data['xmp-special']['AuthorsPosition'] )
 			&& is_string( $data['xmp-special']['AuthorsPosition'] )
@@ -201,7 +201,7 @@ class XMPReader {
 					// To avoid copying over the _type meta-fields.
 					continue;
 				}
-				foreach(  $loc as $field => $val ) {
+				foreach( $loc as $field => $val ) {
 					$data['xmp-general'][$field . 'Created'][] = $val;
 				}
 			}
@@ -255,7 +255,7 @@ class XMPReader {
 			if ( !$this->charset ) {
 				$bom = array();
 				if ( preg_match( '/\xEF\xBB\xBF|\xFE\xFF|\x00\x00\xFE\xFF|\xFF\xFE\x00\x00|\xFF\xFE/',
-					 $content, $bom )
+					$content, $bom )
 				) {
 					switch ( $bom[0] ) {
 						case "\xFE\xFF":
@@ -275,7 +275,7 @@ class XMPReader {
 							break;
 						default:
 							//this should be impossible to get to
-							throw new MWException("Invalid BOM");
+							throw new MWException( "Invalid BOM" );
 							break;
 
 					}
@@ -324,13 +324,13 @@ class XMPReader {
 		$guid = substr( $content, 0, 32 );
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )
 			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid ) {
-			wfDebugLog('XMP', __METHOD__ . " Ignoring XMPExtended block due to wrong guid (guid= '$guid' )");
+			wfDebugLog( 'XMP', __METHOD__ . " Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
 			return false;
 		}
-		$len  = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
+		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
-		if (!$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
-			wfDebugLog('XMP', __METHOD__ . 'Error reading extended XMP block, invalid length or offset.');
+		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
+			wfDebugLog( 'XMP', __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
 			return false;
 		}
 
@@ -345,8 +345,8 @@ class XMPReader {
 		// so the probability that it will have > 128k, and be in the wrong order is very low...
 
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
-			wfDebugLog('XMP', __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
-				. $len['offset'] . ' but expected ' . $this->extendedXMPOffset . ')');
+			wfDebugLog( 'XMP', __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
+				. $len['offset'] . ' but expected ' . $this->extendedXMPOffset . ')' );
 			return false;
 		}
 
@@ -366,7 +366,7 @@ class XMPReader {
 			$atEnd = false;
 		}
 
-		wfDebugLog('XMP', __METHOD__ . 'Parsing a XMPExtended block');
+		wfDebugLog( 'XMP', __METHOD__ . 'Parsing a XMPExtended block' );
 		return $this->parse( $actualContent, $atEnd );
 	}
 
@@ -488,7 +488,7 @@ class XMPReader {
 		if ( $this->curItem[0] !== $elm
 			&& !( $elm === self::NS_RDF . ' Description'
 				&& $this->mode[0] === self::MODE_STRUCT )
-		 ) {
+		) {
 			throw new MWException( "nesting mismatch. got a </$elm> but expected a </" . $this->curItem[0] . '>' );
 		}
 

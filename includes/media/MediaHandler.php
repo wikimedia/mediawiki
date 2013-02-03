@@ -135,9 +135,9 @@ abstract class MediaHandler {
 	*/
 	static function getMetadataVersion () {
 		$version = Array( '2' ); // core metadata version
-		wfRunHooks('GetMetadataVersion', Array(&$version));
+		wfRunHooks( 'GetMetadataVersion', Array( &$version ) );
 		return implode( ';', $version);
-	 }
+	}
 
 	/**
 	* Convert metadata version.
@@ -365,7 +365,7 @@ abstract class MediaHandler {
 	 * @return array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray ) {
-		 $result = array(
+		$result = array(
 			'visible' => array(),
 			'collapsed' => array()
 		);

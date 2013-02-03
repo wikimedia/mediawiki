@@ -39,7 +39,7 @@ class GIFHandler extends BitmapHandler {
 			return self::BROKEN_FILE;
 		}
 
-		return serialize($parsedGIFMetadata);
+		return serialize( $parsedGIFMetadata );
 	}
 
 	/**
@@ -53,7 +53,7 @@ class GIFHandler extends BitmapHandler {
 			return false;
 		}
 		$meta = unserialize( $meta );
-		 if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
+		if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
 			return false;
 		}
 
@@ -85,7 +85,7 @@ class GIFHandler extends BitmapHandler {
 	function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
-			$metadata = unserialize($ser);
+			$metadata = unserialize( $ser );
 			if( $metadata['frameCount'] > 1 ) {
 				return true;
 			}
@@ -119,13 +119,13 @@ class GIFHandler extends BitmapHandler {
 		wfRestoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug(__METHOD__ . ' invalid GIF metadata' );
+			wfDebug( __METHOD__ . ' invalid GIF metadata' );
 			return self::METADATA_BAD;
 		}
 
 		if ( !isset( $data['metadata']['_MW_GIF_VERSION'] )
 			|| $data['metadata']['_MW_GIF_VERSION'] != GIFMetadataExtractor::VERSION ) {
-			wfDebug(__METHOD__ . ' old but compatible GIF metadata' );
+			wfDebug( __METHOD__ . ' old but compatible GIF metadata' );
 			return self::METADATA_COMPATIBLE;
 		}
 		return self::METADATA_GOOD;
@@ -141,10 +141,10 @@ class GIFHandler extends BitmapHandler {
 		$original = parent::getLongDesc( $image );
 
 		wfSuppressWarnings();
-		$metadata = unserialize($image->getMetadata());
+		$metadata = unserialize( $image->getMetadata() );
 		wfRestoreWarnings();
 
-		if (!$metadata || $metadata['frameCount'] <=  1) {
+		if ( !$metadata || $metadata['frameCount'] <= 1 ) {
 			return $original;
 		}
 

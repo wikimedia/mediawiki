@@ -37,7 +37,7 @@ class JpegHandler extends ExifBitmapHandler {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
 			if ( !is_array( $meta ) ) {
 				// This should never happen, but doesn't hurt to be paranoid.
-				throw new MWException('Metadata array is not an array');
+				throw new MWException( 'Metadata array is not an array' );
 			}
 			$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 			return serialize( $meta );

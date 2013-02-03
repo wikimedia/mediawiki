@@ -422,7 +422,7 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::images(), $raw );
 	}
 	static function numberofadmins( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::numberingroup('sysop'), $raw );
+		return self::formatRaw( SiteStats::numberingroup( 'sysop' ), $raw );
 	}
 	static function numberofedits( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::edits(), $raw );
@@ -800,7 +800,7 @@ class CoreParserFunctions {
 
 	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
 	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
-	public static function filepath( $parser, $name='', $argA='', $argB='' ) {
+	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 
 		if( $argA == 'nowiki' ) {

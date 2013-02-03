@@ -183,7 +183,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $wgDjvuPostProcessor ) {
 			$cmd .= " | {$wgDjvuPostProcessor}";
 		}
-		$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
+		$cmd .= ' > ' . wfEscapeShellArg( $dstPath ) . ') 2>&1';
 		wfProfileIn( 'ddjvu' );
 		wfDebug( __METHOD__.": $cmd\n" );
 		$retval = '';
@@ -194,7 +194,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $retval != 0 || $removed ) {
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim($err), $cmd ) );
+					wfHostname(), $retval, trim( $err ), $cmd ) );
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
 			$params = array(
@@ -228,7 +228,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param $gettext Boolean: DOCUMENT (Default: false)
 	 * @return bool
 	 */
-	function getMetaTree( $image , $gettext = false ) {
+	function getMetaTree( $image, $gettext = false ) {
 		if ( isset( $image->dejaMetaTree ) ) {
 			return $image->dejaMetaTree;
 		}

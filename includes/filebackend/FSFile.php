@@ -104,7 +104,7 @@ class FSFile {
 	 */
 	public function getProps( $ext = true ) {
 		wfProfileIn( __METHOD__ );
-		wfDebug( __METHOD__.": Getting file info for $this->path\n" );
+		wfDebug( __METHOD__ . ": Getting file info for $this->path\n" );
 
 		$info = self::placeholderProps();
 		$info['fileExists'] = $this->exists();
@@ -140,9 +140,9 @@ class FSFile {
 			}
 			$info['sha1'] = $this->getSha1Base36();
 
-			wfDebug(__METHOD__.": $this->path loaded, {$info['size']} bytes, {$info['mime']}.\n");
+			wfDebug( __METHOD__ . ": $this->path loaded, {$info['size']} bytes, {$info['mime']}.\n" );
 		} else {
-			wfDebug(__METHOD__.": $this->path NOT FOUND!\n");
+			wfDebug( __METHOD__ . ": $this->path NOT FOUND!\n" );
 		}
 
 		wfProfileOut( __METHOD__ );
