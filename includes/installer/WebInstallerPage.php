@@ -369,7 +369,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 
 		// Set the relevant variables from LocalSettings.php
 		$requiredVars = array( 'wgDBtype' );
-		$status = $this->importVariables( $requiredVars , $vars );
+		$status = $this->importVariables( $requiredVars, $vars );
 		$installer = $this->parent->getDBInstaller();
 		$status->merge( $this->importVariables( $installer->getGlobalNames(), $vars ) );
 		if ( !$status->isOK() ) {
@@ -645,7 +645,7 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->parent->getTextBox( array(
 				'var' => 'wgSitename',
 				'label' => 'config-site-name',
-			  'help' => $this->parent->getHelpBox( 'config-site-name-help' )
+				'help' => $this->parent->getHelpBox( 'config-site-name-help' )
 			) ) .
 			$this->parent->getRadioSet( array(
 				'var' => '_NamespaceType',
@@ -955,7 +955,7 @@ class WebInstaller_Options extends WebInstallerPage {
 
 		// We'll hide/show this on demand when the value changes, see config.js.
 		$cacheval = $this->getVar( 'wgMainCacheType' );
-		if (!$cacheval) {
+		if ( !$cacheval ) {
 			// We need to set a default here; but don't hardcode it
 			// or we lose it every time we reload the page for validation
 			// or going back!
@@ -1025,7 +1025,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		} else {
 			$iframeAttribs['src'] = $this->getCCPartnerUrl();
 		}
-		$wrapperStyle = ($this->getVar('_LicenseCode') == 'cc-choose') ? '' : 'display: none';
+		$wrapperStyle = ($this->getVar( '_LicenseCode' ) == 'cc-choose') ? '' : 'display: none';
 
 		return
 			"<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
@@ -1155,12 +1155,12 @@ class WebInstaller_Install extends WebInstallerPage {
 			return 'continue';
 		} elseif( $this->parent->request->wasPosted() ) {
 			$this->startForm();
-			$this->addHTML("<ul>");
+			$this->addHTML( "<ul>" );
 			$results = $this->parent->performInstallation(
 				array( $this, 'startStage'),
 				array( $this, 'endStage' )
 			);
-			$this->addHTML("</ul>");
+			$this->addHTML( "</ul>" );
 			// PerformInstallation bails on a fatal, so make sure the last item
 			// completed before giving 'next.' Likewise, only provide back on failure
 			$lastStep = end( $results );
@@ -1287,8 +1287,8 @@ class WebInstaller_ReleaseNotes extends WebInstaller_Document {
 	protected function getFileName() {
 		global $wgVersion;
 
-		if(! preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
-			throw new MWException('Variable $wgVersion has an invalid value.');
+		if( !preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
+			throw new MWException( 'Variable $wgVersion has an invalid value.' );
 		}
 
 		return 'RELEASE-NOTES-' . $result[1] . '.' . $result[2];

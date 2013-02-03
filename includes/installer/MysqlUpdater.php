@@ -329,7 +329,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		if( $this->applyPatch( 'patch-fix-il_from.sql', false, "Fixing ancient broken imagelinks table." ) ) {
-			$this->output("NOTE: you will have to run maintenance/refreshLinks.php after this." );
+			$this->output( "NOTE: you will have to run maintenance/refreshLinks.php after this." );
 		}
 	}
 

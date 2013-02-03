@@ -933,7 +933,7 @@ class WebInstaller extends Installer {
 	 * @return string
 	 */
 	public function getRadioSet( $params ) {
-		if ( !isset( $params['controlName']  ) ) {
+		if ( !isset( $params['controlName'] ) ) {
 			$params['controlName'] = 'config_' . $params['var'];
 		}
 
@@ -1096,7 +1096,7 @@ class WebInstaller extends Installer {
 		} elseif ( !empty( $_SERVER['SCRIPT_NAME'] ) ) {
 			$path = $_SERVER['SCRIPT_NAME'];
 		}
-		if ($path !== false) {
+		if ( $path !== false ) {
 			$uri = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
 			$this->setVar( 'wgScriptPath', $uri );
 		} else {

@@ -193,7 +193,7 @@ class CliInstaller extends Installer {
 
 	public function envCheckPath( ) {
 		if ( !$this->specifiedScriptPath ) {
-			$this->showMessage( 'config-no-cli-uri', $this->getVar("wgScriptPath") );
+			$this->showMessage( 'config-no-cli-uri', $this->getVar( "wgScriptPath" ) );
 		}
 		return parent::envCheckPath();
 	}

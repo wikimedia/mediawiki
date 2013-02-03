@@ -43,5 +43,5 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 		$text = $title->getText();
 
 		return Linker::linkKnown( $title, htmlspecialchars( $text ) );
-        }
+	}
 }

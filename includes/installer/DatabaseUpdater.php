@@ -451,7 +451,7 @@ abstract class DatabaseUpdater {
 		$key = "updatelist-$version-" . time();
 		$this->db->insert( 'updatelog',
 			array( 'ul_key' => $key, 'ul_value' => serialize( $updates ) ),
-			 __METHOD__ );
+			__METHOD__ );
 		$this->db->setFlag( DBO_DDLMODE );
 	}
 
@@ -633,7 +633,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->db->sourceFile( $path );
 		}
- 		$this->output( "done.\n" );
+		$this->output( "done.\n" );
 		return true;
 	}
 

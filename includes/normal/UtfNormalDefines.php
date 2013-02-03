@@ -26,7 +26,7 @@
  */
 
 define( 'UNICODE_HANGUL_FIRST', 0xac00 );
-define( 'UNICODE_HANGUL_LAST',  0xd7a3 );
+define( 'UNICODE_HANGUL_LAST', 0xd7a3 );
 
 define( 'UNICODE_HANGUL_LBASE', 0x1100 );
 define( 'UNICODE_HANGUL_VBASE', 0x1161 );

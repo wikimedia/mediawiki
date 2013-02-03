@@ -488,7 +488,7 @@ abstract class Installer {
 		if( !$_lsExists ) {
 			return false;
 		}
-		unset($_lsExists);
+		unset( $_lsExists );
 
 		require( "$IP/includes/DefaultSettings.php" );
 		require( "$IP/LocalSettings.php" );
@@ -1073,18 +1073,18 @@ abstract class Installer {
 	 * @return string
 	 */
 	protected function unicodeChar( $c ) {
-		$c = hexdec($c);
-		if ($c <= 0x7F) {
-			return chr($c);
-		} elseif ($c <= 0x7FF) {
-			return chr(0xC0 | $c >> 6) . chr(0x80 | $c & 0x3F);
-		} elseif ($c <= 0xFFFF) {
-			return chr(0xE0 | $c >> 12) . chr(0x80 | $c >> 6 & 0x3F)
-				. chr(0x80 | $c & 0x3F);
-		} elseif ($c <= 0x10FFFF) {
-			return chr(0xF0 | $c >> 18) . chr(0x80 | $c >> 12 & 0x3F)
-				. chr(0x80 | $c >> 6 & 0x3F)
-				. chr(0x80 | $c & 0x3F);
+		$c = hexdec( $c );
+		if ( $c <= 0x7F ) {
+			return chr( $c );
+		} elseif ( $c <= 0x7FF ) {
+			return chr( 0xC0 | $c >> 6 ) . chr( 0x80 | $c & 0x3F );
+		} elseif ( $c <= 0xFFFF ) {
+			return chr( 0xE0 | $c >> 12 ) . chr( 0x80 | $c >> 6 & 0x3F )
+				. chr( 0x80 | $c & 0x3F );
+		} elseif ( $c <= 0x10FFFF ) {
+			return chr( 0xF0 | $c >> 18 ) . chr( 0x80 | $c >> 12 & 0x3F )
+				. chr( 0x80 | $c >> 6 & 0x3F )
+				. chr( 0x80 | $c & 0x3F );
 		} else {
 			return false;
 		}
@@ -1105,8 +1105,8 @@ abstract class Installer {
 		 * Note that we use the hex representation to create the code
 		 * points in order to avoid any Unicode-destroying during transit.
 		 */
-		$not_normal_c = $this->unicodeChar("FA6C");
-		$normal_c = $this->unicodeChar("242EE");
+		$not_normal_c = $this->unicodeChar( "FA6C" );
+		$normal_c = $this->unicodeChar( "242EE" );
 
 		$useNormalizer = 'php';
 		$needsUpdate = false;

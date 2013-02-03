@@ -39,13 +39,13 @@ class EhcacheBagOStuff extends BagOStuff {
 	 */
 	function __construct( $params ) {
 		if ( !defined( 'CURLOPT_TIMEOUT_MS' ) ) {
-			throw new MWException( __CLASS__.' requires curl version 7.16.2 or later.' );
+			throw new MWException( __CLASS__ . ' requires curl version 7.16.2 or later.' );
 		}
 		if ( !extension_loaded( 'zlib' ) ) {
-			throw new MWException( __CLASS__.' requires the zlib extension' );
+			throw new MWException( __CLASS__ . ' requires the zlib extension' );
 		}
 		if ( !isset( $params['servers'] ) ) {
-			throw new MWException( __METHOD__.': servers parameter is required' );
+			throw new MWException( __METHOD__ . ': servers parameter is required' );
 		}
 		$this->servers = $params['servers'];
 		$this->cacheName = isset( $params['cache'] ) ? $params['cache'] : 'mw';
@@ -76,7 +76,7 @@ class EhcacheBagOStuff extends BagOStuff {
 			return false;
 		}
 		if ( $response['http_code'] >= 300 ) {
-			wfDebug( __METHOD__.": GET failure, got HTTP {$response['http_code']}\n" );
+			wfDebug( __METHOD__ . ": GET failure, got HTTP {$response['http_code']}\n" );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -85,7 +85,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		if ( $type == 'application/vnd.php.serialized+deflate' ) {
 			$body = gzinflate( $body );
 			if ( !$body ) {
-				wfDebug( __METHOD__.": error inflating $key\n" );
+				wfDebug( __METHOD__ . ": error inflating $key\n" );
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
@@ -93,7 +93,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		} elseif ( $type == 'application/vnd.php.serialized' ) {
 			$data = unserialize( $body );
 		} else {
-			wfDebug( __METHOD__.": unknown content type \"$type\"\n" );
+			wfDebug( __METHOD__ . ": unknown content type \"$type\"\n" );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -127,7 +127,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		if ( $code == 404 ) {
 			// Maybe the cache does not exist yet, let's try creating it
 			if ( !$this->createCache( $key ) ) {
-				wfDebug( __METHOD__.": cache creation failed\n" );
+				wfDebug( __METHOD__ . ": cache creation failed\n" );
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
@@ -136,9 +136,9 @@ class EhcacheBagOStuff extends BagOStuff {
 
 		$result = false;
 		if ( !$code ) {
-			wfDebug( __METHOD__.": PUT failure for key $key\n" );
+			wfDebug( __METHOD__ . ": PUT failure for key $key\n" );
 		} elseif ( $code >= 300 ) {
-			wfDebug( __METHOD__.": PUT failure for key $key: HTTP $code\n" );
+			wfDebug( __METHOD__ . ": PUT failure for key $key: HTTP $code\n" );
 		} else {
 			$result = true;
 		}
@@ -172,7 +172,7 @@ class EhcacheBagOStuff extends BagOStuff {
 			array( CURLOPT_CUSTOMREQUEST => 'DELETE' ) );
 		$code = isset( $response['http_code'] ) ? $response['http_code'] : 0;
 		if ( !$response || ( $code != 404 && $code >= 300 ) ) {
-			wfDebug( __METHOD__.": DELETE failure for key $key\n" );
+			wfDebug( __METHOD__ . ": DELETE failure for key $key\n" );
 			$result = false;
 		} else {
 			$result = true;
@@ -256,7 +256,7 @@ class EhcacheBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	protected function createCache( $key ) {
-		wfDebug( __METHOD__.": creating cache for $key\n" );
+		wfDebug( __METHOD__ . ": creating cache for $key\n" );
 		$response = $this->doCacheRequest( $key,
 			array(
 				CURLOPT_POST => 1,
@@ -264,7 +264,7 @@ class EhcacheBagOStuff extends BagOStuff {
 				CURLOPT_POSTFIELDS => '',
 			) );
 		if ( !$response ) {
-			wfDebug( __CLASS__.": failed to create cache for $key\n" );
+			wfDebug( __CLASS__ . ": failed to create cache for $key\n" );
 			return false;
 		}
 		return ( $response['http_code'] == 201 /* created */
@@ -304,7 +304,7 @@ class EhcacheBagOStuff extends BagOStuff {
 	protected function doRequest( $curl, $url, $curlOptions = array() ) {
 		if ( array_diff_key( $curlOptions, $this->curlOptions ) ) {
 			// var_dump( array_diff_key( $curlOptions, $this->curlOptions ) );
-			throw new MWException( __METHOD__.": to prevent options set in one doRequest() " .
+			throw new MWException( __METHOD__ . ": to prevent options set in one doRequest() " .
 				"call from affecting subsequent doRequest() calls, only options listed " .
 				"in \$this->curlOptions may be specified in the \$curlOptions parameter." );
 		}
@@ -314,7 +314,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		curl_setopt_array( $curl, $curlOptions );
 		$result = curl_exec( $curl );
 		if ( $result === false ) {
-			wfDebug( __CLASS__.": curl error: " . curl_error( $curl ) . "\n" );
+			wfDebug( __CLASS__ . ": curl error: " . curl_error( $curl ) . "\n" );
 			return false;
 		}
 		$info = curl_getinfo( $curl );

@@ -240,7 +240,7 @@ abstract class DatabaseInstaller {
 		if ( $status->isOK() ) {
 			$status->value->setSchemaVars( $this->getSchemaVars() );
 		} else {
-			throw new MWException( __METHOD__.': unexpected DB connection error' );
+			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
 	}
 
@@ -252,7 +252,7 @@ abstract class DatabaseInstaller {
 	public function enableLB() {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
-			throw new MWException( __METHOD__.': unexpected DB connection error' );
+			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
 		LBFactory::setInstance( new LBFactory_Single( array(
 			'connection' => $status->value ) ) );
