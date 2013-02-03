@@ -254,7 +254,7 @@ class Language {
 	 * @since 1.21
 	 */
 	public static function isSupportedLanguage( $code ) {
-		return is_readable( self::getMessagesFileName( $code ) );
+		return $code === strtolower( $code ) && is_readable( self::getMessagesFileName( $code ) );
 	}
 
 	/**
