@@ -189,7 +189,7 @@ class ForeignAPIFile extends File {
 	 * @param string $method
 	 * @return int|null|string
 	 */
-	public function getUser( $method='text' ) {
+	public function getUser( $method = 'text' ) {
 		return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
 	}
 
@@ -256,7 +256,7 @@ class ForeignAPIFile extends File {
 	 */
 	function getThumbPath( $suffix = '' ) {
 		if ( $this->repo->canCacheThumbs() ) {
-			$path = $this->repo->getZonePath('thumb') . '/' . $this->getHashPath( $this->getName() );
+			$path = $this->repo->getZonePath( 'thumb' ) . '/' . $this->getHashPath( $this->getName() );
 			if ( $suffix ) {
 				$path = $path . $suffix . '/';
 			}
@@ -293,7 +293,7 @@ class ForeignAPIFile extends File {
 		global $wgMemc, $wgContLang;
 
 		$url = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
-		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5($url) );
+		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5( $url ) );
 
 		$wgMemc->delete( $key );
 	}

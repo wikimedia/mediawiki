@@ -80,20 +80,20 @@ class FormatMetadata {
 			}
 
 			//This is done differently as the tag is an array.
-			if ($tag == 'GPSTimeStamp' && count($vals) === 3) {
+			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3) {
 				//hour min sec array
 
-				$h = explode('/', $vals[0]);
-				$m = explode('/', $vals[1]);
-				$s = explode('/', $vals[2]);
+				$h = explode( '/', $vals[0] );
+				$m = explode( '/', $vals[1] );
+				$s = explode( '/', $vals[2] );
 
 				// this should already be validated
 				// when loaded from file, but it could
 				// come from a foreign repo, so be
 				// paranoid.
-				if ( !isset($h[1])
-					|| !isset($m[1])
-					|| !isset($s[1])
+				if ( !isset( $h[1] )
+					|| !isset( $m[1] )
+					|| !isset( $s[1] )
 					|| $h[1] == 0
 					|| $m[1] == 0
 					|| $s[1] == 0
@@ -631,7 +631,7 @@ class FormatMetadata {
 				case 'MaxApertureValue':
 					if ( strpos( $val, '/' ) !== false ) {
 						// need to expand this earlier to calculate fNumber
-						list($n, $d) = explode('/', $val);
+						list( $n, $d ) = explode( '/', $val );
 						if ( is_numeric( $n ) && is_numeric( $d ) ) {
 							$val = $n / $d;
 						}
@@ -809,7 +809,7 @@ class FormatMetadata {
 
 				case 'LanguageCode':
 					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang->getCode() );
-					if ($lang) {
+					if ( $lang ) {
 						$val = htmlspecialchars( $lang );
 					} else {
 						$val = htmlspecialchars( $val );
@@ -850,7 +850,7 @@ class FormatMetadata {
 		}
 
 		if ( !is_array( $vals ) ) {
-			 return $vals; // do nothing if not an array;
+			return $vals; // do nothing if not an array;
 		}
 		elseif ( count( $vals ) === 1 && $type !== 'lang' ) {
 			return $vals[0];
@@ -899,7 +899,7 @@ class FormatMetadata {
 					}
 					$content .= self::langItem(
 						$vals[$cLang], $cLang,
-						 $isDefault, $noHtml );
+						$isDefault, $noHtml );
 
 					unset( $vals[$cLang] );
 				}
@@ -915,8 +915,8 @@ class FormatMetadata {
 				}
 				if ( $defaultItem !== false ) {
 					$content = self::langItem( $defaultItem,
-						$defaultLang, true, $noHtml )
-						 . $content;
+						$defaultLang, true, $noHtml ) .
+						$content;
 				}
 				if ( $noHtml ) {
 					return $content;
@@ -951,8 +951,8 @@ class FormatMetadata {
 	 */
 	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false) {
-			throw new MWException('$lang and $default cannot both '
-				. 'be false.');
+			throw new MWException( '$lang and $default cannot both '
+				. 'be false.' );
 		}
 
 		if ( $noHtml ) {
@@ -1017,7 +1017,7 @@ class FormatMetadata {
 	static function msg( $tag, $val, $arg = null, $arg2 = null ) {
 		global $wgContLang;
 
-		if ($val === '')
+		if ( $val === '' )
 			$val = 'value';
 		return wfMessage( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 )->text();
 	}
@@ -1033,10 +1033,10 @@ class FormatMetadata {
 	static function formatNum( $num, $round = false ) {
 		global $wgLang;
 		$m = array();
-		if( is_array($num) ) {
+		if( is_array( $num ) ) {
 			$out = array();
 			foreach( $num as $number ) {
-				$out[] = self::formatNum($number);
+				$out[] = self::formatNum( $number );
 			}
 			return $wgLang->commaList( $out );
 		}
@@ -1126,7 +1126,7 @@ class FormatMetadata {
 			return $val;
 		}
 		$cat = '';
-		switch( substr( $val , 0, 2 ) ) {
+		switch( substr( $val, 0, 2 ) ) {
 			case '01':
 				$cat = 'ace';
 				break;

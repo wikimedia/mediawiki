@@ -121,7 +121,7 @@ class Preprocessor_HipHop implements Preprocessor {
 		if ( $cacheable ) {
 			wfProfileIn( __METHOD__.'-cacheable' );
 
-			$cacheKey = strval( wfMemcKey( 'preprocess-hash', md5($text), $flags ) );
+			$cacheKey = strval( wfMemcKey( 'preprocess-hash', md5( $text ), $flags ) );
 			$cacheValue = strval( $wgMemc->get( $cacheKey ) );
 			if ( $cacheValue !== '' ) {
 				$version = substr( $cacheValue, 0, 8 );
@@ -411,7 +411,7 @@ class Preprocessor_HipHop implements Preprocessor {
 				}
 				// <includeonly> and <noinclude> just become <ignore> tags
 				if ( in_array( $lowerName, $ignoredElements ) ) {
-					$accum->addNodeWithText(  'ignore', strval( substr( $text, $tagStartPos, $i - $tagStartPos ) ) );
+					$accum->addNodeWithText( 'ignore', strval( substr( $text, $tagStartPos, $i - $tagStartPos ) ) );
 					continue;
 				}
 
@@ -578,7 +578,7 @@ class Preprocessor_HipHop implements Preprocessor {
 					}
 				}
 
-				if ($matchingCount <= 0) {
+				if ( $matchingCount <= 0 ) {
 					# No matching element found in callback array
 					# Output a literal closing brace and continue
 					$accum->addLiteral( str_repeat( $curChar, $count ) );
@@ -671,7 +671,7 @@ class Preprocessor_HipHop implements Preprocessor {
 				$accum = $stack->getAccum();
 
 				# Re-add the old stack element if it still has unmatched opening characters remaining
-				if ($matchingCount < $piece->count) {
+				if ( $matchingCount < $piece->count ) {
 					$piece->parts = array( new PPDPart_HipHop );
 					$piece->count -= $matchingCount;
 					# do we still qualify for any callback with remaining count?
@@ -729,7 +729,7 @@ class Preprocessor_HipHop implements Preprocessor {
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
 
 		// Cache
-		if ($cacheable) {
+		if ( $cacheable ) {
 			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
 			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
 			wfProfileOut( __METHOD__.'-cache-miss' );
@@ -865,7 +865,7 @@ class PPDStackElement_HipHop {
 	 * @return PPDAccum_HipHop
 	 */
 	function getAccum() {
-		return PPDAccum_HipHop::cast( $this->parts[count($this->parts) - 1]->out );
+		return PPDAccum_HipHop::cast( $this->parts[count( $this->parts ) - 1]->out );
 	}
 
 	/**
@@ -879,7 +879,7 @@ class PPDStackElement_HipHop {
 	 * @return PPDPart_HipHop
 	 */
 	function getCurrentPart() {
-		return PPDPart_HipHop::cast( $this->parts[count($this->parts) - 1] );
+		return PPDPart_HipHop::cast( $this->parts[count( $this->parts ) - 1] );
 	}
 
 	/**
@@ -1569,8 +1569,8 @@ class PPTemplateFrame_HipHop extends PPFrame_HipHop {
 	 */
 	function getNumberedArguments() {
 		$arguments = array();
-		foreach ( array_keys($this->numberedArgs) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+		foreach ( array_keys( $this->numberedArgs ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}
@@ -1580,8 +1580,8 @@ class PPTemplateFrame_HipHop extends PPFrame_HipHop {
 	 */
 	function getNamedArguments() {
 		$arguments = array();
-		foreach ( array_keys($this->namedArgs) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+		foreach ( array_keys( $this->namedArgs ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}

@@ -47,15 +47,15 @@ class CoreLinkFunctions {
 	 */
 	static function defaultLinkHook( $parser, $holders, $markers,
 			Title $title, $titleText, &$displayText = null, &$leadingColon = false ) {
-		if( isset($displayText) && $markers->findMarker( $displayText ) ) {
+		if( isset( $displayText ) && $markers->findMarker( $displayText ) ) {
 			# There are links inside of the displayText
 			# For backwards compatibility the deepest links are dominant so this
 			# link should not be handled
-			$displayText = $markers->expand($displayText);
+			$displayText = $markers->expand( $displayText );
 			# Return false so that this link is reverted back to WikiText
 			return false;
 		}
-		return $holders->makeHolder( $title, isset($displayText) ? $displayText : $titleText, array(), '', '' );
+		return $holders->makeHolder( $title, isset( $displayText ) ? $displayText : $titleText, array(), '', '' );
 	}
 
 	/**
@@ -73,15 +73,15 @@ class CoreLinkFunctions {
 		global $wgContLang;
 		# When a category link starts with a : treat it as a normal link
 		if( $leadingColon ) return true;
-		if( isset($sortText) && $markers->findMarker( $sortText ) ) {
+		if( isset( $sortText ) && $markers->findMarker( $sortText ) ) {
 			# There are links inside of the sortText
 			# For backwards compatibility the deepest links are dominant so this
 			# link should not be handled
-			$sortText = $markers->expand($sortText);
+			$sortText = $markers->expand( $sortText );
 			# Return false so that this link is reverted back to WikiText
 			return false;
 		}
-		if( !isset($sortText) ) $sortText = $parser->getDefaultSort();
+		if( !isset( $sortText ) ) $sortText = $parser->getDefaultSort();
 		$sortText = Sanitizer::decodeCharReferences( $sortText );
 		$sortText = str_replace( "\n", '', $sortText );
 		$sortText = $wgContLang->convertCategoryKey( $sortText );

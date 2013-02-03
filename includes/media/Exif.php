@@ -290,8 +290,8 @@ class Exif {
 			// Only give a warning for b/c, since originally we didn't
 			// require this. The number of things affected by this is
 			// rather small.
-			wfWarn( 'Exif class did not have byte order specified. '
-			 . 'Some properties may be decoded incorrectly.' );
+			wfWarn( 'Exif class did not have byte order specified. ' .
+				'Some properties may be decoded incorrectly.' );
 			$this->byteOrder = 'BE'; // BE seems about twice as popular as LE in jpg's.
 		}
 
@@ -322,7 +322,7 @@ class Exif {
 
 		foreach ( array_keys( $this->mRawExifData ) as $section ) {
 			if ( !in_array( $section, array_keys( $this->mExifTags ) ) ) {
-				$this->debug( $section , __FUNCTION__, "'$section' is not a valid Exif section" );
+				$this->debug( $section, __FUNCTION__, "'$section' is not a valid Exif section" );
 				continue;
 			}
 
@@ -396,8 +396,8 @@ class Exif {
 		if ( isset ( $this->mFilteredExifData['ComponentsConfiguration'] ) ) {
 			$val = $this->mFilteredExifData['ComponentsConfiguration'];
 			$ccVals = array();
-			for ($i = 0; $i < strlen($val); $i++) {
-				$ccVals[$i] = ord( substr($val, $i, 1) );
+			for ( $i = 0; $i < strlen( $val ); $i++ ) {
+				$ccVals[$i] = ord( substr( $val, $i, 1 ) );
 			}
 			$ccVals['_type'] = 'ol'; //this is for formatting later.
 			$this->mFilteredExifData['ComponentsConfiguration'] = $ccVals;
@@ -413,11 +413,11 @@ class Exif {
 		if ( isset ( $this->mFilteredExifData['GPSVersion'] ) ) {
 			$val = $this->mFilteredExifData['GPSVersion'];
 			$newVal = '';
-			for ($i = 0; $i < strlen($val); $i++) {
+			for ( $i = 0; $i < strlen( $val ); $i++ ) {
 				if ( $i !== 0 ) {
 					$newVal .= '.';
 				}
-				$newVal .= ord( substr($val, $i, 1) );
+				$newVal .= ord( substr( $val, $i, 1 ) );
 			}
 			if ( $this->byteOrder === 'LE' ) {
 				// Need to reverse the string
@@ -442,17 +442,17 @@ class Exif {
 	private function charCodeString ( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
 
-			if ( strlen($this->mFilteredExifData[$prop]) <= 8 ) {
+			if ( strlen( $this->mFilteredExifData[$prop] ) <= 8 ) {
 				//invalid. Must be at least 9 bytes long.
 
-				$this->debug( $this->mFilteredExifData[$prop] , __FUNCTION__, false );
-				unset($this->mFilteredExifData[$prop]);
+				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, false );
+				unset( $this->mFilteredExifData[$prop] );
 				return;
 			}
-			$charCode = substr( $this->mFilteredExifData[$prop], 0, 8);
-			$val = substr( $this->mFilteredExifData[$prop], 8);
+			$charCode = substr( $this->mFilteredExifData[$prop], 0, 8 );
+			$val = substr( $this->mFilteredExifData[$prop], 8 );
 
-			switch ($charCode) {
+			switch ( $charCode ) {
 				case "\x4A\x49\x53\x00\x00\x00\x00\x00":
 					//JIS
 					$charset = "Shift-JIS";
@@ -466,9 +466,9 @@ class Exif {
 			}
 			// This could possibly check to see if iconv is really installed
 			// or if we're using the compatibility wrapper in globalFunctions.php
-			if ($charset) {
+			if ( $charset ) {
 				wfSuppressWarnings();
-				$val = iconv($charset, 'UTF-8//IGNORE', $val);
+				$val = iconv( $charset, 'UTF-8//IGNORE', $val );
 				wfRestoreWarnings();
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
@@ -476,17 +476,17 @@ class Exif {
 				UtfNormal::quickIsNFCVerify( $valCopy ); //validates $valCopy.
 				if ( $valCopy !== $val ) {
 					wfSuppressWarnings();
-					$val = iconv('Windows-1252', 'UTF-8//IGNORE', $val);
+					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
 					wfRestoreWarnings();
 				}
 			}
 
 			//trim and check to make sure not only whitespace.
-			$val = trim($val);
+			$val = trim( $val );
 			if ( strlen( $val ) === 0 ) {
 				//only whitespace.
-				$this->debug( $this->mFilteredExifData[$prop] , __FUNCTION__, "$prop: Is only whitespace" );
-				unset($this->mFilteredExifData[$prop]);
+				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, "$prop: Is only whitespace" );
+				unset( $this->mFilteredExifData[$prop] );
 				return;
 			}
 
@@ -580,7 +580,7 @@ class Exif {
 	 */
 	function getFormattedData() {
 		wfDeprecated( __METHOD__, '1.18' );
-		if (!$this->mFormattedExifData) {
+		if ( !$this->mFormattedExifData ) {
 			$this->makeFormattedData();
 		}
 		return $this->mFormattedExifData;
@@ -612,7 +612,7 @@ class Exif {
 	 * @return bool
 	 */
 	private function isByte( $in ) {
-		if ( !is_array( $in ) && sprintf('%d', $in) == $in && $in >= 0 && $in <= 255 ) {
+		if ( !is_array( $in ) && sprintf( '%d', $in ) == $in && $in >= 0 && $in <= 255 ) {
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
@@ -648,7 +648,7 @@ class Exif {
 	 * @return bool
 	 */
 	private function isShort( $in ) {
-		if ( !is_array( $in ) && sprintf('%d', $in) == $in && $in >= 0 && $in <= 65536 ) {
+		if ( !is_array( $in ) && sprintf( '%d', $in ) == $in && $in >= 0 && $in <= 65536 ) {
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
@@ -662,7 +662,7 @@ class Exif {
 	 * @return bool
 	 */
 	private function isLong( $in ) {
-		if ( !is_array( $in ) && sprintf('%d', $in) == $in && $in >= 0 && $in <= 4294967296 ) {
+		if ( !is_array( $in ) && sprintf( '%d', $in ) == $in && $in >= 0 && $in <= 4294967296 ) {
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {

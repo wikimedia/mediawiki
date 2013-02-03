@@ -40,7 +40,7 @@
  * never name a file class explictly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
  *
- * RepoGroup::singleton()->getLocalRepo()->newFile($title);
+ * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
  *
  * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
  * in most cases.
@@ -348,7 +348,7 @@ abstract class File {
 			if ( $this->canRender() ) {
 				return $this->createThumb( $this->getWidth() );
 			} else {
-				wfDebug( __METHOD__.': supposed to render ' . $this->getName() .
+				wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
 					' (' . $this->getMimeType() . "), but can't!\n" );
 				return $this->getURL(); #hm... return NULL?
 			}
@@ -663,13 +663,13 @@ abstract class File {
 		if ( $this->allowInlineDisplay() ) {
 			return true;
 		}
-		if ($this->isTrustedFile()) {
+		if ( $this->isTrustedFile() ) {
 			return true;
 		}
 
 		$type = $this->getMediaType();
 		$mime = $this->getMimeType();
-		#wfDebug("LocalFile::isSafeFile: type= $type, mime= $mime\n");
+		#wfDebug( "LocalFile::isSafeFile: type= $type, mime= $mime\n" );
 
 		if ( !$type || $type === MEDIATYPE_UNKNOWN ) {
 			return false; #unknown type, not trusted
@@ -903,7 +903,7 @@ abstract class File {
 				// Clean up broken thumbnails as needed
 				$this->migrateThumbFile( $thumbName );
 				// Check if an up-to-date thumbnail already exists...
-				wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
+				wfDebug( __METHOD__ . ": Doing stat for $thumbPath\n" );
 				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
 					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
 					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
@@ -1366,7 +1366,7 @@ abstract class File {
 	 * @throws MWException
 	 */
 	function readOnlyError() {
-		throw new MWException( get_class($this) . ': write operations are not supported' );
+		throw new MWException( get_class( $this ) . ': write operations are not supported' );
 	}
 
 	/**
@@ -1500,9 +1500,9 @@ abstract class File {
 	 * @param $target Title New file name
 	 * @return FileRepoStatus object.
 	 */
-	 function move( $target ) {
+	function move( $target ) {
 		$this->readOnlyError();
-	 }
+	}
 
 	/**
 	 * Delete all versions of the file.
@@ -1627,15 +1627,15 @@ abstract class File {
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgLang->getCode() );
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
-				wfDebug("Attempting to get the description from cache...");
+				wfDebug( "Attempting to get the description from cache..." );
 				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgLang->getCode(),
 									$this->getName() );
-				$obj = $wgMemc->get($key);
-				if ($obj) {
-					wfDebug("success!\n");
+				$obj = $wgMemc->get( $key );
+				if ( $obj ) {
+					wfDebug( "success!\n" );
 					return $obj;
 				}
-				wfDebug("miss\n");
+				wfDebug( "miss\n" );
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
 			$res = Http::get( $renderUrl );
@@ -1721,7 +1721,7 @@ abstract class File {
 	 * @return array
 	 */
 	static function getPropsFromPath( $path, $ext = true ) {
-		wfDebug( __METHOD__.": Getting file info for $path\n" );
+		wfDebug( __METHOD__ . ": Getting file info for $path\n" );
 		wfDeprecated( __METHOD__, '1.19' );
 
 		$fsFile = new FSFile( $path );

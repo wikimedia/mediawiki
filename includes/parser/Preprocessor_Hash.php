@@ -116,9 +116,9 @@ class Preprocessor_Hash implements Preprocessor {
 
 		$cacheable = $wgPreprocessorCacheThreshold !== false && strlen( $text ) > $wgPreprocessorCacheThreshold;
 		if ( $cacheable ) {
-			wfProfileIn( __METHOD__.'-cacheable' );
+			wfProfileIn( __METHOD__ . '-cacheable' );
 
-			$cacheKey = wfMemcKey( 'preprocess-hash', md5($text), $flags );
+			$cacheKey = wfMemcKey( 'preprocess-hash', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
 			if ( $cacheValue ) {
 				$version = substr( $cacheValue, 0, 8 );
@@ -127,12 +127,12 @@ class Preprocessor_Hash implements Preprocessor {
 					// From the cache
 					wfDebugLog( "Preprocessor",
 						"Loaded preprocessor hash from memcached (key $cacheKey)" );
-					wfProfileOut( __METHOD__.'-cacheable' );
+					wfProfileOut( __METHOD__ . '-cacheable' );
 					wfProfileOut( __METHOD__ );
 					return $hash;
 				}
 			}
-			wfProfileIn( __METHOD__.'-cache-miss' );
+			wfProfileIn( __METHOD__ . '-cache-miss' );
 		}
 
 		$rules = array(
@@ -391,7 +391,7 @@ class Preprocessor_Hash implements Preprocessor {
 				}
 				// <includeonly> and <noinclude> just become <ignore> tags
 				if ( in_array( $lowerName, $ignoredElements ) ) {
-					$accum->addNodeWithText(  'ignore', substr( $text, $tagStartPos, $i - $tagStartPos ) );
+					$accum->addNodeWithText( 'ignore', substr( $text, $tagStartPos, $i - $tagStartPos ) );
 					continue;
 				}
 
@@ -549,7 +549,7 @@ class Preprocessor_Hash implements Preprocessor {
 					}
 				}
 
-				if ($matchingCount <= 0) {
+				if ( $matchingCount <= 0 ) {
 					# No matching element found in callback array
 					# Output a literal closing brace and continue
 					$accum->addLiteral( str_repeat( $curChar, $count ) );
@@ -591,10 +591,10 @@ class Preprocessor_Hash implements Preprocessor {
 								$lastNode = $node;
 							}
 							if ( !$node ) {
-								throw new MWException( __METHOD__. ': eqpos not found' );
+								throw new MWException( __METHOD__ . ': eqpos not found' );
 							}
 							if ( $node->name !== 'equals' ) {
-								throw new MWException( __METHOD__ .': eqpos is not equals' );
+								throw new MWException( __METHOD__ . ': eqpos is not equals' );
 							}
 							$equalsNode = $node;
 
@@ -639,7 +639,7 @@ class Preprocessor_Hash implements Preprocessor {
 				$accum =& $stack->getAccum();
 
 				# Re-add the old stack element if it still has unmatched opening characters remaining
-				if ($matchingCount < $piece->count) {
+				if ( $matchingCount < $piece->count ) {
 					$piece->parts = array( new PPDPart_Hash );
 					$piece->count -= $matchingCount;
 					# do we still qualify for any callback with remaining count?
@@ -696,11 +696,11 @@ class Preprocessor_Hash implements Preprocessor {
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
 
 		// Cache
-		if ($cacheable) {
+		if ( $cacheable ) {
 			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
 			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-			wfProfileOut( __METHOD__.'-cache-miss' );
-			wfProfileOut( __METHOD__.'-cacheable' );
+			wfProfileOut( __METHOD__ . '-cache-miss' );
+			wfProfileOut( __METHOD__ . '-cacheable' );
 			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
 		}
 
@@ -1085,7 +1085,7 @@ class PPFrame_Hash implements PPFrame {
 					$newIterator = $contextNode->getChildren();
 				}
 			} else {
-				throw new MWException( __METHOD__.': Invalid parameter type' );
+				throw new MWException( __METHOD__ . ': Invalid parameter type' );
 			}
 
 			if ( $newIterator !== false ) {
@@ -1374,9 +1374,9 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	function getArguments() {
 		$arguments = array();
 		foreach ( array_merge(
-				array_keys($this->numberedArgs),
-				array_keys($this->namedArgs)) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+				array_keys( $this->numberedArgs ),
+				array_keys( $this->namedArgs ) ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}
@@ -1386,8 +1386,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	function getNumberedArguments() {
 		$arguments = array();
-		foreach ( array_keys($this->numberedArgs) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+		foreach ( array_keys( $this->numberedArgs ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}
@@ -1397,8 +1397,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	function getNamedArguments() {
 		$arguments = array();
-		foreach ( array_keys($this->namedArgs) as $key ) {
-			$arguments[$key] = $this->getArgument($key);
+		foreach ( array_keys( $this->namedArgs ) as $key ) {
+			$arguments[$key] = $this->getArgument( $key );
 		}
 		return $arguments;
 	}

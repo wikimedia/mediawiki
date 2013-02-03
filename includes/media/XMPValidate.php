@@ -95,8 +95,8 @@ class XMPValidate {
 			return;
 		}
 		if ( !preg_match( '/^[-+]?\d*(?:\.?\d*)$/D', $val )
-			|| !is_numeric($val)
-		 ) {
+			|| !is_numeric( $val )
+		) {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected rating but got $val" );
 			$val = null;
 			return;

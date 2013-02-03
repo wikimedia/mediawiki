@@ -49,9 +49,9 @@ class GIFMetadataExtractor {
 	 * @return array
 	 */
 	static function getMetadata( $filename ) {
-		self::$gif_frame_sep = pack( "C", ord("," ) );
-		self::$gif_extension_sep = pack( "C", ord("!" ) );
-		self::$gif_term = pack( "C", ord(";" ) );
+		self::$gif_frame_sep = pack( "C", ord( "," ) );
+		self::$gif_extension_sep = pack( "C", ord( "!" ) );
+		self::$gif_term = pack( "C", ord( ";" ) );
 
 		$frameCount = 0;
 		$duration = 0.0;
@@ -73,7 +73,7 @@ class GIFMetadataExtractor {
 
 		// Check for the GIF header
 		$buf = fread( $fh, 6 );
-		if ( !($buf == 'GIF87a' || $buf == 'GIF89a') ) {
+		if ( !( $buf == 'GIF87a' || $buf == 'GIF89a' ) ) {
 			throw new Exception( "Not a valid GIF file; header: $buf" );
 		}
 
@@ -93,7 +93,7 @@ class GIFMetadataExtractor {
 		while( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 
-			if ($buf == self::$gif_frame_sep) {
+			if ( $buf == self::$gif_frame_sep ) {
 				// Found a frame
 				$frameCount++;
 
@@ -114,7 +114,7 @@ class GIFMetadataExtractor {
 				$extension_code = unpack( 'C', $buf );
 				$extension_code = $extension_code[1];
 
-				if ($extension_code == 0xF9) {
+				if ( $extension_code == 0xF9 ) {
 					// Graphics Control Extension.
 					fread( $fh, 1 ); // Block size
 
@@ -132,10 +132,10 @@ class GIFMetadataExtractor {
 					if ( strlen( $term ) < 1 ) throw new Exception( "Ran out of input" );
 					$term = unpack( 'C', $term );
 					$term = $term[1];
-					if ($term != 0 ) {
+					if ( $term != 0 ) {
 						throw new Exception( "Malformed Graphics Control Extension block" );
 					}
-				} elseif ($extension_code == 0xFE) {
+				} elseif ( $extension_code == 0xFE ) {
 					// Comment block(s).
 					$data = self::readBlock( $fh );
 					if ( $data === "" ) {
@@ -164,7 +164,7 @@ class GIFMetadataExtractor {
 						// is identical to the last, only extract once.
 						$comment[] = $data;
 					}
-				} elseif ($extension_code == 0xFF) {
+				} elseif ( $extension_code == 0xFF ) {
 					// Application extension (Netscape info about the animated gif)
 					// or XMP (or theoretically any other type of extension block)
 					$blockLength = fread( $fh, 1 );
@@ -173,7 +173,7 @@ class GIFMetadataExtractor {
 					$blockLength = $blockLength[1];
 					$data = fread( $fh, $blockLength );
 
-					if ($blockLength != 11 ) {
+					if ( $blockLength != 11 ) {
 						wfDebug( __METHOD__ . ' GIF application block with wrong length' );
 						fseek( $fh, -($blockLength + 1), SEEK_CUR );
 						self::skipBlock( $fh );
@@ -184,7 +184,7 @@ class GIFMetadataExtractor {
 					if ( $data == 'NETSCAPE2.0' ) {
 						$data = fread( $fh, 2 ); // Block length and introduction, should be 03 01
 
-						if ($data != "\x03\x01") {
+						if ( $data != "\x03\x01" ) {
 							throw new Exception( "Expected \x03\x01, got $data" );
 						}
 
@@ -194,7 +194,7 @@ class GIFMetadataExtractor {
 						$loopData = unpack( 'v', $loopData );
 						$loopCount = $loopData[1];
 
-						if ($loopCount != 1) {
+						if ( $loopCount != 1 ) {
 							$isLooped = true;
 						}
 
@@ -231,7 +231,7 @@ class GIFMetadataExtractor {
 				if ( strlen( $buf ) < 1 ) throw new Exception( "Ran out of input" );
 				$byte = unpack( 'C', $buf );
 				$byte = $byte[1];
-				throw new Exception( "At position: ".ftell($fh). ", Unknown byte ".$byte );
+				throw new Exception( "At position: " . ftell( $fh ) . ", Unknown byte " . $byte );
 			}
 		}
 
@@ -284,7 +284,7 @@ class GIFMetadataExtractor {
 			if ( strlen( $buf ) < 1 ) throw new Exception( "Ran out of input" );
 			$block_len = unpack( 'C', $buf );
 			$block_len = $block_len[1];
-			if ($block_len == 0) {
+			if ( $block_len == 0 ) {
 				return;
 			}
 			fread( $fh, $block_len );

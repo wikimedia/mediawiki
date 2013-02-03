@@ -1859,7 +1859,7 @@ class Parser {
 				# fix up urlencoded title texts
 				if ( strpos( $m[1], '%' ) !== false ) {
 					# Should anchors '#' also be rejected?
-					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), rawurldecode( $m[1] ) );
+					$m[1] = str_replace( array( '<', '>' ), array( '&lt;', '&gt;' ), rawurldecode( $m[1] ) );
 				}
 				$trail = $m[3];
 			} elseif ( preg_match( $e1_img, $line, $m ) ) { # Invalid, but might be an image with a link in its caption
@@ -3715,7 +3715,7 @@ class Parser {
 		global $wgEnableScaryTranscluding;
 
 		if ( !$wgEnableScaryTranscluding ) {
-			return wfMessage('scarytranscludedisabled')->inContentLanguage()->text();
+			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
 		$url = $title->getFullUrl( "action=$action" );
@@ -3734,7 +3734,7 @@ class Parser {
 		global $wgTranscludeCacheExpiry;
 		$dbr = wfGetDB( DB_SLAVE );
 		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
-		$obj = $dbr->selectRow( 'transcache', array('tc_time', 'tc_contents' ),
+		$obj = $dbr->selectRow( 'transcache', array( 'tc_time', 'tc_contents' ),
 				array( 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ) );
 		if ( $obj ) {
 			return $obj->tc_contents;
@@ -3751,7 +3751,7 @@ class Parser {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'transcache', array('tc_url'), array(
+		$dbw->replace( 'transcache', array( 'tc_url' ), array(
 			'tc_url' => $url,
 			'tc_time' => $dbw->timestamp( time() ),
 			'tc_contents' => $text)
@@ -3777,7 +3777,7 @@ class Parser {
 		$argName = trim( $nameWithSpaces );
 		$object = false;
 		$text = $frame->getArgument( $argName );
-		if (  $text === false && $parts->getLength() > 0
+		if ( $text === false && $parts->getLength() > 0
 		  && (
 			$this->ot['html']
 			|| $this->ot['pre']
@@ -3830,7 +3830,7 @@ class Parser {
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
 		$marker = "{$this->mUniqPrefix}-$name-" . sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
-		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower($name)] ) &&
+		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower( $name )] ) &&
 			( $this->ot['html'] || $this->ot['pre'] );
 		if ( $isFunctionTag ) {
 			$markerType = 'none';
@@ -4201,7 +4201,7 @@ class Parser {
 			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
 				array( '#<(?!/?(span|sup|sub|i|b)(?: [^>]*)?>).*?'.'>#', '#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|i|b))(?: .*?)?'.'>#' ),
-				array( '',                          '<$1>' ),
+				array( '', '<$1>' ),
 				$safeHeadline
 			);
 			$tocline = trim( $tocline );
@@ -4322,9 +4322,9 @@ class Parser {
 				// We use a page and section attribute to stop the language converter from converting these important bits
 				// of data, but put the headline hint inside a content block because the language converter is supposed to
 				// be able to convert that piece of data.
-				$editlink = '<mw:editsection page="' . htmlspecialchars($editlinkArgs[0]);
-				$editlink .= '" section="' . htmlspecialchars($editlinkArgs[1]) . '"';
-				if ( isset($editlinkArgs[2]) ) {
+				$editlink = '<mw:editsection page="' . htmlspecialchars( $editlinkArgs[0] );
+				$editlink .= '" section="' . htmlspecialchars( $editlinkArgs[1] ) . '"';
+				if ( isset( $editlinkArgs[2] ) ) {
 					$editlink .= '>' . $editlinkArgs[2] . '</mw:editsection>';
 				} else {
 					$editlink .= '/>';
@@ -4976,7 +4976,7 @@ class Parser {
 				// is defined for images in galleries
 
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
-				$parameterMatches = StringUtils::explode('|', $matches[3]);
+				$parameterMatches = StringUtils::explode( '|', $matches[3] );
 				$magicWordAlt = MagicWord::get( 'img_alt' );
 				$magicWordLink = MagicWord::get( 'img_link' );
 
@@ -5022,7 +5022,7 @@ class Parser {
 		} else {
 			$handlerClass = '';
 		}
-		if ( !isset( $this->mImageParams[$handlerClass]  ) ) {
+		if ( !isset( $this->mImageParams[$handlerClass] ) ) {
 			# Initialise static lists
 			static $internalParamNames = array(
 				'horizAlign' => array( 'left', 'right', 'center', 'none' ),
@@ -5386,7 +5386,7 @@ class Parser {
 	 * @return String: for "get", the extracted section text.
 	 *                 for "replace", the whole page with the section replaced.
 	 */
-	private function extractSections( $text, $section, $mode, $newText='' ) {
+	private function extractSections( $text, $section, $mode, $newText = '' ) {
 		global $wgTitle; # not generally used but removes an ugly failure mode
 		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
 		$outText = '';
@@ -5507,7 +5507,7 @@ class Parser {
 	 * @param $deftext String: default to return if section is not found
 	 * @return string text of the requested section
 	 */
-	public function getSection( $text, $section, $deftext='' ) {
+	public function getSection( $text, $section, $deftext = '' ) {
 		return $this->extractSections( $text, $section, "get", $deftext );
 	}
 

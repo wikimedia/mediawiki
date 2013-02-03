@@ -170,14 +170,14 @@ class SvgHandler extends ImageHandler {
 				$cmd = str_replace(
 					array( '$path/', '$width', '$height', '$input', '$output' ),
 					array( $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
-						   intval( $width ),
-						   intval( $height ),
-						   wfEscapeShellArg( $srcPath ),
-						   wfEscapeShellArg( $dstPath ) ),
+						intval( $width ),
+						intval( $height ),
+						wfEscapeShellArg( $srcPath ),
+						wfEscapeShellArg( $dstPath ) ),
 					$wgSVGConverters[$wgSVGConverter]
 				) . " 2>&1";
 				wfProfileIn( 'rsvg' );
-				wfDebug( __METHOD__.": $cmd\n" );
+				wfDebug( __METHOD__ . ": $cmd\n" );
 				$err = wfShellExec( $cmd, $retval );
 				wfProfileOut( 'rsvg' );
 			}
@@ -185,7 +185,7 @@ class SvgHandler extends ImageHandler {
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
 			wfDebugLog( 'thumbnail', sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim($err), $cmd ) );
+					wfHostname(), $retval, trim( $err ), $cmd ) );
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		}
 		return true;
