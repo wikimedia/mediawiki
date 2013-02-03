@@ -393,6 +393,9 @@ class DatabasePostgres extends DatabaseBase {
 		$this->query( "SET datestyle = 'ISO, YMD'", __METHOD__ );
 		$this->query( "SET timezone = 'GMT'", __METHOD__ );
 		$this->query( "SET standard_conforming_strings = on", __METHOD__ );
+		if ( $this->getServerVersion() >= 9.0 ) {
+			$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
+		}
 
 		global $wgDBmwschema;
 		$this->determineCoreSchema( $wgDBmwschema );
