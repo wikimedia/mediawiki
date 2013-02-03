@@ -113,6 +113,18 @@ abstract class LockManager {
 	}
 
 	/**
+	 * Get the base 16 SHA-1 of a string, padded to 31 digits.
+	 * Before hashing, the path will be prefixed with the domain ID.
+	 * This should be used interally for lock key or file names.
+	 *
+	 * @param $path string
+	 * @return string
+	 */
+	final protected function sha1Base16Absolute( $path ) {
+		return sha1( "{$this->domain}:{$path}" );
+	}
+
+	/**
 	 * Lock resources with the given keys and lock type
 	 *
 	 * @param $paths Array List of storage paths
