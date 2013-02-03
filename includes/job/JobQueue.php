@@ -104,6 +104,7 @@ abstract class JobQueue {
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * @return bool
+	 * @throws MWException
 	 */
 	final public function isEmpty() {
 		wfProfileIn( __METHOD__ );
@@ -123,6 +124,7 @@ abstract class JobQueue {
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * @return integer
+	 * @throws MWException
 	 */
 	final public function getSize() {
 		wfProfileIn( __METHOD__ );
@@ -142,6 +144,7 @@ abstract class JobQueue {
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * @return integer
+	 * @throws MWException
 	 */
 	final public function getAcquiredCount() {
 		wfProfileIn( __METHOD__ );
@@ -162,8 +165,8 @@ abstract class JobQueue {
 	 *
 	 * @param $jobs Job|Array
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
-	 * @throws MWException
 	 * @return bool Returns false on failure
+	 * @throws MWException
 	 */
 	final public function push( $jobs, $flags = 0 ) {
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
@@ -177,8 +180,8 @@ abstract class JobQueue {
 	 *
 	 * @param $jobs array List of Jobs
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
-	 * @throws MWException
 	 * @return bool Returns false on failure
+	 * @throws MWException
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		foreach ( $jobs as $job ) {
@@ -203,8 +206,18 @@ abstract class JobQueue {
 	 * This requires $wgJobClasses to be set for the given job type.
 	 *
 	 * @return Job|bool Returns false on failure
+	 * @throws MWException
 	 */
 	final public function pop() {
+		global $wgJobClasses;
+
+		if ( $this->wiki !== wfWikiID() ) {
+			throw new MWException( "Cannot pop '{$this->type}' job off foreign wiki queue." );
+		} elseif ( !isset( $wgJobClasses[$this->type] ) ) {
+			// Do not pop jobs if there is no class for the queue type
+			throw new MWException( "Unrecognized job type '{$this->type}'." );
+		}
+
 		wfProfileIn( __METHOD__ );
 		$job = $this->doPop();
 		wfProfileOut( __METHOD__ );
@@ -223,8 +236,8 @@ abstract class JobQueue {
 	 * This does nothing for certain queue classes or if "claimTTL" is not set.
 	 *
 	 * @param $job Job
-	 * @throws MWException
 	 * @return bool
+	 * @throws MWException
 	 */
 	final public function ack( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -270,8 +283,8 @@ abstract class JobQueue {
 	 * This does nothing for certain queue classes.
 	 *
 	 * @param $job Job
-	 * @throws MWException
 	 * @return bool
+	 * @throws MWException
 	 */
 	final public function deduplicateRootJob( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -298,6 +311,7 @@ abstract class JobQueue {
 	 * This does nothing for certain queue classes.
 	 *
 	 * @return void
+	 * @throws MWException
 	 */
 	final public function waitForBackups() {
 		wfProfileIn( __METHOD__ );
