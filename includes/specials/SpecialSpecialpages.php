@@ -122,7 +122,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
 
-				$link = Linker::linkKnown( $title , htmlspecialchars( $desc ) );
+				$link = Linker::linkKnown( $title, htmlspecialchars( $desc ) );
 				$out->addHTML( Html::rawElement( 'li', array( 'class' => implode( ' ', $pageClasses ) ), $link ) . "\n" );
 
 				# Split up the larger groups

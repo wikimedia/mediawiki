@@ -72,7 +72,7 @@ class CategoryPager extends AlphabeticPager {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'category' ),
-			'fields' => array( 'cat_title','cat_pages' ),
+			'fields' => array( 'cat_title', 'cat_pages' ),
 			'conds' => array( 'cat_pages > 0' ),
 			'options' => array( 'USE INDEX' => 'cat_title' ),
 		);
@@ -112,7 +112,7 @@ class CategoryPager extends AlphabeticPager {
 		return parent::getBody();
 	}
 
-	function formatRow($result) {
+	function formatRow( $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
 		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
 		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();

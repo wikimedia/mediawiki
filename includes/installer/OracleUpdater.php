@@ -163,7 +163,7 @@ class OracleUpdater extends DatabaseUpdater {
 	 * converted to NULL in Oracle
 	 */
 	protected function doRemoveNotNullEmptyDefaults() {
-		$meta = $this->db->fieldInfo( 'categorylinks' , 'cl_sortkey_prefix' );
+		$meta = $this->db->fieldInfo( 'categorylinks', 'cl_sortkey_prefix' );
 		if ( $meta->isNullable() ) {
 			return;
 		}
@@ -171,7 +171,7 @@ class OracleUpdater extends DatabaseUpdater {
 	}
 
 	protected function doRemoveNotNullEmptyDefaults2() {
-		$meta = $this->db->fieldInfo( 'ipblocks' , 'ipb_by_text' );
+		$meta = $this->db->fieldInfo( 'ipblocks', 'ipb_by_text' );
 		if ( $meta->isNullable() ) {
 			return;
 		}

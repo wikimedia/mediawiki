@@ -120,22 +120,22 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Extract variables from the request, falling back to user preferences or
 		# other default values if these don't exist
-		$prefs['days']      = floatval( $user->getOption( 'watchlistdays' ) );
+		$prefs['days'] = floatval( $user->getOption( 'watchlistdays' ) );
 		$prefs['hideminor'] = $user->getBoolOption( 'watchlisthideminor' );
-		$prefs['hidebots']  = $user->getBoolOption( 'watchlisthidebots' );
+		$prefs['hidebots'] = $user->getBoolOption( 'watchlisthidebots' );
 		$prefs['hideanons'] = $user->getBoolOption( 'watchlisthideanons' );
-		$prefs['hideliu']   = $user->getBoolOption( 'watchlisthideliu' );
-		$prefs['hideown' ]  = $user->getBoolOption( 'watchlisthideown' );
-		$prefs['hidepatrolled' ] = $user->getBoolOption( 'watchlisthidepatrolled' );
+		$prefs['hideliu'] = $user->getBoolOption( 'watchlisthideliu' );
+		$prefs['hideown'] = $user->getBoolOption( 'watchlisthideown' );
+		$prefs['hidepatrolled'] = $user->getBoolOption( 'watchlisthidepatrolled' );
 
 		# Get query variables
 		$values = array();
-		$values['days']      	 = $request->getVal( 'days', $prefs['days'] );
-		$values['hideMinor'] 	 = (int)$request->getBool( 'hideMinor', $prefs['hideminor'] );
-		$values['hideBots']  	 = (int)$request->getBool( 'hideBots' , $prefs['hidebots'] );
-		$values['hideAnons'] 	 = (int)$request->getBool( 'hideAnons', $prefs['hideanons'] );
-		$values['hideLiu']   	 = (int)$request->getBool( 'hideLiu'  , $prefs['hideliu'] );
-		$values['hideOwn']   	 = (int)$request->getBool( 'hideOwn'  , $prefs['hideown'] );
+		$values['days'] = $request->getVal( 'days', $prefs['days'] );
+		$values['hideMinor'] = (int)$request->getBool( 'hideMinor', $prefs['hideminor'] );
+		$values['hideBots'] = (int)$request->getBool( 'hideBots', $prefs['hidebots'] );
+		$values['hideAnons'] = (int)$request->getBool( 'hideAnons', $prefs['hideanons'] );
+		$values['hideLiu'] = (int)$request->getBool( 'hideLiu', $prefs['hideliu'] );
+		$values['hideOwn'] = (int)$request->getBool( 'hideOwn', $prefs['hideown'] );
 		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $prefs['hidepatrolled'] );
 		foreach( $this->customFilters as $key => $params ) {
 			$values[$key] = (int)$request->getBool( $key );
@@ -291,17 +291,17 @@ class SpecialWatchlist extends SpecialPage {
 			$options['LIMIT'] = $limitWatchlist;
 		}
 
-		$rollbacker = $user->isAllowed('rollback');
+		$rollbacker = $user->isAllowed( 'rollback' );
 		if ( $usePage || $rollbacker ) {
 			$tables[] = 'page';
-			$join_conds['page'] = array('LEFT JOIN','rc_cur_id=page_id');
+			$join_conds['page'] = array( 'LEFT JOIN', 'rc_cur_id=page_id' );
 			if ( $rollbacker ) {
 				$fields[] = 'page_latest';
 			}
 		}
 
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
-		wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
+		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds, &$tables, &$join_conds, &$fields ) );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
 		$numRows = $res->numRows();

@@ -472,7 +472,7 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 			// This adds the explicitly requested limit value to the drop-down,
 			// then makes sure it's sorted correctly so when we output the list
 			// later, the custom option doesn't just show up last.
-			$this->mParams['options'][ $this->mParent->getLanguage()->formatNum( $value ) ] = intval($value);
+			$this->mParams['options'][$this->mParent->getLanguage()->formatNum( $value )] = intval( $value );
 			asort( $this->mParams['options'] );
 		}
 

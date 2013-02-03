@@ -1132,7 +1132,7 @@ class SpecialSearch extends SpecialPage {
 
 		$p = explode( ':', $term );
 		if( count( $p ) > 1 ) {
-			return $p[0]  == $allkeyword;
+			return $p[0] == $allkeyword;
 		}
 		return false;
 	}

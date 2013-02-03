@@ -239,62 +239,62 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'filearchive',   'fa_sha1',                '(fa_sha1)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(
-				array('pl_from', 'int4_ops', 'btree', 0),
-				array('pl_namespace', 'int2_ops', 'btree', 0),
-				array('pl_title', 'text_ops', 'btree', 0),
+				array( 'pl_from', 'int4_ops', 'btree', 0 ),
+				array( 'pl_namespace', 'int2_ops', 'btree', 0 ),
+				array( 'pl_title', 'text_ops', 'btree', 0 ),
 			),
 			'CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)' ),
 			array( 'checkIndex', 'cl_sortkey', array(
-				array('cl_to', 'text_ops', 'btree', 0),
-				array('cl_sortkey', 'text_ops', 'btree', 0),
-				array('cl_from', 'int4_ops', 'btree', 0),
+				array( 'cl_to', 'text_ops', 'btree', 0 ),
+				array( 'cl_sortkey', 'text_ops', 'btree', 0 ),
+				array( 'cl_from', 'int4_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX cl_sortkey ON "categorylinks" USING "btree" ("cl_to", "cl_sortkey", "cl_from")' ),
 			array( 'checkIndex', 'logging_times', array(
-				array('log_timestamp', 'timestamptz_ops', 'btree', 0),
+				array( 'log_timestamp', 'timestamptz_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "logging_times" ON "logging" USING "btree" ("log_timestamp")' ),
 			array( 'dropIndex', 'oldimage', 'oi_name' ),
 			array( 'checkIndex', 'oi_name_archive_name', array(
-				array('oi_name', 'text_ops', 'btree', 0),
-				array('oi_archive_name', 'text_ops', 'btree', 0),
+				array( 'oi_name', 'text_ops', 'btree', 0 ),
+				array( 'oi_archive_name', 'text_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "oi_name_archive_name" ON "oldimage" USING "btree" ("oi_name", "oi_archive_name")' ),
 			array( 'checkIndex', 'oi_name_timestamp', array(
-				array('oi_name', 'text_ops', 'btree', 0),
-				array('oi_timestamp', 'timestamptz_ops', 'btree', 0),
+				array( 'oi_name', 'text_ops', 'btree', 0 ),
+				array( 'oi_timestamp', 'timestamptz_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "oi_name_timestamp" ON "oldimage" USING "btree" ("oi_name", "oi_timestamp")' ),
 			array( 'checkIndex', 'page_main_title', array(
-				array('page_title', 'text_pattern_ops', 'btree', 0),
+				array( 'page_title', 'text_pattern_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "page_main_title" ON "page" USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 0)' ),
 			array( 'checkIndex', 'page_mediawiki_title', array(
-				array('page_title', 'text_pattern_ops', 'btree', 0),
+				array( 'page_title', 'text_pattern_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "page_mediawiki_title" ON "page" USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 8)' ),
 			array( 'checkIndex', 'page_project_title', array(
-				array('page_title', 'text_pattern_ops', 'btree', 0),
+				array( 'page_title', 'text_pattern_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "page_project_title" ON "page" USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 4)' ),
 			array( 'checkIndex', 'page_talk_title', array(
-				array('page_title', 'text_pattern_ops', 'btree', 0),
+				array( 'page_title', 'text_pattern_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "page_talk_title" ON "page" USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 1)' ),
 			array( 'checkIndex', 'page_user_title', array(
-				array('page_title', 'text_pattern_ops', 'btree', 0),
+				array( 'page_title', 'text_pattern_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "page_user_title" ON "page" USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 2)' ),
 			array( 'checkIndex', 'page_utalk_title', array(
-				array('page_title', 'text_pattern_ops', 'btree', 0),
+				array( 'page_title', 'text_pattern_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX "page_utalk_title" ON "page" USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 3)' ),
 			array( 'checkIndex', 'ts2_page_text', array(
-				array('textvector', 'tsvector_ops', 'gist', 0),
+				array( 'textvector', 'tsvector_ops', 'gist', 0 ),
 			),
 			'CREATE INDEX "ts2_page_text" ON "pagecontent" USING "gist" ("textvector")' ),
 			array( 'checkIndex', 'ts2_page_title', array(
-				array('titlevector', 'tsvector_ops', 'gist', 0),
+				array( 'titlevector', 'tsvector_ops', 'gist', 0 ),
 			),
 			'CREATE INDEX "ts2_page_title" ON "page" USING "gist" ("titlevector")' ),
 
@@ -303,10 +303,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'checkRevUserFkey' ),
 			array( 'dropIndex', 'ipblocks', 'ipb_address'),
 			array( 'checkIndex', 'ipb_address_unique', array(
-				array('ipb_address', 'text_ops', 'btree', 0),
-				array('ipb_user',    'int4_ops', 'btree', 0),
-				array('ipb_auto',    'int2_ops', 'btree', 0),
-				array('ipb_anon_only', 'int2_ops', 'btree', 0),
+				array( 'ipb_address', 'text_ops', 'btree', 0 ),
+				array( 'ipb_user',    'int4_ops', 'btree', 0 ),
+				array( 'ipb_auto',    'int2_ops', 'btree', 0 ),
+				array( 'ipb_anon_only', 'int2_ops', 'btree', 0 ),
 			),
 			'CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only)' ),
 
@@ -509,7 +509,7 @@ END;
 			$this->output( "Creating sequence $ns\n" );
 			$this->db->query( "CREATE SEQUENCE $ns" );
 			if( $pkey !== false ) {
-				$this->setDefault( $table,  $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			}
 		}
 	}

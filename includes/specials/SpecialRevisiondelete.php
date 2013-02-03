@@ -579,7 +579,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function extractBitParams() {
 		$bitfield = array();
 		foreach( $this->checks as $item ) {
-			list( /* message */ , $name, $field ) = $item;
+			list( /* message */, $name, $field ) = $item;
 			$val = $this->getRequest()->getInt( $name, 0 /* unchecked */ );
 			if( $val < -1 || $val > 1) {
 				$val = -1; // -1 for existing value

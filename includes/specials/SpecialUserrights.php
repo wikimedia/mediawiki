@@ -54,7 +54,7 @@ class UserrightsPage extends SpecialPage {
 			|| !empty( $available['remove'] )
 			|| ( ( $this->isself || !$checkIfSelf ) &&
 				( !empty( $available['add-self'] )
-				 || !empty( $available['remove-self'] ) ) );
+					|| !empty( $available['remove-self'] ) ) );
 	}
 
 	/**
@@ -623,7 +623,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Returns $this->getUser()->changeableGroups()
 	 *
-	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) , 'add-self' => array( addablegroups to self), 'remove-self' => array( removable groups from self) )
+	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ), 'add-self' => array( addablegroups to self ), 'remove-self' => array( removable groups from self ) )
 	 */
 	function changeableGroups() {
 		return $this->getUser()->changeableGroups();
