@@ -165,6 +165,8 @@ production.
   ca-edit click instead opening URL directly.
 * (bug 43964) Invalid value of "link" parameter in <gallery> no longer produces
   a fatal error.
+* (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
+  extensions) performed using Git 1.7.8+ should now appear.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
