@@ -447,12 +447,12 @@ $messages = array(
 'dec' => 'Des',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
+'pagecategories' => '{{PLURAL:$1|Kategori}}',
 'category_header' => 'Halaman dalam kategori "$1"',
 'subcategories' => 'Subkategori',
 'category-media-header' => 'Media dalam kategori "$1"',
 'category-empty' => "''Saat ini, tidak terdapat halaman ataupun media dalam kategori ini.''",
-'hidden-categories' => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
+'hidden-categories' => '{{PLURAL:$1|Kategori tersembunyi}}',
 'hidden-category-category' => 'Kategori tersembunyi',
 'category-subcat-count' => '{{PLURAL:$2|Kategori ini hanya memiliki satu subkategori berikut.|Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut, dari total $2.}}',
 'category-subcat-count-limited' => 'Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut.',
@@ -1341,8 +1341,8 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'notextmatches' => 'Tidak ada teks halaman yang cocok',
 'prevn' => '{{PLURAL:$1|$1}} sebelumnya',
 'nextn' => '{{PLURAL:$1|$1}} selanjutnya',
-'prevn-title' => '$1 {{PLURAL:$1|hasil|hasil}} sebelumnya',
-'nextn-title' => '$1 {{PLURAL:$1|hasil|hasil}} selanjutnya',
+'prevn-title' => '$1 {{PLURAL:$1|hasil}} sebelumnya',
+'nextn-title' => '$1 {{PLURAL:$1|hasil}} selanjutnya',
 'shown-title' => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per halaman',
 'viewprevnext' => 'Lihat ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Opsi pencarian',
@@ -1360,7 +1360,7 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'searchprofile-images-tooltip' => 'Pencarian berkas',
 'searchprofile-everything-tooltip' => 'Pencarian di seluruh situs (termasuk halaman pembicaraan)',
 'searchprofile-advanced-tooltip' => 'Pencarian di ruang nama tertentu',
-'search-result-size' => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
+'search-result-size' => '$1 ({{PLURAL:$2|$2 kata}})',
 'search-result-category-size' => '{{PLURAL:$1|1 anggota|$1 anggota}} ({{PLURAL:$2|1 subkategori|$2 subkategori}}, {{PLURAL:$3|1 berkas|$3 berkas}})',
 'search-result-score' => 'Relevansi: $1%',
 'search-redirect' => '(pengalihan $1)',
@@ -2134,7 +2134,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'fewestrevisions' => 'Halaman dengan perubahan tersedikit',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|bita|bita}}',
+'nbytes' => '$1 {{PLURAL:$1|bita}}',
 'ncategories' => '$1 {{PLURAL:$1|kategori|kategori}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|pranala|pranala}}',
@@ -3338,6 +3338,8 @@ Data lain akan disembunyikan secara bawaan.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
+'metadata-langitem' => "'''$2:''' $1",
+'metadata-langitem-default' => '$1',
 
 # EXIF tags
 'exif-imagewidth' => 'Lebar',
@@ -3385,6 +3387,7 @@ Data lain akan disembunyikan secara bawaan.
 'exif-exposuretime' => 'Waktu pajanan',
 'exif-exposuretime-format' => '$1 detik ($2)',
 'exif-fnumber' => 'Nilai F',
+'exif-fnumber-format' => 'f/$1',
 'exif-exposureprogram' => 'Program pajanan',
 'exif-spectralsensitivity' => 'Sensitivitas spektral',
 'exif-isospeedratings' => 'Rating kecepatan ISO',
@@ -3398,6 +3401,7 @@ Data lain akan disembunyikan secara bawaan.
 'exif-lightsource' => 'Sumber cahaya',
 'exif-flash' => 'Kilas',
 'exif-focallength' => 'Jarak fokus lensa',
+'exif-focallength-format' => '$1 mm',
 'exif-subjectarea' => 'Wilayah subjek',
 'exif-flashenergy' => 'Energi kilas',
 'exif-focalplanexresolution' => 'Resolusi bidang fokus X',
@@ -3452,6 +3456,7 @@ Data lain akan disembunyikan secara bawaan.
 'exif-gpsareainformation' => 'Nama wilayah GPS',
 'exif-gpsdatestamp' => 'Tanggal GPS',
 'exif-gpsdifferential' => 'Koreksi diferensial GPS',
+'exif-coordinate-format' => '$1° $2′ $3″ $4',
 'exif-jpegfilecomment' => 'Komentar berkas JPEG',
 'exif-keywords' => 'Kata kunci',
 'exif-worldregioncreated' => 'Wilayah dunia tempat pengambilan gambar',
@@ -3517,14 +3522,36 @@ Data lain akan disembunyikan secara bawaan.
 'exif-originalimageheight' => 'Tinggi gambar sebelum dipotong',
 'exif-originalimagewidth' => 'Lebar gambar sebelum dipotong',
 
+# Make & model, can be wikified in order to link to the camera and model name
+'exif-contact-value' => '$1
+
+$2
+<div class="adr">
+$3
+
+$4, $5 - $6, $7
+</div>
+$8',
+'exif-subjectnewscode-value' => '$2 ($1)',
+
 # EXIF attributes
 'exif-compression-1' => 'Tak terkompresi',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman RLE',
 'exif-compression-3' => 'CCITT Group 3 fax encoding',
 'exif-compression-4' => 'CCITT Group 4 fax encoding',
+'exif-compression-5' => 'LZW',
+'exif-compression-6' => 'JPEG (lama)',
+'exif-compression-7' => 'JPEG',
+'exif-compression-8' => 'Turunan (Adobe)',
+'exif-compression-32773' => 'PackBits (Macintosh RLE)',
+'exif-compression-32946' => 'Turunan (PKZIP)',
+'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true' => 'Berhak cipta',
 'exif-copyrighted-false' => 'Domain publik',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Tanggal tak diketahui',
 
@@ -3540,9 +3567,19 @@ Data lain akan disembunyikan secara bawaan.
 'exif-planarconfiguration-1' => 'format chunky',
 'exif-planarconfiguration-2' => 'format planar',
 
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1' => 'sRGB',
 'exif-colorspace-65535' => 'Tidak dikalibrasi',
 
 'exif-componentsconfiguration-0' => 'tak tersedia',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Tak terdefinisi',
 'exif-exposureprogram-1' => 'Manual',
@@ -3580,6 +3617,10 @@ Data lain akan disembunyikan secara bawaan.
 'exif-lightsource-17' => 'Cahaya standar A',
 'exif-lightsource-18' => 'Cahaya standar B',
 'exif-lightsource-19' => 'Cahaya standar C',
+'exif-lightsource-20' => 'D55',
+'exif-lightsource-21' => 'D65',
+'exif-lightsource-22' => 'D75',
+'exif-lightsource-23' => 'D50',
 'exif-lightsource-24' => 'studio ISO tungsten',
 'exif-lightsource-255' => 'Sumber cahaya lain',
 
@@ -3705,6 +3746,8 @@ Data lain akan disembunyikan secara bawaan.
 
 'exif-isospeedratings-overflow' => 'Lebih dari 65535',
 
+'exif-maxaperturevalue-value' => '$1 APEX (f/$2)',
+
 'exif-iimcategory-ace' => 'Seni, budaya, dan hiburan',
 'exif-iimcategory-clj' => 'Kejahatan dan hukum',
 'exif-iimcategory-dis' => 'Bencana dan kecelakaan',
@@ -3816,6 +3859,8 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'confirmrecreate-noreason' => 'Pengguna [[User:$1|$1]] ([[User talk:$1|bicara]]) telah menghapus halaman ini setelah Anda mulai menyunting. Harap konfirmasikan bahwa Anda ingin membuat ulang halaman ini.',
 'recreate' => 'Buat ulang',
 
+'unit-pixel' => 'px',
+
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top' => 'Hapus singgahan halaman ini?',
@@ -3826,6 +3871,15 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'confirm-watch-top' => 'Tambahkan halaman ini ke daftar pantauan Anda?',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Hapus halaman ini dari daftar pantauan Anda?',
+
+# Separators for various lists, etc.
+'semicolon-separator' => ';&#32;',
+'comma-separator' => ',&#32;',
+'colon-separator' => ':&#32;',
+'autocomment-prefix' => '-&#32;',
+'pipe-separator' => '&#32;|&#32;',
+'word-separator' => '&#32;',
+'ellipsis' => '...',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; halaman sebelumnya',
@@ -3932,6 +3986,7 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bicara]])',
+'timezone-utc' => 'UTC',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag ekstensi tidak dikenal "$1"',
@@ -3945,6 +4000,7 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'version-variables' => 'Variabel',
 'version-antispam' => 'Pencegahan spam',
 'version-skins' => 'Kulit',
+'version-api' => 'API',
 'version-other' => 'Lain-lain',
 'version-mediahandlers' => 'Penanganan media',
 'version-hooks' => 'Kait',
@@ -3954,6 +4010,7 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'version-hook-name' => 'Nama kait',
 'version-hook-subscribedby' => 'Dilanggani oleh',
 'version-version' => '(Versi $1)',
+'version-svn-revision' => '(r$2)',
 'version-license' => 'Lisensi',
 'version-poweredby-credits' => "Wiki ini didukung oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others' => 'lainnya',
@@ -3969,6 +4026,8 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'version-entrypoints' => 'URL titik entri',
 'version-entrypoints-header-entrypoint' => 'Titik entri',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikel path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skrip path]',
 
 # Special:FilePath
 'filepath' => 'Lokasi berkas',

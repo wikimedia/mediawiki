@@ -342,7 +342,7 @@ $messages = array(
 'tog-externaldiff' => 'Empleyér per dèfôt un comparator de defôr (solament por los utilisators avanciês, il at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-showjumplinks' => 'Activar los lims d’accèssibilitât « {{int:jumpto}} »',
 'tog-uselivepreview' => 'Empleyér l’apèrçu rapido (il at fôta de JavaScript) (èxpèrimentâl)',
-'tog-forceeditsummary' => 'M’avèrtir quand j’é pas buchiê de rèsumâ de changement',
+'tog-forceeditsummary' => 'Mè balyér na semonce quand j’é pas buchiê de rèsumâ de changement',
 'tog-watchlisthideown' => 'Cachiér los mins changements dedens la lista de siuvu',
 'tog-watchlisthidebots' => 'Cachiér los changements fêts per des robots dedens la lista de siuvu',
 'tog-watchlisthideminor' => 'Cachiér los petiôts changements dedens la lista de siuvu',
@@ -548,8 +548,8 @@ $1',
 'copyrightpage' => '{{ns:project}}:Drêts d’ôtor',
 'currentevents' => 'Novèles',
 'currentevents-url' => 'Project:Novèles',
-'disclaimers' => 'Avèrtissements',
-'disclaimerpage' => 'Project:Avèrtissements g·ènèrals',
+'disclaimers' => 'Semonces',
+'disclaimerpage' => 'Project:Semonces g·ènèrales',
 'edithelp' => 'Éde',
 'edithelppage' => 'Help:Coment changiér na pâge',
 'helppage' => 'Help:Somèro',
@@ -1768,8 +1768,8 @@ Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por un apèrçu ples
 'filestatus' => 'Statut du drêt d’ôtor :',
 'filesource' => 'Sôrsa :',
 'uploadedfiles' => 'Fichiérs tèlèchargiês',
-'ignorewarning' => 'Ignorar l’avèrtissement et pués encartar lo fichiér dens tôs los câs',
-'ignorewarnings' => 'Ignorar tôs los avèrtissements',
+'ignorewarning' => 'Ignorar la semonce et pués encartar lo fichiér dens tôs los câs',
+'ignorewarnings' => 'Ignorar totes les semonces',
 'minlength1' => 'Los noms de fichiérs dêvont contegnir por lo muens na lètra.',
 'illegalfilename' => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dedens los titros de pâges.
 Se vos plét, renomâd-lo et pués tornâd-lo tèlèchargiér.',
@@ -1827,7 +1827,7 @@ Se vos voléd adés tèlèchargiér voutron fichiér, se vos plét tornâd arri�
 'file-exists-duplicate' => 'Cél fichiér est un doblo {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
 'file-deleted-duplicate' => 'Un fichiér pariér a ceti ([[:$1]]) est ja étâ suprimâ.
 Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
-'uploadwarning' => 'Avèrtissement pendent lo tèlèchargement',
+'uploadwarning' => 'Semonce pendent lo tèlèchargement',
 'uploadwarning-text' => 'Se vos plét, changiéd la dèscripcion du fichiér ce-desot et pués tornâd èprovar.',
 'savefile' => 'Encartar lo fichiér',
 'uploadedimage' => 'at tèlèchargiê « [[$1]] »',
@@ -1838,22 +1838,23 @@ Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que
 'uploaddisabledtext' => 'Los tèlèchargements de fichiérs sont dèsactivâs.',
 'php-uploaddisabledtext' => 'Los tèlèchargements de fichiérs sont dèsactivâs dedens PHP.
 Se vos plét, controlâd la configuracion de « file_uploads ».',
-'uploadscripted' => 'Cél fichiér contint de code HTML ou ben un scripte que porrêt étre entèrprètâ de façon fôssa per un navigator vouèbe.',
-'uploadvirus' => 'Cél fichiér contint un virus ! Por més de dètalys, vêde : $1',
-'uploadjava' => 'O est un fichiér ZIP que contint un fichiér Java .class.
-Lo tèlèchargement de fichiérs Java est pas ôtorisâ, perce que pôvont entrênar des rèstriccions de sècuritât.',
+'uploadscripted' => 'Cél fichiér contint de code HTML ou ben un scripte que porrêt étre entèrprètâ a tôrt per un navigator Vouèbe.',
+'uploadvirus' => 'Cél fichiér contint un virus !
+Dètalys : $1',
+'uploadjava' => 'O est un fichiér ZIP que contint un fichiér Java « .class ».
+Lo tèlèchargement de fichiérs Java est pas ôtorisâ, pôvont èvitar des rèstriccions de sècuritât.',
 'upload-source' => 'Fichiér sôrsa',
 'sourcefilename' => 'Nom du fichiér sôrsa :',
 'sourceurl' => 'URL sôrsa :',
 'destfilename' => 'Nom du fichiér de dèstinacion :',
-'upload-maxfilesize' => 'Talye la ples granta du fichiér : $1',
+'upload-maxfilesize' => 'Talye maximon du fichiér : $1',
 'upload-description' => 'Dèscripcion du fichiér',
 'upload-options' => 'Chouèx de tèlèchargement',
 'watchthisupload' => 'Siuvre ceti fichiér',
-'filewasdeleted' => 'Un fichiér avouéc cél nom at ja étâ tèlèchargiê, et pués suprimâ.
+'filewasdeleted' => 'Un fichiér avouéc cél nom est ja étâ tèlèchargiê et pués suprimâ.
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
-'filename-bad-prefix' => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
-Volyéd chouèsir un nom de fichiér dèscriptif.",
+'filename-bad-prefix' => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est en g·ènèral un nom pas dèscriptif balyê ôtomaticament per los aparèlys-fotô numericos.
+Se vos plét, chouèsésséd un nom ples dèscriptif por voutron fichiér.",
 'filename-prefix-blacklist' => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
 # La sintaxa est ceta :
 #  * Tot tèxto que siut un « # » tant qu’a la fin de la legne est un comentèro.
@@ -1870,83 +1871,83 @@ PICT # de totes sôrtes
  #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 'upload-success-subj' => 'Tèlèchargement fêt avouéc reusséta',
 'upload-success-msg' => 'Voutron tèlèchargement dês [$2] at reussi. Il est disponiblo ique : [[:{{ns:file}}:$1]]',
-'upload-failure-subj' => 'Problèmo de tèlèchargement',
+'upload-failure-subj' => 'Problèmo pendent lo tèlèchargement',
 'upload-failure-msg' => 'Y at avu un problèmo avouéc voutron tèlèchargement dês [$2] :
 
 $1',
-'upload-warning-subj' => 'Avèrtissement pendent lo tèlèchargement',
-'upload-warning-msg' => 'Un problèmo est arrevâ pendent voutron tèlèchargement dês [$2]. Vos pouede tornar u [[Special:Upload/stash/$1|formulèro de tèlèchargement]] por trovar la solucion.',
+'upload-warning-subj' => 'Semonce pendent lo tèlèchargement',
+'upload-warning-msg' => 'Y at avu un problèmo avouéc voutron tèlèchargement dês [$2]. Vos pouede tornar u [[Special:Upload/stash/$1|formulèro de tèlèchargement]] por trovar la sina solucion.',
 
 'upload-proto-error' => 'Protocolo fôx',
-'upload-proto-error-text' => 'Lo tèlèchargement a distance at fôta des URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
-'upload-file-error' => 'Èrror de dedens',
-'upload-file-error-text' => 'Una èrror de dedens est arrevâ en volent fâre un fichiér temporèro sur lo sèrvor.
-Vos volyéd veriér vers un [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error' => 'Èrror encognua pendent lo tèlèchargement',
-'upload-misc-error-text' => 'Una èrror encognua est arrevâ pendent lo tèlèchargement.
-Volyéd controlar que l’URL est valida et accèssibla, et pués tornâd èprovar.
+'upload-proto-error-text' => 'Lo tèlèchargement a distance at fôta d’URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
+'upload-file-error' => 'Fôta de dedens',
+'upload-file-error-text' => 'Na fôta de dedens est arrevâye en volent fâre un fichiér temporèro sur lo sèrvior.
+Se vos plét, veriéd-vos vers un [[Special:ListUsers/sysop|administrator]].',
+'upload-misc-error' => 'Fôta encognua pendent lo tèlèchargement',
+'upload-misc-error-text' => 'Na fôta encognua est arrevâye pendent lo tèlèchargement.
+Se vos plét, controlâd que l’URL est justa et accèssibla, et pués tornâd èprovar.
 Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects' => 'L’URL contint trop de redirèccions',
 'upload-unknown-size' => 'Talye encognua',
-'upload-http-error' => 'Una èrror HTTP est arrevâ : $1',
-'upload-copy-upload-invalid-domain' => 'La copia des tèlèchargements est pas disponibla dês ceti domêno.',
+'upload-http-error' => 'Na fôta HTTP est arrevâye : $1',
+'upload-copy-upload-invalid-domain' => 'Los tèlèchargements de copies sont pas disponiblos dês ceti domêno.',
 
 # File backend
-'backend-fail-stream' => 'Empossiblo de liére lo fichiér $1.',
-'backend-fail-backup' => 'Empossiblo de sôvar lo fichiér $1.',
+'backend-fail-stream' => 'Empossiblo de tramandar lo fichiér « $1 ».',
+'backend-fail-backup' => 'Empossiblo d’encartar lo fichiér « $1 ».',
 'backend-fail-notexists' => 'Lo fichiér $1 ègziste pas.',
 'backend-fail-hashes' => 'Empossiblo d’avêr los chaplâjos du fichiér por comparèson.',
-'backend-fail-notsame' => 'Un fichiér difèrent ègziste ja por $1 .',
-'backend-fail-invalidpath' => '$1 est pas un chemin de stocâjo valido.',
-'backend-fail-delete' => 'Empossiblo de suprimar lo fichiér $1.',
+'backend-fail-notsame' => 'Un fichiér pas pariér ègziste ja a « $1 ».',
+'backend-fail-invalidpath' => '« $1 » est pas un chemin de stocâjo justo.',
+'backend-fail-delete' => 'Empossiblo de suprimar lo fichiér « $1 ».',
 'backend-fail-describe' => 'Empossiblo de changiér les mètadonâs du fichiér « $1 ».',
-'backend-fail-alreadyexists' => 'Lo fichiér $1 ègziste ja.',
-'backend-fail-store' => 'Empossiblo de stocar lo fichiér $1 en $2.',
-'backend-fail-copy' => 'Empossiblo de copiyér lo fichiér $1 vers $2.',
-'backend-fail-move' => 'Empossiblo de dèplaciér lo fichiér $1 vers $2.',
+'backend-fail-alreadyexists' => 'Lo fichiér « $1 » ègziste ja.',
+'backend-fail-store' => 'Empossiblo de stocar lo fichiér « $1 » dedens « $2 ».',
+'backend-fail-copy' => 'Empossiblo de copiyér lo fichiér « $1 » vers « $2 ».',
+'backend-fail-move' => 'Empossiblo de dèplaciér lo fichiér « $1 » vers « $2 ».',
 'backend-fail-opentemp' => 'Empossiblo d’uvrir lo fichiér temporèro.',
 'backend-fail-writetemp' => 'Empossiblo d’ècrire dedens lo fichiér temporèro.',
 'backend-fail-closetemp' => 'Empossiblo de cllôre lo fichiér temporèro.',
-'backend-fail-read' => 'Empossiblo de liére lo fichiér $1.',
-'backend-fail-create' => 'Empossiblo d’ècrire lo fichiér $1.',
-'backend-fail-maxsize' => 'Empossiblo d’ècrire lo fichiér « $1 » perce qu’il est ples grant que {{PLURAL:$2|yon octèt|$2 octèts}}.',
-'backend-fail-readonly' => "Ora lo sistèmo de stocâjo « $1 » est en lèctura solèta. La rêson balyêye est : « ''$2'' »",
+'backend-fail-read' => 'Empossiblo de liére lo fichiér « $1 ».',
+'backend-fail-create' => 'Empossiblo d’ècrire lo fichiér « $1 ».',
+'backend-fail-maxsize' => 'Empossiblo d’ècrire lo fichiér « $1 » perce qu’il est ples grôs {{PLURAL:$2|qu’un octèt|que $2 octèts}}.',
+'backend-fail-readonly' => "Ora lo sistèmo de stocâjo « $1 » est justo en lèctura. La rêson balyêe est : « ''$2'' »",
 'backend-fail-synced' => 'Lo fichiér « $1 » est dens un ètat dèsordonâ dedens los sistèmos de stocâjo de dedens',
 'backend-fail-connect' => 'Empossiblo de sè branchiér u sistèmo de stocâjo « $1 ».',
 'backend-fail-internal' => 'Na fôta encognua est arrevâye dedens lo sistèmo de stocâjo « $1 ».',
-'backend-fail-contenttype' => 'Empossiblo de dètèrmenar lo tipo de contegnu du fichiér a stocar en « $1 ».',
+'backend-fail-contenttype' => 'Empossiblo de dètèrmenar lo tipo de contegnu du fichiér a stocar dedens « $1 ».',
 'backend-fail-batchsize' => 'Lo sistèmo de stocâjo at balyê na pârt de $1 {{PLURAL:$1|opèracion|opèracions}} de fichiér ; la limita est $2 {{PLURAL:$2|opèracion|opèracions}}.',
-'backend-fail-usable' => 'Empossiblo de liére ou ben d’ècrire lo fichiér « $1 » a côsa de pèrmissions ensufisentes ou ben de rèpèrtouèros / conteniors manquents.',
+'backend-fail-usable' => 'Empossiblo de liére d’ècrire lo fichiér « $1 » a côsa de pèrmissions ensufisentes ou ben de rèpèrtouèros / conteniors manquents.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Empossiblo de sè branchiér a la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
 'filejournal-fail-dbquery' => 'Empossiblo de betar a jorn la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
 
 # Lock manager
-'lockmanager-notlocked' => 'Empossiblo de dèvèrrolyér « $1 » ; el est pas vèrrolyê.',
+'lockmanager-notlocked' => 'Empossiblo de dèvèrrolyér « $1 » ; il est pas vèrrolyê.',
 'lockmanager-fail-closelock' => 'Empossiblo de cllôre lo fichiér de vèrroly por « $1 ».',
 'lockmanager-fail-deletelock' => 'Empossiblo de suprimar lo fichiér de vèrroly por « $1 ».',
 'lockmanager-fail-acquirelock' => 'Empossiblo d’avêr lo vèrroly por « $1 ».',
 'lockmanager-fail-openlock' => 'Empossiblo d’uvrir lo fichiér de vèrroly por « $1 ».',
 'lockmanager-fail-releaselock' => 'Empossiblo de relâchiér lo vèrroly por « $1 ».',
-'lockmanager-fail-db-bucket' => 'Empossiblo de sè veriér vers prod de bâses de balyês de vèrrolyâjo dedens lo godèt $1.',
-'lockmanager-fail-db-release' => 'Empossiblo de relâchiér los vèrrolys sur la bâsa de balyês $1.',
+'lockmanager-fail-db-bucket' => 'Empossiblo de sè veriér vers prod de bâses de donâs de vèrroly dedens la sèlye $1.',
+'lockmanager-fail-db-release' => 'Empossiblo de relâchiér los vèrrolys sur la bâsa de donâs $1.',
 'lockmanager-fail-svr-acquire' => 'Empossiblo d’avêr des vèrrolys sur lo sèrvior $1.',
 'lockmanager-fail-svr-release' => 'Empossiblo de relâchiér los vèrrolys sur lo sèrvior $1.',
 
 # ZipDirectoryReader
-'zip-file-open-error' => 'Una èrror est arrevâ pendent l’uvèrtura du fichiér ZIP por contrôlo.',
-'zip-wrong-format' => 'Lo fichiér spècefiâ est pas un fichiér ZIP.',
-'zip-bad' => 'Lo fichiér est un fichiér ZIP corrompu ou ben iliésiblo.
-Pôt pas étre controlâ tot drêt por la sècuritât.',
-'zip-unsupported' => 'Lo fichiér est un fichiér ZIP qu’utilise ZIP pas recognues per MediaWiki.
-Pôt pas étre controlâ tot drêt por la sècuritât.',
+'zip-file-open-error' => 'Na fôta est arrevâye pendent l’uvèrtura du fichiér por los contrôlos ZIP.',
+'zip-wrong-format' => 'Lo fichiér spècifiâ est pas un fichiér ZIP.',
+'zip-bad' => 'Lo fichiér est un fichiér ZIP corrompu ou ben ôtrament iliésiblo.
+Pôt pas étre controlâ coment fôt por la sècuritât.',
+'zip-unsupported' => 'Lo fichiér est un fichiér ZIP qu’emplèye des fonccionalitâts ZIP pas recognues per MediaWiki.
+Pôt pas étre controlâ coment fôt por la sècuritât.',
 
 # Special:UploadStash
-'uploadstash' => 'Cache d’importacion',
-'uploadstash-summary' => 'Ceta pâge balye accès ux fichiérs que sont importâs (ou ben en cors d’importacion), mas sont p’oncor publeyês dens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’usanciér que los at importâs.',
-'uploadstash-clear' => 'Èfaciér los fichiérs en cache d’importacion',
-'uploadstash-nofiles' => 'Vos avéd gins de fichiér en cache d’importacion.',
+'uploadstash' => 'Cacho de tèlèchargement',
+'uploadstash-summary' => 'Ceta pâge balye accès ux fichiérs que sont tèlèchargiês ou ben en cors de tèlèchargement, mas sont p’oncor publeyês dedens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’utilisator que los at tèlèchargiês.',
+'uploadstash-clear' => 'Èfaciér los fichiérs en cacho',
+'uploadstash-nofiles' => 'Vos éd gins de fichiér en cacho.',
 'uploadstash-badtoken' => 'L’ègzécucion de cela accion at pas reussia, pôt-étre perce que voutres enformacions de branchement ont èxpirâs. Tornâd èprovar.',
 'uploadstash-errclear' => 'L’èfacement des fichiérs at pas reussi.',
 'uploadstash-refresh' => 'Rafrèchir la lista des fichiérs',

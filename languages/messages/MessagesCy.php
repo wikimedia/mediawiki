@@ -831,9 +831,10 @@ Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gop
 '''PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!'''",
 'longpageerror' => "'''GWALL: Mae'r testun yr ydych wedi ei osod yma yn {{PLURAL:$1|$1 cilobeit}} o hyd, ac yn hwy na'r hyd eithaf o {{PLURAL:$2|$2}} cilobeit.
 Ni ellir ei roi ar gadw.'''",
-'readonlywarning' => "'''RHYBUDD: Mae'r databas wedi'i gloi am gyfnod er mwyn cynnal a chadw, felly fyddwch chi ddim yn gallu cadw'ch golygiadau ar hyn o bryd. Rydyn ni'n argymell eich bod chi'n copïo a gludo'r testun i ffeil a'i gadw ar eich disg tan bod y sustem yn weithredol eto.'''
+'readonlywarning' => "'''RHYBUDD: Mae'r gronfa ddata wedi'i chloi am gyfnod er mwyn cynnal a chadw, felly fyddwch chi ddim yn gallu cadw'ch golygiadau ar hyn o bryd.''' 
+Gallwch gopïo'r testun a'i gludo i ffeil destun er mwyn ei gadw tan yn hwyrach.
 
-Cynigiodd y gweinyddwr a glodd y databas y rheswm hwn dros ei gloi: $1",
+Cynigiodd y gweinyddwr a glodd y gronfa ddata y rheswm hwn dros ei chloi: $1",
 'protectedpagewarning' => "'''RHYBUDD: Mae'r dudalen hon wedi'i diogelu. Dim ond gweinyddwyr sydd yn gallu ei golygu.'''
 Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'semiprotectedpagewarning' => "'''Sylwer:''' Mae'r dudalen hon wedi ei chloi; dim ond defnyddwyr cofrestredig a allant ei golygu.
@@ -2027,7 +2028,7 @@ Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Rhestr defnyddwyr gweithgar',
 'activeusers-intro' => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf.',
-'activeusers-count' => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod|$3 diwrnod}} diwethaf',
+'activeusers-count' => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod}} diwethaf',
 'activeusers-from' => "Rhestru'r defnyddwyr gan ddechrau gyda:",
 'activeusers-hidebots' => 'Cuddio botiau',
 'activeusers-hidesysops' => 'Cuddio gweinyddwyr',
@@ -2091,7 +2092,7 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau]] yn 
 'usermessage-editor' => 'Golygydd neges y system',
 
 # Watchlist
-'watchlist' => 'Fy rhestr wylio',
+'watchlist' => 'Rhestr wylio',
 'mywatchlist' => 'Rhestr wylio',
 'watchlistfor2' => 'Yn ôl gofyn $1 $2',
 'nowatchlist' => "Mae eich rhestr wylio'n wag.",
@@ -2250,9 +2251,9 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'protect-cascadeon' => "Mae'r dudalen hon wedi ei diogelu ar hyn o bryd oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} canlynol sydd wedi {{PLURAL:$1|ei|ei|eu|eu|eu|eu}} sgydol-diogelu.  Gallwch newid lefel diogelu'r dudalen hon, ond ni fydd hynny'n effeithio ar y sgydol-ddiogelu.",
 'protect-default' => "Caniatáu'r gallu i bob defnyddiwr",
-'protect-fallback' => 'Mynnu\'r gallu "$1"',
-'protect-level-autoconfirmed' => "Blocio defnyddwyr newydd a'r rhai heb gyfrif",
-'protect-level-sysop' => 'Gweinyddwyr yn unig',
+'protect-fallback' => 'Caniatau i\'r defnyddwyr gyda\'r gallu "$1" yn unig wneud hyn',
+'protect-level-autoconfirmed' => "Caniatau'r defnyddwyr sydd wedi eu cadarnhau'n awtomatig yn unig",
+'protect-level-sysop' => 'Gweinyddwyr yn unig caiff wneud',
 'protect-summary-cascade' => 'sgydol',
 'protect-expiring' => 'yn dod i ben am $1 (UTC)',
 'protect-expiring-local' => 'yn dod i ben am $1',
@@ -2547,17 +2548,18 @@ Er mwyn cloi'r gronfa ddata neu ei datgloi, mae'n rhaid i'r gweinydd gwe allu ys
 # Move page
 'move-page' => 'Symud $1',
 'move-page-legend' => 'Symud tudalen',
-'movepagetext' => "Drwy ddefnyddio'r ffurflen isod, byddwch yn ailenwi tudalen, felly yn symud ei holl hanes i'r enw tudalen newydd.
-Caiff yr hen deitl a oedd ar y dudalen ei droi'n dudalen sy'n ailgyfeirio i'r teitl newydd.
+'movepagetext' => "Drwy ddefnyddio'r ffurflen isod, byddwch yn ailenwi tudalen, ac felly yn symud ei holl hanes i'r dudalen a'r enw newydd.
+Caiff y dudalen a'r hen deitl ei throi'n dudalen sy'n ailgyfeirio i'r teitl newydd.
 Gallwch ddiweddaru tudalennau ailgyfeirio sy'n cyfeirio at y teitl gwreiddiol yn awtomatig.
-Os ydych yn dewis peidio â gwneud hyn, gwiriwch [[Special:BrokenRedirects|dudalennau ailgyfeirio nad ydynt yn ailgyfeirio]] neu [[Special:DoubleRedirects|dudalennau ailgyfeirio dwbl]].
-Chi sy'n gyfrifol am wirio bod cysylltiadau yn cyfeirio at y tudalennau cywir.
+Os ydych yn dewis peidio â gwneud hyn, gwiriwch [[Special:DoubleRedirects|dudalennau ailgyfeirio dwbl]] neu 
+[[Special:BrokenRedirects|dudalennau ailgyfeirio nad ydynt yn ailgyfeirio]].
+Chi sy'n gyfrifol am sicrhau bod cysylltiadau yn cyfeirio at y tudalennau cywir.
 
-Sylwer '''na''' chaiff y dudalen ei symud os oes enw ar y dudalen yn bodoli'n barod, oni bai ei bod hi'n wag neu'n dudalen ailgyfeirio ac nad oes hanes golygu ganddi.
-Mae hyn yn golygu y gallwch ailenwi tudalen yn ôl os yr ydych yn gwneud camgymeriad, ond nid ydych yn gallu trosysgrifo tudalen sy'n bodoli'n barod.
+Sylwer '''na''' chaiff y dudalen ei symud os oes tudalen a'r enw newydd ar gael yn barod, oni bai ei bod hi'n dudalen ailgyfeirio ac nad oes hanes golygu ganddi.
+Mae hyn yn golygu y gallwch ailenwi tudalen yn ôl i'w henw gwreiddiol os ydych yn gwneud camgymeriad, ond na allwch drosysgrifo tudalen sy'n bodoli'n barod.
 
 '''Rhybudd!'''
-Gall hwn greu newid annisgwyl a chryf i dudalen boblogaidd;
+Gall hwn fod yn newid mawr ac annisgwyl i dudalen boblogaidd;
 gwnewch yn siŵr eich bod yn deall canlyniadau'r broses hon cyn i chi barhau.",
 'movepagetext-noredirectfixer' => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
 Bydd yr hen deitl yn troi'n dudalen ailgyfeirio i'r teitl newydd.
@@ -3614,7 +3616,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'specialpages-group-highuse' => 'Tudalennau aml eu defnydd',
 'specialpages-group-pages' => 'Rhestrau tudalennau',
 'specialpages-group-pagetools' => 'Offer trin tudalennau',
-'specialpages-group-wiki' => 'Data ac offer y wici',
+'specialpages-group-wiki' => 'Data ac offer',
 'specialpages-group-redirects' => 'Tudalennau arbennig ailgyfeirio',
 'specialpages-group-spam' => 'Offer sbam',
 

@@ -629,7 +629,7 @@ Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]
 'gotaccount' => "Sudah mempunyai akaun? '''$1'''.",
 'gotaccountlink' => 'Log masuk',
 'userlogin-resetlink' => 'Lupa nama pengguna/kata laluan anda?',
-'createaccountmail' => 'melalui e-mel',
+'createaccountmail' => 'Gunakan kata laluan rawak yang sementara dan hantarnya ke alamat e-mel yang dinyatakan di bawah',
 'createaccountreason' => 'Sebab:',
 'badretype' => 'Sila ulangi kata laluan dengan betul.',
 'userexists' => 'Nama pengguna yang diisikan telah pun digunakan.
@@ -914,10 +914,10 @@ disalin daripada domain awam atau mana-mana sumber bebas lain (lihat $1 untuk bu
 '''JANGAN KIRIM KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN!'''",
 'longpageerror' => "'''Ralat: Teks yang anda serahkan itu panjangnya {{PLURAL:$1|1|$1}} kilobait, iaitu lebih panjang daripada had maksimum {{PLURAL:$2|1|$2}} kilobait.'''
 Oleh itu, ia tidak boleh disimpan.",
-'readonlywarning' => "'''AMARAN: Pangkalan data telah dikunci untuk penyenggaraan. Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
-Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.'''
+'readonlywarning' => "'''Amaran: Pangkalan data ini dikunci untuk tujuan penyelenggaraan , maka anda tidak akan dapat menyimpan suntingan anda buat sekarang.'''
+Anda boleh menyalin tampal teks anda pada fail teks dan menyimpannya untuk lain kali.
 
-Yang berikut ialah penjelasan yang diberikan: $1",
+Penyelia yang menguncinya memberikan penjelasan ini: $1",
 'protectedpagewarning' => "'''Amaran: Laman ini telah dikunci supaya hanya mereka yang mempunyai keistimewaan penyelia boleh menyuntingnya.'''
 Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'semiprotectedpagewarning' => "'''Nota:''' Laman ini telah dikunci agar hanya pengguna berdaftar sahaja boleh menyuntingnya.
@@ -2121,7 +2121,7 @@ Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Senarai pengguna aktif',
 'activeusers-intro' => 'Yang berikut ialah senarai pengguna yang bergiat sejak {{PLURAL:$1|semalam|$1 hari lalu}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|suntingan|suntingan}} sejak {{PLURAL:$3|semalam|$3 hari lalu}}',
+'activeusers-count' => '$1 tindakan sejak {{PLURAL:$3|semalam|$3 hari lalu}}',
 'activeusers-from' => 'Tunjukkan pengguna bermula pada:',
 'activeusers-hidebots' => 'Sorokkan bot',
 'activeusers-hidesysops' => 'Sorokkan pentadbir',
@@ -2351,9 +2351,9 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-cascadeon' => 'Laman ini dilindungi kerana ia terkandung dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi secara melata. Anda boleh menukar peringkat perlindunan laman ini, akan tetapi ia tidak akan menjejaskan perlindungan melata tersebut.',
 'protect-default' => 'Benarkan semua pengguna',
-'protect-fallback' => 'Perlukan keizinan "$1"',
-'protect-level-autoconfirmed' => 'Sekat pengguna baru dan pengguna tidak berdaftar',
-'protect-level-sysop' => 'Pentadbir sahaja',
+'protect-fallback' => 'Benarkan pengguna yang berizin "$1" sahaja',
+'protect-level-autoconfirmed' => 'Benarkan pengguna yang diautosahkan sahaja',
+'protect-level-sysop' => 'Benarkan pentadbir sahaja',
 'protect-summary-cascade' => 'melata',
 'protect-expiring' => 'sehingga $1 (UTC)',
 'protect-expiring-local' => 'luput $1',
@@ -2652,13 +2652,17 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 # Move page
 'move-page' => 'Pindahkan $1',
 'move-page-legend' => 'Pindahkan laman',
-'movepagetext' => "Gunakan borang di bawah untuk menukar nama laman dan memindahkan semua maklumat sejarahnya ke nama baru. Tajuk yang lama akan dijadikan lencongan ke tajuk yang baru. Anda juga boleh mengemaskinikan semua lencongan yang menuju ke tajuk asal supaya menuju ke tajuk baru. Sebaliknya, anda boleh menyemak sekiranya terdapat [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|lencongan rosak]]. Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang sepatutnya.
+'movepagetext' => "Menggunakan borang di bawah akan menukar nama halaman dan memindahkan segala sejarahnya kepada nama baru itu.
+Tajuk yang lama akan menjadi halaman lencongan kepada tajuk baru.
+Anda boleh mengemaskinikan lencongan yang menghala ke tajuk asal secara automatik.
+Jika anda memilih untuk tidak berbuat demikian, tolong semak untuk mencari lencongan [[Special:DoubleRedirects|berganda]] atau [[Special:BrokenRedirects|terputus]].
+Anda dipertanggungjawabkan untuk memastikan agar semua pautan tetap menghala ke tempat yang sepatutnya.
 
-Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan apabila
-laman tersebut kosong atau merupakan laman lencongan dan tidak mempunyai sejarah penyuntingan. Ini bermakna anda boleh menukar semula nama sesebuah
-laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menulis ganti laman yang telah wujud.
+Sila ingat bahasa halaman '''tidak''' akan dipindahkan jika tajuk barunya sudah diambil oleh halaman yang sedia ada, melainkan ia merupakan lencongan tanpa sebarang sejarah suntingan.
+Ertinya, anda boleh menukar kembali nama halaman ke nama yang sebelumnya jika anda terbuat silap, tetapi anda tidak boleh menulis ganti halaman yang sedia ada.
 
-'''AMARAN!''' Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular. Oleh itu, sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
+'''Amaran!'''
+Tindakan ini boleh mendatangkan perubahan yang drastik dan tidak dijangka untuk halaman yang popular; sila pasti bahawa anda memahami akibatnya sebelum meneruskan.",
 'movepagetext-noredirectfixer' => "Borang di bawah akan menamakan semula sesebuah laman, memindahkan kesemua sejarahnya ke nama baru.
 Nama lamanya akan menjadi sebuah laman lencongan ke laman baru tadi.
 Pastikan [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|rosak]] sudah diperiksa.
@@ -3762,7 +3766,7 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'specialpages-group-highuse' => 'Laman popular',
 'specialpages-group-pages' => 'Senarai laman',
 'specialpages-group-pagetools' => 'Alatan laman',
-'specialpages-group-wiki' => 'Data dan alatan wiki',
+'specialpages-group-wiki' => 'Data dan peralatan',
 'specialpages-group-redirects' => 'Laman khas yang melencong',
 'specialpages-group-spam' => 'Alatan spam',
 
@@ -3859,6 +3863,7 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-newusers-newusers' => 'Akaun pengguna $1 dibuka',
 'logentry-newusers-create' => 'Akaun pengguna $1 dibuka',
 'logentry-newusers-create2' => 'Akaun pengguna $3 dibuka oleh $1',
+'logentry-newusers-byemail' => 'Akaun pengguna $3 dibuka oleh $1 dan kata laluannya dihantar melalui e-mel',
 'logentry-newusers-autocreate' => 'Akaun $1 dibuka secara automatik',
 'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
 'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
@@ -3917,6 +3922,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-ok-but-empty' => 'Ralat dalaman: tiada gerak balas dari pelayan.',
 'api-error-overwrite' => 'Menulis ganti fail yang telah wujud adalah tidak dibenarkan.',
 'api-error-stashfailed' => 'Ralat dalaman: pelayan tidak dapat menyimpan fail sementara.',
+'api-error-publishfailed' => 'Ralat dalaman: Pelayan tidak dapat menerbitkan fail sementara.',
 'api-error-timeout' => 'Pelayan tidak bergerak balas dalam tempoh yang diharapkan.',
 'api-error-unclassified' => 'Berlakunya ralat yang tidak diketahui',
 'api-error-unknown-code' => 'Ralat tidak diketahui: "$1"',

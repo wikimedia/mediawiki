@@ -2293,7 +2293,32 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'enotif_lastvisited' => 'भवतः पूवसन्दर्शनस्य पश्चात् सवृत्तपरिवर्तनार्थं $1 पश्यतु ।',
 'enotif_lastdiff' => 'एतत्परिवर्तनं दृष्टुं $1 पश्यतु ।',
 'enotif_anon_editor' => 'अनामकः योजकः $1',
-'enotif_body' => 'आत्मीय $ अवलोकनबन्धो',
+'enotif_body' => 'Dear $WATCHINGUSERNAME,
+
+$PAGEINTRO $NEWPAGE
+
+Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
+
+Contact the editor:
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+There will be no other notifications in case of further activity unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
+
+			 Your friendly {{SITENAME}} notification system
+
+--
+To change your e-mail notification settings, visit
+{{canonicalurl:{{#special:Preferences}}}}
+
+To change your watchlist settings, visit
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+To delete the page from your watchlist, visit
+$UNWATCHURL
+
+Feedback and further assistance:
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'सृष्टम् ।',
 'changed' => 'परिवर्तितम् ।',
 
