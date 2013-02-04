@@ -37,15 +37,16 @@ class nextJobDB extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgMemc;
+		global $wgMemc, $wgJobTypesExcludedFromDefaultQueue;
 
 		$type = false; // job type required/picked
+
 		if ( $this->hasOption( 'types' ) ) {
 			$types = explode( ' ', $this->getOption( 'types' ) );
 		} elseif ( $this->hasOption( 'type' ) ) {
 			$types = array( $this->getOption( 'type' ) );
 		} else {
-			$types = JobQueueGroup::singleton()->getDefaultQueueTypes();
+			$types = false;
 		}
 
 		$memcKey = 'jobqueue:dbs:v3';
@@ -86,7 +87,10 @@ class nextJobDB extends Maintenance {
 			// Flatten the tree of candidates into a flat list so that a random
 			// item can be selected, weighing each queue (type/db tuple) equally.
 			foreach ( $pendingDBs as $type => $dbs ) {
-				if ( in_array( $type, $types ) ) {
+				if (
+					( is_array( $types ) && in_array( $type, $types ) ) ||
+					( $types === false && !in_array( $type, $wgJobTypesExcludedFromDefaultQueue ) )
+				) {
 					foreach ( $dbs as $db ) {
 						$candidates[] = array( $type, $db );
 					}

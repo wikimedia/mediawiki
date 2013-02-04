@@ -2770,8 +2770,9 @@ function wfEscapeShellArg( ) {
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be
  *                 added to the executed command environment.
- * @param $limits Array optional array with limits(filesize, memory, time, walltime)
+ * @param $limits Array optional array with limits(filesize, memory, time, walltime, disabled)
  *                 this overwrites the global wgShellMax* limits.
+ *                 Set "disabled" to true to ignore limits.
  * @return string collected stdout as a string (trailing newlines stripped)
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
@@ -2822,7 +2823,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 	}
 	$cmd = $envcmd . $cmd;
 
-	if ( php_uname( 's' ) == 'Linux' ) {
+	if ( php_uname( 's' ) == 'Linux' && empty( $limits['disabled'] )  ) {
 		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );

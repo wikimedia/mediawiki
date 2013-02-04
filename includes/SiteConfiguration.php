@@ -162,6 +162,12 @@ class SiteConfiguration {
 	public $siteParamsCallback = null;
 
 	/**
+	 * Configuration cache for getConfig()
+	 * @var array
+	 */
+	protected $cfgCache = array();
+
+	/**
 	 * Retrieves a configuration setting for a given wiki.
 	 * @param $settingName String ID of the setting name to retrieve
 	 * @param $wiki String Wiki ID of the wiki in question.
@@ -484,6 +490,67 @@ class SiteConfiguration {
 		}
 		$lang = str_replace( '_', '-', $lang );
 		return array( $site, $lang );
+	}
+
+	/**
+	 * Get the resolved (post-setup) configuration of a potentially foreign wiki.
+	 * For foreign wikis, this is expensive, and only works if maintenance
+	 * scripts are setup to handle the --wiki parameter such as in wiki farms.
+	 *
+	 * @param string $wiki
+	 * @param array|string $settings A setting name or array of setting names
+	 * @return Array|mixed Array if $settings is an array, otherwise the value
+	 * @throws MWException
+	 * @since 1.21
+	 */
+	public function getConfig( $wiki, $settings ) {
+		global $IP;
+
+		$multi = is_array( $settings );
+		$settings = (array)$settings;
+		if ( $wiki === wfWikiID() ) { // $wiki is this wiki
+			$res = array();
+			foreach ( $settings as $name ) {
+				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
+					throw new MWException( "Variable '$name' does start with 'wg'." );
+				} elseif ( !isset( $GLOBALS[$name] ) ) {
+					throw new MWException( "Variable '$name' is not set." );
+				}
+				$res[$name] = $GLOBALS[$name];
+			}
+		} else { // $wiki is a foreign wiki
+			if ( isset( $this->cfgCache[$wiki] ) ) {
+				$res = array_intersect_key( $this->cfgCache[$wiki], array_flip( $settings ) );
+				if ( count( $res ) == count( $settings ) ) {
+					return $res; // cache hit
+				}
+			} elseif ( !in_array( $wiki, $this->wikis ) ) {
+				throw new MWException( "No such wiki '$wiki'." );
+			} else {
+				$this->cfgCache[$wiki] = array();
+			}
+			$retVal = 1;
+			$cmd = wfShellWikiCmd(
+				"$IP/maintenance/getConfiguration.php",
+				array(
+					'--wiki', $wiki,
+					'--settings', implode( ' ', $settings ),
+					'--format', 'PHP'
+				)
+			);
+			// ulimit5.sh breaks this call
+			$data = trim( wfShellExec( $cmd, $retVal, array(), array( 'disabled' => 1 ) ) );
+			if ( $retVal != 0 || !strlen( $data ) ) {
+				throw new MWException( "Failed to run getConfiguration.php." );
+			}
+			$res = unserialize( $data );
+			if ( !is_array( $res ) ) {
+				throw new MWException( "Failed to unserialize configuration array." );
+			}
+			$this->cfgCache[$wiki] = $this->cfgCache[$wiki] + $res;
+		}
+
+		return $multi ? $res : current( $res );
 	}
 
 	/**

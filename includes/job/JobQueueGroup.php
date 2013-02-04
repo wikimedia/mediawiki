@@ -187,9 +187,7 @@ class JobQueueGroup {
 	 * @return array List of strings
 	 */
 	public function getQueueTypes() {
-		global $wgJobClasses;
-
-		return array_keys( $wgJobClasses );
+		return array_keys( $this->getCachedConfigVar( 'wgJobClasses' ) );
 	}
 
 	/**
@@ -227,5 +225,24 @@ class JobQueueGroup {
 			}
 		}
 		return $types;
+	}
+
+	private function getCachedConfigVar( $name ) {
+		global $wgConf, $wgMemc;
+
+		if ( $this->wiki === wfWikiID() ) {
+			return $GLOBALS[$name]; // common case
+		} else {
+			list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+			$key = wfForeignMemcKey( $db, $prefix, 'configvalue', $name );
+			$value = $wgMemc->get( $key ); // ('v' => ...) or false
+			if ( is_array( $value ) ) {
+				return $value['v'];
+			} else {
+				$value = $wgConf->getConfig( $this->wiki, $name );
+				$wgMemc->set( $key, array( 'v' => $value ), 86400 + mt_rand( 0, 86400 ) );
+				return $value;
+			}
+		}
 	}
 }
