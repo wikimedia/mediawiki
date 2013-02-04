@@ -53,7 +53,7 @@ class ForkController {
 	const RESTART_ON_ERROR = 1;
 
 	public function __construct( $numProcs, $flags = 0 ) {
-		if ( php_sapi_name() != 'cli' ) {
+		if ( PHP_SAPI != 'cli' ) {
 			throw new MWException( "ForkController cannot be used from the web." );
 		}
 		$this->procsToStart = $numProcs;

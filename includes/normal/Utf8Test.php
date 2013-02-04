@@ -34,7 +34,7 @@ mb_internal_encoding( "utf-8" );
 
 $verbose = false;
 #$verbose = true;
-if( php_sapi_name() != 'cli' ) {
+if( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 

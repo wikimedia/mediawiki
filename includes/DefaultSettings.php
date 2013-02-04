@@ -123,9 +123,9 @@ $wgScriptPath       = '/wiki';
  * redirect loops when "pretty URLs" are used.
  */
 $wgUsePathInfo =
-	( strpos( php_sapi_name(), 'cgi' ) === false ) &&
-	( strpos( php_sapi_name(), 'apache2filter' ) === false ) &&
-	( strpos( php_sapi_name(), 'isapi' ) === false );
+	( strpos( PHP_SAPI, 'cgi' ) === false ) &&
+	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
+	( strpos( PHP_SAPI, 'isapi' ) === false );
 
 /**
  * The extension to append to script names by default. This can either be .php
