@@ -85,11 +85,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 						'wpDomain'     => $this->mDomain,
 						'wpLoginToken' => $token,
 						'wpPassword'   => $request->getVal( 'wpNewPassword' ),
-						'returnto'     => $request->getVal( 'returnto' ),
-					);
-					if( $request->getCheck( 'wpRemember' ) ) {
-						$data['wpRemember'] = 1;
-					}
+					) + $request->getValues( 'wpRemember', 'returnto', 'returntoquery' );
 					$login = new LoginForm( new FauxRequest( $data, true ) );
 					$login->setContext( $this->getContext() );
 					$login->execute( null );
@@ -103,11 +99,13 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	}
 
 	function doReturnTo() {
-		$titleObj = Title::newFromText( $this->getRequest()->getVal( 'returnto' ) );
+		$request = $this->getRequest();
+		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
-		$this->getOutput()->redirect( $titleObj->getFullURL() );
+		$query = $request->getVal( 'returntoquery' );
+		$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
 	}
 
 	/**
@@ -150,6 +148,15 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					array( 'wpRetype', 'retypenew', 'password', null ),
 				);
 		$prettyFields = array_merge( $prettyFields, $extraFields );
+		$hiddenFields = array(
+			'token' => $user->getEditToken(),
+			'wpName' => $this->mUserName,
+			'wpDomain' => $this->mDomain,
+		) + $this->getRequest()->getValues( 'returnto', 'returntoquery' );
+		$hiddenFieldsStr = '';
+		foreach( $hiddenFields as $fieldname => $fieldvalue ) {
+			$hiddenFieldsStr .= Html::hidden( $fieldname, $fieldvalue ) . "\n";
+		}
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
 			Xml::openElement( 'form',
@@ -157,10 +164,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					'method' => 'post',
 					'action' => $this->getTitle()->getLocalUrl(),
 					'id' => 'mw-resetpass-form' ) ) . "\n" .
-			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
-			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
-			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
-			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
+			$hiddenFieldsStr .
 			$this->msg( 'resetpass_text' )->parseAsBlock() . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( $prettyFields ) . "\n" .
