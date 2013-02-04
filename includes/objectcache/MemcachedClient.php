@@ -908,15 +908,16 @@ class MWMemcached {
 	 * @access private
 	 */
 	function _load_items( $sock, &$ret, &$casToken = null ) {
+		$data = false;
+
 		while ( 1 ) {
 			$decl = $this->_fgets( $sock );
 			if( $decl === false ) {
 				return false;
-			} elseif ( $decl == "END" ) {
-				return true;
 			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+) (\d+)$/', $decl, $match ) ) {
 				list( $rkey, $flags, $len, $casToken ) = array( $match[1], $match[2], $match[3], $match[4] );
 				$data = $this->_fread( $sock, $len + 2 );
+			} elseif ( $decl == "END" ) {
 				if ( $data === false ) {
 					return false;
 				}
@@ -936,6 +937,7 @@ class MWMemcached {
 					$ret[$rkey] = unserialize( $ret[$rkey] );
 				}
 
+				return true;
 			} else {
 				$this->_handle_error( $sock, 'Error parsing response from $1' );
 				return false;
