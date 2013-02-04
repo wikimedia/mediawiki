@@ -158,6 +158,7 @@ abstract class Installer {
 		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
+		'wgLocaltimezone',
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
 		'wgDefaultSkin',

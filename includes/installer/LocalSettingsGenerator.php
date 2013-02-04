@@ -59,7 +59,7 @@ class LocalSettingsGenerator {
 				'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
 				'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
 				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
-				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads',
+				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads', 'wgLocaltimezone',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgResourceLoaderMaxQueryLength'
@@ -327,6 +327,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 # Site language code, should be one of the list in ./languages/Names.php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
+
+# Set Default Timezone
+\$wgLocaltimezone =  \"{$this->values['wgLocaltimezone']}\";
+\$oldtz = getenv(\"TZ\");
+putenv(\"TZ=\$wgLocaltimezone\");
+\$wgLocalTZoffset = date(\"Z\") / 60;
+putenv(\"TZ=\$oldtz\");
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
 
