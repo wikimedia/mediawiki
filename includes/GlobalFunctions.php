@@ -2905,6 +2905,62 @@ function wfShellWikiCmd( $script, array $parameters = array(), array $options = 
 }
 
 /**
+ * Get the configuration of a potentially foreign wiki.
+ * For foreign wikis, this is expensive, and only works if maintenance
+ * scripts are setup to handle the --wiki parameter such as in wiki farms.
+ *
+ * @param string $wiki
+ * @param array $settings
+ * @return Array
+ * @throws MWException
+ * @since 1.21
+ */
+function wfGetConfig( $wiki, array $settings ) {
+	global $IP;
+
+	if ( $wiki === wfWikiID() ) { // $wiki is this wiki
+		$res = array();
+		foreach ( $settings as $name ) {
+			if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
+				throw new MWException( "Variable '$name' does start with 'wg'." );
+			} elseif ( !isset( $GLOBALS[$name] ) ) {
+				throw new MWException( "Variable '$name' is not set." );
+			}
+			$res[$name] = $GLOBALS[$name];
+		}
+	} else { // $wiki is a foreign wiki
+		static $cache = array();
+		if ( isset( $cache[$wiki] ) ) {
+			$res = array_intersect_key( $cache[$wiki], array_flip( $settings ) );
+			if ( count( $res ) == count( $settings ) ) {
+				return $res; // cache hit
+			}
+		} else {
+			$cache[$wiki] = array();
+		}
+		$retVal = 1;
+		$cmd = wfShellWikiCmd(
+			"$IP/maintenance/getConfiguration.php",
+			array(
+				'--wiki', $wiki,
+				'--settings', implode( ' ', $settings ),
+				'--format', 'PHP'
+			)
+		);
+		$data = trim( wfShellExec( $cmd, $retVal ) );
+		if ( $retVal != 0 || !strlen( $data ) ) {
+			throw new MWException( "Failed to run getConfiguration.php." );
+		}
+		$res = unserialize( $data );
+		if ( !is_array( $res ) ) {
+			throw new MWException( "Failed to unserialize configuration array." );
+		}
+		$cache[$wiki] = $cache[$wiki] + $res;
+	}
+	return $res;
+}
+
+/**
  * wfMerge attempts to merge differences between three texts.
  * Returns true for a clean merge and false for failure or a conflict.
  *
