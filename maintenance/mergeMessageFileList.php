@@ -82,6 +82,9 @@ class MergeMessageFileList extends Maintenance {
 		if ( $this->hasOption( 'output' ) ) {
 			$mmfl['output'] = $this->getOption( 'output' );
 		}
+		if ( $this->hasOption( 'quiet' ) ) {
+			$mmfl['quiet'] = true;
+		}
 	}
 }
 
@@ -92,7 +95,9 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 		continue;
 	}
 	$fileName = str_replace( '$IP', $IP, $fileName );
-	fwrite( STDERR, "Loading data from $fileName\n" );
+	if ( empty( $mmfl['quiet'] ) ) {
+		fwrite( STDERR, "Loading data from $fileName\n" );
+	}
 	include_once( $fileName );
 }
 fwrite( STDERR, "\n" );
