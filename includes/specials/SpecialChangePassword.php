@@ -150,6 +150,15 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					array( 'wpRetype', 'retypenew', 'password', null ),
 				);
 		$prettyFields = array_merge( $prettyFields, $extraFields );
+		$hiddenFields = array(
+			'token' => $user->getEditToken(),
+			'wpName' => $this->mUserName,
+			'wpDomain' => $this->mDomain,
+		) + $this->getRequest()->getValues( 'returnto', 'returntoquery' );
+		$hiddenFieldsStr = '';
+		foreach( $hiddenFields as $fieldname => $fieldvalue ) {
+			$hiddenFieldsStr .= Html::hidden( $fieldname, $fieldvalue ) . "\n";
+		}
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
 			Xml::openElement( 'form',
@@ -157,10 +166,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					'method' => 'post',
 					'action' => $this->getTitle()->getLocalUrl(),
 					'id' => 'mw-resetpass-form' ) ) . "\n" .
-			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
-			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
-			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
-			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
+			$hiddenFieldsStr .
 			$this->msg( 'resetpass_text' )->parseAsBlock() . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( $prettyFields ) . "\n" .
