@@ -818,6 +818,10 @@ class WebInstaller_Name extends WebInstallerPage {
 class WebInstaller_Options extends WebInstallerPage {
 
 	public function execute() {
+		global $wgLocaltimezone;
+                $r = $this->parent->request;
+                $timezone = $r->getVal( 'config_wgLocaltimezone' );
+
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
 			return 'skip';
 		}
@@ -826,7 +830,6 @@ class WebInstaller_Options extends WebInstallerPage {
 				return 'continue';
 			}
 		}
-
 		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
 		$this->startForm();
 		$this->addHTML(
@@ -947,6 +950,14 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->getFieldSetEnd()
 		);
 
+                $this->addHTML(
+			$this->getFieldSetStart( 'config-timezone-settings' ) .
+			$this->getTimezoneSelector( 'config_wgLocaltimezone', 'config-wiki-timezone', is_null($wgLocaltimezone) ? 'UTC' : $wgLocaltimezone,
+                        	$this->parent->getHelpBox( 'config-wiki-timezone-help' ) 
+			) .
+			$this->getFieldSetEnd()
+		);
+		$wgLocaltimezone = $timezone;
 		$caches = array( 'none' );
 		if( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
@@ -983,8 +994,33 @@ class WebInstaller_Options extends WebInstallerPage {
 			'</div>' .
 			$this->getFieldSetEnd()
 		);
-		$this->endForm();
+                $this->endForm( );
 	}
+
+         /* Get a "<select>" for selecting timezones.
+         *
+         * @param $name
+         * @param $label
+         * @param $selectedCode
+         * @param $helpHtml string
+         * @return string
+         */
+         public function getTimezoneSelector( $name, $label, $selectedCode, $helpHtml = '' ) {
+
+                $s = $helpHtml;
+
+                $s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name,
+                                'tabindex' => $this->parent->nextTabIndex() ) ) . "\n";
+
+                $zones = DateTimeZone::listIdentifiers();
+                sort($zones);
+
+                foreach ( $zones as $code => $zone ) {
+                        $s .= "\n" . Xml::option( $zone, $zone, $zone == $selectedCode );
+                }
+                $s .= "\n</select>\n";
+                return $this->parent->label( $label, $name, $s );
+        }
 
 	/**
 	 * @return string
@@ -1076,7 +1112,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
-			'wgUseInstantCommons' ) );
+			'wgUseInstantCommons', 'wgLocaltimezone' ) );
 
 		if ( !in_array( $this->getVar( '_RightsProfile' ),
 			array_keys( $this->parent->rightsProfiles ) ) )
