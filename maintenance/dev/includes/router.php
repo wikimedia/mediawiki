@@ -21,7 +21,7 @@
  * @file
  */
 
-if ( php_sapi_name() != 'cli-server' ) {
+if ( PHP_SAPI != 'cli-server' ) {
 	die( "This script can only be run by php's cli-server sapi." );
 }
 

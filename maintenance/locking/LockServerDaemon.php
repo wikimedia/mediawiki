@@ -23,7 +23,7 @@
  * @ingroup LockManager Maintenance
  */
 
-if ( php_sapi_name() !== 'cli' ) {
+if ( PHP_SAPI !== 'cli' ) {
 	die( "This is not a valid entry point.\n" );
 }
 error_reporting( E_ALL );

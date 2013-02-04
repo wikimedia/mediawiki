@@ -26,7 +26,7 @@
  * @ingroup UtfNormal
  */
 
-if( php_sapi_name() != 'cli' ) {
+if( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 

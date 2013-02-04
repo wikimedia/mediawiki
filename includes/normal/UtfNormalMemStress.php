@@ -38,7 +38,7 @@ define( 'BENCH_CYCLES', 1 );
 define( 'BIGSIZE', 1024 * 1024 * 10); // 10m
 ini_set('memory_limit', BIGSIZE + 120 * 1024 * 1024);
 
-if( php_sapi_name() != 'cli' ) {
+if( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 

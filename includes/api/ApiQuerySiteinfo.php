@@ -120,7 +120,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['sitename'] = $GLOBALS['wgSitename'];
 		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
 		$data['phpversion'] = phpversion();
-		$data['phpsapi'] = php_sapi_name();
+		$data['phpsapi'] = PHP_SAPI;
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
 

@@ -2681,8 +2681,7 @@ function wfDl( $extension, $fileName = null ) {
 	}
 
 	$canDl = false;
-	$sapi = php_sapi_name();
-	if( $sapi == 'cli' || $sapi == 'cgi' || $sapi == 'embed' ) {
+	if( PHP_SAPI == 'cli' || PHP_SAPI == 'cgi' || PHP_SAPI == 'embed' ) {
 		$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
 		&& wfIniGetBool( 'enable_dl' ) && !wfIniGetBool( 'safe_mode' ) );
 	}

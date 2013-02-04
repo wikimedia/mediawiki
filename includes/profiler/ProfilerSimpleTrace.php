@@ -69,7 +69,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	}
 
 	function logData() {
-		if ( php_sapi_name() === 'cli' ) {
+		if ( PHP_SAPI === 'cli' ) {
 			print "<!-- \n {$this->trace} \n -->";
 		} elseif ( $this->getContentType() === 'text/html' ) {
 			print "<!-- \n {$this->trace} \n -->";

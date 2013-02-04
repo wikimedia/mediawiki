@@ -43,7 +43,7 @@
 # Variables / Configuration
 #
 
-if ( php_sapi_name() != 'cli' ) {
+if ( PHP_SAPI != 'cli' ) {
 	echo 'Run "' . __FILE__ . '" from the command line.';
 	die( -1 );
 }

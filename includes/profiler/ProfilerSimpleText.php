@@ -50,7 +50,7 @@ class ProfilerSimpleText extends ProfilerSimple {
 				: 0; // profiling mismatch error?
 			uasort( $this->mCollated, array( 'self', 'sort' ) );
 			array_walk( $this->mCollated, array( 'self', 'format' ), $totalReal );
-			if ( php_sapi_name() === 'cli' ) {
+			if ( PHP_SAPI === 'cli' ) {
 				print "<!--\n".self::$out."\n-->\n";
 			} elseif ( $this->getContentType() === 'text/html' ) {
 				if ( $this->visible ) {

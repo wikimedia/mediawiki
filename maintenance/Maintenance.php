@@ -342,7 +342,7 @@ abstract class Maintenance {
 	 */
 	protected function error( $err, $die = 0 ) {
 		$this->outputChanneled( false );
-		if ( php_sapi_name() == 'cli' ) {
+		if ( PHP_SAPI == 'cli' ) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
 			print $err;
