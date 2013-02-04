@@ -62,16 +62,16 @@ QUnit.test( 'Replace', 9, function ( assert ) {
 
 	assert.equal(
 		parser( 'plain-input', 'bar' ),
-		'&lt;foo foo="foo"&gt;xbary&amp;lt;&lt;/foo&gt;z',
-		'Input is not considered html'
+		'<foo foo="foo">xbary&lt;</foo>z',
+		'Input HTML is not escaped'
 	);
 
 	mw.messages.set( 'plain-replace', 'Foo $1' );
 
 	assert.equal(
 		parser( 'plain-replace', '<bar bar="bar">&gt;</bar>' ),
-		'Foo &lt;bar bar="bar"&gt;&amp;gt;&lt;/bar&gt;',
-		'Replacement is not considered html'
+		'Foo <bar bar="bar">&gt;</bar>',
+		'Replacement HTML is not escaped'
 	);
 
 	mw.messages.set( 'object-replace', 'Foo $1' );
