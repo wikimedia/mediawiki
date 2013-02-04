@@ -19833,6 +19833,7 @@ $messages['zea'] = array(
  * @author PhiLiP
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 乌拉跨氪
  * @author 阿pp
  * @author 아라
  */
@@ -20018,7 +20019,7 @@ $1
 	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）。本程序中可能依然存在一些小而明显的错误，因此并不建议在生产环境中使用该数据库系统。',
 	'config-support-sqlite' => '* $1是一种轻量级的数据库系统，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）',
 	'config-support-oracle' => '* $1是一种商用企业级的数据库。（[http://www.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）',
-	'config-support-ibm_db2' => '* $1是一种商用企业级数据库。', # Fuzzy
+	'config-support-ibm_db2' => '* $1是一种商用企业级数据库。（[http://www.php.net/manual/en/ibm-db2.installation.php 如何编译支持IBM DB2的PHP]）',
 	'config-header-mysql' => 'MySQL设置',
 	'config-header-postgres' => 'PostgreSQL设置',
 	'config-header-sqlite' => 'SQLite设置',

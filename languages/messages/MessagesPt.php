@@ -3158,6 +3158,10 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-contentpage' => 'Contada como página de conteúdo',
 'pageinfo-contentpage-yes' => 'Sim',
 'pageinfo-protect-cascading-yes' => 'Sim',
+'pageinfo-category-info' => 'Informações da categoria',
+'pageinfo-category-pages' => 'Número de páginas',
+'pageinfo-category-subcats' => 'Número de subcategorias',
+'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
 'skinname-standard' => 'Clássico',
@@ -4005,6 +4009,7 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-newusers-create2' => 'A conta de utilizador $3 foi criada por $1',
 'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
 'logentry-rights-rights' => '$1 modificou os privilégios do utilizador  $3  de  $4  para $5',
+'logentry-rights-autopromote' => '$1 foi automaticamente {{GENDER:$2|promovido|promovida}} de $4 a $5',
 'rightsnone' => '(nenhum)',
 
 # Feedback

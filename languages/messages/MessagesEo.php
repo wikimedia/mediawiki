@@ -3955,7 +3955,7 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'specialpages-group-highuse' => 'Plej uzitaj paĝoj',
 'specialpages-group-pages' => 'Listoj de paĝoj',
 'specialpages-group-pagetools' => 'Paĝaj iloj',
-'specialpages-group-wiki' => 'Vikidatenoj kaj iloj',
+'specialpages-group-wiki' => 'Datenoj kaj iloj',
 'specialpages-group-redirects' => 'Alidirektantaj specialaj paĝoj',
 'specialpages-group-spam' => 'Kontraŭspamiloj',
 

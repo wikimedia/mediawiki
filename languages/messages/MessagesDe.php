@@ -781,7 +781,7 @@ Die Daten werden bis auf Weiteres nicht erneuert.',
 Funktion: $1<br />
 Abfrage: $2',
 'viewsource' => 'Quelltext anzeigen',
-'viewsource-title' => 'Quelltext von Seite $1 ansehen',
+'viewsource-title' => 'Quelltext der Seite $1',
 'actionthrottled' => 'Aktionsanzahl limitiert',
 'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',

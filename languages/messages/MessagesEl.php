@@ -3904,13 +3904,13 @@ $5
 'tags-hitcount' => '$1 {{PLURAL:$1|αλλαγή|αλλαγές}}',
 
 # Special:ComparePages
-'comparepages' => 'Συγκρίνετε τις σελίδες',
+'comparepages' => 'Σύγκριση σελίδων',
 'compare-selector' => 'Συγκρίνετε τις αναθεωρήσεις των σελίδων',
 'compare-page1' => 'Σελίδα 1',
 'compare-page2' => 'Σελίδα 2',
 'compare-rev1' => 'Αναθεώρηση 1',
 'compare-rev2' => 'Αναθεώρηση 2',
-'compare-submit' => 'Συγκρίνετε',
+'compare-submit' => 'Σύγκριση',
 'compare-invalid-title' => 'Ο τίτλος που καθορίσατε δεν είναι έγκυρος.',
 'compare-title-not-exists' => 'Ο τίτλος που καθορίσατε δεν υπάρχει.',
 'compare-revision-not-exists' => 'Η αναθεώρηση που καθορίσατε δεν υπάρχει.',

@@ -907,6 +907,7 @@ Geçici şifre: $2',
 'changeemail-oldemail' => 'Mevcut E-posta adresi:',
 'changeemail-newemail' => 'Yeni E-posta adresi:',
 'changeemail-none' => '(yok)',
+'changeemail-password' => '{{SITENAME}} parolanız:',
 'changeemail-submit' => "E-posta'yı değiştir",
 'changeemail-cancel' => 'İptal',
 
@@ -2281,7 +2282,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'usermessage-editor' => 'Sistem habercisi',
 
 # Watchlist
-'watchlist' => 'İzleme listem',
+'watchlist' => 'İzleme listesi',
 'mywatchlist' => 'İzleme listesi',
 'watchlistfor2' => '$1 için $2',
 'nowatchlist' => 'İzleme listesinde hiçbir madde bulunmuyor.',
@@ -2324,30 +2325,41 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'enotif_mailer' => '{{SITENAME}} Bildirim Postası',
 'enotif_reset' => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
 'enotif_impersonal_salutation' => '{{SITENAME}} kullanıcı',
+'enotif_subject_deleted' => '{{SITENAME}} sayfası $1, $2 tarafından {{GENDER:$2|silindi}}.',
+'enotif_subject_created' => '{{SITENAME}} sayfası $1, $2 tarafından {{GENDER:$2|açıldı}}.',
+'enotif_subject_moved' => '{{SITENAME}} sayfası $1, $2 tarafından {{GENDER:$2|taşındı}}.',
+'enotif_subject_restored' => '{{SITENAME}} sayfası $1, $2 tarafından {{GENDER:$2|geri getirildi}}.',
+'enotif_subject_changed' => '{{SITENAME}} sayfası $1, $2 tarafından {{GENDER:$2|değiştirildi}}.',
+'enotif_body_intro_deleted' => '{{SITENAME}} sayfası $1, $2 tarafından $PAGEEDITDATE tarihinde {{GENDER:$2|silindi}}, bakınız: $3.',
+'enotif_body_intro_created' => '{{SITENAME}} sayfası $1, $2 tarafından $PAGEEDITDATE tarihinde {{GENDER:$2|açıldı}}, mevcut revizyon için bakınız: $3.',
+'enotif_body_intro_moved' => '{{SITENAME}} sayfası $1, $2 tarafından $PAGEEDITDATE tarihinde {{GENDER:$2|taşındı}}, mevcut revizyon için bakınız: $3.',
+'enotif_body_intro_restored' => '{{SITENAME}} sayfası $1, $2 tarafından $PAGEEDITDATE tarihinde {{GENDER:$2|geri getirildi}}, mevcut revizyon için bakınız: $3.',
+'enotif_body_intro_changed' => '{{SITENAME}} sayfası $1, $2 tarafından $PAGEEDITDATE tarihinde {{GENDER:$2|değiştirildi}}, mevcut revizyon için bakınız: $3.',
 'enotif_lastvisited' => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
 'enotif_lastdiff' => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
 'enotif_anon_editor' => 'anonim kullanıcı $1',
 'enotif_body' => 'Sayın $WATCHINGUSERNAME,
 
-{{SITENAME}} bünyesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATE tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. Sayfanın son haline $PAGETITLE_URL adresinden ulaşabilirsiniz.
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
+Editörün girdiği özet: $PAGESUMMARY $PAGEMINOREDIT
 
-Değişikliği yapan kullanıcının açıklaması: $PAGESUMMARY $PAGEMINOREDIT
+Editörün iletişim bilgileri:
+e-posta: $PAGEEDITOR_EMAIL
+viki: $PAGEEDITOR_WIKI
 
-Sayfayı değiştiren kullanıcıya erişim bilgileri:
-E-posta: $PAGEEDITOR_EMAIL
-Viki: $PAGEEDITOR_WIKI
+Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka bildirim gönderilmeyecektir. Ayrıca izleme listenizdeki tüm sayfaların bildirim durumlarını sıfırlayabilirsiniz.
 
-Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik bildirimi gönderilmeyecektir. İzleme listenizdeki tüm sayfalar bildirim durumlarını sıfırlayabilirsiniz.
-
-              {{SITENAME}} sitesinin uyarı sistemi.
+{{SITENAME}} bildirim sistemi
 
 --
-İzleme listesi ayarlarınızı değiştirmek için:
+E-posta bildirim ayarlarınızı değiştirmek için aşağıdaki sayfayı ziyaret ediniz:
+{{canonicalurl:{{#special:Preferences}}}}
+
+İzleme listesi ayarlarınızı değiştirmek için aşağıdaki sayfayı ziyaret ediniz:
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Sayfayı izleme listenizden silmek için:
+Sayfayı izleme listenizden silmek için aşağıdaki sayfayı ziyaret ediniz:
 $UNWATCHURL
 
 Geri bildirim ve daha fazla yardım için:
@@ -2393,6 +2405,7 @@ dikkatle devam edin.',
 'rollback' => 'değişiklikleri geri al',
 'rollback_short' => 'geri al',
 'rollbacklink' => 'geridöndür',
+'rollbacklinkcount' => '$1 {{PLURAL:$1|değişikliği|değişikliği}} geri döndür',
 'rollbackfailed' => 'geri alma işlemi başarısız',
 'cantrollback' => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
 'alreadyrolled' => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
@@ -2920,6 +2933,7 @@ Geçici dosya kayıp.',
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
 'javascripttest-title' => '$1 testleri çalışıyor',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit deneme paketi',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Kullanıcı sayfanız',

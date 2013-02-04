@@ -1981,7 +1981,7 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'usermessage-editor' => 'Jumbe za mfumo',
 
 # Watchlist
-'watchlist' => 'Maangalizi yangu',
+'watchlist' => 'Maangalizi',
 'mywatchlist' => 'Maangalizi',
 'watchlistfor2' => 'Kwa ajili ya $1 $2',
 'nowatchlist' => 'Hamna vitu katika maangalizi yako.',
@@ -2200,7 +2200,7 @@ $1',
 'blanknamespace' => '(Kuu)',
 
 # Contributions
-'contributions' => 'Michango ya mtumiaji',
+'contributions' => 'Michango ya {{GENDER:$1|mtumiaji}}',
 'contributions-title' => 'Michango ya mtumiaji $1',
 'mycontris' => 'Michango',
 'contribsub2' => 'Kwa $1 ($2)',
@@ -2243,7 +2243,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'whatlinkshere-hideredirs' => '$1 maelekezo',
 'whatlinkshere-hidetrans' => '$1 majumuisho',
 'whatlinkshere-hidelinks' => '$1 viungo',
-'whatlinkshere-hideimages' => '$1 viungo vya picha',
+'whatlinkshere-hideimages' => 'viungo $1 vya faili',
 'whatlinkshere-filters' => 'Machujio',
 
 # Block/unblock
