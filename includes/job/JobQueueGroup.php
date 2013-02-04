@@ -187,9 +187,8 @@ class JobQueueGroup {
 	 * @return array List of strings
 	 */
 	public function getQueueTypes() {
-		global $wgJobClasses;
-
-		return array_keys( $wgJobClasses );
+		$cg = wfGetConfig( $this->wiki, array( 'wgJobClasses' ) );
+		return array_keys( $cg['wgJobClasses'] );
 	}
 
 	/**
