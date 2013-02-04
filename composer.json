@@ -1,0 +1,11 @@
+{
+    "name": "mediawiki/core",
+    "version": "1.21-alpha",
+    "description": "Free wiki software application developed by the Wikimedia Foundation and others",
+    "keywords": ["mediawiki", "wiki"],
+    "homepage": "https://www.mediawiki.org",
+    "license": "GNU GPL v2+",
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
