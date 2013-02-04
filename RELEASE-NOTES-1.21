@@ -85,9 +85,10 @@ production.
   a security fix (bug 42202).
 * Added the ability to limit the wall clock time used by shell processes,
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
-* Added $wgWhitelistReadRegexp for regex whitelisting
+* Added $wgWhitelistReadRegexp for regex whitelisting.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.
+* (bug 43915) New maintenance script deleteEqualMessages.php.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
