@@ -908,34 +908,47 @@ class MWMemcached {
 	 * @access private
 	 */
 	function _load_items( $sock, &$ret, &$casToken = null ) {
+		$results = array();
+
 		while ( 1 ) {
 			$decl = $this->_fgets( $sock );
 			if( $decl === false ) {
 				return false;
-			} elseif ( $decl == "END" ) {
-				return true;
 			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+) (\d+)$/', $decl, $match ) ) {
-				list( $rkey, $flags, $len, $casToken ) = array( $match[1], $match[2], $match[3], $match[4] );
-				$data = $this->_fread( $sock, $len + 2 );
-				if ( $data === false ) {
+
+				$results[] = array(
+					$match[1], // rkey
+					$match[2], // flags
+					$match[3], // len
+					$match[4], // casToken
+					$this->_fread( $sock, $match[3] + 2 ), // data
+				);
+			} elseif ( $decl == "END" ) {
+				if ( count( $results ) == 0 ) {
 					return false;
 				}
-				if ( substr( $data, -2 ) !== "\r\n" ) {
-					$this->_handle_error( $sock,
-						'line ending missing from data block from $1' );
-					return false;
-				}
-				$data = substr( $data, 0, -2 );
-				$ret[$rkey] = $data;
 
-				if ( $this->_have_zlib && $flags & self::COMPRESSED ) {
-					$ret[$rkey] = gzuncompress( $ret[$rkey] );
+				foreach ( $results as $vars ) {
+					list( $rkey, $flags, $len, $casToken, $data ) = $vars;
+
+					if ( $data === false || substr( $data, -2 ) !== "\r\n" ) {
+						$this->_handle_error( $sock,
+							'line ending missing from data block from $1' );
+						return false;
+					}
+					$data = substr( $data, 0, -2 );
+					$ret[$rkey] = $data;
+
+					if ( $this->_have_zlib && $flags & self::COMPRESSED ) {
+						$ret[$rkey] = gzuncompress( $ret[$rkey] );
+					}
+
+					if ( $flags & self::SERIALIZED ) {
+						$ret[$rkey] = unserialize( $ret[$rkey] );
+					}
 				}
 
-				if ( $flags & self::SERIALIZED ) {
-					$ret[$rkey] = unserialize( $ret[$rkey] );
-				}
-
+				return true;
 			} else {
 				$this->_handle_error( $sock, 'Error parsing response from $1' );
 				return false;
