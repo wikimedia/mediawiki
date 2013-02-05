@@ -583,7 +583,7 @@ class ApiQuery extends ApiBase {
 	 * @return ApiQueryGeneratorBase
 	 */
 	public function newGenerator( $generatorName ) {
-		$generator = $this->mModuleMgr->getModule( $generatorName );
+		$generator = $this->mModuleMgr->getModule( $generatorName, null, true );
 		if ( $generator === null ) {
 			$this->dieUsage( "Unknown generator=$generatorName", 'badgenerator' );
 		}
