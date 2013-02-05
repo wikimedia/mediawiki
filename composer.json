@@ -1,5 +1,6 @@
 {
 	"name": "mediawiki/core",
+	"version": "1.21-alpha",
 	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
 	"keywords": ["mediawiki", "wiki"],
 	"homepage": "https://www.mediawiki.org/",
