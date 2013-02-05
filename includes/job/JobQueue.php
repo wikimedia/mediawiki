@@ -169,9 +169,7 @@ abstract class JobQueue {
 	 * @throws MWException
 	 */
 	final public function push( $jobs, $flags = 0 ) {
-		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
-
-		return $this->batchPush( $jobs, $flags );
+		return $this->batchPush( is_array( $jobs ) ? $jobs : array( $jobs ), $flags );
 	}
 
 	/**
@@ -184,11 +182,15 @@ abstract class JobQueue {
 	 * @throws MWException
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
+		if ( !count( $jobs ) ) {
+			return true; // nothing to do
+		}
 		foreach ( $jobs as $job ) {
 			if ( $job->getType() !== $this->type ) {
 				throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 			}
 		}
+
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doBatchPush( $jobs, $flags );
 		wfProfileOut( __METHOD__ );
@@ -205,7 +207,7 @@ abstract class JobQueue {
 	 * Pop a job off of the queue.
 	 * This requires $wgJobClasses to be set for the given job type.
 	 *
-	 * @return Job|bool Returns false on failure
+	 * @return Job|bool Returns false if there are no jobs
 	 * @throws MWException
 	 */
 	final public function pop() {

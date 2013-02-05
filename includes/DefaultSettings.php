@@ -5538,6 +5538,14 @@ $wgJobTypeConf = array(
 );
 
 /**
+ * Which aggregator to use for tracking which queues have jobs.
+ * These settings should be global to all wikis.
+ */
+$wgJobQueueAggregator = array(
+	'class' => 'JobQueueAggregatorMemc'
+);
+
+/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */

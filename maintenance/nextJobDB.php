@@ -51,37 +51,12 @@ class nextJobDB extends Maintenance {
 		// Handle any required periodic queue maintenance
 		$this->executeReadyPeriodicTasks();
 
-		$memcKey = 'jobqueue:dbs:v3';
-		$pendingDbInfo = $wgMemc->get( $memcKey );
-
-		// If the cache entry wasn't present, is stale, or in .1% of cases otherwise,
-		// regenerate the cache. Use any available stale cache if another process is
-		// currently regenerating the pending DB information.
-		if ( !is_array( $pendingDbInfo )
-			|| ( time() - $pendingDbInfo['timestamp'] ) > 300 // 5 minutes
-			|| mt_rand( 0, 999 ) == 0
-		) {
-			if ( $wgMemc->add( "$memcKey:rebuild", 1, 1800 ) ) { // lock
-				$pendingDbInfo = array(
-					'pendingDBs' => $this->getPendingDbs(),
-					'timestamp'  => time()
-				);
-				for ( $attempts=1; $attempts <= 25; ++$attempts ) {
-					if ( $wgMemc->add( "$memcKey:lock", 1, 60 ) ) { // lock
-						$wgMemc->set( $memcKey, $pendingDbInfo );
-						$wgMemc->delete( "$memcKey:lock" ); // unlock
-						break;
-					}
-				}
-				$wgMemc->delete( "$memcKey:rebuild" ); // unlock
-			}
-		}
-
-		if ( !is_array( $pendingDbInfo ) || !$pendingDbInfo['pendingDBs'] ) {
+		// Get all the queues with jobs in them
+		$pendingDBs = JobQueueAggregator::singleton()->getAllReadyWikiQueues();
+		if ( !count( $pendingDBs ) ) {
 			return; // no DBs with jobs or cache is both empty and locked
 		}
 
-		$pendingDBs = $pendingDbInfo['pendingDBs']; // convenience
 		do {
 			$again = false;
 
@@ -101,20 +76,8 @@ class nextJobDB extends Maintenance {
 
 			list( $type, $db ) = $candidates[ mt_rand( 0, count( $candidates ) - 1 ) ];
 			if ( !$this->checkJob( $type, $db ) ) { // queue is actually empty?
-				$pendingDBs = $this->delistDB( $pendingDBs, $db, $type );
-				// Update the cache to remove the outdated information.
-				// Make sure that this does not race (especially with full rebuilds).
-				if ( $wgMemc->add( "$memcKey:lock", 1, 60 ) ) { // lock
-					$curInfo = $wgMemc->get( $memcKey );
-					if ( is_array( $curInfo ) ) {
-						$curInfo['pendingDBs'] =
-							$this->delistDB( $curInfo['pendingDBs'], $db, $type );
-						$wgMemc->set( $memcKey, $curInfo );
-						// May as well make use of this newer information
-						$pendingDBs = $curInfo['pendingDBs'];
-					}
-					$wgMemc->delete( "$memcKey:lock" ); // unlock
-				}
+				$pendingDBs[$type] = array_diff( $pendingDBs[$type], $db );
+				JobQueueAggregator::singleton()->notifyQueueEmpty( $db, $type );
 				$again = true;
 			}
 		} while ( $again );
@@ -127,19 +90,6 @@ class nextJobDB extends Maintenance {
 	}
 
 	/**
-	 * Remove a type/DB entry from the list of queues with jobs
-	 *
-	 * @param $pendingDBs array
-	 * @param $db string
-	 * @param $type string
-	 * @return Array
-	 */
-	private function delistDB( array $pendingDBs, $db, $type ) {
-		$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
-		return $pendingDBs;
-	}
-
-	/**
 	 * Check if the specified database has a job of the specified type in it.
 	 * The type may be false to indicate "all".
 	 * @param $type string
@@ -148,23 +98,6 @@ class nextJobDB extends Maintenance {
 	 */
 	private function checkJob( $type, $dbName ) {
 		return !JobQueueGroup::singleton( $dbName )->get( $type )->isEmpty();
-	}
-
-	/**
-	 * Get all databases that have a pending job
-	 * @return array
-	 */
-	private function getPendingDbs() {
-		global $wgLocalDatabases;
-
-		$pendingDBs = array(); // (job type => (db list))
-		foreach ( $wgLocalDatabases as $db ) {
-			foreach ( JobQueueGroup::singleton( $db )->getQueuesWithJobs() as $type ) {
-				$pendingDBs[$type][] = $db;
-			}
-		}
-
-		return $pendingDBs;
 	}
 
 	/**
