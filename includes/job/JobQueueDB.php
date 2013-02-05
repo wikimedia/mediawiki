@@ -402,6 +402,8 @@ class JobQueueDB extends JobQueue {
 	 * @return integer Number of jobs recycled/deleted
 	 */
 	protected function recycleStaleJobs() {
+		global $wgMemc;
+
 		$now   = time();
 		list( $dbw, $scope ) = $this->getMasterDB();
 		$count = 0; // affected rows
@@ -439,6 +441,7 @@ class JobQueueDB extends JobQueue {
 				);
 				$count += $dbw->affectedRows();
 				wfIncrStats( 'job-recycle', $dbw->affectedRows() );
+				$wgMemc->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
 			}
 		}
 
