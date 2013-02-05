@@ -214,6 +214,13 @@ changes to languages because of Bugzilla reports.
   as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
+* BREAKING CHANGE: (bug 44385) Removed the jquery.collapsibleTabs module and
+  moved it to the Vector extension. It was entirely Vector-extension-specific,
+  deeply interconnected with the extension, and this functionality really
+  belongs to the extension instead of the skin anyway. In the unlikely case you
+  were using it, you have to either copy it to your extension, or install the
+  Vector extension (and possibly disable its features using config settings if
+  you don't want them).
 
 == Compatibility ==
 
