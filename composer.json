@@ -12,7 +12,8 @@
 	"license": "GPL-2.0",
 	"support": {
 		"issues": "https://bugzilla.wikimedia.org/",
-		"irc": "irc://irc.freenode.net/mediawiki"
+		"irc": "irc://irc.freenode.net/mediawiki",
+		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
 		"php": ">=5.3.2"
