@@ -62,7 +62,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Additional $config params include:
 	 *   - backends       : Array of backend config and multi-backend settings.
 	 *                      Each value is the config used in the constructor of a
-	 *                          FileBackendStore class, but with these additional settings:
+	 *                      FileBackendStore class, but with these additional settings:
 	 *                        - class         : The name of the backend class
 	 *                        - isMultiMaster : This must be set for one backend.
 	 *                        - template:     : If given a backend name, this will use
