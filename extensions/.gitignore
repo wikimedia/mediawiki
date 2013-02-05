@@ -1,3 +1,5 @@
 *
 !README
 !.gitignore
+!composer.json
+!ExtensionInstaller.php
