@@ -1628,7 +1628,7 @@ $2',
 'whatlinkshere-hideredirs' => '$1 ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 'whatlinkshere-hidetrans' => '$1 ಸೇರಿಸುವಿಕೆಗಳು',
 'whatlinkshere-hidelinks' => '$1 ಕೊಂಡಿಗಳು',
-'whatlinkshere-hideimages' => '$1 ಚಿತ್ರ ಕೊಂಡಿಗಳು',
+'whatlinkshere-hideimages' => '$1 ಚಿತ್ರದ ಕೊಂಡಿಗಳು',
 'whatlinkshere-filters' => 'ಶೋಧಕಗಳು',
 
 # Block/unblock

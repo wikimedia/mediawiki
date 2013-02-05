@@ -1780,9 +1780,9 @@ HTML 태그를 확인하세요.',
 [[Special:FileList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 기록]]에서 볼 수 있습니다.
 
 문서에 파일을 넣으려면 아래 방법 중 하나를 사용하세요.
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' 파일의 온전한 모양을 사용하고자 할 때.
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></code>''' 파일의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 파일 밑에 달 때.
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' 파일을 직접 보여주지 않고 파일로 바로 링크할때.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' 파일의 온전한 모양을 사용하고자 할 때
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></code>''' 파일의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 파일 밑에 달 때
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' 파일을 직접 보여주지 않고 파일로 바로 링크할 때",
 'upload-permitted' => '허용하는 파일 확장자: $1',
 'upload-preferred' => '권장하는 파일 확장자: $1',
 'upload-prohibited' => '금지하는 파일 확장자: $1',
@@ -1839,14 +1839,14 @@ $2 형식만 사용할 수 있습니다.',
 'fileexists-extension' => '비슷한 이름의 파일이 존재합니다: [[$2|thumb]]
 * 올리려는 파일 이름: <strong>[[:$1]]</strong>
 * 존재하는 파일 이름: <strong>[[:$2]]</strong>
-다른 이름으로 시도해 주세요.',
+다른 이름으로 선택하세요.',
 'fileexists-thumbnail-yes' => '이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
 [[$1|thumb]]
-<strong>[[:$1]]</strong> 파일을 확인해주세요.
-해당 파일이 현재 올리려는 파일과 같다면, 더 작은 크기의 그림을 올릴 필요는 없습니다.',
+<strong>[[:$1]]</strong> 파일을 확인하세요.
+해당 파일이 현재 올리려는 파일과 같다면 더 작은 크기의 그림을 올릴 필요는 없습니다.',
 'file-thumbnail-no' => '파일 이름이 <strong>$1</strong>으로 시작합니다.
 이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
-더 해상도가 좋은 파일이 있다면 그 파일을 올려주세요. 아니면 올리려는 파일 이름을 바꾸어 주세요.',
+더 해상도가 좋은 파일이 있다면 그 파일을 올리거나 아니면 올리려는 파일 이름을 바꾸세요.',
 'fileexists-forbidden' => '같은 이름의 파일이 이미 있고, 덮어쓸 수 없습니다.
 그래도 파일을 올리시려면, 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.
 [[File:$1|thumb|center|$1]]',
@@ -3232,7 +3232,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-robot-policy' => '검색 엔진 통계',
 'pageinfo-robot-index' => '색인 가능',
 'pageinfo-robot-noindex' => '색인 불가능',
-'pageinfo-views' => '읽힌 횟수',
+'pageinfo-views' => '읽은 수',
 'pageinfo-watchers' => '문서를 주시하는 사용자 수',
 'pageinfo-redirects-name' => '이 문서로 넘겨주기',
 'pageinfo-redirects-value' => '$1개',
@@ -3261,7 +3261,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-category-info' => '분류 정보',
 'pageinfo-category-pages' => '문서 수',
 'pageinfo-category-subcats' => '하위 분류 수',
-'pageinfo-category-files' => '파일 개수',
+'pageinfo-category-files' => '파일 수',
 
 # Skin names
 'skinname-standard' => '클래식',

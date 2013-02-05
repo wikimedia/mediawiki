@@ -426,7 +426,7 @@ $1",
 'youhavenewmessagesfromusers' => "Droeneuh na $1 nibak {{PLURAL:$3|ureueng nguy la'en|$3 ureueng nguy}} ($2).",
 'youhavenewmessagesmanyusers' => "Droeneuh na $1 nibak ureueng nguy la'en ($2)",
 'newmessageslinkplural' => '{{PLURAL:$1|saboh peusan baro|peusan baro}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1||}}neuubah keuneulheueh',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|neuubah}} keuneulheueh',
 'youhavenewmessagesmulti' => 'Droëneuh na padum boh peusan barô bak $1',
 'editsection' => 'andam',
 'editold' => 'andam',
@@ -489,6 +489,9 @@ Basis data geupeuhase salah "$3: $4".',
 'laggedslavemode' => 'Peuneugah: On nyoe kadang hana neuubah baro',
 'readonly' => 'Basis data geurok',
 'enterlockreason' => 'Pasoe daleh neurok ngon pajan jeuet geupeuhah',
+'readonlytext' => "Basis data hat nyoe geurok keu teunamong baro ngon geunantoe la'en, kadang keu peulara basis data rutin, lheueh nyan baro lagee biasa teuma.
+
+Ureueng uroh nyang rok nyoe geupeutaba jeuneulaih nyoe: $1",
 'missing-article' => 'Basis data h’an jeuët jiteumèë naseukah nibak ôn nyang sipatôtjih na, nakeuh "$1" $2.
 
 Nyoë biasajih sabab hubông useuëng u geunantoë away nyang ka teusampôh.
@@ -501,9 +504,34 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'internalerror_info' => 'Salah bak dalam: $1',
 'fileappenderrorread' => 'H\'an jitem beuet "$1" \'oh geutamah',
 'fileappenderror' => 'H\'an jeuet jipasoe "$1" u "$2"',
+'filecopyerror' => 'H\'an jeuet salen beureukaih "$1" u "$2".',
+'filerenameerror' => 'H\'an jeuet boh nan beureukaih "$1" u "$2".',
+'filedeleteerror' => 'H\'an jeuet sampoh beureukaih "$1".',
+'directorycreateerror' => 'H\'an jeuet peugot direktori "$1".',
+'filenotfound' => 'Beureukaih "$1" hana meurumpok.',
+'fileexistserror' => 'H\'an jeuet geusalen u beureukaih "$1": Beureukaih ka na.',
+'unexpected' => 'Yum hana geuharap: "$1"="$2".',
+'formerror' => "Reuloh: H'an jeuet peu'et formulir.",
+'badarticleerror' => "Buet nyoe h'an jeuet geupeulaku bak on nyoe.",
+'cannotdelete' => 'On atawa beureukaih "$1" h\'an jeuet geusampoh.
+Kadang ka na soe sampoh.',
+'cannotdelete-title' => 'H\'an jeuet sampoh on "$1"',
+'delete-hook-aborted' => "Seunampoh geupeubateue le kaw'et parser.
+Hana jeuneulaih.",
 'badtitle' => 'Nan hana sah',
 'badtitletext' => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
+'perfcached' => 'Data di yup nyoe geucok nibak peuniyoh ngon kadang kon data baro. {{PLURAL:$1||}}$1 hase maksimum na bak beuen.',
+'perfcachedts' => 'Data di yup nyoe geupeusom, ngon geupeubaro keuneulheueh bak $1. {{PLURAL:$1||}}$1 hase maksimal na lam beuen.',
+'querypage-no-updates' => "Beunaro keu on nyoe hat nyoe teungoh h'an jeuet.
+Data sinoe h'an geupasoe ulang.",
+'wrong_wfQuery_params' => 'Parameter salah u wfQuery()<br />
+Meunafaat: $1<br />
+Neulakee: $2',
 'viewsource' => 'Eu nè',
+'viewsource-title' => 'Eu ne keu $1',
+'actionthrottled' => 'Buet geupeubataih',
+'actionthrottledtext' => 'Sibagoe saboh seunipat lawan-spam, droeneuh geupeubataih nibak neupeulaku buet nyoe le that go lam watee paneuk, ngon droeneuh ka leubeh nibak bataih.
+Neuci lom lam padum minet.',
 'viewsourcetext' => 'Droëneuh  jeuët neu’eu',
 
 # Login and logout pages
