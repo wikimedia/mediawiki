@@ -3909,6 +3909,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'logentry-newusers-newusers' => 'Käyttäjätunnus $1 luotiin',
 'logentry-newusers-create' => 'Käyttäjätunnus $1 luotiin',
 'logentry-newusers-create2' => '$1 loi käyttäjätunnuksen $3',
+'logentry-newusers-byemail' => '$1 loi käyttäjätunnuksen $3 ja salasana lähetettiin sähköpostitse',
 'logentry-newusers-autocreate' => 'Käyttäjätunnus $1 luotiin automaattisesti',
 'logentry-rights-rights' => '$1 muutti käyttäjän $3 oikeudet ryhmistä $4 ryhmiin $5',
 'logentry-rights-rights-legacy' => '$1 muutti käyttäjän $3 jäsenyyttä ryhmässä',

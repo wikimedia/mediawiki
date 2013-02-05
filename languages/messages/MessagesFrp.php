@@ -657,20 +657,20 @@ Se vos plét, signalâd-la a un [[Special:ListUsers/sysop|administrator]] sen ou
 'readonly_lag' => 'La bâsa de donâs est étâye vèrrolyêe ôtomaticament pendent que los sèrviors secondèros ratrapont lor retârd sur lo sèrvior principâl.',
 'internalerror' => 'Fôta de dedens',
 'internalerror_info' => 'Fôta de dedens : $1',
-'fileappenderrorread' => 'Empossiblo de liére « $1 » pendent l’aponsa.',
-'fileappenderror' => 'Empossiblo d’apondre « $1 » a « $2 ».',
-'filecopyerror' => 'Empossiblo de copiyér lo fichiér « $1 » vers « $2 ».',
-'filerenameerror' => 'Empossiblo de renomar lo fichiér « $1 » en « $2 ».',
-'filedeleteerror' => 'Empossiblo de suprimar lo fichiér « $1 ».',
-'directorycreateerror' => 'Empossiblo de fâre lo dossiér « $1 ».',
-'filenotfound' => 'Empossiblo de trovar lo fichiér « $1 ».',
-'fileexistserror' => 'Empossiblo d’ècrire lo fichiér « $1 » : lo fichiér ègziste.',
+'fileappenderrorread' => 'Y at pas moyen de liére « $1 » pendent l’aponsa.',
+'fileappenderror' => 'Y at pas moyen d’apondre « $1 » a « $2 ».',
+'filecopyerror' => 'Y at pas moyen de copiyér lo fichiér « $1 » vers « $2 ».',
+'filerenameerror' => 'Y at pas moyen de renomar lo fichiér « $1 » en « $2 ».',
+'filedeleteerror' => 'Y at pas moyen de suprimar lo fichiér « $1 ».',
+'directorycreateerror' => 'Y at pas moyen de fâre lo rèpèrtouèro « $1 ».',
+'filenotfound' => 'Y at pas moyen de trovar lo fichiér « $1 ».',
+'fileexistserror' => 'Y at pas moyen d’ècrire lo fichiér « $1 » : lo fichiér ègziste.',
 'unexpected' => 'Valor emprèvua : « $1 » = « $2 ».',
-'formerror' => 'Fôta : empossiblo de mandar lo formulèro.',
+'formerror' => 'Fôta : y at pas moyen de mandar lo formulèro.',
 'badarticleerror' => 'Cel’accion pôt pas étre fêta sur ceta pâge.',
-'cannotdelete' => 'Empossiblo de suprimar la pâge lo fichiér « $1 ».
+'cannotdelete' => 'Y at pas moyen de suprimar la pâge lo fichiér « $1 ».
 Pôt-étre la suprèssion est ja étâye fêta per un ôtro.',
-'cannotdelete-title' => 'Empossiblo de suprimar la pâge « $1 »',
+'cannotdelete-title' => 'Y at pas moyen de suprimar la pâge « $1 »',
 'delete-hook-aborted' => 'Suprèssion anulâye per un grèfon.
 Nion’èxplicacion est étâye balyêe.',
 'badtitle' => 'Crouyo titro',
@@ -705,7 +705,7 @@ $2',
 'ns-specialprotected' => 'Les pâges spèciâles pôvont pas étre changiêes.',
 'titleprotected' => "Cél titro est étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyêe est « ''$2'' ».",
-'filereadonlyerror' => 'Empossiblo de changiér lo fichiér « $1 » perce que lo dèpôt de fichiérs « $2 » est justo en lèctura.
+'filereadonlyerror' => 'Y at pas moyen de changiér lo fichiér « $1 » perce que lo dèpôt de fichiérs « $2 » est justo en lèctura.
 
 L’administrator que l’at vèrrolyê at balyê cet’èxplicacion : « $3 ».',
 'invalidtitle-knownnamespace' => 'Titro pas justo avouéc l’èspâço de noms « $2 » et lo tèxto « $3 »',
@@ -754,7 +754,7 @@ Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SI
 'userexists' => 'Lo nom d’utilisator buchiê est ja empleyê.
 Se vos plét, chouèsésséd-nen un ôtro.',
 'loginerror' => 'Fôta de branchement',
-'createaccounterror' => 'Empossiblo de fâre lo compto : $1',
+'createaccounterror' => 'Y at pas moyen de fâre lo compto : $1',
 'nocookiesnew' => "Lo compto utilisator est étâ fêt, mas vos éte pas branchiê{{GENDER:||e|(e)}}.
 {{SITENAME}} emplèye des tèmouens (''cookies'') por lo branchement mas vos los éd dèsactivâs.
 Se vos plét, activâd-los et pués tornâd-vos branchiér avouéc lo mémo nom et lo mémo contresegno.",
@@ -973,7 +973,7 @@ Se vos plét, entrebetâd tôs los dètalys ce-dessus dedens na sé-quinta deman
 'whitelistedittext' => 'Vos vos dête $1 por povêr changiér les pâges.',
 'confirmedittext' => 'Vos dête confirmar voutron adrèce èlèctronica devant que changiér les pâges.
 Se vos plét, buchiéd et pués validâd voutron adrèce èlèctronica dens voutres [[Special:Preferences|prèferences]].',
-'nosuchsectiontitle' => 'Empossiblo de trovar la sèccion',
+'nosuchsectiontitle' => 'Y at pas moyen de trovar la sèccion',
 'nosuchsectiontext' => 'Vos éd tâchiê de changiér na sèccion qu’ègziste pas.
 Pôt-étre el est étâye dèplaciêe ou ben ôtâye dês que vos éd liesu cela pâge.',
 'loginreqtitle' => 'Branchement nècèssèro',
@@ -1104,11 +1104,11 @@ Por refèrence, lo jornal de les suprèssions et des dèplacements de cela pâge
 'log-fulllog' => 'Vêre lo jornal complèt',
 'edit-hook-aborted' => 'Changement anulâ per un grèfon.
 Nion’èxplicacion est étâye balyêe.',
-'edit-gone-missing' => 'Empossiblo de betar a jorn la pâge.
+'edit-gone-missing' => 'Y at pas moyen de betar a jorn la pâge.
 Semble que seye étâye suprimâye.',
 'edit-conflict' => 'Conflit de changement.',
 'edit-no-change' => 'Voutron changement est étâ ignorâ, nion changement est étâ fêt u tèxto.',
-'edit-already-exists' => 'Empossiblo de fâre na pâge novèla.
+'edit-already-exists' => 'Y at pas moyen de fâre na pâge novèla.
 Ègziste ja.',
 'defaultmessagetext' => 'Mèssâjo per dèfôt',
 'content-failed-to-parse' => 'Falyita de l’analisa du contegnu de $2 por lo modèlo $1 : $3',
@@ -1151,7 +1151,7 @@ Se vos plét, controlâd la comparèson ce-desot por vos assurar qu’o est fran
 'undo-summary' => 'Dèfêta du changement $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Empossiblo de fâre lo compto',
+'cantcreateaccounttitle' => 'Y at pas moyen de fâre lo compto',
 'cantcreateaccount-text' => "La crèacion de compto dês cet’adrèce IP ('''$1''') est étâye blocâye per [[User:$3|$3]].
 
 La rêson balyêe per $3 ére ''$2''.",
@@ -1306,7 +1306,7 @@ Notâd que l’usâjo des lims de navigacion remetrat a zérô cela colona.',
 'mergehistory-submit' => 'Fusionar les vèrsions',
 'mergehistory-empty' => 'Niona vèrsion pôt étre fusionâye.',
 'mergehistory-success' => '$3 vèrsion{{PLURAL:$3||s}} de [[:$1]] fusionâye{{PLURAL:$3||s}} avouéc reusséta dedens [[:$2]].',
-'mergehistory-fail' => 'Empossiblo de fâre la fusion des historicos, se vos plét tornâd chouèsir la pâge et pués los paramètros de dâta.',
+'mergehistory-fail' => 'Y at pas moyen de fâre la fusion des historicos, se vos plét tornâd chouèsir la pâge et pués los paramètros de dâta.',
 'mergehistory-no-source' => 'La pâge d’origina $1 ègziste pas.',
 'mergehistory-no-destination' => 'La pâge de dèstinacion $1 ègziste pas.',
 'mergehistory-invalid-source' => 'La pâge d’origina dêt avêr un titro justo.',
@@ -1396,8 +1396,8 @@ Vos pouede trovar més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|
 'powersearch-redir' => 'Listar les redirèccions',
 'powersearch-field' => 'Rechèrchiér',
 'powersearch-togglelabel' => 'Chouèsir :',
-'powersearch-toggleall' => 'Tot',
-'powersearch-togglenone' => 'Nion',
+'powersearch-toggleall' => 'Tôs',
+'powersearch-togglenone' => 'Pas yon',
 'search-external' => 'Rechèrche de defôr',
 'searchdisabled' => 'La rechèrche dessus {{SITENAME}} est dèsactivâye.
 Pendent cél temps, vos pouede fâre na rechèrche avouéc Google.
@@ -1792,7 +1792,7 @@ Se vos plét, renomâd-lo et pués tornâd-lo tèlèchargiér.',
 'illegal-filename' => 'Lo nom du fichiér est pas ôtorisâ.',
 'overwrite' => 'Ècllafar un fichiér ègzistent est pas ôtorisâ.',
 'unknown-error' => 'Na fôta encognua est arrevâ.',
-'tmp-create-error' => 'Empossiblo de fâre lo fichiér temporèro.',
+'tmp-create-error' => 'Y at pas moyen de fâre lo fichiér temporèro.',
 'tmp-write-error' => 'Fôta d’ècritura du fichiér temporèro.',
 'large-file' => 'O est recomandâ que los fichiérs seyont pas ples grôs que $1 ;
 cél fichiér fât $2.',
@@ -1893,47 +1893,47 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'upload-copy-upload-invalid-domain' => 'Los tèlèchargements de copies sont pas disponiblos dês ceti domêno.',
 
 # File backend
-'backend-fail-stream' => 'Empossiblo de tramandar lo fichiér « $1 ».',
-'backend-fail-backup' => 'Empossiblo d’encartar lo fichiér « $1 ».',
+'backend-fail-stream' => 'Y at pas moyen de tramandar lo fichiér « $1 ».',
+'backend-fail-backup' => 'Y at pas moyen d’encartar lo fichiér « $1 ».',
 'backend-fail-notexists' => 'Lo fichiér $1 ègziste pas.',
-'backend-fail-hashes' => 'Empossiblo d’avêr los chaplâjos du fichiér por comparèson.',
+'backend-fail-hashes' => 'Y at pas moyen d’avêr los chaplâjos du fichiér por comparèson.',
 'backend-fail-notsame' => 'Un fichiér pas pariér ègziste ja a « $1 ».',
 'backend-fail-invalidpath' => '« $1 » est pas un chemin de stocâjo justo.',
-'backend-fail-delete' => 'Empossiblo de suprimar lo fichiér « $1 ».',
-'backend-fail-describe' => 'Empossiblo de changiér les mètadonâs du fichiér « $1 ».',
+'backend-fail-delete' => 'Y at pas moyen de suprimar lo fichiér « $1 ».',
+'backend-fail-describe' => 'Y at pas moyen de changiér les mètadonâs du fichiér « $1 ».',
 'backend-fail-alreadyexists' => 'Lo fichiér « $1 » ègziste ja.',
-'backend-fail-store' => 'Empossiblo de stocar lo fichiér « $1 » dedens « $2 ».',
-'backend-fail-copy' => 'Empossiblo de copiyér lo fichiér « $1 » vers « $2 ».',
-'backend-fail-move' => 'Empossiblo de dèplaciér lo fichiér « $1 » vers « $2 ».',
-'backend-fail-opentemp' => 'Empossiblo d’uvrir lo fichiér temporèro.',
-'backend-fail-writetemp' => 'Empossiblo d’ècrire dedens lo fichiér temporèro.',
-'backend-fail-closetemp' => 'Empossiblo de cllôre lo fichiér temporèro.',
-'backend-fail-read' => 'Empossiblo de liére lo fichiér « $1 ».',
-'backend-fail-create' => 'Empossiblo d’ècrire lo fichiér « $1 ».',
-'backend-fail-maxsize' => 'Empossiblo d’ècrire lo fichiér « $1 » perce qu’il est ples grôs {{PLURAL:$2|qu’un octèt|que $2 octèts}}.',
+'backend-fail-store' => 'Y at pas moyen de stocar lo fichiér « $1 » dedens « $2 ».',
+'backend-fail-copy' => 'Y at pas moyen de copiyér lo fichiér « $1 » vers « $2 ».',
+'backend-fail-move' => 'Y at pas moyen de dèplaciér lo fichiér « $1 » vers « $2 ».',
+'backend-fail-opentemp' => 'Y at pas moyen d’uvrir lo fichiér temporèro.',
+'backend-fail-writetemp' => 'Y at pas moyen d’ècrire dedens lo fichiér temporèro.',
+'backend-fail-closetemp' => 'Y at pas moyen de cllôre lo fichiér temporèro.',
+'backend-fail-read' => 'Y at pas moyen de liére lo fichiér « $1 ».',
+'backend-fail-create' => 'Y at pas moyen d’ècrire lo fichiér « $1 ».',
+'backend-fail-maxsize' => 'Y at pas moyen d’ècrire lo fichiér « $1 » perce qu’il est ples grôs {{PLURAL:$2|qu’un octèt|que $2 octèts}}.',
 'backend-fail-readonly' => "Ora lo sistèmo de stocâjo « $1 » est justo en lèctura. La rêson balyêe est : « ''$2'' »",
 'backend-fail-synced' => 'Lo fichiér « $1 » est dens un ètat dèsordonâ dedens los sistèmos de stocâjo de dedens',
-'backend-fail-connect' => 'Empossiblo de sè branchiér u sistèmo de stocâjo « $1 ».',
+'backend-fail-connect' => 'Y at pas moyen de sè branchiér u sistèmo de stocâjo « $1 ».',
 'backend-fail-internal' => 'Na fôta encognua est arrevâye dedens lo sistèmo de stocâjo « $1 ».',
-'backend-fail-contenttype' => 'Empossiblo de dètèrmenar lo tipo de contegnu du fichiér a stocar dedens « $1 ».',
+'backend-fail-contenttype' => 'Y at pas moyen de dètèrmenar lo tipo de contegnu du fichiér a stocar dedens « $1 ».',
 'backend-fail-batchsize' => 'Lo sistèmo de stocâjo at balyê na pârt de $1 {{PLURAL:$1|opèracion|opèracions}} de fichiér ; la limita est $2 {{PLURAL:$2|opèracion|opèracions}}.',
-'backend-fail-usable' => 'Empossiblo de liére d’ècrire lo fichiér « $1 » a côsa de pèrmissions ensufisentes ou ben de rèpèrtouèros / conteniors manquents.',
+'backend-fail-usable' => 'Y at pas moyen de liére d’ècrire lo fichiér « $1 » a côsa de pèrmissions ensufisentes ou ben de rèpèrtouèros / conteniors manquents.',
 
 # File journal errors
-'filejournal-fail-dbconnect' => 'Empossiblo de sè branchiér a la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
-'filejournal-fail-dbquery' => 'Empossiblo de betar a jorn la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
+'filejournal-fail-dbconnect' => 'Y at pas moyen de sè branchiér a la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
+'filejournal-fail-dbquery' => 'Y at pas moyen de betar a jorn la bâsa de donâs du jornal por lo sistèmo de stocâjo « $1 ».',
 
 # Lock manager
-'lockmanager-notlocked' => 'Empossiblo de dèvèrrolyér « $1 » ; il est pas vèrrolyê.',
-'lockmanager-fail-closelock' => 'Empossiblo de cllôre lo fichiér de vèrroly por « $1 ».',
-'lockmanager-fail-deletelock' => 'Empossiblo de suprimar lo fichiér de vèrroly por « $1 ».',
-'lockmanager-fail-acquirelock' => 'Empossiblo d’avêr lo vèrroly por « $1 ».',
-'lockmanager-fail-openlock' => 'Empossiblo d’uvrir lo fichiér de vèrroly por « $1 ».',
-'lockmanager-fail-releaselock' => 'Empossiblo de relâchiér lo vèrroly por « $1 ».',
-'lockmanager-fail-db-bucket' => 'Empossiblo de sè veriér vers prod de bâses de donâs de vèrroly dedens la sèlye $1.',
-'lockmanager-fail-db-release' => 'Empossiblo de relâchiér los vèrrolys sur la bâsa de donâs $1.',
-'lockmanager-fail-svr-acquire' => 'Empossiblo d’avêr des vèrrolys sur lo sèrvior $1.',
-'lockmanager-fail-svr-release' => 'Empossiblo de relâchiér los vèrrolys sur lo sèrvior $1.',
+'lockmanager-notlocked' => 'Y at pas moyen de dèvèrrolyér « $1 » ; il est pas vèrrolyê.',
+'lockmanager-fail-closelock' => 'Y at pas moyen de cllôre lo fichiér de vèrroly por « $1 ».',
+'lockmanager-fail-deletelock' => 'Y at pas moyen de suprimar lo fichiér de vèrroly por « $1 ».',
+'lockmanager-fail-acquirelock' => 'Y at pas moyen d’avêr lo vèrroly por « $1 ».',
+'lockmanager-fail-openlock' => 'Y at pas moyen d’uvrir lo fichiér de vèrroly por « $1 ».',
+'lockmanager-fail-releaselock' => 'Y at pas moyen de relâchiér lo vèrroly por « $1 ».',
+'lockmanager-fail-db-bucket' => 'Y at pas moyen de sè veriér vers prod de bâses de donâs de vèrroly dedens la sèlye $1.',
+'lockmanager-fail-db-release' => 'Y at pas moyen de relâchiér los vèrrolys sur la bâsa de donâs $1.',
+'lockmanager-fail-svr-acquire' => 'Y at pas moyen d’avêr des vèrrolys sur lo sèrvior $1.',
+'lockmanager-fail-svr-release' => 'Y at pas moyen de relâchiér los vèrrolys sur lo sèrvior $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Na fôta est arrevâye pendent l’uvèrtura du fichiér por los contrôlos ZIP.',
@@ -1948,53 +1948,53 @@ Pôt pas étre controlâ coment fôt por la sècuritât.',
 'uploadstash-summary' => 'Ceta pâge balye accès ux fichiérs que sont tèlèchargiês ou ben en cors de tèlèchargement, mas sont p’oncor publeyês dedens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’utilisator que los at tèlèchargiês.',
 'uploadstash-clear' => 'Èfaciér los fichiérs en cacho',
 'uploadstash-nofiles' => 'Vos éd gins de fichiér en cacho.',
-'uploadstash-badtoken' => 'L’ègzécucion de cela accion at pas reussia, pôt-étre perce que voutres enformacions de branchement ont èxpirâs. Tornâd èprovar.',
+'uploadstash-badtoken' => 'L’ègzécucion de cel’accion at pas reussi, pôt-étre perce que voutros identifients de changement ont èxpirâ. Tornâd èprovar.',
 'uploadstash-errclear' => 'L’èfacement des fichiérs at pas reussi.',
 'uploadstash-refresh' => 'Rafrèchir la lista des fichiérs',
-'invalid-chunk-offset' => 'Comencement de bocon envalido',
+'invalid-chunk-offset' => 'Dèplacement de bocon pas justo',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Accès refusâ',
-'img-auth-nopathinfo' => 'PATH_INFO manquent.
-Voutron sèrvor est pas dèfeni por passar cela enformacion.
-Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
+'img-auth-nopathinfo' => 'PATH_INFO manquenta.
+Voutron sèrvior est pas configurâ por passar cel’enformacion.
+Pôt étre bâsâye sur CGI et vêr pas recognetre « img_auth ».
 Vêde https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
-'img-auth-badtitle' => 'Empossiblo de construire un titro valido dês « $1 ».',
-'img-auth-nologinnWL' => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
+'img-auth-badtitle' => 'Y at pas moyen de construire un titro justo dês « $1 ».',
+'img-auth-nologinnWL' => 'Vos éte pas branchiê et pués « $1 » est pas dedens la lista blanche.',
 'img-auth-nofile' => 'Lo fichiér « $1 » ègziste pas.',
 'img-auth-isdir' => 'Vos tâchiéd d’arrevar u rèpèrtouèro « $1 ».
 Solament l’accès ux fichiérs est pèrmês.',
 'img-auth-streaming' => 'Lèctura en continu de « $1 ».',
-'img-auth-public' => 'La fonccion de img_auth.php est de fâre vêre des fichiérs d’un vouiqui privâ.
+'img-auth-public' => 'La fonccion de img_auth.php est de sortir des fichiérs d’un vouiqui privâ.
 Ceti vouiqui est configurâ coment un vouiqui publico.
-Por una sècuritât parfèta, img_auth.php est dèsactivâ.',
-'img-auth-noread' => 'L’usanciér at pas lo drêt en lèctura dessus « $1 ».',
-'img-auth-bad-query-string' => 'L’URL at una chêna de requéta envalida.',
+Por na sècuritât pèrfèta, img_auth.php est dèsactivâ.',
+'img-auth-noread' => 'L’utilisator at pas accès a la lèctura de « $1 ».',
+'img-auth-bad-query-string' => 'L’URL at na chêna de demanda pas justa.',
 
 # HTTP errors
-'http-invalid-url' => 'URL fôssa : $1',
+'http-invalid-url' => 'URL pas justa : $1',
 'http-invalid-scheme' => 'Les URLs avouéc lo plan « $1 » sont pas recognues.',
-'http-request-error' => 'Èrror encognua pendent l’èxpèdicion de la requéta.',
-'http-read-error' => 'Èrror de lèctura HTTP.',
-'http-timed-out' => 'La requéta HTTP at èxpirâ.',
-'http-curl-error' => 'Èrror pendent la rècupèracion de l’URL : $1',
-'http-host-unreachable' => 'URL pas juentâbla.',
-'http-bad-status' => 'Y at avu un problèmo pendent la requéta HTTP : $1 $2',
+'http-request-error' => 'La demanda HTTP at pas reussi a côsa d’una fôta encognua.',
+'http-read-error' => 'Fôta de lèctura HTTP.',
+'http-timed-out' => 'La demanda HTTP at èxpirâ.',
+'http-curl-error' => 'Fôta pendent la rècupèracion de l’URL : $1',
+'http-host-unreachable' => 'Y at pas moyen d’avengiér l’URL.',
+'http-bad-status' => 'Y at avu un problèmo pendent la demanda HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'URL pas juentâbla',
-'upload-curl-error6-text' => 'L’URL balyê pôt pas étre juenta.
-Volyéd controlar que l’URL est justa et que lo seto est en legne.',
-'upload-curl-error28' => 'Dèpassement du dèlê pendent lo tèlèchargement',
-'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre.
-Volyéd controlar que lo seto est en legne, atendre un pou et pués tornar èprovar.
-Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
+'upload-curl-error6' => 'Y at pas moyen d’avengiér l’URL',
+'upload-curl-error6-text' => 'L’URL balyêe pôt pas étre avengiêe.
+Se vos plét, tornâd controlar que l’URL est justa et pués que lo seto est en legne.',
+'upload-curl-error28' => 'Dèlê dèpassâ pendent lo tèlèchargement',
+'upload-curl-error28-text' => 'Lo seto at tardâ bien a rèpondre.
+Se vos plét, controlâd que lo seto est en legne, atende un pou et pués tornâd èprovar.
+Vos pouede asse-ben èprovar a n’hora de muendra afluence.',
 
 'license' => 'Licence :',
 'license-header' => 'Licence',
-'nolicense' => 'Gins de licence chouèsia',
-'license-nopreview' => '(Prèvisualisacion pas disponibla)',
+'nolicense' => 'Pas yona chouèsia',
+'license-nopreview' => '(Apèrçu pas disponiblo)',
 'upload_source_url' => '  (una URL valida et accèssibla publicament)',
 'upload_source_file' => '  (un fichiér sur voutron ordenator)',
 

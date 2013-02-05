@@ -1988,7 +1988,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'listusers-creationsort' => "Afantina amin'ny daty fanokafana",
 'usereditcount' => 'fanovana $1 {{PLURAL:}}',
 'usercreated' => "Noforonina ny {{GENDER:$3}} $1 tamin'ny $2",
-'newpages' => 'pejy Vaovao',
+'newpages' => 'Pejy vaovao',
 'newpages-username' => 'Solonanarana:',
 'ancientpages' => 'Ireo pejy tranainy indrindra',
 'move' => 'Hamindra azy toerana',
