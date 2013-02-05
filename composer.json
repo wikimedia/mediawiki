@@ -1,0 +1,36 @@
+{
+	"name": "mediawiki/core",
+	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
+	"keywords": ["mediawiki", "wiki"],
+	"homepage": "https://www.mediawiki.org/",
+	"authors": [
+		{
+			"name": "MediaWiki Community",
+			"homepage": "https://www.mediawiki.org/wiki/Special:Version/Credits"
+		}
+	],
+	"license": "GPL-2.0",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://gerrit.wikimedia.org/r/p/mediawiki/core.git"
+		}
+	],
+	"support": {
+		"issues": "https://bugzilla.wikimedia.org/",
+		"irc": "irc://irc.freenode.net/mediawiki",
+		"wiki": "https://www.mediawiki.org/"
+	},
+	"require": {
+		"php": ">=5.3.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*"
+	},
+	"suggest": {
+		"ext-fileinfo": "*",
+		"ext-mbstring": "*",
+		"ext-wikidiff2": "*",
+		"ext-apc": "*"
+	}
+}
