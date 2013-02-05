@@ -89,6 +89,10 @@ production.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.
 * (bug 43915) New maintenance script deleteEqualMessages.php.
+* (bug 44385) Moved the jquery.collapsibleTabs module to the Vector extension.
+  It was entirely Vector-extension-specific, deeply interconnected with the
+  extension, and this functionality really belongs to the extension instead of
+  the skin anyway.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
