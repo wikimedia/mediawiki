@@ -150,12 +150,11 @@ class JobQueueDB extends JobQueue {
 				}
 			}
 
+			$key = $this->getCacheKey( 'empty' );
 			$atomic = ( $flags & self::QoS_Atomic );
-			$key    = $this->getCacheKey( 'empty' );
-			$ttl    = self::CACHE_TTL_LONG;
 
 			$dbw->onTransactionIdle(
-				function() use ( $dbw, $rowSet, $rowList, $atomic, $key, $ttl, $scope
+				function() use ( $dbw, $rowSet, $rowList, $atomic, $key, $scope
 			) {
 				global $wgMemc;
 
@@ -197,7 +196,7 @@ class JobQueueDB extends JobQueue {
 					$dbw->commit( __METHOD__ );
 				}
 
-				$wgMemc->set( $key, 'false', $ttl ); // queue is not empty
+				$wgMemc->set( $key, 'false', JobQueueDB::CACHE_TTL_LONG );
 			} );
 		}
 
