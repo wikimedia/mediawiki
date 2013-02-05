@@ -85,7 +85,7 @@ class RunJobs extends Maintenance {
 		do {
 			$job = ( $type === false )
 				? $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE )
-				: $group->get( $type )->pop(); // job from a single queue
+				: $group->pop( $type ); // job from a single queue
 			if ( $job ) { // found a job
 				// Perform the job (logging success/failure and runtime)...
 				$t = microtime( true );
