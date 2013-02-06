@@ -198,6 +198,11 @@ production.
 * (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
   rather than using the content model of the page "API".
 * action=watch may now return errors.
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === Languages updated in 1.22===
 
