@@ -352,4 +352,21 @@ abstract class JobQueue {
 	protected function doGetPeriodicTasks() {
 		return array();
 	}
+
+	/**
+	 * Clear any process and persistent caches
+	 *
+	 * @return void
+	 */
+	final public function flushCaches() {
+		wfProfileIn( __METHOD__ );
+		$this->doFlushCaches();
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * @see JobQueue::flushCaches()
+	 * @return void
+	 */
+	protected function doFlushCaches() {}
 }

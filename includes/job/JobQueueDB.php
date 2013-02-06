@@ -106,6 +106,10 @@ class JobQueueDB extends JobQueue {
 	protected function doGetAcquiredCount() {
 		global $wgMemc;
 
+		if ( $this->claimTTL <= 0 ) {
+			return 0; // no acknowledgements
+		}
+
 		$key = $this->getCacheKey( 'acquiredcount' );
 
 		$count = $wgMemc->get( $key );
@@ -564,6 +568,17 @@ class JobQueueDB extends JobQueue {
 				'period'   => ceil( $this->claimTTL / 2 )
 			)
 		);
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function doFlushCaches() {
+		global $wgMemc;
+
+		foreach ( array( 'empty', 'size', 'acquiredcount' ) as $type ) {
+			$wgMemc->delete( $this->getCacheKey( $type ) );
+		}
 	}
 
 	/**
