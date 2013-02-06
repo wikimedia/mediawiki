@@ -83,12 +83,16 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$from = ( is_null( $params['from'] ) ? null :
+				$this->titlePartToKey( $params['from'], $params['namespace'] ) );
+		$to = ( is_null( $params['to'] ) ? null :
+				$this->titlePartToKey( $params['to'], $params['namespace'] ) );
 		$this->addWhereRange( 'page_title', $dir, $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'page_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'page_title' . $db->buildLike(
+					$this->titlePartToKey( $params['prefix'], $params['namespace'] ),
+					$db->anyString() ) );
 		}
 
 		if ( is_null( $resultPageSet ) ) {
