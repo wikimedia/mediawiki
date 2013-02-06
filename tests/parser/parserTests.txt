@@ -11806,17 +11806,6 @@ Multibyte character in padright
 </p>
 !! end
 
-!! test
-Formatted date
-!! config
-wgUseDynamicDates=1
-!! input
-[[2009-03-24]]
-!! result
-<p><span class="mw-formatted-date" title="2009-03-24"><a href="/index.php?title=2009&amp;action=edit&amp;redlink=1" class="new" title="2009 (page does not exist)">2009</a>-<a href="/index.php?title=March_24&amp;action=edit&amp;redlink=1" class="new" title="March 24 (page does not exist)">03-24</a></span>
-</p>
-!!end
-
 !!test
 formatdate parser function
 !!input
@@ -11836,33 +11825,11 @@ formatdate parser function, with default format
 !! end
 
 !! test
-Linked date with autoformatting disabled
-!! config
-wgUseDynamicDates=false
-!! input
-[[2009-03-24]]
-!! result
-<p><a href="/index.php?title=2009-03-24&amp;action=edit&amp;redlink=1" class="new" title="2009-03-24 (page does not exist)">2009-03-24</a>
-</p>
-!! end
-
-!! test
 Spacing of numbers in formatted dates
 !! input
 {{#formatdate:January 15}}
 !! result
 <p><span class="mw-formatted-date" title="01-15">January 15</span>
-</p>
-!! end
-
-!! test
-Spacing of numbers in formatted dates (linked)
-!! config
-wgUseDynamicDates=true
-!! input
-[[January 15]]
-!! result
-<p><span class="mw-formatted-date" title="01-15"><a href="/index.php?title=January_15&amp;action=edit&amp;redlink=1" class="new" title="January 15 (page does not exist)">January 15</a></span>
 </p>
 !! end
 

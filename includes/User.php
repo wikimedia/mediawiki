@@ -3264,7 +3264,7 @@ class User {
 	public function getPageRenderingHash() {
 		wfDeprecated( __METHOD__, '1.17' );
 
-		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
+		global $wgRenderHashAppend, $wgLang, $wgContLang;
 		if( $this->mHash ) {
 			return $this->mHash;
 		}
@@ -3275,9 +3275,6 @@ class User {
 
 		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getStubThreshold();
-		if ( $wgUseDynamicDates ) { # This is wrong (bug 24714)
-			$confstr .= '!' . $this->getDatePreference();
-		}
 		$confstr .= '!' . ( $this->getOption( 'numberheadings' ) ? '1' : '' );
 		$confstr .= '!' . $wgLang->getCode();
 		$confstr .= '!' . $this->getOption( 'thumbsize' );

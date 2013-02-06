@@ -16,6 +16,8 @@ production.
   of page watchers required for the number to be accessible to users
   without the unwatchedpages permission.
 * $wgBug34832TransitionalRollback has been removed.
+* (bug 29472) $wgUseDynamicDates has been removed and its functionality
+  disabled.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and
