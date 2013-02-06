@@ -425,15 +425,6 @@ class GlobalTest extends MediaWikiTestCase {
 
 	}
 
-
-	function testInStringTest() {
-	
-		$this->assertTrue( in_string( 'foo', 'foobar' ), 'foo is in foobar' );
-		$this->assertFalse( in_string( 'Bar', 'foobar' ), 'Case-sensitive by default' );
-		$this->assertTrue( in_string( 'Foo', 'foobar', true ), 'Case-insensitive when asked' );
-	
-	}
-
 	/**
 	 * test @see wfShorthandToInteger()
 	 * @dataProvider provideShorthand
