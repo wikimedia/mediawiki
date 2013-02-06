@@ -434,9 +434,9 @@ $messages = array(
 'category-subcat-count' => 'Kategorien har {{PLURAL:$2|berre denne underkategorien|{{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}, av totalt $2}}.',
 'category-subcat-count-limited' => 'Kategorien har {{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}.',
 'category-article-count' => 'Kategorien inneheld {{PLURAL:$2|berre denne sida|{{PLURAL:$1|denne sida|desse $1 sidene}}, av totalt $2}}.',
-'category-article-count-limited' => 'Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
+'category-article-count-limited' => '{{PLURAL:$1|Denne sida|Desse $1 sidene}} er i kategorien.',
 'category-file-count' => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande fila|dei følgjande {{PLURAL:$1|fil|$1 filene}}, av totalt $2}}.',
-'category-file-count-limited' => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
+'category-file-count-limited' => '{{PLURAL:$1|Denne fila|Desse $1 filene}} er i kategorien.',
 'listingcontinuesabbrev' => 'vidare',
 'index-category' => 'Indekserte sider',
 'noindex-category' => 'Ikkje-indekserte sider',
@@ -2051,7 +2051,7 @@ Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja
 'double-redirect-fixer' => 'Omdirigeringsfiksar',
 
 'brokenredirects' => 'Blindvegsomdirigeringar',
-'brokenredirectstext' => 'Dei følgjande omdirigeringane viser til ei side som ikkje finst:',
+'brokenredirectstext' => 'Desse omdirigeringane viser til sider som ikkje finst:',
 'brokenredirects-edit' => 'endre',
 'brokenredirects-delete' => 'slett',
 
@@ -2214,7 +2214,7 @@ Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rettar for brukargrupper',
-'listgrouprights-summary' => 'Følgjande liste viser brukargruppene som er definert på denne wikien, og kvar rettar dei har. Meir informasjon om dei ulike rettane ein kan ha finn ein [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
+'listgrouprights-summary' => 'Detter ei liste som viser brukargruppene som er definerte på wikien, og kva rettar dei har. Det kan finnast [[{{MediaWiki:Listgrouprights-helppage}}|meir informasjon]]  om dei ulike rettane.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">Innvilga rettar</span>
 * <span class="listgrouprights-granted">Tilbaketrukne rettar</span>',
 'listgrouprights-group' => 'Gruppe',
@@ -2465,7 +2465,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 # Undelete
 'undelete' => 'Sletta sider',
 'undeletepage' => 'Sletta sider',
-'undeletepagetitle' => "'''Følgjande innhald er sletta versjonar av [[:$1]]'''.",
+'undeletepagetitle' => "'''Dette innhaldet er sletta versjonar av [[:$1]]'''.",
 'viewdeletedpage' => 'Sjå sletta sider',
 'undeletepagetext' => '{{PLURAL:$1|Den følgjande sida er sletta, men ho|Dei følgjande $1 sidene er sletta, men dei}} finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undelete-fieldset-title' => 'Attenderull endringar',
@@ -2713,7 +2713,7 @@ Den gamle tittelen vil verta ei omdirigeringsside til den nye.
 Du kan oppdatera omdirigeringar som peikar til den opphavlege tittelen automatisk.
 Vel du å ikkje gjera dette, pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|øydelagde omdirigeringar]].
 
-Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder ho er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.
+Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder målsida er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.
 
 '''ÅTVARING!'''
 Dette kan vera ei drastisk og uventa endring for ei populær side; ver viss på at du skjøner konsekvensane av dette før du held fram.",
