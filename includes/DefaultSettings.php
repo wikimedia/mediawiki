@@ -5463,6 +5463,11 @@ $wgAutoloadClasses = array();
  * Where $type is 'specialpage', 'parserhook', 'variable', 'media' or 'other'.
  * Where 'descriptionmsg' can be an array with message key and parameters:
  * 'descriptionmsg' => array( 'exampleextension-desc', param1, param2, ... ),
+ *
+ * author can be a string or an array of strings. Authors can be linked using
+ * the regular wikitext link syntax. To have an internationalized version of
+ * "and others" show, add an element "...". This element can also be linked,
+ * for instance "[http://example ...]".
  */
 $wgExtensionCredits = array();
 

@@ -607,8 +607,10 @@ class SpecialVersion extends SpecialPage {
 	function listAuthors( $authors ) {
 		$list = array();
 		foreach( (array)$authors as $item ) {
-			if( $item == '...' ) {
+			if ( $item == '...' ) {
 				$list[] = $this->msg( 'version-poweredby-others' )->text();
+			} elseif ( substr( $item, -5 ) == ' ...]' ) {
+				$list[] = substr( $item, 0, -4 ) . $this->msg( 'version-poweredby-others' )->text() . "]";
 			} else {
 				$list[] = $item;
 			}
