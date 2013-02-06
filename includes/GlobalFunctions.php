@@ -2622,12 +2622,14 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 /**
  * Find out whether or not a mixed variable exists in a string
  *
+ * @deprecated Just use str(i)pos
  * @param $needle String
  * @param $str String
  * @param $insensitive Boolean
  * @return Boolean
  */
 function in_string( $needle, $str, $insensitive = false ) {
+	wfDeprecated( __METHOD__, '1.21' );
 	$func = 'strpos';
 	if( $insensitive ) $func = 'stripos';
 
