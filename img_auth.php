@@ -106,7 +106,7 @@ function wfImageAuthMain() {
 
 	// Check to see if the file exists
 	if ( !$repo->fileExists( $filename ) ) {
-		wfForbidden( 'img-auth-accessdenied','img-auth-nofile', $filename );
+		wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
 		return;
 	}
 

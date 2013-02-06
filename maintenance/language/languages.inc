@@ -508,7 +508,7 @@ class languages {
 
 
 			if ( isset( $messages[$key] ) ) {
-				$messages[$key] = implode( $messages[$key],", " );
+				$messages[$key] = implode( $messages[$key], ", " );
 			}
 		}
 		return $messages;
