@@ -160,6 +160,8 @@ production.
   ca-edit click instead opening URL directly.
 * (bug 43964) Invalid value of "link" parameter in <gallery> no longer produces
   a fatal error.
+* (bug 42184) $wgUploadSizeWarning missing second variable
+* (bug 40326) Check if files exist with a different extension during uploading
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
