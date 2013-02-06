@@ -81,7 +81,6 @@ class nextJobDB extends Maintenance {
 			return; // no DBs with jobs or cache is both empty and locked
 		}
 
-		$type = $this->getOption( 'type', false );
 		$pendingDBs = $pendingDbInfo['pendingDBs']; // convenience
 		do {
 			$again = false;
