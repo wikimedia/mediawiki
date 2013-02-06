@@ -189,6 +189,8 @@ production.
   "password mismatch" error.
 * (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
   extensions) performed using Git 1.7.8+ should now appear.
+* (bug 42184) $wgUploadSizeWarning missing second variable
+* (bug 40326) Check if files exist with a different extension during uploading
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
