@@ -447,12 +447,12 @@ $messages = array(
 'dec' => 'Des',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Kategori}}',
+'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header' => 'Halaman dalam kategori "$1"',
 'subcategories' => 'Subkategori',
 'category-media-header' => 'Media dalam kategori "$1"',
 'category-empty' => "''Saat ini, tidak terdapat halaman ataupun media dalam kategori ini.''",
-'hidden-categories' => '{{PLURAL:$1|Kategori tersembunyi}}',
+'hidden-categories' => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
 'hidden-category-category' => 'Kategori tersembunyi',
 'category-subcat-count' => '{{PLURAL:$2|Kategori ini hanya memiliki satu subkategori berikut.|Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut, dari total $2.}}',
 'category-subcat-count-limited' => 'Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut.',
@@ -1142,7 +1142,7 @@ Beberapa templat akan diabaikan.',
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
 'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
 'undo-norev' => 'Suntingan ini tidak dapat dibatalkan karena halaman tidak ditemukan atau telah dihapuskan.',
-'undo-summary' => 'Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
+'undo-summary' => 'Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
@@ -1341,8 +1341,8 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'notextmatches' => 'Tidak ada teks halaman yang cocok',
 'prevn' => '{{PLURAL:$1|$1}} sebelumnya',
 'nextn' => '{{PLURAL:$1|$1}} selanjutnya',
-'prevn-title' => '$1 {{PLURAL:$1|hasil}} sebelumnya',
-'nextn-title' => '$1 {{PLURAL:$1|hasil}} selanjutnya',
+'prevn-title' => '$1 {{PLURAL:$1|hasil|hasil}} sebelumnya',
+'nextn-title' => '$1 {{PLURAL:$1|hasil|hasil}} selanjutnya',
 'shown-title' => 'Tampilkan $1 {{PLURAL:$1|hasil|hasil}} per halaman',
 'viewprevnext' => 'Lihat ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'Opsi pencarian',
@@ -1360,7 +1360,7 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'searchprofile-images-tooltip' => 'Pencarian berkas',
 'searchprofile-everything-tooltip' => 'Pencarian di seluruh situs (termasuk halaman pembicaraan)',
 'searchprofile-advanced-tooltip' => 'Pencarian di ruang nama tertentu',
-'search-result-size' => '$1 ({{PLURAL:$2|$2 kata}})',
+'search-result-size' => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
 'search-result-category-size' => '{{PLURAL:$1|1 anggota|$1 anggota}} ({{PLURAL:$2|1 subkategori|$2 subkategori}}, {{PLURAL:$3|1 berkas|$3 berkas}})',
 'search-result-score' => 'Relevansi: $1%',
 'search-redirect' => '(pengalihan $1)',
@@ -1403,7 +1403,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 
 # Preferences page
 'preferences' => 'Preferensi',
-'mypreferences' => 'Pengaturan',
+'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Belum masuk log',
 'prefsnologintext' => 'Anda harus <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
@@ -2134,7 +2134,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'fewestrevisions' => 'Halaman dengan perubahan tersedikit',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|bita}}',
+'nbytes' => '$1 {{PLURAL:$1|bita|bita}}',
 'ncategories' => '$1 {{PLURAL:$1|kategori|kategori}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|pranala|pranala}}',
@@ -2199,7 +2199,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 'nopagetitle' => 'Halaman tujuan tidak ditemukan',
 'nopagetext' => 'Halaman yang Anda tuju tidak ditemukan.',
 'pager-newer-n' => '{{PLURAL:$1|1 lebih baru|$1 lebih baru}}',
-'pager-older-n' => '{{PLURAL:$1|$1 lebih lama}}',
+'pager-older-n' => '{{PLURAL:$1|1 lebih lama|$1 lebih lama}}',
 'suppress' => 'Pengawas',
 'querypage-disabled' => 'Halaman istimewa ini dinonaktifkan demi alasan kinerja.',
 
@@ -2279,7 +2279,7 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Daftar pengguna aktif',
 'activeusers-intro' => 'Berikut adalah daftar pengguna yang memiliki suatu bentuk aktivitas selama paling tidak $1 {{PLURAL:$1|hari|hari}} terakhir.',
-'activeusers-count' => '$1 {{PLURAL:$1|aktivitas|aktivitas}} dalam {{PLURAL:$3|hari|$3 hari}} terakhir',
+'activeusers-count' => '$1 {{PLURAL:$1|aktivitas|aktivitas}} dalam {{PLURAL:$3|1 hari|$3 hari}} terakhir',
 'activeusers-from' => 'Tampilkan pengguna mulai dari:',
 'activeusers-hidebots' => 'Sembunyikan bot',
 'activeusers-hidesysops' => 'Sembunyikan pengurus',
@@ -3268,7 +3268,7 @@ Jika dijalankan, sistem Anda akan berisiko terserang.",
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1, $2 × $3',
 'seconds-abbrev' => '$1 d',
-'minutes-abbrev' => '$1 m',
+'minutes-abbrev' => '$1 mnt',
 'hours-abbrev' => '$1 j',
 'days-abbrev' => '$1 h',
 'seconds' => '{{PLURAL:$1|$1 detik|$1 detik}}',

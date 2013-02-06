@@ -774,7 +774,7 @@ Vir apré ([$2 pache]).",
 # Delete
 'deletepage' => "Défacer l'pache",
 'confirmdeletetext' => "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MédiaWiki]].",
-'actioncomplete' => 'Plònne acchon',
+'actioncomplete' => 'Accion toute piéte',
 'actionfailed' => "L’action n'a poin réussi",
 'deletedtext' => "« $1 » o té défacé.
 Vir $2 pou eune lisse d'chés darinnes défachons.",

@@ -2719,7 +2719,7 @@ Przyczyna blokady $1 to: „$2”',
 'blocklogpage' => 'Historia blokad',
 'blocklog-showlog' => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany|blokowana}}. Poniżej znajduje się rejestr blokad:',
 'blocklog-showsuppresslog' => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany oraz ukrywany|blokowana oraz ukrywana}}. Poniżej znajduje się rejestr ukrywania:',
-'blocklogentry' => 'blokuje [[$1]], czas blokady: $2 $3',
+'blocklogentry' => '{{GENDER:$2|zablokował|zablokowała}} [[$1]], czas blokady: $2 $3',
 'reblock-logentry' => 'zmienia ustawienia blokady dla [[$1]], czas blokady: $2 $3',
 'blocklogtext' => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.

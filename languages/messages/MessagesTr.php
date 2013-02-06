@@ -776,7 +776,7 @@ Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ ot
 'gotaccount' => "Çoktan kayıt oldunuz mu? '''$1'''.",
 'gotaccountlink' => 'Oturum açın',
 'userlogin-resetlink' => 'Giriş bilgilerinizi mi unuttunuz?',
-'createaccountmail' => 'e-posta ile',
+'createaccountmail' => 'Geçici bir rastgele şifre kullan ve şifreyi aşağıda belirtilen e-posta adresine gönder',
 'createaccountreason' => 'Sebep:',
 'badretype' => 'Girdiğiniz şifreler birbirleriyle uyuşmuyor.',
 'userexists' => 'Girdiğiniz kullanıcı adı zaten kullanımda.
@@ -1059,9 +1059,10 @@ Ayrıca buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı�
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
 'longpageerror' => "'''Hata: Girdiğiniz metnin uzunluğu kabul edilebilir en fazla uzunluk olan {{PLURAL:$2|bir kilobayt|$2 kilobayt}}tan fazladır ve {{PLURAL:$1|bir kilobayt|$1 kilobayt}} büyüklüğündedir.'''
 Değişikliğiniz kaydedilemez.",
-'readonlywarning' => "'''DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz'''
+'readonlywarning' => "'''Uyarı: Bakım nedeniyle veritabanı şu anda kilitlenmiştir. Bu yüzden şu anda düzenlemelerinizi kaydetmek mümkün değildir.''' 
+Yaptığınız düzenlemeleri daha sonra kaydetmek isterseniz, yaptığınız düzenlemeleri bir metin dosyasına ya da herhangi bir şeye kopyala yapıştır yaparak saklayınız.
 
-Kilitleyen hizmetli şu açıklamayı eklemiştir: $1",
+Kilitlemeyi yapan yetkili şu açıklamayı eklemiştir: $1",
 'protectedpagewarning' => "'''Uyarı: Bu sayfa koruma altına alınmıştır ve yalnızca hizmetli olanlar tarafından değiştirilebilir.'''
 Son günlük girdisi referans amaçlı aşağıda verilmiştir:",
 'semiprotectedpagewarning' => "'''Not:''' Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.
@@ -2219,7 +2220,7 @@ Desteklenen iletişim kuralları: <code>$1</code> (bunların hiçbirini aramanı
 # Special:ActiveUsers
 'activeusers' => 'Aktif kullanıcı listesi',
 'activeusers-intro' => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
-'activeusers-count' => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|değişiklik|değişiklik}}',
+'activeusers-count' => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|eylem|eylem}}',
 'activeusers-from' => 'Şununla başlayan kullanıcıları görüntüle:',
 'activeusers-hidebots' => 'Botları gizle',
 'activeusers-hidesysops' => 'Yöneticileri gizle',
@@ -2251,8 +2252,8 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'emailuser-title-target' => 'Bu {{GENDER:$1|kullanıcıya}} e-posta gönder',
 'emailuser-title-notarget' => 'Kullanıcı e-posta',
 'emailpage' => 'Kullanıcıya e-posta gönder',
-'emailpagetext' => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
-[[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size direk cevap verebilecektir.',
+'emailpagetext' => 'Bu {{GENDER:$1|kullanıcıya}} e-posta iletisi göndermek için aşağıdaki formu kullanabilirsiniz.
+[[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size doğrudan yanıt verebilecektir.',
 'usermailererror' => 'E-posta hizmeti hata verdi:',
 'defemailsubject' => '"$1" kullanıcısından {{SITENAME}} e-postası',
 'usermaildisabled' => 'Kullanıcı e-postası devre dışı',
@@ -2290,13 +2291,8 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'watchnologin' => 'Oturum açık değil.',
 'watchnologintext' => 'İzleme listenizi değiştirebilmek için [[Special:UserLogin|oturum açmalısınız]].',
 'addwatch' => 'İzleme listesine ekle',
-'addedwatchtext' => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|izleme listenize]] kaydedildi.
-
-Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecektir.
-
-Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler listesi]] başlığı altında koyu harflerle listeleneceklerdir.
-
-Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
+'addedwatchtext' => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenize]] eklenmiştir.
+Bundan sonra, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecek.',
 'removewatch' => 'İzleme listesinden kaldır',
 'removedwatchtext' => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenizden]] silinmiştir.',
 'watch' => 'İzle',
@@ -2453,8 +2449,8 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya etki etmeyecektir.',
 'protect-default' => 'Tüm kullanıcılara izin ver',
 'protect-fallback' => '"$1" izni gerektir',
-'protect-level-autoconfirmed' => 'Yeni ve kayıtlı olmayan kullanıcıları engelle',
-'protect-level-sysop' => 'sadece hizmetliler',
+'protect-level-autoconfirmed' => 'Yalnızca otomatik onaylanmış kullanıcılara izin verilir',
+'protect-level-sysop' => 'Yalnızca hizmetlilere izin verilir',
 'protect-summary-cascade' => 'kademeli',
 'protect-expiring' => 'bitiş tarihi $1 (UTC)',
 'protect-expiring-local' => '$1 tarihinde bitiyor',
@@ -2933,6 +2929,7 @@ Geçici dosya kayıp.',
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
 'javascripttest-title' => '$1 testleri çalışıyor',
+'javascripttest-qunit-intro' => 'mediawiki.org üzerinden [$1 deneme belgelerine] bakınız.',
 'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit deneme paketi',
 
 # Tooltip help for the actions
@@ -3073,6 +3070,8 @@ Geçici dosya kayıp.',
 'pageinfo-protect-cascading-from' => 'Korumalar üzerinden geçiş',
 'pageinfo-category-info' => 'Kategori bilgileri',
 'pageinfo-category-pages' => 'Sayfa sayısı',
+'pageinfo-category-subcats' => 'Alt kategori sayısı',
+'pageinfo-category-files' => 'Dosya sayısı',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3123,6 +3122,7 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'file-info-size-pages' => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4, $5 {{PLURAL:$5|sayfa|sayfa}}',
 'file-nohires' => 'Daha yüksek çözünürlük yok.',
 'svg-long-desc' => 'SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3',
+'svg-long-desc-animated' => 'Hareketli SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3',
 'svg-long-error' => 'Geçersiz SVG dosyası: $1',
 'show-big-image' => 'Tam çözünürlük',
 'show-big-image-preview' => 'Ön izleme boyutu: $1.',
@@ -3155,6 +3155,8 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'minutes' => '{{PLURAL:$1|$1 dakika|$1 dakika}}',
 'hours' => '{{PLURAL:$1|$1 saat|$1 saat}}',
 'days' => '{{PLURAL:$1|$1 gün|$1 gün}}',
+'months' => '{{PLURAL:$1|$1 ay|$1 ay}}',
+'years' => '{{PLURAL:$1|$1 yıl|$1 yıl}}',
 'ago' => '$1 önce',
 'just-now' => 'Hemen şimdi',
 
@@ -3311,6 +3313,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-worldregiondest' => 'Gösterilen bölge',
 'exif-countrydest' => 'Gösterilen ülke',
 'exif-countrycodedest' => 'Gösterilen ülke kodu',
+'exif-provinceorstatedest' => 'Gösterilen il ya da devlet/eyalet',
 'exif-citydest' => 'Gösterilen Şehir',
 'exif-objectname' => 'Kısa başlık',
 'exif-specialinstructions' => 'Özel talimatlar',
@@ -3819,7 +3822,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'specialpages-group-highuse' => 'Çok kullanılan sayfalar',
 'specialpages-group-pages' => 'Sayfaların listeleri',
 'specialpages-group-pagetools' => 'Sayfa araçları',
-'specialpages-group-wiki' => 'Viki bilgiler ve araçlar',
+'specialpages-group-wiki' => 'Veri ve araçlar',
 'specialpages-group-redirects' => 'Yönlendirmeli özel sayfalar',
 'specialpages-group-spam' => 'Spam araçları',
 

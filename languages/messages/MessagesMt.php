@@ -3708,7 +3708,7 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 * Paġni speċjali normali.
 * <span class="mw-specialpagerestricted">Paġni speċjali riservati.</span>
 * <span class="mw-specialpagecached">Paġni speċjali disponibbli f\'verżjoni cache (jistgħu jkunu skaduti).</span>',
-'specialpages-group-maintenance' => 'Rapporti tal-manteniment',
+'specialpages-group-maintenance' => "Rapporti ta' manutenzjoni",
 'specialpages-group-other' => 'Paġni speċjali oħrajn',
 'specialpages-group-login' => 'Idħol / oħloq kont',
 'specialpages-group-changes' => 'L-Aħħar modifiki u reġistri',
