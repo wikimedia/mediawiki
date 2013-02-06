@@ -609,6 +609,9 @@ class SpecialVersion extends SpecialPage {
 		foreach( (array)$authors as $item ) {
 			if( $item == '...' ) {
 				$list[] = $this->msg( 'version-poweredby-others' )->text();
+			}
+			elseif ( strpos( $item, ' ...]' ) !== false ) {
+				$list[] = str_replace( '...', $this->msg( 'version-poweredby-others' )->text(), $item );
 			} else {
 				$list[] = $item;
 			}
