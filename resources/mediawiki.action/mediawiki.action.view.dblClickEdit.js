@@ -1,10 +1,12 @@
 /**
- * This module enables double-click-to-edit functionality
+ * This module enables double-click-to-edit functionality.
  */
 ( function ( mw, $ ) {
-	mw.util.$content.dblclick( function ( e ) {
-		e.preventDefault();
-		// Trigger native HTMLElement click instead of opening URL (bug 43052)
-		$( '#ca-edit a' ).get( 0 ).click();
+	$( function () {
+		mw.util.$content.dblclick( function ( e ) {
+			e.preventDefault();
+			// Trigger native HTMLElement click instead of opening URL (bug 43052)
+			$( '#ca-edit a' ).get( 0 ).click();
+		} );
 	} );
 }( mediaWiki, jQuery ) );
