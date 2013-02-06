@@ -31,11 +31,6 @@
 class ParserOptions {
 
 	/**
-	 * Use DateFormatter to format dates
-	 */
-	var $mUseDynamicDates;
-
-	/**
 	 * Interlanguage links are removed and returned in an array
 	 */
 	var $mInterwikiMagic;
@@ -220,7 +215,6 @@ class ParserOptions {
 	 */
 	protected $onAccessCallback = null;
 
-	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
@@ -308,7 +302,6 @@ class ParserOptions {
 		return $this->getUserLangObj()->getCode();
 	}
 
-	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
 	function setAllowExternalImagesFrom( $x )   { return wfSetVar( $this->mAllowExternalImagesFrom, $x ); }
@@ -422,7 +415,7 @@ class ParserOptions {
 	 * @param $lang Language object
 	 */
 	private function initialiseFromUser( $user, $lang ) {
-		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
+		global $wgInterwikiMagic, $wgAllowExternalImages,
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
@@ -430,7 +423,6 @@ class ParserOptions {
 
 		wfProfileIn( __METHOD__ );
 
-		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
@@ -481,12 +473,7 @@ class ParserOptions {
 	 * @return array
 	 */
 	public static function legacyOptions() {
-		global $wgUseDynamicDates;
-		$legacyOpts = array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
-		if ( $wgUseDynamicDates ) {
-			$legacyOpts[] = 'dateformat';
-		}
-		return $legacyOpts;
+		return array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
 	}
 
 	/**

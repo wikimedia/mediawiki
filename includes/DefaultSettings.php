@@ -2353,11 +2353,6 @@ $wgBrowserBlackList = array(
 $wgLegacySchemaConversion = false;
 
 /**
- * Enable to allow rewriting dates in page text.
- * DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES.
- */
-$wgUseDynamicDates  = false;
-/**
  * Enable dates like 'May 12' instead of '12 May', this only takes effect if
  * the interface is set to English.
  */

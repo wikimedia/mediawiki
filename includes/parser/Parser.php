@@ -62,7 +62,6 @@
  * $wgAllowSpecialInclusion
  * $wgInterwikiMagic
  * $wgMaxArticleSize
- * $wgUseDynamicDates
  *
  * @ingroup Parser
  */
@@ -1165,10 +1164,6 @@ class Parser {
 		$text = $this->doDoubleUnderscore( $text );
 
 		$text = $this->doHeadings( $text );
-		if ( $this->mOptions->getUseDynamicDates() ) {
-			$df = DateFormatter::getInstance();
-			$text = $df->reformat( $this->mOptions->getDateFormat(), $text );
-		}
 		$text = $this->replaceInternalLinks( $text );
 		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceExternalLinks( $text );
