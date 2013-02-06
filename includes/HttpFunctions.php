@@ -432,7 +432,6 @@ class MWHttpRequest {
 	/**
 	 * Take care of whatever is necessary to perform the URI request.
 	 *
-	 * @return Status
 	 */
 	public function execute() {
 		global $wgTitle;
