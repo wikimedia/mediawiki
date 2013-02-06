@@ -260,7 +260,7 @@ $forms_whitelist['cc-vmj'] = array(
 		// Array merge with cc-vmaj as fallback in case 'a' goes down
 		'+' => array_merge(
 			$forms_whitelist['cc-vmaj']['countries']['+'],
-			array() // as of right now, nothing specific here
+			array( 'BR', 'ID', 'PH', )
 		),
 	),
 );
@@ -275,9 +275,9 @@ $forms_whitelist['cc-vma'] = array(
 		'+' => array_merge(
 			$forms_whitelist['cc-vmaj']['countries']['+'],
 			$forms_whitelist['cc-vmad']['countries']['+'],
-			array( 'AE', 'AL', 'AN', 'AR', 'BG', 'CH', 'CN', 'CR', 'CY', 'CZ', 'DK', 'DZ',
-				 'EE', 'EG', 'HR', 'HU', 'IL', 'JO', 'KE', 'KW', 'KZ', 'LB', 'LI', 'LK',
-				 'LT', 'LV', 'MA', 'MT', 'MX', 'NO', 'NZ', 'OM', 'PK', 'PL', 'QA', 'RO',
+			array( 'AE', 'AL', 'AN', 'AR', 'BG', 'CA', 'CH', 'CN', 'CR', 'CY', 'CZ', 'DK',
+				 'DZ', 'EE', 'EG', 'JO', 'KE', 'HR', 'HU', 'IL', 'KW', 'KZ', 'LB', 'LI',
+				 'LK', 'LT', 'LV', 'MA', 'MT', 'NO', 'NZ', 'OM', 'PK', 'PL', 'QA', 'RO',
 				 'RU', 'SA', 'SE', 'TN', 'TR', 'UA', )
 		)
 	),
@@ -293,7 +293,15 @@ $forms_whitelist['cc-vm'] = array(
 		'+' => array_merge(
 			$forms_whitelist['cc-vmj']['countries']['+'],
 			$forms_whitelist['cc-vmd']['countries']['+'],
-			array( '', )
+			array( 'AG', 'AM', 'AO', 'AS', 'AW', 'AZ', 'BA', 'BB', 'BD', 'BF', 'BI', 'BJ',
+				 'BM', 'BN', 'BO', 'BS', 'BW', 'BY', 'BZ', 'CF', 'CG', 'CI', 'CK', 'CL',
+				 'CM', 'CO', 'CV', 'DJ', 'DM', 'DO', 'ER', 'ET', 'FJ', 'FM', 'FO', 'GA',
+				 'GD', 'GE', 'GL', 'GM', 'GT', 'GU', 'HN', 'IN', 'IQ', 'IS', 'JM', 'KH',
+				 'KI', 'KM', 'KN', 'KP', 'LC', 'LR', 'LY', 'MC', 'MD', 'ME', 'MG', 'MH',
+				 'MK', 'ML', 'MO', 'MP', 'MR', 'MV', 'MW', 'MX', 'MZ', 'NA', 'NE', 'NG',
+				 'NI', 'NR', 'PA', 'PE', 'PG', 'PS', 'PW', 'PY', 'RE', 'RS', 'SB', 'SC',
+				 'SD', 'SM', 'SN', 'SR', 'TD', 'TG', 'TM', 'TO', 'TP', 'TT', 'TZ', 'UY',
+				 'UZ', 'VA', 'VC', 'VE', 'VI', 'VN', 'VU', 'YE', 'ZA', 'ZM', 'ZW', )
 		),
 	),
 );
@@ -303,8 +311,10 @@ $forms_whitelist['cc-a'] = array(
 	'gateway' => 'globalcollect',
 	'payment_methods' => array('cc' => array( 'amex' )),
 	'countries' => array(
-		// Todo: Array merge with cc-vma as fallback in case 'vm' goes down
-		'+' => array( '', ),
+		'+' => array_merge(
+			$forms_whitelist['cc-vma']['countries']['+'],
+			array() // as of right now, nothing specific here
+		)
 	),
 );
 
@@ -314,11 +324,6 @@ $forms_whitelist['cc'] = array(
 	'payment_methods' => array('cc' => 'ALL')
 );
 
-//ffname aliases
-$forms_whitelist['cc-US'] = $forms_whitelist['cc-vmad'];
-$forms_whitelist['cc-CA'] = $forms_whitelist['cc-vm'];
-$forms_whitelist['cc-damv'] = $forms_whitelist['cc-vmad'];
-
 
 /****************************
  * Name and Email-Only Test *
@@ -327,21 +332,30 @@ $forms_whitelist['cc-damv'] = $forms_whitelist['cc-vmad'];
 $forms_whitelist['email-cc-vmaj'] = array(
 	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vmaj.html',
 	'gateway' => 'globalcollect',
-	'countries' => array( '-' => array( 'US', 'CA', 'GB') ),
+	'countries' => array(
+		'+' => $forms_whitelist['cc-vmaj']['countries']['+'],
+		'-' => array( 'US', 'CA', 'GB'), # TODO: Does this actually exlcude them?
+	),
 	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' ))
 );
 
 $forms_whitelist['email-cc-vma'] = array(
 	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vma.html',
 	'gateway' => 'globalcollect',
-	'countries' => array( '-' => array( 'US', 'CA', 'GB') ),
+	'countries' => array(
+		'+' => $forms_whitelist['cc-vma']['countries']['+'],
+		'-' => array( 'US', 'CA', 'GB'), # TODO: Does this actually exlcude them?
+	),
 	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
 );
 
 $forms_whitelist['email-cc-vm'] = array(
 	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vm.html',
 	'gateway' => 'globalcollect',
-	'countries' => array( '-' => array( 'US', 'CA', 'GB') ),
+	'countries' => array(
+		'+' => $forms_whitelist['cc-vm']['countries']['+'],
+		'-' => array( 'US', 'CA', 'GB'), # TODO: Does this actually exlcude them?
+	),
 	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
 );
 
