@@ -85,14 +85,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		$from = $params['from'] === null ? null : $this->titlePartToKey( $params['from'], NS_FILE ) );
 		if ( !is_null( $params['continue'] ) ) {
 			$from = $params['continue'];
 		}
-		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$to = $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_FILE ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'fa_name' . $db->buildLike(
+					$this->titlePartToKey( $params['prefix'], NS_FILE ),
+					$db->anyString() ) );
 		}
 
 		$sha1Set = isset( $params['sha1'] );

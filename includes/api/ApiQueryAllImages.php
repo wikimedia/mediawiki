@@ -120,12 +120,14 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			}
 
 			// Image filters
-			$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-			$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+			$from = ( $params['from'] === null ? null : $this->titlePartToKey( $params['from'], NS_FILE ) );
+			$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_FILE ) );
 			$this->addWhereRange( 'img_name', ( $ascendingOrder ? 'newer' : 'older' ), $from, $to );
 
 			if ( isset( $params['prefix'] ) ) {
-				$this->addWhere( 'img_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+				$this->addWhere( 'img_name' . $db->buildLike(
+						$this->titlePartToKey( $params['prefix'], NS_FILE ),
+						$db->anyString() ) );
 			}
 		} else {
 			// Check mutually exclusive params
