@@ -197,6 +197,11 @@ production.
   redirects.
 * On error, any warnings generated before that error will be shown in the result.
 * action=help suports generalized submodules (modules=query+value), querymodules obsolete
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
