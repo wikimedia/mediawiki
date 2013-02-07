@@ -69,6 +69,9 @@ class ApiUpload extends ApiBase {
 		// First check permission to upload
 		$this->checkPermissions( $user );
 
+		// Check if file is from a blacklisted source
+		$this->checkBlacklistedSource();
+
 		// Fetch the file (usually a no-op)
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isGood() ) {
@@ -443,6 +446,14 @@ class ApiUpload extends ApiBase {
 				$this->dieUsageMsg( 'badaccess-groups' );
 			}
 		}
+	}
+
+	/**
+	 * Checks that file is from a blacklisted source.
+	 * Dies with usage message on blacklisted source.
+	 */
+	protected function checkBlacklistedSource() {
+		// TODO: add hooks so UploadWizard can check with Flickr Blacklist
 	}
 
 	/**
