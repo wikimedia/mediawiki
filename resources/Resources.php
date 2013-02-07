@@ -1741,7 +1741,7 @@ return [
 	],
 	'mediawiki.page.startup' => [
 		'scripts' => 'resources/src/mediawiki/page/startup.js',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => ['mediawiki.util', 'mediawiki.cookie', 'mediawiki.storage'],
 		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
