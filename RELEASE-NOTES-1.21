@@ -87,6 +87,9 @@ production.
   a security fix (bug 42202).
 * Added the ability to limit the wall clock time used by shell processes,
   as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
+* Allow memory of shell subprocesses to be limited using Linux cgroups
+  instead of ulimit -v, which tends to cause deadlocks in recent versions
+  of ImageMagick. Configurable with $wgShellCgroup.
 * Added $wgWhitelistReadRegexp for regex whitelisting.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.

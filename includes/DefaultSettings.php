@@ -6189,6 +6189,31 @@ $wgMaxShellTime = 180;
 $wgMaxShellWallClockTime = 180;
 
 /**
+ * Under Linux: a cgroup directory used to constrain memory usage of shell 
+ * commands. The directory must be writable by the user which runs MediaWiki.
+ *
+ * If specified, this is used instead of ulimit, which is inaccurate, and
+ * causes malloc() to return NULL, which exposes bugs in C applications, making
+ * them segfault or deadlock.
+ *
+ * A wrapper script will create a cgroup for each shell command that runs, as
+ * a subgroup of the specified cgroup. If the memory limit is exceeded, the 
+ * kernel will send a SIGKILL signal to a process in the subgroup.
+ *
+ * @par Example:
+ * @code
+ *    mkdir -p /sys/fs/cgroup/memory/mediawiki
+ *    mkdir -m 0777 /sys/fs/cgroup/memory/mediawiki/job
+ *    echo '$wgShellCgroup = "/sys/fs/cgroup/memory/mediawiki/job";' >> LocalSettings.php
+ * @endcode
+ *
+ * The reliability of cgroup cleanup can be improved by installing a 
+ * notify_on_release script in the root cgroup, see e.g.
+ * https://gerrit.wikimedia.org/r/#/c/40784
+ */
+$wgShellCgroup = false;
+
+/**
  * Executable path of the PHP cli binary (php/php5). Should be set up on install.
  */
 $wgPhpCli = '/usr/bin/php';

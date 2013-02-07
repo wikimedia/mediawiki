@@ -2778,7 +2778,7 @@ function wfEscapeShellArg( ) {
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
-		$wgMaxShellWallClockTime;
+		$wgMaxShellWallClockTime, $wgShellCgroup;
 
 	static $disabled;
 	if ( is_null( $disabled ) ) {
@@ -2837,8 +2837,15 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 		$filesize = intval ( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
 
 		if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
-			$cmd = '/bin/bash ' . escapeshellarg( "$IP/bin/ulimit5.sh" ) .
-				" $time $mem $filesize $wallTime " . escapeshellarg( $cmd );
+			$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
+				escapeshellarg( $cmd ) . ' ' .
+				escapeshellarg(
+					"MW_CPU_LIMIT=$time; " .
+					'MW_CGROUP=' . escapeshellarg( $wgShellCgroup ) . '; ' .
+					"MW_MEM_LIMIT=$mem; " .
+					"MW_FILE_SIZE_LIMIT=$filesize; " .
+					"MW_WALL_CLOCK_LIMIT=$wallTime"
+				);
 		}
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
