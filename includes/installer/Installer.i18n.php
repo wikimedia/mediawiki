@@ -7130,7 +7130,7 @@ $1
 	'config-using531' => 'אי־אפשר להשתמש במדיה־ויקי עם <span dir="ltr">PHP $1</span> בגלל באג בפרמטרים של הפניות (reference parameters) ל־<code dir="ltr">__call()</code>.
 שדרגו ל־PHP 5.3.2 או לגרסה גבוהה יותר כדי לתקן את זה ([//bugs.php.net/bug.php?id=50394 bug filed with PHP]) או שַנמכו ל־PHP 5.3.0 כדי לפתור את הבעיה הזאת.
 ההתקנה בוטלה.',
-	'config-suhosin-max-value-length' => 'מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכיב ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפגע בביצועים. אם זה בכלל אפשרי, כדי לתקן את הערך של <code>suhosin.get.max_value_length</code> ל־1024 בקובץ <code>php.ini</code> ולהגדיר את ‎<code>$wgResourceLoaderMaxQueryLength</code> לאותו הערך בקובץ LocalSettings.php.', # Fuzzy
+	'config-suhosin-max-value-length' => 'מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכיב ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפגע בביצועים. אם זה בכלל אפשרי, כדאי לתקן את הערך של <code>suhosin.get.max_value_length</code> ל־1024 או יותר בקובץ <code>php.ini</code> ולהגדיר את ‎<code>$wgResourceLoaderMaxQueryLength</code> לאותו הערך בקובץ LocalSettings.php.',
 	'config-db-type' => 'סוג מסד הנתונים:',
 	'config-db-host' => 'שרת מסד הנתונים:',
 	'config-db-host-help' => 'אם שרת מסד הנתונים שלכם נמצא על שרת אחר, הקלידו את שם המחשב או את כתובת ה־IP כאן.
@@ -7211,7 +7211,7 @@ $1
 	'config-support-postgres' => '$1 הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). ייתכן שיש בתצורה הזאת באגים מסוימים והיא לא מומלצת לסביבות מבצעיות.',
 	'config-support-sqlite' => '* $1 הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)',
 	'config-support-oracle' => '* $1 הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
-	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני. ([http://www.php.net/manual/en/ibm-db2.installation.php How to compile PHP with IBM DB2 support])',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
@@ -7351,7 +7351,7 @@ chmod a+w $3</pre></div>',
 	'config-optional-continue' => 'הצגת שאלות נוספות.',
 	'config-optional-skip' => 'משעמם לי, תתקינו לי כבר את הוויקי הזה.',
 	'config-profile' => 'תסריט הרשאות משתמשים:',
-	'config-profile-wiki' => 'ויקי מסורתי', # Fuzzy
+	'config-profile-wiki' => 'ויקי פיתוח',
 	'config-profile-no-anon' => 'נדרשת יצירת חשבון',
 	'config-profile-fishbowl' => 'עורכים מורשים בלבד',
 	'config-profile-private' => 'ויקי פרטי',
@@ -7360,13 +7360,13 @@ chmod a+w $3</pre></div>',
 
 עם זאת, אנשים שונים מצאו למדיה־ויקי שימושים מגוּונים ולעתים לא קל לשכנע את כולם ביתרונות של \"דרך הוויקי\" המסורתית. ולכן יש לכם בררה.
 
-באתר '''{{int:config-profile-wiki}}''' – לכולם יש הרשאה לערוך, אפילו בלי להיכנס לחשבון.
+באתר מסוג '''{{int:config-profile-wiki}}''' – לכולם יש הרשאה לערוך, אפילו בלי להיכנס לחשבון.
 באתר וויקי מסוג '''{{int:config-profile-no-anon}}''' יש ביטחון גדול יותר, אבל הגדרה כזאת יכולה להרתיע תורמים מזדמנים.
 
 בתסריט '''{{int:config-profile-fishbowl}}''' רק משתמשים שקיבלו אישור יכולים לערוך, אבל כל הגולשים יכולים לקרוא את הדפים ואת גרסאותיהם הקודמות.
 ב'''{{int:config-profile-private}}''' רק משתמשים שקיבלו אישור יכולים לקרוא ולערוך דפים.
 
-הגדרות מורכבות של הרשאות אפשריות אחרי ההתקנה, ר׳ את [//www.mediawiki.org/wiki/Manual:User_rights הפרק על הנושא הזה בספר ההדרכה].", # Fuzzy
+הגדרות מורכבות של הרשאות אפשריות אחרי ההתקנה, ר׳ את [//www.mediawiki.org/wiki/Manual:User_rights הפרק על הנושא הזה בספר ההדרכה].",
 	'config-license' => 'זכויות יוצרים ורישיון:',
 	'config-license-none' => 'ללא כותרת תחתית עם רישיון',
 	'config-license-cc-by-sa' => 'קריאייטיב קומונז–ייחוס–שיתוף זהה',
@@ -7451,7 +7451,7 @@ chmod a+w $3</pre></div>',
 	'config-install-alreadydone' => "'''אזהרה:''' נראה שכבר התקנתם את מדיה־ויקי ואתם מנסים להתקין אותה שוב.
 אנה התקדמו לדף הבא.",
 	'config-install-begin' => 'כשתלחצו על "{{int:config-continue}}", תתחילו את ההתקנה של מדיה־ויקי.
-אם אתם עדיין רוצים לשנות משהו, לחצו על "הקודם".', # Fuzzy
+אם אתם עדיין רוצים לשנות משהו, לחצו על "{{int:config-back}}"',
 	'config-install-step-done' => 'בוצע',
 	'config-install-step-failed' => 'נכשל',
 	'config-install-extensions' => 'כולל הרחבות',
@@ -7516,7 +7516,8 @@ $3
 == קישורים שימושיים ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
 * [//www.mediawiki.org/wiki/Manual:FAQ שאלות ותשובות על מדיה־ויקי]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]',
 );
 
 /** Hindi (हिन्दी)

@@ -588,7 +588,7 @@ Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainl
 'gotaccount' => "Maš južo wužywarske konto? '''$1'''.",
 'gotaccountlink' => 'Pśizjawiś se',
 'userlogin-resetlink' => 'Sy pśizjawjeńske daty zabył?',
-'createaccountmail' => 'z e-mailku',
+'createaccountmail' => 'Nachylne pśidatne gronidło wužywaś a jo na slědujucu e-mailowu adresu pósłaś',
 'createaccountreason' => 'Pśicyna:',
 'badretype' => 'Šćitnej gronidle, kótarejž sy zapódał, se njemakajotej.',
 'userexists' => 'Wužywarske mě se južo wužywa.
@@ -859,7 +859,8 @@ Ty teke wobkšuśijoš, až sy tekst sam napisał abo sy jen wót public domainy
 '''NJEWÓZJAW WÓT COPYRIGHTA ŠĆITANE ŹĚŁA MIMO DOWÓLNOSĆI!'''",
 'copyrightwarning2' => "Pšosym buź se togo wědobny, až wšykne pśinoski na {{SITENAME}} mógu wót drugich wužywarjow se wobźěłaś, narownaś abo wulašowaś. Jolic až njocoš, až twój tekst se mimo zmilnosći wobźěłujo, ga pón jen how njeskładuj.<br /> Ty teke wobkšuśijoš, až sy tekst sam napisał abo sy jen wót public domainy resp. wót pódobneje lichotneje resursy kopěrował (glědaj $1 za dalše detaile). '''NJEWÓZJAW WÓT COPYRIGHTA ŠĆITANE ŹĚŁA MIMO DOWÓLNOSĆI!'''",
 'longpageerror' => "'''Zmólka: Tekst, kótaryž coš składowaś, jo {{PLURAL:$1| jaden kilobajt|$1 kilobajta|$1 kilobajty|$1 kilobajtow}} wjeliki. To jo wěcej ako dowólony maksimum {{PLURAL:$2|jaden kilobajt|$1 kilobajta|$1 kilobajty|$1 kilobajtow}}.''' Składowanje njejo móžno.",
-'readonlywarning' => "'''WARNOWANJE: Datowa banka jo se za wótwardowanje zacyniła, togodla njebuźo tuchylu móžno, twóje změny składowaś. Jolic až coš, ga móžoš tekst do tekstoweje dataje kopěrowaś a pózdźej składowaś.'''
+'readonlywarning' => "'''WARNOWANJE: Datowa banka jo se za wótwardowanje zacyniła, togodla njebuźo tuchylu móžno, twóje změny składowaś.'''
+Jolic coš, ga móžoš tekst do tekstoweje dataje kopěrowaś a pózdźej składowaś.
 
 Administrator, kenž jo ju zastajił, su toś tu pśicynu pódał: $1",
 'protectedpagewarning' => "'''Warnowanje: Toś ten bok jo se zastajił, tak až jano wužywarje z pšawami administratora mógu jen wobźěłaś.'''
@@ -2053,7 +2054,7 @@ Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
 # Special:ActiveUsers
 'activeusers' => 'Lisćina aktiwnych wužywarjow',
 'activeusers-intro' => 'To jo lisćina wužywarjow, kotrež su byli aktiwne za {{PLURAL:$1|slědny źeń|slědnej $1 dnja|slědne $1 dny|slědnych $1 dnjow}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach|slědnych $3 dnjach}}',
+'activeusers-count' => '$1 {{PLURAL:$1|akcija|akciji|akcije|akcijow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach}}',
 'activeusers-from' => 'Wužywarjow zwobrazniś, zachopinajucy z:',
 'activeusers-hidebots' => 'Boty schowaś',
 'activeusers-hidesysops' => 'Administratorow schowaś',
@@ -2563,7 +2564,7 @@ Móžoš awtomatiski aktualizěrowaś dalejposrědkowanja, kótarež pokazuju na
 Jolic njocoš, pśeglědaj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|defektnymi daleposrědkowanjami]].
 Sy zagronity, až wótkaze wjedu tam, źož maju wjasć.
 
-Źiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli jo prozny abo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistěrujucy bok pśepisaś.
+Źiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli slědny jo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistěrujucy bok pśepisaś.
 
 '''WARNOWANJE!'''
 To móžo byś drastiska a njewocakowana změna za popularny bok;
@@ -3651,7 +3652,7 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'specialpages-group-highuse' => 'Cesto wužywane boki',
 'specialpages-group-pages' => 'Lisćiny bokow',
 'specialpages-group-pagetools' => 'Rědy bokow',
-'specialpages-group-wiki' => 'Wikijowe daty a rědy',
+'specialpages-group-wiki' => 'Daty a rědy',
 'specialpages-group-redirects' => 'Dalej pósrědnjajuce boki',
 'specialpages-group-spam' => 'Spamowe rědy',
 
@@ -3748,6 +3749,7 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'logentry-newusers-newusers' => 'Wužywarske konto $1 jo se załožyło',
 'logentry-newusers-create' => 'Wužywarske konto $1 jo se załožyło',
 'logentry-newusers-create2' => '$1 jo załožył wužywarske konto $3',
+'logentry-newusers-byemail' => 'Wužywarske konto $3 jo se wót $1 załožyło a gronidło jo se pśez e-mail pósłało.',
 'logentry-newusers-autocreate' => 'Konto $1 jo se awtomatiski załožyło',
 'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 změnił',
 'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 změnił',
@@ -3806,6 +3808,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-ok-but-empty' => 'Nutśikowna zmólka: Žedne wótegrono wót serwera.',
 'api-error-overwrite' => 'Pśepisowanje eksistujuceje dataje njejo dowólone.',
 'api-error-stashfailed' => 'Nutśikowna zmólka: Serwer njejo mógał temporernu dataju składowaś.',
+'api-error-publishfailed' => 'Nutśkowna zmólka: Serwer njejo mógł nachylnu dataju wozjawiś.',
 'api-error-timeout' => 'Serwer njejo we wócakanem casu wótgronił.',
 'api-error-unclassified' => 'Njeznata zmólka jo nastała.',
 'api-error-unknown-code' => 'Njeznata zmólka: "$1"',
