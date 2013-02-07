@@ -33,7 +33,7 @@
  *
  * @internal documentation reviewed 15 Mar 2010
  */
-class Article extends Page {
+class Article implements Page {
 	/**@{{
 	 * @private
 	 */
