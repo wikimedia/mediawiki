@@ -1199,13 +1199,27 @@ class User implements IDBAccessObject {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
+
+			// If this user is autoblocked, set two cookies to track an autoblock.
+			$block = $this->getBlock();
+			$setCookies = $this->getRequest()->getCookie( 'BlockID' ) === null
+			              && $block instanceof Block
+			              && $block->getType() === Block::TYPE_USER
+			              && $block->isAutoblocking();
+			if ( $setCookies ) {
+				wfDebug( __METHOD__.': User is autoblocked; setting cookies to track' );
+				$blockHash = hash_hmac( 'sha512', $block->getID(), $this->getToken() );
+				$response = $this->getRequest()->response();
+				$response->setCookie( 'BlockID', $block->getId(), $block->getExpiry() );
+				$response->setCookie( 'BlockHash', $blockHash, $block->getExpiry() );
+			}
+
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
 			$session->set( 'wsUserName', $this->getName() );
 			$session->set( 'wsToken', $this->getToken() );
 			return true;
 		}
-
 		return false;
 	}
 
@@ -1621,6 +1635,27 @@ class User implements IDBAccessObject {
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+			}
+		}
+
+		// If no block has yet been found, check for a cookie indicating the user is blocked.
+		$request = $this->getRequest();
+		if ( !$block instanceof Block && $request->getCookie( 'BlockID' ) !== null ) {
+			$tmpBlock = Block::newFromID( (int) $request->getCookie( 'BlockID' ) );
+			if ( $tmpBlock && $block->getType() == Block::TYPE_USER && !$block->isExpired() ) {
+				wfDebug( __METHOD__.': Loading block from cookie' );
+				$user = $tmpBlock->getTarget();
+				$hash = hash_hmac( 'sha512', $tmpBlock->getID(), $user->getToken() );
+
+				// If the block hash is valid, then the user should be blocked by this block.
+				// Note: if the user attempts to edit, Block::doAutoblock will be invoked.
+				if ( $request->getCookie( 'BlockHash' ) === $hash ) {
+					$block = $tmpBlock;
+				}
+			} else {
+				// If the block is no longer valid, remove invalid block ID and hash.
+				$request->response()->clearCookie( 'BlockID' );
+				$request->response()->clearCookie( 'BlockHash' );
 			}
 		}
 
@@ -3767,6 +3802,7 @@ class User implements IDBAccessObject {
 		if ( $request && $session->getRequest() !== $request ) {
 			$session = $session->sessionWithRequest( $request );
 		}
+
 		$delay = $session->delaySave();
 
 		if ( !$session->getUser()->equals( $this ) ) {
