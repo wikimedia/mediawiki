@@ -113,6 +113,11 @@ return array(
 		'scripts' => 'resources/jquery/jquery.js',
 		'debugRaw' => false,
 		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => 'jquery.migrate',
+	),
+	'jquery.migrate' => array(
+		'scripts' => 'resources/jquery/jquery.migrate.js',
+		'debugRaw' => false,
 	),
 
 	/* jQuery Plugins */
