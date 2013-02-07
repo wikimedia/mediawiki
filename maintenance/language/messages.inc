@@ -2702,6 +2702,7 @@ $wgMessageStructure = array(
 		'pageinfo-robot-noindex',
 		'pageinfo-views',
 		'pageinfo-watchers',
+		'pageinfo-few-watchers',
 		'pageinfo-redirects-name',
 		'pageinfo-redirects-value',
 		'pageinfo-subpages-name',
