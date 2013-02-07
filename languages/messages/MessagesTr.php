@@ -2207,7 +2207,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'linksearch-ok' => 'Ara',
 'linksearch-text' => '"*.wikipedia.org" gibi jokerler kullanılabilir.
 En az bir üst-seviye alan gerekir, örneğin "*.org".<br />
-Desteklenen iletişim kuralları: <code>$1</code> (bunların hiçbirini aramanıza eklemeyin).',
+Desteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: <code>$1</code> (herhangi bir iletişim kuralı belirtmezseniz http:// otomatik olarak eklenir).',
 'linksearch-line' => "$1'e $2'den bağlantı verilmiş",
 'linksearch-error' => 'Jokerler sadece ana makine adının başında görünebilir.',
 
@@ -3349,6 +3349,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-giffilecomment' => 'GIF dosyası yorumu',
 'exif-intellectualgenre' => 'Öğe türü',
 'exif-subjectnewscode' => 'Konu kodu',
+'exif-scenecode' => 'IPTC sahne kodu',
 'exif-event' => 'Adı geçen olay',
 'exif-organisationinimage' => 'Organizasyon gösterilmiştir',
 'exif-personinimage' => 'Adı geçen kişi',

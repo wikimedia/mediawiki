@@ -2063,34 +2063,34 @@ Pôt-étre vos voléd changiér la dèscripcion sur la sina [$2 pâge de dèscri
 'filerevert-defaultcomment' => 'Rèvocâ a la vèrsion du $1 a $2',
 'filerevert-submit' => 'Rèvocar',
 'filerevert-success' => "'''[[Media:$1|$1]]''' est étâ rèvocâ a la [$4 vèrsion du $2 a $3].",
-'filerevert-badversion' => 'Y at gins de vèrsion ples vielye du fichiér avouéc la dâta balyê.',
+'filerevert-badversion' => 'Y at gins de vèrsion locala devant de cél fichiér avouéc l’horodatâjo balyê.',
 
 # File deletion
 'filedelete' => 'Suprimar $1',
 'filedelete-legend' => 'Suprimar lo fichiér',
-'filedelete-intro' => "Vos éte prèst a suprimar '''[[Media:$1|$1]]''' et pués tot son historico.",
+'filedelete-intro' => "Vos éte prèst a suprimar lo fichiér '''[[Media:$1|$1]]''' et pués tot lo sin historico.",
 'filedelete-intro-old' => "Vos éte aprés suprimar la vèrsion de '''[[Media:$1|$1]]''' du [$4 $2 a $3].",
 'filedelete-comment' => 'Rêson :',
 'filedelete-submit' => 'Suprimar',
-'filedelete-success' => "'''$1''' at étâ suprimâ.",
-'filedelete-success-old' => "La vèrsion de '''[[Media:$1|$1]]''' du $2 a $3 at étâ suprimâ.",
+'filedelete-success' => "'''$1''' est étâ suprimâ.",
+'filedelete-success-old' => "La vèrsion de '''[[Media:$1|$1]]''' du $2 a $3 est étâye suprimâye.",
 'filedelete-nofile' => "'''$1''' ègziste pas.",
-'filedelete-nofile-old' => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs spècefiâs.",
+'filedelete-nofile-old' => "Ègziste gins de vèrsion arch·ivâye de '''$1''' avouéc los atributs spècifiâs.",
 'filedelete-otherreason' => 'Ôtra rêson / rêson de ples :',
 'filedelete-reason-otherlist' => 'Ôtra rêson',
 'filedelete-reason-dropdown' => '*Rêsons corentes de suprèssion
 ** Violacion du drêt d’ôtor
 ** Fichiér en doblo',
 'filedelete-edit-reasonlist' => 'Changiér les rêsons de suprèssion',
-'filedelete-maintenance' => 'La suprèssion et la rèstoracion de fichiérs est dèsactivâ temporèrament pendent la mantegnence.',
-'filedelete-maintenance-title' => 'Empossiblo de suprimar lo fichiér',
+'filedelete-maintenance' => 'La suprèssion et la rèstoracion de fichiérs est dèsactivâye temporèrament pendent la mantegnence.',
+'filedelete-maintenance-title' => 'Y at pas moyen de suprimar lo fichiér',
 
 # MIME search
-'mimesearch' => 'Rechèrche per tipo de contegnu MIME',
-'mimesearch-summary' => "Ceta pâge vos pèrmèt de listar los fichiérs accèssiblos per ceti vouiqui d’aprés lor tipo de contegnu MIME.
-Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <code>image/jpeg</code>.",
+'mimesearch' => 'Rechèrche per tipo MIME',
+'mimesearch-summary' => "Ceta pâge pèrmèt de filtrar los fichiérs per lor tipo MIME.
+Entrâ : ''tipodecontegnu''/''sot-tipo'', per ègzemplo <code>image/jpeg</code>.",
 'mimetype' => 'Tipo MIME :',
-'download' => 'Tèlèchargiér',
+'download' => 'tèlèchargiér',
 
 # Unwatched pages
 'unwatchedpages' => 'Pâges pas siuvues',
@@ -2099,7 +2099,7 @@ Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <code>image/jpeg</code
 'listredirects' => 'Lista de les redirèccions',
 
 # Unused templates
-'unusedtemplates' => 'Modèlos inutilisâs',
+'unusedtemplates' => 'Modèlos pas empleyês',
 'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de noms « {{ns:template}} » que sont pas entrebetâyes dedens niona ôtra pâge.
 Oubliâd pas de controlar s’y at gins d’ôtro lim de vers los modèlos devant que los suprimar.',
 'unusedtemplateswlh' => 'ôtros lims',

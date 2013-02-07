@@ -1960,7 +1960,7 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'file-anchor-link' => 'Dosya',
 'filehist' => 'Ravêrdê dosya',
 'filehist-help' => 'bıploxne ser yew tarih u aye tarih dı versionê dosya bıvin.',
-'filehist-deleteall' => 'hemî biestere',
+'filehist-deleteall' => 'pêro bestere',
 'filehist-deleteone' => 'bestere',
 'filehist-revert' => 'reyna biyere',
 'filehist-current' => 'nıkayên',
@@ -2839,11 +2839,11 @@ Yewna name bınus.',
 'movenosubpage' => 'pelê bınıni yê no peli çino.',
 'movereason' => 'Sebeb:',
 'revertmove' => 'peyser bia',
-'delete_and_move' => 'Biestere u bere',
+'delete_and_move' => 'Bestere u bere',
 'delete_and_move_text' => '==gani hewn a bıbıo/bıesteriyo==
 
 " no [[:$1]]" name de yew pel ca ra esto. şıma wazeni pê hewn a kerdışê ey peli vurnayişê nameyi bıkeri?',
-'delete_and_move_confirm' => 'Ya, ena pele biestere',
+'delete_and_move_confirm' => 'Heya, na pele bestere',
 'delete_and_move_reason' => '"[[$1]]" qey vurnayişê nameyi esteriya',
 'selfmove' => 'name yo ke şıma wazeni bıbo, ın name û name yo ke ca ra esto eyni yê /zepê yê. vurnayiş mumkin niyo.',
 'immobile-source-namespace' => '"$1" pelê cayi de nameyi nêkırışyenî',
@@ -4340,7 +4340,7 @@ Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 
 # action=purge
 'confirm_purge_button' => 'Temam',
-'confirm-purge-top' => 'Cacheyê eno pel biestere?',
+'confirm-purge-top' => 'Vervirê na pele bestere?',
 'confirm-purge-bottom' => 'Purge kerdişê yew pel cacheyî estereno u revizyonê penîyî mucneno.',
 
 # action=watch/unwatch

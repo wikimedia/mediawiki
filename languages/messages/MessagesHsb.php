@@ -2566,7 +2566,7 @@ Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.'
 'move-page-legend' => 'Stronu přesunyć',
 'movepagetext' => "Wužiwanje formulara deleka budźe stronu přemjenować, suwajo jeje cyłe stawizny pod nowe mjeno. Stary titl budźe daleposrědkowanje na nowy titl.  Móžeš dalesposrědkowanja, kotrež na prěnjotny titl pokazać, awtomatisce aktualizować. Pruwuj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|skóncowanymi daleposrědkowanjemi]]. Dyrbiš zaručić, zo wotkazy na stronu pokazuja, na kotruž dyrbja dowjesć.
 
-Wobkedźbuj, zo strona so '''nje''' přesunje, jeli strona z nowym titlom hizo eksistuje, chibazo wona je prózdna abo dalesposrědkowanje a nima zašłe stawizny. To woznamjenja, zo móžeš stronu tam wróćo přemjenować, hdźež bu runje přemjenowana, jeli zmylk činiš a njemóžeš wobstejacu stronu přepisować.
+Wobkedźbuj, zo strona so '''nje'''přesunje, jeli strona z nowym titlom hizo eksistuje, chibazo poslednja je dalesposrědkowanje a nima zašłe stawizny. To woznamjenja, zo móžeš stronu tam wróćo přemjenować, hdźež bu runje přemjenowana, jeli zmylk činiš a njemóžeš wobstejacu stronu přepisować.
 
 '''Kedźbu!''' Móže to drastiska a njewočakowana změna za woblubowanu stronu być; prošu budź sej wěsty, zo sćěwki rozumiš, prjedy hač pokročuješ.",
 'movepagetext-noredirectfixer' => "Wužiwajo slědowacy formular, móžeš stronu přemjenować a wšě jich daty do stawiznow noweho titula přesunyć.

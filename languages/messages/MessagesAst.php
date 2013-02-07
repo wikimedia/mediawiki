@@ -2571,11 +2571,11 @@ Pues actualizar les redireiciones qu'enllacien al títulu orixinal automáticame
 Si prefieres nun lo facer, asegúrate de que nun dexes [[Special:DoubleRedirects|redireiciones dobles]] o [[Special:BrokenRedirects|rotes]].
 Tu yes el responsable de facer que los enllaces queden apuntando au se supón que tienen d'apuntar.
 
-Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que seya una redireición y nun tenga historial.
+Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que la mesma seya una redireición y nun tenga historial.
 Esto significa que pues volver a renomar una páxina col nome orixinal si t'enquivoques, y nun pues sobreescribir una páxina yá esistente.
 
-¡AVISU!'''
-Esti pue ser un cambéu importante y inesperáu pa una páxina popular;
+¡Avisu!'''
+Esti pue ser un cambéu importante ya inesperáu pa una páxina popular;
 por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes de siguir.",
 'movepagetext-noredirectfixer' => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome.
 El nome vieyu va convertise nuna redireición al nuevu.
