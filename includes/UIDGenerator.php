@@ -49,15 +49,15 @@ class UIDGenerator {
 			wfSuppressWarnings();
 			if ( wfIsWindows() ) {
 				// http://technet.microsoft.com/en-us/library/bb490913.aspx
-				$csv    = trim( `getmac /NH /FO CSV` );
-				$line   = substr( $csv, 0, strcspn( $csv, "\n" ) );
-				$info   = str_getcsv( $line );
-				$nodeId = count( $info ) ? str_replace( '-', '', $info[0] ) : '';
+				$csv = trim( wfShellExec( 'getmac /NH /FO CSV' ) );
+				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
+				$info = str_getcsv( $line );
+				$nodeId = !empty( $info ) ? str_replace( '-', '', $info[0] ) : '';
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) { // Linux/BSD/Solaris/OS X
 				// See http://linux.die.net/man/8/ifconfig
 				$m = array();
-				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/', `/sbin/ifconfig -a`, $m );
-				$nodeId = count( $m ) ? str_replace( ':', '', $m[1] ) : '';
+				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/', wfShellExec( '/sbin/ifconfig -a' ), $m );
+				$nodeId = !empty( $m ) ? str_replace( ':', '', $m[1] ) : '';
 			}
 			wfRestoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
@@ -225,7 +225,7 @@ class UIDGenerator {
 			$handle = $this->fileHandles[$lockFile];
 		} else {
 			$handle = fopen( $this->$lockFile, 'cb+' );
-			$this->fileHandles[$lockFile] = $handle ? $handle : null; // cache
+			$this->fileHandles[$lockFile] = $handle ?: null; // cache
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
@@ -238,9 +238,9 @@ class UIDGenerator {
 		$data = explode( ' ', fgets( $handle ) ); // "<clk seq> <sec> <msec> <counter> <offset>"
 		$clockChanged = false; // clock set back significantly?
 		if ( count( $data ) == 5 ) { // last UID info already initialized
-			$clkSeq = (int)$data[0] % $clockSeqSize;
-			$prevTime = array( (int)$data[1], (int)$data[2] );
-			$offset = (int)$data[4] % $counterSize; // random counter offset
+			$clkSeq = (int) $data[0] % $clockSeqSize;
+			$prevTime = array( (int) $data[1], (int) $data[2] );
+			$offset = (int) $data[4] % $counterSize; // random counter offset
 			$counter = 0; // counter for UIDs with the same timestamp
 			// Delay until the clock reaches the time of the last ID.
 			// This detects any microtime() drift among processes.
@@ -250,7 +250,7 @@ class UIDGenerator {
 				$time = self::millitime();
 			} elseif ( $time == $prevTime ) {
 				// Bump the counter if there are timestamp collisions
-				$counter = (int)$data[3] % $counterSize;
+				$counter = (int) $data[3] % $counterSize;
 				if ( ++$counter >= $counterSize ) { // sanity (starts at 0)
 					flock( $handle, LOCK_UN ); // abort
 					throw new MWException( "Counter overflow for timestamp value." );
@@ -319,7 +319,7 @@ class UIDGenerator {
 			$id_bin = str_pad( decbin( $ts % pow( 2, 46 ) ), 46, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'gmp' ) ) {
 			$ts = gmp_mod( // wrap around
-				gmp_add( gmp_mul( (string)$sec, (string)1000 ), (string)$msec ),
+				gmp_add( gmp_mul( (string) $sec, (string) 1000 ), (string) $msec ),
 				gmp_pow( '2', '46' )
 			);
 			$id_bin = str_pad( gmp_strval( $ts, 2 ), 46, '0', STR_PAD_LEFT );
@@ -340,7 +340,7 @@ class UIDGenerator {
 	 */
 	protected static function millitime() {
 		list( $msec, $sec ) = explode( ' ', microtime() );
-		return array( (int)$sec, (int)( $msec * 1000 ) );
+		return array( (int) $sec, (int) ( $msec * 1000 ) );
 	}
 
 	function __destruct() {
