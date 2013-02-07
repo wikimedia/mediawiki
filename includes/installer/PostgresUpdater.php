@@ -537,11 +537,34 @@ END;
 		}
 	}
 
-	protected function renameIndex( $table, $old, $new ) {
-		if ( $this->db->indexExists( $table, $old ) ) {
-			$this->output( "Renaming index $old to $new\n" );
-			$this->db->query( "ALTER INDEX $old RENAME TO $new" );
+	protected function renameIndex(
+		$table, $old, $new, $skipBothIndexExistWarning = false, $a = false, $b = false
+	) {
+		// First requirement: the table must exist
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return;
 		}
+
+		// Second requirement: the new index must be missing
+		if ( $this->db->indexExists( $table, $new, __METHOD__ ) ) {
+			$this->output( "...index $new already set on $table table.\n" );
+			if ( !$skipBothIndexExistWarning
+				&& $this->db->indexExists( $table, $old, __METHOD__ ) )
+			{
+				$this->output( "...WARNING: $old still exists, despite it has been renamed into $new (which also exists).\n" .
+					"            $old should be manually removed if not needed anymore.\n" );
+			}
+			return;
+		}
+
+		// Third requirement: the old index must exist
+		if ( !$this->db->indexExists( $table, $old, __METHOD__ ) ) {
+			$this->output( "...skipping: index $old doesn't exist.\n" );
+			return;
+		}
+
+		$this->db->query( "ALTER INDEX $old RENAME TO $new" );
 	}
 
 	protected function addPgField( $table, $field, $type ) {
