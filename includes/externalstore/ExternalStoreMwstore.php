@@ -28,6 +28,7 @@
  * and fully qualified with a global "wikiId" prefix in the configuration.
  *
  * @ingroup ExternalStorage
+ * @since 1.21
  */
 class ExternalStoreMwstore extends ExternalStoreMedium {
 	/**
@@ -55,7 +56,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			$rand = wfBaseConvert( mt_rand( 0, 46655 ), 10, 36, 3 );
 			// Make sure ID is roughly lexicographically increasing for performance
 			$id = str_pad( UIDGenerator::getTimestampedID128( 32 ), 26, '0', STR_PAD_LEFT );
-			// Segregate items by wiki ID for the sake of book keeping
+			// Segregate items by wiki ID for the sake of bookkeeping
 			$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : wfWikiID();
 
 			$url = $be->getContainerStoragePath( 'data' ) . '/' .
