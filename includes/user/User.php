@@ -1199,13 +1199,25 @@ class User implements IDBAccessObject {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
+
+			// If this user is autoblocked, set a cookie to track the Block.
+			$block = $this->getBlock();
+			$setCookies = $this->getRequest()->getCookie( 'BlockID' ) === null
+			              && $block instanceof Block
+			              && $block->getType() === Block::TYPE_USER
+			              && $block->isAutoblocking();
+			if ( $setCookies ) {
+				wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
+				$response = $this->getRequest()->response();
+				$response->setCookie( 'BlockID', $block->getId(), $block->getExpiry() );
+			}
+
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
 			$session->set( 'wsUserName', $this->getName() );
 			$session->set( 'wsToken', $this->getToken() );
 			return true;
 		}
-
 		return false;
 	}
 
@@ -1621,6 +1633,18 @@ class User implements IDBAccessObject {
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+			}
+		}
+
+		// If no block has yet been found, check for a cookie indicating the user is blocked.
+		$request = $this->getRequest();
+		if ( !$block instanceof Block && $request->getCookie( 'BlockID' ) !== null ) {
+			$tmpBlock = Block::newFromID( (int) $request->getCookie( 'BlockID' ) );
+			if ( $tmpBlock && $tmpBlock->getType() == Block::TYPE_USER && !$tmpBlock->isExpired() ) {
+				$block = $tmpBlock;
+			} else {
+				// If the block is no longer valid, remove invalid block cookie.
+				$request->response()->clearCookie( 'BlockID' );
 			}
 		}
 

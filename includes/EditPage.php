@@ -2323,7 +2323,7 @@ class EditPage {
 	function setHeaders() {
 		global $wgOut, $wgUser, $wgAjaxEditStash;
 
-		$wgOut->addModules( 'mediawiki.action.edit' );
+		$wgOut->addModules( [ 'mediawiki.action.edit', 'mediawiki.user.blockcookie' ] );
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) ) {
