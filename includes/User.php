@@ -987,6 +987,11 @@ class User {
 			$this->loadFromUserObject( $proposedUser );
 			$request->setSessionData( 'wsToken', $this->mToken );
 			wfDebug( "User: logged in from $from\n" );
+
+			if ( !$request->getCookie( 'BlockID' ) && $this->getBlock() ) {
+				// Sneaky user tried to delete block cookie...
+				$this->setCookies();
+			}
 			return true;
 		} else {
 			# Invalid credentials
@@ -1306,6 +1311,26 @@ class User {
 				$block->setBlocker( wfMessage( 'sorbs' )->text() );
 				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
+			}
+		}
+
+		// Check for a cookie indicating the user is blocked.
+		$request = $this->getRequest();
+		if ( !$block instanceof Block && $request->getCookie( 'BlockID' ) ) {
+			$tmpBlock = Block::newFromID( (int) $request->getCookie( 'BlockID' ) );
+			if ( $tmpBlock && $block->getType() == Block::TYPE_USER && !$block->isExpired() ) {
+				$user = $tmpBlock->getTarget();
+				$hash = hash_hmac( 'sha512', $tmpBlock->getID(), $user->getToken() );
+
+				// If the block hash is valid, then the user should be blocked by this block.
+				// Note: if the user attempts to edit, Block::doAutoblock will be invoked.
+				if ( $request->getCookie( 'BlockHash' ) === $hash ) {
+					$block = $tmpBlock;
+				}
+			} else {
+				// Remove invalid block IDs and hashes.
+				$this->setCookie( 'BlockID', -1, time() + 30 );
+				$this->setCookie( 'BlockHash', -1, time() + 30 );
 			}
 		}
 
@@ -3031,6 +3056,18 @@ class User {
 			$cookies['Token'] = $this->mToken;
 		} else {
 			$cookies['Token'] = false;
+		}
+
+		$block = $this->getBlock();
+		if (
+			$block &&
+			$block->getType() == Block::TYPE_USER &&
+			$block->isAutoblocking()
+		) {
+			$cookies['BlockID'] = $block->getID();
+			// FIXME: It's way too easy to get the user token anyway. This function and User::loadFromSession
+			// should be changed so only a hash of the token is given to the user.
+			$cookies['BlockHash'] = hash_hmac( 'sha512', $block->getID(), $this->getToken() );
 		}
 
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
