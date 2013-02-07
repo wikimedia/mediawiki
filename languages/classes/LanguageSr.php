@@ -167,6 +167,7 @@ class SrConverter extends LanguageConverter {
 		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
 		$m = array_shift( $matches );
+		$this->loadDefaultTables();
 		if ( !isset( $this->mTables[$toVariant] ) ) {
 			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
 		}
