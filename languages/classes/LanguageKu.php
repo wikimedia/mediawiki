@@ -206,6 +206,7 @@ class KuConverter extends LanguageConverter {
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
+		$this->loadTables();
 		/* From Kazakh interface, maybe we need it later
 		$breaks = '[^\w\x80-\xff]';
 		// regexp for roman numbers
