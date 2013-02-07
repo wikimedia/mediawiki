@@ -42,6 +42,20 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Edits or creates a page/revision
+	 * @param $pageName string page title
+	 * @param $text string content of the page
+	 * @param $summary string optional summary string for the revision
+	 * @param $defaultNs int optional namespace id
+	 * @return array as returned by WikiPage::doEditContent()
+	 */
+	protected function editPage( $pageName, $text, $summary = '', $defaultNs = NS_MAIN ) {
+		$title = Title::newFromText( $pageName, $defaultNs );
+		$page = WikiPage::factory( $title );
+		return $page->doEditContent( ContentHandler::makeContent( $text, $title ), $summary );
+	}
+
+	/**
 	 * Does the API request and returns the result.
 	 *
 	 * The returned value is an array containing
@@ -102,6 +116,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param $params Array: key-value API params
 	 * @param $session Array|null: session array
 	 * @param $user User|null A User object for the context
+	 * @return result of the API call
+	 * @throws Exception in case wsToken is not set in the session
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null, User $user = null ) {
 		global $wgRequest;
