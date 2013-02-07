@@ -17,7 +17,7 @@ var mw = ( function ( $, undefined ) {
 	 * that allow both single and multiple variables at once.
 	 * @class mw.Map
 	 *
-	 * @constructor
+	 * @constructo
 	 * @param {boolean} global Whether to store the values in the global window
 	 *  object or a exclusively in the object property 'values'.
 	 */
