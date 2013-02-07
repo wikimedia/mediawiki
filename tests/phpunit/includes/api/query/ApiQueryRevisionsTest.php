@@ -29,12 +29,10 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			$this->assertArrayHasKey( 'revisions', $page );
 			foreach( $page['revisions'] as $revision ) {
 				$this->assertArrayHasKey( 'contentformat', $revision,
-					'contentformat should be included when asking content so'
-					. ' client knows how to interpretate it'
+					'contentformat should be included when asking content so client knows how to interpret it'
 				);
 				$this->assertArrayHasKey( 'contentmodel', $revision,
-					'contentmodel should be included when asking content so'
-					. ' client knows how to interpretate it'
+					'contentmodel should be included when asking content so client knows how to interpret it'
 				);
 			}
 		}
