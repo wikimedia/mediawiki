@@ -54,6 +54,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function execute() {
 		global $IP;
+		throw new MWException("OH NO LEMMINGS");
 
 		# Make sure we have --configuration or PHPUnit might complain
 		if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
