@@ -34,6 +34,10 @@ production.
   instead of just administrators ('sysop'). Documentation for this feature is
   available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
 * $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* A new configuration variable has been added: $wgCookieSetOnAutoblock. This
+  determines whether to set a cookie when a user is autoblocked. Doing so means
+  that a blocked user, even after logging out and moving to a new IP address,
+  will still be blocked.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
@@ -64,6 +68,8 @@ production.
 * Added new hooks, 'ApiQueryBaseBeforeQuery', 'ApiQueryBaseAfterQuery', and
   'ApiQueryBaseProcessRow', to make it easier for extensions to add 'prop' and
   'show' parameters to existing API query modules.
+* (T5233) A cookie can now be set when a user is autoblocked, to track that user if
+  they move to a new IP address. This is disabled by default.
 
 === External library changes in 1.28 ===
 
