@@ -597,6 +597,12 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.autoblock' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.autoblock.js',
+		'dependencies' => array(
+			'jquery.cookie'
+		),
+	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',

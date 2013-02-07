@@ -2482,6 +2482,7 @@ $templates
 			'mediawiki.user',
 			'mediawiki.page.startup',
 			'mediawiki.page.ready',
+			'mediawiki.autoblock'
 		) );
 		if ( $wgIncludeLegacyJavaScript ) {
 			$this->addModules( 'mediawiki.legacy.wikibits' );
