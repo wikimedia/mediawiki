@@ -1200,13 +1200,29 @@ class User implements IDBAccessObject {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
+
+			// If this user is autoblocked, set a cookie to track the Block. This has to be done on
+			// every session load, because an autoblocked editor might not edit again from the same
+			// IP address after being blocked.
+			$config = RequestContext::getMain()->getConfig();
+			if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
+				$block = $this->getBlock();
+				$setCookies = $this->getRequest()->getCookie( 'BlockID' ) === null
+					&& $block
+					&& $block->getType() === Block::TYPE_USER
+					&& $block->isAutoblocking();
+				if ( $setCookies ) {
+					wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
+					$block->setCookie( $this->getRequest()->response() );
+				}
+			}
+
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
 			$session->set( 'wsUserName', $this->getName() );
 			$session->set( 'wsToken', $this->getToken() );
 			return true;
 		}
-
 		return false;
 	}
 
@@ -1608,6 +1624,30 @@ class User implements IDBAccessObject {
 
 		// User/IP blocking
 		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
+
+		// If no block has been found, check for a cookie indicating that the user is blocked.
+		$blockCookieVal = (int)$this->getRequest()->getCookie( 'BlockID' );
+		if ( !$block instanceof Block && $blockCookieVal > 0 ) {
+			// Load the Block from the ID in the cookie.
+			$tmpBlock = Block::newFromID( $blockCookieVal );
+			if ( $tmpBlock instanceof Block ) {
+				// Check the validity of the block.
+				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
+				                && !$tmpBlock->isExpired()
+				                && $tmpBlock->isAutoblocking();
+				$config = RequestContext::getMain()->getConfig();
+				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+				if ( $blockIsValid && $useBlockCookie ) {
+					// Use the block.
+					$block = $tmpBlock;
+				} else {
+					// If the block is not valid, clear the block cookie (but don't delete it,
+					// because it needs to be cleared from LocalStorage as well and an empty string
+					// value is checked for in the mediawiki.user.blockcookie module).
+					$block->setCookie( $this->getRequest()->response(), true );
+				}
+			}
+		}
 
 		// Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !in_array( $ip, $wgProxyWhitelist ) ) {
