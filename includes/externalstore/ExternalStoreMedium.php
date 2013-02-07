@@ -23,8 +23,10 @@
  */
 
 /**
- * Accessable external objects
+ * Accessable external objects in a particular storage medium
+ *
  * @ingroup ExternalStorage
+ * @since 1.21
  */
 abstract class ExternalStoreMedium {
 	/** @var Array */
