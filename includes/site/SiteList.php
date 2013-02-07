@@ -240,7 +240,7 @@ class SiteList extends GenericArrayObject {
 	 * @var string A string uniquely identifying the version of the serialization structure,
 	 *             not including any sub-structures.
 	 */
-	const SERIAL_VERSION_ID = '2013-01-23';
+	const SERIAL_VERSION_ID = '2013-02-07';
 
 	/**
 	 * Returns the version ID that identifies the serialization structure used by
