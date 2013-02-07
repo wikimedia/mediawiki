@@ -578,4 +578,162 @@ class UserTest extends MediaWikiTestCase {
 		$users->rewind();
 		$this->assertTrue( $user->equals( $users->current() ) );
 	}
+
+	/**
+	 * When a user is autoblocked a cookie is set with which to track them
+	 * in case they log out and change IP addresses.
+	 * @link https://phabricator.wikimedia.org/T5233
+	 */
+	public function testAutoblockCookies() {
+		// Set up the bits of global configuration that we use.
+		$this->setMwGlobals( [
+			'wgCookieSetOnAutoblock' => true,
+			'wgCookiePrefix' => 'wmsitetitle',
+		] );
+
+		// 1. Log in a test user, and block them.
+		$user1tmp = $this->getTestUser()->getUser();
+		$request1 = new FauxRequest();
+		$request1->getSession()->setUser( $user1tmp );
+		$expiryFiveDays = time() + ( 5 * 24 * 60 * 60 );
+		$block = new Block( [
+			'enableAutoblock' => true,
+			'expiry' => wfTimestamp( TS_MW, $expiryFiveDays ),
+		] );
+		$block->setTarget( $user1tmp );
+		$block->insert();
+		$user1 = User::newFromSession( $request1 );
+		$user1->mBlock = $block;
+		$user1->load();
+
+		// Confirm that the block has been applied as required.
+		$this->assertTrue( $user1->isLoggedIn() );
+		$this->assertTrue( $user1->isBlocked() );
+		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertTrue( $block->isAutoblocking() );
+		$this->assertGreaterThanOrEqual( 1, $block->getId() );
+
+		// Test for the desired cookie name, value, and expiry.
+		$cookies = $request1->response()->getCookies();
+		$this->assertArrayHasKey( 'wmsitetitleBlockID', $cookies );
+		$this->assertEquals( $block->getId(), $cookies['wmsitetitleBlockID']['value'] );
+		$this->assertEquals( $expiryFiveDays, $cookies['wmsitetitleBlockID']['expire'] );
+
+		// 2. Create a new request, set the cookies, and see if the (anon) user is blocked.
+		$request2 = new FauxRequest();
+		$request2->setCookie( 'BlockID', $block->getId() );
+		$user2 = User::newFromSession( $request2 );
+		$user2->load();
+		$this->assertNotEquals( $user1->getId(), $user2->getId() );
+		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
+		$this->assertTrue( $user2->isAnon() );
+		$this->assertFalse( $user2->isLoggedIn() );
+		$this->assertTrue( $user2->isBlocked() );
+		$this->assertEquals( true, $user2->getBlock()->isAutoblocking() ); // Non-strict type-check.
+		// Can't directly compare the objects becuase of member type differences.
+		// One day this will work: $this->assertEquals( $block, $user2->getBlock() );
+		$this->assertEquals( $block->getId(), $user2->getBlock()->getId() );
+		$this->assertEquals( $block->getExpiry(), $user2->getBlock()->getExpiry() );
+
+		// 3. Finally, set up a request as a new user, and the block should still be applied.
+		$user3tmp = $this->getTestUser()->getUser();
+		$request3 = new FauxRequest();
+		$request3->getSession()->setUser( $user3tmp );
+		$request3->setCookie( 'BlockID', $block->getId() );
+		$user3 = User::newFromSession( $request3 );
+		$user3->load();
+		$this->assertTrue( $user3->isLoggedIn() );
+		$this->assertTrue( $user3->isBlocked() );
+		$this->assertEquals( true, $user3->getBlock()->isAutoblocking() ); // Non-strict type-check.
+
+		// Clean up.
+		$block->delete();
+	}
+
+	/**
+	 * Make sure that no cookie is set to track autoblocked users
+	 * when $wgCookieSetOnAutoblock is false.
+	 */
+	public function testAutoblockCookiesDisabled() {
+		// Set up the bits of global configuration that we use.
+		$this->setMwGlobals( [
+			'wgCookieSetOnAutoblock' => false,
+			'wgCookiePrefix' => 'wm_no_cookies',
+		] );
+
+		// 1. Log in a test user, and block them.
+		$testUser = $this->getTestUser()->getUser();
+		$request1 = new FauxRequest();
+		$request1->getSession()->setUser( $testUser );
+		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block->setTarget( $testUser );
+		$block->insert();
+		$user = User::newFromSession( $request1 );
+		$user->mBlock = $block;
+		$user->load();
+
+		// 2. Test that the cookie IS NOT present.
+		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isBlocked() );
+		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertTrue( $block->isAutoblocking() );
+		$this->assertGreaterThanOrEqual( 1, $user->getBlockId() );
+		$this->assertGreaterThanOrEqual( $block->getId(), $user->getBlockId() );
+		$cookies = $request1->response()->getCookies();
+		$this->assertArrayNotHasKey( 'wm_no_cookiesBlockID', $cookies );
+
+		// Clean up.
+		$block->delete();
+	}
+
+	/**
+	 * When a user is autoblocked and a cookie is set to track them, the expiry time of the cookie
+	 * should match the block's expiry. If the block is infinite, the cookie expiry time should
+	 * match $wgAutoblockExpiry. If the expiry time is changed, the cookie's should change with it.
+	 */
+	public function testAutoblockCookieInfiniteExpiry() {
+		$cookieExpiration = 20 * 24 * 60 * 60; // 20 days
+		$this->setMwGlobals( [
+			'wgCookieSetOnAutoblock' => true,
+			'wgCookieExpiration' => $cookieExpiration,
+			'wgCookiePrefix' => 'wm_infinite_block',
+		] );
+		// 1. Log in a test user, and block them indefinitely.
+		$user1Tmp = $this->getTestUser()->getUser();
+		$request1 = new FauxRequest();
+		$request1->getSession()->setUser( $user1Tmp );
+		$block = new Block( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
+		$block->setTarget( $user1Tmp );
+		$block->insert();
+		$user1 = User::newFromSession( $request1 );
+		$user1->mBlock = $block;
+		$user1->load();
+
+		// 2. Test the cookie's expiry timestamp.
+		$this->assertTrue( $user1->isLoggedIn() );
+		$this->assertTrue( $user1->isBlocked() );
+		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertTrue( $block->isAutoblocking() );
+		$this->assertGreaterThanOrEqual( 1, $user1->getBlockId() );
+		$cookies = $request1->response()->getCookies();
+		// Calculate the expected cookie expiry date.
+		$this->assertArrayHasKey( 'wm_infinite_blockBlockID', $cookies );
+		$this->assertEquals( time() + $cookieExpiration, $cookies['wm_infinite_blockBlockID']['expire'] );
+
+		// 3. Change the block's expiry (to 2 days), and the cookie's should be changed also.
+		$newExpiry = time() + 2 * 24 * 60 * 60;
+		$block->mExpiry = wfTimestamp( TS_MW, $newExpiry );
+		$block->update();
+		$user2tmp = $this->getTestUser()->getUser();
+		$request2 = new FauxRequest();
+		$request2->getSession()->setUser( $user2tmp );
+		$user2 = User::newFromSession( $request2 );
+		$user2->mBlock = $block;
+		$user2->load();
+		$cookies = $request2->response()->getCookies();
+		$this->assertEquals( $newExpiry, $cookies['wm_infinite_blockBlockID']['expire'] );
+
+		// Clean up.
+		$block->delete();
+	}
 }
