@@ -2343,9 +2343,12 @@ ERROR;
 	}
 
 	function setHeaders() {
-		global $wgOut, $wgUser, $wgAjaxEditStash;
+		global $wgOut, $wgUser, $wgAjaxEditStash, $wgCookieSetOnAutoblock;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
+		if ( $wgCookieSetOnAutoblock === true ) {
+			$wgOut->addModules( 'mediawiki.user.blockcookie' );
+		}
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) ) {
