@@ -393,8 +393,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function getDB() {
 		if ( is_null( $this->mDb ) ) {
-			$apiQuery = $this->getQuery();
-			$this->mDb = $apiQuery->getDB();
+			$this->mDb = $this->getQuery()->getDB();
 		}
 		return $this->mDb;
 	}
@@ -585,24 +584,29 @@ abstract class ApiQueryBase extends ApiBase {
  */
 abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
-	private $mIsGenerator;
-
-	/**
-	 * @param $query ApiBase
-	 * @param $moduleName string
-	 * @param $paramPrefix string
-	 */
-	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
-		parent::__construct( $query, $moduleName, $paramPrefix );
-		$this->mIsGenerator = false;
-	}
+	private $mGeneratorPageSet = null;
 
 	/**
 	 * Switch this module to generator mode. By default, generator mode is
 	 * switched off and the module acts like a normal query module.
+	 * @since 1.21 requires pageset parameter
+	 * @param $generatorPageSet ApiPageSet object that the module will get
+	 *        by calling getPageSet() when in generator mode.
 	 */
-	public function setGeneratorMode() {
-		$this->mIsGenerator = true;
+	public function setGeneratorMode( $generatorPageSet ) {
+		$this->mGeneratorPageSet = $generatorPageSet;
+	}
+
+	/**
+	 * Get the PageSet object to work on.
+	 * If this module is generator, the pageSet object is different from other module's
+	 * @return ApiPageSet
+	 */
+	protected function getPageSet() {
+		if ( $this->mGeneratorPageSet !== null ) {
+			return $this->mGeneratorPageSet;
+		}
+		return parent::getPageSet();
 	}
 
 	/**
@@ -611,7 +615,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 * @return string Prefixed parameter name
 	 */
 	public function encodeParamName( $paramName ) {
-		if ( $this->mIsGenerator ) {
+		if ( $this->mGeneratorPageSet !== null ) {
 			return 'g' . parent::encodeParamName( $paramName );
 		} else {
 			return parent::encodeParamName( $paramName );

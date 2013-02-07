@@ -195,6 +195,8 @@ production.
   redirects.
 * On error, any warnings generated before that error will be shown in the result.
 * action=help suports generalized submodules (modules=query+value), querymodules obsolete
+* Add supports for all pageset capabilities - generators, redirects, converttitles to
+  action=purge and action=setnotificationtimestamp.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
@@ -202,6 +204,10 @@ production.
   Whenever enabled, a warning will also be added to all output.
 * ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
 * Query stores prop/list/meta as submodules
+* ApiPageSet can now be used in any action to process titles/pageids/revids or any generator.
+* BREAKING CHANGE: ApiPageSet constructor now has two params instead of three, with only the
+  first one keeping its meaning. ApiPageSet is now derived from ApiBase.
+* BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
 
 === Languages updated in 1.21 ===
 

@@ -936,7 +936,7 @@ class ApiMain extends ApiBase {
 	protected function printResult( $isError ) {
 		global $wgDebugAPI;
 		if( $wgDebugAPI !== false ) {
-			$this->getResult()->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
+			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
 		$this->getResult()->cleanUpUTF8();
