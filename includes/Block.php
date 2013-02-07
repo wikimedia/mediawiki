@@ -1418,6 +1418,23 @@ class Block {
 	}
 
 	/**
+	 * Set the 'BlockID' cookie to this block's ID and expiry date. If the expiry is 'infinity',
+	 * the configured autoblock expiry will be used instead. An empty value can also be set, in
+	 * order to retain the cookie but remove the block ID (e.g. in User::getBlockedStatus).
+	 * @param WebResponse $response The response on which to set the cookie.
+	 * @param boolean $setEmpty Whether to set the cookie's value to the empty string.
+	 */
+	public function setCookie( WebResponse $response, $setEmpty = false ) {
+		$expiry = $this->getExpiry();
+		if ( $expiry === 'infinity' ) {
+			// Autoblock expiry defaults to 1 day from now.
+			$expiry = Block::getAutoblockExpiry( wfTimestampNow() );
+		}
+		$value = $setEmpty ? '' : $this->getId();
+		$response->setCookie( 'BlockID', $value, $expiry );
+	}
+
+	/**
 	 * Get the key and parameters for the corresponding error message.
 	 *
 	 * @since 1.22
