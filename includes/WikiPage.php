@@ -23,7 +23,7 @@
 /**
  * Abstract class for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
  */
-abstract class Page {}
+interface Page {}
 
 /**
  * Class representing a MediaWiki article and history.
@@ -33,7 +33,7 @@ abstract class Page {}
  *
  * @internal documentation reviewed 15 Mar 2010
  */
-class WikiPage extends Page implements IDBAccessObject {
+class WikiPage implements Page, IDBAccessObject {
 	// Constants for $mDataLoadedFrom and related
 
 	/**
