@@ -1418,6 +1418,33 @@ class Block {
 	}
 
 	/**
+	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
+	 * the same as the block's, unless it's greater than $wgCookieExpiration in which case
+	 * $wgCookieExpiration will be used instead (defaults to 180 days).
+	 *
+	 * An empty value can also be set, in order to retain the cookie but remove the block ID
+	 * (e.g. as used in User::getBlockedStatus).
+	 *
+	 * @param WebResponse $response The response on which to set the cookie.
+	 * @param boolean $setEmpty Whether to set the cookie's value to the empty string.
+	 */
+	public function setCookie( WebResponse $response, $setEmpty = false ) {
+		// Calculate the default expiry time.
+		$config = RequestContext::getMain()->getConfig();
+		$defaultExpiry = wfTimestamp() + $config->get( 'CookieExpiration' );
+
+		// Use the Block's expiry time only if it's less than the default.
+		$expiry = wfTimestamp( TS_UNIX, $this->getExpiry() );
+		if ( $expiry > $defaultExpiry ) {
+			// The *default* default expiry is 180 days (approx. 6 months).
+			$expiry = $defaultExpiry;
+		}
+
+		$cookieValue = $setEmpty ? '' : $this->getId();
+		$response->setCookie( 'BlockID', $cookieValue, $expiry );
+	}
+
+	/**
 	 * Get the key and parameters for the corresponding error message.
 	 *
 	 * @since 1.22
