@@ -325,40 +325,6 @@ $forms_whitelist['cc'] = array(
 );
 
 
-/****************************
- * Name and Email-Only Test *
- ****************************/
-
-$forms_whitelist['email-cc-vmaj'] = array(
-	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vmaj.html',
-	'gateway' => 'globalcollect',
-	'countries' => array(
-		'+' => $forms_whitelist['cc-vmaj']['countries']['+'],
-		'-' => array( 'US', 'CA', 'GB'), # TODO: Does this actually exlcude them?
-	),
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'jcb' ))
-);
-
-$forms_whitelist['email-cc-vma'] = array(
-	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vma.html',
-	'gateway' => 'globalcollect',
-	'countries' => array(
-		'+' => $forms_whitelist['cc-vma']['countries']['+'],
-		'-' => array( 'US', 'CA', 'GB'), # TODO: Does this actually exlcude them?
-	),
-	'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex' ))
-);
-
-$forms_whitelist['email-cc-vm'] = array(
-	'file' => $form_dirs['gc'] . '/cc-emailonly/cc-vm.html',
-	'gateway' => 'globalcollect',
-	'countries' => array(
-		'+' => $forms_whitelist['cc-vm']['countries']['+'],
-		'-' => array( 'US', 'CA', 'GB'), # TODO: Does this actually exlcude them?
-	),
-	'payment_methods' => array('cc' => array( 'visa', 'mc' ))
-);
-
 /*************************
  * Recurring Credit Card *
  *************************/
