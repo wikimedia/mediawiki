@@ -114,6 +114,10 @@ return array(
 		'debugRaw' => false,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'jquery.migrate' => array(
+		'scripts' => 'resources/jquery/jquery.migrate.js',
+		'debugRaw' => false,
+	),
 
 	/* jQuery Plugins */
 
