@@ -1731,6 +1731,8 @@ return [
 	'mediawiki.page.ready' => [
 		'scripts' => 'resources/src/mediawiki/page/ready.js',
 		'dependencies' => [
+			'mediawiki.cookie',
+			'mediawiki.storage',
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
 			'jquery.makeCollapsible',
