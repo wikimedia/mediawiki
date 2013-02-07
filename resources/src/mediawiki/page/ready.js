@@ -11,6 +11,21 @@
 		}
 	}
 
+	// If a user has been autoblocked, two cookies are set.
+	// Their values are replicated here in localStorage to guard against cookie-removal.
+	// Ref: https://phabricator.wikimedia.org/T5233
+	var prefix = mw.config.get( 'wgCookiePrefix' );
+	if ( !mw.cookie.get( prefix + 'BlockID' ) && mw.storage.get( 'blockID' ) ) {
+		// The block ID exists in storage, but not in the cookie.
+		mw.cookie.set( prefix + 'BlockID', mw.storage.get( 'blockID' ) );
+		mw.cookie.set( prefix + 'BlockHash', mw.storage.get( 'blockHash' ) );
+	} else if ( parseInt( mw.cookie.get( prefix + 'BlockID' ), 10 ) > 0 ) {
+		// The block ID exists in the cookie, but not in storage.
+		// (When a block expires the cookie remains but its value is '', hence the integer check above.)
+		mw.storage.set( 'blockID', mw.cookie.get( prefix + 'BlockID' ) );
+		mw.storage.set( 'blockHash', mw.cookie.get( prefix + 'BlockHash' ) );
+	}
+
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var $sortableTables;
 

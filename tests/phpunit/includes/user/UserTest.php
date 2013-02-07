@@ -580,4 +580,40 @@ class UserTest extends MediaWikiTestCase {
 		$users->rewind();
 		$this->assertTrue( $user->equals( $users->current() ) );
 	}
+
+	/**
+	 * When a user is autoblocked, two cookies are set with which to track them in case they change
+	 * IP addresses.
+	 * @link https://phabricator.wikimedia.org/T5233
+	 */
+	public function testAutoblockCookies() {
+		global $wgCookiePrefix;
+		// Set up a WebRequest, a Block, and a User, and link them together.
+		$testUser = $this->getTestUser()->getUser();
+		$request = new FauxRequest();
+		$request->getSession()->setUser( $testUser );
+		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block->setTarget( $testUser );
+		$block->insert();
+		$user = User::newFromSession( $request );
+		$user->mBlock = $block;
+		$user->load();
+
+		// Confirm that the block has been applied as required.
+		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isBlocked() );
+		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertTrue( $block->isAutoblocking() );
+
+		// Test for the desired cookie names and values.
+		$this->assertGreaterThanOrEqual( 1, $block->getId() );
+		$cookies = $request->response()->getCookies();
+		// The Block ID:
+		$this->assertArrayHasKey( $wgCookiePrefix.'BlockID', $cookies );
+		$this->assertEquals( $block->getId(), $cookies[$wgCookiePrefix.'BlockID']['value'] );
+		// The hash of the Block ID and User Token:
+		$this->assertArrayHasKey( $wgCookiePrefix.'BlockHash', $cookies );
+		$blockHash = hash_hmac( 'sha512', $block->getID(), $user->getToken() );
+		$this->assertEquals( $blockHash, $cookies[$wgCookiePrefix.'BlockHash']['value'] );
+	}
 }
