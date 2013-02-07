@@ -1407,6 +1407,11 @@ return [
 		'dependencies' => 'mediawiki.util',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.user.blockcookie' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.user.blockcookie.js',
+		'dependencies' => [ 'mediawiki.cookie', 'mediawiki.storage' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.user.js',
 		'dependencies' => [
@@ -1731,6 +1736,7 @@ return [
 	'mediawiki.page.ready' => [
 		'scripts' => 'resources/src/mediawiki/page/ready.js',
 		'dependencies' => [
+			'mediawiki.user.blockcookie',
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
 			'jquery.makeCollapsible',
