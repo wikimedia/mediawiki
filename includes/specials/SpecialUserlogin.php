@@ -314,8 +314,10 @@ class LoginForm extends SpecialPage {
 		if( 'local' != $this->mDomain && $this->mDomain != '' ) {
 			if(
 				!$wgAuth->canCreateAccounts() &&
-				( !$wgAuth->userExists( $this->mUsername ||
-				  !$wgAuth->authenticate( $this->mUsername, $this->mPassword ) ) )
+				(
+					!$wgAuth->userExists( $this->mUsername ) ||
+					!$wgAuth->authenticate( $this->mUsername, $this->mPassword )
+				)
 			) {
 				return Status::newFatal( 'wrongpassword' );
 			}
