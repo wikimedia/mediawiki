@@ -2046,7 +2046,9 @@ class User {
 	/**
 	 * Set the password and reset the random token unconditionally.
 	 *
-	 * @param $str String New password to set
+	 * @param $str string|null New password to set or null to set an invalid
+	 *        password hash meaning that the user will not be able to log in
+	 *        through the web interface.
 	 */
 	public function setInternalPassword( $str ) {
 		$this->load();
