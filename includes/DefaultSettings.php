@@ -47,7 +47,7 @@
  * This is not a valid entry point, perform no further processing unless
  * MEDIAWIKI is defined
  */
-if( !defined( 'MEDIAWIKI' ) ) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	echo "This file is part of MediaWiki and is not a valid entry point\n";
 	die( 1 );
 }
@@ -104,7 +104,7 @@ $wgCanonicalServer = false;
  * Other paths will be set to defaults based on it unless they are directly
  * set in LocalSettings.php
  */
-$wgScriptPath       = '/wiki';
+$wgScriptPath = '/wiki';
 
 /**
  * Whether to support URLs like index.php/Page_title These often break when PHP
@@ -134,7 +134,7 @@ $wgUsePathInfo =
  * Some hosting providers use PHP 4 for *.php files, and PHP 5 for *.php5. This
  * variable is provided to support those providers.
  */
-$wgScriptExtension  = '.php';
+$wgScriptExtension = '.php';
 
 
 /**@}*/
@@ -583,7 +583,7 @@ $wgCopyUploadProxy = false;
  * will have a maximum of 500 kB.
  *
  */
-$wgMaxUploadSize = 1024*1024*100; # 100MB
+$wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
 
 /**
  * Point the upload navigation link to an external URL
@@ -684,7 +684,7 @@ $wgFileBlacklist = array(
  */
 $wgMimeTypeBlacklist = array(
 	# HTML may contain cookie-stealing JavaScript and web bugs
-	'text/html', 'text/javascript', 'text/x-javascript',  'application/x-shellscript',
+	'text/html', 'text/javascript', 'text/x-javascript', 'application/x-shellscript',
 	# PHP scripts may execute arbitrary code on the server
 	'application/x-php', 'text/x-php',
 	# Other types that may be interpreted by some servers
@@ -742,10 +742,10 @@ $wgUploadSizeWarning = false;
  */
 $wgTrustedMediaFormats = array(
 	MEDIATYPE_BITMAP, //all bitmap formats
-	MEDIATYPE_AUDIO,  //all audio formats
-	MEDIATYPE_VIDEO,  //all plain video formats
-	"image/svg+xml",  //svg (only needed if inline rendering of svg is not supported)
-	"application/pdf",  //PDF files
+	MEDIATYPE_AUDIO, //all audio formats
+	MEDIATYPE_VIDEO, //all plain video formats
+	"image/svg+xml", //svg (only needed if inline rendering of svg is not supported)
+	"application/pdf", //PDF files
 	#"application/x-shockwave-flash", //flash/shockwave movie
 );
 
@@ -754,18 +754,18 @@ $wgTrustedMediaFormats = array(
  * Each entry in the array maps a MIME type to a class name
  */
 $wgMediaHandlers = array(
-	'image/jpeg'     => 'JpegHandler',
-	'image/png'      => 'PNGHandler',
-	'image/gif'      => 'GIFHandler',
-	'image/tiff'     => 'TiffHandler',
+	'image/jpeg' => 'JpegHandler',
+	'image/png' => 'PNGHandler',
+	'image/gif' => 'GIFHandler',
+	'image/tiff' => 'TiffHandler',
 	'image/x-ms-bmp' => 'BmpHandler',
-	'image/x-bmp'    => 'BmpHandler',
-	'image/x-xcf'    => 'XCFHandler',
-	'image/svg+xml'  => 'SvgHandler', // official
-	'image/svg'      => 'SvgHandler', // compat
+	'image/x-bmp' => 'BmpHandler',
+	'image/x-xcf' => 'XCFHandler',
+	'image/svg+xml' => 'SvgHandler', // official
+	'image/svg' => 'SvgHandler', // compat
 	'image/vnd.djvu' => 'DjVuHandler', // official
-	'image/x.djvu'   => 'DjVuHandler', // compat
-	'image/x-djvu'   => 'DjVuHandler', // compat
+	'image/x.djvu' => 'DjVuHandler', // compat
+	'image/x-djvu' => 'DjVuHandler', // compat
 );
 
 /**
@@ -848,7 +848,7 @@ $wgSVGConverters = array(
 	'rsvg' => '$path/rsvg -w$width -h$height $input $output',
 	'imgserv' => '$path/imgserv-wrapper -i svg -o png -w$width $input $output',
 	'ImagickExt' => array( 'SvgHandler::rasterizeImagickExt' ),
-	);
+);
 
 /** Pick a converter defined in $wgSVGConverters */
 $wgSVGConverter = 'ImageMagick';
@@ -944,8 +944,8 @@ $wgIgnoreImageErrors = false;
 $wgGenerateThumbnailOnParse = true;
 
 /**
-* Show thumbnails for old images on the image description page
-*/
+ * Show thumbnails for old images on the image description page
+ */
 $wgShowArchiveThumbnails = true;
 
 /** Obsolete, always true, kept for compatibility with extensions */
@@ -1002,16 +1002,14 @@ $wgAntivirus = null;
 $wgAntivirusSetup = array(
 
 	#setup for clamav
-	'clamav' => array (
+	'clamav' => array(
 		'command' => "clamscan --no-summary ",
-
-		'codemap' => array (
-			"0" =>  AV_NO_VIRUS, # no virus
-			"1" =>  AV_VIRUS_FOUND, # virus found
+		'codemap' => array(
+			"0" => AV_NO_VIRUS, # no virus
+			"1" => AV_VIRUS_FOUND, # virus found
 			"52" => AV_SCAN_ABORTED, # unsupported file format (probably imune)
-			"*" =>  AV_SCAN_FAILED, # else scan failed
+			"*" => AV_SCAN_FAILED, # else scan failed
 		),
-
 		'messagepattern' => '/.*?:(.*)/sim',
 	),
 );
@@ -1029,7 +1027,7 @@ $wgMimeTypeFile = "includes/mime.types";
 #$wgMimeTypeFile= null; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php. */
-$wgMimeInfoFile= "includes/mime.info";
+$wgMimeInfoFile = "includes/mime.info";
 #$wgMimeInfoFile= null; #use built-in defaults only.
 
 /**
@@ -1063,11 +1061,11 @@ $wgTrivialMimeDetection = false;
  * array = ( 'rootElement' => 'associatedMimeType' )
  */
 $wgXMLMimeTypes = array(
-	'http://www.w3.org/2000/svg:svg'               => 'image/svg+xml',
-	'svg'                                          => 'image/svg+xml',
+	'http://www.w3.org/2000/svg:svg' => 'image/svg+xml',
+	'svg' => 'image/svg+xml',
 	'http://www.lysator.liu.se/~alla/dia/:diagram' => 'application/x-dia-diagram',
-	'http://www.w3.org/1999/xhtml:html'            => 'text/html', // application/xhtml+xml?
-	'html'                                         => 'text/html', // application/xhtml+xml?
+	'http://www.w3.org/1999/xhtml:html' => 'text/html', // application/xhtml+xml?
+	'html' => 'text/html', // application/xhtml+xml?
 );
 
 /**
@@ -1103,7 +1101,7 @@ $wgThumbLimits = array(
 /**
  * Default parameters for the "<gallery>" tag
  */
-$wgGalleryOptions = array (
+$wgGalleryOptions = array(
 	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
 	'imageWidth' => 120, // Width of the cells containing images in galleries (in "px")
 	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
@@ -1268,12 +1266,12 @@ $wgUserEmailConfirmationTokenExpiry = 7 * 24 * 60 * 60;
  *
  * @code
  * $wgSMTP = array(
- * 	'host'     => 'SMTP domain',
- * 	'IDHost'   => 'domain for MessageID',
- * 	'port'     => '25',
- * 	'auth'     => [true|false],
- * 	'username' => [SMTP username],
- * 	'password' => [SMTP password],
+ *     'host'     => 'SMTP domain',
+ *     'IDHost'   => 'domain for MessageID',
+ *     'port'     => '25',
+ *     'auth'     => [true|false],
+ *     'username' => [SMTP username],
+ *     'password' => [SMTP password],
  * );
  * @endcode
  */
@@ -1627,7 +1625,7 @@ $wgExternalStores = false;
  * Create a cluster named 'cluster1' containing three servers:
  * @code
  * $wgExternalServers = array(
- * 	'cluster1' => array( 'srv28', 'srv29', 'srv30' )
+ *     'cluster1' => array( 'srv28', 'srv29', 'srv30' )
  * );
  * @endcode
  *
@@ -2370,7 +2368,7 @@ $wgLegacySchemaConversion = false;
  * Enable dates like 'May 12' instead of '12 May', this only takes effect if
  * the interface is set to English.
  */
-$wgAmericanDates    = false;
+$wgAmericanDates = false;
 /**
  * For Hindi and Arabic use local numerals instead of Western style (0-9)
  * numerals in interface.
@@ -2423,9 +2421,9 @@ $wgDisabledVariants = array();
  *
  * @par Example:
  * @code
- * 	$wgLanguageCode = 'sr';
- * 	$wgVariantArticlePath = '/$2/$1';
- * 	$wgArticlePath = '/wiki/$1';
+ *     $wgLanguageCode = 'sr';
+ *     $wgVariantArticlePath = '/$2/$1';
+ *     $wgArticlePath = '/wiki/$1';
  * @endcode
  *
  * A link to /wiki/ would be redirected to /sr/Главна_страна
@@ -2458,7 +2456,7 @@ $wgLoginLanguageSelector = false;
  * To allow language-specific main page and community
  * portal:
  * @code
- * 	$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+ *     $wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
  * @endcode
  */
 $wgForceUIMsgAsContentMsg = array();
@@ -2992,21 +2990,21 @@ $wgPreloadJavaScriptMwUtil = false;
  *
  * @par Example of legacy code:
  * @code{,js}
- * 	if ( window.wgRestrictionEdit ) { ... }
+ *     if ( window.wgRestrictionEdit ) { ... }
  * @endcode
  * or:
  * @code{,js}
- * 	if ( wgIsArticle ) { ... }
+ *     if ( wgIsArticle ) { ... }
  * @endcode
  *
  * Instead, one needs to use mw.config.
  * @par Example using mw.config global configuration:
  * @code{,js}
- * 	if ( mw.config.exists('wgRestrictionEdit') ) { ... }
+ *     if ( mw.config.exists('wgRestrictionEdit') ) { ... }
  * @endcode
  * or:
  * @code{,js}
- * 	if ( mw.config.get('wgIsArticle') ) { ... }
+ *     if ( mw.config.get('wgIsArticle') ) { ... }
  * @endcode
  */
 $wgLegacyJavaScriptGlobals = true;
@@ -3187,13 +3185,13 @@ $wgInterwikiExpiry = 10800;
 $wgInterwikiCache = false;
 /**
  * Specify number of domains to check for messages.
- *	- 1: Just wiki(db)-level
- *	- 2: wiki and global levels
- *	- 3: site levels
+ *    - 1: Just wiki(db)-level
+ *    - 2: wiki and global levels
+ *    - 3: site levels
  */
 $wgInterwikiScopes = 3;
 /**
- *	$wgInterwikiFallbackSite - if unable to resolve from cache
+ *    $wgInterwikiFallbackSite - if unable to resolve from cache
  */
 $wgInterwikiFallbackSite = 'wiki';
 /** @} */ # end of Interwiki caching settings.
@@ -3235,7 +3233,7 @@ $wgCapitalLinks = true;
  *
  * @par Example:
  * @code
- * 	$wgCapitalLinkOverrides[ NS_FILE ] = false;
+ *     $wgCapitalLinkOverrides[ NS_FILE ] = false;
  * @endcode
  */
 $wgCapitalLinkOverrides = array();
@@ -3244,18 +3242,18 @@ $wgCapitalLinkOverrides = array();
  * See Language.php for a list of namespaces.
  */
 $wgNamespacesWithSubpages = array(
-	NS_TALK           => true,
-	NS_USER           => true,
-	NS_USER_TALK      => true,
-	NS_PROJECT        => true,
-	NS_PROJECT_TALK   => true,
-	NS_FILE_TALK      => true,
-	NS_MEDIAWIKI      => true,
+	NS_TALK => true,
+	NS_USER => true,
+	NS_USER_TALK => true,
+	NS_PROJECT => true,
+	NS_PROJECT_TALK => true,
+	NS_FILE_TALK => true,
+	NS_MEDIAWIKI => true,
 	NS_MEDIAWIKI_TALK => true,
-	NS_TEMPLATE_TALK  => true,
-	NS_HELP           => true,
-	NS_HELP_TALK      => true,
-	NS_CATEGORY_TALK  => true
+	NS_TEMPLATE_TALK => true,
+	NS_HELP => true,
+	NS_HELP_TALK => true,
+	NS_CATEGORY_TALK => true
 );
 
 /**
@@ -3357,7 +3355,7 @@ $wgUrlProtocols = array(
 	'https://',
 	'ftp://',
 	'irc://',
-	'ircs://',  // @bug 28503
+	'ircs://', // @bug 28503
 	'gopher://',
 	'telnet://', // Well if we're going to support the above.. -ævar
 	'nntp://', // @bug 3808 RFC 1738
@@ -3433,7 +3431,7 @@ $wgAlwaysUseTidy = false;
 /** @see $wgUseTidy */
 $wgTidyBin = 'tidy';
 /** @see $wgUseTidy */
-$wgTidyConf = $IP.'/includes/tidy.conf';
+$wgTidyConf = $IP . '/includes/tidy.conf';
 /** @see $wgUseTidy */
 $wgTidyOpts = '';
 /** @see $wgUseTidy */
@@ -3629,68 +3627,68 @@ $wgReservedUsernames = array(
  *
  */
 $wgDefaultUserOptions = array(
-	'ccmeonemails'            => 0,
-	'cols'                    => 80,
-	'date'                    => 'default',
-	'diffonly'                => 0,
-	'disablemail'             => 0,
-	'disablesuggest'          => 0,
-	'editfont'                => 'default',
-	'editondblclick'          => 0,
-	'editsection'             => 1,
+	'ccmeonemails' => 0,
+	'cols' => 80,
+	'date' => 'default',
+	'diffonly' => 0,
+	'disablemail' => 0,
+	'disablesuggest' => 0,
+	'editfont' => 'default',
+	'editondblclick' => 0,
+	'editsection' => 1,
 	'editsectiononrightclick' => 0,
-	'enotifminoredits'        => 0,
-	'enotifrevealaddr'        => 0,
-	'enotifusertalkpages'     => 1,
-	'enotifwatchlistpages'    => 0,
-	'extendwatchlist'         => 0,
-	'externaldiff'            => 0,
-	'externaleditor'          => 0,
-	'fancysig'                => 0,
-	'forceeditsummary'        => 0,
-	'gender'                  => 'unknown',
-	'hideminor'               => 0,
-	'hidepatrolled'           => 0,
-	'imagesize'               => 2,
-	'justify'                 => 0,
-	'math'                    => 1,
-	'minordefault'            => 0,
-	'newpageshidepatrolled'   => 0,
-	'nocache'                 => 0,
-	'noconvertlink'           => 0,
-	'norollbackdiff'          => 0,
-	'numberheadings'          => 0,
-	'previewonfirst'          => 0,
-	'previewontop'            => 1,
-	'quickbar'                => 5,
-	'rcdays'                  => 7,
-	'rclimit'                 => 50,
-	'rememberpassword'        => 0,
-	'rows'                    => 25,
-	'searchlimit'             => 20,
-	'showhiddencats'          => 0,
-	'showjumplinks'           => 1,
-	'shownumberswatching'     => 1,
-	'showtoc'                 => 1,
-	'showtoolbar'             => 1,
-	'skin'                    => false,
-	'stubthreshold'           => 0,
-	'thumbsize'               => 2,
-	'underline'               => 2,
-	'uselivepreview'          => 0,
-	'usenewrc'                => 0,
-	'watchcreations'          => 0,
-	'watchdefault'            => 0,
-	'watchdeletion'           => 0,
-	'watchlistdays'           => 3.0,
-	'watchlisthideanons'      => 0,
-	'watchlisthidebots'       => 0,
-	'watchlisthideliu'        => 0,
-	'watchlisthideminor'      => 0,
-	'watchlisthideown'        => 0,
-	'watchlisthidepatrolled'  => 0,
-	'watchmoves'              => 0,
-	'wllimit'                 => 250,
+	'enotifminoredits' => 0,
+	'enotifrevealaddr' => 0,
+	'enotifusertalkpages' => 1,
+	'enotifwatchlistpages' => 0,
+	'extendwatchlist' => 0,
+	'externaldiff' => 0,
+	'externaleditor' => 0,
+	'fancysig' => 0,
+	'forceeditsummary' => 0,
+	'gender' => 'unknown',
+	'hideminor' => 0,
+	'hidepatrolled' => 0,
+	'imagesize' => 2,
+	'justify' => 0,
+	'math' => 1,
+	'minordefault' => 0,
+	'newpageshidepatrolled' => 0,
+	'nocache' => 0,
+	'noconvertlink' => 0,
+	'norollbackdiff' => 0,
+	'numberheadings' => 0,
+	'previewonfirst' => 0,
+	'previewontop' => 1,
+	'quickbar' => 5,
+	'rcdays' => 7,
+	'rclimit' => 50,
+	'rememberpassword' => 0,
+	'rows' => 25,
+	'searchlimit' => 20,
+	'showhiddencats' => 0,
+	'showjumplinks' => 1,
+	'shownumberswatching' => 1,
+	'showtoc' => 1,
+	'showtoolbar' => 1,
+	'skin' => false,
+	'stubthreshold' => 0,
+	'thumbsize' => 2,
+	'underline' => 2,
+	'uselivepreview' => 0,
+	'usenewrc' => 0,
+	'watchcreations' => 0,
+	'watchdefault' => 0,
+	'watchdeletion' => 0,
+	'watchlistdays' => 3.0,
+	'watchlisthideanons' => 0,
+	'watchlisthidebots' => 0,
+	'watchlisthideliu' => 0,
+	'watchlisthideminor' => 0,
+	'watchlisthideown' => 0,
+	'watchlisthidepatrolled' => 0,
+	'watchmoves' => 0,
+	'wllimit' => 250,
 );
 
 /** An array of preferences to not show for the user */
@@ -3915,85 +3913,85 @@ $wgGroupPermissions = array();
 
 /** @cond file_level_code */
 // Implicit group for all visitors
-$wgGroupPermissions['*']['createaccount']    = true;
-$wgGroupPermissions['*']['read']             = true;
-$wgGroupPermissions['*']['edit']             = true;
-$wgGroupPermissions['*']['createpage']       = true;
-$wgGroupPermissions['*']['createtalk']       = true;
-$wgGroupPermissions['*']['writeapi']         = true;
+$wgGroupPermissions['*']['createaccount'] = true;
+$wgGroupPermissions['*']['read'] = true;
+$wgGroupPermissions['*']['edit'] = true;
+$wgGroupPermissions['*']['createpage'] = true;
+$wgGroupPermissions['*']['createtalk'] = true;
+$wgGroupPermissions['*']['writeapi'] = true;
 //$wgGroupPermissions['*']['patrolmarks']      = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
-$wgGroupPermissions['user']['move']             = true;
-$wgGroupPermissions['user']['move-subpages']    = true;
+$wgGroupPermissions['user']['move'] = true;
+$wgGroupPermissions['user']['move-subpages'] = true;
 $wgGroupPermissions['user']['move-rootuserpages'] = true; // can move root userpages
-$wgGroupPermissions['user']['movefile']         = true;
-$wgGroupPermissions['user']['read']             = true;
-$wgGroupPermissions['user']['edit']             = true;
-$wgGroupPermissions['user']['createpage']       = true;
-$wgGroupPermissions['user']['createtalk']       = true;
-$wgGroupPermissions['user']['writeapi']         = true;
-$wgGroupPermissions['user']['upload']           = true;
-$wgGroupPermissions['user']['reupload']         = true;
-$wgGroupPermissions['user']['reupload-shared']  = true;
-$wgGroupPermissions['user']['minoredit']        = true;
-$wgGroupPermissions['user']['purge']            = true; // can use ?action=purge without clicking "ok"
-$wgGroupPermissions['user']['sendemail']        = true;
+$wgGroupPermissions['user']['movefile'] = true;
+$wgGroupPermissions['user']['read'] = true;
+$wgGroupPermissions['user']['edit'] = true;
+$wgGroupPermissions['user']['createpage'] = true;
+$wgGroupPermissions['user']['createtalk'] = true;
+$wgGroupPermissions['user']['writeapi'] = true;
+$wgGroupPermissions['user']['upload'] = true;
+$wgGroupPermissions['user']['reupload'] = true;
+$wgGroupPermissions['user']['reupload-shared'] = true;
+$wgGroupPermissions['user']['minoredit'] = true;
+$wgGroupPermissions['user']['purge'] = true; // can use ?action=purge without clicking "ok"
+$wgGroupPermissions['user']['sendemail'] = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
 
 // Users with bot privilege can have their edits hidden
 // from various log pages by default
-$wgGroupPermissions['bot']['bot']              = true;
-$wgGroupPermissions['bot']['autoconfirmed']    = true;
-$wgGroupPermissions['bot']['nominornewtalk']   = true;
-$wgGroupPermissions['bot']['autopatrol']       = true;
+$wgGroupPermissions['bot']['bot'] = true;
+$wgGroupPermissions['bot']['autoconfirmed'] = true;
+$wgGroupPermissions['bot']['nominornewtalk'] = true;
+$wgGroupPermissions['bot']['autopatrol'] = true;
 $wgGroupPermissions['bot']['suppressredirect'] = true;
-$wgGroupPermissions['bot']['apihighlimits']    = true;
-$wgGroupPermissions['bot']['writeapi']         = true;
+$wgGroupPermissions['bot']['apihighlimits'] = true;
+$wgGroupPermissions['bot']['writeapi'] = true;
 #$wgGroupPermissions['bot']['editprotected']    = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
-$wgGroupPermissions['sysop']['block']            = true;
-$wgGroupPermissions['sysop']['createaccount']    = true;
-$wgGroupPermissions['sysop']['delete']           = true;
-$wgGroupPermissions['sysop']['bigdelete']        = true; // can be separately configured for pages with > $wgDeleteRevisionsLimit revs
-$wgGroupPermissions['sysop']['deletedhistory']   = true; // can view deleted history entries, but not see or restore the text
-$wgGroupPermissions['sysop']['deletedtext']      = true; // can view deleted revision text
-$wgGroupPermissions['sysop']['undelete']         = true;
-$wgGroupPermissions['sysop']['editinterface']    = true;
-$wgGroupPermissions['sysop']['editusercss']      = true;
-$wgGroupPermissions['sysop']['edituserjs']       = true;
-$wgGroupPermissions['sysop']['import']           = true;
-$wgGroupPermissions['sysop']['importupload']     = true;
-$wgGroupPermissions['sysop']['move']             = true;
-$wgGroupPermissions['sysop']['move-subpages']    = true;
+$wgGroupPermissions['sysop']['block'] = true;
+$wgGroupPermissions['sysop']['createaccount'] = true;
+$wgGroupPermissions['sysop']['delete'] = true;
+$wgGroupPermissions['sysop']['bigdelete'] = true; // can be separately configured for pages with > $wgDeleteRevisionsLimit revs
+$wgGroupPermissions['sysop']['deletedhistory'] = true; // can view deleted history entries, but not see or restore the text
+$wgGroupPermissions['sysop']['deletedtext'] = true; // can view deleted revision text
+$wgGroupPermissions['sysop']['undelete'] = true;
+$wgGroupPermissions['sysop']['editinterface'] = true;
+$wgGroupPermissions['sysop']['editusercss'] = true;
+$wgGroupPermissions['sysop']['edituserjs'] = true;
+$wgGroupPermissions['sysop']['import'] = true;
+$wgGroupPermissions['sysop']['importupload'] = true;
+$wgGroupPermissions['sysop']['move'] = true;
+$wgGroupPermissions['sysop']['move-subpages'] = true;
 $wgGroupPermissions['sysop']['move-rootuserpages'] = true;
-$wgGroupPermissions['sysop']['patrol']           = true;
-$wgGroupPermissions['sysop']['autopatrol']       = true;
-$wgGroupPermissions['sysop']['protect']          = true;
-$wgGroupPermissions['sysop']['proxyunbannable']  = true;
-$wgGroupPermissions['sysop']['rollback']         = true;
-$wgGroupPermissions['sysop']['upload']           = true;
-$wgGroupPermissions['sysop']['reupload']         = true;
-$wgGroupPermissions['sysop']['reupload-shared']  = true;
-$wgGroupPermissions['sysop']['unwatchedpages']   = true;
-$wgGroupPermissions['sysop']['autoconfirmed']    = true;
-$wgGroupPermissions['sysop']['ipblock-exempt']   = true;
-$wgGroupPermissions['sysop']['blockemail']       = true;
-$wgGroupPermissions['sysop']['markbotedits']     = true;
-$wgGroupPermissions['sysop']['apihighlimits']    = true;
-$wgGroupPermissions['sysop']['browsearchive']    = true;
-$wgGroupPermissions['sysop']['noratelimit']      = true;
-$wgGroupPermissions['sysop']['movefile']         = true;
-$wgGroupPermissions['sysop']['unblockself']      = true;
+$wgGroupPermissions['sysop']['patrol'] = true;
+$wgGroupPermissions['sysop']['autopatrol'] = true;
+$wgGroupPermissions['sysop']['protect'] = true;
+$wgGroupPermissions['sysop']['proxyunbannable'] = true;
+$wgGroupPermissions['sysop']['rollback'] = true;
+$wgGroupPermissions['sysop']['upload'] = true;
+$wgGroupPermissions['sysop']['reupload'] = true;
+$wgGroupPermissions['sysop']['reupload-shared'] = true;
+$wgGroupPermissions['sysop']['unwatchedpages'] = true;
+$wgGroupPermissions['sysop']['autoconfirmed'] = true;
+$wgGroupPermissions['sysop']['ipblock-exempt'] = true;
+$wgGroupPermissions['sysop']['blockemail'] = true;
+$wgGroupPermissions['sysop']['markbotedits'] = true;
+$wgGroupPermissions['sysop']['apihighlimits'] = true;
+$wgGroupPermissions['sysop']['browsearchive'] = true;
+$wgGroupPermissions['sysop']['noratelimit'] = true;
+$wgGroupPermissions['sysop']['movefile'] = true;
+$wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
 #$wgGroupPermissions['sysop']['upload_by_url']    = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
-$wgGroupPermissions['bureaucrat']['userrights']  = true;
+$wgGroupPermissions['bureaucrat']['userrights'] = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
@@ -4174,11 +4172,11 @@ $wgAutopromote = array(
  *
  * The format is:
  * @code
- *	array( event => criteria, ... )
+ *    array( event => criteria, ... )
  * @endcode
  * Where event is either:
- *	- 'onEdit' (when user edits)
- *	- 'onView' (when user views the wiki)
+ *    - 'onEdit' (when user edits)
+ *    - 'onView' (when user views the wiki)
  *
  * Criteria has the same format as $wgAutopromote
  *
@@ -4237,7 +4235,8 @@ $wgDeleteRevisionsLimit = 0;
 /**
  * Number of accounts each IP address may create, 0 to disable.
  *
- * @warning Requires memcached */
+ * @warning Requires memcached
+ */
 $wgAccountCreationThrottle = 0;
 
 /**
@@ -4328,25 +4327,25 @@ $wgProxyWhitelist = array();
  */
 $wgRateLimits = array(
 	'edit' => array(
-		'anon'   => null, // for any and all anonymous edits (aggregate)
-		'user'   => null, // for each logged-in user
+		'anon' => null, // for any and all anonymous edits (aggregate)
+		'user' => null, // for each logged-in user
 		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
-		'ip'     => null, // for each anon and recent account
+		'ip' => null, // for each anon and recent account
 		'subnet' => null, // ... with final octet removed
-		),
+	),
 	'move' => array(
-		'user'   => null,
+		'user' => null,
 		'newbie' => null,
-		'ip'     => null,
+		'ip' => null,
 		'subnet' => null,
-		),
+	),
 	'mailpassword' => array(
 		'anon' => null,
-		),
+	),
 	'emailuser' => array(
 		'user' => null,
-		),
-	);
+	),
+);
 
 /**
  * Set to a filename to log rate limiter hits.
@@ -4431,7 +4430,7 @@ $wgProxyKey = false;
 /**
  * Default cookie expiration time. Setting to 0 makes all cookies session-only.
  */
-$wgCookieExpiration = 180*86400;
+$wgCookieExpiration = 180 * 86400;
 
 /**
  * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
@@ -4493,7 +4492,7 @@ $wgCacheVaryCookies = array();
 /** Override to customise the session name */
 $wgSessionName = false;
 
-/** @} */  # end of cookie settings }
+/** @} */ # end of cookie settings }
 
 /************************************************************************//**
  * @name   LaTeX (mathematical formulas)
@@ -4883,7 +4882,7 @@ $wgNamespacesToBeSearchedDefault = array(
  */
 $wgNamespacesToBeSearchedHelp = array(
 	NS_PROJECT => true,
-	NS_HELP    => true,
+	NS_HELP => true,
 );
 
 /**
@@ -4910,10 +4909,10 @@ $wgDisableInternalSearch = false;
  * To forward to Google you'd have something like:
  * @code
  * $wgSearchForwardUrl =
- * 	'http://www.google.com/search?q=$1' .
- * 	'&domains=http://example.com' .
- * 	'&sitesearch=http://example.com' .
- * 	'&ie=utf-8&oe=utf-8';
+ *     'http://www.google.com/search?q=$1' .
+ *     '&domains=http://example.com' .
+ *     '&sitesearch=http://example.com' .
+ *     '&ie=utf-8&oe=utf-8';
  * @endcode
  */
 $wgSearchForwardUrl = null;
@@ -5017,7 +5016,7 @@ $wgUseAutomaticEditSummaries = true;
  * @cond file_level_code
  * Set $wgCommandLineMode if it's not set already, to avoid notices
  */
-if( !isset( $wgCommandLineMode ) ) {
+if ( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
 /** @endcond */
@@ -5191,7 +5190,7 @@ $wgOverrideSiteFeed = array();
  * $wgOut->isSyndicated() is true.
  */
 $wgFeedClasses = array(
-	'rss'  => 'RSSFeed',
+	'rss' => 'RSSFeed',
 	'atom' => 'AtomFeed',
 );
 
@@ -5348,8 +5347,8 @@ $wgExportAllowHistory = true;
 $wgExportMaxHistory = 0;
 
 /**
-* Return distinct author list (when not returning full history)
-*/
+ * Return distinct author list (when not returning full history)
+ */
 $wgExportAllowListContributors = false;
 
 /**
@@ -5366,13 +5365,13 @@ $wgExportAllowListContributors = false;
 $wgExportMaxLinkDepth = 0;
 
 /**
-* Whether to allow the "export all pages in namespace" option
-*/
+ * Whether to allow the "export all pages in namespace" option
+ */
 $wgExportFromNamespaces = false;
 
 /**
-* Whether to allow exporting the entire wiki into a single file
-*/
+ * Whether to allow exporting the entire wiki into a single file
+ */
 $wgExportAllowAll = false;
 
 /** @} */ # end of import/export }
@@ -5507,19 +5506,18 @@ $wgHooks = array();
  * can add to this to provide custom jobs
  */
 $wgJobClasses = array(
-	'refreshLinks'      => 'RefreshLinksJob',
-	'refreshLinks2'     => 'RefreshLinksJob2',
-	'htmlCacheUpdate'   => 'HTMLCacheUpdateJob',
+	'refreshLinks' => 'RefreshLinksJob',
+	'refreshLinks2' => 'RefreshLinksJob2',
+	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
 	'html_cache_update' => 'HTMLCacheUpdateJob', // backwards-compatible
-	'sendMail'          => 'EmaillingJob',
-	'enotifNotify'      => 'EnotifNotifyJob',
+	'sendMail' => 'EmaillingJob',
+	'enotifNotify' => 'EnotifNotifyJob',
 	'fixDoubleRedirect' => 'DoubleRedirectJob',
-	'uploadFromUrl'     => 'UploadFromUrlJob',
-	'null'              => 'NullJob'
+	'uploadFromUrl' => 'UploadFromUrlJob',
+	'null' => 'NullJob'
 );
 
 /**
-
  * Jobs that must be explicitly requested, i.e. aren't run by job runners unless
  * special flags are set. The values here are keys of $wgJobClasses.
  *
@@ -5691,16 +5689,16 @@ $wgFilterLogTypes = array(
  * where TYPE is your log type, yoy don't need to use this array.
  */
 $wgLogNames = array(
-	''        => 'all-logs-page',
-	'block'   => 'blocklogpage',
+	'' => 'all-logs-page',
+	'block' => 'blocklogpage',
 	'protect' => 'protectlogpage',
-	'rights'  => 'rightslog',
-	'delete'  => 'dellogpage',
-	'upload'  => 'uploadlogpage',
-	'move'    => 'movelogpage',
-	'import'  => 'importlogpage',
-	'patrol'  => 'patrol-log-page',
-	'merge'   => 'mergelog',
+	'rights' => 'rightslog',
+	'delete' => 'dellogpage',
+	'upload' => 'uploadlogpage',
+	'move' => 'movelogpage',
+	'import' => 'importlogpage',
+	'patrol' => 'patrol-log-page',
+	'merge' => 'mergelog',
 	'suppress' => 'suppressionlog',
 );
 
@@ -5714,16 +5712,16 @@ $wgLogNames = array(
  * where TYPE is your log type, yoy don't need to use this array.
  */
 $wgLogHeaders = array(
-	''        => 'alllogstext',
-	'block'   => 'blocklogtext',
+	'' => 'alllogstext',
+	'block' => 'blocklogtext',
 	'protect' => 'protectlogtext',
-	'rights'  => 'rightslogtext',
-	'delete'  => 'dellogpagetext',
-	'upload'  => 'uploadlogpagetext',
-	'move'    => 'movelogpagetext',
-	'import'  => 'importlogpagetext',
-	'patrol'  => 'patrol-log-header',
-	'merge'   => 'mergelogpagetext',
+	'rights' => 'rightslogtext',
+	'delete' => 'dellogpagetext',
+	'upload' => 'uploadlogpagetext',
+	'move' => 'movelogpagetext',
+	'import' => 'importlogpagetext',
+	'patrol' => 'patrol-log-header',
+	'merge' => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
 );
 
@@ -5734,21 +5732,21 @@ $wgLogHeaders = array(
  * Extensions with custom log types may add to this array.
  */
 $wgLogActions = array(
-	'block/block'        => 'blocklogentry',
-	'block/unblock'      => 'unblocklogentry',
-	'block/reblock'      => 'reblock-logentry',
-	'protect/protect'    => 'protectedarticle',
-	'protect/modify'     => 'modifiedarticleprotection',
-	'protect/unprotect'  => 'unprotectedarticle',
-	'protect/move_prot'  => 'movedarticleprotection',
-	'upload/upload'      => 'uploadedimage',
-	'upload/overwrite'   => 'overwroteimage',
-	'upload/revert'      => 'uploadedimage',
-	'import/upload'      => 'import-logentry-upload',
-	'import/interwiki'   => 'import-logentry-interwiki',
-	'merge/merge'        => 'pagemerge-logentry',
-	'suppress/block'     => 'blocklogentry',
-	'suppress/reblock'   => 'reblock-logentry',
+	'block/block' => 'blocklogentry',
+	'block/unblock' => 'unblocklogentry',
+	'block/reblock' => 'reblock-logentry',
+	'protect/protect' => 'protectedarticle',
+	'protect/modify' => 'modifiedarticleprotection',
+	'protect/unprotect' => 'unprotectedarticle',
+	'protect/move_prot' => 'movedarticleprotection',
+	'upload/upload' => 'uploadedimage',
+	'upload/overwrite' => 'overwroteimage',
+	'upload/revert' => 'uploadedimage',
+	'import/upload' => 'import-logentry-upload',
+	'import/interwiki' => 'import-logentry-interwiki',
+	'merge/merge' => 'pagemerge-logentry',
+	'suppress/block' => 'blocklogentry',
+	'suppress/reblock' => 'reblock-logentry',
 );
 
 /**
@@ -5758,17 +5756,17 @@ $wgLogActions = array(
  * @see LogFormatter
  */
 $wgLogActionsHandlers = array(
-	'move/move'          => 'MoveLogFormatter',
-	'move/move_redir'    => 'MoveLogFormatter',
-	'delete/delete'      => 'DeleteLogFormatter',
-	'delete/restore'     => 'DeleteLogFormatter',
-	'delete/revision'    => 'DeleteLogFormatter',
-	'delete/event'       => 'DeleteLogFormatter',
-	'suppress/revision'  => 'DeleteLogFormatter',
-	'suppress/event'     => 'DeleteLogFormatter',
-	'suppress/delete'    => 'DeleteLogFormatter',
-	'patrol/patrol'      => 'PatrolLogFormatter',
-	'rights/rights'      => 'RightsLogFormatter',
+	'move/move' => 'MoveLogFormatter',
+	'move/move_redir' => 'MoveLogFormatter',
+	'delete/delete' => 'DeleteLogFormatter',
+	'delete/restore' => 'DeleteLogFormatter',
+	'delete/revision' => 'DeleteLogFormatter',
+	'delete/event' => 'DeleteLogFormatter',
+	'suppress/revision' => 'DeleteLogFormatter',
+	'suppress/event' => 'DeleteLogFormatter',
+	'suppress/delete' => 'DeleteLogFormatter',
+	'patrol/patrol' => 'PatrolLogFormatter',
+	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
 );
 
@@ -5800,107 +5798,107 @@ $wgDisableQueryPageUpdate = false;
  * at Special:SpecialPages
  */
 $wgSpecialPageGroups = array(
-	'DoubleRedirects'           => 'maintenance',
-	'BrokenRedirects'           => 'maintenance',
-	'Lonelypages'               => 'maintenance',
-	'Uncategorizedpages'        => 'maintenance',
-	'Uncategorizedcategories'   => 'maintenance',
-	'Uncategorizedimages'       => 'maintenance',
-	'Uncategorizedtemplates'    => 'maintenance',
-	'Unusedcategories'          => 'maintenance',
-	'Unusedimages'              => 'maintenance',
-	'Protectedpages'            => 'maintenance',
-	'Protectedtitles'           => 'maintenance',
-	'Unusedtemplates'           => 'maintenance',
-	'Withoutinterwiki'          => 'maintenance',
-	'Longpages'                 => 'maintenance',
-	'Shortpages'                => 'maintenance',
-	'Ancientpages'              => 'maintenance',
-	'Deadendpages'              => 'maintenance',
-	'Wantedpages'               => 'maintenance',
-	'Wantedcategories'          => 'maintenance',
-	'Wantedfiles'               => 'maintenance',
-	'Wantedtemplates'           => 'maintenance',
-	'Unwatchedpages'            => 'maintenance',
-	'Fewestrevisions'           => 'maintenance',
+	'DoubleRedirects' => 'maintenance',
+	'BrokenRedirects' => 'maintenance',
+	'Lonelypages' => 'maintenance',
+	'Uncategorizedpages' => 'maintenance',
+	'Uncategorizedcategories' => 'maintenance',
+	'Uncategorizedimages' => 'maintenance',
+	'Uncategorizedtemplates' => 'maintenance',
+	'Unusedcategories' => 'maintenance',
+	'Unusedimages' => 'maintenance',
+	'Protectedpages' => 'maintenance',
+	'Protectedtitles' => 'maintenance',
+	'Unusedtemplates' => 'maintenance',
+	'Withoutinterwiki' => 'maintenance',
+	'Longpages' => 'maintenance',
+	'Shortpages' => 'maintenance',
+	'Ancientpages' => 'maintenance',
+	'Deadendpages' => 'maintenance',
+	'Wantedpages' => 'maintenance',
+	'Wantedcategories' => 'maintenance',
+	'Wantedfiles' => 'maintenance',
+	'Wantedtemplates' => 'maintenance',
+	'Unwatchedpages' => 'maintenance',
+	'Fewestrevisions' => 'maintenance',
 
-	'Userlogin'                 => 'login',
-	'Userlogout'                => 'login',
-	'CreateAccount'             => 'login',
+	'Userlogin' => 'login',
+	'Userlogout' => 'login',
+	'CreateAccount' => 'login',
 
-	'Recentchanges'             => 'changes',
-	'Recentchangeslinked'       => 'changes',
-	'Watchlist'                 => 'changes',
-	'Newimages'                 => 'changes',
-	'Newpages'                  => 'changes',
-	'Log'                       => 'changes',
-	'Tags'                      => 'changes',
+	'Recentchanges' => 'changes',
+	'Recentchangeslinked' => 'changes',
+	'Watchlist' => 'changes',
+	'Newimages' => 'changes',
+	'Newpages' => 'changes',
+	'Log' => 'changes',
+	'Tags' => 'changes',
 
-	'Upload'                    => 'media',
-	'Listfiles'                 => 'media',
-	'MIMEsearch'                => 'media',
-	'FileDuplicateSearch'       => 'media',
-	'Filepath'                  => 'media',
+	'Upload' => 'media',
+	'Listfiles' => 'media',
+	'MIMEsearch' => 'media',
+	'FileDuplicateSearch' => 'media',
+	'Filepath' => 'media',
 
-	'Listusers'                 => 'users',
-	'Activeusers'               => 'users',
-	'Listgrouprights'           => 'users',
-	'BlockList'                 => 'users',
-	'Contributions'             => 'users',
-	'Emailuser'                 => 'users',
-	'Listadmins'                => 'users',
-	'Listbots'                  => 'users',
-	'Userrights'                => 'users',
-	'Block'                     => 'users',
-	'Unblock'                   => 'users',
-	'Preferences'               => 'users',
-	'ChangeEmail'               => 'users',
-	'ChangePassword'            => 'users',
-	'DeletedContributions'      => 'users',
-	'PasswordReset'             => 'users',
+	'Listusers' => 'users',
+	'Activeusers' => 'users',
+	'Listgrouprights' => 'users',
+	'BlockList' => 'users',
+	'Contributions' => 'users',
+	'Emailuser' => 'users',
+	'Listadmins' => 'users',
+	'Listbots' => 'users',
+	'Userrights' => 'users',
+	'Block' => 'users',
+	'Unblock' => 'users',
+	'Preferences' => 'users',
+	'ChangeEmail' => 'users',
+	'ChangePassword' => 'users',
+	'DeletedContributions' => 'users',
+	'PasswordReset' => 'users',
 
-	'Mostlinked'                => 'highuse',
-	'Mostlinkedcategories'      => 'highuse',
-	'Mostlinkedtemplates'       => 'highuse',
-	'Mostcategories'            => 'highuse',
-	'Mostimages'                => 'highuse',
-	'Mostinterwikis'            => 'highuse',
-	'Mostrevisions'             => 'highuse',
+	'Mostlinked' => 'highuse',
+	'Mostlinkedcategories' => 'highuse',
+	'Mostlinkedtemplates' => 'highuse',
+	'Mostcategories' => 'highuse',
+	'Mostimages' => 'highuse',
+	'Mostinterwikis' => 'highuse',
+	'Mostrevisions' => 'highuse',
 
-	'Allpages'                  => 'pages',
-	'Prefixindex'               => 'pages',
-	'Listredirects'             => 'pages',
-	'Categories'                => 'pages',
-	'Disambiguations'           => 'pages',
+	'Allpages' => 'pages',
+	'Prefixindex' => 'pages',
+	'Listredirects' => 'pages',
+	'Categories' => 'pages',
+	'Disambiguations' => 'pages',
 
-	'Randompage'                => 'redirects',
-	'Randomredirect'            => 'redirects',
-	'Mypage'                    => 'redirects',
-	'Mytalk'                    => 'redirects',
-	'Mycontributions'           => 'redirects',
-	'Search'                    => 'redirects',
-	'LinkSearch'                => 'redirects',
+	'Randompage' => 'redirects',
+	'Randomredirect' => 'redirects',
+	'Mypage' => 'redirects',
+	'Mytalk' => 'redirects',
+	'Mycontributions' => 'redirects',
+	'Search' => 'redirects',
+	'LinkSearch' => 'redirects',
 
-	'ComparePages'              => 'pagetools',
-	'Movepage'                  => 'pagetools',
-	'MergeHistory'              => 'pagetools',
-	'Revisiondelete'            => 'pagetools',
-	'Undelete'                  => 'pagetools',
-	'Export'                    => 'pagetools',
-	'Import'                    => 'pagetools',
-	'Whatlinkshere'             => 'pagetools',
+	'ComparePages' => 'pagetools',
+	'Movepage' => 'pagetools',
+	'MergeHistory' => 'pagetools',
+	'Revisiondelete' => 'pagetools',
+	'Undelete' => 'pagetools',
+	'Export' => 'pagetools',
+	'Import' => 'pagetools',
+	'Whatlinkshere' => 'pagetools',
 
-	'Statistics'                => 'wiki',
-	'Version'                   => 'wiki',
-	'Lockdb'                    => 'wiki',
-	'Unlockdb'                  => 'wiki',
-	'Allmessages'               => 'wiki',
-	'Popularpages'              => 'wiki',
+	'Statistics' => 'wiki',
+	'Version' => 'wiki',
+	'Lockdb' => 'wiki',
+	'Unlockdb' => 'wiki',
+	'Allmessages' => 'wiki',
+	'Popularpages' => 'wiki',
 
-	'Specialpages'              => 'other',
-	'Blockme'                   => 'other',
-	'Booksources'               => 'other',
-	'JavaScriptTest'            => 'other',
+	'Specialpages' => 'other',
+	'Blockme' => 'other',
+	'Booksources' => 'other',
+	'JavaScriptTest' => 'other',
 );
 
 /** Whether or not to sort special pages in Special:Specialpages */
@@ -5937,24 +5935,24 @@ $wgMaxRedirectLinksRetrieved = 500;
  * Unsetting core actions will probably cause things to complain loudly.
  */
 $wgActions = array(
-	'credits'        => true,
-	'delete'         => true,
-	'edit'           => true,
-	'history'        => true,
-	'info'           => true,
-	'markpatrolled'  => true,
-	'protect'        => true,
-	'purge'          => true,
-	'raw'            => true,
-	'render'         => true,
-	'revert'         => true,
+	'credits' => true,
+	'delete' => true,
+	'edit' => true,
+	'history' => true,
+	'info' => true,
+	'markpatrolled' => true,
+	'protect' => true,
+	'purge' => true,
+	'raw' => true,
+	'render' => true,
+	'revert' => true,
 	'revisiondelete' => true,
-	'rollback'       => true,
-	'submit'         => true,
-	'unprotect'      => true,
-	'unwatch'        => true,
-	'view'           => true,
-	'watch'          => true,
+	'rollback' => true,
+	'submit' => true,
+	'unprotect' => true,
+	'unwatch' => true,
+	'view' => true,
+	'watch' => true,
 );
 
 /**
@@ -6002,8 +6000,8 @@ $wgNamespaceRobotPolicies = array();
  * @par Example:
  * @code
  * $wgArticleRobotPolicies = array(
- * 		'Main Page' => 'noindex,follow',
- * 		'User:Bob' => 'index,follow',
+ *         'Main Page' => 'noindex,follow',
+ *         'User:Bob' => 'index,follow',
  * );
  * @endcode
  *
@@ -6114,7 +6112,7 @@ $wgAPIRequestLog = false;
 /**
  * Set the timeout for the API help text cache. If set to 0, caching disabled
  */
-$wgAPICacheHelpTimeout = 60*60;
+$wgAPICacheHelpTimeout = 60 * 60;
 
 /**
  * Enable AJAX framework
@@ -6156,10 +6154,10 @@ $wgAjaxLicensePreview = true;
  * @par Example:
  * @code
  * $wgCrossSiteAJAXdomains = array(
- * 	'www.mediawiki.org',
- * 	'*.wikipedia.org',
- * 	'*.wikimedia.org',
- * 	'*.wiktionary.org',
+ *     'www.mediawiki.org',
+ *     '*.wikipedia.org',
+ *     '*.wikimedia.org',
+ *     '*.wiktionary.org',
  * );
  * @endcode
  */
@@ -6477,9 +6475,9 @@ $wgContentHandlerUseDB = false;
  * @since 1.21
  */
 $wgTextModelsToParse = array(
-	CONTENT_MODEL_WIKITEXT,    // Just for completeness, wikitext will always be parsed.
-	CONTENT_MODEL_JAVASCRIPT,  // Make categories etc work, people put them into comments.
-	CONTENT_MODEL_CSS,         // Make categories etc work, people put them into comments.
+	CONTENT_MODEL_WIKITEXT, // Just for completeness, wikitext will always be parsed.
+	CONTENT_MODEL_JAVASCRIPT, // Make categories etc work, people put them into comments.
+	CONTENT_MODEL_CSS, // Make categories etc work, people put them into comments.
 );
 
 /**
