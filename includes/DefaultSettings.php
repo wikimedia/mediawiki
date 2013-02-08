@@ -2189,7 +2189,21 @@ $wgUsePrivateIPs = false;
  * @{
  */
 
-/** Site language code, should be one of ./languages/Language(.*).php */
+/**
+ * Site language code. See languages/Names.php for languages supported by
+ * MediaWiki out of the box. Not all languages listed there have translations,
+ * see languages/messages/ for the list of languages with some localisation.
+ *
+ * Warning: Don't use language codes listed in $wgDummyLanguageCodes like "no"
+ * for Norwegian (use "nb" instead), or things will break unexpectedly.
+ *
+ * This defines the default interface language for all users, but users can
+ * change it in their preferences.
+ *
+ * This also defines the language of pages in the wiki. The content is wrapped
+ * in a html element with lang=XX attribute. This behaviour can be overriden
+ * via hooks, see Title::getPageLanguage.
+ */
 $wgLanguageCode = 'en';
 
 /**
