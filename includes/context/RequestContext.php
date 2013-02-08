@@ -278,10 +278,14 @@ class RequestContext implements IContextSource {
 	 */
 	public function getLanguage() {
 		if ( isset( $this->recursion ) ) {
-			throw new MWException( 'Recursion detected' );
-		}
+			trigger_error( "Recursion detected in " . __METHOD__, E_USER_WARNING );
+			$e = new Exception;
+			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
-		if ( $this->lang === null ) {
+			global $wgLanguageCode;
+			$code = ( $wgLanguageCode ) ? $wgLanguageCode : 'en';
+			$this->lang = Language::factory( $code );
+		} elseif ( $this->lang === null ) {
 			$this->recursion = true;
 
 			global $wgLanguageCode, $wgContLang;
