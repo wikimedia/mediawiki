@@ -155,6 +155,9 @@ class ParserTest {
 			'name'          => 'fsLockManager',
 			'class'         => 'FSLockManager',
 			'lockDirectory' => wfTempDir() . '/test-repo/lockdir',
+		), array(
+			'name'          => 'nullLockManager',
+			'class'         => 'NullLockManager',
 		) );
 		$wgLocalFileRepo = array(
 			'class'           => 'LocalRepo',
@@ -634,11 +637,14 @@ class ParserTest {
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
 			'wgActionPaths' => array(),
-			'wgLockManagers' => array(
+			'wgLockManagers' => array( array(
 				'name'          => 'fsLockManager',
 				'class'         => 'FSLockManager',
 				'lockDirectory' => $this->uploadDir . '/lockdir',
-			),
+			), array(
+				'name'          => 'nullLockManager',
+				'class'         => 'NullLockManager',
+			) ),
 			'wgLocalFileRepo' => array(
 				'class' => 'LocalRepo',
 				'name' => 'local',
