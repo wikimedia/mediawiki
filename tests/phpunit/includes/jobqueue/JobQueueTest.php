@@ -6,6 +6,8 @@
  * @group Database
  */
 class JobQueueTest extends MediaWikiTestCase {
+	protected $key;
+	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
 	protected $old = array();
 
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
@@ -15,18 +17,34 @@ class JobQueueTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
-		global $wgMemc;
+		global $wgMemc, $wgJobTypeConf;
 		parent::setUp();
 		$this->old['wgMemc'] = $wgMemc;
 		$wgMemc = new HashBagOStuff();
-		$this->queueRand = JobQueue::factory( array( 'class' => 'JobQueueDB',
-			'wiki' => wfWikiID(), 'type' => 'null', 'order' => 'random' ) );
-		$this->queueRandTTL = JobQueue::factory( array( 'class' => 'JobQueueDB',
-			'wiki' => wfWikiID(), 'type' => 'null', 'order' => 'random', 'claimTTL' => 10 ) );
-		$this->queueFifo = JobQueue::factory( array( 'class' => 'JobQueueDB',
-			'wiki' => wfWikiID(), 'type' => 'null', 'order' => 'fifo' ) );
-		$this->queueFifoTTL = JobQueue::factory( array( 'class' => 'JobQueueDB',
-			'wiki' => wfWikiID(), 'type' => 'null', 'order' => 'fifo', 'claimTTL' => 10 ) );
+		if ( $this->getCliArg( 'use-jobqueue=' ) ) {
+			$name = $this->getCliArg( 'use-jobqueue=' );
+			if ( !isset( $wgJobTypeConf[$name] ) ) {
+				throw new MWException( "No \$wgJobTypeConf entry for '$name'." );
+			}
+			$baseConfig = $wgJobTypeConf[$name];
+		} else {
+			$baseConfig = array( 'class' => 'JobQueueDB' );
+		}
+		$baseConfig['type'] = 'null';
+		$baseConfig['wiki'] = wfWikiID();
+		$this->queueRand = JobQueue::factory(
+			array( 'order' => 'random', 'claimTTL' => 0 ) + $baseConfig );
+		$this->queueRandTTL = JobQueue::factory(
+			array( 'order' => 'random', 'claimTTL' => 10 ) + $baseConfig );
+		$this->queueFifo = JobQueue::factory(
+			array( 'order' => 'fifo', 'claimTTL' => 0 ) + $baseConfig );
+		$this->queueFifoTTL = JobQueue::factory(
+			array( 'order' => 'fifo', 'claimTTL' => 10 ) + $baseConfig );
+		if ( $baseConfig['class'] !== 'JobQueueDB' ) { // DB namespace with prefix or temp tables
+			foreach ( array( 'queueRand', 'queueRandTTL', 'queueFifo', 'queueFifoTTL' ) as $q ) {
+				$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
+			}
+		}
 	}
 
 	protected function tearDown() {
@@ -235,7 +253,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			$queue->ack( $job );
 		}
 
-		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
+		$this->assertFalse( $queue->pop(), "Queue is not empty ($desc)" );
 
 		$queue->flushCaches();
 		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
