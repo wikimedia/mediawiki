@@ -349,8 +349,9 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUploadStash( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user; // @todo FIXME: still used somewhere
+		$this->setMwGlobals( array(
+			'wgUser' => self::$users['uploader']->user, // @todo FIXME: still used somewhere
+		) );
 
 		$extension = 'png';
 		$mimeType = 'image/png';
@@ -433,9 +434,10 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUploadChunks( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user; // @todo FIXME: still used somewhere
-		
+		$this->setMwGlobals( array(
+			'wgUser' => self::$users['uploader']->user, // @todo FIXME: still used somewhere
+		) );
+
 		$chunkSize = 1048576;
 		// Download a large image file
 		// ( using RandomImageGenerator for large files is not stable )

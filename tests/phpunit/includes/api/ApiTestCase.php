@@ -9,14 +9,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected $apiContext;
 
 	protected function setUp() {
-		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser, $wgServer;
+		global $wgServer;
 
 		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
-		$wgMemc = new EmptyBagOStuff();
-		$wgContLang = Language::factory( 'en' );
-		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
-		$wgRequest = new FauxRequest( array() );
 
 		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
 
@@ -35,10 +31,14 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			)
 		);
 
-		$wgUser = self::$users['sysop']->user;
+		$this->setMwGlobals( array(
+			'wgMemc' => new EmptyBagOStuff(),
+			'wgAuth' => new StubObject( 'wgAuth', 'AuthPlugin' ),
+			'wgRequest' => new FauxRequest( array() ),
+			'wgUser' => self::$users['sysop']->user,
+		) );
 
 		$this->apiContext = new ApiTestContext();
-
 	}
 
 	/**
