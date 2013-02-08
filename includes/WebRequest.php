@@ -1388,6 +1388,10 @@ class FauxRequest extends WebRequest {
 	 * @return string
 	 */
 	protected function getRawIP() {
+		global $maintenance;
+		if ( isset($maintenance) && MWInit::methodExists( $maintenance, 'getRawIP' ) ) {
+			return $maintenance->getRawIP();
+		}
 		return '127.0.0.1';
 	}
 }
