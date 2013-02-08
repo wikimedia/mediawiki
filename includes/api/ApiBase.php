@@ -66,7 +66,15 @@ abstract class ApiBase extends ContextSource {
 	const LIMIT_SML1 = 50; // Slow query, std user limit
 	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
 
+	/**
+	 * getAllowedParams() flag: When set, the result could take longer to generate,
+	 * but should be more thorough. E.g. get the list of generators for ApiSandBox extension
+	 * @since 1.21
+	 */
+	const GET_VALUES_FOR_HELP = 1;
+
 	private $mMainModule, $mModuleName, $mModulePrefix;
+	private $mSlaveDB = null;
 	private $mParamCache = array();
 
 	/**
@@ -358,7 +366,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return string or false
 	 */
 	public function makeHelpMsgParameters() {
-		$params = $this->getFinalParams();
+		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		if ( $params ) {
 
 			$paramsDescription = $this->getFinalParamDescription();
@@ -506,15 +514,22 @@ abstract class ApiBase extends ContextSource {
 	 * value) or (parameter name) => (array with PARAM_* constants as keys)
 	 * Don't call this function directly: use getFinalParams() to allow
 	 * hooks to modify parameters as needed.
+	 *
+	 * Some derived classes may choose to handle an integer $flags parameter
+	 * in the overriding methods. Callers of this method can pass zero or
+	 * more OR-ed flags like GET_VALUES_FOR_HELP.
+	 *
 	 * @return array|bool
 	 */
-	protected function getAllowedParams() {
+	protected function getAllowedParams( /* $flags = 0 */ ) {
+		// int $flags is not declared because it causes "Strict standards"
+		// warning. Most derived classes do not implement it.
 		return false;
 	}
 
 	/**
 	 * Returns an array of parameter descriptions.
-	 * Don't call this functon directly: use getFinalParamDescription() to
+	 * Don't call this function directly: use getFinalParamDescription() to
 	 * allow hooks to modify descriptions as needed.
 	 * @return array|bool False on no parameter descriptions
 	 */
@@ -526,11 +541,13 @@ abstract class ApiBase extends ContextSource {
 	 * Get final list of parameters, after hooks have had a chance to
 	 * tweak it as needed.
 	 *
+	 * @param $flags int Zero or more flags like GET_VALUES_FOR_HELP
 	 * @return array|Bool False on no parameters
+	 * @since 1.21 $flags param added
 	 */
-	public function getFinalParams() {
-		$params = $this->getAllowedParams();
-		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params ) );
+	public function getFinalParams( $flags = 0 ) {
+		$params = $this->getAllowedParams( $flags );
+		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
 		return $params;
 	}
 
@@ -1650,10 +1667,16 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Gets a default slave database connection object
 	 * @return DatabaseBase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_SLAVE, 'api' );
+		if ( !isset( $this->mSlaveDB ) ) {
+			$this->profileDBIn();
+			$this->mSlaveDB = wfGetDB( DB_SLAVE, 'api' );
+			$this->profileDBOut();
+		}
+		return $this->mSlaveDB;
 	}
 
 	/**

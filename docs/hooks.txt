@@ -355,6 +355,7 @@ $text : the new text of the article (has yet to be saved)
 'APIGetAllowedParams': Use this hook to modify a module's parameters.
 &$module: ApiBase Module object
 &$params: Array of parameters
+$flags: int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 
 'APIGetDescription': Use this hook to modify a module's description.
 &$module: ApiBase Module object
