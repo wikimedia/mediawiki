@@ -36,18 +36,20 @@ class JobQueueRedis extends JobQueue {
 	const ROOTJOB_TTL   = 1209600; // integer; seconds to remember root jobs (14 days)
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
 
+	protected $key; // string; key to prefix the queue keys with (used for testing)
+
 	/**
 	 * @params include:
-	 *   - redisConf : An array of parameters to RedisConnectionPool::__construct().
-	 *   - server    : A hostname/port combination or the absolute path of a UNIX socket.
-	 *                 If a hostname is specified but no port, the standard port number
-	 *                 6379 will be used. Required.
+	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
+	 *   - redisServer : A hostname/port combination or the absolute path of a UNIX socket.
+	 *                   If a hostname is specified but no port, the standard port number
+	 *                   6379 will be used. Required.
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );
-		$this->server = $params['redisConf']['server'];
-		$this->redisPool = RedisConnectionPool::singleton( $params['redisConf'] );
+		$this->server = $params['redisServer'];
+		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 	}
 
 	/**
@@ -56,10 +58,6 @@ class JobQueueRedis extends JobQueue {
 	 * @throws MWException
 	 */
 	protected function doIsEmpty() {
-		if ( mt_rand( 0, 99 ) == 0 ) {
-			$this->doInternalMaintenance();
-		}
-
 		$conn = $this->getConnection();
 		try {
 			return ( $conn->lSize( $this->getQueueKey( 'l-unclaimed' ) ) == 0 );
@@ -74,10 +72,6 @@ class JobQueueRedis extends JobQueue {
 	 * @throws MWException
 	 */
 	protected function doGetSize() {
-		if ( mt_rand( 0, 99 ) == 0 ) {
-			$this->doInternalMaintenance();
-		}
-
 		$conn = $this->getConnection();
 		try {
 			return $conn->lSize( $this->getQueueKey( 'l-unclaimed' ) );
@@ -92,17 +86,12 @@ class JobQueueRedis extends JobQueue {
 	 * @throws MWException
 	 */
 	protected function doGetAcquiredCount() {
-		if ( mt_rand( 0, 99 ) == 0 ) {
-			$this->doInternalMaintenance();
+		if ( $this->claimTTL <= 0 ) {
+			return 0; // no acknowledgements
 		}
-
 		$conn = $this->getConnection();
 		try {
-			if ( $this->claimTTL > 0 ) {
-				return $conn->lSize( $this->getQueueKey( 'l-claimed' ) );
-			} else {
-				return 0;
-			}
+			return $conn->lSize( $this->getQueueKey( 'l-claimed' ) );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -190,8 +179,8 @@ class JobQueueRedis extends JobQueue {
 	protected function doPop() {
 		$job = false;
 
-		if ( mt_rand( 0, 99 ) == 0 ) {
-			$this->doInternalMaintenance();
+		if ( $this->claimTTL <= 0 && mt_rand( 0, 99 ) == 0 ) {
+			$this->cleanupClaimedJobs(); // prune jobs and IDs from the "garbage" list
 		}
 
 		$conn = $this->getConnection();
@@ -341,24 +330,15 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
-	 * Do any job recycling or queue cleanup as needed
-	 *
-	 * @return void
-	 * @return integer Number of jobs recycled/deleted
-	 * @throws MWException
-	 */
-	protected function doInternalMaintenance() {
-		return ( $this->claimTTL > 0 ) ?
-			$this->recycleAndDeleteStaleJobs() : $this->cleanupClaimedJobs();
-	}
-
-	/**
 	 * Recycle or destroy any jobs that have been claimed for too long
 	 *
 	 * @return integer Number of jobs recycled/deleted
 	 * @throws MWException
 	 */
-	protected function recycleAndDeleteStaleJobs() {
+	public function recycleAndDeleteStaleJobs() {
+		if ( $this->claimTTL <= 0 ) { // sanity
+			throw new MWException( "Cannot recycle jobs since acknowledgements are disabled." );
+		}
 		$count = 0;
 		// For each job item that can be retried, we need to add it back to the
 		// main queue and remove it from the list of currenty claimed job items.
@@ -489,6 +469,22 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
+	 * @return Array
+	 */
+	protected function doGetPeriodicTasks() {
+		if ( $this->claimTTL > 0 ) {
+			return array(
+				'recycleAndDeleteStaleJobs' => array(
+					'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
+					'period'   => ceil( $this->claimTTL / 2 )
+				)
+			);
+		} else {
+			return array();
+		}
+	}
+
+	/**
 	 * @param $job Job
 	 * @return array
 	 */
@@ -560,7 +556,11 @@ class JobQueueRedis extends JobQueue {
 	 */
 	private function getQueueKey( $prop ) {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $prop );
+		if ( strlen( $this->key ) ) { // namespaced queue (for testing)
+			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $this->key, $prop );
+		} else {
+			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $prop );
+		}
 	}
 
 	/**
@@ -605,5 +605,13 @@ class JobQueueRedis extends JobQueue {
 			$res[$this->prefixWithQueueKey( $prop, $key )] = $item;
 		}
 		return $res;
+	}
+
+	/**
+	 * @param $key string
+	 * @return void
+	 */
+	public function setTestingPrefix( $key ) {
+		$this->key = $key;
 	}
 }
