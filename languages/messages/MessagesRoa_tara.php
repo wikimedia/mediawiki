@@ -2938,6 +2938,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-robot-noindex' => 'None indicizzabbele',
 'pageinfo-views' => 'Numere de visite',
 'pageinfo-watchers' => "Numere de visitature d'a pàgene",
+'pageinfo-few-watchers' => 'Mene de $1 {{PLURAL:$1|visitatore|visitature}}',
 'pageinfo-redirects-name' => 'Redirezionaminde a sta pàgene',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Sottopàggene de sta pàgene',

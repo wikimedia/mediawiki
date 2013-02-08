@@ -3045,6 +3045,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-robot-noindex' => 'Non indicizzabile',
 'pageinfo-views' => 'Numero di visualizzazioni',
 'pageinfo-watchers' => 'Numero di utenti che hanno la pagina nei loro osservati speciali',
+'pageinfo-few-watchers' => 'Meno di $1 {{PLURAL:$1|osservatore|osservatori}}',
 'pageinfo-redirects-name' => 'Redirect a questa pagina',
 'pageinfo-subpages-name' => 'Sottopagine di questa pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirect}}; $3 {{PLURAL:$3|non redirect}})',

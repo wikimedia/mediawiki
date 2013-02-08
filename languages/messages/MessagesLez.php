@@ -279,7 +279,7 @@ $messages = array(
 'nstab-main' => 'Ччин',
 'nstab-user' => 'Уртахдин ччин',
 'nstab-media' => 'Медия ччин',
-'nstab-special' => 'Куьмекчи ччин',
+'nstab-special' => 'Квимекдин ччин',
 'nstab-project' => 'Проектдин ччин',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Малумат',
@@ -1054,7 +1054,7 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 рахкъурунар',
 'whatlinkshere-hidetrans' => '$1 кутунар',
 'whatlinkshere-hidelinks' => '$1 элячlунар',
-'whatlinkshere-hideimages' => '$1 шикилриз элячӀунар',
+'whatlinkshere-hideimages' => '$1 фаjлрин элачlунар',
 'whatlinkshere-filters' => 'Куьзунагар',
 
 # Block/unblock

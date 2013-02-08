@@ -910,7 +910,7 @@ $2',
 'gotaccount' => "لديك حساب؟ '''$1'''.",
 'gotaccountlink' => 'تسجيل الدخول',
 'userlogin-resetlink' => 'نسيت تفاصيل الدخول؟',
-'createaccountmail' => 'بواسطة البريد الإلكتروني',
+'createaccountmail' => 'استخدم كلمة سر عشوائية مؤقتة وارسلها إلى عنوان البريد الإلكتروني المحدد أدناه',
 'createaccountreason' => 'السبب:',
 'badretype' => 'كلمات السر التي أدخلتها لا تتطابق.',
 'userexists' => 'اسم المستخدم الذي تم إدخاله مستعمل بالفعل.
@@ -2201,7 +2201,7 @@ $1',
 'shared-repo' => 'مستودع مشترك',
 'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 'filepage.css' => '/* CSS المعروض هنا سيضمن في صفحات وصف الملفات، أيضا على الويكيات الأجنبية */',
-'upload-disallowed-here' => 'للأسف لا يمكنك تعديل هذه الصورة.',
+'upload-disallowed-here' => 'لا يمكنك تعديل هذه الصورة.',
 
 # File reversion
 'filerevert' => 'استرجع $1',
@@ -2278,7 +2278,7 @@ $1',
 'statistics-views-peredit' => 'المشاهدات لكل تعديل',
 'statistics-users' => '[[Special:ListUsers|مستخدمون]] مسجلون',
 'statistics-users-active' => 'مستخدمون نشطون',
-'statistics-users-active-desc' => 'المستخدمون الذين قاموا بفعل في آخر {{PLURAL:$1|يوم|$1 يوم}}',
+'statistics-users-active-desc' => 'المستخدمون الذين قاموا بفعل في آخر {{PLURAL:$1||يوم|يومين|$1 أيام|$1 يوماً|$1 يوم}}',
 'statistics-mostpopular' => 'أكثر الصفحات مشاهدة',
 
 'disambiguations' => 'الصفحات التي ترتبط بصفحات توضيح',
@@ -2454,7 +2454,7 @@ $1',
 # Special:ActiveUsers
 'activeusers' => 'قائمة المستخدمين النشطين',
 'activeusers-intro' => 'هذه قائمة بالمستخدمين الذين مارسوا نوعاً من النشاط خلال {{PLURAL:$1||اليوم الماضي|اليومين الماضيين|ال$1 أيام الماضية|ال$1 يوماً ماضياً|ال$1 يوم ماضي}}.',
-'activeusers-count' => '{{PLURAL:$1|ما من تعديلات|تعديل حديث واحد|تعديلان حديثان|$1 تعديلات حديثة|$1 تعديلا حديثا|$1 تعديل حديث}} منذ {{PLURAL:$3||يوم|يومين|$3 أيام|$3 يوما|$1 يوم}}',
+'activeusers-count' => '{{PLURAL:$1|لا أفعال|فعل واحد|فعلان اثنان|$1 أفعال|$1 فعلاً|$1 فعل}} منذ {{PLURAL:$3||يوم|يومين|$3 أيام|$3 يوماً|$1 يوم}}',
 'activeusers-from' => 'اعرض المستخدمين بدءاً من:',
 'activeusers-hidebots' => 'أخف البوتات',
 'activeusers-hidesysops' => 'أخف الإداريين',
@@ -2991,7 +2991,7 @@ $1',
 # Move page
 'move-page' => 'نقل $1',
 'move-page-legend' => 'نقل صفحة',
-'movepagetext' => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها إلى لاسم الجديد.
+'movepagetext' => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها إلى الاسم الجديد.
 العنوان القديم سيصبح تحويلة للعنوان الجديد.
 يمكنك أن تترك التحويلات التي تشير إلى العنوان الأصلي كما هي لتقوم البوتات بتحديثها تلقائياً.
 إذا اخترت أن تقوم بالتحديث يدوياً، فتأكد من عدم وجود تحويلات [[Special:DoubleRedirects|مزدوجة]] أو [[Special:BrokenRedirects|مكسورة]] وقم بتصحيحها.
@@ -3353,6 +3353,7 @@ $1',
 'pageinfo-robot-noindex' => 'غير قابلة للفهرسة',
 'pageinfo-views' => 'عدد المشاهدات',
 'pageinfo-watchers' => 'عدد المراقبين',
+'pageinfo-few-watchers' => 'أقل من {{PLURAL:$1||مراقب واحد|مراقبين اثنين|$1 مراقبين|$1 مراقباً|$1 مراقب}}',
 'pageinfo-redirects-name' => 'التحويلات إلى هذه الصفحة',
 'pageinfo-subpages-name' => 'الصفحات الفرعية لهذه الصفحة',
 'pageinfo-subpages-value' => '$1 ({{PLURAL:$2|لا تحويلات|تحويلة واحدة|تحويلتان|$2 تحويلات|$2 تحويلة}}؛ $3 {{PLURAL:$3|من غير  التحويلات}})',
@@ -3403,6 +3404,7 @@ $1',
 'markedaspatrollederrortext' => 'يجب عليك اختيار المراجعة التي تريد أن تشير أنها مراجعة',
 'markedaspatrollederror-noautopatrol' => 'لا يجوز لك تعليم تغييراتك الشخصية بعلامة المراجعة.',
 'markedaspatrollednotify' => 'هذا التغيير لـ $1  تم تعليمه كمراقب.',
+'markedaspatrollederrornotify' => 'لم ينجح وسم هذه النسخة بأنها مراجعة',
 
 # Patrol log
 'patrol-log-page' => 'سجل الخفر',
@@ -4254,7 +4256,7 @@ $5
 'specialpages-group-highuse' => 'صفحات استخدام عال',
 'specialpages-group-pages' => 'قوائم الصفحات',
 'specialpages-group-pagetools' => 'أدوات الصفحات',
-'specialpages-group-wiki' => 'بيانات الويكي وأدوات',
+'specialpages-group-wiki' => 'البيانات والأدوات',
 'specialpages-group-redirects' => 'صفحات خاصة تحول',
 'specialpages-group-spam' => 'أدوات السبام',
 
@@ -4351,6 +4353,7 @@ $5
 'logentry-newusers-newusers' => 'تم إنشاء الحساب $1',
 'logentry-newusers-create' => 'تم إنشاء الحساب $1',
 'logentry-newusers-create2' => 'أنشأ $1 الحساب $3',
+'logentry-newusers-byemail' => 'أنشئ حساب المستخدم $3 من قبل $1 وأرسلت كلمة السر بالبريد الإلكتروني',
 'logentry-newusers-autocreate' => 'أنشئ حساب $1 تلقائياً',
 'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',
 'logentry-rights-rights-legacy' => 'غير $1 صلاحيات $3',
@@ -4409,6 +4412,7 @@ $5
 'api-error-ok-but-empty' => 'خطأ داخلي : لم يكن هناك استجابة من الملقم.',
 'api-error-overwrite' => 'لا يسمح بالكتابة فوق ملف موجود.',
 'api-error-stashfailed' => 'خطأ داخلي: فشل الملقم في تخزين الملفات المؤقتة.',
+'api-error-publishfailed' => 'خطأ داخلي: لم ينجح الخادوم في نشر ملف مؤقت',
 'api-error-timeout' => 'لم يستجب الملقم في الوقت المتوقع.',
 'api-error-unclassified' => 'حدث خطأ غير معروف',
 'api-error-unknown-code' => 'خطأ غير معروف : " $1 "',

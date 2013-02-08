@@ -2339,7 +2339,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'notanarticle' => 'To nie jest artykuł',
 'notvisiblerev' => 'Wersja została usunięta',
 'watchnochange' => 'Żadna z obserwowanych stron nie była edytowana w podanym okresie.',
-'watchlist-details' => 'Na liście obserwowanych {{PLURAL:$1|jest 1 strona|są $1 strony|jest $1 stron}}, nie licząc stron dyskusji.',
+'watchlist-details' => 'Lista obserwowanych przez Ciebie stron zawiera {{PLURAL:$1|$1 pozycję|$1 pozycje|$1 pozycji}}, nie licząc stron dyskusji.',
 'wlheader-enotif' => '* Wysyłanie powiadomień na adres e‐mail jest włączone.',
 'wlheader-showupdated' => "* '''Wytłuszczone''' zostały strony, które zostały zmodyfikowane od Twojej ostatniej na nich wizyty.",
 'watchmethod-recent' => 'poszukiwanie ostatnich zmian wśród obserwowanych stron',

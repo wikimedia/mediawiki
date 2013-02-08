@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alno
+ * @author Hoo
  * @author Jagwar
  * @author The Evil IP address
  * @author Urhixidur
@@ -863,8 +864,8 @@ Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miveren
 'anontalkpagetext' => "----<i>Ity pejy ity dia pejin-dresak'olona tsy nanokatra na tsy nampiasa ny kaontiny.
 Noho izany dia ilainay ny mampiasa ny adiresy IP-ny hanondroana azy. Mety zarazarain'olona maro ny adiresy IP iray. Raha mpikambana tsy nisoratra anarana ianao, ka raha mahita resaka ts ho anao, azonao atao ny [[Special:UserLogin/signup|manokatra kaonty]], na [[Special:UserLogin|miditra]] mba tsy ho voafangarao amin'ny mpikambana hafa tsy nisoratra anarana.</i>",
 'noarticletext' => "'''Tsy mbola nisy namorona io lahatsoratra io.
-Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]].'''
-* '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Na forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.",
+Azonao atao ny [[Special:Search/{{PAGENAME}}|Tadiavo ny momba ny {{PAGENAME}}]].'''
+* '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} Na forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.",
 'noarticletext-nopermission' => "Mbola tsy misy lahatsoratra ao amin'io pejy io.
 
 Azonao atao ny [[Special:Search/{{PAGENAME}}|mikaroka ity lohateny ity]] eny amin'ny pejy hafa na <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mitady ao amin'ny laogy misy fifandraisana]</span>, fa tsy azonao atao ny mamorona ity pejy ity.",

@@ -12,6 +12,7 @@
  * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
+ * @author Dicionarista
  * @author Francisco Leandro
  * @author Giro720
  * @author GoEThe
@@ -369,12 +370,12 @@ $messages = array(
 'editfont-serif' => 'Fonte serifada',
 
 # Dates
-'sunday' => 'Domingo',
-'monday' => 'Segunda-feira',
-'tuesday' => 'Terça-feira',
-'wednesday' => 'Quarta-feira',
-'thursday' => 'Quinta-feira',
-'friday' => 'Sexta-feira',
+'sunday' => 'domingo',
+'monday' => 'segunda-feira',
+'tuesday' => 'terça-feira',
+'wednesday' => 'quarta-feira',
+'thursday' => 'quinta-feira',
+'friday' => 'sexta-feira',
 'saturday' => 'Sábado',
 'sun' => 'Dom',
 'mon' => 'Seg',
@@ -383,18 +384,18 @@ $messages = array(
 'thu' => 'Qui',
 'fri' => 'Sex',
 'sat' => 'Sáb',
-'january' => 'Janeiro',
-'february' => 'Fevereiro',
-'march' => 'Março',
-'april' => 'Abril',
+'january' => 'janeiro',
+'february' => 'fevereiro',
+'march' => 'março',
+'april' => 'abril',
 'may_long' => 'Maio',
-'june' => 'Junho',
-'july' => 'Julho',
-'august' => 'Agosto',
-'september' => 'Setembro',
-'october' => 'Outubro',
-'november' => 'Novembro',
-'december' => 'Dezembro',
+'june' => 'junho',
+'july' => 'julho',
+'august' => 'agosto',
+'september' => 'setembro',
+'october' => 'outubro',
+'november' => 'novembro',
+'december' => 'dezembro',
 'january-gen' => 'Janeiro',
 'february-gen' => 'Fevereiro',
 'march-gen' => 'Março',
@@ -411,7 +412,7 @@ $messages = array(
 'feb' => 'Fev.',
 'mar' => 'Mar.',
 'apr' => 'Abr.',
-'may' => 'Maio',
+'may' => 'maio',
 'jun' => 'Jun.',
 'jul' => 'Jul.',
 'aug' => 'Ago.',

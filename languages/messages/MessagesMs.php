@@ -2653,12 +2653,13 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 'move-page' => 'Pindahkan $1',
 'move-page-legend' => 'Pindahkan laman',
 'movepagetext' => "Menggunakan borang di bawah akan menukar nama halaman dan memindahkan segala sejarahnya kepada nama baru itu.
+
 Tajuk yang lama akan menjadi halaman lencongan kepada tajuk baru.
 Anda boleh mengemaskinikan lencongan yang menghala ke tajuk asal secara automatik.
 Jika anda memilih untuk tidak berbuat demikian, tolong semak untuk mencari lencongan [[Special:DoubleRedirects|berganda]] atau [[Special:BrokenRedirects|terputus]].
 Anda dipertanggungjawabkan untuk memastikan agar semua pautan tetap menghala ke tempat yang sepatutnya.
 
-Sila ingat bahasa halaman '''tidak''' akan dipindahkan jika tajuk barunya sudah diambil oleh halaman yang sedia ada, melainkan ia merupakan lencongan tanpa sebarang sejarah suntingan.
+Sila ingat bahasa halaman '''tidak''' akan dipindahkan jika tajuk barunya sudah diambil oleh halaman yang sedia ada, melainkan halaman yang sedia ada tersebut merupakan lencongan tanpa sebarang sejarah suntingan.
 Ertinya, anda boleh menukar kembali nama halaman ke nama yang sebelumnya jika anda terbuat silap, tetapi anda tidak boleh menulis ganti halaman yang sedia ada.
 
 '''Amaran!'''
@@ -2983,6 +2984,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-robot-noindex' => 'Tidak boleh diindekskan',
 'pageinfo-views' => 'Bilangan kunjungan',
 'pageinfo-watchers' => 'Bilangan pemantau halaman',
+'pageinfo-few-watchers' => 'Kurang daripada $1 orang pemantau',
 'pageinfo-redirects-name' => 'Lencongan ke halaman ini',
 'pageinfo-subpages-name' => 'Subhalaman untuk halaman ini',
 'pageinfo-subpages-value' => '$1 ($2 lencongan; $3 bukan lencongan)',

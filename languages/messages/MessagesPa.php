@@ -16,6 +16,7 @@
  * @author Guglani
  * @author Kaganer
  * @author Raj Singh
+ * @author Saurabh123
  * @author Sukh
  * @author Surinder.wadhawan
  * @author TariButtar
@@ -327,6 +328,7 @@ Manual:External_editors ਹੋਰ ਜਾਣਕਾਰੀ।])',
 'newwindow' => '(ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੁੱਲ੍ਹਦੀ ਹੈ)',
 'cancel' => 'ਰੱਦ ਕਰੋ',
 'moredotdotdot' => 'ਹੋਰ...',
+'morenotlisted' => 'ਹੋਰ ਨਹੀ ਹੈਗੇ',
 'mypage' => 'ਪੰਨਾ',
 'mytalk' => 'ਚਰਚਾ',
 'anontalk' => 'ਇਸ IP ਲਈ ਗੱਲ-ਬਾਤ',
@@ -549,6 +551,11 @@ $1',
 ਇਸਨੇ ਕੋਈ ਕਾਰਨ ਨਹੀਂ ਦੱਸਿਆ।',
 'badtitle' => 'ਗਲਤ ਸਿਰਲੇਖ',
 'badtitletext' => 'ਤੁਹਾਡਾ ਦਰਖਾਸਤਸ਼ੁਦਾ ਸਿਰਲੇਖ ਨਾਕਾਬਿਲ, ਖਾਲੀ ਜਾਂ ਗਲਤ ਜੁੜਿਆ ਹੋਇਆ inter-languagd ਜਾਂ inter-wiki ਸਿਰਲੇਖ ਹੈ। ਇਹ ਵੀ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਸ ਵਿੱਚ ਇਕ-ਦੋ ਅੱਖਰ ਐਸੇ ਹੋਣ ਜੋ ਸਿਰਲੇਖ ਵਿੱਚ ਵਰਤੇ ਨਹੀਂ ਜਾ ਸਕਦੇ।',
+'querypage-no-updates' => 'ਇਸ ਪੇਜ  ਦਾ ਆਧੁਨੀਕਰਣ ਵਰਜਿਤ ਹੈ।
+ਆਂਕੜੇ ਹੱਲੇ ਤਾਜ਼ੇ ਨਹੀ ਹੋ ਸਕਦੇ ।',
+'wrong_wfQuery_params' => ' wfQuery()<br /> ਨੂ ਲਤ ਰਾਸ਼ੀ ਮਿਲੇ ਹੋਯੇ ਨੇ
+ ਫੁਨ੍ਕ੍ਤਿਓਂ:$1<br />
+ ਪ੍ਰਸ਼ਨ: $2',
 'viewsource' => 'ਸਰੋਤ ਵੇਖੋ',
 'viewsource-title' => '$1 ਲਈ ਸਰੋਤ ਵੇਖੋ',
 'actionthrottled' => 'ਕਾਰਜ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ',
@@ -560,6 +567,7 @@ $1',
 'protectedinterface' => 'ਇਹ ਪੰਨਾ ਸਾਫ਼ਟਵੇਅਰ ਇੰਟਰਫ਼ੇਸ ਦਾ ਮੂਲ ਪਾਠ ਹੈ ,ਅਤੇ ਦੁਰਵਰਤੌਂ ਤੌਂ ਬਚਾਅ ਲਈ ਰਾਖਵਾਂ ਕੀਤਾ ਗਿਆ ਹੈ।',
 'editinginterface' => "'''ਚਿਤਾਵਨੀ''' ਤੁਸੀਂ ਐਸੇ ਪੰਨੇ ਨੂੰ ਬਦਲ ਰਹੇ ਹੋ ਜੋ ਸਾਫ਼ਟਵੇਅਰ ਇੰਟਰਫ਼ੇਸ ਦੇ ਮੂਲ ਪਾਠ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।
 ਇਸ ਪੰਨੇ ਦੇ ਬਦਲਾਅ ਦੁਸਰੇ ਵਰਤੋਂ ਕਰਣ ਵਾਲਿਆਂ ਲਈ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਇੰਟਰਫਲੇਸ ਦੀ ਸ਼ਕਲ ਤੇ ਅਸਰ ਪਾ ਦੇਣਗੇ।ਅਨੁਵਾਦ ਕਰਣ ਲਈ ,ਕਿਰਪਾ ਕਰਕੇ [//translatewiki.net/wiki/Main_Page?setlang=pa ਟ੍ਰਾਂਸਲੇਟਵਿਕੀ.ਨੈਟ] ਦੀ ਵਰਤੌਂ ਕਰੋ,ਇਹ ਮੀਡੀਆਵਿਕੀ ਦੀ ਸਥਾਨਕੀਕਰਣ ਯੋਜਨਾ ਹੈ।",
+'sqlhidden' => '(SQL ਪ੍ਰਸ਼ਨ ਚੁਪ੍ਪੇ ਹੁਏ ਨੇ)',
 'cascadeprotected' => 'ਇਹ ਪੰਨਾ ਸੁਰੱਖਿਅਤ ਹੈ, ਕਿਉਂਕਿ ਇਹ ਨਿੱਚੇ ਲਿਖੇ {{PLURAL:$1|ਪੰਨਾ|ਪੰਨੇ}} ਦੀ ਸੁਰੱਖਿਆ-ਸੀੜੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ:
 $2',
 'namespaceprotected' => "ਤੁਹਾਨੂੰ '''$1''' ਥਾਂ-ਨਾਮ ਵਾਲ਼ੇ ਸਫ਼ਿਆਂ ਵਿਚ ਫੇਰ-ਬਦਲ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।",
@@ -1066,6 +1074,10 @@ $3|'''1''' ਨਤੀਜਾ|'''$3''' ਨਤੀਜੇ}} ਵਖਾਓ।",
 # Quickbar
 'qbsettings' => 'ਤੁਰੰਤ ਬਾਰ',
 'qbsettings-none' => 'ਕੋਈ ਨਹੀਂ',
+'qbsettings-fixedleft' => 'ਕਾਬ੍ਬ੍ਹੇ ਨੂ ਸਥਾਪਿਤ',
+'qbsettings-fixedright' => 'ਸੱਜੇ ਨੂ ਸਥਾਪਿਤ',
+'qbsettings-floatingleft' => 'ਕਾਬ੍ਬ੍ਹੇ ਨੂ ਰੁਲਦੀ',
+'qbsettings-floatingright' => 'ਸੱਜੇ ਨੂ ਰੁਲਦੀ',
 
 # Preferences page
 'preferences' => 'ਮੇਰੀ ਪਸੰਦ',
@@ -2213,5 +2225,16 @@ delete|ਹਟਾਉਣ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 
 # Search suggestions
 'searchsuggest-search' => 'ਖੋਜ',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|ਸੇਕੋੰਡ|ਵਧੇਰੇ ਸੇਕੋੰਡ}}',
+'duration-minutes' => '$1 {{PLURAL:$1|ਮਿਨੁਟ |ਵਧੇਰੇ ਮਿਨੁਟ }}',
+'duration-hours' => '$1 {{PLURAL:$1|ਘੰਟੇ |ਵਧੇਰੇ ਘੰਟੇ }}',
+'duration-days' => '$1 {{PLURAL:$1|ਦਿਨ |ਵਧੇਰੇ ਦਿਨ }}',
+'duration-weeks' => '$1 {{PLURAL:$1|ਹਫ਼ਤੇ |ਵਧੇਰੇ ਹਫ਼ਤੇ }}',
+'duration-years' => '$1 {{PLURAL:$1|ਸਾਲ |ਵਧੇਰੇ ਸਾਲ }}',
+'duration-decades' => '$1 {{PLURAL:$1|ਦਸ਼ਕ  |ਵਧੇਰੇ ਦਸ਼ਕ }}',
+'duration-centuries' => '$1 {{PLURAL:$1|ਸ਼ਤਾਬਦੀ |ਵਧੇਰੇ ਸ਼ਤਾਬਦੀ }}',
+'duration-millennia' => '$1 {{PLURAL:$1|ਸਾਹਸ਼ਤਾਬਦੀ  |ਵਧੇਰੇ ਸਾਹਸ਼ਤਾਬਦੀ  }}',
 
 );

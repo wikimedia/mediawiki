@@ -1973,7 +1973,7 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-ok' => 'Sërché',
 'linksearch-text' => 'As peulo dovresse dij ciapatut com "*.wikipedia.org".
 A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
-{{PLURAL:$2|Protocòl|Protocòj}} ch\'as peulo dovresse: <code>$1</code> (predefinì http:// se gnun protocòj a son specificà).',
+{{PLURAL:$2|Protocòl|Protocòj}} ch\'as peulo dovresse: <code>$1</code> (predefinì http:// se gnun protocòl a l\'é specificà).',
 'linksearch-line' => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
 'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël sërvent.',
 
