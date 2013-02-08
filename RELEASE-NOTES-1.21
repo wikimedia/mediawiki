@@ -220,6 +220,7 @@ production.
   first one keeping its meaning. ApiPageSet is now derived from ApiBase.
 * BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
 * ApiQueryGeneratorBase::setGeneratorMode() now requires a pageset param.
+* $wgAPIGeneratorModules is now obsolete and will be ignored.
 
 === Languages updated in 1.21 ===
 

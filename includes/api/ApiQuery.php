@@ -103,39 +103,6 @@ class ApiQuery extends ApiBase {
 	);
 
 	/**
-	 * List of Api Query generator modules
-	 * Defined in code, rather than being derived at runtime,
-	 * due to performance reasons
-	 * @var array
-	 */
-	private $mQueryGenerators = array(
-		'allcategories' => 'ApiQueryAllCategories',
-		'allimages' => 'ApiQueryAllImages',
-		'alllinks' => 'ApiQueryAllLinks',
-		'allpages' => 'ApiQueryAllPages',
-		'alltransclusions' => 'ApiQueryAllLinks',
-		'backlinks' => 'ApiQueryBacklinks',
-		'categories' => 'ApiQueryCategories',
-		'categorymembers' => 'ApiQueryCategoryMembers',
-		'duplicatefiles' => 'ApiQueryDuplicateFiles',
-		'embeddedin' => 'ApiQueryBacklinks',
-		'exturlusage' => 'ApiQueryExtLinksUsage',
-		'images' => 'ApiQueryImages',
-		'imageusage' => 'ApiQueryBacklinks',
-		'iwbacklinks' => 'ApiQueryIWBacklinks',
-		'langbacklinks' => 'ApiQueryLangBacklinks',
-		'links' => 'ApiQueryLinks',
-		'protectedtitles' => 'ApiQueryProtectedTitles',
-		'querypage' => 'ApiQueryQueryPage',
-		'random' => 'ApiQueryRandom',
-		'recentchanges' => 'ApiQueryRecentChanges',
-		'search' => 'ApiQuerySearch',
-		'templates' => 'ApiQueryLinks',
-		'watchlist' => 'ApiQueryWatchlist',
-		'watchlistraw' => 'ApiQueryWatchlistRaw',
-	);
-
-	/**
 	 * @var ApiPageSet
 	 */
 	private $mPageSet;
@@ -162,13 +129,6 @@ class ApiQuery extends ApiBase {
 		$this->mModuleMgr->addModules( $wgAPIListModules, 'list' );
 		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
 		$this->mModuleMgr->addModules( $wgAPIMetaModules, 'meta' );
-
-		global $wgAPIGeneratorModules;
-		if ( is_array( $wgAPIGeneratorModules ) ) {
-			foreach ( $wgAPIGeneratorModules as $moduleName => $moduleClass ) {
-				$this->mQueryGenerators[$moduleName] = $moduleClass;
-			}
-		}
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
@@ -221,10 +181,18 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Get the generators array mapping module names to class names
+	 * @deprecated since 1.21, list of generators is maintained by ApiPageSet
 	 * @return array array(modulename => classname)
 	 */
 	public function getGenerators() {
-		return $this->mQueryGenerators;
+		wfDeprecated( __METHOD__, '1.21' );
+		$gens = array();
+		foreach ( $this->mModuleMgr->getNamesWithClasses() as $name => $class ) {
+			if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
+				$gens[$name] = $class;
+			}
+		}
+		return $gens;
 	}
 
 	/**
@@ -498,7 +466,7 @@ class ApiQuery extends ApiBase {
 			'exportnowrap' => false,
 			'iwurl' => false,
 		);
-		if( $flags ) {
+		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
 		return $result;
