@@ -6082,6 +6082,11 @@ $wgAPIModules = array();
 $wgAPIMetaModules = array();
 $wgAPIPropModules = array();
 $wgAPIListModules = array();
+
+/**
+ * This variable is ignored. To add your module to the API, please add it to $wgAPI*Modules
+ * @deprecated since 1.21
+ */
 $wgAPIGeneratorModules = array();
 
 /**
