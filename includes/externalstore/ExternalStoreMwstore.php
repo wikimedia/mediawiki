@@ -62,7 +62,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			$url = $be->getContainerStoragePath( 'data' ) . '/' .
 				rawurlencode( $wiki ) . "/{$rand[0]}/{$rand[1]}/{$rand[2]}/{$id}";
 
-			$be->prepare( array( 'dir' => dirname( $url ) ) );
+			$be->prepare( array( 'dir' => dirname( $url ), 'noAccess' => 1, 'noListing' => 1 ) );
 			if ( $be->create( array( 'dst' => $url, 'content' => $data ) )->isOK() ) {
 				return $url;
 			}
