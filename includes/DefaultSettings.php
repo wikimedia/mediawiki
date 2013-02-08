@@ -104,7 +104,7 @@ $wgCanonicalServer = false;
  * Other paths will be set to defaults based on it unless they are directly
  * set in LocalSettings.php
  */
-$wgScriptPath       = '/wiki';
+$wgScriptPath = '/wiki';
 
 /**
  * Whether to support URLs like index.php/Page_title These often break when PHP
@@ -122,8 +122,7 @@ $wgScriptPath       = '/wiki';
  * you have customized it, having this incorrectly set to true can cause
  * redirect loops when "pretty URLs" are used.
  */
-$wgUsePathInfo =
-	( strpos( PHP_SAPI, 'cgi' ) === false ) &&
+$wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
@@ -134,7 +133,7 @@ $wgUsePathInfo =
  * Some hosting providers use PHP 4 for *.php files, and PHP 5 for *.php5. This
  * variable is provided to support those providers.
  */
-$wgScriptExtension  = '.php';
+$wgScriptExtension = '.php';
 
 
 /**@}*/
@@ -1025,12 +1024,12 @@ $wgVerifyMimeType = true;
 
 /** Sets the mime type definition file to use by MimeMagic.php. */
 $wgMimeTypeFile = "includes/mime.types";
-#$wgMimeTypeFile= "/etc/mime.types";
-#$wgMimeTypeFile= null; #use built-in defaults only.
+#$wgMimeTypeFile = "/etc/mime.types";
+#$wgMimeTypeFile = null; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php. */
-$wgMimeInfoFile= "includes/mime.info";
-#$wgMimeInfoFile= null; #use built-in defaults only.
+$wgMimeInfoFile = "includes/mime.info";
+#$wgMimeInfoFile = null; #use built-in defaults only.
 
 /**
  * Switch for loading the FileInfo extension by PECL at runtime.
@@ -2370,7 +2369,7 @@ $wgLegacySchemaConversion = false;
  * Enable dates like 'May 12' instead of '12 May', this only takes effect if
  * the interface is set to English.
  */
-$wgAmericanDates    = false;
+$wgAmericanDates = false;
 /**
  * For Hindi and Arabic use local numerals instead of Western style (0-9)
  * numerals in interface.
@@ -5664,7 +5663,7 @@ $wgLogRestrictions = array(
  *
  * @par Example:
  * @code
- *   $wgFilterLogTypes => array(
+ *   $wgFilterLogTypes = array(
  *      'move' => true,
  *      'import' => false,
  *   );
