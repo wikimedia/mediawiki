@@ -29,6 +29,8 @@ set_time_limit( 3600 ); // 1 hour
  * @ingroup Maintenance
  */
 class AssembleUploadChunks extends Maintenance {
+	var $request = array();
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Re-assemble the segments of a chunked upload into a single file";
@@ -42,6 +44,7 @@ class AssembleUploadChunks extends Maintenance {
 		$e = null;
 		wfDebug( "Started assembly for file {$this->getOption( 'filename' )}\n" );
 		wfSetupSession( $this->getOption( 'sessionid' ) );
+		$this->loadRequestInfo();
 		try {
 			$user = User::newFromId( $this->getOption( 'userid' ) );
 			if ( !$user ) {
@@ -112,6 +115,24 @@ class AssembleUploadChunks extends Maintenance {
 		}
 		wfDebug( "Finished assembly for file {$this->getOption( 'filename' )}\n" );
 	}
+
+	private function loadRequestInfo() {
+		global $wgMemc;
+		$request = $wgMemc->get( wfMemcKey( 'AssembleUploadChunks', $this->getOption( 'userid' ),
+			$this->getOption( 'sessionid' ), $this->getOption( 'filekey' ) ) );
+		if ( $request ) {
+			$this->request = $request;
+		}
+	}
+
+	public function getRawIP() {
+		$ip = '127.0.0.1';
+		if ( isset($this->request[ 'IP' ] ) ) {
+			$ip = $this->request[ 'IP' ];
+		}
+		return $ip;
+	}
+
 }
 
 $maintClass = "AssembleUploadChunks";
