@@ -39,7 +39,7 @@ class ApiGeneratorTest extends MediaWikiTestCase {
 	 */
 	public function provideApiquerygeneratorbaseChilds() {
 		$cases = array();
-		$modules = $this->getApiQuery()->getModules();
+		$modules = $this->getApiQuery()->getModuleManager()->getNamesWithClasses();
 		foreach( $modules as $moduleName => $moduleClass ) {
 			if( !is_subclass_of( $moduleClass, 'ApiQueryGeneratorBase' ) ) {
 				continue;
@@ -55,7 +55,7 @@ class ApiGeneratorTest extends MediaWikiTestCase {
 	public function testGeneratorsAreApiquerygeneratorbaseSubclasses(
 		$generatorName, $generatorClass
 	) {
-		$modules = $this->getApiQuery()->getModules();
+		$modules = $this->getApiQuery()->getModuleManager()->getNamesWithClasses();
 		$this->assertArrayHasKey( $generatorName, $modules,
 			"Class '$generatorClass' of generator '$generatorName' must be a subclass of 'ApiQueryGeneratorBase'. Listed either in ApiQuery::\$mQueryGenerators or in \$wgAPIGeneratorModules."
 		);
