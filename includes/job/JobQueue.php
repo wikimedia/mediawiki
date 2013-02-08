@@ -62,6 +62,8 @@ abstract class JobQueue {
 	 *                by timestamp, allowing for some jobs to be popped off out of order.
 	 *                If "random" is used, pop() will pick jobs in random order. This might be
 	 *                useful for improving concurrency depending on the queue storage medium.
+	 *                Note that "random" really means "don't care", so it may actually be FIFO
+	 *                or only weakly random (e.g. pop() takes one of the first X jobs randomly).
 	 *   - claimTTL : If supported, the queue will recycle jobs that have been popped
 	 *                but not acknowledged as completed after this many seconds. Recycling
 	 *                of jobs simple means re-inserting them into the queue. Jobs can be
@@ -369,4 +371,15 @@ abstract class JobQueue {
 	 * @return void
 	 */
 	protected function doFlushCaches() {}
+
+	/**
+	 * Namespace the queue with a key to isolate it for testing
+	 *
+	 * @param $key string
+	 * @return void
+	 * @throws MWException
+	 */
+	public function setTestingPrefix( $key ) {
+		throw new MWException( "Queue namespacing not support for this queue type." );
+	}
 }

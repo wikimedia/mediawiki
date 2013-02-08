@@ -7,6 +7,7 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		'file=' => false,
 		'use-filebackend=' => false,
 		'use-bagostuff=' => false,
+		'use-jobqueue=' => false,
 		'keep-uploads' => false,
 		'use-normal-tables' => false,
 		'reuse-db' => false,
