@@ -28,7 +28,7 @@
  * This can be used to get handle wrappers that free the handle when the wrapper
  * leaves scope. The maximum number of free handles (connections) is configurable.
  * This provides an easy way to cache connection handles that may also have state,
- * such as handle does between multi() and exec(), and without hoarding connections.
+ * such as a handle does between multi() and exec(), and without hoarding connections.
  * The wrappers use PHP magic methods so that calling functions on them calls the
  * function of the actual Redis object handle.
  *
@@ -98,6 +98,7 @@ class RedisConnectionPool {
 	 * @return RedisConnectionPool
 	 */
 	public static function singleton( array $options ) {
+		ksort( $options ); // normalize
 		$id = sha1( serialize( $options ) );
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = new self( $options );

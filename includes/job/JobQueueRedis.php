@@ -35,7 +35,6 @@ class JobQueueRedis extends JobQueue {
 
 	const ROOTJOB_TTL   = 1209600; // integer; seconds to remember root jobs (14 days)
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
-	const MAX_ATTEMPTS  = 3; // integer; number of times to try a job
 
 	/**
 	 * @params include:
@@ -137,7 +136,7 @@ class JobQueueRedis extends JobQueue {
 
 		$conn = $this->getConnection();
 		try {
-			// Find which of these jobs are duplicates unclaimed jobs in the queue...
+			// Find which of these jobs are duplicates of unclaimed jobs in the queue...
 			if ( count( $dedupUids ) ) {
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $dedupUids as $uid ) { // check if job data exists
