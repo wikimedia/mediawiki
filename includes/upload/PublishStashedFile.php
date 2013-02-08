@@ -29,6 +29,8 @@ set_time_limit( 3600 ); // 1 hour
  * @ingroup Maintenance
  */
 class PublishStashedFile extends Maintenance {
+	var $request = array();
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Upload stashed file into the local file repo";
@@ -43,6 +45,7 @@ class PublishStashedFile extends Maintenance {
 
 	public function execute() {
 		wfSetupSession( $this->getOption( 'sessionid' ) );
+		$this->loadRequestInfo();
 		try {
 			$user = User::newFromId( $this->getOption( 'userid' ) );
 			if ( !$user ) {
@@ -119,6 +122,24 @@ class PublishStashedFile extends Maintenance {
 		}
 		session_write_close();
 	}
+
+	private function loadRequestInfo() {
+		global $wgMemc;
+		$request = $wgMemc->get( wfMemcKey( 'PublishStashedFile', $this->getOption( 'userid' ),
+			$this->getOption( 'sessionid' ), $this->getOption( 'filekey' ) ) );
+		if ( $request ) {
+			$this->request = $request;
+		}
+	}
+
+	public function getRawIP() {
+		$ip = '127.0.0.1';
+		if ( isset( $this->request[ 'IP' ] ) ) {
+			$ip = $this->request[ 'IP' ];
+		}
+		return $ip;
+	}
+
 }
 
 $maintClass = "PublishStashedFile";

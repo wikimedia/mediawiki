@@ -49,7 +49,6 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		// Check if async mode is actually supported
 		$this->mParams['async'] = ( $this->mParams['async'] && !wfIsWindows() );
-		$this->mParams['async'] = false; // XXX: disabled per bug 44080
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
@@ -216,6 +215,8 @@ class ApiUpload extends ApiBase {
 						array( 'result' => 'Poll',
 							'stage' => 'queued', 'status' => Status::newGood() )
 					);
+					// Write additional info needed into memcached
+					$this->storeRequestInfo( 'AssembleUploadChunks' );
 					$retVal = 1;
 					$cmd = wfShellWikiCmd(
 						"$IP/includes/upload/AssembleUploadChunks.php",
@@ -596,6 +597,8 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() )
 			);
+			// Write additional info needed into memcached
+			$this->storeRequestInfo( 'PublishStashedFile' );
 			$retVal = 1;
 			$cmd = wfShellWikiCmd(
 				"$IP/includes/upload/PublishStashedFile.php",
@@ -660,6 +663,22 @@ class ApiUpload extends ApiBase {
 		if ( !$wgAllowAsyncCopyUploads ) {
 			$this->dieUsage( 'Asynchronous copy uploads disabled', 'asynccopyuploaddisabled');
 		}
+	}
+
+	/**
+	 * Store information about request in memcache for 30 seconds
+	 * so it can be accessed by async processes
+	 */
+	private function storeRequestInfo( $name ) {
+		global $wgMemc;
+		$key = wfMemcKey( $name, $this->getUser()->getId(),
+			session_id(), $this->mParams['filekey'] );
+		$request = $this->getMain()->getRequest();
+		$info = array(
+			'IP' => $request->getIP(),
+			'HTTP_USER_AGENT' => $_SERVER['HTTP_USER_AGENT'],
+		);
+		$wgMemc->add( $key, $info, 30);
 	}
 
 	public function mustBePosted() {
