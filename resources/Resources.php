@@ -199,6 +199,7 @@ return array(
 	),
 	'jquery.json' => array(
 		'scripts' => 'resources/jquery/jquery.json.js',
+		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.localize' => array(
 		'scripts' => 'resources/jquery/jquery.localize.js',
