@@ -2473,7 +2473,6 @@ $user: User object
 'UserGetLanguageObject': Called when getting user's interface language object.
 $user: User object
 &$code: Langauge code that will be used to create the object
-$context: RequestContext object
 
 'UserGetReservedNames': Allows to modify $wgReservedUsernames at run time.
 &$reservedUsernames: $wgReservedUsernames
