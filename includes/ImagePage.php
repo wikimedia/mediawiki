@@ -618,7 +618,7 @@ EOT
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->mPage->getFile()->getRepo()->getDisplayName();
 
-		if ( $descUrl && $descText && wfMessage( 'sharedupload-desc-here' )->plain() !== '-'  ) {
+		if ( $descUrl && $descText && wfMessage( 'sharedupload-desc-here' )->plain() !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
 		} elseif ( $descUrl && wfMessage( 'sharedupload-desc-there' )->plain() !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
@@ -818,7 +818,7 @@ EOT
 
 				$ul = Html::rawElement(
 					'ul',
-					array( 'class' => 'mw-imagepage-redirectstofile'),
+					array( 'class' => 'mw-imagepage-redirectstofile' ),
 					$li
 					) . "\n";
 				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams(

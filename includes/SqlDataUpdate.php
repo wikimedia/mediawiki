@@ -76,7 +76,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 
 		// NOTE: nested transactions are not supported, only start a transaction if none is open
 		if ( $this->mDb->trxLevel() === 0 ) {
-			$this->mDb->begin( get_class( $this ) . '::beginTransaction'  );
+			$this->mDb->begin( get_class( $this ) . '::beginTransaction' );
 			$this->mHasTransaction = true;
 		}
 	}

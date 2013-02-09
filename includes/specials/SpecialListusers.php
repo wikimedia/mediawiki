@@ -116,7 +116,7 @@ class UsersPager extends AlphabeticPager {
 		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';
 
 		$query = array(
-			'tables' => array( 'user', 'user_groups', 'ipblocks'),
+			'tables' => array( 'user', 'user_groups', 'ipblocks' ),
 			'fields' => array(
 				'user_name' => $this->creationSort ? 'MAX(user_name)' : 'user_name',
 				'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',

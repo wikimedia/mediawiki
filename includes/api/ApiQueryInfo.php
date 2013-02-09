@@ -96,7 +96,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' ),
 			'email' => array( 'ApiQueryInfo', 'getEmailToken' ),
 			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
-			'watch' => array( 'ApiQueryInfo', 'getWatchToken'),
+			'watch' => array( 'ApiQueryInfo', 'getWatchToken' ),
 		);
 		wfRunHooks( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
 		return $this->tokenFunctions;

@@ -338,7 +338,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 */
-	public function replaceSection( $section, Content $with, $sectionTitle = ''  ) {
+	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
 		return null;
 	}
 

@@ -60,7 +60,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 }
 fclose( $in );
 
-$out = fopen("Utf8Case.php", "wt");
+$out = fopen( "Utf8Case.php", "wt" );
 if( $out ) {
 	$outUpperChars = escapeArray( $wikiUpperChars );
 	$outLowerChars = escapeArray( $wikiLowerChars );
