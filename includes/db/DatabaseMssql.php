@@ -144,7 +144,7 @@ class DatabaseMssql extends DatabaseBase {
 		// $this->limitResult();
 		if ( preg_match( '/\bLIMIT\s*/i', $sql ) ) {
 			// massage LIMIT -> TopN
-			$sql = $this->LimitToTopN( $sql ) ;
+			$sql = $this->LimitToTopN( $sql );
 		}
 
 		// MSSQL doesn't have EXTRACT(epoch FROM XXX)
@@ -433,7 +433,7 @@ class DatabaseMssql extends DatabaseBase {
 					if ( $k == $identity ) {
 						if( !is_null($v) ) {
 							// there is a value being passed to us, we need to turn on and off inserted identity
-							$sqlPre = "SET IDENTITY_INSERT $table ON;" ;
+							$sqlPre = "SET IDENTITY_INSERT $table ON;";
 							$sqlPost = ";SET IDENTITY_INSERT $table OFF;";
 
 						} else {

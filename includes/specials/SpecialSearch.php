@@ -1022,7 +1022,7 @@ class SpecialSearch extends SpecialPage {
 			);
 		}
 		$out .= Xml::closeElement( 'ul' );
-		$out .= Xml::closeElement( 'div' ) ;
+		$out .= Xml::closeElement( 'div' );
 
 		// Results-info
 		if ( $resultsShown > 0 ) {

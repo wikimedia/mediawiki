@@ -756,7 +756,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	function unionQueries( $sqls, $all ) {
 		$glue = ' UNION ALL ';
-		return 'SELECT * ' . ( $all ? '':'/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')' ;
+		return 'SELECT * ' . ( $all ? '':'/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')';
 	}
 
 	function wasDeadlock() {

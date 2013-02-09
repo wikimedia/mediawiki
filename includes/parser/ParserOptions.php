@@ -512,7 +512,7 @@ class ParserOptions {
 		if ( in_array( 'stubthreshold', $forOptions ) ) {
 			$confstr .= '!' . $this->mStubThreshold;
 		} else {
-			$confstr .= '!*' ;
+			$confstr .= '!*';
 		}
 
 		if ( in_array( 'dateformat', $forOptions ) ) {

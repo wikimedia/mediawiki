@@ -204,7 +204,7 @@ class RawAction extends FormlessAction {
 					$oldid = $this->page->getLatest();
 				}
 				$prev = $this->getTitle()->getPreviousRevisionId( $oldid );
-				$oldid = $prev ? $prev : -1 ;
+				$oldid = $prev ? $prev : -1;
 				break;
 			case 'cur':
 				$oldid = 0;

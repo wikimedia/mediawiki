@@ -1736,8 +1736,8 @@ class Sanitizer {
 		// Please note strings below are enclosed in brackets [], this make the
 		// hyphen "-" a range indicator. Hence it is double backslashed below.
 		// See bug 26948
-		$rfc5322_atext   = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~" ;
-		$rfc1034_ldh_str = "a-z0-9\\-" ;
+		$rfc5322_atext   = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
+		$rfc1034_ldh_str = "a-z0-9\\-";
 
 		$HTML5_email_regexp = "/
 		^                      # start of string
@@ -1746,7 +1746,7 @@ class Sanitizer {
 		[$rfc1034_ldh_str]+       # First domain part
 		(\\.[$rfc1034_ldh_str]+)*  # Following part prefixed with a dot
 		$                      # End of string
-		/ix" ; // case Insensitive, eXtended
+		/ix"; // case Insensitive, eXtended
 
 		return (bool) preg_match( $HTML5_email_regexp, $addr );
 	}

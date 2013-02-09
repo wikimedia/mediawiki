@@ -149,7 +149,7 @@ class Title {
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
 		$t->mDefaultNamespace = $defaultNamespace;
 
-		static $cachedcount = 0 ;
+		static $cachedcount = 0;
 		if ( $t->secureAndSplit() ) {
 			if ( $defaultNamespace == NS_MAIN ) {
 				if ( $cachedcount >= self::CACHE_MAX ) {

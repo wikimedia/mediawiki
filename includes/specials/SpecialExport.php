@@ -161,7 +161,7 @@ class SpecialExport extends SpecialPage {
 
 		$list_authors = $request->getCheck( 'listauthors' );
 		if ( !$this->curonly || !$wgExportAllowListContributors ) {
-			$list_authors = false ;
+			$list_authors = false;
 		}
 
 		if ( $this->doExport ) {

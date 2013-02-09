@@ -310,7 +310,7 @@ class UploadFromChunks extends UploadFromFile {
 		if( $index === null ) {
 			$index = $this->getChunkIndex();
 		}
-		return $this->mFileKey . '.' . $index ;
+		return $this->mFileKey . '.' . $index;
 	}
 }
 
