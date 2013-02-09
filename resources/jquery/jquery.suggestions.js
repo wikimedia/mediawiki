@@ -408,20 +408,26 @@ $.suggestions = {
 				preventDefault = wasVisible;
 				selected = context.data.$container.find( '.suggestions-result-current' );
 				if ( selected.length === 0 || context.data.selectedWithMouse ) {
-					// if nothing is selected OR if something was selected with the mouse,
-					// cancel any current requests and submit the form
+					// If nothing is selected OR if something was selected with the mouse,
+					// cancel any current requests and allow the form to be submitted
+					// (simply don't prevent default behavior).
 					$.suggestions.cancel( context );
-					context.config.$region.closest( 'form' ).submit();
+					preventDefault = false;
 				} else if ( selected.is( '.suggestions-special' ) ) {
 					if ( typeof context.config.special.select === 'function' ) {
-						context.config.special.select.call( selected, context.data.$textbox );
+						// Allow the callback to decide whether to prevent default or not
+						if ( context.config.special.select.call( selected, context.data.$textbox ) === true ) {
+							preventDefault = false;
+						}
 					}
 				} else {
+					$.suggestions.highlight( context, selected, true );
+
 					if ( typeof context.config.result.select === 'function' ) {
-						$.suggestions.highlight( context, selected, true );
-						context.config.result.select.call( selected, context.data.$textbox );
-					} else {
-						$.suggestions.highlight( context, selected, true );
+						// Allow the callback to decide whether to prevent default or not
+						if ( context.config.result.select.call( selected, context.data.$textbox ) === true ) {
+							preventDefault = false;
+						}
 					}
 				}
 				break;
@@ -431,7 +437,7 @@ $.suggestions = {
 		}
 		if ( preventDefault ) {
 			e.preventDefault();
-			e.stopImmediatePropagation();
+			e.stopPropagation();
 		}
 	}
 };
@@ -582,16 +588,16 @@ $.fn.suggestions = function () {
 					switch ( context.data.keypressed ) {
 						// This preventDefault logic is duplicated from
 						// $.suggestions.keypress(), which sucks
-						case 40:
+						case 40: // Arrow down
 							e.preventDefault();
-							e.stopImmediatePropagation();
+							e.stopPropagation();
 							break;
-						case 38:
-						case 27:
-						case 13:
+						case 38: // Arrow up
+						case 27: // Escape
+						case 13: // Enter
 							if ( context.data.$container.is( ':visible' ) ) {
 								e.preventDefault();
-								e.stopImmediatePropagation();
+								e.stopPropagation();
 							}
 					}
 				} )
