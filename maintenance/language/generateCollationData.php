@@ -71,8 +71,8 @@ class GenerateCollationData extends Maintenance {
 		$ucdallURL = "http://www.unicode.org/Public/<Unicode version>/ucdxml/ucd.all.grouped.zip";
 
 		if ( !$allkeysPresent || !$ucdallPresent ) {
-			$icuVersion = ICUCollation::getICUVersion();
-			$unicodeVersion = ICUCollation::getUnicodeVersionForICU();
+			$icuVersion = IcuCollation::getICUVersion();
+			$unicodeVersion = IcuCollation::getUnicodeVersionForICU();
 
 			$error = "";
 
