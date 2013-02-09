@@ -2343,16 +2343,16 @@ class Title {
 
 		if ( !isset( $this->mTitleProtection ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select(
+
+			// selectRow returns false if there are no rows.
+			$this->mTitleProtection = $dbr->selectRow(
 				'protected_titles',
 				array( 'pt_user', 'pt_reason', 'pt_expiry', 'pt_create_perm' ),
 				array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
 				__METHOD__
 			);
-
-			// fetchRow returns false if there are no rows.
-			$this->mTitleProtection = $dbr->fetchRow( $res );
 		}
+
 		return $this->mTitleProtection;
 	}
 
