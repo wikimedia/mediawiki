@@ -201,6 +201,9 @@ class IcuCollation extends Collation {
 			throw new MWException( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
 		}
+		if ( $locale !== 'root' ) {
+			throw new MWException( "MediaWiki does not support ICU locales other than 'root' yet" );
+		}
 		$this->locale = $locale;
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {
@@ -274,11 +277,14 @@ class IcuCollation extends Collation {
 
 		// Generate data from serialized data file
 
-		$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+		$letters = wfGetPrecompiledData( "first-letters-root.ser" );
 		if ( $letters === false ) {
-			throw new MWException( "MediaWiki does not support ICU locale " .
-				"\"{$this->locale}\"" );
+			throw new MWException( "first-letters-root.ser file missing. "
+				. "Please generate it using the maintenance/language/generateCollationData.php script." );
 		}
+
+		// TODO adjust the root file with a tailoring appropriate for
+		// chosen locale right here (bug 43799)
 
 		// Sort the letters.
 		//
