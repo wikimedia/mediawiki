@@ -1334,7 +1334,7 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'search-interwiki-default' => '$1 találat',
 'search-interwiki-more' => '(több)',
 'search-relatedarticle' => 'Kapcsolódó',
-'mwsuggest-disable' => 'AJAX-alapú keresési javaslatok letiltása',
+'mwsuggest-disable' => 'Keresési javaslatok letiltása',
 'searcheverything-enable' => 'Keresés az összes névtérben',
 'searchrelated' => 'kapcsolódó',
 'searchall' => 'mind',

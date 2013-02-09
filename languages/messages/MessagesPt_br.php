@@ -19,6 +19,7 @@
  * @author Crazymadlover
  * @author Daemorris
  * @author Danielsouzat
+ * @author Dicionarista
  * @author Diego Queiroz
  * @author Eduardo.mps
  * @author Emufarmers
@@ -1358,7 +1359,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
 'search-relatedarticle' => 'Relacionado',
-'mwsuggest-disable' => 'Desativar sugestões AJAX',
+'mwsuggest-disable' => 'Desativar sugestões de pesquisa',
 'searcheverything-enable' => 'Procurar em todos os espaços nominais',
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
@@ -1429,7 +1430,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'resultsperpage' => 'Resultados por página:',
 'stub-threshold' => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
 'stub-threshold-disabled' => 'Desabilitado',
-'recentchangesdays' => 'Dias a serem exibidos nas Mudanças recentes:',
+'recentchangesdays' => 'Dias a apresentar nas mudanças recentes:',
 'recentchangesdays-max' => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount' => 'Número de edições a serem exibidas por padrão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registros.',
@@ -1672,7 +1673,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-feed-description' => 'Acompanhe neste feed as mudanças mais recentes do wiki.',
 'recentchanges-label-newpage' => 'Esta edição criou uma nova página',
 'recentchanges-label-minor' => 'Esta é uma edição menor',
-'recentchanges-label-bot' => 'Esta edição foi feita por um bot',
+'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
 'rcnote' => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",

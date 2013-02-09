@@ -795,7 +795,7 @@ Jo se snaź pśesunuł abo wulašował, mjaztym až woglědujoš se bok.',
 Gronidło za toś to nowe konto dajo se na boku ''[[Special:ChangePassword|Gronidło změniś]]'' pśi pśizjawjenju změniś.",
 'newarticle' => '(Nowy nastawk)',
 'newarticletext' => "Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
-Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}}|bok pomocy]] za dalšne informacije). Jolic sy zamólnje how, klikni na tłocašk '''Slědk'' w swójom wobglědowaku.",
+Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}}|bok pomocy]] za dalšne informacije). Jolic sy zamólnje how, klikni na tłocašk '''Slědk''' w swójom wobglědowaku.",
 'anontalkpagetext' => "---- ''Toś jo diskusijny bok za anonymnego wužywarja, kótaryž njejo dotychměst žedno wužywarske konto załožył abo swójo konto njewužywa. Togodla dejmy numerisku IP-adresu wužywaś, aby jogo/ju identificěrowali. Taka IP-adresa dajo se wót wšakich wužywarjow wužywaś. Jolic sy anonymny wužywaŕ a se mysliš, až su se njerelewantne komentary na tebje měrili, [[Special:UserLogin/signup|załož konto]] abo [[Special:UserLogin|pśizjaw se]], aby se w pśichoźe zmuśenje z drugimi anonymnymi wužywarjami wobinuł.''",
 'noarticletext' => 'Dotychměst toś ten bok hyšći njewopśimujo žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|titel togo boka pytaś]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś]</span>.',
 'noarticletext-nopermission' => 'Tuchylu njejo žeden tekst na toś tom boku.

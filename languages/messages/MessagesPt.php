@@ -1361,7 +1361,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
 'search-relatedarticle' => 'Relacionado',
-'mwsuggest-disable' => 'Desactivar sugestões AJAX',
+'mwsuggest-disable' => 'Desactivar sugestões de pesquisa',
 'searcheverything-enable' => 'Pesquisar em todos os espaços nominais',
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
@@ -2263,9 +2263,9 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'linksearch-pat' => 'Padrão de busca:',
 'linksearch-ns' => 'Espaço nominal:',
 'linksearch-ok' => 'Prosseguir',
-'linksearch-text' => 'É possível usar caracteres de substituição \'\'(wildcards)\'\', como por exemplo: "*.wikipedia.org".
+'linksearch-text' => 'É possível usar caracteres de substituição \'\'(wildcards)\'\', tais como "*.wikipedia.org".
 É necessário, pelo menos, um domínio de topo, por exemplo "*.org".<br />
-Protocolos suportados: <code>$1</code> (não adicione nenhum destes na sua pesquisa).',
+{{PLURAL:$2|Protocolo suportado|Protocolos suportados}}: <code>$1</code> (será utilizado http:// se não for especificado um protocolo).',
 'linksearch-line' => 'Link para $1 na página $2',
 'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 
@@ -2278,7 +2278,7 @@ Protocolos suportados: <code>$1</code> (não adicione nenhum destes na sua pesqu
 # Special:ActiveUsers
 'activeusers' => 'Utilizadores activos',
 'activeusers-intro' => 'Esta é uma lista dos utilizadores com qualquer tipo de actividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|edição recente|edições recentes}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
+'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
 'activeusers-from' => 'Mostrar utilizadores começando por:',
 'activeusers-hidebots' => 'Esconder robôs',
 'activeusers-hidesysops' => 'Esconder administradores',
@@ -2498,7 +2498,7 @@ Esta é a configuração actual da página '''$1''':",
 'protect-cascadeon' => 'Esta página está protegida porque se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com protecção em cascata.
 Pode alterar o nível de protecção desta página, mas isso não afectará a protecção em cascata.',
 'protect-default' => 'Permitir todos os utilizadores',
-'protect-fallback' => 'É necessário o privilégio de "$1"',
+'protect-fallback' => 'Permitir apenas utilizadores com o privilégio de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear utilizadores novos e não registados',
 'protect-level-sysop' => 'Apenas administradores',
 'protect-summary-cascade' => 'em cascata',

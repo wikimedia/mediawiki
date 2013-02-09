@@ -1099,7 +1099,7 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'search-interwiki-default' => 'Matokeo toka $1:',
 'search-interwiki-more' => '(zaidi)',
 'search-relatedarticle' => 'Zingine zinazofanana',
-'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya AJAX',
+'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya kutafuta',
 'searcheverything-enable' => 'Tafuta katika maeneo yote ya wiki',
 'searchrelated' => 'zingine zinazofanana',
 'searchall' => 'zote',

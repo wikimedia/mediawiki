@@ -2458,8 +2458,8 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage' => 'Zabezpieczone',
 'protectlogtext' => 'Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.
 Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle' => 'zabezpieczył [[$1]]',
-'modifiedarticleprotection' => 'zmienił poziom zabezpieczenia [[$1]]',
+'protectedarticle' => '{{GENDER:$2|zabezpieczył|zabezpieczyła}} [[$1]]',
+'modifiedarticleprotection' => '{{GENDER:$2|zmienił|zmieniła}} poziom zabezpieczenia [[$1]]',
 'unprotectedarticle' => 'odbezpieczył [[$1]]',
 'movedarticleprotection' => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title' => 'Zmiana poziomu zabezpieczenia „$1”',
@@ -2719,12 +2719,12 @@ Przyczyna blokady $1 to: „$2”',
 'blocklogpage' => 'Historia blokad',
 'blocklog-showlog' => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany|blokowana}}. Poniżej znajduje się rejestr blokad:',
 'blocklog-showsuppresslog' => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany oraz ukrywany|blokowana oraz ukrywana}}. Poniżej znajduje się rejestr ukrywania:',
-'blocklogentry' => '{{GENDER:$2|zablokował|zablokowała}} [[$1]], czas blokady: $2 $3',
-'reblock-logentry' => 'zmienia ustawienia blokady dla [[$1]], czas blokady: $2 $3',
+'blocklogentry' => 'zablokował(a) [[$1]], czas blokady: $2 $3',
+'reblock-logentry' => '{{GENDER:$2|zmienił|zmieniła}} ustawienia blokady dla [[$1]], czas blokady: $2 $3',
 'blocklogtext' => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.
 By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:BlockList|zablokowanych adresów i użytkowników]].',
-'unblocklogentry' => 'zdejmuje blokadę $1',
+'unblocklogentry' => '{{GENDER:$2|zdjął|zdjęła}} blokadę $1',
 'block-log-flags-anononly' => 'tylko anonimowi',
 'block-log-flags-nocreate' => 'blokada tworzenia konta',
 'block-log-flags-noautoblock' => 'automatyczne blokowanie wyłączone',
@@ -2980,9 +2980,9 @@ Brak katalogu dla plików tymczasowych.',
 # Import log
 'importlogpage' => 'Rejestr importu',
 'importlogpagetext' => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload' => 'importuje [[$1]] przez przesłanie pliku',
+'import-logentry-upload' => '{{GENDER:$2|zaimportował|zaimportowała}} [[$1]] przez przesłanie pliku',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
-'import-logentry-interwiki' => 'importuje $1 używając transwiki',
+'import-logentry-interwiki' => '{{GENDER:$2|zaimportował|zaimportowała}} $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
 
 # JavaScriptTest

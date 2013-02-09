@@ -549,7 +549,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'gotaccount' => "Oes cyfrif gennych eisoes? '''$1'''.",
 'gotaccountlink' => 'Mewngofnodwch',
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
-'createaccountmail' => 'trwy e-bost',
+'createaccountmail' => "Defnyddier cyfrinair ar hap dros dro a'i anfon i'r cyfeiriad e-bost isod",
 'createaccountreason' => 'Rheswm:',
 'badretype' => "Nid yw'r cyfrineiriau'n union yr un fath.",
 'userexists' => 'Mae rhywun arall wedi dewis yr enw defnyddiwr hwn. 
@@ -871,6 +871,9 @@ Ymddengys iddi gael ei dileu.",
 'edit-already-exists' => 'Ni ellid creu tudalen newydd.
 Mae ar gael yn barod.',
 'defaultmessagetext' => 'Y testun rhagosodedig',
+'content-failed-to-parse' => "Ni lwyddwyd i ddosrannu'r cynnwys sydd ar ffurf $2 yn ôl y model $1: $3",
+'invalid-content-data' => "Data annilys i'r cynnwys",
+'content-not-allowed-here' => 'Nid yw cynnwys ar ffurf "$1" yn cael ei ganiatau ar y dudalen [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'cystrawen wici',
@@ -1133,7 +1136,7 @@ Mae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-default' => 'Y canlyniadau o $1:',
 'search-interwiki-more' => '(rhagor)',
 'search-relatedarticle' => 'Erthyglau eraill tebyg',
-'mwsuggest-disable' => 'Analluogi awgrymiadau AJAX',
+'mwsuggest-disable' => 'Analluogi awgrymiadau chwilio',
 'searcheverything-enable' => 'Chwilio pob parth',
 'searchrelated' => 'erthyglau eraill tebyg',
 'searchall' => 'oll',
@@ -1627,6 +1630,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-notsame' => "Mae ffeil gwahanol a'r enw $1 arni eisoes ar gael.",
 'backend-fail-invalidpath' => 'Nid yw $1 yn lwybr dilys i roi ffeil ar gadw.',
 'backend-fail-delete' => "Wedi methu dileu'r ffeil $1.",
+'backend-fail-describe' => 'Ni lwyddwyd newid metadata\'r ffeil "$1".',
 'backend-fail-alreadyexists' => "Mae'r ffeil $1 ar gael yn barod.",
 'backend-fail-store' => "Wedi methu rhoi'r ffeil $1 ar gadw yn $2.",
 'backend-fail-copy' => "Wedi methu copïo'r ffeil $1 i $2.",
@@ -2136,6 +2140,10 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 'enotif_subject_restored' => 'Adferwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
 'enotif_subject_changed' => 'Newidiwyd y dudalen $1 ar {{SITENAME}} gan {{gender:$2|$2}}',
 'enotif_body_intro_deleted' => 'Dilewyd y dudalen $1 ar {{SITENAME}} ar $PAGEEDITDATE gan {{gender:$2|$2}}, gweler $3.',
+'enotif_body_intro_created' => 'Dechrëwyd y dudalen $1 ar {{SITENAME}} ar $PAGEEDITDATE gan {{gender:$2|$2}}. Gweler y diwygiad cyfredol ohoni ar $3.',
+'enotif_body_intro_moved' => 'Symudwyd y dudalen $1 ar {{SITENAME}} ar $PAGEEDITDATE gan {{gender:$2|$2}}. Gweler y diwygiad cyfredol ar $3.',
+'enotif_body_intro_restored' => 'Adferwyd y dudalen $1 ar {{SITENAME}} ar $PAGEEDITDATE gan {{gender:$2|$2}}. Gweler y diwygiad cyfredol ohoni ar $3.',
+'enotif_body_intro_changed' => 'Newidiwyd y dudalen $1 ar {{SITENAME}} ar $PAGEEDITDATE gan {{gender:$2|$2}}. Gweler y diwygiad cyfredol ohoni ar $3.',
 'enotif_lastvisited' => 'Gwelwch $1 am bob newid ers eich ymweliad blaenorol.',
 'enotif_lastdiff' => 'Gallwch weld y newid ar $1.',
 'enotif_anon_editor' => 'defnyddiwr anhysbys $1',
@@ -2555,7 +2563,7 @@ Os ydych yn dewis peidio â gwneud hyn, gwiriwch [[Special:DoubleRedirects|dudal
 [[Special:BrokenRedirects|dudalennau ailgyfeirio nad ydynt yn ailgyfeirio]].
 Chi sy'n gyfrifol am sicrhau bod cysylltiadau yn cyfeirio at y tudalennau cywir.
 
-Sylwer '''na''' chaiff y dudalen ei symud os oes tudalen a'r enw newydd ar gael yn barod, oni bai ei bod hi'n dudalen ailgyfeirio ac nad oes hanes golygu ganddi.
+Sylwer '''na''' chaiff y dudalen ei symud os oes tudalen a'r enw newydd ar gael yn barod, oni bai bod y dudalen a'r enw newydd yn dudalen ailgyfeirio ac nad oes hanes golygu ganddi.
 Mae hyn yn golygu y gallwch ailenwi tudalen yn ôl i'w henw gwreiddiol os ydych yn gwneud camgymeriad, ond na allwch drosysgrifo tudalen sy'n bodoli'n barod.
 
 '''Rhybudd!'''
@@ -2872,6 +2880,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-robot-noindex' => 'Ni ellir ei rhestru gan beiriannau chwilio',
 'pageinfo-views' => 'Nifer yr ymweliadau',
 'pageinfo-watchers' => 'Nifer gwylwyr y dudalen',
+'pageinfo-few-watchers' => 'Llai na $1 {{PLURAL:$1|gwyliwr|gwyliwr|wyliwr|gwyliwr|o wylwyr}}',
 'pageinfo-redirects-name' => "Nifer yr ailgyfeiriadau i'r dudalen hon",
 'pageinfo-subpages-name' => "Nifer yr is-dudalennau i'r dudalen hon",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ailgyfeiriad}}; $3 {{PLURAL:$3|is-dudalen arall}})',
@@ -2941,6 +2950,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'file-nohires' => 'Wedi ei chwyddo hyd yr eithaf.',
 'svg-long-desc' => 'Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'svg-long-desc-animated' => 'Ffeil SVG animeiddiedig, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
+'svg-long-error' => 'Ffeil SVG annilys: $1',
 'show-big-image' => 'Maint llawn',
 'show-big-image-preview' => 'Maint y rhagolwg: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Datrysiad arall|Datrysiad arall|Datrysiadau eraill|Datrysiadau eraill|Datrysiadau eraill|Datrysiadau eraill}}: $1.',
@@ -3571,6 +3581,7 @@ Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 'version-license' => 'Trwydded',
 'version-poweredby-credits' => "Mae'r wici hwn wedi'i nerthu gan '''[//www.mediawiki.org/ MediaWiki]''', hawlfraint © 2001 - $1 $2.",
 'version-poweredby-others' => 'eraill',
+'version-credits-summary' => 'Hoffem gydnabod cyfraniad y bobl canlynol i [[Special:Version|MediaWiki]].',
 'version-license-info' => "Meddalwedd rhydd yw MediaWiki; gallwch ei ddefnyddio a'i addasu yn ôl termau'r GNU General Public License a gyhoeddir gan Free Software Foundation; naill ai fersiwn 2 o'r Drwydded, neu unrhyw fersiwn diweddarach o'ch dewis.
 
 Cyhoeddir MediaWiki yn y gobaith y bydd o ddefnydd, ond HEB UNRHYW WARANT; heb hyd yn oed gwarant ymhlyg o FARCHNADWYEDD nag o FOD YN ADDAS AT RYW BWRPAS ARBENNIG. Gweler y GNU General Public License am fanylion pellach.

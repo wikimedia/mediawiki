@@ -1117,8 +1117,8 @@ $1",
 'diff-multi' => '({{PLURAL:$1|پیاچوونەوەیەکی نێوانی|$1 پیاچوونەوەی نێوانی}}ی {{PLURAL:$2|بەکارھێنەرێک|$2 بەکارھێنەر}} نیشان نەدراوە)',
 
 # Search results
-'searchresults' => 'ئەنجامەکانی گەڕان',
-'searchresults-title' => 'ئەنجامەکانی گەڕان بۆ "$1"',
+'searchresults' => 'ئاکامەکانی گەڕان',
+'searchresults-title' => 'ئاکامەکانی گەڕان بۆ «$1»',
 'searchresulttext' => 'بۆ زانیاری زیاتر دەربارەی گەڕان {{SITENAME}} ، بڕوانە لە  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => "گەڕایت بۆ '''[[:$1]]''' ([[Special:Prefixindex/$1|ھەموو ئەو پەڕانەی بە «$1»ەوە دەستپێدەکەن]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ھەموو ئەو پەڕانەی بەستەریان ھەیە بۆ «$1»]])",
 'searchsubtitleinvalid' => "گەڕایت بۆ '''$1'''",

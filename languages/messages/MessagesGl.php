@@ -1306,7 +1306,7 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'search-interwiki-default' => 'Resultados en $1:',
 'search-interwiki-more' => '(máis)',
 'search-relatedarticle' => 'Relacionado',
-'mwsuggest-disable' => 'Deshabilitar as suxestións AJAX',
+'mwsuggest-disable' => 'Desactivar as suxestións de procura',
 'searcheverything-enable' => 'Procurar en todos os espazos de nomes',
 'searchrelated' => 'relacionado',
 'searchall' => 'todo',
@@ -1612,7 +1612,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'action-sendemail' => 'enviar correos electrónicos',
 
 # Recent changes
-'nchanges' => '$1 {{PLURAL:$1|cambio|cambios}}',
+'nchanges' => '$1 {{PLURAL:$1|modificación|modificacións}}',
 'recentchanges' => 'Cambios recentes',
 'recentchanges-legend' => 'Opcións dos cambios',
 'recentchanges-summary' => 'Nesta páxina pode seguir as modificacións máis recentes feitas no wiki.',
@@ -3108,6 +3108,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-robot-noindex' => 'Non indexable',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vixiantes da páxina',
+'pageinfo-few-watchers' => 'Menos de $1 {{PLURAL:$1|vixiante|vixiantes}}',
 'pageinfo-redirects-name' => 'Redireccións cara a esta páxina',
 'pageinfo-subpages-name' => 'Subpáxinas desta páxina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirección|redireccións}}; $3 {{PLURAL:$3|non-redirección|non-redireccións}})',
@@ -3918,7 +3919,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'tags-description-header' => 'Descrición completa do significado',
 'tags-hitcount-header' => 'Edicións etiquetadas',
 'tags-edit' => 'editar',
-'tags-hitcount' => '$1 {{PLURAL:$1|cambio|cambios}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|modificación|modificacións}}',
 
 # Special:ComparePages
 'comparepages' => 'Comparar páxinas',

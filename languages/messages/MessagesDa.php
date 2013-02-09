@@ -1217,7 +1217,7 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-default' => '{{PLURAL:$1|et resultat|$1 resultater}}:',
 'search-interwiki-more' => '(mere)',
 'search-relatedarticle' => 'Relateret',
-'mwsuggest-disable' => 'Slå AJAX-forslag fra',
+'mwsuggest-disable' => 'Slå søgningsforslag fra',
 'searcheverything-enable' => 'Søg i alle navnerum',
 'searchrelated' => 'relateret',
 'searchall' => 'alle',
@@ -2636,7 +2636,17 @@ Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle 
 # Move page
 'move-page' => 'Flyt $1',
 'move-page-legend' => 'Flyt side',
-'movepagetext' => "Når du bruger formularen herunder vil du få omdøbt en side og flyttet hele sidens historie til det nye navn. Den gamle titel vil blive en omdirigeringsside til den nye titel. Henvisninger til den gamle titel vil ikke blive ændret. Sørg for at tjekke for dobbelte eller dårlige omdirigeringer. Du er ansvarlig for, at alle henvisninger stadig peger derhen, hvor det er meningen de skal pege. Bemærk at siden '''ikke''' kan flyttes hvis der allerede er en side med den nye titel, medmindre den side er tom eller er en omdirigering uden nogen historie. Det betyder at du kan flytte en side tilbage hvor den kom fra, hvis du kommer til at lave en fejl. <b>ADVARSEL!</b> Dette kan være en drastisk og uventet ændring for en populær side; vær sikker på, at du forstår konsekvenserne af dette før du fortsætter.",
+'movepagetext' => "Når du bruger formularen herunder, vil du få omdøbt en side og flyttet hele sidens historie til det nye navn.
+Den gamle titel vil blive en omdirigeringsside til den nye titel.
+Du kan opdatere omdirigeringer, der peger på den oprindelige titel, automatisk.
+Hvis du vælger ikke at opdatere dem automatisk, så sørg for at tjekke efter [[Special:DoubleRedirects|dobbelte]] eller [[Special:BrokenRedirects|dårlige omdirigeringer]].
+Du er ansvarlig for, at alle henvisninger stadig peger derhen, hvor det er meningen de skal pege.
+
+Bemærk at siden '''ikke''' kan flyttes, hvis der allerede er en side med den nye titel, medmindre den side er en omdirigering uden nogen redigeringshistorik.
+Det betyder, at du kan flytte en side tilbage hvor den kom fra, hvis du kommer til at lave en fejl, og det betyder, at du ikke kan overskrive en eksisterende side.
+
+'''ADVARSEL!'''
+Dette kan være en drastisk og uventet ændring for en populær side; vær sikker på, at du forstår konsekvenserne af dette før du fortsætter.",
 'movepagetext-noredirectfixer' => "Brug formularen herunder du vil omdøbe en side og flyttet hele sidens historie til det nye navn.
 Den gamle titel vil blive en omdirigeringsside til den nye titel.
 Vær sikker på at tjekke for [[Special:DoubleRedirects|dobbelte]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].
@@ -2954,6 +2964,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-robot-noindex' => 'Ikke indekserbar',
 'pageinfo-views' => 'Antal visninger',
 'pageinfo-watchers' => 'Antal brugere, der overvåger siden',
+'pageinfo-few-watchers' => 'Overvåget af færre end $1 {{PLURAL:$1|bruger|brugere}}',
 'pageinfo-redirects-name' => 'Omdirigeringer til denne side',
 'pageinfo-subpages-name' => 'Undersider til denne side',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringer}}; $3 {{PLURAL:$3|der ikke er en omdirigering|der ikke er omdirigeringer}})',

@@ -2338,7 +2338,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 # E-mail user
 'mailnologin' => 'Ninguna dirección de envio',
 'mailnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
-'emailuser' => 'Enviar correo electrónico a este usuario',
+'emailuser' => 'Enviar un correo electrónico a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}}',
 'emailuser-title-target' => 'Enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}',
 'emailuser-title-notarget' => 'Enviar un correo electrónico al usuario',
 'emailpage' => 'Correo electrónico a usuario',
