@@ -960,7 +960,7 @@ class DumpOutput {
 	 * @return null
 	 */
 	function getFilenames() {
-		return NULL;
+		return null;
 	}
 }
 

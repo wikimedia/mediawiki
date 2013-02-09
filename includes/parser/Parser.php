@@ -1755,7 +1755,7 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 
 		wfProfileIn( __METHOD__ . '-setup' );
-		static $tc = FALSE, $e1, $e1_img;
+		static $tc = false, $e1, $e1_img;
 		# the % is needed to support urlencoded titles as well
 		if ( !$tc ) {
 			$tc = Title::legalChars() . '#%';

@@ -1101,11 +1101,11 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	public function removeIdentifierQuotes( $s ) {
-		return strpos( $s, '/*Q*/' ) === FALSE ? $s : substr( $s, 5 );
+		return strpos( $s, '/*Q*/' ) === false ? $s : substr( $s, 5 );
 	}
 
 	public function isQuotedIdentifier( $s ) {
-		return strpos( $s, '/*Q*/' ) !== FALSE;
+		return strpos( $s, '/*Q*/' ) !== false;
 	}
 
 	private function wrapFieldForWhere( $table, &$col, &$val ) {

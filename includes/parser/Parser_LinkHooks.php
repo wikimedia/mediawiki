@@ -134,7 +134,7 @@ class Parser_LinkHooks extends Parser {
 		wfProfileIn( __METHOD__ );
 
 		wfProfileIn( __METHOD__ . '-setup' );
-		static $tc = FALSE, $titleRegex; //$e1, $e1_img;
+		static $tc = false, $titleRegex; //$e1, $e1_img;
 		if( !$tc ) {
 			# the % is needed to support urlencoded titles as well
 			$tc = Title::legalChars() . '#%';

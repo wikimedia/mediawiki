@@ -28,9 +28,9 @@
  * @ingroup Database
  */
 class DatabaseMssql extends DatabaseBase {
-	var $mInsertId = NULL;
-	var $mLastResult = NULL;
-	var $mAffectedRows = NULL;
+	var $mInsertId = null;
+	var $mLastResult = null;
+	var $mAffectedRows = null;
 
 	var $mPort;
 
@@ -353,7 +353,7 @@ class DatabaseMssql extends DatabaseBase {
 		$sql = "sp_helpindex '" . $table . "'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
-			return NULL;
+			return null;
 		}
 
 		$result = array();
@@ -498,7 +498,7 @@ class DatabaseMssql extends DatabaseBase {
 
 			if ( $ret === false ) {
 				throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), $sql, $fname );
-			} elseif ( $ret != NULL ) {
+			} elseif ( $ret != null ) {
 				// remember number of rows affected
 				$this->mAffectedRows = sqlsrv_rows_affected( $ret );
 				if ( !is_null($identity) ) {
@@ -536,12 +536,12 @@ class DatabaseMssql extends DatabaseBase {
 
 		if ( $ret === false ) {
 			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), /*$sql*/ '', $fname );
-		} elseif ( $ret != NULL ) {
+		} elseif ( $ret != null ) {
 			// remember number of rows affected
 			$this->mAffectedRows = sqlsrv_rows_affected( $ret );
 			return $ret;
 		}
-		return NULL;
+		return null;
 	}
 
 	/**
