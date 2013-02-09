@@ -2128,7 +2128,9 @@ class LocalFileRestoreBatch {
 			$conditions[] = 'fa_id IN (' . $dbw->makeList( $this->ids ) . ')';
 		}
 
-		$result = $dbw->select( 'filearchive', '*',
+		$result = $dbw->select(
+			'filearchive',
+			ArchivedFile::selectFields(),
 			$conditions,
 			__METHOD__,
 			array( 'ORDER BY' => 'fa_timestamp DESC' )

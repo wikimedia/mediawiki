@@ -137,27 +137,9 @@ class ArchivedFile {
 		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
 			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_SLAVE );
-			$row = $dbr->selectRow( 'filearchive',
-				array(
-					'fa_id',
-					'fa_name',
-					'fa_archive_name',
-					'fa_storage_key',
-					'fa_storage_group',
-					'fa_size',
-					'fa_bits',
-					'fa_width',
-					'fa_height',
-					'fa_metadata',
-					'fa_media_type',
-					'fa_major_mime',
-					'fa_minor_mime',
-					'fa_description',
-					'fa_user',
-					'fa_user_text',
-					'fa_timestamp',
-					'fa_deleted',
-					'fa_sha1' ),
+			$row = $dbr->selectRow(
+				'filearchive',
+				self::selectFields(),
 				$conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC')
@@ -188,6 +170,34 @@ class ArchivedFile {
 		$file = new ArchivedFile( Title::makeTitle( NS_FILE, $row->fa_name ) );
 		$file->loadFromRow( $row );
 		return $file;
+	}
+
+	/**
+	 * Fields in the filearchive table
+	 * @return array
+	 */
+	static function selectFields() {
+		return array(
+			'fa_id',
+			'fa_name',
+			'fa_archive_name',
+			'fa_storage_key',
+			'fa_storage_group',
+			'fa_size',
+			'fa_bits',
+			'fa_width',
+			'fa_height',
+			'fa_metadata',
+			'fa_media_type',
+			'fa_major_mime',
+			'fa_minor_mime',
+			'fa_description',
+			'fa_user',
+			'fa_user_text',
+			'fa_timestamp',
+			'fa_deleted',
+			'fa_sha1',
+		);
 	}
 
 	/**
