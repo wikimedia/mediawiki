@@ -230,7 +230,7 @@ class LoginForm extends SpecialPage {
 	 * @return bool
 	 */
 	function addNewAccount() {
-		global $wgUser, $wgEmailAuthentication, $wgLoginLanguageSelector;
+		global $wgContLang, $wgUser, $wgEmailAuthentication, $wgLoginLanguageSelector;
 
 		# Create the account and abort if there's a problem doing so
 		$status = $this->addNewAccountInternal();
@@ -246,6 +246,15 @@ class LoginForm extends SpecialPage {
 		# smart (and sensible) and save that language as the user's preference
 		if( $wgLoginLanguageSelector && $this->mLanguage ) {
 			$u->setOption( 'language', $this->mLanguage );
+		} else {
+
+			# Otherwise the user's language preference defaults to $wgContLang,
+			# but it may be better to set it to their preferred $wgContLang variant,
+			# based on browser preferences or URL parameters.
+			$u->setOption( 'language', $wgContLang->getPreferredVariant() );
+		}
+		if ( $wgContLang->hasVariants() ) {
+			$u->setOption( 'variant', $wgContLang->getPreferredVariant() );
 		}
 
 		$out = $this->getOutput();
