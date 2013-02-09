@@ -165,22 +165,22 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			' empty_string=""',
 			Html::expandAttributes( array( 'empty_string' => '' ) ),
-			'Attribtue values are always quoted (wgWellFormedXml): Empty string'
+			'Attribute values are always quoted (wgWellFormedXml): Empty string'
 		);
 		$this->assertEquals(
 			' key="value"',
 			Html::expandAttributes( array( 'key' => 'value' ) ),
-			'Attribtue values are always quoted (wgWellFormedXml): Simple string'
+			'Attribute values are always quoted (wgWellFormedXml): Simple string'
 		);
 		$this->assertEquals(
 			' one="1"',
 			Html::expandAttributes( array( 'one' => 1 ) ),
-			'Attribtue values are always quoted (wgWellFormedXml): Number 1'
+			'Attribute values are always quoted (wgWellFormedXml): Number 1'
 		);
 		$this->assertEquals(
 			' zero="0"',
 			Html::expandAttributes( array( 'zero' => 0 ) ),
-			'Attribtue values are always quoted (wgWellFormedXml): Number 0'
+			'Attribute values are always quoted (wgWellFormedXml): Number 0'
 		);
 	}
 
