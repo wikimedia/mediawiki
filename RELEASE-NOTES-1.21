@@ -70,6 +70,7 @@ production.
   group has no key in wgDebugLogGroups, that will help triage the default log.
 * (bug 24620) Add types to LogFormatter.
 * jQuery JSON upgraded from 2.3 to 2.4.0.
+* Added DBConnectionProvider interface and LazyDBConnectionProvider implementation.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
 * DatabaseUpdater class has two new methods to ease extensions schema changes:
   dropExtensionIndex and renameExtensionIndex.
