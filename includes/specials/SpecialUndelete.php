@@ -156,27 +156,9 @@ class PageArchive {
 	function listFiles() {
 		if( $this->title->getNamespace() == NS_FILE ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'filearchive',
-				array(
-					'fa_id',
-					'fa_name',
-					'fa_archive_name',
-					'fa_storage_key',
-					'fa_storage_group',
-					'fa_size',
-					'fa_width',
-					'fa_height',
-					'fa_bits',
-					'fa_metadata',
-					'fa_media_type',
-					'fa_major_mime',
-					'fa_minor_mime',
-					'fa_description',
-					'fa_user',
-					'fa_user_text',
-					'fa_timestamp',
-					'fa_deleted',
-					'fa_sha1' ),
+			$res = $dbr->select(
+				'filearchive',
+				ArchivedFile::selectFields(),
 				array( 'fa_name' => $this->title->getDBkey() ),
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );

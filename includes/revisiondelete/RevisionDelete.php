@@ -695,7 +695,9 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		return $db->select( 'filearchive', '*',
+		return $db->select(
+			'filearchive',
+			ArchivedFile::selectFields(),
 			array(
 				'fa_name' => $this->title->getDBkey(),
 				'fa_id'   => $ids
