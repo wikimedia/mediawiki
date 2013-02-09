@@ -198,7 +198,7 @@ class DoubleRedirectJob extends Job {
 	 */
 	function getUser() {
 		if ( !self::$user ) {
-			self::$user = User::newFromName( wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text(), false );
+			self::$user = User::newFromName( wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text() );
 			# FIXME: newFromName could return false on a badly configured wiki.
 			if ( !self::$user->isLoggedIn() ) {
 				self::$user->addToDatabase();
