@@ -499,7 +499,7 @@ class MessageCache {
 
 		// Also delete cached sidebar... just in case it is affected
 		$codes = array( $code );
-		if ( $code === 'en'  ) {
+		if ( $code === 'en' ) {
 			// Delete all sidebars, like for example on action=purge on the
 			// sidebar messages
 			$codes = array_keys( Language::fetchLanguageNames() );

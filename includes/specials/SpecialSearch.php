@@ -455,7 +455,7 @@ class SpecialSearch extends SpecialPage {
 		# Should advanced UI be used?
 		$this->searchAdvanced = ($this->profile === 'advanced');
 		$out = $this->getOutput();
-		if( strval( $term ) !== ''  ) {
+		if( strval( $term ) !== '' ) {
 			$out->setPageTitle( $this->msg( 'searchresults' ) );
 			$out->setHTMLTitle( $this->msg( 'pagetitle' )->rawParams(
 				$this->msg( 'searchresults-title' )->rawParams( $term )->text()

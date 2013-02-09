@@ -530,7 +530,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendExtensionTags( $property ) {
 		global $wgParser;
 		$wgParser->firstCallInit();
-		$tags = array_map( array( $this, 'formatParserTags'), $wgParser->getTags() );
+		$tags = array_map( array( $this, 'formatParserTags' ), $wgParser->getTags() );
 		$this->getResult()->setIndexedTagName( $tags, 't' );
 		return $this->getResult()->addValue( 'query', $property, $tags );
 	}

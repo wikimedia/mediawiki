@@ -123,7 +123,7 @@ class ObjectCache {
 	 * @return ObjectCache
 	 */
 	static function newAccelerator( $params ) {
-		if ( function_exists( 'apc_fetch') ) {
+		if ( function_exists( 'apc_fetch' ) ) {
 			$id = 'apc';
 		} elseif( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
 			$id = 'xcache';

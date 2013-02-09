@@ -94,7 +94,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$this->addFields( LocalFile::selectFields() );
 
 		$ascendingOrder = true;
-		if ( $params['dir'] == 'descending' || $params['dir'] == 'older') {
+		if ( $params['dir'] == 'descending' || $params['dir'] == 'older' ) {
 			$ascendingOrder = false;
 		}
 
