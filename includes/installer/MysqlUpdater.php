@@ -228,6 +228,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
+			array( 'doCategorylinksCollationIndicesUpdate' ),
 		);
 	}
 
@@ -765,6 +766,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doCategorylinksIndicesUpdate() {
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
 			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
+		}
+	}
+
+	protected function doCategorylinksCollationIndicesUpdate() {
+		if ( !$this->indexHasField( 'categorylinks', 'cl_from', 'cl_collation' ) ||
+			!$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_collation' )
+		) {
+			$this->applyPatch( 'patch-categorylinks-multiple-collations.sql' );
+			$this->output( "...categorylinks collation indices updated\n" );
 		}
 	}
 
