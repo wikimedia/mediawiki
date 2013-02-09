@@ -175,8 +175,8 @@
 				},
 				result: {
 					render: renderFunction,
-					select: function ( $input ) {
-						$input.closest( 'form' ).submit();
+					select: function () {
+						return true; // allow the form to be submitted
 					}
 				},
 				delay: 120,
@@ -205,8 +205,8 @@
 		$searchInput.suggestions( {
 			result: {
 				render: renderFunction,
-				select: function ( $input ) {
-					$input.closest( 'form' ).submit();
+				select: function () {
+					return true; // allow the form to be submitted
 				}
 			},
 			special: {
@@ -215,7 +215,7 @@
 					$input.closest( 'form' ).append(
 						$( '<input type="hidden" name="fulltext" value="1"/>' )
 					);
-					$input.closest( 'form' ).submit();
+					return true; // allow the form to be submitted
 				}
 			},
 			$region: $searchRegion
