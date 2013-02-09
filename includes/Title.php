@@ -2343,9 +2343,12 @@ class Title {
 
 		if ( !isset( $this->mTitleProtection ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'protected_titles', '*',
+			$res = $dbr->select(
+				'protected_titles',
+				array( 'pt_user', 'pt_reason', 'pt_expiry', 'pt_create_perm' ),
 				array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
-				__METHOD__ );
+				__METHOD__
+			);
 
 			// fetchRow returns false if there are no rows.
 			$this->mTitleProtection = $dbr->fetchRow( $res );
@@ -2735,7 +2738,7 @@ class Title {
 
 				$res = $dbr->select(
 					'page_restrictions',
-					'*',
+					array( 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ),
 					array( 'pr_page' => $this->getArticleID() ),
 					__METHOD__
 				);
@@ -4035,12 +4038,11 @@ class Title {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$res = $dbr->select( 'categorylinks', '*',
-			array(
-				'cl_from' => $titleKey,
-			),
-			__METHOD__,
-			array()
+		$res = $dbr->select(
+			'categorylinks',
+			'cl_to',
+			array( 'cl_from' => $titleKey ),
+			__METHOD__
 		);
 
 		if ( $res->numRows() > 0 ) {
