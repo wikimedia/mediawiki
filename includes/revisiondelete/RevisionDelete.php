@@ -454,7 +454,9 @@ class RevDel_FileList extends RevDel_List {
 		foreach( $this->ids as $timestamp ) {
 			$archiveNames[] = $timestamp . '!' . $this->title->getDBkey();
 		}
-		return $db->select( 'oldimage', '*',
+		return $db->select(
+			'oldimage',
+			OldLocalFile::selectFields(),
 			array(
 				'oi_name'         => $this->title->getDBkey(),
 				'oi_archive_name' => $archiveNames
