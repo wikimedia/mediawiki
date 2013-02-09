@@ -513,8 +513,11 @@ abstract class Maintenance {
 		define( 'MEDIAWIKI', true );
 
 		$wgCommandLineMode = true;
+
 		# Turn off output buffering if it's on
-		@ob_end_flush();
+		while( ob_get_level() > 0 ) {
+			ob_end_flush();
+		}
 
 		$this->validateParamsAndArgs();
 	}
