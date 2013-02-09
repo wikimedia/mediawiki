@@ -131,15 +131,21 @@ class DoubleRedirectJob extends Job {
 			return false;
 		}
 
+		$user = $this->getUser();
+		if ( !$user ) {
+			$this->setLastError( 'Invalid user' );
+			return false;
+		}
+
 		# Save it
 		global $wgUser;
 		$oldUser = $wgUser;
-		$wgUser = $this->getUser();
+		$wgUser = $user;
 		$article = WikiPage::factory( $this->title );
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
-		$article->doEditContent( $newContent, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $this->getUser() );
+		$article->doEditContent( $newContent, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $user );
 		$wgUser = $oldUser;
 
 		return true;
@@ -194,13 +200,16 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * Get a user object for doing edits, from a request-lifetime cache
-	 * @return User
+	 * False will be returned if the user name specified in the
+	 * 'double-redirect-fixer' message is invalid.
+	 *
+	 * @return User|bool
 	 */
 	function getUser() {
 		if ( !self::$user ) {
-			self::$user = User::newFromName( wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text(), false );
-			# FIXME: newFromName could return false on a badly configured wiki.
-			if ( !self::$user->isLoggedIn() ) {
+			self::$user = false;//User::newFromName( wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text() );
+			# User::newFromName() can return false on a badly configured wiki.
+			if ( self::$user && !self::$user->isLoggedIn() ) {
 				self::$user->addToDatabase();
 			}
 		}
