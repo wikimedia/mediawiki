@@ -1,6 +1,6 @@
 ( function ( mw, $ ) {
 
-var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests;
+var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests, specialCharactersPageName;
 
 QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 	setup: function () {
@@ -15,6 +15,17 @@ QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 			$div = undefined;
 			return html;
 		};
+
+		// Messages that are reused in multiple tests
+		// They are also all part of regression tests based on actual extensions.  The actual messages have the same key,
+		// but without jquerymsg-test-.
+		mw.messages.set( {
+			'jquerymsg-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
+			'jquerymsg-test-categorytree-collapse-bullet': '[<b>−</b>]',
+			'jquerymsg-test-wikieditor-toolbar-help-content-signature-result': '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)'
+		} );
+
+		specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 	},
 	teardown: function () {
 		mw.language = this.orgMwLangauge;
@@ -94,9 +105,9 @@ QUnit.test( 'Replace', 9, function ( assert ) {
 		'HTMLElement[] arrays are preserved as raw html'
 	);
 
-	mw.messages.set( 'wikilink-replace', 'Foo [$1 bar]' );
+	mw.messages.set( 'external-link-replace', 'Foo [$1 bar]' );
 	assert.equal(
-		parser( 'wikilink-replace', 'http://example.org/?x=y&z' ),
+		parser( 'external-link-replace', 'http://example.org/?x=y&z' ),
 		'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
 		'Href is not double-escaped in wikilink function'
 	);
@@ -217,20 +228,19 @@ QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( a
 	} );
 });
 
-QUnit.test( 'Wikilink', 6, function ( assert ) {
+QUnit.test( 'Links', 6, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
 		expectedListUsers,
 		expectedDisambiguationsText,
 		expectedMultipleBars,
-		expectedSpecialCharacters,
-		specialCharactersPageName;
+		expectedSpecialCharacters;
 
 	/*
 	 The below three are all identical to or based on real messages.  For disambiguations-text,
 	 the bold was removed because it is not yet implemented.
 	*/
 
-	mw.messages.set( 'statistics-users', '注册[[Special:ListUsers|用户]]' );
+	mw.messages.set( 'jquerymsg-test-statistics-users', '注册[[Special:ListUsers|用户]]' );
 
 	expectedListUsers = '注册' + $( '<a>' ).attr( {
 		title: 'Special:ListUsers',
@@ -238,7 +248,7 @@ QUnit.test( 'Wikilink', 6, function ( assert ) {
 	} ).text( '用户' ).getOuterHtml();
 
 	assert.equal(
-		parser( 'statistics-users' ),
+		parser( 'jquerymsg-test-statistics-users' ),
 		expectedListUsers,
 		'Piped wikilink'
 	);
@@ -255,9 +265,9 @@ QUnit.test( 'Wikilink', 6, function ( assert ) {
 		'Wikilink without pipe'
 	);
 
-	mw.messages.set( 'version-entrypoints-index-php', '[https://www.mediawiki.org/wiki/Manual:index.php index.php]' );
+	mw.messages.set( 'jquerymsg-test-version-entrypoints-index-php', '[https://www.mediawiki.org/wiki/Manual:index.php index.php]' );
 	assert.equal(
-		parser( 'version-entrypoints-index-php' ),
+		parser( 'jquerymsg-test-version-entrypoints-index-php' ),
 		'<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>',
 		'External link'
 	);
@@ -281,7 +291,6 @@ QUnit.test( 'Wikilink', 6, function ( assert ) {
 		'Bar in anchor'
 	);
 
-	specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 	expectedSpecialCharacters = $( '<a>' ).attr( {
 		title: specialCharactersPageName,
 		href: mw.util.wikiGetlink( specialCharactersPageName )
@@ -294,6 +303,38 @@ QUnit.test( 'Wikilink', 6, function ( assert ) {
 		'Special characters'
 	);
 });
+
+// Output for format plain when calling main (mediawiki.js) API.
+// We're testing here to ensure our monkey-patching of mw.Message.prototype.parser doesn't
+// cause breakage.
+
+// Some of the tests use mw.msg, while others have mw.message(...).plain().  These two
+// syntaxes should have identical behavior.
+QUnit.test( 'Plain', 4, function ( assert ) {
+	assert.equal(
+		mw.message( 'jquerymsg-test-pagetriage-del-talk-page-notify-summary' ).plain(),
+		'Notifying author of deletion nomination for [[$1]]',
+		'Square brackets in plain with no parameters'
+	);
+
+	assert.equal(
+		mw.msg( 'jquerymsg-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ),
+		'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]',
+		'Square brackets in plain with one parameter'
+	);
+
+	assert.equal(
+		mw.msg( 'jquerymsg-test-categorytree-collapse-bullet' ),
+		mw.messages.get( 'jquerymsg-test-categorytree-collapse-bullet' ),
+		'Message with single square brackets is not changed'
+	);
+
+	assert.equal(
+		mw.message( 'jquerymsg-test-wikieditor-toolbar-help-content-signature-result' ).plain(),
+		mw.messages.get( 'jquerymsg-test-wikieditor-toolbar-help-content-signature-result' ),
+		'HTML message with curly braces is not changed'
+	);
+} );
 
 QUnit.test( 'Int', 4, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
@@ -342,14 +383,12 @@ QUnit.test( 'Int', 4, function ( assert ) {
 	);
 });
 
-// Tests that getMessageFunction is used for messages with curly braces or square brackets,
-// but not otherwise.
-QUnit.test( 'mw.msg()', 8, function ( assert ) {
-	// Should be
-	var map, oldGMF, outerCalled, innerCalled;
+// Tests that getMessageFunction is used for non-plain messages with curly braces or
+// square brackets, but not otherwise.
+QUnit.test( 'mw.msg()', 22, function ( assert ) {
+	var oldGMF, outerCalled, innerCalled;
 
-	map = new mw.Map();
-	map.set( {
+	mw.messages.set( {
 		'curly-brace': '{{int:message}}',
 		'single-square-bracket': '[https://www.mediawiki.org/ MediaWiki]',
 		'double-square-bracket': '[[Some page]]',
@@ -365,18 +404,31 @@ QUnit.test( 'mw.msg()', 8, function ( assert ) {
 		};
 	};
 
-	function verifyGetMessageFunction( key, shouldCall ) {
+	function verifyGetMessageFunction( key, format, shouldCall ) {
+		var message;
 		outerCalled = false;
 		innerCalled = false;
-		( new mw.Message( map, key ) ).parser();
+		message = mw.message( key );
+		message[format]();
 		assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 		assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
 	}
 
-	verifyGetMessageFunction( 'curly-brace', true );
-	verifyGetMessageFunction( 'single-square-bracket', true );
-	verifyGetMessageFunction( 'double-square-bracket', true );
-	verifyGetMessageFunction( 'regular', false );
+	verifyGetMessageFunction( 'curly-brace', 'parse', true );
+	verifyGetMessageFunction( 'curly-brace', 'plain', false );
+
+	verifyGetMessageFunction( 'single-square-bracket', 'parse', true );
+	verifyGetMessageFunction( 'single-square-bracket', 'plain', false );
+
+	verifyGetMessageFunction( 'double-square-bracket', 'parse', true );
+	verifyGetMessageFunction( 'double-square-bracket', 'plain', false );
+
+	verifyGetMessageFunction( 'regular', 'parse', false );
+	verifyGetMessageFunction( 'regular', 'plain', false );
+
+	verifyGetMessageFunction( 'jquerymsg-test-pagetriage-del-talk-page-notify-summary', 'plain', false );
+	verifyGetMessageFunction( 'jquerymsg-test-categorytree-collapse-bullet', 'plain', false );
+	verifyGetMessageFunction( 'jquerymsg-test-wikieditor-toolbar-help-content-signature-result', 'plain', false );
 
 	mw.jqueryMsg.getMessageFunction = oldGMF;
 } );
