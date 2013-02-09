@@ -2777,6 +2777,10 @@ class Title {
 	 * Purge expired restrictions from the page_restrictions table
 	 */
 	static function purgeExpiredRestrictions() {
+		if ( wfReadOnly() ) {
+			return;
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete(
 			'page_restrictions',

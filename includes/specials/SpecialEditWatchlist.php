@@ -77,6 +77,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$this->checkPermissions();
+		$this->checkReadOnly();
 
 		$this->outputHeader();
 
