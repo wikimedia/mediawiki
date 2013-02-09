@@ -1035,7 +1035,7 @@ class XMPReader {
 
 		if ( $elm === self::NS_RDF . ' RDF'
 			|| $elm === 'adobe:ns:meta/ xmpmeta'
-			|| $elm === 'adobe:ns:meta/ xapmeta')
+			|| $elm === 'adobe:ns:meta/ xapmeta' )
 		{
 			/* ignore. */
 			return;
@@ -1065,7 +1065,7 @@ class XMPReader {
 
 		if ( count( $this->mode ) === 0 ) {
 			// This should not happen.
-			throw new MWException('Error extracting XMP, '
+			throw new MWException( 'Error extracting XMP, '
 				. "encountered <$elm> with no mode" );
 		}
 

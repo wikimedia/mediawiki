@@ -701,7 +701,7 @@ class MimeMagic {
 		}
 
 		if ( $script_type ) {
-			if ( $script_type !== "UTF-8" && $script_type !== "ASCII") {
+			if ( $script_type !== "UTF-8" && $script_type !== "ASCII" ) {
 				// Quick and dirty fold down to ASCII!
 				$pack = array( 'UTF-16BE' => 'n*', 'UTF-16LE' => 'v*' );
 				$chars = unpack( $pack[$script_type], substr( $head, 2 ) );

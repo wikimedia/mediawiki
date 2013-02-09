@@ -1873,7 +1873,7 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$response->header( 'Surrogate-Control: max-age=' . $wgSquidMaxage . '+' . $this->mSquidMaxage . ', content="ESI/1.0"');
+					$response->header( 'Surrogate-Control: max-age=' . $wgSquidMaxage . '+' . $this->mSquidMaxage . ', content="ESI/1.0"' );
 					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents

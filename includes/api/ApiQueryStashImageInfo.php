@@ -42,7 +42,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		$result = $this->getResult();
 
 		if ( !$params['filekey'] && !$params['sessionkey'] ) {
-			$this->dieUsage( "One of filekey or sessionkey must be supplied", 'nofilekey');
+			$this->dieUsage( "One of filekey or sessionkey must be supplied", 'nofilekey' );
 		}
 
 		// Alias sessionkey to filekey, but give an existing filekey precedence.

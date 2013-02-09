@@ -80,7 +80,7 @@ class SpecialExport extends SpecialPage {
 			$page = $request->getText( 'pages' );
 			$nsindex = $request->getText( 'nsindex', '' );
 
-			if ( strval( $nsindex ) !== ''  ) {
+			if ( strval( $nsindex ) !== '' ) {
 				/**
 				 * Same implementation as above, so same @todo
 				 */

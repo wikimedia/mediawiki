@@ -375,8 +375,8 @@ class IPTC {
 			$dateOnly = true;
 		}
 
-		if ( !( preg_match('/\d\d\d\d\d\d[-+]\d\d\d\d/', $time)
-			&& preg_match('/\d\d\d\d\d\d\d\d/', $date)
+		if ( !( preg_match( '/\d\d\d\d\d\d[-+]\d\d\d\d/', $time )
+			&& preg_match( '/\d\d\d\d\d\d\d\d/', $date )
 			&& substr( $date, 0, 4 ) !== '0000'
 			&& substr( $date, 4, 2 ) !== '00'
 			&& substr( $date, 6, 2 ) !== '00'
@@ -386,7 +386,7 @@ class IPTC {
 			// for example: the date 00000400 means the photo was taken in
 			// April, but the year and day is unknown. We don't process these
 			// types of incomplete dates atm.
-			wfDebugLog( 'iptc', "IPTC: invalid time ( $time ) or date ( $date )");
+			wfDebugLog( 'iptc', "IPTC: invalid time ( $time ) or date ( $date )" );
 			return null;
 		}
 

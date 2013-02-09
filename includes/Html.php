@@ -929,7 +929,7 @@ class Html {
 			$icon = $wgStylePath.'/common/images/'.$icon;
 		}
 
-		$s = Html::openElement( 'div', array( 'class' => "mw-infobox $class") );
+		$s = Html::openElement( 'div', array( 'class' => "mw-infobox $class" ) );
 
 		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ).
 				Html::element( 'img',

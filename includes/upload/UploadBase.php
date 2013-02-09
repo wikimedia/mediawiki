@@ -360,7 +360,7 @@ abstract class UploadBase {
 		global $wgVerifyMimeType;
 		wfProfileIn( __METHOD__ );
 		if ( $wgVerifyMimeType ) {
-			wfDebug ( "\n\nmime: <$mime> extension: <{$this->mFinalExtension}>\n\n");
+			wfDebug ( "\n\nmime: <$mime> extension: <{$this->mFinalExtension}>\n\n" );
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
 				wfProfileOut( __METHOD__ );

@@ -1414,7 +1414,7 @@ class Parser {
 							if ( $firstspace == -1 ) {
 								$firstspace = $i;
 							}
-						} elseif ( $x2 === ' ') {
+						} elseif ( $x2 === ' ' ) {
 							if ( $firstsingleletterword == -1 ) {
 								$firstsingleletterword = $i;
 							}
@@ -2332,7 +2332,7 @@ class Parser {
 				$output .= $this->nextItem( substr( $prefix, -1 ) );
 				$paragraphStack = false;
 
-				if ( substr( $prefix, -1 ) === ';') {
+				if ( substr( $prefix, -1 ) === ';' ) {
 					# The one nasty exception: definition lists work like this:
 					# ; title : definition text
 					# So we check for : in the remainder text to split up the
@@ -2383,7 +2383,7 @@ class Parser {
 				wfProfileIn( __METHOD__ . "-paragraph" );
 				# No prefix (not in list)--go to paragraph mode
 				# XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match('/(?:<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
+				$openmatch = preg_match( '/(?:<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
 					'/(?:<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
 					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
@@ -4104,7 +4104,7 @@ class Parser {
 			$sectionIndex = false;
 			$numbering = '';
 			$markerMatches = array();
-			if ( preg_match("/^$markerRegex/", $headline, $markerMatches ) ) {
+			if ( preg_match( "/^$markerRegex/", $headline, $markerMatches ) ) {
 				$serial = $markerMatches[1];
 				list( $titleText, $sectionIndex ) = $this->mHeadings[$serial];
 				$isTemplate = ( $titleText != $baseTitleText );
@@ -5235,7 +5235,7 @@ class Parser {
 		} else { # Inline image
 			if ( !isset( $params['frame']['alt'] ) ) {
 				# No alt text, use the "caption" for the alt text
-				if ( $caption !== '') {
+				if ( $caption !== '' ) {
 					$params['frame']['alt'] = $this->stripAltText( $caption, $holders );
 				} else {
 					# No caption, fall back to using the filename for the
