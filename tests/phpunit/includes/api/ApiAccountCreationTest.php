@@ -14,7 +14,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$hooks = $wgHooks;
 		Hooks::clear( 'AlternateUserMailer' );
 		$hooks['AlternateUserMailer'] = array( function () { return false; } );
-		$this->setMwGlobals( array( 'wgHooks' => $hooks ) );
+		$this->setMwGlobals( array( 'wgHooks' => $hooks, 'wgEnableEmail' => true ) );
 	}
 
 	/**
@@ -147,10 +147,6 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	function testInvalidEmail() {
-		global $wgEnableEmail;
-		if( !$wgEnableEmail ) {
-			$this->markTestSkipped( 'email is not enabled, so createaccount does not check it' );
-		}
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Test User',
