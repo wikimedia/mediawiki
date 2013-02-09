@@ -314,6 +314,7 @@ This option means "underline links as in your user skin or your browser", there 
 'category-empty' => 'The text displayed in category page when that category is empty',
 'hidden-categories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'hidden-category-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
+'category-collation' => 'Label of the collation selector on category pages when multiple collations are configured on a wiki.',
 'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
 * $1: number of subcategories shown
 * $2: total number of subcategories in category',
@@ -2428,6 +2429,15 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Language}}',
 'yourvariant' => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.',
 'prefs-help-variant' => 'Explanation of the LanguageConverter feature. It is shown next to a dropdown box where you can choose a variant to convert content to (e.g. Serbian Latin vs. Serbian Cyrillic, or Chinese Traditional vs. Chinese Simplified).',
+'prefs-collation' => 'Used in [[Special:Preferences]], first tab.',
+'prefs-help-collation' => 'Explanation of the collation selection. It is shown next to a dropdown box where you can choose a default collation to sort items on category pages.',
+'collation-uppercase' => 'Name of a collation.',
+'collation-identity' => 'Name of a collation.',
+'collation-uca-default' => 'Name of a collation.',
+'collation-zh-pinyin' => 'Name of a collation.',
+'collation-zh-stroke' => 'Name of a collation.',
+'collation-zh-stroke-hans' => 'Name of a collation.',
+'collation-zh-stroke-hant' => 'Name of a collation.',
 'yournick' => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',
@@ -8206,7 +8216,14 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 # Core parser functions
 'unknown_extension_tag' => '* Description: This is an error shown when you use an unknown extension tag name. This feature allows tags like <tt><nowiki><pre></nowiki></tt> to be called with a parser like <tt><nowiki>{{#tag:pre}}</nowiki></tt>.
 * Parameter $1: This is the unknown extension tag name.',
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 'duplicate-defaultsort' => 'See definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
+=======
+'duplicate-defaultsort' => 'Definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
+'duplicate-defaultcollation' => 'Error message to show when there is another default collation defined.',
+'defaultcollation-notcategory' => 'Error message when {{DEFAULTCOLLATION: }} is used on a non-category page.',
+'defaultcollation-invalid' => 'Error message when {{DEFAULTCOLLATION: }} is used with an invalid collation specified.',
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 
 # Special:Version
 'version' => 'Name of special page displayed in [[Special:SpecialPages]]

@@ -81,10 +81,20 @@ class CoreLinkFunctions {
 			# Return false so that this link is reverted back to WikiText
 			return false;
 		}
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 		if( !isset( $sortText ) ) $sortText = $parser->getDefaultSort();
 		$sortText = Sanitizer::decodeCharReferences( $sortText );
 		$sortText = str_replace( "\n", '', $sortText );
 		$sortText = $wgContLang->convertCategoryKey( $sortText );
+=======
+		if( !isset($sortText) ) $sortText = $parser->getDefaultSort();
+		else $sortText = Parser::parseCategorySortKey( $sortText );
+		$sortText = array_map( 'Sanitizer::decodeCharReferences', $sortText );
+		$sortText = array_map( function( $str ) {
+			return str_replace( "\n", '', $str );
+		}, $sortText );
+		$sortText = array_map( array( $wgContLang, 'convertCategoryKey' ), $sortText );
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 		$parser->mOutput->addCategory( $title->getDBkey(), $sortText );
 		return '';
 	}

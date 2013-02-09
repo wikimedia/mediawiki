@@ -49,6 +49,11 @@ class CategoryViewer extends ContextSource {
 	var $collation;
 
 	/**
+	 * @var Collation name
+	 */
+	var $collationName;
+
+	/**
 	 * @var ImageGallery
 	 */
 	var $gallery;
@@ -76,8 +81,13 @@ class CategoryViewer extends ContextSource {
 	 * @param $until Array An array with 3 keys for until of each section (since 1.17)
 	 * @param $query Array
 	 */
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 	function __construct( $title, IContextSource $context, $from = array(), $until = array(), $query = array() ) {
 		global $wgCategoryPagingLimit;
+=======
+	function __construct( $title, IContextSource $context, $from = '', $until = '', $query = array() ) {
+		global $wgCategoryPagingLimit, $wgCategoryCollations;
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 		$this->title = $title;
 		$this->setContext( $context );
 		$this->from = $from;
@@ -85,7 +95,8 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
-		$this->collation = Collation::singleton();
+		list( $this->collationName, $this->collation ) = Collation::getInstanceByContext(
+			isset( $query['collation'] ) ? $query['collation'] : null, $title, $context );
 		unset( $this->query['title'] );
 	}
 
@@ -124,6 +135,8 @@ class CategoryViewer extends ContextSource {
 		// Give a proper message if category is empty
 		if ( $r == '' ) {
 			$r = $this->msg( 'category-empty' )->parseAsBlock();
+		} else {
+			$r = $this->getCollationSelector() . $r;
 		}
 
 		$lang = $this->getLanguage();
@@ -286,13 +299,17 @@ class CategoryViewer extends ContextSource {
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 			# Get the sortkeys for start/end, if applicable.  Note that if
 			# the collation in the database differs from the one
-			# set in $wgCategoryCollation, pagination might go totally haywire.
-			$extraConds = array( 'cl_type' => $type );
+			# set in $wgCategoryCollations, pagination might go totally haywire.
+			$conds = array(
+				'cl_type' => $type,
+				'cl_to' => $this->title->getDBkey(),
+				'cl_collation' => array( '', $this->collationName ),
+			);
 			if ( $this->from[$type] !== null ) {
-				$extraConds[] = 'cl_sortkey >= '
+				$conds[] = 'cl_sortkey >= '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
 			} elseif ( $this->until[$type] !== null ) {
-				$extraConds[] = 'cl_sortkey < '
+				$conds[] = 'cl_sortkey < '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
 				$this->flip[$type] = true;
 			}
@@ -303,7 +320,11 @@ class CategoryViewer extends ContextSource {
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files',
 					'cl_sortkey_prefix', 'cl_collation' ),
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 				array_merge( array( 'cl_to' => $this->title->getDBkey() ), $extraConds ),
+=======
+				$conds,
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 				__METHOD__,
 				array(
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
@@ -358,6 +379,40 @@ class CategoryViewer extends ContextSource {
 		return $r === ''
 			? $r
 			: "<br style=\"clear:both;\"/>\n" . $r;
+	}
+
+	/**
+	 * @since 1.21
+	 * @return string
+	 */
+	function getCollationSelector() {
+		global $wgCategoryCollations;
+
+		if ( count( $wgCategoryCollations ) <= 1 ) {
+			return '';
+		}
+
+		$this->getContext()->getOutput()->addModules( 'mediawiki.page.category' );
+		$select = new XmlSelect( 'collation', 'mw-collation-select', $this->collationName );
+		$items = array();
+		foreach ( $wgCategoryCollations as $collation ) {
+			$select->addOption(
+				$this->getContext()->msg( "collation-$collation" )->text(), $collation );
+		}
+		$html = Html::rawElement( 'label', array( 'for' => 'mw-collation-select' ),
+			$this->getContext()->msg( 'category-collation' )->parse() );
+		$html .= ' ';
+		$html .= Html::hidden( 'title', $this->title->getPrefixedText() );
+		$html .= $select->getHTML();
+		$html .= ' ';
+		$html .= Html::input( 'go', $this->getContext()->msg( 'go' )->text(), 'submit', array(
+			'id' => 'mw-collation-go',
+		) );
+		return Html::rawElement( 'form', array(
+			'action' => wfScript(),
+			'method' => 'get',
+			'id' => 'mw-collation-selector'
+		), $html );
 	}
 
 	/**

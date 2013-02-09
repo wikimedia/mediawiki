@@ -954,6 +954,7 @@ abstract class DatabaseUpdater {
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 		global $wgCategoryCollation;
 		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
 			if ( $this->db->selectField(
@@ -965,6 +966,23 @@ abstract class DatabaseUpdater {
 					$this->output( "...collations up-to-date.\n" );
 					return;
 			}
+=======
+		global $wgCategoryCollations;
+
+		$collations = $this->db->selectField( 'updatelog', 'ul_value', array( 'ul_key' => 'collations' ), __METHOD__ );
+		if ( $collations !== false ) {
+			$collations = unserialize( $collations );
+			if ( $collations !== false ) {
+				$currentCollations = $wgCategoryCollations;
+				sort( $currentCollations );
+				sort( $collations );
+				if ( $collations == $currentCollations ) {
+					$this->output( "...collations up-to-date.\n" );
+					return;
+				}
+			}
+		}
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 
 			$this->output( "Updating category collations..." );
 			$task = $this->maintenance->runChild( 'UpdateCollation' );
