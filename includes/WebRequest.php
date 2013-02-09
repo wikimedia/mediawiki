@@ -128,7 +128,7 @@ class WebRequest {
 				global $wgVariantArticlePath, $wgContLang;
 				if( $wgVariantArticlePath ) {
 					$router->add( $wgVariantArticlePath,
-						array( 'variant' => '$2'),
+						array( 'variant' => '$2' ),
 						array( '$2' => $wgContLang->getVariants() )
 					);
 				}
@@ -144,7 +144,7 @@ class WebRequest {
 				// Also reported when ini_get('cgi.fix_pathinfo')==false
 				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
 
-			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') ) {
+			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '' ) ) {
 				// Regular old PATH_INFO yay
 				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
 			}

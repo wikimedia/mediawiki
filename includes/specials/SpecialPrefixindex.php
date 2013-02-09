@@ -241,7 +241,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					'hideredirects' => $hideredirects,
 				);
 
-				if( $namespace || ($prefix == '')) {
+				if( $namespace || ($prefix == '') ) {
 					// Keep the namespace even if it's 0 for empty prefixes.
 					// This tells us we're not just a holdover from old links.
 					$query['namespace'] = $namespace;

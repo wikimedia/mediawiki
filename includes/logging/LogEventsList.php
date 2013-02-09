@@ -535,7 +535,7 @@ class LogEventsList extends ContextSource {
 			} elseif ( $page != '' ) {
 				$urlParam['page'] = $page;
 			}
-			if ( $user != '')
+			if ( $user != '' )
 				$urlParam['user'] = $user;
 			if ( !is_array( $types ) ) # Make it an array, if it isn't
 				$types = array( $types );

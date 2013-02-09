@@ -86,7 +86,7 @@ class Xml {
 	 * @param $contents String: NULL to make an open tag only; '' for a contentless closed tag (default)
 	 * @return string
 	 */
-	public static function elementClean( $element, $attribs = array(), $contents = '') {
+	public static function elementClean( $element, $attribs = array(), $contents = '' ) {
 		global $wgContLang;
 		if( $attribs ) {
 			$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
@@ -764,7 +764,7 @@ class Xml {
 		foreach( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
-			$form .= Xml::tags( 'td', array( 'class' => 'mw-label'), wfMessage( $labelmsg )->parse() );
+			$form .= Xml::tags( 'td', array( 'class' => 'mw-label' ), wfMessage( $labelmsg )->parse() );
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}

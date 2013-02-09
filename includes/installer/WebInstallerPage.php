@@ -1157,7 +1157,7 @@ class WebInstaller_Install extends WebInstallerPage {
 			$this->startForm();
 			$this->addHTML( "<ul>" );
 			$results = $this->parent->performInstallation(
-				array( $this, 'startStage'),
+				array( $this, 'startStage' ),
 				array( $this, 'endStage' )
 			);
 			$this->addHTML( "</ul>" );
@@ -1176,7 +1176,7 @@ class WebInstaller_Install extends WebInstallerPage {
 	}
 
 	public function startStage( $step ) {
-		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() . wfMessage( 'ellipsis')->escaped() );
+		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() . wfMessage( 'ellipsis' )->escaped() );
 		if ( $step == 'extension-tables' ) {
 			$this->startLiveBox();
 		}

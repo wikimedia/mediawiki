@@ -1162,7 +1162,7 @@ class EditPage {
 				return false;
 
 			case self::AS_PARSE_ERROR:
-				$wgOut->addWikiText( '<div class="error">' . $status->getWikiText() . '</div>');
+				$wgOut->addWikiText( '<div class="error">' . $status->getWikiText() . '</div>' );
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -2197,7 +2197,7 @@ class EditPage {
 			} catch ( MWContentSerializationException $ex ) {
 				// this can't really happen, but be nice if it does.
 				$msg = wfMessage( 'content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
-				$wgOut->addWikiText( '<div class="error">' . $msg->text() . '</div>');
+				$wgOut->addWikiText( '<div class="error">' . $msg->text() . '</div>' );
 			}
 		}
 
@@ -2616,7 +2616,7 @@ HTML
 				$this->showDiff();
 			} catch ( MWContentSerializationException $ex ) {
 				$msg = wfMessage( 'content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
-				$wgOut->addWikiText( '<div class="error">' . $msg->text() . '</div>');
+				$wgOut->addWikiText( '<div class="error">' . $msg->text() . '</div>' );
 			}
 		}
 	}
