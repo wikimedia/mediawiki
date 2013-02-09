@@ -92,14 +92,16 @@ class LinksUpdate extends SqlDataUpdate {
 			$this->mInterlangs[$key] = $title;
 		}
 
-		foreach ( $this->mCategories as &$sortkey ) {
+		foreach ( $this->mCategories as &$sortkeys ) {
 			# If the sortkey is longer then 255 bytes,
 			# it truncated by DB, and then doesn't get
 			# matched when comparing existing vs current
 			# categories, causing bug 25254.
 			# Also. substr behaves weird when given "".
-			if ( $sortkey !== '' ) {
-				$sortkey = substr( $sortkey, 0, 255 );
+			foreach ( $sortkeys as $collationName => &$sortkey ) {
+				if ( $sortkey !== '' ) {
+					$sortkey = substr( $sortkey, 0, 255 );
+				}
 			}
 		}
 
@@ -171,7 +173,7 @@ class LinksUpdate extends SqlDataUpdate {
 			$this->getCategoryInsertions( $existing ) );
 
 		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
-		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
+		$categoryInserts = ArrayUtils::arrayDiffAssocRecursive( $this->mCategories, $existing );
 		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
@@ -311,13 +313,18 @@ class LinksUpdate extends SqlDataUpdate {
 			$fromField = "{$prefix}_from";
 		}
 		$where = array( $fromField => $this->mId );
-		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' ) {
-			if ( $table == 'iwlinks' ) {
+		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' || $table == 'categorylinks' ) {
+			if ( $table === 'iwlinks' ) {
 				$baseKey = 'iwl_prefix';
+				$subKey = 'iwl_title';
+			} elseif ( $table === 'categorylinks' ) {
+				$baseKey = 'cl_to';
+				$subKey = 'cl_collation';
 			} else {
 				$baseKey = "{$prefix}_namespace";
+				$subKey = "{$prefix}_title";
 			}
-			$clause = $this->mDb->makeWhereFrom2d( $deletions, $baseKey, "{$prefix}_title" );
+			$clause = $this->mDb->makeWhereFrom2d( $deletions, $baseKey, $subKey );
 			if ( $clause ) {
 				$where[] = $clause;
 			} else {
@@ -436,10 +443,10 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getCategoryInsertions( $existing = array() ) {
-		global $wgContLang, $wgCategoryCollation;
-		$diffs = array_diff_assoc( $this->mCategories, $existing );
+		global $wgContLang;
+		$diffs = ArrayUtils::arrayDiffAssocRecursive( $this->mCategories, $existing );
 		$arr = array();
-		foreach ( $diffs as $name => $prefix ) {
+		foreach ( $diffs as $name => $prefixes ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
 
@@ -451,22 +458,26 @@ class LinksUpdate extends SqlDataUpdate {
 				$type = 'page';
 			}
 
-			# Treat custom sortkeys as a prefix, so that if multiple
-			# things are forced to sort as '*' or something, they'll
-			# sort properly in the category rather than in page_id
-			# order or such.
-			$sortkey = Collation::singleton()->getSortKey(
-				$this->mTitle->getCategorySortkey( $prefix ) );
+			foreach ( $prefixes as $collationName => $prefix ) {
+				$collation = Collation::getInstance( $collationName );
 
-			$arr[] = array(
-				'cl_from' => $this->mId,
-				'cl_to' => $name,
-				'cl_sortkey' => $sortkey,
-				'cl_timestamp' => $this->mDb->timestamp(),
-				'cl_sortkey_prefix' => $prefix,
-				'cl_collation' => $wgCategoryCollation,
-				'cl_type' => $type,
-			);
+				# Treat custom sortkeys as a prefix, so that if multiple
+				# things are forced to sort as '*' or something, they'll
+				# sort properly in the category rather than in page_id
+				# order or such.
+				$sortkey = $collation->getSortKey(
+					$this->mTitle->getCategorySortkey( $prefix ) );
+
+				$arr[] = array(
+					'cl_from'    => $this->mId,
+					'cl_to'      => $name,
+					'cl_sortkey' => $sortkey,
+					'cl_timestamp' => $this->mDb->timestamp(),
+					'cl_sortkey_prefix' => $prefix,
+					'cl_collation' => $collationName,
+					'cl_type' => $type,
+				);
+			}
 		}
 		return $arr;
 	}
@@ -593,7 +604,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getCategoryDeletions( $existing ) {
-		return array_diff_assoc( $existing, $this->mCategories );
+		return ArrayUtils::arrayDiffAssocRecursive( $existing, $this->mCategories );
 	}
 
 	/**
@@ -705,11 +716,11 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getExistingCategories() {
-		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey_prefix' ),
+		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_collation', 'cl_sortkey_prefix' ),
 			array( 'cl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
 		foreach ( $res as $row ) {
-			$arr[$row->cl_to] = $row->cl_sortkey_prefix;
+			$arr[$row->cl_to][$row->cl_collation] = $row->cl_sortkey_prefix;
 		}
 		return $arr;
 	}

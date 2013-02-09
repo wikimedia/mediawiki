@@ -862,6 +862,11 @@ return array(
 			'watcherrortext',
 		),
 	),
+	'mediawiki.page.category' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.category.js',
+		'styles' => 'resources/mediawiki.page/mediawiki.page.category.css',
+		'position' => 'top',
+	),
 
 	/* MediaWiki Special pages */
 

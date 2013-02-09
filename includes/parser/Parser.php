@@ -2016,11 +2016,15 @@ class Parser {
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
 					} else {
-						$sortkey = $text;
+						$sortkey = self::parseCategorySortKey( $text );
 					}
-					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
-					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getConverterLanguage()->convertCategoryKey( $sortkey );
+					$sortkey = array_map( 'Sanitizer::decodeCharReferences', $sortkey );
+					$sortkey = array_map( function( $str ) {
+						return str_replace( "\n", '', $str );
+					}, $sortkey );
+					$sortkey = array_map( array(
+						$this->getConverterLanguage(), 'convertCategoryKey'
+					), $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					/**
@@ -3101,6 +3105,50 @@ class Parser {
 		}
 
 		return $assocArgs;
+	}
+
+	/**
+	 * Parse category sort key in multi-collation environment.
+	 *
+	 * @param $sortKeys string|array
+	 * @return array
+	 */
+	static function parseCategorySortKey( $sortKeys ) {
+		global $wgCategoryCollations;
+
+		if ( !is_array( $sortKeys ) ) {
+			$sortKeys = StringUtils::explode( '|', $sortKeys );
+		}
+
+		$assocSortKeys = array();
+		$defaultSortKey = '';
+		foreach ( $sortKeys as $sortKey ) {
+			$eqpos = strpos( $sortKey, '=' );
+			if ( $eqpos === false ) {
+				$defaultSortKey = $sortKey;
+			} else {
+				$name = trim( substr( $sortKey, 0, $eqpos ) );
+				$value = trim( substr( $sortKey, $eqpos+1 ) );
+				if ( $value === false ) {
+					$value = '';
+				}
+				$collationName = Collation::getNameFromText( $name );
+				if ( $collationName === false ) {
+					// Keep existing sort keys with an equal sign working.
+					$defaultSortKey = $sortKey;
+				} else {
+					$assocSortKeys[$collationName] = $value;
+				}
+			}
+		}
+
+		foreach ( $wgCategoryCollations as $collationName ) {
+			if ( !isset( $assocSortKeys[$collationName] ) ) {
+				$assocSortKeys[$collationName] = $defaultSortKey;
+			}
+		}
+
+		return $assocSortKeys;
 	}
 
 	/**
@@ -5595,11 +5643,15 @@ class Parser {
 	/**
 	 * Mutator for $mDefaultSort
 	 *
-	 * @param $sort string New value
+	 * @param $sort array New value
 	 */
-	public function setDefaultSort( $sort ) {
+	public function setDefaultSort( array $sort ) {
 		$this->mDefaultSort = $sort;
-		$this->mOutput->setProperty( 'defaultsort', $sort );
+		$sortKeys = array();
+		foreach ( $sort as $collationName => $sortKey ) {
+			$sortKeys[] = "$collationName=$sortKey";
+		}
+		$this->mOutput->setProperty( 'defaultsort', implode( '|', $sortKeys ) );
 	}
 
 	/**
@@ -5610,13 +5662,17 @@ class Parser {
 	 * empty string is equivalent to sorting by
 	 * page name.
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function getDefaultSort() {
+		global $wgCategoryCollations;
+
 		if ( $this->mDefaultSort !== false ) {
 			return $this->mDefaultSort;
 		} else {
-			return '';
+			// This is expected to be equivalent to
+			// self::parseCategorySortKey( '' ) but may run faster.
+			return array_fill_keys( $wgCategoryCollations, '' );
 		}
 	}
 
@@ -5624,7 +5680,7 @@ class Parser {
 	 * Accessor for $mDefaultSort
 	 * Unlike getDefaultSort(), will return false if none is set
 	 *
-	 * @return string or false
+	 * @return array or false
 	 */
 	public function getCustomDefaultSort() {
 		return $this->mDefaultSort;

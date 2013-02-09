@@ -21,17 +21,73 @@
  */
 
 abstract class Collation {
-	static $instance;
+	static $instances = array();
 
 	/**
+	 * @deprecated in 1.21; use Collation::getInstance() instead
 	 * @return Collation
 	 */
 	static function singleton() {
-		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
+		global $wgCategoryCollations;
+		wfDeprecated( __METHOD__, '1.21' );
+
+		return self::getInstance( $wgCategoryCollations[0] );
+	}
+
+	/**
+	 * @since 1.21
+	 * @return Collation
+	 */
+	static function getInstance( $name ) {
+		global $wgCategoryCollations;
+
+		if ( !isset( self::$instances[$name] ) ) {
+			if ( in_array( $name, $wgCategoryCollations ) ) {
+				self::$instances[$name] = self::factory( $name );
+			} else {
+				throw new MWException( __METHOD__.": invalid collation type \"$name\"" );
+			}
 		}
-		return self::$instance;
+
+		return self::$instances[$name];
+	}
+
+	/**
+	 * @since 1.21
+	 * @return Array
+	 */
+	static function getInstanceByContext( $name = null, $title = null, $context = null ) {
+		global $wgCategoryCollations;
+
+		if ( in_array( $name, $wgCategoryCollations ) ) {
+		} elseif ( ( $defaultcollation = wfGetDB( DB_SLAVE )->selectField(
+			'page_props', 'pp_value',
+			array( 'pp_page' => $title->getArticleId(), 'pp_propname' => 'defaultcollation' ),
+			__METHOD__
+		) ) !== false && in_array( $defaultcollation, $wgCategoryCollations ) ) {
+			$name = $defaultcollation;
+		} elseif ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollations ) ) {
+			$name = $context->getUser()->getOption( 'collation' );
+		} else {
+			$name = $wgCategoryCollations[0];
+		}
+
+		return array( $name, self::getInstance( $name ) );
+	}
+
+	/**
+	 * @since 1.21
+	 * @return Array
+	 */
+	static function getInstances() {
+		global $wgCategoryCollations;
+
+		foreach ( $wgCategoryCollations as $name ) {
+			if ( !isset( self::$instances[$name] ) ) {
+				self::$instances[$name] = self::factory( $name );
+			}
+		}
+		return self::$instances;
 	}
 
 	/**
@@ -49,6 +105,14 @@ abstract class Collation {
 				return new IdentityCollation;
 			case 'uca-default':
 				return new IcuCollation( 'root' );
+			case 'zh-pinyin':
+				return new IcuCollation( 'zh@collation=pinyin' );
+			case 'zh-stroke':
+				return new IcuCollation( 'zh@collation=stroke' );
+			case 'zh-stroke-hans':
+				return new ConvertedIcuCollation( 'zh@collation=stroke', 'zh', 'zh-hans' );
+			case 'zh-stroke-hant':
+				return new ConvertedIcuCollation( 'zh@collation=stroke', 'zh', 'zh-hant' );
 			default:
 				# Provide a mechanism for extensions to hook in.
 
@@ -61,6 +125,43 @@ abstract class Collation {
 
 				// If all else fails...
 				throw new MWException( __METHOD__.": unknown collation type \"$collationName\"" );
+		}
+	}
+
+	/**
+	 * Get a valid collation name from user input (matched using magic words)
+	 *
+	 * @since 1.21
+	 * @param $text String: User input (localized collation name)
+	 * @return String|bool: A valid collation name, or false for invalid input
+	 */
+	static function getNameFromText( $text ) {
+		global $wgCategoryCollations;
+
+		static $mwArray = null;
+		static $collationMap = array();
+		if ( !$mwArray ) {
+			foreach ( $wgCategoryCollations as $collationName ) {
+				// Unluckily magic word names can't contain hyphens.
+				// Magic word names used in core, for easier grepping:
+				// * collation_uppercase
+				// * collation_identity
+				// * collation_uca_default
+				// * collation_zh_pinyin
+				// * collation_zh_stroke
+				// * collation_zh_stroke_hans
+				// * collation_zh_stroke_hant
+				$magicName = 'collation_' . str_replace( '-', '_', $collationName );
+				$collationMap[$magicName] = $collationName;
+			}
+			$mwArray = new MagicWordArray( array_keys( $collationMap ) );
+		}
+
+		$magicName = $mwArray->matchStartToEnd( $text );
+		if ( $magicName === false ) {
+			return false;
+		} else {
+			return $collationMap[$magicName];
 		}
 	}
 
@@ -235,8 +336,13 @@ class IcuCollation extends Collation {
 		}
 
 		// Check for CJK
+		// Always sort Chinese if this is using a Chinese locale.
+		// self::isCjk() checks Chinese only though it's called 'CJK'.
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
+		$localePieces = explode( '@', $this->locale );
+		$localePieces = explode( '-', $localePieces[0] );
 		if ( ord( $firstChar ) > 0x7f
+			&& $localePieces[0] !== 'zh'
 			&& self::isCjk( utf8ToCodepoint( $firstChar ) ) )
 		{
 			return $firstChar;
@@ -245,7 +351,7 @@ class IcuCollation extends Collation {
 		$sortKey = $this->getPrimarySortKey( $string );
 
 		// Do a binary search to find the correct letter to sort under
-		$min = $this->findLowerBound(
+		$min = ArrayUtils::findLowerBound(
 			array( $this, 'getSortKeyByLetterIndex' ),
 			$this->getFirstLetterCount(),
 			'strcmp',
@@ -290,11 +396,16 @@ class IcuCollation extends Collation {
 		// We also take this opportunity to remove primary collisions.
 		$letterMap = array();
 		foreach ( $letters as $letter ) {
-			$key = $this->getPrimarySortKey( $letter );
+			// Chinese collations don't display real first letters.
+			if ( !is_array( $letter ) ) {
+				// array( $letterSort, $letterDisplay )
+				$letter = array( $letter, $letter );
+			}
+			$key = $this->getPrimarySortKey( $letter[0] );
 			if ( isset( $letterMap[$key] ) ) {
 				// Primary collision
 				// Keep whichever one sorts first in the main collator
-				if ( $this->mainCollator->compare( $letter, $letterMap[$key] ) < 0 ) {
+				if ( $this->mainCollator->compare( $letter[0], $letterMap[$key][0] ) < 0 ) {
 					$letterMap[$key] = $letter;
 				}
 			} else {
@@ -303,7 +414,9 @@ class IcuCollation extends Collation {
 		}
 		ksort( $letterMap, SORT_STRING );
 		$data = array(
-			'chars' => array_values( $letterMap ),
+			'chars' => array_map( function( $letter ) {
+				return $letter[1];
+			}, array_values( $letterMap ) ),
 			'keys' => array_keys( $letterMap )
 		);
 
@@ -341,6 +454,8 @@ class IcuCollation extends Collation {
 	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
+	 * @deprecated in 1.21; use ArrayUtils::findLowerBound() instead
+	 *
 	 * @param $valueCallback array A function to call to get the value with
 	 *     a given array index.
 	 * @param $valueCount int The number of items accessible via $valueCallback,
@@ -353,35 +468,8 @@ class IcuCollation extends Collation {
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
-		if ( $valueCount === 0 ) {
-			return false;
-		}
-
-		$min = 0;
-		$max = $valueCount;
-		do {
-			$mid = $min + ( ( $max - $min ) >> 1 );
-			$item = call_user_func( $valueCallback, $mid );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison > 0 ) {
-				$min = $mid;
-			} elseif ( $comparison == 0 ) {
-				$min = $mid;
-				break;
-			} else {
-				$max = $mid;
-			}
-		} while ( $min < $max - 1 );
-
-		if ( $min == 0 ) {
-			$item = call_user_func( $valueCallback, $min );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison < 0 ) {
-				// Before the first item
-				return false;
-			}
-		}
-		return $min;
+		wfDeprecated( __METHOD__, '1.21' );
+		return ArrayUtils::findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target );
 	}
 
 	static function isCjk( $codepoint ) {
@@ -442,5 +530,26 @@ class IcuCollation extends Collation {
 		} else {
 			return false;
 		}
+	}
+}
+
+class ConvertedIcuCollation extends IcuCollation {
+	function __construct( $locale, $language, $variant ) {
+		parent::__construct( $locale );
+
+		$this->converter = Language::factory( $language )->getConverter();
+		$this->variant = $variant;
+	}
+
+	function convert( $string ) {
+		return $this->converter->translate( $string, $this->variant );
+	}
+
+	function getSortKey( $string ) {
+		return parent::getSortKey( $this->convert( $string ) );
+	}
+
+	function getFirstLetter( $string ) {
+		return parent::getFirstLetter( $this->convert( $string ) );
 	}
 }

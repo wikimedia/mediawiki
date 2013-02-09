@@ -73,6 +73,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
 		$parser->setFunctionHook( 'speciale',         array( __CLASS__, 'speciale'         ) );
 		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'defaultcollation', array( __CLASS__, 'defaultcollation' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
@@ -768,33 +769,113 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param $text String The sortkey to use
-	 * @param $uarg String Either "noreplace" or "noerror" (in en)
-	 *   both suppress errors, and noreplace does nothing if
-	 *   a default sortkey already exists.
 	 * @return string
 	 */
-	public static function defaultsort( $parser, $text, $uarg = '' ) {
+	public static function defaultsort( $parser ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
 			$magicWords = new MagicWordArray( array( 'defaultsort_noerror', 'defaultsort_noreplace' ) );
 		}
-		$arg = $magicWords->matchStartToEnd( $uarg );
 
-		$text = trim( $text );
-		if( strlen( $text ) == 0 )
-			return '';
-		$old = $parser->getCustomDefaultSort();
-		if ( $old === false || $arg !== 'defaultsort_noreplace' ) {
-			$parser->setDefaultSort( $text );
+		$args = func_get_args();
+		array_shift( $args );
+		$sortKeys = array();
+		$flag = '';
+		foreach ( $args as $arg ) {
+			$mwarg = $magicWords->matchStartToEnd( $arg );
+			if ( $mwarg === 'defaultsort_noreplace' ) {
+				$flag = 'noreplace';
+			} elseif ( $mwarg === 'defaultsort_noerror' && $flag !== 'noreplace' ) {
+				$flag = 'noerror';
+			} elseif ( strlen( $arg ) != 0 ) {
+				$sortKeys[] = trim( $arg );
+			}
 		}
 
-		if( $old === false || $old == $text || $arg ) {
+		if ( count( $sortKeys ) == 0 ) {
+			return '';
+		}
+
+		$sortKeys = Parser::parseCategorySortKey( $sortKeys );
+		$old = $parser->getCustomDefaultSort();
+		if ( $old === false || $flag !== 'noreplace' ) {
+			$parser->setDefaultSort( $sortKeys );
+		}
+
+		if( $old === false || $old == $sortKeys || $flag ) {
 			return '';
 		} else {
 			return( '<span class="error">' .
-				wfMessage( 'duplicate-defaultsort', $old, $text )->inContentLanguage()->escaped() .
+				wfMessage( 'duplicate-defaultsort',
+					self::defaultsortDescribeSortKey( $old ),
+					self::defaultsortDescribeSortKey( $sortKeys )
+				)->inContentLanguage()->escaped() .
 				'</span>' );
+		}
+	}
+
+	public static function defaultsortDescribeSortKey( $sortKeys ) {
+		global $wgContLang;
+
+		$items = array();
+		foreach ( $sortKeys as $collationName => $sortKey ) {
+			$items[] = wfMessage( "collation-$collationName" )->inContentLanguage()->text()
+				. wfMessage( 'colon-separator' )->inContentLanguage()->text()
+				. $sortKey;
+		}
+
+		return $wgContLang->commaList( $items );
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $text String The collation to use
+	 * @param $uarg String Either "noreplace" or "noerror" (in en)
+	 *   both suppress errors, and noreplace does nothing if
+	 *   a default collation already exists.
+	 * @return string
+	 */
+	public static function defaultcollation( $parser, $text, $uarg = '' ) {
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array( 'defaultcollation_noerror', 'defaultcollation_noreplace' ) );
+		}
+		$arg = $magicWords->matchStartToEnd( $uarg );
+
+		if ( $parser->getTitle()->getNamespace() != NS_CATEGORY ) {
+			if ( $arg ) {
+				return '';
+			} else {
+				return '<span class="error">'
+					. wfMessage( 'defaultcollation-notcategory' )->inContentLanguage()->text()
+					. '</span>';
+			}
+		}
+
+		$text = trim( $text );
+		if ( strlen( $text ) == 0 ) {
+			return '';
+		}
+		$name = Collation::getNameFromText( $text );
+		if ( $name === false ) {
+			return '<span class="error">'
+				. wfMessage( 'defaultcollation-invalid' )
+					->params( htmlspecialchars( $text ) )
+					->inContentLanguage()->text()
+				. '</span>';
+		}
+
+		$old = $parser->getOutput()->getProperty( 'defaultcollation' );
+		if ( $old === false || $arg !== 'defaultcollation_noreplace' ) {
+			$parser->getOutput()->setProperty( 'defaultcollation', $name );
+		}
+
+		if( $old === false || $old === $name || $arg ) {
+			return '';
+		} else {
+			return '<span class="error">'
+				. wfMessage( 'duplicate-defaultcollation' )->params( $old, $name )->text()
+				. '</span>';
 		}
 	}
 
