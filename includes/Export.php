@@ -940,7 +940,6 @@ class DumpOutput {
 	 * @param $newname mixed File name. May be a string or an array with one element
 	 */
 	function closeRenameAndReopen( $newname ) {
-		return;
 	}
 
 	/**
@@ -951,7 +950,6 @@ class DumpOutput {
 	 * @param $open bool If true, a new file with the old filename will be opened again for writing (default: false)
 	 */
 	function closeAndRename( $newname, $open = false ) {
-		return;
 	}
 
 	/**

@@ -276,10 +276,7 @@ class XMPReader {
 						default:
 							//this should be impossible to get to
 							throw new MWException( "Invalid BOM" );
-							break;
-
 					}
-
 				} else {
 					// standard specifically says, if no bom assume utf-8
 					$this->charset = 'UTF-8';
@@ -421,13 +418,10 @@ class XMPReader {
 	* @param $elm String Namespace of element followed by a space and then tag name of element.
 	*/
 	private function endElementModeIgnore ( $elm ) {
-
 		if ( $this->curItem[0] === $elm ) {
 			array_shift( $this->curItem );
 			array_shift( $this->mode );
 		}
-		return;
-
 	}
 
 	/**
@@ -1103,7 +1097,6 @@ class XMPReader {
 				break;
 			default:
 				throw new MWException( 'StartElement in unknown mode: ' . $this->mode[0] );
-				break;
 		}
 	}
 

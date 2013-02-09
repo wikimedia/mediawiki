@@ -1132,6 +1132,5 @@ class MssqlResult {
 
 	public function free() {
 		unset( $this->mRows );
-		return;
 	}
 }
