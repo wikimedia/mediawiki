@@ -737,7 +737,7 @@ class LocalFile extends File {
 			// Directory where file should be
 			// This happened occasionally due to broken migration code in 1.5
 			// Rename to broken-*
-			for ( $i = 0; $i < 100 ; $i++ ) {
+			for ( $i = 0; $i < 100; $i++ ) {
 				$broken = $this->repo->getZonePath( 'public' ) . "/broken-$i-$thumbName";
 				if ( !file_exists( $broken ) ) {
 					rename( $thumbPath, $broken );

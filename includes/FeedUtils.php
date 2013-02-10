@@ -222,7 +222,7 @@ class FeedUtils {
 	protected static function getDiffLink( Title $title, $newid, $oldid = null ) {
 		$queryParameters = ($oldid == null)
 			? "diff={$newid}"
-			: "diff={$newid}&oldid={$oldid}" ;
+			: "diff={$newid}&oldid={$oldid}";
 		$diffUrl = $title->getFullUrl( $queryParameters );
 
 		$diffLink = Html::element( 'a', array( 'href' => $diffUrl ),

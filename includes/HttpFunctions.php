@@ -338,7 +338,7 @@ class MWHttpRequest {
 		if ( Http::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
 		} elseif ( $wgHTTPProxy ) {
-			$this->proxy = $wgHTTPProxy ;
+			$this->proxy = $wgHTTPProxy;
 		} elseif ( getenv( "http_proxy" ) ) {
 			$this->proxy = getenv( "http_proxy" );
 		}

@@ -354,7 +354,7 @@ class ImageGallery {
 					array(),
 					array( 'known', 'noclasses' )
 				) . "<br />\n" :
-				'' ;
+				'';
 
 			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
 			# in version 4.8.6 generated crackpot html in its absence, see:

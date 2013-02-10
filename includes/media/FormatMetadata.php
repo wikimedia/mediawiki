@@ -322,7 +322,7 @@ class FormatMetadata {
 						if ( $subTag != 'fired' && $subValue == 0 ) {
 							continue;
 						}
-						$fullTag = $tag . '-' . $subTag ;
+						$fullTag = $tag . '-' . $subTag;
 						$flashMsgs[] = self::msg( $fullTag, $subValue );
 					}
 					$val = $wgLang->commaList( $flashMsgs );

@@ -259,7 +259,7 @@ class DjVuImage {
 		# Text layer
 		if ( isset( $wgDjvuTxt ) ) {
 			wfProfileIn( 'djvutxt' );
-			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
+			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename );
 			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
@@ -281,7 +281,7 @@ EOR;
 				$txt = preg_replace_callback( $reg, array( $this, 'pageTextCallback' ), $txt );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
 				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 );
-				$xml = $xml . $txt. '</mw-djvu>' ;
+				$xml = $xml . $txt. '</mw-djvu>';
 			}
 		}
 		wfProfileOut( __METHOD__ );

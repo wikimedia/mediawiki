@@ -420,7 +420,7 @@ class Article implements Page {
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
 		//XXX: this isn't page content but a UI message. horrible.
-		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() ) ;
+		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() );
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -1268,7 +1268,7 @@ class Article implements Page {
 					'oldid' => $oldid
 				) + $extraParams
 			);
-		$prev = $this->getTitle()->getPreviousRevisionID( $oldid ) ;
+		$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
 		$prevlink = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),

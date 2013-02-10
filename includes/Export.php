@@ -31,8 +31,8 @@
  * @ingroup SpecialPage Dump
  */
 class WikiExporter {
-	var $list_authors = false ; # Return distinct author list (when not returning full history)
-	var $author_list = "" ;
+	var $list_authors = false; # Return distinct author list (when not returning full history)
+	var $author_list = "";
 
 	var $dumpUploads = false;
 	var $dumpUploadFileContents = false;

@@ -1089,7 +1089,7 @@ class Parser {
 				$out .= "</tr>\n";
 			}
 			if ( !array_pop( $has_opened_tr ) ) {
-				$out .= "<tr><td></td></tr>\n" ;
+				$out .= "<tr><td></td></tr>\n";
 			}
 
 			$out .= "</table>\n";
@@ -1130,7 +1130,7 @@ class Parser {
 		# Hook to suspend the parser in this state
 		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
 			wfProfileOut( __METHOD__ );
-			return $text ;
+			return $text;
 		}
 
 		# if $frame is provided, then use $frame for replacing any variables
@@ -1805,7 +1805,7 @@ class Parser {
 		wfProfileOut( __METHOD__ . '-setup' );
 
 		# Loop for each link
-		for ( ; $line !== false && $line !== null ; $a->next(), $line = $a->current() ) {
+		for ( ; $line !== false && $line !== null; $a->next(), $line = $a->current() ) {
 			# Check for excessive memory usage
 			if ( $holders->isBig() ) {
 				# Too big
@@ -1865,7 +1865,7 @@ class Parser {
 				}
 				$trail = "";
 			} else { # Invalid form; output directly
-				$s .= $prefix . '[[' . $line ;
+				$s .= $prefix . '[[' . $line;
 				wfProfileOut( __METHOD__ . "-e1" );
 				continue;
 			}
@@ -1876,7 +1876,7 @@ class Parser {
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
 			if ( preg_match( '/^(?i:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
-				$s .= $prefix . '[[' . $line ;
+				$s .= $prefix . '[[' . $line;
 				wfProfileOut( __METHOD__ . "-misc" );
 				continue;
 			}

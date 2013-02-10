@@ -101,7 +101,7 @@ class ApiParse extends ApiBase {
 				if ( $rev->isCurrent() ) {
 					// May get from/save to parser cache
 					$p_result = $this->getParsedContent( $pageObj, $popts,
-						$pageid, isset( $prop['wikitext'] ) ) ;
+						$pageid, isset( $prop['wikitext'] ) );
 				} else { // This is an old revision, so get the text differently
 					$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 
@@ -157,7 +157,7 @@ class ApiParse extends ApiBase {
 
 				// Potentially cached
 				$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
-					isset( $prop['wikitext'] ) ) ;
+					isset( $prop['wikitext'] ) );
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 			$titleObj = Title::newFromText( $title );

@@ -80,7 +80,7 @@ class RecentChange {
 	 * @var Title
 	 */
 	var $mMovedToTitle = false;
-	var $numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
+	var $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentchangeslinked
 	var $notificationtimestamp;
 
 	# Factory methods
@@ -712,7 +712,7 @@ class RecentChange {
 			$trail = "curid=" . (int)( $this->mAttribs['rc_cur_id'] ) .
 				"&oldid=" . (int)( $this->mAttribs['rc_last_oldid'] );
 			if ( $forceCur ) {
-				$trail .= '&diff=0' ;
+				$trail .= '&diff=0';
 			} else {
 				$trail .= '&diff=' . (int)( $this->mAttribs['rc_this_oldid'] );
 			}
@@ -761,10 +761,10 @@ class RecentChange {
 			if ( $szdiff < -500 ) {
 				$szdiff = "\002$szdiff\002";
 			} elseif ( $szdiff >= 0 ) {
-				$szdiff = '+' . $szdiff ;
+				$szdiff = '+' . $szdiff;
 			}
 			// @todo i18n with parentheses in content language?
-			$szdiff = '(' . $szdiff . ')' ;
+			$szdiff = '(' . $szdiff . ')';
 		} else {
 			$szdiff = '';
 		}

@@ -192,7 +192,7 @@ class LogFormatter {
 		$parameters = $entry->getParameters();
 		// @see LogPage::actionText()
 		// Text of title the action is aimed at.
-		$target = $entry->getTarget()->getPrefixedText() ;
+		$target = $entry->getTarget()->getPrefixedText();
 		$text = null;
 		switch( $entry->getType() ) {
 			case 'move':

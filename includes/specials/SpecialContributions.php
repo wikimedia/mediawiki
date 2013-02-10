@@ -445,7 +445,7 @@ class SpecialContributions extends SpecialPage {
 					( $this->opts['target'] ? array() : array( 'autofocus' )
 				)
 			) . ' '
-		) ;
+		);
 
 		$namespaceSelection =
 			Xml::tags( 'td', array( 'class' => 'mw-label' ),
@@ -483,7 +483,7 @@ class SpecialContributions extends SpecialPage {
 						array( 'title' => $this->msg( 'tooltip-namespace_association' )->text(), 'class' => 'mw-input' )
 					) . '&#160;'
 				)
-			) ;
+			);
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$deletedOnlyCheck = Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
@@ -521,7 +521,7 @@ class SpecialContributions extends SpecialPage {
 				$this->msg( 'sp-contributions-submit' )->text(),
 				array( 'class' => 'mw-submit' )
 			)
-		) ;
+		);
 
 		$form .=
 			Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() ) .

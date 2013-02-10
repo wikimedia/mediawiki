@@ -378,7 +378,7 @@ class Site implements Serializable {
 		}
 
 		if ( $pageName !== false ) {
-			$url = str_replace( '$1', rawurlencode( $pageName ), $url ) ;
+			$url = str_replace( '$1', rawurlencode( $pageName ), $url );
 		}
 
 		return $url;

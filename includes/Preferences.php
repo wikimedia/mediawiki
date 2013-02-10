@@ -359,7 +359,7 @@ class Preferences {
 		if ( $wgEnableEmail ) {
 			$helpMessages[] = $wgEmailConfirmToEdit
 					? 'prefs-help-email-required'
-					: 'prefs-help-email' ;
+					: 'prefs-help-email';
 
 			if( $wgEnableUserEmail ) {
 				// additional messages when users can send email to each other

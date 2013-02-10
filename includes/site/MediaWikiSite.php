@@ -323,7 +323,7 @@ class MediaWikiSite extends Site {
 
 		if ( $pageName !== false ) {
 			$pageName = $this->toDBKey( trim( $pageName ) );
-			$url = str_replace( '$1', wfUrlencode( $pageName ), $url ) ;
+			$url = str_replace( '$1', wfUrlencode( $pageName ), $url );
 		}
 
 		return $url;
