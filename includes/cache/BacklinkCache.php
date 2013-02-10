@@ -264,12 +264,13 @@ class BacklinkCache {
 				);
 				break;
 			case 'redirect':
+				$db = $this->getDb();
 				$conds = array(
 					"{$prefix}_namespace" => $this->title->getNamespace(),
 					"{$prefix}_title"     => $this->title->getDBkey(),
-					$this->getDb()->makeList( array(
-						"{$prefix}_interwiki = ''",
-						"{$prefix}_interwiki is null",
+					$db->makeList( array(
+						"{$prefix}_interwiki = " . $db->addQuotes( '' ),
+						"{$prefix}_interwiki IS NULL",
 					), LIST_OR ),
 					"page_id={$prefix}_from"
 				);
