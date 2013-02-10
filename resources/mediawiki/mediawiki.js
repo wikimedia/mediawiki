@@ -195,6 +195,11 @@ var mw = ( function ( $, undefined ) {
 		/**
 		 * Changes format to parse and converts message to string
 		 *
+		 * If jqueryMsg is loaded, this parses the message text from wikitext
+		 * (where supported) to HTML
+		 *
+		 * Otherwise, it is equivalent to plain.
+		 *
 		 * @return {string} String form of parsed message
 		 */
 		parse: function () {
@@ -204,6 +209,10 @@ var mw = ( function ( $, undefined ) {
 
 		/**
 		 * Changes format to plain and converts message to string
+		 *
+		 * Returns the message text as-is; only parameters are substituted.
+		 *
+		 * Uses format plain
 		 *
 		 * @return {string} String form of plain message
 		 */

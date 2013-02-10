@@ -77,7 +77,7 @@ QUnit.test( 'mw.config', 1, function ( assert ) {
 	assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 });
 
-QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
+QUnit.test( 'mw.message & mw.messages', 27, function ( assert ) {
 	var goodbye, hello, pluralMessage;
 
 	assert.ok( mw.messages, 'messages defined' );
@@ -117,26 +117,23 @@ QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
 
 	assert.ok( mw.messages.set( 'pluraltestmsg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 	pluralMessage = mw.message( 'pluraltestmsg' , 6 );
-	assert.equal( pluralMessage.plain(), 'There are 6 results', 'plural get resolved when format is plain' );
 	assert.equal( pluralMessage.parse(), 'There are 6 results', 'plural get resolved when format is parse' );
 
+	assert.ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ) );
+	assert.equal( mw.message( 'plural-item', 5 ).parse(), 'Found 5 items', 'Apply plural for count 5' );
+	assert.equal( mw.message( 'plural-item', 0 ).parse(), 'Found 0 items', 'Apply plural for count 0' );
+	assert.equal( mw.message( 'plural-item', 1 ).parse(), 'Found 1 item', 'Apply plural for count 1' );
+
+	assert.ok( mw.messages.set('gender-plural-msg' , '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome' ) );
+	assert.equal( mw.message( 'gender-plural-msg', 'male', 1 ).parse(), 'he is awesome', 'Gender test for male, plural count 1' );
+	assert.equal( mw.message( 'gender-plural-msg', 'female', '1' ).parse(), 'she is awesome', 'Gender test for female, plural count 1' );
+	assert.equal( mw.message( 'gender-plural-msg', 'unknown', 10 ).parse(), 'they are awesome', 'Gender test for neutral, plural count 10' );
 });
 
-QUnit.test( 'mw.msg', 11, function ( assert ) {
+QUnit.test( 'mw.msg', 3, function ( assert ) {
 	assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 	assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 	assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
-
-	assert.ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ) );
-	assert.equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
-	assert.equal( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
-	assert.equal( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );
-
-	assert.ok( mw.messages.set('gender-plural-msg' , '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome' ) );
-	assert.equal( mw.msg( 'gender-plural-msg', 'male', 1 ), 'he is awesome', 'Gender test for male, plural count 1' );
-	assert.equal( mw.msg( 'gender-plural-msg', 'female', '1' ), 'she is awesome', 'Gender test for female, plural count 1' );
-	assert.equal( mw.msg( 'gender-plural-msg', 'unknown', 10 ), 'they are awesome', 'Gender test for neutral, plural count 10' );
-
 });
 
 /**
