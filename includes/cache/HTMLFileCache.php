@@ -128,7 +128,7 @@ class HTMLFileCache extends FileCacheBase {
 	public function loadFromFileCache( IContextSource $context ) {
 		global $wgMimeType, $wgLanguageCode;
 
-		wfDebug( __METHOD__ . "()\n");
+		wfDebug( __METHOD__ . "()\n" );
 		$filename = $this->cachePath();
 
 		$context->getOutput()->sendCacheControl();

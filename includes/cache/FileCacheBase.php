@@ -163,7 +163,7 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
-			wfDebug( __METHOD__ . "() failed saving ". $this->cachePath() . "\n");
+			wfDebug( __METHOD__ . "() failed saving ". $this->cachePath() . "\n" );
 			$this->mCached = null;
 			return false;
 		}

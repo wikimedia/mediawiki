@@ -76,13 +76,13 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
 			foreach( array( 'from', 'to', 'prefix', /*'namespace',*/ 'continue', /*'unique'*/ ) as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams');
+					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams' );
 				}
 			}
 		} else {
 			foreach( array( 'start', 'end' ) as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams');
+					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams' );
 				}
 			}
 		}

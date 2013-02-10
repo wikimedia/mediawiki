@@ -278,7 +278,7 @@ class ApiUpload extends ApiBase {
 			$fileKey = $stashFile->getFileKey();
 		} catch ( MWException $e ) {
 			$message = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
-			wfDebug( __METHOD__ . ' ' . $message . "\n");
+			wfDebug( __METHOD__ . ' ' . $message . "\n" );
 			throw new MWException( $message );
 		}
 		return $fileKey;
@@ -658,7 +658,7 @@ class ApiUpload extends ApiBase {
 	protected function checkAsyncDownloadEnabled() {
 		global $wgAllowAsyncCopyUploads;
 		if ( !$wgAllowAsyncCopyUploads ) {
-			$this->dieUsage( 'Asynchronous copy uploads disabled', 'asynccopyuploaddisabled');
+			$this->dieUsage( 'Asynchronous copy uploads disabled', 'asynccopyuploaddisabled' );
 		}
 	}
 

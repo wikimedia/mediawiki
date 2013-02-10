@@ -1059,10 +1059,10 @@ class Sanitizer {
 	 */
 	static function escapeClass( $class ) {
 		// Convert ugly stuff to underscores and kill underscores in ugly places
-		return rtrim(preg_replace(
-			array('/(^[0-9\\-])|[\\x00-\\x20!"#$%&\'()*+,.\\/:;<=>?@[\\]^`{|}~]|\\xC2\\xA0/','/_+/'),
+		return rtrim( preg_replace(
+			array( '/(^[0-9\\-])|[\\x00-\\x20!"#$%&\'()*+,.\\/:;<=>?@[\\]^`{|}~]|\\xC2\\xA0/', '/_+/' ),
 			'_',
-			$class ), '_');
+			$class ), '_' );
 	}
 
 	/**
@@ -1227,7 +1227,7 @@ class Sanitizer {
 			$ret = Sanitizer::normalizeEntity( $matches[1] );
 		} elseif( $matches[2] != '' ) {
 			$ret = Sanitizer::decCharReference( $matches[2] );
-		} elseif( $matches[3] != ''  ) {
+		} elseif( $matches[3] != '' ) {
 			$ret = Sanitizer::hexCharReference( $matches[3] );
 		}
 		if( is_null( $ret ) ) {
@@ -1347,7 +1347,7 @@ class Sanitizer {
 			return Sanitizer::decodeEntity( $matches[1] );
 		} elseif( $matches[2] != '' ) {
 			return  Sanitizer::decodeChar( intval( $matches[2] ) );
-		} elseif( $matches[3] != ''  ) {
+		} elseif( $matches[3] != '' ) {
 			return  Sanitizer::decodeChar( hexdec( $matches[3] ) );
 		}
 		# Last case should be an ampersand by itself

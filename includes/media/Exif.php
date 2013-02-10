@@ -387,7 +387,7 @@ class Exif {
 		$this->exifPropToOrd( 'SceneType' );
 
 		$this->charCodeString( 'UserComment' );
-		$this->charCodeString( 'GPSProcessingMethod');
+		$this->charCodeString( 'GPSProcessingMethod' );
 		$this->charCodeString( 'GPSAreaInformation' );
 
 		//ComponentsConfiguration should really be an array instead of a string...
@@ -813,13 +813,13 @@ class Exif {
 		}
 
 		if ( $action === true ) {
-			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n");
+			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n" );
 		} elseif ( $action === false ) {
-			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n");
+			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n" );
 		} elseif ( $action === null ) {
-			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n");
+			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n" );
 		} else {
-			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')\n");
+			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')\n" );
 		}
 	}
 

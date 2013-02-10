@@ -106,12 +106,12 @@ class XMPValidate {
 				// We do < 0 here instead of < -1 here, since
 				// the values between 0 and -1 are also illegal
 				// as -1 is meant as a special reject rating.
-				wfDebugLog( 'XMP', __METHOD__ . " Rating too low, setting to -1 (Rejected)");
+				wfDebugLog( 'XMP', __METHOD__ . " Rating too low, setting to -1 (Rejected)" );
 				$val = '-1';
 				return;
 			}
 			if ( $nVal > 5 ) {
-				wfDebugLog( 'XMP', __METHOD__ . " Rating too high, setting to 5");
+				wfDebugLog( 'XMP', __METHOD__ . " Rating too high, setting to 5" );
 				$val = '5';
 				return;
 			}

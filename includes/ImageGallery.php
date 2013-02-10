@@ -161,7 +161,7 @@ class ImageGallery {
 	 * @param $alt   String: Alt text for the image
 	 * @param $link  String: Override image link (optional)
 	 */
-	function add( $title, $html = '', $alt = '', $link = '') {
+	function add( $title, $html = '', $alt = '', $link = '' ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();

@@ -509,7 +509,7 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'logitem') {
+					$this->reader->name == 'logitem' ) {
 				break;
 			}
 
@@ -572,7 +572,7 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'page') {
+					$this->reader->name == 'page' ) {
 				break;
 			}
 
@@ -626,7 +626,7 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'revision') {
+					$this->reader->name == 'revision' ) {
 				break;
 			}
 
@@ -712,7 +712,7 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'upload') {
+					$this->reader->name == 'upload' ) {
 				break;
 			}
 
@@ -809,7 +809,7 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'contributor') {
+					$this->reader->name == 'contributor' ) {
 				break;
 			}
 

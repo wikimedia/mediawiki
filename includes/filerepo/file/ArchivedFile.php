@@ -142,7 +142,7 @@ class ArchivedFile {
 				self::selectFields(),
 				$conds,
 				__METHOD__,
-				array( 'ORDER BY' => 'fa_timestamp DESC')
+				array( 'ORDER BY' => 'fa_timestamp DESC' )
 			);
 			if ( !$row ) {
 				// this revision does not exist?
