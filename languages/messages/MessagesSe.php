@@ -121,6 +121,8 @@ $magicWords = array(
 	'numberofarticles'          => array( '1', 'ARTIHKKALIIDMEARRI', 'NUMBEROFARTICLES' ),
 );
 
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
+
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';
 
 $messages = array(
