@@ -1,35 +1,103 @@
 /* Button
 ----------------------------------*/
 
-.ui-button { display: inline-block; position: relative; padding: 0; margin-right: .1em; text-decoration: none !important; cursor: pointer; text-align: center; zoom: 1; overflow: visible; } /* the overflow property removes extra width in IE */
-.ui-button-icon-only { width: 2.2em; } /* to make room for the icon, a width needs to be set here */
-button.ui-button-icon-only { width: 2.4em; } /* button elements seem to need a little more width */
-.ui-button-icons-only { width: 3.4em; }
-button.ui-button-icons-only { width: 3.7em; }
+.ui-button {
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	margin-right: .1em;
+	text-decoration: none !important;
+	cursor: pointer;
+	text-align: center;
+	zoom: 1;
+	overflow: visible; /* the overflow property removes extra width in IE */
+}
+.ui-button-icon-only {
+	width: 2.2em; /* to make room for the icon, a width needs to be set here */
+}
+button.ui-button-icon-only {
+	width: 2.4em; /* button elements seem to need a little more width */
+}
+.ui-button-icons-only {
+	width: 3.4em;
+}
+button.ui-button-icons-only {
+	width: 3.7em;
+}
 
 /*button text element */
-.ui-button .ui-button-text { display: block; line-height: 1.4;  }
-.ui-button-text-only .ui-button-text { padding: 0.3em 1em 0.25em 1em; }
-.ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text { padding: 0.3em; text-indent: -9999999px; }
-.ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: 0.3em 1em 0.25em 2.1em; }
-.ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text { padding: 0.3em 2.1em 0.25em 1em; }
-.ui-button-text-icons .ui-button-text { padding-left: 2.1em; padding-right: 2.1em; }
+.ui-button .ui-button-text {
+	display: block;
+	line-height: 1.4;
+}
+.ui-button-text-only .ui-button-text {
+	padding: 0.3em 1em 0.25em 1em;
+}
+.ui-button-icon-only .ui-button-text,
+.ui-button-icons-only .ui-button-text {
+	padding: 0.3em;
+	text-indent: -9999999px;
+}
+.ui-button-text-icon-primary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: 0.3em 1em 0.25em 2.1em;
+}
+.ui-button-text-icon-secondary .ui-button-text,
+.ui-button-text-icons .ui-button-text {
+	padding: 0.3em 2.1em 0.25em 1em;
+}
+.ui-button-text-icons .ui-button-text {
+	padding-left: 2.1em;
+	padding-right: 2.1em;
+}
 
 /* no icon support for input elements, provide padding by default */
-input.ui-button { padding: 0.3em 1em; }
+input.ui-button {
+	padding: 0.3em 1em;
+}
 
 /*button icon element(s) */
-.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-text-icon .ui-icon, .ui-button-icons-only .ui-icon { position: absolute; top: 50%; margin-top: -9px; }
-.ui-button-icon-only .ui-icon { left: 50%; margin-left: -8px; }
-.ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icon .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary { left: 0.5em; }
-.ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icon .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary { right: 0.5em; }
+.ui-button-icon-only .ui-icon,
+.ui-button-text-icon-primary .ui-icon,
+.ui-button-text-icon-secondary .ui-icon,
+.ui-button-text-icons .ui-icon,
+.ui-button-text-icon .ui-icon,
+.ui-button-icons-only .ui-icon {
+	position: absolute;
+	top: 50%;
+	margin-top: -9px;
+}
+.ui-button-icon-only .ui-icon {
+	left: 50%;
+	margin-left: -8px;
+}
+.ui-button-text-icon-primary .ui-button-icon-primary,
+.ui-button-text-icon .ui-button-icon-primary,
+.ui-button-text-icons .ui-button-icon-primary,
+.ui-button-icons-only .ui-button-icon-primary {
+	left: 0.5em;
+}
+.ui-button-text-icon-secondary .ui-button-icon-secondary,
+.ui-button-text-icon .ui-button-icon-secondary,
+.ui-button-text-icons .ui-button-icon-secondary,
+.ui-button-icons-only .ui-button-icon-secondary {
+	right: 0.5em;
+}
 
 /*button sets*/
-.ui-buttonset { margin-right: 7px; }
-.ui-buttonset .ui-button { margin-left: 0; margin-right: -.3em; }
+.ui-buttonset {
+	margin-right: 7px;
+}
+.ui-buttonset .ui-button {
+	margin-left: 0;
+	margin-right: -.3em;
+}
 
 /* workarounds */
-button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
+button.ui-button::-moz-focus-inner {
+	border: 0;
+	padding: 0; /* reset extra padding in Firefox */
+}
 
 body .ui-button {
 	margin: 0.5em 0 0.5em 0.4em;
@@ -46,10 +114,38 @@ body .ui-button {
 /* Corner radius */
 /* This is normally handled in jquery.ui.theme.css, but in our case, the corner
    styling of our buttons doesn't match our default widget corner styling */
-.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-left, .ui-button.ui-corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; }
-.ui-button.ui-corner-all, .ui-button.ui-corner-top, .ui-button.ui-corner-right, .ui-button.ui-corner-tr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; }
-.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-left, .ui-button.ui-corner-bl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
-.ui-button.ui-corner-all, .ui-button.ui-corner-bottom, .ui-button.ui-corner-right, .ui-button.ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-top,
+.ui-button.ui-corner-left,
+.ui-button.ui-corner-tl {
+	-moz-border-radius-topleft: 4px;
+	-webkit-border-top-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-top,
+.ui-button.ui-corner-right,
+.ui-button.ui-corner-tr {
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-bottom,
+.ui-button.ui-corner-left,
+.ui-button.ui-corner-bl {
+	-moz-border-radius-bottomleft: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.ui-button.ui-corner-all,
+.ui-button.ui-corner-bottom,
+.ui-button.ui-corner-right,
+.ui-button.ui-corner-br {
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
 
 body .ui-button:hover {
 	border-color: #6e7273;
@@ -66,11 +162,11 @@ body .ui-button.disabled {
 	color: #7f7f7f;
 	border-color: #cccccc;
 	/* @embed */
-	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;	
+	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;
 }
 /* Disables the annoying dashed border Firefox puts on active buttons */
-body button.ui-button::-moz-focus-inner { 
-	border: 0; 
+body button.ui-button::-moz-focus-inner {
+	border: 0;
 }
 /* Give large buttons some extra padding */
 body .ui-button-large {
