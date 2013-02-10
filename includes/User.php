@@ -2874,6 +2874,10 @@ class User {
 	 * the next change of any watched page.
 	 */
 	public function clearAllNotifications() {
+		if ( wfReadOnly() ) {
+			return;
+		}
+
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			$this->setNewtalk( false );
