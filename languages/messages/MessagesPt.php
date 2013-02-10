@@ -2203,7 +2203,7 @@ No entanto, outros sites na internet podem ter links para um ficheiro através d
 'querypage-disabled' => 'Esta página especial está desactivada para não prejudicar o desempenho.',
 
 # Book sources
-'booksources' => 'Fontes de livros',
+'booksources' => 'Fontes bibliográficas',
 'booksources-search-legend' => 'Procurar fontes de livros',
 'booksources-go' => 'Prosseguir',
 'booksources-text' => 'É apresentada abaixo uma lista de links para outros sites na internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:',

@@ -872,6 +872,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'datedefault' => 'Tercih tune ne',
 'prefs-beta' => "Taybetmendiyên Beta'yê",
 'prefs-datetime' => 'Dîrok û dem',
+'prefs-user-pages' => 'Rûpelên bikarhêner',
 'prefs-personal' => 'Profîla bikarhêner',
 'prefs-rc' => 'Guherandinên dawî',
 'prefs-watchlist' => 'Lîsteya şopandinê',
@@ -1025,6 +1026,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'action-browsearchive' => 'li rûpelên jêbirî bigere',
 'action-undelete' => 'vê rûpelê dîsa çêke',
 'action-userrights' => 'hemû mafên bikarhêneran biguherîne',
+'action-sendemail' => 'e-nameyan bişîne',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|guherandinek|guherandin}}',
@@ -1648,6 +1650,7 @@ Sedemekê binivîse!",
 'unblockiptext' => "Nivîsara jêr bikarwîne ji bo qebûlkirina nivîsandinê bikarhênerekî ya IP'yeka berê astengkirî.",
 'ipusubmit' => 'Vê astengkirinê rake',
 'unblocked' => '[[User:$1|$1]] niha vê astengkirinê ye',
+'unblocked-range' => '$1 hat astengkirin.',
 'unblocked-id' => '$1 dîsa vê astengkirinê ye',
 'blocklist' => 'Bikarhênerên astengkirî',
 'ipblocklist' => "Listek ji adresên IP'yan û bikarhêneran yê hatine astengkirin",
@@ -1910,6 +1913,9 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'bydate' => 'li gor dîrokê',
 'sp-newimages-showfrom' => 'Daneyên nû ji dema $1, saet $2 ve bibîne',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'ago' => 'berî $1',
+
 # Variants for Kurdish language
 'variantname-ku-arab' => 'Tîpên erebî',
 'variantname-ku-latn' => 'Tîpên latînî',
@@ -2031,6 +2037,9 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 # action=purge
 'confirm_purge_button' => 'Baş e',
 'confirm-purge-top' => 'Bîra vê rûpelê jêbîbe ?',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'Temam',
 
 # Multipage image navigation
 'imgmultipageprev' => '← rûpela berî vê',

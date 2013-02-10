@@ -3299,8 +3299,8 @@ $5
 # Hijri month names
 'hijri-calendar-m1' => 'موحەڕەم',
 'hijri-calendar-m2' => 'سەفەر',
-'hijri-calendar-m3' => 'ڕەبيع ئەلئەووەڵ',
-'hijri-calendar-m4' => 'ڕەبيع ئەسسانی',
+'hijri-calendar-m3' => 'ڕەبیعەلئەووەڵ',
+'hijri-calendar-m4' => 'ڕەبیعەلئاخیر',
 'hijri-calendar-m5' => 'جومادەلئەووەل',
 'hijri-calendar-m6' => 'جومادەسسانی',
 'hijri-calendar-m7' => 'ڕەجەب',

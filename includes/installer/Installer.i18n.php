@@ -13958,7 +13958,9 @@ De installatie wordt afgebroken.',
 	'config-using531' => 'PHP $1 is niet compatibel met MediaWiki vanwege een fout met betrekking tot referentieparameters met <code>__call()</code>.
 Werk uw PHP bij naar PHP 5.3.2 of hoger of werk bij naar de lagere versie PHP 5.3.0 om dit op te lossen.
 De installatie wordt afgebroken.',
-	'config-suhosin-max-value-length' => 'Suhosin is geïnstalleerd en beperkt de lengte van de GET-parameter tot $1 bytes. De ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties. Als het mogelijk is, moet u de waarde "<code>suhosin.get.max_value_length</code>" in <code>php.ini</code> instellen op 1024 of hoger en <code>$wgResourceLoaderMaxQueryLength</code> in LocalSettings.php op dezelfde waarde instellen.', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin is geïnstalleerd en beperkt de GET-parameter <code>length</code> tot $1 bytes.
+De ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties.
+Als het mogelijk is, moet u de waarde "<code>suhosin.get.max_value_length</code>" in <code>php.ini</code> instellen op 1024 of hoger en <code>$wgResourceLoaderMaxQueryLength</code> in LocalSettings.php op dezelfde waarde instellen.',
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasehost:',
 	'config-db-host-help' => 'Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.

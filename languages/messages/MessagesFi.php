@@ -446,6 +446,7 @@ $messages = array(
 'newwindow' => '(avautuu uuteen ikkunaan)',
 'cancel' => 'Peruuta',
 'moredotdotdot' => 'Lisää...',
+'morenotlisted' => 'Lisää...',
 'mypage' => 'Käyttäjäsivu',
 'mytalk' => 'Keskustelusivu',
 'anontalk' => 'Keskustele tämän IP:n kanssa',
@@ -800,6 +801,7 @@ Odota ennen kuin yrität uudelleen.',
 # E-mail sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
 'user-mail-no-addy' => 'Yritit lähettää sähköpostia ilman sähköpostiosoitetta.',
+'user-mail-no-body' => 'Sähköpostin sisältö ei ole tarpeeksi pitkä.',
 
 # Change password dialog
 'resetpass' => 'Muuta salasana',
@@ -1050,6 +1052,7 @@ Se on ilmeisesti poistettu.',
 'edit-already-exists' => 'Uuden sivun luominen ei onnistunut.
 Se on jo olemassa.',
 'defaultmessagetext' => 'Viestin oletusteksti',
+'content-failed-to-parse' => 'Sisältö tyypiltään $2 ei jäsenny tyypiksi $1: $3',
 'invalid-content-data' => 'Virheellinen sisältö',
 'content-not-allowed-here' => 'Sivun [[$2]] sisältö ei voi olla tyyppiä $1.',
 
