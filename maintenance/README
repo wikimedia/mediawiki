@@ -93,7 +93,7 @@ installations.
 	runJobs.php
 	Immediately complete all jobs in the job queue
 
-	stats.php
+	showCacheStats.php
 	Show all statistics stored in the cache
 
 	undelete.php

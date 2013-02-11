@@ -28,7 +28,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  *
  * @ingroup Maintenance
  */
-class CacheStats extends Maintenance {
+class ShowCacheStats extends Maintenance {
 
 	public function __construct() {
 		$this->mDescription = "Show statistics from the cache";
@@ -102,5 +102,5 @@ class CacheStats extends Maintenance {
 	}
 }
 
-$maintClass = "CacheStats";
+$maintClass = "ShowCacheStats";
 require_once( RUN_MAINTENANCE_IF_MAIN );

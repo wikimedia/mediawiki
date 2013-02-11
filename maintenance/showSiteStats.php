@@ -22,7 +22,7 @@
  * @file
  * @ingroup Maintenance
  * @author Antoine Musso <hashar at free dot fr>
- * Based on initStats.php by:
+ * Based on initSiteStats.php by:
  * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>
  *
@@ -36,7 +36,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  *
  * @ingroup Maintenance
  */
-class ShowStats extends Maintenance {
+class ShowSiteStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Show the cached statistics";
@@ -69,5 +69,5 @@ class ShowStats extends Maintenance {
 	}
 }
 
-$maintClass = "ShowStats";
+$maintClass = "ShowSiteStats";
 require_once( RUN_MAINTENANCE_IF_MAIN );
