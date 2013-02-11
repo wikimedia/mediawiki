@@ -169,12 +169,15 @@ production.
 * (bug 43964) Invalid value of "link" parameter in <gallery> no longer produces
   a fatal error.
 * (bug 44775) The username field is not pre-filled when creating an account.
+<<<<<<< HEAD
 * (bug 45069) wfParseUrl() no longer produces a PHP notice if passed a "mailto:"
   URL without address
 * (bug 45012) Creating an account by e-mail can no longer show a
   "password mismatch" error.
 * (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
   extensions) performed using Git 1.7.8+ should now appear.
+* (bug 34798) Synced the FeedUtils.php page with mediawiki.action.history.diff.css .
+
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
