@@ -626,7 +626,7 @@ $2',
 'gotaccount' => "האסטו שוין א קאנטע? '''$1'''.",
 'gotaccountlink' => 'אַרײַנלאגירן',
 'userlogin-resetlink' => 'פארגעסן אײַערע אַרײַנלאָגירן פרטים?',
-'createaccountmail' => 'דורך ע-פאסט',
+'createaccountmail' => 'ניצן א פראוויזאריש פאסווארט און שיקן צום ע-פאסט אדרעס געצייכנט אונטן',
 'createaccountreason' => 'אורזאַך:',
 'badretype' => 'די פאסווערטער וואס איר האט אריינגעלייגט זענען נישט אייניג.',
 'userexists' => 'דער באַניצער נאָמען איז שוין געניצט. 
@@ -703,6 +703,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'אומבאַקאַנט טעות אין()mail פֿונקציע פֿון PHP.',
 'user-mail-no-addy' => 'געפרוווט צו שיקן ע-פּאָסט אָן אַן ע-פּאָסט אַדרעס.',
+'user-mail-no-body' => 'האט פרובירט צו שיקן א בליצבריוו וואס זיין אינהאלט איז ליידיק אדער גאר קורץ.',
 
 # Change password dialog
 'resetpass' => 'ענדערן קאנטע פאסווארט',
@@ -1001,6 +1002,7 @@ $2
 'node-count-exceeded-category' => 'בלעטער וואו קנופצאל איז צו פיל',
 'node-count-exceeded-warning' => 'קנופנצאל אויפן בלאט צו הויך',
 'expansion-depth-exceeded-category' => "בלעטער וואו מ'האט אריבערגעשטיגן די פארברייטערונג טיף",
+'expansion-depth-exceeded-warning' => 'בלאט גייט אריבער דער פארברייטערונג טיף',
 'converter-manual-rule-error' => 'געטראפן א גרײַז אין האנטלעכן שפראך־קאנווערטירן כלל',
 
 # "Undo" feature
@@ -1230,7 +1232,7 @@ $1",
 'search-interwiki-default' => '$1 רעזולטאטן:',
 'search-interwiki-more' => '(נאך)',
 'search-relatedarticle' => 'פארבינדן',
-'mwsuggest-disable' => 'בטל מאכן פארשלאגן AJAX',
+'mwsuggest-disable' => 'בטל מאכן זוך פארשלאגן',
 'searcheverything-enable' => 'זוכן אין אלע נאמענטיילן',
 'searchrelated' => 'פארבינדן',
 'searchall' => 'אלץ',
@@ -1731,6 +1733,7 @@ $1",
 'lockmanager-fail-deletelock' => 'נישט מעגלעך אויסמעקן שלאס טעקע פאר "$1".',
 
 # ZipDirectoryReader
+'zip-file-open-error' => 'געטראפן א גרײַז ביים עפענען די טעקע פאר ZIP־קאנטראלירונג.',
 'zip-wrong-format' => 'ספעציפירטע טעקע איז נישט קיין ZIP טעקע.',
 
 # Special:UploadStash
@@ -2277,6 +2280,7 @@ $UNWATCHURL
 'prot_1movedto2' => '[[$1]] אריבערגעפירט צו [[$2]]',
 'protect-badnamespace-title' => 'אומשיצבארער נאמענטייל',
 'protect-badnamespace-text' => 'בלעטער אין דעם נאמענטייל קען מען נישט שיצן.',
+'protect-norestrictiontypes-title' => 'נישט־שיצבארער בלאט',
 'protect-legend' => 'באַשטעטיגן שיץ',
 'protectcomment' => 'אורזאַך:',
 'protectexpiry' => 'גייט אויס:',
@@ -2585,7 +2589,7 @@ $1',
 'move-page' => 'באַוועגן $1',
 'move-page-legend' => 'באַוועגן בלאַט',
 'movepagetext' => "זיך באניצן מיט דעם פֿארעם וועט פֿארענדערן דעם נאמען פֿון דעם בלאט, און וועט אריבערפֿירן זיין געשיכטע צום נייעם נאמען.
-דאס אלטע קעפל וועט ווערן א ווייטערפֿירן בלאט צום נייעם קעפל.
+דאס אלטע קעפל וועט ווערן א ווייטערפֿירונג בלאט צום נייעם קעפל.
 
 איר קענט דערהיינטיגן ווייטערפֿירונגען צום אלטן נאמען אויטאמאטיש.
 
@@ -3226,7 +3230,9 @@ $1',
 'exif-unknowndate' => 'אומבאַוואוסטע דאַטע',
 
 'exif-orientation-1' => 'נארמאַל',
+'exif-orientation-2' => 'האריזאנטאל געשפיגלט',
 'exif-orientation-3' => 'ראטירט 180°',
+'exif-orientation-4' => 'ווערטיקאל געשפיגלט',
 'exif-orientation-6' => 'ראטירט 90° קעגן זייגער',
 'exif-orientation-7' => 'ראטירט  90° מיטן זייגער און איבערגעדרייט ווערטיקאל',
 'exif-orientation-8' => 'ראטירט 90° מיטן זייגער',

@@ -363,7 +363,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'リンクの下線:',
+'tog-underline' => 'リンクの下線：',
 'tog-justify' => '段落に均等割り付けを設定',
 'tog-hideminor' => '最近の更新に細部の編集を表示しない',
 'tog-hidepatrolled' => '最近の更新に巡回済みの編集を表示しない',
@@ -578,7 +578,7 @@ $messages = array(
 'categorypage' => 'カテゴリのページを表示',
 'viewtalkpage' => '議論を表示',
 'otherlanguages' => '他言語版',
-'redirectedfrom' => '($1から転送)',
+'redirectedfrom' => '（$1から転送）',
 'redirectpagesub' => '転送ページ',
 'lastmodifiedat' => 'このページの最終更新日時は $1 $2 です。',
 'viewcount' => 'このページは {{PLURAL:$1|$1 回}}アクセスされました。',
@@ -1143,7 +1143,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'templatesused' => 'このページで使用されている{{PLURAL:$1|テンプレート}}:',
 'templatesusedpreview' => 'このプレビューで使用されている{{PLURAL:$1|テンプレート}}:',
 'templatesusedsection' => 'この節で使用されている{{PLURAL:$1|テンプレート}}:',
-'template-protected' => '(保護)',
+'template-protected' => '（保護）',
 'template-semiprotected' => '(半保護)',
 'hiddencategories' => 'このページは {{PLURAL:$1|$1 個の隠しカテゴリ}}に属しています:',
 'edittools' => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
@@ -1799,7 +1799,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchangeslinked-summary' => "これは指定したページからリンクされている（または指定したカテゴリに含まれている）ページの最近の変更の一覧です。
 [[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''で表示されます。",
 'recentchangeslinked-page' => 'ページ名:',
-'recentchangeslinked-to' => '指定したページの「リンク元」ページの変更を表示',
+'recentchangeslinked-to' => 'このページへのリンク元での変更の表示に切り替え',
 
 # Upload
 'upload' => 'ファイルをアップロード',
@@ -2593,6 +2593,7 @@ $2による直前の版へ変更されました。',
 'prot_1movedto2' => '[[$1]] を [[$2]] へ移動',
 'protect-badnamespace-title' => '保護不可能な名前空間',
 'protect-badnamespace-text' => 'この名前空間のページは保護できません。',
+'protect-norestrictiontypes-text' => '利用できる制限の種類がないため、このページは保護できません。',
 'protect-norestrictiontypes-title' => '保護できないページ',
 'protect-legend' => '保護の確認',
 'protectcomment' => '理由:',
@@ -2710,7 +2711,7 @@ $1',
 'tooltip-invert' => '選択した名前空間 (チェックを入れている場合は、関連付けられた名前空間も含む) のページの変更を非表示にするには、このボックスにチェックを入れる',
 'namespace_association' => '関連付けられた名前空間も含める',
 'tooltip-namespace_association' => '選択した名前空間に関連付けられたトークページ (逆にトークページの名前空間を選択した場合も同様) の名前空間も含めるには、このボックスにチェックを入れる',
-'blanknamespace' => '(標準)',
+'blanknamespace' => '（標準）',
 
 # Contributions
 'contributions' => '{{GENDER:$1|利用者}}の投稿記録',
@@ -4355,6 +4356,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-ok-but-empty' => '内部エラー: サーバーからの応答がありません。',
 'api-error-overwrite' => '既存のファイルへの上書きは許可されていません。',
 'api-error-stashfailed' => '内部エラー: サーバーは一時ファイルを格納できませんでした。',
+'api-error-publishfailed' => '内部エラー：サーバーは一時ファイルを発行できませんでした。',
 'api-error-timeout' => 'サーバーが決められた時間内に応答しませんでした。',
 'api-error-unclassified' => '不明なエラーが発生しました。',
 'api-error-unknown-code' => '不明なエラー:「$1」',
