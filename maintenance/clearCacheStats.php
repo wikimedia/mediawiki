@@ -28,7 +28,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  *
  * @ingroup Maintenance
  */
-class clear_stats extends Maintenance {
+class ClearCacheStats extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
@@ -56,5 +56,5 @@ class clear_stats extends Maintenance {
 	}
 }
 
-$maintClass = "clear_stats";
+$maintClass = "ClearCacheStats";
 require_once( RUN_MAINTENANCE_IF_MAIN );

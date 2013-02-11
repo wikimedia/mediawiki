@@ -235,6 +235,13 @@ changes to languages because of Bugzilla reports.
   as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
+* BREAKING CHANGE: Filenames of maintenance scripts were standardized into lowerCamelCase
+  format, and made more explicit: clear_stats.php -> clearCacheStats.php; 
+  clear_interwiki_cache.php -> clearInterwikiCache.php; initStats.php -> initSiteStats.php;
+  proxy_check.php -> proxyCheck.php; stats.php -> showCacheStats.php;
+  showStats.php -> showSiteStats.php. Class names were renamed accordingly:
+  clear_stats -> ClearCacheStats; InitStats -> InitSiteStats; CacheStats -> ShowCacheStats
+  ShowStats -> ShowSiteStats.
 
 == Compatibility ==
 
