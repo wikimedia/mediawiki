@@ -180,13 +180,21 @@ var mw = ( function ( $, undefined ) {
 				return '<' + this.key + '>';
 			}
 
-			if ( this.format === 'plain' || this.format === 'parse' ) {
+			if ( this.format === 'plain' ) {
+				// @todo FIXME: Although not applicable to core Message,
+				// Plugins like jQueryMsg should be able to distinguish
+				// between 'plain' (only variable replacement and plural/gender)
+				// and actually parsing wikitext to HTML.
 				text = this.parser();
 			}
 
 			if ( this.format === 'escaped' ) {
 				text = this.parser();
 				text = mw.html.escape( text );
+			}
+
+			if ( this.format === 'parse' ) {
+				text = this.parser();
 			}
 
 			return text;
