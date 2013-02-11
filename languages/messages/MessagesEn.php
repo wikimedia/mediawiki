@@ -1215,6 +1215,12 @@ Now logging you in...',
 'resetpass-wrong-oldpass'   => 'Invalid temporary or current password.
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
+'resetpass-email-subject'   => '{{SITENAME}} Password Change',
+'resetpass-email-body'      => 'Somebody, probably you, from IP address $1,
+has changed the password for the {{SITENAME}} account "$2".
+
+If you did *not* change your password, contact a {{SITENAME}} administrator
+immediately and try to regain control of your account.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
