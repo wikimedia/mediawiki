@@ -242,8 +242,8 @@ class FeedUtils {
 	public static function applyDiffStyle( $text ) {
 		$styles = array(
 			'diff'             => 'background-color: white; color:black;',
-			'diff-otitle'      => 'background-color: white; color:black;',
-			'diff-ntitle'      => 'background-color: white; color:black;',
+			'diff-otitle'      => 'background-color: white; color:black; text-align: center',
+			'diff-ntitle'      => 'background-color: white; color:black; text-align: center',
 			'diff-addedline'   => 'background: #cfc; color:black; font-size: smaller;',
 			'diff-deletedline' => 'background: #ffa; color:black; font-size: smaller;',
 			'diff-context'     => 'background: #eee; color:black; font-size: smaller;',
