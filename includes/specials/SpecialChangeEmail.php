@@ -122,10 +122,10 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param $msg string
+	 * Show an error message. Same signature as wfMessage().
 	 */
-	protected function error( $msg ) {
-		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
+	protected function error( /* args */ ) {
+		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", func_get_args() );
 	}
 
 	protected function showForm() {
@@ -213,7 +213,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @return bool|string true or string on success, false on failure
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
-		global $wgAuth;
+		global $wgAuth, $wgMemc;
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			$this->error( 'invalidemailaddress' );
@@ -229,6 +229,13 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		global $wgRequirePasswordforEmailChange;
 		if ( $wgRequirePasswordforEmailChange && !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
 			$this->error( 'wrongpassword' );
+			return false;
+		}
+
+		$timeout = $wgMemc->get( wfMemcKey( 'changeemail', 'timeout', $user->getId() ) );
+		if ( $timeout !== false ) {
+			$timestamp = $this->getLanguage()->userTimeAndDate( $timeout->getTimestamp(), $user );
+			$this->error( 'changeemail-timeout', $timestamp );
 			return false;
 		}
 
