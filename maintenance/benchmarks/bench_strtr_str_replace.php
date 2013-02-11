@@ -26,11 +26,11 @@
 require_once( __DIR__ . '/Benchmarker.php' );
 
 function bfNormalizeTitleStrTr( $str ) {
-    return strtr( $str, '_', ' ' );
+	return strtr( $str, '_', ' ' );
 }
 
 function bfNormalizeTitleStrReplace( $str ) {
-    return str_replace( '_', ' ', $str );
+	return str_replace( '_', ' ', $str );
 }
 
 /**
