@@ -98,6 +98,8 @@ class SiteSQLStore implements SiteStore {
 				$source = $this->sitesTable->getTargetWiki() . '.' . $source;
 			}
 
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": Sites cache key: $source/$type" );
+
 			$this->cacheKey = wfMemcKey( "$source/$type" );
 		}
 
@@ -118,18 +120,23 @@ class SiteSQLStore implements SiteStore {
 		wfProfileIn( __METHOD__ );
 
 		if ( $source === 'cache' ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Trying to get $this->sites from cache, if not already set.' );
 			if ( $this->sites === null ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': $this->sites is null, getting data from cache.' );
 				$cache = wfGetMainCache();
 				$sites = $cache->get( $this->getCacheKey() );
 
 				if ( is_object( $sites ) ) {
+					wfDebugLog( __CLASS__, __FUNCTION__ . ": Sites from memcached" );
 					$this->sites = $sites;
 				} else {
+					wfDebugLog( __CLASS__, __FUNCTION__ . ": Cache key invalid or sites is not an object.  Recaching..." );
 					$this->loadSites();
 				}
 			}
 		}
 		else {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": getSites() bypassing cache." );
 			$this->loadSites();
 		}
 
@@ -190,6 +197,8 @@ class SiteSQLStore implements SiteStore {
 	 */
 	protected function loadSites() {
 		wfProfileIn( __METHOD__ );
+
+		wfDebugLog( __CLASS__, __FUNCTION__ . ": Loading sites from the database." );
 
 		$this->sites = new SiteList();
 
