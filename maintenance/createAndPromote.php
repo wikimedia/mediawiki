@@ -34,6 +34,7 @@ class CreateAndPromote extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Create a new user account";
+		$this->addOption( "force", "Force the promotion and password change if the user exists" );
 		$this->addOption( "sysop", "Grant the account sysop rights" );
 		$this->addOption( "bureaucrat", "Grant the account bureaucrat rights" );
 		$this->addArg( "username", "Username of new user" );
@@ -49,7 +50,7 @@ class CreateAndPromote extends Maintenance {
 		$user = User::newFromName( $username );
 		if ( !is_object( $user ) ) {
 			$this->error( "invalid username.", true );
-		} elseif ( 0 != $user->idForName() ) {
+		} elseif ( 0 != $user->idForName() && !$this->getOption( 'force' ) ) {
 			$this->error( "account exists.", true );
 		}
 
@@ -61,7 +62,9 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		# Insert the account into the database
-		$user->addToDatabase();
+		if ( $user->isAnon() ) {
+			$user->addToDatabase();
+		}
 		$user->saveSettings();
 
 		# Promote user
