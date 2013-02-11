@@ -242,12 +242,12 @@ class FeedUtils {
 	public static function applyDiffStyle( $text ) {
 		$styles = array(
 			'diff'             => 'background-color: white; color:black;',
-			'diff-otitle'      => 'background-color: white; color:black;',
-			'diff-ntitle'      => 'background-color: white; color:black;',
-			'diff-addedline'   => 'background: #cfc; color:black; font-size: smaller;',
-			'diff-deletedline' => 'background: #ffa; color:black; font-size: smaller;',
-			'diff-context'     => 'background: #eee; color:black; font-size: smaller;',
-			'diffchange'       => 'color: red; font-weight: bold; text-decoration: none;',
+			'diff-otitle'      => 'background-color: white; color:black; text-align: center;',
+			'diff-ntitle'      => 'background-color: white; color:black; text-align: center;',
+			'diff-addedline'   => 'color:black; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #a3d3ff; vertical-align: top; white-space: pre-wrap;',
+			'diff-deletedline' => 'color:black; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #ffe49c; vertical-align: top; white-space: pre-wrap;',
+			'diff-context'     => 'background-color: #f9f9f9; color: #333333; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #e6e6e6; vertical-align: top; white-space: pre-wrap;',
+			'diffchange'       => 'font-weight: bold; text-decoration: none;',
 		);
 
 		foreach( $styles as $class => $style ) {
