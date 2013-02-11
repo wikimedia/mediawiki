@@ -2228,8 +2228,8 @@ class WikiPage implements Page, IDBAccessObject {
 			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
 		}
 
+		$this->loadPageData( 'fromdbmaster' );
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
-
 		$id = $this->getId();
 
 		if ( !$cascade ) {
