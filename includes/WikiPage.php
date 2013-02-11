@@ -2207,7 +2207,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 
-		$id = $this->mTitle->getArticleID();
+		$id = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( !$cascade ) {
 			$cascade = false;
