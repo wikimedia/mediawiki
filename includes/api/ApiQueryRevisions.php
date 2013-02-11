@@ -72,14 +72,19 @@ class ApiQueryRevisions extends ApiQueryBase {
 	 * @param $pageid
 	 * @param $title Title
 	 * @param $rev Revision
+	 * @param $user User object to get token for, or null to use $wgUser
 	 * @return bool|String
 	 */
-	public static function getRollbackToken( $pageid, $title, $rev ) {
-		global $wgUser;
-		if ( !$wgUser->isAllowed( 'rollback' ) ) {
+	public static function getRollbackToken( $pageid, $title, $rev, $user = null ) {
+		if ( !$user ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		if ( !$user->isAllowed( 'rollback' ) ) {
 			return false;
 		}
-		return $wgUser->getEditToken(
+		return $user->getEditToken(
 			array( $title->getPrefixedText(), $rev->getUserText() ) );
 	}
 
@@ -478,8 +483,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ( !is_null( $this->token ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
+			$user = $this->getUser();
 			foreach ( $this->token as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revision );
+				$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revision, $user );
 				if ( $val === false ) {
 					$this->setWarning( "Action '$t' is not allowed for the current user" );
 				} else {

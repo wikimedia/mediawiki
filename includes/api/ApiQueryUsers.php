@@ -63,13 +63,18 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	/**
 	 * @param $user User
+	 * @param $contextUser User object to get token for, or null to use $wgUser
 	 * @return String
 	 */
-	public static function getUserrightsToken( $user ) {
-		global $wgUser;
+	public static function getUserrightsToken( $user, $contextUser = null ) {
+		if ( !$contextUser ) {
+			global $wgUser;
+			$contextUser = $wgUser;
+		}
+
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
-		return $wgUser->getEditToken( $user->getName() );
+		return $contextUser->getEditToken( $user->getName() );
 	}
 
 	public function execute() {
@@ -192,8 +197,9 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				if ( !is_null( $params['token'] ) ) {
 					$tokenFunctions = $this->getTokenFunctions();
+					$contextUser = $this->getUser();
 					foreach ( $params['token'] as $t ) {
-						$val = call_user_func( $tokenFunctions[$t], $user );
+						$val = call_user_func( $tokenFunctions[$t], $user, $contextUser );
 						if ( $val === false ) {
 							$this->setWarning( "Action '$t' is not allowed for the current user" );
 						} else {
