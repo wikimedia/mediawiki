@@ -2146,7 +2146,7 @@ class Title {
 				# If it's a special page, ditch the subpage bit and check again
 				$name = $this->getDBkey();
 				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
-				if ( $name !== false ) {
+				if ( $name ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
 						$whitelisted = true;
