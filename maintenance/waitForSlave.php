@@ -31,6 +31,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  */
 class WaitForSlave extends Maintenance {
 	public function __construct() {
+		parent::__construct();
 		$this->addArg( 'maxlag', 'How long to wait for the slaves, default 10 seconds', false );
 	}
 	public function execute() {
