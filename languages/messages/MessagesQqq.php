@@ -2343,6 +2343,8 @@ See also:
 {{Identical|Save}}',
 'resetprefs' => 'Button for resetting changes in the preferences page.',
 'restoreprefs' => 'Used in [[Special:Preferences]]',
+'restoreprefs-regonly' => 'Button in [[Special:Preferences]] for resetting only user options registered with MediaWiki on the server side',
+'restoreprefs-jsonly' => 'Button in [[Special:Preferences]] for resetting only custom JavaScript user options',
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
 When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.',
 'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',
@@ -2399,7 +2401,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'prefs-custom-css' => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-custom-js' => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-common-css-js' => 'Used as label in [[Special:Preferences#mw-prefsection-rendering|preferences]], tab "Appearance", section "Skin".',
-'prefs-reset-intro' => 'Used in [[Special:Preferences/reset]].',
+'prefs-reset-intro' => 'Used in [[Special:Preferences/reset]]. Describes what the three buttons on the page do',
 'prefs-emailconfirm-label' => 'Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-textboxsize' => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
 'youremail' => 'Label of the e-mail text box of the "E-mail options" section of "Special:Preferences".

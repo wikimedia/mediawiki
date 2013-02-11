@@ -989,6 +989,8 @@ $wgMessageStructure = array(
 		'saveprefs',
 		'resetprefs',
 		'restoreprefs',
+		'restoreprefs-regonly',
+		'restoreprefs-jsonly',
 		'prefs-editing',
 		'prefs-edit-boxsize',
 		'rows',

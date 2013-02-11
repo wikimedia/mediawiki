@@ -1845,6 +1845,8 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'saveprefs'                     => 'Save',
 'resetprefs'                    => 'Clear unsaved changes',
 'restoreprefs'                  => 'Restore all default settings',
+'restoreprefs-regonly'          => 'Restore site settings only',
+'restoreprefs-jsonly'           => 'Restore custom script settings only',
 'prefs-editing'                 => 'Editing',
 'prefs-edit-boxsize'            => 'Size of the edit window.',
 'rows'                          => 'Rows:',
@@ -1888,6 +1890,9 @@ Here's a randomly-generated value you can use: $1",
 'prefs-custom-js'               => 'Custom JavaScript',
 'prefs-common-css-js'           => 'Shared CSS/JavaScript for all skins:',
 'prefs-reset-intro'             => 'You can use this page to reset your preferences to the site defaults.
+{{SITENAME}} has two types of preferences: those registered on the site that you see on your preferences page,
+and custom preferences set by client side scripts or other specialized applications. The below buttons allow
+you to reset all preferences, only site settings, or only custom script settings.
 This cannot be undone.',
 'prefs-emailconfirm-label'      => 'E-mail confirmation:',
 'prefs-textboxsize'             => 'Size of editing window',
