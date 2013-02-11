@@ -126,10 +126,10 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param $msg string
+	 * Show an error message. Same signature as wfMessage().
 	 */
-	protected function error( $msg ) {
-		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
+	protected function error( /* args */ ) {
+		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", func_get_args() );
 	}
 
 	protected function showForm() {
@@ -218,7 +218,14 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @return bool|string true or string on success, false on failure
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
-		global $wgAuth;
+		global $wgAuth, $wgMemc, $wgPasswordAttemptThrottle;
+
+		$throttle = new Throttle(
+			array( 'changeemail' ),
+			$wgPasswordAttemptThrottle['count'],
+			$wgPasswordAttemptThrottle['seconds'],
+			Throttle::PERUSER
+		);
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			$this->error( 'invalidemailaddress' );
@@ -226,9 +233,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			return false;
 		}
 
-		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
-		if ( $throttleCount === true ) {
-			$this->error( 'login-throttled' );
+		if ( $throttle() ) {
+			$this->error( 'changeemail-timeout', $throttle->getCurrentExpiry()->getHumanTimestamp() );
 
 			return false;
 		}
@@ -240,9 +246,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			return false;
 		}
 
-		if ( $throttleCount ) {
-			LoginForm::clearLoginThrottle( $user->getName() );
-		}
+		$throttle->clear();
 
 		$oldaddr = $user->getEmail();
 		$status = $user->setEmailWithConfirmation( $newaddr );
