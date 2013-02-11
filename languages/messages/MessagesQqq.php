@@ -2343,6 +2343,8 @@ See also:
 {{Identical|Save}}',
 'resetprefs' => 'Button for resetting changes in the preferences page.',
 'restoreprefs' => 'Used in [[Special:Preferences]]',
+'restoreprefs-regonly' => 'Button in [[Special:Preferences]] for resetting only user options registered with MediaWiki on the server side',
+'restoreprefs-jsonly' => 'Button in [[Special:Preferences]] for resetting only custom JavaScript user options',
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
 When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.',
 'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',

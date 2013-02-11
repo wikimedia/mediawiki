@@ -71,6 +71,8 @@ class SpecialPreferences extends SpecialPage {
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
 		$htmlForm->setTitle( $this->getTitle( 'reset' ) );
 		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
+		$htmlForm->addButton( 'wpRegisteredOnly', $this->msg( 'restoreprefs-regonly' ) );
+		$htmlForm->addButton( 'wpJsOnly', $this->msg( 'restoreprefs-jsonly' ) );
 		$htmlForm->suppressReset();
 
 		$htmlForm->show();
@@ -78,7 +80,14 @@ class SpecialPreferences extends SpecialPage {
 
 	public function submitReset( $formData ) {
 		$user = $this->getUser();
-		$user->resetOptions( 'all' );
+		$request = $this->getRequest();
+		if ( $request->getCheck( 'wpRegisteredOnly' ) ) {
+			$user->resetOptions();
+		} elseif ( $request->getCheck( 'wpJsOnly' ) ) {
+			$user->resetOptions( 'userjs' );
+		} else {
+			$user->resetOptions( 'all' );
+		}
 		$user->saveSettings();
 
 		$url = $this->getTitle()->getFullURL( 'success' );
