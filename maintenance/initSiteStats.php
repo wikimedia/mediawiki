@@ -30,7 +30,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  *
  * @ingroup Maintenance
  */
-class InitStats extends Maintenance {
+class InitSiteStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Re-initialise the site statistics tables";
@@ -84,5 +84,5 @@ class InitStats extends Maintenance {
 	}
 }
 
-$maintClass = "InitStats";
+$maintClass = "InitSiteStats";
 require_once( RUN_MAINTENANCE_IF_MAIN );

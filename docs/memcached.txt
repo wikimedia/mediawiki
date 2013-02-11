@@ -237,9 +237,9 @@ Statistics:
 	controlled by: $wgStatsMethod
 	key: $wgDBname:stats:$key
 	ex: wikibd:stats:request_with_session
-	stores: counter for statistics (see maintenance/stats.php script)
+	stores: counter for statistics (see maintenance/showCacheStats.php script)
 	expiry: none (?)
-	cleared by: maintenance/clear_stats.php script
+	cleared by: maintenance/clearCacheStats.php script
 
 User:
 	key: $wgDBname:user:id:$sId
