@@ -1333,6 +1333,8 @@ See also:
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
+'resetpass-email-subject' => 'Subject of the email sent to users when their password is changed',
+'resetpass-email-body' => 'Body fot he email sent to users when their password is changed',
 
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
@@ -1399,6 +1401,8 @@ See also:
 'changeemail-cancel' => 'Cancel button on [[Special:ChangeEmail]]
 
 {{Identical|Cancel}}',
+'changeemail-timeout' => 'Message displayed on [[Special:ChangeEmail]] when the user recently changed their password and e-mail changes are forbidden.
+* $1 - The datetime at which e-mail changes will be allowed again',
 
 # Edit page toolbar
 'bold_sample' => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
