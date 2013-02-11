@@ -296,6 +296,16 @@ class SpecialChangePassword extends FormSpecialPage {
 	 * Otherwise, redirect to the returnto.
 	 */
 	function onSuccess() {
+		global $wgNotifyOnPasswordReset;
+		if ( $wgNotifyOnPasswordReset ) {
+			$user = $this->getUser();
+			$request = $this->getRequest();
+			$user->sendMail(
+				$this->msg( 'resetpass-email-subject' )->text(),
+				$this->msg( 'resetpass-email-body', $request->getIP(), $user->getName() )->text()
+			);
+		}
+
 		$this->getOutput()->addWikiMsg( 'resetpass_success' );
 
 		$titleObj = Title::newFromText( $this->getRequest()->getVal( 'returnto' ) );

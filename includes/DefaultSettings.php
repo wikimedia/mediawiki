@@ -3594,6 +3594,12 @@ $wgPasswordResetRoutes = array(
 );
 
 /**
+ * Whether to send an email notification to users when their password changes as a warning
+ * in case somebody is trying to sabotage their account.
+ */
+$wgNotifyOnPasswordReset = false;
+
+/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars = 255;
