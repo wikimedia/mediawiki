@@ -112,6 +112,10 @@ try {
 	// Potentially debug globals
 	$maintenance->globals();
 
+	// Perform deferred updates.
+	wfWaitForSlaves();
+	wfDoUpdates();
+
 	// log profiling info
 	wfLogProfilingData();
 } catch ( MWException $mwe ) {
