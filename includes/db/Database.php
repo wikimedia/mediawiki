@@ -3013,18 +3013,18 @@ abstract class DatabaseBase implements DatabaseType {
 
 		if ( $this->mTrxLevel ) { // implicit commit
 			if ( !$this->mTrxAutomatic ) {
-				// We want to warn about inadvertently nested begin/commit pairs, but not about auto-committing
-				// implicit transactions that were started by query() because DBO_TRX was set.
-
-				wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-					" performing implicit commit!" );
+				// We want to warn about inadvertently nested begin/commit pairs, but not about
+				// auto-committing implicit transactions that were started by query() via DBO_TRX
+				$msg = "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+					" performing implicit commit!";
+				wfWarn( $msg );
+				wfLogDBError( $msg );
 			} else {
 				// if the transaction was automatic and has done write operations,
 				// log it if $wgDebugDBTransactions is enabled.
-
 				if ( $this->mTrxDoneWrites && $wgDebugDBTransactions ) {
-					wfDebug( "$fname: Automatic transaction with writes in progress (from {$this->mTrxFname}), " .
-						" performing implicit commit!\n" );
+					wfDebug( "$fname: Automatic transaction with writes in progress" .
+						" (from {$this->mTrxFname}), performing implicit commit!\n" );
 				}
 			}
 
