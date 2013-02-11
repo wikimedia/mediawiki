@@ -367,6 +367,7 @@ $messages = array(
 'newwindow' => '(opnast í nýjum glugga)',
 'cancel' => 'Hætta við',
 'moredotdotdot' => 'Meira...',
+'morenotlisted' => 'fleiri ekki skráð...',
 'mypage' => 'Síða',
 'mytalk' => 'Spjall',
 'anontalk' => 'Spjallsíða þessa vistfangs.',
@@ -668,7 +669,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'gotaccount' => "Nú þegar með notandanafn? '''$1'''.",
 'gotaccountlink' => 'Skráðu þig inn',
 'userlogin-resetlink' => 'Gleymdir þú notendaupplýsingunum þínum?',
-'createaccountmail' => 'með tölvupósti',
+'createaccountmail' => 'Nota tímabundið handahófsvalið lykilorð og senda það á netfangið sem er tilgreint hér fyrir neðan',
 'createaccountreason' => 'Ástæða:',
 'badretype' => 'Lykilorðin sem þú skrifaðir eru ekki eins.',
 'userexists' => 'Þetta notandanafn er þegar í notkun.
@@ -1026,6 +1027,8 @@ Hluti sniðsins verður ekki með.",
 Þeim hefur verið sleppt.",
 'post-expand-template-argument-category' => 'Síður sem innihalda frumbreytur sniða sem hefur verið sleppt',
 'parser-template-loop-warning' => 'Lykkja í sniði fundin: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Sniðið er sjálkveðið of mörgum sinnum ($1)',
+'node-count-exceeded-category' => 'Síður þar sem er umfram fjöldi hnúta',
 
 # "Undo" feature
 'undo-success' => 'Breytingin hefur verið tekin tilbaka. Vinsamlegast staðfestu og vistaðu svo.',
@@ -1107,6 +1110,8 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revisiondelete' => 'Eyða/endurvekja breytingar',
 'revdelete-nooldid-title' => 'Ógild markbreyting',
 'revdelete-nooldid-text' => 'Annaðhvort hefur útgáfan sem á að fela ekki verið tilgreind, þessi útgáfa ekki verið til, eða að þú sért að reyna að fela núverandi útgáfu.',
+'revdelete-nologid-title' => 'Ógild aðgerðarskráar færsla',
+'revdelete-nologid-text' => 'Þú hefur annaðhvort ekki tilgreint færslu í aðgerðarskrá til að framkvæma þessa aðgerð á, eða að færslan sé ekki til.',
 'revdelete-no-file' => 'Umbeðin skrá er ekki til.',
 'revdelete-show-file-confirm' => 'Ertu viss um að þú viljir sjá eydda breytingu af síðunni "<nowiki>$1</nowiki>" frá $2 $3?',
 'revdelete-show-file-submit' => 'Já',
@@ -1133,6 +1138,12 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-unsuppress' => 'Fjarlægja takmarkanir á endurvöktum breytingum',
 'revdelete-log' => 'Ástæða:',
 'revdelete-submit' => 'Setja á {{PLURAL:$1|valda breytingu|valdar breytingar}}',
+'revdelete-success' => "'''Sýnileiki útgáfu er uppfærð.'''",
+'revdelete-failure' => "'''Mistókst að uppfæra sýnileika útgáfu:'''
+$1",
+'logdelete-success' => "'''Sýnleiki aðgerðarskráar uppfærð.'''",
+'logdelete-failure' => "'''Mistókst að uppfæra sýnileika aðgerðarskráar:'''
+$1",
 'revdel-restore' => 'Breyta sýn',
 'revdel-restore-deleted' => 'eyddar breytingar',
 'revdel-restore-visible' => 'sýnilegar breytingar',
@@ -1142,7 +1153,12 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 Ekki er hægt að fela hana.',
 'revdelete-show-no-access' => 'Mistókst að sýna breytingu frá $1 $2: Þessi breyting hefur verið merkt sem "takmörkuð".
 Þú hefur ekki aðgang að henni.',
+'revdelete-modify-no-access' => 'Mistókst að breyta hlut frá $1 $2: Þessi breyting hefur verið merkt sem „takmörkuð”.
+Þú hefur ekki aðgang að henni.',
+'revdelete-modify-missing' => 'Mistókst að breyta hlut með auðkennið $1: Hann finnst ekki í gagnabankanum!',
 'revdelete-no-change' => "'''Viðvörun:''' Breytingin frá $1 $2 hefur þegar umbeðnar sýnileika stillingar.",
+'revdelete-concurrent-change' => 'Mistókst að breyta hlut frá $1 $2: Staða hans virðist hafa verið breytt af einhverjum öðrum á meðan þú reyndir að breyta honum.
+Vinsamlegast athugaðu í aðgerðarskránum.',
 'revdelete-only-restricted' => 'Mistókst að fela breytingu frá $1 $2: Þú getur ekki falið breytingu fyrir möppudýrum án þess að velja eina af hinum sýnileika stillingunum.',
 'revdelete-reason-dropdown' => '*Algengar eyðingarástæður
 **Höfundarréttarbrot
@@ -1152,9 +1168,12 @@ Ekki er hægt að fela hana.',
 'revdelete-otherreason' => 'Aðrar/fleiri ástæður:',
 'revdelete-reasonotherlist' => 'Önnur ástæða',
 'revdelete-edit-reasonlist' => 'Eyðingarástæður',
+'revdelete-offender' => 'Höfundur þessarar útgáfu:',
 
 # Suppression log
 'suppressionlog' => 'Bælingarskrá',
+'suppressionlogtext' => 'Hér fyrir neðan er listi af eyðingum og bönnum sem innihalda efni sem hefur verið falið fyrir stjórnendum.
+Sjáðu [[Special:BlockList|bannlistann]] fyrir lista yfir núverandi bönn.',
 
 # History merging
 'mergehistory' => 'Sameina breytingaskrár',
@@ -1183,6 +1202,9 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'editundo' => 'Taka aftur þessa breytingu',
 'diff-multi' => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá {{PLURAL:$2|notanda|$2 notendum}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá fleiri en {{PLURAL:$2|einum notanda|$2 notendum}}.)',
+'difference-missing-revision' => '{{PLURAL:$2|Ein útgáfa|$2 útgáfur}} samanburðarins ($1) {{PLURAL:$2|fannst|fundust}} ekki.
+
+Þetta gerist oftast þegar úreldur samanburðar-tengill tengir á síðu sem hefur verið eytt. Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingarskránni].',
 
 # Search results
 'searchresults' => 'Leitarniðurstöður',
@@ -1718,11 +1740,13 @@ Ef vandamálið lagast ekki, hafðu samband við [[Special:ListUsers/sysop|stjó
 'upload-copy-upload-invalid-domain' => 'Lokað er fyrir afritun skráa frá öðrum vefþjón á þessu vefsvæði.',
 
 # File backend
+'backend-fail-stream' => 'Gat ekki streymt skránni „$1“.',
 'backend-fail-backup' => 'Öryggisafritun skráarinnar $1 mistókst.',
 'backend-fail-notexists' => 'Skráin $1 er ekki til.',
 'backend-fail-notsame' => 'Ólík skrá er þegar til á $1.',
 'backend-fail-invalidpath' => '$1 er ekki gildur geymslustaður.',
 'backend-fail-delete' => 'Mistókst að eyða skránni $1.',
+'backend-fail-describe' => 'Mistókst að breyta lýsisgögnum skráarinnar „$1“.',
 'backend-fail-alreadyexists' => 'Skráin $1 er þegar til.',
 'backend-fail-store' => 'Mistókst að vista skrá $1 á $2.',
 'backend-fail-copy' => 'Mistókst að afrita skjal $1 á $2.',
@@ -1761,6 +1785,7 @@ Reyndu aftur.',
 Biðlarinn þínn er ekki stilltur til að gefa upp þessar upplýsingar.
 Þær mega vera CGI-byggðar og mega ekki styðja img_auth.
 https://www.mediawiki.org/wiki/Manual:Image_Authorization',
+'img-auth-badtitle' => 'Mistókst að búa til gildan titil útfrá „$1”.',
 'img-auth-nofile' => 'Skráin "$1" er ekki til.',
 'img-auth-streaming' => 'Streymi "$1".',
 'img-auth-noread' => 'Notandinn hefur ekki rétt til að lesa "$1"',
@@ -1846,6 +1871,7 @@ Hentugra væri ef þú gætir breytt lýsingu skráarinnar á [$2 myndasíðu] h
 'uploadnewversion-linktext' => 'Hlaða inn nýrri útgáfu af þessari skrá',
 'shared-repo-from' => 'frá $1',
 'shared-repo' => 'sameiginlegu myndasafni',
+'upload-disallowed-here' => 'Þú getur ekki yfirskrifað þessa skrá.',
 
 # File reversion
 'filerevert' => 'Taka aftur $1',
@@ -2097,7 +2123,7 @@ Leitin þarf að minnsta kosti að innihalda rótarlén, eins og "*.org"
 # Special:ActiveUsers
 'activeusers' => 'Virkir notendur',
 'activeusers-intro' => 'Þetta er listi yfir notendur sem hafa verið virkir {{PLURAL:$1|síðasta|síðustu}} $1 {{PLURAL:$1|dag|daga}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|breyting|breytingar}} á {{PLURAL:$3|síðastliðnum degi|síðustu $3 dögum}}',
+'activeusers-count' => '$1 {{PLURAL:$1|aðgerð|aðgerðir}} á {{PLURAL:$3|síðastliðnum degi|síðustu $3 dögum}}',
 'activeusers-from' => 'Sýna notendur sem byrja á:',
 'activeusers-hidebots' => 'Fela vélmenni',
 'activeusers-hidesysops' => 'Fela möppudýr',
@@ -2329,8 +2355,8 @@ Núverandi staða síðunnar er '''$1''':",
 'protect-cascadeon' => 'Þessi síða er vernduð vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er keðjuvernduð|síðum, sem eru keðjuverndaðar}}.
 Þú getur breytt verndunarstigi þessarar síðu, en það mun ekki hafa áhrif á keðjuverndunina.',
 'protect-default' => 'Leyfa öllum notendum',
-'protect-fallback' => '„$1“ réttindi nauðsynleg',
-'protect-level-autoconfirmed' => 'Banna nýja og óinnskráða notendur',
+'protect-fallback' => 'Leyfa eingöngu notendur með „$1“ réttindi',
+'protect-level-autoconfirmed' => 'Leyfa aðeins sjálkrafa staðfesta notendur',
 'protect-level-sysop' => 'Leyfa aðeins stjórnendur',
 'protect-summary-cascade' => 'keðjuvörn',
 'protect-expiring' => 'rennur út $1 (UTC)',
@@ -2718,6 +2744,7 @@ Til þess að flytja út síður, skrifaðu titla þeirra í reitina hér fyrir 
 
 Ef síðari möguleikinn á við getur þú einnig notað tengil, til dæmis
 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fyrir síðuna "[[{{MediaWiki:Mainpage}}]]".',
+'exportall' => 'Flytja út allar síður',
 'exportcuronly' => 'Aðeins núverandi útgáfu án breytingaskrár',
 'exportnohistory' => "----
 '''Athugaðu:''' Að flytja út alla breytingasögu síðna á þennan hátt hefur verið óvirkjað vegna ástæðna afkasta.",
@@ -2752,6 +2779,7 @@ Vinsamlegast heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðf�
 'thumbnail-more' => 'Stækka',
 'filemissing' => 'Skrá vantar',
 'thumbnail_error' => 'Villa við gerð smámyndar: $1',
+'djvu_no_xml' => 'Mistókst að sækja XML-gögn fyrir DjVu skrá',
 'thumbnail-temp-create' => 'Mistókst að búa til tímabundna smámynd.',
 'thumbnail_invalid_params' => 'Breytur smámyndarinnar eru rangar',
 'thumbnail_dest_directory' => 'Mistókst að búa til niðurhals möppu',
@@ -2769,6 +2797,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'import-interwiki-templates' => 'Innifala öll snið með',
 'import-interwiki-submit' => 'Flytja inn',
 'import-interwiki-namespace' => 'Ákvörðunarnafnrými:',
+'import-interwiki-rootpage' => 'Ákvörðunar grunnsíða (valfrjáls):',
 'import-upload-filename' => 'Skráarnafn:',
 'import-comment' => 'Athugasemdir:',
 'importtext' => 'Vinsamlegast fluttu út skránna frá upprunalegum wiki með því að nota [[Special:Export|Flytja út síður]].
@@ -2804,6 +2833,9 @@ Vinsamlegast reyndu aftur.',
 'import-error-interwiki' => 'Síðan "$1" var ekki flutt inn því nafn hennar er frátekið fyrir ytri tengla (tungumálatengla).',
 'import-error-special' => 'Síðan "$1" var ekki flutt inn því hún tilheyrir ákveðnu nafnrými sem leyfir ekki síður.',
 'import-error-invalid' => 'Síðan "$1" var ekki flutt inn því nafn hennar er ógilt.',
+'import-options-wrong' => '{{PLURAL:$2|Rangur möguleiki|Rangir möguleikar}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Uppgefin ákvörðunar síða er ógildur titill.',
+'import-rootpage-nosubpage' => 'Nafnrými „$1“ ákvörðunar síðunar leyfir ekki undirsíður.',
 
 # Import log
 'importlogpage' => 'Innflutningsskrá',
@@ -2815,6 +2847,8 @@ Vinsamlegast reyndu aftur.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript prófun',
+'javascripttest-title' => 'Keyri $1 prófun',
+'javascripttest-pagetext-noframework' => 'Þessi síða er frátekin fyrir JavaScript prófanir.',
 'javascripttest-pagetext-skins' => 'Veldu þema sem á að keyra prófanirnar á:',
 
 # Tooltip help for the actions
@@ -2905,6 +2939,8 @@ Vinsamlegast reyndu aftur.',
 'others' => 'aðrir',
 'siteusers' => '{{SITENAME}} {{PLURAL:$2|notandi|notendur}} $1',
 'anonusers' => '{{SITENAME}} {{PLURAL:$2|nafnlaus notandi|nafnlausir notendur}} $1',
+'creditspage' => 'Höfundar síðunnar',
+'nocredits' => 'Engar höfundarupplýsingar eru til um þessa síðu',
 
 # Spam protection
 'spamprotectiontitle' => 'Amapósts sía',
@@ -2918,6 +2954,7 @@ Vinsamlegast reyndu aftur.',
 
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',
+'pageinfo-not-current' => 'Því miður er ekki hægt að veita þessar upplýsingar um gamlar útgáfur.',
 'pageinfo-header-basic' => 'Grunnupplýsingar',
 'pageinfo-header-edits' => 'Breytingarskrá',
 'pageinfo-header-restrictions' => 'Verndunarstig síðunnar',
@@ -2932,6 +2969,7 @@ Vinsamlegast reyndu aftur.',
 'pageinfo-robot-noindex' => 'Óskráanleg',
 'pageinfo-views' => 'Fjöldi innlita',
 'pageinfo-watchers' => 'Fjöldi notenda, sem vakta síðuna',
+'pageinfo-few-watchers' => 'Vöktuð af færri en $1 {{PLURAL:$1|notandi|notendum}}',
 'pageinfo-redirects-name' => 'Tilvísanir til þessarar síðu',
 'pageinfo-subpages-name' => 'Undirsíður þessarar síðu',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|tilvísun|tilvísanir}}; $3 {{PLURAL:$3|ekki tilvísun|ekki tilvísanir}})',
@@ -2946,6 +2984,7 @@ Vinsamlegast reyndu aftur.',
 'pageinfo-magic-words' => 'Töfra {{PLURAL:$1|orð}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Innifalið snið|Innifalin snið}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Síða|Síður}} ítengdar á ($1)',
 'pageinfo-toolboxlink' => 'Síðuupplýsingar',
 'pageinfo-redirectsto' => 'Vísar til',
 'pageinfo-redirectsto-info' => 'upplýsingar',
@@ -2954,6 +2993,10 @@ Vinsamlegast reyndu aftur.',
 'pageinfo-protect-cascading' => 'Keðjuvörn hefst hér',
 'pageinfo-protect-cascading-yes' => 'Já',
 'pageinfo-protect-cascading-from' => 'Keðjuvörn stafar frá',
+'pageinfo-category-info' => 'Flokka upplýsingar',
+'pageinfo-category-pages' => 'Fjöldi síðna',
+'pageinfo-category-subcats' => 'Fjöldi undirflokka',
+'pageinfo-category-files' => 'Fjöldi skráa',
 
 # Skin names
 'skinname-standard' => 'Sígilt',
@@ -2975,6 +3018,8 @@ Vinsamlegast reyndu aftur.',
 'markedaspatrollederror' => 'Get ekki merkt sem yfirfarið',
 'markedaspatrollederrortext' => 'Þú verður að velja breytingu til að merkja sem yfirfarið.',
 'markedaspatrollederror-noautopatrol' => 'Þú hefur ekki réttindi til að merkja eigin breytingar sem yfirfarnar.',
+'markedaspatrollednotify' => 'Þessi breyting á $1 hefur verið merkt sem yfirfarin.',
+'markedaspatrollederrornotify' => 'Mistókst að merkja síðuna sem yfirfarna.',
 
 # Patrol log
 'patrol-log-page' => 'Yfirferðarskrá',
@@ -3004,6 +3049,8 @@ Vinsamlegast reyndu aftur.',
 'file-info-size-pages' => '$1 x $2 dílar, skráarstærð: $3, MIME-gerð: $4, $5 {{PLURAL:$5|síða|síður}} tengja í skránna.',
 'file-nohires' => 'Það er engin hærri upplausn til.',
 'svg-long-desc' => 'SVG-skrá, að nafni til $1 × $2 dílar, skráarstærð: $3',
+'svg-long-desc-animated' => 'SVG-hreyfimynd, að nafni til $1 × $2 dílar, skráarstærð: $3',
+'svg-long-error' => 'Ógild SVG skrá: $1',
 'show-big-image' => 'Mesta upplausn',
 'show-big-image-preview' => 'Stærð þessarar forskoðunar: $1',
 'show-big-image-other' => '{{PLURAL:$2|Önnur upplausn|Aðrar upplausnir}}: $1.',
@@ -3031,7 +3078,10 @@ Vinsamlegast reyndu aftur.',
 'minutes' => '{{PLURAL:$1|ein mínúta|$1 mínútur}}',
 'hours' => '{{PLURAL:$1|einn klukkutími|$1 klukkutímar}}',
 'days' => '{{PLURAL:$1|einn dagur|$1 dagar}}',
+'months' => '{{PLURAL:$1|$1 mánuður|$1 mánuðir}}',
+'years' => '{{PLURAL:$1|$1 ár}}',
 'ago' => '$1 síðan',
+'just-now' => 'akkúrat núna',
 
 # Bad image list
 'bad_image_list' => 'Sniðið er eftirfarandi:
@@ -3604,7 +3654,7 @@ Myndir eru sýndar í fullri upplausn og önnur skráarsnið eru ræst í sjálf
 'specialpages-group-highuse' => 'Mest notuðu síðurnar',
 'specialpages-group-pages' => 'Listar yfir síður',
 'specialpages-group-pagetools' => 'Síðuverkfæri',
-'specialpages-group-wiki' => 'Wiki gögn og tól',
+'specialpages-group-wiki' => 'Gögn og tól',
 'specialpages-group-redirects' => 'Tilvísaðar kerfisíður',
 'specialpages-group-spam' => 'Amapósts sía',
 
@@ -3702,8 +3752,12 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'logentry-newusers-newusers' => 'Notandaaðgangurinn $1 var stofnaður',
 'logentry-newusers-create' => 'Notandaaðgangurinn $1 var stofnaður',
 'logentry-newusers-create2' => '$1 stofnaði notandaaðganginn $3',
+'logentry-newusers-byemail' => 'Notenda aðgangurinn $3 var búinn til af $1 og lykilorðið var sent með tölvupósti',
 'logentry-newusers-autocreate' => 'Aðgangurinn $1 var stofnaður sjálfvirkt',
-'rightsnone' => '(engin)',
+'logentry-rights-rights' => '$1 breytti réttindum $3 frá $4 í $5',
+'logentry-rights-rights-legacy' => '$1 breytti réttindum $3',
+'logentry-rights-autopromote' => '$1 fékk sjálfvirkt aukin réttindi frá $4 til $5',
+'rightsnone' => '(engum)',
 
 # Feedback
 'feedback-bugornote' => 'Ef þú ert reiðubúinn að lýsa tæknilegri villu í smáatriðum, vinsamlegast [$1 tilkynntu villu].
@@ -3757,6 +3811,7 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-ok-but-empty' => 'Innri villa: ekkert svar frá vefþjón.',
 'api-error-overwrite' => 'Óheimilt er að skrifa yfir skrá sem er þegar til.',
 'api-error-stashfailed' => 'Innri villa: Vefþjónninn gat ekki geymt tímabundna skrá.',
+'api-error-publishfailed' => 'Innri villa: Vefþjónninn gat ekki gefið út tímabundna skrá.',
 'api-error-timeout' => 'Vefþjónninn svaraði ekki á tilætluðum tíma.',
 'api-error-unclassified' => 'Óþekkt villa kom upp.',
 'api-error-unknown-code' => 'Óþekkt villa: "$1"',

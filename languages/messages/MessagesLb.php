@@ -2198,9 +2198,7 @@ All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit g
 'enotif_anon_editor' => 'Anonyme Benotzer $1',
 'enotif_body' => 'Léiwe $WATCHINGUSERNAME,
 
-D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED. Aktuell Versioun: $PAGETITLE_URL
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Resumé vum Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2209,21 +2207,22 @@ E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
 Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt.
-Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen.
+Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zErécksetzen.
 
 
-             Äre frëndleche {{SITENAME}} Benoriichtigungssystem
+Äre frëndleche {{SITENAME}} Benoriichtigungssystem
 
 --
 
-Fir d\'Astellungen op ären E-Mailbenoriichtigungen z\'änneren, besicht w.e.g.
+Fir d\'Astellungen op Ären E-Mailbenoriichtigungen z\'änneren, besicht w.e.g.
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Fir d\'Astellungen vun ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
+Fir d\'Astellungen vun Ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
 {{canonicalurl:Special:Watchlist/edit}}
 
-
+Feedback a weider Hëllef:
+{{canonicalurl:{{MediaWiki:Helppage}}}}
 Fir d\'Säit vun Ärer Iwwerwaachungslëscht erofzehuelen, gitt w.e.g. op
 $UNWATCHURL
 
@@ -2610,18 +2609,18 @@ Fir d'Datebank ze spären oder fir d'Spär opzehiewen muss dëse Fichier vum Web
 # Move page
 'move-page' => 'Réckel $1',
 'move-page-legend' => 'Säit réckelen',
-'movepagetext' => "Wann dir dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm.
+'movepagetext' => "Wann dir dëse Formulaire benotzt gitt Dir enger Säit en aneren Numm a réckelt se mat hirem Historique op den neien Numm.
 Den alen Titel gëtt eng Viruleedung op déi nei Säit.
 Dir kënnt Viruleedungen déi op déi al Säit ginn automatesch aktualiséieren.
 Wann Dir dat net maacht, da vergewëssert Iech datt keng [[Special:DoubleRedirects|duebel]] oder [[Special:BrokenRedirects|futtis Viruleedungen]] am Spill sinn.
 Dir sidd responsabel datt d'Linke weiderhin dohinner pointéieren, wou se hi sollen.
 
 Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann et schonns eng Säit mat deem Titel gëtt, ausser déi ass eidel, ass eng Viruleedung oder huet keen Historique.
-Dëst bedeit datt dir eng Säit zréck op hiren ursprénglechen Numm ëmbenenne kënnt wann Dir Iech geiert hat an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
+Dëst bedeit datt dir eng Säit zréck op hiren ursprénglechen Numm ëmbenenne kënnt wann Dir Iech geiert hat an datt Dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
 '''OPGEPASST!'''
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten;
-verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
+verstitt w.e.g. d'Konsequenze vun Ärer Handlung éier Dir dëst maacht.",
 'movepagetext-noredirectfixer' => "Wann Dir dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm.
 Den alen Titel gëtt eng Viruleedung op den neien Titel.
 Dir kënnt Viruleedungen déi op déi al Säit ginn automatesch aktualiséieren.

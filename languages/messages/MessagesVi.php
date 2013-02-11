@@ -2338,7 +2338,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'enotif_subject_created' => 'Trang $1 tại {{SITENAME}} đã được tạo ra bởi $2.',
 'enotif_subject_moved' => 'Trang $1 tại {{SITENAME}} đã được di chuyển bởi $2.',
 'enotif_subject_restored' => 'Trang $1 tại {{SITENAME}} đã được phục hồi bởi $2.',
-'enotif_subject_changed' => 'Trang $1 tại {{SITENAME}} đã được thay đổi bởi $2.',
+'enotif_subject_changed' => 'Trang $1 tại {{SITENAME}} đã được thay đổi bởi $2',
 'enotif_body_intro_deleted' => 'Trang $1 tại {{SITENAME}} đã được $2 xóa vào $PAGEEDITDATE. Xem $3 .',
 'enotif_body_intro_created' => 'Trang $1 tại {{SITENAME}} đã được $2 tạo ra vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',
 'enotif_body_intro_moved' => 'Trang $1 tại {{SITENAME}} đã được $2 di chuyển vào $PAGEEDITDATE. Xem phiên bản hiện hành tại $3 .',

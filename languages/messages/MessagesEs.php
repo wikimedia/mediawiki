@@ -630,7 +630,7 @@ $1',
 'youhavenewmessagesmanyusers' => 'Tienes $1 de muchos usuarios ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un nuevo mensaje|mensajes nuevos}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|últimos cambios}}',
-'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
+'youhavenewmessagesmulti' => 'Tienes mensajes nuevos en $1',
 'editsection' => 'editar',
 'editold' => 'editar',
 'viewsourceold' => 'ver código fuente',
@@ -784,7 +784,7 @@ No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'externaldberror' => 'Hubo un error de autenticación externa de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.',
 'login' => 'Iniciar sesión',
 'nav-login-createaccount' => 'Iniciar sesión / crear cuenta',
-'loginprompt' => "Es necesario habilitar las ''cookies'' en el navegador para registrarse en {{SITENAME}}.",
+'loginprompt' => "Necesita activar las ''cookies'' en el navegador para iniciar sesión en {{SITENAME}}.",
 'userlogin' => 'Iniciar sesión / crear cuenta',
 'userloginnocreate' => 'Iniciar sesión',
 'logout' => 'Cerrar sesión',
@@ -796,7 +796,7 @@ No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => '¿Olvidaste tus datos de acceso?',
-'createaccountmail' => 'por correo electrónico',
+'createaccountmail' => 'Usar una contraseña aleatoria temporal y enviarla a la siguiente dirección de correo electrónico',
 'createaccountreason' => 'Motivo:',
 'badretype' => 'Las contraseñas no coinciden.',
 'userexists' => 'El nombre de usuario indicado ya está en uso.
@@ -1406,7 +1406,7 @@ Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(más)',
 'search-relatedarticle' => 'Relacionado',
-'mwsuggest-disable' => 'Desactivar AJAX al realizar búsquedas',
+'mwsuggest-disable' => 'Desactivar las sugerencias de búsqueda',
 'searcheverything-enable' => 'Buscar en todos los espacios de nombres',
 'searchrelated' => 'relacionado',
 'searchall' => 'todos',
@@ -1503,8 +1503,8 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'allowemail' => 'Aceptar correo electrónico de otros usuarios',
 'prefs-searchoptions' => 'Buscar',
 'prefs-namespaces' => 'Espacios de nombres',
-'defaultns' => 'Buscar en estos espacios de nombres por defecto:',
-'default' => 'por defecto',
+'defaultns' => 'De lo contrario, buscar en estos espacios de nombres:',
+'default' => 'predeterminado',
 'prefs-files' => 'Archivos',
 'prefs-custom-css' => 'CSS personalizado',
 'prefs-custom-js' => 'JavaScript personalizado',
@@ -2005,7 +2005,7 @@ Para óptima seguridad, img_auth.php está desactivado.',
 
 # Special:ListFiles
 'listfiles-summary' => 'Esta página especial muestra todos los archivos subidos.
-Cuando es filtrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
+Cuando el usuario la filtra, solo se muestran los archivos cargados por el usuario en su versión más reciente.',
 'listfiles_search_for' => 'Buscar por nombre de imagen:',
 'imgfile' => 'archivo',
 'listfiles' => 'Lista de archivos',
@@ -2534,7 +2534,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-cascadeon' => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default' => 'Permitir todos los usuarios',
-'protect-fallback' => 'Permite sólo a usuarios con el permiso «$1»',
+'protect-fallback' => 'Solo permitir usuarios con el permiso «$1»',
 'protect-level-autoconfirmed' => 'Permitir solo usuarios autoconfirmados',
 'protect-level-sysop' => 'Permitir solo administradores',
 'protect-summary-cascade' => 'en cascada',
@@ -2824,18 +2824,18 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 # Move page
 'move-page' => 'Trasladar $1',
 'move-page-legend' => 'Renombrar página',
-'movepagetext' => "Usando el siguiente formulario se renombrará una página, trasladando todo su historial al nuevo nombre.
-El título anterior se convertirá en una redirección al nuevo título.
-Los enlaces al antiguo título de la página no se cambiarán.
-Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
-Tú eres responsable de hacer que los enlaces sigan apuntando a donde se supone que deberían hacerlo.
+'movepagetext' => "Mediante el siguiente formulario puedes renombrar una página, moviendo todo su historial al nombre nuevo.
+El título anterior redirigirá al nuevo.
+Puedes actualizar automáticamente las redirecciones que apuntan al título original.
+Si eliges no hacerlo, asegúrate de revisar posibles redirecciones [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|rotas]].
+Tú eres responsable de asegurar que los enlaces continúen funcionando correctamente.
 
-Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o una redirección sin historial.
-Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobrescribir una página existente.
+Nota que la página '''no''' se moverá si ya hay una página con el título nuevo, a menos de que ésta sea una redirección y no tenga historial de ediciones pasadas.
+Esto significa que puedes deshacer el renombrado en caso de un error, y que no puedes sobreescribir una página existente.
 
-'''¡Aviso!'''
-Este puede ser un cambio drástico e inesperado para una página popular;
-por favor, asegúrate de entender las consecuencias del procedimiento antes de seguir adelante.",
+'''Aviso'''
+Esto puede representar un cambio drástico e inesperado para una página popular;
+asegúrate de entender las consecuencias de esta acción antes de proceder.",
 'movepagetext-noredirectfixer' => "Usando el siguiente formulario se renombrará una página, trasladando todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
@@ -3185,6 +3185,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-robot-noindex' => 'No indexable',
 'pageinfo-views' => 'Número de vistas',
 'pageinfo-watchers' => 'Número de usuarios que vigilan la página',
+'pageinfo-few-watchers' => 'Menos de $1 {{PLURAL:$1|vigilante|vigilantes}}',
 'pageinfo-redirects-name' => 'Redirecciones a esta página',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Subpáginas de esta página',

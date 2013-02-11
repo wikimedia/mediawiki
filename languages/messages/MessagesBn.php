@@ -17,6 +17,7 @@
  * @author Prometheus.pyrphoros
  * @author RIPENDIL
  * @author Reedy
+ * @author Runab
  * @author Samritmaity
  * @author Sayak Sarkar
  * @author Sm faysal
@@ -2044,7 +2045,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'usermessage-editor' => 'সিস্টেম ম্যাসেঞ্জার',
 
 # Watchlist
-'watchlist' => 'আমার নজর তালিকা',
+'watchlist' => 'নজর তালিকা',
 'mywatchlist' => 'নজর তালিকা',
 'watchlistfor2' => '$1 ($2)-এর জন্য',
 'nowatchlist' => 'আপনার নজরতালিকা খালি।',

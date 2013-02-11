@@ -3770,7 +3770,8 @@ See also:
 'statistics-header-pages' => 'Used in [[Special:Statistics]]',
 'statistics-header-edits' => 'Used in [[Special:Statistics]]',
 'statistics-header-views' => 'Used in [[Special:Statistics]]',
-'statistics-header-users' => 'Used in [[Special:Statistics]]',
+'statistics-header-users' => 'Used in [[Special:Statistics]].
+{{Identical|User statistics}}',
 'statistics-header-hooks' => 'Header of a section on [[Special:Statistics]] containing data provided by MediaWiki extensions',
 'statistics-articles' => "Used in [[Special:Statistics]].
 

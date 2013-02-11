@@ -1709,7 +1709,7 @@ Esta informação será pública.',
 'recentchangeslinked-feed' => 'Alterações relacionadas',
 'recentchangeslinked-toolbox' => 'Alterações relacionadas',
 'recentchangeslinked-title' => 'Alterações relacionadas com "$1"',
-'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas para as quais a página fornecida contém links, no intervalo de tempo escolhido.',
+'recentchangeslinked-noresult' => 'Nenhuma mudança nas páginas relacionadas durante o período.',
 'recentchangeslinked-summary' => "Lista das mudanças recentes a todas as páginas para as quais a página fornecida contém links (ou de todas as que pertencem à categoria fornecida).
 As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 'recentchangeslinked-page' => 'Nome da página:',
@@ -2204,7 +2204,7 @@ No entanto, outros sites na internet podem ter links para um ficheiro através d
 
 # Book sources
 'booksources' => 'Fontes bibliográficas',
-'booksources-search-legend' => 'Procurar fontes de livros',
+'booksources-search-legend' => 'Pesquisar referências bibliográficas',
 'booksources-go' => 'Prosseguir',
 'booksources-text' => 'É apresentada abaixo uma lista de links para outros sites na internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:',
 'booksources-invalid-isbn' => 'O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.',
@@ -2232,7 +2232,7 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
 'allpagesprev' => 'Anterior',
 'allpagesnext' => 'Próximo',
-'allpagessubmit' => 'Prosseguir',
+'allpagessubmit' => 'Ver',
 'allpagesprefix' => 'Apresentar páginas iniciadas por:',
 'allpagesbadtitle' => 'O título de página fornecido era inválido ou tinha um prefixo interlínguas ou interwikis.
 Talvez contenha um ou mais caracteres que não podem ser usados nos títulos.',

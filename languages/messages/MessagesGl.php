@@ -982,7 +982,7 @@ Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo def
 A área de texto superior contén o texto da páxina tal e como existe na actualidade.
 Os seus cambios móstranse na área inferior.
 Pode mesturar os seus cambios co texto existente.
-'''Só''' se gardará o texto na área superior cando prema \"{{int:savearticle}}\".",
+'''Só''' se gardará o texto na área superior cando prema en \"{{int:savearticle}}\".",
 'yourtext' => 'O seu texto',
 'storedversion' => 'Versión gardada',
 'nonunicodebrowser' => "'''Atención: O seu navegador non soporta o Unicode.'''
@@ -2920,7 +2920,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'importbadinterwiki' => 'Ligazón interwiki incorrecta',
 'importnotext' => 'Baleiro ou sen texto',
 'importsuccess' => 'A importación rematou!',
-'importhistoryconflict' => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
+'importhistoryconflict' => 'Existe un conflito no historial de revisións (se cadra, xa se importou esta páxina anteriormente)',
 'importnosources' => 'Non se defininiu ningunha fonte de importación transwiki e os envíos directos dos historiais están desactivados.',
 'importnofile' => 'Non se enviou ningún ficheiro de importación.',
 'importuploaderrorsize' => 'Fallou o envío do ficheiro de importación. O ficheiro é máis grande que o tamaño de envío permitido.',
