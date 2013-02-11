@@ -48,6 +48,11 @@ class SiteSQLStore implements SiteStore {
 	private $cacheKey = null;
 
 	/**
+	 * @var int
+	 */
+	private $cacheTimeout = 3600;
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param ORMTable|null $sitesTable
@@ -218,7 +223,7 @@ class SiteSQLStore implements SiteStore {
 		}
 
 		$cache = wfGetMainCache();
-		$cache->set( $this->getCacheKey(), $this->sites );
+		$cache->set( $this->getCacheKey(), $this->sites, $this->cacheTimeout );
 
 		wfProfileOut( __METHOD__ );
 	}
