@@ -1274,6 +1274,12 @@ Now logging you in...',
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
 'resetpass-abort-generic'   => 'Password change has been aborted by an extension.',
+'resetpass-email-subject'   => '{{SITENAME}} Password Change',
+'resetpass-email-body'      => 'Somebody from IP address $1,
+has changed the password for the {{SITENAME}} account "$2".
+
+If you did *not* change your password, contact a {{SITENAME}} administrator
+immediately and try to regain control of your account.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
@@ -1327,6 +1333,7 @@ Reset link: $2',
 'changeemail-password' => 'Your {{SITENAME}} password:',
 'changeemail-submit'   => 'Change email',
 'changeemail-cancel'   => 'Cancel',
+'changeemail-timeout'  => 'E-mail changes for your account are temporarily throttled until $1.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',

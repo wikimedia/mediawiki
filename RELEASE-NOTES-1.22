@@ -89,6 +89,9 @@ production.
 * The temporary password-based password reset system has been replaced with
   a token system, i.e., instead of using a temporary password, the user clicks
   a link in the email.
+* When a user's password changes, if they have a confirmed e-mail, a notification
+  will be sent to them and the user will be disallowed from changing their
+  e-mail for a certain amount of time as defined by $wgPasswordEmailChangeTimeout.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
