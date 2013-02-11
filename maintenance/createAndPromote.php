@@ -34,6 +34,7 @@ class CreateAndPromote extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Create a new user account";
+		$this->addOption( "force", "Force the promotion and password change if the user exists" );
 		$this->addOption( "sysop", "Grant the account sysop rights" );
 		$this->addOption( "bureaucrat", "Grant the account bureaucrat rights" );
 		$this->addArg( "username", "Username of new user" );
@@ -44,13 +45,17 @@ class CreateAndPromote extends Maintenance {
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
 
-		$this->output( wfWikiID() . ": Creating and promoting User:{$username}..." );
-
 		$user = User::newFromName( $username );
 		if ( !is_object( $user ) ) {
 			$this->error( "invalid username.", true );
-		} elseif ( 0 != $user->idForName() ) {
+		} elseif ( 0 != $user->idForName() && !$this->getOption( 'force' ) ) {
 			$this->error( "account exists.", true );
+		}
+
+		if ( $user->isAnon() ) {
+			$this->output( wfWikiID() . ": Creating and promoting User:{$username}..." );
+		} else {
+			$this->output( wfWikiID() . ": Promoting User:{$username}..." );
 		}
 
 		# Try to set the password
@@ -61,7 +66,12 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		# Insert the account into the database
-		$user->addToDatabase();
+		if ( $user->isAnon() ) {
+			$user->addToDatabase();
+			$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+		} else {
+			$ssu = null;
+		}
 		$user->saveSettings();
 
 		# Promote user
@@ -73,8 +83,9 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		# Increment site_stats.ss_users
-		$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
-		$ssu->doUpdate();
+		if ( $ssu !== null ) {
+			$ssu->doUpdate();
+		}
 
 		$this->output( "done.\n" );
 	}
