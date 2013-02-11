@@ -1168,6 +1168,8 @@ See also:
 Used on [[Special:ResetPass]]',
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
+'resetpass-email-subject' => 'Subject of the email sent to users when their password changes',
+'resetpass-email-body' => 'Body fot he email sent to users when their password changes',
 
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
