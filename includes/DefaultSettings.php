@@ -3635,6 +3635,12 @@ $wgPasswordResetRoutes = array(
 );
 
 /**
+ * Timeout between when a user's password changes and when they are allowed to change
+ * their e-mail again.
+ */
+$wgPasswordEmailChangeTimeout = 3600 * 24 * 2;
+
+/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars = 255;

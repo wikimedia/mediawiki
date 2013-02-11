@@ -294,9 +294,29 @@ class SpecialChangePassword extends FormSpecialPage {
 
 	/**
 	 * If user is logged in and has not specified a returnto, show a success message.
-	 * Otherwise, redirect to the returnto.
+	 * Otherwise, redirect to the returnto. Also, send a notification e-mail and disable
+	 * e-mail changes temporarily.
 	 */
 	function onSuccess() {
+		global $wgPasswordAttemptThrottle, $wgPasswordEmailChangeTimeout, $wgMemc;
+
+		$user = $this->getUser();
+		$request = $this->getRequest();
+		if ( $user->isEmailConfirmed() ) {
+			$throttle = new Throttle(
+				array( 'changeemail' ),
+				$wgPasswordAttemptThrottle['count'],
+				$wgPasswordEmailChangeTimeout,
+				Throttle::PERUSER
+			);
+			$throttle->throttleNow();
+
+			$user->sendMail(
+				$this->msg( 'resetpass-email-subject' )->text(),
+				$this->msg( 'resetpass-email-body', $request->getIP(), $user->getName() )->text()
+			);
+		}
+
 		$this->getOutput()->addWikiMsg( 'resetpass_success' );
 
 		$titleObj = Title::newFromText( $this->getRequest()->getVal( 'returnto' ) );
