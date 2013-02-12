@@ -1,6 +1,7 @@
 ( function ( mw, $ ) {
 
-var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests, specialCharactersPageName;
+var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests, specialCharactersPageName,
+	expectedListUsers, expectedEntrypoints;
 
 QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 	setup: function () {
@@ -17,15 +18,36 @@ QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 		};
 
 		// Messages that are reused in multiple tests
-		// They are also all part of regression tests based on actual extensions.  The actual messages have the same key,
-		// but without jquerymsg-test-.
 		mw.messages.set( {
-			'jquerymsg-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
-			'jquerymsg-test-categorytree-collapse-bullet': '[<b>−</b>]',
-			'jquerymsg-test-wikieditor-toolbar-help-content-signature-result': '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)'
+			// The values for gender are not significant,
+			// what matters is which of the values is choosen by the parser
+			'gender-msg': '$1: {{GENDER:$2|blue|pink|green}}',
+
+			'plural-msg': 'Found $1 {{PLURAL:$1|item|items}}',
+
+			// Assume the grammar form grammar_case_foo is not valid in any language
+			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
+
+			'formatnum-msg': '{{formatnum:$1}}',
+
+			'portal-url': 'Project:Community portal',
+			'see-portal-url': '{{Int:portal-url}} is an important community page.',
+
+			'jquerymsg-test-statistics-users': '注册[[Special:ListUsers|用户]]',
+
+			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+
+			'external-link-replace': 'Foo [$1 bar]'
 		} );
 
 		specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
+
+		expectedListUsers = '注册' + $( '<a>' ).attr( {
+			title: 'Special:ListUsers',
+			href: mw.util.wikiGetlink( 'Special:ListUsers' )
+		} ).text( '用户' ).getOuterHtml();
+
+		expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 	},
 	teardown: function () {
 		mw.language = this.orgMwLangauge;
@@ -105,7 +127,6 @@ QUnit.test( 'Replace', 9, function ( assert ) {
 		'HTMLElement[] arrays are preserved as raw html'
 	);
 
-	mw.messages.set( 'external-link-replace', 'Foo [$1 bar]' );
 	assert.equal(
 		parser( 'external-link-replace', 'http://example.org/?x=y&z' ),
 		'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
@@ -116,7 +137,6 @@ QUnit.test( 'Replace', 9, function ( assert ) {
 QUnit.test( 'Plural', 3, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction();
 
-	mw.messages.set( 'plural-msg', 'Found $1 {{PLURAL:$1|item|items}}' );
 	assert.equal( parser( 'plural-msg', 0 ), 'Found 0 items', 'Plural test for english with zero as count' );
 	assert.equal( parser( 'plural-msg', 1 ), 'Found 1 item', 'Singular test for english' );
 	assert.equal( parser( 'plural-msg', 2 ), 'Found 2 items', 'Plural test for english' );
@@ -127,10 +147,6 @@ QUnit.test( 'Gender', 11, function ( assert ) {
 	// TODO: English may not be the best language for these tests. Use a language like Arabic or Russian
 	var user = mw.user,
 		parser = mw.jqueryMsg.getMessageFunction();
-
-	// The values here are not significant,
-	// what matters is which of the values is choosen by the parser
-	mw.messages.set( 'gender-msg', '$1: {{GENDER:$2|blue|pink|green}}' );
 
 	user.options.set( 'gender', 'male' );
 	assert.equal(
@@ -199,8 +215,6 @@ QUnit.test( 'Gender', 11, function ( assert ) {
 QUnit.test( 'Grammar', 2, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction();
 
-	// Assume the grammar form grammar_case_foo is not valid in any language
-	mw.messages.set( 'grammar-msg', 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}' );
 	assert.equal( parser( 'grammar-msg' ), 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar Test with sitename' );
 
 	mw.messages.set( 'grammar-msg-wrong-syntax', 'Przeszukaj {{GRAMMAR:grammar_case_xyz}}' );
@@ -230,7 +244,6 @@ QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( a
 
 QUnit.test( 'Links', 6, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction(),
-		expectedListUsers,
 		expectedDisambiguationsText,
 		expectedMultipleBars,
 		expectedSpecialCharacters;
@@ -239,13 +252,6 @@ QUnit.test( 'Links', 6, function ( assert ) {
 	 The below three are all identical to or based on real messages.  For disambiguations-text,
 	 the bold was removed because it is not yet implemented.
 	*/
-
-	mw.messages.set( 'jquerymsg-test-statistics-users', '注册[[Special:ListUsers|用户]]' );
-
-	expectedListUsers = '注册' + $( '<a>' ).attr( {
-		title: 'Special:ListUsers',
-		href: mw.util.wikiGetlink( 'Special:ListUsers' )
-	} ).text( '用户' ).getOuterHtml();
 
 	assert.equal(
 		parser( 'jquerymsg-test-statistics-users' ),
@@ -265,10 +271,9 @@ QUnit.test( 'Links', 6, function ( assert ) {
 		'Wikilink without pipe'
 	);
 
-	mw.messages.set( 'jquerymsg-test-version-entrypoints-index-php', '[https://www.mediawiki.org/wiki/Manual:index.php index.php]' );
 	assert.equal(
 		parser( 'jquerymsg-test-version-entrypoints-index-php' ),
-		'<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>',
+		expectedEntrypoints,
 		'External link'
 	);
 
@@ -304,36 +309,74 @@ QUnit.test( 'Links', 6, function ( assert ) {
 	);
 });
 
-// Output for format plain when calling main (mediawiki.js) API.
-// We're testing here to ensure our monkey-patching of mw.Message.prototype.parser doesn't
-// cause breakage.
+// Tests that {{-transformation vs. general parsing are done as requested
+QUnit.test( 'Curly brace transformation', 14, function ( assert ) {
+	var formatText, formatParse, oldUserLang;
 
-// Some of the tests use mw.msg, while others have mw.message(...).plain().  These two
-// syntaxes should have identical behavior.
-QUnit.test( 'Plain', 4, function ( assert ) {
+	oldUserLang = mw.config.get( 'wgUserLanguage' ) ;
+
+	formatText= mw.jqueryMsg.getMessageFunction( {
+		format: 'text'
+	} );
+
+	formatParse = mw.jqueryMsg.getMessageFunction( {
+		format: 'parse'
+	} );
+
+	// When the expected result is the same in both modes
+	function assertBothModes( parserArguments, expectedResult, assertMessage) {
+		assert.equal( formatText.apply( null, parserArguments ), expectedResult, assertMessage + ' when format is \'text\'' );
+		assert.equal( formatParse.apply( null, parserArguments ), expectedResult, assertMessage + ' when format is \'parse\'' );
+	}
+
+	assertBothModes( ['gender-msg', 'Bob', 'male'], 'Bob: blue', 'gender is resolved' );
+
+	assertBothModes( ['plural-msg', 5], 'Found 5 items', 'plural is resolved' );
+
+	assertBothModes( ['grammar-msg'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
+
+	mw.config.set( 'wgUserLanguage', 'en' ) ;
+	assertBothModes( ['formatnum-msg', '987654321.654321'], '987654321.654321', 'formatnum is resolved' );
+
+	// Test non-{{ wikitext, where behavior differs
+
+	// Wikilink
 	assert.equal(
-		mw.message( 'jquerymsg-test-pagetriage-del-talk-page-notify-summary' ).plain(),
-		'Notifying author of deletion nomination for [[$1]]',
-		'Square brackets in plain with no parameters'
+		formatText( 'jquerymsg-test-statistics-users' ),
+		mw.messages.get( 'jquerymsg-test-statistics-users' ),
+		'Internal link message unchanged when format is \'text\''
+	);
+	assert.equal(
+		formatParse( 'jquerymsg-test-statistics-users' ),
+		expectedListUsers,
+		'Internal link message parsed when format is \'parse\''
 	);
 
+	// External link
 	assert.equal(
-		mw.msg( 'jquerymsg-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ),
-		'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]',
-		'Square brackets in plain with one parameter'
+		formatText( 'jquerymsg-test-version-entrypoints-index-php' ),
+		mw.messages.get( 'jquerymsg-test-version-entrypoints-index-php' ),
+		'External link message unchanged when format is \'text\''
+	);
+	assert.equal(
+		formatParse( 'jquerymsg-test-version-entrypoints-index-php' ),
+		expectedEntrypoints,
+		'External link message processed when format is \'parse\''
 	);
 
+	// External link with parameter
 	assert.equal(
-		mw.msg( 'jquerymsg-test-categorytree-collapse-bullet' ),
-		mw.messages.get( 'jquerymsg-test-categorytree-collapse-bullet' ),
-		'Message with single square brackets is not changed'
+		formatText( 'external-link-replace', 'http://example.com' ),
+		'Foo [http://example.com bar]',
+		'External link message only substitutes parameter when format is \'text\''
+	);
+	assert.equal(
+		formatParse( 'external-link-replace', 'http://example.com' ),
+		'Foo <a href="http://example.com">bar</a>',
+		'External link message processed when format is \'parse\''
 	);
 
-	assert.equal(
-		mw.message( 'jquerymsg-test-wikieditor-toolbar-help-content-signature-result' ).plain(),
-		mw.messages.get( 'jquerymsg-test-wikieditor-toolbar-help-content-signature-result' ),
-		'HTML message with curly braces is not changed'
-	);
+	mw.config.set( 'wgUserLanguage', oldUserLang );
 } );
 
 QUnit.test( 'Int', 4, function ( assert ) {
@@ -357,8 +400,6 @@ QUnit.test( 'Int', 4, function ( assert ) {
 		'Link with nested message'
 	);
 
-	mw.messages.set( 'portal-url', 'Project:Community portal' );
-	mw.messages.set( 'see-portal-url', '{{Int:portal-url}} is an important community page.' );
 	assert.equal(
 		parser( 'see-portal-url' ),
 		'Project:Community portal is an important community page.',
@@ -385,7 +426,7 @@ QUnit.test( 'Int', 4, function ( assert ) {
 
 // Tests that getMessageFunction is used for non-plain messages with curly braces or
 // square brackets, but not otherwise.
-QUnit.test( 'mw.msg()', 22, function ( assert ) {
+QUnit.test( 'mw.Message.prototype.parser monkey-patch', 22, function ( assert ) {
 	var oldGMF, outerCalled, innerCalled;
 
 	mw.messages.set( {
@@ -487,7 +528,6 @@ formatnumTests = [
 ];
 
 QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
-	mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 	mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 	$.each( formatnumTests, function ( i, test ) {
 		QUnit.stop();
