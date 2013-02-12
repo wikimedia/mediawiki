@@ -11,7 +11,7 @@ abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 	const RESULT_OK = 2;
 	const RESULT_ERROR = 3;
 
-	public abstract function addTests();
+	abstract public function addTests();
 
 	public function setUp() {
 		// Hack because because PHPUnit version 3.0.6 which is on prototype does not
