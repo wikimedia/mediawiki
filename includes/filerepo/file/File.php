@@ -1414,8 +1414,10 @@ abstract class File {
 	 * @param $copyStatus string
 	 * @param $source string
 	 * @param $watch bool
+	 * @param $timestamp string|bool
+	 * @param $user User object or null to use $wgUser
 	 */
-	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
+	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false, $timestamp = false, User $user = null ) {
 		$this->readOnlyError();
 	}
 
