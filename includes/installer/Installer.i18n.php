@@ -681,6 +681,7 @@ This message refers to a block of HTML being embedded into the installer page. I
 {{Identical|Memcached server}}',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-install-step-done' => '{{Identical|Done}}',
+	'config-install-step-failed' => '{{Identical|Failed}}',
 	'config-install-database' => '*{{msg-mw|Config-install-database}}
 *{{msg-mw|Config-install-tables}}
 *{{msg-mw|Config-install-schema}}

@@ -312,7 +312,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Sublinhar links:',
+'tog-underline' => 'Sublinhar ligação:',
 'tog-justify' => 'Justificar parágrafos',
 'tog-hideminor' => 'Esconder edições menores nas mudanças recentes',
 'tog-hidepatrolled' => 'Esconder edições patrulhadas nas mudanças recentes',
@@ -1689,7 +1689,7 @@ Esta informação será pública.',
 'rcshowhidemine' => '$1 as minhas edições',
 'rclinks' => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff' => 'dif',
-'hist' => 'hist',
+'hist' => 'his',
 'hide' => 'Esconder',
 'show' => 'Mostrar',
 'minoreditletter' => 'm',
@@ -2136,7 +2136,7 @@ Agora redirecciona para [[$2]].',
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorias}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
-'nlinks' => '$1 {{PLURAL:$1|link|links}}',
+'nlinks' => '$1 {{PLURAL:$1|ligação|ligações}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|edição|edições}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visitas}}',
@@ -2885,7 +2885,7 @@ O último registo é apresentado abaixo para referência:",
 Escolha outro nome, por favor.',
 
 # Export
-'export' => 'Exportação de páginas',
+'export' => 'Exportar páginas',
 'exporttext' => 'Pode exportar o texto e o histórico de edições de uma página em particular para um ficheiro XML. Poderá então importar esse conteúdo noutra wiki que utilize o programa MediaWiki, através da [[Special:Import|página de importações]].
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição actual e informações sobre a mais recente das edições.

@@ -1617,7 +1617,7 @@ $1",
 'nchanges' => '$1次更改',
 'recentchanges' => '最近更改',
 'recentchanges-legend' => '最近更改选项',
-'recentchanges-summary' => '跟踪这个wiki上的最新更改。',
+'recentchanges-summary' => '在此页面上跟踪维基的更改。',
 'recentchanges-feed-description' => '跟踪订阅本wiki的最近更改。',
 'recentchanges-label-newpage' => '这次编辑建立了一个新页面',
 'recentchanges-label-minor' => '这是一个小编辑',
@@ -2190,7 +2190,7 @@ $1',
 
 # Special:ListGroupRights
 'listgrouprights' => '用户组权限',
-'listgrouprights-summary' => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。
+'listgrouprights-summary' => '以下面是一个在这个维基中所定义出来的用户权限列表，以及它们的访问权。
 更多有关个别权限的细节可以在[[{{MediaWiki:Listgrouprights-helppage}}|这里]]找到。',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">被授予的权限</span>
 * <span class="listgrouprights-revoked">被取消的权限</span>',
@@ -3039,6 +3039,7 @@ $1被封禁的理由是：“$2”',
 'pageinfo-robot-noindex' => '不可索引',
 'pageinfo-views' => '查看次数',
 'pageinfo-watchers' => '页面监视者人数',
+'pageinfo-few-watchers' => '少于$1名监视者',
 'pageinfo-redirects-name' => '重定向到本页',
 'pageinfo-subpages-name' => '本页的子页面',
 'pageinfo-subpages-value' => '$1 （$2个重定向；$3个非重定向）',

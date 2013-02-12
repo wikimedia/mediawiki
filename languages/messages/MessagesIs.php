@@ -3074,12 +3074,12 @@ Vinsamlegast reyndu aftur.',
 'sp-newimages-showfrom' => 'Leita af nýjum skráum frá $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '{{PLURAL:$1|ein sekúnda|$1 sekúndur}}',
-'minutes' => '{{PLURAL:$1|ein mínúta|$1 mínútur}}',
-'hours' => '{{PLURAL:$1|einn klukkutími|$1 klukkutímar}}',
-'days' => '{{PLURAL:$1|einn dagur|$1 dagar}}',
-'months' => '{{PLURAL:$1|$1 mánuður|$1 mánuðir}}',
-'years' => '{{PLURAL:$1|$1 ár}}',
+'seconds' => '{{PLURAL:$1|einni sekúndu|$1 sekúndum}}',
+'minutes' => '{{PLURAL:$1|einni mínútu|$1 mínútum}}',
+'hours' => '{{PLURAL:$1|einum klukkutíma|$1 klukkutímum}}',
+'days' => '{{PLURAL:$1|einum degi|$1 dögum}}',
+'months' => '{{PLURAL:$1|$1 mánuði|$1 mánuðum}}',
+'years' => '{{PLURAL:$1|$1 ári|$1 árum}}',
 'ago' => '$1 síðan',
 'just-now' => 'akkúrat núna',
 

@@ -1067,7 +1067,8 @@ This message is displayed when someone tried to login and the CSRF failed (most 
 
 Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'noname' => 'Error message.',
-'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
+'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message {{msg-mw|Loginsuccess}}.
+{{Identical|Login successful}}',
 'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
@@ -3660,7 +3661,8 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 'shared-repo' => 'This message can be used as parameter $1 in the following messages:
 * {{msg-mw|shared-repo-from}}
 * {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}',
-'shared-repo-name-wikimediacommons' => '{{optional}}',
+'shared-repo-name-wikimediacommons' => '{{optional}}
+{{Identical|Wikimedia Commons}}',
 'filepage.css' => '{{Optional}}',
 'upload-disallowed-here' => 'This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right priviledge.',
 
@@ -4758,7 +4760,8 @@ See also:
 See also:
 * {{msg-mw|Mycontris}}
 * {{msg-mw|Accesskey-pt-mycontris}}
-* {{msg-mw|Tooltip-pt-mycontris}}',
+* {{msg-mw|Tooltip-pt-mycontris}}
+{{Identical|Contribution}}',
 'contribsub2' => 'Contributions for "user" (links)
 {{Identical|For $1}}',
 'nocontribs' => 'Optional parameter: $1 is the user name',

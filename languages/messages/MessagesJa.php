@@ -363,7 +363,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'リンクの下線：',
+'tog-underline' => 'リンクの下線:',
 'tog-justify' => '段落に均等割り付けを設定',
 'tog-hideminor' => '最近の更新に細部の編集を表示しない',
 'tog-hidepatrolled' => '最近の更新に巡回済みの編集を表示しない',
@@ -4356,7 +4356,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-ok-but-empty' => '内部エラー: サーバーからの応答がありません。',
 'api-error-overwrite' => '既存のファイルへの上書きは許可されていません。',
 'api-error-stashfailed' => '内部エラー: サーバーは一時ファイルを格納できませんでした。',
-'api-error-publishfailed' => '内部エラー：サーバーは一時ファイルを発行できませんでした。',
+'api-error-publishfailed' => '内部エラー: サーバーは一時ファイルを発行できませんでした。',
 'api-error-timeout' => 'サーバーが決められた時間内に応答しませんでした。',
 'api-error-unclassified' => '不明なエラーが発生しました。',
 'api-error-unknown-code' => '不明なエラー:「$1」',
