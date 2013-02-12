@@ -315,7 +315,9 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		// (b) Get a SHA-1 hash of the object
+		wfSuppressWarnings();
 		$sha1Hash = sha1_file( $params['src'] );
+		wfRestoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
