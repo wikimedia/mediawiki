@@ -12,7 +12,19 @@
 				'SITENAME' : mw.config.get( 'wgSiteName' )
 			},
 			messages : mw.messages,
-			language : mw.language
+			language : mw.language,
+
+			// Same meaning	as in mediawiki.js.
+			//
+			// Only	'text',	'parse', and 'escaped' are supported, and the
+			// actual escaping for 'escaped' is done by other code (generally
+			// through jqueryMsg).
+			//
+			// However, note that this default only
+			// applies to direct calls to jqueryMsg. The default for mediawiki.js itself
+			// is 'text', including when it uses jqueryMsg.
+			format: 'parse'
+
 		};
 
 	/**
@@ -57,7 +69,15 @@
 	 * @return {Function} function suitable for assigning to window.gM
 	 */
 	mw.jqueryMsg.getMessageFunction = function ( options ) {
-		var failableParserFn = getFailableParserFn( options );
+		var failableParserFn = getFailableParserFn( options ),
+			format;
+
+		if ( options && options.format !== undefined ) {
+			format = options.format;
+		} else {
+			format = parserDefaults.format;
+		}
+
 		/**
 		 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
 		 *    somefunction(a, b, c, d)
@@ -69,7 +89,12 @@
 		 * @return {string} Rendered HTML.
 		 */
 		return function () {
-			return failableParserFn( arguments ).html();
+			var failableResult = failableParserFn( arguments );
+			if ( format === 'text' || format === 'escaped' ) {
+				return failableResult.text();
+			} else {
+				return failableResult.html();
+			}
 		};
 	};
 
@@ -116,12 +141,28 @@
 	 */
 	mw.jqueryMsg.parser = function ( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
+		this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
+
 		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
 	};
 
 	mw.jqueryMsg.parser.prototype = {
-		// cache, map of mediaWiki message key to the AST of the message. In most cases, the message is a string so this is identical.
-		// (This is why we would like to move this functionality server-side).
+		/**
+		 * Cache mapping MediaWiki message keys and the value onlyCurlyBraceTransform, to the AST of the message.
+		 *
+		 * In most cases, the message is a string so this is identical.
+		 * (This is why we would like to move this functionality server-side).
+		 *
+		 * The two parts of the key are separated by colon.  For example:
+		 *
+		 * "message-key:true": ast
+		 *
+		 * if they key is "message-key" and onlyCurlyBraceTransform is true.
+		 *
+		 * This cache is shared by all instances of mw.jqueryMsg.parser.
+		 *
+		 * @static
+		 */
 		astCache: {},
 
 		/**
@@ -142,16 +183,20 @@
 		 * @return {String|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
-			if ( this.astCache[ key ] === undefined ) {
-				var wikiText = this.settings.messages.get( key );
+			var wikiText,
+				cacheKey = [key, this.settings.onlyCurlyBraceTransform].join( ':' );
+
+			if ( this.astCache[ cacheKey ] === undefined ) {
+				wikiText = this.settings.messages.get( key );
 				if ( typeof wikiText !== 'string' ) {
 					wikiText = '\\[' + key + '\\]';
 				}
-				this.astCache[ key ] = this.wikiTextToAst( wikiText );
+				this.astCache[ cacheKey ] = this.wikiTextToAst( wikiText );
 			}
-			return this.astCache[ key ];
+			return this.astCache[ cacheKey ];
 		},
-		/*
+
+		/**
 		 * Parses the input wikiText into an abstract syntax tree, essentially an s-expression.
 		 *
 		 * CAVEAT: This does not parse all wikitext. It could be more efficient, but it's pretty good already.
@@ -163,12 +208,12 @@
 		 */
 		wikiTextToAst: function ( input ) {
 			var pos,
-				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, backslash, anyCharacter,
-				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
+				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, regularLiteralWithSquareBrackets,
+				backslash, anyCharacter, escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
 				whitespace, dollar, digits,
 				openExtlink, closeExtlink, wikilinkPage, wikilinkContents, openLink, closeLink, templateName, pipe, colon,
 				templateContents, openTemplate, closeTemplate,
-				nonWhitespaceExpression, paramExpression, expression, result;
+				nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, result;
 
 			// Indicates current position in input as we parse through it.
 			// Shared among all parsing functions below.
@@ -274,6 +319,7 @@
 			regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
 			regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
 			regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
+			regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
 			backslash = makeStringParser( '\\' );
 			anyCharacter = makeRegexParser( /^./ );
 			function escapedLiteral() {
@@ -297,14 +343,14 @@
 			] );
 			// Used to define "literals" without spaces, in space-delimited situations
 			function literalWithoutSpace() {
-				 var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
-				 return result === null ? null : result.join('');
+				var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
+				return result === null ? null : result.join('');
 			}
 			// Used to define "literals" within template parameters. The pipe character is the parameter delimeter, so by default
 			// it is not a literal in the parameter
 			function literalWithoutBar() {
-				 var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
-				 return result === null ? null : result.join('');
+				var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
+				return result === null ? null : result.join('');
 			}
 
 			// Used for wikilink page names.  Like literalWithoutBar, but
@@ -315,9 +361,15 @@
 			}
 
 			function literal() {
-				 var result = nOrMore( 1, escapedOrRegularLiteral )();
-				 return result === null ? null : result.join('');
+				var result = nOrMore( 1, escapedOrRegularLiteral )();
+				return result === null ? null : result.join('');
 			}
+
+			function curlyBraceTransformExpressionLiteral() {
+				var result = nOrMore( 1, regularLiteralWithSquareBrackets )();
+				return result === null ? null : result.join('');
+			}
+
 			whitespace = makeRegexParser( /^\s+/ );
 			dollar = makeStringParser( '$' );
 			digits = makeRegexParser( /^\d+/ );
@@ -498,8 +550,22 @@
 				literal
 			] );
 
-			function start() {
-				var result = nOrMore( 0, expression )();
+			// Used when only {{-transformation is wanted, for 'text'
+			// or 'escaped' formats
+			curlyBraceTransformExpression = choice( [
+				template,
+				replacement,
+				curlyBraceTransformExpressionLiteral
+			] );
+
+
+			/**
+			 * Starts the parse
+			 *
+			 * @param {Function} rootExpression root parse function
+			 */
+			function start( rootExpression ) {
+				var result = nOrMore( 0, rootExpression )();
 				if ( result === null ) {
 					return null;
 				}
@@ -508,7 +574,9 @@
 			// everything above this point is supposed to be stateless/static, but
 			// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
 			// finally let's do some actual work...
-			result = start();
+
+			// If you add another possible rootExpression, you must update the astCache key scheme.
+			result = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
 
 			/*
 			 * For success, the p must have gotten to the end of the input
@@ -792,6 +860,8 @@
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
+		var messageFunction;
+
 		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
 		// Caching is somewhat problematic, because we do need different message functions for different maps, so
 		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
@@ -800,7 +870,12 @@
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
-		var messageFunction = mw.jqueryMsg.getMessageFunction( { 'messages': this.map } );
+
+		messageFunction = mw.jqueryMsg.getMessageFunction( {
+			'messages': this.map,
+			// For format 'escaped', escaping part is handled by mediawiki.js
+			'format': this.format
+		} );
 		return messageFunction( this.key, this.parameters );
 	};
 
