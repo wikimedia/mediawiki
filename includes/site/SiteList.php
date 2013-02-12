@@ -286,6 +286,9 @@ class SiteList extends GenericArrayObject {
 	public function unserialize( $serialization ) {
 		$serializationData = parent::unserialize( $serialization );
 
+		wfDebugLog( __CLASS__, __FUNCTION__ . ": Site serialization keys: "
+			. implode( ', ', array_keys( $serializationData ) ) );
+
 		$this->byInternalId = $serializationData['internalIds'];
 		$this->byGlobalId = $serializationData['globalIds'];
 
