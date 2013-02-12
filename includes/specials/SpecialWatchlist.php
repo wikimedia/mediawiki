@@ -108,7 +108,8 @@ class SpecialWatchlist extends SpecialPage {
 		/* bool  */ 'hideLiu'   => (int)$user->getBoolOption( 'watchlisthideliu' ),
 		/* bool  */ 'hidePatrolled' => (int)$user->getBoolOption( 'watchlisthidepatrolled' ),
 		/* bool  */ 'hideOwn'   => (int)$user->getBoolOption( 'watchlisthideown' ),
-		/* ?     */ 'namespace' => 'all',
+		/* bool  */ 'extended'   => (int)$user->getBoolOption( 'extendwatchlist' ),
+		/* ?     */ 'namespace' => '', //means all
 		/* ?     */ 'invert'    => false,
 		/* bool  */ 'associated' => false,
 		);
@@ -127,6 +128,7 @@ class SpecialWatchlist extends SpecialPage {
 		$prefs['hideliu'] = $user->getBoolOption( 'watchlisthideliu' );
 		$prefs['hideown'] = $user->getBoolOption( 'watchlisthideown' );
 		$prefs['hidepatrolled'] = $user->getBoolOption( 'watchlisthidepatrolled' );
+		$prefs['extended'] = $user->getBoolOption( 'extendwatchlist' );
 
 		# Get query variables
 		$values = array();
@@ -137,6 +139,7 @@ class SpecialWatchlist extends SpecialPage {
 		$values['hideLiu'] = (int)$request->getBool( 'hideLiu', $prefs['hideliu'] );
 		$values['hideOwn'] = (int)$request->getBool( 'hideOwn', $prefs['hideown'] );
 		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $prefs['hidepatrolled'] );
+		$values['extended'] = (int)$request->getBool( 'extended', $prefs['extended'] );
 		foreach( $this->customFilters as $key => $params ) {
 			$values[$key] = (int)$request->getBool( $key );
 		}
@@ -232,7 +235,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		# Toggle watchlist content (all recent edits or just the latest)
-		if( $user->getOption( 'extendwatchlist' ) ) {
+		if( $values['extended'] ) {
 			$limitWatchlist = intval( $user->getOption( 'wllimit' ) );
 			$usePage = false;
 		} else {
