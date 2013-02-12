@@ -1,7 +1,6 @@
 ( function ( mw, $ ) {
 
-var specialCharactersPageName;
-
+var specialCharactersPageName, oldGetOuterHtml;
 
 // Since QUnitTestResources.php loads both mediawiki and mediawiki.jqueryMsg as
 // dependencies, this only tests the monkey-patched behavior with the two of them combined.
@@ -10,6 +9,18 @@ var specialCharactersPageName;
 
 QUnit.module( 'mediawiki', QUnit.newMwEnvironment( {
 	setup: function () {
+		oldGetOuterHtml = $.fn.getOuterHtml;
+
+		// Same function is in mediawiki.jqueryMsg.test.js
+		$.fn.getOuterHtml = function () {
+			var $div = $( '<div>' ), html;
+			$div.append( $( this ).eq( 0 ).clone() );
+			html = $div.html();
+			$div.empty();
+			$div = undefined;
+			return html;
+		};
+
 		// Messages used in multiple tests
 		mw.messages.set( {
 			'other-message': 'Other Message',
@@ -17,13 +28,18 @@ QUnit.module( 'mediawiki', QUnit.newMwEnvironment( {
 			'gender-plural-msg': '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome',
 			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
 			'formatnum-msg': '{{formatnum:$1}}',
-			'int-msg': 'Some {{int:other-message}}'
+			'int-msg': 'Some {{int:other-message}}',
+			'mediawiki-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+			'external-link-replace': 'Foo [$1 bar]'
 		} );
 
 		// For formatnum tests
 		mw.config.set( 'wgUserLanguage', 'en' );
 
 		specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
+	},
+	teardown: function () {
+		$.fn.getOuterHtml = oldGetOuterHtml;
 	}
 } ) );
 
@@ -102,7 +118,7 @@ QUnit.test( 'mw.config', 1, function ( assert ) {
 	assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 });
 
-QUnit.test( 'mw.message & mw.messages', 54, function ( assert ) {
+QUnit.test( 'mw.message & mw.messages', 68, function ( assert ) {
 	var goodbye, hello;
 
 	// Convenience method for asserting the same result for multiple formats
@@ -136,11 +152,28 @@ QUnit.test( 'mw.message & mw.messages', 54, function ( assert ) {
 	assert.equal( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'Message.escaped returns the escaped message' );
 	assert.equal( hello.format, 'escaped', 'Message.escaped correctly updated the "format" property' );
 
-	assert.ok( mw.messages.set( 'escaped-with-curly-brace', '"{{SITENAME}}" is the home of {{int:other-message}}' ) );
-	assert.equal( mw.message( 'escaped-with-curly-brace' ).escaped(), mw.html.escape( '"' + mw.config.get( 'wgSiteName') + '" is the home of Other Message' ), 'Escaped format works correctly for curly brace message' );
+	assert.ok( mw.messages.set( 'multiple-curly-brace', '"{{SITENAME}}" is the home of {{int:other-message}}' ), 'mw.messages.set: Register' );
+	assertMultipleFormats( ['multiple-curly-brace'], ['text', 'parse'], '"' + mw.config.get( 'wgSiteName') + '" is the home of Other Message', 'Curly brace format works correctly' );
+	assert.equal( mw.message( 'multiple-curly-brace' ).plain(), mw.messages.get( 'multiple-curly-brace' ), 'Plain format works correctly for curly brace message' );
+	assert.equal( mw.message( 'multiple-curly-brace' ).escaped(), mw.html.escape( '"' + mw.config.get( 'wgSiteName') + '" is the home of Other Message' ), 'Escaped format works correctly for curly brace message' );
 
-	assert.ok( mw.messages.set( 'escaped-with-square-brackets', 'Visit the [[Project:Community portal|community portal]] & [[Project:Help desk|help desk]]' ) );
-	assert.equal( mw.message( 'escaped-with-square-brackets' ).escaped(), 'Visit the [[Project:Community portal|community portal]] &amp; [[Project:Help desk|help desk]]', 'Escaped format works correctly for square bracket message' );
+	assert.ok( mw.messages.set( 'multiple-square-brackets-and-ampersand', 'Visit the [[Project:Community portal|community portal]] & [[Project:Help desk|help desk]]' ), 'mw.messages.set: Register' );
+	assertMultipleFormats( ['multiple-square-brackets-and-ampersand'], ['plain', 'text'], mw.messages.get( 'multiple-square-brackets-and-ampersand' ), 'Square bracket message is not processed' );
+	assert.equal( mw.message( 'multiple-square-brackets-and-ampersand' ).escaped(), 'Visit the [[Project:Community portal|community portal]] &amp; [[Project:Help desk|help desk]]', 'Escaped format works correctly for square bracket message' );
+	assert.equal( mw.message( 'multiple-square-brackets-and-ampersand' ).parse(), 'Visit the ' + $( '<a>' ).attr( {
+		title: 'Project:Community portal',
+		href: mw.util.wikiGetlink( 'Project:Community portal' )
+	} ).text( 'community portal' ).getOuterHtml() + ' &amp; ' + $( '<a>' ).attr( {
+		title: 'Project:Help desk',
+		href: mw.util.wikiGetlink( 'Project:Help desk' )
+	} ).text( 'help desk' ).getOuterHtml(), 'Internal links work with parse' );
+
+	assertMultipleFormats( ['mediawiki-test-version-entrypoints-index-php'], ['plain', 'text', 'escaped'], mw.messages.get( 'mediawiki-test-version-entrypoints-index-php' ), 'External link markup is unprocessed' );
+	assert.equal( mw.message( 'mediawiki-test-version-entrypoints-index-php' ).parse(), '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>', 'External link works correctly in parse mode' );
+
+	assertMultipleFormats( ['external-link-replace', 'http://example.org/?x=y&z'], ['plain', 'text'] , 'Foo [http://example.org/?x=y&z bar]', 'Parameters are substituted but external link is not processed' );
+	assert.equal( mw.message( 'external-link-replace', 'http://example.org/?x=y&z' ).escaped(), 'Foo [http://example.org/?x=y&amp;z bar]', 'In escaped mode, parameters are substituted and ampersand is escaped, but external link is not processed' );
+	assert.equal( mw.message( 'external-link-replace', 'http://example.org/?x=y&z' ).parse(), 'Foo <a href="http://example.org/?x=y&amp;z">bar</a>', 'External link with replacement works in parse mode without double-escaping' );
 
 	hello.parse();
 	assert.equal( hello.format, 'parse', 'Message.parse correctly updated the "format" property' );
@@ -174,7 +207,7 @@ QUnit.test( 'mw.message & mw.messages', 54, function ( assert ) {
 	assert.ok( mw.messages.set( 'mediawiki-test-categorytree-collapse-bullet', '[<b>−</b>]' ), 'mw.messages.set: Register' );
 	assert.equal( mw.message( 'mediawiki-test-categorytree-collapse-bullet' ).plain(), mw.messages.get( 'mediawiki-test-categorytree-collapse-bullet' ), 'Single square brackets unchanged in plain mode' );
 
-	assert.ok( mw.messages.set( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result', '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)' ) );
+	assert.ok( mw.messages.set( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result', '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)' ), 'mw.messages.set: Register' );
 	assert.equal( mw.message( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result' ).plain(), mw.messages.get( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result' ), 'HTML message with curly braces is not changed in plain mode' );
 
 	assertMultipleFormats( ['gender-plural-msg', 'male', 1], ['text', 'parse', 'escaped'], 'he is awesome', 'Gender and plural are resolved' );
@@ -196,7 +229,7 @@ QUnit.test( 'mw.msg', 14, function ( assert ) {
 	assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 	assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
 
-	assert.ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ) );
+	assert.ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
 	assert.equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
 	assert.equal( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
 	assert.equal( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );

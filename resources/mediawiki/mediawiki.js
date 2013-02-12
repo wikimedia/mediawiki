@@ -136,8 +136,7 @@ var mw = ( function ( $, undefined ) {
 
 	Message.prototype = {
 		/**
-		 * Simple message parser, does $N replacement, HTML-escaping (only for
-		 * 'escaped' format), and nothing else.
+		 * Simple message parser, does $N replacement and nothing else.
 		 *
 		 * This may be overridden to provide a more complex message parser.
 		 *
