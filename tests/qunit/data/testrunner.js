@@ -114,11 +114,11 @@
 			// e.g. mw.config.set( 'wgFileExtensions', [] ) would not effect liveConfig,
 			// but mw.config.get( 'wgFileExtensions' ).push( 'png' ) would as the array
 			// was passed by reference in $.extend's loop.
-			return $.extend( {}, liveConfig, custom, /*deep=*/true );
+			return $.extend( /*deep=*/true, {}, liveConfig, custom );
 		}
 
 		function freshMessagesCopy( custom ) {
-			return $.extend( {}, liveMessages, custom, /*deep=*/true );
+			return $.extend(  /*deep=*/true, {}, liveMessages, custom );
 		}
 
 		log = QUnit.urlParams.mwlogenv ? mw.log : function () {};
