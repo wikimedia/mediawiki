@@ -214,6 +214,24 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
+
+		if ( $this->types == array( 'rights' ) ) {
+			global $wgUserrightsInterwikiDelimiter;
+			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getText() );
+			if ( count( $parts ) == 2 ) {
+				list( $name, $database ) = array_map( 'trim', $parts );
+				if ( strstr( $database, '*' ) ) { // Search for wildcard in database name
+					unset( $this->mConds['log_title'] );
+					$params = array();
+					foreach ( explode( '*', str_replace( ' ', '_', $title->getText() ) ) as $titlepart ) {
+						$params[] = $titlepart;
+						$params[] = $db->anyString();
+					}
+					array_pop( $params ); // Get rid of the last % we added.
+					$this->mConds[] = 'log_title' . $db->buildLike( $params );
+				}
+			}
+		}
 	}
 
 	/**
