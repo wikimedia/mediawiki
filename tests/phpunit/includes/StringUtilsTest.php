@@ -70,23 +70,27 @@ class StringUtilsTest extends MediaWikiTestCase {
 			array( $PASS, "\xc2\x80" ),
 			array( $PASS, "\xe0\xa0\x80" ),
 			array( $PASS, "\xf0\x90\x80\x80" ),
-			array( $PASS, "\xf8\x88\x80\x80\x80" ),
-			array( $PASS, "\xfc\x84\x80\x80\x80\x80" ),
+			array( $PASS, "\xf2\x80\x80\x80" ),
+			array( $PASS, "\xf4\x80\x80\x80" ), // U-100000
+			array( $FAIL, "\xf8\x88\x80\x80\x80" ),
+			array( $FAIL, "\xfc\x84\x80\x80\x80\x80" ),
 
 			# Last possible sequence
 			array( $PASS, "\x7f" ),
 			array( $PASS, "\xdf\xbf" ),
 			array( $PASS, "\xef\xbf\xbf" ),
-			array( $PASS, "\xf7\xbf\xbf\xbf" ),
-			array( $PASS, "\xfb\xbf\xbf\xbf\xbf" ),
+			array( $PASS, "\xf3\xbf\xbf\xbf" ), // U-0FFFFF
+			array( $PASS, "\xf4\x8f\xbf\xbf" ), // U-1FFFFF
+			array( $FAIL, "\xf7\xbf\xbf\xbf" ), // U-3FFFFF
+			array( $FAIL, "\xfb\xbf\xbf\xbf\xbf" ),
 			array( $FAIL, "\xfd\xbf\xbf\xbf\xbf\xbf" ),
 
 			# boundaries:
 			array( $PASS, "\xed\x9f\xbf" ),
 			array( $PASS, "\xee\x80\x80" ),
 			array( $PASS, "\xef\xbf\xbd" ),
-			array( $PASS, "\xf4\x8f\xbf\xbf" ),
-			array( $PASS, "\xf4\x90\x80\x80" ),
+			array( $PASS, "\xf4\x8f\xbf\xbf" ), // U-10FFFF
+			array( $FAIL, "\xf4\x90\x80\x80" ), // U-110000
 
 			# Malformed
 			array( $FAIL, "\x80" ),

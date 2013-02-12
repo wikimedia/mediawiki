@@ -61,9 +61,8 @@ class StringUtils {
 				  [\x00-\x7f]
 				| [\xc0-\xdf][\x80-\xbf]
 				| [\xe0-\xef][\x80-\xbf]{2}
-				| [\xf0-\xf7][\x80-\xbf]{3}
-				| [\xf8-\xfb][\x80-\xbf]{4}
-				| \xfc[\x84-\xbf][\x80-\xbf]{4}
+				| [\xf0-\xf3][\x80-\xbf]{3}
+				| \xf4[\x80-\x8f][\x80-\xbf]{2}
 			)+$/x', $value );
 			return ($hasUtf8 > 0 );
 		}
