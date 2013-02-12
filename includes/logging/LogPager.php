@@ -190,6 +190,17 @@ class LogPager extends ReverseChronologicalPager {
 		$ns = $title->getNamespace();
 		$db = $this->mDb;
 
+		if ( $this->types == array( 'rights' ) ) {
+			global $wgUserrightsInterwikiDelimiter;
+			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getDBKey() );
+			if ( count( $parts ) == 2 ) {
+				list( $name, $database ) = array_map( 'trim', $parts );
+				if ( strstr( $database, '*' ) ) { // Search for wildcard in database name
+					$doUserRightsLogLike = true;
+				}
+			}
+		}
+
 		# Using the (log_namespace, log_title, log_timestamp) index with a
 		# range scan (LIKE) on the first two parts, instead of simple equality,
 		# makes it unusable for sorting.  Sorted retrieval using another index
@@ -201,12 +212,19 @@ class LogPager extends ReverseChronologicalPager {
 		# use the page_time index.  That should have no more than a few hundred
 		# log entries for even the busiest pages, so it can be safely scanned
 		# in full to satisfy an impossible condition on user or similar.
-		if ( $pattern && !$wgMiserMode ) {
-			$this->mConds['log_namespace'] = $ns;
-			$this->mConds[] = 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() );
+		$this->mConds['log_namespace'] = $ns;
+		if ( $doUserRightsLogLike ) {
+			$params = array( $name . $wgUserrightsInterwikiDelimiter );
+			foreach ( explode( '*', $database ) as $databasepart ) {
+				$params[] = $databasepart;
+				$params[] = $db->anyString();
+			}
+			array_pop( $params ); // Get rid of the last % we added.
+			$this->mConds[] = 'log_title' . $db->buildLike( $params );
+		} elseif ( $pattern && !$wgMiserMode ) {
+			$this->mConds[] = 'log_title' . $db->buildLike( $title->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;
 		} else {
-			$this->mConds['log_namespace'] = $ns;
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
