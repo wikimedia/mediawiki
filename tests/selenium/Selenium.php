@@ -106,7 +106,7 @@ class Selenium {
 		self::$url = $url;
 	}
 
-	static public function getUrl() {
+	public static function getUrl() {
 		return self::$url;
 	}
 

@@ -227,7 +227,7 @@ class ParserTest {
 	 * Remove last character if it is a newline
 	 * @group utility
 	 */
-	static public function chomp( $s ) {
+	public static function chomp( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
 			return substr( $s, 0, -1 );
 		}
@@ -1195,7 +1195,7 @@ class ParserTest {
 	 * @param $line Integer: the input line number, for reporting errors
 	 * @param $ignoreDuplicate Boolean: whether to silently ignore duplicate pages
 	 */
-	static public function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
+	public static function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
 		global $wgCapitalLinks;
 
 		$oldCapitalLinks = $wgCapitalLinks;

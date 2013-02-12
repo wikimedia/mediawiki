@@ -27,7 +27,7 @@
  * @ingroup Maintenance
  */
 class DeleteArchivedFilesImplementation {
-	static public function doDelete( $output, $force ) {
+	public static function doDelete( $output, $force ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
