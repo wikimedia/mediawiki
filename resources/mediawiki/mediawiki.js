@@ -127,7 +127,7 @@ var mw = ( function ( $, undefined ) {
 	 * @return Message
 	 */
 	function Message( map, key, parameters ) {
-		this.format = 'plain';
+		this.format = 'text';
 		this.map = map;
 		this.key = key;
 		this.parameters = parameters === undefined ? [] : slice.call( parameters );
@@ -136,8 +136,12 @@ var mw = ( function ( $, undefined ) {
 
 	Message.prototype = {
 		/**
-		 * Simple message parser, does $N replacement and nothing else.
+		 * Simple message parser, does $N replacement, HTML-escaping (only for
+		 * 'escaped' format), and nothing else.
+		 *
 		 * This may be overridden to provide a more complex message parser.
+		 *
+		 * The primary override is in mediawiki.jqueryMsg.
 		 *
 		 * This function will not be called for nonexistent messages.
 		 */
@@ -173,14 +177,14 @@ var mw = ( function ( $, undefined ) {
 
 			if ( !this.exists() ) {
 				// Use <key> as text if key does not exist
-				if ( this.format !== 'plain' ) {
-					// format 'escape' and 'parse' need to have the brackets and key html escaped
+				if ( this.format === 'escaped' || this.format === 'parse' ) {
+					// format 'escaped' and 'parse' need to have the brackets and key html escaped
 					return mw.html.escape( '<' + this.key + '>' );
 				}
 				return '<' + this.key + '>';
 			}
 
-			if ( this.format === 'plain' || this.format === 'parse' ) {
+			if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
 				text = this.parser();
 			}
 
@@ -193,7 +197,12 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Changes format to parse and converts message to string
+		 * Changes format to 'parse' and converts message to string
+		 *
+		 * If jqueryMsg is loaded, this parses the message text from wikitext
+		 * (where supported) to HTML
+		 *
+		 * Otherwise, it is equivalent to plain.
 		 *
 		 * @return {string} String form of parsed message
 		 */
@@ -203,7 +212,10 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Changes format to plain and converts message to string
+		 * Changes format to 'plain' and converts message to string
+		 *
+		 * This substitutes parameters, but otherwise does not change the
+		 * message text.
 		 *
 		 * @return {string} String form of plain message
 		 */
@@ -213,7 +225,23 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Changes the format to html escaped and converts message to string
+		 * Changes format to 'text' and converts message to string
+		 *
+		 * If jqueryMsg is loaded, {{-transformation is done where supported
+		 * (such as {{plural:}}, {{gender:}}, {{int:}}).
+		 *
+		 * Otherwise, it is equivalent to plain.
+		 */
+		text: function () {
+			this.format = 'text';
+			return this.toString();
+		},
+
+		/**
+		 * Changes the format to 'escaped' and converts message to string
+		 *
+		 * This is equivalent to using the 'text' format (see text method), then
+		 * HTML-escaping the output.
 		 *
 		 * @return {string} String form of html escaped message
 		 */
