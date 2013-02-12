@@ -68,24 +68,28 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param  $pageid
-	 * @param  $title
+	 * @param $pageid
+	 * @param $title
 	 * @param $rc RecentChange (optional)
+	 * @param $user User object to get token for, or null to use $wgUser
 	 * @return bool|String
 	 */
-	public static function getPatrolToken( $pageid, $title, $rc = null ) {
-		global $wgUser;
+	public static function getPatrolToken( $pageid, $title, $rc = null, User $user = null ) {
+		if ( !$user ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
 
 		$validTokenUser = false;
 
 		if ( $rc ) {
-			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
-				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW ) )
+			if ( ( $user->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
+				( $user->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW ) )
 			{
 				$validTokenUser = true;
 			}
 		} else {
-			if ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
+			if ( $user->useRCPatrol() || $user->useNPPatrol() ) {
 				$validTokenUser = true;
 			}
 		}
@@ -94,7 +98,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// The patrol token is always the same, let's exploit that
 			static $cachedPatrolToken = null;
 			if ( is_null( $cachedPatrolToken ) ) {
-				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
+				$cachedPatrolToken = $user->getEditToken( 'patrol' );
 			}
 			return $cachedPatrolToken;
 		} else {
@@ -451,9 +455,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $this->token ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
+			$user = $this->getUser();
 			foreach ( $this->token as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
-					$title, RecentChange::newFromRow( $row ) );
+					$title, RecentChange::newFromRow( $row ), $user );
 				if ( $val === false ) {
 					$this->setWarning( "Action '$t' is not allowed for the current user" );
 				} else {
