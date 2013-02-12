@@ -43,12 +43,12 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 
-	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
-	var $mAction, $mCreateaccount, $mCreateaccountMail;
-	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
-	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
-	var $mType, $mReason, $mRealName;
-	var $mAbortLoginErrorMsg = 'login-abort-generic';
+	public $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
+	public $mAction, $mCreateaccount, $mCreateaccountMail;
+	public $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
+	public $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
+	public $mType, $mReason, $mRealName;
+	public $mAbortLoginErrorMsg = 'login-abort-generic';
 	private $mLoaded = false;
 
 	/**
