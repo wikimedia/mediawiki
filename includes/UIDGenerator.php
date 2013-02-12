@@ -56,7 +56,8 @@ class UIDGenerator {
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) { // Linux/BSD/Solaris/OS X
 				// See http://linux.die.net/man/8/ifconfig
 				$m = array();
-				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/', wfShellExec( '/sbin/ifconfig -a' ), $m );
+				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/',
+					wfShellExec( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
 			}
 			wfRestoreWarnings();
