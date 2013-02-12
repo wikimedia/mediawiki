@@ -1,6 +1,31 @@
 ( function ( mw, $ ) {
 
-QUnit.module( 'mediawiki', QUnit.newMwEnvironment() );
+var specialCharactersPageName;
+
+
+// Since QUnitTestResources.php loads both mediawiki and mediawiki.jqueryMsg as
+// dependencies, this only tests the monkey-patched behavior with the two of them combined.
+
+// See mediawiki.jqueryMsg.test.js for unit tests for jqueryMsg-specific functionality.
+
+QUnit.module( 'mediawiki', QUnit.newMwEnvironment( {
+	setup: function () {
+		// Messages used in multiple tests
+		mw.messages.set( {
+			'other-message': 'Other Message',
+			'mediawiki-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
+			'gender-plural-msg': '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome',
+			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
+			'formatnum-msg': '{{formatnum:$1}}',
+			'int-msg': 'Some {{int:other-message}}'
+		} );
+
+		// For formatnum tests
+		mw.config.set( 'wgUserLanguage', 'en' );
+
+		specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
+	}
+} ) );
 
 QUnit.test( 'Initial check', 8, function ( assert ) {
 	assert.ok( window.jQuery, 'jQuery defined' );
@@ -77,8 +102,17 @@ QUnit.test( 'mw.config', 1, function ( assert ) {
 	assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 });
 
-QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
+QUnit.test( 'mw.message & mw.messages', 54, function ( assert ) {
 	var goodbye, hello, pluralMessage;
+
+	// Convenience method for asserting the same result for multiple formats
+	function assertMultipleFormats( messageArguments, formats, expectedResult, assertMessage) {
+		var len = formats.length, format;
+		for ( var i = 0; i < len; i++ ) {
+			format = formats[i];
+			assert.equal( mw.message.apply( null, messageArguments )[format](), expectedResult, assertMessage + ' when format is ' + format);
+		}
+	}
 
 	assert.ok( mw.messages, 'messages defined' );
 	assert.ok( mw.messages instanceof mw.Map, 'mw.messages instance of mw.Map' );
@@ -86,7 +120,9 @@ QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
 
 	hello = mw.message( 'hello' );
 
-	assert.equal( hello.format, 'plain', 'Message property "format" defaults to "plain"' );
+	// https://bugzilla.wikimedia.org/show_bug.cgi?id=44459
+	assert.equal( hello.format, 'text', 'Message property "format" defaults to "text"' );
+
 	assert.strictEqual( hello.map, mw.messages, 'Message property "map" defaults to the global instance in mw.messages' );
 	assert.equal( hello.key, 'hello', 'Message property "key" (currect key)' );
 	assert.deepEqual( hello.parameters, [], 'Message property "parameters" defaults to an empty array' );
@@ -100,29 +136,62 @@ QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
 	assert.equal( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'Message.escaped returns the escaped message' );
 	assert.equal( hello.format, 'escaped', 'Message.escaped correctly updated the "format" property' );
 
+	assert.ok( mw.messages.set( 'escaped-with-curly-brace', '"{{SITENAME}}" is the home of {{int:other-message}}' ) );
+	assert.equal( mw.message( 'escaped-with-curly-brace' ).escaped(), mw.html.escape( '"' + mw.config.get( 'wgSiteName') + '" is the home of Other Message' ), 'Escaped format works correctly for curly brace message' );
+
+	assert.ok( mw.messages.set( 'escaped-with-square-brackets', 'Visit the [[Project:Community portal|community portal]] & [[Project:Help desk|help desk]]' ) );
+	assert.equal( mw.message( 'escaped-with-square-brackets' ).escaped(), 'Visit the [[Project:Community portal|community portal]] &amp; [[Project:Help desk|help desk]]', 'Escaped format works correctly for square bracket message' );
+
 	hello.parse();
 	assert.equal( hello.format, 'parse', 'Message.parse correctly updated the "format" property' );
 
 	hello.plain();
 	assert.equal( hello.format, 'plain', 'Message.plain correctly updated the "format" property' );
 
+	hello.text();
+	assert.equal( hello.format, 'text', 'Message.text correctly updated the "format" property' );
+
 	assert.strictEqual( hello.exists(), true, 'Message.exists returns true for existing messages' );
 
 	goodbye = mw.message( 'goodbye' );
 	assert.strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
-	assert.equal( goodbye.plain(), '<goodbye>', 'Message.toString returns plain <key> if format is "plain" and key does not exist' );
+	assertMultipleFormats( ['goodbye'], ['plain', 'text'], '<goodbye>', 'Message.toString returns <key> if key does not exist' );
 	// bug 30684
-	assert.equal( goodbye.escaped(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "escaped" and key does not exist' );
+	assertMultipleFormats( ['goodbye'], ['parse', 'escaped'], '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if key does not exist' );
 
-	assert.ok( mw.messages.set( 'pluraltestmsg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
-	pluralMessage = mw.message( 'pluraltestmsg' , 6 );
-	assert.equal( pluralMessage.plain(), 'There are 6 results', 'plural get resolved when format is plain' );
-	assert.equal( pluralMessage.parse(), 'There are 6 results', 'plural get resolved when format is parse' );
+	assert.ok( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
+	assertMultipleFormats( ['plural-test-msg', 6], ['text', 'parse', 'escaped'], 'There are 6 results', 'plural get resolved' );
+	assert.equal( mw.message( 'plural-test-msg', 6 ).plain(), 'There {{PLURAL:6|is|are}} 6 {{PLURAL:6|result|results}}', 'Parameter is substituted but plural is not resolved in plain' );
 
+	assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary'], ['plain', 'text'], mw.messages.get( 'mediawiki-test-pagetriage-del-talk-page-notify-summary' ), 'Double square brackets with no parameters unchanged' );
+
+	assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName], ['plain', 'text'], 'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]', 'Double square brackets with one parameter' );
+
+	assert.equal( mw.message( 'mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ).escaped(), 'Notifying author of deletion nomination for [[' + mw.html.escape( specialCharactersPageName ) + ']]', 'Double square brackets with one parameter, when escaped' );
+
+
+	assert.ok( mw.messages.set( 'mediawiki-test-categorytree-collapse-bullet', '[<b>−</b>]' ), 'mw.messages.set: Register' );
+	assert.equal( mw.message( 'mediawiki-test-categorytree-collapse-bullet' ).plain(), mw.messages.get( 'mediawiki-test-categorytree-collapse-bullet' ), 'Single square brackets unchanged in plain mode' );
+
+	assert.ok( mw.messages.set( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result', '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)' ) );
+	assert.equal( mw.message( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result' ).plain(), mw.messages.get( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result' ), 'HTML message with curly braces is not changed in plain mode' );
+
+	assertMultipleFormats( ['gender-plural-msg', 'male', 1], ['text', 'parse', 'escaped'], 'he is awesome', 'Gender and plural are resolved' );
+	assert.equal( mw.message( 'gender-plural-msg', 'male', 1 ).plain(), '{{GENDER:male|he|she|they}} {{PLURAL:1|is|are}} awesome', 'Parameters are substituted, but gender and plural are not resolved in plain mode' );
+
+	assert.equal( mw.message( 'grammar-msg' ).plain(), mw.messages.get( 'grammar-msg' ), 'Grammar is not resolved in plain mode' );
+	assertMultipleFormats( ['grammar-msg'], ['text', 'parse'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar is resolved' );
+	assert.equal( mw.message( 'grammar-msg' ).escaped(), 'Przeszukaj ' + mw.html.escape( mw.config.get( 'wgSiteName' ) ), 'Grammar is resolved in escaped mode' );
+
+	assertMultipleFormats( ['formatnum-msg', '987654321.654321'], ['text', 'parse', 'escaped'], '987654321.654321', 'formatnum is resolved' );
+	assert.equal( mw.message( 'formatnum-msg' ).plain(), mw.messages.get( 'formatnum-msg' ), 'formatnum is not resolved in plain mode' );
+
+	assertMultipleFormats( ['int-msg'], ['text', 'parse', 'escaped'], 'Some Other Message',	'int is resolved' );
+	assert.equal( mw.message( 'int-msg' ).plain(), mw.messages.get( 'int-msg' ), 'int is not resolved in plain mode' );
 });
 
-QUnit.test( 'mw.msg', 11, function ( assert ) {
+QUnit.test( 'mw.msg', 14, function ( assert ) {
 	assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 	assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 	assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
@@ -132,11 +201,17 @@ QUnit.test( 'mw.msg', 11, function ( assert ) {
 	assert.equal( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
 	assert.equal( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );
 
-	assert.ok( mw.messages.set('gender-plural-msg' , '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome' ) );
+	assert.equal( mw.msg( 'mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ), 'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]', 'Double square brackets in mw.msg one parameter' );
+
 	assert.equal( mw.msg( 'gender-plural-msg', 'male', 1 ), 'he is awesome', 'Gender test for male, plural count 1' );
 	assert.equal( mw.msg( 'gender-plural-msg', 'female', '1' ), 'she is awesome', 'Gender test for female, plural count 1' );
 	assert.equal( mw.msg( 'gender-plural-msg', 'unknown', 10 ), 'they are awesome', 'Gender test for neutral, plural count 10' );
 
+	assert.equal( mw.msg( 'grammar-msg' ), 'Przeszukaj ' + mw.config.get( 'wgSiteName'), 'Grammar is resolved' );
+
+	assert.equal( mw.msg( 'formatnum-msg', '987654321.654321' ), '987654321.654321', 'formatnum is resolved' );
+
+	assert.equal( mw.msg( 'int-msg' ), 'Some Other Message', 'int is resolved' );
 });
 
 /**
