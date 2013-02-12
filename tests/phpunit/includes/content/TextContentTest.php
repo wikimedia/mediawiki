@@ -22,6 +22,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 				CONTENT_MODEL_CSS,
 				CONTENT_MODEL_JAVASCRIPT,
 			),
+			'wgUseTidy' => false,
 			'wgAlwaysUseTidy' => false,
 		) );
 
