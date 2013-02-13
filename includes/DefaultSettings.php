@@ -122,8 +122,7 @@ $wgScriptPath = '/wiki';
  * you have customized it, having this incorrectly set to true can cause
  * redirect loops when "pretty URLs" are used.
  */
-$wgUsePathInfo =
-	( strpos( PHP_SAPI, 'cgi' ) === false ) &&
+$wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
@@ -1003,7 +1002,7 @@ $wgAntivirusSetup = array(
 
 	#setup for clamav
 	'clamav' => array(
-		'command' => "clamscan --no-summary ",
+		'command' => 'clamscan --no-summary ',
 		'codemap' => array(
 			"0" => AV_NO_VIRUS, # no virus
 			"1" => AV_VIRUS_FOUND, # virus found
@@ -1022,13 +1021,13 @@ $wgAntivirusRequired = true;
 $wgVerifyMimeType = true;
 
 /** Sets the mime type definition file to use by MimeMagic.php. */
-$wgMimeTypeFile = "includes/mime.types";
-#$wgMimeTypeFile= "/etc/mime.types";
-#$wgMimeTypeFile= null; #use built-in defaults only.
+$wgMimeTypeFile = 'includes/mime.types';
+#$wgMimeTypeFile = '/etc/mime.types';
+#$wgMimeTypeFile = null; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php. */
-$wgMimeInfoFile = "includes/mime.info";
-#$wgMimeInfoFile= null; #use built-in defaults only.
+$wgMimeInfoFile = 'includes/mime.info';
+#$wgMimeInfoFile = null; #use built-in defaults only.
 
 /**
  * Switch for loading the FileInfo extension by PECL at runtime.
@@ -5662,7 +5661,7 @@ $wgLogRestrictions = array(
  *
  * @par Example:
  * @code
- *   $wgFilterLogTypes => array(
+ *   $wgFilterLogTypes = array(
  *      'move' => true,
  *      'import' => false,
  *   );
