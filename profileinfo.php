@@ -34,7 +34,6 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( __DIR__ . '/includes/WebStart.php' );
 }
 
-
 header( 'Content-Type: text/html; charset=utf-8' );
 
 ?>
@@ -153,7 +152,7 @@ if ( !$wgEnableProfileInfo ) {
 
 $dbr = wfGetDB( DB_SLAVE );
 
-if( !$dbr->tableExists( 'profiling' ) ) {
+if ( !$dbr->tableExists( 'profiling' ) ) {
 	echo '<p>No <code>profiling</code> table exists, so we can\'t show you anything.</p>'
 		. '<p>If you want to log profiling data, enable <code>$wgProfileToDatabase</code>'
 		. ' in your LocalSettings.php and run <code>maintenance/update.php</code> to'
@@ -163,9 +162,11 @@ if( !$dbr->tableExists( 'profiling' ) ) {
 }
 
 $expand = array();
-if ( isset( $_REQUEST['expand'] ) )
-	foreach( explode( ',', $_REQUEST['expand'] ) as $f )
+if ( isset( $_REQUEST['expand'] ) ) {
+	foreach ( explode( ',', $_REQUEST['expand'] ) as $f ) {
 		$expand[$f] = true;
+	}
+}
 
 class profile_point {
 	var $name;
@@ -274,42 +275,44 @@ class profile_point {
 	}
 };
 
-function compare_point(profile_point $a, profile_point $b) {
+function compare_point( profile_point $a, profile_point $b ) {
 	global $sort;
 	switch ( $sort ) {
-	case 'name':
-		return strcmp( $a->name(), $b->name() );
-	case 'time':
-		return $a->time() > $b->time() ? -1 : 1;
-	case 'memory':
-		return $a->memory() > $b->memory() ? -1 : 1;
-	case 'count':
-		return $a->count() > $b->count() ? -1 : 1;
-	case 'time_per_call':
-		return $a->timePerCall() > $b->timePerCall() ? -1 : 1;
-	case 'memory_per_call':
-		return $a->memoryPerCall() > $b->memoryPerCall() ? -1 : 1;
-	case 'calls_per_req':
-		return $a->callsPerRequest() > $b->callsPerRequest() ? -1 : 1;
-	case 'time_per_req':
-		return $a->timePerRequest() > $b->timePerRequest() ? -1 : 1;
-	case 'memory_per_req':
-		return $a->memoryPerRequest() > $b->memoryPerRequest() ? -1 : 1;
+		case 'name':
+			return strcmp( $a->name(), $b->name() );
+		case 'time':
+			return $a->time() > $b->time() ? -1 : 1;
+		case 'memory':
+			return $a->memory() > $b->memory() ? -1 : 1;
+		case 'count':
+			return $a->count() > $b->count() ? -1 : 1;
+		case 'time_per_call':
+			return $a->timePerCall() > $b->timePerCall() ? -1 : 1;
+		case 'memory_per_call':
+			return $a->memoryPerCall() > $b->memoryPerCall() ? -1 : 1;
+		case 'calls_per_req':
+			return $a->callsPerRequest() > $b->callsPerRequest() ? -1 : 1;
+		case 'time_per_req':
+			return $a->timePerRequest() > $b->timePerRequest() ? -1 : 1;
+		case 'memory_per_req':
+			return $a->memoryPerRequest() > $b->memoryPerRequest() ? -1 : 1;
 	}
 }
 
 $sorts = array( 'time', 'memory', 'count', 'calls_per_req', 'name',
 	'time_per_call', 'memory_per_call', 'time_per_req', 'memory_per_req' );
 $sort = 'time';
-if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) )
+if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) ) {
 	$sort = $_REQUEST['sort'];
+}
 
 $res = $dbr->select( 'profiling', '*', array(), 'profileinfo.php', array( 'ORDER BY' => 'pf_name ASC' ) );
 
-if (isset( $_REQUEST['filter'] ) )
+if ( isset( $_REQUEST['filter'] ) ) {
 	$filter = $_REQUEST['filter'];
-else
+} else {
 	$filter = '';
+}
 
 ?>
 <form method="get" action="profileinfo.php">
@@ -344,8 +347,9 @@ profile_point::$totalmemory = 0.0;
 function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = false ) {
 	global $filter, $sort, $expand;
 
-	if ( $_expand === false )
+	if ( $_expand === false ) {
 		$_expand = $expand;
+	}
 
 	return htmlspecialchars(
 		'?' .
@@ -392,8 +396,9 @@ $points[] = $s;
 usort( $points, 'compare_point' );
 
 foreach ( $points as $point ) {
-	if ( strlen( $filter ) && !strstr( $point->name(), $filter ) )
+	if ( strlen( $filter ) && !strstr( $point->name(), $filter ) ) {
 		continue;
+	}
 
 	$point->display( $expand );
 }

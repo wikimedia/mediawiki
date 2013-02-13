@@ -224,7 +224,7 @@ function wfStreamThumb( array $params ) {
 			$response->header( 'Location: ' .
 				wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
 			$response->header( 'Expires: ' .
-				gmdate( 'D, d M Y H:i:s', time() + 7*86400 ) . ' GMT' );
+				gmdate( 'D, d M Y H:i:s', time() + 7 * 86400 ) . ' GMT' );
 			if ( $wgVaryOnXFP ) {
 				$varyHeader[] = 'X-Forwarded-Proto';
 			}
@@ -308,7 +308,7 @@ function wfExtractThumbParams( $thumbRel ) {
 	// Check if this is a thumbnail of an original in the local file repo
 	if ( preg_match( "!^((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
 		list( /*all*/, $rel, $archOrTemp, $filename, $thumbname ) = $m;
-	// Check if this is a thumbnail of an temp file in the local file repo
+		// Check if this is a thumbnail of an temp file in the local file repo
 	} elseif ( preg_match( "!^(temp/)($hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
 		list( /*all*/, $archOrTemp, $rel, $filename, $thumbname ) = $m;
 	} else {
@@ -364,7 +364,7 @@ function wfThumbError( $status, $msg ) {
 		$hostname = htmlspecialchars( wfHostname() );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
 	} else {
-		$debug = "";
+		$debug = '';
 	}
 	echo <<<EOT
 <html><head><title>Error generating thumbnail</title></head>
