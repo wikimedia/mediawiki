@@ -1734,7 +1734,70 @@ var mw = ( function ( $, undefined ) {
 		user: {
 			options: new Map(),
 			tokens: new Map()
-		}
+		},
+
+		/**
+		 * Registry and firing of events.
+		 *
+		 * Example usage:
+		 *
+		 *     mw.hook( 'wikipage.content' ).add( fn ).remove( fn );
+		 *     mw.hook( 'wikipage.content' ).fire( $content );
+		 *
+		 * Handlers can be added and fired for arbitrary event names at any time. The same
+		 * event can be fired multiple times. The last run of an event is memorized
+		 * (similar to `$(document).ready` and `$.Deferred().done`).
+		 * This means if an event is fired, and a handler added afterwards, the added
+		 * function will be fired right away with the last given event data.
+		 *
+		 * Like Deferreds and Promises, the mw.hook object is both detachable and chainable.
+		 * Thus allowing flexible use and optimal maintainability and authority control.
+		 * You can pass around the `add` and/or `fire` method to another piece of code
+		 * without it having to know the event name (or `mw.hook` for that matter).
+		 *
+		 *     var h = mw.hook( 'bar.ready' );
+		 *     new mw.Foo( .. ).fetchQuux( h.fire );
+		 *
+		 * @class mw.hook
+		 */
+		hook: ( function () {
+			var lists = {};
+
+			/**
+			 * @method hook
+			 * @member mw
+			 * @param {string} name Name of hook.
+			 * @return {mw.hook}
+			 */
+			return function ( name ) {
+				var list = lists[name] || ( lists[name] = $.Callbacks( 'memory' ) );
+
+				return {
+					/**
+					 * Register a hook handler
+					 * @param {Function...} handler Function to bind.
+					 * @chainable
+					 */
+					add: list.add,
+
+					/**
+					 * Unregister a hook handler
+					 * @param {Function...} handler Function to unbind.
+					 * @chainable
+					 */
+					remove: list.remove,
+
+					/**
+					 * Run a hook.
+					 * @param {Mixed...} data
+					 * @chainable
+					 */
+					fire: function () {
+						return list.fireWith( null, slice.call( arguments ) );
+					}
+				};
+			};
+		}() )
 	};
 
 }( jQuery ) );
