@@ -1688,7 +1688,60 @@ var mw = ( function ( $, undefined ) {
 		user: {
 			options: new Map(),
 			tokens: new Map()
-		}
+		},
+
+		/**
+		 * Registry and firing of events.
+		 *
+		 * Example usage:
+		 *
+		 *     mw.hook.on( 'wikipage.content', fn );
+		 *     mw.hook.off( 'wikipage.content', fn );
+		 *     mw.hook.emit( 'wikipage.content', $content );
+		 *
+		 * Handlers can be bound and triggered for arbitrary event names at any time. The same event
+		 * can be triggered multiple times. The last trigger of an event is memorized
+		 * (similar to `$(document).ready` and `$.Deferred().done`).
+		 * This means if an event is emitted, and a handler registered afterwards, it'll be
+		 * fired right away with the last given event data.
+		 *
+		 * @class mw.hook
+		 * @singleton
+		 */
+		hook: ( function () {
+			var lists = {};
+			return {
+				/**
+				 * Register a hook handler
+				 * @param {string} name Name of hook.
+				 * @param {Function} handler Function to bind.
+				 */
+				on: function ( name, handler ) {
+					var list = lists[name] || ( lists[name] = $.Callback( 'memory') );
+					list.add( handler );
+				},
+				/**
+				 * Unregister a hook handler
+				 * @param {string} name Name of hook.
+				 * @param {Function} handler Function to unbind.
+				 */
+				off: function ( name, handler ) {
+					var list = lists[name];
+					if ( list ) {
+						list.remove( handler );
+					}
+				},
+				/**
+				 * Run a hook.
+				 * @param {string} name Name of hook.
+				 * @param {Mixed...} data
+				 */
+				emit: function ( name ) {
+					var list = lists[name] || ( lists[name] = $.Callback( 'memory') );
+					list.fireWith( null, slice.call( arguments, 1 ) );
+				}
+			};
+		}() )
 	};
 
 }( jQuery ) );

@@ -11,7 +11,8 @@
 					"mw.loader",
 					"mw.html",
 					"mw.html.Cdata",
-					"mw.html.Raw"
+					"mw.html.Raw",
+					"mw.hook"
 				]
 			},
 			{
