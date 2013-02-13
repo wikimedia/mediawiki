@@ -7644,6 +7644,7 @@ See also:
 'exif-subjectdistancerange-0' => '{{Related|Exif-subjectdistancerange}}
 {{Identical|Unknown}}',
 'exif-subjectdistancerange-1' => 'Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].
+{{Identical|Macro}}
 {{Related|Exif-subjectdistancerange}}',
 'exif-subjectdistancerange-2' => '{{Related|Exif-subjectdistancerange}}',
 'exif-subjectdistancerange-3' => '{{Related|Exif-subjectdistancerange}}',
