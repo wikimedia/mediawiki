@@ -189,15 +189,15 @@ class ApiCreateAccount extends ApiBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'name' => 'User Name',
+			'name' => 'Username',
 			'password' => "Password (ignored if {$p}mailpassword is set)",
-			'domain' => 'Domain (optional)',
+			'domain' => 'Domain for external authentication (optional)',
 			'token' => 'Account creation token obtained in first request',
-			'email' => 'Email address of user',
-			'realname' => 'Real Name of user',
-			'mailpassword' => 'Whether to generate and mail a random password to the user',
-			'reason' => "Optional reason for creating the account (used when {$p}mailpassword is set)",
-			'language' => 'Language code to set for the user.'
+			'email' => 'E-mail address of user (optional)',
+			'realname' => 'Real Name of user (optional)',
+			'mailpassword' => 'If set to any value, a random password will be emailed to the user',
+			'reason' => "Optional reason for creating the account (only used when {$p}mailpassword is set)",
+			'language' => 'Language code to set as default for the user (optional, defaults to content language)'
 		);
 	}
 
@@ -264,6 +264,6 @@ class ApiCreateAccount extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Account creation';
+		return 'https://www.mediawiki.org/wiki/API:Account_creation';
 	}
 }
