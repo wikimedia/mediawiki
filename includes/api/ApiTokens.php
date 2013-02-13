@@ -24,21 +24,17 @@
  * @file
  */
 
-
 /**
  * @ingroup API
  */
 class ApiTokens extends ApiBase {
 
 	public function execute() {
-		wfProfileIn( __METHOD__ );
 		$params = $this->extractRequestParams();
 		$res = array();
 
 		$types = $this->getTokenTypes();
 		foreach ( $params['type'] as $type ) {
-			$type = strtolower( $type );
-
 			$val = call_user_func( $types[$type], null, null );
 
 			if ( $val === false ) {
@@ -49,7 +45,6 @@ class ApiTokens extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
-		wfProfileOut( __METHOD__ );
 	}
 
 	private function getTokenTypes() {
@@ -58,11 +53,11 @@ class ApiTokens extends ApiBase {
 			return $types;
 		}
 		wfProfileIn( __METHOD__ );
-		$types = array( 'patrol' => 'ApiQueryRecentChanges::getPatrolToken' );
+		$types = array( 'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ) );
 		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
 			'email', 'import', 'watch', 'options' );
 		foreach ( $names as $name ) {
-			$types[$name] = 'ApiQueryInfo::get' . ucfirst( $name ) . 'Token';
+			$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
 		}
 		wfRunHooks( 'ApiTokensGetTokenTypes', array( &$types ) );
 		ksort( $types );
@@ -81,53 +76,16 @@ class ApiTokens extends ApiBase {
 	}
 
 	public function getResultProperties() {
+		$properties = array();
+		$types = array_keys( $this->getTokenTypes() );
+		foreach ( $types as $type ) {
+			$properties[$type . 'token'] = array(
+				ApiBase::PROP_TYPE => 'string',
+				ApiBase::PROP_NULLABLE => true,
+			);
+		}
 		return array(
-			'' => array(
-				'patroltoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'edittoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'deletetoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'protecttoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'movetoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'blocktoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'unblocktoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'emailtoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'importtoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'watchtoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'optionstoken' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
+			'' => $properties
 		);
 	}
 
