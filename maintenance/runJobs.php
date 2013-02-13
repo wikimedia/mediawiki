@@ -91,6 +91,11 @@ class RunJobs extends Maintenance {
 				$t = microtime( true );
 				$this->runJobsLog( $job->toString() . " STARTING" );
 				$status = $job->run();
+
+				if( !is_bool( $status ) ) {
+					wfWarn( $job->toString() . ' must return boolean and didn\'t!'  );
+				}
+
 				if ( $status ) {
 					$group->ack( $job ); // done
 				}
