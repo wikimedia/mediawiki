@@ -393,6 +393,34 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Import the resolved user IP, HTTP headers, and session ID.
+	 * This sets the current session and sets $wgUser.
+	 *
+	 * This will setup the session from the given ID. This is useful when
+	 * background scripts inherit some context when acting on behalf of a user.
+	 *
+	 * $param array $params Result of WebRequest::exportUserSession()
+	 * @return void
+	 * @since 1.21
+	 */
+	public static function importUserSession( array $params ) {
+		global $wgUser;
+
+		wfSetupSession( $params['sessionId'] );
+
+		$request = new FauxRequest( array(), false, $_SESSION );
+		$request->setIP( $params['ip'] );
+		foreach ( $params['headers'] as $name => $value ) {
+			$request->setHeader( $name, $value );
+		}
+
+		$context = self::getMain();
+		$context->setRequest( $request );
+		$context->setUser( User::newFromSession( $request ) ); // sets $_SESSION
+		$wgUser = $context->getUser(); // b/c
+	}
+
+	/**
 	 * Create a new extraneous context. The context is filled with information
 	 * external to the current session.
 	 * - Title is specified by argument
