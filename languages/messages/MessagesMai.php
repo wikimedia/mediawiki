@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Ashishanchinhar
  * @author Dhirendra.maithili
  * @author Ggajendra
@@ -160,7 +161,7 @@ $messages = array(
 'cancel' => 'समाप्त',
 'moredotdotdot' => 'आर...',
 'mypage' => 'हमर पन्ना',
-'mytalk' => 'हमर वार्त्ता',
+'mytalk' => 'वार्त्ता',
 'anontalk' => 'ऐ अनिकेत पता लेल विमर्श',
 'navigation' => 'संचार',
 'and' => '&#32;आर',
@@ -1048,7 +1049,7 @@ $3 द्वारा देल कारण अछि ''$2''",
 
 # Preferences page
 'preferences' => 'विकल्प',
-'mypreferences' => 'हमर खासमखास',
+'mypreferences' => 'खासमखास',
 'prefs-edits' => 'सम्पादनक संख्या',
 'prefsnologin' => 'सम्प्रवेशित नै',
 'prefsnologintext' => 'अहाँ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> प्रयोक्ता विकल्प निर्धारण लेल प्रयोग करू।',
@@ -1924,8 +1925,8 @@ $1',
 'usermessage-template' => 'मीडियाविकी:प्रयोक्ता संदेश',
 
 # Watchlist
-'watchlist' => 'हमर साकांक्षसूची',
-'mywatchlist' => 'हमर साकांक्ष-सूची',
+'watchlist' => 'साकांक्षसूची',
+'mywatchlist' => 'साकांक्ष-सूची',
 'watchlistfor2' => '$1 $2 लेल',
 'nowatchlist' => 'अहाँक साकांक्ष-सूचीमे कोनो बौस्तु नै अछि।',
 'watchlistanontext' => 'कृपा कऽ $1 अहाँक साकांक्ष-सूचीकेँ देखबा वा सम्पादित करबा लेल।',
@@ -2182,7 +2183,7 @@ $1',
 # Contributions
 'contributions' => 'प्रयोक्ताक योगदान सभ',
 'contributions-title' => '$1 लेल प्रयोक्ताक अवदान',
-'mycontris' => 'हमर योगदान',
+'mycontris' => 'योगदान',
 'contribsub2' => '$1 ($2) लेल',
 'nocontribs' => 'कोनो परिवर्तन ऐ सँ मेल नै खाइए।',
 'uctop' => '(शिखर)',
@@ -2223,7 +2224,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 घुरबैए',
 'whatlinkshere-hidetrans' => '$1 परागत',
 'whatlinkshere-hidelinks' => '$1 सम्बन्ध सभ',
-'whatlinkshere-hideimages' => '$1 चित्रक लागि सभ',
+'whatlinkshere-hideimages' => '$1 फाइल लागि सभ',
 'whatlinkshere-filters' => 'चलनी सभ',
 
 # Block/unblock

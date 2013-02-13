@@ -362,7 +362,7 @@ $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Subrayar enlaces:',
+'tog-underline' => 'Subrayar los enlaces:',
 'tog-justify' => 'Justificar los párrafos',
 'tog-hideminor' => 'Ocultar las ediciones menores en los cambios recientes',
 'tog-hidepatrolled' => 'Ocultar las ediciones patrulladas en los cambios recientes',
@@ -410,14 +410,14 @@ $messages = array(
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
-'underline-default' => 'Aspecto (skin) o navegador predeterminado',
+'underline-default' => 'Aspecto (skin) o valor predeterminado del navegador',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Estilo de tipografía del área de edición:',
 'editfont-default' => 'Predeterminado del navegador',
 'editfont-monospace' => 'Tipografía monoespaciada',
-'editfont-sansserif' => 'Tipografía sans-serif',
-'editfont-serif' => 'Tipografía serif',
+'editfont-sansserif' => 'Tipo de letra de palo seco',
+'editfont-serif' => 'Tipo de letra con serifas',
 
 # Dates
 'sunday' => 'domingo',
@@ -2535,8 +2535,8 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-cascadeon' => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default' => 'Permitir todos los usuarios',
 'protect-fallback' => 'Solo permitir usuarios con el permiso «$1»',
-'protect-level-autoconfirmed' => 'Permitir solo usuarios autoconfirmados',
-'protect-level-sysop' => 'Permitir solo administradores',
+'protect-level-autoconfirmed' => 'Solo permitir usuarios autoconfirmados',
+'protect-level-sysop' => 'Solo permitir administradores',
 'protect-summary-cascade' => 'en cascada',
 'protect-expiring' => 'caduca el $1 (UTC)',
 'protect-expiring-local' => 'caduca el $1',

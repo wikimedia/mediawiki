@@ -13,6 +13,7 @@
  * @author Church of emacs
  * @author DaSch
  * @author Das Schäfchen
+ * @author Dschwen
  * @author Duesentrieb
  * @author Filzstift
  * @author Geitost
@@ -3536,7 +3537,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-compression-4' => 'CCITT Gruppe 4 Faxcodierung',
 
 'exif-copyrighted-true' => 'Geschützt',
-'exif-copyrighted-false' => 'Gemeinfrei',
+'exif-copyrighted-false' => 'Copyright Flag nicht gesetzt',
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 

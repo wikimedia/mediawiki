@@ -1840,7 +1840,7 @@ Goldanylýan protokollar: <code>$1</code>',
 'usermessage-editor' => 'Ulgam habarçysy',
 
 # Watchlist
-'watchlist' => 'Gözegçilik sanawym',
+'watchlist' => 'Gözegçilik sanawy',
 'mywatchlist' => 'Gözegçilik sanawy',
 'watchlistfor2' => '$1 üçin  $2',
 'nowatchlist' => 'Gözegçilik sanawyňyzda hiçhili sahypa ýok.',
@@ -2090,7 +2090,7 @@ $1',
 'blanknamespace' => '(Baş)',
 
 # Contributions
-'contributions' => 'Ulanyjynyň goşantlary',
+'contributions' => '{{GENDER:$1|Ulanyjy}} goşantlary',
 'contributions-title' => '$1 üçin ulanyjy goşantlary',
 'mycontris' => 'Goşantlar',
 'contribsub2' => '$1 ($2)',
