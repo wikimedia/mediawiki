@@ -1033,7 +1033,8 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
-		if ( $this->mUsername == '' ) {
+		// Pre-fill username (if not creating an account, bug 44775).
+		if ( $this->mUsername == '' && $this->mType != 'signup' ) {
 			if ( $user->isLoggedIn() ) {
 				$this->mUsername = $user->getName();
 			} else {
