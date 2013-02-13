@@ -393,6 +393,59 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Import the resolved user IP, HTTP headers, and session ID.
+	 * This sets the current session and sets $wgUser and $wgRequest.
+	 * Once the return value falls out of scope, the old context is restored.
+	 *
+	 * This will setup the session from the given ID. This is useful when
+	 * background scripts inherit some context when acting on behalf of a user.
+	 *
+	 * $param array $params Result of WebRequest::exportUserSession()
+	 * @return ScopedCallback
+	 * @throws MWException
+	 * @since 1.21
+	 */
+	public static function importScopedSession( array $params ) {
+		$importSessionFunction = function( array $params ) {
+			global $wgRequest, $wgUser;
+
+			$context = RequestContext::getMain();
+
+			// Write and close any current session
+			session_write_close();
+			$_SESSION = array(); // needs to be manually cleared
+			// Load the new session from the session ID
+			if ( $params['sessionId'] ) {
+				wfSetupSession( $params['sessionId'] ); // sets $_SESSION
+			} else {
+				session_id( '' ); // none
+			}
+			// Build the new WebRequest object
+			$request = new FauxRequest( array(), false, $_SESSION );
+			$request->setIP( $params['ip'] );
+			foreach ( $params['headers'] as $name => $value ) {
+				$request->setHeader( $name, $value );
+			}
+
+			// Set the current context to use the new WebRequest
+			$context->setRequest( $request );
+			$wgRequest = $context->getRequest(); // b/c
+			// Set the current user based on the new session and WebRequest
+			$context->setUser( User::newFromSession( $request ) ); // uses $_SESSION
+			$wgUser = $context->getUser(); // b/c
+		};
+
+		// Stash the old session and load in the new one
+		$oldParams = RequestContext::getMain()->getRequest()->exportUserSession();
+		$importSessionFunction( $params );
+
+		// Set callback to save and close the new session and reload the old one
+		return new ScopedCallback( function() use ( $importSessionFunction, $oldParams ) {
+			$importSessionFunction( $oldParams );
+		} );
+	}
+
+	/**
 	 * Create a new extraneous context. The context is filled with information
 	 * external to the current session.
 	 * - Title is specified by argument
