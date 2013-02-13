@@ -111,8 +111,6 @@ abstract class Collation {
 				return new ConvertedIcuCollation( 'zh@collation=stroke', 'zh', 'zh-hans' );
 			case 'zh-stroke-hant':
 				return new ConvertedIcuCollation( 'zh@collation=stroke', 'zh', 'zh-hant' );
-			case 'zh-zhuyin':
-				return new IcuCollation( 'zh@collation=zhuyin' );
 			default:
 				# Provide a mechanism for extensions to hook in.
 
@@ -151,7 +149,6 @@ abstract class Collation {
 				// * collation_zh_stroke
 				// * collation_zh_stroke_hans
 				// * collation_zh_stroke_hant
-				// * collation_zh_zhuyin
 				$magicName = 'collation_' . str_replace( '-', '_', $collationName );
 				$collationMap[$magicName] = $collationName;
 			}
