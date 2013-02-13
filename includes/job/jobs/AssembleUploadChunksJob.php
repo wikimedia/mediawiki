@@ -18,65 +18,63 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
+ * @ingroup Upload
  */
-require_once( __DIR__ . '/../../maintenance/Maintenance.php' );
-set_time_limit( 3600 ); // 1 hour
 
 /**
  * Assemble the segments of a chunked upload.
  *
- * @ingroup Maintenance
+ * @ingroup Upload
  */
-class AssembleUploadChunks extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "Re-assemble the segments of a chunked upload into a single file";
-		$this->addOption( 'filename', "Desired file name", true, true );
-		$this->addOption( 'filekey', "Upload stash file key", true, true );
-		$this->addOption( 'userid', "Upload owner user ID", true, true );
-		$this->addOption( 'sessionid', "Upload owner session ID", true, true );
+class AssembleUploadChunksJob extends Job {
+	public function __construct( $title, $params, $id = 0 ) {
+		parent::__construct( 'AssembleUploadChunks', $title, $params, $id );
 	}
 
-	public function execute() {
-		$e = null;
-		wfDebug( "Started assembly for file {$this->getOption( 'filename' )}\n" );
-		wfSetupSession( $this->getOption( 'sessionid' ) );
+	public function run() {
+		global $wgUser;
+
+		$context = RequestContext::getMain();
+		$context->getRequest()->importUserSession( $this->params['session'] );
+		$context->setUser( User::newFromSession( $context->getRequest() ) );
+		$wgUser = $context->getUser(); // b/c
 		try {
-			$user = User::newFromId( $this->getOption( 'userid' ) );
+			$user = User::newFromId( $this->params['userid'] );
 			if ( !$user ) {
-				throw new MWException( "No user with ID " . $this->getOption( 'userid' ) . "." );
+				$this->setLastError( "No user with ID " . $this->params['userid'] . "." );
+				session_write_close();
+				return true; // no retries
 			}
 
 			UploadBase::setSessionStatus(
-				$this->getOption( 'filekey' ),
+				$this->params['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() )
 			);
 
 			$upload = new UploadFromChunks( $user );
 			$upload->continueChunks(
-				$this->getOption( 'filename' ),
-				$this->getOption( 'filekey' ),
-				// @TODO: set User?
-				RequestContext::getMain()->getRequest() // dummy request
+				$this->params['filename'],
+				$this->params['filekey'],
+				$context->getRequest()
 			);
 
 			// Combine all of the chunks into a local file and upload that to a new stash file
 			$status = $upload->concatenateChunks();
 			if ( !$status->isGood() ) {
 				UploadBase::setSessionStatus(
-					$this->getOption( 'filekey' ),
+					$this->params['filekey'],
 					array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
 				);
+				$this->setLastError( $status->getWikiText() );
 				session_write_close();
-				$this->error( $status->getWikiText() . "\n", 1 ); // die
+				return true; // no retries
 			}
 
 			// We have a new filekey for the fully concatenated file
 			$newFileKey = $upload->getLocalFile()->getFileKey();
 
 			// Remove the old stash file row and first chunk file
-			$upload->stash->removeFileNoAuth( $this->getOption( 'filekey' ) );
+			$upload->stash->removeFileNoAuth( $this->params['filekey'] );
 
 			// Build the image info array while we have the local reference handy
 			$apiMain = new ApiMain(); // dummy object (XXX)
@@ -87,7 +85,7 @@ class AssembleUploadChunks extends Maintenance {
 
 			// Cache the info so the user doesn't have to wait forever to get the final info
 			UploadBase::setSessionStatus(
-				$this->getOption( 'filekey' ),
+				$this->params['filekey'],
 				array(
 					'result'    => 'Success',
 					'stage'     => 'assembling',
@@ -98,21 +96,16 @@ class AssembleUploadChunks extends Maintenance {
 			);
 		} catch ( MWException $e ) {
 			UploadBase::setSessionStatus(
-				$this->getOption( 'filekey' ),
+				$this->params['filekey'],
 				array(
 					'result' => 'Failure',
 					'stage'  => 'assembling',
 					'status' => Status::newFatal( 'api-error-stashfailed' )
 				)
 			);
+			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
 		}
 		session_write_close();
-		if ( $e ) {
-			throw $e;
-		}
-		wfDebug( "Finished assembly for file {$this->getOption( 'filename' )}\n" );
+		return true; // returns true on success and erro (no retries)
 	}
 }
-
-$maintClass = "AssembleUploadChunks";
-require_once( RUN_MAINTENANCE_IF_MAIN );

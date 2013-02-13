@@ -1124,6 +1124,33 @@ HTML;
 		$this->ip = $ip;
 		return $ip;
 	}
+
+	/**
+	 * Export the resolved user IP, HTTP headers, and session ID.
+	 * The results can be passed to WebRequest::importUserSession(),
+	 * and can be easily serialized for passing to other scripts.
+	 *
+	 * @return Array
+	 */
+	public function exportUserSession() {
+		return array(
+			'ip'        => $this->getIP(),
+			'headers'   => $this->getAllHeaders(),
+			'sessionId' => session_id()
+		);
+	}
+
+	/**
+	 * Import the data returned from WebRequest::exportUserSession()
+	 *
+	 * @param array $params
+	 * @return void
+	 */
+	public function importUserSession( array $params ) {
+		$this->ip = $params['ip'];
+		$this->headers = $params['headers'];
+		wfSetupSession( $params['sessionId'] );
+	}
 }
 
 /**
@@ -1263,8 +1290,9 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if( $session )
+		if( $session ) {
 			$this->session = $session;
+		}
 	}
 
 	/**
