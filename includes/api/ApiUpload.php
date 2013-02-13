@@ -47,9 +47,6 @@ class ApiUpload extends ApiBase {
 		// Parameter handling
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
-		// Check if async mode is actually supported
-		$this->mParams['async'] = ( $this->mParams['async'] && !wfIsWindows() );
-		$this->mParams['async'] = false; // XXX: disabled per bug 44080
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
@@ -205,8 +202,8 @@ class ApiUpload extends ApiBase {
 			}
 
 			// Check we added the last chunk:
-			if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
-				if ( $this->mParams['async'] && !wfIsWindows() ) {
+			if ( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
+				if ( $this->mParams['async'] ) {
 					$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
 					if ( $progress && $progress['result'] === 'Poll' ) {
 						$this->dieUsage( "Chunk assembly already in progress.", 'stashfailed' );
@@ -216,22 +213,16 @@ class ApiUpload extends ApiBase {
 						array( 'result' => 'Poll',
 							'stage' => 'queued', 'status' => Status::newGood() )
 					);
-					$retVal = 1;
-					$cmd = wfShellWikiCmd(
-						"$IP/includes/upload/AssembleUploadChunks.php",
+					$ok = JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
+						Title::makeTitle( NS_FILE, $this->mParams['filekey'] ),
 						array(
-							'--wiki', wfWikiID(),
-							'--filename', $this->mParams['filename'],
-							'--filekey', $this->mParams['filekey'],
-							'--userid', $this->getUser()->getId(),
-							'--sessionid', session_id(),
-							'--quiet'
+							'filename'  => $this->mParams['filename'],
+							'filekey'   => $this->mParams['filekey'],
+							'userid'    => $this->getUser()->getId(),
+							'sessionid' => session_id(),
 						)
-					) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-					// Start a process in the background. Enforce the time limits via PHP
-					// since ulimit4.sh seems to often not work for this particular usage.
-					wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
-					if ( $retVal == 0 ) {
+					) );
+					if ( $ok ) {
 						$result['result'] = 'Poll';
 					} else {
 						UploadBase::setSessionStatus( $this->mParams['filekey'], false );
@@ -596,25 +587,19 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() )
 			);
-			$retVal = 1;
-			$cmd = wfShellWikiCmd(
-				"$IP/includes/upload/PublishStashedFile.php",
+			$ok = JobQueueGroup::singleton()->push( new PublishStashedFileJob(
+				Title::makeTitle( NS_FILE, $this->mParams['filekey'] ),
 				array(
-					'--wiki', wfWikiID(),
-					'--filename', $this->mParams['filename'],
-					'--filekey', $this->mParams['filekey'],
-					'--userid', $this->getUser()->getId(),
-					'--comment', $this->mParams['comment'],
-					'--text', $this->mParams['text'],
-					'--watch', $watch,
-					'--sessionid', session_id(),
-					'--quiet'
+					'filename'  => $this->mParams['filename'],
+					'filekey'   => $this->mParams['filekey'],
+					'userid'    => $this->getUser()->getId(),
+					'comment'   => $this->mParams['comment'],
+					'text'      => $this->mParams['text'],
+					'watch'     => $watch,
+					'sessionid' => session_id(),
 				)
-			) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-			// Start a process in the background. Enforce the time limits via PHP
-			// since ulimit4.sh seems to often not work for this particular usage.
-			wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
-			if ( $retVal == 0 ) {
+			) );
+			if ( $ok ) {
 				$result['result'] = 'Poll';
 			} else {
 				UploadBase::setSessionStatus( $this->mParams['filekey'], false );

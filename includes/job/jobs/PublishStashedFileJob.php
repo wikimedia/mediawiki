@@ -18,39 +18,29 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
+ * @ingroup Upload
  */
-require_once( __DIR__ . '/../../maintenance/Maintenance.php' );
-set_time_limit( 3600 ); // 1 hour
 
 /**
  * Upload a file from the upload stash into the local file repo.
  *
- * @ingroup Maintenance
+ * @ingroup Upload
  */
-class PublishStashedFile extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "Upload stashed file into the local file repo";
-		$this->addOption( 'filename', "Desired file name", true, true );
-		$this->addOption( 'filekey', "Upload stash file key", true, true );
-		$this->addOption( 'userid', "Upload owner user ID", true, true );
-		$this->addOption( 'comment', "Upload comment", true, true );
-		$this->addOption( 'text', "Upload description", true, true );
-		$this->addOption( 'watch', "Whether the uploader should watch the page", true, true );
-		$this->addOption( 'sessionid', "Upload owner session ID", true, true );
+class PublishStashedFileJob extends Job {
+	public function __construct( $title, $params, $id = 0 ) {
+		parent::__construct( 'PublishStashedFile', $title, $params, $id );
 	}
 
-	public function execute() {
-		wfSetupSession( $this->getOption( 'sessionid' ) );
+	public function run() {
+		wfSetupSession( $this->params['sessionid'] );
 		try {
-			$user = User::newFromId( $this->getOption( 'userid' ) );
+			$user = User::newFromId( $this->params['userid'] );
 			if ( !$user ) {
-				throw new MWException( "No user with ID " . $this->getOption( 'userid' ) . "." );
+				throw new MWException( "No user with ID " . $this->params['userid'] . "." );
 			}
 
 			UploadBase::setSessionStatus(
-				$this->getOption( 'filekey' ),
+				$this->params['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'publish', 'status' => Status::newGood() )
 			);
 
@@ -59,7 +49,7 @@ class PublishStashedFile extends Maintenance {
 			// checks and anything else to the stash stage (which includes concatenation and
 			// the local file is thus already there). That way, instead of GET+PUT, there could
 			// just be a COPY operation from the stash to the public zone.
-			$upload->initialize( $this->getOption( 'filekey' ), $this->getOption( 'filename' ) );
+			$upload->initialize( $this->params['filekey'], $this->params['filename'] );
 
 			// Check if the local file checks out (this is generally a no-op)
 			$verification = $upload->verifyUpload();
@@ -67,7 +57,7 @@ class PublishStashedFile extends Maintenance {
 				$status = Status::newFatal( 'verification-error' );
 				$status->value = array( 'verification' => $verification );
 				UploadBase::setSessionStatus(
-					$this->getOption( 'filekey' ),
+					$this->params['filekey'],
 					array( 'result' => 'Failure', 'stage' => 'publish', 'status' => $status )
 				);
 				$this->error( "Could not verify upload.\n", 1 ); // die
@@ -75,14 +65,14 @@ class PublishStashedFile extends Maintenance {
 
 			// Upload the stashed file to a permanent location
 			$status = $upload->performUpload(
-				$this->getOption( 'comment' ),
-				$this->getOption( 'text' ),
-				$this->getOption( 'watch' ),
+				$this->params['comment'],
+				$this->params['text'],
+				$this->params['watch'],
 				$user
 			);
 			if ( !$status->isGood() ) {
 				UploadBase::setSessionStatus(
-					$this->getOption( 'filekey' ),
+					$this->params['filekey'],
 					array( 'result' => 'Failure', 'stage' => 'publish', 'status' => $status )
 				);
 				$this->error( $status->getWikiText() . "\n", 1 ); // die
@@ -97,7 +87,7 @@ class PublishStashedFile extends Maintenance {
 
 			// Cache the info so the user doesn't have to wait forever to get the final info
 			UploadBase::setSessionStatus(
-				$this->getOption( 'filekey' ),
+				$this->params['filekey'],
 				array(
 					'result'    => 'Success',
 					'stage'     => 'publish',
@@ -108,7 +98,7 @@ class PublishStashedFile extends Maintenance {
 			);
 		} catch ( MWException $e ) {
 			UploadBase::setSessionStatus(
-				$this->getOption( 'filekey' ),
+				$this->params['filekey'],
 				array(
 					'result' => 'Failure',
 					'stage'  => 'publish',
@@ -118,8 +108,6 @@ class PublishStashedFile extends Maintenance {
 			throw $e;
 		}
 		session_write_close();
+		return true;
 	}
 }
-
-$maintClass = "PublishStashedFile";
-require_once( RUN_MAINTENANCE_IF_MAIN );
