@@ -22,7 +22,7 @@
 
 require_once( __DIR__ . '/includes/WebStart.php' );
 
-if( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
+if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
 	// Makes testing tweaks about a billion times easier
 	$ctype = 'application/xml';
 } else {
@@ -78,7 +78,7 @@ $urls[] = array(
 	'method' => 'get',
 	'template' => $searchPage->getCanonicalURL( 'search={searchTerms}' ) );
 
-if( $wgEnableAPI ) {
+if ( $wgEnableAPI ) {
 	// JSON interface for search suggestions.
 	// Supported in Firefox 2 and later.
 	$urls[] = array(
@@ -91,7 +91,7 @@ if( $wgEnableAPI ) {
 // general way than overriding the whole search engine...
 wfRunHooks( 'OpenSearchUrls', array( &$urls ) );
 
-foreach( $urls as $attribs ) {
+foreach ( $urls as $attribs ) {
 	print Xml::element( 'Url', $attribs );
 }
 

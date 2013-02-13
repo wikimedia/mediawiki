@@ -224,7 +224,7 @@ function wfStreamThumb( array $params ) {
 			$response->header( 'Location: ' .
 				wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
 			$response->header( 'Expires: ' .
-				gmdate( 'D, d M Y H:i:s', time() + 7*86400 ) . ' GMT' );
+				gmdate( 'D, d M Y H:i:s', time() + 7 * 86400 ) . ' GMT' );
 			if ( $wgVaryOnXFP ) {
 				$varyHeader[] = 'X-Forwarded-Proto';
 			}
@@ -364,7 +364,7 @@ function wfThumbError( $status, $msg ) {
 		$hostname = htmlspecialchars( wfHostname() );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
 	} else {
-		$debug = "";
+		$debug = '';
 	}
 	echo <<<EOT
 <html><head><title>Error generating thumbnail</title></head>
