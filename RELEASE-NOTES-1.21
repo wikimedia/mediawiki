@@ -96,6 +96,8 @@ production.
 * (bug 43915) New maintenance script deleteEqualMessages.php.
 * New collation uppercase-sv, which is like uppercase, but adapted
   to Swedish sort order.
+* You can now create checkbox option matrixes through the HTMLCheckMatrix
+  subclass in HTMLForm.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
