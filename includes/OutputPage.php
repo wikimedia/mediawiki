@@ -254,6 +254,11 @@ class OutputPage extends ContextSource {
 	private $mProperties = array();
 
 	/**
+	 * @var string|null: ResourceLoader target for load.php links. If null, will be omitted
+	 */
+	private $mTarget = null;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -451,7 +456,8 @@ class OutputPage extends ContextSource {
 			$module = $resourceLoader->getModule( $val );
 			if( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
-				&& ( is_null( $position ) || $module->getPosition() == $position ) )
+				&& ( is_null( $position ) || $module->getPosition() == $position )
+				&& ( !$this->mTarget || in_array( $this->mTarget, $module->getTargets() ) ) )
 			{
 				$filteredModules[] = $val;
 			}
@@ -552,6 +558,22 @@ class OutputPage extends ContextSource {
 	 */
 	public function addModuleMessages( $modules ) {
 		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
+	}
+
+	/**
+	 * @return null|string: ResourceLoader target
+	 */
+	public function getTarget() {
+		return $this->mTarget;
+	}
+
+	/**
+	 * Sets ResourceLoader target for load.php links. If null, will be omitted
+	 *
+	 * @param $target string|null
+	 */
+	public function setTarget( $target ) {
+		$this->mTarget = $target;
 	}
 
 	/**
@@ -2575,7 +2597,7 @@ $templates
 	 * @param $loadCall boolean If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
 	 * @return string html "<script>" and "<style>" tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
+	public function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI;
 
 		$modules = (array) $modules;
@@ -2599,6 +2621,9 @@ $templates
 				return $links;
 			}
 		}
+		if ( !is_null( $this->mTarget ) ) {
+			$extraQuery['target'] = $this->mTarget;
+		}
 
 		// Create keyed-by-group list of module objects from modules list
 		$groups = array();
@@ -2611,6 +2636,7 @@ $templates
 					&& $only == ResourceLoaderModule::TYPE_SCRIPTS )
 				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_STYLES )
 					&& $only == ResourceLoaderModule::TYPE_STYLES )
+				|| ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) )
 				)
 			{
 				continue;
