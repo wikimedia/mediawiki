@@ -254,6 +254,11 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	white-space: nowrap;
 }
 
+.mw-htmlform-matrix td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
 input#wpSummary {
 	width: 80%;
 	margin-bottom: 1em;
