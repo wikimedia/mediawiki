@@ -112,6 +112,7 @@ class HTMLForm extends ContextSource {
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
+		'checkmatrix' => 'HTMLCheckMatrix',
 
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like url, but
@@ -1778,6 +1779,86 @@ class HTMLCheckField extends HTMLFormField {
 		} else {
 			return $this->getDefault();
 		}
+	}
+}
+
+/**
+ * A checkbox matrix
+ * Operates similarly to HTMLMultiSelectField, but instead of using an array of
+ * options, uses an array of rows and an array of columns to dynamically
+ * construct a matrix of options.
+ */
+class HTMLCheckMatrix extends HTMLFormField {
+	function getInputHTML( $value ) {
+		$html = $this->formatOptions( $this->mParams['rows'], $this->mParams['columns'], $value );
+		return $html;
+	}
+
+	function getTableRow( $value ) {
+		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+		$inputHtml = $this->getInputHTML( $value );
+		$fieldType = get_class( $this );
+		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
+		$cellAttributes = array( 'colspan' => 2 );
+
+		$label = $this->getLabelHtml( $cellAttributes );
+
+		$field = Html::rawElement(
+			'td',
+			array( 'class' => 'mw-input' ) + $cellAttributes,
+			$inputHtml . "\n$errors"
+		);
+
+		$html = Html::rawElement( 'tr',
+			array( 'class' => 'mw-htmlform-vertical-label' ), $label );
+		$html .= Html::rawElement( 'tr',
+			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+			$field );
+
+		return $html . $helptext;
+	}
+
+	/**
+	 * Build a table containing a matrix of checkbox options.
+	 * The value of each option is a combination of the row tag and column tag.
+	 * @param $rows Array with row labels as keys and row tags as values
+	 * @param $columns Array with column labels as keys and column tags as values
+	 * @param $value Array of the options that should be checked
+	 */
+	function formatOptions( $rows, $columns, $value ) {
+		$html = '';
+		$tableContents = '';
+		$attribs = array();
+
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
+		}
+
+		// Build the column headers
+		$headerContents = Html::rawElement( 'td', array(), '&#160;' );
+		foreach ( $columns as $columnLabel => $columnTag ) {
+			$headerContents .= Html::rawElement( 'td', array(), $columnLabel );
+		}
+		$tableContents .= Html::rawElement( 'tr', array(), "\n$headerContents\n" );
+		// Build the options matrix
+		foreach ( $rows as $rowLabel => $rowTag ) {
+			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
+			foreach ( $columns as $columnLabel => $columnTag ) {
+				// Construct the checkbox
+				$thisAttribs = array( 'id' => "{$this->mID}-$columnTag-$rowTag", 'value' => $columnTag . '-' . $rowTag );
+				$checkbox = Xml::check(
+					$this->mName . '[]',
+					in_array( $columnTag . '-' . $rowTag, $value, true ),
+					$attribs + $thisAttribs );
+				$rowContents .= Html::rawElement( 'td', array(), $checkbox );
+			}
+			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
+		}
+		// Put it all in a table
+		$html .= Html::rawElement( 'table', array(),
+			Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
+
+		return $html;
 	}
 }
 
