@@ -50,7 +50,7 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->article->ext_someNewProperty = 12;
 		$this->assertEquals( 12, $this->article->ext_someNewProperty,
 			"Article get/set magic on new field" );
-		
+
 		$this->article->ext_someNewProperty = -8;
 		$this->assertEquals( -8, $this->article->ext_someNewProperty,
 			"Article get/set magic on update to new field" );
@@ -80,11 +80,11 @@ class ArticleTest extends MediaWikiTestCase {
 		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiFilePage', get_class( $page ) );
-		
+
 		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiCategoryPage', get_class( $page ) );
-		
+
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiPage', get_class( $page ) );

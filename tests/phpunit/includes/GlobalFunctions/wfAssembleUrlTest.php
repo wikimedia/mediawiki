@@ -83,7 +83,7 @@ class wfAssembleUrl extends MediaWikiTestCase {
 								$parts['query'] = $query;
 								$url .= '?' . $query;
 							}
-							if( $fragment ) {
+							if ( $fragment ) {
 								$parts['fragment'] = $fragment;
 								$url .= '#' . $fragment;
 							}

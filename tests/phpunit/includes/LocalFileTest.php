@@ -13,13 +13,13 @@ class LocalFileTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgCapitalLinks', true );
 
 		$info = array(
-			'name'            => 'test',
-			'directory'       => '/testdir',
-			'url'             => '/testurl',
-			'hashLevels'      => 2,
+			'name' => 'test',
+			'directory' => '/testdir',
+			'url' => '/testurl',
+			'hashLevels' => 2,
 			'transformVia404' => false,
-			'backend'         => new FSFileBackend( array(
-				'name'        => 'local-backend',
+			'backend' => new FSFileBackend( array(
+				'name' => 'local-backend',
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
 					'cont1' => "/testdir/local-backend/tempimages/cont1",

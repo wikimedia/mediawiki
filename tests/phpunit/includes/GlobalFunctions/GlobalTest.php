@@ -32,7 +32,7 @@ class GlobalTest extends MediaWikiTestCase {
 	/** @dataProvider provideForWfArrayDiff2 */
 	public function testWfArrayDiff2( $a, $b, $expected ) {
 		$this->assertEquals(
-			wfArrayDiff2( $a, $b), $expected
+			wfArrayDiff2( $a, $b ), $expected
 		);
 	}
 
@@ -41,13 +41,13 @@ class GlobalTest extends MediaWikiTestCase {
 		// $a $b $expected
 		return array(
 			array(
-				array( 'a', 'b'),
-				array( 'a', 'b'),
+				array( 'a', 'b' ),
+				array( 'a', 'b' ),
 				array(),
 			),
 			array(
-				array( array( 'a'), array( 'a', 'b', 'c' )),
-				array( array( 'a'), array( 'a', 'b' )),
+				array( array( 'a' ), array( 'a', 'b', 'c' ) ),
+				array( array( 'a' ), array( 'a', 'b' ) ),
 				array( 1 => array( 'a', 'b', 'c' ) ),
 			),
 		);
@@ -191,21 +191,21 @@ class GlobalTest extends MediaWikiTestCase {
 			'text/html',
 			mimeTypeMatch( 'text/html',
 				array( 'application/xhtml+xml' => 1.0,
-				       'text/html'             => 0.7,
-				       'text/plain'            => 0.3 ) ) );
+					'text/html' => 0.7,
+					'text/plain' => 0.3 ) ) );
 		$this->assertEquals(
 			'text/*',
 			mimeTypeMatch( 'text/html',
 				array( 'image/*' => 1.0,
-				       'text/*'  => 0.5 ) ) );
+					'text/*' => 0.5 ) ) );
 		$this->assertEquals(
 			'*/*',
 			mimeTypeMatch( 'text/html',
 				array( '*/*' => 1.0 ) ) );
 		$this->assertNull(
 			mimeTypeMatch( 'text/html',
-				array( 'image/png'     => 1.0,
-				       'image/svg+xml' => 0.5 ) ) );
+				array( 'image/png' => 1.0,
+					'image/svg+xml' => 0.5 ) ) );
 	}
 
 	function testNegotiateType() {
@@ -213,51 +213,51 @@ class GlobalTest extends MediaWikiTestCase {
 			'text/html',
 			wfNegotiateType(
 				array( 'application/xhtml+xml' => 1.0,
-				       'text/html'             => 0.7,
-				       'text/plain'            => 0.5,
-				       'text/*'                => 0.2 ),
-				array( 'text/html'             => 1.0 ) ) );
+					'text/html' => 0.7,
+					'text/plain' => 0.5,
+					'text/*' => 0.2 ),
+				array( 'text/html' => 1.0 ) ) );
 		$this->assertEquals(
 			'application/xhtml+xml',
 			wfNegotiateType(
 				array( 'application/xhtml+xml' => 1.0,
-				       'text/html'             => 0.7,
-				       'text/plain'            => 0.5,
-				       'text/*'                => 0.2 ),
+					'text/html' => 0.7,
+					'text/plain' => 0.5,
+					'text/*' => 0.2 ),
 				array( 'application/xhtml+xml' => 1.0,
-				       'text/html'             => 0.5 ) ) );
+					'text/html' => 0.5 ) ) );
 		$this->assertEquals(
 			'text/html',
 			wfNegotiateType(
-				array( 'text/html'             => 1.0,
-				       'text/plain'            => 0.5,
-				       'text/*'                => 0.5,
-				       'application/xhtml+xml' => 0.2 ),
+				array( 'text/html' => 1.0,
+					'text/plain' => 0.5,
+					'text/*' => 0.5,
+					'application/xhtml+xml' => 0.2 ),
 				array( 'application/xhtml+xml' => 1.0,
-				       'text/html'             => 0.5 ) ) );
+					'text/html' => 0.5 ) ) );
 		$this->assertEquals(
 			'text/html',
 			wfNegotiateType(
-				array( 'text/*'                => 1.0,
-				       'image/*'               => 0.7,
-				       '*/*'                   => 0.3 ),
+				array( 'text/*' => 1.0,
+					'image/*' => 0.7,
+					'*/*' => 0.3 ),
 				array( 'application/xhtml+xml' => 1.0,
-				       'text/html'             => 0.5 ) ) );
+					'text/html' => 0.5 ) ) );
 		$this->assertNull(
 			wfNegotiateType(
-				array( 'text/*'                => 1.0 ),
+				array( 'text/*' => 1.0 ),
 				array( 'application/xhtml+xml' => 1.0 ) ) );
 	}
-	
+
 	function testFallbackMbstringFunctions() {
-		
-		if( !extension_loaded( 'mbstring' ) ) {
+
+		if ( !extension_loaded( 'mbstring' ) ) {
 			$this->markTestSkipped( "The mb_string functions must be installed to test the fallback functions" );
 		}
-		
+
 		$sampleUTF = "Östergötland_coat_of_arms.png";
-		
-		
+
+
 		//mb_substr
 		$substr_params = array(
 			array( 0, 0 ),
@@ -268,27 +268,27 @@ class GlobalTest extends MediaWikiTestCase {
 			array( 1, 1 ),
 			array( 2, -1 )
 		);
-		
-		foreach( $substr_params as $param_set ) {
+
+		foreach ( $substr_params as $param_set ) {
 			$old_param_set = $param_set;
 			array_unshift( $param_set, $sampleUTF );
-			
+
 			$this->assertEquals(
 				MWFunction::callArray( 'mb_substr', $param_set ),
 				MWFunction::callArray( 'Fallback::mb_substr', $param_set ),
 				'Fallback mb_substr with params ' . implode( ', ', $old_param_set )
-			);			
+			);
 		}
-		
-		
+
+
 		//mb_strlen
 		$this->assertEquals(
 			mb_strlen( $sampleUTF ),
 			Fallback::mb_strlen( $sampleUTF ),
 			'Fallback mb_strlen'
-		);			
-		
-		
+		);
+
+
 		//mb_str(r?)pos
 		$strpos_params = array(
 			//array( 'ter' ),
@@ -298,24 +298,24 @@ class GlobalTest extends MediaWikiTestCase {
 			//array( 'c', -10 ),
 			//Broken for now
 		);
-		
-		foreach( $strpos_params as $param_set ) {
+
+		foreach ( $strpos_params as $param_set ) {
 			$old_param_set = $param_set;
 			array_unshift( $param_set, $sampleUTF );
-			
+
 			$this->assertEquals(
 				MWFunction::callArray( 'mb_strpos', $param_set ),
 				MWFunction::callArray( 'Fallback::mb_strpos', $param_set ),
 				'Fallback mb_strpos with params ' . implode( ', ', $old_param_set )
-			);		
-			
+			);
+
 			$this->assertEquals(
 				MWFunction::callArray( 'mb_strrpos', $param_set ),
 				MWFunction::callArray( 'Fallback::mb_strrpos', $param_set ),
 				'Fallback mb_strrpos with params ' . implode( ', ', $old_param_set )
-			);	
+			);
 		}
-		
+
 	}
 
 
@@ -347,7 +347,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertGreaterThan( 5000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
 
-		wfDebugMem(true);
+		wfDebugMem( true );
 		$this->assertGreaterThan( 5000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
 
@@ -357,7 +357,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	function testClientAcceptsGzipTest() {
-		
+
 		$settings = array(
 			'gzip' => true,
 			'bzip' => false,
@@ -370,25 +370,24 @@ class GlobalTest extends MediaWikiTestCase {
 			'gzip;q=12345678.9' => true,
 			' gzip' => true,
 		);
-		
-		if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) $old_server_setting = $_SERVER['HTTP_ACCEPT_ENCODING'];
-		
+
+		if ( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
+			$old_server_setting = $_SERVER['HTTP_ACCEPT_ENCODING'];
+		}
+
 		foreach ( $settings as $encoding => $expect ) {
 			$_SERVER['HTTP_ACCEPT_ENCODING'] = $encoding;
-			
+
 			$this->assertEquals( $expect, wfClientAcceptsGzip( true ),
 				"'$encoding' => " . wfBoolToStr( $expect ) );
 		}
-		
-		if( isset( $old_server_setting ) ) $_SERVER['HTTP_ACCEPT_ENCODING'] = $old_server_setting;
 
+		if ( isset( $old_server_setting ) ) {
+			$_SERVER['HTTP_ACCEPT_ENCODING'] = $old_server_setting;
+		}
 	}
-	
-	
-	
-	function testSwapVarsTest() {
-	
 
+	function testSwapVarsTest() {
 		$var1 = 1;
 		$var2 = 2;
 
@@ -402,27 +401,29 @@ class GlobalTest extends MediaWikiTestCase {
 
 	}
 
-
 	function testWfPercentTest() {
 
 		$pcts = array(
-			array( 6/7, '0.86%', 2, false ),
-			array( 3/3, '1%' ),
-			array( 22/7, '3.14286%', 5 ),
-			array( 3/6, '0.5%' ),
-			array( 1/3, '0%', 0 ),
-			array( 10/3, '0%', -1 ),
-			array( 3/4/5, '0.1%', 1 ),
-			array( 6/7*8, '6.8571428571%', 10 ),
+			array( 6 / 7, '0.86%', 2, false ),
+			array( 3 / 3, '1%' ),
+			array( 22 / 7, '3.14286%', 5 ),
+			array( 3 / 6, '0.5%' ),
+			array( 1 / 3, '0%', 0 ),
+			array( 10 / 3, '0%', -1 ),
+			array( 3 / 4 / 5, '0.1%', 1 ),
+			array( 6 / 7 * 8, '6.8571428571%', 10 ),
 		);
-		
-		foreach( $pcts as $pct ) {
-			if( !isset( $pct[2] ) ) $pct[2] = 2;
-			if( !isset( $pct[3] ) ) $pct[3] = true;
-			
+
+		foreach ( $pcts as $pct ) {
+			if ( !isset( $pct[2] ) ) {
+				$pct[2] = 2;
+			}
+			if ( !isset( $pct[3] ) ) {
+				$pct[3] = true;
+			}
+
 			$this->assertEquals( wfPercent( $pct[0], $pct[2], $pct[3] ), $pct[1], $pct[1] );
 		}
-
 	}
 
 	/**
@@ -432,47 +433,47 @@ class GlobalTest extends MediaWikiTestCase {
 	public function testWfShorthandToInteger( $shorthand, $expected ) {
 		$this->assertEquals( $expected,
 			wfShorthandToInteger( $shorthand )
-		);	
+		);
 	}
 
 	/** array( shorthand, expected integer ) */
 	public static function provideShorthand() {
 		return array(
 			# Null, empty ... 
-			array(     '', -1),
-			array(   '  ', -1),
-			array(   null, -1),
+			array( '', -1 ),
+			array( '  ', -1 ),
+			array( null, -1 ),
 
 			# Failures returns 0 :(
 			array( 'ABCDEFG', 0 ),
-			array( 'Ak',      0 ),
+			array( 'Ak', 0 ),
 
 			# Int, strings with spaces
-			array(        1,    1 ),
-			array(    ' 1 ',    1 ),
-			array(     1023, 1023 ),
+			array( 1, 1 ),
+			array( ' 1 ', 1 ),
+			array( 1023, 1023 ),
 			array( ' 1023 ', 1023 ),
 
 			# kilo, Mega, Giga
-			array(   '1k', 1024 ),
-			array(   '1K', 1024 ),
-			array(   '1m', 1024 * 1024 ),
-			array(   '1M', 1024 * 1024 ),
-			array(   '1g', 1024 * 1024 * 1024 ),
-			array(   '1G', 1024 * 1024 * 1024 ),
+			array( '1k', 1024 ),
+			array( '1K', 1024 ),
+			array( '1m', 1024 * 1024 ),
+			array( '1M', 1024 * 1024 ),
+			array( '1g', 1024 * 1024 * 1024 ),
+			array( '1G', 1024 * 1024 * 1024 ),
 
 			# Negatives
-			array(     -1,    -1 ),
-			array(   -500,  -500 ),
-			array( '-500',  -500 ),
-			array(  '-1k', -1024 ),
+			array( -1, -1 ),
+			array( -500, -500 ),
+			array( '-500', -500 ),
+			array( '-1k', -1024 ),
 
 			# Zeroes
-			array(   '0', 0 ),
-			array(  '0k', 0 ),
-			array(  '0M', 0 ),
-			array(  '0G', 0 ),
-			array(  '-0', 0 ),
+			array( '0', 0 ),
+			array( '0k', 0 ),
+			array( '0M', 0 ),
+			array( '0G', 0 ),
+			array( '-0', 0 ),
 			array( '-0k', 0 ),
 			array( '-0M', 0 ),
 			array( '-0G', 0 ),
@@ -499,7 +500,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$msg .= $expectedMergeResult ? 'success' : 'failure';
 		$this->assertEquals( $expectedMergeResult, $isMerged, $msg );
 
-		if( $isMerged ) {
+		if ( $isMerged ) {
 			// Verify the merged text
 			$this->assertEquals( $expectedText, $mergedText,
 				'is merged text as expected?' );
@@ -511,31 +512,30 @@ class GlobalTest extends MediaWikiTestCase {
 		$EXPECT_MERGE_FAILURE = false;
 
 		return array(
-
 			// #0: clean merge
 			array(
 				// old:
 				"one one one\n" . // trimmed
-				"\n" .
-				"two two two",
+					"\n" .
+					"two two two",
 
 				// mine:
 				"one one one ONE ONE\n" .
-				"\n" .
-				"two two two\n", // with tailing whitespace
+					"\n" .
+					"two two two\n", // with tailing whitespace
 
 				// yours:
 				"one one one\n" .
-				"\n" .
-				"two two TWO TWO", // trimmed
+					"\n" .
+					"two two TWO TWO", // trimmed
 
 				// ok:
 				$EXPECT_MERGE_SUCCESS,
 
 				// result:
 				"one one one ONE ONE\n" .
-				"\n" .
-				"two two TWO TWO\n", // note: will always end in a newline
+					"\n" .
+					"two two TWO TWO\n", // note: will always end in a newline
 			),
 
 			// #1: conflict, fail
@@ -545,14 +545,14 @@ class GlobalTest extends MediaWikiTestCase {
 
 				// mine:
 				"one one one ONE ONE\n" .
-				"\n" .
-				"bla bla\n" .
-				"\n", // with tailing whitespace
+					"\n" .
+					"bla bla\n" .
+					"\n", // with tailing whitespace
 
 				// yours:
 				"one one one\n" .
-				"\n" .
-				"two two", // trimmed
+					"\n" .
+					"two two", // trimmed
 
 				$EXPECT_MERGE_FAILURE,
 
@@ -618,7 +618,7 @@ class GlobalTest extends MediaWikiTestCase {
 			),
 		);
 	}
-	
+
 	/**
 	 * @dataProvider provideWfMatchesDomainList
 	 */
@@ -626,7 +626,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$actual = wfMatchesDomainList( $url, $domains );
 		$this->assertEquals( $expected, $actual, $description );
 	}
-	
+
 	function provideWfMatchesDomainList() {
 		$a = array();
 		$protocols = array( 'HTTP' => 'http:', 'HTTPS' => 'https:', 'protocol-relative' => '' );
@@ -638,7 +638,7 @@ class GlobalTest extends MediaWikiTestCase {
 				array( "$p//www.example2.com", array( 'www.example.com', 'www.example2.com', 'www.example3.com' ), true, "Exact match with other domains in array, $pDesc URL" ),
 				array( "$p//www.example2.com", array( 'example.com', 'example2.com', 'example3,com' ), true, "Match without subdomain with other domains in array, $pDesc URL" ),
 				array( "$p//www.example4.com", array( 'example.com', 'example2.com', 'example3,com' ), false, "Domain not in array, $pDesc URL" ),
-				
+
 				// FIXME: This is a bug in wfMatchesDomainList(). If and when this is fixed, update this test case
 				array( "$p//nds-nl.wikipedia.org", array( 'nl.wikipedia.org' ), true, "Substrings of domains match while they shouldn't, $pDesc URL" ),
 			) );
@@ -650,7 +650,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @dataProvider provideWfShellMaintenanceCmdList
 	 */
 	function testWfShellMaintenanceCmd( $script, $parameters, $options, $expected, $description ) {
-		if( wfIsWindows() ) {
+		if ( wfIsWindows() ) {
 			// Approximation that's good enough for our purposes just now
 			$expected = str_replace( "'", '"', $expected );
 		}
@@ -664,13 +664,13 @@ class GlobalTest extends MediaWikiTestCase {
 			array( 'eval.php', array( '--help', '--test' ), array(),
 				"'$wgPhpCli' 'eval.php' '--help' '--test'",
 				"Called eval.php --help --test" ),
-			array( 'eval.php', array( '--help', '--test space' ), array('php' => 'php5'),
+			array( 'eval.php', array( '--help', '--test space' ), array( 'php' => 'php5' ),
 				"'php5' 'eval.php' '--help' '--test space'",
 				"Called eval.php --help --test with php option" ),
-			array( 'eval.php', array( '--help', '--test', 'X' ), array('wrapper' => 'MWScript.php'),
+			array( 'eval.php', array( '--help', '--test', 'X' ), array( 'wrapper' => 'MWScript.php' ),
 				"'$wgPhpCli' 'MWScript.php' 'eval.php' '--help' '--test' 'X'",
 				"Called eval.php --help --test with wrapper option" ),
-			array( 'eval.php', array( '--help', '--test', 'y' ), array('php' => 'php5', 'wrapper' => 'MWScript.php'),
+			array( 'eval.php', array( '--help', '--test', 'y' ), array( 'php' => 'php5', 'wrapper' => 'MWScript.php' ),
 				"'php5' 'MWScript.php' 'eval.php' '--help' '--test' 'y'",
 				"Called eval.php --help --test with wrapper and php option" ),
 		);

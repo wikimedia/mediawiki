@@ -14,7 +14,7 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 	);
 
 	public function __construct() {
-		foreach( self::$additionalOptions as $option => $default ) {
+		foreach ( self::$additionalOptions as $option => $default ) {
 			$this->longOptions[$option] = $option . 'Handler';
 		}
 
@@ -23,7 +23,7 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 	public static function main( $exit = true ) {
 		$command = new self;
 
-		if( wfIsWindows() ) {
+		if ( wfIsWindows() ) {
 			# Windows does not come anymore with ANSI.SYS loaded by default
 			# PHPUnit uses the suite.xml parameters to enable/disable colors
 			# which can be then forced to be enabled with --colors.
@@ -40,18 +40,20 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		# See bug 32022
 		set_include_path(
 			__DIR__
-			.PATH_SEPARATOR
-			. get_include_path()
+				. PATH_SEPARATOR
+				. get_include_path()
 		);
 
-		$command->run($_SERVER['argv'], $exit);
+		$command->run( $_SERVER['argv'], $exit );
 	}
 
 	public function __call( $func, $args ) {
 
-		if( substr( $func, -7 ) == 'Handler' ) {
-			if( is_null( $args[0] ) ) $args[0] = true; //Booleans
-			self::$additionalOptions[substr( $func, 0, -7 ) ] = $args[0];
+		if ( substr( $func, -7 ) == 'Handler' ) {
+			if ( is_null( $args[0] ) ) {
+				$args[0] = true;
+			} //Booleans
+			self::$additionalOptions[substr( $func, 0, -7 )] = $args[0];
 		}
 	}
 

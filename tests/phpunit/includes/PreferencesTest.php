@@ -17,14 +17,14 @@ class PreferencesTest extends MediaWikiTestCase {
 		$this->prefUsers['notauth']
 			->setEmail( 'noauth@example.org' );
 
-		$this->prefUsers['auth']    = new User;
+		$this->prefUsers['auth'] = new User;
 		$this->prefUsers['auth']
 			->setEmail( 'noauth@example.org' );
 		$this->prefUsers['auth']
 			->setEmailAuthenticationTimestamp( 1330946623 );
 
 		$this->context = new RequestContext;
-		$this->context->setTitle( Title::newFromText('PreferencesTest') );
+		$this->context->setTitle( Title::newFromText( 'PreferencesTest' ) );
 	}
 
 	protected function setUp() {
@@ -44,6 +44,7 @@ class PreferencesTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( 'mw-email-none', $prefs['emailaddress']['cssclass'] );
 	}
+
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
@@ -55,6 +56,7 @@ class PreferencesTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailaddress']['cssclass'] );
 	}
+
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences

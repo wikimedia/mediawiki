@@ -13,7 +13,7 @@ class MediaWikiProvide {
 	/* provide an array of numbers from 1 up to @param $num */
 	private static function createProviderUpTo( $num ) {
 		$ret = array();
-		for( $i=1; $i<=$num;$i++ ) {
+		for ( $i = 1; $i <= $num; $i++ ) {
 			$ret[] = array( $i );
 		}
 		return $ret;
@@ -33,9 +33,9 @@ class MediaWikiProvide {
 		$ret = array();
 
 		$months = self::Months();
-		$days   = self::Days();
-		foreach( $months as $month) {
-			foreach( $days as $day ) {
+		$days = self::Days();
+		foreach ( $months as $month ) {
+			foreach ( $days as $day ) {
 				$ret[] = array( $day[0], $month[0] );
 			}
 		}

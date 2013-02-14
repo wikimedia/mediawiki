@@ -142,13 +142,13 @@ class wfBaseConvertTest extends MediaWikiTestCase {
 	public static function provideNumbers() {
 		$x = array();
 		$chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-		for( $i = 0; $i < 50; $i++ ) {
+		for ( $i = 0; $i < 50; $i++ ) {
 			$base = mt_rand( 2, 36 );
 			$len = mt_rand( 10, 100 );
 
 			$str = '';
-			for( $j = 0; $j < $len; $j++ ) {
-				$str .= $chars[mt_rand(0, $base - 1)];
+			for ( $j = 0; $j < $len; $j++ ) {
+				$str .= $chars[mt_rand( 0, $base - 1 )];
 			}
 
 			$x[] = array( $base, $str );

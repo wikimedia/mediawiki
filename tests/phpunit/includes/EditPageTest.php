@@ -59,8 +59,8 @@ class EditPageTest extends MediaWikiTestCase {
 	 * wrapper around assertEquals() which calls rrtrim() to normalize the
 	 * expected and actual texts.
 	 */
-	function assertEditedTextEquals( $expected, $actual, $msg='' ) {
-		return $this->assertEquals( rtrim($expected), rtrim($actual), $msg );
+	function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
+		return $this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
 	}
 
 	/**
@@ -209,8 +209,7 @@ class EditPageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideSectionEdit() {
-		$text =
-'Intro
+		$text = 'Intro
 
 == one ==
 first section.
@@ -219,19 +218,19 @@ first section.
 second section.
 ';
 
-		$sectionOne =
-'== one ==
+		$sectionOne = '== one ==
 hello
 ';
 
-		$newSection =
-'== new section ==
+		$newSection = '== new section ==
 
 hello
 ';
 
-		$textWithNewSectionOne = preg_replace( '/== one ==.*== two ==/ms',
-										"$sectionOne\n== two ==", $text );
+		$textWithNewSectionOne = preg_replace(
+			'/== one ==.*== two ==/ms',
+			"$sectionOne\n== two ==", $text
+		);
 
 		$textWithNewSectionAdded = "$text\n$newSection";
 
@@ -343,12 +342,12 @@ hello
 		);
 
 		// see whether it makes a difference who did the base edit
-		$testsWithAdam = array_map( function( $test ) {
+		$testsWithAdam = array_map( function ( $test ) {
 			$test[0] = 'Adam'; // change base edit user
 			return $test;
 		}, $tests );
 
-		$testsWithBerta = array_map( function( $test ) {
+		$testsWithBerta = array_map( function ( $test ) {
 			$test[0] = 'Berta'; // change base edit user
 			return $test;
 		}, $tests );
@@ -360,7 +359,7 @@ hello
 	 * @dataProvider provideAutoMerge
 	 */
 	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
-				$expectedCode, $expectedText, $message = null
+		$expectedCode, $expectedText, $message = null
 	) {
 		$this->checkHasDiff3();
 
@@ -378,7 +377,7 @@ hello
 		);
 
 		$page = $this->assertEdit( 'EditPageTest_testAutoMerge', null,
-					$baseUser, $baseEdit, null, null, __METHOD__ );
+			$baseUser, $baseEdit, null, null, __METHOD__ );
 
 		$this->forceRevisionDate( $page, '20120101000000' );
 

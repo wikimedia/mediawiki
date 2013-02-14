@@ -51,7 +51,7 @@ class wfExpandUrl extends MediaWikiTestCase {
 		foreach ( $modes as $mode ) {
 			$httpsMode = $mode == 'https';
 			foreach ( $servers as $serverDesc => $server ) {
-				foreach ( $modes as $canServerMode  ) {
+				foreach ( $modes as $canServerMode ) {
 					$canServer = "$canServerMode://example2.com";
 					foreach ( $defaultProtos as $protoDesc => $defaultProto ) {
 						$retval[] = array(

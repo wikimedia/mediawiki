@@ -84,8 +84,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$wgUser->setId( 1 );
 		$wgUser->mFrom = 'defaults';
 		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant', 'tg-latn' ); // The user's data is ignored
-												  // because the variant is set in the URL.
+		// The user's data is ignored because the variant is set in the URL.
+		$wgUser->setOption( 'variant', 'tg-latn' ); 
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
@@ -120,7 +120,7 @@ class TestConverter extends LanguageConverter {
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'tg-latn' => new ReplacementArray( $this->table ),
-			'tg'      => new ReplacementArray()
+			'tg' => new ReplacementArray()
 		);
 	}
 

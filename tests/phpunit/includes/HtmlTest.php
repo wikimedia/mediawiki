@@ -15,22 +15,22 @@ class HtmlTest extends MediaWikiTestCase {
 		$langObj->setNamespaces( array(
 			-2 => 'Media',
 			-1 => 'Special',
-			0  => '',
-			1  => 'Talk',
-			2  => 'User',
-			3  => 'User_talk',
-			4  => 'MyWiki',
-			5  => 'MyWiki_Talk',
-			6  => 'File',
-			7  => 'File_talk',
-			8  => 'MediaWiki',
-			9  => 'MediaWiki_talk',
-			10  => 'Template',
-			11  => 'Template_talk',
-			14  => 'Category',
-			15  => 'Category_talk',
-			100  => 'Custom',
-			101  => 'Custom_talk',
+			0 => '',
+			1 => 'Talk',
+			2 => 'User',
+			3 => 'User_talk',
+			4 => 'MyWiki',
+			5 => 'MyWiki_Talk',
+			6 => 'File',
+			7 => 'File_talk',
+			8 => 'MediaWiki',
+			9 => 'MediaWiki_talk',
+			10 => 'Template',
+			11 => 'Template_talk',
+			14 => 'Category',
+			15 => 'Category_talk',
+			100 => 'Custom',
+			101 => 'Custom_talk',
 		) );
 
 		$this->setMwGlobals( array(
@@ -248,12 +248,12 @@ class HtmlTest extends MediaWikiTestCase {
 				'one' => 1,
 
 				# Method use isset() internally, make sure we do discard
-			    # attributes values which have been assigned well known values
+				# attributes values which have been assigned well known values
 				'emptystring' => '',
 				'boolfalse' => false,
 				'zero' => 0,
 				'null' => null,
-			)))
+			) ) )
 		);
 	}
 
@@ -271,55 +271,55 @@ class HtmlTest extends MediaWikiTestCase {
 				'GREEN',
 				'GREEN' => false,
 				'GREEN',
-			)))
+			) ) )
 		);
 	}
 
 	function testNamespaceSelector() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
-'<option value=0>(Main)</option>' . "\n" .
-'<option value=1>Talk</option>' . "\n" .
-'<option value=2>User</option>' . "\n" .
-'<option value=3>User talk</option>' . "\n" .
-'<option value=4>MyWiki</option>' . "\n" .
-'<option value=5>MyWiki Talk</option>' . "\n" .
-'<option value=6>File</option>' . "\n" .
-'<option value=7>File talk</option>' . "\n" .
-'<option value=8>MediaWiki</option>' . "\n" .
-'<option value=9>MediaWiki talk</option>' . "\n" .
-'<option value=10>Template</option>' . "\n" .
-'<option value=11>Template talk</option>' . "\n" .
-'<option value=14>Category</option>' . "\n" .
-'<option value=15>Category talk</option>' . "\n" .
-'<option value=100>Custom</option>' . "\n" .
-'<option value=101>Custom talk</option>' . "\n" .
-'</select>',
+				'<option value=0>(Main)</option>' . "\n" .
+				'<option value=1>Talk</option>' . "\n" .
+				'<option value=2>User</option>' . "\n" .
+				'<option value=3>User talk</option>' . "\n" .
+				'<option value=4>MyWiki</option>' . "\n" .
+				'<option value=5>MyWiki Talk</option>' . "\n" .
+				'<option value=6>File</option>' . "\n" .
+				'<option value=7>File talk</option>' . "\n" .
+				'<option value=8>MediaWiki</option>' . "\n" .
+				'<option value=9>MediaWiki talk</option>' . "\n" .
+				'<option value=10>Template</option>' . "\n" .
+				'<option value=11>Template talk</option>' . "\n" .
+				'<option value=14>Category</option>' . "\n" .
+				'<option value=15>Category talk</option>' . "\n" .
+				'<option value=100>Custom</option>' . "\n" .
+				'<option value=101>Custom talk</option>' . "\n" .
+				'</select>',
 			Html::namespaceSelector(),
 			'Basic namespace selector without custom options'
 		);
 
 		$this->assertEquals(
 			'<label for=mw-test-namespace>Select a namespace:</label>&#160;' .
-'<select id=mw-test-namespace name=wpNamespace>' . "\n" .
-'<option value=all>all</option>' . "\n" .
-'<option value=0>(Main)</option>' . "\n" .
-'<option value=1>Talk</option>' . "\n" .
-'<option value=2 selected>User</option>' . "\n" .
-'<option value=3>User talk</option>' . "\n" .
-'<option value=4>MyWiki</option>' . "\n" .
-'<option value=5>MyWiki Talk</option>' . "\n" .
-'<option value=6>File</option>' . "\n" .
-'<option value=7>File talk</option>' . "\n" .
-'<option value=8>MediaWiki</option>' . "\n" .
-'<option value=9>MediaWiki talk</option>' . "\n" .
-'<option value=10>Template</option>' . "\n" .
-'<option value=11>Template talk</option>' . "\n" .
-'<option value=14>Category</option>' . "\n" .
-'<option value=15>Category talk</option>' . "\n" .
-'<option value=100>Custom</option>' . "\n" .
-'<option value=101>Custom talk</option>' . "\n" .
-'</select>',
+				'<select id=mw-test-namespace name=wpNamespace>' . "\n" .
+				'<option value=all>all</option>' . "\n" .
+				'<option value=0>(Main)</option>' . "\n" .
+				'<option value=1>Talk</option>' . "\n" .
+				'<option value=2 selected>User</option>' . "\n" .
+				'<option value=3>User talk</option>' . "\n" .
+				'<option value=4>MyWiki</option>' . "\n" .
+				'<option value=5>MyWiki Talk</option>' . "\n" .
+				'<option value=6>File</option>' . "\n" .
+				'<option value=7>File talk</option>' . "\n" .
+				'<option value=8>MediaWiki</option>' . "\n" .
+				'<option value=9>MediaWiki talk</option>' . "\n" .
+				'<option value=10>Template</option>' . "\n" .
+				'<option value=11>Template talk</option>' . "\n" .
+				'<option value=14>Category</option>' . "\n" .
+				'<option value=15>Category talk</option>' . "\n" .
+				'<option value=100>Custom</option>' . "\n" .
+				'<option value=101>Custom talk</option>' . "\n" .
+				'</select>',
 			Html::namespaceSelector(
 				array( 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ),
 				array( 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' )
@@ -329,24 +329,24 @@ class HtmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for=namespace>Select a namespace:</label>&#160;' .
-'<select id=namespace name=namespace>' . "\n" .
-'<option value=0>(Main)</option>' . "\n" .
-'<option value=1>Talk</option>' . "\n" .
-'<option value=2>User</option>' . "\n" .
-'<option value=3>User talk</option>' . "\n" .
-'<option value=4>MyWiki</option>' . "\n" .
-'<option value=5>MyWiki Talk</option>' . "\n" .
-'<option value=6>File</option>' . "\n" .
-'<option value=7>File talk</option>' . "\n" .
-'<option value=8>MediaWiki</option>' . "\n" .
-'<option value=9>MediaWiki talk</option>' . "\n" .
-'<option value=10>Template</option>' . "\n" .
-'<option value=11>Template talk</option>' . "\n" .
-'<option value=14>Category</option>' . "\n" .
-'<option value=15>Category talk</option>' . "\n" .
-'<option value=100>Custom</option>' . "\n" .
-'<option value=101>Custom talk</option>' . "\n" .
-'</select>',
+				'<select id=namespace name=namespace>' . "\n" .
+				'<option value=0>(Main)</option>' . "\n" .
+				'<option value=1>Talk</option>' . "\n" .
+				'<option value=2>User</option>' . "\n" .
+				'<option value=3>User talk</option>' . "\n" .
+				'<option value=4>MyWiki</option>' . "\n" .
+				'<option value=5>MyWiki Talk</option>' . "\n" .
+				'<option value=6>File</option>' . "\n" .
+				'<option value=7>File talk</option>' . "\n" .
+				'<option value=8>MediaWiki</option>' . "\n" .
+				'<option value=9>MediaWiki talk</option>' . "\n" .
+				'<option value=10>Template</option>' . "\n" .
+				'<option value=11>Template talk</option>' . "\n" .
+				'<option value=14>Category</option>' . "\n" .
+				'<option value=15>Category talk</option>' . "\n" .
+				'<option value=100>Custom</option>' . "\n" .
+				'<option value=101>Custom talk</option>' . "\n" .
+				'</select>',
 			Html::namespaceSelector(
 				array( 'label' => 'Select a namespace:' )
 			),
@@ -356,19 +356,19 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testCanFilterOutNamespaces() {
 		$this->assertEquals(
-'<select id=namespace name=namespace>' . "\n" .
-'<option value=2>User</option>' . "\n" .
-'<option value=4>MyWiki</option>' . "\n" .
-'<option value=5>MyWiki Talk</option>' . "\n" .
-'<option value=6>File</option>' . "\n" .
-'<option value=7>File talk</option>' . "\n" .
-'<option value=8>MediaWiki</option>' . "\n" .
-'<option value=9>MediaWiki talk</option>' . "\n" .
-'<option value=10>Template</option>' . "\n" .
-'<option value=11>Template talk</option>' . "\n" .
-'<option value=14>Category</option>' . "\n" .
-'<option value=15>Category talk</option>' . "\n" .
-'</select>',
+			'<select id=namespace name=namespace>' . "\n" .
+				'<option value=2>User</option>' . "\n" .
+				'<option value=4>MyWiki</option>' . "\n" .
+				'<option value=5>MyWiki Talk</option>' . "\n" .
+				'<option value=6>File</option>' . "\n" .
+				'<option value=7>File talk</option>' . "\n" .
+				'<option value=8>MediaWiki</option>' . "\n" .
+				'<option value=9>MediaWiki talk</option>' . "\n" .
+				'<option value=10>Template</option>' . "\n" .
+				'<option value=11>Template talk</option>' . "\n" .
+				'<option value=14>Category</option>' . "\n" .
+				'<option value=15>Category talk</option>' . "\n" .
+				'</select>',
 			Html::namespaceSelector(
 				array( 'exclude' => array( 0, 1, 3, 100, 101 ) )
 			),
@@ -378,24 +378,24 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testCanDisableANamespaces() {
 		$this->assertEquals(
-'<select id=namespace name=namespace>' . "\n" .
-'<option disabled value=0>(Main)</option>' . "\n" .
-'<option disabled value=1>Talk</option>' . "\n" .
-'<option disabled value=2>User</option>' . "\n" .
-'<option disabled value=3>User talk</option>' . "\n" .
-'<option disabled value=4>MyWiki</option>' . "\n" .
-'<option value=5>MyWiki Talk</option>' . "\n" .
-'<option value=6>File</option>' . "\n" .
-'<option value=7>File talk</option>' . "\n" .
-'<option value=8>MediaWiki</option>' . "\n" .
-'<option value=9>MediaWiki talk</option>' . "\n" .
-'<option value=10>Template</option>' . "\n" .
-'<option value=11>Template talk</option>' . "\n" .
-'<option value=14>Category</option>' . "\n" .
-'<option value=15>Category talk</option>' . "\n" .
-'<option value=100>Custom</option>' . "\n" .
-'<option value=101>Custom talk</option>' . "\n" .
-'</select>',
+			'<select id=namespace name=namespace>' . "\n" .
+				'<option disabled value=0>(Main)</option>' . "\n" .
+				'<option disabled value=1>Talk</option>' . "\n" .
+				'<option disabled value=2>User</option>' . "\n" .
+				'<option disabled value=3>User talk</option>' . "\n" .
+				'<option disabled value=4>MyWiki</option>' . "\n" .
+				'<option value=5>MyWiki Talk</option>' . "\n" .
+				'<option value=6>File</option>' . "\n" .
+				'<option value=7>File talk</option>' . "\n" .
+				'<option value=8>MediaWiki</option>' . "\n" .
+				'<option value=9>MediaWiki talk</option>' . "\n" .
+				'<option value=10>Template</option>' . "\n" .
+				'<option value=11>Template talk</option>' . "\n" .
+				'<option value=14>Category</option>' . "\n" .
+				'<option value=15>Category talk</option>' . "\n" .
+				'<option value=100>Custom</option>' . "\n" .
+				'<option value=101>Custom talk</option>' . "\n" .
+				'</select>',
 			Html::namespaceSelector( array(
 				'disable' => array( 0, 1, 2, 3, 4 )
 			) ),
@@ -435,7 +435,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'color',
 		);
 		$cases = array();
-		foreach( $types as $type ) {
+		foreach ( $types as $type ) {
 			$cases[] = array( $type );
 		}
 		return $cases;
@@ -595,7 +595,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 		# Craft the Html elements
 		$ret = array();
-		foreach( $cases as $case ) {
+		foreach ( $cases as $case ) {
 			$ret[] = array(
 				$case[0],
 				$case[1], $case[2],

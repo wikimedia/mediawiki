@@ -29,7 +29,7 @@ class StructureTest extends MediaWikiTestCase {
 
 		$results = null;
 		$exitCode = null;
-		exec($finder, $results, $exitCode);
+		exec( $finder, $results, $exitCode );
 
 		$this->assertEquals(
 			0,
@@ -42,7 +42,7 @@ class StructureTest extends MediaWikiTestCase {
 			array( $this, 'filterSuites' )
 		);
 		$strip = strlen( $rootPath ) - 1;
-		foreach( $results as $k => $v) {
+		foreach ( $results as $k => $v ) {
 			$results[$k] = substr( $v, $strip );
 		}
 		$this->assertEquals(

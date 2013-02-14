@@ -13,7 +13,7 @@ class wfTimestamp extends MediaWikiTestCase {
 
 	function provideNormalTimestamps() {
 		$t = gmmktime( 12, 34, 56, 1, 15, 2001 );
-		return array (
+		return array(
 			// TS_UNIX
 			array( $t, TS_MW, '20010115123456', 'TS_UNIX to TS_MW' ),
 			array( -30281104, TS_MW, '19690115123456', 'Negative TS_UNIX to TS_MW' ),
@@ -21,13 +21,13 @@ class wfTimestamp extends MediaWikiTestCase {
 			array( $t, TS_DB, '2001-01-15 12:34:56', 'TS_UNIX to TS_DB' ),
 
 			array( $t, TS_ISO_8601_BASIC, '20010115T123456Z', 'TS_ISO_8601_BASIC to TS_DB' ),
-			
+
 			// TS_MW
 			array( '20010115123456', TS_MW, '20010115123456', 'TS_MW to TS_MW' ),
 			array( '20010115123456', TS_UNIX, 979562096, 'TS_MW to TS_UNIX' ),
 			array( '20010115123456', TS_DB, '2001-01-15 12:34:56', 'TS_MW to TS_DB' ),
 			array( '20010115123456', TS_ISO_8601_BASIC, '20010115T123456Z', 'TS_MW to TS_ISO_8601_BASIC' ),
-			
+
 			// TS_DB
 			array( '2001-01-15 12:34:56', TS_MW, '20010115123456', 'TS_DB to TS_MW' ),
 			array( '2001-01-15 12:34:56', TS_UNIX, 979562096, 'TS_DB to TS_UNIX' ),
@@ -62,7 +62,7 @@ class wfTimestamp extends MediaWikiTestCase {
 	}
 
 	function provideOldTimestamps() {
-		return array (
+		return array(
 			array( '19011213204554', TS_RFC2822, 'Fri, 13 Dec 1901 20:45:54 GMT', 'Earliest time according to php documentation' ),
 			array( '20380119031407', TS_RFC2822, 'Tue, 19 Jan 2038 03:14:07 GMT', 'Latest 32 bit time' ),
 			array( '19011213204552', TS_UNIX, '-2147483648', 'Earliest 32 bit unix time' ),

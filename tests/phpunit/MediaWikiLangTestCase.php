@@ -10,7 +10,7 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 		parent::setUp();
 
 		if ( $wgLanguageCode != $wgContLang->getCode() ) {
-			throw new MWException("Error in MediaWikiLangTestCase::setUp(): " .
+			throw new MWException( "Error in MediaWikiLangTestCase::setUp(): " .
 				"\$wgLanguageCode ('$wgLanguageCode') is different from " .
 				"\$wgContLang->getCode() (" . $wgContLang->getCode() . ")" );
 		}

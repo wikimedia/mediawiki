@@ -8,9 +8,9 @@ class wfBaseName extends MediaWikiTestCase {
 	 */
 	function testBaseName( $fullpath, $basename ) {
 		$this->assertEquals( $basename, wfBaseName( $fullpath ),
-				"wfBaseName('$fullpath') => '$basename'" );
+			"wfBaseName('$fullpath') => '$basename'" );
 	}
-	
+
 	function providePaths() {
 		return array(
 			array( '', '' ),

@@ -17,9 +17,9 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->setMwGlobals( array(
 			'wgContentNamespaces' => array( NS_MAIN ),
 			'wgNamespacesWithSubpages' => array(
-				NS_TALK           => true,
-				NS_USER           => true,
-				NS_USER_TALK      => true,
+				NS_TALK => true,
+				NS_USER => true,
+				NS_USER_TALK => true,
 			),
 			'wgCapitalLinks' => true,
 			'wgCapitalLinkOverrides' => array(),
@@ -42,18 +42,18 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testIsSubject() {
 		// Special namespaces
-		$this->assertIsSubject( NS_MEDIA   );
+		$this->assertIsSubject( NS_MEDIA );
 		$this->assertIsSubject( NS_SPECIAL );
 
 		// Subject pages
 		$this->assertIsSubject( NS_MAIN );
 		$this->assertIsSubject( NS_USER );
-		$this->assertIsSubject( 100     );  # user defined
+		$this->assertIsSubject( 100 ); # user defined
 
 		// Talk pages
-		$this->assertIsNotSubject( NS_TALK      );
+		$this->assertIsNotSubject( NS_TALK );
 		$this->assertIsNotSubject( NS_USER_TALK );
-		$this->assertIsNotSubject( 101          ); # user defined
+		$this->assertIsNotSubject( 101 ); # user defined
 	}
 
 	/**
@@ -62,18 +62,18 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testIsTalk() {
 		// Special namespaces
-		$this->assertIsNotTalk( NS_MEDIA   );
+		$this->assertIsNotTalk( NS_MEDIA );
 		$this->assertIsNotTalk( NS_SPECIAL );
 
 		// Subject pages
-		$this->assertIsNotTalk( NS_MAIN   );
-		$this->assertIsNotTalk( NS_USER   );
-		$this->assertIsNotTalk( 100       );  # user defined
+		$this->assertIsNotTalk( NS_MAIN );
+		$this->assertIsNotTalk( NS_USER );
+		$this->assertIsNotTalk( 100 ); # user defined
 
 		// Talk pages
-		$this->assertIsTalk( NS_TALK      );
+		$this->assertIsTalk( NS_TALK );
 		$this->assertIsTalk( NS_USER_TALK );
-		$this->assertIsTalk( 101          ); # user defined
+		$this->assertIsTalk( 101 ); # user defined
 	}
 
 	/**
@@ -135,7 +135,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @expectedException MWException
 	 */
 	public function testGetAssociatedExceptionsForNsMedia() {
-		$this->assertNull( MWNamespace::getAssociated( NS_MEDIA   ) );
+		$this->assertNull( MWNamespace::getAssociated( NS_MEDIA ) );
 	}
 
 	/**
@@ -148,14 +148,14 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 * @todo Implement testExists().
 	 */
-/*
+	/*
 	public function testExists() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-*/
+	*/
 
 	/**
 	 * Test MWNamespace::equals
@@ -189,7 +189,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertSameSubject( NS_USER, NS_USER_TALK );
 
 		$this->assertDifferentSubject( NS_PROJECT, NS_TEMPLATE );
-		$this->assertDifferentSubject( NS_SPECIAL, NS_MAIN     );
+		$this->assertDifferentSubject( NS_SPECIAL, NS_MAIN );
 	}
 
 	public function testSpecialAndMediaAreDifferentSubjects() {
@@ -207,56 +207,58 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 * @todo Implement testGetCanonicalNamespaces().
 	 */
-/*
+	/*
 	public function testGetCanonicalNamespaces() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-*/
+	*/
 	/**
 	 * @todo Implement testGetCanonicalName().
 	 */
-/*
-	public function testGetCanonicalName() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
-		);
-	}
-*/
+	/*
+		public function testGetCanonicalName() {
+			// Remove the following lines when you implement this test.
+			$this->markTestIncomplete(
+			  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
+			);
+		}
+	*/
 	/**
 	 * @todo Implement testGetCanonicalIndex().
 	 */
-/*
+	/*
 	public function testGetCanonicalIndex() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-*/
+	*/
+
 	/**
 	 * @todo Implement testGetValidNamespaces().
 	 */
-/*
+	/*
 	public function testGetValidNamespaces() {
 		// Remove the following lines when you implement this test.
 		$this->markTestIncomplete(
 		  'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
 		);
 	}
-*/
+	*/
+
 	/**
 	 */
 	public function testCanTalk() {
-		$this->assertCanNotTalk( NS_MEDIA   );
+		$this->assertCanNotTalk( NS_MEDIA );
 		$this->assertCanNotTalk( NS_SPECIAL );
 
-		$this->assertCanTalk( NS_MAIN      );
-		$this->assertCanTalk( NS_TALK      );
-		$this->assertCanTalk( NS_USER      );
+		$this->assertCanTalk( NS_MAIN );
+		$this->assertCanTalk( NS_TALK );
+		$this->assertCanTalk( NS_USER );
 		$this->assertCanTalk( NS_USER_TALK );
 
 		// User defined namespaces
@@ -303,7 +305,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 	public function testIsWatchable() {
 		// Specials namespaces are not watchable
-		$this->assertIsNotWatchable( NS_MEDIA   );
+		$this->assertIsNotWatchable( NS_MEDIA );
 		$this->assertIsNotWatchable( NS_SPECIAL );
 
 		// Core defined namespaces are watchables
@@ -319,7 +321,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		global $wgNamespacesWithSubpages;
 
 		// Special namespaces:
-		$this->assertHasNotSubpages( NS_MEDIA   );
+		$this->assertHasNotSubpages( NS_MEDIA );
 		$this->assertHasNotSubpages( NS_SPECIAL );
 
 		// Namespaces without subpages
@@ -332,8 +334,8 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertHasNotSubpages( NS_MAIN );
 
 		// Some namespaces with subpages
-		$this->assertHasSubpages( NS_TALK      );
-		$this->assertHasSubpages( NS_USER      );
+		$this->assertHasSubpages( NS_TALK );
+		$this->assertHasSubpages( NS_USER );
 		$this->assertHasSubpages( NS_USER_TALK );
 	}
 
@@ -392,7 +394,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testGetSubjectNamespaces() {
 		$subjectsNS = MWNamespace::getSubjectNamespaces();
-		$this->assertContains(    NS_MAIN, $subjectsNS,
+		$this->assertContains( NS_MAIN, $subjectsNS,
 			"Talk namespaces should have NS_MAIN" );
 		$this->assertNotContains( NS_TALK, $subjectsNS,
 			"Talk namespaces should have NS_TALK" );
@@ -407,7 +409,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testGetTalkNamespaces() {
 		$talkNS = MWNamespace::getTalkNamespaces();
-		$this->assertContains(    NS_TALK, $talkNS,
+		$this->assertContains( NS_TALK, $talkNS,
 			"Subject namespaces should have NS_TALK" );
 		$this->assertNotContains( NS_MAIN, $talkNS,
 			"Subject namespaces should not have NS_MAIN" );
@@ -426,18 +428,18 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		// NS_MEDIA and NS_FILE are treated the same
 		$this->assertEquals(
 			MWNamespace::isCapitalized( NS_MEDIA ),
-			MWNamespace::isCapitalized( NS_FILE  ),
+			MWNamespace::isCapitalized( NS_FILE ),
 			'NS_MEDIA and NS_FILE have same capitalization rendering'
 		);
 
 		// Boths are capitalized by default
 		$this->assertIsCapitalized( NS_MEDIA );
-		$this->assertIsCapitalized( NS_FILE  );
+		$this->assertIsCapitalized( NS_FILE );
 
 		// Always capitalized namespaces
 		// @see MWNamespace::$alwaysCapitalizedNamespaces
-		$this->assertIsCapitalized( NS_SPECIAL   );
-		$this->assertIsCapitalized( NS_USER      );
+		$this->assertIsCapitalized( NS_SPECIAL );
+		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 	}
 
@@ -456,18 +458,18 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testIsCapitalizedWithWgCapitalLinks() {
 		global $wgCapitalLinks;
 
-		$this->assertIsCapitalized( NS_PROJECT      );
+		$this->assertIsCapitalized( NS_PROJECT );
 		$this->assertIsCapitalized( NS_PROJECT_TALK );
 
 		$wgCapitalLinks = false;
 
 		// hardcoded namespaces (see above function) are still capitalized:
-		$this->assertIsCapitalized( NS_SPECIAL   );
-		$this->assertIsCapitalized( NS_USER      );
+		$this->assertIsCapitalized( NS_SPECIAL );
+		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
 		// setting is correctly applied
-		$this->assertIsNotCapitalized( NS_PROJECT      );
+		$this->assertIsNotCapitalized( NS_PROJECT );
 		$this->assertIsNotCapitalized( NS_PROJECT_TALK );
 	}
 
@@ -481,27 +483,27 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		global $wgCapitalLinkOverrides;
 
 		// Test default settings
-		$this->assertIsCapitalized( NS_PROJECT      );
+		$this->assertIsCapitalized( NS_PROJECT );
 		$this->assertIsCapitalized( NS_PROJECT_TALK );
 
 		// hardcoded namespaces (see above function) are capitalized:
-		$this->assertIsCapitalized( NS_SPECIAL   );
-		$this->assertIsCapitalized( NS_USER      );
+		$this->assertIsCapitalized( NS_SPECIAL );
+		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
 		// Hardcoded namespaces remains capitalized
-		$wgCapitalLinkOverrides[NS_SPECIAL]   = false;
-		$wgCapitalLinkOverrides[NS_USER]      = false;
+		$wgCapitalLinkOverrides[NS_SPECIAL] = false;
+		$wgCapitalLinkOverrides[NS_USER] = false;
 		$wgCapitalLinkOverrides[NS_MEDIAWIKI] = false;
 
-		$this->assertIsCapitalized( NS_SPECIAL   );
-		$this->assertIsCapitalized( NS_USER      );
+		$this->assertIsCapitalized( NS_SPECIAL );
+		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
 		$wgCapitalLinkOverrides[NS_PROJECT] = false;
 		$this->assertIsNotCapitalized( NS_PROJECT );
 
-		$wgCapitalLinkOverrides[NS_PROJECT] = true ;
+		$wgCapitalLinkOverrides[NS_PROJECT] = true;
 		$this->assertIsCapitalized( NS_PROJECT );
 
 		unset( $wgCapitalLinkOverrides[NS_PROJECT] );
@@ -510,15 +512,14 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 	public function testHasGenderDistinction() {
 		// Namespaces with gender distinctions
-		$this->assertTrue( MWNamespace::hasGenderDistinction( NS_USER      ) );
+		$this->assertTrue( MWNamespace::hasGenderDistinction( NS_USER ) );
 		$this->assertTrue( MWNamespace::hasGenderDistinction( NS_USER_TALK ) );
 
 		// Other ones, "genderless"
-		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_MEDIA   ) );
+		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_MEDIA ) );
 		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_SPECIAL ) );
-		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_MAIN    ) );
-		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_TALK    ) );
-
+		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_MAIN ) );
+		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_TALK ) );
 	}
 
 	public function testIsNonincludable() {
@@ -533,25 +534,25 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	####### HELPERS ###########################################################
 	function __call( $method, $args ) {
 		// Call the real method if it exists
-		if( method_exists($this, $method ) ) {
+		if ( method_exists( $this, $method ) ) {
 			return $this->$method( $args );
 		}
 
-		if( preg_match( '/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/', $method, $m ) ) {
+		if ( preg_match( '/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/', $method, $m ) ) {
 			# Interprets arguments:
-			$ns  = $args[0];
-			$msg = isset($args[1]) ? $args[1] : " dummy message";
+			$ns = $args[0];
+			$msg = isset( $args[1] ) ? $args[1] : " dummy message";
 
 			# Forge the namespace constant name:
-			if( $ns === 0 ) {
+			if ( $ns === 0 ) {
 				$ns_name = "NS_MAIN";
 			} else {
-				$ns_name = "NS_" . strtoupper(  MWNamespace::getCanonicalName( $ns ) );
+				$ns_name = "NS_" . strtoupper( MWNamespace::getCanonicalName( $ns ) );
 			}
 			# ... and the MWNamespace method name
 			$nsMethod = strtolower( $m[1] ) . $m[3];
 
-			$expect = ($m[2] === '');
+			$expect = ( $m[2] === '' );
 			$expect_name = $expect ? 'TRUE' : 'FALSE';
 
 			return $this->assertEquals( $expect,
@@ -566,6 +567,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	function assertSameSubject( $ns1, $ns2, $msg = '' ) {
 		$this->assertTrue( MWNamespace::subjectEquals( $ns1, $ns2, $msg ) );
 	}
+
 	function assertDifferentSubject( $ns1, $ns2, $msg = '' ) {
 		$this->assertFalse( MWNamespace::subjectEquals( $ns1, $ns2, $msg ) );
 	}
