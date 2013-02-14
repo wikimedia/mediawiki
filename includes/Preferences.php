@@ -129,7 +129,7 @@ class Preferences {
 	static function getOptionFromUser( $name, $info, $user ) {
 		$val = $user->getOption( $name );
 
-		// Handling for array-type preferences
+		// Handling for multiselect preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 				( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
 			$options = HTMLFormField::flattenOptions( $info['options'] );
@@ -139,6 +139,23 @@ class Preferences {
 			foreach ( $options as $value ) {
 				if ( $user->getOption( "$prefix$value" ) ) {
 					$val[] = $value;
+				}
+			}
+		}
+
+		// Handling for checkmatrix preferences
+		if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
+				( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
+			$columns = HTMLFormField::flattenOptions( $info['columns'] );
+			$rows = HTMLFormField::flattenOptions( $info['rows'] );
+			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
+			$val = array();
+
+			foreach ( $columns as $column ) {
+				foreach ( $rows as $row ) {
+					if ( $user->getOption( "$prefix-$column-$row" ) ) {
+						$val[] = "$column-$row";
+					}
 				}
 			}
 		}
@@ -1560,16 +1577,30 @@ class PreferencesForm extends HTMLForm {
 	 * @return array
 	 */
 	function filterDataForSubmit( $data ) {
-		// Support for separating MultiSelect preferences into multiple preferences
+		// Support for separating multi-option preferences into multiple preferences
 		// Due to lack of array support.
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			$info = $field->mParams;
+
 			if ( $field instanceof HTMLMultiSelectField ) {
 				$options = HTMLFormField::flattenOptions( $info['options'] );
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
 
 				foreach ( $options as $opt ) {
 					$data["$prefix$opt"] = in_array( $opt, $data[$fieldname] );
+				}
+
+				unset( $data[$fieldname] );
+
+			} elseif ( $field instanceof HTMLCheckMatrix ) {
+				$columns = HTMLFormField::flattenOptions( $info['columns'] );
+				$rows = HTMLFormField::flattenOptions( $info['rows'] );
+				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
+
+				foreach ( $columns as $column ) {
+					foreach ( $rows as $row ) {
+						$data["$prefix-$column-$row"] = in_array( "$column-$row", $data[$fieldname] );
+					}
 				}
 
 				unset( $data[$fieldname] );

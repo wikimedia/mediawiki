@@ -112,6 +112,7 @@ class HTMLForm extends ContextSource {
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
+		'checkmatrix' => 'HTMLCheckMatrix',
 
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like url, but
@@ -1777,6 +1778,163 @@ class HTMLCheckField extends HTMLFormField {
 			return $request->getBool( $this->mName ) xor $invert;
 		} else {
 			return $this->getDefault();
+		}
+	}
+}
+
+/**
+ * A checkbox matrix
+ * Operates similarly to HTMLMultiSelectField, but instead of using an array of
+ * options, uses an array of rows and an array of columns to dynamically
+ * construct a matrix of options.
+ */
+class HTMLCheckMatrix extends HTMLFormField {
+
+	function validate( $value, $alldata ) {
+		$rows = $this->mParams['rows'];
+		$columns = $this->mParams['columns'];
+
+		// Make sure user-defined validation callback is run
+		$p = parent::validate( $value, $alldata );
+		if ( $p !== true ) {
+			return $p;
+		}
+
+		// Make sure submitted value is an array
+		if ( !is_array( $value ) ) {
+			return false;
+		}
+
+		// If all options are valid, array_intersect of the valid options
+		// and the provided options will return the provided options.
+		$validOptions = array();
+		foreach ( $rows as $rowTag ) {
+			foreach ( $columns as $columnTag ) {
+				$validOptions[] = $columnTag . '-' . $rowTag;
+			}
+		}
+		$validValues = array_intersect( $value, $validOptions );
+		if ( count( $validValues ) == count( $value ) ) {
+			return true;
+		} else {
+			return $this->msg( 'htmlform-select-badoption' )->parse();
+		}
+	}
+
+	/**
+	 * Build a table containing a matrix of checkbox options.
+	 * The value of each option is a combination of the row tag and column tag.
+	 * mParams['rows'] is an array with row labels as keys and row tags as values.
+	 * mParams['columns'] is an array with column labels as keys and column tags as values.
+	 * @param $value Array of the options that should be checked
+	 * @return String
+	 */
+	function getInputHTML( $value ) {
+		$html = '';
+		$tableContents = '';
+		$attribs = array();
+		$rows = $this->mParams['rows'];
+		$columns = $this->mParams['columns'];
+
+		// If the disabled param is set, disable all the options
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
+		}
+
+		// Build the column headers
+		$headerContents = Html::rawElement( 'td', array(), '&#160;' );
+		foreach ( $columns as $columnLabel => $columnTag ) {
+			$headerContents .= Html::rawElement( 'td', array(), $columnLabel );
+		}
+		$tableContents .= Html::rawElement( 'tr', array(), "\n$headerContents\n" );
+
+		// Build the options matrix
+		foreach ( $rows as $rowLabel => $rowTag ) {
+			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
+			foreach ( $columns as $columnTag ) {
+				// Construct the checkbox
+				$thisAttribs = array(
+					'id' => "{$this->mID}-$columnTag-$rowTag",
+					'value' => $columnTag . '-' . $rowTag
+				);
+				$checkbox = Xml::check(
+					$this->mName . '[]',
+					in_array( $columnTag . '-' . $rowTag, (array)$value, true ),
+					$attribs + $thisAttribs );
+				$rowContents .= Html::rawElement( 'td', array(), $checkbox );
+			}
+			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
+		}
+
+		// Put it all in a table
+		$html .= Html::rawElement( 'table', array( 'class' => 'mw-htmlform-matrix' ),
+			Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
+
+		return $html;
+	}
+
+	/**
+	 * Get the complete table row for the input, including help text,
+	 * labels, and whatever.
+	 * We override this function since the label should always be on a separate
+	 * line above the options in the case of a checkbox matrix, i.e. it's always
+	 * a "vertical-label".
+	 * @param $value String the value to set the input to
+	 * @return String complete HTML table row
+	 */
+	function getTableRow( $value ) {
+		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+		$inputHtml = $this->getInputHTML( $value );
+		$fieldType = get_class( $this );
+		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
+		$cellAttributes = array( 'colspan' => 2 );
+
+		$label = $this->getLabelHtml( $cellAttributes );
+
+		$field = Html::rawElement(
+			'td',
+			array( 'class' => 'mw-input' ) + $cellAttributes,
+			$inputHtml . "\n$errors"
+		);
+
+		$html = Html::rawElement( 'tr',
+			array( 'class' => 'mw-htmlform-vertical-label' ), $label );
+		$html .= Html::rawElement( 'tr',
+			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+			$field );
+
+		return $html . $helptext;
+	}
+
+	/**
+	 * @param $request WebRequest
+	 * @return Array
+	 */
+	function loadDataFromRequest( $request ) {
+		if ( $this->mParent->getMethod() == 'post' ) {
+			if ( $request->wasPosted() ) {
+				// Checkboxes are not added to the request arrays if they're not checked,
+				// so it's perfectly possible for there not to be an entry at all
+				return $request->getArray( $this->mName, array() );
+			} else {
+				// That's ok, the user has not yet submitted the form, so show the defaults
+				return $this->getDefault();
+			}
+		} else {
+			// This is the impossible case: if we look at $_GET and see no data for our
+			// field, is it because the user has not yet submitted the form, or that they
+			// have submitted it with all the options unchecked. We will have to assume the
+			// latter, which basically means that you can't specify 'positive' defaults
+			// for GET forms.
+			return $request->getArray( $this->mName, array() );
+		}
+	}
+
+	function getDefault() {
+		if ( isset( $this->mDefault ) ) {
+			return $this->mDefault;
+		} else {
+			return array();
 		}
 	}
 }
