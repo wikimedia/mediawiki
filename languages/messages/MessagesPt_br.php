@@ -1405,7 +1405,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Características de laboratório',
 'prefs-user-pages' => 'Páginas de usuário',
-'prefs-personal' => 'Perfil de usuário',
+'prefs-personal' => 'Dados do usuário',
 'prefs-rc' => 'Mudanças recentes',
 'prefs-watchlist' => 'Lista de páginas vigiadas',
 'prefs-watchlist-days' => 'Dias a mostrar na lista de páginas vigiadas:',

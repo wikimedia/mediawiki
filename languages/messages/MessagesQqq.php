@@ -4899,8 +4899,7 @@ Special pages use {{msg-mw|Nextn}} instead (still as an argument to {{msg-mw|Vie
 
 Example line:
 * [[Main Page]] ([[Special:WhatLinksHere/Main Page|{{int:whatlinkshere-links}}]])
-
-{{Identical|Links}}',
+{{Identical|Link}}',
 'whatlinkshere-hideredirs' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
 * $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
 'whatlinkshere-hidetrans' => 'First filter option in [[Special:WhatLinksHere]]. Parameters:

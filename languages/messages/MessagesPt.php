@@ -1407,7 +1407,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-datetime' => 'Data e hora',
 'prefs-labs' => 'Funcionalidades dos laboratórios',
 'prefs-user-pages' => 'Páginas de utilizador',
-'prefs-personal' => 'Perfil de utilizador',
+'prefs-personal' => 'Dados do utilizador',
 'prefs-rc' => 'Mudanças recentes',
 'prefs-watchlist' => 'Páginas vigiadas',
 'prefs-watchlist-days' => 'Dias a mostrar nas mudanças às páginas vigiadas:',

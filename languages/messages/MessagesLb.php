@@ -917,7 +917,7 @@ Dir kënnt den Text kopéieren an an een Textfichier drasetzen an deen ofspäich
 
 Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'protectedpagewarning' => "'''OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
-'semiprotectedpagewarning' => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
+'semiprotectedpagewarning' => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellt Benotzer s'ännere kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'cascadeprotectedwarning' => "'''Passt op:''' Dës Säit gouf gespaart a kann nëmme vu Benotzer mat Administreursrechter geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Cascadespäroptioun gespaart {{PLURAL:$1|ass|sinn}}:'''",
 'titleprotectedwarning' => "'''OPGEPASST: Dës Säit gouf gespaart sou datt [[Special:ListGroupRights|spezifesch Rechter]] gebraucht gi fir se uleeën ze kënnen.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'templatesused' => '{{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit am Gebrauch sinn:',
@@ -2351,7 +2351,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 
 # Restriction levels
 'restriction-level-sysop' => 'ganz gespaart',
-'restriction-level-autoconfirmed' => 'hallef-gespaart (nëmmen ugemellte Benotzer déi net nei sinn)',
+'restriction-level-autoconfirmed' => 'hallef gespaart (nëmmen ugemellt Benotzer déi net nei sinn)',
 'restriction-level-all' => 'alleguerten',
 
 # Undelete

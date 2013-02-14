@@ -204,7 +204,7 @@ $messages = array(
 'history_short' => 'Riwayaik',
 'updatedmarker' => 'diubah sajak kunjuangan tarakhir ambo',
 'printableversion' => 'Versi cetak',
-'permalink' => 'Pranala permanen',
+'permalink' => 'Pautan parmanen',
 'print' => 'Cetak',
 'view' => 'Tampilkan',
 'edit' => 'Suntiang',
@@ -332,7 +332,7 @@ $1',
 
 # Main script and global functions
 'nosuchaction' => 'Indak ado tindakan tasabuik',
-'nosuchactiontext' => 'Tindakan nan diminta oleh URL tasabuik indak valid. Sanak mungkin salah mangetikkan URL, atau mangikuti suatu pranala nan ndak batua. Hal iko juo mungkin mangindikasikan suatu bug pado parangkaik lunak nan digunokan oleh {{SITENAME}}.',
+'nosuchactiontext' => 'Tindakan nan diminta dek URL tasabuik indak valid. Sanak mungkin salah mangetikkan URL, atau mangikuiki suatu pautan nan indak batua. Hal iko mungkin juo manunjuakan adonyo suatu bug pado parangkaik lunak nan dipagunoan dek {{SITENAME}}.',
 'nosuchspecialpage' => 'Indak ado laman istimewa tarsabuik',
 'nospecialpagetext' => '<strong>Sanak maminta laman istimewa nan indak sah.</strong>
 
@@ -358,7 +358,7 @@ Basis data manghasilkan kasalahan "$3: $4".',
 'readonlytext' => 'Basis data sadang dikunci tahadok masuakan baru. Panguruih nan malakukan panguncian mamberikan panjalehan sabagai berikut: <p>$1',
 'missing-article' => 'Basisdata indak dapek manamukan teks dari laman nan saharuihnyo ado, yaitu "$1" $2.
 
-Hal ko biasonyo disababkan dek pranala usang ka pabaikkan tadahulu laman nan alah dihapuih.
+Hal ko biasonyo disababkan dek pautan usang ka pabaikkan tadahulu laman nan alah dihapuih.
 
 Jikok bukan ko panyababnyo, Sanak mungkin alah manamukan sabuah bug dalam pakakeh lunak.
 Silakan laporkan hal iko ka [[Special:ListUsers/sysop|pangurus]], sarato manyabuikkan alamaik URL nan dituju.',
@@ -598,16 +598,16 @@ Sandi samantaro: $2',
 'bold_tip' => 'Teks taba',
 'italic_sample' => 'Teks miriang',
 'italic_tip' => 'Teks miriang',
-'link_sample' => 'Judul pranala',
-'link_tip' => 'Pranala internal',
-'extlink_sample' => 'http://www.hanyo-contoh.com judul pranala',
-'extlink_tip' => 'Pranala lua (ingek awalannyo http://)',
+'link_sample' => 'Judua pautan',
+'link_tip' => 'Pautan dalam',
+'extlink_sample' => 'http://www.anyo-contoh.com judua pautan',
+'extlink_tip' => 'Pautan lua (ingek awalannyo http://)',
 'headline_sample' => 'Teks judul',
 'headline_tip' => 'Tingkek 2 judul',
 'nowiki_sample' => 'Masuakkan disiko teks nan indak baformat',
 'nowiki_tip' => 'Abaikan format wiki',
 'image_tip' => 'Cantumkan berkas',
-'media_tip' => 'Pranala berkas',
+'media_tip' => 'Pautan berkas',
 'sig_tip' => 'Tandotangan sanak jo waktu',
 'hr_tip' => 'Garih mandata',
 
@@ -686,8 +686,8 @@ Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancarian untuak judul laman
 Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancarian untuak judul laman ko]] di laman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancahari log takaik] </span>, tapi Sanak indak punyo izin untuak mambuek laman ko.',
 'missing-revision' => 'Revisi $1 di laman nan banamo "{{PAGENAME}}" ko indak ado.
 
-Hal iko biasonyo disababkan dek pranala sijarah nan alah kadaluarsa ka laman nan alah dihapuih.
-Rinciannyo dapek dicaliak di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log panghapuihan].',
+Hal iko biasonyo disababkan dek pautan sijarah nan alah kadaluarsa ka laman nan alah diapuih.
+Rinciannyo dapek dicaliak di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pangapuihan].',
 'userpage-userdoesnotexist' => 'Akun pangguno "<nowiki>$1</nowiki>" indak tadafta.',
 'userpage-userdoesnotexist-view' => 'Pangguno "$1" indak tadafta.',
 'blocked-notice-logextract' => 'Pangguno ko tangah diblokir.
@@ -1236,7 +1236,7 @@ Katarangan dari [$2 laman kataranagn berkas] ditampilkan di bawah.',
 'categories' => 'Kategori',
 
 # Special:LinkSearch
-'linksearch' => 'Pranala lua',
+'linksearch' => 'Pancarian pautan lua',
 'linksearch-line' => '$1 tapauik dari $2',
 
 # Special:ListGroupRights
@@ -1336,7 +1336,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'sp-contributions-submit' => 'Cari',
 
 # What links here
-'whatlinkshere' => 'Pranala baliak',
+'whatlinkshere' => 'Pautan baliak',
 'whatlinkshere-title' => 'Laman yang bakaik ka "$1"',
 'whatlinkshere-page' => 'Laman:',
 'linkshere' => "Laman-laman ko bakaik ka '''[[:$1]]''':",
@@ -1346,10 +1346,10 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'isimage' => 'tautan berkas',
 'whatlinkshere-prev' => '{{PLURAL:$1|sabalunnyo|sabalunnyo $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|salanjuiknyo|salanjuiknyo $1}}',
-'whatlinkshere-links' => '← pranala',
+'whatlinkshere-links' => '← pautan',
 'whatlinkshere-hideredirs' => '$1 pengalihan',
 'whatlinkshere-hidetrans' => '$1 transklusi',
-'whatlinkshere-hidelinks' => '$1 pranala',
+'whatlinkshere-hidelinks' => '$1 pautan',
 'whatlinkshere-hideimages' => '$1 pahubuang berkas',
 'whatlinkshere-filters' => 'Panapiah',
 
@@ -1367,11 +1367,15 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'block-log-flags-nocreate' => 'mambuek akun dimatikan',
 
 # Move page
-'movepagetext' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahkan semua data riwayat ka namo baru. Judul lamo tu akan manjadi laman peralihan manuju judul yang baru. Pranala ka judul lamo indak akan baubah. Pastikan diperiksa laman yang [[Special:DoubleRedirects|peralihan ganda]] atau [[Special:BrokenRedirects|peralihan rusak]]. Awak bertanggungjawab untuak memastikan bahwa pranala tu terus manyambuang ka laman yang seharusnyo.
+'movepagetext' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sadonyo data riwayaik ka namo baru. 
+Judua lamo tu ka manjadi laman paraliahan manuju judua nan baru. 
+Awak dapek mampabarui paraliahan-paraliahan nan manuju ka judua lamo sacaro otomatis.
+Kok indak dipabarui sacaro otomatis, pastikan lah dipareso laman ko dari [[Special:DoubleRedirects|paraliahan ganda]] atau [[Special:BrokenRedirects|paralihan rusak]]. Awak batanggung-jawak untuak mamastian bahaso pautan tu taruih manyambuang ka laman nan saaruihnyo.
 
-Perhatikan bahwa laman '''indak''' akan dipindah apobilo lah ado laman yang manggunokan judul yang baru, kecuali bilo laman tu kosong atau marupokan laman peralihan dan indak punyo riwayat suntingan. Maksudnyo awak dapek maubah namo laman seperti samulo apobilo ado kesalahan, dan awak indak dapek manimpo laman yang lah ado.
+Ingeklah bahaso laman ko '''indak''' ka bapindah apobilo lah ado laman nan manggunoan judua nan baru, kacuali bilo laman tu kosong atau marupoan laman paraliahan dan indak punyo riwayaik suntiangan. Aratinyo awak dapek maubah baliak namo laman ka namo samulo apobilo ado kasalahan, dan bahaso awak indak dapek manimpo laman nan lah ado.
 
-'''Peringatan:''' Iko dapek maakibatkan parubahan yang tak diduga pado laman yang populer. Jadi pastikan awak paham akibat tindakan ko sabalun melanjutkannyo.",
+'''Paringatan!''' 
+Iko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastikan awak paham akibaik tindakan ko sabalun malanjuikannyo.",
 'movepagetalktext' => "Laman diskusi nan bakaitan akan dipindahkan sacaro otomatis '''kacuali apobilo:'''
 
 *Sabuah laman diskusi nan indak kosong lah ado pado judul baru, atau
@@ -1444,7 +1448,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'tooltip-t-upload' => 'Muek berkas',
 'tooltip-t-specialpages' => 'Dafta dari sado laman istimewa',
 'tooltip-t-print' => 'Versi cetak dari laman ko',
-'tooltip-t-permalink' => 'Pranala permanen untuak revisi laman ko',
+'tooltip-t-permalink' => 'Pautan parmanen untuak revisi laman ko',
 'tooltip-ca-nstab-main' => 'Caliak isi laman',
 'tooltip-ca-nstab-user' => 'Caliak laman pangguno',
 'tooltip-ca-nstab-media' => 'Caliak laman media',
@@ -1546,11 +1550,11 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'ago' => '$1 nan lalu',
 
 # Bad image list
-'bad_image_list' => 'Ukurannyo adolah sabagai barikuik:
+'bad_image_list' => 'Formatnyo adolah sabagai barikuik:
 
-Hanyo dafta butia (barih nan dimulai jo tando *) nan dianggap.
-Pranala patamo pado barih musti pranala ka berkas buruak.
-Satiok pranala salanjuiknyo pado barih nan samo dianggap pangacualian, yaitu laman dima berkas tasabuik bisa tajadi sajajar.',
+Anyo dafta babutia (barih nan dimulai jo tando *) nan dianggap.
+Pautan patamo pado barih musiti pautan ka berkas buruak.
+Satiok pautan salanjuiknyo pado barih nan samo dianggap pangacualian, yaitu laman-laman dima berkas ko bisa tacaliak.',
 
 /*
 Short names for language variants used for language conversion links.

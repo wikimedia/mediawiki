@@ -873,7 +873,7 @@ $2',
 'gotaccount' => 'حساب کاربری دارید؟ $1.',
 'gotaccountlink' => 'به سامانه وارد شوید',
 'userlogin-resetlink' => 'جزئیات ورود را فراموش کرده‌اید؟',
-'createaccountmail' => 'با رایانامه',
+'createaccountmail' => 'استفاده از رمز عبور موقت تصادفی و ارسال آن به آدرس ایمیل مشخص شده در زیر',
 'createaccountreason' => 'دلیل:',
 'badretype' => 'گذرواژه‌هایی که وارد کرده‌اید یکسان نیستند.',
 'userexists' => 'نام کاربری‌ای که وارد کردید قبلاً استفاده شده‌است.
@@ -1491,7 +1491,7 @@ $1",
 'search-interwiki-default' => '$1 نتیجه:',
 'search-interwiki-more' => '(بیشتر)',
 'search-relatedarticle' => 'مرتبط',
-'mwsuggest-disable' => 'پیشنهادهای مبتنی بر AJAX را غیرفعال کن',
+'mwsuggest-disable' => 'پیشنهادهای مبتنی بر جستجو را غیرفعال کن',
 'searcheverything-enable' => 'جستجو در تمام فضاهای نام',
 'searchrelated' => 'مرتبط',
 'searchall' => 'همه',
@@ -2404,7 +2404,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 # Special:ActiveUsers
 'activeusers' => 'فهرست کاربران فعال',
 'activeusers-intro' => 'در زیر فهرستی از کاربرانی را می‌بینید که در $1 {{PLURAL:$1|روز|روز}} گذشته فعالیتی داشته‌اند.',
-'activeusers-count' => '$1 {{PLURAL:$1|ویرایش|ویرایش}} در {{PLURAL:$3|روز|$3 روز}} اخیر',
+'activeusers-count' => '$1 {{PLURAL:$1|فعالیت|فعالیت}} در {{PLURAL:$3|روز|$3 روز}} اخیر',
 'activeusers-from' => 'نمایش کاربران با آغاز از:',
 'activeusers-hidebots' => 'نهفتن ربات‌ها',
 'activeusers-hidesysops' => 'نهفتن مدیران',
@@ -2467,7 +2467,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'usermessage-editor' => 'پیغام رسان سامانه',
 
 # Watchlist
-'watchlist' => 'فهرست پی‌گیری‌های من',
+'watchlist' => 'فهرست پی‌گیری',
 'mywatchlist' => 'فهرست پی‌گیری‌ها',
 'watchlistfor2' => 'برای $1 $2',
 'nowatchlist' => 'در فهرست پی‌گیری‌های شما هیچ موردی نیست.',
@@ -2946,7 +2946,7 @@ $1',
 '''شما''' مسئول اطمینان از این هستید که پیوندها هنوز به همان‌جایی که قرار است بروند.
 
 توجه کنید که اگر از قبل صفحه‌ای در عنوان جدید وجود داشته باشد صفحه منتقل '''نخواهد شد'''،
-مگر این که صفحه خالی یا تغییرمسیر باشد و تاریخچهٔ ویرایشی نداشته باشد.
+مگر این آخرین ویرایش تغییرمسیر باشد و در  تاریخچهٔ ویرایشی نداشته باشد.
 این یعنی اگر اشتباه کردید می‌توانید صفحه را به همان جایی که از آن منتقل شده بود برگردانید، و این که نمی‌توانید روی صفحه‌ها موجود بنویسید.
 
 '''هشدار!'''
@@ -3271,6 +3271,7 @@ $1',
 'pageinfo-robot-noindex' => 'عدم فهرست‌پذیری',
 'pageinfo-views' => 'شمار بازدیدها',
 'pageinfo-watchers' => 'شمار پی‌گیری‌کنندگان صفحه',
+'pageinfo-few-watchers' => 'کمتر از  $1 {{PLURAL:$1| پی‌گیر|پی‌گیر}}',
 'pageinfo-redirects-name' => 'تغییرمسیرها به این صفحه',
 'pageinfo-subpages-name' => 'زیرصفحه‌های این صفحه',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|تغییرمسیر|تغییرمسیر}}; $3 {{PLURAL:$3|غیرتغییرمسیر|غیرتغییرمسیر}})',
@@ -4107,7 +4108,7 @@ $5
 'specialpages-group-highuse' => 'صفحه‌های پربازدید',
 'specialpages-group-pages' => 'فهرست‌های صفحه‌ها',
 'specialpages-group-pagetools' => 'ابزارهای صفحه‌ها',
-'specialpages-group-wiki' => 'اطلاعات و ابزارهای ویکی',
+'specialpages-group-wiki' => 'داده و ابزارها',
 'specialpages-group-redirects' => 'صفحه‌های ویژهٔ تغییرمسیر دهنده',
 'specialpages-group-spam' => 'ابزارهای هرزنگاری',
 
@@ -4205,6 +4206,7 @@ $5
 'logentry-newusers-newusers' => 'حساب کاربری $1 ایجاد شد',
 'logentry-newusers-create' => 'حساب کاربری $1 ایجاد شد',
 'logentry-newusers-create2' => 'حساب کاربری $3 توسط $1 ایجاد شد',
+'logentry-newusers-byemail' => 'حساب کاربری  $3  توسط $1 ایجاد شد و رمز عبور به وسیلهٔ ایمیل ارسال شد',
 'logentry-newusers-autocreate' => 'حساب $1  به شکل خودکار ساخته شد',
 'logentry-rights-rights' => '$1 عضویت $3 را از گروه $4 به $5 تغییر داد',
 'logentry-rights-rights-legacy' => '$1 گروه عضویت $3 را تغییر داد',
@@ -4262,6 +4264,7 @@ $5
 'api-error-ok-but-empty' => 'خطای داخلی : پاسخی از سرور دریافت نشد.',
 'api-error-overwrite' => 'جای نوشتن یک پرونده موجود مجاز نیست.',
 'api-error-stashfailed' => 'خطای داخلی: کارساز نمی‌تواند پرونده موقت را ذخیره کند.',
+'api-error-publishfailed' => 'خطای داخلی: کارساز نمی‌تواند پرونده موقت را ذخیره کند.',
 'api-error-timeout' => 'کارساز در زمان انتظار هیچ پاسخی نداد.',
 'api-error-unclassified' => 'یک خطای ناشناخته رخ داد.',
 'api-error-unknown-code' => 'خطای ناشناخته: " $1 "',
