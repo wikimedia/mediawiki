@@ -254,6 +254,11 @@ class OutputPage extends ContextSource {
 	private $mProperties = array();
 
 	/**
+	 * @var string|null: ResourceLoader target for load.php links. If null, will be omitted
+	 */
+	private $mTarget = null;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -552,6 +557,22 @@ class OutputPage extends ContextSource {
 	 */
 	public function addModuleMessages( $modules ) {
 		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
+	}
+
+	/**
+	 * @return null|string: ResourceLoader target
+	 */
+	public function getTarget() {
+		return $this->mTarget;
+	}
+
+	/**
+	 * Sets ResourceLoader target for load.php links. If null, will be omitted
+	 *
+	 * @param $target string|null
+	 */
+	public function setTarget( $target ) {
+		$this->mTarget = $target;
 	}
 
 	/**
@@ -2598,6 +2619,9 @@ $templates
 				}
 				return $links;
 			}
+		}
+		if ( !is_null( $this->mTarget ) ) {
+			$extraQuery['target'] = $this->mTarget;
 		}
 
 		// Create keyed-by-group list of module objects from modules list
