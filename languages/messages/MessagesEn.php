@@ -1069,6 +1069,17 @@ The administrator who locked it offered this explanation: "$3".',
 
 You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
+'logouttext-restricted'      => "'''You are now logged out.'''
+
+You can continue to use {{SITENAME}} anonymously on one of the pages listed below, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
+Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.
+
+Pages you can view anonymously:
+$2",
+'logouttext-disallowed'     => "'''You are now logged out.'''
+
+You can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user. You must log in to continue using {{SITENAME}}.
+Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser'                => 'Welcome, $1!',
 'welcomecreation-msg'        => 'Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',

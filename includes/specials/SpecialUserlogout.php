@@ -33,6 +33,7 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
+		global $wgWhitelistRead;
 		/**
 		 * Some satellite ISPs use broken precaching schemes that log people out straight after
 		 * they're logged in (bug 17790). Luckily, there's a way to detect such requests.
@@ -53,7 +54,28 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 			$this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
 		$out = $this->getOutput();
-		$out->addWikiMsg( 'logouttext', $loginURL );
+		if ( $user->isAllowed( 'read' ) ) {
+			$out->addWikiMsg( 'logouttext', $loginURL );
+		} else {
+			$titles = array_map( array( 'Title', 'newFromText' ), $wgWhitelistRead );
+			$list = '';
+			foreach( $titles as $title ) {
+				// Skip the login and logout pages.
+				if (
+					$title->equals( SpecialPage::getTitleFor( 'Userlogin' ) ) ||
+					$title->equals( SpecialPage::getTitleFor( 'Userlogout' ) )
+				) {
+					continue;
+				}
+				$list .= "* [[" . $title->getPrefixedText() . "]]\n";
+			}
+
+			if ( $list ) {
+				$out->addWikiMsg( 'logouttext-restricted', $loginURL, $list );
+			} else {
+				$out->addWikiMsg( 'logouttext-disallowed', $loginURL );
+			}
+		}
 
 		// Hook.
 		$injected_html = '';

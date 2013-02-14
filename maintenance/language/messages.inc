@@ -427,6 +427,8 @@ $wgMessageStructure = array(
 	),
 	'login' => array(
 		'logouttext',
+		'logouttext-restricted',
+		'logouttext-disallowed',
 		'welcomeuser',
 		'welcomecreation-msg',
 		'yourname',
