@@ -143,14 +143,14 @@ class FileBackendTest extends MediaWikiTestCase {
 			array( 'mwstore://backend/container/path', 'mwstore://backend/container/path' ),
 			array( 'mwstore://backend/container//path', 'mwstore://backend/container/path' ),
 			array( 'mwstore://backend/container///path', 'mwstore://backend/container/path' ),
-			array( 'mwstore://backend/container///path//to///obj', 'mwstore://backend/container/path/to/obj',
+			array( 'mwstore://backend/container///path//to///obj', 'mwstore://backend/container/path/to/obj' ),
 			array( 'mwstore://', null ),
 			array( 'mwstore://backend', null ),
 			array( 'mwstore://backend//container/path', null ),
 			array( 'mwstore://backend//container//path', null ),
 			array( 'mwstore:///', null ),
 			array( 'mwstore:/', null ),
-			array( 'mwstore:', null ), )
+			array( 'mwstore:', null ),
 		);
 	}
 
