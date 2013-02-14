@@ -16,7 +16,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 	}
 
-	public function testSerializeContent( ) {
+	public function testSerializeContent() {
 		$content = new WikitextContent( 'hello world' );
 
 		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content ) );
@@ -30,7 +30,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function testUnserializeContent( ) {
+	public function testUnserializeContent() {
 		$content = $this->handler->unserializeContent( 'hello world' );
 		$this->assertEquals( 'hello world', $content->getNativeData() );
 
@@ -52,7 +52,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '', $content->getNativeData() );
 	}
 
-	public static function dataIsSupportedFormat( ) {
+	public static function dataIsSupportedFormat() {
 		return array(
 			array( null, true ),
 			array( CONTENT_FORMAT_WIKITEXT, true ),
@@ -67,21 +67,22 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $supported, $this->handler->isSupportedFormat( $format ) );
 	}
 
-	public static function dataMerge3( ) {
+	public static function dataMerge3() {
 		return array(
-			array( "first paragraph
+			array(
+				"first paragraph
 
 					second paragraph\n",
 
-					"FIRST paragraph
+				"FIRST paragraph
 
 					second paragraph\n",
 
-					"first paragraph
+				"first paragraph
 
 					SECOND paragraph\n",
 
-					"FIRST paragraph
+				"FIRST paragraph
 
 					SECOND paragraph\n",
 			),
@@ -89,13 +90,12 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			array( "first paragraph
 					second paragraph\n",
 
-				   "Bla bla\n",
+				"Bla bla\n",
 
-				   "Blubberdibla\n",
+				"Blubberdibla\n",
 
-				   false,
+				false,
 			),
-
 		);
 	}
 
@@ -115,7 +115,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $merged ? $merged->getNativeData() : $merged );
 	}
 
-	public static function dataGetAutosummary( ) {
+	public static function dataGetAutosummary() {
 		return array(
 			array(
 				'Hello there, world!',

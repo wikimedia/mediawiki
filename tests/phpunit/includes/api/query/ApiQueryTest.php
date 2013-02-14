@@ -25,7 +25,7 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'normalized', $data[0]['query'] );
 
 		// Forge a normalized title
-		$to = Title::newFromText( $wgMetaNamespace.':ArticleA' );
+		$to = Title::newFromText( $wgMetaNamespace . ':ArticleA' );
 
 		$this->assertEquals(
 			array(
@@ -47,7 +47,7 @@ class ApiQueryTest extends ApiTestCase {
 
 	function testTitlesAreRejectedIfInvalid() {
 		$title = false;
-		while( !$title || Title::newFromText( $title )->exists() ) {
+		while ( !$title || Title::newFromText( $title )->exists() ) {
 			$title = md5( mt_rand( 0, 10000 ) + rand( 0, 999000 ) );
 		}
 

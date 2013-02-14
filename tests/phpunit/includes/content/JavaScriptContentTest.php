@@ -39,16 +39,16 @@ class JavaScriptContentTest extends TextContentTest {
 	public static function dataGetSection() {
 		return array(
 			array( WikitextContentTest::$sections,
-			       '0',
-			       null
+				'0',
+				null
 			),
 			array( WikitextContentTest::$sections,
-			       '2',
-			       null
+				'2',
+				null
 			),
 			array( WikitextContentTest::$sections,
-			       '8',
-			       null
+				'8',
+				null
 			),
 		);
 	}
@@ -57,39 +57,39 @@ class JavaScriptContentTest extends TextContentTest {
 	public static function dataReplaceSection() {
 		return array(
 			array( WikitextContentTest::$sections,
-			       '0',
-			       'No more',
-			       null,
-			       null
+				'0',
+				'No more',
+				null,
+				null
 			),
 			array( WikitextContentTest::$sections,
-			       '',
-			       'No more',
-			       null,
-			       null
+				'',
+				'No more',
+				null,
+				null
 			),
 			array( WikitextContentTest::$sections,
-			       '2',
-			       "== TEST ==\nmore fun",
-			       null,
-			       null
+				'2',
+				"== TEST ==\nmore fun",
+				null,
+				null
 			),
 			array( WikitextContentTest::$sections,
-			       '8',
-			       'No more',
-			       null,
-			       null
+				'8',
+				'No more',
+				null,
+				null
 			),
 			array( WikitextContentTest::$sections,
-			       'new',
-			       'No more',
-			       'New',
-			       null
+				'new',
+				'No more',
+				'New',
+				null
 			),
 		);
 	}
 
-	public function testAddSectionHeader( ) {
+	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$c = $content->addSectionHeader( 'test' );
 
@@ -114,10 +114,10 @@ class JavaScriptContentTest extends TextContentTest {
 	public static function dataPreloadTransform() {
 		return array(
 			array( 'hello this is ~~~',
-			       'hello this is ~~~',
+				'hello this is ~~~',
 			),
 			array( 'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
-			       'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
+				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 			),
 		);
 	}
@@ -125,13 +125,13 @@ class JavaScriptContentTest extends TextContentTest {
 	public static function dataGetRedirectTarget() {
 		return array(
 			array( '#REDIRECT [[Test]]',
-			       null,
+				null,
 			),
 			array( '#REDIRECT Test',
-			       null,
+				null,
 			),
 			array( '* #REDIRECT [[Test]]',
-			       null,
+				null,
 			),
 		);
 	}
@@ -159,59 +159,59 @@ class JavaScriptContentTest extends TextContentTest {
 	public static function dataIsCountable() {
 		return array(
 			array( '',
-			       null,
-			       'any',
-			       true
+				null,
+				'any',
+				true
 			),
 			array( 'Foo',
-			       null,
-			       'any',
-			       true
+				null,
+				'any',
+				true
 			),
 			array( 'Foo',
-			       null,
-			       'comma',
-			       false
+				null,
+				'comma',
+				false
 			),
 			array( 'Foo, bar',
-			       null,
-			       'comma',
-			       false
+				null,
+				'comma',
+				false
 			),
 			array( 'Foo',
-			       null,
-			       'link',
-			       false
+				null,
+				'link',
+				false
 			),
 			array( 'Foo [[bar]]',
-			       null,
-			       'link',
-			       false
+				null,
+				'link',
+				false
 			),
 			array( 'Foo',
-			       true,
-			       'link',
-			       false
+				true,
+				'link',
+				false
 			),
 			array( 'Foo [[bar]]',
-			       false,
-			       'link',
-			       false
+				false,
+				'link',
+				false
 			),
 			array( '#REDIRECT [[bar]]',
-			       true,
-			       'any',
-			       true
+				true,
+				'any',
+				true
 			),
 			array( '#REDIRECT [[bar]]',
-			       true,
-			       'comma',
-			       false
+				true,
+				'comma',
+				false
 			),
 			array( '#REDIRECT [[bar]]',
-			       true,
-			       'link',
-			       false
+				true,
+				'link',
+				false
 			),
 		);
 	}
@@ -219,28 +219,28 @@ class JavaScriptContentTest extends TextContentTest {
 	public static function dataGetTextForSummary() {
 		return array(
 			array( "hello\nworld.",
-			       16,
-			       'hello world.',
+				16,
+				'hello world.',
 			),
 			array( 'hello world.',
-			       8,
-			       'hello...',
+				8,
+				'hello...',
 			),
 			array( '[[hello world]].',
-			       8,
-			       '[[hel...',
+				8,
+				'[[hel...',
 			),
 		);
 	}
 
-	public function testMatchMagicWord( ) {
+	public function testMatchMagicWord() {
 		$mw = MagicWord::get( "staticredirect" );
 
 		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
 		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word, since it's not wikitext" );
 	}
 
-	public function testUpdateRedirect( ) {
+	public function testUpdateRedirect() {
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
 		$content = $this->newContent( "#REDIRECT [[Someplace]]" );
@@ -261,7 +261,7 @@ class JavaScriptContentTest extends TextContentTest {
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $content->getContentHandler()->getModelID() );
 	}
 
-	public static function dataEquals( ) {
+	public static function dataEquals() {
 		return array(
 			array( new JavaScriptContent( "hallo" ), null, false ),
 			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "hallo" ), true ),

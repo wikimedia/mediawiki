@@ -10,7 +10,7 @@ $IP = dirname( dirname( dirname( dirname( __DIR__ ) ) ) );
 
 // Start up MediaWiki in command-line mode
 require_once( "$IP/maintenance/Maintenance.php" );
-require(  __DIR__ . "/RandomImageGenerator.php" );
+require( __DIR__ . "/RandomImageGenerator.php" );
 
 class GenerateRandomImages extends Maintenance {
 

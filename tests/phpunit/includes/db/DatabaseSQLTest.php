@@ -39,8 +39,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					'conds' => array( 'alias' => 'text' ),
 				),
 				"SELECT  field,field2 AS alias  " .
-				"FROM `unittest_table`  " .
-				"WHERE alias = 'text'"
+					"FROM `unittest_table`  " .
+					"WHERE alias = 'text'"
 			),
 			array(
 				array(
@@ -50,10 +50,10 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					'options' => array( 'LIMIT' => 1, 'ORDER BY' => 'field' ),
 				),
 				"SELECT  field,field2 AS alias  " .
-				"FROM `unittest_table`  " .
-				"WHERE alias = 'text'  " .
-				"ORDER BY field " .
-				"LIMIT 1"
+					"FROM `unittest_table`  " .
+					"WHERE alias = 'text'  " .
+					"ORDER BY field " .
+					"LIMIT 1"
 			),
 			array(
 				array(
@@ -63,13 +63,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					'options' => array( 'LIMIT' => 1, 'ORDER BY' => 'field' ),
 					'join_conds' => array( 't2' => array(
 						'LEFT JOIN', 'tid = t2.id'
-					)),
+					) ),
 				),
 				"SELECT  tid,field,field2 AS alias,t2.id  " .
-				"FROM `unittest_table` LEFT JOIN `unittest_table2` `t2` ON ((tid = t2.id))  " .
-				"WHERE alias = 'text'  " .
-				"ORDER BY field " .
-				"LIMIT 1"
+					"FROM `unittest_table` LEFT JOIN `unittest_table2` `t2` ON ((tid = t2.id))  " .
+					"WHERE alias = 'text'  " .
+					"ORDER BY field " .
+					"LIMIT 1"
 			),
 			array(
 				array(
@@ -79,13 +79,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					'options' => array( 'LIMIT' => 1, 'GROUP BY' => 'field', 'HAVING' => 'COUNT(*) > 1' ),
 					'join_conds' => array( 't2' => array(
 						'LEFT JOIN', 'tid = t2.id'
-					)),
+					) ),
 				),
 				"SELECT  tid,field,field2 AS alias,t2.id  " .
-				"FROM `unittest_table` LEFT JOIN `unittest_table2` `t2` ON ((tid = t2.id))  " .
-				"WHERE alias = 'text'  " .
-				"GROUP BY field HAVING COUNT(*) > 1 " .
-				"LIMIT 1"
+					"FROM `unittest_table` LEFT JOIN `unittest_table2` `t2` ON ((tid = t2.id))  " .
+					"WHERE alias = 'text'  " .
+					"GROUP BY field HAVING COUNT(*) > 1 " .
+					"LIMIT 1"
 			),
 			array(
 				array(
@@ -95,13 +95,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					'options' => array( 'LIMIT' => 1, 'GROUP BY' => array( 'field', 'field2' ), 'HAVING' => array( 'COUNT(*) > 1', 'field' => 1 ) ),
 					'join_conds' => array( 't2' => array(
 						'LEFT JOIN', 'tid = t2.id'
-					)),
+					) ),
 				),
 				"SELECT  tid,field,field2 AS alias,t2.id  " .
-				"FROM `unittest_table` LEFT JOIN `unittest_table2` `t2` ON ((tid = t2.id))  " .
-				"WHERE alias = 'text'  " .
-				"GROUP BY field,field2 HAVING (COUNT(*) > 1) AND field = '1' " .
-				"LIMIT 1"
+					"FROM `unittest_table` LEFT JOIN `unittest_table2` `t2` ON ((tid = t2.id))  " .
+					"WHERE alias = 'text'  " .
+					"GROUP BY field,field2 HAVING (COUNT(*) > 1) AND field = '1' " .
+					"LIMIT 1"
 			),
 		);
 	}

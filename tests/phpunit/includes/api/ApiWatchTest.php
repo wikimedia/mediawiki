@@ -147,8 +147,8 @@ class ApiWatchTest extends ApiTestCase {
 
 			$this->assertArrayHasKey( 'rollback', $data[0] );
 			$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
-		} catch( UsageException $ue ) {
-			if( $ue->getCodeString() == 'onlyauthor' ) {
+		} catch ( UsageException $ue ) {
+			if ( $ue->getCodeString() == 'onlyauthor' ) {
 				$this->markTestIncomplete( "Only one author to 'Help:UTPage', cannot test rollback" );
 			} else {
 				$this->fail( "Received error '" . $ue->getCodeString() . "'" );

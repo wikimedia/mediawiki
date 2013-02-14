@@ -7,7 +7,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		parent::setUp();
 		// Make sure MWDebug class is enabled
 		static $MWDebugEnabled = false;
-		if( !$MWDebugEnabled ) {
+		if ( !$MWDebugEnabled ) {
 			MWDebug::init();
 			$MWDebugEnabled = true;
 		}
@@ -23,10 +23,11 @@ class MWDebugTest extends MediaWikiTestCase {
 
 	function testAddLog() {
 		MWDebug::log( 'logging a string' );
-		$this->assertEquals( array( array(
-			'msg' => 'logging a string',
-			'type' => 'log',
-			'caller' => __METHOD__ ,
+		$this->assertEquals(
+			array( array(
+				'msg' => 'logging a string',
+				'type' => 'log',
+				'caller' => __METHOD__,
 			) ),
 			MWDebug::getLog()
 		);
@@ -34,10 +35,11 @@ class MWDebugTest extends MediaWikiTestCase {
 
 	function testAddWarning() {
 		MWDebug::warning( 'Warning message' );
-		$this->assertEquals( array( array(
-			'msg' => 'Warning message',
-			'type' => 'warn',
-			'caller' => 'MWDebugTest::testAddWarning',
+		$this->assertEquals(
+			array( array(
+				'msg' => 'Warning message',
+				'type' => 'warn',
+				'caller' => 'MWDebugTest::testAddWarning',
 			) ),
 			MWDebug::getLog()
 		);

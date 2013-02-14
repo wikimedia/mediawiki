@@ -145,7 +145,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected->getCode(), $lang->getCode() );
 	}
 
-	public function testGetContentText_Null( ) {
+	public function testGetContentText_Null() {
 		global $wgContentHandlerTextFallback;
 
 		$content = null;
@@ -163,7 +163,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( '', $text );
 	}
 
-	public function testGetContentText_TextContent( ) {
+	public function testGetContentText_TextContent() {
 		global $wgContentHandlerTextFallback;
 
 		$content = new WikitextContent( "hello world" );
@@ -181,7 +181,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $content->getNativeData(), $text );
 	}
 
-	public function testGetContentText_NonTextContent( ) {
+	public function testGetContentText_NonTextContent() {
 		global $wgContentHandlerTextFallback;
 
 		$content = new DummyContentForTesting( "hello world" );
@@ -213,15 +213,15 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		return array(
 			array( 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', null, null, "testing", 'hallo', false ),
+			array( serialize( 'hallo' ), 'Dummy:Test', null, null, "testing", 'hallo', false ),
 
 			array( 'hallo', 'Help:Test', null, CONTENT_FORMAT_WIKITEXT, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, CONTENT_FORMAT_JAVASCRIPT, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', null, "testing", "testing", 'hallo', false ),
+			array( serialize( 'hallo' ), 'Dummy:Test', null, "testing", "testing", 'hallo', false ),
 
 			array( 'hallo', 'Help:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
-			array( serialize('hallo'), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize('hallo'), false ),
+			array( serialize( 'hallo' ), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize( 'hallo' ), false ),
 
 			array( 'hallo', 'Help:Test', CONTENT_MODEL_WIKITEXT, "testing", null, null, true ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, "testing", null, null, true ),
@@ -245,10 +245,14 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			$this->assertEquals( $expectedModelId, $content->getModel(), 'bad model id' );
 			$this->assertEquals( $expectedNativeData, $content->getNativeData(), 'bads native data' );
 		} catch ( MWException $ex ) {
-			if ( !$shouldFail ) $this->fail( "ContentHandler::makeContent failed unexpectedly: " . $ex->getMessage() );
-			else $this->assertTrue( true ); // dummy, so we don't get the "test did not perform any assertions" message.
+			if ( !$shouldFail ) {
+				$this->fail( "ContentHandler::makeContent failed unexpectedly: " . $ex->getMessage() );
+			}
+			else {
+				// dummy, so we don't get the "test did not perform any assertions" message.
+				$this->assertTrue( true );
+			}
 		}
-
 	}
 
 	/*
@@ -292,7 +296,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * @return String serialized form of the content
 	 */
 	public function serializeContent( Content $content, $format = null ) {
-	   return $content->serialize();
+		return $content->serialize();
 	}
 
 	/**

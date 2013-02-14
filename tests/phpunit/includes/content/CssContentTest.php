@@ -62,7 +62,7 @@ class CssContentTest extends MediaWikiTestCase {
 		$this->assertEquals( CONTENT_MODEL_CSS, $content->getContentHandler()->getModelID() );
 	}
 
-	public static function dataEquals( ) {
+	public static function dataEquals() {
 		return array(
 			array( new CssContent( 'hallo' ), null, false ),
 			array( new CssContent( 'hallo' ), new CssContent( 'hallo' ), true ),

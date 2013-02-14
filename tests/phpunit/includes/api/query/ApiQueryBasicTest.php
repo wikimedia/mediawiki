@@ -30,7 +30,6 @@
  * @group medium
  */
 class ApiQueryBasicTest extends ApiTestCase {
-
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 * @see MediaWikiTestCase::addDBData()
@@ -304,7 +303,7 @@ class ApiQueryBasicTest extends ApiTestCase {
 	private function merge( /*...*/ ) {
 		$request = array();
 		$expected = array();
-		foreach	( func_get_args() as $v ) {
+		foreach ( func_get_args() as $v ) {
 			$request = array_merge_recursive( $request, $v[0] );
 			$this->mergeExpected( $expected, $v[1] );
 		}
@@ -317,7 +316,7 @@ class ApiQueryBasicTest extends ApiTestCase {
 	private function mergeExpected( &$all, $item ) {
 		foreach ( $item as $k => $v ) {
 			if ( array_key_exists( $k, $all ) ) {
-				if ( is_array ( $all[$k] ) ) {
+				if ( is_array( $all[$k] ) ) {
 					$this->mergeExpected( $all[$k], $v );
 				} else {
 					$this->assertEquals( $all[$k], $v );
@@ -349,12 +348,12 @@ class ApiQueryBasicTest extends ApiTestCase {
 		$expected = array( 'query' => $expected );
 		try {
 			$this->assertQueryResults( $expected, $result );
-		} catch (Exception $e) {
-			print("\nRequest:\n");
+		} catch ( Exception $e ) {
+			print( "\nRequest:\n" );
 			print_r( $request );
-			print("\nExpected:\n");
+			print( "\nExpected:\n" );
 			print_r( $expected );
-			print("\nResult:\n");
+			print( "\nResult:\n" );
 			print_r( $result );
 			throw $e; // rethrow it
 		}

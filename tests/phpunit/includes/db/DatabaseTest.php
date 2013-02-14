@@ -206,7 +206,7 @@ class DatabaseTest extends MediaWikiTestCase {
 
 	private function dropFunctions() {
 		$this->db->query( 'DROP FUNCTION IF EXISTS mw_test_function'
-			. ( $this->db->getType() == 'postgres'  ? '()' : '' )
+				. ( $this->db->getType() == 'postgres' ? '()' : '' )
 		);
 	}
 }

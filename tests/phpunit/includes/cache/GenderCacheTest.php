@@ -15,7 +15,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 
 	function addDBData() {
 		$user = User::newFromName( 'UTMale' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTMalePassword' );
 		}
@@ -24,7 +24,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$user->saveSettings();
 
 		$user = User::newFromName( 'UTFemale' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTFemalePassword' );
 		}
@@ -33,7 +33,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$user->saveSettings();
 
 		$user = User::newFromName( 'UTDefaultGender' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTDefaultGenderPassword' );
 		}

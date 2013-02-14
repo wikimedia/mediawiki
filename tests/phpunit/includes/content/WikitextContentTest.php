@@ -7,10 +7,7 @@
  *        ^--- needed, because we do need the database to test link updates
  */
 class WikitextContentTest extends TextContentTest {
-
-	static $sections =
-
-"Intro
+	static $sections = "Intro
 
 == stuff ==
 hello world
@@ -102,17 +99,17 @@ more stuff
 	public static function dataGetSection() {
 		return array(
 			array( WikitextContentTest::$sections,
-					"0",
-					"Intro"
+				"0",
+				"Intro"
 			),
 			array( WikitextContentTest::$sections,
-					"2",
-"== test ==
+				"2",
+				"== test ==
 just a test"
 			),
 			array( WikitextContentTest::$sections,
-					"8",
-					false
+				"8",
+				false
 			),
 		);
 	}
@@ -136,34 +133,34 @@ just a test"
 	public static function dataReplaceSection() {
 		return array(
 			array( WikitextContentTest::$sections,
-			       "0",
-			       "No more",
-			       null,
-			       trim( preg_replace( '/^Intro/sm', 'No more', WikitextContentTest::$sections ) )
+				"0",
+				"No more",
+				null,
+				trim( preg_replace( '/^Intro/sm', 'No more', WikitextContentTest::$sections ) )
 			),
 			array( WikitextContentTest::$sections,
-			       "",
-			       "No more",
-			       null,
-			       "No more"
+				"",
+				"No more",
+				null,
+				"No more"
 			),
 			array( WikitextContentTest::$sections,
-			       "2",
-			       "== TEST ==\nmore fun",
-			       null,
-			       trim( preg_replace( '/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==", WikitextContentTest::$sections ) )
+				"2",
+				"== TEST ==\nmore fun",
+				null,
+				trim( preg_replace( '/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==", WikitextContentTest::$sections ) )
 			),
 			array( WikitextContentTest::$sections,
-			       "8",
-			       "No more",
-			       null,
-			       WikitextContentTest::$sections
+				"8",
+				"No more",
+				null,
+				WikitextContentTest::$sections
 			),
 			array( WikitextContentTest::$sections,
-			       "new",
-			       "No more",
-			       "New",
-			       trim( WikitextContentTest::$sections ) . "\n\n\n== New ==\n\nNo more"
+				"new",
+				"No more",
+				"New",
+				trim( WikitextContentTest::$sections ) . "\n\n\n== New ==\n\nNo more"
 			),
 		);
 	}
@@ -178,7 +175,7 @@ just a test"
 		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getNativeData() );
 	}
 
-	public function testAddSectionHeader( ) {
+	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
 
@@ -188,10 +185,10 @@ just a test"
 	public static function dataPreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
-			       "hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
+				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
 			),
 			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
-			       'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+				'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 			),
 			array( // rtrim
 				" Foo \n ",
@@ -203,10 +200,10 @@ just a test"
 	public static function dataPreloadTransform() {
 		return array(
 			array( 'hello this is ~~~',
-			       "hello this is ~~~",
+				"hello this is ~~~",
 			),
 			array( 'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
-			       'hello \'\'this\'\' is bar',
+				'hello \'\'this\'\' is bar',
 			),
 		);
 	}
@@ -214,13 +211,13 @@ just a test"
 	public static function dataGetRedirectTarget() {
 		return array(
 			array( '#REDIRECT [[Test]]',
-			       'Test',
+				'Test',
 			),
 			array( '#REDIRECT Test',
-			       null,
+				null,
 			),
 			array( '* #REDIRECT [[Test]]',
-			       null,
+				null,
 			),
 		);
 	}
@@ -265,64 +262,64 @@ just a test"
 	public static function dataIsCountable() {
 		return array(
 			array( '',
-			       null,
-			       'any',
-			       true
+				null,
+				'any',
+				true
 			),
 			array( 'Foo',
-			       null,
-			       'any',
-			       true
+				null,
+				'any',
+				true
 			),
 			array( 'Foo',
-			       null,
-			       'comma',
-			       false
+				null,
+				'comma',
+				false
 			),
 			array( 'Foo, bar',
-			       null,
-			       'comma',
-			       true
+				null,
+				'comma',
+				true
 			),
 			array( 'Foo',
-			       null,
-			       'link',
-			       false
+				null,
+				'link',
+				false
 			),
 			array( 'Foo [[bar]]',
-			       null,
-			       'link',
-			       true
+				null,
+				'link',
+				true
 			),
 			array( 'Foo',
-			       true,
-			       'link',
-			       true
+				true,
+				'link',
+				true
 			),
 			array( 'Foo [[bar]]',
-			       false,
-			       'link',
-			       false
+				false,
+				'link',
+				false
 			),
 			array( '#REDIRECT [[bar]]',
-			       true,
-			       'any',
-			       false
+				true,
+				'any',
+				false
 			),
 			array( '#REDIRECT [[bar]]',
-			       true,
-			       'comma',
-			       false
+				true,
+				'comma',
+				false
 			),
 			array( '#REDIRECT [[bar]]',
-			       true,
-			       'link',
-			       false
+				true,
+				'link',
+				false
 			),
 		);
 	}
 
-	public function testMatchMagicWord( ) {
+	public function testMatchMagicWord() {
 		$mw = MagicWord::get( "staticredirect" );
 
 		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
@@ -332,7 +329,7 @@ just a test"
 		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word" );
 	}
 
-	public function testUpdateRedirect( ) {
+	public function testUpdateRedirect() {
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
 		// test with non-redirect page
@@ -363,7 +360,7 @@ just a test"
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelID() );
 	}
 
-	public static function dataEquals( ) {
+	public static function dataEquals() {
 		return array(
 			array( new WikitextContent( "hallo" ), null, false ),
 			array( new WikitextContent( "hallo" ), new WikitextContent( "hallo" ), true ),
@@ -375,16 +372,15 @@ just a test"
 
 	public static function dataGetDeletionUpdates() {
 		return array(
-			array("WikitextContentTest_testGetSecondaryDataUpdates_1",
+			array( "WikitextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
-				array( 'LinksDeletionUpdate' => array( ) )
+				array( 'LinksDeletionUpdate' => array() )
 			),
-			array("WikitextContentTest_testGetSecondaryDataUpdates_2",
+			array( "WikitextContentTest_testGetSecondaryDataUpdates_2",
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
-				array( 'LinksDeletionUpdate' => array( ) )
+				array( 'LinksDeletionUpdate' => array() )
 			),
 			// @todo: more...?
 		);
 	}
-
 }
