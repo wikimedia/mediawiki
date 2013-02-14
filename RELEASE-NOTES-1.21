@@ -18,6 +18,8 @@ production.
 * $wgBug34832TransitionalRollback has been removed.
 * (bug 29472) $wgUseDynamicDates has been removed and its functionality
   disabled.
+* (bug 35785) In $wgDefaultUserOptions, enhanced recentchanges is now enabled
+  by default, and for consistency extended watchlist is as well.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and
