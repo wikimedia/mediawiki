@@ -28,20 +28,20 @@ class ApiGeneratorTest extends MediaWikiTestCase {
 	) {
 		$generators = $this->getApiQuery()->getGenerators();
 		$this->assertArrayHasKey( $moduleName, $generators,
-	  		"API module '$moduleName' of class '$moduleClass' (an ApiQueryGeneratorBase subclass) must be listed in ApiQuery::\$mQueryGenerators or added to \$wgAPIGeneratorModules."
+			"API module '$moduleName' of class '$moduleClass' (an ApiQueryGeneratorBase subclass) must be listed in ApiQuery::\$mQueryGenerators or added to \$wgAPIGeneratorModules."
 		);
 	}
 
 	/**
 	 * Returns API modules which are subclassing ApiQueryGeneratorBase.
 	 * Case format is:
-	 * 	(moduleName, moduleClass)
+	 *     (moduleName, moduleClass)
 	 */
 	public function provideApiquerygeneratorbaseChilds() {
 		$cases = array();
 		$modules = $this->getApiQuery()->getModuleManager()->getNamesWithClasses();
-		foreach( $modules as $moduleName => $moduleClass ) {
-			if( !is_subclass_of( $moduleClass, 'ApiQueryGeneratorBase' ) ) {
+		foreach ( $modules as $moduleName => $moduleClass ) {
+			if ( !is_subclass_of( $moduleClass, 'ApiQueryGeneratorBase' ) ) {
 				continue;
 			}
 			$cases[] = array( $moduleName, $moduleClass );
@@ -71,7 +71,7 @@ class ApiGeneratorTest extends MediaWikiTestCase {
 	public function provideListedApiqueryGenerators() {
 		$cases = array();
 		$generators = $this->getApiQuery()->getGenerators();
-		foreach( $generators as $generatorName => $generatorClass ) {
+		foreach ( $generators as $generatorName => $generatorClass ) {
 			$cases[] = array( $generatorName, $generatorClass );
 		}
 		return $cases;

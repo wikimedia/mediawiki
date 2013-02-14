@@ -47,7 +47,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			// see if it now doesn't exist; reload
 			$title = Title::newFromText( $title->getText(), NS_FILE );
 		}
-		return ! ( $title && $title instanceof Title && $title->exists() );
+		return !( $title && $title instanceof Title && $title->exists() );
 	}
 
 	/**
@@ -84,7 +84,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		$tmpName = tempnam( wfTempDir(), "" );
 		if ( !file_exists( $filePath ) ) {
 			throw new Exception( "$filePath doesn't exist!" );
-		};
+		}
 
 		if ( !copy( $filePath, $tmpName ) ) {
 			throw new Exception( "couldn't copy $filePath to $tmpName" );
@@ -96,19 +96,19 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[ $fieldName ] = array(
-			'name'		=> $fileName,
-			'type'		=> $type,
-			'tmp_name' 	=> $tmpName,
-			'size' 		=> $size,
-			'error'		=> null
+		$_FILES[$fieldName] = array(
+			'name' => $fileName,
+			'type' => $type,
+			'tmp_name' => $tmpName,
+			'size' => $size,
+			'error' => null
 		);
 
 		return true;
 
 	}
 
-	function fakeUploadChunk(  $fieldName, $fileName, $type, & $chunkData ) {
+	function fakeUploadChunk( $fieldName, $fileName, $type, & $chunkData ) {
 		$tmpName = tempnam( wfTempDir(), "" );
 		// copy the chunk data to temp location:
 		if ( !file_put_contents( $tmpName, $chunkData ) ) {
@@ -121,19 +121,19 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[ $fieldName ] = array(
-			'name'		=> $fileName,
-			'type'		=> $type,
-			'tmp_name' 	=> $tmpName,
-			'size' 		=> $size,
-			'error'		=> null
+		$_FILES[$fieldName] = array(
+			'name' => $fileName,
+			'type' => $type,
+			'tmp_name' => $tmpName,
+			'size' => $size,
+			'error' => null
 		);
 	}
 
 	function clearTempUpload() {
-		if( isset( $_FILES['file']['tmp_name'] ) ) {
+		if ( isset( $_FILES['file']['tmp_name'] ) ) {
 			$tmp = $_FILES['file']['tmp_name'];
-			if( file_exists( $tmp ) ) {
+			if ( file_exists( $tmp ) ) {
 				unlink( $tmp );
 			}
 		}

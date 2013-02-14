@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
@@ -145,12 +145,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		$token = $data[0]['login']['token'];
 
-		$data = $this->doApiRequest( array(
-			'action' => 'login',
-			'lgtoken' => $token,
-			'lgname' => self::$users['sysop']->username,
-			'lgpassword' => self::$users['sysop']->password
-			), $data[2] );
+		$data = $this->doApiRequest(
+			array(
+				'action' => 'login',
+				'lgtoken' => $token,
+				'lgname' => self::$users['sysop']->username,
+				'lgpassword' => self::$users['sysop']->password,
+			),
+			$data[2]
+		);
 
 		return $data;
 	}
@@ -201,10 +204,11 @@ class UserWrapper {
 }
 
 class MockApi extends ApiBase {
-	public function execute() { }
-	public function getVersion() { }
+	public function execute() {}
 
-	public function __construct() { }
+	public function getVersion() {}
+
+	public function __construct() {}
 
 	public function getAllowedParams() {
 		return array(

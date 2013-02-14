@@ -1,10 +1,10 @@
 <?php
 /**
-* @group ContentHandler
-* @group Database
-* ^--- important, causes temporary tables to be used instead of the real database
-* @group medium
-**/
+ * @group ContentHandler
+ * @group Database
+ * ^--- important, causes temporary tables to be used instead of the real database
+ * @group medium
+ **/
 
 class WikiPageTest extends MediaWikiLangTestCase {
 
@@ -13,23 +13,23 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
-		$this->tablesUsed = array_merge (
+		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
 			array( 'page',
-					'revision',
-					'text',
+				'revision',
+				'text',
 
-					'recentchanges',
-					'logging',
+				'recentchanges',
+				'logging',
 
-					'page_props',
-					'pagelinks',
-					'categorylinks',
-					'langlinks',
-					'externallinks',
-					'imagelinks',
-					'templatelinks',
-					'iwlinks' ) );
+				'page_props',
+				'pagelinks',
+				'categorylinks',
+				'langlinks',
+				'externallinks',
+				'imagelinks',
+				'templatelinks',
+				'iwlinks' ) );
 	}
 
 	protected function setUp() {
@@ -72,7 +72,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		return $p;
 	}
 
-
 	/**
 	 * @param String|Title|WikiPage $page
 	 * @param String $text
@@ -96,8 +95,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent( "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-						. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
-						$title, CONTENT_MODEL_WIKITEXT );
+				. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+			$title, CONTENT_MODEL_WIKITEXT );
 
 		$page->doEditContent( $content, "[[testing]] 1" );
 
@@ -124,8 +123,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$content = ContentHandler::makeContent( "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-												. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
-												$title, CONTENT_MODEL_WIKITEXT );
+				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
+			$title, CONTENT_MODEL_WIKITEXT );
 
 		$page->doEditContent( $content, "testing 2" );
 
@@ -155,7 +154,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$page = $this->newPage( $title );
 
 		$text = "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-				. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
+			. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
 
 		$page->doEdit( $text, "[[testing]] 1" );
 
@@ -182,7 +181,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$text = "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
+			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
 
 		$page->doEdit( $text, "testing 2" );
 
@@ -433,104 +432,104 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 			// any
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'',
-					'any',
-					true
+				CONTENT_MODEL_WIKITEXT,
+				'',
+				'any',
+				true
 			),
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo',
-					'any',
-					true
+				CONTENT_MODEL_WIKITEXT,
+				'Foo',
+				'any',
+				true
 			),
 
 			// comma
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo',
-					'comma',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'Foo',
+				'comma',
+				false
 			),
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo, bar',
-					'comma',
-					true
+				CONTENT_MODEL_WIKITEXT,
+				'Foo, bar',
+				'comma',
+				true
 			),
 
 			// link
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo',
-					'link',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'Foo',
+				'link',
+				false
 			),
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo [[bar]]',
-					'link',
-					true
+				CONTENT_MODEL_WIKITEXT,
+				'Foo [[bar]]',
+				'link',
+				true
 			),
 
 			// redirects
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'#REDIRECT [[bar]]',
-					'any',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'#REDIRECT [[bar]]',
+				'any',
+				false
 			),
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'#REDIRECT [[bar]]',
-					'comma',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'#REDIRECT [[bar]]',
+				'comma',
+				false
 			),
 			array( 'WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'#REDIRECT [[bar]]',
-					'link',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'#REDIRECT [[bar]]',
+				'link',
+				false
 			),
 
 			// not a content namespace
 			array( 'Talk:WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo',
-					'any',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'Foo',
+				'any',
+				false
 			),
 			array( 'Talk:WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo, bar',
-					'comma',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'Foo, bar',
+				'comma',
+				false
 			),
 			array( 'Talk:WikiPageTest_testIsCountable',
-					CONTENT_MODEL_WIKITEXT,
-					'Foo [[bar]]',
-					'link',
-					false
+				CONTENT_MODEL_WIKITEXT,
+				'Foo [[bar]]',
+				'link',
+				false
 			),
 
 			// not a content namespace, different model
 			array( 'MediaWiki:WikiPageTest_testIsCountable.js',
-					null,
-					'Foo',
-					'any',
-					false
+				null,
+				'Foo',
+				'any',
+				false
 			),
 			array( 'MediaWiki:WikiPageTest_testIsCountable.js',
-					null,
-					'Foo, bar',
-					'comma',
-					false
+				null,
+				'Foo, bar',
+				'comma',
+				false
 			),
 			array( 'MediaWiki:WikiPageTest_testIsCountable.js',
-					null,
-					'Foo [[bar]]',
-					'link',
-					false
+				null,
+				'Foo [[bar]]',
+				'link',
+				false
 			),
 		);
 	}
@@ -553,7 +552,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$page = $this->createPage( $title, $text, $model );
 		$hasLinks = wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
-					array( 'pl_from' => $page->getId() ), __METHOD__ );
+			array( 'pl_from' => $page->getId() ), __METHOD__ );
 
 		$editInfo = $page->prepareContentForEdit( $page->getContent() );
 
@@ -561,15 +560,15 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$w = $page->isCountable( $editInfo );
 
 		$this->assertEquals( $expected, $v, "isCountable( null ) returned unexpected value " . var_export( $v, true )
-											. " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
+			. " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
 
 		$this->assertEquals( $expected, $w, "isCountable( \$editInfo ) returned unexpected value " . var_export( $v, true )
-											. " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
+			. " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
 	}
 
 	public static function provideGetParserOutput() {
 		return array(
-			array( CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i></p>"),
+			array( CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i></p>" ),
 			// @todo: more...?
 		);
 	}
@@ -591,9 +590,9 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		return $po;
 	}
 
-	public function testGetParserOutput_nonexisting( ) {
+	public function testGetParserOutput_nonexisting() {
 		static $count = 0;
-		$count ++;
+		$count++;
 
 		$page = new WikiPage( new Title( "WikiPageTest_testGetParserOutput_nonexisting_$count" ) );
 
@@ -603,7 +602,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing pages." );
 	}
 
-	public function testGetParserOutput_badrev( ) {
+	public function testGetParserOutput_badrev() {
 		$page = $this->createPage( 'WikiPageTest_testGetParserOutput', "dummy", CONTENT_MODEL_WIKITEXT );
 
 		$opt = new ParserOptions();
@@ -633,46 +632,46 @@ more stuff
 		//NOTE: assume the Help namespace to contain wikitext
 		return array(
 			array( 'Help:WikiPageTest_testReplaceSection',
-					CONTENT_MODEL_WIKITEXT,
-					WikiPageTest::$sections,
-					"0",
-					"No more",
-					null,
-					trim( preg_replace( '/^Intro/sm', 'No more', WikiPageTest::$sections ) )
+				CONTENT_MODEL_WIKITEXT,
+				WikiPageTest::$sections,
+				"0",
+				"No more",
+				null,
+				trim( preg_replace( '/^Intro/sm', 'No more', WikiPageTest::$sections ) )
 			),
 			array( 'Help:WikiPageTest_testReplaceSection',
-					CONTENT_MODEL_WIKITEXT,
-					WikiPageTest::$sections,
-					"",
-					"No more",
-					null,
-					"No more"
+				CONTENT_MODEL_WIKITEXT,
+				WikiPageTest::$sections,
+				"",
+				"No more",
+				null,
+				"No more"
 			),
 			array( 'Help:WikiPageTest_testReplaceSection',
-					CONTENT_MODEL_WIKITEXT,
-					WikiPageTest::$sections,
-					"2",
-					"== TEST ==\nmore fun",
-					null,
-					trim( preg_replace( '/^== test ==.*== foo ==/sm',
-										"== TEST ==\nmore fun\n\n== foo ==",
-										WikiPageTest::$sections ) )
+				CONTENT_MODEL_WIKITEXT,
+				WikiPageTest::$sections,
+				"2",
+				"== TEST ==\nmore fun",
+				null,
+				trim( preg_replace( '/^== test ==.*== foo ==/sm',
+					"== TEST ==\nmore fun\n\n== foo ==",
+					WikiPageTest::$sections ) )
 			),
 			array( 'Help:WikiPageTest_testReplaceSection',
-					CONTENT_MODEL_WIKITEXT,
-					WikiPageTest::$sections,
-					"8",
-					"No more",
-					null,
-					trim( WikiPageTest::$sections )
+				CONTENT_MODEL_WIKITEXT,
+				WikiPageTest::$sections,
+				"8",
+				"No more",
+				null,
+				trim( WikiPageTest::$sections )
 			),
 			array( 'Help:WikiPageTest_testReplaceSection',
-					CONTENT_MODEL_WIKITEXT,
-					WikiPageTest::$sections,
-					"new",
-					"No more",
-					"New",
-					trim( WikiPageTest::$sections ) . "\n\n== New ==\n\nNo more"
+				CONTENT_MODEL_WIKITEXT,
+				WikiPageTest::$sections,
+				"new",
+				"No more",
+				"New",
+				trim( WikiPageTest::$sections ) . "\n\n== New ==\n\nNo more"
 			),
 		);
 	}
@@ -704,71 +703,71 @@ more stuff
 
 	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
-		$this->checkHasDiff3();
+	$this->checkHasDiff3();
 
-		$text = "one";
-		$page = $this->createPage( "WikiPageTest_testGetUndoText", $text );
-		$rev1 = $page->getRevision();
+	$text = "one";
+	$page = $this->createPage( "WikiPageTest_testGetUndoText", $text );
+	$rev1 = $page->getRevision();
 
-		$text .= "\n\ntwo";
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two");
-		$rev2 = $page->getRevision();
+	$text .= "\n\ntwo";
+	$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two");
+	$rev2 = $page->getRevision();
 
-		$text .= "\n\nthree";
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section three");
-		$rev3 = $page->getRevision();
+	$text .= "\n\nthree";
+	$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section three");
+	$rev3 = $page->getRevision();
 
-		$text .= "\n\nfour";
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section four");
-		$rev4 = $page->getRevision();
+	$text .= "\n\nfour";
+	$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section four");
+	$rev4 = $page->getRevision();
 
-		$text .= "\n\nfive";
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section five");
-		$rev5 = $page->getRevision();
+	$text .= "\n\nfive";
+	$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section five");
+	$rev5 = $page->getRevision();
 
-		$text .= "\n\nsix";
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section six");
-		$rev6 = $page->getRevision();
+	$text .= "\n\nsix";
+	$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section six");
+	$rev6 = $page->getRevision();
 
-		$undo6 = $page->getUndoText( $rev6 );
-		if ( $undo6 === false ) $this->fail( "getUndoText failed for rev6" );
-		$this->assertEquals( "one\n\ntwo\n\nthree\n\nfour\n\nfive", $undo6 );
+	$undo6 = $page->getUndoText( $rev6 );
+	if ( $undo6 === false ) $this->fail( "getUndoText failed for rev6" );
+	$this->assertEquals( "one\n\ntwo\n\nthree\n\nfour\n\nfive", $undo6 );
 
-		$undo3 = $page->getUndoText( $rev4, $rev2 );
-		if ( $undo3 === false ) $this->fail( "getUndoText failed for rev4..rev2" );
-		$this->assertEquals( "one\n\ntwo\n\nfive", $undo3 );
+	$undo3 = $page->getUndoText( $rev4, $rev2 );
+	if ( $undo3 === false ) $this->fail( "getUndoText failed for rev4..rev2" );
+	$this->assertEquals( "one\n\ntwo\n\nfive", $undo3 );
 
-		$undo2 = $page->getUndoText( $rev2 );
-		if ( $undo2 === false ) $this->fail( "getUndoText failed for rev2" );
-		$this->assertEquals( "one\n\nfive", $undo2 );
+	$undo2 = $page->getUndoText( $rev2 );
+	if ( $undo2 === false ) $this->fail( "getUndoText failed for rev2" );
+	$this->assertEquals( "one\n\nfive", $undo2 );
 	}
-	*/
+	 */
 
 	/**
 	 * @todo FIXME: this is a better rollback test than the one below, but it keeps failing in jenkins for some reason.
 	 */
 	public function broken_testDoRollback() {
 		$admin = new User();
-		$admin->setName("Admin");
+		$admin->setName( "Admin" );
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
-								"section one", EDIT_NEW, false, $admin );
+			"section one", EDIT_NEW, false, $admin );
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
-								"adding section two", 0, false, $user1 );
+			"adding section two", 0, false, $user1 );
 
 		$user2 = new User();
 		$user2->setName( "127.0.2.13" );
 		$text .= "\n\nthree";
 		$page = new WikiPage( $page->getTitle() );
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
-								"adding section three", 0, false, $user2 );
+			"adding section three", 0, false, $user2 );
 
 		# we are having issues with doRollback spuriously failing. apparently the last revision somehow goes missing
 		# or not committed under some circumstances. so, make sure the last revision has the right user name.
@@ -796,7 +795,7 @@ more stuff
 
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(),
-								"rollback did not revert to the correct revision" );
+			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
 	}
 
@@ -805,12 +804,12 @@ more stuff
 	 */
 	public function testDoRollback() {
 		$admin = new User();
-		$admin->setName("Admin");
+		$admin->setName( "Admin" );
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-								"section one", EDIT_NEW, false, $admin );
+			"section one", EDIT_NEW, false, $admin );
 		$rev1 = $page->getRevision();
 
 		$user1 = new User();
@@ -818,7 +817,7 @@ more stuff
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
 		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-								"adding section two", 0, false, $user1 );
+			"adding section two", 0, false, $user1 );
 
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
@@ -831,11 +830,11 @@ more stuff
 
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
-							"rollback did not revert to the correct revision" );
+			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
-	public static function provideGetAutosummary( ) {
+	public static function provideGetAutosummary() {
 		return array(
 			array(
 				'Hello there, world!',
@@ -887,10 +886,10 @@ more stuff
 		$summary = $page->getAutosummary( $old, $new, $flags );
 
 		$this->assertTrue( (bool)preg_match( $expected, $summary ),
-							"Autosummary didn't match expected pattern $expected: $summary" );
+			"Autosummary didn't match expected pattern $expected: $summary" );
 	}
 
-	public static function provideGetAutoDeleteReason( ) {
+	public static function provideGetAutoDeleteReason() {
 		return array(
 			array(
 				array(),
@@ -927,10 +926,10 @@ more stuff
 			array(
 				array(
 					array( "first edit: "
-						 . "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
-						 . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. "
-						 . "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea "
-						 . "takimata sanctus est Lorem ipsum dolor sit amet.'", null ),
+						. "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
+						. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. "
+						. "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea "
+						. "takimata sanctus est Lorem ipsum dolor sit amet.'", null ),
 				),
 				'/first edit:.*\.\.\."/',
 				false
@@ -962,8 +961,11 @@ more stuff
 		foreach ( $edits as $edit ) {
 			$user = new User();
 
-			if ( !empty( $edit[1] ) ) $user->setName( $edit[1] );
-			else $user = $wgUser;
+			if ( !empty( $edit[1] ) ) {
+				$user->setName( $edit[1] );
+			} else {
+				$user = $wgUser;
+			}
 
 			$content = ContentHandler::makeContent( $edit[0], $page->getTitle(), $page->getContentModel() );
 
@@ -974,12 +976,15 @@ more stuff
 
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
-		if ( is_bool( $expectedResult ) || is_null( $expectedResult ) ) $this->assertEquals( $expectedResult, $reason );
-		else $this->assertTrue( (bool)preg_match( $expectedResult, $reason ),
-								"Autosummary didn't match expected pattern $expectedResult: $reason" );
+		if ( is_bool( $expectedResult ) || is_null( $expectedResult ) ) {
+			$this->assertEquals( $expectedResult, $reason );
+		} else {
+			$this->assertTrue( (bool)preg_match( $expectedResult, $reason ),
+				"Autosummary didn't match expected pattern $expectedResult: $reason" );
+		}
 
 		$this->assertEquals( $expectedHistory, $hasHistory,
-							"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
+			"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
 
 		$page->doDeleteArticle( "done" );
 	}
@@ -987,10 +992,10 @@ more stuff
 	public static function providePreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
-					"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
+				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
 			),
 			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
-					'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+				'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 			),
 		);
 	}
@@ -1001,7 +1006,7 @@ more stuff
 	public function testPreSaveTransform( $text, $expected ) {
 		$this->hideDeprecated( 'WikiPage::preSaveTransform' );
 		$user = new User();
-		$user->setName("127.0.0.1");
+		$user->setName( "127.0.0.1" );
 
 		//NOTE: assume Help namespace to contain wikitext
 		$page = $this->newPage( "Help:WikiPageTest_testPreloadTransform" );

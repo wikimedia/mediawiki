@@ -29,12 +29,12 @@ class ZipDirectoryReaderTest extends MediaWikiTestCase {
 	}
 
 	function testMultiDisk0() {
-		$this->readZipAssertError( 'split.zip', 'zip-unsupported', 
+		$this->readZipAssertError( 'split.zip', 'zip-unsupported',
 			'Split zip error' );
 	}
 
 	function testNoSignature() {
-		$this->readZipAssertError( 'nosig.zip', 'zip-wrong-format', 
+		$this->readZipAssertError( 'nosig.zip', 'zip-wrong-format',
 			'No signature should give "wrong format" error' );
 	}
 
@@ -58,7 +58,7 @@ class ZipDirectoryReaderTest extends MediaWikiTestCase {
 	}
 
 	function testWrongCDStart() {
-		$this->readZipAssertError( 'wrong-cd-start-disk.zip', 'zip-unsupported', 
+		$this->readZipAssertError( 'wrong-cd-start-disk.zip', 'zip-unsupported',
 			'Wrong CD start disk error' );
 	}
 

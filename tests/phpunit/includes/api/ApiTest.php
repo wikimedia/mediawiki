@@ -12,7 +12,7 @@ class ApiTest extends ApiTestCase {
 
 		$this->assertEquals(
 			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
-				"enablechunks" => false ), "filename", "enablechunks" ) );
+			"enablechunks" => false ), "filename", "enablechunks" ) );
 	}
 
 	/**
@@ -23,7 +23,7 @@ class ApiTest extends ApiTestCase {
 
 		$this->assertEquals(
 			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
-				"enablechunks" => 0 ), "filename", "enablechunks" ) );
+			"enablechunks" => 0 ), "filename", "enablechunks" ) );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class ApiTest extends ApiTestCase {
 
 		$this->assertEquals(
 			null, $mock->requireOnlyOneParameter( array( "filename" => "foo.txt",
-				"enablechunks" => true ), "filename", "enablechunks" ) );
+			"enablechunks" => true ), "filename", "enablechunks" ) );
 	}
 
 	/**
@@ -92,12 +92,14 @@ class ApiTest extends ApiTestCase {
 
 		$token = $result["login"]["token"];
 
-		$ret = $this->doApiRequest( array(
-			"action" => "login",
-			"lgtoken" => $token,
-			"lgname" => $user->username,
-			"lgpassword" => "badnowayinhell",
-			), $ret[2]
+		$ret = $this->doApiRequest(
+			array(
+				"action" => "login",
+				"lgtoken" => $token,
+				"lgname" => $user->username,
+				"lgpassword" => "badnowayinhell",
+			),
+			$ret[2]
 		);
 
 		$result = $ret[0];
@@ -119,9 +121,9 @@ class ApiTest extends ApiTestCase {
 		$user->user->logOut();
 
 		$ret = $this->doApiRequest( array(
-			"action" => "login",
-			"lgname" => $user->username,
-			"lgpassword" => $user->password,
+				"action" => "login",
+				"lgname" => $user->username,
+				"lgpassword" => $user->password,
 			)
 		);
 
@@ -133,12 +135,14 @@ class ApiTest extends ApiTestCase {
 		$this->assertEquals( "NeedToken", $a );
 		$token = $result["login"]["token"];
 
-		$ret = $this->doApiRequest( array(
-			"action" => "login",
-			"lgtoken" => $token,
-			"lgname" => $user->username,
-			"lgpassword" => $user->password,
-			), $ret[2]
+		$ret = $this->doApiRequest(
+	 		array(
+				"action" => "login",
+				"lgtoken" => $token,
+				"lgname" => $user->username,
+				"lgpassword" => $user->password,
+			),
+			$ret[2]
 		);
 
 		$result = $ret[0];
@@ -153,7 +157,7 @@ class ApiTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	function testApiGotCookie() {
-		$this->markTestIncomplete( "The server can't do external HTTP requests, and the internal one won't give cookies"  );
+		$this->markTestIncomplete( "The server can't do external HTTP requests, and the internal one won't give cookies" );
 
 		global $wgServer, $wgScriptPath;
 
@@ -165,8 +169,11 @@ class ApiTest extends ApiTestCase {
 		$req = MWHttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
 				"postData" => array(
-				"lgname" => $user->username,
-				"lgpassword" => $user->password ) ) );
+					"lgname" => $user->username,
+					"lgpassword" => $user->password
+				)
+			)
+		);
 		$req->execute();
 
 		libxml_use_internal_errors( true );

@@ -43,14 +43,15 @@ class ApiEditPageTest extends ApiTestCase {
 		parent::teardown();
 	}
 
-	function testEdit( ) {
+	function testEdit() {
 		$name = 'Help:ApiEditPageTest_testEdit'; // assume Help namespace to default to wikitext
 
 		// -- test new page --------------------------------------------
 		$apiResult = $this->doApiRequestWithToken( array(
-				'action' => 'edit',
-				'title' => $name,
-				'text' => 'some text', ) );
+			'action' => 'edit',
+			'title' => $name,
+			'text' => 'some text',
+		) );
 		$apiResult = $apiResult[0];
 
 		// Validate API result data
@@ -65,9 +66,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// -- test existing page, no change ----------------------------
 		$data = $this->doApiRequestWithToken( array(
-				'action' => 'edit',
-				'title' => $name,
-				'text' => 'some text', ) );
+			'action' => 'edit',
+			'title' => $name,
+			'text' => 'some text',
+		) );
 
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
 
@@ -76,9 +78,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// -- test existing page, with change --------------------------
 		$data = $this->doApiRequestWithToken( array(
-				'action' => 'edit',
-				'title' => $name,
-				'text' => 'different text' ) );
+			'action' => 'edit',
+			'title' => $name,
+			'text' => 'different text'
+		) );
 
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
 
@@ -94,7 +97,7 @@ class ApiEditPageTest extends ApiTestCase {
 		);
 	}
 
-	function testNonTextEdit( ) {
+	function testNonTextEdit() {
 		$name = 'Dummy:ApiEditPageTest_testNonTextEdit';
 		$data = serialize( 'some bla bla text' );
 
@@ -158,13 +161,13 @@ class ApiEditPageTest extends ApiTestCase {
 		if ( $text !== null ) {
 			if ( $text === '' ) {
 				// can't create an empty page, so create it with some content
-				list( $re,, ) = $this->doApiRequestWithToken( array(
+				list( $re, , ) = $this->doApiRequestWithToken( array(
 					'action' => 'edit',
 					'title' => $name,
 					'text' => '(dummy)', ) );
 			}
 
-			list( $re,, ) = $this->doApiRequestWithToken( array(
+			list( $re, , ) = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
 				'text' => $text, ) );
@@ -173,7 +176,7 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 
 		// -- try append/prepend --------------------------------------------
-		list( $re,, ) = $this->doApiRequestWithToken( array(
+		list( $re, , ) = $this->doApiRequestWithToken( array(
 			'action' => 'edit',
 			'title' => $name,
 			$op . 'text' => $append, ) );
@@ -221,12 +224,12 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// try to save edit, expect conflict
 		try {
-			list( $re,, ) = $this->doApiRequestWithToken( array(
+			list( $re, , ) = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
 				'text' => 'nix bar!',
 				'basetimestamp' => $baseTime,
-				), null, self::$users['sysop']->user );
+			), null, self::$users['sysop']->user );
 
 			$this->fail( 'edit conflict expected' );
 		} catch ( UsageException $ex ) {
@@ -264,7 +267,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
 		// try to save edit; should work, because we follow the redirect
-		list( $re,, ) = $this->doApiRequestWithToken( array(
+		list( $re, , ) = $this->doApiRequestWithToken( array(
 			'action' => 'edit',
 			'title' => $rname,
 			'text' => 'nix bar!',
@@ -277,7 +280,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// try again, without following the redirect. Should fail.
 		try {
-			list( $re,, ) = $this->doApiRequestWithToken( array(
+			list( $re, , ) = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $rname,
 				'text' => 'nix bar!',
@@ -326,7 +329,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
 		// try to save edit; should work, following the redirect.
-		list( $re,, ) = $this->doApiRequestWithToken( array(
+		list( $re, , ) = $this->doApiRequestWithToken( array(
 			'action' => 'edit',
 			'title' => $rname,
 			'text' => 'nix bar!',

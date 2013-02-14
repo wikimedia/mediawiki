@@ -142,7 +142,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 */
 	function testInvalidEmail() {
 		global $wgEnableEmail;
-		if( !$wgEnableEmail ) {
+		if ( !$wgEnableEmail ) {
 			$this->markTestSkipped( 'email is not enabled, so createaccount does not check it' );
 		}
 		$this->doApiRequest( array(
