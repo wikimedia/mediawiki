@@ -163,6 +163,16 @@ baz
 !! end
 
 !! test
+Parsing an URL
+!! input
+http://fr.wikipedia.org/wiki/🍺
+<!-- EasterEgg we love beer, better be able be able to link to it -->
+!! result
+<p><a rel="nofollow" class="external free" href="http://fr.wikipedia.org/wiki/🍺">http://fr.wikipedia.org/wiki/🍺</a>
+</p>
+!! end
+
+!! test
 Simple list
 !! input
 * Item 1
