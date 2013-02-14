@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
 <supplementalData>
-    <version number="$Revision: 7657 $"/>
-    <generation date="$Date: 2012-08-29 11:20:56 -0700 (Wed, 29 Aug 2012) $"/>
+    <version number="$Revision: 8007 $"/>
+    <generation date="$Date: 2013-01-03 07:17:41 +0530 (Thu, 03 Jan 2013) $"/>
     <plurals>
         <!-- if locale is known to have no plurals, there are no rules -->
         <pluralRules locales="az bm bo dz fa id ig ii hu ja jv ka kde kea km kn ko lo ms my sah ses sg th to tr vi wo yo zh"/> 
@@ -18,7 +18,7 @@
             <pluralRule count="two">n is 2</pluralRule>
             <pluralRule count="many">n is not 0 AND n mod 10 is 0</pluralRule>
         </pluralRules>
-        <pluralRules locales="asa ast af bem bez bg bn brx ca cgg chr ckb da de dv ee el en eo es et eu fi fo fur fy gl gsw gu ha haw is it jgo jmc kaj kcg kk kkj kl ks ksb ku ky lb lg mas mgo ml mn mr nah nb nd ne nl nn nnh no nr ny nyn om or os pa pap ps pt rof rm rwk saq seh sn so sq ss ssy st sv sw syr ta te teo tig tk tn ts ur vo wae ve vun xh xog zu">
+        <pluralRules locales="asa ast af bem bez bg bn brx ca cgg chr ckb da de dv ee el en eo es et eu fi fo fur fy gl gsw gu ha haw hy is it jgo jmc kaj kcg kk kkj kl ks ksb ku ky lb lg mas mgo ml mn mr nah nb nd ne nl nn nnh no nr ny nyn om or os pa pap ps pt rof rm rwk saq seh sn so sq ss ssy st sv sw syr ta te teo tig tk tn ts ur vo wae ve vun xh xog zu">
             <pluralRule count="one">n is 1</pluralRule>
         </pluralRules>
         <pluralRules locales="ak am bh fil tl guw hi ln mg nso ti wa">

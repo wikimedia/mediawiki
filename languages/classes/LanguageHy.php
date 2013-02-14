@@ -78,19 +78,6 @@ class LanguageHy extends Language {
 	}
 
 	/**
-	 * @param $count int
-	 * @param $forms array
-	 *
-	 * @return string
-	 */
-	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
-		$forms = $this->preConvertPlural( $forms, 2 );
-
-		return ( abs( $count ) <= 1 ) ? $forms[0] : $forms[1];
-	}
-
-	/**
 	 * Armenian numeric format is "12 345,67" but "1234,56"
 	 *
 	 * @param $_ string

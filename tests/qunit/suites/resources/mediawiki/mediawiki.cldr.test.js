@@ -37,6 +37,11 @@
 			[ 1, [ 'one', 'other' ], 'one', 'Hungarian plural test- 1 is one' ],
 			[ 2, [ 'one', 'other' ], 'other', 'Hungarian plural test- 2 is other' ]
 		],
+		hy: [
+			[ 0, [ 'one', 'other' ], 'other', 'Armenian plural test- 0 is other' ],
+			[ 1, [ 'one', 'other' ], 'one', 'Armenian plural test- 1 is one' ],
+			[ 2, [ 'one', 'other' ], 'other', 'Armenian plural test- 2 is other' ]
+		],
 		ar: [
 			[ 0, [ 'zero', 'one', 'two', 'few', 'many', 'other' ], 'zero', 'Arabic plural test - 0 is zero' ],
 			[ 1, [ 'zero', 'one', 'two', 'few', 'many', 'other' ], 'one', 'Arabic plural test - 1 is one' ],

@@ -16,7 +16,7 @@ class LanguageHyTest extends LanguageClassesTestCase {
 
 	function providerPlural() {
 		return array (
-			array( 'one', 0 ),
+			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 200 ),
