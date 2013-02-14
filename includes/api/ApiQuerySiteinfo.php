@@ -96,6 +96,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'variables':
 					$fit = $this->appendVariables( $p );
 					break;
+				case 'protocols':
+					$fit = $this->appendProtocols( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -549,6 +552,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $variables );
 	}
 
+	public function appendProtocols( $property ) {
+		global $wgUrlProtocols;
+		$this->getResult()->setIndexedTagName( $wgUrlProtocols, 'p' );
+		return $this->getResult()->addValue( 'query', $property, $wgUrlProtocols );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -601,6 +610,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'functionhooks',
 					'showhooks',
 					'variables',
+					'protocols',
 				)
 			),
 			'filteriw' => array(
@@ -638,6 +648,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' functionhooks         - Returns a list of parser function hooks',
 				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
 				' variables             - Returns a list of variable IDs',
+				' protocols             - Returns a list of protocols that are allowed in external links.',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
