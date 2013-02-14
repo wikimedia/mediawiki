@@ -168,13 +168,13 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$rev = new Revision(
 			array(
-				'id'         => 42,
-				'page'       => 23,
-				'title'      => $title,
+				'id' => 42,
+				'page' => 23,
+				'title' => $title,
 
-				'content'    => $content,
-				'length'     => $content->getSize(),
-				'comment'    => "testing",
+				'content' => $content,
+				'length' => $content->getSize(),
+				'comment' => "testing",
 				'minor_edit' => false,
 
 				'content_format' => $format,
@@ -189,7 +189,7 @@ class RevisionTest extends MediaWikiTestCase {
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, CONTENT_MODEL_WIKITEXT ),
 			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_MODEL_CSS ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, "testing" ),
+			array( serialize( 'hello world' ), 'Dummy:Hello', null, null, "testing" ),
 		);
 	}
 
@@ -209,7 +209,7 @@ class RevisionTest extends MediaWikiTestCase {
 			array( 'hello world', 'Help:Hello', null, null, CONTENT_FORMAT_WIKITEXT ),
 			array( 'hello world', 'Help:Hello', CONTENT_MODEL_CSS, null, CONTENT_FORMAT_CSS ),
 			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_FORMAT_CSS ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, "testing" ),
+			array( serialize( 'hello world' ), 'Dummy:Hello', null, null, "testing" ),
 		);
 	}
 
@@ -228,7 +228,7 @@ class RevisionTest extends MediaWikiTestCase {
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, 'WikitextContentHandler' ),
 			array( 'hello world', 'User:hello/there.css', null, null, 'CssContentHandler' ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, 'DummyContentHandlerForTesting' ),
+			array( serialize( 'hello world' ), 'Dummy:Hello', null, null, 'DummyContentHandlerForTesting' ),
 		);
 	}
 
@@ -246,8 +246,8 @@ class RevisionTest extends MediaWikiTestCase {
 		//NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize('hello world'), 'Hello', "testing", null, Revision::FOR_PUBLIC, serialize('hello world') ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, serialize('hello world') ),
+			array( serialize( 'hello world' ), 'Hello', "testing", null, Revision::FOR_PUBLIC, serialize( 'hello world' ) ),
+			array( serialize( 'hello world' ), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, serialize( 'hello world' ) ),
 		);
 	}
 
@@ -266,8 +266,8 @@ class RevisionTest extends MediaWikiTestCase {
 		//NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize('hello world'), 'Hello', "testing", null, Revision::FOR_PUBLIC, null ),
-			array( serialize('hello world'), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, null ),
+			array( serialize( 'hello world' ), 'Hello', "testing", null, Revision::FOR_PUBLIC, null ),
+			array( serialize( 'hello world' ), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, null ),
 		);
 	}
 
@@ -296,7 +296,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 
-	public function dataGetSize( ) {
+	public function dataGetSize() {
 		return array(
 			array( "hello world.", CONTENT_MODEL_WIKITEXT, 12 ),
 			array( serialize( "hello world." ), "testing", 12 ),
@@ -313,7 +313,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected_size, $rev->getSize() );
 	}
 
-	public function dataGetSha1( ) {
+	public function dataGetSha1() {
 		return array(
 			array( "hello world.", CONTENT_MODEL_WIKITEXT, Revision::base36Sha1( "hello world." ) ),
 			array( serialize( "hello world." ), "testing", Revision::base36Sha1( serialize( "hello world." ) ) ),
@@ -334,9 +334,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->hideDeprecated( "Revision::getText" );
 
 		$rev = new Revision( array(
-		                          'text' => 'hello world.',
-		                          'content_model' => CONTENT_MODEL_JAVASCRIPT
-		                     ));
+			'text' => 'hello world.',
+			'content_model' => CONTENT_MODEL_JAVASCRIPT
+		) );
 
 		$this->assertNotNull( $rev->getText(), 'no content text' );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
@@ -350,8 +350,8 @@ class RevisionTest extends MediaWikiTestCase {
 		$title = Title::newFromText( 'RevisionTest_testConstructWithContent' );
 
 		$rev = new Revision( array(
-		                          'content' => ContentHandler::makeContent( 'hello world.', $title, CONTENT_MODEL_JAVASCRIPT ),
-		                     ));
+			'content' => ContentHandler::makeContent( 'hello world.', $title, CONTENT_MODEL_JAVASCRIPT ),
+		) );
 
 		$this->assertNotNull( $rev->getText(), 'no content text' );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
@@ -364,18 +364,18 @@ class RevisionTest extends MediaWikiTestCase {
 	 *
 	 * @group Database
 	 */
-	function testGetContentClone( ) {
+	function testGetContentClone() {
 		$content = new RevisionTestModifyableContent( "foo" );
 
 		$rev = new Revision(
 			array(
-				'id'         => 42,
-				'page'       => 23,
-				'title'      => Title::newFromText( "testGetContentClone_dummy" ),
+				'id' => 42,
+				'page' => 23,
+				'title' => Title::newFromText( "testGetContentClone_dummy" ),
 
-				'content'    => $content,
-				'length'     => $content->getSize(),
-				'comment'    => "testing",
+				'content' => $content,
+				'length' => $content->getSize(),
+				'comment' => "testing",
 				'minor_edit' => false,
 			)
 		);
@@ -413,7 +413,7 @@ class RevisionTestModifyableContent extends TextContent {
 		parent::__construct( $text, "RevisionTestModifyableContent" );
 	}
 
-	public function copy( ) {
+	public function copy() {
 		return new RevisionTestModifyableContent( $this->mText );
 	}
 
@@ -429,7 +429,7 @@ class RevisionTestModifyableContent extends TextContent {
 
 class RevisionTestModifyableContentHandler extends TextContentHandler {
 
-	public function __construct( ) {
+	public function __construct() {
 		parent::__construct( "RevisionTestModifyableContent", array( CONTENT_FORMAT_TEXT ) );
 	}
 

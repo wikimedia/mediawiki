@@ -14,6 +14,7 @@ class TimestampTest extends MediaWikiTestCase {
 			'wgLang' => Language::factory( 'en' ),
 		) );
 	}
+
 	/**
 	 * Test parsing of valid timestamps and outputing to MW format.
 	 * @dataProvider provideValidTimestamps

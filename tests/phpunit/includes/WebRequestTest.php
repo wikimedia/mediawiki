@@ -212,9 +212,9 @@ class WebRequestTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideLanguageData
 	 */
-	function testAcceptLang($acceptLanguageHeader, $expectedLanguages, $description) {
+	function testAcceptLang( $acceptLanguageHeader, $expectedLanguages, $description ) {
 		$_SERVER = array( 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader );
 		$request = new WebRequest();
-		$this->assertSame( $request->getAcceptLang(), $expectedLanguages, $description);
+		$this->assertSame( $request->getAcceptLang(), $expectedLanguages, $description );
 	}
 }

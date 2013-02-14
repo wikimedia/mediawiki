@@ -21,21 +21,21 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
-		                                 array( 'page',
-		                                      'revision',
-		                                      'text',
+			array( 'page',
+				'revision',
+				'text',
 
-		                                      'recentchanges',
-		                                      'logging',
+				'recentchanges',
+				'logging',
 
-		                                      'page_props',
-		                                      'pagelinks',
-		                                      'categorylinks',
-		                                      'langlinks',
-		                                      'externallinks',
-		                                      'imagelinks',
-		                                      'templatelinks',
-		                                      'iwlinks' ) );
+				'page_props',
+				'pagelinks',
+				'categorylinks',
+				'langlinks',
+				'externallinks',
+				'imagelinks',
+				'templatelinks',
+				'iwlinks' ) );
 	}
 
 	public function setUp() {
@@ -43,11 +43,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		parent::setUp();
 
-		$wgExtraNamespaces[ 12312 ] = 'Dummy';
-		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
+		$wgExtraNamespaces[12312] = 'Dummy';
+		$wgExtraNamespaces[12313] = 'Dummy_talk';
 
-		$wgNamespaceContentModels[ 12312 ] = 'DUMMY';
-		$wgContentHandlers[ 'DUMMY' ] = 'DummyContentHandlerForTesting';
+		$wgNamespaceContentModels[12312] = 'DUMMY';
+		$wgContentHandlers['DUMMY'] = 'DummyContentHandlerForTesting';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -61,22 +61,32 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		parent::tearDown();
 
-		unset( $wgExtraNamespaces[ 12312 ] );
-		unset( $wgExtraNamespaces[ 12313 ] );
+		unset( $wgExtraNamespaces[12312] );
+		unset( $wgExtraNamespaces[12313] );
 
-		unset( $wgNamespaceContentModels[ 12312 ] );
-		unset( $wgContentHandlers[ 'DUMMY' ] );
+		unset( $wgNamespaceContentModels[12312] );
+		unset( $wgContentHandlers['DUMMY'] );
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
 	protected function makeRevision( $props = null ) {
-		if ( $props === null ) $props = array();
+		if ( $props === null ) {
+			$props = array();
+		}
 
-		if ( !isset( $props['content'] ) && !isset( $props['text'] ) ) $props['text'] = 'Lorem Ipsum';
-		if ( !isset( $props['comment'] ) ) $props['comment'] = 'just a test';
-		if ( !isset( $props['page'] ) ) $props['page'] = $this->the_page->getId();
+		if ( !isset( $props['content'] ) && !isset( $props['text'] ) ) {
+			$props['text'] = 'Lorem Ipsum';
+		}
+
+		if ( !isset( $props['comment'] ) ) {
+			$props['comment'] = 'just a test';
+		}
+
+		if ( !isset( $props['page'] ) ) {
+			$props['page'] = $this->the_page->getId();
+		}
 
 		$rev = new Revision( $props );
 
@@ -89,8 +99,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	protected function createPage( $page, $text, $model = null ) {
 		if ( is_string( $page ) ) {
 			if ( !preg_match( '/:/', $page ) &&
-				( $model === null || $model === CONTENT_MODEL_WIKITEXT ) ) {
-
+				( $model === null || $model === CONTENT_MODEL_WIKITEXT )
+			) {
 				$ns = $this->getDefaultWikitextNS();
 				$page = MWNamespace::getCanonicalName( $ns ) . ':' . $page;
 			}
@@ -207,11 +217,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		#note: order is unspecified
 		$rows = array();
 		while ( ( $row = $res->fetchObject() ) ) {
-			$rows[ $row->rev_id ]= $row;
+			$rows[$row->rev_id] = $row;
 		}
 
 		$row = $res->fetchObject();
-		$this->assertEquals( 1, count($rows), 'expected exactly one revision' );
+		$this->assertEquals( 1, count( $rows ), 'expected exactly one revision' );
 		$this->assertArrayHasKey( $id2, $rows, 'missing revision with id ' . $id2 );
 	}
 
@@ -223,16 +233,16 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$fields = Revision::selectFields();
 
-		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields');
-		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields');
-		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields');
-		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields');
+		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields' );
+		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields' );
+		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields' );
+		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
 
 		if ( $wgContentHandlerUseDB ) {
 			$this->assertTrue( in_array( 'rev_content_model', $fields ),
-								'missing rev_content_model in list of fields');
+				'missing rev_content_model in list of fields' );
 			$this->assertTrue( in_array( 'rev_content_format', $fields ),
-								'missing rev_content_format in list of fields');
+				'missing rev_content_format in list of fields' );
 		}
 	}
 
@@ -265,7 +275,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetContent_failure() {
 		$rev = new Revision( array(
-			'page'       =>  $this->the_page->getId(),
+			'page' => $this->the_page->getId(),
 			'content_model' => $this->the_page->getContentModel(),
 			'text_id' => 123456789, // not in the test DB
 		) );
@@ -322,7 +332,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		}
 
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.',
-											'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
+			'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
@@ -338,9 +348,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.',
-											'content_model' => CONTENT_MODEL_JAVASCRIPT,
-											'content_format' => CONTENT_FORMAT_JAVASCRIPT ) );
+		$orig = $this->makeRevision( array(
+			'text' => 'hello hello.',
+			'content_model' => CONTENT_MODEL_JAVASCRIPT,
+			'content_format' => CONTENT_FORMAT_JAVASCRIPT
+		) );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_FORMAT_JAVASCRIPT, $rev->getContentFormat() );
@@ -382,7 +394,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertNull( $rev1->getPrevious() );
 
 		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-								'second rev testGetPrevious' );
+			'second rev testGetPrevious' );
 		$rev2 = $page->getRevision();
 
 		$this->assertNotNull( $rev2->getPrevious() );
@@ -399,7 +411,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertNull( $rev1->getNext() );
 
 		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-								'second rev testGetNext' );
+			'second rev testGetNext' );
 		$rev2 = $page->getRevision();
 
 		$this->assertNotNull( $rev1->getNext() );
@@ -417,9 +429,9 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$rev = Revision::newNullRevision( $dbw, $page->getId(), 'a null revision', false );
 
 		$this->assertNotEquals( $orig->getId(), $rev->getId(),
-								'new null revision shold have a different id from the original revision' );
+			'new null revision shold have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
-								'new null revision shold have the same text id as the original revision' );
+			'new null revision shold have the same text id as the original revision' );
 		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
 	}
 
@@ -525,7 +537,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$revisions[4]->insertOn( $dbw );
 
 		// test it ---------------------------------
-		$since = $revisions[ $sinceIdx ]->getTimestamp();
+		$since = $revisions[$sinceIdx]->getTimestamp();
 
 		$wasLast = Revision::userWasLastToEdit( $dbw, $page->getId(), $userA->getId(), $since );
 

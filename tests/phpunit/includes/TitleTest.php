@@ -6,7 +6,6 @@
  *        ^--- needed for language cache stuff
  */
 class TitleTest extends MediaWikiTestCase {
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -55,10 +54,10 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'Special:Version/param', 'param' ),
 		);
 	}
-	
+
 	/**
 	 * Auth-less test of Title::isValidMoveOperation
-	 * 
+	 *
 	 * @group Database
 	 * @param string $source
 	 * @param string $target
@@ -78,7 +77,7 @@ class TitleTest extends MediaWikiTestCase {
 			}
 		}
 	}
-	
+
 	/**
 	 * Provides test parameter values for testIsValidMoveOperation()
 	 */
@@ -100,13 +99,12 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::checkReadPermission
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
-	function testWgWhitelistReadRegexp($whitelistRegexp, $source, $action, $expected) {
-
+	function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
 		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
 		// usually have only one regex, it is more concise to write the lonely regex
 		// as a string. Thus we cast to an array() to honor $wgWhitelistReadRegexp
 		// type requisite.
-		if( is_string( $whitelistRegexp ) ) {
+		if ( is_string( $whitelistRegexp ) ) {
 			$whitelistRegexp = array( $whitelistRegexp );
 		}
 
@@ -126,8 +124,8 @@ class TitleTest extends MediaWikiTestCase {
 		$wgWhitelistRead = array( 'some random non sense title' );
 
 		global $wgWhitelistReadRegexp;
-		$oldWhitelistRegexp    = $wgWhitelistReadRegexp;
-		$wgWhitelistReadRegexp = $whitelistRegexp ;
+		$oldWhitelistRegexp = $wgWhitelistReadRegexp;
+		$wgWhitelistReadRegexp = $whitelistRegexp;
 
 		// Just use $wgUser which in test is a user object for '127.0.0.1'
 		global $wgUser;
@@ -141,12 +139,11 @@ class TitleTest extends MediaWikiTestCase {
 		$wgWhitelistRead = $oldWhitelist;
 		$wgWhitelistReadRegexp = $oldWhitelistRegexp;
 
-		if( is_bool( $expected ) ) {
+		if ( is_bool( $expected ) ) {
 			# Forge the assertion message depending on the assertion expectation
 			$allowableness = $expected
 				? " should be allowed"
-				: " should NOT be allowed"
-			;
+				: " should NOT be allowed";
 			$this->assertEquals( $expected, $errors, "User action '$action' on [[$source]] $allowableness." );
 		} else {
 			$errors = $this->flattenErrorsArray( $errors );
@@ -160,7 +157,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * Provides test parameter values for testWgWhitelistReadRegexp()
 	 */
 	function dataWgWhitelistReadRegexp() {
-		$ALLOWED    = true;
+		$ALLOWED = true;
 		$DISALLOWED = false;
 
 		return array(
@@ -202,9 +199,9 @@ class TitleTest extends MediaWikiTestCase {
 		}
 		return $result;
 	}
-	
+
 	public static function provideTestIsValidMoveOperation() {
-		return array( 
+		return array(
 			array( 'Test', 'Test', 'selfmove' ),
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
 		);
@@ -246,28 +243,28 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'es', 'Help:I_need_somebody', 'es', 'zh-tw', false ),
 			array( 'zh', 'Help:I_need_somebody', 'zh', 'zh-tw', false ),
 
-			array( 'es',    'Help:I_need_somebody',      'es', 'zh-tw', 'zh-cn' ),
-			array( 'es',    'MediaWiki:About',           'es', 'zh-tw', 'zh-cn' ),
-			array( 'es',    'MediaWiki:About/',          'es', 'zh-tw', 'zh-cn' ),
-			array( 'de',    'MediaWiki:About/de',        'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.js',       'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.css',      'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Common.js',    'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Monobook.css', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es', 'Help:I_need_somebody', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es', 'MediaWiki:About', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es', 'MediaWiki:About/', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'de', 'MediaWiki:About/de', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.js', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.css', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Common.js', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Monobook.css', 'es', 'zh-tw', 'zh-cn' ),
 
-			array( 'zh-cn', 'Help:I_need_somebody',      'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh',    'MediaWiki:About',           'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh',    'MediaWiki:About/',          'zh', 'zh-tw', 'zh-cn' ),
-			array( 'de',    'MediaWiki:About/de',        'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh-cn', 'MediaWiki:About/zh-cn',     'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh-tw', 'MediaWiki:About/zh-tw',     'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.js',       'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.css',      'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Common.js',    'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Monobook.css', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-cn', 'Help:I_need_somebody', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh', 'MediaWiki:About', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh', 'MediaWiki:About/', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'de', 'MediaWiki:About/de', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-cn', 'MediaWiki:About/zh-cn', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'MediaWiki:About/zh-tw', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.js', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.css', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Common.js', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Monobook.css', 'zh', 'zh-tw', 'zh-cn' ),
 
-			array( 'zh-tw', 'Special:NewPages',       'es', 'zh-tw', 'zh-cn' ),
-			array( 'zh-tw', 'Special:NewPages',       'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'Special:NewPages', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'Special:NewPages', 'zh', 'zh-tw', 'zh-cn' ),
 
 		);
 	}
@@ -275,7 +272,7 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBaseTitleCases
 	 */
-	function testExtractingBaseTextFromTitle( $title, $expected, $msg='' ) {
+	function testExtractingBaseTextFromTitle( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expected,
 			$title->getBaseText(),
@@ -286,15 +283,15 @@ class TitleTest extends MediaWikiTestCase {
 	function provideBaseTitleCases() {
 		return array(
 			# Title, expected base, optional message
-			array('User:John_Doe/subOne/subTwo', 'John Doe/subOne' ),
-			array('User:Foo/Bar/Baz', 'Foo/Bar' ),
+			array( 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ),
+			array( 'User:Foo/Bar/Baz', 'Foo/Bar' ),
 		);
 	}
 
 	/**
 	 * @dataProvider provideRootTitleCases
 	 */
-	function testExtractingRootTextFromTitle( $title, $expected, $msg='' ) {
+	function testExtractingRootTextFromTitle( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expected,
 			$title->getRootText(),
@@ -305,8 +302,8 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideRootTitleCases() {
 		return array(
 			# Title, expected base, optional message
-			array('User:John_Doe/subOne/subTwo', 'John Doe' ),
-			array('User:Foo/Bar/Baz', 'Foo' ),
+			array( 'User:John_Doe/subOne/subTwo', 'John Doe' ),
+			array( 'User:Foo/Bar/Baz', 'Foo' ),
 		);
 	}
 
@@ -314,7 +311,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @todo Handle $wgNamespacesWithSubpages cases
 	 * @dataProvider provideSubpageTitleCases
 	 */
-	function testExtractingSubpageTextFromTitle( $title, $expected, $msg='' ) {
+	function testExtractingSubpageTextFromTitle( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expected,
 			$title->getSubpageText(),
@@ -325,9 +322,8 @@ class TitleTest extends MediaWikiTestCase {
 	function provideSubpageTitleCases() {
 		return array(
 			# Title, expected base, optional message
-			array('User:John_Doe/subOne/subTwo', 'subTwo' ),
-			array('User:John_Doe/subOne', 'subOne' ),
+			array( 'User:John_Doe/subOne/subTwo', 'subTwo' ),
+			array( 'User:John_Doe/subOne', 'subOne' ),
 		);
 	}
-
 }

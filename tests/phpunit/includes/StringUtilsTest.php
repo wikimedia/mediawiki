@@ -9,8 +9,8 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * @cover StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
-	function testIsUtf8WithMbstring($expected, $string ) {
-		if( !function_exists( 'mb_check_encoding' ) ) {
+	function testIsUtf8WithMbstring( $expected, $string ) {
+		if ( !function_exists( 'mb_check_encoding' ) ) {
 			$this->markTestSkipped( 'Test requires the mbstring PHP extension' );
 		}
 		$this->assertEquals( $expected,
@@ -27,7 +27,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * @cover StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
-	function testIsUtf8WithPhpFallbackImplementation($expected, $string ) {
+	function testIsUtf8WithPhpFallbackImplementation( $expected, $string ) {
 		$this->assertEquals( $expected,
 			StringUtils::isUtf8( $string, /** disable mbstring: */ true ),
 			'Testing string "' . $this->escaped( $string ) . '" with pure PHP implementation'
@@ -39,11 +39,11 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 */
 	function escaped( $string ) {
 		$escaped = '';
-		for($i=0; $i<strlen($string);$i++) {
+		for ( $i = 0; $i < strlen( $string ); $i++ ) {
 			$char = $string[$i];
-			$val = ord($char);
-			if( $val > 127 ) {
-				$escaped .='\x' . dechex($val);
+			$val = ord( $char );
+			if ( $val > 127 ) {
+				$escaped .= '\x' . dechex( $val );
 			} else {
 				$escaped .= $char;
 			}

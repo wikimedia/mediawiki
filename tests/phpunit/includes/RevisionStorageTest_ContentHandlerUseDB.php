@@ -46,13 +46,13 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 	public function testSelectFields() {
 		$fields = Revision::selectFields();
 
-		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields');
-		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields');
-		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields');
-		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields');
+		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields' );
+		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields' );
+		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields' );
+		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
 
-		$this->assertFalse( in_array( 'rev_content_model', $fields ), 'missing rev_content_model in list of fields');
-		$this->assertFalse( in_array( 'rev_content_format', $fields ), 'missing rev_content_format in list of fields');
+		$this->assertFalse( in_array( 'rev_content_model', $fields ), 'missing rev_content_model in list of fields' );
+		$this->assertFalse( in_array( 'rev_content_format', $fields ), 'missing rev_content_format in list of fields' );
 	}
 
 	/**
@@ -61,7 +61,7 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 	public function testGetContentModel() {
 		try {
 			$this->makeRevision( array( 'text' => 'hello hello.',
-			                            'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
+				'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 
 			$this->fail( "Creating JavaScript content on a wikitext page should fail with "
 				. "\$wgContentHandlerUseDB disabled" );
@@ -82,8 +82,8 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 			//       used for this though.
 
 			$this->makeRevision( array( 'text' => 'hello hello.',
-			                            'content_model' => CONTENT_MODEL_JAVASCRIPT,
-			                            'content_format' => 'text/javascript' ) );
+				'content_model' => CONTENT_MODEL_JAVASCRIPT,
+				'content_format' => 'text/javascript' ) );
 
 			$this->fail( "Creating JavaScript content on a wikitext page should fail with "
 				. "\$wgContentHandlerUseDB disabled" );

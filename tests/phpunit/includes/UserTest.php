@@ -7,7 +7,6 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
-
 	/**
 	 * @var User
 	 */
@@ -62,6 +61,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertContains( 'modifytest', $rights );
 		$this->assertNotContains( 'nukeworld', $rights );
 	}
+
 	public function testRevokePermissions() {
 		$rights = User::getGroupPermissions( array( 'unittesters', 'formertesters' ) );
 		$this->assertNotContains( 'runtest', $rights );
@@ -122,15 +122,15 @@ class UserTest extends MediaWikiTestCase {
 			array( '', false, 'Empty string' ),
 			array( ' ', false, 'Blank space' ),
 			array( 'abcd', false, 'Starts with small letter' ),
-			array( 'Ab/cd', false,  'Contains slash' ),
-			array( 'Ab cd' , true, 'Whitespace' ),
-			array( '192.168.1.1', false,  'IP' ),
+			array( 'Ab/cd', false, 'Contains slash' ),
+			array( 'Ab cd', true, 'Whitespace' ),
+			array( '192.168.1.1', false, 'IP' ),
 			array( 'User:Abcd', false, 'Reserved Namespace' ),
-			array( '12abcd232' , true  , 'Starts with Numbers' ),
-			array( '?abcd' , true,  'Start with ? mark' ),
+			array( '12abcd232', true, 'Starts with Numbers' ),
+			array( '?abcd', true, 'Start with ? mark' ),
 			array( '#abcd', false, 'Start with #' ),
-			array( 'Abcdകഖഗഘ', true,  ' Mixed scripts' ),
-			array( 'ജോസ്‌തോമസ്',  false, 'ZWNJ- Format control character' ),
+			array( 'Abcdകഖഗഘ', true, ' Mixed scripts' ),
+			array( 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ),
 			array( 'Ab　cd', false, ' Ideographic space' ),
 		);
 	}
@@ -174,7 +174,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
-		for( $i = 0; $i < 3; $i++ ) {
+		for ( $i = 0; $i < 3; $i++ ) {
 			$page->doEdit( (string)$i, 'test', 0, false, $user );
 		}
 

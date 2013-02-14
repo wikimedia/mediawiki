@@ -74,9 +74,9 @@ class SanitizerTest extends MediaWikiTestCase {
 			# Enable HTML5 mode
 			'wgHtml5' => true,
 			'wgUseTidy' => false
-		));
+		) );
 
-		if( $escaped ) {
+		if ( $escaped ) {
 			$this->assertEquals( "&lt;$tag&gt;",
 				Sanitizer::removeHTMLtags( "<$tag>" )
 			);
@@ -91,8 +91,8 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * Provide HTML5 tags
 	 */
 	function provideHtml5Tags() {
-		$ESCAPED  = true; # We want tag to be escaped
-		$VERBATIM = false;  # We want to keep the tag
+		$ESCAPED = true; # We want tag to be escaped
+		$VERBATIM = false; # We want to keep the tag
 		return array(
 			array( 'data', $VERBATIM ),
 			array( 'mark', $VERBATIM ),
@@ -104,7 +104,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	function testSelfClosingTag() {
 		$this->setMwGlobals( array(
 			'wgUseTidy' => false
-		));
+		) );
 
 		$this->assertEquals(
 			'<div>Hello world</div>',
@@ -211,18 +211,18 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( ' ', "\\2f\\2a foo \\2a\\2f",
 				'Backslash-escaped comments must be stripped (bug 28450)' ),
 			array( '', '/* unfinished comment structure',
-	 			'Remove anything after a comment-start token' ),
+				'Remove anything after a comment-start token' ),
 			array( '', "\\2f\\2a unifinished comment'",
-	 			'Remove anything after a backslash-escaped comment-start token' ),
-			array( '/* insecure input */', 'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\');'),
-			array( '/* insecure input */', '-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\')";'),
-			array( '/* insecure input */', 'width: expression(1+1);'),
-			array( '/* insecure input */', 'background-image: image(asdf.png);'),
-			array( '/* insecure input */', 'background-image: -webkit-image(asdf.png);'),
-			array( '/* insecure input */', 'background-image: -moz-image(asdf.png);'),
-			array( '/* insecure input */', 'background-image: image-set("asdf.png" 1x, "asdf.png" 2x);'),
-			array( '/* insecure input */', 'background-image: -webkit-image-set("asdf.png" 1x, "asdf.png" 2x);'),
-			array( '/* insecure input */', 'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);'),
+				'Remove anything after a backslash-escaped comment-start token' ),
+			array( '/* insecure input */', 'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\');' ),
+			array( '/* insecure input */', '-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\')";' ),
+			array( '/* insecure input */', 'width: expression(1+1);' ),
+			array( '/* insecure input */', 'background-image: image(asdf.png);' ),
+			array( '/* insecure input */', 'background-image: -webkit-image(asdf.png);' ),
+			array( '/* insecure input */', 'background-image: -moz-image(asdf.png);' ),
+			array( '/* insecure input */', 'background-image: image-set("asdf.png" 1x, "asdf.png" 2x);' ),
+			array( '/* insecure input */', 'background-image: -webkit-image-set("asdf.png" 1x, "asdf.png" 2x);' ),
+			array( '/* insecure input */', 'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);' ),
 		);
 	}
 }

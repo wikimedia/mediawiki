@@ -84,7 +84,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 
 /* Stubs */
 
-class ResourceLoaderTestModule extends ResourceLoaderModule { }
+class ResourceLoaderTestModule extends ResourceLoaderModule {}
 
 /* Hooks */
 global $wgHooks;
