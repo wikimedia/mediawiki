@@ -232,6 +232,9 @@ td.mw-label {
 .prefsection table {
 	width: 100%;
 }
+.prefsection table.mw-htmlform-matrix {
+	width: auto;
+}
 td.mw-submit {
 	white-space: nowrap;
 }
@@ -252,6 +255,11 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	display: inline;
 	margin-right: 1em;
 	white-space: nowrap;
+}
+
+.mw-htmlform-matrix td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 
 input#wpSummary {
