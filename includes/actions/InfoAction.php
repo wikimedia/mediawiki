@@ -394,53 +394,61 @@ class InfoAction extends FormlessAction {
 		$lastRev = $this->page->getRevision();
 		$batch = new LinkBatch;
 
-		$firstRevUser = $firstRev->getUserText( Revision::FOR_THIS_USER );
-		if ( $firstRevUser !== '' ) {
-			$batch->add( NS_USER, $firstRevUser );
-			$batch->add( NS_USER_TALK, $firstRevUser );
+		if ( $firstRev ) {
+			$firstRevUser = $firstRev->getUserText( Revision::FOR_THIS_USER );
+			if ( $firstRevUser !== '' ) {
+				$batch->add( NS_USER, $firstRevUser );
+				$batch->add( NS_USER_TALK, $firstRevUser );
+			}
 		}
 
-		$lastRevUser = $lastRev->getUserText( Revision::FOR_THIS_USER );
-		if ( $lastRevUser !== '' ) {
-			$batch->add( NS_USER, $lastRevUser );
-			$batch->add( NS_USER_TALK, $lastRevUser );
+		if ( $lastRev ) {
+			$lastRevUser = $lastRev->getUserText( Revision::FOR_THIS_USER );
+			if ( $lastRevUser !== '' ) {
+				$batch->add( NS_USER, $lastRevUser );
+				$batch->add( NS_USER_TALK, $lastRevUser );
+			}
 		}
 
 		$batch->execute();
 
-		// Page creator
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-firstuser' ),
-			Linker::revUserTools( $firstRev )
-		);
+		if ( $firstRev ) {
+			// Page creator
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-firstuser' ),
+				Linker::revUserTools( $firstRev )
+			);
 
-		// Date of page creation
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-firsttime' ),
-			Linker::linkKnown(
-				$title,
-				$lang->userTimeAndDate( $firstRev->getTimestamp(), $user ),
-				array(),
-				array( 'oldid' => $firstRev->getId() )
-			)
-		);
+			// Date of page creation
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-firsttime' ),
+				Linker::linkKnown(
+					$title,
+					$lang->userTimeAndDate( $firstRev->getTimestamp(), $user ),
+					array(),
+					array( 'oldid' => $firstRev->getId() )
+				)
+			);
+		}
 
-		// Latest editor
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-lastuser' ),
-			Linker::revUserTools( $lastRev )
-		);
+		if ( $lastRev ) {
+			// Latest editor
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-lastuser' ),
+				Linker::revUserTools( $lastRev )
+			);
 
-		// Date of latest edit
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-lasttime' ),
-			Linker::linkKnown(
-				$title,
-				$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
-				array(),
-				array( 'oldid' => $this->page->getLatest() )
-			)
-		);
+			// Date of latest edit
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-lasttime' ),
+				Linker::linkKnown(
+					$title,
+					$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+					array(),
+					array( 'oldid' => $this->page->getLatest() )
+				)
+			);
+		}
 
 		// Total number of edits
 		$pageInfo['header-edits'][] = array(
