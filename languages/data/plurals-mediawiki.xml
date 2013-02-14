@@ -23,10 +23,6 @@
 			<pluralRule count="two">n mod 10 is 2</pluralRule>
 			<pluralRule count="few">n mod 10 in 3..4</pluralRule>
 		</pluralRules>
-		<!-- Hopefully temporary overrides for bug 40251 -->
-		<pluralRules locales="fa hu ja vi">
-			<pluralRule count="one">n is 1</pluralRule>
-		</pluralRules>
 		<!-- Copied from "bh" -->
 		<pluralRules locales="bho">
 			<pluralRule count="one">n in 0..1</pluralRule>
