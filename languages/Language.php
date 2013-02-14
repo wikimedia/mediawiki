@@ -3520,11 +3520,12 @@ class Language {
 			return '';
 		}
 
-		// Handle explicit 0= and 1= forms
+		// Handle explicit n=pluralform cases
 		foreach ( $forms as $index => $form ) {
-			if ( isset( $form[1] ) && $form[1] === '=' ) {
-				if ( $form[0] === (string) $count ) {
-					return substr( $form, 2 );
+			$pos = strpos( $form, '=' );
+			if ( $pos ) {
+				if ( substr( $form, 0, $pos ) === (string) $count ) {
+					return substr( $form, $pos + 1 );
 				}
 				unset( $forms[$index] );
 			}
