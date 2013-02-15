@@ -8,12 +8,14 @@ class FileRepoTest extends MediaWikiTestCase {
 	function testFileRepoConstructionOptionCanNotBeNull() {
 		$f = new FileRepo();
 	}
+
 	/**
 	 * @expectedException MWException
 	 */
 	function testFileRepoConstructionOptionCanNotBeAnEmptyArray() {
 		$f = new FileRepo( array() );
 	}
+
 	/**
 	 * @expectedException MWException
 	 */
@@ -22,6 +24,7 @@ class FileRepoTest extends MediaWikiTestCase {
 			'backend' => 'foobar'
 		) );
 	}
+
 	/**
 	 * @expectedException MWException
 	 */
@@ -33,10 +36,10 @@ class FileRepoTest extends MediaWikiTestCase {
 
 	function testFileRepoConstructionWithRequiredOptions() {
 		$f = new FileRepo( array(
-			'name'    => 'FileRepoTestRepository',
+			'name' => 'FileRepoTestRepository',
 			'backend' => new FSFileBackend( array(
-				'name'           => 'local-testing',
-				'lockManager'    => 'nullLockManager',
+				'name' => 'local-testing',
+				'lockManager' => 'nullLockManager',
 				'containerPaths' => array()
 			) )
 		) );

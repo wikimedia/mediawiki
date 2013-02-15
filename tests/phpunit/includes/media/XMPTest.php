@@ -27,7 +27,7 @@ class XMPTest extends MediaWikiTestCase {
 	}
 
 	public static function provideXMPParse() {
-		$xmpPath = __DIR__ . '/../../data/xmp/' ;
+		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$data = array();
 
 		// $xmpFiles format: array of arrays with first arg file base name,
@@ -54,8 +54,9 @@ class XMPTest extends MediaWikiTestCase {
 			array( 'utf32LE', 'UTF-32LE encoding' ),
 			array( 'xmpExt', 'Extended XMP missing second part' ),
 			array( 'gps', 'Handling of exif GPS parameters in XMP' ),
-		 );
-		foreach( $xmpFiles as $file ) {
+		);
+
+		foreach ( $xmpFiles as $file ) {
 			$xmp = file_get_contents( $xmpPath . $file[0] . '.xmp' );
 			// I'm not sure if this is the best way to handle getting the
 			// result array, but it seems kind of big to put directly in the test
@@ -88,8 +89,8 @@ class XMPTest extends MediaWikiTestCase {
 		$reader->parseExtended( $extendedPacket );
 		$actual = $reader->getResults();
 
-		$expected = array( 'xmp-exif' =>
-			array(
+		$expected = array(
+			'xmp-exif' => array(
 				'DigitalZoomRatio' => '0/10',
 				'Flash' => 9,
 				'FNumber' => '2/10',
@@ -118,8 +119,8 @@ class XMPTest extends MediaWikiTestCase {
 		$reader->parseExtended( $extendedPacket );
 		$actual = $reader->getResults();
 
-		$expected = array( 'xmp-exif' =>
-			array(
+		$expected = array(
+			'xmp-exif' => array(
 				'DigitalZoomRatio' => '0/10',
 				'Flash' => 9,
 			)
@@ -127,6 +128,7 @@ class XMPTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $actual );
 	}
+
 	/**
 	 * Have a high offset to simulate a missing packet,
 	 * which should cause it to ignore the ExtendedXMP packet.
@@ -146,8 +148,8 @@ class XMPTest extends MediaWikiTestCase {
 		$reader->parseExtended( $extendedPacket );
 		$actual = $reader->getResults();
 
-		$expected = array( 'xmp-exif' =>
-			array(
+		$expected = array(
+			'xmp-exif' => array(
 				'DigitalZoomRatio' => '0/10',
 				'Flash' => 9,
 			)

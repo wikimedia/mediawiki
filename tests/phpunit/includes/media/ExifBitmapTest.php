@@ -50,9 +50,9 @@ class ExifBitmapTest extends MediaWikiTestCase {
 
 	function testConvertMetadataLatest() {
 		$metadata = array(
-				'foo' => array( 'First', 'Second', '_type' => 'ol' ),
-				'MEDIAWIKI_EXIF_VERSION' => 2
-			 );
+			'foo' => array( 'First', 'Second', '_type' => 'ol' ),
+			'MEDIAWIKI_EXIF_VERSION' => 2
+		);
 		$res = $this->handler->convertMetadataVersion( $metadata, 2 );
 		$this->assertEquals( $metadata, $res );
 	}
@@ -78,7 +78,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 
 	function testConvertMetadataSoftware() {
 		$metadata = array(
-			'Software' => array( array('GIMP', '1.1' ) ),
+			'Software' => array( array( 'GIMP', '1.1' ) ),
 			'MEDIAWIKI_EXIF_VERSION' => 2,
 		);
 		$expected = array(

@@ -24,18 +24,18 @@ class StoreBatchTest extends MediaWikiTestCase {
 			$backend = new $class( $useConfig );
 		} else {
 			$backend = new FSFileBackend( array(
-				'name'        => 'local-testing',
+				'name' => 'local-testing',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
-					'unittests-public'  => "{$tmpPrefix}-public",
-					'unittests-thumb'   => "{$tmpPrefix}-thumb",
-					'unittests-temp'    => "{$tmpPrefix}-temp",
+					'unittests-public' => "{$tmpPrefix}-public",
+					'unittests-thumb' => "{$tmpPrefix}-thumb",
+					'unittests-temp' => "{$tmpPrefix}-temp",
 					'unittests-deleted' => "{$tmpPrefix}-deleted",
 				)
 			) );
 		}
 		$this->repo = new FileRepo( array(
-			'name'    => 'unittests',
+			'name' => 'unittests',
 			'backend' => $backend
 		) );
 
@@ -61,7 +61,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 	 * @param $srcPath string The filepath or virtual URL
 	 * @param $flags integer Flags to pass into repo::store().
 	 */
-	private function storeit($originalName, $srcPath, $flags) {
+	private function storeit( $originalName, $srcPath, $flags ) {
 		$hashPath = $this->repo->getHashPath( $originalName );
 		$dstRel = "$hashPath{$this->date}!$originalName";
 		$dstUrlRel = $hashPath . $this->date . '!' . rawurlencode( $originalName );
@@ -80,13 +80,13 @@ class StoreBatchTest extends MediaWikiTestCase {
 	 * @param $otherfn string The name of the different file (in the filesystem)
 	 * @param $fromrepo logical 'true' if we want to copy from a virtual URL out of the Repo.
 	 */
-	private function storecohort($fn, $infn, $otherfn, $fromrepo) {
+	private function storecohort( $fn, $infn, $otherfn, $fromrepo ) {
 		$f = $this->storeit( $fn, $infn, 0 );
 		$this->assertTrue( $f->isOK(), 'failed to store a new file' );
 		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
 		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
 		if ( $fromrepo ) {
-			$f = $this->storeit( "Other-$fn", $infn, FileRepo::OVERWRITE);
+			$f = $this->storeit( "Other-$fn", $infn, FileRepo::OVERWRITE );
 			$infn = $f->value;
 		}
 		// This should work because we're allowed to overwrite
@@ -106,7 +106,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should fail because we're overwriting different content.
 		if ( $fromrepo ) {
-			$f = $this->storeit( "Other-$fn", $otherfn, FileRepo::OVERWRITE);
+			$f = $this->storeit( "Other-$fn", $otherfn, FileRepo::OVERWRITE );
 			$otherfn = $f->value;
 		}
 		$f = $this->storeit( $fn, $otherfn, FileRepo::OVERWRITE_SAME );

@@ -29,7 +29,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			'wgLogActionsHandlers' => array( 'phpunit/test' => 'LogFormatter',
 				'phpunit/param' => 'LogFormatter' ),
 			'wgUser' => User::newFromName( 'Testuser' ),
-			'wgExtensionMessagesFiles' => array( 'LogTests' => __DIR__.'/LogTests.i18n.php' ),
+			'wgExtensionMessagesFiles' => array( 'LogTests' => __DIR__ . '/LogTests.i18n.php' ),
 		) );
 
 		$wgLang->getLocalisationCache()->recache( $wgLang->getCode() );

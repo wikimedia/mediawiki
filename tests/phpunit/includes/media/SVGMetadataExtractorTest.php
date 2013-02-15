@@ -13,13 +13,13 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	function testGetMetadata( $infile, $expected ) {
 		$this->assertMetadata( $infile, $expected );
 	}
-	
+
 	/**
 	 * @dataProvider provideSvgFilesWithXMLMetadata
 	 */
 	function testGetXMLMetadata( $infile, $expected ) {
 		$r = new XMLReader();
-		if( !method_exists( $r, 'readInnerXML' ) ) {
+		if ( !method_exists( $r, 'readInnerXML' ) ) {
 			$this->markTestSkipped( 'XMLReader::readInnerXML() does not exist (libxml >2.6.20 needed).' );
 			return;
 		}
@@ -84,8 +84,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 
 	public static function provideSvgFilesWithXMLMetadata() {
 		$base = __DIR__ . '/../../data/media';
-		$metadata = 
-    '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		$metadata = '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <ns4:Work xmlns:ns4="http://creativecommons.org/ns#" rdf:about="">
         <ns5:format xmlns:ns5="http://purl.org/dc/elements/1.1/">image/svg+xml</ns5:format>
         <ns5:type xmlns:ns5="http://purl.org/dc/elements/1.1/" rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
