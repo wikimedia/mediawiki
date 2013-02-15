@@ -24,10 +24,13 @@ define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
 chdir( dirname( __DIR__ ) );
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
+
+// Initialise common code.
+if ( !isset( $_SERVER['MW_COMPILED'] ) ) {
+	require( __DIR__ . '/includes/WebStart.php' );
 } else {
-	require( dirname( __DIR__ ) . '/includes/WebStart.php' );
+	// For HipHop, see MWInit::compiledPath().
+	require( 'core/includes/WebStart.php' );
 }
 
 wfInstallerMain();

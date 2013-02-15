@@ -22,10 +22,13 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require( 'core/includes/WebStart.php' );
-} else {
+
+// Initialise common code.
+if ( !isset( $_SERVER['MW_COMPILED'] ) ) {
 	require( __DIR__ . '/includes/WebStart.php' );
+} else {
+	// For HipHop, see MWInit::compiledPath().
+	require( 'core/includes/WebStart.php' );
 }
 
 // Don't use fancy mime detection, just check the file extension for jpg/gif/png
