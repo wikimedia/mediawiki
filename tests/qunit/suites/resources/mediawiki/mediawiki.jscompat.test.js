@@ -14,7 +14,7 @@
 		assert.deepEqual( ŝablono, orig, 'ŝablono' );
 		assert.deepEqual( \u015dablono, orig, '\\u015dablono' );
 		assert.deepEqual( \u015Dablono, orig, '\\u015Dablono' );
-	});
+	} );
 
 	/*
 	// Not that we need this. ;)
@@ -58,13 +58,13 @@
 		}
 
 		for ( n = 0; n < maxn; n++ ) {
-			expected = repeat('\n', n) + 'some text';
+			expected = repeat( '\n', n ) + 'some text';
 
-			$textarea = $('<textarea>\n' + expected + '</textarea>');
+			$textarea = $( '<textarea>\n' + expected + '</textarea>' );
 			assert.equal( $textarea.val(), expected, 'Expecting ' + n + ' newlines (HTML contained ' + (n + 1) + ')' );
 
-			$textarea = $('<textarea>').val( expected );
+			$textarea = $( '<textarea>' ).val( expected );
 			assert.equal( $textarea.val(), expected, 'Expecting ' + n + ' newlines (from DOM set with ' + n + ')' );
 		}
-	});
+	} );
 }( jQuery ) );

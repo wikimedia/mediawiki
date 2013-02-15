@@ -1,5 +1,5 @@
 ( function ( mw, $ ) {
-	QUnit.module( 'mediawiki.Uri', QUnit.newMwEnvironment({
+	QUnit.module( 'mediawiki.Uri', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.mwUriOrg = mw.Uri;
 			mw.Uri = mw.UriRelative( 'http://example.org/w/index.php' );
@@ -8,7 +8,7 @@
 			mw.Uri = this.mwUriOrg;
 			delete this.mwUriOrg;
 		}
-	}) );
+	} ) );
 
 	$.each( [true, false], function ( i, strictMode ) {
 		QUnit.test( 'Basic construction and properties (' + ( strictMode ? '' : 'non-' ) + 'strict mode)', 2, function ( assert ) {
@@ -16,7 +16,7 @@
 			uriString = 'http://www.ietf.org/rfc/rfc2396.txt';
 			uri = new mw.Uri( uriString, {
 				strictMode: strictMode
-			});
+			} );
 
 			assert.deepEqual(
 				{
@@ -56,16 +56,15 @@
 				},
 				'construct composite components of URI on request'
 			);
-
-		});
-	});
+		} );
+	} );
 
 	QUnit.test( 'Constructor( String[, Object ] )', 10, function ( assert ) {
 		var uri;
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
 			overrideKeys: true
-		});
+		} );
 
 		// Strict comparison to assert that numerical values stay strings
 		assert.strictEqual( uri.query.n, '1', 'Simple parameter with overrideKeys:true' );
@@ -73,7 +72,7 @@
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
 			overrideKeys: false
-		});
+		} );
 
 		assert.strictEqual( uri.query.n, '1', 'Simple parameter with overrideKeys:false' );
 		assert.strictEqual( uri.query.m[0], 'foo', 'Order of multi-value parameters with overrideKeys:true' );
@@ -120,7 +119,7 @@
 			function () {
 				return new mw.Uri( 'foo.com/bar/baz', {
 					strictMode: true
-				});
+				} );
 			},
 			function ( e ) {
 				return e.message === 'Bad constructor arguments';
@@ -130,33 +129,33 @@
 
 		uri = new mw.Uri( 'foo.com/bar/baz', {
 			strictMode: false
-		});
+		} );
 		assert.equal( uri.toString(), 'http://foo.com/bar/baz', 'normalize URI without protocol or // in loose mode' );
-	});
+	} );
 
 	QUnit.test( 'Constructor( Object )', 3, function ( assert ) {
-		var uri = new mw.Uri({
+		var uri = new mw.Uri( {
 			protocol: 'http',
 			host: 'www.foo.local',
 			path: '/this'
-		});
+		} );
 		assert.equal( uri.toString(), 'http://www.foo.local/this', 'Basic properties' );
 
-		uri = new mw.Uri({
+		uri = new mw.Uri( {
 			protocol: 'http',
 			host: 'www.foo.local',
 			path: '/this',
 			query: { hi: 'there' },
 			fragment: 'blah'
-		});
+		} );
 		assert.equal( uri.toString(), 'http://www.foo.local/this?hi=there#blah', 'More complex properties' );
 
 		assert.throws(
 			function () {
-				return new mw.Uri({
+				return new mw.Uri( {
 					protocol: 'http',
 					host: 'www.foo.local'
-				});
+				} );
 			},
 			function ( e ) {
 				return e.message === 'Bad constructor arguments';
@@ -208,13 +207,13 @@
 		uri = uriBase.clone();
 		uri.query.foo = 'bar';
 		assert.equal( uri.toString(), 'http://en.wiki.local/w/api.php?foo=bar', 'extend query arguments' );
-		uri.extend({
+		uri.extend( {
 			foo: 'quux',
 			pif: 'paf'
-		});
+		} );
 		assert.ok( uri.toString().indexOf( 'foo=quux' ) >= 0, 'extend query arguments' );
 		assert.ok( uri.toString().indexOf( 'foo=bar' ) === -1, 'extend query arguments' );
-		assert.ok( uri.toString().indexOf( 'pif=paf' ) >= 0 , 'extend query arguments' );
+		assert.ok( uri.toString().indexOf( 'pif=paf' ) >= 0, 'extend query arguments' );
 	} );
 
 	QUnit.test( '.getQueryString()', 2, function ( assert ) {
@@ -280,7 +279,7 @@
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
 			overrideKeys: true
-		});
+		} );
 
 		uri.query.n = [ 'x', 'y', 'z' ];
 
@@ -292,7 +291,7 @@
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
 			overrideKeys: false
-		});
+		} );
 
 		// Change query values
 		uri.query.n = [ 'x', 'y', 'z' ];

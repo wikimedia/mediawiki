@@ -8,7 +8,7 @@
 		wgContentLanguage: 'en'
 	};
 
-	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment({ config: config }) );
+	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( { config: config } ) );
 
 	/**
 	 * Create an HTML table from an array of row arrays containing text strings.
@@ -18,7 +18,7 @@
 	 * @param {String[][]} data
 	 * @return jQuery
 	 */
-	function tableCreate(  header, data ) {
+	function tableCreate( header, data ) {
 		var i,
 			$table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' ),
 			$thead = $table.find( 'thead' ),
@@ -28,7 +28,7 @@
 		$.each( header, function ( i, str ) {
 			var $th = $( '<th>' );
 			$th.text( str ).appendTo( $tr );
-		});
+		} );
 		$tr.appendTo( $thead );
 
 		for ( i = 0; i < data.length; i++ ) {
@@ -37,7 +37,7 @@
 			$.each( data[i], function ( j, str ) {
 				var $td = $( '<td>' );
 				$td.text( str ).appendTo( $tr );
-			});
+			} );
 			$tr.appendTo( $tbody );
 		}
 		return $table;
@@ -52,13 +52,13 @@
 	function tableExtract( $table ) {
 		var data = [];
 
-		$table.find( 'tbody' ).find( 'tr' ).each( function( i, tr ) {
+		$table.find( 'tbody' ).find( 'tr' ).each( function ( i, tr ) {
 			var row = [];
-			$( tr ).find( 'td,th' ).each( function( i, td ) {
+			$( tr ).find( 'td,th' ).each( function ( i, td ) {
 				row.push( $( td ).text() );
-			});
+			} );
 			data.push( row );
-		});
+		} );
 		return data;
 	}
 
@@ -83,12 +83,12 @@
 			// to asynchronous, we'll need a timeout or a callback here.
 			var extracted = tableExtract( $table );
 			assert.deepEqual( extracted, expected, msg );
-		});
+		} );
 	}
 
-	function reversed(arr) {
+	function reversed( arr ) {
 		// Clone array
-		var arr2 = arr.slice(0);
+		var arr2 = arr.slice( 0 );
 
 		arr2.reverse();
 
@@ -96,17 +96,17 @@
 	}
 
 	// Sample data set using planets named and their radius
-	var header  = [ 'Planet' , 'Radius (km)'],
+	var header = [ 'Planet' , 'Radius (km)'],
 		mercury = [ 'Mercury', '2439.7' ],
-		venus   = [ 'Venus'  , '6051.8' ],
-		earth   = [ 'Earth'  , '6371.0' ],
-		mars    = [ 'Mars'   , '3390.0' ],
-		jupiter = [ 'Jupiter',  '69911' ],
-		saturn  = [ 'Saturn' ,  '58232' ];
+		venus = [ 'Venus'  , '6051.8' ],
+		earth = [ 'Earth'  , '6371.0' ],
+		mars = [ 'Mars'   , '3390.0' ],
+		jupiter = [ 'Jupiter', '69911' ],
+		saturn = [ 'Saturn' , '58232' ];
 
 	// Initial data set
-	var planets         = [mercury, venus, earth, mars, jupiter, saturn];
-	var ascendingName   = [earth, jupiter, mars, mercury, saturn, venus];
+	var planets = [mercury, venus, earth, mars, jupiter, saturn];
+	var ascendingName = [earth, jupiter, mars, mercury, saturn, venus];
 	var ascendingRadius = [mercury, mars, venus, earth, saturn, jupiter];
 
 	tableTest(
@@ -115,16 +115,20 @@
 		planets,
 		ascendingName,
 		function ( $table ) {
-			$table.tablesorter( { sortList: [ { 0: 'asc' } ] } );
+			$table.tablesorter( { sortList: [
+				{ 0: 'asc' }
+			] } );
 		}
 	);
 	tableTest(
 		'Basic planet table: sorting initially - descending by radius',
 		header,
 		planets,
-		reversed(ascendingRadius),
+		reversed( ascendingRadius ),
 		function ( $table ) {
-			$table.tablesorter( { sortList: [ { 1: 'desc' } ] } );
+			$table.tablesorter( { sortList: [
+				{ 1: 'desc' }
+			] } );
 		}
 	);
 	tableTest(
@@ -151,7 +155,7 @@
 		'Basic planet table: descending by name',
 		header,
 		planets,
-		reversed(ascendingName),
+		reversed( ascendingName ),
 		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click().click();
@@ -171,7 +175,7 @@
 		'Basic planet table: descending radius',
 		header,
 		planets,
-		reversed(ascendingRadius),
+		reversed( ascendingRadius ),
 		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(1)' ).click().click();
@@ -198,7 +202,10 @@
 		asc,
 		function ( $table ) {
 			$table.tablesorter(
-				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
+				{ sortList: [
+					{ 0: 'asc' },
+					{ 1: 'asc' }
+				] }
 			);
 		}
 	);
@@ -210,7 +217,10 @@
 		function ( $table ) {
 			$table.tablesorter();
 			$table.data( 'tablesorter' ).sort(
-				[ { 0: 'desc' }, { 1: 'asc' } ]
+				[
+					{ 0: 'desc' },
+					{ 1: 'asc' }
+				]
 			);
 		}
 	);
@@ -221,10 +231,16 @@
 		asc,
 		function ( $table ) {
 			$table.tablesorter(
-				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
+				{ sortList: [
+					{ 0: 'asc' },
+					{ 1: 'asc' }
+				] }
 			);
 			$table.data( 'tablesorter' ).sort(
-				[ { 0: 'desc' }, { 1: 'asc' } ]
+				[
+					{ 0: 'desc' },
+					{ 1: 'asc' }
+				]
 			);
 			$table.data( 'tablesorter' ).sort();
 		}
@@ -232,7 +248,10 @@
 	QUnit.test( 'Reset sorting making table appear unsorted', 3, function ( assert ) {
 		var $table = tableCreate( header, initial );
 		$table.tablesorter(
-			{ sortList: [ { 0: 'desc' }, { 1: 'asc' } ] }
+			{ sortList: [
+				{ 0: 'desc' },
+				{ 1: 'asc' }
+			] }
 		);
 		$table.data( 'tablesorter' ).sort( [] );
 
@@ -296,14 +315,16 @@
 	tableTest(
 		'Bug 28775: German-style (dmy) short numeric dates',
 		['Date'],
-		[ // German-style dates are day-month-year
+		[
+			// German-style dates are day-month-year
 			['11.11.2011'],
 			['01.11.2011'],
 			['02.10.2011'],
 			['03.08.2011'],
 			['09.11.2011']
 		],
-		[ // Sorted by ascending date
+		[
+			// Sorted by ascending date
 			['03.08.2011'],
 			['02.10.2011'],
 			['01.11.2011'],
@@ -322,14 +343,16 @@
 	tableTest(
 		'Bug 28775: American-style (mdy) short numeric dates',
 		['Date'],
-		[ // American-style dates are month-day-year
+		[
+			// American-style dates are month-day-year
 			['11.11.2011'],
 			['01.11.2011'],
 			['02.10.2011'],
 			['03.08.2011'],
 			['09.11.2011']
 		],
-		[ // Sorted by ascending date
+		[
+			// Sorted by ascending date
 			['01.11.2011'],
 			['02.10.2011'],
 			['03.08.2011'],
@@ -381,7 +404,7 @@
 		'Bug 17141: IPv4 address sorting (reverse)',
 		['IP'],
 		ipv4,
-		reversed(ipv4Sorted),
+		reversed( ipv4Sorted ),
 		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click().click();
@@ -422,7 +445,7 @@
 				'ä': 'ae',
 				'ö': 'oe',
 				'ß': 'ss',
-				'ü':'ue'
+				'ü': 'ue'
 			} );
 
 			$table.tablesorter();
@@ -447,9 +470,16 @@
 			3,
 			'Rowspan not exploded'
 		);
-	});
+	} );
 
-	var planetsRowspan = [ [ 'Earth', '6051.8' ], jupiter, [ 'Mars', '6051.8' ], mercury, saturn, venus ];
+	var planetsRowspan = [
+		[ 'Earth', '6051.8' ],
+		jupiter,
+		[ 'Mars', '6051.8' ],
+		mercury,
+		saturn,
+		venus
+	];
 	var planetsRowspanII = [ jupiter, mercury, saturn, venus, [ 'Venus', '6371.0' ], [ 'Venus', '3390.0' ] ];
 
 	tableTest(
@@ -482,7 +512,9 @@
 			//   This covers the removed cell in the 4th and 5th row.
 			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
 
-			$table.tablesorter( { sortList: [ { 0: 'asc' } ] } );
+			$table.tablesorter( { sortList: [
+				{ 0: 'asc' }
+			] } );
 		}
 	);
 	tableTest(
@@ -566,7 +598,7 @@
 		}
 	);
 
-	var ascendingNameLegacy = ascendingName.slice(0);
+	var ascendingNameLegacy = ascendingName.slice( 0 );
 	ascendingNameLegacy[4] = ascendingNameLegacy[5];
 	ascendingNameLegacy.pop();
 
@@ -575,7 +607,7 @@
 		header,
 		planets,
 		ascendingNameLegacy,
-		function( $table ) {
+		function ( $table ) {
 			$table.find( 'tr:last' ).addClass( 'sortbottom' );
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
@@ -586,11 +618,11 @@
 		var $table;
 		$table = $(
 			'<table class="sortable">' +
-			'<caption>CAPTION</caption>' +
-			'<tr><th>THEAD</th></tr>' +
-			'<tr><td>1</td></tr>' +
-			'<tr class="sortbottom"><td>text</td></tr>' +
-			'</table>'
+				'<caption>CAPTION</caption>' +
+				'<tr><th>THEAD</th></tr>' +
+				'<tr><td>1</td></tr>' +
+				'<tr class="sortbottom"><td>text</td></tr>' +
+				'</table>'
 		);
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
@@ -607,21 +639,21 @@
 		var $table;
 		$table = $(
 			'<table class="sortable">' +
-			'<caption>CAPTION</caption>' +
-			'<tr><th>THEAD</th></tr>' +
-			'<tr><td>A</td></tr>' +
-			'<tr><td>B</td></tr>' +
-			'<tr class="sortbottom"><td>TFOOT</td></tr>' +
-			'</table>'
-			);
+				'<caption>CAPTION</caption>' +
+				'<tr><th>THEAD</th></tr>' +
+				'<tr><td>A</td></tr>' +
+				'<tr><td>B</td></tr>' +
+				'<tr class="sortbottom"><td>TFOOT</td></tr>' +
+				'</table>'
+		);
 		$table.tablesorter();
 
 		assert.equal(
-			$table.children( ).get( 0 ).nodeName,
+			$table.children().get( 0 ).nodeName,
 			'CAPTION',
 			'First element after <thead> must be <caption> (bug 32047)'
 		);
-	});
+	} );
 
 	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', function ( assert ) {
 		var $table, data;
@@ -636,34 +668,38 @@
 				'<tr><td data-sort-value="Bananna">Ferret</td></tr>' +
 				'<tr><td data-sort-value="Drupe">Elephant</td></tr>' +
 				'<tr><td data-sort-value="Cherry">Dolphin</td></tr>' +
-			'</tbody></table>'
+				'</tbody></table>'
 		);
 		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
 		data = [];
-		$table.find( 'tbody > tr' ).each( function( i, tr ) {
-			$( tr ).find( 'td' ).each( function( i, td ) {
+		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
+			$( tr ).find( 'td' ).each( function ( i, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
 				} );
-			});
-		});
+			} );
+		} );
 
 		assert.deepEqual( data, [
 			{
 				data: 'Apple',
 				text: 'Bird'
-			}, {
+			},
+			{
 				data: 'Bananna',
 				text: 'Ferret'
-			}, {
+			},
+			{
 				data: undefined,
 				text: 'Cheetah'
-			}, {
+			},
+			{
 				data: 'Cherry',
 				text: 'Dolphin'
-			}, {
+			},
+			{
 				data: 'Drupe',
 				text: 'Elephant'
 			}
@@ -678,7 +714,7 @@
 				'<tr><td>B</td></tr>' +
 				'<tr><td>G</td></tr>' +
 				'<tr><td data-sort-value="F">C</td></tr>' +
-			'</tbody></table>'
+				'</tbody></table>'
 		);
 		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
@@ -689,23 +725,27 @@
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
 				} );
-			});
-		});
+			} );
+		} );
 
 		assert.deepEqual( data, [
 			{
 				data: undefined,
 				text: 'B'
-			}, {
+			},
+			{
 				data: undefined,
 				text: 'D'
-			}, {
+			},
+			{
 				data: 'E',
 				text: 'A'
-			}, {
+			},
+			{
 				data: 'F',
 				text: 'C'
-			}, {
+			},
+			{
 				data: undefined,
 				text: 'G'
 			}
@@ -721,7 +761,7 @@
 				'<tr><td>B</td></tr>' +
 				'<tr><td data-sort-value="2">G</td></tr>' +
 				'<tr><td>C</td></tr>' +
-			'</tbody></table>'
+				'</tbody></table>'
 		);
 		// initialize table sorter and sort once
 		$table
@@ -741,35 +781,39 @@
 		$table.find( '.headerSort:eq(0)' ).click();
 
 		data = [];
-		$table.find( 'tbody > tr' ).each( function( i, tr ) {
-			$( tr ).find( 'td' ).each( function( i, td ) {
+		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
+			$( tr ).find( 'td' ).each( function ( i, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
 				} );
-			});
-		});
+			} );
+		} );
 
 		assert.deepEqual( data, [
 			{
 				data: 1,
 				text: 'B'
-			}, {
+			},
+			{
 				data: 2,
 				text: 'G'
-			}, {
+			},
+			{
 				data: 3,
 				text: 'A'
-			}, {
+			},
+			{
 				data: undefined,
 				text: 'C'
-			}, {
+			},
+			{
 				data: undefined,
 				text: 'D'
 			}
 		], 'Order matches expected order, using the current sortValue in $.data()' );
 
-	});
+	} );
 
 	var numbers = [
 		[ '12'    ],
@@ -790,15 +834,15 @@
 
 	tableTest( 'bug 8115: sort numbers with commas (ascending)',
 		['Numbers'], numbers, numbersAsc,
-		function( $table ) {
+		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
 		}
 	);
 
 	tableTest( 'bug 8115: sort numbers with commas (descending)',
-		['Numbers'], numbers, reversed(numbersAsc),
-		function( $table ) {
+		['Numbers'], numbers, reversed( numbersAsc ),
+		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click().click();
 		}
@@ -809,26 +853,26 @@
 		var $table;
 		$table = $(
 			'<table class="sortable" id="mw-bug-32888">' +
-			'<tr><th>header<table id="mw-bug-32888-2">'+
+				'<tr><th>header<table id="mw-bug-32888-2">' +
 				'<tr><th>1</th><th>2</th></tr>' +
-			'</table></th></tr>' +
-			'<tr><td>A</td></tr>' +
-			'<tr><td>B</td></tr>' +
-			'</table>'
-			);
+				'</table></th></tr>' +
+				'<tr><td>A</td></tr>' +
+				'<tr><td>B</td></tr>' +
+				'</table>'
+		);
 		$table.tablesorter();
 
 		assert.equal(
-			$table.find('> thead:eq(0) > tr > th.headerSort').length,
+			$table.find( '> thead:eq(0) > tr > th.headerSort' ).length,
 			1,
 			'Child tables inside a headercell should not interfere with sortable headers (bug 32888)'
 		);
 		assert.equal(
-			$( '#mw-bug-32888-2' ).find('th.headerSort').length,
+			$( '#mw-bug-32888-2' ).find( 'th.headerSort' ).length,
 			0,
 			'The headers of child tables inside a headercell should not be sortable themselves (bug 32888)'
 		);
-	});
+	} );
 
 
 	var correctDateSorting1 = [
@@ -881,61 +925,60 @@
 		}
 	);
 
-QUnit.test( 'Sorting images using alt text', function ( assert ) {
-	var $table = $(
-		'<table class="sortable">' +
-		'<tr><th>THEAD</th></tr>' +
-		'<tr><td><img alt="2"/></td></tr>' +
-		'<tr><td>1</td></tr>' +
-		'</table>'
-	);
-	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+	QUnit.test( 'Sorting images using alt text', function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<tr><th>THEAD</th></tr>' +
+				'<tr><td><img alt="2"/></td></tr>' +
+				'<tr><td>1</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
-	assert.equal(
-		$table.find( 'td' ).first().text(),
-		'1',
-		'Applied correct sorting order'
-	);
-} );
+		assert.equal(
+			$table.find( 'td' ).first().text(),
+			'1',
+			'Applied correct sorting order'
+		);
+	} );
 
-QUnit.test( 'Sorting images using alt text (complex)', function ( assert ) {
-	var $table = $(
-		'<table class="sortable">' +
-		'<tr><th>THEAD</th></tr>' +
-		'<tr><td><img alt="D" />A</td></tr>' +
-		'<tr><td>CC</td></tr>' +
-		'<tr><td><a><img alt="A" /></a>F</tr>' +
-		'<tr><td><img alt="A" /><strong>E</strong></tr>' +
-		'<tr><td><strong><img alt="A" />D</strong></tr>' +
-		'<tr><td><img alt="A" />C</tr>' +
-		'</table>'
-	);
-	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+	QUnit.test( 'Sorting images using alt text (complex)', function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<tr><th>THEAD</th></tr>' +
+				'<tr><td><img alt="D" />A</td></tr>' +
+				'<tr><td>CC</td></tr>' +
+				'<tr><td><a><img alt="A" /></a>F</tr>' +
+				'<tr><td><img alt="A" /><strong>E</strong></tr>' +
+				'<tr><td><strong><img alt="A" />D</strong></tr>' +
+				'<tr><td><img alt="A" />C</tr>' +
+				'</table>'
+		);
+		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
-	assert.equal(
-		$table.find( 'td' ).text(),
-		'CDEFCCA',
-		'Applied correct sorting order'
-	);
-} );
+		assert.equal(
+			$table.find( 'td' ).text(),
+			'CDEFCCA',
+			'Applied correct sorting order'
+		);
+	} );
 
-QUnit.test( 'Sorting images using alt text (with format autodetection)', function ( assert ) {
-	var $table = $(
-		'<table class="sortable">' +
-		'<tr><th>THEAD</th></tr>' +
-		'<tr><td><img alt="1" />7</td></tr>' +
-		'<tr><td>1<img alt="6" /></td></tr>' +
-		'<tr><td>5</td></tr>' +
-		'<tr><td>4</td></tr>' +
-		'</table>'
-	);
-	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+	QUnit.test( 'Sorting images using alt text (with format autodetection)', function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<tr><th>THEAD</th></tr>' +
+				'<tr><td><img alt="1" />7</td></tr>' +
+				'<tr><td>1<img alt="6" /></td></tr>' +
+				'<tr><td>5</td></tr>' +
+				'<tr><td>4</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
-	assert.equal(
-		$table.find( 'td' ).text(),
-		'4517',
-		'Applied correct sorting order'
-	);
-} );
-
+		assert.equal(
+			$table.find( 'td' ).text(),
+			'4517',
+			'Applied correct sorting order'
+		);
+	} );
 }( jQuery, mediaWiki ) );

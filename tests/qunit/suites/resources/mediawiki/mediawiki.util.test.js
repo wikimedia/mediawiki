@@ -3,11 +3,11 @@
 
 	QUnit.test( 'rawurlencode', 1, function ( assert ) {
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
-	});
+	} );
 
 	QUnit.test( 'wikiUrlencode', 1, function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
-	});
+	} );
 
 	QUnit.test( 'wikiGetlink', 3, function ( assert ) {
 		// Not part of startUp module
@@ -23,15 +23,15 @@
 
 		href = mw.util.wikiGetlink();
 		assert.equal( href, '/wiki/Foobar', 'Default title; Get link for current page ("Foobar")' );
-	});
+	} );
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
-		mw.config.set({
+		mw.config.set( {
 			'wgScript': '/w/i.php', // customized wgScript for bug 39103
 			'wgLoadScript': '/w/l.php', // customized wgLoadScript for bug 39103
 			'wgScriptPath': '/w',
 			'wgScriptExtension': '.php'
-		});
+		} );
 
 		assert.equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ),
 			'wikiScript() returns wgScript'
@@ -43,7 +43,7 @@
 			'wikiScript( load ) returns wgLoadScript'
 		);
 		assert.equal( mw.util.wikiScript( 'api' ), '/w/api.php', 'API path' );
-	});
+	} );
 
 	QUnit.test( 'addCSS', 3, function ( assert ) {
 		var $el, style;
@@ -57,7 +57,7 @@
 
 		// Clean up
 		$( style.ownerNode ).remove();
-	});
+	} );
 
 	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
 		var tocHtml, $toggleLink;
@@ -76,24 +76,23 @@
 
 		assert.strictEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
 
-		tocHtml =
-			'<table id="toc" class="toc"><tr><td>' +
-				'<div id="toctitle">' +
-					'<h2>Contents</h2>' +
-					'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
-				'</div>' +
-				'<ul><li></li></ul>' +
+		tocHtml = '<table id="toc" class="toc"><tr><td>' +
+			'<div id="toctitle">' +
+			'<h2>Contents</h2>' +
+			'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
+			'</div>' +
+			'<ul><li></li></ul>' +
 			'</td></tr></table>';
-		$(tocHtml).appendTo( '#qunit-fixture' ),
-		$toggleLink = $( '#togglelink' );
+		$( tocHtml ).appendTo( '#qunit-fixture' ),
+			$toggleLink = $( '#togglelink' );
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
 
 		actionA();
-	});
+	} );
 
 	QUnit.test( 'getParamValue', 5, function ( assert ) {
-		var	url;
+		var url;
 
 		url = 'http://example.org/?foo=wrong&foo=right#&foo=bad';
 		assert.equal( mw.util.getParamValue( 'foo', url ), 'right', 'Use latest one, ignore hash' );
@@ -102,24 +101,23 @@
 		url = 'http://example.org/#&foo=bad';
 		assert.strictEqual( mw.util.getParamValue( 'foo', url ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
 
-		url = 'example.org?' + $.param({ 'TEST': 'a b+c' });
+		url = 'example.org?' + $.param( { 'TEST': 'a b+c' } );
 		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c', 'Bug 30441: getParamValue must understand "+" encoding of space' );
 
-		url = 'example.org?' + $.param({ 'TEST': 'a b+c d' }); // check for sloppy code from r95332 :)
+		url = 'example.org?' + $.param( { 'TEST': 'a b+c d' } ); // check for sloppy code from r95332 :)
 		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
-	});
+	} );
 
 	QUnit.test( 'tooltipAccessKey', 3, function ( assert ) {
 		assert.equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'mw.util.tooltipAccessKeyPrefix must be a string' );
 		assert.ok( mw.util.tooltipAccessKeyRegexp instanceof RegExp, 'mw.util.tooltipAccessKeyRegexp instance of RegExp' );
 		assert.ok( mw.util.updateTooltipAccessKeys, 'mw.util.updateTooltipAccessKeys' );
-	});
+	} );
 
 	QUnit.test( '$content', 2, function ( assert ) {
 		assert.ok( mw.util.$content instanceof jQuery, 'mw.util.$content instance of jQuery' );
 		assert.strictEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
-	});
-
+	} );
 
 	/**
 	 * Portlet names are prefixed with 'p-test' to avoid conflict with core
@@ -170,7 +168,7 @@
 		assert.equal( $tbMW.next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
 
 		cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux' );
-		$cuQuux = $(cuQuux);
+		$cuQuux = $( cuQuux );
 
 		assert.equal(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
@@ -185,9 +183,9 @@
 
 		caFoo = mw.util.addPortletLink( 'p-test-views', '#', 'Foo' );
 
-		assert.strictEqual( $tbMW.find( 'span').length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
-		assert.strictEqual( $( caFoo ).find( 'span').length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
-	});
+		assert.strictEqual( $tbMW.find( 'span' ).length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
+		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
+	} );
 
 	QUnit.test( 'jsMessage', 1, function ( assert ) {
 		var a = mw.util.jsMessage( 'MediaWiki is <b>Awesome</b>.' );
@@ -195,7 +193,7 @@
 
 		// Clean up
 		$( '#mw-js-message' ).remove();
-	});
+	} );
 
 	QUnit.test( 'validateEmail', 6, function ( assert ) {
 		assert.strictEqual( mw.util.validateEmail( '' ), null, 'Should return null for empty string ' );
@@ -208,13 +206,14 @@
 		// testEmailWithHyphens
 		assert.strictEqual( mw.util.validateEmail( 'user-foo@example.org' ), true, 'Emails may contain a hyphen' );
 		assert.strictEqual( mw.util.validateEmail( 'userfoo@ex-ample.org' ), true, 'Emails may contain a hyphen' );
-	});
+	} );
 
 	QUnit.test( 'isIPv6Address', 40, function ( assert ) {
 		// Shortcuts
 		function assertFalseIPv6( addy, summary ) {
 			return assert.strictEqual( mw.util.isIPv6Address( addy ), false, summary );
 		}
+
 		function assertTrueIPv6( addy, summary ) {
 			return assert.strictEqual( mw.util.isIPv6Address( addy ), true, summary );
 		}
@@ -226,14 +225,14 @@
 		assertFalseIPv6( 'fc:100:300', 'IPv6 with only 3 words' );
 
 		$.each(
-		['fc:100::',
-		'fc:100:a::',
-		'fc:100:a:d::',
-		'fc:100:a:d:1::',
-		'fc:100:a:d:1:e::',
-		'fc:100:a:d:1:e:ac::'], function ( i, addy ){
-			assertTrueIPv6( addy, addy + ' is a valid IP' );
-		});
+			['fc:100::',
+				'fc:100:a::',
+				'fc:100:a:d::',
+				'fc:100:a:d:1::',
+				'fc:100:a:d:1:e::',
+				'fc:100:a:d:1:e:ac::'], function ( i, addy ) {
+				assertTrueIPv6( addy, addy + ' is a valid IP' );
+			} );
 
 		assertFalseIPv6( 'fc:100:a:d:1:e:ac:0::', 'IPv6 with 8 words ending with "::"' );
 		assertFalseIPv6( 'fc:100:a:d:1:e:ac:0:1::', 'IPv6 with 9 words ending with "::"' );
@@ -243,18 +242,18 @@
 
 		assertTrueIPv6( '::', 'IPv6 zero address' );
 		$.each(
-		['::0',
-		'::fc',
-		'::fc:100',
-		'::fc:100:a',
-		'::fc:100:a:d',
-		'::fc:100:a:d:1',
-		'::fc:100:a:d:1:e',
-		'::fc:100:a:d:1:e:ac',
+			['::0',
+				'::fc',
+				'::fc:100',
+				'::fc:100:a',
+				'::fc:100:a:d',
+				'::fc:100:a:d:1',
+				'::fc:100:a:d:1:e',
+				'::fc:100:a:d:1:e:ac',
 
-		'fc:100:a:d:1:e:ac:0'], function ( i, addy ){
-			assertTrueIPv6( addy, addy + ' is a valid IP' );
-		});
+				'fc:100:a:d:1:e:ac:0'], function ( i, addy ) {
+				assertTrueIPv6( addy, addy + ' is a valid IP' );
+			} );
 
 		assertFalseIPv6( '::fc:100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' );
 		assertFalseIPv6( '::fc:100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' );
@@ -275,13 +274,14 @@
 
 		assertFalseIPv6( 'fc::100:a:d:1:e:ac:0', 'IPv6 with "::" and 8 words' );
 		assertFalseIPv6( 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' );
-	});
+	} );
 
 	QUnit.test( 'isIPv4Address', 11, function ( assert ) {
 		// Shortcuts
 		function assertFalseIPv4( addy, summary ) {
 			assert.strictEqual( mw.util.isIPv4Address( addy ), false, summary );
 		}
+
 		function assertTrueIPv4( addy, summary ) {
 			assert.strictEqual( mw.util.isIPv4Address( addy ), true, summary );
 		}
@@ -299,5 +299,5 @@
 		assertTrueIPv4( '124.24.52.13', '124.24.52.134 is a valid IP' );
 		assertTrueIPv4( '1.24.52.13', '1.24.52.13 is a valid IP' );
 		assertFalseIPv4( '74.24.52.13/20', 'IPv4 ranges are not recogzized as valid IPs' );
-	});
+	} );
 }( mediaWiki, jQuery ) );

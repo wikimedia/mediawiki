@@ -278,13 +278,13 @@
 		};
 		$.each( uas, function () {
 			uacount++;
-		});
+		} );
 		return uas;
 	}() );
 
 	QUnit.test( 'profile userAgent support', uacount, function ( assert ) {
 		// Generate a client profile object and compare recursively
-		var uaTest = function( rawUserAgent, data ) {
+		var uaTest = function ( rawUserAgent, data ) {
 			var ret = $.client.profile( {
 				userAgent: rawUserAgent,
 				platform: data.platform
@@ -298,6 +298,7 @@
 
 	QUnit.test( 'profile return validation for current user agent', 7, function ( assert ) {
 		var p = $.client.profile();
+
 		function unknownOrType( val, type, summary ) {
 			assert.ok( typeof val === type || val === 'unknown', summary );
 		}
@@ -309,7 +310,7 @@
 		unknownOrType( p.version, 'string', 'p.version is a string (or "unknown")' );
 		unknownOrType( p.versionBase, 'string', 'p.versionBase is a string (or "unknown")' );
 		assert.equal( typeof p.versionNumber, 'number', 'p.versionNumber is a number' );
-	});
+	} );
 
 	// Example from WikiEditor
 	// Make sure to use raw numbers, a string like "7.0" would fail on a
@@ -346,10 +347,10 @@
 
 		assert.equal( typeof testMatch, 'boolean', 'test returns a boolean value' );
 
-	});
+	} );
 
 	QUnit.test( 'User-agent matches against WikiEditor\'s compatibility map', uacount * 2, function ( assert ) {
-		var	$body = $( 'body' ),
+		var $body = $( 'body' ),
 			bodyClasses = $body.attr( 'class' );
 
 		// Loop through and run tests
@@ -365,10 +366,10 @@
 				$body.removeClass( dir );
 
 				assert.equal( testMatch, data.wikiEditor[dir], 'testing comparison based on ' + dir + ', ' + agent );
-			});
-		});
+			} );
+		} );
 
 		// Restore body classes
 		$body.attr( 'class', bodyClasses );
-	});
+	} );
 }( jQuery ) );
