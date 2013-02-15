@@ -746,11 +746,6 @@ class SpecialBlock extends FormSpecialPage {
 
 		wfRunHooks( 'BlockIpComplete', array( $block, $performer ) );
 
-		# Set *_deleted fields if requested
-		if ( $data['HideUser'] ) {
-			RevisionDeleteUser::suppressUserName( $target, $userId );
-		}
-
 		# Can't watch a rangeblock
 		if ( $type != Block::TYPE_RANGE && $data['Watch'] ) {
 			WatchAction::doWatch( Title::makeTitle( NS_USER, $target ), $performer, WatchedItem::IGNORE_USER_RIGHTS );
@@ -765,9 +760,8 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams[] = $data['Expiry'];
 		$logParams[] = self::blockLogFlags( $data, $type );
 
-		# Make log entry, if the name is hidden, put it in the oversight log
-		$log_type = $data['HideUser'] ? 'suppress' : 'block';
-		$log = new LogPage( $log_type );
+		# Make log entry, if the name is hidden, it will be suppressed later
+		$log = new LogPage( 'block' );
 		$log_id = $log->addEntry(
 			$logaction,
 			Title::makeTitle( NS_USER, $target ),
@@ -778,6 +772,22 @@ class SpecialBlock extends FormSpecialPage {
 		# Relate log ID to block IDs (bug 25763)
 		$blockIds = array_merge( array( $status['id'] ), $status['autoIds'] );
 		$log->addRelations( 'ipb_id', $blockIds, $log_id );
+
+		# Set *_deleted fields if requested
+		if ( $data['HideUser'] ) {
+			RevisionDeleteUser::suppressUserName( $target, $userId );
+
+			# Create a suppress log entry as well
+			$suppressLog = new LogPage( 'suppress' );
+			$suppressLogId = $suppressLog->addEntry(
+				$logaction,
+				Title::makeTitle( NS_USER, $target ),
+				$data['Reason'][0],
+				$logParams,
+				$performer
+			);
+			$suppressLog->addRelations( 'ipb_id', $blockIds, $suppressLogId );
+		}
 
 		# Report to the user
 		return true;
