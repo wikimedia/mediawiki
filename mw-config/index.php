@@ -23,6 +23,8 @@
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
+// Resolve relative to regular MediaWiki root
+// instead of mw-config subdirectory.
 chdir( dirname( __DIR__ ) );
 require dirname( __DIR__ ) . '/includes/WebStart.php';
 

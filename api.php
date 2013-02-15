@@ -40,7 +40,6 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 	wfPHPVersionError( 'api.php' );
 }
 
-// Initialise common code.
 require __DIR__ . '/includes/WebStart.php';
 
 wfProfileIn( 'api.php' );
