@@ -324,28 +324,28 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
-		$db = $this->getDB();
-		$exptime = intval( $exptime );
+		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+		try {
+			$db = $this->getDB( $serverIndex );
+			$exptime = intval( $exptime );
 
-		if ( $exptime < 0 ) {
-			$exptime = 0;
-		}
-
-		if ( $exptime == 0 ) {
-			$encExpiry = $this->getMaxDateTime();
-		} else {
-			if ( $exptime < 3.16e8 ) { # ~10 years
-				$exptime += time();
+			if ( $exptime < 0 ) {
+				$exptime = 0;
 			}
 
-			$encExpiry = $db->timestamp( $exptime );
-		}
-		try {
+			if ( $exptime == 0 ) {
+				$encExpiry = $this->getMaxDateTime( $db );
+			} else {
+				if ( $exptime < 3.16e8 ) { # ~10 years
+					$exptime += time();
+				}
+				$encExpiry = $db->timestamp( $exptime );
+			}
 			$db->begin( __METHOD__ );
 			// (bug 24425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
 			$db->update(
-				$this->getTableByKey( $key ),
+				$tableName,
 				array(
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $value ) ),
@@ -354,7 +354,9 @@ class SqlBagOStuff extends BagOStuff {
 				array(
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $casToken ) )
-				), __METHOD__ );
+				),
+				__METHOD__
+			);
 			$db->commit( __METHOD__ );
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
