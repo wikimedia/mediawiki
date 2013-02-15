@@ -5,8 +5,9 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->filePath = __DIR__ . '/../../data/media/';
 	}
+
 	/**
-	 * Tests zTXt tag (compressed textual metadata) 
+	 * Tests zTXt tag (compressed textual metadata)
 	 */
 	function testPngNativetZtxt() {
 		$this->checkPHPExtension( 'zlib' );
@@ -64,7 +65,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * Test extraction of pHYs tags, which can tell what the
 	 * actual resolution of the image is (aka in dots per meter).
 	 */
-/*
+	/*
 	function testPngPhysTag () {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );
@@ -76,7 +77,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertEquals( '2835/100', $meta['YResolution'] );
 		$this->assertEquals( 3, $meta['ResolutionUnit'] ); // 3 = cm
 	}
-*/
+	*/
 
 	/**
 	 * Given a normal static PNG, check the animation metadata returned.
@@ -110,6 +111,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 8, $meta['bitDepth'] );
 	}
+
 	function testPngBitDepth1() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'1bit-png.png' );
@@ -123,21 +125,25 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 'index-coloured', $meta['colorType'] );
 	}
+
 	function testPngRgbColour() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'rgb-png.png' );
 		$this->assertEquals( 'truecolour-alpha', $meta['colorType'] );
 	}
+
 	function testPngRgbNoAlphaColour() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'rgb-na-png.png' );
 		$this->assertEquals( 'truecolour', $meta['colorType'] );
 	}
+
 	function testPngGreyscaleColour() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'greyscale-png.png' );
 		$this->assertEquals( 'greyscale-alpha', $meta['colorType'] );
 	}
+
 	function testPngGreyscaleNoAlphaColour() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'greyscale-na-png.png' );

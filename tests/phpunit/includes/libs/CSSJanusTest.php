@@ -17,10 +17,9 @@ class CSSJanusTest extends MediaWikiTestCase {
 
 			$transformedB = CSSJanus::transform( $cssB );
 			$this->assertEquals( $transformedB, $cssA, 'Test B-A transformation' );
-
-		// If no B version is provided, it means
-		// the output should equal the input.
 		} else {
+			// If no B version is provided, it means
+			// the output should equal the input.
 			$transformedA = CSSJanus::transform( $cssA );
 			$this->assertEquals( $transformedA, $cssA, 'Nothing was flipped' );
 		}
@@ -36,10 +35,11 @@ class CSSJanusTest extends MediaWikiTestCase {
 		$flipped = CSSJanus::transform( $code, $swapLtrRtlInURL, $swapLeftRightInURL );
 
 		$this->assertEquals( $expectedOutput, $flipped,
-			'Test flipping, options: url-ltr-rtl=' . ($swapLtrRtlInURL ? 'true' : 'false')
-				. ' url-left-right=' . ($swapLeftRightInURL ? 'true' : 'false')
+			'Test flipping, options: url-ltr-rtl=' . ( $swapLtrRtlInURL ? 'true' : 'false' )
+				. ' url-left-right=' . ( $swapLeftRightInURL ? 'true' : 'false' )
 		);
 	}
+
 	/**
 	 * @dataProvider provideTransformBrokenCases
 	 * @group Broken

@@ -112,8 +112,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	public function testUnset( GenericArrayObject $list ) {
 		if ( $list->isEmpty() ) {
 			$this->assertTrue( true ); // We cannot test unset if there are no elements
-		}
-		else {
+		} else {
 			$offset = $list->getIterator()->key();
 			$count = $list->count();
 			$list->offsetUnset( $offset );
@@ -154,7 +153,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $listSize, $list->count() );
 
-		$this->checkTypeChecks( function( GenericArrayObject $list, $element ) {
+		$this->checkTypeChecks( function ( GenericArrayObject $list, $element ) {
 			$list->append( $element );
 		} );
 	}
@@ -173,11 +172,10 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 		foreach ( array( 42, 'foo', array(), new stdClass(), 4.2 ) as $element ) {
 			$validValid = $element instanceof $elementClass;
 
-			try{
+			try {
 				call_user_func( $function, $list, $element );
 				$valid = true;
-			}
-			catch ( InvalidArgumentException $exception ) {
+			} catch ( InvalidArgumentException $exception ) {
 				$valid = false;
 			}
 
@@ -236,7 +234,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 
 		$this->assertEquals( count( $elements ), $list->count() );
 
-		$this->checkTypeChecks( function( GenericArrayObject $list, $element ) {
+		$this->checkTypeChecks( function ( GenericArrayObject $list, $element ) {
 			$list->offsetSet( mt_rand(), $element );
 		} );
 	}

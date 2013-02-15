@@ -4,15 +4,15 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->filePath = __DIR__ .  '/../../data/media';
+		$this->filePath = __DIR__ . '/../../data/media';
 		$this->backend = new FSFileBackend( array(
-			'name'           => 'localtesting',
-			'lockManager'    => 'nullLockManager',
+			'name' => 'localtesting',
+			'lockManager' => 'nullLockManager',
 			'containerPaths' => array( 'data' => $this->filePath )
 		) );
 		$this->repo = new FSRepo( array(
-			'name'    => 'temp',
-			'url'     => 'http://localhost/thumbtest',
+			'name' => 'temp',
+			'url' => 'http://localhost/thumbtest',
 			'backend' => $this->backend
 		) );
 		$this->handler = new GIFHandler();
@@ -33,6 +33,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 		$actual = $this->handler->isAnimatedImage( $file );
 		$this->assertEquals( $expected, $actual );
 	}
+
 	public static function provideIsAnimated() {
 		return array(
 			array( 'animated.gif', true ),
@@ -50,6 +51,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 		$actual = $this->handler->getImageArea( $file, $file->getWidth(), $file->getHeight() );
 		$this->assertEquals( $expected, $actual );
 	}
+
 	public static function provideGetImageArea() {
 		return array(
 			array( 'animated.gif', 5400 ),
@@ -66,6 +68,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 		$actual = $this->handler->isMetadataValid( null, $metadata );
 		$this->assertEquals( $expected, $actual );
 	}
+
 	public static function provideIsMetadataValid() {
 		return array(
 			array( GIFHandler::BROKEN_FILE, GIFHandler::METADATA_GOOD ),

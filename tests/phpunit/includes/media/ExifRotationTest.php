@@ -14,11 +14,11 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$tmpDir = $this->getNewTempDirectory();
 
 		$this->repo = new FSRepo( array(
-			'name'            => 'temp',
-			'url'             => 'http://localhost/thumbtest',
-			'backend'         => new FSFileBackend( array(
-				'name'           => 'localtesting',
-				'lockManager'    => 'nullLockManager',
+			'name' => 'temp',
+			'url' => 'http://localhost/thumbtest',
+			'backend' => new FSFileBackend( array(
+				'name' => 'localtesting',
+				'lockManager' => 'nullLockManager',
 				'containerPaths' => array( 'temp-thumb' => $tmpDir, 'data' => $filePath )
 			) )
 		) );
@@ -63,8 +63,8 @@ class ExifRotationTest extends MediaWikiTestCase {
 		if ( !BitmapHandler::canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
-		foreach( $thumbs as $size => $out ) {
-			if( preg_match('/^(\d+)px$/', $size, $matches ) ) {
+		foreach ( $thumbs as $size => $out ) {
+			if ( preg_match( '/^(\d+)px$/', $size, $matches ) ) {
 				$params = array(
 					'width' => $matches[1],
 				);
@@ -74,7 +74,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 					'height' => $matches[2]
 				);
 			} else {
-				throw new MWException('bogus test data format ' . $size);
+				throw new MWException( 'bogus test data format ' . $size );
 			}
 
 			$file = $this->dataFile( $name, $type );
@@ -84,13 +84,13 @@ class ExifRotationTest extends MediaWikiTestCase {
 			$this->assertEquals( $out[1], $thumb->getHeight(), "$name: thumb reported height check for $size" );
 
 			$gis = getimagesize( $thumb->getLocalCopyPath() );
-			if ($out[0] > $info['width']) {
+			if ( $out[0] > $info['width'] ) {
 				// Physical image won't be scaled bigger than the original.
-				$this->assertEquals( $info['width'], $gis[0], "$name: thumb actual width check for $size");
-				$this->assertEquals( $info['height'], $gis[1], "$name: thumb actual height check for $size");
+				$this->assertEquals( $info['width'], $gis[0], "$name: thumb actual width check for $size" );
+				$this->assertEquals( $info['height'], $gis[1], "$name: thumb actual height check for $size" );
 			} else {
-				$this->assertEquals( $out[0], $gis[0], "$name: thumb actual width check for $size");
-				$this->assertEquals( $out[1], $gis[1], "$name: thumb actual height check for $size");
+				$this->assertEquals( $out[0], $gis[0], "$name: thumb actual width check for $size" );
+				$this->assertEquals( $out[1], $gis[1], "$name: thumb actual height check for $size" );
 			}
 		}
 	}
@@ -157,8 +157,8 @@ class ExifRotationTest extends MediaWikiTestCase {
 		global $wgEnableAutoRotation;
 		$wgEnableAutoRotation = false;
 
-		foreach( $thumbs as $size => $out ) {
-			if( preg_match('/^(\d+)px$/', $size, $matches ) ) {
+		foreach ( $thumbs as $size => $out ) {
+			if ( preg_match( '/^(\d+)px$/', $size, $matches ) ) {
 				$params = array(
 					'width' => $matches[1],
 				);
@@ -168,7 +168,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 					'height' => $matches[2]
 				);
 			} else {
-				throw new MWException('bogus test data format ' . $size);
+				throw new MWException( 'bogus test data format ' . $size );
 			}
 
 			$file = $this->dataFile( $name, $type );
@@ -178,13 +178,13 @@ class ExifRotationTest extends MediaWikiTestCase {
 			$this->assertEquals( $out[1], $thumb->getHeight(), "$name: thumb reported height check for $size" );
 
 			$gis = getimagesize( $thumb->getLocalCopyPath() );
-			if ($out[0] > $info['width']) {
+			if ( $out[0] > $info['width'] ) {
 				// Physical image won't be scaled bigger than the original.
-				$this->assertEquals( $info['width'], $gis[0], "$name: thumb actual width check for $size");
-				$this->assertEquals( $info['height'], $gis[1], "$name: thumb actual height check for $size");
+				$this->assertEquals( $info['width'], $gis[0], "$name: thumb actual width check for $size" );
+				$this->assertEquals( $info['height'], $gis[1], "$name: thumb actual height check for $size" );
 			} else {
-				$this->assertEquals( $out[0], $gis[0], "$name: thumb actual width check for $size");
-				$this->assertEquals( $out[1], $gis[1], "$name: thumb actual height check for $size");
+				$this->assertEquals( $out[0], $gis[0], "$name: thumb actual width check for $size" );
+				$this->assertEquals( $out[1], $gis[1], "$name: thumb actual height check for $size" );
 			}
 		}
 		$wgEnableAutoRotation = true;
@@ -232,9 +232,9 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 */
 	function testBitmapExtractPreRotationDimensions( $rotation, $expected ) {
 		$result = $this->handler->extractPreRotationDimensions( array(
-				'physicalWidth' => self::TEST_WIDTH,
-				'physicalHeight' => self::TEST_HEIGHT,
-			), $rotation );
+			'physicalWidth' => self::TEST_WIDTH,
+			'physicalHeight' => self::TEST_HEIGHT,
+		), $rotation );
 		$this->assertEquals( $expected, $result );
 	}
 

@@ -14,7 +14,7 @@ class ServicesJsonTest extends MediaWikiTestCase {
 		if ( !function_exists( 'json_encode' ) ) {
 			$this->markTestIncomplete( 'No PHP json support, unable to test' );
 			return;
-		} elseif( strtolower( json_encode( "\xf0\xa0\x80\x80" ) ) != '"\ud840\udc00"' ) {
+		} elseif ( strtolower( json_encode( "\xf0\xa0\x80\x80" ) ) != '"\ud840\udc00"' ) {
 			$this->markTestIncomplete( 'Have buggy PHP json support, unable to test' );
 			return;
 		} else {

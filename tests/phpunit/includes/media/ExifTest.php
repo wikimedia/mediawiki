@@ -15,7 +15,7 @@ class ExifTest extends MediaWikiTestCase {
 
 	public function testGPSExtraction() {
 		$filename = $this->mediaPath . 'exif-gps.jpg';
-		$seg = JpegMetadataExtractor::segmentSplitter( $filename ); 
+		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		$exif = new Exif( $filename, $seg['byteOrder'] );
 		$data = $exif->getFilteredData();
 		$expected = array(
@@ -30,7 +30,7 @@ class ExifTest extends MediaWikiTestCase {
 
 	public function testUnicodeUserComment() {
 		$filename = $this->mediaPath . 'exif-user-comment.jpg';
-		$seg = JpegMetadataExtractor::segmentSplitter( $filename ); 
+		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		$exif = new Exif( $filename, $seg['byteOrder'] );
 		$data = $exif->getFilteredData();
 

@@ -35,7 +35,9 @@ class JobQueueTest extends MediaWikiTestCase {
 		foreach ( array( 'queueRand', 'queueRandTTL', 'queueFifo', 'queueFifoTTL' ) as $q ) {
 			do {
 				$job = $this->$q->pop();
-				if ( $job ) $this->$q->ack( $job );
+				if ( $job ) {
+					$this->$q->ack( $job );
+				}
 			} while ( $job );
 		}
 		$this->queueRand = null;
@@ -127,7 +129,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
 		$this->assertTrue( $queue->batchPush(
-			array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() ) ),
+				array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() ) ),
 			"Push worked ($desc)" );
 
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
@@ -137,7 +139,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 
 		$this->assertTrue( $queue->batchPush(
-			array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() ) ),
+				array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() ) ),
 			"Push worked ($desc)" );
 
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
@@ -177,7 +179,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$id = wfRandomString( 32 );
 		$root1 = Job::newRootJobParams( "nulljobspam:$id" ); // task ID/timestamp
-		for ( $i=0; $i<5; ++$i ) {
+		for ( $i = 0; $i < 5; ++$i ) {
 			$this->assertTrue( $queue->push( $this->newJob( 0, $root1 ) ), "Push worked ($desc)" );
 		}
 		$queue->deduplicateRootJob( $this->newJob( 0, $root1 ) );
@@ -185,7 +187,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$root2 = Job::newRootJobParams( "nulljobspam:$id" ); // task ID/timestamp
 		$this->assertNotEquals( $root1['rootJobTimestamp'], $root2['rootJobTimestamp'],
 			"Root job signatures have different timestamps." );
-		for ( $i=0; $i<5; ++$i ) {
+		for ( $i = 0; $i < 5; ++$i ) {
 			$this->assertTrue( $queue->push( $this->newJob( 0, $root2 ) ), "Push worked ($desc)" );
 		}
 		$queue->deduplicateRootJob( $this->newJob( 0, $root2 ) );
@@ -204,7 +206,9 @@ class JobQueueTest extends MediaWikiTestCase {
 				$jobs[] = $job;
 				$queue->ack( $job );
 			}
-			if ( $job instanceof DuplicateJob ) ++$dupcount;
+			if ( $job instanceof DuplicateJob ) {
+				++$dupcount;
+			}
 		} while ( $job );
 
 		$this->assertEquals( 10, count( $jobs ), "Correct number of jobs popped ($desc)" );
@@ -223,11 +227,11 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
-		for ( $i=0; $i<10; ++$i ) {
+		for ( $i = 0; $i < 10; ++$i ) {
 			$this->assertTrue( $queue->push( $this->newJob( $i ) ), "Push worked ($desc)" );
 		}
 
-		for ( $i=0; $i<10; ++$i ) {
+		for ( $i = 0; $i < 10; ++$i ) {
 			$job = $queue->pop();
 			$this->assertTrue( $job instanceof Job, "Jobs popped from queue ($desc)" );
 			$params = $job->getParams();

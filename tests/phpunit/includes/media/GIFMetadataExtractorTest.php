@@ -6,6 +6,7 @@ class GIFMetadataExtractorTest extends MediaWikiTestCase {
 
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 	}
+
 	/**
 	 * Put in a file, and see if the metadata coming out is as expected.
 	 * @param $filename String
@@ -16,6 +17,7 @@ class GIFMetadataExtractorTest extends MediaWikiTestCase {
 		$actual = GIFMetadataExtractor::getMetadata( $this->mediaPath . $filename );
 		$this->assertEquals( $expected, $actual );
 	}
+
 	public static function provideGetMetadata() {
 
 		$xmpNugget = <<<EOF
@@ -68,29 +70,35 @@ EOF;
 		$xmpNugget = str_replace( "\r", '', $xmpNugget ); // Windows compat
 
 		return array(
-			array( 'nonanimated.gif', array(
-				'comment' => array( 'GIF test file ⁕ Created with GIMP' ),
-				'duration' => 0.1,
-				'frameCount' => 1,
-				'looped' => false,
-				'xmp' => '',
+			array(
+				'nonanimated.gif',
+				array(
+					'comment' => array( 'GIF test file ⁕ Created with GIMP' ),
+					'duration' => 0.1,
+					'frameCount' => 1,
+					'looped' => false,
+					'xmp' => '',
 				)
 			),
-			array( 'animated.gif', array(
-				'comment' => array( 'GIF test file . Created with GIMP' ),
-				'duration' => 2.4,
-				'frameCount' => 4,
-				'looped' => true,
-				'xmp' => '',
+			array(
+				'animated.gif',
+				array(
+					'comment' => array( 'GIF test file . Created with GIMP' ),
+					'duration' => 2.4,
+					'frameCount' => 4,
+					'looped' => true,
+					'xmp' => '',
 				)
 			),
 
-			array( 'animated-xmp.gif', array(
-				'xmp' => $xmpNugget,
-				'duration' => 2.4,
-				'frameCount' => 4,
-				'looped' => true,
-				'comment' => array( 'GIƒ·test·file' ),
+			array(
+				'animated-xmp.gif',
+				array(
+					'xmp' => $xmpNugget,
+					'duration' => 2.4,
+					'frameCount' => 4,
+					'looped' => true,
+					'comment' => array( 'GIƒ·test·file' ),
 				)
 			),
 		);
