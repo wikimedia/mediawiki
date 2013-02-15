@@ -28,10 +28,13 @@
 ini_set( 'zlib.output_compression', 'off' );
 
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
+
+// Initialise common code.
+if ( !isset( $_SERVER['MW_COMPILED'] ) ) {
+	require( __DIR__ . '/includes/WebStart.php' );
 } else {
-	require ( __DIR__ . '/includes/WebStart.php' );
+	// For HipHop; see MWInit::compiledPath().
+	require( 'core/includes/WebStart.php' );
 }
 
 header( 'Content-Type: text/html; charset=utf-8' );

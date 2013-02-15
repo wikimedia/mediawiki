@@ -20,7 +20,13 @@
  * @file
  */
 
-require_once( __DIR__ . '/includes/WebStart.php' );
+// Initialise common code.
+if ( !isset( $_SERVER['MW_COMPILED'] ) ) {
+	require( __DIR__ . '/includes/WebStart.php' );
+} else {
+	// For HipHop; see MWInit::compiledPath().
+	require( 'core/includes/WebStart.php' );
+}
 
 if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
 	// Makes testing tweaks about a billion times easier
