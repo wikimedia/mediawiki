@@ -284,6 +284,9 @@ $1',
 'versionrequiredtext' => 'MediaWiki versi $1 dibutuahkan untuak manggunokan laman ko. Caliak [[Special:Version|versi laman]]',
 
 'ok' => 'OK',
+'pagetitle' => '$1 - {{SITENAME}} bahaso Minang',
+'pagetitle-view-mainpage' => '{{SITENAME}} bahaso Minang',
+'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Didapek dari "$1"',
 'youhavenewmessages' => 'Awak punyo $1 ($2).',
 'newmessageslink' => 'pasan baru',
@@ -630,42 +633,42 @@ Alamat IP sanak tacatat pado riwayaik suntiangan laman ko.",
 'summary-preview' => 'Ringkasan pratayang:',
 'subject-preview' => 'Pratayang subyek/judul:',
 'blockedtitle' => 'Pangguno diblokir',
-'blockedtext' => "'''Namo pangguno atau alamaik IP Sanak alah diblokir.'''
+'blockedtext' => "'''Namo pangguno atau alamaik IP Sanak alah kanai sakek.'''
 
-Blokir dilakuan oleh $1.
+Sakek dibuek dek $1.
 Alasan nan diagiahan adolah ''$2''.
 
-* Diblokir sajak: $8
-* Blokir kadaluwarsa pado: $6
-* Sasaran pamblokiran: $7
+* Kanai sakek sajak: $8
+* Maso sakek habih pado: $6
+* Sasaran nan disakek: $7
 
-Sanak dapek mahubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pangurus lainnyo]] untuak mambicarokan hal iko.
+Sanak dapek manghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|panguruih lainnyo]] untuak mambicarokan hal iko.
 
-Sanak indak dapek manggunoan fitur 'Kirim surel ka pangguna iko' kacuali Sanak alah mamasuakan alamaik surel nan sah di [[Special:Preferences|preferensi akun]] dan Sanak indak diblokir untuak manggunoannyo.
+Sanak indak dapek manggunoan fitua 'Kirim surel ka pangguna iko' kacuali Sanak alah mamasuakan alamaik surel nan sah di [[Special:Preferences|pangaturan akun]] dan Sanak indak sadang disakek untuak manggunoannyo.
 
-Alamaik IP Sanak adolah $3, dan ID pamblokiran adolah $5.
-Toloang saratokan ciek atau kaduo informasi ini pado satiok patanyaan nan Sanak buek.",
-'autoblockedtext' => 'Alamaik IP Sanak alah tablokir sacaro otomatis karano digunokan oleh pangguno lain, nan diblokir oleh $1. Pamblokiran dilakuan ateh alasan:
+Alamaik IP Sanak adolah $3, dan ID panyakek adolah $5.
+Tolong saratoan informasi di ateh pado satiok patanyaan nan Sanak buek.",
+'autoblockedtext' => "Alamaik IP Sanak alah kanai sakek sacaro otomatis dek digunoan jo pangguno lain, nan sakek dek $1. Panyakek ko dibuek dek alasan:
 
-:\'\'$2\'\'
+:''$2''
 
-* Diblokir sajak: $8
-* Blokir kadaluwarsa pado: $6
-* Sasaran pamblokiran: $7
+* Kanai sakek sajak: $8
+* Maso sakek habih pado: $6
+* Sasaran nan disakek: $7
 
-Sanak dapek mahubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pengurus lainnya]] untuak mambicarokan hal iko.
+Sanak dapek mahubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|penguruih lainnya]] untuak mambicarokan hal iko.
 
-Sanak indak dapek manggunoan fitur "kirim surel ka pangguno iko" kacuali Sanak alah mamasuakan alamaik surel nan sah di [[Special:Preferences|preferensi akun]] Sanak dan Sanak indak diblokir untuak manggunoannyo.
+Sanak indak dapek manggunoan fitua 'Kirim surel ka pangguna iko' kacuali Sanak alah mamasuakan alamaik surel nan sah di [[Special:Preferences|pangaturan akun]] dan Sanak indak sadang disakek untuak manggunoannyo.
 
-Alamat IP Sanak saat ini adolah $3, dan ID pamblokiran adolah #$5.
-Toloang saratokan informasi-informasi iko dalam satiok patanyaan Sanak.',
+Alamaik IP Sanak adolah $3, dan ID panyakek adolah $5.
+Tolong saratoan informasi di ateh pado satiok patanyaan nan Sanak buek.",
 'blockednoreason' => 'indak ado alasan nan diagiah.',
-'whitelistedittext' => 'Sanak harus $1 untuak dapek manyuntiang laman.',
-'confirmedittext' => 'Sanak harus mangkonfirmasian dahulu alamaik surel Sanak sabalun manyuntiang laman.
-Harap masuakan dan validasian alamaik surel Sanak malalui [[Special:Preferences|laman preferensi pangguno]] Sanak.',
+'whitelistedittext' => 'Sanak musti $1 untuak manyuntiang laman.',
+'confirmedittext' => 'Sanak musti mangkonfirmasian alamaik surel sabalun manyuntiang laman.
+Masuakan dan validasian alamaik surel Sanak pado [[Special:Preferences|pangaturan pangguno]] Sanak.',
 'nosuchsectiontitle' => 'Bagian indak ditamuan',
 'nosuchsectiontext' => 'Sanak mancubo manyuntiang suatu subbagian nan indak ado.
-Subbagian iko mungkin dipindahan atau dihapuih katiko Sanak mambukanyo.',
+Subbagian ko mungkin lah dipindahan atau dihapuih sangkek Sanak mambukaknyo.',
 'loginreqtitle' => 'Harus masuak log',
 'loginreqlink' => 'masuak log',
 'loginreqpagetext' => 'Sanak harus $1 untuak dapek maliek laman lainnyo.',
@@ -966,6 +969,8 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 # Preferences page
 'preferences' => 'Pangaturan',
 'mypreferences' => 'Pangaturan',
+'prefsnologintext' => 'Sanak musti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuak log]</span> untuak mengeset pangaturan.',
+'changepassword' => 'Tuka kato sandi',
 'prefs-skin' => 'Kulik',
 'skin-preview' => 'Caliak',
 'datedefault' => 'Indak usah diatua',
@@ -1004,7 +1009,7 @@ Cubo awali permintaan awak tu jo ''all:'' untuak mancari sado kandungan (tamasua
 'prefs-help-recentchangescount' => 'Iko untuak parubahan tabaru, riwayaik laman nan lalu, sarato log.',
 'prefs-help-watchlist-token' => 'Mangisi kotak ko jo kunci rasio (PIN) akan manghasilkan sindikasi RSS untuak dafta pantauan Angku. Sia juo nan tau jo kunci ko dapek mambaco dafta pantauan Angku, jadi hati-hatilah mamiliah nilainyo 
 Barikuik ko nilai acak nan dapek Angku gunoan: $1',
-'savedprefs' => 'Pangaturan Angku alah tasimpan',
+'savedprefs' => 'Pangaturan lah tasimpan',
 'timezonelegend' => 'Zona wakatu:',
 'localtime' => 'Wakatu satampaik:',
 'timezoneuseserverdefault' => 'Gunokan nan dari wiki ($1)',
@@ -1121,8 +1126,8 @@ Alamaik surel tu indakkan tau dek urang nan manghubungi sanak tu.',
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|parubahan}}',
 'recentchanges' => 'Parubahan baru',
-'recentchanges-legend' => 'Pilihan parubahan baru',
-'recentchanges-summary' => 'Manjajak parubahan terbaru dalam wiki di laman ko.',
+'recentchanges-legend' => 'Piliahan parubahan baru',
+'recentchanges-summary' => 'Caliak parubahan tabaru pado wiki di laman ko.',
 'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
 'recentchanges-label-newpage' => 'Suntiangan ko mambuek laman baru',
 'recentchanges-label-minor' => 'Iko suntiangan ketek',
@@ -1137,7 +1142,7 @@ Alamaik surel tu indakkan tau dek urang nan manghubungi sanak tu.',
 'rcshowhideanons' => '$1 pangguno anon',
 'rcshowhidepatr' => '$1 suntiangan nan tajago',
 'rcshowhidemine' => '$1 suntingan denai',
-'rclinks' => 'Tampilkan $1 parubahan tabaru dalam $2 hari tarakhir<br />$3',
+'rclinks' => 'Tunjuakkan $1 parubahan tabaru dalam $2 hari tarakhia<br />$3',
 'diff' => 'bedo',
 'hist' => 'sijarah',
 'hide' => 'Suruakkan',
@@ -1244,6 +1249,8 @@ Katarangan dari [$2 laman kataranagn berkas] ditampilkan di bawah.',
 
 # E-mail user
 'emailuser' => 'Kirim surel pangguno ko',
+'emailpagetext' => 'Sanak dapek manggunoan formulir di bawah ko untuak mangirimkan surel ka {{GENDER:$1|pangguna}} ko.
+Alamaik surel nan Sanak masuakkan di [[Special:Preferences|pangaturan akun]] akan kalua sabagai alamaik "Dari" pado surel tasabuik, jadi panarimo dapek langsuang mambalehnyo.',
 
 # Watchlist
 'watchlist' => 'Daftapantau',
@@ -1312,7 +1319,8 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 
 # Namespace form on various pages
 'namespace' => 'Ruangnamo:',
-'invert' => 'Baliakkan pilihan',
+'invert' => 'Baliakkan piliahan',
+'namespace_association' => 'Ruangnamo takaik',
 'blanknamespace' => '(Utamo)',
 
 # Contributions
@@ -1354,17 +1362,20 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'whatlinkshere-filters' => 'Panapiah',
 
 # Block/unblock
-'blockip' => 'Blokir pangguno',
+'blockip' => 'Sakek pangguno',
+'blockip-title' => 'Sakek pangguno',
+'blockip-legend' => 'Sakek pangguno',
 'ipboptions' => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 taun:1 year,salamonyo:infinite',
 'ipblocklist' => 'Pangguno tablokir',
-'blocklink' => 'balokir',
+'blocklink' => 'sakek',
 'unblocklink' => 'hilangkan blokir',
-'change-blocklink' => 'ubah balokir',
+'change-blocklink' => 'ubah sakek',
 'contribslink' => 'jariah',
 'blocklogpage' => 'Log pamblokiran',
 'blocklogentry' => 'mamblokir [[$1]] dalam maso $2 $3',
 'unblocklogentry' => 'mahilangkan blokir $1',
 'block-log-flags-nocreate' => 'mambuek akun dimatikan',
+'blockme' => 'Sakek denai',
 
 # Move page
 'movepagetext' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sadonyo data riwayaik ka namo baru. 

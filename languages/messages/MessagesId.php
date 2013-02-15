@@ -2740,9 +2740,9 @@ Alasan yang diberikan untuk pemblokiran $1 adalah: "$2"',
 'blocklog-showsuppresslog' => 'Pengguna ini telah diblokir dan disembunyikan sebelumnya. Log supresi disediakan di bawah untuk referensi:',
 'blocklogentry' => 'memblokir [[$1]] dengan waktu kedaluwarsa $2 $3',
 'reblock-logentry' => 'mengubah pemblokiran [[$1]] dengan waktu kedaluwarsa $2 $3',
-'blocklogtext' => 'Di bawah ini adalah log pemblokiran dan pembukaan blokir terhadap pengguna.
-Alamat IP yang diblokir secara otomatis tidak terdapat di dalam daftar ini.
-Lihat [[Special:BlockList|daftar pemblokiran]] untuk semua pengguna yang saat ini diblokir.',
+'blocklogtext' => 'Di bawah ko adolah log panyakek jo pambukaan sakek pado pangguno.
+Alamaik IP nan kanai sakek sacaro otomatis indak nampak dalam dafta ko.
+Lihek [[Special:BlockList|dafta panyakek]] untuak kasado pangguno nan koni kanai sakek.',
 'unblocklogentry' => 'menghilangkan blokir "$1"',
 'block-log-flags-anononly' => 'hanya pengguna anonim',
 'block-log-flags-nocreate' => 'pembuatan akun dimatikan',

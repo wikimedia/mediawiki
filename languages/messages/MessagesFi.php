@@ -2299,7 +2299,7 @@ Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan t�
 'watcherrortext' => 'Sivun ”$1” tarkkailulista-asetusten muutoksissa tapahtui virhe.',
 
 'enotif_mailer' => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
-'enotif_reset' => 'Merkitse kaikki sivut kerralla nähdyiksi',
+'enotif_reset' => 'Merkitse kaikki sivut nähdyiksi',
 'enotif_impersonal_salutation' => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä',
 'enotif_subject_deleted' => '{{GENDER:$2|$2}} poisti {{GRAMMAR:elative|{{SITENAME}}}} sivun $1',
 'enotif_subject_created' => '{{GENDER:$2|$2}} loi {{GRAMMAR:illative|{{SITENAME}}}} sivun $1',

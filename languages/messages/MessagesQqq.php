@@ -309,7 +309,8 @@ This option means "underline links as in your user skin or your browser", there 
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'category_header' => 'In category description page',
-'subcategories' => 'Used as a header on category pages that have subcategories.',
+'subcategories' => 'Used as a header on category pages that have subcategories.
+{{Identical|Subcategory}}',
 'category-media-header' => 'In category description page',
 'category-empty' => 'The text displayed in category page when that category is empty',
 'hidden-categories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
@@ -478,7 +479,8 @@ See also:
 See also:
 * {{msg-mw|Permalink}}
 * {{msg-mw|Accesskey-t-permalink}}
-* {{msg-mw|Tooltip-t-permalink}}',
+* {{msg-mw|Tooltip-t-permalink}}
+{{Identical|Permalink}}',
 'print' => '{{Identical|Print}}',
 'view' => 'The default text of the "View" or "Read" (Vector) views tab which represents the basic view for the page. Should be in the infinitive mood.
 
@@ -548,7 +550,8 @@ See also:
 
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".
 {{Identical|View}}',
-'toolbox' => 'The title of the toolbox below the search menu.',
+'toolbox' => 'The title of the toolbox below the search menu.
+{{Identical|Toolbox}}',
 'userpage' => '',
 'projectpage' => 'Used as link text in Talk page of project page.',
 'imagepage' => 'Used as link text in Talk page of file page.',
@@ -653,7 +656,8 @@ See also:
 * {{msg-mw|Portal-url}}
 * {{msg-mw|Accesskey-n-portal}}
 * {{msg-mw|Tooltip-n-portal}}',
-'privacy' => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].',
+'privacy' => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].
+{{Identical|Privacy policy}}',
 'privacypage' => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 
@@ -2082,9 +2086,9 @@ See also:
 * {{msg-mw|Tooltip-compareselectedversions}}',
 'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.',
 'editundo' => 'Undo link when viewing diffs
-{{Identical|Undo}}
 
-This message has sometimes a tooltip {{msg-mw|tooltip-undo}}',
+This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
+{{Identical|Undo}}',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
 *Parameter $1 is the number of revisions
@@ -2470,7 +2474,8 @@ See also:
 'prefs-info' => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-i18n' => 'Field set legend for user preferences regarding the interface language',
 'prefs-signature' => '{{Identical|Signature}}',
-'prefs-dateformat' => 'Used in [[Special:Preferences#mw-prefsection-datetime|Special:Preferences]], tab "Date and time".',
+'prefs-dateformat' => 'Used in [[Special:Preferences#mw-prefsection-datetime|Special:Preferences]], tab "Date and time".
+{{Identical|Date format}}',
 'prefs-timeoffset' => 'Used in [[Special:Preferences]], tab "Date and time".',
 'prefs-advancedediting' => 'Used in [[Special:Preferences]], tab "Editing".
 {{Identical|Advanced options}}',
@@ -2607,7 +2612,8 @@ The right to move any page that is not protected from moving.
 'right-movefile' => '{{doc-right|movefile}}',
 'right-suppressredirect' => '{{doc-right|suppressredirect}}',
 'right-upload' => '{{doc-right|upload}}
-The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
+The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).
+{{Identical|Upload file}}',
 'right-reupload' => '{{doc-right|reupload}}
 The right to upload a file under a file name that already exists.
 
@@ -6223,7 +6229,8 @@ See also:
 See also:
 * {{msg-mw|Upload}}
 * {{msg-mw|Accesskey-t-upload}}
-* {{msg-mw|Tooltip-t-upload}}',
+* {{msg-mw|Tooltip-t-upload}}
+{{Identical|Upload file}}',
 'tooltip-t-specialpages' => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.
 
 See also:

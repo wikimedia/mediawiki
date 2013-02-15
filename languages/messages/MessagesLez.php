@@ -523,7 +523,7 @@ $messages = array(
 'revertmerge' => 'Ччара авун',
 
 # Diffs
-'history-title' => 'Masak\'avilerin q\'isa "$1"',
+'history-title' => '$1  -  масакӀавилерин тарих',
 'lineno' => 'ЦIар $1:',
 'compareselectedversions' => 'Хкягъай жуьреяр гекъигун',
 'editundo' => 'гьич авун',
@@ -1197,7 +1197,7 @@ $messages = array(
 'file-info-size' => '$1 × $2 пикселар, файлдин кьадар: $3, MIME жуьре: $4',
 'file-nohires' => 'Идалайни хъсан ери авайд туш',
 'svg-long-desc' => 'SVG файл, номилдаказ $1 $2 × пикселяр, файлдин кьадар: $3',
-'show-big-image' => 'Цlарафа хвена тунвай жергедай',
+'show-big-image' => 'ЦӀарафа хвена тунвай жергедай',
 
 # Bad image list
 'bad_image_list' => 'Формат гьихьтинди хьана кlанда:
