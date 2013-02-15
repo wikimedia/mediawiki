@@ -29,10 +29,13 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 	wfPHPVersionError( 'load.php' );
 }
 
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'phase3/includes/WebStart.php' );
+// Initialise common code.  This gives us access to GlobalFunctions, the
+// AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
+// $wgContLang, amongst others; it does *not* load $wgTitle
+if ( isset( $_SERVER['MW_COMPILED'] ) ) { // For HipHop. See MWInit::compiledPath() for details.
+	require( 'core/includes/WebStart.php' );
 } else {
-	require ( __DIR__ . '/includes/WebStart.php' );
+	require( __DIR__ . '/includes/WebStart.php' );
 }
 
 wfProfileIn( 'load.php' );
