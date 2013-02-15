@@ -6,7 +6,7 @@
  * @file
  * @ingroup Testing
  * Copyright (C) 2010 Nadeesha Weerasinghe <nadeesha@calcey.com>
- * http://www.calcey.com/ 
+ * http://www.calcey.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,78 +28,75 @@
  */
 
 class PageSearchTestCase extends SeleniumTestCase {
+	// Verify the functionality of the 'Go' button
+	public function testPageSearchBtnGo() {
 
-    // Verify the functionality of the 'Go' button
-    public function testPageSearchBtnGo() {
+		$this->open( $this->getUrl() .
+			'/index.php?title=Main_Page&action=edit' );
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "calcey qa" );
+		$this->click( "searchGoButton" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->open( $this->getUrl() .
-                '/index.php?title=Main_Page&action=edit' );
-        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "calcey qa" );
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify  no page matched with the entered search text
+		$source = $this->gettext( "//div[@id='bodyContent']/div[4]/p/b" );
+		$correct = strstr( $source, "Create the page \"Calcey qa\" on this wiki!" );
+		$this->assertEquals( $correct, true );
 
-        // Verify  no page matched with the entered search text
-        $source = $this->gettext( "//div[@id='bodyContent']/div[4]/p/b" );
-        $correct = strstr ( $source, "Create the page \"Calcey qa\" on this wiki!" );
-        $this->assertEquals( $correct, true );
+		$this->click( "link=Calcey qa" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->click( "link=Calcey qa" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::TEXT_EDITOR, "Calcey QA team" );
+		$this->click( "wpSave" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+	}
 
-        $this->type( SeleniumTestConstants::TEXT_EDITOR , "Calcey QA team" );
-        $this->click( "wpSave" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+	// Verify the functionality of the 'Search' button
+	public function testPageSearchBtnSearch() {
+		$this->open( $this->getUrl() .
+			'/index.php?title=Main_Page&action=edit' );
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey web" );
+		$this->click( SeleniumTestConstants::BUTTON_SEARCH );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-    }
+		// Verify  no page is available as the search text
+		$source = $this->gettext( "//div[@id='bodyContent']/div[4]/p[2]/b" );
+		$correct = strstr( $source, "Create the page \"Calcey web\" on this wiki!" );
+		$this->assertEquals( $correct, true );
 
-    // Verify the functionality of the 'Search' button
-    public function testPageSearchBtnSearch() {
+		$this->click( "link=Calcey web" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->open( $this->getUrl() .
-                '/index.php?title=Main_Page&action=edit' );
-        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey web" );
-        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::TEXT_EDITOR, "Calcey web team" );
+		$this->click( SeleniumTestConstants::BUTTON_SAVE );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        // Verify  no page is available as the search text
-        $source = $this->gettext( "//div[@id='bodyContent']/div[4]/p[2]/b" );
-        $correct = strstr ( $source, "Create the page \"Calcey web\" on this wiki!" );
-        $this->assertEquals( $correct, true );
+		// Verify saved page is opened  when the exact page name is given
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey web" );
+		$this->click( SeleniumTestConstants::BUTTON_SEARCH );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->click( "link=Calcey web" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify exact page matched with the entered search text using 'Search' button
+		$source = $this->getText( "//*[@id='bodyContent']/div[4]/p/b" );
+		$correct = strstr( $source, "There is a page named \"Calcey web\" on this wiki." );
+		$this->assertEquals( $correct, true );
 
-        $this->type( SeleniumTestConstants::TEXT_EDITOR, "Calcey web team" );
-        $this->click( SeleniumTestConstants::BUTTON_SAVE );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify resutls available when partial page name is entered as the search text
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey" );
+		$this->click( SeleniumTestConstants::BUTTON_SEARCH );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        // Verify saved page is opened  when the exact page name is given
-        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey web" );
-        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		//  Verify text avaialble in the search result under the page titles
+		if ( $this->isElementPresent( "Page_title_matches" ) ) {
+			$textPageTitle = $this->getText( "//*[@id='bodyContent']/div[4]/ul[1]/li[1]/div[1]/a" );
+			$this->assertContains( 'Calcey', $textPageTitle );
+		}
 
-        // Verify exact page matched with the entered search text using 'Search' button
-        $source = $this->getText( "//*[@id='bodyContent']/div[4]/p/b" );
-        $correct = strstr( $source, "There is a page named \"Calcey web\" on this wiki." );
-        $this->assertEquals( $correct, true );
-
-        // Verify resutls available when partial page name is entered as the search text
-        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey" );
-        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-
-        //  Verify text avaialble in the search result under the page titles
-        if($this->isElementPresent( "Page_title_matches" )) {
-            $textPageTitle = $this->getText( "//*[@id='bodyContent']/div[4]/ul[1]/li[1]/div[1]/a" );
-            $this->assertContains( 'Calcey', $textPageTitle );
-        }
-
-        //  Verify text avaialble in the search result under the page text
-        if($this->isElementPresent( "Page_text_matches" )) {
-            $textPageText = $this->getText( "//*[@id='bodyContent']/div[4]/ul[2]/li[2]/div[2]/span" );
-            $this->assertContains( 'Calcey', $textPageText );
-        }
-        $this->deletePage("Calcey QA");
-        $this->deletePage("Calcey web");
-    }
+		//  Verify text avaialble in the search result under the page text
+		if ( $this->isElementPresent( "Page_text_matches" ) ) {
+			$textPageText = $this->getText( "//*[@id='bodyContent']/div[4]/ul[2]/li[2]/div[2]/span" );
+			$this->assertContains( 'Calcey', $textPageText );
+		}
+		$this->deletePage( "Calcey QA" );
+		$this->deletePage( "Calcey web" );
+	}
 }
