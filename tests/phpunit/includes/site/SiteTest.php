@@ -244,8 +244,7 @@ class SiteTest extends MediaWikiTestCase {
 	protected function assertTypeOrFalse( $type, $value ) {
 		if ( $value === false ) {
 			$this->assertTrue( true );
-		}
-		else {
+		} else {
 			$this->assertInternalType( $type, $value );
 		}
 	}

@@ -80,8 +80,7 @@ class SiteListTest extends MediaWikiTestCase {
 	public function testGetSiteByGlobalId( SiteList $sites ) {
 		if ( $sites->isEmpty() ) {
 			$this->assertTrue( true );
-		}
-		else {
+		} else {
 			/**
 			 * @var Site $site
 			 */

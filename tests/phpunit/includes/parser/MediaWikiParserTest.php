@@ -3,9 +3,9 @@ require_once( __DIR__ . '/NewParserTest.php' );
 
 /**
  * The UnitTest must be either a class that inherits from MediaWikiTestCase
- * or a class that provides a public static suite() method which returns 
+ * or a class that provides a public static suite() method which returns
  * an PHPUnit_Framework_Test object
- * 
+ *
  * @group Parser
  * @group Database
  */

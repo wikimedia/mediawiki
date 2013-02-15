@@ -69,14 +69,17 @@ class MagicVariableTest extends MediaWikiTestCase {
 	function testCurrentdayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'currentday', $day );
 	}
+
 	/** @dataProvider MediaWikiProvide::Days */
 	function testCurrentdaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'currentday2', $day );
 	}
+
 	/** @dataProvider MediaWikiProvide::Days */
 	function testLocaldayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'localday', $day );
 	}
+
 	/** @dataProvider MediaWikiProvide::Days */
 	function testLocaldaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'localday2', $day );
@@ -88,14 +91,17 @@ class MagicVariableTest extends MediaWikiTestCase {
 	function testCurrentmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'currentmonth', $month );
 	}
+
 	/** @dataProvider MediaWikiProvide::Months */
 	function testCurrentmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'currentmonth1', $month );
 	}
+
 	/** @dataProvider MediaWikiProvide::Months */
 	function testLocalmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'localmonth', $month );
 	}
+
 	/** @dataProvider MediaWikiProvide::Months */
 	function testLocalmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'localmonth1', $month );
@@ -108,6 +114,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	function testRevisiondayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'revisionday', $day );
 	}
+
 	/** @dataProvider MediaWikiProvide::Days */
 	function testRevisiondaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'revisionday2', $day );
@@ -119,6 +126,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	function testRevisionmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'revisionmonth', $month );
 	}
+
 	/** @dataProvider MediaWikiProvide::Months */
 	function testRevisionmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'revisionmonth1', $month );
@@ -130,13 +138,13 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 */
 	function testServernameFromDifferentProtocols() {
 		global $wgServer;
-		$saved_wgServer= $wgServer;
+		$saved_wgServer = $wgServer;
 
 		$wgServer = 'http://localhost/';
 		$this->assertMagic( 'localhost', 'servername' );
 		$wgServer = 'https://localhost/';
 		$this->assertMagic( 'localhost', 'servername' );
-		$wgServer = '//localhost/';  # bug 31176
+		$wgServer = '//localhost/'; # bug 31176
 		$this->assertMagic( 'localhost', 'servername' );
 
 		$wgServer = $saved_wgServer;
@@ -163,8 +171,11 @@ class MagicVariableTest extends MediaWikiTestCase {
 	private function assertMagicPadding( $magic, $value, $format ) {
 		# Initialize parser timestamp as year 2010 at 12h34 56s.
 		# month and day are given by the caller ($value). Month < 12!
-		if( $value > 12 ) { $month = $value % 12; }
-		else { $month = $value; }
+		if ( $value > 12 ) {
+			$month = $value % 12;
+		} else {
+			$month = $value;
+		}
 
 		$this->setParserTS(
 			sprintf( '2010%02d%02d123456', $month, $value )
@@ -188,7 +199,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 * Assertion helper to test a magic variable output
 	 */
 	private function assertMagic( $expected, $magic ) {
-		if( in_array( $magic, $this->expectedAsInteger ) ) {
+		if ( in_array( $magic, $this->expectedAsInteger ) ) {
 			$expected = (int)$expected;
 		}
 
