@@ -100,6 +100,16 @@
 		assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 	} );
 
+	QUnit.test( 'mw.getGlobal', 4, function ( assert ) {
+		assert.ok( mw.getGlobal, 'mw.getGlobal defined' );
+		assert.strictEqual( mw.getGlobal( 'jQuery.fn.init' ), jQuery.fn.init,
+			'mw.getGlobal can resolve nested object references.' );
+		assert.strictEqual( mw.getGlobal( 'mw.nonExistent.missing' ), $.noop,
+			'mw.getGlobal uses $.noop as a fallback value by default.');
+		assert.strictEqual( mw.getGlobal( 'mw.nonExistent.missing', mw ), mw,
+			'Optional second "fallback" parameter allows a fallback value to be specified.' );
+	} );
+
 	QUnit.test( 'mw.message & mw.messages', 54, function ( assert ) {
 		var goodbye, hello;
 

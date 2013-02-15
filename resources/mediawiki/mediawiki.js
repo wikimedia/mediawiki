@@ -264,6 +264,38 @@ var mw = ( function ( $, undefined ) {
 		/* Public Members */
 
 		/**
+		 * Syntactic sugar for getting a global object if it exists and a
+		 * fallback otherwise. Its advantage over JavaScript's default operator
+		 * the ability to handle gracefully nested object lookups.
+		 *
+		 *     @example
+		 *     var logEvent = getGlobal( 'mediaWiki.eventLog.logEvent' );
+		 *
+		 * @param g string Name of global variable to look up
+		 *   (required). May be a path to an object using '.' as
+		 *   delimiter. Literal '.'s in property names are not supported.
+		 * @param fallback mixed Fallback value to return if requested
+		 *   object is undefined. Defaults to $.noop.
+		 * @return mixed Requested object if it is defined; value of
+		 *   'fallback' otherwise.
+		 */
+		getGlobal: function ( g, fallback ) {
+			var node = window, fragments = g.split('.'), i = 0;
+
+			if ( arguments.length < 2 ) {
+				fallback = $.noop;
+			}
+
+			for ( i = 0; i < fragments.length; i++ ) {
+				node = node[fragments[i]];
+				if ( node === undefined ) {
+					return fallback;
+				}
+			}
+			return node;
+		},
+
+		/**
 		 * Dummy function which in debug mode can be replaced with a function that
 		 * emulates console.log in console-less environments.
 		 */
