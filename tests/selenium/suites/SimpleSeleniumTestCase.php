@@ -24,7 +24,7 @@ class SimpleSeleniumTestCase extends SeleniumTestCase {
 	public function testGlobalVariableForDefaultSkin() {
 		$this->open( $this->getUrl() . '/index.php' );
 		$bodyClass = $this->getAttribute( "//body/@class" );
-		$this-> assertContains('skin-chick', $bodyClass, 'Chick skin not set');
+		$this->assertContains( 'skin-chick', $bodyClass, 'Chick skin not set' );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class SimpleSeleniumTestCase extends SeleniumTestCase {
 	public function testDatabaseResourceLoadedCorrectly() {
 		$this->open( $this->getUrl() . '/index.php/TestResources?action=purge' );
 		$testString = $this->gettext( "//body//*[@id='firstHeading']" );
-		$this-> assertEquals('TestResources', $testString, 'Article that should be present in the test db was not found.');
+		$this->assertEquals( 'TestResources', $testString, 'Article that should be present in the test db was not found.' );
 	}
 
 }

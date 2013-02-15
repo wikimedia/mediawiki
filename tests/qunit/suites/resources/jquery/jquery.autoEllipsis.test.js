@@ -53,6 +53,6 @@
 		} else {
 			assert.gt( $span.width(), $span.parent().width(), 'Fit is maximal (adding two characters makes it not fit any more)' );
 		}
-	});
+	} );
 
 }( jQuery ) );

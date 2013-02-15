@@ -44,10 +44,7 @@ require_once ( __DIR__ . '/MediaWikiDifferntDatabasePrefixTestCase.php' );
 require_once ( __DIR__ . '/MediaWikiDifferentDatabaseAccountTestCase.php' );
 require_once ( __DIR__ . '/MediaWikiOnAlreadyInstalledTestCase.php' );
 
-
-
-
-$suite = new PHPUnit_Framework_TestSuite('ArrayTest');
+$suite = new PHPUnit_Framework_TestSuite( 'ArrayTest' );
 $result = new PHPUnit_Framework_TestResult;
 
-$suite->run($result);
+$suite->run( $result );

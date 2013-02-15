@@ -132,4 +132,4 @@
 		assert.strictEqual( $lc.length, 1, 'link is created' );
 		assert.strictEqual( $lc.text(), 'link', 'the link text got added' );
 	} );
-}( jQuery, mediaWiki ) ) ;
+}( jQuery, mediaWiki ) );

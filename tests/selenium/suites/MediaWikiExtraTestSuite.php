@@ -5,6 +5,7 @@ class MediaWikiExtraTestSuite extends SeleniumTestSuite {
 		$this->setLoginBeforeTests( true );
 		parent::setUp();
 	}
+
 	public function addTests() {
 		$testFiles = array(
 			'tests/selenium/suites/MyContributionsTestCase.php',

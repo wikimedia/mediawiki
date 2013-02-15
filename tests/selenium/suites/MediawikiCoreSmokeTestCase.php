@@ -50,7 +50,8 @@ class MediawikiCoreSmokeTestCase extends SeleniumTestCase {
 		$this->waitForPageToLoad( 30000 );
 
 		$this->assertSeleniumHTMLContains(
-				'//h1[@class="firstHeading"]', "Wikipedia-logo-v2-de.png" );
+			'//h1[@class="firstHeading"]', "Wikipedia-logo-v2-de.png"
+		);
 
 		/*
 		$this->open( $this->getUrl() . '/index.php?title=Image:'

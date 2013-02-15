@@ -1,6 +1,6 @@
 ( function ( mw, $ ) {
 
-	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment({
+	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.liveLangData = mw.language.data.values;
 			mw.language.data.values = $.extend( true, {}, this.liveLangData );
@@ -8,12 +8,12 @@
 		teardown: function () {
 			mw.language.data.values = this.liveLangData;
 		}
-	}) );
+	} ) );
 
 	QUnit.test( 'mw.language getData and setData', 2, function ( assert ) {
 		mw.language.setData( 'en', 'testkey', 'testvalue' );
-		assert.equal(  mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
-		assert.equal(  mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
+		assert.equal( mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
+		assert.equal( mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
 	} );
 
 	function grammarTest( langCode, test ) {
@@ -22,14 +22,14 @@
 		QUnit.test( 'Grammar test for lang=' + langCode, function ( assert ) {
 			QUnit.expect( test.length );
 
-			for ( var i = 0 ; i < test.length; i++ ) {
+			for ( var i = 0; i < test.length; i++ ) {
 				assert.equal(
 					mw.language.convertGrammar( test[i].word, test[i].grammarForm ),
 					test[i].expected,
 					test[i].description
 				);
 			}
-		});
+		} );
 	}
 
 	var grammarTests = {
@@ -390,5 +390,5 @@
 		if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
 			grammarTest( langCode, test );
 		}
-	});
+	} );
 }( mediaWiki, jQuery ) );

@@ -121,7 +121,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	protected function skipToNodeEnd( $name ) {
 		while ( $this->xml->read() ) {
 			if ( $this->xml->nodeType == XMLReader::END_ELEMENT &&
-				$this->xml->name == $name ) {
+				$this->xml->name == $name
+			) {
 				return true;
 			}
 		}
@@ -189,7 +190,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	protected function skipWhitespace() {
 		$cont = true;
 		while ( $cont && ( ( $this->xml->nodeType == XMLReader::WHITESPACE )
-				|| ( $this->xml->nodeType == XMLReader::SIGNIFICANT_WHITESPACE ) ) ) {
+			|| ( $this->xml->nodeType == XMLReader::SIGNIFICANT_WHITESPACE ) ) ) {
 			$cont = $this->xml->read();
 		}
 	}
@@ -300,7 +301,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $parentid int|false: (optional) id of the parent revision
 	 */
 	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false,
-						$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT ) {
+									   $model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT ) {
 
 		$this->assertNodeStart( "revision" );
 		$this->skipWhitespace();
@@ -358,7 +359,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$this->assertFalse( $this->xml->hasValue, "Revision has text" );
 			$this->assertTrue( $this->xml->read(), "Skipping text start tag" );
 			if ( ( $this->xml->nodeType == XMLReader::END_ELEMENT )
-				&& ( $this->xml->name == "text" ) ) {
+				&& ( $this->xml->name == "text" )
+			) {
 
 				$this->xml->read();
 			}

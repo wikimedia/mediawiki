@@ -25,7 +25,7 @@ abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 		if ( $this->triggerClientTestResources ) {
 			$this->selenium->open( $this->selenium->getUrl() . '/index.php?setupTestSuite=' . $this->getName() );
 			//wait a little longer for the db operation
-			$this->selenium->waitForPageToLoad( 6000  );
+			$this->selenium->waitForPageToLoad( 6000 );
 		}
 		if ( $this->loginBeforeTests ) {
 			$this->login();
@@ -50,7 +50,7 @@ abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 	protected function setLoginBeforeTests( $loginBeforeTests = true ) {
 		$this->loginBeforeTests = $loginBeforeTests;
 	}
-	
+
 	protected function setTriggerClientTestResources( $triggerClientTestResources = true ) {
 		$this->triggerClientTestResources = $triggerClientTestResources;
 	}
