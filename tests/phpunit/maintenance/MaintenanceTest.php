@@ -81,14 +81,14 @@ class MaintenanceFixup extends Maintenance {
 			return;
 		}
 
-		return call_user_func_array ( array( "parent", __FUNCTION__ ), func_get_args() );
+		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
 	}
 
 	/**
 	 * Safety net around register_shutdown_function of Maintenance.php
 	 */
 	public function __destruct() {
-		if ( ! $this->shutdownSimulated ) {
+		if ( !$this->shutdownSimulated ) {
 			// Someone generated a MaintenanceFixup instance without calling
 			// simulateShutdown. We'd have to raise a PHPUnit exception to correctly
 			// flag this illegal usage. However, we are already in a destruktor, which
@@ -112,7 +112,6 @@ class MaintenanceFixup extends Maintenance {
 	}
 
 
-
 	// --- Making protected functions visible for test
 
 	public function output( $out, $channel = null ) {
@@ -120,9 +119,8 @@ class MaintenanceFixup extends Maintenance {
 		// Maintenance::output signature. However, we do not use (or rely on)
 		// those variables. Instead we pass to Maintenance::output whatever we
 		// receive at runtime.
-		return call_user_func_array ( array( "parent", __FUNCTION__ ), func_get_args() );
+		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
 	}
-
 
 
 	// --- Requirements for getting instance of abstract class
@@ -173,7 +171,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	private function assertOutputPrePostShutdown( $preShutdownOutput, $expectNLAppending ) {
 
 		$this->assertEquals( $preShutdownOutput, $this->getActualOutput(),
-				"Output before shutdown simulation" );
+			"Output before shutdown simulation" );
 
 		$this->m->simulateShutdown();
 		$this->m = null;
@@ -710,7 +708,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->output( "bar" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
@@ -722,7 +720,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->output( "bar", null );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
@@ -734,7 +732,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->output( "bar", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
@@ -746,7 +744,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->output( "bar\n", null );
 
 		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
@@ -758,7 +756,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->output( "bar\n", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
@@ -770,7 +768,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->outputChanneled( "bar" );
 
 		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
@@ -782,7 +780,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->outputChanneled( "bar", null );
 
 		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
@@ -794,7 +792,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->outputChanneled( "bar", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
-				"Output before shutdown simulation (m2)" );
+			"Output before shutdown simulation (m2)" );
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
@@ -806,13 +804,13 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->outputChanneled( "bar", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
-				"Output before first cleanup" );
+			"Output before first cleanup" );
 		$this->m->cleanupChanneled();
 		$this->assertEquals( "foobar\n", $this->getActualOutput(),
-				"Output after first cleanup" );
+			"Output after first cleanup" );
 		$m2->cleanupChanneled();
 		$this->assertEquals( "foobar\n\n", $this->getActualOutput(),
-				"Output after second cleanup" );
+			"Output after second cleanup" );
 
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar\n\n", false );

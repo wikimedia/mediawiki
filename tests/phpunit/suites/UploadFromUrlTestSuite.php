@@ -17,8 +17,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 	protected function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
-			  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			  $wgNamespaceAliases, $wgNamespaceProtection, $parserMemc;
+			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
+			$wgNamespaceAliases, $wgNamespaceProtection, $parserMemc;
 
 		$tmpGlobals = array();
 
@@ -29,18 +29,18 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = array(
-			'class'           => 'LocalRepo',
-			'name'            => 'local',
-			'url'             => 'http://example.com/images',
-			'hashLevels'      => 2,
+			'class' => 'LocalRepo',
+			'name' => 'local',
+			'url' => 'http://example.com/images',
+			'hashLevels' => 2,
 			'transformVia404' => false,
-			'backend'         => new FSFileBackend( array(
-				'name'        => 'local-backend',
+			'backend' => new FSFileBackend( array(
+				'name' => 'local-backend',
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
-					'local-public'  => wfTempDir() . '/test-repo/public',
-					'local-thumb'   => wfTempDir() . '/test-repo/thumb',
-					'local-temp'    => wfTempDir() . '/test-repo/temp',
+					'local-public' => wfTempDir() . '/test-repo/public',
+					'local-thumb' => wfTempDir() . '/test-repo/thumb',
+					'local-temp' => wfTempDir() . '/test-repo/temp',
 					'local-deleted' => wfTempDir() . '/test-repo/delete',
 				)
 			) ),
@@ -72,7 +72,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgRequest = $context->getRequest();
 
 		if ( $wgStyleDirectory === false ) {
-			$wgStyleDirectory   = "$IP/skins";
+			$wgStyleDirectory = "$IP/skins";
 		}
 
 		RepoGroup::destroySingleton();
@@ -105,7 +105,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		// delete the files first, then the dirs.
 		self::deleteFiles(
-			array (
+			array(
 				"$dir/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
@@ -117,7 +117,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		);
 
 		self::deleteDirs(
-			array (
+			array(
 				"$dir/3/3a",
 				"$dir/3",
 				"$dir/thumb/6/65",

@@ -34,62 +34,60 @@ require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
  * Test Case Name : Install MediaWiki with the same database and the different
  *                  database prefixes(Share one database between multiple wikis).
  * Version        : MediaWiki 1.18alpha
-*/
+ */
 
 class MediaWikiDifferntDatabasePrefixTestCase extends MediaWikiInstallationCommonFunction {
+	function setUp() {
+		parent::setUp();
+	}
 
-    function setUp() {
-        parent::setUp();
-    }
+	// Install Mediawiki using 'MySQL' database type.
+	public function testDifferentDatabasePrefix() {
+		$databaseName = DB_NAME_PREFIX . "_db_prefix";
+		parent::navigateInstallPage( $databaseName );
 
-    // Install Mediawiki using 'MySQL' database type.
-    public function testDifferentDatabasePrefix() {
+		// To 'Options' page
+		parent::clickBackButton();
 
-        $databaseName = DB_NAME_PREFIX."_db_prefix";
-        parent::navigateInstallPage( $databaseName );
+		// To 'Name' page
+		parent::clickBackButton();
 
-        // To 'Options' page
-        parent::clickBackButton();
+		// To 'Database settings' page
+		parent::clickBackButton();
 
-        // To 'Name' page
-        parent::clickBackButton();
+		// To 'Connect to database' page
+		parent::clickBackButton();
 
-        // To 'Database settings' page
-        parent::clickBackButton();
+		// From 'Connect to database' page without database prefix
+		parent::clickContinueButton();
 
-        // To 'Connect to database' page
-        parent::clickBackButton();
+		// Verify upgrade existing message
+		$this->assertEquals( "Upgrade existing installation",
+			$this->getText( LINK_DIV . "h2" ) );
 
-        // From 'Connect to database' page without database prefix
-        parent::clickContinueButton();
+		// To 'Connect to database' page
+		parent::clickBackButton();
 
-        // Verify upgrade existing message
-        $this->assertEquals( "Upgrade existing installation",
-                $this->getText( LINK_DIV."h2" ));
+		// Input the database prefix
+		$this->type( "mysql_wgDBprefix", DATABASE_PREFIX );
 
-        // To 'Connect to database' page
-        parent::clickBackButton();
+		// From 'Connect to database' page with database prefix
+		parent::clickContinueButton();
 
-        // Input the database prefix
-        $this->type( "mysql_wgDBprefix", DATABASE_PREFIX );
+		// To 'Complete' page
+		parent::clickContinueButton();
+		parent::completeNamePage();
+		parent::clickContinueButton();
 
-        // From 'Connect to database' page with database prefix
-        parent::clickContinueButton();
+		// Verify already installed warning message
+		$this->assertEquals( "Install",
+			$this->getText( LINK_DIV . "h2" ) );
+		$this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
+			$this->getText( LINK_FORM . "div[1]" ) );
 
-        // To 'Complete' page
-        parent::clickContinueButton();
-        parent::completeNamePage();
-        parent::clickContinueButton();
-
-        // Verify already installed warning message
-        $this->assertEquals( "Install",
-                $this->getText( LINK_DIV."h2" ));
-        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
-                $this->getText( LINK_FORM."div[1]" ));
-
-        parent::clickContinueButton();
-        parent::completePageSuccessfull();
-        $this->chooseCancelOnNextConfirmation();
-        parent::restartInstallation();
-    }
+		parent::clickContinueButton();
+		parent::completePageSuccessfull();
+		$this->chooseCancelOnNextConfirmation();
+		parent::restartInstallation();
+	}
 }

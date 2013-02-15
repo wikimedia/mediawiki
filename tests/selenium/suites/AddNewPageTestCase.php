@@ -6,7 +6,7 @@
  * @file
  * @ingroup Testing
  * Copyright (C) 2010 Nadeesha Weerasinghe <nadeesha@calcey.com>
- * http://www.calcey.com/ 
+ * http://www.calcey.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,39 +27,37 @@
  *
  */
 
-
 class AddNewPageTestCase extends SeleniumTestCase {
+	// Verify adding a new page
+	public function testAddNewPage() {
+		$newPage = "new";
+		$displayName = "New";
+		$this->open( $this->getUrl() .
+			'/index.php?title=Main_Page&action=edit' );
+		$this->type( "searchInput", $newPage );
+		$this->click( "searchGoButton" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-    // Verify adding a new page
-    public function testAddNewPage() {
-        $newPage = "new";
-        $displayName = "New";
-        $this->open( $this->getUrl() .
-                '/index.php?title=Main_Page&action=edit' );
-        $this->type( "searchInput", $newPage );
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify 'Search results' text available
+		$source = $this->gettext( "firstHeading" );
+		$correct = strstr( $source, "Search results" );
+		$this->assertEquals( $correct, true );
 
-        // Verify 'Search results' text available
-        $source = $this->gettext( "firstHeading" );
-        $correct = strstr( $source, "Search results" );
-        $this->assertEquals( $correct, true);
+		// Verify  'Create the page "<page name>" on this wiki' text available
+		$source = $this->gettext( "//div[@id='bodyContent']/div[4]/p/b" );
+		$correct = strstr( $source, "Create the page \"New\" on this wiki!" );
+		$this->assertEquals( $correct, true );
 
-        // Verify  'Create the page "<page name>" on this wiki' text available
-        $source = $this->gettext( "//div[@id='bodyContent']/div[4]/p/b" );
-        $correct = strstr ( $source, "Create the page \"New\" on this wiki!" );
-        $this->assertEquals( $correct, true );
+		$this->click( SeleniumTestConstants::LINK_START . $displayName );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->click( SeleniumTestConstants::LINK_START.$displayName );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->assertTrue( $this->isElementPresent( SeleniumTestConstants::LINK_START . "Create" ) );
+		$this->type( "wpTextbox1", "add new test page" );
+		$this->click( SeleniumTestConstants::BUTTON_SAVE );
 
-        $this->assertTrue($this->isElementPresent( SeleniumTestConstants::LINK_START."Create" ));
-        $this->type( "wpTextbox1", "add new test page" );
-        $this->click( SeleniumTestConstants::BUTTON_SAVE );
-
-        // Verify new page added
-        $source = $this->gettext( "firstHeading" );
-        $correct = strstr ( $source, $displayName );
-        $this->assertEquals( $correct, true );
-    }
+		// Verify new page added
+		$source = $this->gettext( "firstHeading" );
+		$correct = strstr( $source, $displayName );
+		$this->assertEquals( $correct, true );
+	}
 }

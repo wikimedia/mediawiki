@@ -28,52 +28,50 @@
  */
 
 
-require_once (__DIR__.'/'.'MediaWikiInstallationCommonFunction.php');
+require_once ( __DIR__ . '/' . 'MediaWikiInstallationCommonFunction.php' );
 
 /**
  * Test Case ID   : 06 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Install Mediawiki using 'MySQL' database type successfully
  * Version        : MediaWiki 1.18alpha
-*/
+ */
 
 class MediaWikiMySQLiteDataBaseTestCase extends MediaWikiInstallationCommonFunction {
+	function setUp() {
+		parent::setUp();
+	}
 
-    function setUp() {
-        parent::setUp();
-    }
+	// Verify  MediaWiki installation using 'MySQL' database type
+	public function testMySQLDatabaseSuccess() {
+		$databaseName = DB_NAME_PREFIX . "_sqlite_db";
 
-    // Verify  MediaWiki installation using 'MySQL' database type
-    public function testMySQLDatabaseSuccess() {
+		parent::navigateConnetToDatabasePage();
+		$this->click( "DBType_sqlite" );
 
-        $databaseName = DB_NAME_PREFIX."_sqlite_db";
+		// Select 'SQLite' database type
+		$this->assertEquals( "SQLite settings", $this->getText( "//div[@id='DB_wrapper_sqlite']/h3" ) );
 
-        parent::navigateConnetToDatabasePage();
-        $this->click( "DBType_sqlite" );
+		// Change database name
+		$defaultDbName = $this->getText( "sqlite_wgDBname" );
+		$this->type( "sqlite_wgDBname", " " );
+		$this->type( "sqlite_wgDBname", $databaseName );
+		$this->assertNotEquals( $defaultDbName, $databaseName );
 
-        // Select 'SQLite' database type
-        $this->assertEquals( "SQLite settings", $this->getText( "//div[@id='DB_wrapper_sqlite']/h3" ));
+		// 'Database settings' page
+		parent::clickContinueButton();
 
-        // Change database name
-        $defaultDbName = $this->getText( "sqlite_wgDBname" );
-        $this->type( "sqlite_wgDBname", " ");
-        $this->type( "sqlite_wgDBname", $databaseName );
-        $this->assertNotEquals( $defaultDbName, $databaseName );
+		// 'Name' page
+		parent::clickContinueButton();
+		parent::completeNamePage();
 
-        // 'Database settings' page
-        parent::clickContinueButton();
+		// 'Options page
+		parent::clickContinueButton();
 
-        // 'Name' page
-        parent::clickContinueButton();
-        parent::completeNamePage();
+		// 'Install' page
+		parent::clickContinueButton();
 
-        // 'Options page
-        parent::clickContinueButton();
-
-        // 'Install' page
-        parent::clickContinueButton();
-
-        // 'Complete' page
-        parent::completePageSuccessfull();
-        parent::restartInstallation();
-    }
+		// 'Complete' page
+		parent::completePageSuccessfull();
+		parent::restartInstallation();
+	}
 }

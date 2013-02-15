@@ -47,7 +47,9 @@ class Selenium {
 	public function start() {
 		$this->tester = new Testing_Selenium( $this->browser, self::$url, $this->host,
 			$this->port, $this->timeout );
-		if ( method_exists( $this->tester, "setVerbose" ) ) $this->tester->setVerbose( $this->verbose );
+		if ( method_exists( $this->tester, "setVerbose" ) ) {
+			$this->tester->setVerbose( $this->verbose );
+		}
 
 		$this->tester->start();
 		$this->isStarted = true;
@@ -94,7 +96,7 @@ class Selenium {
 		$this->logger = $logger;
 	}
 
-	public function getLogger( ) {
+	public function getLogger() {
 		return $this->logger;
 	}
 
@@ -122,22 +124,21 @@ class Selenium {
 		$this->user = $user;
 	}
 
-        // Function to get username
-        public function getUser() {
+	// Function to get username
+	public function getUser() {
 		return $this->user;
 	}
-        
+
 
 	public function setPass( $pass ) {
 		$this->pass = $pass;
 	}
 
-    //add function to get password    
-	public function getPass(  ) {
+	//add function to get password
+	public function getPass() {
 		return $this->pass;
 	}
-       
-	
+
 	public function setHost( $host ) {
 		$this->host = $host;
 	}
@@ -154,7 +155,7 @@ class Selenium {
 		$this->junitlogfile = $junitlogfile;
 	}
 
-	public function getJUnitLogfile( ) {
+	public function getJUnitLogfile() {
 		return $this->junitlogfile;
 	}
 
@@ -163,7 +164,7 @@ class Selenium {
 	}
 
 	public function setBrowser( $b ) {
-		if ($this->runagainstgrid) {
+		if ( $this->runagainstgrid ) {
 			$this->browser = $b;
 			return true;
 		}
@@ -184,7 +185,7 @@ class Selenium {
 	}
 
 	// Prevent external cloning
-	protected function __clone() { }
+	protected function __clone() {}
 	// Prevent external construction
 	// protected function __construct() {}
 }

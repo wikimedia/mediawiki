@@ -27,8 +27,7 @@
  *
  */
 
-
-require_once (__DIR__.'/'.'MediaWikiInstallationCommonFunction.php');
+require_once ( __DIR__ . '/' . 'MediaWikiInstallationCommonFunction.php' );
 
 /**
  * Test Case ID   : 14, 15, 16, 17 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -37,57 +36,53 @@ require_once (__DIR__.'/'.'MediaWikiInstallationCommonFunction.php');
  *                  User selects 'Copying' link.
  *                  User selects 'Upgrading' link.
  * Version        : MediaWiki 1.18alpha
-*/
-
+ */
 
 class MediaWikiRightFrameworkLinksTestCase extends MediaWikiInstallationCommonFunction {
+	function setUp() {
+		parent::setUp();
+	}
 
-    function setUp() {
-        parent::setUp();
-    }
+	public function testLinksAvailability() {
+		$this->open( "http://" . HOST_NAME . ":" . PORT . "/" . DIRECTORY_NAME . "/config/index.php" );
 
-    public function testLinksAvailability() {
+		// Verify 'Read me' link availability
+		$this->assertTrue( $this->isElementPresent( "link=Read me" ) );
 
-        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
+		// Verify 'Release notes' link availability
+		$this->assertTrue( $this->isElementPresent( "link=Release notes" ) );
 
-        // Verify 'Read me' link availability
-        $this->assertTrue($this->isElementPresent( "link=Read me" ));
+		//  Verify 'Copying' link availability
+		$this->assertTrue( $this->isElementPresent( "link=Copying" ) );
+	}
 
-        // Verify 'Release notes' link availability
-        $this->assertTrue($this->isElementPresent( "link=Release notes" ));
+	public function testPageNavigation() {
+		$this->open( "http://" . HOST_NAME . ":" . PORT . "/" . DIRECTORY_NAME . "/config/index.php" );
 
-        //  Verify 'Copying' link availability
-        $this->assertTrue($this->isElementPresent( "link=Copying" ));
-    }
+		// Navigate to the 'Read me' page
+		$this->click( "link=Read me" );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
+		$this->assertEquals( "Read me", $this->getText( LINK_DIV . "h2[1]" ) );
+		$this->assertTrue( $this->isElementPresent( "submit-back" ) );
+		parent::clickBackButton();
 
-    public function testPageNavigation() {
+		// Navigate to the 'Release notes' page
+		$this->click( "link=Release notes" );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
+		$this->assertEquals( "Release notes", $this->getText( LINK_DIV . "h2[1]" ) );
+		$this->assertTrue( $this->isElementPresent( "submit-back" ) );
+		parent::clickBackButton();
 
-        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
+		// Navigate to the 'Copying' page
+		$this->click( "link=Copying" );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
+		$this->assertEquals( "Copying", $this->getText( LINK_DIV . "h2[1]" ) );
+		$this->assertTrue( $this->isElementPresent( "submit-back" ) );
+		parent::clickBackButton();
 
-        // Navigate to the 'Read me' page
-        $this->click( "link=Read me" );
-        $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        $this->assertEquals( "Read me", $this->getText( LINK_DIV."h2[1]" ));
-        $this->assertTrue($this->isElementPresent( "submit-back" ));
-        parent::clickBackButton();
-
-        // Navigate to the 'Release notes' page
-        $this->click( "link=Release notes" );
-        $this->waitForPageToLoad( PAGE_LOAD_TIME);
-        $this->assertEquals( "Release notes", $this->getText( LINK_DIV."h2[1]" ));
-        $this->assertTrue( $this->isElementPresent( "submit-back" ));
-        parent::clickBackButton();
-
-        // Navigate to the 'Copying' page
-        $this->click( "link=Copying" );
-        $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        $this->assertEquals( "Copying", $this->getText( LINK_DIV."h2[1]" ));
-        $this->assertTrue($this->isElementPresent( "submit-back" ));
-        parent::clickBackButton();
-
-        // Navigate to the 'Upgrading' page
-        $this->click( "link=Upgrading" );
-        $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        $this->assertEquals( "Upgrading", $this->getText( LINK_DIV."h2[1]" ));
-    }
+		// Navigate to the 'Upgrading' page
+		$this->click( "link=Upgrading" );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
+		$this->assertEquals( "Upgrading", $this->getText( LINK_DIV . "h2[1]" ) );
+	}
 }

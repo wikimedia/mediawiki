@@ -28,88 +28,83 @@
  */
 
 
-
-require_once (__DIR__.'/'.'MediaWikiInstallationCommonFunction.php');
+require_once ( __DIR__ . '/' . 'MediaWikiInstallationCommonFunction.php' );
 
 /**
  * Test Case ID   : 11, 12 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Install mediawiki on a already installed Mediawiki.
  * Version        : MediaWiki 1.18alpha
-*/
+ */
 
 class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFunction {
+	function setUp() {
+		parent::setUp();
+	}
 
-    function setUp() {
-        parent::setUp();
-    }
+	// Verify restarting the installation
+	public function testSuccessRestartInstallation() {
+		$dbNameBeforeRestart = DB_NAME_PREFIX . "_db_before";
+		parent::navigateDatabaseSettingsPage( $dbNameBeforeRestart );
 
-    // Verify restarting the installation
-    public function testSuccessRestartInstallation() {
+		// Verify 'Restart installation' link available
+		$this->assertTrue( $this->isElementPresent( "link=Restart installation" ) );
 
-        $dbNameBeforeRestart  = DB_NAME_PREFIX."_db_before";
-        parent::navigateDatabaseSettingsPage( $dbNameBeforeRestart );
+		// Click 'Restart installation'
+		$this->click( "link=Restart installation " );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
 
-        // Verify 'Restart installation' link available
-        $this->assertTrue($this->isElementPresent( "link=Restart installation" ));
+		// 'Restart Installation' page displayed
+		$this->assertEquals( "Restart installation", $this->getText( LINK_DIV . "h2" ) );
 
-        // Click 'Restart installation'
-        $this->click( "link=Restart installation ");
-        $this->waitForPageToLoad( PAGE_LOAD_TIME );
+		// Restart warning message displayed
+		$this->assertTrue( $this->isTextPresent( "exact:Do you want to clear all saved data that you have entered and restart the installation process?" ) );
 
-        // 'Restart Installation' page displayed
-        $this->assertEquals( "Restart installation", $this->getText( LINK_DIV."h2"));
+		// Click on the 'Yes, restart' button
+		$this->click( "submit-restart" );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
 
-        // Restart warning message displayed
-        $this->assertTrue($this->isTextPresent( "exact:Do you want to clear all saved data that you have entered and restart the installation process?" ));
+		// Navigate to the initial installation page(Language).
+		$this->assertEquals( "Language", $this->getText( LINK_DIV . "h2" ) );
 
-        // Click on the 'Yes, restart' button
-        $this->click( "submit-restart" );
-        $this->waitForPageToLoad( PAGE_LOAD_TIME );
+		// 'Welcome to MediaWiki!' page
+		parent::clickContinueButton();
 
-        // Navigate to the initial installation page(Language).
-        $this->assertEquals(  "Language", $this->getText( LINK_DIV."h2" ));
+		// 'Connect to database' page
+		parent::clickContinueButton();
 
-        // 'Welcome to MediaWiki!' page
-        parent::clickContinueButton();
+		// saved data should be deleted
+		$dbNameAfterRestart = $this->getValue( "mysql_wgDBname" );
+		$this->assertNotEquals( $dbNameBeforeRestart, $dbNameAfterRestart );
+	}
 
-        // 'Connect to database' page
-        parent::clickContinueButton();
+	// Verify cancelling restart
+	public function testCancelRestartInstallation() {
+		$dbNameBeforeRestart = DB_NAME_PREFIX . "_cancel_restart";
 
-        // saved data should be deleted
-        $dbNameAfterRestart = $this->getValue("mysql_wgDBname");
-        $this->assertNotEquals($dbNameBeforeRestart, $dbNameAfterRestart);
-    }
+		parent::navigateDatabaseSettingsPage( $dbNameBeforeRestart );
+		// Verify 'Restart installation' link available
+		$this->assertTrue( $this->isElementPresent( "link=Restart installation" ) );
 
+		$this->click( "link=Restart installation" );
+		$this->waitForPageToLoad( PAGE_LOAD_TIME );
 
-    // Verify cancelling restart
-    public function testCancelRestartInstallation() {
+		// 'Restart Installation' page displayed
+		$this->assertEquals( "Restart installation", $this->getText( LINK_DIV . "h2" ) );
 
-        $dbNameBeforeRestart  = DB_NAME_PREFIX."_cancel_restart";
+		// Restart warning message displayed
+		$this->assertTrue( $this->isTextPresent( "Do you want to clear all saved data that you have entered and restart the installation process?" ) );
 
-        parent::navigateDatabaseSettingsPage( $dbNameBeforeRestart);
-        // Verify 'Restart installation' link available
-        $this->assertTrue($this->isElementPresent( "link=Restart installation" ));
+		// Click on the 'Back' button
+		parent::clickBackButton();
 
-        $this->click( "link=Restart installation" );
-        $this->waitForPageToLoad( PAGE_LOAD_TIME );
+		// Navigates to the previous page
+		$this->assertEquals( "Database settings", $this->getText( LINK_DIV . "h2" ) );
 
-        // 'Restart Installation' page displayed
-        $this->assertEquals( "Restart installation", $this->getText( LINK_DIV."h2" ));
+		// 'Connect to database' page
+		parent::clickBackButton();
 
-        // Restart warning message displayed
-        $this->assertTrue( $this->isTextPresent( "Do you want to clear all saved data that you have entered and restart the installation process?"));
-
-        // Click on the 'Back' button
-        parent::clickBackButton();
-
-        // Navigates to the previous page
-        $this->assertEquals( "Database settings", $this->getText( LINK_DIV."h2" ));
-
-        // 'Connect to database' page
-        parent::clickBackButton();
-
-        // Saved data remain on the page.
-        $dbNameAfterRestart = $this->getValue( "mysql_wgDBname" );
-        $this->assertEquals( $dbNameBeforeRestart, $dbNameAfterRestart );
-    }
+		// Saved data remain on the page.
+		$dbNameAfterRestart = $this->getValue( "mysql_wgDBname" );
+		$this->assertEquals( $dbNameBeforeRestart, $dbNameAfterRestart );
+	}
 }

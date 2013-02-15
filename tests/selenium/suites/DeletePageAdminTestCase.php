@@ -6,7 +6,7 @@
  * @file
  * @ingroup Testing
  * Copyright (C) 2010 Nadeesha Weerasinghe <nadeesha@calcey.com>
- * http://www.calcey.com/ 
+ * http://www.calcey.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,63 +27,60 @@
  *
  */
 
-
 class DeletePageAdminTestCase extends SeleniumTestCase {
+	// Verify adding a new page
+	public function testDeletePage() {
 
-    // Verify adding a new page
-    public function testDeletePage() {
+		$newPage = "new";
+		$displayName = "New";
 
-       
-        $newPage = "new";
-        $displayName = "New";
+		$this->open( $this->getUrl() . '/index.php?title=Main_Page' );
 
-        $this->open( $this->getUrl().'/index.php?title=Main_Page' );
+		$this->type( "searchInput", $newPage );
+		$this->click( "searchGoButton" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->click( SeleniumTestConstants::LINK_START . $displayName );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::TEXT_EDITOR, $newPage . " text" );
+		$this->click( SeleniumTestConstants::BUTTON_SAVE );
 
-        $this->type( "searchInput", $newPage );
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        $this->click( SeleniumTestConstants::LINK_START.$displayName );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        $this->type( SeleniumTestConstants::TEXT_EDITOR, $newPage." text" );
-        $this->click( SeleniumTestConstants::BUTTON_SAVE );
+		$this->open( $this->getUrl() .
+			'/index.php?title=Main_Page&action=edit' );
+		$this->click( SeleniumTestConstants::LINK_START . "Log out" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->click( SeleniumTestConstants::LINK_START . "Log in / create account" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->open( $this->getUrl() .
-                '/index.php?title=Main_Page&action=edit' );
-        $this->click( SeleniumTestConstants::LINK_START."Log out" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        $this->click( SeleniumTestConstants::LINK_START."Log in / create account" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( "wpName1", $this->selenium->getUser() );
+		$this->type( "wpPassword1", $this->selenium->getPass() );
+		$this->click( "wpLoginAttempt" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( "searchInput", "new" );
+		$this->click( "searchGoButton" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->type( "wpName1", $this->selenium->getUser() );
-        $this->type( "wpPassword1", $this->selenium->getPass() );
-        $this->click( "wpLoginAttempt" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        $this->type( "searchInput", "new" );
-        $this->click( "searchGoButton");
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify  'Delete' link displayed
+		$source = $this->gettext( SeleniumTestConstants::LINK_START . "Delete" );
+		$correct = strstr( $source, "Delete" );
+		$this->assertEquals( $correct, true );
 
-        // Verify  'Delete' link displayed
-        $source = $this->gettext( SeleniumTestConstants::LINK_START."Delete" );
-        $correct = strstr ( $source, "Delete" );
-        $this->assertEquals($correct, true );
+		$this->click( SeleniumTestConstants::LINK_START . "Delete" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->click( SeleniumTestConstants::LINK_START."Delete" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify 'Delete' button available
+		$this->assertTrue( $this->isElementPresent( "wpConfirmB" ) );
 
-        // Verify 'Delete' button available
-        $this->assertTrue($this->isElementPresent( "wpConfirmB" ));
+		$this->click( "wpConfirmB" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->click( "wpConfirmB" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		// Verify  'Action complete' text displayed
+		$source = $this->gettext( "firstHeading" );
+		$correct = strstr( $source, "Action complete" );
+		$this->assertEquals( $correct, true );
 
-        // Verify  'Action complete' text displayed
-        $source = $this->gettext( "firstHeading" );
-        $correct = strstr ( $source, "Action complete" );
-        $this->assertEquals( $correct, true );
-
-        // Verify  '<Page Name> has been deleted. See deletion log for a record of recent deletions.' text displayed
-        $source = $this->gettext( "//div[@id='bodyContent']/p[1]" );
-        $correct = strstr ( $source, "\"New\" has been deleted. See deletion log for a record of recent deletions." );
-        $this->assertEquals( $correct, true );
-    }
+		// Verify  '<Page Name> has been deleted. See deletion log for a record of recent deletions.' text displayed
+		$source = $this->gettext( "//div[@id='bodyContent']/p[1]" );
+		$correct = strstr( $source, "\"New\" has been deleted. See deletion log for a record of recent deletions." );
+		$this->assertEquals( $correct, true );
+	}
 }

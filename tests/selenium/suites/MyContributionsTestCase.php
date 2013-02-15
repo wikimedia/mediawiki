@@ -6,7 +6,7 @@
  * @file
  * @ingroup Testing
  * Copyright (C) 2010 Nadeesha Weerasinghe <nadeesha@calcey.com>
- * http://www.calcey.com/ 
+ * http://www.calcey.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,36 +30,34 @@
 require_once dirname( __DIR__ ) . '/SeleniumTestConstants.php';
 
 class MyContributionsTestCase extends SeleniumTestCase {
+	// Verify user contributions
+	public function testRecentChangesAvailability() {
+		$newPage = $this->createNewTestPage( "MyContributionsTest" );
 
-    // Verify user contributions
-    public function testRecentChangesAvailability() {
+		// Verify My contributions Link available
+		$this->assertTrue( $this->isElementPresent( "link=Contributions" ) );
 
-        $newPage = $this->createNewTestPage( "MyContributionsTest" );
-        
-        // Verify My contributions Link available
-        $this->assertTrue($this->isElementPresent( "link=Contributions" ));
 
-        
-        $this->click( "link=Contributions" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->click( "link=Contributions" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        // Verify recent page adding available on My Contributions list
-        $this->assertEquals( $newPage, $this->getText( "link=".$newPage ));
+		// Verify recent page adding available on My Contributions list
+		$this->assertEquals( $newPage, $this->getText( "link=" . $newPage ) );
 
-        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, $newPage );
-        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        
-        $this->click( SeleniumTestConstants::LINK_EDIT );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        $this->type( SeleniumTestConstants::TEXT_EDITOR, $newPage . " text changed" );
-        $this->click( SeleniumTestConstants::BUTTON_SAVE );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
-        $this->click( "link=Contributions" );
-        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, $newPage );
+		$this->click( SeleniumTestConstants::BUTTON_SEARCH );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        // Verify recent page changes available on My Contributions
-        $this->assertTrue( $this->isTextPresent( $newPage ) );
-    }
+		$this->click( SeleniumTestConstants::LINK_EDIT );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::TEXT_EDITOR, $newPage . " text changed" );
+		$this->click( SeleniumTestConstants::BUTTON_SAVE );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->click( "link=Contributions" );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+
+		// Verify recent page changes available on My Contributions
+		$this->assertTrue( $this->isTextPresent( $newPage ) );
+	}
 }
 
