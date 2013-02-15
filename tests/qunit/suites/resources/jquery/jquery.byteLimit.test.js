@@ -15,10 +15,12 @@
 	// Basic sendkey-implementation
 	function addChars( $input, charstr ) {
 		var c, len;
+
 		function x( $input, i ) {
 			// Add character to the value
 			return $input.val() + charstr.charAt( i );
 		}
+
 		for ( c = 0, len = charstr.length; c < len; c += 1 ) {
 			$input
 				.val( x( $input, c ) )
@@ -35,72 +37,72 @@
 	 * The limit should be less than 20 (the sample data's length)
 	 */
 	function byteLimitTest( options ) {
-		var opt = $.extend({
+		var opt = $.extend( {
 			description: '',
 			$input: null,
 			sample: '',
 			hasLimit: false,
 			expected: '',
 			limit: null
-		}, options);
+		}, options );
 
 		QUnit.asyncTest( opt.description, opt.hasLimit ? 3 : 2, function ( assert ) {
-		setTimeout( function () {
-			var rawVal, fn, effectiveVal;
+			setTimeout( function () {
+				var rawVal, fn, effectiveVal;
 
-			opt.$input.appendTo( '#qunit-fixture' );
+				opt.$input.appendTo( '#qunit-fixture' );
 
-			// Simulate pressing keys for each of the sample characters
-			addChars( opt.$input, opt.sample );
+				// Simulate pressing keys for each of the sample characters
+				addChars( opt.$input, opt.sample );
 
-			rawVal = opt.$input.val();
-			fn = opt.$input.data( 'byteLimit.callback' );
-			effectiveVal = fn ? fn( rawVal ) : rawVal;
+				rawVal = opt.$input.val();
+				fn = opt.$input.data( 'byteLimit.callback' );
+				effectiveVal = fn ? fn( rawVal ) : rawVal;
 
-			if ( opt.hasLimit ) {
-				assert.ltOrEq(
-					$.byteLength( effectiveVal ),
-					opt.limit,
-					'Prevent keypresses after byteLimit was reached, length never exceeded the limit'
-				);
-				assert.equal(
-					$.byteLength( rawVal ),
-					$.byteLength( opt.expected ),
-					'Not preventing keypresses too early, length has reached the expected length'
-				);
-				assert.equal( rawVal, opt.expected, 'New value matches the expected string' );
+				if ( opt.hasLimit ) {
+					assert.ltOrEq(
+						$.byteLength( effectiveVal ),
+						opt.limit,
+						'Prevent keypresses after byteLimit was reached, length never exceeded the limit'
+					);
+					assert.equal(
+						$.byteLength( rawVal ),
+						$.byteLength( opt.expected ),
+						'Not preventing keypresses too early, length has reached the expected length'
+					);
+					assert.equal( rawVal, opt.expected, 'New value matches the expected string' );
 
-			} else {
-				assert.equal(
-					$.byteLength( effectiveVal ),
-					$.byteLength( opt.expected ),
-					'Unlimited scenarios are not affected, expected length reached'
-				);
-				assert.equal( rawVal, opt.expected, 'New value matches the expected string' );
-			}
-			QUnit.start();
-		}, 10 );
+				} else {
+					assert.equal(
+						$.byteLength( effectiveVal ),
+						$.byteLength( opt.expected ),
+						'Unlimited scenarios are not affected, expected length reached'
+					);
+					assert.equal( rawVal, opt.expected, 'New value matches the expected string' );
+				}
+				QUnit.start();
+			}, 10 );
 		} );
 	}
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Plain text input',
 		$input: $( '<input type="text"/>' ),
 		sample: simpleSample,
 		hasLimit: false,
 		expected: simpleSample
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Plain text input. Calling byteLimit with no parameters and no maxlength attribute (bug 36310)',
 		$input: $( '<input type="text"/>' )
 			.byteLimit(),
 		sample: simpleSample,
 		hasLimit: false,
 		expected: simpleSample
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Limit using the maxlength attribute',
 		$input: $( '<input type="text"/>' )
 			.attr( 'maxlength', '10' )
@@ -109,9 +111,9 @@
 		hasLimit: true,
 		limit: 10,
 		expected: '1234567890'
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Limit using a custom value',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 10 ),
@@ -119,9 +121,9 @@
 		hasLimit: true,
 		limit: 10,
 		expected: '1234567890'
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Limit using a custom value, overriding maxlength attribute',
 		$input: $( '<input type="text"/>' )
 			.attr( 'maxlength', '10' )
@@ -130,9 +132,9 @@
 		hasLimit: true,
 		limit: 15,
 		expected: '123456789012345'
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Limit using a custom value (multibyte)',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 14 ),
@@ -140,9 +142,9 @@
 		hasLimit: true,
 		limit: 14,
 		expected: '1234567890' + U_20AC + '1'
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Limit using a custom value (multibyte) overlapping a byte',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 12 ),
@@ -150,9 +152,9 @@
 		hasLimit: true,
 		limit: 12,
 		expected: '1234567890' + '12'
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Pass the limit and a callback as input filter',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 6, function ( val ) {
@@ -168,9 +170,9 @@
 		hasLimit: true,
 		limit: 6, // 'Sample' length
 		expected: 'User:Sample'
-	});
+	} );
 
-	byteLimitTest({
+	byteLimitTest( {
 		description: 'Limit using the maxlength attribute and pass a callback as input filter',
 		$input: $( '<input type="text"/>' )
 			.attr( 'maxlength', '6' )
@@ -187,7 +189,7 @@
 		hasLimit: true,
 		limit: 6, // 'Sample' length
 		expected: 'User:Sample'
-	});
+	} );
 
 	QUnit.test( 'Confirm properties and attributes set', 4, function ( assert ) {
 		var $el, $elA, $elB;
@@ -230,7 +232,7 @@
 		assert.strictEqual( $el.length, 2, 'Verify that there are no other elements clashing with this test suite' );
 
 		$el.byteLimit();
-	});
+	} );
 
 	QUnit.test( 'Trim from insertion when limit exceeded', 2, function ( assert ) {
 		var $el;
@@ -252,6 +254,5 @@
 			.val( 'azbc' ).trigger( 'change' );
 
 		assert.strictEqual( $el.val(), 'abc', 'Trim from the insertion point (at 1), not the end' );
-	});
-
+	} );
 }( jQuery, mediaWiki ) );
