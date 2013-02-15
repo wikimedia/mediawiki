@@ -31,14 +31,14 @@
 // 'MySQL' database type help field hint
 define( 'MYSQL_DATABASE_HOST_HELP', "If your database server is on different server, enter the host name or IP address here. \nIf you are using shared web hosting, your hosting provider should give you the correct host name in their documentation. \nIf you are installing on a Windows server and using MySQL, using \"localhost\" may not work for the server name. If it does not, try \"127.0.0.1\" for the local IP address." );
 define( 'MYSQL_DATABASE_NAME_HELP', "Choose a name that identifies your wiki. It should not contain spaces or hyphens. \nIf you are using shared web hosting, your hosting provider will either give you a specific database name to use or let you create databases via a control panel." );
-define( 'MYSQL_DATABASE_TABLE_PREFIX_HELP', "Choose a name that identifies your wiki. It should not contain spaces or hyphens.");
+define( 'MYSQL_DATABASE_TABLE_PREFIX_HELP', "Choose a name that identifies your wiki. It should not contain spaces or hyphens." );
 define( 'MYSQL_DATBASE_USERNAME_HELP', "Enter the username that will be used to connect to the database during the installation process. This is not the username of the MediaWiki account; this is the username for your database." );
 define( 'MYSQL_DATABASE_PASSWORD_HELP', "Enter the password that will be used to connect to the database during the installation process. This is not the password for the MediaWiki account; this is the password for your database." );
 
 
 // 'SQLite' database type help field hint
 define( 'SQLITE_DATA_DIRECTORY_HELP', "SQLite stores all data in a single file. \nThe directory you provide must be writable by the webserver during installation. \nIt should not be accessible via the web, this is why we're not putting it where your PHP files are. \nThe installer will write a .htaccess file along with it, but if that fails someone can gain access to your raw database. That includes raw user data (e-mail addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki. \nConsider putting the database somewhere else altogether, for example in /var/lib/mediawiki/yourwiki." );
-define( 'SQLITE_DATABASE_NAME_HELP', "Choose a name that identifies your wiki. Do not use spaces or hyphens. This will be used for the SQLite data file name.");
+define( 'SQLITE_DATABASE_NAME_HELP', "Choose a name that identifies your wiki. Do not use spaces or hyphens. This will be used for the SQLite data file name." );
 
 
 // 'Database settings' page hel0p field hint
@@ -47,7 +47,7 @@ define( 'DATABASE_CHARACTER_SET_HELP', "In binary mode, MediaWiki stores UTF-8 t
 
 
 // 'Name' page help field hint
-define( 'NAME_OF_WIKI_HELP', "This will appear in the title bar of the browser and in various other places.");
+define( 'NAME_OF_WIKI_HELP', "This will appear in the title bar of the browser and in various other places." );
 define( 'PROJECT_NAMESPACE_HELP', "Following Wikipedia's example, many wikis keep their policy pages separate from their content pages, in a \"project namespace\". All page titles in this namespace start with a certain prefix, which you can specify here. Traditionally, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as \"#\" or \":\"." );
 define( 'USER_NAME_HELP', "Enter your preferred username here, for example \"Joe Bloggs\". This is the name you will use to log in to the wiki." );
 define( 'EMAIL_ADDRESS_HELP', "Enter an e-mail address here to allow you to receive e-mail from other users on the wiki, reset your password, and be notified of changes to pages on your watchlist." );

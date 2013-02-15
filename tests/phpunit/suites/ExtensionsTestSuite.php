@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * This test suite runs unit tests registered by extensions.
  * See http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList for details of how to register your tests.

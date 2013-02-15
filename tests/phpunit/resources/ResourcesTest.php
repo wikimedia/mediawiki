@@ -62,7 +62,7 @@ class ResourcesTest extends MediaWikiTestCase {
 
 		foreach ( $rl->getModuleNames() as $moduleName ) {
 			$module = $rl->getModule( $moduleName );
-			if ( ! $module instanceof ResourceLoaderFileModule ) {
+			if ( !$module instanceof ResourceLoaderFileModule ) {
 				continue;
 			}
 

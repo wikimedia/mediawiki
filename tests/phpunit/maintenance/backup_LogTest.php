@@ -28,18 +28,18 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	 * @return int id of the added log entry
 	 */
 	private function addLogEntry( $type, $subtype, User $user, $ns, $title,
-		$comment = null, $parameters = null ) {
-
-                $logEntry = new ManualLogEntry( $type, $subtype );
+		$comment = null, $parameters = null
+	) {
+		$logEntry = new ManualLogEntry( $type, $subtype );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( Title::newFromText( $title, $ns ) );
-                if ( $comment !== null ) {
+		if ( $comment !== null ) {
 			$logEntry->setComment( $comment );
 		}
-                if ( $parameters !== null ) {
+		if ( $parameters !== null ) {
 			$logEntry->setParameters( $parameters );
 		}
-                return $logEntry->insert();
+		return $logEntry->insert();
 	}
 
 	function addDBData() {
@@ -73,7 +73,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 			$this->logId3 = $this->addLogEntry( 'move', 'delete',
 				$user2, NS_MAIN, "PageA", "SomeOtherComment",
-				array( 'key1' => 1,  3 => 'value3' ) );
+				array( 'key1' => 1, 3 => 'value3' ) );
 			$this->assertGreaterThan( 0, $this->logId3 );
 
 		} catch ( Exception $e ) {
@@ -101,7 +101,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	 * @param $parameters array: (optional) unserialized data accompanying the log entry
 	 */
 	private function assertLogItem( $id, $user_name, $user_id, $comment, $type,
-		$subtype, $title, $parameters = array() ) {
+		$subtype, $title, $parameters = array()
+	) {
 
 		$this->assertNodeStart( "logitem" );
 		$this->skipWhitespace();
@@ -134,12 +135,12 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$this->skipWhitespace();
 	}
 
-	function testPlain () {
+	function testPlain() {
 		global $wgContLang;
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array ( "--output=file:" . $fname ) );
+		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->reporting = false;
@@ -176,8 +177,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array ( "--output=gzip:" . $fname,
-				"--reporting=2" ) );
+		$dumper = new BackupDumper( array( "--output=gzip:" . $fname,
+			"--reporting=2" ) );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->setDb( $this->db );

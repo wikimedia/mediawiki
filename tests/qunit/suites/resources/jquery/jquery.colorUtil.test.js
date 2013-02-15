@@ -24,7 +24,7 @@
 		assert.deepEqual( $.colorUtil.getRGB( 'lightGreen' ), [144, 238, 144], 'Color names (lightGreen)' );
 		assert.deepEqual( $.colorUtil.getRGB( 'transparent' ), [255, 255, 255], 'Color names (transparent)' );
 		assert.strictEqual( $.colorUtil.getRGB( 'mediaWiki' ), undefined, 'Inexisting color name' );
-	});
+	} );
 
 	QUnit.test( 'rgbToHsl', 1, function ( assert ) {
 		var hsl, ret;
@@ -34,22 +34,23 @@
 		function dualDecimals( a ) {
 			return Math.round( a * 100 ) / 100;
 		}
+
 		// Re-create the rgbToHsl return array items, limited to two decimals.
 		hsl = $.colorUtil.rgbToHsl( 144, 238, 144 );
 		ret = [ dualDecimals( hsl[0] ), dualDecimals( hsl[1] ), dualDecimals( hsl[2] ) ];
 
 		assert.deepEqual( ret, [0.33, 0.73, 0.75], 'rgb(144, 238, 144): hsl(0.33, 0.73, 0.75)' );
-	});
+	} );
 
 	QUnit.test( 'hslToRgb', 1, function ( assert ) {
 		var rgb, ret;
 		rgb = $.colorUtil.hslToRgb( 0.3, 0.7, 0.8 );
 
 		// Re-create the hslToRgb return array items, rounded to whole numbers.
-		ret = [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ];
+		ret = [ Math.round( rgb[0] ), Math.round( rgb[1] ), Math.round( rgb[2] ) ];
 
-		assert.deepEqual( ret ,[183, 240, 168], 'hsl(0.3, 0.7, 0.8): rgb(183, 240, 168)' );
-	});
+		assert.deepEqual( ret, [183, 240, 168], 'hsl(0.3, 0.7, 0.8): rgb(183, 240, 168)' );
+	} );
 
 	QUnit.test( 'getColorBrightness', 2, function ( assert ) {
 		var a, b;
@@ -58,5 +59,5 @@
 
 		b = $.colorUtil.getColorBrightness( 'rgb(200,50,50)', -0.2 );
 		assert.equal( b, 'rgb(118,29,29)', 'Start with rgb string "rgb(200,50,50)", darken 20%' );
-	});
+	} );
 }( jQuery ) );

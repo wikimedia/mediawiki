@@ -47,9 +47,9 @@ $wait = isset( $params['wait'] ) ? (int)$params['wait'] : 0; // seconds
 
 sleep( $wait );
 
-$css =  "
+$css = "
 /**
- * Generated " . gmdate( 'r' ) .  ".
+ * Generated " . gmdate( 'r' ) . ".
  * Waited {$wait}s.
  */
 

@@ -10,14 +10,15 @@ class SeleniumConfig {
 	 * See sample config file in selenium_settings.ini.sample
 	 *
 	 */
-
-	public static function getSeleniumSettings ( &$seleniumSettings,
-			&$seleniumBrowsers,
-			&$seleniumTestSuites,
-			$seleniumConfigFile = null ) {
+	public static function getSeleniumSettings( &$seleniumSettings,
+												&$seleniumBrowsers,
+												&$seleniumTestSuites,
+												$seleniumConfigFile = null ) {
 		if ( strlen( $seleniumConfigFile ) == 0 ) {
 			global $wgSeleniumConfigFile;
-			if ( isset( $wgSeleniumConfigFile ) ) $seleniumConfigFile =  $wgSeleniumConfigFile ;
+			if ( isset( $wgSeleniumConfigFile ) ) {
+				$seleniumConfigFile = $wgSeleniumConfigFile;
+			}
 		}
 
 		if ( strlen( $seleniumConfigFile ) == 0 || !file_exists( $seleniumConfigFile ) ) {
@@ -29,7 +30,7 @@ class SeleniumConfig {
 			throw new MWException( "Error parsing " . $seleniumConfigFile . "\n" );
 		}
 
-		if ( array_key_exists( 'SeleniumSettings', $configArray)  ) {
+		if ( array_key_exists( 'SeleniumSettings', $configArray ) ) {
 			wfSuppressWarnings();
 			//we may need to change how this is set. But for now leave it in the ini file
 			$seleniumBrowsers = $configArray['SeleniumSettings']['browsers'];
@@ -48,7 +49,7 @@ class SeleniumConfig {
 
 			wfRestoreWarnings();
 		}
-		if ( array_key_exists( 'SeleniumTests', $configArray)  ) {
+		if ( array_key_exists( 'SeleniumTests', $configArray ) ) {
 			wfSuppressWarnings();
 			$seleniumTestSuites = $configArray['SeleniumTests']['testSuite'];
 			wfRestoreWarnings();

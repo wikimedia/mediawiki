@@ -14,20 +14,17 @@ class SeleniumTestListener implements PHPUnit_Framework_TestListener {
 		$this->tests_failed++;
 	}
 
-	public function addFailure( PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time )
-	{
+	public function addFailure( PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time ) {
 		$this->logger->write( 'Failed: ' . $e->getMessage() );
 		$this->tests_failed++;
 	}
 
-	public function addIncompleteTest( PHPUnit_Framework_Test $test, Exception $e, $time )
-	{
+	public function addIncompleteTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
 		$this->logger->write( 'Incomplete.' );
 		$this->tests_failed++;
 	}
 
-	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time )
-	{
+	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
 		$this->logger->write( 'Skipped.' );
 		$this->tests_failed++;
 	}
@@ -53,7 +50,7 @@ class SeleniumTestListener implements PHPUnit_Framework_TestListener {
 	}
 
 	public function endTestSuite( PHPUnit_Framework_TestSuite $suite ) {
-		$this->logger->write('Testsuite ' . $suite->getName() . ' ended.' );
+		$this->logger->write( 'Testsuite ' . $suite->getName() . ' ended.' );
 		if ( $this->tests_ok > 0 || $this->tests_failed > 0 ) {
 			$this->logger->write( ' OK: ' . $this->tests_ok . ' Failed: ' . $this->tests_failed );
 		}

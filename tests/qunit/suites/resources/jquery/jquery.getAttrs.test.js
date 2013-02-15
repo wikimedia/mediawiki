@@ -2,7 +2,7 @@
 	QUnit.module( 'jquery.getAttrs', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Check', 1, function ( assert ) {
-		var	attrs = {
+		var attrs = {
 				foo: 'bar',
 				'class': 'lorem'
 			},

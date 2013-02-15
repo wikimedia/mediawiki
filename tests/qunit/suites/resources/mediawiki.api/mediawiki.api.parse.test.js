@@ -23,6 +23,6 @@
 				assert.equal( $res.find( 'b' ).text(), 'Hello world', 'Bold tag wraps the entire, same, text' );
 
 				QUnit.start();
-			});
-	});
+			} );
+	} );
 }( mediaWiki, jQuery ) );

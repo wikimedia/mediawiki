@@ -33,9 +33,9 @@
  * with current value of the 'DB_NAME_PREFIX'.
  * If you wish to run the suite more than one time, you need to change
  * the value of the 'DB_NAME_PREFIX'.
-*/
-define('DB_NAME_PREFIX', "database_name" );
-define('DIRECTORY_NAME', "mediawiki" );
+ */
+define( 'DB_NAME_PREFIX', "database_name" );
+define( 'DIRECTORY_NAME', "mediawiki" );
 define( 'PORT', "8080" );
 define( 'HOST_NAME', "localhost" );
 
@@ -45,5 +45,5 @@ define( 'HOST_NAME', "localhost" );
  *  IE :  *iexplore
  *  Google chrome : *googlechrome
  *  Opera :  *opera
-*/
+ */
 define ( 'TEST_BROWSER', "*firefox" );

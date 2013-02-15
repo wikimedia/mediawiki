@@ -336,7 +336,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	 */
 	protected function deleteFile( $name ) {
 		$t = Title::newFromText( $name, NS_FILE );
-		$this->assertTrue($t->exists(), "File '$name' exists");
+		$this->assertTrue( $t->exists(), "File '$name' exists" );
 
 		if ( $t->exists() ) {
 			$file = wfFindFile( $name, array( 'ignoreRedirect' => true ) );
@@ -347,6 +347,6 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 		$t = Title::newFromText( $name, NS_FILE );
 
-		$this->assertFalse($t->exists(), "File '$name' was deleted");
+		$this->assertFalse( $t->exists(), "File '$name' was deleted" );
 	}
- }
+}

@@ -265,12 +265,12 @@ class BaseDumpTest extends MediaWikiTestCase {
 		foreach ( $requested_pages as $i ) {
 			$this->assertTrue( array_key_exists( $i, $available_pages ),
 				"Check for availability of requested page " . $i );
-			$content .= $available_pages[ $i ];
+			$content .= $available_pages[$i];
 		}
 		$content .= $tail;
 
 		$this->assertEquals( strlen( $content ), file_put_contents(
-				$fname, $content ), "Length of prepared prefetch" );
+			$fname, $content ), "Length of prepared prefetch" );
 
 		return $fname;
 	}

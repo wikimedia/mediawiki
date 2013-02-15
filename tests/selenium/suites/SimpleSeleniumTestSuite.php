@@ -1,6 +1,6 @@
 <?php
 /**
- * Sample test suite. 
+ * Sample test suite.
  * Two ways to configure MW for these tests
  * 1) If you are running multiple test suites, add the following in LocalSettings.php
  * require_once("tests/selenium/SimpleSeleniumConfig.php");
@@ -9,12 +9,12 @@
  * 2) Add the following to your Localsettings.php
  * $wgDefaultSkin = 'chick';
  */
-class SimpleSeleniumTestSuite extends SeleniumTestSuite
-{
+class SimpleSeleniumTestSuite extends SeleniumTestSuite {
 	public function setUp() {
 		$this->setLoginBeforeTests( false );
 		parent::setUp();
-	} 
+	}
+
 	public function addTests() {
 		$testFiles = array(
 			'selenium/suites/SimpleSeleniumTestCase.php'

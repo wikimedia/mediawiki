@@ -2,7 +2,7 @@
 	QUnit.module( 'jquery.byteLength', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Simple text', 5, function ( assert ) {
-		var	azLc = 'abcdefghijklmnopqrstuvwxyz',
+		var azLc = 'abcdefghijklmnopqrstuvwxyz',
 			azUc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			num = '0123456789',
 			x = '*',
