@@ -10,12 +10,12 @@ class LanguageHrTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
-		$forms =  array( 'one', 'few', 'many', 'other' );
+		$forms = array( 'one', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {
-		return array (
+		return array(
 			array( 'many', 0 ),
 			array( 'one', 1 ),
 			array( 'few', 2 ),

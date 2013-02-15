@@ -15,33 +15,33 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 	}
 
 	function providePluralAllForms() {
-		return array (
-			array( 'many',  0 ),
-			array( 'one',   1 ),
-			array( 'few',   2 ),
+		return array(
+			array( 'many', 0 ),
+			array( 'one', 1 ),
+			array( 'few', 2 ),
 			array( 'other', 3 ),
-			array( 'many',  10 ),
-			array( 'many',  11 ),
-			array( 'many',  12 ),
-			array( 'many',  19 ),
+			array( 'many', 10 ),
+			array( 'many', 11 ),
+			array( 'many', 12 ),
+			array( 'many', 19 ),
 			array( 'other', 20 ),
-			array( 'many',  100 ),
-			array( 'one',   101 ),
-			array( 'many',  111 ),
-			array( 'many',  112 ),
+			array( 'many', 100 ),
+			array( 'one', 101 ),
+			array( 'many', 111 ),
+			array( 'many', 112 ),
 		);
 	}
 
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
-		$forms =  array( 'one', 'other' );
+		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralTwoForms() {
-		return array (
+		return array(
 			array( 'other', 0 ),
-			array( 'one',   1 ),
+			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 3 ),
 			array( 'other', 10 ),
@@ -50,7 +50,7 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 			array( 'other', 19 ),
 			array( 'other', 20 ),
 			array( 'other', 100 ),
-			array( 'one',   101 ),
+			array( 'one', 101 ),
 			array( 'other', 111 ),
 			array( 'other', 112 ),
 		);

@@ -15,9 +15,9 @@ class LanguageShTest extends LanguageClassesTestCase {
 	}
 
 	function providerPlural() {
-		return array (
+		return array(
 			array( 'many', 0 ),
-			array( 'one',  1 ),
+			array( 'one', 1 ),
 			array( 'many', 2 ),
 		);
 	}

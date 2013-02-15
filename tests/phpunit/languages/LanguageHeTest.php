@@ -15,7 +15,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	}
 
 	function providerPluralDual() {
-		return array (
+		return array(
 			array( 'other', 0 ), // Zero -> plural
 			array( 'one', 1 ), // Singular
 			array( 'two', 2 ), // Dual
@@ -30,7 +30,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	}
 
 	function providerPlural() {
-		return array (
+		return array(
 			array( 'other', 0 ), // Zero -> plural
 			array( 'one', 1 ), // Singular
 			array( 'other', 2 ), // Plural, no dual provided
@@ -46,7 +46,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	// The comments in the beginning of the line help avoid RTL problems
 	// with text editors.
 	function providerGrammar() {
-		return array (
+		return array(
 			array(
 				/* result */ 'וויקיפדיה',
 				/* word   */ 'ויקיפדיה',

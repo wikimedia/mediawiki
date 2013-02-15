@@ -16,7 +16,7 @@ class LanguageSkTest extends LanguageClassesTestCase {
 	}
 
 	function providerPlural() {
-		return array (
+		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'few', 2 ),

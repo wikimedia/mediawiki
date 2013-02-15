@@ -16,19 +16,19 @@ class LanguageSlTest extends LanguageClassesTestCase {
 	}
 
 	function providerPlural() {
-		return array (
-			array( 'zero',  0 ),
-			array( 'one',   1 ),
-			array( 'two',   2 ),
-			array( 'few',   3 ),
-			array( 'few',   4 ),
+		return array(
+			array( 'zero', 0 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
+			array( 'few', 3 ),
+			array( 'few', 4 ),
 			array( 'other', 5 ),
 			array( 'other', 99 ),
 			array( 'other', 100 ),
-			array( 'one',   101 ),
-			array( 'two',   102 ),
-			array( 'few',   103 ),
-			array( 'one',   201 ),
+			array( 'one', 101 ),
+			array( 'two', 102 ),
+			array( 'few', 103 ),
+			array( 'one', 201 ),
 		);
 	}
 }

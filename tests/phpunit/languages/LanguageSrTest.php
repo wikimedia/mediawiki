@@ -19,7 +19,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 
 	##### TESTS #######################################################
 
-	function testEasyConversions( ) {
+	function testEasyConversions() {
 		$this->assertCyrillic(
 			'шђчћжШЂЧЋЖ',
 			'Cyrillic guessing characters'
@@ -120,7 +120,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	function providePluralFourForms() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'many', 11 ),
 			array( 'one', 91 ),
@@ -134,13 +134,15 @@ class LanguageSrTest extends LanguageClassesTestCase {
 			array( 'many', 120 ),
 		);
 	}
+
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'several' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
+
 	function providePluralTwoForms() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'several', 11 ),
 			array( 'several', 91 ),
@@ -162,6 +164,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 			$msg
 		);
 	}
+
 	/**
 	 * Wrapper to verify a text is different once converted to a variant.
 	 * @param $text string Text to convert
@@ -185,6 +188,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		$this->assertUnConverted( $text, 'sr-ec', $msg );
 		$this->assertConverted( $text, 'sr-el', $msg );
 	}
+
 	/**
 	 * Verifiy the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
@@ -201,12 +205,14 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		return $this->getLang()
 			->mConverter
 			->convertTo(
-				$text, $variant
-			);
+			$text, $variant
+		);
 	}
+
 	function convertToCyrillic( $text ) {
 		return $this->convertTo( $text, 'sr-ec' );
 	}
+
 	function convertToLatin( $text ) {
 		return $this->convertTo( $text, 'sr-el' );
 	}

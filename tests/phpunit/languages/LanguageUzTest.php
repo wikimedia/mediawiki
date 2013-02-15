@@ -64,6 +64,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 			$msg
 		);
 	}
+
 	/**
 	 * Wrapper to verify a text is different once converted to a variant.
 	 * @param $text string Text to convert
@@ -87,6 +88,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 		$this->assertUnConverted( $text, 'uz-cyrl', $msg );
 		$this->assertConverted( $text, 'uz-latn', $msg );
 	}
+
 	/**
 	 * Verifiy the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
@@ -102,9 +104,11 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	function convertTo( $text, $variant ) {
 		return $this->getLang()->mConverter->convertTo( $text, $variant );
 	}
+
 	function convertToCyrillic( $text ) {
 		return $this->convertTo( $text, 'uz-cyrl' );
 	}
+
 	function convertToLatin( $text ) {
 		return $this->convertTo( $text, 'uz-latn' );
 	}
