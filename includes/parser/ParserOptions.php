@@ -215,44 +215,228 @@ class ParserOptions {
 	 */
 	protected $onAccessCallback = null;
 
-	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
-	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
-	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
-	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
-	function getEditSection()                   { return $this->mEditSection; }
-	function getNumberHeadings()                { $this->optionUsed( 'numberheadings' );
-												  return $this->mNumberHeadings; }
-	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
-	function getTidy()                          { return $this->mTidy; }
-	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
-	function getTargetLanguage()                { return $this->mTargetLanguage; }
-	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
-	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
-	function getMaxGeneratedPPNodeCount()       { return $this->mMaxGeneratedPPNodeCount; }
-	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
-	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
-	/* @since 1.20 */
-	function getExpensiveParserFunctionLimit()  { return $this->mExpensiveParserFunctionLimit; }
-	function getRemoveComments()                { return $this->mRemoveComments; }
-	function getTemplateCallback()              { return $this->mTemplateCallback; }
-	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
-	function getCleanSignatures()               { return $this->mCleanSignatures; }
-	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
-	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
-	function getMath()                          { $this->optionUsed( 'math' );
-												  return $this->mMath; }
-	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
-												  return $this->mThumbSize; }
-	function getStubThreshold()                 { $this->optionUsed( 'stubthreshold' );
-												  return $this->mStubThreshold; }
+	/**
+	 * @return
+	 */
+	function getInterwikiMagic() {
+		return $this->mInterwikiMagic;
+	}
 
-	function getIsPreview()                     { return $this->mIsPreview; }
-	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { $this->optionUsed( 'printable' );
-												  return $this->mIsPrintable; }
-	function getUser()                          { return $this->mUser; }
-	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
+	/**
+	 * @return
+	 */
+	function getAllowExternalImages() {
+		return $this->mAllowExternalImages;
+	}
+
+	/**
+	 * @return
+	 */
+	function getAllowExternalImagesFrom() {
+		return $this->mAllowExternalImagesFrom;
+	}
+
+	/**
+	 * @return
+	 */
+	function getEnableImageWhitelist() {
+		return $this->mEnableImageWhitelist;
+	}
+
+	/**
+	 * @return
+	 */
+	function getEditSection() {
+		return $this->mEditSection;
+	}
+
+	/**
+	 * @return
+	 */
+	function getNumberHeadings() {
+		$this->optionUsed( 'numberheadings' );
+		return $this->mNumberHeadings;
+	}
+
+	/**
+	 * @return
+	 */
+	function getAllowSpecialInclusion() {
+		return $this->mAllowSpecialInclusion;
+	}
+
+	/**
+	 * @return
+	 */
+	function getTidy() {
+		return $this->mTidy;
+	}
+
+	/**
+	 * @return
+	 */
+	function getInterfaceMessage() {
+		return $this->mInterfaceMessage;
+	}
+
+	/**
+	 * @return
+	 */
+	function getTargetLanguage() {
+		return $this->mTargetLanguage;
+	}
+
+	/**
+	 * @return
+	 */
+	function getMaxIncludeSize() {
+		return $this->mMaxIncludeSize;
+	}
+
+	/**
+	 * @return
+	 */
+	function getMaxPPNodeCount() {
+		return $this->mMaxPPNodeCount;
+	}
+
+	/**
+	 * @return
+	 */
+	function getMaxGeneratedPPNodeCount() {
+		return $this->mMaxGeneratedPPNodeCount;
+	}
+
+	/**
+	 * @return
+	 */
+	function getMaxPPExpandDepth() {
+		return $this->mMaxPPExpandDepth;
+	}
+
+	/**
+	 * @return
+	 */
+	function getMaxTemplateDepth() {
+		return $this->mMaxTemplateDepth;
+	}
+
+	/**
+	 * @since 1.20
+	 * @return
+	 */
+	function getExpensiveParserFunctionLimit() {
+		return $this->mExpensiveParserFunctionLimit;
+	}
+
+	/**
+	 * @return
+	 */
+	function getRemoveComments() {
+		return $this->mRemoveComments;
+	}
+
+	/**
+	 * @return
+	 */
+	function getTemplateCallback() {
+		return $this->mTemplateCallback;
+	}
+
+	/**
+	 * @return
+	 */
+	function getEnableLimitReport() {
+		return $this->mEnableLimitReport;
+	}
+
+	/**
+	 * @return
+	 */
+	function getCleanSignatures() {
+		return $this->mCleanSignatures;
+	}
+
+	/**
+	 * @return
+	 */
+	function getExternalLinkTarget() {
+		return $this->mExternalLinkTarget;
+	}
+
+	/**
+	 * @return
+	 */
+	function getDisableContentConversion() {
+		return $this->mDisableContentConversion;
+	}
+
+	/**
+	 * @return
+	 */
+	function getDisableTitleConversion() {
+		return $this->mDisableTitleConversion;
+	}
+
+	/**
+	 * @return
+	 */
+	function getMath() {
+		$this->optionUsed( 'math' );
+		return $this->mMath;
+	}
+
+	/**
+	 * @return
+	 */
+	function getThumbSize() {
+		$this->optionUsed( 'thumbsize' );
+		return $this->mThumbSize;
+	}
+
+	/**
+	 * @return
+	 */
+	function getStubThreshold() {
+		$this->optionUsed( 'stubthreshold' );
+		return $this->mStubThreshold;
+	}
+
+	/**
+	 * @return
+	 */
+	function getIsPreview() {
+		return $this->mIsPreview;
+	}
+
+	/**
+	 * @return
+	 */
+	function getIsSectionPreview() {
+		return $this->mIsSectionPreview;
+	}
+
+	/**
+	 * @return
+	 */
+	function getIsPrintable() {
+		$this->optionUsed( 'printable' );
+		return $this->mIsPrintable;
+	}
+
+	/**
+	 * @return
+	 */
+	function getUser() {
+		return $this->mUser;
+	}
+
+	/**
+	 * @return
+	 */
+	function getPreSaveTransform() {
+		return $this->mPreSaveTransform;
+	}
 
 	/**
 	 * @param $title Title
@@ -264,6 +448,10 @@ class ParserOptions {
 		return new DummyLinker;
 	}
 
+
+	/**
+	 * @return
+	 */
 	function getDateFormat() {
 		$this->optionUsed( 'dateformat' );
 		if ( !isset( $this->mDateFormat ) ) {
@@ -272,6 +460,10 @@ class ParserOptions {
 		return $this->mDateFormat;
 	}
 
+
+	/**
+	 * @return
+	 */
 	function getTimestamp() {
 		if ( !isset( $this->mTimestamp ) ) {
 			$this->mTimestamp = wfTimestampNow();
@@ -302,51 +494,278 @@ class ParserOptions {
 		return $this->getUserLangObj()->getCode();
 	}
 
-	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
-	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
-	function setAllowExternalImagesFrom( $x )   { return wfSetVar( $this->mAllowExternalImagesFrom, $x ); }
-	function setEnableImageWhitelist( $x )      { return wfSetVar( $this->mEnableImageWhitelist, $x ); }
-	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
-	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
-	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
-	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
-	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x ); }
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setInterwikiMagic( $x ) {
+		return wfSetVar( $this->mInterwikiMagic, $x );
+	}
 
-	/** @deprecated in 1.19; will be removed in 1.20 */
-	function setSkin( $x )                      { wfDeprecated( __METHOD__, '1.19' ); }
-	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x ); }
-	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x, true ); }
-	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
-	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
-	function setMaxGeneratedPPNodeCount( $x )   { return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x ); }
-	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
-	/* @since 1.20 */
-	function setExpensiveParserFunctionLimit( $x ) { return wfSetVar( $this->mExpensiveParserFunctionLimit, $x ); }
-	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
-	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
-	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
-	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
-	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
-	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
-	function disableContentConversion( $x = true ) { return wfSetVar( $this->mDisableContentConversion, $x ); }
-	function disableTitleConversion( $x = true ) { return wfSetVar( $this->mDisableTitleConversion, $x ); }
-	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
-	function setUserLang( $x )                  {
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setAllowExternalImages( $x ) {
+		return wfSetVar( $this->mAllowExternalImages, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setAllowExternalImagesFrom( $x ) {
+		return wfSetVar( $this->mAllowExternalImagesFrom, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setEnableImageWhitelist( $x ) {
+		return wfSetVar( $this->mEnableImageWhitelist, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setDateFormat( $x ) {
+		return wfSetVar( $this->mDateFormat, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setEditSection( $x ) {
+		return wfSetVar( $this->mEditSection, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setNumberHeadings( $x ) {
+		return wfSetVar( $this->mNumberHeadings, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setAllowSpecialInclusion( $x ) {
+		return wfSetVar( $this->mAllowSpecialInclusion, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setTidy( $x ) {
+		return wfSetVar( $this->mTidy, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 * @deprecated in 1.19; will be removed in 1.20
+	 */
+	function setSkin( $x ) {
+		wfDeprecated( __METHOD__, '1.19' );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setInterfaceMessage( $x ) {
+		return wfSetVar( $this->mInterfaceMessage, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setTargetLanguage( $x ) {
+		return wfSetVar( $this->mTargetLanguage, $x, true );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setMaxIncludeSize( $x ) {
+		return wfSetVar( $this->mMaxIncludeSize, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setMaxPPNodeCount( $x ) {
+		return wfSetVar( $this->mMaxPPNodeCount, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setMaxGeneratedPPNodeCount( $x ) {
+		return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setMaxTemplateDepth( $x ) {
+		return wfSetVar( $this->mMaxTemplateDepth, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 * @since 1.20
+	 */
+	function setExpensiveParserFunctionLimit( $x ) {
+		return wfSetVar( $this->mExpensiveParserFunctionLimit, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setRemoveComments( $x ) {
+		return wfSetVar( $this->mRemoveComments, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setTemplateCallback( $x ) {
+		return wfSetVar( $this->mTemplateCallback, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function enableLimitReport( $x = true ) {
+		return wfSetVar( $this->mEnableLimitReport, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setTimestamp( $x ) {
+		return wfSetVar( $this->mTimestamp, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setCleanSignatures( $x ) {
+		return wfSetVar( $this->mCleanSignatures, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setExternalLinkTarget( $x ) {
+		return wfSetVar( $this->mExternalLinkTarget, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function disableContentConversion( $x = true ) {
+		return wfSetVar( $this->mDisableContentConversion, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function disableTitleConversion( $x = true ) {
+		return wfSetVar( $this->mDisableTitleConversion, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setMath( $x ) {
+		return wfSetVar( $this->mMath, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setUserLang( $x ) {
 		if ( is_string( $x ) ) {
 			$x = Language::factory( $x );
 		}
 		return wfSetVar( $this->mUserLang, $x );
 	}
-	function setThumbSize( $x )                 { return wfSetVar( $this->mThumbSize, $x ); }
-	function setStubThreshold( $x )             { return wfSetVar( $this->mStubThreshold, $x ); }
-	function setPreSaveTransform( $x )          { return wfSetVar( $this->mPreSaveTransform, $x ); }
 
-	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
-	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
-	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setThumbSize( $x ) {
+		return wfSetVar( $this->mThumbSize, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setStubThreshold( $x ) {
+		return wfSetVar( $this->mStubThreshold, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setPreSaveTransform( $x ) {
+		return wfSetVar( $this->mPreSaveTransform, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setIsPreview( $x ) {
+		return wfSetVar( $this->mIsPreview, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setIsSectionPreview( $x ) {
+		return wfSetVar( $this->mIsSectionPreview, $x );
+	}
+
+	/**
+	 * @param $x
+	 * @return
+	 */
+	function setIsPrintable( $x ) {
+		return wfSetVar( $this->mIsPrintable, $x );
+	}
 
 	/**
 	 * Extra key that should be present in the parser cache key.
+	 * @param $key
 	 */
 	function addExtraKey( $key ) {
 		$this->mExtraKey .= '!' . $key;
@@ -558,8 +977,9 @@ class ParserOptions {
 			$confstr .= '!printable=1';
 		}
 
-		if ( $this->mExtraKey != '' )
+		if ( $this->mExtraKey != '' ) {
 			$confstr .= $this->mExtraKey;
+		}
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.

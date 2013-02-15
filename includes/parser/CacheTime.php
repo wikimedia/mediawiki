@@ -28,23 +28,57 @@
  */
 class CacheTime {
 
-	var	$mVersion = Parser::VERSION,  # Compatibility check
-		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
-		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
-		$mContainsOldMagic;           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+	/**
+	 * Compatibility check
+	 */
+	var $mVersion = Parser::VERSION;
 
-	function getCacheTime()              { return $this->mCacheTime; }
+	/**
+	 * Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
+	 */
+	var $mCacheTime = '';
 
-	function containsOldMagic()          { return $this->mContainsOldMagic; }
-	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
+	/**
+	 * Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
+	 */
+	var $mCacheExpiry = null; 
+
+	/**
+	 * Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+	 */
+	var $mContainsOldMagic;
+
+	/**
+	 * @return int
+	 */
+	function getCacheTime() {
+		return $this->mCacheTime;
+	}
+
+	/**
+	 * @return bool
+	 */
+	function containsOldMagic() {
+		return $this->mContainsOldMagic;
+	}
+
+	/**
+	 * @param $com bool
+	 * @return bool the old value
+	 */
+	function setContainsOldMagic( $com ) {
+		return wfSetVar( $this->mContainsOldMagic, $com );
+	}
 
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
 	 * This doesn not control expiry, see updateCacheExpiry() for that!
 	 * @param $t string
-	 * @return string
+	 * @return string the old value
 	 */
-	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
+	function setCacheTime( $t ) {
+		return wfSetVar( $this->mCacheTime, $t );
+	}
 
 	/**
 	 * Sets the number of seconds after which this object should expire.
@@ -128,5 +162,4 @@ class CacheTime {
 			!isset( $this->mVersion ) ||
 			version_compare( $this->mVersion, Parser::VERSION, "lt" );
 	}
-
 }

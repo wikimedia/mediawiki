@@ -59,11 +59,11 @@ class CoreLinkFunctions {
 	}
 
 	/**
-	 * @param  $parser Parser
-	 * @param  $holders LinkHolderArray
-	 * @param  $markers LinkMarkerReplacer
+	 * @param $parser Parser
+	 * @param $holders LinkHolderArray
+	 * @param $markers LinkMarkerReplacer
 	 * @param Title $title
-	 * @param  $titleText
+	 * @param $titleText
 	 * @param null $sortText
 	 * @param bool $leadingColon
 	 * @return bool|string
@@ -71,6 +71,7 @@ class CoreLinkFunctions {
 	static function categoryLinkHook( $parser, $holders, $markers,
 			Title $title, $titleText, &$sortText = null, &$leadingColon = false ) {
 		global $wgContLang;
+
 		# When a category link starts with a : treat it as a normal link
 		if( $leadingColon ) return true;
 		if( isset( $sortText ) && $markers->findMarker( $sortText ) ) {
@@ -81,12 +82,13 @@ class CoreLinkFunctions {
 			# Return false so that this link is reverted back to WikiText
 			return false;
 		}
-		if( !isset( $sortText ) ) $sortText = $parser->getDefaultSort();
+		if( !isset( $sortText ) ) {
+			$sortText = $parser->getDefaultSort();
+		}
 		$sortText = Sanitizer::decodeCharReferences( $sortText );
 		$sortText = str_replace( "\n", '', $sortText );
 		$sortText = $wgContLang->convertCategoryKey( $sortText );
 		$parser->mOutput->addCategory( $title->getDBkey(), $sortText );
 		return '';
 	}
-
 }
