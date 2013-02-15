@@ -40,11 +40,16 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
+
+# Initialise common code.  This gives us access to GlobalFunctions, the
+# AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
+# $wgContLang, amongst others; it does *not* load $wgTitle
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'core/includes/WebStart.php' );
 } else {
 	require ( __DIR__ . '/includes/WebStart.php' );
 }
+
 wfProfileIn( 'img_auth.php' );
 
 # Set action base paths so that WebRequest::getPathInfo()

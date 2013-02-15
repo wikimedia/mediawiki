@@ -28,6 +28,10 @@
 ini_set( 'zlib.output_compression', 'off' );
 
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
+
+# Initialise common code.  This gives us access to GlobalFunctions, the
+# AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
+# $wgContLang, amongst others; it does *not* load $wgTitle
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'core/includes/WebStart.php' );
 } else {

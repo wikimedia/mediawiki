@@ -22,10 +22,14 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
+
+# Initialise common code.  This gives us access to GlobalFunctions, the
+# AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
+# $wgContLang, amongst others; it does *not* load $wgTitle
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require( 'core/includes/WebStart.php' );
+	require ( 'core/includes/WebStart.php' );
 } else {
-	require( __DIR__ . '/includes/WebStart.php' );
+	require ( __DIR__ . '/includes/WebStart.php' );
 }
 
 // Don't use fancy mime detection, just check the file extension for jpg/gif/png
