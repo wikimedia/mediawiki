@@ -65,7 +65,7 @@ class TextPassDumperTest extends DumpTestCase {
 			if ( $ns === NS_TALK ) {
 				//@todo: work around this.
 				throw new MWException( "The default wikitext namespace is the talk namespace. "
-					. " We can't currently deal with that.");
+					. " We can't currently deal with that." );
 			}
 
 			$title = Title::newFromText( 'BackupDumperTestP1', NS_TALK );
@@ -101,8 +101,8 @@ class TextPassDumperTest extends DumpTestCase {
 		// Setting up the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array ( "--stub=file:" . $nameStub,
-				"--output=file:" . $nameFull ) );
+		$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+			"--output=file:" . $nameFull ) );
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
@@ -164,8 +164,8 @@ class TextPassDumperTest extends DumpTestCase {
 		// Setting up of the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array ( "--stub=file:"
-				. $nameStub, "--output=file:" . $nameFull ) );
+		$dumper = new TextPassDumper( array( "--stub=file:"
+			. $nameStub, "--output=file:" . $nameFull ) );
 		$dumper->prefetch = $prefetchMock;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
@@ -250,10 +250,10 @@ class TextPassDumperTest extends DumpTestCase {
 			$this->assertTrue( wfMkdirParents( $nameOutputDir ),
 				"Creating temporary output directory " );
 			$this->setUpStub( $nameStub, $iterations );
-			$dumper = new TextPassDumper( array ( "--stub=file:" . $nameStub,
-					"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
-					"--maxtime=1" /*This is in minutes. Fixup is below*/,
-					"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
+			$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
+				"--maxtime=1" /*This is in minutes. Fixup is below*/,
+				"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
 			$dumper->setDb( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
 			$dumper->stderr = $stderr;
@@ -283,7 +283,7 @@ class TextPassDumperTest extends DumpTestCase {
 
 				$this->assertLessThan( 50000, $iterations,
 					"Emergency stop against infinitely increasing iteration "
-					. "count ( last duration: $lastDuration )" );
+						. "count ( last duration: $lastDuration )" );
 			}
 		}
 
@@ -300,11 +300,11 @@ class TextPassDumperTest extends DumpTestCase {
 
 		// Each run of the following loop body tries to handle exactly 1 /page/ (not
 		// iteration of stub content). $i is only increased after having treated page 4.
-		for ( $i = 0 ; $i < $iterations ; ) {
+		for ( $i = 0; $i < $iterations; ) {
 
 			// 1. Assuring a file is opened and ready. Skipping across header if
 			//    necessary.
-			if ( ! $fileOpened ) {
+			if ( !$fileOpened ) {
 				$this->assertNotEmpty( $files, "No more existing dump files, "
 					. "but not yet all pages found" );
 				$fname = array_shift( $files );
@@ -323,65 +323,65 @@ class TextPassDumperTest extends DumpTestCase {
 
 			// 2. Performing a single page check
 			switch ( $lookingForPage ) {
-			case 1:
-				// Page 1
-				$this->assertPageStart( $this->pageId1 + $i * self::$numOfPages, NS_MAIN,
-					"BackupDumperTestP1" );
-				$this->assertRevision( $this->revId1_1 + $i * self::$numOfRevs, "BackupDumperTestP1Summary1",
-					$this->textId1_1, false, "0bolhl6ol7i6x0e7yq91gxgaan39j87",
-					"BackupDumperTestP1Text1" );
-				$this->assertPageEnd();
+				case 1:
+					// Page 1
+					$this->assertPageStart( $this->pageId1 + $i * self::$numOfPages, NS_MAIN,
+						"BackupDumperTestP1" );
+					$this->assertRevision( $this->revId1_1 + $i * self::$numOfRevs, "BackupDumperTestP1Summary1",
+						$this->textId1_1, false, "0bolhl6ol7i6x0e7yq91gxgaan39j87",
+						"BackupDumperTestP1Text1" );
+					$this->assertPageEnd();
 
-				$lookingForPage = 2;
-				break;
+					$lookingForPage = 2;
+					break;
 
-			case 2:
-				// Page 2
-				$this->assertPageStart( $this->pageId2 + $i * self::$numOfPages, NS_MAIN,
-					"BackupDumperTestP2" );
-				$this->assertRevision( $this->revId2_1 + $i * self::$numOfRevs, "BackupDumperTestP2Summary1",
-					$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-					"BackupDumperTestP2Text1" );
-				$this->assertRevision( $this->revId2_2 + $i * self::$numOfRevs, "BackupDumperTestP2Summary2",
-					$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-					"BackupDumperTestP2Text2", $this->revId2_1 + $i * self::$numOfRevs );
-				$this->assertRevision( $this->revId2_3 + $i * self::$numOfRevs, "BackupDumperTestP2Summary3",
-					$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-					"BackupDumperTestP2Text3", $this->revId2_2 + $i * self::$numOfRevs );
-				$this->assertRevision( $this->revId2_4 + $i * self::$numOfRevs,
-					"BackupDumperTestP2Summary4 extra",
-					$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
-					"BackupDumperTestP2Text4 some additional Text",
-					$this->revId2_3 + $i * self::$numOfRevs );
-				$this->assertPageEnd();
+				case 2:
+					// Page 2
+					$this->assertPageStart( $this->pageId2 + $i * self::$numOfPages, NS_MAIN,
+						"BackupDumperTestP2" );
+					$this->assertRevision( $this->revId2_1 + $i * self::$numOfRevs, "BackupDumperTestP2Summary1",
+						$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
+						"BackupDumperTestP2Text1" );
+					$this->assertRevision( $this->revId2_2 + $i * self::$numOfRevs, "BackupDumperTestP2Summary2",
+						$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
+						"BackupDumperTestP2Text2", $this->revId2_1 + $i * self::$numOfRevs );
+					$this->assertRevision( $this->revId2_3 + $i * self::$numOfRevs, "BackupDumperTestP2Summary3",
+						$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
+						"BackupDumperTestP2Text3", $this->revId2_2 + $i * self::$numOfRevs );
+					$this->assertRevision( $this->revId2_4 + $i * self::$numOfRevs,
+						"BackupDumperTestP2Summary4 extra",
+						$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
+						"BackupDumperTestP2Text4 some additional Text",
+						$this->revId2_3 + $i * self::$numOfRevs );
+					$this->assertPageEnd();
 
-				$lookingForPage = 4;
-				break;
+					$lookingForPage = 4;
+					break;
 
-			case 4:
-				// Page 4
-				$this->assertPageStart( $this->pageId4 + $i * self::$numOfPages, NS_TALK,
-					"Talk:BackupDumperTestP1" );
-				$this->assertRevision( $this->revId4_1 + $i * self::$numOfRevs,
-					"Talk BackupDumperTestP1 Summary1",
-					$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
-					"Talk about BackupDumperTestP1 Text1" );
-				$this->assertPageEnd();
+				case 4:
+					// Page 4
+					$this->assertPageStart( $this->pageId4 + $i * self::$numOfPages, NS_TALK,
+						"Talk:BackupDumperTestP1" );
+					$this->assertRevision( $this->revId4_1 + $i * self::$numOfRevs,
+						"Talk BackupDumperTestP1 Summary1",
+						$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
+						"Talk about BackupDumperTestP1 Text1" );
+					$this->assertPageEnd();
 
-				$lookingForPage = 1;
+					$lookingForPage = 1;
 
-				// We dealt with the whole iteration.
-				$i++;
-				break;
+					// We dealt with the whole iteration.
+					$i++;
+					break;
 
-			default:
-				$this->fail( "Bad setting for lookingForPage ($lookingForPage)" );
+				default:
+					$this->fail( "Bad setting for lookingForPage ($lookingForPage)" );
 			}
 
 			// 3. Checking for the end of the current checkpoint file
 			if ( $this->xml->nodeType == XMLReader::END_ELEMENT
-				&& $this->xml->name == "mediawiki" ) {
-
+				&& $this->xml->name == "mediawiki"
+			) {
 				$this->assertDumpEnd();
 				$fileOpened = false;
 			}
@@ -578,8 +578,7 @@ class TextPassDumperTest extends DumpTestCase {
 		}
 		$content .= $tail;
 		$this->assertEquals( strlen( $content ), file_put_contents(
-				$fname, $content ), "Length of prepared stub" );
+			$fname, $content ), "Length of prepared stub" );
 		return $fname;
 	}
-
 }
