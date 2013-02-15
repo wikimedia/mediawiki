@@ -276,6 +276,10 @@ class ApiQuery extends ApiBase {
 		// object by adding extra fields from the page table.
 		// This function will gather all the extra request fields from the modules.
 		foreach ( $modules as $module ) {
+			if ( !$this->getRequest()->wasPosted() && $module->mustBePosted() ) {
+				$this->dieUsageMsgOrDebug( array( 'mustbeposted', $module->getModuleName() ) );
+			}
+
 			$module->requestExtraData( $this->mPageSet );
 		}
 
