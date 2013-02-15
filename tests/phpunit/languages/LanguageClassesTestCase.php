@@ -32,7 +32,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 	/**
 	 * Regex used to find out the language code out of the class name
 	 * used by setUpBeforeClass
-	*/
+	 */
 	private static $reExtractLangFromClass = '/Language(.*)Test/';
 
 	/**
@@ -68,7 +68,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 			$m[1] = 'en';
 			wfDebug(
 				__METHOD__ . " could not extract a language name "
-				. "out of " . get_called_class() . " failling back to 'en'\n"
+					. "out of " . get_called_class() . " failling back to 'en'\n"
 			);
 		}
 		// TODO: validate $m[1] which should be a valid language code

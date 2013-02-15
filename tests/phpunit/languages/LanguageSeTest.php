@@ -15,10 +15,10 @@ class LanguageSeTest extends LanguageClassesTestCase {
 	}
 
 	function providerPluralThreeForms() {
-		return array (
+		return array(
 			array( 'other', 0 ),
-			array( 'one',   1 ),
-			array( 'two',   2 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
 			array( 'other', 3 ),
 		);
 	}
@@ -30,9 +30,9 @@ class LanguageSeTest extends LanguageClassesTestCase {
 	}
 
 	function providerPlural() {
-		return array (
+		return array(
 			array( 'other', 0 ),
-			array( 'one',   1 ),
+			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 3 ),
 		);

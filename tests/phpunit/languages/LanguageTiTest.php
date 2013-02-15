@@ -15,9 +15,9 @@ class LanguageTiTest extends LanguageClassesTestCase {
 	}
 
 	function providerPlural() {
-		return array (
-			array( 'one',  0 ),
-			array( 'one',  1 ),
+		return array(
+			array( 'one', 0 ),
+			array( 'one', 1 ),
 			array( 'many', 2 ),
 		);
 	}

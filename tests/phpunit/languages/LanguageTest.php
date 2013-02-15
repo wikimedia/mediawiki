@@ -439,10 +439,10 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	function provideLanguageCodes() {
 		return array(
-			array( 'fr'       , 'Two letters, minor case' ),
-			array( 'EN'       , 'Two letters, upper case' ),
-			array( 'tyv'      , 'Three letters' ),
-			array( 'tokipona'   , 'long language code' ),
+			array( 'fr', 'Two letters, minor case' ),
+			array( 'EN', 'Two letters, upper case' ),
+			array( 'tyv', 'Three letters' ),
+			array( 'tokipona', 'long language code' ),
 			array( 'be-tarask', 'With dash' ),
 			array( 'Zh-classical', 'Begin with upper case, dash' ),
 			array( 'Be-x-old', 'With extension (two dashes)' ),
@@ -455,7 +455,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 */
 	function testKnownLanguageTag( $code, $message = '' ) {
 		$this->assertTrue(
-			(bool) Language::isKnownLanguageTag( $code ),
+			(bool)Language::isKnownLanguageTag( $code ),
 			"validating code $code - $message"
 		);
 	}
@@ -477,7 +477,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		}
 
 		$this->assertTrue(
-			(bool) Language::isKnownLanguageTag( 'pal' ),
+			(bool)Language::isKnownLanguageTag( 'pal' ),
 			'validating code "pal" an ancient language, which probably will not appear in Names.php, but appears in CLDR in English'
 		);
 	}
@@ -488,7 +488,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 */
 	function testUnknownLanguageTag( $code, $message = '' ) {
 		$this->assertFalse(
-			(bool) Language::isKnownLanguageTag( $code ),
+			(bool)Language::isKnownLanguageTag( $code ),
 			"checking that code $code is invalid - $message"
 		);
 	}
@@ -509,6 +509,7 @@ class LanguageTest extends LanguageClassesTestCase {
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 	}
+
 	/**
 	 * bug 33454. sprintfDate should always use UTC.
 	 * @dataProvider provideSprintfDateSamples
@@ -958,7 +959,6 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 
-
 	/**
 	 * @dataProvider provideFormatDuration
 	 */
@@ -1101,13 +1101,13 @@ class LanguageTest extends LanguageClassesTestCase {
 	function testCheckTitleEncoding( $s ) {
 		$this->assertEquals(
 			$s,
-			$this->getLang()->checkTitleEncoding($s),
+			$this->getLang()->checkTitleEncoding( $s ),
 			"checkTitleEncoding('$s')"
 		);
 	}
 
 	function provideCheckTitleEncodingData() {
-		return array (
+		return array(
 			array( "" ),
 			array( "United States of America" ), // 7bit ASCII
 			array( rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ),
@@ -1212,7 +1212,7 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 7000, 'MMMMMMM' ),
 			array( 8000, 'MMMMMMMM' ),
 			array( 9000, 'MMMMMMMMM' ),
-			array( 9999, 'MMMMMMMMMCMXCIX'),
+			array( 9999, 'MMMMMMMMMCMXCIX' ),
 			array( 10000, 'MMMMMMMMMM' ),
 		);
 	}
@@ -1311,7 +1311,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$s = $lang->getMessageFromDB( 'word-separator' );
 		$c = $lang->getMessageFromDB( 'comma-separator' );
 
-		$this->assertEquals( '', $lang->listToText( array( ) ) );
+		$this->assertEquals( '', $lang->listToText( array() ) );
 		$this->assertEquals( 'a', $lang->listToText( array( 'a' ) ) );
 		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( array( 'a', 'b' ) ) );
 		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( array( 'a', 'b', 'c' ) ) );

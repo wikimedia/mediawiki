@@ -18,9 +18,9 @@ class LanguageTrTest extends LanguageClassesTestCase {
 	 * @dataProvider provideDottedAndDotlessI
 	 */
 	function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
-		if( $func == 'ucfirst' ) {
+		if ( $func == 'ucfirst' ) {
 			$res = $this->getLang()->ucfirst( $input );
-		} elseif( $func == 'lcfirst' ) {
+		} elseif ( $func == 'lcfirst' ) {
 			$res = $this->getLang()->lcfirst( $input );
 		} else {
 			throw new MWException( __METHOD__ . " given an invalid function name '$func'" );

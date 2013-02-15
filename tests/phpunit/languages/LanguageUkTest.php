@@ -16,7 +16,7 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	}
 
 	function providePluralFourForms() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'many', 11 ),
 			array( 'one', 91 ),
@@ -30,13 +30,15 @@ class LanguageUkTest extends LanguageClassesTestCase {
 			array( 'many', 120 ),
 		);
 	}
+
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'several' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
+
 	function providePluralTwoForms() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'several', 11 ),
 			array( 'several', 91 ),

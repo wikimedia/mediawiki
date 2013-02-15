@@ -10,12 +10,12 @@ class LanguageLvTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
-		$forms =  array( 'one', 'other' );
+		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {
-		return array (
+		return array(
 			array( 'other', 0 ), #this must be zero form as per CLDR
 			array( 'one', 1 ),
 			array( 'other', 11 ),
