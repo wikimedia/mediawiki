@@ -41,10 +41,11 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 }
 
 // Initialise common code.
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
+if ( !isset( $_SERVER['MW_COMPILED'] ) ) {
+	require( __DIR__ . '/includes/WebStart.php' );
 } else {
-	require ( __DIR__ . '/includes/WebStart.php' );
+	// For HipHop, see MWInit::compiledPath().
+	require( 'core/includes/WebStart.php' );
 }
 
 wfProfileIn( 'api.php' );

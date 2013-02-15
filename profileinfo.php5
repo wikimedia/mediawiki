@@ -1,6 +1,6 @@
 <?php
 /**
- * Version of load.php to be used in web servers
+ * Version of profileinfo.php to be used in web servers
  * that require the .php5 extension to execute scripts with the PHP5 engine.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,4 +21,4 @@
  * @file
  */
 
-require './load.php';
+require './profileinfo.php';

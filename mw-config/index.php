@@ -23,11 +23,16 @@
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
+// Resolve relative to regular MediaWiki root
+// instead of mw-config subdirectory.
 chdir( dirname( __DIR__ ) );
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
-} else {
+
+// Initialise common code
+if ( !isset( $_SERVER['MW_COMPILED'] ) ) {
 	require( dirname( __DIR__ ) . '/includes/WebStart.php' );
+} else {
+	// For HipHop, see MWInit::compiledPath().
+	require( 'core/includes/WebStart.php' );
 }
 
 wfInstallerMain();
