@@ -149,10 +149,6 @@ return array(
 		'scripts' => 'resources/jquery/jquery.client.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	'jquery.collapsibleTabs' => array(
-		'scripts' => 'resources/jquery/jquery.collapsibleTabs.js',
-		'dependencies' => 'jquery.delayedBind',
-	),
 	'jquery.color' => array(
 		'scripts' => 'resources/jquery/jquery.color.js',
 		'dependencies' => 'jquery.colorUtil',
