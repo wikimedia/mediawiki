@@ -34,49 +34,46 @@ require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
  * Test Case ID   : 04 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Install MediaWiki with different Database accounts for web access.
  * Version        : MediaWiki 1.18alpha
-*/
+ */
 
 class MediaWikiDifferentDatabaseAccountTestCase extends MediaWikiInstallationCommonFunction {
+	function setUp() {
+		parent::setUp();
+	}
 
-    function setUp() {
-        parent::setUp();
-    }
+	// Install Mediawiki using 'MySQL' database type.
+	public function testDifferentDatabaseAccount() {
+		$databaseName = DB_NAME_PREFIX . "_dif_accounts";
 
+		// Navigate to the 'Database settings' page
+		parent::navigateDatabaseSettingsPage( $databaseName );
 
-    // Install Mediawiki using 'MySQL' database type.
-    public function testDifferentDatabaseAccount() {
+		// Click on the 'Use the same account as for installation' check box
+		$this->click( "mysql__SameAccount" );
 
-        $databaseName = DB_NAME_PREFIX."_dif_accounts";
+		// Change the 'Database username'
+		$this->type( "mysql_wgDBuser", DB_WEB_USER );
 
-        // Navigate to the 'Database settings' page
-        parent::navigateDatabaseSettingsPage( $databaseName );
+		// Enter 'Database password:'
+		$this->type( "mysql_wgDBpassword", DB_WEB_USER_PASSWORD );
 
-        // Click on the 'Use the same account as for installation' check box
-        $this->click( "mysql__SameAccount" );
+		// Select 'Create the account if it does not already exist' check box
+		$this->click( "mysql__CreateDBAccount" );
+		parent::clickContinueButton();
 
-        // Change the 'Database username'
-        $this->type( "mysql_wgDBuser", DB_WEB_USER );
+		// 'Name' page
+		parent::completeNamePage();
 
-        // Enter 'Database password:'
-        $this->type( "mysql_wgDBpassword", DB_WEB_USER_PASSWORD );
+		// 'Options' page
+		parent::clickContinueButton();
 
-        // Select 'Create the account if it does not already exist' check box
-        $this->click( "mysql__CreateDBAccount" );
-        parent::clickContinueButton();
+		// 'Install' page
+		$this->assertEquals( "Creating database user... done",
+			$this->getText( LINK_FORM . "ul/li[3]" ) );
+		parent::clickContinueButton();
 
-        // 'Name' page
-        parent::completeNamePage();
-
-        // 'Options' page
-        parent::clickContinueButton();
-
-        // 'Install' page
-        $this->assertEquals("Creating database user... done",
-                $this->getText( LINK_FORM."ul/li[3]"));
-        parent::clickContinueButton();
-
-        // 'Complete' page
-        parent::completePageSuccessfull();
-        $this->chooseCancelOnNextConfirmation();
-    }
+		// 'Complete' page
+		parent::completePageSuccessfull();
+		$this->chooseCancelOnNextConfirmation();
+	}
 }

@@ -28,44 +28,42 @@
  */
 
 
-require_once (__DIR__.'/'.'MediaWikiInstallationCommonFunction.php');
+require_once ( __DIR__ . '/' . 'MediaWikiInstallationCommonFunction.php' );
 
 
 /**
  * Test Case ID   : 03 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Install mediawiki on a already installed Mediawiki.]
  * Version        : MediaWiki 1.18alpha
-*/
+ */
 
 class MediaWikiOnAlreadyInstalledTestCase extends MediaWikiInstallationCommonFunction {
+	function setUp() {
+		parent::setUp();
+	}
 
-    function setUp() {
-        parent::setUp();
-    }
+	// Install Mediawiki using 'MySQL' database type.
+	public function testInstallOnAlreadyInstalled() {
+		$databaseName = DB_NAME_PREFIX . "_already_installed";
+		parent::navigateInstallPage( $databaseName );
 
-    // Install Mediawiki using 'MySQL' database type.
-    public function testInstallOnAlreadyInstalled() {
+		// 'Options' page
+		parent::clickBackButton();
 
-        $databaseName = DB_NAME_PREFIX."_already_installed";
-        parent::navigateInstallPage( $databaseName );
+		// Install page
+		parent::clickContinueButton();
 
-        // 'Options' page
-        parent::clickBackButton();
+		// 'Install' page should display after the 'Option' page
+		$this->assertEquals( "Install", $this->getText( LINK_DIV . "h2" ) );
 
-        // Install page
-        parent::clickContinueButton();
+		// Verify warning text displayed
+		$this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
+			$this->getText( LINK_FORM . "div[1]/div[2]" ) );
 
-        // 'Install' page should display after the 'Option' page
-        $this->assertEquals( "Install", $this->getText( LINK_DIV."h2" ));
-
-        // Verify warning text displayed
-        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
-                $this->getText( LINK_FORM."div[1]/div[2]" ));
-
-        // Complete page
-        parent::clickContinueButton();
-        parent::completePageSuccessfull();
-        $this->chooseCancelOnNextConfirmation();
-        parent::restartInstallation();
-    }
+		// Complete page
+		parent::clickContinueButton();
+		parent::completePageSuccessfull();
+		$this->chooseCancelOnNextConfirmation();
+		parent::restartInstallation();
+	}
 }

@@ -6,7 +6,7 @@
  * @file
  * @ingroup Testing
  * Copyright (C) 2010 Nadeesha Weerasinghe <nadeesha@calcey.com>
- * http://www.calcey.com/ 
+ * http://www.calcey.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,31 +28,30 @@
  */
 
 class SavePageTestCase extends SeleniumTestCase {
+	// Verify adding a new page
+	public function testSavePage() {
+		$wikiText = "Adding this page to test the Save button functionality";
+		$newPage = "Test Save Page";
 
-    // Verify adding a new page
-    public function testSavePage() {
-        $wikiText = "Adding this page to test the Save button functionality";
-        $newPage = "Test Save Page";
+		$this->open( $this->getUrl() .
+			'/index.php?title=Main_Page&action=edit' );
+		$this->getNewPage( $newPage );
+		$this->type( SeleniumTestConstants::TEXT_EDITOR, $wikiText );
 
-        $this->open( $this->getUrl() .
-                '/index.php?title=Main_Page&action=edit' );
-        $this->getNewPage($newPage);
-        $this->type( SeleniumTestConstants::TEXT_EDITOR, $wikiText );
+		// verify 'Save' button available
+		$this->assertTrue( $this->isElementPresent( SeleniumTestConstants::BUTTON_SAVE ) );
+		$this->click( SeleniumTestConstants::BUTTON_SAVE );
 
-        // verify 'Save' button available
-        $this->assertTrue($this->isElementPresent( SeleniumTestConstants::BUTTON_SAVE ));
-        $this->click( SeleniumTestConstants::BUTTON_SAVE );
+		// Verify saved page available
+		$source = $this->gettext( "firstHeading" );
+		$correct = strstr( $source, "Test Save Page" );
 
-        // Verify saved page available
-        $source = $this->gettext( "firstHeading" );
-        $correct = strstr( $source, "Test Save Page" );
+		// Verify Saved page name displayed correctly
+		$this->assertEquals( $correct, true );
 
-        // Verify Saved page name displayed correctly
-        $this->assertEquals( $correct, true );
-
-        // Verify page content saved succesfully
-        $contentOfSavedPage = $this->getText( "//*[@id='content']" );
-        $this->assertContains( $wikiText, $contentOfSavedPage  );
-        $this->deletePage( $newPage );
-    }
+		// Verify page content saved succesfully
+		$contentOfSavedPage = $this->getText( "//*[@id='content']" );
+		$this->assertContains( $wikiText, $contentOfSavedPage );
+		$this->deletePage( $newPage );
+	}
 }

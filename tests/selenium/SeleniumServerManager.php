@@ -34,15 +34,22 @@ class SeleniumServerManager {
 	private $SeleniumServerExecPath;
 
 	public function __construct( $startServer,
-					 $serverPort,
-					 $serverExecPath ) {
-		$this->OS = (string) PHP_OS;
-		if ( isset( $startServer ) )
+								 $serverPort,
+								 $serverExecPath ) {
+		$this->OS = (string)PHP_OS;
+
+		if ( isset( $startServer ) ) {
 			$this->SeleniumStartServer = $startServer;
-		if ( isset( $serverPort ) )
+		}
+
+		if ( isset( $serverPort ) ) {
 			$this->SeleniumServerPort = $serverPort;
-		if ( isset( $serverExecPath ) )
+		}
+
+		if ( isset( $serverExecPath ) ) {
 			$this->SeleniumServerExecPath = $serverExecPath;
+		}
+
 		return;
 	}
 
@@ -66,7 +73,9 @@ class SeleniumServerManager {
 	// to true, since after server is started, it is shut down by stop().
 
 	public function setSeleniumStartServer( $startServer ) {
-		if ( $startServer == true ) $this->SeleniumStartServer = true;
+		if ( $startServer == true ) {
+			$this->SeleniumStartServer = true;
+		}
 	}
 
 	// return values are: 1) started - server started, 2) failed -
@@ -75,7 +84,9 @@ class SeleniumServerManager {
 
 	public function start() {
 
-		if ( !$this->SeleniumStartServer ) return 'failed';
+		if ( !$this->SeleniumStartServer ) {
+			return 'failed';
+		}
 
 		// commented out cases are untested
 
@@ -142,15 +153,15 @@ class SeleniumServerManager {
 		$output = array();
 		$user = $_ENV['USER'];
 		// @todo FIXME: This should be a little more generalized :)
-		if (PHP_OS == 'Darwin') {
+		if ( PHP_OS == 'Darwin' ) {
 			// Mac OS X's ps barfs on the 'w' param, but doesn't need it.
 			$ps = "ps -U %s";
 		} else {
 			// Good on Linux
 			$ps = "ps -U %s w";
 		}
-		$psCommand = sprintf($ps, escapeshellarg($user));
-		exec($psCommand . " | grep -i selenium-server", $output);
+		$psCommand = sprintf( $ps, escapeshellarg( $user ) );
+		exec( $psCommand . " | grep -i selenium-server", $output );
 
 		// Start server. If there is already a server running,
 		// return running.
@@ -170,16 +181,16 @@ class SeleniumServerManager {
 				// The echo guarentees it is put into $op when
 				// the exec command is run.
 
-				$commandSuffix = ' > /dev/null 2>&1'. ' & echo $!';
+				$commandSuffix = ' > /dev/null 2>&1' . ' & echo $!';
 				$portText = ' -port ' . $this->SeleniumServerPort;
 				$command = "java -jar " .
-					escapeshellarg($this->SeleniumServerExecPath) .
+					escapeshellarg( $this->SeleniumServerExecPath ) .
 					$portText . $commandSuffix;
-				exec($command ,$op);
+				exec( $command, $op );
 				$pid = (int)$op[0];
-				if ( $pid != "" )
+				if ( $pid != "" ) {
 					$this->SeleniumServerPid = $pid;
-				else {
+				} else {
 					$this->SeleniumServerPid = 'NaN';
 					// Server start failed.
 					return 'failed';
@@ -192,27 +203,29 @@ class SeleniumServerManager {
 				for ( $cnt = 1;
 					  $cnt <= $this->SeleniumServerStartTimeout;
 					  $cnt++ ) {
-					$fp = fsockopen ( 'localhost',
+					$fp = fsockopen( 'localhost',
 						$this->SeleniumServerPort,
 						$errno, $errstr, 0 );
 					if ( !$fp ) {
 						sleep( 1 );
 						continue;
-					  // Server start succeeded.
+						// Server start succeeded.
 					} else {
-						fclose ( $fp );
+						fclose( $fp );
 						return 'started';
 					}
 				}
 				wfRestoreWarnings();
 				echo ( "Starting Selenium server timed out.\n" );
 				return 'failed';
+			} else {
+				// server already running.
+				return 'running';
 			}
-			// server already running.
-			else return 'running';
 
 		}
-				// No Server execution path defined.
+
+		// No Server execution path defined.
 		return 'failed';
 	}
 
@@ -224,11 +237,13 @@ class SeleniumServerManager {
 	private function stopServerOnUnix() {
 
 		if ( !empty( $this->SeleniumServerPid ) &&
-			 $this->SeleniumServerPid != 'NaN' ) {
+			$this->SeleniumServerPid != 'NaN'
+		) {
 			exec( "kill -9 " . $this->SeleniumServerPid );
 			return 'stopped';
+		} else {
+			return 'failed';
 		}
-		else return 'failed';
 	}
 
 	private function stopServerOnWindows() {
