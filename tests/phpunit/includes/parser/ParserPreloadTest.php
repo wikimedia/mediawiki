@@ -57,7 +57,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		);
 	}
 
-	function assertPreloaded( $expected, $text, $msg='') {
+	function assertPreloaded( $expected, $text, $msg = '' ) {
 		$this->assertEquals(
 			$expected,
 			$this->testParser->getPreloadText(

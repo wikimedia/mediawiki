@@ -15,9 +15,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 			$name = $this->getCliArg( 'use-bagostuff=' );
 
 			$this->cache = ObjectCache::newFromId( $name );
-
-		// no type defined - use simple hash
 		} else {
+			// no type defined - use simple hash
 			$this->cache = new HashBagOStuff;
 		}
 
@@ -41,7 +40,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		 * @use int $usleep
 		 * @return int
 		 */
-		$callback = function( BagOStuff $cache, $key, $existingValue ) use ( &$usleep ) {
+		$callback = function ( BagOStuff $cache, $key, $existingValue ) use ( &$usleep ) {
 			// let's pretend this is an expensive callback to test concurrent merge attempts
 			usleep( $usleep );
 
