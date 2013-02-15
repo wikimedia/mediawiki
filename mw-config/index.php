@@ -23,9 +23,12 @@
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
+# Initialise common code.  This gives us access to GlobalFunctions, the
+# AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
+# $wgContLang, amongst others; it does *not* load $wgTitle
 chdir( dirname( __DIR__ ) );
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
+if ( isset( $_SERVER['MW_COMPILED'] ) ) { // For HipHop. See MWInit::compiledPath() for details.
+	require( 'core/includes/WebStart.php' );
 } else {
 	require( dirname( __DIR__ ) . '/includes/WebStart.php' );
 }
