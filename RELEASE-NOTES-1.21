@@ -99,6 +99,8 @@ production.
 * WikiText now permits the use of WAI-ARIA's role="presentation" inside of
   html elements and tables. This allows presentational markup, especially
   tables. To be marked up as such.
+* Whitespace within == Headline == syntax is now non-significant and not
+  preserved in the HTML output.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -175,6 +177,13 @@ production.
   "password mismatch" error.
 * (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
   extensions) performed using Git 1.7.8+ should now appear.
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
