@@ -777,16 +777,6 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	padding-right: 13px;
 }
 
-/* Icon for Usernames */
-#pt-userpage,
-#pt-anonuserpage,
-#pt-login {
-	/* @embed */
-	background: url(images/user-icon.png) left top no-repeat;
-	padding-left: 15px !important;
-	text-transform: none;
-}
-
 .redirectText {
 	font-size: 140%;
 }

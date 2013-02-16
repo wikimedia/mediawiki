@@ -381,14 +381,8 @@ input.searchButton {
 #p-personal li.active a:hover {
 	background-color: transparent;
 }
-/* the icon in front of the user name, single quotes
-in bg url to hide it from iemac */
 li#pt-userpage,
-li#pt-anonuserpage,
-li#pt-login {
-	/* @embed */
-	background: url(user.gif) top left no-repeat;
-	padding-left: 20px;
+li#pt-anonuserpage {
 	text-transform: none;
 }
 #p-personal ul {
