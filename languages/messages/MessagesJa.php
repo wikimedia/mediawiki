@@ -2633,10 +2633,10 @@ $2による直前の版へ変更されました。',
 ** 高負荷ページ',
 'protect-edit-reasonlist' => '保護理由を編集',
 'protect-expiry-options' => '1時間:1 hour,1日:1 day,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite',
-'restriction-type' => '許可：',
-'restriction-level' => '制限レベル：',
+'restriction-type' => '許可:',
+'restriction-level' => '制限レベル:',
 'minimum-size' => '最小サイズ',
-'maximum-size' => '最大サイズ：',
+'maximum-size' => '最大サイズ:',
 'pagesize' => '(バイト)',
 
 # Restrictions (nouns)
@@ -3088,7 +3088,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'importbadinterwiki' => 'ウィキ間リンクが正しくありません',
 'importnotext' => '内容が空、または本文がありません',
 'importsuccess' => '取り込みが完了しました!',
-'importhistoryconflict' => '取り込み時にいくつかの版が競合しました（以前に同じページが取り込まれているかもしれません）',
+'importhistoryconflict' => '取り込み時にいくつかの版が競合しました (以前に同じページが取り込まれているかもしれません)',
 'importnosources' => 'ウィキ間移動の取り込み元が定義されていないため、履歴の直接アップロードは無効になっています。',
 'importnofile' => '取り込みファイルはアップロードされませんでした。',
 'importuploaderrorsize' => '取り込みファイルのアップロードに失敗しました。
