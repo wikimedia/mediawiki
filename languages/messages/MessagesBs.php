@@ -846,6 +846,7 @@ Privremena šifra: $2',
 'changeemail-oldemail' => 'Trenutna e-mail adresa:',
 'changeemail-newemail' => 'Nova e-mail adresa:',
 'changeemail-none' => '(ništa)',
+'changeemail-password' => 'Tvoja šifra/lozinka za {{SITENAME}}:',
 'changeemail-submit' => 'Promijeni e-mail',
 'changeemail-cancel' => 'Otkaži',
 
@@ -1423,7 +1424,7 @@ Ovo se ne može vratiti unazad.',
 'youremail' => 'E-mail:',
 'username' => '{{GENDER:$1|Korisničko}} ime:',
 'uid' => '{{GENDER:$1|Korisnički}} ID:',
-'prefs-memberingroups' => 'Član {{PLURAL:$1|grupe|grupa}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Korisnik|Korisnica}} je član {{PLURAL:$1|grupe|grupâ}}:',
 'prefs-registration' => 'Vrijeme registracije:',
 'yourrealname' => 'Vaše pravo ime:',
 'yourlanguage' => 'Jezik:',
@@ -2290,26 +2291,32 @@ Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti n
 'enotif_mailer' => '{{SITENAME}} obaviještenje o pošti',
 'enotif_reset' => 'Označi sve strane kao posjećene',
 'enotif_impersonal_salutation' => '{{SITENAME}} korisnik',
+'enotif_subject_deleted' => '{{gender:$2|Korisnik|Korisnica}} $2 je {{gender:$2|obrisao|obrisala}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_created' => '{{gender:$2|Korisnik|Korisnica}} $2 je {{gender:$2|napravio|napravila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_moved' => '{{gender:$2|Korisnik|Korisnica}} $2 je {{gender:$2|premjestio|premjestila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_restored' => '{{gender:$2|Korisnik|Korisnica}} $2 je {{gender:$2|vratio|vratila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_subject_changed' => '{{gender:$2|Korisnik|Korisnica}} $2 je {{gender:$2|promijenio|promijenila}} stranicu $1 projekta {{SITENAME}}',
+'enotif_body_intro_deleted' => 'Stranicu $1 projekta {{SITENAME}} {{GENDER:$2|obrisao|obrisala}} je dana $PAGEEDITDATE {{GENDER:$2|korisnik|korisnica}} $2, pogledajte $3.',
+'enotif_body_intro_created' => 'Stranicu $1 projekta {{SITENAME}} {{GENDER:$2|napravio|napravila}} je dana $PAGEEDITDATE {{GENDER:$2|korisnik|korisnica}} $2, pogledajte $3 za trenutnu verziju.',
+'enotif_body_intro_moved' => 'Stranicu $1 projekta {{SITENAME}} {{GENDER:$2|premjestio|premjestila}} je dana $PAGEEDITDATE {{GENDER:$2|korisnik|korisnica}} $2, pogledajte $3 za trenutnu verziju.',
+'enotif_body_intro_restored' => 'Stranicu $1 projekta {{SITENAME}} {{GENDER:$2|vratio|vratila}} je dana $PAGEEDITDATE {{GENDER:$2|korisnik|korisnica}} $2, pogledajte $3 za trenutnu verziju.',
+'enotif_body_intro_changed' => 'Stranicu $1 projekta {{SITENAME}} {{GENDER:$2|promijenio|promijenila}} je dana $PAGEEDITDATE {{GENDER:$2|korisnik|korisnica}} $2, pogledajte $3 za trenutnu verziju.',
 'enotif_lastvisited' => 'Pogledajte $1 za sve izmjene od vaše posljednje posjete.',
 'enotif_lastdiff' => 'Vidi $1 da pregledate ovu promjenu.',
 'enotif_anon_editor' => 'anonimni korisnik $1',
 'enotif_body' => 'Poštovani $WATCHINGUSERNAME,
 
-
-Stranica {{SITENAME}} sa naslovom $PAGETITLE je bila $CHANGEDORCREATED dana $PAGEEDITDATE od strane $PAGEEDITOR, pogledajte $PAGETITLE_URL za trenutnu reviziju.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Sažetak urednika: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktirajte urednika:
-mail: $PAGEEDITOR_EMAIL
+e-pošta: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Neće biti drugih obavještenja u slučaju daljnjih izmjena osima ako posjetite stranicu.
-Također možete poništiti oznake obavijesti za sve praćene stranice koje imate na vašem spisku praćenja.
+Neće biti drugih obavještenja u slučaju daljnjih izmjena osima ako posjetite stranicu. Također možete poništiti oznake obavijesti za sve praćene stranice koje imate na vašem spisku praćenja.
 
-             Vaš prijateljski {{SITENAME}} sistem obavještavanja
+Vaš prijateljski {{SITENAME}} sistem obavještavanja
 
 --
 Za promjenu vaših postavki e-mail obavijesti, posjetite
@@ -2410,7 +2417,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 'protect-default' => 'Dopusti svim korisnicima',
 'protect-fallback' => 'Potrebno je imati "$1" ovlasti',
 'protect-level-autoconfirmed' => 'Blokiraj nove i neregistrovane korisnike',
-'protect-level-sysop' => 'Samo administratori',
+'protect-level-sysop' => 'Dozvoli samo administratorima',
 'protect-summary-cascade' => 'prenosna zaštita',
 'protect-expiring' => 'ističe $1 (UTC)',
 'protect-expiring-local' => 'ističe $1',
@@ -2709,23 +2716,18 @@ Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena 
 # Move page
 'move-page' => 'Pomjeranje $1',
 'move-page-legend' => 'Premjestite stranicu',
-'movepagetext' => "Korištenjem ovog formulara možete preusmjeriti članak
-zajedno sa stranicom za diskusiju tog članka.
+'movepagetext' => "Korištenjem ovog formulara možete preimenovati stranicu, premještajući cijelu historiju na novo ime.
+Članak pod starim imenom će postati stranica koja preusmjerava na članak pod novim imenom. 
+Možete automatski izmjeniti preusmjerenje do izvornog naslova.
+Ako se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna preusmjeravanja]].
+Dužni ste provjeriti da svi linkovi i dalje nastave voditi na prave stranice.
 
-Članak pod starim imenom će postati stranica koja preusmjerava
-na članak pod novim imenom. Linkovi koji vode na članak sa
-starim imenom neće biti preusmjereni. Vaša je dužnost da se
-pobrinete da svi linkovi koji vode na članak sa starim imenom
-budu adekvatno preusmjereni (stranica posebne namjene za
-održavanje je korisna za obavještenje o [[Special:BrokenRedirects|mrtvim]] i [[Special:DoubleRedirects|duplim]] preusmjerenjima).
-
-Imajte na umu da članak '''neće''' biti preusmjeren ukoliko
-već postoji članak pod imenom na koje namjeravate da
-preusmjerite.
+Imajte na umu da članak '''neće''' biti preusmjeren ukoliko već postoji članak pod imenom na koje namjeravate da preusmjerite osim u slučaju stranice za preusmjeravanje koja nema nikakvih starih izmjena.
+To znači da možete vratiti stranicu na prethodno mjesto ako pogriješite, ali ne možete zamijeniti postojeću stranicu.
 
 '''Pažnja!'''
-Imajte na umu da preusmjeravanje popularnog članka može biti
-drastična i neočekivana promjena za korisnike.",
+Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice;
+Molimo dobro razmislite prije nego što preimenujete stranicu.",
 'movepagetext-noredirectfixer' => "Koristeći obrazac ispod ćete preimenovati stranicu i premjestiti cijelu njenu historiju na novi naziv.
 Stari naziv će postati preusmjerenje na novi naziv.
 Molimo provjerite da li postoje [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nedovršena preusmjerenja]].
@@ -3902,6 +3904,7 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'compare-submit' => 'Usporedi',
 'compare-invalid-title' => 'Naslov koji ste unijeli je nevaljan.',
 'compare-title-not-exists' => 'Naslov koji ste naveli ne postoji.',
+'compare-revision-not-exists' => 'Izmjena koji ste naveli ne postoji.',
 
 # Database error messages
 'dberr-header' => 'Ovaj wiki ima problem',
@@ -3931,6 +3934,15 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 # New logging system
 'logentry-delete-delete' => '$1 je obrisao stranicu $3',
 'logentry-delete-restore' => '$1 je vratio stranicu $3',
+'logentry-delete-event' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
+'logentry-delete-revision' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici  $3: $4',
+'logentry-delete-event-legacy' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
+'logentry-delete-revision-legacy' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost izmjena na stranici $3',
+'logentry-suppress-delete' => '$1 {{GENDER:|je potisnuo|je potisnula}} stranicu $3',
+'logentry-suppress-event' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
+'logentry-suppress-revision' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici  $3: $4',
+'logentry-suppress-event-legacy' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
+'logentry-suppress-revision-legacy' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost izmjena na stranici $3',
 'revdelete-content-hid' => 'skriveni sadržaj',
 'revdelete-summary-hid' => 'sažetak izmjene je sakriven',
 'revdelete-uname-hid' => 'sažetak izmjene je sakriven',
@@ -3948,6 +3960,7 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-newusers-newusers' => 'Korisnički račun $1 je napravljen',
 'logentry-newusers-create' => 'Korisnički račun $1 je napravljen',
 'logentry-newusers-create2' => '$3 je {{GENDER:$2|napravio|napravila}} korisnički račun $1',
+'logentry-newusers-byemail' => 'Korisnički račun $3 je napravio $1 i lozinka/šifra je poslana putem e-maila',
 'logentry-newusers-autocreate' => 'Korisnički račun $1 je automatski napravljen',
 'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 je {{GENDER:$2|promijenio|promijenila|promijenio}} članstvo grupe za $3',
@@ -3986,10 +3999,11 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'api-error-emptypage' => 'Stvaranje novih praznih stranica nije dozvoljeno.',
 'api-error-fetchfileerror' => 'Unutrašnja greška: pojavio se neki problem pri dobijanju podataka o datoteci.',
 'api-error-fileexists-forbidden' => 'Datoteka s imenom "$1" već postoji, i ne može biti zamijenjena.',
+'api-error-fileexists-shared-forbidden' => 'Datoteka s imenom "$1" već postoji u zajedničkom spremištu i ne može biti prepisana.',
 'api-error-file-too-large' => 'Datoteka koju ste poslali je bila prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
-'api-error-filetype-banned-type' => '$1 nije dopuštena vrsta datoteke. {{PLURAL:$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nije dopušteni vrsta datoteke|su nedopušteni vrste datoteke|su nedopušteni vrste datoteka}}. {{PLURAL:$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmjena koji ste pokušali načiniti je obustavljena preko kuke proširenja.',
 'api-error-http' => 'Unutrašnja greška: ne može se spojiti na server.',
@@ -4005,6 +4019,7 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'api-error-ok-but-empty' => 'Unutrašnja greška: nema odgovora od servera.',
 'api-error-overwrite' => 'Pisanje preko postojeće datoteke nije dopušteno.',
 'api-error-stashfailed' => 'Unutrašnja greška: server nije mogao da spremi privremenu datoteku.',
+'api-error-publishfailed' => 'Unutrašnja greška: Server nije uspio objaviti privremenu datoteku.',
 'api-error-timeout' => 'Server nije odgovorio unutar očekivanog vremena.',
 'api-error-unclassified' => 'Desila se nepoznata greška',
 'api-error-unknown-code' => 'Nepoznata greška: "$1"',
@@ -4016,7 +4031,7 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
-'duration-minutes' => '$1 {{PLURAL:$1|minut|minuta|minuta}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minute|minuta}}',
 'duration-hours' => '$1 {{PLURAL:$1|sat|sata|sati}}',
 'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
 'duration-weeks' => '$1 {{PLURAL:$1|sedmica|sedmice|sedmica}}',

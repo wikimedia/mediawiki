@@ -2802,7 +2802,7 @@ Pastikan Anda [[Special:UnlockDB|membuka kuncinya]] setelah pemeliharaan selesai
 Judul lama akan menjadi halaman pengalihan ke judul baru.
 Anda dapat memperbarui pengalihan yang menuju ke judul asli secara otomatis.
 Jika Anda memilih tidak, pastikan untuk memeriksa
-[[Special:DoubleRedirects|double]] atau [[Special:BrokenRedirects|broken redirects]].
+[[Special:DoubleRedirects|pengalihan ganda]] atau [[Special:BrokenRedirects|pengalihan rusak]].
 Anda bertanggung jawab untuk memastikan bahwa pranala terhubung ke tempat seharusnya.
 
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman pada judul yang baru, kecuali bila halaman peralihan dan tidak mempunyai sejarah penyuntingan. 
@@ -3154,6 +3154,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'pageinfo-robot-noindex' => 'Tidak dapat diindeks',
 'pageinfo-views' => 'Jumlah penampilan',
 'pageinfo-watchers' => 'Jumlah pemantau halaman',
+'pageinfo-few-watchers' => 'Kurang dari $1 {{PLURAL:$1|pengunjung}}',
 'pageinfo-redirects-name' => 'Pengalihan ke halaman ini',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Subhalaman halaman ini',

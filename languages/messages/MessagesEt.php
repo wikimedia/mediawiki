@@ -724,7 +724,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
-'createaccountmail' => 'E-posti teel',
+'createaccountmail' => 'Kasuta juhuslikku parooli ja saada see allpool määratud e-posti aadressile',
 'createaccountreason' => 'Põhjus:',
 'badretype' => 'Sisestatud paroolid ei lange kokku.',
 'userexists' => 'Sisestatud kasutajanimi on juba kasutusel.
@@ -2180,7 +2180,7 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'linksearch-ok' => 'Otsi',
 'linksearch-text' => 'Metamärgina võib kasutada tärni, näiteks "*.wikipedia.org".
 Otsingus peab olema vähemalt tipptaseme domeen, näiteks "*.org".<br />
-Toetatud protokollid: <code>$1</code> (määramata protokolli korral vaikimisi http://).',
+Toetatud {{PLURAL:$2|protokoll|protokollid}}: <code>$1</code> (määramata protokolli korral vaikimisi http://).',
 'linksearch-line' => '$1 on lingitud leheküljelt $2',
 'linksearch-error' => 'Metamärk võib olla ainult internetiaadressi alguses.',
 
@@ -2193,7 +2193,7 @@ Toetatud protokollid: <code>$1</code> (määramata protokolli korral vaikimisi h
 # Special:ActiveUsers
 'activeusers' => 'Aktiivsete kasutajate nimekiri',
 'activeusers-intro' => 'See on loetelu kasutajatest, kes on viimase $1 {{PLURAL:$1|päev|päeva}} jooksul midagi teinud.',
-'activeusers-count' => '$1 {{PLURAL:$1|muudatus|muudatust}} viimase {{PLURAL:$3|päeva|$3 päeva}} jooksul',
+'activeusers-count' => '$1 {{PLURAL:$1|toiming|toimingut}} viimase {{PLURAL:$3|päeva|$3 päeva}} jooksul',
 'activeusers-from' => 'Näita kasutajaid alates:',
 'activeusers-hidebots' => 'Peida robotid',
 'activeusers-hidesysops' => 'Peida administraatorid',
@@ -2419,9 +2419,9 @@ Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
 'protect-cascadeon' => 'See lehekülg on kaitstud, kuna ta on kasutusel {{PLURAL:$1|järgmisel leheküljel|järgmistel lehekülgedel}}, mis on omakorda kaskaadkaitse all.
 Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaitset.',
 'protect-default' => 'Luba kõigile kasutajatele',
-'protect-fallback' => 'Nõuab "$1" õiguseid',
-'protect-level-autoconfirmed' => 'Blokeeri uued ja registreerimata kasutajad',
-'protect-level-sysop' => 'Ainult administraatorid',
+'protect-fallback' => 'Lubatud vaid kasutajatele õigusega "$1"',
+'protect-level-autoconfirmed' => 'Lubatud vaid automaatselt kinnitatud kasutajatele',
+'protect-level-sysop' => 'Lubatud vaid administraatoritele',
 'protect-summary-cascade' => 'kaskaad',
 'protect-expiring' => 'aegub $1 (UTC)',
 'protect-expiring-local' => 'aegub $1',
@@ -2724,7 +2724,7 @@ Saad senisele pealkirjale viitavad ümbersuunamised automaatselt parandada.
 Kui sa seda ei tee, kontrolli, et teisaldamise tõttu ei jää maha [[Special:DoubleRedirects|kahekordseid]] ega [[Special:BrokenRedirects|katkiseid ümbersuunamisi]].
 Sinu kohus on hoolitseda selle eest, et kõik jääks toimima, nagu ette nähtud.
 
-Pane tähele, et lehekülge '''ei teisaldata''' juhul, kui uue pealkirjaga lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või redigeerimisajaloota ümbersuunamislehekülg.
+Pane tähele, et lehekülge '''ei teisaldata''' juhul, kui uue pealkirjaga lehekülg on juba olemas. Erandiks on juhud, kui viimane on redigeerimisajaloota ümbersuunamislehekülg.
 See tähendab, et kogemata ei saa üle kirjutada juba olemasolevat lehekülge, kuid saab ebaõnnestunud ümbernimetamise tagasi pöörata.
 
 '''Hoiatus!'''
@@ -3049,6 +3049,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-robot-noindex' => 'Indekseerimatu',
 'pageinfo-views' => 'Vaatamiste arv',
 'pageinfo-watchers' => 'Lehekülje jälgijate arv',
+'pageinfo-few-watchers' => 'Alla {{PLURAL:$1|ühe jälgija|$1 jälgija}}',
 'pageinfo-redirects-name' => 'Ümbersuunamisi sellele leheküljele',
 'pageinfo-subpages-name' => 'Selle lehekülje alamlehekülgi',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ümbersuunamine|ümbersuunamist}}; $3 {{PLURAL:$3|mitteümbersuunamine|mitteümbersuunamist}})',
@@ -3071,6 +3072,10 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-protect-cascading' => 'Siit lähtub kaskaadkaitse',
 'pageinfo-protect-cascading-yes' => 'Jah',
 'pageinfo-protect-cascading-from' => 'Kaskaadkaitse lähtub lehekülgedelt',
+'pageinfo-category-info' => 'Kategooria teave',
+'pageinfo-category-pages' => 'Lehekülgede arv',
+'pageinfo-category-subcats' => 'Alamkategooriate arv',
+'pageinfo-category-files' => 'Failide arv',
 
 # Skin names
 'skinname-standard' => 'Algeline',
@@ -3778,7 +3783,7 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'specialpages-group-highuse' => 'Tihti kasutatud leheküljed',
 'specialpages-group-pages' => 'Lehekülgede loendid',
 'specialpages-group-pagetools' => 'Töö lehekülgedega',
-'specialpages-group-wiki' => 'Viki andmed ja tööriistad',
+'specialpages-group-wiki' => 'Andmed ja tööriistad',
 'specialpages-group-redirects' => 'Ümbersuunavad erilehed',
 'specialpages-group-spam' => 'Töö spämmiga',
 

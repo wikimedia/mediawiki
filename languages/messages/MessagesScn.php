@@ -631,6 +631,9 @@ Aspetta tanticchia prima di pruvari  n'àutra vota.",
 Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na nova password timpurrània.",
 'resetpass-temp-password' => 'Password timpurrània:',
 
+# Special:ChangeEmail
+'changeemail-submit' => 'Cancia e-mail',
+
 # Edit page toolbar
 'bold_sample' => 'Grassettu',
 'bold_tip' => 'Grassettu',
@@ -1777,6 +1780,7 @@ Protucolli suppurtati: <code>$1</code>',
 # Watchlist
 'watchlist' => 'Lista taliata mia',
 'mywatchlist' => 'Lista taliata mia',
+'watchlistfor2' => 'Pi $1, $2',
 'nowatchlist' => "Nun hai innicatu pàggini a tèniri d'occhiu.",
 'watchlistanontext' => "Pi visualizzari e canciari l'alencu di l'ossirvati spiciali è nicissariu $1.",
 'watchnologin' => 'Nun hai effittuatu lu login',
@@ -2402,6 +2406,9 @@ Visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//trans
 'spambot_username' => 'MediaWiki - sistema di rimuzzioni spam',
 'spam_reverting' => "Ripristinata l'ùrtima virsioni priva di culligamenti a $1",
 'spam_blanking' => 'Pàggina svacantata, tutti li virsioni cuntinìanu culligamenti a $1',
+
+# Info page
+'pageinfo-toolboxlink' => 'Nfurmazzioni ncapu la pàggina',
 
 # Skin names
 'skinname-standard' => 'Classicu',

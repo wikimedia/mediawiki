@@ -1717,7 +1717,7 @@ HTML 태그를 확인하세요.',
 'action-sendemail' => '이메일 보내기',
 
 # Recent changes
-'nchanges' => '$1개 바뀜',
+'nchanges' => '$1개 {{PLURAL:$1|바뀜}}',
 'recentchanges' => '최근 바뀜',
 'recentchanges-legend' => '최근 바뀜 설정',
 'recentchanges-summary' => '위키의 최근 바뀜 내역이 나와 있습니다.',
@@ -1726,7 +1726,7 @@ HTML 태그를 확인하세요.',
 'recentchanges-label-minor' => '사소한 편집',
 'recentchanges-label-bot' => '봇의 편집',
 'recentchanges-label-unpatrolled' => '아직 검토하지 않은 편집',
-'rcnote' => "다음은 $4 $5 까지의 '''$2'''일동안 바뀐 문서 '''$1'''개입니다.",
+'rcnote' => "다음은 $4 $5 까지의 {{PLURAL:$2|'''$2'''일}}동안 {{PLURAL:$1|바뀐 문서 '''$1'''개입니다}}.",
 'rcnotefrom' => "다음은 '''$2'''에서부터 바뀐 문서 '''$1'''개입니다.",
 'rclistfrom' => '$1 이래로 바뀐 문서',
 'rcshowhideminor' => '사소한 편집을 $1',
@@ -4057,7 +4057,7 @@ $5
 'tags-description-header' => '태그에 대한 설명',
 'tags-hitcount-header' => '태그된 바뀜',
 'tags-edit' => '편집',
-'tags-hitcount' => '$1개 바뀜',
+'tags-hitcount' => '$1개 {{PLURAL:$1|바뀜}}',
 
 # Special:ComparePages
 'comparepages' => '문서 비교',

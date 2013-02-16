@@ -3938,7 +3938,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-antispam' => 'Spamschutzerweiterungen',
 'version-skins' => 'Benutzeroberflächen',
 'version-api' => 'API-Erweiterungen',
-'version-other' => 'Andere Erweiterungen',
+'version-other' => 'Sonstige Erweiterungen',
 'version-mediahandlers' => 'Mediennutzungserweiterungen',
 'version-hooks' => "Schnittstellen ''(Hooks)''",
 'version-extension-functions' => 'Funktionsaufrufe',
