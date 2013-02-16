@@ -1084,7 +1084,7 @@ table.floatleft {
 	z-index: 99;
 }
 
-.editsection, .toctoggle {
+.mw-editsection, .editsection, .toctoggle {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
