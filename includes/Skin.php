@@ -1533,14 +1533,14 @@ abstract class Skin extends ContextSource {
 			# DoEditSectionLink: it can't change the brackets or the span.)
 			$result = wfMessage( 'editsection-brackets' )->rawParams( $result )
 				->inLanguage( $lang )->escaped();
-			return "<span class=\"editsection\">$result</span>";
+			return "<span class=\"mw-editsection\">$result</span>";
 		}
 
 		# Add the brackets and the span, and *then* run the nice new hook, with
 		# clean and non-redundant arguments.
 		$result = wfMessage( 'editsection-brackets' )->rawParams( $link )
 			->inLanguage( $lang )->escaped();
-		$result = "<span class=\"editsection\">$result</span>";
+		$result = "<span class=\"mw-editsection\">$result</span>";
 
 		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
 		return $result;
