@@ -240,12 +240,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_user || $this->fld_userid ) {
 
-			if ( $this->fld_user ) {
-				$vals['user'] = $row->rc_user_text;
+			if ( $this->fld_userid ) {
+				$vals['userid'] = $row->rc_user;
+				// for backwards compatibility
+				$vals['user'] = $row->rc_user;
 			}
 
-			if ( $this->fld_userid ) {
-				$vals['user'] = $row->rc_user;
+			if ( $this->fld_user ) {
+				$vals['user'] = $row->rc_user_text;
 			}
 
 			if ( !$row->rc_user ) {
