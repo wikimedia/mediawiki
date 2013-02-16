@@ -78,7 +78,8 @@ class ApiUnblock extends ApiBase {
 		}
 
 		$res['id'] = $block->getId();
-		$res['user'] = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
+		$target = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
+		$res['user'] = $target instanceof User ? $target->getName() : $target;
 		$res['reason'] = $params['reason'];
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
