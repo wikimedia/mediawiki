@@ -32,6 +32,7 @@ a.stub {
 #logo,
 #footer,
 #siteNotice,
+.mw-editsection,
 .editsection,
 .toctoggle {
 	display: none;
