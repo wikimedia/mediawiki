@@ -88,7 +88,6 @@ class Title {
 	var $mHasSubpage;                 // /< Whether a page has any subpages
 	// @}
 
-
 	/**
 	 * Constructor
 	 */
@@ -3195,10 +3194,10 @@ class Title {
 		# Also, they conflict with subpage syntax.  Forbid them explicitly.
 		if ( strpos( $dbkey, '.' ) !== false &&
 			 ( $dbkey === '.' || $dbkey === '..' ||
-			   strpos( $dbkey, './' ) === 0  ||
+			   strpos( $dbkey, './' ) === 0 ||
 			   strpos( $dbkey, '../' ) === 0 ||
 			   strpos( $dbkey, '/./' ) !== false ||
-			   strpos( $dbkey, '/../' ) !== false  ||
+			   strpos( $dbkey, '/../' ) !== false ||
 			   substr( $dbkey, -2 ) == '/.' ||
 			   substr( $dbkey, -3 ) == '/..' ) )
 		{
@@ -3426,7 +3425,6 @@ class Title {
 		}
 		return $retVal;
 	}
-
 
 	/**
 	 * Get a list of URLs to purge from the Squid cache when this

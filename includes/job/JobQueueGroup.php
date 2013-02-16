@@ -37,7 +37,7 @@ class JobQueueGroup {
 	protected $wiki; // string; wiki ID
 
 	const TYPE_DEFAULT = 1; // integer; jobs popped by default
-	const TYPE_ANY     = 2; // integer; any job
+	const TYPE_ANY = 2; // integer; any job
 
 	const USE_CACHE = 1; // integer; use process cache
 

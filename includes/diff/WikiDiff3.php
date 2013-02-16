@@ -490,7 +490,6 @@ class WikiDiff3 {
 
 		$temp = array( 0, 0, 0 );
 
-
 		$max_progress = array_fill( 0, ceil( max( $forward_end_diag - $forward_start_diag,
 				$backward_end_diag - $backward_start_diag ) / 2 ), $temp );
 		$num_progress = 0; // the 1st entry is current, it is initialized

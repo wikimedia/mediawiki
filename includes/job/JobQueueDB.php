@@ -28,12 +28,12 @@
  * @since 1.21
  */
 class JobQueueDB extends JobQueue {
-	const ROOTJOB_TTL     = 1209600; // integer; seconds to remember root jobs (14 days)
+	const ROOTJOB_TTL = 1209600; // integer; seconds to remember root jobs (14 days)
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
-	const CACHE_TTL_LONG  = 300; // integer; seconds to cache info that is kept up to date
-	const MAX_AGE_PRUNE   = 604800; // integer; seconds a job can live once claimed
-	const MAX_JOB_RANDOM  = 2147483647; // integer; 2^31 - 1, used for job_random
-	const MAX_OFFSET      = 255; // integer; maximum number of rows to skip
+	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
+	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed
+	const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
+	const MAX_OFFSET = 255; // integer; maximum number of rows to skip
 
 	protected $cluster = false; // string; name of an external DB cluster
 
@@ -151,8 +151,8 @@ class JobQueueDB extends JobQueue {
 			}
 
 			$atomic = ( $flags & self::QoS_Atomic );
-			$key    = $this->getCacheKey( 'empty' );
-			$ttl    = self::CACHE_TTL_LONG;
+			$key = $this->getCacheKey( 'empty' );
+			$ttl = self::CACHE_TTL_LONG;
 
 			$dbw->onTransactionIdle(
 				function() use ( $dbw, $rowSet, $rowList, $atomic, $key, $ttl, $scope
@@ -226,8 +226,8 @@ class JobQueueDB extends JobQueue {
 				$row = $this->claimOldest( $uuid );
 			} else { // random first
 				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
-				$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
-				$row  = $this->claimRandom( $uuid, $rand, $gte );
+				$gte = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+				$row = $this->claimRandom( $uuid, $rand, $gte );
 			}
 			// Check if we found a row to reserve...
 			if ( !$row ) {
@@ -282,8 +282,8 @@ class JobQueueDB extends JobQueue {
 				// For small queues, using OFFSET will overshoot and return no rows more often.
 				// Instead, this uses job_random to pick a row (possibly checking both directions).
 				$ineq = $gte ? '>=' : '<=';
-				$dir  = $gte ? 'ASC' : 'DESC';
-				$row  = $dbw->selectRow( 'job', '*', // find a random job
+				$dir = $gte ? 'ASC' : 'DESC';
+				$row = $dbw->selectRow( 'job', '*', // find a random job
 					array(
 						'job_cmd'   => $this->type,
 						'job_token' => '', // unclaimed

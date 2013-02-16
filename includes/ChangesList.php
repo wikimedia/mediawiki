@@ -579,7 +579,6 @@ class ChangesList extends ContextSource {
 	}
 }
 
-
 /**
  * Generate a list of changes using the good old system (no javascript)
  */
@@ -691,7 +690,6 @@ class OldChangesList extends ChangesList {
 		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $s . "</li>\n";
 	}
 }
-
 
 /**
  * Generate a list of changes using an Enhanced system (uses javascript).

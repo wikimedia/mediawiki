@@ -1757,7 +1757,7 @@ class Sanitizer {
 		// Please note strings below are enclosed in brackets [], this make the
 		// hyphen "-" a range indicator. Hence it is double backslashed below.
 		// See bug 26948
-		$rfc5322_atext   = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
+		$rfc5322_atext = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
 		$rfc1034_ldh_str = "a-z0-9\\-";
 
 		$HTML5_email_regexp = "/

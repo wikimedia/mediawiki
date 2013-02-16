@@ -613,7 +613,7 @@ class ApiPageSet extends ApiBase {
 			$this->profileDBOut();
 		}
 
-		$this->initFromQueryResult( $res, $remaining, false );	// process PageIDs
+		$this->initFromQueryResult( $res, $remaining, false ); // process PageIDs
 
 		// Resolve any found redirects
 		$this->resolvePendingRedirects();
@@ -873,7 +873,7 @@ class ApiPageSet extends ApiBase {
 				// Variants checking
 				global $wgContLang;
 				if ( $this->mConvertTitles &&
-						count( $wgContLang->getVariants() ) > 1  &&
+						count( $wgContLang->getVariants() ) > 1 &&
 						!$titleObj->exists() ) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible

@@ -597,7 +597,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return bool
 	 */
 	function wasErrorReissuable() {
-		return $this->lastErrno() ==  17; // SQLITE_SCHEMA;
+		return $this->lastErrno() == 17; // SQLITE_SCHEMA;
 	}
 
 	/**
@@ -830,7 +830,6 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		return $this->query( $sql, $fname );
 	}
-
 
 	/**
 	 * List all tables on the database

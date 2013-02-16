@@ -562,7 +562,6 @@ class LogPage {
 		return $messages[$flag];
 	}
 
-
 	/**
 	 * Name of the log.
 	 * @return Message

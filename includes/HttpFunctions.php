@@ -516,7 +516,6 @@ class MWHttpRequest {
 		return (int)$this->respStatus;
 	}
 
-
 	/**
 	 * Returns true if the last status code was a redirect.
 	 *
@@ -653,7 +652,7 @@ class MWHttpRequest {
 
 				if ( isset( $url['host'] ) ) {
 					$domain = $url[ 'scheme' ] . '://' . $url[ 'host' ];
-					break;	//found correct URI (with host)
+					break; //found correct URI (with host)
 				} else {
 					$foundRelativeURI = true;
 				}

@@ -210,7 +210,6 @@ class ResourceLoader {
 			$this->registerTestModules();
 		}
 
-
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -541,12 +540,12 @@ class ResourceLoader {
 		// to propagate to clients quickly
 		// If there were errors, we also need a shorter expiry time so we can recover quickly
 		if ( is_null( $context->getVersion() ) || $errors ) {
-			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
+			$maxage = $wgResourceLoaderMaxage['unversioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
 		// If a version was specified we can use a longer expiry time since changing
 		// version numbers causes cache misses
 		} else {
-			$maxage  = $wgResourceLoaderMaxage['versioned']['client'];
+			$maxage = $wgResourceLoaderMaxage['versioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
 		}
 		if ( $context->getOnly() === 'styles' ) {

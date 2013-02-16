@@ -538,7 +538,6 @@ class LocalisationCache {
 		}
 	}
 
-
 	/**
 	 * Load a plural XML file with the given filename, compile the relevant
 	 * rules, and save the compiled rules in a process-local cache.

@@ -161,7 +161,7 @@ class Parser_LinkHooks extends Parser {
 		$markers = new LinkMarkerReplacer( $this, $holders, array( &$this, 'replaceInternalLinksCallback' ) );
 		while( true ) {
 			$startBracketOffset = strpos( $s, '[[', $offset );
-			$endBracketOffset   = strpos( $s, ']]', $offset );
+			$endBracketOffset = strpos( $s, ']]', $offset );
 			# Finish when there are no more brackets
 			if( $startBracketOffset === false && $endBracketOffset === false ) break;
 			# Determine if the bracket is a starting or ending bracket
@@ -293,10 +293,10 @@ class LinkMarkerReplacer {
 	protected $markers, $nextId, $parser, $holders, $callback;
 
 	function __construct( $parser, $holders, $callback ) {
-		$this->nextId   = 0;
-		$this->markers  = array();
-		$this->parser   = $parser;
-		$this->holders  = $holders;
+		$this->nextId = 0;
+		$this->markers = array();
+		$this->parser = $parser;
+		$this->holders = $holders;
 		$this->callback = $callback;
 	}
 

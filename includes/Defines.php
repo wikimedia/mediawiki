@@ -61,7 +61,6 @@ define( 'DB_READ', -1 );
 define( 'DB_WRITE', -2 );
 define( 'DB_LAST', -3 ); # deprecated since 2008, usage throws exception
 
-
 /**@{
  * Virtual namespaces; don't appear in the page database
  */

@@ -709,7 +709,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected function getDefaultDirections() { return false; }
 }
 
-
 /**
  * IndexPager with an alphabetic list and a formatted navigation bar
  * @ingroup Pager

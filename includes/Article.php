@@ -393,7 +393,6 @@ class Article implements Page {
 		return $this->mContent;
 	}
 
-
 	/**
 	 * Get text content object
 	 * Does *NOT* follow redirects.

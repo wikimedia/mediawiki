@@ -60,9 +60,9 @@ class HTMLCacheUpdateJob extends Job {
 
 		parent::__construct( 'htmlCacheUpdate', $title, $params, $id );
 
-		$this->rowsPerJob   = $wgUpdateRowsPerJob;
+		$this->rowsPerJob = $wgUpdateRowsPerJob;
 		$this->rowsPerQuery = $wgUpdateRowsPerQuery;
-		$this->blCache      = $title->getBacklinkCache();
+		$this->blCache = $title->getBacklinkCache();
 	}
 
 	public function run() {

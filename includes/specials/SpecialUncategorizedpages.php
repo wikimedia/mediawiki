@@ -55,7 +55,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 			// default for page_namespace is all content namespaces (if requestedNamespace is false)
 			// otherwise, page_namespace is requestedNamespace
 			'conds' => array ( 'cl_from IS NULL',
-					'page_namespace' => ( $this->requestedNamespace!==false ? $this->requestedNamespace : MWNamespace::getContentNamespaces() ),
+					'page_namespace' => ( $this->requestedNamespace !== false ? $this->requestedNamespace : MWNamespace::getContentNamespaces() ),
 					'page_is_redirect' => 0 ),
 			'join_conds' => array ( 'categorylinks' => array (
 					'LEFT JOIN', 'cl_from = page_id' ) )

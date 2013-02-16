@@ -201,7 +201,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$res = '';
 		foreach ( explode( ';', $disposition ) as $part ) {
 			$part = trim( $part );
-			$new  = ( $res === '' ) ? $part : "{$res};{$part}";
+			$new = ( $res === '' ) ? $part : "{$res};{$part}";
 			if ( strlen( $new ) <= 255 ) {
 				$res = $new;
 			} else {

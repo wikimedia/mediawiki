@@ -57,7 +57,6 @@ class Hooks {
 		unset( self::$handlers[$name] );
 	}
 
-
 	/**
 	 * Attach an event handler to a given hook
 	 *

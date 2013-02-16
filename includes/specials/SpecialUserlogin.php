@@ -602,7 +602,7 @@ class LoginForm extends SpecialPage {
 				// faces etc will probably just fail cleanly here.
 				$retval = self::RESET_PASS;
 			} else {
-				$retval = ( $this->mPassword  == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
+				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
 			}
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
@@ -867,7 +867,6 @@ class LoginForm extends SpecialPage {
 
 		return $result;
 	}
-
 
 	/**
 	 * Run any hooks registered for logins, then HTTP redirect to

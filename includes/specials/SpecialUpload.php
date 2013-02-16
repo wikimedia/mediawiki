@@ -39,7 +39,7 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/** Misc variables **/
-	public $mRequest;			// The WebRequest or FauxRequest this form is supposed to handle
+	public $mRequest; // The WebRequest or FauxRequest this form is supposed to handle
 	public $mSourceType;
 
 	/**
@@ -54,7 +54,7 @@ class SpecialUpload extends SpecialPage {
 	public $mUploadClicked;
 
 	/** User input variables from the "description" section **/
-	public $mDesiredDestName;	// The requested target file name
+	public $mDesiredDestName; // The requested target file name
 	public $mComment;
 	public $mLicense;
 
@@ -66,10 +66,10 @@ class SpecialUpload extends SpecialPage {
 
 	/** Hidden variables **/
 	public $mDestWarningAck;
-	public $mForReUpload;		// The user followed an "overwrite this file" link
-	public $mCancelUpload;		// The user clicked "Cancel and return to upload form" button
+	public $mForReUpload; // The user followed an "overwrite this file" link
+	public $mCancelUpload; // The user clicked "Cancel and return to upload form" button
 	public $mTokenOk;
-	public $mUploadSuccessful = false;	// Subclasses can use this to determine whether a file was uploaded
+	public $mUploadSuccessful = false; // Subclasses can use this to determine whether a file was uploaded
 
 	/** Text injection points for hooks not using HTMLForm **/
 	public $uploadFormTextTop;
@@ -102,7 +102,6 @@ class SpecialUpload extends SpecialPage {
 		$this->mWatchthis = $request->getBool( 'wpWatchthis' ) && $this->getUser()->isLoggedIn();
 		$this->mCopyrightStatus = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource = $request->getText( 'wpUploadSource' );
-
 
 		$this->mForReUpload = $request->getBool( 'wpForReUpload' ); // updating a file
 		$this->mCancelUpload = $request->getCheck( 'wpCancelUpload' )
@@ -521,7 +520,6 @@ class SpecialUpload extends SpecialPage {
 			return $this->getUser()->getOption( 'watchcreations' );
 		}
 	}
-
 
 	/**
 	 * Provides output to the user for a result of UploadBase::verifyUpload
@@ -1083,7 +1081,6 @@ class UploadForm extends HTMLForm {
 
 		$out = $this->getOutput();
 		$out->addJsConfigVars( $scriptVars );
-
 
 		$out->addModules( array(
 			'mediawiki.action.edit', // For <charinsert> support

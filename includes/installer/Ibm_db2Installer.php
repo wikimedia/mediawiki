@@ -29,7 +29,6 @@
  */
 class Ibm_db2Installer extends DatabaseInstaller {
 
-
 	protected $globalNames = array(
 		'wgDBserver',
 		'wgDBport',
@@ -260,8 +259,8 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		$port = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBport' ) );
 		return
 "# IBM_DB2 specific settings
-\$wgDBmwschema         = \"{$schema}\";
-\$wgDBport             = \"{$port}\";";
+\$wgDBmwschema = \"{$schema}\";
+\$wgDBport = \"{$port}\";";
 	}
 
 	public function __construct( $parent ) {

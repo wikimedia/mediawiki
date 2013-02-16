@@ -295,7 +295,6 @@ class XMPValidate {
 				return;
 			}
 
-
 			// Extra check for empty string necessary due to TZ but no second case.
 			$stripSeconds = false;
 			if ( !isset( $res[6] ) || $res[6] === '' ) {

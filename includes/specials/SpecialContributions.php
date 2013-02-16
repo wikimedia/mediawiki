@@ -192,7 +192,6 @@ class SpecialContributions extends SpecialPage {
 			}
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
-
 			# Show the appropriate "footer" message - WHOIS tools, etc.
 			if ( $this->opts['contribs'] == 'newbie' ) {
 				$message = 'sp-contributions-footer-newbies';

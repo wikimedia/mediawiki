@@ -122,8 +122,8 @@ class Parser {
 	var $mFunctionHooks = array();
 	var $mFunctionSynonyms = array( 0 => array(), 1 => array() );
 	var $mFunctionTagHooks = array();
-	var $mStripList  = array();
-	var $mDefaultStripList  = array();
+	var $mStripList = array();
+	var $mDefaultStripList = array();
 	var $mVarCache = array();
 	var $mImageParams = array();
 	var $mImageParamsMagicArray = array();
@@ -309,7 +309,6 @@ class Parser {
 		 */
 		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
 		$this->mStripState = new StripState( $this->mUniqPrefix );
-
 
 		# Clear these on every parse, bug 4549
 		$this->mTplExpandCache = $this->mTplRedirCache = $this->mTplDomCache = array();
@@ -843,16 +842,16 @@ class Parser {
 			}
 			if ( count( $p ) > 5 ) {
 				# comment
-				$element    = $p[4];
+				$element = $p[4];
 				$attributes = '';
-				$close      = '';
-				$inside     = $p[5];
+				$close = '';
+				$inside = $p[5];
 			} else {
 				# tag
-				$element    = $p[1];
+				$element = $p[1];
 				$attributes = $p[2];
-				$close      = $p[3];
-				$inside     = $p[4];
+				$close = $p[3];
+				$inside = $p[4];
 			}
 
 			$marker = "$uniq_prefix-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
@@ -1005,7 +1004,7 @@ class Parser {
 				array_push( $tr_history, false );
 				array_push( $td_history, false );
 				array_push( $last_tag_history, '' );
-			} elseif ( $first_character === '|' || $first_character === '!' || substr( $line, 0, 2 )  === '|+' ) {
+			} elseif ( $first_character === '|' || $first_character === '!' || substr( $line, 0, 2 ) === '|+' ) {
 				# This might be cell elements, td, th or captions
 				if ( substr( $line, 0, 2 ) === '|+' ) {
 					$first_character = '+';
@@ -1313,7 +1312,6 @@ class Parser {
 		wfProfileOut( __METHOD__ );
 		return $text . $trail;
 	}
-
 
 	/**
 	 * Parse headers and return html
@@ -1952,7 +1950,7 @@ class Parser {
 				wfProfileOut( __METHOD__ . "-might_be_img" );
 			}
 
-			$wasblank = ( $text  == '' );
+			$wasblank = ( $text == '' );
 			if ( $wasblank ) {
 				$text = $link;
 			} else {

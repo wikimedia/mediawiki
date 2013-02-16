@@ -126,7 +126,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
 				if ( strpos( $titleText, '*/' ) === false ) {
-					$scripts .=  "/* $titleText */\n";
+					$scripts .= "/* $titleText */\n";
 				}
 				$scripts .= $script . "\n";
 			}
@@ -163,7 +163,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				$styles[$media] = array();
 			}
 			if ( strpos( $titleText, '*/' ) === false ) {
-				$style =  "/* $titleText */\n" . $style;
+				$style = "/* $titleText */\n" . $style;
 			}
 			$styles[$media][] = $style;
 		}

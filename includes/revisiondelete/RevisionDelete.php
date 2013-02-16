@@ -398,7 +398,6 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	}
 }
 
-
 /**
  * Item class for a archive table row by ar_rev_id -- actually
  * used via RevDel_RevisionList.

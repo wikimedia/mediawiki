@@ -915,7 +915,6 @@ class DeleteLogFormatter extends LogFormatter {
 				}
 				$changeText = $this->context->getLanguage()->listToText( $changes );
 
-
 				$newParams = array_slice( $params, 0, 3 );
 				$newParams[3] = $changeText;
 				$count = count( explode( ',', $params[$paramStart] ) );

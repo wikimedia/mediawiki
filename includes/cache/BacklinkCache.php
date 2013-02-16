@@ -222,11 +222,11 @@ class BacklinkCache {
 	 */
 	protected function getPrefix( $table ) {
 		static $prefixes = array(
-			'pagelinks'     => 'pl',
-			'imagelinks'    => 'il',
+			'pagelinks' => 'pl',
+			'imagelinks' => 'il',
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
-			'redirect'      => 'rd',
+			'redirect' => 'rd',
 		);
 
 		if ( isset( $prefixes[$table] ) ) {
@@ -259,14 +259,14 @@ class BacklinkCache {
 			case 'templatelinks':
 				$conds = array(
 					"{$prefix}_namespace" => $this->title->getNamespace(),
-					"{$prefix}_title"     => $this->title->getDBkey(),
+					"{$prefix}_title" => $this->title->getDBkey(),
 					"page_id={$prefix}_from"
 				);
 				break;
 			case 'redirect':
 				$conds = array(
 					"{$prefix}_namespace" => $this->title->getNamespace(),
-					"{$prefix}_title"     => $this->title->getDBkey(),
+					"{$prefix}_title" => $this->title->getDBkey(),
 					$this->getDb()->makeList( array(
 						"{$prefix}_interwiki = ''",
 						"{$prefix}_interwiki is null",
@@ -393,7 +393,6 @@ class BacklinkCache {
 			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
 			return $cacheEntry['batches'];
 		}
-
 
 		// 4) ... finally fetch from the slow database :(
 		$this->getLinks( $table );

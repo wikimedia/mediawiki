@@ -482,7 +482,6 @@ class DatabasePostgres extends DatabaseBase {
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
 
-
 	function queryIgnore( $sql, $fname = 'DatabasePostgres::queryIgnore' ) {
 		return $this->query( $sql, $fname, true );
 	}
@@ -702,7 +701,6 @@ __INDEXATTR__;
 		}
 		return $a;
 	}
-
 
 	function indexUnique( $table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
@@ -1061,7 +1059,6 @@ __INDEXATTR__;
 	public static function getSoftwareLink() {
 		return '[http://www.postgresql.org/ PostgreSQL]';
 	}
-
 
 	/**
 	 * Return current schema (executes SELECT current_schema())
@@ -1466,7 +1463,7 @@ SQL;
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-		for ( $attempts=1; $attempts <= $timeout; ++$attempts ) {
+		for ( $attempts = 1; $attempts <= $timeout; ++$attempts ) {
 			$result = $this->query(
 				"SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
 			$row = $this->fetchObject( $result );

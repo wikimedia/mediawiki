@@ -33,7 +33,7 @@ class JobQueueRedis extends JobQueue {
 
 	protected $server; // string; server address
 
-	const ROOTJOB_TTL   = 1209600; // integer; seconds to remember root jobs (14 days)
+	const ROOTJOB_TTL = 1209600; // integer; seconds to remember root jobs (14 days)
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
 
 	/**

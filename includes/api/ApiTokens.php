@@ -24,7 +24,6 @@
  * @file
  */
 
-
 /**
  * @ingroup API
  */

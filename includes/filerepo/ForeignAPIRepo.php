@@ -320,7 +320,6 @@ class ForeignAPIRepo extends FileRepo {
 			return false;
 		}
 
-
 		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
 		$backend->prepare( array( 'dir' => dirname( $localFilename ) ) );
 		$params = array( 'dst' => $localFilename, 'content' => $thumb );

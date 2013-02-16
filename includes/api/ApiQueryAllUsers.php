@@ -161,7 +161,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addFields( array( 'recentedits' => 'COUNT(*)' ) );
 
 			$this->addWhere( 'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ) );
-			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
+			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays * 24 * 3600 );
 			$this->addWhere( 'rc_timestamp >= ' . $db->addQuotes( $timestamp ) );
 
 			$this->addOption( 'GROUP BY', $userFieldToSort );
@@ -279,7 +279,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			if ( $fld_rights ) {
 				if ( !isset( $lastUserData['rights'] ) ) {
 					if ( $lastUserObj ) {
-						$lastUserData['rights'] =  User::getGroupPermissions( $lastUserObj->getAutomaticGroups() );
+						$lastUserData['rights'] = User::getGroupPermissions( $lastUserObj->getAutomaticGroups() );
 					} else {
 						// This should not normally happen
 						$lastUserData['rights'] = array();

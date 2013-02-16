@@ -174,10 +174,10 @@ abstract class BagOStuff {
 			return true;
 		}
 
-		$uRTT  = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
+		$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
 		$sleep = 2*$uRTT; // rough time to do get()+set()
 
-		$locked   = false; // lock acquired
+		$locked = false; // lock acquired
 		$attempts = 0; // failed attempts
 		do {
 			if ( ++$attempts >= 3 && $sleep <= 1e6 ) {
