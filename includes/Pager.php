@@ -1145,16 +1145,17 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a "<select>" element which has options for each of the allowed limits
 	 *
+	 * @param $attribs String: Extra attributes to add onto the default array( 'name' => 'limit' )
 	 * @return String: HTML fragment
 	 */
-	public function getLimitSelect() {
+	public function getLimitSelect( $attribs = array() ) {
 		# Add the current limit from the query string
 		# to avoid that the limit is lost after clicking Go next time
 		if ( !in_array( $this->mLimit, $this->mLimitsShown ) ) {
 			$this->mLimitsShown[] = $this->mLimit;
 			sort( $this->mLimitsShown );
 		}
-		$s = Html::openElement( 'select', array( 'name' => 'limit' ) ) . "\n";
+		$s = Html::openElement( 'select', array( 'name' => 'limit' ) + $attribs ) . "\n";
 		foreach ( $this->mLimitsShown as $key => $value ) {
 			# The pair is either $index => $limit, in which case the $value
 			# will be numeric, or $limit => $text, in which case the $value
