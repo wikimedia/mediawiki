@@ -236,25 +236,27 @@ class ImageListPager extends TablePager {
 	function getForm() {
 		global $wgScript, $wgMiserMode;
 		$inputForm = array();
-		$inputForm['table_pager_limit_label'] = $this->getLimitSelect();
+		$inputForm['table_pager_limit_label'] = $this->getLimitSelect( array( 'tabindex' => 1 ) );
 		if ( !$wgMiserMode ) {
 			$inputForm['listfiles_search_for'] = Html::input( 'ilsearch', $this->mSearch, 'text',
 				array(
 					'size' 		=> '40',
 					'maxlength' => '255',
 					'id' 		=> 'mw-ilsearch',
+					'tabindex'  => 2
 			) );
 		}
 		$inputForm['username'] = Html::input( 'user', $this->mUserName, 'text', array(
 			'size' 		=> '40',
 			'maxlength' => '255',
 			'id' 		=> 'mw-listfiles-user',
+			'tabindex'  => $wgMiserMode ? 2 : 3,
 		) );
 		return Html::openElement( 'form',
 				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
 			Xml::fieldset( $this->msg( 'listfiles' )->text() ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-			Xml::buildForm( $inputForm, 'table_pager_limit_submit' ) .
+			Xml::buildForm( $inputForm, 'table_pager_limit_submit', array( 'tabindex' => $wgMiserMode ? 3 : 4 ) ) .
 			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user', 'title' ) ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n";
