@@ -304,6 +304,12 @@ class ApiEditPage extends ApiBase {
 		$wgTitle = $titleObj;
 
 		$articleObject = new Article( $titleObj );
+
+		$articleContext = new DerivativeContext( $articleObject->getContext() );
+		$articleContext->setRequest( $req );
+		$articleContext->setTitle( $titleObj );
+		$articleObject->setContext( $articleContext );
+
 		$ep = new EditPage( $articleObject );
 
 		// allow editing of non-textual content.
