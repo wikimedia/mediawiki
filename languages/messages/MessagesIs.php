@@ -743,6 +743,7 @@ Vinsamlegast reynið aftur síðar.',
 # E-mail sending
 'php-mail-error-unknown' => 'Óþekkt villa í PHP mail() aðgerð.',
 'user-mail-no-addy' => 'Gat ekki sent tölvupóst því ekkert tölvupóstfang fannst.',
+'user-mail-no-body' => 'Reyndi að senda tölvupóst með engu eða verulega stuttu meginmáli.',
 
 # Change password dialog
 'resetpass' => 'Breyta lykilorði',
@@ -964,8 +965,8 @@ Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br
 Þú lofar okkur einnig að þú hafir skrifað þetta sjálfur, að efnið sé í almannaeigu eða að það heyri undir frjálst leyfi. (sjá $1).
 '''EKKI SENDA INN HÖFUNDARRÉTTARVARIÐ EFNI ÁN LEYFIS RÉTTHAFA!'''",
 'longpageerror' => "'''VILLA: Textinn sem þú sendir inn er {{PLURAL:$1|eitt kílóbæti|$1 kílóbæti}} að lengd, en hámarkið er {{PLURAL:$2|eitt kílóbæti|$2 kílóbæti}}. Ekki er hægt að vista textann.'''",
-'readonlywarning' => "'''AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.
-Þú kannt að vilja að klippa og líma textann í textaskjal og vista hann fyrir síðar.'''
+'readonlywarning' => "'''AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.'''
+Þú ættir að klippa og líma textann yfir í textaskjal til þess að geyma hann til seinni tíma.
 
 Stjórnandinn sem læsti honum gaf þessa skýringu: $1",
 'protectedpagewarning' => "'''Viðvörun: Þessari síðu hefur verið læst svo aðeins notendur með möppudýraréttindi geti breytt henni.'''
@@ -1028,7 +1029,9 @@ Hluti sniðsins verður ekki með.",
 'post-expand-template-argument-category' => 'Síður sem innihalda frumbreytur sniða sem hefur verið sleppt',
 'parser-template-loop-warning' => 'Lykkja í sniði fundin: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Sniðið er sjálkveðið of mörgum sinnum ($1)',
+'language-converter-depth-warning' => 'Farið út fyrir dýptarmörk tungumálabreytara ($1)',
 'node-count-exceeded-category' => 'Síður þar sem er umfram fjöldi hnúta',
+'node-count-exceeded-warning' => 'Síðan fór fram yfir nóðutölu',
 
 # "Undo" feature
 'undo-success' => 'Breytingin hefur verið tekin tilbaka. Vinsamlegast staðfestu og vistaðu svo.',

@@ -19,6 +19,7 @@
  * @author Dineshjk
  * @author Hemant wikikosh1
  * @author Htt
+ * @author InfinityO O
  * @author Kaganer
  * @author Kamal
  * @author Kannankumar
@@ -453,7 +454,7 @@ $1',
 'youhavenewmessagesfromusers' => 'आपके लिये {{PLURAL:$3|एक अन्य सदस्य का सन्देश है|$3 अन्य सदस्यों के सन्देश हैं}}। ($2)',
 'youhavenewmessagesmanyusers' => 'आपके लिये $1 हैं। ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|एक नया सन्देश|नये सन्देश}}',
-'newmessagesdifflinkplural' => 'अंतिम {{PLURAL:$1|परिवर्तन}}',
+'newmessagesdifflinkplural' => 'पिछले {{PLURAL:$1|परिवर्तन}}',
 'youhavenewmessagesmulti' => '$1 पर आपके लिए नया संदेश है',
 'editsection' => 'सम्पादन',
 'editold' => 'सम्पादन',

@@ -11,6 +11,7 @@
  * @author J budissin
  * @author Kaganer
  * @author Michawiki
+ * @author Shirayuki
  * @author Tchoř
  * @author Tlustulimu
  * @author לערי ריינהארט
@@ -3464,9 +3465,9 @@ $5
 
 Tute wobkrućenski kod spadnje $4.',
 'confirmemail_body_set' => 'Něchtó, najskerje ty, wot IP-adresy $1,
-je e-mejlowu adresu konta "$2" na {{GRAMMAR:lokatiw|{{STENAME}}}} na tutu adresu stajił.
+je e-mejlowu adresu konta "$2" na {{GRAMMAR:lokatiw|{{SITENAME}}}} na tutu adresu stajił.
 
-Zo by wobkrućił, zo tute konto ći woprawdźe słuša a zo bychu so e-mejlowe funkcije na {{GRAMMAR:lokatiw|{{STENAME}}}} znowa aktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
+Zo by wobkrućił, zo tute konto ći woprawdźe słuša a zo bychu so e-mejlowe funkcije na {{GRAMMAR:lokatiw|{{SITENAME}}}} znowa aktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
 
 $3
 

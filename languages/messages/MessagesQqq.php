@@ -332,8 +332,8 @@ This option means "underline links as in your user skin or your browser", there 
 * $1: number of files shown',
 'listingcontinuesabbrev' => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
-'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
-'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
+'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
+'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
 'broken-file-category' => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
 'categoryviewer-pagedlinks' => '{{Optional}}
 The pagination links in category viewer. Parameters:
@@ -343,7 +343,7 @@ The pagination links in category viewer. Parameters:
 'linkprefix' => '{{optional}}',
 
 'about' => '{{Identical|About}}',
-'article' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+'article' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
@@ -433,7 +433,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 
 {{Identical|Error}}',
 'returnto' => '{{Identical|Return to $1}}',
-'tagline' => 'Used to identify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
+'tagline' => '{{doc-important|Do not change <code><nowiki>{{SITENAME}}</nowiki></code>.}}
+Used to identify the source of copied information.',
 'help' => 'General text (noun) used in the sidebar (by default).
 
 See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki:Edithelp/{{SUBPAGENAME}}|{{int:edithelp}}]].
@@ -1499,8 +1500,8 @@ See also:
 
 See also:
 * {{msg-mw|Nocreatetext}}',
-'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
-'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
+'sectioneditnotsupported-title' => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [[meta:Help:Section_editing#Section_editing|meta]].',
+'sectioneditnotsupported-text' => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [[meta:Help:Section_editing#Section_editing|meta]].',
 'permissionserrors' => 'Used as title of error message.
 
 See also:
@@ -1623,9 +1624,10 @@ See also:
 
 * <tt>$1</tt> is the value of the node-count limit
 * <tt>$2</tt> is the value of the max node-count limit',
-'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the [http://meta.wikimedia.org/wiki/Help:Expansion_depth expansion depth] of the preprocessor exceeds the limit.',
-'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [http://meta.wikimedia.org/wiki/Help:Expansion_depth expansion depth limit] of the preprocessor
+'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the [[meta:Help:Expansion_depth|expansion depth]] of the preprocessor exceeds the limit.',
+'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [[meta:Help:Expansion_depth|expansion depth limit]] of the preprocessor.
 
+Parameters:
 * <tt>$1</tt> is the value of the depth limit
 * <tt>$2</tt> is the value of the max depth limit',
 'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
@@ -2162,7 +2164,7 @@ Parameters:
 * $1 - prefix string',
 'searchprofile-articles' => "A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
-A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
@@ -2543,7 +2545,7 @@ Parameters:
 {{Identical|Reason}}',
 'userrights-no-interwiki' => 'Error message when editing user groups',
 'userrights-nodatabase' => 'Error message when editing user groups. "Local" means databases/wikis of the same farm/cluster; that is, meta, enwiki, dewiki, commons, etc are all local databases of the Wikimedia Foundation.
-See http://meta.wikimedia.org/w/index.php?title=Special%3ALog&type=rights for a usage of local databases: username@barwiki',
+See [{{canonicalurl:meta:Special:Log|type=rights}} meta:Special:Log?type=rights] for a usage of local databases: username@barwiki',
 'userrights-nologin' => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",
 'userrights-notallowed' => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
 'userrights-changeable-col' => 'Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignements.
@@ -3186,7 +3188,7 @@ See also:
 * {{msg-mw|Copyuploaddisabled}}',
 'copyuploaddisabled' => 'See also:
 * {{msg-mw|Uploaddisabled}}',
-'uploaddisabledtext' => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
+'uploaddisabledtext' => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [[bugzilla:8818|bug 8818]].',
 'php-uploaddisabledtext' => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
 'uploadscripted' => 'Used as error message when uploading a file.
 
@@ -3619,7 +3621,7 @@ Parameters:
 
 * $1: Number of identical files
 * $2: Name of the shown file to link to the special page "FileDuplicateSearch"',
-'sharedupload' => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
+'sharedupload' => 'Shown on an image description page when it is used in a central repository (i.e. [[commons:|Commons]] for Wikimedia wikis).
 
 * $1 is the name of the shared repository. On Wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.
 
@@ -3783,7 +3785,7 @@ See also:
 'statistics-header-hooks' => 'Header of a section on [[Special:Statistics]] containing data provided by MediaWiki extensions',
 'statistics-articles' => "Used in [[Special:Statistics]].
 
-A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
@@ -3808,11 +3810,10 @@ Used in [[Special:Statistics]].',
 'disambiguationspage' => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages which link to disambiguation pages.
 
 {{doc-important|Don\'t translate the "Template:" part!}}',
-'disambiguations-text' => "This block of text is shown on [[:Special:Disambiguations]].
+'disambiguations-text' => '{{doc-important|Do not change the link "<code><nowiki>[[MediaWiki:Disambiguationspage]]</nowiki></code>", even because it is listed as problematic. Be sure the "D" is in uppercase, so not "d".}}
+This block of text is shown on [[:Special:Disambiguations]].
 
-* '''Note:''' Do not change the link [[MediaWiki:Disambiguationspage]], even because it is listed as problematic. Be sure the \"D\" is in uppercase, so not \"d\".
-
-* '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
+\'\'\'Background information:\'\'\' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].',
 
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
@@ -3884,8 +3885,8 @@ $1 is a page title",
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
 'protectedpagestext' => 'Shown on top of [[Special:ProtectedPages]]',
 'protectedtitles' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'protectedtitlestext' => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
-'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
+'protectedtitlestext' => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
+'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'listusers' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
@@ -4012,7 +4013,10 @@ Title of [[Special:Log]].',
 'categories' => 'The page name of [[Special:Categories]].
 
 {{Identical|Categories}}',
-'categoriespagetext' => "Text displayed in [[Special:Categories]]. Do not translate or change links. In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
+'categoriespagetext' => "{{doc-important|Do not translate or change links.}}
+Text displayed in [[Special:Categories]].
+
+In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:DeletedContributions
@@ -4237,7 +4241,7 @@ See also:
 See also:
 * {{msg-mw|Watchthispage|link text}}
 * {{msg-mw|Notanarticle|error message}}',
-'notanarticle' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+'notanarticle' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
@@ -4575,10 +4579,10 @@ See also:
 Options for the duration of the page protection. Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.",
 'restriction-type' => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.
 {{Identical|Permission}}',
-'restriction-level' => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
+'restriction-level' => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [[mw:Project:Protected_titles|help page on MediaWiki]] and on [[meta:Protect|Meta]] for more information.',
 'minimum-size' => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with {{msg-mw|Maximum-size}}. There is an input box to specify the minimum bites of the projected pages listed.',
 'maximum-size' => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with {{msg-mw|Minimum-size}}. There is an input box to specify the maximum bites of the projected pages listed.',
-'pagesize' => 'Used on [[Special:ProtectedPages]]. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
+'pagesize' => 'Used on [[Special:ProtectedPages]]. See the help page on [[meta:Protect|Meta]] for more information on protection.',
 
 # Restrictions (nouns)
 'restriction-edit' => "Used on [[Special:ProtectedPages]]. Option in the 'permission' drop-down box.
@@ -4587,23 +4591,22 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 'restriction-move' => "Used on [[Special:ProtectedPages]]. Option in the 'permission' drop-down box.
 
 {{Identical|Move}}",
-'restriction-create' => 'Used on [[Special:ProtectedPages]]. An option in a drop-down box. See the help pages on [//www.mediawiki.org/wiki/Project:Protected_titles MediaWiki] and [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.
-
+'restriction-create' => 'Used on [[Special:ProtectedPages]]. An option in a drop-down box. See the help pages on [[mw:Project:Protected_titles|MediaWiki]] and [[meta:Protect|Meta]] for more information on protection.
 {{Identical|Create}}',
 'restriction-upload' => '{{Identical|Upload}}',
 
 # Restriction levels
-'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [[mw:Project:Protected_titles|help page on MediaWiki]] and on [[meta:Protect|Meta]] for more information.
 
 See also:
 *{{msg-mw|Restriction-level-autoconfirmed}}
 *{{msg-mw|Restriction-level-all}}",
-'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [[mw:Project:Protected_titles|help page on MediaWiki]] and on [[meta:Protect|Meta]] for more information.
 
 See also:
 *{{msg-mw|Restriction-level-sysop}}
 *{{msg-mw|Restriction-level-all}}",
-'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [[mw:Project:Protected_titles|help page on MediaWiki]] and on [[meta:Protect|Meta]] for more information.
 
 See also:
 *{{msg-mw|Restriction-level-sysop}}
@@ -5059,7 +5062,7 @@ See also:
 {{Related|Blocklist-blocks}}',
 'blocklist-rangeblocks' => 'Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].
 
-For an explanation of "range blocks", see http://www.mediawiki.org/wiki/Help:Range_blocks
+For an explanation of "range blocks", see [[mw:Help:Range_blocks]]
 {{Related|Blocklist-blocks}}',
 'blocklist-timestamp' => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].
 {{Identical|Timestamp}}',
@@ -5286,7 +5289,7 @@ See also:
 See also:
 * {{msg-mw|Sorbsreason}}
 * {{msg-mw|Sorbs create account_reason}}',
-'cant-see-hidden-user' => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
+'cant-see-hidden-user' => 'Used as (red) error message on [[Special:Block]] when you try to change (as sysop without the hideuser right) the block of a hidden user.',
 'ipbblocked' => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
 'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
 
@@ -5683,7 +5686,8 @@ See also:
 
 # Export
 'export' => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
-'exporttext' => 'Main text on [[Special:Export]]. Leave the line <tt><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></tt> exactly as it is!',
+'exporttext' => '{{doc-important|Leave the line <code><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></code> exactly as it is!}}
+Main text on [[Special:Export]].',
 'exportall' => 'A label of checkbox option in [[Special:Export]]',
 'exportcuronly' => 'A label of checkbox option in [[Special:Export]]',
 'exportnohistory' => 'Used in [[Special:Export]].',
@@ -6052,7 +6056,7 @@ See also:
 {{Identical|Log out}}',
 'tooltip-ca-talk' => "Tooltip shown when hovering over the {{msg-mw|Talk}} tab.
 
-A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For a technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For a technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
@@ -6251,7 +6255,7 @@ See also:
 * {{msg-mw|Permalink}}
 * {{msg-mw|Accesskey-t-permalink}}
 * {{msg-mw|Tooltip-t-permalink}}',
-'tooltip-ca-nstab-main' => 'A "content page" is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons "content pages" include pages in the file and category namespaces. On Wikinews "content pages" include pages in the Portal namespace. For technical definition of "content namespaces" see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+'tooltip-ca-nstab-main' => 'A "content page" is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons "content pages" include pages in the file and category namespaces. On Wikinews "content pages" include pages in the Portal namespace. For technical definition of "content namespaces" see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word \'content\' are \'subject matter\' or \'wiki subject\' or \'wiki purpose\'.
 
@@ -6920,14 +6924,12 @@ Varient Option for wikis with variants conversion enabled.',
 'variantname-shi' => '{{optional}}',
 
 # Metadata
-'metadata' => 'The title of a section on an image description page, with information and data about the image. For example of message in use see [http://commons.wikimedia.org/wiki/File:Titan-crystal_bar.JPG Commons].
-
+'metadata' => 'The title of a section on an image description page, with information and data about the image. For example of message in use see [[commons:File:Titan-crystal_bar.JPG|Commons]].
 {{Identical|Metadata}}',
 'metadata-expand' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see "[[MediaWiki:Metadata-collapse/{{SUBPAGENAME}}|{{int:metadata-collapse}}]]".',
 'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link "[[MediaWiki:Metadata-expand/{{SUBPAGENAME}}|{{int:metadata-expand}}]]", you can see more data and information. This message is for the link to hide back the less important data.',
-'metadata-fields' => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.
-
-The sentences are for explanation only and are not shown to the user.",
+'metadata-fields' => '{{doc-important|Do not translate list items, only translate the text! So leave "<code>* make</code>" and the other items exactly as they are.}}
+The sentences are for explanation only and are not shown to the user.',
 'metadata-langitem' => '{{optional}}
 This is used for constructing the list of translations when a metadata property is translated into multiple languages.
 
@@ -6936,11 +6938,9 @@ $1 is the value of the property (in one language), $2 is the language name that 
 Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
 # EXIF tags
-'exif-imagewidth' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
+'exif-imagewidth' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Identical|Width}}',
-'exif-imagelength' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
+'exif-imagelength' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Identical|Height}}',
 'exif-bitspersample' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-compression' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -7808,9 +7808,8 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 
 # External editor support
 'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
-'edit-externally-help' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].
-
-Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exactly as it is.',
+'edit-externally-help' => '{{doc-important|Please leave the link "<code>http://www.mediawiki.org/wiki/Manual:External_editors</code>" exactly as it is.}}
+Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Appears on [[Special:Watchlist]].
@@ -8343,7 +8342,7 @@ See also:
 See definition of [http://en.wikipedia.org/wiki/Regular_expression regular expression] on Wikipedia.",
 
 # Special:Tags
-'tags' => "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].
+'tags' => "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
 
 It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'.",
 'tag-filter' => 'Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)',
@@ -8351,14 +8350,14 @@ It appears that the word 'valid' describes 'tags', not 'change'. It also appears
 
 {{Identical|Filter}}',
 'tags-title' => 'The title of [[Special:Tags]]',
-'tags-intro' => 'Explanation on top of [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
-'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
-'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
-'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
-'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
+'tags-intro' => 'Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
+'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-edit' => '{{Identical|Edit}}
 Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.',
-'tags-hitcount' => 'Shown in the "{{msg-mw|Tags-hitcount-header}}" column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].
+'tags-hitcount' => 'Shown in the "{{msg-mw|Tags-hitcount-header}}" column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
 
 * <code>$1</code> is the number of changes marked with the tag',
 

@@ -135,7 +135,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori}}',
-'category_header' => 'Laman dalam kategori "$1"',
+'category_header' => 'Laman pado kategori "$1"',
 'subcategories' => 'Subkategori',
 'category-media-header' => 'Laman/Media dalam kategori "$1"',
 'category-empty' => "''Kini ko, indak ado laman ataupun media dalam kategori ko.''",
@@ -945,7 +945,7 @@ Rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME
 'search-result-score' => 'Relevansi: $1%',
 'search-redirect' => '(pangaliahan $1)',
 'search-section' => '(bagian $1)',
-'search-suggest' => 'Mungkin maksud awak: $1',
+'search-suggest' => 'Mungkin makasuiknyo: $1',
 'search-interwiki-caption' => 'Proyek badunsanak',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(selanjutnyo)',
@@ -1254,6 +1254,9 @@ Katarangan dari [$2 laman kataranagn berkas] ditampilkan di bawah.',
 
 # Special:Categories
 'categories' => 'Kategori',
+'categoriespagetext' => '{{PLURAL:$1|Isi kategori}} ko ado laman atau media.
+[[Special:UnusedCategories|Kategori nan indak tapakai]] indak nampak di siko.
+Lihek pulo [[Special:WantedCategories|kategori nan diinginkan]].',
 
 # Special:LinkSearch
 'linksearch' => 'Pancarian pautan lua',

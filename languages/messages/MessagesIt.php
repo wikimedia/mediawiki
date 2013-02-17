@@ -3679,6 +3679,9 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Elimina questa pagina dalla tua lista degli osservati speciali?',
 
+# Separators for various lists, etc.
+'percent' => '$1&nbsp;%',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',
 'imgmultipagenext' => 'pagina seguente →',

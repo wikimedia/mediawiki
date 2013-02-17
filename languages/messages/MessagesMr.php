@@ -10,6 +10,7 @@
  * @author Aan
  * @author Angela
  * @author Ankitgadgil
+ * @author Ashupawar
  * @author Balaji
  * @author Chandu
  * @author Dnyanesh325
@@ -25,6 +26,7 @@
  * @author Mohanpurkar
  * @author Mvkulkarni23
  * @author Prabodh1987
+ * @author Pranav jagtap
  * @author Rahuldeshmukh101
  * @author Rdeshmuk
  * @author Sankalpdravid
@@ -35,6 +37,7 @@
  * @author Sudhanwa
  * @author Tusharpawar1982
  * @author V.narsikar
+ * @author Vibhavari
  * @author Vpnagarkar
  * @author Ydyashad
  * @author Ynwala
@@ -456,7 +459,7 @@ $messages = array(
 'moredotdotdot' => 'अजून...',
 'morenotlisted' => 'आणखी यादीत नाही...',
 'mypage' => 'माझे पान',
-'mytalk' => 'माझ्या चर्चा',
+'mytalk' => 'चर्चा',
 'anontalk' => 'या अंकपत्त्याचे चर्चा पान उघडा',
 'navigation' => 'सुचालन',
 'and' => '&#32;आणि',
@@ -488,6 +491,7 @@ $messages = array(
 'namespaces' => 'नामविश्वे',
 'variants' => 'अस्थिर',
 
+'navigation-heading' => 'दिक्चालन यादी',
 'errorpagetitle' => 'चूक',
 'returnto' => '$1 कडे परत चला.',
 'tagline' => '{{SITENAME}} कडून',
@@ -675,6 +679,8 @@ MySQL returned error "$3: $4".',
 'badarticleerror' => 'या पानावर ही कृती करता येत नाही.',
 'cannotdelete' => '$1 हे पान किंवा संचिका वगळता आलेली नाही. (आधीच इतर कुणी वगळले असण्याची शक्यता आहे.)',
 'cannotdelete-title' => '$1 ला वगळू शकत नाहि',
+'delete-hook-aborted' => 'खोडण्याची  क्रिया मधेच थांबवीण्यात येत आहे.
+कोणतेही कारण देण्यात आले नाही',
 'badtitle' => 'चुकीचे शीर्षक',
 'badtitletext' => 'आपण मागितलेले शीर्षक पान अयोग्य, रिकामे अथवा चूकीने जोडलेले आंतर-भाषिय किंवा आंतर-विकि शीर्षक आहे. त्यात एक किंवा अधिक शीर्षकअयोग्य चिन्हे आहेत.',
 'perfcached' => 'खालील माहिती सयीमध्ये(कॅशे) ठेवली आहे त्यामुळे ती नवीनतम {{PLURAL:$1|one result is|$1 results }} नसावी.',
@@ -1031,6 +1037,8 @@ $2',
 'edit-no-change' => 'तुमचे संपादन दुर्लक्षित करण्यात आले आहे, कारण माहितीमध्ये काहीही बदल झालेला नाही.',
 'edit-already-exists' => 'नवीन पान तयार करता येऊ शकले नाही.
 या नावाचे पान आधीच अस्तित्वात आहे.',
+'defaultmessagetext' => 'कसूर पाठ्य मजकूर',
+'invalid-content-data' => 'अवैध माहिती',
 
 # Content models
 'content-model-wikitext' => 'विकिमजकूर',
@@ -1505,6 +1513,7 @@ $1",
 'right-writeapi' => 'लेखन एपीआय चा उपयोग',
 'right-delete' => 'पृष्ठे वगळा',
 'right-bigdelete' => 'जास्त इतिहास असणारी पाने वगळा',
+'right-deletelogentry' => 'थरविक् लोग् प्रवेश् बन्द आनि चालु करने',
 'right-deleterevision' => 'एखाद्या पानाच्या विशिष्ट आवृत्त्या लपवा',
 'right-deletedhistory' => 'वगळलेल्या इतिहास नोंदी, त्यांच्या संलग्न मजकूराशिवाय पहा',
 'right-deletedtext' => 'वगळलेला मजकूर व वगळलेल्या आवर्तनांमधील बदल पहा',
@@ -2091,6 +2100,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'alllogstext' => '{{SITENAME}}च्या सर्व नोंदीचे एकत्र दर्शन.नोंद प्रकार, सदस्यनाव किंवा बाधीत पान निवडून तुम्ही तुमचे दृश्यपान मर्यादीत करू शकता.',
 'logempty' => 'नोंदीत अशी बाब नाही.',
 'log-title-wildcard' => 'या मजकुरापासून सुरू होणारी शिर्षके शोधा.',
+'showhideselectedlogentries' => 'निवडलेले लॉग पहाणे /लपवणे',
 
 # Special:AllPages
 'allpages' => 'सर्व पृष्ठे',
@@ -2111,6 +2121,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'allpages-hide-redirects' => 'पुनर्निर्देशने लपवा',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'तुम्ही पाहत आहात या पाठया ची छोटी  आवृत्ती,जी की १ तास ३० मिनिट जुनी असू शकते',
 'cachedspecial-refresh-now' => 'आखेरचे दृश्य',
 
 # Special:Categories
@@ -2839,6 +2850,7 @@ $1',
 'import-error-interwiki' => 'इंटर विकी लिंक साठी $1 पान आरक्षित केल्यामुळे ते इम्पोर्ट करू शकत नाही',
 'import-error-special' => 'विशेष नामविश्वासाठी $1 पान आरक्षित केल्यामुळे ते इम्पोर्ट करू शकत नाही. या नामविश्वात पाने असत नाहीत.',
 'import-error-invalid' => 'नाव अयोग्य असल्याने $1 पान इम्पोर्ट करू शकत नाही.',
+'import-rootpage-invalid' => 'दिलेले मूळ पान अवैध नाव आहे',
 
 # Import log
 'importlogpage' => 'ईम्पोर्ट सूची',
@@ -2963,9 +2975,12 @@ $1',
 'pageinfo-display-title' => 'दृश्य शीर्षक',
 'pageinfo-length' => 'पानाचा आकार (बाइट्समध्ये)',
 'pageinfo-language' => 'पानाच्या मजकूराची भाषा',
+'pageinfo-robot-index' => 'आनुक्रमानीत',
+'pageinfo-robot-noindex' => 'आनुक्रमानीत करू शकत नाही',
 'pageinfo-views' => 'अभिप्रायांची संख्या',
 'pageinfo-watchers' => 'पाहणाऱ्यांची संख्या',
 'pageinfo-redirects-name' => 'या पानाकडील पुनर्निर्देशने',
+'pageinfo-firstuser' => 'पृष्ठ निर्मानक',
 'pageinfo-firsttime' => 'पान निर्मितीचा दिनांक',
 'pageinfo-lastuser' => 'अलीकडील संपादक',
 'pageinfo-lasttime' => 'अलीकडिल संपादनाचा दिनांक',

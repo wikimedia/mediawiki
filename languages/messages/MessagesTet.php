@@ -367,6 +367,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 # History pages
 'currentrev' => 'Versaun atuál',
 'revisionasof' => 'Versaun $1 nian',
+'revision-info' => 'Revisaun loron $4, tempu $5, husi $2',
 'previousrevision' => '←Versaun tuan liu',
 'nextrevision' => 'Versaun foun liu→',
 'currentrevisionlink' => 'Versaun atuál',

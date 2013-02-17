@@ -2413,7 +2413,7 @@ $1',
 'blanknamespace' => '(Haapt)',
 
 # Contributions
-'contributions' => 'Kontributioune {{GENDER:$1|vum Benotzer $1}}',
+'contributions' => '{{GENDER:$1|Benotzer}}kontributiounen',
 'contributions-title' => 'Kontributioune vum $1',
 'mycontris' => 'Kontributiounen',
 'contribsub2' => 'Fir $1 ($2)',
