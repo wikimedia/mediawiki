@@ -797,7 +797,8 @@ class SpecialUndelete extends SpecialPage {
 					'prefix',
 					'prefix',
 					20,
-					$this->mSearchPrefix
+					$this->mSearchPrefix,
+					array( 'autofocus' => true )
 				) . ' ' .
 				Xml::submitButton( $this->msg( 'undelete-search-submit' )->text() ) .
 				Xml::closeElement( 'fieldset' ) .
@@ -1252,7 +1253,7 @@ class SpecialUndelete extends SpecialPage {
 					Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
 					"</td>
 					<td class='mw-input'>" .
-					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
+					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment', 'autofocus' => true ) ) .
 					"</td>
 				</tr>
 				<tr>
