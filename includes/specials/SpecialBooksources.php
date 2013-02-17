@@ -121,11 +121,10 @@ class SpecialBookSources extends SpecialPage {
 		$form .= Html::element( 'legend', array(), $this->msg( 'booksources-search-legend' )->text() ) . "\n";
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n";
 		$form .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
-		$form .= '<p>' . Xml::inputLabel( $this->msg( 'booksources-isbn' )->text(), 'isbn', 'isbn', 20, $this->isbn );
+		$form .= '<p>' . Xml::inputLabel( $this->msg( 'booksources-isbn' )->text(), 'isbn', 'isbn', 20, $this->isbn, array( 'autofocus' => true ) );
 		$form .= '&#160;' . Xml::submitButton( $this->msg( 'booksources-go' )->text() ) . "</p>\n";
 		$form .= Html::closeElement( 'form' ) . "\n";
 		$form .= Html::closeElement( 'fieldset' ) . "\n";
-
 		return $form;
 	}
 
