@@ -244,9 +244,9 @@ class FeedUtils {
 			'diff'             => 'background-color: white; color:black;',
 			'diff-otitle'      => 'background-color: white; color:black; text-align: center',
 			'diff-ntitle'      => 'background-color: white; color:black; text-align: center',
-			'diff-addedline'   => 'background: #cfc; color:black; font-size: smaller;',
-			'diff-deletedline' => 'background: #ffa; color:black; font-size: smaller;',
-			'diff-context'     => 'background: #eee; color:black; font-size: smaller;',
+			'diff-addedline'   => 'background: #cfc; color:black; font-size: 88%; border-color: #a3d3ff;',
+			'diff-deletedline' => 'background: #ffa; color:black; font-size: 88%; border-color: #ffe49c;',
+			'diff-context'     => 'background: #f9f9f9; color: #333333; font-size: 88%; border-color: #e6e6e6; color: #333333;',
 			'diffchange'       => 'color: red; font-weight: bold; text-decoration: none;',
 		);
 
