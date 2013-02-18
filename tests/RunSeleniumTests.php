@@ -3,7 +3,7 @@
 /**
  * @file
  * @ingroup Maintenance
- * @copyright Copyright Â© Wikimedia Deuschland, 2009
+ * @copyright Copyright © Wikimedia Deuschland, 2009
  * @author Hallo Welt! Medienwerkstatt GmbH
  * @author Markus Glaser, Dan Nessett, Priyanka Dhanda
  * initial idea by Daniel Kinzler
