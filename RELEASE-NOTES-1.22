@@ -114,6 +114,9 @@ production.
 ** editmywatchlist controls whether a user may edit their watchlist.
 * Add new hook AbortTalkPageEmailNotification, this will be used to determine
   whether to send the regular talk page email notification
+* Action classes registered in $wgActions are now also supported in the form of
+  a callback (which returns an instance of Action) instead of providing the name
+  of a subclass of Action.
 * (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
 * Added $wgRecentChangesFlags for defining new flags for RecentChanges and
   watchlists.
