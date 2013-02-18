@@ -337,24 +337,38 @@ class SpecialPageFactory {
 	 *
 	 * @param $name String Special page name, may be localised and/or an alias
 	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
+	 * @throws MWException
 	 */
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
-		if ( property_exists( self::getList(), $realName ) ) {
-			$rec = self::getList()->$realName;
-			if ( is_string( $rec ) ) {
-				$className = $rec;
-				return new $className;
-			} elseif ( is_array( $rec ) ) {
-				// @deprecated, officially since 1.18, unofficially since forever
-				wfDebug( "Array syntax for \$wgSpecialPages is deprecated, define a subclass of SpecialPage instead." );
-				$className = array_shift( $rec );
-				self::getList()->$realName = MWFunction::newObj( $className, $rec );
-			}
-			return self::getList()->$realName;
-		} else {
+
+		if ( !property_exists( self::getList(), $realName ) ) {
 			return null;
 		}
+
+		$rec = self::getList()->$realName;
+
+		if ( is_string( $rec ) ) {
+			$className = $rec;
+			return new $className;
+		}
+
+		if ( is_array( $rec ) ) {
+			// @deprecated, officially since 1.18, unofficially since forever
+			wfDebug( "Array syntax for \$wgSpecialPages is deprecated, define a subclass of SpecialPage instead." );
+			$className = array_shift( $rec );
+			return MWFunction::newObj( $className, $rec );
+		}
+
+		if ( is_callable( $rec ) ) {
+			$rec = call_user_func( $rec );
+		}
+
+		if ( !( $rec instanceof SpecialPage ) ) {
+			throw new MWException( "Invalid handler registered for special page '$name'" );
+		}
+
+		return $rec;
 	}
 
 	/**
