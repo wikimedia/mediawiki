@@ -50,8 +50,12 @@ abstract class Collation {
 			case 'uca-default':
 				return new IcuCollation( 'root' );
 			default:
-				# Provide a mechanism for extensions to hook in.
+				$match = array();
+				if ( preg_match( '/^uca-([a-z-]+)$/', $collationName, $match ) ) {
+					return new IcuCollation( $match[1] );
+				}
 
+				# Provide a mechanism for extensions to hook in.
 				$collationObject = null;
 				wfRunHooks( 'Collation::factory', array( $collationName, &$collationObject ) );
 
@@ -194,6 +198,85 @@ class IcuCollation extends Collation {
 		array( 0x2F800, 0x2FA1F ), // CJK Compatibility Ideographs Supplement
 	);
 
+	/**
+	 * Additional characters (or character groups) to be considered first-letters
+	 *
+	 * Generated based on the primary level of Unicode collation tailorings
+	 * available at http://developer.mimer.com/charts/tailorings.htm .
+	 *
+	 * Empty arrays are intended; this signifies that the data for the language is
+	 * available and that there are, in fact, no additional letters to consider.
+	 */
+	static $tailoringFirstLetters = array(
+		'af' => array(),
+		'ast' => array( "CH", "LL", "Ñ" ),
+		'az' => array( "Ç", "Ə", "Ğ", "X", "I", "Q", "Ö", "Ş", "Ü" ),
+		'be' => array( "Ё" ),
+		'bg' => array(),
+		'br' => array( "CH", "C'H" ),
+		'bs' => array( "Č", "Ć", "DŽ", "Đ", "LJ", "NJ", "Š", "Ž" ),
+		'ca' => array(),
+		'co' => array(),
+		'cs' => array( "Č", "CH", "Ř", "Š", "Ž" ),
+		'cy' => array( "CH", "DD", "FF", "NG", "LL", "PH", "RH", "TH" ),
+		'da' => array( "Æ", "Ø", "Å" ),
+		'de' => array(),
+		'dsb' => array( "Č", "Ć", "DŹ", "Ě", "CH", "Ł", "Ń", "Ŕ", "Š", "Ś", "Ž", "Ź" ),
+		'el' => array(),
+		'en' => array(),
+		'eo' => array( "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ),
+		'es' => array( "Ñ" ),
+		'et' => array( "Š", "Z", "Ž", "Õ", "Ä", "Ö", "Ü" ),
+		'eu' => array( "Ñ" ),
+		'fi' => array( "Å", "Ä", "Ö" ),
+		'fo' => array( "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ),
+		'fr' => array(),
+		'fur' => array( "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ),
+		'fy' => array(),
+		'ga' => array(),
+		'gd' => array(),
+		'gl' => array( "CH", "LL", "Ñ" ),
+		'hr' => array( "Č", "Ć", "DŽ", "Đ", "LJ", "NJ", "Š", "Ž" ),
+		'hsb' => array( "Č", "DŹ", "Ě", "CH", "Ł", "Ń", "Ř", "Š", "Ć", "Ž" ),
+		'hu' => array( "CS", "DZ", "DZS", "GY", "LY", "NY", "Ö", "SZ", "TY", "Ü", "ZS" ),
+		'is' => array( "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ),
+		'it' => array(),
+		'kk' => array( "Ү", "І" ),
+		'kl' => array( "Æ", "Ø", "Å" ),
+		'ku' => array( "Ç", "Ê", "Î", "Ş", "Û" ),
+		'ky' => array( "Ё" ),
+		'la' => array(),
+		'lb' => array(),
+		'lt' => array( "Č", "Š", "Ž" ),
+		'lv' => array( "Č", "Ģ", "Ķ", "Ļ", "Ņ", "Š", "Ž" ),
+		'mk' => array(),
+		'mo' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
+		'mt' => array( "Ċ", "Ġ", "GĦ", "Ħ", "Ż" ),
+		'nl' => array(),
+		'no' => array( "Æ", "Ø", "Å" ),
+		'oc' => array(),
+		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
+		'pt' => array(),
+		'rm' => array(),
+		'ro' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
+		'ru' => array(),
+		'rup' => array( "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ),
+		'sco' => array(),
+		'sk' => array( "Ä", "Č", "CH", "Ô", "Š", "Ž" ),
+		'sl' => array( "Č", "Š", "Ž" ),
+		'smn' => array( "Á", "Č", "Đ", "Ŋ", "Š", "Ŧ", "Ž", "Æ", "Ø", "Å", "Ä", "Ö" ),
+		'sq' => array( "Ç", "DH", "Ë", "GJ", "LL", "NJ", "RR", "SH", "TH", "XH", "ZH" ),
+		'sr' => array(),
+		'sv' => array( "Å", "Ä", "Ö" ),
+		'tk' => array( "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ),
+		'tl' => array( "Ñ", "NG" ), /* 'fil' in the data source */
+		'tr' => array( "Ç", "Ğ", "I", "Ö", "Ş", "Ü" ),
+		'tt' => array( "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ),
+		'uk' => array( "Ґ", "Ь" ),
+		'uz' => array( "CH", "G'", "NG", "O'", "SH" ),
+		'vi' => array( "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ),
+	);
+
 	const RECORD_LENGTH = 14;
 
 	function __construct( $locale ) {
@@ -274,10 +357,15 @@ class IcuCollation extends Collation {
 
 		// Generate data from serialized data file
 
-		$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
-		if ( $letters === false ) {
-			throw new MWException( "MediaWiki does not support ICU locale " .
-				"\"{$this->locale}\"" );
+		if ( isset ( self::$tailoringFirstLetters[$this->locale] ) ) {
+			$letters = wfGetPrecompiledData( "first-letters-root.ser" );
+			$letters = $letters + self::$tailoringFirstLetters[$this->locale];
+		} else {
+			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+			if ( $letters === false ) {
+				throw new MWException( "MediaWiki does not support ICU locale " .
+					"\"{$this->locale}\"" );
+			}
 		}
 
 		// Sort the letters.
