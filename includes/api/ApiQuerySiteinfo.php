@@ -554,8 +554,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendProtocols( $property ) {
 		global $wgUrlProtocols;
-		$this->getResult()->setIndexedTagName( $wgUrlProtocols, 'p' );
-		return $this->getResult()->addValue( 'query', $property, $wgUrlProtocols );
+		$protocols = array_flip( array_flip( $wgUrlProtocols ) ); // Make a copy of the global so we don't try to set the _element key of it - bug 45130
+		$this->getResult()->setIndexedTagName( $protocols, 'p' );
+		return $this->getResult()->addValue( 'query', $property, $protocols );
 	}
 
 	private function formatParserTags( $item ) {
