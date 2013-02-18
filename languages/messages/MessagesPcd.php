@@ -648,10 +648,15 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'imagelinks' => 'Usage dech fichié',
 'linkstoimage' => "{{PLURAL:$1|L'pache d'apreu est liée|Chés $1 paches d'apreu sont liées}} à ch'fichié-lo :",
 'nolinkstoimage' => "Autchune pache n'est loïée aveuc ch'fichié-lo",
-'sharedupload' => "Cht'fichié vient éd $1 pi i put ète imploïé par d'eutes proujés.",
-'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzer pèr d’eutes prodjés.
-Vir apré ([$2 pache]).",
+'sharedupload' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés.",
+'sharedupload-desc-there' => "Ch'fichié i vient éd $1. I put ète uzé pèr d’eutes prodjés. Vir l'pache [$2 édseur Commons].",
+'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzé pèr d’eutes prodjés.
+Vir l'pache [$2 édseur Commons].",
+'sharedupload-desc-edit' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés. Os pouvez canjer l' déscripcion dsu s' [$2 pache Commons].",
+'sharedupload-desc-create' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés. Os pouvez canjer l' déscripcion dsu s' [$2 pache Commons].",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
+'shared-repo-from' => 'à : $1',
+'shared-repo' => 'un dépôt partagé',
 
 # MIME search
 'mimesearch' => 'Tracher pèr type éd contenu MIME',

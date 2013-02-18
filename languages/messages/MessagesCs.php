@@ -790,7 +790,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'notloggedin' => 'Nejste přihlášen(a)',
 'nologin' => "Dosud nemáte účet? '''$1'''.",
 'nologinlink' => 'Zaregistrujte se',
-'createaccount' => 'Vytvořit nový účet',
+'createaccount' => 'Vytvořit účet',
 'gotaccount' => "Už jste registrováni? '''$1'''.",
 'gotaccountlink' => 'Přihlaste se',
 'userlogin-resetlink' => 'Zapomněli jste přihlašovací údaje?',

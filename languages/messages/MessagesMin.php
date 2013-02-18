@@ -1212,8 +1212,8 @@ Laman pado [[Special:Watchlist|pantauan Sanak]] ditandoi jo '''cetak taba'''.",
 'linkstoimage' => 'Barikuik ko {{PLURAL:$1|$1 laman nan takaik}} jo berkas:',
 'nolinkstoimage' => 'Indak ado laman nan batauik ka berkas ko.',
 'sharedupload' => 'Berkas ko barasal dari $1 dan mungkin digunoan oleh berbagai proyek lain.',
-'sharedupload-desc-here' => 'Berkas ko dari $1 dan mungkin digunoan untuak proyek-proyek lain.
-Katarangan dari [$2 laman kataranagn berkas] ditampilkan di bawah.',
+'sharedupload-desc-here' => 'Berkas ko dari $1, mungkin juo digunoan untuak proyek-proyek lain.
+Informasi dari [$2 laman katarangannyo] ado di bawah.',
 'uploadnewversion-linktext' => 'Unggah versi baru dari berkas ko',
 
 # Random page

@@ -4253,7 +4253,7 @@ $5
 'revdelete-content-unhid' => 'содржината е откриена',
 'revdelete-summary-unhid' => 'описот на уредувањето е откриен',
 'revdelete-uname-unhid' => 'корисничкото име е скриено',
-'revdelete-restricted' => 'применети ограничувања на систем оператори',
+'revdelete-restricted' => 'применети ограничувања на администратори',
 'revdelete-unrestricted' => 'отстранети ограничувања за систем оператори',
 'logentry-move-move' => '$1 ја премести страницата $3 на $4',
 'logentry-move-move-noredirect' => '$1 ја премести страницата $3 на $4 без да остави пренасочување',

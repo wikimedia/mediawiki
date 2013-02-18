@@ -2244,6 +2244,8 @@ Mae'r tudalennau sydd wedi eu diogelu ar hyn o bryd wedi eu rhestri ar y [[Speci
 'prot_1movedto2' => 'wedi symud [[$1]] i [[$2]]',
 'protect-badnamespace-title' => 'Parth na ellir ei ddiogelu',
 'protect-badnamespace-text' => 'Ni ellir diogelu tudalennau yn y parth hwn.',
+'protect-norestrictiontypes-text' => 'Ni ellir gwarchod y dudalen hon gan nad oes mathau o gyfyngiadau ar gael iddi.',
+'protect-norestrictiontypes-title' => 'Tudalen na ellir ei gwarchod',
 'protect-legend' => "Cadarnháu'r diogelu",
 'protectcomment' => 'Rheswm:',
 'protectexpiry' => 'Yn dod i ben:',
@@ -3724,7 +3726,11 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-newusers-newusers' => 'Dechreuwyd y cyfrif defnyddiwr $1',
 'logentry-newusers-create' => 'Dechreuwyd y cyfrif defnyddiwr $1',
 'logentry-newusers-create2' => 'Dechreuwyd y cyfrif defnyddiwr $3 gan $1',
+'logentry-newusers-byemail' => 'Dechreuodd $1 y cyfrif defnyddiwr $3 ac anfonodd gyfrinair drwy e-bost',
 'logentry-newusers-autocreate' => 'Crëwyd y cyfrif $1 yn awtomatig',
+'logentry-rights-rights' => 'Newidiodd $1 y grwpiau y mae $3 yn aelod ohonynt o $4 i $5',
+'logentry-rights-rights-legacy' => 'Newidiodd $1 y grwpiau y mae $3 yn aelod ohonynt',
+'logentry-rights-autopromote' => 'Dyrchafwyd $1 yn awtomatig o $4 i $5',
 'rightsnone' => '(dim)',
 
 # Feedback
@@ -3778,6 +3784,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-ok-but-empty' => 'Gwall mewnol: dim ymateb gan y gweinydd.',
 'api-error-overwrite' => 'Ni chaniateir trosysgrifo ffeil sydd eisoes yn bod.',
 'api-error-stashfailed' => "Gwall mewnol: methodd y gweinydd â rhoi'r ffeil dros dro ar gadw.",
+'api-error-publishfailed' => "Gwall mewnol: methodd y gweinydd â chyhoeddi'r ffeil dros dro.",
 'api-error-timeout' => 'Ni chafwyd ymateb gan y gweinydd mewn da bryd.',
 'api-error-unclassified' => 'Cafwyd gwall anhysbys',
 'api-error-unknown-code' => 'Gwall anhysbys: "$1"',

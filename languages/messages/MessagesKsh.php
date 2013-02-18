@@ -4106,7 +4106,7 @@ Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.",
 'tags-description-header' => 'Bedüggtening',
 'tags-hitcount-header' => 'Makeete Änderunge',
 'tags-edit' => 'ändere',
-'tags-hitcount' => '{{PLURAL:$1|Ein Änderong|$1 Änderonge|kein Änderonge}}',
+'tags-hitcount' => '{{PLURAL:$1|Ein Änderong|$1 Änderonge|Kein Änderonge}}',
 
 # Special:ComparePages
 'comparepages' => 'Sigge verjliesche',

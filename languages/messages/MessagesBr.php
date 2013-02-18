@@ -312,6 +312,7 @@ $messages = array(
 'newwindow' => '(digeriñ en ur prenestr nevez)',
 'cancel' => 'Nullañ',
 'moredotdotdot' => "Ha muioc'h c'hoazh...",
+'morenotlisted' => "Ha muioc'h c'hoazh n'int ket rollet...",
 'mypage' => 'Ma zammig pajenn',
 'mytalk' => "Ma c'haozeadennoù",
 'anontalk' => "Kaozeal gant ar chomlec'h IP-mañ",
@@ -586,6 +587,8 @@ Setu amañ perak ''$2''.",
 Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe <span class='plainlinks'>[$1 kevreañ en-dro]</span> gant an hevelep anv pe un anv all mar fell deoc'h.
 Notit mat e c'hallo pajennoù zo kenderc'hel da vezañ diskwelet evel pa vefec'h kevreet c'hoazh, betek ma vo riñset krubuilh ho merdeer ganeoc'h.",
 'welcomeuser' => 'Degemer mat $1 !',
+'welcomecreation-msg' => 'Krouet eo bet ho kont implijer.
+Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}}]].',
 'yourname' => 'Anv implijer :',
 'yourpassword' => 'Ger-tremen :',
 'yourpasswordagain' => 'Skrivit ho ker-tremen en-dro',
@@ -1200,7 +1203,7 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-default' => "$1 disoc'h :",
 'search-interwiki-more' => "(muioc'h)",
 'search-relatedarticle' => "Disoc'hoù kar",
-'mwsuggest-disable' => 'Diweredekaat kinnigoù AJAX',
+'mwsuggest-disable' => "Diweredekaat ar c'hinnigoù klask",
 'searcheverything-enable' => 'Klask en holl esaouennoù anv',
 'searchrelated' => "disoc'hoù kar",
 'searchall' => 'An holl',
@@ -2090,7 +2093,7 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù goulennet a vank]].',
 'linksearch-ok' => 'Klask',
 'linksearch-text' => 'Gallout a reer implijout arouezennoù "joker" evel, da skouer, "*.wikipedia.org".
 Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
-Protokoloù skoret : <code>$1</code> (defaults to http:// na lakait hini ebet eus ar re-se en ho klask)',
+{{PLURAL:$2|Protokol|Protokoloù}} skoret : <code>$1</code> (defaults to http:// na lakait hini ebet eus ar re-se en ho klask).',
 'linksearch-line' => '$1 gant ul liamm adal $2',
 'linksearch-error' => "N'hall an arouezennoù joker bezañ implijet nemet e deroù anv domani an ostiz.",
 
@@ -2981,6 +2984,9 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-redirectsto-info' => 'Titouroù',
 'pageinfo-contentpage-yes' => 'Ya',
 'pageinfo-protect-cascading-yes' => 'Ya',
+'pageinfo-category-pages' => 'Niver a bajennoù',
+'pageinfo-category-subcats' => 'Niver a isrummadoù',
+'pageinfo-category-files' => 'Niver a restroù',
 
 # Skin names
 'skinname-standard' => 'Standard',

@@ -588,7 +588,7 @@ This message is the title for the message {{msg-mw|protectedpagetext}}.",
 'view-pool-error' => 'Error message. $1 is probably unused.',
 'pool-timeout' => "Part of {{msg-mw|view-pool-error}}.
 
-For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_science%29 wikipedia].",
+For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 'pool-queuefull' => 'Part of {{msg-mw|view-pool-error}}
 
 "Pool" refers to a pool of processes.',
@@ -899,7 +899,7 @@ This error is shown when trying to open a special page which does not exist, e.g
 'readonly_lag' => 'Error message displayed when the database is locked.',
 'internalerror' => '{{Identical|Internal error}}',
 'internalerror_info' => '* $1 - error message',
-'fileappenderrorread' => '"Append" is a computer procedure, explained on [http://en.wikipedia.org/wiki/Append Wikipedia].
+'fileappenderrorread' => '"Append" is a computer procedure, explained on [[w:Append|Wikipedia]].
 
 $1 is a filename, I think.',
 'fileappenderror' => 'Parameters:
@@ -1317,7 +1317,8 @@ See also:
 See also:
 * {{msg-mw|Showpreview}}
 * {{msg-mw|Accesskey-preview}}
-* {{msg-mw|Tooltip-preview}}',
+* {{msg-mw|Tooltip-preview}}
+{{Identical|Show preview}}',
 'showlivepreview' => 'An edit preview without needing to reload the edit form.',
 'showdiff' => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.
 
@@ -2758,7 +2759,7 @@ In [[Special:Log]]',
 'action-upload_by_url' => '{{Doc-action|upload by url}}',
 'action-writeapi' => '{{Doc-action|writeapi}}
 
-API is an abbreviation for [http://en.wikipedia.org/wiki/API application programming interface].',
+API is an abbreviation for [[w:API|application programming interface]].',
 'action-delete' => '{{Doc-action|delete}}',
 'action-deleterevision' => '{{Doc-action|deleterevision}}',
 'action-deletedhistory' => '{{Doc-action|deletedhistory}}',
@@ -3295,7 +3296,7 @@ See also:
 'upload-proto-error' => 'See also:
 * {{msg-mw|Upload-proto-error|title}}
 * {{msg-mw|Upload-proto-error-text|text}}',
-'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].
+'upload-proto-error-text' => '"Remote upload" is explained on [[w:Uploading_and_downloading#Remote_upload|Wikipedia]].
 
 See also:
 * {{msg-mw|Upload-proto-error|title}}
@@ -3392,17 +3393,17 @@ A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ord
 'lockmanager-fail-closelock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
 
-A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
+A "[[w:File_locking#Lock_files|lock file]]" signals by its presence that some resource is locked.',
 'lockmanager-fail-deletelock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
 
-A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
+A "[[w:File_locking#Lock_files|lock file]]" signals by its presence that some resource is locked.',
 'lockmanager-fail-acquirelock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-openlock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
 
-A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
+A "[[w:File_locking#Lock_files|lock file]]" signals by its presence that some resource is locked.',
 'lockmanager-fail-releaselock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-db-bucket' => 'The databases store what is locked by who. Parameters:
@@ -6574,7 +6575,7 @@ See also:
 See also:
 * {{msg-mw|Pageinfo-templates}}',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
-'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect. Verb. See [http://en.wikipedia.org/w/index.php?title=Main_page&action=info example].',
+'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect. Verb. See [{{canonicalurl:w:Main_page|action=info}} example].',
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.
 {{Identical|Info}}',
 'pageinfo-contentpage' => 'Key for the row shown on [{{fullurl:News|action=info}} action=info] if this page is [[mw:Manual:Article count|counted as a content page]]',
@@ -6738,11 +6739,11 @@ See also:
 Parameters:
 * $1 is the width of the image(s) in pixels.
 * $2 is the height of the image(s) in pixels.',
-'file-info-gif-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
-'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.',
-'file-info-png-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page. Looped means repeating indefinetly in the context of an animated png. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop.',
-'file-info-png-repeat' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page. The sequence of images is repeating a limited amount of time. It is a sequence of images, each displayed after the other, and the first one displayed after the last, for $1 times.',
-'file-info-png-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page.
+'file-info-gif-looped' => 'Part of the information provided about a [[w:Gif|.gif file]] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
+'file-info-gif-frames' => 'Part of the information provided about a [[w:Gif|.gif file]] on its file description page.',
+'file-info-png-looped' => 'Part of the information provided about a [[w:APNG|.apng file]] on its file description page. Looped means repeating indefinetly in the context of an animated png. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop.',
+'file-info-png-repeat' => 'Part of the information provided about a [[w:APNG|.apng file]] on its file description page. The sequence of images is repeating a limited amount of time. It is a sequence of images, each displayed after the other, and the first one displayed after the last, for $1 times.',
+'file-info-png-frames' => 'Part of the information provided about a [[w:APNG|.apng file]] on its file description page.
 
 The variable $1 is the number of individual frames in an animated gif file.
 
@@ -6938,87 +6939,86 @@ $1 is the value of the property (in one language), $2 is the language name that 
 Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
 # EXIF tags
-'exif-imagewidth' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-imagewidth' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Identical|Width}}',
-'exif-imagelength' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-imagelength' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Identical|Height}}',
-'exif-bitspersample' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-compression' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-bitspersample' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-compression' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-This field labels what the compression of the image is. It is commonly seen in Tiff images. It uses messages like {{msg-mw|exif-compression-1}} for the value. http://en.wikipedia.org/wiki/TIFF#TIFF_Compression_Tag has information about this field.
+This field labels what the compression of the image is. It is commonly seen in Tiff images. It uses messages like {{msg-mw|exif-compression-1}} for the value. [[w:TIFF#TIFF_Compression_Tag]] has information about this field.
 {{Related|Exif-compression}}',
-'exif-photometricinterpretation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-orientation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-photometricinterpretation' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-orientation' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 For specific information on the orientation tag, see http://sylvana.net/jpegcrop/exif_orientation.html
 {{Related|Exif-orientation}}',
-'exif-samplesperpixel' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-planarconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-samplesperpixel' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-planarconfiguration' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also:
 * {{msg-mw|Exif-planarconfiguration}}
 * {{msg-mw|Exif-planarconfiguration-1}}
 * {{msg-mw|Exif-planarconfiguration-2}}',
-'exif-ycbcrsubsampling' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-ycbcrpositioning' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-ycbcrsubsampling' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-ycbcrpositioning' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Related|Exif-ycbcrpositioning}}',
-'exif-xresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-xresolution' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This is the horizontal resolution in either dots/inch or dots/cm.',
-'exif-yresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-yresolution' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This is the vertical resolution in either dots/inch or dots/cm.',
-'exif-stripoffsets' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-rowsperstrip' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-stripbytecounts' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-jpeginterchangeformat' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-jpeginterchangeformatlength' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-whitepoint' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-stripoffsets' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-rowsperstrip' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-stripbytecounts' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-jpeginterchangeformat' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-jpeginterchangeformatlength' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-whitepoint' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-primarychromaticities' => 'The chromaticity of the three primary colours of the image. Normally this tag is not necessary, since colour space is specified in the colour space information tag. This should probably be translated it as "Chromaticity of primary colours".
 
-Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-ycbcrcoefficients' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-referenceblackwhite' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-datetime' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-ycbcrcoefficients' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-referenceblackwhite' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-datetime' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Note, this message is also used for the XMP:ModifyDate property in XMP metadata. See page 35 of http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf
 
 Datetime is the time that the digital file was last changed.',
-'exif-imagedescription' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-imagedescription' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This property is the description or caption of the image. It is used for the exif ImageDescription property, the dc:description property in XMP (see http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf ), and the iptc-iim 2:120 caption/abstract property ( http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf ).
 
 When an image has multiple differing descriptions, mediawiki follows the MWG guidelines when deciding which to show (Which typically means Exif takes precedence).',
-'exif-make' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-make' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The Manufacturer of the digital camera (or scanner) that took the photo.',
-'exif-model' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-model' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The model of camera (or scanner) used to take the picture.',
 'exif-software' => 'Short for "The software which was used to create or modify this image".
 
 The property can come from the Exif Software tag, PNG software chunk, iptc-iim 2:65 Software field, or XMP\'s xmp:CreatorTool field.
 
-Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-artist' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-artist' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This message labels the author or artist of the work. Usually this means who took the photograph, or who drew the picture. The corresponding value field most commonly contains a single author, however it can contain an ordered (or unordered depending on which metadata standard is used to store the information) list of authors. Sometimes the persons position is prefixed before their name such as \"Photographer, John Smith\". The exif standard recommends multiple authors be specified by \"position, Author 1; position for author 2, Author 2's name\" however this doesn't seem to happen in practise very often. If multiple authors are specified using a non-exif standard, then a billeted (or numbered) list is used.
 
 This property can be specified by exif Artist tag, XMP's tiff:Artist, XMP's dc:creator, iptc-iim's 2:80 byline, PNG's author textual chunk, PNG's (unofficial) artist textual chunk. XMP's photoshop:AuthorsPosition and iptc 2:85 byline-title can also affect display of this property.
-
 {{Identical|Author}}",
-'exif-copyright' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-copyright' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Label for information contained in exif Copyright tag, XMP dc:rights, IPTC-iim 2:116, or PNG copyright textual chunk.
 
 Typically the copyright statement for the photograph/drawing/video (such as ''(c) 2010 John Smith. Released under GFDL''). Sometimes contains license information. See also {{msg-mw|exif-copyrightowner}}",
-'exif-exifversion' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exifversion' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Version of exif standard photo uses. Typically this is 2.22',
-'exif-flashpixversion' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-flashpixversion' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Version of flashpix used. Flashpix is a format used for storing some types of metadata in image. It is not as commonly used as EXIF, and mediawiki currently cannot read Flashpix data.',
-'exif-colorspace' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-colorspace' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The colorspace of the photo. This tells the computer how to make the colours in the photo be more true to the original photo. Typical values for this are sRGB or uncalibrated. This only gives information on colour information given in the exif-colorspace property. However, colour information is often stored elsewhere in the photo.
 
@@ -7026,159 +7026,159 @@ See also:
 * {{msg-mw|Exif-colorspace}}
 * {{msg-mw|Exif-colorspace-1|optional}}
 * {{msg-mw|Exif-colorspace-65535}}',
-'exif-componentsconfiguration' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-componentsconfiguration' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.
 {{Related|Exif-componentsconfiguration}}',
-'exif-compressedbitsperpixel' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-pixelxdimension' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-usercomment' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-compressedbitsperpixel' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-pixelxdimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-usercomment' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Comments by user. Sometimes used like ImageDescription when the ImageDescription contained non-ascii characters. (Technically ImageDescription is supposed to contain ascii characters. In practise utf-8 is used in ImageDescription, so this field isn't used too much.)",
-'exif-relatedsoundfile' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-relatedsoundfile' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Some cameras offer the option to record an audio "memo" for the photo they just took. If the user did that, the name of the file is labelled with this message.',
-'exif-datetimeoriginal' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-datetimeoriginal' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The date and time when the original image data was generated. For example if it was a painting from 1773, scanned in to a computer in 2007, the datetimeoriginal would be 1773 and {{msg-mw|exif-datetimedigitized}} would have the 2007 date.',
-'exif-datetimedigitized' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-datetimedigitized' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The date and time when the image was stored as digital data.',
-'exif-subsectime' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-subsectime' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 'DateTime subseconds' shows the detail of the fraction of a second (1/100s) at which the file was changed, when the tag {{msg-mw|Exif-datetime}} is recorded to the whole second.",
-'exif-subsectimeoriginal' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-subsectimeoriginal' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This tag shows the detail of the fraction of a second (1/100s) at which the file data was originally generated, when the tag {{msg-mw|Exif-datetimeoriginal}} is recorded to the whole second.',
-'exif-subsectimedigitized' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-subsectimedigitized' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This tag shows the detail of the fraction of a second (1/100s) at which the file was stored as digital data, when the tag {{msg-mw|Exif-datetimedigitized}} is recorded to the whole second.',
-'exif-exposuretime' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exposuretime' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The exposure time. Number of (or fraction of) seconds the film was exposed to light. The value for this property is formatted using {{msg-mw|exif-exposuretime-format}}',
-'exif-exposuretime-format' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exposuretime-format' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 *$1 is the exposure time written as a fraction of a second, for example 1/640 of a second.
 *$2 is the exposure time written as a decimal, for example 0.0015625.
 *'sec' is the abbreviation used in English for the unit of time 'second'.",
-'exif-fnumber' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-fnumber' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-The [http://en.wikipedia.org/wiki/F_number F number] is the relative aperture of the camera.',
+The [[w:F_number|F number]] is the relative aperture of the camera.',
 'exif-fnumber-format' => "{{optional}}
 Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 *$1 is a number
 *f is the abbreviation used in English for 'f-number'.",
-'exif-exposureprogram' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exposureprogram' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How the camera figured out what exposure to use. (If it was manually set, if its optimizing for fast shutter speed, etc).
 {{Related|Exif-exposureprogram}}',
-'exif-spectralsensitivity' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-spectralsensitivity' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How sensitive each channel (colour) of the photo is to light. This tag is almost never used.',
-'exif-isospeedratings' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-isospeedratings' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The iso speed of the film used in the camera. This is basically a measure of how sensitive the film in the camera is to light.',
-'exif-shutterspeedvalue' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-shutterspeedvalue' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-[http://en.wikipedia.org/wiki/Shutter_speed Shutter speed] is the time that the camera shutter is open.
+[[w:Shutter_speed|Shutter speed]] is the time that the camera shutter is open.
 
 This is the shutter speed measured in APEX units (negative base 2 log of shutter speed in seconds). See {{msg-mw|exif-exposuretime}} for this property in more traditional units of seconds.',
-'exif-aperturevalue' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-aperturevalue' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-The [http://en.wikipedia.org/wiki/Aperture aperture] of a camera is the hole through which light shines. This message can be translated 'Aperture width'. Note, this is measured in APEX units which is 2*log<sub>2</sub>(f-number) . See {{msg-mw|exif-fnumber}} for this value in more traditional units.",
-'exif-brightnessvalue' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+The [[w:Aperture|aperture]] of a camera is the hole through which light shines. This message can be translated 'Aperture width'. Note, this is measured in APEX units which is 2*log<sub>2</sub>(f-number) . See {{msg-mw|exif-fnumber}} for this value in more traditional units.",
+'exif-brightnessvalue' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How intense the illumination of the scene photographed is. Measured in APEX brightness units. See Annex C of Exif standard for details on the measurement system in use.',
-'exif-exposurebiasvalue' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exposurebiasvalue' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-Another term for [http://en.wikipedia.org/wiki/Exposure_bias 'exposure bias'] is 'exposure compensation'.",
-'exif-maxaperturevalue' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+Another term for [[w:Exposure_bias|'exposure bias']] is 'exposure compensation'.",
+'exif-maxaperturevalue' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The 'land' in a camera refers possibly to the inner surface of the barrel of the lens. An alternative phrasing for this message could perhaps be 'maximum width of the land aperture'.",
-'exif-subjectdistance' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-subjectdistance' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The subject of a photograph is the person or thing on which the camera focuses. 'Subject distance' is the distance to the subject given in meters.",
-'exif-meteringmode' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-meteringmode' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See [http://en.wikipedia.org/wiki/Metering_mode Wikipedia article] on metering mode.
+See [[w:Metering_mode|Wikipedia article]] on metering mode.
 {{Related|Exif-meteringmode}}',
-'exif-lightsource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-lightsource' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Related|Exif-lightsource}}',
-'exif-flash' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-flash' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See this [http://en.wikipedia.org/wiki/Flash_(photography) Wikipedia article] for an explanation of the term.
+See this [[w:en:Flash_(photography)|Wikipedia article]] for an explanation of the term.
 
 See also:
 * {{msg-mw|Exif-flash}}
 * {{msg-mw|Exif-flash-fired-0}}
 * {{msg-mw|Exif-flash-fired-1}}
 {{Identical|Flash}}',
-'exif-focallength' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-focallength' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See this [http://en.wikipedia.org/wiki/Focal_length_(photography) Wikipedia article] for an explanation of the term.',
+See this [[w:en:Focal_length_(photography)|Wikipedia article]] for an explanation of the term.',
 'exif-focallength-format' => "{{optional}}
 Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 *$1 is a number
 *mm is the abbreviation used in English for the unit of measurement of length 'millimetre'.",
-'exif-subjectarea' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-subjectarea' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This exif property contains the position of the main subject. The first two numbers is the position of the subject in the picture in pixels from the upper left corner. If a third number is specified, it is a circle centred at the first two numbers. If four numbers are specified, the first two are coordinates of the centre of the subject as before, the third is the width of the rectangle, and the fourth is the height of the rectangle. It is rare for a photo to use this tag.',
-'exif-flashenergy' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-flashenergy' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 How bright the flash is in beam candle power seconds.',
-'exif-focalplanexresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-focalplanexresolution' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Indicates the number of pixels in the image width (X) direction per FocalPlaneResolutionUnit on the camera focal plane.',
-'exif-focalplaneyresolution' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-focalplaneresolutionunit' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-focalplaneyresolution' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-focalplaneresolutionunit' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See also:
 * {{msg-mw|Exif-focalplaneresolutionunit-2}}',
-'exif-subjectlocation' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-subjectlocation' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Same as {{msg-mw|exif-subjectarea}} but only ever has two numbers as a value.',
-'exif-exposureindex' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-sensingmethod' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exposureindex' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-sensingmethod' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Related|Exif-sensingmethod}}',
-'exif-filesource' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-filesource' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Determines if the image was recorded by a digital camera adhering to DSC standard (which is almost all digital cameras).',
-'exif-scenetype' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-scenetype' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 If the image is directly photographed (taken by a digital camera).
 
 See also:
 * {{msg-mw|Exif-scenetype}}
 * {{msg-mw|Exif-scenetype-1}}',
-'exif-customrendered' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-customrendered' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Image_processing image processing].
+See also Wikipedia on [[w:Image_processing|image processing]].
 
 See also:
 * {{msg-mw|Exif-customrendered}}
 * {{msg-mw|Exif-customrendered-0}}
 * {{msg-mw|Exif-customrendered-1}}',
-'exif-exposuremode' => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-exposuremode' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Exposure_(photography) exposure in photography]. This tag shows if the photo's exposure was manually set or automatically determined.
+See also Wikipedia on [[w:en:Exposure_(photography)|exposure in photography]]. This tag shows if the photo's exposure was manually set or automatically determined.
 {{Related|Exif-exposuremode}}",
-'exif-whitebalance' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-whitebalance' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Color_balance color balance].
+See also Wikipedia on [[w:Color_balance|color balance]].
 
 See also:
 * {{msg-mw|Exif-whitebalance}}
 * {{msg-mw|Exif-whitebalance-0}}
 * {{msg-mw|Exif-whitebalance-1}}',
-'exif-digitalzoomratio' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-digitalzoomratio' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Digital_zoom digital zoom].',
-'exif-focallengthin35mmfilm' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+See also Wikipedia on [[w:Digital_zoom|digital zoom]].',
+'exif-focallengthin35mmfilm' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography focal length].',
+See also Wikipedia on [[w:Focal_length#In_photography|focal length]].',
 'exif-scenecapturetype' => '{{Related|Exif-scenecapturetype}}',
 'exif-gaincontrol' => 'Gain amplifies the signal off of the image sensor. Gain turns the brightness level up or down.
 {{Related|Exif-gaincontrol}}',
@@ -7461,20 +7461,21 @@ See also:
 {{Related|Exif-componentsconfiguration}}',
 
 'exif-exposureprogram-0' => '{{Related|Exif-exposureprogram}}',
-'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.
 {{Related|Exif-exposureprogram}}",
-'exif-exposureprogram-2' => '{{Related|Exif-exposureprogram}}',
-'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Aperture_priority aperture priority].
+'exif-exposureprogram-2' => 'One of the exposure program types in the table of metadata on image description pages.
 {{Related|Exif-exposureprogram}}',
-'exif-exposureprogram-4' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Shutter_priority shutter priority].
+'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [[w:Aperture_priority|aperture priority]].
 {{Related|Exif-exposureprogram}}',
-'exif-exposureprogram-5' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+'exif-exposureprogram-4' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [[w:Shutter_priority|shutter priority]].
+{{Related|Exif-exposureprogram}}',
+'exif-exposureprogram-5' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.
 {{Related|Exif-exposureprogram}}",
-'exif-exposureprogram-6' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+'exif-exposureprogram-6' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.
 {{Related|Exif-exposureprogram}}",
-'exif-exposureprogram-7' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+'exif-exposureprogram-7' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.
 {{Related|Exif-exposureprogram}}",
-'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.
+'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.
 {{Related|Exif-exposureprogram}}",
 
 'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
@@ -7527,7 +7528,7 @@ See also:
 * {{msg-mw|Exif-flash}}
 * {{msg-mw|Exif-flash-fired-0}}
 * {{msg-mw|Exif-flash-fired-1}}',
-'exif-flash-return-0' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-flash-return-0' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 "Strobe" and "flash" mean the same here.
 
@@ -7535,7 +7536,7 @@ See also:
 * {{msg-mw|Exif-flash-return-0}}
 * {{msg-mw|Exif-flash-return-2}}
 * {{msg-mw|Exif-flash-return-3}}',
-'exif-flash-return-2' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-flash-return-2' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 "Strobe" and "flash" mean the same here.
 
@@ -7543,7 +7544,7 @@ See also:
 * {{msg-mw|Exif-flash-return-0}}
 * {{msg-mw|Exif-flash-return-2}}
 * {{msg-mw|Exif-flash-return-3}}',
-'exif-flash-return-3' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-flash-return-3' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 "Strobe" and "flash" mean the same here.
 
@@ -7567,7 +7568,7 @@ See also:
 * {{msg-mw|Exif-flash-mode-1}}
 * {{msg-mw|Exif-flash-mode-2}}
 * {{msg-mw|Exif-flash-mode-3}}',
-'exif-flash-function-1' => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-flash-function-1' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 
 'exif-focalplaneresolutionunit-2' => 'See also:
 * {{msg-mw|Exif-focalplaneresolutionunit}}',
@@ -7599,7 +7600,7 @@ See also:
 
 'exif-exposuremode-0' => '{{Related|Exif-exposuremode}}',
 'exif-exposuremode-1' => '{{Related|Exif-exposuremode}}',
-'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [http://en.wikipedia.org/wiki/Bracketing#Exposure_bracketing bracketing] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.
+'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [[w:Bracketing#Exposure_bracketing|bracketing]] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.
 {{Related|Exif-exposuremode}}",
 
 'exif-whitebalance-0' => 'See also:
@@ -7651,7 +7652,7 @@ See also:
 
 'exif-subjectdistancerange-0' => '{{Related|Exif-subjectdistancerange}}
 {{Identical|Unknown}}',
-'exif-subjectdistancerange-1' => 'Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_photography Wikipedia].
+'exif-subjectdistancerange-1' => 'Macro view is close-up photography. See [[w:Macro_photography|Wikipedia]].
 {{Identical|Macro}}
 {{Related|Exif-subjectdistancerange}}',
 'exif-subjectdistancerange-2' => '{{Related|Exif-subjectdistancerange}}',
@@ -8218,7 +8219,7 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 # Core parser functions
 'unknown_extension_tag' => '* Description: This is an error shown when you use an unknown extension tag name. This feature allows tags like <tt><nowiki><pre></nowiki></tt> to be called with a parser like <tt><nowiki>{{#tag:pre}}</nowiki></tt>.
 * Parameter $1: This is the unknown extension tag name.',
-'duplicate-defaultsort' => 'See definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
+'duplicate-defaultsort' => 'See definition of [[w:Sorting|sort key]] on Wikipedia.',
 
 # Special:Version
 'version' => 'Name of special page displayed in [[Special:SpecialPages]]
@@ -8339,7 +8340,7 @@ See also:
 # External image whitelist
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.
 
-See definition of [http://en.wikipedia.org/wiki/Regular_expression regular expression] on Wikipedia.",
+See definition of [[w:Regular_expression|regular expression]] on Wikipedia.",
 
 # Special:Tags
 'tags' => "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
