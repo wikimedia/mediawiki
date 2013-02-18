@@ -64,7 +64,7 @@ class ApiModuleManager extends ContextSource {
 	 *
 	 * @param $group string Name of the module group
 	 * @param $name string The identifier for this module.
-	 * @param $class string The class where this module is implemented.
+	 * @param $class string The class where this module is implemented or a callback returning an instance of ApiBase.
 	 */
 	public function addModule( $name, $group, $class ) {
 		$this->mGroups[$group] = null;
@@ -91,12 +91,26 @@ class ApiModuleManager extends ContextSource {
 			return $this->mInstances[$moduleName];
 		} else {
 			// new instance
-			$class = $grpCls[1];
-			$instance = new $class ( $this->mParent, $moduleName );
+			$classOrCallback = $grpCls[1];
+
+			$instance = null;
+
+			if ( is_string( $classOrCallback ) ) {
+				$instance = new $classOrCallback( $this->mParent, $moduleName );
+			}
+			elseif ( is_callable( $classOrCallback ) ) {
+				$instance = call_user_func_array( $classOrCallback, array( $this->mParent, $moduleName ) );
+			}
+
+			if ( !( $instance instanceof ApiBase ) ) {
+				throw new MWException( "Invalid registration for the '$moduleName' API module" );
+			}
+
 			if ( !$ignoreCache ) {
 				// cache this instance in case it is needed later
 				$this->mInstances[$moduleName] = $instance;
 			}
+
 			return $instance;
 		}
 	}
