@@ -1,4 +1,5 @@
 ( function ( mw, $ ) {
+	'use strict';
 
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		setup: function () {
@@ -32,6 +33,7 @@
 		} );
 	}
 
+	// These tests run only for the current UI language.
 	var grammarTests = {
 		bs: [
 			{
@@ -188,40 +190,87 @@
 				word: 'тесть',
 				grammarForm: 'genitive',
 				expected: 'тестя',
-				description: 'Grammar test for genitive case'
+				description: 'Grammar test for genitive case, тесть -> тестя'
 			},
 			{
 				word: 'привилегия',
 				grammarForm: 'genitive',
 				expected: 'привилегии',
-				description: 'Grammar test for genitive case'
+				description: 'Grammar test for genitive case, привилегия -> привилегии'
 			},
 			{
 				word: 'установка',
 				grammarForm: 'genitive',
 				expected: 'установки',
-				description: 'Grammar test for genitive case'
+				description: 'Grammar test for genitive case, установка -> установки'
 			},
 			{
 				word: 'похоти',
 				grammarForm: 'genitive',
 				expected: 'похотей',
-				description: 'Grammar test for genitive case'
+				description: 'Grammar test for genitive case, похоти -> похотей'
 			},
 			{
 				word: 'доводы',
 				grammarForm: 'genitive',
 				expected: 'доводов',
-				description: 'Grammar test for genitive case'
+				description: 'Grammar test for genitive case, доводы -> доводов'
 			},
 			{
 				word: 'песчаник',
 				grammarForm: 'genitive',
 				expected: 'песчаника',
-				description: 'Grammar test for genitive case'
+				description: 'Grammar test for genitive case, песчаник -> песчаника'
+			},
+			{
+				word: 'данные',
+				grammarForm: 'genitive',
+				expected: 'данных',
+				description: 'Grammar test for genitive case, данные -> данных'
+			},
+			{
+				word: 'тесть',
+				grammarForm: 'prepositional',
+				expected: 'тесте',
+				description: 'Grammar test for prepositional case, тесть -> тесте'
+			},
+			{
+				word: 'привилегия',
+				grammarForm: 'prepositional',
+				expected: 'привилегии',
+				description: 'Grammar test for prepositional case, привилегия -> привилегии'
+			},
+			{
+				word: 'установка',
+				grammarForm: 'prepositional',
+				expected: 'установке',
+				description: 'Grammar test for prepositional case, установка -> установке'
+			},
+			{
+				word: 'похоти',
+				grammarForm: 'prepositional',
+				expected: 'похотях',
+				description: 'Grammar test for prepositional case, похоти -> похотях'
+			},
+			{
+				word: 'доводы',
+				grammarForm: 'prepositional',
+				expected: 'доводах',
+				description: 'Grammar test for prepositional case, доводы -> доводах'
+			},
+			{
+				word: 'песчаник',
+				grammarForm: 'prepositional',
+				expected: 'песчанике',
+				description: 'Grammar test for prepositional case, песчаник -> песчанике'
+			},
+			{
+				word: 'данные',
+				grammarForm: 'prepositional',
+				expected: 'данных',
+				description: 'Grammar test for prepositional case, данные -> данных'
 			}
 		],
-
 
 		hu: [
 			{
