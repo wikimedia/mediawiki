@@ -62,9 +62,10 @@ interface DatabaseType {
 	 * Fetch the next row from the given result object, in object form.
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
+	 * If no more rows are available, false is returned.
 	 *
 	 * @param $res ResultWrapper|object as returned from DatabaseBase::query(), etc.
-	 * @return Row object
+	 * @return object|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject( $res );
@@ -72,9 +73,10 @@ interface DatabaseType {
 	/**
 	 * Fetch the next row from the given result object, in associative array
 	 * form.  Fields are retrieved with $row['fieldname'].
+	 * If no more rows are available, false is returned.
 	 *
 	 * @param $res ResultWrapper result object as returned from DatabaseBase::query(), etc.
-	 * @return Row object
+	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow( $res );

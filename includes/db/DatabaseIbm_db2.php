@@ -685,9 +685,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Fetch the next row from the given result object, in object form.
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
+	 * If no more rows are available, false is returned.
 	 *
 	 * @param $res array|ResultWrapper SQL result object as returned from Database::query(), etc.
-	 * @return DB2 row object
+	 * @return object|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	public function fetchObject( $res ) {
@@ -707,9 +708,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Fetch the next row from the given result object, in associative array
 	 * form. Fields are retrieved with $row['fieldname'].
+	 * If no more rows are available, false is returned.
 	 *
 	 * @param $res array|ResultWrapper SQL result object as returned from Database::query(), etc.
-	 * @return ResultWrapper row object
+	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	public function fetchRow( $res ) {

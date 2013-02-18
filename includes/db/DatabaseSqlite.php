@@ -252,7 +252,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @return
+	 * @return object|bool
 	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -278,7 +278,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @return bool|mixed
+	 * @return array|bool
 	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {

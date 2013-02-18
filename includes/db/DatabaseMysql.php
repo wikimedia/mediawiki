@@ -193,7 +193,7 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @return object|stdClass
+	 * @return object|bool
 	 * @throws DBUnexpectedError
 	 */
 	function fetchObject( $res ) {
@@ -217,7 +217,7 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @return array
+	 * @return array|bool
 	 * @throws DBUnexpectedError
 	 */
 	function fetchRow( $res ) {
