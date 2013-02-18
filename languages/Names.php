@@ -298,7 +298,7 @@
 	'pdc' => 'Deitsch',	# Pennsylvania German
 	'pdt' => 'Plautdietsch',	# Plautdietsch/Mennonite Low German
 	'pfl' => 'Pälzisch',	# Palatinate German
-	'pi' => 'पाळि',	# Pali
+	'pi' => 'पालि',	# Pali
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'polski',		# Polish
 	'pms' => 'Piemontèis',	# Piedmontese
