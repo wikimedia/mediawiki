@@ -109,12 +109,15 @@
 		liveMessages = mw.messages.values;
 
 		function freshConfigCopy( custom ) {
-			// "deep=true" is important here.
-			// Otherwise we just create a new object with values referring to live config.
-			// e.g. mw.config.set( 'wgFileExtensions', [] ) would not effect liveConfig,
-			// but mw.config.get( 'wgFileExtensions' ).push( 'png' ) would as the array
-			// was passed by reference in $.extend's loop.
-			return $.extend( /*deep=*/true, {}, liveConfig, custom );
+			// we extend the current live config with the given one but will not do a deep copy
+			// since tests should not rely on global config but instead provide their own
+			// configuration mock within their environment. So tests should actually overwrite all
+			// of the settings that directly influence the tested system. For backwards compatibility
+			// with tests not doing this properly or tests using sub-systems which do not do proper
+			// dependency injection and rely on globals instead, we also copy the live settings NOT
+			// provided by the test. In any case, we do not merge a live state's setting value with
+			// a custom value anymore.
+			return $.extend( {}, liveConfig, custom );
 		}
 
 		function freshMessagesCopy( custom ) {
