@@ -73,11 +73,12 @@ class ForeignDBFile extends LocalFile {
 	 * @param $source string
 	 * @param $watch bool
 	 * @param $timestamp bool|string
+	 * @param $user User object or null to use $wgUser
 	 * @return bool
 	 * @throws MWException
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false ) {
+		$watch = false, $timestamp = false, User $user = null ) {
 		$this->readOnlyError();
 	}
 
