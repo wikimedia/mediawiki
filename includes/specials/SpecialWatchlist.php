@@ -343,6 +343,11 @@ class SpecialWatchlist extends SpecialPage {
 			$links[] = $this->showHideLink( $nondefaults, $msg, $name, $values[$name] );
 		}
 
+		$hiddenFields = $nondefaults;
+		unset( $hiddenFields['namespace'] );
+		unset( $hiddenFields['invert'] );
+		unset( $hiddenFields['associated'] );
+
 		# Namespace filter and put the whole form together.
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
@@ -375,11 +380,8 @@ class SpecialWatchlist extends SpecialPage {
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
 		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . '</p>';
-		$form .= Html::hidden( 'days', $values['days'] );
-		foreach ( $filters as $key => $msg ) {
-			if ( $values[$key] ) {
-				$form .= Html::hidden( $key, 1 );
-			}
+		foreach ( $hiddenFields as $key => $value ) {
+			$form .= Html::hidden( $key, $value );
 		}
 		$form .= Xml::closeElement( 'form' );
 		$form .= Xml::closeElement( 'fieldset' );
