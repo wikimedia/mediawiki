@@ -43,17 +43,12 @@ class ORMRow implements IORMRow {
 	protected $fields = array( 'id' => null );
 
 	/**
-	 * @since 1.20
-	 * @var ORMTable
-	 */
-	protected $table;
-
-	/**
 	 * If the object should update summaries of linked items when changed.
 	 * For example, update the course_count field in universities when a course in courses is deleted.
 	 * Settings this to false can prevent needless updating work in situations
 	 * such as deleting a university, which will then delete all it's courses.
 	 *
+	 * @deprecated since 1.21
 	 * @since 1.20
 	 * @var bool
 	 */
@@ -64,23 +59,29 @@ class ORMRow implements IORMRow {
 	 * This mode indicates that only summary fields got updated,
 	 * which allows for optimizations.
 	 *
+	 * @deprecated since 1.21
 	 * @since 1.20
 	 * @var bool
 	 */
 	protected $inSummaryMode = false;
 
 	/**
+	 * @deprecated since 1.21
+	 * @since 1.20
+	 * @var ORMTable|null
+	 */
+	protected $table;
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.20
 	 *
-	 * @param IORMTable $table
+	 * @param IORMTable|null $table Deprecated since 1.21
 	 * @param array|null $fields
-	 * @param boolean $loadDefaults
+	 * @param boolean $loadDefaults Deprecated since 1.21
 	 */
-	public function __construct( IORMTable $table, $fields = null, $loadDefaults = false ) {
-		$this->table = $table;
-
+	public function __construct( IORMTable $table = null, $fields = null, $loadDefaults = false ) {
 		if ( !is_array( $fields ) ) {
 			$fields = array();
 		}
@@ -96,6 +97,7 @@ class ORMRow implements IORMRow {
 	 * Load the specified fields from the database.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param array|null $fields
 	 * @param boolean $override
@@ -160,6 +162,7 @@ class ORMRow implements IORMRow {
 	 * Gets the value of a field but first loads it if not done so already.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param $name string
 	 *
@@ -232,25 +235,10 @@ class ORMRow implements IORMRow {
 	}
 
 	/**
-	 * Sets multiple fields.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $fields The fields to set
-	 * @param boolean $override Override already set fields with the provided values?
-	 */
-	public function setFields( array $fields, $override = true ) {
-		foreach ( $fields as $name => $value ) {
-			if ( $override || !$this->hasField( $name ) ) {
-				$this->setField( $name, $value );
-			}
-		}
-	}
-
-	/**
 	 * Gets the fields => values to write to the table.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @return array
 	 */
@@ -264,10 +252,10 @@ class ORMRow implements IORMRow {
 				switch ( $type ) {
 					case 'array':
 						$value = (array)$value;
-						// fall-through!
+					// fall-through!
 					case 'blob':
 						$value = serialize( $value );
-						// fall-through!
+					// fall-through!
 				}
 
 				$values[$this->table->getPrefixedField( $name )] = $value;
@@ -275,6 +263,22 @@ class ORMRow implements IORMRow {
 		}
 
 		return $values;
+	}
+
+	/**
+	 * Sets multiple fields.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $fields The fields to set
+	 * @param boolean $override Override already set fields with the provided values?
+	 */
+	public function setFields( array $fields, $override = true ) {
+		foreach ( $fields as $name => $value ) {
+			if ( $override || !$this->hasField( $name ) ) {
+				$this->setField( $name, $value );
+			}
+		}
 	}
 
 	/**
@@ -315,6 +319,7 @@ class ORMRow implements IORMRow {
 	 * Load the default values, via getDefaults.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param boolean $override
 	 */
@@ -327,6 +332,7 @@ class ORMRow implements IORMRow {
 	 * when it already exists, or inserting it when it doesn't.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21 Use IORMTable->updateRow or ->insertRow
 	 *
 	 * @param string|null $functionName
 	 *
@@ -334,9 +340,9 @@ class ORMRow implements IORMRow {
 	 */
 	public function save( $functionName = null ) {
 		if ( $this->hasIdField() ) {
-			return $this->saveExisting( $functionName );
+			return $this->table->updateRow( $this, $functionName );
 		} else {
-			return $this->insert( $functionName );
+			return $this->table->insertRow( $this, $functionName );
 		}
 	}
 
@@ -344,6 +350,7 @@ class ORMRow implements IORMRow {
 	 * Updates the object in the database.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param string|null $functionName
 	 *
@@ -355,7 +362,7 @@ class ORMRow implements IORMRow {
 		$success = $dbw->update(
 			$this->table->getName(),
 			$this->getWriteValues(),
-			$this->table->getPrefixedValues( $this->getUpdateConditions() ),
+			$this->table->getPrefixedValues( $this->getWriteValues() ),
 			is_null( $functionName ) ? __METHOD__ : $functionName
 		);
 
@@ -381,6 +388,7 @@ class ORMRow implements IORMRow {
 	 * Inserts the object into the database.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param string|null $functionName
 	 * @param array|null $options
@@ -413,16 +421,14 @@ class ORMRow implements IORMRow {
 	 * Removes the object from the database.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21, use IROMtable->removeRow
 	 *
 	 * @return boolean Success indicator
 	 */
 	public function remove() {
 		$this->beforeRemove();
 
-		$success = $this->table->delete( array( 'id' => $this->getId() ), __METHOD__ );
-
-		// DatabaseBase::delete does not always return true for success as documented...
-		$success = $success !== false;
+		$success = $this->table->removeRow( $this, __METHOD__ );
 
 		if ( $success ) {
 			$this->onRemoved();
@@ -435,6 +441,7 @@ class ORMRow implements IORMRow {
 	 * Gets called before an object is removed from the database.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 */
 	protected function beforeRemove() {
 		$this->loadFields( $this->getBeforeRemoveFields(), false, true );
@@ -458,6 +465,7 @@ class ORMRow implements IORMRow {
 	 * Can be overridden to get rid of linked data.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 */
 	protected function onRemoved() {
 		$this->setField( 'id', null );
@@ -498,55 +506,14 @@ class ORMRow implements IORMRow {
 	 * @throws MWException
 	 */
 	public function setField( $name, $value ) {
-		$fields = $this->table->getFields();
-
-		if ( array_key_exists( $name, $fields ) ) {
-			switch ( $fields[$name] ) {
-				case 'int':
-					$value = (int)$value;
-					break;
-				case 'float':
-					$value = (float)$value;
-					break;
-				case 'bool':
-					if ( is_string( $value ) ) {
-						$value = $value !== '0';
-					} elseif ( is_int( $value ) ) {
-						$value = $value !== 0;
-					}
-					break;
-				case 'array':
-					if ( is_string( $value ) ) {
-						$value = unserialize( $value );
-					}
-
-					if ( !is_array( $value ) ) {
-						$value = array();
-					}
-					break;
-				case 'blob':
-					if ( is_string( $value ) ) {
-						$value = unserialize( $value );
-					}
-					break;
-				case 'id':
-					if ( is_string( $value ) ) {
-						$value = (int)$value;
-					}
-					break;
-			}
-
-			$this->fields[$name] = $value;
-		} else {
-			throw new MWException( 'Attempted to set unknown field ' . $name );
-		}
+		$this->fields[$name] = $value;
 	}
 
 	/**
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
-	 * TODO: most off this stuff makes more sense in the table class
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21, use IORMTable->addToField
 	 *
 	 * @param string $field
 	 * @param integer $amount
@@ -554,41 +521,14 @@ class ORMRow implements IORMRow {
 	 * @return boolean Success indicator
 	 */
 	public function addToField( $field, $amount ) {
-		if ( $amount == 0 ) {
-			return true;
-		}
-
-		if ( !$this->hasIdField() ) {
-			return false;
-		}
-
-		$absoluteAmount = abs( $amount );
-		$isNegative = $amount < 0;
-
-		$dbw = $this->table->getWriteDbConnection();
-
-		$fullField = $this->table->getPrefixedField( $field );
-
-		$success = $dbw->update(
-			$this->table->getName(),
-			array( "$fullField=$fullField" . ( $isNegative ? '-' : '+' ) . $absoluteAmount ),
-			array( $this->table->getPrefixedField( 'id' ) => $this->getId() ),
-			__METHOD__
-		);
-
-		if ( $success && $this->hasField( $field ) ) {
-			$this->setField( $field, $this->getField( $field ) + $amount );
-		}
-
-		$this->table->releaseConnection( $dbw );
-
-		return $success;
+		return $this->table->addToField( $this->getUpdateConditions(), $field, $amount );
 	}
 
 	/**
 	 * Return the names of the fields.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @return array
 	 */
@@ -600,6 +540,7 @@ class ORMRow implements IORMRow {
 	 * Computes and updates the values of the summary fields.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param array|string|null $summaryFields
 	 */
@@ -611,6 +552,7 @@ class ORMRow implements IORMRow {
 	 * Sets the value for the @see $updateSummaries field.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param boolean $update
 	 */
@@ -622,6 +564,7 @@ class ORMRow implements IORMRow {
 	 * Sets the value for the @see $inSummaryMode field.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @param boolean $summaryMode
 	 */
@@ -630,39 +573,10 @@ class ORMRow implements IORMRow {
 	}
 
 	/**
-	 * Return if any fields got changed.
-	 *
-	 * @since 1.20
-	 *
-	 * @param IORMRow $object
-	 * @param boolean|array $excludeSummaryFields
-	 *  When set to true, summary field changes are ignored.
-	 *  Can also be an array of fields to ignore.
-	 *
-	 * @return boolean
-	 */
-	protected function fieldsChanged( IORMRow $object, $excludeSummaryFields = false ) {
-		$exclusionFields = array();
-
-		if ( $excludeSummaryFields !== false ) {
-			$exclusionFields = is_array( $excludeSummaryFields ) ? $excludeSummaryFields : $this->table->getSummaryFields();
-		}
-
-		foreach ( $this->fields as $name => $value ) {
-			$excluded = $excludeSummaryFields && in_array( $name, $exclusionFields );
-
-			if ( !$excluded && $object->getField( $name ) !== $value ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Returns the table this IORMRow is a row in.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.21
 	 *
 	 * @return IORMTable
 	 */
