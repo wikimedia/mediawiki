@@ -473,7 +473,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 */
 	function testKnownCldrLanguageTag() {
 		if ( !class_exists( 'LanguageNames' ) ) {
-			$this->markTestSkipped( 'reason' );
+			$this->markTestSkipped( 'The LanguageNames class is not available. The cldr extension is probably not installed.' );
 		}
 
 		$this->assertTrue(
