@@ -7,14 +7,8 @@
  */
 class ApiCreateAccountTest extends ApiTestCase {
 	function setUp() {
-		global $wgHooks;
 		parent::setUp();
 		LoginForm::setCreateaccountToken();
-
-		$hooks = $wgHooks;
-		Hooks::clear( 'AlternateUserMailer' );
-		$hooks['AlternateUserMailer'] = array( function () { return false; } );
-		$this->setMwGlobals( array( 'wgHooks' => $hooks ) );
 	}
 
 	/**
