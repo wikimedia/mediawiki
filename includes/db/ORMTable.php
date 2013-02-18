@@ -814,10 +814,59 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 */
 	public function getFieldsFromDBResult( stdClass $result ) {
 		$result = (array)$result;
-		return array_combine(
+
+		$rawFields = array_combine(
 			$this->unprefixFieldNames( array_keys( $result ) ),
 			array_values( $result )
 		);
+
+		$fieldDefinitions = $this->getFields();
+		$fields = array();
+
+		foreach ( $rawFields as $name => $value ) {
+			if ( array_key_exists( $name, $fieldDefinitions ) ) {
+				switch ( $fieldDefinitions[$name] ) {
+					case 'int':
+						$value = (int)$value;
+						break;
+					case 'float':
+						$value = (float)$value;
+						break;
+					case 'bool':
+						if ( is_string( $value ) ) {
+							$value = $value !== '0';
+						} elseif ( is_int( $value ) ) {
+							$value = $value !== 0;
+						}
+						break;
+					case 'array':
+						if ( is_string( $value ) ) {
+							$value = unserialize( $value );
+						}
+
+						if ( !is_array( $value ) ) {
+							$value = array();
+						}
+						break;
+					case 'blob':
+						if ( is_string( $value ) ) {
+							$value = unserialize( $value );
+						}
+						break;
+					case 'id':
+						if ( is_string( $value ) ) {
+							$value = (int)$value;
+						}
+						break;
+				}
+
+				$fields[$name] = $value;
+			} else {
+				throw new MWException( 'Attempted to set unknown field ' . $name );
+			}
+		}
+
+		return $fields;
 	}
 
 	/**
@@ -867,14 +916,15 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @param array $data
+	 * @param array $fields
 	 * @param boolean $loadDefaults
 	 *
 	 * @return IORMRow
 	 */
-	public function newRow( array $data, $loadDefaults = false ) {
+	public function newRow( array $fields, $loadDefaults = false ) {
 		$class = $this->getRowClass();
-		return new $class( $this, $data, $loadDefaults );
+
+		return new $class( $this, $fields, $loadDefaults );
 	}
 
 	/**
@@ -899,6 +949,159 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 */
 	public function canHaveField( $name ) {
 		return array_key_exists( $name, $this->getFields() );
+	}
+
+	/**
+	 * Updated the provided row in the database.
+	 *
+	 * @since 1.21
+	 *
+	 * @param IORMRow $row The row to save
+	 * @param string|null $functionName
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function updateRow( IORMRow $row, $functionName = null ) {
+		$dbw = $this->getWriteDbConnection();
+
+		$success = $dbw->update(
+			$this->getName(),
+			$this->getWriteValues( $row ),
+			$this->getPrefixedValues( array( 'id' => $row->getId() ) ),
+			is_null( $functionName ) ? __METHOD__ : $functionName
+		);
+
+		$this->releaseConnection( $dbw );
+
+		// DatabaseBase::update does not always return true for success as documented...
+		return $success !== false;
+	}
+
+	/**
+	 * Inserts the provided row into the database.
+	 *
+	 * @since 1.21
+	 *
+	 * @param IORMRow $row
+	 * @param string|null $functionName
+	 * @param array|null $options
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function insertRow( IORMRow $row, $functionName = null, array $options = null ) {
+		$dbw = $this->getWriteDbConnection();
+
+		$success = $dbw->insert(
+			$this->getName(),
+			$this->getWriteValues( $row ),
+			is_null( $functionName ) ? __METHOD__ : $functionName,
+			$options
+		);
+
+		// DatabaseBase::insert does not always return true for success as documented...
+		$success = $success !== false;
+
+		if ( $success ) {
+			$row->setField( 'id', $dbw->insertId() );
+		}
+
+		$this->releaseConnection( $dbw );
+
+		return $success;
+	}
+
+	/**
+	 * Gets the fields => values to write to the table.
+	 *
+	 * @since 1.20
+	 *
+	 * @param IORMRow $row
+	 *
+	 * @return array
+	 */
+	protected function getWriteValues( IORMRow $row ) {
+		$values = array();
+
+		$rowFields = $row->getFields();
+
+		foreach ( $this->getFields() as $name => $type ) {
+			if ( array_key_exists( $name, $rowFields ) ) {
+				$value = $rowFields[$name];
+
+				switch ( $type ) {
+					case 'array':
+						$value = (array)$value;
+					// fall-through!
+					case 'blob':
+						$value = serialize( $value );
+					// fall-through!
+				}
+
+				$values[$this->getPrefixedField( $name )] = $value;
+			}
+		}
+
+		return $values;
+	}
+
+	/**
+	 * Removes the provided row from the database.
+	 *
+	 * @since 1.21
+	 *
+	 * @param IORMRow $row
+	 * @param string|null $functionName
+	 *
+	 * @return boolean Success indicator
+	 */
+	public function removeRow( IORMRow $row, $functionName = null ) {
+		$success = $this->delete(
+			array( 'id' => $row->getId() ),
+			is_null( $functionName ) ? __METHOD__ : $functionName
+		);
+
+		// DatabaseBase::delete does not always return true for success as documented...
+		return $success !== false;
+	}
+
+	/**
+	 * Add an amount (can be negative) to the specified field (needs to be numeric).
+	 *
+	 * @since 1.21
+	 *
+	 * @param array $conditions
+	 * @param string $field
+	 * @param integer $amount
+	 *
+	 * @return boolean Success indicator
+	 * @throws MWException
+	 */
+	public function addToField( array $conditions, $field, $amount ) {
+		if ( !array_key_exists( $field, $this->fields ) ) {
+			throw new MWException( 'Unknown field "' . $field . '" provided' );
+		}
+
+		if ( $amount == 0 ) {
+			return true;
+		}
+
+		$absoluteAmount = abs( $amount );
+		$isNegative = $amount < 0;
+
+		$fullField = $this->getPrefixedField( $field );
+
+		$dbw = $this->getWriteDbConnection();
+
+		$success = $dbw->update(
+			$this->getName(),
+			array( "$fullField=$fullField" . ( $isNegative ? '-' : '+' ) . $absoluteAmount ),
+			$this->getPrefixedValues( $conditions ),
+			__METHOD__
+		) !== false; // DatabaseBase::update does not always return true for success as documented...
+
+		$this->releaseConnection( $dbw );
+
+		return $success;
 	}
 
 }
