@@ -32,14 +32,10 @@ class NewParserTest extends MediaWikiTestCase {
 	protected $file = false;
 
 	protected function setUp() {
-		global $wgContLang, $wgLanguageCode;
 		global $wgNamespaceProtection, $wgNamespaceAliases;
 		global $wgHooks, $IP;
 
 		parent::setUp();
-
-		$wgLanguageCode = 'en';
-		$wgContLang = Language::factory( 'en' );
 
 		//Setup CLI arguments
 		if ( $this->getCliArg( 'regex=' ) ) {
@@ -53,6 +49,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$tmpGlobals = array();
 
+		$tmpGlobals['wgLanguageCode'] = 'en';
+		$tmpGlobals['wgContLang'] = Language::factory( 'en' );
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
@@ -236,7 +234,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
 	 */
-	protected function setupGlobals( $opts = '', $config = '' ) {
+	protected function setupGlobals( $opts = array(), $config = '' ) {
 		global $wgFileBackends;
 		# Find out values for some special options.
 		$lang =
@@ -300,7 +298,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
 			'wgLang' => null,
 			'wgContLang' => null,
-			'wgNamespacesWithSubpages' => array( 0 => isset( $opts['subpage'] ) ),
+			'wgNamespacesWithSubpages' => array( NS_MAIN => isset( $opts['subpage'] ) ),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
