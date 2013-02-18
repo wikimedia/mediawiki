@@ -59,7 +59,7 @@ abstract class Action {
 	 * the action is disabled, or null if it's not recognised
 	 * @param $action String
 	 * @param $overrides Array
-	 * @return bool|null|string
+	 * @return bool|null|string|callable
 	 */
 	final private static function getClass( $action, array $overrides ) {
 		global $wgActions;
@@ -89,12 +89,18 @@ abstract class Action {
 	 *     if it is not recognised
 	 */
 	final public static function factory( $action, Page $page, IContextSource $context = null ) {
-		$class = self::getClass( $action, $page->getActionOverrides() );
-		if ( $class ) {
-			$obj = new $class( $page, $context );
+		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
+
+		if ( is_string( $classOrCallable ) ) {
+			$obj = new $classOrCallable( $page, $context );
 			return $obj;
 		}
-		return $class;
+
+		if ( is_callable( $classOrCallable ) ) {
+			return call_user_func_array( $classOrCallable, array( $page, $context ) );
+		}
+
+		return $classOrCallable;
 	}
 
 	/**
@@ -241,12 +247,14 @@ abstract class Action {
 	}
 
 	/**
-	 * Protected constructor: use Action::factory( $action, $page ) to actually build
-	 * these things in the real world
+	 * Constructor.
+	 *
+	 * Only public since 1.21
+	 *
 	 * @param $page Page
 	 * @param $context IContextSource
 	 */
-	protected function __construct( Page $page, IContextSource $context = null ) {
+	public function __construct( Page $page, IContextSource $context = null ) {
 		$this->page = $page;
 		$this->context = $context;
 	}
