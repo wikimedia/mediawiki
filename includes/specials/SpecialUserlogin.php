@@ -373,22 +373,24 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'noname' );
 		} elseif ( 0 != $u->idForName() ) {
 			return Status::newFatal( 'userexists' );
-		} elseif ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
-			return Status::newFatal( 'badretype' );
 		}
 
-		# check for minimal password length
-		$valid = $u->getPasswordValidity( $this->mPassword );
-		if ( $valid !== true ) {
-			if ( !$this->mCreateaccountMail ) {
+		if ( $this->mCreateaccountMail ) {
+			# do not force a password for account creation by email
+			# set invalid password, it will be replaced later by a random generated password
+			$this->mPassword = null;
+		} else {
+			if ( $this->mPassword !== $this->mRetype ) {
+				return Status::newFatal( 'badretype' );
+			}
+
+			# check for minimal password length
+			$valid = $u->getPasswordValidity( $this->mPassword );
+			if ( $valid !== true ) {
 				if ( !is_array( $valid ) ) {
 					$valid = array( $valid, $wgMinimalPasswordLength );
 				}
 				return call_user_func_array( 'Status::newFatal', $valid );
-			} else {
-				# do not force a password for account creation by email
-				# set invalid password, it will be replaced later by a random generated password
-				$this->mPassword = null;
 			}
 		}
 
