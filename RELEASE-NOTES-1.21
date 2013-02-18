@@ -90,6 +90,9 @@ production.
 * Allow memory of shell subprocesses to be limited using Linux cgroups
   instead of ulimit -v, which tends to cause deadlocks in recent versions
   of ImageMagick. Configurable with $wgShellCgroup.
+* Action classes registered in $wgActions are now also supported in the form of
+  a callback (which returns an instance of Action) instead of providing the name
+  of a subclass of Action.
 * Added $wgWhitelistReadRegexp for regex whitelisting.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.
