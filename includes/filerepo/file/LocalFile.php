@@ -1119,20 +1119,25 @@ class LocalFile extends File {
 	 * @param $source string
 	 * @param $watch bool
 	 * @param $timestamp string|bool
+	 * @param $user User object or null to use $wgUser
 	 * @return bool
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false )
+		$watch = false, $timestamp = false, User $user = null )
 	{
+		if ( !$user ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
 		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
 
-		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp ) ) {
+		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user ) ) {
 			return false;
 		}
 
 		if ( $watch ) {
-			global $wgUser;
-			$wgUser->addWatch( $this->getTitle() );
+			$user->addWatch( $this->getTitle() );
 		}
 		return true;
 	}
