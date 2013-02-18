@@ -662,9 +662,9 @@
 						$span.append( childNode );
 					} );
 				} else {
-					// Let jQuery append nodes, arrays of nodes and jQuery objects
-					// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
-					$span.append( $.type( node ) === 'object' ? node : document.createTextNode( node ) );
+					// strings, integers, anything else
+					// (will soon switch to createTextNode() for non-objects)
+					$span.append( node );
 				}
 			} );
 			return $span;
