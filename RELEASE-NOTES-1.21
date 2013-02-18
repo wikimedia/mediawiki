@@ -73,6 +73,8 @@ production.
 * Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
 * DatabaseUpdater class has two new methods to ease extensions schema changes:
   dropExtensionIndex and renameExtensionIndex.
+* Special pages can now be registered using a callback that returns an instance
+  of SpecialPage instead of providing a class name.
 * New preference type - 'api'. Preferences of this type are not shown on
   Special:Preferences, but are still available via the action=options API.
 * (bug 39397) Hide rollback link if a user is the only contributor of the page.
