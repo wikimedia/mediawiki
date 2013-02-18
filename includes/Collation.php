@@ -50,8 +50,12 @@ abstract class Collation {
 			case 'uca-default':
 				return new IcuCollation( 'root' );
 			default:
-				# Provide a mechanism for extensions to hook in.
+				$match = array();
+				if ( preg_match( '/^uca-([a-z-]+)$/', $collationName, $match ) ) {
+					return new IcuCollation( $match[1] );
+				}
 
+				# Provide a mechanism for extensions to hook in.
 				$collationObject = null;
 				wfRunHooks( 'Collation::factory', array( $collationName, &$collationObject ) );
 
@@ -194,6 +198,85 @@ class IcuCollation extends Collation {
 		array( 0x2F800, 0x2FA1F ), // CJK Compatibility Ideographs Supplement
 	);
 
+	/**
+	 * Additional characters (or character groups) to be considered first-letters
+	 *
+	 * Generated based on the primary level of Unicode collation tailorings
+	 * available at http://developer.mimer.com/charts/tailorings.htm .
+	 *
+	 * Empty arrays are intended; this signifies that the data for the language is
+	 * available and that there are, in fact, no additional letters to consider.
+	 */
+	static $tailoringFirstLetters = array(
+		'af' => array(),
+		'ast' => array( "CH", "LL", "\xC3\x91" ),
+		'az' => array( "\xC3\x87", "\xC6\x8F", "\xC4\x9E", "X", "I", "Q", "\xC3\x96", "\xC5\x9E", "\xC3\x9C" ),
+		'be' => array( "\xD0\x81" ),
+		'bg' => array(),
+		'br' => array( "CH", "C'H" ),
+		'bs' => array( "\xC4\x8C", "\xC4\x86", "D\xC5\xBD", "\xC4\x90", "LJ", "NJ", "\xC5\xA0", "\xC5\xBD" ),
+		'ca' => array(),
+		'co' => array(),
+		'cs' => array( "\xC4\x8C", "CH", "\xC5\x98", "\xC5\xA0", "\xC5\xBD" ),
+		'cy' => array( "CH", "DD", "FF", "NG", "LL", "PH", "RH", "TH" ),
+		'da' => array( "\xC3\x86", "\xC3\x98", "\xC3\x85" ),
+		'de' => array(),
+		'dsb' => array( "\xC4\x8C", "\xC4\x86", "D\xC5\xB9", "\xC4\x9A", "CH", "\xC5\x81", "\xC5\x83", "\xC5\x94", "\xC5\xA0", "\xC5\x9A", "\xC5\xBD", "\xC5\xB9" ),
+		'el' => array(),
+		'en' => array(),
+		'eo' => array( "\xC4\x88", "\xC4\x9C", "\xC4\xA4", "\xC4\xB4", "\xC5\x9C", "\xC5\xAC" ),
+		'es' => array( "\xC3\x91" ),
+		'et' => array( "\xC5\xA0", "Z", "\xC5\xBD", "\xC3\x95", "\xC3\x84", "\xC3\x96", "\xC3\x9C" ),
+		'eu' => array( "\xC3\x91" ),
+		'fi' => array( "\xC3\x85", "\xC3\x84", "\xC3\x96" ),
+		'fo' => array( "\xC3\x81", "\xC3\x90", "\xC3\x8D", "\xC3\x93", "\xC3\x9A", "\xC3\x9D", "\xC3\x86", "\xC3\x98", "\xC3\x85" ),
+		'fr' => array(),
+		'fur' => array( "\xC3\x80", "\xC3\x81", "\xC3\x82", "\xC3\x88", "\xC3\x8C", "\xC3\x92", "\xC3\x99" ),
+		'fy' => array(),
+		'ga' => array(),
+		'gd' => array(),
+		'gl' => array( "CH", "LL", "\xC3\x91" ),
+		'hr' => array( "\xC4\x8C", "\xC4\x86", "D\xC5\xBD", "\xC4\x90", "LJ", "NJ", "\xC5\xA0", "\xC5\xBD" ),
+		'hsb' => array( "\xC4\x8C", "D\xC5\xB9", "\xC4\x9A", "CH", "\xC5\x81", "\xC5\x83", "\xC5\x98", "\xC5\xA0", "\xC4\x86", "\xC5\xBD" ),
+		'hu' => array( "CS", "DZ", "DZS", "GY", "LY", "NY", "\xC3\x96", "SZ", "TY", "\xC3\x9C", "ZS" ),
+		'is' => array( "\xC3\x81", "\xC3\x90", "\xC3\x89", "\xC3\x8D", "\xC3\x93", "\xC3\x9A", "\xC3\x9D", "\xC3\x9E", "\xC3\x86", "\xC3\x96", "\xC3\x85" ),
+		'it' => array(),
+		'kk' => array( "\xD2\xAE", "\xD0\x86" ),
+		'kl' => array( "\xC3\x86", "\xC3\x98", "\xC3\x85" ),
+		'ku' => array( "\xC3\x87", "\xC3\x8A", "\xC3\x8E", "\xC5\x9E", "\xC3\x9B" ),
+		'ky' => array( "\xD0\x81" ),
+		'la' => array(),
+		'lb' => array(),
+		'lt' => array( "\xC4\x8C", "\xC5\xA0", "\xC5\xBD" ),
+		'lv' => array( "\xC4\x8C", "\xC4\xA2", "\xC4\xB6", "\xC4\xBB", "\xC5\x85", "\xC5\xA0", "\xC5\xBD" ),
+		'mk' => array(),
+		'mo' => array( "\xC4\x82", "\xC3\x82", "\xC3\x8E", "\xC5\x9E", "\xC5\xA2" ),
+		'mt' => array( "\xC4\x8A", "\xC4\xA0", "G\xC4\xA6", "\xC4\xA6", "\xC5\xBB" ),
+		'nl' => array(),
+		'no' => array( "\xC3\x86", "\xC3\x98", "\xC3\x85" ),
+		'oc' => array(),
+		'pl' => array( "\xC4\x84", "\xC4\x86", "\xC4\x98", "\xC5\x81", "\xC5\x83", "\xC3\x93", "\xC5\x9A", "\xC5\xB9", "\xC5\xBB" ),
+		'pt' => array(),
+		'rm' => array(),
+		'ro' => array( "\xC4\x82", "\xC3\x82", "\xC3\x8E", "\xC5\x9E", "\xC5\xA2" ),
+		'ru' => array(),
+		'rup' => array( "\xC4\x82", "\xC3\x82", "\xC3\x8E", "\xC4\xBD", "\xC5\x83", "\xC5\x9E", "\xC5\xA2" ),
+		'sco' => array(),
+		'sk' => array( "\xC3\x84", "\xC4\x8C", "CH", "\xC3\x94", "\xC5\xA0", "\xC5\xBD" ),
+		'sl' => array( "\xC4\x8C", "\xC5\xA0", "\xC5\xBD" ),
+		'smn' => array( "\xC3\x81", "\xC4\x8C", "\xC4\x90", "\xC5\x8A", "\xC5\xA0", "\xC5\xA6", "\xC5\xBD", "\xC3\x86", "\xC3\x98", "\xC3\x85", "\xC3\x84", "\xC3\x96" ),
+		'sq' => array( "\xC3\x87", "DH", "\xC3\x8B", "GJ", "LL", "NJ", "RR", "SH", "TH", "XH", "ZH" ),
+		'sr' => array(),
+		'sv' => array( "\xC3\x85", "\xC3\x84", "\xC3\x96" ),
+		'tk' => array( "\xC3\x87", "\xC3\x84", "\xC5\xBD", "\xC5\x87", "\xC3\x96", "\xC5\x9E", "\xC3\x9C", "\xC3\x9D" ),
+		'tl' => array( "\xC3\x91", "NG" ), /* 'fil' in the data source */
+		'tr' => array( "\xC3\x87", "\xC4\x9E", "I", "\xC3\x96", "\xC5\x9E", "\xC3\x9C" ),
+		'tt' => array( "\xD3\x98", "\xD3\xA8", "\xD2\xAE", "\xD2\x96", "\xD2\xA2", "\xD2\xBA" ),
+		'uk' => array( "\xD2\x90", "\xD0\xAC" ),
+		'uz' => array( "CH", "G'", "NG", "O'", "SH" ),
+		'vi' => array( "\xC4\x82", "\xC3\x82", "\xC4\x90", "\xC3\x8A", "\xC3\x94", "\xC6\xA0", "\xC6\xAF" ),
+	);
+
 	const RECORD_LENGTH = 14;
 
 	function __construct( $locale ) {
@@ -274,10 +357,15 @@ class IcuCollation extends Collation {
 
 		// Generate data from serialized data file
 
-		$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
-		if ( $letters === false ) {
-			throw new MWException( "MediaWiki does not support ICU locale " .
-				"\"{$this->locale}\"" );
+		if ( isset ( self::$tailoringFirstLetters[$this->locale] ) ) {
+			$letters = wfGetPrecompiledData( "first-letters-root.ser" );
+			$letters = $letters + self::$tailoringFirstLetters[$this->locale];
+		} else {
+			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+			if ( $letters === false ) {
+				throw new MWException( "MediaWiki does not support ICU locale " .
+					"\"{$this->locale}\"" );
+			}
 		}
 
 		// Sort the letters.
