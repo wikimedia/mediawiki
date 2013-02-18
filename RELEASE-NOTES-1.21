@@ -102,6 +102,14 @@ production.
 * maintenance/sql.php learned the --cluster option. Let you run the script
   on some external cluster instead of the primary cluster for a given wiki.
 * (bug 20281) test the parsing of inline URLs.
+* Implemented language-specific collations for category sorting for 67 languages
+  based in latin, greek and cyrillic alphabets. This allows one to *finally* get
+  articles to be correctly sorted on category pages. They are named
+  'uca-<langcode>', where <langcode> is one of: af, ast, az, be, bg, br, bs, ca,
+  co, cs, cy, da, de, dsb, el, en, eo, es, et, eu, fi, fo, fr, fur, fy, ga, gd,
+  gl, hr, hsb, hu, is, it, kk, kl, ku, ky, la, lb, lt, lv, mk, mo, mt, nl, no,
+  oc, pl, pt, rm, ro, ru, rup, sco, sk, sl, smn, sq, sr, sv, tk, tl, tr, tt, uk,
+  uz, vi.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
