@@ -809,9 +809,14 @@ function wfParseUrl( $url ) {
 	if ( !isset( $bits['host'] ) ) {
 		$bits['host'] = '';
 
-		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
-		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
-			$bits['path'] = '/' . $bits['path'];
+		// bug 45069
+		if ( isset( $bits['path'] ) ) {
+			/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
+			if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
+				$bits['path'] = '/' . $bits['path'];
+			}
+		} else {
+			$bits['path'] = '';
 		}
 	}
 
