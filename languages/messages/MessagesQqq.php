@@ -2404,7 +2404,8 @@ This option lets your time zone setting use the one that is used on the wiki (of
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
 'defaultns' => 'Used in [[Special:Preferences]], tab "Search".',
 'default' => '{{Identical|Default}}',
-'prefs-files' => 'Title of a tab in [[Special:Preferences]].',
+'prefs-files' => 'Title of a tab in [[Special:Preferences]].
+{{Identical|File}}',
 'prefs-custom-css' => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-custom-js' => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-common-css-js' => 'Used as label in [[Special:Preferences#mw-prefsection-rendering|preferences]], tab "Appearance", section "Skin".',
@@ -2474,7 +2475,8 @@ See also:
 * {{msg-mw|prefs-help-email-others|help}}
 * {{msg-mw|prefs-changeemail|link title}}
 * {{msg-mw|prefs-setemail|link title}}',
-'prefs-info' => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
+'prefs-info' => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.
+{{Identical|Basic information}}",
 'prefs-i18n' => 'Field set legend for user preferences regarding the interface language',
 'prefs-signature' => '{{Identical|Signature}}',
 'prefs-dateformat' => 'Used in [[Special:Preferences#mw-prefsection-datetime|Special:Preferences]], tab "Date and time".
@@ -6524,7 +6526,8 @@ See also:
 'pageinfo-title' => 'Page title for action=info. Parameters:
 * $1 is the page name',
 'pageinfo-not-current' => 'Error message displayed when information for an old revision is requested. Example: [{{fullurl:Project:News|oldid=4266597&action=info}}]',
-'pageinfo-header-basic' => 'Table section header in action=info.',
+'pageinfo-header-basic' => 'Table section header in action=info. See [{{canonicalurl:MediaWiki:Pageinfo-header-basic/en|action=info}} example].
+{{Identical|Basic information}}',
 'pageinfo-header-edits' => 'Table section header in action=info.',
 'pageinfo-header-restrictions' => 'Table section header in action=info.',
 'pageinfo-header-properties' => 'Table section header in action=info.',
@@ -7790,7 +7793,8 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 'exif-iimcategory-rel' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-sci' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-soi' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
-'exif-iimcategory-spo' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
+'exif-iimcategory-spo' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}.
+{{Identical|Sport}}',
 'exif-iimcategory-war' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-wea' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 
