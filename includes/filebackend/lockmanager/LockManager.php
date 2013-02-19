@@ -140,7 +140,7 @@ abstract class LockManager {
 	 *
 	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
-	 * @return string
+	 * @return Status
 	 */
 	abstract protected function doLock( array $paths, $type );
 
@@ -149,7 +149,7 @@ abstract class LockManager {
 	 *
 	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
-	 * @return string
+	 * @return Status
 	 */
 	abstract protected function doUnlock( array $paths, $type );
 }
