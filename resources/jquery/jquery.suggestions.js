@@ -309,11 +309,11 @@ $.suggestions = {
 		var selected = context.data.$container.find( '.suggestions-result-current' );
 		if ( !result.get || selected.get( 0 ) !== result.get( 0 ) ) {
 			if ( result === 'prev' ) {
-				if( selected.is( '.suggestions-special' ) ) {
+				if( selected.hasClass( 'suggestions-special' ) ) {
 					result = context.data.$container.find( '.suggestions-result:last' );
 				} else {
 					result = selected.prev();
-					if ( !( result.length && result.hasClass( '.suggestions-result' ) ) ) {
+					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
 						// there is something in the DOM between selected element and the wrapper, bypass it
 						result = selected.parents( '.suggestions-results > *' ).prev().find( '.suggestions-result' ).eq(0);
 					}
@@ -337,12 +337,12 @@ $.suggestions = {
 					}
 				} else {
 					result = selected.next();
-					if ( !( result.length && result.hasClass( '.suggestions-result' ) ) ) {
+					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
 						// there is something in the DOM between selected element and the wrapper, bypass it
 						result = selected.parents( '.suggestions-results > *' ).next().find( '.suggestions-result' ).eq(0);
 					}
 
-					if ( selected.is( '.suggestions-special' ) ) {
+					if ( selected.hasClass( 'suggestions-special' ) ) {
 						result = $( [] );
 					} else if (
 						result.length === 0 &&
