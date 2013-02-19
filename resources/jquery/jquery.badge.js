@@ -41,9 +41,9 @@
 			isImportant = true;
 
 		// If we're displaying zero, ensure style to be non-important
-		if ( text === 0 && displayZero ) {
+		if ( text == mw.language.convertNumber( 0 ) && displayZero ) {
 			isImportant = false;
-			text = '0';
+			text = mw.language.convertNumber( 0 );
 		}
 
 		if ( text ) {
