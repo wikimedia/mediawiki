@@ -3206,6 +3206,7 @@ function wfDoUpdates( $commit = '' ) {
  * @return string|bool The output number as a string, or false on error
  */
 function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = true, $engine = 'auto' ) {
+	$input = (string)$input;
 	if(
 		$sourceBase < 2 ||
 		$sourceBase > 36 ||
