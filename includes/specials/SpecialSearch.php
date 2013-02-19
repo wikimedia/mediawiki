@@ -368,7 +368,7 @@ class SpecialSearch extends SpecialPage {
 				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 			);
-			//$out->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
+			$out->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 		} else {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
