@@ -21,32 +21,37 @@
  *
  * This program is distributed WITHOUT ANY WARRANTY.
  */
-( function ( $ ) {
+( function ( $, mw ) {
 	/**
 	 * Allows you to put a "badge" on an item on the page. The badge container
 	 * will be appended to the selected element(s).
 	 * See mediawiki.org/wiki/ResourceLoader/Default_modules#jQuery.badge
 	 *
 	 * @param {number|string} text The value to display in the badge. If the value is falsey (0,
-	 *   null, false, '', etc.), any existing badge will be removed.
+	 *  null, false, '', etc.), any existing badge will be removed.
 	 * @param {boolean} inline True if the badge should be displayed inline, false
-	 *   if the badge should overlay the parent element (default is inline)
+	 *  if the badge should overlay the parent element (default is inline)
 	 * @param {boolean} displayZero True if the number zero should be displayed,
-	 *   false if the number zero should result in the badge being hidden
-	 *   (default is zero will result in the badge being hidden)
+	 *  false if the number zero should result in the badge being hidden
+	 *  (default is zero will result in the badge being hidden)
 	 */
 	$.fn.badge = function ( text, inline, displayZero ) {
 		var $badge = this.find( '.mw-badge' ),
 			badgeStyleClass = 'mw-badge-' + ( inline ? 'inline' : 'overlay' ),
-			isImportant = true;
+			isImportant = true, displayBadge = true;
 
 		// If we're displaying zero, ensure style to be non-important
-		if ( text === 0 && displayZero ) {
+		if ( mw.language.convertNumber( text, true ) === 0 ) {
 			isImportant = false;
-			text = '0';
+			if ( !displayZero ) {
+				displayBadge = false;
+			}
+		// If text is falsey (besides 0), hide the badge
+		} else if ( !text ) {
+			displayBadge = false;
 		}
 
-		if ( text ) {
+		if ( displayBadge ) {
 			// If a badge already exists, reuse it
 			if ( $badge.length ) {
 				$badge
@@ -59,7 +64,7 @@
 					.addClass( badgeStyleClass )
 					.toggleClass( 'mw-badge-important', isImportant )
 					.append(
-						$( '<span class="mw-badge-content"></span>' ).text ( text )
+						$( '<span class="mw-badge-content"></span>' ).text( text )
 					)
 					.appendTo( this );
 			}
@@ -68,4 +73,4 @@
 		}
 		return this;
 	};
-}( jQuery ) );
+}( jQuery, mediaWiki ) );
