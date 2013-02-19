@@ -18,8 +18,14 @@ td.mw-enhanced-rc {
 	font-family: monospace;
 }
 
+.mw-enhancedchanges-toggle,
 .mw-enhanced-rc-time {
 	font-family: monospace;
+}
+
+table.mw-enhanced-rc td.mw-enhanced-rc-flags {
+	padding-left: .5em;
+	padding-right: .5em;
 }
 
 table.mw-enhanced-rc td.mw-enhanced-rc-nested {
@@ -36,17 +42,18 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	display: none;
 }
 
-.mw-enhancedchanges-arrow-space {
-	display: inline-block;
-	*display: inline; /* IE7 and below */
-	zoom: 1;
-	width: 15px;
-	height: 15px;
+.mw-enhancedchanges-toggle {
+	padding-left: 17px;
 }
+
+
 
 /* let it look like it is clickable */
 .mw-enhancedchanges-arrow.mw-collapsible-toggle {
 	cursor: pointer;
+}
+.mw-enhancedchanges-arrow.mw-collapsible-toggle:hover {
+	text-decoration: underline;
 }
 
 .mw-enhancedchanges-arrow.mw-collapsible-toggle-collapsed {

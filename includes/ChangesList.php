@@ -952,19 +952,19 @@ class EnhancedChangesList extends ChangesList {
 				implode( $this->message['semicolon-separator'], $users )
 			)->escaped() . '</span>';
 
-		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
-		$r .= "<td>$tl</td>";
+		# Timestamp and toggle
+		$tl = '"mw-collapsible-toggle mw-enhancedchanges-arrow mw-enhancedchanges-toggle"';
+		$r .= "<td><span class=$tl>{$block[0]->timestamp}</span></td>";
 
 		# Main line
-		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags( array(
+		$r .= '<td class="mw-enhanced-rc mw-enhanced-rc-flags">' . $this->recentChangesFlags( array(
 			'newpage' => $isnew, # show, when one have this flag
 			'minor' => $allMinors, # show only, when all have this flag
 			'unpatrolled' => $unpatrolled, # show, when one have this flag
 			'bot' => $allBots, # show only, when all have this flag
 		) );
 
-		# Timestamp
-		$r .= '&#160;' . $block[0]->timestamp . '&#160;</td><td>';
+		$r .= '</td><td>';
 
 		# Article link
 		if( $namehidden ) {
@@ -1061,14 +1061,14 @@ class EnhancedChangesList extends ChangesList {
 			$classes = array();
 			$type = $rcObj->mAttribs['rc_type'];
 
-			$r .= '<tr><td></td><td class="mw-enhanced-rc">';
+			$r .= '<tr><td></td><td class="mw-enhanced-rc mw-enhanced-rc-flags">';
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $type == RC_NEW,
 				'minor' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
-			$r .= '&#160;</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
+			$r .= '</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
 
 			$params = $queryParams;
 
@@ -1206,7 +1206,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
+		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-toggle">' . $rcObj->timestamp .'</span></td><td class="mw-enhanced-rc mw-enhanced-rc-flags">';
 		# Flag and Timestamp
 		if( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces
@@ -1218,7 +1218,7 @@ class EnhancedChangesList extends ChangesList {
 				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
 		}
-		$r .= '&#160;' . $rcObj->timestamp . '&#160;</td><td>';
+		$r .= '</td><td>';
 		# Article or log link
 		if( $logType ) {
 			$logPage = new LogPage( $logType );
