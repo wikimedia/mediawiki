@@ -224,6 +224,7 @@ production.
   first one keeping its meaning. ApiPageSet is now derived from ApiBase.
 * BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
 * ApiQueryGeneratorBase::setGeneratorMode() now requires a pageset param.
+* Added flags ApiResult::OVERRIDE and ADD_ON_TOP to setElement() and addValue()
 
 === Languages updated in 1.21 ===
 
