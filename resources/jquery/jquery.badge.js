@@ -21,7 +21,7 @@
  *
  * This program is distributed WITHOUT ANY WARRANTY.
  */
-( function ( $ ) {
+( function ( $, mw ) {
 	/**
 	 * Allows you to put a "badge" on an item on the page. The badge container
 	 * will be appended to the selected element(s).
@@ -41,12 +41,15 @@
 			isImportant = true;
 
 		// If we're displaying zero, ensure style to be non-important
-		if ( text === 0 && displayZero ) {
+		if ( mw.language.convertNumber( text, true ) === 0 && displayZero ) {
 			isImportant = false;
-			text = '0';
+			text = mw.language.convertNumber( 0 ); // At this point we will have an integer 0, we want it as a localised string
+			if ( text === 0 ) { // convertNumber returns 0 if there is no conversion to make, so let's do it ourselves
+				text = '0';
+			}
 		}
 
-		if ( text ) {
+		if ( text !== 0 ) {
 			// If a badge already exists, reuse it
 			if ( $badge.length ) {
 				$badge
@@ -68,4 +71,4 @@
 		}
 		return this;
 	};
-}( jQuery ) );
+}( jQuery, mediaWiki ) );
