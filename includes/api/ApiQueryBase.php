@@ -370,7 +370,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$msg = array( $paramName => $paramValue );
 		$result = $this->getResult();
 		$result->disableSizeCheck();
-		$result->addValue( 'query-continue', $this->getModuleName(), $msg );
+		$result->addValue( 'query-continue', $this->getModuleName(), $msg, ApiResult::ADD_ON_TOP );
 		$result->enableSizeCheck();
 	}
 

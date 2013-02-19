@@ -225,6 +225,7 @@ production.
 * BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
 * ApiQueryGeneratorBase::setGeneratorMode() now requires a pageset param.
 * $wgAPIGeneratorModules is now obsolete and will be ignored.
+* Added flags ApiResult::OVERRIDE and ADD_ON_TOP to setElement() and addValue()
 
 === Languages updated in 1.21 ===
 
