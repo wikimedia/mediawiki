@@ -956,8 +956,13 @@ class ApiPageSet extends ApiBase {
 			'converttitles' => false,
 		);
 		if ( $this->mAllowGenerator ) {
-			$result['generator'] = array(
-				ApiBase::PARAM_TYPE => $this->getGenerators() );
+			if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+				$result['generator'] = array(
+					ApiBase::PARAM_TYPE => $this->getGenerators()
+				);
+			} else {
+				$result['generator'] = null;
+			}
 		}
 		return $result;
 	}
@@ -976,7 +981,13 @@ class ApiPageSet extends ApiBase {
 				// we must create it to get module manager
 				$query = $this->getMain()->getModuleManager()->getModule( 'query' );
 			}
-			$gens = array_keys( $query->getGenerators() );
+			$gens = array();
+			$mgr = $query->getModuleManager();
+			foreach ( $mgr->getNamesWithClasses() as $name => $class ) {
+				if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
+					$gens[] = $name;
+				}
+			}
 			sort( $gens );
 			self::$generators = $gens;
 		}
