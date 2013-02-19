@@ -39,7 +39,8 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 */
 	function escaped( $string ) {
 		$escaped = '';
-		for ( $i = 0; $i < strlen( $string ); $i++ ) {
+		$length = strlen( $string );
+		for ( $i = 0; $i < $length; $i++ ) {
 			$char = $string[$i];
 			$val = ord( $char );
 			if ( $val > 127 ) {

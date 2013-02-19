@@ -1080,7 +1080,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array( "$base/unittest-cont1/e/b/some-other_file.txt", "more file contents" );
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
-				 "$base/unittest-cont1/e/a/z.txt" ),
+				"$base/unittest-cont1/e/a/z.txt" ),
 			array( "contents xx", "contents xy", "contents xz" )
 		);
 
@@ -1149,7 +1149,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array( "$base/unittest-cont1/e/a/\$odd&.txt", "test file contents" );
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
-				 "$base/unittest-cont1/e/a/z.txt" ),
+				"$base/unittest-cont1/e/a/z.txt" ),
 			array( "contents xx", "contents xy", "contents xz" )
 		);
 
@@ -1215,7 +1215,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array( "$base/unittest-cont1/e/a/\$odd&.txt", "test file contents" );
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
-				 "$base/unittest-cont1/e/a/z.txt" ),
+				"$base/unittest-cont1/e/a/z.txt" ),
 			array( "contents xx", "contents xy", "contents xz" )
 		);
 
