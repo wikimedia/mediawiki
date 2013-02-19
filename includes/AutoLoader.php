@@ -584,6 +584,7 @@ $wgAutoloadLocalClasses = array(
 	'QuorumLockManager' => 'includes/filebackend/lockmanager/QuorumLockManager.php',
 	'MySqlLockManager'=> 'includes/filebackend/lockmanager/DBLockManager.php',
 	'PostgreSqlLockManager'=> 'includes/filebackend/lockmanager/DBLockManager.php',
+	'RedisLockManager'=> 'includes/filebackend/lockmanager/RedisLockManager.php',
 	'NullLockManager' => 'includes/filebackend/lockmanager/LockManager.php',
 	'FileOp' => 'includes/filebackend/FileOp.php',
 	'FileOpBatch' => 'includes/filebackend/FileOpBatch.php',
