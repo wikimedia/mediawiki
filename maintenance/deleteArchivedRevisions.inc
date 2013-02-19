@@ -36,7 +36,7 @@ class DeleteArchivedRevisionsImplementation {
 	 * purgeRedundantText().  See Maintenance for a description of
 	 * those methods.
 	 */
-	static public function doDelete( $maint ) {
+	public static function doDelete( $maint ) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->begin( __METHOD__ );

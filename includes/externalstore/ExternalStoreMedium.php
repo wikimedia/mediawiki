@@ -46,7 +46,7 @@ abstract class ExternalStoreMedium {
 	 * @return string|bool The text stored or false on error
 	 * @throws MWException
 	 */
-	public abstract function fetchFromURL( $url );
+	abstract public function fetchFromURL( $url );
 
 	/**
 	 * Insert a data item into a given location
@@ -56,5 +56,5 @@ abstract class ExternalStoreMedium {
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
-	public abstract function store( $location, $data );
+	abstract public function store( $location, $data );
 }
