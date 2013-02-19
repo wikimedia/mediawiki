@@ -1728,8 +1728,10 @@ class Title {
 	 */
 	private function checkQuickPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		if ( $action == 'create' ) {
-			if ( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
-				 ( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
+			if (
+				( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
+				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) )
+			) {
 				$errors[] = $user->isAnon() ? array( 'nocreatetext' ) : array( 'nocreate-loggedin' );
 			}
 		} elseif ( $action == 'move' ) {
@@ -1818,8 +1820,11 @@ class Title {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
-		if ( $doExpensiveQueries && !( $short && count( $errors ) > 0 ) &&
-			 !wfRunHooks( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) ) ) {
+		if (
+			$doExpensiveQueries
+			&& !( $short && count( $errors ) > 0 )
+			&& !wfRunHooks( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) )
+		) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 
@@ -2274,8 +2279,10 @@ class Title {
 	public function userCanEditJsSubpage() {
 		global $wgUser;
 		wfDeprecated( __METHOD__, '1.19' );
-		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
-			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
+		return (
+			( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
+			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform )
+		);
 	}
 
 	/**
@@ -2525,7 +2532,7 @@ class Title {
 
 		if ( $getPages ) {
 			$cols = array( 'pr_page', 'page_namespace', 'page_title',
-						   'pr_expiry', 'pr_type', 'pr_level' );
+				'pr_expiry', 'pr_type', 'pr_level' );
 			$where_clauses[] = 'page_id=pr_page';
 			$tables[] = 'page';
 		} else {
@@ -2553,8 +2560,10 @@ class Title {
 						$pagerestrictions[$row->pr_type] = array();
 					}
 
-					if ( isset( $pagerestrictions[$row->pr_type] ) &&
-						 !in_array( $row->pr_level, $pagerestrictions[$row->pr_type] ) ) {
+					if (
+						isset( $pagerestrictions[$row->pr_type] )
+						&& !in_array( $row->pr_level, $pagerestrictions[$row->pr_type] )
+					) {
 						$pagerestrictions[$row->pr_type][] = $row->pr_level;
 					}
 				} else {
@@ -3193,15 +3202,18 @@ class Title {
 		# Pages with "/./" or "/../" appearing in the URLs will often be un-
 		# reachable due to the way web browsers deal with 'relative' URLs.
 		# Also, they conflict with subpage syntax.  Forbid them explicitly.
-		if ( strpos( $dbkey, '.' ) !== false &&
-			 ( $dbkey === '.' || $dbkey === '..' ||
-			   strpos( $dbkey, './' ) === 0  ||
-			   strpos( $dbkey, '../' ) === 0 ||
-			   strpos( $dbkey, '/./' ) !== false ||
-			   strpos( $dbkey, '/../' ) !== false  ||
-			   substr( $dbkey, -2 ) == '/.' ||
-			   substr( $dbkey, -3 ) == '/..' ) )
-		{
+		if (
+			strpos( $dbkey, '.' ) !== false &&
+			(
+				$dbkey === '.' || $dbkey === '..' ||
+				strpos( $dbkey, './' ) === 0  ||
+				strpos( $dbkey, '../' ) === 0 ||
+				strpos( $dbkey, '/./' ) !== false ||
+				strpos( $dbkey, '/../' ) !== false  ||
+				substr( $dbkey, -2 ) == '/.' ||
+				substr( $dbkey, -3 ) == '/..'
+			)
+		) {
 			return false;
 		}
 
@@ -3214,9 +3226,10 @@ class Title {
 		# underlying database field. We make an exception for special pages, which
 		# don't need to be stored in the database, and may edge over 255 bytes due
 		# to subpage syntax for long titles, e.g. [[Special:Block/Long name]]
-		if ( ( $this->mNamespace != NS_SPECIAL && strlen( $dbkey ) > 255 ) ||
-		  strlen( $dbkey ) > 512 )
-		{
+		if (
+			( $this->mNamespace != NS_SPECIAL && strlen( $dbkey ) > 255 )
+			|| strlen( $dbkey ) > 512
+		) {
 			return false;
 		}
 
@@ -3511,9 +3524,11 @@ class Title {
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
 			$errors[] = array( 'articleexists' );
 		}
-		if ( ( $this->getDBkey() == '' ) ||
-			 ( !$oldid ) ||
-			 ( $nt->getDBkey() == '' ) ) {
+		if (
+			( $this->getDBkey() == '' ) ||
+			( !$oldid ) ||
+			( $nt->getDBkey() == '' )
+		) {
 			$errors[] = array( 'badarticleerror' );
 		}
 
@@ -4286,7 +4301,7 @@ class Title {
 		}
 		$old_cmp = '>';
 		$new_cmp = '<';
-		$options = (array) $options;
+		$options = (array)$options;
 		if ( in_array( 'include_old', $options ) ) {
 			$old_cmp = '>=';
 		}
