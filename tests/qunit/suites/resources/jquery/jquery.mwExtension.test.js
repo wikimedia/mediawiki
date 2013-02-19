@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.mwExtension', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'String functions', function ( assert ) {
+	QUnit.test( 'String functions', 7, function ( assert ) {
 		assert.equal( $.trimLeft( '  foo bar  ' ), 'foo bar  ', 'trimLeft' );
 		assert.equal( $.trimRight( '  foo bar  ' ), '  foo bar', 'trimRight' );
 		assert.equal( $.ucFirst( 'foo' ), 'Foo', 'ucFirst' );
@@ -15,7 +15,7 @@
 		assert.equal( $.escapeRE( '0123456789' ), '0123456789', 'escapeRE - Leave numbers alone' );
 	} );
 
-	QUnit.test( 'Is functions', function ( assert ) {
+	QUnit.test( 'Is functions', 15, function ( assert ) {
 		assert.strictEqual( $.isDomElement( document.getElementById( 'qunit-header' ) ), true,
 			'isDomElement: #qunit-header Node' );
 		assert.strictEqual( $.isDomElement( document.getElementById( 'random-name' ) ), false,
@@ -44,7 +44,7 @@
 		assert.strictEqual( $.isEmpty( { length: 0 } ), true, 'isEmptry: { length: 0 }' );
 	} );
 
-	QUnit.test( 'Comparison functions', function ( assert ) {
+	QUnit.test( 'Comparison functions', 5, function ( assert ) {
 		assert.ok( $.compareArray( [0, 'a', [], [2, 'b'] ], [0, 'a', [], [2, 'b'] ] ),
 			'compareArray: Two deep arrays that are excactly the same' );
 		assert.ok( !$.compareArray( [1], [2] ), 'compareArray: Two different arrays (false)' );

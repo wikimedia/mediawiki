@@ -1,12 +1,12 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.hidpi', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'devicePixelRatio', function ( assert ) {
+	QUnit.test( 'devicePixelRatio', 1, function ( assert ) {
 		var devicePixelRatio = $.devicePixelRatio();
 		assert.equal( typeof devicePixelRatio, 'number', '$.devicePixelRatio() returns a number' );
 	} );
 
-	QUnit.test( 'matchSrcSet', function ( assert ) {
+	QUnit.test( 'matchSrcSet', 6, function ( assert ) {
 		var srcset = 'onefive.png 1.5x, two.png 2x';
 
 		// Nice exact matches
