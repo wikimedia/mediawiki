@@ -2024,53 +2024,79 @@ class FileBackendTest extends MediaWikiTestCase {
 	private function doTestLockCalls() {
 		$backendName = $this->backendClass();
 
-		for ( $i=0; $i<50; $i++ ) {
-			$paths = array(
-				"test1.txt",
-				"test2.txt",
-				"test3.txt",
-				"subdir1",
-				"subdir1", // duplicate
-				"subdir1/test1.txt",
-				"subdir1/test2.txt",
-				"subdir2",
-				"subdir2", // duplicate
-				"subdir2/test3.txt",
-				"subdir2/test4.txt",
-				"subdir2/subdir",
-				"subdir2/subdir/test1.txt",
-				"subdir2/subdir/test2.txt",
-				"subdir2/subdir/test3.txt",
-				"subdir2/subdir/test4.txt",
-				"subdir2/subdir/test5.txt",
-				"subdir2/subdir/sub",
-				"subdir2/subdir/sub/test0.txt",
-				"subdir2/subdir/sub/120-px-file.txt",
-			);
+		$paths = array(
+			"test1.txt",
+			"test2.txt",
+			"test3.txt",
+			"subdir1",
+			"subdir1", // duplicate
+			"subdir1/test1.txt",
+			"subdir1/test2.txt",
+			"subdir2",
+			"subdir2", // duplicate
+			"subdir2/test3.txt",
+			"subdir2/test4.txt",
+			"subdir2/subdir",
+			"subdir2/subdir/test1.txt",
+			"subdir2/subdir/test2.txt",
+			"subdir2/subdir/test3.txt",
+			"subdir2/subdir/test4.txt",
+			"subdir2/subdir/test5.txt",
+			"subdir2/subdir/sub",
+			"subdir2/subdir/sub/test0.txt",
+			"subdir2/subdir/sub/120-px-file.txt",
+		);
 
+		for ( $i=0; $i<25; $i++ ) {
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( array(), $status->errors,
-				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
-				"Locking of files succeeded with OK status ($backendName)." );
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( array(), $status->errors,
-				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
-				"Locking of files succeeded with OK status ($backendName)." );
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( array(), $status->errors,
-				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName) ($i)." );
 			$this->assertEquals( true, $status->isOK(),
-				"Locking of files succeeded with OK status ($backendName)." );
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( array(), $status->errors,
-				"Locking of files succeeded ($backendName)." );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName). ($i)" );
 			$this->assertEquals( true, $status->isOK(),
-				"Locking of files succeeded with OK status ($backendName)." );
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
+
+			## Flip the acquire/release ordering around ##
+
+			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName) ($i)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
+
+			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName) ($i)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
+
+			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName). ($i)" );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
+
+			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
+			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
+				"Locking of files succeeded ($backendName) ($i)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Locking of files succeeded with OK status ($backendName) ($i)." );
 		}
 	}
 
