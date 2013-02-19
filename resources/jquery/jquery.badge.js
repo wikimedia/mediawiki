@@ -21,7 +21,7 @@
  *
  * This program is distributed WITHOUT ANY WARRANTY.
  */
-( function ( $ ) {
+( function ( $, mw ) {
 	/**
 	 * Allows you to put a "badge" on an item on the page. The badge container
 	 * will be appended to the selected element(s).
@@ -41,9 +41,9 @@
 			isImportant = true;
 
 		// If we're displaying zero, ensure style to be non-important
-		if ( text === 0 && displayZero ) {
+		if ( text === mw.language.convertNumber( 0 ) && displayZero ) {
 			isImportant = false;
-			text = '0';
+			text = mw.language.convertNumber( 0 );
 		}
 
 		if ( text ) {
@@ -68,4 +68,4 @@
 		}
 		return this;
 	};
-}( jQuery ) );
+}( jQuery, mediaWiki ) );
