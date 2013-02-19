@@ -702,6 +702,19 @@ pre, .mw-code {
 	line-height: 1.3em;
 }
 
+/**
+ * Override default arrows for enhanced-rc
+ */
+.mw-enhancedchanges-arrow.mw-collapsible-toggle-collapsed {
+	/* @embed */
+	background: url(images/arrow-closed-ltr.png) no-repeat left center;
+}
+
+.mw-enhancedchanges-arrow.mw-collapsible-toggle-expanded {
+	/* @embed */
+	background: url(images/arrow-open.png) no-repeat left center;
+}
+
 /* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
 	font-size: 0.8em;
