@@ -46,8 +46,6 @@ abstract class QuorumLockManager extends LockManager {
 		foreach ( $paths as $path ) {
 			if ( isset( $this->locksHeld[$path][$type] ) ) {
 				++$this->locksHeld[$path][$type];
-			} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
-				$this->locksHeld[$path][$type] = 1;
 			} else {
 				$bucket = $this->getBucketFromPath( $path );
 				$pathsToLock[$bucket][] = $path;

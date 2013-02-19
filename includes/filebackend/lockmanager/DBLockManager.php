@@ -256,27 +256,38 @@ class MySqlLockManager extends DBLockManager {
 		$status = Status::newGood();
 
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
-		$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
+
+		$keys = array(); // list of hash keys for the paths
+		$data = array(); // list of rows to insert
+		$checkEXKeys = array(); // list of hash keys that this has no EX lock on
 		# Build up values for INSERT clause
-		$data = array();
-		foreach ( $keys as $key ) {
+		foreach ( $paths as $path ) {
+			$key = $this->sha1Base36Absolute( $path );
+			$keys[] = $key;
 			$data[] = array( 'fls_key' => $key, 'fls_session' => $this->session );
+			if ( !isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
+				$checkEXKeys[] = $key;
+			}
 		}
-		# Block new writers...
+
+		# Block new writers (both EX and SH locks leave entries here)...
 		$db->insert( 'filelocks_shared', $data, __METHOD__, array( 'IGNORE' ) );
 		# Actually do the locking queries...
 		if ( $type == self::LOCK_SH ) { // reader locks
+			$blocked = false;
 			# Bail if there are any existing writers...
-			$blocked = $db->selectField( 'filelocks_exclusive', '1',
-				array( 'fle_key' => $keys ),
-				__METHOD__
-			);
-			# Prospective writers that haven't yet updated filelocks_exclusive
-			# will recheck filelocks_shared after doing so and bail due to our entry.
+			if ( count( $checkEXKeys ) ) {
+				$blocked = $db->selectField( 'filelocks_exclusive', '1',
+					array( 'fle_key' => $checkEXKeys ),
+					__METHOD__
+				);
+			}
+			# Other prospective writers that haven't yet updated filelocks_exclusive
+			# will recheck filelocks_shared after doing so and bail due to this entry.
 		} else { // writer locks
 			$encSession = $db->addQuotes( $this->session );
 			# Bail if there are any existing writers...
-			# The may detect readers, but the safe check for them is below.
+			# This may detect readers, but the safe check for them is below.
 			# Note: if two writers come at the same time, both bail :)
 			$blocked = $db->selectField( 'filelocks_shared', '1',
 				array( 'fls_key' => $keys, "fls_session != $encSession" ),
