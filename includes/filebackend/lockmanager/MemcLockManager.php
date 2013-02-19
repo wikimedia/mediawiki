@@ -28,8 +28,8 @@
  * This is meant for multi-wiki systems that may share files.
  * All locks are non-blocking, which avoids deadlocks.
  *
- * All lock requests for a resource, identified by a hash string, will map
- * to one bucket. Each bucket maps to one or several peer servers, each running memcached.
+ * All lock requests for a resource, identified by a hash string, will map to one
+ * bucket. Each bucket maps to one or several peer servers, each running memcached.
  * A majority of peers must agree for a lock to be acquired.
  *
  * @ingroup LockManager
@@ -49,7 +49,7 @@ class MemcLockManager extends QuorumLockManager {
 	protected $serversUp = array(); // (server name => bool)
 
 	protected $lockExpiry; // integer; maximum time locks can be held
-	protected $session = ''; // string; random SHA-1 UUID
+	protected $session = ''; // string; random UUID
 
 	/**
 	 * Construct a new instance from configuration.
@@ -146,9 +146,15 @@ class MemcLockManager extends QuorumLockManager {
 
 		// If there were no lock conflicts, update all the lock records...
 		if ( $status->isOK() ) {
-			foreach ( $lockRecords as $locksKey => $locksHeld ) {
-				$memc->set( $locksKey, $locksHeld );
-				wfDebug( __METHOD__ . ": acquired lock on key $locksKey.\n" );
+			foreach ( $paths as $path ) {
+				$locksKey = $this->recordKeyForPath( $path );
+				$locksHeld = $lockRecords[$locksKey];
+				$ok = $memc->set( $locksKey, $locksHeld );
+				if ( !$ok ) {
+					$status->fatal( 'lockmanager-fail-acquirelock', $path );
+				} else {
+					wfDebug( __METHOD__ . ": acquired lock on key $locksKey.\n" );
+				}
 			}
 		}
 
