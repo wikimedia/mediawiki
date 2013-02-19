@@ -28,8 +28,8 @@
  * This is meant for multi-wiki systems that may share files.
  * All locks are non-blocking, which avoids deadlocks.
  *
- * All lock requests for a resource, identified by a hash string, will map
- * to one bucket. Each bucket maps to one or several peer servers, each running memcached.
+ * All lock requests for a resource, identified by a hash string, will map to one
+ * bucket. Each bucket maps to one or several peer servers, each running memcached.
  * A majority of peers must agree for a lock to be acquired.
  *
  * @ingroup LockManager
@@ -49,7 +49,7 @@ class MemcLockManager extends QuorumLockManager {
 	protected $serversUp = array(); // (server name => bool)
 
 	protected $lockExpiry; // integer; maximum time locks can be held
-	protected $session = ''; // string; random SHA-1 UUID
+	protected $session = ''; // string; random UUID
 
 	/**
 	 * Construct a new instance from configuration.
@@ -118,8 +118,8 @@ class MemcLockManager extends QuorumLockManager {
 		foreach ( $paths as $path ) {
 			$locksKey = $this->recordKeyForPath( $path );
 			$locksHeld = isset( $lockRecords[$locksKey] )
-				? $lockRecords[$locksKey]
-				: array( self::LOCK_SH => array(), self::LOCK_EX => array() ); // init
+				? self::sanitizeLockArray( $lockRecords[$locksKey] )
+				: self::newLockArray(); // init
 			foreach ( $locksHeld[self::LOCK_EX] as $session => $expiry ) {
 				if ( $expiry < $now ) { // stale?
 					unset( $locksHeld[self::LOCK_EX][$session] );
@@ -146,9 +146,15 @@ class MemcLockManager extends QuorumLockManager {
 
 		// If there were no lock conflicts, update all the lock records...
 		if ( $status->isOK() ) {
-			foreach ( $lockRecords as $locksKey => $locksHeld ) {
-				$memc->set( $locksKey, $locksHeld );
-				wfDebug( __METHOD__ . ": acquired lock on key $locksKey.\n" );
+			foreach ( $paths as $path ) {
+				$locksKey = $this->recordKeyForPath( $path );
+				$locksHeld = $lockRecords[$locksKey];
+				$ok = $memc->set( $locksKey, $locksHeld, 7*86400 );
+				if ( !$ok ) {
+					$status->fatal( 'lockmanager-fail-acquirelock', $path );
+				} else {
+					wfDebug( __METHOD__ . ": acquired lock on key $locksKey.\n" );
+				}
 			}
 		}
 
@@ -183,17 +189,22 @@ class MemcLockManager extends QuorumLockManager {
 		foreach ( $paths as $path ) {
 			$locksKey = $this->recordKeyForPath( $path ); // lock record
 			if ( !isset( $lockRecords[$locksKey] ) ) {
+				$status->warning( 'lockmanager-fail-releaselock', $path );
 				continue; // nothing to do
 			}
-			$locksHeld = $lockRecords[$locksKey];
-			if ( is_array( $locksHeld ) && isset( $locksHeld[$type] ) ) {
-				unset( $locksHeld[$type][$this->session] );
-				$ok = $memc->set( $locksKey, $locksHeld );
+			$locksHeld = self::sanitizeLockArray( $lockRecords[$locksKey] );
+			if ( isset( $locksHeld[$type][$this->session] ) ) {
+				unset( $locksHeld[$type][$this->session] ); // unregister this session
+				if ( $locksHeld === self::newLockArray() ) {
+					$ok = $memc->delete( $locksKey );
+				} else {
+					$ok = $memc->set( $locksKey, $locksHeld );
+				}
+				if ( !$ok ) {
+					$status->fatal( 'lockmanager-fail-releaselock', $path );
+				}
 			} else {
-				$ok = true;
-			}
-			if ( !$ok ) {
-				$status->fatal( 'lockmanager-fail-releaselock', $path );
+				$status->warning( 'lockmanager-fail-releaselock', $path );
 			}
 			wfDebug( __METHOD__ . ": released lock on key $locksKey.\n" );
 		}
@@ -252,6 +263,26 @@ class MemcLockManager extends QuorumLockManager {
 	}
 
 	/**
+	 * @return Array An empty lock structure for a key
+	 */
+	protected static function newLockArray() {
+		return array( self::LOCK_SH => array(), self::LOCK_EX => array() );
+	}
+
+	/**
+	 * @param $a array
+	 * @return Array An empty lock structure for a key
+	 */
+	protected static function sanitizeLockArray( $a ) {
+		if ( is_array( $a ) && isset( $a[self::LOCK_EX] ) && isset( $a[self::LOCK_SH] ) ) {
+			return $a;
+		} else {
+			trigger_error( __METHOD__ . ": reset invalid lock array.", E_USER_WARNING );
+			return self::newLockArray();
+		}
+	}
+
+	/**
 	 * @param $memc MemcachedBagOStuff
 	 * @param array $keys List of keys to acquire
 	 * @return bool
@@ -279,10 +310,10 @@ class MemcLockManager extends QuorumLockManager {
 					continue; // acquire in order
 				}
 			}
-		} while ( count( $lockedKeys ) < count( $keys ) && ( microtime( true ) - $start ) <= 6 );
+		} while ( count( $lockedKeys ) < count( $keys ) && ( microtime( true ) - $start ) <= 3 );
 
 		if ( count( $lockedKeys ) != count( $keys ) ) {
-			$this->releaseMutexes( $lockedKeys ); // failed; release what was locked
+			$this->releaseMutexes( $memc, $lockedKeys ); // failed; release what was locked
 			return false;
 		}
 
