@@ -134,6 +134,7 @@ return array(
 	'jquery.badge' => array(
 		'scripts' => 'resources/jquery/jquery.badge.js',
 		'styles' => 'resources/jquery/jquery.badge.css',
+		'dependencies' => 'mediawiki.language',
 	),
 	'jquery.byteLength' => array(
 		'scripts' => 'resources/jquery/jquery.byteLength.js',
