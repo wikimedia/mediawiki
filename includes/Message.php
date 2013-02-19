@@ -227,6 +227,39 @@ class Message {
 	}
 
 	/**
+	 * Returns the message key
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getKey() {
+		return $this->key;
+	}
+
+	/**
+	 * Returns the message parameters
+	 *
+	 * @since 1.21
+	 *
+	 * @return string[]
+	 */
+	public function getParams() {
+		return $this->parameters;
+	}
+
+	/**
+	 * Returns the message format
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
+	 */
+	public function getFormat() {
+		return $this->format;
+	}
+
+	/**
 	 * Factory function that is just wrapper for the real constructor. It is
 	 * intented to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.

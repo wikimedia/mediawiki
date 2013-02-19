@@ -231,6 +231,10 @@ class Status {
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error
 	 * message.
+	 *
+	 * @note: this does not perform a full wikitext to HTML conversion, it merely applies
+	 *        a message transformation.
+	 * @todo: figure out whether that is actually The Right Thing.
 	 */
 	public function getHTML( $shortContext = false, $longContext = false ) {
 		$text = $this->getWikiText( $shortContext, $longContext );
