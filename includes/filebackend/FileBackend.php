@@ -283,7 +283,7 @@ abstract class FileBackend {
 	 * $opts is an associative of boolean flags, including:
 	 *   - force               : Operation precondition errors no longer trigger an abort.
 	 *                           Any remaining operations are still attempted. Unexpected
-	 *                           failures may still cause remaning operations to be aborted.
+	 *                           failures may still cause remaining operations to be aborted.
 	 *   - nonLocking          : No locks are acquired for the operations.
 	 *                           This can increase performance for non-critical writes.
 	 *                           This has no effect unless the 'force' flag is set.
