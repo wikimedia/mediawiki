@@ -594,8 +594,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function IPInfo() {
 		$ip = str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
-		return "<!-- visited from $ip -->\n" .
-			"<span style='display:none'>visited from $ip</span>";
+		return "<!-- visited from $ip -->\n<span style='display:none'>visited from $ip</span>";
 	}
 
 	/**
