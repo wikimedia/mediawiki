@@ -145,9 +145,7 @@ class EmailInvalidation extends UnlistedSpecialPage {
 	function execute( $code ) {
 		$this->setHeaders();
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$this->attemptInvalidate( $code );
 	}
