@@ -177,10 +177,17 @@ abstract class Job {
 	}
 
 	/**
-	 * @return bool
+	 * @return bool Whether only one of each identical set of jobs should be run
 	 */
 	public function ignoreDuplicates() {
 		return $this->removeDuplicates;
+	}
+
+	/**
+	 * @return bool Whether this job can be retried on failure by job runners
+	 */
+	public function allowRetries() {
+		return true;
 	}
 
 	/**

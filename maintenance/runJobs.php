@@ -96,7 +96,7 @@ class RunJobs extends Maintenance {
 					wfWarn( $job->getType() . " job failed to return a boolean." );
 					$status = true; // sanity
 				}
-				if ( $status ) {
+				if ( $status || !$job->allowRetries() ) {
 					$group->ack( $job ); // done
 				}
 
