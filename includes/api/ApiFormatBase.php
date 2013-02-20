@@ -253,7 +253,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	}
 
 	/**
-	 * Sets whether the pretty-printer should format *bold* and $italics$
+	 * Sets whether the pretty-printer should format *bold*
 	 * @param $help bool
 	 */
 	public function setHelp( $help = true ) {
@@ -269,22 +269,19 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	protected function formatHTML( $text ) {
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
-
 		// encode all comments or tags as safe blue strings
 		$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
 		$text = str_replace( '&gt;', '&gt;</span>', $text );
-		// identify URLs
-		$protos = wfUrlProtocolsWithoutProtRel();
-		// This regex hacks around bug 13218 (&quot; included in the URL)
-		$text = preg_replace( "#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#", '<a href="\\1">\\1</a>\\3\\4', $text );
 		// identify requests to api.php
 		$text = preg_replace( "#api\\.php\\?[^ <\n\t]+#", '<a href="\\0">\\0</a>', $text );
 		if ( $this->mHelp ) {
 			// make strings inside * bold
 			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text );
-			// make strings inside $ italic
-			$text = preg_replace( "#\\$[^<>\n]+\\$#", '<b><i>\\0</i></b>', $text );
 		}
+		// identify URLs
+		$protos = wfUrlProtocolsWithoutProtRel();
+		// This regex hacks around bug 13218 (&quot; included in the URL)
+		$text = preg_replace( "#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#", '<a href="\\1">\\1</a>\\3\\4', $text );
 
 		/**
 		 * Temporary fix for bad links in help messages. As a special case,
