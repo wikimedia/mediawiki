@@ -286,7 +286,8 @@ class RecentChange {
 	public function notifyRC2UDP() {
 		global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 		# Notify external application via UDP
-		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
+		if ( $wgRC2UDPAddress && ( $this->mAttribs['rc_type'] != RC_EXTERNAL ) &&
+			( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
 			self::sendToUDP( $this->getIRCLine() );
 		}
 	}
