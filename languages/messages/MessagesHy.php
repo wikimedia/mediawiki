@@ -539,7 +539,7 @@ $1',
 'youhavenewmessagesmulti' => 'Դուք նոր ուղերձներ եք ստացել $1 վրա',
 'editsection' => 'խմբագրել',
 'editold' => 'խմբագրել',
-'viewsourceold' => 'դիտել ելատեքստը',
+'viewsourceold' => 'դիտել վիքիկոդերը',
 'editlink' => 'խմբագրել',
 'viewsourcelink' => 'դիտել ելատեքստը',
 'editsectionhint' => 'Խմբագրել բաժինը. $1',
@@ -637,7 +637,7 @@ $1',
 'wrong_wfQuery_params' => 'Անթույլատրելի պարամետրեր wfQuery() ֆունկցիայի համար<br />
 Ֆունկցիա՝ $1<br />
 Հայցում՝ $2',
-'viewsource' => 'Դիտել ելատեքստը',
+'viewsource' => 'Դիտել վիքիկոդերը',
 'viewsource-title' => 'Դիտել $1 էջի աղբյուրը',
 'actionthrottled' => 'Գործողությունը արգելափակվեց',
 'actionthrottledtext' => 'Որպես հակա-սպամային միջոց, այս գործողության չափից շատ կատարումը կարճ ժամանակահատվածի ընթացքում սահմանափակված է։ Խնդրում ենք փորձել կրկին մի քանի րոպե անց։',
@@ -1005,6 +1005,9 @@ $2',
 'edit-no-change' => 'Ձեր խմբագրումը անտեսվել է, քանի որ ոչ մի փոփոխություն չի կատարվել տեքստի մեջ։',
 'defaultmessagetext' => 'Լռելյան տեքստը',
 
+# Content models
+'content-model-wikitext' => 'վիքիտեքստ',
+
 # "Undo" feature
 'undo-success' => 'Խմբագրումը կարող է հետ շրջվել։ Ստուգեք տարբերակների համեմատությունը ստորև, որպեսզի համոզվեք, որ դա է ձեզ հետաքրքրող փոփոխությունը և մատնահարեք «Հիշել էջը»՝ գործողությունն ավարտելու համար։',
 'undo-failure' => 'Խմբագրումը չի կարող հետ շրջվել միջանկյալ խմբագրումների ընդհարման պատճառով։',
@@ -1360,6 +1363,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'խմբագրել այս էջը',
 'action-createpage' => 'Ստեղծել էջ',
+'action-move-rootuserpages' => 'տեղափոխել մասնակցի էջի արմատը',
+'action-movefile' => 'տեղափոխել այս ֆայլը',
 'action-upload' => 'Բեռնել այս ֆայլը',
 'action-upload_by_url' => 'Բեռնել այս ֆայլը URL-ից',
 'action-delete' => 'Ջնջել այս էջը',
@@ -1471,6 +1476,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'uploadvirus' => 'Նիշքը պարունակում է վիրո՜ւս։ Տես $1',
 'upload-source' => 'Աղբյուրը ֆայլի',
 'sourcefilename' => 'Սկզբնական նիշք՝',
+'sourceurl' => 'Այդ Տեղի URL-ն՝',
 'destfilename' => 'Նիշքի նոր անվանում՝',
 'upload-description' => 'Ֆայլի մեկնաբանություն',
 'upload-options' => 'Բեռնման ընտրանքներ',
@@ -1478,6 +1484,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'filewasdeleted' => 'Այս անվանմամբ նիշք նախկինում բեռնվել է և հետագայում ջնջվել։ Այն կրկին բեռնելուց առաջ խնդրում ենք ստուգել $1։',
 'filename-bad-prefix' => "Բեռնվող նիշքի անվանումը սկսվում է '''<tt>«$1»</tt>''' արտահայտությամբ, որը ոչ-նկարագրական է և սովորաբար տրվում է թվային լուսանկարչական ապարատների կողմից։ Խնդրում ենք ընտրել ավելի նկարագրական անվանում ձեր նիշքի համար։",
 'upload-success-subj' => 'Բեռնումը կատարված է',
+'upload-failure-subj' => 'Ներբեռնման սխալ',
+'upload-warning-subj' => 'Ներբեռնման զգուշացում',
 
 'upload-proto-error' => 'Սխալ պրոտոկոլ',
 'upload-proto-error-text' => 'Հեռավոր բեռնումը պահանջում է URL-հասցե, որը սկսվում է <code>http://</code> կամ <code>ftp://</code> նախածանցով։',
@@ -1485,6 +1493,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'upload-file-error-text' => 'Տեղի ունեցավ ներքին սխալ՝ սերվերի վրա ժամանակավոր նիշք ստեղծելիս։ Խնդրում ենք կապվել համակարգային [[Special:ListUsers/sysop|ադմինիստրատորի]] հետ։',
 'upload-misc-error' => 'Բեռնման անհայտ սխալ',
 'upload-misc-error-text' => 'Տեղի ունեցավ անհայտ սխալ բեռնման ընթացքում։ Խնդրում ենք ստուգել URL-հասցեի ճշտությունն ու հասանելիությունը և փորձել կրկին։ Սխալի կրկնման դեպքում կապնվեք համակարգային ադմինիստրատորի հետ։',
+'upload-unknown-size' => 'Անհնար չափս',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL-հասցեն անհասանելի է',
@@ -1671,6 +1680,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'protectedpagesempty' => 'Ներկայումս չկան պաշտպանված էջեր նշված պարամետրերով։',
 'protectedtitles' => 'Պաշտպանված անվանումներ',
 'listusers' => 'Մասնակիցների ցանկ',
+'usereditcount' => ' 
+$1 {{PLURAL:$1|խմբագրում|խմբագրումներ}}',
 'usercreated' => '{{GENDER:$3|Ստեղծվել է}} $1-ին, ժամը $2-ին',
 'newpages' => 'Նոր էջեր',
 'newpages-username' => 'Մասնակից՝',
@@ -1743,6 +1754,7 @@ $1-ը հղվել է $2 ից',
 
 # Special:ActiveUsers
 'activeusers' => 'Ակտիվ մասնակիցների ցանկ',
+'activeusers-noresult' => 'Այդպիսի մասնակիցներ չեն գտնվել։',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(անդամների ցանկ)',
@@ -1817,6 +1829,8 @@ $1-ը հղվել է $2 ից',
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} մասնակից',
 'enotif_subject_deleted' => '{{SITENAME}} էջը $1 {{GENDER:$2|ջնջվել է}} $2-ի կողմից',
 'enotif_subject_created' => '{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} $2-ի կողմից',
+'enotif_subject_moved' => '{{SITENAME}} էջը $1 {{GENDER:$2|վերահղվել է}} $2-ի կողմից',
+'enotif_body_intro_created' => '{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} ժամը $PAGEEDITDATE-ին $2-ի կողմից, նայիր $3 ընդացիկ տարբերակը:',
 'enotif_lastvisited' => 'Տես $1՝ ձեր վերջին այցից ի վեր կատարված փոփոխությունների համար։',
 'enotif_lastdiff' => 'Տես $1՝ այս փոփոխությունը դիտելու համար։',
 'enotif_anon_editor' => 'անանուն մասնակից $1',
@@ -2005,7 +2019,7 @@ $1',
 'blanknamespace' => '(Գլխավոր)',
 
 # Contributions
-'contributions' => 'Մասնակցի ներդրում',
+'contributions' => ' {{GENDER:$1|Մասնակցի}} ներդրում',
 'contributions-title' => '$1 մասնակցի ներդրումը',
 'mycontris' => 'Ներդրում',
 'contribsub2' => '$1-ի ներդրումները ($2)',
@@ -2718,6 +2732,10 @@ $3
 'dberr-header' => 'Այս վիքիում խնդիրներ են առաջացել',
 'dberr-problems' => 'Այս կայքում առաջացել են տեխնիկական խնդիրներ։ Հայցում ենք ձեր ներողությունը։',
 'dberr-again' => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
+
+# HTML forms
+'htmlform-submit' => ' 
+Հաշվել',
 
 # New logging system
 'logentry-delete-delete' => '$1 ջնջեց էջը $3',
