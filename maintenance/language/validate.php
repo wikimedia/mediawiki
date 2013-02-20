@@ -21,6 +21,10 @@
  * @ingroup MaintenanceLanguage
  */
 
+if ( PHP_SAPI != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
+
 if ( !isset( $argv[1] ) ) {
 	print "Usage: php {$argv[0]} <filename>\n";
 	exit( 1 );
