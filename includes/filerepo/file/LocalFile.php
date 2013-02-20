@@ -71,6 +71,7 @@ class LocalFile extends File {
 		$extraDataLoaded,  # Whether or not lazy-loaded data has been loaded from the database
 		$upgraded,         # Whether the row was upgraded on load
 		$locked,           # True if the image row is locked
+		$lockedOwnTrx,     # True if the image row is locked with a lock initiated transaction
 		$missing,          # True if file is not present in file system. Not to be cached in memcached
 		$deleted;          # Bitfield akin to rev_deleted
 
@@ -1669,7 +1670,10 @@ class LocalFile extends File {
 		$dbw = $this->repo->getMasterDB();
 
 		if ( !$this->locked ) {
-			$dbw->begin( __METHOD__ );
+			if ( !$dbw->trxLevel() ) {
+				$dbw->begin( __METHOD__ );
+				$this->lockedOwnTrx = true;
+			}
 			$this->locked++;
 		}
 
@@ -1684,9 +1688,10 @@ class LocalFile extends File {
 	function unlock() {
 		if ( $this->locked ) {
 			--$this->locked;
-			if ( !$this->locked ) {
+			if ( !$this->locked && $this->lockedOwnTrx ) {
 				$dbw = $this->repo->getMasterDB();
 				$dbw->commit( __METHOD__ );
+				$this->lockedOwnTrx = false;
 			}
 		}
 	}
@@ -1698,6 +1703,7 @@ class LocalFile extends File {
 		$this->locked = false;
 		$dbw = $this->repo->getMasterDB();
 		$dbw->rollback( __METHOD__ );
+		$this->lockedOwnTrx = false;
 	}
 
 	/**
