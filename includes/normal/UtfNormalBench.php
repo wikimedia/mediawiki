@@ -24,6 +24,10 @@
  * @ingroup UtfNormal
  */
 
+if( PHP_SAPI != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
+
 if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
 	dl( 'php_utfnormal.so' );
 }
@@ -33,10 +37,6 @@ require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 
 define( 'BENCH_CYCLES', 5 );
-
-if( PHP_SAPI != 'cli' ) {
-	die( "Run me from the command line please.\n" );
-}
 
 $testfiles = array(
 	'testdata/washington.txt' => 'English text',
