@@ -171,6 +171,8 @@ production.
 * (bug 44775) The username field is not pre-filled when creating an account.
 * (bug 45069) wfParseUrl() no longer produces a PHP notice if passed a "mailto:"
   URL without address
+* (bug 45012) Creating an account by e-mail can no longer show a
+  "password mismatch" error.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
