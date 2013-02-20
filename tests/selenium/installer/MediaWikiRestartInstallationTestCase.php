@@ -28,7 +28,7 @@
  */
 
 
-require_once ( __DIR__ . '/' . 'MediaWikiInstallationCommonFunction.php' );
+require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
 
 /**
  * Test Case ID   : 11, 12 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
