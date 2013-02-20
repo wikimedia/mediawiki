@@ -245,7 +245,7 @@ class SpecialWatchlist extends SpecialPage {
 		$form = Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
 
 		# Show watchlist header
-		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse();
+		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse() . "\n";
 
 		if( $user->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
 			$form .= $this->msg( 'wlheader-enotif' )->parseAsBlock() . "\n";
@@ -253,16 +253,16 @@ class SpecialWatchlist extends SpecialPage {
 		if( $wgShowUpdatedMarker ) {
 			$form .= Xml::openElement( 'form', array( 'method' => 'post',
 						'action' => $this->getTitle()->getLocalUrl(),
-						'id' => 'mw-watchlist-resetbutton' ) ) .
-					$this->msg( 'wlheader-showupdated' )->parse() . ' ' .
-					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) .
-					Html::hidden( 'reset', 'all' );
+						'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
+					$this->msg( 'wlheader-showupdated' )->parse() .
+					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+					Html::hidden( 'reset', 'all' ) . "\n";
 					foreach ( $nondefaults as $key => $value ) {
-						$form .= Html::hidden( $key, $value );
+						$form .= Html::hidden( $key, $value ) . "\n";
 					}
-					$form .= Xml::closeElement( 'form' );
+					$form .= Xml::closeElement( 'form' ) . "\n";
 		}
-		$form .= '<hr />';
+		$form .= "<hr />\n";
 
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = RecentChange::selectFields();
@@ -306,10 +306,10 @@ class SpecialWatchlist extends SpecialPage {
 		if( $values['days'] > 0 ) {
 			$timestamp = wfTimestampNow();
 			$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $values['days'] * 24 ) )->params(
-				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . '<br />';
+				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
 		}
 
-		$cutofflinks = "\n" . $this->cutoffLinks( $values['days'], $nondefaults ) . "<br />\n";
+		$cutofflinks = $this->cutoffLinks( $values['days'], $nondefaults ) . "<br />\n";
 
 		# Spit out some control panel links
 		$filters = array(
@@ -341,9 +341,9 @@ class SpecialWatchlist extends SpecialPage {
 		# Namespace filter and put the whole form together.
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
-		$form .= $lang->pipeList( $links );
-		$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalUrl(), 'id' => 'mw-watchlist-form-namespaceselector' ) );
-		$form .= '<hr /><p>';
+		$form .= $lang->pipeList( $links ) . "\n";
+		$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalUrl(), 'id' => 'mw-watchlist-form-namespaceselector' ) ) . "\n";
+		$form .= "<hr />\n<p>";
 		$form .= Html::namespaceSelector(
 			array(
 				'selected' => $nameSpace,
@@ -369,12 +369,12 @@ class SpecialWatchlist extends SpecialPage {
 			$associated,
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . '</p>';
+		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
 		foreach ( $hiddenFields as $key => $value ) {
-			$form .= Html::hidden( $key, $value );
+			$form .= Html::hidden( $key, $value ) . "\n";
 		}
-		$form .= Xml::closeElement( 'form' );
-		$form .= Xml::closeElement( 'fieldset' );
+		$form .= Xml::closeElement( 'form' ) . "\n";
+		$form .= Xml::closeElement( 'fieldset' ) . "\n";
 		$output->addHTML( $form );
 
 		# If there's nothing to show, stop here
