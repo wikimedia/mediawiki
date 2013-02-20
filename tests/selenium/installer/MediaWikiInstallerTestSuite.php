@@ -27,7 +27,6 @@
  *
  */
 
-require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/Framework/TestSuite.php';
 
 require_once ( __DIR__ . '/MediaWikiUserInterfaceTestCase.php' );
