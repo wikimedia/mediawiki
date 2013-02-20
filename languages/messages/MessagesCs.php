@@ -680,7 +680,7 @@ Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speci�
 
 # General errors
 'error' => 'Chyba',
-'databaseerror' => 'Databázová chyba',
+'databaseerror' => 'Chyba databáze',
 'dberrortext' => 'Při dotazu do databáze došlo k syntaktické chybě.
 Příčinou může být chyba v programu.
 Poslední dotaz byl:

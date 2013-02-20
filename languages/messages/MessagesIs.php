@@ -2579,8 +2579,8 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 ** Yfirþyrmandi framkoma/áreitni
 ** Misnotkun á fjölda notandanafna
 ** Óásættanlegt notandanafn',
-'ipb-hardblock' => 'Hindra innskráðum notendum frá því að breyta frá þessu vistfangi.',
-'ipbcreateaccount' => 'Banna nýskráningu notanda',
+'ipb-hardblock' => 'Banna innskráðum notendum að breyta frá þessu vistfangi.',
+'ipbcreateaccount' => 'Banna nýskráningu notandanafns',
 'ipbemailban' => 'Banna notanda að senda tölvupóst',
 'ipbenableautoblock' => 'Banna síðasta vistfang notanda sjálfkrafa; og þau vistföng sem viðkomandi notar til að breyta síðum',
 'ipbsubmit' => 'Banna notanda',
@@ -2590,7 +2590,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'ipbotherreason' => 'Önnur/auka ástæða:',
 'ipbhidename' => 'Fela notandanafn úr breytingarskrá og listum',
 'ipbwatchuser' => 'Vakta notanda- og spjallsíður þessa notanda',
-'ipb-disableusertalk' => 'Banna þessum notenda að breyta egin spjallsíðu',
+'ipb-disableusertalk' => 'Banna þessum notanda að breyta eigin spjallsíðu',
 'ipb-change-block' => 'Endurbanna notanda með þessum stillingum',
 'ipb-confirm' => 'Staðfesta bann',
 'badipaddress' => 'Ógilt vistfang',
@@ -2598,7 +2598,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br />
 Sjá [[Special:BlockList|bannaðir notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
 'ipb-blockingself' => 'Þú ert í þann mund að banna sjálfan þig! Ertu viss um að þú viljir gera það?',
-'ipb-confirmhideuser' => 'Þú ert í þann mund að banna notenda sem er falinn. Notendanafn hans mun ekki birtast í listum og aðgerðarskrám. Ertu viss um að þú viljir gera það?',
+'ipb-confirmhideuser' => 'Þú ert í þann mund að banna notanda sem er falinn. Notandanafn hans mun ekki birtast í listum og aðgerðarskrám. Ertu viss um að þú viljir gera það?',
 'ipb-edit-dropdown' => 'Breyta ástæðu fyrir banni',
 'ipb-unblock-addr' => 'Afbanna $1',
 'ipb-unblock' => 'Afbanna notanda eða vistfang',
