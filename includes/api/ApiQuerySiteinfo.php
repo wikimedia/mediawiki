@@ -99,6 +99,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'protocols':
 					$fit = $this->appendProtocols( $p );
 					break;
+				case 'languagevariants':
+					$fit = $this->appendLanguageVariants( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -114,7 +117,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo( $property ) {
-		global $wgContLang;
+		global $wgContLang,
+			$wgDisableLangConversion,
+			$wgDisableTitleConversion;
 
 		$data = array();
 		$mainPage = Title::newMainPage();
@@ -126,6 +131,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['phpsapi'] = PHP_SAPI;
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
+		$data['langconversion'] = $wgDisableLangConversion ? 'false' : 'true';
+		$data['titleconversion'] = !$wgDisableTitleConversion ? 'false' : 'true';
 
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
 		if ( $git ) {
