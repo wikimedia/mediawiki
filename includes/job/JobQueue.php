@@ -33,10 +33,9 @@ abstract class JobQueue {
 	protected $type; // string; job type
 	protected $order; // string; job priority for pop()
 	protected $claimTTL; // integer; seconds
+	protected $maxTries; // integer; maximum number of times to try a job
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
-
-	const MAX_ATTEMPTS = 3; // integer; number of times to try a job
 
 	/**
 	 * @param $params array
@@ -46,6 +45,7 @@ abstract class JobQueue {
 		$this->type     = $params['type'];
 		$this->order    = isset( $params['order'] ) ? $params['order'] : 'random';
 		$this->claimTTL = isset( $params['claimTTL'] ) ? $params['claimTTL'] : 0;
+		$this->maxTries = isset( $params['maxTries'] ) ? $params['maxTries'] : 3;
 	}
 
 	/**

@@ -423,7 +423,7 @@ class JobQueueDB extends JobQueue {
 					'job_cmd' => $this->type,
 					"job_token != {$dbw->addQuotes( '' )}", // was acquired
 					"job_token_timestamp < {$dbw->addQuotes( $claimCutoff )}", // stale
-					"job_attempts < {$dbw->addQuotes( self::MAX_ATTEMPTS )}" ), // retries left
+					"job_attempts < {$dbw->addQuotes( $this->maxTries )}" ), // retries left
 				__METHOD__
 			);
 			$ids = array_map( function( $o ) { return $o->job_id; }, iterator_to_array( $res ) );
@@ -453,7 +453,7 @@ class JobQueueDB extends JobQueue {
 			"job_token_timestamp < {$dbw->addQuotes( $pruneCutoff )}" // stale
 		);
 		if ( $this->claimTTL > 0 ) { // only prune jobs attempted too many times...
-			$conds[] = "job_attempts >= {$dbw->addQuotes( self::MAX_ATTEMPTS )}";
+			$conds[] = "job_attempts >= {$dbw->addQuotes( $this->maxTries )}";
 		}
 		// Get the IDs of jobs that are considered stale and should be removed. Selecting
 		// the IDs first means that the UPDATE can be done by primary key (less deadlocks).

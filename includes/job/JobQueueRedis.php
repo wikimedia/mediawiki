@@ -372,7 +372,7 @@ class JobQueueRedis extends JobQueue {
 					if ( $ctime < $claimCutoff ) {
 						// Get the number of failed attempts
 						$attempts = isset( $info['attempts'] ) ? $info['attempts'] : 0;
-						if ( $attempts < self::MAX_ATTEMPTS ) {
+						if ( $attempts < $this->maxTries ) {
 							$uidsPush[] = $uid; // retry it
 						} elseif ( $ctime < $pruneCutoff ) {
 							$uidsRemove[] = $uid; // just remove it
