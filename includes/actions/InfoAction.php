@@ -81,11 +81,11 @@ class InfoAction extends FormlessAction {
 
 		// Hide "This page is a member of # hidden categories" explanation
 		$content .= Html::element( 'style', array(),
-			'.mw-hiddenCategoriesExplanation { display: none; }' );
+			'.mw-hiddenCategoriesExplanation { display: none; }' ) . "\n";
 
 		// Hide "Templates used on this page" explanation
 		$content .= Html::element( 'style', array(),
-			'.mw-templatesUsedExplanation { display: none; }' );
+			'.mw-templatesUsedExplanation { display: none; }' ) . "\n";
 
 		// Get page information
 		$pageInfo = $this->pageInfo();
@@ -95,14 +95,14 @@ class InfoAction extends FormlessAction {
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
-			$content .= $this->makeHeader( $this->msg( "pageinfo-${header}" )->escaped() );
-			$table = '';
+			$content .= $this->makeHeader( $this->msg( "pageinfo-${header}" )->escaped() ) . "\n";
+			$table = "\n";
 			foreach ( $infoTable as $infoRow ) {
 				$name = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->escaped() : $infoRow[0];
 				$value = ( $infoRow[1] instanceof Message ) ? $infoRow[1]->escaped() : $infoRow[1];
-				$table = $this->addRow( $table, $name, $value );
+				$table = $this->addRow( $table, $name, $value ) . "\n";
 			}
-			$content = $this->addTable( $content, $table );
+			$content = $this->addTable( $content, $table ) . "\n";
 		}
 
 		// Page footer
