@@ -473,7 +473,9 @@ $wgFileBackends = array();
  * Each backend configuration has the following parameters:
  *  - 'name'        : A unique name for the lock manager
  *  - 'class'       : The lock manger class to use
- * Additional parameters are specific to the class used.
+ *
+ * See LockManager::__construct() for more details.
+ * Additional parameters are specific to the lock manager class used.
  * These settings should be global to all wikis.
  */
 $wgLockManagers = array();
