@@ -87,33 +87,37 @@ class RunJobs extends Maintenance {
 				? $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE )
 				: $group->pop( $type ); // job from a single queue
 			if ( $job ) { // found a job
-				// Perform the job (logging success/failure and runtime)...
-				$t = microtime( true );
 				$this->runJobsLog( $job->toString() . " STARTING" );
 
-				$status = $job->run();
-				if ( !is_bool( $status ) ) {
-					wfWarn( $job->getType() . " job failed to return a boolean." );
-					$status = true; // sanity
+				// Run the job...
+				$t = microtime( true );
+				try {
+					$status = $job->run();
+					$error = $job->getLastError();
+				} catch ( MWException $e ) {
+					$status = false;
+					$error = get_class( $e ) . ': ' . $e->getMessage();
 				}
-				if ( $status || !$job->allowRetries() ) {
+				$timeMs = intval( ( microtime( true ) - $t ) * 1000 );
+
+				// Mark the job as done on success or when the job cannot be retried
+				if ( $status !== false || !$job->allowRetries() ) {
 					$group->ack( $job ); // done
 				}
 
-				$t = microtime( true ) - $t;
-				$timeMs = intval( $t * 1000 );
 				if ( !$status ) {
-					$this->runJobsLog( $job->toString() . " t=$timeMs error={$job->error}" );
+					$this->runJobsLog( $job->toString() . " t=$timeMs error={$error}" );
 				} else {
 					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
 				}
+
 				// Break out if we hit the job count or wall time limits...
 				if ( $maxJobs && ++$n >= $maxJobs ) {
 					break;
-				}
-				if ( $maxTime && ( time() - $startTime ) > $maxTime ) {
+				} elseif ( $maxTime && ( time() - $startTime ) > $maxTime ) {
 					break;
 				}
+
 				// Don't let any slaves/backups fall behind...
 				$group->get( $job->getType() )->waitForBackups();
 			}
