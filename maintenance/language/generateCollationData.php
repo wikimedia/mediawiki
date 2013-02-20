@@ -82,7 +82,7 @@ class GenerateCollationData extends Maintenance {
 					. "\n\n";
 			}
 			if ( !$ucdallPresent ) {
-				$error = "Unable to find ucd.all.grouped.xml. "
+				$error .= "Unable to find ucd.all.grouped.xml. "
 					. "Download it, unzip, and specify its location with --data-dir=<DIR>. "
 					. "\n\n";
 			}
