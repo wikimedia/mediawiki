@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-$initialTime = microtime( true );
 $wgProfiler = array( 'class' => 'ProfilerSimpleText' );
 error_reporting( E_ALL );
 
