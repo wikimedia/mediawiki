@@ -99,6 +99,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'protocols':
 					$fit = $this->appendProtocols( $p );
 					break;
+				case 'languagevariants':
+					$fit = $this->appendLanguageVariants( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -560,6 +563,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $protocols );
 	}
 
+	public function appendLanguageVariants( $property ) {
+		global $wgDisableLangConversion,
+			$wgDisableTitleConversion,
+			$wgDefaultLanguageVariant;
+		return $this->getResult()->addValue( 'query', $property, array(
+			'enabled' => !$wgDisableLangConversion,
+			'titles' => !$wgDisableTitleConversion,
+			'default' => $wgDefaultLanguageVariant,
+		) );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -613,6 +627,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'showhooks',
 					'variables',
 					'protocols',
+					'languagevariants',
 				)
 			),
 			'filteriw' => array(
@@ -651,6 +666,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
 				' variables             - Returns a list of variable IDs',
 				' protocols             - Returns a list of protocols that are allowed in external links.',
+				' languagevariants      - Returns information about whether language variant conversion is enabled on the wiki.',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
