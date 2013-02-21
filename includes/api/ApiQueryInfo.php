@@ -108,138 +108,157 @@ class ApiQueryInfo extends ApiQueryBase {
 		ApiQueryInfo::$cachedTokens = array();
 	}
 
-	public static function getEditToken( $pageid, $title ) {
-		// We could check for $title->userCan('edit') here,
-		// but that's too expensive for this purpose
-		// and would break caching
-		global $wgUser;
-		if ( !$wgUser->isAllowed( 'edit' ) ) {
+	/**
+	 * Get token based on the action requested
+	 * @param $action
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	private static function getToken( $action, $pageid, $title, User $user = null ) {
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		if ( $action === 'email' ) {
+			$allowed = $user->canSendEmail() && !$user->isBlockedFromEmailUser();
+		} elseif ( $action === 'import' ) {
+			$allowed = $user->isAllowedAny( 'import', 'importupload' );
+		} elseif ( $action === 'watch' || $action === 'options' ) {
+			$allowed = $user->isLoggedIn();
+		} else {
+			// We could check for $title->userCan($action) here,
+			// but that's too expensive for this purpose
+			// and would break caching
+			$allowed = $user->isAllowed( $action );
+		}
+
+		if ( !$allowed ) {
 			return false;
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['edit'] ) ) {
-			ApiQueryInfo::$cachedTokens['edit'] = $wgUser->getEditToken();
+		if ( !isset( ApiQueryInfo::$cachedTokens[$action] ) ) {
+			if ( $action === 'edit' || $action === 'delete' || $action === 'protect' ||
+					$action === 'move' || $action === 'block' || $action === 'email' ||
+					$action === 'import' || $action === 'options' ) {
+				// default token
+				$token = $user->getEditToken();
+			} elseif ( $action === 'watch' ) {
+				// Named token
+				$token = $user->getEditToken( $action );
+			} else {
+				ApiBase::dieDebug( __METHOD__, "Unrecognized action '$action'" );
+			}
+			ApiQueryInfo::$cachedTokens[$action] = $token;
+		} else {
+			$token = ApiQueryInfo::$cachedTokens[$action];
 		}
 
-		return ApiQueryInfo::$cachedTokens['edit'];
+		return $token;
 	}
 
-	public static function getDeleteToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isAllowed( 'delete' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['delete'] ) ) {
-			ApiQueryInfo::$cachedTokens['delete'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['delete'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getEditToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'edit', $pageid, $title, $user );
 	}
 
-	public static function getProtectToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isAllowed( 'protect' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['protect'] ) ) {
-			ApiQueryInfo::$cachedTokens['protect'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['protect'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getDeleteToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'delete', $pageid, $title, $user );
 	}
 
-	public static function getMoveToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isAllowed( 'move' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['move'] ) ) {
-			ApiQueryInfo::$cachedTokens['move'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['move'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getProtectToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'protect', $pageid, $title, $user );
 	}
 
-	public static function getBlockToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isAllowed( 'block' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['block'] ) ) {
-			ApiQueryInfo::$cachedTokens['block'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['block'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getMoveToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'move', $pageid, $title, $user );
 	}
 
-	public static function getUnblockToken( $pageid, $title ) {
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getBlockToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'block', $pageid, $title, $user );
+	}
+
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getUnblockToken( $pageid, $title, User $user = null ) {
 		// Currently, this is exactly the same as the block token
-		return self::getBlockToken( $pageid, $title );
+		return self::getToken( 'block', $pageid, $title, $user );
 	}
 
-	public static function getEmailToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailUser() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['email'] ) ) {
-			ApiQueryInfo::$cachedTokens['email'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['email'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getEmailToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'email', $pageid, $title, $user );
 	}
 
-	public static function getImportToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isAllowedAny( 'import', 'importupload' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['import'] ) ) {
-			ApiQueryInfo::$cachedTokens['import'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['import'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getImportToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'import', $pageid, $title, $user );
 	}
 
-	public static function getWatchToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isLoggedIn() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['watch'] ) ) {
-			ApiQueryInfo::$cachedTokens['watch'] = $wgUser->getEditToken( 'watch' );
-		}
-
-		return ApiQueryInfo::$cachedTokens['watch'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getWatchToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'watch', $pageid, $title, $user );
 	}
 
-	public static function getOptionsToken( $pageid, $title ) {
-		global $wgUser;
-		if ( !$wgUser->isLoggedIn() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['options'] ) ) {
-			ApiQueryInfo::$cachedTokens['options'] = $wgUser->getEditToken();
-		}
-
-		return ApiQueryInfo::$cachedTokens['options'];
+	/**
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $user User object to get token for, or null to use $wgUser
+	 * @return bool|String
+	 */
+	public static function getOptionsToken( $pageid, $title, User $user = null ) {
+		return self::getToken( 'options', $pageid, $title, $user );
 	}
 
 	public function execute() {
@@ -361,8 +380,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( !is_null( $this->params['token'] ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
+			$user = $this->getUser();
 			foreach ( $this->params['token'] as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $pageid, $title );
+				$val = call_user_func( $tokenFunctions[$t], $pageid, $title, $user );
 				if ( $val === false ) {
 					$this->setWarning( "Action '$t' is not allowed for the current user" );
 				} else {

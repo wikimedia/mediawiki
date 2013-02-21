@@ -36,10 +36,11 @@ class ApiTokens extends ApiBase {
 		$res = array();
 
 		$types = $this->getTokenTypes();
+		$user = $this->getUser();
 		foreach ( $params['type'] as $type ) {
 			$type = strtolower( $type );
 
-			$val = call_user_func( $types[$type], null, null );
+			$val = call_user_func( $types[$type], null, null, $user );
 
 			if ( $val === false ) {
 				$this->setWarning( "Action '$type' is not allowed for the current user" );
