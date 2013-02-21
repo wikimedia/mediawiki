@@ -1089,6 +1089,7 @@ class Article implements Page {
 	public function showMissingArticle() {
 		global $wgSend404Code;
 		$outputPage = $this->getContext()->getOutput();
+		$validUserPage = false;
 
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $this->getTitle()->getNamespace() == NS_USER || $this->getTitle()->getNamespace() == NS_USER_TALK ) {
@@ -1115,6 +1116,8 @@ class Article implements Page {
 						)
 					)
 				);
+			} else {
+				$validUserPage = true;
 			}
 		}
 
@@ -1128,7 +1131,7 @@ class Article implements Page {
 				'msgKey' => array( 'moveddeleted-notice' ) )
 		);
 
-		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
+		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
 			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
