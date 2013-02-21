@@ -1561,43 +1561,40 @@ class EditPage {
 				return $status;
 			}
 
-			# Handle the user preference to force summaries here, but not for null edits
-			if ( $this->section != 'new' && !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent() )
-				&& !$content->isRedirect() ) # check if it's not a redirect
-			{
-				if ( md5( $this->summary ) == $this->autoSumm ) {
-					$this->missingSummary = true;
-					$status->fatal( 'missingsummary' );
-					$status->value = self::AS_SUMMARY_NEEDED;
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
-			}
-
-			# And a similar thing for new sections
-			if ( $this->section == 'new' && !$this->allowBlankSummary ) {
-				if ( trim( $this->summary ) == '' ) {
+			if ( $this->section == 'new' ) {
+				// Handle the user preference to force summaries here
+				if ( !$this->allowBlankSummary && trim( $this->summary ) == '' ) {
 					$this->missingSummary = true;
 					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
 					$status->value = self::AS_SUMMARY_NEEDED;
 					wfProfileOut( __METHOD__ );
 					return $status;
 				}
+
+				// Do not allow the user to post an empty comment
+				if ( $this->textbox1 == '' ) {
+					$this->missingComment = true;
+					$status->fatal( 'missingcommenttext' );
+					$status->value = self::AS_TEXTBOX_EMPTY;
+					wfProfileOut( __METHOD__ );
+					return $status;
+				}
+			} elseif ( !$this->allowBlankSummary
+				&& !$content->equals( $this->getOriginalContent() )
+				&& !$content->isRedirect()
+				&& md5( $this->summary ) == $this->autoSumm
+			) {
+				$this->missingSummary = true;
+				$status->fatal( 'missingsummary' );
+				$status->value = self::AS_SUMMARY_NEEDED;
+				wfProfileOut( __METHOD__ );
+				return $status;
 			}
 
 			# All's well
 			wfProfileIn( __METHOD__ . '-sectionanchor' );
 			$sectionanchor = '';
 			if ( $this->section == 'new' ) {
-				if ( $this->textbox1 == '' ) {
-					$this->missingComment = true;
-					$status->fatal( 'missingcommenttext' );
-					$status->value = self::AS_TEXTBOX_EMPTY;
-					wfProfileOut( __METHOD__ . '-sectionanchor' );
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
 				if ( $this->sectiontitle !== '' ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
 					// If no edit summary was specified, create one automatically from the section
