@@ -56,30 +56,32 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$prefix = $suffix = '';
-
 		$params = $this->extractRequestParams();
-		$callback = $params['callback'];
-		if ( !is_null( $callback ) ) {
-			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback ) . '(';
-			$suffix = ')';
-		}
-		$this->printText(
-			$prefix .
-			FormatJson::encode( $this->getResultData(), $this->getIsHtml() ) .
-			$suffix
+		$json = FormatJson::encode(
+			$this->getResultData(),
+			$this->getIsHtml(),
+			$params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK
 		);
+		$callback = $params['callback'];
+		if ( $callback !== null ) {
+			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
+			$this->printText( "$callback($json)" );
+		} else {
+			$this->printText( $json );
+		}
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'callback'  => null,
+			'callback' => null,
+			'utf8' => false,
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
 			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
+			'utf8' => 'If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
 		);
 	}
 
