@@ -164,6 +164,7 @@ abstract class JobQueue {
 	/**
 	 * Push a single jobs into the queue.
 	 * This does not require $wgJobClasses to be set for the given job type.
+	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
 	 * @param $jobs Job|Array
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
@@ -177,6 +178,7 @@ abstract class JobQueue {
 	/**
 	 * Push a batch of jobs into the queue.
 	 * This does not require $wgJobClasses to be set for the given job type.
+	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
 	 * @param $jobs array List of Jobs
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
@@ -208,6 +210,7 @@ abstract class JobQueue {
 	/**
 	 * Pop a job off of the queue.
 	 * This requires $wgJobClasses to be set for the given job type.
+	 * Outside callers should use JobQueueGroup::pop() instead of this function.
 	 *
 	 * @return Job|bool Returns false if there are no jobs
 	 * @throws MWException
@@ -238,6 +241,7 @@ abstract class JobQueue {
 	 * Acknowledge that a job was completed.
 	 *
 	 * This does nothing for certain queue classes or if "claimTTL" is not set.
+	 * Outside callers should use JobQueueGroup::ack() instead of this function.
 	 *
 	 * @param $job Job
 	 * @return bool
@@ -382,6 +386,6 @@ abstract class JobQueue {
 	 * @throws MWException
 	 */
 	public function setTestingPrefix( $key ) {
-		throw new MWException( "Queue namespacing not support for this queue type." );
+		throw new MWException( "Queue namespacing not supported for this queue type." );
 	}
 }
