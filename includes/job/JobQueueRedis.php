@@ -330,6 +330,32 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::getAllQueuedJobs()
+	 * @return Iterator
+	 */
+	public function getAllQueuedJobs() {
+		$conn = $this->getConnection();
+		try {
+			return new MappedIterator(
+				$conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 ),
+				function( $uid ) {
+					$fields = $conn->get( $this->prefixWithQueueKey( 'data', $uid ) );
+					if ( !is_array( $fields ) ) { // wtf?
+						$conn->delete( $this->prefixWithQueueKey( 'data', $uid ) );
+						throw new MWException( "Could not find job with UID '$uid'." );
+					}
+					$title = Title::makeTitle( $fields['namespace'], $fields['title'] );
+					$job = Job::factory( $fields['type'], $title, $fields['params'] );
+					$job->metadata['sourceFields'] = $fields;
+					return $job;
+				}
+			);
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+	}
+
+	/**
 	 * Recycle or destroy any jobs that have been claimed for too long
 	 *
 	 * @return integer Number of jobs recycled/deleted
