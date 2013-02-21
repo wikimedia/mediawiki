@@ -243,6 +243,9 @@ production.
   HTTP OPTIONS request.
 * (bug 44923) action=upload works correctly if the entire file is uploaded in
   the first chunk.
+* The JSON output formatter now leaves forward slashes unescaped to improve human
+  readability of URLs and similar strings. Also, a "utf8" option is now provided
+  to use UTF-8 encoding instead of hex escape codes for most non-ASCII characters.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
@@ -279,6 +282,9 @@ changes to languages because of Bugzilla reports.
   were using it, you have to either copy it to your extension, or install the
   Vector extension (and possibly disable its features using config settings if
   you don't want them).
+* MediaWiki no longer supports PHP installations in which the native JSON
+  extension is missing or disabled. Use of the Services_JSON class in
+  MediaWiki extensions is now deprecated.
 
 == Compatibility ==
 
