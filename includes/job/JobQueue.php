@@ -369,4 +369,14 @@ abstract class JobQueue {
 	 * @return void
 	 */
 	protected function doFlushCaches() {}
+
+	/**
+	 * Get an iterator to traverse over all of the jobs in this queue.
+	 * This does not include jobs that are current acquired. In general,
+	 * this should only be called on a queue that is no longer being popped.
+	 *
+	 * @return Iterator|Traversable|Array
+	 * @throws MWException
+	 */
+	abstract public function getAllQueuedJobs();
 }
