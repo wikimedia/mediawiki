@@ -75,8 +75,10 @@ class JobQueueGroup {
 	}
 
 	/**
+	 * Get the job queue object for a given queue type
+	 *
 	 * @param $type string
-	 * @return JobQueue Job queue object for a given queue type
+	 * @return JobQueue
 	 */
 	public function get( $type ) {
 		global $wgJobTypeConf;
@@ -93,7 +95,9 @@ class JobQueueGroup {
 
 	/**
 	 * Insert jobs into the respective queues of with the belong.
-	 * This inserts the jobs into the queue specified by $wgJobTypeConf.
+	 *
+	 * This inserts the jobs into the queue specified by $wgJobTypeConf
+	 * and updates the aggregate job queue information cache as needed.
 	 *
 	 * @param $jobs Job|array A single Job or a list of Jobs
 	 * @throws MWException
@@ -132,6 +136,9 @@ class JobQueueGroup {
 
 	/**
 	 * Pop a job off one of the job queues
+	 *
+	 * This pops a job off a queue as specified by $wgJobTypeConf and
+	 * updates the aggregate job queue information cache as needed.
 	 *
 	 * @param $qtype integer|string JobQueueGroup::TYPE_DEFAULT or type string
 	 * @param $flags integer Bitfield of JobQueueGroup::USE_* constants
@@ -283,6 +290,10 @@ class JobQueueGroup {
 		return $count;
 	}
 
+	/**
+	 * @param $name string
+	 * @return mixed
+	 */
 	private function getCachedConfigVar( $name ) {
 		global $wgConf, $wgMemc;
 
