@@ -31,19 +31,24 @@
 class ApiFormatJson extends ApiFormatBase {
 
 	private $mIsRaw;
+	private $mCallback = null;
+	private $mUtf8 = false;
 
 	public function __construct( $main, $format ) {
 		parent::__construct( $main, $format );
 		$this->mIsRaw = ( $format === 'rawfm' );
+
+		// Get parameters here, before ApiMain::reportUnusedParams() is called
+		$params = $this->extractRequestParams();
+		$callback = $params['callback'];
+		if ( $callback !== null ) {
+			$this->mCallback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
+		}
+		$this->mUtf8 = $params['utf8'];
 	}
 
 	public function getMimeType() {
-		$params = $this->extractRequestParams();
-		// callback:
-		if ( $params['callback'] ) {
-			return 'text/javascript';
-		}
-		return 'application/json';
+		return $this->mCallback !== null ? 'text/javascript' : 'application/json';
 	}
 
 	public function getNeedsRawData() {
@@ -56,36 +61,30 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$prefix = $suffix = '';
-
-		$params = $this->extractRequestParams();
-		$callback = $params['callback'];
-		if ( !is_null( $callback ) ) {
-			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback ) . '(';
-			$suffix = ')';
-		}
-		$this->printText(
-			$prefix .
-			FormatJson::encode( $this->getResultData(), $this->getIsHtml() ) .
-			$suffix
+		$json = FormatJson::encode(
+			$this->getResultData(), $this->getIsHtml(),
+			$this->mUtf8 ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK
 		);
+		$this->printText( $this->mCallback !== null ? "$this->mCallback($json)" : $json );
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'callback'  => null,
+			'callback' => null,
+			'utf8' => false,
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
 			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
+			'utf8' => 'If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
 		);
 	}
 
 	public function getDescription() {
 		if ( $this->mIsRaw ) {
-			return 'Output data with the debuging elements in JSON format' . parent::getDescription();
+			return 'Output data with the debugging elements in JSON format' . parent::getDescription();
 		} else {
 			return 'Output data in JSON format' . parent::getDescription();
 		}
