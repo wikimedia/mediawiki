@@ -33,12 +33,20 @@ class MwSql extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Send SQL queries to a MediaWiki database";
+		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
+		$this->addOption( 'source', 'Run the contents of SQL file', false, true );
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
-		if ( $this->hasArg() ) {
-			$fileName = $this->getArg();
+		// Get a DB handle (with this wiki's DB select) from the appropriate load balancer
+		if ( $this->hasOption( 'cluster' ) ) {
+			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ) );
+			$dbw = $lb->getConnection( DB_MASTER ); // master for external LB
+		} else {
+			$dbw = wfGetDB( DB_MASTER ); // master for primary LB for this wiki
+		}
+		if ( $this->hasOption( 'source' ) ) {
+			$fileName = $this->getOption( 'source' );
 			$file = fopen( $fileName, 'r' );
 			if ( !$file ) {
 				$this->error( "Unable to open input file", true );
