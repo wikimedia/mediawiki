@@ -988,8 +988,9 @@ class Article implements Page {
 
 				// Set the fragment if one was specified in the redirect
 				if ( strval( $this->getTitle()->getFragment() ) != '' ) {
-					$fragment = Xml::escapeJsString( $this->getTitle()->getFragmentForURL() );
-					$outputPage->addInlineScript( "redirectToFragment(\"$fragment\");" );
+					$outputPage->addInlineScript( Xml::encodeJsCall(
+						'redirectToFragment', array( $this->getTitle()->getFragmentForURL() )
+					) );
 				}
 
 				// Add a <link rel="canonical"> tag
