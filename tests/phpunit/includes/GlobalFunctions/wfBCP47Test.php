@@ -1,8 +1,8 @@
 <?php
 /**
- * Unit tests for wfBCP47()
+ * Tests for wfBCP47()
  */
-class wfBCP47 extends MediaWikiTestCase {
+class WfBCP47Test extends MediaWikiTestCase {
 	/**
 	 * test @see wfBCP47().
 	 * Please note the BCP explicitly state that language codes are case

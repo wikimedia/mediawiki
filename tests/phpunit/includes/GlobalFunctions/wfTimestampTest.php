@@ -1,9 +1,8 @@
 <?php
-
 /*
  * Tests for wfTimestamp()
  */
-class wfTimestamp extends MediaWikiTestCase {
+class WfTimestampTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideNormalTimestamps
 	 */

@@ -1,11 +1,10 @@
 <?php
 /**
- * Tests for includes/GlobalFunctions.php -> wfUrlencode()
+ * Tests for wfUrlencode()
  *
  * The function only need a string parameter and might react to IIS7.0
  */
-
-class wfUrlencodeTest extends MediaWikiTestCase {
+class WfUrlencodeTest extends MediaWikiTestCase {
 	#### TESTS ##############################################################
 
 	/** @dataProvider provideURLS */
