@@ -24,6 +24,7 @@
  */
 header( 'Content-Type: text/javascript; charset=utf-8' );
 
+require_once __DIR__ . '/../../../includes/json/FormatJson.php';
 require_once __DIR__ . '/../../../includes/Xml.php';
 
 $moduleImplementations = array(
