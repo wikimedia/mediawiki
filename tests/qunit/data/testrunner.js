@@ -109,12 +109,14 @@
 		liveMessages = mw.messages.values;
 
 		function freshConfigCopy( custom ) {
-			// "deep=true" is important here.
-			// Otherwise we just create a new object with values referring to live config.
-			// e.g. mw.config.set( 'wgFileExtensions', [] ) would not effect liveConfig,
-			// but mw.config.get( 'wgFileExtensions' ).push( 'png' ) would as the array
-			// was passed by reference in $.extend's loop.
-			return $.extend( /*deep=*/true, {}, liveConfig, custom );
+			// Tests should mock all factors that directly influence the tested code.
+			// For backwards compatibility though we set mw.config to a copy of the live config
+			// and extend it with the (optionally) given custom settings for this test
+			// (instead of starting blank with only the given custmo settings).
+			// This is a shallow copy, so we don't end up with settings taking an array value
+			// extended with the custom settings - setting a config property means you override it,
+			// not extend it.
+			return $.extend( {}, liveConfig, custom );
 		}
 
 		function freshMessagesCopy( custom ) {
