@@ -56,19 +56,17 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$prefix = $suffix = '';
-
+		$json = FormatJson::encode(
+			$this->getResultData(), $this->getIsHtml(), FormatJson::XMLMETA_OK
+		);
 		$params = $this->extractRequestParams();
 		$callback = $params['callback'];
-		if ( !is_null( $callback ) ) {
-			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback ) . '(';
-			$suffix = ')';
+		if ( $callback !== null ) {
+			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
+			$this->printText( "$callback($json)" );
+		} else {
+			$this->printText( $json );
 		}
-		$this->printText(
-			$prefix .
-			FormatJson::encode( $this->getResultData(), $this->getIsHtml() ) .
-			$suffix
-		);
 	}
 
 	public function getAllowedParams() {
