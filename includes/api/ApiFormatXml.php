@@ -36,6 +36,16 @@ class ApiFormatXml extends ApiFormatBase {
 	private $mIncludeNamespace = false;
 	private $mXslt = null;
 
+	public function __construct( $main, $format ) {
+		parent::__construct( $main, $format );
+
+		// Get parameters here, before ApiMain::reportUnusedParams() is called
+		$params = $this->extractRequestParams();
+		$this->mDoubleQuote = $params['xmldoublequote'];
+		$this->mIncludeNamespace = $params['includexmlnamespace'];
+		$this->mXslt = $params['xslt'];
+	}
+
 	public function getMimeType() {
 		return 'text/xml';
 	}
@@ -49,11 +59,6 @@ class ApiFormatXml extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams();
-		$this->mDoubleQuote = $params['xmldoublequote'];
-		$this->mIncludeNamespace = $params['includexmlnamespace'];
-		$this->mXslt = $params['xslt'];
-
 		$this->printText( '<?xml version="1.0"?>' );
 		if ( !is_null( $this->mXslt ) ) {
 			$this->addXslt();
