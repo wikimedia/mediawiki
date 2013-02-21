@@ -98,12 +98,20 @@ class RedisConnectionPool {
 	 * @return RedisConnectionPool
 	 */
 	public static function singleton( array $options ) {
-		ksort( $options ); // normalize
-		$id = sha1( serialize( $options ) );
+		// Map the options to a unique hash...
+		$poolOptions = $options;
+		unset( $poolOptions['poolSize'] ); // avoid pool fragmentation
+		ksort( $poolOptions ); // normalize to avoid pool fragmentation
+		$id = sha1( serialize( $poolOptions ) );
+		// Initialize the object at the hash as needed...
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = new self( $options );
 			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
 		}
+		// Simply grow the pool size if the existing one is too small
+		$psize = isset( $options['poolSize'] ) ? $options['poolSize'] : 1; // size requested
+		self::$instances[$id]->poolSize = max( $psize, self::$instances[$id]->poolSize );
+
 		return self::$instances[$id];
 	}
 
