@@ -419,7 +419,7 @@ $1',
 'viewsourcetext' => 'ܡܨܐ ܐܢܬ ܕܬܚܙܐ ܘܬܢܣܚ ܠܡܒܘ̈ܥܐ ܕܗܕܐ ܦܐܬܐ:',
 'protectedinterface' => 'ܗܕܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ ܒܗܢܐ ܘܝܩܝ, ܘܐܝܬܝܗܝ ܢܛܪܬܐ ܠܡܘܢܥ ܚܘܒܠܐ.
 ܠܡܘܣܦ ܐܘ ܫܘܚܠܦ ܬܘܪ̈ܓܡܐ ܕܟܠܗܘܢ ܘܝܩܝ، ܐܦܠܚ [//translatewiki.net/ translatewiki.net]، ܬܪܡܝܬܐ ܕܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ.',
-'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܫܚܠܦܬ ܦܐܬܐ ܕܡܬܦܠܚܬ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܬܚܪܙܬܐ.
+'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܬܫܚܠܦ ܦܐܬܐ ܕܡܬܦܠܚܬ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܬܚܪܙܬܐ.
 ܟܠ ܫܘܚܠܦܐ ܒܦܐܬܐ ܗܕܐ ܢܗܘܐ ܠܗ ܡܥܒܕܢܘܬܐ ܥܠ ܐܣܟܡܐ ܕܦܐܬܐ ܕܡܦܠܚܢܐ ܕܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ ܒܘܝܩܝ ܗܢܐ.
 ܠܡܘܣܦ ܐܘ ܫܘܚܠܦ ܬܘܪ̈ܓܡܐ ܕܟܠܗܘܢ ܘܝܩܝ، ܐܦܠܚ [//translatewiki.net/ translatewiki.net]، ܬܪܡܝܬܐ ܕܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ.",
 'sqlhidden' => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
@@ -841,6 +841,7 @@ $1',
 
 # User rights log
 'rightslog' => 'ܣܓܠܐ ܕܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
+'rightslogtext' => 'ܗܢܘ ܣܓܠܐ ܕܫܘܚܠܦ̈ܐ ܕܙܕ̈ܩܐ ܕܡܦܠܚܢܐ.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ܩܪܝ ܦܐܬܐ ܗܕܐ',
@@ -1256,6 +1257,7 @@ $1',
 'actioncomplete' => 'ܥܡܠܝܬܐ ܓܡܪܬ',
 'actionfailed' => 'ܥܡܠܝܬܐ ܠܐ ܢܨܚܬ',
 'dellogpage' => 'ܣܓܠܐ ܕܫܝܦܐ',
+'dellogpagetext' => 'ܠܬܚܬ ܡܟܬܒܘܬܐ ܕܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ ܚܕ̈ܬܬܐ.',
 'deletionlog' => 'ܣܓܠܐ ܕܫܝܦܐ',
 'deletecomment' => 'ܥܠܬܐ:',
 'deleteotherreason' => 'ܥܠܬܐ ܐܚܪܬܐ/ܝܬܝܪܬܐ:',

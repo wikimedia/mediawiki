@@ -1266,9 +1266,23 @@ Lihek pulo [[Special:WantedCategories|kategori nan diinginkan]].',
 'listgrouprights-members' => '(dafta anggota)',
 
 # E-mail user
-'emailuser' => 'Kirim surel pangguno ko',
+'emailuser' => 'Surel pangguno',
+'emailuser-title-target' => 'Kirim surel ka {{GENDER:$1|panggun}} ko',
+'emailuser-title-notarget' => 'Kirim surel',
+'emailpage' => 'Kirim surel ka pangguno ko',
 'emailpagetext' => 'Sanak dapek manggunoan formulir di bawah ko untuak mangirimkan surel ka {{GENDER:$1|pangguna}} ko.
 Alamaik surel nan Sanak masuakkan di [[Special:Preferences|pangaturan akun]] akan kalua sabagai alamaik "Dari" pado surel tasabuik, jadi panarimo dapek langsuang mambalehnyo.',
+'usermaildisabled' => 'Surel pangguno non-aktif',
+'emailtarget' => 'Masuakan namo pangguno nan ka manarimo surel',
+'emailusername' => 'Namo pangguno:',
+'emailusernamesubmit' => 'Kirim',
+'email-legend' => 'Kirim surel ka pangguno {{SITENAME}} lainnyo',
+'emailfrom' => 'Dari:',
+'emailto' => 'Untuak:',
+'emailsubject' => 'Perihal:',
+'emailmessage' => 'Pasan:',
+'emailsend' => 'Kirim',
+'emailccme' => 'Kirimkan denai salinan pasan.',
 
 # Watchlist
 'watchlist' => 'Daftapantau',
@@ -1276,10 +1290,12 @@ Alamaik surel nan Sanak masuakkan di [[Special:Preferences|pangaturan akun]] aka
 'watchlistfor2' => 'Untuak $1 $2',
 'addedwatchtext' => "Laman \"[[:\$1]]\" lah ditambahkan ka [[Special:Watchlist|senarai pantauan awak]].
 Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba''' pado [[Special:RecentChanges|senarai parubahan]] agar lebih mudah manjagonyo.",
-'removedwatchtext' => 'Laman "[[:$1]]" lah dihapuih dari [[Special:Watchlist|senarai pantauan awak]].',
+'removewatch' => 'Hapuih dari daftapantau',
+'removedwatchtext' => 'Laman "[[:$1]]" lah dihapuih dari [[Special:Watchlist|dafta pantau Sanak]].',
 'watch' => 'Pantau',
 'watchthispage' => 'Pantau laman ko',
 'unwatch' => 'Batal pantau',
+'unwatchthispage' => 'Batal pantau laman ko',
 'watchlist-details' => '{{PLURAL:$1|$1 laman}} dalam daftapantau awak, indak tamasuak laman diskusi.',
 'wlshowlast' => 'Tampilkan $1 jam $2 hari tarakhia $3',
 'watchlist-options' => 'Piliahan daftapantau',
@@ -1290,6 +1306,7 @@ Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba'''
 
 # Delete
 'deletepage' => 'Hapuih laman',
+'confirm' => 'Konfirmasi',
 'confirmdeletetext' => 'Awak akan mahapuih laman atau berkas basamo riwayatnyo.
 Pastikan awak mainginkannyo, dan awak lah tahu sagalo akibatnyo dan sasuai jo [[{{MediaWiki:Policy-url}}|kebijakan]] yang balaku.',
 'actioncomplete' => 'Proses salasai',
@@ -1302,7 +1319,12 @@ Caliak $2 untuak rakam jajak laman nan lah dihapuih.',
 'deletereasonotherlist' => 'Alasan lain',
 
 # Rollback
-'rollbacklink' => 'baliakkan',
+'rollback' => 'Baliakan suntiangan',
+'rollback_short' => 'Baliakan',
+'rollbacklink' => 'baliakan',
+'rollbacklinkcount' => 'baliakan $1 {{PLURAL:$1|suntiangan}}',
+'rollbacklinkcount-morethan' => 'baliakan labiah dari $1 {{PLURAL:$1|suntiangan}}',
+'rollbackfailed' => 'Gagal mambaliakan',
 
 # Protect
 'protectlogpage' => 'Log palinduangan',
@@ -1509,7 +1531,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'tooltip-feed-rss' => 'Umpan RSS untuak laman ko',
 'tooltip-feed-atom' => 'Umpan Atom untuak laman ko',
 'tooltip-t-contributions' => 'Caliak dafta jariah pangguno ko',
-'tooltip-t-emailuser' => 'Kirim surel ka pangguno ko',
+'tooltip-t-emailuser' => 'Kirimkan surel pado pangguno ko',
 'tooltip-t-upload' => 'Muek berkas',
 'tooltip-t-specialpages' => 'Dafta dari sado laman istimewa',
 'tooltip-t-print' => 'Versi cetak dari laman ko',
@@ -1560,6 +1582,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'pageinfo-length' => 'Panjang laman (dalam bita)',
 'pageinfo-article-id' => 'ID Laman',
 'pageinfo-firstuser' => 'Pambuek laman',
+'pageinfo-toolboxlink' => 'Informasi laman',
 
 # Skin names
 'skinname-standard' => 'Klasik',

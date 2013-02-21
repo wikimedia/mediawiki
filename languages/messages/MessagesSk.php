@@ -2173,7 +2173,7 @@ Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo
 'allpagesprev' => 'Predchádzajúci',
 'allpagesnext' => 'Ďalší',
 'allpagessubmit' => 'Vykonať',
-'allpagesprefix' => 'Zobraziť stránky s predponou:',
+'allpagesprefix' => 'Zobraziť stránky začínajúce na:',
 'allpagesbadtitle' => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 'allpages-bad-ns' => '{{SITENAME}} nemá menný priestor „$1“.',
 'allpages-hide-redirects' => 'Skryť presmerovania',

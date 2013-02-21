@@ -6471,7 +6471,8 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].",
 * $2: optional, the count of names in $1',
 'others' => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 
-The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.',
+The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.
+{{Identical|Other}}',
 'siteusers' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
@@ -7759,7 +7760,8 @@ See also:
 See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
 {{Related|Exif-ycbcrpositioning}}',
 
-'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.',
+'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.
+{{Identical|Contributor}}',
 'exif-dc-coverage' => '"The extent or scope of the resource" see dc:coverage in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-dc-date' => 'One or more dates associated with the image. How they are associated is not really defined. From the dc:date XMP property.',
 'exif-dc-publisher' => 'One or more publisher of resource.

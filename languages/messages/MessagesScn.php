@@ -1715,7 +1715,7 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 'linksearch' => 'Lijami di fora',
 'linksearch-pat' => 'Mudellu di circata:',
 'linksearch-ns' => 'Namespace:',
-'linksearch-ok' => 'Cerca',
+'linksearch-ok' => 'Arriscedi',
 'linksearch-text' => 'C\'è la pussibbilitati di fari usu di metacaràttiri, p\'asèmpiu "*.wikipedia.org".<br />
 Protucolli suppurtati: <code>$1</code>',
 'linksearch-line' => '$1 prisenti ntâ pàggina $2',
@@ -2017,7 +2017,7 @@ $1',
 'sp-contributions-search' => 'Ricerca cuntribbuti',
 'sp-contributions-username' => 'Nnirizzu IP o nomu utenti:',
 'sp-contributions-toponly' => "Ammuscia sulu li cuntribbuti ca sunnu l'ùrtimi rivisioni pâ pàggina",
-'sp-contributions-submit' => 'Ricerca',
+'sp-contributions-submit' => 'Risciduta',
 
 # What links here
 'whatlinkshere' => 'Chi punta ccà',
@@ -2082,7 +2082,7 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:BlockList|lista di l'IP bluccati]]
 'unblocked-id' => 'Lu bloccu $1 hà statu cacciatu',
 'ipblocklist' => 'Utiloizzatura bluccati',
 'ipblocklist-legend' => "Atrova n'utenti bluccatu",
-'ipblocklist-submit' => 'Ricerca',
+'ipblocklist-submit' => 'Risciduta',
 'infiniteblock' => 'nfinitu',
 'expiringblock' => 'scadi lu $1 ê $2',
 'anononlyblock' => 'sulu anònimi',
@@ -3001,7 +3001,7 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'rightsnone' => '(nuddu)',
 
 # Search suggestions
-'searchsuggest-search' => 'Ricerca',
+'searchsuggest-search' => 'Risciduta',
 
 # API errors
 'api-error-nomodule' => 'Erruri nternu: nun fu mpustatu lu mòdulu di carricamentu',

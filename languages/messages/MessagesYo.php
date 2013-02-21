@@ -2082,7 +2082,7 @@ Orúkọ ibiàyè pọndandan, fún àpẹrẹ "*.org".<br />
 'usermessage-editor' => 'Sìstẹ́mú olúránṣẹ́',
 
 # Watchlist
-'watchlist' => 'Ìmójútó mi',
+'watchlist' => 'Ìmójútó',
 'mywatchlist' => 'Ìmójútó',
 'watchlistfor2' => 'Fún $1 $2',
 'nowatchlist' => 'Ẹ kò ní ohun kankan nínú ìmójútó yín.',
@@ -2252,7 +2252,7 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 'protect-default' => 'Ẹ gba gbogbo àwọn oníṣe láàyè',
 'protect-fallback' => 'Ìyọ̀nda "$1" pọn dandan',
 'protect-level-autoconfirmed' => 'Dínà àwọn oníṣe tuntun àti tíkòforúkọ sílẹ́',
-'protect-level-sysop' => 'Alámùójútó nìkan',
+'protect-level-sysop' => 'Gba àwọn alámùójútó nìkan láyè',
 'protect-summary-cascade' => 'títẹ̀léra',
 'protect-expiring' => 'parí ní $1 (UTC)',
 'protect-expiring-local' => 'yíò parí ní $1',
@@ -2899,6 +2899,8 @@ Fáìlì náà jẹ́ rírùsóké ní àbọ̀.',
 'pageinfo-protect-cascading' => 'Àbò bẹ̀rẹ̀ láti ibí',
 'pageinfo-protect-cascading-yes' => 'Bẹ́ẹ̀ni',
 'pageinfo-protect-cascading-from' => 'Àbò bẹ̀rẹ̀ láti',
+'pageinfo-category-pages' => 'Iye àwọn ojúewé',
+'pageinfo-category-files' => 'Iye àwọn fáìlì',
 
 # Patrolling
 'markaspatrolleddiff' => 'Ìṣààmí sí bíi sísọ́',
@@ -3456,7 +3458,7 @@ $5
 'specialpages-group-highuse' => 'Àwọn ojúewé ìlò gíga',
 'specialpages-group-pages' => 'Àkójọ àwọn ojúewé',
 'specialpages-group-pagetools' => 'Àwọn irinṣẹ́ ojúewé',
-'specialpages-group-wiki' => 'Àwọn irinṣẹ́ àti dátà wiki',
+'specialpages-group-wiki' => 'Àwọn irinṣẹ́ àti dátà',
 'specialpages-group-redirects' => 'Ìtúnjúwe àwọn ojúewé pàtàkì',
 'specialpages-group-spam' => 'Irínṣẹ́ spam',
 
