@@ -581,6 +581,27 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::getAllQueuedJobs()
+	 * @return Iterator
+	 */
+	public function getAllQueuedJobs() {
+		list( $dbr, $scope ) = $this->getSlaveDB();
+		return new MappedIterator(
+			$dbr->select( 'job', '*', array( 'job_cmd' => $this->getType(), 'job_token' => '' ) ),
+			function( $row ) use ( $scope ) {
+				$job = Job::factory(
+					$row->job_cmd,
+					Title::makeTitle( $row->job_namespace, $row->job_title ),
+					strlen( $row->job_params ) ? unserialize( $row->job_params ) : false,
+					$row->job_id
+				);
+				$job->id = $row->job_id; // XXX: work around broken subclasses
+				return $job;
+			}
+		);
+	}
+
+	/**
 	 * @return Array (DatabaseBase, ScopedCallback)
 	 */
 	protected function getSlaveDB() {
