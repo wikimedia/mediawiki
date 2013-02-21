@@ -590,8 +590,12 @@ class Xml {
 	 * for JavaScript source code.
 	 * Illegal control characters are assumed not to be present.
 	 *
-	 * @deprecated since 1.21; use Xml::encodeJsVar() or Xml::encodeJsCall() instead
+<<<<<<< HEAD
 	 * @param string $string to escape
+=======
+	 * @deprecated since 1.21; use Xml::encodeJsVar() or Xml::encodeJsCall() instead
+	 * @param $string String to escape
+>>>>>>> Combine JavaScript and JSON encoding logic
 	 * @return String
 	 */
 	public static function escapeJsString( $string ) {
@@ -643,6 +647,13 @@ class Xml {
 	 * Create a call to a JavaScript function. The supplied arguments will be
 	 * encoded using Xml::encodeJsVar().
 	 *
+<<<<<<< HEAD
+	 * @param string $name The name of the function to call, or a JavaScript expression
+	 *    which evaluates to a function object which is called.
+	 * @param array $args of arguments to pass to the function.
+	 *
+=======
+>>>>>>> Combine JavaScript and JSON encoding logic
 	 * @since 1.17
 	 * @param string $name The name of the function to call, or a JavaScript expression
 	 *    which evaluates to a function object which is called.
