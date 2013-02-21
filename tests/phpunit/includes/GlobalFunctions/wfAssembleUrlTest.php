@@ -1,9 +1,8 @@
 <?php
 /**
- * Unit tests for wfAssembleUrl()
+ * Tests for wfAssembleUrl()
  */
-
-class wfAssembleUrl extends MediaWikiTestCase {
+class WfAssembleUrlTest extends MediaWikiTestCase {
 	/** @dataProvider provideURLParts */
 	public function testWfAssembleUrl( $parts, $output ) {
 		$partsDump = print_r( $parts, true );

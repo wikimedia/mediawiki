@@ -1,6 +1,6 @@
 <?php
 
-class wfGetCaller extends MediaWikiTestCase {
+class WfGetCallerTest extends MediaWikiTestCase {
 
 	function testZero() {
 		$this->assertEquals( __METHOD__, wfGetCaller( 1 ) );

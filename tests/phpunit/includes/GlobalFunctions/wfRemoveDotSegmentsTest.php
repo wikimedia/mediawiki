@@ -1,9 +1,8 @@
 <?php
 /**
- * Unit tests for wfRemoveDotSegments()
+ * Tests for wfRemoveDotSegments()
  */
-
-class wfRemoveDotSegments extends MediaWikiTestCase {
+class WfRemoveDotSegmentsTest extends MediaWikiTestCase {
 	/** @dataProvider providePaths */
 	public function testWfRemoveDotSegments( $inputPath, $outputPath ) {
 		$this->assertEquals(

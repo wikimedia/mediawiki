@@ -1,9 +1,8 @@
 <?php
-
 /**
  * Tests for wfBaseConvert()
  */
-class wfBaseConvertTest extends MediaWikiTestCase {
+class WfBaseConvertTest extends MediaWikiTestCase {
 	public static function provideSingleDigitConversions() {
 		return array(
 			//      2    3    5    8   10   16   36

@@ -1,6 +1,6 @@
 <?php
 
-class wfShorthandToIntegerTest extends MediaWikiTestCase {
+class WfShorthandToIntegerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideABunchOfShorthands
 	 */
