@@ -19,30 +19,13 @@
  *
  * @file
  */
-
-
 class RedisBagOStuff extends BagOStuff {
-	protected $connectTimeout, $persistent, $password, $automaticFailover;
-
-	/**
-	 * A list of server names, from $params['servers']
-	 */
+	/** @var RedisConnectionPool */
+	protected $redisPool;
+	/** @var Array List of server names */
 	protected $servers;
-
-	/**
-	 * A cache of Redis objects, representing connections to Redis servers.
-	 * The key is the server name.
-	 */
-	protected $conns = array();
-
-	/**
-	 * An array listing "dead" servers which have had a connection error in
-	 * the past. Servers are marked dead for a limited period of time, to
-	 * avoid excessive overhead from repeated connection timeouts. The key in
-	 * the array is the server name, the value is the UNIX timestamp at which
-	 * the server is resurrected.
-	 */
-	protected $deadServers = array();
+	/** @var bool */
+	protected $automaticFailover;
 
 	/**
 	 * Construct a RedisBagOStuff object. Parameters are:
@@ -71,18 +54,15 @@ class RedisBagOStuff extends BagOStuff {
 	 *     flap, for example if it is in swap death.
 	 */
 	function __construct( $params ) {
-		if ( !extension_loaded( 'redis' ) ) {
-			throw new MWException( __CLASS__. ' requires the phpredis extension: ' .
-				'https://github.com/nicolasff/phpredis' );
+		$redisConf = array( 'serializer' => 'php' );
+		foreach ( array( 'connectTimeout', 'persistent', 'password' ) as $opt ) {
+			if ( isset( $params[$opt] ) ) {
+				$redisConf[$opt] = $params[$opt];
+			}
 		}
+		$this->redisPool = RedisConnectionPool::singleton( $redisConf );
 
 		$this->servers = $params['servers'];
-		$this->connectTimeout = isset( $params['connectTimeout'] )
-			? $params['connectTimeout'] : 1;
-		$this->persistent = !empty( $params['persistent'] );
-		if ( isset( $params['password'] ) ) {
-			$this->password = $params['password'];
-		}
 		if ( isset( $params['automaticFailover'] ) ) {
 			$this->automaticFailover = $params['automaticFailover'];
 		} else {
@@ -101,7 +81,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = $conn->get( $key );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 		$casToken = $result;
 		$this->logRequest( 'get', $key, $server, $result );
@@ -126,7 +106,7 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 
 		$this->logRequest( 'set', $key, $server, $result );
@@ -134,13 +114,6 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	/**
-	 * @param $casToken mixed
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
-	 * @return bool
-	 */
 	public function cas( $casToken, $key, $value, $expiry = 0 ) {
 		wfProfileIn( __METHOD__ );
 		list( $server, $conn ) = $this->getConnection( $key );
@@ -169,7 +142,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = $conn->exec();
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 
 		$this->logRequest( 'cas', $key, $server, $result );
@@ -190,7 +163,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = true;
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 		$this->logRequest( 'delete', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
@@ -228,7 +201,7 @@ class RedisBagOStuff extends BagOStuff {
 					}
 				}
 			} catch ( RedisException $e ) {
-				$this->handleException( $server, $e );
+				$this->handleException( $server, $conn, $e );
 			}
 		}
 
@@ -253,7 +226,7 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 		$this->logRequest( 'add', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
@@ -285,7 +258,7 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 
 		$this->logRequest( 'replace', $key, $server, $result );
@@ -317,7 +290,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $e );
+			$this->handleException( $server, $conn, $e );
 		}
 
 		$this->logRequest( 'incr', $key, $server, $result );
@@ -327,6 +300,7 @@ class RedisBagOStuff extends BagOStuff {
 
 	/**
 	 * Get a Redis object with a connection suitable for fetching the specified key
+	 * @return Array (server, RedisConnRef) or (false, false)
 	 */
 	protected function getConnection( $key ) {
 		if ( count( $this->servers ) === 1 ) {
@@ -340,87 +314,12 @@ class RedisBagOStuff extends BagOStuff {
 		}
 
 		foreach ( $candidates as $server ) {
-			$conn = $this->getConnectionToServer( $server );
+			$conn = $this->redisPool->getConnection( $server );
 			if ( $conn ) {
 				return array( $server, $conn );
 			}
 		}
 		return array( false, false );
-	}
-
-	/**
-	 * Get a connection to the server with the specified name. Connections
-	 * are cached, and failures are persistent to avoid multiple timeouts.
-	 *
-	 * @param $server
-	 * @throws MWException
-	 * @return Redis object, or false on failure
-	 */
-	protected function getConnectionToServer( $server ) {
-		if ( isset( $this->deadServers[$server] ) ) {
-			$now = time();
-			if ( $now > $this->deadServers[$server] ) {
-				// Dead time expired
-				unset( $this->deadServers[$server] );
-			} else {
-				// Server is dead
-				$this->debug( "server $server is marked down for another " .
-					($this->deadServers[$server] - $now ) .
-					" seconds, can't get connection" );
-				return false;
-			}
-		}
-
-		if ( isset( $this->conns[$server] ) ) {
-			return $this->conns[$server];
-		}
-
-		if ( substr( $server, 0, 1 ) === '/' ) {
-			// UNIX domain socket
-			// These are required by the redis extension to start with a slash, but
-			// we still need to set the port to a special value to make it work.
-			$host = $server;
-			$port = 0;
-		} else {
-			// TCP connection
-			$hostPort = IP::splitHostAndPort( $server );
-			if ( !$hostPort ) {
-				throw new MWException( __CLASS__.": invalid configured server \"$server\"" );
-			}
-			list( $host, $port ) = $hostPort;
-			if ( $port === false ) {
-				$port = 6379;
-			}
-		}
-		$conn = new Redis;
-		try {
-			if ( $this->persistent ) {
-				$this->debug( "opening persistent connection to $host:$port" );
-				$result = $conn->pconnect( $host, $port, $this->connectTimeout );
-			} else {
-				$this->debug( "opening non-persistent connection to $host:$port" );
-				$result = $conn->connect( $host, $port, $this->connectTimeout );
-			}
-			if ( !$result ) {
-				$this->logError( "could not connect to server $server" );
-				// Mark server down for 30s to avoid further timeouts
-				$this->deadServers[$server] = time() + 30;
-				return false;
-			}
-			if ( $this->password !== null ) {
-				if ( !$conn->auth( $this->password ) ) {
-					$this->logError( "authentication error connecting to $server" );
-				}
-			}
-		} catch ( RedisException $e ) {
-			$this->deadServers[$server] = time() + 30;
-			wfDebugLog( 'redis', "Redis exception: " . $e->getMessage() . "\n" );
-			return false;
-		}
-
-		$conn->setOption( Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP );
-		$this->conns[$server] = $conn;
-		return $conn;
 	}
 
 	/**
@@ -436,9 +335,8 @@ class RedisBagOStuff extends BagOStuff {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 */
-	protected function handleException( $server, $e ) {
-		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
-		unset( $this->conns[$server] );
+	protected function handleException( $server, RedisConnRef $conn, $e ) {
+		$this->redisPool->handleException( $server, $conn, $e );
 	}
 
 	/**
