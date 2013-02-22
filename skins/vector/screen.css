@@ -783,6 +783,8 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 #pt-login {
 	/* @embed */
 	background: url(images/user-icon.png) left top no-repeat;
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/user-icon.svg);
+	background-image: linear-gradient(transparent, transparent), url(images/user-icon.svg);
 	padding-left: 15px !important;
 	text-transform: none;
 }
