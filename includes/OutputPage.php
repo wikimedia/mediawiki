@@ -249,6 +249,11 @@ class OutputPage extends ContextSource {
 	private $mRedirectedFrom = null;
 
 	/**
+	 * Additional key => value data
+	 */
+	private $mProperties = array();
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -618,6 +623,32 @@ class OutputPage extends ContextSource {
 	 */
 	public function getArticleBodyOnly() {
 		return $this->mArticleBodyOnly;
+	}
+
+	/**
+	 * Set an additional output property
+	 * @since 1.21
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function setProperty( $name, $value ) {
+		$this->mProperties[$name] = $value;
+	}
+
+	/**
+	 * Get an additional output property
+	 * @since 1.21
+	 *
+	 * @param $name
+	 * @return mixed: Property value or null if not found
+	 */
+	public function getProperty( $name ) {
+		if ( isset( $this->mProperties[$name] ) ) {
+			return $this->mProperties[$name];
+		} else {
+			return null;
+		}
 	}
 
 	/**
