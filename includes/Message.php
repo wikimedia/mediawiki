@@ -221,20 +221,41 @@ class Message {
 	 */
 	public function __construct( $key, $params = array() ) {
 		global $wgLang;
+
+		if ( is_array( $key ) && empty( $key ) ) {
+			throw new MWException( "At least one message key must be provided!" );
+		}
+
 		$this->key = $key;
 		$this->parameters = array_values( $params );
 		$this->language = $wgLang;
 	}
 
 	/**
-	 * Returns the message key
+	 * Returns the message key. If this Message instance was created with an array
+	 * of keys, the first one is assumed to be the preferred key, and returned here.
 	 *
 	 * @since 1.21
 	 *
 	 * @return string
 	 */
 	public function getKey() {
-		return $this->key;
+		if ( is_array( $this->key ) ) {
+			return reset( $this->key ); // first value
+		} else {
+			return $this->key;
+		}
+	}
+
+	/**
+	 * Returns the message keys as an arrays in order of preference.
+	 *
+	 * @since 1.21
+	 *
+	 * @return arrays
+	 */
+	public function getKeys() {
+		return (array)$this->key;
 	}
 
 	/**

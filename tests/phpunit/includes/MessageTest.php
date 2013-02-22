@@ -71,4 +71,34 @@ class MessageTest extends MediaWikiLangTestCase {
 	function testInLanguageThrows() {
 		wfMessage( 'foo' )->inLanguage( 123 );
 	}
+
+	/**
+	 * @expectedException MWException
+	 */
+	function testNoKey() {
+		new Message( array() );
+	}
+
+	function testGetKey() {
+		$m = new Message( "foo" );
+		$this->assertEquals( "foo", $m->getKey() );
+
+		$m = new Message( array( "foo", "bar" ) );
+		$this->assertEquals( "foo", $m->getKey() );
+	}
+
+	function testGetKeys() {
+		$m = new Message( "foo" );
+		$this->assertEquals( array( "foo" ), $m->getKeys() );
+
+		$m = new Message( array( "foo", "bar" ) );
+		$this->assertEquals( array( "foo", "bar" ), $m->getKeys() );
+	}
+
+	function testGetParams() {
+		$m = new Message( "foo" );
+		$m->params( "2", 5 );
+
+		$this->assertEquals( array( "2", 5 ), $m->getParams() );
+	}
 }
