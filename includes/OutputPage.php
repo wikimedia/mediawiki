@@ -2976,6 +2976,7 @@ $templates
 			'wgCanonicalSpecialPageName' => $canonicalName,
 			'wgNamespaceNumber' => $title->getNamespace(),
 			'wgPageName' => $title->getPrefixedDBKey(),
+			'wgFullTitle' => $title->getPrefixedText(),
 			'wgTitle' => $title->getText(),
 			'wgCurRevisionId' => $latestRevID,
 			'wgArticleId' => $pageID,
