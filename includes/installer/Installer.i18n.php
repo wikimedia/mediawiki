@@ -1129,8 +1129,51 @@ $messages['as'] = array(
 );
 
 /** Asturian (asturianu)
+ * @author Xuacu
  */
 $messages['ast'] = array(
+	'config-desc' => "L'instalador pa MediaWiki",
+	'config-title' => 'Instalación de MediaWiki $1',
+	'config-information' => 'Información',
+	'config-localsettings-upgrade' => "Detectose un ficheru <code>LocalSettings.php</code>.
+P'anovar esta instalación, escriba'l valor de
+<code>\$wgUpgradeKey</code> nel cuadru d'abaxo.
+Alcontraralu en <code>LocalSettings.php</code>.",
+	'config-localsettings-cli-upgrade' => "Deteutose un ficheru <code>LocalSettings.php</code>.
+P'anovar esta instalación, execute <code>update.php</code>",
+	'config-localsettings-key' => "Clave d'anovamientu:",
+	'config-localsettings-badkey' => 'La clave que dio ye incorreuta.',
+	'config-upgrade-key-missing' => "Deteutose una instalación esistente de MediaWiki.
+P'anovar esta instalación, ponga la llinia siguiente al final del ficheru <code>LocalSettings.php</code>:
+
+$1",
+	'config-localsettings-incomplete' => 'Paez que\'l ficheru <code>LocalSettings.php</code> esistente ta incompletu.
+La variable $1 nun ta definida.
+Camude\'l ficheru <code>LocalSettings.php</code> pa qu\'esta variable quede definida y calque "{{int:Config-continue}}".',
+	'config-localsettings-connection-error' => 'Alcontrose un error al conectar cola base de datos usando la configuración especificada en <code>LocalSettings.php</code> o <code>AdminSettings.php</code>. Corrixa esta configuración y vuelva a intentalo.
+
+$1',
+	'config-your-language' => 'La so llingua:',
+	'config-your-language-help' => "Seleicione la llingua a emplegar nel procesu d'instalación.",
+	'config-wiki-language' => 'Llingua de la wiki:',
+	'config-wiki-language-help' => "Seleicione la llingua que s'usará preferentemente na wiki.",
+	'config-back' => '← Atrás',
+	'config-continue' => 'Siguir →',
+	'config-page-language' => 'Llingua',
+	'config-page-welcome' => '¡Bienveníu a MediaWiki!',
+	'config-page-dbconnect' => 'Conectar cola base de datos',
+	'config-page-upgrade' => 'Anovar instalación esistente',
+	'config-page-dbsettings' => 'Configuración de la base de datos',
+	'config-page-name' => 'Nome',
+	'config-page-options' => 'Opciones',
+	'config-page-install' => 'Instalar',
+	'config-page-complete' => '¡Completo!',
+	'config-page-restart' => 'Reaniciar la instalación',
+	'config-page-readme' => 'Llei-me',
+	'config-page-releasenotes' => 'Notes de la versión',
+	'config-page-copying' => 'Copiar',
+	'config-page-upgradedoc' => 'Anovando',
+	'config-page-existingwiki' => 'Wiki esistente',
 	'mainpagetext' => "'''MediaWiki instalóse correchamente.'''",
 	'mainpagedocfooter' => "Visita la [//meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
 
@@ -1138,7 +1181,7 @@ $messages['ast'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Llista de les opciones de configuración]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]", # Fuzzy
 );
 
 /** Kotava (Kotava)
@@ -3656,6 +3699,7 @@ $messages['da'] = array(
  * @author Rillke
  * @author The Evil IP address
  * @author Umherirrender
+ * @author Wikinaut
  * @author 아라
  */
 $messages['de'] = array(
@@ -3707,7 +3751,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
 	'config-page-existingwiki' => 'Vorhandenes Wiki',
-	'config-help-restart' => 'Sollen alle bereits eingegebene Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
+	'config-help-restart' => 'Sollen alle bereits eingegebenen Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
 	'config-restart' => 'Ja, erneut starten',
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
 Die Basisprüfungen werden durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.

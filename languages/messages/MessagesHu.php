@@ -446,6 +446,7 @@ $messages = array(
 'newwindow' => '(új ablakban nyílik meg)',
 'cancel' => 'Mégse',
 'moredotdotdot' => 'Tovább…',
+'morenotlisted' => 'Tovább…',
 'mypage' => 'Lapom',
 'mytalk' => 'Vitalap',
 'anontalk' => 'Az IP-címhez tartozó vitalap',
@@ -744,7 +745,7 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'gotaccount' => "Ha már korábban regisztráltál, '''$1'''!",
 'gotaccountlink' => 'Bejelentkezés',
 'userlogin-resetlink' => 'Elfelejtetted a bejelentkezési adataidat?',
-'createaccountmail' => 'e-mailben',
+'createaccountmail' => 'Átmeneti, véletlenszerű jelszó használata és kiküldése az alábbi e-mail címre',
 'createaccountreason' => 'Indoklás:',
 'badretype' => 'A megadott jelszavak nem egyeznek.',
 'userexists' => 'A megadott felhasználónév már foglalt.
@@ -817,6 +818,7 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
 'user-mail-no-addy' => 'E-mail üzenetet próbáltál küldeni e-mail cím megadása nélkül.',
+'user-mail-no-body' => 'Az email nem tartalmaz elég hosszúságú szöveget.',
 
 # Change password dialog
 'resetpass' => 'Jelszó módosítása',
@@ -1035,8 +1037,8 @@ Azt is megígéred, hogy ezt magadtól írtad, vagy egy közkincsből vagy más 
 '''NE KÜLDJ BE JOGVÉDETT MUNKÁT ENGEDÉLY NÉLKÜL!'''",
 'longpageerror' => "'''HIBA: Az általad beküldött szöveg {{PLURAL:$1|egy kilobájt|$1 kilobájt}} hosszú, ami több az engedélyezett {{PLURAL:$2|egy kilobájtnál|$2 kilobájtnál}}.
 A szerkesztést nem lehet elmenteni.'''",
-'readonlywarning' => "'''FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták, ezért most nem fogod tudni elmenteni a szerkesztéseidet.
-A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.'''
+'readonlywarning' => "FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták, ezért most nem fogod tudni elmenteni a szerkesztéseidet!
+A lap szövegét másold egy szövegfájlba, amit később felhasználhatsz!'''
 
 Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1",
 'protectedpagewarning' => "'''Figyelem: Ez a lap le van védve, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.'''
@@ -2230,7 +2232,7 @@ Támogatott {{PLURAL:$2|protokoll|protokollok}}: <code>$1</code> (http:// az ala
 # Special:ActiveUsers
 'activeusers' => 'Aktív szerkesztők listája',
 'activeusers-intro' => 'Ez a lap azon felhasználók listáját tartalmazza, akik csináltak valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
-'activeusers-count' => '{{PLURAL:$1|egy|$1}} szerkesztés az utolsó {{PLURAL:$3|egy|$3}} napban',
+'activeusers-count' => '$1 szerkesztés az utolsó $3 napban',
 'activeusers-from' => 'Szerkesztők listázása a következő névtől kezdve:',
 'activeusers-hidebots' => 'Botok elrejtése',
 'activeusers-hidesysops' => 'Adminisztrátorok elrejtése',
@@ -2760,11 +2762,11 @@ ha nem teszed, ellenőrizd a [[Special:DoubleRedirects|dupla]] vagy [[Special:Br
 Neked kell biztosítanod, hogy a linkek továbbra is oda mutassanak, ahová mutatniuk kell.
 
 A lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres vagy átirányítás, és nincs laptörténete.
-Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, és nem tudsz egy már létező lapot véletlenül felülírni.
+Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, és nem tudsz létező lapot véletlenül felülírni.
 
 '''FIGYELEM!'''
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
-győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következményekkel.",
+győződj meg a folytatás előtt arról, hogy tisztában vagy a következményekkel.",
 'movepagetext-noredirectfixer' => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.
 A régi cím az új címre való átirányítás lesz.
 Ellenőrizd a [[Special:DoubleRedirects|dupla]] és a [[Special:BrokenRedirects|hibás átirányításoknál]], hogy a linkek továbbra is oda mutatnak, ahová mutatniuk kell.
@@ -3110,6 +3112,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-robot-noindex' => 'Nem indexelhető',
 'pageinfo-views' => 'Megtekintések száma',
 'pageinfo-watchers' => 'Figyelők száma',
+'pageinfo-few-watchers' => 'Kevesebb mint $1 szerkesztő figyeli',
 'pageinfo-redirects-name' => 'Átirányítások erre a lapra',
 'pageinfo-subpages-name' => 'Az lap allapjai',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|átirányítás}}; $3 {{PLURAL:$3|nem átirányítás}})',
@@ -3130,6 +3133,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-contentpage' => 'Tartalmi lapnak számít',
 'pageinfo-contentpage-yes' => 'Igen',
 'pageinfo-protect-cascading-yes' => 'Igen',
+'pageinfo-category-info' => 'Kategória információk',
 'pageinfo-category-pages' => 'Lapok száma',
 'pageinfo-category-subcats' => 'Alkategóriák száma',
 'pageinfo-category-files' => 'Fájlok száma',
@@ -3971,6 +3975,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-newusers-newusers' => '$1 felhasználói fiók létrehozva',
 'logentry-newusers-create' => '$1 felhasználói fiók létrehozva',
 'logentry-newusers-create2' => '$1 létrehozta $3 felhasználói fiókját',
+'logentry-newusers-byemail' => 'Szerkesztői lap $3 néven létrehozva $1 által, jelszó kiküldve emailben.',
 'logentry-newusers-autocreate' => '$1 fiók automatikusan létrehozva',
 'logentry-rights-rights' => '$1 megváltoztatta $3 csoport tagságát erről: $4 erre: $5',
 'logentry-rights-rights-legacy' => '$1 megváltoztatta $3 csoport tagságát',
@@ -4028,6 +4033,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-ok-but-empty' => 'Belső hiba: nem érkezett válasz a kiszolgálótól.',
 'api-error-overwrite' => 'Létező fájlok felülírására nem engedélyezett.',
 'api-error-stashfailed' => 'Belső hiba: a kiszolgálünak nem sikerült eltárolni az ideiglenes fájlt.',
+'api-error-publishfailed' => 'Belső hiba: a kiszolgálónak nem sikerült közzétennie az ideiglenes fájlt.',
 'api-error-timeout' => 'A kiszolgáló nem adott választ a várt időn belül.',
 'api-error-unclassified' => 'Ismeretlen hiba történt',
 'api-error-unknown-code' => 'Ismeretlen hiba: „$1”',

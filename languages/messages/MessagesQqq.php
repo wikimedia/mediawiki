@@ -3567,7 +3567,8 @@ See also:
 {{Identical|Size}}',
 'listfiles_description' => 'Column header for the result table displayed on [[Special:ListFiles]].
 {{Identical|Description}}',
-'listfiles_count' => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
+'listfiles_count' => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.
+{{Identical|Version}}',
 
 # File description page
 'file-anchor-link' => '{{Identical|File}}',

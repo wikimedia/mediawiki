@@ -1969,6 +1969,20 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'siteusers' => '{{PLURAL:$2|usor|usores}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage' => 'Auctores paginae',
 
+# Info page
+'pageinfo-title' => 'Res quae ad "$1" pertinent',
+'pageinfo-header-basic' => 'De hac pagina',
+'pageinfo-display-title' => 'Titulus ut in pagina ipsa monstratur',
+'pageinfo-length' => 'Magnitudo paginae (octeti)',
+'pageinfo-article-id' => 'Identificatio paginis',
+'pageinfo-language' => 'Lingua verborum in pagina',
+'pageinfo-firstuser' => 'Creator paginae',
+'pageinfo-firsttime' => 'Dies et tempus creationis paginae',
+'pageinfo-lastuser' => 'Usor qui ultimam recensionem fecit',
+'pageinfo-lasttime' => 'Dies ultimae emendationis',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria celata|Categoriae celatae}} ($1)',
+'pageinfo-toolboxlink' => 'De hac pagina',
+
 # Skin names
 'skinname-standard' => 'Norma',
 'skinname-cologneblue' => 'Caerulus Colonia',

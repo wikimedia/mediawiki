@@ -4131,6 +4131,8 @@ MediaWiki поширюється в надії, що вона буде кори�
 'version-entrypoints' => 'URL-адреса точки входу',
 'version-entrypoints-header-entrypoint' => 'Точка входу',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Шлях до статей]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Шлях до скриптів]',
 
 # Special:FilePath
 'filepath' => 'Шлях до файлу',
