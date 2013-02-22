@@ -160,6 +160,7 @@ return array(
 	),
 	'jquery.checkboxShiftClick' => array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.client' => array(
 		'scripts' => 'resources/jquery/jquery.client.js',
@@ -220,12 +221,14 @@ return array(
 		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.mockjax' => array(
 		'scripts' => 'resources/jquery/jquery.mockjax.js',
 	),
 	'jquery.mw-jump' => array(
 		'scripts' => 'resources/jquery/jquery.mw-jump.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.mwExtension' => array(
 		'scripts' => 'resources/jquery/jquery.mwExtension.js',
@@ -233,15 +236,18 @@ return array(
 	),
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
 		'styles' => 'resources/jquery/jquery.qunit.css',
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.qunit.completenessTest' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
 		'dependencies' => 'jquery.qunit',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.spinner' => array(
 		'scripts' => 'resources/jquery/jquery.spinner.js',
@@ -829,6 +835,7 @@ return array(
 			'jquery.mw-jump',
 			'mediawiki.util',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.startup' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
@@ -837,6 +844,7 @@ return array(
 			'mediawiki.util',
 		),
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.patrol.ajax' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.patrol.ajax.js',
@@ -951,6 +959,7 @@ return array(
 		) ),
 		'dependencies' => array( 'jquery.qunit' ),
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Tests */
@@ -965,6 +974,7 @@ return array(
 			'mediawiki.page.ready',
 		),
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Legacy */
