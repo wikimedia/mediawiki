@@ -127,6 +127,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
 
+		if ( $wgContLang->linkPrefixExtension() ) {
+			$data['linkprefix'] = wfMessage( 'linkprefix' );
+		}
+
+		$linktrail = $wgContLang->linkTrail();
+		if ( $linktrail ) {
+			$data['linktrail'] = $linktrail;
+		}
+
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
 		if ( $git ) {
 			$data['git-hash'] = $git;
