@@ -2,7 +2,7 @@
 /**
  * Tests for wfBaseName()
  */
-class wfBaseName extends MediaWikiTestCase {
+class WfBaseNameTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider providePaths
 	 */

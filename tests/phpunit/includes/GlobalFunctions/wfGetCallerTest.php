@@ -1,6 +1,6 @@
 <?php
 
-class wfGetCaller extends MediaWikiTestCase {
+class WfGetCallerTest extends MediaWikiTestCase {
 
 	function testZero() {
 		$this->assertEquals( __METHOD__, wfGetCaller( 1 ) );
@@ -11,7 +11,7 @@ class wfGetCaller extends MediaWikiTestCase {
 	}
 
 	function testOne() {
-		$this->assertEquals( "wfGetCaller::testOne", self::callerOne() );
+		$this->assertEquals( 'WfGetCallerTest::testOne', self::callerOne() );
 	}
 
 	function intermediateFunction( $level = 2, $n = 0 ) {
@@ -22,14 +22,14 @@ class wfGetCaller extends MediaWikiTestCase {
 	}
 
 	function testTwo() {
-		$this->assertEquals( "wfGetCaller::testTwo", self::intermediateFunction() );
+		$this->assertEquals( 'WfGetCallerTest::testTwo', self::intermediateFunction() );
 	}
 
 	function testN() {
-		$this->assertEquals( "wfGetCaller::testN", self::intermediateFunction( 2, 0 ) );
-		$this->assertEquals( "wfGetCaller::intermediateFunction", self::intermediateFunction( 1, 0 ) );
+		$this->assertEquals( 'WfGetCallerTest::testN', self::intermediateFunction( 2, 0 ) );
+		$this->assertEquals( 'WfGetCallerTest::intermediateFunction', self::intermediateFunction( 1, 0 ) );
 
 		for ( $i = 0; $i < 10; $i++ )
-			$this->assertEquals( "wfGetCaller::intermediateFunction", self::intermediateFunction( $i + 1, $i ) );
+			$this->assertEquals( 'WfGetCallerTest::intermediateFunction', self::intermediateFunction( $i + 1, $i ) );
 	}
 }
