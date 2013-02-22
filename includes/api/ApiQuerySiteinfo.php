@@ -137,6 +137,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['titleconversion'] = '';
 		}
 
+		if ( $wgContLang->linkPrefixExtension() ) {
+			$data['linkprefix'] = wfMessage( 'linkprefix' )->inContentLanguage()->text();
+		}
+
+		$linktrail = $wgContLang->linkTrail();
+		if ( $linktrail ) {
+			$data['linktrail'] = $linktrail;
+		}
+
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
 		if ( $git ) {
 			$data['git-hash'] = $git;
