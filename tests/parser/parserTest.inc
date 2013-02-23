@@ -131,6 +131,7 @@ class ParserTest {
 		}
 
 		$this->runDisabled = isset( $options['run-disabled'] );
+		$this->runParsoid = isset( $options['run-parsoid'] );
 
 		$this->hooks = array();
 		$this->functionHooks = array();
