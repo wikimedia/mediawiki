@@ -166,6 +166,12 @@ class EditPage {
 	const EDITFORM_ID                  = 'editform';
 
 	/**
+	 * Prefix of key for cookie used to pass post-edit state.
+	 * The revision id edited is added after this
+	 */
+	const POST_EDIT_COOKIE_KEY_PREFIX       = 'PostEditRevision';
+
+	/**
 	 * @var Article
 	 */
 	var $mArticle;
@@ -1128,6 +1134,35 @@ class EditPage {
 	}
 
 	/**
+	 * Sets post-edit cookie indicating the user just saved a particular revision.
+	 *
+	 * This uses a temporary cookie for each revision ID so separate saves will never
+	 * interfere with each other.
+	 *
+	 * The cookie is deleted in the mediawiki.action.view.postEdit JS module after
+	 * the redirect.
+	 *
+	 * @param OutputPage $out output page
+	 */
+	protected function setPostEditCookie( $out ) {
+		global $wgCookiePrefix, $wgCookieDomain;;
+		$revisionId = $this->mArticle->getLatest();
+		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
+		$response = $out->getRequest()->response();
+
+		// The cookie we set here must be clearable by JavaScript code, so
+		// it must not be marked HttpOnly. The JavaScript code converts the cookie
+		// to a wgPostEdit config variable.  If the variable were set on the server,
+		// it would be cached, which is unwanted here.
+		//
+		// Since WebResponse::setcookie does not allow forcing HTTP-only for a single
+		// cookie, we have to use PHP's setcookie() directly.
+		//
+		// We use a path of '/' since wgCookiePath is not exposed to JS
+		setcookie( $wgCookiePrefix . $postEditKey, '1', 0, '/', $wgCookieDomain );
+	}
+
+	/**
 	 * Attempt submission
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return bool false if output is done, true if the rest of the form should be displayed
@@ -1142,6 +1177,7 @@ class EditPage {
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
+			$this->setPostEditCookie( $wgOut );
 		}
 
 		switch ( $status->value ) {
