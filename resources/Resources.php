@@ -735,6 +735,10 @@ return array(
 			'metadata-collapse',
 		),
 	),
+	'mediawiki.action.view.postEdit' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.postEdit.js',
+		'dependencies' => 'jquery.cookie'
+	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
