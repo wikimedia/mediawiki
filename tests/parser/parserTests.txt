@@ -491,7 +491,6 @@ Italics and bold: other quote tests: (3,2,3,3)
 !!end
 
 
-
 !! test
 Italics and bold: other quote tests: (3,(2,2),3)
 !! input
@@ -500,6 +499,16 @@ Italics and bold: other quote tests: (3,(2,2),3)
 <p><b>this is about <i>foo's</i> family</b>
 </p>
 !!end
+
+
+!! test
+Italicized possessive
+!! input
+The ''[[Main Page]]'''s talk page.
+!! result
+<p>The <i><a href="/wiki/Main_Page" title="Main Page">Main Page</a>'</i>s talk page.
+</p>
+!! end
 
 ###
 ### <nowiki> test cases
@@ -7066,6 +7075,37 @@ Custom class
 [[Image:foobar.jpg|a|class=b]]
 !! result
 <p><a href="/wiki/File:Foobar.jpg" class="image" title="a"><img alt="a" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="b" /></a>
+</p>
+!! end
+
+!! test
+Localized image handling (1).
+!! options
+language=es
+!! input
+[[Archivo:Foobar.jpg|izquierda|enlace=foo|caption]]
+!! result
+<div class="floatleft"><a href="/wiki/Foo" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
+Localized image handling (2).
+!! options
+language=es
+!! input
+[[Archivo:Foobar.jpg|miniatura|izquierda|enlace=foo|caption]]
+!! result
+<div class="thumb tleft"><div class="thumbinner" style="width:182px;"><a href="/wiki/Foo" title="Foo"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Archivo:Foobar.jpg" class="internal" title="Aumentar"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>caption</div></div></div>
+
+!! end
+
+!! test
+"border", "frameless" and "class" attributes on an image.
+!! input
+[[File:Foobar.jpg|frameless|border|class=extra|caption]]
+!! result
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="extra thumbborder" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
 </p>
 !! end
 
@@ -13662,7 +13702,7 @@ disabled
 <table>
 <tr>
 <td title="Hello world">Foo
-</td><td style="color: red;">Bar
+</td><td style="color: red">Bar
 </td></tr></table>
 
 !! end
@@ -13711,6 +13751,27 @@ Accept empty attributes in th-cells
 </th></tr></table>
 
 !!end
+
+!!test
+Empty table rows go away
+!!input
+{|
+| Hello
+| there
+|- class="foo"
+|-
+|}
+!! result
+<table>
+<tr>
+<td> Hello
+</td>
+<td> there
+</td></tr>
+
+</table>
+
+!! end
 
 TODO:
 more images
