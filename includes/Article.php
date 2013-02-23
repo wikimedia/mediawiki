@@ -1816,6 +1816,7 @@ class Article implements Page {
 	 * @return Action|bool|null false if the action is disabled, null if it is not recognised
 	 */
 	public function purge() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return Action::factory( 'purge', $this )->show();
 	}
 
@@ -2070,6 +2071,7 @@ class Article implements Page {
 	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
 	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );
 	}
 	// ******

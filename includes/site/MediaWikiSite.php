@@ -39,13 +39,14 @@ class MediaWikiSite extends Site {
 
 	/**
 	 * @since 1.21
-	 * @deprecated Just use the constructor or the factory Site::newForType
+	 * @deprecated since 1.21 Just use the constructor or the factory Site::newForType
 	 *
 	 * @param integer $globalId
 	 *
 	 * @return MediaWikiSite
 	 */
 	public static function newFromGlobalId( $globalId ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		$site = new static();
 		$site->setGlobalId( $globalId );
 		return $site;

@@ -1296,6 +1296,7 @@ class Title {
 	 * Used for the title field in <a> tags.
 	 *
 	 * @return String the text, including any prefixes
+	 * @deprecated since 1.19
 	 */
 	public function getEscapedText() {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -1527,6 +1528,7 @@ class Title {
 	 * @param $query string
 	 * @param $query2 bool|string
 	 * @return String the URL
+	 * @deprecated since 1.19
 	 */
 	public function escapeLocalURL( $query = '', $query2 = false ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -1541,6 +1543,7 @@ class Title {
 	 *
 	 * @see self::getLocalURL
 	 * @return String the URL
+	 * @deprecated since 1.19
 	 */
 	public function escapeFullURL( $query = '', $query2 = false ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -1598,6 +1601,7 @@ class Title {
 	 * @see self::getLocalURL
 	 * @since 1.18
 	 * @return string
+	 * @deprecated since 1.19
 	 */
 	public function escapeCanonicalURL( $query = '', $query2 = false ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -1626,6 +1630,7 @@ class Title {
 	 * @return Bool
 	 */
 	public function userIsWatching() {
+		wfDeprecated( __METHOD__, '1.20' );
 		global $wgUser;
 
 		if ( is_null( $this->mWatched ) ) {

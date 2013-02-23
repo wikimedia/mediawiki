@@ -450,13 +450,14 @@ class Sites extends SiteSQLStore {
 	 * Factory for creating new site objects.
 	 *
 	 * @since 1.21
-	 * @deprecated
+	 * @deprecated since 1.21
 	 *
 	 * @param string|boolean false $globalId
 	 *
 	 * @return Site
 	 */
 	public static function newSite( $globalId = false ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		$site = new Site();
 
 		if ( $globalId !== false ) {
@@ -467,10 +468,11 @@ class Sites extends SiteSQLStore {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated since 1.21
 	 * @return SiteStore
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.21' );
 		static $singleton;
 
 		if ( $singleton === null ) {
@@ -481,10 +483,11 @@ class Sites extends SiteSQLStore {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated since 1.21
 	 * @return SiteList
 	 */
 	public function getSiteGroup( $group ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->getSites()->getGroup( $group );
 	}
 

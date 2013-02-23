@@ -498,6 +498,7 @@ class LanguageConverter {
 	 * @deprecated since 1.17 Use autoConvertToAllVariants() instead
 	 */
 	public function convertLinkToAllVariants( $text ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		return $this->autoConvertToAllVariants( $text );
 	}
 

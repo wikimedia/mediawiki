@@ -911,6 +911,7 @@ class OutputPage extends ContextSource {
 	 * @param $str String|Message to add to the subtitle
 	 */
 	public function appendSubtitle( $str ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		$this->addSubtitle( $str );
 	}
 
@@ -2058,6 +2059,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.18
 	 */
 	function blockedPage() {
+		wfDeprecated( __METHOD__, '1.18' );
 		throw new UserBlockedError( $this->getUser()->mBlock );
 	}
 
@@ -2203,6 +2205,7 @@ class OutputPage extends ContextSource {
 	 * @throws PermissionsError
 	 */
 	public function permissionRequired( $permission ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		throw new PermissionsError( $permission );
 	}
 
@@ -2212,6 +2215,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated in 1.19; throw the exception directly
 	 */
 	public function loginToUse() {
+		wfDeprecated( __METHOD__, '1.19' );
 		throw new PermissionsError( 'read' );
 	}
 
@@ -3679,6 +3683,7 @@ $templates
 	 * @deprecated since 1.17
 	 */
 	public function includeJQuery( $modules = array() ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		return array();
 	}
 

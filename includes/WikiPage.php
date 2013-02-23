@@ -3120,6 +3120,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Array of Title objects
 	 */
 	public function getUsedTemplates() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return $this->mTitle->getTemplateLinksFrom();
 	}
 
@@ -3201,6 +3202,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function updateRestrictions(
 		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.19' );
 		global $wgUser;
 
 		$user = is_null( $user ) ? $wgUser : $user;

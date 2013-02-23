@@ -694,6 +694,7 @@ class WebRequest {
 	 * @return String
 	 */
 	public function escapeAppendQuery( $query ) {
+		wfDeprecated( __METHOD__, '1.20' );
 		return htmlspecialchars( $this->appendQuery( $query ) );
 	}
 

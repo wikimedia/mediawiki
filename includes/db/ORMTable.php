@@ -792,6 +792,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return IORMTable
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.21' );
 		$class = get_called_class();
 
 		if ( !array_key_exists( $class, self::$instanceCache ) ) {
@@ -823,7 +824,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * @see ORMTable::newRowFromFromDBResult
 	 *
-	 * @deprecated use newRowFromDBResult instead
+	 * @deprecated since 1.21 use newRowFromDBResult instead
 	 * @since 1.20
 	 *
 	 * @param stdClass $result
@@ -831,6 +832,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return IORMRow
 	 */
 	public function newFromDBResult( stdClass $result ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return self::newRowFromDBResult( $result );
 	}
 
@@ -850,7 +852,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * @see ORMTable::newRow
 	 *
-	 * @deprecated use newRow instead
+	 * @deprecated since 1.21 use newRow instead
 	 * @since 1.20
 	 *
 	 * @param array $data
@@ -859,6 +861,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return IORMRow
 	 */
 	public function newFromArray( array $data, $loadDefaults = false ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return static::newRow( $data, $loadDefaults );
 	}
 
