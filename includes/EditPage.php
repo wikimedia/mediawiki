@@ -166,6 +166,26 @@ class EditPage {
 	const EDITFORM_ID                  = 'editform';
 
 	/**
+	 * Prefix of key for cookie used to pass post-edit state.
+	 * The revision id edited is added after this
+	 */
+	const POST_EDIT_COOKIE_KEY_PREFIX = 'PostEditRevision';
+
+	/**
+	 * Duration of PostEdit cookie, in seconds.
+	 * The cookie will be removed instantly if the JavaScript runs.
+	 *
+	 * Otherwise, though, we don't want the cookies to accumulate.
+	 * RFC 2109 ( https://www.ietf.org/rfc/rfc2109.txt ) specifies a possible limit of only 20 cookies per domain.
+	 * This still applies at least to some versions of IE without full updates:
+	 * https://blogs.msdn.com/b/ieinternals/archive/2009/08/20/wininet-ie-cookie-internals-faq.aspx
+	 *
+	 * A value of 20 minutes should be enough to take into account slow loads and minor
+	 * clock skew while still avoiding cookie accumulation when JavaScript is turned off.
+	 */
+	const POST_EDIT_COOKIE_DURATION = 1200;
+
+	/**
 	 * @var Article
 	 */
 	var $mArticle;
@@ -1128,6 +1148,33 @@ class EditPage {
 	}
 
 	/**
+	 * Sets post-edit cookie indicating the user just saved a particular revision.
+	 *
+	 * This uses a temporary cookie for each revision ID so separate saves will never
+	 * interfere with each other.
+	 *
+	 * The cookie is deleted in the mediawiki.action.view.postEdit JS module after
+	 * the redirect.  It must be clearable by JavaScript code, so it must not be
+	 * marked HttpOnly. The JavaScript code converts the cookie to a wgPostEdit config
+	 * variable.
+	 *
+	 * Since WebResponse::setcookie does not allow forcing HttpOnly for a single
+	 * cookie, we have to use PHP's setcookie() directly.
+	 *
+	 * We use a path of '/' since wgCookiePath is not exposed to JS
+	 *
+	 * If the variable were set on the server, it would be cached, which is unwanted
+	 * since the post-edit state should only apply to the load right after the save.
+	 */
+	protected function setPostEditCookie() {
+		global $wgCookiePrefix, $wgCookieDomain;;
+		$revisionId = $this->mArticle->getLatest();
+		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
+
+		setcookie( $wgCookiePrefix . $postEditKey, '1', time() + self::POST_EDIT_COOKIE_DURATION, '/', $wgCookieDomain );
+	}
+
+	/**
 	 * Attempt submission
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return bool false if output is done, true if the rest of the form should be displayed
@@ -1142,6 +1189,7 @@ class EditPage {
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
+			$this->setPostEditCookie();
 		}
 
 		switch ( $status->value ) {
