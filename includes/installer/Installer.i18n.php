@@ -7761,7 +7761,7 @@ Změń ju jenož, jeli su přeswědčiwe přičiny za to.',
 	'config-support-mysql' => '* $1 je primarny cil za MediaWiki a podpěruje so najlěpje ([http://www.php.net/manual/en/mysql.installation.php Nawod ke kompilowanju  PHP z  MySQL-podpěru])',
 	'config-support-postgres' => '* $1 je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php nawod za kompilowanje PHP z podpěru PostgreSQL]). Móhło hišće někotre zmylki eksistować, a njeporuča so jón w produktiwnej wokolinje wužiwać.',
 	'config-support-oracle' => '* $1 je komercielna předewzaćelska datowa banka. ([http://www.php.net/manual/en/oci8.installation.php Nawod za kompilowanje PHP z OCI8-podpěru])',
-	'config-support-ibm_db2' => '* $1 je komercielna předewzaćelska datowa banka.', # Fuzzy
+	'config-support-ibm_db2' => '* $1 je komercielna předewzaćelska datowa banka. ([http://www.php.net/manual/en/ibm-db2.installation.php How to compile PHP with IBM DB2 support])',
 	'config-header-mysql' => 'Nastajenja MySQL',
 	'config-header-postgres' => 'Nastajenja PostgreSQL',
 	'config-header-sqlite' => 'Nastajenja SQLite',
@@ -7853,7 +7853,7 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 	'config-optional-continue' => 'Dalše prašenja?',
 	'config-optional-skip' => 'Instaluj nětko wiki.',
 	'config-profile' => 'Profil wužiwarskich prawow:',
-	'config-profile-wiki' => 'Tradicionelny wiki', # Fuzzy
+	'config-profile-wiki' => 'Zjawny wiki',
 	'config-profile-no-anon' => 'Załoženje konto je trěbne',
 	'config-profile-fishbowl' => 'Jenož awtorizowani wobdźěłarjo',
 	'config-profile-private' => 'Priwatny wiki',
@@ -7911,7 +7911,7 @@ To móže sej přidatnu konfiguraciju wužadać, ale móžeš je nětko zmóžni
 	'config-install-alreadydone' => "'''Warnowanje:''' Zda so, zo sy hižo MediaWiki instalował a pospytuješ jón znowa instalować.
 Prošu pokročuj z přichodnej stronu.",
 	'config-install-begin' => 'Přez kliknjenje na "{{int:config-continue}}" budźe so instalacija MediaWiki startować.
-Jeli hišće chceš něšto změnić, klikń na "Wróćo".', # Fuzzy
+Jeli hišće chceš něšto změnić, klikń na "{{int:config-back}}".',
 	'config-install-step-done' => 'dokónčene',
 	'config-install-step-failed' => 'njeporadźiło',
 	'config-install-extensions' => 'Inkluziwnje rozšěrjenja',
@@ -7957,7 +7957,8 @@ Standardna lisćina sp přeskakuje.",
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Wo nastajenjach]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localise MediaWiki for your language]',
 );
 
 /** Haitian (Kreyòl ayisyen)

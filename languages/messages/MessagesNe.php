@@ -189,6 +189,7 @@ $messages = array(
 'newwindow' => '(नयाँ विन्डोमा खुल्छ)',
 'cancel' => 'रद्द',
 'moredotdotdot' => 'थप...',
+'morenotlisted' => 'थप जानकारी दिइएको  छैन',
 'mypage' => 'पृष्ठ',
 'mytalk' => 'वार्ता',
 'anontalk' => 'यस IP को वारेमा वार्तालाप गर्नुहोस्',

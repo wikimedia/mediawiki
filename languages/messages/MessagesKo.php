@@ -2620,7 +2620,7 @@ $UNWATCHURL
 'undeletehistory' => '문서를 되살리면 모든 역사가 같이 복구됩니다.
 문서가 삭제된 뒤 같은 이름의 문서가 만들어졌다면, 복구되는 역사는 지금 역사의 과거 부분에 나타날 것입니다.',
 'undeleterevdel' => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다.
-이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
+이러한 경우 삭제된 최신판 문서의 확인 상자를 선택 해제하거나 숨김을 해제해야 합니다.',
 'undeletehistorynoadmin' => '이 문서는 삭제되었습니다.
 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자가 아래에 나와 있습니다.
 삭제된 문서의 내용을 보려면 관리자 권한이 필요합니다.',
@@ -3933,7 +3933,7 @@ $5
 'watchlistedit-normal-title' => '주시문서 목록 편집하기',
 'watchlistedit-normal-legend' => '주시문서 목록에서 문서 제거하기',
 'watchlistedit-normal-explain' => '주시문서 목록에 있는 문서의 제목이 아래에 나열되어 있습니다.
-주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선택한 다음 "{{int:Watchlistedit-normal-submit}}"를 클릭해주세요.
+주시문서 목록에서 제거하려는 문서가 있으면 각 항목의 확인 상자를 선택한 다음 "{{int:Watchlistedit-normal-submit}}"를 클릭해주세요.
 또는 [[Special:EditWatchlist/raw|목록을 직접 편집]]할 수도 있습니다.',
 'watchlistedit-normal-submit' => '항목 삭제',
 'watchlistedit-normal-done' => '주시문서 목록에서 다음 {{PLURAL:$1|항목}}을 주시하지 않습니다:',

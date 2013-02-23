@@ -1133,7 +1133,7 @@ $3的理由是''$2''",
 'history-fieldset-title' => '浏览历史',
 'history-show-deleted' => '仅被删除的',
 'histfirst' => '最早',
-'histlast' => '最后',
+'histlast' => '最新',
 'historysize' => '（$1字节）',
 'historyempty' => '（空）',
 

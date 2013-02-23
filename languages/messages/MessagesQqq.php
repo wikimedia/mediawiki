@@ -724,9 +724,8 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 
 {{Identical|View source}}',
 'editsectionhint' => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
-'toc' => 'This is the title of the table of contents displayed in pages with more than 3 sections
-
-{{Identical|Contents}}',
+'toc' => 'This is the title of the table of contents displayed in pages with more than 3 sections.
+{{Identical|Content}}',
 'showtoc' => 'This is the link used to show the table of contents
 
 {{Identical|Show}}',
@@ -746,8 +745,14 @@ See also:
 
 See the following example:
 {{Identical|Expand}}',
-'thisisdeleted' => 'Message shown on a deleted page when the user has the undelete right. $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|viewdeleted}}.',
-'viewdeleted' => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|thisisdeleted}}.',
+'thisisdeleted' => 'Message shown on a deleted page when the user has the undelete right. Parameters:
+* $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text
+See also:
+* {{msg-mw|viewdeleted}}',
+'viewdeleted' => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). Parameters:
+* $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text
+See also:
+* {{msg-mw|thisisdeleted}}',
 'restorelink' => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see
 View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or
 ''View or restore n deleted edits?''",
@@ -1631,18 +1636,29 @@ See also:
 Parameters:
 * <tt>$1</tt> is the value of the depth limit
 * <tt>$2</tt> is the value of the max depth limit',
-'parser-unstrip-loop-warning' => 'This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
+'parser-unstrip-loop-warning' => '{{Doc-important|Do not translate function name "<code>unstrip</code>".}}
+This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
+
 The reference must be to the exact same invocation of the tag at the same location in the source, merely writing &lt;pre>&lt;pre>&lt;/pre>&lt;/pre> will not do it.
+
 This is usually impossible and unlikely to happen by accident, so translation is not essential.
-"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
+
+"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above.
+
+See also:
 *{{msg-mw|Parser-unstrip-recursion-limit}}',
-'parser-unstrip-recursion-limit' => 'This message is shown when the recursion limit for nested parser extension tags is exceeded.
+'parser-unstrip-recursion-limit' => '{{doc-important|Do not translate function name "<code>unstrip</code>".}}
+This message is shown when the recursion limit for nested parser extension tags is exceeded.
+
 This warning may be encountered due to input text like &lt;ref>&lt;ref>&lt;ref>...&lt;/ref>&lt;/ref>&lt;/ref>.
 
-* <tt>$1</tt> is the depth limit
+Parameters:
+* $1 - the depth limit
 
-"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above. See also:
-*{{msg-mw|Parser-unstrip-loop-warning}}',
+"Unstrip" refers to the internal function of the parser, called \'unstrip\', which recursively puts the output of parser functions in the place of the parser function call and which would enter an infinite loop in the situation above.
+
+See also:
+* {{msg-mw|Parser-unstrip-loop-warning}}',
 'converter-manual-rule-error' => "This message is shown when a manual conversion rule for the language converter has errors. For example it's not using the correct syntax, or not supplying text in all variants.",
 
 # "Undo" feature
@@ -3510,7 +3526,9 @@ See also:
 * {{msg-mw|Http-request-error}}
 * {{msg-mw|Http-read-error}}
 * {{msg-mw|Http-timed-out|28}}',
-'http-bad-status' => '$1 is an HTTP error code (e.g. 404), $2 is the HTTP error message (e.g. File Not Found)',
+'http-bad-status' => 'Parameters:
+* $1 - an HTTP error code (e.g. 404)
+* $2 - the HTTP error message (e.g. File Not Found)',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'See also:
@@ -8591,7 +8609,8 @@ $4 is the gender of the target user.',
 'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback. We expect that people in a hurry will not read this.',
 'feedback-subject' => 'Label for a text input
 {{Identical|Subject}}',
-'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.',
+'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.
+{{Identical|Message}}',
 'feedback-cancel' => 'Button label
 {{Identical|Cancel}}',
 'feedback-submit' => 'Button label

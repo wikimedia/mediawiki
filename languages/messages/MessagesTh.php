@@ -843,8 +843,8 @@ $2
 คุณสามารถ[[Special:Search/{{PAGENAME}}|ค้นหาชื่อหน้านี้]]ในหน้าอื่น หรือ<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ค้นหาปูมที่เกี่ยวข้อง]</span> แต่คุณไม่มีสิทธิสร้างหน้านี้',
 'missing-revision' => 'ไม่มีรุ่น #$1 ของหน้าชื่อ "{{PAGENAME}}" 
 
-โดยปกติเกิดหลังจากลิงก์ประวัติล้าสมัยไปยังหน้าที่ถูกลบ
-ดูรายละเอียดได้ที่[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]]',
+โดยปกติเกิดจากการเข้าลิงก์ประวัติเก่าของหน้าที่ถูกลบไปแล้ว
+ดูรายละเอียดได้ที่[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]',
 'userpage-userdoesnotexist' => 'บัญชีผู้ใช้ "<nowiki>$1</nowiki>" มิได้ลงทะเบียน กรุณาตรวจสอบก่อนว่าคุณต้องการสร้างหรือแก้ไขหน้านี้',
 'userpage-userdoesnotexist-view' => 'บัญชีผู้ใช้ "$1" มิได้ลงทะเบียน',
 'blocked-notice-logextract' => 'ปัจจุบันเลขที่อยู่ไอพีนี้ถูกบล็อก
@@ -1156,10 +1156,10 @@ $1",
 'editundo' => 'ย้อน',
 'diff-multi' => '(มิได้แสดง $1 รุ่นระหว่างกลางโดย{{PLURAL:$2|ผู้ใช้คนหนึ่ง|ผู้ใช้ $2 คน}})',
 'diff-multi-manyusers' => '(มิได้แสดง $1 รุ่นระหว่างกลางโดยผู้ใช้กว่า $2 คน)',
-'difference-missing-revision' => 'ไม่พบ{{PLURAL:$2|รุ่นหนึ่ง| $2 รุ่น}}ของผลต่างนี้ ($1)
+'difference-missing-revision' => 'ไม่พบรุ่น{{PLURAL:$2|รุ่น| $2 รุ่น}}ของผลต่างนี้ ($1)
 
-ซึ่งโดยปกติเกิดจากการตามลิงก์ผลต่างที่ล้าสมัยไปยังหน้าที่ถูกลบแล้ว 
-สามารถพบรายลเอียดใน[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]',
+โดยปกติเกิดจากการเข้าลิงก์ผลต่างของหน้าที่ถูกลบไปแล้ว 
+ดูรายละเอียดได้ที่[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]',
 
 # Search results
 'searchresults' => 'ผลการค้นหา',
