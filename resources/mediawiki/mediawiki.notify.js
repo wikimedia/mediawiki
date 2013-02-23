@@ -1,11 +1,13 @@
 /**
- * Implements mediaWiki.notify function
+ * @class mw.plugin.notify
  */
 ( function ( mw ) {
 	'use strict';
 
 	/**
-	 * @see mw.notification.notify
+	 * @see mw.notification#notify
+	 * @param message
+	 * @param options
 	 */
 	mw.notify = function ( message, options ) {
 		// Don't bother loading the whole notification system if we never use it.
@@ -16,5 +18,10 @@
 			mw.notify( message, options );
 		} );
 	};
+
+	/**
+	 * @class mw
+	 * @mixins mw.plugin.notify
+	 */
 
 }( mediaWiki ) );

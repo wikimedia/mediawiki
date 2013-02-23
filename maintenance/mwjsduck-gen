@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+jsduck --config=$(cd $(dirname $0)/..; pwd)/maintenance/jsduck/config.json && echo 'JSDuck execution finished.'
