@@ -463,8 +463,10 @@ class ChangesList extends ContextSource {
 	/**
 	 * Check whether to enable recent changes patrol features
 	 * @return Boolean
+	 * @deprecated since 1.21 Call User::useRCPatrol directly
 	 */
 	public static function usePatrol() {
+		wfDeprecated( __METHOD__, '1.21' );
 		global $wgUser;
 		return $wgUser->useRCPatrol();
 	}

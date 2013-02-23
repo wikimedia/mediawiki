@@ -337,8 +337,10 @@ class RecentChange {
 	 * @param $change Mixed: RecentChange or corresponding rc_id
 	 * @param $auto Boolean: for automatic patrol
 	 * @return Array See doMarkPatrolled(), or null if $change is not an existing rc_id
+	 * @deprecated since 1.21 Call RecentChanges::doMarkPatrolled directly
 	 */
 	public static function markPatrolled( $change, $auto = false ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		global $wgUser;
 
 		$change = $change instanceof RecentChange
