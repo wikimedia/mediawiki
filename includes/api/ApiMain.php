@@ -921,7 +921,13 @@ class ApiMain extends ApiBase {
 		$paramsUsed = $this->getParamsUsed();
 		$allParams = $this->getRequest()->getValueNames();
 
-		$unusedParams = array_diff( $allParams, $paramsUsed );
+		// Printer has not yet executed; don't warn that its parameters are unused
+		$printerParams = array_map(
+			array( $this->mPrinter, 'encodeParamName' ),
+			array_keys( $this->mPrinter->getFinalParams() ?: array() )
+		);
+
+		$unusedParams = array_diff( $allParams, $paramsUsed, $printerParams );
 		if( count( $unusedParams ) ) {
 			$s = count( $unusedParams ) > 1 ? 's' : '';
 			$this->setWarning( "Unrecognized parameter$s: '" . implode( $unusedParams, "', '" ) . "'" );
