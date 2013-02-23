@@ -42,12 +42,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
-		if( $this->bufferResults() ) {
-			$ret = mysql_query( $sql, $this->mConn );
-		} else {
-			$ret = mysql_unbuffered_query( $sql, $this->mConn );
-		}
-		return $ret;
+		return $this->mConn->query( $sql, $this->bufferResults() ? MYSQLI_STORE_RESULT : MYSQLI_USE_RESULT );
 	}
 
 	/**
@@ -63,12 +58,12 @@ class DatabaseMysql extends DatabaseBase {
 		wfProfileIn( __METHOD__ );
 
 		# Load mysql.so if we don't have it
-		wfDl( 'mysql' );
+		wfDl( 'mysqli' );
 
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
-		if ( !function_exists( 'mysql_connect' ) ) {
-			throw new DBConnectionError( $this, "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+		if ( !class_exists( 'mysqli' ) ) {
+			throw new DBConnectionError( $this, "MySQLi class missing, have you compiled PHP with the --with-mysql --with-mysqli options?\n" );
 		}
 
 		# Debugging hack -- fake cluster
@@ -90,6 +85,9 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $this->mFlags & DBO_COMPRESS ) {
 			$connFlags |= MYSQL_CLIENT_COMPRESS;
 		}
+		if ( $this->mFlags & DBO_PERSISTENT ) {
+			$realServer = "p:" . $realServer;
+		}
 
 		wfProfileIn( "dbconnect-$server" );
 
@@ -107,15 +105,16 @@ class DatabaseMysql extends DatabaseBase {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
-			if ( $this->mFlags & DBO_PERSISTENT ) {
-				$this->mConn = mysql_pconnect( $realServer, $user, $password, $connFlags );
-			} else {
-				# Create a new connection...
-				$this->mConn = mysql_connect( $realServer, $user, $password, true, $connFlags );
+
+			# Create a new connection...
+			$this->mConn = mysqli_init();
+			if ( !$this->mConn->real_connect( $realServer, $user, $password, /* $dbname */ null, /* $port */ null, /* $socket */ null, $connFlags ) ) {
+				$this->mConn = false; // Some older code uses this to detect that the connection failed - see mysql_query
 			}
+
 			#if ( $this->mConn === false ) {
 				#$iplus = $i + 1;
-				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n");
+				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysqli_connect_errno() . " - " . mysqli_connect_error()."\n");
 			#}
 		}
 		$error = $this->restoreErrorHandler();
@@ -138,7 +137,7 @@ class DatabaseMysql extends DatabaseBase {
 
 		if ( $dbName != '' ) {
 			wfSuppressWarnings();
-			$success = mysql_select_db( $dbName, $this->mConn );
+			$success = $this->mConn->select_db( $dbName );
 			wfRestoreWarnings();
 			if ( !$success ) {
 				wfLogDBError( "Error selecting database $dbName on server {$this->mServer}\n" );
@@ -172,7 +171,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return bool
 	 */
 	protected function closeConnection() {
-		return mysql_close( $this->mConn );
+		return $this->mConn->close();
 	}
 
 	/**
@@ -184,7 +183,7 @@ class DatabaseMysql extends DatabaseBase {
 			$res = $res->result;
 		}
 		wfSuppressWarnings();
-		$ok = mysql_free_result( $res );
+		$ok = $res->close();
 		wfRestoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
@@ -201,14 +200,18 @@ class DatabaseMysql extends DatabaseBase {
 			$res = $res->result;
 		}
 		wfSuppressWarnings();
-		$row = mysql_fetch_object( $res );
+		$row = $res->fetch_object();
 		wfRestoreWarnings();
+		if ( is_null( $row ) ) {
+			$row = false;
+		}
 
 		$errno = $this->lastErrno();
+		// TODO - Does this apply in PHP 5.4 with mysqlnd instead of libmysql?
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.6/en/mysql-fetch-row.html.
 		if( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
@@ -225,14 +228,18 @@ class DatabaseMysql extends DatabaseBase {
 			$res = $res->result;
 		}
 		wfSuppressWarnings();
-		$row = mysql_fetch_array( $res );
+		$row = $res->fetch_array();
 		wfRestoreWarnings();
+		if ( is_null( $row ) ) {
+			$row = false;
+		}
 
 		$errno = $this->lastErrno();
+		// TODO - Does this apply in PHP 5.4 with mysqlnd instead of libmysql?
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See https://dev.mysql.com/doc/refman/5.6/en/mysql-fetch-row.html.
 		if( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
@@ -249,7 +256,7 @@ class DatabaseMysql extends DatabaseBase {
 			$res = $res->result;
 		}
 		wfSuppressWarnings();
-		$n = mysql_num_rows( $res );
+		$n = $res->num_rows;
 		wfRestoreWarnings();
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
@@ -267,7 +274,7 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		return mysql_num_fields( $res );
+		return $res->field_count;
 	}
 
 	/**
@@ -279,14 +286,14 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		return mysql_field_name( $res, $n );
+		return $res->fetch_field_direct( $n )->name;
 	}
 
 	/**
 	 * @return int
 	 */
 	function insertId() {
-		return mysql_insert_id( $this->mConn );
+		return $this->mConn->insert_id;
 	}
 
 	/**
@@ -298,7 +305,7 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		return mysql_data_seek( $res, $row );
+		return $res->data_seek( $row );
 	}
 
 	/**
@@ -306,9 +313,9 @@ class DatabaseMysql extends DatabaseBase {
 	 */
 	function lastErrno() {
 		if ( $this->mConn ) {
-			return mysql_errno( $this->mConn );
+			return $this->mConn->errno;
 		} else {
-			return mysql_errno();
+			return mysqli_connect_errno();
 		}
 	}
 
@@ -319,13 +326,13 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
 			wfSuppressWarnings();
-			$error = mysql_error( $this->mConn );
+			$error = $this->mConn->error;
 			if ( !$error ) {
-				$error = mysql_error();
+				$error = $this->mConn->error;
 			}
 			wfRestoreWarnings();
 		} else {
-			$error = mysql_error();
+			$error = mysqli_connect_error();
 		}
 		if( $error ) {
 			$error .= ' (' . $this->mServer . ')';
@@ -337,7 +344,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return int
 	 */
 	function affectedRows() {
-		return mysql_affected_rows( $this->mConn );
+		return $this->mConn->affected_rows;
 	}
 
 	/**
@@ -391,9 +398,8 @@ class DatabaseMysql extends DatabaseBase {
 		if ( !$res ) {
 			return false;
 		}
-		$n = mysql_num_fields( $res->result );
-		for( $i = 0; $i < $n; $i++ ) {
-			$meta = mysql_fetch_field( $res->result, $i );
+		for( $i = 0; $i < $res->result->field_count; $i++ ) {
+			$meta = $res->result->fetch_field( $i );
 			if( $field == $meta->name ) {
 				return new MySQLField( $meta );
 			}
@@ -440,7 +446,7 @@ class DatabaseMysql extends DatabaseBase {
 	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
-		return mysql_select_db( $db, $this->mConn );
+		return $this->mConn->select_db( $db );
 	}
 
 	/**
@@ -449,11 +455,11 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return string
 	 */
 	function strencode( $s ) {
-		$sQuoted = mysql_real_escape_string( $s, $this->mConn );
+		$sQuoted = $this->mConn->real_escape_string( $s );
 
 		if( $sQuoted === false ) {
 			$this->ping();
-			$sQuoted = mysql_real_escape_string( $s, $this->mConn );
+			$sQuoted = $this->mConn->real_escape_string( $s );
 		}
 		return $sQuoted;
 	}
@@ -481,12 +487,12 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return bool
 	 */
 	function ping() {
-		$ping = mysql_ping( $this->mConn );
+		$ping = $this->mConn->ping();
 		if ( $ping ) {
 			return true;
 		}
 
-		mysql_close( $this->mConn );
+		$this->mConn->close();
 		$this->mOpened = false;
 		$this->mConn = false;
 		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
@@ -649,7 +655,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return string
 	 */
 	function getServerVersion() {
-		return mysql_get_server_info( $this->mConn );
+		return $this->mConn->server_info;
 	}
 
 	/**
