@@ -767,6 +767,8 @@ class Article implements Page {
 		$this->showViewFooter();
 		$this->mPage->doViewUpdates( $user );
 
+		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
+
 		wfProfileOut( __METHOD__ );
 	}
 
