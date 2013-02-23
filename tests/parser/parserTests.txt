@@ -21,6 +21,8 @@
 # language=XXX  set content language to XXX for this test
 # variant=XXX   set the variant of language for this test (eg zh-tw)
 # disabled      do not run test
+# parsoid       parsoid-only test (not run by PHP parser)
+# php           php-only test (not run by the parsoid parser)
 # showtitle     make the first line the title
 # comment       run through Linker::formatComment() instead of main parser
 # local         format section links in edit comment text as local links
@@ -1807,7 +1809,7 @@ Table / list interaction: lists nested in tables nested in indented lists
 !! test
 Definition Lists: Nesting: Multi-level (Parsoid only)
 !! options
-disabled
+parsoid
 !! input
 ;t1 :d1
 ;;t2 ::d2
@@ -1837,7 +1839,7 @@ disabled
 !! test
 Definition Lists: Nesting: Test 2 (Parsoid only)
 !! options
-disabled
+parsoid
 !! input
 ;t1
 ::d2
@@ -1857,7 +1859,7 @@ disabled
 !! test
 Definition Lists: Nesting: Test 3 (Parsoid only)
 !! options
-disabled
+parsoid
 !! input
 :;t1
 ::::d2
@@ -4296,7 +4298,7 @@ disabled
 List embedded in a non-block tag
 (Ugly Parsoid output -- worth fixing; Disabled for PHP parser since it relies on Tidy)
 !! options
-disabled
+parsoid
 !!input
 <small>
 * foo
@@ -5978,7 +5980,7 @@ a<div>bc</div>de
 Templates: Ugly templates: 1. Navbox template parses badly leading to table misnesting
 (Parsoid-centric)
 !! options
-disabled
+parsoid
 !!input
 {|
 |{{echo|foo</table>}}
@@ -5995,7 +5997,7 @@ bar</span><span about="#mwt1">
 Templates: Ugly templates: 2. Navbox template parses badly leading to table misnesting
 (Parsoid-centric)
 !! options
-disabled
+parsoid
 !!input
 <table>
   <tr>
@@ -13687,7 +13689,7 @@ HTML tag with broken attribute value quoting
 !! test
 Parsoid-only: HTML tag with broken attribute value quoting
 !! options
-disabled
+parsoid
 !! input
 <span title="Hello world>Foo</span>
 !! result
@@ -13729,7 +13731,7 @@ Table with broken attribute value quoting on consecutive lines
 !! test
 Parsoid-only: Table with broken attribute value quoting on consecutive lines
 !! options
-disabled
+parsoid
 !! input
 {|
 | title="Hello world|Foo
