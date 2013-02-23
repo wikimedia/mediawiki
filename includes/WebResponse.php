@@ -42,7 +42,7 @@ class WebResponse {
 	 * Set the browser cookie
 	 * @param $name String: name of cookie
 	 * @param $value String: value to give cookie
-	 * @param $expire Int: number of seconds til cookie expires
+	 * @param $expire Int: Unix timestamp (in seconds) when the cookie should expire.  0 (the default) causes it to expire $wgCookieExpiration seconds from now.
 	 * @param $prefix String: Prefix to use, if not $wgCookiePrefix (use '' for no prefix)
 	 * @param $domain String: Cookie domain to use, if not $wgCookieDomain
 	 * @param $forceSecure Bool:
