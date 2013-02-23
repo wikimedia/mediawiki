@@ -266,7 +266,7 @@ class LocalFile extends File {
 		// If the cache value gets to large it will not fit in memcached and nothing will
 		// get cached at all, causing master queries for any file access.
 		foreach ( $this->getLazyCacheFields( '' ) as $field ) {
-			if ( isset( $cache[$field] ) && strlen( $cache[$field] ) > 100*1024 ) {
+			if ( isset( $cache[$field] ) && strlen( $cache[$field] ) > 100 * 1024 ) {
 				unset( $cache[$field] ); // don't let the value get too big
 			}
 		}
@@ -2629,7 +2629,7 @@ class LocalFileMoveBatch {
 	 */
 	function getMoveTriplets() {
 		$moves = array_merge( array( $this->cur ), $this->olds );
-		$triplets = array();	// The format is: (srcUrl, destZone, destUrl)
+		$triplets = array(); // The format is: (srcUrl, destZone, destUrl)
 
 		foreach ( $moves as $move ) {
 			// $move: (oldRelativePath, newRelativePath)

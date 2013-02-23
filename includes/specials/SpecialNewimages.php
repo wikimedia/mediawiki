@@ -44,7 +44,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	}
 }
 
-
 /**
  * @ingroup SpecialPage Pager
  */

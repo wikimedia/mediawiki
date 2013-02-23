@@ -911,7 +911,6 @@ class PPFrame_DOM implements PPFrame {
 	 */
 	var $depth;
 
-
 	/**
 	 * Construct a new preprocessor frame.
 	 * @param $preprocessor Preprocessor The parent preprocessor

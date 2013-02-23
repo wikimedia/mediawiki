@@ -513,7 +513,6 @@ class LinkHolderArray {
 			}
 		}
 
-
 		if( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
@@ -614,7 +613,7 @@ class LinkHolderArray {
 	 */
 	function replaceTextCallback( $matches ) {
 		$type = $matches[1];
-		$key  = $matches[2];
+		$key = $matches[2];
 		if( $type == 'LINK' ) {
 			list( $ns, $index ) = explode( ':', $key, 2 );
 			if( isset( $this->internals[$ns][$index]['text'] ) ) {

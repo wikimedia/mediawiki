@@ -54,7 +54,6 @@ class CssContent extends TextContent {
 		return new CssContent( $pst );
 	}
 
-
 	protected function getHtml( ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";

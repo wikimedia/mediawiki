@@ -98,7 +98,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$out->wrapWikiMsg( "<div class=\"error mw-confirmemail-pending\">\n$1\n</div>", 'confirmemail_pending' );
 			}
 			$out->addWikiMsg( 'confirmemail_text' );
-			$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalUrl() ) );
+			$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalUrl() ) );
 			$form .= Html::hidden( 'token', $user->getEditToken() );
 			$form .= Xml::submitButton( $this->msg( 'confirmemail_send' )->text() );
 			$form .= Xml::closeElement( 'form' );

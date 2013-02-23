@@ -240,7 +240,6 @@ class UserrightsPage extends SpecialPage {
 		return array( $add, $remove );
 	}
 
-
 	/**
 	 * Add a rights log entry for an action.
 	 */

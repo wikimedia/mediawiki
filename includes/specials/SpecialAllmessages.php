@@ -113,7 +113,7 @@ class AllmessagesTablePager extends TablePager {
 
 		$this->lang = ( $langObj ? $langObj : $wgContLang );
 		$this->langcode = $this->lang->getCode();
-		$this->foreign  = $this->langcode != $wgContLang->getCode();
+		$this->foreign = $this->langcode != $wgContLang->getCode();
 
 		$request = $this->getRequest();
 
@@ -337,7 +337,7 @@ class AllmessagesTablePager extends TablePager {
 			case 'am_title' :
 
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
-				$talk  = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
+				$talk = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 
 				if( $this->mCurrentRow->am_customised ) {
 					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );

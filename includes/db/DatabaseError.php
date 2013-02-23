@@ -153,7 +153,7 @@ class DBConnectionError extends DBError {
 
 		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
 		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
-		$info  = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
+		$info = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
 
 		# No database access
 		MessageCache::singleton()->disable();

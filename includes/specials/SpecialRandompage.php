@@ -28,7 +28,7 @@
  * @ingroup SpecialPage
  */
 class RandomPage extends SpecialPage {
-	private $namespaces;  // namespaces to select pages from
+	private $namespaces; // namespaces to select pages from
 	protected $isRedir = false; // should the result be a redirect?
 	protected $extra = array(); // Extra SQL statements
 

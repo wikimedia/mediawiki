@@ -1166,7 +1166,6 @@ class Linker {
 		return self::userToolLinks( $userId, $userText, true, 0, $edits );
 	}
 
-
 	/**
 	 * @param $userId Integer: user id in database.
 	 * @param $userText String: user name in database.

@@ -461,7 +461,7 @@ class RecentChange {
 			'rc_params'     => ''
 		);
 
-		$rc->mExtra =  array(
+		$rc->mExtra = array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => $lastTimestamp,
 			'oldSize'       => $oldSize,
@@ -520,7 +520,7 @@ class RecentChange {
 			'rc_params'         => ''
 		);
 
-		$rc->mExtra =  array(
+		$rc->mExtra = array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
 			'oldSize' => 0,
@@ -629,7 +629,7 @@ class RecentChange {
 			'rc_params'     => $params
 		);
 
-		$rc->mExtra =  array(
+		$rc->mExtra = array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage

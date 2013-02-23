@@ -742,7 +742,7 @@ class IP {
 			return long2ip( ( hexdec( $m[1] ) << 16 ) + hexdec( $m[2] ) );
 		}
 
-		return null;  // give up
+		return null; // give up
 	}
 
 	/**

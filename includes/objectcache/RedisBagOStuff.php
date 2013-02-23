@@ -19,8 +19,6 @@
  *
  * @file
  */
-
-
 class RedisBagOStuff extends BagOStuff {
 	protected $connectTimeout, $persistent, $password, $automaticFailover;
 

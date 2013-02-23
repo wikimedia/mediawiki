@@ -780,7 +780,6 @@ class Diff {
 			trigger_error( "Reversed closing doesn't match", E_USER_ERROR );
 		}
 
-
 		$prevtype = 'none';
 		foreach ( $this->edits as $edit ) {
 			if ( $prevtype == $edit->type ) {

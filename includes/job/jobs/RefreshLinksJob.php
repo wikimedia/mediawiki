@@ -150,7 +150,7 @@ class RefreshLinksJob2 extends Job {
 			$masterPos = false;
 		}
 
-		$tbc  = $this->title->getBacklinkCache();
+		$tbc = $this->title->getBacklinkCache();
 
 		$jobs = array(); // jobs to insert
 		if ( isset( $this->params['start'] ) && isset( $this->params['end'] ) ) {
@@ -192,8 +192,8 @@ class RefreshLinksJob2 extends Job {
 	 */
 	protected function getSingleTitleJobs( $table, $masterPos ) {
 		# The "start"/"end" fields are not set for the base jobs
-		$start  = isset( $this->params['start'] ) ? $this->params['start'] : false;
-		$end    = isset( $this->params['end'] ) ? $this->params['end'] : false;
+		$start = isset( $this->params['start'] ) ? $this->params['start'] : false;
+		$end = isset( $this->params['end'] ) ? $this->params['end'] : false;
 		$titles = $this->title->getBacklinkCache()->getLinks( $table, $start, $end );
 		# Convert into single page refresh links jobs.
 		# This handles well when in sapi mode and is useful in any case for job

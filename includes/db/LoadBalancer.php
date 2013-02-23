@@ -343,7 +343,7 @@ class LoadBalancer {
 					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
 				}
 			}
-			if ( $this->mReadIndex <=0 && $this->mLoads[$i]>0 && $i !== false ) {
+			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $i !== false ) {
 				$this->mReadIndex = $i;
 			}
 		}

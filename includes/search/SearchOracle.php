@@ -93,7 +93,6 @@ class SearchOracle extends SearchEngine {
 		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
-
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
 	 * @return String
@@ -155,7 +154,6 @@ class SearchOracle extends SearchEngine {
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
-
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
@@ -221,7 +219,6 @@ class SearchOracle extends SearchEngine {
 			}
 		}
 
-
 		$searchon = $this->db->addQuotes( ltrim( $searchon, ' &' ) );
 		$field = $this->getIndexField( $fulltext );
 		return " CONTAINS($field, $searchon, 1) > 0 ";
@@ -280,7 +277,6 @@ class SearchOracle extends SearchEngine {
 			'SearchOracle::updateTitle',
 			array() );
 	}
-
 
 	public static function legalSearchChars() {
 		return "\"" . parent::legalSearchChars();

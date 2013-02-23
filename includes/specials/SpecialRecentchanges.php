@@ -129,7 +129,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		return $this->rcOptions;
 	}
 
-
 	/**
 	 * Main execution point
 	 *
@@ -340,7 +339,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		if( $opts['namespace'] !== '' ) {
 			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
 			$operator = $opts['invert'] ? '!='  : '=';
-			$boolean  = $opts['invert'] ? 'AND' : 'OR';
+			$boolean = $opts['invert'] ? 'AND' : 'OR';
 
 			# namespace association (bug 2429)
 			if( !$opts['associated'] ) {
@@ -862,7 +861,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] );
 		}
 		$dl = $lang->pipeList( $dl );
-
 
 		// show/hide links
 		$showhide = array( $this->msg( 'show' )->text(), $this->msg( 'hide' )->text() );

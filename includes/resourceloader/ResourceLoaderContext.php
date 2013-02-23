@@ -58,14 +58,14 @@ class ResourceLoaderContext {
 		// Interpret request
 		// List of modules
 		$modules = $request->getVal( 'modules' );
-		$this->modules   = $modules ? self::expandModuleNames( $modules ) : array();
+		$this->modules = $modules ? self::expandModuleNames( $modules ) : array();
 		// Various parameters
-		$this->skin      = $request->getVal( 'skin' );
-		$this->user      = $request->getVal( 'user' );
-		$this->debug     = $request->getFuzzyBool( 'debug', $wgResourceLoaderDebug );
-		$this->only      = $request->getVal( 'only' );
-		$this->version   = $request->getVal( 'version' );
-		$this->raw       = $request->getFuzzyBool( 'raw' );
+		$this->skin = $request->getVal( 'skin' );
+		$this->user = $request->getVal( 'user' );
+		$this->debug = $request->getFuzzyBool( 'debug', $wgResourceLoaderDebug );
+		$this->only = $request->getVal( 'only' );
+		$this->version = $request->getVal( 'version' );
+		$this->raw = $request->getFuzzyBool( 'raw' );
 
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
@@ -145,7 +145,7 @@ class ResourceLoaderContext {
 	public function getLanguage() {
 		if ( $this->language === null ) {
 			global $wgLang;
-			$this->language  = $this->request->getVal( 'lang' );
+			$this->language = $this->request->getVal( 'lang' );
 			if ( !$this->language ) {
 				$this->language = $wgLang->getCode();
 			}

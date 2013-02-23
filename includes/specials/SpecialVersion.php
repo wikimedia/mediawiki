@@ -777,7 +777,6 @@ class SpecialVersion extends SpecialPage {
 		return $repo->getHeadSHA1();
 	}
 
-
 	/**
 	 * Get the list of entry points and their URLs
 	 * @return string Wikitext

@@ -162,7 +162,6 @@ class IdentityCollation extends Collation {
 	}
 }
 
-
 class IcuCollation extends Collation {
 	var $primaryCollator, $mainCollator, $locale;
 	var $firstLetterData;

@@ -168,7 +168,7 @@ class LocalRepo extends FileRepo {
 			$expiry = 86400; // has invalidation, 1 day
 		}
 		$cachedValue = $wgMemc->get( $memcKey );
-		if ( $cachedValue === ' '  || $cachedValue === '' ) {
+		if ( $cachedValue === ' ' || $cachedValue === '' ) {
 			// Does not exist
 			return false;
 		} elseif ( strval( $cachedValue ) !== '' ) {
@@ -217,7 +217,7 @@ class LocalRepo extends FileRepo {
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 			),
-			__METHOD__  //Function name
+			__METHOD__ //Function name
 		);
 		return $id;
 	}

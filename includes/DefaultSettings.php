@@ -135,7 +135,6 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
  */
 $wgScriptExtension = '.php';
 
-
 /**@}*/
 
 /************************************************************************//**
@@ -1015,7 +1014,6 @@ $wgAntivirusSetup = array(
 	),
 );
 
-
 /** Determines if a failed virus scan (AV_SCAN_FAILED) will cause the file to be rejected. */
 $wgAntivirusRequired = true;
 
@@ -1591,7 +1589,6 @@ $wgSlaveLagCritical = 30;
 $wgOldChangeTagsIndex = false;
 
 /**@}*/ # End of DB settings }
-
 
 /************************************************************************//**
  * @name   Text storage
@@ -2846,7 +2843,6 @@ $wgBetterDirectionality = true;
  */
 $wgSend404Code = true;
 
-
 /**
  * The $wgShowRollbackEditCount variable is used to show how many edits will be
  * rollback. The numeric value of the varible are the limit up to are counted.
@@ -3050,7 +3046,6 @@ $wgResourceLoaderValidateStaticJS = false;
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
 /** @} */ # End of resource loader settings }
-
 
 /*************************************************************************//**
  * @name   Page title and interwiki link settings
@@ -3337,7 +3332,6 @@ $wgMaxPPNodeCount = 1000000;
  * When the limit is exceeded, an exception is thrown.
  */
 $wgMaxGeneratedPPNodeCount = 1000000;
-
 
 /**
  * Maximum recursion depth for templates within templates.
@@ -3920,7 +3914,7 @@ $wgGroupPermissions['*']['edit'] = true;
 $wgGroupPermissions['*']['createpage'] = true;
 $wgGroupPermissions['*']['createtalk'] = true;
 $wgGroupPermissions['*']['writeapi'] = true;
-//$wgGroupPermissions['*']['patrolmarks']      = false; // let anons see what was patrolled
+#$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
 $wgGroupPermissions['user']['move'] = true;
@@ -3951,7 +3945,7 @@ $wgGroupPermissions['bot']['autopatrol'] = true;
 $wgGroupPermissions['bot']['suppressredirect'] = true;
 $wgGroupPermissions['bot']['apihighlimits'] = true;
 $wgGroupPermissions['bot']['writeapi'] = true;
-#$wgGroupPermissions['bot']['editprotected']    = true; // can edit all protected pages without cascade protection enabled
+#$wgGroupPermissions['bot']['editprotected'] = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block'] = true;
@@ -3988,8 +3982,8 @@ $wgGroupPermissions['sysop']['noratelimit'] = true;
 $wgGroupPermissions['sysop']['movefile'] = true;
 $wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
-#$wgGroupPermissions['sysop']['upload_by_url']    = true;
-#$wgGroupPermissions['sysop']['mergehistory']     = true;
+#$wgGroupPermissions['sysop']['upload_by_url'] = true;
+#$wgGroupPermissions['sysop']['mergehistory'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
@@ -3999,8 +3993,8 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
 #$wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
 
-#$wgGroupPermissions['sysop']['deletelogentry']  = true;
-#$wgGroupPermissions['sysop']['deleterevision']  = true;
+#$wgGroupPermissions['sysop']['deletelogentry'] = true;
+#$wgGroupPermissions['sysop']['deleterevision'] = true;
 // To hide usernames from users and Sysops
 #$wgGroupPermissions['suppress']['hideuser'] = true;
 // To hide revisions/log items from users and Sysops
@@ -4439,7 +4433,6 @@ $wgCookieExpiration = 180 * 86400;
  */
 $wgCookieDomain = '';
 
-
 /**
  * Set this variable if you want to restrict cookies to a certain path within
  * the domain specified by $wgCookieDomain.
@@ -4779,7 +4772,6 @@ $wgJavaScriptTestConfig = array(
 		'testswarm-injectjs' => false,
 	),
 );
-
 
 /**
  * Overwrite the caching key prefix with custom value.

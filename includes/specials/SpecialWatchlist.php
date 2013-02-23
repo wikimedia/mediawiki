@@ -200,7 +200,6 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Up estimate of watched items by 15% to compensate for talk pages...
 
-
 		# Toggles
 		if( $values['hideOwn'] ) {
 			$conds[] = 'rc_user != ' . $user->getId();

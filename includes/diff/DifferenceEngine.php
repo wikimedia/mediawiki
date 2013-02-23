@@ -887,7 +887,6 @@ class DifferenceEngine extends ContextSource {
 		return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
 	}
 
-
 	/**
 	 * If there are revisions between the ones being compared, return a note saying so.
 	 * @return string

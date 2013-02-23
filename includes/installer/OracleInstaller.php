@@ -202,7 +202,6 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->addInstallStep( $callback, 'database' );
 	}
 
-
 	public function setupDatabase() {
 		$status = Status::newGood();
 		return $status;
@@ -294,7 +293,7 @@ class OracleInstaller extends DatabaseInstaller {
 		$prefix = $this->getVar( 'wgDBprefix' );
 		return
 "# Oracle specific settings
-\$wgDBprefix         = \"{$prefix}\";
+\$wgDBprefix = \"{$prefix}\";
 ";
 	}
 

@@ -49,7 +49,6 @@ class WikitextContentHandler extends TextContentHandler {
 		return new WikitextContent( '' );
 	}
 
-
 	/**
 	 * Returns a WikitextContent object representing a redirect to the given destination page.
 	 *

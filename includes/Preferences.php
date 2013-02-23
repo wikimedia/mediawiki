@@ -185,7 +185,7 @@ class Preferences {
 				// Skip the default * group, seems useless here
 				continue;
 			}
-			$groupName  = User::getGroupName( $ueg );
+			$groupName = User::getGroupName( $ueg );
 			$userGroups[] = User::makeGroupLinkHTML( $ueg, $groupName );
 
 			$memberName = User::getGroupMember( $ueg, $userName );
@@ -379,7 +379,6 @@ class Preferences {
 					. $context->msg( 'parentheses' )->rawParams( $link )->plain()
 				);
 			}
-
 
 			$defaultPreferences['emailaddress'] = array(
 				'type' => 'info',
@@ -809,7 +808,6 @@ class Preferences {
 			'label-message' => 'tog-forceeditsummary',
 		);
 
-
 		$defaultPreferences['uselivepreview'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -991,7 +989,6 @@ class Preferences {
 			'section' => 'searchoptions/displaysearchoptions',
 			'min' => 0,
 		);
-
 
 		if ( $wgVectorUseSimpleSearch ) {
 			$defaultPreferences['vector-simplesearch'] = array(

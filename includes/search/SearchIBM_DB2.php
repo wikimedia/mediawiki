@@ -60,7 +60,6 @@ class SearchIBM_DB2 extends SearchEngine {
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
-
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
 	 * @return String
@@ -119,7 +118,6 @@ class SearchIBM_DB2 extends SearchEngine {
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
-
 
 	/**
 	 * Picks which field to index on, depending on what type of query.

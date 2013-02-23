@@ -1421,9 +1421,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$err = $this->lastErrno();
 		switch( $err ) {
 			// This is literal port of the MySQL logic and may be wrong for DB2
-			case '40001':	// sql0911n, Deadlock or timeout, rollback
-			case '57011':	// sql0904n, Resource unavailable, no rollback
-			case '57033':	// sql0913n, Deadlock or timeout, no rollback
+			case '40001': // sql0911n, Deadlock or timeout, rollback
+			case '57011': // sql0904n, Resource unavailable, no rollback
+			case '57033': // sql0913n, Deadlock or timeout, no rollback
 			$this->installPrint( "In a deadlock because of SQLSTATE $err" );
 			return true;
 		}

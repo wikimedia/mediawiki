@@ -447,9 +447,9 @@ class PageArchive {
 			$makepage = false;
 			# Page already exists. Import the history, and if necessary
 			# we'll update the latest revision field in the record.
-			$newid             = 0;
-			$pageId            = $page->page_id;
-			$previousRevId    = $page->page_latest;
+			$newid = 0;
+			$pageId = $page->page_id;
+			$previousRevId = $page->page_latest;
 			# Get the time span of this page
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
 				array( 'rev_id' => $previousRevId ),
@@ -552,7 +552,7 @@ class PageArchive {
 				return Status::newFatal( "undeleterevdel" );
 			}
 			// Safe to insert now...
-			$newid  = $article->insertOn( $dbw );
+			$newid = $article->insertOn( $dbw );
 			$pageId = $newid;
 		} else {
 			// Check if a deleted revision will become the current revision...
@@ -563,7 +563,7 @@ class PageArchive {
 				}
 			}
 
-			$newid  = false;
+			$newid = false;
 			$pageId = $article->getId();
 		}
 
@@ -1260,7 +1260,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $this->mAllowed ) {
 			# Slip in the hidden controls here
-			$misc  = Html::hidden( 'target', $this->mTarget );
+			$misc = Html::hidden( 'target', $this->mTarget );
 			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
 			$misc .= Xml::closeElement( 'form' );
 			$out->addHTML( $misc );
