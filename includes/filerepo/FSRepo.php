@@ -37,6 +37,7 @@ class FSRepo extends FileRepo {
 	 * @throws MWException
 	 */
 	function __construct( array $info ) {
+		wfDeprecated( __CLASS__, '1.19' );
 		if ( !isset( $info['backend'] ) ) {
 			// B/C settings...
 			$directory = $info['directory'];

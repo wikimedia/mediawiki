@@ -3487,6 +3487,7 @@ class User {
 	 * @deprecated since 1.20; Use MWCryptRand for secure purposes or wfRandomString for pesudo-randomness
 	 */
 	public static function generateToken( $salt = '' ) {
+		wfDeprecated( __METHOD__, '1.20' );
 		return MWCryptRand::generateHex( 32 );
 	}
 

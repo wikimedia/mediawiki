@@ -701,6 +701,7 @@ class Linker {
 	 * @deprecated since 1.20
 	 */
 	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
+		wfDeprecated( __METHOD__, '1.20' );
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
 		return self::makeImageLink( null, $title, $file, $frameParams,
 			$handlerParams, $time, $query, $widthOption );

@@ -825,6 +825,7 @@ class Language {
 	 * @deprecated in 1.20, use fetchLanguageNames()
 	 */
 	public static function getLanguageNames( $customisedOnly = false ) {
+		wfDeprecated( __METHOD__, '1.20' );
 		return self::fetchLanguageNames( null, $customisedOnly ? 'mwfile' : 'mw' );
 	}
 
@@ -838,6 +839,7 @@ class Language {
 	 * @deprecated in 1.20, use fetchLanguageNames()
 	 */
 	public static function getTranslatedLanguageNames( $code ) {
+		wfDeprecated( __METHOD__, '1.20' );
 		return self::fetchLanguageNames( $code, 'all' );
 	}
 
@@ -931,6 +933,7 @@ class Language {
 	 * @deprecated in 1.20, use fetchLanguageName()
 	 */
 	function getLanguageName( $code ) {
+		wfDeprecated( __METHOD__, '1.20' );
 		return self::fetchLanguageName( $code );
 	}
 
@@ -3778,6 +3781,7 @@ class Language {
 	 * @return string
 	 */
 	public function convertLinkToAllVariants( $text ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		return $this->mConverter->convertLinkToAllVariants( $text );
 	}
 

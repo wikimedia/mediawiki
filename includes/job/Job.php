@@ -87,6 +87,7 @@ abstract class Job {
 	 * @deprecated 1.21
 	 */
 	public static function batchInsert( $jobs ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return JobQueueGroup::singleton()->push( $jobs );
 	}
 
@@ -102,6 +103,7 @@ abstract class Job {
 	 * @deprecated 1.21
 	 */
 	public static function safeBatchInsert( $jobs ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return JobQueueGroup::singleton()->push( $jobs, JobQueue::QoS_Atomic );
 	}
 
@@ -115,6 +117,7 @@ abstract class Job {
 	 * @deprecated 1.21
 	 */
 	public static function pop_type( $type ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return JobQueueGroup::singleton()->get( $type )->pop();
 	}
 
@@ -126,6 +129,7 @@ abstract class Job {
 	 * @deprecated 1.21
 	 */
 	public static function pop() {
+		wfDeprecated( __METHOD__, '1.21' );
 		return JobQueueGroup::singleton()->pop();
 	}
 
@@ -241,6 +245,7 @@ abstract class Job {
 	 * @deprecated 1.21
 	 */
 	public function insert() {
+		wfDeprecated( __METHOD__, '1.21' );
 		return JobQueueGroup::singleton()->push( $this );
 	}
 

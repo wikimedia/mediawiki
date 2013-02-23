@@ -202,6 +202,7 @@ class ApiQuery extends ApiBase {
 	 * @return mixed string or null
 	 */
 	function getModuleType( $moduleName ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->getModuleManager()->getModuleGroup( $moduleName );
 	}
 

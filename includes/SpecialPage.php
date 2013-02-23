@@ -102,6 +102,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function resolveAliasWithSubpage( $alias ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::resolveAlias( $alias );
 	}
 

@@ -497,6 +497,7 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getRootUrl() {
+		wfDeprecated( __METHOD__, '1.20' );
 		return $this->getZoneUrl( 'public' );
 	}
 

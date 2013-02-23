@@ -1237,6 +1237,7 @@ class ApiMain extends ApiBase {
 	 * @param $class ApiBase The class where this module is implemented.
 	 */
 	protected function addModule( $name, $class ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		$this->getModuleManager()->addModule( $name, 'action', $class );
 	}
 
@@ -1249,6 +1250,7 @@ class ApiMain extends ApiBase {
 	 * @param $class ApiFormatBase The class implementing this format.
 	 */
 	protected function addFormat( $name, $class ) {
+		wfDeprecated( __METHOD__, '1.21' );
 		$this->getModuleManager->addModule( $name, 'format', $class );
 	}
 
@@ -1258,6 +1260,7 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	function getModules() {
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->getModuleManager()->getNamesWithClasses( 'action' );
 	}
 
@@ -1269,6 +1272,7 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	public function getFormats() {
+		wfDeprecated( __METHOD__, '1.21' );
 		return $this->getModuleManager()->getNamesWithClasses( 'format' );
 	}
 }
