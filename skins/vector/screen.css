@@ -35,6 +35,9 @@ div#content {
 	background-color: white;
 	color: black;
 	direction: ltr;
+	-webkit-box-shadow: 7px -4px 8px 5px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 7px -4px 8px 5px rgba(0, 0, 0, 0.25);
+	box-shadow: 7px -4px 8px 5px rgba(0, 0, 0, 0.25);
 }
 /* Hide, but keep accessible for screen-readers */
 #mw-navigation h2 {
@@ -42,7 +45,8 @@ div#content {
 	top: -9999px;
 }
 /* Head */
-#mw-page-base {
+#mw-page-base,
+#mw-head-top {
 	height: 5em;
 	background-color: white;
 	/* @embed */
@@ -55,11 +59,27 @@ div#content {
 	margin-left: 10em;
 	height: 5em;
 }
-div#mw-head {
+div#mw-head,
+div#mw-head-top {
 	position: absolute;
 	top: 0;
 	right: 0;
 	width: 100%;
+}
+/* Prevent caching issues from non-updated html by covering the content shadow with the head until 
+the skinfile clears cache (marked by a new 'transitional' class added along with the other stuff) */
+div#mw-head {
+	/* @embed */
+	background-image: url(images/page-fade.png);
+	background-position: left 35px;
+	background-repeat: repeat-x;
+}
+div#mw-head.transitional {
+	background-image: none;
+}
+#mw-head-top {
+	height: 79px;
+	overflow: hidden;
 }
 div#mw-head h3,
 div#mw-head h5 {
@@ -105,10 +125,59 @@ div.emptyPortlet {
 	position: absolute;
 	left: 10em;
 	top: 2.5em;
+	/* Hide the shadows above and below #p-namespaces by (ab)using overflow: hidden; 
+	and covering up some overlap with a background image */
+	margin-left: -8px;
+	padding: 0 8px;
+	overflow: hidden;
+	/* @embed */
+	background-image: url(images/shadow-line.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
 }
 #right-navigation {
 	float: right;
 	margin-top: 2.5em;
+}
+/* Left navigation shadow */
+#p-namespaces {
+	-webkit-box-shadow: -1px 8px 8px -3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -1px 8px 8px -3px rgba(0, 0, 0, 0.25);
+	box-shadow: -1px 8px 8px -3px rgba(0, 0, 0, 0.25);
+}
+/* Right navigation shadows */
+#right-inner,
+#right-outer { 
+	float: left;
+	width: 8px;
+	overflow: hidden;
+}
+/* While we could have the shadow take up extra space, there's not much point. */
+#right-outer {
+	margin-right: -8px;
+}
+.right-shadow {
+	height: 2.5em;
+	width: 0px;
+	float: right;
+	-webkit-box-shadow: 7px 14px 8px 3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 7px 14px 8px 3px rgba(0, 0, 0, 0.25);
+	box-shadow: 7px 14px 8px 3px rgba(0, 0, 0, 0.25);
+}
+#right-outer .right-shadow {
+	float: left;
+	-webkit-box-shadow: -7px 14px 8px 3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -7px 14px 8px 3px rgba(0, 0, 0, 0.25);
+	box-shadow: -7px 14px 8px 3px rgba(0, 0, 0, 0.25);
+}
+/* Top shadow */
+#mw-head-shadow {
+	margin-left: 12em;
+	margin-top:80px;
+	height: 0px;
+	-webkit-box-shadow: 0 7px 8px 3px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 7px 8px 3px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 7px 8px 3px rgba(0, 0, 0, 0.25);
 }
 /* Navigation Labels */
 div.vectorTabs h3,
@@ -913,3 +982,4 @@ body.vector-animateLayout #mw-head-base {
 	-o-transition: margin-left 250ms;
 	transition: margin-left 250ms;
 }
+
