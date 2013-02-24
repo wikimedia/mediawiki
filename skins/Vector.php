@@ -229,14 +229,24 @@ class VectorTemplate extends BaseTemplate {
 		<!-- /content -->
 		<div id="mw-navigation">
 			<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
-			<!-- header -->
-			<div id="mw-head">
+			<!-- top shadow -->
+			<div id="mw-head-top">
+				<div id="mw-head-shadow"></div>
+			</div>
+			<!-- header (remove the transitional class once this file clears the cache) -->
+			<div id="mw-head" class="transitional">
 				<?php $this->renderNavigation( 'PERSONAL' ); ?>
 				<div id="left-navigation">
 					<?php $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); ?>
 				</div>
 				<div id="right-navigation">
-					<?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
+					<?php if ( count( $this->data['view_urls'] ) ) { ?>
+					<div id="right-inner">
+						<div class="right-shadow"></div>
+					</div>
+					<?php
+					}
+					$this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
 				</div>
 			</div>
 			<!-- /header -->
@@ -432,6 +442,12 @@ class VectorTemplate extends BaseTemplate {
 <?php
 				break;
 				case 'ACTIONS':
+if ( $this->data['rtl'] && count( $this->data['view_urls'] ) + count( $this->data['action_urls'] ) ) { ?>
+<div id="right-outer">
+	<div class="right-shadow"></div>
+</div>
+<?php
+}
 ?>
 <div id="p-cactions" role="navigation" class="vectorMenu<?php if ( count( $this->data['action_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h3><span><?php $this->msg( 'actions' ) ?></span><a href="#"></a></h3>
@@ -443,7 +459,12 @@ class VectorTemplate extends BaseTemplate {
 		</ul>
 	</div>
 </div>
+<?php if ( !$this->data['rtl'] && count( $this->data['view_urls'] ) + count( $this->data['action_urls'] ) ) { ?>
+<div id="right-outer">
+	<div class="right-shadow"></div>
+</div>
 <?php
+}
 				break;
 				case 'PERSONAL':
 ?>
