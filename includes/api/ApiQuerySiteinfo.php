@@ -165,7 +165,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $wgContLang->isRTL() ) {
 			$data['rtl'] = '';
 		}
+		// other language information
 		$data['fallback8bitEncoding'] = $wgContLang->fallback8bitEncoding();
+		$data['hasWordBreaks'] = $wgContLang->hasWordBreaks();
+		$data['needsGenderDistinction'] = $wgContLang->needsGenderDistinction();
+		$data['linkPrefixExtension'] = $wgContLang->linkPrefixExtension();
+		$data['digitGroupingPattern'] = $wgContLang->digitGroupingPattern();
+
 
 		if ( wfReadOnly() ) {
 			$data['readonly'] = '';
