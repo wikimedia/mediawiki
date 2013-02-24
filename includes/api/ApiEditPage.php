@@ -303,12 +303,12 @@ class ApiEditPage extends ApiBase {
 		// TODO: Make them not or check if they still do
 		$wgTitle = $titleObj;
 
-		$articleObject = new Article( $titleObj );
-
 		$articleContext = new RequestContext;
 		$articleContext->setRequest( $req );
-		$articleContext->setTitle( $titleObj );
-		$articleObject->setContext( $articleContext );
+		$articleContext->setWikiPage( $pageObj );
+		$articleContext->setUser( $this->getUser() );
+
+		$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
 
 		$ep = new EditPage( $articleObject );
 
@@ -409,7 +409,6 @@ class ApiEditPage extends ApiBase {
 				} else {
 					$r['oldrevid'] = intval( $oldRevId );
 					$r['newrevid'] = intval( $newRevId );
-					$pageObj->clear();
 					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
 						$pageObj->getTimestamp() );
 				}
