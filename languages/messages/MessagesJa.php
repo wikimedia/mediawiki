@@ -1876,15 +1876,15 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 新しい概要を表示させるには、説明ページを手動で編集する必要があります。
 [[$1|thumb]]',
 'fileexists-extension' => '類似した名前のファイルが既に存在します: [[$2|thumb]]
-* アップロード中のファイルの名前：<strong>[[:$1]]</strong>
+* アップロード中のファイルの名前: <strong>[[:$1]]</strong>
 * 既存ファイルの名前: <strong>[[:$2]]</strong>
 違う名前を選択してください。',
-'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの''（サムネイル）''のようです。
+'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの ''(サムネイル)'' のようです。
 [[$1|thumb]]
-ファイル<strong>[[:$1]]</strong>を確認してください。
+ファイル <strong>[[:$1]]</strong> を確認してください。
 確認したファイルが同じ画像の元のサイズの版の場合は、サムネイルを別途アップロードする必要はありません。",
-'file-thumbnail-no' => "ファイル名が<strong>$1</strong>から始まっています。
-他の画像から縮小されたもの''（サムネイル）''のようです。
+'file-thumbnail-no' => "ファイル名が <strong>$1</strong> で始まっています。
+他の画像から縮小されたもの ''(サムネイル)'' のようです。
 より高精細な画像をお持ちの場合はそれをアップロードしてください。お持ちではない場合はファイル名を変更してください。",
 'fileexists-forbidden' => 'この名前のファイルは既に存在しており、上書きできません。
 アップロードを継続したい場合は、前のページに戻り、別のファイル名を使用してください。
@@ -3127,7 +3127,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'javascripttest-title' => '$1 のテストの実行',
 'javascripttest-pagetext-noframework' => 'このページは JavaScript のテストを実行するために予約されています。',
 'javascripttest-pagetext-unknownframework' => 'テストフレームワーク「$1」は不明です。',
-'javascripttest-pagetext-frameworks' => '次のテストフレームワークからひとつを選択してください：$1',
+'javascripttest-pagetext-frameworks' => '以下のテストフレームワークから1つ選択してください: $1',
 'javascripttest-pagetext-skins' => 'テストを実行する外装を選択してください:',
 'javascripttest-qunit-intro' => 'mediawiki.org上の[$1 テストのドキュメント]を参照してください。',
 'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit テストスイート',
@@ -3407,11 +3407,11 @@ $1',
 'just-now' => 'ちょうど今',
 
 # Bad image list
-'bad_image_list' => '書式は以下の通りです：
+'bad_image_list' => '書式は以下の通りです:
 
-箇条書き項目（*で始まる行）のみが考慮されます。
-各行最初のリンクは、好ましくないファイルへのリンクとしてください。
-同じ行でそれ以降にあるリンクは例外、つまりインライン挿入されてもいいページと見なされます。',
+箇条書き項目 (*で始まる行) のみが考慮されます。
+各行の最初のリンクは、好ましくないファイルへのリンクにしてください。
+同じ行のそれ以降にあるリンクは例外、つまりインライン挿入されてもいいページと見なされます。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -4209,8 +4209,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # External image whitelist
 'external_image_whitelist' => '  #この行はこのままにしておいてください<pre>
-#この下に正規表現（//の間に入る記述）を置いてください
-#外部の（ホットリンクされている）画像の URL と一致するか検査されます
+#この下に正規表現 (//の間に入る記述) を置いてください
+#外部の (ホットリンクされている) 画像の URL と一致するか検査されます
 #一致する場合は画像として、一致しない場合は画像へのリンクとして表示されます
 #行の頭に # を付けるとコメントとして扱われます
 #大文字と小文字は区別されません
@@ -4271,13 +4271,13 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # New logging system
 'logentry-delete-delete' => '$1 がページ「$3」を削除しました',
 'logentry-delete-restore' => '$1 がページ「$3」を復元しました',
-'logentry-delete-event' => '$1 が$3の{{PLURAL:$5|記録項目$5件}}の閲覧レベルを変更しました：$4',
-'logentry-delete-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを変更しました：$4',
+'logentry-delete-event' => '$1 が$3の{{PLURAL:$5|記録項目$5件}}の閲覧レベルを変更しました: $4',
+'logentry-delete-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを変更しました: $4',
 'logentry-delete-event-legacy' => '$1 が「$3」の記録項目の閲覧レベルを変更しました',
 'logentry-delete-revision-legacy' => '$1 がページ「$3」の版の閲覧レベルを変更しました',
 'logentry-suppress-delete' => '$1 がページ「$3」を隠蔽しました',
-'logentry-suppress-event' => '$1 が$3の{{PLURAL:$5|記録項目$5件}}の閲覧レベルを見えない形で変更しました：$4',
-'logentry-suppress-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを見えない形で変更しました：$4',
+'logentry-suppress-event' => '$1 が$3の{{PLURAL:$5|記録項目$5件}}の閲覧レベルを見えない形で変更しました: $4',
+'logentry-suppress-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを見えない形で変更しました: $4',
 'logentry-suppress-event-legacy' => '$1 が$3で記録項目の閲覧レベルを見えない形で変更しました',
 'logentry-suppress-revision-legacy' => '$1 がページ「$3」の版の閲覧レベルを見えない形で変更しました',
 'revdelete-content-hid' => '本文の不可視化',

@@ -1123,9 +1123,8 @@ Lý do được $3 đưa ra là ''$2''",
 'last' => 'trước',
 'page_first' => 'đầu',
 'page_last' => 'cuối',
-'histlegend' => 'Chọn so sánh: đánh dấu để chọn các phiên bản để so sánh rồi nhấn enter hoặc nút ở dưới.<br />
-Chú giải: (hiện) = khác với phiên bản hiện hành,
-(trước) = khác với phiên bản trước, n = sửa đổi nhỏ.',
+'histlegend' => "Chọn so sánh: Đánh dấu để chọn các phiên bản để so sánh rồi nhấn Enter hoặc nút ở dưới.<br />
+Chú giải: '''({{int:cur}})''' = khác với phiên bản hiện hành, '''({{int:last}})''' = khác với phiên bản trước, '''{{int:minoreditletter}}''' = sửa đổi nhỏ.",
 'history-fieldset-title' => 'Tìm trong lịch sử',
 'history-show-deleted' => 'Chỉ bị xóa',
 'histfirst' => 'Cũ nhất',

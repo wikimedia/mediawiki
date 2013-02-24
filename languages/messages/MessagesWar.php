@@ -487,7 +487,7 @@ An magdudurmara nga nagtrangka hini in naghatag hini nga eksplenasyon: "$3".',
 'gotaccount' => '¿Mayda kana akawnt? $1.',
 'gotaccountlink' => 'Sakob',
 'userlogin-resetlink' => 'Nangalimot han imo detalye han pagsakob?',
-'createaccountmail' => 'Ha e-mail',
+'createaccountmail' => 'Gamiti hin temporaryo nga bisan ano nag password ngan igpadangat ngada ha e-mail address nga nakasurat ha ubos',
 'createaccountreason' => 'Rason:',
 'badretype' => 'Diri naangay an mga tigaman-pagsulod nga im ginbutang',
 'userexists' => 'An agnay hiton gumaramit nga im ginbutang in gingamit na.
@@ -516,6 +516,11 @@ Alayon pagutro pagbutang.',
 'passwordremindertitle' => 'Bag-o nga diri-pirmihan nga tigaman-pagsulod para han {{SITENAME}}',
 'noemail' => 'Waray e-mail nga adres nga ginrekord para han nágámit "$1".',
 'noemailcreate' => 'Kinahanglan nim maghatag hin may hinungdan nga e-mail address',
+'passwordsent' => 'Uska bag-o nga password in ginpadangat ha e-mail address nga nakarehistro kan "$1".
+Alayon paglog-in utro kahuman mo makarawat ini.',
+'blocked-mailpassword' => 'An imo IP address in ginpugong ha pag-edit, ngan tungod hini in diri gintutugotan paggamit han password recovery function para malikyan an abuso.',
+'eauthentsent' => 'Uska kompirmasyon nga e-mail in ginpadangan ha gin-ngaranan nga e-mail address.
+San-o matagan pa hin iba nga e-mail para ha imo akawnt, kinahanglan mo sundon an mga surundan nga nakasurat ha e-mail, para makompirma nga imo gud ito akawnt.',
 'mailerror' => 'Sayop han pagpadangat hin surat: $1',
 'emailauthenticated' => 'Ginpamatuod an imo e-mail adres han $2 ha $3.',
 'emailconfirmlink' => 'Igkompirma an imo e-mail address',
@@ -536,6 +541,7 @@ Alayon pagutro pagbutang.',
 'oldpassword' => 'Daan nga tigaman-pagsulod:',
 'newpassword' => 'Bag-o nga tigaman-pagsulod:',
 'retypenew' => 'Utroha pagbutang an bag-o nga tigaman-pagsulod:',
+'resetpass_submit' => 'Igbutang an password ngan log in',
 'resetpass_success' => 'Malinamposon nga nasalyuan na an imo tigaman-pagsulod!
 Ikaw in naglalog-in yana...',
 'resetpass_forbidden' => 'Diri mababalyoan an mga tigaman-pagsulod',
@@ -664,6 +670,7 @@ An taramdan han pagpara ngan pagbalhin para han pakli in ginhahatag ha ubos para
 'edit-already-exists' => 'Diri nakakahimo hin bag-o nga pakli.
 Aada na ito.',
 'defaultmessagetext' => 'Aada-nga-daan nga teksto han mensahe',
+'invalid-content-data' => 'Sayop nga sulod nga datos',
 'content-not-allowed-here' => 'An sulod nga "$1" in diri gintutugotan ha pakli nga [[$2]]',
 
 # Content models
@@ -722,6 +729,7 @@ Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last
 'rev-showdeleted' => 'igpakita',
 'revisiondelete' => 'Pagpara/pagtanggal han pagpara nga mga rebisyon',
 'revdelete-nologtype-title' => 'Waray ginhatag nga klase hit talaan',
+'revdelete-nologid-title' => 'Sayop nga log entry',
 'revdelete-show-file-confirm' => 'Sigurado ka nga gusto mo makita an ginpara nga pagliwat han file "<nowiki>$1</nowiki>" tikang $2 ha $3?',
 'revdelete-show-file-submit' => 'Oo',
 'revdelete-hide-text' => 'Tagoon an rebisyon han teksto',

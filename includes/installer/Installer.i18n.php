@@ -10021,12 +10021,12 @@ php.ini 内で <code>session.save_path</code> が適切なディレクトリに�
 	'config-copyright' => '=== 著作権および規約 ===
 $1
 
-この作品はフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約に基づき、このライブラリを再配布および改変できます。
+この作品はフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License) (バージョン2、またはそれ以降のライセンス) の規約に基づき、このライブラリを再配布および改変できます。
 
 この作品は、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。
 詳しくは、GNU一般公衆利用許諾書をご覧ください。
 
-あなたはこのプログラムと共に、<doclink href=Copying>GNU一般公衆利用許諾契約書の複製</doclink>を一部受け取ったはずです。もし受け取っていなければ、フリーソフトウェア財団(宛先は the Free Software Foundation, Inc., 59Temple Place, Suite 330, Boston, MA 02111-1307 USA)まで請求してください。',
+あなたはこのプログラムと共に、<doclink href=Copying>GNU一般公衆利用許諾契約書の複製</doclink>を一部受け取ったはずです。受け取っていない場合は、フリーソフトウェア財団 (宛先は the Free Software Foundation, Inc., 59Temple Place, Suite 330, Boston, MA 02111-1307 USA) まで請求してください。',
 	'config-sidebar' => '* [//www.mediawiki.org MediaWikiのホーム]
 * [//www.mediawiki.org/wiki/Help:Contents 利用者向け案内]
 * [//www.mediawiki.org/wiki/Manual:Contents 管理者向け案内]
@@ -10090,8 +10090,8 @@ MediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	'config-no-cache' => "'''警告:''' [http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]、[http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。
 オブジェクトのキャッシュは有効化されません。",
 	'config-diff3-bad' => 'GNU diff3 が見つかりません。',
-	'config-imagemagick' => 'ImageMagickが見つかりました：<code>$1</code>。
-アップロードが有効なら、画像のサムネイルが利用できます。',
+	'config-imagemagick' => 'ImageMagickが見つかりました: <code>$1</code>。
+アップロードが有効であれば、画像のサムネイルを利用できます。',
 	'config-gd' => 'GD画像ライブラリが内蔵されていることが確認されました。
 アップロードが有効なら、画像のサムネイルが利用できます。',
 	'config-no-scaling' => 'GDライブラリもImageMagickも見つかりませんでした。
@@ -10311,7 +10311,7 @@ chmod a+w $3</pre>',
 	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
 	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。',
-	'config-subscribe-help' => 'これは、リリースの告知（重要なセキュリティに関する案内を含む）に使われる、低容量のメーリングリストです。
+	'config-subscribe-help' => 'これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、低容量のメーリングリストです。
 このメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。',
 	'config-almost-done' => 'これでほぼ終わりました!
 残りの設定を飛ばして、ウィキを今すぐインストールできます。',

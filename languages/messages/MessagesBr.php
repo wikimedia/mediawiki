@@ -737,6 +737,7 @@ Ger-tremen da c'hortoz : $2",
 'changeemail-oldemail' => "Chomlec'h postel a-vremañ :",
 'changeemail-newemail' => "Chomlec'h postel nevez :",
 'changeemail-none' => '(hini ebet)',
+'changeemail-password' => 'Ho ker-tremen war {{SITENAME}}:',
 'changeemail-submit' => "Cheñch chomlec'h postel",
 'changeemail-cancel' => 'Nullañ',
 
@@ -1707,6 +1708,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-notsame' => "Ur restr disheñvel zo e $1 c'hoazh.",
 'backend-fail-invalidpath' => "$1 n'eo ket un hent stokañ reizh.",
 'backend-fail-delete' => 'Dibosupl eo diverkañ ar restr $1.',
+'backend-fail-describe' => 'N\'eus ket bet gallet cheñch ar metaroadennoù evit ar restr "$1".',
 'backend-fail-alreadyexists' => 'Ar restr "$1" zo anezhi c\'hoazh.',
 'backend-fail-store' => 'Dibosupl stokañ ar restr $1 e $2.',
 'backend-fail-copy' => 'Dibosupl eilañ ar restr "$1" war-du "$2".',
@@ -2106,7 +2108,7 @@ Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => 'Roll an implijerien oberiant',
 'activeusers-intro' => 'Setu aze ur roll eus an implijerien zo bet oberiant mui pe vui e-pad an $1 {{PLURAL:$1|deiz|deiz}} diwezhañ.',
-'activeusers-count' => '$1 {{PLURAL:$1|degasadenn}} abaoe an {{PLURAL:$3|deiz|$3 deiz}} diwezhañ',
+'activeusers-count' => '$1 {{PLURAL:$1|oberiadenn}} abaoe an {{PLURAL:$3|deiz|$3 deiz}} diwezhañ',
 'activeusers-from' => 'Diskouez an implijerien adal :',
 'activeusers-hidebots' => 'Kuzhat ar robotoù',
 'activeusers-hidesysops' => 'Kuzhat ar verourien',
@@ -2181,9 +2183,7 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 a-benn gellout kemmañ ho roll evezhiañ.",
 'addwatch' => "Ouzhpennañ d'ar roll evezhiañ",
 'addedwatchtext' => 'Ouzh ho [[Special:Watchlist|rollad evezhiañ]] eo bet ouzhpennet ar bajenn "[[:$1]]".
-Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:RecentChanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.
-
-Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ, klikit war "Paouez da evezhiañ" er framm merdeiñ.',
+Amañ e vo rollet ar c\'hemmoù da zont evit ar bajenn-mañ hag ar bajenn gaozeal stag outi.',
 'removewatch' => 'Lemel a-ziwar ar roll evezhiañ',
 'removedwatchtext' => 'Lamet eo bet ar bajenn "[[:$1]]" a-ziwar ho [[Special:Watchlist|roll evezhiañ]].',
 'watch' => 'Evezhiañ',
@@ -2330,8 +2330,8 @@ Setu doare a-vremañ ar bajenn '''$1''' :",
 Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'protect-cascadeon' => "Gwarezet eo ar bajenn-mañ peogwir he c'haver er {{PLURAL:$1|bajenn|pajennoù}} da-heul zo gweredekaet enno ar gwareziñ dre skalierad. Gallout a rit kemmañ al live gwareziñ met ne cheñcho ket ar gwareziñ dre skalierad.",
 'protect-default' => 'Aotren an holl implijerien',
-'protect-fallback' => 'Ezhomm zo aotre "$1"',
-'protect-level-autoconfirmed' => "Stankañ an implijerien nevez hag ar re n'int ket enrollet",
+'protect-fallback' => 'Degemer hepken an implijerien gant an aotre "$1"',
+'protect-level-autoconfirmed' => 'Degemer hepken an implijerien emgadarnaet',
 'protect-level-sysop' => 'Aotren ar verourien hepken',
 'protect-summary-cascade' => 'Gwareziñ dre skalierad',
 'protect-expiring' => "a zeu d'e dermen d'an $1",
@@ -2621,9 +2621,16 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 # Move page
 'move-page' => "Dilec'hiañ $1",
 'move-page-legend' => 'Adenvel ur pennad',
-'movepagetext' => "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-du an anv nevez.
-Dont a raio an titl kentañ da vezañ ur bajenn adkas war-du an titl nevez.
+'movepagetext' => "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-zu an anv nevez.
+Dont a raio an titl kozh da vezañ ur bajenn adkas war-zu an titl nevez.
+Gallout a rit nevesaat ent emgefre an adkasoù a-vremañ a gas d'an titl orin.
 Ne vo ket kemmet liammoù an titl kozh ha ne vo ket dilec'hiet ar bajenn gaozeal, ma'z eus anezhi.
+
+Ma rit ho soñj chom hep en ober, gwiriit mat an holl [[Special:DoubleRedirects|adkasoù doubl]] pe [[Special:BrokenRedirects|adkasoù torret]].
+C'hwi eo zo karget da wiriañ e kas mat al liammoù d'al lec'h int sañset kas.
+
+Notit mat '''ne vo ket''' dilec'hiet ma'z eus dija ur bajenn ganti an anv nevez, nemet e vefe un adkas ha ne vefe tamm istor ebet stag outi.
+Dre se e c'haller adkas ur bajenn war-zu he lec'h orin ma oa kamm an adkas.
 
 '''DIWALLIT!'''
 Gallout a ra kement-se bezañ ur c'hemm bras ha dic'hortoz evit ur pennad a vez sellet outi alies;
@@ -2984,6 +2991,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-redirectsto-info' => 'Titouroù',
 'pageinfo-contentpage-yes' => 'Ya',
 'pageinfo-protect-cascading-yes' => 'Ya',
+'pageinfo-category-info' => 'Titouroù ar rummad',
 'pageinfo-category-pages' => 'Niver a bajennoù',
 'pageinfo-category-subcats' => 'Niver a isrummadoù',
 'pageinfo-category-files' => 'Niver a restroù',
@@ -3072,7 +3080,10 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'minutes' => '{{PLURAL:$1|$1 vunutenn|$1 munutenn}}',
 'hours' => '{{PLURAL:$1|$1 eurvezh|$1 eurvezh}}',
 'days' => '{{PLURAL:$1|$1 deiz|$1 deiz}}',
+'months' => '{{PLURAL: $1|$1 miz|$1 miz}}',
+'years' => '{{PLURAL: $1|$1 bloaz|$1 bloaz}}',
 'ago' => '$1 zo',
+'just-now' => 'bremañ diouzhtu',
 
 # Bad image list
 'bad_image_list' => "Setu doare ar furmad :
@@ -3568,6 +3579,7 @@ Mont a raio ar c'hod-mañ d'e dermen d'ar \$4.",
 # Scary transclusion
 'scarytranscludedisabled' => '[Diweredekaet eo an treuzkludañ etrewiki]',
 'scarytranscludefailed' => "[N'eus ket bet gallet tapout ar patrom evit $1]",
+'scarytranscludefailed-httpstatus' => "[c'hwitet adtapout ar patrom evit $1: HTTP $2]",
 'scarytranscludetoolong' => '[URL re hir]',
 
 # Delete conflict

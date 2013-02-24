@@ -3180,15 +3180,29 @@ See also:
 * {{msg-mw|hookaborted}}
 * {{msg-mw|filename-toolong}}
 * {{msg-mw|unknown-error}}',
-'fileexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
+'fileexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
+Parameters:
+* $1 - name of the existing file",
 'filepageexists' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
-Shown on [[Special:Upload]], $1 is link to the page. This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.",
-'fileexists-extension' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
-'fileexists-thumbnail-yes' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}",
-'file-thumbnail-no' => 'Error message at [[Special:Upload]]',
-'fileexists-forbidden' => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}",
+Shown on [[Special:Upload]]. Parameters:
+* $1 - link to the page
+This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.",
+'fileexists-extension' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
+Parameters:
+* $1 - name of the uploading file
+* $2 - name of the existing file",
+'fileexists-thumbnail-yes' => "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}
+Parameters:
+* $1 - name of thumbnail file",
+'file-thumbnail-no' => 'Error message at [[Special:Upload]]. Parameters:
+* $1 - String (e.g. "180px-")',
+'fileexists-forbidden' => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}
+Parameters:
+* $1 - name of the existing file",
 'fileexists-shared-forbidden' => "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}
-Error message at [[Special:Upload]]",
+Error message at [[Special:Upload]].
+Parameters:
+* $1 - name of the existing file",
 'file-exists-duplicate' => 'Used as warning in [[Special:Upload]].
 This message is followed by the gallery of the duplicate files.
 
@@ -5879,7 +5893,8 @@ See also:
 * {{msg-mw|Import-interwiki-templates}}
 * {{msg-mw|Import-interwiki-namespace}}
 * {{msg-mw|Import-interwiki-rootpage}}
-* {{msg-mw|Import-interwiki-submit}}',
+* {{msg-mw|Import-interwiki-submit}}
+{{Identical|Comment}}',
 'importtext' => 'Used in the Import form on [[Special:Import]].',
 'importstart' => 'Used in [[Special:Import]].
 
