@@ -20,10 +20,6 @@
  * @defgroup Maintenance Maintenance
  */
 
-if( PHP_SAPI != 'cli' ) {
-	die( "Run me from the command line please.\n" );
-}
-
 // Make sure we're on PHP5.3.2 or better
 if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
 	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
