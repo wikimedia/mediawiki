@@ -35,6 +35,9 @@ div#content {
 	background-color: white;
 	color: black;
 	direction: ltr;
+	-webkit-box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
+	box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
 }
 /* Hide, but keep accessible for screen-readers */
 #mw-navigation h2 {
