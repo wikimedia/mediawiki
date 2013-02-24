@@ -337,7 +337,7 @@ if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
 }
 
 # Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_diff ( $wgFileExtensions, $wgFileBlacklist );
+$wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgArticleCountMethod === null ) {
 	$wgArticleCountMethod = $wgUseCommaCount ? 'comma' : 'link';
