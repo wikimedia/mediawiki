@@ -228,6 +228,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
+			array( 'addIndex', 'page_props', 'pp_propname_page',  'patch-page_props-propname-page-index.sql' ),
 		);
 	}
 

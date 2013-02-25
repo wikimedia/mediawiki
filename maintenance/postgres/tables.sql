@@ -154,6 +154,7 @@ CREATE TABLE page_props (
 );
 ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
 CREATE INDEX page_props_propname ON page_props (pp_propname);
+CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname,pp_page);
 
 CREATE TABLE archive (
   ar_namespace      SMALLINT     NOT NULL,

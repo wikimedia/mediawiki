@@ -1417,6 +1417,7 @@ CREATE TABLE /*_*/page_props (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
+CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
 
 
 -- A table to log updates, one text key row per update.
