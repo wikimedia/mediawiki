@@ -783,7 +783,6 @@ $wgAutoloadLocalClasses = array(
 	'CoreTagHooks' => 'includes/parser/CoreTagHooks.php',
 	'DateFormatter' => 'includes/parser/DateFormatter.php',
 	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
-	'LinkMarkerReplacer' => 'includes/parser/Parser_LinkHooks.php',
 	'MWTidy' => 'includes/parser/Tidy.php',
 	'MWTidyWrapper' => 'includes/parser/Tidy.php',
 	'PPCustomFrame_DOM' => 'includes/parser/Preprocessor_DOM.php',
