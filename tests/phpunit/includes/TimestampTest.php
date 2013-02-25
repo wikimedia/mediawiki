@@ -54,12 +54,21 @@ class TimestampTest extends MediaWikiTestCase {
 	 * Test human readable timestamp format.
 	 */
 	function testHumanOutput() {
+		$timestamp = new MWTimestamp( time() );
+		$this->assertEquals( "just now", $timestamp->getHumanTimestamp( 'en' )->text() );
 		$timestamp = new MWTimestamp( time() - 3600 );
-		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
+		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->text() );
+		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp( 'en' )->text() );
+		$this->assertEquals( "před 1 hodinou", $timestamp->getHumanTimestamp( 'cs' )->text() );
+		$timestamp = new MWTimestamp( time() - 18000 );
+		$this->assertEquals( "5 hours ago", $timestamp->getHumanTimestamp( 'en' )->text() );
+		$this->assertEquals( "před 5 hodinami", $timestamp->getHumanTimestamp( 'cs' )->text() );
 		$timestamp = new MWTimestamp( time() - 5184000 );
-		$this->assertEquals( "2 months ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
+		$this->assertEquals( "2 months ago", $timestamp->getHumanTimestamp( 'en' )->text() );
+		$this->assertEquals( "před 2 měsíci", $timestamp->getHumanTimestamp( 'cs' )->text() );
 		$timestamp = new MWTimestamp( time() - 31536000 );
-		$this->assertEquals( "1 year ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
+		$this->assertEquals( "1 year ago", $timestamp->getHumanTimestamp( 'en' )->text() );
+		$this->assertEquals( "před 1 rokem", $timestamp->getHumanTimestamp( 'cs' )->text() );
 	}
 
 	/**

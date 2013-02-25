@@ -50,13 +50,13 @@ class MWTimestamp {
 	 * @see MWTimestamp::getHumanTimestamp
 	 */
 	private static $units = array(
-		"milliseconds" => 1,
-		"seconds" => 1000, // 1000 milliseconds per second
-		"minutes" => 60, // 60 seconds per minute
-		"hours" => 60, // 60 minutes per hour
-		"days" => 24, // 24 hours per day
-		"months" => 30, // approximately 30 days per month
-		"years" => 12, // 12 months per year
+		"milliseconds-ago" => 1,
+		"seconds-ago" => 1000, // 1000 milliseconds per second
+		"minutes-ago" => 60, // 60 seconds per minute
+		"hours-ago" => 60, // 60 minutes per hour
+		"days-ago" => 24, // 24 hours per day
+		"months-ago" => 30, // approximately 30 days per month
+		"years-ago" => 12, // 12 months per year
 	);
 
 	/**
@@ -197,10 +197,11 @@ class MWTimestamp {
 	 * largest possible unit is used.
 	 *
 	 * @since 1.20
+	 * @param $language Mixed: language code or Language object, or false
 	 *
 	 * @return Message Formatted timestamp
 	 */
-	public function getHumanTimestamp() {
+	public function getHumanTimestamp( $language = false ) {
 		$then = $this->getTimestamp( TS_UNIX );
 		$now = time();
 		$timeago = ($now - $then) * 1000;
@@ -218,10 +219,13 @@ class MWTimestamp {
 
 		if( $message ) {
 			$initial = call_user_func_array( 'wfMessage', $message );
-			return wfMessage( 'ago', $initial->parse() );
+			if ( $language ) $initial = $initial->inLanguage( $language );
+			$result = wfMessage( 'ago', $initial->parse() );
 		} else {
-			return wfMessage( 'just-now' );
+			$result = wfMessage( 'just-now' );
 		}
+		if ( $language ) $result = $result->inLanguage( $language );
+		return $result;
 	}
 
 	/**

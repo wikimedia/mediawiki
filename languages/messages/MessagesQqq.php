@@ -6832,39 +6832,46 @@ Abbreviation for "days". $1 is the number of days.
 See also {{msg-mw|days}}',
 'seconds' => 'Full word for "seconds". $1 is the number of seconds.
 
-See also {{msg-mw|Seconds-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}',
+See also {{msg-mw|Seconds-abbrev}}',
 'minutes' => 'Full word for "minutes". $1 is the number of minutes.
 
 See also {{msg-mw|Minutes-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}.
 {{Identical|Minute}}',
 'hours' => 'Full word for "hours". $1 is the number of hours.
 
-See also {{msg-mw|Hours-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}',
+See also {{msg-mw|Hours-abbrev}}',
 'days' => 'Full word for "days". $1 is the number of days.
 
 See also {{msg-mw|Days-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
-'months' => 'Full word for "months". $1 is the number of months.
+'months' => 'Full word for "months". $1 is the number of months.',
+'years' => 'Full word for "years". $1 is the number of years.',
+
+'seconds-ago' => 'Number of seconds ago.
 
 Part of variable $1 in {{msg-mw|Ago}}',
-'years' => 'Full word for "years". $1 is the number of years.
+'minutes-ago' => 'Number of minutes ago.
 
 Part of variable $1 in {{msg-mw|Ago}}',
-'ago' => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours", taken from these messages:
-*{{msg-mw|Seconds}}
-*{{msg-mw|Minutes}}
-*{{msg-mw|Hours}}
-*{{msg-mw|Days}}
-*{{msg-mw|Months}}
-*{{msg-mw|Years}}',
+'hours-ago' => 'Number of hours ago.
+
+Part of variable $1 in {{msg-mw|Ago}}',
+'days-ago' => 'Number of days ago.
+
+Part of variable $1 in {{msg-mw|Ago}}',
+'months-ago' => 'Number of months ago.
+
+Part of variable $1 in {{msg-mw|Ago}}',
+'years-ago' => 'Number of years ago.
+
+Part of variable $1 in {{msg-mw|Ago}}',
+'ago' => 'Phrase for indicating how long ago something happened. $1 is something like "10 hours", taken from these messages:
+*{{msg-mw|seconds-ago}}
+*{{msg-mw|minutes-ago}}
+*{{msg-mw|hours-ago}}
+*{{msg-mw|days-ago}}
+*{{msg-mw|months-ago}}
+*{{msg-mw|years-ago}}',
 'just-now' => 'Phrase for indicating something happened just now.',
 
 # Bad image list
